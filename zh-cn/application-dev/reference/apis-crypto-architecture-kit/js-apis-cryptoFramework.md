@@ -705,11 +705,11 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 >
 > 默认的模式为EXTRACT_AND_EXPAND，"HKDF|SHA256|EXTRACT_AND_EXPAND"等价于"HKDF|SHA256"。
 
-## ScryptSpec<sup>16+</sup>
+## ScryptSpec<sup>18+</sup>
 
 密钥派生函数参数[KdfSpec](#kdfspec11)的子类，作为SCRYPT密钥派生函数进行密钥派生时的输入。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Kdf
 
@@ -750,10 +750,10 @@ SM2密文参数，使用SM2密文格式转换函数进行格式转换时，需�
 > 
 > - 在拼接生成C1C3C2格式的密文时，如果x分量（C1_X）或y分量（C1_Y）的长度不足32字节，需要在高位补0，使得x分量和y分量的长度均为32字节。
 
-## KeyEncodingConfig<sup>16+</sup>
+## KeyEncodingConfig<sup>18+</sup>
 RSA私钥编码参数，使用获取私钥字符串时，可以添加此参数，生成指定算法、密码的编码后的私钥字符串。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
@@ -768,10 +768,10 @@ RSA私钥编码参数，使用获取私钥字符串时，可以添加此参数�
 >
 > - cipherName是必选参数，可以指定编码用到的算法。当前仅支持AES-128-CBC、AES-192-CBC、AES-256-CBC、DES-EDE3-CBC。
 
-## MacSpec<sup>16+</sup>
+## MacSpec<sup>18+</sup>
 消息认证码参数，计算HMAC、CMAC消息认证码时，需要构建其子类对象并作为输入。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.mac
 
@@ -783,10 +783,10 @@ RSA私钥编码参数，使用获取私钥字符串时，可以添加此参数�
 >
 > algName是必选参数，表示消息验证码使用的算法。
 
-## HmacSpec<sup>16+</sup>
-密钥派生函数参数[MacSpec](#macspec16)的子类，作为HMAC消息验证码计算的输入。
+## HmacSpec<sup>18+</sup>
+密钥派生函数参数[MacSpec](#macspec18)的子类，作为HMAC消息验证码计算的输入。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.mac
 
@@ -798,10 +798,10 @@ RSA私钥编码参数，使用获取私钥字符串时，可以添加此参数�
 >
 > mdName是必选参数，表示HMAC消息验证码使用的摘要算法名。
 
-## CmacSpec<sup>16+</sup>
-密钥派生函数参数[MacSpec](#macspec16)的子类，作为CMAC消息验证码计算的输入。
+## CmacSpec<sup>18+</sup>
+密钥派生函数参数[MacSpec](#macspec18)的子类，作为CMAC消息验证码计算的输入。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.mac
 
@@ -1227,13 +1227,13 @@ function TestPriKeyPkcs1ToPkcs8BySync1024() {
 }
 ```
 
-### getEncodedPem<sup>16+</sup>
+### getEncodedPem<sup>18+</sup>
 
 getEncodedPem(format: string, options: KeyEncodingConfig): string
 
 同步方法，获取密钥数据的字符串。密钥可以为RSA公钥或者私钥。其中，私钥格式满足PKCS#8规范、PKCS#1规范和PEM编码方式。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
@@ -1242,7 +1242,7 @@ getEncodedPem(format: string, options: KeyEncodingConfig): string
 | 参数名 | 类型                  | 必填 | 说明                 |
 | ---- | --------------------- | ---- | -------------------- |
 | format  | string | 是   | 指定的获取密钥字符串的编码格式。其中，私钥可为'PKCS1' 或'PKCS8'格式。|
-| options | [KeyEncodingConfig](#keyencodingconfig16) | 是 | 指定编码的算法跟口令，对私钥进行编码操作。 |
+| options | [KeyEncodingConfig](#keyencodingconfig18) | 是 | 指定编码的算法跟口令，对私钥进行编码操作。 |
 
 **返回值：**
 
@@ -2097,7 +2097,7 @@ async function TestConvertPemKeyByPromise() {
 }
 ```
 
-### convertPemKey<sup>16+</sup>
+### convertPemKey<sup>18+</sup>
 
 convertPemKey(pubKey: string | null, priKey: string | null, password: string): Promise\<KeyPair>
 
@@ -2109,7 +2109,7 @@ convertPemKey(pubKey: string | null, priKey: string | null, password: string): P
 > 3. convertPemKey方法将外来字符串数据转换为算法库非对称密钥对象时，不会校验生成的密钥对象的规格与创建非对称密钥生成器时指定的密钥规格是否一致。
 > 4. password为口令，传入后可以解密加密后的私钥。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
@@ -2172,7 +2172,7 @@ async function TestConvertPemKeyByPromise() {
 }
 ```
 
-### convertPemKey<sup>16+</sup>
+### convertPemKey<sup>18+</sup>
 
 convertPemKey(pubKey: string | null, priKey: string | null, password: string): Promise\<KeyPair>
 
@@ -2184,7 +2184,7 @@ convertPemKey(pubKey: string | null, priKey: string | null, password: string): P
 > 3. convertPemKey方法将外来字符串数据转换为算法库非对称密钥对象时，不会校验生成的密钥对象的规格与创建非对称密钥生成器时指定的密钥规格是否一致。
 > 4. password为口令，传入后可以解密加密后的私钥。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
@@ -2325,16 +2325,16 @@ function TestConvertPemKeyBySync() {
 }
 ```
 
-### convertPemKeySync<sup>16+</sup>
+### convertPemKeySync<sup>18+</sup>
 
 convertPemKeySync(pubKey: string | null, priKey: string | null, password: string): KeyPair
 
 同步获取指定数据生成非对称密钥。
 
 > **说明：**
-> convertPemKeySync接口与convertPemKey接口注意事项相同，见[convertPemKey](#convertpemkey16)接口说明。
+> convertPemKeySync接口与convertPemKey接口注意事项相同，见[convertPemKey](#convertpemkey18)接口说明。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
@@ -5682,7 +5682,7 @@ try {
 }
 ```
 
-## cryptoFramework.createMac<sup>16+</sup>
+## cryptoFramework.createMac<sup>18+</sup>
 
 createMac(macSpec: MacSpec): Mac
 
@@ -5690,7 +5690,7 @@ createMac(macSpec: MacSpec): Mac
 
 支持的规格详见[MAC消息认证码算法规格](../../security/CryptoArchitectureKit/crypto-compute-mac-overview.md#消息认证码计算介绍及算法规格)。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Mac
 
@@ -5698,7 +5698,7 @@ createMac(macSpec: MacSpec): Mac
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| macSpec | [MacSpec](#macspec16) | 是   | 根据消息验证码的不同算法，指定入参结构体，支持算法请参考[MAC消息认证码算法规格](../../security/CryptoArchitectureKit/crypto-compute-mac-overview.md#消息认证码计算介绍及算法规格)。 |
+| macSpec | [MacSpec](#macspec18) | 是   | 根据消息验证码的不同算法，指定入参结构体，支持算法请参考[MAC消息认证码算法规格](../../security/CryptoArchitectureKit/crypto-compute-mac-overview.md#消息认证码计算介绍及算法规格)。 |
 
 **返回值**：
 

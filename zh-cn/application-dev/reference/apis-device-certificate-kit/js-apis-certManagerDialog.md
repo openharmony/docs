@@ -22,10 +22,10 @@ import certificateManagerDialog from '@ohos.security.certManagerDialog';
 
 | 名称       | 值 |  说明      |
 | ---------- | ------ | --------- |
-| PAGE_MAIN | 1      | 证书管理应用主页面 |
-| PAGE_CA_CERTIFICATE | 2      | CA证书列表页面 |
-| PAGE_CREDENTIAL | 3      | 凭据列表页面 |
-| PAGE_INSTALL_CERTIFICATE | 4      | 安装证书页面 |
+| PAGE_MAIN | 1      | 证书管理应用主页面。 |
+| PAGE_CA_CERTIFICATE | 2      | CA证书列表页面。 |
+| PAGE_CREDENTIAL | 3      | 凭据列表页面。 |
+| PAGE_INSTALL_CERTIFICATE | 4      | 安装证书页面。 |
 
 ## CertificateType<sup>14+</sup>
 
@@ -37,7 +37,7 @@ import certificateManagerDialog from '@ohos.security.certManagerDialog';
 
 | 名称       | 值 |  说明      |
 | ---------- | ------ | --------- |
-| CA_CERT | 1      | CA证书 |
+| CA_CERT | 1      | CA证书。 |
 
 ## CertificateScope<sup>14+</sup>
 
@@ -49,9 +49,9 @@ import certificateManagerDialog from '@ohos.security.certManagerDialog';
 
 | 名称       | 值 |  说明      |
 | ---------- | ------ | --------- |
-| NOT_SPECIFIED<sup>18+</sup>  | 0      | 未指定用户 |
-| CURRENT_USER | 1      | 当前用户 |
-| GLOBAL_USER<sup>18+</sup> | 2      | 公共目录 |
+| NOT_SPECIFIED<sup>18+</sup>  | 0      | 未指定用户。 |
+| CURRENT_USER | 1      | 当前用户。 |
+| GLOBAL_USER<sup>18+</sup> | 2      | 公共目录。 |
 
 
 ## CertificateDialogErrorCode

@@ -22,6 +22,6 @@
 | moduleName       | string                         | 是   | 否   | 模块名称。 |
 | labelId          | number                         | 是   | 否   | 模块标签的资源ID值。     |
 | iconId           | number                         | 是   | 否   | 模块图标的资源ID值。    |
-| systemApp        | boolean                        | 是   | 否   | 标识应用是否为系统应用，取值为true表示系统应用，取值为false表示非系统应用。  |
-| bundleType       |[BundleType](js-apis-bundleManager.md#bundletype)             | 是   | 否   | 标识包的类型，取值为APP（应用）或者ATOMIC_SERVICE（原子化服务）。                                |
-| codePaths        | Array\<string>                 | 是   | 否   | 应用程序的安装目录。          |
+| systemApp<sup>12+</sup>       | boolean                        | 是   | 否   | 标识应用是否为系统应用，取值为true表示系统应用，取值为false表示非系统应用。  |
+| bundleType<sup>12+</sup>       |[BundleType](js-apis-bundleManager.md#bundletype)             | 是   | 否   | 标识包的类型，取值为APP（应用）或者ATOMIC_SERVICE（原子化服务）。                                |
+| codePaths<sup>12+</sup>        | Array\<string>                 | 是   | 否   | 应用程序的安装目录。          |

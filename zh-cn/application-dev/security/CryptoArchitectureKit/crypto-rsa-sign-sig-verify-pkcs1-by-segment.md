@@ -1,11 +1,8 @@
 # 使用RSA密钥对分段签名验签（PKCS1模式）(ArkTS)
 
-
 对应的算法规格请查看[签名验签算法规格：RSA](crypto-sign-sig-verify-overview.md#rsa)。
 
-
 **签名**
-
 
 1. 调用[cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator)、[AsyKeyGenerator.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-1)，生成密钥算法为RSA、密钥长度为1024位、素数个数为2的非对称密钥对象（KeyPair），包括公钥（PubKey）和私钥（PriKey）。
    
@@ -20,9 +17,7 @@
 
 5. 调用[Sign.sign](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#sign-1)，生成数据签名。
 
-
 **验签**
-
 
 1. 调用[cryptoFramework.createVerify](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateverify)，指定字符串参数'RSA1024|PKCS1|SHA256'，与签名的Sign实例保持一致。创建Verify实例，用于完成验签操作。
 
@@ -32,7 +27,6 @@
    当前单次update长度没有限制，开发者可以根据数据量判断如何调用update。
 
 4. 调用[Verify.verify](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#verify-1)，对数据进行验签。
-
 
 - 异步方法示例：
 
@@ -44,14 +38,14 @@
     let signAlg = "RSA1024|PKCS1|SHA256";
     let signer = cryptoFramework.createSign(signAlg);
     await signer.init(priKey);
-    let textSplitLen = 64; // 自定义的数据拆分长度，此处取64
+    let textSplitLen = 64; // 自定义的数据拆分长度，此处取64。
     for (let i = 0; i < plainText.length; i += textSplitLen) {
       let updateMessage = plainText.subarray(i, i + textSplitLen);
       let updateMessageBlob: cryptoFramework.DataBlob = { data: updateMessage };
-      // 分段update
+      // 分段update。
       await signer.update(updateMessageBlob);
     }
-    // 已通过分段传入所有明文，故此处sign传入null
+    // 已通过分段传入所有明文，故此处sign传入null。
     let signData = await signer.sign(null);
     return signData;
   }
@@ -59,14 +53,14 @@
     let verifyAlg = "RSA1024|PKCS1|SHA256";
     let verifier = cryptoFramework.createVerify(verifyAlg);
     await verifier.init(pubKey);
-    let textSplitLen = 64; // 自定义的数据拆分长度，此处取64
+    let textSplitLen = 64; // 自定义的数据拆分长度，此处取64。
     for (let i = 0; i < plainText.length; i += textSplitLen) {
       let updateMessage = plainText.subarray(i, i + textSplitLen);
       let updateMessageBlob: cryptoFramework.DataBlob = { data: updateMessage };
-      // 分段update
+      // 分段update。
       await verifier.update(updateMessageBlob);
     }
-    // 已通过分段传入所有明文，故此处verify第一个参数传入null
+    // 已通过分段传入所有明文，故此处verify第一个参数传入null。
     let res = await verifier.verify(null, signMessageBlob);
     console.info("verify result is " + res);
     return res;
@@ -104,14 +98,14 @@
     let signAlg = "RSA1024|PKCS1|SHA256";
     let signer = cryptoFramework.createSign(signAlg);
     signer.initSync(priKey);
-    let textSplitLen = 64; // 自定义的数据拆分长度，此处取64
+    let textSplitLen = 64; // 自定义的数据拆分长度，此处取64。
     for (let i = 0; i < plainText.length; i += textSplitLen) {
       let updateMessage = plainText.subarray(i, i + textSplitLen);
       let updateMessageBlob: cryptoFramework.DataBlob = { data: updateMessage };
-      // 分段update
+      // 分段update。
       signer.updateSync(updateMessageBlob);
     }
-    // 已通过分段传入所有明文，故此处sign传入null
+    // 已通过分段传入所有明文，故此处sign传入null。
     let signData = signer.signSync(null);
     return signData;
   }
@@ -119,14 +113,14 @@
     let verifyAlg = "RSA1024|PKCS1|SHA256";
     let verifier = cryptoFramework.createVerify(verifyAlg);
     verifier.initSync(pubKey);
-    let textSplitLen = 64; // 自定义的数据拆分长度，此处取64
+    let textSplitLen = 64; // 自定义的数据拆分长度，此处取64。
     for (let i = 0; i < plainText.length; i += textSplitLen) {
       let updateMessage = plainText.subarray(i, i + textSplitLen);
       let updateMessageBlob: cryptoFramework.DataBlob = { data: updateMessage };
-      // 分段update
+      // 分段update。
       verifier.updateSync(updateMessageBlob);
     }
-    // 已通过分段传入所有明文，故此处verify第一个参数传入null
+    // 已通过分段传入所有明文，故此处verify第一个参数传入null。
     let res = verifier.verifySync(null, signMessageBlob);
     console.info("verify result is " + res);
     return res;

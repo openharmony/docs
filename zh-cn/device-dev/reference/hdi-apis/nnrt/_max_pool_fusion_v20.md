@@ -1,6 +1,5 @@
 # MaxPoolFusion
 
-
 ## 概述
 
 对输入x，计算 2D 最大值池化。
@@ -11,7 +10,7 @@
 
 输入：
 
-- x，n维tensor
+- x，n维tensor。
 
 输出：
 
@@ -21,9 +20,7 @@
 
 **相关模块：**[NNRt](_n_n_rt_v20.md)
 
-
 ## 汇总
-
 
 ### Public 属性
 
@@ -37,9 +34,7 @@
 | boolean [global](#global) | 是否是全局池化。  | 
 | enum [ActivationType](_n_n_rt_v20.md#activationtype)[activationType](#activationtype) | 激活函数，详情请参考：[ActivationType](_n_n_rt_v20.md#activationtype)。  | 
 
-
 ## 类成员变量说明
-
 
 ### activationType
 
@@ -50,7 +45,6 @@ enum ActivationType MaxPoolFusion::activationType
 
 激活函数，详情请参考：[ActivationType](_n_n_rt_v20.md#activationtype)。
 
-
 ### format
 
 ```
@@ -59,7 +53,6 @@ enum Format MaxPoolFusion::format
 **描述**
 
 运算时数据的排列，详情请参考：[Format](_n_n_rt_v20.md#format)。
-
 
 ### global
 
@@ -70,7 +63,6 @@ boolean MaxPoolFusion::global
 
 是否是全局池化。
 
-
 ### kernelSize
 
 ```
@@ -79,7 +71,6 @@ long [] MaxPoolFusion::kernelSize
 **描述**
 
 取最大值的kernel大小，是一个长度为2的int数组[kernel_height，kernel_weight]。
-
 
 ### pad
 
@@ -90,7 +81,6 @@ long [] MaxPoolFusion::pad
 
 填充数组。
 
-
 ### padMode
 
 ```
@@ -99,7 +89,6 @@ enum PadMode MaxPoolFusion::padMode
 **描述**
 
 填充类型，详情请参考：[PadMode](_n_n_rt_v20.md#padmode)。
-
 
 ### strides
 

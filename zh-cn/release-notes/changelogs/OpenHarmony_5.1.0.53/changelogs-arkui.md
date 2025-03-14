@@ -361,3 +361,150 @@ API 9
 **适配指导**
 
 默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
+
+## cl.arkui.9 按钮默认值变更为新增圆角矩形类型
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+原有默认类型按钮是胶囊按钮，在适老化场景下字体过大，在多行等场景下胶囊按钮文字易超出其圆角范围。不符合简单易用及高端精致原则，因此新增圆角矩形类型按钮，默认值变为新增的圆角矩形类型。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+变更前：ButtonOptions中type的默认值为ButtonType.Capsule。
+
+变更后：ButtonOptions中type的默认值为ButtonType.ROUNDED_RECTANGLE
+
+![roundedRectButton](figures/roundedRectButton.PNG)
+
+**起始API Level**
+
+API 9
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.53开始。
+
+**变更的接口/组件**
+
+Button组件中ButtonOptions对象的type属性默认值。
+
+**适配指导**
+
+开发者在使用Button组件，创建默认类型的Button按钮时，Button按钮为ROUNDED_RECTANGLE类型。
+
+```ts
+
+@Entry
+@Component
+struct ButtonExample {
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
+      Text('Capsule button with rounded corners by default.').fontSize(9).fontColor(0xCCCCCC)
+      Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
+        Button('Capsule')
+          .type(ButtonType.Capsule)
+          .backgroundColor(0x317aff)
+          .height(60)
+          .controlSize(ControlSize.NORMAL)
+          .width(180)
+      }
+      Text('Rounded rectangle button with rounded corners by default.').fontSize(9).fontColor(0xCCCCCC)
+      Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
+        Button('Rounded rectangle')
+          .type(ButtonType.ROUNDED_RECTANGLE)
+          .backgroundColor(0x317aff)
+          .controlSize(ControlSize.NORMAL)
+          .height(60)
+          .width(180)
+      }
+    }.height(400).padding({ left: 35, right: 35, top: 35 })
+  }
+}
+
+```
+
+## cl.arkui.10 enabled属性UX样式变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+Rating组件与Slider组件enabled属性UX样式不符合规范
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+Rating组件变更场景：
+
+| 变更前 | 变更后 |
+|------ |--------|
+|Rating组件设置enable为false时，未叠加40%透明度。</br>![rating_enable](figures/rating_enable.PNG)|Rating组件设置enable为false时，叠加40%透明度。</br>![rating_enable_opacity](figures/rating_enable_opacity.PNG)|
+
+Slider组件变更场景：
+
+| 变更前 | 变更后 |
+|------ |--------|
+|Slider组件设置enable为false时，未叠加40%透明度。</br>![slider_enable](figures/slider_enable.PNG)|Slider组件设置enable为false时，叠加40%透明度。</br>![slider_enable_opacity](figures/slider_enable_opacity.PNG)|
+
+**起始API Level**
+
+7
+
+**变更发生版本**
+
+从OpenHarmony 5.1.0.53 版本开始。
+
+**变更的接口/组件**
+
+通用属性enabled属性。
+
+**适配指导**
+
+默认行为变更，无需适配。
+
+## cl.arkui.11 修复Popup高级组件宽度限制计算错误的问题
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+目前宽度最大限制不符合ux规范，在手机屏幕场景下，会出现Popup高级组件无法撑满屏幕的情况，影响体验。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+变更前：屏幕宽度小于400vp时，Popup高级组件最大宽度为当前屏幕宽度-80vp。
+
+变更后：屏幕宽度小于400vp时，Popup高级组件最大宽度为当前屏幕宽度。
+
+| 变更前                                   | 变更后                                   |
+| ---------------------------------------- | ---------------------------------------- |
+| ![popup_before](figures/popup_before.png) | ![popup_after](figures/popup_after.png) |
+
+**起始API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony 5.1.0.53 版本开始。
+
+**变更的接口/组件**
+
+Popup高级组件。
+
+**适配指导**
+
+如果用户原来没有自定义Popup高级组件的宽度，且内容宽度大于320vp，变更前按320vp显示，变更后，Popup高级组件会变宽；如不符合预期，可以手动修改为想要的宽度。

@@ -1375,7 +1375,7 @@ struct attributeDemo {
     }
     ```
 
-## cl.arkui.5 使用RichEditorStyledStringController构造方式的富文本组件支持预上屏功能
+## cl.arkui.9 使用RichEditorStyledStringController构造方式的富文本组件支持预上屏功能
 **访问级别**
 
 公开接口
@@ -1436,7 +1436,7 @@ struct Index {
 }
 ```
 
-## cl.arkui.6 RichEditor（富文本）组件鼠标右击文本触发onSelectionChange回调变更
+## cl.arkui.10 RichEditor（富文本）组件鼠标右击文本触发onSelectionChange回调变更
 **访问级别**
 
 公开接口
@@ -1469,7 +1469,7 @@ API 12
 
 不涉及应用适配。
 
-## cl.arkui.7 RichEditor（富文本）预上屏候选词替换已上屏内容行为变更
+## cl.arkui.11 RichEditor（富文本）预上屏候选词替换已上屏内容行为变更
 
 **访问级别**
 
@@ -1529,7 +1529,7 @@ struct Index {
 }
 ```
 
-## cl.arkui.8 RichEditor（富文本）设置提示文本时鼠标拖动光标回调变更。
+## cl.arkui.12 RichEditor（富文本）设置提示文本时鼠标拖动光标回调变更。
 
 **访问级别**
 
@@ -1565,7 +1565,7 @@ RichEditor
 
 默认行为变更，无需适配。
 
-## cl.arkui.9 RichEditor（富文本）onDeleteComplete回调变更。
+## cl.arkui.13 RichEditor（富文本）onDeleteComplete回调变更。
 
 **访问级别**
 
@@ -1601,7 +1601,7 @@ RichEditor
 
 默认行为变更，无需适配。
 
-## cl.arkui.10 RichEditor（富文本）RichEditorTextSpanResult接口返回值变更
+## cl.arkui.14 RichEditor（富文本）RichEditorTextSpanResult接口返回值变更
 
 **访问级别**
 
@@ -1637,7 +1637,7 @@ RichEditor
 
 默认行为变更，无需适配。
 
-## cl.arkui.11  半模态底部样式最大高度默认避让状态栏安全区
+## cl.arkui.15  半模态底部样式最大高度默认避让状态栏安全区
 
 **访问级别**
 
@@ -1689,7 +1689,7 @@ bindSheet的LARGE属性
 
 若按变更前的最大高度规格限制的builder内容，需要变更为新规格计算。
 
-## cl.arkui.12 sharedTransition在id入参为undefined或空字符串时的行为变更
+## cl.arkui.16 sharedTransition在id入参为undefined或空字符串时的行为变更
 
 **访问级别**
 
@@ -1723,7 +1723,7 @@ common.d.ts文件的sharedTransition接口
 
 开发者如果希望同一组件的sharedTransition的id维持有效值不变，且开发者已经主动设置id为空字符串或undefined时，需要适配。适配方式为不更改sharedTransition的id，维持之前的有效值不变。其余情况无需适配。
 
-## cl.arkui.13 半模态弹簧曲线时长设置默认值
+## cl.arkui.17 半模态弹簧曲线时长设置默认值
 
 **访问级别**
 
@@ -1759,7 +1759,7 @@ bindSheet的SheetSize.FIT_CONTENT属性。
 
 UX效果调优，应用无需适配。
 
-## cl.arkui.14 bindSheet在2in1设备中默认避让窗口安全区
+## cl.arkui.18 bindSheet在2in1设备中默认避让窗口安全区
 
 **访问级别**
 
@@ -1812,3 +1812,95 @@ bindSheet的preferType属性
 若开发者自定义的builder面板内容是固定高度，建议使用100%布局，变更后自定义的内容也可以自动撑满半模态面板。
 
 若按变更前的最大高度规格限制的builder内容，需要变更为新规格计算。
+
+## cl.arkui.19 XComponent设置为Texture模式使用blendMode接口的行为由不生效变更为正常生效
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+用户使用XComponent组件并设置为Texture模式时，使用blendMode接口没有效果，不符合接口正常规格，需要变更为blendMode接口正常生效。
+
+**变更影响**
+
+此变更涉及应用适配。
+
+变更前：XComponent组件设置为Texture模式，使用blendMode接口不生效。
+
+变更后：XComponent组件设置为Texture模式，使用blendMode接口正常生效。
+
+**起始API Level**
+
+API 11
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.54开始。
+
+**变更的接口/组件**
+
+common.d.ts文件的blendMode接口。
+
+**适配指导**
+
+需适配场景：
+当应用使用XComponent组件并设置为Texture模式（`type`设置为`XComponentType.TEXTURE`）时，使用blendMode接口，可能会出现显示效果变更前后不一致的情况，以下是使用场景示意：
+
+```ts
+@Entry
+@Component
+struct Index {
+  private contextOne: Record<string, () => void> = {};
+  private contextTwo: Record<string, () => void> = {};
+
+  build() {
+    Column() {
+      Stack() {
+        XComponent({
+          id: 'circle',
+          type: XComponentType.TEXTURE,
+          libraryname: 'nativerender'
+        }).height(50)
+          .backgroundColor(Color.Transparent)
+          .onLoad((contextOne?: object | Record<string, () => void>) => {
+            if (contextOne) {
+              this.contextOne = contextOne as Record<string, () => void>;
+            }
+          })
+
+        XComponent({
+          id: 'rect',
+          type: XComponentType.TEXTURE,
+          libraryname: 'nativerender'
+        }).height(50)
+          .backgroundColor(Color.Transparent)
+          .onLoad((contextTwo?: object | Record<string, () => void>) => {
+            if (contextTwo) {
+              this.contextTwo = contextTwo as Record<string, () => void>;
+            }
+          })
+          .blendMode(BlendMode.XOR) // 变更后生效，若需保持变更前行为，可使用BlendMode.None入参
+      }
+      .height(50)
+      .onClick(() => {
+        if (this.contextOne) {
+          this.contextOne.drawCircle();
+        }
+        if (this.contextTwo) {
+          this.contextTwo.drawRectangle();
+        }
+      })
+    }
+    .blendMode(BlendMode.SRC_OVER, BlendApplyType.OFFSCREEN)
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+| 混合类型 | 变更前 | 变更后 |
+| ------- | - | ---- |
+| BlendMode.XOR | ![demoBlendModeXor](figures/demoBlendModeNone.png) | ![demoBlendModeXor](figures/demoBlendModeXor.png) |
+| BlendMode.NONE  | ![demoBlendModeNone](figures/demoBlendModeNone.png) | ![demoBlendModeNone](figures/demoBlendModeNone.png) |
+
+应用若需保持变更前行为，XComponent组件上的blendMode接口使用BlendMode.None入参即可。

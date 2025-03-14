@@ -63,14 +63,14 @@ Provides HID driver development kit (DDK) functions, including those for creatin
 
 | Name| Description| 
 | -------- | -------- |
-| [Hid_DeviceProp](#hid_deviceprop) {<br>HID_PROP_POINTER = 0x00, HID_PROP_DIRECT = 0x01, HID_PROP_BUTTON_PAD = 0x02, HID_PROP_SEMI_MT = 0x03,HID_PROP_TOP_BUTTON_PAD = 0x04, HID_PROP_POINTING_STICK = 0x05, HID_PROP_ACCELEROMETER = 0x06<br>} | Enumerates the properties of input devices.| 
-| [Hid_EventType](#hid_eventtype) {<br>HID_EV_SYN = 0x00, HID_EV_KEY = 0x01, HID_EV_REL = 0x02, HID_EV_ABS = 0x03,HID_EV_MSC = 0x04<br>} | Enumerates the event types.| 
+| [Hid_DeviceProp](#hid_deviceprop) {<br>HID_PROP_POINTER = 0x00, HID_PROP_DIRECT = 0x01, HID_PROP_BUTTON_PAD = 0x02, HID_PROP_SEMI_MT = 0x03, HID_PROP_TOP_BUTTON_PAD = 0x04, HID_PROP_POINTING_STICK = 0x05, HID_PROP_ACCELEROMETER = 0x06<br>} | Enumerates the properties of input devices.| 
+| [Hid_EventType](#hid_eventtype) {<br>HID_EV_SYN = 0x00, HID_EV_KEY = 0x01, HID_EV_REL = 0x02, HID_EV_ABS = 0x03, HID_EV_MSC = 0x04<br>} | Enumerates the event types.| 
 | [Hid_SynEvent](#hid_synevent) { HID_SYN_REPORT = 0, HID_SYN_CONFIG = 1, HID_SYN_MT_REPORT = 2, HID_SYN_DROPPED = 3 } | Enumerates sync events.| 
-| [Hid_KeyCode](#hid_keycode) {<br>HID_KEY_A = 30, HID_KEY_B = 48, HID_KEY_C = 46, HID_KEY_D = 32,HID_KEY_E = 18, HID_KEY_F = 33, HID_KEY_G = 34, HID_KEY_H = 35,HID_KEY_I = 23, HID_KEY_J = 36, HID_KEY_K = 37, HID_KEY_L = 38,HID_KEY_M = 50, HID_KEY_N = 49, HID_KEY_O = 24, HID_KEY_P = 25,HID_KEY_Q = 16, HID_KEY_R = 19, HID_KEY_S = 31, HID_KEY_T = 20,HID_KEY_U = 22, HID_KEY_V = 47, HID_KEY_W = 17, HID_KEY_X = 45,HID_KEY_Y = 21, HID_KEY_Z = 44, HID_KEY_ESC = 1, HID_KEY_0 = 11,HID_KEY_1 = 2, HID_KEY_2 = 3, HID_KEY_3 = 4, HID_KEY_4 = 5,HID_KEY_5 = 6, HID_KEY_6 = 7, HID_KEY_7 = 8, HID_KEY_8 = 9,HID_KEY_9 = 10, HID_KEY_GRAVE = 41, HID_KEY_MINUS = 12, HID_KEY_EQUALS = 13,HID_KEY_BACKSPACE = 14, HID_KEY_LEFT_BRACKET = 26, HID_KEY_RIGHT_BRACKET = 27, HID_KEY_ENTER = 28,HID_KEY_LEFT_SHIFT = 42, HID_KEY_BACKSLASH = 43, HID_KEY_SEMICOLON = 39, HID_KEY_APOSTROPHE = 40,HID_KEY_SPACE = 57, HID_KEY_SLASH = 53, HID_KEY_COMMA = 51, HID_KEY_PERIOD = 52,HID_KEY_RIGHT_SHIFT = 54, HID_KEY_NUMPAD_0 = 82, HID_KEY_NUMPAD_1 = 79, HID_KEY_NUMPAD_2 = 80,HID_KEY_NUMPAD_3 = 81, HID_KEY_NUMPAD_4 = 75, HID_KEY_NUMPAD_5 = 76, HID_KEY_NUMPAD_6 = 77,HID_KEY_NUMPAD_7 = 71, HID_KEY_NUMPAD_8 = 72, HID_KEY_NUMPAD_9 = 73, HID_KEY_NUMPAD_DIVIDE = 70,HID_KEY_NUMPAD_MULTIPLY = 55, HID_KEY_NUMPAD_SUBTRACT = 74, HID_KEY_NUMPAD_ADD = 78, HID_KEY_NUMPAD_DOT = 83,HID_KEY_SYSRQ = 99, HID_KEY_MUTE = 113, HID_KEY_VOLUME_DOWN = 114, HID_KEY_VOLUME_UP = 115,HID_KEY_BRIGHTNESS_DOWN = 224, HID_KEY_BRIGHTNESS_UP = 225, HID_BTN_0 = 0x100, HID_BTN_1 = 0x101,HID_BTN_2 = 0x102, HID_BTN_3 = 0x103, HID_BTN_4 = 0x104, HID_BTN_5 = 0x105,HID_BTN_6 = 0x106, HID_BTN_7 = 0x107, HID_BTN_8 = 0x108, HID_BTN_9 = 0x109,HID_BTN_LEFT = 0x110, HID_BTN_RIGHT = 0x111, HID_BTN_MIDDLE = 0x112, HID_BTN_SIDE = 0x113,HID_BTN_EXTRA = 0x114, HID_BTN_FORWARD = 0x115, HID_BTN_BACKWARD = 0x116, HID_BTN_TASK = 0x117,HID_BTN_TOOL_PEN = 0x140, HID_BTN_TOOL_RUBBER = 0x141, HID_BTN_TOOL_BRUSH = 0x142, HID_BTN_TOOL_PENCIL = 0x143,HID_BTN_TOOL_AIRBRUSH = 0x144, HID_BTN_TOOL_FINGER = 0x145, HID_BTN_TOOL_MOUSE = 0x146, HID_BTN_TOOL_LENS = 0x147,HID_BTN_TOOL_QUINT_TAP = 0x148, HID_BTN_STYLUS3 = 0x149, HID_BTN_TOUCH = 0x14a, HID_BTN_STYLUS = 0x14b,HID_BTN_STYLUS2 = 0x14c, HID_BTN_TOOL_DOUBLE_TAP = 0x14d, HID_BTN_TOOL_TRIPLE_TAP = 0x14e, HID_BTN_TOOL_QUAD_TAP = 0x14f,HID_BTN_WHEEL = 0x150<br>} | Enumerates the key codes.| 
-| [Hid_AbsAxes](#hid_absaxes) {<br>HID_ABS_X = 0x00, HID_ABS_Y = 0x01, HID_ABS_Z = 0x02, HID_ABS_RX = 0x03,HID_ABS_RY = 0x04, HID_ABS_RZ = 0x05, HID_ABS_THROTTLE = 0x06, HID_ABS_RUDDER = 0x07,HID_ABS_WHEEL = 0x08, HID_ABS_GAS = 0x09, HID_ABS_BRAKE = 0x0a, HID_ABS_HAT0X = 0x10,HID_ABS_HAT0Y = 0x11, HID_ABS_HAT1X = 0x12, HID_ABS_HAT1Y = 0x13, HID_ABS_HAT2X = 0x14,HID_ABS_HAT2Y = 0x15, HID_ABS_HAT3X = 0x16, HID_ABS_HAT3Y = 0x17, HID_ABS_PRESSURE = 0x18,HID_ABS_DISTANCE = 0x19, HID_ABS_TILT_X = 0x1a, HID_ABS_TILT_Y = 0x1b, HID_ABS_TOOL_WIDTH = 0x1c,HID_ABS_VOLUME = 0x20, HID_ABS_MISC = 0x28<br>} | Enumerates the absolute coordinates.| 
-| [Hid_RelAxes](#hid_relaxes) {<br>HID_REL_X = 0x00, HID_REL_Y = 0x01, HID_REL_Z = 0x02, HID_REL_RX = 0x03,HID_REL_RY = 0x04, HID_REL_RZ = 0x05, HID_REL_HWHEEL = 0x06, HID_REL_DIAL = 0x07,HID_REL_WHEEL = 0x08, HID_REL_MISC = 0x09, HID_REL_RESERVED = 0x0a, HID_REL_WHEEL_HI_RES = 0x0b,HID_REL_HWHEEL_HI_RES = 0x0c<br>} | Enumerates the relative coordinates.| 
-| [Hid_MscEvent](#hid_mscevent) {<br>HID_MSC_SERIAL = 0x00, HID_MSC_PULSE_LED = 0x01, HID_MSC_GESTURE = 0x02, HID_MSC_RAW = 0x03,HID_MSC_SCAN = 0x04, HID_MSC_TIMESTAMP = 0x05<br>} | Enumerates miscellaneous input events.| 
-| [Hid_DdkErrCode](#hid_ddkerrcode) {<br>HID_DDK_SUCCESS = 0, HID_DDK_NO_PERM = 201, HID_DDK_INVALID_PARAMETER = 401,HID_DDK_FAILURE = 27300001,HID_DDK_NULL_PTR = 27300002, HID_DDK_INVALID_OPERATION = 27300003, HID_DDK_TIMEOUT = 27300004, HID_DDK_INIT_ERROR = 27300005, HID_DDK_SERVICE_ERROR = 27300006, HID_DDK_MEMORY_ERROR = 27300007, HID_DDK_IO_ERROR = 27300008, HID_DDK_DEVICE_NOT_FOUND = 27300009<br>} | Enumerates the HID DDK error codes.| 
+| [Hid_KeyCode](#hid_keycode) {<br>HID_KEY_A = 30, HID_KEY_B = 48, HID_KEY_C = 46, HID_KEY_D = 32, HID_KEY_E = 18, HID_KEY_F = 33, HID_KEY_G = 34, HID_KEY_H = 35, HID_KEY_I = 23, HID_KEY_J = 36, HID_KEY_K = 37, HID_KEY_L = 38, HID_KEY_M = 50, HID_KEY_N = 49, HID_KEY_O = 24, HID_KEY_P = 25, HID_KEY_Q = 16, HID_KEY_R = 19, HID_KEY_S = 31, HID_KEY_T = 20, HID_KEY_U = 22, HID_KEY_V = 47, HID_KEY_W = 17, HID_KEY_X = 45, HID_KEY_Y = 21, HID_KEY_Z = 44, HID_KEY_ESC = 1, HID_KEY_0 = 11, HID_KEY_1 = 2, HID_KEY_2 = 3, HID_KEY_3 = 4, HID_KEY_4 = 5, HID_KEY_5 = 6, HID_KEY_6 = 7, HID_KEY_7 = 8, HID_KEY_8 = 9, HID_KEY_9 = 10, HID_KEY_GRAVE = 41, HID_KEY_MINUS = 12, HID_KEY_EQUALS = 13, HID_KEY_BACKSPACE = 14, HID_KEY_LEFT_BRACKET = 26, HID_KEY_RIGHT_BRACKET = 27, HID_KEY_ENTER = 28, HID_KEY_LEFT_SHIFT = 42, HID_KEY_BACKSLASH = 43, HID_KEY_SEMICOLON = 39, HID_KEY_APOSTROPHE = 40, HID_KEY_SPACE = 57, HID_KEY_SLASH = 53, HID_KEY_COMMA = 51, HID_KEY_PERIOD = 52, HID_KEY_RIGHT_SHIFT = 54, HID_KEY_NUMPAD_0 = 82, HID_KEY_NUMPAD_1 = 79, HID_KEY_NUMPAD_2 = 80, HID_KEY_NUMPAD_3 = 81, HID_KEY_NUMPAD_4 = 75, HID_KEY_NUMPAD_5 = 76, HID_KEY_NUMPAD_6 = 77, HID_KEY_NUMPAD_7 = 71, HID_KEY_NUMPAD_8 = 72, HID_KEY_NUMPAD_9 = 73, HID_KEY_NUMPAD_DIVIDE = 70, HID_KEY_NUMPAD_MULTIPLY = 55, HID_KEY_NUMPAD_SUBTRACT = 74, HID_KEY_NUMPAD_ADD = 78, HID_KEY_NUMPAD_DOT = 83, HID_KEY_SYSRQ = 99, HID_KEY_DELETE = 111, HID_KEY_MUTE = 113, HID_KEY_VOLUME_DOWN = 114, HID_KEY_VOLUME_UP = 115, HID_KEY_BRIGHTNESS_DOWN = 224, HID_KEY_BRIGHTNESS_UP = 225, HID_BTN_0 = 0x100, HID_BTN_1 = 0x101, HID_BTN_2 = 0x102, HID_BTN_3 = 0x103, HID_BTN_4 = 0x104, HID_BTN_5 = 0x105, HID_BTN_6 = 0x106, HID_BTN_7 = 0x107, HID_BTN_8 = 0x108, HID_BTN_9 = 0x109, HID_BTN_LEFT = 0x110, HID_BTN_RIGHT = 0x111, HID_BTN_MIDDLE = 0x112, HID_BTN_SIDE = 0x113, HID_BTN_EXTRA = 0x114, HID_BTN_FORWARD = 0x115, HID_BTN_BACKWARD = 0x116, HID_BTN_TASK = 0x117, HID_BTN_TOOL_PEN = 0x140, HID_BTN_TOOL_RUBBER = 0x141, HID_BTN_TOOL_BRUSH = 0x142, HID_BTN_TOOL_PENCIL = 0x143, HID_BTN_TOOL_AIRBRUSH = 0x144, HID_BTN_TOOL_FINGER = 0x145, HID_BTN_TOOL_MOUSE = 0x146, HID_BTN_TOOL_LENS = 0x147, HID_BTN_TOOL_QUINT_TAP = 0x148, HID_BTN_STYLUS3 = 0x149, HID_BTN_TOUCH = 0x14a, HID_BTN_STYLUS = 0x14b, HID_BTN_STYLUS2 = 0x14c, HID_BTN_TOOL_DOUBLE_TAP = 0x14d, HID_BTN_TOOL_TRIPLE_TAP = 0x14e, HID_BTN_TOOL_QUAD_TAP = 0x14f, HID_BTN_WHEEL = 0x150<br>} | Enumerates the key codes.| 
+| [Hid_AbsAxes](#hid_absaxes) {<br>HID_ABS_X = 0x00, HID_ABS_Y = 0x01, HID_ABS_Z = 0x02, HID_ABS_RX = 0x03, HID_ABS_RY = 0x04, HID_ABS_RZ = 0x05, HID_ABS_THROTTLE = 0x06, HID_ABS_RUDDER = 0x07, HID_ABS_WHEEL = 0x08, HID_ABS_GAS = 0x09, HID_ABS_BRAKE = 0x0a, HID_ABS_HAT0X = 0x10, HID_ABS_HAT0Y = 0x11, HID_ABS_HAT1X = 0x12, HID_ABS_HAT1Y = 0x13, HID_ABS_HAT2X = 0x14, HID_ABS_HAT2Y = 0x15, HID_ABS_HAT3X = 0x16, HID_ABS_HAT3Y = 0x17, HID_ABS_PRESSURE = 0x18, HID_ABS_DISTANCE = 0x19, HID_ABS_TILT_X = 0x1a, HID_ABS_TILT_Y = 0x1b, HID_ABS_TOOL_WIDTH = 0x1c, HID_ABS_VOLUME = 0x20, HID_ABS_MISC = 0x28<br>} | Enumerates the absolute coordinates.| 
+| [Hid_RelAxes](#hid_relaxes) {<br>HID_REL_X = 0x00, HID_REL_Y = 0x01, HID_REL_Z = 0x02, HID_REL_RX = 0x03, HID_REL_RY = 0x04, HID_REL_RZ = 0x05, HID_REL_HWHEEL = 0x06, HID_REL_DIAL = 0x07, HID_REL_WHEEL = 0x08, HID_REL_MISC = 0x09, HID_REL_RESERVED = 0x0a, HID_REL_WHEEL_HI_RES = 0x0b, HID_REL_HWHEEL_HI_RES = 0x0c<br>} | Enumerates the relative coordinates.| 
+| [Hid_MscEvent](#hid_mscevent) {<br>HID_MSC_SERIAL = 0x00, HID_MSC_PULSE_LED = 0x01, HID_MSC_GESTURE = 0x02, HID_MSC_RAW = 0x03, HID_MSC_SCAN = 0x04, HID_MSC_TIMESTAMP = 0x05<br>} | Enumerates miscellaneous input events.| 
+| [Hid_DdkErrCode](#hid_ddkerrcode) {<br>HID_DDK_SUCCESS = 0, HID_DDK_NO_PERM = 201, HID_DDK_INVALID_PARAMETER = 401, HID_DDK_FAILURE = 27300001, HID_DDK_NULL_PTR = 27300002, HID_DDK_INVALID_OPERATION = 27300003, HID_DDK_TIMEOUT = 27300004, HID_DDK_INIT_ERROR = 27300005, HID_DDK_SERVICE_ERROR = 27300006, HID_DDK_MEMORY_ERROR = 27300007, HID_DDK_IO_ERROR = 27300008, HID_DDK_DEVICE_NOT_FOUND = 27300009<br>} | Enumerates the HID DDK error codes.| 
 | [Hid_ReportType](#hid_reporttype) { HID_INPUT_REPORT = 0, HID_OUTPUT_REPORT = 1, HID_FEATURE_REPORT = 2 } | Defines the report (data packets exchanged between the HID device and the host) type.| 
 
 
@@ -93,8 +93,8 @@ Provides HID driver development kit (DDK) functions, including those for creatin
 | int32_t [OH_Hid_GetRawName](#oh_hid_getrawname) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, char \*data, uint32_t bufSize) | Obtains the original device name.| 
 | int32_t [OH_Hid_GetPhysicalAddress](#oh_hid_getphysicaladdress) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, char \*data, uint32_t bufSize) | Obtains the physical address of the HID device.| 
 | int32_t [OH_Hid_GetRawUniqueId](#oh_hid_getrawuniqueid) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, uint8_t \*data, uint32_t bufSize) | Obtains the original unique identifier of a device.| 
-| <!--DelRow-->int32_t [OH_Hid_SendReport](#oh_hid_sendreport) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, [Hid_ReportType](#hid_reporttype) reportType, const uint8_t \*data, uint32_t length) | Sends reports to the HID device.| 
-| <!--DelRow-->int32_t [OH_Hid_GetReport](#oh_hid_getreport) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, [Hid_ReportType](#hid_reporttype) reportType, uint8_t \*data, uint32_t bufSize) | Obtains reports from the HID device.| 
+| int32_t [OH_Hid_SendReport](#oh_hid_sendreport) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, [Hid_ReportType](#hid_reporttype) reportType, const uint8_t \*data, uint32_t length) | Sends reports to the HID device.| 
+| int32_t [OH_Hid_GetReport](#oh_hid_getreport) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, [Hid_ReportType](#hid_reporttype) reportType, uint8_t \*data, uint32_t bufSize) | Obtains reports from the HID device.| 
 | int32_t [OH_Hid_GetReportDescriptor](#oh_hid_getreportdescriptor) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, uint8_t \*buf, uint32_t bufSize, uint32_t \*bytesRead) | Obtains the report descriptor of the HID device.| 
 
 
@@ -484,7 +484,8 @@ Enumerates the key codes.
 | HID_KEY_NUMPAD_SUBTRACT | Arithmetic operator - (subtraction) on the numeric keypad.| 
 | HID_KEY_NUMPAD_ADD | Arithmetic operator + (addition) on the numeric keypad.| 
 | HID_KEY_NUMPAD_DOT | Decimal point (.) on the numeric keypad. | 
-| HID_KEY_SYSRQ | Key Esc.| 
+| HID_KEY_SYSRQ | SYSRQ key.|
+| HID_KEY_DELETE | Delete key.|
 | HID_KEY_MUTE | Mute key.| 
 | HID_KEY_VOLUME_DOWN | Volume Down key.| 
 | HID_KEY_VOLUME_UP | Volume Up key.| 
@@ -709,7 +710,7 @@ Destroys a device.
 
 | Name| Description| 
 | -------- | -------- |
-| deviceId | ID of the device to destroy.| 
+| deviceId | Device ID.| 
 
 **Required Permissions**
 
@@ -742,7 +743,7 @@ Sends an event list to a device.
 
 | Name| Description| 
 | -------- | -------- |
-| deviceId | ID of the target device.| 
+| deviceId | Device ID.| 
 | items | List of the events to send. The event information includes the event type (**Hid_EventType**), code (**Hid_SynEvent**, **Hid_KeyCode**, **HidBtnCode**, **Hid_AbsAxes**, **Hid_RelAxes**, or **Hid_MscEvent**), and value (depending on the actual device input).| 
 | length | Length of the event list (number of events to be sent at a time).| 
 
@@ -927,7 +928,7 @@ ohos.permission.ACCESS_DDK_HID
 
 - HID_DDK_INVALID_OPERATION: Invalid operation.
 
-<!--Del-->
+
 ### OH_Hid_GetReport()
 
 ```
@@ -970,7 +971,7 @@ ohos.permission.ACCESS_DDK_HID
 - HID_DDK_IO_ERROR: I/O operation error.
 
 - HID_DDK_INVALID_OPERATION: Invalid operation.
-<!--DelEnd-->
+
 
 ### OH_Hid_GetReportDescriptor()
 
@@ -1201,7 +1202,7 @@ ohos.permission.ACCESS_DDK_HID
 
 - HID_DDK_SERVICE_ERROR: DDK service communication error.
 
-<!--Del-->
+
 ### OH_Hid_SendReport()
 
 ```
@@ -1243,7 +1244,7 @@ ohos.permission.ACCESS_DDK_HID
 
 - HID_DDK_INVALID_OPERATION: Invalid operation.
 
-<!--DelEnd-->
+
 ### OH_Hid_SetNonBlocking()
 
 ```
@@ -1386,7 +1387,7 @@ Hid_AbsAxes* Hid_AbsAxesArray::hidAbsAxes
 
 **Description**
 
-Absolute coordinates.
+Array of absolute coordinates.
 
 
 ### hidAbsFlat
@@ -1463,7 +1464,7 @@ Hid_KeyCode* Hid_KeyCodeArray::hidKeyCode
 
 **Description**
 
-Key code.
+Enumerates the key codes.
 
 
 ### hidKeys
@@ -1507,7 +1508,7 @@ Hid_RelAxes* Hid_RelAxesArray::hidRelAxes
 
 **Description**
 
-Relative coordinates.
+Relative coordinate.
 
 
 ### hidRelBits
@@ -1529,7 +1530,7 @@ uint16_t Hid_EventTypeArray::length
 
 **Description**
 
-Length of the event type array.
+Size of the array.
 
 
 ### length [2/5]
@@ -1540,7 +1541,7 @@ uint16_t Hid_KeyCodeArray::length
 
 **Description**
 
-Length of the key code array.
+Size of the array.
 
 
 ### length [3/5]
@@ -1551,7 +1552,7 @@ uint16_t Hid_AbsAxesArray::length
 
 **Description**
 
-Length of the absolute coordinate array.
+Size of the array.
 
 
 ### length [4/5]
@@ -1562,7 +1563,7 @@ uint16_t Hid_RelAxesArray::length
 
 **Description**
 
-Length of the relative coordinate array.
+Size of the array.
 
 
 ### length [5/5]
@@ -1573,7 +1574,7 @@ uint16_t Hid_MscEventArray::length
 
 **Description**
 
-Length of the event type array.
+Size of the array.
 
 
 ### product
@@ -1628,7 +1629,7 @@ uint16_t Hid_EmitItem::type
 
 **Description**
 
-Event type.
+Enumerates the event types.
 
 
 ### value
@@ -1672,4 +1673,4 @@ uint16_t Hid_Device::version
 
 **Description**
 
-Version number.
+Version.

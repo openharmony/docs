@@ -1542,7 +1542,7 @@ getHitTest(): WebHitTestType
 
 > **说明：**
 >
-> 从API version11开始支持，从API version 16开始废弃。建议使用[getLastHitTest](#getlasthittest16)替代。
+> 从API version11开始支持，从API version 18开始废弃。建议使用[getLastHitTest](#getlasthittest18)替代。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3125,7 +3125,7 @@ getHitTestValue(): HitTestValue
 
 > **说明：**
 >
-> 从API version11开始支持，从API version 16开始废弃。建议使用[getLastHitTest](#getlasthittest16)替代。
+> 从API version11开始支持，从API version 18开始废弃。建议使用[getLastHitTest](#getlasthittest18)替代。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -9127,7 +9127,7 @@ struct WebComponent {
 }
 ```
 
-### getLastHitTest<sup>16+</sup>
+### getLastHitTest<sup>18+</sup>
 
 getLastHitTest(): HitTestValue
 
@@ -11764,7 +11764,7 @@ Web组件发送的资源请求信息。
 
 ## WebHitTestType
 
-[getLastHitTest](#getlasthittest16)接口用于指示游标节点。
+[getLastHitTest](#getlasthittest18)接口用于指示游标节点。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -11794,7 +11794,7 @@ Web组件发送的资源请求信息。
 
 ##  HitTestValue
 
-提供点击区域的元素信息。示例代码参考[getLastHitTest](#getlasthittest16)。
+提供点击区域的元素信息。示例代码参考[getLastHitTest](#getlasthittest18)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

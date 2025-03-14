@@ -67,7 +67,7 @@ accessibilityText(value: string)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | string | 是   | 无障碍文本，当组件不包含文本属性时，屏幕朗读选中此组件时不播报，使用者无法清楚地知道当前选中了什么组件。为了解决此场景，开发人员可为不包含文字信息的组件设置无障碍文本，当屏幕朗读选中此组件时播报无障碍文本的内容，帮助屏幕朗读的使用者清楚地知道自己选中了什么组件。<br/>默认值：“”<br/>**说明：**<br/>若组件既拥有文本属性，又拥有无障碍文本属性，则组件被选中时，仅播报无障碍文本内容。<br/>若组件设置了无障碍分组属性为true，但是即没有无障碍文本属性，也没有文本属性，会对其子节点的组件进行文本拼接（深度优先）。<br/>不对无障碍文本属性进行拼接，如需优先拼接无障碍文本，则需设置accessibilityGroup的accessibilityPreferred。 |
+| value  | string | 是   | 无障碍文本，当组件不包含文本属性时，屏幕朗读选中此组件时不播报，使用者无法清楚地知道当前选中了什么组件。为了解决此场景，开发人员可为不包含文字信息的组件设置无障碍文本，当屏幕朗读选中此组件时播报无障碍文本的内容，帮助屏幕朗读的使用者清楚地知道自己选中了什么组件。<br/>默认值：“”<br/>**说明：**<br/>若组件既拥有文本属性，又拥有无障碍文本属性，则组件被选中时，仅播报无障碍文本内容。<br/>若组件设置了无障碍分组属性为true，但是既没有无障碍文本属性，也没有文本属性，会对其子节点的组件进行文本拼接（深度优先）。<br/>不对无障碍文本属性进行拼接，如需优先拼接无障碍文本，则需设置accessibilityGroup的accessibilityPreferred。 |
 
 ## accessibilityText<sup>12+</sup>
 
@@ -85,7 +85,7 @@ accessibilityText(text: Resource)
 
 | 参数名 | 类型   | 必填 | 说明                                                                                                                                                                                                                                                                   |
 | ------ | ------ | ---- |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| text  | [Resource](ts-types.md#resource) | 是   | 无障碍文本引用资源，当组件不包含文本属性时，屏幕朗读选中此组件时不播报，使用者无法清楚地知道当前选中了什么组件。为了解决此场景，开发人员可为不包含文字信息的组件设置无障碍文本，当屏幕朗读选中此组件时播报无障碍文本的内容，帮助屏幕朗读的使用者清楚地知道自己选中了什么组件。<br/>**说明：**<br/>若组件既拥有文本属性，又拥有无障碍文本属性，则组件被选中时，仅播报无障碍文本内容。<br/>若组件设置了无障碍分组属性为true，但是即没有无障碍文本属性，也没有文本属性，会对其子节点的组件进行文本拼接（深度优先）。<br/>不对无障碍文本属性进行拼接，如需优先拼接无障碍文本，则需设置accessibilityGroup的accessibilityPreferred。 |
+| text  | [Resource](ts-types.md#resource) | 是   | 无障碍文本引用资源，当组件不包含文本属性时，屏幕朗读选中此组件时不播报，使用者无法清楚地知道当前选中了什么组件。为了解决此场景，开发人员可为不包含文字信息的组件设置无障碍文本，当屏幕朗读选中此组件时播报无障碍文本的内容，帮助屏幕朗读的使用者清楚地知道自己选中了什么组件。<br/>**说明：**<br/>若组件既拥有文本属性，又拥有无障碍文本属性，则组件被选中时，仅播报无障碍文本内容。<br/>若组件设置了无障碍分组属性为true，但是既没有无障碍文本属性，也没有文本属性，会对其子节点的组件进行文本拼接（深度优先）。<br/>不对无障碍文本属性进行拼接，如需优先拼接无障碍文本，则需设置accessibilityGroup的accessibilityPreferred。 |
 
 
 ## accessibilityDescription
@@ -196,15 +196,15 @@ accessibilitySelected(isSelect: boolean)
 | -------- | ------- | ---- | ------------------------------------------------------------ |
 | isSelect | boolean | 是   | 用于表示组件是否被选中。<br/>支持的值为:<br/>true:当前组件被选中。<br/>false:当前组件未被选中。<br/>undefined:由组件自行确定选中状态。<br/>默认值:undefined。<br/>**说明：**<br/>1. 使用该接口设置true或false后，如果需要同时使用accessibilityChecked接口则需要将accessibilityChecked接口的参数设置为undefined。 |
 
-## accessibilityRole<sup>16+</sup>
+## accessibilityRole<sup>18+</sup>
 
 accessibilityRole(role: AccessibilityRoleType)
 
 用于更新覆盖组件无障碍属性字段内容。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -212,17 +212,17 @@ accessibilityRole(role: AccessibilityRoleType)
 
 | 参数名   | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| role | [AccessibilityRoleType](ts-universal-attributes-accessibility.md#AccessibilityRoleType16) | 是   | 屏幕朗读播报的组件类型，如按钮、图表。具体类型可由开发者自定义。 |
+| role | [AccessibilityRoleType](ts-universal-attributes-accessibility.md#AccessibilityRoleType18) | 是   | 屏幕朗读播报的组件类型，如按钮、图表。具体类型可由开发者自定义。 |
 
-## onAccessibilityFocus<sup>16+</sup>
+## onAccessibilityFocus<sup>18+</sup>
 
 onAccessibilityFocus(callback: AccessibilityFocusCallback)
 
 无障碍节点是否获焦、失焦，回调组件注册的回调函数。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -230,15 +230,15 @@ onAccessibilityFocus(callback: AccessibilityFocusCallback)
 
 | 参数名   | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| callback | [AccessibilityFocusCallback](ts-universal-attributes-accessibility.md#AccessibilityFocusCallback16) | 是   | 向注册回调函数方通知当前获焦、失焦状态。 |
+| callback | [AccessibilityFocusCallback](ts-universal-attributes-accessibility.md#AccessibilityFocusCallback18) | 是   | 向注册回调函数方通知当前获焦、失焦状态。 |
 
-## AccessibilityFocusCallback<sup>16+</sup>
+## AccessibilityFocusCallback<sup>18+</sup>
 
 type AccessibilityFocusCallback = (isFocus: boolean) => void
 
 定义onAccessibilityFocus中使用的回调类型。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -248,11 +248,11 @@ type AccessibilityFocusCallback = (isFocus: boolean) => void
 | ------ | ------ | ---- | ---------------- |
 | isFocus | boolean | 是 | 是否获焦、失焦。 |
 
-## AccessibilityRoleType<sup>16+</sup>枚举说明
+## AccessibilityRoleType<sup>18+</sup>枚举说明
 
 定义组件的屏幕朗读功能角色类型。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -384,15 +384,15 @@ type AccessibilityFocusCallback = (isFocus: boolean) => void
 | XCOMPONENT | 123 | 自定义渲染。 |
 | ROLE_NONE | 124 | NULL。 |
 
-## accessibilityNextFocusId<sup>16+</sup>
+## accessibilityNextFocusId<sup>18+</sup>
 
 accessibilityNextFocusId(nextId: string)
 
 指定走焦过程中组件的下一个焦点。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -402,15 +402,15 @@ accessibilityNextFocusId(nextId: string)
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | nextId | string | 是   | 定义下一个要聚焦的组件ID。若设置的accessibilityNextFocusId不存在，则设置无效。 |
 
-## accessibilityDefaultFocus<sup>16+</sup>
+## accessibilityDefaultFocus<sup>18+</sup>
 
 accessibilityDefaultFocus(focus: boolean)
 
 设置屏幕朗读当前页默认首焦点。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -420,15 +420,15 @@ accessibilityDefaultFocus(focus: boolean)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | focus  | boolean | 是   | 设置屏幕朗读当前页默认首焦点。值为true则表示该组件为当前页默认首焦点，值为false或其他值无效。 |
 
-## accessibilityUseSamePage<sup>16+</sup>
+## accessibilityUseSamePage<sup>18+</sup>
 
 accessibilityUseSamePage(pageMode: AccessibilitySamePageMode)
 
 针对UIExtensionComponent等子树场景中可能出现的跳焦问题，可以通过设置accessibilityUseSamePage属性来解决。由于UEApage事件和宿主page事件发送时序的问题，可能会导致焦点从当前组件移动到另一个组件，这种现象即为"跳焦"。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -436,13 +436,13 @@ accessibilityUseSamePage(pageMode: AccessibilitySamePageMode)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                             |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------ |
-| pageMode | [AccessibilitySamePageMode](#accessibilitysamepagemode16枚举说明) | 是   | 当前UIExtensionComponent和宿主应用的同page模式。 |
+| pageMode | [AccessibilitySamePageMode](#accessibilitysamepagemode18枚举说明) | 是   | 当前UIExtensionComponent和宿主应用的同page模式。 |
 
-## AccessibilitySamePageMode<sup>16+</sup>枚举说明
+## AccessibilitySamePageMode<sup>18+</sup>枚举说明
 
 当前UIExtensionComponent和宿主应用的同page模式。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -451,15 +451,15 @@ accessibilityUseSamePage(pageMode: AccessibilitySamePageMode)
 | SEMI_SILENT | 0    | UEA中如果是首次加载页面或者UEA页面的根节点发送的page事件会被忽略。 |
 | FULL_SILENT | 1    | UEA忽略所有的page事件。                                      |
 
-## accessibilityScrollTriggerable<sup>16+</sup>
+## accessibilityScrollTriggerable<sup>18+</sup>
 
 accessibilityScrollTriggerable(isTriggerable: boolean)
 
 无障碍节点是否需要支持屏幕朗读滚动操作，即屏幕朗读在焦点切换时，若容器内当前页面无可聚焦的组件时，会发起一次自动滚动的操作。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

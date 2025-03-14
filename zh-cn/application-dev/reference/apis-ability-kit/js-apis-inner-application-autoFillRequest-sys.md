@@ -246,7 +246,7 @@ struct AutoFillPage {
 }
 ```
 
-### FillRequestCallback.onCancel<sup>12+</sup>
+### FillRequestCallback.onCancel<sup>11+</sup>
 
 onCancel(fillContent?: string): void
 

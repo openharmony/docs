@@ -1,17 +1,12 @@
 # 证书链校验器对象的创建和校验
 
-
 证书链是由一组证书组成的证书集合，以图中样例证书文件为例，即可放在一个证书链中。
-
 
 样例中可以看到GlobalSign自签名了证书，GlobalSign也签发了GlobalSign RSA OV SSL CA 2018的证书，GlobalSign RSA OV SSL CA 2018又签发了第三级证书。
 
-
 ![zh-cn_image_0000001746997074](figures/zh-cn_image_0000001746997074.png)
 
-
 开发者可以参考示例将已有的多个证书构建出证书链数据。
-
 
 ## 开发步骤
 
@@ -38,7 +33,7 @@
 import { cert } from '@kit.DeviceCertificateKit';
 import { util } from '@kit.ArkTS';
 
-// CA数据，这只是一个示例，需要根据具体业务来赋值
+// CA数据，这只是一个示例，需要根据具体业务来赋值。
 let caCertData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIDgTCCAmmgAwIBAgIGAXKnJjrAMA0GCSqGSIb3DQEBCwUAMFcxCzAJBgNVBAYT\n' +
   'AkNOMQ8wDQYDVQQIDAbpmZXopb8xDzANBgNVBAcMBuilv+WuiTEPMA0GA1UECgwG\n' +
@@ -61,7 +56,7 @@ let caCertData = '-----BEGIN CERTIFICATE-----\n' +
   '04TjtjEdhTZiJCmI0RK50H2SWC0t9qkFewM3CCWTHY5ygPtMGA==\n' +
   '-----END CERTIFICATE-----\n';
 
-// 二级CA证书数据，这只是一个示例，需要根据具体业务来赋值
+// 二级CA证书数据，这只是一个示例，需要根据具体业务来赋值。
 let secondCaCertData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIDgTCCAmmgAwIBAgIGAXKnJjrBMA0GCSqGSIb3DQEBCwUAMFcxCzAJBgNVBAYT\n' +
   'AkNOMQ8wDQYDVQQIDAbpmZXopb8xDzANBgNVBAcMBuilv+WuiTEPMA0GA1UECgwG\n' +
@@ -84,28 +79,28 @@ let secondCaCertData = '-----BEGIN CERTIFICATE-----\n' +
   'YAcwrXOAtCiNpX3UnLUbG8GtpOOWQWCt+x1gKmA6V0jbqQmqcw==\n' +
   '-----END CERTIFICATE-----\n';
 
-// 证书链校验器示例。在这个示例中，验证了一个二级证书链
+// 证书链校验器示例。在这个示例中，验证了一个二级证书链。
 function certChainValidatorSample(): void {
   let textEncoder = new util.TextEncoder();
-  // 证书链校验器算法。目前仅支持PKIX
+  // 证书链校验器算法。目前仅支持PKIX。
   let algorithm = 'PKIX';
 
-  // 创建一个证书链校验器实例
+  // 创建一个证书链校验器实例。
   let validator = cert.createCertChainValidator(algorithm);
 
-  // CA证书数据
+  // CA证书数据。
   let uint8ArrayOfCaCertData = textEncoder.encodeInto(caCertData);
 
-  // CA证书数据的长度
+  // CA证书数据的长度。
   let uint8ArrayOfCaCertDataLen = new Uint8Array(new Uint16Array([uint8ArrayOfCaCertData.byteLength]).buffer);
 
-  // 二级CA证书数据
+  // 二级CA证书数据。
   let uint8ArrayOf2ndCaCertData =  textEncoder.encodeInto(secondCaCertData);
 
-  // 二级CA证书数据的长度
+  // 二级CA证书数据的长度。
   let uint8ArrayOf2ndCaCertDataLen = new Uint8Array(new Uint16Array([uint8ArrayOf2ndCaCertData.byteLength]).buffer);
 
-  // 证书链二进制数据：二级CA证书数据长度+二级CA证书数据+CA证书数据长度+CA证书数据（L-V格式）
+  // 证书链二进制数据：二级CA证书数据长度+二级CA证书数据+CA证书数据长度+CA证书数据（L-V格式）。
   let encodingData = new Uint8Array(uint8ArrayOf2ndCaCertDataLen.length + uint8ArrayOf2ndCaCertData.length +
   uint8ArrayOfCaCertDataLen.length + uint8ArrayOfCaCertData.length);
   for (let i = 0; i < uint8ArrayOf2ndCaCertDataLen.length; i++) {
@@ -123,21 +118,21 @@ function certChainValidatorSample(): void {
   }
 
   let certChainData: cert.CertChainData = {
-    // Uint8Array类型：L-V格式（证书数据长度-证书数据）
+    // Uint8Array类型：L-V格式（证书数据长度-证书数据）。
     data: encodingData,
-    // 证书的数量。本例中为2
+    // 证书的数量。本例中为2。
     count: 2,
-    // 证书格式。仅支持 PEM 和 DER。在此示例中，证书为 PEM 格式
+    // 证书格式。仅支持 PEM 和 DER。在此示例中，证书为 PEM 格式。
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
-  // 验证证书链
+  // 验证证书链。
   validator.validate(certChainData, (err, data) => {
     if (err != null) {
-      // 校验失败
+      // 校验失败。
       console.error(`validate failed, errCode: ${err.code}, errMsg: ${err.message}`);
     } else {
-      // 校验成功
+      // 校验成功。
       console.log('validate success');
     }
   });

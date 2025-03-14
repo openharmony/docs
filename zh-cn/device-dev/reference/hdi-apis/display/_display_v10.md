@@ -289,10 +289,10 @@ enum CompositionType
 | COMPOSITION_DEVICE | Device 合成类型，使用Device合成。 | 
 | COMPOSITION_CURSOR | Cursor合成类型，用于光标合成。 | 
 | COMPOSITION_VIDEO | Video合成类型，用于视频层合成。 | 
-| COMPOSITION_DEVICE_CLEAR | Device清除合成类型, 用于清楚Device。 | 
-| COMPOSITION_CLIENT_CLEAR | Client清除合成类型, 用于清除Client。 | 
-| COMPOSITION_TUNNEL | Tunnel合成类型, 用于tunnel合成。 | 
-| COMPOSITION_BUTT | 合成类型, 一个不可用类型，用于默认初始化。 | 
+| COMPOSITION_DEVICE_CLEAR | Device清除合成类型，用于清楚Device。 | 
+| COMPOSITION_CLIENT_CLEAR | Client清除合成类型，用于清除Client。 | 
+| COMPOSITION_TUNNEL | Tunnel合成类型，用于tunnel合成。 | 
+| COMPOSITION_BUTT | 合成类型，一个不可用类型，用于默认初始化。 | 
 
 ### Connection
 

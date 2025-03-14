@@ -71,8 +71,6 @@ releaseDeviceManager(deviceManager: DeviceManager): void;
 
 设备管理实例不再使用后，通过该方法释放DeviceManager实例。
 
-**需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
-
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 **参数：**
@@ -87,7 +85,6 @@ releaseDeviceManager(deviceManager: DeviceManager): void;
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 
@@ -159,7 +156,6 @@ getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -597,9 +593,7 @@ stopDiscovering(): void;
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
-| 11600104 | Discovery unavailable.                                          |
 
 **示例：**
 

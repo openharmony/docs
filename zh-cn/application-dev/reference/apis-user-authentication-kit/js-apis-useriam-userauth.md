@@ -744,7 +744,7 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
 let authType = userAuth.UserAuthType.FACE;
 let authTrustLevel = userAuth.AuthTrustLevel.ATL1;
-// 通过callback获取认证结果
+// 通过callback获取认证结果。
 try {
   let auth = userAuth.getAuthInstance(challenge, authType, authTrustLevel);
   auth.on('result', {
@@ -759,9 +759,9 @@ try {
   console.info('authV9 start success');
 } catch (error) {
   console.error(`authV9 error = ${error}`);
-  // do error
+  // do error.
 }
-// 通过callback获取认证过程中的提示信息
+// 通过callback获取认证过程中的提示信息。
 try {
   let auth = userAuth.getAuthInstance(challenge, authType, authTrustLevel);
   auth.on('tip', {
@@ -772,7 +772,7 @@ try {
         case userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
           // do something;
         default:
-          // do others
+          // do others.
       }
     }
   } as userAuth.AuthEvent);
@@ -780,7 +780,7 @@ try {
   console.info('authV9 start success');
 } catch (error) {
   console.error(`authV9 error = ${error}`);
-  // do error
+  // do error.
 }
 ```
 
@@ -829,7 +829,7 @@ let authType = userAuth.UserAuthType.FACE;
 let authTrustLevel = userAuth.AuthTrustLevel.ATL1;
 try {
   let auth = userAuth.getAuthInstance(challenge, authType, authTrustLevel);
-  // 订阅认证结果
+  // 订阅认证结果。
   auth.on('result', {
     callback: (result: userAuth.AuthResultInfo) => {
       console.info(`authV9 result ${result.result}`);
@@ -838,7 +838,7 @@ try {
       console.info(`authV9 lockoutDuration ${result.lockoutDuration}`);
     }
   });
-  // 订阅认证过程中的提示信息
+  // 订阅认证过程中的提示信息。
   auth.on('tip', {
     callback : (result : userAuth.TipInfo) => {
       switch (result.tip) {
@@ -847,7 +847,7 @@ try {
         case userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
           // do something;
         default:
-          // do others
+          // do others.
       }
     }
   } as userAuth.AuthEvent);
@@ -855,7 +855,7 @@ try {
   console.info('authV9 start success');
 } catch (error) {
   console.error(`authV9 error = ${error}`);
-  // do error
+  // do error.
 }
 ```
 
@@ -894,7 +894,7 @@ let authType = userAuth.UserAuthType.FACE;
 let authTrustLevel = userAuth.AuthTrustLevel.ATL1;
 try {
   let auth = userAuth.getAuthInstance(challenge, authType, authTrustLevel);
-  // 订阅认证结果
+  // 订阅认证结果。
   auth.on('result', {
     callback: (result: userAuth.AuthResultInfo) => {
       console.info(`authV9 result ${result.result}`);
@@ -903,12 +903,12 @@ try {
       console.info(`authV9 lockoutDuration ${result.lockoutDuration}`);
     }
   });
-  // 取消订阅结果
+  // 取消订阅结果。
   auth.off('result');
   console.info('cancel subscribe authentication event success');
 } catch (error) {
   console.error(`cancel subscribe authentication event failed, error = ${error}`);
-  // do error
+  // do error.
 }
 ```
 
@@ -1270,9 +1270,9 @@ auth.auth(challenge, userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1, {
       console.info(`auth onResult result = ${result}`);
       console.info(`auth onResult extraInfo = ${JSON.stringify(extraInfo)}`);
       if (result == userAuth.ResultCode.SUCCESS) {
-        // 此处添加认证成功逻辑
+        // 此处添加认证成功逻辑。
       } else {
-        // 此处添加认证失败逻辑
+        // 此处添加认证失败逻辑。
       }
     } catch (error) {
       console.error(`auth onResult error = ${error}`);
@@ -1311,7 +1311,7 @@ cancelAuth(contextID : Uint8Array) : number
 ```ts
 import { userAuth } from '@kit.UserAuthenticationKit';
 
-// contextId可通过auth接口获取，此处直接定义
+// contextId可通过auth接口获取，此处直接定义。
 let contextId = new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7]);
 let auth = new userAuth.UserAuth();
 let cancelCode = auth.cancelAuth(contextId);
@@ -1360,9 +1360,9 @@ auth.auth(challenge, userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1, {
       console.info(`auth onResult result = ${result}`);
       console.info(`auth onResult extraInfo = ${JSON.stringify(extraInfo)}`);
       if (result == userAuth.ResultCode.SUCCESS) {
-        // 此处添加认证成功逻辑
+        // 此处添加认证成功逻辑。
       }  else {
-        // 此处添加认证失败逻辑
+        // 此处添加认证失败逻辑。
       }
     } catch (error) {
       console.error(`auth onResult error = ${error}`);
@@ -1403,9 +1403,9 @@ auth.auth(challenge, userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1, {
       console.info(`auth onResult result = ${result}`);
       console.info(`auth onResult extraInfo = ${JSON.stringify(extraInfo)}`);
       if (result == userAuth.ResultCode.SUCCESS) {
-        // 此处添加认证成功逻辑
+        // 此处添加认证成功逻辑。
       }  else {
-        // 此处添加认证失败逻辑
+        // 此处添加认证失败逻辑。
       }
     } catch (error) {
       console.error(`auth onResult error = ${error}`);

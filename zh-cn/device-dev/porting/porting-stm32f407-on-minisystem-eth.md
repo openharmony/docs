@@ -100,36 +100,36 @@ vendor
 
 1. 在`vendor/talkweb/niobe407`目录下新增`config.json`文件，用于描述这个产品样例所使用的单板、内核等信息，描述信息可参考如下内容：
 
-```
-{
-  "product_name": "niobe407",           --- 用于hb set进行选择时，显示的产品名称
-  "type": "mini",                       --- 构建系统的类型，mini/small/standard
-  "version": "3.0",                     --- 构建系统的版本，1.0/2.0/3.0
-  "device_company": "talkweb",          --- 单板厂商名，用于编译时找到/device/board/talkweb目录
-  "board": "niobe407",                  --- 单板名，用于编译时找到/device/board/talkweb/niobe407目录
-  "kernel_type": "liteos_m",            --- 内核类型，因为OpenHarmony支持多内核，一块单板可能适配了多个内核，所以需要指定某个内核进行编译
-  "kernel_version": "3.0.0",            --- 内核版本，一块单板可能适配了多个linux内核版本，所以需要指定某个具体的内核版本进行编译
-  "subsystems": [ ]                     --- 选择所需要编译构建的子系统
-}
-```
+   ```
+   {
+     "product_name": "niobe407",           --- 用于hb set进行选择时，显示的产品名称
+     "type": "mini",                       --- 构建系统的类型，mini/small/standard
+     "version": "3.0",                     --- 构建系统的版本，1.0/2.0/3.0
+     "device_company": "talkweb",          --- 单板厂商名，用于编译时找到/device/board/talkweb目录
+     "board": "niobe407",                  --- 单板名，用于编译时找到/device/board/talkweb/niobe407目录
+     "kernel_type": "liteos_m",            --- 内核类型，因为OpenHarmony支持多内核，一块单板可能适配了多个内核，所以需要指定某个内核进行编译
+     "kernel_version": "3.0.0",            --- 内核版本，一块单板可能适配了多个linux内核版本，所以需要指定某个具体的内核版本进行编译
+     "subsystems": [ ]                     --- 选择所需要编译构建的子系统
+   }
+   ```
 
 2. 在`//device/board/talkweb/niobe407`目录下创建`board`目录，在创建的目录下新增一个`config.gni`文件，用于描述该产品的编译配置信息：
 
-```
-# Kernel type, e.g. "linux", "liteos_a", "liteos_m".
-kernel_type = "liteos_m"                --- 内核类型，跟config.json中kernel_type对应
+   ```
+   # Kernel type, e.g. "linux", "liteos_a", "liteos_m".
+   kernel_type = "liteos_m"                --- 内核类型，跟config.json中kernel_type对应
 
-# Kernel version.
-kernel_version = "3.0.0"                --- 内核版本，跟config.json中kernel_version对应
-```
+   # Kernel version.
+   kernel_version = "3.0.0"                --- 内核版本，跟config.json中kernel_version对应
+   ```
 
 3. 验证`hb set`配置是否正确，输入`hb set`能够显示如下信息：
 
- ![hb set](figures/niobe407_hb_set.png)
+   ![hb set](figures/niobe407_hb_set.png)
 
 4. 通过`hb env`可以查看选择出来的预编译环境变量：
 
- ![hb env](figures/niobe407_hb_env.png)
+   ![hb env](figures/niobe407_hb_env.png)
 
 5. hb介绍。
 
@@ -147,28 +147,28 @@ kernel_version = "3.0.0"                --- 内核版本，跟config.json中kern
 
 2. 打开`//kernel/liteos_m/Kconfig`文件，可以看到在该文件通过orsource命令导入了`//device/board`和`//device/soc`下多个Kconfig文件，后续需要创建并修改这些文件：
 
-```
-orsource "../../device/board/*/Kconfig.liteos_m.shields"
-orsource "../../device/board/$(BOARD_COMPANY)/Kconfig.liteos_m.defconfig.boards"
-orsource "../../device/board/$(BOARD_COMPANY)/Kconfig.liteos_m.boards"
-orsource "../../device/soc/*/Kconfig.liteos_m.defconfig"
-orsource "../../device/soc/*/Kconfig.liteos_m.series"
-orsource "../../device/soc/*/Kconfig.liteos_m.soc"
-```
+   ```
+   orsource "../../device/board/*/Kconfig.liteos_m.shields"
+   orsource "../../device/board/$(BOARD_COMPANY)/Kconfig.liteos_m.defconfig.boards"
+   orsource "../../device/board/$(BOARD_COMPANY)/Kconfig.liteos_m.boards"
+   orsource "../../device/soc/*/Kconfig.liteos_m.defconfig"
+   orsource "../../device/soc/*/Kconfig.liteos_m.series"
+   orsource "../../device/soc/*/Kconfig.liteos_m.soc"
+   ```
 
 3. 在`//device/board/talkweb`下参考如下目录结构创建相应的Kconfig文件：
 
-```
-.
-├── Kconfig.liteos_m.boards
-├── Kconfig.liteos_m.defconfig.boards
-├── Kconfig.liteos_m.shields
-└── niobe407
-    ├── Kconfig.liteos_m.board                --- 开发板配置选项
-    ├── Kconfig.liteos_m.defconfig.board      --- 开发板默认配置选项
-    └── liteos_m
-        └── config.gni
-```
+   ```
+   .
+   ├── Kconfig.liteos_m.boards
+   ├── Kconfig.liteos_m.defconfig.boards
+   ├── Kconfig.liteos_m.shields
+   └── niobe407
+       ├── Kconfig.liteos_m.board                --- 开发板配置选项
+       ├── Kconfig.liteos_m.defconfig.board      --- 开发板默认配置选项
+       └── liteos_m
+           └── config.gni
+   ```
 
 4. 修改`Kconfig`文件内容：
 

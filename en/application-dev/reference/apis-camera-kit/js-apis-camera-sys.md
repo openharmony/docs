@@ -1866,7 +1866,7 @@ function callback(err: BusinessError, pixelMap: image.PixelMap): void {
       return;
   }
   // Display or save the PixelMap instance.
-  // do something
+  // do something.
 }
 
 async function registerQuickThumbnail(context: common.BaseContext, mode: camera.SceneMode, photoProfile: camera.Profile): Promise<void> {
@@ -1921,82 +1921,6 @@ Unsubscribes from quick thumbnail output events.
 ```ts
 function unregisterQuickThumbnail(photoOutput: camera.PhotoOutput): void {
   photoOutput.off('quickThumbnail');
-}
-```
-
-## VideoOutput
-
-Implements output information used in a video session. It inherits from [CameraOutput](js-apis-camera.md#cameraoutput).
-
-### isMirrorSupported<sup>12+</sup>
-
-isMirrorSupported(): boolean
-
-Checks whether video mirroring is supported.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Return value**
-
-| Type           | Description                    |
-| -------------- | ----------------------- |
-| boolean | Whether video mirroring is supported.|
-
-**Error codes**
-
-For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
-
-| ID        | Error Message       |
-| --------------- | --------------- |
-| 202                |  Not System Application.    |
-
-**Example**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-function isMirrorSupported(videoOutput: camera.VideoOutput): boolean {
-  return videoOutput.isMirrorSupported();
-}
-```
-
-### enableMirror<sup>12+</sup>
-
-enableMirror(enabled: boolean): void
-
-Enables video mirroring.
-
-Before using this API, call [isMirrorSupported](#ismirrorsupported12) to check whether video mirroring is supported.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name     | Type              | Mandatory| Description                |
-| -------- | -------------------- | ---- | ------------------- |
-|   enabled   |  boolean  |   Yes  |   Whether to enable video mirroring.   |
-
-**Error codes**
-
-For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
-
-| ID        | Error Message       |
-| --------------- | --------------- |
-| 202 | Not System Application. |
-| 7400101                |  Parameter missing or parameter type incorrect.  |
-| 7400103                |  Session not config.                             |
-
-**Example**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-function enableMirror(videoOutput: camera.VideoOutput): void {
-  return videoOutput.enableMirror(true);
 }
 ```
 
@@ -3811,9 +3735,30 @@ function unregisterLcdFlashStatus(photoSession: camera.PhotoSession): void {
 }
 ```
 
+## FocusTrackingMode<sup>15+</sup>
+
+Enumerates the focus tracking modes.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name| Value  | Description  |
+| ---- | ---- | ------ |
+| AUTO | 0    | Automatic.|
+
+## FocusTrackingInfo<sup>15+</sup>
+
+Describes the focus tracking information, which is obtained by calling VideoSessionForSys.[on('focusTrackingInfoAvailable')](#onfocustrackinginfoavailable15).
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name          | Type                                     | Read-only| Optional| Description      |
+| -------------- | ----------------------------------------- | ---- | ---- | ---------- |
+| trackingMode   | [FocusTrackingMode](#focustrackingmode15) | No  | No  | Tracing mode.|
+| trackingRegion | [Rect](js-apis-camera.md#rect)            | No  | No  | Tracking region.|
+
 ## VideoSessionForSys<sup>11+</sup>
 
-VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, Macro
+VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, Macro, Aperture, ColorReservation
 
 Implements a video session for system applications, which sets the parameters of the normal video mode and saves all [CameraInput](js-apis-camera.md#camerainput) and [CameraOutput](js-apis-camera.md#cameraoutput) instances required to run the camera. It inherits from [Session](js-apis-camera.md#session11).
 
@@ -3977,6 +3922,80 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 ```ts
 function unregisterLcdFlashStatus(videoSession: camera.VideoSession): void {
   videoSession.off('lcdFlashStatus');
+}
+```
+
+### on('focusTrackingInfoAvailable')<sup>15+</sup>
+
+on(type: 'focusTrackingInfoAvailable', callback: Callback\<FocusTrackingInfo\>): void
+
+Subscribes to focus tracking information events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name  | Type                                                      | Mandatory| Description                                                        |
+| -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                     | Yes  | Event type. The value is fixed at **'focusTrackingInfoAvailable'**. The event can be listened for when a **VideoSessionForSys** object is created.|
+| callback | Callback\<[FocusTrackingInfo](#focustrackinginfo15)\>      | Yes  | Callback used to return the focus tracking information.                        |
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+
+**Example**
+
+```ts
+function callback(focusTrackingInfo: camera.FocusTrackingInfo): void {
+  console.info(`Focus tracking mode: ${focusTrackingInfo.trackingMode}`);
+  console.info(`Focus tracking Region: topLeftX ${focusTrackingInfo.trackingRegion.topLeftX}
+                                       topLeftY ${focusTrackingInfo.trackingRegion.topLeftY}
+                                       width ${focusTrackingInfo.trackingRegion.width}
+                                       height ${focusTrackingInfo.trackingRegion.height}`);
+}
+
+function registerFocusTrakingInfoChanged(session: camera.VideoSessionForSys): void {
+  session.on('focusTrackingInfoAvailable', callback);
+}
+```
+
+### off('focusTrackingInfoAvailable')<sup>15+</sup>
+
+off(type: 'focusTrackingInfoAvailable', callback?: Callback\<FocusTrackingInfo\>): void
+
+Unsubscribes from focus tracking information events.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name  | Type                                                      | Mandatory| Description                                                        |
+| -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                     | Yes  | Event type. The value is fixed at **'focusTrackingInfoAvailable'**. The event can be listened for when a **VideoSessionForSys** object is created.|
+| callback | Callback\<[FocusTrackingInfo](#focustrackinginfo15)\>      | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('focusTrackingInfoAvailable')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+
+**Example**
+
+```ts
+function unregisterFocusTrakingInfoChanged(session: camera.VideoSessionForSys): void {
+  session.off('focusTrackingInfoAvailable');
 }
 ```
 
@@ -5413,6 +5432,28 @@ function setExposureMeteringMode(professionalPhotoSession: camera.ProfessionalPh
 }
 ```
 
+## FocusRangeType<sup>15+</sup>
+
+Enumerates the focus range types.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name| Value  | Description      |
+| ---- | ---- | ---------- |
+| AUTO | 0    | Auto focus.    |
+| NEAR | 1    | Focus on near objects.|
+
+## FocusDrivenType<sup>15+</sup>
+
+Enumerates the focus drive types.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name| Value  | Description      |
+| ---- | ---- | ---------- |
+| AUTO | 0    | Automatic.    |
+| FACE | 1    | Face-driven.|
+
 ## FocusQuery<sup>12+</sup>
 
 Provides the API to check whether the focus assist is supported.
@@ -5455,6 +5496,106 @@ function isFocusAssistSupported(professionalPhotoSession: camera.ProfessionalPho
     // If the operation fails, error.code is returned and processed.
     let err = error as BusinessError;
     console.error(`The isFocusAssistSupported call failed. error code: ${err.code}`);
+  }
+  return status;
+}
+```
+
+### isFocusRangeTypeSupported<sup>15+</sup>
+
+isFocusRangeTypeSupported(type: FocusRangeType): boolean
+
+Checks whether a focus range type is supported.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name| Type                               | Mandatory| Description                    |
+| ------ | ----------------------------------- | ---- | ------------------------ |
+| type   | [FocusRangeType](#focusrangetype15) | Yes  | Focus range type.|
+
+**Return value**
+
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
+| boolean | Check result. The value **true** means that the focus range type is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | Not System Application.                                      |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 7400103  | Session not config.                                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function isFocusRangeTypeSupported(session: camera.VideoSessionForSys, type: camera.FocusRangeType): boolean {
+  let status: boolean = false;
+  try {
+    status = session.isFocusRangeTypeSupported(type);
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The isFocusRangeTypeSupported call failed. error code: ${err.code}`);
+  }
+  return status;
+}
+```
+
+### isFocusDrivenTypeSupported<sup>15+</sup>
+
+isFocusDrivenTypeSupported(type: FocusDrivenType): boolean
+
+Checks whether a focus drive type is supported.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name| Type                                 | Mandatory| Description                    |
+| ------ | ------------------------------------- | ---- | ------------------------ |
+| type   | [FocusDrivenType](#focusdriventype15) | Yes  | Focus drive type.|
+
+**Return value**
+
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
+| boolean | Check result. The value **true** means that the focus drive type is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | Not System Application.                                      |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 7400103  | Session not config.                                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function isFocusDrivenTypeSupported(session: camera.VideoSessionForSys, type: camera.FocusDrivenType): boolean {
+  let status: boolean = false;
+  try {
+    status = session.isFocusDrivenTypeSupported(type);
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The isFocusDrivenTypeSupported call failed. error code: ${err.code}`);
   }
   return status;
 }
@@ -5551,6 +5692,180 @@ function getFocusAssist(professionalPhotoSession: camera.ProfessionalPhotoSessio
     console.error(`The getFocusAssist call failed. error code: ${err.code}`);
   }
   return isFocusAssistOpened;
+}
+```
+
+### setFocusRange<sup>15+</sup>
+
+setFocusRange(type: FocusRangeType): void
+
+Sets a focus range type. Before the setting, call [isFocusRangeTypeSupported](#isfocusrangetypesupported15) to check whether the focus range type is supported.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name| Type                               | Mandatory| Description          |
+| ------ | ----------------------------------- | ---- | -------------- |
+| type   | [FocusRangeType](#focusrangetype15) | Yes  | Focus range type.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | Not System Application.                                      |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed. |
+| 7400102  | Operation not allowed.                                       |
+| 7400103  | Session not config.                                          |
+| 7400201  | Camera service fatal error.                                  |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function setFocusRange(session: camera.VideoSessionForSys, type: camera.FocusRangeType): void {
+  try {
+    session.setFocusRange(type);
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The setFocusRange call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getFocusRange<sup>15+</sup>
+
+getFocusRange(): FocusRangeType
+
+Obtains the focus range type in use.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type                               | Description                    |
+| ----------------------------------- | ------------------------ |
+| [FocusRangeType](#focusrangetype15) | Focus range type.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+| 7400103  | Session not config.     |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getFocusRange(session: camera.VideoSessionForSys): camera.FocusRangeType | undefined {
+  let focusRangeType: camera.FocusRangeType | undefined = undefined;
+  try {
+    focusRangeType = session.getFocusRange();
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The getFocusRange call failed. error code: ${err.code}`);
+  }
+  return focusRangeType;
+}
+```
+
+### setFocusDriven<sup>15+</sup>
+
+setFocusDriven(type: FocusDrivenType): void
+
+Sets a focus drive type. Before the setting, call [isFocusDrivenTypeSupported](#isfocusdriventypesupported15) to check whether the focus drive type is supported.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name| Type                                 | Mandatory| Description          |
+| ------ | ------------------------------------- | ---- | -------------- |
+| type   | [FocusDrivenType](#focusdriventype15) | Yes  | Focus drive type.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | Not System Application.                                      |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed. |
+| 7400102  | Operation not allowed.                                       |
+| 7400103  | Session not config.                                          |
+| 7400201  | Camera service fatal error.                                  |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function setFocusDriven(session: camera.VideoSessionForSys, type: camera.FocusDrivenType): void {
+  try {
+    session.setFocusDriven(type);
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The setFocusDriven call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getFocusDriven<sup>15+</sup>
+
+getFocusDriven(): FocusDrivenType
+
+Obtains the focus drive type in use.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type                                 | Description                    |
+| ------------------------------------- | ------------------------ |
+| [FocusDrivenType](#focusdriventype15) | Focus drive type.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+| 7400103  | Session not config.     |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getFocusDriven(session: camera.VideoSessionForSys): camera.FocusDrivenType | undefined {
+  let focusDrivenType: camera.FocusDrivenType | undefined = undefined;
+  try {
+    focusDrivenType = session.getFocusDriven();
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The getFocusDriven call failed. error code: ${err.code}`);
+  }
+  return focusDrivenType;
 }
 ```
 
@@ -8928,5 +9243,156 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 function getSupportedLightPaintingTypes(lightPaintingPhotoSession: camera.LightPaintingPhotoSession): Array<camera.LightPaintingType> {
   let types: Array<camera.LightPaintingType> = lightPaintingPhotoSession.getSupportedLightPaintingTypes();
   return types
+}
+```
+
+## ColorReservationType<sup>15+</sup>
+
+Enumerates the color reservation types.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name    | Value  | Description            |
+| -------- | ---- | ---------------- |
+| NONE     | 0    | No color reservation.|
+| PORTRAIT | 1    | Portrait color reservation.      |
+
+## ColorReservationQuery<sup>15+</sup>
+
+Provides APIs for querying the color retention type supported by the device.
+
+### getSupportedColorReservationTypes<sup>15+</sup>
+
+getSupportedColorReservationTypes(): Array\<ColorReservationType\>
+
+Obtains the supported color reservation types.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type                                                  | Description                    |
+| ------------------------------------------------------ | ------------------------ |
+| Array<[ColorReservationType](#colorreservationtype15)> | Array of color reservation types supported.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+| 7400103  | Session not config.     |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getSupportedColorReservationTypes(session: camera.VideoSessionForSys): Array<camera.ColorReservationType> {
+  let colorReservationTypes: Array<camera.ColorReservationType> = [];
+  try {
+    colorReservationTypes = session.getSupportedColorReservationTypes();
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The getSupportedColorReservationTypes call failed. error code: ${err.code}`);
+  }
+  return colorReservationTypes;
+}
+```
+
+## ColorReservation<sup>15+</sup>
+
+ColorReservation extends [ColorReservationQuery](#colorreservationquery15)
+
+Provides API for obtaining and setting a color reservation type.
+
+### setColorReservation<sup>15+</sup>
+
+setColorReservation(type: ColorReservationType): void
+
+Sets a color reservation type. Before the setting, call [getSupportedColorReservationTypes](#getsupportedcolorreservationtypes15) to obtain the supported color reservation types.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name| Type                                           | Mandatory| Description                                                        |
+| ------ | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type   | [ColorReservationType](#colorreservationtype15) | Yes  | Color reservation type, which is obtained by calling [getSupportedColorReservationTypes](#getsupportedcolorreservationtypes15).|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | Not System Application.                                      |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed. |
+| 7400102  | Operation not allowed.                                       |
+| 7400103  | Session not config.                                          |
+| 7400201  | Camera service fatal error.                                  |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function setColorReservation(session: camera.VideoSessionForSys, type: camera.ColorReservationType): void {
+  try {
+    session.setColorReservation(type);
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The setColorReservation call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getColorReservation<sup>15+</sup>
+
+getColorReservation(): ColorReservationType
+
+Obtains the color reservation type in use.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type                                           | Description                    |
+| ----------------------------------------------- | ------------------------ |
+| [ColorReservationType](#colorreservationtype15) | Color reservation type.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+| 7400103  | Session not config.     |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getColorReservation(session: camera.VideoSessionForSys): camera.ColorReservationType | undefined {
+  let colorReservation: camera.ColorReservationType | undefined = undefined;
+  try {
+    colorReservation = session.getColorReservation();
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The setColorReservation call failed. error code: ${err.code}`);
+  }
+  return colorReservation;
 }
 ```

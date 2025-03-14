@@ -1,6 +1,5 @@
 # SpaceToBatchND
 
-
 ## 概述
 
 将4维张量在空间维度上进行切分成多个小块，然后在batch维度上拼接这些小块。
@@ -9,7 +8,7 @@
 
 输入：
 
-- x，n维tensor
+- x，n维tensor。
 
 输出：
 
@@ -29,9 +28,7 @@
 
 **相关模块：**[NNRt](_n_n_rt_v20.md)
 
-
 ## 汇总
-
 
 ### Public 属性
 
@@ -40,9 +37,7 @@
 | long[] [blockShape](#blockshape) | 描述空间维度为分割的个数，取值需大于1。 | 
 | long[][] [paddings](#paddings) | 空间维度的填充大小。 | 
 
-
 ## 类成员变量说明
-
 
 ### blockShape
 
@@ -52,9 +47,7 @@ long [] SpaceToBatchND::blockShape
 
 **描述**
 
-
 描述空间维度为分割的个数，取值需大于1。
-
 
 ### paddings
 
@@ -63,6 +56,5 @@ long [][] SpaceToBatchND::paddings
 ```
 
 **描述**
-
 
 空间维度的填充大小。

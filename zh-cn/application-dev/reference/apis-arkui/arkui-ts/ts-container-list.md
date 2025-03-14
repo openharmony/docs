@@ -30,7 +30,7 @@
 
 ## 接口
 
-List(value?: [ListOptions](#listoptions16对象说明))
+List(value?: [ListOptions](#listoptions18对象说明))
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -42,15 +42,15 @@ List(value?: [ListOptions](#listoptions16对象说明))
 
 | 参数名  | 类型 | 必填 | 说明 |
 | ------ | ---- | ---- | ---- |
-| value    | [ListOptions](#listoptions16对象说明)  | 否   | 设置List组件参数。 |
+| value    | [ListOptions](#listoptions18对象说明)  | 否   | 设置List组件参数。 |
 
-## ListOptions<sup>16+</sup>对象说明
+## ListOptions<sup>18+</sup>对象说明
 
 用于设置List组件参数。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -88,7 +88,7 @@ listDirection(value: Axis)
 
 ### divider
 
-divider(value: [ListDividerOptions](#listdivideroptions16对象说明) | null)
+divider(value: [ListDividerOptions](#listdivideroptions18对象说明) | null)
 
 设置ListItem分割线样式，默认无分割线。
 
@@ -112,7 +112,7 @@ ListItem设置[多态样式](ts-universal-attributes-polymorphic-style.md)时，
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ListDividerOptions](#listdivideroptions16对象说明) \|&nbsp;null | 是   | ListItem分割线样式。<br/>默认值：null |
+| value  | [ListDividerOptions](#listdivideroptions18对象说明) \|&nbsp;null | 是   | ListItem分割线样式。<br/>默认值：null |
 
 ### scrollBar
 
@@ -466,13 +466,13 @@ maintainVisibleContentPosition(enabled: boolean)
 > - maintainVisibleContentPosition属性设置为true后，在显示区域上方插入或删除数据，会触发onDidScroll、onScrollIndex事件。
 > - maintainVisibleContentPosition属性设置为true后，在多列场景下，一次插入或删除整行数据，可以保持可见内容位置不变，如果不是插入或删除整行数据，可见内容位置还是会发生变化。
 
-### stackFromEnd<sup>16+</sup>
+### stackFromEnd<sup>18+</sup>
 
 stackFromEnd(enabled: boolean)
 
-设置List组件从末尾开始布局。
+设置List组件是否从末尾开始布局。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -481,6 +481,11 @@ stackFromEnd(enabled: boolean)
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | enabled  | boolean | 是   | 设置List组件是否从末尾开始布局。<br/>默认值：false，List从顶部开始布局。 true：List组件从末尾开始布局。|
+
+> **说明：** 
+> - stackFromEnd属性设置为true后，当List内容小于List组件高度时，内容底部对齐。
+> - stackFromEnd属性设置为true后，显示区域内有ListItem变高，或有插入ListItem，内容上方的ListItem往上移动。
+> - stackFromEnd属性设置为true后，initialIndex参数默认值为总item个数-1。
 
 ## ListItemAlign<sup>9+</sup>枚举说明
 
@@ -540,13 +545,13 @@ stackFromEnd(enabled: boolean)
 | ------- | -------- | ---- | ---------------------- |
 | onFinish | ()=>void | 否   | 在收起动画完成后触发。 |
 
-## ListDividerOptions<sup>16+</sup>对象说明
+## ListDividerOptions<sup>18+</sup>对象说明
 
 用于设置List或ListItemGroup组件的分割线样式。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

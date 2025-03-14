@@ -85,6 +85,7 @@
     <!--DelEnd-->
     - [@ohos.bundle.bundleManager (bundleManager模块)](js-apis-bundleManager.md)
     - [@ohos.bundle.defaultAppManager (默认应用管理)](js-apis-defaultAppManager.md)
+    - [@ohos.bundle.launcherBundleManager (launcherBundleManager模块)](js-apis-launcherBundleManager.md)
     - [@ohos.bundle.overlay (overlay模块)](js-apis-overlay.md)
     <!--Del-->
     - [@ohos.bundle.appControl (appControl模块)(系统接口)](js-apis-appControl-sys.md)
@@ -187,6 +188,7 @@
       - [elementName](js-apis-bundleManager-elementName.md)
       - [extensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)
       - [hapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)
+      - [launcherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)
       - [metadata](js-apis-bundleManager-metadata.md)
       - [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)
       - [Skill](js-apis-bundleManager-skill.md)
@@ -197,7 +199,6 @@
       - [BundleResourceInfo (系统接口)](js-apis-bundleManager-BundleResourceInfo-sys.md)
       - [BusinessAbilityInfo (系统接口)](js-apis-bundleManager-businessAbilityInfo-sys.md)
       - [dispatchInfo (系统接口)](js-apis-bundleManager-dispatchInfo-sys.md)
-      - [launcherAbilityInfo (系统接口)](js-apis-bundleManager-launcherAbilityInfo-sys.md)
       - [LauncherAbilityResourceInfo (系统接口)](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)
       - [permissionDef (系统接口)](js-apis-bundleManager-permissionDef-sys.md)
       - [recoverableApplicationInfo (系统接口)](js-apis-bundleManager-recoverableApplicationInfo-sys.md)

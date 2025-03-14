@@ -312,7 +312,7 @@ has(obj: object, property: string): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 返回ArkTS对象是否包含某种属性结果，true表示包含，false表示不包含。|
+| boolean | 返回ArkTS对象是否包含某种属性结果。true表示包含，false表示不包含。|
 
 **错误码：**
 

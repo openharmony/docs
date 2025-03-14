@@ -274,6 +274,131 @@ struct Index {
 }
 ```
 
+## registerWebAdInterface<sup>16+</sup>
+
+registerWebAdInterface(controller: web_webview.WebviewController, context: common.UIAbilityContext, needRefresh: boolean): void
+
+注入广告JavaScript对象到Web组件中（该接口仅对部分系统预置应用开放）。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Advertising.Ads
+
+**参数：**
+
+| 参数名         | 类型                                                                                           | 必填 | 说明                             | 
+|-------------|----------------------------------------------------------------------------------------------|----|--------------------------------|
+| controller  | web_webview.[WebviewController](../apis-arkweb/js-apis-webview.md#webviewcontroller)         | 是  | Web组件控制器。                      | 
+| context     | common.[UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | 是  | UIAbility的上下文环境。               | 
+| needRefresh | boolean                                                                                      | 是  | 是否需要刷新页面（true: 需要；false: 不需要）。 | 
+
+**错误码：**
+
+以下错误码的详细介绍请参见[广告服务框架错误码参考](errorcode-ads.md)。
+
+| 错误码ID    | 错误信息                                                                                 | 
+|----------|--------------------------------------------------------------------------------------|
+| 401      | Invalid input parameter. Possible causes: Mandatory parameters are left unspecified. | 
+| 21800001 | operation javascriptRegister error.                                                  |                                                       
+
+**示例：**
+
+```ts
+import { webview } from '@kit.ArkWeb';
+import { common } from '@kit.AbilityKit';
+import { advertising } from '@kit.AdsKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+@Entry
+@Component
+struct Index {
+  private webController: webview.WebviewController = new webview.WebviewController();
+  private context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+
+  build() {
+    Column() {
+      Button('广告对象注入Web')
+        .onClick(() => {
+          try {
+            advertising.registerWebAdInterface(this.webController, this.context, true);
+          } catch (err) {
+            hilog.error(0x0000, 'testTag', '%{public}s', `register web ad interface error: ${err.code}, ${err.message}`);
+          }
+        })
+
+      Web({
+        src: 'www.example.com',
+        controller: this.webController,
+      })
+        .width("100%")
+        .height("100%")
+    }
+  }
+}
+```
+
+## deleteWebAdInterface<sup>16+</sup>
+
+deleteWebAdInterface(controller: web_webview.WebviewController, needRefresh: boolean): void
+
+删除通过registerWebAdInterface注入的广告JavaScript对象（该接口仅对部分系统预置应用开放）。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Advertising.Ads
+
+**参数：**
+
+| 参数名         | 类型                                                                                   | 必填 | 说明                             | 
+|-------------|--------------------------------------------------------------------------------------|----|--------------------------------|
+| controller  | web_webview.[WebviewController](../apis-arkweb/js-apis-webview.md#webviewcontroller) | 是  | Web组件控制器。                      |
+| needRefresh | boolean                                                                              | 是  | 是否需要刷新页面（true: 需要；false: 不需要）。 | 
+
+**错误码：**
+
+以下错误码的详细介绍请参见[广告服务框架错误码参考](errorcode-ads.md)。
+
+| 错误码ID    | 错误信息                                                                                 | 
+|----------|--------------------------------------------------------------------------------------|
+| 401      | Invalid input parameter. Possible causes: Mandatory parameters are left unspecified. | 
+| 21800001 | operation javascriptRegister error.                                                  |     
+
+**示例：**
+
+```ts
+import { webview } from '@kit.ArkWeb';
+import { common } from '@kit.AbilityKit';
+import { advertising } from '@kit.AdsKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+@Entry
+@Component
+struct Index {
+  private webController: webview.WebviewController = new webview.WebviewController();
+  private context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+
+  build() {
+    Column() {
+      Button('删除通过registerWebAdInterface注入的广告JavaScript对象')
+        .onClick(() => {
+          try {
+            advertising.deleteWebAdInterface(this.webController, true);
+          } catch (err) {
+            hilog.error(0x0000, 'testTag', '%{public}s', `delete web ad interface error: ${err.code}, ${err.message}`);
+          }
+        })
+
+      Web({
+        src: 'www.example.com',
+        controller: this.webController,
+      })
+        .width("100%")
+        .height("100%")
+    }
+  }
+}
+```
+
 ## AdLoader
 
 提供加载广告的功能。

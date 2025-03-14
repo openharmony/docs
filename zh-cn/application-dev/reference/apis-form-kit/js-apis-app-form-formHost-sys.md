@@ -2827,7 +2827,7 @@ try {
 }
 ```
 
-## updateFormLockedState<sup>16+</sup>
+## updateFormLockedState<sup>18+</sup>
 
 updateFormLockedState(formId: string, isLocked: boolean): Promise&lt;void&gt;
 

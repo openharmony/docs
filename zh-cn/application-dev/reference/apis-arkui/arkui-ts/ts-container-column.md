@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -29,16 +29,16 @@ Column(options?: ColumnOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [ColumnOptions](#columnoptions14对象说明) | 否 | 纵向布局元素垂直方向间距。 |
+| options | [ColumnOptions<sup>14+</sup>](#columnoptions14对象说明) | 否 | 纵向布局元素垂直方向间距。 |
 
-### Column<sup>16+</sup>
+### Column<sup>18+</sup>
 Column(options?: ColumnOptions | ColumnOptionsV2)
 
 创建垂直方向线性布局容器，可以设置子组件的间距，间距类型为number、string或Resource类型。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -46,7 +46,7 @@ Column(options?: ColumnOptions | ColumnOptionsV2)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [ColumnOptions](#columnoptions14对象说明) \| [ColumnOptionsV2](#columnoptionsv216对象说明) | 否 | 纵向布局元素垂直方向间距。 |
+| options | [ColumnOptions](#columnoptions14对象说明) \| [ColumnOptionsV2](#columnoptionsv218对象说明) | 否 | 纵向布局元素垂直方向间距。 |
 
 ## ColumnOptions<sup>14+</sup>对象说明
 
@@ -62,25 +62,31 @@ Column(options?: ColumnOptions | ColumnOptionsV2)
 | -------- | -------- | -------- | -------- |
 | space | string&nbsp;\|&nbsp;number | 否 | 纵向布局元素垂直方向间距。<br/>space为负数或者[justifyContent](ts-container-column.md#justifycontent8)设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。<br/>默认值：0<br/>单位：vp<br/>**说明：**<br/>space取值是大于等于0的数字，或者可以转换为数字的字符串。 |
 
-## ColumnOptionsV2<sup>16+</sup>对象说明
+## ColumnOptionsV2<sup>18+</sup>对象说明
 
-用于构造Column组件时设置子组件间距属性。
+用于构造Column组件时设置子组件间距属性。间距类型SpaceType支持number、string或Resource类型。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| space | [SpaceType](#spacetype16类型说明) | 否 | 纵向布局元素垂直方向间距。<br/>space为负数或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。<br/>默认值：0，单位vp<br/>**说明：** <br/>space取值是大于等于0的数字，或者可以转换为数字的字符串，或者可以转换为数字的Resource类型数据。 |
+| space | [SpaceType](#spacetype18类型说明) | 否 | 纵向布局元素垂直方向间距。<br/>space为负数或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。<br/>默认值：0，单位vp<br/>**说明：** <br/>space取值是大于等于0的数字，或者可以转换为数字的字符串，或者可以转换为数字的Resource类型数据。 |
 
-## SpaceType<sup>16+</sup>类型说明
+## SpaceType<sup>18+</sup>类型说明
 
 type SpaceType = number | string | Resource
 
 描述Row、Column组件构造函数中space支持的数据类型，取值类型为下表类型中的并集。
+
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 |类型	|说明|
 |---|---|
@@ -88,7 +94,6 @@ type SpaceType = number | string | Resource
 |string|表示值类型为字符串，可取任意值。|
 |[Resource](ts-types.md#resource)|表示值为资源引用类型，取值为从系统资源或者应用资源中引入的数据值。|
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 ## 属性
 

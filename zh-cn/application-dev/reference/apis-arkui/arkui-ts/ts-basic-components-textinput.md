@@ -877,9 +877,9 @@ showPassword(visible: boolean)
 
 设置密码的显隐状态。
 
-需组合密码模式才能生效，非密码输入模式不生效。
+当[输入框的类型](#inputtype枚举说明)设置为Password、NEW_PASSWORD和NUMBER_PASSWORD模式时，密码保护功能才能生效。非密码输入模式则不会触发该功能。
 
-密码模式时，由于输入框末尾的图标内置更新密码模式的状态，建议在[onSecurityStateChange](#onsecuritystatechange12)上增加状态同步。
+密码模式时，由于输入框后端的状态和前端应用侧的状态管理变量会不一致，可能导致末尾图标的状态异常。建议在[onSecurityStateChange](#onsecuritystatechange12)上增加状态同步。参考[示例1](#示例1设置与获取光标位置)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1628,7 +1628,8 @@ struct TextInputExample {
 
   build() {
     Column() {
-      TextInput({ text: this.text, placeholder: 'input your word...', controller: this.controller })
+      // 使用!!实现text参数的双向数据绑定
+      TextInput({ text: this.text!!, placeholder: 'input your word...', controller: this.controller })
         .placeholderColor(Color.Grey)
         .placeholderFont({ size: 14, weight: 400 })
         .caretColor(Color.Blue)
@@ -1639,9 +1640,6 @@ struct TextInputExample {
         .fontColor(Color.Black)
         .inputFilter('[a-z]', (e) => {
           console.log(JSON.stringify(e))
-        })
-        .onChange((value: string) => {
-          this.text = value
         })
       Text(this.text)
       Button('Set caretPosition 1')
@@ -1688,7 +1686,7 @@ struct TextInputExample {
 }
 ```
 
-![TextInput](figures/TextInput.png)
+![TextInput](figures/TextInput.gif)
 
 ### 示例2（设置下划线）
 

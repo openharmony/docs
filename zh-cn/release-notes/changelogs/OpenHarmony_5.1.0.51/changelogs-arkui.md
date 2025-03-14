@@ -188,7 +188,7 @@ struct SlideExample {
 |ON_APPEAR|支持|支持| 支持 |
 |ON_WILL_SHOW|支持|支持|
 |ON_SHOWN|支持|支持|
-|ON_ACTIVE|不支持|不支持|
+|ON_ACTIVE|不支持|支持|
 |ON_WILL_HIDE|支持|支持|
 |ON_INACTIVE|不支持|支持|
 |ON_HIDDEN|支持|支持|

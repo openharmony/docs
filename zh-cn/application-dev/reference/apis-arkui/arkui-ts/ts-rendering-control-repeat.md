@@ -4,6 +4,7 @@
 > 
 > 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+Repeat基于数组类型数据来进行循环渲染，一般与容器组件配合使用。
 本文档仅为API参数说明。开发者指南见：[Repeat开发者指南](../../../quick-start/arkts-new-rendering-control-repeat.md)。
 
 ## 接口

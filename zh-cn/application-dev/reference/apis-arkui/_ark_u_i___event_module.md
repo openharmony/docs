@@ -68,6 +68,7 @@
 | float [OH_ArkUI_PointerEvent_GetPressure](#oh_arkui_pointerevent_getpressure) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, uint32_t pointerIndex) | 从带有指向性的输入事件（如触摸事件）中获取触屏压力。  | 
 | float [OH_ArkUI_PointerEvent_GetTiltX](#oh_arkui_pointerevent_gettiltx) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, uint32_t pointerIndex) | 从带有指向性的输入事件（如触摸事件）中获取相对YZ平面的角度，取值的范围[-90, 90]，其中正值是向右倾斜。  | 
 | float [OH_ArkUI_PointerEvent_GetTiltY](#oh_arkui_pointerevent_gettilty) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, uint32_t pointerIndex) | 从带有指向性的输入事件（如触摸事件）中获取相对XZ平面的角度，值的范围[-90, 90]，其中正值是向下倾斜。  | 
+| int32_t [OH_ArkUI_PointerEvent_GetRollAngle](#oh_arkui_pointerevent_getrollangle) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, double \*rollAngle) | 从带有指向性的输入事件（如触摸事件）中获取手写笔与设备平面的夹角。  | 
 | float [OH_ArkUI_PointerEvent_GetTouchAreaWidth](#oh_arkui_pointerevent_gettouchareawidth) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, uint32_t pointerIndex) | 从带有指向性的输入事件（如触摸事件）中获取触屏区域的宽度。  | 
 | float [OH_ArkUI_PointerEvent_GetTouchAreaHeight](#oh_arkui_pointerevent_gettouchareaheight) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, uint32_t pointerIndex) | 从带有指向性的输入事件（如触摸事件）中获取触屏区域的高度。  | 
 | uint32_t [OH_ArkUI_PointerEvent_GetHistorySize](#oh_arkui_pointerevent_gethistorysize) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 从带有指向性的输入事件（如触摸事件、鼠标事件、轴事件）中获取历史事件数量。  | 
@@ -1050,6 +1051,27 @@ float OH_ArkUI_PointerEvent_GetTiltY (const ArkUI_UIInputEvent * event, uint32_t
 
 返回当前带有指向性的输入事件中相对XZ平面的角度。
 
+### OH_ArkUI_PointerEvent_GetRollAngle()
+
+```
+int32_t OH_ArkUI_PointerEvent_GetRollAngle (const ArkUI_UIInputEvent * event, double * rollAngle )
+```
+**描述：**
+
+从带有指向性的输入事件（如触摸事件）中获取手写笔与设备平面的夹角。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 表示指向当前UI输入事件的指针。  | 
+| rollAngle | 表示存储角度的变量。默认值为0。参数异常不会更改此值。  | 
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
 ### OH_ArkUI_PointerEvent_GetTouchAreaHeight()
 

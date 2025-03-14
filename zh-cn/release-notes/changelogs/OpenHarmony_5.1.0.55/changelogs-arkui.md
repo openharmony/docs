@@ -62,7 +62,7 @@ struct RepeatRerender {
       .backgroundColor(0xFAEEE0)
 
       Button('click').onClick(() => {
-        this.dataArr[0].msg = 'new msg'; // 改变第一项数据对象的msg属性的值
+        this.dataArr.splice(0, 1, new RepeatData('key0', 'new msg')); // 改变列表第一项的数据，保持key不变
       })
     }
   }
@@ -132,7 +132,7 @@ struct RepeatRerender {
       .backgroundColor(0xFAEEE0)
 
       Button('click').onClick(() => {
-        this.dataArr[0].msg = 'new msg'; // 改变第一项数据对象的msg属性的值
+        this.dataArr.splice(0, 1, new RepeatData('key0', 'new msg')); // 改变列表第一项的数据，保持key不变
       })
     }
   }
@@ -183,7 +183,7 @@ struct RepeatRerender {
       .backgroundColor(0xFAEEE0)
 
       Button('click').onClick(() => {
-        this.dataArr[0].msg = 'new msg'; // 改变第一项数据对象的msg属性的值
+        this.dataArr.splice(0, 1, new RepeatData('key0', 'new msg')); // 改变列表第一项的数据，保持key不变
       })
     }
   }
@@ -477,3 +477,70 @@ toolbarConfiguration(toolbarParam: Array&lt;ToolbarItem&gt; | CustomBuilder, opt
 **适配指导**
 
 默认效果变更，无需适配。
+
+## cl.arkui.8 修复blendMode接口离屏模式会影响组件设置的不透明度的问题
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+blendMode离屏模式与不透明度属性（opacity）同时使用时，组件的不透明度并不等于设置的不透明度，效果异常。
+
+**变更影响**
+
+此变更涉及应用适配，仅针对组件设置了blendMode离屏模式且具有不透明度的场景。
+
+变更前：组件设置了blendMode离屏模式，同时设置了opacity不透明度 A，则组件实际不透明度为 A * A
+
+变更后：组件设置了blendMode离屏模式，同时设置了opacity不透明度 A，则组件实际不透明度为 A
+
+变更前后效果如下:
+
+|变更前|变更后|
+|--|--|
+|![](./figures/blendMode_before.png)|![](./figures/blendMode_after.png)|
+
+
+
+**起始API Level**
+
+API 11
+
+
+**变更发生版本**
+
+从 OpenHarmony SDK 5.1.0.55 开始。
+
+**变更的接口/组件**
+
+blendMode 接口
+
+**适配指导**
+
+如果开发者希望在同时使用blendMode离屏模式和opacity接口时保持组件的不透明度不变，则需要手动调整原本设定的不透明度。例如，在下方示例代码中，在 Stack()上额外设置.opacity(0.5)，以确保实际的透明度为 0.5 * 0.5。
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+       Stack() {
+       }
+       .height('50%')
+       .width('50%')
+       .backgroundColor(0x0A59F7)
+       .blendMode(BlendMode.SRC_OVER, BlendApplyType.OFFSCREEN)
+       .opacity(0.5)  // 变更后需要额外设置0.5的不透明度保证实际透明度为 0.5*0.5
+    }
+    .height('100%')
+    .width('100%')
+    .backgroundColor(0xFFFFFF)
+    .opacity(0.5)
+  }
+}
+```
+
+

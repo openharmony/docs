@@ -48,11 +48,11 @@ AddFormMenuItem(
 
 **参数：**
 
-| 名称           | 参数类型                        | 必填 | 装饰器类型 | 说明                                                             |
-| -------------- | ------------------------------- | ---- | ---------- | ---------------------------------------------------------------- |
-| want           | [Want](../../apis-ability-kit/js-apis-app-ability-want.md#want)                            | 是   | \@Prop     | 待发布功能组件的want信息。                                         |
-| componentId    | string                          | 是   | -          | 应用内功能组件ID，组件ID对应的界面与待添加的服务卡片界面相似。 |
-| AddFormOptions| [AddFormOptions](#addformoptions) | 否   | -          | 添加卡片选项。                                                         |
+| 名称           | 参数类型                        | 必填 | 说明                                                             |
+| -------------- | ------------------------------- | ---- | ---------------------------------------------------------------- |
+| want           | [Want](../../apis-ability-kit/js-apis-app-ability-want.md#want)                            | 是   | 待发布功能组件的want信息。                                         |
+| componentId    | string                          | 是   | 应用内功能组件ID，组件ID对应的界面与待添加的服务卡片界面相似。 |
+| options| [AddFormOptions](#addformoptions) | 否   | 添加卡片选项。                                                         |
 
 ## AddFormOptions
 

@@ -2863,7 +2863,7 @@ getOsAccountDomainInfo(localId: number): Promise&lt;DomainAccountInfo&gt;;
   })
   ```
 
-### updateAccountInfo<sup>16+</sup>
+### updateAccountInfo<sup>18+</sup>
 
 updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccountInfo): Promise&lt;void&gt;
 
@@ -2950,9 +2950,9 @@ updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccou
 | ----------- | ------ | ---- | ---------- |
 | domain      | string | 是   | 域名。     |
 | accountName | string | 是   | 域账号名。 |
-| serverConfigId | string | 是   | 域账号配置ID。 |
+| serverConfigId<sup>18+</sup> | string | 否   | 域账号配置ID。 |
 
-## DomainServerConfig<sup>16+</sup>
+## DomainServerConfig<sup>18+</sup>
 
 域服务器配置。
 
@@ -2964,11 +2964,11 @@ updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccou
 | id | string | 是   | 服务器配置标识。|
 | domain | string | 是 | 服务器所属的域。 |
 
-## DomainServerConfigManager<sup>16+</sup>
+## DomainServerConfigManager<sup>18+</sup>
 
 域服务器配置管理类。
 
-### addServerConfig<sup>16+</sup>
+### addServerConfig<sup>18+</sup>
 
 static addServerConfig(parameters: Record&lt;string, Object&gt;): Promise&lt;DomainServerConfig&gt;
 
@@ -2988,7 +2988,7 @@ static addServerConfig(parameters: Record&lt;string, Object&gt;): Promise&lt;Dom
 
 | 类型                      | 说明                     |
 | :------------------------ | ----------------------- |
-| Promise&lt;[DomainServerConfig](#domainserverconfig16)&gt; | Promise对象，返回新添加的域服务器配置。 |
+| Promise&lt;[DomainServerConfig](#domainserverconfig18)&gt; | Promise对象，返回新添加的域服务器配置。 |
 
 **错误码：**
 
@@ -3018,7 +3018,7 @@ static addServerConfig(parameters: Record&lt;string, Object&gt;): Promise&lt;Dom
   });
   ```
 
-### removeServerConfig<sup>16+</sup>
+### removeServerConfig<sup>18+</sup>
 
 static removeServerConfig(configId: string): Promise&lt;void&gt;
 
@@ -3068,7 +3068,7 @@ static removeServerConfig(configId: string): Promise&lt;void&gt;
   });
   ```
 
-### updateServerConfig<sup>16+</sup>
+### updateServerConfig<sup>18+</sup>
 
 static updateServerConfig(configId: string, parameters: Record&lt;string, Object&gt;): Promise&lt;DomainServerConfig&gt;
 
@@ -3089,7 +3089,7 @@ static updateServerConfig(configId: string, parameters: Record&lt;string, Object
 
 | 类型                      | 说明                     |
 | :------------------------ | ----------------------- |
-| Promise&lt;[DomainServerConfig](#domainserverconfig16)&gt; | Promise对象，返回更新后的域服务器配置。 |
+| Promise&lt;[DomainServerConfig](#domainserverconfig18)&gt; | Promise对象，返回更新后的域服务器配置。 |
 
 **错误码：**
 
@@ -3125,7 +3125,7 @@ static updateServerConfig(configId: string, parameters: Record&lt;string, Object
   });
   ```
 
-### getServerConfig<sup>16+</sup>
+### getServerConfig<sup>18+</sup>
 
 static getServerConfig(configId: string): Promise&lt;DomainServerConfig&gt;
 
@@ -3145,7 +3145,7 @@ static getServerConfig(configId: string): Promise&lt;DomainServerConfig&gt;
 
 | 类型                      | 说明                     |
 | :------------------------ | ----------------------- |
-| Promise&lt;[DomainServerConfig](#domainserverconfig16)&gt; | Promise对象，返回获取的域服务器配置。 |
+| Promise&lt;[DomainServerConfig](#domainserverconfig18)&gt; | Promise对象，返回获取的域服务器配置。 |
 
 **错误码：**
 
@@ -3177,7 +3177,7 @@ static getServerConfig(configId: string): Promise&lt;DomainServerConfig&gt;
   });
   ```
 
-### getAllServerConfigs<sup>16+</sup>
+### getAllServerConfigs<sup>18+</sup>
 
 static getAllServerConfigs(): Promise&lt;Array&lt;DomainServerConfig&gt;&gt;
 
@@ -3191,7 +3191,7 @@ static getAllServerConfigs(): Promise&lt;Array&lt;DomainServerConfig&gt;&gt;
 
 | 类型                      | 说明                     |
 | :------------------------ | ----------------------- |
-| Promise&lt;Array&lt;[DomainServerConfig](#domainserverconfig16)&gt;&gt; | Promise对象，返回获取的所有域服务器配置。 |
+| Promise&lt;Array&lt;[DomainServerConfig](#domainserverconfig18)&gt;&gt; | Promise对象，返回获取的所有域服务器配置。 |
 
 **错误码：**
 
@@ -3221,7 +3221,7 @@ static getAllServerConfigs(): Promise&lt;Array&lt;DomainServerConfig&gt;&gt;
   });
   ```
 
-### getAccountServerConfig<sup>16+</sup>
+### getAccountServerConfig<sup>18+</sup>
 
 static getAccountServerConfig(domainAccountInfo: DomainAccountInfo): Promise&lt;DomainServerConfig&gt;
 
@@ -3241,7 +3241,7 @@ static getAccountServerConfig(domainAccountInfo: DomainAccountInfo): Promise&lt;
 
 | 类型                      | 说明                     |
 | :------------------------ | ----------------------- |
-| Promise&lt;[DomainServerConfig](#domainserverconfig16)&gt; | Promise对象，返回目标账号的域服务器配置。 |
+| Promise&lt;[DomainServerConfig](#domainserverconfig18)&gt; | Promise对象，返回目标账号的域服务器配置。 |
 
 **错误码：**
 

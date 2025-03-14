@@ -16,7 +16,7 @@
 import { AbilityConstant } from '@kit.AbilityKit';
 ```
 
-## WindowMode
+## WindowMode<sup>12+</sup>
 
 启动Ability时的窗口模式，该类型为枚举，可配合startAbility使用指定启动Ability的窗口模式。
 

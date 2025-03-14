@@ -40,7 +40,7 @@ hitraceChain为开发者提供跨线程、跨进程的分布式跟踪能力。 H
 | typedef enum [HiTrace_Flag](#hitrace_flag) [HiTrace_Flag](#hitrace_flag) | HiTrace标志位。  | 
 | typedef enum [HiTrace_Tracepoint_Type](#hitrace_tracepoint_type) [HiTrace_Tracepoint_Type](#hitrace_tracepoint_type) | HiTrace打点类型。  | 
 | typedef enum [HiTrace_Communication_Mode](#hitrace_communication_mode) [HiTrace_Communication_Mode](#hitrace_communication_mode) | HiTrace通信模式枚举。  | 
-|  typedef struct [HiTraceId](_hi_trace_id.md)**HiTraceId** |  | 
+| typedef struct [HiTraceId](_hi_trace_id.md) [HiTraceId](_hi_trace_id.md) | 系统跟踪Id。 | 
 
 
 ### 枚举
@@ -183,10 +183,10 @@ HiTrace通信模式枚举。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| HITRACE_CM_DEFAULT | 未指明<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
-| HITRACE_CM_THREAD | 线程间通信<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
-| HITRACE_CM_PROCESS | 进程间通信<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
-| HITRACE_CM_DEVICE | 设备间通信<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_CM_DEFAULT | 未指明。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_CM_THREAD | 线程间通信。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_CM_PROCESS | 进程间通信。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_CM_DEVICE | 设备间通信。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
 
 
 ### HiTrace_Flag
@@ -203,7 +203,7 @@ HiTrace标志位。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| HITRACE_FLAG_DEFAULT | 默认值<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_FLAG_DEFAULT | 默认值。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
 | HITRACE_FLAG_INCLUDE_ASYNC | 跟踪同步和异步调用。默认：仅跟踪同步调用。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
 | HITRACE_FLAG_DONOT_CREATE_SPAN | 不创建child span。默认创建。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
 | HITRACE_FLAG_TP_INFO | 在span中输出跟踪点信息，默认不输出跟踪点信息。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 

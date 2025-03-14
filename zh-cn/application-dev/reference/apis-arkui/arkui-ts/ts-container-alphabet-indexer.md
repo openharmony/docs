@@ -24,9 +24,9 @@ AlphabetIndexer(options: AlphabetIndexerOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [AlphabetIndexerOptions](#alphabetindexeroptions16对象说明) | 是 | 设置索引条组件参数。 |
+| options | [AlphabetIndexerOptions](#alphabetindexeroptions18对象说明) | 是 | 设置索引条组件参数。 |
 
-## AlphabetIndexerOptions<sup>16+</sup>对象说明
+## AlphabetIndexerOptions<sup>18+</sup>对象说明
 
 用于设置索引条参数。
 
@@ -461,7 +461,7 @@ onSelect(callback: OnAlphabetIndexerSelectCallback)
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
-| callback  | [OnAlphabetIndexerSelectCallback](#onalphabetindexerselectcallback16) | 是   | 索引项选中事件。 |
+| callback  | [OnAlphabetIndexerSelectCallback](#onalphabetindexerselectcallback18) | 是   | 索引项选中事件。 |
 
 ### onRequestPopupData<sup>8+</sup>
 
@@ -477,7 +477,7 @@ onRequestPopupData(callback: OnAlphabetIndexerRequestPopupDataCallback)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| callback  | [OnAlphabetIndexerRequestPopupDataCallback](#onalphabetindexerrequestpopupdatacallback16) | 是   | 设置提示弹窗二级索引项内容事件。 |
+| callback  | [OnAlphabetIndexerRequestPopupDataCallback](#onalphabetindexerrequestpopupdatacallback18) | 是   | 设置提示弹窗二级索引项内容事件。 |
 
 ### onPopupSelect<sup>8+</sup>
 
@@ -493,14 +493,14 @@ onPopupSelect(callback: OnAlphabetIndexerPopupSelectCallback)
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
-| callback  | [OnAlphabetIndexerPopupSelectCallback](#onalphabetindexerpopupselectcallback16) | 是   | 提示弹窗二级索引选中事件。 |
+| callback  | [OnAlphabetIndexerPopupSelectCallback](#onalphabetindexerpopupselectcallback18) | 是   | 提示弹窗二级索引选中事件。 |
 
-## OnAlphabetIndexerSelectCallback<sup>16+</sup>
+## OnAlphabetIndexerSelectCallback<sup>18+</sup>
 type OnAlphabetIndexerSelectCallback = (index: number) => void
 
 索引项被选中时触发的事件。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -509,12 +509,12 @@ type OnAlphabetIndexerSelectCallback = (index: number) => void
 | ------- | ----- | ---- | ------ |
 | index    | number  | 是   | 当前选中索引项的索引。 |
 
-## OnAlphabetIndexerPopupSelectCallback<sup>16+</sup>
+## OnAlphabetIndexerPopupSelectCallback<sup>18+</sup>
 type OnAlphabetIndexerPopupSelectCallback = (index: number) => void
 
 提示弹窗二级索引项被选中时触发的事件。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -523,12 +523,12 @@ type OnAlphabetIndexerPopupSelectCallback = (index: number) => void
 | ------- | ----- | ---- | ------ |
 | index   | number  | 是   | 当前选中的提示弹窗二级索引项的索引。 |
 
-## OnAlphabetIndexerRequestPopupDataCallback<sup>16+</sup>
+## OnAlphabetIndexerRequestPopupDataCallback<sup>18+</sup>
 type OnAlphabetIndexerRequestPopupDataCallback = (index: number) => Array\<string\>
 
 [usingPopup](#usingpopup)设置值为true，索引项被选中时触发的事件。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

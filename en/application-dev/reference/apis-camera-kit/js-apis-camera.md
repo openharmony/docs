@@ -72,8 +72,8 @@ Defines the camera device information.
 | cameraType                      | [CameraType](#cameratype)           | Yes  | No | Camera type.   |
 | connectionType                  | [ConnectionType](#connectiontype)   | Yes  | No | Camera connection type.|
 | cameraOrientation<sup>12+</sup> | number                              | Yes  | No | Installation angle of the lens, which does not change as the screen rotates. The value ranges from 0° to 360°.|
-| hostDeviceName<sup>16+</sup>    | string                              | Yes  | No | Remote device name.|
-| hostDeviceType<sup>16+</sup>    | [HostDeviceType](#hostdevicetype16) | Yes  | No | Remote device type.|
+| hostDeviceName<sup>15+</sup>    | string                              | Yes  | No | Remote device name.|
+| hostDeviceType<sup>15+</sup>    | [HostDeviceType](#hostdevicetype15) | Yes  | No | Remote device type.|
 
 ## CameraPosition
 
@@ -116,7 +116,7 @@ Enumerates the camera connection types.
 | CAMERA_CONNECTION_USB_PLUGIN | 1    | Camera connected using USB.|
 | CAMERA_CONNECTION_REMOTE     | 2    | Remote camera.|
 
-## HostDeviceType<sup>16+</sup>
+## HostDeviceType<sup>15+</sup>
 
 Enumerates the remote camera types.
 
@@ -3877,6 +3877,72 @@ function testGetActiveProfile(videoOutput: camera.VideoOutput): camera.Profile |
   return activeProfile;
 }
 ```
+### isMirrorSupported<sup>15+</sup>
+
+isMirrorSupported(): boolean
+
+Checks whether mirror recording is supported.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type           | Description                             |
+| -------------- |---------------------------------|
+| boolean | **true**: Mirror recording is supported.<br>**false**: Mirror recording is not supported.|
+
+**Example**
+
+```ts
+function testIsMirrorSupported(videoOutput: camera.VideoOutput): boolean {
+  let isSupported: boolean = videoOutput.isMirrorSupported();
+  return isSupported;
+}
+```
+### enableMirror<sup>15+</sup>
+
+enableMirror(enabled: boolean): void
+
+Enables or disables mirror recording.
+
+- Before calling this API, check whether mirror recording is supported by using [isMirrorSupported](#ismirrorsupported15).
+
+- After enabling or disabling mirror recording, call [getVideoRotation](#getvideorotation12) and [updateRotation](../apis-media-kit/js-apis-media.md#updaterotation12) to update the rotation angle.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name     | Type                   | Mandatory| Description                       |
+|----------| ---------------------- | ---- |---------------------------|
+| enabled | boolean                | Yes  | Whether to enable mirror recording. The value **true** means to enable it, and **false** means to diable it.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID   | Error Message                                          |
+| -------- |------------------------------------------------|
+| 7400101  | Parameter missing or parameter type incorrect. |
+| 7400103  | Session not config.                    |
+
+
+**Example**
+
+```ts
+import { camera } from '@kit.CameraKit';
+import { media } from '@kit.MediaKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function enableMirror(videoOutput: camera.VideoOutput, mirrorMode: boolean, aVRecorder: media.AVRecorder, deviceDegree : number): void {
+    try {
+        videoOutput.enableMirror(mirrorMode);
+        aVRecorder.updateRotation(videoOutput.getVideoRotation(deviceDegree));
+    } catch (error) {
+        let err = error as BusinessError;
+    }
+}
+```
 
 ### getVideoRotation<sup>12+</sup>
 
@@ -3914,17 +3980,45 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 **Example**
 
 ```ts
-function testGetVideoRotation(videoOutput: camera.VideoOutput, deviceDegree : number): camera.ImageRotation {
-  let videoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
-  try {
-    videoRotation = videoOutput.getVideoRotation(deviceDegree);
-    console.log(`Video rotation is: ${videoRotation}`);
-  } catch (error) {
-    // If the operation fails, error.code is returned and processed.
-    let err = error as BusinessError;
-    console.error(`The videoOutput.getVideoRotation call failed. error code: ${err.code}`);
-  }
-  return videoRotation;
+import { camera } from '@kit.CameraKit';
+import { Decimal } from '@kit.ArkTS';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getVideoRotation(videoOutput: camera.VideoOutput): camera.ImageRotation {
+    let videoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
+    try {
+        videoRotation = videoOutput.getVideoRotation(getDeviceDegree());
+    } catch (error) {
+        let err = error as BusinessError;
+    }
+    return videoRotation;
+}
+
+// Obtain deviceDegree.
+function getDeviceDegree(): number {
+    let deviceDegree: number = -1;
+    try {
+        sensor.once(sensor.SensorId.GRAVITY, (data: sensor.GravityResponse) => {
+            console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
+            console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
+            console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
+            let x = data.x;
+            let y = data.y;
+            let z = data.z;
+            if ((x * x + y * y) * 3 < z * z) {
+                deviceDegree = -1;
+            } else {
+                let sd: Decimal = Decimal.atan2(y, -x);
+                let sc: Decimal = Decimal.round(Number(sd) / 3.141592653589 * 180)
+                deviceDegree = 90 - Number(sc);
+                deviceDegree = deviceDegree >= 0 ? deviceDegree% 360 : deviceDegree% 360 + 360;
+            }
+        });
+    } catch (error) {
+        let err: BusinessError = error as BusinessError;
+    }
+    return deviceDegree;
 }
 ```
 

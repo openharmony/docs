@@ -129,14 +129,14 @@ if (ret != PREFERENCES_OK) {
 }
 
 // 设置Preferences配置选项的存储模式，需要注意的是，设置之前需要调用OH_Preferences_IsStorageTypeSupported接口判断当前平台是否支持需要选择的模式。
-bool isClkvSupported = false;
-ret = OH_Preferences_IsStorageTypeSupported(Preferences_StorageType::PREFERENCES_STORAGE_CLKV, &isClkvSupported);
+bool isGskvSupported = false;
+ret = OH_Preferences_IsStorageTypeSupported(Preferences_StorageType::PREFERENCES_STORAGE_GSKV, &isGskvSupported);
 if (ret != PREFERENCES_OK) {
     (void)OH_PreferencesOption_Destroy(option);
     // 错误处理
 }
-if (isClkvSupported) {
-    ret = OH_PreferencesOption_SetStorageType(option, Preferences_StorageType::PREFERENCES_STORAGE_CLKV);
+if (isGskvSupported) {
+    ret = OH_PreferencesOption_SetStorageType(option, Preferences_StorageType::PREFERENCES_STORAGE_GSKV);
     if (ret != PREFERENCES_OK) {
         (void)OH_PreferencesOption_Destroy(option);
         // 错误处理

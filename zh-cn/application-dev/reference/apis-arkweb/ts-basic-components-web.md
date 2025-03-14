@@ -3100,7 +3100,7 @@ blurOnKeyboardHideMode(mode: BlurOnKeyboardHideMode)
 </html>
 ```
 
-### enableFollowSystemFontWeight<sup>16+</sup>
+### enableFollowSystemFontWeight<sup>18+</sup>
 
 enableFollowSystemFontWeight(follow: boolean)
 
@@ -3177,7 +3177,7 @@ ArkWeb内核在解析HTML文档结构时采取分段解析策略，旨在避免�
   }
   ```
 
-### enableWebAVSession<sup>16+</sup>
+### enableWebAVSession<sup>18+</sup>
 
 enableWebAVSession(enabled: boolean)
 
@@ -7881,7 +7881,7 @@ isCapture(): boolean
 | ------- | ------------ |
 | boolean | 返回是否调用多媒体能力。 |
 
-### getMimeTypes<sup>16+</sup>
+### getMimeTypes<sup>18+</sup>
 
 getMimeTypes(): Array\<string\>
 

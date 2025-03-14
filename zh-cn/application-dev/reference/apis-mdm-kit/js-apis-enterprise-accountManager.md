@@ -20,7 +20,7 @@ import { accountManager } from '@kit.MDMKit';
 
 disallowOsAccountAddition(admin: Want, disallow: boolean, accountId?: number): void
 
-指定设备管理应用禁止用户添加账号。
+禁止用户添加账号。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
@@ -30,11 +30,11 @@ disallowOsAccountAddition(admin: Want, disallow: boolean, accountId?: number): v
 
 **参数：**
 
-| 参数名    | 类型                                                    | 必填 | 说明                                                        |
-| --------- | ------------------------------------------------------- | ---- | ----------------------------------------------------------- |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                              |
-| disallow  | boolean                                                 | 是   | 是否禁止创建本地用户，true表示禁止创建，false表示允许创建。 |
-| accountId | number                                                  | 否   | 用户ID，指定具体用户，取值范围：大于等于0。                 |
+| 参数名    | 类型                                                    | 必填 | 说明                                                         |
+| --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
+| disallow  | boolean                                                 | 是   | 是否禁止创建本地用户，true表示禁止创建，false表示允许创建。  |
+| accountId | number                                                  | 否   | 用户ID，指定具体用户。当不传入此参数时，表示禁止所有用户添加账号；当传入此参数时，表示禁止指定用户添加账号。取值范围：大于等于0。<br/>accountId可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)等接口来获取。 |
 
 **错误码**：
 
@@ -68,7 +68,7 @@ try {
 
 isOsAccountAdditionDisallowed(admin: Want, accountId?: number): boolean
 
-指定设备管理应用查询是否禁止某用户添加账号。
+查询是否禁止用户添加账号。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
@@ -78,16 +78,16 @@ isOsAccountAdditionDisallowed(admin: Want, accountId?: number): boolean
 
 **参数：**
 
-| 参数名    | 类型                                                    | 必填 | 说明                                        |
-| --------- | ------------------------------------------------------- | ---- | ------------------------------------------- |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                              |
-| accountId | number                                                  | 否   | 用户ID，指定具体用户，取值范围：大于等于0。 |
+| 参数名    | 类型                                                    | 必填 | 说明                                                         |
+| --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
+| accountId | number                                                  | 否   | 用户ID，指定具体用户。当不传入此参数时，表示查询所有用户是否禁止添加账号；当传入此参数时，表示查询指定用户是否禁止添加账号。取值范围：大于等于0。<br/>accountId可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)等接口来获取。 |
 
 **返回值：**
 
-| 类型    | 说明                                                         |
-| ------- | ------------------------------------------------------------ |
-| boolean | 返回true表示该用户禁止添加账号，<br/>返回false表示该用户允许添加账号。 |
+| 类型    | 说明                                                       |
+| ------- | ---------------------------------------------------------- |
+| boolean | 返回true表示禁止添加账号。<br/>返回false表示允许添加账号。 |
 
 **错误码**：
 
@@ -121,7 +121,7 @@ try {
 
 addOsAccountAsync(admin: Want, name: string, type: osAccount.OsAccountType): Promise&lt;osAccount.OsAccountInfo&gt;
 
-指定设备管理应用后台添加账号。使用promise异步回调。
+后台添加账号。使用promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
@@ -133,8 +133,8 @@ addOsAccountAsync(admin: Want, name: string, type: osAccount.OsAccountType): Pro
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 设备管理应用。                                               |
-| name   | string                                                       | 是   | 用户ID，指定具体用户，取值范围：大于等于0。                  |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 企业设备管理扩展组件。                                       |
+| name   | string                                                       | 是   | 账号名，指要添加的账号的名称。无法创建同名、名称为空的账号。 |
 | type   | [osAccount.OsAccountType](../apis-basic-services-kit/js-apis-osAccount.md#osaccounttype) | 是   | 要添加的账号的类型。<br/>取值范围：ADMIN、NORMAL、GUEST。<br/>· ADMIN：管理员账号。<br/>· NORMAL：普通账号。<br/>· GUEST：访客账号。 |
 
 **返回值：**

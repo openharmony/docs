@@ -41,8 +41,8 @@ FullScreenLaunchComponent({ content: Callback\<void>, appId: string, options?: A
 
 | 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| content | Callback\<void> | 是 | \@BuilderParam | 组件显示内容。 |
-| appId | string | 是 | - | 原子化服务appId。 |
+| content | Callback\<void> | 是 | \@BuilderParam | 可以使用组件组合来自定义拉起原子化服务前的占位图标，实现类似大桌面应用图标的效果。点击占位组件后，将拉起原子化服务。|
+| appId | string | 是 | - |  需要拉起的原子化服务appId，appId是原子化服务的唯一标识。<!--RP1--><!--RP1End-->|
 | options | [AtomicServiceOptions](../../apis-ability-kit/js-apis-app-ability-atomicServiceOptions.md) | 否 | - | 拉起原子化服务参数。 |
 
 ## 事件
@@ -52,7 +52,7 @@ FullScreenLaunchComponent({ content: Callback\<void>, appId: string, options?: A
 
 onError(callback: ErrorCallback)
 
-被拉起的原子化服务扩展在运行过程中发生异常时触发本回调。可通过回调参数中的code、name和message获取错误信息并做处理。
+被拉起的嵌入式运行原子化服务在运行过程中发生异常时触发本回调。可通过回调参数中的code、name和message获取错误信息并做处理。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -68,7 +68,7 @@ onError(callback: ErrorCallback)
 
 onTerminated(callback: Callback&lt;TerminationInfo&gt;)
 
-被拉起的原子化服务通过调用[terminateSelfWithResult](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)或者[terminateSelf](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)正常退出时，触发本回调函数。
+被拉起的嵌入式运行原子化服务通过调用[terminateSelfWithResult](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)或者[terminateSelf](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)正常退出时，触发本回调函数。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -93,7 +93,7 @@ onTerminated(callback: Callback&lt;TerminationInfo&gt;)
 
 | 名称 | 类型                                                       | 必填 | 说明                               |
 | ---- | ---------------------------------------------------------- | ---- | --------------------------------- |
-| code | number                                                     | 是   | 被拉起原子化服务退出时返回的结果码。 |
+| code | number                                                     | 是   | 目标方的原子化服务被拉起并退出后，目标方返回给拉起方的结果码。<br/>-&nbsp;正常情况下，返回目标方传递的结果码。<br/>-&nbsp;异常情况下，返回-1。|
 | want | [Want](../../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 被拉起原子化服务退出时返回的数据。   |
 
 ## 示例
@@ -104,7 +104,7 @@ import { FullScreenLaunchComponent } from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
-  @State appId: string = '6918661953712445909';
+  @State appId: string = '6918661953712445909'; // 原子化服务appId
 
   build() {
     Row() {

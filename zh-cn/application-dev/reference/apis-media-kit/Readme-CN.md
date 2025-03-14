@@ -12,11 +12,17 @@
     <!--DelEnd-->
 - C API<!--media-c-->
   - 模块<!--media-module-->
+    - [AVImageGenerator](_a_v_image_generator.md)
+    - [AVMetadataExtractor](_a_v_metadata_extractor.md)
     - [AVPlayer](_a_v_player.md)
     - [AVRecorder](_a_v_recorder.md)
     - [AVScreenCapture](_a_v_screen_capture.md)
     - [VideoProcessing](_video_processing.md)
   - 头文件<!--media-headerfile-->
+    - [avimage_generator.h](avimage__generator_8h.md)
+    - [avimage_generator_base.h](avimage__generator__base_8h.md)
+    - [avmetadata_extractor_base.h](avmetadata__extractor__base_8h.md)
+    - [avmetadata_extractor.h](avmetadata__extractor_8h.md)
     - [avplayer.h](avplayer_8h.md)
     - [avplayer_base.h](avplayer__base_8h.md)
     - [avrecorder.h](avrecorder_8h.md)

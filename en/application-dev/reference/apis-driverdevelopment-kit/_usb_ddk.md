@@ -88,8 +88,81 @@ uint64_t JsDeviceIdToNative(uint64_t deviceId)
 }
 ~~~
 
-## Enum Description
+## Type Description
 
+### UsbDdkEndpointDescriptor
+
+```
+typedef struct UsbDdkEndpointDescriptor UsbDdkEndpointDescriptor
+```
+
+**Description**
+
+Endpoint descriptor.
+
+**Since**: 10
+
+### UsbDdkInterfaceDescriptor
+
+```
+typedef struct UsbDdkInterfaceDescriptor UsbDdkInterfaceDescriptor
+```
+
+**Description**
+
+Interface descriptor.
+
+**Since**: 10
+
+### UsbDdkInterface
+
+```
+typedef struct UsbDdkInterface UsbDdkInterface
+```
+
+**Description**
+
+USB API.
+
+**Since**: 10
+
+### UsbDdkConfigDescriptor
+
+```
+typedef struct UsbDdkConfigDescriptor UsbDdkConfigDescriptor
+```
+
+**Description**
+
+Configuration descriptor.
+
+**Since**: 10
+
+### UsbDeviceMemMap
+
+```
+typedef struct UsbDeviceMemMap UsbDeviceMemMap
+```
+
+**Description**
+
+ Device memory map created by calling [OH_Usb_CreateDeviceMemMap()](_usb_ddk.md#oh_usb_createdevicememmap). A buffer using the device memory map can provide better performance.
+
+**Since**: 10
+
+### Usb_DeviceArray
+
+```
+typedef struct Usb_DeviceArray usb_DeviceArray
+```
+
+**Description**
+
+Defines the device ID list, which is used to store the device IDs and device quantity obtained using [OH_Usb_GetDevices()](_usb_ddk.md#oh_usb_getdevices16).
+
+**Since**: 10
+
+## Enum Description
 
 ### UsbDdkErrCode
 

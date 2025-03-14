@@ -16,6 +16,7 @@
 |[选择器弹窗 (PickerDialog)](arkts-fixes-style-dialog.md#选择器弹窗-pickerdialog) | 固定样式，当用户需要在弹出框内选择日期、时间和文本时使用。 |
 | [对话框 (showDialog)](arkts-fixes-style-dialog.md#对话框-showdialog) | 固定样式，当用户需要对在弹出框响应后异步返回结果进行处理时使用。 |
 | [操作菜单 (showActionMenu)](arkts-fixes-style-dialog.md#操作菜单-showactionmenu) | 固定样式，当用户需要对在操作菜单响应后异步返回结果进行处理时使用。 |
+| [页面级弹出框](arkts-embedded-dialog.md) | 页面级弹出框，当用户期望路由导航切换时弹出框随导航页面切换时使用。 |
 
 ## 规格约束
 

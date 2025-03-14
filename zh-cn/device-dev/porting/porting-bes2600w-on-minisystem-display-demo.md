@@ -18,20 +18,20 @@ device
 
 ```
 device
-├── board                                --- 单板厂商目录
-│   └── fnlink                           --- 单板厂商名字：欧智通
-│       └── v200zr                       --- 单板名：v200zr
-└── soc									 --- SoC厂商目录
-    └── bestechnic                       --- SoC厂商名字：恒玄
-        └── bes2600						 --- SoC Series名：bes2600是一个系列，里面包含bes2600w等SoC名
+├── board                                --- 单板厂商目录。
+│   └── fnlink                           --- 单板厂商名字：欧智通。
+│       └── v200zr                       --- 单板名：v200zr。
+└── soc					 --- SoC厂商目录。
+    └── bestechnic                       --- SoC厂商名字：恒玄。
+        └── bes2600		         --- SoC Series名：bes2600是一个系列，里面包含bes2600w等SoC名。
 ```
 
 产品样例目录规划为：
 
 ```
 vendor
-└── bestechnic							 --- 开发产品样例厂商目录，恒玄开发的带屏样例，因此以bestechnic命名
-    └── display_demo         			 --- 产品名字：以智能开关面板的带屏显示样例
+└── bestechnic				 --- 开发产品样例厂商目录，恒玄开发的带屏样例，因此以bestechnic命名。
+    └── display_demo         		 --- 产品名字：以智能开关面板的带屏显示样例。
 ```
 
 ### 预编译适配
@@ -44,39 +44,40 @@ vendor
 
 1. 在`vendor/bestechnic/display_demo`目录下新增`config.json`文件，用于描述这个产品样例所使用的单板、内核等信息，描述信息可参考如下内容：
 
-```
-{
-  "product_name": "display_demo",       --- 用于hb set进行选择时，显示的产品名称
-  "type": "mini",                       --- 构建系统的类型，mini/small/standard
-  "version": "3.0",                     --- 构建系统的版本，1.0/2.0/3.0
-  "device_company": "fnlink",           --- 单板厂商名，用于编译时找到/device/board/fnlink目录
-  "board": "v200zr",                    --- 单板名，用于编译时找到/device/board/fnlink/v200zr目录
-  "kernel_type": "liteos_m",            --- 内核类型，因为OpenHarmony支持多内核，一块单板可能适配了多个内核，所以需要指定某个内核进行编译
-  "kernel_version": "3.0.0",            --- 内核版本，一块单板可能适配了多个linux内核版本，所以需要指定某个具体的内核版本进行编译
-  "subsystems": [ ]                     --- 选择所需要编译构建的子系统
-}
-```
+   ```json   
+   {
+      "product_name": "display_demo",       --- 用于hb set进行选择时，显示的产品名称。
+      "type": "mini",                       --- 构建系统的类型，mini/small/standard。
+      "version": "3.0",                     --- 构建系统的版本，1.0/2.0/3.0。
+      "device_company": "fnlink",           --- 单板厂商名，用于编译时找到/device/board/fnlink目录。
+      "board": "v200zr",                    --- 单板名，用于编译时找到/device/board/fnlink/v200zr目录。
+      "kernel_type": "liteos_m",            --- 内核类型，因为OpenHarmony支持多内核，一块单板可能适配了多个内核，所以需要指定某个内核进行编译。
+      "kernel_version": "3.0.0",            --- 内核版本，一块单板可能适配了多个linux内核版本，所以需要指定某个具体的内核版本进行编译。
+      "subsystems": [ ]                     --- 选择所需要编译构建的子系统。
+   }
+   ```
 
 2. 在`device/board/fnlink/v200zr/liteos_m`目录下新增`config.gni`文件，用于描述这个产品样例所使用的单板、内核等信息，描述信息可参考如下内容：
 
-```
-# Kernel type, e.g. "linux", "liteos_a", "liteos_m".
-kernel_type = "liteos_m"                --- 内核类型，跟config.json中kernel_type对应
+   ```
+   # Kernel type, e.g. "linux", "liteos_a", "liteos_m".
+   kernel_type = "liteos_m"                --- 内核类型，跟config.json中kernel_type对应。
 
-# Kernel version.
-kernel_version = "3.0.0"                --- 内核版本，跟config.json中kernel_version对应
-```
+   # Kernel version.
+   kernel_version = "3.0.0"                --- 内核版本，跟config.json中kernel_version对应。
+   ```
 
 3. 验证`hb set`配置是否正确，输入`hb set`能够显示如下图片表示配置正确。
 
    执行`hb set`输入项目根目录，并且回车，`hb`命令会遍历所有`//vendor/<product_company>/<product_name>`目录下的`config.json`，给出可选产品编译选项，`config.json`的`product_name`用于显示产品名，`device_company`和`board`用于关联出`//device/board/<device_company>/<board>`目录，并且匹配`<any_dir_name>/config.gni`文件，如果能够匹配多个文件，表示该单板适配了多个内核，那么可以根据`config.json`的`kernel_type`和`kernel_version`来唯一匹配`config.gni`的`kernel_type`和`kernel_version`，即可确定了需要编译适配了哪个内核的单板。
-![hb set](figures/bes2600_hb_set.png)
 
-	通过`hb env`可以查看选择出来的预编译环境变量。
+   ![hb set](figures/bes2600_hb_set.png)
 
-![hb env](figures/bes2600_hb_env.png)
+   通过`hb env`可以查看选择出来的预编译环境变量。
 
-在执行`hb build`之前，需要准备好`LiteOS-M`内核适配，具体适配步骤请参[内核移植](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/porting/porting-bes2600w-on-minisystem-display-demo.md#%E5%86%85%E6%A0%B8%E7%A7%BB%E6%A4%8D)。
+   ![hb env](figures/bes2600_hb_env.png)
+
+   在执行`hb build`之前，需要准备好`LiteOS-M`内核适配，具体适配步骤请参[内核移植](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/porting/porting-bes2600w-on-minisystem-display-demo.md#%E5%86%85%E6%A0%B8%E7%A7%BB%E6%A4%8D)。
 
 ## 内核移植
 
@@ -146,12 +147,12 @@ orsource "../../device/soc/*/Kconfig.liteos_m.soc"                              
 │   └── liteos_m
 │       └── config.gni
 ├── Kconfig.liteos_m.boards                      --- 提供fnlink单板厂商下Boards配置信息
-├── Kconfig.liteos_m.defconfig.boards			 --- 提供fnlink单板厂商下Boards默认配置信息
-├── Kconfig.liteos_m.shields					 --- 提供fnlink单板厂商下扩展板配置信息
-└── shields										 --- fnlink单板厂商的扩展板目录
-    ├── v200zr-t0								 --- fnlink单板厂商的扩展板v200zr-t0
+├── Kconfig.liteos_m.defconfig.boards		 --- 提供fnlink单板厂商下Boards默认配置信息
+├── Kconfig.liteos_m.shields			 --- 提供fnlink单板厂商下扩展板配置信息
+└── shields					 --- fnlink单板厂商的扩展板目录
+    ├── v200zr-t0				 --- fnlink单板厂商的扩展板v200zr-t0
     │   ├── Kconfig.liteos_m.defconfig.shield	 --- 扩展板v200zr-t0默认配置
-    │   └── Kconfig.liteos_m.shield				 --- 扩展板v200zr-t0配置信息
+    │   └── Kconfig.liteos_m.shield		 --- 扩展板v200zr-t0配置信息
     ├── v200zr-t1
     │   ├── Kconfig.liteos_m.defconfig.shield
     │   └── Kconfig.liteos_m.shield
@@ -181,24 +182,24 @@ endif # BOARD_v200zr
 
 ```
 .
-├── bes2600									 --- bes2600 SoC系列
+├── bes2600					 --- bes2600 SoC系列
 │   ├── Kconfig.liteos_m.defconfig.bes2600w	 --- bestechnic芯片厂商bes2600w SoC Series配置
 │   ├── Kconfig.liteos_m.defconfig.series	 --- bestechnic芯片厂商bes2600默认配置
-│   ├── Kconfig.liteos_m.series				 --- bestechnic芯片厂商bes2600 SoC Series配置
-│   └── Kconfig.liteos_m.soc				 --- bestechnic芯片厂商bes2600 SoC配置
-├── Kconfig.liteos_m.defconfig				 --- bestechnic芯片厂商SoC默认配置
-├── Kconfig.liteos_m.series					 --- bestechnic芯片厂商SoC Series配置
-└── Kconfig.liteos_m.soc					 --- bestechnic芯片厂商 SoC配置
+│   ├── Kconfig.liteos_m.series			 --- bestechnic芯片厂商bes2600 SoC Series配置
+│   └── Kconfig.liteos_m.soc			 --- bestechnic芯片厂商bes2600 SoC配置
+├── Kconfig.liteos_m.defconfig			 --- bestechnic芯片厂商SoC默认配置
+├── Kconfig.liteos_m.series			 --- bestechnic芯片厂商SoC Series配置
+└── Kconfig.liteos_m.soc			 --- bestechnic芯片厂商 SoC配置
 ```
 
 在 `bes2600/Kconfig.liteos_m.series` 需要配置`bes2600 SoC series`，以及它的芯片架构等信息，如下：
 
 ```
-config SOC_SERIES_BES2600			 --- 提供bes2600 SoC Series选项
+config SOC_SERIES_BES2600	     --- 提供bes2600 SoC Series选项
     bool "Bestechnic 2600 Series"
-    select ARM						 --- 选择bes2600后，默认选择ARM架构
+    select ARM			     --- 选择bes2600后，默认选择ARM架构
     select SOC_COMPANY_BESTECHNIC    --- 选择bes2600后，默认选择bestechnic芯片公司，驱动会依赖这个宏配置，选择配置编译对应厂商的驱动
-    select CPU_CORTEX_M33			 --- 选择bes2600后，默认选择cortex-m33 CPU
+    select CPU_CORTEX_M33	     --- 选择bes2600后，默认选择cortex-m33 CPU
     help
         Enable support for Bestechnic 2600 series
 ```
@@ -210,7 +211,7 @@ choice
     prompt "Bestechnic 2600 series SoC"
     depends on SOC_SERIES_BES2600	 --- 只有选择了bes2600 Series后，才会出现如下配置选项
 
-config SOC_BES2600W					 --- 增加bes2600w SoC配置选择项
+config SOC_BES2600W			 --- 增加bes2600w SoC配置选择项
     bool "SoC BES2600w"
 
 endchoice
@@ -219,11 +220,11 @@ endchoice
 在 `bes2600/Kconfig.liteos_m.defconfig.series` 需要提供`bes2600 SoC series`选择后的默认配置，如下：
 
 ```
-if SOC_SERIES_BES2600							 --- 选择了bes2600 Series后，才会增加如下默认配置选项
+if SOC_SERIES_BES2600				 --- 选择了bes2600 Series后，才会增加如下默认配置选项
 
 rsource "Kconfig.liteos_m.defconfig.bes2600w"	 --- 增加bes2600w SoC的默认配置
 
-config SOC_SERIES								 --- 增加SOC_SERIES的默认配置
+config SOC_SERIES				 --- 增加SOC_SERIES的默认配置
     string
     default "bes2600"
 
@@ -279,10 +280,10 @@ deps += [ "//device/soc/$LOSCFG_SOC_COMPANY" ]
 
 ```
 if (ohos_kernel_type == "liteos_m") {                    --- 由于多内核设计，对于LiteOS-M内核适配，需要用宏来隔离
-  import("//kernel/liteos_m/liteos.gni")				 --- 引入内核gn编写模板
+  import("//kernel/liteos_m/liteos.gni")		 --- 引入内核gn编写模板
   module_name = get_path_info(rebase_path("."), "name")	 --- 动态获取当前文件目录作为模块名，防止目录名修改后，这里还需要跟着修改
-  module_group(module_name) {							 --- 采用module_group模板
-    modules = [											 --- 添加需要编译的模块
+  module_group(module_name) {				 --- 采用module_group模板
+    modules = [						 --- 添加需要编译的模块
     ]
   }
 }
@@ -300,11 +301,11 @@ if (ohos_kernel_type == "liteos_m") {                    --- 由于多内核设�
 | BOOT2     | [0x2C010000, 0x2C020000] | 第二阶段启动，进行OTA升级启动。 |
 | RTOS_MAIN | [0x2C080000, 0x2C860000] | 第三阶段启动，进行内核启动。    |
 
-在第三阶段内核启动中，需要适配的文件路径在 `//device/soc/bestechnic/bes2600/liteos_m/sdk/bsp/rtos/liteos/liteos_m/board.c`
+在第三阶段内核启动中，需要适配的文件路径在 `//device/soc/bestechnic/bes2600/liteos_m/sdk/bsp/rtos/liteos/liteos_m/board.c`。
 
 内核启动适配总体思路如下：
 
-1. 中断向量的初始化`os_vector_init` ，初始化中断的处理函数。
+1. 中断向量的初始化`os_vector_init`，初始化中断的处理函数。
 2. 内核初始化`osKernelInitialize`。
 3. 创建线程`board_main`，进行芯片平台初始化。
 4. 内核启动，开始调度线程`osKernelStart`。
@@ -319,7 +320,7 @@ if (ohos_kernel_type == "liteos_m") {                    --- 由于多内核设�
         ...
         OhosSystemAdapterHooks();    --- 系统启动时候设置钩子，启动OpenHarmonyOHOS_SystemInit的之前完成打印和驱动的初始化
         ...
-        OHOS_SystemInit(); 			 --- 启动OpenHarmony服务，以及组件初始化
+        OHOS_SystemInit(); 	     --- 启动OpenHarmony服务，以及组件初始化
     }
 ....
 ```
@@ -342,27 +343,27 @@ int OhosSystemAdapterHooks(void)
 
 1. 配置指定目录放置打包文件系统`config.json`，通过`flash_partition_dir`指定目录：
 
-```
-  "flash_partition_dir": "fs" 	 --- 表示在vendor/bestechnic/display_demo/fs目录下放置文件系统预置文件
-```
+   ```
+   "flash_partition_dir": "fs" 	 --- 表示在vendor/bestechnic/display_demo/fs目录下放置文件系统预置文件
+   ```
 
 2. 在指定目录`vendor/bestechnic/display_demo/fs`下放置两部分内容：
 
-  - `wifi_Download_cfg.yaml`：镜像的烧录配置文件，可以根据实际情况调整分区。
-  - `/data/data`：第一个/`data`是挂载的根目录；第二个`data`是根目录里面的`data`目录，里面可以存放预置文件，或者在第二个`data`的同级目录再创建一个目录，打包的时候只认第一个`data`挂载根目录。
+   - `wifi_Download_cfg.yaml`：镜像的烧录配置文件，可以根据实际情况调整分区。
+   - `/data/data`：第一个/`data`是挂载的根目录；第二个`data`是根目录里面的`data`目录，里面可以存放预置文件，或者在第二个`data`的同级目录再创建一个目录，打包的时候只认第一个`data`挂载根目录。
 
 3. `config.json`中根据`wifi_Download_cfg.yaml`最后调整结果。
 
-  - `fs_src`配置文件系统挂载名字。
-  - `fs_name`是最后生成文件系统的名字。
-  - `block_size`配置成`4K`对齐，建议不修改。
-  - `fs_size`是生成文件系统的大小。
-  - `burn_name`是烧录`bin`名字的大小。
-  - `enable` 表示是否生成这个文件系统
+   - `fs_src`配置文件系统挂载名字。
+   - `fs_name`是最后生成文件系统的名字。
+   - `block_size`配置成`4K`对齐，建议不修改。
+   - `fs_size`是生成文件系统的大小。
+   - `burn_name`是烧录`bin`名字的大小。
+   - `enable` 表示是否生成这个文件系统
 
 4. 在`//device/soc/bestechnic/bes2600/liteos_m/components/hdf_config/hdf.hcs`文件配置文件系统的烧录的起始地址、文件系统的大小以及读数据块的大小`block_size`等信息，参考配置如下：
 
-```
+   ```
     misc {
         fs_config {
             example_config {
@@ -385,43 +386,43 @@ int OhosSystemAdapterHooks(void)
             }
         }
     }
-```
+   ```
 
-最后在`device/soc/bestechnic/bes2600/liteos_m/components/fs/fs_init.c`中，通过`hdf`加载数据，进行读写`flash`，如下：
+   最后在`device/soc/bestechnic/bes2600/liteos_m/components/fs/fs_init.c`中，通过`hdf`加载数据，进行读写`flash`，如下：
 
-```
-static int32_t FsDriverInit(struct HdfDeviceObject *object)
-{
-    if (object == NULL) {
-        return HDF_FAILURE;
-    }
-    if (object->property) {
-        if (FsGetResource(fs, object->property) != HDF_SUCCESS) {
-            HDF_LOGE("%s: FsGetResource failed", __func__);
-            return HDF_FAILURE;
-        }
-    }
-    for (int i = 0; i < sizeof(fs) / sizeof(fs[0]); i++) {
-        if (fs[i].mount_point == NULL)
-            continue;
+   ```c
+   static int32_t FsDriverInit(struct HdfDeviceObject *object)
+   {
+       if (object == NULL) {
+           return HDF_FAILURE;
+       }
+       if (object->property) {
+           if (FsGetResource(fs, object->property) != HDF_SUCCESS) {
+               HDF_LOGE("%s: FsGetResource failed", __func__);
+               return HDF_FAILURE;
+           }
+       }
+       for (int i = 0; i < sizeof(fs) / sizeof(fs[0]); i++) {
+           if (fs[i].mount_point == NULL)
+               continue;
 
-        fs[i].lfs_cfg.read = littlefs_block_read;
-        fs[i].lfs_cfg.prog = littlefs_block_write;
-        fs[i].lfs_cfg.erase = littlefs_block_erase;
-        fs[i].lfs_cfg.sync = littlefs_block_sync;
+           fs[i].lfs_cfg.read = littlefs_block_read;
+           fs[i].lfs_cfg.prog = littlefs_block_write;
+           fs[i].lfs_cfg.erase = littlefs_block_erase;
+           fs[i].lfs_cfg.sync = littlefs_block_sync;
 
-        fs[i].lfs_cfg.read_size = 256;
-        fs[i].lfs_cfg.prog_size = 256;
-        fs[i].lfs_cfg.cache_size = 256;
-        fs[i].lfs_cfg.lookahead_size = 16;
-        fs[i].lfs_cfg.block_cycles = 1000;
+           fs[i].lfs_cfg.read_size = 256;
+           fs[i].lfs_cfg.prog_size = 256;
+           fs[i].lfs_cfg.cache_size = 256;
+           fs[i].lfs_cfg.lookahead_size = 16;
+           fs[i].lfs_cfg.block_cycles = 1000;
 
-        int ret = mount(NULL, fs[i].mount_point, "littlefs", 0, &fs[i].lfs_cfg);
-        HDF_LOGI("%s: mount fs on '%s' %s\n", __func__, fs[i].mount_point, (ret == 0) ? "succeed" : "failed");
-    }
-    return HDF_SUCCESS;
-}
-```
+           int ret = mount(NULL, fs[i].mount_point, "littlefs", 0, &fs[i].lfs_cfg);
+           HDF_LOGI("%s: mount fs on '%s' %s\n", __func__, fs[i].mount_point, (ret == 0) ? "succeed" : "failed");
+       }
+       return HDF_SUCCESS;
+   }
+   ```
 
 
 
@@ -517,7 +518,7 @@ module_name = get_path_info(rebase_path("."), "name")
 
 hdf_driver(module_name) {
   sources = []
-  if (defined(LOSCFG_SOC_COMPANY_BESTECHNIC)) {				 --- 如果打开恒玄的芯片配置开关，才进行恒玄GPIO的驱动编译
+  if (defined(LOSCFG_SOC_COMPANY_BESTECHNIC)) {		         --- 如果打开恒玄的芯片配置开关，才进行恒玄GPIO的驱动编译
     sources += [ "gpio_bes.c" ]
   }
 
@@ -1361,13 +1362,13 @@ APP_FEATURE_INIT(AppEntry);
 2. 使用预览功能进行预览，并且得到js包：`entry\.preview\intermediates\res\debug\lite\assets\js\default`。
 3. 将js包放到对应的文件系统目录下，文件系统路径为`vendor/bestechnic/display_demo/fs/data/data/js`，如下：
 
-```
-├── app.js
-├── common
-├── i18n
-├── manifest.json
-└── pages
-```
+   ```
+   ├── app.js
+   ├── common
+   ├── i18n
+   ├── manifest.json
+   └── pages
+   ```
 
 4. 最终编译生成系统镜像，烧录到单板后，系统会从`app.js`加载启动`ace`的应用。
 
@@ -1475,5 +1476,3 @@ APP_FEATURE_INIT(AppEntry);
 - 验证运行`JS`的`bytecode`
 - 分布式能力：`dms`、`dm`
 - 分布式音乐播放器样例
-
-porting-bes2600w-on-minisystem-display-demo.md

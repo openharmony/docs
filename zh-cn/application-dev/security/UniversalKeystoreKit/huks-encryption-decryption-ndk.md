@@ -1,13 +1,11 @@
 # 加解密(C/C++)
 
-
 以AES 256密钥为例，完成加解密。具体的场景介绍及支持的算法规格，请参考[密钥生成支持的算法](huks-key-generation-overview.md#支持的算法)。
 
 ## 在CMake脚本中链接相关动态库
 ```txt
 target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 ```
-
 ## 开发步骤
 
 **生成密钥**
@@ -77,7 +75,7 @@ OH_Huks_Result InitParamSet(
     return ret;
 }
 static const uint32_t IV_SIZE = 16;
-static uint8_t IV[IV_SIZE] = { 0 }; // this is a test value, for real use the iv should be different every time
+static uint8_t IV[IV_SIZE] = { 0 }; // this is a test value, for real use the iv should be different every time.
 static struct OH_Huks_Param g_genEncDecParams[] = {
     {
         .tag = OH_HUKS_TAG_ALGORITHM,
@@ -116,7 +114,7 @@ static struct OH_Huks_Param g_encryptParams[] = {
         .tag = OH_HUKS_TAG_IV,
         .blob = {
             .size = IV_SIZE,
-            .data = (uint8_t *)IV // this is a test value, for real use the iv should be different every time 
+            .data = (uint8_t *)IV // this is a test value, for real use the iv should be different every time.
         }
     }
 };
@@ -140,7 +138,7 @@ static struct OH_Huks_Param g_decryptParams[] = {
         .tag = OH_HUKS_TAG_IV,
         .blob = {
             .size = IV_SIZE,
-            .data = (uint8_t *)IV // this is a test value, for real use the iv should be different every time 
+            .data = (uint8_t *)IV // this is a test value, for real use the iv should be different every time. 
         }
     }
 };

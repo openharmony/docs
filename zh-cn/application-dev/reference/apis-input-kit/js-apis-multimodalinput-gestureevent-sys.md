@@ -22,10 +22,10 @@ import { Touch } from '@kit.InputKit';
 
 | 名称               | 类型                      | 可读 | 可写 | 说明             |
 | ------------------ | ------------------------- | ---- | ---- | ---------------- |
-| action | [TouchGestureAction](#touchgestureaction14) | 是   | 否   | 触摸屏手势类型。 |
+| action | [TouchGestureAction](#touchgestureaction18) | 是   | 否   | 触摸屏手势类型。 |
 | touches | [Touch](js-apis-touchevent.md#touch)[] | 是 | 否 | 触摸点信息。 |
 
-## TouchGestureAction<sup>14+</sup>
+## TouchGestureAction<sup>18+</sup>
 
 触摸屏手势类型。
 
@@ -33,10 +33,10 @@ import { Touch } from '@kit.InputKit';
 
 | 名称            | 值  | 说明             |
 | --------------- | --- | --------------- |
-| SWIPE_DOWN      | 0   | 多指向下滑动。   |
-| SWIPE_UP        | 1   | 多指向上滑动。   |
-| SWIPE_LEFT      | 2   | 多指向左滑动。   |
-| SWIPE_RIGHT     | 3   | 多指向右滑动。   |
-| PINCH_CLOSED    | 4   | 多指捏合。       |
-| PINCH_OPENED    | 5   | 多指张开。       |
-| GESTURE_END     | 6   | 手势结束。       |
+| SWIPE_DOWN | 0   | 多指向下滑动。   |
+| SWIPE_UP | 1   | 多指向上滑动。   |
+| SWIPE_LEFT | 2   | 多指向左滑动。   |
+| SWIPE_RIGHT | 3   | 多指向右滑动。   |
+| PINCH_CLOSED | 4   | 多指捏合。       |
+| PINCH_OPENED | 5   | 多指张开。       |
+| GESTURE_END | 6   | 手势结束。       |

@@ -393,9 +393,9 @@ struct CompV1 {
 - `name`是`@Track`装饰的属性，其在V1和V2均是可观察的。
 - `count`是非`@Track`装饰的属性，其在V1和V2的UI中使用均是非法的。
     - 在V1中，如果将非`@Track`装饰的属性使用在UI中，是非法行为，会有运行时报错。
-    - 在V2中，非`@Track`装饰的属性使用在UI不会有运行时报错，但不会影响刷新。
+    - 在V2中，非`@Track`装饰的属性使用在UI不会有运行时报错，但不会响应更新。
 
-```
+```ts
 import { UIUtils } from '@kit.ArkUI';
 
 @Observed
@@ -541,7 +541,7 @@ struct ArrayCompV1 {
         // V1代理，可触发ArrayCompV1的刷新，但无法触发ArrayCompV2的刷新
         this.arr[0]++;
       })
-      // 传递给ArrayCompV2被再次包装V2的代理
+      // 传递给ArrayCompV2，被再次包装V2的代理
       ArrayCompV2({ arr: this.arr })
     }
     .height('100%')
