@@ -44,12 +44,12 @@ onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult): T
 
 | 名称          | 类型   | 描述                                       |
 | ------------- | ------ | ---------------------------------------- |
-| windowX | number | 按压点相对于窗口左上角的x轴坐标。 |
-| windowY   | number |按压点相对于窗口左上角的y轴坐标。|
-| parentX   | number |按压点相对于父组件左上角的x轴坐标。  |
-| parentY   | number |按压点相对于父组件左上角的y轴坐标。  |
-| x   | number | 按压点相对于子组件左上角的x轴坐标。 |
-| y   | number | 按压点相对于子组件左上角的y轴坐标。 |
+| windowX | number | 按压点相对于窗口左上角的x轴坐标。<br />单位：vp |
+| windowY   | number |按压点相对于窗口左上角的y轴坐标。<br />单位：vp|
+| parentX   | number |按压点相对于父组件左上角的x轴坐标。<br />单位：vp  |
+| parentY   | number |按压点相对于父组件左上角的y轴坐标。<br />单位：vp  |
+| x   | number | 按压点相对于子组件左上角的x轴坐标。<br />单位：vp |
+| y   | number | 按压点相对于子组件左上角的y轴坐标。<br />单位：vp |
 | rect   | [RectResult](ts-types.md#rectresult10) |子组件的大小。  |
 | [id](ts-universal-attributes-component-id.md)   | string | 通过id属性设置的组件id。 |
 
