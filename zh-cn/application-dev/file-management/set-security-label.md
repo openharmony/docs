@@ -10,8 +10,8 @@ API详细介绍请参见[ohos.file.securityLabel](../reference/apis-core-file-ki
 
 | 接口名 | 功能 | 接口类型 | 支持同步 | 支持异步 | 
 | -------- | -------- | -------- | -------- | -------- |
-| setSecurityLabel | 设置文件安全标签 | 方法 | √ | √ | 
-| getSecurityLabel | 获取文件安全标签 | 方法 | √ | √ | 
+| setSecurityLabel | 设置文件安全标签。 | 方法 | √ | √ | 
+| getSecurityLabel | 获取文件安全标签。 | 方法 | √ | √ | 
 
 > **须知：**
 >
