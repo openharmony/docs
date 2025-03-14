@@ -6,7 +6,7 @@ HiLog is a subsystem that provides logging for the system framework, services, a
 
 ## Available APIs
 
-HiLog defines five log levels (DEBUG, INFO, WARN, ERROR, and FATAL) and provides APIs to output logs of different levels. For details about the APIs, see [hilog](../reference/apis-performance-analysis-kit/_hi_log.md)).
+HiLog defines five log levels (DEBUG, INFO, WARN, ERROR, and FATAL) and provides APIs to output logs of different levels. For details about the APIs, see [hilog](../reference/apis-performance-analysis-kit/_hi_log.md).
 
 | API/Macro| Description|
 | -------- | -------- |
@@ -109,7 +109,7 @@ static void Test(void)
    // 1. Register a callback.
     OH_LOG_SetCallback(MyHiLog);
     
-   // 2. Call the hilog API to print logs. Logs are output to HiLog and returned to MyHiLog() through the registered callback. Then, MyHiLog() is called to process the logs.
+   // 2. Call the hilog API to print logs. Logs are output to HiLog and returned to **MyHiLog()** through the registered callback. Then, **MyHiLog()** is called to process the logs.
    HiLog::Info(LABEL, "hello world");
 }
 ```

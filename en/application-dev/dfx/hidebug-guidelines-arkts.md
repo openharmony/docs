@@ -46,9 +46,14 @@ The following describes how to add a button in the application and click the but
    The following shows how to add **hidebug.getSystemCpuUsage()** to call the hidebug APIs. For details about how to use other APIs, see [API Reference](../reference/apis-performance-analysis-kit/js-apis-hidebug.md).
 
    ```ts
-   import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
+   import { hidebug } from '@kit.PerformanceAnalysisKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    function testHidebug(event?: ClickEvent) {
-     hilog.info(0x0000, "testTag", `getCurrentCpuUsage ${hidebug.getSystemCpuUsage()}`);
+     try {
+       console.info(`getSystemCpuUsage: ${hidebug.getSystemCpuUsage()}`)
+     } catch (error) {
+       console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+     }
    }
    ```
 
@@ -80,7 +85,7 @@ The following describes how to add a button in the application and click the but
 5. At the bottom of DevEco Studio, switch to the **Log** tab and set the filter criteria to **testTag**.
    Then, the CPU usage logs obtained using **hidebug.getSystemCpuUsage()** are displayed in the window.
    ```Text
-	06-25 19:50:27.485 24645-24645/com.example.myapplication I A00000/testTag: getCurrentCpuUsage 0.10164512338425381
+	08-20 11:06:01.891   1948-1948     A03d00/JSAPP                    com.examp...lication  I     getSystemCpuUsage: 0.4722222222222222
    ```
 
 <!--RP1-->
