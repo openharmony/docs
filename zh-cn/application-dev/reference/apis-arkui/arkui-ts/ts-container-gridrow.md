@@ -17,6 +17,8 @@
 ## 接口
 GridRow(option?: GridRowOptions)
 
+栅格行布局容器。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -29,6 +31,8 @@ GridRow(option?: GridRowOptions)
 | option | [GridRowOptions](#gridrowoptions对象说明) | 否  | 栅格布局子组件参数。 |
 
 ## GridRowOptions对象说明
+
+设置栅格行布局容器的布局选项。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -133,6 +137,8 @@ GridRow(option?: GridRowOptions)
 
 ## BreakpointsReference枚举说明
 
+设置栅格容器组件的断点参照物。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -145,6 +151,8 @@ GridRow(option?: GridRowOptions)
 | ComponentSize | 以容器为参照。 |
 
 ## GridRowDirection枚举说明
+
+栅格元素排列方向。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
