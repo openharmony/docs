@@ -494,3 +494,5 @@ Enumerates USB descriptors.
 | --------- | ---- | ------------ |
 | INTERFACE | 0    | Interface descriptor.|
 | DEVICE    | 1    | Device descriptor.|
+
+ <!--no_check--> 
