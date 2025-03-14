@@ -363,7 +363,7 @@ Implement this function, set it to [InputMethod_TextEditorProxy](#inputmethod_te
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -385,7 +385,7 @@ Implement this function, set it to [InputMethod_TextEditorProxy](#inputmethod_te
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -407,7 +407,7 @@ Implement this function, set it to [InputMethod_TextEditorProxy](#inputmethod_te
 
 **Since**: 12
 
-**Parameter:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -428,7 +428,7 @@ Implement this function, set it to [InputMethod_TextEditorProxy](#inputmethod_te
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -451,7 +451,7 @@ Implement this function, set it to [InputMethod_TextEditorProxy](#inputmethod_te
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -496,7 +496,7 @@ Implement this function, set it to [InputMethod_TextEditorProxy](#inputmethod_te
 
 **Since**: 12
 
-**Parameter:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -521,7 +521,7 @@ Implement this function, set it to [InputMethod_TextEditorProxy](#inputmethod_te
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -543,7 +543,7 @@ Implement this function, set it to [InputMethod_TextEditorProxy](#inputmethod_te
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -566,7 +566,7 @@ Implement this function, set it to [InputMethod_TextEditorProxy](#inputmethod_te
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -589,7 +589,7 @@ Implement this function, set it to [InputMethod_TextEditorProxy](#inputmethod_te
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -611,7 +611,7 @@ Implement this function, set it to [InputMethod_TextEditorProxy](#inputmethod_te
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -638,7 +638,7 @@ Implement this function, set it to [InputMethod_TextEditorProxy](#inputmethod_te
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -660,7 +660,7 @@ Implement this function, set it to [InputMethod_TextEditorProxy](#inputmethod_te
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -682,7 +682,7 @@ Implement this function, set it to [InputMethod_TextEditorProxy](#inputmethod_te
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -879,7 +879,7 @@ Creates an [InputMethod_AttachOptions](#inputmethod_attachoptions) instance.
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -902,7 +902,7 @@ Destroys an [InputMethod_AttachOptions](#inputmethod_attachoptions) instance.
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -921,7 +921,7 @@ Obtains the configured value that indicates whether to display the keyboard from
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -951,7 +951,7 @@ Creates an [InputMethod_CursorInfo](#inputmethod_cursorinfo) instance.
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -977,7 +977,7 @@ Destroys an [InputMethod_CursorInfo](#inputmethod_cursorinfo) instance.
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -996,7 +996,7 @@ Obtains the cursor information.
 
 **Since**: 12
 
-**Parameter:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1029,7 +1029,7 @@ Sets the cursor information.
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1062,7 +1062,7 @@ Binds an application to the input method service.
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1099,7 +1099,7 @@ Unbinds an application from the input method service.
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1132,7 +1132,7 @@ Hides the keyboard.
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1167,7 +1167,7 @@ Notifies the change of the text box configuration.
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1206,7 +1206,7 @@ Notifies the cursor position change.
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1246,7 +1246,7 @@ When the text content, the cursor position, or the selected text changes, this A
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1287,7 +1287,7 @@ Sends a private data command.
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1326,7 +1326,7 @@ Displays the keyboard.
 
 **Since**: 12
 
-**Parameter:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1363,7 +1363,7 @@ Creates an [InputMethod_PrivateCommand](#inputmethod_privatecommand) instance.
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1387,7 +1387,7 @@ Destroys an [InputMethod_PrivateCommand](#inputmethod_privatecommand) instance.
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1406,7 +1406,7 @@ Obtains the value of the Boolean type from [InputMethod_PrivateCommand](#inputme
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1436,7 +1436,7 @@ Obtains the value of the integer type from [InputMethod_PrivateCommand](#inputme
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1466,7 +1466,7 @@ Obtains the key value from [InputMethod_PrivateCommand](#inputmethod_privatecomm
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1497,7 +1497,7 @@ Obtains the value of the character string type from [InputMethod_PrivateCommand]
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1528,7 +1528,7 @@ Obtains the data type of **value** from [InputMethod_PrivateCommand](#inputmetho
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1558,7 +1558,7 @@ Sets the value of the Boolean type for [InputMethod_PrivateCommand](#inputmethod
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1588,7 +1588,7 @@ Sets the value of the integer type for [InputMethod_PrivateCommand](#inputmethod
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1618,7 +1618,7 @@ Sets the key value for [InputMethod_PrivateCommand](#inputmethod_privatecommand)
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1649,7 +1649,7 @@ Sets the value of the character string type for [InputMethod_PrivateCommand](#in
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1679,7 +1679,7 @@ Creates an [InputMethod_TextAvoidInfo](#inputmethod_textavoidinfo) instance.
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1703,7 +1703,7 @@ Destroys an [InputMethod_TextAvoidInfo](#inputmethod_textavoidinfo) instance.
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1722,7 +1722,7 @@ Obtains the height from [InputMethod_TextAvoidInfo](#inputmethod_textavoidinfo).
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1752,7 +1752,7 @@ Obtains the Y coordinate from [InputMethod_TextAvoidInfo](#inputmethod_textavoid
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1782,7 +1782,7 @@ Sets the height in [InputMethod_TextAvoidInfo](#inputmethod_textavoidinfo).
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1812,7 +1812,7 @@ Sets the Y coordinate in [InputMethod_TextAvoidInfo](#inputmethod_textavoidinfo)
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1859,7 +1859,7 @@ Destroys an [InputMethod_TextConfig](#inputmethod_textconfig) instance.
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1878,7 +1878,7 @@ Obtains the cursor information of [InputMethod_TextConfig](#inputmethod_textconf
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1908,7 +1908,7 @@ Obtains the Enter function type of [InputMethod_TextConfig](#inputmethod_textcon
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1938,7 +1938,7 @@ Obtains the text box type of [InputMethod_TextConfig](#inputmethod_textconfig).
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1968,7 +1968,7 @@ Obtains the selected text area of [InputMethod_TextConfig](#inputmethod_textconf
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -1998,7 +1998,7 @@ Obtains the avoidance information of [InputMethod_TextConfig](#inputmethod_textc
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2028,7 +2028,7 @@ Obtains the ID of the window to which [InputMethod_TextConfig](#inputmethod_text
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2058,7 +2058,7 @@ Obtains the text preview settings of [InputMethod_TextConfig](#inputmethod_textc
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2088,7 +2088,7 @@ Sets the Enter function type for [InputMethod_TextConfig](#inputmethod_textconfi
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2118,7 +2118,7 @@ Sets the text box type for [InputMethod_TextConfig](#inputmethod_textconfig).
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2148,7 +2148,7 @@ Sets the text preview feature for [InputMethod_TextConfig](#inputmethod_textconf
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2178,7 +2178,7 @@ Sets the selected text area for [InputMethod_TextConfig](#inputmethod_textconfig
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2209,7 +2209,7 @@ Sets the ID of the window to which [InputMethod_TextConfig](#inputmethod_textcon
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2256,7 +2256,7 @@ Destroys an [InputMethod_TextEditorProxy](#inputmethod_texteditorproxy) instance
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2275,7 +2275,7 @@ Obtains the [OH_TextEditorProxy_DeleteBackwardFunc](#oh_texteditorproxy_deleteba
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2305,7 +2305,7 @@ Obtains the [OH_TextEditorProxy_DeleteForwardFunc](#oh_texteditorproxy_deletefor
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2335,7 +2335,7 @@ Obtains the [OH_TextEditorProxy_FinishTextPreviewFunc](#oh_texteditorproxy_finis
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2365,7 +2365,7 @@ Obtains the [OH_TextEditorProxy_GetLeftTextOfCursorFunc](#oh_texteditorproxy_get
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2395,7 +2395,7 @@ Obtains the [OH_TextEditorProxy_GetRightTextOfCursorFunc](#oh_texteditorproxy_ge
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2425,7 +2425,7 @@ Obtains the [OH_TextEditorProxy_GetTextConfigFunc](#oh_texteditorproxy_gettextco
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2455,7 +2455,7 @@ Obtains the [OH_TextEditorProxy_GetTextIndexAtCursorFunc](#oh_texteditorproxy_ge
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2485,7 +2485,7 @@ Obtains the [OH_TextEditorProxy_HandleExtendActionFunc](#oh_texteditorproxy_hand
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2515,7 +2515,7 @@ Obtains the [OH_TextEditorProxy_HandleSetSelectionFunc](#oh_texteditorproxy_hand
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2545,7 +2545,7 @@ Obtains the [OH_TextEditorProxy_InsertTextFunc](#oh_texteditorproxy_inserttextfu
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2575,7 +2575,7 @@ Obtains the [OH_TextEditorProxy_MoveCursorFunc](#oh_texteditorproxy_movecursorfu
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2605,7 +2605,7 @@ Obtains the [OH_TextEditorProxy_ReceivePrivateCommandFunc](#oh_texteditorproxy_r
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2635,7 +2635,7 @@ Obtains the [OH_TextEditorProxy_SendEnterKeyFunc](#oh_texteditorproxy_sendenterk
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2665,7 +2665,7 @@ Obtains the [OH_TextEditorProxy_SendKeyboardStatusFunc](#oh_texteditorproxy_send
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2695,7 +2695,7 @@ Obtains the [OH_TextEditorProxy_SetPreviewTextFunc](#oh_texteditorproxy_setprevi
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2725,7 +2725,7 @@ Sets the [OH_TextEditorProxy_DeleteBackwardFunc](#oh_texteditorproxy_deletebackw
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2755,7 +2755,7 @@ Sets the [OH_TextEditorProxy_DeleteForwardFunc](#oh_texteditorproxy_deleteforwar
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2785,7 +2785,7 @@ Sets the [OH_TextEditorProxy_FinishTextPreviewFunc](#oh_texteditorproxy_finishte
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2815,7 +2815,7 @@ Sets the [OH_TextEditorProxy_GetLeftTextOfCursorFunc](#oh_texteditorproxy_getlef
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2845,7 +2845,7 @@ Sets the [OH_TextEditorProxy_GetRightTextOfCursorFunc](#oh_texteditorproxy_getri
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2875,7 +2875,7 @@ Sets the [OH_TextEditorProxy_GetTextConfigFunc](#oh_texteditorproxy_gettextconfi
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2905,7 +2905,7 @@ Sets the [OH_TextEditorProxy_GetTextIndexAtCursorFunc](#oh_texteditorproxy_gette
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2935,7 +2935,7 @@ Sets the [OH_TextEditorProxy_HandleExtendActionFunc](#oh_texteditorproxy_handlee
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2965,7 +2965,7 @@ Sets the [OH_TextEditorProxy_HandleSetSelectionFunc](#oh_texteditorproxy_handles
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -2995,7 +2995,7 @@ Sets the [OH_TextEditorProxy_InsertTextFunc](#oh_texteditorproxy_inserttextfunc)
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -3025,7 +3025,7 @@ Sets the [OH_TextEditorProxy_SetMoveCursorFunc](#oh_texteditorproxy_setmovecurso
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -3055,7 +3055,7 @@ Sets the [OH_TextEditorProxy_ReceivePrivateCommandFunc](#oh_texteditorproxy_rece
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -3085,7 +3085,7 @@ Sets the [OH_TextEditorProxy_SetSendEnterKeyFunc](#oh_texteditorproxy_setsendent
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -3115,7 +3115,7 @@ Sets the [OH_TextEditorProxy_SendKeyboardStatusFunc](#oh_texteditorproxy_sendkey
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
@@ -3145,7 +3145,7 @@ Sets the [OH_TextEditorProxy_SetPreviewTextFunc](#oh_texteditorproxy_setpreviewt
 
 **Since**: 12
 
-**Parameters:**
+**Parameters**
 
 | Name| Description| 
 | -------- | -------- |
