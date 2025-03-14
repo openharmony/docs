@@ -12,7 +12,7 @@
 >
 > 使用上传下载模块，需[声明权限](../../security/AccessToken/declare-permissions.md)：ohos.permission.INTERNET。
 
-以下示例代码演示两种将应用缓存文件路径下的文件上传至网络服务器的方式:
+以下示例代码演示两种将应用缓存文件路径下的文件上传至网络服务器的方式：
 
 ```ts
 // 方式一:request.uploadFile
@@ -173,7 +173,12 @@ try {
 // 方式二:request.agent
 // pages/xxx.ets
 // 将网络资源文件下载到应用文件目录并读取一段内容
+import { common } from '@kit.AbilityKit';
+import fs from '@ohos.file.fs';
 import { BusinessError, request } from '@kit.BasicServicesKit';
+import { buffer } from '@kit.ArkTS';
+
+// 获取应用文件路径
 let context = getContext(this) as common.UIAbilityContext;
 let filesDir = context.filesDir;
 
@@ -246,7 +251,7 @@ request.agent.create(context, config).then((task: request.agent.Task) => {
 
 ```
 
-各个字段含义:
+各个字段含义：
 
 | 字段                      | 类型            | 说明                                   |   
 | --------------------------| --------------- | -------------------------------------- |
