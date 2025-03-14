@@ -22,7 +22,7 @@ setDisallowedPolicy(admin: Want, feature: string, disallow: boolean): void
 
 Disallows a feature.
 
-**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS or ohos.permission.PERSONAL_MANAGE_RESTRICTIONS<sup>15+</sup>
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -30,8 +30,8 @@ Disallows a feature.
 
 | Name  | Type                                                   | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                              |
-| feature  | string                                                  | Yes  | Feature to set.<br>- **bluetooth**: Bluetooth capability of the device.<br>- **modifyDateTime**: capability of modifying the system time. Currently, this feature is available only for 2-in-1 devices.<br>- **printer**: printing capability. Currently, this feature is available only for 2-in-1 devices.<br>- **hdc**: OpenHarmony Device Connector (hdc).<br>- **microphone**: microphone capability of the device.<br>- **fingerprint**: fingerprint authentication capability of the device.<br>- **usb**: USB capability of the device. After this feature is disabled, USB devices cannot be used.<br>- **wifi**: Wi-Fi capability of the device.<br>- **tethering**<sup>14+</sup>: network sharing capability.<br>- **inactiveUserFreeze**<sup>14+</sup>: capability of freezing inactive users. When the system switches to the enterprise space user, the personal space users are inactive users.<!--RP1--><!--RP1End--> |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                      |
+| feature  | string                                                  | Yes  | Feature to set.<br>- **bluetooth**: Bluetooth capability of the device.<br>- **modifyDateTime**: capability of modifying the system time. Currently, this feature is available only for 2-in-1 devices.<br>- **printer**: printing capability. Currently, this feature is available only for 2-in-1 devices.<br>- **hdc**: OpenHarmony Device Connector (hdc).<br>- **microphone**: microphone capability of the device.<br>- **fingerprint**: fingerprint authentication capability of the device. If the fingerprint authentication capability has been disabled for a user using [setDisallowedPolicyForAccount](#restrictionssetdisallowedpolicyforaccount14), a policy conflict will be reported when this API is invoked to enable the fingerprint authentication capability.<br>- **usb**: USB capability of the device. The external USB device cannot be used after this capability is disabled. That is, when the current device is in host mode, other external devices cannot be connected.<br>  If you use this API to disable the USB capability of a device in the following scenarios, a policy conflict will be reported:<br>  1. Available USB devices are added using the [addAllowedUsbDevices](js-apis-enterprise-usbManager.md#usbmanageraddallowedusbdevices) API.<br>  2. The access policy of the USB storage device is set to read-only or disabled through the [setUsbStorageDeviceAccessPolicy](js-apis-enterprise-usbManager.md#usbmanagersetusbstoragedeviceaccesspolicy) API.<br>  3. A forbidden USB device type is added using the [addDisallowedUsbDevices](js-apis-enterprise-usbManager.md#usbmanageradddisallowedusbdevices14) API.<br>- **wifi**: Wi-Fi capability of the device.<br>- **tethering**<sup>14+</sup>: network sharing capability. Currently, this feature is available only for 2-in-1 devices.<br>- **inactiveUserFreeze**<sup>14+</sup>: capability of freezing inactive users. Currently, this feature is available only for 2-in-1 devices. When the system switches to the enterprise space user, the personal space users are inactive users.<br>- **camera**<sup>14+</sup>: camera capability of the device.<!--RP1--><!--RP1End--> <br> Note: Since API version 15, an application must request the ohos.permission.PERSONAL_MANAGE_RESTRICTIONS permission and call [adminManager.startAdminProvision](./js-apis-enterprise-adminManager.md#adminmanagerstartadminprovision15) to set the features including **bluetooth**, **hdc**, **microphone**, **usb**, **wifi**, **tethering**, and **camera**.|
 | disallow | boolean                                                 | Yes  | Whether to disallow the feature. The value **true** means to disallow the feature; the value **false** means the opposite.                       |
 
 **Error codes**
@@ -50,8 +50,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 try {
@@ -66,9 +66,9 @@ try {
 
 getDisallowedPolicy(admin: Want, feature: string): boolean
 
-Obtains the status of a feature.
+Obtains a disabled feature.
 
-**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS or ohos.permission.PERSONAL_MANAGE_RESTRICTIONS<sup>15+</sup>
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -76,8 +76,8 @@ Obtains the status of a feature.
 
 | Name | Type                                                   | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                              |
-| feature | string                                                  | Yes  | Name of the feature, whose status is to be obtained.<br>- **bluetooth**: Bluetooth capability of the device.<br>- **modifyDateTime**: capability of modifying the system time. Currently, this feature is available only for 2-in-1 devices.<br>- **printer**: printing capability. Currently, this feature is available only for 2-in-1 devices.<br>- **hdc**: OpenHarmony Device Connector (hdc).<br>- **microphone**: microphone capability of the device.<br>- **fingerprint**: fingerprint authentication capability of the device.<br>- **usb**: USB capability of the device. After this feature is disabled, USB devices cannot be used.<br>- **wifi**: Wi-Fi capability of the device.<br>- **tethering**<sup>14+</sup>: network sharing capability.<br>- **inactiveUserFreeze**<sup>14+</sup>: capability of freezing inactive users. Currently, this feature is available only for 2-in-1 devices. When the system switches to the enterprise space user, the personal space users are inactive users.<!--RP2--><!--RP2End--> |
+| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                      |
+| feature | string                                                  | Yes  | Feature to set.<br>- **bluetooth**: Bluetooth capability of the device.<br>- **modifyDateTime**: capability of modifying the system time. Currently, this feature is available only for 2-in-1 devices.<br>- **printer**: printing capability. Currently, this feature is available only for 2-in-1 devices.<br>- **hdc**: OpenHarmony Device Connector (hdc).<br>- **microphone**: microphone capability of the device.<br>- **fingerprint**: fingerprint authentication capability of the device.<br>- **usb**: USB capability of the device. External USB devices cannot be used after this capability is disabled. That is, when the current device is in host mode, other external devices cannot be connected.<br>- **wifi**: Wi-Fi capability of the device.<br>- **tethering**<sup>14+</sup>: network sharing capability. Currently, this feature is available only for 2-in-1 devices.<br>- **inactiveUserFreeze**<sup>14+</sup>: capability of freezing inactive users. Currently, this feature is available only for 2-in-1 devices. When the system switches to the enterprise space user, the personal space users are inactive users.<br>- **camera**<sup>14+</sup>: camera capability of the device.<!--RP2--><!--RP2End--> <br> Note: Since API version 15, an application must request the ohos.permission.PERSONAL_MANAGE_RESTRICTIONS permission and call [adminManager.startAdminProvision](./js-apis-enterprise-adminManager.md#adminmanagerstartadminprovision15) to set the features including **bluetooth**, **hdc**, **microphone**, **usb**, **wifi**, **tethering**, and **camera**.|
 
 **Return value**
 
@@ -101,8 +101,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 try {
@@ -117,7 +117,7 @@ try {
 
 setDisallowedPolicyForAccount(admin: Want, feature: string, disallow: boolean, accountId: number): void
 
-Allows or disallows a feature for a user.
+Enables or disables a feature of a specified user.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
@@ -127,10 +127,10 @@ Allows or disallows a feature for a user.
 
 | Name  | Type                                                   | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                              |
-| feature  | string                                                  | Yes  | Feature to set.<br>- **fingerprint**: fingerprint authentication capability of the device.|
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                  |
+| feature  | string                                                  | Yes  | Feature to set.<br>- **fingerprint**: device fingerprint authentication capability. Currently, this feature is available only for 2-in-1 devices. The rules for using this parameter are as follows:<br>1. The device fingerprint authentication capability is disabled through the [setDisallowedPolicy](#restrictionssetdisallowedpolicy) API. If this parameter is transferred through this API, a policy conflict is reported.<br>2. After this API is used to disable or enable the device fingerprint authentication capability of a specified user, if the [setDisallowedPolicy](#restrictionssetdisallowedpolicy) API is used to disable the device fingerprint authentication capability, the latter will overwrite the former. All users can use the device fingerprint authentication capability enabled by the [setDisallowedPolicy](#restrictionssetdisallowedpolicy) API.|
 | disallow | boolean                                                 | Yes  | Whether to disallow the feature. The value **true** means to disallow the feature; the value **false** means the opposite.                       |
-| accountId | number                                                 | Yes  | User ID, which must be greater than or equal to 0.                    |
+| accountId | number                                                 | Yes  | User ID, which must be greater than or equal to 0.<br>You can call the [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) API to obtain the user ID.|
 
 **Error codes**
 
@@ -139,7 +139,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 9200001  | The application is not an administrator application of the device. |
-| 9200002  | The administrator application does not have permission to manage the device. |
+| 9200002  | the administrator application does not have permission to manage the device. |
 | 9200010  | A conflict policy has been configured.                       |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -149,8 +149,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 try {
@@ -165,7 +165,7 @@ try {
 
 getDisallowedPolicyForAccount(admin: Want, feature: string, accountId: number): boolean
 
-Obtains the feature status for a user.
+Obtains the status of a feature of a specified user.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
@@ -175,15 +175,15 @@ Obtains the feature status for a user.
 
 | Name | Type                                                   | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                              |
-| feature | string                                                  | Yes  | Feature whose status is to be obtained.<br>- **fingerprint**: fingerprint authentication capability of the device.|
-| accountId | number                                                 | Yes  | User ID, which must be greater than or equal to 0.                    |
+| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                  |
+| feature | string                                                  | Yes  | Feature to set.<br>- **fingerprint**: device fingerprint authentication capability. Currently, this feature is available only for 2-in-1 devices. When this parameter is used, the following rules apply: After [setDisallowedPolicyForAccount](#restrictionssetdisallowedpolicyforaccount14) is used to disable or enable the device fingerprint authentication capability of a specified user, if the [setDisallowedPolicy](#restrictionssetdisallowedpolicy) API is used to disable the device fingerprint authentication capability, the latter will overwrite the former. And the calling result is **false**.|
+| accountId | number                                                 | Yes  | User ID, which must be greater than or equal to 0.<br>You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) to obtain the user ID.|
 
 **Return value**
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if the specified feature is disabled; returns **false** otherwise.|
+| boolean | If **true** is returned, the feature is disabled. If **false** is returned, the feature is not disabled.|
 
 **Error codes**
 
@@ -192,7 +192,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 9200001  | The application is not an administrator application of the device. |
-| 9200002  | The administrator application does not have permission to manage the device. |
+| 9200002  | the administrator application does not have permission to manage the device. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -201,8 +201,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 try {
@@ -217,7 +217,7 @@ try {
 
 addDisallowedListForAccount(admin: Want, feature: string, list: Array\<string>, accountId: number): void
 
-Adds a disallowed feature list for a user.
+Add a list of applications that are not allowed to use a feature for a specified user.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
@@ -227,10 +227,10 @@ Adds a disallowed feature list for a user.
 
 | Name  | Type                                                   | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                              |
-| feature  | string                                                  | Yes  | Feature name.<br>- **snapshotSkip**: skips the screen snapshots.|
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                  |
+| feature  | string                                                  | Yes  | Feature to set.<br>- **snapshotSkip**: screen snapshot capability.|
 | list | Array\<string>                                                 | Yes  | List of content such as the bundle names.                     |
-| accountId | number                                                 | Yes  | User ID, which must be greater than or equal to 0.                    |
+| accountId | number                                                 | Yes  | User ID, which must be greater than or equal to 0.<br>You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) to obtain the user ID.|
 
 **Error codes**
 
@@ -248,8 +248,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let valueList:Array<string> = ["com.xx.aa.", "com.xx.bb"];
 try {
@@ -264,7 +264,7 @@ try {
 
 removeDisallowedListForAccount(admin: Want, feature: string, list: Array\<string>, accountId: number): void
 
-Removes a disallowed feature list for a user.
+Removes a list of applications that are not allowed to use a feature for a specified user.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
@@ -274,10 +274,10 @@ Removes a disallowed feature list for a user.
 
 | Name  | Type                                                   | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                              |
-| feature  | string                                                  | Yes  | Feature name.<br>- **snapshotSkip**: skips the screen snapshots.|
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                  |
+| feature  | string                                                  | Yes  | Feature to set.<br>- **snapshotSkip**: screen snapshot capability.|
 | list | Array\<string>                                                 | Yes  | List of content such as the bundle names.                      |
-| accountId | number                                                 | Yes  | User ID, which must be greater than or equal to 0.                    |
+| accountId | number                                                 | Yes  | User ID, which must be greater than or equal to 0.<br>You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) to obtain the user ID.|
 
 **Error codes**
 
@@ -295,8 +295,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let valueList:Array<string> = ["com.xx.aa.", "com.xx.bb"];
 try {
@@ -311,7 +311,7 @@ try {
 
 getDisallowedListForAccount(admin: Want, feature: string, accountId: number): Array\<string>
 
-Obtains the disallowed feature list of a user.
+Obtains the list of applications that are not allowed to use a feature for a specified user.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
@@ -321,15 +321,15 @@ Obtains the disallowed feature list of a user.
 
 | Name | Type                                                   | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                              |
-| feature | string                                                  | Yes  | Feature name.<br>- **snapshotSkip**: skips the screen snapshots.|
-| accountId | number                                                 | Yes  | User ID, which must be greater than or equal to 0.                    |
+| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                  |
+| feature | string                                                  | Yes  | Feature to set.<br>- **snapshotSkip**: screen snapshot capability.|
+| accountId | number                                                 | Yes  | User ID, which must be greater than or equal to 0.<br>You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) to obtain the user ID.|
 
 **Return value**
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| Array\<string> | Disallowed feature list obtained.|
+| Array\<string> | List of applications that have been added by the user and for which a certain feature is disabled.|
 
 **Error codes**
 
@@ -347,8 +347,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 try {

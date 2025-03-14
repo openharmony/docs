@@ -1,5 +1,3 @@
-
-
 # @ohos.enterprise.securityManager (Security Management)
 
 The **securityManager** module provides device security management capabilities, including obtaining the security patch status and file system encryption status.
@@ -22,7 +20,7 @@ import { securityManager } from '@kit.MDMKit';
 
 uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 
-Uninstalls a user certificate through the specified device administrator application. This API uses a promise to return the result.
+Uninstalls a user certificate. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
@@ -32,8 +30,8 @@ Uninstalls a user certificate through the specified device administrator applica
 
 | Name | Type                                                   | Mandatory| Description                             |
 | ------- | ------------------------------------------------------- | ---- | --------------------------------- |
-| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                   |
-| certUri | string                                                  | Yes  | Certificate URI, which is returned by **installUserCertificate()**.|
+| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                   |
+| certUri | string                                                  | Yes  | Certificate URI, which is set and returned by the [installUserCertificate](#securitymanagerinstallusercertificate) API for installing a user certificate.|
 
 **Return value**
 
@@ -74,7 +72,7 @@ securityManager.uninstallUserCertificate(wantTemp, aliasStr).then(() => {
 
 installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt;
 
-Installs a user certificate through the specified device administrator application. This API uses a promise to return the result.
+Installs a user certificate. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
@@ -84,8 +82,8 @@ Installs a user certificate through the specified device administrator applicati
 
 | Name     | Type                                                   | Mandatory| Description          |
 | ----------- | ------------------------------------------------------- | ---- | -------------- |
-| admin       | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.|
-| certificate | [CertBlob](#certblob)                                   | Yes  | Information about the certificate to install.    |
+| admin       | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.|
+| certificate | [CertBlob](#certblob)                                   | Yes  | Information about the certificate to install. The certificate file must be stored in a path that can be accessed by the application, such as the application sandbox path.    |
 
 **Return value**
 
@@ -115,10 +113,10 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility',
 };
 let certFileArray: Uint8Array = new Uint8Array();
-// The variable context needs to be initialized in MainAbility's onCreate callback function
-// test.cer needs to be placed in the rawfile directory
+// Initialize the Context variable in the onCreate callback function of the MainAbility.
+// Place the test file test.cer in the rawfile directory.
 getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
-  certFileArray = value
+  certFileArray = value;
   securityManager.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" })
     .then((result) => {
       console.info(`Succeeded in installing user certificate, result : ${JSON.stringify(result)}`);
@@ -129,6 +127,115 @@ getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
   console.error(`Failed to get row file content. message: ${err.message}`);
   return
 });
+```
+
+## securityManager.installUserCertificate<sup>18+</sup>
+
+installUserCertificate(admin: Want, certificate: CertBlob, accountId: number): string
+
+Installs a user certificate based on the system account.
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**Parameters**
+
+| Name     | Type                                                   | Mandatory| Description          |
+| ----------- | ------------------------------------------------------- | ---- | -------------- |
+| admin       | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.|
+| certificate | [CertBlob](#certblob)                                   | Yes  | Information about the certificate to install. The certificate file must be stored in a path that can be accessed by the application, such as the application sandbox path.    |
+| accountId   | number                                                  | Yes  | User ID, which must be greater than or equal to 0. You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1) of **@ohos.account.osAccount** to obtain the user ID.|
+
+**Return value**
+
+| Type                 | Description                                                |
+| --------------------- | ---------------------------------------------------- |
+| string      | URI of the installed certificate, which is used to uninstall the certificate.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 9201001  | Failed to manage the certificate.                            |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let certFileArray: Uint8Array = new Uint8Array();
+let accountId: number = 100;
+// Initialize the Context variable in the onCreate callback function of the MainAbility.
+// Place the test file test.cer in the rawfile directory.
+getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
+  certFileArray = value;
+  try {
+    let result: string = securityManager.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" }, accountId);
+    console.info(`Succeeded in installing user certificate. result: ${result}`);
+  } catch (err) {
+    console.error(`Failed to install user certificate. Code: ${err.code}, message: ${err.message}`);
+  }
+});
+```
+## securityManager.getUserCertificates<sup>18+</sup>
+
+getUserCertificates(admin: Want, accountId: number): Array&lt;string&gt;
+
+Obtains the user certificate of a specified system account.
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**Parameters**
+
+| Name| Type                                                   | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                              |
+| accountId | number                                               | Yes  | User ID, which must be greater than or equal to 0. You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1) of **@ohos.account.osAccount** to obtain the user ID.|
+
+**Return value**
+
+| Type  | Description                |
+| ------ | -------------------- |
+| Array&lt;string&gt; | All user certificates installed under the specified user ID.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let accountId: number = 100;
+try {
+  let result: Array<string> = securityManager.getUserCertificates(wantTemp, accountId);
+  console.info(`Succeeded in getting the uri list of user Certificates. result: ${JSON.stringify(result)}`);
+} catch (err) {
+  console.error(`Failed to get the uri list of user Certificates. Code: ${err.code}, message: ${err.message}`);
+}
 ```
 
 ## securityManager.getSecurityStatus
@@ -145,7 +252,7 @@ Obtains security status.
 
 | Name| Type                                                   | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                              |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                              |
 | item   | string                                                  | Yes  | Type of the security status to obtain.<br>- **patch**: device security patch.<br>- **encryption**: device file system encryption.<!--RP1--><!--RP1End-->|
 
 **Return value**
@@ -182,11 +289,11 @@ try {
 }
 ```
 
-## securityManager.setPasswordPolicy<sup>12+</sup>
+## securityManager.setPasswordPolicy
 
 setPasswordPolicy(admin: Want, policy: PasswordPolicy): void
 
-Sets the device password policy through the specified device administrator application.
+Sets the device password policy.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -196,7 +303,7 @@ Sets the device password policy through the specified device administrator appli
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | EnterpriseAdminExtensionAbility.                 |
 | policy | [PasswordPolicy](#passwordpolicy) | Yes| Device password policy to set.|
 
 **Error codes**
@@ -232,11 +339,11 @@ try {
 }
 ```
 
-## securityManager.getPasswordPolicy<sup>12+</sup>
+## securityManager.getPasswordPolicy
 
 getPasswordPolicy(admin: Want): PasswordPolicy
 
-Obtains the device password policy through the specified device administrator application.
+Obtains the device password policy.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -246,7 +353,7 @@ Obtains the device password policy through the specified device administrator ap
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | EnterpriseAdminExtensionAbility.                 |
 
 **Return value**
 
@@ -282,11 +389,11 @@ try {
 }
 ```
 
-## securityManager.setAppClipboardPolicy<sup>12+</sup>
+## securityManager.setAppClipboardPolicy
 
 setAppClipboardPolicy(admin: Want, tokenId: number, policy: ClipboardPolicy): void
 
-Sets the device clipboard policy through the specified device administrator application.
+Sets the device clipboard policy.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -296,8 +403,8 @@ Sets the device clipboard policy through the specified device administrator appl
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| tokenId | number | Yes| Application token ID, which can be obtained from [ApplicationInfo](../apis-ability-kit/js-apis-bundleManager-applicationInfo.md) of the application. Currently, a maximum of 100 token IDs can be saved.|
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | EnterpriseAdminExtensionAbility.                 |
+| tokenId | number | Yes| Application token ID, which can be obtained using [bundleManager.getApplicationInfo](../apis-ability-kit/js-apis-bundleManager-applicationInfo.md). Currently, a maximum of 100 token IDs can be saved.|
 | policy | [ClipboardPolicy](#clipboardpolicy) | Yes| Clipboard policy to set.|
 
 **Error codes**
@@ -328,11 +435,11 @@ try {
 }
 ```
 
-## securityManager.getAppClipboardPolicy<sup>12+</sup>
+## securityManager.getAppClipboardPolicy
 
 getAppClipboardPolicy(admin: Want, tokenId?: number): string
 
-Obtains the device clipboard policy through the specified device administrator application.
+Obtains the device clipboard policy.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -342,14 +449,14 @@ Obtains the device clipboard policy through the specified device administrator a
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| tokenId | number | No| Application token ID, which can be obtained from [ApplicationInfo](../apis-ability-kit/js-apis-bundleManager-applicationInfo.md) of the application.|
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | EnterpriseAdminExtensionAbility.     |
+| tokenId | number | No| Application token ID, which can be obtained using [bundleManager.getApplicationInfo](../apis-ability-kit/js-apis-bundleManager-applicationInfo.md). Currently, a maximum of 100 token IDs can be saved.|
 
 **Return value**
 
 | Type                  | Description                     |
 | --------------------- | ------------------------- |
-| ClipboardPolicy | Device clipboard policy obtained.|
+| [ClipboardPolicy](#clipboardpolicy) | Device clipboard policy obtained.|
 
 **Error codes**
 
@@ -376,6 +483,102 @@ try {
     console.info(`Succeeded in getting password policy, result : ${result}`);
 } catch(err) {
     console.error(`Failed to set clipboard policy. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## securityManager.setWatermarkImage<sup>14+</sup>
+
+setWatermarkImage(admin: Want, bundleName: string, source: string | image.PixelMap, accountId: number): void
+
+Sets the watermark policy. Currently, this feature is available only for 2-in-1 devices.
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SECURITY
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**Parameters**
+
+| Name     | Type                                      | Mandatory  | Description                      |
+| -------- | ---------------------------------------- | ---- | ------------------------------- |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | EnterpriseAdminExtensionAbility.     |
+| bundleName | string    | Yes  | Bundle name of the application for which the watermark is set.                                                      |
+| source | string \| [image.PixelMap](../apis-image-kit/js-apis-image.md)  | Yes  | **string** indicates the image path that can be accessed by the application, such as the application sandbox path.<br>**image.PixelMap** indicates an image object. The size of an image pixel cannot exceed 500 KB.                                                      |
+| accountId     | number     | Yes  | User ID. You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1) of **@ohos.account.osAccount** to obtain the user ID.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                                      |          
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device.                        |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let bundleName: string = 'com.example.myapplication';
+let source: string = '/data/storage/el1/base/test.png';
+let accountId: number = 100;
+try {
+    securityManager.setWatermarkImage(wantTemp, bundleName, source, accountId);
+    console.info(`Succeeded in setting set watermarkImage policy.`);
+} catch(err) {
+    console.error(`Failed to set watermarkImage policy. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## securityManager.cancelWatermarkImage<sup>14+</sup>
+
+cancelWatermarkImage(admin: Want, bundleName: string, accountId: number): void
+
+Cancels the watermark policy. Currently, this feature is available only for 2-in-1 devices.
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SECURITY
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**Parameters**
+
+| Name     | Type                                      | Mandatory  | Description                      |
+| -------- | ---------------------------------------- | ---- | ------------------------------- |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | EnterpriseAdminExtensionAbility.       |
+| bundleName | string    | Yes  | Bundle name of the application for which the watermark is removed.                                                      |
+| accountId     | number     | Yes  | User ID. You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1) of **@ohos.account.osAccount** to obtain the user ID.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                                      |          
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device.                        |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let bundleName: string = 'com.example.myapplication';
+let accountId: number = 100;
+try {
+    securityManager.cancelWatermarkImage(wantTemp, bundleName, accountId);
+    console.info(`Succeeded in setting cancel watermarkImage policy.`);
+} catch(err) {
+    console.error(`Failed to cancel watermarkImage policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
