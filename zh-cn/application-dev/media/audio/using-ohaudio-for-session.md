@@ -76,10 +76,10 @@ target_link_libraries(sample PUBLIC libohaudio.so)
   {
     switch(event.reason) {
       case DEACTIVATED_LOWER_PRIORITY:
-        // 应用焦点被抢占
+        // 应用焦点被抢占。
         return 0;
       case DEACTIVATED_TIMEOUT:
-        // 超时
+        // 超时。
         return 0;
     }
   }
@@ -113,35 +113,35 @@ OH_AudioSessionManager_UnregisterSessionDeactivatedCallback(audioSessionManager,
   {
     switch(event.reason) {
       case DEACTIVATED_LOWER_PRIORITY:
-        // 应用焦点被抢占
+        // 应用焦点被抢占。
         return 0;
       case DEACTIVATED_TIMEOUT:
-        // 超时
+        // 超时。
         return 0;
     }
   }
   
   OH_AudioSessionManager *audioSessionManager;
 
-  // 创建音频会话管理器
+  // 创建音频会话管理器。
   OH_AudioCommon_Result resultManager = OH_AudioManager_GetAudioSessionManager(&audioSessionManager);
   
   OH_AudioSession_Strategy strategy = {CONCURRENCY_MIX_WITH_OTHERS};
 
-  // 设置音频并发模式并激活音频会话
+  // 设置音频并发模式并激活音频会话。
   OH_AudioCommon_Result resultActivate = OH_AudioSessionManager_ActivateAudioSession(audioSessionManager, &strategy);
   
   // 查询音频会话是否已激活。
   bool isActivated = OH_AudioSessionManager_IsAudioSessionActivated(audioSessionManager);
   
-  // 监听音频会话停用事件
+  // 监听音频会话停用事件。
   OH_AudioCommon_Result resultRegister = OH_AudioSessionManager_RegisterSessionDeactivatedCallback(audioSessionManager, MyAudioSessionDeactivatedCallback);
 
   // 音频会话激活后应用在此处正常执行音频播放、暂停、停止、释放等操作即可。 
   
-  // 取消监听音频会话停用事件
+  // 取消监听音频会话停用事件。
   OH_AudioCommon_Result resultUnregister = OH_AudioSessionManager_UnregisterSessionDeactivatedCallback(audioSessionManager, MyAudioSessionDeactivatedCallback);
   
-  // 停用音频会话
+  // 停用音频会话。
   OH_AudioCommon_Result resultDeactivate = OH_AudioSessionManager_DeactivateAudioSession(audioSessionManager);
   ```
