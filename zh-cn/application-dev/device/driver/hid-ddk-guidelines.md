@@ -80,7 +80,7 @@ libhid.z.so
 
 1. 创建设备。
 
-    使用 **hid_ddk_api.h** 的 **OH_Hid_CreateDevice** 接口创建HID设备，成功返回设备deviceId（**非负数**），失败返回错误码（**负数**）。
+    使用 **hid_ddk_api.h** 的 **OH_Hid_CreateDevice** 接口创建HID设备，成功返回设备deviceId，失败返回[错误码](../../reference/apis-driverdevelopment-kit/_hid_ddk.md#hid_ddkerrcode)。
 
     ```c++
    // 构建HID设备属性
