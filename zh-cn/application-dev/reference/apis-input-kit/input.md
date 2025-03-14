@@ -968,7 +968,7 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若添加轴事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED； 若callback为空，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若添加轴事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
 
 
 ### OH_Input_AddAxisEventMonitorForAll()
@@ -996,7 +996,7 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若添加轴事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED； 若callback为空，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若添加轴事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
 
 
 ### OH_Input_AddHotkeyMonitor()
@@ -1210,7 +1210,7 @@ void OH_Input_CancelInjection ()
 ```
 **描述**
 
-取消事件注入并撤销授权
+取消事件注入并撤销授权。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1244,7 +1244,7 @@ OH_Input_CreateAllSystemHotkey 函数错误码。 INPUT_SUCCESS 表示创建实�
 ### OH_Input_CreateAxisEvent()
 
 ```
-Input_AxisEvent* OH_Input_CreateAxisEvent (void )
+Input_AxisEvent* OH_Input_CreateAxisEvent ( void )
 ```
 **描述**
 
@@ -1310,7 +1310,7 @@ struct Input_KeyEvent* OH_Input_CreateKeyEvent ()
 
 **返回：**
 
-如果操作成功返回一个[Input_KeyEvent](#input_keyevent)指针对象，否则返回空指针。
+如果操作成功，返回一个[Input_KeyEvent](#input_keyevent)指针对象，否则返回空指针。
 
 
 ### OH_Input_CreateKeyState()
@@ -1346,7 +1346,7 @@ struct Input_MouseEvent* OH_Input_CreateMouseEvent ()
 
 **返回：**
 
-如果操作成功返回一个[Input_MouseEvent](#input_mouseevent)指针对象，否则返回空指针。
+如果操作成功，返回一个[Input_MouseEvent](#input_mouseevent)指针对象，否则返回空指针。
 
 
 ### OH_Input_CreateTouchEvent()
@@ -1364,7 +1364,7 @@ struct Input_TouchEvent* OH_Input_CreateTouchEvent ()
 
 **返回：**
 
-如果操作成功返回一个[Input_TouchEvent](#input_touchevent)指针对象，否则返回空指针。
+如果操作成功，返回一个[Input_TouchEvent](#input_touchevent)指针对象，否则返回空指针。
 
 
 ### OH_Input_DestroyAllSystemHotkeys()
@@ -2085,7 +2085,7 @@ int32_t OH_Input_GetKeyEventAction (const struct Input_KeyEvent * keyEvent)
 
 **返回：**
 
-返回按键事件类型
+返回按键事件类型。
 
 
 ### OH_Input_GetKeyEventActionTime()
@@ -2181,9 +2181,7 @@ Input_Result OH_Input_GetKeyState (struct Input_KeyState * keyState)
 
 **返回：**
 
-如果操作成功，
-
-返回Input_Result#INPUT_SUCCESS；否则返回[Input_Result](#input_result)中定义的其他错误代码。
+如果操作成功，返回Input_Result#INPUT_SUCCESS；否则返回[Input_Result](#input_result)中定义的其他错误代码。
 
 
 ### OH_Input_GetKeySwitch()
@@ -2231,7 +2229,7 @@ int32_t OH_Input_GetMouseEventAction (const struct Input_MouseEvent * mouseEvent
 
 **返回：**
 
-鼠标的动作
+鼠标的动作。
 
 
 ### OH_Input_GetMouseEventActionTime()
@@ -2279,7 +2277,7 @@ int32_t OH_Input_GetMouseEventAxisType (const struct Input_MouseEvent * mouseEve
 
 **返回：**
 
-轴类型
+轴类型。
 
 
 ### OH_Input_GetMouseEventAxisValue()
@@ -2351,7 +2349,7 @@ int32_t OH_Input_GetMouseEventDisplayX (const struct Input_MouseEvent * mouseEve
 
 **返回：**
 
-屏幕X坐标
+屏幕X坐标。
 
 
 ### OH_Input_GetMouseEventDisplayY()
