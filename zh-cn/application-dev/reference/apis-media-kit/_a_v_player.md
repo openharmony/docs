@@ -85,7 +85,7 @@
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetPlaybackSpeed](#oh_avplayer_setplaybackspeed) (OH_AVPlayer \*player, [AVPlaybackSpeed](#avplaybackspeed) speed) | 设置播放器播放速率。 | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetPlaybackSpeed](#oh_avplayer_getplaybackspeed) (OH_AVPlayer \*player, [AVPlaybackSpeed](#avplaybackspeed) \*speed) | 获取当前播放器播放速率。 | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetAudioRendererInfo](#oh_avplayer_setaudiorendererinfo) (OH_AVPlayer \*player, OH_AudioStream_Usage streamUsage) | 设置player音频流类型。  | 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetVolumeMode](#oh_avplayer_setvolumemode) (OH_AVPlayer \*player, [OH_AudioStream_VolumeMode](_o_h_audio.md#oh_audiostream_volumemode) volumeMode) | 设置player音频流音量模式。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetVolumeMode](#oh_avplayer_setvolumemode) (OH_AVPlayer \*player, [OH_AudioStream_VolumeMode](../apis-audio-kit/_o_h_audio.md#oh_audiostream_volumemode) volumeMode) | 设置player音频流音量模式。 | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetAudioInterruptMode](#oh_avplayer_setaudiointerruptmode) (OH_AVPlayer \*player, OH_AudioInterrupt_Mode interruptMode) | 设置player音频流的打断模式。  | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetAudioEffectMode](#oh_avplayer_setaudioeffectmode) (OH_AVPlayer \*player, OH_AudioStream_AudioEffectMode effectMode) | 设置player音频流的音效模式。  | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SelectBitRate](#oh_avplayer_selectbitrate) (OH_AVPlayer \*player, uint32_t bitRate) | 设置hls播放器使用的码率。 | 
@@ -1529,7 +1529,7 @@ OH_AVErrCode OH_AVPlayer_SetVolumeMode(OH_AVPlayer *player, OH_AudioStream_Volum
 | 名称 | 描述 | 
 | -------- | -------- |
 | player | 指向OH_AVPlayer实例的指针。 | 
-| volumeMode | 要设置的音频流音量模式[OH_AudioStream_VolumeMode](_o_h_audio.md#oh_audiostream_volumemode)。 | 
+| volumeMode | 要设置的音频流音量模式[OH_AudioStream_VolumeMode](../apis-audio-kit/_o_h_audio.md#oh_audiostream_volumemode)。 | 
 
 **返回：**
 
