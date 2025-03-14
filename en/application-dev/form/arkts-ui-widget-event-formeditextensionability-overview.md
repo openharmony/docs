@@ -7,7 +7,7 @@ The following figure shows the widget editing process.
 
 Figure 1 Widget editing process
 
-![FormEditExtensionAbility](./figures/Widget-FormEditExtensionAbility.png)
+![FormEditExtensionAbility](./figures/Widget-FormEditExtensionAbility.PNG)
 
 1. When a user taps a widget to edit it, the widget provider inherits [FormEditExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formEditExtensionAbility.md) to implement the widget editing function.
 
