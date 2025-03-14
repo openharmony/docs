@@ -29,7 +29,7 @@ When the main thread experiences a timeout between 150 ms and 450 ms, it trigger
 
 2. Stack capture time
 
-    When the main thread jank event occurs, the main thread checker starts to check whether the jank event occurs again every 150 ms (1 ¡Ü number of check times ¡Ü 2). There are three cases:
+    When the main thread jank event occurs, the main thread checker starts to check whether the jank event occurs again every 150 ms (1 â‰¤ number of check times â‰¤ 2). There are three cases:
 
     (1) If a jank event is detected during the first check, the main thread checker starts stack sampling every 150 ms for 10 times. The stack sampling data is collected and an event is reported at the next interval. Then the check ends. 
 
@@ -87,7 +87,7 @@ You can customize the specifications of the **MAIN_THREAD_JANK** event by settin
 
     (2) **ignore_startup_time**: time window after thread startup during which no checks are performed. For the process that takes time to start, it is not necessary to capture the full stack. You can set this parameter to prevent the check from being performed within the custom startup time. The minimum value is 3s. The default value is 10s.
 
-    (3) **sample_count**: number of sampling times for the main thread jank event. After detecting that the main thread processing time exceeds the threshold, the system starts periodic stack sampling for **sample_count** times. The minimum value is 1. The maximum value can be calculated based on the custom value of **sample_interval** as follows: <br>**sample_count** ¡Ü (2500/**sample_interval** - 4)  
+    (3) **sample_count**: number of sampling times for the main thread jank event. After detecting that the main thread processing time exceeds the threshold, the system starts periodic stack sampling for **sample_count** times. The minimum value is 1. The maximum value can be calculated based on the custom value of **sample_interval** as follows: <br>**sample_count** â‰¤ (2500/**sample_interval** - 4)  
 
     > **NOTE**
     >
@@ -129,9 +129,7 @@ You can customize the specifications of the **MAIN_THREAD_JANK** event by settin
 
     Generally, the size of a stack file is 7 KB to 10 KB, and the size of a trace file is 1 MB to 5 MB. The **watchdog** directory in the application sandbox can hold files up to10 MB. If the total file size exceeds the limit, the user needs to manually delete files. The path to **watchdog** is **/data/app/el2/100/log/*app_bundle_name*/watchdog**.
 
-2.  
-
-    You can obtain the log path from **external_logs**.
+2.  You can obtain the log path from **external_logs**.
 
 3. Currently, stack capturing supports only the ARM64 architecture. The stack capture result contains both native frames and JS frames parsed.
 

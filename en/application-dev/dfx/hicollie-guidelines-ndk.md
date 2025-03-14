@@ -19,6 +19,7 @@ HiCollie provides APIs for detecting service thread stuck and jank events and re
 For details (such as parameter usage and value ranges), see [HiCollie](../reference/apis-performance-analysis-kit/_hi_hicollie.md).
 
 ## How to Develop
+
 The following describes how to add a button in the application and click the button to call the HiCollie APIs.
 
 1. Create a native C++ project and import the **jsoncpp** file to the project. The directory structure is as follows:
