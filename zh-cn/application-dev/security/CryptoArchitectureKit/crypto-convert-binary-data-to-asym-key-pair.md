@@ -1,8 +1,6 @@
 # 指定二进制数据转换非对称密钥对(ArkTS)
 
-
 以RSA、ECC、SM2为例，根据指定的对称密钥二进制数据，生成非对称密钥对（KeyPair），即将外部或存储的二进制数据转换为算法库的密钥对象，该对象可用于后续的加解密等操作。
-
 
 > **说明：**
 >
@@ -11,7 +9,6 @@
 > - 公钥需满足：ASN.1语法、X.509规范、DER编码格式。
 >
 > - 私钥需满足：ASN.1语法、PKCS\#8规范、DER编码格式。
-
 
 ## 指定二进制数据转换RSA密钥对
 
@@ -63,7 +60,6 @@
     }
   }
   ```
-
 
 ## 指定二进制数据转换ECC密钥对
 
@@ -134,14 +130,14 @@
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   async function main() {
-    // 创建一个AsyKeyGenerator实例
+    // 创建一个AsyKeyGenerator实例。
     let eccGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
-    // 使用密钥生成器随机生成非对称密钥对
+    // 使用密钥生成器随机生成非对称密钥对。
     let keyGenPromise = eccGenerator.generateKeyPair();
     keyGenPromise.then(keyPair => {
       let pubKey = keyPair.pubKey;
       let priKey = keyPair.priKey;
-      // 获取非对称密钥对ECC的二进制数据
+      // 获取非对称密钥对ECC的二进制数据。
       let pubBlob = pubKey.getEncoded();
       let skBlob = priKey.getEncodedDer('PKCS8');
       let generator = cryptoFramework.createAsyKeyGenerator('ECC256');

@@ -7,7 +7,7 @@ OpenHarmony上的OpenSL ES接口，是早期SDK8版本开始提供，用于支�
 
 在SDK10版本，OpenHarmony推出了OHAudio接口，并将系统具备的所有音频功能都通过此接口开放。OHAudio接口已能够覆盖OpenSL ES在OpenHarmony中已提供的所有能力，并拓展支持音频焦点事件，低时延等新版本特性。
 
-OHAudio的开发指南见[使用OHAudio开发音频录制功能(C/C++)](using-ohaudio-for-recording.md)
+OHAudio的开发指南见[使用OHAudio开发音频录制功能(C/C++)](using-ohaudio-for-recording.md)。
 
 考虑到一些接入OpenHarmony较早的应用开发者，这里提供了一份OpenSL ES接口切换到OHAudio的对照参考[OpenSL ES接口切换OHAudio参考](replace-opensles-by-ohaudio.md)，便于开发者能够更快的在新版本切换到使用新接口。
 
@@ -23,9 +23,9 @@ OpenSL ES中提供了以下的接口，OpenHarmony当前仅实现了部分[接�
 
   | SLInterfaceID | 说明 |
   | -------- | -------- |
-  | SL_IID_ENGINE | 通用引擎，提供创建录音对象接口 |
-  | SL_IID_RECORD | 提供录音状态接口 |
-  | SL_IID_OH_BUFFERQUEUE | 提供音频录制流数据回调注册接口 |
+  | SL_IID_ENGINE | 通用引擎，提供创建录音对象接口。 |
+  | SL_IID_RECORD | 提供录音状态接口。 |
+  | SL_IID_OH_BUFFERQUEUE | 提供音频录制流数据回调注册接口。 |
 
 - **OpenHarmony上支持的Engine接口：**
   - SLresult (\*CreateAudioPlayer) (SLEngineItf self, SLObjectItf \* pPlayer, SLDataSource \*pAudioSrc, SLDataSink \*pAudioSnk, SLuint32 numInterfaces, const SLInterfaceID \* pInterfaceIds, const SLboolean \* pInterfaceRequired)
@@ -104,12 +104,12 @@ target_link_libraries(sample PUBLIC libOpenSLES.so)
        SL_DATALOCATOR_BUFFERQUEUE,
        3
    };
-   // 具体参数需要根据音频文件格式进行适配
+   // 具体参数需要根据音频文件格式进行适配。
    SLDataFormat_PCM format_pcm = {
-       SL_DATAFORMAT_PCM,           // 输入的音频格式
-       1,                           // 单声道
-       SL_SAMPLINGRATE_44_1,        // 采样率: 44100HZ
-       SL_PCMSAMPLEFORMAT_FIXED_16, // 音频采样格式, 小端, 带符号的16位整数
+       SL_DATAFORMAT_PCM,           // 输入的音频格式。
+       1,                           // 单声道。
+       SL_SAMPLINGRATE_44_1,        // 采样率: 44100HZ。
+       SL_PCMSAMPLEFORMAT_FIXED_16, // 音频采样格式, 小端, 带符号的16位整数。
        16,
        SL_SPEAKER_FRONT_LEFT,
        SL_BYTEORDER_LITTLEENDIAN
@@ -144,16 +144,16 @@ target_link_libraries(sample PUBLIC libOpenSLES.so)
    ```cpp
    static void BufferQueueCallback(SLOHBufferQueueItf bufferQueueItf, void *pContext, SLuint32 size)
    {
-       // 可从pContext获取注册时传入的使用者信息
+       // 可从pContext获取注册时传入的使用者信息。
        SLuint8 *buffer = nullptr;
        SLuint32 pSize = 0;
        (*bufferQueueItf)->GetBuffer(bufferQueueItf, &buffer, &pSize);
        if (buffer != nullptr) {
-           // 可从buffer内读取录音数据进行后续处理 
+           // 可从buffer内读取录音数据进行后续处理。
            (*bufferQueueItf)->Enqueue(bufferQueueItf, buffer, size);
        }
    }
-   void *pContext; // 可传入自定义的上下文信息，会在Callback内收到
+   void *pContext; // 可传入自定义的上下文信息，会在Callback内收到。
    (*bufferQueueItf)->RegisterCallback(bufferQueueItf, BufferQueueCallback, pContext);
    ```
 
