@@ -24,6 +24,8 @@ The following table lists the common **NetConnection** APIs. For details, see [N
 | OHOS_NetConn_UnregisterDnsResolver(void) | Unregisters a custom DNS resolver.<br>Note: This API is deprecated since API version 13.<br>You are advised to use **OH_NetConn_UnregisterDnsResolver** instead.|
 | OH_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver) | Registers a custom DNS resolver.|
 | OH_NetConn_UnregisterDnsResolver(void) | Unregisters a custom DNS resolver.|
+| OH_NetConn_SetPacUrl(const char \*pacUrl) | Sets the URL of the system-level proxy auto-config (PAC) script.|
+| OH_NetConn_GetPacUrl(char \*pacUrl) | Obtains the URL of the system-level PAC script.|
 
 ## Development Example
 

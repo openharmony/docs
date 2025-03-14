@@ -61,8 +61,8 @@ Obtains the position of a glyph close to a given coordinate.
 
 | Name   | Type  | Mandatory  | Description                |
 | ------ | ------ | ---- | -------------------- |
-| x | number | Yes   | X coordinate relative to the component, in px.|
-| y | number | Yes   | Y coordinate relative to the component, in px.|
+| x | number | Yes   | X coordinate relative to the component.<br>Unit: px|
+| y | number | Yes   | Y coordinate relative to the component.<br>Unit: px|
 
 **Return value**
 
@@ -143,13 +143,14 @@ Provides the menu ID.
 
 | Name          | Type             | Read Only  | Optional | Description    |
 | ------------ |---------------------| ---- | ---- | ------ |
-| CUT  | [TextMenuItemId](#textmenuitemid12) |  Yes |  Yes| Cut operation by default.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| COPY  | [TextMenuItemId](#textmenuitemid12) |  Yes |  Yes | Copy operation by default.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| PASTE | [TextMenuItemId](#textmenuitemid12)   | Yes   | Yes   | Paste operation by default.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| SELECT_ALL   | [TextMenuItemId](#textmenuitemid12)   | Yes   | Yes   | Select-all operation by default.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| CUT  | [TextMenuItemId](#textmenuitemid12) |  Yes |  Yes| Default cut operation.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| COPY  | [TextMenuItemId](#textmenuitemid12) |  Yes |  Yes | Default copy operation.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| PASTE | [TextMenuItemId](#textmenuitemid12)   | Yes   | Yes   | Default paste operation.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| SELECT_ALL   | [TextMenuItemId](#textmenuitemid12)   | Yes   | Yes   | Default select-all operation.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | COLLABORATION_SERVICE   | [TextMenuItemId](#textmenuitemid12)   | Yes   | Yes   | Collaboration service.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| CAMERA_INPUT   | [TextMenuItemId](#textmenuitemid12)   | Yes   | Yes  | Camera input<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| AI_WRITER<sup>13+</sup>   | [TextMenuItemId](#textmenuitemid12)   | Yes   | Yes   | Text enhancement features, such as polishing, summary extraction, and formatting, for selected text. This menu item requires large model capabilities to function.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| CAMERA_INPUT   | [TextMenuItemId](#textmenuitemid12)   | Yes   | Yes  | Camera input.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| AI_WRITER<sup>13+</sup>   | [TextMenuItemId](#textmenuitemid12)   | Yes   | Yes   | Text enhancement features, such as polishing, summary extraction, and formatting, for selected text. This menu item requires foundation model capabilities to function.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| TRANSLATE<sup>15+</sup>   | [TextMenuItemId](#textmenuitemid12)   | Yes   | Yes   | Translation service.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
 
 ### of
 
@@ -206,6 +207,7 @@ Checks whether this **TextMenuItemId** object is the same as another **TextMenuI
 | content | [ResourceStr](ts-types.md#resourcestr) | Yes  | Menu name.|
 | icon | [ResourceStr](ts-types.md#resourcestr) | No  | Menu icon.<br>Online images are not supported.|
 | id | [TextMenuItemId](#textmenuitemid12) | Yes  | Menu ID.|
+| labelInfo<sup>15+</sup> | [ResourceStr](ts-types.md#resourcestr) | No  | Shortcut key hint.<br>This field is only supported on 2-in-1 devices.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 
 ## EditMenuOptions
 
@@ -266,8 +268,6 @@ Defines the text range.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Attributes
-
 | Name| Type| Mandatory| Description|
 | -- | -- | -- | -- |
 | start | number | No| Start index.|
@@ -275,9 +275,9 @@ Defines the text range.
 
 ## EditableTextOnChangeCallback<sup>12+</sup>
 
-type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) => void
+type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText, options?: TextChangeOptions) => void
 
-Invoked when the input in the text box changes.
+Represents the callback triggered when the content in the text box changes.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -289,6 +289,7 @@ Invoked when the input in the text box changes.
 | -- | -- | -- | -- |
 | value | string | Yes| Text displayed in the text box.|
 | previewText | [PreviewText](#previewtext12) | No| Information about the preview text, including its start position and text content.|
+| options<sup>15+</sup> | [TextChangeOptions](#textchangeoptions15) | No| Information about the text change, including the selection range before and after the change, the text content before the change, and the preview text information.|
 
 ## TextDataDetectorType<sup>11+</sup>
 
@@ -296,13 +297,13 @@ Invoked when the input in the text box changes.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name | Description                              |
-| ----- | -------------------------------------- |
-| PHONE_NUMBER  | Phone number.|
-| URL | URL.|
-| EMAIL | Email address.|
-| ADDRESS | Address.|
-| DATE_TIME<sup>12+</sup> | Time.|
+| Name | Value  | Description                              |
+| ----- | ----- | --------------------------------- |
+| PHONE_NUMBER  | 0 | Phone number.|
+| URL | 1 | URL.|
+| EMAIL | 2 | Email address.|
+| ADDRESS | 3 | Address.|
+| DATE_TIME<sup>12+</sup> | 4 | Time.|
 
 ## TextDeleteDirection<sup>12+</sup>
 
@@ -329,6 +330,21 @@ Enumerates the menu types.
 | ------- | ---- | ------------------- |
 | SELECTION_MENU | 0 | Text selection menu.|
 | PREVIEW_MENU | 1 | Preview menu.|
+
+## KeyboardAppearance<sup>15+</sup>
+
+Enumerates the appearance modes of the keyboard.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Value| Description|
+| ------- | ---- | ------------------- |
+| NONE_IMMERSIVE | 0 | Default appearance mode, not using immersive style.|
+| IMMERSIVE | 1 | Immersive style, following the system color mode.|
+| LIGHT_IMMERSIVE | 2 | Immersive style in light mode.|
+| DARK_IMMERSIVE | 3 | Immersive style in dark mode.|
 
 ## InsertValue<sup>12+</sup>
 
@@ -365,6 +381,7 @@ Enumerates the menu types.
 | onDetectResultUpdate   | (result: string) => void | No  | Callback invoked when text recognition succeeds.<br>- **result**: text recognition result, in JSON format.|
 | color<sup>12+</sup>   | [ResourceColor](ts-types.md#resourcecolor) | No  | Entity color when text recognition succeeds.<br>Default value: **'#ff0a59f7'**|
 | decoration<sup>12+</sup>  | [DecorationStyleInterface](ts-universal-styled-string.md#decorationstyleinterface)| No  | Style of the entity decorative line when text recognition succeeds.<br>Default value:<br>{<br> type: TextDecorationType.Underline,<br> color: same as the entity<br> style: TextDecorationStyle.SOLID <br>} |
+
 ## PreviewText<sup>12+</sup>
 
 Preview text.
@@ -419,7 +436,7 @@ Defines the listener for changes of the styled string text content.
 
 | Name| Type| Mandatory| Description|
 | -- | -- | -- | -- |
-| onWillChange | Callback<[StyledStringChangeValue](ts-basic-components-richeditor.md#styledstringchangevalue12), boolean> | No| Callback invoked when text is about to change.|
+| onWillChange | Callback<[StyledStringChangeValue](#styledstringchangevalue12), boolean> | No| Callback invoked when text is about to change.|
 | onDidChange | [OnDidChangeCallback](#ondidchangecallback12) | No| Callback invoked when text is changed.|
 
 ## StyledStringChangeValue<sup>12+</sup>
@@ -474,7 +491,7 @@ On non-2-in-1 devices, when **options** is set to **MenuPolicy.DEFAULT**, the fo
 | -------------- | ------ | ---- | ------- |
 | selectionStart | number | Yes   | Start position of the selection.|
 | selectionEnd   | number | Yes   | End position of the selection.|
-| options<sup>12+</sup>   | [SelectionOptions](ts-types.md#selectionoptions12) | No   | Configuration of options.|
+| options   | [SelectionOptions](ts-types.md#selectionoptions12) | No   | Configuration of options.|
 
 ### closeSelectionMenu<sup>12+</sup>
 
@@ -618,7 +635,7 @@ Sets the styled string displayed in the rich text component.
 
 ### getStyledString<sup>12+</sup>
 
-getStyledString(): MutableStyledString;
+getStyledString(): MutableStyledString
 
 Obtains the styled string displayed in the rich text component.
 
@@ -715,3 +732,33 @@ Enumerates the rectangle width styles.
 | Type                             | Description  |
 | --------------------------------- | --------------------------------- |
 | [RectWidthStyle](../../apis-arkgraphics2d/js-apis-graphics-text.md#rectwidthstyle) | Rectangle width style enum.|
+
+## TextChangeOptions<sup>15+</sup>
+
+Provides information about the text before and after a change, including the selection ranges.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Type                                                   | Mandatory| Description                                                   |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| rangeBefore  | [TextRange](#textrange12) | Yes  | Selection range before the change.|
+| rangeAfter  | [TextRange](#textrange12) | Yes  | Selection range after the change.|
+| oldContent  | string | Yes  | Text content before the change.|
+| oldPreviewText | [PreviewText](#previewtext12) | Yes| Preview text before the change.|
+
+## EditableTextChangeValue<sup>15+</sup>
+
+Provides detailed information of text changes, including preview text.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Type                                                   | Mandatory| Description                                                   |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| content  | string | Yes  | Current text content.|
+| previewText  | [PreviewText](#previewtext12) | No  | Preview text.|
+| options  | [TextChangeOptions](#textchangeoptions15) | No  | Information about the text change.|
+

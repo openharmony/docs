@@ -149,6 +149,8 @@
 | [ArkUI_DragPreviewScaleMode](#arkui_dragpreviewscalemode) { ARKUI_DRAG_PREVIEW_SCALE_AUTO, ARKUI_DRAG_PREVIEW_SCALE_DISABLED } | 拖拽预览缩放模式。  | 
 | [ArkUI_DragStatus](#arkui_dragstatus) { ArkUI_DRAG_STATUS_UNKNOWN, ArkUI_DRAG_STATUS_STARTED, ArkUI_DRAG_STATUS_ENDED } | 拖拽状态。  | 
 | [ArkUI_DismissReason](#arkui_dismissreason) { DIALOG_DISMISS_BACK_PRESS = 0, DIALOG_DISMISS_TOUCH_OUTSIDE, DIALOG_DISMISS_CLOSE_BUTTON, DIALOG_DISMISS_SLIDE_DOWN } | 弹窗关闭的触发方式。  | 
+| [ArkUI_LevelMode](#arkui_levelmode) { ARKUI_LEVEL_MODE_OVERLAY = 0, ARKUI_LEVEL_MODE_EMBEDDED } | 设置弹窗显示层级。  |
+| [ArkUI_ImmersiveMode](#arkui_immersivemode) { ARKUI_IMMERSIVE_MODE_DEFAULT = 0, ARKUI_IMMERSIVE_MODE_EXTEND } | 指定嵌入式弹窗的蒙层覆盖区域。  |
 | [ArkUI_GestureEventActionType](#arkui_gestureeventactiontype) { GESTURE_EVENT_ACTION_ACCEPT = 0x01, GESTURE_EVENT_ACTION_UPDATE = 0x02, GESTURE_EVENT_ACTION_END = 0x04, GESTURE_EVENT_ACTION_CANCEL = 0x08 } | 定义手势事件类型。  | 
 | [ArkUI_GesturePriority](#arkui_gesturepriority) { NORMAL = 0, PRIORITY = 1, PARALLEL = 2 } | 定义手势事件模式。  | 
 | [ArkUI_GroupGestureMode](#arkui_groupgesturemode) { SEQUENTIAL_GROUP = 0, PARALLEL_GROUP = 1, EXCLUSIVE_GROUP = 2 } | 定义手势组事件模式。  | 
@@ -2080,6 +2082,39 @@ enum ArkUI_DismissReason
 | DIALOG_DISMISS_CLOSE_BUTTON  | 点击关闭按钮。  | 
 | DIALOG_DISMISS_SLIDE_DOWN  | 下拉关闭。  | 
 
+
+### ArkUI_LevelMode
+
+```
+enum ArkUI_LevelMode
+```
+**描述：**
+
+设置弹窗显示层级。
+
+**起始版本：** 15
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| ARKUI_LEVEL_MODE_OVERLAY  | 显示在应用最上层。  | 
+| ARKUI_LEVEL_MODE_EMBEDDED  | 嵌入式显示在应用的页面内。  | 
+
+### ArkUI_ImmersiveMode
+
+```
+enum ArkUI_ImmersiveMode
+```
+**描述：**
+
+指定嵌入式弹窗的蒙层覆盖区域。
+
+**起始版本：** 15
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| ARKUI_IMMERSIVE_MODE_DEFAULT  | 弹窗蒙层按照显示页面给定的布局约束显示。  | 
+| ARKUI_IMMERSIVE_MODE_EXTEND  | 弹窗蒙层可扩展至覆盖状态栏和导航条。  | 
+
 ### ArkUI_DragPreviewScaleMode
 
 ```
@@ -3578,7 +3613,6 @@ enum ArkUI_NodeEventType
 | NODE_ON_KEY_EVENT  | 绑定该方法的组件获焦后，按键动作触发该回调。<br/>触发该事件的条件 ：由外设键盘等设备与获焦窗口交互触发此回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>起始版本：<br/>14 | 
 | NODE_ON_KEY_PRE_IME  | 绑定该方法的组件获焦后，按键动作在响应输入法前优先触发该回调。<br/>该回调的返回值为true时，视作该按键事件已被消费，后续的事件回调（keyboardShortcut、输入法事件、onKeyEvent）会被拦截，不再触发。 触发该事件的条件 ：由外设键盘等设备与获焦窗口交互触发此回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>起始版本：<br/>14 | 
 | NODE_DISPATCH_KEY_EVENT  | 组件按键事件重新派发事件。当组件节点接收到按键事件时，将触发此回调函数，而非将事件分发给其子节点。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>起始版本：<br/>15 | 
-| NODE_VISIBLE_AREA_APPROXIMATE_CHANGE_EVENT  | 组件可见区域变化事件。<br/>触发该事件的条件：组件可见面积与自身面积的比值接近设置的阈值时触发回调，注册事件前需先使用 NODE_VISIBLE_AREA_APPROXIMATE_CHANGE_RATIO 配置阈值。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含2个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**：组件可见面积与自身面积的比值与上次变化相比的情况，变大为1，变小为0。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].f32**：触发回调时组件可见面积与自身面积的比值。 <br/>起始版本：<br/>16 | 
 | NODE_TEXT_ON_DETECT_RESULT_UPDATE  | 文本设置TextDataDetectorConfig且识别成功时，触发onDetectResultUpdate回调。<br/>触发该事件的条件：文本设置TextDataDetectorConfig且识别成功后。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md)。<br/>[ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md)中包含1个参数：<br/>**[ArkUI_StringAsyncEvent.pStr](_ark_u_i___string_async_event.md#pstr)**：表示文本识别的结果，Json格式。 | 
 | NODE_IMAGE_ON_COMPLETE  | 图片加载成功事件。<br/>触发该事件的条件 ：图片数据加载成功和解码成功均触发该回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含9个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**：表示加载状态，0表示数据加载成功，1表示解码成功。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].f32**：表示图片的宽度，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[2].f32**：表示图片的高度，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[3].f32**：表示当前组件的宽度，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[4].f32**：表示当前组件的高度，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[5].f32**：图片绘制区域相对组件X轴位置，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[6].f32**：图片绘制区域相对组件Y轴位置，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[7].f32**：图片绘制区域宽度，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[8].f32**：图片绘制区域高度，单位px。 | 
 | NODE_IMAGE_ON_ERROR  | 图片加载失败事件。<br/>触发该事件的条件：图片加载异常时触发该回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含1个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**错误码信息：<br/>401: 图片路径参数异常，无法获取到图片数据。<br/>103101: 图片格式不支持。 | 

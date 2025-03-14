@@ -16,6 +16,7 @@ This module provides the following functions:
 > - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The APIs of this module can be used only in <!--RP1-->[arkxtest](../../application-test/arkxtest-guidelines.md)<!--RP1End-->.
 > - The APIs of this module do not support concurrent calls.
+> - The APIs of this module can be used on mobile phones, tablets, and 2-in-1 devices.
 
 
 ## Modules to Import
@@ -1545,7 +1546,7 @@ Scrolls to the bottom of this component. This API is applicable to components th
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| speed  | number | No  | Scroll speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
+| speed  | number | No   | Scroll speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
 
 **Error codes**
 
@@ -2256,7 +2257,7 @@ Drags this **Driver** object from the given start point to the given end point.
 | starty | number | Yes  | Y coordinate of the start point. The value must be greater than or equal to 0.             |
 | endx   | number | Yes  | X coordinate of the end point. The value must be greater than or equal to 0.             |
 | endy   | number | Yes  | Y coordinate of the end point. The value must be greater than or equal to 0.             |
-| speed  | number | No  | Drag speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
+| speed  | number | No   | Drag speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
 
 **Error codes**
 
@@ -3109,7 +3110,7 @@ Enters text at the specified point.
 | Name| Type            | Mandatory| Description              |
 | ------ | ---------------- | ---- | ------------------ |
 | p      | [Point](#point9) | Yes  | Coordinates of the end point.|
-| text   | string           | Yes  | Text to enter.  |
+| text   | string           | Yes  | Text to enter. Currently, English, Chinese, and special characters are supported.   |
 
 **Error codes**
 

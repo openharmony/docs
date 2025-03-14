@@ -69,7 +69,7 @@ The following examples describe how to use the viewport:
   let viep1:tmp1 = new tmp1()
 
   // Draw a circle whose width and height are both 75.
-  Text ('Original Size Circle')
+  Text('Original Size Circle')
   Circle({width: 75, height: 75}).fill('#E87361')
 
   Row({space:10}) {

@@ -6,7 +6,7 @@ Provides the descriptor of the HAP where the rawfile is located.
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-## Modules to Import
+## Import a module.
 
 ```js
 import { resourceManager } from '@kit.LocalizationKit'
@@ -20,6 +20,6 @@ import { resourceManager } from '@kit.LocalizationKit'
 
 | Name    | Type   | Readable  | Writable | Description          |
 | ------ | ------  | ---- | ---- | ------------------ |
-| fd     | number  | Yes   | No| File descriptor.|
+| fd     | number  | Yes   | No| Pointer to the file descriptor.|
 | offset | number  | Yes   | No| Start offset.     |
 | length | number  | Yes   | No| File length.      |

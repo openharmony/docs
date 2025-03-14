@@ -20,7 +20,7 @@ The OH_Drawing_StrutStyle struct describes a strut style. The strut style determ
 | [OH_Drawing_FontWeight](_drawing.md#oh_drawing_fontweight) [weight](#weight) | Font weight used for calculating the strut. | 
 | [OH_Drawing_FontStyle](_drawing.md#oh_drawing_fontstyle) [style](#style) | Font style used for calculating the strut. | 
 | double [size](#size) | Size of the ascent plus descent in the logical pixels. | 
-| double [heightScale](#heightscale) | Line height. | 
+| double [heightScale](#heightscale) | Scale factor of the line height. | 
 | bool [heightOverride](#heightoverride) | Whether to enable the feature to override the height. The value **true** means to enable the feature, and **false** means the opposite. | 
 | bool [halfLeading](#halfleading) | Whether to enable half leading. The value **true** means to enable half leading, and **false** means the opposite. | 
 | double [leading](#leading) | Custom leading to be applied to the strut. | 
@@ -92,7 +92,7 @@ double OH_Drawing_StrutStyle::heightScale
 
 **Description**
 
-Line height.
+Scale factor of the line height.
 
 
 ### leading

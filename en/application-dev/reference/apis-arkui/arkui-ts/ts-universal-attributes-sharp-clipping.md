@@ -208,6 +208,7 @@ struct ClipAndMaskExample {
       }
       .clip(true) // If clip is not set to true, the image is not confined by the rounded corners of the <Row> component and may extend beyond the <Row> component.
       .borderRadius(20)
+
       // Clip the image based on a circle with a diameter of 280 px.
       Image($r('app.media.testImg'))
         .clipShape(new Circle({ width: '280px', height: '280px' }))

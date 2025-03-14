@@ -76,7 +76,9 @@ Since API version 11, when an application creates a [worker thread](../../../ark
 
 ## Example
 
-### Example 1
+### Example 1: Loading an Image
+
+This example demonstrates how to load a local image using the **ImageBitmap** object.
 
   ```ts
   // xxx.ets
@@ -85,7 +87,7 @@ Since API version 11, when an application creates a [worker thread](../../../ark
   struct ImageExample {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private img:ImageBitmap = new ImageBitmap("common/images/example.jpg")
+    private img: ImageBitmap = new ImageBitmap("common/images/example.jpg")
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -106,9 +108,11 @@ Since API version 11, when an application creates a [worker thread](../../../ark
 
   ![en-us_image_0000001194352442](figures/en-us_image_0000001194352442.png)
 
-### Example 2
+### Example 2: Creating an ImageBitmap Object
 
-  ```ts
+This example shows how to create an **ImageBitmap** object using a **PixelMap** object.
+
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -135,14 +139,21 @@ struct Demo {
     .height('100%')
   }
 }
-  ```
+```
 
   ![en-us_image_0000001194352442](figures/en-us_image_0000001194352444.png)
 
 
-### Example 3
+### Example 3: Supporting Concurrent Thread Drawing
+
+This example demonstrates how to implement concurrent thread drawing by creating a Worker thread.
+
+> **NOTE**
+>
+> The content drawn in the Worker thread cannot be previewed in DevEco Studio Previewer.
+
 ```ts
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 @Entry
 @Component
@@ -150,7 +161,7 @@ struct imageBitmapExamplePage {
   private settings: RenderingContextSettings = new RenderingContextSettings(true);
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
   private myWorker = new worker.ThreadWorker('entry/ets/workers/Worker.ts');
-  private img:ImageBitmap = new ImageBitmap("common/images/example.jpg")
+  private img: ImageBitmap = new ImageBitmap("common/images/example.jpg")
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -173,12 +184,12 @@ struct imageBitmapExamplePage {
   }
 }
 ```
-In the worker thread, the application uses **onmessage** to receive the **ImageBitmap** instance sent by the main thread through **postMessage **and proceeds with rendering.
+In the worker thread, the application uses **onmessage** to receive the **ImageBitmap** object sent by the main thread through **postMessage** and proceeds with rendering.
 
 ```ts
-workerPort.onmessage = function (e: MessageEvents) {
+workerPort.onmessage = (e: MessageEvents) => {
   if (e.data.myImage) {
-    let img = e.data.myImage
+    let img: ImageBitmap = e.data.myImage
     let offCanvas = new OffscreenCanvas(600, 600)
     let offContext = offCanvas.getContext("2d")
     offContext.drawImage(img, 0, 0, 500, 500, 0, 0, 400, 200)
