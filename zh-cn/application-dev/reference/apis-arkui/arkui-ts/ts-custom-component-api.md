@@ -421,7 +421,7 @@ struct Index {
 
 type PromptActionDialogController = promptAction.DialogController
 
-自定义弹窗控制器，可以控制当前自定义弹窗，具体控制能力包括关闭弹窗等，详见[promptAction.DialogController](../js-apis-promptAction.md#dialogcontroller16)。
+自定义弹窗控制器，可以控制当前自定义弹窗，具体控制能力包括关闭弹窗等，详见[promptAction.DialogController](../js-apis-promptAction.md#dialogcontroller18)。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -429,4 +429,4 @@ type PromptActionDialogController = promptAction.DialogController
 
 | 类型                                                         | 说明                         |
 | ------------------------------------------------------------ | ---------------------------- |
-| [promptAction.DialogController](../js-apis-promptAction.md#dialogcontroller16) | 表示对象类型为promptAction.DialogController实例对象。 |
+| [promptAction.DialogController](../js-apis-promptAction.md#dialogcontroller18) | 表示对象类型为promptAction.DialogController实例对象。 |
