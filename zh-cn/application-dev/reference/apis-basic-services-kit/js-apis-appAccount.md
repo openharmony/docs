@@ -595,7 +595,7 @@ setDataSyncEnabled(name: string, isEnabled: boolean, callback: AsyncCallback&lt;
 | 参数名      | 类型                        | 必填   | 说明                        |
 | -------- | ------------------------- | ---- | ------------------------- |
 | name     | string                    | 是    | 应用账号的名称。                   |
-| isEnabled | boolean                   | 是    | 是否开启数据同步。               |
+| isEnabled | boolean                   | 是    | 是否开启数据同步。true表示开启数据同步，false表示关闭数据同步。       |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。当开启或禁止成功时，err为null，否则为错误对象。 |
 
 **错误码：**
@@ -637,7 +637,7 @@ setDataSyncEnabled(name: string, isEnabled: boolean): Promise&lt;void&gt;
 | 参数名      | 类型      | 必填   | 说明          |
 | -------- | ------- | ---- | ----------- |
 | name     | string  | 是    | 应用账号的名称。     |
-| isEnabled | boolean | 是    | 是否开启数据同步。 |
+| isEnabled | boolean | 是    | 是否开启数据同步。true表示开启数据同步，false表示关闭数据同步。 |
 
 **返回值：**
 
@@ -3476,7 +3476,7 @@ setAppAccountSyncEnable(name: string, isEnable: boolean, callback: AsyncCallback
 | 参数名      | 类型                        | 必填   | 说明                        |
 | -------- | ------------------------- | ---- | ------------------------- |
 | name     | string                    | 是    | 应用账号的名称。                  |
-| isEnable | boolean                   | 是    | 是否开启数据同步。               |
+| isEnable | boolean                   | 是    | 是否开启数据同步。true表示开启数据同步，false表示关闭数据同步。   |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。当开启或禁止成功时，err为null，否则为错误对象。 |
 
 **示例：**
@@ -3508,7 +3508,7 @@ setAppAccountSyncEnable(name: string, isEnable: boolean): Promise&lt;void&gt;
 | 参数名      | 类型      | 必填   | 说明          |
 | -------- | ------- | ---- | ----------- |
 | name     | string  | 是    | 应用账号的名称。     |
-| isEnable | boolean | 是    | 是否开启数据同步。 |
+| isEnable | boolean | 是    | 是否开启数据同步。true表示开启数据同步，false表示关闭数据同步。 |
 
 **返回值：**
 
