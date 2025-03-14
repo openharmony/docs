@@ -210,6 +210,17 @@ class MyUIAbility extends UIAbility {
   async onDestroy() {
     console.log('onDestroy');
     // 调用异步函数...
+    /**
+     * Called back before an ability is destroyed.
+     *
+     * @returns { void | Promise<void> } the promise returned by the function.
+     * @syscap SystemCapability.Ability.AbilityRuntime.AbilityCore
+     * @stagemodelonly
+     * @crossplatform
+     * @atomicservice
+     * @since 11
+     */
+    //onDestroy(): void | Promise<void>;
   }
 }
 ```
