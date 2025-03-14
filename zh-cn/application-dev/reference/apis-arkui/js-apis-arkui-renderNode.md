@@ -614,7 +614,7 @@ set backgroundColor(color: number)
 
 | 参数名 | 类型   | 必填 | 说明                   |
 | ------ | ------ | ---- | ---------------------- |
-| color  | number | 是   | 背景颜色值，ARGB格式。 |
+| color  | number | 是   | 背景颜色值，ARGB格式，示例：0xE5E5E5。 |
 
 get backgroundColor(): number
 
