@@ -652,14 +652,14 @@
 
 ## DialogButtonStyle<sup>10+</sup>枚举说明
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称      | 描述                              |
-| --------- | --------------------------------- |
-| DEFAULT   | 白底蓝字（深色主题：白底=黑底）。 |
-| HIGHLIGHT | 蓝底白字。                        |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称      | 值   | 说明                              |
+| --------- | ---- | --------------------------------- |
+| DEFAULT   | 0    | 白底蓝字（深色主题：白底=黑底）。 |
+| HIGHLIGHT | 1    | 蓝底白字。                        |
 
 ## TextHeightAdaptivePolicy<sup>10+</sup>
 
@@ -826,22 +826,24 @@ Nullable\<T> {
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称            | 描述                                     |
-| ------------- | -------------------------------------- |
-| START | 水平方向：位于父组件最左侧，垂直方向：位于父组件最上侧。 |
-| CENTER | 位于父组件居中位置。 |
-| END | 水平方向：位于父组件最右侧，垂直方向：位于父组件最下侧。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称            | 值           | 说明                                     |
+| ------------- | -------------------------------------- | -------------------------------------- |
+| START | 'Start' | 水平方向：位于父组件最左侧，垂直方向：位于父组件最上侧。 |
+| CENTER | 'Center' | 位于父组件居中位置。 |
+| END | 'End' | 水平方向：位于父组件最右侧，垂直方向：位于父组件最下侧。 |
 
 ## OptionWidthMode<sup>11+</sup>枚举说明
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称        | 描述                           |
-| ----------- | ------------------------------ |
-| FIT_CONTENT | 设置该值时，下拉菜单宽度按默认2栅格显示。            |
-| FIT_TRIGGER | 设置下拉菜单继承下拉按钮宽度。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称        | 值       | 说明                           |
+| ----------- | ------------------------------ | ------------------------------ |
+| FIT_CONTENT | 'fit_content' | 设置该值时，下拉菜单宽度按默认2栅格显示。            |
+| FIT_TRIGGER | 'fit_trigger' | 设置下拉菜单继承下拉按钮宽度。 |
 
 ## PixelRoundCalcPolicy<sup>11+</sup>
 
