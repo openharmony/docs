@@ -22,7 +22,7 @@ import { bluetoothManager } from '@kit.MDMKit';
 
 isBluetoothDisabled(admin: Want): boolean
 
-以同步方法查询蓝牙是否被禁用。
+查询蓝牙是否被禁用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
@@ -32,9 +32,9 @@ isBluetoothDisabled(admin: Want): boolean
 
 **参数：**
 
-| 参数名   | 类型                                  | 必填   | 说明      |
-| ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| 参数名 | 类型                                                    | 必填 | 说明                   |
+| ------ | ------------------------------------------------------- | ---- | ---------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 
 **返回值：**
 
@@ -76,7 +76,7 @@ try {
 
 setBluetoothDisabled(admin: Want, disabled: boolean): void
 
-以同步方法设置禁用蓝牙策略。
+设置禁用蓝牙策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
@@ -86,10 +86,10 @@ setBluetoothDisabled(admin: Want, disabled: boolean): void
 
 **参数：**
 
-| 参数名     | 类型                                | 必填 | 说明                                      |
-| ---------- | ----------------------------------- | ---- | ----------------------------------------- |
-| admin      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                            |
-| disabled   | boolean                             | 是   | true表示禁用蓝牙，false表示解除蓝牙禁用。 |
+| 参数名   | 类型                                                    | 必填 | 说明                                      |
+| -------- | ------------------------------------------------------- | ---- | ----------------------------------------- |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                    |
+| disabled | boolean                                                 | 是   | true表示禁用蓝牙，false表示解除蓝牙禁用。 |
 
 **错误码：**
 
