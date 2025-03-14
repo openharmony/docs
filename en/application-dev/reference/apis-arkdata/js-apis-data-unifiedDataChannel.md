@@ -505,7 +505,6 @@ let hyperlink : uniformDataStruct.Hyperlink = {
 let hyperlinkRecord = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.HYPERLINK, hyperlink);
 let hyperlinkValue = hyperlinkRecord.getValue();
 ```
-
 ## Text
 
 Represents the text data. It is a child class of [UnifiedRecord](#unifiedrecord) and a base class of text data. You are advised to use the child class of **Text**, for example, [PlainText](#plaintext), [Hyperlink](#hyperlink), and [HTML](#html), to describe data.
@@ -884,7 +883,6 @@ Defines the data operation performed by the UDMF. It includes two optional param
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
-
 
 | Name     | Type                   | Mandatory| Description                                                        |
 | --------- | ----------------------- | ---- | ------------------------------------------------------------ |

@@ -17,11 +17,11 @@ The Unified Data Management Framework (UDMF) defines standards for data manageme
 
 | Name| Description| 
 | -------- | -------- |
-| [udmf.h](udmf_8h.md) | Defines the APIs, data structs, and enums for accessing the UDMF.<br>File to include: &lt;database/udmf/udmf.h&gt; |
-| [udmf_err_code.h](udmf__err__code_8h.md) | Declares the error codes used in the UDMF.<br>File to include: &lt;database/udmf/udmf_err_code.h&gt; |
-| [udmf_meta.h](udmf__meta_8h.md) | Declares the uniform data types.<br>File to include: &lt;database/udmf/udmf_meta.h&gt; |
-| [uds.h](uds_8h.md) | Defines the APIs and structs related to the uniform data structs.<br>File to include: &lt;database/udmf/uds.h&gt; |
-| [utd.h](utd_8h.md) | Defines APIs and structs related to the Uniform Type Descriptors (UTDs).<br>File to include: &lt;database/udmf/utd.h&gt; |
+| [udmf.h](udmf_8h.md) | Defines the APIs, data structs, and enums for accessing the UDMF. <br/>File to include: &lt;database/udmf/udmf.h&gt; |
+| [udmf_err_code.h](udmf__err__code_8h.md) | Declares the error codes used in the UDMF. <br/>File to include: &lt;database/udmf/udmf_err_code.h&gt; |
+| [udmf_meta.h](udmf__meta_8h.md) | Declares the uniform data types. <br/>File to include: &lt;database/udmf/udmf_meta.h&gt; |
+| [uds.h](uds_8h.md) | Defines the APIs and structs related to the uniform data structs. <br/>File to include: &lt;database/udmf/uds.h&gt; |
+| [utd.h](utd_8h.md) | Defines APIs and structs related to the Uniform Type Descriptors (UTDs). <br/>File to include: &lt;database/udmf/utd.h&gt; |
 
 
 ### Macros
@@ -196,7 +196,7 @@ The Unified Data Management Framework (UDMF) defines standards for data manageme
 | -------- | -------- |
 | [Udmf_Intention](#udmf_intention) { UDMF_INTENTION_DRAG, UDMF_INTENTION_PASTEBOARD } | Enumerates the UDMF data channel types. |
 | [Udmf_ShareOption](#udmf_shareoption-1) { SHARE_OPTIONS_INVALID, SHARE_OPTIONS_IN_APP, SHARE_OPTIONS_CROSS_APP } | Enumerates the scopes of the uniform data to be used on a device. |
-| [Udmf_ErrCode](#udmf_errcode-1) { UDMF_E_OK = 0, UDMF_ERR = 20400000, UDMF_E_INVALID_PARAM = (UDMF_ERR + 1) } | Enumerates the error codes.| 
+| [Udmf_ErrCode](#udmf_errcode-1) { UDMF_E_OK = 0, UDMF_ERR = 20400000, UDMF_E_INVALID_PARAM = (UDMF_ERR + 1) } | Enumerates the error codes.|
 
 
 ### Functions
@@ -253,7 +253,7 @@ The Unified Data Management Framework (UDMF) defines standards for data manageme
 | int [OH_UdmfData_GetPrimaryHtml](#oh_udmfdata_getprimaryhtml) ([OH_UdmfData](#oh_udmfdata) \*data, [OH_UdsHtml](#oh_udshtml) \*html) | Obtains the first [OH_UdsHtml](#oh_udshtml) data from an [OH_UdmfData](#oh_udmfdata) instance.| 
 | int [OH_UdmfData_GetRecordCount](#oh_udmfdata_getrecordcount) ([OH_UdmfData](#oh_udmfdata) \*data) | Obtains the number of data records contained in an [OH_UdmfData](#oh_udmfdata) instance.| 
 | [OH_UdmfRecord](#oh_udmfrecord) \* [OH_UdmfData_GetRecord](#oh_udmfdata_getrecord) ([OH_UdmfData](#oh_udmfdata) \*data, unsigned int index) | Obtains the specified data record from an [OH_UdmfData](#oh_udmfdata) instance.| 
-| bool [OH_UdmfData_IsLocal](#oh_udmfdata_islocal) ([OH_UdmfData](#oh_udmfdata) \*data) | Checks whether an [OH_UdmfData](#oh_udmfdata) instance is from the local device.|
+| bool [OH_UdmfData_IsLocal](#oh_udmfdata_islocal) ([OH_UdmfData](#oh_udmfdata) \*data) | Checks whether an [OH_UdmfData](#oh_udmfdata) instance is from the local device.| 
 | [OH_UdmfProperty](#oh_udmfproperty) \* [OH_UdmfProperty_Create](#oh_udmfproperty_create) ([OH_UdmfData](#oh_udmfdata) \*unifiedData) | Creates an [OH_UdmfProperty](#oh_udmfproperty) instance and a pointer to it. If this pointer is no longer required, use [OH_UdmfProperty_Destroy](#oh_udmfproperty_destroy) to destroy it. Otherwise, memory leaks may occur.| 
 | void [OH_UdmfProperty_Destroy](#oh_udmfproperty_destroy) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis) | Destroys an [OH_UdmfProperty](#oh_udmfproperty) instance.| 
 | const char \* [OH_UdmfProperty_GetTag](#oh_udmfproperty_gettag) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis) | Obtains the custom tag value from an [OH_UdmfProperty](#oh_udmfproperty) instance.| 
@@ -2466,7 +2466,7 @@ Adds data of the [OH_UdsContentForm](#oh_udscontentform) type to an [OH_UdmfReco
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -2498,7 +2498,7 @@ Obtains data of the [OH_UdsContentForm](#oh_udscontentform) type from an [OH_Udm
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -2575,7 +2575,7 @@ Obtains the application icon data from an [OH_UdsContentForm](#oh_udscontentform
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in. Returns **UDMF_ERR** if an internal system error occurs.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in. <br>Returns **UDMF_ERR** if an internal system error occurs.
 
 **See**
 
@@ -2687,7 +2687,7 @@ Obtains image data from an [OH_UdsContentForm](#oh_udscontentform) instance.
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in. Returns **UDMF_ERR** if an internal system error occurs.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in. <br>Returns **UDMF_ERR** if an internal system error occurs.
 
 **See**
 
@@ -2772,7 +2772,7 @@ Sets the application icon data for an [OH_UdsContentForm](#oh_udscontentform) in
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -2802,7 +2802,7 @@ Sets the application name for an [OH_UdsContentForm](#oh_udscontentform) instanc
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -2832,7 +2832,7 @@ Sets the description for an [OH_UdsContentForm](#oh_udscontentform) instance.
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -2862,7 +2862,7 @@ Sets the hyperlink data for an [OH_UdsContentForm](#oh_udscontentform) instance.
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -2893,7 +2893,7 @@ Sets the image data for an [OH_UdsContentForm](#oh_udscontentform) instance.
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -2923,7 +2923,7 @@ Sets the title for an [OH_UdsContentForm](#oh_udscontentform) instance.
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -2954,7 +2954,7 @@ Obtains an [OH_UdmfData](#oh_udmfdata) instance from the UDMF database.
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -2988,7 +2988,7 @@ Sets an [OH_UdmfData](#oh_udmfdata) instance in the UDMF database.
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -3020,7 +3020,7 @@ Adds an [OH_UdmfRecord](#oh_udmfrecord) to an [OH_UdmfData](#oh_udmfdata) instan
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -3094,7 +3094,7 @@ Obtains the first [OH_UdsHtml](#oh_udshtml) data from an [OH_UdmfData](#oh_udmfd
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -3126,7 +3126,7 @@ Obtains the first [OH_UdsPlainText](#oh_udsplaintext) data from an [OH_UdmfData]
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -3509,7 +3509,7 @@ Sets the extra integer parameter for an [OH_UdmfProperty](#oh_udmfproperty) inst
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -3540,7 +3540,7 @@ Sets the extra string parameter for an [OH_UdmfProperty](#oh_udmfproperty) insta
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -3570,7 +3570,7 @@ Sets the share option for an [OH_UdmfProperty](#oh_udmfproperty) instance.
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -3602,7 +3602,7 @@ Sets the tag value for an [OH_UdmfProperty](#oh_udmfproperty) instance.
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -3632,7 +3632,7 @@ Adds data of the [OH_UdsAppItem](#oh_udsappitem) type to an [OH_UdmfRecord](#oh_
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -3665,7 +3665,7 @@ Adds a data record of the [OH_UdsArrayBuffer](#oh_udsarraybuffer) type to an [OH
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -3697,7 +3697,7 @@ Adds a data record of the [OH_UdsFileUri](#oh_udsfileuri) type to an [OH_UdmfRec
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -3731,7 +3731,7 @@ Adds customized uniform data to an [OH_UdmfRecord](#oh_udmfrecord) instance.
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -3761,7 +3761,7 @@ Adds data of the [OH_UdsHtml](#oh_udshtml) type to an [OH_UdmfRecord](#oh_udmfre
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -3793,7 +3793,7 @@ Adds data of the hyperlink type [OH_UdsHyperlink](#oh_udshyperlink) type to an [
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -3825,7 +3825,7 @@ Adds a data record of the [OH_UdsPixelMap](#oh_udspixelmap) type to an [OH_UdmfR
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -3857,7 +3857,7 @@ Adds data of the [OH_UdsPlainText](#oh_udsplaintext) type to an [OH_UdmfRecord](
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -3933,7 +3933,7 @@ Obtains [OH_UdsAppItem](#oh_udsappitem) data from an [OH_UdmfRecord](#oh_udmfrec
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -3966,7 +3966,7 @@ Obtains the [OH_UdsArrayBuffer](#oh_udsarraybuffer) data from an [OH_UdmfRecord]
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -3998,7 +3998,7 @@ Obtains the [OH_UdsFileUri](#oh_udsfileuri) data from an [OH_UdmfRecord](#oh_udm
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -4032,7 +4032,7 @@ Obtains the data of the specified type in an [OH_UdmfRecord](#oh_udmfrecord) ins
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -4062,7 +4062,7 @@ Obtains [OH_UdsHtml](#oh_udshtml) data from an [OH_UdmfRecord](#oh_udmfrecord) i
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -4094,7 +4094,7 @@ Obtains [OH_UdsHyperlink](#oh_udshyperlink) data from an [OH_UdmfRecord](#oh_udm
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -4126,7 +4126,7 @@ Obtains the [OH_UdsPixelMap](#oh_udspixelmap) data from an [OH_UdmfRecord](#oh_u
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -4158,7 +4158,7 @@ Obtains [OH_UdsPlainText](#oh_udsplaintext) data from an [OH_UdmfRecord](#oh_udm
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -4220,7 +4220,7 @@ Sets the [OH_UdmfRecordProvider](#oh_udmfrecordprovider) in an [OH_UdmfRecord](#
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -4272,7 +4272,7 @@ Destroys an [OH_UdmfRecordProvider](#oh_udmfrecordprovider) instance.
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -4304,7 +4304,7 @@ Sets a callback for an **OH_UdmfRecordProvider** instance to provide data.
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -4569,7 +4569,7 @@ Sets the ability name for an [OH_UdsAppItem](#oh_udsappitem) instance.
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -4597,7 +4597,7 @@ Sets the bundle name for an [OH_UdsAppItem](#oh_udsappitem) instance.
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -4625,7 +4625,7 @@ Sets the application icon ID for an [OH_UdsAppItem](#oh_udsappitem) instance.
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -4653,7 +4653,7 @@ Sets the application ID for an [OH_UdsAppItem](#oh_udsappitem) instance.
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -4681,7 +4681,7 @@ Sets the application label ID for an [OH_UdsAppItem](#oh_udsappitem) instance.
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -4709,7 +4709,7 @@ Sets the application name for an [OH_UdsAppItem](#oh_udsappitem) instance.
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -4757,7 +4757,7 @@ Destroys an [OH_UdsArrayBuffer](#oh_udsarraybuffer) instance.
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -4788,7 +4788,7 @@ Obtains the custom ArrayBuffer data from an [OH_UdsArrayBuffer](#oh_udsarraybuff
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -4819,7 +4819,7 @@ Sets an [OH_UdsArrayBuffer](#oh_udsarraybuffer) instance.
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -4974,7 +4974,7 @@ Sets the file type for an [OH_UdsFileUri](#oh_udsfileuri) instance.
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -5004,7 +5004,7 @@ Sets the URI information for an [OH_UdsFileUri](#oh_udsfileuri) instance.
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -5159,7 +5159,7 @@ Sets the HTML content for an [OH_UdsHtml](#oh_udshtml) instance.
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -5187,7 +5187,7 @@ Sets the plaintext for an [OH_UdsHtml](#oh_udshtml) instance.
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -5340,7 +5340,7 @@ Sets the description for an [OH_UdsHyperlink](#oh_udshyperlink) instance.
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -5368,7 +5368,7 @@ Sets the URL for an [OH_UdsHyperlink](#oh_udshyperlink) instance.
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -5493,7 +5493,7 @@ Sets the pixel map content for an [OH_UdsPixelMap](#oh_udspixelmap) instance.
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -5650,7 +5650,7 @@ Sets the abstract for an [OH_UdsPlainText](#oh_udsplaintext) instance.
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -5678,7 +5678,7 @@ Sets the plaintext content for an [OH_UdsPlainText](#oh_udsplaintext) instance.
 
 **Returns**
 
-Returns a [Udmf_ErrCode](#udmf_errcode). Returns **UDMF_E_OK** if the operation is successful. Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+Returns a [Udmf_ErrCode](#udmf_errcode). <br>Returns **UDMF_E_OK** if the operation is successful. <br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
