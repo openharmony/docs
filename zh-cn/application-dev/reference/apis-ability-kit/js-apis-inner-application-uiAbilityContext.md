@@ -1852,7 +1852,8 @@ export default class EntryAbility extends UIAbility {
     };
     let options: StartOptions = {
       displayId: 0,
-      processMode: contextConstant.ProcessMode.NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM
+      processMode: contextConstant.ProcessMode.NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM,
+      startupVisibility: contextConstant.StartupVisibility.STARTUP_HIDE
     };
 
     try {
@@ -1949,7 +1950,8 @@ export default class EntryAbility extends UIAbility {
     };
     let options: StartOptions = {
       displayId: 0,
-      processMode: contextConstant.ProcessMode.NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM
+      processMode: contextConstant.ProcessMode.NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM,
+      startupVisibility: contextConstant.StartupVisibility.STARTUP_SHOW
     };
 
     try {

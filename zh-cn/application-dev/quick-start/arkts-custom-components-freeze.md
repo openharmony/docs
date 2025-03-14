@@ -625,7 +625,7 @@ struct Page {
 如下面例子：
 1. 滑动到index为14的位置，当前屏幕上可见区域内有15个`ChildComponent`。
 2. 在滑动过程中：
-    - 列表上端的`ChildComponent`滑出可视区域外，此时先进入LazyForEach的缓存区域内，被设置inactive。在滑出LazyForEach区域外后，因为标记了组件复用，所以并不会被析构，会进入复用池，此时再次被设置inactive。
+    - 列表上端的`ChildComponent`滑出可视区域外，此时先进入LazyForEach的缓存区域内，被设置inactive。在滑出LazyForEach缓存区域外后，因为标记了组件复用，所以并不会被析构，而是会进入复用池，此时再次被设置inactive。
     - 列表下端LazyForEach的缓存节点会进入List范围内，此时会试图请求创建新的节点进入LazyForEach的缓存，发现有可复用的节点时，从复用池中拿出已有节点，触发aboutToReuse生命周期回调，此时因为节点进入的是LazyForEach的缓存区域，所以其状态依旧是inactive。
 3. 点击`change desc`，触发`Page`的成员变量`desc`的变化：
     - `desc`是\@State装饰的，其变化会通知给其子组件`ChildComponent`\@Link装饰的`desc`。

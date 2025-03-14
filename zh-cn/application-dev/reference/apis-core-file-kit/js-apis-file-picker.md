@@ -25,7 +25,7 @@ constructor(context: Context)
 
 创建DocumentViewPicker对象，推荐使用该构造函数，获取context参考[getContext](../apis-arkui/js-apis-getContext.md)。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -68,7 +68,7 @@ constructor()
 
 创建DocumentViewPicker对象，不推荐使用该构造函数，会出现概率性失败问题。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -135,7 +135,7 @@ select(option?: DocumentSelectOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 **注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -181,7 +181,7 @@ select(option: DocumentSelectOptions, callback: AsyncCallback&lt;Array&lt;string
 
 **注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -224,7 +224,7 @@ select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 **注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -265,7 +265,7 @@ save(option?: DocumentSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 **注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -312,7 +312,7 @@ save(option: DocumentSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;
 
 **注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -356,7 +356,7 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 **注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -401,7 +401,7 @@ constructor(context: Context)
 
 创建AudioViewPicker对象，推荐使用该构造函数，获取context参考[getContext](../apis-arkui/js-apis-getContext.md)。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -443,7 +443,7 @@ constructor()
 
 创建AudioViewPicker对象，不推荐使用该构造函数，会出现概率性失败问题。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -461,7 +461,7 @@ select(option?: AudioSelectOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 **注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[媒体类uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri介绍)。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -587,7 +587,7 @@ save(option?: AudioSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 **注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -713,7 +713,7 @@ async function example18(context: common.Context) { // 需确保 context 由 UIA
 
 仅支持2in1设备。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：**SystemCapability.FileManagement.UserFileService.FolderSelection
 
@@ -727,7 +727,7 @@ async function example18(context: common.Context) { // 需确保 context 由 UIA
 
 文档选择选项。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：**SystemCapability.FileManagement.UserFileService
 
@@ -735,7 +735,7 @@ async function example18(context: common.Context) { // 需确保 context 由 UIA
 | :---------------------- |---------------------------------------------| ---- |------------------------------------------|
 | maxSelectNumber<sup>10+</sup>       | number                                      | 否   | 选择文件最大个数，上限500，有效值范围1-500（选择目录仅对具有该系统能力的设备开放。且目录选择的最大个数为1）。默认值是1。**系统能力：**SystemCapability.FileManagement.UserFileService  |
 | defaultFilePathUri<sup>10+</sup>    | string                                      | 否   | 指定选择的文件或者目录路径。                            |
-| fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt;                         | 否   | 选择文件的后缀类型，传入字符串数组，每一项代表一个后缀选项，每一项内部用"\|\"分为两部分，第一部分为描述，第二部分为过滤后缀。没有"\|\"则没有描述，该项整体是一个过滤后缀。每项过滤后缀可以存在多个后缀名，则每一个后缀名之间用英文逗号进行分隔，传入数组长度不能超过100。仅对具有该系统能力的设备开放。默认全部过滤，即显示所有文件。**系统能力：**SystemCapability.FileManagement.UserFileService   |
+| fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt;                         | 否   | 选择文件的后缀类型，传入字符串数组，每一项代表一个后缀选项，每一项内部用"\|\"分为两部分，第一部分为描述，第二部分为过滤后缀。没有"\|\"则没有描述，该项整体是一个过滤后缀。每项过滤后缀可以存在多个后缀名，则每一个后缀名之间用英文逗号进行分隔，传入数组长度不能超过100。仅对具有该系统能力的设备开放。默认不过滤，即显示所有文件。**系统能力：**SystemCapability.FileManagement.UserFileService   |
 | selectMode<sup>11+</sup>         | [DocumentSelectMode](#documentselectmode11) | 否   | 支持选择的资源类型。比如：文件、文件夹和二者混合，仅对具有该系统能力的设备开放，默认值是文件类型。仅支持2in1设备。**系统能力：**SystemCapability.FileManagement.UserFileService.FolderSelection  |
 | authMode<sup>12+</sup>    | boolean                              | 否   | 拉起授权picker，默认为false（非授权模式）。当authMode为true时为授权模式，defaultFilePathUri必填，表明待授权uri。仅支持2in1设备。**系统能力：**SystemCapability.FileManagement.UserFileService.FolderSelection  |     
 
@@ -743,7 +743,7 @@ async function example18(context: common.Context) { // 需确保 context 由 UIA
 
 枚举，picker选择的文档类型。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：**SystemCapability.FileManagement.UserFileService
 
@@ -756,7 +756,7 @@ async function example18(context: common.Context) { // 需确保 context 由 UIA
 
 文档保存选项。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：**SystemCapability.FileManagement.UserFileService
 
@@ -771,7 +771,7 @@ async function example18(context: common.Context) { // 需确保 context 由 UIA
 
 音频选择选项。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：**SystemCapability.FileManagement.UserFileService
 | 名称                    | 类型                                          | 必填 | 说明                                       |
@@ -782,7 +782,7 @@ async function example18(context: common.Context) { // 需确保 context 由 UIA
 
 音频的保存选项。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：**SystemCapability.FileManagement.UserFileService
 
@@ -840,7 +840,7 @@ struct Index {
 
 constructor()
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -864,7 +864,7 @@ select(option?: PhotoSelectOptions): Promise&lt;PhotoSelectResult&gt;
 
 **注意**：此接口返回的PhotoSelectResult对象中的photoUris只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。
 
-**原子化服务API：**从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -916,7 +916,7 @@ select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&
 
 **注意**：此接口返回的PhotoSelectResult对象中的photoUris只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。
 
-**原子化服务API：**从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -965,7 +965,7 @@ select(callback: AsyncCallback&lt;PhotoSelectResult&gt;): void
 
 **注意**：此接口返回的PhotoSelectResult对象中的photoUris只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。
 
-**原子化服务API：**从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -1144,7 +1144,7 @@ async function example06(context: common.Context) { // 需确保 context 由 UIA
 >
 > 从API version 9开始支持，从API version 12开始废弃。建议使用[photoAccessHelper.PhotoViewMIMETypes](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoviewmimetypes)替代。
 
-**原子化服务API：**从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**SystemCapability.FileManagement.UserFileService
 
@@ -1162,7 +1162,7 @@ async function example06(context: common.Context) { // 需确保 context 由 UIA
 >
 > 从API version 9开始支持，从API version 12开始废弃。建议使用[photoAccessHelper.PhotoSelectOptions](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoselectoptions)替代。
 
-**原子化服务API：**从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**SystemCapability.FileManagement.UserFileService
 
@@ -1179,7 +1179,7 @@ async function example06(context: common.Context) { // 需确保 context 由 UIA
 >
 > 从API version 9开始支持，从API version 12开始废弃。建议使用[photoAccessHelper.PhotoSelectResult](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoselectresult)替代。
 
-**原子化服务API：**从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**SystemCapability.FileManagement.UserFileService
 
