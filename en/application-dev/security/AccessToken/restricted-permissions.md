@@ -28,6 +28,30 @@ Modify the **"bundle-info"** &gt; **"apl"** field in the file.
 
 ## Restricted Permissions
 
+### ohos.permission.kernel.ALLOW_USER_JITFORT_INTERFACE
+
+Allows an application to call the JITFort API to update contents within memory marked as MAP_FORT.
+
+<!--RP12--><!--RP12End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 16
+
+### ohos.permission.kernel.DISABLE_GOTPLT_RO_PROTECTION
+
+Allows an application to disable the read-only protection on the .got.plt.
+
+<!--RP22--><!--RP22End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 17
+
 ### ohos.permission.SYSTEM_FLOAT_WINDOW
 
 Allows an application to be displayed in a floating window on top of other applications.
