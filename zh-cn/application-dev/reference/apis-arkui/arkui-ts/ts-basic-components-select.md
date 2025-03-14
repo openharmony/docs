@@ -779,8 +779,8 @@ avoidance(mode: AvoidanceMode)
 
 | 名称 | 类型                                         | 必填 | 说明                                                         |
 | ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 下拉菜单项的文本内容。 |
-| icon  | [ResourceStr](ts-types.md#resourcestr) | 否   | 下拉菜单项的图片内容。 |
+| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 下拉菜单项的文本内容。<br/>**说明**：当文本字符的长度超过菜单项文本区域的宽度时，文本将会被截断。 |
+| icon  | [ResourceStr](ts-types.md#resourcestr) | 否   | 下拉菜单项的图片内容。<br/>**说明**：string格式可用于加载网络图片和本地图片。 |
 | symbolIcon<sup>12+</sup>  | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 下拉选项Symbol图片内容。|
 | selected  | boolean | 是   | 下拉菜单项是否被选中。<br/>默认值：false |
 | index  | number | 是   | 下拉菜单项的索引，索引值从0开始。 |
