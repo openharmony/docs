@@ -21,18 +21,18 @@ import { cloudSync } from '@kit.CoreFileKit';
 >
 > 以下同步状态发生变更时，如果应用注册了同步过程事件监听，则通过回调通知应用。
 
-**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+**系统能力**： SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 **系统接口**：该接口为系统接口。
 
 | 名称 |  值|  说明 |
 | ----- |  ---- |  ---- |
-| UPLOADING<sup>12+</sup> |  0 | 上行同步中。 |
-| UPLOAD_FAILED<sup>12+</sup> |  1 | 上行同步失败。 |
-| DOWNLOADING<sup>12+</sup> |  2 | 下行同步中。 |
-| DOWNLOAD_FAILED<sup>12+</sup> |  3 | 下行同步失败。 |
-| COMPLETED<sup>12+</sup> |  4 | 同步成功。 |
-| STOPPED<sup>12+</sup> |  5 | 同步已停止。 |
+| UPLOADING |  0 | 上行同步中。 |
+| UPLOAD_FAILED |  1 | 上行同步失败。 |
+| DOWNLOADING |  2 | 下行同步中。 |
+| DOWNLOAD_FAILED |  3 | 下行同步失败。 |
+| COMPLETED |  4 | 同步成功。 |
+| STOPPED |  5 | 同步已停止。 |
 
 ## ErrorType<sup>12+</sup>
 
@@ -49,27 +49,27 @@ import { cloudSync } from '@kit.CoreFileKit';
 
 | 名称 |  值|  说明 |
 | ----- |  ---- |  ---- |
-| NO_ERROR<sup>12+</sup> |  0 | 没有错误。 |
-| NETWORK_UNAVAILABLE<sup>12+</sup> |  1 | 所有网络不可用。 |
-| WIFI_UNAVAILABLE<sup>12+</sup> |  2 | WIFI不可用。 |
-| BATTERY_LEVEL_LOW<sup>12+</sup> |  3 | 低电量（低于10%）。 |
-| BATTERY_LEVEL_WARNING<sup>12+</sup> |  4 | 告警电量（低于15%）。 |
-| CLOUD_STORAGE_FULL<sup>12+</sup> |  5 | 云端空间不足。 |
-| LOCAL_STORAGE_FULL<sup>12+</sup> |  6 | 本地空间不足。 |
-| DEVICE_TEMPERATURE_TOO_HIGH<sup>12+</sup> |  7 | 设备温度过高。 |
+| NO_ERROR |  0 | 没有错误。 |
+| NETWORK_UNAVAILABLE |  1 | 所有网络不可用。 |
+| WIFI_UNAVAILABLE |  2 | WIFI不可用。 |
+| BATTERY_LEVEL_LOW |  3 | 低电量（低于10%）。 |
+| BATTERY_LEVEL_WARNING |  4 | 告警电量（低于15%）。 |
+| CLOUD_STORAGE_FULL |  5 | 云端空间不足。 |
+| LOCAL_STORAGE_FULL |  6 | 本地空间不足。 |
+| DEVICE_TEMPERATURE_TOO_HIGH |  7 | 设备温度过高。 |
 
 ## SyncProgress<sup>12+</sup>
 
 端云同步过程。
 
-**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+**系统能力**： SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 **系统接口**：该接口为系统接口。
 
 | 名称     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| state<sup>12+</sup> | [SyncState](#syncstate12) | 是   | 枚举值，端云同步状态。|
-| error<sup>12+</sup> | [ErrorType](#errortype12) | 是   | 枚举值，同步失败错误类型。|
+| state | [SyncState](#syncstate12) | 是   | 枚举值，端云同步状态。|
+| error | [ErrorType](#errortype12) | 是   | 枚举值，同步失败错误类型。|
 
 ## GallerySync
 
