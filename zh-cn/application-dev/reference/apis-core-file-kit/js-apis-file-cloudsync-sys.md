@@ -56,7 +56,7 @@ import { cloudSync } from '@kit.CoreFileKit';
 | BATTERY_LEVEL_WARNING |  4 | 告警电量（低于15%） |
 | CLOUD_STORAGE_FULL |  5 | 云端空间不足 |
 | LOCAL_STORAGE_FULL |  6 | 本地空间不足 |
-| DEVICE_TEMPERATURE_TOO_HIGH<sup>12+</sup> |  7 | 设备温度过高 |
+| DEVICE_TEMPERATURE_TOO_HIGH |  7 | 设备温度过高 |
 
 ## SyncProgress<sup>12+<sup>
 
