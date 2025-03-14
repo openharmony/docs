@@ -157,7 +157,7 @@ displayClass = display.getDefaultDisplaySync();
    ret = display.isFoldable();
    ```
 
-2. 若当前设备为折叠设备，可以通过display.on('foldStatusChange')开启折叠设备折叠状态变化的监听；可通过display.on('foldStatusChange')关闭对应的监听。
+2. 若当前设备为折叠设备，可以通过display.on('foldStatusChange')开启折叠设备折叠状态变化的监听；可通过display.off('foldStatusChange')关闭对应的监听。
 
    ```ts
    import { Callback } from '@kit.BasicServicesKit';

@@ -89,7 +89,7 @@ loop为false时，自动轮播到最后一页时停止轮播。手势切换后�
 | ------ | ------- | ---- | -------------------------------------- |
 | value  | boolean | 是   | 子组件是否自动播放。<br/>默认值：false |
 
-### autoPlay<sup>16+</sup>
+### autoPlay<sup>18+</sup>
 
 autoPlay(autoPlay: boolean, options: AutoPlayOptions)
 
@@ -97,9 +97,9 @@ autoPlay(autoPlay: boolean, options: AutoPlayOptions)
 
 当[loop](#loop)设置为false时，自动轮播将在到达最后一页时停止。在通过手势切换且未处于最后一页的情况下，轮播将继续进行。Swiper在不可见时，轮播也将停止。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -108,7 +108,7 @@ autoPlay(autoPlay: boolean, options: AutoPlayOptions)
 | 参数名 | 类型    | 必填 | 说明                                   |
 | ------ | ------- | ---- | -------------------------------------- |
 | autoPlay  | boolean | 是   | 子组件是否自动播放。<br/>默认值：false |
-| options  | [AutoPlayOptions](#autoplayoptions16对象说明)&nbsp; | 是   | 配置手指或者鼠标等按下屏幕时子组件是否停止自动播放。当stopWhenTouched设置为true时，多指按下场景中任意一个手指抬起后，将自动继续播放。<br/>默认值：{ stopWhenTouched: true }，停止自动播放。 |
+| options  | [AutoPlayOptions](#autoplayoptions18对象说明)&nbsp; | 是   | 配置手指或者鼠标等按下屏幕时子组件是否停止自动播放。当stopWhenTouched设置为true时，多指按下场景中任意一个手指抬起后，将自动继续播放。<br/>默认值：{ stopWhenTouched: true }，停止自动播放。 |
 
 ### interval
 
@@ -796,15 +796,15 @@ bottom(value: Length): T
 | value  | [Length](ts-types.md#length) | 是   | 设置导航点底部相对于Swiper的位置。<br/>未设置top和bottom时，进行自适应大小布局，按照指示器本身大小和Swiper的大小，在交叉轴方向上，位于底部，效果与设置bottom=0一致。<br/>设置为0时：按照0位置布局计算。<br/>优先级：低于top属性。<br/>取值范围：[0,Swiper高度-导航点区域高度]，超出该范围时，取最近的边界值。 |
 
 
-### bottom<sup>16+</sup>
+### bottom<sup>18+</sup>
 
  bottom(bottom: LengthMetrics, ignoreSize: boolean): T
 
 导航点底部相对于Swiper的位置，并可通过ignoreSize属性忽略导航点大小。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1074,15 +1074,15 @@ maxDisplayCount(maxDisplayCount: number): DotIndicator
 | ------------------------------- | ------------ |
 | [DotIndicator](#dotindicator10) | 圆点指示器。 |
 
-### space<sup>16+</sup>
+### space<sup>18+</sup>
 
 space(space: LengthMetrics): DotIndicator
 
 设置Swiper圆点导航点间距，不支持设置百分比。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1271,10 +1271,10 @@ DigitIndicator的构造函数。
 | ------- | -------------------- | ------ | ------------------------------------ |
 | minSize | [VP](ts-types.md#vp10) | 是     | 设置元素显示最小宽度。<br/>默认值：0 |
 
-## AutoPlayOptions<sup>16+</sup>对象说明
+## AutoPlayOptions<sup>18+</sup>对象说明
 自动播放属性。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1408,15 +1408,15 @@ onContentDidScroll(handler: ContentDidScrollCallback)
 | ------ | ---- | ---- | ---- |
 | handler | [ContentDidScrollCallback](#contentdidscrollcallback12) | 是 | Swiper滑动时触发的回调。 |
 
-### onSelected<sup>16+</sup>
+### onSelected<sup>18+</sup>
 
 onSelected(event: Callback\<number>)
 
 当选中元素改变时触发该回调，返回值为当前选中的元素的索引值。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

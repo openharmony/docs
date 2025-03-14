@@ -14,16 +14,16 @@
 ```json
 {
     "module": {
-        // other declared attributes.
+        //其他已声明的属性
 
         "abilities": [
             {
                 "skills": [
                     {
                         "actions": [
-                            // other declared actions,
+                            // 其它已经声明的actions
 
-                            // add the nfc tag action
+                            // 添加nfc tag的 action
                             "ohos.nfc.tag.action.TAG_FOUND"
                         ],
                         "uris": [
@@ -33,8 +33,8 @@
                             {
                                 "type":"tag-tech/IsoDep"
                             }
-                            // Add other technology if neccessary,
-                            // such as: NfcB/NfcF/NfcV/Ndef/MifareClassic/MifareUL/NdefFormatable
+                            // 有必要可添加其他技术
+                            // 比如: NfcB/NfcF/NfcV/Ndef/MifareClassic/MifareUL/NdefFormatable
                         ]
                     }
                 ]
@@ -71,9 +71,9 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want : Want, launchParam: AbilityConstant.LaunchParam) {
-        // add other code here...
+        // 添加其他功能代码...
 
-        // want is initialized by nfc service, contains tag info for this found tag
+        // want由nfc服务初始化，包含找到的tag
         let tagInfo : tag.TagInfo | null = null;
         try {
             tagInfo = tag.getTagInfo(want);
@@ -85,7 +85,7 @@ export default class EntryAbility extends UIAbility {
             return;
         }
 
-        // get the supported technologies for this found tag.
+        // 获取发现标签的支持技术
         let isNfcATag =  false;
         let isIsoDepTag =  false;
         for (let i = 0; i < tagInfo.technology.length; i++) {
@@ -95,10 +95,10 @@ export default class EntryAbility extends UIAbility {
             if (tagInfo.technology[i] == tag.ISO_DEP) {
                 isIsoDepTag = true;
             }
-        // also check for technology: tag.NFC_B/NFC_F/NFC_V/NDEF/MIFARE_CLASSIC/MIFARE_ULTRALIGHT/NDEF_FORMATABLE
+        // 检查其他技术类型: tag.NFC_B/NFC_F/NFC_V/NDEF/MIFARE_CLASSIC/MIFARE_ULTRALIGHT/NDEF_FORMATABLE
         }
 
-        // use NfcA APIs to access the found tag.
+        // 使用 NfcA APIs 去访问发现的标签
         if (isNfcATag) {
             let nfcA : tag.NfcATag | null = null;
             try {
@@ -106,10 +106,10 @@ export default class EntryAbility extends UIAbility {
             } catch (error) {
                 console.error("tag.getNfcA catch error: " + error);
             }
-            // other code to read or write this found tag.
+            // 其他代码：对发现的标签执行读取或写入
         }
 
-        // use getIsoDep APIs to access the found tag.
+        // 使用 IsoDep APIs 去访问发现的标签
         if (isIsoDepTag) {
             let isoDep : tag.IsoDepTag | null = null;
             try {
@@ -117,9 +117,9 @@ export default class EntryAbility extends UIAbility {
             } catch (error) {
                 console.error("tag.getIsoDep catch error: " + error);
             }
-            // other code to read or write this found tag.
+            // 其他代码：对发现的标签执行读取或写入
         }
-        // use the same code to handle for "NfcA/NfcB/NfcF/NfcV/Ndef/MifareClassic/MifareUL/NdefFormatable".
+        // 使用相同的代码来处理 "NfcA/NfcB/NfcF/NfcV/Ndef/MifareClassic/MifareUL/NdefFormatable".
     }
 }
 ```
@@ -506,9 +506,9 @@ getNdefFormatable(tagInfo: [TagInfo](#taginfo)): [NdefFormatableTag](js-apis-nfc
 | 801  | Capability not supported. |
 | 3100201  | The tag running state is abnormal in the service. |
 
-## tag.getBarcodeTag<sup>16+</sup>
+## tag.getBarcodeTag<sup>18+</sup>
 
-getBarcodeTag(taginfo: [TagInfo](#taginfo)): [BartcodeTag](js-apis-nfctech.md#barcodetag16)
+getBarcodeTag(taginfo: [TagInfo](#taginfo)): [BartcodeTag](js-apis-nfctech.md#barcodetag18)
 
 获取BarcodeTag类型Tag对象，通过该对象可访问BarcodeTag技术类型的Tag。
 
@@ -516,7 +516,7 @@ getBarcodeTag(taginfo: [TagInfo](#taginfo)): [BartcodeTag](js-apis-nfctech.md#ba
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **参数：**
 | 参数名  | 类型                | 必填 | 说明                                                          |
@@ -527,7 +527,7 @@ getBarcodeTag(taginfo: [TagInfo](#taginfo)): [BartcodeTag](js-apis-nfctech.md#ba
 
 | 类型                        | 说明                 |
 | ------------------------- | ------------------ |
-| [BartcodeTag](js-apis-nfctech.md#barcodetag16) | BarcodeTag类型Tag对象。 |
+| [BartcodeTag](js-apis-nfctech.md#barcodetag18) | BarcodeTag类型Tag对象。 |
 
 **错误码：**
 
@@ -645,7 +645,7 @@ import { tag } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { AbilityConstant, UIAbility, Want, bundleManager } from '@kit.AbilityKit';
 
-let discTech : number[] = [tag.NFC_A, tag.NFC_B]; // replace with the tech(s) that is needed by foreground ability
+let discTech : number[] = [tag.NFC_A, tag.NFC_B]; // 用前台ability时所需要的技术代替
 let elementName : bundleManager.ElementName;
 function foregroundCb(err : BusinessError, tagInfo : tag.TagInfo) {
     if (!err) {
@@ -654,7 +654,7 @@ function foregroundCb(err : BusinessError, tagInfo : tag.TagInfo) {
         console.log("foreground callback err: " + err.message);
         return;
     }
-  // other Operations of taginfo
+  // taginfo的其他操作
 }
 
 export default class MainAbility extends UIAbility {
@@ -694,7 +694,7 @@ export default class MainAbility extends UIAbility {
         }
     }
 
-  // override other lifecycle functions
+  // ability生命周期内的其他功能
 }
 ```
 
@@ -774,7 +774,7 @@ import { tag } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { AbilityConstant, UIAbility, Want, bundleManager } from '@kit.AbilityKit';
 
-let discTech : number[] = [tag.NFC_A, tag.NFC_B]; // replace with the tech(s) that is needed by foreground ability
+let discTech : number[] = [tag.NFC_A, tag.NFC_B]; // 用前台ability时所需要的技术代替
 let elementName : bundleManager.ElementName;
 
 function readerModeCb(err : BusinessError, tagInfo : tag.TagInfo) {
@@ -784,7 +784,7 @@ function readerModeCb(err : BusinessError, tagInfo : tag.TagInfo) {
         console.error("offCallback err: " + err.message);
         return;
     }
-  // other Operations of taginfo
+  // taginfo的其他操作
 }
 
 export default class MainAbility extends UIAbility {
@@ -824,7 +824,7 @@ export default class MainAbility extends UIAbility {
         }
     }
 
-  // override other lifecycle functions
+  // ability生命周期内的其他功能
 }
 ```
 
@@ -864,7 +864,7 @@ makeUriRecord(uri: string): NdefRecord
 import { tag } from '@kit.ConnectivityKit';
 
 try {
-    let uri = "https://www.example.com"; // change it to be correct.
+    let uri = "https://www.example.com"; // 修改为正确可用的uri
     let ndefRecord : tag.NdefRecord = tag.ndef.makeUriRecord(uri);
     if (ndefRecord != undefined) {
         console.log("ndefMessage makeUriRecord rtdType: " + ndefRecord.rtdType);
@@ -914,8 +914,8 @@ makeTextRecord(text: string, locale: string): NdefRecord
 import { tag } from '@kit.ConnectivityKit';
 
 try {
-    let text = "Hello World";   // change it to be correct.
-    let locale = "en"; // change it to be correct.
+    let text = "Hello World";   // 修改为想要写入的文本
+    let locale = "en"; // 修改为预期的编码格式
     let ndefRecord : tag.NdefRecord = tag.ndef.makeTextRecord(text, locale);
     if (ndefRecord != undefined) {
         console.log("ndefMessage makeTextRecord rtdType: " + ndefRecord.rtdType);
@@ -928,7 +928,7 @@ try {
 }
 ```
 
-## tag.ndef.makeApplicationRecord<sup>16+</sup>
+## tag.ndef.makeApplicationRecord<sup>18+</sup>
 
 makeApplicationRecord(bundleName: string): NdefRecord
 
@@ -936,7 +936,7 @@ makeApplicationRecord(bundleName: string): NdefRecord
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1014,8 +1014,8 @@ makeMimeRecord(mimeType: string, mimeData: number[]): NdefRecord
 import { tag } from '@kit.ConnectivityKit';
 
 try {
-    let mimeType = "text/plain";   // change it to be correct.
-    let mimeData = [0x01, 0x02, 0x03, 0x04]; // change it to be correct.
+    let mimeType = "text/plain";   // 修改为预期的符合规则的MIME类型
+    let mimeData = [0x01, 0x02, 0x03, 0x04]; // 修改为预期的符合格式的数据
     let ndefRecord : tag.NdefRecord = tag.ndef.makeMimeRecord(mimeType, mimeData);
     if (ndefRecord != undefined) {
         console.log("ndefMessage makeMimeRecord rtdType: " + ndefRecord.rtdType);
@@ -1065,9 +1065,9 @@ makeExternalRecord(domainName: string, type: string, externalData: number[]): Nd
 import { tag } from '@kit.ConnectivityKit';
 
 try {
-    let domainName = "ohos.nfc.application"; // change it to be correct.
-    let type = "test"; // change it to be correct.
-    let externalData = [0x01, 0x02, 0x03, 0x04]; // change it to be correct.
+    let domainName = "ohos.nfc.application"; // 修改为符合规范的包名
+    let type = "test"; // 修改为正确的数据类型
+    let externalData = [0x01, 0x02, 0x03, 0x04]; // 修改为正确的外部数据内容
     let ndefRecord : tag.NdefRecord = tag.ndef.makeExternalRecord(domainName, type, externalData);
     if (ndefRecord != undefined) {
         console.log("ndefMessage makeExternalRecord rtdType: " + ndefRecord.rtdType);
@@ -1115,7 +1115,7 @@ messageToBytes(ndefMessage: [NdefMessage](js-apis-nfctech.md#ndefmessage9)): num
 ```js
 import { tag } from '@kit.ConnectivityKit';
 
-let rawData = [0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]; // MUST can be parsed as NDEF Record.
+let rawData = [0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]; // 必须符合NDEF格式的数据
 try {
     let ndefMessage : tag.NdefMessage = tag.ndef.createNdefMessage(rawData);
     console.log("ndef createNdefMessage, ndefMessage: " + ndefMessage);
@@ -1159,7 +1159,7 @@ createNdefMessage(data: number[]): [NdefMessage](js-apis-nfctech.md#ndefmessage9
 ```js
 import { tag } from '@kit.ConnectivityKit';
 
-let rawData = [0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43];  // MUST can be parsed as NDEF Record.
+let rawData = [0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43];  //必须是可以被解析的NDEF记录
 try {
     let ndefMessage : tag.NdefMessage = tag.ndef.createNdefMessage(rawData);
     console.log("ndef createNdefMessage, ndefMessage: " + ndefMessage);
@@ -1464,18 +1464,18 @@ type NdefFormatableTag = _NdefFormatableTag
 | ------ | ------------------------------------------------------------ |
 | [_NdefFormatableTag](./js-apis-nfctech.md#ndefformatabletag9) | NdefFormatableTag为NDEF Formattable的标签提供格式化操作。 |
 
-## BarcodeTag<sup>16+</sup>
+## BarcodeTag<sup>18+</sup>
 
 type BarcodeTag = _BarcodeTag
 
 获取BarcodeTag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| [_BarcodeTag](./js-apis-nfctech.md#barcodetag16) | 提供对条形码标签的属性和I/O操作的访问。 |
+| [_BarcodeTag](./js-apis-nfctech.md#barcodetag18) | 提供对条形码标签的属性和I/O操作的访问。 |
 
 ## NdefMessage<sup>9+</sup>
 

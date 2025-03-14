@@ -129,7 +129,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ---------------------------------------- |
 | 401      | Parameter error.    |
 | 4400001  | Incorrect descriptor for the target device.                |
-| 4400002  | Screen hop failed.    |
+| 4400002  | Screen hop failed.   |
 
 **Example**
 
@@ -183,7 +183,7 @@ For details about the error codes, see [Screen Hopping Error Codes](errorcode-mu
 | -------- | ---------------------------------------- |
 | 401      | Parameter error.    |
 | 4400001  | Incorrect descriptor for the target device.          |
-| 4400002  | Screen hop failed.               |
+| 4400002  | Screen hop failed.              |
 
 **Example**
 

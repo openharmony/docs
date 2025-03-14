@@ -48,6 +48,6 @@
 
 8. HiTraceMeter 文本日志可视化分析。
 
-   - 导入 DevEco Studio 进行分析，具体参考[CPU活动分析：CPU分析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-insight-session-cpu-V5)文档，在 DevEco Studio Profiler 的会话区选择**Open File**，将 HiTraceMeter 文本日志导入 DevEco Studio 进行分析。
+   - 导入 DevEco Studio 进行分析，具体参考[CPU活动分析：CPU分析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-insight-session-cpu-V5)文档，在 DevEco Studio Profiler 的会话区选择“Open File”，将 HiTraceMeter 文本日志导入 DevEco Studio 进行分析。
    - 通过 [HiSmartPerf](https://gitee.com/openharmony/developtools_smartperf_host) 工具进行分析，工具下载链接[developtools_smartperf_host 发行版](https://gitee.com/openharmony/developtools_smartperf_host/releases)。
 

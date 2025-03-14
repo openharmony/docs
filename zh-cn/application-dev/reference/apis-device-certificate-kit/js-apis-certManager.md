@@ -1,6 +1,6 @@
 # @ohos.security.certManager (证书管理模块)
 
-证书管理主要提供系统级的证书管理能力，实现证书全生命周期（安装，存储，使用，销毁）的管理和安全使用 。
+证书管理主要提供系统级的证书管理能力，实现证书全生命周期（安装，存储，使用，销毁）的管理和安全使用。
 
 > **说明：**
 >
@@ -20,8 +20,8 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 
 | 名称       | 值 |  说明      |
 | ---------- | ------ | --------- |
-| CM_KEY_PURPOSE_SIGN | 4      | 签名 |
-| CM_KEY_PURPOSE_VERIFY | 8      | 验签 |
+| CM_KEY_PURPOSE_SIGN | 4      | 签名。 |
+| CM_KEY_PURPOSE_VERIFY | 8      | 验签。 |
 
 ## CmKeyDigest
 
@@ -1321,7 +1321,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   certificateManager.getAllUserTrustedCertificates().then((cmResult) => {
-    if (cmResult == undefined) { // 用户根CA证书个数为0时，返回cmResult为undefined
+    if (cmResult == undefined) { // 用户根CA证书个数为0时，返回cmResult为undefined。
       console.info('the count of the user trusted certificates is 0');
     } else if (cmResult.certList == undefined) {
       console.info('The result of getting all user trusted certificates is undefined.');
@@ -1379,7 +1379,7 @@ try {
   /* 获取当前用户下的用户根CA证书列表; 如果需要获取设备公共位置的用户根CA列表，则传入GLOBAL_USER */
   let scope: certificateManager.CertScope = certificateManager.CertScope.CURRENT_USER;
   certificateManager.getAllUserTrustedCertificates(scope).then((cmResult) => {
-    if (cmResult == undefined) { // 用户根CA证书个数为0时，返回cmResult为undefined
+    if (cmResult == undefined) { // 用户根CA证书个数为0时，返回cmResult为undefined。
       console.info('the count of the user trusted certificates is 0');
     } else if (cmResult.certList == undefined) {
       console.info('The result of getting current user trusted certificates is undefined.');
@@ -1481,7 +1481,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   certificateManager.getPrivateCertificates().then((cmResult) => {
-    if (cmResult == undefined) { // 应用安装的凭据个数为0时，返回cmResult为undefined
+    if (cmResult == undefined) { // 应用安装的凭据个数为0时，返回cmResult为undefined。
       console.info('the count of the private certificates is 0');
     } else if (cmResult.credentialList == undefined) {
       console.info('The result of getting all private certificates installed by the application is undefined.');

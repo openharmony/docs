@@ -32,7 +32,7 @@ Neural Network Runtime（NNRt, 神经网络运行时）是面向AI领域的跨�
 | struct&nbsp;&nbsp;[ModelConfig](_model_config_v10.md) | 定义编译模型需要的参数配置。 | 
 | struct&nbsp;&nbsp;[QuantParam](_quant_param_v10.md) | 量化参数结构体。 | 
 | struct&nbsp;&nbsp;[IOTensor](_i_o_tensor_v10.md) | AI模型的输入输出张量。 | 
-| struct&nbsp;&nbsp;[Activation](_activation_v10.md) | 激活类型的算子，所有的激活函数都属于该算子，具体的激活函数类型一句参数来确定。 | 
+| struct&nbsp;&nbsp;[Activation](_activation_v10.md) | 激活类型的算子，所有的激活函数都属于该算子，具体的激活函数类型依据参数来确定。 | 
 | struct&nbsp;&nbsp;[AddFusion](_add_fusion_v10.md) | 输入Tensor逐元素相加， 输出x和y的和，数据形状与输入broadcast之后一样，数据类型与较高精度的输入精度一致。 | 
 | struct&nbsp;&nbsp;[ArgMaxFusion](_arg_max_fusion_v10.md) | 返回跨轴的tensor前K个索引或者是数值。 | 
 | struct&nbsp;&nbsp;[AvgPoolFusion](_avg_pool_fusion_v10.md) | 在输入tensor上应用 2D 平均池化。支持int8量化输入。 | 

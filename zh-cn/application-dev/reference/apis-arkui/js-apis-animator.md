@@ -80,13 +80,13 @@ let options: AnimatorOptions = {
 animator.create(options); // 建议使用 UIContext.creatAnimator()接口
 ```
 
-### create<sup>16+</sup>
+### create<sup>18+</sup>
 
-create(options: AnimatorOptions \| [SimpleAnimatorOptions](#simpleanimatoroptions16)): AnimatorResult
+create(options: AnimatorOptions \| [SimpleAnimatorOptions](#simpleanimatoroptions18)): AnimatorResult
 
-创建animator动画结果对象（AnimatorResult）。与[create](#create9)相比，新增对[SimpleAnimatorOptions](#simpleanimatoroptions16)类型入参的支持。
+创建animator动画结果对象（AnimatorResult）。与[create](#create9)相比，新增对[SimpleAnimatorOptions](#simpleanimatoroptions18)类型入参的支持。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -94,7 +94,7 @@ create(options: AnimatorOptions \| [SimpleAnimatorOptions](#simpleanimatoroption
 
 | 参数名     | 类型                                  | 必填   | 说明      |
 | ------- | ----------------------------------- | ---- | ------- |
-| options | [AnimatorOptions](#animatoroptions) \| [SimpleAnimatorOptions](#simpleanimatoroptions16) | 是    | 定义动画参数选项。 |
+| options | [AnimatorOptions](#animatoroptions) \| [SimpleAnimatorOptions](#simpleanimatoroptions18) | 是    | 定义动画参数选项。 |
 
 **返回值：** 
 
@@ -229,13 +229,13 @@ try {
 }
 ```
 
-### reset<sup>16+</sup>
+### reset<sup>18+</sup>
 
-reset(options: AnimatorOptions \| [SimpleAnimatorOptions](#simpleanimatoroptions16)): void
+reset(options: AnimatorOptions \| [SimpleAnimatorOptions](#simpleanimatoroptions18)): void
 
-更新当前animator动画。与[reset](#reset9)相比，新增对[SimpleAnimatorOptions](#simpleanimatoroptions16)类型入参的支持。
+更新当前animator动画。与[reset](#reset9)相比，新增对[SimpleAnimatorOptions](#simpleanimatoroptions18)类型入参的支持。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -243,7 +243,7 @@ reset(options: AnimatorOptions \| [SimpleAnimatorOptions](#simpleanimatoroptions
 
 | 参数名     | 类型                                  | 必填   | 说明      |
 | ------- | ----------------------------------- | ---- | ------- |
-| options | [AnimatorOptions](#animatoroptions) \| [SimpleAnimatorOptions](#simpleanimatoroptions16) | 是    | 定义动画选项。 |
+| options | [AnimatorOptions](#animatoroptions) \| [SimpleAnimatorOptions](#simpleanimatoroptions18) | 是    | 定义动画选项。 |
 
 **错误码：**
 
@@ -632,17 +632,17 @@ animator.update(options);
 | begin      | number                                                      | 是   | 动画插值起点。<br/>默认值:0。                                               |
 | end        | number                                                      | 是   | 动画插值终点。<br/>默认值:1。                                               |
 
-## SimpleAnimatorOptions<sup>16+</sup>
+## SimpleAnimatorOptions<sup>18+</sup>
 
 animator简易动画参数对象。与AnimatorOptions相比，部分动画参数有默认值，可不设置。
 
-### constructor<sup>16+</sup>
+### constructor<sup>18+</sup>
 
 constructor(begin: number, end: number)
 
 SimpleAnimatorOptions的构造函数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -651,7 +651,7 @@ SimpleAnimatorOptions的构造函数。
 | 参数名       | 类型                                                        | 必填 | 说明                                                         |
 | ---------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 |  begin      | number                                                      | 是   | 动画插值起点。                                               |
-| end        | number                                                      | 是   | 动画插值终点。
+|  end        | number                                                      | 是   | 动画插值终点。
 
 **示例：**
 
@@ -662,13 +662,13 @@ let options: SimpleAnimatorOptions = new SimpleAnimatorOptions(100, 200); // 动
 let animatorResult:AnimatorResult = animator.create(options);
 ```
 
-### duration<sup>16+</sup>
+### duration<sup>18+</sup>
 
 duration(duration: number): SimpleAnimatorOptions
 
 设置animator动画时长。 
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -682,7 +682,7 @@ duration(duration: number): SimpleAnimatorOptions
 
 | 类型                                | 说明            |
 | --------------------------------- | ------------- |
-| [SimpleAnimatorOptions](#simpleanimatoroptions16) | Animator简易动画参数对象。 |
+| [SimpleAnimatorOptions](#simpleanimatoroptions18) | Animator简易动画参数对象。 |
 
 **示例：**
 
@@ -693,13 +693,13 @@ let options: SimpleAnimatorOptions = new SimpleAnimatorOptions(100, 200).duratio
 let animatorResult:AnimatorResult = animator.create(options);
 ```
 
-### easing<sup>16+</sup>
+### easing<sup>18+</sup>
 
 easing(curve: string): SimpleAnimatorOptions
 
 设置animator动画插值曲线。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -713,7 +713,7 @@ easing(curve: string): SimpleAnimatorOptions
 
 | 类型                                | 说明            |
 | --------------------------------- | ------------- |
-| [SimpleAnimatorOptions](#simpleanimatoroptions16) | Animator简易动画参数对象。 |
+| [SimpleAnimatorOptions](#simpleanimatoroptions18) | Animator简易动画参数对象。 |
 
 **示例：**
 
@@ -724,13 +724,13 @@ let options: SimpleAnimatorOptions = new SimpleAnimatorOptions(100, 200).easing(
 let animatorResult:AnimatorResult = animator.create(options);
 ```
 
-### delay<sup>16+</sup>
+### delay<sup>18+</sup>
 
 delay(delay: number): SimpleAnimatorOptions
 
 设置animator动画播放时延。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -744,7 +744,7 @@ delay(delay: number): SimpleAnimatorOptions
 
 | 类型                                | 说明            |
 | --------------------------------- | ------------- |
-| [SimpleAnimatorOptions](#simpleanimatoroptions16) | Animator简易动画参数对象。 |
+| [SimpleAnimatorOptions](#simpleanimatoroptions18) | Animator简易动画参数对象。 |
 
 **示例：**
 
@@ -755,13 +755,13 @@ let options: SimpleAnimatorOptions = new SimpleAnimatorOptions(100, 200).delay(5
 let animatorResult:AnimatorResult = animator.create(options);
 ```
 
-### fill<sup>16+</sup>
+### fill<sup>18+</sup>
 
 fill(fillMode: [FillMode](./arkui-ts/ts-appendix-enums.md#fillmode)): SimpleAnimatorOptions
 
 设置animator动画填充方式。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -775,7 +775,7 @@ fill(fillMode: [FillMode](./arkui-ts/ts-appendix-enums.md#fillmode)): SimpleAnim
 
 | 类型                                | 说明            |
 | --------------------------------- | ------------- |
-| [SimpleAnimatorOptions](#simpleanimatoroptions16) | Animator简易动画参数对象。 |
+| [SimpleAnimatorOptions](#simpleanimatoroptions18) | Animator简易动画参数对象。 |
 
 **示例：**
 
@@ -786,13 +786,13 @@ let options: SimpleAnimatorOptions = new SimpleAnimatorOptions(100, 200).fill(Fi
 let animatorResult:AnimatorResult = animator.create(options);
 ```
 
-### direction<sup>16+</sup>
+### direction<sup>18+</sup>
 
 direction(direction: [PlayMode](./arkui-ts/ts-appendix-enums.md#playmode)): SimpleAnimatorOptions
 
 设置animator动画播放方向。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -806,7 +806,7 @@ direction(direction: [PlayMode](./arkui-ts/ts-appendix-enums.md#playmode)): Simp
 
 | 类型                                | 说明            |
 | --------------------------------- | ------------- |
-| [SimpleAnimatorOptions](#simpleanimatoroptions16) | Animator简易动画参数对象。 |
+| [SimpleAnimatorOptions](#simpleanimatoroptions18) | Animator简易动画参数对象。 |
 
 **示例：**
 
@@ -817,13 +817,13 @@ let options: SimpleAnimatorOptions = new SimpleAnimatorOptions(100, 200).directi
 let animatorResult:AnimatorResult = animator.create(options);
 ```
 
-### iterations<sup>16+</sup>
+### iterations<sup>18+</sup>
 
 iterations(iterations: number): SimpleAnimatorOptions
 
 设置animator动画播放次数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -837,7 +837,7 @@ iterations(iterations: number): SimpleAnimatorOptions
 
 | 类型                                | 说明            |
 | --------------------------------- | ------------- |
-| [SimpleAnimatorOptions](#simpleanimatoroptions16) | Animator简易动画参数对象。 |
+| [SimpleAnimatorOptions](#simpleanimatoroptions18) | Animator简易动画参数对象。 |
 
 **示例：**
 

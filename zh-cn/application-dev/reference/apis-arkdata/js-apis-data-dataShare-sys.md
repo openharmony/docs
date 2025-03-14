@@ -292,7 +292,7 @@ dataShare.disableSilentProxy(context, uri).then(() => {
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | isProxy | boolean | 否 | 默认为false，如果为true，则要创建的[DataShareHelper](#datasharehelper)处于代理模式，所有操作都不会打开数据提供者APP，除非数据库不存在，当数据库不存在时，[createDataShareHelper](#datasharecreatedatasharehelper10)会拉起数据提供者创建数据库。 |
-| waitTime<sup>16+</sup> | number | 否 | 拉起数据提供者进程的等待时间（单位：秒），默认值为2秒。 |
+| waitTime<sup>18+</sup> | number | 否 | 拉起数据提供者进程的等待时间（单位：秒），默认值为2秒。 |
 
 ## TemplateId<sup>10+</sup>
 
@@ -350,7 +350,7 @@ dataShare.disableSilentProxy(context, uri).then(() => {
 | -------- | -------- | -------- | -------- |
 | predicates | Record<string, string> | 是 | 指定模板的谓词。当调用[on](#onrdbdatachange10)的回调时，谓词用于生成数据。仅适用于rdb存储数据。 |
 | scheduler | string | 是 | 指定模板的调度程序sql。其中嵌入自定义函数处理，目前预置自定义函数remindTimer处理。remindTimer在指定场景触发一次订阅刷新。<br/>触发场景：<br/>1. 修改数据时且有订阅的情况下触发对应的调度程序sql语句。<br/>2. 添加对应库第一个订阅的情况下触发对应的调度程序sql语句。 |
-| update<sup>14+<sup> | string | 否 | 指定模板的update sql语句，未定义时默认值为空字符串。当调用[on](#onrdbdatachange10)的回调时，update参数用于更新数据。仅适用于rdb存储数据。 |
+| update<sup>18+<sup> | string | 否 | 指定模板的update sql语句，未定义时默认值为空字符串。当调用[on](#onrdbdatachange10)的回调时，update参数用于更新数据。仅适用于rdb存储数据。 |
 
 ## OperationResult<sup>10+</sup>
 

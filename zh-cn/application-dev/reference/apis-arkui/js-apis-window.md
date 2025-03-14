@@ -46,7 +46,7 @@ import { window } from '@kit.ArkUI';
 | displayId  | number                     | 否 | 当前物理屏幕id。不设置，则默认为-1，该参数应为整数。                                             |
 | parentId   | number                     | 否 | 父窗口id。不设置，则默认为-1，该参数应为整数。                                                           |
 | decorEnabled<sup>12+</sup> | boolean | 否 | 是否显示窗口装饰，仅在windowType为TYPE_DIALOG时生效。true表示显示，false表示不显示。此参数默认值为false。<br>**系统能力：** SystemCapability.Window.SessionManager |
-| title<sup>12+</sup> | string| 否 | `decorEnabled`属性设置为true时，窗口的标题内容。不设置，则默认为空字符串。 <br>**系统能力：** SystemCapability.Window.SessionManager |
+| title<sup>12+</sup> | string| 否 | `decorEnabled`属性设置为true时，窗口的标题内容。标题显示区域最右端不超过系统三键区域最左端，超过部分以省略号表示。不设置，则默认为空字符串。 <br>**系统能力：** SystemCapability.Window.SessionManager |
 
 ## AvoidAreaType<sup>7+</sup>
 
@@ -2139,7 +2139,7 @@ getWindowDensityInfo(): WindowDensityInfo
 
 | 类型 | 说明 |
 | ------------------------------------- | ------------- |
-| [WindowDensityInfo](#windowdensityinfo15) | 当前窗口的显示大小缩放系数信息。 |
+| [WindowDensityInfo](#windowdensityinfo15) | 当前窗口的显示大小缩放系数信息。当返回值为[-1, -1, -1]时，表示当前设备不支持使用该接口。 |
 
 **错误码：**
 
@@ -7196,7 +7196,7 @@ setWindowTitle(titleName: string): Promise&lt;void&gt;
 
 | 参数名    | 类型     | 必填 | 说明                                          |
 | --------- | ------- | ---- | --------------------------------------------- |
-| titleName | string  | 是   | 窗口标题 |
+| titleName | string  | 是   | 窗口标题。标题显示区域最右端不超过系统三键区域最左端，超过部分以省略号表示。 |
 
 **返回值：**
 
@@ -10939,7 +10939,7 @@ WindowStage生命周期。
 
 | 名称      | 类型  | 只读 | 可选 | 说明         |
 | ---------- | ---- | ---- | ---- | ----------- |
-| title<sup>11+</sup>    | string | 否 | 否 | 子窗口标题。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
+| title<sup>11+</sup>    | string | 否 | 否 | 子窗口标题。标题显示区域最右端不超过系统三键区域最左端，超过部分以省略号表示。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
 | decorEnabled<sup>11+</sup> | boolean | 否 | 否 | 子窗口是否显示装饰。true表示子窗口显示装饰，false表示子窗口不显示装饰。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。       |
 | isModal<sup>12+</sup>    | boolean | 否 | 是 | 子窗口是否启用模态属性。true表示子窗口启用模态属性，false表示子窗口禁用模态属性。不设置，则默认为false。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
 | modalityType<sup>14+</sup>    | [ModalityType](#modalitytype14) | 否 | 是 | 子窗口模态类型，仅当子窗口启用模态属性时生效。WINDOW_MODALITY表示子窗口模态类型为模窗口子窗，APPLICATION_MODALITY表示子窗口模态类型为模应用子窗。不设置，则默认为WINDOW_MODALITY。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。       |

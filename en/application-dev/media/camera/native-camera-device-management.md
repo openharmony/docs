@@ -46,7 +46,7 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
    > If obtaining the object fails, the camera device may be occupied or unusable. If it is occupied, wait until it is released.
 
 4. Call [OH_CameraManager_GetSupportedCameras()](../../reference/apis-camera-kit/_o_h___camera.md#oh_cameramanager_getsupportedcameras) to obtain the list of cameras supported by the current device. The list stores the IDs of all cameras supported. If the list is not empty, each ID in the list can be used to create an independent camera object. If the list is empty, no camera is available for the current device and subsequent operations cannot be performed.
-   
+
    ```c++
    // Obtain the camera list.
    ret = OH_CameraManager_GetSupportedCameras(cameraManager, &cameras, &size);
