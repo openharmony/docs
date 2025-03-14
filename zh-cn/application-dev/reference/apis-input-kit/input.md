@@ -1894,7 +1894,7 @@ int32_t OH_Input_InjectTouchEvent (const struct Input_TouchEvent * touchEvent)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| touchEvent | 要注入的触摸事件  | 
+| touchEvent | 要注入的触摸事件。  | 
 
 **返回：**
 
