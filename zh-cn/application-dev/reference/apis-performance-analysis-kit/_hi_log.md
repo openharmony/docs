@@ -26,7 +26,7 @@ HiLog模块实现日志打印功能。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [LOG_DOMAIN](#log_domain)&nbsp;&nbsp;&nbsp;0 | 日志所对应的业务领域，用于标识业务的子系统、模块。  | 
+| [LOG_DOMAIN](#log_domain)&nbsp;&nbsp;&nbsp;0 | 日志所对应的业务领域，用于标识业务的子系统、模块。16进制整数，有效范围为0x0~0xFFFF，超出范围则日志无法打印。  | 
 | [LOG_TAG](#log_tag)&nbsp;&nbsp;&nbsp;NULL | 字符串常量，标识调用所在的类或者业务。tag最多为31字节，超出后会截断。不建议使用中文字符，可能出现乱码或者对齐问题。  | 
 | [OH_LOG_DEBUG](#oh_log_debug)(type, ...)&nbsp;&nbsp;&nbsp;((void)[OH_LOG_Print](#oh_log_print)((type), LOG_DEBUG, [LOG_DOMAIN](#log_domain), [LOG_TAG](#log_tag), \_\_VA_ARGS\_\_)) | DEBUG级别写日志，宏封装接口。  | 
 | [OH_LOG_INFO](#oh_log_info)(type, ...)&nbsp;&nbsp;&nbsp;((void)[OH_LOG_Print](#oh_log_print)((type), LOG_INFO, [LOG_DOMAIN](#log_domain), [LOG_TAG](#log_tag), \_\_VA_ARGS\_\_)) | INFO级别写日志，宏封装接口。  | 
@@ -307,9 +307,9 @@ int bool OH_LOG_IsLoggable (unsigned int domain, const char * tag, LogLevel leve
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| domain | 指定日志业务领域。  | 
-| tag | 指定日志TAG。  | 
-| level | 指定日志level。  | 
+| domain | 日志业务领域，16进制整数，范围0x0~0xFFFF，超出范围则日志无法打印。  | 
+| tag | 日志TAG，字符串，标识调用所在的类或者业务。tag最多为31字节，超出后会截断，不建议使用中文字符，可能出现乱码或者对齐问题。  | 
+| level | 日志级别，日志级别包括LOG_DEBUG、LOG_INFO、LOG_WARN、LOG_ERROR、LOG_FATAL。  | 
 
 **返回：**
 
@@ -335,7 +335,7 @@ int OH_LOG_Print (LogType type, LogLevel level, unsigned int domain, const char 
 | type | 日志类型，三方应用日志类型为LOG_APP。  | 
 | level | 日志级别，日志级别包括LOG_DEBUG、LOG_INFO、LOG_WARN、LOG_ERROR、LOG_FATAL。  | 
 | domain | 日志业务领域，16进制整数，范围0x0~0xFFFF，超出范围则日志无法打印。  | 
-| tag | 日志TAG，字符串，标识调用所在的类或者业务，tag最多为31字节，超出后会截断，不建议使用中文字符，可能出现乱码或者对齐问题。  | 
+| tag | 日志TAG，字符串，标识调用所在的类或者业务。tag最多为31字节，超出后会截断，不建议使用中文字符，可能出现乱码或者对齐问题。 | 
 | fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中%符号后类型前增加{public}、{private}标识。  | 
 | ... | 与格式字符串里参数类型对应的参数列表，参数数目、参数类型必须与格式字符串中的标识一一对应。  | 
 
