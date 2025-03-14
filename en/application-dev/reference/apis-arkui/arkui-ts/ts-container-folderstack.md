@@ -14,7 +14,7 @@ Multiple child components are supported.
 
 ## APIs
 
-FolderStack(options?: FolderStackOptions)
+FolderStack(value?: { upperItems?:  Array<string\> })
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -24,21 +24,11 @@ FolderStack(options?: FolderStackOptions)
 
 | Name      | Type                                   | Mandatory| Description                                                                |
 | ------------ | ------------------------------------------- | ---- |----------------------------------------------------------------------|
-| options |  [FolderStackOptions](#folderstackoptions14) | No  | Configuration of the **FolderStack** component.|
-
-## FolderStackOptions<sup>14+</sup>
-
-**Atomic service API**: This API can be used in atomic services since API version 14.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-| Name      | Type        | Mandatory| Description                      |
-| ------------ | -------------------------- | ---- |----------------------------|
-| upperItems |    Array<string\>  | No  | Configuration of the **FolderStack** component.<br>**upperItems**: array of IDs of child components that will be moved to the upper half screen in the hover state. On hover, child components with IDs in this array automatically shift away from the folding screen's crease area and move to the upper half screen, while other components are stacked in the lower half screen.|
+| value |  { upperItems?:  Array<string\> } | No  | Configuration of the **FolderStack** component.<br>- **upperItems**: array of IDs of child components that will be moved to the upper half screen in the hover state. On hover, child components with IDs in this array automatically shift away from the folding screen's crease area and move to the upper half screen, while other components are stacked in the lower half screen.|
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### alignContent
 
@@ -94,11 +84,11 @@ Sets whether to enable auto rotation. This attribute is effective only when auto
 
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onFolderStateChange
 
-onFolderStateChange(callback: OnFoldStatusChangeCallback)
+onFolderStateChange(callback: (event: { foldStatus: FoldStatus }) => void)
 
 Called when the folding state changes. This API takes effect only in landscape mode.
 
@@ -110,14 +100,14 @@ Called when the folding state changes. This API takes effect only in landscape m
 
 | Name    | Type                                           | Mandatory| Description                |
 | ---------- | ----------------------------------------------- | ---- | -------------------- |
-| callback | [OnFoldStatusChangeCallback](#onfoldstatuschangecallback14) | Yes  | Current fold state of the device.|
+| callback | (event: { foldStatus: FoldStatus }) => void | Yes  | Current fold state of the device.|
 
 
 ### onHoverStatusChange<sup>12+</sup>
 
-onHoverStatusChange(handler: OnHoverStatusChangeCallback)
+onHoverStatusChange(handler: (param: HoverEventParam) => void)
 
-Invoked when the hover status changes.
+Callback invoked when the hover status changes.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -127,48 +117,7 @@ Invoked when the hover status changes.
 
 | Name    | Type                                           | Mandatory| Description                |
 | ---------- | ----------------------------------------------- | ---- | -------------------- |
-| handler | [OnHoverStatusChangeCallback](#onhoverstatuschangecallback14) | Yes  | Callback invoked when the hover status changes.|
-
-## OnHoverStatusChangeCallback<sup>14+</sup>
-
-type OnHoverStatusChangeCallback = (param: HoverEventParam) => void
-
-Callback invoked when the hover status changes.
-
-**Atomic service API**: This API can be used in atomic services since API version 14.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-| Name    | Type                                           | Mandatory| Description                |
-| ---------- | ----------------------------------------------- | ---- | -------------------- |
-| param | [HoverEventParam](#hovereventparam12) | Yes  | Callback invoked when the hover status changes.|
-
-## OnFoldStatusChangeCallback<sup>14+</sup>
-
-type OnFoldStatusChangeCallback = (event: OnFoldStatusChangeInfo) => void
-
-Current fold state of the device.
-
-**Atomic service API**: This API can be used in atomic services since API version 14.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-| Name    | Type                                           | Mandatory| Description                |
-| ---------- | ----------------------------------------------- | ---- | -------------------- |
-| callback | [OnFoldStatusChangeInfo](#onfoldstatuschangeinfo14) | Yes  | Current fold state of the device.|
-
-
-## OnFoldStatusChangeInfo<sup>14+</sup>
-
-Called when the folding state changes. This API takes effect only in landscape mode.
-
-**Atomic service API**: This API can be used in atomic services since API version 14.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-| Name    | Type                                           | Mandatory| Description                |
-| ---------- | ----------------------------------------------- | ---- | -------------------- |
-| foldStatus | [FoldStatus](ts-appendix-enums.md#foldstatus11) | Yes  | Current fold state of the device.|
+|  handler | (param: [HoverEventParam](#hovereventparam12)) => void | Yes  | Callback invoked when the hover status changes.|
 
 ## HoverEventParam<sup>12+</sup>
 
@@ -181,7 +130,7 @@ Called when the folding state changes. This API takes effect only in landscape m
 | foldStatus       | [FoldStatus](ts-appendix-enums.md#foldstatus11)             | Yes  | Current fold state of the device.|
 | isHoverMode      | boolean                                                     | Yes  | Whether the device is in hover state. |
 | appRotation      | [AppRotation](ts-appendix-enums.md#approtation12)           | Yes  | Current orientation.   |
-| windowStatusType | [WindowStatusType<sup>12+</sup>](#windowstatustype12) | Yes  | Window mode.   |
+| windowStatusType | [WindowStatusType](#windowstatustype12) | Yes  | Window mode.   |
 
 ## WindowStatusType<sup>12+</sup>
 

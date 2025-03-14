@@ -4,7 +4,7 @@ The state management module provides data storage, persistent data management, U
 
 >**NOTE**
 >
->The initial APIs of this module are supported since API version 12.
+>The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 The meanings of T and S in this topic are as follows:
@@ -26,7 +26,11 @@ import { AppStorageV2,PersistenceV2,UIUtils} from '@kit.ArkUI';
 
 For details about how to use AppStorageV2, see [AppStorageV2: Storing Application-wide UI State](../../quick-start/arkts-new-appstoragev2.md).
 
-### connect<sup>12+</sup>
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### connect
 
 static connect\<T extends object\>( <br>
       type: TypeConstructorWithArgs\<T\>, <br>
@@ -44,8 +48,8 @@ Stores key-value pair data in the application memory. If the given key already e
 
 | Name  | Type  | Mandatory| Description              |
 | -------- | ------ | ---- | ---------------------- |
-| type | TypeConstructorWithArgs\<T\> | Yes  | Type. If no key is specified, the name of the type is used as the key.|
-| keyOrDefaultCreater | string \| StorageDefaultCreator\<T\> | No  | Key, or the constructor for obtaining the default value.|
+| type | [TypeConstructorWithArgs\<T\>](#typeconstructorwithargst) | Yes  | Type. If no key is specified, the name of the type is used as the key.|
+| keyOrDefaultCreator | string \| [StorageDefaultCreator\<T\>](#storagedefaultcreatort) | No  | Key, or the constructor for obtaining the default value.|
 | defaultCreator | StorageDefaultCreator\<T\> | No  | Constructor for obtaining the default value.|
 
 >**NOTE**
@@ -84,7 +88,7 @@ const as2: SampleClass = AppStorageV2.connect(SampleClass, 'key_as2', () => new 
 const as3: SampleClass = AppStorageV2.connect(SampleClass) as SampleClass;
 ```
 
-### remove<sup>12+</sup>
+### remove
 
 static remove\<T\>(keyOrType: string | TypeConstructorWithArgs\<T\>): void;
 
@@ -119,7 +123,7 @@ AppStorageV2.remove(SampleClass);
 AppStorageV2.remove('key_as1');
 ```
 
-### keys<sup>12+</sup>
+### keys
 
 static keys(): Array\<string\>;
 
@@ -128,10 +132,6 @@ Obtains all keys in [AppStorageV2](../../quick-start/arkts-new-appstoragev2.md).
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-None.
 
 **Return value**
 
@@ -154,160 +154,13 @@ const keys: Array<string> = AppStorageV2.keys();
 
 ## PersistenceV2
 
-For details about how to use PersistenceV2, see [PersistenceV2: Persisting Application State](../../quick-start/arkts-new-persistencev2.md).
-
-### connect<sup>12+</sup>
-
-static connect\<T extends object\>( <br>
-      type: TypeConstructorWithArgs\<T\>, <br>
-      keyOrDefaultCreator?: string | StorageDefaultCreator\<T\>, <br>
-      defaultCreator?: StorageDefaultCreator\<T\> <br>
-): T | undefined;
-
-Stores the key-value pair data on the application disk (for persistence). If the given key already exists in [PersistenceV2](../../quick-start/arkts-new-persistencev2.md), it returns the corresponding value; otherwise, it constructs a default value using the constructor for obtaining the default value and returns it. If what is connected is an [\@ObservedV2](../../quick-start/arkts-new-observedV2-and-trace.md) object, changes to the object's [\@Trace](../../quick-start/arkts-new-observedV2-and-trace.md) decorated property will trigger automatic persistence of the entire associated object; changes to non-@Trace-decorated properties will not. If necessary, you can manually persist data by calling the **PersistenceV2.save** API.
+Inherits from [AppStorageV2](#appstoragev2). For details, see [PersistenceV2: Persisting Application State](../../quick-start/arkts-new-persistencev2.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
-
-| Name  | Type  | Mandatory| Description              |
-| -------- | ------ | ---- | ---------------------- |
-| type | TypeConstructorWithArgs\<T\> | Yes  | Type. If no key is specified, the name of the type is used as the key.|
-| keyOrDefaultCreater | string \| StorageDefaultCreator\<T\> | No  | Key, or the constructor for obtaining the default value.|
-| defaultCreator | StorageDefaultCreator\<T\> | No  | Constructor for obtaining the default value.|
-
->**NOTE**
->
->1. The third parameter is used when no **key** is specified or the second parameter is invalid, and the third parameter is used in all other cases.
->
->2. If the data has been stored in PersistenceV2, you can obtain the stored data without using the default constructor. If the data has not been stored, you must specify a default constructor; otherwise, an application exception will be thrown.
->
->3. Ensure that the data types match the key. Connecting different types of data to the same key will result in an application exception.
->
->4. You are advised to use meaningful values for keys. The values can contain letters, digits, and underscores (_) and a maximum of 255 characters. Using invalid characters or null characters will result in undefined behavior.
-
-**Return value**
-
-| Type                                  | Description                                                        |
-| -------------------------------------- | ------------------------------------------------------------ |
-| T | Returns data if the creation or data acquisition from AppStorageV2 is successful; returns **undefined** otherwise.|
-
-**Example**
-
-```ts
-import { PersistenceV2, Type } from '@kit.ArkUI';
-
-@ObservedV2
-class SampleClass {
-  @Trace p1: number = 0;
-  p2: number = 1;
-}
-
-@ObservedV2
-class FatherSampleClass {
-  @Trace f: SampleClass = new SampleClass();
-}
-
-// Persist the key-value pair with the key SampleClass and the value as an instance of SampleClass(), and assign it to variable as1.
-const as1: FatherSampleClass | undefined = PersistenceV2.connect(FatherSampleClass, () => new FatherSampleClass());
-
-// Persist the key-value pair with the key key_as2 and the value as an instance of SampleClass(), and assign it to variable as2.
-const as2: FatherSampleClass = PersistenceV2.connect(FatherSampleClass, 'key_as2', () => new FatherSampleClass())!;
-
-// As the key SampleClass already exists in PersistenceV2, the value associated with the key is returned to variable as3.
-const as3: FatherSampleClass = PersistenceV2.connect(FatherSampleClass) as FatherSampleClass;
-
-@Entry
-@Component
-struct SampleComp {
-  v: FatherSampleClass = as2;
-
-  build() {
-    Column() {
-      Text(`${this.v.f.p1}`)
-        .onClick(() => {
-          // Automatic persistence
-          this.v.f.p1++;
-        })
-      Text(`${this.v.f.p2}`)
-        .onClick(() => {
-          // Automatic persistence is not available. You need to call the PersistenceV2.save API for manual persistence.
-          this.v.f.p2++;
-        })
-    }
-  }
-}
-```
-
-### remove<sup>12+</sup>
-
-static remove\<T\>(keyOrType: string | TypeConstructorWithArgs\<T\>): void;
-
-Removes the specified key-value pair from [PersistenceV2](../../quick-start/arkts-new-persistencev2.md). If the specified key does not exist in PersistenceV2, the removal will fail.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name  | Type  | Mandatory| Description              |
-| -------- | ------ | ---- | ---------------------- |
-| keyOrType | string \| TypeConstructorWithArgs\<T\> | Yes  | Key to be removed. If a type is specified, the key to be removed is the name of that type.|
-
->**NOTE**
->
->Attempting to remove a key that does not exist in PersistenceV2 will result in a warning.
-
-
-**Example**
-
-<!--code_no_check-->
-```ts
-// Assuming that there is a key named key_as2 in PersistenceV2, the following will remove the corresponding key-value pair from PersistenceV2.
-PersistenceV2.remove('key_as2');
-
-// Assuming that there is a key named SampleClass in PersistenceV2, the following will remove the corresponding key-value pair from PersistenceV2.
-PersistenceV2.remove(SampleClass);
-
-// Assuming there is no key named key_as1 in PersistenceV2, the following will result in a warning.
-PersistenceV2.remove('key_as1');
-```
-
-### keys<sup>12+</sup>
-
-static keys(): Array\<string\>;
-
-Obtains all keys in [PersistenceV2](../../quick-start/arkts-new-persistencev2.md).
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-None.
-
-**Return value**
-
-| Type                                  | Description                                                        |
-| -------------------------------------- | ------------------------------------------------------------ |
-| Array\<string\> | All keys in PersistenceV2.|
-
->**NOTE**
->
->The order of the keys in the Array is not sequential and does not correspond to the order in which the keys were inserted into PersistenceV2.
-
-**Example**
-
-```ts
-// Assuming there are two keys (key_as1 and key_as2) in PersistenceV2, the following will return an array containing these keys and assign it to keys.
-const keys: Array<string> = PersistenceV2.keys();
-```
-
-### save<sup>12+</sup>
+### save
 
 static save\<T\>(keyOrType: string | TypeConstructorWithArgs\<T\>): void;
 
@@ -329,10 +182,10 @@ Persists the specified key-value pair data once.
 >
 >It is useless to manually persist the keys that are not in the **connect** state in the memory.
 
-
 **Example**
 
 <!--code_no_check-->
+
 ```ts
 // Assuming there is a key named key_as2 in PersistenceV2, the following will persist the data for this key-value pair.
 PersistenceV2.save('key_as2');
@@ -344,11 +197,40 @@ PersistenceV2.remove(SampleClass);
 PersistenceV2.remove('key_as1');
 ```
 
+### notifyOnError
+
+static notifyOnError(callback: PersistenceErrorCallback | undefined): void;
+
+Called when persistence fails.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description              |
+| -------- | ------ | ---- | ---------------------- |
+| callback | PersistenceErrorCallback \| undefined  | Yes  | Callback invoked when persistence fails.|
+
+**Example**
+
+```ts
+// Called when persistence fails.
+PersistenceV2.notifyOnError((key: string, reason: string, msg: string) => {
+  console.error(`error key: ${key}, reason: ${reason}, message: ${msg}`);
+});
+```
+
 ## UIUtils
 
 Provides APIs for handling data transformations related to state management.
 
-### getTarget<sup>12+</sup>
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### getTarget
 
 static getTarget\<T extends object\>(source: T): T;
 
@@ -391,7 +273,7 @@ struct Index {
   }
 }
 ```
-### makeObserved<sup>12+</sup>
+### makeObserved
 
 static makeObserved\<T extends object\>(source: T): T;
 
@@ -435,6 +317,292 @@ struct Index {
       Text(`observedClass: ${this.nonObservedClass.name}`)
         .onClick(() => {
           this.nonObservedClass.name = 'Jane'; // This will not trigger a UI update.
+        })
+    }
+  }
+}
+```
+
+## StorageDefaultCreator\<T\>
+
+type StorageDefaultCreator\<T\> = () => T;
+
+Obtains the default constructor.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type| Description                                            |
+| ---- | ------------------------------------------------ |
+| () => T    | Default constructor.|
+
+**Example**
+
+```ts
+import { PersistenceV2 } from '@kit.ArkUI';
+
+@ObservedV2
+class SampleClass {
+  @Trace id: number = 0;
+  count: number = 1;
+}
+
+@ObservedV2
+class FatherSampleClass {
+  @Trace sampleClass: SampleClass = new SampleClass();
+}
+
+// Persist the key-value pair with the key SampleClass and the value as an instance of SampleClass(), and assign it to variable source.
+// StorageDefaultCreator refers to the function () => new FatherSampleClass().
+const source: FatherSampleClass | undefined = PersistenceV2.connect(FatherSampleClass, () => new FatherSampleClass());
+
+@Entry
+@Component
+struct SampleComp {
+  data: FatherSampleClass | undefined = source;
+
+  build() {
+    Column() {
+      Text(`${this.data?.sampleClass.id}`)
+    }
+  }
+}
+```
+
+## TypeConstructorWithArgs\<T\>
+
+Represents a class constructor that accepts arbitrary arguments.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### new
+
+new(...args: any): T;
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type| Mandatory| Description    |
+| ------ | ---- | ---- | ------------ |
+| ...args | any    | Yes  | Function arguments.  |
+
+**Return value**
+
+| Type| Description                                            |
+| ---- | ------------------------------------------------ |
+| T    | Instance of the T type.|
+
+**Example**
+
+```ts
+import { PersistenceV2 } from '@kit.ArkUI';
+
+@ObservedV2
+  // TypeConstructorWithArgs refers to the SampleClass constructor.
+class SampleClass {
+  @Trace id: number = 0;
+  count: number = 1;
+}
+
+@ObservedV2
+class FatherSampleClass {
+  @Trace sampleClass: SampleClass = new SampleClass();
+}
+
+// Persist the key-value pair with the key SampleClass and the value as an instance of SampleClass(), and assign it to variable source.
+const source: FatherSampleClass | undefined = PersistenceV2.connect(FatherSampleClass, () => new FatherSampleClass());
+
+@Entry
+@Component
+struct SampleComp {
+  data: FatherSampleClass | undefined = source;
+
+  build() {
+    Column() {
+      Text(`${this.data?.sampleClass.id}`)
+    }
+  }
+}
+```
+
+## PersistenceErrorCallback
+
+type PersistenceErrorCallback = (key: string, reason: 'quota' | 'serialization' | 'unknown', message: string) => void;
+
+Represents the callback invoked when persistence fails.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type| Mandatory| Description    |
+| ------ | ---- | ---- | ------------ |
+| key | string    | Yes  | Key associated with the error.  |
+|reason| 'quota' \| 'serialization' \| 'unknown'    | Yes  | Type of the error.  |
+| message | string    | Yes  | Additional information about the error.  |
+
+**Example**
+
+```ts
+import { PersistenceV2, Type } from '@kit.ArkUI';
+
+@ObservedV2
+class SampleChild {
+  @Trace id: number = 0;
+  count: number = 10;
+}
+
+@ObservedV2
+export class Sample {
+  // For complex objects, use the @Type decorator to ensure successful serialization.
+  @Type(SampleChild)
+  @Trace sampleChild: SampleChild = new SampleChild();
+}
+
+// Callback used to receive persistence errors.
+// PersistenceErrorCallback refers to (key: string, reason: string, msg: string) => {console.error(`error key: ${key}, reason: ${reason}, message: ${msg}`);}.
+PersistenceV2.notifyOnError((key: string, reason: string, msg: string) => {
+  console.error(`error key: ${key}, reason: ${reason}, message: ${msg}`);
+});
+
+@Entry
+@ComponentV2
+struct Index {
+  // Create a key-value pair with the key Sample in PersistenceV2 (if the key exists, the data in PersistenceV2 is returned) and associate it with data.
+  // Add @Local to decorate the data property that needs to change the connected object. (Changing the connected object is not recommended.)
+  @Local data: Sample = PersistenceV2.connect(Sample, () => new Sample())!;
+  pageStack: NavPathStack = new NavPathStack();
+
+  build() {
+    Text(`Index add 1 to data.id: ${this.data.sampleChild.id}`)
+      .fontSize(30)
+      .onClick(() => {
+        this.data.sampleChild.id++;
+      })
+  }
+}
+```
+
+## TypeConstructor\<T\>
+
+Class constructor.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### new
+
+new(): T;
+
+**Return value**
+
+| Type| Description                                            |
+| ---- | ------------------------------------------------ |
+| T    | Instance of the T type.|
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Example**
+
+```ts
+import { PersistenceV2, Type } from '@kit.ArkUI';
+
+@ObservedV2
+class SampleChild {
+  @Trace id: number = 0;
+  count: number = 10;
+}
+
+@ObservedV2
+export class Sample {
+  // For complex objects, use the @Type decorator to ensure successful serialization.
+  // TypeConstructor refers to SampleChild.
+  @Type(SampleChild)
+  @Trace sampleChild: SampleChild = new SampleChild();
+}
+
+@Entry
+@ComponentV2
+struct Index {
+  data: Sample = PersistenceV2.connect(Sample, () => new Sample())!;
+
+  build() {
+    Column() {
+      Text(`Index add 1 to data.id: ${this.data.sampleChild.id}`)
+        .fontSize(30)
+        .onClick(() => {
+          this.data.sampleChild.id++;
+        })
+    }
+  }
+}
+```
+
+## TypeDecorator
+
+type TypeDecorator = \<T\>(type: TypeConstructor\<T\>) => PropertyDecorator;
+
+Property decorator.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type| Mandatory| Description    |
+| ------ | ---- | ---- | ------------ |
+| type | [TypeConstructor\<T\>](#typeconstructort)    | Yes  | Type of the class property decorated.  |
+
+**Return value**
+
+| Type| Description                                            |
+| ---- | ------------------------------------------------ |
+| PropertyDecorator    | Property decorator.|
+
+**Example**
+
+```ts
+import { PersistenceV2, Type } from '@kit.ArkUI';
+
+@ObservedV2
+class SampleChild {
+  @Trace id: number = 0;
+  count: number = 10;
+}
+
+@ObservedV2
+export class Sample {
+  // For complex objects, use the @Type decorator to ensure successful serialization.
+  // TypeDecorator refers to @Type.
+  @Type(SampleChild)
+  @Trace sampleChild: SampleChild = new SampleChild();
+}
+
+@Entry
+@ComponentV2
+struct Index {
+  data: Sample = PersistenceV2.connect(Sample, () => new Sample())!;
+
+  build() {
+    Column() {
+      Text(`Index add 1 to data.id: ${this.data.sampleChild.id}`)
+        .fontSize(30)
+        .onClick(() => {
+          this.data.sampleChild.id++;
         })
     }
   }

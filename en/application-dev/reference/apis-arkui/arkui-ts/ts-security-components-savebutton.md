@@ -1,6 +1,6 @@
 # SaveButton
 
-The **SaveButton** security component represents a Paste button that allows you to obtain temporary storage permissions from users with a simple button touch, eliminating the need for a permission request dialog box.
+The **SaveButton** security component represents a save button that allows you to obtain temporary storage permissions from users with a simple button touch, eliminating the need for a permission request dialog box.
 
 > **NOTE**
 >
@@ -16,7 +16,7 @@ Not supported
 
 SaveButton()
 
-Creates a Save button with an icon, text, and background.
+Creates a **SaveButton** component with an icon, text, and background.
 
 You may want to learn the [restrictions on security component styles](../../../security/AccessToken/security-component-overview.md#constraints) to avoid authorization failures caused by incompliant styles.
 
@@ -26,9 +26,9 @@ You may want to learn the [restrictions on security component styles](../../../s
 
 ### SaveButton
 
-SaveButton(options:SaveButtonOptions)
+SaveButton(options: SaveButtonOptions)
 
-Creates a Save button that contains the specified elements.
+Creates a **SaveButton** component that contains the specified elements.
 
 You may want to learn the [restrictions on security component styles](../../../security/AccessToken/security-component-overview.md#constraints) to avoid authorization failures caused by incompliant styles.
 
@@ -40,16 +40,23 @@ You may want to learn the [restrictions on security component styles](../../../s
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| options | [SaveButtonOptions](#savebuttonoptions) | Yes| Options for creating the Save button.|
+| options | [SaveButtonOptions](#savebuttonoptions) | Yes| Options for creating the **SaveButton** component.|
 
 ## SaveButtonOptions
 
-Describes the icon, text, and other specific elements for the Save button.
+Describes the icon, text, and other specific elements for the **SaveButton** component.
 
 > **NOTE**
-> 
-> At least one of **icon** or **text** must be provided.<br>
-> If neither **icon** nor **text** is provided, the **options** parameter in [SaveButton](#savebutton-1) will not take effect, and the created Save button will be in the default style.
+>
+> - At least one of **icon** or **text** must be provided.<br>
+> - If neither **icon** nor **text** is provided, the **options** parameter in [SaveButton](#savebutton-1) will not take effect, and the created **SaveButton** component will use the default style:
+>
+>   The default value of **SaveIconStyle** is **FULL_FILLED**.
+>
+>   The default style of **SaveDescription** is **DOWNLOAD**.
+>
+>   The default value of **ButtonType** is **Capsule**.
+> - The **icon**, **text**, and **buttonType** parameters do not support dynamic modification.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -57,9 +64,9 @@ Describes the icon, text, and other specific elements for the Save button.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| icon | [SaveIconStyle](#saveiconstyle) | No| Icon style of the Save button.<br>If this parameter is not specified, there is no icon.|
-| text | [SaveDescription](#savedescription) | No| Text on the Save button.<br>If this parameter is not specified, there is no text description.|
-| buttonType | [ButtonType](ts-basic-components-button.md#buttontype) | No| Background type of the Save button.<br>If this parameter is not specified, the system uses a capsule-type button as the Save button.|
+| icon | [SaveIconStyle](#saveiconstyle) | No| Icon style of the **SaveButton** component.<br>If this parameter is not specified, there is no icon.|
+| text | [SaveDescription](#savedescription) | No| Text on the **SaveButton** component.<br>If this parameter is not specified, there is no text description.|
+| buttonType | [ButtonType](ts-basic-components-button.md#buttontype) | No| Background type of the **SaveButton** component.<br>If this parameter is not specified, the system uses a capsule-type button as the Save button.|
 
 ## SaveIconStyle
 
@@ -78,18 +85,18 @@ Describes the icon, text, and other specific elements for the Save button.
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| DOWNLOAD | 0 | The text on the Save button is **Download**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| DOWNLOAD_FILE | 1 | The text on the Save button is **Download File**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| SAVE | 2 | The text on the Save button is **Save**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| SAVE_IMAGE | 3 | The text on the Save button is **Save Image**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| SAVE_FILE | 4 | The text on the Save button is **Save File**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| DOWNLOAD_AND_SHARE | 5 | The text on the Save button is **Download and Share**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| RECEIVE | 6 | The text on the Save button is **Receive**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| CONTINUE_TO_RECEIVE | 7 | The text on the Save button is **Continue**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| SAVE_TO_GALLERY<sup>12+</sup> | 8 | The text on the Save button is **Save to Gallery**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| EXPORT_TO_GALLERY<sup>12+</sup> | 9 | The text on the Save button is **Export**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| QUICK_SAVE_TO_GALLERY<sup>12+</sup> | 10 | The text on the Save button is **Quick Save**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| RESAVE_TO_GALLERY<sup>12+</sup> | 11 | The text on the Save button is **Resave**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| DOWNLOAD | 0 | The text on the **SaveButton** component is **Download**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| DOWNLOAD_FILE | 1 | The text on the **SaveButton** component is **Download file**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| SAVE | 2 | The text on the **SaveButton** component is **Save**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| SAVE_IMAGE | 3 | The text on the **SaveButton** component is **Save image**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| SAVE_FILE | 4 | The text on the **SaveButton** component is **Save file**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| DOWNLOAD_AND_SHARE | 5 | The text on the **SaveButton** component is **Download & share**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| RECEIVE | 6 | The text on the **SaveButton** component is **Receive**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| CONTINUE_TO_RECEIVE | 7 | The text on the **SaveButton** component is **Continue**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| SAVE_TO_GALLERY<sup>12+</sup> | 8 | The text on the **SaveButton** component is **Save to Gallery**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| EXPORT_TO_GALLERY<sup>12+</sup> | 9 | The text on the **SaveButton** component is **Export**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| QUICK_SAVE_TO_GALLERY<sup>12+</sup> | 10 | The text on the **SaveButton** component is **Save to Gallery**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| RESAVE_TO_GALLERY<sup>12+</sup> | 11 | The text on the **SaveButton** component is **Save**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## SaveButtonOnClickResult
 

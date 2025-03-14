@@ -1,10 +1,12 @@
 # LocationButton
 
-The **LocationButton** security component represents a Location button that allows you to obtain temporary, precise location permissions from users with a simple button touch, eliminating the need for a permission request dialog box.
+The **LocationButton** security component represents a location button that allows you to obtain temporary, precise location permissions from users with a simple button touch, eliminating the need for a permission request dialog box.
 
 > **NOTE**
 >
-> This component is supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
+> - This component is supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> - Since API version 15, the **LocationButton** component is deprecated. You are advised to call [requestPermissionsFromUser](../../apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9-1) to open a dialog box to request the required permissions from users.
 
 ## Child Components
 
@@ -16,7 +18,7 @@ Not supported
 
 LocationButton()
 
-Creates a Location button with an icon, text, and background.
+Creates a **LocationButton** component with an icon, text, and background.
 
 You may want to learn the [restrictions on security component styles](../../../security/AccessToken/security-component-overview.md#constraints) to avoid authorization failures caused by incompliant styles.
 
@@ -28,7 +30,7 @@ You may want to learn the [restrictions on security component styles](../../../s
 
 LocationButton(options:LocationButtonOptions)
 
-Creates a Location button that contains the specified elements.
+Creates a **LocationButton** component that contains the specified elements.
 
 You may want to learn the [restrictions on security component styles](../../../security/AccessToken/security-component-overview.md#constraints) to avoid authorization failures caused by incompliant styles.
 
@@ -40,16 +42,23 @@ You may want to learn the [restrictions on security component styles](../../../s
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| options | [LocationButtonOptions](#locationbuttonoptions) | Yes| Options for creating the Location button. |
+| options | [LocationButtonOptions](#locationbuttonoptions) | Yes| Options of the **LocationButton** component.|
 
 ## LocationButtonOptions
 
-Describes the icon, text, and other specific elements for the Location button.
+Describes the icon, text, and other specific elements for the **LocationButton** component.
 
 > **NOTE**
-> 
-> At least one of **icon** or **text** must be provided.<br>
-> If neither **icon** nor **text** is provided, the **options** parameter in [LocationButton](#locationbutton-1) will not take effect, and the created Location button will be in the default style.
+>
+> - At least one of **icon** or **text** must be provided.<br>
+> - If neither **icon** nor **text** is provided, the **options** parameter in [LocationButton](#locationbutton-1) will not take effect, and the created **LocationButton** component will use the default style:
+>
+>   The default value of **LocationIconStyle** is **LINES**.
+>
+>   The default style of **LocationDescription** is **CURRENT_LOCATION**.
+>
+>   The default value of **ButtonType** is **Capsule**.
+> - The **icon**, **text**, and **buttonType** parameters do not support dynamic modification.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -57,9 +66,9 @@ Describes the icon, text, and other specific elements for the Location button.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| icon | [LocationIconStyle](#locationiconstyle) | No| Icon style of the Location button.<br>If this parameter is not specified, there is no icon.|
-| text | [LocationDescription](#locationdescription) | No| Text on the Location button.<br>If this parameter is not specified, there is no text description.|
-| buttonType | [ButtonType](ts-basic-components-button.md#buttontype) | No| Background type of the Location button.<br>If this parameter is not specified, the button takes on the capsule type.|
+| icon | [LocationIconStyle](#locationiconstyle) | No| Icon style of the **LocationButton** component.<br>If this parameter is not specified, there is no icon.|
+| text | [LocationDescription](#locationdescription) | No| Text on the **LocationButton** component.<br>If this parameter is not specified, there is no text description.|
+| buttonType | [ButtonType](ts-basic-components-button.md#buttontype) | No| Background type of the **LocationButton** component.<br>If this parameter is not specified, the button takes on the capsule type.|
 
 ## LocationIconStyle
 
@@ -80,17 +89,17 @@ Describes the icon, text, and other specific elements for the Location button.
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| CURRENT_LOCATION | 0 | The text on the Location button is **Current location**.|
-| ADD_LOCATION | 1 | The text on the Location button is **Add location**.|
-| SELECT_LOCATION | 2 | The text on the Location button is **Select location**.|
-| SHARE_LOCATION | 3 | The text on the Location button is **Share location**.|
-| SEND_LOCATION | 4 | The text on the Location button is **Send location**.|
-| LOCATING | 5 | The text on the Location button is **Locate**.|
-| LOCATION | 6 | The text on the Location button is **Location**.|
-| SEND_CURRENT_LOCATION | 7 | The text on the Location button is **Send current location**.|
-| RELOCATION | 8 | The text on the Location button is **Relocate**.|
-| PUNCH_IN | 9 | The text on the Location button is **Punch in**.|
-| CURRENT_POSITION | 10 | The text on the Location button is **Current position**.|
+| CURRENT_LOCATION | 0 | The text on the **LocationButton** component is **Current location**.|
+| ADD_LOCATION | 1 | The text on the **LocationButton** component is **Add location**.|
+| SELECT_LOCATION | 2 | The text on the **LocationButton** component is **Select location**.|
+| SHARE_LOCATION | 3 | The text on the **LocationButton** component is **Share location**.|
+| SEND_LOCATION | 4 | The text on the **LocationButton** component is **Send location**.|
+| LOCATING | 5 | The text on the **LocationButton** component is **Locate**.|
+| LOCATION | 6 | The text on the **LocationButton** component is **Location**.|
+| SEND_CURRENT_LOCATION | 7 | The text on the **LocationButton** component is **Send current location**.|
+| RELOCATION | 8 | The text on the **LocationButton** component is **Relocate**.|
+| PUNCH_IN | 9 | The text on the **LocationButton** component is **Punch in**.|
+| CURRENT_POSITION | 10 | The text on the **LocationButton** component is **Current position**.|
 
 ## LocationButtonOnClickResult
 
@@ -100,8 +109,8 @@ Describes the icon, text, and other specific elements for the Location button.
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| SUCCESS | 0 | The Location button is touched successfully.|
-| TEMPORARY_AUTHORIZATION_FAILED | 1 | Temporary authorization fails after the Location button is touched.|
+| SUCCESS | 0 | The **LocationButton** component is touched successfully.|
+| TEMPORARY_AUTHORIZATION_FAILED | 1 | Temporary authorization fails after the **LocationButton** component is touched.|
 
 ## Attributes
 

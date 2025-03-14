@@ -26,11 +26,11 @@ WithTheme(options: WithThemeOptions)
 
 ## Attributes
 
-The [universal attributes](ts-universal-attributes-size.md) are not supported.
+The [universal attributes](ts-component-general-attributes.md) are not supported.
 
 ## Events
 
-The [universal events](ts-universal-events-click.md) are not supported.
+The [universal events](ts-component-general-events.md) are not supported.
 
 ## WithThemeOptions
 
@@ -42,8 +42,22 @@ Defines the default theme and color mode for components within the **WithTheme**
 
 | Name       | Type                              | Mandatory| Description               |
 |------------------------|---------------------------------------------------------| ---- |------------------------------------------------------------------|
-| theme     | [CustomTheme](../js-apis-arkui-theme.md#customtheme)    | No  | Default theme for components in the **WithTheme** scope.<br> Default value: **undefined**, indicating that the styles will follow the system's default theme.<br>|
-| colorMode | [ThemeColorMode](#themecolormode10) | No  | Color mode for components in the **WithTheme** scope.<br>Default value: **ThemeColorMode.System**<br>      |
+| theme     | [CustomTheme](#customtheme)    | No  | Default theme for components in the **WithTheme** scope.<br> Default value: **undefined**, indicating that the styles will follow the system's default theme.|
+| colorMode | [ThemeColorMode](#themecolormode10) | No  | Color mode for components in the **WithTheme** scope.<br>Default value: **ThemeColorMode.System**      |
+
+## CustomTheme
+
+type CustomTheme = CustomTheme
+
+Defines a custom theme.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Type    | Description      |
+| ------ | ---------- |
+| [CustomTheme](../js-apis-arkui-theme.md#customtheme)  | Default theme for components in the **WithTheme** scope.|
 
 ## ThemeColorMode<sup>10+</sup>
 
