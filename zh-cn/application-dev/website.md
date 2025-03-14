@@ -499,6 +499,7 @@
         - [使用镜像能力](ui/arkts-mirroring-display.md)
         - [支持适老化](ui/arkui-support-for-aging-adaptation.md)
         - 主题设置<!--arkts-theme-->
+          - [应用深浅色适配](ui/ui-dark-light-color-adaptation.md)
           - [设置应用内主题换肤](ui/theme_skinning.md)
         - [使用UI上下文接口操作界面（UIContext）](ui/arkts-global-interface.md)
         - 跨进程拉起页面<!--arkts-ui-cross-process-->
@@ -2834,6 +2835,7 @@
           - [焦点错误码](reference/apis-arkui/errorcode-focus.md)
           - [系统资源错误码](reference/apis-arkui/errorcode-system-resource.md)
           - [半模态错误码](reference/apis-arkui/errorcode-bindSheet.md)
+          - [滚动类组件错误码](reference/apis-arkui/errorcode-scroll.md)
         - 图形图像<!--arkui-graphics-images-arkts-errcode-->
           - [屏幕错误码](reference/apis-arkui/errorcode-display.md)
           - [窗口错误码](reference/apis-arkui/errorcode-window.md)

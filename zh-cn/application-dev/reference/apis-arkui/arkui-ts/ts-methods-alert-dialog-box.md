@@ -367,7 +367,7 @@ struct AlertDialogExample {
 
 ### 示例2（可在主窗外弹出的弹窗）
 
-该示例通过配置showInSubWindow为true弹出可以在主窗外显示的弹窗。
+在2in1设备上设置showInSubWindow为true时，可以弹出在主窗外显示的弹窗。
 
 > **说明：**
 > 

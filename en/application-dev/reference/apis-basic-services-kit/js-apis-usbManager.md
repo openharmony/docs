@@ -875,7 +875,7 @@ try {
 
 ## usbManager.cancelAccessoryRight<sup>14+</sup>
 
-cancelAccessoryRight(accessory: USBAccessory): void;
+cancelAccessoryRight(accessory: USBAccessory): void
 
 Cancels the permission of the current application to access USB accessories.
 
@@ -950,7 +950,7 @@ try {
 
 ## usbManager.openAccessory<sup>14+</sup>
 
-openAccessory(accessory: USBAccessory): USBAccessoryHandle;
+openAccessory(accessory: USBAccessory): USBAccessoryHandle
 
 Obtains the accessory handle and opens the accessory file descriptor.
 
@@ -999,7 +999,7 @@ try {
 
 ## usbManager.closeAccessory<sup>14+</sup>
 
-closeAccessory(accessoryHandle: USBAccessoryHandle): void;
+closeAccessory(accessoryHandle: USBAccessoryHandle): void
 
 Closes the accessory file descriptor.
 

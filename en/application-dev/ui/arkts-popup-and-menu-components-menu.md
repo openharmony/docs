@@ -67,17 +67,17 @@ struct menuExample {
   @Builder
   MyMenu() {
     Menu() {
-      MenuItem({ startIcon: $r("app.media.icon"), content: "Menu option" })
-      MenuItem({ startIcon: $r("app.media.icon"), content: "Menu option" }).enabled(false)
+      MenuItem({ startIcon: $r("app.media.icon"), content: "Menu item" })
+      MenuItem({ startIcon: $r("app.media.icon"), content: "Menu item" }).enabled(false)
       MenuItem({
         startIcon: this.iconStr,
-        content: "Menu option",
+        content: "Menu item",
         endIcon: $r("app.media.arrow_right_filled"),
         // When the builder parameter is set, it indicates that a submenu is bound to a menu item. When the user hovers the cursor over the menu item, the submenu is displayed.
         builder: this.SubMenu
       })
       MenuItemGroup ({ header: 'Subtitle' }) {
-        MenuItem ({ content: "Menu option" })
+        MenuItem ({ content: "Menu item" })
           .selectIcon(true)
           .selected(this.select)
           .onChange((selected) => {
@@ -87,7 +87,7 @@ struct menuExample {
           })
         MenuItem({
           startIcon: $r("app.media.view_list_filled"),
-          content: "Menu option",
+          content: "Menu item",
           endIcon: $r("app.media.arrow_right_filled"),
           builder: this.SubMenu
         })
@@ -95,7 +95,7 @@ struct menuExample {
 
       MenuItem({
         startIcon: this.iconStr2,
-        content: "Menu option",
+        content: "Menu item",
         endIcon: $r("app.media.arrow_right_filled")
       })
     }

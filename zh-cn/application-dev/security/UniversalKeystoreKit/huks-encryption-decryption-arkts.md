@@ -485,7 +485,7 @@ async function DeleteKey() {
 
 ### RSA/ECB/PKCS1_V1_5
 
-```
+```ts
 /*
  * 以下以RSA/ECB/PKCS1_V1_5模式的Promise操作使用为例
  */
@@ -691,7 +691,7 @@ async function DeleteKey() {
 
 ### RSA/ECB/OAEP/SHA256
 
-```
+```ts
 /*
  * 以下以RSA/ECB/OAEP/SHA256模式的Promise操作使用为例
  */

@@ -4,7 +4,7 @@ OpenHarmony使用llvm开源项目的C++标准库[libc++](https://libcxx.llvm.org
 
 ## libc++版本
 
-从OpenHarmony 4.0开始，libc++升级到clang/llvm 15.0.4版本
+从OpenHarmony 4.0开始到OpenHarmony 5.0，libc++升级到clang/llvm 15.0.4版本
 
 从OpenHarmony 3.2开始，libc++升级到clang/llvm 12.0.1版本
 

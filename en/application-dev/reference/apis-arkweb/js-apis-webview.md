@@ -1632,7 +1632,7 @@ class TestObj {
   constructor() {
   }
 
-  test(testStr:string): string {
+  test(testStr: string): string {
     console.log('Web Component str' + testStr);
     return testStr;
   }
@@ -1641,12 +1641,12 @@ class TestObj {
     console.log('Web Component toString');
   }
 
-  testNumber(testNum:number): number {
+  testNumber(testNum: number): number {
     console.log('Web Component number' + testNum);
     return testNum;
   }
 
-  asyncTestBool(testBol:boolean): void {
+  asyncTestBool(testBol: boolean): void {
     console.log('Web Component boolean' + testBol);
   }
 }
@@ -1673,7 +1673,7 @@ class AsyncObj {
     console.log('Async test');
   }
 
-  asyncString(testStr:string): void {
+  asyncString(testStr: string): void {
     console.log('Web async string' + testStr);
   }
 }
@@ -1699,8 +1699,11 @@ struct Index {
       Button('Register JavaScript To Window')
         .onClick(() => {
           try {
+            // Register both synchronous and asynchronous functions.
             this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString", "testNumber"], ["asyncTestBool"]);
+            // Register only the synchronous function.
             this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
+            // Register only the asynchronous function.
             this.controller.registerJavaScriptProxy(this.asyncTestObj, "objAsyncName", [], ["asyncTest", "asyncString"]);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -5199,11 +5202,15 @@ export default class EntryAbility extends UIAbility {
     webview.WebviewController.initializeWebEngine();
     // Replace "https://www.example1.com/post?e=f&g=h" with the actual website address to visit. 
     webview.WebviewController.prefetchResource(
-      {url:"https://www.example1.com/post?e=f&g=h",
-        method:"POST",
-        formData:"a=x&b=y",},
-      [{headerKey:"c",
-        headerValue:"z",},],
+      {
+        url: "https://www.example1.com/post?e=f&g=h",
+        method: "POST",
+        formData: "a=x&b=y",
+      },
+      [{
+        headerKey: "c",
+        headerValue: "z",
+      },],
       "KeyX", 500);
     AppStorage.setOrCreate("abilityWant", want);
     console.log("EntryAbility onCreate done");
@@ -5235,17 +5242,22 @@ import { webview } from '@kit.ArkWeb';
 @Component
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
+
   build() {
     Column() {
-      Web({ src: "https://www.example.com/", controller: this.controller})
+      Web({ src: "https://www.example.com/", controller: this.controller })
         .onAppear(() => {
           // Replace "https://www.example1.com/post?e=f&g=h" with the actual website address to visit. 
           webview.WebviewController.prefetchResource(
-            {url:"https://www.example1.com/post?e=f&g=h",
-              method:"POST",
-              formData:"a=x&b=y",},
-            [{headerKey:"c",
-              headerValue:"z",},],
+            {
+              url: "https://www.example1.com/post?e=f&g=h",
+              method: "POST",
+              formData: "a=x&b=y",
+            },
+            [{
+              headerKey: "c",
+              headerValue: "z",
+            },],
             "KeyX", 500);
         })
         .onPageEnd(() => {
@@ -5969,20 +5981,14 @@ This API can be called only in the UI thread.
 ```ts
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
-@Entry
-@Component
-struct WebComponent {
-  controller: webview.WebviewController = new webview.WebviewController();
-
-  build() {
-    Column() {
-      Button('getDefaultUserAgent')
-        .onClick(() => {
-          let defaultUserAgent = webview.WebviewController.getDefaultUserAgent();
-          console.log("defaultUserAgent: " + defaultUserAgent);
-        })
-    }
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("EntryAbility onCreate");
+    webview.WebviewController.initializeWebEngine();
+    let defaultUserAgent = webview.WebviewController.getDefaultUserAgent();
+    console.log("defaultUserAgent: " + defaultUserAgent);
   }
 }
 ```
@@ -9112,6 +9118,7 @@ struct WebComponent {
   }
 }
 ```
+
 ## WebCookieManager
 
 Implements a **WebCookieManager** instance to manage behavior of cookies in **Web** components. All **Web** components in an application share a **WebCookieManager** instance.
@@ -12309,7 +12316,7 @@ Defines a custom URL scheme.
 | isDisplayIsolated<sup>12+</sup> | boolean   | Yes  | Yes  | Whether the content of the scheme can be displayed or accessed from other content that uses the same scheme.          |
 | isSecure<sup>12+</sup> | boolean   | Yes  | Yes  | Whether the scheme is treated with the same security rules as those applied to HTTPS URLs.          |
 | isCspBypassing<sup>12+</sup> | boolean   | Yes  | Yes  | Whether the scheme can bypass the content security policy (CSP) checks. In most cases, this value should not be set when **isStandard** is set to **true**.        |
-| isCodeCacheSupported<sup>12+</sup> | boolean   | Yes  | Yes  | Whether JavaScript resources loaded with the scheme can be used to create a code cache.        |
+| isCodeCacheSupported<sup>12+</sup> | boolean   | Yes  | Yes  | Whether JavaScript resources loaded with the scheme can be used to create a code cache. The default value is **false**.        |
 
 ## SecureDnsMode<sup>10+</sup>
 
@@ -16693,5 +16700,3 @@ Represents the current scrolling offset of a web page.
 | ---- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | x    | number | Yes  | Yes  | Horizontal scrolling offset of a web page. The value is the difference between the x-coordinate of the left boundary of the web page and that of the left boundary of the **Web** component. The unit is vp.<br>When the web page is scrolled rightwards, the value is negative.<br>When the web page is not scrolled or scrolled leftwards, the value is **0** or positive.|
 | y    | number | Yes  | Yes  | Vertical scrolling offset of a web page. The value is the difference between the y-coordinate of the upper boundary of the web page and that of the upper boundary of the **Web** component. The unit is vp.<br>When the web page is scrolled downwards, the value is negative.<br>When the web page is not scrolled or scrolled upwards, the value is **0** or positive.|
-
-<!--no_check-->
