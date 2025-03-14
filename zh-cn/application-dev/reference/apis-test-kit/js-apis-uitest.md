@@ -194,6 +194,7 @@ On提供的API能力具有以下几个特点:<br>1、支持单属性匹配和多
 
 ```ts
 import { ON } from '@kit.TestKit';
+
 ON.text('123').type('Button');
 ```
 
@@ -237,7 +238,7 @@ let on:On = ON.text('123'); // 使用静态构造器ON创建On对象，指定目
 
 ### id<sup>9+</sup>
 
-id(id: string, pattern?: MatchPattern): On
+id(id: string): On
 
 指定目标控件id属性，返回On对象自身。
 
@@ -247,10 +248,48 @@ id(id: string, pattern?: MatchPattern): On
 
 **参数：**
 
+| 参数名 | 类型   | 必填 | 说明             |
+| ------ | ------ | ---- | ---------------- |
+| id     | string | 是   | 指定控件的id值。 |
+
+**返回值：**
+
+| 类型       | 说明                             |
+| ---------- | -------------------------------- |
+| [On](#on9) | 返回指定目标控件id属性的On对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+import { On, ON } from '@kit.TestKit';
+
+let on:On = ON.id('123'); // 使用静态构造器ON创建On对象，指定目标控件的id属性。
+```
+
+### id<sup>18+</sup>
+
+id(id: string, pattern?: MatchPattern): On
+
+指定目标控件id属性，返回On对象自身。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
 | 参数名                   | 类型   | 必填 | 说明                                    |
 |-----------------------| ------ |----|---------------------------------------|
 | id                    | string | 是  | 指定控件的id值。                             |
-| pattern<sup>18+</sup> | [MatchPattern](#matchpattern) | 否  | 指定的文本匹配模式，默认为[EQUALS](#matchpattern)。 |
+| pattern | [MatchPattern](#matchpattern) | 否  | 指定的文本匹配模式，默认为[EQUALS](#matchpattern)。 |
 
 **返回值：**
 
@@ -275,7 +314,7 @@ let on:On = ON.id('id', MatchPattern.REG_EXP_ICASE) // 忽略大小写匹配控�
 
 ### type<sup>9+</sup>
 
-type(tp: string, pattern?: MatchPattern): On
+type(tp: string): On
 
 指定目标控件的控件类型属性，返回On对象自身。
 
@@ -289,10 +328,51 @@ type(tp: string, pattern?: MatchPattern): On
 
 **参数：**
 
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| tp     | string | 是   | 指定控件类型。|
+
+**返回值：**
+
+| 类型       | 说明                                     |
+| ---------- | ---------------------------------------- |
+| [On](#on9) | 返回指定目标控件的控件类型属性的On对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+import { On, ON } from '@kit.TestKit';
+let on:On = ON.type('Button'); // 使用静态构造器ON创建On对象，指定目标控件的控件类型属性。
+```
+
+### type<sup>18+</sup>
+
+type(tp: string, pattern?: MatchPattern): On
+
+指定目标控件的控件类型属性，返回On对象自身。
+
+>**说明**
+>
+>控件类型是开发者自定义的。同时，可以借助[DevEco Testing工具](https://developer.huawei.com/consumer/cn/download)进行查询。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
 | 参数名                   | 类型   | 必填 | 说明                                    |
 |-----------------------| ------ | ---- |---------------------------------------|
 | tp                    | string | 是   | 指定控件类型。                               |
-| pattern<sup>18+</sup> | [MatchPattern](#matchpattern) | 否  | 指定的文本匹配模式，默认为[EQUALS](#matchpattern)。 |
+| pattern | [MatchPattern](#matchpattern) | 否  | 指定的文本匹配模式，默认为[EQUALS](#matchpattern)。 |
 
 **返回值：**
 
@@ -838,6 +918,7 @@ hint(val: string, pattern?: MatchPattern): On
 
 ```ts
  import { MatchPattern, On, ON } from '@kit.TestKit';
+ 
  let on:On = ON.hint('welcome', MatchPattern.EQUALS); // 使用静态构造器ON创建On对象，指定目标控件的提示文本属性。
 ```
 
@@ -1441,7 +1522,7 @@ async function demo() {
 
 inputText(text: string): Promise\<void>
 
-向控件中输入文本(适用于文本框控件)。
+向控件中输入文本（适用于文本框控件），清空组件内原有文本后输入。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1505,11 +1586,55 @@ async function demo() {
 
 ### scrollSearch<sup>9+</sup>
 
-scrollSearch(on: On, vertical?: boolean, offset?: number): Promise\<Component>
+scrollSearch(on: On): Promise\<Component>
 
-在控件上滑动查找目标控件(适用支持滑动的控件)。
+在控件上滑动查找目标控件（适用支持滑动的控件），使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型       | 必填 | 说明                 |
+| ------ | ---------- | ---- | -------------------- |
+| on     | [On](#on9) | 是   | 目标控件的属性要求。 |
+
+**返回值：**
+
+| 类型                               | 说明                                  |
+| ---------------------------------- | ------------------------------------- |
+| Promise\<[Component](#component9)> | 以Promise形式返回找到的目标控件对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                               |
+| -------- | ---------------------------------------- |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+import { Component, Driver, ON } from '@kit.TestKit';
+
+async function demo() {
+  let driver: Driver = Driver.create();
+  let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
+  let button = await scrollBar.scrollSearch(ON.text('next page'));
+}
+```
+
+### scrollSearch<sup>18+</sup>
+
+scrollSearch(on: On, vertical?: boolean, offset?: number): Promise\<Component>
+
+在控件上滑动查找目标控件（适用支持滑动的控件），使用Promise异步回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1518,8 +1643,8 @@ scrollSearch(on: On, vertical?: boolean, offset?: number): Promise\<Component>
 | 参数名                    | 类型       | 必填 | 说明                                |
 |------------------------| ---------- | ---- |-----------------------------------|
 | on                     | [On](#on9) | 是   | 目标控件的属性要求。                        |
-| vertical<sup>18+</sup> |    boolean | 否 | 默认为true，表示查找方向是纵向。false表示查找方向为横向。 |
-| offset<sup>18+</sup>   | number| 否 | 滑动起点/终点到组件边框的偏移, 默认80，单位：px。    |
+| vertical |    boolean | 否 | 默认为true，表示查找方向是纵向。false表示查找方向为横向。 |
+| offset   | number| 否 | 滑动起点/终点到组件边框的偏移, 默认80，单位：px。    |
 
 **返回值：**
 
@@ -3211,7 +3336,7 @@ async function demo() {
 
 inputText(p: Point, text: string): Promise\<void>
 
-在指定坐标点输入文本。
+在指定坐标点输入文本，不清空组件内原有文本，直接在坐标处追加输入。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
