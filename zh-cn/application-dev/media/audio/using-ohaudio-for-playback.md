@@ -319,8 +319,6 @@ OH_AudioStreamBuilder_Destroy(builder);
 
 开发者可使用[OH_AudioRenderer_SetVolume](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_setvolume)接口设置当前音频流音量值。
 
-开发示例。
-
 ```cpp
 // 要设置的音量值，音量值的范围是[0.0, 1.0]。
 float volume = 0.5f;
@@ -369,8 +367,6 @@ OH_AudioStreamBuilder_SetChannelLayout(builder, CH_LAYOUT_STEREO);
 开发流程与普通播放场景一致，仅需要在创建音频流构造器时，调用[OH_AudioStreamBuilder_SetWriteDataWithMetadataCallback()](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setwritedatawithmetadatacallback)设置PCM数据与元数据同时写入的回调函数，同时调用[OH_AudioStreamBuilder_SetEncodingType()](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setencodingtype)设置编码类型为AUDIOSTREAM_ENCODING_TYPE_AUDIOVIVID。
 
 在播放AudioVivid时，帧长是固定的，不可通过[OH_AudioStreamBuilder_SetFrameSizeInCallback()](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setframesizeincallback)设置回调帧长。同时，在设置播放声道数和声道布局时，需要将写入音源的声床数和对象数相加后进行设置。
-
-开发示例。
 
 ```cpp
 // 自定义同时写入PCM数据和元数据函数。

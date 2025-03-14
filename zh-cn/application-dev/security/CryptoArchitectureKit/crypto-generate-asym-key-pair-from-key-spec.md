@@ -407,7 +407,7 @@
     let generatorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(sm2KeyPairSpec);
     let keyPair = await generatorBySpec.generateKeyPair();
     let sm2CurveName = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_CURVE_NAME_STR);
-    console.info('ECC_CURVE_NAME_STR: ' + sm2CurveName); // NID_sm2.
+    console.info('ECC_CURVE_NAME_STR: ' + sm2CurveName); // NID_sm2
   }
   ```
 
@@ -436,7 +436,7 @@
       let keyPair = generatorBySpec.generateKeyPairSync();
       if (keyPair !== null) {
         let sm2CurveName = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_CURVE_NAME_STR);
-        console.info('ECC_CURVE_NAME_STR: ' + sm2CurveName); // NID_sm2.
+        console.info('ECC_CURVE_NAME_STR: ' + sm2CurveName); // NID_sm2
       } else {
         console.error('get key pair result fail!');
       }
