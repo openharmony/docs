@@ -7952,7 +7952,7 @@ struct Index {
 
 raiseToAppTop(): Promise&lt;void&gt;
 
-应用子窗口调用，提升应用子窗口到顶层，只在当前应用同一个父窗口下的相同类型子窗范围内生效。使用Promise异步回调。
+应用子窗口调用，提升应用子窗口到顶层，只在当前应用同一个父窗口下的相同类型子窗范围内生效，对于自定义了zLevel属性的普通子窗口，只在当前应用同一个父窗口下相同zLevel值的普通子窗范围内生效。使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -8897,8 +8897,8 @@ setSubWindowZLevel(zLevel: number): Promise<void>;
 
 | 错误码ID | 错误信息                                      |
 | ------- | --------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed.|
+| 801     | Capability not supported. Function setSubWindowZLevel can not work correctly due to limited device capabilities. |
 | 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation.                       |
@@ -8962,7 +8962,7 @@ getSubWindowZLevel(): number;
 
 | 错误码ID | 错误信息                                                                                                     |
 | -------- | ------------------------------------------------------------------------------------------------------------ |
-| 801      | Capability not supported. Failed to call the API due to limited device capabilities.                         |
+| 801      | Capability not supported. Function getSubWindowZLevel can not work correctly due to limited device capabilities. |
 | 1300002  | This window state is abnormal.                                                                               |
 | 1300004  | Unauthorized operation.                                                                                |
 
