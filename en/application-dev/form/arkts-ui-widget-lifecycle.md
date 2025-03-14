@@ -12,7 +12,6 @@ When creating an ArkTS widget, you need to implement the [FormExtensionAbility](
     ```
 
 2. In **EntryFormAbility.ets**, implement the [FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md) lifecycle API, including **onAddForm**, in which [want](../reference/apis-ability-kit/js-apis-app-ability-want.md) can be used to obtain the widget information through [FormParam](../reference/apis-form-kit/js-apis-app-form-formInfo.md#formparam).
-   
       ```ts
       const TAG: string = 'EntryFormAbility';
       const DOMAIN_NUMBER: number = 0xFF00;
@@ -37,6 +36,7 @@ When creating an ArkTS widget, you need to implement the [FormExtensionAbility](
           // 1. Temporary widgets and normal widgets are defined from the viewpoint of the widget host.
           // 2. Temporary widgets have a brief existence, appearing following particular events or user interactions and vanishing automatically upon task completion.
           // 3. Normal widgets maintain a lasting presence, continuing to exist unless explicitly removed or altered by the user. Function widgets developed in normal cases are normal widgets.
+          // 4. Currently, temporary widgets are not used on mobile phones.
           hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onCastToNormalForm');
         }
     
@@ -83,7 +83,6 @@ When creating an ArkTS widget, you need to implement the [FormExtensionAbility](
         }
       }
       ```
-
 
 > **NOTE**
 >

@@ -34,6 +34,8 @@ Requests to publish a widget carrying data to the widget host (usually the home 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 202 | The application is not a system application. |
@@ -41,8 +43,6 @@ Requests to publish a widget carrying data to the widget host (usually the home 
 | 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -96,6 +96,8 @@ Requests to publish a widget to the widget host (usually the home screen). This 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 202 | The application is not a system application. |
@@ -103,8 +105,6 @@ Requests to publish a widget to the widget host (usually the home screen). This 
 | 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -159,6 +159,8 @@ Requests to publish a widget to the widget host (usually the home screen). This 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 202 | The application is not a system application. |
@@ -166,8 +168,6 @@ Requests to publish a widget to the widget host (usually the home screen). This 
 | 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -213,14 +213,14 @@ Checks whether a widget can be published to the widget host. This API uses an as
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 202 | The application is not a system application. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16500050 | IPC connection error. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -280,13 +280,13 @@ Checks whether a widget can be published to the widget host. This API uses a pro
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 202 | The application is not a system application. |
 | 16500050 | IPC connection error. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
