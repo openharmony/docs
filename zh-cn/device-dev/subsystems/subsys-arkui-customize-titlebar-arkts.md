@@ -8,8 +8,7 @@
 
 ### 约束与限制
 
-需要在`foundation/arkui/ace_engine/frameworks/core/components_ng/pattern/container_modal/interfaces`路径下加入有自定义标题栏代码的js文件。并且在`foundation/arkui/ace_engine/frameworks/core/components_ng/pattern/container_modal/interfaces/BUILD.gn`中配置js文件编译成abc文件，最后
-在`foundation/arkui/ace_engine/frameworks/core/components_ng/pattern/BUILD.gn`完成编译配置。
+需要在`foundation/arkui/ace_engine/frameworks/core/components_ng/pattern/container_modal/interfaces`路径下加入有自定义标题栏代码的js文件。并且在`foundation/arkui/ace_engine/frameworks/core/components_ng/pattern/container_modal/interfaces/BUILD.gn`中配置js文件编译成abc文件，最后在`foundation/arkui/ace_engine/frameworks/core/components_ng/pattern/BUILD.gn`完成编译配置。
 
 ## 开发步骤
 
@@ -207,7 +206,7 @@
     loadCustomTitleBar(new Index(undefined, {}));
     ViewStackProcessor.StopGetAccessRecording();
     ```
-    - DevEco Studio编译生成的js文件或ts文件一般在工程的如下目录下：build/default/cache/default/default@CompileArkTS/esmodule/debug/entry/src/main/ets/pages/
+    - DevEco Studio编译生成的js文件或ts文件一般在工程的如下目录下：build/default/cache/default/default@CompileArkTS/esmodule/debug/entry/src/main/ets/pages/。
     - 处理ts文件，使其符合js语法规范。
     - js文件中的loadDocument或registerNameRouter方法需要更改使用loadCustomTitleBar方法。
         ```js
@@ -228,7 +227,7 @@
     ```
    将上述gen_customtitle_abc加入到`foundation/arkui/ace_engine/frameworks/core/components_ng/pattern/BUILD.gn`文件的编译依赖中。编译后生成的.abc文件在`obj/foundation/arkui/ace_engine/frameworks/core/components_ng/pattern/container_modal/interfaces`目录下。
    
-   具体可参考如下路径下的实现：[foundation/arkui/ace_engine/frameworks/core/components_ng/pattern/container_modal/interfaces](https://gitee.com/openharmony/arkui_ace_engine/tree/master/frameworks/core/components_ng/pattern/container_modal/interfaces)
+   具体可参考如下路径下的实现：[foundation/arkui/ace_engine/frameworks/core/components_ng/pattern/container_modal/interfaces](https://gitee.com/openharmony/arkui_ace_engine/tree/master/frameworks/core/components_ng/pattern/container_modal/interfaces)。
 
 
 4. 将.abc文件配置到系统中的指定目录，如/system/lib64/，然后命令行设置配置参数"persist.sys.arkui.customtitle"的值为.abc文件的路径，就可以读取并显示自定义的标题栏。
