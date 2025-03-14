@@ -220,7 +220,7 @@ restrictions.isPrinterDisabled(wantTemp).then((result) => {
 
 setHdcDisabled(admin: Want, disabled: boolean, callback: AsyncCallback\<void>): void
 
-Enables or disables [HDC](../../../device-dev/subsystems/subsys-toolchain-hdc-guide.md#hdc-guide). This API uses an asynchronous callback to return the result.
+Enables or disables [HDC](../../../device-dev/subsystems/subsys-toolchain-hdc-guide.md#hdc). This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_RESTRICT_POLICY
 
