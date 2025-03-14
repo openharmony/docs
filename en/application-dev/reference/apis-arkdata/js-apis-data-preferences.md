@@ -26,7 +26,7 @@ import { preferences } from '@kit.ArkData';
 | Name            | Type| Readable| Writable| Description                                   |
 | ---------------- | -------- | ---- | ---- | --------------------------------------- |
 | MAX_KEY_LENGTH   | number   | Yes  | No  | Maximum length of a key, which is 1024 bytes.    |
-| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum value length, which is 16 x 1024 x 1024 bytes.|
+| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum value length, which is 16 MB.|
 
 
 ## preferences.getPreferences
@@ -53,7 +53,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -130,7 +130,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -201,7 +201,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                  |
 | 15501001 | Only supported in stage mode. |
@@ -285,7 +285,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
 | 15501001 | Only supported in stage mode. |
@@ -366,7 +366,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
 | 15501001 | Only supported in stage mode.   |
@@ -432,7 +432,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 | 15500010 | Failed to delete preferences file. |
 
@@ -510,7 +510,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 | 15500010 | Failed to delete preferences file. |
 
@@ -581,7 +581,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
 | 15500010 | Failed to delete preferences file. |
@@ -665,7 +665,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
 | 15500010 | Failed to delete preferences file. |
@@ -742,7 +742,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -818,7 +818,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -886,7 +886,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -942,7 +942,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
 | 15501001 | Only supported in stage mode. |
@@ -1023,7 +1023,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
 | 15501001 | Only supported in stage mode. |
@@ -1096,11 +1096,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
-| 15501001 | Only supported in stage mode.   |
-| 15501002 | The data group id is not valid. |
+| 15501001 | The operations is supported in stage mode only.   |
+| 15501002 | Invalid dataGroupId. |
 
 **Example**
 
@@ -1139,8 +1139,8 @@ Represents the configuration of a **Preferences** instance.
 
 | Name       | Type  | Mandatory| Description                                                        |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
-| name        | string | Yes  | Name of the **Preferences** instance.                                     |
-| dataGroupId | string\|null\|undefined | No  | Application group ID, which needs to be obtained from AppGallery. This parameter is not supported currently.<br>This parameter is optional. A **Preferences** instance will be created in the sandbox path corresponding to the specified **dataGroupId**. If this parameter is not specified, the **Preferences** instance is created in the sandbox directory of the application.<br> **Model restriction**: This attribute can be used only in the stage model.|
+| name        | string | Yes  | Name of the **Preferences** instance. It must be longer than 0 bytes and less than or equal to 255 bytes, and cannot contain or end with slashes (/).<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>                                   |
+| dataGroupId | string\|null\|undefined | No  | Application group ID. <!--RP1-->Currently, this parameter is not supported.<!--RP1End--><br>This parameter is optional. A **Preferences** instance will be created in the sandbox path corresponding to the specified **dataGroupId**. If this parameter is not specified, the **Preferences** instance is created in the sandbox directory of the application.<br> **Model restriction**: This attribute can be used only in the stage model.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>|
 
 
 ## Preferences
@@ -1174,7 +1174,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -1220,7 +1220,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -1265,7 +1265,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -1417,6 +1417,8 @@ Writes data to this **Preferences** instance. This API uses an asynchronous call
 
   > **NOTE**
   >
+  > If the value contains a string that is not in UTF-8 format, store it in an Uint8Array. Otherwise, the persistent file may be damaged due to format errors.
+  >
   > If the key already exists, **put()** overwrites the value. You can use **hasSync()** to check whether the KV pair exists.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -1437,7 +1439,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -1462,6 +1464,8 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 Writes data to this **Preferences** instance. This API uses a promise to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
 
   > **NOTE**
+  >
+  > If the value contains a string that is not in UTF-8 format, store it in an Uint8Array. Otherwise, the persistent file may be damaged due to format errors.
   >
   > If the key already exists, **put()** overwrites the value. You can use **hasSync()** to check whether the KV pair exists.
 
@@ -1488,7 +1492,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -1513,6 +1517,8 @@ Writes data to this **Preferences** instance. This API returns the result synchr
 
   > **NOTE**
   >
+  > If the value contains a string that is not in UTF-8 format, store it in an Uint8Array. Otherwise, the persistent file may be damaged due to format errors.
+  >
   > If the key already exists, **putSync()** overwrites the value. You can use **hasSync()** to check whether the KV pair exists.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -1532,7 +1538,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -1565,7 +1571,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -1615,7 +1621,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -1664,7 +1670,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -1702,7 +1708,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -1748,7 +1754,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -1787,7 +1793,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -1800,6 +1806,10 @@ dataPreferences.deleteSync('startup');
 ### flush
 
 flush(callback: AsyncCallback&lt;void&gt;): void
+
+  > **NOTE**
+  >
+  > If no data is modified or the modified data is the same as the cached data, the persistent file will not be updated.
 
 Flushes the data in this **Preferences** instance to the persistent file. This API uses an asynchronous callback to return the result.
 
@@ -1843,6 +1853,10 @@ flush(): Promise&lt;void&gt;
 
 Flushes the data in this **Preferences** instance to the persistent file. This API uses a promise to return the result.
 
+  > **NOTE**
+  >
+  > If no data is modified or the modified data is the same as the cached data, the persistent file will not be updated.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
@@ -1868,35 +1882,22 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = dataPreferences.flush();
 promise.then(() => {
-  console.info("Successfully flushed data.");
+  console.info("Succeeded in flushing.");
 }).catch((err: BusinessError) => {
   console.error("Failed to flush. code =" + err.code + ", message =" + err.message);
 })
 ```
 
-### flushSync<sup>14+</sup>
 
-flushSync(): void
 
-Flushes the data in the cached **Preferences** instance to the persistent file.
 
-**Atomic service API**: This API can be used in atomic services since API version 14.
 
-**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-**Error codes**
 
-For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
 
-| ID| Error Message                       |
-| -------- | ------------------------------ |
-| 15500000 | Inner error.                   |
 
-**Example**
 
-```ts
-dataPreferences.flushSync();
-```
+
 
 ### clear
 
@@ -1999,6 +2000,10 @@ on(type: 'change', callback: Callback&lt;string&gt;): void
 
 Subscribes to data changes. The registered callback will be invoked to return the new value if the data change is [flushed](#flush).
 
+  > **NOTE**
+  >
+  > After [removePreferencesFromCache](#preferencesremovepreferencesfromcache) or [deletePreferences](#preferencesdeletepreferences) is called, the data change subscription will be automatically canceled. After [getPreferences](#preferencesgetpreferences) is called again, you need to subscribe to data changes again.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
@@ -2016,7 +2021,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -2042,7 +2047,15 @@ dataPreferences.flush((err: BusinessError) => {
 
 on(type: 'multiProcessChange', callback: Callback&lt;string&gt;): void
 
-Subscribes to inter-process data changes. For the multiple processes holding the same preference file, if the value of the subscribed key changes in any process, the callback in this API will be invoked after [flush()](#flush) is executed.
+Subscribes to inter-process data changes. When multiple processes hold the same preference file, calling [flush](#flush) in any process (including the current process) will trigger the callback in this API.
+
+This API is provided for applications that have applied for [dataGroupId](#options10). Avoid using this API for the applications that have not applied for **dataGroupId** because calling it in multiple process may damage the persistent files and cause data loss.
+
+  > **NOTE**
+  >
+  > The maximum number of subscriptions for inter-process data change of the same persistent file for the current process is 50. Once the limit is reached, the subscription will fail. You are advised to cancel the subscription in a timely manner after the callback is triggered.
+  >
+  > After [removePreferencesFromCache](#preferencesremovepreferencesfromcache) or [deletePreferences](#preferencesdeletepreferences) is called, the data change subscription will be automatically canceled. After [getPreferences](#preferencesgetpreferences) is called again, you need to subscribe to data changes again.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2061,9 +2074,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                               |
 | -------- | -------------------------------------- |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                           |
-| 15500019 | Failed to obtain subscription service. |
+| 15500019 | Failed to obtain the subscription service. |
 
 **Example**
 
@@ -2090,6 +2103,10 @@ on(type: 'dataChange', keys: Array&lt;string&gt;,  callback: Callback&lt;Record&
 
 Subscribes to changes of specific data. The registered callback will be invoked only after the values of the specified keys are changed and [flushed](#flush).
 
+  > **NOTE**
+  >
+  > After [removePreferencesFromCache](#preferencesremovepreferencesfromcache) or [deletePreferences](#preferencesdeletepreferences) is called, the data change subscription will be automatically canceled. After [getPreferences](#preferencesgetpreferences) is called again, you need to subscribe to data changes again.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
@@ -2108,7 +2125,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -2158,7 +2175,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -2187,6 +2204,8 @@ off(type: 'multiProcessChange', callback?: Callback&lt;string&gt;): void
 
 Unsubscribes from inter-process data changes.
 
+This API is provided for applications that have applied for [dataGroupId](#options10). Avoid using this API for the applications that have not applied for **dataGroupId** because calling it in multiple process may damage the persistent files and cause data loss.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
@@ -2204,7 +2223,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -2250,7 +2269,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**

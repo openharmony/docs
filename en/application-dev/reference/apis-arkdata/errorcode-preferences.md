@@ -15,11 +15,16 @@ An internal error occurred.
 
 **Possible Causes**
 
-The persistent file fails to be read or written.
+View the error log to determine the cause of the error. Possible causes include the following:
+1. Abnormal internal state
+2. Incorrect use of APIs
+3. System errors, such as insufficient memory, I/O error, or JS engine exception
 
-**Procedure**
+**Solution**
 
-Locate the cause based on the log information or contact the technical support.
+1. Check whether a closed object is reused.
+2. Check whether the APIs are correctly used.
+3. If the problem persists, ask the user to restart or update the application or upgrade the device version.
 
 ## 15500010 Failed to Delete the User Preference Persistence File
 **Error Message**
@@ -45,7 +50,7 @@ The possible causes are as follows:
 
 **Error Message**
 
-Failed to obtain subscription service.
+Failed to obtain the subscription service.
 
 **Description**
 

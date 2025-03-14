@@ -30,7 +30,7 @@ Defines the configuration of an RDB store.
 | Name       | Type         | Mandatory| Description                                                     |
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
 | isSearchable<sup>11+</sup> | boolean | No| Whether the RDB store is searchable. The value **true** means the RDB store is searchable; the value **false** means the opposite. The default value is **false**.<br>**System API**: This is a system API.<br>This parameter is supported since API version 11.|
-| vector<sup>12+</sup> | boolean | No| Whether the RDB store is a vector database. The value **true** means the RDB store is a vector database, and the value **false** means the opposite.<br>The vector database is ideal for storing and managing high-dimensional vector data, while the relational database is optimal for storing and processing structured data.<br>**System API**: This is a system API.<br>This parameter is supported since API version 12. Currently, the [execute](js-apis-data-relationalStore.md#execute12-1), [querySql](js-apis-data-relationalStore.md#querysql-1), [beginTrans](js-apis-data-relationalStore.md#begintrans12), [commit](js-apis-data-relationalStore.md#commit12), [rollback](js-apis-data-relationalStore.md#rollback12), and [ResultSet](js-apis-data-relationalStore.md#resultset) APIs support vector databases.|
+| vector<sup>12+</sup> | boolean | No| Whether the RDB store is a vector database. The value **true** means the RDB store is a vector database, and the value **false** means the opposite.<br>The vector store is ideal for storing and managing high-dimensional vector data, while the relational database is optimal for storing and processing structured data.<br>**System API**: This is a system API.<br>This parameter is supported since API version 12. Currently, the [execute](js-apis-data-relationalStore.md#execute12-1), [querySql](js-apis-data-relationalStore.md#querysql-1), [beginTrans](js-apis-data-relationalStore.md#begintrans12), [commit](js-apis-data-relationalStore.md#commit12), [rollback](js-apis-data-relationalStore.md#rollback12), and [ResultSet](js-apis-data-relationalStore.md#resultset) APIs support vector databases. Before calling **deleteRdbStore** to delete a vector store, ensure that the vector store is properly closed.|
 | haMode<sup>12+</sup> | [HAMode](#hamode12) | No| High availability (HA) mode.<br>The value **SINGLE** means data can be written only to a single RDB store. The value **MAIN_REPLICA** means data can be written to the main and replica RDB stores to ensure HA. However, this mode is not supported in encryption and attach scenarios. The default value is **SINGLE**. The value **MAIN_REPLICA** may affect the database write performance.<br>**System API**: This is a system API.<br>This parameter is supported since API version 12.<br>|
 
 ## HAMode<sup>12+</sup>
@@ -1049,7 +1049,7 @@ Provides APIs to access the **resultSet** object returned by **query()**.
 
 getFloat32Array(columnIndex: number): Float32Array
 
-Obtains the value from the specified column in the current row and outputs it in a Float32Array (array of 32-bit floating-point numbers). This API is available only for a [vector database](#storeconfig).
+Obtains the value from the specified column in the current row and outputs it in a Float32Array (array of 32-bit floating-point numbers). This API is available only for a [vector store](#storeconfig).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
