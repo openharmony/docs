@@ -12,7 +12,7 @@
 import { serialManager } from '@kit.BasicServicesKit';
 ```
 
-## serialManager.getPortList
+## getPortList
 
 getPortList(): Readonly&lt;serialport&gt;[];
 
@@ -42,7 +42,7 @@ if (portList === undefined || portList.length === 0) {
 let portId: number = portList[0].portId;
 ```
 
-## serialManager.hasSerialRight
+## hasSerialRight
 
 hasSerialRight(portId: number): boolean;
 
@@ -68,10 +68,10 @@ hasSerialRight(portId: number): boolean;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 14400005 | Database operation exception.                                |
-| 31400001 | serial service exception.                                    |
-| 31400003 | portId not exist.                                            |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 14400005 | 14400005 Database operation exception. |
+| 31400001 | Serial port management exception. |
+| 31400003 | Device does not exist. |
 
 **示例：**
 
@@ -96,7 +96,7 @@ if (serialManager.hasSerialRight(portId)) {
 }
 ```
 
-## serialManager.requestSerialRight
+## requestSerialRight
 
 requestSerialRight(portId: number): Promise&lt;boolean&gt;
 
@@ -122,10 +122,10 @@ requestSerialRight(portId: number): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 14400005 | Database operation exception.                                |
-| 31400001 | serial service exception.                                    |
-| 31400003 | portId not exist.                                            |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 14400005 | Database operation exception. |
+| 31400001 | Serial port management exception. |
+| 31400003 | Device does not exist. |
 
 **示例：**
 
@@ -156,7 +156,7 @@ if (!serialManager.hasSerialRight(portId)) {
 }
 ```
 
-## serialManager.open
+## open
 
 open(portId: number): void;
 
@@ -176,11 +176,11 @@ open(portId: number): void;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 31400001 | serial service exception.                                    |
-| 31400002 | no access right to serial device, call requestSerialRight first. |
-| 31400003 | portId not exist.                                            |
-| 31400004 | port is using by other application.                        |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 31400001 | Serial port management exception. |
+| 31400002 | Access denied. Call requestSerialRight to request user authorization first. |
+| 31400003 | Device does not exist. |
+| 31400004 | The serial port device is occupied. |
 
 **示例：**
 
@@ -219,7 +219,7 @@ try {
 }
 ```
 
-## serialManager.getAttribute
+## getAttribute
 
 getAttribute(portId: number): Readonly&lt;[SerialAttribute](#serialattribute)&gt;;
 
@@ -245,10 +245,10 @@ getAttribute(portId: number): Readonly&lt;[SerialAttribute](#serialattribute)&gt
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 31400001 | serial service exception.                                    |
-| 31400003 | portId not exist.                                            |
-| 31400005 | device is not open, call open first.                         |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 31400001 | Serial port management exception. |
+| 31400003 | Device does not exist. |
+| 31400005 | The serial port device is not opened. Call the open API first. |
 
 **示例：**
 
@@ -299,7 +299,7 @@ try {
 }
 ```
 
-## serialManager.setAttribute
+## setAttribute
 
 setAttribute(portId: number, attribute: [SerialAttribute](#serialattribute)): void;
 
@@ -320,10 +320,10 @@ setAttribute(portId: number, attribute: [SerialAttribute](#serialattribute)): vo
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 31400001 | serial service exception.                                    |
-| 31400003 | portId not exist.                                            |
-| 31400005 | device is not open, call open first.                         |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 31400001 | Serial port management exception. |
+| 31400003 | Device does not exist. |
+| 31400005 | The serial port device is not opened. Call the open API first. |
 
 **示例：**
 
@@ -376,7 +376,7 @@ try {
 }
 ```
 
-## serialManager.read
+## read
 
 read(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt;;
 
@@ -404,12 +404,12 @@ read(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 31400001 | serial service exception.                                    |
-| 31400003 | portId not exist.                                            |
-| 31400005 | device is not open, call open first.                         |
-| 31400006 | transfer timeout.                                            |
-| 31400007 | IO exception.                                            |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 31400001 | Serial port management exception. |
+| 31400003 | Device does not exist. |
+| 31400005 | The serial port device is not opened. Call the open API first. |
+| 31400006 | Data transfer timed out. |
+| 31400007 | I/O exception. |
 
 **示例：**
 
@@ -456,7 +456,7 @@ serialManager.read(portId, readBuffer, 2000).then((size: number) => {
 })
 ```
 
-## serialManager.readSync
+## readSync
 
 readSync(portId: number, buffer: Uint8Array, timeout?: number): number;
 
@@ -484,12 +484,12 @@ readSync(portId: number, buffer: Uint8Array, timeout?: number): number;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 31400001 | serial service exception.                                    |
-| 31400003 | portId not exist.                               |
-| 31400005 | device is not open, call open first.                         |
-| 31400006 | transfer timeout.                                            |
-| 31400007 | IO exception.                                            |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 31400001 | Serial port management exception. |
+| 31400003 | Device does not exist. |
+| 31400005 | The serial port device is not opened. Call the open API first. |
+| 31400006 | Data transfer timed out. |
+| 31400007 | I/O exception. |
 
 **示例：**
 
@@ -537,7 +537,7 @@ try {
 }
 ```
 
-## serialManager.write
+## write
 
 write(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt;;
 
@@ -565,12 +565,12 @@ write(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&g
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 31400001 | serial service exception.                                    |
-| 31400003 | portId not exist.                                            |
-| 31400005 | device is not open, call open first.                         |
-| 31400006 | transfer timeout.                                            |
-| 31400007 | IO exception.                                            |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 31400001 | Serial port management exception. |
+| 31400003 | Device does not exist. |
+| 31400005 | The serial port device is not opened. Call the open API first. |
+| 31400006 | Data transfer timed out. |
+| 31400007 | I/O exception. |
 
 **示例：**
 
@@ -617,7 +617,7 @@ serialManager.write(portId, writeBuffer, 2000).then((size: number) => {
 })
 ```
 
-## serialManager.writeSync
+## writeSync
 
 writeSync(portId: number, buffer: Uint8Array, timeout?: number): number;
 
@@ -645,12 +645,12 @@ writeSync(portId: number, buffer: Uint8Array, timeout?: number): number;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 31400001 | serial service exception.                                    |
-| 31400003 | portId not exist.                                            |
-| 31400005 | device is not open, call open first.                         |
-| 31400006 | transfer timeout.                                            |
-| 31400007 | IO exception.                                            |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 31400001 | Serial port management exception. |
+| 31400003 | Device does not exist. |
+| 31400005 | The serial port device is not opened. Call the open API first. |
+| 31400006 | Data transfer timed out. |
+| 31400007 | I/O exception. |
 
 **示例：**
 
@@ -698,7 +698,7 @@ try {
 }
 ```
 
-## serialManager.close
+## close
 
 close(portId: number): void;
 
@@ -718,10 +718,10 @@ close(portId: number): void;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 31400001 | serial service exception.                                    |
-| 31400003 | portId not exist.                                            |
-| 31400005 | device is not open, call open first.                         |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 31400001 | Serial port management exception. |
+| 31400003 | Device does not exist. |
+| 31400005 | The serial port device is not opened. Call the open API first. |
 
 **示例：**
 
@@ -768,7 +768,7 @@ try {
 }
 ```
 
-## serialManager.cancelSerialRight
+## cancelSerialRight
 
 cancelSerialRight(portId: number): void;
 
@@ -788,11 +788,11 @@ cancelSerialRight(portId: number): void;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14400005 | Database operation exception.                                |
-| 31400001 | serial service exception.                                    |
-| 31400002 | no access right to serial device, call requestSerialRight first. |
-| 31400003 | portId not exist.    |
+| 31400001 | Serial port management exception. |
+| 31400002 | Access denied. Call requestSerialRight to request user authorization first. |
+| 31400003 | Device does not exist. |
 
 **示例：**
 
