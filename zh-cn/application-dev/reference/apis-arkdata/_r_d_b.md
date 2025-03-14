@@ -2919,7 +2919,7 @@ int(*getAssets) (OH_Cursor *cursor, int32_t columnIndex, Data_Asset **value, uin
 | cursor | 表示指向[OH_Cursor](_o_h___cursor.md)实例的指针。 |
 | columnIndex | 表示结果集中指定列的索引, 索引值从0开始。 |
 | value | 该参数是输出参数，结果集中指定列的值会以资产数组形式写入该变量。 |
-| length | 既是入参又是出参,作为入参表示开发者传入的输入缓冲区的大小，作为出参表示返回的资产数组的长度。 |
+| length | 既是入参又是出参：作为入参，需要开发者传入一个uint32_t类型的变量，表示输入缓冲区的大小；作为出参，表示函数执行后，length指向的变量会被更新为实际返回的资产数组的长度。 |
 
 **返回：**
 
