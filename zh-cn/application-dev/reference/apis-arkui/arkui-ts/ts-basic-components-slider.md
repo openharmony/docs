@@ -140,7 +140,7 @@ showSteps(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | ------------------------------------------ |
-| value  | boolean | 是   | 当前是否显示步长刻度值。值为true时表示显示，值为false时表示不显示。<br/>默认值：false |
+| value  | boolean | 是   | 当前是否显示步长刻度值。值为true时显示刻度值，值为false时不显示刻度值。<br/>默认值：false |
 
 ### showTips
 
@@ -617,7 +617,7 @@ type SliderTriggerChangeCallback = (value: number, mode: SliderChangeMode) => vo
 
 | 参数名 | 类型    | 必填 | 说明              |
 | ------ | ------ | ---------------- | ---------------- |
-| value | number | 是 | 设置当前的进度值。 |
+| value | number | 是 | 设置当前的进度值。<br/>取值范围：[[min](#minlabeldeprecated)-[max](#maxlabeldeprecated)] |
 | mode | [SliderChangeMode](#sliderchangemode枚举说明) | 是 | 设置事件触发的相关状态值。 |
 
 ## 示例
