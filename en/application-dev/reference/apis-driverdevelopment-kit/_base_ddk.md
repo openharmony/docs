@@ -1,4 +1,4 @@
-# BASE DDK
+# Base DDK
 
 
 ## Overview
@@ -33,7 +33,7 @@ Provides APIs for creating, mapping, unmapping, and destroying an **Ashmem** obj
 
 | Name| Description| 
 | -------- | -------- |
-| [DDK_RetCode](#ddk_retcode) | BASE DDK error code definitions. | 
+| [DDK_RetCode](#ddk_retcode) | Base DDK error code definitions. | 
 
 
 ### Functions
@@ -58,7 +58,7 @@ enum DDK_RetCode
 
 **Description**
 
-BASE DDK error code definitions.
+Base DDK error code definitions.
 
 | Value| Description|
 | -------- | -------- |
@@ -95,7 +95,7 @@ Creates an **Ashmem** object.
 
 - [DK_SUCCESS](#ddk_retcode) if the API call is successful.
 - [DDK_INVALID_PARAMETER](#ddk_retcode) if the input **name** or **ashmem** is a null pointer, or **size** is **0**.
-- [DDK_FAILURE](#ddk_retcode) if the attempt to create the shared memory or the **DDK_Ashmem** structure fails.
+- [DDK_FAILURE] (#ddk_retcode) if the attempt to create the shared memory or the **DDK_Ashmem** structure fails.
 
 
 ### OH_DDK_MapAshmem()
@@ -120,7 +120,7 @@ Maps an **Ashmem** object.
 
 - [DK_SUCCESS](#ddk_retcode) if the API is called successfully.
 - [DDK_NULL_PTR](#ddk_retcode) if the input **ashmem** is a null pointer.
-- [DDK_FAILURE](#ddk_retcode) if the file descriptor of the shared memory is invalid.
+- [DDK_FAILURE] (#ddk_retcode) if the file descriptor of the shared memory is invalid.
 - [DDK_INVALID_OPERATION](#ddk_retcode) if calling the **MapAshmem** API fails.
 
 
@@ -145,7 +145,7 @@ Unmaps an **Ashmem** object.
 
 - [DK_SUCCESS](#ddk_retcode) if the API is called successfully.
 - [DDK_NULL_PTR](#ddk_retcode) if the input **ashmem** is a null pointer.
-- [DDK_FAILURE](#ddk_retcode) if the file descriptor of the shared memory is invalid.
+- [DDK_FAILURE] (#ddk_retcode) if the file descriptor of the shared memory is invalid.
 
 ### OH_DDK_DestoryAshmem()
 
@@ -168,4 +168,4 @@ Destroys the created shared memory.
 
 - [DK_SUCCESS](#ddk_retcode) if the API is called successfully.
 - [DDK_NULL_PTR](#ddk_retcode) if the input **ashmem** is a null pointer.
-- [DDK_FAILURE](#ddk_retcode) if the file descriptor of the shared memory is invalid.
+- [DDK_FAILURE] (#ddk_retcode) if the file descriptor of the shared memory is invalid.

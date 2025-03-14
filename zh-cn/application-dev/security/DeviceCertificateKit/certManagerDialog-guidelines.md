@@ -6,7 +6,6 @@
 
 证书管理对话框，可用于拉起证书管理页面并管理证书，如安装、存储、使用、销毁证书。
 
-
 ## 接口说明
 
 详细接口说明可参考[API参考](../../reference/apis-device-certificate-kit/js-apis-certManagerDialog.md)。
@@ -17,8 +16,8 @@
 | --------------- | ------------------------------------------------------------ | -------------------------------------------- |
 | certificateManagerDialog        | openCertificateManagerDialog(context: common.Context, pageType: CertificateDialogPageType): Promise\<void> | 拉起证书管理对话框，显示相应的页面，使用Promise方式异步返回结果。 |
 | certificateManagerDialog | openInstallCertificateDialog(context: common.Context, certType: CertificateType, certScope: CertificateScope, cert: Uint8Array): Promise\<string><sup>14+</sup> | 调用安装证书对话框接口进行证书安装，使用Promise方式异步返回安装证书的唯一标识符。<br/>仅2in1设备支持。 |
-| certificateManagerDialog | openUninstallCertificateDialog(context: common.Context, certType: CertificateType, certUri: string): Promise\<void><sup>16+</sup> | 调用删除证书对话框接口删除指定的证书，使用Promise方式异步返回结果。<br/>仅2in1设备支持。 |
-| certificateManagerDialog | openCertificateDetailDialog(context: common.Context, cert: Uint8Array, property: CertificateDialogProperty): Promise\<void><sup>16+</sup> | 调用查看证书详情的对话框接口，展示证书的详情。使用Promise方式异步返回结果。<br/>仅2in1设备支持。 |
+| certificateManagerDialog | openUninstallCertificateDialog(context: common.Context, certType: CertificateType, certUri: string): Promise\<void><sup>18+</sup> | 调用删除证书对话框接口删除指定的证书，使用Promise方式异步返回结果。<br/>仅2in1设备支持。 |
+| certificateManagerDialog | openCertificateDetailDialog(context: common.Context, cert: Uint8Array, property: CertificateDialogProperty): Promise\<void><sup>18+</sup> | 调用查看证书详情的对话框接口，展示证书的详情。使用Promise方式异步返回结果。<br/>仅2in1设备支持。 |
 
 ## 开发步骤
 

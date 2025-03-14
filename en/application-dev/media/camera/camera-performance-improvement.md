@@ -121,7 +121,7 @@ async function enableQuickThumbnail(baseContext: common.BaseContext, photoProfil
 }
 
 function showOrSavePicture(pixelMap: image.PixelMap): void {
-  //do something
+  // Do something.
 }
 ```
 

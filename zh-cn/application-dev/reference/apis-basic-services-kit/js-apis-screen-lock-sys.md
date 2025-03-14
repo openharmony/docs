@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import screenLock from '@ohos.screenLock';
+import { screenLock } from '@kit.BasicServicesKit';
 ```
 
 ## EventType<sup>9+</sup>
@@ -112,7 +112,7 @@ unlock(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：** 
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   screenLock.unlock((err: BusinessError, data: Boolean) => {
     if (err) {
@@ -156,7 +156,7 @@ unlock(): Promise&lt;boolean&gt;
 **示例：** 
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   screenLock.unlock().then((data: Boolean) => {
     console.info(`Succeeded in unlocking the screen. result: ${data}`);
@@ -201,7 +201,7 @@ lock(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：** 
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   screenLock.lock((err: BusinessError, data: Boolean) => {
     if (err) {
@@ -243,7 +243,7 @@ lock(): Promise&lt;boolean&gt;
 **示例：** 
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   screenLock.lock().then((data: Boolean) => {
     console.info(`Succeeded in locking the screen. result: ${data}`);
@@ -290,6 +290,8 @@ onSystemEvent(callback: Callback&lt;SystemEvent&gt;): boolean
 **示例：** 
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  
   try {
     let isSuccess = screenLock.onSystemEvent((event: screenLock.SystemEvent) => {
       console.log(`Succeeded in Registering the system event which related to screenlock. eventType: ${event.eventType}`)
@@ -334,7 +336,7 @@ sendScreenLockEvent(event: String, parameter: number, callback: AsyncCallback&lt
 **示例：** 
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   screenLock.sendScreenLockEvent('unlockScreenResult', 0, (err: BusinessError, result: Boolean) => {
     if (err) {
@@ -384,7 +386,7 @@ sendScreenLockEvent(event: String, parameter: number): Promise&lt;boolean&gt;
 **示例：** 
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   screenLock.sendScreenLockEvent('unlockScreenResult', 0).then((result: Boolean) => {
     console.info(`Succeeded in Sending screenlock event. result: ${result}`);

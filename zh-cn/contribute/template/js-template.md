@@ -29,7 +29,7 @@
 | @form | 卡片能力 | **卡片能力：** 从API version x开始，该接口支持在ArkTS卡片中使用。 |
 | @systemapi | 系统接口 | **系统接口：** 此接口为系统接口。 |
 | @syscap | 系统能力 | **系统能力**：SystemCapability.xxx.xxx |  1. 如果仅涉及一个权限，格式：<br/>    **需要权限：** ohos.permission.xxxx   <br/>2. 如果该接口涉及多个权限，则采用“和、或”进行分割，格式：<br/>    **需要权限：** ohos.permission.A 和 ohos.permission.B<br/>    **需要权限：** ohos.permission.A 或 ohos.permission.B |
-| @permission | 权限 |  1. 如果仅涉及一个权限，格式：<br/>    **需要权限：** ohos.permission.xxxx   <br/>2. 如果该接口涉及多个权限，则采用“和、或”进行分割，格式：<br/>    **需要权限：** ohos.permission.A 和 ohos.permission.B<br/>    **需要权限：** ohos.permission.A 或 ohos.permission.B |
+| @permission | 权限 |  1. 如果仅涉及一个权限，格式：<br/>    **需要权限：** ohos.permission.xxxx   <br/>2. 如果该接口涉及多个权限，则采用“和、或”进行分割，格式：<br/>    **需要权限：** ohos.permission.A 和 ohos.permission.B<br/>    **需要权限：** ohos.permission.A 或 ohos.permission.B <br/>3. 涉及版本变更时，“需要权限”后跟当前版本的权限要求，历史版本的权限要求换行按列表描述，样例：<br/>**需要权限：** ohos.permission.A <br/>- 在API x-(y-1)时，需要申请权限ohos.permission.A和B。<br/>- 从API y开始，仅需申请ohos.permission.A。<br/>4. 仅在某些固定场景下，需要申请权限。“需要权限”后跟d.ts的@permission保持一致，再补充情况说明，分为两类情况，当情况较为简单时，可采用括号补充描述；当情况较为复杂时，换行描述。<br/>样例1：<br/> **需要权限：** ohos.permission.A（仅当创建窗口类型为AA时需要申请）<br/>样例2：<br/> **需要权限：** ohos.permission.A<br/>- 当应用处于xx情况时，需要同步申请ohos.permission.B。<br/>- 当应用处于yy情况时，无需申请任何权限。|
 | @extends | 继承 |  带有该标签或实际存在extends关系但未带该标签时，在相关描述处应明确说明“xxx继承自xxx（提供链接）。” |
 
 下面进入具体每个API的写作。
@@ -350,7 +350,7 @@ type Xxx = number | string | 'xxx'
 
 ### Type模板二
 
-*（此处以函数别名为例，如果是interface别名同理，参考interface的模板写作）*
+*（此处以函数别名为例）*
 
 *（在此处给出type的具体定义形式）* type Xxx\<Aaa, Bbb> = (param1: number, param2: string) => Interface1
 
@@ -369,11 +369,27 @@ type Xxx = number | string | 'xxx'
 | ------ | ------------------------------------- |
 | [Interface1](#interface1) | 返回值描述。与[方法](#方法)要求一致。 |
 
+### Type模板三
+
+*（此处以含有多个属性字段的Interface别名为例）*
+
+*（在此处给出type的具体定义形式）*  type Xxx = { aaa: string; bbb?: number; }
+
+**系统能力：** SystemCapability.xxx.xxx（必选）
+
+
+| 名称   | 类型                                 | 必填 | 说明                                                         |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| aaa | string | 是 | 属性描述。 | 
+| bbb | number | 否 | 属性描述。 | 
+
 ## 变更日志
 
 | 变更说明                                                                 | 日期         |
 | ----------------------------------------------------------------------- | ------------ |
-| 增加示例代码需捕获传参异常的要求|  2025/03/03 |
+| 优化权限的写作规范，可覆盖多种类型的权限描述，适配扫描工具需求。 | 2025/03/12 |
+| 增加Type模板三，增加以含有多个属性字段的Interface别名。 | 2025/03/04 |
+| 增加示例代码需捕获传参异常的要求。 |  2025/03/03 |
 | 针对const定义的只读变量，增加模板。 |   2024/12/31  |
 | 1. 修改方法模板，增加static等关键字声明的方法描述说明。 |  2024/05/16  |
 | 1. 修改Type模板，除原来的联合类型外，增加交叉类型，以及type作为函数、interface等别名的情况。<br/>2. 修改属性模板，仅针对interface和接口定义而言，明确规则，如果有?，则判定为“可选”。 |  2024/05/10  |

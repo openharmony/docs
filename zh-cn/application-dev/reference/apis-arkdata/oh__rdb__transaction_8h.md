@@ -11,7 +11,7 @@
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
-**起始版本：** 16
+**起始版本：** 18
 
 **相关模块：**[RDB](_r_d_b.md)
 
@@ -45,7 +45,7 @@
 | int [OH_RdbTrans_Commit](_r_d_b.md#oh_rdbtrans_commit) ([OH_Rdb_Transaction](_r_d_b.md#oh_rdb_transaction) \*trans) | 提交事务。 | 
 | int [OH_RdbTrans_Rollback](_r_d_b.md#oh_rdbtrans_rollback) ([OH_Rdb_Transaction](_r_d_b.md#oh_rdb_transaction) \*trans) | 回滚事务。 | 
 | int [OH_RdbTrans_Insert](_r_d_b.md#oh_rdbtrans_insert) ([OH_Rdb_Transaction](_r_d_b.md#oh_rdb_transaction) \*trans, const char \*table, const [OH_VBucket](_o_h___v_bucket.md) \*row, int64_t \*rowId) | 将一行数据插入到目标表中。 | 
-| int [OH_RdbTrans_BatchInsert](_r_d_b.md#oh_rdbtrans_batchinsert) ([OH_Rdb_Transaction](_r_d_b.md#oh_rdb_transaction) \*trans, const char \*table, const [OH_Data_VBuckets](_r_d_b.md#oh_data_vbuckets) \*rows, int64_t \*changes) | 将一组数据批量插入到目标表中。 | 
+| int [OH_RdbTrans_BatchInsert](_r_d_b.md#oh_rdbtrans_batchinsert) ([OH_Rdb_Transaction](_r_d_b.md#oh_rdb_transaction) \*trans, const char \*table, const [OH_Data_VBuckets](_r_d_b.md#oh_data_vbuckets) \*rows, [Rdb_ConflictResolution](_r_d_b.md#rdb_conflictresolution) resolution, int64_t \*changes) | 将一组数据批量插入到目标表中。  | 
 | int [OH_RdbTrans_Update](_r_d_b.md#oh_rdbtrans_update) ([OH_Rdb_Transaction](_r_d_b.md#oh_rdb_transaction) \*trans, const [OH_VBucket](_o_h___v_bucket.md) \*row, const [OH_Predicates](_o_h___predicates.md) \*predicates, int64_t \*changes) | 根据指定的条件更新数据库中的数据。 | 
 | int [OH_RdbTrans_Delete](_r_d_b.md#oh_rdbtrans_delete) ([OH_Rdb_Transaction](_r_d_b.md#oh_rdb_transaction) \*trans, const [OH_Predicates](_o_h___predicates.md) \*predicates, int64_t \*changes) | 根据指定条件从数据库中删除数据。 | 
 | [OH_Cursor](_o_h___cursor.md) \* [OH_RdbTrans_Query](_r_d_b.md#oh_rdbtrans_query) ([OH_Rdb_Transaction](_r_d_b.md#oh_rdb_transaction) \*trans, const [OH_Predicates](_o_h___predicates.md) \*predicates, const char \*columns[], int len) | 根据指定的条件查询数据库中的数据。 | 

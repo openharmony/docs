@@ -191,8 +191,8 @@
 | [Input_Result](#input_result) [OH_Input_GetAllSystemHotkeys](#oh_input_getallsystemhotkeys) ([Input_Hotkey](#input_hotkey) \*\*hotkey, int32_t \*count) | 获取设置的所有快捷键。  | 
 | void [OH_Input_SetRepeat](#oh_input_setrepeat) ([Input_Hotkey](#input_hotkey) \*hotkey, bool isRepeat) | 设置是否上报重复key事件。  | 
 | [Input_Result](#input_result) [OH_Input_GetRepeat](#oh_input_getrepeat) (const [Input_Hotkey](#input_hotkey) \*hotkey, bool \*isRepeat) | 获取是否上报重复key事件。  | 
-| [Input_Result](#input_result) [OH_Input_AddHotkeyMonitor](#oh_input_addhotkeymonitor) (const [Input_Hotkey](#input_hotkey) \*hotkey, [Input_HotkeyCallback](#input_hotkeycallback) callback) | 订阅快捷键事件。  | 
-| [Input_Result](#input_result) [OH_Input_RemoveHotkeyMonitor](#oh_input_removehotkeymonitor) (const [Input_Hotkey](#input_hotkey) \*hotkey, [Input_HotkeyCallback](#input_hotkeycallback) callback) | 取消订阅快捷键。此接口在智能穿戴、轻量级智能穿戴设备不生效。  | 
+| [Input_Result](#input_result) [OH_Input_AddHotkeyMonitor](#oh_input_addhotkeymonitor) (const [Input_Hotkey](#input_hotkey) \*hotkey, [Input_HotkeyCallback](#input_hotkeycallback) callback) | 订阅快捷键事件。此接口在智能穿戴、轻量级智能穿戴设备不生效。  | 
+| [Input_Result](#input_result) [OH_Input_RemoveHotkeyMonitor](#oh_input_removehotkeymonitor) (const [Input_Hotkey](#input_hotkey) \*hotkey, [Input_HotkeyCallback](#input_hotkeycallback) callback) | 取消订阅快捷键。  | 
 | [Input_Result](#input_result) [OH_Input_GetDeviceIds](#oh_input_getdeviceids) (int32_t \*deviceIds, int32_t inSize, int32_t \*outSize) | 获取所有输入设备的ID列表。  | 
 | [Input_Result](#input_result) [OH_Input_GetDevice](#oh_input_getdevice) (int32_t deviceId, [Input_DeviceInfo](#input_deviceinfo) \*\*deviceInfo) | 获取输入设备信息。  | 
 | [Input_DeviceInfo](#input_deviceinfo) \* [OH_Input_CreateDeviceInfo](#oh_input_createdeviceinfo) (void) | 创建输入设备信息的对象。  | 
@@ -739,9 +739,9 @@ enum Input_KeyCode
 | KEYCODE_NUMPAD_EQUALS  | 小键盘按键'='。 | 
 | KEYCODE_NUMPAD_LEFT_PAREN  | 小键盘按键'('。 | 
 | KEYCODE_NUMPAD_RIGHT_PAREN  | 小键盘按键')'。 | 
-| KEYCODE_DAGGER_CLICK  | 智能手表dagger单击键。<br/>起始版本： 16。 | 
-| KEYCODE_DAGGER_DOUBLE_CLICK  | 智能手表dagger双击键。<br/>起始版本： 16。 | 
-| KEYCODE_DAGGER_LONG_PRESS  | 智能手表dagger长按键。<br/>起始版本： 16。 | 
+| KEYCODE_DAGGER_CLICK  | 智能手表dagger单击键。<br/>起始版本： 18。 | 
+| KEYCODE_DAGGER_DOUBLE_CLICK  | 智能手表dagger双击键。<br/>起始版本： 18。 | 
+| KEYCODE_DAGGER_LONG_PRESS  | 智能手表dagger长按键。<br/>起始版本： 18。 | 
 
 
 ### Input_KeyEventAction
@@ -988,7 +988,7 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若添加轴事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED； 若callback为空，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若添加轴事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
 
 
 ### OH_Input_AddAxisEventMonitorForAll()
@@ -1016,7 +1016,7 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若添加轴事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED； 若callback为空，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若添加轴事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
 
 
 ### OH_Input_AddHotkeyMonitor()
@@ -1026,7 +1026,7 @@ Input_Result OH_Input_AddHotkeyMonitor (const Input_Hotkey * hotkey, Input_Hotke
 ```
 **描述**
 
-订阅快捷键事件。
+订阅快捷键事件。此接口在智能穿戴、轻量级智能穿戴设备不生效。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1051,6 +1051,7 @@ INPUT_OCCUPIED_BY_SYSTEM 该快捷键已被系统占用，可以通过接口[OH_
 
 INPUT_OCCUPIED_BY_OTHER 已被抢占订阅。
 
+INPUT_DEVICE_NOT_SUPPORTED 表示功能不受支持。
 
 ### OH_Input_AddInputEventInterceptor()
 
@@ -1219,7 +1220,7 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若添加触摸事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED； 若callback为空，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若添加触摸事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
 
 
 ### OH_Input_CancelInjection()
@@ -1229,7 +1230,7 @@ void OH_Input_CancelInjection ()
 ```
 **描述**
 
-取消事件注入并撤销授权
+取消事件注入并撤销授权。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1263,7 +1264,7 @@ OH_Input_CreateAllSystemHotkey 函数错误码。 INPUT_SUCCESS 表示创建实�
 ### OH_Input_CreateAxisEvent()
 
 ```
-Input_AxisEvent* OH_Input_CreateAxisEvent (void )
+Input_AxisEvent* OH_Input_CreateAxisEvent ( void )
 ```
 **描述**
 
@@ -1329,7 +1330,7 @@ struct Input_KeyEvent* OH_Input_CreateKeyEvent ()
 
 **返回：**
 
-如果操作成功返回一个[Input_KeyEvent](#input_keyevent)指针对象，否则返回空指针。
+如果操作成功，返回一个[Input_KeyEvent](#input_keyevent)指针对象，否则返回空指针。
 
 
 ### OH_Input_CreateKeyState()
@@ -1365,7 +1366,7 @@ struct Input_MouseEvent* OH_Input_CreateMouseEvent ()
 
 **返回：**
 
-如果操作成功返回一个[Input_MouseEvent](#input_mouseevent)指针对象，否则返回空指针。
+如果操作成功，返回一个[Input_MouseEvent](#input_mouseevent)指针对象，否则返回空指针。
 
 
 ### OH_Input_CreateTouchEvent()
@@ -1383,7 +1384,7 @@ struct Input_TouchEvent* OH_Input_CreateTouchEvent ()
 
 **返回：**
 
-如果操作成功返回一个[Input_TouchEvent](#input_touchevent)指针对象，否则返回空指针。
+如果操作成功，返回一个[Input_TouchEvent](#input_touchevent)指针对象，否则返回空指针。
 
 
 ### OH_Input_DestroyAllSystemHotkeys()
@@ -2178,7 +2179,7 @@ int32_t OH_Input_GetKeyEventAction (const struct Input_KeyEvent * keyEvent)
 
 **返回：**
 
-返回按键事件类型
+返回按键事件类型。
 
 
 ### OH_Input_GetKeyEventActionTime()
@@ -2322,9 +2323,7 @@ Input_Result OH_Input_GetKeyState (struct Input_KeyState * keyState)
 
 **返回：**
 
-如果操作成功，
-
-返回Input_Result#INPUT_SUCCESS；否则返回[Input_Result](#input_result)中定义的其他错误代码。
+如果操作成功，返回Input_Result#INPUT_SUCCESS；否则返回[Input_Result](#input_result)中定义的其他错误代码。
 
 
 ### OH_Input_GetKeySwitch()
@@ -2372,7 +2371,7 @@ int32_t OH_Input_GetMouseEventAction (const struct Input_MouseEvent * mouseEvent
 
 **返回：**
 
-鼠标的动作
+鼠标的动作。
 
 
 ### OH_Input_GetMouseEventActionTime()
@@ -2420,7 +2419,7 @@ int32_t OH_Input_GetMouseEventAxisType (const struct Input_MouseEvent * mouseEve
 
 **返回：**
 
-轴类型
+轴类型。
 
 
 ### OH_Input_GetMouseEventAxisValue()
@@ -2516,7 +2515,7 @@ int32_t OH_Input_GetMouseEventDisplayX (const struct Input_MouseEvent * mouseEve
 
 **返回：**
 
-屏幕X坐标
+屏幕X坐标。
 
 
 ### OH_Input_GetMouseEventDisplayY()
@@ -2910,7 +2909,7 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若移除轴事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED； 若callback为空或者没有被添加监听，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若移除轴事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空或者没有被添加监听，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
 
 
 ### OH_Input_RemoveAxisEventMonitorForAll()
@@ -2938,7 +2937,7 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若移除轴事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED； 若callback为空或者没有被添加监听，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若移除轴事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空或者没有被添加监听，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
 
 
 ### OH_Input_RemoveHotkeyMonitor()
@@ -2948,7 +2947,7 @@ Input_Result OH_Input_RemoveHotkeyMonitor (const Input_Hotkey * hotkey, Input_Ho
 ```
 **描述**
 
-取消订阅快捷键。此接口在智能穿戴、轻量级智能穿戴设备不生效。
+取消订阅快捷键。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -2965,7 +2964,7 @@ Input_Result OH_Input_RemoveHotkeyMonitor (const Input_Hotkey * hotkey, Input_Ho
 
 OH_Input_RemoveHotkeyMonitor 函数错误码。 INPUT_SUCCESS 表示取消订阅组合按键成功。
 
-INPUT_PARAMETER_ERROR 表示参数检查失败。 INPUT_DEVICE_NOT_SUPPORTED 表示功能不受支持。
+INPUT_PARAMETER_ERROR 表示参数检查失败。
 
 
 ### OH_Input_RemoveInputEventInterceptor()
@@ -2987,7 +2986,7 @@ ohos.permission.INTERCEPT_INPUT_EVENT
 
 **返回：**
 
-若移除输入事件拦截成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED； 若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若移除输入事件拦截成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
 
 
 ### OH_Input_RemoveKeyEventInterceptor()
@@ -3009,7 +3008,7 @@ ohos.permission.INTERCEPT_INPUT_EVENT
 
 **返回：**
 
-若移除按键事件拦截成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED； 若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若移除按键事件拦截成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
 
 
 ### OH_Input_RemoveKeyEventMonitor()
@@ -3037,7 +3036,7 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若移除按键事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED； 若callback为空或者没有被添加监听，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若移除按键事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空或者没有被添加监听，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
 
 
 ### OH_Input_RemoveMouseEventMonitor()
@@ -3065,7 +3064,7 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若移除鼠标事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED； 若callback为空或者没有被添加监听，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若移除鼠标事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空或者没有被添加监听，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
 
 
 ### OH_Input_RemoveTouchEventMonitor()
@@ -3093,7 +3092,7 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若移除触摸事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED； 若callback为空或者没有被添加监听，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若移除触摸事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED；若callback为空或者没有被添加监听，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
 
 
 ### OH_Input_SetAxisEventAction()

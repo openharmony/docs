@@ -429,7 +429,7 @@ getAppVMMemoryInfo(): VMMemoryInfo
 
 | 类型         | 说明                                    |
 | -------------| --------------------------------------- |
-| [VMMemoryInfo](#vmmemoryinfo12) |  返回VM内存信息  |
+| [VMMemoryInfo](#vmmemoryinfo12) | 返回VM内存信息。 |
 
 **示例：**
 
@@ -453,7 +453,7 @@ getAppThreadCpuUsage(): ThreadCpuUsage[]
 
 | 类型             | 说明                                                        |
 | -----------------| ------------------------------------------------------------|
-| [ThreadCpuUsage](#threadcpuusage12)[] | 返回当前应用进程下所有ThreadCpuUsage数组 |
+| [ThreadCpuUsage](#threadcpuusage12)[] | 返回当前应用进程下所有ThreadCpuUsage数组。 |
 
 
 
@@ -463,8 +463,8 @@ getAppThreadCpuUsage(): ThreadCpuUsage[]
 import { hidebug } from '@kit.PerformanceAnalysisKit';
 
 let appThreadCpuUsage: hidebug.ThreadCpuUsage[] = hidebug.getAppThreadCpuUsage();
-for (let ii = 0; ii < appThreadCpuUsage.length; ii++) {
-  console.info(`threadId=${appThreadCpuUsage[ii].threadId}, cpuUsage=${appThreadCpuUsage[ii].cpuUsage}`);
+for (let i = 0; i < appThreadCpuUsage.length; i++) {
+  console.info(`threadId=${appThreadCpuUsage[i].threadId}, cpuUsage=${appThreadCpuUsage[i].cpuUsage}`);
 }
 ```
 
@@ -493,15 +493,15 @@ trace单位流量实测方法：limitSize设置为最大值500M，调用startApp
 
 | 参数名   | 类型     | 必填 | 说明                                 |
 | -------- | ------   | ---- |------------------------------------|
-| tags     | number[] | 是   | trace范围，详情请见[tags](#hidebugtags12) |
-| flag     | TraceFlag| 是   | 详情请见[TraceFlag](#traceflag12)      |
-| limitSize| number   | 是   | 开启trace文件大小限制，单位为Byte，单个文件大小上限为500MB |
+| tags     | number[] | 是   | trace范围，详情请见[tags](#hidebugtags12)。   |
+| flag     | TraceFlag| 是   | 详情请见[TraceFlag](#traceflag12)。        |
+| limitSize| number   | 是   | 开启trace文件大小限制，单位为Byte，单个文件大小上限为500MB。 |
 
 **返回值：**
 
-| 类型             | 说明                                           |
-| -----------------| -----------------------------------------------|
-| string           | 返回trace文件名路径                            |
+| 类型             | 说明            |
+| -----------------|---------------|
+| string           | 返回trace文件名路径。 |
 
 **错误码：**
 
@@ -518,6 +518,7 @@ trace单位流量实测方法：limitSize设置为最大值500M，调用startApp
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
 let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
@@ -557,6 +558,7 @@ stopAppTraceCapture() : void
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
 let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
@@ -584,7 +586,7 @@ getAppMemoryLimit() : MemoryLimit
 
 | 类型  | 说明                      |
 | ------ | -------------------------- |
-| [MemoryLimit](#memorylimit12) | 应用程序进程内存限制|
+| [MemoryLimit](#memorylimit12) | 应用程序进程内存限制。 |
 
 **示例**
 
@@ -621,6 +623,7 @@ getSystemCpuUsage() : number
 **示例**
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   console.info(`getSystemCpuUsage: ${hidebug.getSystemCpuUsage()}`)
@@ -644,9 +647,9 @@ setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type | string |  是  | 泄漏资源类型，共四种类型:pss_memory(native内存)、js_heap(js堆内存)、fd(文件描述符)或thread(线程) |
-| value | number |  是  | 对应泄漏资源类型的最大值。范围：pss_memory类型`[1024, 4 * 1024 * 1024](单位：KB)`, js_heap类型`[85, 95](分配给JS堆内存上限的85%~95%)`, fd类型`[10, 10000]`, thread类型`[1, 1000]` |
-| enableDebugLog | boolean |  是  | 是否启用外部调试日志，默认值为false，请仅在灰度版本中设置为true，因为收集调试日志会花费太多的cpu或内存 |
+| type | string |  是  | 泄漏资源类型，共四种类型:pss_memory(native内存)、js_heap(js堆内存)、fd(文件描述符)或thread(线程)。                                                                         |
+| value | number |  是  | 对应泄漏资源类型的最大值。范围：pss_memory类型`[1024, 4 * 1024 * 1024](单位：KB)`, js_heap类型`[85, 95](分配给JS堆内存上限的85%~95%)`, fd类型`[10, 10000]`, thread类型`[1, 1000]`。 |
+| enableDebugLog | boolean |  是  | 是否启用外部调试日志，默认值为false，请仅在灰度版本中设置为true，因为收集调试日志会花费太多的cpu或内存。                                                                                     |
 
 **错误码：**
 
@@ -661,6 +664,7 @@ setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let type: string = 'js_heap';
 let value: number = 85;
@@ -684,7 +688,7 @@ getAppNativeMemInfo(): NativeMemInfo
 
 | 类型  | 说明                      |
 | ------ | -------------------------- |
-| [NativeMemInfo](#nativememinfo12) | 应用进程内存信息|
+| [NativeMemInfo](#nativememinfo12) | 应用进程内存信息。 |
 
 **示例**
 
@@ -709,7 +713,7 @@ getSystemMemInfo(): SystemMemInfo
 
 | 类型  | 说明                      |
 | ------ | -------------------------- |
-| [SystemMemInfo](#systemmeminfo12) | 系统内存信息|
+| [SystemMemInfo](#systemmeminfo12) | 系统内存信息。 |
 
 **示例**
 
@@ -781,6 +785,8 @@ getVMRuntimeStat(item : string): number
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   console.info(`gc-count: ${hidebug.getVMRuntimeStat('ark.gc.gc-count')}`);
   console.info(`gc-time: ${hidebug.getVMRuntimeStat('ark.gc.gc-time')}`);
@@ -800,10 +806,10 @@ try {
 
 | 名称      | 类型   | 必填 | 说明         |
 | --------- | ------ | ---- | ------------ |
-| rssLimit    | bigint |  是  | 应用程序进程的驻留集的限制，以KB为单位     |
-| vssLimit  | bigint |  是  | 进程的虚拟内存限制，以KB为单位       |
-| vmHeapLimit | bigint |  是  | 当前线程的 JS VM 堆大小限制，以KB为单位      |
-| vmTotalHeapSize | bigint |  是  | 当前进程的 JS 堆内存大小限制，以KB为单位      |
+| rssLimit    | bigint |  是  | 应用程序进程的驻留集的限制，以KB为单位。     |
+| vssLimit  | bigint |  是  | 进程的虚拟内存限制，以KB为单位。       |
+| vmHeapLimit | bigint |  是  | 当前线程的 JS VM 堆大小限制，以KB为单位。 |
+| vmTotalHeapSize | bigint |  是  | 当前进程的 JS 堆内存大小限制，以KB为单位。  |
 
 ## VMMemoryInfo<sup>12+</sup>
 
@@ -813,9 +819,9 @@ try {
 
 | 名称               | 类型    | 可读 | 可写 | 说明                                |
 | -------------------| ------- | ---- | ---- | ---------------------------------- |
-| totalHeap          | bigint  | 是   | 否   | 表示当前虚拟机的堆总大小，以KB为单位    |
-| heapUsed           | bigint  | 是   | 否   | 表示当前虚拟机使用的堆大小，以KB为单位  |
-| allArraySize       | bigint  | 是   | 否   | 表示当前虚拟机的所有数组对象大小，以KB为单位 |
+| totalHeap          | bigint  | 是   | 否   | 表示当前虚拟机的堆总大小，以KB为单位。     |
+| heapUsed           | bigint  | 是   | 否   | 表示当前虚拟机使用的堆大小，以KB为单位。    |
+| allArraySize       | bigint  | 是   | 否   | 表示当前虚拟机的所有数组对象大小，以KB为单位。 |
 
 ## ThreadCpuUsage<sup>12+</sup>
 
@@ -825,8 +831,8 @@ try {
 
 | 名称               | 类型    | 可读 | 可写 | 说明                                |
 | -------------------| ------- | ---- | ---- | ----------------------------------- |
-| threadId           | number  | 是   | 否   | 线程号                           |
-| cpuUsage           | number  | 是   | 否   | 线程CPU使用率                       |
+| threadId           | number  | 是   | 否   | 线程号。      |
+| cpuUsage           | number  | 是   | 否   | 线程CPU使用率。 |
 
 ## hidebug.tags<sup>12+</sup>
 
@@ -838,38 +844,38 @@ try {
 
 | 名称                     | 类型    | 只读  | 说明                                         |
 | -------------------------| ------- |-----|--------------------------------------------|
-| ABILITY_MANAGER          | number  | 是 | 能力管理标签，hitrace命令行工具对应tagName:ability                  |
-| ARKUI                    | number  | 是 | ArkUI开发框架标签， hitrace命令行工具对应tagName:ace                |
-| ARK                      | number  | 是 | JSVM虚拟机标签， hitrace命令行工具对应tagName:ark                  |
-| BLUETOOTH                | number  | 是 | 蓝牙标签， hitrace命令行工具对应tagName:bluetooth                 |
-| COMMON_LIBRARY           | number  | 是 | 公共库子系统标签， hitrace命令行工具对应tagName:commonlibrary         |
-| DISTRIBUTED_HARDWARE_DEVICE_MANAGER | number  | 是 | 分布式硬件设备管理标签， hitrace命令行工具对应tagName:devicemanager      |
-| DISTRIBUTED_AUDIO        | number  | 是 | 分布式音频标签， hitrace命令行工具对应tagName:daudio                 |
-| DISTRIBUTED_CAMERA       | number  | 是 | 分布式相机标签， hitrace命令行工具对应tagName:dcamera                |
-| DISTRIBUTED_DATA         | number  | 是 | 分布式数据管理模块标签， hitrace命令行工具对应tagName:distributeddatamgr |
-| DISTRIBUTED_HARDWARE_FRAMEWORK | number  | 是 | 分布式硬件框架标， hitrace命令行工具对应tagName:dhfwk                 |
-| DISTRIBUTED_INPUT        | number  | 是 | 分布式输入标签， hitrace命令行工具对应tagName:dinput                 |
-| DISTRIBUTED_SCREEN       | number  | 是 | 分布式屏幕标签， hitrace命令行工具对应tagName:dscreen                |
-| DISTRIBUTED_SCHEDULER    | number  | 是 | 分布式调度器标签， hitrace命令行工具对应tagName:dsched                |
-| FFRT                     | number  | 是 | FFRT任务标签， hitrace命令行工具对应tagName:ffrt                  |
-| FILE_MANAGEMENT          | number  | 是 | 文件管理系统标签， hitrace命令行工具对应tagName:filemanagement        |
-| GLOBAL_RESOURCE_MANAGER  | number  | 是 | 全局资源管理标签， hitrace命令行工具对应tagName:gresource             |
-| GRAPHICS                 | number  | 是 | 图形模块标签， hitrace命令行工具对应tagName:graphic                 |
-| HDF                      | number  | 是 | HDF子系统标签， hitrace命令行工具对应tagName:hdf                   |
-| MISC                     | number  | 是 | MISC模块标签， hitrace命令行工具对应tagName:misc                  |
-| MULTIMODAL_INPUT         | number  | 是 | 多模态输入模块标签， hitrace命令行工具对应tagName:multimodalinput      |
-| NET                      | number  | 是 | 网络标签， hitrace命令行工具对应tagName:net                       |
-| NOTIFICATION             | number  | 是 | 通知模块标签， hitrace命令行工具对应tagName:notification            |
-| NWEB                     | number  | 是 | Nweb标签， hitrace命令行工具对应tagName:nweb                    |
-| OHOS                     | number  | 是 | OHOS通用标签， hitrace命令行工具对应tagName:ohos                  |
-| POWER_MANAGER            | number  | 是 | 电源管理标签， hitrace命令行工具对应tagName:power                   |
-| RPC                      | number  | 是 | RPC标签， hitrace命令行工具对应tagName:rpc                      |
-| SAMGR                    | number  | 是 | 系统能力管理标签， hitrace命令行工具对应tagName:samgr                 |
-| WINDOW_MANAGER           | number  | 是 | 窗口管理标签， hitrace命令行工具对应tagName:window                  |
-| AUDIO                    | number  | 是 | 音频模块标签， hitrace命令行工具对应tagName:zaudio                  |
-| CAMERA                   | number  | 是 | 相机模块标签， hitrace命令行工具对应tagName:zcamera                 |
-| IMAGE                    | number  | 是 | 图片模块标签， hitrace命令行工具对应tagName:zimage                  |
-| MEDIA                    | number  | 是 | 媒体模块标签， hitrace命令行工具对应tagName:zmedia                  |
+| ABILITY_MANAGER          | number  | 是 | 能力管理标签，hitrace命令行工具对应tagName:ability。                  |
+| ARKUI                    | number  | 是 | ArkUI开发框架标签，hitrace命令行工具对应tagName:ace。                |
+| ARK                      | number  | 是 | JSVM虚拟机标签，hitrace命令行工具对应tagName:ark。                  |
+| BLUETOOTH                | number  | 是 | 蓝牙标签，hitrace命令行工具对应tagName:bluetooth。                 |
+| COMMON_LIBRARY           | number  | 是 | 公共库子系统标签，hitrace命令行工具对应tagName:commonlibrary。         |
+| DISTRIBUTED_HARDWARE_DEVICE_MANAGER | number  | 是 | 分布式硬件设备管理标签，hitrace命令行工具对应tagName:devicemanager。      |
+| DISTRIBUTED_AUDIO        | number  | 是 | 分布式音频标签，hitrace命令行工具对应tagName:daudio。                 |
+| DISTRIBUTED_CAMERA       | number  | 是 | 分布式相机标签，hitrace命令行工具对应tagName:dcamera。                |
+| DISTRIBUTED_DATA         | number  | 是 | 分布式数据管理模块标签，hitrace命令行工具对应tagName:distributeddatamgr。 |
+| DISTRIBUTED_HARDWARE_FRAMEWORK | number  | 是 | 分布式硬件框架标，hitrace命令行工具对应tagName:dhfwk。                 |
+| DISTRIBUTED_INPUT        | number  | 是 | 分布式输入标签，hitrace命令行工具对应tagName:dinput。                 |
+| DISTRIBUTED_SCREEN       | number  | 是 | 分布式屏幕标签，hitrace命令行工具对应tagName:dscreen。                |
+| DISTRIBUTED_SCHEDULER    | number  | 是 | 分布式调度器标签，hitrace命令行工具对应tagName:dsched。                |
+| FFRT                     | number  | 是 | FFRT任务标签，hitrace命令行工具对应tagName:ffrt。                  |
+| FILE_MANAGEMENT          | number  | 是 | 文件管理系统标签，hitrace命令行工具对应tagName:filemanagement。        |
+| GLOBAL_RESOURCE_MANAGER  | number  | 是 | 全局资源管理标签，hitrace命令行工具对应tagName:gresource。             |
+| GRAPHICS                 | number  | 是 | 图形模块标签，hitrace命令行工具对应tagName:graphic。                 |
+| HDF                      | number  | 是 | HDF子系统标签，hitrace命令行工具对应tagName:hdf。                   |
+| MISC                     | number  | 是 | MISC模块标签，hitrace命令行工具对应tagName:misc。                  |
+| MULTIMODAL_INPUT         | number  | 是 | 多模态输入模块标签，hitrace命令行工具对应tagName:multimodalinput。      |
+| NET                      | number  | 是 | 网络标签，hitrace命令行工具对应tagName:net。                       |
+| NOTIFICATION             | number  | 是 | 通知模块标签，hitrace命令行工具对应tagName:notification。            |
+| NWEB                     | number  | 是 | Nweb标签，hitrace命令行工具对应tagName:nweb。                    |
+| OHOS                     | number  | 是 | OHOS通用标签，hitrace命令行工具对应tagName:ohos。                  |
+| POWER_MANAGER            | number  | 是 | 电源管理标签，hitrace命令行工具对应tagName:power。                   |
+| RPC                      | number  | 是 | RPC标签，hitrace命令行工具对应tagName:rpc。                      |
+| SAMGR                    | number  | 是 | 系统能力管理标签，hitrace命令行工具对应tagName:samgr。                 |
+| WINDOW_MANAGER           | number  | 是 | 窗口管理标签，hitrace命令行工具对应tagName:window。                  |
+| AUDIO                    | number  | 是 | 音频模块标签，hitrace命令行工具对应tagName:zaudio。                  |
+| CAMERA                   | number  | 是 | 相机模块标签，hitrace命令行工具对应tagName:zcamera。                 |
+| IMAGE                    | number  | 是 | 图片模块标签，hitrace命令行工具对应tagName:zimage。                  |
+| MEDIA                    | number  | 是 | 媒体模块标签，hitrace命令行工具对应tagName:zmedia。                  |
 
 ## NativeMemInfo<sup>12+</sup>
 
@@ -879,13 +885,13 @@ try {
 
 | 名称      | 类型   | 必填 | 说明         |
 | --------- | ------ | ---- | ------------ |
-| pss  | bigint |  是  | 实际占用的物理内存的大小(比例分配共享库占用的内存)，以KB为单位     |
-| vss  | bigint |  是  | 占用虚拟内存大小(包括共享库所占用的内存)，以KB为单位       |
-| rss  | bigint |  是  | 实际占用的物理内存的大小(包括共享库占用)，以KB为单位         |
-| sharedDirty  | bigint |  是  | 共享脏内存的大小，以KB为单位      |
-| privateDirty  | bigint |  是  | 专用脏内存的大小，以KB为单位      |
-| sharedClean  | bigint |  是  | 共享干净内存的大小，以KB为单位      |
-| privateClean  | bigint |  是  | 专用干净内存的大小，以KB为单位      |
+| pss  | bigint |  是  | 实际占用的物理内存的大小(比例分配共享库占用的内存)，以KB为单位。 |
+| vss  | bigint |  是  | 占用虚拟内存大小(包括共享库所占用的内存)，以KB为单位。      |
+| rss  | bigint |  是  | 实际占用的物理内存的大小(包括共享库占用)，以KB为单位。      |
+| sharedDirty  | bigint |  是  | 共享脏内存的大小，以KB为单位。                   |
+| privateDirty  | bigint |  是  | 专用脏内存的大小，以KB为单位。                   |
+| sharedClean  | bigint |  是  | 共享干净内存的大小，以KB为单位。                  |
+| privateClean  | bigint |  是  | 专用干净内存的大小，以KB为单位。                  |
 
 ## SystemMemInfo<sup>12+</sup>
 
@@ -895,9 +901,9 @@ try {
 
 | 名称      | 类型   | 必填 | 说明         |
 | --------- | ------ | ---- | ------------ |
-| totalMem  | bigint |  是  | 系统总的内存，以KB为单位     |
-| freeMem  | bigint |  是  | 系统空闲的内存，以KB为单位       |
-| availableMem  | bigint |  是  | 系统可用的内存，以KB为单位      |
+| totalMem  | bigint |  是  | 系统总的内存，以KB为单位。  |
+| freeMem  | bigint |  是  | 系统空闲的内存，以KB为单位。 |
+| availableMem  | bigint |  是  | 系统可用的内存，以KB为单位。 |
 
 ## TraceFlag<sup>12+</sup>
 
@@ -944,7 +950,7 @@ isDebugState(): boolean
 
 | 类型  | 说明                      |
 | ------ | -------------------------- |
-| boolean | 应用进程被调试状态|
+| boolean | 应用进程被调试状态。 |
 
 **示例**
 
@@ -968,7 +974,7 @@ getGraphicsMemory(): Promise&lt;number&gt;
 
 | 类型                    | 说明                           |
 |-----------------------|------------------------------|
-| Promise&lt;number&gt; | promise对象，调用结束后返回应用显存大小，单位KB |
+| Promise&lt;number&gt; | promise对象，调用结束后返回应用显存大小，单位KB。 |
 
 **错误码：**
 
@@ -1003,9 +1009,9 @@ getGraphicsMemorySync(): number
 
 **返回值：**
 
-| 类型  | 说明         |
-| ------ |------------|
-| number | 应用显存大小（KB） |
+| 类型  | 说明             |
+| ------ |----------------|
+| number | 应用显存大小，以KB为单位。 |
 
 **错误码：**
 
@@ -1024,4 +1030,57 @@ try {
 } catch (error) {
   console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
+```
+
+## hidebug.dumpJsRawHeapData<sup>18+</sup>
+
+dumpJsRawHeapData(needGC?: boolean): Promise&lt;string&gt;
+
+为当前线程转储虚拟机的原始堆快照。使用Promise异步回调。
+
+> **注意：**
+>
+> 系统通过该接口转存快照时，会消耗大量系统资源，因此系统对该接口的调用频率和次数做了严格的管控。该接口生成的文件通常较大，建议在处理完该文件后立即将其删除。
+> 建议开发者仅在应用的灰度测试版本中使用。在应用正式版本中要避免使用，以免影响应用的流畅性。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| 参数名                     | 类型      | 必填 | 说明                                       |
+|-------------------------|---------|----|------------------------------------------|
+| needGC         | boolean | 否  | 转储堆快照时是否需要GC，默认为true。当不填写该参数时，在转储前将触发GC。 |
+
+**返回值：**
+
+| 类型  | 说明                                                                                                   |
+| ------ |------------------------------------------------------------------------------------------------------|
+| Promise&lt;number&gt; | Promise对象，返回生成的快照文件路径([应用沙箱内路径](../../file-management/app-sandbox-directory.md#应用沙箱路径和真实物理路径的对应关系)。) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Hidebug错误码](errorcode-hiviewdfx-hidebug.md)。
+
+| 错误码ID    | 错误信息 |
+|----------| ----------------------------------------------------------------- |
+| 401      | Invalid parameter. |
+| 11400106 | Quota exceeded. |
+| 11400107 | Fork operation failed. |
+| 11400108 | Failed to wait for the child process to finish. |
+| 11400109 | Timeout while waiting for the child process to finish. |
+| 11400110 | Disk remaining space too low. |
+| 11400111 | Napi interface call exception. |
+| 11400112 | Repeated data dump. |
+| 11400113 | Failed to create dump file. |
+
+**示例**
+
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+hidebug.dumpJsRawHeapData().then((filePath: string) => {
+  console.info(`dumpJsRawHeapData success and generated file path is ${filePath}`)
+}).catch((error: BusinessError) => {
+  console.error(`error code: ${error.code}, error msg: ${error.message}`);
+})
 ```

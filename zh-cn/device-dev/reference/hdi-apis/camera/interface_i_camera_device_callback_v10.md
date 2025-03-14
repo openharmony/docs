@@ -29,7 +29,7 @@
 ### OnError()
 
 ```
-ICameraDeviceCallback::OnError ([in] enum ErrorType type, [in] int errorCode )
+ICameraDeviceCallback::OnError ([in] enum ErrorType type, [in] int errorCode)
 ```
 
 **描述**
@@ -49,7 +49,7 @@ ICameraDeviceCallback::OnError ([in] enum ErrorType type, [in] int errorCode )
 ### OnResult()
 
 ```
-ICameraDeviceCallback::OnResult ([in] unsigned long timestamp, [in] unsigned char[] result )
+ICameraDeviceCallback::OnResult ([in] unsigned long timestamp, [in] unsigned char[] result)
 ```
 
 **描述**

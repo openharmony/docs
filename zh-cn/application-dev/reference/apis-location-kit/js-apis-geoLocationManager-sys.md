@@ -935,7 +935,7 @@ getLocationIconStatus(): LocationIconStatus
   ```
 
 
-## geoLocationManager.enableLocationByUserId<sup>16+</sup>
+## geoLocationManager.enableLocationByUserId<sup>18+</sup>
 
 enableLocationByUserId(userId: number): Promise&lt;void&gt;
 
@@ -990,7 +990,7 @@ enableLocationByUserId(userId: number): Promise&lt;void&gt;
   ```
 
 
-## geoLocationManager.disableLocationByUserId<sup>16+</sup>
+## geoLocationManager.disableLocationByUserId<sup>18+</sup>
 
 disableLocationByUserId(userId: number): void
 
@@ -1033,7 +1033,7 @@ disableLocationByUserId(userId: number): void
   ```
 
 
-## geoLocationManager.isLocationEnabledByUserId<sup>16+</sup>
+## geoLocationManager.isLocationEnabledByUserId<sup>18+</sup>
 
 isLocationEnabledByUserId(userId: number): boolean
 
@@ -1079,7 +1079,7 @@ isLocationEnabledByUserId(userId: number): boolean
   ```
 
 
-## geoLocationManager.setLocationSwitchIgnored<sup>16+</sup>
+## geoLocationManager.setLocationSwitchIgnored<sup>18+</sup>
 
 setLocationSwitchIgnored(isIgnored: boolean): void
 

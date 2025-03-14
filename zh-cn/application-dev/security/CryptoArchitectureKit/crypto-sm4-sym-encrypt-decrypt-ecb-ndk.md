@@ -1,6 +1,5 @@
 # 使用SM4对称密钥（ECB模式）加解密(C/C++)
 
-
 对应的算法规格请查看[对称密钥加解密算法规格：SM4](crypto-sym-encrypt-decrypt-spec.md#sm4)。
 
 ## 在CMake脚本中链接相关动态库
@@ -9,7 +8,6 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 ```
 
 **加密**
-
 
 1. 调用[OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_create)、[OH_CryptoSymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_generate)，生成密钥算法为SM4、密钥长度为128位的对称密钥（OH_CryptoSymKey）。
    
@@ -33,7 +31,6 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 
 6. 调用[OH_CryptoSymKeyGenerator_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_destroy)、[OH_CryptoSymCipher_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_destroy)、[OH_CryptoSymCipherParams_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_destroy)销毁各对象。
 
-
 **解密**
 
 1. 调用[OH_CryptoSymCipher_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_create)，指定字符串参数'SM4_128|ECB|PKCS7'，创建对称密钥类型为SM4_128、分组模式为ECB、填充模式为PKCS7的Cipher实例，用于完成解密操作。
@@ -43,7 +40,6 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 3. 调用[OH_CryptoSymCipher_Update](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_update)，更新数据（密文）。
 
 4. 调用[OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final)，获取解密后的数据。
-
 
 - 示例：
 
@@ -63,7 +59,7 @@ static OH_Crypto_ErrCode doTestSm4Ecb() {
     Crypto_DataBlob outUpdate = {.data = nullptr, .len = 0};
     Crypto_DataBlob decUpdate = {.data = nullptr, .len = 0};
 
-    // 随机生成对称密钥
+    // 随机生成对称密钥。
     OH_Crypto_ErrCode ret;
     ret = OH_CryptoSymKeyGenerator_Create("SM4_128", &genCtx);
     if (ret != CRYPTO_SUCCESS) {
@@ -73,13 +69,13 @@ static OH_Crypto_ErrCode doTestSm4Ecb() {
     if (ret != CRYPTO_SUCCESS) {
         goto end;
     }
-    // 创建参数
+    // 创建参数。
     ret = OH_CryptoSymCipherParams_Create(&params);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
     }
 
-    // 加密操作
+    // 加密操作。
     ret = OH_CryptoSymCipher_Create("SM4_128|ECB|PKCS7", &encCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
@@ -93,7 +89,7 @@ static OH_Crypto_ErrCode doTestSm4Ecb() {
         goto end;
     }
 
-    // 解密操作
+    // 解密操作。
     ret = OH_CryptoSymCipher_Create("SM4_128|ECB|PKCS7", &decCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
@@ -106,7 +102,7 @@ static OH_Crypto_ErrCode doTestSm4Ecb() {
     if (ret != CRYPTO_SUCCESS) {
         goto end;
     }
-    // 释放资源
+    // 释放资源。
 end:
     OH_CryptoSymCipherParams_Destroy(params);
     OH_CryptoSymCipher_Destroy(encCtx);

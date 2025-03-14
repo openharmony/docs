@@ -13,10 +13,10 @@ HCE(Host Card Emulation)，称为基于主机的卡模拟，表示不依赖安�
 ```json
 {
   "module": {
-    // other declared attributes.
+    // 其他已声明的属性
     "abilities": [
       {
-        // other declared attributes.
+        // 其他已声明的属性
         "skills": [
           {
             "actions": [
@@ -39,7 +39,7 @@ HCE(Host Card Emulation)，称为基于主机的卡模拟，表示不依赖安�
     "requestPermissions": [
       {
         "name": "ohos.permission.NFC_CARD_EMULATION",
-        // should add variable card_emulation_reason in string.json
+        // 必须要添加reason: card_mulation_reason
         "reason": "$string:card_emulation_reason",
       }
     ]
@@ -173,7 +173,7 @@ isDefaultService(elementName: ElementName, type: CardType): boolean
 
 | 参数名         | 类型                                       | 必填   | 说明                      |
 | ----------- | ---------------------------------------- | ---- |-------------------------|
-| elementName | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md#elementname) | 是    | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
+| elementName | [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname) | 是    | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
 | type        | [CardType](#cardtype9)                   | 是    | 卡模拟业务类型。目前只支持默认支付应用查询。   |
 
 **错误码**：
@@ -198,12 +198,7 @@ isDefaultService(elementName: ElementName, type: CardType): boolean
 import { cardEmulation } from '@kit.ConnectivityKit';
 import { bundleManager, Want } from '@kit.AbilityKit';
 
-// init elementName here, bundleName and abilityName are required.
-let want: Want = {
-  bundleName: "com.example.myapplication",
-  moduleName: "entry",
-  abilityName: "EntryAbility"
-};
+// 需要初始化 elementName、bundleName、abilityName，根据实际应用信息更改为正确的值
 let elementName: bundleManager.ElementName = {
   bundleName: "com.example.myapplication",
   moduleName: "entry",
@@ -211,9 +206,7 @@ let elementName: bundleManager.ElementName = {
 };
 
 let isDefaultService: boolean = cardEmulation.isDefaultService(elementName, cardEmulation.CardType.PAYMENT);
-// do something according to the isDefaultService value
 ```
-
 
 ## HceService<sup>8+</sup>
 
@@ -246,7 +239,7 @@ startHCE(aidList: string[]): boolean
 
 ### start<sup>9+</sup>
 
-start(elementName: [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md#elementname), aidList: string[]): void
+start(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname), aidList: string[]): void
 
 启动HCE业务功能。包括设置当前应用为前台优先，动态注册AID列表。
 
@@ -260,7 +253,7 @@ start(elementName: [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.
 
 | 参数名  | 类型     | 必填 | 说明                    |
 | ------- | -------- | ---- | ----------------------- |
-| elementName | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md#elementname) | 是   | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
+| elementName | [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname) | 是   | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
 | aidList | string[] | 是   | 动态注册卡模拟的AID列表，允许为空。 |
 
 **错误码：**
@@ -313,7 +306,7 @@ stop(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elemen
 
 | 参数名  | 类型     | 必填 | 说明                    |
 | ------- | -------- | ---- | ----------------------- |
-| elementName | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md#elementname) | 是   | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
+| elementName | [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname) | 是   | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
 
 **错误码：**
 
@@ -375,7 +368,7 @@ export default class EntryAbility extends UIAbility {
       moduleName: want.moduleName
     }
     const apduCallback: AsyncCallback<number[]> = (err, data) => {
-      //handle the data and err
+      //处理数据和异常
       console.log("got apdu data");
     };
     hceService.on('hceCmd', apduCallback);
@@ -384,11 +377,11 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testHce', '%{public}s', 'Ability onDestroy');
     hceService.stop(element);
   }
-  // other life cycle method...
+  // 生命周期内的其它功能
 }
 ```
 
-### off<sup>16+</sup>
+### off<sup>18+</sup>
 
 off(type: 'hceCmd', callback?: AsyncCallback\<number[]>): void
 
@@ -398,7 +391,7 @@ off(type: 'hceCmd', callback?: AsyncCallback\<number[]>): void
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -428,7 +421,7 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 let element: ElementName;
 const apduCallback: AsyncCallback<number[]> = (err, data) => {
-  //handle the data and err
+  // 处理数据和异常
   console.log("AsyncCallback got apdu data");
 };
 
@@ -441,7 +434,7 @@ export default class EntryAbility extends UIAbility {
       moduleName: want.moduleName
     }
     const apduCallback: AsyncCallback<number[]> = (err, data) => {
-      //handle the data and err
+      // 处理数据和异常
       console.log("got apdu data");
     };
     hceService.on('hceCmd', apduCallback);
@@ -451,7 +444,7 @@ export default class EntryAbility extends UIAbility {
     hceService.off('hceCmd', apduCallback);
     hceService.stop(element);
   }
-  // other life cycle method...
+  // 生命周期内的其它功能
 }
 ```
 
@@ -516,10 +509,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 
-// the data app wanna send, just a example data
+// 应用程序实际想要发送的数据， 此处仅做为示例
 const responseData = [0x1, 0x2];
 hceService.transmit(responseData).then(() => {
-  // handle the transmit promise
+  // 处理 promise 的回调
   console.log("transmit Promise success.");
 }).catch((err: BusinessError) => {
   console.log("transmit Promise error:", err);
@@ -563,7 +556,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 
-// the data app wanna send, just a example data
+// 应用程序实际想要发送的数据， 此处仅做为示例
 try {
   const responseData = [0x1, 0x2];
 

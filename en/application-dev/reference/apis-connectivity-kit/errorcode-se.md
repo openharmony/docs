@@ -1,4 +1,4 @@
-# SE Error Codes
+# SecureElement Error Codes
 
 > **NOTE**
 >
@@ -21,7 +21,6 @@ The SecureElement (SE) service is abnormal.
 **Solution**
 
 1. Close the SE service.
-
 2. Set up a connection with the SE service again.
 
 ## 3300102 No Such SE
@@ -81,5 +80,4 @@ The I/O of the SE chip is abnormal.
 **Solution**
 
 1. Close the SE service and set up a connection with the SE service again.
-
 2. Restart the device.

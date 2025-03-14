@@ -23,8 +23,8 @@
 | off(type: 'globalUnhandledRejectionDetected', observer?: GlobalObserver): void | 取消以前注册的callback监听。（**推荐使用**）  |
 | on(type: 'loopObserver', timeout: number, observer: LoopObserver): void<sup>12+</sup> | 注册主线程消息处理耗时监听器，当系统监测到应用主线程事件处理超时时会回调该监听。只能在主线程调用，多次注册后，后一次的注册会覆盖前一次的。  |
 | off(type: 'loopObserver', observer?: LoopObserver): void<sup>12+</sup> | 解除应用主线程消息处理耗时监听。  |
-| on(type: 'freeze', observer: FreezeObserver): void<sup>16+</sup> | 注册应用主线程freeze监听。只能在主线程调用，多次注册后，后一次的注册会覆盖前一次的。  |
-| off(type: 'freeze', observer?: FreezeObserver): void<sup>16+</sup> | 取消以前注册的应用主线程freeze监听。只能在主线程调用。  |
+| on(type: 'freeze', observer: FreezeObserver): void<sup>18+</sup> | 注册应用主线程freeze监听。只能在主线程调用，多次注册后，后一次的注册会覆盖前一次的。  |
+| off(type: 'freeze', observer?: FreezeObserver): void<sup>18+</sup> | 取消以前注册的应用主线程freeze监听。只能在主线程调用。  |
 
 当采用callback作为异步回调时，可以在callback中进行下一步处理。当采用Promise对象返回时，可以在Promise对象中类似地处理接口返回值。具体结果码说明见[解除注册结果码](#解除注册结果码)。
 
@@ -48,9 +48,9 @@
 
 | 结果码 | 原因                        |
 | ------ | ---------------------------  |
-| 0      |  正常返回                          |
-| -1     | 传入的number不存在              |
-| -2     | 参数错误       |
+| 0      |  正常返回。                          |
+| -1     | 传入的number不存在。              |
+| -2     | 参数错误。       |
 
 ## 开发示例
 

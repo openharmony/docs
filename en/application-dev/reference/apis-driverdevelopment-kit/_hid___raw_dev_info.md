@@ -7,7 +7,7 @@ Defines the raw device information.
 
 **Since**: 16
 
-**Related module**: [HidDdk](_hid_ddk.md)
+**Related module**: [HID DDK](_hid_ddk.md)
 
 
 ## Summary

@@ -17,7 +17,7 @@ import { EmptyAreaClickCallback } from '@ohos.file.AlbumPickerComponent';
 
 ## Properties
 
-The [universal properties](../apis-arkui/arkui-ts/ts-universal-attributes-size.md) are supported.
+The [universal properties](../apis-arkui/arkui-ts/ts-component-general-attributes.md) are supported.
 
 ## AlbumPickerComponent
 
@@ -117,3 +117,7 @@ struct PickerDemo {
     }
   }
 }
+
+```
+
+ <!--no_check--> 

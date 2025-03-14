@@ -138,20 +138,30 @@ struct AnimateToImmediatelyExample {
 ```
 ![animateToImmediately](figures/animateToImmediately.gif)
 
-### freezeUINode<sup>16+</sup>
+### freezeUINode<sup>18+</sup>
 
 freezeUINode(id: string, isFrozen: boolean): void
 
 使用id设置组件冻结状态，防止自身脏区标记并进行布局更新。
 
-**原子化服务API:** 从API Version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务API:** 从API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
 
 | 参数名     | 类型    | 必填   | 说明      |
 | --- | --- | --- | --- |
 | id | string | 是 | 组件的id。|
 | isFrozen | boolean | 是 | 是否设置冻结，默认值为false。|
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | The caller is not a system application. |
 
 ```js
 @Entry
@@ -236,20 +246,30 @@ struct Index {
 }
 ```
 
-### freezeUINode<sup>16+</sup>
+### freezeUINode<sup>18+</sup>
 
 freezeUINode(uniqueId: number, isFrozen: boolean): void
 
 使用uniqueId设置组件冻结状态，防止自身脏区标记并进行布局更新。
 
-**原子化服务API:** 从API Version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务API:** 从API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
 
 | 参数名     | 类型    | 必填   | 说明      |
 | --- | --- | --- | --- |
 | uniqueId | number | 是 | 组件的number。|
 | isFrozen | boolean | 是 | 是否设置冻结，默认值为false。|
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | The caller is not a system application. |
 
 ```js
 @Entry

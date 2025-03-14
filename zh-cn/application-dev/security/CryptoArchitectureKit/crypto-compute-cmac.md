@@ -1,10 +1,6 @@
 # 消息认证码计算CMAC
 
-
 CMAC通过使用分组密码（如AES）和一个密钥来生成认证码，确保消息在传输过程中未被篡改‌。
-
-
-
 
 ## 开发步骤
 
@@ -12,10 +8,9 @@ CMAC通过使用分组密码（如AES）和一个密钥来生成认证码，确�
 
 下面分别提供两种方式的示例代码。
 
-
 ### CMAC（一次性传入）
 
-1. 调用[cryptoFramework.createMac](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemac16)，指定消息认证码算法CMAC，指定对称算法AES256，生成消息认证码实例（Mac）。
+1. 调用[cryptoFramework.createMac](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemac18)，指定消息认证码算法CMAC，指定对称算法AES256，生成消息认证码实例（Mac）。
 
 2. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)、[SymKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-1)，生成密钥算法为AES256的对称密钥（SymKey）。
    生成对称密钥的详细开发指导，请参考[指定二进制数据生成对称密钥](crypto-convert-binary-data-to-sym-key.md)。
@@ -42,17 +37,17 @@ CMAC通过使用分组密码（如AES）和一个密钥来生成认证码，确�
     return symKey;
   }
   async function doCmac() {
-    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节
+    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节。
     let keyData = new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer);
     let key = await genSymKeyByData(keyData);
     let spec: cryptoFramework.CmacSpec = {
         algName: "CMAC",
         cipherName: "AES128",
     };
-    let message = 'cmacTestMessage'; // 待进行CMAC的数据
+    let message = 'cmacTestMessage'; // 待进行CMAC的数据。
     let mac = cryptoFramework.createMac(spec);
     await mac.init(key);
-    // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
+    // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制。
     await mac.update({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
     let macResult = await mac.doFinal();
     console.info('CMAC result:' + macResult.data);
@@ -75,17 +70,17 @@ CMAC通过使用分组密码（如AES）和一个密钥来生成认证码，确�
     return symKey;
   }
   function doCmacBySync() {
-    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节
+    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节。
     let keyData = new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer);
     let key = genSymKeyByData(keyData);
     let spec: cryptoFramework.CmacSpec = {
         algName: "CMAC",
         cipherName: "AES128",
     };
-    let message = 'cmacTestMessage'; // 待进行CMAC的数据
+    let message = 'cmacTestMessage'; // 待进行CMAC的数据。
     let mac = cryptoFramework.createMac(spec);
     mac.initSync(key);
-    // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
+    // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制。
     mac.updateSync({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
     let macResult = mac.doFinalSync();
     console.info('[Sync]CMAC result:' + macResult.data);
@@ -96,7 +91,7 @@ CMAC通过使用分组密码（如AES）和一个密钥来生成认证码，确�
 
 ### 分段CMAC
 
-1. 调用[cryptoFramework.createMac](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemac16)，指定消息认证码算法CMAC，指定对称算法AES256，生成消息认证码实例（Mac）。
+1. 调用[cryptoFramework.createMac](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemac18)，指定消息认证码算法CMAC，指定对称算法AES256，生成消息认证码实例（Mac）。
 
 2. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)、[SymKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-1)，生成密钥算法为AES256的对称密钥（SymKey）。
    生成对称密钥的详细开发指导，请参考[指定二进制数据生成对称密钥](crypto-convert-binary-data-to-sym-key.md)。
@@ -123,7 +118,7 @@ CMAC通过使用分组密码（如AES）和一个密钥来生成认证码，确�
     return symKey;
   }
   async function doLoopCmac() {
-    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节
+    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节。
     let keyData = new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer);
     let key = await genSymKeyByData(keyData);
     let spec: cryptoFramework.CmacSpec = {
@@ -131,10 +126,10 @@ CMAC通过使用分组密码（如AES）和一个密钥来生成认证码，确�
         cipherName: "AES128",
     };
     let mac = cryptoFramework.createMac(spec);
-    // 假设信息总共43字节，根据utf-8解码后，也是43字节
+    // 假设信息总共43字节，根据utf-8解码后，也是43字节。
     let messageText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee";
     let messageData = new Uint8Array(buffer.from(messageText, 'utf-8').buffer);
-    let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无要求
+    let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无要求。
     await mac.init(key);
     for (let i = 0; i < messageData.length; i += updateLength) {
       let updateMessage = messageData.subarray(i, i + updateLength);
@@ -162,7 +157,7 @@ CMAC通过使用分组密码（如AES）和一个密钥来生成认证码，确�
     return symKey;
   }
   function doLoopCmacBySync() {
-    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节
+    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节。
     let keyData = new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer);
     let key = genSymKeyByData(keyData);
     let spec: cryptoFramework.CmacSpec = {
@@ -170,10 +165,10 @@ CMAC通过使用分组密码（如AES）和一个密钥来生成认证码，确�
         cipherName: "AES128",
     };
     let mac = cryptoFramework.createMac(spec);
-    // 假设信息总共43字节，根据utf-8解码后，也是43字节
+    // 假设信息总共43字节，根据utf-8解码后，也是43字节。
     let messageText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee";
     let messageData = new Uint8Array(buffer.from(messageText, 'utf-8').buffer);
-    let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无要求
+    let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无要求。
     mac.initSync(key);
     for (let i = 0; i < messageData.length; i += updateLength) {
       let updateMessage = messageData.subarray(i, i + updateLength);

@@ -1,11 +1,8 @@
 # 使用AES对称密钥（CCM模式）加解密(ArkTS)
 
-
 对应的算法规格请查看[对称密钥加解密算法规格：AES](crypto-sym-encrypt-decrypt-spec.md#aes)。
 
-
 **加密**
-
 
 1. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)、[SymKeyGenerator.generateSymKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkey-1)，生成密钥算法为AES、密钥长度为128位的对称密钥（SymKey）。
    
@@ -30,7 +27,6 @@
 
     在CCM模式下，算法库当前只支持12字节的authTag，作为解密时初始化的认证信息。示例中authTag恰好为12字节。
 
-
 **解密**
 
 1. 调用[cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher)，指定字符串参数'AES128|CCM'，创建对称密钥类型为AES128、分组模式为CCM的Cipher实例，用于完成解密操作。
@@ -38,7 +34,6 @@
 2. 调用[Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1)，设置模式为解密（CryptoMode.DECRYPT_MODE），指定解密密钥（SymKey）和CCM模式对应的解密参数（CcmParamsSpec），初始化解密Cipher实例。
 
 3. 调用[Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1)，获取解密后的数据。
-
 
 - 异步方法示例：
 
@@ -55,7 +50,7 @@
     let tagBlob: cryptoFramework.DataBlob = {
       data: dataTag
     };
-    // CCM的authTag在加密时从doFinal结果中获取，在解密时填入init函数的params参数中
+    // CCM的authTag在加密时从doFinal结果中获取，在解密时填入init函数的params参数中。
     let ccmParamsSpec: cryptoFramework.CcmParamsSpec = {
       iv: ivBlob,
       aad: aadBlob,
@@ -66,7 +61,7 @@
   }
   let ccmParams = genCcmParamsSpec();
 
-  // 加密消息
+  // 加密消息。
   async function encryptMessagePromise(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
     let cipher = cryptoFramework.createCipher('AES128|CCM');
     await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, ccmParams);
@@ -75,7 +70,7 @@
     ccmParams.authTag = await cipher.doFinal(null);
     return encryptUpdate;
   }
-  // 解密消息
+  // 解密消息。
   async function decryptMessagePromise(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
     let decoder = cryptoFramework.createCipher('AES128|CCM');
     await decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, ccmParams);
@@ -121,7 +116,7 @@
     let tagBlob: cryptoFramework.DataBlob = {
       data: dataTag
     };
-    // CCM的authTag在加密时从doFinal结果中获取，在解密时填入init函数的params参数中
+    // CCM的authTag在加密时从doFinal结果中获取，在解密时填入init函数的params参数中。
     let ccmParamsSpec: cryptoFramework.CcmParamsSpec = {
       iv: ivBlob,
       aad: aadBlob,
@@ -133,7 +128,7 @@
 
   let ccmParams = genCcmParamsSpec();
 
-  // 加密消息
+  // 加密消息。
   function encryptMessage(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
     let cipher = cryptoFramework.createCipher('AES128|CCM');
     cipher.initSync(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, ccmParams);
@@ -142,7 +137,7 @@
     ccmParams.authTag = cipher.doFinalSync(null);
     return encryptUpdate;
   }
-  // 解密消息
+  // 解密消息。
   function decryptMessage(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
     let decoder = cryptoFramework.createCipher('AES128|CCM');
     decoder.initSync(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, ccmParams);

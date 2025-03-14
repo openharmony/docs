@@ -18,7 +18,7 @@ Ril模块为上层电话服务提供相关调用接口，涉及电话、短信�
 | 名称 | 描述 | 
 | -------- | -------- |
 | [IRil.idl](_i_ril_8idl_v10.md) | Ril模块的请求接口。 | 
-| [IRilCallback.idl](_i_ril_callback_8idl_v10.md) | Ril模块的回调接口 | 
+| [IRilCallback.idl](_i_ril_callback_8idl_v10.md) | Ril模块的回调接口。 | 
 | [Types.idl](ril_types_8idl_v10.md) | Ril模块HDI接口使用的数据类型。 | 
 
 
@@ -68,7 +68,7 @@ Ril模块为上层电话服务提供相关调用接口，涉及电话、短信�
 | struct&nbsp;&nbsp;[ApduSimIORequestInfo](_apdu_sim_i_o_request_info_v10.md) | APDU数据传输请求信息。 | 
 | struct&nbsp;&nbsp;[SimAuthenticationRequestInfo](_sim_authentication_request_info_v10.md) | SIM卡鉴权请求信息。 | 
 | struct&nbsp;&nbsp;[OpenLogicalChannelResponse](_open_logical_channel_response_v10.md) | APDU打开逻辑通道响应信息。 | 
-| struct&nbsp;&nbsp;[LockStatusResp](_lock_status_resp_v10.md) | SIM卡解锁响应 | 
+| struct&nbsp;&nbsp;[LockStatusResp](_lock_status_resp_v10.md) | SIM卡解锁响应。 | 
 | struct&nbsp;&nbsp;[RadioProtocol](_radio_protocol_v10.md) | 主副卡协议栈信息。 | 
 | struct&nbsp;&nbsp;[GsmRssi](_gsm_rssi_v10.md) | GSM信号强度。 | 
 | struct&nbsp;&nbsp;[CdmaRssi](_cdma_rssi_v10.md) | CDMA信号强度。 | 
@@ -106,7 +106,7 @@ Ril模块为上层电话服务提供相关调用接口，涉及电话、短信�
 | struct&nbsp;&nbsp;[ChannelConfigInfoList](_channel_config_info_list_v10.md) | 通道配置信息列表。 | 
 | struct&nbsp;&nbsp;[GsmSmsMessageInfo](_gsm_sms_message_info_v10.md) | 发送GSM短信信息。 | 
 | struct&nbsp;&nbsp;[SendCdmaSmsMessageInfo](_send_cdma_sms_message_info_v10.md) | 发送CDMA短信信息。 | 
-| struct&nbsp;&nbsp;[SmsMessageIOInfo](_sms_message_i_o_info_v10.md) | SIM卡短信信息 | 
+| struct&nbsp;&nbsp;[SmsMessageIOInfo](_sms_message_i_o_info_v10.md) | SIM卡短信信息。 | 
 | struct&nbsp;&nbsp;[ServiceCenterAddress](_service_center_address_v10.md) | 短信中心地址信息。 | 
 | struct&nbsp;&nbsp;[CBConfigInfo](_c_b_config_info_v10.md) | GSM小区广播配置信息。 | 
 | struct&nbsp;&nbsp;[CdmaCBConfigInfo](_cdma_c_b_config_info_v10.md) | CDMA小区广播配置信息。 | 
@@ -158,8 +158,8 @@ enum AbnormalServiceType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| TYPE_ALL | 所有状态均有效 | 
-| TYPE_ONLY_CS | 仅在CS域非正常服务时有效 | 
+| TYPE_ALL | 所有状态均有效。 | 
+| TYPE_ONLY_CS | 仅在CS域非正常服务时有效。 | 
 
 
 ### EccType
@@ -177,12 +177,12 @@ enum EccType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| TYPE_CATEGORY | 默认 | 
-| TYPE_POLICE | 匪警 | 
-| TYPE_AMBULANCE | 救护 | 
-| TYPE_FIRE | 火警 | 
-| TYPE_SEA | 海警 | 
-| TYPE_MOUNTAIN | 高山营救 | 
+| TYPE_CATEGORY | 默认。 | 
+| TYPE_POLICE | 匪警。 | 
+| TYPE_AMBULANCE | 救护。 | 
+| TYPE_FIRE | 火警。 | 
+| TYPE_SEA | 海警。 | 
+| TYPE_MOUNTAIN | 高山营救。 | 
 
 
 ### RadioProtocolPhase
@@ -200,11 +200,11 @@ enum RadioProtocolPhase
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| RADIO_PROTOCOL_PHASE_INITIAL | 初始化 | 
-| RADIO_PROTOCOL_PHASE_CHECK | 检查 | 
-| RADIO_PROTOCOL_PHASE_UPDATE | 更新 | 
-| RADIO_PROTOCOL_PHASE_NOTIFY | 上报 | 
-| RADIO_PROTOCOL_PHASE_COMPLETE | 结束 | 
+| RADIO_PROTOCOL_PHASE_INITIAL | 初始化。 | 
+| RADIO_PROTOCOL_PHASE_CHECK | 检查。 | 
+| RADIO_PROTOCOL_PHASE_UPDATE | 更新。 | 
+| RADIO_PROTOCOL_PHASE_NOTIFY | 上报。 | 
+| RADIO_PROTOCOL_PHASE_COMPLETE | 结束。 | 
 
 
 ### RadioProtocolStatus
@@ -222,9 +222,9 @@ Radio协议状态。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| RADIO_PROTOCOL_STATUS_NONE | 无状态 | 
-| RADIO_PROTOCOL_STATUS_SUCCESS | 成功 | 
-| RADIO_PROTOCOL_STATUS_FAIL | 失败 | 
+| RADIO_PROTOCOL_STATUS_NONE | 无状态。 | 
+| RADIO_PROTOCOL_STATUS_SUCCESS | 成功。 | 
+| RADIO_PROTOCOL_STATUS_FAIL | 失败。 | 
 
 
 ### RilCellConnectionStatus
@@ -242,9 +242,9 @@ enum RilCellConnectionStatus
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| RIL_SERVING_CELL_UNKNOWN | 未知连接状态 | 
-| RIL_SERVING_CELL_PRIMARY | 主要连接状态 | 
-| RIL_SERVING_CELL_SECONDARY | 次要连接状态 | 
+| RIL_SERVING_CELL_UNKNOWN | 未知连接状态。 | 
+| RIL_SERVING_CELL_PRIMARY | 主要连接状态。 | 
+| RIL_SERVING_CELL_SECONDARY | 次要连接状态。 | 
 
 
 ### RilErrType
@@ -262,26 +262,26 @@ Ril错误码。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| NONE | 调用成功 | 
-| RIL_ERR_GENERIC_FAILURE | 通用错误 | 
-| RIL_ERR_INVALID_PARAMETER | 参数错误 | 
-| RIL_ERR_MEMORY_FULL | 内存满载 | 
-| RIL_ERR_CMD_SEND_FAILURE | 命令发送失败 | 
-| RIL_ERR_CMD_NO_CARRIER | 命令连接终止 | 
-| RIL_ERR_INVALID_RESPONSE | 非法响应 | 
-| RIL_ERR_REPEAT_STATUS | 状态已存在 | 
-| RIL_ERR_NETWORK_SEARCHING | 网络搜索中 | 
-| RIL_ERR_NETWORK_SEARCHING_INTERRUPTED | 网络搜索中断 | 
-| RIL_ERR_MODEM_DEVICE_CLOSE | Modem设备关闭 | 
-| RIL_ERR_NO_SIMCARD_INSERTED | SIM卡未插入 | 
-| RIL_ERR_NEED_PIN_CODE | 需要输入PIN码 | 
-| RIL_ERR_NEED_PUK_CODE | 需要输入PUK码 | 
-| RIL_ERR_NETWORK_SEARCH_TIMEOUT | 搜网超时 | 
-| RIL_ERR_PINPUK_PASSWORD_NOCORRECT | PIN码或PUK码错误 | 
-| RIL_ERR_INVALID_MODEM_PARAMETER | Modem参数错误 | 
-| RIL_ERR_HDF_IPC_FAILURE | IPC错误 | 
-| RIL_ERR_NULL_POINT | 空指针 | 
-| RIL_ERR_VENDOR_NOT_IMPLEMENT | 厂商库未实现 | 
+| NONE | 调用成功 。| 
+| RIL_ERR_GENERIC_FAILURE | 通用错误。 | 
+| RIL_ERR_INVALID_PARAMETER | 参数错误。 | 
+| RIL_ERR_MEMORY_FULL | 内存满载。 | 
+| RIL_ERR_CMD_SEND_FAILURE | 命令发送失败。 | 
+| RIL_ERR_CMD_NO_CARRIER | 命令连接终止。 | 
+| RIL_ERR_INVALID_RESPONSE | 非法响应。 | 
+| RIL_ERR_REPEAT_STATUS | 状态已存在。 | 
+| RIL_ERR_NETWORK_SEARCHING | 网络搜索中。 | 
+| RIL_ERR_NETWORK_SEARCHING_INTERRUPTED | 网络搜索中断。 | 
+| RIL_ERR_MODEM_DEVICE_CLOSE | Modem设备关闭。 | 
+| RIL_ERR_NO_SIMCARD_INSERTED | SIM卡未插入。 | 
+| RIL_ERR_NEED_PIN_CODE | 需要输入PIN码。 | 
+| RIL_ERR_NEED_PUK_CODE | 需要输入PUK码。 | 
+| RIL_ERR_NETWORK_SEARCH_TIMEOUT | 搜网超时。 | 
+| RIL_ERR_PINPUK_PASSWORD_NOCORRECT | PIN码或PUK码错误。 | 
+| RIL_ERR_INVALID_MODEM_PARAMETER | Modem参数错误。 | 
+| RIL_ERR_HDF_IPC_FAILURE | IPC错误。 | 
+| RIL_ERR_NULL_POINT | 空指针。 | 
+| RIL_ERR_VENDOR_NOT_IMPLEMENT | 厂商库未实现。 | 
 
 
 ### RilRadioTech
@@ -299,20 +299,20 @@ enum RilRadioTech
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| RADIO_TECHNOLOGY_INVALID | 非法 | 
-| RADIO_TECHNOLOGY_UNKNOWN | 未知 | 
-| RADIO_TECHNOLOGY_GSM | GSM | 
-| RADIO_TECHNOLOGY_1XRTT | 无线电传输技术(1XRTT) | 
-| RADIO_TECHNOLOGY_WCDMA | WCDMA | 
-| RADIO_TECHNOLOGY_HSPA | 高速分组接入(HSPA) | 
-| RADIO_TECHNOLOGY_HSPAP | 高速下行分组接入(HSPAP) | 
-| RADIO_TECHNOLOGY_TD_SCDMA | 同步码分多址的无线接入技术(SCDMA) | 
-| RADIO_TECHNOLOGY_EVDO | 仅演进数据(EVDO) | 
-| RADIO_TECHNOLOGY_EHRPD | 演进的高速分组网络(EHRPD) | 
-| RADIO_TECHNOLOGY_LTE | LTE | 
-| RADIO_TECHNOLOGY_LTE_CA | CA | 
-| RADIO_TECHNOLOGY_IWLAN | 工业无线局域网(IWLAN) | 
-| RADIO_TECHNOLOGY_NR | NR | 
+| RADIO_TECHNOLOGY_INVALID | 非法。 | 
+| RADIO_TECHNOLOGY_UNKNOWN | 未知。 | 
+| RADIO_TECHNOLOGY_GSM | GSM。 | 
+| RADIO_TECHNOLOGY_1XRTT | 无线电传输技术(1XRTT)。 | 
+| RADIO_TECHNOLOGY_WCDMA | WCDMA。 | 
+| RADIO_TECHNOLOGY_HSPA | 高速分组接入(HSPA)。 | 
+| RADIO_TECHNOLOGY_HSPAP | 高速下行分组接入(HSPAP)。 | 
+| RADIO_TECHNOLOGY_TD_SCDMA | 同步码分多址的无线接入技术(SCDMA)。 | 
+| RADIO_TECHNOLOGY_EVDO | 仅演进数据(EVDO)。 | 
+| RADIO_TECHNOLOGY_EHRPD | 演进的高速分组网络(EHRPD)。 | 
+| RADIO_TECHNOLOGY_LTE | LTE。 | 
+| RADIO_TECHNOLOGY_LTE_CA | CA。 | 
+| RADIO_TECHNOLOGY_IWLAN | 工业无线局域网(IWLAN)。 | 
+| RADIO_TECHNOLOGY_NR | NR。 | 
 
 
 ### RilRegNotifyMode
@@ -330,9 +330,9 @@ enum RilRegNotifyMode
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| REG_NOT_NOTIFY | 禁止主动上报 | 
-| REG_NOTIFY_STAT_ONLY | 网络注册状态发生改变时上报 | 
-| REG_NOTIFY_STAT_LAC_CELLID | 小区信息发生改变时上报 | 
+| REG_NOT_NOTIFY | 禁止主动上报。 | 
+| REG_NOTIFY_STAT_ONLY | 网络注册状态发生改变时上报。 | 
+| REG_NOTIFY_STAT_LAC_CELLID | 小区信息发生改变时上报。 | 
 
 
 ### RilRegStatus
@@ -350,13 +350,13 @@ enum RilRegStatus
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| NO_REG_MT_NO_SEARCH | 没有注册，MT（Mobile Terminal）现在没有搜索和注册新的运营商 | 
-| REG_MT_HOME | 注册了归属网络 | 
-| NO_REG_MT_SEARCHING | 没有注册，MT正在搜索并注册新的运营商 | 
-| REG_MT_REJECTED | 注册被拒绝 | 
-| REG_MT_UNKNOWN | 未知状态 | 
-| REG_MT_ROAMING | 注册了漫游网络 | 
-| REG_MT_EMERGENCY | 处于紧急模式 | 
+| NO_REG_MT_NO_SEARCH | 没有注册，MT（Mobile Terminal）现在没有搜索和注册新的运营商。 | 
+| REG_MT_HOME | 注册了归属网络。 | 
+| NO_REG_MT_SEARCHING | 没有注册，MT正在搜索并注册新的运营商。 | 
+| REG_MT_REJECTED | 注册被拒绝。 | 
+| REG_MT_UNKNOWN | 未知状态。 | 
+| REG_MT_ROAMING | 注册了漫游网络。 | 
+| REG_MT_EMERGENCY | 处于紧急模式。 | 
 
 
 ### RilResponseTypes
@@ -374,11 +374,11 @@ enum RilResponseTypes
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| RIL_RESPONSE_REQUEST | 请求响应 | 
-| RIL_RESPONSE_NOTICE | 通知响应 | 
-| RIL_RESPONSE_REQUEST_ACK | 应答请求响应 | 
-| RIL_RESPONSE_REQUEST_MUST_ACK | 必须应答请求响应 | 
-| RIL_RESPONSE_NOTICE_MUST_ACK | 必须应答通知响应 | 
+| RIL_RESPONSE_REQUEST | 请求响应。 | 
+| RIL_RESPONSE_NOTICE | 通知响应。 | 
+| RIL_RESPONSE_REQUEST_ACK | 应答请求响应。 | 
+| RIL_RESPONSE_REQUEST_MUST_ACK | 必须应答请求响应。 | 
+| RIL_RESPONSE_NOTICE_MUST_ACK | 必须应答通知响应。 | 
 
 
 ### RilRoamStatus
@@ -396,9 +396,9 @@ enum RilRoamStatus
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| RIL_NO_ROAM | 非漫游状态 | 
-| RIL_ROAMING | 漫游状态 | 
-| RIL_ROAM_UNKNOWN | 未知 | 
+| RIL_NO_ROAM | 非漫游状态。 | 
+| RIL_ROAMING | 漫游状态。 | 
+| RIL_ROAM_UNKNOWN | 未知。 | 
 
 
 ### RilSimLockStatus
@@ -416,8 +416,8 @@ SIM卡锁定状态。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| RIL_SIM_CARD_UNLOCK | 未被CardLock功能锁定 | 
-| RIL_SIM_CARD_LOCK | 被CardLock功能锁定 | 
+| RIL_SIM_CARD_UNLOCK | 未被CardLock功能锁定。 | 
+| RIL_SIM_CARD_LOCK | 被CardLock功能锁定。 | 
 
 
 ### RilSimStatus
@@ -435,13 +435,13 @@ SIM卡状态。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| RIL_USIM_INVALID | USIM卡状态无效 | 
-| RIL_USIM_VALID | USIM卡状态有效 | 
-| RIL_USIM_CS_INVALID | USIM卡在CS下无效 | 
-| RIL_USIM_PS_INVALID | USIM卡在PS下无效 | 
-| RIL_USIM_CS_PS_INVALID | USIM卡在CS+PS下均无效 | 
-| RIL_ROM_SIM | 仿真SIM卡 | 
-| RIL_NO_USIM | USIM卡不存在 | 
+| RIL_USIM_INVALID | USIM卡状态无效。 | 
+| RIL_USIM_VALID | USIM卡状态有效。 | 
+| RIL_USIM_CS_INVALID | USIM卡在CS下无效。 | 
+| RIL_USIM_PS_INVALID | USIM卡在PS下无效。 | 
+| RIL_USIM_CS_PS_INVALID | USIM卡在CS+PS下均无效。 | 
+| RIL_ROM_SIM | 仿真SIM卡。 | 
+| RIL_NO_USIM | USIM卡不存在。 | 
 
 
 ### RilSrvDomain
@@ -459,12 +459,12 @@ enum RilSrvDomain
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| RIL_NO_DOMAIN_SERVICE | 无服务 | 
-| RIL_CS_SERVICE | 仅CS服务 | 
-| RIL_PS_SERVICE | 仅分组(PS)服务 | 
-| RIL_CS_PS_SERVICE | CS+PS服务 | 
-| RIL_CS_PS_SEARCHING | CS、PS均未注册 | 
-| RIL_CDMA_NOT_SUPPORT | CDMA不支持 | 
+| RIL_NO_DOMAIN_SERVICE | 无服务。 | 
+| RIL_CS_SERVICE | 仅CS服务。 | 
+| RIL_PS_SERVICE | 仅分组(PS)服务。 | 
+| RIL_CS_PS_SERVICE | CS+PS服务。 | 
+| RIL_CS_PS_SEARCHING | CS、PS均未注册。 | 
+| RIL_CDMA_NOT_SUPPORT | CDMA不支持。 | 
 
 
 ### RilSrvStatus
@@ -482,11 +482,11 @@ Ril系统服务状态。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| RIL_NO_SRV_SERVICE | 无服务 | 
-| RIL_RESTRICTED_SERVICE | 有限制服务 | 
-| RIL_SERVICE_VALID | 服务有效 | 
-| RIL_REGIONAL_SERVICE | 有限制的区域服务 | 
-| RIL_ENERGY_SAVING_SERVICE | 省电和睡眠状态 | 
+| RIL_NO_SRV_SERVICE | 无服务。 | 
+| RIL_RESTRICTED_SERVICE | 有限制服务。 | 
+| RIL_SERVICE_VALID | 服务有效。 | 
+| RIL_REGIONAL_SERVICE | 有限制的区域服务。 | 
+| RIL_ENERGY_SAVING_SERVICE | 省电和睡眠状态。 | 
 
 
 ### RilSysMode
@@ -504,15 +504,15 @@ enum RilSysMode
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| RIL_NO_SYSMODE_SERVICE | 服务不存在 | 
-| RIL_GSM_MODE | 全球移动通信系统 (GSM) | 
-| RIL_CDMA_MODE | 码分多址(CDMA) | 
-| RIL_WCDMA_MODE | 宽带码分多址(WCDMA) | 
-| RIL_TDSCDMA_MODE | 时分同步码分多址(TDSCDMA) | 
-| RIL_WIMAX_MODE | 全球微波接入互操作性(WIMAX) | 
-| RIL_LTE_MODE | 长期演进(LTE) | 
-| RIL_LTE_CA_MODE | 载波聚合(CA) | 
-| RIL_NR_MODE | 5G新空口(NR) | 
+| RIL_NO_SYSMODE_SERVICE | 服务不存在。 | 
+| RIL_GSM_MODE | 全球移动通信系统 (GSM)。 | 
+| RIL_CDMA_MODE | 码分多址(CDMA)。 | 
+| RIL_WCDMA_MODE | 宽带码分多址(WCDMA。) | 
+| RIL_TDSCDMA_MODE | 时分同步码分多址(TDSCDMA)。 | 
+| RIL_WIMAX_MODE | 全球微波接入互操作性(WIMAX)。 | 
+| RIL_LTE_MODE | 长期演进(LTE)。 | 
+| RIL_LTE_CA_MODE | 载波聚合(CA)。 | 
+| RIL_NR_MODE | 5G新空口(NR)。 | 
 
 
 ### SimpresentType
@@ -530,5 +530,5 @@ enum SimpresentType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| TYPE_NO_CARD | 无卡时有效 | 
-| TYPE_HAS_CARD | 有卡时有效 | 
+| TYPE_NO_CARD | 无卡时有效。 | 
+| TYPE_HAS_CARD | 有卡时有效。 | 

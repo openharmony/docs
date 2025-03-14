@@ -18,7 +18,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [ExportModelCache](#exportmodelcache) ([out] struct [SharedBuffer](_shared_buffer_v10.md)[] modelCache) | 导出模型缓存。  | 
-| [Run](#run) ([in] struct [IOTensor](_i_o_tensor_v10.md)[] inputs, [in] struct [IOTensor](_i_o_tensor_v10.md)[] outputs, [out] int[][] outputsDims, [out] boolean[] isOutputBufferEnough) | 推理模型  | 
+| [Run](#run) ([in] struct [IOTensor](_i_o_tensor_v10.md)[] inputs, [in] struct [IOTensor](_i_o_tensor_v10.md)[] outputs, [out] int[][] outputsDims, [out] boolean[] isOutputBufferEnough) | 推理模型。  | 
 
 
 ## 成员函数说明
@@ -43,9 +43,9 @@ IPreparedModel::ExportModelCache ([out] struct SharedBuffer[] modelCache)
 
 **返回：**
 
-返回0表示成功
+返回0表示成功。
 
-返回负数表示失败
+返回负数表示失败。
 
 
 ### Run()
@@ -55,7 +55,7 @@ IPreparedModel::Run ([in] struct IOTensor[] inputs, [in] struct IOTensor[] outpu
 ```
 **描述**
 
-推理模型
+推理模型。
 
 **起始版本：** 3.2
 
@@ -70,6 +70,6 @@ IPreparedModel::Run ([in] struct IOTensor[] inputs, [in] struct IOTensor[] outpu
 
 **返回：**
 
-返回0表示成功
+返回0表示成功。
 
-返回负数表示失败
+返回负数表示失败。

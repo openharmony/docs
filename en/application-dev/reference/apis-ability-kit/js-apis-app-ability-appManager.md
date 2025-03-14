@@ -1,6 +1,6 @@
 # @ohos.app.ability.appManager (appManager)
 
-The **appManager** module implements application management. You can use the APIs of this module to query whether the application is undergoing a stability test, whether the application is running on a RAM constrained device, the memory size of the application, and information about the running process.
+The appManager module implements application management. You can use the APIs of this module to query whether the application is undergoing a stability test, whether the application is running on a RAM constrained device, the memory size of the application, and information about the running process.
 
 > **NOTE**
 > 
@@ -586,7 +586,7 @@ killProcessesByBundleName(bundleName: string, clearPageStack: boolean, appIndex?
 
 Kills a process by bundle name. This API uses an asynchronous callback to return the result. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.CLEAN_BACKGROUND_PROCESSES
+**Required permissions**: ohos.permission.KILL_APP_PROCESSES or ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -611,7 +611,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------- |
 | 201 | Permission denied. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | If the input parameter is not valid parameter. |
 | 16000050 | Internal error. |
 
 **Example**
@@ -666,7 +666,7 @@ Checks whether an application is running. This API uses a promise to return the 
 
 | ID| Error Message|
 | ------- | -------- |
-| 201 | The application does not have permission to call the interface. |
+| 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16000050 | Internal error. |
 | 16000073 | The app clone index is invalid. |
@@ -689,3 +689,29 @@ try {
   hilog.error(0x0000, 'testTag', `isAppRunning error, code: ${err.code}, msg:${err.message}`);
 }
 ```
+
+## ApplicationStateObserver<sup>14+</sup>
+
+type ApplicationStateObserver = _ApplicationStateObserver.default
+
+Defines the ApplicationStateObserver module.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Type| Description|
+| --- | --- |
+| [_ApplicationStateObserver.default](js-apis-inner-application-applicationStateObserver.md) | ApplicationStateObserver module.|
+
+## ProcessInformation
+
+type ProcessInformation = _ProcessInformation
+
+Defines the ProcessInformation module.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Type| Description|
+| --- | --- |
+| [_ProcessInformation](js-apis-inner-application-processInformation.md) | ProcessInformation module.|

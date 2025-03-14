@@ -84,11 +84,11 @@ DatePicker、TextPicker和TimePicker的enabled参数由"false"变为"true"或者
 
 **起始API Level**
 
-接口起始版本为API version 12。此变更从API version 16开始，做版本隔离。
+接口起始版本为API version 12。
 
 **变更发生版本**
 
-从OpenHarmony SDK 5.1.0.49开始。
+从OpenHarmony SDK 5.1.0.49开始，API version 18及以上生效。
 
 **变更的接口/组件**
 
@@ -147,6 +147,108 @@ struct styled_string_demo1 {
       }
     }
     .width('100%')
+  }
+}
+```
+
+## cl.arkui.2 轴事件和鼠标事件交叉输入时，系统补充发送Cancel事件变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+在轴事件和鼠标事件交叉输入的情况下，缺少Cancel事件会导致事件不匹配，从而引发应用状态无法恢复的异常。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+变更前：在使用双指在触控板上滑动触发滑动手势、捏合手势的过程中，同时点击鼠标左键，应用将接收到的事件回调序列是onActionStart—>onActionUpdate—>onActionStart—>onActionUpdate—>onActionEnd。
+
+变更后：在使用双指在触控板上滑动触发滑动手势、捏合手势的过程中，同时点击鼠标左键，应用将接收到的事件回调序列是onActionStart—>onActionUpdate—>onActionCancel。
+
+**起始API Level**
+
+接口起始版本为API version 7。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.49开始。
+
+**变更的接口/组件**
+
+PanGestureInterface、PinchGestureInterface、PanGestureHandler、PinchGestureHandler的onActionCancel接口。
+
+**适配指导**
+
+默认行为变更，无需适配。
+
+## cl.arkui.3 CanvasRenderer的measureText方法传undefined参数时返回值变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+measureText方法传undefined参数时，返回的textMetrics为undefined，和W3C标准行为不一致。
+
+**变更影响**
+
+变更前：
+measureText方法传undefined参数时，返回的textMetrics为undefined。
+
+变更后：
+measureText方法传undefined参数时，返回值为按照字符串"undefined"测量的textMetrics。
+
+
+**起始API Level**
+
+API 8
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.49开始。
+
+**变更的接口/组件**
+
+CanvasRenderingContext2D和OffscreenCanvasRenderingContext2D的measureText方法
+
+**适配指导**
+
+如果应用无需获取undefined参数的textMetrics，可在调用measureText方法前对参数做判断。
+
+**示例**
+
+```ts
+@Entry
+@Component
+struct Demo {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+
+  measureText(text: string)
+  {
+    if (text != undefined) {
+      let metrics = this.context.measureText(text);
+      console.info('width = ' + metrics.width);
+    }
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .onReady(() => {
+          this.measureText(undefined)
+          this.measureText('Hello World')
+        })
+    }
+    .width('100%')
+    .height('100%')
   }
 }
 ```

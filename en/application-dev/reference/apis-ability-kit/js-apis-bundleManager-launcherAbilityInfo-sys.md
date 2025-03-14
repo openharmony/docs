@@ -1,11 +1,11 @@
 # LauncherAbilityInfo (System API)
 
-The **LauncherAbilityInfo** module defines the ability information of the home screen application. The information can be obtained through [bundleManager.getLauncherAbilityInfo](js-apis-launcherBundleManager-sys.md#launcherbundlemanagergetlauncherabilityinfo9).
+The LauncherAbilityInfo module defines the ability information of the home screen application. The information can be obtained through [bundleManager.getLauncherAbilityInfo](js-apis-launcherBundleManager-sys.md#launcherbundlemanagergetlauncherabilityinfo9).
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> 
+>
 > The APIs provided by this module are system APIs.
 
 ## LauncherAbilityInfo

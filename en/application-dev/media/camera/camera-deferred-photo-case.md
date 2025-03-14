@@ -119,7 +119,7 @@ async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: str
     console.error(`Camera input error code: ${error.code}`);
   })
 
-  // Open a camera.
+  // Open the camera.
   await cameraInput.open();
 
   // Obtain the supported modes.
@@ -129,7 +129,7 @@ async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: str
     console.error('photo mode not support');
     return;
   }
-  // Obtain the output streams supported by the camera.
+  // Obtain the output stream capability supported by the camera.
   let cameraOutputCap: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraArray[0], camera.SceneMode.NORMAL_PHOTO);
   if (!cameraOutputCap) {
     console.error("cameraManager.getSupportedOutputCapability error");

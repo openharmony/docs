@@ -62,7 +62,7 @@ struct RepeatRerender {
       .backgroundColor(0xFAEEE0)
 
       Button('click').onClick(() => {
-        this.dataArr[0].msg = 'new msg'; // 改变第一项数据对象的msg属性的值
+        this.dataArr.splice(0, 1, new RepeatData('key0', 'new msg')); // 改变列表第一项的数据，保持key不变
       })
     }
   }
@@ -132,7 +132,7 @@ struct RepeatRerender {
       .backgroundColor(0xFAEEE0)
 
       Button('click').onClick(() => {
-        this.dataArr[0].msg = 'new msg'; // 改变第一项数据对象的msg属性的值
+        this.dataArr.splice(0, 1, new RepeatData('key0', 'new msg')); // 改变列表第一项的数据，保持key不变
       })
     }
   }
@@ -183,9 +183,364 @@ struct RepeatRerender {
       .backgroundColor(0xFAEEE0)
 
       Button('click').onClick(() => {
-        this.dataArr[0].msg = 'new msg'; // 改变第一项数据对象的msg属性的值
+        this.dataArr.splice(0, 1, new RepeatData('key0', 'new msg')); // 改变列表第一项的数据，保持key不变
       })
     }
   }
 }
 ```
+
+## cl.arkui.2 selectDialog未选中radio样式变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+弹窗内容风格优化，增强用户体验。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+变更点1：selectDialog未选中radio样式变更。
+
+| 变更前                                                                                       | 变更后                                                                        |
+|-------------------------------------------------------------------------------------------|----------------------------------------------------------------------------|
+| selectDialog未选中时的radio为显示非高亮状态。<br>  ![变更前](figures/selectDialog/selectDialog_before.png) | selectDialog未选中时的radio不显示。<br>![变更后](figures/selectDialog/selectDialog_after.png) |
+
+
+**起始API Level**
+
+API 11
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.55开始。
+
+**变更的接口/组件**
+
+advancedDialog.selectDialog
+
+**适配指导**
+
+默认行为变更，无需适配。系统弹窗默认规格优化演进，若开发者有其他布局、样式诉求，建议使用CustomDialog自定义实现。
+
+## cl.arkui.3 Navigation工具栏文本样式变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX规范变更。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+- 变更前：Navigation工具栏文本最多显示两行，文本高度12_vp。
+
+- 变更后：Navigation工具栏文本最多显示一行，文本高度10_vp。
+
+|              | 变更前 | 变更后 |
+| ------------ | ------ | ------ |
+| 文本样式     | ![item_old](figures/item_old.jpg) | ![item_new](figures/item_new.jpg) |
+
+**起始API Level**
+
+Navigation组件toolbarConfiguration接口：起始支持版本为 API 10。
+
+NavDestination组件toolbarConfiguration接口：起始支持版本为 API 13。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.55开始。
+
+**变更的接口/组件**
+
+涉及组件： Navigation, NavDestination组件。
+
+涉及接口： 
+
+Navigation组件：
+
+toolbarConfiguration(value: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: NavigationToolbarOptions)
+
+NavDestination组件：
+
+toolbarConfiguration(toolbarParam: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: NavigationToolbarOptions)
+
+**适配指导**
+
+默认效果变更，无需适配。
+
+## cl.arkui.4 Navigation工具栏高度变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX规范变更。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+- 变更前：Navigation工具栏高度为56_vp。
+
+- 变更后：Navigation工具栏高度为48_vp。
+
+| | 变更前 | 变更后 |
+|---------|---------|---------|
+|工具栏高度| ![bar_old](figures/bar_old.jpg) | ![bar_new](figures/bar_new.jpg) |
+
+**起始API Level**
+
+Navigation组件toolbarConfiguration接口：起始支持版本为 API 10。
+
+NavDestination组件toolbarConfiguration接口：起始支持版本为 API 13。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.55开始。
+
+**变更的接口/组件**
+
+涉及组件： Navigation, NavDestination组件。
+
+涉及接口： 
+
+Navigation组件：
+
+toolbarConfiguration(value: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: NavigationToolbarOptions)
+
+NavDestination组件：
+
+toolbarConfiguration(toolbarParam: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: NavigationToolbarOptions)
+
+**适配指导**
+
+默认效果变更，无需适配。
+
+## cl.arkui.5 Navigation工具栏聚焦、Hover态样式变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX规范变更。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+- 变更前：Navigation工具栏聚焦/Hover态高度56.0_vp，长度随item数目自适应，Hover态圆角大小为8.0_vp。
+
+- 变更后：Navigation工具栏聚焦/Hover态高度44.0_vp，长度比原来减少4vp（比原来上下左右各增加2vp的padding），Hover态圆角大小为12.0_vp。
+
+| | 变更前 | 变更后 |
+|---------|---------|---------|
+|聚焦态| ![tab_old](figures/tab_old.jpg) | ![tab_new](figures/tab_new.jpg) |
+|Hover态| ![hovew_old](figures/hover_old.jpg) | ![hover_new](figures/hover_new.jpg) |
+
+**起始API Level**
+
+Navigation组件toolbarConfiguration接口：起始支持版本为 API 10。
+
+NavDestination组件toolbarConfiguration接口：起始支持版本为 API 13。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.55开始。
+
+**变更的接口/组件**
+
+涉及组件： Navigation, NavDestination组件。
+
+涉及接口： 
+
+Navigation组件：
+
+toolbarConfiguration(value: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: NavigationToolbarOptions)
+
+NavDestination组件：
+
+toolbarConfiguration(toolbarParam: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: NavigationToolbarOptions)
+
+**适配指导**
+
+默认效果变更，无需适配。
+
+## cl.arkui.6 Navigation工具栏单个item上下边距变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX规范变更。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+- 变更前：上边距8vp下边距10vp。
+
+- 变更后：上下边距都是6vp。
+
+| | 变更前 | 变更后 |
+|---------|---------|---------|
+|单个item上下边距| ![margin_old](figures/margin_old.jpg) | ![margin_new](figures/margin_new.jpg) |
+
+**起始API Level**
+
+Navigation组件toolbarConfiguration接口：起始支持版本为 API 10。
+
+NavDestination组件toolbarConfiguration接口：起始支持版本为 API 13。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.55开始。
+
+**变更的接口/组件**
+
+涉及组件： Navigation, NavDestination组件。
+
+涉及接口： 
+
+Navigation组件：
+
+toolbarConfiguration(value: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: NavigationToolbarOptions)
+
+NavDestination组件：
+
+toolbarConfiguration(toolbarParam: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: NavigationToolbarOptions)
+
+**适配指导**
+
+默认效果变更，无需适配。
+
+## cl.arkui.7 Navigation工具栏选项取消按压态
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX规范变更。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+- 变更前：工具栏选项具有按压态。
+
+- 变更后：工具栏选项取消按压态。
+
+| | 变更前 | 变更后 |
+|---------|---------|---------|
+|选项按压态| ![press_old](figures/press_old.jpg) | ![press_new](figures/press_new.jpg) |
+
+**起始API Level**
+
+Navigation组件toolbarConfiguration接口：起始支持版本为 API 10。
+
+NavDestination组件toolbarConfiguration接口：起始支持版本为 API 13。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.55开始。
+
+**变更的接口/组件**
+
+涉及组件： Navigation, NavDestination组件。
+
+涉及接口： 
+
+Navigation组件：
+
+toolbarConfiguration(value: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: NavigationToolbarOptions)
+
+NavDestination组件：
+
+toolbarConfiguration(toolbarParam: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: NavigationToolbarOptions)
+
+**适配指导**
+
+默认效果变更，无需适配。
+
+## cl.arkui.8 修复blendMode接口离屏模式会影响组件设置的不透明度的问题
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+blendMode离屏模式与不透明度属性（opacity）同时使用时，组件的不透明度并不等于设置的不透明度，效果异常。
+
+**变更影响**
+
+此变更涉及应用适配，仅针对组件设置了blendMode离屏模式且具有不透明度的场景。
+
+变更前：组件设置了blendMode离屏模式，同时设置了opacity不透明度 A，则组件实际不透明度为 A * A
+
+变更后：组件设置了blendMode离屏模式，同时设置了opacity不透明度 A，则组件实际不透明度为 A
+
+变更前后效果如下:
+
+|变更前|变更后|
+|--|--|
+|![](./figures/blendMode_before.png)|![](./figures/blendMode_after.png)|
+
+
+
+**起始API Level**
+
+API 11
+
+
+**变更发生版本**
+
+从 OpenHarmony SDK 5.1.0.55 开始。
+
+**变更的接口/组件**
+
+blendMode 接口
+
+**适配指导**
+
+如果开发者希望在同时使用blendMode离屏模式和opacity接口时保持组件的不透明度不变，则需要手动调整原本设定的不透明度。例如，在下方示例代码中，在 Stack()上额外设置.opacity(0.5)，以确保实际的透明度为 0.5 * 0.5。
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+       Stack() {
+       }
+       .height('50%')
+       .width('50%')
+       .backgroundColor(0x0A59F7)
+       .blendMode(BlendMode.SRC_OVER, BlendApplyType.OFFSCREEN)
+       .opacity(0.5)  // 变更后需要额外设置0.5的不透明度保证实际透明度为 0.5*0.5
+    }
+    .height('100%')
+    .width('100%')
+    .backgroundColor(0xFFFFFF)
+    .opacity(0.5)
+  }
+}
+```
+
+

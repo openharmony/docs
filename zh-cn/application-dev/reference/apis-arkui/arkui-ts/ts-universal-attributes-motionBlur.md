@@ -32,7 +32,7 @@ motionBlur(value: MotionBlurOptions)
 | ------ | ----------------------------------------------- | ---- | ------------------ |
 | value  | [MotionBlurOptions](#motionbluroptions对象说明) | 是   | 定义运动模糊参数。 |
 
-## motionBlur<sup>16+</sup>
+## motionBlur<sup>18+</sup>
 
 motionBlur(motionBlur: Optional\<MotionBlurOptions>)
 
@@ -50,7 +50,7 @@ motionBlur(motionBlur: Optional\<MotionBlurOptions>)
 
 6、模糊半径建议设置1以内，否则会有非预期效果。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **参数：** 
 

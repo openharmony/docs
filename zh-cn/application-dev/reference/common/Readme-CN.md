@@ -25,3 +25,5 @@
     - [JSVM_ScriptOrigin](_j_s_v_m___script_origin.md)
     - [JSVM_TypeTag](_j_s_v_m___type_tag.md)
     - [JSVM_VMInfo](_j_s_v_m___v_m_info.md)
+    - [JSVM_PropertyHandler](_j_s_v_m___property_handler.md)
+    - [JSVM_DefineClassOptions](_j_s_v_m___define_class_options.md)

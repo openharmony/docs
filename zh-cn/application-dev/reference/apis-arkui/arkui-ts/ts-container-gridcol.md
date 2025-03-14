@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
-> 该组件从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。  
+> 该组件从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。  
 
 ## 子组件
 
@@ -12,6 +12,8 @@
 ## 接口
 
 GridCol(option?: GridColOptions)
+
+栅格列布局组件。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -25,6 +27,8 @@ GridCol(option?: GridColOptions)
 | option   | [GridColOptions](#gridcoloptions对象说明) | 否   | 栅格布局子组件参数。 |
 
 ## GridColOptions对象说明
+
+设置栅格列布局组件布局选项。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

@@ -16,14 +16,14 @@ import { appManager } from '@kit.AbilityKit';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name                    | Type    | Read-Only| Mandatory| Description                      |
-| ----------------------- | ---------| ---- | ---- | ------------------------- |
-| pid         | number   | No  | Yes  | Process ID.                   |
-| bundleName  | string   | No  | Yes | Bundle name of the application.                 |
-| uid         | number   | No  | Yes  | UID of the application.                 |
-| isContinuousTask         | boolean   | No  | Yes  | Whether the task is a continuous task. The value **true** means that the task is a continuous task, and **false** means the opposite.                |
-| isKeepAlive         | boolean   | No  | Yes  | Whether the process is a resident task. The value **true** means that the process is a resident, and **false** means the opposite.                  |
-| state       | number   | No  | Yes  | Application state. The options are as follows:<br>**0**: newly created.<br>**1**: ready.<br>**2**: running in the foreground.<br>**4**: running in the background.<br>**5**: terminated.    |
+| Name                    | Type    | Mandatory| Description                      |
+| ----------------------- | ---------| ---- | ------------------------- |
+| pid         | number   | Yes  | Process ID.                   |
+| bundleName  | string   | Yes  | Bundle name of the application.                 |
+| uid         | number   | Yes  | UID of the application.                 |
+| isContinuousTask | boolean   | Yes  | Whether the task is a continuous task. The value **true** means that the task is a continuous task, and **false** means the opposite.                |
+| isKeepAlive      | boolean   | Yes  | Whether the process is a resident task. The value **true** means that the process is a resident, and **false** means the opposite.                  |
+| state       | number   | Yes  | Application state. The options are as follows:<br>**0**: newly created.<br>**1**: ready.<br>**2**: running in the foreground.<br>**4**: running in the background.<br>**5**: terminated.    |
 
 **Example**
 ```ts

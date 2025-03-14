@@ -16,6 +16,7 @@
     - [@ohos.runningLock (Runninglock锁)](js-apis-runninglock.md)
     - [@ohos.thermal (热管理)](js-apis-thermal.md)
     - [@ohos.usbManager (USB管理)](js-apis-usbManager.md)
+    - [@ohos.usbManager.serial (串口管理)](js-apis-serialManager.md)
     <!--Del-->
     - [@ohos.batteryInfo (电量信息)(系统接口)](js-apis-battery-info-sys.md)
     - [@ohos.batteryStatistics (耗电统计)(系统接口)](js-apis-batteryStatistics-sys.md)
@@ -27,6 +28,7 @@
     - [@ohos.systemParameterEnhance (系统参数)(系统接口)](js-apis-system-parameterEnhance-sys.md)
     - [@ohos.screenLock (锁屏管理)(系统接口)](js-apis-screen-lock-sys.md)
     - [@ohos.usbManager (USB管理)(系统接口)](js-apis-usbManager-sys.md)
+    - [@ohos.usbManager.serial (串口管理)(系统接口)](js-apis-serialManager-sys.md)
     - [@ohos.update (升级)(系统接口)](js-apis-update-sys.md)
     <!--DelEnd-->
   - 数据文件处理<!--data-file-processing-arkts-->

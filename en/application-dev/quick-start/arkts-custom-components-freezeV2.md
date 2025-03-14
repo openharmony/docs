@@ -6,9 +6,9 @@ Before reading this topic, you are advised to read [\@ComponentV2](./arkts-new-c
 
 > **NOTE**
 >
-> @ComponentV2 decorated custom component freezing is supported since API version 12.
+> Freezing of @ComponentV2 decorated custom component is supported since API version 12.
 >
-> Mixed use of custom component freezing is supported since API version 16.
+> Mixed use of custom component freezing is supported since API version 18.
 >
 > Different from freezing the @Component decorated components, custom components decorated by @ComponentV2 do not support freezing the cached list items in the **LazyForEach** scenario.
 
@@ -350,7 +350,11 @@ In the preceding example:
 
 ### Repeat virtualScroll
 
-Freeze the custom components in the Repeat virtualScroll cache pool to avoid unnecessary component re-renders. You are advised to read [Component Generation and Reuse Rules](./arkts-new-rendering-control-repeat.md#virtualscroll-1) of **Repeat** in advance.
+> **NOTE**
+>
+> Repeat virtualScroll supports custom component freezing since API version 18.
+
+Freeze the custom components in the Repeat virtualScroll cache pool to avoid unnecessary component re-renders. You are advised to read [Child Component Rendering Logic](./arkts-new-rendering-control-repeat.md#child-component-rendering-logic-1) of virtualScroll in advance.
 
 ```ts
 @Entry
@@ -452,7 +456,7 @@ struct ChildComponent {
 
 ### Mixed Use of Component Freezing
 
-In the scenario where mixed use of component freezing is supported, the freezing behavior varies according to the API version. Set the component freezing flag for the parent component. In API version 15 or earlier, when the parent component is unfrozen, all nodes of its child components are unfrozen. Since API version 16, when the parent component is unfrozen, only the on-screen nodes of the child component are unfrozen. For details, see [Mixing the Use of Components](./arkts-custom-components-freeze.md#mixing-the-use-of-components).
+In the scenario where mixed use of component freezing is supported, the freezing behavior varies according to the API version. Set the component freezing flag for the parent component. In API version 17 or earlier, when the parent component is unfrozen, all nodes of its child components are unfrozen. Since API version 18, when the parent component is unfrozen, only the on-screen nodes of the child component are unfrozen. For details, see [Mixing the Use of Components](./arkts-custom-components-freeze.md#mixing-the-use-of-components).
 
 #### Mixing Use of Navigation and TabContent
 
@@ -622,11 +626,11 @@ struct pageTwoStack {
 }
 ```
 
-For API version 15 or earlier:
+For API version 17 or earlier:
 
 Click **Next page** to enter the next page and then return to the previous page. All labels of **Tabcontent** are unfrozen.
 
-For API version 16 or later:
+For API version 18 or later:
 
 Click **Next page** to enter the next page and then return to the previous page. Only the nodes with the corresponding labels are unfrozen.
 
@@ -763,3 +767,5 @@ struct FreezeBuildNode {
 Click **Button("change")** to change the value of **message**. The **onMessageUpdated** method registered in @Watch of the **TabContent** component that is being displayed is triggered, and that under the **BuilderNode** node of **TabContent** that is not displayed is also triggered.
 
 ![builderNode.gif](figures/builderNode.gif)
+
+<!--no_check-->
