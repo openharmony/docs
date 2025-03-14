@@ -1,5 +1,5 @@
 # Introduction to AVCodec Kit
-Audio and Video Codec (AVCodec) Kit provides capabilities such as audio and video codec, media file muxing and demuxing, and media data input.
+Audio and Video Codec (AVCodec) Kit provides capabilities such as audio/video encoding and decoding, media file muxing and demuxing, and media data input.
 For performance reasons, AVCodec Kit provides only C APIs.
 
 ## Capability Scope
