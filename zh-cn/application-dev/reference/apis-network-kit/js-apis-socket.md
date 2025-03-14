@@ -7,7 +7,7 @@
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 本模块API使用时建议放在worker线程或者taskpool中做网络操作，否则可能会导致UI线程卡顿。
 
-## 导入模块需填入服务端的ca证书(用于认证校验服务端的数字证书),证书内容以"-----BEGIN CERTIFICATE-----"开头，以"-----END CERTIFICATE-----"结尾。
+## 导入模块
 
 ```ts
 import { socket } from '@kit.NetworkKit';
