@@ -847,7 +847,7 @@ Failed to uninstall the app because the app has uninstall rule.
 应用存在卸载处置规则，不允许直接卸载。<!--Del-->可使用[getUninstallDisposedRule](./js-apis-appControl-sys.md#appcontrolgetuninstalldisposedrule15)检查应用是否设置了卸载处置规则。<!--DelEnd-->
 
 **处理步骤**<br/>
-若为手机设备，则在设备的"设置"->"隐私和安全"->"应用锁"界面，关闭应用锁。若为其他设备，可通过[deleteUninstallDisposedRule](./js-apis-appControl-sys.md#appcontroldeleteuninstalldisposedrule15)接口关闭应用锁。
+若为手机设备，则在设备的"设置"->"隐私和安全"->"应用锁"界面，关闭应用锁。<!--Del-->若为其他设备，可通过[deleteUninstallDisposedRule](./js-apis-appControl-sys.md#appcontroldeleteuninstalldisposedrule15)接口关闭应用锁。<!--DelEnd-->
 
 ## 17700065 ShortcutInfo结构体中指定的want，不支持被拉起
 
