@@ -3464,7 +3464,7 @@ getSupportedPlaySpeeds(): Promise\<Array\<number>>
 
 | 类型                                                        | 说明                                                         |
 | --------- | ------------------------------------------------------------ |
-| Promise\<Array\number\>\> | Promise对象。返回远端设备所支持的倍速播放列表。 |
+| Promise\<Array\<number\>\> | Promise对象。返回远端设备所支持的倍速播放列表。 |
 
 **错误码：**
 
