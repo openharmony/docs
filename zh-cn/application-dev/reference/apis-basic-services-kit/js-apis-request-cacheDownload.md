@@ -60,7 +60,7 @@ download(url: string, options: CacheDownloadOptions)
 | 错误码ID    | 错误信息                                                                                                                                      |
 |----------|-------------------------------------------------------------------------------------------------------------------------------------------|
 | 201      | the permissions check fails.                                                                                                              |
-| 401      | the parameters check fails. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401      | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -68,7 +68,7 @@ download(url: string, options: CacheDownloadOptions)
   import { cacheDownload, BusinessError } from '@kit.BasicServicesKit';
 
   // 提供缓存下载任务的配置选项。
-  let options: cacheDownload.CacheDownloadOptions;
+  let options: cacheDownload.CacheDownloadOptions = {};
   
   try {
     // 进行缓存下载，资源若下载成功会被缓存到应用内存或应用沙箱目录的特定文件中。  
@@ -102,7 +102,7 @@ cancel(url: string)
 
 | 错误码ID    | 错误信息                                                                                                                                      |
 |----------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| 401      | the parameters check fails. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401      | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -110,7 +110,7 @@ cancel(url: string)
   import { cacheDownload, BusinessError } from '@kit.BasicServicesKit';
 
   // 提供缓存下载任务的配置选项。
-  let options: cacheDownload.CacheDownloadOptions;
+  let options: cacheDownload.CacheDownloadOptions = {};
   
   try {
     // 进行缓存下载，资源若下载成功会被缓存到应用内存或应用沙箱目录的特定文件中。  
@@ -153,7 +153,7 @@ setMemoryCacheSize(bytes: number)
 
 | 错误码ID    | 错误信息                                                                                                                                      |
 |----------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| 401      | the parameters check fails. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401      | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -192,7 +192,7 @@ setFileCacheSize(bytes: number)
 
 | 错误码ID    | 错误信息                                                                                                                                      |
 |----------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| 401      | the parameters check fails. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401      | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
