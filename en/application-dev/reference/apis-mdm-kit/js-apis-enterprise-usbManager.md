@@ -22,9 +22,15 @@ import { usbManager } from '@kit.MDMKit';
 
 addAllowedUsbDevices(admin: Want, usbDeviceIds: Array\<UsbDeviceId>): void
 
-Adds allowed USB devices through the specified device administrator application.
+Adds allowed USB devices.
 
-Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
+A policy conflict is reported when this API is called in the following scenarios:
+
+1. The USB capability of the device has been disabled using the [setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy) API.
+2. The USB storage device access policy has been disabled using the [setUsbStorageDeviceAccessPolicy](#usbmanagersetusbstoragedeviceaccesspolicy) API.
+3. Disallowed USB device types have been added using the [addDisallowedUsbDevices](#usbmanageradddisallowedusbdevices14) API.
+
+**Required permission**: ohos.permission.ENTERPRISE_MANAGE_USB
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -32,10 +38,10 @@ Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
 
 **Parameters**
 
-| Name      | Type                                                   | Mandatory| Description                                       |
-| ------------ | ------------------------------------------------------- | ---- | ------------------------------------------- |
-| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                             |
-| usbDeviceIds | Array<[UsbDeviceId](#usbdeviceid)>                      | Yes  | IDs of the allowed USB devices to add. This array can hold a maximum of 1000 USB device IDs.|
+| Name      | Type                                                   | Mandatory| Description                                                        |
+| ------------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                      |
+| usbDeviceIds | Array<[UsbDeviceId](#usbdeviceid)>                      | Yes  | USB device IDs, which can be obtained through [getDevices](../apis-basic-services-kit/js-apis-usbManager.md#usbmanagergetdevices). This array can hold a maximum of 1000 USB device IDs.|
 
 **Error codes**
 
@@ -73,9 +79,9 @@ try {
 
 removeAllowedUsbDevices(admin: Want, usbDeviceIds: Array\<UsbDeviceId>): void
 
-Removes allowed USB devices through the specified device administrator application.
+Removes allowed USB devices.
 
-Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
+**Required permission**: ohos.permission.ENTERPRISE_MANAGE_USB
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -83,10 +89,10 @@ Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
 
 **Parameters**
 
-| Name      | Type                                                   | Mandatory| Description           |
-| ------------ | ------------------------------------------------------- | ---- | --------------- |
-| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application. |
-| usbDeviceIds | Array<[UsbDeviceId](#usbdeviceid)>                      | Yes  | IDs of the allowed USB devices to remove.|
+| Name      | Type                                                   | Mandatory| Description                                                        |
+| ------------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                      |
+| usbDeviceIds | Array<[UsbDeviceId](#usbdeviceid)>                      | Yes  | USB device IDs, which can be obtained through [getDevices](../apis-basic-services-kit/js-apis-usbManager.md#usbmanagergetdevices).|
 
 **Error codes**
 
@@ -123,9 +129,9 @@ try {
 
 getAllowedUsbDevices(admin: Want): Array\<UsbDeviceId>
 
-Obtains allowed USB devices through the specified device administrator application.
+Obtains allowed USB devices.
 
-Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
+**Required permission**: ohos.permission.ENTERPRISE_MANAGE_USB
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -133,9 +139,9 @@ Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
 
 **Parameters**
 
-| Name| Type                                                   | Mandatory| Description          |
-| ------ | ------------------------------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.|
+| Name| Type                                                   | Mandatory| Description                                  |
+| ------ | ------------------------------------------------------- | ---- | -------------------------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.|
 
 **Return value**
 
@@ -174,9 +180,21 @@ try {
 
 setUsbStorageDeviceAccessPolicy(admin: Want, usbPolicy: UsbPolicy): void
 
-Sets the USB storage device access policy through the specified device administrator application.
+Sets the access policy of the USB storage device.
 
-Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
+A policy conflict occurs when you set the USB storage device access policy to read, write, or read-only in the following scenarios:
+
+1. The USB capability of the device has been disabled through [setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy).
+2. A USB storage device has been disallowed to use through [addDisallowedUsbDevices](#usbmanageradddisallowedusbdevices14).
+
+A policy conflict is reported if the USB storage device access policy is disabled by calling this API in the following scenarios:
+
+1. The USB capability of the device has been disabled through [setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy).
+2. Allowed USB devices have been added through [addAllowedUsbDevices](#usbmanageraddallowedusbdevices).
+
+You can disable a USB storage device by calling this API or [addDisallowedUsbDevices](#usbmanageradddisallowedusbdevices14). The latter is recommended.
+
+**Required permission**: ohos.permission.ENTERPRISE_MANAGE_USB
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -184,10 +202,10 @@ Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
 
 **Parameters**
 
-| Name   | Type                                                   | Mandatory| Description                 |
-| --------- | ------------------------------------------------------- | ---- | --------------------- |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.       |
-| usbPolicy | [UsbPolicy](#usbpolicy)                                 | Yes  | USB storage device access policy.|
+| Name   | Type                                                   | Mandatory| Description                                  |
+| --------- | ------------------------------------------------------- | ---- | -------------------------------------- |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.|
+| usbPolicy | [UsbPolicy](#usbpolicy)                                 | Yes  | USB storage device access policy.                 |
 
 **Error codes**
 
@@ -222,9 +240,9 @@ try {
 
 getUsbStorageDeviceAccessPolicy(admin: Want): UsbPolicy
 
-Obtains the USB storage device access policy through the specified device administrator application.
+Obtains the access policy of the USB storage device.
 
-Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
+**Required permission**: ohos.permission.ENTERPRISE_MANAGE_USB
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -232,9 +250,9 @@ Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
 
 **Parameters**
 
-| Name| Type                                                   | Mandatory| Description          |
-| ------ | ------------------------------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.|
+| Name| Type                                                   | Mandatory| Description                                  |
+| ------ | ------------------------------------------------------- | ---- | -------------------------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.|
 
 **Return value**
 
@@ -273,9 +291,14 @@ try {
 
 addDisallowedUsbDevices(admin: Want, usbDevices: Array\<UsbDeviceType>): void
 
-Adds disallowed USB device types through the specified device administrator application.
+Adds disallowed USB device types.
 
-Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
+A policy conflict is reported when this API is called in the following scenarios:
+
+1. The USB capability of the device has been disabled through [setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy).
+2. The available USB devices have been added through [addAllowedUsbDevices](#usbmanageraddallowedusbdevices).
+
+**Required permission**: ohos.permission.ENTERPRISE_MANAGE_USB
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -283,10 +306,10 @@ Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
 
 **Parameters**
 
-| Name    | Type                                                   | Mandatory| Description                                                  |
-| ---------- | ------------------------------------------------------- | ---- | ------------------------------------------------------ |
-| admin      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                        |
-| usbDevices | Array<[UsbDeviceType](#usbdevicetype14)>                | Yes  | USB device types to add, which cannot exceed 200 USB device types.|
+| Name    | Type                                                   | Mandatory| Description                                                        |
+| ---------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                      |
+| usbDevices | Array<[UsbDeviceType](#usbdevicetype14)>                | Yes  | Array of the USB devices to be added, which can be obtained through [getDevices](../apis-basic-services-kit/js-apis-usbManager.md#usbmanagergetdevices). This array can hold a maximum of 200 USB device IDs.|
 
 **Error codes**
 
@@ -326,9 +349,9 @@ try {
 
 removeDisallowedUsbDevices(admin: Want, usbDevices: Array\<UsbDeviceType>): void
 
-Removes disallowed USB device types through the specified device administrator application.
+Removes the disallowed USB device types.
 
-Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
+**Required permission**: ohos.permission.ENTERPRISE_MANAGE_USB
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -336,10 +359,10 @@ Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
 
 **Parameters**
 
-| Name    | Type                                                   | Mandatory| Description                       |
-| ---------- | ------------------------------------------------------- | ---- | --------------------------- |
-| admin      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.             |
-| usbDevices | Array<[UsbDeviceType](#usbdevicetype14)>                | Yes  | USB device types to remove.|
+| Name    | Type                                                   | Mandatory| Description                                                        |
+| ---------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                      |
+| usbDevices | Array<[UsbDeviceType](#usbdevicetype14)>                | Yes  | Array of the USB devices to be removed, which can be obtained through [getDevices](../apis-basic-services-kit/js-apis-usbManager.md#usbmanagergetdevices).|
 
 **Error codes**
 
@@ -378,9 +401,9 @@ try {
 
 getDisallowedUsbDevices(admin: Want): Array\<UsbDeviceType>
 
-Obtains disallowed USB device types through the specified device administrator application.
+Obtains the disallowed USB device types.
 
-Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
+**Required permission**: ohos.permission.ENTERPRISE_MANAGE_USB
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -388,9 +411,9 @@ Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
 
 **Parameters**
 
-| Name| Type                                                   | Mandatory| Description          |
-| ------ | ------------------------------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.|
+| Name| Type                                                   | Mandatory| Description                                  |
+| ------ | ------------------------------------------------------- | ---- | -------------------------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.|
 
 **Return value**
 
@@ -438,16 +461,16 @@ Represents the USB device identity information.
 
 ## UsbDeviceType<sup>14+</sup>
 
-Represents the USB device type information. For details, see https://www.usb.org/defined-class-codes.
+Represents the USB device type information. For details about the ID, see [defined-class-codes](https://www.usb.org/defined-class-codes).
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
-| Name      | Type                       | Mandatory| Description        |
-| ---------- | --------------------------- | ---- | ------------ |
-| baseClass  | number                      | Yes  | Type ID.  |
-| subClass   | number                      | Yes  | Subtype ID.|
-| protocol   | number                      | Yes  | Protocol No.  |
-| descriptor | [Descriptor](#descriptor14) | Yes  | USB descriptor. |
+| Name      | Type                       | Mandatory| Description                                                        |
+| ---------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| baseClass  | number                      | Yes  | Type ID, which can be obtained through [getDevices](../apis-basic-services-kit/js-apis-usbManager.md#usbmanagergetdevices). If the value of descriptor is **DEVICE**, obtain the **USBDevice.clazz** field. If the value of descriptor is **INTERFACE**, obtain the **USBDevice.configs.interfaces.clazz** field.|
+| subClass   | number                      | Yes  | Subtype ID, which can be obtained through [getDevices](../apis-basic-services-kit/js-apis-usbManager.md#usbmanagergetdevices). If the value of descriptor is **DEVICE**, obtain the **USBDevice.subClass** field. If the value of descriptor is **INTERFACE**, obtain the **USBDevice.configs.interfaces.subClass** field.|
+| protocol   | number                      | Yes  | Protocol ID, which can be obtained through [getDevices](../apis-basic-services-kit/js-apis-usbManager.md#usbmanagergetdevices). If the value of descriptor is **DEVICE**, obtain the **USBDevice.protocol** field. If the value of descriptor is **INTERFACE**, obtain the **USBDevice.configs.interfaces.protocol** field.|
+| descriptor | [Descriptor](#descriptor14) | Yes  | USB descriptor. Obtain the value of Descriptor Usage corresponding to **baseClass** as the input parameter based on [defined-class-codes](https://www.usb.org/defined-class-codes). If the value of Descriptor Usage is set to **Both**, **DEVICE** is input for disallowed devices, and **INTERFACE** is input for disallowed interfaces.|
 
 ## UsbPolicy
 
