@@ -1,4 +1,4 @@
-# AccessibilityExtensionContext (Accessibility Extension Context 
+# AccessibilityExtensionContext (Accessibility Extension Contex) 
 
 The **AccessibilityExtensionContext** module, inherited from **ExtensionContext**, provides context for **AccessibilityExtensionAbility**.
 
@@ -140,7 +140,7 @@ Enumerates the window types.
 | 'application' | Application window.|
 | 'system'      | System window.|
 
-## AccessibilityExtensionContext.setTargetBundleName<sup>(deprecated </sup>
+## AccessibilityExtensionContext.setTargetBundleName<sup>(deprecated) </sup>
 
 setTargetBundleName(targetNames: Array\<string> : Promise\<void>;
 
@@ -185,7 +185,7 @@ axContext.setTargetBundleName(targetNames .then((  => {
 } 
 ```
 
-## AccessibilityExtensionContext.setTargetBundleName<sup>(deprecated </sup>
+## AccessibilityExtensionContext.setTargetBundleName<sup>(deprecated) </sup>
 
 setTargetBundleName(targetNames: Array\<string>, callback: AsyncCallback\<void> : void;
 
@@ -231,7 +231,7 @@ try {
 }
 ```
 
-## AccessibilityExtensionContext.getFocusElement<sup>(deprecated </sup>
+## AccessibilityExtensionContext.getFocusElement<sup>(deprecated) </sup>
 
 getFocusElement(isAccessibilityFocus?: boolean : Promise\<AccessibilityElement>;
 
@@ -279,7 +279,7 @@ axContext.getFocusElement( .then((data: AccessibilityElement  => {
 } 
 ```
 
-## AccessibilityExtensionContext.getFocusElement<sup>(deprecated </sup>
+## AccessibilityExtensionContext.getFocusElement<sup>(deprecated) </sup>
 
 getFocusElement(callback: AsyncCallback\<AccessibilityElement> : void;
 
@@ -324,7 +324,7 @@ axContext.getFocusElement((err: BusinessError, data: AccessibilityElement  => {
 } ;
 ```
 
-## AccessibilityExtensionContext.getFocusElement<sup>(deprecated </sup>
+## AccessibilityExtensionContext.getFocusElement<sup>(deprecated) </sup>
 
 getFocusElement(isAccessibilityFocus: boolean, callback: AsyncCallback\<AccessibilityElement> : void;
 
@@ -371,7 +371,7 @@ axContext.getFocusElement(isAccessibilityFocus, (err: BusinessError, data: Acces
 } ;
 ```
 
-## AccessibilityExtensionContext.getWindowRootElement<sup>(deprecated </sup>
+## AccessibilityExtensionContext.getWindowRootElement<sup>(deprecated) </sup>
 
 getWindowRootElement(windowId?: number : Promise\<AccessibilityElement>;
 
@@ -420,7 +420,7 @@ axContext.getWindowRootElement( .then((data: AccessibilityElement  => {
 } ;
 ```
 
-## AccessibilityExtensionContext.getWindowRootElement<sup>(deprecated </sup>
+## AccessibilityExtensionContext.getWindowRootElement<sup>(deprecated) </sup>
 
 getWindowRootElement(callback: AsyncCallback\<AccessibilityElement> : void;
 
@@ -465,7 +465,7 @@ axContext.getWindowRootElement((err: BusinessError, data: AccessibilityElement  
 } ;
 ```
 
-## AccessibilityExtensionContext.getWindowRootElement<sup>(deprecated </sup>
+## AccessibilityExtensionContext.getWindowRootElement<sup>(deprecated) </sup>
 
 getWindowRootElement(windowId: number, callback: AsyncCallback\<AccessibilityElement> : void;
 
@@ -512,7 +512,7 @@ axContext.getWindowRootElement(windowId, (err: BusinessError, data: Accessibilit
 } ;
 ```
 
-## AccessibilityExtensionContext.getWindows<sup>(deprecated </sup>
+## AccessibilityExtensionContext.getWindows<sup>(deprecated) </sup>
 
 getWindows(displayId?: number : Promise\<Array\<AccessibilityElement>>;
 
@@ -558,7 +558,7 @@ axContext.getWindows( .then((data: AccessibilityElement  ]  => {
 } ;
 ```
 
-## AccessibilityExtensionContext.getWindows<sup>(deprecated </sup>
+## AccessibilityExtensionContext.getWindows<sup>(deprecated) </sup>
 
 getWindows(callback: AsyncCallback\<Array\<AccessibilityElement>> : void;
 
@@ -600,7 +600,7 @@ axContext.getWindows((err: BusinessError, data: AccessibilityElement  ]  => {
 } ;
 ```
 
-## AccessibilityExtensionContext.getWindows<sup>(deprecated </sup>
+## AccessibilityExtensionContext.getWindows<sup>(deprecated) </sup>
 
 getWindows(displayId: number, callback: AsyncCallback\<Array\<AccessibilityElement>> : void;
 
@@ -644,7 +644,7 @@ axContext.getWindows(displayId, (err: BusinessError, data: AccessibilityElement 
 } ;
 ```
 
-## AccessibilityExtensionContext.injectGesture<sup>(deprecated </sup>
+## AccessibilityExtensionContext.injectGesture<sup>(deprecated) </sup>
 
 injectGesture(gesturePath: GesturePath : Promise\<void>;
 
@@ -695,7 +695,7 @@ axContext.injectGesture(gesturePath .then((  => {
   console.error(`failed to inject gesture, Code is ${err.code}, message is ${err.message}` ;
 } ;
 ```
-## AccessibilityExtensionContext.injectGesture<sup>(deprecated </sup>
+## AccessibilityExtensionContext.injectGesture<sup>(deprecated) </sup>
 
 injectGesture(gesturePath: GesturePath, callback: AsyncCallback\<void> : void
 
@@ -742,7 +742,7 @@ axContext.injectGesture(gesturePath, (err: BusinessError  => {
   console.info(`Succeeded in inject gesture,gesturePath is ${gesturePath}` ;
 } ;
 ```
-## AccessibilityExtensionContext.injectGestureSync<sup>(deprecated </sup>
+## AccessibilityExtensionContext.injectGestureSync<sup>(deprecated) </sup>
 
 injectGestureSync(gesturePath: GesturePath : void
 
@@ -788,7 +788,7 @@ Defines the **AccessibilityElement**. Before calling APIs of **AccessibilityElem
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-### attributeNames<sup>(deprecated </sup>
+### attributeNames<sup>(deprecated) </sup>
 
 attributeNames\<T extends keyof ElementAttributeValues>(  : Promise\<Array\<T>>;
 
@@ -820,7 +820,7 @@ rootElement.attributeNames( .then((data: ElementAttributeKeys  ]  => {
 } ;
 ```
 
-### attributeNames<sup>(deprecated </sup>
+### attributeNames<sup>(deprecated) </sup>
 
 attributeNames\<T extends keyof ElementAttributeValues>(callback: AsyncCallback\<Array\<T>> : void;
 
@@ -854,7 +854,7 @@ rootElement.attributeNames((err: BusinessError, data: ElementAttributeKeys  ]  =
 } ;
 ```
 
-### attributeValue<sup>(deprecated </sup>
+### attributeValue<sup>(deprecated) </sup>
 
 attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T : Promise\<ElementAttributeValues  T]>;
 
@@ -905,7 +905,7 @@ rootElement.attributeValue(attributeName .then((data: string  => {
 } ;
 ```
 
-### attributeValue<sup>(deprecated </sup>
+### attributeValue<sup>(deprecated) </sup>
 
 attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T, 
     callback: AsyncCallback\<ElementAttributeValues  T]> : void;
@@ -952,7 +952,7 @@ rootElement.attributeValue(attributeName, (err: BusinessError, data: string  => 
 } ;
 ```
 
-### actionNames<sup>(deprecated </sup>
+### actionNames<sup>(deprecated) </sup>
 
 actionNames( : Promise\<Array\<string>>;
 
@@ -983,7 +983,7 @@ rootElement.actionNames( .then((data: string  ]  => {
 } 
 ```
 
-### actionNames<sup>(deprecated </sup>
+### actionNames<sup>(deprecated) </sup>
 
 actionNames(callback: AsyncCallback\<Array\<string>> : void;
 
@@ -1014,7 +1014,7 @@ rootElement.actionNames((err: BusinessError, data: string  ]  => {
 } 
 ```
 
-### performAction<sup>(deprecated </sup>
+### performAction<sup>(deprecated) </sup>
 
 performAction(actionName: string, parameters?: object : Promise\<void>;
 
@@ -1109,7 +1109,7 @@ rootElement.performAction('setCursorPosition', {
 } ;
 ```
 
-### performAction<sup>(deprecated </sup>
+### performAction<sup>(deprecated) </sup>
 
 performAction(actionName: string, callback: AsyncCallback\<void> : void;
 
@@ -1154,7 +1154,7 @@ rootElement.performAction(actionName, (err: BusinessError  => {
 } ;
 ```
 
-### performAction<sup>(deprecated </sup>
+### performAction<sup>(deprecated) </sup>
 
 performAction(actionName: string, parameters: object, callback: AsyncCallback\<void> : void;
 
@@ -1201,7 +1201,7 @@ rootElement.performAction(actionName, parameters, (err: BusinessError  => {
 } ;
 ```
 
-### findElement('content' <sup>(deprecated </sup>
+### findElement('content' <sup>(deprecated) </sup>
 
 findElement(type: 'content', condition: string : Promise\<Array\<AccessibilityElement>>;
 
@@ -1249,7 +1249,7 @@ rootElement.findElement('content', condition .then((data: AccessibilityElement  
 } ;
 ```
 
-### findElement('content' <sup>(deprecated </sup>
+### findElement('content' <sup>(deprecated) </sup>
 
 findElement(type: 'content', condition: string, callback: AsyncCallback\<Array\<AccessibilityElement>> : void;
 
@@ -1294,7 +1294,7 @@ rootElement.findElement('content', condition, (err: BusinessError, data: Accessi
 } ;
 ```
 
-### findElement('focusType' <sup>(deprecated </sup>
+### findElement('focusType' <sup>(deprecated) </sup>
 
 findElement(type: 'focusType', condition: FocusType : Promise\<AccessibilityElement>;
 
@@ -1343,7 +1343,7 @@ rootElement.findElement('focusType', condition .then((data: AccessibilityElement
 } ;
 ```
 
-### findElement('focusType' <sup>(deprecated </sup>
+### findElement('focusType' <sup>(deprecated) </sup>
 
 findElement(type: 'focusType', condition: FocusType, callback: AsyncCallback\<AccessibilityElement> : void;
 
@@ -1389,7 +1389,7 @@ rootElement.findElement('focusType', condition, (err: BusinessError, data: Acces
 } ;
 ```
 
-### findElement('focusDirection' <sup>(deprecated </sup>
+### findElement('focusDirection' <sup>(deprecated) </sup>
 
 findElement(type: 'focusDirection', condition: FocusDirection : Promise\<AccessibilityElement>;
 
@@ -1438,7 +1438,7 @@ rootElement.findElement('focusDirection', condition .then((data: AccessibilityEl
 } ;
 ```
 
-### findElement('focusDirection' <sup>(deprecated </sup>
+### findElement('focusDirection' <sup>(deprecated) </sup>
 
 findElement(type: 'focusDirection', condition: FocusDirection, callback: AsyncCallback\<AccessibilityElement> : void;
 
