@@ -7,7 +7,7 @@ As a unique identifier of a user file, the uniform resource identifier (URI) is 
 The URIs in the system can be classified into the following types:
 
 - Document URI: URI of a file selected or saved by the file manager started by picker, or obtained via the **fileAccess** module. For details, see [Obtaining a Document URI](#obtaining-a-document-uri).
-- Media file URI: URI of an image or video selected from **Gallery** by picker ; URI of an image or video obtained via the **photoAccessHelper** module; URI of an image, video, or audio file obtained via the **userFileManager** module. For details, see [Obtaining a Media File URI](#obtaining-a-media-file-uri).
+- Media file URI: URI of an image or video selected from **Gallery** by picker; URI of an image or video obtained via the **photoAccessHelper** module; URI of an image, video, or audio file obtained via the **userFileManager** module. For details, see [Obtaining a Media File URI](#obtaining-a-media-file-uri).
 
 ![user-file-uri-intro](figures/user-file-uri-intro.png)
 
@@ -25,22 +25,21 @@ The following table describes the fields in a document URI.
 | ------------- | ------------------- |
 | 'file://docs/storage/Users/currentUser/' | Indicates the root directory of the file manager.|
 | '\<relative_path\>/' | Indicates the relative path of the file, for example, **Download/** and **Documents/**.|
-| 'test.txt' | Indicates the name of the file stored in the user file system. The supported file types vary, depending on the file manager used. Common file types include TXT, JPG, MP4, and MP3. |
+| 'test.txt' | Indicates the name of the file stored in the user file system. The supported file types vary, depending on the file manager used. Common file types include TXT, JPG, MP4, and MP3.|
 
 ### Obtaining a Document URI
 
 - Call **select()** or **save()** of [DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#documentviewpicker) to select or save a document.
+
 - Call **select()** or **save()** of [AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker) to select or save an audio file.<!--Del-->
-- Call [@ohos.file.fileAccess](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md). The [FileInfo](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#fileinfo) object contains the URI of the file or directory. Note that the APIs of [@ohos.file.fileAccess](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md) can be called only by system applications. 
 
-You can obtain the document URIs of the files and folders in the following directories:
-
-- External storage directory
-- **Docs** directory
-- **Download** directory
-- **Desktop** directory
-- **Documents** directory
-- **Share** directory of the shared disk
+- Call [@ohos.file.fileAccess](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md). The [FileInfo](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#fileinfo) object contains the URI of the file or directory. Note that the APIs of [@ohos.file.fileAccess](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md) can be called only by system applications. You can obtain the document URIs of the files and folders in the following directories:
+   - External storage directory
+   - **Docs** directory
+   - **Download** directory
+   - **Desktop** directory
+   - **Documents** directory
+   - **Share** directory of the shared disk
 <!--DelEnd-->
 
 ### Using a Document URI
@@ -108,17 +107,17 @@ async function example() {
 
 The URI format varies depending on the media file type.
 
-- Image URI format:
+Image URI format:
 
-  'file://media/Photo/\<id\>/IMG_datetime_0001/displayName.jpg'
+- 'file://media/Photo/\<id\>/IMG_datetime_0001/displayName.jpg'
 
-- Video URI format:
+Video URI format:
 
-  'file://media/Photo/\<id>/VID_datetime_0001/displayName.mp4'
+- 'file://media/Photo/\<id>/VID_datetime_0001/displayName.mp4'
 
-- Audio file URI format:
+Audio file URI format:
 
-  'file://media/Audio/\<id>/AUD_datetime_0001/displayName.mp3'
+- 'file://media/Audio/\<id>/AUD_datetime_0001/displayName.mp3'
 
 The following table describes the fields in a media file URI.
 
@@ -137,12 +136,12 @@ The following table describes the fields in a media file URI.
 
 ### Obtaining a Media File URI
 
-- Call [PhotoAccessHelper.PhotoViewPicker](../media/medialibrary/photoAccessHelper-photoviewpicker.md) to select media files. The URIs of the selected files are returned.
+1. Call [PhotoViewPicker of PhotoAccessHelper](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoviewpicker) to select media files. The URIs of the selected files are returned.
 
-- Call [getAssets](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets) or [createAsset](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#createasset) of [photoAccessHelper](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md).<!--Del-->
+2. Call [getAssets](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets) or [createAsset](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#createasset) of [photoAccessHelper](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md).<!--Del-->
 
-- Call [getPhotoAssets](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#getphotoassets), [getAudioAssets](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#getaudioassets), [createAudioAsset](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#createaudioasset10), or [createPhotoAsset](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#createphotoasset) of [userFileManager](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md).
-  <!--DelEnd-->
+3. Call [getPhotoAssets](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#getphotoassets), [getAudioAssets](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#getaudioassets), [createAudioAsset](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#createaudioasset10), or [createPhotoAsset](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#createphotoasset) of [userFileManager](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md).
+<!--DelEnd-->
 
 ### Using a Media File URI
 
@@ -151,7 +150,7 @@ Applications of the normal APL can call [photoAccessHelper](../reference/apis-me
 Applications of the system_basic or system_core APL can call **photoAccessHelper** and [userFileManager](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md) APIs to process media files based on their URI. For details about how to use the APIs, see the API reference document.
 <!--DelEnd-->
 
-If you do not want to request the permission for a normal application, call [PhotoAccessHelper.PhotoViewPicker](../media/medialibrary/photoAccessHelper-photoviewpicker.md) to obtain the file URI and call [photoAccessHelper.getAssets](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets) to obtain the **PhotoAsset** object based on the URI. The **PhotoAsset** object can be used to call [getThumbnail](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getthumbnail) to obtain the thumbnail and call [get](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#get) to read certain information in [PhotoKeys](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photokeys).
+If you do not want to request the permission for a normal application, call [PhotoViewPicker of PhotoAccessHelper](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoviewpicker) to obtain the file URI and call [photoAccessHelper.getAssets](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets) to obtain the **PhotoAsset** object based on the URI. The **PhotoAsset** object can be used to call [getThumbnail](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getthumbnail) to obtain the thumbnail and call [get](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#get) to read certain information in [PhotoKeys](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photokeys).
 
 The following information can be obtained from **PhotoKeys** through temporary authorization:
 
@@ -161,12 +160,12 @@ The following information can be obtained from **PhotoKeys** through temporary a
 | PHOTO_TYPE    | 'media_type'           | Type of the media file.                                             |
 | DISPLAY_NAME  | 'display_name'        | File name displayed.                                                  |
 | SIZE          | 'size'                | Size of the file.                                                  |
-| DATE_ADDED    | 'date_added'          | Date when the file was added. The value is the number of seconds elapsed since the Epoch time.            |
-| DATE_MODIFIED | 'date_modified'       | Date when the file content (not the file name) was last modified. The value is the number of seconds elapsed since the Epoch time.|
+| DATE_ADDED    | 'date_added'          | Unix timestamp when the file was added, in seconds.           |
+| DATE_MODIFIED | 'date_modified'       | Unix timestamp when the file content (not the file name) was last modified, in seconds.  |
 | DURATION      | 'duration'            | Duration, in ms.                                   |
 | WIDTH         | 'width'               | Image width, in pixels.                                   |
 | HEIGHT        | 'height'              | Image height, in pixels.                                     |
-| DATE_TAKEN    | 'date_taken'          | Date when the photo was taken. The value is the number of seconds elapsed since the Epoch time.               |
+| DATE_TAKEN    | 'date_taken'          | Unix timestamp when the photo was taken, in seconds.               |
 | ORIENTATION   | 'orientation'         | Orientation of the image file.                                            |
 | TITLE         | 'title'               | Title in the file.                                                  |
 

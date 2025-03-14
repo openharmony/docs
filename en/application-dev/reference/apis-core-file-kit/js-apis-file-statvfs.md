@@ -1,6 +1,6 @@
 # @ohos.file.statvfs (File System Space Statistics)
 
-The **statfs** module provides APIs for obtaining file system information, including the total size and free size a file system, in bytes.
+This module provides APIs for obtaining file system information, including the total size and free size of a file system, in bytes.
 
 > **NOTE**
 >
@@ -231,3 +231,4 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   let number = statfs.getTotalSizeSync(path);
   console.info("getTotalSizeSync succeed, Size: " + number);
   ```
+  
