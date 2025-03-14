@@ -17,7 +17,7 @@ import { inputMethod } from '@kit.IMEKit';
 Not supported
 
 ## Attributes
-The [universal attributes](../apis-arkui/arkui-ts/ts-universal-attributes-size.md) are not supported.
+The [universal attributes](../apis-arkui/arkui-ts/ts-component-general-attributes.md) are not supported.
 
 ## InputMethodListDialog
 
@@ -57,7 +57,7 @@ Implements a dialog box showing the input method list.
 
 ##  Events
 
-The [universal events](../apis-arkui/arkui-ts/ts-universal-events-click.md) are not supported.
+The [universal events](../apis-arkui/arkui-ts/ts-component-general-events.md) are not supported.
 
 ##  Example
 
@@ -110,3 +110,5 @@ export struct settingsItem {
   }
 }
 ```
+
+ <!--no_check--> 
