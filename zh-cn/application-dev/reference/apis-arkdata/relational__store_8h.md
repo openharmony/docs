@@ -92,6 +92,8 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
+| int [OH_Rdb_SetPersistent](_r_d_b.md#oh_rdb_setpersistent) ([OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) \*config, bool isPersistent) | 指定数据库是否需要持久化。  | 
+| int [OH_Rdb_BatchInsert](_r_d_b.md#oh_rdb_batchinsert) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*table, const [OH_Data_VBuckets](_r_d_b.md#oh_data_vbuckets) \*rows, [Rdb_ConflictResolution](_r_d_b.md#rdb_conflictresolution) resolution, int64_t \*changes) | 将一批数据插入到目标表中。  | 
 | int [OH_Rdb_CreateTransaction](_r_d_b.md#oh_rdb_createtransaction) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [OH_RDB_TransOptions](_r_d_b.md#oh_rdb_transoptions) \*options, [OH_Rdb_Transaction](_r_d_b.md#oh_rdb_transaction) \*\*trans) | 创建一个事务对象。 |
 | int [OH_Rdb_ExecuteV2](_r_d_b.md#oh_rdb_executev2) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*sql, const [OH_Data_Values](_r_d_b.md#oh_data_values) \*args, [OH_Data_Value](_r_d_b.md#oh_data_value) \*\*result) | 执行有返回值的SQL语句，支持向量数据库。 |
 | [OH_Cursor](_o_h___cursor.md) \* [OH_Rdb_ExecuteQueryV2](_r_d_b.md#oh_rdb_executequeryv2) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*sql, const [OH_Data_Values](_r_d_b.md#oh_data_values) \*args) | 根据指定SQL语句查询数据库中的数据，支持向量数据库。 |
