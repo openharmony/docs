@@ -2279,7 +2279,7 @@ int32_t OH_Input_InjectKeyEvent (const struct Input_KeyEvent * keyEvent)
 
 **返回：**
 
-0 - 成功 201 - 缺少权限 401 - 参数错误
+0 - 成功。 201 - 缺少权限。 401 - 参数错误。
 
 
 ### OH_Input_InjectMouseEvent()
@@ -2303,7 +2303,7 @@ int32_t OH_Input_InjectMouseEvent (const struct Input_MouseEvent * mouseEvent)
 
 **返回：**
 
-0 - 成功 201 - 缺少权限 401 - 参数错误
+0 - 成功。 201 - 缺少权限。 401 - 参数错误。
 
 
 ### OH_Input_InjectTouchEvent()
@@ -2327,7 +2327,7 @@ int32_t OH_Input_InjectTouchEvent (const struct Input_TouchEvent * touchEvent)
 
 **返回：**
 
-0 - 成功 201 - 缺少权限 401 - 参数错误
+0 - 成功。 201 - 缺少权限。 401 - 参数错误。
 
 ### OH_Input_RegisterDeviceListener()
 
