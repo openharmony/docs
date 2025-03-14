@@ -118,8 +118,8 @@ Unregisters a listener for the download progress of a file from the Drive Kit.
 
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
-| event | string | Yes  | Event type. The value is **progress**, which indicates the download progress event of a file from the Drive Kit.|
-| callback | Callback\<[DownloadProgress](#downloadprogress11)> | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the download progress event.|
+| event | string | Yes  | Event type. The value is **progress**, which indicates the sync progress event.|
+| callback | Callback\<[DownloadProgress](#downloadprogress11)> | No  | Callback for the download progress event of a file from the Drive Kit. If this parameter is not specified, this API unregisters all callbacks for the download progress event.|
 
 **Error codes**
 
@@ -266,7 +266,7 @@ Calling **stop** will terminate the download of the current file and clear the c
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | uri | string | Yes  | URI of the file to download.|
-| needClean<sup>12+</sup> | boolean | No  | Whether to delete the downloaded files. By default, downloaded files are deleted.<br>This parameter is available since API version 12.|
+| needClean<sup>12+</sup> | boolean | No  | Whether to delete the downloaded files. The default value **false** means to delete the downloaded files; the value **true** means the opposite.<br>This parameter is available since API version 12.|
 
 **Return value**
 
