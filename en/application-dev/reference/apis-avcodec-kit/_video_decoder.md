@@ -257,7 +257,7 @@ Frees an output buffer of a video decoder.
 
 You need to call this function to release the output buffer in a timely manner. Otherwise, the decoding process is blocked.
 
-For details, see step 13 in surface mode or step 10 in buffer mode in [Video Decoding](../../media/avcodec/video-decoding.md).
+For details, see step 12 in surface mode or step 10 in buffer mode in [Video Decoding](../../media/avcodec/video-decoding.md).
 
 **System capability**: SystemCapability.Multimedia.Media.VideoDecoder
 
@@ -299,7 +299,7 @@ OH_AVFormat* OH_VideoDecoder_GetOutputDescription (OH_AVCodec *codec)
 
 Obtains the OH_AVFormat information about the output data of a video decoder. For details, see [OH_AVFormat](_core.md#oh_avformat).
 
-The caller must call [OH_AVFormat_Destroy](_core.md#oh_avformat_destroy) to release the **OH_AVFormat** instance in the return value.
+You must call [OH_AVFormat_Destroy](_core.md#oh_avformat_destroy) to release the **OH_AVFormat** instance when its lifecycle ends.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoDecoder
 
@@ -324,7 +324,7 @@ OH_AVErrCode OH_VideoDecoder_IsValid (OH_AVCodec *codec, bool *isValid )
 
 **Description**
 
-Checks whether a video decoder instance is valid.
+Checks whether the decoder service is valid when a decoder instance exists.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoDecoder
 
@@ -335,7 +335,7 @@ Checks whether a video decoder instance is valid.
 | Name| Description| 
 | -------- | -------- |
 | codec | Pointer to a video decoder instance. | 
-| isValid | Output parameter. Pointer of the Boolean type. The value **true** means that the decoder instance is valid and **false** means the opposite. It is recommended that the caller initialize **isValid** to **false**. | 
+| isValid | Pointer of the Boolean type. The value indicates the validity of the decoder service only when the function returns **AV_ERR_OK**. The value **true** means that the decoder service is valid, and **false** means the opposite. It is recommended that you initialize **isValid** to **false**. | 
 
 **Returns**
 
@@ -521,7 +521,7 @@ Returns the output buffer corresponding to the index to a video decoder. The buf
 
 If no output surface is configured, calling this function only frees the output buffer.
 
-The caller can request the system to render the buffer at a specific time (after the VSYNC or buffer timestamp) based on the timestamp. To render the buffer at the specified timestamp, that timestamp should approximate the current system time within an acceptable margin of error. Pay attention to the following:
+You can request the system to render the buffer at a specific time (after the VSYNC or buffer timestamp) based on the timestamp. To render the buffer at the specified timestamp, that timestamp should approximate the current system time within an acceptable margin of error. Pay attention to the following:
 1. Buffers are processed sequentially, which may result in the display of subsequent buffers on the surface being blocked. This is particularly important for interactive scenarios, such as responding to user actions like stopping, fast-forwarding, or rewinding a video.
 2. If multiple buffers are sent to the surface for rendering on a single VSYNC event, the last buffer is rendered and other buffers are discarded.
 3. If the difference between the timestamp and the current system time exceeds the acceptable margin of error, the surface ignores the timestamp and renders the buffer at the earliest feasible time. In this case, no frames are discarded.
@@ -607,8 +607,8 @@ Sets the decryption configuration. This function can be called prior to **OH_Vid
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to a video decoder instance. | 
-| mediaKeySession | Pointer to a media key session instance with decryption capabilities. For details, see **MediaKeySession**. | 
+| codec | Pointer to a video decoder instance. |
+| mediaKeySession | Pointer to a media key session instance with decryption capabilities. For details, see [MediaKeySession](../../reference/apis-drm-kit/native__mediakeysession_8h.md). | 
 | secureVideoPath | Whether a secure video channel is used. The value **true** means a secure video channel, and **false** means a non-secure video channel. In [surface mode](../../media/avcodec/video-decoding.md#surface-output), both secure and non-secure video channels are supported. In [buffer mode](../../media/avcodec/video-decoding.md#buffer-output), only non-secure video channels are supported. |
 
 **Returns**
@@ -626,7 +626,7 @@ Returns one of the following result codes:
 **AV_ERR_INVALID_VAL**:
    
     1. The value of **codec** is a null pointer or does not point to a decoder instance.
-    2. The value of **mediaKeySession** is a null pointer or invalid.
+    2. The value of **mediaKeySession** is NULL or invalid.
 
 **AV_ERR_NO_MEMORY**: The decoder instance has been destroyed.
 
@@ -941,7 +941,6 @@ OH_AVErrCode OH_VideoDecoder_FreeOutputData (OH_AVCodec *codec, uint32_t index )
 ```
 
 **Description**
-
 Frees an output buffer of a video decoder.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoDecoder
