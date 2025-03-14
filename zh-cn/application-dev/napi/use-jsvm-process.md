@@ -14,30 +14,7 @@
 
 ## Native侧方法的实现
 
-- 设置模块注册信息
-
-  具体见[设置模块注册信息](use-napi-process.md#native侧方法的实现)
-
-- 模块初始化
-
-  实现ArkTS接口与C++接口的绑定和映射。
-
-  ```cpp
-  // entry/src/main/cpp/hello.cpp
-  EXTERN_C_START
-  // 模块初始化
-  static napi_value Init(napi_env env, napi_value exports)
-  {
-      // ArkTS接口与C++接口的绑定和映射
-      napi_property_descriptor desc[] = {
-          {"runTest", nullptr, RunTest, nullptr, nullptr, nullptr, napi_default, nullptr},
-      };
-      // 在exports对象上挂载RunJsVm的Native方法
-      napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-      return exports;
-  }
-  EXTERN_C_END
-  ```     
+参考[使用Node-API实现跨语言交互开发流程](use-napi-process.md#native侧方法的实现)，以下代码提供了“使用JSVM-API实现JS与C/C++语言交互开发流程”Native侧方法实现的一个demo。
 
 - 在index.d.ts文件中，提供JS侧的接口方法。
 
@@ -80,6 +57,7 @@
 - 实现Native侧的runTest接口。具体代码如下：
 
   ```cpp
+  // entry/src/main/cpp/hello.cpp
   #include "napi/native_api.h"
   #include "hilog/log.h"
   #include "ark_runtime/jsvm.h"
@@ -202,23 +180,27 @@
       return nullptr;
   }
 
-  // 模块注册信息，供arkts侧调用
+  // 模块初始化
   EXTERN_C_START
   static napi_value Init(napi_env env, napi_value exports) {
-  napi_property_descriptor desc[] = {{"runTest", nullptr, RunTest, nullptr, nullptr, nullptr, napi_default, nullptr}};
-  napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-  return exports;
+      // 实现ArkTS接口与C++接口的绑定和映射  
+      napi_property_descriptor desc[] = {
+        {"runTest", nullptr, RunTest, nullptr, nullptr, nullptr, napi_default, nullptr}
+      };
+      // 在exports对象上挂载RunJsVm的Native方法
+      napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+      return exports;
   }
   EXTERN_C_END
   
   static napi_module demoModule = {
-  .nm_version = 1,
-  .nm_flags = 0,
-  .nm_filename = nullptr,
-  .nm_register_func = Init,
-  .nm_modname = "entry",
-  .nm_priv = ((void *)0),
-  .reserved = {0},
+      .nm_version = 1,
+      .nm_flags = 0,
+      .nm_filename = nullptr,
+      .nm_register_func = Init,
+      .nm_modname = "entry",
+      .nm_priv = ((void *)0),
+      .reserved = {0},
   };
   
   extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
