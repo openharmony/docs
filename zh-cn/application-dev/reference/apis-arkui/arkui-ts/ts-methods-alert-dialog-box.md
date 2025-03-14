@@ -137,11 +137,11 @@ confirm参数优先级：fontColor、backgroundColor  > style > defaultFocus
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                       | 说明    |
-| -------------------------- | --------- |
-| AUTO                      | 两个及以下按钮水平排布，两个以上为竖直排布。 |
-| HORIZONTAL                      | 按钮水平布局。 |
-| VERTICAL                      | 按钮竖直布局。 |
+| 名称                       | 值                      | 说明    |
+| -------------------------- | --------- | --------- |
+| AUTO                      | 0                     | 两个及以下按钮水平排布，两个以上为竖直排布。 |
+| HORIZONTAL                      | 1                     | 按钮水平布局。 |
+| VERTICAL                      | 2                     | 按钮竖直布局。 |
 
 ## DialogAlignment枚举说明
 
