@@ -83,35 +83,35 @@ libhid.z.so
     使用 **hid_ddk_api.h** 的 **OH_Hid_CreateDevice** 接口创建HID设备，成功返回设备deviceId，失败返回[错误码](../../reference/apis-driverdevelopment-kit/_hid_ddk.md#hid_ddkerrcode)。
 
     ```c++
-   // 构建HID设备属性
-   std::vector<Hid_DeviceProp> deviceProp = {HID_PROP_DIRECT};
-   std::string deviceName = "keyboard"
-   Hid_Device hidDevice = {
-       .deviceName = deviceName.c_str(), 
-       .vendorId = 0x6006, 
-       .productId = 0x6006, 
-       .version = 1, 
-       .bustype = 3,
-       .properties = deviceProp.data(),
-       .propLength = (uint16_t)deviceProp.size()
-   };
-   // 构建HID设备关注的事件属性
-   std::vector<Hid_EventType> eventType = {HID_EV_ABS, HID_EV_KEY, HID_EV_SYN, HID_EV_MSC};
-   Hid_EventTypeArray eventTypeArray = {.hidEventType = eventType.data(), .length = (uint16_t)eventType.size()};
-   std::vector<Hid_KeyCode> keyCode = {HID_BTN_TOOL_PEN, HID_BTN_TOOL_RUBBER, HID_BTN_TOUCH, HID_BTN_STYLUS, HID_BTN_RIGHT};
-   Hid_KeyCodeArray keyCodeArray = {.hidKeyCode = keyCode.data(), .length = (uint16_t)keyCode.size()};
-   std::vector<Hid_MscEvent> mscEvent = {HID_MSC_SCAN};
-   Hid_MscEventArray mscEventArray = {.hidMscEvent = mscEvent.data(), .length = (uint16_t)mscEvent.size()};
-   std::vector<Hid_AbsAxes> absAxes = {HID_ABS_X, HID_ABS_Y, HID_ABS_PRESSURE};
-   Hid_AbsAxesArray absAxesArray = {.hidAbsAxes = absAxes.data(), .length = (uint16_t)absAxes.size()};
-   Hid_EventProperties hidEventProp = {
-       .hidEventTypes = eventTypeArray,
-       .hidKeys = keyCodeArray,
-       .hidAbs = absAxesArray,
-       .hidMiscellaneous = mscEventArray
+    // 构建HID设备属性
+    std::vector<Hid_DeviceProp> deviceProp = {HID_PROP_DIRECT}; //需要引入vector头文件
+    std::string deviceName = "keyboard";
+    Hid_Device hidDevice = {
+        .deviceName = deviceName.c_str(), 
+        .vendorId = 0x6006, 
+        .productId = 0x6006, 
+        .version = 1, 
+        .bustype = 3,
+        .properties = deviceProp.data(),
+        .propLength = (uint16_t)deviceProp.size()
     };
-    // 创建设备并获取到deviceId
-    int32_t deviceId = OH_Hid_CreateDevice(&hidDevice, &hidEventProp);
+    // 构建HID设备关注的事件属性
+    std::vector<Hid_EventType> eventType = {HID_EV_ABS, HID_EV_KEY, HID_EV_SYN, HID_EV_MSC};
+    Hid_EventTypeArray eventTypeArray = {.hidEventType = eventType.data(), .length = (uint16_t)eventType.size()};
+    std::vector<Hid_KeyCode> keyCode = {HID_BTN_TOOL_PEN, HID_BTN_TOOL_RUBBER, HID_BTN_TOUCH, HID_BTN_STYLUS, HID_BTN_RIGHT};
+    Hid_KeyCodeArray keyCodeArray = {.hidKeyCode = keyCode.data(), .length = (uint16_t)keyCode.size()};
+    std::vector<Hid_MscEvent> mscEvent = {HID_MSC_SCAN};
+    Hid_MscEventArray mscEventArray = {.hidMscEvent = mscEvent.data(), .length = (uint16_t)mscEvent.size()};
+    std::vector<Hid_AbsAxes> absAxes = {HID_ABS_X, HID_ABS_Y, HID_ABS_PRESSURE};
+    Hid_AbsAxesArray absAxesArray = {.hidAbsAxes = absAxes.data(), .length = (uint16_t)absAxes.size()};
+    Hid_EventProperties hidEventProp = {
+        .hidEventTypes = eventTypeArray,
+        .hidKeys = keyCodeArray,
+        .hidAbs = absAxesArray,
+        .hidMiscellaneous = mscEventArray
+        };
+        // 创建设备并获取到deviceId
+        int32_t deviceId = OH_Hid_CreateDevice(&hidDevice, &hidEventProp);
     ```
 
 2. 向指定deviceId的HID设备发送事件。
