@@ -5325,6 +5325,128 @@ imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList:
 })
 ```
 
+### createPixelMapUsingAllocator<sup>15+</sup>
+
+createPixelMapUsingAllocator(option?: DecodingOptions, allocatorType?: AllocatorType): Promise\<PixelMap\>
+
+使用指定的分配器根据图像解码参数异步创建PixelMap对象。使用Promise返回对象。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名        | 类型                                 | 必填 | 说明                     |
+| ------------- | ------------------------------------ | ---- | ------------------------ |
+| option        | [DecodingOptions](#decodingoptions7) | 否   | 解码参数。               |
+| allocatorType | [AllocatorType](#allocatortype15)   | 否   | 用于图像解码的内存类型。默认值为AllocatorType.AUTO。 |
+
+**返回值：**
+
+| 类型                             | 说明                        |
+| -------------------------------- | --------------------------- |
+| Promise\<[PixelMap](#pixelmap7)> | Promise对象，返回PixelMap。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types;3.Parameter verification failed. |
+| 7700101  | Bad source.                                                  |
+| 7700102  | Unsupported mimetype.                                        |
+| 7700103  | Image too large.                                             |
+| 7700201  | Unsupported allocator type, e.g., use share memory to decode a HDR image as only DMA supported hdr metadata. |
+| 7700203  | Unsupported options, e.g., cannot convert image into desired pixel format. |
+| 7700301  | Decode failed.                                               |
+| 7700302  | Memory allocation failed.                                    |
+
+**示例：**
+
+```ts
+import image from '@ohos.multimedia.image';
+
+const context: Context = getContext(this);
+// 此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+let filePath: string = context.filesDir + "/test.jpg";
+let imageSource = image.createImageSource(filePath);
+let decodingOptions: image.DecodingOptions = {
+  editable: true,
+  desiredSize: { width: 3072, height: 4096 },
+  rotate: 10,
+  desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
+  desiredRegion: { size: { height: 3072, width: 4096 }, x: 0, y: 0 },
+  index: 0
+};
+let pixelmap = await imageSource.createPixelMapUsingAllocator(decodingOptions, image.AllocatorType.AUTO);
+if (pixelmap != undefined) {
+  console.info('Succeeded in creating pixelMap object.');
+} else {
+  console.info('Failed to create pixelMap.');
+}
+```
+
+### createPixelMapUsingAllocatorSync<sup>15+</sup>
+
+createPixelMapUsingAllocatorSync(option?: DecodingOptions, allocatorType?: AllocatorType): PixelMap
+
+根据指定的分配器同步创建一个基于图像解码参数的PixelMap对象。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名        | 类型                                 | 必填 | 说明                     |
+| ------------- | ------------------------------------ | ---- | ------------------------ |
+| option        | [DecodingOptions](#decodingoptions7) | 否   | 解码参数。               |
+| allocatorType | [AllocatorType](#allocatortype15)   | 否   | 用于图像解码的内存类型。默认值为AllocatorType.AUTO。 |
+
+**返回值：**
+
+| 类型                   | 说明                   |
+| ---------------------- | ---------------------- |
+| [PixelMap](#pixelmap7) | 用于同步返回创建结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types;3.Parameter verification failed. |
+| 7700101  | Bad source.                                                  |
+| 7700102  | Unsupported mimetype.                                        |
+| 7700103  | Image too large.                                             |
+| 7700201  | Unsupported allocator type, e.g., use share memory to decode a HDR image as only DMA supported hdr metadata. |
+| 7700203  | Unsupported options, e.g., cannot convert image into desired pixel format. |
+| 7700301  | Decode failed.                                               |
+| 7700302  | Memory allocation failed.                                    |
+
+**示例：**
+
+```ts
+import image from '@ohos.multimedia.image';
+
+const context: Context = getContext(this);
+// 此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+let filePath: string = context.filesDir + "/test.jpg";
+let imageSource = image.createImageSource(filePath);
+let decodingOptions: image.DecodingOptions = {
+  editable: true,
+  desiredSize: { width: 3072, height: 4096 },
+  rotate: 10,
+  desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
+  desiredRegion: { size: { height: 3072, width: 4096 }, x: 0, y: 0 },
+  index: 0
+};
+let pixelmap = imageSource.createPixelMapUsingAllocatorSync(decodingOptions, image.AllocatorType.AUTO);
+if (pixelmap != undefined) {
+  console.info('Succeeded in creating pixelMap object.');
+} else {
+  console.info('Failed to create pixelMap.');
+}
+```
+
 ### getDelayTimeList<sup>10+</sup>
 
 getDelayTimeList(callback: AsyncCallback<Array\<number>>): void
@@ -5750,128 +5872,6 @@ image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
 }).catch((error: BusinessError) => {
   console.error(`Failed to create PixelMap.code ${error.code},message is ${error.message}`);
 })
-```
-
-### createPixelMapUsingAllocator<sup>15+</sup>
-
-createPixelMapUsingAllocator(option?: DecodingOptions, allocatorType?: AllocatorType): Promise\<PixelMap\>
-
-使用指定的分配器根据图像解码参数异步创建PixelMap对象。使用Promise返回对象。
-
-**系统能力：** SystemCapability.Multimedia.Image.ImageSource
-
-**参数：**
-
-| 参数名        | 类型                                 | 必填 | 说明                     |
-| ------------- | ------------------------------------ | ---- | ------------------------ |
-| option        | [DecodingOptions](#decodingoptions7) | 否   | 解码参数。               |
-| allocatorType | [AllocatorType](#allocatortype15)   | 否   | 用于图像解码的内存类型。默认值为AllocatorType.AUTO。 |
-
-**返回值：**
-
-| 类型                             | 说明                        |
-| -------------------------------- | --------------------------- |
-| Promise\<[PixelMap](#pixelmap7)> | Promise对象，返回PixelMap。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types;3.Parameter verification failed. |
-| 7700101  | Bad source.                                                  |
-| 7700102  | Unsupported mimetype.                                        |
-| 7700103  | Image too large.                                             |
-| 7700201  | Unsupported allocator type, e.g., use share memory to decode a HDR image as only DMA supported hdr metadata. |
-| 7700203  | Unsupported options, e.g., cannot convert image into desired pixel format. |
-| 7700301  | Decode failed.                                               |
-| 7700302  | Memory allocation failed.                                    |
-
-**示例：**
-
-```ts
-import image from '@ohos.multimedia.image';
-
-const context: Context = getContext(this);
-// 此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
-let filePath: string = context.filesDir + "/test.jpg";
-let imageSource = image.createImageSource(filePath);
-let decodingOptions: image.DecodingOptions = {
-  editable: true,
-  desiredSize: { width: 3072, height: 4096 },
-  rotate: 10,
-  desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-  desiredRegion: { size: { height: 3072, width: 4096 }, x: 0, y: 0 },
-  index: 0
-};
-let pixelmap = await imageSource.createPixelMapUsingAllocator(decodingOptions, image.AllocatorType.AUTO);
-if (pixelmap != undefined) {
-  console.info('Succeeded in creating pixelMap object.');
-} else {
-  console.info('Failed to create pixelMap.');
-}
-```
-
-### createPixelMapUsingAllocatorSync<sup>15+</sup>
-
-createPixelMapUsingAllocatorSync(option?: DecodingOptions, allocatorType?: AllocatorType): PixelMap
-
-根据指定的分配器同步创建一个基于图像解码参数的PixelMap对象。
-
-**系统能力：** SystemCapability.Multimedia.Image.ImageSource
-
-**参数：**
-
-| 参数名        | 类型                                 | 必填 | 说明                     |
-| ------------- | ------------------------------------ | ---- | ------------------------ |
-| option        | [DecodingOptions](#decodingoptions7) | 否   | 解码参数。               |
-| allocatorType | [AllocatorType](#allocatortype15)   | 否   | 用于图像解码的内存类型。默认值为AllocatorType.AUTO。 |
-
-**返回值：**
-
-| 类型                   | 说明                   |
-| ---------------------- | ---------------------- |
-| [PixelMap](#pixelmap7) | 用于同步返回创建结果。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types;3.Parameter verification failed. |
-| 7700101  | Bad source.                                                  |
-| 7700102  | Unsupported mimetype.                                        |
-| 7700103  | Image too large.                                             |
-| 7700201  | Unsupported allocator type, e.g., use share memory to decode a HDR image as only DMA supported hdr metadata. |
-| 7700203  | Unsupported options, e.g., cannot convert image into desired pixel format. |
-| 7700301  | Decode failed.                                               |
-| 7700302  | Memory allocation failed.                                    |
-
-**示例：**
-
-```ts
-import image from '@ohos.multimedia.image';
-
-const context: Context = getContext(this);
-// 此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
-let filePath: string = context.filesDir + "/test.jpg";
-let imageSource = image.createImageSource(filePath);
-let decodingOptions: image.DecodingOptions = {
-  editable: true,
-  desiredSize: { width: 3072, height: 4096 },
-  rotate: 10,
-  desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-  desiredRegion: { size: { height: 3072, width: 4096 }, x: 0, y: 0 },
-  index: 0
-};
-let pixelmap = imageSource.createPixelMapUsingAllocatorSync(decodingOptions, image.AllocatorType.AUTO);
-if (pixelmap != undefined) {
-  console.info('Succeeded in creating pixelMap object.');
-} else {
-  console.info('Failed to create pixelMap.');
-}
 ```
 
 ### packing<sup>13+</sup>
