@@ -450,3 +450,51 @@ struct Demo {
   }
 }
 ```
+
+## cl.arkui.11 TextInput/TextArea使用attributeModifier修改borderWidth的行为变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+赋值顺序错误。
+
+**变更影响**
+
+此变更涉及应用适配。
+
+- 变更前：TextInput/TextArea使用attributeModifier修改borderWidth，top实际赋值给bottom，left实际赋值给top，bottom实际赋值给left。
+  
+- 变更后：TextInput/TextArea使用attributeModifier修改borderWidth，top、bottom、left、right赋值给对应的位置。
+
+**起始API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.52开始。
+
+**适配指导**
+
+TextInput/TextArea使用attributeModifier修改borderWidth属性，top、bottom、left、right会赋值给对应的位置，需要修改之前错误的赋值顺序。
+例如如下代码：
+```ts
+@State myModifier: TextInputModifier = new TextInputModifier().borderWidth({
+    top: 5,
+    bottom: 10,
+    left: 15,
+    right: 20
+  })
+```
+维持原状可以做如下调整：
+```ts
+@State myModifier: TextInputModifier = new TextInputModifier().borderWidth({
+    top: 15,  // 使用原先的left
+    bottom: 5, // 使用原先的top
+    left: 10, // 使用原先的bottom
+    right: 20
+  })
+```
