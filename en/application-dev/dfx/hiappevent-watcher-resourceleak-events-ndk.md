@@ -123,6 +123,9 @@ For details about how to use the APIs (such as parameter usage restrictions and 
       In the **napi_init.cpp** file, define the methods related to the watcher of the OnTrigger type.
     
       ```c++
+      // Define a variable to cache the pointer to the created watcher.
+      static HiAppEvent_Watcher *systemEventWatcher; 
+      
       // Implement the callback function used to return the listened events. The content pointed to by the events pointer is valid only in this function.
       static void OnTake(const char *const *events, uint32_t eventLen) {
           Json::Reader reader(Json::Features::strictMode());
