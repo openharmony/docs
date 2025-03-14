@@ -3347,7 +3347,7 @@ getSupportedDecoders(): Promise\<Array\<DecoderType>>
 
 | 类型                                                        | 说明                                                         |
 | --------- | ------------------------------------------------------------ |
-| Promise\<Array\<[DecoderType](#DecoderType18)\>\> | Promise对象。返回远端设备所支持的编码能力列表。 |
+| Promise\<Array\<[DecoderType](#decodertype18)\>\> | Promise对象。返回远端设备所支持的编码能力列表。 |
 
 **错误码：**
 
@@ -3386,7 +3386,7 @@ getRecommendedResolutionLevel(decoderType: DecoderType): Promise\<ResolutionLeve
 
 | 类型                                                        | 说明                                                         |
 | --------- | ------------------------------------------------------------ |
-| Promise\<[ResolutionLevel](#ResolutionLevel18)\> | Promise对象。返回远端设备推荐的分辨率。 |
+| Promise\<[ResolutionLevel](#resolutionlevel18)\> | Promise对象。返回远端设备推荐的分辨率。 |
 
 **错误码：**
 
@@ -3424,7 +3424,7 @@ getSupportedHdrCapabilities(): Promise\<Array\<hdrCapability.HDRFormat>>
 
 | 类型                                                        | 说明                                                         |
 | --------- | ------------------------------------------------------------ |
-| Promise\<Array\<[hdrCapability.HDRFormat](../apis-arkgraphics2d/js-apis-hdrCapability.md#hdrCapability.HDRFormat)\>\> | Promise对象。返回远端设备所支持的HDR能力。 |
+| Promise\<Array\<[hdrCapability.HDRFormat](../apis-arkgraphics2d/js-apis-hdrCapability.md#hdrformat)\>\> | Promise对象。返回远端设备所支持的HDR能力。 |
 
 **错误码：**
 
