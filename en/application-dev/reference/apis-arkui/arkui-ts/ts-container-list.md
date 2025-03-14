@@ -4,25 +4,7 @@ The **List** component provides a list container that presents a series of list 
 
 > **NOTE**
 >
-> - This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
->
-> - By default, this component can produce a bounce effect only when there is more than one screen of content. To produce a bounce effect when there is less than one screen of content, use the **options** parameter of the **edgeEffect** attribute.
->
-> - The default value of the universal attribute [clip](ts-universal-attributes-sharp-clipping.md) is **true** for the **List** component.
->
-> - To enable the editable mode for a list, the following conditions must be met: (This feature is deprecated since API version 9.)
->
->   - **editMode** is set to **true**.
->
->   - The list is bound to the **onItemDelete** event and the event returns **true** in the event callback.
->
->   - The **editable** attribute of **ListItem** is set to **true**.
->
-> - To enable list item dragging, the following conditions must be met:
->
->   - **editMode** is set to **true**. (This is not required since API version 9.)
->
->   - The list item is bound to the **onDragStart** event and the event returns a floating UI during event callback.
+> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
@@ -33,24 +15,22 @@ Only the [ListItem](ts-container-listitem.md) and [ListItemGroup](ts-container-l
 >
 > Below are the rules for calculating the indexes of the child components of **List**:
 >
-> The index increases in ascending order of child components.
+> - The index increases in ascending order of child components.
 >
-> In the **if/else** statement, only the child components for which the condition evaluates to true participate in the index calculation.
+> - In the **if/else** statement, only the child components for which the condition evaluates to true participate in the index calculation.
 >
-> In the **ForEach**, **LazyForEach**, or **Repeat** statement, the indexes of all expanded subnodes are calculated.
+> - In the **ForEach**, **LazyForEach**, or **Repeat** statement, the indexes of all expanded subnodes are calculated.
 >
-> After changes occur in [if/else](../../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../../quick-start/arkts-rendering-control-foreach.md), [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md), or [Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md), the indexes of the child nodes are updated.
+> - After changes occur in [if/else](../../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../../quick-start/arkts-rendering-control-foreach.md), [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md), or [Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md), the indexes of the child nodes are updated.
 >
-> Each **ListItemGroup** component is taken as a whole and assigned an index, and the indexes of the list items within are not included in the index calculation.
+> - Each **ListItemGroup** component is taken as a whole and assigned an index, and the indexes of the list items within are not included in the index calculation.
 >
-> Child components of **List** whose **visibility** attribute is set to **Hidden** or **None** are included in the index calculation.
->
-> Child components of **List** whose **visibility** attribute is set to **None** are not displayed, but the spacing above and below them still takes effect.
+> - Child components of **List** whose **visibility** attribute is set to **Hidden** or **None** are included in the index calculation.
 
 
 ## APIs
 
-List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?: Scroller})
+List(value?:{initialIndex?: number, space?: number&nbsp;|&nbsp;string, scroller?: Scroller})
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -62,13 +42,17 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 
 | Name | Type| Mandatory| Description|
 | ------ | ---- | ---- | ---- |
-| space        | number \| string                  | No  | Spacing between list items along the main axis.<br>Default value: **0**<br>If the parameter type is number, the unit is vp.<br>**NOTE**<br>If this parameter is set to a negative number or a value greater than or equal to the length of the list content area, the default value is used.<br>If this parameter is set to a value less than the width of the list divider, the width of the list divider is used as the spacing.|
 | initialIndex | number                                      | No  | Index of the item to be displayed at the start when the list is initially loaded.<br>Default value: **0**<br>**NOTE**<br>If the set value is a negative number or is greater than the index of the last item in the list, the value is invalid. In this case, the default value will be used.|
+| space        | number \| string                  | No  | Spacing between list items along the main axis.<br>Default value: **0**<br>If the parameter type is number, the unit is vp.<br>**NOTE**<br>If this parameter is set to a negative number or a value greater than or equal to the length of the list content area, the default value is used.<br>If this parameter is set to a value less than the width of the list divider, the width of the list divider is used as the spacing.|
 | scroller     | [Scroller](ts-container-scroll.md#scroller) | No  | Scroller, which can be bound to scrollable components.<br>**NOTE**<br>The scroller cannot be bound to other scrollable components.|
 
 ## Attributes
 
-In addition to [universal attributes](ts-universal-attributes-size.md) and [scrollable component common attributes](ts-container-scrollable-common.md#attributes), the following attributes are also supported.
+In addition to [universal attributes](ts-component-general-attributes.md) and [scrollable component common attributes](ts-container-scrollable-common.md#attributes), the following attributes are also supported.
+
+> **NOTE**
+>
+> The default value of the universal attribute [clip](ts-universal-attributes-sharp-clipping.md) is **true** for the **List** component.
 
 ### listDirection
 
@@ -152,9 +136,9 @@ When a list is nested with **LazyForEach**, and within **LazyForEach** there is 
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                              |
-| ------ | ------ | ---- | -------------------------------------------------- |
-| value  | number | Yes  | Number of list items or list item groups to be preloaded (cached).<br>Default value: **1**<br>Value range: [0, +∞)|
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| value  | number | Yes  | Number of list items or list item groups to be preloaded (cached).<br>Default value: number of nodes visible on the screen, with the maximum value of 16<br>Value range: [0, +∞)|
 
 ### cachedCount<sup>14+</sup>
 
@@ -174,7 +158,7 @@ When **cachedCount** is set for the list, the system preloads and lays out the *
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| count  | number | Yes  | Number of list items to be preloaded.<br>Default value: **1**<br>Value range: [0, +∞)|
+| count  | number | Yes  | Number of list items to be preloaded.<br>Default value: number of nodes visible on the screen, with the maximum value of 16<br>Value range: [0, +∞)|
 | show  | boolean | Yes  | Whether to display the preloaded list items.<br> Default value: **false**|
 
 ### editMode<sup>(deprecated)</sup>
@@ -198,6 +182,10 @@ This API is deprecated since API version 9. There is no substitute API.
 edgeEffect(value: EdgeEffect, options?: EdgeEffectOptions)
 
 Sets the effect used when the scroll boundary is reached.
+
+> **NOTE**
+>
+> By default, this component can produce a bounce effect only when there is more than one screen of content. To produce a bounce effect when there is less than one screen of content, use the **options** parameter of the **edgeEffect** attribute.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -329,11 +317,11 @@ Sets whether to pin the header to the top or the footer to the bottom in the [li
 
 scrollSnapAlign(value: ScrollSnapAlign)
 
-Sets the alignment mode for the scroll snap position.
+Sets the scroll snap alignment effect for list items. This effect aligns list items to the nearest snap point when scrolling ends.
 
-This attribute is effective only when the heights of list items are the same.
+This attribute is effective only when all list items have the same height.
 
-It does not take effect after scrolling by a touchpad or mouse device ends.
+It does not take effect when scrolling ends using a touchpad or mouse device.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -522,7 +510,7 @@ Implements the callbacks and events for the [ListItem](ts-container-listitem.md)
 
 ## Events
 
-In addition to [universal events](ts-universal-events-click.md) and [scrollable component common events](ts-container-scrollable-common.md#events), the following events are also supported.
+In addition to [universal events](ts-component-general-events.md) and [scrollable component common events](ts-container-scrollable-common.md#events), the following events are also supported.
 
 ### onItemDelete<sup>(deprecated)</sup>
 
@@ -875,13 +863,13 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100004   | Controller not bound to component.                               |
-### getVisibleListContentInfo<sup>13+</sup>
+### getVisibleListContentInfo<sup>14+</sup>
 
 getVisibleListContentInfo(x:number, y: number): VisibleListContentInfo
 
 Obtains the index information of the child component at the specified coordinates.
 
-**Atomic service API**: This API can be used in atomic services since API version 13.
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -909,7 +897,7 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 | ID| Error Message|
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 100004   | Controller not bound to component.                               |
+| 100004   |The controller not bound to component.|
 ### scrollToItemInGroup<sup>11+</sup>
 
 scrollToItemInGroup(index: number, indexInGroup: number, smooth?: boolean, align?: ScrollAlign): void

@@ -35,7 +35,7 @@ Navigator(value?: {target: string, type?: NavigationType})
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name     | Value | Description                        |
+| Name     | Value | Description                      |
 | ------- | ------- | -------------------------- |
 | Push    | 1 | Navigates to the specified page in the application.              |
 | Replace | 2 | Replaces the current page with another one in the application and destroys the current page.|
@@ -57,7 +57,7 @@ Sets whether the **Navigator** component is activated. If the component is activ
 
 | Name| Type   | Mandatory| Description                      |
 | ------ | ------- | ---- | -------------------------- |
-| value  | boolean | Yes  | Whether the **Navigator** component is activated.|
+| value  | boolean | Yes  | Whether the **Navigator** component is activated. The value **true** means that the component is activated, and **false** means the opposite.|
 
 ### params
 
@@ -105,7 +105,6 @@ Sets the navigation type.
 | Name| Type  | Mandatory| Description                                          |
 | ------ | ------ | ---- | ---------------------------------------------- |
 | value  | [NavigationType](#navigationtype) | Yes  | Navigation type.<br>Default value: **NavigationType.Push**|
-
 
 ## Example
 

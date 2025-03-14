@@ -75,7 +75,8 @@ struct ForegroundBlurStyleDemo {
       Image($r('app.media.bg'))
         .width(300)
         .height(350)
-        .foregroundBlurStyle(BlurStyle.Thin, { colorMode: ThemeColorMode.LIGHT, adaptiveColor: AdaptiveColor.DEFAULT, scale: 1.0 })
+        .foregroundBlurStyle(BlurStyle.Thin,
+          { colorMode: ThemeColorMode.LIGHT, adaptiveColor: AdaptiveColor.DEFAULT, scale: 1.0 })
     }
     .height('100%')
     .width('100%')

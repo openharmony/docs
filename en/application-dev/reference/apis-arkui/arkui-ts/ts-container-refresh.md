@@ -47,7 +47,7 @@ Refresh(value: RefreshOptions)
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### refreshOffset<sup>12+</sup>
 
@@ -99,7 +99,7 @@ Sets the pull-down ratio.
 
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onStateChange
 
@@ -352,7 +352,7 @@ struct RefreshExample {
 
 ![en-us_image_refresh_builder](figures/en-us_image_refresh_builder.gif)
 
-### Example 4: Customizing the Refreshing Area Content with -refreshingContent
+### Example 4: Customizing the Refreshing Area Content with refreshingContent
 
 This example shows how to customize the content displayed in the refreshing area using the [refreshingContent](#refreshoptions) parameter.
 

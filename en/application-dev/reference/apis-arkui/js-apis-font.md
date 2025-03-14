@@ -56,15 +56,15 @@ import { font } from '@kit.ArkUI';
 @Entry
 @Component
 struct FontExample {
-  @State message: string = 'Hello World'
-
+  @State message: string = 'Hello World';
   // iconFont example, where 0000 is the Unicode character of the specified icon. You need to obtain the Unicode character from the TTF file of the registered iconFont.
-  @State unicode: string = '\u0000'
-  @State codePoint: string = String.fromCharCode(0x0000)
+  @State unicode: string = '\u0000';
+  @State codePoint: string = String.fromCharCode(0x0000);
 
   aboutToAppear() {
     // Both familyName and familySrc support the Resource type.
-    font.registerFont({ // You are advised to use the this.getUIContext().getFont().registerFont() API.
+    font.registerFont({
+      // You are advised to use this.getUIContext().getFont().registerFont().
       familyName: $r('app.string.font_name'),
       familySrc: $r('app.string.font_src')
     })
@@ -112,7 +112,7 @@ struct FontExample {
 >
 > To use custom fonts globally in an application, register the fonts through the [windowStage.loadContent](js-apis-window.md#loadcontent9) API in the [onWindowStageCreate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) lifecycle callback in the **EntryAbility.ets** file.
 >
-> In an HSP project, avoid using a relative path to register a custom font. For details, see [Accessing Resources in an HSP Through $r](../../quick-start/in-app-hsp.md#accessing-resources-in-an-hsp-through-r).
+> In HSP projects, avoid using relative paths to register custom fonts. For details, see [Accessing Resources in an HSP Through $r](../../quick-start/in-app-hsp.md).
 
 ## font.getSystemFontList<sup>10+</sup>
 
@@ -148,12 +148,13 @@ import { font } from '@kit.ArkUI';
 @Component
 struct FontExample {
   fontList: Array<string> = new Array<string>();
+
   build() {
     Column() {
       Button("getSystemFontList")
         .width('60%')
         .height('6%')
-        .onClick(()=>{
+        .onClick(() => {
           this.fontList = font.getSystemFontList() // You are advised to use the this.getUIContext().getFont().getSystemFontList() API.
         })
     }.width('100%')
@@ -217,11 +218,13 @@ import { font } from '@kit.ArkUI';
 struct FontExample {
   fontList: Array<string> = new Array<string>();
   fontInfo: font.FontInfo = font.getFontByName('');
+
   build() {
     Column() {
       Button("getFontByName")
         .onClick(() => {
-          this.fontInfo = font.getFontByName('HarmonyOS Sans Italic') // You are advised to use the this.getUIContext().getFont().getFontByName() API.
+          this.fontInfo =
+            font.getFontByName('HarmonyOS Sans Italic') // You are advised to use this.getUIContext().getFont().getFontByName().
           console.log("getFontByName(): path = " + this.fontInfo.path)
           console.log("getFontByName(): postScriptName = " + this.fontInfo.postScriptName)
           console.log("getFontByName(): fullName = " + this.fontInfo.fullName)
@@ -329,27 +332,28 @@ struct FontExample {
         .width('60%')
         .height('6%')
         .margin(50)
-        .onClick(()=>{
+        .onClick(() => {
           let fontConfig = font.getUIFontConfig();
           console.log("font-dir -----------" + String(fontConfig.fontDir.length));
-          for (let i = 0; i < fontConfig.fontDir.length; i ++) {
+          for (let i = 0; i < fontConfig.fontDir.length; i++) {
             console.log(fontConfig.fontDir[i]);
           }
           console.log("generic-------------" + String(fontConfig.generic.length));
-          for (let i = 0; i < fontConfig.generic.length; i ++){
+          for (let i = 0; i < fontConfig.generic.length; i++) {
             console.log("family:" + fontConfig.generic[i].family);
-            for (let j = 0; j < fontConfig.generic[i].alias.length; j ++){
+            for (let j = 0; j < fontConfig.generic[i].alias.length; j++) {
               console.log(fontConfig.generic[i].alias[j].name + " " + fontConfig.generic[i].alias[j].weight);
             }
-            for (let j = 0; j < fontConfig.generic[i].adjust.length; j ++){
+            for (let j = 0; j < fontConfig.generic[i].adjust.length; j++) {
               console.log(fontConfig.generic[i].adjust[j].weight + " " + fontConfig.generic[i].adjust[j].to);
             }
           }
           console.log("fallback------------" + String(fontConfig.fallbackGroups.length));
-          for (let i = 0; i < fontConfig.fallbackGroups.length; i ++){
+          for (let i = 0; i < fontConfig.fallbackGroups.length; i++) {
             console.log("fontSetName:" + fontConfig.fallbackGroups[i].fontSetName);
-            for (let j = 0; j < fontConfig.fallbackGroups[i].fallback.length; j ++){
-              console.log("language:" + fontConfig.fallbackGroups[i].fallback[j].language + " family:" + fontConfig.fallbackGroups[i].fallback[j].family);
+            for (let j = 0; j < fontConfig.fallbackGroups[i].fallback.length; j++) {
+              console.log("language:" + fontConfig.fallbackGroups[i].fallback[j].language + " family:" +
+              fontConfig.fallbackGroups[i].fallback[j].family);
             }
           }
         })
@@ -357,4 +361,3 @@ struct FontExample {
   }
 }
 ```
-<!--no_check-->

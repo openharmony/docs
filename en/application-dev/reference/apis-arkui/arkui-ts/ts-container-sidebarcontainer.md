@@ -46,7 +46,7 @@ SideBarContainer( type?: SideBarContainerType )
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### showSideBar
 
@@ -332,7 +332,7 @@ Enumerates the positions of the sidebar.
 
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onChange
 

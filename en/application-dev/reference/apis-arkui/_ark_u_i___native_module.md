@@ -29,6 +29,7 @@ Provides UI capabilities of ArkUI on the native side, such as UI component creat
 | [native_dialog.h](native__dialog_8h.md) | Declares a set of custom dialog box APIs of ArkUI on the native side. | 
 | [native_gesture.h](native__gesture_8h.md) | Declares the APIs of **NativeGesture**. | 
 | [native_interface.h](native__interface_8h.md) | Declares a unified entry for the native module APIs. | 
+| [native_interface_focus.h](native__interface__focus_8h.md) | Declares the APIs of **NativeFocus**.|
 | [native_key_event.h](native__key_event_8h.md) | Declares the APIs of **NativeKeyEvent**. | 
 | [native_node.h](native__node_8h.md) | Declares the APIs of **NativeNode**. | 
 | [native_node_napi.h](native__node__napi_8h.md) | Declares the functions used to convert FrameNodes on the ArkTS side into NodeHandles. | 
