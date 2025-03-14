@@ -1,7 +1,7 @@
 # ArkTS Widget Related Modules
 
 
-**Figure 1** ArkTS widget related modules
+**Figure 1** ArkTS widget related modules 
 ![WidgetModules](figures/WidgetModules.png)
 
 
@@ -16,7 +16,7 @@
 - [formBindingData](../reference/apis-form-kit/js-apis-app-form-formBindingData.md): provides APIs for widget data binding. You can use the APIs to create a **FormBindingData** object and obtain related information.
 
 - [Page layout (WidgetCard.ets)](arkts-ui-widget-page-overview.md): provides the widget UI development capability based on ArkUI.
-  - [General capabilities of ArkTS widgets](page capabilities supported by arkts-ui-widget-page-overview.md#page-capabilities-supported-by-arkts-widgets): provides components, attributes, and APIs that can be used in ArkTS widgets.
+  - [General capabilities of ArkTS widgets](arkts-ui-widget-page-overview.md#page-capabilities-supported-by-arkts-widgets): provides components, attributes, and APIs that can be used in ArkTS widgets.
   - [Capabilities exclusive to ArkTS widgets](arkts-ui-widget-event-overview.md): include the **postCardAction** API used for interaction between the widget internal and the provider application and can be called only in the widget.
 
 - [Widget configuration](arkts-ui-widget-configuration.md): includes FormExtensionAbility configuration and widget configuration.

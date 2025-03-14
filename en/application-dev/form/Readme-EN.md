@@ -25,7 +25,7 @@
         <!--Del-->
         - [Updating Widget Content Through a Proxy](arkts-ui-widget-update-by-proxy.md)
         - [Conditional Widget Updates](arkts-ui-widget-update-by-conditions.md)
-        - [Updating Widget Content by Widget Host (for System Applications Only)](form/arkts-ui-widget-content-update.md)
+        - [Updating Widget Content by Widget Host (for System Applications Only)](arkts-ui-widget-content-update.md)
         <!--DelEnd-->
         - [Updating Local and Online Images in the Widget](arkts-ui-widget-image-update.md)
         - [Updating Widget Content by State](arkts-ui-widget-update-by-status.md)
