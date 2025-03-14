@@ -13,7 +13,7 @@
 import { cloudSync } from '@kit.CoreFileKit';
 ```
 
-## SyncState
+## SyncState<sup>12+<sup>
 
 端云同步状态，为枚举类型。
 
@@ -21,7 +21,7 @@ import { cloudSync } from '@kit.CoreFileKit';
 >
 > 以下同步状态发生变更时，如果应用注册了同步过程事件监听，则通过回调通知应用。
 
-**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+**系统能力**： SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 **系统接口：** 该接口为系统接口。
 
@@ -34,7 +34,7 @@ import { cloudSync } from '@kit.CoreFileKit';
 | COMPLETED |  4 | 同步成功 |
 | STOPPED |  5 | 同步已停止 |
 
-## ErrorType
+## ErrorType<sup>12+<sup>
 
 端云同步失败类型，为枚举类型。
 
@@ -43,7 +43,7 @@ import { cloudSync } from '@kit.CoreFileKit';
 - 触发同步时，非充电场景下，若电量低于10%，则不允许同步，start接口返回对应错误。
 - 上行时，若云端空间不足，则文件上行失败，云端无该文件记录。
 
-**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+**系统能力**： SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 **系统接口：** 该接口为系统接口。
 
@@ -58,18 +58,18 @@ import { cloudSync } from '@kit.CoreFileKit';
 | LOCAL_STORAGE_FULL |  6 | 本地空间不足 |
 | DEVICE_TEMPERATURE_TOO_HIGH<sup>12+</sup> |  7 | 设备温度过高 |
 
-## SyncProgress
+## SyncProgress<sup>12+<sup>
 
 端云同步过程。
 
-**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+**系统能力**： SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 **系统接口：** 该接口为系统接口。
 
 | 名称     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| state | [SyncState](#syncstate) | 是   | 枚举值，端云同步状态|
-| error | [ErrorType](#errortype) | 是   | 枚举值，同步失败错误类型|
+| state | [SyncState](#syncstate12) | 是   | 枚举值，端云同步状态|
+| error | [ErrorType](#errortype12) | 是   | 枚举值，同步失败错误类型|
 
 ## GallerySync
 
@@ -108,7 +108,7 @@ on(evt: 'progress', callback: (pg: SyncProgress) => void): void
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | evt | string | 是   | 订阅的事件类型，取值为'progress'（同步过程事件） |
-| callback | (pg: SyncProgress) => void | 是   | 同步过程事件回调，回调入参为[SyncProgress](#syncprogress), 返回值为void|
+| callback | (pg: SyncProgress) => void | 是   | 同步过程事件回调，回调入参为[SyncProgress](#SyncProgress12), 返回值为void|
 
 **错误码：**
 
@@ -148,7 +148,7 @@ off(evt: 'progress', callback: (pg: SyncProgress) => void): void
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | evt | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）|
-| callback | (pg: SyncProgress) => void | 是   | 同步过程事件回调，回调入参为[SyncProgress](#syncprogress), 返回值为void|
+| callback | (pg: SyncProgress) => void | 是   | 同步过程事件回调，回调入参为[SyncProgress](#SyncProgress12), 返回值为void|
 
 **错误码：**
 
@@ -826,7 +826,7 @@ on(event: 'progress', callback: Callback\<SyncProgress>): void
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | event | string | 是   | 订阅的事件类型，取值为'progress'（同步过程事件） |
-| callback | Callback\<[SyncProgress](#syncprogress)> | 是   | 同步过程事件回调。|
+| callback | Callback\<[SyncProgress](#SyncProgress12)> | 是   | 同步过程事件回调。|
 
 **错误码：**
 
@@ -867,7 +867,7 @@ off(event: 'progress', callback?: Callback\<SyncProgress>): void
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | event | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）|
-| callback | Callback\<[SyncProgress](#syncprogress)> |  否   | 同步过程事件回调。 |
+| callback | Callback\<[SyncProgress](#SyncProgress12)> |  否   | 同步过程事件回调。 |
 
 **错误码：**
 
@@ -1481,7 +1481,7 @@ unregisterChange(uri: string): void
 
 数据变更通知类型。
 
-**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+**系统能力**： SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 **系统接口：** 该接口为系统接口。
 
@@ -1496,7 +1496,7 @@ unregisterChange(uri: string): void
 
 定义变更数据。
 
-**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+**系统能力**： SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 **系统接口：** 该接口为系统接口。
 
@@ -1510,7 +1510,7 @@ unregisterChange(uri: string): void
 
 端云文件同步状态，为枚举类型。
 
-**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+**系统能力**： SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 **系统接口：** 该接口为系统接口。
 
