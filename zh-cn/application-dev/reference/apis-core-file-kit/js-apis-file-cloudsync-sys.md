@@ -108,7 +108,7 @@ on(evt: 'progress', callback: (pg: SyncProgress) => void): void
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | evt | string | 是   | 订阅的事件类型，取值为'progress'（同步过程事件） |
-| callback | (pg: SyncProgress) => void | 是   | 同步过程事件回调，回调入参为[SyncProgress](#syncProgress12), 返回值为void|
+| callback | (pg: SyncProgress) => void | 是   | 同步过程事件回调，回调入参为[SyncProgress](#syncprogress12), 返回值为void|
 
 **错误码：**
 
@@ -148,7 +148,7 @@ off(evt: 'progress', callback: (pg: SyncProgress) => void): void
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | evt | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）|
-| callback | (pg: SyncProgress) => void | 是   | 同步过程事件回调，回调入参为[SyncProgress](#syncProgress12), 返回值为void|
+| callback | (pg: SyncProgress) => void | 是   | 同步过程事件回调，回调入参为[SyncProgress](#syncprogress12), 返回值为void|
 
 **错误码：**
 
@@ -826,7 +826,7 @@ on(event: 'progress', callback: Callback\<SyncProgress>): void
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | event | string | 是   | 订阅的事件类型，取值为'progress'（同步过程事件） |
-| callback | Callback\<[SyncProgress](#syncProgress12)> | 是   | 同步过程事件回调。|
+| callback | Callback\<[SyncProgress](#syncprogress12)> | 是   | 同步过程事件回调。|
 
 **错误码：**
 
@@ -867,7 +867,7 @@ off(event: 'progress', callback?: Callback\<SyncProgress>): void
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | event | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）|
-| callback | Callback\<[SyncProgress](#syncProgress12)> |  否   | 同步过程事件回调。 |
+| callback | Callback\<[SyncProgress](#syncprogress12)> |  否   | 同步过程事件回调。 |
 
 **错误码：**
 
