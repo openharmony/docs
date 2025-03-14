@@ -21,7 +21,7 @@ upload(options: UploadRequestOptions): void
 
 上传文件，无返回值。
 
-**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Upload
+**系统能力**：SystemCapability.MiscServices.Upload
 
 **参数：**
 
@@ -69,7 +69,7 @@ upload(options: UploadRequestOptions): void
 
 ## UploadRequestOptions<sup>(deprecated)</sup>
 
-**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Upload。
+**系统能力**：SystemCapability.MiscServices.Upload
 
 
   | 名称 | 类型 | 必填 | 说明 |
@@ -98,7 +98,7 @@ upload(options: UploadRequestOptions): void
 
 ## UploadResponse<sup>(deprecated)</sup>
 
-**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Upload。
+**系统能力**：SystemCapability.MiscServices.Upload
 
   | 名称 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -109,7 +109,7 @@ upload(options: UploadRequestOptions): void
 
 ## RequestFile<sup>(deprecated)</sup>
 
-**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Upload。
+**系统能力**：SystemCapability.MiscServices.Upload
 
   | 名称 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -121,7 +121,7 @@ upload(options: UploadRequestOptions): void
 
 ## RequestData<sup>(deprecated)</sup>
 
-**系统能力**: SystemCapability.MiscServices.Upload。
+**系统能力**：SystemCapability.MiscServices.Upload
 
   | 名称 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -136,7 +136,7 @@ download(options: DownloadRequestOptions): void
 
 下载文件，无返回值。
 
-**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 **参数：**
 
@@ -176,7 +176,7 @@ download(options: DownloadRequestOptions): void
 
 ## DownloadRequestOptions<sup>(deprecated)</sup>
 
-**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Download。
+**系统能力**：SystemCapability.MiscServices.Download
 
   | 名称 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -201,7 +201,7 @@ download(options: DownloadRequestOptions): void
 
 ## DownloadResponse<sup>(deprecated)</sup>
 
-**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Download。
+**系统能力**：SystemCapability.MiscServices.Download
 
   | 名称 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -214,7 +214,7 @@ onDownloadComplete(options: OnDownloadCompleteOptions): void
 
 获取下载任务状态，无返回值。
 
-**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 **参数：**
 
@@ -246,7 +246,7 @@ onDownloadComplete(options: OnDownloadCompleteOptions): void
 
 ## OnDownloadCompleteOptions<sup>(deprecated)</sup>
 
-**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Download。
+**系统能力**：SystemCapability.MiscServices.Download
 
   | 名称 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -269,7 +269,7 @@ onDownloadComplete(options: OnDownloadCompleteOptions): void
 
 ## OnDownloadCompleteResponse<sup>(deprecated)</sup>
 
-**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Download。
+**系统能力**：SystemCapability.MiscServices.Download
 
   | 名称 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
