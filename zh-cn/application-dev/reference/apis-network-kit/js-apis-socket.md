@@ -9218,9 +9218,10 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 
 getSocketFd(): Promise\<number\>
 
-获取TLSSocket的文件描述符。使用Promise方式作为异步方法。
+获取TLSSocket的文件描述符。使用Promise异步回调。
 
 > **说明：**
+>
 > bind方法调用成功后，才可调用此方法。
 
 **系统能力**：SystemCapability.Communication.NetStack
