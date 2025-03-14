@@ -17,7 +17,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [JSVM_DefineClassOptionsId](_j_s_v_m.md#jsvm_defineclassoptionsid) [id](#id) | 访问实例对象属性触发相应的回调函数。  | 
+| [JSVM_DefineClassOptionsId](_j_s_v_m.md#jsvm_defineclassoptionsid) [id](#id) | 定义Class的选项ID。  | 
 | [content](#content) | 选项内容。  | 
 
 
@@ -30,7 +30,7 @@
 JSVM_DefineClassOptionsId JSVM_DefineClassOptions::id
 ```
 **描述**
-访问实例对象属性触发相应的回调函数。
+定义Class的选项ID。
 
 
 ### content

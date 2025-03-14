@@ -32,7 +32,9 @@
 | struct&nbsp;&nbsp;[JSVM_ExtendedErrorInfo](_j_s_v_m___extended_error_info.md) | 扩展的异常信息。  | 
 | struct&nbsp;&nbsp;[JSVM_TypeTag](_j_s_v_m___type_tag.md) | 类型标记，存储为两个无符号64位整数的128位值。 作为一个UUID，通过它，JavaScript对象可以是"tagged"， 以确保它们的类型保持不变。  | 
 | struct&nbsp;&nbsp;[JSVM_PropertyHandlerConfigurationStruct](_j_s_v_m___property_handler_configuration_struct.md) | 当执行对象的getter、setter、deleter和enumerator操作时，该结构体中对应的函数回调将会触发。  | 
-| struct&nbsp;&nbsp;[JSVM_ScriptOrigin](_j_s_v_m___script_origin.md) | Source code information.  | 
+| struct&nbsp;&nbsp;[JSVM_ScriptOrigin](_j_s_v_m___script_origin.md) | Source code information。  |
+| struct&nbsp;&nbsp;[JSVM_PropertyHandler](_j_s_v_m___property_handler.md) | 包含将class作为函数进行调用时所触发的回调函数的函数指针和访问实例对象属性时触发的回调函数的函数指针集。  |
+| struct&nbsp;&nbsp;[JSVM_DefineClassOptions](_j_s_v_m___define_class_options.md) | 定义Class的选项。  |
 
 
 ### 类型定义
@@ -53,8 +55,6 @@
 | typedef struct JSVM_EscapableHandleScope__ \* [JSVM_EscapableHandleScope](_j_s_v_m.md#jsvm_escapablehandlescope) | 表示一种特殊类型的handle scope，用于将在特定handle scope内创建的值返回到父作用域。  | 
 | typedef struct JSVM_CallbackInfo__ \* [JSVM_CallbackInfo](_j_s_v_m.md#jsvm_callbackinfo) | 表示传递给回调函数的不透明数据类型。可用于获取调用该函数的上下文的附加信息。  | 
 | typedef struct JSVM_Deferred__ \* [JSVM_Deferred](_j_s_v_m.md#jsvm_deferred) | 表示Promise延迟对象。  | 
-| typedef struct JSVM_PropertyHandler \* [JSVM_PropertyHandler](_j_s_v_m.md#jsvm_propertyhandler) | 包含将class作为函数进行调用时所触发的回调函数的函数指针和访问实例对象属性时触发的回调函数的函数指针集。 |
-| typedef struct JSVM_DefineClassOptions \* [JSVM_DefineClassOptions](_j_s_v_m.md#jsvm_defineclassoptions) | 定义Class的选项。 |
 | typedef [JSVM_CallbackStruct](_j_s_v_m___callback_struct.md) \* [JSVM_Callback](_j_s_v_m.md#jsvm_callback) | 用户提供的native函数的函数指针类型，这些函数通过JSVM-API接口暴露给JavaScript。  | 
 | typedef void(JSVM_CDECL \* [JSVM_Finalize](_j_s_v_m.md#jsvm_finalize)) ([JSVM_Env](_j_s_v_m.md#jsvm_env) env, void \*finalizeData, void \*finalizeHint) | 函数指针类型，当native类型对象或数据与JS对象被关联时，传入该指针。该函数将会 在关联的JS对象被GC回收时被调用，用以执行native的清理动作。  | 
 | typedef bool(JSVM_CDECL \* [JSVM_OutputStream](_j_s_v_m.md#jsvm_outputstream)) (const char \*data, int size, void \*streamData) | ASCII输出流回调的函数指针类型。参数data是指输出的数据指针。参数size是指输出的数据大小。 空数据指针指示流的结尾。参数streamData是指与回调一起传递给API函数的指针，该API函数向输出流生成数据。回 调返回true表示流可以继续接受数据。否则，它将中止流。  | 
@@ -81,7 +81,7 @@
 | [JSVM_InitializedFlag](_j_s_v_m.md#jsvm_initializedflag) { [JSVM_ZERO_INITIALIZED](_j_s_v_m.md), [JSVM_UNINITIALIZED](_j_s_v_m.md) } | 初始化方式的标志位  | 
 | [JSVM_WasmOptLevel](_j_s_v_m.md#jsvm_wasmoptlevel) { [JSVM_WASM_OPT_BASELINE](_j_s_v_m.md) = 10, [JSVM_WASM_OPT_HIGH](_j_s_v_m.md) = 20 } | WebAssembly 函数优化等级  | 
 | [JSVM_CacheType](_j_s_v_m.md#jsvm_cachetype) { [JSVM_CACHE_TYPE_JS](_j_s_v_m.md), [JSVM_CACHE_TYPE_WASM](_j_s_v_m.md) } | 缓存类型。  | 
-| [JSVM_MicrotaskPolicy](_j_s_v_m.md#jsvm_microtaskpolicy) { [JSVM_MICROTASK_EXPLICIT](_j_s_v_m.md), [JSVM_MICROTASK_AUTO](_j_s_v_m.md) } | JS 调用栈为 0 时自动执行微任务。<br/>默认模式。  |
+| [JSVM_MicrotaskPolicy](_j_s_v_m.md#jsvm_microtaskpolicy) { [JSVM_MICROTASK_EXPLICIT](_j_s_v_m.md) = 0, [JSVM_MICROTASK_AUTO](_j_s_v_m.md) } | JSVM 微任务执行策略。  |
 | [JSVM_TraceCategory](_j_s_v_m.md#jsvm_tracecategory) { [JSVM_TRACE_VM](_j_s_v_m.md), [JSVM_TRACE_COMPILE](_j_s_v_m.md), [JSVM_TRACE_EXECUTE](_j_s_v_m.md), [JSVM_TRACE_RUNTIME](_j_s_v_m.md), [JSVM_TRACE_STACK_TRACE](_j_s_v_m.md), [JSVM_TRACE_WASM](_j_s_v_m.md), [JSVM_TRACE_WASM_DETAILED](_j_s_v_m.md) } | JSVM 内部 Trace 事件的类别。  |
 | [JSVM_CBTriggerTimeForGC](_j_s_v_m.md#jsvm_cbtriggertimeforgc) { [JSVM_CB_TRIGGER_BEFORE_GC](_j_s_v_m.md), [JSVM_CB_TRIGGER_AFTER_GC](_j_s_v_m.md) } | 触发回调函数的时机。  |
 | [JSVM_GCType](_j_s_v_m.md#jsvm_gctype) { [JSVM_GC_TYPE_SCAVENGE](_j_s_v_m.md) 1 &lt;&lt; 0, [JSVM_GC_TYPE_MINOR_MARK_COMPACT](_j_s_v_m.md) 1 &lt;&lt; 1, [JSVM_GC_TYPE_MARK_SWEEP_COMPACT](_j_s_v_m.md) 1 &lt;&lt; 2, [JSVM_GC_TYPE_INCREMENTAL_MARKING](_j_s_v_m.md) 1 &lt;&lt; 3, [JSVM_GC_TYPE_PROCESS_WEAK_CALLBACKS](_j_s_v_m.md) 1 &lt;&lt; 4, [JSVM_GC_TYPE_ALL ](_j_s_v_m.md) = JSVM_GC_TYPE_SCAVENGE \| JSVM_GC_TYPE_MINOR_MARK_COMPACT \| JSVM_GC_TYPE_MARK_SWEEP_COMPACT \| JSVM_GC_TYPE_INCREMENTAL_MARKING \| JSVM_GC_TYPE_PROCESS_WEAK_CALLBACKS } | GC类型。  |
