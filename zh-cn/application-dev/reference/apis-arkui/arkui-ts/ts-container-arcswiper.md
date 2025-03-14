@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 该组件从API Version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 导入模块
 
@@ -15,7 +15,7 @@ import {
   ArcDotIndicator,
   ArcDirection,
   ArcSwiperController
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 ```
 
 ## 子组件
@@ -280,7 +280,7 @@ arcDirection(direction: Optional\<ArcDirection>): ArcDotIndicator
 
 | 参数名    | 类型                                     | 必填 | 说明                                                         |
 | --------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| direction | [Optional\<ArcDirection>](#arcdirection) | 否   | 设置弧形指示器的方向。<br/>默认值：ArcDirection.SIX_CLOCK_DIRECTION，6点钟方向 |
+| direction | [Optional\<ArcDirection>](#arcdirection) | 否   | 设置弧形指示器的方向。<br/>默认值：ArcDirection.SIX_CLOCK_DIRECTION，6点钟方向。 |
 
 **返回值：** 
 
