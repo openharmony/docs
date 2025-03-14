@@ -2903,7 +2903,7 @@ setSuperResolution(enabled: boolean) : Promise<void>
 
 动态开启或关闭超分算法，可以在initialized/prepared/playing/paused/completed/stopped状态调用。使用Promise方式返回结果。
 
-必须在调用[prepare()](#prepare9)之前通过[PlaybackStrategy](#playbackstrategy12)启用超分。
+必须在调用[prepare()](#prepare9)之前通过[PlaybackStrategy](#playbackstrategy12)使能超分。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -2940,9 +2940,9 @@ avPlayer.setSuperResolution(true)
 
 setVideoWindowSize(width: number, height: number) : Promise<void>
 
-动态设置超分算法的输出分辨率，可以在initialized/prepared/playing/paused/completed/stopped状态调用。使用Promise方式返回结果。
+动态设置超分算法的输出分辨率，可以在initialized/prepared/playing/paused/completed/stopped状态调用。使用Promise方式返回结果。输入参数须在 320x320 ~ 1920x1080 范围内。
 
-必须在调用[prepare()](#prepare9)之前通过[PlaybackStrategy](#playbackstrategy12)启用超分。
+必须在调用[prepare()](#prepare9)之前通过[PlaybackStrategy](#playbackstrategy12)使能超分。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -3111,7 +3111,13 @@ type OnVideoSizeChangeHandler = (width: number, height: number) => void
 
 type OnSuperResolutionChanged = (enabled: boolean) => void
 
-视频超分开关事件回调方法。
+视频超分开关事件回调方法。当超分算法状态变化时通过此回调上报。
+
+几种发生回调的情况：
+* 调用[prepare()](#prepare9)时，若已经通过[PlaybackStrategy](#playbackstrategy12)使能超分，回调超分的初始状态；
+* 调用[prepare()](#prepare9)后，若通过[setSuperResolution()](#setsuperresolution18)手动开关超分成功，回调超分算法当前开启状态；
+* 目前超分算法最高仅支持30帧及以下的视频，若视频帧率过高，或者在倍速播放等场景下导致输入帧率超出超分算法处理能力，超分会自动关闭；
+* 目前超分算法支持输入分辨率范围为 320x320 ~ 1920x1080，若播放过程中输入视频分辨率超出此范围，超分算法会自动关闭；
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -7937,7 +7943,7 @@ setMimeType(mimeType: AVMimeTypes): void
 | preferredHeight | number | 否   | 播放策略首选高度，int类型，如1920。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | preferredBufferDuration | number | 否  | 播放策略首选缓冲持续时间，单位s，取值范围1-20。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | preferredHdr | boolean | 否   | 播放策略true是hdr，false非hdr，默认非hdr。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| enableSuperResolution | boolean | 否   | 是否开启超分功能，默认为false，即不开启。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| enableSuperResolution | boolean | 否   | 是否开启超分功能，默认为false，即不开启，仅支持非hdr，非drm，且分辨率在1080P以下的视频；若视频不满足超分条件，会在prepared阶段通过[OnSuperResolutionChanged](#onsuperresolutionchanged18)回调上报超分关闭，且后续调用超分相关接口时，返回5410003。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | mutedMediaType | [MediaType](#mediatype8) | 否 | 静音播放的媒体类型，仅支持设置 MediaType.MEDIA_TYPE_AUD。 |
 | preferredAudioLanguage<sup>13+</sup> | string | 否 | 播放策略首选音轨语言。dash场景下应用可按需设置。非dash场景暂不支持，建议缺省。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 | preferredSubtitleLanguage<sup>13+</sup> | string | 否 | 播放策略首选字幕语言。dash场景下应用可按需设置。非dash场景暂不支持，建议缺省。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
