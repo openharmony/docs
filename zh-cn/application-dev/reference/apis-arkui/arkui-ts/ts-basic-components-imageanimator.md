@@ -43,7 +43,7 @@ images(value: Array&lt;ImageFrameInfo&gt;)
 
 | 参数名 | 类型                                                   | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | Array&lt;[ImageFrameInfo](#imageframeinfo对象说明)&gt; | 是   | 设置图片帧信息集合。每一帧的帧信息(ImageFrameInfo)包含图片路径、图片大小、图片位置和图片播放时长信息，详见ImageFrameInfo属性说明。<br/>默认值：[] |
+| value  | Array&lt;[ImageFrameInfo](#imageframeinfo对象说明)&gt; | 是   | 设置图片帧信息集合。每一帧的帧信息(ImageFrameInfo)包含图片路径、图片大小、图片位置和图片播放时长信息，详见ImageFrameInfo属性说明。<br/>默认值：[] <br/> **说明：** 传入数组的内容过大时，内存占用会随之升高。此内存由开发者自行控制。因此，开发者在传入数据前，请充分评估内存消耗情况，以避免内存不足等问题。 |
 
 ### state
 
