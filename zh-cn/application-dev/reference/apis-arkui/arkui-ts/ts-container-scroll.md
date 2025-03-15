@@ -513,7 +513,7 @@ Scroll每帧滚动前触发的回调。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名  | 类型  | 必填 | 说明  |
+| 名称  | 类型  | 必填 | 说明  |
 | ----- | ------ | ---- | ----- |
 | offsetRemain     | number                                                  | 是   | 实际滚动偏移量。<br/>单位vp。 |
 
