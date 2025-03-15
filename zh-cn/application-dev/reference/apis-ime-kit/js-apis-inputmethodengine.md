@@ -755,17 +755,16 @@ on(type: 'callingDisplayDidChange', callback: Callback<number>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 import { inputMethodEngine } from '@kit.IMEKit';
 
-import { BusinessError } from '@kit.BasicServicesKit';
-import { inputMethodEngine } from '@kit.IMEKit';
-
+let callingDisplayDidChangeCallback = (num: number) => {
+  console.log(`display id: ${num}`);
+}
 try {
   console.log(`regist calling display changed`);
-  inputMethodEngine.getInputMethodAbility().on('callingDisplayDidChange', callingDisplayChangedCallback);
+  inputMethodEngine.getInputMethodAbility().on('callingDisplayDidChange', callingDisplayDidChangeCallback);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`regist calling display changed error: ${error.code} ${error.message}`);
 }
-
 ```
 
 ### off('callingDisplayDidChange')<sup>18+</sup>
@@ -792,7 +791,7 @@ import { inputMethodEngine } from '@kit.IMEKit';
 try {
   console.log(`unregist calling display changed `);
   inputMethodEngine.getInputMethodAbility().off('callingDisplayDidChange', (num: number) => {
-      console.log('InputMethodAbility delete calling display  notification.');
+    console.log('InputMethodAbility delete calling display  notification.');
   });
 } catch (err) {
   let error = err as BusinessError;
