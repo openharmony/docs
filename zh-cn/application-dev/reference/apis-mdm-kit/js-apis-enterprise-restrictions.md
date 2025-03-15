@@ -66,7 +66,7 @@ try {
 
 getDisallowedPolicy(admin: Want, feature: string): boolean
 
-获取某特性的禁用状态。 
+获取某特性的禁用状态。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
