@@ -4566,7 +4566,7 @@ getJsonProfile(profileType: ProfileType, bundleName: string, moduleName?: string
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found.       |
 | 17700002 | The specified moduleName is not found.       |
-| 17700004<sup>12+</sup> | The specified user ID is not found.      |
+| 17700004 | The specified user ID is not found.      |
 | 17700024 | Failed to get the profile because the specified profile is not found in the HAP. |
 | 17700026 | The specified bundle is disabled.            |
 
