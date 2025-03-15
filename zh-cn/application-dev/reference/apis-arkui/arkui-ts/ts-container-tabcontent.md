@@ -621,11 +621,11 @@ iconStyle(style: TabBarIconStyle): BottomTabBarStyle
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 说明                                     |
-| ----------  | ---------------------------------------- |
-| AUTO        | 若页签宽度大于104vp，页签内容为左右排布，否则页签内容为上下排布。仅TabBar为垂直模式或Fixed水平模式时有效。 |
-| VERTICAL    | 页签内容上下排布。 |
-| HORIZONTAL | 页签内容左右排布。 |
+| 名称         | 值 | 说明                                     |
+| ----------  | - | ---------------------------------------- |
+| AUTO        | 0 | 若页签宽度大于104vp，页签内容为左右排布，否则页签内容为上下排布。仅TabBar为垂直模式或Fixed水平模式时有效。 |
+| VERTICAL    | 1 | 页签内容上下排布。 |
+| HORIZONTAL  | 2 | 页签内容左右排布。 |
 
 ## TabBarIconStyle<sup>12+</sup>对象说明
 
