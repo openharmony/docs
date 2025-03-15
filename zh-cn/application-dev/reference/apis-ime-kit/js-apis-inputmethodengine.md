@@ -770,7 +770,7 @@ try {
 
 ### off('callingDisplayDidChange')<sup>18+</sup>
 
-off(type: 'callingDisplayDidChange', callback?: Callback<number>): void
+off(type: 'callingDisplayDidChange', callback: Callback<number>): void
 
 取消编辑框设置对应窗口所在屏幕ID变化。使用callback异步回调。
 
