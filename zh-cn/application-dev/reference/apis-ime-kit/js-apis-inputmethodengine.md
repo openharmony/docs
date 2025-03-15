@@ -4586,8 +4586,8 @@ inputMethodController.recvMessage();
 | isTextPreviewSupported<sup>12+</sup> | boolean | 否 | 否 | 编辑框是否支持预上屏。 |
 | bundleName<sup>14+</sup> | string | 是 | 是 | 编辑框所属应用包名；该值可能为""，使用该属性时需要考虑为""的场景。 |
 | immersiveMode<sup>15+</sup> | number | 是   | 是   | 输入法沉浸模式。 |
-| windowId<sup>18+</sup> | number | 是 | 是 | 编辑框设置所属窗口ID |
-| displayId<sup>18+</sup> | number | 是   | 是   | 编辑框设置窗口对应的屏幕ID,没有设置windowId取当前焦点窗口屏幕ID|
+| windowId<sup>18+</sup> | number | 是 | 是 | 编辑框设置所属窗口ID。 |
+| displayId<sup>18+</sup> | number | 是   | 是   | 编辑框设置窗口对应的屏幕ID。如果没有设置windowId，取当前焦点窗口屏幕ID。|
 
 ## KeyEvent
 
