@@ -8899,7 +8899,7 @@ try {
 
 setFollowParentMultiScreenPolicy(enabled: boolean): Promise&lt;void&gt;
 
-设置子窗口在其父窗口处于跨屏拖拽移动或跨屏拖拽缩放过程时，该子窗口是否支持跨多个屏幕同时显示。使用Promise异步回调。
+设置子窗口在其父窗口处于拖拽移动或拖拽缩放过程时，该子窗口是否支持跨多个屏幕同时显示。使用Promise异步回调。
 
 通过监听父窗口大小位置变化，对子窗口调用[moveWindowTo()](#movewindowto9)等接口实现子窗口跟随父窗口布局时，此时子窗口默认不支持跨多个屏幕同时显示。
 
@@ -8915,7 +8915,7 @@ setFollowParentMultiScreenPolicy(enabled: boolean): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----------- | ------- | -- | -------------------------------------------------------- |
-| enabled | boolean | 是 | 设置子窗口在其父窗口处于跨屏拖拽移动或跨屏拖拽缩放过程时，该子窗口是否支持跨多个屏幕同时显示。true表示支持；false表示不支持。  |
+| enabled | boolean | 是 | 设置子窗口在其父窗口处于拖拽移动或拖拽缩放过程时，该子窗口是否支持跨多个屏幕同时显示。true表示支持；false表示不支持。  |
 
 **返回值：**
 
