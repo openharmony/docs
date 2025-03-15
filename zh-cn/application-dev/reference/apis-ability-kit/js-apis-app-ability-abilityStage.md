@@ -53,7 +53,7 @@ class MyAbilityStage extends AbilityStage {
 
 onAcceptWant(want: Want): string
 
-启动一个specified ability时触发的事件。
+启动一个specified ability时触发的事件。同步接口，不支持异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -204,7 +204,7 @@ export default class MyAbilityStage extends AbilityStage {
 
 onDestroy(): void
 
-当应用销毁时调用, 此方法将在正常的调度生命周期中调用, 当应用程序异常退出或被终止时，将不会调用此方法。同步接口，不支持异步回调。
+当应用销毁时调用，此方法将在正常的调度生命周期中调用，当应用程序异常退出或被终止时，将不会调用此方法。同步接口，不支持异步回调。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -226,7 +226,9 @@ class MyAbilityStage extends AbilityStage {
 
 onPrepareTermination(): AbilityConstant.PrepareTermination
 
-当应用被用户关闭时调用，可用于询问用户选择立即执行操作还是取消操作。当前仅在2in1设备上生效。同步接口，不支持异步回调。
+当应用被用户关闭时调用，可用于询问用户选择立即执行操作还是取消操作。同步接口，不支持异步回调。
+
+当前仅在2in1设备上生效。
 
 > **说明：**
 >
@@ -263,7 +265,7 @@ class MyAbilityStage extends AbilityStage {
 
 onPrepareTerminationAsync(): Promise\<AbilityConstant.PrepareTermination>
 
-当应用被用户关闭时调用，可用于询问用户选择立即执行操作还是取消操作。异步接口，使用Promise异步回调。当前仅在2in1设备上生效。
+当应用被用户关闭时调用，可用于询问用户选择立即执行操作还是取消操作。使用Promise异步回调。当前仅在2in1设备上生效。
 
 > **说明：**
 >
