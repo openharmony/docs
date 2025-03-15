@@ -222,7 +222,7 @@ struct Index {
         }
       },
       {
-        icon: $r("app.media.app_icon"), action: () => {
+        icon: $r("app.media.ic_notepad_fontsize"), action: () => {
       }, builder: (): void => this.sliderPanel()
       },
       {
@@ -384,7 +384,7 @@ struct Index {
   MyMenu3() {
     Column() {
       SelectionMenu({
-        editorMenuOptions: this.editorMenuOptions1,
+        editorMenuOptions: this.editorMenuOptions,
         expandedMenuOptions: this.expandedMenuOptions,
         controller: this.controller,
       })
@@ -420,6 +420,7 @@ struct Index {
         .borderColor(Color.Red)
         .width(200)
         .height(200)
+        .margin(10)
     }
   }
 }
@@ -428,7 +429,7 @@ struct Index {
 >
 > 系统暂未预置加粗、斜体等图标，示例代码使用本地资源图标，开发者使用时需自行替换editorMenuOptions中icon项的资源。
 
-![selectionmenu](figures/selectionmenu.jpeg)
+![selectionmenu](figures/selectionmenu.gif)
 
 ### 示例2（设置Symbol类型图标）
 

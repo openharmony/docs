@@ -25,14 +25,16 @@ Deletes a widget. After this API is called, the application can no longer use th
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| formId | string | Yes  | Widget ID. |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the widget is deleted, **error** is undefined; otherwise, **error** is an error object. |
+| formId | string | Yes  | Widget ID.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the widget is deleted, **error** is undefined; otherwise, **error** is an error object.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -42,8 +44,6 @@ Deletes a widget. After this API is called, the application can no longer use th
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form cannot be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -77,20 +77,22 @@ Deletes a widget. After this API is called, the application can no longer use th
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| formId | string | Yes  | Widget ID. |
+| formId | string | Yes  | Widget ID.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -100,8 +102,6 @@ Deletes a widget. After this API is called, the application can no longer use th
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form cannot be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -133,14 +133,16 @@ Releases a widget. After this API is called, the application can no longer use t
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| formId | string | Yes  | Widget ID. |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the widget is released, **error** is undefined; otherwise, **error** is an error object.|
+| formId | string | Yes  | Widget ID.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the widget is released, **error** is undefined; otherwise, **error** is an error object.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -150,8 +152,6 @@ Releases a widget. After this API is called, the application can no longer use t
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form cannot be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -183,15 +183,17 @@ Releases a widget. After this API is called, the application can no longer use t
 
 **Parameters**
 
-| Name        | Type    | Mandatory | Description       |
+| Name        | Type    | Mandatory| Description       |
 | -------------- | ------  | ---- | ----------- |
 | formId         | string  | Yes  | Widget ID.    |
-| isReleaseCache | boolean | Yes  | Whether to release the cache. |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the widget is released, **error** is undefined; otherwise, **error** is an error object. |
+| isReleaseCache | boolean | Yes  | Whether to release the cache.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the widget is released, **error** is undefined; otherwise, **error** is an error object.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -201,8 +203,6 @@ Releases a widget. After this API is called, the application can no longer use t
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form cannot be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -234,20 +234,22 @@ Releases a widget. After this API is called, the application can no longer use t
 
 **Parameters**
 
-| Name        | Type    | Mandatory | Description       |
+| Name        | Type    | Mandatory| Description       |
 | -------------- | ------  | ---- | ----------- |
 | formId         | string  | Yes  | Widget ID.    |
 | isReleaseCache | boolean | No  | Whether to release the cache. The default value is **false**. |
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -257,8 +259,6 @@ Releases a widget. After this API is called, the application can no longer use t
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form cannot be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -290,14 +290,16 @@ Requests a widget update. This API uses an asynchronous callback to return the r
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| formId | string | Yes  | Widget ID. |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the widget is updated, **error** is undefined; otherwise, **error** is an error object. |
+| formId | string | Yes  | Widget ID.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the widget is updated, **error** is undefined; otherwise, **error** is an error object.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -307,8 +309,6 @@ Requests a widget update. This API uses an asynchronous callback to return the r
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form cannot be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -340,19 +340,21 @@ Requests a widget update. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| formId | string | Yes  | Widget ID. |
+| formId | string | Yes  | Widget ID.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -362,8 +364,6 @@ Requests a widget update. This API uses a promise to return the result.
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form cannot be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -395,20 +395,22 @@ Carries parameters to request a widget update. This API uses a promise to return
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| formId | string | Yes  | Widget ID. |
-| wantParams | Record<string, Object> | No  | Parameters used for the update. |
+| formId | string | Yes  | Widget ID.|
+| wantParams | Record<string, Object> | No  | Parameters used for the update.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -418,8 +420,6 @@ Carries parameters to request a widget update. This API uses a promise to return
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form cannot be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -454,14 +454,16 @@ Converts a temporary widget to a normal one. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| formId | string | Yes  | Widget ID. |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the widget is converted to a normal one, **error** is undefined; otherwise, **error** is an error object. |
+| formId | string | Yes  | Widget ID.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the widget is converted to a normal one, **error** is undefined; otherwise, **error** is an error object.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -471,8 +473,6 @@ Converts a temporary widget to a normal one. This API uses an asynchronous callb
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501002 | The number of forms exceeds the maximum allowed. |
 | 16501003 | The form cannot be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -504,19 +504,21 @@ Converts a temporary widget to a normal one. This API uses a promise to return t
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| formId | string | Yes  | Widget ID. |
+| formId | string | Yes  | Widget ID.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -526,8 +528,6 @@ Converts a temporary widget to a normal one. This API uses a promise to return t
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501002 | The number of forms exceeds the maximum allowed. |
 | 16501003 | The form cannot be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -559,14 +559,16 @@ Instructs the widget framework to make a widget visible. After this API is calle
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | formIds  | Array&lt;string&gt;       | Yes  | List of widget IDs.        |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If a notification is sent to the widget framework to make the widget visible, **error** is undefined; otherwise, **error** is an error object. |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If a notification is sent to the widget framework to make the widget visible, **error** is undefined; otherwise, **error** is an error object.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -574,8 +576,6 @@ Instructs the widget framework to make a widget visible. After this API is calle
 | 16500050 | IPC connection error. |
 | 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -607,19 +607,21 @@ Instructs the widget framework to make a widget visible. After this API is calle
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| formIds | Array&lt;string&gt; | Yes  | List of widget IDs. |
+| formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -627,8 +629,6 @@ Instructs the widget framework to make a widget visible. After this API is calle
 | 16500050 | IPC connection error. |
 | 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -660,14 +660,16 @@ Instructs the widget framework to make a widget invisible. After this API is cal
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | formIds  | Array&lt;string&gt;       | Yes  | List of widget IDs.|
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If a notification is sent to the widget framework to make the widget invisible, **error** is undefined; otherwise, **error** is an error object. |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If a notification is sent to the widget framework to make the widget invisible, **error** is undefined; otherwise, **error** is an error object.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -675,8 +677,6 @@ Instructs the widget framework to make a widget invisible. After this API is cal
 | 16500050 | IPC connection error. |
 | 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -708,19 +708,21 @@ Instructs the widget framework to make a widget invisible. After this API is cal
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| formIds | Array&lt;string&gt; | Yes  | List of widget IDs. |
+| formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -728,8 +730,6 @@ Instructs the widget framework to make a widget invisible. After this API is cal
 | 16500050 | IPC connection error. |
 | 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -761,14 +761,16 @@ Instructs the widget framework to make a widget updatable. After this API is cal
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | formIds  | Array&lt;string&gt;       | Yes  | List of widget IDs.        |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If a notification is sent to the widget framework to make the widget updatable, **error** is undefined; otherwise, **error** is an error object. |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If a notification is sent to the widget framework to make the widget updatable, **error** is undefined; otherwise, **error** is an error object.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -777,8 +779,6 @@ Instructs the widget framework to make a widget updatable. After this API is cal
 | 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501003 | The form cannot be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -810,19 +810,21 @@ Instructs the widget framework to make a widget updatable. After this API is cal
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| formIds | Array&lt;string&gt; | Yes  | List of widget IDs. |
+| formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -831,8 +833,6 @@ Instructs the widget framework to make a widget updatable. After this API is cal
 | 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501003 | The form cannot be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -864,14 +864,16 @@ Instructs the widget framework to make a widget not updatable. After this API is
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | formIds  | Array&lt;string&gt;       | Yes  | List of widget IDs.        |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If a notification is sent to the widget framework to make the widget not updatable, **error** is undefined; otherwise, **error** is an error object. |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If a notification is sent to the widget framework to make the widget not updatable, **error** is undefined; otherwise, **error** is an error object.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -881,8 +883,6 @@ Instructs the widget framework to make a widget not updatable. After this API is
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form cannot be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -914,19 +914,21 @@ Instructs the widget framework to make a widget not updatable. After this API is
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| formIds | Array&lt;string&gt; | Yes  | List of widget IDs. |
+| formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -936,8 +938,6 @@ Instructs the widget framework to make a widget not updatable. After this API is
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form cannot be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -967,18 +967,18 @@ Checks whether the system is ready. This API uses an asynchronous callback to re
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the check is successful, **error** is undefined; otherwise, **error** is an error object. |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the check is successful, **error** is undefined; otherwise, **error** is an error object.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 202 | The application is not a system application.   |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -1007,17 +1007,17 @@ Checks whether the system is ready. This API uses a promise to return the result
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 202 | The application is not a system application.   |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -1048,13 +1048,15 @@ Obtains the widget information provided by all applications on the device. This 
 
 **Parameters**
 
-| Name | Type                                                                                          | Mandatory | Description   |
+| Name| Type                                                                                          | Mandatory| Description   |
 | ------ |----------------------------------------------------------------------------------------------| ---- | ------- |
-| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md#forminfo)&gt;&gt; | Yes | Callback used to return the result. If the widget information is obtained, **error** is undefined and **data** is the information obtained; otherwise, **error** is an error object. |
+| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md#forminfo)&gt;&gt; | Yes| Callback used to return the result. If the widget information is obtained, **error** is undefined and **data** is the information obtained; otherwise, **error** is an error object.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -1062,9 +1064,6 @@ Obtains the widget information provided by all applications on the device. This 
 | 16500050 | IPC connection error. |
 | 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
-
 
 **Example**
 
@@ -1099,19 +1098,19 @@ Obtains the widget information provided by all applications on the device. This 
 
 | Type                                                                                    | Description                   |
 |:---------------------------------------------------------------------------------------|:----------------------|
-| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md#forminfo)&gt;&gt; | Promise used to return the information obtained. |
+| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md#forminfo)&gt;&gt; | Promise used to return the information obtained.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
 | 16500050 | IPC connection error. |
 | 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -1142,14 +1141,16 @@ Obtains the widget information provided by a given application on the device. Th
 
 **Parameters**
 
-| Name | Type                                                                                          | Mandatory | Description   |
+| Name| Type                                                                                          | Mandatory| Description   |
 | ------ |----------------------------------------------------------------------------------------------| ---- | ------- |
-| bundleName | string                                                                                       | Yes | Bundle name of the application. |
-| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md#forminfo)&gt;&gt; | Yes | Callback used to return the result. If the widget information is obtained, **error** is undefined and **data** is the information obtained; otherwise, **error** is an error object. |
+| bundleName | string                                                                                       | Yes| Bundle name of the application.|
+| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md#forminfo)&gt;&gt; | Yes| Callback used to return the result. If the widget information is obtained, **error** is undefined and **data** is the information obtained; otherwise, **error** is an error object.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -1158,8 +1159,6 @@ Obtains the widget information provided by a given application on the device. Th
 | 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -1192,15 +1191,17 @@ Obtains the widget information provided by a given application on the device. Th
 
 **Parameters**
 
-| Name | Type                                                                                          | Mandatory | Description   |
+| Name| Type                                                                                          | Mandatory| Description   |
 | ------ |----------------------------------------------------------------------------------------------| ---- | ------- |
-| bundleName | string                                                                                       | Yes | Bundle name of the application. |
-| moduleName | string                                                                                       | Yes |  Module name. |
-| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md#forminfo)&gt;&gt; | Yes | Callback used to return the result. If the widget information is obtained, **error** is undefined and **data** is the information obtained; otherwise, **error** is an error object. |
+| bundleName | string                                                                                       | Yes| Bundle name of the application.|
+| moduleName | string                                                                                       | Yes|  Module name.|
+| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md#forminfo)&gt;&gt; | Yes| Callback used to return the result. If the widget information is obtained, **error** is undefined and **data** is the information obtained; otherwise, **error** is an error object.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -1209,8 +1210,6 @@ Obtains the widget information provided by a given application on the device. Th
 | 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -1243,20 +1242,22 @@ Obtains the widget information provided by a given application on the device. Th
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| bundleName | string | Yes | Bundle name of the application. |
-| moduleName | string | No |  Module name. By default, no value is passed. |
+| bundleName | string | Yes| Bundle name of the application.|
+| moduleName | string | No|  Module name. By default, no value is passed.|
 
 **Return value**
 
 | Type                                                                                    | Description                               |
 |:---------------------------------------------------------------------------------------| :---------------------------------- |
-| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md#forminfo)&gt;&gt; | Promise used to return the information obtained. |
+| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md#forminfo)&gt;&gt; | Promise used to return the information obtained.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -1265,8 +1266,6 @@ Obtains the widget information provided by a given application on the device. Th
 | 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -1297,19 +1296,21 @@ Obtains the widget information provided by a given application on the device. Th
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| filter | [formInfo.FormInfoFilter](js-apis-app-form-formInfo.md#forminfofilter) | Yes | Filter criterion. |
+| filter | [formInfo.FormInfoFilter](js-apis-app-form-formInfo.md#forminfofilter) | Yes| Filter criterion.|
 
 **Return value**
 
 | Type         | Description                               |
 | :------------ | :---------------------------------- |
-| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise used to return the information obtained. |
+| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise used to return the information obtained.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application.  |
@@ -1318,8 +1319,6 @@ Obtains the widget information provided by a given application on the device. Th
 | 16500060 | Service connection error.  |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -1355,14 +1354,16 @@ Deletes invalid widgets from the list. This API uses an asynchronous callback to
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| formIds | Array&lt;string&gt; | Yes  | List of valid widget IDs. |
-| callback | AsyncCallback&lt;number&gt; | Yes | Callback used to return the result. If the invalid widgets are deleted, **error** is undefined and **data** is the number of widgets deleted; otherwise, **error** is an error object. |
+| formIds | Array&lt;string&gt; | Yes  | List of valid widget IDs.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the invalid widgets are deleted, **error** is undefined and **data** is the number of widgets deleted; otherwise, **error** is an error object.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -1370,8 +1371,6 @@ Deletes invalid widgets from the list. This API uses an asynchronous callback to
 | 16500050 | IPC connection error. |
 | 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -1405,19 +1404,21 @@ Deletes invalid widgets from the list. This API uses a promise to return the res
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| formIds | Array&lt;string&gt; | Yes  | List of valid widget IDs. |
+| formIds | Array&lt;string&gt; | Yes  | List of valid widget IDs.|
 
 **Return value**
 
 | Type         | Description                               |
 | :------------ | :---------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the number of widgets deleted. |
+| Promise&lt;number&gt; | Promise used to return the number of widgets deleted.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -1425,8 +1426,6 @@ Deletes invalid widgets from the list. This API uses a promise to return the res
 | 16500050 | IPC connection error. |
 | 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -1458,14 +1457,16 @@ Obtains the widget state. This API uses an asynchronous callback to return the r
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | **Want** information carried to query the widget state. The information must contain the bundle name, ability name, module name, widget name, and widget dimensions. |
-| callback | AsyncCallback&lt;[formInfo.FormStateInfo](js-apis-app-form-formInfo.md#formstateinfo)&gt; | Yes | Callback used to return the result. If the widget state is obtained, **error** is undefined and **data** is the widget state obtained; otherwise, **error** is an error object. |
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | **Want** information carried to query the widget state. The information must contain the bundle name, ability name, module name, widget name, and widget dimensions.|
+| callback | AsyncCallback&lt;[formInfo.FormStateInfo](js-apis-app-form-formInfo.md#formstateinfo)&gt; | Yes| Callback used to return the result. If the widget state is obtained, **error** is undefined and **data** is the widget state obtained; otherwise, **error** is an error object.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -1474,8 +1475,6 @@ Obtains the widget state. This API uses an asynchronous callback to return the r
 | 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -1519,19 +1518,21 @@ Obtains the widget state. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | **Want** information carried to query the widget state. The information must contain the bundle name, ability name, module name, widget name, and widget dimensions. |
+| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | **Want** information carried to query the widget state. The information must contain the bundle name, ability name, module name, widget name, and widget dimensions.|
 
 **Return value**
 
 | Type         | Description                               |
 | :------------ | :---------------------------------- |
-| Promise&lt;[formInfo.FormStateInfo](js-apis-app-form-formInfo.md#formstateinfo)&gt; | Promise used to return the widget state obtained. |
+| Promise&lt;[formInfo.FormStateInfo](js-apis-app-form-formInfo.md#formstateinfo)&gt; | Promise used to return the widget state obtained.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -1540,8 +1541,6 @@ Obtains the widget state. This API uses a promise to return the result.
 | 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -1585,19 +1584,19 @@ Subscribes to widget uninstall events. This API uses an asynchronous callback to
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| type | string | Yes  | Event type. The value **'formUninstall'** indicates a widget uninstall event. |
-| callback | Callback&lt;string&gt; | Yes | Callback used to return the widget ID. |
+| type | string | Yes  | Event type. The value **'formUninstall'** indicates a widget uninstall event.|
+| callback | Callback&lt;string&gt; | Yes| Callback used to return the widget ID.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 202 | The application is not a system application. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -1623,19 +1622,19 @@ Unsubscribes from widget uninstall events. This API uses an asynchronous callbac
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| type | string | Yes  | Event type. The value **'formUninstall'** indicates a widget uninstall event. |
-| callback | Callback&lt;string&gt; | No | Callback used to return the widget ID. If it is left unspecified, it indicates the callback for all the events that have been subscribed.<br> To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('formUninstall')**.|
+| type | string | Yes  | Event type. The value **'formUninstall'** indicates a widget uninstall event.|
+| callback | Callback&lt;string&gt; | No| Callback used to return the widget ID. If it is left unspecified, it indicates the callback for all the events that have been subscribed.<br> To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('formUninstall')**.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 202 | The application is not a system application. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -1659,15 +1658,17 @@ Instructs the widgets to make themselves visible. This API uses an asynchronous 
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| formIds | Array&lt;string&gt; | Yes  | List of widget IDs. |
-| isVisible | boolean | Yes  | Whether to make the widgets visible. |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the notification is sent, **error** is undefined; otherwise, **error** is an error object. |
+| formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
+| isVisible | boolean | Yes  | Whether to make the widgets visible.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the notification is sent, **error** is undefined; otherwise, **error** is an error object.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -1676,8 +1677,6 @@ Instructs the widgets to make themselves visible. This API uses an asynchronous 
 | 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501003 | The form cannot be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -1709,20 +1708,22 @@ Instructs the widgets to make themselves visible. This API uses a promise to ret
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| formIds | Array&lt;string&gt; | Yes  | List of widget IDs. |
-| isVisible | boolean | Yes  | Whether to make the widgets visible. |
+| formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
+| isVisible | boolean | Yes  | Whether to make the widgets visible.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -1731,8 +1732,6 @@ Instructs the widgets to make themselves visible. This API uses a promise to ret
 | 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501003 | The form cannot be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -1764,15 +1763,17 @@ Instructs the widgets to enable or disable updates. This API uses an asynchronou
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| formIds | Array&lt;string&gt; | Yes  | List of widget IDs. |
-| isEnableUpdate | boolean | Yes  | Whether to make the widgets updatable. |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the notification is sent, **error** is undefined; otherwise, **error** is an error object. |
+| formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
+| isEnableUpdate | boolean | Yes  | Whether to make the widgets updatable.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the notification is sent, **error** is undefined; otherwise, **error** is an error object.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -1781,8 +1782,6 @@ Instructs the widgets to enable or disable updates. This API uses an asynchronou
 | 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501003 | The form cannot be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -1814,20 +1813,22 @@ Instructs the widgets to enable or disable updates. This API uses a promise to r
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| formIds | Array&lt;string&gt; | Yes  | List of widget IDs. |
-| isEnableUpdate | boolean | Yes  | Whether to make the widgets updatable. |
+| formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
+| isEnableUpdate | boolean | Yes  | Whether to make the widgets updatable.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -1836,8 +1837,6 @@ Instructs the widgets to enable or disable updates. This API uses a promise to r
 | 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501003 | The form cannot be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -1868,15 +1867,17 @@ Shares a specified widget with a remote device. This API uses an asynchronous ca
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| formId | string | Yes  | Widget ID. |
-| deviceId | string | Yes  | Remote device ID. |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the widget is shared, **error** is undefined; otherwise, **error** is an error object. |
+| formId | string | Yes  | Widget ID.|
+| deviceId | string | Yes  | Remote device ID.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the widget is shared, **error** is undefined; otherwise, **error** is an error object.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -1885,8 +1886,6 @@ Shares a specified widget with a remote device. This API uses an asynchronous ca
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form cannot be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -1919,20 +1918,22 @@ Shares a specified widget with a remote device. This API uses a promise to retur
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| formId | string | Yes  | Widget ID. |
-| deviceId | string | Yes  | Remote device ID. |
+| formId | string | Yes  | Widget ID.|
+| deviceId | string | Yes  | Remote device ID.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -1941,8 +1942,6 @@ Shares a specified widget with a remote device. This API uses a promise to retur
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form cannot be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -1975,15 +1974,17 @@ Notifies that the privacy protection status of the specified widgets changes. Th
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| formIds | Array\<string\> | Yes  | ID of the widgets. |
-| isProtected | boolean | Yes  | Whether privacy protection is enabled. |
-| callback | AsyncCallback\<void> | Yes | Callback used to return the result. If privacy protection is set successfully, **error** is undefined; otherwise, **error** is an error object. |
+| formIds | Array\<string\> | Yes  | ID of the widgets.|
+| isProtected | boolean | Yes  | Whether privacy protection is enabled.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If privacy protection is set successfully, **error** is undefined; otherwise, **error** is an error object.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -1991,8 +1992,6 @@ Notifies that the privacy protection status of the specified widgets changes. Th
 | 16500050 | IPC connection error. |
 | 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -2024,20 +2023,22 @@ Notifies that the privacy protection status of the specified widgets changes. Th
 
 **Parameters**
 
-| Name     | Type           | Mandatory | Description                            |
+| Name     | Type           | Mandatory| Description                            |
 | ----------- | --------------- | ---- | -------------------------------- |
-| formIds     | Array\<string\> | Yes  | ID of the widgets. |
+| formIds     | Array\<string\> | Yes  | ID of the widgets.|
 | isProtected | boolean         | Yes  | Whether privacy protection is enabled.              |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
@@ -2045,8 +2046,6 @@ Notifies that the privacy protection status of the specified widgets changes. Th
 | 16500050 | IPC connection error. |
 | 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 ```ts
 import { formHost } from '@kit.FormKit';
@@ -2078,14 +2077,16 @@ Requests data from the widget provider. This API uses an asynchronous callback t
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| formId | string | Yes  | Widget ID. |
-| callback | AsyncCallback\<Record\<string, Object> | Yes  | Callback used to return the API call result and the shared data. |
+| formId | string | Yes  | Widget ID.|
+| callback | AsyncCallback\<Record\<string, Object> | Yes  | Callback used to return the API call result and the shared data.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
@@ -2093,8 +2094,6 @@ Requests data from the widget provider. This API uses an asynchronous callback t
 | 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -2130,19 +2129,21 @@ Requests data from the widget provider. This API uses a promise to return the re
 
 **Parameters**
 
-| Name     | Type           | Mandatory | Description                            |
+| Name     | Type           | Mandatory| Description                            |
 | ----------- | --------------- | ---- | -------------------------------- |
-| formId | string | Yes  | Widget ID. |
+| formId | string | Yes  | Widget ID.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise\<Record\<string, Object>>| Promise used to return the API call result and the shared data. |
+| Promise\<Record\<string, Object>>| Promise used to return the API call result and the shared data.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
@@ -2151,7 +2152,7 @@ Requests data from the widget provider. This API uses a promise to return the re
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
+**Example**
 
 ```ts
 import { formHost } from '@kit.FormKit';
@@ -2175,9 +2176,12 @@ setRouterProxy(formIds: Array&lt;string&gt;, proxy: Callback&lt;Want&gt;, callba
 
 Sets a router proxy for widgets and obtains the Want information required for redirection. This API uses an asynchronous callback to return the result.
 
+
+
 > **NOTE**
 >
->- Generally, for a widget added to the home screen, in the case of router-based redirection, the widget framework checks whether the destination is proper and whether the widget has the redirection permission, and then triggers redirection accordingly. For a widget that is added to a widget host and has a router proxy configured, in the case of router-based redirection, the widget framework does not trigger redirection for the widget. Instead, it returns the **want** parameter containing the destination to the widget host. Therefore, if the widget host wants to use the Want information for redirection, it must have the application redirection permission. For details, see [UIAbilityContext.startAbility()](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability).
+>- Generally, for a widget added to the home screen, in the case of router-based redirection, the widget framework checks whether the destination is proper and whether the widget has the redirection permission, and then triggers redirection accordingly. For a widget that is added to a widget host and has a router proxy configured, in the case of router-based redirection, the widget framework does not trigger redirection for the widget. Instead, it returns the **want** parameter containing the destination to the widget host. Therefore, if the widget host wants to use the Want information for redirection, it must have the application redirection permission. For details, see
+[UIAbilityContext.startAbility()](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability).
 >
 >- Only one router proxy can be set for a widget. If multiple proxies are set, only the last proxy takes effect.
 
@@ -2187,15 +2191,17 @@ Sets a router proxy for widgets and obtains the Want information required for re
 
 **Parameters**
 
-| Name  | Type                     | Mandatory | Description                                                        |
+| Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | formIds  | Array&lt;string&gt;       | Yes  | Array of widget IDs.                                              |
 | proxy    | Callback&lt;Want&gt;      | Yes  | Callback used to return the Want information required for redirection.                        |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the router proxy is set, **error** is **undefined**; otherwise, an exception is thrown. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the router proxy is set, **error** is **undefined**; otherwise, an exception is thrown.|
 
 **Error codes**
 
-| Error Code ID | Error Message                                                    |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
 | 202      | The application is not a system application.                 |
@@ -2204,8 +2210,6 @@ Sets a router proxy for widgets and obtains the Want information required for re
 | 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
 | 16501003 | The form cannot be operated by the current application.     |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -2281,20 +2285,22 @@ Sets a router proxy for widgets and obtains the Want information required for re
 
 **Parameters**
 
-| Name | Type                | Mandatory | Description                                |
+| Name | Type                | Mandatory| Description                                |
 | ------- | -------------------- | ---- | ------------------------------------ |
 | formIds | Array&lt;string&gt;  | Yes  | Array of widget IDs.                      |
-| proxy   | Callback&lt;Want&gt; | Yes  | Callback used to return the Want information required for redirection. |
+| proxy   | Callback&lt;Want&gt; | Yes  | Callback used to return the Want information required for redirection.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| Error Code ID | Error Message                                                    |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
 | 202      | The application is not a system application.                 |
@@ -2303,8 +2309,6 @@ Sets a router proxy for widgets and obtains the Want information required for re
 | 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
 | 16501003 | The form cannot be operated by the current application.     |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -2374,14 +2378,16 @@ Clears the router proxy set for widgets. This API uses an asynchronous callback 
 
 **Parameters**
 
-| Name  | Type                     | Mandatory | Description                                                        |
+| Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | formIds  | Array&lt;string&gt;;      | Yes  | Array of widget IDs.                                              |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the router proxy is cleared, **error** is **undefined**; otherwise, an exception is thrown. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the router proxy is cleared, **error** is **undefined**; otherwise, an exception is thrown.|
 
 **Error codes**
 
-| Error Code ID | Error Message                                                    |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
 | 202      | The application is not a system application.                 |
@@ -2390,8 +2396,6 @@ Clears the router proxy set for widgets. This API uses an asynchronous callback 
 | 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
 | 16501003 | The form cannot be operated by the current application.     |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -2423,19 +2427,21 @@ Clears the router proxy set for widgets. This API uses a promise to return the r
 
 **Parameters**
 
-| Name | Type               | Mandatory | Description          |
+| Name | Type               | Mandatory| Description          |
 | ------- | ------------------- | ---- | -------------- |
-| formIds | Array&lt;string&gt; | Yes  | Array of widget IDs. |
+| formIds | Array&lt;string&gt; | Yes  | Array of widget IDs.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| Error Code ID | Error Message                                                    |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
 | 202      | The application is not a system application.                 |
@@ -2444,8 +2450,6 @@ Clears the router proxy set for widgets. This API uses a promise to return the r
 | 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
 | 16501003 | The form cannot be operated by the current application.     |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -2478,14 +2482,16 @@ Sets widgets to be recyclable. This API uses an asynchronous callback to return 
 
 **Parameters**
 
-| Name  | Type                     | Mandatory | Description                                                        |
+| Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | formIds  | Array&lt;string&gt;;      | Yes  | Array of widget IDs.                                              |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the widgets are set to be recyclable, **error** is **undefined**; otherwise, an exception is thrown. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the widgets are set to be recyclable, **error** is **undefined**; otherwise, an exception is thrown.|
 
 **Error codes**
 
-| Error Code ID | Error Message                                                    |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
 | 202      | The application is not a system application.                 |
@@ -2493,8 +2499,6 @@ Sets widgets to be recyclable. This API uses an asynchronous callback to return 
 | 16500050 | IPC connection error.                            |
 | 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -2528,19 +2532,21 @@ Sets widgets to be recyclable. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type               | Mandatory | Description          |
+| Name | Type               | Mandatory| Description          |
 | ------- | ------------------- | ---- | -------------- |
-| formIds | Array&lt;string&gt; | Yes  | Array of widget IDs. |
+| formIds | Array&lt;string&gt; | Yes  | Array of widget IDs.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| Error Code ID | Error Message                                                    |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
 | 202      | The application is not a system application.                 |
@@ -2548,8 +2554,6 @@ Sets widgets to be recyclable. This API uses a promise to return the result.
 | 16500050 | IPC connection error.                            |
 | 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -2582,14 +2586,16 @@ Recovers widgets. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name  | Type                     | Mandatory | Description                                                        |
+| Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | formIds  | Array&lt;string&gt;;      | Yes  | Array of widget IDs.                                              |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the widgets are recovered, **error** is **undefined**; otherwise, an exception is thrown. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the widgets are recovered, **error** is **undefined**; otherwise, an exception is thrown.|
 
 **Error codes**
 
-| Error Code ID | Error Message                                                    |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
 | 202      | The application is not a system application.                 |
@@ -2597,8 +2603,6 @@ Recovers widgets. This API uses an asynchronous callback to return the result.
 | 16500050 | IPC connection error.                            |
 | 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -2631,20 +2635,22 @@ Recovers recycled widgets and updates their status to non-recyclable, or updates
 
 **Parameters**
 
-| Name | Type               | Mandatory | Description          |
+| Name | Type               | Mandatory| Description          |
 | ------- | ------------------- | ---- | -------------- |
-| formIds | Array&lt;string&gt; | Yes  | Array of widget IDs. |
+| formIds | Array&lt;string&gt; | Yes  | Array of widget IDs.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 
 **Error codes**
 
-| Error Code ID | Error Message                                                    |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
 | 202      | The application is not a system application.                 |
@@ -2652,8 +2658,6 @@ Recovers recycled widgets and updates their status to non-recyclable, or updates
 | 16500050 | IPC connection error.                            |
 | 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -2686,20 +2690,22 @@ Recycles widgets, that is, reclaims their memory. This API uses a promise to ret
 
 **Parameters**
 
-| Name | Type               | Mandatory | Description          |
+| Name | Type               | Mandatory| Description          |
 | ------- | ------------------- | ---- | -------------- |
-| formIds | Array&lt;string&gt; | Yes  | Array of widget IDs. |
+| formIds | Array&lt;string&gt; | Yes  | Array of widget IDs.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 
 **Error codes**
 
-| Error Code ID | Error Message                                                    |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
 | 202      | The application is not a system application.                 |
@@ -2707,8 +2713,6 @@ Recycles widgets, that is, reclaims their memory. This API uses a promise to ret
 | 16500050 | IPC connection error.                            |
 | 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -2741,14 +2745,16 @@ Updates the widget location.
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| formId | string | Yes  | Widget ID. |
-| location |[formInfo.FormLocation](js-apis-app-form-formInfo-sys.md#formlocation) | Yes | Widget location. |
+| formId | string | Yes  | Widget ID.|
+| location |[formInfo.FormLocation](js-apis-app-form-formInfo-sys.md#formlocation) | Yes| Widget location.|
 
 **Error codes**
 
-| Error Code ID | Error Message                                                    |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
 | 202      | The application is not a system application.                                    |
@@ -2758,8 +2764,6 @@ Updates the widget location.
 | 16501000 | An internal functional error occurred.                       |
 | 16501001 | The ID of the form to be operated does not exist.            |
 | 16501003 | The form cannot be operated by the current application.     |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -2789,14 +2793,16 @@ Sets the result for the operation of adding a widget to the home screen.
 
 **Parameters**
 
-| Name | Type                                                        | Mandatory | Description              |
+| Name| Type                                                        | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | formId | string                                                       | Yes  | Widget ID.        |
-| result | [PublishFormResult](js-apis-app-form-formInfo-sys.md#publishformresult) | Yes  | Result of the operation. |
+| result | [PublishFormResult](js-apis-app-form-formInfo-sys.md#publishformresult) | Yes  | Result of the operation.|
 
 **Error codes**
 
-| Error Code ID | Error Message                                                    |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
 | 202      | The application is not a system application.                                    |
@@ -2805,8 +2811,6 @@ Sets the result for the operation of adding a widget to the home screen.
 | 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
 | 16501001 | The ID of the form to be operated does not exist.            |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -2821,4 +2825,64 @@ try {
 } catch (error) {
   console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
+```
+
+## updateFormLockedState<sup>18+</sup>
+
+updateFormLockedState(formId: string, isLocked: boolean): Promise&lt;void&gt;
+
+Notifies the update of the widget lock state.
+
+If an application is locked, its widget will also be locked and masked in a locked style. To use the widget, you need to enter the password set for the widget.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Required permissions**: ohos.permission.REQUIRE_FORM
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+|-------|------|------|-----|
+| formId | string | Yes| Widget ID.|
+| isLocked | boolean | Yes| A Boolean value indicates whether a widget is in the locked state. The value **true** indicates that the widget is in the locked state, and the value **false** indicates the opposite.|
+
+**Return value**
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permissions denied.                                          |
+| 202      | caller is not a system app.                 |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
+| 16501000 | An internal functional error occurred.                       |
+| 16501001 | The ID of the form to be operated does not exist.                       |
+| 16501003 | The form cannot be operated by the current application.     |
+
+**Example**
+
+```ts
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let formId: string = '12400633174999288';
+let isLocked: boolean = true;
+
+try {
+  formHost.updateFormLockedState(this.formId, this.isLocked).then(() => {
+    console.log(`formHost updateFormLockedState success`);
+  });
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+}
+
 ```

@@ -130,12 +130,12 @@ The task information in the main thread queue includes:
 Locate the application stack information by searching for the **PID**. In the following stack, the window stays in the IPC communication phase when it sends events to the system through the IPC.
 
 ```
-OpenStacktraceCatcher -pid==1561 packageName is com.ohos.huawei.myapplication
+OpenStacktraceCatcher -pid==1561 packageName is com.example.myapplication
 Result: 0 ( no error )
 Timestamp:2017-08-0817:06:53.000
 Pid:1561
 Uid:20010039
-Process name:com.ohos.huawei.myapplication
+Process name:com.example.myapplication
 Tid:1561,Name:i.myapplication
 #00 pc 0017888c /system/lib/libark_jsruntime.so
 #01 pc 00025779 /system/lib/platformsdk/libipc_core.z.so(OHOS:BinderConnector:WriteBinder(unsigned Long,void*)+56)
@@ -278,8 +278,8 @@ TIMESTAMP = 2017/08/08-17:06:24:363
 PID = 1561
 UID = 20010039
 TID = 1566
-PACKAGE_NAME com.ohos.huawei.myapplication
-PROCESS_NAME com.ohos.huawei.myapplication
+PACKAGE_NAME com.example.myapplication
+PROCESS_NAME com.example.myapplication
 eventLog_action pb:1 eventLog_interval 10
 MSG = App main thread is not response!EventHandler dump begin curTime:2017-08-08 05:06:24.362
   Event runner (Thread name =Thread ID 1561)is running
@@ -298,9 +298,9 @@ MSG = App main thread is not response!EventHandler dump begin curTime:2017-08-08
  Timestamp: 2017-08-0817:06:24.4142447784
  Pid: 1561
  Uid: 20010039
- Process name: com.ohos.huawei.myapplication
+ Process name: com.example.myapplication
  Tid:1561 Name:i.myapplication
-   at anonymous entry (D:/project/OpenHarmonyOS/MyApplication_test/entry/build/default/intermediates/loader_out/default/ets,pages/Index_.js:0:1)
+   at anonymous entry (D:/project/MyApplication_test/entry/build/default/intermediates/loader_out/default/ets,pages/Index_.js:0:1)
    #00 pc 0017909c /system/lib/libark_jsruntime.so
    #01 pc 00177ebb /system/lib/libark_jsruntime.so
    #02 pc 0024b4bb /system/lib/libark_jsruntime.so
@@ -318,8 +318,8 @@ TIMESTAMP = 2017/08/08-17:06:27:292
 PID = 1561
 UID = 20010039
 TID = 1566
-PACKAGE_NAME com.ohos.huawei.myapplication
-PROCESS NAME com.ohos.huawei.myapplication eventLog_action cmd:c,cmd:m,tr,k:SysRqFile
+PACKAGE_NAME com.example.myapplication
+PROCESS NAME com.example.myapplication eventLog_action cmd:c,cmd:m,tr,k:SysRqFile
 eventLog_interval 10
 MSG = App main thread is not response!EventHandler dump begin curTime:2017-08-08 05:06:27.291
   Event runner (Thread name =Thread ID =1561)is running
@@ -339,9 +339,9 @@ MSG = App main thread is not response!EventHandler dump begin curTime:2017-08-08
 Timestamp:2017-08-0817:0k:27,4142447784
 Pid:1561
 Uid:20010039
-Process name:com.ohos.huawei.myapplication
+Process name:com.example.myapplication
 Tid:1561 Name:i.myapplication
-  at anonymous entry (D:/project/OpenHarmony0S/MyApplication_test/entry/build/default/intermediates/loader_out/default/ets/pages/Index_.js:0:1)
+  at anonymous entry (D:/project/MyApplication_test/entry/build/default/intermediates/loader_out/default/ets/pages/Index_.js:0:1)
   #00 pc 00178dcc /system/lib/libark_jsruntime.so
   #01 pc 00177ebb /system/lib/libark_jsruntime.so
   #02 pc 0024b4bb /system/lib/libark_jsruntime.so(panda:FunctionRef:Call(panda:ecmascript:EcmaVM const*,panda:Local<panda:JSValueRef>,par
@@ -378,8 +378,8 @@ STRINGID:LIFECYCLE
 TIMEOUT TIMESTAMP:2023/03/10-17:06:53:65
 PID:1561
 UID:20010039
-PACKAGE_NAME:com.ohos.huawei.myapplication
-PROCESS_NAME:com.ohos.huawei.myapplication
+PACKAGE_NAME:com.example.myapplication
+PROCESS_NAME:com.example.myapplication
 MSG:ability:EntryAbility background timeout
 ```
 
@@ -442,7 +442,7 @@ DisplayPowerInfo:powerState: AWAKE
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 ```
 
-#### Obtain the fault occurrence time.
+#### Obtain the fault occurrence time
 
 Fault report time:
 
@@ -787,7 +787,7 @@ The possible causes are as follows:
 
 ![appfreeze_2024061410](figures/appfreeze_2024061410.png)
 
-In the preceding figure, the **ohos.animator** in **PriviewArea::updateShotComponent** is executed for 9.2s.
+In the preceding figure, the **animator** in **PriviewArea::updateShotComponent** is executed for 9.2s.
 
 The thread is busy executing a service cyclically and analyzing each service segment.
 
@@ -835,11 +835,11 @@ The background application freezes and related functions are unavailable, but it
 Extract the key fault logs.
 
 ```
-appfreeze: com.huawei.hmsapp.xxx THREAD_BLOCK_6S at 20240408082432
+appfreeze: com.example.hmsapp.xxx THREAD_BLOCK_6S at 20240408082432
 DisplayPowerInfo:powerState:AWAKE
 ```
 
-The value of **Foreground** indicates that **hiai** is a background application. Therefore, it can be inferred that when the 3s event is reported, the background application freezes for **18s**.
+The value of **Foreground** indicates that the application is a background application. Therefore, it can be inferred that when the 3s event is reported, the background application is frozen for 18s.
 
 ```
 Module name:com.xxx.xxx.xxx
@@ -1050,7 +1050,7 @@ which severely affect user experience.
 Extract the key fault logs.
 
 ```
-appfreeze: com.ohos.sceneboard APP_INPUT_BLOCK at 20240319022527
+appfreeze: com.example.sceneboard APP_INPUT_BLOCK at 20240319022527
 DisplayPowerInfo:powerState:AWAKE
 ```
 
@@ -1062,8 +1062,8 @@ STRINGID:APP_INPUT_BLOCK
 TIMESTAMP:2024/03/14-14:40:59:440 --> Fault report time.
 PID:2918
 UID:20020017
-PACKAGE_NAME:com.ohos.sceneboard
-PROCESS_NAME:com.ohos.sceneboard
+PACKAGE_NAME:com.example.sceneboard
+PROCESS_NAME:com.example.sceneboard
 ```
 
 The reported cause is "User input does not respond!".  
@@ -1118,7 +1118,7 @@ In this case, you only need to find out the task that the input triggers and why
 In the running main thread stack, the **ark_jsruntime GetCurrentThreadId** function at the stack top does not hold a lock or is time-consuming. The captured stack is a transient stack that is useless for analysis.
 
 ```
-Tid:2918, Name:ohos.sceneboard
+Tid:2918, Name:example.sceneboard
 # 00 pc 000000000009f73c /system/lib/ld-musl-aarch64.so.1(8fa55898166cd804dad43d909b5319cc)
 # 01 pc 000000000054b7b4 /system/lib64/platformsdk/libark_jsruntime.so(panda::os::thread::GetCurrentThreadId()+12)(7715646e48f750f3dc31e660b056eb43)
 # 02 pc 00000000002107a4 /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::EcmaVM::CheckThread() const+200)(7715646e48f750f3dc31e660b056eb43)
@@ -1232,8 +1232,8 @@ STRINGID:LIFECYCLE_TIMEOUT
 TIMESTAMP:2024/02/01-10:04:59:965
 PID:18083
 UID:20020041
-PACKAGE_NAME:com.huawei.hmos.notepad
-PROCESS_NAME:com.huawei.hmos.notepad
+PACKAGE_NAME:com.example.notepad
+PROCESS_NAME:com.example.notepad
 *******************************************
 start time: 2024/02/01-10:04:57:555
 DOMAIN = AAFWK
@@ -1242,8 +1242,8 @@ TIMESTAMP = 2024/02/01-10:04:57:538
 PID = 18083
 UID = 20020041
 TID = 17286
-PACKAGE_NAME = com.huawei.hmos.notepad
-PROCESS_NAME = com.huawei.hmos.notepad
+PACKAGE_NAME = com.example.notepad
+PROCESS_NAME = com.example.notepad
 ```
 
 The task starts at **10:04:54.798**, and the interval between the start time and **LIFECYCLE_HALF_TIMEOUT** is about 2.5s, which is as expected.
@@ -1266,7 +1266,7 @@ mainHandler dump is:
 Check the stack information at **libfs.z.so -> libdatashare_consumer.z.so -> libipc_core.z.so**.
 
 ```
-Tid:18083, Name:ei.hmos.notepad
+Tid:18083, Name:ei.example.notepad
 # 00 pc 00000000001617a4 /system/lib/ld-musl-aarch64.so.1(ioctl+180)(4ca73cff61bea7c4a687eb0f71c9df69)
 # 01 pc 000000000003e8a0 /system/lib64/platformsdk/libipc_core.z.so(OHOS::BinderConnector::WriteBinder(unsigned long, void*)+72)(3248fceb1fa676994734e0437430ce37)
 # 02 pc 0000000000049f38 /system/lib64/platformsdk/libipc_core.z.so(OHOS::BinderInvoker::TransactWithDriver(bool)+296)(3248fceb1fa676994734e0437430ce37)
@@ -1303,7 +1303,7 @@ Result: 0 ( no error )
 Timestamp:2024-02-01 10:04:57.000
 Pid:5235
 Uid:20020079
-Process name:com.ohos.medialibrary.medialibrarydata
+Process name:com.medialibrary.medialibrarydata
 Tid:5235, Name:edialibrarydata
 # 00 pc 0000000000142d1c /system/lib/ld-musl-aarch64.so.1(epoll_wait+84)(4ca73cff61bea7c4a687eb0f71c9df69)
 # 01 pc 000000000000fb74 /system/lib64/chipset-pub-sdk/libeventhandler.z.so(OHOS::AppExecFwk::EpollIoWaiter::WaitFor(std::__h::unique_lock<std::__h::mutex>&, long)+224)(a4d21072c08fd3ac639d5cf5b8fb8b51)

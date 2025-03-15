@@ -20,7 +20,7 @@ import { systemManager } from '@kit.MDMKit';
 
 setNTPServer(admin: Want, server: string): void
 
-Sets the NTP server information through the specified device administrator application.
+Sets the NTP server.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -30,8 +30,8 @@ Sets the NTP server information through the specified device administrator appli
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| server | string | Yes| NTP server addresses separated by a comma (,). For example, **ntpserver1.com,ntpserver2.com**.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
+| server | string | Yes| NTP server addresses separated by a comma (,). For example, **ntpserver1.com,ntpserver2.com**. The value can contain a maximum of 96 bytes (including the end character).|
 
 **Error codes**
 
@@ -58,7 +58,7 @@ try {
   systemManager.setNTPServer(wantTemp, server);
   console.info('Succeeded in setting NTPserver.');
 } catch (err) {
-  console.error(`Failed to set usb policy. Code is ${err.code}, message is ${err.message}`);
+  console.error(`Failed to set ntp server. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -66,7 +66,7 @@ try {
 
 getNTPServer(admin: Want): string
 
-Obtains the NTP server information through the specified device administrator application.
+Obtains the NTP server information.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -74,15 +74,15 @@ Obtains the NTP server information through the specified device administrator ap
 
 **Parameters**
 
-| Name| Type                               | Mandatory| Description          |
-| ------ | ----------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.|
+| Name| Type                                                   | Mandatory| Description                  |
+| ------ | ------------------------------------------------------- | ---- | ---------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.|
 
 **Return value**
 
-| Type  | Description                           |
-| ------ | ------------------------------- |
-| string | NTP server information obtained.|
+| Type  | Description                               |
+| ------ | ----------------------------------- |
+| string | NTP server information.|
 
 **Error codes**
 
@@ -109,7 +109,7 @@ try {
   systemManager.getNTPServer(wantTemp);
   console.info('Succeeded in getting NTP server.');
 } catch (err) {
-  console.error(`Failed to set usb policy. Code is ${err.code}, message is ${err.message}`);
+  console.error(`Failed to get ntp server. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -117,7 +117,7 @@ try {
 
 setOtaUpdatePolicy(admin: Want, policy: OtaUpdatePolicy): void
 
-Sets the over-the-air (OTA) update policy through the specified device administrator application. In intranet updates, call [systemManager.notifyUpdatePackages](#systemmanagernotifyupdatepackages) to notify the system of the update packages and then call this API to set the upgrade policy.
+Sets the update policy. In intranet updates, call [systemManager.notifyUpdatePackages](#systemmanagernotifyupdatepackages) to notify the system of the update packages and then call this API to set the upgrade policy.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -127,7 +127,7 @@ Sets the over-the-air (OTA) update policy through the specified device administr
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
 | policy | [OtaUpdatePolicy](#otaupdatepolicy) | Yes| OTA update policy to set.|
 
 **Error codes**
@@ -216,7 +216,7 @@ try {
 
 getOtaUpdatePolicy(admin: Want): OtaUpdatePolicy
 
-Obtains the OTA update policy through the specified device administrator application.
+Queries the update policy.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -224,9 +224,9 @@ Obtains the OTA update policy through the specified device administrator applica
 
 **Parameters**
 
-| Name| Type                               | Mandatory| Description          |
-| ------ | ----------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.|
+| Name| Type                                                   | Mandatory| Description              |
+| ------ | ------------------------------------------------------- | ---- | ------------------ |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.|
 
 **Return value**
 
@@ -276,7 +276,7 @@ Notifies the system of the update packages. In intranet updates, call this API t
 
 | Name| Type                               | Mandatory| Description          |
 | ------ | ----------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.|
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.|
 | packageInfo  | [UpdatePackageInfo](#updatepackageinfo) | Yes  | Information about the system update packages.|
 
 **Return value**
@@ -345,7 +345,7 @@ Obtains the system update result.
 
 | Name| Type                               | Mandatory| Description          |
 | ------ | ----------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.|
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.|
 | version  | string | Yes  | Version of the update package.|
 
 **Return value**

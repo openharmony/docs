@@ -19,9 +19,9 @@ AppStartup提供了一种简单高效的应用启动方式，可以支持任务�
 
 - 启动框架仅在entry的UIAbility启动时被拉起，ExtensionAbility和非entry模块的UIAbility启动时不会拉起启动框架。
 
-- 启动框架从API 16开始支持在[HSP](../quick-start/har-package.md)和[HAR](../quick-start/in-app-hsp.md)中配置启动任务。HSP和HAR的启动任务、so预加载任务无法主动配置为自动模式，但可以被entry中自动模式的启动任务、so预加载任务拉起。
+- 启动框架从API 18开始支持在[HSP](../quick-start/har-package.md)和[HAR](../quick-start/in-app-hsp.md)中配置启动任务。HSP和HAR的启动任务、so预加载任务无法主动配置为自动模式，但可以被entry中自动模式的启动任务、so预加载任务拉起。
 
-- 启动框架从API 16开始支持配置so预加载任务，so文件开发可以参考[Node-API](../napi/use-napi-process.md)创建Native C++工程。
+- 启动框架从API 18开始支持配置so预加载任务，so文件开发可以参考[Node-API](../napi/use-napi-process.md)创建Native C++工程。
 
 
 ## 约束限制

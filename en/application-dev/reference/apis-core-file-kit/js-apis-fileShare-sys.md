@@ -27,19 +27,19 @@ Grants the permissions on a user file to an application. This API uses an asynch
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                      |
-| ------ | ------ | ---- | -------------------------- |
-| uri   | string | Yes  | URI of the file.|
-| bundleName   | string | Yes  | Application to be grated with the permissions.|
-| flag   | [wantConstant.Flags](../apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantflags) | Yes  | Permissions to grant.<br>**wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION**: permission to read the file. <br>**wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION**: permission to write the file.|
- | callback | AsyncCallback&lt;void&gt;  | Yes   | Callback used to return the result.                            |
+| Name| Type| Mandatory| Description|
+| ------ |---------| ---- |-----------|
+| uri   | string| Yes  | URI of the file under user directory.|
+| bundleName   | string| Yes  | Application to be granted with the permissions.  |
+| flag   | [wantConstant.Flags](../apis-ability-kit/js-apis-app-ability-wantConstant.md#flags) | Yes  | Permissions to grant.    |
+ | callback | AsyncCallback&lt;void&gt;| Yes   | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
-| ID                    | Error Message       |
-| ---------------------------- | ---------- |
+| ID| Error Message|
+| ------ | ------- |
 | 201 | Permission verification failed |
 | 202 | The caller is not a system application |
 | 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types |
@@ -50,7 +50,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   ```ts
   import { wantConstant } from '@kit.AbilityKit';
   import { BusinessError } from '@kit.BasicServicesKit';
-  let uri: string = 'file://media/image/8';
+  let uri: string = 'file://docs/storage/Users/currentUser/Document/1.txt';  // You are advised to use the system API to generate a URI using fileUri.getUriFromPath("Sandbox path");
   let bundleName: string = 'com.demo.test';
   try {
     fileShare.grantUriPermission(uri, bundleName, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION |
@@ -81,24 +81,24 @@ Grants the permissions on a user file to an application. This API uses a promise
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                      |
-| ------ | ------ | ---- | -------------------------- |
-| uri   | string | Yes  | URI of the file.|
-| bundleName   | string | Yes  | Application to be grated with the permissions.|
-| flag   | [wantConstant.Flags](../apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantflags) | Yes  | Permissions to grant.<br>**wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION**: permission to read the file. <br>**wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION**: permission to write the file.|
+| Name| Type| Mandatory| Description       |
+| ------ |-------| ---- |-----------|
+| uri   | string| Yes  | URI of the file under user directory.|
+| bundleName   | string| Yes  | Application to be granted with the permissions.  |
+| flag   | [wantConstant.Flags](../apis-ability-kit/js-apis-app-ability-wantConstant.md#flags) | Yes  | Permissions to grant.    |
 
 **Return value**
 
   | Type                          | Description        |
-  | ---------------------------- | ---------- |
+  | ---------- | ---------- |
   | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
-| ID                    | Error Message       |
-| ---------------------------- | ---------- |
+| ID| Error Message|
+| ------- | ---------- |
 | 201 | Permission verification failed |
 | 202 | The caller is not a system application |
 | 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types |
@@ -109,7 +109,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   ```ts
   import { wantConstant } from '@kit.AbilityKit';
   import { BusinessError } from '@kit.BasicServicesKit';
-  let uri: string = 'file://media/image/8';
+  let uri: string = 'file://docs/storage/Users/currentUser/Document/1.txt'; // You are advised to use the system API fileUri.getUriFromPath("Sandbox path") to generate a URI.;
   let bundleName: string = 'com.demo.test';
   try {
     fileShare.grantUriPermission(uri, bundleName, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION |
@@ -124,69 +124,73 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   }
   ```
 
+## fileShare.checkPathPermission<sup>15+</sup>
 
-deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
+checkPathPermission(tokenID: number, policies: Array&lt;PathPolicyInfo&gt;, policyType: PolicyType): Promise&lt;Array&lt;boolean&gt;&gt;
 
-Deactivates the permissions on multiple files or folders. This API uses a promise to return the result. <br>This API is available only to the devices that have the required system capability.
+Checks whether the selected files or folders have temporary or persistent permissions. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.FILE_ACCESS_PERSIST
+**Required permission**: ohos.permission.CHECK_SANDBOX_POLICY
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 **Parameters**
 
-| Name| Type| Mandatory| Description                     |
-| -------- | -------- | -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](js-apis-fileShare.md#policyinfo11)> | Yes| Permissions to persist.          |
+| Name| Type| Mandatory| Description|
+| -------- |-------| -------- |----------|
+| tokenID| number | Yes| Application token ID, which is the value of **accessTokenId** in [ApplicationInfo](../apis-ability-kit/js-apis-bundleManager-applicationInfo.md).|
+| policies| Array&lt;[PathPolicyInfo](js-apis-fileShare.md#pathpolicyinfo15)> | Yes| Array of permission policies. The maximum number of policies is 500.|
+| policyType| [PolicyType](js-apis-fileShare.md#policytype15) | Yes| Policy type to check, which can be a temporary or persistent permission.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+|Type|Description|
+| ------ | ------ |
+| Promise&lt;Array&lt;boolean&gt;&gt; | Promise used to return the result. The value **true** means that a policy type is used. Otherwise, **false** is returned.|
 
 **Error codes**
 
 For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
-If the permission deactivation of some URIs fails, error code 13900001 will be returned and the **data** field provides error information of these URIs in the Array<[PolicyErrorResult](js-apis-fileShare.md#policyerrorresult11)> format.
 
 | ID   | Error Message      |
 |----------| --------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | The caller is not a system application.|
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801      | Capability not supported. |
-| 13900001 | Operation not permitted.            |
-| 13900042 | Unknown error                          |
 
 **Example**
 
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import  { picker } from '@kit.CoreFileKit';
+  import { BusinessError } from '@ohos.base';
+  import fileshare from '@ohos.fileshare';
   
-  async function deactivatePermissionExample() {
+  async function checkPersistentPermissionExample() {
     try {
-      let uri = "file://docs/storage/Users/username/tmp.txt";
-      let policyInfo: fileShare.PolicyInfo = {
-        uri: uri,
-        operationMode: fileShare.OperationMode.READ_MODE,
-      };
-      let policies: Array<fileShare.PolicyInfo> = [policyInfo];
-      fileShare.deactivatePermission(policies).then(() => {
-        console.info("deactivatePermission successfully");
-      }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
-        console.info("deactivatePermission failed with error message: " + err.message + ", error code: " + err.code);
-          if (err.code == 13900001 && err.data) {
-            for (let i = 0; i < err.data.length; i++) {
-              console.log("error code : " + JSON.stringify(err.data[i].code));
-              console.log("error uri : " + JSON.stringify(err.data[i].uri));
-              console.log("error reason : " + JSON.stringify(err.data[i].message));
-            }
-          }
-      });
-    } catch (error) {
-      let err: BusinessError = error as BusinessError;
-      console.error('deactivatePermission failed with err: ' + JSON.stringify(err));
+      let pathPolicyInfo1: fileshare.PathPolicyInfo = {
+        path: "/storage/Users/currentUser/Documents/1.txt",
+        operationMode: fileshare.OperationMode.READ_MODE,
+      }
+      let pathPolicyInfo2: fileshare.PathPolicyInfo = {
+        path: "/storage/Users/currentUser/Desktop/2.txt",
+        operationMode: fileshare.OperationMode.READ_MODE,
+      }
+
+      let policies: Array<fileshare.PathPolicyInfo> = [pathPolicyInfo1, pathPolicyInfo2];
+      let policyType: fileshare.PolicyType = fileshare.PolicyType.PERSISTENT_TYPE;
+      let tokenid = 537688848; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
+      
+      fileshare.checkPathPermission(tokenid, policies, policyType).then((result:Array<boolean>) => {
+        for (let x of result) {
+          console.info('check permission result is', x);
+        }
+      })
+      console.info("checkPathPermission finish");
+    }
+    catch (error) {
+      console.info(error.code + 'checkPathPermission error' + error.message);
     }
   }
   ```

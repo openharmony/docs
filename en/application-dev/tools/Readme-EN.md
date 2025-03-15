@@ -2,7 +2,7 @@
 
 - [Ability Assistant](aa-tool.md)
 - [Bundle Manager](bm-tool.md)
-- Packing and Unpacking Tools
+- Packing and Unpacking Tools<!--packing-unpacking-->
   - [Packing Tool](packing-tool.md)
   - [Unpacking Tool](unpacking-tool.md)
 - [App Check Tool](app-check-tool.md)
@@ -19,3 +19,4 @@
   - [Toybox](toybox.md)
   - [mediatool](mediatool.md)
   - [devicedebug](devicedebug-tool.md)
+  - [rawheap-translator](rawheap-translator.md)

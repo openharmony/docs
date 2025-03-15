@@ -142,7 +142,7 @@ try {
 }
 ```
 
-## screenLockFileManager.queryAppKeyState<sup>16+</sup>
+## screenLockFileManager.queryAppKeyState<sup>18+</sup>
 
 queryAppKeyState(dataType: DataType): KeyStatus
 
@@ -164,7 +164,7 @@ queryAppKeyState(dataType: DataType): KeyStatus
 
 | 类型                                                         | 说明                           |
 | ------------------------------------------------------------ | ------------------------------ |
-| [KeyStatus](js-apis-screenLockFileManager.md#keystatus16) | 锁屏下敏感数据访问权限的状态。 |
+| [KeyStatus](js-apis-screenLockFileManager.md#keystatus18) | 锁屏下敏感数据访问权限的状态。 |
 
 **错误码：**
 

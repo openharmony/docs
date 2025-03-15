@@ -1,8 +1,6 @@
 # 使用SM4对称密钥（GCM模式）分段加解密(C/C++)
 
-
 对应的算法规格请查看[对称密钥加解密算法规格：SM4](crypto-sym-encrypt-decrypt-spec.md#sm4)。
-
 
 ## 在CMake脚本中链接相关动态库
 ```txt
@@ -10,7 +8,6 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 ```
 
 **加密**
-
 
 1. 调用[OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_create)、[OH_CryptoSymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_generate)，生成密钥算法为SM4、密钥长度为128位的对称密钥（OH_CryptoSymKey）。
    
@@ -41,7 +38,6 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 
 8. 调用[OH_CryptoSymKeyGenerator_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_destroy)、[OH_CryptoSymCipher_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_destroy)、[OH_CryptoSymCipherParams_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_destroy)销毁各对象。
 
-
 **解密**
 
 1. 调用[OH_CryptoSymCipher_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_create)，指定字符串参数'SM4_128|GCM|PKCS7'，创建对称密钥类型为SM4_128、分组模式为GCM、填充模式为PKCS7的Cipher实例，用于完成解密操作。
@@ -51,7 +47,6 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 3. 将一次传入数据量设置为20字节，多次调用[OH_CryptoSymCipher_Update](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_update)，更新数据（密文）。
 
 4. 调用[OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final)，获取解密后的数据。
-
 
 - 示例：
 
@@ -75,7 +70,7 @@ static OH_Crypto_ErrCode doTestSm4GcmSeg()
     Crypto_DataBlob msgBlob = {.data = (uint8_t *)(plainText), .len = strlen(plainText)};
     uint8_t aad[8] = {1, 2, 3, 4, 5, 6, 7, 8};
     uint8_t tagArr[16] = {0};
-    uint8_t iv[12] = {1, 2, 4, 12, 3, 4, 2, 3, 3, 2, 0, 4}; // iv使用安全随机数生成
+    uint8_t iv[12] = {1, 2, 4, 12, 3, 4, 2, 3, 3, 2, 0, 4}; // iv使用安全随机数生成。
     Crypto_DataBlob tag = {.data = nullptr, .len = 0};
     Crypto_DataBlob ivBlob = {.data = iv, .len = sizeof(iv)};
     Crypto_DataBlob aadBlob = {.data = aad, .len = sizeof(aad)};
@@ -90,7 +85,7 @@ static OH_Crypto_ErrCode doTestSm4GcmSeg()
     uint8_t cipherText[OH_CRYPTO_MAX_TEST_DATA_LEN] = {0};
     Crypto_DataBlob cipherBlob;
 
-    // 生成密钥
+    // 生成密钥。
     OH_Crypto_ErrCode ret;
     ret = OH_CryptoSymKeyGenerator_Create("SM4_128", &genCtx);
     if (ret != CRYPTO_SUCCESS) {
@@ -101,7 +96,7 @@ static OH_Crypto_ErrCode doTestSm4GcmSeg()
         goto end;
     }
 
-    // 设置参数
+    // 设置参数。
     ret = OH_CryptoSymCipherParams_Create(&params);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
@@ -119,7 +114,7 @@ static OH_Crypto_ErrCode doTestSm4GcmSeg()
         goto end;
     }
 
-    // 加密
+    // 加密。
     ret = OH_CryptoSymCipher_Create("SM4_128|GCM|PKCS7", &encCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
@@ -153,7 +148,7 @@ static OH_Crypto_ErrCode doTestSm4GcmSeg()
         goto end;
     }
     
-    // 解密
+    // 解密。
     cipherBlob = {.data = reinterpret_cast<uint8_t *>(cipherText), .len = (size_t)cipherLen};
     msgBlob.data -= strlen(plainText) - rem;
     msgBlob.len = strlen(plainText);

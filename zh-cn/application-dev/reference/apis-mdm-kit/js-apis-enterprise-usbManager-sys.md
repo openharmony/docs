@@ -194,7 +194,7 @@ isUsbDisabled(admin: Want): boolean
 
 | 类型    | 说明                                                   |
 | ------- | ------------------------------------------------------ |
-| boolean | 返回true表示USB被禁用，<br/>返回false表示USB未被禁用。 |
+| boolean | 返回true表示USB被禁用。<br/>返回false表示USB未被禁用。 |
 
 **错误码**：
 

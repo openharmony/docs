@@ -13,7 +13,7 @@ The **inputMethod** module is oriented to common foreground applications (third-
 import { inputMethod } from '@kit.IMEKit';
 ```
 
-## Constants
+## Constant
 
 Provides the constants.
 
@@ -792,17 +792,17 @@ Indicates whether the input method is enabled.
 | BASIC_MODE  | 1 |Basic mode.|
 | FULL_EXPERIENCE_MODE  | 2 |Full experience mode.|
 
-## MessageHandler<sup>16+</sup>
+## MessageHandler<sup>15+</sup>
 
 Represents a custom communication object.
 
 > **NOTE**
 >
-> You can register this object to receive custom communication data sent by the input method application. When the custom communication data is received, the [onMessage](#messagehandleronmessage16) callback in this object is triggered.
+> You can register this object to receive custom communication data sent by the input method application. When the custom communication data is received, the [onMessage](#messagehandleronmessage15) callback in this object is triggered.
 >
-> This object is globally unique. After multiple registrations, only the last registered object is valid and retained, and the [onTerminated](#messagehandleronterminated16) callback of the penultimate registered object is triggered.
+> This object is globally unique. After multiple registrations, only the last registered object is valid and retained, and the [onTerminated](#messagehandleronterminated15) callback of the penultimate registered object is triggered.
 >
-> If this object is unregistered, its [onTerminated](#messagehandleronterminated16) callback will be triggered.
+> If this object is unregistered, its [onTerminated](#messagehandleronterminated15) callback will be triggered.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -811,7 +811,7 @@ Represents a custom communication object.
 | onTerminated | function | No  | Callback triggered when an object terminates receiving custom communication data.          |
 | onMessage    | function | No  | Callback triggered when an object starts to receive custom communication data.|
 
-## MessageHandler.onMessage<sup>16+</sup>
+## MessageHandler.onMessage<sup>15+</sup>
 
 onMessage(msgId: string, msgParam?: ArrayBuffer): void
 
@@ -852,7 +852,7 @@ try {
 }
 ```
 
-## MessageHandler.onTerminated<sup>16+</sup>
+## MessageHandler.onTerminated<sup>15+</sup>
 
 onTerminated(): void
 
@@ -1891,7 +1891,7 @@ inputMethodController.hideSoftKeyboard().then(() => {
 });
 ```
 
-### sendMessage<sup>16+</sup>
+### sendMessage<sup>15+</sup>
 
 sendMessage(msgId: string, msgParam?: ArrayBuffer): Promise<void&gt;
 
@@ -1945,7 +1945,7 @@ inputMethodController.sendMessage(msgId, msgParam).then(() => {
 });
 ```
 
-### recvMessage<sup>16+</sup>
+### recvMessage<sup>15+</sup>
 
 recvMessage(msgHandler?: MessageHandler): void
 
@@ -1953,9 +1953,9 @@ Registers or unregisters MessageHandler.
 
 > **NOTE**
 >
-> The [MessageHandler](#messagehandler16) object is globally unique. After multiple registrations, only the last registered object is valid and retained, and the [onTerminated](#messagehandleronterminated16) callback of the penultimate registered object is triggered.
+> The [MessageHandler](#messagehandler15) object is globally unique. After multiple registrations, only the last registered object is valid and retained, and the [onTerminated](#messagehandleronterminated15) callback of the penultimate registered object is triggered.
 >
-> If no parameter is set, unregister [MessageHandler](#messagehandler16). Its [onTerminated](#messagehandleronterminated16) callback will be triggered.
+> If no parameter is set, unregister [MessageHandler](#messagehandler15). Its [onTerminated](#messagehandleronterminated15) callback will be triggered.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1963,7 +1963,7 @@ Registers or unregisters MessageHandler.
 
 | Name    | Type                               | Mandatory| Description                                                        |
 | ---------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| msgHandler | [MessageHandler](#messagehandler16) | No  | This object receives custom communication data from the input method application through [onMessage](#messagehandleronmessage16) and receives a message for terminating the subscription to this object through [onTerminated](#messagehandleronterminated16). If no parameter is set, unregister [MessageHandler](#messagehandler16). Its [onTerminated](#messagehandleronterminated16) callback will be triggered.|
+| msgHandler | [MessageHandler](#messagehandler15) | No  | This object receives custom communication data from the input method application through [onMessage](#messagehandleronmessage15) and receives a message for terminating the subscription to this object through [onTerminated](#messagehandleronterminated15). If no parameter is set, unregister [MessageHandler](#messagehandler15). Its [onTerminated](#messagehandleronterminated15) callback will be triggered.|
 
 **Return value**
 
@@ -3542,7 +3542,7 @@ inputMethodSetting.displayOptionalInputMethod().then(() => {
 })
 ```
 
-### getInputMethodState<sup>16+</sup>
+### getInputMethodState<sup>15+</sup>
 
 getInputMethodState(): Promise&lt;EnabledState&gt;
 

@@ -148,7 +148,7 @@ The following describes how to subscribe to the main thread jank event in sampli
                     // The number of event reporting times.
                     "report_times_per_app": "3",
                   };
-                  hiAppEvent.setEventConfig("MAIN_THREAD_JANK", params).then(() => {
+                  hiAppEvent.setEventConfig(hiAppEvent.event.MAIN_THREAD_JANK, params).then(() => {
                     hilog.info(0x0000, 'testTag', `HiAppEvent success to set event params.`)
                   }).catch((err: BusinessError) => {
                     hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`)

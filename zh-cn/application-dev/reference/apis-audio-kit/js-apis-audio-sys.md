@@ -2048,69 +2048,11 @@ async function selectOutputDeviceByFilter(){
 }
 ```
 
-### selectInputDeviceByFilter<sup>14+</sup>
+### selectInputDeviceByFilter<sup>18+</sup>
 
-selectInputDeviceByFilter(filter: AudioCapturerFilter, inputAudioDeviceDescriptor: AudioDeviceDescriptors, callback: AsyncCallback&lt;void&gt;): void
+selectInputDeviceByFilter(filter: AudioCapturerFilter, inputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt;
 
-根据过滤条件，选择音频输入设备，当前只能选择一个输入设备，使用callback方式异步返回结果。
-
-**系统接口：** 该接口为系统接口
-
-**系统能力：** SystemCapability.Multimedia.Audio.Device
-
-**参数：**
-
-| 参数名                         | 类型                                                                | 必填 | 说明                                      |
-|-----------------------------|-------------------------------------------------------------------| ---- |-----------------------------------------|
-| filter                      | [AudioCapturerFilter](#audiocapturerfilter14)                     | 是   | 过滤条件类。                                  |
-| outputAudioDeviceDescriptor | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | 是   | 输入设备类。                                  |
-| callback                    | AsyncCallback&lt;void&gt;                                         | 是   | 回调函数。当选择音频输出设备成功，err为undefined，否则为错误对象。 |
-
-**示例：**
-```ts
-import { audio } from '@kit.AudioKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let inputAudioCapturerFilter: audio.AudioCapturerFilter = {
-    uid : 20010041,
-    capturerInfo : {
-        source: audio.SourceType.SOURCE_TYPE_MIC,
-        capturerFlags: 0
-    }
-};
-
-let inputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
-    deviceRole : audio.DeviceRole.INPUT_DEVICE,
-    deviceType : audio.DeviceType.MIC,
-    id : 1,
-    name : "",
-    address : "",
-    sampleRates : [44100],
-    channelCounts : [2],
-    channelMasks : [0],
-    networkId : audio.LOCAL_NETWORK_ID,
-    interruptGroupId : 1,
-    volumeGroupId : 1,
-    displayName : "",
-}];
-
-async function selectInputDeviceByFilter() {
-    let audioManager = audio.getAudioManager();  // 需要先创建AudioManager实例。
-    let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioManager的方法创建AudioRoutingManager实例。
-    audioRoutingManager.selectInputDeviceByFilter(inputAudioCapturerFilter, inputAudioDeviceDescriptor, (err: BusinessError) => {
-    if (err) {
-        console.error(`Result ERROR: ${err}`);
-    } else {
-        console.info('Select input devices by filter result callback: SUCCESS'); }
-    });
-}
-```
-
-### selectInputDeviceByFilter<sup>14+</sup>
-
-selectInputDeviceByFilter(filter: AudioCapturerFilter, outputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt;
-
-根据过滤条件，选择音频输入设备，当前只能选择一个输入设备，使用Promise方式异步返回结果。
+根据过滤条件，选择音频输入设备，当前只能选择一个输入设备。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -2118,16 +2060,27 @@ selectInputDeviceByFilter(filter: AudioCapturerFilter, outputAudioDevices: Audio
 
 **参数：**
 
-| 参数名                 | 类型                                                         | 必填 | 说明     |
-| ----------------------| ------------------------------------------------------------ | ---- |--------|
-| filter                      | [AudioCapturerFilter](#audiocapturerfilter14)                     | 是   | 过滤条件类。 |
-| outputAudioDeviceDescriptor | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | 是   | 输入设备类。 |
+| 参数名                 | 类型                                                                | 必填 | 说明     |
+| ----------------------|-------------------------------------------------------------------| ---- |--------|
+| filter                      | [AudioCapturerFilter](#audiocapturerfilter18)                     | 是   | 过滤条件类。 |
+| inputAudioDevices | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | 是   | 输入设备类。 |
 
 **返回值：**
 
 | 类型                  | 说明                         |
 | --------------------- | --------------------------- |
 | Promise&lt;void&gt;   | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 |  Parameter verification failed.|
+
 
 **示例：**
 
@@ -2169,9 +2122,9 @@ async function selectInputDeviceByFilter(){
 }
 ```
 
-### getPreferredOutputDeviceByFilter<sup>14+</sup>
+### getPreferredOutputDeviceByFilter<sup>18+</sup>
 
-getPreferredOutputDeviceByFilter(filter: AudioRendererFilter):  AudioDeviceDescriptors
+getPreferredOutputDeviceByFilter(filter: AudioRendererFilter): AudioDeviceDescriptors
 
 根据过滤条件，查询音频输出设备。
 
@@ -2190,6 +2143,16 @@ getPreferredOutputDeviceByFilter(filter: AudioRendererFilter):  AudioDeviceDescr
 | 类型                  | 说明                         |
 | --------------------- | --------------------------- |
 | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors)| return the device list. |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 |  Parameter verification failed.|
 
 **示例：**
 ```ts
@@ -2213,9 +2176,9 @@ async function selectOutputDeviceByFilter(){
 }
 ```
 
-### getPreferredInputDeviceByFilter<sup>14+</sup>
+### getPreferredInputDeviceByFilter<sup>18+</sup>
 
-getPreferredInputDeviceByFilter(filter: AudioRendererFilter): AudioDeviceDescriptors
+getPreferredInputDeviceByFilter(filter: AudioCapturerFilter): AudioDeviceDescriptors
 
 根据过滤条件，查询音频输入设备，当前只能查询一个输入设备。
 
@@ -2225,15 +2188,25 @@ getPreferredInputDeviceByFilter(filter: AudioRendererFilter): AudioDeviceDescrip
 
 **参数：**
 
-| 参数名                 | 类型                                                         | 必填 | 说明                      |
-|---------------------| ------------------------------------------------------------ | ---- | ------------------------- |
-| filter              | [AudioCapturerFilter](#audiocapturerfilter14)                     | 是   | 过滤条件类。 |
+| 参数名                 | 类型                                            | 必填 | 说明                      |
+|---------------------|-----------------------------------------------| ---- | ------------------------- |
+| filter              | [AudioCapturerFilter](#audiocapturerfilter18) | 是   | 过滤条件类。 |
 
 **返回值：**
 
 | 类型                  | 说明                         |
 | --------------------- | --------------------------- |
 | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | return the device list. |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 |  Parameter verification failed.|
 
 **示例：**
 
@@ -2511,7 +2484,7 @@ let outputAudioRendererFilter: audio.AudioRendererFilter = {
   rendererId : 0
 };
 ```
-## AudioCapturerFilter<sup>14+</sup>
+## AudioCapturerFilter<sup>18+</sup>
 
 过滤条件类。在调用selectOutputDeviceByFilter接口前，需要先创建AudioCapturerFilter实例。
 

@@ -68,7 +68,7 @@ ArcSlider({options?: ArcSliderOptions})
 | valueOptions | [ArcSliderValueOptions](#arcslidervalueoptions) | 否 | @Trace | 配置弧形Slider的数值信息。<br/>默认值：[ArcSliderValueOptions](#arcslidervalueoptions)的各项子属性均取其默认值 |
 | layoutOptions | [ArcSliderLayoutOptions](#arcsliderlayoutoptions) | 否 | @Trace | 配置弧形Slider的布局信息。<br/>默认值：[ArcSliderLayoutOptions](#arcsliderlayoutoptions)的各项子属性均取其默认值 |
 | styleOptions | [ArcSliderStyleOptions](#arcsliderstyleoptions) | 否 | @Trace | 配置弧形Slider的样式信息。<br/>默认值：[ArcSliderStyleOptions](#arcsliderstyleoptions)的各项子属性均取其默认值 |
-| digitalCrownSensitivity | [CrownSensitivity](ts-appendix-enums.md#crownsensitivity16) | 否 | @Trace | 设置旋转表冠的灵敏度。<br/>默认值：CrownSensitivity.MEDIUM |
+| digitalCrownSensitivity | [CrownSensitivity](ts-appendix-enums.md#crownsensitivity18) | 否 | @Trace | 设置旋转表冠的灵敏度。<br/>默认值：CrownSensitivity.MEDIUM |
 | onTouch | [ArcSliderTouchHandler](#arcslidertouchhandler) | 否 | @Trace | 弧形Slider被触摸时，告知应用。<br/>默认值：不传入的情况，无回调 |
 | onChange | [ArcSliderChangeHandler](#arcsliderchangehandler) | 否 | @Trace | 弧形Slider的进度值发生变化时，告知应用。<br/>默认值：不传入的情况，无回调 |
 
@@ -245,7 +245,7 @@ ArcSliderOptions的构造信息。
 | valueOptions            | [ArcSliderValueOptions](#arcslidervalueoptions)             | 否   | 配置弧形Slider的数值信息。<br/>默认值：[ArcSliderValueOptions](#arcslidervalueoptions)的各项子属性均取其默认值 |
 | layoutOptions           | [ArcSliderLayoutOptions](#arcsliderlayoutoptions)           | 否   | 配置弧形Slider的布局信息。<br/>默认值：[ArcSliderLayoutOptions](#arcsliderlayoutoptions)的各项子属性均取其默认值 |
 | styleOptions            | [ArcSliderStyleOptions](#arcsliderstyleoptions)             | 否   | 配置弧形Slider的样式信息。<br/>默认值：[ArcSliderStyleOptions](#arcsliderstyleoptions)的各项子属性均取其默认值 |
-| digitalCrownSensitivity | [CrownSensitivity](ts-appendix-enums.md#crownsensitivity16) | 否   | 设置旋转表冠的灵敏度。<br/>默认值：CrownSensitivity.MEDIUM   |
+| digitalCrownSensitivity | [CrownSensitivity](ts-appendix-enums.md#crownsensitivity18) | 否   | 设置旋转表冠的灵敏度。<br/>默认值：CrownSensitivity.MEDIUM   |
 | onTouch                 | [ArcSliderTouchHandler](#arcslidertouchhandler)             | 否   | 弧形Slider被触摸时，告知应用。<br/>默认值：不传入的情况，无回调 |
 | onChange                | [ArcSliderChangeHandler](#arcsliderchangehandler)           | 否   | 弧形Slider的进度值发生变化时，告知应用。<br/>默认值：不传入的情况，无回调 |
 
