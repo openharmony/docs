@@ -279,7 +279,7 @@ selectedBorderRadius(value: Dimension)
 
 | 参数名 | 类型                         | 必填 | 说明                             |
 | ------ | ---------------------------- | ---- | -------------------------------- |
-| value  | [Dimension](ts-types.md#dimension10)| 是   | 已选择部分圆角半径。<br/>默认值：style值为SliderStyle.InSet或SliderStyle.OutSet时，跟随底板圆角；style值为SliderStyle.NONE时，为0。<br/>**说明**：设置string类型时，不支持百分比。设定值小于0时取默认值。 |
+| value  | [Dimension](ts-types.md#dimension10)| 是   | 已选择部分圆角半径。<br/>默认值：style值为SliderStyle.InSet或SliderStyle.OutSet时，跟随底板圆角；style值为SliderStyle.NONE时，为0。<br/>**说明**：不支持Percentage类型。设定值小于0时取默认值。 |
 
 ### blockSize<sup>10+</sup>
 
