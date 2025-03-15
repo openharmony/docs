@@ -231,7 +231,7 @@ blockBorderWidth(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明           |
 | ------ | ---------------------------- | ---- | -------------- |
-| value  | [Length](ts-types.md#length) | 是   | 滑块描边粗细。 |
+| value  | [Length](ts-types.md#length) | 是   | 滑块描边粗细。<br/>**说明：**不支持百分比。 |
 
 ### stepColor<sup>10+</sup>
 
@@ -263,7 +263,7 @@ trackBorderRadius(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                             |
 | ------ | ---------------------------- | ---- | -------------------------------- |
-| value  | [Length](ts-types.md#length) | 是   | 底板圆角半径。<br/>默认值：<br/>style值为SliderStyle.OutSet默认值为'2vp'<br/>style值为SliderStyle.InSet默认值为'10vp'。<br/>异常值按默认值处理。 |
+| value  | [Length](ts-types.md#length) | 是   | 底板圆角半径。<br/>默认值：<br/>style值为SliderStyle.OutSet默认值为'2vp'<br/>style值为SliderStyle.InSet默认值为'10vp'。<br/>**说明：**不支持百分比，设定值小于0时取默认值。 |
 
 ### selectedBorderRadius<sup>12+</sup>
 
@@ -279,7 +279,7 @@ selectedBorderRadius(value: Dimension)
 
 | 参数名 | 类型                         | 必填 | 说明                             |
 | ------ | ---------------------------- | ---- | -------------------------------- |
-| value  | [Dimension](ts-types.md#dimension10)| 是   | 已选择部分圆角半径。<br/>默认值：style值为SliderStyle.InSet或SliderStyle.OutSet时，跟随底板圆角；style值为SliderStyle.NONE时，为0。<br/>异常值按默认值处理。 |
+| value  | [Dimension](ts-types.md#dimension10)| 是   | 已选择部分圆角半径。<br/>默认值：style值为SliderStyle.InSet或SliderStyle.OutSet时，跟随底板圆角；style值为SliderStyle.NONE时，为0。<br/>**说明：**不支持百分比，设定值小于0时取默认值。 |
 
 ### blockSize<sup>10+</sup>
 
