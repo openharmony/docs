@@ -769,9 +769,9 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称        | 说明                     |
-| ----------- | ------------------------ |
-| PLACEHOLDER | 显示的数据为通用占位符。 |
+| 名称        | 值 | 说明                     |
+| ----------- | -- | ------------------------ |
+| PLACEHOLDER | 0 |显示的数据为通用占位符。 |
 
 ## ColoringStrategy<sup>10+</sup>
 
@@ -837,11 +837,7 @@
 
 ## Nullable\<T><sup>11+</sup>
 
-Nullable\<T> {
-
-(data: T);
-
-}
+type Nullable\<T> = T | undefined;
 
 开发者在使用该类型时候，该类型的对象可以是自定义类型，也可以是undefined。
 
@@ -849,9 +845,9 @@ Nullable\<T> {
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明                       |
-| ---- | ---- | ---- | -------------------------- |
-| data | T    | 是   | 该类型申明的对象可以是自定义类型，也可以是undefined。 |
+| 名称 | 说明                       |
+| ---- | -------------------------- |
+| T \| undefined | 该类型申明的对象可以是自定义类型，也可以是undefined。 |
 
 ## WordBreak<sup>11+</sup>
 
@@ -1097,7 +1093,7 @@ Nullable\<T> {
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 值   | 描述                               |
+| 名称    | 值   | 说明                               |
 | ------- | ---- | ---------------------------------- |
 | ABS_X  | 0    | 游戏手柄X轴。 |
 | ABS_Y  | 1    | 游戏手柄Y轴。 |
