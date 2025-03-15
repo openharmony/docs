@@ -726,9 +726,9 @@ try {
 }
 ```
 
-### on('callingDisplayChanged')<sup>18+</sup>
+### on('callingDisplayDidChange')<sup>18+</sup>
 
-on(type: 'callingDisplayChanged', callback?: Callback<number>): void;
+on(type: 'callingDisplayDidChange', callback?: Callback<number>): void
 
 订阅编辑框设置对应窗口所在屏幕ID变化。使用callback异步回调。
 
@@ -738,12 +738,12 @@ on(type: 'callingDisplayChanged', callback?: Callback<number>): void;
 
 | 参数名   | 类型                                          | 必填 | 说明                                       |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                        | 是   | 设置监听类型，固定取值为'callingDisplayChanged'。 |
+| type     | string                                        | 是   | 设置监听类型，固定取值为'callingDisplayDidChange'。 |
 | callback |  Callback\<number> | 是   | 回调函数，返回编辑框设置对应窗口屏幕ID。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
@@ -755,22 +755,22 @@ on(type: 'callingDisplayChanged', callback?: Callback<number>): void;
 import { BusinessError } from '@kit.BasicServicesKit';
 import { inputMethodEngine } from '@kit.IMEKit';
 
- let callingDisplayChangedCallback = (num: number) => {
-   console.log(`calling display id: ${num}`);
- }
- try {
-   console.log(`regist calling display changed `);
-   inputMethodEngine.getInputMethodAbility().on('callingDisplayChanged', callingDisplayChangedCallback);
- } catch (err) {
-   let error = err as BusinessError;
-   console.error(`regist calling display changed error: ${error.code} ${error.message}`);
- }
+import { BusinessError } from '@kit.BasicServicesKit';
+import { inputMethodEngine } from '@kit.IMEKit';
+
+try {
+  console.log(`regist calling display changed`);
+  inputMethodEngine.getInputMethodAbility().on('callingDisplayDidChange', callingDisplayChangedCallback);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`regist calling display changed error: ${error.code} ${error.message}`);
+}
 
 ```
 
-### off('callingDisplayChanged')<sup>18+</sup>
+### off('callingDisplayDidChange')<sup>18+</sup>
 
-off(type: 'callingDisplayChanged', callback?: Callback<number>): void
+off(type: 'callingDisplayDidChange', callback?: Callback<number>): void
 
 取消编辑框设置对应窗口所在屏幕ID变化。使用callback异步回调。
 
@@ -780,7 +780,7 @@ off(type: 'callingDisplayChanged', callback?: Callback<number>): void
 
 | 参数名   | 类型                                        | 必填 | 说明                                                         |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                      | 是   | 设置监听类型，固定取值为'callingDisplayChanged'。                   |
+| type     | string                                      | 是   | 设置监听类型，固定取值为'callingDisplayDidChange'。                   |
 | callback | Callback\<number>  | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
@@ -791,9 +791,9 @@ import { inputMethodEngine } from '@kit.IMEKit';
 
 try {
   console.log(`unregist calling display changed `);
-  inputMethodEngine.getInputMethodAbility().off('callingDisplayChanged', (num: number) => {
-  console.log('InputMethodAbility delete calling display  notification.');
-    });
+  inputMethodEngine.getInputMethodAbility().off('callingDisplayDidChange', (num: number) => {
+      console.log('InputMethodAbility delete calling display  notification.');
+  });
 } catch (err) {
   let error = err as BusinessError;
   console.error(`unregist calling display changed error: ${error.code} ${error.message}`);
