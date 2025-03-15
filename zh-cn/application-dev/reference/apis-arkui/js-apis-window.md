@@ -604,7 +604,7 @@ getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002 | This window state is abnormal. Top window is null or destroyed.  |
+| 1300002 | This window state is abnormal. Top window or main window is null or destroyed.  |
 | 1300006 | This window context is abnormal. |
 
 **示例：**
@@ -665,7 +665,7 @@ getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002 | This window state is abnormal. Top window is null or destroyed.   |
+| 1300002 | This window state is abnormal. Top window or main window is null or destroyed.   |
 | 1300006 | This window context is abnormal. |
 
 **示例：**
