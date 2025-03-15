@@ -730,7 +730,7 @@ try {
 
 on(type: 'callingDisplayDidChange', callback: Callback<number>): void
 
-订阅编辑框设置对应窗口所在屏幕ID变化。使用callback异步回调。
+订阅编辑框对应窗口所在屏幕ID变化。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -771,7 +771,7 @@ try {
 
 off(type: 'callingDisplayDidChange', callback?: Callback<number>): void
 
-取消编辑框设置对应窗口所在屏幕ID变化。使用callback异步回调。
+取消编辑框对应窗口所在屏幕ID变化。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
