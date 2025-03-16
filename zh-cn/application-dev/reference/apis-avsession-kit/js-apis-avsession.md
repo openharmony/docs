@@ -8099,7 +8099,7 @@ on(type: 'pickerStateChange', callback: Callback<AVCastPickerState\>) : void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -8138,7 +8138,7 @@ off(type: 'pickerStateChange', callback?: Callback<AVCastPickerState\>) : void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **示例：**
 
