@@ -1,6 +1,8 @@
-# @ohos.app.ability.autoFillManager (autoFillManager)
+# @ohos.app.ability.autoFillManager (autoFillManager)(系统接口)
 
-autoFillManager模块提供手动保存账号密码等功能。
+autoFillManager模块提供账号密码保存等功能。
+
+不同于页面切换时触发的系统自动保存功能，该功能需要由用户手动触发。例如用户在网站上输入了账号密码，并点击“保存”按钮，才能触发相应的自动保存操作。
 
 > **说明：**
 > 
@@ -8,7 +10,7 @@ autoFillManager模块提供手动保存账号密码等功能。
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口均为系统接口，三方应用不支持调用。
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.app.ability.autoFillManager (autoFillManager)](js-apis-app-ability-autoFillManager.md)。
 
 ## 导入模块
 
@@ -68,7 +70,7 @@ type FillRequest = _AutoFillRequest.FillRequest
 
 type SaveRequest = _AutoFillRequest.SaveRequest
 
-自动保存请求信息。
+自动保存的请求信息。
 
 **系统接口**：此接口为系统接口。
 
@@ -78,13 +80,13 @@ type SaveRequest = _AutoFillRequest.SaveRequest
 
 | 类型 | 说明 |
 | --- | --- |
-| [_AutoFillRequest.SaveRequest](js-apis-inner-application-autoFillRequest-sys.md#saverequest) | 表示自动保存请求信息。 |
+| [_AutoFillRequest.SaveRequest](js-apis-inner-application-autoFillRequest-sys.md#saverequest) | 表示自动保存的请求信息。 |
 
 ## UpdateRequest<sup>12+</sup>
 
 type UpdateRequest = _AutoFillRequest.UpdateRequest
 
-自动填充更新信息。
+自动填充的更新信息。
 
 **系统接口**：此接口为系统接口。
 
@@ -94,13 +96,13 @@ type UpdateRequest = _AutoFillRequest.UpdateRequest
 
 | 类型 | 说明 |
 | --- | --- |
-| [_AutoFillRequest.UpdateRequest](js-apis-inner-application-autoFillRequest-sys.md#updaterequest12) | 表示自动填充更新信息。 |
+| [_AutoFillRequest.UpdateRequest](js-apis-inner-application-autoFillRequest-sys.md#updaterequest12) | 表示自动填充的更新信息。 |
 
 ## FillResponse
 
 type FillResponse = _AutoFillRequest.FillResponse
 
-自动填充响应信息。
+自动填充的响应信息。
 
 **系统接口**：此接口为系统接口。
 
@@ -110,7 +112,7 @@ type FillResponse = _AutoFillRequest.FillResponse
 
 | 类型 | 说明 |
 | --- | --- |
-| [_AutoFillRequest.FillResponse](js-apis-inner-application-autoFillRequest-sys.md#fillresponse) | 表示自动填充响应信息。 |
+| [_AutoFillRequest.FillResponse](js-apis-inner-application-autoFillRequest-sys.md#fillresponse) | 表示自动填充的响应信息。 |
 
 ## FillRequestCallback
 
