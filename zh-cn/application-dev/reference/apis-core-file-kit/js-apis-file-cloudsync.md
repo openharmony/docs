@@ -965,21 +965,3 @@ unregisterChange(uri: string): void
 | type | [NotifyType](#notifytype12) | 是   | 更改的通知类型|
 | isDirectory | Array&lt;boolean&gt; | 是   | 指示更改的uri是否为目录|
 | uris | Array&lt;string&gt; | 是   | 更改的uris|
-
-## FileSyncState<sup>11+</sup>
-
-端云文件同步状态，为枚举类型。
-
-**系统能力**： SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口：** 该接口为系统接口。
-
-| 名称 |  值|  说明 |
-| ----- |  ---- |  ---- |
-| UPLOADING |  0 | 上行同步中 |
-| DOWNLOADING |  1 | 下行同步中 |
-| COMPLETED |  2 | 同步成功 |
-| STOPPED |  3 | 同步已停止 |
-| TO_BE_UPLOADED<sup>12+</sup> |  4 | 正在等待上行 |
-| UPLOAD_SUCCESS<sup>12+</sup> |  5 | 文件已成功上行 |
-| UPLOAD_FAILURE<sup>12+</sup> |  6 | 文件上行失败 |
