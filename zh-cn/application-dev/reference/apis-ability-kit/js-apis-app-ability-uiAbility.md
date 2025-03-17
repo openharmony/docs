@@ -214,6 +214,28 @@ class MyUIAbility extends UIAbility {
 }
 ```
 
+## UIAbility.onWillForeground<sup>18+</sup>
+
+onWillForeground(): void
+
+UIAbility生命周期回调，在应用转到前台前触发，在[onForeground](#uiabilityonforeground)前被调用。同步接口，不支持异步回调。
+
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**示例：**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+
+class MyUIAbility extends UIAbility {
+  onWillForeground() {
+    console.log('onWillForeground');
+  }
+}
+```
+
 ## UIAbility.onForeground
 
 onForeground(): void
@@ -236,6 +258,49 @@ class MyUIAbility extends UIAbility {
 }
 ```
 
+## UIAbility.onDidForeground<sup>18+</sup>
+
+onDidForeground(): void
+
+UIAbility生命周期回调，当应用转到前台后触发，在[onForeground](#uiabilityonforeground)后被调用。同步接口，不支持异步回调。
+
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**示例：**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+
+class MyUIAbility extends UIAbility {
+  onDidForeground() {
+    console.log('onDidForeground');
+  }
+}
+```
+
+## UIAbility.onWillBackground<sup>18+</sup>
+
+onWillBackground(): void
+
+UIAbility生命周期回调，当应用从前台转到后台前触发，在[onBackground](#uiabilityonbackground)前被调用。同步接口，不支持异步回调。
+
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**示例：**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+
+class MyUIAbility extends UIAbility {
+  onWillBackground() {
+    console.log('onWillBackground');
+  }
+}
+```
 
 ## UIAbility.onBackground
 
@@ -259,79 +324,12 @@ class MyUIAbility extends UIAbility {
 }
 ```
 
-## UIAbility.onWillForeground<sup>18+</sup>
-
-onWillForeground(): void
-
-UIAbility生命周期回调，当应用从后台转到前台时触发。同步接口，不支持异步回调。
-
-**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
-
-**示例：**
-
-```ts
-import { UIAbility } from '@kit.AbilityKit';
-
-class MyUIAbility extends UIAbility {
-  onWillForeground() {
-    console.log('onWillForeground');
-  }
-}
-```
-
-
-## UIAbility.onWillBackground<sup>18+</sup>
-
-onWillBackground(): void
-
-UIAbility生命周期回调，当应用从前台转到后台时触发。同步接口，不支持异步回调。
-
-**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
-
-**示例：**
-
-```ts
-import { UIAbility } from '@kit.AbilityKit';
-
-class MyUIAbility extends UIAbility {
-  onWillBackground() {
-    console.log('onWillBackground');
-  }
-}
-```
-
-## UIAbility.onDidForeground<sup>18+</sup>
-
-onDidForeground(): void
-
-UIAbility生命周期回调，当应用从后台转到前台时触发。同步接口，不支持异步回调。
-
-**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
-
-**示例：**
-
-```ts
-import { UIAbility } from '@kit.AbilityKit';
-
-class MyUIAbility extends UIAbility {
-  onDidForeground() {
-    console.log('onDidForeground');
-  }
-}
-```
-
 
 ## UIAbility.onDidBackground<sup>18+</sup>
 
 onDidBackground(): void
 
-UIAbility生命周期回调，当应用从前台转到后台时触发。同步接口，不支持异步回调。
+UIAbility生命周期回调，当应用从前台转到后台后触发，在[onBackground](#uiabilityonbackground)后被调用。同步接口，不支持异步回调。
 
 **原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
