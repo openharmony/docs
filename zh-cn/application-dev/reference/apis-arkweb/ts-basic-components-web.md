@@ -7587,10 +7587,10 @@ setGestureEventResult(result: boolean): void
 | 名称            | 值 | 说明     |
 | -------------- | -- | -------- |
 | NONE           | 0 | 不可编辑。 |
-| CAN_CUT        | 1 | 支持剪切。 |
-| CAN_COPY       | 2 | 支持拷贝。 |
-| CAN_PASTE      | 4 | 支持粘贴。 |
-| CAN_SELECT_ALL | 8 | 支持全选。 |
+| CAN_CUT        | 1 << 0 | 支持剪切。 |
+| CAN_COPY       | 1 << 1 | 支持拷贝。 |
+| CAN_PASTE      | 1 << 2 | 支持粘贴。 |
+| CAN_SELECT_ALL | 1 << 3 | 支持全选。 |
 
 ## WebContextMenuParam<sup>9+</sup>
 
