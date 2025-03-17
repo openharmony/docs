@@ -19,9 +19,7 @@ import { bundleManager } from '@kit.AbilityKit';
 
 权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
 
-## 枚举
-
-### BundleFlag
+## BundleFlag
 
 包信息标志，指示需要获取的包信息的内容。
 
@@ -42,7 +40,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | GET_BUNDLE_INFO_WITH_ROUTER_MAP<sup>12+</sup> | 0x00000200 | 用于获取包含routerMap的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | GET_BUNDLE_INFO_WITH_SKILL<sup>12+</sup>      | 0x00000800 | 用于获取包含skills的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE、GET_BUNDLE_INFO_WITH_ABILITY、GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY一起使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
-### ExtensionAbilityType
+## ExtensionAbilityType
 
 指示扩展组件的类型。
 
@@ -75,7 +73,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | UNSPECIFIED      | 255 | 不指定类型，配合queryExtensionAbilityInfo接口可以查询所有类型的ExtensionAbility。 |
 
 
-### PermissionGrantState
+## PermissionGrantState
 
 指示权限授予状态。
 
@@ -88,7 +86,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | PERMISSION_DENIED|  -1 | 拒绝授予权限。 |
 | PERMISSION_GRANTED |  0  |  授予权限。  |
 
-### SupportWindowMode
+## SupportWindowMode
 
 标识该组件所支持的窗口模式。
 
@@ -102,7 +100,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | SPLIT            | 1   | 窗口支持分屏显示。 |
 | FLOATING         | 2   | 支持窗口化显示。   |
 
-### LaunchType
+## LaunchType
 
 指示组件的启动方式。
 
@@ -116,7 +114,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | MULTITON         | 1   | ability的启动模式，表示普通多实例。 |
 | SPECIFIED        | 2   | ability的启动模式，表示该ability内部根据业务自己指定多实例。 |
 
-### AbilityType
+## AbilityType
 
 指示Ability组件的类型。
 
@@ -130,7 +128,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | SERVICE | 2    | 后台服务类型的Ability，无UI界面。表示基于Service模板开发的PA，用于提供后台运行任务的能力。  |
 |  DATA   | 3    | 表示基于Data模板开发的PA，用于对外部提供统一的数据访问对象。 |
 
-### DisplayOrientation
+## DisplayOrientation
 
 标识该Ability的显示模式。该标签仅适用于page类型的Ability。
 
@@ -154,7 +152,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | AUTO_ROTATION_UNSPECIFIED<sup>12+</sup> |13|受开关控制和由系统判定的自动旋转模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | FOLLOW_DESKTOP<sup>12+</sup> |14|跟随桌面的旋转模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
-### CompatiblePolicy<sup>10+</sup>
+## CompatiblePolicy<sup>10+</sup>
 
 标识共享库的版本兼容类型。
 
@@ -166,7 +164,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | ---------------------- | ---- | -------------------------------- |
 | BACKWARD_COMPATIBILITY | 1    | 该字段表明共享库是向后兼容类型。 |
 
-### ModuleType
+## ModuleType
 
 标识模块类型。
 
@@ -180,7 +178,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | FEATURE | 2    | 应用的动态特性模块。 |
 | SHARED  | 3    | 应用的动态共享库模块。  |
 
-### BundleType
+## BundleType
 
 标识应用的类型。
 
@@ -193,7 +191,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | APP            | 0    | 该Bundle是应用。    |
 | ATOMIC_SERVICE | 1    | 该Bundle是原子化服务。 |
 
-### MultiAppModeType<sup>12+</sup>
+## MultiAppModeType<sup>12+</sup>
 标识应用多开的模式类型。
 
  **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
@@ -204,9 +202,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | MULTI_INSTANCE |  1  | 多实例模式。  |
 | APP_CLONE |  2  |  分身模式。  |
 
-## 接口
-
-### bundleManager.getBundleInfoForSelf
+## bundleManager.getBundleInfoForSelf
 
 getBundleInfoForSelf(bundleFlags: number): Promise\<BundleInfo>
 
@@ -258,7 +254,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfoForSelf
+## bundleManager.getBundleInfoForSelf
 
 getBundleInfoForSelf(bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
@@ -307,7 +303,7 @@ try {
 }
 ```
 
-### bundleManager.getProfileByAbility
+## bundleManager.getProfileByAbility
 
 getProfileByAbility(moduleName: string, abilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string\>\>): void
 
@@ -366,7 +362,7 @@ try {
 }
 ```
 
-### bundleManager.getProfileByAbility
+## bundleManager.getProfileByAbility
 
 getProfileByAbility(moduleName: string, abilityName: string, metadataName?: string): Promise\<Array\<string\>\>
 
@@ -450,7 +446,7 @@ try {
 }
 ```
 
-### bundleManager.getProfileByAbilitySync<sup>10+</sup>
+## bundleManager.getProfileByAbilitySync<sup>10+</sup>
 
 getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: string): Array\<string\>
 
@@ -528,7 +524,7 @@ try {
 }
 ```
 
-### bundleManager.getProfileByExtensionAbility
+## bundleManager.getProfileByExtensionAbility
 
 getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string\>\>): void
 
@@ -586,7 +582,7 @@ try {
 }
 ```
 
-### bundleManager.getProfileByExtensionAbility
+## bundleManager.getProfileByExtensionAbility
 
 getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName?: string): Promise\<Array\<string\>\>
 
@@ -658,7 +654,7 @@ try {
 }
 ```
 
-### bundleManager.getProfileByExtensionAbilitySync<sup>10+</sup>
+## bundleManager.getProfileByExtensionAbilitySync<sup>10+</sup>
 
 getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: string, metadataName?: string): Array\<string\>
 
@@ -724,7 +720,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfoForSelfSync<sup>10+</sup>
+## bundleManager.getBundleInfoForSelfSync<sup>10+</sup>
 
 getBundleInfoForSelfSync(bundleFlags: number): BundleInfo
 
@@ -772,7 +768,7 @@ try {
 }
 ```
 
-### bundleManager.canOpenLink<sup>12+</sup>
+## bundleManager.canOpenLink<sup>12+</sup>
 
 canOpenLink(link: string): boolean
 
