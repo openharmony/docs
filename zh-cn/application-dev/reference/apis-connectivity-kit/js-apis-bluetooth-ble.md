@@ -15,7 +15,7 @@ import { ble } from '@kit.ConnectivityKit';
 ```
 
 
-## ProfileConnectionState<sup>12+</sup>
+## ProfileConnectionState<sup>10+</sup>
 
 type ProfileConnectionState = constant.ProfileConnectionState
 
@@ -4373,5 +4373,5 @@ try {
 | 名称      | 值    | 说明                           |
 | --------  | ---- | ------------------------------ |
 | NORMAL  | 1    | 表示常规扫描上报模式。       |
-| FENCE_SENSITIVITY_LOW<sup>16+</sup>  | 10    | 表示低灵敏度围栏上报模式，只在首次收到广播包和丢失广播包时上报，灵敏度低。    |
-| FENCE_SENSITIVITY_HIGH<sup>16+</sup>  | 11    | 表示高灵敏度围栏上报模式，只在首次收到广播包和丢失广播包时上报，灵敏度高。    |
+| FENCE_SENSITIVITY_LOW<sup>18+</sup>  | 10    | 表示低灵敏度围栏上报模式。只在首次收到广播包和丢失广播包时上报，灵敏度低。    |
+| FENCE_SENSITIVITY_HIGH<sup>18+</sup>  | 11    | 表示高灵敏度围栏上报模式。只在首次收到广播包和丢失广播包时上报，灵敏度高。    |
