@@ -251,7 +251,7 @@ libscsi.z.so
 
     ```c++
     ScsiPeripheral_Request sendRequest = {0};
-    uint8_t cdbData[SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN] = {0x28, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    uint8_t cdbData[SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN] = {0x28, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // The cstring header file needs to be imported.
     memcpy(sendRequest.commandDescriptorBlock, cdbData, SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN);
     sendRequest.cdbLength = 10;
     sendRequest.dataTransferDirection = -3;
@@ -261,7 +261,7 @@ libscsi.z.so
     ret = OH_ScsiPeripheral_SendRequestByCdb(dev, &sendRequest, &sendResponse);
     ```
 
-13. Destroy a buffer.
+13. Destroy the buffer.
 
     After all requests are processed and before the program exits, use **OH_ScsiPeripheral_DestroyDeviceMemMap** in **scsi_peripheral_api.h** to destroy the buffer.
 
