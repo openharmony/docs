@@ -1,21 +1,21 @@
 # Media Kit
 
-- ArkTS APIs
+- ArkTS APIs<!--media-arkts-->
   - [@ohos.multimedia.media (Media)](js-apis-media.md)
   <!--Del-->
-  - [@ohos.multimedia.media (Media) (System)](js-apis-media-sys.md)
+  - [@ohos.multimedia.media (Media) (System API)](js-apis-media-sys.md)
   <!--DelEnd-->
-  - multimedia
+  - multimedia<!--media-multimedia-arkts-->
     - [SoundPool (Sound Pool)](js-apis-inner-multimedia-soundPool.md)
     <!--Del-->
     - [SoundPool (Sound Pool) (System API)](js-apis-inner-multimedia-soundPool-sys.md)
     <!--DelEnd-->
-- C APIs
-  - Modules
+- C APIs<!--media-c-->
+  - Modules<!--media-module-->
     - [AVPlayer](_a_v_player.md)
     - [AVScreenCapture](_a_v_screen_capture.md)
     - [VideoProcessing](_video_processing.md)
-  - Header Files
+  - Header Files<!--media-headerfile-->
     - [avplayer.h](avplayer_8h.md)
     - [avplayer_base.h](avplayer__base_8h.md)
     - [native_avscreen_capture.h](native__avscreen__capture_8h.md)
@@ -23,7 +23,7 @@
     - [native_avscreen_capture_errors.h](native__avscreen__capture__errors_8h.md)
     - [video_processing.h](video__processing_8h.md)
     - [video_processing_types.h](video__processing__types_8h.md)
-  - Structs
+  - Structs<!--media-struct-->
     - [AVPlayerCallback](_a_v_player_callback.md)
     - [OH_AudioBuffer](_o_h___audio_buffer.md)
     - [OH_AudioCaptureInfo](_o_h___audio_capture_info.md)
@@ -37,5 +37,5 @@
     - [OH_VideoEncInfo](_o_h___video_enc_info.md)
     - [OH_VideoInfo](_o_h___video_info.md)
     - [VideoProcessing_ColorSpaceInfo](_video_processing___color_space_info.md)
-- Error Codes
+- Error Codes<!--media-arkts-errcode-->
   - [Media Error Codes](errorcode-media.md)
