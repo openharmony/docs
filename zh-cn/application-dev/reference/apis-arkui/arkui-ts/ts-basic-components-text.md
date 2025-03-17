@@ -340,7 +340,7 @@ fontFamily(value: string | Resource)
 
 copyOption(value: CopyOptions)
 
-设置组件是否支持文本可复制粘贴。设置copyOptions为CopyOptions.InApp或者CopyOptions.LocalDevice，长按文本，会弹出文本选择菜单，可选中文本并进行复制、全选操作。
+设置组件是否支持文本可复制粘贴。设置copyOptions为CopyOptions.InApp或者CopyOptions.LocalDevice，长按文本，会弹出文本选择菜单，可选中文本并进行复制、全选操作，此时Text会监听onClick事件，手势事件为非冒泡事件，若需要点击Text组件区域响应父组件的点击手势事件，建议在父组件上使用[parallelGesture](ts-gesture-settings.md#绑定手势识别)绑定手势识别，也可参考[示例7设置文本识别](#示例7设置文本识别)。
 
 由于卡片没有长按事件，此场景下长按文本，不会弹出文本选择菜单。
 
@@ -1597,6 +1597,11 @@ struct TextExample7 {
           .width('100%')
       }
       .width('100%')
+      // 使用parallelGesture中的TapGesture替代onClick属性，达到非冒泡事件类似冒泡
+      // 的效果，点击Text组件区域Column上的点击事件正常响应
+      .parallelGesture(TapGesture().onAction((event: GestureEvent) => {
+        console.log('test column onClick timestamp:' + event.timestamp);
+      }), GestureMask.Normal)
     }
     .height('100%')
   }

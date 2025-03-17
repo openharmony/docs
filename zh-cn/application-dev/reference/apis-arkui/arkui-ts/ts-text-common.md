@@ -131,7 +131,7 @@ getRectsForRange(range: TextRange, widthStyle: RectWidthStyle, heightStyle: Rect
 
 ## TextMenuItemId<sup>12+</sup>
 
-菜单的Id值。
+自定义菜单项的Id值。用于识别菜单选项，内置菜单项Id值见下列属性表格。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
