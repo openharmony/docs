@@ -4998,3 +4998,11 @@ struct richEditorNew03 {
 }
 ```
 ![StyledString](figures/builderspan_drag_config.gif)
+
+### 示例27（文本设置Url样式）
+通过在addTextSpan、UpdateSpanStyle接口中添加UrlStyle，可以实现文本点击跳转链接的功能。
+
+```ts
+// xxx.ets
+
+```
