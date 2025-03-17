@@ -11,6 +11,19 @@
     - [fail-Topic since is a non-positive integer](onlyfortest/reference/hdi-apis/codec/_omx_codec_buffer_v10.md)
     - [fail-overview not the first level-2 title](onlyfortest/reference/apis-audio-kit/_o_h___audio_capturer___callbacks___struct.md)
     - [fail-no overview](onlyfortest/reference/apis-audio-kit/_o_h___audio_renderer___callbacks___struct.md)
+  - Tag the API attribute<!--reference-fold-1218-->
+    - ArkTs API<!--reference-arkts-->
+      - [Accessibility Error Codes](onlyfortest/reference/apis-accessibility-kit/errorcode-accessibility.md)
+      - [\@ohos.accessibility.config (SystemAPI)](onlyfortest/reference/apis-accessibility-kit/js-apis-accessibility-config-sys.md)
+      - [AccessibilityExtensionContext (Accessibility Extension Context)](onlyfortest/reference/apis-accessibility-kit/js-apis-inner-application-accessibilityExtensionContext.md)
+      - [Ads Service Framework Error Codes](onlyfortest/reference/apis-ads-kit/errorcode-ads.md)
+      - [\@ohos.advertising (Ads Service Framework)](onlyfortest/reference/apis-ads-kit/js-apis-advertising.md)
+      - [arkui-js-image](reference/apis-arkui/arkui-js/js-components-basic-image.md)
+      - [arkui-js-input](reference/apis-arkui/arkui-js/js-components-basic-input.md)
+      - [arkui-js-lite-slider](reference/apis-arkui/arkui-js-lite/js-components-basic-slider.md)
+      - [arkui-js-lite-switch](reference/apis-arkui/arkui-js-lite/js-components-basic-switch.md)
+      - [js-service-widget-ui-span](reference/apis-arkui/js-service-widget-ui/js-service-widget-basic-span.md)
+      - [js-service-widget-ui-text](reference/apis-arkui/js-service-widget-ui/js-service-widget-basic-text.md)
 - not-refrence folder<!--not--reference-fold-->
   - C APIC-API add api-nifo tag<!--not--reference-fold--0624-->
     - [OHAudio](onlyfortest/media/audio/audio-kit-intro.md)

@@ -11,6 +11,19 @@
     - [标记fail-Topic起始版本非正整数](onlyfortest/reference/hdi-apis/codec/_omx_codec_buffer_v10.md)
     - [标记fail-概述非第一个二级标题](onlyfortest/reference/apis-audio-kit/_o_h___audio_capturer___callbacks___struct.md)
     - [标记fail-没有概述](onlyfortest/reference/apis-audio-kit/_o_h___audio_renderer___callbacks___struct.md)
+  - 给API打属性标签<!--reference-fold-1218-->
+    - ArkTs API<!--reference-arkts-->
+      -[元能力子系统错误码](onlyfortest/reference/apis-audio-kit/errorcode-audio.md)
+      -[ringtonePlayer (铃声播放器)(系统接口)](onlyfortest/reference/apis-audio-kit/js-apis-inner-multimedia-ringtonePlayer-sys.md)
+      -[@ohos.multimedia.audioHaptic (音振协同)](onlyfortest/reference/apis-audio-kit/js-apis-audioHaptic.md)
+      -[arkui-js-button](reference/apis-arkui/arkui-js/js-components-basic-button.md)
+      -[arkui-js-chart](reference/apis-arkui/arkui-js/js-components-basic-chart.md)
+      -[arkui-js-lite-通用事件](reference/apis-arkui/arkui-js-lite/js-common-events.md)
+      -[arkui-js-lite-通用样式](reference/apis-arkui/arkui-js-lite/js-common-styles.md)
+      -[js-service-widget-ui-chart](reference/apis-arkui/js-service-widget-ui/js-service-widget-basic-chart.md)
+      -[js-service-widget-ui-clock](reference/apis-arkui/js-service-widget-ui/js-service-widget-basic-clock.md)
+      -[native_audiostream_base.h](onlyfortest/reference/apis-audio-kit/native__audiostream__base_8h.md)
+      -[native_audiostreambuilder.h](onlyfortest/reference/apis-audio-kit/native__audiostreambuilder_8h.md)
 - 非reference文件夹<!--not--reference-fold-->
   - C APIC API新增版本筛选标签需求<!--not--reference-fold--0624-->
     - [Audio Kit简介](onlyfortest/media/audio/audio-kit-intro.md)
