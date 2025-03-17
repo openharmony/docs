@@ -1502,17 +1502,17 @@ startAssetAnalysis(type: AnalysisType, assetUris?: Array&lt;string&gt;): Promise
 | 参数名    | 类型                | 必填 | 说明                                                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
 | type      | number              | 是   | 需要启动的智慧分析类型。                                     |
-| assetUris | Array&lt;string&gt; | 否   | 资产uri的数组。填写:仅分析指定资产。不填或数组长度为0:全量分析。 |
+| assetUris | Array&lt;string&gt; | 否   | 资产uri的数组。<br>- 填写：仅分析指定资产。<br>- 不填：全量分析。 |
 
 **返回值：**
 
 | 类型                  | 说明                        |
 | --------------------- | --------------------------- |
-| Promise&lt;number&gt; | Promise对象，服务的任务id。 |
+| Promise&lt;number&gt; | Promise对象。服务的任务id。 |
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1527,9 +1527,10 @@ async function example() {
   console.info('startAssetAnalysisDemo');
 
   try {
+    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
     let uris = ["file://media/Photo/14/IMG_1729066473_013/IMG_20241016_122253.jpg",
                 "file://media/Photo/68/IMG_1729033213_018/IMG_20241016_100082.jpg"];
-    let taskId = await phAccessHelper.startAssetAnalysis(phAccessHelper.AnalysisType.ANALYSIS_SEARCH_INDEX,
+    let taskId = await phAccessHelper.startAssetAnalysis(photoAccessHelper.AnalysisType.ANALYSIS_SEARCH_INDEX,
         uris);
     console.info('startAssetAnalysis success, taskId=' + taskId);
   } catch (err) {
