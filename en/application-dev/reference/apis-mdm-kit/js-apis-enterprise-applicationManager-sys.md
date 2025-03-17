@@ -36,7 +36,7 @@ Adds the applications that are not allowed to run by the current user through th
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to add.                 |
-| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -59,7 +59,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 applicationManager.addDisallowedRunningBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -89,7 +89,7 @@ Adds the applications that are not allowed to run by the specified user through 
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to add.                 |
 | userId     | number                             | Yes   | User ID, which must be greater than or equal to 0.|
-| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -111,7 +111,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 applicationManager.addDisallowedRunningBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -140,13 +140,13 @@ Adds the applications that are not allowed to run by the current or specified us
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to add.                 |
-| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, the applications cannot be run by the specified user.<br>- If **userId** is not passed in, the applications cannot be run by the current user.|
+| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, the applications cannot be run by the specified user.<br> - If **userId** is not passed in, the applications cannot be run by the current user.|
 
 **Return value**
 
 | Type                  | Description                     |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. If the operation fails, an error object will be thrown. |
+| Promise&lt;void&gt; | Promise that returns no value. An error object will be thrown when the operation fails. |
 
 **Error codes**
 
@@ -169,7 +169,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 applicationManager.addDisallowedRunningBundles(wantTemp, appIds, 100).then(() => {
   console.info('Succeeded in adding disallowed running bundles');
@@ -196,7 +196,7 @@ Removes the applications that are not allowed to run by the current user through
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to remove.                 |
-| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -218,7 +218,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -248,7 +248,7 @@ Removes the applications that are not allowed to run by the specified user throu
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to remove.                 |
 | userId     | number                             | Yes   | User ID, which must be greater than or equal to 0.|
-| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -270,7 +270,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -299,13 +299,13 @@ Removes the applications that are not allowed to run by the current or specified
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to remove.                 |
-| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, the applications cannot be run by the specified user.<br>- If **userId** is not passed in, the applications cannot be run by the current user.|
+| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, the applications cannot be run by the specified user.<br> - If **userId** is not passed in, the applications cannot be run by the current user.|
 
 **Return value**
 
 | Type                  | Description                     |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. If the operation fails, an error object will be thrown. |
+| Promise&lt;void&gt; | Promise that returns no value. An error object will be thrown when the operation fails. |
 
 **Error codes**
 
@@ -328,7 +328,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100).then(() => {
   console.info('Succeeded in removing disallowed running bundles');
@@ -354,7 +354,7 @@ Obtains the applications that are not allowed to run by the current user through
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
 
@@ -404,7 +404,7 @@ Obtains the applications that are not allowed to run by the specified user throu
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | userId     | number                             | Yes   | User ID, which must be greater than or equal to 0.|
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
 
@@ -453,7 +453,7 @@ Obtains the applications that are not allowed to run by the current or specified
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, the applications cannot be run by the specified user.<br>- If **userId** is not passed in, the applications cannot be run by the current user.|
+| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, the applications cannot be run by the specified user.<br> - If **userId** is not passed in, the applications cannot be run by the current user.|
 
 **Return value**
 

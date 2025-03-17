@@ -53,6 +53,18 @@ Button(label: ResourceStr, options?: ButtonOptions)
 | label   | [ResourceStr](ts-types.md#resourcestr)  | 是   | 按钮文本内容。       |
 | options | [ButtonOptions](#buttonoptions对象说明) | 否   | 配置按钮的显示样式。 |
 
+### Button
+
+Button()
+
+创建个空按钮。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## ButtonOptions对象说明
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full

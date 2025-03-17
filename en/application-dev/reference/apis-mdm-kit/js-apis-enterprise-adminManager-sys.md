@@ -37,7 +37,7 @@ Enables a device administrator application for the current user. The super devic
 | admin          | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application to enable.           |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information of the device administrator application.     |
 | type           | [AdminType](#admintype)             | Yes   | Type of the device administrator application to enable.        |
-| callback       | AsyncCallback\<void>                | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback       | AsyncCallback\<void>                | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -96,7 +96,7 @@ Enables a device administrator application for the specified user. The super dev
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information of the device administrator application.                |
 | type           | [AdminType](#admintype)             | Yes   | Type of the device administrator application to enable.                 |
 | userId         | number                              | Yes   | User ID, which must be greater than or equal to 0.<br>The default value is the user ID of the caller. |
-| callback       | AsyncCallback\<void>                | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+| callback       | AsyncCallback\<void>                | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
 
@@ -154,7 +154,7 @@ Enables a device administrator application for the current or specified user. Th
 | admin          | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application to enable.                     |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information of the device administrator application.                |
 | type           | [AdminType](#admintype)             | Yes   | Type of the device administrator application to enable.                  |
-| userId         | number                              | No   | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, this API applies to the specified user.<br>- If **userId** is not passed in, this API applies to the current user.|
+| userId         | number                              | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, this API applies to the specified user.<br> - If **userId** is not passed in, this API applies to the current user.|
 
 **Return value**
 
@@ -214,7 +214,7 @@ Disables a common administrator application for the current user. This API uses 
 | Name     | Type                                 | Mandatory  | Description                 |
 | -------- | ----------------------------------- | ---- | ------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Common administrator application to disable.          |
-| callback | AsyncCallback\<void>                | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback\<void>                | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -265,7 +265,7 @@ Disables a common administrator application for the specified user. This API use
 | -------- | ----------------------------------- | ---- | ---------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Common administrator application to disable.                   |
 | userId   | number                              | Yes   | User ID, which must be greater than or equal to 0.<br>The default value is the user ID of the caller. |
-| callback | AsyncCallback\<void>                | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.       |
+| callback | AsyncCallback\<void>                | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.       |
 
 **Error codes**
 
@@ -315,7 +315,7 @@ Disables a super administrator application for the administrator based on **bund
 | Name       | Type                     | Mandatory  | Description                 |
 | ---------- | ----------------------- | ---- | ------------------- |
 | bundleName | String                  | Yes   | Bundle name of the super administrator application to disable.       |
-| callback   | AsyncCallback\<void>    | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback   | AsyncCallback\<void>    | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -409,7 +409,7 @@ Checks whether a device administrator application of the current user is enabled
 | Name     | Type                                 | Mandatory  | Description                  |
 | -------- | ----------------------------------- | ---- | -------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application to check.            |
-| callback | AsyncCallback\<boolean>             | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a Boolean value (**true** means that the device administrator application is enabled; and **false** means the opposite). If the operation fails, **err** is an error object.|
+| callback | AsyncCallback\<boolean>             | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a Boolean value (**true** means that the device administrator application is enabled; and **false** means the opposite). If the operation fails, **err** is an error object.|
 
 **Error codes**
 
@@ -455,8 +455,8 @@ Checks whether a device administrator application of the specified user is enabl
 | Name     | Type                                 | Mandatory  | Description                          |
 | -------- | ----------------------------------- | ---- | ---------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application to check.                     |
-| userId   | number                              | Yes   | User ID, which must be greater than or equal to 0.<br>The default value is the user ID of the caller. |
-| callback | AsyncCallback\<boolean>             | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a Boolean value (**true** means that the device administrator application is enabled; and **false** means the opposite). If the operation fails, **err** is an error object.     |
+| userId   | number                              | Yes   | User ID, which must be greater than or equal to 0.<br> The default value is the user ID of the caller. |
+| callback | AsyncCallback\<boolean>             | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a Boolean value (**true** means that the device administrator application is enabled; and **false** means the opposite). If the operation fails, **err** is an error object.     |
 
 **Error codes**
 
@@ -502,7 +502,7 @@ Checks whether a device administrator application of the current or specified us
 | Name   | Type                                 | Mandatory  | Description                          |
 | ------ | ----------------------------------- | ---- | ---------------------------- |
 | admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application to check.                     |
-| userId | number                              | No   | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, this API applies to the specified user.<br>- If **userId** is not passed in, this API applies to the current user.|
+| userId | number                              | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, this API applies to the specified user.<br> - If **userId** is not passed in, this API applies to the current user.|
 
 **Return value**
 
@@ -553,7 +553,7 @@ Checks whether a super administrator application of the administrator is enabled
 | Name       | Type                     | Mandatory  | Description                  |
 | ---------- | ----------------------- | ---- | -------------------- |
 | bundleName | String                  | Yes   | Super administrator application to check.             |
-| callback   | AsyncCallback\<boolean> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a Boolean value (**true** means that the device administrator application is enabled; and **false** means the opposite). If the operation fails, **err** is an error object.|
+| callback   | AsyncCallback\<boolean> | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a Boolean value (**true** means that the device administrator application is enabled; and **false** means the opposite). If the operation fails, **err** is an error object.|
 
 **Error codes**
 
@@ -682,9 +682,9 @@ Sets enterprise information for a device administrator application. This API use
 
 | Name           | Type                                 | Mandatory  | Description                    |
 | -------------- | ----------------------------------- | ---- | ---------------------- |
-| admin          | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.               |
+| admin          | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application to enable.               |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information to set.          |
-| callback       | AsyncCallback\<void>              | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback       | AsyncCallback\<void>              | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -793,7 +793,7 @@ Obtains the enterprise information of a device administrator application. This A
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | Yes   | Device administrator application.                 |
-| callback | AsyncCallback&lt;[EnterpriseInfo](#enterpriseinfo)&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the enterprise information of the device administrator application obtained. If the operation fails, **err** is an error object.|
+| callback | AsyncCallback&lt;[EnterpriseInfo](#enterpriseinfo)&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the enterprise information of the device administrator application obtained. If the operation fails, **err** is an error object.|
 
 **Error codes**
 
@@ -894,7 +894,7 @@ Subscribes to system management events of a device administrator application. Th
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
 | managedEvents  | Array\<[ManagedEvent](js-apis-enterprise-adminManager.md#managedevent)> | Yes| Array of events to subscribe to.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback\<void> | Yes| Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1003,7 +1003,7 @@ Unsubscribes from system management events of a device administrator application
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
 | managedEvents  | Array\<[ManagedEvent](js-apis-enterprise-adminManager.md#managedevent)> | Yes| Array of events to unsubscribe from.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback\<void> | Yes| Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1112,7 +1112,7 @@ Authorizes the administrator rights to an application through the specified devi
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
 | bundleName  | string | Yes| Bundle name of the application to be authorized with the administrator rights.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1171,7 +1171,7 @@ Authorizes the administrator rights to an application through the specified devi
 
 | Type  | Description                                 |
 | ----- | ----------------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. If the operation fails, an error object will be thrown.|
+| Promise&lt;void&gt; | Promise that returns no value. When the device management application fails to grant the administrator rights to a specified application, an error object is thrown.|
 
 **Error codes**
 
@@ -1201,6 +1201,101 @@ adminManager.authorizeAdmin(wantTemp, bundleName).then(() => {
 }).catch((err: BusinessError) => {
   console.error(`Failed to authorize permission to the application. Code: ${err.code}, message: ${err.message}`);
 })
+```
+
+## adminManager.getAdmins<sup>15+</sup>
+
+getAdmins(): Promise&lt;Array&lt;Want&gt;&gt;
+
+Queries all device administrator applications of the current user. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**Model restriction**: This API can be used only in the stage model.
+
+
+**Return value**
+
+| Type  | Description                                 |
+| ----- | ----------------------------------- |
+| Promise&lt;Array&lt;Want&gt;&gt; | Promise that contains all activated device administrator applications.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                              |
+| ------- | ----------------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**Example**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+adminManager.getAdmins().then((result) => {
+  console.info(`Succeeded in getting admins :${JSON.stringify(result)}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get admins. Code: ${err.code}, message: ${err.message}`);
+})
+```
+
+## adminManager.replaceSuperAdmin<sup>18+</sup>
+
+replaceSuperAdmin(oldAdmin: Want, newAdmin: Want, isKeepPolicy: boolean): void
+
+Replaces a specified application with a super device administrator application.
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Parameters**
+
+| Name           | Type                                 | Mandatory  | Description                          |
+| -------------- | ----------------------------------- | ---- | ---------------------------- |
+| oldAdmin       | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Old EnterpriseAdminExtensionAbility.                 |
+| newAdmin       | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | New EnterpriseAdminExtensionAbility.                |
+| isKeepPolicy   | boolean                             | Yes   | A Boolean value indicates whether to retain the policy of the old **EnterpriseAdminExtensionAbility**. The value **true** means that the policy is retained, and the value **false** means the opposite.     |
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                              |
+| ------- | ----------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device. |
+| 9200003 | The administrator ability component is invalid. |
+| 9200011 | Failed to replace the administrator application of the device. |
+| 201  | Permission verification failed. The application does not have the permission required to call the API. |
+| 202  | Permission verification failed. A non-system application calls a system API. |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let oldAdmin: Want = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
+};
+let newAdmin: Want = {
+  bundleName: 'newBundleName',
+  abilityName: 'newAbilityName',
+};
+try {
+  adminManager.replaceSuperAdmin(oldAdmin, newAdmin, false);
+  console.info(`Succeeded in replace super admin.`);
+} catch(err) {
+  console.error(`Failed to replace super admin. Code: ${err.code}, message: ${err.message}`);
+}
 ```
 
 ## EnterpriseInfo

@@ -1,4 +1,4 @@
-# Calling an ArkTS Method with Return Value of a promise Using Node-API
+# Calling an ArkTS Method with Return Value of a Promise Using Node-API
 
 ## When to Use
 You can call the ArkTS APIs, which return a promise, in the created ArkTS runtime environment as follows:
