@@ -812,15 +812,20 @@ struct ConsumerChild {
     console.log("dataObj changed");
   }
 
+  getContent() {
+    console.log(`this.dataObj.name change: ${this.dataObj.name}`);
+    return this.dataObj.name;
+  }
+
   build() {
     Column() {
-      Text(this.dataObj.name).fontSize(30)
+      Text(this.getContent()).fontSize(30)
     }
   }
 }
 ```
 
-以上示例每次点击Button('change to self')，把相同的类常量赋值给一个Class类型的状态变量，会触发刷新。原因是在状态管理V1中，会给被\@Observed装饰的类对象以及使用状态变量装饰器如@State装饰的Class、Date、Map、Set、Array类型的对象添加一层代理用于观测一层属性或API调用产生的变化。  
+以上示例每次点击Button('change to self')，把相同的类常量赋值给一个Class类型的状态变量，会触发刷新并输出`this.dataObj.name change: a`日志。原因是在状态管理V1中，会给被\@Observed装饰的类对象以及使用状态变量装饰器如@State装饰的Class、Date、Map、Set、Array类型的对象添加一层代理用于观测一层属性或API调用产生的变化。  
 当再次赋值list[0]时，dataObjFromList已经是一个Proxy类型，而list[0]是Object类型，判断是不相等的，因此会触发赋值和刷新。  
 为了避免这种不必要的赋值和刷新，可以通过用\@Observed装饰类，或者使用[UIUtils.getTarget()](./arkts-new-getTarget.md)获取原始对象提前进行新旧值的判断，如果相同则不执行赋值。  
 方法一：增加\@Observed
