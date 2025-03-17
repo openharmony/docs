@@ -116,7 +116,7 @@ getRecentOperatingHandStatus(): OperatingHandStatus;
 
 **系统能力**：SystemCapability.MultimodalAwarness.Motion
 
-**返回值**
+**返回值**：
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
