@@ -3,8 +3,7 @@
 ### 功能简介
 OpenHarmony有一套默认的窗口标题UX样式，但是不同的厂商的不同设备对于窗口有不同的UX样式的诉求，所以为了满足厂商自定义的需求，提供窗口标题栏自定义机制。
 ### 约束与限制
-厂商需要在`foundation/arkui/ace_engine/frameworks/core/components_ng/pattern/container_modal`路径下创建自己的文件夹，放置自定义标题栏代码。并且
-在`foundation/arkui/ace_engine/frameworks/core/components_ng/pattern/BUILD.gn`完成编译配置。
+厂商需要在`foundation/arkui/ace_engine/frameworks/core/components_ng/pattern/container_modal`路径下创建自己的文件夹，放置自定义标题栏代码。并且在`foundation/arkui/ace_engine/frameworks/core/components_ng/pattern/BUILD.gn`完成编译配置。
 ## 开发指导
 
 ### 开发步骤
@@ -132,7 +131,7 @@ container_modal的文件夹结构如下：
         </Configs>
     ```
     > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
-    > window_manager_config_open.xml具体内容是各种配置项，测试前前，需要修改一下默认的最大最小窗口模式，可以修改为厂商定义的值。这个值对应的就是`MaximizeMode maximizeMode = GetWindowManager()->GetWindowMaximizeMode()`获取到的值，系统通过这个值来选择加载相应的标题栏。
+    > window_manager_config_open.xml具体内容是各种配置项，测试前，需要修改一下默认的最大最小窗口模式，可以修改为厂商定义的值。这个值对应的就是`MaximizeMode maximizeMode = GetWindowManager()->GetWindowMaximizeMode()`获取到的值，系统通过这个值来选择加载相应的标题栏。
 
 完成以上准备工作，分三步完成测试：
 1. 包含标题栏修改代码的镜像烧录到设备。
