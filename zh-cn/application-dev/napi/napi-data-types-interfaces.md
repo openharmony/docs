@@ -520,6 +520,7 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | napi_wrap_sendable_with_size | 包裹一个native实例到ArkTS对象中并指定大小。|
 | napi_unwrap_sendable | 获取ArkTS对象包裹的native实例。|
 | napi_remove_wrap_sendable | 移除并获取ArkTS对象包裹的native实例。|
+| napi_wrap_enhance | 在ArkTS对象上绑定一个Node-API模块对象实例并指定实例大小，开发者可以指定绑定的回调函数是否异步执行，如果异步执行，则回调函数必须是线程安全的。 |
 
 #### napi_queue_async_work_with_qos
 
@@ -710,6 +711,19 @@ napi_status napi_unwrap_sendable(napi_env env, napi_value js_object, void** resu
 
 ```c
 napi_status napi_remove_wrap_sendable(napi_env env, napi_value js_object, void** result);
+```
+
+#### napi_wrap_enhance
+
+```c
+napi_status napi_wrap_enhance(napi_env env,
+                              napi_value js_object,
+                              void* native_object,
+                              napi_finalize finalize_cb,
+                              bool async_finalizer,
+                              void* finalize_hint,
+                              size_t native_binding_size,
+                              napi_ref* result);
 ```
 
 ### 环境生命周期
