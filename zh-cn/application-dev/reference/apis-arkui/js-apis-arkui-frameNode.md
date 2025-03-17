@@ -2008,7 +2008,7 @@ bindController(node: FrameNode, controller: Scroller, nodeType: 'Scroll'): void
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 401      | Parameter error. Possible causes: 1. The type of the node is error; 2.The node is null or undefined. |
+| 401      | Parameter error. Possible causes: 1. the type of the node is error. 2. the node is null or undefined. |
 | 100021   | The FrameNode is not modifiable. |
 
 **示例：** 
