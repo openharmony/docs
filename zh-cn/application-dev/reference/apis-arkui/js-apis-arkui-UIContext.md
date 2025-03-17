@@ -2855,7 +2855,7 @@ let localOffsetHeight = modePosition.size.height;
 
 createComponentObserver(id: string): inspector.ComponentObserver
 
-注册组件布局和绘制完成回调通知。
+注册组件布局和组件绘制送显完成回调通知。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2865,7 +2865,7 @@ createComponentObserver(id: string): inspector.ComponentObserver
 
 | 参数名  | 类型     | 必填   | 说明      |
 | ---- | ------ | ---- | ------- |
-| id   | string | 是    | 指定组件id。 |
+| id   | string | 是    | 指定组件id，该id通过通用属性[id](./arkui-ts/ts-universal-attributes-component-id.md#id)或者[key](./arkui-ts/ts-universal-attributes-component-id.md#key12)设置。 |
 
 **返回值：** 
 
