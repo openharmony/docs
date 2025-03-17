@@ -120,7 +120,7 @@ getRecentOperatingHandStatus(): OperatingHandStatus;
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
-| [OperatingHandStatus](#operatinghandstatus); | 返回触控操作手状态信息。 |
+| [OperatingHandStatus](#operatinghandstatus) | 返回触控操作手状态信息。 |
 
 **错误码**：
 
