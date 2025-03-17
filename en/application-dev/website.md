@@ -24,6 +24,10 @@
       - [arkui-js-lite-switch](reference/apis-arkui/arkui-js-lite/js-components-basic-switch.md)
       - [js-service-widget-ui-span](reference/apis-arkui/js-service-widget-ui/js-service-widget-basic-span.md)
       - [js-service-widget-ui-text](reference/apis-arkui/js-service-widget-ui/js-service-widget-basic-text.md)
+      - [Utils Error Codes](onlyfortest/reference/apis-arkts/errorcode-utils.md)
+      - [\@arkts.lang (ArkTS Base Capability)](onlyfortest/reference/apis-arkts/js-apis-arkts-lang.md)
+      - [\@ohos.util.ArrayList (Linear Container ArrayList)](onlyfortest/reference/apis-arkts/js-apis-arraylist.md)
+      - [AVSource](onlyfortest/reference/apis-avcodec-kit/_a_v_source.md)
 - not-refrence folder<!--not--reference-fold-->
   - C APIC-API add api-nifo tag<!--not--reference-fold--0624-->
     - [OHAudio](onlyfortest/media/audio/audio-kit-intro.md)
