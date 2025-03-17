@@ -772,7 +772,7 @@ try {
 
 cancelSerialRight(portId: number): void;
 
-移除应用程序运行时访问串口设备的权限。
+移除应用程序运行时访问串口设备的权限。此接口会调用close关闭已打开的串口。
 
 **系统能力：**  SystemCapability.USB.USBManager.Serial
 
