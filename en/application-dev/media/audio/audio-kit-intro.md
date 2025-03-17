@@ -7,21 +7,21 @@ Audio Kit provides scenario-specific audio playback and recording APIs to help y
 - Low-latency playback
   
    Unified low-latency and non-low-latency audio playback APIs are provided to achieve the lowest audio output latency on various hardware devices. For example, low-latency APIs can be used to implement fast and smooth audio playback in scenarios such as gaming, prompt/alarm tones, and Karaoke.
-
+<!--Del-->
 - Low-power playback
 
    In long-duration audio playback scenarios such as music playing and audiobook listening, a differentiated audio buffer processing mechanism is used for the screen-off scene. This helps audio playback consume less power by reducing the CPU wake-up frequency.
-
+<!--DelEnd-->
 - Audio effect mode
 
    Applications can enable or disable the system audio effects as required to deliver the optimal audio effect output.
 
    The system provides scenario-specific audio effects, for example, audio effects for music playing, audiobook listening, and movie watching. If your application requires custom audio effects, you can disable the system audio effects.
-
+<!--Del-->
 - Spatial audio
 
    Spatial audio APIs are provided. Applications can play audio sources in different formats (stereo, multi-channel, and AudioVivid), and users can get a sense of space and direction while wearing TWS earbuds for listening.
-
+<!--DelEnd-->
 - Audio-haptic
 
    Provides AudioHaptic APIs to implement low-delay synchronous control of audio and haptic streams. When the audio-haptic effect is enabled, users can get rhythmic auditory and haptic feedback while typing or having incoming calls.

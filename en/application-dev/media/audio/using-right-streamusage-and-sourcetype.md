@@ -105,7 +105,6 @@ Common methods for setting the audio playback stream type are as follows:
   Set the **audioRendererInfo** [property](../../reference/apis-media-kit/js-apis-media.md#properties) of the AVPlayer. **AVPlayer.audioRendererInfo** is of the **audio.AudioRendererInfo** type. You can use **AudioRendererInfo.usage** to specify [StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage).
 
   > **NOTE**
-  >
   > The **audioRendererInfo** property of the AVPlayer can be set only in the initialized state.
   >
   > If the application does not set this property, the AVPlayer performs default processing. If the media source contains videos, the default value of **usage** is **STREAM_USAGE_MOVIE**. Otherwise, the default value of **usage** is **STREAM_USAGE_MUSIC**.
