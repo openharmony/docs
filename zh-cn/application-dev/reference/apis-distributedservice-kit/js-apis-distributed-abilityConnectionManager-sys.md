@@ -319,7 +319,7 @@ getSurfaceId(sessionId:&nbsp;number,&nbsp;param:&nbsp;SurfaceParam):&nbsp;string
 
 updateSurfaceParam(sessionId:&nbsp;number,&nbsp;param:&nbsp;SurfaceParam):&nbsp;void;
 
-更新传输流与Surface的绑定关系。
+更新与传输流绑定的Surface的配置信息。
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
