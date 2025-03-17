@@ -437,7 +437,7 @@ import { window } from '@kit.ArkUI';
 **系统能力：**  SystemCapability.Window.SessionManager
 
 | 名称   | 值 | 类型  | 说明                    |
-| ------ | --- | --- | ------------------------ | 
+| ------ | --- | --- | ------------------------ |
 | WINDOW_WILL_ROTATE| 0 | number | 窗口即将旋转。 |
 | WINDOW_DID_ROTATE | 1 | number | 窗口旋转结束。 |
 
@@ -450,7 +450,7 @@ import { window } from '@kit.ArkUI';
 **系统能力：**  SystemCapability.Window.SessionManager
 
 | 名称   | 值 | 类型  | 说明                    |
-| ------ | --- | --- | ------------------------ | 
+| ------ | --- | --- | ------------------------ |
 | RELATIVE_TO_SCREEN | 0 | number | 相对于屏幕的窗口[Rect](#rect7)。 |
 | RELATIVE_TO_PARENT_WINDOW | 1 | number | 相对于父窗口的窗口[Rect](#rect7)。 |
 
@@ -463,7 +463,7 @@ import { window } from '@kit.ArkUI';
 **系统能力：**  SystemCapability.Window.SessionManager
 
 | 名称   | 类型 | 可读  | 可写 | 说明                    |
-| ------ | ---- | ----- | ---- | ----------------------- | 
+| ------ | ---- | ----- | ---- | ----------------------- |
 | type | [RotationChangeType](#rotationchangetype18) | 是 | 否 | 窗口旋转通知类型。<br>- 0表示开始。<br>- 1表示结束。 |
 | orientation | number | 是 | 否 | 窗口旋转方向。<br>- 0表示竖屏。<br>- 1表示横屏。<br>- 2表示反向竖屏。<br>- 3表示反向竖屏。 |
 | displayId | number | 是 | 否 | 窗口所在屏幕Id。 |
@@ -478,7 +478,7 @@ import { window } from '@kit.ArkUI';
 **系统能力：**  SystemCapability.Window.SessionManager
 
 | 名称   | 类型 | 可读  | 可写 | 说明                    |
-| ------ | ---- | ----- | ---- | ----------------------- | 
+| ------ | ---- | ----- | ---- | ----------------------- |
 | rectType | [RectType](#recttype18) | 否 | 是 | 窗口[Rect](#rect7)类型。0表示相对于屏幕坐标系，1表示相对于父窗坐标系。 |
 | windowRect | [Rect](#rect7) | 否 | 是 | 当类型为旋转前通知时，返回旋转后窗口相对于屏幕或父窗坐标系的[Rect](#rect7)信息。当类型为旋转后通知时，可为空。 |
 
@@ -987,7 +987,7 @@ import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-    
+
   onWindowStageCreate(windowStage: window.WindowStage): void {
     let windowClass = windowStage.getMainWindowSync();
     try {
@@ -5476,7 +5476,13 @@ try {
 
 on(type: 'rotationChange', callback: RotationChangeCallback&lt;info: RotationChangeInfo, RotationChangeResult | void&gt;): void
 
-开启窗口旋转变化的监听。旋转前回调必须返回[RotationChangeResult](#rotationchangeresult18)，旋转后可返回空，返回[RotationChangeResult](#rotationchangeresult18)不生效。同一个窗口多次注册同类型回调函数，只生效最新注册的同类型回调函数。
+开启窗口旋转变化的监听。旋转前回调必须返回[RotationChangeResult](#rotationchangeresult18)，旋转后可返回空，返回[RotationChangeResult](#rotationchangeresult18)不生效。同一个窗口多次注册同类型回调函数，只生效最新注册的同类型回调函数。不支持2in1设备。全屏模式窗口不支持该操作。
+
+系统窗口存在大小限制，宽度范围：(0, 1920]，高度范围：(0, 1920]，单位为vp。
+
+设置的宽度与高度受到此约束限制，规则：
+若所设置的窗口宽/高尺寸小于窗口最小宽/高限值，则窗口最小宽/高限值生效；
+若所设置的窗口宽/高尺寸大于窗口最大宽/高限值，则窗口最大宽/高限值生效。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
