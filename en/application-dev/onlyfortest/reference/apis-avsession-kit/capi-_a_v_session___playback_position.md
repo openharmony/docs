@@ -1,0 +1,23 @@
+# AVSession_PlaybackPosition
+
+
+## Overview
+
+The AVSession_PlaybackPosition struct describes the information related to the playback position.
+
+**Since**: 13
+
+**Related module**: [OHAVSession](capi-_o_h_a_v_session.md)
+
+**Head file**: [data_asset.h](capi-native__avsession_8h.md)
+
+
+## Summary
+
+
+### Member Variables
+
+| Name| Description| 
+| -------- | -------- |
+|  int64_t elapsedTime  | Elapsed time, in ms. | 
+|  int64_t updateTime  | Updated time, in ms. | 

@@ -28,6 +28,24 @@
       - [\@arkts.lang (ArkTS Base Capability)](onlyfortest/reference/apis-arkts/js-apis-arkts-lang.md)
       - [\@ohos.util.ArrayList (Linear Container ArrayList)](onlyfortest/reference/apis-arkts/js-apis-arraylist.md)
       - [AVSource](onlyfortest/reference/apis-avcodec-kit/_a_v_source.md)
+    - C API<!--reference-c-->
+      - Background Tasks Kit<!--reference-c-background-tasks-->
+        - Modules<!--reference-c-background-tasks-module-->
+            - [TransientTask](onlyfortest/reference/apis-backgroundtasks-kit/capi-_transient_task.md)
+          - Header Files<!--reference-c-background-tasks-headerfile-->
+            - [jsvm.h](onlyfortest/reference/apis-backgroundtasks-kit/capi-transient__task__api_8h.md)
+            - [os_account.h](onlyfortest/reference/apis-backgroundtasks-kit/capi-transient__task__type_8h.md)
+          - Structs<!--reference-c-background-tasks-struct-->
+            - [TransientTask_DelaySuspendInfo](onlyfortest/reference/apis-backgroundtasks-kit/capi-_transient_task___delay_suspend_info.md)
+      - Avsession<!--reference-c-avsession-->
+        - Modules<!--reference-c-avsession-module-->
+          - [OHAVSession](onlyfortest/reference/apis-avsession-kit/capi-_o_h_a_v_session.md)
+        - Header Files<!--reference-c-avsession-headerfile-->
+          - [net_websocket.h](onlyfortest/reference/apis-avsession-kit/capi-native__avmetadata_8h.md)
+          - [data_asset.h](onlyfortest/reference/apis-avsession-kit/capi-native__avsession_8h.md)
+          - [oh_fileio.h](onlyfortest/reference/apis-avsession-kit/capi-native__avsession__errors_8h.md)
+        - Structs<!--reference-c-avsession-struct-->
+          - [AVSession_PlaybackPosition](onlyfortest/reference/apis-avsession-kit/capi-_a_v_session___playback_position.md)
 - not-refrence folder<!--not--reference-fold-->
   - C APIC-API add api-nifo tag<!--not--reference-fold--0624-->
     - [OHAudio](onlyfortest/media/audio/audio-kit-intro.md)
