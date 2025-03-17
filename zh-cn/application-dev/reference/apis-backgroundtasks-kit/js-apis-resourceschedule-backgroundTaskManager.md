@@ -731,7 +731,7 @@ on(type: 'continuousTaskCancel', callback: Callback&lt;ContinuousTaskCancelInfo&
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 201 | Permission denied. |
-| 401 | Parameter error. Possible causes: 1. Callback parameter error; 2. Register a exist callback type; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible cause: 1. Callback parameter error; 2. Register a exist callback type; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -779,7 +779,7 @@ off(type: 'continuousTaskCancel', callback?: Callback&lt;ContinuousTaskCancelInf
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 201 | Permission denied. |
-| 401 | Parameter error. Possible causes: 1. Callback parameter error; 2. Unregister type has not register; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible cause: 1. Callback parameter error; 2. Unregister type has not register; 3. Parameter verification failed. |
 
 **示例**：
 
