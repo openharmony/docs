@@ -345,12 +345,12 @@ struct UsePropertyName {
 
 1. 点击Button('Add apples')时，apple的值发生变化。
 
-2. 状态管理框架调用\@Watch函数countUpdated，发生变化的状态变量名为apple，满足if逻辑条件，fruit的值被改变；
+2. 状态管理框架调用\@Watch函数countUpdated，发生变化的状态变量名为apple，满足if逻辑条件，fruit的值被改变。
 
 3. 绑定了apple，fruit状态变量的Text重新渲染。
 
 4. 点击Button('Add cabbages')时，cabbage的值发生变化。
 
-5. 状态管理框架调用\@Watch函数countUpdated，发生变化的状态变量名为cabbage，不满足if逻辑条件，fruit的值不发生变化；
+5. 状态管理框架调用\@Watch函数countUpdated，发生变化的状态变量名为cabbage，不满足if逻辑条件，fruit的值不发生变化。
 
 6. 绑定了cabbage状态变量的Text重新渲染。
