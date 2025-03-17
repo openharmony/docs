@@ -403,7 +403,7 @@ minResponsiveDistance(value: number)
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | ------------------------------------------ |
-| value  | number | 是   | 设置滑动响应的最小距离，滑动超过此距离后才响应使滑块滑动。<br/>**说明：** <br/>单位与参数[min](#minlabeldeprecated)和[max](#maxlabeldeprecated)一致。<br/>当value小于0、大于MAX-MIN或非法值时，取默认值。<br/>默认值：0。 |
+| value  | number | 是   | 设置滑动响应的最小距离，滑动超过此距离后才响应使滑块滑动。<br/>**说明：** <br/>单位与参数[min](#slideroptions对象说明)和[max](#slideroptions对象说明)一致。<br/>当value小于0、大于MAX-MIN或非法值时，取默认值。<br/>默认值：0  |
 
 ### contentModifier<sup>12+</sup>
 
@@ -617,7 +617,7 @@ type SliderTriggerChangeCallback = (value: number, mode: SliderChangeMode) => vo
 
 | 参数名 | 类型    | 必填 | 说明              |
 | ------ | ------ | ---------------- | ---------------- |
-| value | number | 是 | 设置当前的进度值。<br/>取值范围：[[min](#minlabeldeprecated)-[max](#maxlabeldeprecated)] |
+| value | number | 是 | 设置当前的进度值。<br/>取值范围：[[min](#slideroptions对象说明)-[max](#slideroptions对象说明)] |
 | mode | [SliderChangeMode](#sliderchangemode枚举说明) | 是 | 设置事件触发的相关状态值。 |
 
 ## 示例
