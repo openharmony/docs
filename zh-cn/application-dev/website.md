@@ -13,17 +13,45 @@
     - [标记fail-没有概述](onlyfortest/reference/apis-audio-kit/_o_h___audio_renderer___callbacks___struct.md)
   - 给API打属性标签<!--reference-fold-1218-->
     - ArkTs API<!--reference-arkts-->
-      -[元能力子系统错误码](onlyfortest/reference/apis-audio-kit/errorcode-audio.md)
-      -[ringtonePlayer (铃声播放器)(系统接口)](onlyfortest/reference/apis-audio-kit/js-apis-inner-multimedia-ringtonePlayer-sys.md)
-      -[@ohos.multimedia.audioHaptic (音振协同)](onlyfortest/reference/apis-audio-kit/js-apis-audioHaptic.md)
-      -[arkui-js-button](reference/apis-arkui/arkui-js/js-components-basic-button.md)
-      -[arkui-js-chart](reference/apis-arkui/arkui-js/js-components-basic-chart.md)
-      -[arkui-js-lite-通用事件](reference/apis-arkui/arkui-js-lite/js-common-events.md)
-      -[arkui-js-lite-通用样式](reference/apis-arkui/arkui-js-lite/js-common-styles.md)
-      -[js-service-widget-ui-chart](reference/apis-arkui/js-service-widget-ui/js-service-widget-basic-chart.md)
-      -[js-service-widget-ui-clock](reference/apis-arkui/js-service-widget-ui/js-service-widget-basic-clock.md)
-      -[native_audiostream_base.h](onlyfortest/reference/apis-audio-kit/native__audiostream__base_8h.md)
-      -[native_audiostreambuilder.h](onlyfortest/reference/apis-audio-kit/native__audiostreambuilder_8h.md)
+      - [元能力子系统错误码](onlyfortest/reference/apis-audio-kit/errorcode-audio.md)
+      - [ringtonePlayer (铃声播放器)(系统接口)](onlyfortest/reference/apis-audio-kit/js-apis-inner-multimedia-ringtonePlayer-sys.md)
+      - [@ohos.multimedia.audioHaptic (音振协同)](onlyfortest/reference/apis-audio-kit/js-apis-audioHaptic.md)
+      - [arkui-js-button](reference/apis-arkui/arkui-js/js-components-basic-button.md)
+      - [arkui-js-chart](reference/apis-arkui/arkui-js/js-components-basic-chart.md)
+      - [arkui-js-lite-通用事件](reference/apis-arkui/arkui-js-lite/js-common-events.md)
+      - [arkui-js-lite-通用样式](reference/apis-arkui/arkui-js-lite/js-common-styles.md)
+      - [js-service-widget-ui-chart](reference/apis-arkui/js-service-widget-ui/js-service-widget-basic-chart.md)
+      - [js-service-widget-ui-clock](reference/apis-arkui/js-service-widget-ui/js-service-widget-basic-clock.md)
+      - [native_audiostream_base.h](onlyfortest/reference/apis-audio-kit/native__audiostream__base_8h.md)
+      - [native_audiostreambuilder.h](onlyfortest/reference/apis-audio-kit/native__audiostreambuilder_8h.md)
+    - C API<!--reference-c-->
+      - AI<!--reference-c-ai-->
+        - 模块<!--reference-c-ai-module-->
+          - [MindSpore](onlyfortest/reference/apis-mindspore-lite-kit/capi-_mind_spore.md)
+        - 头文件<!--reference-c-ai-head-file-->
+          - [context.h](onlyfortest/reference/apis-mindspore-lite-kit/capi-context_8h.md)
+          - [data_type.h](onlyfortest/reference/apis-mindspore-lite-kit/capi-data__type_8h.md)
+          - [format.h](onlyfortest/reference/apis-mindspore-lite-kit/capi-format_8h.md)
+          - [model.h](onlyfortest/reference/apis-mindspore-lite-kit/capi-model_8h.md)
+          - [status.h](onlyfortest/reference/apis-mindspore-lite-kit/capi-status_8h.md)
+          - [tensor.h](onlyfortest/reference/apis-mindspore-lite-kit/capi-tensor_8h.md)
+          - [types.h](onlyfortest/reference/apis-mindspore-lite-kit/capi-types_8h.md)
+        - 结构体<!--reference-c-ai-struct-->
+          - [OH_AI_CallBackParam](onlyfortest/reference/apis-mindspore-lite-kit/capi-_o_h___a_i___call_back_param.md)
+          - [OH_AI_ShapeInfo](onlyfortest/reference/apis-mindspore-lite-kit/capi-_o_h___a_i___shape_info.md)
+          - [OH_AI_TensorHandleArray](onlyfortest/reference/apis-mindspore-lite-kit/capi-_o_h___a_i___tensor_handle_array.md)
+      - Neural Network Runtime Kit（Neural Network运行时服务）<!--reference-c-neural-network-runtime-api-->
+        - 模块<!--neural-network-runtime-module-->
+          - [NeuralNetworkRuntime](onlyfortest/reference/apis-neural-network-runtime-kit/capi-_neural_network_runtime.md)
+        - 头文件<!--neural-network-runtime-headerfile-->
+          - [neural_network_core.h](onlyfortest/reference/apis-neural-network-runtime-kit/capi-neural__network__core_8h.md)
+          - [neural_network_runtime.h](onlyfortest/reference/apis-neural-network-runtime-kit/capi-neural__network__runtime_8h.md)
+          - [neural_network_runtime_type.h](onlyfortest/reference/apis-neural-network-runtime-kit/capi-neural__network__runtime__type_8h.md)
+        - 结构体<!--neural-network-runtime-struct-->
+          - [OH_NN_Memory](onlyfortest/reference/apis-neural-network-runtime-kit/capi-_o_h___n_n___memory.md)
+          - [OH_NN_QuantParam](onlyfortest/reference/apis-neural-network-runtime-kit/capi-_o_h___n_n___quant_param.md)
+          - [OH_NN_Tensor](onlyfortest/reference/apis-neural-network-runtime-kit/capi-_o_h___n_n___tensor.md)
+          - [OH_NN_UInt32Array](onlyfortest/reference/apis-neural-network-runtime-kit/capi-_o_h___n_n___u_int32_array.md)
 - 非reference文件夹<!--not--reference-fold-->
   - C APIC API新增版本筛选标签需求<!--not--reference-fold--0624-->
     - [Audio Kit简介](onlyfortest/media/audio/audio-kit-intro.md)
