@@ -129,10 +129,10 @@
      * 确定密钥别名和封装密钥属性参数集
      */
     let keyAlias = 'test_sm4_key_alias';
-    let cipherInData = 'Hks_SM4_Cipher_Test_101010101010101010110_string'; // 明文数据
+    let cipherInData = 'Hks_SM4_Cipher_Test_101010101010101010110_string'; // 明文数据。
     let IV = '1234567890123456';
     let handle = 0;
-    let cipherText: Uint8Array; // 加密后的密文数据
+    let cipherText: Uint8Array; // 加密后的密文数据。
     
     function StringToUint8Array(str: string) {
       let arr: number[] = [];
@@ -273,11 +273,11 @@
     let keyAlias = 'test_sm4_key_alias';
     let IV = '1234567890123456';
     let handle = 0;
-    let cipherText: Uint8Array; // 密文数据
+    let cipherText: Uint8Array; // 密文数据。
     /*
     * 确定封装密钥属性参数集
     */
-    let finishOutData: Uint8Array; // 解密后的明文数据
+    let finishOutData: Uint8Array; // 解密后的明文数据。
     let fingerAuthToken: Uint8Array;
     let challenge: Uint8Array;
     let authType = userAuth.UserAuthType.FINGERPRINT;
@@ -373,7 +373,7 @@
     }
     
     function userIAMAuthFinger(huksChallenge: Uint8Array) {
-      // 获取认证对象
+      // 获取认证对象。
       let authTypeList: userAuth.UserAuthType[] = [authType];
       const authParam: userAuth.AuthParam = {
         challenge: huksChallenge,
@@ -391,7 +391,7 @@
         console.error("get auth instance failed" + JSON.stringify(error));
         return;
       }
-      // 订阅认证结果
+      // 订阅认证结果。
       try {
         auth.on("result", {
           onResult(result) {
@@ -403,7 +403,7 @@
       } catch (error) {
         console.error("subscribe authentication event failed " + JSON.stringify(error));
       }
-      // 开始认证
+      // 开始认证。
       try {
         auth.start();
         console.info("authV9 start auth success");

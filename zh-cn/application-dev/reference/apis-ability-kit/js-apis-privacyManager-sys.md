@@ -250,7 +250,7 @@ privacyManager.getPermissionUsedRecord(request, (err: BusinessError, data: priva
 });
 ```
 
-## privacyManager.setPermissionUsedRecordToggleStatus<sup>16+</sup>
+## privacyManager.setPermissionUsedRecordToggleStatus<sup>18+</sup>
 
 setPermissionUsedRecordToggleStatus(status: boolean): Promise&lt;void&gt;
 
@@ -299,7 +299,7 @@ privacyManager.setPermissionUsedRecordToggleStatus(true).then(() => {
 });
 ```
 
-## privacyManager.getPermissionUsedRecordToggleStatus<sup>16+</sup>
+## privacyManager.getPermissionUsedRecordToggleStatus<sup>18+</sup>
 
 getPermissionUsedRecordToggleStatus(): Promise&lt;boolean&gt;
 
@@ -398,7 +398,7 @@ privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(
 });
 ```
 
-## privacyManager.startUsingPermission<sup>16+</sup>
+## privacyManager.startUsingPermission<sup>18+</sup>
 
 startUsingPermission(tokenID: number, permissionName: Permissions, pid?: number, usedType?: PermissionUsedType): Promise&lt;void&gt;
 
@@ -587,7 +587,7 @@ privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then((
 });
 ```
 
-## privacyManager.stopUsingPermission<sup>16+</sup>
+## privacyManager.stopUsingPermission<sup>18+</sup>
 
 stopUsingPermission(tokenID: number, permissionName: Permissions, pid?: number): Promise&lt;void&gt;
 
@@ -980,12 +980,12 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 
 | 名称           | 类型                    | 可读 | 可写 | 说明                   |
 | -------------- | ---------------------- | ---- | ---- | --------------------- |
-| callingTokenId<sup>16+</sup> | number   | 是   | 否   | 接口调用方的应用身份标识，activeStatus是INACTIVE时该值无效。 |
+| callingTokenId<sup>18+</sup> | number   | 是   | 否   | 接口调用方的应用身份标识，activeStatus是INACTIVE时该值无效。 |
 | tokenId        | number                 | 是   | 否   | 被订阅的应用身份标识。    |
 | permissionName | Permissions            | 是   | 否   | 权限使用状态发生变化的权限名。 |
 | deviceId       | string                 | 是   | 否   | 设备号。                 |
 | activeStatus   | [PermissionActiveStatus](#permissionactivestatus) | 是   | 否   | 权限使用状态变化类型。        |
-| usedType<sup>16+</sup> | [PermissionUsedType](#permissionusedtype12) | 是   | 否   | 敏感权限使用类型，activeStatus是INACTIVE时该值无效。 |
+| usedType<sup>18+</sup> | [PermissionUsedType](#permissionusedtype12) | 是   | 否   | 敏感权限使用类型，activeStatus是INACTIVE时该值无效。 |
 
 ## PermissionUsedType<sup>12+</sup>
 

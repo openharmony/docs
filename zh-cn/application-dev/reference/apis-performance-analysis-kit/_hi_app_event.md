@@ -358,7 +358,7 @@ typedef struct HiAppEvent_ProcessorHiAppEvent_Processor
 **描述**
 用于处理app事件上报的处理者。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### HiAppEvent_Watcher
@@ -837,7 +837,7 @@ int64_t OH_HiAppEvent_AddProcessor (HiAppEvent_Processor * processor)
 
 注意：Processor的配置信息需要由数据处理者提供，目前设备内暂未预置可供交互的数据处理者，因此当前事件上云功能不可用。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -999,7 +999,7 @@ HiAppEvent_Processor* OH_HiAppEvent_CreateProcessor (const char * name)
 
 注意：创建的处理者不再使用后必须通过调用OH_HiAppEvent_DestroyProcessor接口进行销毁。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -1085,7 +1085,7 @@ void OH_HiAppEvent_DestroyProcessor (HiAppEvent_Processor * processor)
 
 注意：已创建的处理者不再使用后，需要将其销毁，释放内存，防止内存泄漏，销毁后需将对应指针置空。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -1125,7 +1125,7 @@ int OH_HiAppEvent_RemoveProcessor (int64_t processorId)
 
 注意：该接口仅仅使处理者停止上报事件，并未销毁该处理者，该处理者依然常驻内存，直至调用OH_HiAppEvent_DestroyProcessor接口，内存才会释放。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -1200,7 +1200,7 @@ int OH_HiAppEvent_SetConfigId (HiAppEvent_Processor * processor, int configId )
 **描述**
 设置处理者配置id的接口。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -1247,7 +1247,7 @@ int OH_HiAppEvent_SetCustomConfig (HiAppEvent_Processor * processor, const char 
 **描述**
 设置处理者自定义扩展参数的接口。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -1294,7 +1294,7 @@ int OH_HiAppEvent_SetReportEvent (HiAppEvent_Processor * processor, const char *
 **描述**
 设置处理者上报事件的接口。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -1318,7 +1318,7 @@ int OH_HiAppEvent_SetReportPolicy (HiAppEvent_Processor * processor, int periodR
 **描述**
 设置处理者事件上报策略的接口。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -1343,7 +1343,7 @@ int OH_HiAppEvent_SetReportRoute (HiAppEvent_Processor * processor, const char *
 **描述**
 设置处理者事件上报路由的接口。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -1366,7 +1366,7 @@ int OH_HiAppEvent_SetReportUserId (HiAppEvent_Processor * processor, const char 
 **描述**
 设置处理者用户ID的接口。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -1389,7 +1389,7 @@ int OH_HiAppEvent_SetReportUserProperty (HiAppEvent_Processor * processor, const
 **描述**
 设置处理者用户属性的接口。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 

@@ -1,8 +1,6 @@
 # 用户身份认证访问控制开发指导
 
-
 场景介绍及相关概念说明请参考[用户身份认证访问控制简介](huks-identity-authentication-overview.md)。
-
 
 ## 开发步骤
 
@@ -32,17 +30,17 @@ let properties: Array<huks.HuksParam> = [{
   tag: huks.HuksTag.HUKS_TAG_PADDING,
   value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
 },
-  // 指定密钥身份认证的类型：指纹
+  // 指定密钥身份认证的类型：指纹。
   {
     tag: huks.HuksTag.HUKS_TAG_USER_AUTH_TYPE,
     value: huks.HuksUserAuthType.HUKS_USER_AUTH_TYPE_FINGERPRINT
   },
-  // 指定密钥安全授权的类型（失效类型）：新录入生物特征（指纹）后无效
+  // 指定密钥安全授权的类型（失效类型）：新录入生物特征（指纹）后无效。
   {
     tag: huks.HuksTag.HUKS_TAG_KEY_AUTH_ACCESS_TYPE,
     value: huks.HuksAuthAccessType.HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL
   },
-  // 指定挑战值的类型：默认类型
+  // 指定挑战值的类型：默认类型。
   {
     tag: huks.HuksTag.HUKS_TAG_CHALLENGE_TYPE,
     value: huks.HuksChallengeType.HUKS_CHALLENGE_TYPE_NORMAL
@@ -196,7 +194,7 @@ async function publicInitFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
 }
 /* 调用UserIAM拉起指纹认证，触发HUKS的访问控制流程 */
 function userIAMAuthFinger(huksChallenge: Uint8Array) {
-  // 获取认证对象
+  // 获取认证对象。
   let authTypeList: userAuth.UserAuthType[] = [authType];
   const authParam: userAuth.AuthParam = {
     challenge: huksChallenge,
@@ -214,7 +212,7 @@ function userIAMAuthFinger(huksChallenge: Uint8Array) {
     console.error("get auth instance failed" + JSON.stringify(error));
     return;
   }
-  // 订阅认证结果
+  // 订阅认证结果。
   try {
     auth.on("result", {
       onResult(result) {
@@ -226,7 +224,7 @@ function userIAMAuthFinger(huksChallenge: Uint8Array) {
   } catch (error) {
     console.error("subscribe authentication event failed, " + JSON.stringify(error));
   }
-  // 开始认证
+  // 开始认证。
   try {
     auth.start();
     console.info("authV9 start auth success");

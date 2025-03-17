@@ -13,7 +13,7 @@
 import { cloudSync } from '@kit.CoreFileKit';
 ```
 
-## SyncState
+## SyncState<sup>12+</sup>
 
 端云同步状态，为枚举类型。
 
@@ -21,7 +21,7 @@ import { cloudSync } from '@kit.CoreFileKit';
 >
 > 以下同步状态发生变更时，如果应用注册了同步过程事件监听，则通过回调通知应用。
 
-**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+**系统能力**： SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 **系统接口**：该接口为系统接口。
 
@@ -34,15 +34,14 @@ import { cloudSync } from '@kit.CoreFileKit';
 | COMPLETED |  4 | 同步成功。 |
 | STOPPED |  5 | 同步已停止。 |
 
-## ErrorType
+## ErrorType<sup>12+</sup>
 
 端云同步失败类型，为枚举类型。
 
-- 当前阶段，同步过程中，当移动数据网络和WIFI均不可用时，才会返回NETWORK_UNAVAILABLE；若有一种类型网络可用，则能正常同步。
-- 同步过程中，非充电场景下，电量低于15%，完成当前批上行同步后停止同步，返回低电量；电量低于10%，完成当前批上行同步后停止同步，返回告警电量。
-- 触发同步时，非充电场景下，若电量低于15%，则不允许同步，start接口返回对应错误。
+- 当前阶段，同步过程中，当开启无限量使用移动数据网络，移动数据网络和WIFI均不可用时，才会返回NETWORK_UNAVAILABLE；开启无限量使用移动数据网络，若有一种类型网络可用，则能正常同步。
+- 同步过程中，非充电场景下，电量低于10%，完成当前批上行同步后停止同步，返回低电量；
+- 触发同步时，非充电场景下，若电量低于10%，则不允许同步，start接口返回对应错误。
 - 上行时，若云端空间不足，则文件上行失败，云端无该文件记录。
-- 下行时，若本地空间不足，则文件下行失败，本地空间释放后再次同步会重新下行。
 
 **系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -53,24 +52,24 @@ import { cloudSync } from '@kit.CoreFileKit';
 | NO_ERROR |  0 | 没有错误。 |
 | NETWORK_UNAVAILABLE |  1 | 所有网络不可用。 |
 | WIFI_UNAVAILABLE |  2 | WIFI不可用。 |
-| BATTERY_LEVEL_LOW |  3 | 低电量（低于15%）。 |
-| BATTERY_LEVEL_WARNING |  4 | 告警电量（低于10%）。 |
+| BATTERY_LEVEL_LOW |  3 | 低电量（低于10%）。 |
+| BATTERY_LEVEL_WARNING |  4 | 告警电量（低于15%）。 |
 | CLOUD_STORAGE_FULL |  5 | 云端空间不足。 |
 | LOCAL_STORAGE_FULL |  6 | 本地空间不足。 |
-| DEVICE_TEMPERATURE_TOO_HIGH<sup>12+</sup> |  7 | 设备温度过高。 |
+| DEVICE_TEMPERATURE_TOO_HIGH |  7 | 设备温度过高。 |
 
-## SyncProgress
+## SyncProgress<sup>12+</sup>
 
 端云同步过程。
 
-**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+**系统能力**： SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 **系统接口**：该接口为系统接口。
 
 | 名称     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| state | [SyncState](#syncstate) | 是   | 枚举值，端云同步状态。|
-| error | [ErrorType](#errortype) | 是   | 枚举值，同步失败错误类型。|
+| state | [SyncState](#syncstate12) | 是   | 枚举值，端云同步状态。|
+| error | [ErrorType](#errortype12) | 是   | 枚举值，同步失败错误类型。|
 
 ## GallerySync
 
@@ -109,7 +108,7 @@ on(evt: 'progress', callback: (pg: SyncProgress) => void): void
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | evt | string | 是   | 订阅的事件类型，取值为'progress'（同步过程事件）。 |
-| callback | (pg: SyncProgress) => void | 是   | 同步过程事件回调，回调入参为[SyncProgress](#syncprogress), 返回值为void。|
+| callback | (pg: SyncProgress) => void | 是   | 同步过程事件回调，回调入参为[SyncProgress](#syncprogress12), 返回值为void。|
 
 **错误码：**
 
@@ -149,7 +148,7 @@ off(evt: 'progress', callback: (pg: SyncProgress) => void): void
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | evt | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）。|
-| callback | (pg: SyncProgress) => void | 是   | 同步过程事件回调，回调入参为[SyncProgress](#syncprogress), 返回值为void。|
+| callback | (pg: SyncProgress) => void | 是   | 同步过程事件回调，回调入参为[SyncProgress](#syncprogress12), 返回值为void。|
 
 **错误码：**
 
@@ -750,11 +749,11 @@ stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
   });
   ```
 
-## FileSync<sup>11+</sup>
+## FileSync<sup>12+</sup>
 
 云盘同步对象，用于支撑文件管理器应用完成云盘文件的端云同步流程。在使用前，需要先创建FileSync实例。
 
-### constructor<sup>11+</sup>
+### constructor<sup>12+</sup>
 
 constructor()
 
@@ -810,7 +809,7 @@ constructor(bundleName: string)
   let fileSync = new cloudSync.FileSync("com.ohos.demo")
   ```
 
-### on<sup>11+</sup>
+### on<sup>12+</sup>
 
 on(event: 'progress', callback: Callback\<SyncProgress>): void
 
@@ -827,7 +826,7 @@ on(event: 'progress', callback: Callback\<SyncProgress>): void
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | event | string | 是   | 订阅的事件类型，取值为'progress'（同步过程事件）。 |
-| callback | Callback\<[SyncProgress](#syncprogress)> | 是   | 同步过程事件回调。|
+| callback | Callback\<[SyncProgress](#syncprogress12)> | 是   | 同步过程事件回调。|
 
 **错误码：**
 
@@ -851,7 +850,7 @@ on(event: 'progress', callback: Callback\<SyncProgress>): void
   fileSync.on('progress', callback);
   ```
 
-### off<sup>11+</sup>
+### off<sup>12+</sup>
 
 off(event: 'progress', callback?: Callback\<SyncProgress>): void
 
@@ -868,7 +867,7 @@ off(event: 'progress', callback?: Callback\<SyncProgress>): void
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | event | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）。|
-| callback | Callback\<[SyncProgress](#syncprogress)> |  否   | 同步过程事件回调。 |
+| callback | Callback\<[SyncProgress](#syncprogress12)> |  否   | 同步过程事件回调。 |
 
 **错误码：**
 
@@ -895,7 +894,7 @@ off(event: 'progress', callback?: Callback\<SyncProgress>): void
   fileSync.off('progress', callback);
   ```
 
-### start<sup>11+</sup>
+### start<sup>12+</sup>
 
 start(): Promise&lt;void&gt;
 
@@ -946,7 +945,7 @@ start(): Promise&lt;void&gt;
   });
   ```
 
-### start<sup>11+</sup>
+### start<sup>12+</sup>
 
 start(callback: AsyncCallback&lt;void&gt;): void
 
@@ -993,7 +992,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
   });
   ```
 
-### stop<sup>11+</sup>
+### stop<sup>12+</sup>
 
 stop(): Promise&lt;void&gt;
 
@@ -1037,7 +1036,7 @@ stop(): Promise&lt;void&gt;
   });
   ```
 
-### stop<sup>11+</sup>
+### stop<sup>12+</sup>
 
 stop(callback: AsyncCallback&lt;void&gt;): void
 
@@ -1083,7 +1082,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
   });
   ```
 
-### getLastSyncTime<sup>11+</sup>
+### getLastSyncTime<sup>12+</sup>
 
 getLastSyncTime(): Promise&lt;number&gt;
 
@@ -1127,7 +1126,7 @@ getLastSyncTime(): Promise&lt;number&gt;
 
   ```
 
-### getLastSyncTime<sup>11+</sup>
+### getLastSyncTime<sup>12+</sup>
 
 getLastSyncTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -1270,7 +1269,7 @@ getFileSyncState(uri: Array&lt;string&gt;): Promise&lt;Array&lt;FileSyncState&gt
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let uris: Array<string> = ["file://uri"];
-  cloudSync.getFileSyncState(uris).then(function(syncStates: Array<cloudSync.FileSyncState>) {
+  cloudSync.getFileSyncState(uris).then((syncStates: Array<cloudSync.FileSyncState>) => {
     for(let i = 0, len = syncStates.length; i < len; i++){
         console.info("get file sync state successfully" + syncStates[i]);
     }

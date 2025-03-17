@@ -67,7 +67,7 @@ SelectionMenuOptions定义SelectionMenu的可选菜单类型项及其具体配�
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | icon | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源。 |
-| symbolStyle<sup>16+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | Symbol图标资源，优先级大于icon。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| symbolStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | Symbol图标资源，优先级大于icon。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | builder | ()&nbsp;=&gt;&nbsp;void | 否 | 点击时显示用户自定义组件，自定义组件在构造时结合@Builder使用。 |
 | action | ()&nbsp;=&gt;&nbsp;void | 否 | 点击菜单项的事件回调。 |
 
@@ -222,7 +222,7 @@ struct Index {
         }
       },
       {
-        icon: $r("app.media.app_icon"), action: () => {
+        icon: $r("app.media.ic_notepad_fontsize"), action: () => {
       }, builder: (): void => this.sliderPanel()
       },
       {
@@ -384,7 +384,7 @@ struct Index {
   MyMenu3() {
     Column() {
       SelectionMenu({
-        editorMenuOptions: this.editorMenuOptions1,
+        editorMenuOptions: this.editorMenuOptions,
         expandedMenuOptions: this.expandedMenuOptions,
         controller: this.controller,
       })
@@ -420,6 +420,7 @@ struct Index {
         .borderColor(Color.Red)
         .width(200)
         .height(200)
+        .margin(10)
     }
   }
 }
@@ -428,7 +429,7 @@ struct Index {
 >
 > 系统暂未预置加粗、斜体等图标，示例代码使用本地资源图标，开发者使用时需自行替换editorMenuOptions中icon项的资源。
 
-![selectionmenu](figures/selectionmenu.jpeg)
+![selectionmenu](figures/selectionmenu.gif)
 
 ### 示例2（设置Symbol类型图标）
 

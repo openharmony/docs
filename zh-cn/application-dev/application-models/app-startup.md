@@ -19,9 +19,9 @@ AppStartup提供了一种简单高效的应用启动方式，可以支持任务�
 
 - 启动框架仅在entry的UIAbility启动时被拉起，ExtensionAbility和非entry模块的UIAbility启动时不会拉起启动框架。
 
-- 启动框架从API 16开始支持在[HSP](../quick-start/har-package.md)和[HAR](../quick-start/in-app-hsp.md)中配置启动任务。HSP和HAR的启动任务、so预加载任务无法主动配置为自动模式，但可以被entry中自动模式的启动任务、so预加载任务拉起。
+- 启动框架从API 18开始支持在[HSP](../quick-start/har-package.md)和[HAR](../quick-start/in-app-hsp.md)中配置启动任务。HSP和HAR的启动任务、so预加载任务无法主动配置为自动模式，但可以被entry中自动模式的启动任务、so预加载任务拉起。
 
-- 启动框架从API 16开始支持配置so预加载任务，so文件开发可以参考[Node-API](../napi/use-napi-process.md)创建Native C++工程。
+- 启动框架从API 18开始支持配置so预加载任务，so文件开发可以参考[Node-API](../napi/use-napi-process.md)创建Native C++工程。
 
 
 ## 约束限制
@@ -182,7 +182,7 @@ AppStartup提供了一种简单高效的应用启动方式，可以支持任务�
 
         | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
         | -------- | -------- | -------- | -------- |
-        | name | 启动任务对应的类名。 | 字符串 | 该标签不可缺省。 |
+        | name | 启动任务名称，可自定义，推荐与类名保持一致。 | 字符串 | 该标签不可缺省。 |
         | srcEntry | 启动任务对应的文件路径。 | 字符串 | 该标签不可缺省。 |
         | dependencies | 启动任务依赖的其他启动任务的类名数组。 | 对象数组 | 该标签可缺省，缺省值为空。 |
         | excludeFromAutoStart | 是否排除自动模式，详细介绍可以查看[修改启动模式](#可选修改启动模式)。 <br/>-&nbsp;true：手动模式。 <br/>-&nbsp;false：自动模式。<br/>**说明：**<br/> HSP、HAR中startupTask里的excludeFromAutoStart标签必须配置为true。 | 布尔值 | 该标签可缺省，缺省值为false。 |

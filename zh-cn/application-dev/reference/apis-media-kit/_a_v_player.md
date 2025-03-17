@@ -85,6 +85,7 @@
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetPlaybackSpeed](#oh_avplayer_setplaybackspeed) (OH_AVPlayer \*player, [AVPlaybackSpeed](#avplaybackspeed) speed) | 设置播放器播放速率。 | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetPlaybackSpeed](#oh_avplayer_getplaybackspeed) (OH_AVPlayer \*player, [AVPlaybackSpeed](#avplaybackspeed) \*speed) | 获取当前播放器播放速率。 | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetAudioRendererInfo](#oh_avplayer_setaudiorendererinfo) (OH_AVPlayer \*player, OH_AudioStream_Usage streamUsage) | 设置player音频流类型。  | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetVolumeMode](#oh_avplayer_setvolumemode) (OH_AVPlayer \*player, [OH_AudioStream_VolumeMode](../apis-audio-kit/_o_h_audio.md#oh_audiostream_volumemode) volumeMode) | 设置player音频流音量模式。 | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetAudioInterruptMode](#oh_avplayer_setaudiointerruptmode) (OH_AVPlayer \*player, OH_AudioInterrupt_Mode interruptMode) | 设置player音频流的打断模式。  | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetAudioEffectMode](#oh_avplayer_setaudioeffectmode) (OH_AVPlayer \*player, OH_AudioStream_AudioEffectMode effectMode) | 设置player音频流的音效模式。  | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SelectBitRate](#oh_avplayer_selectbitrate) (OH_AVPlayer \*player, uint32_t bitRate) | 设置hls播放器使用的码率。 | 
@@ -1507,6 +1508,40 @@ OH_AVErrCode OH_AVPlayer_SetVolume (OH_AVPlayer *player, float leftVolume, float
 AV_ERR_OK：设置音量成功。
 
 AV_ERR_INVALID_VAL：输入player为空指针、player SetVolume执行失败。
+
+
+### OH_AVPlayer_SetVolumeMode()
+
+```
+OH_AVErrCode OH_AVPlayer_SetVolumeMode(OH_AVPlayer *player, OH_AudioStream_VolumeMode volumeMode)
+```
+
+**描述**
+
+设置player音频流音量模式。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| player | 指向OH_AVPlayer实例的指针。 | 
+| volumeMode | 要设置的音频流音量模式[OH_AudioStream_VolumeMode](../apis-audio-kit/_o_h_audio.md#oh_audiostream_volumemode)。 | 
+
+**返回：**
+
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：成功。 
+
+AV_ERR_INVALID_VAL：输入player为空指针或者volumeMode值无效。 
+
+AV_ERR_INVALID_STATE：函数在无效状态下调用，应先处于准备状态。 
+
+AV_ERR_SERVICE_DIED：系统错误。
 
 
 ### OH_AVPlayer_Stop()

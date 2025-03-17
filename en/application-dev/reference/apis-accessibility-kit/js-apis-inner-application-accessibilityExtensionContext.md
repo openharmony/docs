@@ -28,7 +28,7 @@ Provides attribute names and value types of a node element.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-### Name
+### Attributes
 
 | Name                  | Type                                                                | Readable | Writable | Description                 |
 |----------------------|--------------------------------------------------------------------|-----|-----| ------------------- |
@@ -87,6 +87,7 @@ Provides attribute names and value types of a node element.
 | accessibilityNextFocusId<sup>16+</sup>             | number                | Yes  | No  | ID of the next component to be focused on. You can use **findElement('elementId')** to obtain the value of this attribute set on the component from the **AccessibilityElementInfo** object.|
 | accessibilityPreviousFocusId<sup>16+</sup>             | number                | Yes  | No  | ID of the previous component to be focused on. You can use **findElement('elementId')** to obtain the value of this attribute set on the component from the **AccessibilityElementInfo** object.|
 | extraInfo<sup>16+</sup>             | string                                                             | Yes  | No  | Extended attribute, which is used to define the attributes that are available only to specific components.|
+| accessibilityScrollable<sup>16+</sup>             | boolean                 | Yes  | No  | Whether an element is scrollable for accessibility. This attribute has a higher priority than **scrollable**. <br>- **true** (default): the element is scrollable.<br>- **false**: the element is not scrollable.|
 
 ## FocusDirection
 
@@ -1034,7 +1035,7 @@ Performs an action based on the specified action name. This API uses a promise t
 
 | Name        | Type                                    | Mandatory  | Description                                                      |
 | ----------- | ---------------------------------------- | ---- |----------------------------------------------------------|
-| actionName | string | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action).
+| actionName | string | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action). |
 | parameters | object | No   | Parameters required for performing the target action. Empty by default.                            |
 
 **Return value**
@@ -1129,7 +1130,7 @@ Performs an action based on the specified action name. This API uses an asynchro
 
 | Name        | Type                                    | Mandatory  | Description            |
 | ----------- | ---------------------------------------- | ---- | -------------- |
-| actionName | string | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action).
+| actionName | string | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action). |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Error codes**

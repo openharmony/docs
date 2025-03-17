@@ -1,6 +1,5 @@
 # Resize
 
-
 ## 概述
 
 按给定的参数对输入的张量进行变形。
@@ -11,7 +10,7 @@
 
 输入：
 
-- x，一个4维tensor，tensor排布必须是[batchSize，height，width，channels](NHWC)。
+- x，一个4维tensor，tensor排布必须是[batchSize，height，width，channels] (NHWC)。
 
 输出：
 
@@ -21,9 +20,7 @@
 
 **相关模块：**[NNRt](_n_n_rt_v20.md)
 
-
 ## 汇总
-
 
 ### Public 属性
 
@@ -39,9 +36,7 @@
 | float [extrapolationValue](#extrapolationvalue) | 外插值，当仅用于裁剪x的时候使用，超出边界的采样权重被置为extrapolationValue。  | 
 | enum [NearestMode](_n_n_rt_v20.md#nearestmode)[nearestMode](#nearestmode) | 最近邻近算法，当method==RESIZE_METHOD_NEAREST时使用，详情请参考：[NearestMode](_n_n_rt_v20.md#nearestmode)。  | 
 
-
 ## 类成员变量说明
-
 
 ### coordinateTransformMode
 
@@ -52,7 +47,6 @@ enum CoordinateTransformMode Resize::coordinateTransformMode
 
 坐标变换方法，详情请参考：[CoordinateTransformMode](_n_n_rt_v20.md#coordinatetransformmode)。
 
-
 ### cubicCoeff
 
 ```
@@ -61,7 +55,6 @@ float Resize::cubicCoeff
 **描述**
 
 立方系数，当method为RESIZE_METHOD_CUBIC时使用。
-
 
 ### excludeOutside
 
@@ -72,7 +65,6 @@ long Resize::excludeOutside
 
 当excludeOutside==1时，超出x的边界的采样权重被置为0，其余权重重新归一化处理。
 
-
 ### extrapolationValue
 
 ```
@@ -81,7 +73,6 @@ float Resize::extrapolationValue
 **描述**
 
 外插值，当仅用于裁剪x的时候使用，超出边界的采样权重被置为extrapolationValue。
-
 
 ### method
 
@@ -92,7 +83,6 @@ enum ResizeMethod Resize::method
 
 调整尺寸的方法，详情请参考：[ResizeMethod](_n_n_rt_v20.md#resizemethod)。
 
-
 ### nearestMode
 
 ```
@@ -101,7 +91,6 @@ enum NearestMode Resize::nearestMode
 **描述**
 
 最近邻近算法，当method==RESIZE_METHOD_NEAREST时使用，详情请参考：[NearestMode](_n_n_rt_v20.md#nearestmode)。
-
 
 ### newHeight
 
@@ -112,7 +101,6 @@ long Resize::newHeight
 
 resize之后4维tensor的height值。
 
-
 ### newWidth
 
 ```
@@ -121,7 +109,6 @@ long Resize::newWidth
 **描述**
 
 resize之后4维tensor的width值。
-
 
 ### preserveAspectRatio
 

@@ -100,7 +100,7 @@ napi_status napi_load_module(napi_env env,
     }
     ```
 
-2. 使用napi_load_module加载Test文件，调用函数test以及获取变量value。
+2. 使用napi_load_module加载Test文件，调用函数test以及获取变量value：
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -155,7 +155,7 @@ napi_status napi_load_module(napi_env env,
     }
     ```
 
-2. 使用napi_load_module加载Test文件，调用函数test以及获取变量value。
+2. 使用napi_load_module加载Test文件，调用函数test以及获取变量value：
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -195,7 +195,7 @@ napi_status napi_load_module(napi_env env,
     export {value, test};
     ```
 
-1. 在当前模块下的oh-package.json5文件中配置dependencies项。
+1. 在当前模块下的oh-package.json5文件中配置dependencies项：
 
     ```json
     {
@@ -221,7 +221,7 @@ napi_status napi_load_module(napi_env env,
     }
     ```
 
-3. 用napi_load_module加载library，调用函数test以及获取变量value。
+3. 用napi_load_module加载library，调用函数test以及获取变量value：
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -261,7 +261,7 @@ napi_status napi_load_module(napi_env env,
     export {value, test};
     ```
 
-1. 在当前模块下的oh-package.json5文件中配置dependencies项。
+1. 在当前模块下的oh-package.json5文件中配置dependencies项：
 
     ```json
     {
@@ -287,7 +287,7 @@ napi_status napi_load_module(napi_env env,
     }
     ```
 
-3. 用napi_load_module加载sharedlibrary，调用函数test以及获取变量value。
+3. 用napi_load_module加载sharedlibrary，调用函数test以及获取变量value：
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -316,7 +316,7 @@ napi_status napi_load_module(napi_env env,
 
 - **加载远程HAR模块名**
 
-1. 在当前模块下的oh-package.json5文件中配置dependencies项。
+1. 在当前模块下的oh-package.json5文件中配置dependencies项：
 
     ```json
     {
@@ -342,7 +342,7 @@ napi_status napi_load_module(napi_env env,
     }
     ```
 
-3. 用napi_load_module加载@ohos/hypium，获取DEFAULT变量。
+3. 用napi_load_module加载@ohos/hypium，获取DEFAULT变量：
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -365,7 +365,7 @@ napi_status napi_load_module(napi_env env,
 
 - **加载ohpm包名**
 
-1. 在当前模块下的oh-package.json5文件中配置dependencies项。
+1. 在当前模块下的oh-package.json5文件中配置dependencies项：
 
     ```json
     {
@@ -391,7 +391,7 @@ napi_status napi_load_module(napi_env env,
     }
     ```
 
-3. 用napi_load_module加载@ohos/axios，获取VERSION变量。
+3. 用napi_load_module加载@ohos/axios，获取VERSION变量：
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -414,14 +414,14 @@ napi_status napi_load_module(napi_env env,
 
 - **加载Native库**
 
-    libentry.so的index.d.ts文件如下
+    libentry.so的index.d.ts文件如下：
 
     ```javascript
     //index.d.ts
     export const add: (a: number, b: number) => number;
     ```
 
-1. 在当前模块下的oh-package.json5文件中配置dependencies项。
+1. 在当前模块下的oh-package.json5文件中配置dependencies项：
 
     ```json
     {
@@ -447,7 +447,7 @@ napi_status napi_load_module(napi_env env,
     }
     ```
 
-3. 用napi_load_module加载libentry.so，调用函数add。
+3. 用napi_load_module加载libentry.so，调用函数add：
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -476,7 +476,7 @@ napi_status napi_load_module(napi_env env,
 
 - **HAR加载HAR模块名**
 
-    场景为har1加载har2，har2中的Index.ets文件如下
+    场景为har1加载har2，har2中的Index.ets文件如下：
 
     ```javascript
     //har2 Index.ets
@@ -487,7 +487,7 @@ napi_status napi_load_module(napi_env env,
     export {value, test};
     ```
 
-1. 在har1中的oh-package.json5文件中配置dependencies项。
+1. 在har1中的oh-package.json5文件中配置dependencies项：
 
     ```json
     {
@@ -512,7 +512,7 @@ napi_status napi_load_module(napi_env env,
         }
     }
     ```
-3. 在har1中用napi_load_module加载har2，调用函数test以及获取变量value。
+3. 在har1中用napi_load_module加载har2，调用函数test以及获取变量value：
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {

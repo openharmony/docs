@@ -948,7 +948,7 @@ try {
 }
 ```
 
-## inputMonitor.on('touchscreenSwipe')<sup>14+</sup>
+## inputMonitor.on('touchscreenSwipe')<sup>18+</sup>
 
 on(type: 'touchscreenSwipe', fingers: number, receiver: Callback&lt;TouchGestureEvent&gt;): void
 
@@ -992,7 +992,7 @@ try {
 }
 ```
 
-## inputMonitor.off('touchscreenSwipe')<sup>14+</sup>
+## inputMonitor.off('touchscreenSwipe')<sup>18+</sup>
 
 off(type: 'touchscreenSwipe', fingers: number, receiver?: Callback&lt;TouchGestureEvent&gt;): void
 
@@ -1055,7 +1055,7 @@ try {
 }
 ```
 
-## inputMonitor.on('touchscreenPinch')<sup>14+</sup>
+## inputMonitor.on('touchscreenPinch')<sup>18+</sup>
 
 on(type: 'touchscreenPinch', fingers: number, receiver: Callback&lt;TouchGestureEvent&gt;): void
 
@@ -1099,7 +1099,7 @@ try {
 }
 ```
 
-## inputMonitor.off('touchscreenPinch')<sup>14+</sup>
+## inputMonitor.off('touchscreenPinch')<sup>18+</sup>
 
 off(type: 'touchscreenPinch', fingers: number, receiver?: Callback&lt;TouchGestureEvent&gt;): void
 
@@ -1162,7 +1162,7 @@ try {
 }
 ```
 
-## inputMonitor.on('keyPressed')<sup>16+</sup>
+## inputMonitor.on('keyPressed')<sup>15+</sup>
 
 on(type: 'keyPressed', keys: Array&lt;KeyCode&gt;, receiver: Callback&lt;KeyEvent&gt;): void
 
@@ -1206,7 +1206,7 @@ try {
 }
 ```
 
-## inputMonitor.off('keyPressed')<sup>16+</sup>
+## inputMonitor.off('keyPressed')<sup>15+</sup>
 
 off(type: 'keyPressed', receiver?: Callback&lt;KeyEvent&gt;): void
 

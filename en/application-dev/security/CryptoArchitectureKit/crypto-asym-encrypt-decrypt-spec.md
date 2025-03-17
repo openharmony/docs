@@ -13,28 +13,39 @@ For details about the cipher modes supported by each algorithm, see the specific
 
 The Crypto framework supports the following padding modes for RSA encryption and decryption:
 
-- [NoPadding](#nopadding): No padding. The length of the input or output data must be the same as that of the RSA modulus (**n** in bytes).
+- [NoPadding](#nopadding): No padding. In this mode, both the input and output data lengths must match the RSA key length, in bytes.
 
 - [PKCS1](#pkcs1): RSAES-PKCS1-V1_5 mode in RFC3447, corresponding to RSA_PKCS1_PADDING in OpenSSL.
   
-  The RSA converts the source data (**D**) into encryption blocks (EBs). In encryption, the length of the input data must be less than or equal to the RSA modulus minus 11. The length of the output data is the same as that of the RSA modulus.
+  During RSA operation, the source data **D** must be converted into an encryption block (EB). During encryption, the maximum length of the input data is the RSA key length minus 11 bytes. The length of the output data must match the RSA key length, in bytes.
 
 - [PKCS1_OAEP](#pkcs1_oaep): RSAES-OAEP mode in RFC 3447, corresponding to RSA_PKCS1_OAEP_PADDING in OpenSSL.
   
-  In this mode, two message digests (**md** and **mgf1_md**) need to be set. In encryption, the input data must meet the following requirements:<br>Input data length < RSA modulus length – **md** length (bytes) – **mgf1_md** length (bytes) – 2<br>The length of the output data is the same as that of the RSA modulus.
+  In this mode, two digests (**md** and **mgf1_md**) must be set. During encryption, the input data length must meet the following requirement:<br>Input data length (bytes) < RSA key length – 2 * MD length – 2
+
+  The length of the output data must match the RSA key length, in bytes.
 
   You can also set the **pSource** byte stream to define the encoding input for OAEP padding and obtain the PKCS1_OAEP parameters (as listed in the following table).
-
+  
   | PKCS1_OAEP Parameter| Description|
   | -------- | -------- |
   | md | MD algorithm.|
   | mgf | Mask generation function. Currently, only MGF1 is supported.|
-  | mgf1_md | MD algorithm used in MGF1.|
+| mgf1_md | MD algorithm used in MGF1.|
   | pSource | byte stream, which is the source for encoding input P in OAEP padding.|
+  
+- The following table uses RSA2048|SHA256 as an example to describe the relationship between the input data length and the algorithm.
+  | Padding Mode| Maximum Input Data Length (Bytes)| Maximum Output Data Length (Bytes)|
+  | -------- | -------- | -------- |
+  | NoPadding | 256 (RSA key length)| 256 |
+  | PKCS1 | 245 (RSA key length – 11)| 256 |
+  | PKCS1_OAEP | 190 (RSA key length – 2 * MD length – 2) | 256 |
 
 > **NOTE**
 >
-> It takes time to generate an RSA2048, RSA3072, RSA4096, or RSA8192 asymmetric key pair or when the plaintext length exceeds 2048 bits. Since the execution of the main thread has a time limit, the operation may fail if you use a synchronous API. You are advised to use asynchronous APIs or use [multithread concurrent tasks](../../arkts-utils/multi-thread-concurrency-overview.md) to generate a key of a large size.
+> - It takes time to generate an RSA2048, RSA3072, RSA4096, or RSA8192 asymmetric key pair or when the plaintext length exceeds 2048 bits.
+>
+> - Since the execution of the main thread has a time limit, the operation may fail if you use a synchronous API. You are advised to use asynchronous APIs or use [multithread concurrent tasks](../../arkts-utils/multi-thread-concurrency-overview.md) to generate a key of a large size.
 
 ### NoPadding
 
@@ -82,7 +93,9 @@ For example, if the asymmetric key type is **RSA2048**, the padding mode is **PK
 
 > **NOTE**
 >
-> Input data length < RSA key modulus – **md** length – **mgf1_md** length – 2<br> For example, if the RSA key is of 512 bits, **SHA512** cannot be used.
+> The input data length must meet the following requirement:
+>
+> Input data length (bytes) < RSA key length – MD length – mgf1_md length – 2<br>For example, if the RSA key is of 512 bits, **SHA512** cannot be used.
 
 | Asymmetric Key Type| Padding Mode| MD Algorithm| Mask Digest Algorithm| API Version|
 | -------- | -------- | -------- | -------- | -------- |

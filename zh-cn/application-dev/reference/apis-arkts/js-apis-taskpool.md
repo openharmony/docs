@@ -13,7 +13,7 @@ taskpool使用过程中的相关注意点请查[TaskPool注意事项](../../arkt
 文档中涉及到的各种任务概念：
 - 任务组任务：对应为[TaskGroup](#taskgroup10)任务。
 - 串行队列任务：对应为[SequenceRunner](#sequencerunner-11)任务。
-- 异步队列任务：对应为[AsyncRunner](#asyncrunner16)任务。
+- 异步队列任务：对应为[AsyncRunner](#asyncrunner18)任务。
 - 周期任务：被[executePeriodically](#taskpoolexecuteperiodically12)执行过的任务。
 
 > **说明：**
@@ -29,7 +29,7 @@ import { taskpool } from '@kit.ArkTS';
 
 execute(func: Function, ...args: Object[]): Promise\<Object>
 
-将待执行的函数放入taskpool内部任务队列, 函数不会立即执行，而是等待分发到工作线程执行。当前执行模式不可取消任务。
+将待执行的函数放入taskpool内部任务队列，函数不会立即执行，而是等待分发到工作线程执行。当前执行模式不可取消任务。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -721,7 +721,7 @@ function concurrentFunc() {
 concurrentFunc();
 ```
 
-## taskpool.cancel<sup>16+</sup>
+## taskpool.cancel<sup>18+</sup>
 
 cancel(taskId: number): void
 
@@ -729,7 +729,7 @@ cancel(taskId: number): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -957,7 +957,7 @@ for (let i: number = 0; i < taskArray.length; i+=4) { // 4: 每次执行4个任�
 | function             | Function  | 是   | 是   | 创建任务时需要传入的函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
 | arguments            | Object[]  | 是   | 是   | 创建任务传入函数所需的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
 | name<sup>11+</sup>   | string    | 是   | 否   | 创建任务时指定的任务名称。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
-| taskId<sup>16+</sup>   | number    | 是   | 否   | 任务的ID。<br>**原子化服务API**：从API version 16 开始，该接口支持在原子化服务中使用。|
+| taskId<sup>18+</sup>   | number    | 是   | 否   | 任务的ID。<br>**原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。|
 | totalDuration<sup>11+</sup>  | number    | 是   | 否   | 执行任务总耗时。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
 | ioDuration<sup>11+</sup>     | number    | 是   | 否   | 执行任务异步IO耗时。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
 | cpuDuration<sup>11+</sup>    | number    | 是   | 否   | 执行任务CPU耗时。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
@@ -1842,6 +1842,7 @@ type CallbackFunctionWithError = (e: Error) => void
 **系统能力：** SystemCapability.Utils.Lang
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明               |
@@ -2261,11 +2262,11 @@ async function seqRunner()
 }
 ```
 
-## AsyncRunner<sup>16+</sup>
+## AsyncRunner<sup>18+</sup>
 
-表示异步队列，可以指定任务执行并发度和指定任务的排队策略。使用[constructor](#constructor16)方法构造AsyncRunner。
+表示异步队列，可以指定任务执行并发度和指定任务的排队策略。使用[constructor](#constructor18)方法构造AsyncRunner。
 
-### constructor<sup>16+</sup>
+### constructor<sup>18+</sup>
 
 constructor(runningCapacity: number, waitingCapacity?: number)
 
@@ -2273,7 +2274,7 @@ AsyncRunner的构造函数。构造一个非全局的异步队列，如果参数
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2296,7 +2297,7 @@ AsyncRunner的构造函数。构造一个非全局的异步队列，如果参数
 let runner: taskpool.AsyncRunner = new taskpool.AsyncRunner(5);
 ```
 
-### constructor<sup>16+</sup>
+### constructor<sup>18+</sup>
 
 constructor(name: string, runningCapacity: number, waitingCapacity?: number)
 
@@ -2309,7 +2310,7 @@ AsyncRunner的构造函数。构造一个全局异步队列，如果名字相同
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2333,7 +2334,7 @@ AsyncRunner的构造函数。构造一个全局异步队列，如果名字相同
 let runner:taskpool.AsyncRunner = new taskpool.AsyncRunner("runner1", 5, 5);
 ```
 
-### execute<sup>16+</sup>
+### execute<sup>18+</sup>
 
 execute(task: Task, priority?: Priority): Promise\<Object>
 
@@ -2351,7 +2352,7 @@ execute(task: Task, priority?: Priority): Promise\<Object>
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。
 
 **参数：**
 

@@ -18,7 +18,7 @@ Before image development, be familiar with the following basic concepts:
 
 - Image processing
   
-  A series of operations on the PixelMap, such as rotation, scaling, opacity setting, image information obtaining, and pixel data reading and writing.
+  A series of operations on the PixelMap, such as rotation, scaling, opacity setting, image information obtaining, and pixel data reading and writing. The origin of the coordinate system is at the upper left corner.
 
 - Image encoding
   

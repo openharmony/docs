@@ -33,12 +33,12 @@ The figure below shows the recommended API calling process of the dual-channel p
 
     ```ts
     import { image } from '@kit.ImageKit';
-    imageWidth: number = 1920; // Use the width in the profile size supported by the device.
-    imageHeight: number = 1080; // Use the height in the profile size supported by the device.
+    let imageWidth: number = 1920; // Use the width in the profile size supported by the device.
+    let imageHeight: number = 1080; // Use the height in the profile size supported by the device.
 
     async function initImageReceiver():Promise<void>{
       // Create an ImageReceiver object.
-      let size: image.Size = { width: this.imageWidth, height: this.imageHeight };
+      let size: image.Size = { width: imageWidth, height: imageHeight };
       let imageReceiver = image.createImageReceiver(size, image.ImageFormat.JPEG, 8);
       // Obtain the surface ID for the first preview stream.
       let imageReceiverSurfaceId = await imageReceiver.getReceivingSurfaceId();
@@ -327,11 +327,11 @@ struct Index {
     .width('100%')
   }
 
-  // Initialize the camera.
+  // Initialize a camera.
   async initCamera(): Promise<void> {
     console.info(`initCamera imageReceiverSurfaceId:${this.imageReceiverSurfaceId} xComponentSurfaceId:${this.xComponentSurfaceId}`);
     try {
-      // Obtain the camera manager instance.
+      // Obtain a camera manager instance.
       this.cameraManager = camera.getCameraManager(getContext(this));
       if (!this.cameraManager) {
         console.error('initCamera getCameraManager');

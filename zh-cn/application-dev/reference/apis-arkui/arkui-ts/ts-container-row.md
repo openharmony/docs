@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -29,16 +29,16 @@ Row(options?: RowOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [RowOptions](#rowoptions14对象说明) | 否 | 横向布局元素间距。 |
+| options | [RowOptions<sup>14+</sup>](#rowoptions14对象说明) | 否 | 横向布局元素间距。 |
 
-### Row<sup>16+</sup>
+### Row<sup>18+</sup>
 Row(options?: RowOptions | RowOptionsV2)
 
 创建水平方向线性布局容器，可以设置子组件的间距，间距类型为number、string或Resource类型。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -46,7 +46,7 @@ Row(options?: RowOptions | RowOptionsV2)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [RowOptions](#rowoptions14对象说明)  \| [RowOptionsV2](#rowoptionsv216对象说明) | 否 | 横向布局元素间距。 |
+| options | [RowOptions](#rowoptions14对象说明)  \| [RowOptionsV2](#rowoptionsv218对象说明) | 否 | 横向布局元素间距。 |
 
 ## RowOptions<sup>14+</sup>对象说明
 
@@ -62,19 +62,19 @@ Row(options?: RowOptions | RowOptionsV2)
 | -------- | -------- | -------- | -------- |
 | space | number&nbsp;\|&nbsp;string | 否 | 横向布局元素间距。<br/>从API version 9开始，space为负数或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。<br/>默认值：0，单位vp<br/>**说明：** <br/>space取值是大于等于0的数字，或者可以转换为数字的字符串。 |
 
-## RowOptionsV2<sup>16+</sup>对象说明
+## RowOptionsV2<sup>18+</sup>对象说明
 
-用于构造Row组件时设置子组件间距属性。
+用于构造Row组件时设置子组件间距属性。间距类型SpaceType支持number、string或Resource类型。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| space | [SpaceType](ts-container-column.md#spacetype16类型说明) | 否 | 横向布局元素间距。<br/>space为负数或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。<br/>默认值：0，单位vp<br/>**说明：** <br/>space取值是大于等于0的数字，或者可以转换为数字的字符串，或者可以转换为数字的Resource类型数据。|
+| space | [SpaceType](ts-container-column.md#spacetype18类型说明) | 否 | 横向布局元素间距。<br/>space为负数或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。<br/>默认值：0，单位vp<br/>**说明：** <br/>space取值是大于等于0的数字，或者可以转换为数字的字符串，或者可以转换为数字的Resource类型数据。|
 
 ## 属性
 

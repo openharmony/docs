@@ -98,7 +98,8 @@ connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 
 根据getDevices()返回的设备信息打开USB设备。如果USB服务异常，可能返回`undefined`，注意需要对接口返回值做判空处理。
 
-需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及device，再调用[usbManager.requestRight](#usbmanagerrequestright)请求使用该设备的权限。
+1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及device;
+2. 调用[usbManager.requestRight](#usbmanagerrequestright)请求使用该设备的权限。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -167,7 +168,7 @@ hasRight(deviceName: string): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | true表示有访问设备的权限，false表示没有访问设备的权限。 |
+| boolean | true表示有访问设备的权限，false表示没有访问设备的权限。调用失败返回其他错误码如下：<br>- 88080385：接口未初始化。<br>- 88080492：写入服务数据包过程发生错误。<br>- 88080493：读取服务数据包过程发送错误。|
 
 **示例：**
 
@@ -210,7 +211,7 @@ requestRight(deviceName: string): Promise&lt;boolean&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise对象，返回临时权限的申请结果。返回true表示临时权限申请成功；返回false则表示临时权限申请失败。 |
+| Promise&lt;boolean&gt; | Promise对象，返回临时权限的申请结果。返回true表示临时权限申请成功；返回false则表示临时权限申请失败。调用失败返回其他错误码如下：<br>- 88080385：接口未初始化。<br>- 88080392：写入接口数据包过程发生错误。<br>- 88080393：读取接口数据包过程发送错误。<br>- 88080492：写入服务数据包过程发生错误。<br>- 88080493：读取服务数据包过程发生错误。<br>- 88080497：服务内部逻辑执行发生错误。|
 
 **示例：**
 
@@ -253,7 +254,7 @@ removeRight(deviceName: string): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 返回权限移除结果。返回true表示权限移除成功；返回false则表示权限移除失败。 |
+| boolean | 返回权限移除结果。返回true表示权限移除成功；返回false则表示权限移除失败。调用失败返回其他错误码如下：<br>- 88080382：接口操作过程中遇到无效值或参数。<br>- 88080385：接口未初始化。<br>- 88080392：写入接口数据包过程发生错误。<br>- 88080393：读取接口数据包过程发送错误。<br>- 88080492：写入服务数据包过程发生错误。<br>- 88080493：读取服务数据包过程发生错误。<br>- 88080497：服务内部逻辑执行发生错误。|
 
 **示例：**
 
@@ -275,9 +276,9 @@ claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): numb
 
 注册通信接口。
 
-1.需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及interfaces；
-2.调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
-3.调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
+1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及interfaces；
+2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
+3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -302,7 +303,7 @@ claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): numb
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 注册通信接口成功返回0；注册通信接口失败返回其他错误码。 |
+| number | 注册通信接口成功返回0；注册通信接口失败返回其他错误码如下：<br>- 63：数据量超过预期的最大值。<br>- 88080385：接口未初始化。<br>- 88080482：服务过程中遇到无效值或参数。<br>- 88080484：没有权限。<br>- 88080492：写入服务数据包过程发生错误。<br>- 88080493：读取服务数据包过程发生错误。<br>- 88080497：服务内部逻辑执行发生错误。<br>- -1：调用底层接口失败。|
 
 **示例：**
 
@@ -350,7 +351,7 @@ releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 释放接口成功返回0；释放接口失败返回其他错误码。 |
+| number | 释放接口成功返回0；释放接口失败返回其他错误码如下：<br>- 63：数据量超过预期的最大值。<br>- 88080381：无效的接口操作。<br>- 88080385：接口未初始化。<br>- 88080482：服务过程中遇到无效值或参数。<br>- 88080484：没有权限。<br>- 88080492：写入服务数据包过程发生错误。<br>- 88080493：读取服务数据包过程发生错误。<br>- 88080497：服务内部逻辑执行发生错误。<br>- -1：调用底层接口失败。|
 
 **示例：**
 
@@ -375,9 +376,9 @@ setConfiguration(pipe: USBDevicePipe, config: USBConfiguration): number
 
 设置设备配置。
 
-1.需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及config；
-2.调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
-3.调用[usbManager.connectDevice](#usbmanagerconnectdevice)得到devicepipe作为参数。
+1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及config；
+2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
+3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)得到devicepipe作为参数。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -401,7 +402,7 @@ setConfiguration(pipe: USBDevicePipe, config: USBConfiguration): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 设置设备配置成功返回0；设置设备配置失败返回其他错误码。 |
+| number | 设置设备配置成功返回0；设置设备配置失败返回其他错误码如下：<br>- 63：数据量超过预期的最大值。<br>- 88080385：接口未初始化。<br>- 88080482：服务过程中遇到无效值或参数。<br>- 88080484：没有权限。<br>- 88080492：写入服务数据包过程发生错误。<br>- 88080493：读取服务数据包过程发生错误。<br>- 88080497：服务内部逻辑执行发生错误。<br>- -1：调用底层接口失败。<br>- -17：I/O失败。|
 
 **示例：**
 
@@ -425,7 +426,10 @@ setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 设置设备接口。
 
-需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表以及interfaces；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)得到devicepipe作为参数；调用[usbManager.claimInterface](#usbmanagerclaiminterface)注册通信接口。
+1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表以及interfaces；
+2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
+3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)得到devicepipe作为参数；
+4. 调用[usbManager.claimInterface](#usbmanagerclaiminterface)注册通信接口。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -449,7 +453,7 @@ setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 设置设备接口成功返回0；设置设备接口失败返回其他错误码。 |
+| number | 设置设备接口成功返回0；设置设备接口失败返回其他错误码如下：<br>- 63：数据量超过预期的最大值。<br>- 88080385：接口未初始化。<br>- 88080482：服务过程中遇到无效值或参数。<br>- 88080484：没有权限。<br>- 88080492：写入服务数据包过程发生错误。<br>- 88080493：读取服务数据包过程发生错误。<br>- 88080497：服务内部逻辑执行发生错误。<br>- -1：调用底层接口失败。|
 
 **示例：**
 
@@ -474,7 +478,9 @@ getRawDescriptor(pipe: USBDevicePipe): Uint8Array
 
 获取原始的USB描述符。如果USB服务异常，可能返回`undefined`，注意需要对接口返回值做判空处理。
 
-需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
+1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；
+2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
+3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -518,7 +524,9 @@ getFileDescriptor(pipe: USBDevicePipe): number
 
 获取文件描述符。
 
-需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
+1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；
+2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
+3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -541,7 +549,7 @@ getFileDescriptor(pipe: USBDevicePipe): number
 
 | 类型     | 说明                   |
 | ------ | -------------------- |
-| number | 返回设备对应的文件描述符；失败返回-1。 |
+| number | 返回设备对应的文件描述符；失败返回其他错误码如下：<br>- 63：数据量超过预期的最大值。<br>- 88080385：接口未初始化。<br>- 88080482：服务过程中遇到无效值或参数。<br>- 88080484：没有权限。<br>- 88080492：写入服务数据包过程发生错误。<br>- 88080493：读取服务数据包过程发生错误。<br>- 88080497：服务内部逻辑执行发生错误。<br>- -1：调用底层接口失败。|
 
 **示例：**
 
@@ -562,7 +570,9 @@ controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: 
 
 控制传输。
 
-需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
+1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；
+2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
+3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
 
 **说明：**
 
@@ -576,7 +586,7 @@ controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: 
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备，需要调用connectDevice获取。|
 | controlparam | [USBControlParams](#usbcontrolparamsdeprecated) | 是 | 控制传输参数，按需设置参数，参数传参类型请参考USB协议。|
-| timeout | number | 否 | 超时时间（单位：ms），可选参数，默认为0不超时，用户按需选择 。 |
+| timeout | number | 否 | 超时时间（单位：ms），可选参数，默认为0不超时，用户按需选择。 |
 
 **错误码：**
 
@@ -590,7 +600,7 @@ controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: 
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;number&gt; | Promise对象，获取传输或接收到的数据块大小。失败返回-1。 |
+| Promise&lt;number&gt; | Promise对象，获取传输或接收到的数据块大小。失败返回其他错误码如下：<br>- 88080385：接口未初始化。<br>- 88080482：服务过程中遇到无效值或参数。<br>- 88080484：没有权限。<br>- 88080492：写入服务数据包过程发生错误。<br>- 88080493：读取服务数据包过程发生错误。<br>- 88080497：服务内部逻辑执行发生错误。<br>- -1：调用底层接口失败。|
 
 **示例：**
 
@@ -631,7 +641,9 @@ usbControlTransfer(pipe: USBDevicePipe, requestparam: USBDeviceRequestParams, ti
 
 控制传输。
 
-需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
+1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；
+2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
+3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -656,7 +668,7 @@ usbControlTransfer(pipe: USBDevicePipe, requestparam: USBDeviceRequestParams, ti
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;number&gt; | Promise对象，获取传输或接收到的数据块大小。失败返回-1。 |
+| Promise&lt;number&gt; | Promise对象，获取传输或接收到的数据块大小。失败返回其他错误码如下：<br>- 88080385：接口未初始化。<br>- 88080482：服务过程中遇到无效值或参数。<br>- 88080484：没有权限。<br>- 88080492：写入服务数据包过程发生错误。<br>- 88080493：读取服务数据包过程发生错误。<br>- 88080497：服务内部逻辑执行发生错误。<br>- -1：调用底层接口失败。|
 
 **示例：**
 
@@ -698,11 +710,11 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 
 批量传输。
 
-1.需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；
-2.调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
-3.调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe；
-4.获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；
-5.调用usbManager.bulkTransfer接口。
+1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；
+2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
+3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe；
+4. 获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；
+5. 调用usbManager.bulkTransfer接口。
 
 > **说明：** 
 >
@@ -732,7 +744,7 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;number&gt; | Promise对象，获取传输或接收到的数据块大小。失败返回-1。 |
+| Promise&lt;number&gt; | Promise对象，获取传输或接收到的数据块大小。失败返回其他错误码如下：<br>- 63：数据量超过预期的最大值。<br>- 88080385：接口未初始化。<br>- 88080482：服务过程中遇到无效值或参数。<br>- 88080484：没有权限。<br>- 88080492：写入服务数据包过程发生错误。<br>- 88080493：读取服务数据包过程发生错误。<br>- 88080497：服务内部逻辑执行发生错误。<br>- -1：调用底层接口失败。<br>- -3：参数无效。<br>- -202：设备未找到。|
 
 **示例：**
 
@@ -741,7 +753,7 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 > 以下示例代码只是调用bulkTransfer接口的必要流程，实际调用时，设备开发者需要遵循设备相关协议进行调用，确保数据的正确传输和设备的兼容性。
 
 ```ts
-//usbManager.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限 。
+//usbManager.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限。
 //把获取到的设备对象作为参数传入usbManager.connectDevice;当usbManager.connectDevice接口成功返回之后；
 //才可以调用第三个接口usbManager.claimInterface.当usbManager.claimInterface 调用成功以后,再调用该接口。
 let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
@@ -766,7 +778,7 @@ for (let i = 0; i < device.configs[0].interfaces.length; i++) {
 }
 ```
 
-## usbManager.usbSubmitTransfer<sup>16+</sup>
+## usbManager.usbSubmitTransfer<sup>18+</sup>
 
 usbSubmitTransfer(transfer: USBDataTransferParams): void
 
@@ -774,11 +786,11 @@ usbSubmitTransfer(transfer: USBDataTransferParams): void
 
 本接口为异步接口，调用后立刻返回，实际读写操作的结果以回调的方式返回。
 
-1.需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；
-2.调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
-3.调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe；
-4.获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；
-5.调用usbManager.usbSubmitTransfer接口。
+1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；
+2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
+3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe；
+4. 获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；
+5. 调用usbManager.usbSubmitTransfer接口。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -786,7 +798,7 @@ usbSubmitTransfer(transfer: USBDataTransferParams): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| transfer | [UsbDataTransferParams](#usbdatatransferparams16) | 是 | 作为通用USB数据传输接口，客户端需要填充这个对象中的参数，用以发起传输请求。|
+| transfer | [UsbDataTransferParams](#usbdatatransferparams18) | 是 | 作为通用USB数据传输接口，客户端需要填充这个对象中的参数，用以发起传输请求。|
 
 **错误码：**
 
@@ -809,7 +821,7 @@ usbSubmitTransfer(transfer: USBDataTransferParams): void
 > 以下示例代码需要放入具体的方法中执行，只是调用usbSubmitTransfer接口的必要流程，实际调用时，设备开发者需要遵循设备相关协议进行调用，确保数据的正确传输和设备的兼容性。
 
 ```ts
-//usbManager.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限 。
+//usbManager.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限。
 //把获取到的设备对象作为参数传入usbManager.connectDevice;当usbManager.connectDevice接口成功返回之后；
 //才可以调用第三个接口usbManager.claimInterface.当usbManager.claimInterface 调用成功以后,再调用该接口。
 let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
@@ -820,11 +832,11 @@ if (devicesList.length == 0) {
 let device: usbManager.USBDevice = devicesList[0];
 usbManager.requestRight(device.name);
 let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(device);
-//获取endpoint端点地址
+//获取endpoint端点地址。
 let endpoint = device.configs[0].interfaces[0]?.endpoints.find((value) => {
   return value.direction === 0 && value.type === 2
 })
-//获取设备的第一个id
+//获取设备的第一个id。
 let ret: number = usbManager.claimInterface(devicepipe, device.configs[0].interfaces[0], true);
 
 let transferParams: usbManager.UsbDataTransferParams = {
@@ -851,18 +863,17 @@ try {
 }
 ```
 
+## usbManager.usbCancelTransfer<sup>18+</sup>
 
-## usbManager.usbCancelTransfer<sup>16+</sup>
-
-usbCancelTransfer(transfer: USBDataTransferParams): void;
+usbCancelTransfer(transfer: USBDataTransferParams): void
 
 取消异步传输请求。
 
-1.需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；
-2.调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
-3.调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe；
-4.获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；
-5.调用usbManager.usbCancelTransfer接口。
+1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；
+2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
+3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe；
+4. 获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；
+5. 调用usbManager.usbCancelTransfer接口。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -870,7 +881,7 @@ usbCancelTransfer(transfer: USBDataTransferParams): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| transfer | [UsbDataTransferParams](#usbdatatransferparams16) | 是 | 在取消传输的接口中，只需要填充USBDevicePipe和endpoint即可。|
+| transfer | [UsbDataTransferParams](#usbdatatransferparams18) | 是 | 在取消传输的接口中，只需要填充USBDevicePipe和endpoint即可。|
 
 **错误码：**
 
@@ -889,7 +900,7 @@ usbCancelTransfer(transfer: USBDataTransferParams): void;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| &lt;void&gt; | 无 |
+| &lt;void&gt; | 无。 |
 
 **示例：**
 
@@ -898,7 +909,7 @@ usbCancelTransfer(transfer: USBDataTransferParams): void;
 > 以下示例代码需要放入具体的方法中执行，只是调用usbCancelTransfer接口的必要流程，实际调用时，设备开发者需要遵循设备相关协议进行调用，确保数据的正确传输和设备的兼容性。
 
 ```ts
-//usbManager.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限 。
+//usbManager.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限。
 //把获取到的设备对象作为参数传入usbManager.connectDevice;当usbManager.connectDevice接口成功返回之后；
 //才可以调用第三个接口usbManager.claimInterface.当usbManager.claimInterface 调用成功以后,再调用该接口。
 let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
@@ -909,11 +920,11 @@ if (devicesList.length == 0) {
 let device: usbManager.USBDevice = devicesList[0];
 usbManager.requestRight(device.name);
 let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(device);
-//获取endpoint端点地址
+//获取endpoint端点地址。
 let endpoint = device.configs[0].interfaces[0]?.endpoints.find((value) => {
   return value.direction === 0 && value.type === 2
 })
-//获取设备的第一个id
+//获取设备的第一个id。
 let ret: number = usbManager.claimInterface(devicepipe, device.configs[0].interfaces[0], true);
 let transferParams: usbManager.UsbDataTransferParams = {
   devPipe: devicepipe,
@@ -946,7 +957,9 @@ closePipe(pipe: USBDevicePipe): number
 
 关闭设备消息控制通道。
 
-需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)得到devicepipe作为参数。
+1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；
+2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
+3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)得到devicepipe作为参数。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -969,7 +982,7 @@ closePipe(pipe: USBDevicePipe): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 关闭设备消息控制通道成功返回0；关闭设备消息控制通道失败返回其他错误码。 |
+| number | 关闭设备消息控制通道成功返回0；关闭设备消息控制通道失败返回其他错误码如下：<br>- 63：数据量超过预期的最大值。<br>- 88080393：读取接口数据包过程发生错误。<br>- 88080482：服务过程中遇到无效值或参数。<br>- 88080484：没有权限。<br>- 88080493：读取服务数据包过程发生错误。<br>- 88080497：服务内部逻辑执行发生错误。<br>- -1：调用底层接口失败。 |
 
 **示例：**
 
@@ -1081,7 +1094,7 @@ try {
 
 ## usbManager.cancelAccessoryRight<sup>14+</sup>
 
-cancelAccessoryRight(accessory: USBAccessory): void;
+cancelAccessoryRight(accessory: USBAccessory): void
 
 取消当前应用程序访问USB配件的权限。
 
@@ -1158,7 +1171,7 @@ try {
 
 ## usbManager.openAccessory<sup>14+</sup>
 
-openAccessory(accessory: USBAccessory): USBAccessoryHandle;
+openAccessory(accessory: USBAccessory): USBAccessoryHandle
 
 获取配件句柄并打开配件文件描述符。
 
@@ -1208,7 +1221,7 @@ try {
 
 ## usbManager.closeAccessory<sup>14+</sup>
 
-closeAccessory(accessoryHandle: USBAccessoryHandle): void;
+closeAccessory(accessoryHandle: USBAccessoryHandle): void
 
 关闭配件文件描述符。
 
@@ -1335,7 +1348,7 @@ USB设备消息传输通道，用于确定设备。
 
 **说明：**
 
-> 从 API version 9开始支持，从API version 16开始废弃。建议使用 [USBDeviceRequestParams](#usbdevicerequestparams12) 替代。
+> 从 API version 9开始支持，从API version 18开始废弃。建议使用 [USBDeviceRequestParams](#usbdevicerequestparams12) 替代。
 
 **系统能力：** SystemCapability.USB.USBManager
 
@@ -1423,7 +1436,7 @@ USB配件句柄。
 | ----------- | ------ | ---- | ----------------------------------------- |
 | accessoryFd | number | 是   | 配件文件描述符。合法的accessoryFd是正整数。 |
 
-## UsbDataTransferParams<sup>16+</sup>
+## UsbDataTransferParams<sup>18+</sup>
 
 作为通用USB数据传输接口，客户端需要填充这个对象中的参数，用以发起传输请求。
 
@@ -1432,17 +1445,17 @@ USB配件句柄。
 | 名称         | 类型   | 必填    |说明    |
 | ---------- | ------ | ----- |----- |
 | devPipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址，需要调用connectDevice获取。 |
-| flags | [UsbTransferFlags](#usbtransferflags16) |是 | USB传输标志。 |
+| flags | [UsbTransferFlags](#usbtransferflags18) |是 | USB传输标志。 |
 | endpoint | number | 是 | 端点地址，正整数。 |
-| type | [UsbEndpointTransferType](#usbendpointtransfertype16) |是 | 传输类型。 |
+| type | [UsbEndpointTransferType](#usbendpointtransfertype18) |是 | 传输类型。 |
 | timeout | number | 是 | 超时时间，单位为毫秒。 |
 | length | number |是 | 数据缓冲区的长度，必须是非负数（期望长度），单位为字节。 |
-| callback | AsyncCallback<[SubmitTransferCallback](#submittransfercallback16)> |是 | 传输完成时的回调信息。|
+| callback | AsyncCallback<[SubmitTransferCallback](#submittransfercallback18)> |是 | 传输完成时的回调信息。|
 | userData | Uint8Array | 否 | 用户上下文数据。 |
 | buffer | Uint8Array | 是 | 用于存储读或者写请求时的数据。 |
 | isoPacketCount | number | 是 | 实时传输时数据包的数量，仅用于具有实时传输端点的I/O。必须是非负数，单位为个数。 |
 
-## UsbTransferFlags<sup>16+</sup>
+## UsbTransferFlags<sup>18+</sup>
 
 USB传输标志。
 
@@ -1455,7 +1468,7 @@ USB传输标志。
 | USB_TRANSFER_FREE_TRANSFER  | 2    | 完成回调后自动传输。 |
 | USB_TRANSFER_ADD_ZERO_PACKET     | 3    | 传输将增加一个额外的数据包。 |
 
-## UsbEndpointTransferType<sup>16+</sup>
+## UsbEndpointTransferType<sup>18+</sup>
 
 Usb传输类型。
 
@@ -1467,7 +1480,7 @@ Usb传输类型。
 | TRANSFER_TYPE_BULK  | 2    | 批量传输。 |
 | TRANSFER_TYPE_INTERRUPT     | 3    | 中断传输。|
 
-## SubmitTransferCallback<sup>16+</sup>
+## SubmitTransferCallback<sup>18+</sup>
 
 Usb异步传输回调。
 
@@ -1476,10 +1489,10 @@ Usb异步传输回调。
 | 名称         | 类型 | 说明    |
 | ---------- | ------ | ----- |
 | actualLength | number | 读写操作的实际长度值，单位为字节。 |
-| status | [UsbTransferStatus](#usbtransferstatus16) | 读写操作完成的状态。 |
-| isoPacketDescs | Array<Readonly<[UsbIsoPacketDescriptor](#usbisopacketdescriptor16)>> | 实时传输的分包信息。 |
+| status | [UsbTransferStatus](#usbtransferstatus18) | 读写操作完成的状态。 |
+| isoPacketDescs | Array<Readonly<[UsbIsoPacketDescriptor](#usbisopacketdescriptor18)>> | 实时传输的分包信息。 |
 
-## UsbTransferStatus<sup>16+</sup>
+## UsbTransferStatus<sup>18+</sup>
 
 libusb实际处理完成后通过回调返回的状态码。
 
@@ -1495,8 +1508,7 @@ libusb实际处理完成后通过回调返回的状态码。
 | TRANSFER_NO_DEVICE     | 5    | 设备已断开。|
 | TRANSFER_OVERFLOW     | 6    | 设备发送的数据比请求的多。|
 
-
-## UsbIsoPacketDescriptor<sup>16+</sup>
+## UsbIsoPacketDescriptor<sup>18+</sup>
 
 实时传输模式回调返回的分包信息。
 
@@ -1506,4 +1518,4 @@ libusb实际处理完成后通过回调返回的状态码。
 | ---------- | ------ | ----- |
 | length | number | 读写操作的期望长度值，单位为字节。 |
 | actualLength | number| 读写操作的实际长度值，单位为字节。 |
-| status | [UsbTransferStatus](#usbtransferstatus16) | 实时传输分包的状态码。 |
+| status | [UsbTransferStatus](#usbtransferstatus18) | 实时传输分包的状态码。 |

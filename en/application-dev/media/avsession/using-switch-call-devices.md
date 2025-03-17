@@ -133,7 +133,7 @@ The differences are as follows:
      }
    }
 
-   // Custom content
+   // Custom content.
    @Builder
    ImageBuilder(): void {
      Image(this.pickerImage)

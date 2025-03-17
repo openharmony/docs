@@ -129,7 +129,7 @@ getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
 });
 ```
 
-## securityManager.installUserCertificate<sup>16+</sup>
+## securityManager.installUserCertificate<sup>18+</sup>
 
 installUserCertificate(admin: Want, certificate: CertBlob, accountId: number): string
 
@@ -187,7 +187,7 @@ getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
   }
 });
 ```
-## securityManager.getUserCertificates<sup>16+</sup>
+## securityManager.getUserCertificates<sup>18+</sup>
 
 getUserCertificates(admin: Want, accountId: number): Array&lt;string&gt;
 
@@ -490,7 +490,7 @@ try {
 
 setWatermarkImage(admin: Want, bundleName: string, source: string | image.PixelMap, accountId: number): void
 
-设置水印策略，当前仅支持2in1使用。
+设置水印策略，当前仅支持2in1设备使用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -539,7 +539,7 @@ try {
 
 cancelWatermarkImage(admin: Want, bundleName: string, accountId: number): void
 
-取消水印策略，当前仅支持2in1使用。
+取消水印策略，当前仅支持2in1设备使用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 

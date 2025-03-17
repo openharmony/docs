@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 本模块首批接口从API version 16开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 18开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -116,7 +116,7 @@ try {
             console.error('userAuthInstance callback result.token is null');
             return;
         }
-        // 发起 AuthToken 验证请求
+        // 发起 AuthToken 验证请求。
         userAccessCtrl.verifyAuthToken(result.token, allowableDuration)
             .then((retAuthToken: userAccessCtrl.AuthToken) => {
                 Object.keys(retAuthToken).forEach((key) => {
@@ -128,7 +128,7 @@ try {
     }
   });
   console.info('auth on success');
-  // 启动认证
+  // 启动认证。
   userAuthInstance.start();
   console.info('auth start success');
 } catch (error) {

@@ -28,12 +28,12 @@ Requests efficiency resources.
 
 | Name    | Type     | Mandatory  | Description                                      |
 | ------- | ------- | ---- | ---------------------------------------- |
-| request | [EfficiencyResourcesRequest](#efficiencyresourcesrequest) | Yes   | Necessary information carried in the request, including the resource type and timeout interval. |
+| request | [EfficiencyResourcesRequest](#efficiencyresourcesrequest) | Yes   | Necessary information carried in the request, including the resource type and timeout interval.|
 
 
 **Error codes**
 
-For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -79,7 +79,7 @@ Releases all efficiency resources.
 
 **Error codes**
 
-For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -112,8 +112,7 @@ Enumerates the continuous task modes.
 
 | Name                    | Value | Description                   |
 | ----------------------- | ---- | --------------------- |
-| WIFI_INTERACTION        | 7    | WLAN-related.<br>**System API**: This is a system API. |
-| VOIP                    | 8    | Audio and video calls.<br>**System API**: This is a system API. |
+| WIFI_INTERACTION        | 7    | WLAN-related.<br>**System API**: This is a system API.|
 
 ## EfficiencyResourcesRequest
 
@@ -126,10 +125,10 @@ Describes the parameters for requesting efficiency resources.
 | Name            | Type    | Mandatory  | Description                                      |
 | --------------- | ------ | ---- | ---------------------------------------- |
 | resourceTypes   | number  | Yes   | Type of the resource to request.                              |
-| isApply         | boolean | Yes   | Whether the request is used to apply for resources.<br>The value **true** means that the request is used to apply for resources, and **false** means that the request is used to release resources. |
+| isApply         | boolean | Yes   | Whether the request is used to apply for resources.<br>- **true**: The request is used to apply for resources.<br>- **false**: The request is used to release resources.|
 | timeOut         | number  | Yes   | Duration for which the resource will be used, in milliseconds.               |
-| isPersist       | boolean | No   | Whether the resource is permanently held. The default value is **false**.<br>The value **true** means that the resource is permanently held, and **false** means the resource is held within a given period of time.|
-| isProcess       | boolean | No   | Whether the request is initiated by a process. The default value is **false**.<br>The value **true** means that the request is initiated by a process, and **false** means that the request is initiated by an application.        |
+| isPersist       | boolean | No   | Whether the resource is permanently held. The default value is **false**.<br>- **true**: The resource is permanently held.<br>- **false**: The resource is held for a limited period of time.|
+| isProcess       | boolean | No   | Whether the request is initiated by a process. The default value is **false**.<br>- **true**: The request is initiated by a process.<br>- **false**: The request is initiated by an application.        |
 | reason          | string  | Yes   | Reason for requesting the resource.               |
 
 ## ResourceType
@@ -143,11 +142,11 @@ Enumerates the efficiency resource types.
 | Name                    | Value | Description                   |
 | ----------------------- | ---- | --------------------- |
 | CPU                     | 1    | CPU resource. Such type of resource prevents an application from being suspended.            |
-| COMMON_EVENT            | 2    | Common event resource. Such type of resource ensures that an application in the suspended state can receive common events. |
-| TIMER                   | 4    | Timer resource. Such type of resource ensures that an application in the suspended state can be woken up by system timers. |
-| WORK_SCHEDULER          | 8    | Deferred task resource. Such type of resource provides a loose control policy for an application. |
-| BLUETOOTH               | 16   | Bluetooth resource. Such type of resource ensures that an application in the suspended state can be woken up by Bluetooth-related events. |
-| GPS                     | 32   | GPS resource. Such type of resource ensures that an application in the suspended state can be woken up by GPS-related events. |
-| AUDIO                   | 64   | Audio resource. Such type of resource prevents an application from being suspended when the application has an audio being played. |
-| RUNNING_LOCK<sup>10+</sup> | 128 | RUNNING_LOCK resources are not proxied when the application is suspended. |
-| SENSOR<sup>10+</sup> | 256 | Sensor callbacks are not intercepted. |
+| COMMON_EVENT            | 2    | Common event resource. Such type of resource ensures that an application in the suspended state can receive common events.|
+| TIMER                   | 4    | Timer resource. Such type of resource ensures that an application in the suspended state can be woken up by system timers.|
+| WORK_SCHEDULER          | 8    | Deferred task resource. Such type of resource provides a loose control policy for an application.|
+| BLUETOOTH               | 16   | Bluetooth resource. Such type of resource ensures that an application in the suspended state can be woken up by Bluetooth-related events.|
+| GPS                     | 32   | GPS resource. Such type of resource ensures that an application in the suspended state can be woken up by GPS-related events.|
+| AUDIO                   | 64   | Audio resource. Such type of resource prevents an application from being suspended when the application has an audio being played.|
+| RUNNING_LOCK<sup>10+</sup> | 128 | RUNNING_LOCK resources are not proxied when the application is suspended.|
+| SENSOR<sup>10+</sup> | 256 | Sensor callbacks are not intercepted.|

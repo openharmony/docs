@@ -1223,7 +1223,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
   });
 ```
 
-## wifiManager.getLinkedInfoSync<sup>16+</sup>
+## wifiManager.getLinkedInfoSync<sup>18+</sup>
 
 getLinkedInfoSync(): WifiLinkedInfo;
 

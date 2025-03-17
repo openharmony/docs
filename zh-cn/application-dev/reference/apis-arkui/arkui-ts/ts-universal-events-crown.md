@@ -3,7 +3,7 @@
 
 >  **说明：**
 >
->  - 从API Version 16开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  - 从API version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 >  - 手动旋转表冠存在默认的交互逻辑，例如旋转手表的表冠后，滚动条会根据旋转表冠的旋转方向进行滚动。
 >
@@ -19,7 +19,7 @@ onDigitalCrown(handler: Optional&lt;Callback&lt;CrownEvent&gt;&gt;): T
 
 组件获焦以后扭动表冠时触发该回调。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -39,7 +39,7 @@ onDigitalCrown(handler: Optional&lt;Callback&lt;CrownEvent&gt;&gt;): T
 
 组件接收表冠事件的数据结构。内容包括时间戳、旋转角速度、旋转角度和表冠动作。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -48,7 +48,7 @@ onDigitalCrown(handler: Optional&lt;Callback&lt;CrownEvent&gt;&gt;): T
 | timestamp	        | number	 | 时间戳。                                  |
 | angularVelocity	| number	 | 旋转角速度，每秒转的角度(°/s)。                   |
 | degree	        | number 	 | 相对旋转角度。<br>单位：度。<br>取值范围:[-360 360]。     |
-| action	        | [CrownAction](ts-appendix-enums.md#crownaction16)   | 表冠动作。  |
+| action	        | [CrownAction](ts-appendix-enums.md#crownaction18)   | 表冠动作。  |
 | stopPropagation	| () => void     | 阻止事件冒泡。                         |
 
 ## 示例

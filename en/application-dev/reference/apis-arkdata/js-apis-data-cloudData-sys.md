@@ -4,7 +4,7 @@ The **cloudData** module provides APIs for implementing device-cloud synergy and
 
 Device-cloud synergy enables sync of the structured data (in RDB stores) between devices and the cloud. The cloud serves as a data hub to implement data backup in the cloud and data consistency between the devices with the same account.
 
-Device-cloud sharing enables data sharing across accounts based on device-cloud synergy. Understanding the following concepts helps you better understand the device-cloud sharing process: 
+Device-cloud sharing enables data sharing across accounts based on device-cloud synergy. Understanding the following concepts helps you better understand the device-cloud sharing process:
 
 - **sharingResource**: an identifier of the string type generated for each data record shared by an application before device-cloud sync is performed. It uniquely identifies the data record being shared.
 - **Participant**: all participants involved in a share, including the inviter and invitees.
@@ -13,9 +13,9 @@ Device-cloud sharing enables data sharing across accounts based on device-cloud 
 The **cloudData** module provides the following functionalities:
 
 - [Config](#config): provides APIs for setting device-cloud synergy, including enabling and disabling device-cloud sync, clearing data, and notifying data changes.
-- [sharing<sup>11+</sup>](#sharing11): provides APIs for device-cloud sharing, including sharing or unsharing data, exiting a share, changing the privilege on the shared data, querying participants, confirming an invitation, changing invitation confirmation state, and querying the shared resource.
+- [sharing](#sharing11): provides APIs for device-cloud data sharing, including sharing or unsharing data, exiting a share, changing the privilege on the shared data, querying participants, confirming an invitation, changing the invitation confirmation state, and querying the shared resource.
 
-> **NOTE** 
+> **NOTE**
 >
 > - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
@@ -37,7 +37,7 @@ Enumerates the operations for clearing the downloaded cloud data locally.
 
 | Name     | Description                        |
 | --------- | ---------------------------- |
-| CLEAR_CLOUD_INFO | Clear the cloud identifier of the data downloaded from the cloud and retain the data locally. |
+| CLEAR_CLOUD_INFO | Clear the cloud identifier of the data downloaded from the cloud and retain the data locally.|
 | CLEAR_CLOUD_DATA_AND_INFO |Clear the data downloaded from the cloud, excluding the cloud data that has been modified locally.  |
 
 ## ExtraData<sup>11+</sup>
@@ -46,7 +46,7 @@ Represents the transparently transmitted data, which contains information requir
 
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Config
 
-| Name     | Type  | Mandatory | Description                                                        |
+| Name     | Type  | Mandatory| Description                                                        |
 | --------- | ------ | ---- | ------------------------------------------------------------ |
 | eventId   | string | Yes  | Event ID. The value **cloud_data_change** indicates cloud data changes.             |
 | extraData | string | Yes | Data to be transmitted transparently. <br/>**extraData** is a JSON string that must contain the **data** field. The **data** field contains information required for a change notification, including the account ID, application name, database name, database type, and database table name. All the fields cannot be empty. |
@@ -58,7 +58,7 @@ Represents the transparently transmitted data, which contains information requir
 // bundleName: application bundle name.
 // containerName: name of the cloud database.
 // databaseScopes: type of the cloud database.
-// recordTypes: name of the cloud database table.
+// recordTypes: names of the tables in the cloud database.
 
 interface ExtraData {
   eventId: "cloud_data_change",
@@ -81,24 +81,36 @@ Represents the device-cloud sync statistics.
 
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Config
 
-| Name     | Type  | Mandatory | Description                                                 |
+| Name     | Type  | Mandatory| Description                                                 |
 | --------- | ------ | ---- |-----------------------------------------------------|
-| table   | string | Yes  | Name of the table queried. For example, the value **cloud_notes** indicates that the sync information of the **cloud_notes** table is queried. |
+| table   | string | Yes  | Name of the table queried. For example, the value **cloud_notes** indicates that the sync information of the **cloud_notes** table is queried.|
 | inserted   | number | Yes  | Number of data records that are added locally and have not been synced to the cloud. For example, the value **2** indicates that the table has two data records that are added locally but not synced to the cloud.         |
 | updated   | number | Yes  | Number of data records that are modified locally or on the cloud but have not been synced. For example, the value **2** indicates that the table has two data records that are updated locally or on the cloud but not synced.    |
 | normal | number | Yes  | Number of consistent data records between the device and the cloud. For example, the value **2** indicates that table has two data records that are consistent between the device and the cloud.                    |
 
-## SyncInfo<sup>12+</sup>
+## SyncStatus<sup>18+</sup>
 
-Represents information required for the last device-cloud sync.
+Enumerates the device-cloud sync task statuses.
 
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Config
 
-| Name      | Type                                                        | Mandatory | Description                      |
+| Name     | Value  | Description             |
+| -------- |-----|-----------------|
+| RUNNING | 0  | The device-cloud sync task is running.|
+| FINISHED | 1   | The device-cloud sync task is completed.|
+
+## SyncInfo<sup>12+</sup>
+
+Represents information about the last device-cloud sync.
+
+**System capability**: SystemCapability.DistributedDataManager.CloudSync.Config
+
+| Name      | Type                                                        | Mandatory| Description                      |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| startTime  | Date                                                         | Yes  | Start time of the last device-cloud sync. |
-| finishTime | Date                                                         | Yes  | End time of the last device-cloud sync. |
-| code       | [relationalStore.ProgressCode](js-apis-data-relationalStore.md#progresscode10) | Yes  | Status of the last device-cloud sync. |
+| startTime  | Date                                                         | Yes  | Start time of the last device-cloud sync.|
+| finishTime | Date                                                         | Yes  | End time of the last device-cloud sync.|
+| code       | [relationalStore.ProgressCode](js-apis-data-relationalStore.md#progresscode10) | Yes  | Result of the last device-cloud sync.|
+| syncStatus<sup>18+</sup> | [SyncStatus](#syncstatus18) | No| Status of the last device-cloud sync. The default value is **cloudData.SyncStatus.RUNNING**.|
 
 ## Config
 
@@ -116,7 +128,7 @@ Enables device-cloud synergy. This API uses an asynchronous callback to return t
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description                                                        |
+| Name   | Type                           | Mandatory| Description                                                        |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | accountId | string                          | Yes  | ID of the cloud account.                                        |
 | switches  | Record<string, boolean>         | Yes  | Device-cloud synergy settings for applications. The value **true** means to enable device-cloud synergy; the value **false** means the opposite. |
@@ -126,7 +138,7 @@ Enables device-cloud synergy. This API uses an asynchronous callback to return t
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
 | 202      | Permission verification failed, application which is not a system application uses system API.|
@@ -166,7 +178,7 @@ Enables device-cloud synergy. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description                                                        |
+| Name   | Type                           | Mandatory| Description                                                        |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | accountId | string                          | Yes  | ID of the cloud account.                                        |
 | switches  | Record<string, boolean>         | Yes  | Device-cloud synergy settings for applications. The value **true** means to enable device-cloud synergy; the value **false** means the opposite. |
@@ -175,13 +187,13 @@ Enables device-cloud synergy. This API uses a promise to return the result.
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
 | 202      | Permission verification failed, application which is not a system application uses system API.|
@@ -219,16 +231,16 @@ Disables device-cloud synergy. This API uses an asynchronous callback to return 
 
 **Parameters**
 
-| Name   | Type                     | Mandatory | Description                |
+| Name   | Type                     | Mandatory| Description                |
 | --------- | ------------------------- | ---- | -------------------- |
-| accountId | string                    | Yes  | ID of the cloud account. |
+| accountId | string                    | Yes  | ID of the cloud account.|
 | callback  | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.          |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
 | 202      | Permission verification failed, application which is not a system application uses system API.|
@@ -267,21 +279,21 @@ Disables device-cloud synergy. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name   | Type  | Mandatory | Description                |
+| Name   | Type  | Mandatory| Description                |
 | --------- | ------ | ---- | -------------------- |
-| accountId | string | Yes  | ID of the cloud account. |
+| accountId | string | Yes  | ID of the cloud account.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
 | 202      | Permission verification failed, application which is not a system application uses system API.|
@@ -318,18 +330,18 @@ Changes the device-cloud synergy setting for an application. This API uses an as
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description                        |
+| Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| accountId | string                          | Yes  | ID of the cloud account. |
-| bundleName| string                         | Yes  | Bundle name of the application. |
-| status    | boolean                        | Yes  | Device-cloud synergy setting for the application. The value **true** means to enable device-cloud synergy; the value **false** means the opposite. |
+| accountId | string                          | Yes  | ID of the cloud account.|
+| bundleName| string                         | Yes  | Bundle name of the application.|
+| status    | boolean                        | Yes  | New device-cloud synergy setting. The value **true** means to enable device-cloud synergy; the value **false** means the opposite.|
 | callback  | AsyncCallback&lt;void&gt;       | Yes  | Callback used to return the result.                  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
 | 202      | Permission verification failed, application which is not a system application uses system API.|
@@ -369,23 +381,23 @@ Changes the device-cloud synergy setting for an application. This API uses a pro
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description                        |
+| Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| accountId | string                          | Yes  | ID of the cloud account. |
-| bundleName| string                         | Yes  | Bundle name of the application. |
-| status    | boolean                        | Yes  | Device-cloud synergy setting for the application. The value **true** means to enable device-cloud synergy; the value **false** means the opposite. |
+| accountId | string                          | Yes  | ID of the cloud account.|
+| bundleName| string                         | Yes  | Bundle name of the application.|
+| status    | boolean                        | Yes  | New device-cloud synergy setting. The value **true** means to enable device-cloud synergy; the value **false** means the opposite.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
 | 202      | Permission verification failed, application which is not a system application uses system API.|
@@ -423,9 +435,9 @@ Notifies the data changes in the cloud. This API uses an asynchronous callback t
 
 **Parameters**
 
-| Name    | Type                     | Mandatory | Description                |
+| Name    | Type                     | Mandatory| Description                |
 | ---------- | ------------------------- | ---- | -------------------- |
-| accountId  | string                    | Yes  | ID of the cloud account. |
+| accountId  | string                    | Yes  | ID of the cloud account.|
 | bundleName | string                    | Yes  | Bundle name of the application.            |
 | callback   | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.          |
 
@@ -433,7 +445,7 @@ Notifies the data changes in the cloud. This API uses an asynchronous callback t
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
 | 202      | Permission verification failed, application which is not a system application uses system API.|
@@ -473,22 +485,22 @@ Notifies the data changes in the cloud. This API uses a promise to return the re
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description                |
+| Name    | Type  | Mandatory| Description                |
 | ---------- | ------ | ---- | -------------------- |
-| accountId  | string | Yes  | ID of the cloud account. |
+| accountId  | string | Yes  | ID of the cloud account.|
 | bundleName | string | Yes  | Bundle name of the application.            |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
 | 202      | Permission verification failed, application which is not a system application uses system API.|
@@ -526,16 +538,16 @@ Notifies the data changes in the cloud with the specified information, such as t
 
 **Parameters**
 
-| Name  | Type                     | Mandatory | Description                                   |
+| Name  | Type                     | Mandatory| Description                                   |
 | -------- | ------------------------- | ---- | --------------------------------------- |
-| extInfo  | [ExtraData](#extradata11)   | Yes  | Transparently transmitted data, including information about the application that has data changes. |
+| extInfo  | [ExtraData](#extradata11)   | Yes  | Transparently transmitted data, including information about the application that has data changes.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 201      | Permission verification failed, which is usually returned by VerifyAccessToken.|
 | 202      | Permission verification failed, application which is not a system application uses system API.|
@@ -577,17 +589,17 @@ Notifies the data changes of a user in the cloud. This API uses an asynchronous 
 
 **Parameters**
 
-| Name  | Type                     | Mandatory | Description                                           |
+| Name  | Type                     | Mandatory| Description                                           |
 | -------- | ------------------------- | ---- | ----------------------------------------------- |
 | extInfo  | [ExtraData](#extradata11)   | Yes  | Transparently transmitted data, including information about the application that has data changes.       |
-| userId   | number                    | Yes  | User ID in the system. |
+| userId   | number                    | Yes  | User ID in the system.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 201      | Permission verification failed, which is usually returned by VerifyAccessToken.|
 | 202      | Permission verification failed, application which is not a system application uses system API.|
@@ -630,22 +642,22 @@ Notifies the data changes in the cloud. This API uses a promise to return the re
 
 **Parameters**
 
-| Name | Type                   | Mandatory | Description                                           |
+| Name | Type                   | Mandatory| Description                                           |
 | ------- | ----------------------- | ---- | ----------------------------------------------- |
 | extInfo | [ExtraData](#extradata11) | Yes  | Transparently transmitted data, including information about the application that has data changes.        |
-| userId  | number                  | No  | User ID. This parameter is optional. The default value is the current user ID. If this parameter is specified, the value must be an existing user ID in the system. |
+| userId  | number                  | No  | User ID. This parameter is optional. The default value is the current user ID. If this parameter is specified, the value must be an existing user ID in the system.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 201      | Permission verification failed, which is usually returned by VerifyAccessToken.|
 | 202      | Permission verification failed, application which is not a system application uses system API.|
@@ -678,7 +690,7 @@ try {
 
 static queryStatistics(accountId: string, bundleName: string, storeId?: string): Promise&lt;Record&lt;string, Array&lt;StatisticInfo&gt;&gt;&gt;
 
-Queries device-cloud data statistics, which include the data not synchronized, data synced and consistent, and data synced but inconsistent between the device and the cloud. This API uses a promise to return the result.
+Queries device-cloud data statistics, which include the data not synced, data synced and consistent, and data synced but inconsistent between the device and the cloud. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.CLOUDDATA_CONFIG
 
@@ -686,23 +698,23 @@ Queries device-cloud data statistics, which include the data not synchronized, d
 
 **Parameters**
 
-| Name | Type     | Mandatory | Description                               |
+| Name | Type     | Mandatory| Description                               |
 | ------- |---------| ---- |-----------------------------------|
 | accountId | string  | Yes  | ID of the cloud account.                      |
 | bundleName | string  | Yes  | Bundle name of the application.                            |
-| storeId  | string  | No  | Name of the RDB store. If this parameter is not specified, all local databases of this application are queried by default. |
+| storeId  | string  | No  | Name of the RDB store. If this parameter is not specified, all local databases of this application are queried by default.|
 
 **Return value**
 
 | Type                                                                                  | Description                    |
 |--------------------------------------------------------------------------------------| ------------------------ |
-| Promise&lt;Record&lt;string, Array&lt;[StatisticInfo](#statisticinfo12)&gt;&gt;&gt; | Promise used to return the table name and statistics. |
+| Promise&lt;Record&lt;string, Array&lt;[StatisticInfo](#statisticinfo12)&gt;&gt;&gt; | Promise used to return the table name and statistics.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
 | 202      | Permission verification failed, application which is not a system application uses system API.|
@@ -737,23 +749,23 @@ Queries information about the last device-cloud sync. This API uses a promise to
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description                                                        |
+| Name    | Type  | Mandatory| Description                                                        |
 | ---------- | ------ | ---- | ------------------------------------------------------------ |
 | accountId  | string | Yes  | ID of the cloud account.                                        |
 | bundleName | string | Yes  | Bundle name of the application.                                                  |
-| storeId    | string | No  | Name of the RDB store. The default value is an empty string. If the default value is used, this API queries the last device-cloud sync information of all databases of this application. |
+| storeId    | string | No  | Name of the RDB store. The default value is an empty string. If the default value is used, this API queries the last device-cloud sync information of all databases of this application.|
 
 **Return value**
 
 | Type                                                        | Description                                        |
 | ------------------------------------------------------------ | -------------------------------------------- |
-| Promise&lt;Record&lt;string, [SyncInfo](#syncinfo12)&gt;&gt; | Promise used to return the database name and the result set of the last device-cloud sync. |
+| Promise&lt;Record&lt;string, [SyncInfo](#syncinfo12)&gt;&gt; | Promise used to return the database name and the result set of the last device-cloud sync.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
 | 202      | Permission verification failed, application which is not a system application uses system API.|
@@ -792,22 +804,22 @@ Sets a global device-cloud sync strategy. This API uses a promise to return the 
 
 **Parameters**
 
-| Name    | Type                                                                    | Mandatory | Description               |
+| Name    | Type                                                                    | Mandatory| Description               |
 | ---------- |------------------------------------------------------------------------| ---- |-------------------|
 | strategy  | [StrategyType](js-apis-data-cloudData.md#strategytype)    | Yes  | Type of the strategy to set.         |
-| param | Array&lt;[commonType.ValueType](js-apis-data-commonType.md#valuetype)&gt; | No  | Strategy parameters to set. If this parameter is not specified, all the strategy configuration is canceled by default. |
+| param | Array&lt;[commonType.ValueType](js-apis-data-commonType.md#valuetype)&gt; | No  | Strategy parameters to set. If this parameter is not specified, the strategy configuration is deleted by default. |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
 | 202      | Permission verification failed, application which is not a system application uses system API.|
@@ -838,17 +850,17 @@ Clears the cloud data locally. This API uses an asynchronous callback to return 
 
 **Parameters**
 
-| Name    | Type                                               | Mandatory | Description                            |
+| Name    | Type                                               | Mandatory| Description                            |
 | ---------- | --------------------------------------------------- | ---- | -------------------------------- |
 | accountId  | string                                              | Yes  | ID of the cloud account.            |
-| appActions | Record<string, [ClearAction](#clearaction)>         | Yes  | Information about the application whose data is to be cleared and the operation to perform. |
+| appActions | Record<string, [ClearAction](#clearaction)>         | Yes  | Information about the application whose data is to be cleared and the operation to perform.|
 | callback   | AsyncCallback&lt;void&gt;                           | Yes  | Callback used to return the result.                      |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
 | 202      | Permission verification failed, application which is not a system application uses system API.|
@@ -892,22 +904,22 @@ Clears the cloud data locally. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name    | Type                                               | Mandatory | Description                            |
+| Name    | Type                                               | Mandatory| Description                            |
 | ---------- | --------------------------------------------------- | ---- | -------------------------------- |
 | accountId  | string                                              | Yes  | ID of the cloud account.            |
-| appActions | Record<string, [ClearAction](#clearaction)>         | Yes  | Information about the application whose data is to be cleared and the operation to perform. |
+| appActions | Record<string, [ClearAction](#clearaction)>         | Yes  | Information about the application whose data is to be cleared and the operation to perform.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
 | 202      | Permission verification failed, application which is not a system application uses system API.|
@@ -949,8 +961,8 @@ Enumerates the roles of the participants in a device-cloud share.
 
 | Name          | Value  | Description                              |
 | --------------| ---- | ---------------------------------- |
-| ROLE_INVITER  | 0    | Inviter, the one who shares data. Use the enum name rather than the enum value. |
-| ROLE_INVITEE  | 1    | Invitee, the one who can use the shared data. Use the enum name rather than the enum value. |
+| ROLE_INVITER  | 0    | Inviter, the one who shares data. Use the enum name rather than the enum value.|
+| ROLE_INVITEE  | 1    | Invitee, the one who can use the shared data. Use the enum name rather than the enum value.|
 
 ### State<sup>11+</sup>
 
@@ -961,10 +973,10 @@ Enumerates the device-cloud sharing states.
 | Name          | Value  | Description                              |
 | --------------| ---- | ---------------------------------- |
 | STATE_UNKNOWN    | 0    | Unknown state. Use the enum name rather than the enum value.  |
-| STATE_ACCEPTED   | 1    | The device-cloud sharing invitation is accepted. Use the enum name rather than the enum value. |
-| STATE_REJECTED   | 2    | The device-cloud sharing invitation is rejected. Use the enum name rather than the enum value. |
-| STATE_SUSPENDED  | 3    | The device-cloud sharing is suspended temporarily. Use the enum name rather than the enum value. |
-| STATE_UNAVAILABLE<sup>12+</sup>   | 4    | The device-cloud sharing is unavailable. Use the enum name rather than the enum value. |
+| STATE_ACCEPTED   | 1    | The device-cloud sharing invitation is accepted. Use the enum name rather than the enum value.|
+| STATE_REJECTED   | 2    | The device-cloud sharing invitation is rejected. Use the enum name rather than the enum value.|
+| STATE_SUSPENDED  | 3    | The device-cloud sharing is suspended temporarily. Use the enum name rather than the enum value.|
+| STATE_UNAVAILABLE<sup>12+</sup>   | 4    | The device-cloud sharing is unavailable. Use the enum name rather than the enum value.|
 
 ### SharingCode<sup>11+</sup>
 
@@ -975,19 +987,19 @@ Enumerates the error codes for device-cloud sharing.
 | Name          | Value  | Description                              |
 | --------------| ---- | ---------------------------------- |
 | SUCCESS                 | 0    | Operation successful. Use the enum name rather than the enum value.  |
-| REPEATED_REQUEST        | 1    | Repeated invitation, which means the participant has been invited. Use the enum name rather than the enum value. |
-| NOT_INVITER             | 2    | The participant is not the inviter of this share. Use the enum name rather than the enum value. |
-| NOT_INVITER_OR_INVITEE  | 3    | Invalid participant, which means the participant is neither the inviter nor the invitee. Use the enum name rather than the enum value. |
+| REPEATED_REQUEST        | 1    | Repeated invitation, which means the participant has been invited. Use the enum name rather than the enum value.|
+| NOT_INVITER             | 2    | The participant is not the inviter of this share. Use the enum name rather than the enum value.|
+| NOT_INVITER_OR_INVITEE  | 3    | Invalid participant, which means the participant is neither the inviter nor the invitee. Use the enum name rather than the enum value.|
 | OVER_QUOTA              | 4    | The number of device-cloud sharing times has reached the limit for the current account. Use the enum name rather than the enum value.  |
-| TOO_MANY_PARTICIPANTS   | 5    | The number of device-cloud sharing participants has reached the limit. Use the enum name rather than the enum value. |
-| INVALID_ARGS            | 6    | Invalid parameter. Use the enum name rather than the enum value. |
-| NETWORK_ERROR           | 7    | Network error. Use the enum name rather than the enum value. |
+| TOO_MANY_PARTICIPANTS   | 5    | The number of device-cloud sharing participants has reached the limit. Use the enum name rather than the enum value.|
+| INVALID_ARGS            | 6    | Invalid parameter. Use the enum name rather than the enum value.|
+| NETWORK_ERROR           | 7    | Network error. Use the enum name rather than the enum value.|
 | CLOUD_DISABLED          | 8    | Cloud is disabled. Use the enum name rather than the enum value.  |
-| SERVER_ERROR            | 9    | Server error. Use the enum name rather than the enum value. |
-| INNER_ERROR             | 10   | System internal error. Use the enum name rather than the enum value. |
-| INVALID_INVITATION      | 11   | Invalid invitation, which means the current invitation has expired or does not exist. Use the enum name rather than the enum value. |
-| RATE_LIMIT              | 12   | The amount of data to be synchronized at a time has reached the limit. Use the enum name rather than the enum value.  |
-| CUSTOM_ERROR            | 1000 | Customized error. Error codes smaller than **1000** are used to define internal error codes, and error codes greater than **1000** are used to customize error codes. Use the enum name rather than the enum value. |
+| SERVER_ERROR            | 9    | Server error. Use the enum name rather than the enum value.|
+| INNER_ERROR             | 10   | System internal error. Use the enum name rather than the enum value.|
+| INVALID_INVITATION      | 11   | Invalid invitation, which means the current invitation has expired or does not exist. Use the enum name rather than the enum value.|
+| RATE_LIMIT              | 12   | The amount of data to be synced at a time has reached the limit. Use the enum name rather than the enum value.  |
+| CUSTOM_ERROR            | 1000 | Customized error. Error codes smaller than **1000** are used to define internal error codes, and error codes greater than **1000** are used to customize error codes. Use the enum name rather than the enum value.|
 
 ### Result&lt;T&gt;<sup>11+</sup>
 
@@ -999,7 +1011,7 @@ Represents the device-cloud sharing result.
 | ----------- | --------------------------- | --- | ------------ |
 | code        | number                      | Yes  | Error code.      |
 | description | string                      | No  | Detailed description of the error code. The default value is **undefined**.      |
-| value       | T                           | No  | Value returned. The specific type is specified by the **T** parameter. The default value is **undefined**. |
+| value       | T                           | No  | Value returned. The specific type is specified by the **T** parameter. The default value is **undefined**.|
 
 ### Privilege<sup>11+</sup>
 
@@ -1025,9 +1037,9 @@ Represents information about a participant of device-cloud sharing.
 | ----------- | --------------------------- | --- | ------------ |
 | identity    | string                  | Yes  | ID of the participant.             |
 | role        | [Role](#role11)           | No  | Role of the participant, inviter or invitee. The default value is **undefined**. |
-| state       | [State](#state11)         | No  | State of the device-cloud sharing. The default value is **undefined**. |
-| privilege   | [Privilege](#privilege11) | No  | Permissions on the shared data. The [Privilege](#privilege11) defaults are used by default. |
-| attachInfo  | string                  | No  | Additional information, such as the verification code used for participant identity verification. The default value is an empty string. |
+| state       | [State](#state11)         | No  | State of the device-cloud sharing. The default value is **undefined**.|
+| privilege   | [Privilege](#privilege11) | No  | Permissions on the shared data. The [Privilege](#privilege11) defaults are used by default.|
+| attachInfo  | string                  | No  | Additional information, such as the verification code used for participant identity verification. The default value is an empty string.|
 
 ### allocResourceAndShare<sup>11+</sup>
 
@@ -1039,24 +1051,24 @@ Allocates a shared resource ID based on the data that matches the specified pred
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description                        |
+| Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| storeId      | string                        | Yes  | Name of the RDB store. |
-| predicates   | [relationalStore.RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates) | Yes  | Predicates for matching the data to share. |
-| participants | Array&lt;[Participant](#participant11)&gt; | Yes  | Participants of the share. |
-| columns      | Array&lt;string&gt;           | No  | Columns in which the data is located. The default value is **undefined**, which means column names are not returned. |
+| storeId      | string                        | Yes  | Name of the RDB store.|
+| predicates   | [relationalStore.RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates) | Yes  | Predicates for matching the data to share.|
+| participants | Array&lt;[Participant](#participant11)&gt; | Yes  | Participants of the share.|
+| columns      | Array&lt;string&gt;           | No  | Columns in which the data is located. The default value is **undefined**, which means column names are not returned.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;[relationalStore.ResultSet](js-apis-data-relationalStore.md#resultset)&gt; | Promise used to return the result set of the data to share. |
+| Promise&lt;[relationalStore.ResultSet](js-apis-data-relationalStore.md#resultset)&gt; | Promise used to return the result set of the data to share.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 202      | Permission verification failed, application which is not a system application uses system API.|
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
@@ -1109,19 +1121,19 @@ Allocates a shared resource ID based on the data that matches the specified pred
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description                        |
+| Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| storeId      | string                        | Yes  | Name of the RDB store. |
-| predicates   | [relationalStore.RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates) | Yes  | Predicates for matching the data to share. |
-| participants | Array&lt;[Participant](#participant11)&gt; | Yes  | Participants of the share. |
-| columns      | Array&lt;string&gt;           | Yes  | Columns in which the data is located. |
-| callback     | AsyncCallback&lt;[relationalStore.ResultSet](js-apis-data-relationalStore.md#resultset)&gt;  | Yes | Callback used to return the result set of the data to share. |
+| storeId      | string                        | Yes  | Name of the RDB store.|
+| predicates   | [relationalStore.RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates) | Yes  | Predicates for matching the data to share.|
+| participants | Array&lt;[Participant](#participant11)&gt; | Yes  | Participants of the share.|
+| columns      | Array&lt;string&gt;           | Yes  | Columns in which the data is located.|
+| callback     | AsyncCallback&lt;[relationalStore.ResultSet](js-apis-data-relationalStore.md#resultset)&gt;  | Yes | Callback used to return the result set of the data to share.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 202      | Permission verification failed, application which is not a system application uses system API.|
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
@@ -1176,18 +1188,18 @@ Allocates a shared resource ID based on the data that matches the specified pred
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description                        |
+| Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| storeId      | string                        | Yes  | Name of the RDB store. |
-| predicates   | [relationalStore.RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates) | Yes  | Predicates for matching the data to share. |
-| participants | Array&lt;[Participant](#participant11)&gt; | Yes  | Participants of the share. |
-| callback     | AsyncCallback&lt;[relationalStore.ResultSet](js-apis-data-relationalStore.md#resultset)&gt;  | Yes  | Callback used to return the result set of the data to share. |
+| storeId      | string                        | Yes  | Name of the RDB store.|
+| predicates   | [relationalStore.RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates) | Yes  | Predicates for matching the data to share.|
+| participants | Array&lt;[Participant](#participant11)&gt; | Yes  | Participants of the share.|
+| callback     | AsyncCallback&lt;[relationalStore.ResultSet](js-apis-data-relationalStore.md#resultset)&gt;  | Yes  | Callback used to return the result set of the data to share.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 202      | Permission verification failed, application which is not a system application uses system API.|
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
@@ -1242,22 +1254,22 @@ Shares data based on the specified shared resource ID and participants. This API
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description                        |
+| Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| sharingResource   | string                                     | Yes  | Shared resource ID. |
-| participants      | Array&lt;[Participant](#participant11)&gt;   | Yes  | Participants of the share. |
+| sharingResource   | string                                     | Yes  | Shared resource ID.|
+| participants      | Array&lt;[Participant](#participant11)&gt;   | Yes  | Participants of the share.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt; | Promise used to return the result. |
+| Promise&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 202      | Permission verification failed, application which is not a system application uses system API.|
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
@@ -1300,17 +1312,17 @@ Shares data based on the specified shared resource ID and participants. This API
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description                        |
+| Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| sharingResource  | string                                     | Yes  | Shared resource ID. |
-| participants     | Array&lt;[Participant](#participant11)&gt; | Yes  | Participants of the share. |
-| callback         | AsyncCallback&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt;  | Yes  | Callback used to return the result.   |
+| sharingResource  | string                                     | Yes  | Shared resource ID.|
+| participants     | Array&lt;[Participant](#participant11)&gt; | Yes  | Participants of the share.|
+| callback         | AsyncCallback&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt;  | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 202      | Permission verification failed, application which is not a system application uses system API.|
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
@@ -1355,22 +1367,22 @@ Unshares data based on the specified shared resource ID and participants. This A
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description                        |
+| Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| sharingResource   | string                                     | Yes  | Shared resource ID. |
-| participants      | Array&lt;[Participant](#participant11)&gt; | Yes  | Participants of the share. |
+| sharingResource   | string                                     | Yes  | Shared resource ID.|
+| participants      | Array&lt;[Participant](#participant11)&gt; | Yes  | Participants of the share.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt; | Promise used to return the result. |
+| Promise&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 202      | Permission verification failed, application which is not a system application uses system API.|
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
@@ -1413,17 +1425,17 @@ Unshares data based on the specified shared resource ID and participants. This A
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description                        |
+| Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| sharingResource  | string                                     | Yes  | Shared resource ID. |
-| participants     | Array&lt;[Participant](#participant11)&gt; | Yes  | Participants of the share. |
-| callback         | AsyncCallback&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt;  | Yes  | Callback used to return the result.   |
+| sharingResource  | string                                     | Yes  | Shared resource ID.|
+| participants     | Array&lt;[Participant](#participant11)&gt; | Yes  | Participants of the share.|
+| callback         | AsyncCallback&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt;  | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 202      | Permission verification failed, application which is not a system application uses system API.|
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
@@ -1468,21 +1480,21 @@ Exits the share of the specified shared resource. This API uses a promise to ret
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description                        |
+| Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| sharingResource   | string       | Yes  | Shared resource ID. |
+| sharingResource   | string       | Yes  | Shared resource ID.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt11)&lt;void&gt;&gt; | Promise used to return the result. |
+| Promise&lt;[Result](#resultt11)&lt;void&gt;&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 202      | Permission verification failed, application which is not a system application uses system API.|
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
@@ -1511,16 +1523,16 @@ Exits the share of the specified shared resource. This API uses an asynchronous 
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description                        |
+| Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| sharingResource  | string                | Yes  | Shared resource ID. |
-| callback         | AsyncCallback&lt;[Result](#resultt11)&lt;void&gt;&gt;  | Yes  | Callback used to return the result.   |
+| sharingResource  | string                | Yes  | Shared resource ID.|
+| callback         | AsyncCallback&lt;[Result](#resultt11)&lt;void&gt;&gt;  | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 202      | Permission verification failed, application which is not a system application uses system API.|
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
@@ -1551,22 +1563,22 @@ Changes the privilege on the shared data. This API uses a promise to return the 
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description                        |
+| Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| sharingResource   | string                                    | Yes  | Shared resource ID. |
+| sharingResource   | string                                    | Yes  | Shared resource ID.|
 | participants      | Array&lt;[Participant](#participant11)&gt;  | Yes  | Participants with new privilege.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt; | Promise used to return the result. |
+| Promise&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 202      | Permission verification failed, application which is not a system application uses system API.|
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
@@ -1610,17 +1622,17 @@ Changes the privilege on the shared data. This API uses an asynchronous callback
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description                        |
+| Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| sharingResource  | string                | Yes  | Shared resource ID. |
+| sharingResource  | string                | Yes  | Shared resource ID.|
 | participants     | Array&lt;[Participant](#participant11)&gt;  | Yes  | Participants with new privilege.|
-| callback         | callback: AsyncCallback&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt;  | Yes  | Callback used to return the result.   |
+| callback         | callback: AsyncCallback&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt;  | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 202      | Permission verification failed, application which is not a system application uses system API.|
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
@@ -1666,21 +1678,21 @@ Queries the participants of the specified shared data. This API uses a promise t
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description                        |
+| Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| sharingResource   | string                 | Yes  | Shared resource ID. |
+| sharingResource   | string                 | Yes  | Shared resource ID.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt11)&lt;Array&lt;[Participant](#participant11)&gt;&gt;&gt; | Promise used to return the participants obtained. |
+| Promise&lt;[Result](#resultt11)&lt;Array&lt;[Participant](#participant11)&gt;&gt;&gt; | Promise used to return the participants obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 202      | Permission verification failed, application which is not a system application uses system API.|
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
@@ -1709,16 +1721,16 @@ Queries the participants of the specified shared data. This API uses an asynchro
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description                        |
+| Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| sharingResource  | string                | Yes  | Shared resource ID. |
-| callback         | AsyncCallback&lt;[Result](#resultt11)&lt;Array&lt;[Participant](#participant11)&gt;&gt;&gt;  | Yes  | Callback used to return the participants obtained. |
+| sharingResource  | string                | Yes  | Shared resource ID.|
+| callback         | AsyncCallback&lt;[Result](#resultt11)&lt;Array&lt;[Participant](#participant11)&gt;&gt;&gt;  | Yes  | Callback used to return the participants obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 202      | Permission verification failed, application which is not a system application uses system API.|
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
@@ -1749,9 +1761,9 @@ Queries the participants based on the sharing invitation code. This API uses a p
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description                        |
+| Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| invitationCode   | string                 | Yes  | Invitation code of the share. |
+| invitationCode   | string                 | Yes  | Invitation code of the share.|
 
 **Return value**
 
@@ -1763,7 +1775,7 @@ Queries the participants based on the sharing invitation code. This API uses a p
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 202      | Permission verification failed, application which is not a system application uses system API.|
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
@@ -1792,16 +1804,16 @@ Queries the participants based on the sharing invitation code. This API uses an 
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description                        |
+| Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| invitationCode  | string                | Yes  | Invitation code of the share. |
-| callback        | AsyncCallback&lt;[Result](#resultt11)&lt;Array&lt;[Participant](#participant11)&gt;&gt;&gt; | Yes  | Callback used to return the participants obtained. |
+| invitationCode  | string                | Yes  | Invitation code of the share.|
+| callback        | AsyncCallback&lt;[Result](#resultt11)&lt;Array&lt;[Participant](#participant11)&gt;&gt;&gt; | Yes  | Callback used to return the participants obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 202      | Permission verification failed, application which is not a system application uses system API.|
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
@@ -1832,22 +1844,22 @@ Confirms the invitation based on the sharing invitation code and obtains the sha
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description                        |
+| Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| invitationCode   | string                 | Yes  | Invitation code of the share. |
-| state            | [State](#state11)        | Yes  | Confirmation state. |
+| invitationCode   | string                 | Yes  | Invitation code of the share.|
+| state            | [State](#state11)        | Yes  | Confirmation state.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt11)&lt;string&gt;&gt; | Promise used to return the result. |
+| Promise&lt;[Result](#resultt11)&lt;string&gt;&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 202      | Permission verification failed, application which is not a system application uses system API.|
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
@@ -1878,17 +1890,17 @@ Confirms the invitation based on the sharing invitation code and obtains the sha
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description                        |
+| Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| invitationCode  | string                | Yes  | Invitation code of the share. |
-| state           | [State](#state11)       | Yes  | Confirmation state. |
-| callback        | AsyncCallback&lt;[Result](#resultt11)&lt;string&gt;&gt; | Yes  | Callback used to return the result.   |
+| invitationCode  | string                | Yes  | Invitation code of the share.|
+| state           | [State](#state11)       | Yes  | Confirmation state.|
+| callback        | AsyncCallback&lt;[Result](#resultt11)&lt;string&gt;&gt; | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 202      | Permission verification failed, application which is not a system application uses system API.|
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
@@ -1921,22 +1933,22 @@ Changes the invitation confirmation state based on the shared resource ID. This 
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description                        |
+| Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| sharingResource   | string                 | Yes  | Shared resource ID. |
-| state             | [State](#state11)        | Yes  | New confirmation state of the invitation. |
+| sharingResource   | string                 | Yes  | Shared resource ID.|
+| state             | [State](#state11)        | Yes  | New confirmation state of the invitation.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt11)&lt;void&gt;&gt; |  Promise used to return the result. |
+| Promise&lt;[Result](#resultt11)&lt;void&gt;&gt; |  Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 202      | Permission verification failed, application which is not a system application uses system API.|
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
@@ -1965,17 +1977,17 @@ Changes the invitation confirmation state based on the shared resource ID. This 
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description                        |
+| Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| sharingResource   | string                 | Yes  | Shared resource ID. |
-| state             | [State](#state11)        | Yes  | New confirmation state of the invitation. |
-| callback          | AsyncCallback&lt;[Result](#resultt11)&lt;void&gt;&gt; | Yes  | Callback used to return the result.   |
+| sharingResource   | string                 | Yes  | Shared resource ID.|
+| state             | [State](#state11)        | Yes  | New confirmation state of the invitation.|
+| callback          | AsyncCallback&lt;[Result](#resultt11)&lt;void&gt;&gt; | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                            |
+| ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
 | 202      | Permission verification failed, application which is not a system application uses system API.|
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|

@@ -16,7 +16,7 @@ import { fileIo as fs } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG = 'VoiceCallDemoForAudioRenderer';
-// 与使用AudioRenderer开发音频播放功能过程相似，关键区别在于audioRendererInfo参数和音频数据来源
+// 与使用AudioRenderer开发音频播放功能过程相似，关键区别在于audioRendererInfo参数和音频数据来源。
 class Options {
   offset?: number;
   length?: number;
@@ -25,22 +25,22 @@ class Options {
 let bufferSize: number = 0;
 let renderModel: audio.AudioRenderer | undefined = undefined;
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率
-  channels: audio.AudioChannel.CHANNEL_2, // 通道
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率。
+  channels: audio.AudioChannel.CHANNEL_2, // 通道。
+  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式。
+  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式。
 };
 let audioRendererInfo: audio.AudioRendererInfo = {
-  // 需使用通话场景相应的参数
-  usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION, // 音频流使用类型：VOIP通话
-  rendererFlags: 0 // 音频渲染器标志：默认为0即可
+  // 需使用通话场景相应的参数。
+  usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION, // 音频流使用类型：VOIP通话。
+  rendererFlags: 0 // 音频渲染器标志：默认为0即可。
 };
 let audioRendererOptions: audio.AudioRendererOptions = {
   streamInfo: audioStreamInfo,
   rendererInfo: audioRendererInfo
 };
 let path = getContext().cacheDir;
-// 确保该沙箱路径下存在该资源
+// 确保该沙箱路径下存在该资源。
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 let writeDataCallback = (buffer: ArrayBuffer) => {
@@ -52,13 +52,13 @@ let writeDataCallback = (buffer: ArrayBuffer) => {
   bufferSize += buffer.byteLength;
 };
 
-// 初始化，创建实例，设置监听事件
-audio.createAudioRenderer(audioRendererOptions, (err: BusinessError, renderer: audio.AudioRenderer) => { // 创建AudioRenderer实例
+// 初始化，创建实例，设置监听事件。
+audio.createAudioRenderer(audioRendererOptions, (err: BusinessError, renderer: audio.AudioRenderer) => { // 创建AudioRenderer实例。
   if (!err) {
     console.info(`${TAG}: creating AudioRenderer success`);
     renderModel = renderer;
     if (renderModel !== undefined) {
-      renderModel.on('stateChange', (state: audio.AudioState) => { // 设置监听事件，当转换到指定的状态时触发回调
+      renderModel.on('stateChange', (state: audio.AudioState) => { // 设置监听事件，当转换到指定的状态时触发回调。
         if (state == 1) {
           console.info('audio renderer state is: STATE_PREPARED');
         }
@@ -66,7 +66,7 @@ audio.createAudioRenderer(audioRendererOptions, (err: BusinessError, renderer: a
           console.info('audio renderer state is: STATE_RUNNING');
         }
       });
-      renderModel.on('markReach', 1000, (position: number) => { // 订阅markReach事件，当渲染的帧数达到1000帧时触发回调
+      renderModel.on('markReach', 1000, (position: number) => { // 订阅markReach事件，当渲染的帧数达到1000帧时触发回调。
         if (position == 1000) {
           console.info('ON Triggered successfully');
         }
@@ -78,11 +78,11 @@ audio.createAudioRenderer(audioRendererOptions, (err: BusinessError, renderer: a
   }
 });
 
-// 开始一次音频渲染
+// 开始一次音频渲染。
 async function start() {
   if (renderModel !== undefined) {
     let stateGroup: number[] = [audio.AudioState.STATE_PREPARED, audio.AudioState.STATE_PAUSED, audio.AudioState.STATE_STOPPED];
-    if (stateGroup.indexOf(renderModel.state.valueOf()) === -1) { // 当且仅当状态为STATE_PREPARED、STATE_PAUSED和STATE_STOPPED之一时才能启动渲染
+    if (stateGroup.indexOf(renderModel.state.valueOf()) === -1) { // 当且仅当状态为STATE_PREPARED、STATE_PAUSED和STATE_STOPPED之一时才能启动渲染。
       console.error(TAG + 'start failed');
       return;
     }
@@ -96,15 +96,15 @@ async function start() {
   }
 }
 
-// 暂停渲染
+// 暂停渲染。
 async function pause() {
   if (renderModel !== undefined) {
-    // 只有渲染器状态为STATE_RUNNING的时候才能暂停
+    // 只有渲染器状态为STATE_RUNNING的时候才能暂停。
     if (renderModel.state.valueOf() !== audio.AudioState.STATE_RUNNING) {
       console.info('Renderer is not running');
       return;
     }
-    await renderModel.pause(); // 暂停渲染
+    await renderModel.pause(); // 暂停渲染。
     if (renderModel.state.valueOf() === audio.AudioState.STATE_PAUSED) {
       console.info('Renderer is paused.');
     } else {
@@ -113,15 +113,15 @@ async function pause() {
   }
 }
 
-// 停止渲染
+// 停止渲染。
 async function stop() {
   if (renderModel !== undefined) {
-    // 只有渲染器状态为STATE_RUNNING或STATE_PAUSED的时候才可以停止
+    // 只有渲染器状态为STATE_RUNNING或STATE_PAUSED的时候才可以停止。
     if (renderModel.state.valueOf() !== audio.AudioState.STATE_RUNNING && renderModel.state.valueOf() !== audio.AudioState.STATE_PAUSED) {
       console.info('Renderer is not running or paused.');
       return;
     }
-    await renderModel.stop(); // 停止渲染
+    await renderModel.stop(); // 停止渲染。
     if (renderModel.state.valueOf() === audio.AudioState.STATE_STOPPED) {
       console.info('Renderer stopped.');
     } else {
@@ -130,15 +130,15 @@ async function stop() {
   }
 }
 
-// 销毁实例，释放资源
+// 销毁实例，释放资源。
 async function release() {
   if (renderModel !== undefined) {
-    // 渲染器状态不是STATE_RELEASED状态，才能release
+    // 渲染器状态不是STATE_RELEASED状态，才能release。
     if (renderModel.state.valueOf() === audio.AudioState.STATE_RELEASED) {
       console.info('Renderer already released');
       return;
     }
-    await renderModel.release(); // 释放资源
+    await renderModel.release(); // 释放资源。
     if (renderModel.state.valueOf() === audio.AudioState.STATE_RELEASED) {
       console.info('Renderer released');
     } else {
@@ -165,19 +165,19 @@ class Options {
   length?: number;
 }
 
-// 与使用AudioCapturer开发音频录制功能过程相似，关键区别在于audioCapturerInfo参数和音频数据流向
+// 与使用AudioCapturer开发音频录制功能过程相似，关键区别在于audioCapturerInfo参数和音频数据流向。
 let bufferSize: number = 0;
 let audioCapturer: audio.AudioCapturer | undefined = undefined;
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率
-  channels: audio.AudioChannel.CHANNEL_2, // 通道
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率。
+  channels: audio.AudioChannel.CHANNEL_2, // 通道。
+  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式。
+  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式。
 };
 let audioCapturerInfo: audio.AudioCapturerInfo = {
-  // 需使用通话场景相应的参数
-  source: audio.SourceType.SOURCE_TYPE_VOICE_COMMUNICATION, // 音源类型：语音通话
-  capturerFlags: 0 // 音频采集器标志：默认为0即可
+  // 需使用通话场景相应的参数。
+  source: audio.SourceType.SOURCE_TYPE_VOICE_COMMUNICATION, // 音源类型：语音通话。
+  capturerFlags: 0 // 音频采集器标志：默认为0即可。
 };
 let audioCapturerOptions: audio.AudioCapturerOptions = {
   streamInfo: audioStreamInfo,
@@ -195,9 +195,9 @@ let readDataCallback = (buffer: ArrayBuffer) => {
   bufferSize += buffer.byteLength;
 };
 
-// 初始化，创建实例，设置监听事件
+// 初始化，创建实例，设置监听事件。
 async function init() {
-  audio.createAudioCapturer(audioCapturerOptions, (err: BusinessError, capturer: audio.AudioCapturer) => { // 创建AudioCapturer实例
+  audio.createAudioCapturer(audioCapturerOptions, (err: BusinessError, capturer: audio.AudioCapturer) => { // 创建AudioCapturer实例。
     if (err) {
       console.error(`Invoke createAudioCapturer failed, code is ${err.code}, message is ${err.message}`);
       return;
@@ -205,12 +205,12 @@ async function init() {
     console.info(`${TAG}: create AudioCapturer success`);
     audioCapturer = capturer;
     if (audioCapturer !== undefined) {
-      audioCapturer.on('markReach', 1000, (position: number) => { // 订阅markReach事件，当采集的帧数达到1000帧时触发回调
+      audioCapturer.on('markReach', 1000, (position: number) => { // 订阅markReach事件，当采集的帧数达到1000帧时触发回调。
         if (position === 1000) {
           console.info('ON Triggered successfully');
         }
       });
-      audioCapturer.on('periodReach', 2000, (position: number) => { // 订阅periodReach事件，当采集的帧数每达到2000时触发回调
+      audioCapturer.on('periodReach', 2000, (position: number) => { // 订阅periodReach事件，当采集的帧数每达到2000时触发回调。
         if (position === 2000) {
           console.info('ON Triggered successfully');
         }
@@ -220,11 +220,11 @@ async function init() {
   });
 }
 
-// 开始一次音频采集
+// 开始一次音频采集。
 async function start() {
   if (audioCapturer !== undefined) {
     let stateGroup: number[] = [audio.AudioState.STATE_PREPARED, audio.AudioState.STATE_PAUSED, audio.AudioState.STATE_STOPPED];
-    if (stateGroup.indexOf(audioCapturer.state.valueOf()) === -1) { // 当且仅当状态为STATE_PREPARED、STATE_PAUSED和STATE_STOPPED之一时才能启动采集
+    if (stateGroup.indexOf(audioCapturer.state.valueOf()) === -1) { // 当且仅当状态为STATE_PREPARED、STATE_PAUSED和STATE_STOPPED之一时才能启动采集。
       console.error(`${TAG}: start failed`);
       return;
     }
@@ -238,15 +238,15 @@ async function start() {
   }
 }
 
-// 停止采集
+// 停止采集。
 async function stop() {
   if (audioCapturer !== undefined) {
-    // 只有采集器状态为STATE_RUNNING或STATE_PAUSED的时候才可以停止
+    // 只有采集器状态为STATE_RUNNING或STATE_PAUSED的时候才可以停止。
     if (audioCapturer.state.valueOf() !== audio.AudioState.STATE_RUNNING && audioCapturer.state.valueOf() !== audio.AudioState.STATE_PAUSED) {
       console.info('Capturer is not running or paused');
       return;
     }
-    await audioCapturer.stop(); // 停止采集
+    await audioCapturer.stop(); // 停止采集。
     if (audioCapturer.state.valueOf() === audio.AudioState.STATE_STOPPED) {
       console.info('Capturer stopped');
     } else {
@@ -255,15 +255,15 @@ async function stop() {
   }
 }
 
-// 销毁实例，释放资源
+// 销毁实例，释放资源。
 async function release() {
   if (audioCapturer !== undefined) {
-    // 采集器状态不是STATE_RELEASED或STATE_NEW状态，才能release
+    // 采集器状态不是STATE_RELEASED或STATE_NEW状态，才能release。
     if (audioCapturer.state.valueOf() === audio.AudioState.STATE_RELEASED || audioCapturer.state.valueOf() === audio.AudioState.STATE_NEW) {
       console.info('Capturer already released');
       return;
     }
-    await audioCapturer.release(); // 释放资源
+    await audioCapturer.release(); // 释放资源。
     if (audioCapturer.state.valueOf() === audio.AudioState.STATE_RELEASED) {
       console.info('Capturer released');
     } else {

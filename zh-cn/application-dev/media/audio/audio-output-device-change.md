@@ -9,6 +9,7 @@
 在[outputDeviceChangeWithInfo](../../reference/apis-audio-kit/js-apis-audio.md#onoutputdevicechangewithinfo11)返回的音频流设备变更信息中，包含当前音频流输出设备信息，以数组形式发送，一般该列表仅包含一个设备信息，具体可参考[AudioDeviceDescriptors](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptors)（设备信息列表）。
 
 ## 音频流输出设备变更原因
+
 > **说明：**
 当发生下述四种情况（[AudioStreamDeviceChangeReason](../../reference/apis-audio-kit/js-apis-audio.md#audiostreamdevicechangereason11)）时，系统将向应用发送设备变更回调。
 
@@ -44,27 +45,26 @@
 ## 参考示例
 
   ```ts
-  import router from '@ohos.router';
   import { audio } from '@kit.AudioKit';
   import { BusinessError } from '@kit.BasicServicesKit';
   
   let audioRenderer: audio.AudioRenderer | undefined = undefined;
   let audioStreamInfo: audio.AudioStreamInfo = {
-    samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率
-    channels: audio.AudioChannel.CHANNEL_2, // 通道
-    sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式
-    encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式
+    samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率。
+    channels: audio.AudioChannel.CHANNEL_2, // 通道。
+    sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式。
+    encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式。
   };
   let audioRendererInfo: audio.AudioRendererInfo = {
-    usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型
-    rendererFlags: 0 // 音频渲染器标志
+    usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型。
+    rendererFlags: 0 // 音频渲染器标志。
   };
   let audioRendererOptions: audio.AudioRendererOptions = {
     streamInfo: audioStreamInfo,
     rendererInfo: audioRendererInfo
   };
   
-  // 创建AudioRenderer实例
+  // 创建AudioRenderer实例。
   audio.createAudioRenderer(audioRendererOptions).then((data) => {
     audioRenderer = data;
     console.info('AudioFrameworkRenderLog: AudioRenderer Created : Success : Stream Type: SUCCESS');
@@ -73,7 +73,7 @@
   });
   
   if (audioRenderer) {
-    // 订阅监听音频流输出设备变化及原因
+    // 订阅监听音频流输出设备变化及原因。
     (audioRenderer as audio.AudioRenderer).on('outputDeviceChangeWithInfo', async (deviceChangeInfo: audio.AudioStreamDeviceChangeInfo) => {
       switch (deviceChangeInfo.changeReason) {
         case audio.AudioStreamDeviceChangeReason.REASON_OLD_DEVICE_UNAVAILABLE:

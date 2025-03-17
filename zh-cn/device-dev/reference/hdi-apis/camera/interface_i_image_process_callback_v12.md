@@ -30,7 +30,7 @@
 ### OnError()
 
 ```
-IImageProcessCallback::OnError ([in] String imageId, [in] int errorCode )
+IImageProcessCallback::OnError ([in] String imageId, [in] int errorCode)
 ```
 
 **描述**
@@ -43,7 +43,7 @@ IImageProcessCallback::OnError ([in] String imageId, [in] int errorCode )
 ### OnProcessDone()
 
 ```
-IImageProcessCallback::OnProcessDone ([in] String imageId, [in] ImageBufferInfo buffer )
+IImageProcessCallback::OnProcessDone ([in] String imageId, [in] ImageBufferInfo buffer)
 ```
 
 **描述**

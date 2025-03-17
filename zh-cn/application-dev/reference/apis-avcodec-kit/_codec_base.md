@@ -30,6 +30,8 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_AVCODEC_MIMETYPE_VIDEO_HEVC](#oh_avcodec_mimetype_video_hevc) | HEVC(H.265)视频编解码器的MIME类型。                    |
 | [OH_AVCODEC_MIMETYPE_VIDEO_AVC](#oh_avcodec_mimetype_video_avc) | AVC(H.264)视频编解码器的MIME类型。                     |
 | [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4](#oh_avcodec_mimetype_video_mpeg4) | MPEG4视频编码的MIME类型，仅用于封装MPEG4视频码流使用。（API11废弃） |
+| const char \* [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2](#oh_avcodec_mimetype_video_mpeg4_part2) | 视频MPEG4 Part2编解码器的MIME类型。 | 
+| const char \* [OH_AVCODEC_MIMETYPE_VIDEO_MPEG2](#oh_avcodec_mimetype_video_mpeg2) | 视频MPEG2编解码器的MIME类型。 | 
 | [OH_AVCODEC_MIMETYPE_IMAGE_JPG](#oh_avcodec_mimetype_image_jpg) | JPG图片编码的MIME类型，仅用于封装JPG封面时使用。       |
 | [OH_AVCODEC_MIMETYPE_IMAGE_PNG](#oh_avcodec_mimetype_image_png) | PNG图片编码的MIME类型，仅用于封装PNG封面时使用。       |
 | [OH_AVCODEC_MIMETYPE_IMAGE_BMP](#oh_avcodec_mimetype_image_bmp) | BMP图片编码的MIME类型，仅用于封装BMP封面时使用。       |
@@ -194,6 +196,8 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | typedef enum [OH_AVCProfile](#oh_avcprofile-1) [OH_AVCProfile](#oh_avcprofile) | AVC档次。 | 
 | typedef enum [OH_HEVCProfile](#oh_hevcprofile-1) [OH_HEVCProfile](#oh_hevcprofile) | HEVC档次。 | 
 | typedef enum [OH_VVCProfile](#oh_vvcprofile-1) [OH_VVCProfile](#oh_vvcprofile) | VVC档次。 | 
+| typedef enum [OH_MPEG2Profile](#oh_mpeg2profile) [OH_MPEG2Profile](#oh_mpeg2profile) | MPEG2档次。 | 
+| typedef enum [OH_MPEG4Profile](#oh_mpeg4profile) [OH_MPEG4Profile](#oh_mpeg4profile) | MPEG4档次。 | 
 | typedef enum [OH_AVOutputFormat](#oh_avoutputformat-1) [OH_AVOutputFormat](#oh_avoutputformat) | 封装器支持的输出文件格式。 | 
 | typedef enum [OH_AVSeekMode](#oh_avseekmode-1) [OH_AVSeekMode](#oh_avseekmode) | 跳转模式。 | 
 | typedef enum [OH_ScalingMode](#oh_scalingmode-1) [OH_ScalingMode](#oh_scalingmode) | 缩放模式，只在Surface模式下使用。（API14废弃） | 
@@ -204,6 +208,8 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | typedef enum [OH_AVCLevel](#oh_avclevel-1) [OH_AVCLevel](#oh_avclevel) | AVC级别。  | 
 | typedef enum [OH_HEVCLevel](#oh_hevclevel-1) [OH_HEVCLevel](#oh_hevclevel) | HEVC级别。  | 
 | typedef enum [OH_VVCLevel](#oh_vvclevel-1) [OH_VVCLevel](#oh_vvclevel) | VVC级别。  | 
+| typedef enum [OH_MPEG2Level](#oh_mpeg2level) [OH_MPEG2Level](#oh_mpeg2level) | MPEG2级别。 | 
+| typedef enum [OH_MPEG4Level](#oh_mpeg4level) [OH_MPEG4Level](#oh_mpeg4level) | MPEG4级别。 | 
 | typedef enum [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode-1) [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode) | 时域图片组参考模式。  |
 | typedef enum [OH_BitrateMode](#oh_bitratemode-1) [OH_BitrateMode](#oh_bitratemode) | 编码器的比特率模式。  |
 
@@ -219,7 +225,9 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_AVCProfile](#oh_avcprofile-1) {<br/>AVC_PROFILE_BASELINE = 0,<br/>AVC_PROFILE_HIGH = 4,<br/>AVC_PROFILE_MAIN = 8<br/>} | AVC档次。 | 
 | [OH_HEVCProfile](#oh_hevcprofile-1) {<br/>HEVC_PROFILE_MAIN = 0,<br/>HEVC_PROFILE_MAIN_10 = 1,<br/>HEVC_PROFILE_MAIN_STILL = 2,<br/>HEVC_PROFILE_MAIN_10_HDR10 = 3,<br/>HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4<br/>} | HEVC档次。<br>HEVC_PROFILE_MAIN_10_HDR10、HEVC_PROFILE_MAIN_10_HDR10_PLUS在API 14废弃。| 
 | [OH_VVCProfile](#oh_vvcprofile-1) {<br/>VVC_PROFILE_MAIN_10 = 1, <br/>VVC_PROFILE_MAIN_12 = 2, <br/>VVC_PROFILE_MAIN_12_INTRA = 10, <br/>VVC_PROFILE_MULTI_MAIN_10 = 17, <br/>VVC_PROFILE_MAIN_10_444 = 33, <br/>VVC_PROFILE_MAIN_12_444 = 34, <br/>VVC_PROFILE_MAIN_16_444 = 36, <br/>VVC_PROFILE_MAIN_12_444_INTRA = 42, <br/>VVC_PROFILE_MAIN_16_444_INTRA = 44, <br/>VVC_PROFILE_MULTI_MAIN_10_444 = 49, <br/>VVC_PROFILE_MAIN_10_STILL = 65, <br/>VVC_PROFILE_MAIN_12_STILL = 66, <br/>VVC_PROFILE_MAIN_10_444_STILL = 97, <br/>VVC_PROFILE_MAIN_12_444_STILL = 98, <br/>VVC_PROFILE_MAIN_16_444_STILL = 100 <br/>} | VVC档次。 | 
-| [OH_AVOutputFormat](#oh_avoutputformat-1) {<br/>AV_OUTPUT_FORMAT_DEFAULT = 0,<br/>AV_OUTPUT_FORMAT_MPEG_4 = 2,<br/>AV_OUTPUT_FORMAT_M4A = 6,<br/>AV_OUTPUT_FORMAT_AMR = 8,<br/>AV_OUTPUT_FORMAT_MP3 = 9,<br/>AV_OUTPUT_FORMAT_WAV = 10<br/>} | 封装器支持的输出文件格式。 |
+| [OH_MPEG2Profile](#oh_mpeg2profile) {<br/>MPEG2_PROFILE_SIMPLE = 0,<br/>MPEG2_PROFILE_MAIN = 1,<br/>MPEG2_PROFILE_SNR = 2,<br/>MPEG2_PROFILE_SPATIAL = 3,<br/>MPEG2_PROFILE_HIGH = 4,<br/>MPEG2_PROFILE_422 = 5} | MPEG2档次。 | 
+| [OH_MPEG4Profile](#oh_mpeg4profile) {<br/>MPEG4_PROFILE_SIMPLE = 0,<br/>MPEG4_PROFILE_SIMPLE_SCALABLE = 1,<br/>MPEG4_PROFILE_CORE = 2,<br/>MPEG4_PROFILE_MAIN = 3,<br/>MPEG4_PROFILE_NBIT = 4,<br/>MPEG4_PROFILE_HYBRID = 5,<br/>MPEG4_PROFILE_BASIC_ANIMATED_TEXTURE = 6,<br/>MPEG4_PROFILE_SCALABLE_TEXTURE = 7,<br/>MPEG4_PROFILE_SIMPLE_FA = 8,<br/>MPEG4_PROFILE_ADVANCED_REAL_TIME_SIMPLE = 9,<br/>MPEG4_PROFILE_CORE_SCALABLE = 10,<br/>MPEG4_PROFILE_ADVANCED_CODING_EFFICIENCY = 11,<br/>MPEG4_PROFILE_ADVANCED_CORE = 12,<br/>MPEG4_PROFILE_ADVANCED_SCALABLE_TEXTURE = 13,<br/>MPEG4_PROFILE_ADVANCED_SIMPLE = 17} | MPEG4档次。 | 
+| [OH_AVOutputFormat](#oh_avoutputformat-1) {<br/>AV_OUTPUT_FORMAT_DEFAULT = 0,<br/>AV_OUTPUT_FORMAT_MPEG_4 = 2,<br/>AV_OUTPUT_FORMAT_M4A = 6,<br/>AV_OUTPUT_FORMAT_AMR = 8,<br/>AV_OUTPUT_FORMAT_MP3 = 9,<br/>AV_OUTPUT_FORMAT_WAV = 10, <br/>AV_OUTPUT_FORMAT_AAC = 11<br/>} | 封装器支持的输出文件格式。 |
 | [OH_AVSeekMode](#oh_avseekmode-1) {<br/>SEEK_MODE_NEXT_SYNC = 0,<br/>SEEK_MODE_PREVIOUS_SYNC,<br/>SEEK_MODE_CLOSEST_SYNC<br/>} | 跳转模式。 | 
 | [OH_ScalingMode](#oh_scalingmode-1) {<br/>SCALING_MODE_SCALE_TO_WINDOW = 1,<br/>SCALING_MODE_SCALE_CROP = 2<br/>} | 缩放模式。（API14废弃） | 
 | [OH_BitsPerSample](#oh_bitspersample-1) {<br/>SAMPLE_U8 = 0, SAMPLE_S16LE = 1,<br/>SAMPLE_S24LE = 2, SAMPLE_S32LE = 3,<br/>SAMPLE_F32LE = 4, SAMPLE_U8P = 5,<br/>SAMPLE_S16P = 6, SAMPLE_S24P = 7,<br/>SAMPLE_S32P = 8, SAMPLE_F32P = 9,<br/>INVALID_WIDTH = -1<br/>} | 每个编码样本的音频位数。 | 
@@ -229,6 +237,8 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_AVCLevel](#oh_avclevel-1) {<br/>AVC_LEVEL_1 = 0, <br/>AVC_LEVEL_1b = 1, <br/>AVC_LEVEL_11 = 2, <br/>AVC_LEVEL_12 = 3,<br/>AVC_LEVEL_13 = 4, <br/>AVC_LEVEL_2 = 5, <br/>AVC_LEVEL_21 = 6, <br/>AVC_LEVEL_22 = 7,<br/>AVC_LEVEL_3 = 8, <br/>AVC_LEVEL_31 = 9, <br/>AVC_LEVEL_32 = 10, <br/>AVC_LEVEL_4 = 11,<br/>AVC_LEVEL_41 = 12, <br/>AVC_LEVEL_42 = 13, <br/>AVC_LEVEL_5 = 14, <br/>AVC_LEVEL_51 = 15, <br/>AVC_LEVEL_52 = 16, <br/>AVC_LEVEL_6 = 17, <br/>AVC_LEVEL_61 = 18, <br/>AVC_LEVEL_62 = 19<br/>} | AVC级别。  | 
 | [OH_HEVCLevel](#oh_hevclevel-1) {<br/>HEVC_LEVEL_1 = 0, <br/>HEVC_LEVEL_2 = 1, <br/>HEVC_LEVEL_21 = 2, <br/>HEVC_LEVEL_3 = 3,<br/>HEVC_LEVEL_31 = 4, <br/>HEVC_LEVEL_4 = 5, <br/>HEVC_LEVEL_41 = 6, <br/>HEVC_LEVEL_5 = 7,<br/>HEVC_LEVEL_51 = 8, <br/>HEVC_LEVEL_52 = 9, <br/>HEVC_LEVEL_6 = 10, <br/>HEVC_LEVEL_61 = 11,<br/>HEVC_LEVEL_62 = 12<br/>} | HEVC级别。  | 
 | [OH_VVCLevel](#oh_vvclevel-1) {<br/>VVC_LEVEL_1 = 16, <br/>VVC_LEVEL_2 = 32, <br/>VVC_LEVEL_21 = 35, <br/>VVC_LEVEL_3 = 48, <br/>VVC_LEVEL_31 = 51, <br/>VVC_LEVEL_4 = 64, <br/>VVC_LEVEL_41 = 67, <br/>VVC_LEVEL_5 = 80, <br/>VVC_LEVEL_51 = 83, <br/>VVC_LEVEL_52 = 86, <br/>VVC_LEVEL_6 = 96, <br/>VVC_LEVEL_61 = 99, <br/>VVC_LEVEL_62 = 102, <br/>VVC_LEVEL_63 = 105, <br/>VVC_LEVEL_155 = 255<br/>} | VVC级别。  | 
+| [OH_MPEG2Level](#oh_mpeg2level) {<br/>MPEG2_LEVEL_LL = 0,<br/>MPEG2_LEVEL_ML = 1,<br/>MPEG2_LEVEL_H14 = 2,<br/>MPEG2_LEVEL_HL = 3 } | MPEG2级别。 | 
+| [OH_MPEG4Level](#oh_mpeg4level) {<br/>MPEG4_LEVEL_0 = 0,<br/>MPEG4_LEVEL_0B = 1,<br/>MPEG4_LEVEL_1 = 2,<br/>MPEG4_LEVEL_2 = 3,<br/>MPEG4_LEVEL_3 = 4,<br/>MPEG4_LEVEL_3B = 5,<br/>MPEG4_LEVEL_4 = 6,<br/>MPEG4_LEVEL_4A = 7,<br/>MPEG4_LEVEL_5 = 8,<br/>MPEG4_LEVEL_6 = 9} | MPEG4级别。 | 
 | [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode-1) { <br/>ADJACENT_REFERENCE = 0, <br/>JUMP_REFERENCE = 1, <br/>UNIFORMLY_SCALED_REFERENCE = 2 <br/>} | 时域图片组参考模式。  | 
 | [OH_BitrateMode](#oh_bitratemode-1) { <br/>BITRATE_MODE_CBR = 0, <br/>BITRATE_MODE_VBR = 1, <br/>BITRATE_MODE_CQ = 2 } | 编码器的比特率模式。  |
 
@@ -729,6 +739,66 @@ typedef enum OH_MediaType OH_MediaType
 **起始版本：** 9
 
 
+### OH_MPEG2Level
+
+```
+typedef enum OH_MPEG2Level OH_MPEG2Level
+```
+
+**描述**
+
+MPEG2级别。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 18
+
+
+### OH_MPEG2Profile
+
+```
+typedef enum OH_MPEG2Profile OH_MPEG2Profile
+```
+
+**描述**
+
+MPEG2档次。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 18
+
+
+### OH_MPEG4Level
+
+```
+typedef enum OH_MPEG4Level OH_MPEG4Level
+```
+
+**描述**
+
+MPEG4级别。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 18
+
+
+### OH_MPEG4Profile
+
+```
+typedef enum OH_MPEG4Profile OH_MPEG4Profile
+```
+
+**描述**
+
+MPEG4档次。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 18
+
+
 ### OH_ScalingMode
 
 ```
@@ -1051,6 +1121,7 @@ enum OH_AVOutputFormat
 | AV_OUTPUT_FORMAT_AMR  | 输出文件格式为AMR格式。<br>**起始版本：** 12    | 
 | AV_OUTPUT_FORMAT_MP3  | 输出文件格式为MP3格式。<br>**起始版本：** 12   | 
 | AV_OUTPUT_FORMAT_WAV  | 输出文件格式为WAV格式。<br>**起始版本：** 12   | 
+| AV_OUTPUT_FORMAT_AAC  | 输出文件格式为AAC格式。<br>**起始版本：** 18   | 
 
 ### OH_AVSeekMode
 
@@ -1222,6 +1293,113 @@ enum OH_MediaType
 | MEDIA_TYPE_AUD  | 音频轨。   | 
 | MEDIA_TYPE_VID  | 视频轨。   | 
 | MEDIA_TYPE_SUBTITILE  | 字幕轨。 <br>**起始版本：** 12   |
+
+### OH_MPEG2Level
+
+```
+enum OH_MPEG2Level
+```
+
+**描述**
+
+MPEG2级别。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 18
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| MPEG2_LEVEL_LL | 低级别。 | 
+| MPEG2_LEVEL_ML | 主级别。 | 
+| MPEG2_LEVEL_H14 | 高1440级别。 | 
+| MPEG2_LEVEL_HL | 高级别。 | 
+
+
+### OH_MPEG2Profile
+
+```
+enum OH_MPEG2Profile
+```
+
+**描述**
+
+MPEG2档次。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 18
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| MPEG2_PROFILE_SIMPLE | 简单档次。 | 
+| MPEG2_PROFILE_MAIN | 主档次。 | 
+| MPEG2_PROFILE_SNR | 信噪比可分级档次。 | 
+| MPEG2_PROFILE_SPATIAL | 空间可分级档次。 | 
+| MPEG2_PROFILE_HIGH | 高级档次。 | 
+| MPEG2_PROFILE_422 | 4:2:2档次。 | 
+
+
+### OH_MPEG4Level
+
+```
+enum OH_MPEG4Level
+```
+
+**描述**
+
+MPEG4级别。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 18
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| MPEG4_LEVEL_0 | 级别0 | 
+| MPEG4_LEVEL_0B | 级别0B。 | 
+| MPEG4_LEVEL_1 | 级别1。 | 
+| MPEG4_LEVEL_2 | 级别2。 | 
+| MPEG4_LEVEL_3 | 级别3。 | 
+| MPEG4_LEVEL_3B | 级别3B。 | 
+| MPEG4_LEVEL_4 | 级别4。 | 
+| MPEG4_LEVEL_4A | 级别4A。 | 
+| MPEG4_LEVEL_5 | 级别5。 | 
+| MPEG4_LEVEL_6 | 级别6。 | 
+
+
+### OH_MPEG4Profile
+
+```
+enum OH_MPEG4Profile
+```
+
+**描述**
+
+MPEG4档次。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 18
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| MPEG4_PROFILE_SIMPLE | 简单档次。 | 
+| MPEG4_PROFILE_SIMPLE_SCALABLE | 简单可分级档次。 | 
+| MPEG4_PROFILE_CORE | 核心档次。 | 
+| MPEG4_PROFILE_MAIN | 主档次。 | 
+| MPEG4_PROFILE_NBIT | N位档次。 | 
+| MPEG4_PROFILE_HYBRID | 混合档次。 | 
+| MPEG4_PROFILE_BASIC_ANIMATED_TEXTURE | 基本动画纹理档次。 | 
+| MPEG4_PROFILE_SCALABLE_TEXTURE | 可分级纹理档次。 | 
+| MPEG4_PROFILE_SIMPLE_FA | 简单FA档次。 | 
+| MPEG4_PROFILE_ADVANCED_REAL_TIME_SIMPLE | 高级实时简单档次。 | 
+| MPEG4_PROFILE_CORE_SCALABLE | 核心可分级档次。 | 
+| MPEG4_PROFILE_ADVANCED_CODING_EFFICIENCY | 高级编码效率档次。 | 
+| MPEG4_PROFILE_ADVANCED_CORE | 高级核心档次。 | 
+| MPEG4_PROFILE_ADVANCED_SCALABLE_TEXTURE | 高级可分级纹理档次。 | 
+| MPEG4_PROFILE_ADVANCED_SIMPLE | 高级简单档次。 | 
+
 
 ### OH_ScalingMode
 
@@ -1496,7 +1674,7 @@ RAW音频码流的MIME类型。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_AVCODEC_MIMETYPE_AUDIO_MPEG
@@ -1629,6 +1807,21 @@ VVC(H.266)视频编解码器的MIME类型。
 **起始版本：** 12
 
 
+### OH_AVCODEC_MIMETYPE_VIDEO_MPEG2
+
+```
+const char* OH_AVCODEC_MIMETYPE_VIDEO_MPEG2
+```
+
+**描述**
+
+视频MPEG2编解码器的MIME类型。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 18
+
+
 ### OH_AVCODEC_MIMETYPE_VIDEO_MPEG4
 
 ```
@@ -1642,6 +1835,21 @@ MPEG4视频编码的MIME类型，仅用于封装MPEG4视频码流使用。
 **起始版本：** 10
 
 **废弃版本：** 11
+
+
+### OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2
+
+```
+const char* OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2
+```
+
+**描述**
+
+视频MPEG4 Part2编解码器的MIME类型。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 18
 
 
 ### OH_ED_KEY_EOS
@@ -2807,7 +3015,7 @@ const char* OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT
@@ -2828,4 +3036,4 @@ const char* OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 16
+**起始版本：** 18

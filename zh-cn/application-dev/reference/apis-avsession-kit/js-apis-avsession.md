@@ -59,7 +59,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let currentAVSession: avSession.AVSession;
 let tag = "createNewSession";
 let context: Context = getContext(this);
-let sessionId: string;  // 供后续函数入参使用
+let sessionId: string;  // 供后续函数入参使用。
 
 avSession.createAVSession(context, tag, "audio").then((data: avSession.AVSession) => {
   currentAVSession = data;
@@ -104,7 +104,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let currentAVSession: avSession.AVSession;
 let tag = "createNewSession";
 let context: Context = getContext(this);
-let sessionId: string;  // 供后续函数入参使用
+let sessionId: string;  // 供后续函数入参使用。
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
@@ -131,11 +131,11 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 | TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+的Stream模式。表示媒体正在其他设备上展示。 |
 | TYPE_DLNA<sup>12+</sup>      | 4    | DLNA协议。表示媒体正在其他设备上展示。 |
 
-## DistributedSessionType<sup>16+</sup>
+## DistributedSessionType<sup>18+</sup>
 
 远端分布式设备支持的会话类型。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -161,8 +161,8 @@ type AVSessionType = 'audio' | 'video' | 'voice_call' | 'video_call'
 | -----  | ---- |
 | 'audio' | 音频 |
 | 'video' | 视频 |
-| 'voice_call'<sup>11+<sup> | 音频通话 |
-| 'video_call'<sup>12+<sup> | 视频通话 |
+| 'voice_call'<sup>11+<sup> | 音频通话。 |
+| 'video_call'<sup>12+<sup> | 视频通话。 |
 
 ## AVSession<sup>10+</sup>
 
@@ -634,7 +634,7 @@ setLaunchAbility(ability: WantAgent): Promise\<void>
 import { wantAgent } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// WantAgentInfo对象
+// WantAgentInfo对象。
 let wantAgentInfo: wantAgent.WantAgentInfo = {
   wants: [
     {
@@ -702,7 +702,7 @@ setLaunchAbility(ability: WantAgent, callback: AsyncCallback\<void>): void
 import { wantAgent } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// WantAgentInfo对象
+// WantAgentInfo对象。
 let wantAgentInfo: wantAgent.WantAgentInfo = {
   wants: [
     {
@@ -755,7 +755,7 @@ dispatchSessionEvent(event: string, args: {[key: string]: Object}): Promise\<voi
 
 | 参数名  | 类型                                          | 必填 | 说明                                                        |
 | ------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
-| event | string | 是   | 需要设置的会话事件的名称 |
+| event | string | 是   | 需要设置的会话事件的名称。 |
 | args | {[key: string]: Object} | 是   | 需要传递的会话事件内容。 |
 
 > **说明：**
@@ -815,7 +815,7 @@ dispatchSessionEvent(event: string, args: {[key: string]: Object}, callback: Asy
 
 | 参数名  | 类型                                          | 必填 | 说明                                                        |
 | ------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
-| event | string | 是   | 需要设置的会话事件的名称 |
+| event | string | 是   | 需要设置的会话事件的名称。 |
 | args | {[key: string]: Object} | 是   | 需要传递的会话事件内容。 |
 | callback | AsyncCallback\<void>                          | 是   | 回调函数。当会话事件设置成功，err为undefined，否则返回错误对象。 |
 
@@ -1105,7 +1105,7 @@ setExtras(extras: {[key: string]: Object}): Promise\<void>
 
 | 参数名  | 类型                                          | 必填 | 说明                                                        |
 | ------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
-| extras | {[key: string]: Object} | 是   | 需要传递的自定义媒体数据包键值对 |
+| extras | {[key: string]: Object} | 是   | 需要传递的自定义媒体数据包键值对。 |
 
 > **说明：**
 
@@ -1164,7 +1164,7 @@ setExtras(extras: {[key: string]: Object}, callback: AsyncCallback\<void>): void
 
 | 参数名  | 类型                                          | 必填 | 说明                                                        |
 | ------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
-| extras | {[key: string]: Object} | 是   | 需要传递的自定义媒体数据包键值对 |
+| extras | {[key: string]: Object} | 是   | 需要传递的自定义媒体数据包键值对。 |
 | callback | AsyncCallback\<void>                          | 是   | 回调函数。当自定义媒体数据包设置成功，err为undefined，否则返回错误对象。 |
 
 > **说明：**
@@ -1676,7 +1676,7 @@ on(type: 'play', callback: () => void): void
 
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | string               | 是   | 事件回调类型，支持的事件为`'play'`当播放命令被发送到会话时，触发该事件回调。 |
+| type     | string               | 是   | 事件回调类型，支持的事件为`'play'`，当播放命令被发送到会话时，触发该事件回调。 |
 | callback | () => void | 是   | 回调函数。当监听事件注册成功，err为undefined，否则为错误对象。                                        |
 
 **错误码：**
@@ -1824,7 +1824,7 @@ on(type:'playPrevious', callback: () => void): void
 
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | string               | 是   | 事件回调类型，支持的事件是`'playPrevious'`当播放上一首命令被发送到会话时，触发该事件回调。 |
+| type     | string               | 是   | 事件回调类型，支持的事件是`'playPrevious'`，当播放上一首命令被发送到会话时，触发该事件回调。 |
 | callback | () => void | 是   | 回调函数。当监听事件注册成功，err为undefined，否则为错误对象。       |
 
 **错误码：**
@@ -2299,7 +2299,7 @@ off(type: 'play', callback?: () => void): void
 
 | 参数名    | 类型                  | 必填 | 说明                                                                                                                         |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
-| type     | string               | 是   | 关闭对应的监听事件，支持的事件是`'play'`|
+| type     | string               | 是   | 关闭对应的监听事件，支持的事件是`'play'`。|
 | callback | () => void | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                            |
 
 **错误码：**
@@ -2806,7 +2806,7 @@ on(type: 'answer', callback: Callback\<void>): void;
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 事件回调类型，支持事件`'answer'`：当通话接听时，触发该事件。 |
-| callback | Callback\<void>                                               | 是   | 回调函数                      |
+| callback | Callback\<void>                                               | 是   | 回调函数。                      |
 
 **错误码：**
 
@@ -2874,7 +2874,7 @@ on(type: 'hangUp', callback: Callback\<void>): void;
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 事件回调类型，支持事件`'hangUp'`：当通话挂断时，触发该事件。 |
-| callback | Callback\<void>                                               | 是   | 回调函数                                             |
+| callback | Callback\<void>                                               | 是   | 回调函数。                                             |
 
 **错误码：**
 
@@ -2942,7 +2942,7 @@ on(type: 'toggleCallMute', callback: Callback\<void>): void;
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 事件回调类型，支持事件`'toggleCallMute'`：当通话静音或解除静音时，触发该事件。 |
-| callback | Callback\<void>                                               | 是   | 回调函数                                             |
+| callback | Callback\<void>                                               | 是   | 回调函数。                                             |
 
 **错误码：**
 
@@ -3230,19 +3230,19 @@ type AVCastControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPr
 
 | 类型             | 说明         |
 | ---------------- | ------------ |
-| 'play'           | 播放         |
-| 'pause'          | 暂停         |
-| 'stop'           | 停止         |
-| 'playNext'       | 下一首       |
-| 'playPrevious'   | 上一首       |
-| 'fastForward'    | 快进         |
-| 'rewind'         | 快退         |
-| 'seek'           | 跳转某一节点 |
-| 'setVolume'      | 设置音量     |
-| 'setSpeed'       | 设置播放倍速 |
-| 'setLoopMode'    | 设置循环模式 |
-| 'toggleFavorite' | 是否收藏     |
-| 'toggleMute'     | 设置静音状态 |
+| 'play'           | 播放。         |
+| 'pause'          | 暂停。        |
+| 'stop'           | 停止。         |
+| 'playNext'       | 下一首。       |
+| 'playPrevious'   | 上一首。       |
+| 'fastForward'    | 快进。         |
+| 'rewind'         | 快退。         |
+| 'seek'           | 跳转某一节点。 |
+| 'setVolume'      | 设置音量。     |
+| 'setSpeed'       | 设置播放倍速。 |
+| 'setLoopMode'    | 设置循环模式。 |
+| 'toggleFavorite' | 是否收藏。     |
+| 'toggleMute'     | 设置静音状态。 |
 
 ## AVCastControlCommand<sup>10+</sup>
 
@@ -3254,8 +3254,8 @@ type AVCastControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPr
 
 | 名称      | 类型                                              | 必填 | 说明           |
 | --------- | ------------------------------------------------- | ---- | -------------- |
-| command   | [AVCastControlCommandType](#avcastcontrolcommandtype10)     | 是   | 命令           |
-| parameter | [media.PlaybackSpeed](../apis-media-kit/js-apis-media.md#playbackspeed8) &#124; number &#124; string &#124; [LoopMode](#loopmode10) | 否   | 命令对应的参数 |
+| command   | [AVCastControlCommandType](#avcastcontrolcommandtype10)     | 是   | 命令。           |
+| parameter | [media.PlaybackSpeed](../apis-media-kit/js-apis-media.md#playbackspeed8) &#124; number &#124; string &#124; [LoopMode](#loopmode10) | 否   | 命令对应的参数。 |
 
 ## AVCastController<sup>10+</sup>
 
@@ -3330,6 +3330,162 @@ aVCastController.getAVPlaybackState().then((state: avSession.AVPlaybackState) =>
   console.info('getAVPlaybackState : SUCCESS');
 }).catch((err: BusinessError) => {
   console.error(`getAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### getSupportedDecoders<sup>18+</sup>
+
+getSupportedDecoders(): Promise\<Array\<DecoderType>>
+
+获取当前远端设备的编码方式。使用Promise异步回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**返回值：**
+
+| 类型                                                        | 说明                                                         |
+| --------- | ------------------------------------------------------------ |
+| Promise\<Array\<[DecoderType](#decodertype18)\>\> | Promise对象。返回远端设备所支持的编码能力列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+aVCastController.getSupportedDecoders().then((decoderTypes: avSession.DecoderType[]) => {
+  console.info(`getSupportedDecoders : SUCCESS : decoderTypes.length : ${decoderTypes.length}`);
+  if (descriptors.length > 0 ) {
+    console.info(`getSupportedDecoders : SUCCESS : decoderTypes[0] : ${decoderTypes[0]}`);
+  }
+}).catch((err: BusinessError) => {
+  console.error(`getSupportedDecoders BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### getRecommendedResolutionLevel<sup>18+</sup>
+
+getRecommendedResolutionLevel(decoderType: DecoderType): Promise\<ResolutionLevel>
+
+通过传递编码方式，获取推荐的分辨率。使用Promise异步回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**返回值：**
+
+| 类型                                                        | 说明                                                         |
+| --------- | ------------------------------------------------------------ |
+| Promise\<[ResolutionLevel](#resolutionlevel18)\> | Promise对象。返回远端设备推荐的分辨率。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let decoderType = avSession.DecoderType.OH_AVCODEC_MIMETYPE_VIDEO_AVC;
+let resolutionLeve = avSession.ResolutionLevel;
+aVCastController.getRecommendedResolutionLevel(decoderType).then((resolutionLeve) => {
+  console.info('getRecommendedResolutionLevel successfully');
+}).catch((err: BusinessError) => {
+  console.error(`getRecommendedResolutionLevel BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### getSupportedHdrCapabilities<sup>18+</sup>
+
+getSupportedHdrCapabilities(): Promise\<Array\<hdrCapability.HDRFormat>>
+
+获取当前的远端设备所支持的HDR能力。使用Promise异步回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**返回值：**
+
+| 类型                                                        | 说明                                                         |
+| --------- | ------------------------------------------------------------ |
+| Promise\<Array\<[hdrCapability.HDRFormat](../apis-arkgraphics2d/js-apis-hdrCapability.md#hdrformat)\>\> | Promise对象。返回远端设备所支持的HDR能力。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import type hdrCapability from './@ohos.graphics.hdrCapability';
+
+aVCastController.getSupportedHdrCapabilities().then((hdrFormats: hdrCapability.HDRFormat[]) => {
+  console.info(`getSupportedHdrCapabilities : SUCCESS : hdrFormats.length : ${hdrFormats.length}`);
+  if (hdrFormats.length > 0 ) {
+    console.info(`getSupportedHdrCapabilities : SUCCESS : descriptors[0] : ${hdrFormats[0]}`);
+  }
+}).catch((err: BusinessError) => {
+  console.error(`getSupportedHdrCapabilities BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### getSupportedPlaySpeeds<sup>18+</sup>
+
+getSupportedPlaySpeeds(): Promise\<Array\<number>>
+
+获取当前的远端设备所支持倍速播放列表。使用Promise异步回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**返回值：**
+
+| 类型                                                        | 说明                                                         |
+| --------- | ------------------------------------------------------------ |
+| Promise\<Array\<number\>\> | Promise对象。返回远端设备所支持的倍速播放列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+aVCastController.getSupportedPlaySpeeds().then((nums: number[]) => {
+  console.info(`getSupportedPlaySpeeds : SUCCESS : hdrFormats.length : ${nums.length}`);
+  if (nums.length > 0 ) {
+    console.info(`getSupportedPlaySpeeds : SUCCESS : descriptors[0] : ${nums[0]}`);
+  }
+}).catch((err: BusinessError) => {
+  console.error(`getSupportedPlaySpeeds BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -3452,7 +3608,7 @@ prepare(item: AVQueueItem, callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 设置播放参数，开始播放
+// 设置播放参数，开始播放。
 let playItem: avSession.AVQueueItem = {
   itemId: 0,
   description: {
@@ -3469,7 +3625,7 @@ let playItem: avSession.AVQueueItem = {
     appName: 'MyMusic'
   }
 };
-// 准备播放，这个不会触发真正的播放，会进行加载和缓冲
+// 准备播放，这个不会触发真正的播放，会进行加载和缓冲。
 aVCastController.prepare(playItem, (err: BusinessError) => {
   if (err) {
     console.error(`prepare BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -3519,7 +3675,7 @@ prepare(item: AVQueueItem): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 设置播放参数，开始播放
+// 设置播放参数，开始播放。
 let playItem: avSession.AVQueueItem = {
   itemId: 0,
   description: {
@@ -3536,7 +3692,7 @@ let playItem: avSession.AVQueueItem = {
     appName: 'MyMusic'
   }
 };
-// 准备播放，这个不会触发真正的播放，会进行加载和缓冲
+// 准备播放，这个不会触发真正的播放，会进行加载和缓冲。
 aVCastController.prepare(playItem).then(() => {
   console.info('prepare successfully');
 }).catch((err: BusinessError) => {
@@ -3574,7 +3730,7 @@ start(item: AVQueueItem, callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 设置播放参数，开始播放
+// 设置播放参数，开始播放。
 let playItem: avSession.AVQueueItem = {
   itemId: 0,
   description: {
@@ -3592,7 +3748,7 @@ let playItem: avSession.AVQueueItem = {
   }
 };
 
-// 启动播放
+// 启动播放。
 aVCastController.start(playItem, (err: BusinessError) => {
   if (err) {
     console.error(`start BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -3641,7 +3797,7 @@ start(item: AVQueueItem): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 设置播放参数，开始播放
+// 设置播放参数，开始播放。
 let playItem: avSession.AVQueueItem = {
   itemId: 0,
   description: {
@@ -3658,7 +3814,7 @@ let playItem: avSession.AVQueueItem = {
     appName: 'MyMusic'
   }
 };
-// 启动播放
+// 启动播放。
 aVCastController.start(playItem).then(() => {
   console.info('start successfully');
 }).catch((err: BusinessError) => {
@@ -3844,9 +4000,9 @@ processMediaKeyResponse(assetId: string, response: Uint8Array): Promise\<void>
 
 ```ts
 let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
-  // 根据assetId获取对应的DRM url
+  // 根据assetId获取对应的DRM url。
   let drmUrl = 'http://license.xxx.xxx.com:8080/drmproxy/getLicense';
-  // 从服务器获取许可证，需要开发者根据实际情况进行赋值
+  // 从服务器获取许可证，需要开发者根据实际情况进行赋值。
   let licenseResponseData: Uint8Array = new Uint8Array();
   console.info(`Succeeded in get license by ${drmUrl}.`);
   aVCastController.processMediaKeyResponse(assetId, licenseResponseData);
@@ -4078,7 +4234,7 @@ on(type: 'playNext', callback: Callback\<void>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 事件回调类型，支持事件`'playNext'`：当播放下一首状态变化时，触发该事件。 |
-| callback | Callback\<void\>         | 是   | 回调函数                      |
+| callback | Callback\<void\>         | 是   | 回调函数。                      |
 
 **错误码：**
 
@@ -4143,7 +4299,7 @@ on(type: 'playPrevious', callback: Callback\<void>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 事件回调类型，支持事件`'playPrevious'`：当播放上一首状态变化时，触发该事件。 |
-| callback | Callback\<void\>         | 是   | 回调函数                      |
+| callback | Callback\<void\>         | 是   | 回调函数。                      |
 
 **错误码：**
 
@@ -4332,7 +4488,7 @@ on(type: 'seekDone', callback: Callback\<number>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 事件回调类型，支持事件`'seekDone'`：当seek结束时，触发该事件。 |
-| callback | Callback\<number\>         | 是   | 回调函数，返回seek后播放的位置                      |
+| callback | Callback\<number\>         | 是   | 回调函数，返回seek后播放的位置。                      |
 
 **错误码：**
 
@@ -4503,7 +4659,7 @@ off(type: 'error'): void
 
 | 参数名 | 类型   | 必填 | 说明                                      |
 | ------ | ------ | ---- | ----------------------------------------- |
-| type   | string | 是   | 错误事件回调类型，取消注册的事件：'error' |
+| type   | string | 是   | 错误事件回调类型，取消注册的事件：'error'。 |
 
 **错误码：**
 
@@ -5008,12 +5164,12 @@ off(type: 'castControlDrmError', callback?: ErrorCallback): void
 aVCastController.off('castControlDrmError');
 ```
 
-## ExtraInfo<sup>16+</sup>
+## ExtraInfo<sup>18+</sup>
 type ExtraInfo = { [key: string]: Object; }
 
 媒体提供方设置的自定义媒体数据包对象。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -5085,9 +5241,9 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
-| STATE_CONNECTING      | 0    | 设备连接中    |
-| STATE_CONNECTED      | 1    | 设备连接成功 |
-| STATE_DISCONNECTED      | 6    | 设备断开连接 |
+| STATE_CONNECTING      | 0    | 设备连接中。    |
+| STATE_CONNECTED      | 1    | 设备连接成功。 |
+| STATE_DISCONNECTED      | 6    | 设备断开连接。 |
 
 ## AVMetadata<sup>10+</sup>
 
@@ -5108,7 +5264,7 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 | writer          | string                  | 否   | 词作者。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                |
 | composer        | string                  | 否   | 作曲者。                                                                |
 | duration        | number                  | 否   | 媒体时长，单位毫秒（ms）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                  |
-| mediaImage      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 图片的像素数据或者图片路径地址(本地路径或网络路径)。<br>应用通过setAVMetadata设置图片数据，当设置的数据类型为PixelMap时，通过getAVMetadata获取的将为PixelMap。设置为url图片路径，获取的亦为url图片路径  <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                             |
+| mediaImage      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 图片的像素数据或者图片路径地址(本地路径或网络路径)。<br>应用通过setAVMetadata设置图片数据，当设置的数据类型为PixelMap时，通过getAVMetadata获取的将为PixelMap。设置为url图片路径，获取的亦为url图片路径。  <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                             |
 | publishDate     | Date                    | 否   | 发行日期。                                                             |
 | subtitle        | string                  | 否   | 子标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                |
 | description     | string                  | 否   | 媒体描述。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                               |
@@ -5172,20 +5328,20 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 
 | 名称         | 类型                                  | 必填 | 说明     |
 | ------------ | ------------------------------------- | ---- | ------- |
-| state        | [PlaybackState](#playbackstate10)       | 否   | 播放状态<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| speed        | number                                | 否   | 播放倍速<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| position     | [PlaybackPosition](#playbackposition10) | 否   | 播放位置<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| bufferedTime | number                                | 否   | 缓冲时间<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| loopMode     | [LoopMode](#loopmode10)                 | 否   | 循环模式<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| isFavorite   | boolean                               | 否   | 是否收藏<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| activeItemId<sup>10+</sup> | number                  | 否   | 正在播放的媒体Id<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| volume<sup>10+</sup> | number                  | 否   | 正在播放的媒体音量<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| maxVolume<sup>11+</sup> | number                    | 否   | 最大音量<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| muted<sup>11+</sup>     | boolean                   | 否   | 当前静音状态，true表示静音<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| duration<sup>11+</sup>     | number                   | 否   | 当前媒体资源的时长 |
+| state        | [PlaybackState](#playbackstate10)       | 否   | 播放状态。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| speed        | number                                | 否   | 播放倍速。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| position     | [PlaybackPosition](#playbackposition10) | 否   | 播放位置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| bufferedTime | number                                | 否   | 缓冲时间。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| loopMode     | [LoopMode](#loopmode10)                 | 否   | 循环模式。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| isFavorite   | boolean                               | 否   | 是否收藏。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| activeItemId<sup>10+</sup> | number                  | 否   | 正在播放的媒体Id。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| volume<sup>10+</sup> | number                  | 否   | 正在播放的媒体音量。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| maxVolume<sup>11+</sup> | number                    | 否   | 最大音量。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| muted<sup>11+</sup>     | boolean                   | 否   | 当前静音状态，true表示静音。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| duration<sup>11+</sup>     | number                   | 否   | 当前媒体资源的时长。 |
 | videoWidth<sup>11+</sup>  | number                  | 否   | 媒体资源的视频宽度，单位为像素（px）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | videoHeight<sup>11+</sup> |  number                 | 否   | 媒体资源的视频高度，单位为像素（px）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| extras<sup>10+</sup> | {[key: string]: Object}       | 否   | 自定义媒体数据<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| extras<sup>10+</sup> | {[key: string]: Object}       | 否   | 自定义媒体数据。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## PlaybackPosition<sup>10+</sup>
 
@@ -5211,7 +5367,7 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 | 名称            | 类型                      | 必填 | 说明                                                                  |
 | --------------- |-------------------------| ---- |---------------------------------------------------------------------|
 | name            | string                  | 否    | 来电人姓名（别名）。    |                                                                                                                      
-| phoneNumber     | string                  | 否    | 来电电话号码            |                                                   
+| phoneNumber     | string                  | 否    | 来电电话号码。            |                                                   
 | avatar          | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)          | 否    | 来电人头像。            |                                                   
 
 ## AVCallState<sup>11+</sup>
@@ -5237,13 +5393,13 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 
 | 名称                        | 值   | 说明      |
 | --------------------------  | ---- | -------- |
-| CALL_STATE_IDLE             | 0    | 空闲状态   |
-| CALL_STATE_INCOMING         | 1    | 来电     |
-| CALL_STATE_ACTIVE           | 2    | 接通     |
-| CALL_STATE_DIALING          | 3    | 响铃     |
-| CALL_STATE_WAITING          | 4    | 等待接通  |
-| CALL_STATE_HOLDING          | 5    | 保持     |
-| CALL_STATE_DISCONNECTING    | 6    | 挂断     |
+| CALL_STATE_IDLE             | 0    | 空闲状态。   |
+| CALL_STATE_INCOMING         | 1    | 来电。     |
+| CALL_STATE_ACTIVE           | 2    | 接通。     |
+| CALL_STATE_DIALING          | 3    | 响铃。     |
+| CALL_STATE_WAITING          | 4    | 等待接通。  |
+| CALL_STATE_HOLDING          | 5    | 保持。     |
+| CALL_STATE_DISCONNECTING    | 6    | 挂断。     |
 
 ## DisplayTag<sup>11+</sup>
 
@@ -5254,6 +5410,33 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 | 名称                        | 值   | 说明           |
 | --------------------------  | ---- | ------------ |
 | TAG_AUDIO_VIVID             | 1    | AUDIO VIVID  |
+
+## DecoderType<sup>18+</sup>
+
+枚举，设备所支持的编码格式。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+| 名称                        | 值   | 说明           |
+| --------------------------  | ---- | ------------ |
+| OH_AVCODEC_MIMETYPE_VIDEO_AVC      | "video/avc"  | VIDEO AVC  |
+| OH_AVCODEC_MIMETYPE_VIDEO_HEVC     | "video/hevc" | VIDEO HEVC  |
+| OH_AVCODEC_MIMETYPE_AUDIO_VIVID    | "audio/av3a" | AUDIO AV3A  |
+
+
+## ResolutionLevel<sup>18+</sup>
+
+枚举，设备所支持的分辨率。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+| 名称                        | 值   | 说明           |
+| --------------------------  | ---- | ------------ |
+| RESOLUTION_480P             | 0    | 分辨率为480P(640*480 dpi)。     |
+| RESOLUTION_720P             | 1    | 分辨率为720P(1280*720 dpi)。    |
+| RESOLUTION_1080P            | 2    | 分辨率为1080P(1920*1080 dpi)。   |
+| RESOLUTION_2K               | 3    | 分辨率为2k(2560*1440 dpi)。   |
+| RESOLUTION_4K               | 4    | 分辨率为4k(4096*3840 dpi)。   |
 
 ## AVCastCategory<sup>10+</sup>
 
@@ -5276,10 +5459,10 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
-| DEVICE_TYPE_LOCAL      | 0    | 本地播放类型 <br> **系统能力：** SystemCapability.Multimedia.AVSession.Core|
-| DEVICE_TYPE_BLUETOOTH      | 10   | 蓝牙设备 <br> **系统能力：** SystemCapability.Multimedia.AVSession.Core |
-| DEVICE_TYPE_TV      | 2    | 电视 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast |
-| DEVICE_TYPE_SMART_SPEAKER      | 3   | 音箱设备 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast |
+| DEVICE_TYPE_LOCAL      | 0    | 本地播放类型。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.Core|
+| DEVICE_TYPE_BLUETOOTH      | 10   | 蓝牙设备。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.Core |
+| DEVICE_TYPE_TV      | 2    | 电视。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast |
+| DEVICE_TYPE_SMART_SPEAKER      | 3   | 音箱设备。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast |
 
 ## DeviceInfo<sup>10+</sup>
 
@@ -5318,11 +5501,11 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 
 | 名称               | 值   | 说明     |
 | ------------------ | ---- | -------- |
-| LOOP_MODE_SEQUENCE | 0    | 顺序播放 |
-| LOOP_MODE_SINGLE   | 1    | 单曲循环 |
-| LOOP_MODE_LIST     | 2    | 表单循环 |
-| LOOP_MODE_SHUFFLE  | 3    | 随机播放 |
-| LOOP_MODE_CUSTOM<sup>11+</sup>   | 4    | 自定义播放  |
+| LOOP_MODE_SEQUENCE | 0    | 顺序播放。 |
+| LOOP_MODE_SINGLE   | 1    | 单曲循环。 |
+| LOOP_MODE_LIST     | 2    | 表单循环。 |
+| LOOP_MODE_SHUFFLE  | 3    | 随机播放。 |
+| LOOP_MODE_CUSTOM<sup>11+</sup>   | 4    | 自定义播放。  |
 
 ## PlaybackState<sup>10+</sup>
 
@@ -5334,18 +5517,18 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
-| PLAYBACK_STATE_INITIAL      | 0    | 初始状态     |
-| PLAYBACK_STATE_PREPARE      | 1    | 播放准备状态  |
-| PLAYBACK_STATE_PLAY         | 2    | 正在播放     |
-| PLAYBACK_STATE_PAUSE        | 3    | 暂停         |
-| PLAYBACK_STATE_FAST_FORWARD | 4    | 快进         |
-| PLAYBACK_STATE_REWIND       | 5    | 快退         |
-| PLAYBACK_STATE_STOP         | 6    | 停止         |
-| PLAYBACK_STATE_COMPLETED    | 7    | 播放完成     |
-| PLAYBACK_STATE_RELEASED     | 8    | 释放         |
-| PLAYBACK_STATE_ERROR        | 9    | 错误         |
-| PLAYBACK_STATE_IDLE<sup>11+</sup>        | 10    | 空闲     |
-| PLAYBACK_STATE_BUFFERING<sup>11+</sup>         | 11    | 缓冲   |
+| PLAYBACK_STATE_INITIAL      | 0    | 初始状态。     |
+| PLAYBACK_STATE_PREPARE      | 1    | 播放准备状态。  |
+| PLAYBACK_STATE_PLAY         | 2    | 正在播放。     |
+| PLAYBACK_STATE_PAUSE        | 3    | 暂停。         |
+| PLAYBACK_STATE_FAST_FORWARD | 4    | 快进。         |
+| PLAYBACK_STATE_REWIND       | 5    | 快退。         |
+| PLAYBACK_STATE_STOP         | 6    | 停止。         |
+| PLAYBACK_STATE_COMPLETED    | 7    | 播放完成。     |
+| PLAYBACK_STATE_RELEASED     | 8    | 释放。         |
+| PLAYBACK_STATE_ERROR        | 9    | 错误。         |
+| PLAYBACK_STATE_IDLE<sup>11+</sup>        | 10    | 空闲。     |
+| PLAYBACK_STATE_BUFFERING<sup>11+</sup>         | 11    | 缓冲。   |
 
 ## AVSessionController<sup>10+</sup>
 
@@ -6094,7 +6277,7 @@ isActive(callback: AsyncCallback\<boolean>): void
 
 | 参数名   | 类型                    | 必填 | 说明                                                         |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<boolean\> | 是   | 回调函数，返回会话是否为激活状态，true表示被激活，false表示禁用。 |
+| callback | AsyncCallback<boolean\> | 是   | 回调函数。返回会话是否为激活状态，true表示被激活，false表示禁用。 |
 
 **错误码：**
 
@@ -6385,8 +6568,8 @@ sendCommonCommand(command: string, args: {[key: string]: Object}): Promise\<void
 
 | 参数名    | 类型                                  | 必填 | 说明                           |
 | ------- | ------------------------------------- | ---- | ------------------------------ |
-| command | string | 是   | 需要设置的自定义控制命令的名称 |
-| args | {[key: string]: Object} | 是   | 需要传递的控制命令键值对 |
+| command | string | 是   | 需要设置的自定义控制命令的名称。 |
+| args | {[key: string]: Object} | 是   | 需要传递的控制命令键值对。 |
 
 > **说明：**
 > 参数args支持的数据类型有：字符串、数字、布尔、对象、数组和文件描述符等，详细介绍请参见[@ohos.app.ability.Want(Want)](../apis-ability-kit/js-apis-app-ability-want.md)。
@@ -6640,13 +6823,13 @@ if (avSessionController !== undefined) {
 }
 ```
 
-### getExtrasWithEvent<sup>16+</sup>
+### getExtrasWithEvent<sup>18+</sup>
 
 getExtrasWithEvent(extraEvent: string): Promise\<ExtraInfo>
 
 根据远端分布式事件类型，获取远端分布式媒体提供方设置的自定义媒体数据包。结果通过Promise异步回调方式返回。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -6660,7 +6843,7 @@ getExtrasWithEvent(extraEvent: string): Promise\<ExtraInfo>
 
 | 类型                                | 说明                          |
 | ----------------------------------- | ----------------------------- |
-| Promise<[ExtraInfo](#extrainfo16)\>   | Promise对象，返回远端分布式媒体提供方设置的自定义媒体数据包。<br>参数ExtraInfo支持的数据类型有：字符串、数字、布尔、对象、数组和文件描述符等，详细介绍请参见[@ohos.app.ability.Want(Want)](../apis-ability-kit/js-apis-app-ability-want.md)。 |
+| Promise<[ExtraInfo](#extrainfo18)\>   | Promise对象，返回远端分布式媒体提供方设置的自定义媒体数据包。<br>参数ExtraInfo支持的数据类型有：字符串、数字、布尔、对象、数组和文件描述符等，详细介绍请参见[@ohos.app.ability.Want(Want)](../apis-ability-kit/js-apis-app-ability-want.md)。 |
 
 **错误码：**
 
@@ -8054,21 +8237,21 @@ type AVControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevio
 
 | 类型             | 说明         |
 | ---------------- | ------------ |
-| 'play'           | 播放         |
-| 'pause'          | 暂停         |
-| 'stop'           | 停止         |
-| 'playNext'       | 下一首       |
-| 'playPrevious'   | 上一首       |
-| 'fastForward'    | 快进         |
-| 'rewind'         | 快退         |
-| 'seek'           | 跳转某一节点 |
-| 'setSpeed'       | 设置播放倍速 |
-| 'setLoopMode'    | 设置循环模式 |
-| 'toggleFavorite' | 是否收藏     |
-| 'playFromAssetId'| 播放指定的assetid |
-|'answer'          | 接听        |
-| 'hangUp'         | 挂断        |
-|'toggleCallMute'  | 设置通话静音状态 |
+| 'play'           | 播放。         |
+| 'pause'          | 暂停。         |
+| 'stop'           | 停止。         |
+| 'playNext'       | 下一首。       |
+| 'playPrevious'   | 上一首。       |
+| 'fastForward'    | 快进。         |
+| 'rewind'         | 快退。         |
+| 'seek'           | 跳转某一节点。 |
+| 'setSpeed'       | 设置播放倍速。 |
+| 'setLoopMode'    | 设置循环模式。 |
+| 'toggleFavorite' | 是否收藏。     |
+| 'playFromAssetId'| 播放指定的assetid。 |
+|'answer'          | 接听。        |
+| 'hangUp'         | 挂断。        |
+|'toggleCallMute'  | 设置通话静音状态。 |
 
 ## AVControlCommand<sup>10+</sup>
 
@@ -8080,8 +8263,8 @@ type AVControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevio
 
 | 名称      | 类型                                              | 必填 | 说明           |
 | --------- | ------------------------------------------------- | ---- | -------------- |
-| command   | [AVControlCommandType](#avcontrolcommandtype10)     | 是   | 命令           |
-| parameter | [LoopMode](#loopmode10) &#124; string &#124; number | 否   | 命令对应的参数 |
+| command   | [AVControlCommandType](#avcontrolcommandtype10)     | 是   | 命令。           |
+| parameter | [LoopMode](#loopmode10) &#124; string &#124; number | 否   | 命令对应的参数。 |
 
 
 ## AVCastPickerOptions<sup>14+</sup>

@@ -39,6 +39,8 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
 The following walks you through how to implement the entire process of audio and video muxing. It uses the MP4 format as an example.
 
+For details about the keys to be configured for different container formats, see [AVCodec Supported Formats](avcodec-support-formats.md#media-data-muxing).
+
 1. Add the header files.
 
    ```c++
@@ -54,7 +56,7 @@ The following walks you through how to implement the entire process of audio and
    ```c++
    // Set the muxing format to MP4.
    OH_AVOutputFormat format = AV_OUTPUT_FORMAT_MPEG_4;
-   // Create a File Descriptor (FD) in read/write mode.
+   // Create an FD in read/write mode.
    int32_t fd = open("test.mp4", O_CREAT | O_RDWR | O_TRUNC, S_IRUSR | S_IWUSR);
    OH_AVMuxer *muxer = OH_AVMuxer_Create(fd, format);
    ```
@@ -84,8 +86,8 @@ The following walks you through how to implement the entire process of audio and
    ```c++
    int audioTrackId = -1;
    uint8_t *buffer = ...; // Encoding configuration data. If there is no configuration data, leave the parameter unspecified.
-   size_t size =...; // Length of the encoding configuration data. Set this parameter based on project requirements.
-   OH_AVFormat *formatAudio = OH_AVFormat_Create (); // Call OH_AVFormat_Create to create a format. The following showcases how to mux an AAC-LC audio with the sampling rate of 44100 Hz and two audio channels.
+   size_t size = ...;  // Length of the encoding configuration data. Set this parameter based on project requirements.
+   OH_AVFormat *formatAudio = OH_AVFormat_Create(); // Call OH_AVFormat_Create to create a format. The following showcases how to mux an AAC-LC audio with the sampling rate of 44100 Hz and two audio channels.
    OH_AVFormat_SetStringValue(formatAudio, OH_MD_KEY_CODEC_MIME, OH_AVCODEC_MIMETYPE_AUDIO_AAC); // Mandatory.
    OH_AVFormat_SetIntValue(formatAudio, OH_MD_KEY_AUD_SAMPLE_RATE, 44100); // Mandatory.
    OH_AVFormat_SetIntValue(formatAudio, OH_MD_KEY_AUD_CHANNEL_COUNT, 2); // Mandatory.
@@ -104,7 +106,7 @@ The following walks you through how to implement the entire process of audio and
    ```c++
    int audioTrackId = -1;
    uint8_t *buffer = ...; // Encoding configuration data. If there is no configuration data, leave the parameter unspecified.
-   size_t size =...; // Length of the encoding configuration data. Set this parameter based on project requirements.
+   size_t size = ...;  // Length of the encoding configuration data. Set this parameter based on project requirements.
    OH_AVFormat *formatAudio = OH_AVFormat_CreateAudioFormat(OH_AVCODEC_MIMETYPE_AUDIO_AAC, 44100, 2);
    OH_AVFormat_SetIntValue(formatAudio, OH_MD_KEY_PROFILE, AAC_PROFILE_LC); // Optional.
    OH_AVFormat_SetBuffer(formatAudio, OH_MD_KEY_CODEC_CONFIG, buffer, size); // Optional.
@@ -123,12 +125,12 @@ The following walks you through how to implement the entire process of audio and
    ```c++
    int videoTrackId = -1;
    uint8_t *buffer = ...; // Encoding configuration data. If there is no configuration data, leave the parameter unspecified.
-   size_t size =...; // Length of the encoding configuration data. Set this parameter based on project requirements.
+   size_t size = ...;  // Length of the encoding configuration data. Set this parameter based on project requirements.
    OH_AVFormat *formatVideo = OH_AVFormat_Create();
    OH_AVFormat_SetStringValue(formatVideo, OH_MD_KEY_CODEC_MIME, OH_AVCODEC_MIMETYPE_VIDEO_AVC); // Mandatory.
    OH_AVFormat_SetIntValue(formatVideo, OH_MD_KEY_WIDTH, 1280); // Mandatory.
    OH_AVFormat_SetIntValue(formatVideo, OH_MD_KEY_HEIGHT, 720); // Mandatory.
-   OH_AVFormat_SetBuffer(formatVideo, OH_MD_KEY_CODEC_CONFIG, buffer, size); // Optional
+   OH_AVFormat_SetBuffer(formatVideo, OH_MD_KEY_CODEC_CONFIG, buffer, size); // Optional.
    
    int ret = OH_AVMuxer_AddTrack(muxer, &videoTrackId, formatVideo);
    if (ret != AV_ERR_OK || videoTrackId < 0) {
@@ -142,9 +144,9 @@ The following walks you through how to implement the entire process of audio and
    ```c++
    int videoTrackId = -1;
    uint8_t *buffer = ...; // Encoding configuration data. If there is no configuration data, leave the parameter unspecified.
-   size_t size =...; // Length of the encoding configuration data. Set this parameter based on project requirements.
+   size_t size = ...;  // Length of the encoding configuration data. Set this parameter based on project requirements.
    OH_AVFormat *formatVideo = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_AVC, 1280, 720);
-   OH_AVFormat_SetBuffer(formatVideo, OH_MD_KEY_CODEC_CONFIG, buffer, size); // Optional
+   OH_AVFormat_SetBuffer(formatVideo, OH_MD_KEY_CODEC_CONFIG, buffer, size); // Optional.
    
    int ret = OH_AVMuxer_AddTrack(muxer, &videoTrackId, formatVideo);
    if (ret != AV_ERR_OK || videoTrackId < 0) {
@@ -189,11 +191,13 @@ The following walks you through how to implement the entire process of audio and
    ```c++
    // Call Start() to write the file header. After this API is called, you cannot set media parameters or add tracks.
    if (OH_AVMuxer_Start(muxer) != AV_ERR_OK) {
-       // Exception handling.
+       // Handle exceptions.
    }
    ```
 
-9. Call **OH_AVMuxer_WriteSampleBuffer()** to write data. The encapsulated data includes video, audio, and cover data.
+9. Call **OH_AVMuxer_WriteSampleBuffer()** to write data.
+
+   The encapsulated data includes video, audio, and cover data.
 
    ```c++
    // Data can be written only after Start() is called.
@@ -214,7 +218,7 @@ The following walks you through how to implement the entire process of audio and
    
    int ret = OH_AVMuxer_WriteSampleBuffer(muxer, trackId, sample);
    if (ret != AV_ERR_OK) {
-       // Exception handling.
+       // Handle exceptions.
    }
    ```
 
@@ -223,15 +227,17 @@ The following walks you through how to implement the entire process of audio and
    ```c++
    // Call Stop() to write the file trailer. After this API is called, you cannot write media data.
    if (OH_AVMuxer_Stop(muxer) != AV_ERR_OK) {
-       // Exception handling.
+       // Handle exceptions.
    }
    ```
 
-11. Call **OH_AVMuxer_Destroy()** to release the instance. Do not repeatedly destroy the instance. Otherwise, the program may crash.
+11. Call **OH_AVMuxer_Destroy()** to release the instance.
+
+    Do not repeatedly destroy the instance. Otherwise, the program may crash.
 
     ```c++
     if (OH_AVMuxer_Destroy(muxer) != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     muxer = NULL;
     close(fd); // Close the FD.

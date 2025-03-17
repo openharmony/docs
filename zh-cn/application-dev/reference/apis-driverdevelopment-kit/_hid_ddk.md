@@ -47,16 +47,16 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef struct [Hid_EmitItem](_hid___emit_item.md)[Hid_EmitItem](#hid_emititem) | 事件信息。 | 
-| typedef struct [Hid_Device](_hid___device.md)[Hid_Device](#hid_device) | 设备基本信息。 | 
-| typedef struct [Hid_EventTypeArray](_hid___event_type_array.md)[Hid_EventTypeArray](#hid_eventtypearray) | 事件类型编码数组。 | 
-| typedef struct [Hid_KeyCodeArray](_hid___key_code_array.md)[Hid_KeyCodeArray](#hid_keycodearray) | 键值属性数组。 | 
-| typedef struct [Hid_AbsAxesArray](_hid___abs_axes_array.md)[Hid_AbsAxesArray](#hid_absaxesarray) | 绝对坐标属性数组。 | 
-| typedef struct [Hid_RelAxesArray](_hid___rel_axes_array.md)[Hid_RelAxesArray](#hid_relaxesarray) | 相对坐标属性数组。 | 
-| typedef struct [Hid_MscEventArray](_hid___msc_event_array.md)[Hid_MscEventArray](#hid_msceventarray) | 其它特殊事件属性数组。 | 
-| typedef struct [Hid_EventProperties](_hid___event_properties.md)[Hid_EventProperties](#hid_eventproperties) | 设备关注事件属性。 | 
-| typedef struct [Hid_DeviceHandle](#hid_devicehandle)[Hid_DeviceHandle](#hid_devicehandle) | 不透明的USB HID设备结构。 | 
-| typedef struct [Hid_RawDevInfo](_hid___raw_dev_info.md)[Hid_RawDevInfo](#hid_rawdevinfo) | 原始设备信息定义。 | 
+| typedef struct [Hid_EmitItem](_hid___emit_item.md) [Hid_EmitItem](#hid_emititem) | 事件信息。 | 
+| typedef struct [Hid_Device](_hid___device.md) [Hid_Device](#hid_device) | 设备基本信息。 | 
+| typedef struct [Hid_EventTypeArray](_hid___event_type_array.md) [Hid_EventTypeArray](#hid_eventtypearray) | 事件类型编码数组。 | 
+| typedef struct [Hid_KeyCodeArray](_hid___key_code_array.md) [Hid_KeyCodeArray](#hid_keycodearray) | 键值属性数组。 | 
+| typedef struct [Hid_AbsAxesArray](_hid___abs_axes_array.md) [Hid_AbsAxesArray](#hid_absaxesarray) | 绝对坐标属性数组。 | 
+| typedef struct [Hid_RelAxesArray](_hid___rel_axes_array.md) [Hid_RelAxesArray](#hid_relaxesarray) | 相对坐标属性数组。 | 
+| typedef struct [Hid_MscEventArray](_hid___msc_event_array.md) [Hid_MscEventArray](#hid_msceventarray) | 其它特殊事件属性数组。 | 
+| typedef struct [Hid_EventProperties](_hid___event_properties.md) [Hid_EventProperties](#hid_eventproperties) | 设备关注事件属性。 | 
+| typedef struct [Hid_DeviceHandle](#hid_devicehandle) [Hid_DeviceHandle](#hid_devicehandle) | 不透明的USB HID设备结构。 | 
+| typedef struct [Hid_RawDevInfo](_hid___raw_dev_info.md) [Hid_RawDevInfo](#hid_rawdevinfo) | 原始设备信息定义。 | 
 
 
 ### 枚举
@@ -93,8 +93,8 @@
 | int32_t [OH_Hid_GetRawName](#oh_hid_getrawname) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, char \*data, uint32_t bufSize) | 获取设备原始名称。 | 
 | int32_t [OH_Hid_GetPhysicalAddress](#oh_hid_getphysicaladdress) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, char \*data, uint32_t bufSize) | 获取设备物理地址。 | 
 | int32_t [OH_Hid_GetRawUniqueId](#oh_hid_getrawuniqueid) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, uint8_t \*data, uint32_t bufSize) | 获取设备原始唯一标识符。 | 
-| <!--DelRow-->int32_t [OH_Hid_SendReport](#oh_hid_sendreport) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, [Hid_ReportType](#hid_reporttype) reportType, const uint8_t \*data, uint32_t length) | 向设备发送报告。 | 
-| <!--DelRow-->int32_t [OH_Hid_GetReport](#oh_hid_getreport) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, [Hid_ReportType](#hid_reporttype) reportType, uint8_t \*data, uint32_t bufSize) | 获取设备报告。 | 
+| int32_t [OH_Hid_SendReport](#oh_hid_sendreport) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, [Hid_ReportType](#hid_reporttype) reportType, const uint8_t \*data, uint32_t length) | 向设备发送报告。 | 
+| int32_t [OH_Hid_GetReport](#oh_hid_getreport) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, [Hid_ReportType](#hid_reporttype) reportType, uint8_t \*data, uint32_t bufSize) | 获取设备报告。 | 
 | int32_t [OH_Hid_GetReportDescriptor](#oh_hid_getreportdescriptor) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, uint8_t \*buf, uint32_t bufSize, uint32_t \*bytesRead) | 获取设备报告描述符。 | 
 
 
@@ -149,7 +149,7 @@
 
 最大报告缓冲区大小。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ## 类型定义说明
@@ -158,7 +158,7 @@
 ### Hid_AbsAxesArray
 
 ```
-typedef struct Hid_AbsAxesArrayHid_AbsAxesArray
+typedef struct Hid_AbsAxesArray Hid_AbsAxesArray
 ```
 
 **描述**
@@ -171,7 +171,7 @@ typedef struct Hid_AbsAxesArrayHid_AbsAxesArray
 ### Hid_Device
 
 ```
-typedef struct Hid_DeviceHid_Device
+typedef struct Hid_Device Hid_Device
 ```
 
 **描述**
@@ -184,20 +184,20 @@ typedef struct Hid_DeviceHid_Device
 ### Hid_DeviceHandle
 
 ```
-typedef struct Hid_DeviceHandleHid_DeviceHandle
+typedef struct Hid_DeviceHandle Hid_DeviceHandle
 ```
 
 **描述**
 
 不透明的USB HID设备结构。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### Hid_EmitItem
 
 ```
-typedef struct Hid_EmitItemHid_EmitItem
+typedef struct Hid_EmitItem Hid_EmitItem
 ```
 
 **描述**
@@ -210,7 +210,7 @@ typedef struct Hid_EmitItemHid_EmitItem
 ### Hid_EventProperties
 
 ```
-typedef struct Hid_EventPropertiesHid_EventProperties
+typedef struct Hid_EventProperties Hid_EventProperties
 ```
 
 **描述**
@@ -223,7 +223,7 @@ typedef struct Hid_EventPropertiesHid_EventProperties
 ### Hid_EventTypeArray
 
 ```
-typedef struct Hid_EventTypeArrayHid_EventTypeArray
+typedef struct Hid_EventTypeArray Hid_EventTypeArray
 ```
 
 **描述**
@@ -236,7 +236,7 @@ typedef struct Hid_EventTypeArrayHid_EventTypeArray
 ### Hid_KeyCodeArray
 
 ```
-typedef struct Hid_KeyCodeArrayHid_KeyCodeArray
+typedef struct Hid_KeyCodeArray Hid_KeyCodeArray
 ```
 
 **描述**
@@ -249,7 +249,7 @@ typedef struct Hid_KeyCodeArrayHid_KeyCodeArray
 ### Hid_MscEventArray
 
 ```
-typedef struct Hid_MscEventArrayHid_MscEventArray
+typedef struct Hid_MscEventArray Hid_MscEventArray
 ```
 
 **描述**
@@ -262,20 +262,20 @@ typedef struct Hid_MscEventArrayHid_MscEventArray
 ### Hid_RawDevInfo
 
 ```
-typedef struct Hid_RawDevInfoHid_RawDevInfo
+typedef struct Hid_RawDevInfo Hid_RawDevInfo
 ```
 
 **描述**
 
 原始设备信息定义。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### Hid_RelAxesArray
 
 ```
-typedef struct Hid_RelAxesArrayHid_RelAxesArray
+typedef struct Hid_RelAxesArray Hid_RelAxesArray
 ```
 
 **描述**
@@ -589,7 +589,7 @@ enum Hid_ReportType
 
 报告（HID设备与主机之间交换的数据包）类型定义。
 
-**起始版本：** 16
+**起始版本：** 18
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -631,7 +631,7 @@ int32_t OH_Hid_Close (Hid_DeviceHandle ** dev)
 
 关闭设备。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -776,7 +776,7 @@ int32_t OH_Hid_GetPhysicalAddress (Hid_DeviceHandle * dev, char * data, uint32_t
 
 获取设备物理地址。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -810,14 +810,14 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_GetRawInfo()
 
 ```
-int32_t OH_Hid_GetRawInfo (Hid_DeviceHandle * dev, Hid_RawDevInfo * rawDevInfo )
+int32_t OH_Hid_GetRawInfo (Hid_DeviceHandle * dev, Hid_RawDevInfo * rawDevInfo)
 ```
 
 **描述**
 
 获取设备原始信息。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -857,7 +857,7 @@ int32_t OH_Hid_GetRawName (Hid_DeviceHandle * dev, char * data, uint32_t bufSize
 
 获取设备原始名称。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -898,7 +898,7 @@ int32_t OH_Hid_GetRawUniqueId (Hid_DeviceHandle * dev, uint8_t * data, uint32_t 
 
 获取设备原始唯一标识符。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -928,7 +928,7 @@ ohos.permission.ACCESS_DDK_HID
 
 - HID_DDK_INVALID_OPERATION 不支持此操作。
 
-<!--Del-->
+
 ### OH_Hid_GetReport()
 
 ```
@@ -939,7 +939,7 @@ int32_t OH_Hid_GetReport (Hid_DeviceHandle * dev, Hid_ReportType reportType, uin
 
 获取设备报告。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -971,7 +971,7 @@ ohos.permission.ACCESS_DDK_HID
 - HID_DDK_IO_ERROR I/O操作失败。
 
 - HID_DDK_INVALID_OPERATION 不支持此操作。
-<!--DelEnd-->
+
 
 ### OH_Hid_GetReportDescriptor()
 
@@ -983,7 +983,7 @@ int32_t OH_Hid_GetReportDescriptor (Hid_DeviceHandle * dev, uint8_t * buf, uint3
 
 获取设备报告描述符。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -1027,7 +1027,7 @@ int32_t OH_Hid_Init (void )
 
 初始化HID DDK。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **Permission：**
 
@@ -1054,7 +1054,7 @@ int32_t OH_Hid_Open (uint64_t deviceId, uint8_t interfaceIndex, Hid_DeviceHandle
 
 打开deviceId和interfaceIndex指定的设备。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -1097,7 +1097,7 @@ int32_t OH_Hid_Read (Hid_DeviceHandle * dev, uint8_t * data, uint32_t bufSize, u
 
 从设备读取报告，默认为阻塞模式（阻塞等待直到有数据可读取），可以调用[OH_Hid_SetNonBlocking](#oh_hid_setnonblocking)改变模式。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -1141,7 +1141,7 @@ int32_t OH_Hid_ReadTimeout (Hid_DeviceHandle * dev, uint8_t * data, uint32_t buf
 
 在指定的超时时间内从设备读取报告。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -1186,7 +1186,7 @@ int32_t OH_Hid_Release (void )
 
 释放HID DDK。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **Permission：**
 
@@ -1202,7 +1202,7 @@ ohos.permission.ACCESS_DDK_HID
 
 - HID_DDK_SERVICE_ERROR 与DDK服务通信失败。
 
-<!--Del-->
+
 ### OH_Hid_SendReport()
 
 ```
@@ -1213,7 +1213,7 @@ int32_t OH_Hid_SendReport (Hid_DeviceHandle * dev, Hid_ReportType reportType, co
 
 向设备发送报告。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -1244,7 +1244,7 @@ ohos.permission.ACCESS_DDK_HID
 
 - HID_DDK_INVALID_OPERATION 不支持此操作。
 
-<!--DelEnd-->
+
 ### OH_Hid_SetNonBlocking()
 
 ```
@@ -1255,7 +1255,7 @@ int32_t OH_Hid_SetNonBlocking (Hid_DeviceHandle * dev, int nonBlock )
 
 设置设备读取模式为非阻塞。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -1291,7 +1291,7 @@ int32_t OH_Hid_Write (Hid_DeviceHandle * dev, uint8_t * data, uint32_t length, u
 
 向设备写入报告。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 

@@ -4,16 +4,16 @@ An application can share a file with another application based on the file descr
 
 - URI-based file sharing: You can use [wantConstant.Flags](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#flags) to specify the read or read/write permission on the file for the target application (application with which the file is shared). The target application can call [fs.open](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopen) to open the file based on the URI and perform read and write operations. Currently, only temporary authorization is supported. The permission on the shared file is revoked once the target application exits.
 
-- FD-based sharing: You can use **open()** of the ohos.file.fs module to specify the read or read/write permission on the file for the target application. After obtaining the FD from Want, the target application can call [ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md) APIs to read and write the file.
+- FD-based sharing: You can use **open()** of the ohos.file.fs module to specify the read or read/write permission on the file for the target application. After obtaining the FD from Want, the application can call [ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md) APIs to read and write the file.
 After the FD of a shared file is closed, the target application can no longer open the shared file. Therefore, FD-based file sharing is not recommended. This topic describes how to [share an application file](#sharing-an-application-file) and [use a shared file](#using-a-shared-file) based on the file URI.
 
 ## Shareable Application Directories
 
-| Application Sandbox Path           | Physical Path                                                | Description &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; |
-| ---------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| /data/storage/el1/base             | /data/app/el1/\<currentUserId\>/base/\<PackageName\>         | Encrypted database directory under **/el1**.                 |
-| /data/storage/el2/base             | /data/app/el2/\<currentUserId\>/base/\<PackageName\>         | Encrypted database directory under **/el2**.                 |
-| /data/storage/el2/distributedfiles | /mnt/hmdfs/\<currentUserId\>/account/device_view/\<networkId\>/data/\<PackageName\> | Distributed data directory with an account under **/el2**.   |
+| Application Sandbox Path                            | Physical Path                                                                            | Description &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|
+| -------                              | -------                                                                             | ---- |
+| /data/storage/el1/base               | /data/app/el1/\<currentUserId\>/base/\<PackageName\>                                | Encrypted database directory under **/el1**.|
+| /data/storage/el2/base               | /data/app/el2/\<currentUserId\>/base/\<PackageName\>                                | Encrypted database directory under **/el2**.|
+| /data/storage/el2/distributedfiles   | /mnt/hmdfs/\<currentUserId\>/account/device_view/\<networkId\>/data/\<PackageName\> | Distributed data directory with an account under **el2/**.|
 
 ## File URI Specifications
 
@@ -49,8 +49,8 @@ Before sharing an application file, you need to [obtain the application file pat
    }
    ```
 
-2. Set the target application and grant permissions on the file.<br>
-   Use [startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to start the target application. You need to pass in the obtained URI in **uri** of the **want** parameter, set the type of the file to share, set **action** to **ohos.want.action.sendData**, and set the granted permission on the file in **flags**. For details, see [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md#properties).
+2. Set the target application and grant permissions on the file.
+   Use [startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to start the target application. You need to pass in the obtained URI in **URI** of the **Want** parameter, set the type of the file to share, set **action** to **ohos.want.action.sendData**, and set the granted permission on the file in **flags**. For details, see [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md#properties).
 
    > **NOTE**
    >
@@ -89,24 +89,23 @@ Before sharing an application file, you need to [obtain the application file pat
      // ...
    }
    ```
-**Figure 1** Example
-
-   ![share-app-file](figures/share-app-file.png)
+**Figure 1** Example<br>
+![share-app-file](figures/share-app-file.png)
 
 ## Using a Shared File
 
 In the [**module.json5** file](../quick-start/module-configuration-file.md) of the target application, set **actions** to **ohos.want.action.sendData** to allow the application to receive files shared by others and set **uris** to the type of the URI to receive. In the following example, the target application receives only .txt files with **scheme** of **file**.
-
+  
 ```json
 {
   "module": {
-    ...
+    //...
     "abilities": [
       {
-        ...
+        //...
         "skills": [
           {
-            ...
+            //...
             "actions": [
               "ohos.want.action.sendData"
             ],

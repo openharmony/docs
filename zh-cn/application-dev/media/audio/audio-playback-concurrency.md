@@ -149,61 +149,61 @@
 若使用其他接口开发音频播放或音频录制功能，处理方法类似，具体的代码实现，开发者可结合实际情况编写，处理方法也可自行调整。
 
 ```ts
-import { audio } from '@kit.AudioKit';  // 导入audio模块
-import { BusinessError } from '@kit.BasicServicesKit'; // 导入BusinessError
+import { audio } from '@kit.AudioKit';  // 导入audio模块。
+import { BusinessError } from '@kit.BasicServicesKit'; // 导入BusinessError。
 
-let isPlay: boolean; // 是否正在播放，实际开发中，对应与音频播放状态相关的模块
-let isDucked: boolean; //是否降低音量，实际开发中，对应与音频音量相关的模块
-let started: boolean; // 标识符，记录“开始播放（start）”操作是否成功
+let isPlay: boolean; // 是否正在播放，实际开发中，对应与音频播放状态相关的模块。
+let isDucked: boolean; //是否降低音量，实际开发中，对应与音频音量相关的模块。
+let started: boolean; // 标识符，记录“开始播放（start）”操作是否成功。
 
 async function onAudioInterrupt(): Promise<void> {
   // 此处以使用AudioRenderer开发音频播放功能举例，变量audioRenderer即为播放时创建的AudioRenderer实例。
   audioRenderer.on('audioInterrupt', async(interruptEvent: audio.InterruptEvent) => {
-    // 在发生音频焦点变化时，audioRenderer收到interruptEvent回调，此处根据其内容做相应处理
+    // 在发生音频焦点变化时，audioRenderer收到interruptEvent回调，此处根据其内容做相应处理。
     // 1. 可选：读取interruptEvent.forceType的类型，判断系统是否已强制执行相应操作。
     // 注：默认焦点策略下，INTERRUPT_HINT_RESUME为INTERRUPT_SHARE类型，其余hintType均为INTERRUPT_FORCE类型。因此对forceType可不做判断。
     // 2. 必选：读取interruptEvent.hintType的类型，做出相应的处理。
     if (interruptEvent.forceType === audio.InterruptForceType.INTERRUPT_FORCE) {
-      // 强制打断类型（INTERRUPT_FORCE）：音频相关处理已由系统执行，应用需更新自身状态，做相应调整
+      // 强制打断类型（INTERRUPT_FORCE）：音频相关处理已由系统执行，应用需更新自身状态，做相应调整。
        switch (interruptEvent.hintType) {
         case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
-          // 此分支表示系统已将音频流暂停（临时失去焦点），为保持状态一致，应用需切换至音频暂停状态
-          // 临时失去焦点：待其他音频流释放音频焦点后，本音频流会收到resume对应的音频焦点事件，到时可自行继续播放
-          isPlay = false; // 此句为简化处理，代表应用切换至音频暂停状态的若干操作
+          // 此分支表示系统已将音频流暂停（临时失去焦点），为保持状态一致，应用需切换至音频暂停状态。
+          // 临时失去焦点：待其他音频流释放音频焦点后，本音频流会收到resume对应的音频焦点事件，到时可自行继续播放。
+          isPlay = false; // 此句为简化处理，代表应用切换至音频暂停状态的若干操作。
           break;
         case audio.InterruptHint.INTERRUPT_HINT_STOP:
-          // 此分支表示系统已将音频流停止（永久失去焦点），为保持状态一致，应用需切换至音频暂停状态
+          // 此分支表示系统已将音频流停止（永久失去焦点），为保持状态一致，应用需切换至音频暂停状态。
           // 永久失去焦点：后续不会再收到任何音频焦点事件，若想恢复播放，需要用户主动触发。
-          isPlay = false; // 此句为简化处理，代表应用切换至音频暂停状态的若干操作
+          isPlay = false; // 此句为简化处理，代表应用切换至音频暂停状态的若干操作。
           break;
         case audio.InterruptHint.INTERRUPT_HINT_DUCK:
-          // 此分支表示系统已将音频音量降低（默认降到正常音量的20%）
-          isDucked = true; // 此句为简化处理，代表应用切换至降低音量播放状态的若干操作
+          // 此分支表示系统已将音频音量降低（默认降到正常音量的20%）。
+          isDucked = true; // 此句为简化处理，代表应用切换至降低音量播放状态的若干操作。
           break;
         case audio.InterruptHint.INTERRUPT_HINT_UNDUCK:
-          // 此分支表示系统已将音频音量恢复正常
-          isDucked = false; // 此句为简化处理，代表应用切换至正常音量播放状态的若干操作
+          // 此分支表示系统已将音频音量恢复正常。
+          isDucked = false; // 此句为简化处理，代表应用切换至正常音量播放状态的若干操作。
           break;
         default:
           break;
       }
     } else if (interruptEvent.forceType === audio.InterruptForceType.INTERRUPT_SHARE) {
-      // 共享打断类型（INTERRUPT_SHARE）：应用可自主选择执行相关操作或忽略音频焦点事件
+      // 共享打断类型（INTERRUPT_SHARE）：应用可自主选择执行相关操作或忽略音频焦点事件。
       switch (interruptEvent.hintType) {
         case audio.InterruptHint.INTERRUPT_HINT_RESUME:
-          // 此分支表示临时失去焦点后被暂停的音频流此时可以继续播放，建议应用继续播放，切换至音频播放状态
-          // 若应用此时不想继续播放，可以忽略此音频焦点事件，不进行处理即可
-          // 继续播放，此处主动执行start()，以标识符变量started记录start()的执行结果
+          // 此分支表示临时失去焦点后被暂停的音频流此时可以继续播放，建议应用继续播放，切换至音频播放状态。
+          // 若应用此时不想继续播放，可以忽略此音频焦点事件，不进行处理即可。
+          // 继续播放，此处主动执行start()，以标识符变量started记录start()的执行结果。
           await audioRenderer.start().then(() => {
-            started = true; // start()执行成功
+            started = true; // start()执行成功。
           }).catch((err: BusinessError) => {
-            started = false; // start()执行失败
+            started = false; // start()执行失败。
           });
-          // 若start()执行成功，则切换至音频播放状态
+          // 若start()执行成功，则切换至音频播放状态。
           if (started) {
-            isPlay = true; // 此句为简化处理，代表应用切换至音频播放状态的若干操作
+            isPlay = true; // 此句为简化处理，代表应用切换至音频播放状态的若干操作。
           } else {
-            // 音频继续播放的操作执行失败
+            // 音频继续播放的操作执行失败。
           }
           break;
         default:
@@ -305,5 +305,5 @@ async function onAudioInterrupt(): Promise<void> {
 | 音乐         | STREAM_USAGE_MUSIC | 音乐         | STREAM_USAGE_MUSIC    | 后播音乐正常播放，先播音乐停止播放，UI变成停止播放状态。 | 先播音乐应用注册焦点事件监听，接收到`INTERRUPT_HINT_STOP`事件时，停止音乐播放，并更新UI界面。 |
 | 音乐         | STREAM_USAGE_MUSIC | 导航         | STREAM_USAGE_NAVIGATION    | 导航正常播放，音乐降低音量播放。当导航结束后，音乐恢复正常音量。 | 音乐应用注册焦点事件监听，接收到`INTERRUPT_HINT_DUCK`和`INTERRUPT_HINT_UNDUCK`事件时，可以选择更新UI界面。 |
 | 视频           | STREAM_USAGE_MOVIE | 闹铃         | STREAM_USAGE_ALARM    | 闹铃响起后，视频暂停播放；闹钟结束后，视频继续播放。         | 视频应用注册焦点事件监听，接收到`INTERRUPT_HINT_PAUSE`事件时，直接暂停视频播放，并更新UI界面。当闹铃结束后，视频应用接收到`INTERRUPT_HINT_RESUME`事件，重新启动播放。 |
-| 音乐         | STREAM_USAGE_MUSIC | 来电铃声     | STREAM_USAGE_RINGTONE | 开始响铃，音乐暂停播放；不接通或者接通再挂断后，音乐恢复播放。 | 音乐应用注册焦点事件监听，接收到`INTERRUPT_HINT_PAUSE`事件时，直接暂停音乐播放，并更新UI界面。当电话结束后，视频应用接收到`INTERRUPT_HINT_RESUME`事件，重新启动播放。 |
+| 音乐         | STREAM_USAGE_MUSIC | 来电铃声     | STREAM_USAGE_RINGTONE | 开始响铃，音乐暂停播放；不接通或者接通再挂断后，音乐恢复播放。 | 音乐应用注册焦点事件监听，接收到`INTERRUPT_HINT_PAUSE`事件时，直接暂停音乐播放，并更新UI界面。当电话结束后，音频应用接收到`INTERRUPT_HINT_RESUME`事件，重新启动播放。 |
 | 音乐         | STREAM_USAGE_MUSIC | VoIP通话     | STREAM_USAGE_VOICE_COMMUNICATION | 通话接通时，音乐暂停播放；通话挂断后，音乐恢复播放。 | 音乐应用注册焦点事件监听，接收到`INTERRUPT_HINT_PAUSE`事件时，直接暂停音乐播放，并更新UI界面。当通话结束后，音乐应用接收到`INTERRUPT_HINT_RESUME`事件，重新启动播放。 |

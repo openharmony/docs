@@ -293,7 +293,7 @@ Obtains the bit rate range supported by an encoder.
 
 | Name| Description| 
 | -------- | -------- |
-| capability | Pointer to the encoder capability. A pointer to the decoder capability cannot be filled in. | 
+| capability | Pointer to the encoder capability. If a pointer to the decoder capability is provided, undefined behavior occurs. | 
 | bitrateRange | Output parameter. Pointer to the bit rate range supported. | 
 
 **Returns**
@@ -320,7 +320,7 @@ Obtains the complexity range supported by an encoder.
 
 | Name| Description| 
 | -------- | -------- |
-| capability | Pointer to the encoder capability. A pointer to the decoder capability cannot be filled in. | 
+| capability | Pointer to the encoder capability. If a pointer to the decoder capability is provided, undefined behavior occurs. | 
 | complexityRange | Output parameter. Pointer to the complexity range supported. | 
 
 **Returns**
@@ -347,7 +347,7 @@ Obtains the quality range supported by an encoder.
 
 | Name| Description| 
 | -------- | -------- |
-| capability | Pointer to the encoder capability. A pointer to the decoder capability cannot be filled in. | 
+| capability | Pointer to the encoder capability. If a pointer to the decoder capability is provided, undefined behavior occurs. | 
 | qualityRange | Output parameter. Pointer to the quality range supported. | 
 
 **Returns**
@@ -752,7 +752,7 @@ Checks whether an encoder supports a specific bit rate mode.
 
 | Name| Description| 
 | -------- | -------- |
-| capability | Pointer to the encoder capability. A pointer to the decoder capability cannot be filled in. | 
+| capability | Pointer to the encoder capability. If a pointer to the decoder capability is provided, undefined behavior occurs. | 
 | bitrateMode | Bit rate mode. | 
 
 **Returns**
@@ -852,7 +852,7 @@ Obtains the codec capability recommended by the system.
 
 | Name| Description| 
 | -------- | -------- |
-| mime | Pointer to a string that describes the MIME type. For details, see **AVCODEC_MIME_TYPE**. | 
+| mime | Pointer to a string that describes the MIME type. For details, see [AVCODEC_MIME_TYPE](_codec_base.md#variables). | 
 | isEncoder | Whether the instance is an encoder. The value **true** means an encoder and **false** means a decoder. | 
 
 **Returns**

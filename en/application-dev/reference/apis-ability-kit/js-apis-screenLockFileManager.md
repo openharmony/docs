@@ -1,6 +1,6 @@
 # @ohos.ability.screenLockFileManager (Sensitive Data Access Management Under Lock Screen)
 
-Once the screen is locked, the keys for sensitive data are destroyed, preventing any read or write operations on that data. These keys can be restored only after the screen is unlocked. To facilitate data access on the lock screen, the screenLockFileManager module has been introduced. This module provides APIs to request and revoke the permission to access sensitive data on the lock screen, thereby managing sensitive data access securely.
+Once the screen is locked, the keys for sensitive data are destroyed, preventing any read or write operations on that data. These keys can be restored only after the screen is unlocked. To facilitate data access on the lock screen, the screenLockFileManager module has been introduced. This module provides APIs to request and release the permission to access sensitive data on the lock screen, thereby managing sensitive data access securely.
 
 > **NOTE**
 >
@@ -14,26 +14,38 @@ import { screenLockFileManager } from '@kit.AbilityKit';
 
 ## AccessStatus
 
-Enumerates the statuses available for access to sensitive data on the lock screen.
+Enumerates the statuses for requesting access to sensitive data on the lock screen.
 
  **System capability**: SystemCapability.Security.ScreenLockFileManager
 
 | Name          | Value  | Description                    |
 | -------------- | ---- | ------------------------ |
-| ACCESS_DENIED  | -1   | Denies access to sensitive data on the lock screen.|
-| ACCESS_GRANTED | 0    | Allows access to sensitive data on the lock screen.    |
+| ACCESS_DENIED  | -1   | Access to sensitive data on the lock screen is denied.|
+| ACCESS_GRANTED | 0    | Access to sensitive data on the lock screen is granted.    |
 
 
 ## ReleaseStatus
 
-Enumerates the types of operations used to revoke the permission to access sensitive data on the lock screen.
+Enumerates the statuses for releasing access permissions to sensitive data on the lock screen.
 
  **System capability**: SystemCapability.Security.ScreenLockFileManager
 
 | Name| Value| Description|
 |-----------------|----|----|
-| RELEASE_DENIED |  -1 | Revokes the permission that denies access to sensitive data on the lock screen.|
-| RELEASE_GRANTED |  0  |  Revokes the permission that allows access to sensitive data on the lock screen. |
+| RELEASE_DENIED |  -1 | Release of access to sensitive data on the lock screen is denied.|
+| RELEASE_GRANTED |  0  |  Release of access to sensitive data on the lock screen is granted. |
+
+## KeyStatus<sup>18+</sup>
+
+Enumerates the statuses for access permissions for sensitive data on the lock screen.
+
+ **System capability**: SystemCapability.Security.ScreenLockFileManager
+
+| Name| Value| Description|
+|-----------------|----|----|
+| KEY_NOT_EXIST |  -2 | The application has not enabled sensitive data protection on the lock screen.|
+| KEY_RELEASED |  -1 | The access permission for sensitive data on the lock screen has been released.|
+| KEY_EXIST |  0  |  The application can access sensitive data on the lock screen. |
 
 ## screenLockFileManager.acquireAccess
 
@@ -47,7 +59,7 @@ Requests the permission to access sensitive data on the lock screen. This API re
 
 | Type                                                       | Description                                 |
 | ----------------------------------------------------------- | ------------------------------------- |
-| [AccessStatus](#accessstatus) | Sensitive data access status.|
+| [AccessStatus](#accessstatus) | State for requesting access to sensitive data on the lock screen.|
 
 **Error codes**
 
@@ -83,7 +95,7 @@ try {
 
 releaseAccess(): ReleaseStatus
 
-Revokes the permission to access sensitive data on the lock screen. This API returns the result synchronously.
+Releases the permission to access sensitive data on the lock screen. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Security.ScreenLockFileManager
 
@@ -91,7 +103,7 @@ Revokes the permission to access sensitive data on the lock screen. This API ret
 
 | Type                           | Description                          |
 | ------------------------------- | ------------------------------ |
-| [ReleaseStatus](#releasestatus) | Type of the operation used to revoke the permission to access sensitive data on the lock screen.|
+| [ReleaseStatus](#releasestatus) | State for releasing access permissions to sensitive data on the lock screen.|
 
 **Error codes**
 
@@ -107,7 +119,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// Revoke the permission to access sensitive data on the lock screen.
+// Release the permission to access sensitive data on the lock screen.
 import { screenLockFileManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -120,5 +132,51 @@ try {
 } catch (err) {
     let message = (err as BusinessError).message;
     hilog.error(0x0000, 'testTag', 'releaseAccess failed: %{public}s', message);
+}
+```
+
+## screenLockFileManager.queryAppKeyState<sup>18+</sup>
+
+queryAppKeyState(): KeyStatus
+
+Obtains the state of access permissions for sensitive data on the lock screen. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Security.ScreenLockFileManager
+
+**Return value**
+
+| Type                           | Description                          |
+| ------------------------------- | ------------------------------ |
+| [KeyStatus](#keystatus18) | State of access permissions for sensitive data on the lock screen.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [ohos.screenLockFileManager](errorcode-screenLockFileManager.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 801      | The specified SystemCapability name was not found.           |
+| 29300002 | The system ability work abnormally.                          |
+
+**Example**
+
+```ts
+// Obtain the state of access permissions for sensitive data on the lock screen.
+import { screenLockFileManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+try {
+    let keyStatus = screenLockFileManager.queryAppKeyState();
+    if (keyStatus === screenLockFileManager.KeyStatus.KEY_NOT_EXIST) {
+        hilog.info(0x0000, 'testTag', 'Key does not exist.');
+    } else if (keyStatus === screenLockFileManager.KeyStatus.KEY_RELEASED) {
+        hilog.info(0x0000, 'testTag', 'Key has been released.');
+    } else if (keyStatus === screenLockFileManager.KeyStatus.KEY_EXIST) {
+        hilog.info(0x0000, 'testTag', 'Key exists.');
+    }
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'queryAppKeyState failed: %{public}s', message);
 }
 ```

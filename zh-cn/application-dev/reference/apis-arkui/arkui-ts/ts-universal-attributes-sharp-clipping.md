@@ -24,7 +24,7 @@ clip(value: boolean)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | 是   | 参数为boolean类型，设置是否按照父容器边缘轮廓进行裁剪。<br/>默认值：false <br/>**说明：** 设置为true后，子组件超出当前组件范围外的区域将不响应绑定的手势事件。 |
 
-## clip<sup>16+</sup>
+## clip<sup>18+</sup>
 
 clip(clip: Optional\<boolean>)
 
@@ -32,9 +32,9 @@ clip(clip: Optional\<boolean>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -80,7 +80,7 @@ clipShape(value: CircleShape | EllipseShape | PathShape | RectShape)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [CircleShape](../js-apis-arkui-shape.md#circleshape)&nbsp;\|&nbsp;[EllipseShape](../js-apis-arkui-shape.md#ellipseshape)&nbsp;\|&nbsp;[PathShape](../js-apis-arkui-shape.md#pathshape)&nbsp;\|&nbsp;[RectShape](../js-apis-arkui-shape.md#rectshape) | 是   | 参数为相应类型的组件，按指定的形状对当前组件进行裁剪。<br/>**说明：** 裁剪不会导致被裁剪区域无法响应绑定的手势事件。 |
 
-## clipShape<sup>16+</sup>
+## clipShape<sup>18+</sup>
 
 clipShape(shape: Optional\<CircleShape | EllipseShape | PathShape | RectShape>)
 
@@ -88,9 +88,9 @@ clipShape(shape: Optional\<CircleShape | EllipseShape | PathShape | RectShape>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -114,7 +114,7 @@ mask(value: ProgressMask)
 | ------ | ------------------------------- | ---- | ---------------------------------------------------- |
 | value  | [ProgressMask](#progressmask10) | 是   | 在当前组件上加上可动态设置进度、最大值和颜色的遮罩。 |
 
-## mask<sup>16+</sup>
+## mask<sup>18+</sup>
 
 mask(mask: Optional\<ProgressMask>)
 
@@ -122,7 +122,7 @@ mask(mask: Optional\<ProgressMask>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -168,7 +168,7 @@ maskShape(value: CircleShape | EllipseShape | PathShape | RectShape)
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------- |
 | value  | [CircleShape](../js-apis-arkui-shape.md#circleshape)&nbsp;\|&nbsp;[EllipseShape](../js-apis-arkui-shape.md#ellipseshape)&nbsp;\|&nbsp;[PathShape](../js-apis-arkui-shape.md#pathshape)&nbsp;\|&nbsp;[RectShape](../js-apis-arkui-shape.md#rectshape) | 是   | 在当前组件上加上指定形状的遮罩。 |
 
-## maskShape<sup>16+</sup>
+## maskShape<sup>18+</sup>
 
 maskShape(shape: Optional\<CircleShape | EllipseShape | PathShape | RectShape>)
 
@@ -176,9 +176,9 @@ maskShape(shape: Optional\<CircleShape | EllipseShape | PathShape | RectShape>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **参数：**
 

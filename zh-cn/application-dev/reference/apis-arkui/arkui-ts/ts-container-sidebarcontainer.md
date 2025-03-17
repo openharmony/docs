@@ -22,6 +22,8 @@
 
 SideBarContainer( type?: SideBarContainerType )
 
+创建侧边栏容器。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -33,6 +35,8 @@ SideBarContainer( type?: SideBarContainerType )
 | type | [SideBarContainerType](#sidebarcontainertype枚举说明) | 否 | 设置侧边栏的显示类型。<br/>默认值：SideBarContainerType.Embed |
 
 ## SideBarContainerType枚举说明
+
+容器内侧边栏样式枚举。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -118,7 +122,7 @@ sideBarWidth(value: number)
 
 sideBarWidth(value: Length)
 
-设置侧边栏的宽度。设置为小于0的值时按默认值显示。受最小宽度和最大宽度限制，不在限制区域内取最近的点。
+设置侧边栏的宽度。设置为小于0的值时按默认值显示。受最小宽度和最大宽度限制，不在限制区域内取最近的点。与[sideBarWidth](#sidebarwidth)相比，value参数新增了对百分比字符串和其他[像素单位](ts-pixel-units.md)的支持。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -152,7 +156,7 @@ minSideBarWidth优先于侧边栏子组件minWidth，minSideBarWidth未设置时
 
 minSideBarWidth(value: Length)
 
-设置侧边栏最小宽度。设置为小于0的值时按默认值显示。值不能超过侧边栏容器本身宽度，超过使用侧边栏容器本身宽度。
+设置侧边栏最小宽度。设置为小于0的值时按默认值显示。值不能超过侧边栏容器本身宽度，超过使用侧边栏容器本身宽度。与[minSideBarWidth](#minsidebarwidth)相比，value参数新增了对百分比字符串和其他[像素单位](ts-pixel-units.md)的支持。
 
 minSideBarWidth优先于侧边栏子组件minWidth，minSideBarWidth未设置时默认值优先级高于侧边栏子组件minWidth。
 
@@ -283,6 +287,8 @@ minContentWidth优先于侧边栏的maxSideBarWidth与sideBarWidth属性，minCo
 
 ## ButtonStyle对象说明
 
+设置侧边栏控制按钮的样式。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -327,6 +333,8 @@ minContentWidth优先于侧边栏的maxSideBarWidth与sideBarWidth属性，minCo
 | End | 侧边栏位于容器右侧。 |
 
 ## DividerStyle<sup>10+</sup>对象说明
+
+设置分割线的样式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

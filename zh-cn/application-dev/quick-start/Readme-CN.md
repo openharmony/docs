@@ -108,6 +108,7 @@
       - [MVVM模式（状态管理V2）](arkts-mvvm-V2.md)
     - V1V2混用和迁移指导<!--v1v2-migration-->
       - [自定义组件混用场景指导](arkts-custom-component-mixed-scenarios.md)
+      - [状态管理V1V2混用文档](arkts-v1-v2-mixusage.md)
       - [V1->V2迁移指导](arkts-v1-v2-migration.md)
   - 渲染控制<!--arkts-rendering-control-->
       - [渲染控制概述](arkts-rendering-control-overview.md)

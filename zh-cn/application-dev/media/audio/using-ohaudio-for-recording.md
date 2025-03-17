@@ -23,7 +23,7 @@ target_link_libraries(sample PUBLIC libohaudio.so)
 ```
 ## 音频流构造器
 
-OHAudio提供OH_AudioStreamBuilder接口，遵循构造器设计模式，用于构建音频流。开发者需要根据业务场景，指定对应的[OH_AudioStream_Type](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_type) 。
+OHAudio提供OH_AudioStreamBuilder接口，遵循构造器设计模式，用于构建音频流。开发者需要根据业务场景，指定对应的[OH_AudioStream_Type](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_type)。
 
 `OH_AudioStream_Type`包含两种类型：
 
@@ -49,86 +49,85 @@ OH_AudioStreamBuilder_Destroy(builder);
 
 开发者可以通过以下几个步骤来实现一个简单的录制功能。
 
-
-1. 创建构造器
+1. 创建构造器。
 
     ```cpp
     OH_AudioStreamBuilder* builder;
     OH_AudioStreamBuilder_Create(&builder, AUDIOSTREAM_TYPE_CAPTURER);
     ```
 
-2. 配置音频流参数
+2. 配置音频流参数。
 
     创建音频录制构造器后，可以设置音频流所需要的参数，可以参考下面的案例。
 
     ```cpp
-    // 设置音频采样率
+    // 设置音频采样率。
     OH_AudioStreamBuilder_SetSamplingRate(builder, 48000);
-    // 设置音频声道
+    // 设置音频声道。
     OH_AudioStreamBuilder_SetChannelCount(builder, 2);
-    // 设置音频采样格式
+    // 设置音频采样格式。
     OH_AudioStreamBuilder_SetSampleFormat(builder, AUDIOSTREAM_SAMPLE_S16LE);
-    // 设置音频流的编码类型
+    // 设置音频流的编码类型。
     OH_AudioStreamBuilder_SetEncodingType(builder, AUDIOSTREAM_ENCODING_TYPE_RAW);
-    // 设置输入音频流的工作场景
+    // 设置输入音频流的工作场景。
     OH_AudioStreamBuilder_SetCapturerInfo(builder, AUDIOSTREAM_SOURCE_TYPE_MIC);
     ```
 
-    同样，音频录制的音频数据要通过回调接口读入，开发者要实现回调接口，使用`OH_AudioStreamBuilder_SetCapturerCallback`设置回调函数。回调函数的声明请查看[OH_AudioCapturer_Callbacks](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiocapturer_callbacks) 。
+    同样，音频录制的音频数据要通过回调接口读入，开发者要实现回调接口，使用`OH_AudioStreamBuilder_SetCapturerCallback`设置回调函数。回调函数的声明请查看[OH_AudioCapturer_Callbacks](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiocapturer_callbacks)。
 
-3. 设置音频回调函数
+3. 设置音频回调函数。
 
     多音频并发处理可参考文档[处理音频焦点事件](audio-playback-concurrency.md)，仅接口语言差异。
 
     ```cpp
-    // 自定义读入数据函数
+    // 自定义读入数据函数。
     int32_t MyOnReadData(
         OH_AudioCapturer* capturer,
         void* userData,
         void* buffer,
         int32_t length)
     {
-        // 从buffer中取出length长度的录音数据
+        // 从buffer中取出length长度的录音数据。
         return 0;
     }
-    // 自定义音频流事件函数
+    // 自定义音频流事件函数。
     int32_t MyOnStreamEvent(
         OH_AudioCapturer* capturer,
         void* userData,
         OH_AudioStream_Event event)
     {
-        // 根据event表示的音频流事件信息，更新播放器状态和界面
+        // 根据event表示的音频流事件信息，更新播放器状态和界面。
         return 0;
     }
-    // 自定义音频中断事件函数
+    // 自定义音频中断事件函数。
     int32_t MyOnInterruptEvent(
         OH_AudioCapturer* capturer,
         void* userData,
         OH_AudioInterrupt_ForceType type,
         OH_AudioInterrupt_Hint hint)
     {
-        // 根据type和hint表示的音频中断信息，更新录制器状态和界面
+        // 根据type和hint表示的音频中断信息，更新录制器状态和界面。
         return 0;
     }
-    // 自定义异常回调函数
+    // 自定义异常回调函数。
     int32_t MyOnError(
         OH_AudioCapturer* capturer,
         void* userData,
         OH_AudioStream_Result error)
     {
-        // 根据error表示的音频异常信息，做出相应的处理
+        // 根据error表示的音频异常信息，做出相应的处理。
         return 0;
     }
 
     OH_AudioCapturer_Callbacks callbacks;
 
-    // 配置回调函数
+    // 配置回调函数。
     callbacks.OH_AudioCapturer_OnReadData = MyOnReadData;
     callbacks.OH_AudioCapturer_OnStreamEvent = MyOnStreamEvent;
     callbacks.OH_AudioCapturer_OnInterruptEvent = MyOnInterruptEvent;
     callbacks.OH_AudioCapturer_OnError = MyOnError;
 
-    // 设置音频输入流的回调
+    // 设置音频输入流的回调。
     OH_AudioStreamBuilder_SetCapturerCallback(builder, callbacks, nullptr);
     ```
 
@@ -137,33 +136,33 @@ OH_AudioStreamBuilder_Destroy(builder);
     - 请确保[OH_AudioCapturer_Callbacks](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiocapturer_callbacks)的每一个回调都被**自定义的回调方法**或**空指针**初始化。
 
       ```cpp
-      // 自定义读入数据函数
+      // 自定义读入数据函数。
       int32_t MyOnReadData(
           OH_AudioCapturer* capturer,
           void* userData,
           void* buffer,
           int32_t length)
       {
-          // 从buffer中取出length长度的录音数据
+          // 从buffer中取出length长度的录音数据。
           return 0;
       }
-      // 自定义音频中断事件函数
+      // 自定义音频中断事件函数。
       int32_t MyOnInterruptEvent(
           OH_AudioCapturer* capturer,
           void* userData,
           OH_AudioInterrupt_ForceType type,
           OH_AudioInterrupt_Hint hint)
       {
-          // 根据type和hint表示的音频中断信息，更新录制器状态和界面
+          // 根据type和hint表示的音频中断信息，更新录制器状态和界面。
           return 0;
       }
       OH_AudioCapturer_Callbacks callbacks;
       
-      // 配置回调函数，如果需要监听，则赋值
+      // 配置回调函数，如果需要监听，则赋值。
       callbacks.OH_AudioCapturer_OnReadData = MyOnReadData;
       callbacks.OH_AudioCapturer_OnInterruptEvent = MyOnInterruptEvent;
       
-      // （必选）如果不需要监听，使用空指针初始化
+      // （必选）如果不需要监听，使用空指针初始化。
       callbacks.OH_AudioCapturer_OnStreamEvent = nullptr;
       callbacks.OH_AudioCapturer_OnError = nullptr;
       ```
@@ -171,56 +170,56 @@ OH_AudioStreamBuilder_Destroy(builder);
     - 使用前，初始化并清零结构体。
 
       ```cpp
-      // 自定义读入数据函数
+      // 自定义读入数据函数。
       int32_t MyOnReadData(
           OH_AudioCapturer* capturer,
           void* userData,
           void* buffer,
           int32_t length)
       {
-          // 从buffer中取出length长度的录音数据
+          // 从buffer中取出length长度的录音数据。
           return 0;
       }
-      // 自定义音频中断事件函数
+      // 自定义音频中断事件函数。
       int32_t MyOnInterruptEvent(
           OH_AudioCapturer* capturer,
           void* userData,
           OH_AudioInterrupt_ForceType type,
           OH_AudioInterrupt_Hint hint)
       {
-          // 根据type和hint表示的音频中断信息，更新录制器状态和界面
+          // 根据type和hint表示的音频中断信息，更新录制器状态和界面。
           return 0;
       }
       OH_AudioCapturer_Callbacks callbacks;
 
-      // 使用前，初始化并清零结构体
+      // 使用前，初始化并清零结构体。
       memset(&callbacks, 0, sizeof(OH_AudioCapturer_Callbacks));
 
-      // 配置需要的回调函数
+      // 配置需要的回调函数。
       callbacks.OH_AudioCapturer_OnReadData = MyOnReadData;
       callbacks.OH_AudioCapturer_OnInterruptEvent = MyOnInterruptEvent;
       ```
 
-4. 构造录制音频流
+4. 构造录制音频流。
 
     ```cpp
     OH_AudioCapturer* audioCapturer;
     OH_AudioStreamBuilder_GenerateCapturer(builder, &audioCapturer);
     ```
 
-5. 使用音频流
+5. 使用音频流。
 
     录制音频流包含下面接口，用来实现对音频流的控制。
 
     | 接口                                                         | 说明         |
     | ------------------------------------------------------------ | ------------ |
-    | OH_AudioStream_Result OH_AudioCapturer_Start(OH_AudioCapturer* capturer) | 开始录制     |
-    | OH_AudioStream_Result OH_AudioCapturer_Pause(OH_AudioCapturer* capturer) | 暂停录制     |
-    | OH_AudioStream_Result OH_AudioCapturer_Stop(OH_AudioCapturer* capturer) | 停止录制     |
-    | OH_AudioStream_Result OH_AudioCapturer_Flush(OH_AudioCapturer* capturer) | 释放缓存数据 |
-    | OH_AudioStream_Result OH_AudioCapturer_Release(OH_AudioCapturer* capturer) | 释放录制实例 |
+    | OH_AudioStream_Result OH_AudioCapturer_Start(OH_AudioCapturer* capturer) | 开始录制。    |
+    | OH_AudioStream_Result OH_AudioCapturer_Pause(OH_AudioCapturer* capturer) | 暂停录制。     |
+    | OH_AudioStream_Result OH_AudioCapturer_Stop(OH_AudioCapturer* capturer) | 停止录制。     |
+    | OH_AudioStream_Result OH_AudioCapturer_Flush(OH_AudioCapturer* capturer) | 释放缓存数据。 |
+    | OH_AudioStream_Result OH_AudioCapturer_Release(OH_AudioCapturer* capturer) | 释放录制实例。 |
 
-6. 释放构造器
+6. 释放构造器。
 
     构造器不再使用时，需要释放相关资源。
 

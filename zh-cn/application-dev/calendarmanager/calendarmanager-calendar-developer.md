@@ -11,15 +11,15 @@
 以下是日历账户管理的相关接口，更多详细接口及使用请参考[@ohos.calendarManager](../reference/apis-calendar-kit/js-apis-calendarManager.md)。
 
 | 接口名称                                                     | 描述                                                         |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| getCalendarManager(context : Context): CalendarManager       | 根据上下文获取日历管理器对象CalendarManager，用于管理日历。  |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| getCalendarManager(context: Context): CalendarManager       | 根据上下文获取日历管理器对象CalendarManager，用于管理日历。  |
 | createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar> | 根据日历账户信息，创建一个Calendar对象，使用Promise异步回调。 |
 | getCalendar(calendarAccount?: CalendarAccount): Promise\<Calendar> | 获取默认Calendar对象或者指定Calendar对象，使用Promise异步回调。<br>默认Calendar是日历存储首次运行时创建的，若创建Event时不关注其Calendar归属，则无须通过createCalendar()创建Calendar，直接使用默认Calendar。 |
-| getAllCalendars(): Promise\<Calendar[]>                      | 获取当前应用所有创建的Calendar对象以及默认Calendar对象，使用Promise异步回调。 |
-| deleteCalendar(calendar: Calendar): Promise\<void>           | 删除指定Calendar对象，使用Promise异步回调。                  |
-| getConfig(): CalendarConfig                                  | 获取日历配置信息。                                           |
-| setConfig(config: CalendarConfig): Promise\<void>            | 设置日历配置信息，使用Promise异步回调。                      |
-| getAccount(): CalendarAccount                                | 获取日历账户信息。                                           |
+| getAllCalendars(): Promise\<Calendar[]>                     | 获取当前应用所有创建的Calendar对象以及默认Calendar对象，使用Promise异步回调。 |
+| deleteCalendar(calendar: Calendar): Promise\<void>          | 删除指定Calendar对象，使用Promise异步回调。                  |
+| getConfig(): CalendarConfig                                 | 获取日历配置信息。                                           |
+| setConfig(config: CalendarConfig): Promise\<void>           | 设置日历配置信息，使用Promise异步回调。                      |
+| getAccount(): CalendarAccount                               | 获取日历账户信息。                                           |
 
 
 ## 开发步骤
@@ -67,7 +67,7 @@
        const permissions: Permissions[] = ['ohos.permission.READ_CALENDAR', 'ohos.permission.WRITE_CALENDAR'];
        let atManager = abilityAccessCtrl.createAtManager();
        atManager.requestPermissionsFromUser(mContext, permissions).then((result: PermissionRequestResult) => {
-         console.log(`get Permission success, result: ${JSON.stringify(result)}`);
+         console.info(`get Permission success, result: ${JSON.stringify(result)}`);
          calendarMgr = calendarManager.getCalendarManager(mContext);
        }).catch((error: BusinessError) => {
          console.error(`get Permission error, error. Code: ${error.code}, message: ${error.message}`);

@@ -1,9 +1,9 @@
-# Custom Edit Box Development Guide (C/C++)
+# Using the Input Method in a Custom Edit Box (C/C++)
 
 
 ## When to Use
 
-IME Kit allows you to use self-drawing components to develop the custom edit box to interact with input method applications, including displaying and hiding input methods and receiving text editing notifications from input method applications. This document describes how to use C/C++ to develop this function.
+IME Kit allows you to use input method in the custom edit box to interact with input method applications, including displaying and hiding input methods and receiving text editing notifications from input method applications. This document describes how to use C/C++ to develop this function.
 
 ## APIs
 

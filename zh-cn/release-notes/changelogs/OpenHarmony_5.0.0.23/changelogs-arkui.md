@@ -328,67 +328,7 @@ Popup组件。
 
 默认效果变更，应注意变更后的默认效果是否符合开发者预期，如不符合可以使用offset属性自行调整Popup位置，请查阅[Popup控制](../../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md)文档。
 
-## cl.arkui.9 拖拽预览图支持统一圆角及应用自定义
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-依照UX规范
-
-**变更影响**
-
-该变更为非兼容性变更。
-
-API version 11及以前：非文本类组件长按浮起预览图显示应用自定义的圆角效果。
-
-API version 12及以后：非文本类组件长按浮起预览图通过检查DragPreviewOptions.mode来判断是否启用非文本类组件统一圆角效果，默认值12vp。当应用自身设置的圆角值大于默认值时，则显示应用自定义圆角效果。
-
-**API Level**
-
-12
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.0.0.23开始。
-
-**适配指导**
-
-默认样式变更调整，无需适配。
-
-## cl.arkui.10 拖拽支持预览图背景模糊效果
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-依照UX规范
-
-**变更影响**
-
-该变更为非兼容性变更。
-
-API version 11及以前：非文本类组件长按浮起预览图，预览图无背景模糊效果。
-
-API version 12及以后：非文本类组件长按浮起预览图，预览图有背景模糊效果。
-
-**API Level**
-
-12
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.0.0.23开始。
-
-**适配指导**
-
-默认样式变更调整，无需适配。
-
-## cl.arkui.11 DatePickerDialog标题按钮大小及布局变更
+## cl.arkui.9 DatePickerDialog标题按钮大小及布局变更
 
 **访问级别**
 
@@ -424,7 +364,7 @@ UX规格增强
 
 默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
 
-## cl.arkui.12  bindSheet组件修改标题与关闭按钮之间的间距
+## cl.arkui.10  bindSheet组件修改标题与关闭按钮之间的间距
 
 **访问级别**
 
@@ -498,7 +438,7 @@ bindSheet半模态面板。
 
 默认行为变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则自定义修改效果控制变量以达到预期。
 
-## cl.arkui.14 Menu 组件边距 margin 变更
+## cl.arkui.11 Menu 组件边距 margin 变更
 
 **访问级别**
 
@@ -530,7 +470,7 @@ Menu 组件
 
 默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
 
-## cl.arkui.15  TabContent组件底部页签水平方向排列情景默认字体大小变更
+## cl.arkui.12  TabContent组件底部页签水平方向排列情景默认字体大小变更
 
 **访问级别**
 
@@ -568,7 +508,7 @@ TabContent组件
 
 默认行为变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合可参照[TabContent组件](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-tabcontent.md)说明文档设置相关属性以达到预期。
 
-## cl.arkui.16 backgroundImage异常参数处理规格变更
+## cl.arkui.13 backgroundImage异常参数处理规格变更
 
 **访问级别**
 
@@ -596,7 +536,7 @@ TabContent组件
 
 异常值处理逻辑变更，不涉及适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则自定义修改效果控制变量以达到预期。
 
-## cl.arkui.17 backgroundImageSize异常参数处理规格变更
+## cl.arkui.14 backgroundImageSize异常参数处理规格变更
 
 **访问级别**
 
@@ -624,7 +564,7 @@ TabContent组件
 
 异常值处理逻辑变更，不涉及适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则自定义修改效果控制变量以达到预期。
 
-## cl.arkui.18 border中对部分接口新增参数类型
+## cl.arkui.15 border中对部分接口新增参数类型
 
 **访问级别**
 

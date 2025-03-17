@@ -395,7 +395,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 }
 ```
 
-### occupyEvents<sup>16+</sup>
+### occupyEvents<sup>18+</sup>
 
 occupyEvents(eventFlags: number): Promise&lt;void&gt;
 
@@ -403,7 +403,7 @@ occupyEvents(eventFlags: number): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -449,7 +449,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 }
 ```
 
-## EventFlag<sup>16+</sup>
+## EventFlag<sup>18+</sup>
 
 事件类型枚举。
 

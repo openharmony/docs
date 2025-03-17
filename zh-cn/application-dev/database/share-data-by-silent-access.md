@@ -29,9 +29,9 @@
 
 | 数据类型  | 存储位置      | 数据格式        | 有效期          | 适用场景                              |
 | ----- | --------- | ----------- | ------------ | --------------------------------- |
-| 持久化数据 | 数据提供方的沙箱  | 数据库中的数据表    | 永久存储         | 适用于数据格式类似关系型数据库的相关场景，如日程，会议等      |
-| 过程数据  | 数据管理服务的沙箱 | json或byte数据 | 无人订阅10天后自动删除 | 适用于数据有时效性且数据格式较简单的相关场景，如步数，天气，心率等 |
-| 动态数据  | 数据管理服务的内存 | key-value数据 | 设备重启之后自动删除 | 适用于动态关闭/打开静默访问通道的场景。例如：升级过程中为了保证数据正确性可以动态关闭静默访问，升级结束后再调用相关接口打开静默访问。调用接口生成的开启关闭状态，设备重启之后会清除。只限于调用enableSilentProxy和disableSilentProxy接口设置的数据 |
+| 持久化数据 | 数据提供方的沙箱  | 数据库中的数据表    | 永久存储         | 适用于数据格式类似关系型数据库的相关场景，如日程，会议等。      |
+| 过程数据  | 数据管理服务的沙箱 | json或byte数据 | 无人订阅10天后自动删除 | 适用于数据有时效性且数据格式较简单的相关场景，如步数，天气，心率等。 |
+| 动态数据  | 数据管理服务的内存 | key-value数据 | 设备重启之后自动删除 | 适用于动态关闭/打开静默访问通道的场景。例如：升级过程中为了保证数据正确性可以动态关闭静默访问，升级结束后再调用相关接口打开静默访问。调用接口生成的开启关闭状态，设备重启之后会清除。只限于调用enableSilentProxy和disableSilentProxy接口设置的数据。 |
 
 
 
@@ -57,7 +57,7 @@
 
     目前访问应用分身仅支持静默访问方式下，不支持非静默访问方式。故需要设置访问应用分身URI和参数时，请注意同步设置"Proxy"参数和"appIndex"参数。例如“datashareproxy://{bundleName}/{dataPath}?Proxy=true&appIndex=1”，表示将在数据访问方会在静默访问方式下访问应用的第一个分身。
 
-  - "user"仅支持设置为整型，表示要访问的数据提供方的用户ID。user的定义及获取参照[user](../reference/apis-basic-services-kit/js-apis-osAccount.md#getactivatedosaccountlocalids9)。user不填写时，默认为数据访问者所在的用户ID。
+  - "user"仅支持设置为整型，表示要访问的数据提供方的用户ID。user的定义及获取参照[user](../reference/apis-basic-services-kit/js-apis-osAccount.md#getactivatedosaccountlocalids9)。user不填写时，默认为数据访问方所在的用户ID。
 
     目前跨用户访问仅支持主空间和隐私空间之间的访问，且需要数据访问方配有跨用户访问权限ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS才可成功访问。
 
@@ -119,18 +119,22 @@
    | 属性名称                    | 备注说明                                     | 必填   |
    | ----------------------- | ---------------------------------------- | ---- |
    | uri                     | 数据使用的URI，是跨应用数据访问的唯一标识。                  | 是    |
-   | requiredReadPermission  | 标识从该数据代理读取数据时所需要的权限，不配置默认不允许其他APP访问数据。支持权限可参考[权限列表](../security/AccessToken/app-permissions.md)。            | 否    |
-   | requiredWritePermission | 标识从该数据代理修改数据时所需要的权限，不配置默认不允许其他APP修改数据。支持权限可参考[权限列表](../security/AccessToken/app-permissions.md)。          | 否    |
+   | requiredReadPermission  | 标识从该数据代理读取数据时所需要的权限，不配置默认不允许其他APP访问数据。支持权限可参考[权限列表](../security/AccessToken/app-permissions.md)。<br>注意：当前静默访问的权限约束方式与DataShareExtensionAbility的权限约束方式不同，请注意区分，切勿混淆，具体可参考[DataShareExtensionAbility章节](share-data-by-datashareextensionability.md)。            | 否    |
+   | requiredWritePermission | 标识从该数据代理修改数据时所需要的权限，不配置默认不允许其他APP修改数据。支持权限可参考[权限列表](../security/AccessToken/app-permissions.md)。<br>注意：当前静默访问的权限约束方式与DataShareExtensionAbility的权限约束方式不同，请注意区分，切勿混淆，具体可参考[DataShareExtensionAbility章节](share-data-by-datashareextensionability.md)。          | 否    |
    | metadata                | 数据源的信息，包含name和resource字段。<br /> name类型固定为"dataProperties"，是配置的唯一标识。 <br /> resource类型固定为"$profile:{fileName}"，表示配置文件的名称为{fileName}.json。 | 是    |
+
+   一个URI所能访问的范围为一张数据表，因此请确认表中的所有数据适用相同的权限范围，推荐不同范围的数据分开使用多张表存储，配置各自的权限约束，做好表粒度的数据隔离。针对风险等级高的数据，建议配置白名单来限制数据访问方，具体请参考下方my_config.json示例中的allowLists字段。
 
    **module.json5配置样例：**
 
    ```json
-   "proxyData":[
+   // 以下配置以settingsdata为例，应用需根据实际情况配置各个字段
+   "proxyData": [
      {
-       "uri": "datashareproxy://com.acts.ohos.data.datasharetest/test",
-       "requiredReadPermission": "ohos.permission.GET_BUNDLE_INFO",
-       "requiredWritePermission": "ohos.permission.KEEP_BACKGROUND_RUNNING",
+       "uri": "datashareproxy://com.ohos.settingsdata/entry/settingsdata/USER_SETTINGSDATA_SECURE",
+       // 实际请按照应用具体场景需要的安全权限配置，如配置应用自定义权限、系统权限或用户授权权限，当前权限仅为示例
+       "requiredReadPermission": "ohos.permission.MANAGE_SECURE_SETTINGS",
+       "requiredWritePermission": "ohos.permission.MANAGE_SECURE_SETTINGS",
        "metadata": {
          "name": "dataProperties",
          "resource": "$profile:my_config"
@@ -145,7 +149,7 @@
    | path  | 指定数据源路径，目前支持关系型数据库，配置为库名/表名。             | 是    |
    | type  | 标识数据库类型，目前支持配置为rdb，表示关系型数据库。             | 是    |
    | scope | 数据库所在范围。<br>1.module表示数据库位于本模块下。<br>2.application表示数据库位于本应用下。 | 否    |
-   | allowLists          | 包括appIdentifier和onlyMain。<br>allowLists中配置被允许访问的应用列表，最多配置256个授权信息。在跨应用数据访问时通过该配置校验数据访问方是否在数据提供方配置的列表内，若不在则拒绝访问。若无allowLists配置则不做白名单校验。不管是否配置allowLists，在[表1](#数据提供方应用的开发)中的读写权限依然会被正常校验。<br>**-appIdentifier：** 字符串，应用的唯一标识，由云端统一分配。数据提供方自行向访问方获取。<br>appIdentifier信息可参考[应用包信息](../reference/apis-ability-kit/js-apis-bundleManager-bundleInfo.md#signatureinfo)。 <br>**-onlyMain：** 布尔值，控制是否仅支持主应用。true: 只允许主应用访问，分身应用不可访问。false: 主应用和分身应用均可访问。 | 否   |
+   | allowLists          | 包括appIdentifier和onlyMain。<br>allowLists中配置被允许访问的应用列表，最多配置256个授权信息。在跨应用数据访问时通过该配置校验数据访问方是否在数据提供方配置的列表内，若不在则拒绝访问。若无allowLists配置则不做白名单校验。不管是否配置allowLists，在[表1](#数据提供方应用的开发)中的读写权限依然会被正常校验。<br>**-appIdentifier：** 字符串，应用的唯一标识，由云端统一分配。数据提供方自行向访问方获取。<br>appIdentifier信息可参考[应用包信息](../reference/apis-ability-kit/js-apis-bundleManager-bundleInfo.md#signatureinfo)。 <br>**-onlyMain：** 布尔值，控制是否仅支持主应用。true: 只允许主应用访问，分身应用不可访问。false: 主应用和分身应用均可访问。该功能仅支持静默访问。 | 否   |
 
    **my_config.json配置样例**
 
@@ -176,7 +180,7 @@
 2. 定义与数据提供方通信的URI字符串。
 
    ```ts
-   let dseUri = ('datashareproxy://com.acts.ohos.data.datasharetest/test');
+   let dseUri = ('datashareproxy://com.ohos.settingsdata/entry/settingsdata/USER_SETTINGSDATA_SECURE');
    ```
 
 3. 创建工具接口类对象。
@@ -265,7 +269,7 @@
    }
    let templateId: dataShare.TemplateId = {
      subscriberId: "111",
-     bundleNameOfOwner: "com.acts.ohos.data.datasharetestclient"
+     bundleNameOfOwner: "com.ohos.settingsdata"
    }
    if(dsHelper != undefined) {
      // 使用数据管理服务修改数据时触发onCallback回调，回调内容是template中的规则查到的数据
@@ -292,16 +296,18 @@
 | 属性名称                    | 备注说明                          | 必填   |
 | ----------------------- | ----------------------------- | ---- |
 | uri                     | 数据使用的URI，是跨应用数据访问的唯一标识。       | 是    |
-| requiredReadPermission  | 标识从该数据代理读取数据时所需要的权限，不配置默认不允许其他APP访问数据。支持权限可参考[权限列表](../security/AccessToken/app-permissions.md)。 | 否    |
-| requiredWritePermission | 标识从该数据代理修改数据时所需要的权限，不配置默认不允许其他APP访问数据。支持权限可参考[权限列表](../security/AccessToken/app-permissions.md)。 | 否    |
+| requiredReadPermission  | 标识从该数据代理读取数据时所需要的权限，不配置默认不允许其他APP访问数据。支持权限可参考[权限列表](../security/AccessToken/app-permissions.md)。<br>注意：当前静默访问的权限约束方式与DataShareExtensionAbility的权限约束方式不同，请注意区分，切勿混淆，具体可参考[DataShareExtensionAbility章节](share-data-by-datashareextensionability.md)。 | 否    |
+| requiredWritePermission | 标识从该数据代理修改数据时所需要的权限，不配置默认不允许其他APP访问数据。支持权限可参考[权限列表](../security/AccessToken/app-permissions.md)。<br>注意：当前静默访问的权限约束方式与DataShareExtensionAbility的权限约束方式不同，请注意区分，切勿混淆，具体可参考[DataShareExtensionAbility章节](share-data-by-datashareextensionability.md)。 | 否    |
 
 **module.json5配置样例：**
 
 ```json
+// 以下配置仅为示例，应用需根据实际情况配置各个字段
 "proxyData": [
   {
     "uri": "datashareproxy://com.acts.ohos.data.datasharetest/weather",
-    "requiredReadPermission": "ohos.permission.GET_BUNDLE_INFO",
+    // 实际请按照应用具体场景需要的安全权限配置，如配置应用自定义权限、系统权限或用户授权权限，当前权限仅为示例
+    "requiredReadPermission": "ohos.permission.READ_WEATHER_DATA",
     "requiredWritePermission": "ohos.permission.KEEP_BACKGROUND_RUNNING"
   }
 ]
@@ -391,7 +397,7 @@
 2. 定义与数据提供方通信的URI字符串。
 
    ```ts
-   let dseUri = ('datashare:///com.acts.datasharetest/entry/DB00/TBL00');
+   let dseUri = ('datashare:///com.ohos.settingsdata/entry/DB00/TBL00');
    ```
 
 3. 创建工具接口类对象。

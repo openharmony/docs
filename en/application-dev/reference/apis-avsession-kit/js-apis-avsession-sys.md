@@ -1,6 +1,6 @@
 # @ohos.multimedia.avsession (AVSession Management) (System API)
 
-The **avSession** module provides APIs for media playback control so that applications can access the system's Media Controller.
+The avSession module provides APIs for media playback control so that applications can access the system's Media Controller.
 
 This module provides the following typical features related to media sessions:
 
@@ -368,7 +368,7 @@ Creates a session controller based on the session ID. Multiple session controlle
 
 | Name   | Type                                                       | Mandatory| Description                                                        |
 | --------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| sessionId | string                                                      | Yes  | Session ID. If the value is set to **'default'**, the system creates a default controller to control the default session.                                                    |
+| sessionId | string                                                      | Yes  | Session ID. If the value is set to **'default'**, the system creates a default controller to control the system default session.                                                    |
 | callback  | AsyncCallback<[AVSessionController](js-apis-avsession.md#avsessioncontroller10)\> | Yes  | Callback used to return the session controller created, which can be used to obtain the session ID,<br>send commands and events to sessions, and obtain metadata and playback state information.|
 
 **Error codes**
@@ -571,6 +571,55 @@ avSession.startAVPlayback("com.example.myapplication", "121278").then(() => {
   console.error(`startAVPlayback BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
+
+## avSession.getDistributedSessionController<sup>18+</sup>
+
+getDistributedSessionController(distributedSessionType: DistributedSessionType): Promise<Array\<AVSessionController>>
+
+Obtains remote distributed session controllers based on the remote session type. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_MEDIA_RESOURCES
+
+**System capability**: SystemCapability.Multimedia.AVSession.Manager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name   | Type                                                                     | Mandatory| Description     |
+| --------- |-------------------------------------------------------------------------| ---- |---------|
+| distributedSessionType | [DistributedSessionType](js-apis-avsession.md#distributedsessiontype18) | Yes  | Remote session type.|
+
+**Return value**
+
+| Type                                                                                | Description                                                                   |
+|------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
+| Promise<Array<[AVSessionController](js-apis-avsession.md#avsessioncontroller10)\>> | Promise used to return an array of session controller instances of the corresponding type. You can view the session ID, send commands and events to the session, and obtain metadata and playback status information.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID  | Error Message                                                                                                 |
+|---------|-------------------------------------------------------------------------------------------------------|
+| 201     | permission denied.                                                                                    |
+| 202     | Not System App. Interface caller is not a system app.                                                                                       |
+| 401     | parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
+| 6600101 | Session service exception.                                                                            |
+| 6600109 | The remote connection is not established.                                                             |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avSession.getDistributedSessionController(avSession.DistributedSessionType.TYPE_SESSION_REMOTE).then((sessionControllers: Array<avSession.AVSessionController>) => {
+  console.info(`getDistributedSessionController : SUCCESS : sessionControllers.length : ${sessionControllers.length}`);
+}).catch((err: BusinessError) => {
+  console.error(`getDistributedSessionController BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
 
 ## SessionToken
 
@@ -877,6 +926,82 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 ```ts
 avSession.off('sessionServiceDie');
+```
+
+
+## avSession.on('distributedSessionChange')<sup>18+</sup>
+
+on(type: 'distributedSessionChange', distributedSessionType: DistributedSessionType, callback: Callback<Array\<AVSessionController>>): void
+
+Subscribes to the latest distributed remote session change events.
+
+**Required permissions**: ohos.permission.MANAGE_MEDIA_RESOURCES
+
+**System capability**: SystemCapability.Multimedia.AVSession.Manager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                                                                 | Mandatory| Description                                                                      |
+| -------- |-------------------------------------------------------------------------------------| ---- |--------------------------------------------------------------------------|
+| type     | string                                                                              | Yes  | Event type. The event **'distributedSessionChange'** is triggered when the latest distributed session is changed.|
+| distributedSessionType     | [DistributedSessionType](js-apis-avsession.md#distributedsessiontype18)             | Yes  | Remote session type.                                                                 |
+| callback | Callback<Array<[AVSessionController](js-apis-avsession.md#avsessioncontroller10)\>> | Yes  | Callback used to return an array of session controller instances of the corresponding type. You can view the session ID, send commands and events to the session, and obtain metadata and playback status information.           |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID  | Error Message                                                                                             |
+|---------|---------------------------------------------------------------------------------------------------|
+| 202     | Not System App. Interface caller is not a system app.                                                                                   |
+| 401     | parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101 | Session service exception.                                                                        |
+
+**Example**
+
+```ts
+avSession.on('distributedSessionChange', avSession.DistributedSessionType.TYPE_SESSION_REMOTE, (sessionControllers: Array<avSession.AVSessionController>) => {
+  console.info(`on distributedSessionChange size: ${sessionControllers.length}`);
+});
+```
+
+
+## avSession.off('distributedSessionChange')<sup>18+</sup>
+
+off(type: 'distributedSessionChange', distributedSessionType: DistributedSessionType, callback?: Callback<Array\<AVSessionController>>): void
+
+Unsubscribes from the latest distributed remote session change events.
+
+**Required permissions**: ohos.permission.MANAGE_MEDIA_RESOURCES
+
+**System capability**: SystemCapability.Multimedia.AVSession.Manager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                                                                 | Mandatory| Description                                                           |
+| -------- |-------------------------------------------------------------------------------------|----|---------------------------------------------------------------|
+| type     | string                                                                              | Yes | Event type. The event **'distributedSessionChange'** is triggered when the latest distributed session is changed.                   |
+| distributedSessionType     | [DistributedSessionType](js-apis-avsession.md#distributedsessiontype18)             | Yes | Remote session type.                                                      |
+| callback | Callback<Array<[AVSessionController](js-apis-avsession.md#avsessioncontroller10)\>> | No | Callback used for unsubscription. In the callback, the parameter indicates an array of session controller instances of the corresponding type. You can view the session ID, send commands and events to the session, and obtain metadata and playback status information.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID  | Error Message                                                                                             |
+|---------|---------------------------------------------------------------------------------------------------|
+| 202     | Not System App. Interface caller is not a system app.                                                                                   |
+| 401     | parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101 | Session service exception.                                                                        |
+
+**Example**
+
+```ts
+avSession.off('distributedSessionChange', avSession.DistributedSessionType.TYPE_SESSION_REMOTE);
 ```
 
 ## avSession.sendSystemAVKeyEvent
@@ -2077,7 +2202,7 @@ aVCastController.setDisplaySurface(surfaceID, (err: BusinessError) => {
 });
 ```
 
-### on('videoSizeChange')<sup>10+</sup>
+### on('videoSizeChange')<sup>12+</sup>
 
 on(type: 'videoSizeChange', callback: (width:number, height:number) => void): void
 
@@ -2112,7 +2237,7 @@ aVCastController.on('videoSizeChange', (width: number, height: number) => {
 });
 ```
 
-### off('videoSizeChange')<sup>10+</sup>
+### off('videoSizeChange')<sup>12+</sup>
 
 off(type: 'videoSizeChange'): void
 
@@ -2151,7 +2276,7 @@ Describes the media metadata.
 
 | Name           | Type                     | Mandatory| Description                                                                 |
 | --------------- |-------------------------| ---- |---------------------------------------------------------------------|
-| avQueueName<sup>11+</sup>     | string                  | No  | Playlist name.<br>This is a system API.|
+| avQueueName<sup>12+</sup>     | string                  | No  | Playlist name.<br>This is a system API.|
 
 ## AVQueueInfo<sup>11+</sup>
 
