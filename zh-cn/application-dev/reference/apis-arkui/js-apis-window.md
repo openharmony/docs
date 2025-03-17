@@ -6275,10 +6275,10 @@ import { image } from '@kit.ImageKit';
 
 let promise = windowClass.snapshotIgnorePrivacy();
 promise.then((pixelMap: image.PixelMap) => {
-  console.info('Succeeded in snapshotIgnorePrivacy window. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+  console.info('Succeeded in snapshotting window. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
   pixelMap.release(); // PixelMap使用完后及时释放内存
 }).catch((err: BusinessError) => {
-  console.error(`Failed to snapshotIgnorePrivacy window. Cause code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to snapshot window. Cause code: ${err.code}, message: ${err.message}`);
 });
 ```
 
