@@ -6,7 +6,7 @@
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-## 导入模块
+## 导入模块set
 
 ```ts
 import { camera } from '@kit.CameraKit';
@@ -7820,7 +7820,7 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpace): void
 **P3广色域与HDR高动态范围成像**   
 
 应用可以下发不同的色彩空间(ColorSpace)参数来支持P3广色域以及HDR的功能。  
-当应用不主动设置色彩空间时，拍照以及录像模式默认为HDR拍摄效果。  
+当应用不主动设置色彩空间时，拍照模式默认为SDR拍摄效果。  
 在拍照模式下设置HDR高显效果可直接支持P3色域。  
 应用针对不同模式使能HDR效果以及设置的色彩空间可参考下表。  
 
@@ -7829,14 +7829,14 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpace): void
 | SDR/HRD拍摄         | CameraFormat             | ColorSpace       |
 |--------------------|--------------------------|------------------|
 | SDR                | CAMERA_FORMAT_YUV_420_SP | BT709_LIMIT      |
-| HDR_VIVID(Default) | CAMERA_FORMAT_YCRCB_P010 | BT2020_HLG_LIMIT |
+| HDR_VIVID          | CAMERA_FORMAT_YCRCB_P010 | BT2020_HLG_LIMIT |
 
 **拍照模式：**
 
-| SDR/HRD拍摄    | ColorSpace |
-|--------------|------------|
-| SDR          | SRGB       |
-| HDR(Default) | DISPLAY_P3 |
+| SDR/HRD拍摄        | ColorSpace |
+|--------------------|------------|
+| SDR(Default)       | SRGB       |
+| HDR                | DISPLAY_P3 |
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
