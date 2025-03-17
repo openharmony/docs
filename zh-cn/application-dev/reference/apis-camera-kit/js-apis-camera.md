@@ -7820,7 +7820,7 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpace): void
 **P3广色域与HDR高动态范围成像**   
 
 应用可以下发不同的色彩空间(ColorSpace)参数来支持P3广色域以及HDR的功能。  
-当应用不主动设置色彩空间时，拍照模式默认为HDR拍摄效果。  
+当应用不主动设置色彩空间时，拍照模式默认为SDR拍摄效果。  
 在拍照模式下设置HDR高显效果可直接支持P3色域。  
 应用针对不同模式使能HDR效果以及设置的色彩空间可参考下表。  
 
