@@ -4,8 +4,8 @@ The **pan** module provides APIs for accessing the Bluetooth personal area netwo
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.bluetooth.pan (Bluetooth PAN Module)](js-apis-bluetooth-pan.md).
+> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.bluetooth.pan (Bluetooth PAN Module)](js-apis-bluetooth-pan.md).
 
 
 ## Modules to Import

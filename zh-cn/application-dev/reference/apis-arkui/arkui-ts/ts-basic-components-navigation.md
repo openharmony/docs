@@ -86,7 +86,7 @@ subTitle(value: string)
 
 ### menus
 
-menus(value: Array&lt;NavigationMenuItem&gt; | CustomBuilder)
+menus(items: Array&lt;NavigationMenuItem&gt; | CustomBuilder, options?: NavigationMenuOptions)
 
 > **说明：**
 >
@@ -103,7 +103,8 @@ menus(value: Array&lt;NavigationMenuItem&gt; | CustomBuilder)
 
 | 参数名 | 类型                                                         | 必填 | 说明             |
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
-| value  | Array<[NavigationMenuItem](#navigationmenuitem)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 页面右上角菜单。 |
+| items  | Array<[NavigationMenuItem](#navigationmenuitem)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 页面右上角菜单。 |
+| options<sup>18+</sup> | [NavigationMenuOptions](#navigationmenuoptions18) | 否   | 页面右上角菜单选项。 |
 
 ### titleMode
 
@@ -1303,6 +1304,45 @@ setInterception(interception: NavigationInterception): void
 | ---- | ---- | --- | ---|
 |interception| [NavigationInterception](#navigationinterception12)| 是 | 设置Navigation跳转拦截对象。|
 
+### getPathStack<sup>18+</sup>
+
+getPathStack(): Array\<NavPathInfo\>
+
+获取当前路由栈中的路由页面信息数组。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明     |
+| ------ | ------ |
+| Array\<[NavPathInfo](#navpathinfo10)\> | 当前路由栈中的路由页面信息数组。 |
+
+### setPathStack<sup>18+</sup>
+
+setPathStack(pathStack: Array\<NavPathInfo\>, animated?: boolean): void
+
+将当前路由栈中的路由页面信息数组更新为指定内容，并实现路由转场。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明                     |
+| ---- | ---- | --- | ---|
+|pathStack| Array\<[NavPathInfo](#navpathinfo10)\>| 是 | 设置当前路由栈中的路由页面信息数组。|
+|animated| boolean | 否 | 是否开启转场动画。 <br /> 默认值：true|
+
+>  **说明：**
+>
+> 1. 开发者可以在原有栈的基础上批量添加或删除页面。批量入栈的页面中，只有可见的页面会触发创建，其他页面虽已入栈但不会立即创建，当这些页面变为可见时，才会触发创建。
+> 2. 通过批量入栈功能更新的页面栈，各页面的生命周期事件触发顺序为从栈顶到底部依次触发，这与其它入栈接口从栈底到顶部的触发顺序不同。
+> 3. 开发者可以通过[NavPathInfo](#navpathinfo10)中的页面唯一标识符navDestinationId来操作已有页面，该id由系统默认生成且全局唯一（可以通过[getPathStack](#getpathstack18)接口获取，不可主动赋新值）。若该id在当前页面栈中不存在，则表示新增页面，若在当前页面栈中存在，同时对应的name相同，则表示复用已有页面。
+
 ## NavPathInfo<sup>10+</sup>
 
 路由页面信息。
@@ -1332,6 +1372,7 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>, isEntry?: 
 | param | unknown | 否    | NavDestination页面详细参数。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onPop<sup>11+</sup> | Callback\<[PopInfo](#popinfo11)> | 否 | NavDestination页面触发[pop](#pop11)时返回的回调。仅[pop](#pop11)中设置result参数后触发。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | isEntry<sup>12+</sup> | boolean | 否 | 标记NavDestination是否为入口页面。<br/>默认值：false <br/>标记清理时机：1、在当前navDestination页面触发一次全局back事件。2、应用退至后台。<br/>**说明**：<br/>入口NavDestination不响应应用内的全局back事件，直接触发应用间的全局back事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| navDestinationId<sup>18+</sup>  | string  | 否    | NavDestination页面唯一标识符，该id由系统默认生成且全局唯一，通过[getPathStack](#getpathstack18)接口可读取，但不可以主动赋新值。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。   |
 
 ## PopInfo<sup>11+</sup>
 
@@ -1619,6 +1660,8 @@ Navigation首页名字。
 | ------ | ------------- | ---- | --------------- |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 标题栏背景颜色，不设置时为系统默认颜色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | backgroundBlurStyle   | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)        | 否    | 标题栏背景模糊样式，不设置时关闭背景模糊效果。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| backgroundBlurStyleOptions<sup>18+</sup>   | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10对象说明)        | 否    | 标题栏背景模糊选项。<br/>**说明：** <br/>只在设置了backgroundBlurStyle时生效。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| backgroundEffect<sup>18+</sup>   | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11)        | 否    | 设置标题栏背景属性包括：模糊半径，亮度，饱和度，颜色等。<br/>**说明：** <br/>与backgroundBlurStyleOptions同时设置时，只有backgroundEffect生效。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | barStyle<sup>12+</sup>   | [BarStyle](#barstyle12枚举说明)        | 否    | 设置标题栏布局方式。<br/>默认值：BarStyle.STANDARD<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | paddingStart<sup>12+</sup>   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)        | 否    | 标题栏起始端内间距。<br/>仅支持以下任一场景:<br/>1. 显示返回图标，即[hideBackButton](#hidebackbutton)为false；<br/>2. 使用非自定义标题，即[标题value](#title)类型为ResourceStr或NavigationCommonTitle。<br/>默认值：<br/>LengthMetrics.resource(`$r('sys.float.margin_left')`)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | paddingEnd<sup>12+</sup>   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)        | 否    | 标题栏结束端内间距。<br/>仅支持以下任一场景:<br/>1. 使用非自定义菜单，即[菜单value](#menus)为Array&lt;NavigationMenuItem&gt;；<br/>2. 没有右上角菜单，且使用非自定义标题，即[标题value](#title)类型为ResourceStr或NavigationCommonTitle。<br/>默认值：<br/>LengthMetrics.resource(`$r('sys.float.margin_right')`)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -1634,8 +1677,23 @@ Navigation首页名字。
 | ------ | ------------- | ---- | --------------- |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 工具栏背景颜色，不设置时为系统默认颜色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | backgroundBlurStyle   | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)        | 否    | 工具栏背景模糊样式，不设置时关闭背景模糊效果。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| backgroundBlurStyleOptions<sup>18+</sup>   | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10对象说明)        | 否    | 工具栏背景模糊选项。<br/>**说明：** <br/>只在设置了backgroundBlurStyle时生效。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| backgroundEffect<sup>18+</sup>   | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11)        | 否    | 设置工具栏背景属性包括：模糊半径，亮度，饱和度，颜色等。<br/>**说明：** <br/>与backgroundBlurStyleOptions同时设置时，只有backgroundEffect生效。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | barStyle<sup>14+</sup>   | [BarStyle](#barstyle12枚举说明)        | 否    | 设置工具栏布局方式。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 | hideItemValue<sup>18+</sup>   | boolean | 否    | 设置是否隐藏工具栏的文本，默认显示文本。<br/>默认值：false。 |
+| moreButtonOptions<sup>18+</sup>   | [MoreButtonOptions](#morebuttonoptions18)        | 否    | 工具栏更多图标的菜单选项。 |
+
+## NavigationMenuOptions<sup>18+</sup>
+
+页面右上角菜单选项。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 类型            | 必填   | 说明              |
+| ------ | ------------- | ---- | --------------- |
+| moreButtonOptions   | [MoreButtonOptions](#morebuttonoptions18)        | 否    | 更多图标的菜单选项。 
 
 ## LaunchMode<sup>12+</sup>枚举说明
 
@@ -1660,6 +1718,20 @@ Navigation首页名字。
 | ------ | ------------- | ---- | --------------- |
 | launchMode | [LaunchMode](#launchmode12枚举说明)  | 否    | 页面栈的操作模式。<br/>默认值：LaunchMode.STANDARD |
 | animated   | boolean  | 否    | 是否支持转场动画。<br/>默认值：true。 |
+
+## MoreButtonOptions<sup>18+</sup>
+
+更多图标的菜单选项。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 类型            | 必填   | 说明              |
+| ------ | ------------- | ---- | --------------- |
+| backgroundBlurStyle   | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)        | 否    | 更多图标的菜单背景模糊样式，不设置时关闭背景模糊效果。 |
+| backgroundBlurStyleOptions   | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10对象说明)        | 否    | 更多图标的菜单背景模糊选项。<br/>**说明：** <br/>只在设置了backgroundBlurStyle时生效。 |
+| backgroundEffect   | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11)        | 否    | 设置更多图标的菜单背景属性包括：模糊半径，亮度，饱和度，颜色等。<br/>**说明：** <br/>与backgroundBlurStyleOptions同时设置时，只有backgroundEffect生效。 |
 
 ## SystemBarStyle<sup>12+</sup>
 
@@ -2828,6 +2900,34 @@ let COLOR1: string = "#80004AAF";
 let COLOR2: string = "#802787D9";
 let BLUR_STYLE_1: BlurStyle = BlurStyle.BACKGROUND_THIN;
 let BLUR_STYLE_2: BlurStyle = BlurStyle.BACKGROUND_THICK;
+let BLUR_STYLE_OPTION_1: BackgroundBlurStyleOptions = {
+  colorMode: ThemeColorMode.DARK,
+  adaptiveColor: AdaptiveColor.DEFAULT,
+  blurOptions: { grayscale: [20, 20] },
+  scale: 1
+};
+let BLUR_STYLE_OPTION_2: BackgroundBlurStyleOptions = {
+  colorMode: ThemeColorMode.LIGHT,
+  adaptiveColor: AdaptiveColor.AVERAGE,
+  blurOptions: { grayscale: [20, 20] },
+  scale: 1
+};
+let EFFECT_OPTION_1: BackgroundEffectOptions = {
+  radius: 20,
+  saturation: 10,
+  brightness: 0,
+  color: '#66FFFFFF',
+  adaptiveColor: AdaptiveColor.DEFAULT,
+  blurOptions: { grayscale: [0, 0] },
+};
+let EFFECT_OPTION_2: BackgroundEffectOptions = {
+  radius: 60,
+  saturation: 40,
+  brightness: 1,
+  color: '#661A1A1A',
+  adaptiveColor: AdaptiveColor.AVERAGE,
+  blurOptions: { grayscale: [20, 20] },
+};
 
 @Component
 struct BackComponent {
@@ -2860,6 +2960,7 @@ struct BackComponent {
 struct ColorAndBlur {
   @State useColor1: boolean = true;
   @State useBlur1: boolean = true;
+  @State useEffect1: boolean = true;
 
   build() {
     NavDestination() {
@@ -2885,6 +2986,15 @@ struct ColorAndBlur {
           }
           .width('100%')
           .layoutWeight(1)
+
+          Stack({ alignContent: Alignment.Center }) {
+            Button("switch effect")
+              .onClick(() => {
+                this.useEffect1 = !this.useEffect1;
+              })
+          }
+          .width('100%')
+          .layoutWeight(1)
         }
         .width('100%')
         .height('100%')
@@ -2894,10 +3004,37 @@ struct ColorAndBlur {
     .width('100%')
     .height('100%')
     // 开发者可以设置标题栏的背景颜色和背景模糊效果
-    .title("switch titlebar color and blur", {
+    .title("Destination Title", {
       backgroundColor: this.useColor1 ? COLOR1 : COLOR2,
       backgroundBlurStyle: this.useBlur1 ? BLUR_STYLE_1 : BLUR_STYLE_2,
-      barStyle: BarStyle.STACK
+      barStyle: BarStyle.STACK,
+      backgroundEffect: this.useEffect1 ? EFFECT_OPTION_1 : EFFECT_OPTION_2,
+    })
+    // 开发者可以设置菜单的背景颜色和背景模糊效果
+    .menus([
+      { value: "A" },
+      { value: "B" },
+      { value: "C" },
+      { value: "D" },
+    ], {
+      moreButtonOptions: {
+        backgroundEffect: this.useEffect1 ? EFFECT_OPTION_1 : EFFECT_OPTION_2,
+      }
+    })
+    // 开发者可以设置工具栏的背景颜色和背景模糊效果
+    .toolbarConfiguration([
+      { value: "A" },
+      { value: "B" },
+      { value: "C" },
+      { value: "D" },
+      { value: "E" },
+      { value: "F" }
+    ], {
+      backgroundEffect: this.useEffect1 ? EFFECT_OPTION_1 : EFFECT_OPTION_2,
+      // 开发者可以设置工具栏的菜单的背景颜色和背景模糊效果
+      moreButtonOptions: {
+        backgroundEffect: this.useEffect1 ? EFFECT_OPTION_1 : EFFECT_OPTION_2,
+      }
     })
   }
 }
@@ -2905,17 +3042,20 @@ struct ColorAndBlur {
 @Entry
 @Component
 struct Index {
-  private stack: NavPathStack = new NavPathStack();
+  @Provide('navPathStack') navPathStack: NavPathStack = new NavPathStack();
   @State useColor1: boolean = true;
   @State useBlur1: boolean = true;
+  @State useBlurOption1: boolean = true;
 
   @Builder
-  PageBuilder(name: string) {
-    ColorAndBlur()
+  PageBuilder(name: string, param?: Object) {
+    if (name === 'NavigationMenu') {
+      ColorAndBlur();
+    }
   }
 
   build() {
-    Navigation(this.stack) {
+    Navigation(this.navPathStack) {
       Stack({ alignContent: Alignment.Center }) {
         BackComponent()
           .width('100%')
@@ -2940,9 +3080,18 @@ struct Index {
           .layoutWeight(1)
 
           Stack({ alignContent: Alignment.Center }) {
+            Button("switch blurOption")
+              .onClick(() => {
+                this.useBlurOption1 = !this.useBlurOption1;
+              })
+          }
+          .width('100%')
+          .layoutWeight(1)
+
+          Stack({ alignContent: Alignment.Center }) {
             Button("push page")
               .onClick(() => {
-                this.stack.pushPath({ name: "page" })
+                this.navPathStack.pushPathByName('NavigationMenu', null);
               })
           }
           .width('100%')
@@ -2960,16 +3109,37 @@ struct Index {
     .title("NavTitle", {
       backgroundColor: this.useColor1 ? COLOR1 : COLOR2,
       backgroundBlurStyle: this.useBlur1 ? BLUR_STYLE_1 : BLUR_STYLE_2,
-      barStyle: BarStyle.STACK
+      barStyle: BarStyle.STACK,
+      backgroundBlurStyleOptions: this.useBlurOption1 ? BLUR_STYLE_OPTION_1 : BLUR_STYLE_OPTION_2,
+    })
+    // 开发者可以设置菜单的背景颜色和背景模糊效果
+    .menus([
+      { value: "A" },
+      { value: "B" },
+      { value: "C" },
+      { value: "D" },
+    ], {
+      moreButtonOptions: {
+        backgroundBlurStyle: this.useBlur1 ? BLUR_STYLE_1 : BLUR_STYLE_2,
+        backgroundBlurStyleOptions: this.useBlurOption1 ? BLUR_STYLE_OPTION_1 : BLUR_STYLE_OPTION_2,
+      }
     })
     // 开发者可以设置工具栏的背景颜色和背景模糊效果
     .toolbarConfiguration([
-      { value: "a" },
-      { value: "b" },
-      { value: "c" }
+      { value: "A" },
+      { value: "B" },
+      { value: "C" },
+      { value: "D" },
+      { value: "E" },
+      { value: "F" }
     ], {
       backgroundColor: this.useColor1 ? COLOR1 : COLOR2,
-      backgroundBlurStyle: this.useBlur1 ? BLUR_STYLE_1 : BLUR_STYLE_2
+      backgroundBlurStyle: this.useBlur1 ? BLUR_STYLE_1 : BLUR_STYLE_2,
+      // 开发者可以设置工具栏的菜单的背景颜色和背景模糊效果
+      moreButtonOptions: {
+        backgroundBlurStyle: this.useBlur1 ? BLUR_STYLE_1 : BLUR_STYLE_2,
+        backgroundBlurStyleOptions: this.useBlurOption1 ? BLUR_STYLE_OPTION_1 : BLUR_STYLE_OPTION_2,
+      }
     })
   }
 }

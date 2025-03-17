@@ -39,7 +39,7 @@ Defines an accessibility event.
 
 ## AccessibilityElement<sup>10+</sup>
 
-Defines accessibility elements. For details, see [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9).
+Indicates an accessibility element. For details, see [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9).
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 

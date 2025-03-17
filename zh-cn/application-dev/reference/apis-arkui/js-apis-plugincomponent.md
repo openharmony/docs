@@ -20,12 +20,12 @@ Plugin组件模板参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数    | 类型   | 必填 | 描述                        |
+| 参数    | 类型   | 必填 | 说明                        |
 | ------- | ------ | ---- | --------------------------- |
 | source  | string | 是   | 组件模板名。                |
 | ability | string | 是   | 提供方Ability的bundleName。 |
 
-## PluginComponentManager
+## pluginComponentManager
 
 插件组件管理器。
 
@@ -52,9 +52,7 @@ type KVObject = { [key: string]: number | string | boolean | [] | KVObject }
 
 ### PushParameters
 
-用于设置FA模型下使用PluginManager.Push方法时候的需要传递的参数。
-
-**模型约束：** 此接口仅适用于FA模型。
+使用PluginManager.Push方法时候的需要传递的参数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -70,9 +68,7 @@ type KVObject = { [key: string]: number | string | boolean | [] | KVObject }
 
 ### RequestParameters
 
-用于设置FA模型下使用PluginManager.Request方法时候的需要传递的参数。
-
-**模型约束：** 此接口仅适用于FA模型。
+使用PluginManager.Request方法时候的需要传递的参数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -122,9 +118,11 @@ type OnPushEventCallback = (source: Want, template: PluginComponentTemplate, dat
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数        | 类型                                       | 必填   | 说明                     |
+| 参数名        | 类型                                       | 必填   | 说明                     |
 | --------- | ---------------------------------------- | ---- | ---------------------- |
 | source    | [Want](../apis-ability-kit/js-apis-application-want.md)      | 是    | Push请求发送方相关信息。         |
 | template  | [PluginComponentTemplate](#plugincomponenttemplate) | 是    | Push请求发送方相关信息请求组件模板名称。 |
@@ -155,9 +153,11 @@ type OnRequestEventCallback = (source: Want, name: string, data: KVObject) => Re
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数        | 类型                                  | 必填   | 说明                |
+| 参数名        | 类型                                  | 必填   | 说明                |
 | --------- | ----------------------------------- | ---- | ----------------- |
 | source    | [Want](../apis-ability-kit/js-apis-application-want.md) | 是    | request请求发送方相关信息。 |
 | name      | string                              | 是    | 模板名称。             |
@@ -182,13 +182,11 @@ function onRequestListener(source: Want, name: string, data: pluginComponentMana
 }
 ```
 
-### push
+### pluginComponentManager.push
 
 push(param: PushParameters , callback: AsyncCallback&lt;void&gt;): void
 
 组件提供方向组件使用方主动发送组件与数据。
-
-**模型约束：** 此接口仅适用于FA模型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -226,13 +224,11 @@ pluginComponentManager.push(
 )
 ```
 
-### request
+### pluginComponentManager.request
 
 request(param: RequestParameters, callback: AsyncCallback&lt;RequestCallbackParameters&gt;): void
 
 组件使用方向组件提供方主动请求组件。
-
-**模型约束：** 此接口仅适用于FA模型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -272,7 +268,7 @@ pluginComponentManager.request(
 )
 ```
 
-### on
+### pluginComponentManager.on
 
 on(eventType: string, callback: OnPushEventCallback | OnRequestEventCallback ): void
 

@@ -171,7 +171,7 @@ async function setSessionInfo() {
   // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
   let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
 
-  // The player logic that triggers changes in the AVSession metadata and playback state information is omitted here.
+  // The player logic that triggers changes in the session metadata and playback state is omitted here.
   // Set the playback state to paused and set isFavorite to false.
   let playbackState: AVSessionManager.AVPlaybackState = {
     state:AVSessionManager.PlaybackState.PLAYBACK_STATE_PAUSE,

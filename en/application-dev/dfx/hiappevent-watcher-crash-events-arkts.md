@@ -111,7 +111,10 @@ The following describes how to subscribe to a crash event triggered by a button 
 
 5. In DevEco Studio, click the **Run** button to run the project. Then, click the **appCrash** button to trigger a crash event. After a crash occurs, the system uses different stack backtracking methods to generate crash logs based on the crash type (JsError or NativeCrash) and then invokes callback. The NativeCrash stack backtracking takes about 2s. In practice, the duration depends on the number of service threads and the duration of inter-process communication. JsError triggers in-process stack backtracking, and NativeCrash triggers out-of-process stack backtracking. Therefore, NativeCrash stack backtracking is more time-consuming than JsError stack backtracking. You can subscribe to crash events so that the stack backtracking result is asynchronously reported without blocking the current service.
 
-6. When the application is restarted, HiAppEvent reports the crash event to the registered watcher. You can view the following event information in the **Log** window.
+6. If the application does not capture the crash event, the application exits after the system crashes. When the application is restarted, HiAppEvent reports the crash event to the registered watcher.
+<br>If the application captures the crash event. HiAppEvent reports the event before the application exits in the following scenarios:
+<br>&emsp;&emsp;Scenario 1: The application does not exit during exception handling. For example, when [errorManger.on](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageronerror) is used to capture JsError, the application registers the NativeCrash signal processing function and does not exit.<br>&emsp;&emsp;Scenario 2: Exception handling takes a long time, and the application exit time is delayed.
+<br>After HiAppEvent reports the event, you can view the processing logs of the system event data in the **Log** window.
 
    ```text
    HiAppEvent onReceive: domain=OS

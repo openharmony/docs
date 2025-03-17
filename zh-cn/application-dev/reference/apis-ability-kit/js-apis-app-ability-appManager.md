@@ -497,7 +497,7 @@ try {
 
 off(type: 'applicationState', observerId: number): Promise\<void>
 
-取消注册应用程序状态观测器。
+取消注册应用程序状态观测器。使用Promise异步回调。
 
 **需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
 
@@ -575,6 +575,93 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`unregisterApplicationStateObserver fail, err: ${JSON.stringify(err)}`);
   });
+} catch (paramError) {
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
+}
+```
+
+## appManager.off('applicationState')<sup>15+</sup>
+
+off(type: 'applicationState', observerId: number, callback: AsyncCallback\<void>): void
+
+取消注册应用程序状态观测器。使用callback异步回调。
+
+**需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 调用接口类型，固定填'applicationState'字符串。 |
+| observerId | number | 是 | 表示观测器的编号代码。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数。当取消注册应用程序状态观测器成功，err为undefined，否则为错误对象。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000050 | Internal error. |
+
+**示例：**
+
+```ts
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let observerId = 0;
+
+// 1.注册应用状态监听器
+let applicationStateObserver: appManager.ApplicationStateObserver = {
+  onForegroundApplicationChanged(appStateData) {
+    console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
+  },
+  onAbilityStateChanged(abilityStateData) {
+    console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
+  },
+  onProcessCreated(processData) {
+    console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
+  },
+  onProcessDied(processData) {
+    console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
+  },
+  onProcessStateChanged(processData) {
+    console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
+  },
+  onAppStarted(appStateData) {
+    console.log(`[appManager] onAppStarted: ${JSON.stringify(appStateData)}`);
+  },
+  onAppStopped(appStateData) {
+    console.log(`[appManager] onAppStopped: ${JSON.stringify(appStateData)}`);
+  }
+};
+let bundleNameList = ['bundleName1', 'bundleName2'];
+
+try {
+  observerId = appManager.on('applicationState', applicationStateObserver, bundleNameList);
+} catch (paramError) {
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
+}
+
+// 2.注销应用状态监听器
+try {
+  function offCallback((err: BusinessError)  => {
+    if (err) {
+      console.error(`appmanager.off failed, code: ${err.code}, msg: ${err.message}`);
+    } else {
+      console.info(`appmanager.off success.`);
+    }
+  })
+  appManager.off('applicationState', observerId, offCallback);
 } catch (paramError) {
   let code = (paramError as BusinessError).code;
   let message = (paramError as BusinessError).message;

@@ -60,7 +60,7 @@ Represents the time of the last incremental backup.
 | Name               | Type  | Mandatory| Description                                                                                               |
 | ------------------- | ------ | ---- | --------------------------------------------------------------------------------------------------- |
 | bundleName          | string | Yes  | Application name, which can be obtained from [bundleManager.BundleInfo](../apis-ability-kit/js-apis-bundleManager-bundleInfo.md).|
-| lastIncrementalTime | number | Yes  | Time when the last incremental backup was performed.                                                                             |
+| lastIncrementalTime | number | Yes  | Time when the last incremental backup was performed.                                                                          |
 
 ## BackupParams<sup>12+</sup>
 
@@ -95,7 +95,7 @@ Represents an incremental backup object, which inherits from [IncrementalBackupT
 ## File
 
 Defines a file object, which
-inherits from [FileMeta](#filemeta) and [FileData](#filedata).
+inherits [FileMeta](#filemeta) and [FileData](#filedata).
 
 > **NOTE**
 >
@@ -120,6 +120,14 @@ Provides callbacks to be used in the backup or restore process. The backup servi
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
+### Attributes
+
+**System capability**: SystemCapability.FileManagement.StorageService.Backup
+
+| Name| Type| Read-Only| Optional| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| onBackupSizeReport<sup>16+</sup>  | [OnBackupSizeReport](#onbackupsizereport16) | No| Yes|  Size of the data to be backed up.|
+
 ### onFileReady
 
 onFileReady : AsyncCallback&lt;File&gt;
@@ -128,7 +136,7 @@ Called when the file is ready for sending to the client. If the callback is invo
 
 > **NOTE**
 >
-> The **File** returned by **AsyncCallback** is the file.backup.[File](#file). The returned file belongs to the backup service. Once the file is closed, the backup service shall clear the resources used by the file at the proper time. However, the client must close the file handle first.
+> The **File** returned by **AsyncCallback** is the file.backup.[File](#file). The returned file belongs to the backup service. Once the file is closed, the backup service shall clear the resources used by the file. However, the client must close the file handle first.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
@@ -338,7 +346,7 @@ Called when the backup or restore is complete. If the callback is invoked succes
 
 | Name    | Type  | Mandatory| Description                           |
 | ---------- | ------ | ---- | ------------------------------- |
-| bundleName | string | Yes  | Bundle name.                       |
+| bundleName | string | Yes  | Bundle name of the application.                       |
 | result     | string | Yes  | Application backup/restore information returned in JSON format.|
 
 **Example**
@@ -364,7 +372,7 @@ Called to report the backup or restore progress information. If the callback is 
 
 | Name    | Type  | Mandatory| Description                           |
 | ---------- | ------ | ---- | ------------------------------- |
-| bundleName | string | Yes  | Bundle name.                       |
+| bundleName | string | Yes  | Bundle name of the application.                       |
 | process     | string | Yes  | Backup/restore progress information in JSON format.|
 
 **Example**
@@ -376,6 +384,54 @@ Called to report the backup or restore progress information. If the callback is 
     console.info('onProcess bundleName : ' + bundleName);
     console.info('onProcess processInfo : ' + process);
   }
+  ```
+
+## backup.getBackupVersion<sup>16+</sup>
+
+getBackupVersion(): string;
+
+Obtain the backup or restore version information.
+
+**Required permissions**: ohos.permission.BACKUP
+
+**System capability**: SystemCapability.FileManagement.StorageService.Backup
+
+**Return value**
+
+| Type               | Description                   |
+| ------------------- | ----------------------- |
+| string | Returns the backup or restore version information.<br>The version number is in the API version format. For example, the version number is 16.0 if the internal version is API16.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import backup from '@ohos.file.backup';
+
+  function getBackupVersion() {
+    try {
+      let result = backup.getBackupVersion();
+      console.info('getBackupVersion success, result: ' + result);
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error('getBackupVersion failed with err: ' + JSON.stringify(err));
+    }
+  }
+  ```
+
+**Content example:**
+
+  ```json
+  { "backupVersion" : "16.0" }
   ```
 
 ## backup.getLocalCapabilities
@@ -432,6 +488,7 @@ The capability file can be obtained by using [fs.stat](js-apis-file-fs.md#fsstat
 
  ```json
  {
+  "backupVersion" : "16.0",
   "bundleInfos" :[{
     "allToBackup" : true,
     "extensionName" : "BackupExtensionAbility",
@@ -460,7 +517,7 @@ Obtains a JSON file that describes local capabilities. This API uses a promise t
 
 | Type                                | Description                           |
 | ------------------------------------ | ------------------------------- |
-| Promise&lt;[FileData](#filedata)&gt; | Promise used to return the **FileData** object obtained.|
+| Promise&lt;[FileData](#filedata)&gt; | Promise **FileData** object obtained.|
 
 **Error codes**
 
@@ -497,6 +554,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
  ```json
  {
+  "backupVersion" : "16.0",
   "bundleInfos" :[{
     "allToBackup" : true,
     "extensionName" : "BackupExtensionAbility",
@@ -530,7 +588,7 @@ Obtains local capabilities. The local capabilities of an application are queried
 
 | Type                                | Description                           |
 | ------------------------------------ | ------------------------------- |
-| Promise&lt;[FileData](#filedata)&gt; | Promise used to return the **FileData** object obtained.|
+| Promise&lt;[FileData](#filedata)&gt; | Promise **FileData** object obtained.|
 
 **Error codes**
 
@@ -647,7 +705,7 @@ Called after **onBundleBegin** and before **onBundleEnd** to set the backup or r
 
 | Type               | Description                   |
 | ------------------- | ----------------------- |
-| boolean | A Boolean value indicating whether the backup or restore timeout is set successfully.|
+| boolean | A Boolean value indicating whether the backup or restore timeout is set successfully. The value **true** indicates that the setting is successful, and the value **false** indicates that the setting fails.|
 
 **Error codes**
 
@@ -661,7 +719,7 @@ Called after **onBundleBegin** and before **onBundleEnd** to set the backup or r
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import backup form '@ohos.file.backup';
+  import backup from '@ohos.file.backup';
 
   function updateTimer() {
     try {
@@ -684,7 +742,7 @@ Called after **onBundleBegin** and before **onBundleEnd** to set the backup or r
 
 updateSendRate(bundleName: string, sendRate: number): boolean;
 
-Called after **onBundleBegin** and before **onBundleEnd** to update the send rate.
+Called after **onBundleBegin** and before **onBundleEnd** to set the backup or restore timer.
 
 **Required permissions**: ohos.permission.BACKUP
 
@@ -695,13 +753,13 @@ Called after **onBundleBegin** and before **onBundleEnd** to update the send rat
 | Name         | Type    | Mandatory| Description                      |
 | --------------- | -------- | ---- | -------------------------- |
 | bundleName|string | Yes  | Name of the target application.
-| sendRate | number | Yes  | Send rate to set, in file descriptors (FDs) per second.<br>Value range: 0 to 800<br>Default value: 60 FDs/second<br>The value **0** means to stop transmission. If the value is greater than **800**, the send rate is 800 FDs/second.|
+| sendRate | number | Yes  | Send rate to set, in file descriptors (FDs) per second.<br>Value range: 0 to 800<br>Default value: 60 FDs/second <br>The value **0** means to stop transmission. If the value is greater than **800**, the send rate is 800 FDs/second.|
 
 **Return value**
 
 | Type               | Description                   |
 | ------------------- | ----------------------- |
-| boolean | A Boolean value indicating whether the send rate is set successfully.|
+| boolean | A Boolean value indicating whether the send rate is set successfully. The value **true** indicates that the setting is successful, and the value **false** indicates that the setting fails.|
 
 **Error codes**
 
@@ -715,7 +773,7 @@ Called after **onBundleBegin** and before **onBundleEnd** to update the send rat
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import backup form '@ohos.file.backup';
+  import backup from '@ohos.file.backup';
 
   function updateSendRate() {
     try {
@@ -731,6 +789,29 @@ Called after **onBundleBegin** and before **onBundleEnd** to update the send rat
       let err: BusinessError = error as BusinessError;
       console.error('updateSendRate failed with err: ' + JSON.stringify(err));
     }
+  }
+  ```
+
+## OnBackupSizeReport<sup>16+</sup>
+
+type OnBackupSizeReport = (reportInfo: string) => void;
+
+Called to return the size of the application data to be backed up.
+
+**System capability**: SystemCapability.FileManagement.StorageService.Backup
+
+| Name  | Type                                 | Mandatory| Description                |
+| -------- | ------------------------------------- | ---- | -------------------- |
+| reportInfo | string | Yes  | Called to return the size of the application data to be backed up.|
+
+**Example**
+
+  ```ts
+  import backup from '@ohos.file.backup';
+
+  onBackupSizeReport: (OnBackupSizeReport) => {
+    console.info('dataSizeCallback success');
+    console.info('dataSizeCallback report : ' + OnBackupSizeReport);
   }
   ```
 
@@ -802,6 +883,301 @@ A constructor used to create a **SessionBackup** instance.
   };
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // Create a backup process.
   ```
+
+### getLocalCapabilities<sup>16+</sup>
+
+getLocalCapabilities(): Promise&lt;FileData&gt;
+
+Obtains a JSON file that describes local capabilities in the backup service. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.BACKUP
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.StorageService.Backup
+
+**Return value**
+
+| Type                                | Description                           |
+| ------------------------------------ | ------------------------------- |
+| Promise&lt;[FileData](#filedata)&gt; | Promise **FileData** object obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](errorcode-filemanagement.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken |
+| 202      | Permission verification failed, application which is not a system application uses system API |
+| 13600001 | IPC error                                                    |
+| 13900001 | Operation not permitted                                      |
+| 13900020 | Invalid argument                                             |
+| 13900042 | Internal error                                                |
+
+**Example**
+
+```ts
+  import fs from '@ohos.file.fs';
+  import { BusinessError } from '@ohos.base';
+
+  interface test { // Parse the capability file.
+    bundleInfos: [];
+    deviceType: string;
+    systemFullName: string;
+  }
+
+  interface BundleInfo { // Obtain the local capability information of an application.
+    name: string;
+    appIndex: number;
+    versionCode: number;
+    versionName: string;
+    spaceOccupied: number;
+    allToBackup: boolean;
+    increSpaceOccupied?: number;
+    fullBackupOnly: boolean;
+    extensionName: string;
+    restoreDeps: string;
+    supportScene: string;
+    extraInfo: object;
+  }
+
+  let generalCallbacks: backup.GeneralCallbacks = { // Define general callbacks to be used in the backup or restore process.
+    onFileReady: (err: BusinessError, file: backup.File) => {
+      if (err) {
+        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onFileReady success');
+      fs.closeSync(file.fd);
+    },
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        return;
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        return;
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err: BusinessError) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    },
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+    }
+  };
+  let sessionBackup = new backup.SessionBackup(generalCallbacks); // Create a backup process.
+  let basePath = '/data/storage/el2/base/backup'; 
+  let path = basePath + '/localCapabilities.json'; // Local path for storing capability files.
+  try {
+    let fileData = await sessionBackup.getLocalCapabilities(); //: obtain the local capability file.
+    if (fileData) {
+      console.info('getLocalCapabilities success');
+      console.info('fileData info:' + fileData.fd);
+      if (!fs.accessSync(basePath)) {
+        fs.mkdirSync(basePath);
+        console.info('creat success' + basePath);
+      }
+      fs.copyFileSync(fileData.fd, path); // Save the obtained local capability file to the local host.
+      fs.closeSync(fileData.fd);
+    }
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
+  }
+  let data = await fs.readTextSync(path, 'utf8'); // Obtain information from the local capability file.
+  try {
+    const jsonsObj: test | null = JSON.parse(data); // Parse the local capability file and print some information.
+    if (jsonsObj) {
+      const infos:BundleInfo [] = jsonsObj.bundleInfos;
+      for (let i = 0; i < infos.length; i++) {
+        console.info('name: ' + infos[i].name);
+        console.info('appIndex: ' + infos[i].appIndex);
+        console.info('allToBackup: ' + infos[i].allToBackup);
+      }
+      const systemFullName: string = jsonsObj.systemFullName;
+      console.info('systemFullName: ' + systemFullName);
+      const deviceType: string = jsonsObj.deviceType;
+      console.info('deviceType: ' + deviceType);
+    }
+  } catch (error) {
+    console.error('parse failed with err: ' + JSON.stringify(error));
+  }
+```
+
+The capability file can be obtained by using [fs.stat](js-apis-file-fs.md#fsstat-1) of the [@ohos.file.fs](js-apis-file-fs.md) module. The following is an example of the capability file.
+
+ ```json
+ {
+  "backupVersion" : "16.0",
+  "bundleInfos" :[{
+    "allToBackup" : true,
+    "extensionName" : "BackupExtensionAbility",
+    "name" : "com.example.hiworld",
+    "needToInstall" : false,
+    "spaceOccupied" : 0,
+    "versionCode" : 1000000,
+    "versionName" : "1.0.0"
+    }],
+  "deviceType" : "default",
+  "systemFullName" : "OpenHarmony-4.0.0.0"
+ }
+ ```
+
+### getBackupDataSize<sup>16+</sup>
+
+getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime\>): Promise&lt;void&gt;
+
+Obtains the amount of data to be backed up. This method is called before **appendBundles**. The scanning result is returned at a fixed interval of 5 seconds by calling the general callback **onBackupSizeReport** asynchronously until all application data in the datalist is returned.
+
+
+**Required permissions**: ohos.permission.BACKUP
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.StorageService.Backup
+
+**Parameters**
+
+| Name       | Type                                                    | Mandatory| Description                                                        |
+| ------------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| isPreciseScan | boolean                                                  | Yes  | Whether to perform accurate scanning. Inaccurate scanning is fast and is used to estimate the data size. Accurate scanning is slow and returns more accurate result. However, the data to be backed up may change. Therefore, the precise scanning result may not match the actual backup data size.|
+| dataList      | Array<[IncrementalBackupTime](#incrementalbackuptime12)> | Yes  | Backup application list, which describes the application whose data size is to be obtained and the last backup time. For a full backup, set this parameter to **0**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](errorcode-filemanagement.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken |
+| 202      | Permission verification failed, application which is not a system application uses system API |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild |
+| 13600001 | IPC error                                                    |
+| 13900001 | Operation not permitted                                      |
+| 13900020 | Invalid argument                                             |
+| 13900042 | Internal error                                                |
+
+**Example**
+
+```ts
+  import fs from '@ohos.file.fs';
+  import { BusinessError } from '@ohos.base';
+
+  interface scanedInfos { // Parse the scanning result.
+    scaned: [];
+    scanning: string;
+  }
+
+  interface ScanedInfo { // Parse the scanning result of an application.
+    bundleName: string;
+    dataSize: number;
+    incDataSize: number;
+  }
+
+  let generalCallbacks: backup.GeneralCallbacks = { // Define general callbacks to be used in the backup or restore process.
+    onFileReady: (err: BusinessError, file: backup.File) => {
+      if (err) {
+        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onFileReady success');
+      fs.closeSync(file.fd);
+    },
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        return;
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        return;
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err: BusinessError) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    },
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+    },
+    onBackupSizeReport: (OnBackupSizeReport) => { // The callback function is used together with getBackupDataSize to return the obtained application data size and the bundle name of the application that is obtaining the data size.
+      console.info('dataSizeCallback success');
+      const jsonObj: scanedInfos | null = JSON.parse(OnBackupSizeReport); // Parse and print the returned information.
+      if (jsonObj) {
+        const infos: ScanedInfo [] = jsonObj.scaned;
+        for (let i = 0; i < infos.length; i++) {
+          console.info('name: ' + infos[i].bundleName);
+          console.info('dataSize: ' + infos[i].dataSize);
+          console.info('incDataSize: ' + infos[i].incDataSize);
+        }
+        const scanning: string = jsonObj.scanning;
+        console.info('scanning: ' + scanning);
+      }
+    }
+  };
+
+  let sessionBackup = new backup.SessionBackup(generalCallbacks); // Create a backup process.
+  let backupApps: backup.IncrementalBackupTime[] = [{
+    bundleName: "com.example.hiworld",
+    lastIncrementalTime: 0 // The caller performs incremental backup based on the last recorded time. The value is 0 for full backup.
+  }];
+  try {
+    sessionBackup.getBackupDataSize(false, backupApps); // Obtain the data to be backed up of a specified application in backupApps. The value false indicates that inaccurate scanning is used.
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('getBackupDataSize failed with err: ' + JSON.stringify(err));
+  }
+```
+
+**Example of a JSON string returned asynchronously:**
+
+```json
+{
+ "scaned" :[ // Scanned application. The result will not be returned in the next callback.
+     {
+         "name": "com.example.hiworld," // Application name.
+         "dataSize": 1006060, // Data size.
+         "incDataSize":-1 // Incremental data size. The value is -1 for full scan and inaccurate scan, and is the actual incremental data size for incremental accurate scan.
+     },
+     {
+         "name": "com.example.myAPP",
+         "dataSize": 5000027,
+         "incDataSize": -1
+     }
+ ],
+ "scanning" :"com.example.smartAPP" // Application that is being scanned. This field is empty when the last result is returned.
+}
+```
 
 ### appendBundles
 
@@ -1130,6 +1506,93 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   }
   ```
 
+### cancel<sup>16+</sup>
+
+cancel(bundleName: string): number;
+
+Called to cancel the backup of an application when data exceptions occur.
+
+**Required permissions**: ohos.permission.BACKUP
+
+**System capability**: SystemCapability.FileManagement.StorageService.Backup
+
+**Parameters**
+
+| Name         | Type    | Mandatory| Description                      |
+| --------------- | -------- | ---- | -------------------------- |
+| bundleName | string | Yes  | Application name.|
+
+**Return value**
+
+| Type               | Description                   |
+| ------------------- | ----------------------- |
+| number | Cancelled.<br>**0**: The task is successfully cancelled.<br> **13500011**: The task to be cancelled is not started.<br> **13500012**: The task to be cancelled does not exist.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+
+| ID| Error Message                                                                                      |
+| -------- | ---------------------------------------------------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
+
+**Example**
+
+  ```ts
+  import fs from '@ohos.file.fs';
+  import { BusinessError } from '@ohos.base';
+  import backup from '@ohos.file.backup';
+
+  sessionBackup?: backup.SessionBackup;
+
+  let generalCallbacks: backup.GeneralCallbacks = {
+    onFileReady: (err: BusinessError, file: backup.File) => {
+      if (err) {
+        // If the FD fails to be passed, call the cancel API to cancel the backup task of the application.
+        let result = this.sessionBackup.cancel("com.example.myapplication");
+        console.info('cancel result:' + result);
+        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onFileReady success');
+      fs.closeSync(file.fd);
+    },
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err: BusinessError) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    },
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+    }
+  };
+  this.sessionBackup = new backup.SessionBackup(generalCallbacks); // Backup creation process.
+  ```
+
 ## SessionRestore
 
 Provides an object to support the application restore process. Before using the APIs of this class, you need to create a **SessionRestore** instance.
@@ -1198,6 +1661,162 @@ A constructor used to create a **SessionRestore** instance.
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
   ```
+
+### getLocalCapabilities<sup>16+</sup>
+
+getLocalCapabilities(): Promise&lt;FileData&gt;
+
+Called to obtain a JSON file that describes local capabilities during restore service. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.BACKUP
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.StorageService.Backup
+
+**Return value**
+
+| Type                                | Description                           |
+| ------------------------------------ | ------------------------------- |
+| Promise&lt;[FileData](#filedata)&gt; | Promise **FileData** object obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](errorcode-filemanagement.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken |
+| 202      | Permission verification failed, application which is not a system application uses system API |
+| 13600001 | IPC error                                                    |
+| 13900001 | Operation not permitted                                      |
+| 13900020 | Invalid argument                                             |
+| 13900042 | Internal error                                                |
+
+**Example**
+
+```ts
+  import fs from '@ohos.file.fs';
+  import { BusinessError } from '@ohos.base';
+
+  interface test { // Parse the capability file.
+    bundleInfos: [];
+    deviceType: string;
+    systemFullName: string;
+  }
+
+  interface BundleInfo { // Obtain the local capability information of an application.
+    name: string;
+    appIndex: number;
+    versionCode: number;
+    versionName: string;
+    spaceOccupied: number;
+    allToBackup: boolean;
+    increSpaceOccupied?: number;
+    fullBackupOnly: boolean;
+    extensionName: string;
+    restoreDeps: string;
+    supportScene: string;
+    extraInfo: object;
+  }
+
+  let generalCallbacks: backup.GeneralCallbacks = { // Define general callbacks to be used in the backup or restore process.
+    onFileReady: (err: BusinessError, file: backup.File) => {
+      if (err) {
+        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onFileReady success');
+      fs.closeSync(file.fd);
+    },
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        return;
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        return;
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err: BusinessError) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    },
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+    }
+  };
+  let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
+  let basePath = '/data/storage/el2/base/backup';
+  let path = basePath + '/localCapabilities.json'; // Local path for storing capability files.
+  try {
+    let fileData = await sessionRestore.getLocalCapabilities(); //: obtain the local capability file.
+    if (fileData) {
+      console.info('getLocalCapabilities success');
+      console.info('fileData info:' + fileData.fd);
+      if (!fs.accessSync(basePath)) {
+        fs.mkdirSync(basePath);
+        console.info('creat success' + basePath);
+      }
+      fs.copyFileSync(fileData.fd, path); // Save the obtained local capability file to the local host.
+      fs.closeSync(fileData.fd);
+    }
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
+  }
+  let data = await fs.readTextSync(path, 'utf8'); // Obtain information from the local capability file.
+  try {
+    const jsonsObj: test | null = JSON.parse(data); // Parse the local capability file and print some information.
+    if (jsonsObj) {
+      const infos:BundleInfo [] = jsonsObj.bundleInfos;
+      for (let i = 0; i < infos.length; i++) {
+        console.info('name: ' + infos[i].name);
+        console.info('appIndex: ' + infos[i].appIndex);
+        console.info('allToBackup: ' + infos[i].allToBackup);
+      }
+      const systemFullName: string = jsonsObj.systemFullName;
+      console.info('systemFullName: ' + systemFullName);
+      const deviceType: string = jsonsObj.deviceType;
+      console.info('deviceType: ' + deviceType);
+    }
+  } catch (error) {
+    console.error('parse failed with err: ' + JSON.stringify(error));
+  }
+```
+
+The capability file can be obtained by using [fs.stat](js-apis-file-fs.md#fsstat-1) of the [@ohos.file.fs](js-apis-file-fs.md) module. The following is an example of the capability file.
+
+ ```json
+ {
+  "backupVersion" : "16.0",
+  "bundleInfos" :[{
+    "allToBackup" : true,
+    "extensionName" : "BackupExtensionAbility",
+    "name" : "com.example.hiworld",
+    "needToInstall" : false,
+    "spaceOccupied" : 0,
+    "versionCode" : 1000000,
+    "versionName" : "1.0.0"
+    }],
+  "deviceType" : "default",
+  "systemFullName" : "OpenHarmony-4.0.0.0"
+ }
+ ```
 
 ### appendBundles
 
@@ -1459,6 +2078,7 @@ Obtains the handle of the shared file from the service. This API uses an asynchr
 > - Before using **getFileHandle**, you need to obtain a **SessionRestore** instance and add the applications with data to be restored by using **appendBundles**.
 > - You can use **onFileReady** to obtain the file handle. When file operations are completed at the client, you need to use **publishFile** to publish the file.
 > - **getFileHandle** can be called multiple times based on the number of files to be restored.
+> - File to be restored cannot be a relative path (**../**) or soft link.
 
 **Required permissions**: ohos.permission.BACKUP
 
@@ -1553,6 +2173,7 @@ Obtains the handle of the shared file from the service. This API uses a promise 
 > - Before using **getFileHandle**, you need to obtain a **SessionRestore** instance and add the applications with data to be restored by using **appendBundles**.
 > - You can use **onFileReady** to obtain the file handle. When file operations are completed at the client, you need to use **publishFile** to publish the file.
 > - **getFileHandle** can be called multiple times based on the number of files to be restored.
+> - File to be restored cannot be a relative path (**../**) or soft link.
 
 **Required permissions**: ohos.permission.BACKUP
 
@@ -1971,6 +2592,93 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   console.info('release success');
   ```
 
+### cancel<sup>16+</sup>
+
+cancel(bundleName: string): number;
+
+Called to cancel the restoration of an application when data exceptions occur.
+
+**Required permissions**: ohos.permission.BACKUP
+
+**System capability**: SystemCapability.FileManagement.StorageService.Backup
+
+**Parameters**
+
+| Name         | Type    | Mandatory| Description                      |
+| --------------- | -------- | ---- | -------------------------- |
+| bundleName | string | Yes  | Application name.|
+
+**Return value**
+
+| Type               | Description                   |
+| ------------------- | ----------------------- |
+| number | Cancelled.<br>**0**: The task is successfully cancelled.<br> **13500011**: The task to be cancelled is not started.<br> **13500012**: The task to be cancelled does not exist.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+
+| ID| Error Message                                                                                      |
+| -------- | ---------------------------------------------------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
+
+**Example**
+
+  ```ts
+  import fs from '@ohos.file.fs';
+  import { BusinessError } from '@ohos.base';
+  import backup from '@ohos.file.backup';
+
+  sessionRestore?: backup.SessionRestore;
+
+  let generalCallbacks: backup.GeneralCallbacks = {
+    onFileReady: (err: BusinessError, file: backup.File) => {
+      if (err) {
+        // If the FD fails to be passed, call the cancel API to cancel the restoration task of the application.
+        let result = this.sessionRestore.cancel("com.example.myapplication");
+        console.info('cancel result:' + result);
+        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onFileReady success');
+      fs.closeSync(file.fd);
+    },
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err: BusinessError) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    },
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+    }
+  };
+  this.sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
+  ```
+
 ## IncrementalBackupSession<sup>12+</sup>
 
 An object used to implement the incremental backup of applications. Before using the APIs of this class, you need to create an **IncrementalBackupSession** instance.
@@ -2049,6 +2757,301 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   };
   let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // Create a session for an incremental backup.
   ```
+
+### getLocalCapabilities<sup>16+</sup>
+
+getLocalCapabilities(): Promise&lt;FileData&gt;
+
+Obtains a JSON file that describes local capabilities in the incremental backup service. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.BACKUP
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.StorageService.Backup
+
+**Return value**
+
+| Type                                | Description                           |
+| ------------------------------------ | ------------------------------- |
+| Promise&lt;[FileData](#filedata)&gt; | Promise **FileData** object obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](errorcode-filemanagement.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken |
+| 202      | Permission verification failed, application which is not a system application uses system API |
+| 13600001 | IPC error                                                    |
+| 13900001 | Operation not permitted                                      |
+| 13900020 | Invalid argument                                             |
+| 13900042 | Internal error                                                |
+
+**Example**
+
+```ts
+  import fs from '@ohos.file.fs';
+  import { BusinessError } from '@ohos.base';
+
+  interface test { // Parse the capability file.
+    bundleInfos: [];
+    deviceType: string;
+    systemFullName: string;
+  }
+
+  interface BundleInfo { // Obtain the local capability information of an application.
+    name: string;
+    appIndex: number;
+    versionCode: number;
+    versionName: string;
+    spaceOccupied: number;
+    allToBackup: boolean;
+    increSpaceOccupied?: number;
+    fullBackupOnly: boolean;
+    extensionName: string;
+    restoreDeps: string;
+    supportScene: string;
+    extraInfo: object;
+  }
+
+  let generalCallbacks: backup.GeneralCallbacks = { // Define general callbacks to be used in the backup or restore process.
+    onFileReady: (err: BusinessError, file: backup.File) => {
+      if (err) {
+        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onFileReady success');
+      fs.closeSync(file.fd);
+    },
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        return;
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        return;
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err: BusinessError) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    },
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+    }
+  };
+  let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // Create a session for an incremental backup.
+  let basePath = '/data/storage/el2/base/backup';
+  let path = basePath + '/localCapabilities.json'; // Local path for storing capability files.
+  try {
+    let fileData = await incrementalBackupSession.getLocalCapabilities(); // Obtain the local capability file.
+    if (fileData) {
+      console.info('getLocalCapabilities success');
+      console.info('fileData info:' + fileData.fd);
+      if (!fs.accessSync(basePath)) {
+        fs.mkdirSync(basePath);
+        console.info('creat success' + basePath);
+      }
+      fs.copyFileSync (fileData.fd, path); // Save the obtained local capability file to the local host.
+      fs.closeSync(fileData.fd);
+    }
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
+  }
+  let data = await fs.readTextSync(path, 'utf8'); // Obtain information from the local capability file.
+  try {
+    const jsonsObj: test | null = JSON.parse(data); // Parse the local capability file and print some information.
+    if (jsonsObj) {
+      const infos:BundleInfo [] = jsonsObj.bundleInfos;
+      for (let i = 0; i < infos.length; i++) {
+        console.info('name: ' + infos[i].name);
+        console.info('appIndex: ' + infos[i].appIndex);
+        console.info('allToBackup: ' + infos[i].allToBackup);
+      }
+      const systemFullName: string = jsonsObj.systemFullName;
+      console.info('systemFullName: ' + systemFullName);
+      const deviceType: string = jsonsObj.deviceType;
+      console.info('deviceType: ' + deviceType);
+    }
+  } catch (error) {
+    console.error('parse failed with err: ' + JSON.stringify(error));
+  }
+```
+
+The capability file can be obtained by using [fs.stat](js-apis-file-fs.md#fsstat-1) of the [@ohos.file.fs](js-apis-file-fs.md) module. The following is an example of the capability file.
+
+ ```json
+ {
+  "backupVersion" : "16.0",
+  "bundleInfos" :[{
+    "allToBackup" : true,
+    "extensionName" : "BackupExtensionAbility",
+    "name" : "com.example.hiworld",
+    "needToInstall" : false,
+    "spaceOccupied" : 0,
+    "versionCode" : 1000000,
+    "versionName" : "1.0.0"
+    }],
+  "deviceType" : "default",
+  "systemFullName" : "OpenHarmony-4.0.0.0"
+ }
+ ```
+
+### getBackupDataSize<sup>16+</sup>
+
+getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime\>): Promise&lt;void&gt;
+
+Called to obtain the amount of data to be backed up. This method is called before **appendBundles**. The scanning result is returned at a fixed interval of 5 seconds by calling the general callback **onBackupSizeReport** asynchronously until all application data in the datalist is returned.
+
+**Required permissions**: ohos.permission.BACKUP
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.StorageService.Backup
+
+**Parameters**
+
+| Name       | Type                                                    | Mandatory| Description                                                        |
+| ------------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| isPreciseScan | boolean                                                  | Yes  | Whether to perform accurate scanning. Inaccurate scanning is fast and is used to estimate the data size. Accurate scanning is slow and returns more acurate result. However, the data to be backed up may change. Therefore, the accurate scanning result may not match the actual backup data size.|
+| dataList      | Array<[IncrementalBackupTime](#incrementalbackuptime12)> | Yes  | Backup application list, which describes the application whose data size is to be obtained and the last backup time. For a full backup, set this parameter to **0**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](errorcode-filemanagement.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken |
+| 202      | Permission verification failed, application which is not a system application uses system API |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild |
+| 13600001 | IPC error                                                    |
+| 13900001 | Operation not permitted                                      |
+| 13900020 | Invalid argument                                             |
+| 13900042 | Internal error                                                |
+
+**Example**
+
+```ts
+  import fs from '@ohos.file.fs';
+  import { BusinessError } from '@ohos.base';
+
+  interface scanedInfos { // Parse the scanning result.
+    scaned: [];
+    scanning: string;
+  }
+
+  interface ScanedInfo { // Parse the scanning result of an application.
+    bundleName: string;
+    dataSize: number;
+    incDataSize: number;
+  }
+
+  let generalCallbacks: backup.GeneralCallbacks = {
+    onFileReady: (err: BusinessError, file: backup.File) => { // Define the universal callbacks to be used in the backup or restore process.
+      if (err) {
+        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onFileReady success');
+      fs.closeSync(file.fd);
+    },
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        return;
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        return;
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err: BusinessError) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    },
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+    },
+    onBackupSizeReport: (OnBackupSizeReport) => { // The callback function is used together with getBackupDataSize to return the obtained application data size and the bundle name of the application that is obtaining the data size.
+      console.info('dataSizeCallback success');
+      const jsonObj: scanedInfos | null = JSON.parse(OnBackupSizeReport); // Parse and print the returned information.
+      if (jsonObj) {
+        const infos: ScanedInfo [] = jsonObj.scaned;
+        for (let i = 0; i < infos.length; i++) {
+          console.info('name: ' + infos[i].bundleName);
+          console.info('dataSize: ' + infos[i].dataSize);
+          console.info('incDataSize: ' + infos[i].incDataSize);
+        }
+        const scanning: string = jsonObj.scanning;
+        console.info('scanning: ' + scanning);
+      }
+    }
+  };
+
+  let incrementalBackupSession = new backup.incrementalBackupSession(generalCallbacks); // Create a session for an incremental backup.
+
+  let backupApps: backup.IncrementalBackupTime[] = [{
+    bundleName: "com.example.hiworld",
+    lastIncrementalTime: 1700107870 // Time of the last incremental backup.
+  }];
+  try {
+    incrementalBackupSession.getBackupDataSize(true, backupApps); // Obtain the amount of specified application data to be backed up in backupApps. The value true indicates that accurate scanning is used.
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('getBackupDataSize failed with err: ' + JSON.stringify(err));
+  }
+```
+
+**Example of a JSON string returned asynchronously:**
+
+```json
+{
+ "scaned" :[ // Scanned application. The result will not be returned in the next callback.
+     {
+         "name": "com.example.hiworld", // Application name.
+         "dataSize": 1006060, // Data size.
+         "incDataSize": 50800 // Incremental data size.
+     },
+     {
+         "name": "com.example.myAPP",
+         "dataSize": 5000027,
+         "incDataSize": 232344
+     }
+ ],
+ "scanning" :"com.example.smartAPP" // Application that is being scanned. This field is empty when the last result is returned.
+}
+```
 
 ### appendBundles<sup>12+</sup>
 
@@ -2149,6 +3152,146 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   }); // Appends the applications that require incremental backup.
   ```
 
+### appendBundles<sup>12+</sup>
+
+appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt, infos: string[]): Promise&lt;void&gt;
+
+Appends applications that require incremental backup. In the current process, **appendBundles** can be called before **Release()** is called. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.BACKUP
+
+**System capability**: SystemCapability.FileManagement.StorageService.Backup
+
+**Parameters**
+
+| Name         | Type                                                          | Mandatory| Description                      |
+| --------------- | -------------------------------------------------------------- | ---- | -------------------------- |
+| bundlesToBackup | Array&lt;[IncrementalBackupData](#incrementalbackupdata12)&gt; | Yes  | Array of applications that require incremental backup.|
+| infos  | string[] | Yes  | Array of the information about each application to be backed up. The mappings between **infos** and **bundlesToBackup** are identified by index. This parameter is supported since API version 12.|
+
+**Return value**
+
+| Type               | Description                   |
+| ------------------- | ----------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+
+| ID| Error Message                                                                                      |
+| -------- | ---------------------------------------------------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
+| 13600001 | IPC error                                                                                      |
+| 13900001 | Operation not permitted                                                                        |
+| 13900005 | I/O error                                                                                      |
+| 13900011 | Out of memory                                                                                  |
+| 13900020 | Invalid argument                                                                               |
+| 13900025 | No space left on device                                                                        |
+| 13900042 | Unknown error                                                                                  |
+
+**Example**
+
+  ```ts
+  import fs from '@ohos.file.fs';
+  import { BusinessError } from '@ohos.base';
+
+  let generalCallbacks: backup.GeneralCallbacks = {
+    onFileReady: (err: BusinessError, file: backup.File) => {
+      if (err) {
+        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onFileReady success');
+      fs.closeSync(file.fd);
+    },
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        return;
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        return;
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err: BusinessError) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    },
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+    }
+  };
+  let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // Create a session for an incremental backup.
+  let incrementalBackupData: backup.IncrementalBackupData = {
+    bundleName: "com.example.hiworld",
+    lastIncrementalTime: 1700107870, // Timestamp of the last backup.
+    manifestFd:1 // FD of the manifest file of the last backed.
+  }
+      let infos: Array<string> = [
+        `
+        {
+        "infos": [
+            {
+                "details": [
+                    {
+                        "detail": [
+                            {
+                                "key1": "value1",
+                                "key2": "value2"
+                            }
+                        ]
+                    }
+                ],
+                "type": "unicast",
+                "bundleName": "com.example.hiworld"
+            }
+        ]
+    },
+    {
+        "infos": [
+            {
+                "details": [
+                    {
+                        "detail": [
+                            {
+                                "key1": "value1",
+                                "key2": "value2"
+                            }
+                        ]
+                    }
+                ],
+                "type": "unicast",
+                "bundleName": "com.example.myApp"
+            }
+        ]
+    }
+      `
+    ]
+  let incrementalBackupDataArray: backup.IncrementalBackupData[] = [incrementalBackupData];
+  // Appends the applications that require incremental backup.
+  incrementalBackupSession.appendBundles(incrementalBackupDataArray, infos).then(() => {
+    console.info('appendBundles success');
+  }).catch((err: BusinessError) => {
+    console.error('appendBundles failed with err: ' + JSON.stringify(err));
+  }); 
+  ```
 ### release<sup>12+</sup>
 
 release(): Promise&lt;void&gt;
@@ -2229,4 +3372,91 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // Create a session for an incremental backup.
   incrementalBackupSession.release(); // End the incremental backup process.
   console.info('release success');
+  ```
+
+### cancel<sup>16+</sup>
+
+cancel(bundleName: string): number;
+
+Called to cancel the incremental backup of an application when data exceptions occur.
+
+**Required permissions**: ohos.permission.BACKUP
+
+**System capability**: SystemCapability.FileManagement.StorageService.Backup
+
+**Parameters**
+
+| Name         | Type    | Mandatory| Description                      |
+| --------------- | -------- | ---- | -------------------------- |
+| bundleName | string | Yes  | Application name.|
+
+**Return value**
+
+| Type               | Description                   |
+| ------------------- | ----------------------- |
+| number | Cancelled.<br>**0**: The task is successfully cancelled.<br> **13500011**: The task to be cancelled is not started.<br> **13500012**: The task to be cancelled does not exist.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+
+| ID| Error Message                                                                                      |
+| -------- | ---------------------------------------------------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
+
+**Example**
+
+  ```ts
+  import fs from '@ohos.file.fs';
+  import { BusinessError } from '@ohos.base';
+  import backup from '@ohos.file.backup';
+
+  incrementalBackupSession?: backup.IncrementalBackupSession;
+
+  let generalCallbacks: backup.GeneralCallbacks = {
+    onFileReady: (err: BusinessError, file: backup.File) => {
+      if (err) {
+        // If the FD fails to be passed, call the cancel API to cancel the incremental backup task of the application.
+        let result = this.incrementalBackupSession.cancel("com.example.myapplication");
+        console.info('cancel result:' + result);
+        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onFileReady success');
+      fs.closeSync(file.fd);
+    },
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err: BusinessError) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    },
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+    }
+  };
+  this.incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // Create a session for an incremental backup.
   ```

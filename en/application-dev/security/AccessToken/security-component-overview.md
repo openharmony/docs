@@ -1,11 +1,8 @@
 # Security Component Overview
 
-
-Security components are a set of ArkUI components provided with certain permissions. You can integrate the security components to your application UI. The security components come with automatic authorization, which eliminates the authorization dialog boxes. They can be used as special buttons that help implement authorization upon a click.
-
+Security components are a set of ArkUI components provided with certain permissions by the system. You can integrate the security components to your application UI. When the **SaveButton** component is used for the first time, a dialog box will be displayed, asking for user authorization. If the user grants the permission, no dialog box is required for subsequent use. When the **PasteButton** component is tapped, user authorization is automatically granted without any dialog box. The security components can be used as special buttons that help implement authorization upon a user tap.
 
 Compared with dynamic permission requesting, security components allow scenario-based authorization and simplify development and user operations. The security components stand out with the following features:
-
 
 - Minimizes the authorization by allowing the user to control when to grant the permission.
 
@@ -15,9 +12,7 @@ Compared with dynamic permission requesting, security components allow scenario-
 
 - Simplifies operations as you do not need to request permissions from AppGallery.
 
-
 Security components collect only personal data necessary for implementing service functions and help develop transparent, optional, and controllable privacy compliance applications.
-
 
 ## Security Components
 
@@ -35,7 +30,6 @@ Currently, the following security components are available:
 
   You can use the **SaveButton** component when your application needs to save image or videos to the media library. This component allows for simpler operations than Pickers, which have to start a system application and have the user select a directory for saving the image or video.
 
-
 ## Working Mechanism
 
 The security component solution consists of the following:
@@ -44,12 +38,11 @@ The security component solution consists of the following:
 
 - Component manager service: provides the component registration management capability, temporary authorization mechanism, and authorization validity period management to ensure that security components cannot be registered or used when the screen is locked or the application runs in the background.
 
-- Security hardening: prevents abuse of the authorization mechanism and protects user privacy with security mechanisms, such as randomizing addresses, verifying the challenge value, checking component information in the UI framework callback, checking the caller address, preventing component overriding, and verifying real click events.
+- Security hardening: provides <!--Del-->basic capabilities currently, and the system integrators need to implement <!--DelEnd-->security safeguarding capabilities, such as address randomization, challenge value check, callback UI framework component information review, caller address check, component anti-overwriting, and real click event verification, to prevent abuse of authorization mechanisms via obfuscation, hiding, tampering, and spoofing and protect user privacy.
 
 The following figure illustrates the working mechanism.
 
 ![](figures/security_component_workflow.png)
-
 
 1. After a security component is declared in .ets files, the JS engine parses the .ets files and creates the security component in the ArkUI framework.
 
@@ -64,10 +57,9 @@ The following figure illustrates the working mechanism.
 6. After the authorization is successful, the security component calls **OnClick()** to notify the application layer of the authorization success.
 
 7. The application calls the corresponding privileged operation, for example, reading pasteboard information and creating a file in the media library.
-   The permission usage and authorization validity period vary with the security component. For details, see the development guide of the specific security component.
+   The permission usage and authorization validity vary with the security component type. For details, see [Security Components](#security-components).
 
 8. The corresponding service calls the permission manager service or security component manager service to obtain the authorization result and return the authentication result.
-
 
 ## Constraints
 

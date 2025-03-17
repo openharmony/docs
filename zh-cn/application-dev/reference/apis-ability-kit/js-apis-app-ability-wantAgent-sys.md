@@ -213,7 +213,7 @@ try {
 }
 ```
 
-## WantAgent.setWantAgentMultithreading<sup>16+</sup>
+## WantAgent.setWantAgentMultithreading<sup>18+</sup>
 
 setWantAgentMultithreading(isMultithreadingSupported: boolean) : void
 

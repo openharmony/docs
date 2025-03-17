@@ -1938,9 +1938,13 @@ addEventListener(type: string, listener: EventListener): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ets");
-workerInstance.addEventListener("alert", ()=>{
-    console.log("alert listener callback");
+// worker.ets
+import { DedicatedWorkerGlobalScope, ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
+
+const workerPort: DedicatedWorkerGlobalScope = worker.parentPort;
+
+workerPort.addEventListener("alert", () => {
+  console.info("alert listener callback");
 })
 ```
 
@@ -1966,11 +1970,16 @@ removeEventListener(type: string, callback?: EventListener): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ets");
-workerInstance.addEventListener("alert", ()=>{
-    console.log("alert listener callback");
+// worker.ets
+import { DedicatedWorkerGlobalScope, ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
+
+const workerPort: DedicatedWorkerGlobalScope = worker.parentPort;
+
+workerPort.addEventListener("alert", () => {
+  console.info("alert listener callback");
 })
-workerInstance.removeEventListener("alert");
+
+workerPort.removeEventListener('alert');
 ```
 
 
@@ -2000,52 +2009,46 @@ dispatchEvent(event: Event): boolean
 **示例：**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ets");
+// worker.ets
+import { DedicatedWorkerGlobalScope, ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
 
-workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); //timeStamp暂未支持。
+const workerPort: DedicatedWorkerGlobalScope = worker.parentPort;
+
+workerPort.addEventListener("alert_add", ()=>{
+  console.info("alert listener callback");
+})
+
+workerPort.dispatchEvent({type: 'alert_add', timeStamp: 0}); //timeStamp暂未支持。
 ```
 
-分发事件（dispatchEvent）可与监听接口（on、once、addEventListener）搭配使用，示例如下：
+分发事件（dispatchEvent）可与监听接口（addEventListener）搭配使用，示例如下：
 
 ```ts
+// main thread
+import { worker } from '@kit.ArkTS';
+
 const workerInstance = new worker.Worker("workers/worker.ets");
-
-//用法一:
-workerInstance.on("alert_on", ()=>{
-    console.log("alert listener callback");
-})
-workerInstance.once("alert_once", ()=>{
-    console.log("alert listener callback");
-})
-workerInstance.addEventListener("alert_add", ()=>{
-    console.log("alert listener callback");
-})
-
-//once接口创建的事件执行一次便会删除。
-workerInstance.dispatchEvent({type:"alert_once", timeStamp:0});//timeStamp暂未支持。
-//on接口创建的事件可以一直被分发，不能主动删除。
-workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
-workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
-//addEventListener接口创建的事件可以一直被分发，不能主动删除。
-workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
-workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
-
-//用法二:
-//event类型的type支持自定义，同时存在"message"/"messageerror"/"error"特殊类型，如下所示
-//当type = "message"，onmessage接口定义的方法同时会执行。
-//当type = "messageerror"，onmessageerror接口定义的方法同时会执行。
-//当type = "error"，onerror接口定义的方法同时会执行。
-//若调用removeEventListener接口或者off接口取消事件时，能且只能取消使用addEventListener/on/once创建的事件。
-
-workerInstance.addEventListener("message", ()=>{
-    console.log("message listener callback");
-})
-workerInstance.onmessage = function() {
-    console.log("onmessage : message listener callback");
+workerInstance.postMessage("hello world");
+workerInstance.onmessage = (): void => {
+    console.info("receive data from worker.ets");
 }
-//调用dispatchEvent分发“message”事件，addEventListener和onmessage中定义的方法都会被执行。
-workerInstance.dispatchEvent({type:"message", timeStamp:0});
 ```
+
+```ts
+// worker.ets
+import { DedicatedWorkerGlobalScope, ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
+
+const workerPort: DedicatedWorkerGlobalScope = worker.parentPort;
+
+workerPort.addEventListener("alert", ()=>{
+  console.info("alert listener callback");
+})
+
+workerPort.onmessage = (event: MessageEvents) => {
+  workerPort.dispatchEvent({type:"alert", timeStamp:0}); //timeStamp暂未支持。
+}
+```
+
 ### removeAllListener<sup>(deprecated)</sup>
 
 removeAllListener(): void
@@ -2060,11 +2063,16 @@ removeAllListener(): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ets");
-workerInstance.addEventListener("alert", ()=>{
-    console.log("alert listener callback");
+// worker.ets
+import { DedicatedWorkerGlobalScope, ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
+
+const workerPort: DedicatedWorkerGlobalScope = worker.parentPort;
+
+workerPort.addEventListener("alert_add", ()=>{
+  console.info("alert listener callback");
 })
-workerInstance.removeAllListener();
+
+workerPort.removeAllListener();
 ```
 
 

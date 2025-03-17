@@ -22,7 +22,7 @@ import { restrictions } from '@kit.MDMKit';
 
 setPrinterDisabled(admin: Want, disabled: boolean, callback: AsyncCallback\<void>): void
 
-指定设备管理应用使设备禁用或启用打印能力。使用callback异步回调。 
+使设备禁用或启用打印能力。使用callback异步回调。 
 
 **需要权限：** ohos.permission.ENTERPRISE_RESTRICT_POLICY
 
@@ -32,7 +32,7 @@ setPrinterDisabled(admin: Want, disabled: boolean, callback: AsyncCallback\<void
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | disabled  | boolean | 是 | true表示禁止使用打印能力，false表示允许使用打印能力。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
@@ -53,8 +53,8 @@ setPrinterDisabled(admin: Want, disabled: boolean, callback: AsyncCallback\<void
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 restrictions.setPrinterDisabled(wantTemp, true, (err) => {
@@ -70,7 +70,7 @@ restrictions.setPrinterDisabled(wantTemp, true, (err) => {
 
 setPrinterDisabled(admin: Want, disabled: boolean): Promise\<void>
 
-指定设备管理应用使设备禁用或启用打印能力。使用Promise异步回调。
+使设备禁用或启用打印能力。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_RESTRICT_POLICY
 
@@ -80,14 +80,14 @@ setPrinterDisabled(admin: Want, disabled: boolean): Promise\<void>
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | disabled  | boolean | 是 | true表示禁止使用打印能力，false表示允许使用打印能力。 |
 
 **返回值：**
 
 | 类型   | 说明                                  |
 | ----- | ----------------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。当指定设备管理应用禁止或允许使用打印能力失败时抛出错误对象。 |
+| Promise\<void> | 无返回结果的Promise对象。当禁止或允许使用打印能力失败时抛出错误对象。 |
 
 **错误码**：
 
@@ -107,8 +107,8 @@ setPrinterDisabled(admin: Want, disabled: boolean): Promise\<void>
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 restrictions.setPrinterDisabled(wantTemp, true).then(() => {
@@ -122,7 +122,7 @@ restrictions.setPrinterDisabled(wantTemp, true).then(() => {
 
 isPrinterDisabled(admin: Want, callback: AsyncCallback\<boolean>): void
 
-指定设备管理应用查询设备打印能力是否被禁用。使用callback异步回调。
+查询设备打印能力是否被禁用。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_RESTRICT_POLICY
 
@@ -132,7 +132,7 @@ isPrinterDisabled(admin: Want, callback: AsyncCallback\<boolean>): void
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | callback | AsyncCallback\<boolean> | 是 | 回调函数，callback方式返回设备打印能力是否被禁用，true表示设备打印能力被禁用，false表示设备打印能力未被禁用。 |
 
 **错误码**：
@@ -152,8 +152,8 @@ isPrinterDisabled(admin: Want, callback: AsyncCallback\<boolean>): void
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 restrictions.isPrinterDisabled(wantTemp, (err, result) => {
@@ -169,7 +169,7 @@ restrictions.isPrinterDisabled(wantTemp, (err, result) => {
 
 isPrinterDisabled(admin: Want): Promise\<boolean>
 
-指定设备管理应用查询设备打印能力是否被禁用。使用Promise异步回调。
+查询设备打印能力是否被禁用。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_RESTRICT_POLICY
 
@@ -177,9 +177,9 @@ isPrinterDisabled(admin: Want): Promise\<boolean>
 
 **参数：**
 
-| 参数名   | 类型                                  | 必填   | 说明      |
-| ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| 参数名 | 类型                                                    | 必填 | 说明                                   |
+| ------ | ------------------------------------------------------- | ---- | -------------------------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 
 **返回值：**
 
@@ -205,8 +205,8 @@ isPrinterDisabled(admin: Want): Promise\<boolean>
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 restrictions.isPrinterDisabled(wantTemp).then((result) => {
@@ -220,7 +220,7 @@ restrictions.isPrinterDisabled(wantTemp).then((result) => {
 
 setHdcDisabled(admin: Want, disabled: boolean, callback: AsyncCallback\<void>): void
 
-指定设备管理应用使设备禁用或启用HDC。使用callback异步回调。 
+使设备禁用或启用[HDC](../../../device-dev/subsystems/subsys-toolchain-hdc-guide.md#hdc使用指导)。使用callback异步回调。 
 
 **需要权限：** ohos.permission.ENTERPRISE_RESTRICT_POLICY
 
@@ -230,7 +230,7 @@ setHdcDisabled(admin: Want, disabled: boolean, callback: AsyncCallback\<void>): 
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | disabled  | boolean | 是 | true表示禁止使用HDC，false表示允许使用HDC。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
@@ -251,8 +251,8 @@ setHdcDisabled(admin: Want, disabled: boolean, callback: AsyncCallback\<void>): 
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 restrictions.setHdcDisabled(wantTemp, true, (err) => {
@@ -268,7 +268,7 @@ restrictions.setHdcDisabled(wantTemp, true, (err) => {
 
 setHdcDisabled(admin: Want, disabled: boolean): Promise\<void>
 
-指定设备管理应用使设备禁用或启用HDC。使用Promise异步回调。
+使设备禁用或启用HDC。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_RESTRICT_POLICY
 
@@ -278,14 +278,14 @@ setHdcDisabled(admin: Want, disabled: boolean): Promise\<void>
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | disabled  | boolean | 是 | true表示禁止使用HDC，false表示允许使用HDC。 |
 
 **返回值：**
 
 | 类型   | 说明                                  |
 | ----- | ----------------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。当指定设备管理应用禁止或允许使用HDC失败时，抛出错误对象。 |
+| Promise\<void> | 无返回结果的Promise对象。当禁止或允许使用HDC失败时，抛出错误对象。 |
 
 **错误码**：
 
@@ -305,8 +305,8 @@ setHdcDisabled(admin: Want, disabled: boolean): Promise\<void>
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 restrictions.setHdcDisabled(wantTemp, true).then(() => {
@@ -320,7 +320,7 @@ restrictions.setHdcDisabled(wantTemp, true).then(() => {
 
 isHdcDisabled(admin: Want, callback: AsyncCallback\<boolean>): void
 
-指定设备管理应用查询HDC是否被禁用。使用callback异步回调。
+查询HDC是否被禁用。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_RESTRICT_POLICY
 
@@ -330,7 +330,7 @@ isHdcDisabled(admin: Want, callback: AsyncCallback\<boolean>): void
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | callback | AsyncCallback\<boolean> | 是 | 回调函数，callbac方式返回HDC是否被禁用，true表示HDC被禁用，false表示HDC未被禁用。 |
 
 **错误码**：
@@ -350,8 +350,8 @@ isHdcDisabled(admin: Want, callback: AsyncCallback\<boolean>): void
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 restrictions.isHdcDisabled(wantTemp, (err, result) => {
@@ -367,7 +367,7 @@ restrictions.isHdcDisabled(wantTemp, (err, result) => {
 
 isHdcDisabled(admin: Want): Promise\<boolean>
 
-指定设备管理应用查询HDC是否被禁用。使用Promise异步回调。
+查询HDC是否被禁用。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_RESTRICT_POLICY
 
@@ -375,9 +375,9 @@ isHdcDisabled(admin: Want): Promise\<boolean>
 
 **参数：**
 
-| 参数名   | 类型                                  | 必填   | 说明      |
-| ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| 参数名 | 类型                                                    | 必填 | 说明                                   |
+| ------ | ------------------------------------------------------- | ---- | -------------------------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 
 **返回值：**
 
@@ -403,8 +403,8 @@ isHdcDisabled(admin: Want): Promise\<boolean>
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 restrictions.isHdcDisabled(wantTemp).then((result) => {
@@ -418,7 +418,7 @@ restrictions.isHdcDisabled(wantTemp).then((result) => {
 
 isMicrophoneDisabled(admin: Want): boolean
 
-指定设备管理应用查询麦克风是否被禁用。
+查询麦克风是否被禁用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
@@ -426,9 +426,9 @@ isMicrophoneDisabled(admin: Want): boolean
 
 **参数：**
 
-| 参数名   | 类型                                  | 必填   | 说明      |
-| ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| 参数名 | 类型                                                    | 必填 | 说明                                   |
+| ------ | ------------------------------------------------------- | ---- | -------------------------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 
 **返回值：**
 
@@ -469,7 +469,7 @@ try {
 
 disableMicrophone(admin: Want, disable: boolean): void
 
-指定设备管理应用使设备禁用或启用麦克风。
+使设备禁用或启用麦克风。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
@@ -479,7 +479,7 @@ disableMicrophone(admin: Want, disable: boolean): void
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | disable  | boolean | 是 | true表示禁止使用麦克风，false表示允许使用麦克风。 |
 
 **错误码**：
@@ -516,7 +516,7 @@ try {
 
 setFingerprintAuthDisabled(admin: Want, disabled: boolean): void
 
-以同步方法指定设备管理应用禁用或启用指纹认证。
+禁用或启用指纹认证。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
@@ -526,7 +526,7 @@ setFingerprintAuthDisabled(admin: Want, disabled: boolean): void
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | disabled  | boolean | 是 | true表示禁止指纹认证，false表示允许指纹认证。 |
 
 **错误码**：
@@ -547,8 +547,8 @@ setFingerprintAuthDisabled(admin: Want, disabled: boolean): void
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 try {
@@ -564,7 +564,7 @@ try {
 
 isFingerprintAuthDisabled(admin: Want): boolean
 
-以同步方法指定设备管理应用查询指纹认证是否被禁用。
+查询指纹认证是否被禁用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
@@ -572,9 +572,9 @@ isFingerprintAuthDisabled(admin: Want): boolean
 
 **参数：**
 
-| 参数名   | 类型                                  | 必填   | 说明      |
-| ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| 参数名 | 类型                                                    | 必填 | 说明                                   |
+| ------ | ------------------------------------------------------- | ---- | -------------------------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 
 **返回值：**
 
@@ -600,8 +600,8 @@ isFingerprintAuthDisabled(admin: Want): boolean
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 try {

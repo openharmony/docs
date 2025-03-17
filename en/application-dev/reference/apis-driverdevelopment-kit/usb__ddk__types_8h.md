@@ -39,12 +39,12 @@ Provides the enumerated variables, structures, and macros used in USB DDK APIs.
 
 | Name| Description|
 | -------- | -------- |
-| [UsbDdkEndpointDescriptor](_usb_ddk.md#usbddkendpointdescriptor) | Endpoint descriptor.|
-| [UsbDdkInterfaceDescriptor](_usb_ddk.md#usbddkinterfacedescriptor) | Interface descriptor.|
-| [UsbDdkInterface](_usb_ddk.md#usbddkinterface) | USB interface.|
-| [UsbDdkConfigDescriptor](_usb_ddk.md#usbddkconfigdescriptor) | Configuration descriptor.|
-| [UsbDeviceMemMap](_usb_ddk.md#usbdevicememmap) | Device memory map created by calling [OH_Usb_CreateDeviceMemMap()](_usb_ddk.md#oh_usb_createdevicememmap). A buffer using the device memory map can provide better performance.|
-| [Usb_DeviceArray](_usb_ddk.md#usb_devicearray) | Defines the device ID list, which is used to store the device IDs and device quantity obtained using [OH_Usb_GetDevices()](_usb_ddk.md#oh_usb_getdevices16).|
+| typedef struct [UsbDdkEndpointDescriptor](_usb_ddk_endpoint_descriptor.md) [UsbDdkEndpointDescriptor](_usb_ddk.md#usbddkendpointdescriptor) | Endpoint descriptor.|
+| typedef struct [UsbDdkInterfaceDescriptor](_usb_ddk_interface_descriptor.md) [UsbDdkInterfaceDescriptor](_usb_ddk.md#usbddkinterfacedescriptor) | Interface descriptor.|
+| typedef struct [UsbDdkInterface](_usb_ddk_interface.md) [UsbDdkInterface](_usb_ddk.md#usbddkinterface) | USB interface.|
+| typedef struct [UsbDdkConfigDescriptor](_usb_ddk_config_descriptor.md) [UsbDdkConfigDescriptor](_usb_ddk.md#usbddkconfigdescriptor) | Configuration descriptor.|
+| typedef struct [UsbDeviceMemMap](_usb_device_mem_map.md) [UsbDeviceMemMap](_usb_ddk.md#usbdevicememmap) | Device memory map created by calling [OH_Usb_CreateDeviceMemMap()](_usb_ddk.md#oh_usb_createdevicememmap). A buffer using the device memory map can provide better performance.|
+| typedef struct [Usb_DeviceArray](_usb_device_array.md) [Usb_DeviceArray](_usb_ddk.md#usb_devicearray) | Defines the device ID list, which is used to store the device IDs and device quantity obtained using [OH_Usb_GetDevices()](_usb_ddk.md#oh_usb_getdevices16).|
 
 ### Enums
 

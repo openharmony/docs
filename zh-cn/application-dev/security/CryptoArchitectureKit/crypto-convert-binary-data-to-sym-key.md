@@ -1,8 +1,6 @@
 # 指定二进制数据转换对称密钥(ArkTS)
 
-
 以3DES和HMAC为例，根据指定的对称密钥二进制数据，生成密钥（SymKey），即将外部或存储的二进制数据转换为算法库的密钥对象，该对象可用于后续的加解密等操作。
-
 
 ## 指定二进制数据转换3DES密钥
 
@@ -32,23 +30,23 @@
   }
 
   function testConvertSymKey() {
-    // 创建SymKeyGenerator实例
+    // 创建SymKeyGenerator实例。
     let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
-    // 根据指定的数据生成对称密钥
+    // 根据指定的数据生成对称密钥。
     let keyMaterialBlob = genKeyMaterialBlob();
     try {
       symKeyGenerator.convertKey(keyMaterialBlob, (error, key) => {
-        if (error) { // 如果业务逻辑执行失败，则callback的第一个参数返回错误信息，即异步抛出异常
+        if (error) { // 如果业务逻辑执行失败，则callback的第一个参数返回错误信息，即异步抛出异常。
           let e: BusinessError = error as BusinessError;
           console.error(`convertKey error, ${e.code}, ${e.message}`);
           return;
         }
         console.info('key algName：' + key.algName);
         console.info('key format：' + key.format);
-        let encodedKey = key.getEncoded(); // 获取对称密钥的二进制数据，并以字节数组形式输出。长度为24字节
+        let encodedKey = key.getEncoded(); // 获取对称密钥的二进制数据，并以字节数组形式输出。长度为24字节。
         console.info('key getEncoded hex: ' + encodedKey.data);
       })
-    } catch (error) { // 参数检查发现错误立即抛出异常
+    } catch (error) { // 参数检查发现错误立即抛出异常。
       let e: BusinessError = error as BusinessError;
       console.error(`convertKey failed, ${e.code}, ${e.message}`);
     }
@@ -69,12 +67,12 @@
   }
 
   function testConvertSymKey() {
-    // 创建SymKeyGenerator实例
+    // 创建SymKeyGenerator实例。
     let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
-    // 根据指定的数据生成对称密钥
+    // 根据指定的数据生成对称密钥。
     let keyMaterialBlob = genKeyMaterialBlob();
     let key = symKeyGenerator.convertKeySync(keyMaterialBlob);
-    let encodedKey = key.getEncoded(); // 获取对称密钥的二进制数据，并以字节数组形式输出。长度为24字节
+    let encodedKey = key.getEncoded(); // 获取对称密钥的二进制数据，并以字节数组形式输出。长度为24字节。
     console.info('key getEncoded hex' + encodedKey.data);
   }
   ```
@@ -98,7 +96,7 @@
   import { buffer } from '@kit.ArkTS';
 
   async function testConvertHmacKey() {
-    // 对称密钥长度为64字节，512比特
+    // 对称密钥长度为64字节，512比特。
     let keyMessage = '12345678abcdefgh12345678abcdefgh12345678abcdefgh12345678abcdefgh';
     let keyBlob: cryptoFramework.DataBlob = {
       data : new Uint8Array(buffer.from(keyMessage, 'utf-8').buffer)
@@ -116,7 +114,7 @@
   import { buffer } from '@kit.ArkTS';
 
   function testConvertKeySync() {
-    // 对称密钥长度为64字节，512比特
+    // 对称密钥长度为64字节，512比特。
     let keyMessage = '12345678abcdefgh12345678abcdefgh12345678abcdefgh12345678abcdefgh';
     let keyBlob: cryptoFramework.DataBlob = {
       data : new Uint8Array(buffer.from(keyMessage, 'utf-8').buffer)

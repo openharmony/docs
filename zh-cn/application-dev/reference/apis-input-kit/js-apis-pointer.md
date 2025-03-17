@@ -588,7 +588,7 @@ window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) =>
 | CURSOR_CIRCLE<sup>10+</sup> | 41 | 圆形光标 |![Cursor_Circle.png](./figures/Cursor_Circle.png)|
 | LOADING<sup>10+</sup> | 42 | 正在载入动画光标 |![Loading.png](./figures/Loading.png)<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | RUNNING<sup>10+</sup> | 43 | 后台运行中动画光标 |![Running.png](./figures/Running.png)<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| MIDDLE_BTN_EAST_WEST<sup>16+</sup>           | 44   | 向东西滚动 |![MID_Btn_East_West.png](./figures/MID_Btn_East_West.png)|
+| MIDDLE_BTN_EAST_WEST<sup>18+</sup>          | 44   | 向东西滚动 |![MID_Btn_East_West.png](./figures/MID_Btn_East_West.png)|
 
 ## pointer.setCustomCursor<sup>11+</sup>
 
@@ -696,7 +696,7 @@ setCustomCursor(windowId: number, cursor: CustomCursor, config: CursorConfig): P
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Abnormal windowId parameter passed in. 2. Abnormal pixelMap parameter passed in; 3. Abnormal focusX parameter passed in.4. Abnormal focusY parameter passed in. |
-| 26500001 | Invalid windowID. |
+| 26500001 | Invalid windowId. |
 
 **示例**：
 

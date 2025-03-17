@@ -270,11 +270,11 @@ The message receiver cannot receive custom communication data.
 
 **Possible Causes**
 
-This error is thrown if the message receiver does not register [MessageHandler](js-apis-inputmethodengine.md#messagehandler16) to receive data when you call the API for sending custom communication data.
+This error is thrown if the message receiver does not register [MessageHandler](js-apis-inputmethodengine.md#messagehandler15) to receive data when you call the API for sending custom communication data.
 
 **Solution**
 
-To receive custom communication data, register a **MessageHandler** for the message receiver, call [recvMessage](js-apis-inputmethodengine.md#recvmessage16) in the input method application, and call [recvMessage](js-apis-inputmethod.md#recvmessage16) for the input method client.
+To receive custom communication data, register a **MessageHandler** for the message receiver, call [recvMessage](js-apis-inputmethodengine.md#recvmessage15) in the input method application, and call [recvMessage](js-apis-inputmethod.md#recvmessage15) for the input method client.
 
 ## 12800016 Input Method Client Not in Edit Mode
 

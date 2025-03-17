@@ -1130,17 +1130,17 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## StorageType<sup>16+</sup>
+## StorageType<sup>18+</sup>
 Preferences的存储模式枚举。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 | 名称 | 值   | 说明 |
 | ---- | ---- | ---- |
 | XML |  0    | 表示XML存储模式，这是Preferences的默认存储模式。<br> **特点：** 数据XML格式进行存储。对数据的操作发生在内存中，需要调用flush接口进行落盘。     |
-| CLKV |  1    |表示CLKV存储模式。<br> **特点：** 数据以CLKV数据库模式进行存储。对数据的操作实时落盘，无需调用flush接口对数据进行落盘。      |
+| GSKV |  1    |表示GSKV存储模式。<br> **特点：** 数据以GSKV数据库模式进行存储。对数据的操作实时落盘，无需调用flush接口对数据进行落盘。      |
 
 
 > **说明：**
@@ -1149,14 +1149,14 @@ Preferences的存储模式枚举。
 >   - 首选项不提供不同模式间数据的迁移，若想将数据从一模式切换至另一模式，需通过读写首选项的形式进行数据迁移。
 >   - 若需要变更首选项的存储路径，不能通过移动文件或覆盖文件的方式进行，需通过读写首选项的形式进行数据迁移。
 
-## preferences.isStorageTypeSupported<sup>16+</sup>
+## preferences.isStorageTypeSupported<sup>18+</sup>
 isStorageTypeSupported(type: StorageType): boolean
 
 判断当前平台是否支持传入的存储模式，此为同步接口。
 
 当当前平台支持传入模式时，该接口返回true；反之，返回false。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1164,7 +1164,7 @@ isStorageTypeSupported(type: StorageType): boolean
 
 | 参数名  | 类型                  | 必填 | 说明                                                         |
 | ------- | --------------------- | ---- | ------------------------------------------------------------ |
-| type | [StorageType](#storagetype16)               | 是   | 需要判断是否支持的存储模式。 |
+| type | [StorageType](#storagetype18)               | 是   | 需要判断是否支持的存储模式。 |
 
 **返回值：**
 
@@ -1185,11 +1185,11 @@ isStorageTypeSupported(type: StorageType): boolean
 
 ```ts
 let xmlType = preferences.StorageType.XML;
-let clkvType = preferences.StorageType.CLKV;
+let gskvType = preferences.StorageType.GSKV;
 let isXmlSupported = preferences.isStorageTypeSupported(xmlType);
-let isClkvSupported = preferences.isStorageTypeSupported(clkvType);
+let isGskvSupported = preferences.isStorageTypeSupported(gskvType);
 console.info("Is xml supported in current platform: " + isXmlSupported);
-console.info("Is clkv supported in current platform: " + isClkvSupported);
+console.info("Is gskv supported in current platform: " + isGskvSupported);
 ```
 
 ## Options<sup>10+</sup> 
@@ -1202,7 +1202,7 @@ Preferences实例配置选项。
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | name        | string | 是   | Preferences实例的名称。名称长度需大于零且小于等于255字节，名称中不能包含'/'且不能以'/'结尾。 <br/>**原子化服务API：** 从API version 11开始，该参数支持在原子化服务中使用。 <br/>                                    |
 | dataGroupId | string\|null\|undefined | 否   | 应用组ID，<!--RP1-->暂不支持指定dataGroupId在对应共享沙箱路径下创建Preferences实例。<!--RP1End--><br/>为可选参数。指定在此dataGroupId对应的沙箱路径下创建Preferences实例。当此参数不填时，默认在本应用沙箱目录下创建Preferences实例。<br/> **模型约束：** 此属性仅在Stage模型下可用。<br/>**原子化服务API：** 从API version 11开始，该参数支持在原子化服务中使用。 <br/> |
-| storageType<sup>16+</sup> | [StorageType](#storagetype16)\|null\|undefined | 否  | 存储模式，为可选参数。表示当前Preferences实例需要使用的存储模式。当此参数不填时，默认使用XML存储模式。当选择某种存储模式创建Preferences后，不支持中途切换存储模式。 <br/>**原子化服务API：** 从API version 16开始，该参数支持在原子化服务中使用。 <br/> |
+| storageType<sup>18+</sup> | [StorageType](#storagetype18)\|null\|undefined | 否  | 存储模式，为可选参数。表示当前Preferences实例需要使用的存储模式。当此参数不填时，默认使用XML存储模式。当选择某种存储模式创建Preferences后，不支持中途切换存储模式。 <br/>**原子化服务API：** 从API version 18开始，该参数支持在原子化服务中使用。 <br/> |
 
 
 ## Preferences

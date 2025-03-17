@@ -1,4 +1,4 @@
-# Geofencing
+# Geofencing (ArkTS)
 
 ## Scenario
 
@@ -22,73 +22,111 @@ Geo-fencing uses the following interfaces. For details, see [Location Kit](../..
 1. Declare the **ohos.permission.APPROXIMATELY_LOCATION** permission. For details, see [Applying for Location Permissions](#location-permission-guidelines.md).
 
 2. Import the **geoLocationManager**, **wantAgent**, and **BusinessError** modules.
-   
+
    ```ts
    import { geoLocationManager } from '@kit.LocationKit';
-   import { wantAgent } from '@kit.AbilityKit';
-   import { BusinessError } from '@kit.BasicServicesKit'
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { notificationManager } from '@kit.NotificationKit';
    ```
 
-3. Create a **WantAgentInfo** object.
-
-   Scenario 1: Create a **WantAgentInfo** object for starting an ability. 
+3. Create a geofence.
 
    ```ts
    // Set the action type through operationType of WantAgentInfo.
-   let wantAgentInfo:wantAgent.WantAgentInfo = {
-       wants: [
-           {
-               deviceId: '',
-               bundleName: 'com.example.myapplication',
-               abilityName: 'EntryAbility',
-               action: '',
-               entities: [],
-               uri: '',
-               parameters: {}
-           }
-       ],
-       operationType: wantAgent.OperationType.START_ABILITY,
-       requestCode: 0,
-       wantAgentFlags:[wantAgent.WantAgentFlags.CONSTANT_FLAG]
-   };
-   ```
-
-   Scenario 2: Create a **WantAgentInfo** object for releasing a public event.
-
-   ```ts
-   // Set the action type through operationType of WantAgentInfo.
-   let wantAgentInfo:wantAgent.WantAgentInfo = {
-       wants: [
-           {
-               action: 'event_name', // Set the action name.
-               parameters: {},
-           }
-       ],
-       operationType: wantAgent.OperationType.SEND_COMMON_EVENT,
-       requestCode: 0,
-       wantAgentFlags: [wantAgent.WantAgentFlags.CONSTANT_FLAG],
+   let geofence: geoLocationManager.Geofence = {
+       "latitude": 34.12, "longitude": 124.11, "radius": 10000.0, "expiration": 10000.0
    }
    ```
 
-4. Call **getWantAgent()** to create a **WantAgent** object.
-
-   Call the geofencing API to add a geofence after obtaining the **WantAgent** object, and have the system automatically trigger the action defined for the **WantAgent** object when a device enters or exits the geofence.
+4. Specify the types of geofence transition events to listen for. Geofence entry and exit events are used as an example.
 
    ```ts
-   let wantAgentObj : object | undefined = undefined;
-   // Create a WantAgent object.
-   wantAgent.getWantAgent(wantAgentInfo, (err, data) => {
+   let transitionStatusList: Array<geoLocationManager.GeofenceTransitionEvent> = [
+       geoLocationManager.GeofenceTransitionEvent.GEOFENCE_TRANSITION_EVENT_ENTER,
+       geoLocationManager.GeofenceTransitionEvent.GEOFENCE_TRANSITION_EVENT_EXIT,
+   ];
+   ```
+
+4. Create a notification object for **GEOFENCE_TRANSITION_EVENT_ENTER** and **GEOFENCE_TRANSITION_EVENT_EXIT**.
+
+   ```ts
+   // GEOFENCE_TRANSITION_EVENT_ENTER event
+   let notificationRequest1: notificationManager.NotificationRequest = {
+       id: 1,
+       content: {
+         notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+         normal: {
+         title: "Geofence Notification",
+           text: "Geofence Entry",
+           additionalText: ""
+         }
+        }
+   };
+   // Create a notification object for GEOFENCE_TRANSITION_EVENT_EXIT.
+   let notificationRequest2: notificationManager.NotificationRequest = {
+     id: 2,
+     content: {
+       notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+       normal: {
+         title: "Geofence Notification",
+         text: 'Geofence Exit',
+         additionalText: ""
+       }
+     }
+   };
+   ```
+
+5. Add a geofence.
+
+   ```ts
+   // Save the created notification objects to Array in the same sequence as in transitionStatusList.
+   let notificationRequestList: Array<notificationManager.NotificationRequest> =
+     [notificationRequest1, notificationRequest2];
+   // Construct a gnssGeofenceRequest object.
+   let gnssGeofenceRequest: geoLocationManager.GnssGeofenceRequest = {
+     // Geofence attributes, including the circle center and radius.
+     geofence: geofence,
+     // Specify the types of geofence transition events to listen for.
+     monitorTransitionEvents: transitionStatusList,
+     // Specify the notification objects for geofence transition events. This parameter is optional.
+     notifications: notificationRequestList,
+     // Specify the callback used to receive geofence transition events.
+     geofenceTransitionCallback: (err : BusinessError, transition : geoLocationManager.GeofenceTransition) => {
        if (err) {
-         console.error('getWantAgent err=' + JSON.stringify(err));
-         return;
+         console.error('geofenceTransitionCallback: err=' + JSON.stringify(err));
        }
-       console.info('getWantAgent success');
-       wantAgentObj = data;
-       let requestInfo:geoLocationManager.GeofenceRequest = {'scenario': 0x301, "geofence": {"latitude": 31.12, "longitude": 121.11, "radius": 100, "expiration": 10000}};
-       try {
-           geoLocationManager.on('gnssFenceStatusChange', requestInfo, wantAgentObj);
-       } catch (err) {
-           console.error("errCode:" + JSON.stringify(err));
-       }
-   });
+       if (transition) {
+         console.info("GeofenceTransition: %{public}s", JSON.stringify(transition));
+     }
+     }
+   }
+   try {
+     // Add a geofence.
+     geoLocationManager.addGnssGeofence(gnssGeofenceRequest).then((id) => {
+       // Obtain the geofence ID after the geofence is successfully added.
+       console.info("addGnssGeofence success, fence id: " + id);
+       let fenceId = id;
+     }).catch((err: BusinessError) => {
+       console.error("addGnssGeofence failed, promise errCode:" + (err as BusinessError).code + 
+         ",errMessage:" + (err as BusinessError).message);
+     });
+   } catch(error) {
+       console.error("addGnssGeofence failed, err:" + JSON.stringify(error));
+   }
+   ```
+
+5. Delete a geofence.
+
+   ```ts
+   // fenceId is obtained after geoLocationManager.addGnssGeofence is successfully executed.
+   let fenceId = 1;
+   try {
+     geoLocationManager.removeGnssGeofence(fenceId).then(() => {
+       console.info("removeGnssGeofence success fenceId:" + fenceId);
+     }).catch((error : BusinessError) => {
+       console.error("removeGnssGeofence: error=" + JSON.stringify(error));
+     });
+   } catch(error) {
+     console.error("removeGnssGeofence: error=" + JSON.stringify(error));
+   }
    ```

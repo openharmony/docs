@@ -29,7 +29,7 @@
 | @form | 卡片能力 | **卡片能力：** 从API version x开始，该接口支持在ArkTS卡片中使用。 |
 | @systemapi | 系统接口 | **系统接口：** 此接口为系统接口。 |
 | @syscap | 系统能力 | **系统能力**：SystemCapability.xxx.xxx |  1. 如果仅涉及一个权限，格式：<br/>    **需要权限：** ohos.permission.xxxx   <br/>2. 如果该接口涉及多个权限，则采用“和、或”进行分割，格式：<br/>    **需要权限：** ohos.permission.A 和 ohos.permission.B<br/>    **需要权限：** ohos.permission.A 或 ohos.permission.B |
-| @permission | 权限 |  1. 如果仅涉及一个权限，格式：<br/>    **需要权限：** ohos.permission.xxxx   <br/>2. 如果该接口涉及多个权限，则采用“和、或”进行分割，格式：<br/>    **需要权限：** ohos.permission.A 和 ohos.permission.B<br/>    **需要权限：** ohos.permission.A 或 ohos.permission.B |
+| @permission | 权限 |  1. 如果仅涉及一个权限，格式：<br/>    **需要权限：** ohos.permission.xxxx   <br/>2. 如果该接口涉及多个权限，则采用“和、或”进行分割，格式：<br/>    **需要权限：** ohos.permission.A 和 ohos.permission.B<br/>    **需要权限：** ohos.permission.A 或 ohos.permission.B <br/>3. 涉及版本变更时，“需要权限”后跟当前版本的权限要求，历史版本的权限要求换行按列表描述，样例：<br/>**需要权限：** ohos.permission.A <br/>- 在API x-(y-1)时，需要申请权限ohos.permission.A和B。<br/>- 从API y开始，仅需申请ohos.permission.A。<br/>4. 仅在某些固定场景下，需要申请权限。“需要权限”后跟d.ts的@permission保持一致，再补充情况说明，分为两类情况，当情况较为简单时，可采用括号补充描述；当情况较为复杂时，换行描述。<br/>样例1：<br/> **需要权限：** ohos.permission.A（仅当创建窗口类型为AA时需要申请）<br/>样例2：<br/> **需要权限：** ohos.permission.A<br/>- 当应用处于xx情况时，需要同步申请ohos.permission.B。<br/>- 当应用处于yy情况时，无需申请任何权限。|
 | @extends | 继承 |  带有该标签或实际存在extends关系但未带该标签时，在相关描述处应明确说明“xxx继承自xxx（提供链接）。” |
 
 下面进入具体每个API的写作。
@@ -387,6 +387,7 @@ type Xxx = number | string | 'xxx'
 
 | 变更说明                                                                 | 日期         |
 | ----------------------------------------------------------------------- | ------------ |
+| 优化权限的写作规范，可覆盖多种类型的权限描述，适配扫描工具需求。 | 2025/03/12 |
 | 增加Type模板三，增加以含有多个属性字段的Interface别名。 | 2025/03/04 |
 | 增加示例代码需捕获传参异常的要求。 |  2025/03/03 |
 | 针对const定义的只读变量，增加模板。 |   2024/12/31  |

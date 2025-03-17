@@ -1,6 +1,5 @@
 # 密钥协商(C/C++)
 
-
 以协商密钥类型为ECDH，并密钥仅在HUKS内使用为例，完成密钥协商。具体的场景介绍及支持的算法规格，请参考[密钥生成支持的算法](huks-key-generation-overview.md#支持的算法)。
 
 ## 在CMake脚本中链接相关动态库
@@ -74,7 +73,7 @@ OH_Huks_Result InitParamSet(
     return ret;
 }
 static const uint32_t IV_SIZE = 16;
-static uint8_t IV[IV_SIZE] = { 0 }; // this is a test value, for real use the iv should be different every time
+static uint8_t IV[IV_SIZE] = { 0 }; // this is a test value, for real use the iv should be different every time.
 static struct OH_Huks_Blob g_keyAliasFinal1001 = {
     (uint32_t)strlen("HksECDHAgreeKeyAliasTest001_1_final"),
     (uint8_t *)"HksECDHAgreeKeyAliasTest001_1_final"

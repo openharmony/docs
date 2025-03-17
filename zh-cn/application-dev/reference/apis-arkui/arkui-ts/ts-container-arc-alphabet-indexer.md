@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 16开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 导入模块
@@ -25,7 +25,7 @@ ArcAlphabetIndexer(info: ArcAlphabetIndexerInitInfo)
 
 创建弧形索引条实例，传入弧形索引条配置项参数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -46,7 +46,7 @@ color(color: Optional&lt;ColorMetrics&gt;)
 
 设置普通状态下索引项文字颜色。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -62,7 +62,7 @@ selectedColor(color: Optional&lt;ColorMetrics&gt;)
 
 设置选中项文字颜色。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -78,7 +78,7 @@ popupColor(color: Optional&lt;ColorMetrics&gt;)
 
 设置提示弹窗文字颜色。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -94,7 +94,7 @@ selectedBackgroundColor(color: Optional&lt;ColorMetrics&gt;)
 
 设置选中项背景颜色。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -110,7 +110,7 @@ popupBackground(color: Optional&lt;ColorMetrics&gt;)
 
 设置提示弹窗背景色。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -130,7 +130,7 @@ usePopup(enabled: Optional&lt;boolean&gt;)
 
 设置是否使用提示弹窗。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -146,7 +146,7 @@ selectedFont(font: Optional&lt;Font&gt;)
 
 设置选中项文字尺寸、粗细、字体族、倾斜等样式。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -162,7 +162,7 @@ popupFont(value: Optional&lt;Font&gt;)
 
 设置提示弹窗字体样式。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -178,7 +178,7 @@ font(font: Optional&lt;Font&gt;)
 
 设置字母索引条默认字体样式。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -194,7 +194,7 @@ itemSize(size: Optional&lt;LengthMetrics&gt;)
 
 设置字母索引条字母区域大小。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -210,7 +210,7 @@ selected(index: Optional&lt;number&gt;)
 
 设置选中项索引值。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -226,7 +226,7 @@ autoCollapse(enable: Optional&lt;boolean&gt;)
 
 设置是否使用自适应折叠模式。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -242,7 +242,7 @@ popupBackgroundBlurStyle(style: Optional&lt;BlurStyle&gt;)
 
 设置提示弹窗的背景模糊材质。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -266,7 +266,7 @@ onSelect(handler: Optional&lt;OnSelectCallback&gt;)
 
 索引条选中回调，返回值为当前选中索引。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -281,7 +281,7 @@ onSelect(handler: Optional&lt;OnSelectCallback&gt;)
 
 定义弧形字母索引条的初始化参数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -298,7 +298,7 @@ type OnSelectCallback =  (index: number) => void
 
 定义[onSelect](#onselect)中使用的回调类型。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 

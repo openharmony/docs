@@ -1,11 +1,8 @@
 # 使用RSA密钥对（PKCS1模式）签名及签名恢复(ArkTS)
 
-
 对应的算法规格请查看[签名验签算法规格：RSA](crypto-sign-sig-verify-overview.md#rsa)。
 
-
 **签名**
-
 
 1. 调用[cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator)、[AsyKeyGenerator.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-1)，生成密钥算法为RSA、密钥长度为1024位、素数个数为2的非对称密钥对象（KeyPair），包括公钥（PubKey）和私钥（PriKey）。
    
@@ -17,9 +14,7 @@
 
 4. 调用[Sign.sign](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#sign-1)，生成数据签名。
 
-
 **验签**
-
 
 1. 调用[cryptoFramework.createVerify](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateverify)，指定字符串参数'RSA1024|PKCS1|SHA256|Recover'，与签名的Sign实例保持一致。创建Verify实例，用于完成验签操作。
 
@@ -32,7 +27,7 @@
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
-  // 完整的明文被拆分为input1和input2
+  // 完整的明文被拆分为input1和input2。
   let input1: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan1", 'utf-8').buffer) };
   async function signMessagePromise(priKey: cryptoFramework.PriKey) {
     let signAlg = "RSA1024|PKCS1|NoHash|OnlySign";
@@ -67,7 +62,7 @@
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
-  // 完整的明文被拆分为input1和input2
+  // 完整的明文被拆分为input1和input2。
   let input1: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan1", 'utf-8').buffer) };
   function signMessagePromise(priKey: cryptoFramework.PriKey) {
     let signAlg = "RSA1024|PKCS1|NoHash|OnlySign";

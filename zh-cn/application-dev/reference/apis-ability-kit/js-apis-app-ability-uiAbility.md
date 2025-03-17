@@ -147,7 +147,7 @@ class MyUIAbility extends UIAbility {
 
 onWindowStageRestore(windowStage: window.WindowStage): void
 
-当迁移多实例ability时，恢复WindowStage后调用。
+当迁移多实例Ability时，恢复WindowStage后调用。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -338,7 +338,7 @@ UIAbility实例已经启动并在前台运行过，由于某些原因切换到�
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，如ability名称，包名等。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，如Ability名称，包名等。 |
 | launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#launchparam) | 是 | UIAbility启动的原因、上次异常退出的原因信息。 |
 
 **示例：**
@@ -394,7 +394,7 @@ class MyUIAbility extends UIAbility {
 
 onSaveState(reason: AbilityConstant.StateType, wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnSaveResult
 
-该API配合[appRecovery](js-apis-app-ability-appRecovery.md)使用。在应用故障时，如果使能了自动保存状态，框架将回调onSaveState保存UIAbility状态。
+该API配合[appRecovery](js-apis-app-ability-appRecovery.md)使用。当应用出现故障时，如果已启用自动保存状态，框架将调用onSaveState来保存UIAbility的状态。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -585,7 +585,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbility.onCollaborate<sup>16+</sup>
+## UIAbility.onCollaborate<sup>18+</sup>
 
 onCollaborate(wantParam: Record&lt;string, Object&gt;): AbilityConstant.CollaborateResult
 
@@ -609,7 +609,7 @@ UIAbility生命周期回调，在多设备协同场景下，协同方应用在�
 
 | 名称     | 值   | 说明       |
 | -------- | ---- | ---------- |
-| [AbilityConstant.CollaborateResult](js-apis-app-ability-abilityConstant.md#collaborateresult16) | 协同方应用是否接受协同。 |
+| [AbilityConstant.CollaborateResult](js-apis-app-ability-abilityConstant.md#collaborateresult18) | 协同方应用是否接受协同。 |
 
 **示例：**
 

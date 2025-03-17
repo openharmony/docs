@@ -73,7 +73,9 @@
 * 对于容器组件，如果内部内容通过position、offset等接口使得绘制区域超出了容器组件范围，则系统截图无法截取到范围之外的内容。此种情况下，如果一定要浮起，即拖拽背板能够包含范围之外的内容，则可考虑通过扩大容器范围或自定义方式实现。
 * 不论是使用自定义builder或是系统默认截图方式，截图都暂时无法应用[scale](../reference/apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale)、[rotate](../reference/apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#rotate)等图形变换效果。
 
-## 通用拖拽适配
+## 使用拖拽能力
+
+### 通用拖拽适配
 
 如下以[Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md)组件为例，介绍组件拖拽开发的基本步骤，以及开发中需要注意的事项。
 
@@ -414,7 +416,7 @@ struct Index {
 
 ```
 
-## 多选拖拽适配
+### 多选拖拽适配
 
 从API version 12开始，[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)组件和[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)组件中的GridItem和ListItem组件支持多选与拖拽功能。目前，仅支持onDragStart的触发方式。
 
@@ -608,6 +610,423 @@ struct GridEts {
           .dragPreviewOptions({numberBadge: this.numberBadge},{isMultiSelectionEnabled:true,defaultAnimationBeforeLifting:true})
           .onDragStart(()=>{
           })
+        }, (idx: string) => idx)
+      }
+      .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
+      .columnsGap(5)
+      .rowsGap(10)
+      .backgroundColor(0xFAEEE0)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+### 适配自定义落位动效
+
+当开发者需要实现自定义落位动效时，可以禁用系统的默认动效。从API version 16开始，ArkUI提供了[executeDropAnimation](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#executedropanimation18)接口，用于自定义落位动效。以下以Image组件为例，详细介绍使用[executeDropAnimation](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#executedropanimation18)接口的基本步骤，以及开发过程中需要注意的事项。
+
+1. 组件拖拽设置。
+   设置draggable为true，并配置onDragStart，onDragEnd等回调函数。
+    ```ts
+    Image($r('app.media.app_icon'))
+      .width(100)
+      .height(100)
+      .draggable(true)
+      .margin({ left: 15 ,top: 40})
+      .visibility(this.imgState)
+      .onDragStart((event) => {})
+      .onDragEnd((event) => {})
+    ```
+2. 设置自定义动效。
+
+   自定义落位动效通过[animateTo](../reference/apis-arkui/js-apis-arkui-UIContext.md#animateto)接口设置动画相关的参数来实现。例如，可以改变组件的大小。
+
+    ```ts
+      customDropAnimation = () => {
+        this.getUIContext().animateTo({ duration: 1000, curve: Curve.EaseOut, playMode: PlayMode.Normal }, () => {
+          this.imageWidth = 200;
+          this.imageHeight = 200;
+          this.imgState = Visibility.None;
+        })
+      }
+    ```
+
+3. 拖拽落位适配动效。
+
+   设置onDrop回调函数，接收拖拽数据。拖拽落位动效通过[executeDropAnimation](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#executedropanimation18)函数执行，设置[useCustomDropAnimation](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent7)为true禁用系统默认动效。
+
+    ```ts
+      Column() {
+        Image(this.targetImage)
+          .width(this.imageWidth)
+          .height(this.imageHeight)
+      }
+      .draggable(true)
+      .margin({ left: 15 })
+      .border({ color: Color.Black, width: 1 })
+      .allowDrop([udmfType.UniformDataType.IMAGE])
+      .onDrop((dragEvent: DragEvent) => {
+        let records: Array<unifiedDataChannel.UnifiedRecord> = dragEvent.getData().getRecords();
+        let rect: Rectangle = dragEvent.getPreviewRect();
+        this.imageWidth = Number(rect.width);
+        this.imageHeight = Number(rect.height);
+        this.targetImage = (records[0] as udmf.Image).imageUri;
+        dragEvent.useCustomDropAnimation = true;
+        dragEvent.executeDropAnimation(this.customDropAnimation)
+      })
+    ```
+
+**完整示例：**
+
+```ts
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
+import { promptAction } from '@kit.ArkUI';
+
+
+@Entry
+@Component
+struct DropAnimationExample {
+  @State targetImage: string = '';
+  @State imageWidth: number = 100;
+  @State imageHeight: number = 100;
+  @State imgState: Visibility = Visibility.Visible;
+
+  customDropAnimation =
+    () => {
+      this.getUIContext().animateTo({ duration: 1000, curve: Curve.EaseOut, playMode: PlayMode.Normal }, () => {
+        this.imageWidth = 200;
+        this.imageHeight = 200;
+        this.imgState = Visibility.None;
+      })
+    }
+
+  build() {
+    Row() {
+      Column() {
+        Image($r('app.media.app_icon'))
+          .width(100)
+          .height(100)
+          .draggable(true)
+          .margin({ left: 15 ,top: 40})
+          .visibility(this.imgState)
+          .onDragStart((event) => {
+          })
+          .onDragEnd((event) => {
+            if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
+              promptAction.showToast({ duration: 100, message: 'Drag Success' });
+            } else if (event.getResult() === DragResult.DRAG_FAILED) {
+              promptAction.showToast({ duration: 100, message: 'Drag failed' });
+            }
+          })
+      }.width('45%')
+      .height('100%')
+      Column() {
+        Text('Drag Target Area')
+          .fontSize(20)
+          .width(180)
+          .height(40)
+          .textAlign(TextAlign.Center)
+          .margin(10)
+          .backgroundColor('rgb(240,250,255)')
+        Column() {
+          Image(this.targetImage)
+            .width(this.imageWidth)
+            .height(this.imageHeight)
+        }
+        .draggable(true)
+        .margin({ left: 15 })
+        .border({ color: Color.Black, width: 1 })
+        .allowDrop([uniformTypeDescriptor.UniformDataType.IMAGE])
+        .onDrop((dragEvent: DragEvent) => {
+          let records: Array<unifiedDataChannel.UnifiedRecord> = dragEvent.getData().getRecords();
+          let rect: Rectangle = dragEvent.getPreviewRect();
+          this.imageWidth = Number(rect.width);
+          this.imageHeight = Number(rect.height);
+          this.targetImage = (records[0] as unifiedDataChannel.Image).imageUri;
+          dragEvent.useCustomDropAnimation = true;
+          dragEvent.executeDropAnimation(this.customDropAnimation)
+        })
+      }.width('45%')
+      .height('100%')
+      .margin({ left: '5%' })
+    }
+    .height('100%')
+  }
+}
+```
+
+### 处理大批量数据
+
+当多选拖拽的数量较多或者拖拽数据量较大时，在拖拽过程中统一处理数据可能会影响拖拽功能的体验。以下以Grid组件为例，详细介绍在大批量数据拖拽过程中数据的推荐处理方式，以及在开发中需要注意的事项。
+
+1. 组件多选拖拽设置。
+
+   创建GridItem子组件，并设置其状态为可选中。再设置多选拖拽功能isMultiSelectionEnabled为true，最后设置选中状态用作区分是否选中。
+
+    ```ts
+    Grid() {
+      ForEach(this.numbers, (idx: number) => {
+        GridItem() {
+          Column()
+            .backgroundColor(this.colors[idx % 9])
+            .width(50)
+            .height(50)
+            .opacity(1.0)
+            .id('grid'+idx)
+        }
+        .dragPreview(this.previewData[idx])
+        .dragPreviewOptions({numberBadge: this.numberBadge},{isMultiSelectionEnabled:true,defaultAnimationBeforeLifting:true})
+        .selectable(true)
+        .selected(this.isSelectedGrid[idx])
+        .stateStyles({
+          normal : this.normalStyles,
+          selected: this.selectStyles
+        })
+        .onClick(() => {
+          this.isSelectedGrid[idx] = !this.isSelectedGrid[idx];
+        })
+      }, (idx: string) => idx)
+    }
+    ```
+
+   多选拖拽的数据数量过多可能影响拖拽的体验，推荐多选拖拽最大多选数量为500。
+
+    ```ts
+    onPageShow(): void {
+      let i: number = 0
+      for(i=0;i<500;i++){
+        this.numbers.push(i)
+        this.isSelectedGrid.push(false)
+        this.previewData.push({})
+      }
+    }
+    ```
+2. 多选拖拽选中时添加数据。
+
+   当数据量较大时，建议在选择数据时通过[addRecord](../reference/apis-arkdata/js-apis-data-unifiedDataChannel.md#addrecord)添加数据记录，以避免在拖拽过程中集中添加数据而导致显著的性能消耗。
+
+    ```ts
+    .onClick(()=>{
+      this.isSelectedGrid[idx] = !this.isSelectedGrid[idx];
+      if (this.isSelectedGrid[idx]) {
+        let data: UDC.Image = new UDC.Image();
+        data.uri = '/resource/image.jpeg';
+        if (!this.unifiedData) {
+          this.unifiedData = new UDC.UnifiedData(data);
+        }
+        this.unifiedData.addRecord(data);
+        this.numberBadge++;
+        let gridItemName = 'grid' + idx;
+        // 选中状态下提前调用componentSnapshot中的get接口获取pixmap
+        this.getUIContext().getComponentSnapshot().get(gridItemName, (error: Error, pixmap: image.PixelMap)=>{
+          this.pixmap = pixmap;
+          this.previewData[idx] = {
+            pixelMap:this.pixmap
+          }
+        })
+      } else {
+        this.numberBadge--;
+        for (let i=0; i<this.isSelectedGrid.length; i++) {
+          if (this.isSelectedGrid[i] === true) {
+            this.isSelectedGrid[i] = true;
+            let data: UDC.Image = new UDC.Image();
+            data.uri = '/resource/image.jpeg';
+            if (!this.unifiedData) {
+              this.unifiedData = new UDC.UnifiedData(data);
+            }
+            this.unifiedData.addRecord(data);
+          }
+        }
+      }
+    })
+    ```
+
+3. 拖拽数据提前准备。
+
+   在onPreDrag中可以提前接收到准备发起拖拽的信号，若数据量较大，此时可以事先准备数据。
+
+    ```ts
+    .onPreDrag((status: PreDragStatus) => {
+      if (status == PreDragStatus.PREPARING_FOR_DRAG_DETECTION) {
+        this.loadData()
+      }
+    })
+    ```
+
+4. 数据准备未完成时设置主动阻塞拖拽。
+
+   在发起拖拽时，应判断数据是否已准备完成。若数据未准备完成，则需向系统发出[WAITTING](../reference/apis-arkui/js-apis-arkui-dragController.md#dragstartrequeststatus18)信号。此时，若手指做出移动手势，背板图将停留在原地，直至应用发出READY信号或超出主动阻塞的最大限制时间（5s）。若数据已准备完成，则可直接将数据设置到[dragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent7)中。此外，在使用主动阻塞功能时，需保存当前的dragEvent，并在数据准备完成时进行数据设置；在非主动阻塞场景下，不建议保存当前的dragEvent。
+
+    ```ts
+    .onDragStart((event: DragEvent) => {
+      this.dragEvent = event;
+      if (this.finished == false) {
+        this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.WAITING);
+      } else {
+        event.setData(this.unifiedData);
+      }
+    })
+    ```
+
+**完整示例：**
+
+```ts
+import { image } from '@kit.ImageKit';
+import { unifiedDataChannel as UDC } from '@kit.ArkData';
+import { dragController } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct GridEts {
+  @State pixmap: image.PixelMap|undefined = undefined
+  @State numbers: number[] = []
+  @State isSelectedGrid: boolean[] = []
+  @State previewData: DragItemInfo[] = []
+  @State colors: Color[] = [Color.Red, Color.Blue, Color.Brown, Color.Gray, Color.Green, Color.Grey, Color.Orange,Color.Pink ,Color.Yellow]
+  @State numberBadge: number = 0;
+  unifiedData: UnifiedData|undefined = undefined;
+  timeout: number = 1
+  finished: boolean = false;
+  dragEvent: DragEvent|undefined;
+
+  @Styles
+  normalStyles(): void{
+    .opacity(1.0)
+  }
+
+  @Styles
+  selectStyles(): void{
+    .opacity(0.4)
+  }
+
+  onPageShow(): void {
+    let i: number = 0
+    for(i=0;i<500;i++){
+      this.numbers.push(i)
+      this.isSelectedGrid.push(false)
+      this.previewData.push({})
+    }
+  }
+
+  loadData() {
+    this.timeout = setTimeout(() => {
+      //数据准备完成后的状态
+      if (this.dragEvent) {
+        this.dragEvent.setData(this.unifiedData);
+      }
+      this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.READY);
+      this.finished = true;
+    }, 4000);
+  }
+
+  @Builder
+  RandomBuilder(idx: number) {
+    Column()
+      .backgroundColor(this.colors[idx % 9])
+      .width(50)
+      .height(50)
+      .opacity(1.0)
+  }
+
+  build() {
+    Column({ space: 5 }) {
+      Button('全选')
+        .onClick(() => {
+          for (let i=0;i<this.isSelectedGrid.length;i++) {
+            if (this.isSelectedGrid[i] === false) {
+              this.numberBadge++;
+              this.isSelectedGrid[i] = true;
+              let data: UDC.Image = new UDC.Image();
+              data.uri = '/resource/image.jpeg';
+              if (!this.unifiedData) {
+                this.unifiedData = new UDC.UnifiedData(data);
+              }
+              this.unifiedData.addRecord(data);
+              let gridItemName = 'grid' + i;
+              // 选中状态下提前调用componentSnapshot中的get接口获取pixmap
+              this.getUIContext().getComponentSnapshot().get(gridItemName, (error: Error, pixmap: image.PixelMap)=>{
+                this.pixmap = pixmap
+                this.previewData[i] = {
+                  pixelMap:this.pixmap
+                }
+              })
+            }
+          }
+        })
+      Grid() {
+        ForEach(this.numbers, (idx: number) => {
+          GridItem() {
+            Column()
+              .backgroundColor(this.colors[idx % 9])
+              .width(50)
+              .height(50)
+              .opacity(1.0)
+              .id('grid'+idx)
+          }
+          .dragPreview(this.previewData[idx])
+          .selectable(true)
+          .selected(this.isSelectedGrid[idx])
+          // 设置多选显示效果
+          .stateStyles({
+            normal : this.normalStyles,
+            selected: this.selectStyles
+          })
+          .onClick(()=>{
+            this.isSelectedGrid[idx] = !this.isSelectedGrid[idx];
+            if (this.isSelectedGrid[idx]) {
+              let data: UDC.Image = new UDC.Image();
+              data.uri = '/resource/image.jpeg';
+              if (!this.unifiedData) {
+                this.unifiedData = new UDC.UnifiedData(data);
+              }
+              this.unifiedData.addRecord(data);
+              this.numberBadge++;
+              let gridItemName = 'grid' + idx;
+              // 选中状态下提前调用componentSnapshot中的get接口获取pixmap
+              this.getUIContext().getComponentSnapshot().get(gridItemName, (error: Error, pixmap: image.PixelMap)=>{
+                this.pixmap = pixmap;
+                this.previewData[idx] = {
+                  pixelMap:this.pixmap
+                }
+              })
+            } else {
+              this.numberBadge--;
+              for (let i=0; i<this.isSelectedGrid.length; i++) {
+                if (this.isSelectedGrid[i] === true) {
+                  this.isSelectedGrid[i] = true;
+                  let data: UDC.Image = new UDC.Image();
+                  data.uri = '/resource/image.jpeg';
+                  if (!this.unifiedData) {
+                    this.unifiedData = new UDC.UnifiedData(data);
+                  }
+                  this.unifiedData.addRecord(data);
+                }
+              }
+            }
+          })
+          .onPreDrag((status: PreDragStatus) => {
+            // 1.长按时通知，350ms回调
+            if (status == PreDragStatus.PREPARING_FOR_DRAG_DETECTION) {
+              // 2.用户按住一段时间，还没有松手，有可能会拖拽，此时可准备数据
+              this.loadData()
+            } else if (status == PreDragStatus.ACTION_CANCELED_BEFORE_DRAG) {
+              // 3.用户停止拖拽交互，取消数据准备(模拟方法：定时器取消)
+              clearTimeout(this.timeout);
+            }
+          })
+          // >=500ms,移动超过10vp触发
+          .onDragStart((event: DragEvent) => {
+            this.dragEvent = event;
+            if (this.finished == false) {
+              this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.WAITING);
+            } else {
+              event.setData(this.unifiedData);
+            }
+          })
+          .onDragEnd(() => {
+            this.finished = false;
+          })
+          .dragPreviewOptions({numberBadge: this.numberBadge},{isMultiSelectionEnabled:true,defaultAnimationBeforeLifting:true})
         }, (idx: string) => idx)
       }
       .columnsTemplate('1fr 1fr 1fr 1fr 1fr')

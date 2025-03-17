@@ -50,12 +50,12 @@
 
 在指定群组中查询一条关键资产明文的示例代码详见[查询单条群组关键资产明文](asset-native-group-access-control.md#查询单条群组关键资产明文)。
 
-1. 在CMake脚本中链接相关动态库
+1. 在CMake脚本中链接相关动态库。
    ```txt
    target_link_libraries(entry PUBLIC libasset_ndk.z.so)
    ```
 
-2. 参考如下示例代码，进行业务功能开发
+2. 参考如下示例代码，进行业务功能开发。
    ```c
    #include <string.h>
 
@@ -88,12 +88,12 @@
 
 在指定群组中查询一条关键资产属性的示例代码详见[查询单条群组关键资产属性](asset-native-group-access-control.md#查询单条群组关键资产属性)。
 
-1. 在CMake脚本中链接相关动态库
+1. 在CMake脚本中链接相关动态库。
    ```txt
    target_link_libraries(entry PUBLIC libasset_ndk.z.so)
    ```
 
-2. 参考如下示例代码，进行业务功能开发
+2. 参考如下示例代码，进行业务功能开发。
    ```c
    #include <string.h>
 
@@ -124,12 +124,12 @@
 
 批量查询附属信息是demo_label的关键资产属性，从第5条满足条件的结果开始返回，一共返回10条，且返回结果以DATA_LABEL_NORMAL_1属性内容排序。
 
-1. 在CMake脚本中链接相关动态库
+1. 在CMake脚本中链接相关动态库。
    ```txt
    target_link_libraries(entry PUBLIC libasset_ndk.z.so)
    ```
 
-2. 参考如下示例代码，进行业务功能开发
+2. 参考如下示例代码，进行业务功能开发。
    ```c
    #include <string.h>
 

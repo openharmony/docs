@@ -274,7 +274,7 @@ avMetadataExtractor.getFrameIndexByTime(0).then((index: number) => {
 >
 > 使用相机进行视频录制时，需要与相机模块配合，相机模块接口的使用详情见[相机管理](../apis-camera-kit/js-apis-camera.md)。
 
-### isWatermarkSupported<sup>12+</sup>
+### isWatermarkSupported<sup>13+</sup>
 
 isWatermarkSupported(): Promise\<boolean>
 
@@ -304,7 +304,7 @@ avRecorder.isWatermarkSupported().then((isWatermarkSupported: boolean) => {
 });
 ```
 
-### setWatermark<sup>12+</sup>
+### setWatermark<sup>13+</sup>
 
 setWatermark(watermark: image.PixelMap, config: WatermarkConfig): Promise\<void>
 
@@ -321,7 +321,7 @@ setWatermark(watermark: image.PixelMap, config: WatermarkConfig): Promise\<void>
 | 参数名   | 类型                  | 必填 | 说明                         |
 | -------- | -------------------- | ---- | --------------------------- |
 | watermark | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)      | 是   | 图像PixelMap数据。<br>当前支持规格:<br>-当前仅支持pixelformat为RGBA8888。<br>-原图像为8K时->水印图像限制范围3072x288,原图像为4K时->水印图像限制范围1536x144。 |
-| config    | [WatermarkConfig](#watermarkconfig12)   | 是   | 水印的相关配置参数。 |
+| config    | [WatermarkConfig](#watermarkconfig13)   | 是   | 水印的相关配置参数。 |
 
 **返回值：**
 
@@ -1186,7 +1186,7 @@ videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回�
 | videoFrameHeight | number                                       | 是   | 录制视频帧的高。 |
 | videoFrameRate   | number                                       | 是   | 录制视频帧率。   |
 
-## WatermarkConfig<sup>12+</sup>
+## WatermarkConfig<sup>13+</sup>
 
 设置给AVRecorder的水印相关配置，该位置以画面的左上角为开始点。
 

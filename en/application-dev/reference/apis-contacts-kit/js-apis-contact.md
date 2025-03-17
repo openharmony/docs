@@ -1760,7 +1760,7 @@ Queries a contact based on the specified key, holder, and attributes. This API u
 **Return Value**
 | Type                              | Description                                 |
 | ---------------------------------- | ------------------------------------- |
-| Promise&lt;[Contact](#contact)&gt; | Promise used to return the result, which is thequeried contact.|
+| Promise&lt;[Contact](#contact)&gt; | Promise used to return the result, which is the queried contact.|
 
 **Error codes**
 
@@ -1814,7 +1814,7 @@ Queries a contact based on the specified key, holder, and attributes. This API u
 **Return Value**
 | Type                              | Description                                 |
 | ---------------------------------- | ------------------------------------- |
-| Promise&lt;[Contact](#contact)&gt; | Promise used to return the result, which is thequeried contact.|
+| Promise&lt;[Contact](#contact)&gt; | Promise used to return the result, which is the queried contact.|
 
 **Example**
 
@@ -3743,6 +3743,91 @@ Queries the key of a contact based on the specified contact ID and holder. This 
   });
   ```
 
+## contact.addContactViaUI<sup>15+</sup>
+
+addContactViaUI(context: Context, contact: Contact): Promise&lt;number&gt;
+
+Opens the **Add contact** page to add a contact. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Applications.Contacts
+
+**Parameters**
+
+| Name| Type             | Mandatory| Description                  |
+| ------ | ----------------- | ---- | ---------------------- |
+| context | Context          | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).  |
+| contact | [Contact](#contact) | Yes  | Contact information.|
+
+**Return Value**
+
+| Type                 | Description                                      |
+| --------------------- | ------------------------------------------ |
+| Promise&lt;number&gt; | Promise Contact ID.|
+
+**Error codes**
+
+| Type                 | Description                                      |
+| --------------------- | ------------------------------------------ |
+| 401       | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
+| 801       | The specified SystemCapability name was not found. |
+| 16700001       | General error. |
+| 16700102       | Failed to set value to contacts data. |
+| 16700103       | User cancel. |
+
+**Example**
+
+```js
+import { BusinessError } from '@kit.BasicServicesKit';
+// Obtain the application context.
+let context = getContext(this) as Context;
+let promise = contact.addContactViaUI(context, contactInfo);
+```
+
+## contact.saveToExistingContactViaUI<sup>15+</sup>
+
+saveToExistingContactViaUI(context: Context, contact: Contact): Promise&lt;number&gt;
+
+Opens the **Save to existing** page to save a contact to an existing one. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Applications.Contacts
+
+**Parameters**
+
+| Name| Type             | Mandatory| Description                  |
+| ------ | ----------------- | ---- | ---------------------- |
+| context | Context          | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).  |
+| contact | [Contact](#contact) | Yes  | Contact information.|
+
+**Return Value**
+
+| Type                 | Description                                      |
+| --------------------- | ------------------------------------------ |
+| Promise&lt;number&gt; | Promise Contact ID.|
+
+**Error codes**
+
+| Type                 | Description                                      |
+| --------------------- | ------------------------------------------ |
+| 401       | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
+| 801       | The specified SystemCapability name was not found. |
+| 16700001       | General error. |
+| 16700101       | Failed to get value to contacts data. |
+| 16700102       | Failed to set value to contacts data. |
+| 16700103       | User cancel. |
+
+**Example**
+
+```js
+import { BusinessError } from '@kit.BasicServicesKit';
+// Obtain the application context.
+let context = getContext(this) as Context;
+let promise = contact.saveToExistingContactViaUI(context, contactInfo);
+``` 
+
 ## ContactSelectionOptions<sup>10+</sup>
 
 Defines the contact selection options.
@@ -3753,7 +3838,109 @@ Defines the contact selection options.
 
 |                Name              |                  Type                | Mandatory |        Description     |
 | --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| isMultiSelect <sup>10+</sup>         | boolean | No  | Whether multiple contacts can be selected.    |
+| isMultiSelect<sup>10+</sup>         | boolean | No  | Whether multiple contacts can be selected. The default value is **false**.    |
+| maxSelectable<sup>15+</sup>         | number | No  | Maximum number of contacts that can be selected. The default value is **10000**.    | 
+| isDisplayedByName<sup>15+</sup>         | boolean | No  | Whether to display contacts by name. The default value is **false**.    |
+| filter<sup>15+</sup>         | [ContactSelectionFilter](#contactselectionfilter15) | No  | Contact selection filter.    |
+
+## ContactSelectionFilter<sup>15+</sup>
+
+Defines the contact selection filter.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Applications.Contacts
+
+|                Name              |                  Type                | Mandatory |        Description     |
+| --------------------------------- | ------------------------------------- | ---- | ---------------- |
+| filterClause        | [FilterClause](#filterclause15) | Yes  | Filter criteria.    |
+| filterType        | [FilterType](#filtertype15) | Yes  | Filter type.    |
+
+## FilterType<sup>15+</sup>
+
+Enumerates contact filter types.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+| Name                 | Value| Description                              |
+| --------------------- | ---- | ---------------------------------- |
+| SHOW_FILTER    | 0 | Shows only contacts that meet the filter criteria.|
+| DEFAULT_SELECT            | 1 | Selects contacts that meet the filter criteria by default.                |
+| SHOW_FILTER_AND_DEFAULT_SELECT | 2 | Shows only contacts that meet the filter criteria and selects these contacts by default.                    |
+
+## FilterClause<sup>15+</sup>
+
+Defines the contact filter criteria.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Applications.Contacts
+
+|                Name              |                  Type                | Mandatory |        Description     |
+| --------------------------------- | ------------------------------------- | ---- | ---------------- |
+| id         | [FilterOptions](#filteroptions15)[] | No  | Contact ID.    |
+| name         | [FilterOptions](#filteroptions15)[]  | No  | Contact name.    |
+| dataItem         | [DataFilter](#datafilter15) | No  | Contact data filter item.    |
+| focusModeList        | [FilterOptions](#filteroptions15)[]  | No  | Focus mode list.    |
+
+## FilterOptions<sup>15+</sup>
+
+Defines contact filter options.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Applications.Contacts
+
+|                Name              |                  Type                | Mandatory |        Description     |
+| --------------------------------- | ------------------------------------- | ---- | ---------------- |
+| filterCondition         | [FilterCondition](#filtercondition15) | Yes  | Filter criteria.    |
+| value        | string or ValueType[]| No  | Filter value. The default value is **undefined**.    |
+
+## FilterCondition<sup>15+</sup>
+
+Enumerates filter criteria.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+| Name                 | Value| Description                              |
+| --------------------- | ---- | ---------------------------------- |
+| IS_NOT_NULL    | 0 |The corresponding field is not empty.|
+| EQUAL_TO            | 1 | The corresponding field is equal to a value.                |
+| NOT_EQUAL_TO | 2 | The corresponding field is not equal to a value.                    |
+| IN | 3 | The value of the corresponding field is in an array.                    |
+| NOT_IN | 4 | The value of the corresponding field is not in an array.                    |
+| CONTAINS | 5 | The value of the corresponding field contains a certain value.                    |
+
+## DataFilter<sup>15+</sup>
+
+Defines the contact data filter item.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Applications.Contacts
+
+|                Name              |                  Type                | Mandatory |        Description     |
+| --------------------------------- | ------------------------------------- | ---- | ---------------- |
+| field         | [DataField](#datafield15) | Yes  | Contact data field.    |
+| options         | [FilterOptions](#filteroptions15)[] | Yes  | Filter options.    |
+
+## DataField<sup>15+</sup>
+
+Enumerates contact data fields.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Applications.ContactsData
+
+| Name                 | Value| Description                              |
+| --------------------- | --- | ---------------------------------- |
+| EMAIL    | 0 |Email of the contact.|
+| PHONE            | 1 | Phone number of the contact.                |
+| ORGANIZATION | 2 | Organization of the contact.                    |
 
 
 

@@ -312,23 +312,31 @@ AVTranscoder主要用于将已压缩编码的视频文件按照指定参数转�
 
 支持修改源视频文件的编码参数（格式、码率）和封装格式。源视频的音视频编码和封装格式为系统AVCodec支持的解码和解封装格式，目标视频的音视频编码和封装格式为系统AVCodec支持的编码和封装格式。
 
+<!--RP1--><!--RP1End-->
 - 支持的源视频格式：
-  - [解封装格式](../avcodec/audio-video-demuxer.md)
-  - [音频解码格式](../avcodec/audio-decoding.md)
-  - [视频解码格式](../avcodec/video-decoding.md)
+  - [解封装格式](../avcodec/avcodec-support-formats.md#媒体数据解析)
+  - [音频解码格式](../avcodec/avcodec-support-formats.md#音频解码)
+  - [视频解码格式](../avcodec/avcodec-support-formats.md#视频解码)
     <!--Del-->
     > **说明：**
     > 当前不支持H.265。
 
     <!--DelEnd-->
 - 支持的目标视频格式：
-  - [封装格式](../avcodec/audio-video-muxer.md)
-  - [音频编码格式](../avcodec/audio-encoding.md)
-  - [视频编码格式](../avcodec/video-encoding.md)
+  - [封装格式](../avcodec/avcodec-support-formats.md#媒体数据封装)
+  - [音频编码格式](../avcodec/avcodec-support-formats.md#音频编码)
+  - [视频编码格式](../avcodec/avcodec-support-formats.md#视频编码)
     <!--Del-->
     > **说明：**
     > 当前不支持H.265。
    
     <!--DelEnd-->
+- 支持的轨道数：
+  - 不支持字幕轨，存在字幕轨时将直接丢弃，不起效。
+  - 存在多条视频轨时，只会输出一条。
+  - 存在多条音频轨时，只会输出一条。
 
-<!--RP1--><!--RP1End-->
+> **说明：**
+>
+> - 解码输出视频只支持mp4封装格式。
+> - 解码需要同时满足源视频和目标视频的格式。

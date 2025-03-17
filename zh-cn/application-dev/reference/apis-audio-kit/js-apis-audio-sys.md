@@ -619,38 +619,6 @@ import { audio } from '@kit.AudioKit';
 let audioEffectManager: audio.AudioEffectManager = audioManager.getEffectManager();
 ```
 
-### getSpatializationManager<sup>11+</sup>
-
-getSpatializationManager(): AudioSpatializationManager
-
-获取空间音频管理器。
-
-**系统接口：** 该接口为系统接口
-
-**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
-
-**返回值：**
-
-| 类型                                       | 说明                          |
-|------------------------------------------| ----------------------------- |
-| [AudioSpatializationManager](#audiospatializationmanager11) | AudioSpatializationManager实例 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 202     | Not system App.                             |
-
-**示例：**
-
-```ts
-import { audio } from '@kit.AudioKit';
-
-let audioSpatializationManager: audio.AudioSpatializationManager = audioManager.getSpatializationManager();
-```
-
 ### disableSafeMediaVolume<sup>12+</sup>
 
 disableSafeMediaVolume(): Promise&lt;void&gt;
@@ -860,6 +828,275 @@ try {
   let error = err as BusinessError;
   console.error(`Failed to obtain the volumeGroup list ${error}`);
 }
+```
+
+### getAppVolumePercentageForUid<sup>18+</sup>
+
+getAppVolumePercentageForUid(uid: number\): Promise<number\>
+
+根据应用ID获取指定应用的音量（范围为0到100）。使用Promise异步回调。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                      | 必填 | 说明                               |
+| ---------- | ---------------------------------------- | ---- |----------------------------------|
+| uid    | number                                   | 是   | 表示应用ID。 |
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| Promise&lt;number&gt; | Promise对象，返回应用的音量（范围为0到100）。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed.|
+
+**示例：**
+
+```ts
+let uid: number = 20010041; // 应用ID。
+
+audioVolumeManager.getAppVolumePercentageForUid(20010041).then((value: number) => {
+  console.info(`app volume is ${value}.`);
+});
+```
+
+### setAppVolumePercentageForUid<sup>18+</sup>
+
+setAppVolumePercentageForUid(uid: number, volume: number\): Promise<void\>
+
+根据应用ID设置指定应用的音量（范围为0到100）。使用Promise异步回调。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                      | 必填 | 说明       |
+| ---------- | ---------------------------------------- | ---- |----------|
+| uid    | number                                   | 是   | 表示应用ID。   |
+| volume    | number                                   | 是   | 要设置的音量值。 |
+
+**返回值：**
+
+| 类型                | 说明                            |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed.|
+| 6800301 | Crash or blocking occurs in system process. |
+
+**示例：**
+
+```ts
+let uid: number = 20010041; // 应用ID。
+let volume: number = 20;    // 要设置的音量值。
+
+audioVolumeManager.setAppVolumePercentageForUid(uid, volume).then(() => {
+  console.info(`set app volume success.`);
+});
+```
+
+### isAppVolumeMutedForUid<sup>18+</sup>
+
+isAppVolumeMutedForUid(uid: number, owned: boolean\): Promise<boolean\>
+
+根据应用ID查询应用音量是否已静音。使用Promise异步回调。
+
+> **说明：**
+>
+> 如果有多个调用者设置了静音状态，那么只有当所有调用者都取消静音状态后，此应用才会真正取消静音。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                      | 必填 | 说明                                        |
+| ---------- | ---------------------------------------- | ---- |-------------------------------------------|
+| uid    | number                                   | 是   | 表示应用ID。                                    |
+| owned    | boolean                                   | 是   | 要查询的静音状态。true查询当前调用者的静音状态，false查询应用的静音状态。 |
+
+**返回值：**
+
+| 类型                | 说明                  |
+| ------------------- |---------------------|
+| Promise&lt;boolean&gt; | Promise对象，返回应用静音状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 |  Parameter verification failed.|
+
+**示例：**
+
+```ts
+let uid: number = 20010041; // 应用ID。
+
+audioVolumeManager.setAppVolumePercentageForUid(uid, true).then((value: boolean) => {
+  console.info(`app muted state is ${value}.`);
+});
+```
+
+### setAppVolumeMutedForUid<sup>18+</sup>
+
+setAppVolumeMutedForUid(uid: number, muted: boolean\): Promise<void\>
+
+根据应用ID设置应用静音状态。使用Promise异步回调。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                      | 必填 | 说明                             |
+| ---------- | ---------------------------------------- | ---- |--------------------------------|
+| uid    | number                                   | 是   | 表示应用ID。                         |
+| owned    | boolean                                   | 是   | 设置应用的静音状态。true设置为静音，false解除静音。 |
+
+**返回值：**
+
+| 类型                | 说明                            |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed.|
+| 6800301 | Crash or blocking occurs in system process. |
+
+**示例：**
+
+```ts
+let uid: number = 20010041; // 应用ID。
+
+audioVolumeManager.setAppVolumePercentageForUid(uid, true).then(() => {
+  console.info(`set app mute state success.`);
+});
+```
+
+### on('appVolumeChangeForUid')<sup>18+</sup>
+
+on(type: 'appVolumeChangeForUid', uid: number, callback: Callback\<VolumeEvent>): void
+
+监听指定应用应用级音量变化事件（当应用级音量发生变化时触发）。使用callback方式返回结果。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                |
+| -------- | -------------------------------------- | ---- |-----------------------------------|
+| type     | string                                 | 是   | 监听事件，固定为：'appVolumeChangeForUid'。 |
+| uid | number |  是   | 表示应用ID。                          |
+| callback | Callback<[VolumeEvent](js-apis-audio.md#volumeevent9)> | 是   | 回调函数，返回变化后的音量信息。                  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+let uid: number = 20010041; // 应用ID。
+
+audioVolumeManager.on('appVolumeChangeForUid', uid, (volumeEvent: audio.VolumeEvent) => {
+  console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
+  console.info(`Volume level: ${volumeEvent.volume} `);
+  console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
+});
+```
+
+### off('appVolumeChangeForUid')<sup>18+</sup>
+
+off(type: 'appVolumeChangeForUid', callback?: Callback\<VolumeEvent>): void
+
+取消监听指定应用应用级音量变化事件。使用callback方式返回结果。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                 | 是   | 监听事件，固定为：'appVolumeChangeForUid'。 |
+| callback | Callback<[VolumeEvent](js-apis-audio.md#volumeevent9)> | 否   | 回调函数，返回变化后的音量信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+// 取消该事件的所有监听。
+audioVolumeManager.off('appVolumeChangeForUid');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let appVolumeChangeForUidCallback = (volumeEvent: audio.VolumeEvent) => {
+  console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
+  console.info(`Volume level: ${volumeEvent.volume} `);
+  console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
+};
+
+audioVolumeManager.on('appVolumeChangeForUid', appVolumeChangeForUidCallback);
+
+audioVolumeManager.off('appVolumeChangeForUid', appVolumeChangeForUidCallback);
 ```
 
 ## AudioVolumeGroupManager<sup>9+</sup>
@@ -1811,69 +2048,11 @@ async function selectOutputDeviceByFilter(){
 }
 ```
 
-### selectInputDeviceByFilter<sup>14+</sup>
+### selectInputDeviceByFilter<sup>18+</sup>
 
-selectInputDeviceByFilter(filter: AudioCapturerFilter, inputAudioDeviceDescriptor: AudioDeviceDescriptors, callback: AsyncCallback&lt;void&gt;): void
+selectInputDeviceByFilter(filter: AudioCapturerFilter, inputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt;
 
-根据过滤条件，选择音频输入设备，当前只能选择一个输入设备，使用callback方式异步返回结果。
-
-**系统接口：** 该接口为系统接口
-
-**系统能力：** SystemCapability.Multimedia.Audio.Device
-
-**参数：**
-
-| 参数名                         | 类型                                                                | 必填 | 说明                                      |
-|-----------------------------|-------------------------------------------------------------------| ---- |-----------------------------------------|
-| filter                      | [AudioCapturerFilter](#audiocapturerfilter14)                     | 是   | 过滤条件类。                                  |
-| outputAudioDeviceDescriptor | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | 是   | 输入设备类。                                  |
-| callback                    | AsyncCallback&lt;void&gt;                                         | 是   | 回调函数。当选择音频输出设备成功，err为undefined，否则为错误对象。 |
-
-**示例：**
-```ts
-import { audio } from '@kit.AudioKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let inputAudioCapturerFilter: audio.AudioCapturerFilter = {
-    uid : 20010041,
-    capturerInfo : {
-        source: audio.SourceType.SOURCE_TYPE_MIC,
-        capturerFlags: 0
-    }
-};
-
-let inputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
-    deviceRole : audio.DeviceRole.INPUT_DEVICE,
-    deviceType : audio.DeviceType.MIC,
-    id : 1,
-    name : "",
-    address : "",
-    sampleRates : [44100],
-    channelCounts : [2],
-    channelMasks : [0],
-    networkId : audio.LOCAL_NETWORK_ID,
-    interruptGroupId : 1,
-    volumeGroupId : 1,
-    displayName : "",
-}];
-
-async function selectInputDeviceByFilter() {
-    let audioManager = audio.getAudioManager();  // 需要先创建AudioManager实例。
-    let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioManager的方法创建AudioRoutingManager实例。
-    audioRoutingManager.selectInputDeviceByFilter(inputAudioCapturerFilter, inputAudioDeviceDescriptor, (err: BusinessError) => {
-    if (err) {
-        console.error(`Result ERROR: ${err}`);
-    } else {
-        console.info('Select input devices by filter result callback: SUCCESS'); }
-    });
-}
-```
-
-### selectInputDeviceByFilter<sup>14+</sup>
-
-selectInputDeviceByFilter(filter: AudioCapturerFilter, outputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt;
-
-根据过滤条件，选择音频输入设备，当前只能选择一个输入设备，使用Promise方式异步返回结果。
+根据过滤条件，选择音频输入设备，当前只能选择一个输入设备。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -1881,16 +2060,27 @@ selectInputDeviceByFilter(filter: AudioCapturerFilter, outputAudioDevices: Audio
 
 **参数：**
 
-| 参数名                 | 类型                                                         | 必填 | 说明     |
-| ----------------------| ------------------------------------------------------------ | ---- |--------|
-| filter                      | [AudioCapturerFilter](#audiocapturerfilter14)                     | 是   | 过滤条件类。 |
-| outputAudioDeviceDescriptor | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | 是   | 输入设备类。 |
+| 参数名                 | 类型                                                                | 必填 | 说明     |
+| ----------------------|-------------------------------------------------------------------| ---- |--------|
+| filter                      | [AudioCapturerFilter](#audiocapturerfilter18)                     | 是   | 过滤条件类。 |
+| inputAudioDevices | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | 是   | 输入设备类。 |
 
 **返回值：**
 
 | 类型                  | 说明                         |
 | --------------------- | --------------------------- |
 | Promise&lt;void&gt;   | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 |  Parameter verification failed.|
+
 
 **示例：**
 
@@ -1932,9 +2122,9 @@ async function selectInputDeviceByFilter(){
 }
 ```
 
-### getPreferredOutputDeviceByFilter<sup>14+</sup>
+### getPreferredOutputDeviceByFilter<sup>18+</sup>
 
-getPreferredOutputDeviceByFilter(filter: AudioRendererFilter):  AudioDeviceDescriptors
+getPreferredOutputDeviceByFilter(filter: AudioRendererFilter): AudioDeviceDescriptors
 
 根据过滤条件，查询音频输出设备。
 
@@ -1953,6 +2143,16 @@ getPreferredOutputDeviceByFilter(filter: AudioRendererFilter):  AudioDeviceDescr
 | 类型                  | 说明                         |
 | --------------------- | --------------------------- |
 | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors)| return the device list. |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 |  Parameter verification failed.|
 
 **示例：**
 ```ts
@@ -1976,9 +2176,9 @@ async function selectOutputDeviceByFilter(){
 }
 ```
 
-### getPreferredInputDeviceByFilter<sup>14+</sup>
+### getPreferredInputDeviceByFilter<sup>18+</sup>
 
-getPreferredInputDeviceByFilter(filter: AudioRendererFilter): AudioDeviceDescriptors
+getPreferredInputDeviceByFilter(filter: AudioCapturerFilter): AudioDeviceDescriptors
 
 根据过滤条件，查询音频输入设备，当前只能查询一个输入设备。
 
@@ -1988,15 +2188,25 @@ getPreferredInputDeviceByFilter(filter: AudioRendererFilter): AudioDeviceDescrip
 
 **参数：**
 
-| 参数名                 | 类型                                                         | 必填 | 说明                      |
-|---------------------| ------------------------------------------------------------ | ---- | ------------------------- |
-| filter              | [AudioCapturerFilter](#audiocapturerfilter14)                     | 是   | 过滤条件类。 |
+| 参数名                 | 类型                                            | 必填 | 说明                      |
+|---------------------|-----------------------------------------------| ---- | ------------------------- |
+| filter              | [AudioCapturerFilter](#audiocapturerfilter18) | 是   | 过滤条件类。 |
 
 **返回值：**
 
 | 类型                  | 说明                         |
 | --------------------- | --------------------------- |
 | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | return the device list. |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 |  Parameter verification failed.|
 
 **示例：**
 
@@ -2017,6 +2227,202 @@ async function getPreferredInputDeviceByFilter(){
     let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioManager的方法创建AudioRoutingManager实例。
     let desc: audio.AudioDeviceDescriptors = audioRoutingManager.getPreferredInputDeviceByFilter(inputAudioCapturerFilter);
     console.info(`device descriptor: ${desc}`);
+}
+```
+
+### excludeOutputDevices<sup>16+</sup>
+
+excludeOutputDevices(usage: DeviceUsage, devices: AudioDeviceDescriptors): Promise&lt;void&gt;
+
+排除输出设备。成功调用此函数后，音频将不会在指定的设备上播放。
+
+> **说明：**
+>
+> 该功能仅能排除外部输出设备，不支持本地输出设备。
+
+**需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名                       | 类型                                                         | 必填 | 说明                      |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| usage          | [DeviceUsage](js-apis-audio.md#deviceusage12)            | 是   | 设备种类。只支持排除输出设备。               |
+| devices          | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors)            | 是   | 排除输出设备列表。               |
+
+**返回值：**
+
+| 类型                  | 说明                         |
+| --------------------- | --------------------------- |
+| Promise&lt;void&gt;   | Promise对象。无返回结果。 |
+
+**示例：**
+
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let usage: audio.DeviceUsage.MEDIA_OUTPUT_DEVICES;
+let excludedDevices: audio.AudioDeviceDescriptors = [{
+  deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+  deviceType : audio.DeviceType.BLUETOOTH_A2DP,
+  id : 3,
+  name : "",
+  address : "",
+  sampleRates : [44100],
+  channelCounts : [2],
+  channelMasks : [0],
+  networkId : audio.LOCAL_NETWORK_ID,
+  interruptGroupId : 1,
+  volumeGroupId : 1,
+  displayName : "",
+}];
+
+async function excludeOutputDevices(){
+  audioRoutingManager.excludeOutputDevices(usage, excludedDevices, (err: BusinessError) => {
+    if (err) {
+      console.error(`Result ERROR: ${err}`);
+    } else {
+      console.info('Exclude Output Devices result callback: SUCCESS'); }
+  });
+}
+```
+
+### unexcludeOutputDevices<sup>16+</sup>
+
+unexcludeOutputDevices(usage: DeviceUsage, devices: AudioDeviceDescriptors): Promise&lt;void&gt;
+
+解除排除输出设备。成功调用此函数后，音频将会重新选择输出设备。
+
+**需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名                       | 类型                                                         | 必填 | 说明                      |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| usage          | [DeviceUsage](js-apis-audio.md#deviceusage12)            | 是   | 设备种类。只支持排除输出设备。               |
+| devices          | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors)            | 是   | 解除排除输出设备列表。               |
+
+**返回值：**
+
+| 类型                  | 说明                         |
+| --------------------- | --------------------------- |
+| Promise&lt;void&gt;   | Promise对象。无返回结果。 |
+
+**示例：**
+
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let usage: audio.DeviceUsage.MEDIA_OUTPUT_DEVICES;
+let unexcludedDevices: audio.AudioDeviceDescriptors = [{
+  deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+  deviceType : audio.DeviceType.BLUETOOTH_A2DP,
+  id : 3,
+  name : "",
+  address : "",
+  sampleRates : [44100],
+  channelCounts : [2],
+  channelMasks : [0],
+  networkId : audio.LOCAL_NETWORK_ID,
+  interruptGroupId : 1,
+  volumeGroupId : 1,
+  displayName : "",
+}];
+
+async function unexcludeOutputDevices(){
+  audioRoutingManager.unexcludeOutputDevices(usage, unexcludedDevices, (err: BusinessError) => {
+    if (err) {
+      console.error(`Result ERROR: ${err}`);
+    } else {
+      console.info('Unexclude Output Devices result callback: SUCCESS'); }
+  });
+}
+```
+
+### unexcludeOutputDevices<sup>16+</sup>
+
+unexcludeOutputDevices(usage: DeviceUsage): Promise&lt;void&gt;
+
+解除属于特定用途的所有输出设备的排除。成功调用此函数后，音频将会重新选择输出设备。
+
+**需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名                       | 类型                                                         | 必填 | 说明                      |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| usage          | [DeviceUsage](js-apis-audio.md#deviceusage12)            | 是   | 设备种类。只支持排除输出设备。               |
+
+**返回值：**
+
+| 类型                  | 说明                         |
+| --------------------- | --------------------------- |
+| Promise&lt;void&gt;   | Promise对象。无返回结果。 |
+
+**示例：**
+
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let usage: audio.DeviceUsage.MEDIA_OUTPUT_DEVICES;
+
+async function unexcludeOutputDevices(){
+  audioRoutingManager.unexcludeOutputDevices(usage).then(() => {
+    console.info('Unexclude Output Devices result promise: SUCCESS');
+  }).catch((err: BusinessError) => {
+    console.error(`Result ERROR: ${err}`);
+  });
+}
+```
+
+### getExcludedDevices<sup>16+</sup>
+
+getExcludedDevices(usage: DeviceUsage): AudioDeviceDescriptors
+
+获取排除输出设备列表。
+
+**需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名                       | 类型                                                         | 必填 | 说明                      |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| usage          | [DeviceUsage](js-apis-audio.md#deviceusage12)            | 是   | 设备种类。只支持排除输出设备。               |
+
+**返回值：**
+
+| 类型                  | 说明                         |
+| --------------------- | --------------------------- |
+| [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | 排除设备列表。 |
+
+**示例：**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+let usage: audio.DeviceUsage.MEDIA_OUTPUT_DEVICES;
+
+async function getExcludedDevices(){
+  let desc: audio.AudioDeviceDescriptors = audioRoutingManager.getExcludedDevices(usage);
+  console.info(`device descriptor: ${desc}`);
 }
 ```
 
@@ -2078,7 +2484,7 @@ let outputAudioRendererFilter: audio.AudioRendererFilter = {
   rendererId : 0
 };
 ```
-## AudioCapturerFilter<sup>14+</sup>
+## AudioCapturerFilter<sup>18+</sup>
 
 过滤条件类。在调用selectOutputDeviceByFilter接口前，需要先创建AudioCapturerFilter实例。
 
@@ -2118,7 +2524,7 @@ let inputAudioCapturerFilter: audio.AudioCapturerFilter = {
 
 ## AudioSpatializationManager<sup>11+</sup>
 
-空间音频管理。在使用AudioSpatializationManager的接口前，需要使用[getSpatializationManager](#getspatializationmanager11)获取AudioSpatializationManager实例。
+空间音频管理。在使用AudioSpatializationManager的接口前，需要使用[getSpatializationManager](js-apis-audio.md#getspatializationmanager18)获取AudioSpatializationManager实例。
 
 ### isSpatializationSupported<sup>11+</sup>
 

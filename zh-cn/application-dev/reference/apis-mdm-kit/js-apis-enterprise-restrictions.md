@@ -30,8 +30,8 @@ setDisallowedPolicy(admin: Want, feature: string, disallow: boolean): void
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
-| feature  | string                                                  | 是   | feature名称。<br/>- bluetooth：设备蓝牙能力。<br/>- modifyDateTime：设备修改系统时间能力，当前仅支持2in1设备使用。<br/>- printer：设备打印能力，当前仅支持2in1设备使用。<br/>- hdc：设备HDC能力。<br/>- microphone：设备麦克风能力。<br/>- fingerprint：设备指纹认证能力。<br/>- usb：设备USB能力。禁用后外接的USB设备无法使用。<br/>- wifi：设备WIFI能力。<br/>- tethering<sup>14+</sup>：网络共享能力。<br/>- inactiveUserFreeze<sup>14+</sup>：非活跃用户运行能力。企业空间场景下，系统切换到企业空间用户，个人空间用户属于非活跃用户。<br/>- camera<sup>14+</sup>：设备相机能力。<!--RP1--><!--RP1End--> <br/> **说明：** 从API version 15开始，应用申请权限ohos.permission.PERSONAL_MANAGE_RESTRICTIONS并[激活为自带设备管理应用](./js-apis-enterprise-adminManager.md#adminmanagerstartadminprovision15)，可以使用此接口设置以下特性：bluetooth、hdc、microphone、usb、wifi、tethering、camera。 |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
+| feature  | string                                                  | 是   | feature名称。<br/>- bluetooth：设备蓝牙能力。<br/>- modifyDateTime：设备修改系统时间能力，当前仅支持2in1设备使用。<br/>- printer：设备打印能力，当前仅支持2in1设备使用。<br/>- hdc：设备HDC能力。<br/>- microphone：设备麦克风能力。<br/>- fingerprint：设备指纹认证能力。当已经通过[setDisallowedPolicyForAccount](#restrictionssetdisallowedpolicyforaccount14)设置了某用户禁用设备指纹认证能力时，再通过本接口启用设备指纹认证能力，会报策略冲突。<br/>- usb：设备USB能力。禁用后外接的USB设备无法使用，即在当前设备为HOST模式时，无法外接其他DEVICE设备。<br/>  以下三种情况再通过本接口禁用设备USB能力，会报策略冲突。<br/>  1）通过[addAllowedUsbDevices](js-apis-enterprise-usbManager.md#usbmanageraddallowedusbdevices)接口添加了USB设备可用白名单。<br/>  2）通过[setUsbStorageDeviceAccessPolicy](js-apis-enterprise-usbManager.md#usbmanagersetusbstoragedeviceaccesspolicy)接口设置了USB存储设备访问策略为只读/禁用。<br/>  3）通过[addDisallowedUsbDevices](js-apis-enterprise-usbManager.md#usbmanageradddisallowedusbdevices14)接口添加了禁止使用的USB设备类型。<br/>- wifi：设备WIFI能力。<br/>- tethering<sup>14+</sup>：网络共享能力，当前仅支持2in1设备使用。<br/>- inactiveUserFreeze<sup>14+</sup>：非活跃用户运行能力，当前仅支持2in1设备使用。企业空间场景下，系统切换到企业空间用户，个人空间用户属于非活跃用户。<br/>- camera<sup>14+</sup>：设备相机能力。<!--RP1--><!--RP1End--> <br/> **说明：** 从API version 15开始，应用申请权限ohos.permission.PERSONAL_MANAGE_RESTRICTIONS并[激活为自带设备管理应用](./js-apis-enterprise-adminManager.md#adminmanagerstartadminprovision15)，可以使用此接口设置以下特性：bluetooth、hdc、microphone、usb、wifi、tethering、camera。 |
 | disallow | boolean                                                 | 是   | true表示禁止使用，false表示允许使用。                        |
 
 **错误码**：
@@ -50,8 +50,8 @@ setDisallowedPolicy(admin: Want, feature: string, disallow: boolean): void
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 try {
@@ -66,7 +66,7 @@ try {
 
 getDisallowedPolicy(admin: Want, feature: string): boolean
 
-获取某特性状态。 
+获取某特性的禁用状态。 
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS 或者 ohos.permission.PERSONAL_MANAGE_RESTRICTIONS<sup>15+</sup>
 
@@ -76,8 +76,8 @@ getDisallowedPolicy(admin: Want, feature: string): boolean
 
 | 参数名  | 类型                                                    | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
-| feature | string                                                  | 是   | feature名称。<br/>- bluetooth：设备蓝牙能力。<br/>- modifyDateTime：设备修改系统时间能力，当前仅支持2in1设备使用。<br/>- printer：设备打印能力，当前仅支持2in1设备使用。<br/>- hdc：设备HDC能力。<br/>- microphone：设备麦克风能力。<br/>- fingerprint：设备指纹认证能力。<br/>- usb：设备USB能力。禁用后外接的USB设备无法使用。<br/>- wifi：设备WIFI能力。<br/>- tethering<sup>14+</sup>：网络共享能力。 <br/>- inactiveUserFreeze<sup>14+</sup>：非活跃用户运行能力，当前仅支持2in1使用。企业空间场景下，系统切换到企业空间用户，个人空间用户属于非活跃用户。<br/>- camera<sup>14+</sup>：设备相机能力。<!--RP2--><!--RP2End--> <br/> **说明：** 从API version 15开始，应用申请权限ohos.permission.PERSONAL_MANAGE_RESTRICTIONS并[激活为自带设备管理应用](./js-apis-enterprise-adminManager.md#adminmanagerstartadminprovision15)，可以使用此接口获取以下特性状态：bluetooth、hdc、microphone、usb、wifi、tethering、camera。 |
+| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
+| feature | string                                                  | 是   | feature名称。<br/>- bluetooth：设备蓝牙能力。<br/>- modifyDateTime：设备修改系统时间能力，当前仅支持2in1设备使用。<br/>- printer：设备打印能力，当前仅支持2in1设备使用。<br/>- hdc：设备HDC能力。<br/>- microphone：设备麦克风能力。<br/>- fingerprint：设备指纹认证能力。<br/>- usb：设备USB能力。禁用后外接的USB设备无法使用，即在当前设备为HOST模式时，无法外接其他DEVICE设备。<br/>- wifi：设备WIFI能力。<br/>- tethering<sup>14+</sup>：网络共享能力，当前仅支持2in1设备使用。 <br/>- inactiveUserFreeze<sup>14+</sup>：非活跃用户运行能力，当前仅支持2in1设备使用。企业空间场景下，系统切换到企业空间用户，个人空间用户属于非活跃用户。<br/>- camera<sup>14+</sup>：设备相机能力。<!--RP2--><!--RP2End--> <br/> **说明：** 从API version 15开始，应用申请权限ohos.permission.PERSONAL_MANAGE_RESTRICTIONS并[激活为自带设备管理应用](./js-apis-enterprise-adminManager.md#adminmanagerstartadminprovision15)，可以使用此接口获取以下特性状态：bluetooth、hdc、microphone、usb、wifi、tethering、camera。 |
 
 **返回值：**
 
@@ -101,8 +101,8 @@ getDisallowedPolicy(admin: Want, feature: string): boolean
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 try {
@@ -117,7 +117,7 @@ try {
 
 setDisallowedPolicyForAccount(admin: Want, feature: string, disallow: boolean, accountId: number): void
 
-设置禁用/启用某用户的某特性。 
+设置禁用/启用指定用户的某特性。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
@@ -127,10 +127,10 @@ setDisallowedPolicyForAccount(admin: Want, feature: string, disallow: boolean, a
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
-| feature  | string                                                  | 是   | feature名称。<br/>- fingerprint：设备指纹认证能力。|
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
+| feature  | string                                                  | 是   | feature名称。<br/>- fingerprint：设备指纹认证能力，当前仅支持2in1设备使用。使用此参数时有以下规则：<br/>1. 通过[setDisallowedPolicy](#restrictionssetdisallowedpolicy)接口禁用了设备指纹认证能力，再使用本接口传入此参数，会报策略冲突。<br/>2. 通过本接口设置禁用/启用指定用户的设备指纹认证能力后，再通过[setDisallowedPolicy](#restrictionssetdisallowedpolicy)接口禁用设备指纹认证能力时，后者会覆盖前者的策略。此后再通过[setDisallowedPolicy](#restrictionssetdisallowedpolicy)接口启用设备指纹认证能力，则所有用户都允许使用设备指纹认证能力。 |
 | disallow | boolean                                                 | 是   | true表示禁用，false表示启用。                        |
-| accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。                     |
+| accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。<br/>accountId可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)等接口来获取。 |
 
 **错误码**：
 
@@ -149,8 +149,8 @@ setDisallowedPolicyForAccount(admin: Want, feature: string, disallow: boolean, a
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 try {
@@ -165,7 +165,7 @@ try {
 
 getDisallowedPolicyForAccount(admin: Want, feature: string, accountId: number): boolean
 
-获取某用户的某特性状态。 
+获取指定用户的某特性状态。 
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
@@ -175,15 +175,15 @@ getDisallowedPolicyForAccount(admin: Want, feature: string, accountId: number): 
 
 | 参数名  | 类型                                                    | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
-| feature | string                                                  | 是   | feature名称。<br/>- fingerprint：设备指纹认证能力。|
-| accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。                     |
+| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
+| feature | string                                                  | 是   | feature名称。<br/>- fingerprint：设备指纹认证能力，当前仅支持2in1设备使用。使用此参数时有以下规则：当已经通过[setDisallowedPolicyForAccount](#restrictionssetdisallowedpolicyforaccount14)接口设置禁用/启用指定用户的设备指纹认证能力后，再通过[setDisallowedPolicy](#restrictionssetdisallowedpolicy)接口禁用设备指纹认证能力时，后者会覆盖前者的策略。即此时调用本接口结果为false。 |
+| accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。<br/>accountId可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)等接口来获取。 |
 
 **返回值：**
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| boolean | 返回true表示入参对应的用户的特性被禁用，false表示入参对应的用户的特性未被禁用。 |
+| boolean | 返回true表示参数feature对应的特性被禁用，false表示参数feature对应的特性未被禁用。 |
 
 **错误码**：
 
@@ -201,8 +201,8 @@ getDisallowedPolicyForAccount(admin: Want, feature: string, accountId: number): 
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 try {
@@ -217,7 +217,7 @@ try {
 
 addDisallowedListForAccount(admin: Want, feature: string, list: Array\<string>, accountId: number): void
 
-为用户添加禁用某特征的名单。
+为指定用户添加禁止使用某特性的应用名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
@@ -227,10 +227,10 @@ addDisallowedListForAccount(admin: Want, feature: string, list: Array\<string>, 
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
-| feature  | string                                                  | 是   | 特征名称。<br/>- snapshotSkip：屏幕快照跳过。|
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
+| feature  | string                                                  | 是   | feature名称。<br/>- snapshotSkip：屏幕快照能力。 |
 | list | Array\<string>                                                 | 是   | 包名等内容的名单集合。                      |
-| accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。                     |
+| accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。<br/>accountId可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)等接口来获取。 |
 
 **错误码**：
 
@@ -248,8 +248,8 @@ addDisallowedListForAccount(admin: Want, feature: string, list: Array\<string>, 
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let valueList:Array<string> = ["com.xx.aa.", "com.xx.bb"];
 try {
@@ -264,7 +264,7 @@ try {
 
 removeDisallowedListForAccount(admin: Want, feature: string, list: Array\<string>, accountId: number): void
 
-为用户移除禁用的某特征的名单。
+为指定用户移除禁止使用某特性的应用名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
@@ -274,10 +274,10 @@ removeDisallowedListForAccount(admin: Want, feature: string, list: Array\<string
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
-| feature  | string                                                  | 是   | 特征名称。<br/>- snapshotSkip：屏幕快照跳过。|
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
+| feature  | string                                                  | 是   | feature名称。<br/>- snapshotSkip：屏幕快照能力。 |
 | list | Array\<string>                                                 | 是   | 包名等内容的名单集合。                       |
-| accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。                     |
+| accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。<br/>accountId可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)等接口来获取。 |
 
 **错误码**：
 
@@ -295,8 +295,8 @@ removeDisallowedListForAccount(admin: Want, feature: string, list: Array\<string
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let valueList:Array<string> = ["com.xx.aa.", "com.xx.bb"];
 try {
@@ -311,7 +311,7 @@ try {
 
 getDisallowedListForAccount(admin: Want, feature: string, accountId: number): Array\<string>
 
-获取用户禁用某特征的名单。
+获取指定用户禁止使用某特性的应用名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
@@ -321,15 +321,15 @@ getDisallowedListForAccount(admin: Want, feature: string, accountId: number): Ar
 
 | 参数名  | 类型                                                    | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
-| feature | string                                                  | 是   | 特征名称。<br/>- snapshotSkip：屏幕快照跳过。|
-| accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。                     |
+| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
+| feature | string                                                  | 是   | feature名称。<br/>- snapshotSkip：屏幕快照能力。 |
+| accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。<br/>accountId可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)等接口来获取。 |
 
 **返回值：**
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| Array\<string> | 用户已添加的禁用某特征的名单。 |
+| Array\<string> | 用户已添加的禁用某特征的应用名单。 |
 
 **错误码**：
 
@@ -347,8 +347,8 @@ getDisallowedListForAccount(admin: Want, feature: string, accountId: number): Ar
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 try {

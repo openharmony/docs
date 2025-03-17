@@ -73,7 +73,7 @@ aboutToDisappear?(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-### onAttach<sup>16+</sup>
+### onAttach<sup>18+</sup>
 
 onAttach?(): void
 
@@ -83,11 +83,11 @@ onAttach?(): void
 >
 > 回调时机参考[onAttach](arkui-ts/ts-universal-events-show-hide.md#onattach)。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-### onDetach<sup>16+</sup>
+### onDetach<sup>18+</sup>
 
 onDetach?(): void
 
@@ -97,17 +97,17 @@ onDetach?(): void
 >
 > 回调时机参考[onDetach](arkui-ts/ts-universal-events-show-hide.md#ondetach)。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-### onWillBind<sup>16+</sup>
+### onWillBind<sup>18+</sup>
 
 onWillBind?(containerId: number): void
 
 当NodeController与[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)即将绑定前触发此回调。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -117,13 +117,13 @@ onWillBind?(containerId: number): void
 | ----------- | ------ |----- |---------------------------------------------------------------------------------------------------------------------------------- |
 | containerId | number | 是   | 回调该方法时，NodeController与NodeContainerId对应的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)即将绑定。|
 
-### onWillUnbind<sup>16+</sup>
+### onWillUnbind<sup>18+</sup>
 
 onWillUnbind?(containerId: number): void
 
 当NodeController与[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)即将解绑前触发此回调。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -133,13 +133,13 @@ onWillUnbind?(containerId: number): void
 | ----------- | ------ |----- |---------------------------------------------------------------------------------------------------------------------------------- |
 | containerId | number | 是   | 回调该方法时，NodeController与NodeContainerId对应的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)即将解绑。|
 
-### onBind<sup>16+</sup>
+### onBind<sup>18+</sup>
 
 onBind?(containerId: number): void
 
 当NodeController与[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)绑定后触发此回调。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -149,13 +149,13 @@ onBind?(containerId: number): void
 | ----------- | ------ |----- |---------------------------------------------------------------------------------------------------------------------------------- |
 | containerId | number | 是   | 回调该方法时，NodeController与NodeContainerId对应的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)绑定完成。|
 
-### onUnbind<sup>16+</sup>
+### onUnbind<sup>18+</sup>
 
 onUnbind?(containerId: number): void
 
 当NodeController与[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)解绑后触发此回调。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

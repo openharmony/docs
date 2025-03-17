@@ -81,7 +81,7 @@ Grid() {
 
 在网格中，可以通过onGetRectByIndex返回的[rowStart,columnStart,rowSpan,columnSpan]来实现跨行跨列布局，其中rowStart和columnStart属性表示指定当前元素起始行号和起始列号，rowSpan和columnSpan属性表示指定当前元素的占用行数和占用列数。
 
-所以“0”按键横跨第一列和第二列，“=”按键横跨第五行和第六行，只要将“0”对应onGetRectByIndex的rowStart和columnStart设为5和0，rowSpan和columnSpan设为1和2，将“=”对应onGetRectByIndex的rowStart和columnStart设为4和3，rowSpan和columnSpan设为2和1即可。
+所以“0”按键横跨第一列和第二列，“=”按键横跨第五行和第六行，只要将“0”对应onGetRectByIndex的rowStart和columnStart设为6和0，rowSpan和columnSpan设为1和2，将“=”对应onGetRectByIndex的rowStart和columnStart设为5和3，rowSpan和columnSpan设为2和1即可。
 
 
 ```ts
@@ -89,9 +89,9 @@ layoutOptions: GridLayoutOptions = {
   regularSize: [1, 1],
   onGetRectByIndex: (index: number) => {
     if (index == key1) { // key1是“0”按键对应的index
-      return [5, 0, 1, 2]
+      return [6, 0, 1, 2];
     } else if (index == key2) { // key2是“=”按键对应的index
-      return [4, 3, 2, 1]
+      return [5, 3, 2, 1];
     }
     // ...
     // 这里需要根据具体布局返回其他item的位置
@@ -102,7 +102,7 @@ Grid(undefined, this.layoutOptions) {
   // ...
 }
 .columnsTemplate('1fr 1fr 1fr 1fr')
-.rowsTemplate('2fr 1fr 1fr 1fr 1fr 1fr')
+.rowsTemplate('1fr 1fr 1fr 1fr 1fr 1fr 1fr')
 ```
 
 

@@ -51,6 +51,7 @@
     - [oh_data_values_buckets.h](oh__data__values__buckets_8h.md)
     - [oh_predicates.h](oh__predicates_8h.md)
     - [oh_rdb_transaction.h](oh__rdb__transaction_8h.md)
+    - [oh_rdb_types.h](oh__rdb__types_8h.md)
     - [oh_value_object.h](oh__value__object_8h.md)
     - [oh_values_bucket.h](oh__values__bucket_8h.md)
     - [relational_store_error_code.h](relational__store__error__code_8h.md)

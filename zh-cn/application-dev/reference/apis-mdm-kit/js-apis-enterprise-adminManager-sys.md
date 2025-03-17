@@ -34,7 +34,7 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callba
 
 | 参数名            | 类型                                  | 必填   | 说明                 |
 | -------------- | ----------------------------------- | ---- | ------------------ |
-| admin          | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。            |
+| admin          | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。      |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理应用的企业信息。      |
 | type           | [AdminType](#admintype)             | 是    | 激活的设备管理应用类型。         |
 | callback       | AsyncCallback\<void>                | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
@@ -92,7 +92,7 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 
 | 参数名            | 类型                                  | 必填   | 说明                           |
 | -------------- | ----------------------------------- | ---- | ---------------------------- |
-| admin          | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。                      |
+| admin          | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。                |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理应用的企业信息。                 |
 | type           | [AdminType](#admintype)             | 是    | 激活的设备管理应用类型。                  |
 | userId         | number                              | 是    | 用户ID，指定具体用户，取值范围：大于等于0。<br>默认值：调用方所在用户。 |
@@ -151,7 +151,7 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 
 | 参数名            | 类型                                  | 必填   | 说明                           |
 | -------------- | ----------------------------------- | ---- | ---------------------------- |
-| admin          | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。                      |
+| admin          | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。                |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理应用的企业信息。                 |
 | type           | [AdminType](#admintype)             | 是    | 激活的设备管理应用类型。                   |
 | userId         | number                              | 否    | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。|
@@ -213,7 +213,7 @@ disableAdmin(admin: Want, callback: AsyncCallback\<void>): void
 
 | 参数名      | 类型                                  | 必填   | 说明                  |
 | -------- | ----------------------------------- | ---- | ------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 普通设备管理应用。           |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | callback | AsyncCallback\<void>                | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**:
@@ -232,8 +232,8 @@ disableAdmin(admin: Want, callback: AsyncCallback\<void>): void
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 adminManager.disableAdmin(wantTemp, (err) => {
@@ -263,7 +263,7 @@ disableAdmin(admin: Want, userId: number, callback: AsyncCallback\<void>): void
 
 | 参数名      | 类型                                  | 必填   | 说明                           |
 | -------- | ----------------------------------- | ---- | ---------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 普通设备管理应用。                    |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。              |
 | userId   | number                              | 是    | 用户ID，指定具体用户，取值范围：大于等于0。<br>默认值：当前用户。 |
 | callback | AsyncCallback\<void>                | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。        |
 
@@ -283,8 +283,8 @@ disableAdmin(admin: Want, userId: number, callback: AsyncCallback\<void>): void
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 adminManager.disableAdmin(wantTemp, 100, (err) => {
@@ -408,7 +408,7 @@ isAdminEnabled(admin: Want, callback: AsyncCallback\<boolean>): void
 
 | 参数名      | 类型                                  | 必填   | 说明                   |
 | -------- | ----------------------------------- | ---- | -------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。             |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。       |
 | callback | AsyncCallback\<boolean>             | 是    | 回调函数，当接口调用成功，err为null，data为boolean值，true表示当前用户下指定的设备管理应用被激活，false表示当前用户下指定的设备管理应用未激活，否则err为错误对象。 |
 
 **错误码**:
@@ -425,8 +425,8 @@ isAdminEnabled(admin: Want, callback: AsyncCallback\<boolean>): void
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 adminManager.isAdminEnabled(wantTemp, (err, result) => {
@@ -454,7 +454,7 @@ isAdminEnabled(admin: Want, userId: number, callback: AsyncCallback\<boolean>): 
 
 | 参数名      | 类型                                  | 必填   | 说明                           |
 | -------- | ----------------------------------- | ---- | ---------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。                      |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。                |
 | userId   | number                              | 是    | 用户ID，指定具体用户，取值范围：大于等于0。<br> 默认值：当前用户。 |
 | callback | AsyncCallback\<boolean>             | 是    | 回调函数，当接口调用成功，err为null，data为boolean值，true表示当前用户下指定的设备管理应用被激活，false表示当前用户下指定的设备管理应用未激活，否则err为错误对象。      |
 
@@ -472,8 +472,8 @@ isAdminEnabled(admin: Want, userId: number, callback: AsyncCallback\<boolean>): 
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 adminManager.isAdminEnabled(wantTemp, 100, (err, result) => {
@@ -499,10 +499,10 @@ isAdminEnabled(admin: Want, userId?: number): Promise\<boolean>
 
 **参数**：
 
-| 参数名    | 类型                                  | 必填   | 说明                           |
-| ------ | ----------------------------------- | ---- | ---------------------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。                      |
-| userId | number                              | 否    | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。 |
+| 参数名 | 类型                                                    | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
+| userId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。 |
 
 **返回值：**
 
@@ -525,8 +525,8 @@ isAdminEnabled(admin: Want, userId?: number): Promise\<boolean>
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 adminManager.isAdminEnabled(wantTemp, 100).then((result) => {
@@ -668,7 +668,7 @@ adminManager.getSuperAdmin().then((result) => {
 
 setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCallback\<void>): void
 
-设置指定的设备管理应用的企业信息。使用callback异步回调。
+设置设备管理应用的企业信息。使用callback异步回调。
 
 **需要权限：** ohos.permission.SET_ENTERPRISE_INFO
 
@@ -682,7 +682,7 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCa
 
 | 参数名            | 类型                                  | 必填   | 说明                     |
 | -------------- | ----------------------------------- | ---- | ---------------------- |
-| admin          | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。                |
+| admin          | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。          |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理应用的企业信息。           |
 | callback       | AsyncCallback\<void>              | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
 
@@ -723,7 +723,7 @@ adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo, (err) => {
 
 setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>
 
-设置指定的设备管理应用的企业信息。使用promise异步回调。
+设置设备管理应用的企业信息。使用promise异步回调。
 
 **需要权限：** ohos.permission.SET_ENTERPRISE_INFO
 
@@ -737,8 +737,8 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>
 
 | 参数名            | 类型                                  | 必填   | 说明           |
 | -------------- | ----------------------------------- | ---- | ------------ |
-| admin          | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用      |
-| enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理应用的企业信息 |
+| admin          | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
+| enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理应用的企业信息。 |
 
 **返回值：**
 
@@ -780,7 +780,7 @@ adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo).catch((err: BusinessErr
 
 getEnterpriseInfo(admin: Want, callback: AsyncCallback&lt;EnterpriseInfo&gt;): void
 
-获取指定的设备管理应用的企业信息。使用callback异步回调。
+获取设备管理应用的企业信息。使用callback异步回调。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -792,7 +792,7 @@ getEnterpriseInfo(admin: Want, callback: AsyncCallback&lt;EnterpriseInfo&gt;): v
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 设备管理应用                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 企业设备管理扩展组件。           |
 | callback | AsyncCallback&lt;[EnterpriseInfo](#enterpriseinfo)&gt; | 是    | 回调函数，当接口调用成功，err为null，data为设备管理应用的企业信息，否则err为错误对象。 |
 
 **错误码**：
@@ -827,7 +827,7 @@ adminManager.getEnterpriseInfo(wantTemp, (err, result) => {
 
 getEnterpriseInfo(admin: Want): Promise&lt;EnterpriseInfo&gt;
 
-获取指定的设备管理应用的企业信息，使用promise异步回调。
+获取设备管理应用的企业信息，使用promise异步回调。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -839,13 +839,13 @@ getEnterpriseInfo(admin: Want): Promise&lt;EnterpriseInfo&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 
 **返回值：**
 
 | 类型                                       | 说明                        |
 | ---------------------------------------- | ------------------------- |
-| Promise&lt;[EnterpriseInfo](#enterpriseinfo)&gt; | Promise对象，返回指定的设备管理应用的企业信息。 |
+| Promise&lt;[EnterpriseInfo](#enterpriseinfo)&gt; | Promise对象，返回设备管理应用的企业信息。 |
 
 **错误码**：
 
@@ -878,7 +878,7 @@ adminManager.getEnterpriseInfo(wantTemp).then((result) => {
 
 subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback: AsyncCallback\<void>): void
 
-指定的设备管理应用订阅系统管理事件。使用callback异步回调。
+订阅系统管理事件。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
@@ -892,7 +892,7 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | managedEvents  | Array\<[ManagedEvent](js-apis-enterprise-adminManager.md#managedevent)> | 是 | 订阅事件数组。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
 
@@ -913,8 +913,8 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
@@ -931,7 +931,7 @@ adminManager.subscribeManagedEvent(wantTemp, events, (err) => {
 
 subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise\<void>
 
-指定的设备管理应用订阅系统管理事件。使用Promise异步回调。
+订阅系统管理事件。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
@@ -945,14 +945,14 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | managedEvents  | Array\<[ManagedEvent](js-apis-enterprise-adminManager.md#managedevent)> | 是 | 订阅事件数组。 |
 
 **返回值：**
 
 | 类型   | 说明                                  |
 | ----- | ----------------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。当指定的设备管理应用订阅系统事件失败时，会抛出错误对象。 |
+| Promise\<void> | 无返回结果的Promise对象。当订阅系统事件失败时，会抛出错误对象。 |
 
 **错误码**：
 
@@ -972,8 +972,8 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
@@ -987,7 +987,7 @@ adminManager.subscribeManagedEvent(wantTemp, events).then(() => {
 
 unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback: AsyncCallback\<void>): void
 
-指定的设备管理应用取消订阅系统管理事件。使用callback异步回调。
+取消订阅系统管理事件。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
@@ -1001,7 +1001,7 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callba
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | managedEvents  | Array\<[ManagedEvent](js-apis-enterprise-adminManager.md#managedevent)> | 是 | 取消订阅事件数组。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
 
@@ -1022,8 +1022,8 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callba
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
@@ -1040,7 +1040,7 @@ adminManager.unsubscribeManagedEvent(wantTemp, events, (err) => {
 
 unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise\<void>
 
-指定的设备管理应用取消订阅系统管理事件。使用promise异步回调。
+取消订阅系统管理事件。使用promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
@@ -1054,14 +1054,14 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promi
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | managedEvents  | Array\<[ManagedEvent](js-apis-enterprise-adminManager.md#managedevent)> | 是 | 取消订阅事件数组。 |
 
 **返回值：**
 
 | 类型   | 说明                                  |
 | ----- | ----------------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。当指定设备管理应用取消订阅系统管理事件失败时，会抛出错误对象。 |
+| Promise\<void> | 无返回结果的Promise对象。当取消订阅系统管理事件失败时，会抛出错误对象。 |
 
 **错误码**：
 
@@ -1081,8 +1081,8 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promi
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
@@ -1096,7 +1096,7 @@ adminManager.unsubscribeManagedEvent(wantTemp, events).then(() => {
 
 authorizeAdmin(admin: Want, bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 
-设备管理应用授予指定应用管理员权限。使用callback异步回调。
+授予指定应用管理员权限。使用callback异步回调。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -1110,7 +1110,7 @@ authorizeAdmin(admin: Want, bundleName: string, callback: AsyncCallback&lt;void&
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | bundleName  | string | 是 | 被授予管理员权限应用的包名。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
 
@@ -1132,8 +1132,8 @@ authorizeAdmin(admin: Want, bundleName: string, callback: AsyncCallback&lt;void&
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let bundleName: string = "com.example.application";
 
@@ -1150,7 +1150,7 @@ adminManager.authorizeAdmin(wantTemp, bundleName, (err) => {
 
 authorizeAdmin(admin: Want, bundleName: string): Promise&lt;void&gt;
 
-设备管理应用授予指定应用管理员权限。使用Promise异步回调。
+授予指定应用管理员权限。使用Promise异步回调。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -1164,14 +1164,14 @@ authorizeAdmin(admin: Want, bundleName: string): Promise&lt;void&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | bundleName  | string | 是 | 被授予管理员权限应用的包名。 |
 
 **返回值：**
 
 | 类型   | 说明                                  |
 | ----- | ----------------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。当设备管理应用授予指定应用管理员权限失败时，抛出错误对象。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。当授予指定应用管理员权限失败时，抛出错误对象。 |
 
 **错误码**：
 
@@ -1192,8 +1192,8 @@ authorizeAdmin(admin: Want, bundleName: string): Promise&lt;void&gt;
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let bundleName: string = "com.example.application";
 
@@ -1283,12 +1283,12 @@ import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let oldAdmin: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let newAdmin: Want = {
-  bundleName: 'newBundleName',
-  abilityName: 'newAbilityName',
+  bundleName: 'com.example.myapplication_new',
+  abilityName: 'NewEntryAbility',
 };
 try {
   adminManager.replaceSuperAdmin(oldAdmin, newAdmin, false);

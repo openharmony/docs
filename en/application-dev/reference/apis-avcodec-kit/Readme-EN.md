@@ -1,7 +1,7 @@
 # AVCodec Kit
 
-- C APIs
-  - Modules
+- C APIs<!--avcodec-c-->
+  - Modules<!--avcodec-module-->
     - [AudioCodec](_audio_codec.md)
     - [AVCapability](_a_v_capability.md)
     - [AVDemuxer](_a_v_demuxer.md)
@@ -12,7 +12,8 @@
     - [VideoDecoder](_video_decoder.md)
     - [VideoEncoder](_video_encoder.md)
     - [Multimedia_Drm](_multimedia___drm.md)
-  - Header Files
+  - Header Files<!--avcodec-headerfile-->
+    - [media_types.h](media__types_8h.md)
     - [native_audio_channel_layout.h](native__audio__channel__layout_8h.md)
     - [native_avbuffer.h](native__avbuffer_8h.md)
     - [native_avbuffer_info.h](native__avbuffer__info_8h.md)
@@ -28,18 +29,18 @@
     - [native_avmuxer.h](native__avmuxer_8h.md)
     - [native_avsource.h](native__avsource_8h.md)
     - [native_cencinfo.h](native__cencinfo_8h.md)
-  - Structs
+  - Structs<!--avcodec-struct-->
     - [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md)
     - [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md)
     - [OH_AVCodecCallback](_o_h___a_v_codec_callback.md)
     - [OH_AVDataSource](_o_h___a_v_data_source.md)
     - [OH_AVRange](_o_h___a_v_range.md)
     - [DrmSubsample](_drm_subsample.md)
-  - APIs No Longer Maintained
-    - Modules
+  - APIs No Longer Maintained<!--avcodec-arkts-dep-->
+    - Modules<!--avcodec-module-arkts-dep-->
       - [AudioDecoder](_audio_decoder.md)
       - [AudioEncoder](_audio_encoder.md)
-    - Header Files
+    - Header Files<!--avcodec-headerfile-arkts-dep-->
       - [avcodec_audio_channel_layout.h](avcodec__audio__channel__layout_8h.md)
       - [native_avcodec_audiodecoder.h](native__avcodec__audiodecoder_8h.md)
       - [native_avcodec_audioencoder.h](native__avcodec__audioencoder_8h.md)

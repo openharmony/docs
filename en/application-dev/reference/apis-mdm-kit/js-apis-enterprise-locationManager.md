@@ -21,7 +21,7 @@ import { locationManager } from '@kit.MDMKit';
 
 setLocationPolicy(admin: Want, policy: LocationPolicy): void
 
-Sets the location service policy. This API returns the result synchronously. If the operation fails, an exception will be thrown.
+Sets the location service policy.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_LOCATION
 
@@ -32,7 +32,7 @@ Sets the location service policy. This API returns the result synchronously. If 
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
 | policy | [LocationPolicy](#locationpolicy) | Yes   | Location service policy to set. The value can be any of the following:<br>- **0**: The default policy is used.<br>- **1**: The location service is disabled.<br>- **2**: The location service is forcibly enabled.|
 
 **Error codes**
@@ -68,7 +68,7 @@ try {
 
 getLocationPolicy(admin: Want): LocationPolicy
 
-Obtains the location service policy. This API returns the result synchronously. If the operation is successful, the location service policy is returned. If the operation fails, an exception will be thrown.
+Queries the location service policy.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_LOCATION
 
@@ -79,13 +79,13 @@ Obtains the location service policy. This API returns the result synchronously. 
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | EnterpriseAdminExtensionAbility.       |
 
 **Return value**
 
 | Type                             | Description                                                |
 | --------------------------------- | ---------------------------------------------------- |
-| [LocationPolicy](#locationpolicy) | Location service policy obtained.|
+| [LocationPolicy](#locationpolicy) | Enumerated value of the location service policy. **0**: The default policy is used. **1**: The location service is disabled. **2**: The location service is forcibly enabled.|
 
 **Error codes**
 

@@ -286,6 +286,18 @@
 
 **起始版本**：11
 
+## ohos.permission.QUERY_ACCESSIBILITY_ELEMENT
+
+允许批量查询无障碍节点。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：11
+
 ## ohos.permission.SET_UNREMOVABLE_NOTIFICATION
 
 允许应用发布不可被移除通知。
@@ -4501,4 +4513,64 @@
 
 **变更信息**：API 10-11，ACL使能为false；从API 12开始，变更为true。
 
+## ohos.permission.READ_DLP_HIDE_SWITCH
 
+允许系统应用从窥屏提示数据库读取数据。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+## ohos.permission.WRITE_DLP_HIDE_SWITCH
+
+允许系统应用向窥屏提示数据库写入数据。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+## ohos.permission.INSTALL_PLUGIN_BUNDLE
+
+允许应用调用安装插件的接口。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+## ohos.permission.UNINSTALL_PLUGIN_BUNDLE
+
+允许应用调用卸载插件的接口。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+## ohos.permission.GET_EDM_CONFIG
+
+允许系统应用查看行业定制配置文件。
+
+用于保护行业定制配置文件的可见性，例如开机动画、开机logo、桌面布局、壁纸等。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
