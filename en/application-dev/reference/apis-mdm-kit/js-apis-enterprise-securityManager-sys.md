@@ -22,7 +22,7 @@ import { securityManager } from '@kit.MDMKit';
 
 getSecurityPatchTag(admin: Want): string
 
-Obtains the device security patch tag through the specified device administrator application. This API returns the result synchronously. If the operation is successful, the security patch tag is returned. If the operation fails, an exception will be thrown.
+Obtains the device security patch tag through the specified device administrator application. This API returns the result synchronously. If the operation is successful, the security patch tag is returned. If the operation fails, an exception is thrown.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -75,7 +75,7 @@ try {
 
 getDeviceEncryptionStatus(admin: Want): DeviceEncryptionStatus
 
-Obtains the file system encryption status of the device. This API returns the result synchronously. If the operation is successful, the file encryption status is returned. If the operation fails, an exception will be thrown.
+Obtains the file system encryption status of the device. This API returns the result synchronously. If the operation is successful, the file encryption status is returned. If the operation fails, an exception is thrown.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -169,4 +169,4 @@ Represents the file system encryption status.
 
 | Name        | Type    | Mandatory| Description                           |
 | ----------- | --------| ---- | ------------------------------- |
-| isEncrypted | boolean | Yes  | Whether the file system of the device is encrypted. The value **true** means the file system is encrypted; the value **false** means the opposite.|
+| isEncrypted | boolean | Yes  | Whether the file system of the device is encrypted. **true**: The file system of the device is encrypted. **false**: The file system of the device is not encrypted.|
