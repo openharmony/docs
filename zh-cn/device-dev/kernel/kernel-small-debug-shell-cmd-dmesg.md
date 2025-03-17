@@ -53,7 +53,7 @@ dmesg &gt; [_fileA_]
 
 ## 输出说明
 
-**示例** dmesg重定向到文件
+**示例** dmesg重定向到文件。
 
 ```
 OHOS # dmesg > dmesg.log
