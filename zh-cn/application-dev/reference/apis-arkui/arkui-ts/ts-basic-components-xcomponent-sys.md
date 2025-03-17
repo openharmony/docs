@@ -32,13 +32,13 @@ hdrBrightness(brightness: number)
   >
   > 不支持[ArkUI NDK接口](../../../ui/ndk-build-ui-overview.md)创建的XComponent组件。
 
-### enableTransparentLayer<sup>16+</sup>
+### enableTransparentLayer<sup>18+</sup>
 
 enableTransparentLayer(enabled: boolean)
 
 用于开启XComponent组件背景透明状态下的独立图层。
 
-**系统API：** 从API version 16开始，该接口支持在系统中使用。
+**系统API：** 从API version 18开始，该接口支持在系统中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
