@@ -817,12 +817,12 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                      | 说明         |
-| ----------------------  | ---------- |
-| FOLD_STATUS_UNKNOWN     | 表示设备当前折叠状态未知。 |
-| FOLD_STATUS_EXPANDED    | 表示设备当前折叠状态为完全展开。   |
-| FOLD_STATUS_FOLDED      | 表示设备当前折叠状态为折叠。   |
-| FOLD_STATUS_HALF_FOLDED | 表示设备当前折叠状态为半折叠。半折叠指完全展开和折叠之间的状态。|
+| 名称                      |值| 说明         |
+| ----------------------  |----| ---------- |
+| FOLD_STATUS_UNKNOWN     |0| 表示设备当前折叠状态未知。 |
+| FOLD_STATUS_EXPANDED    |1| 表示设备当前折叠状态为完全展开。   |
+| FOLD_STATUS_FOLDED      |2| 表示设备当前折叠状态为折叠。   |
+| FOLD_STATUS_HALF_FOLDED |3| 表示设备当前折叠状态为半折叠。半折叠指完全展开和折叠之间的状态。|
 
 ## TextContentStyle<sup>10+</sup>
 
@@ -945,11 +945,11 @@ type Nullable\<T> = T | undefined;
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 说明                            |
-| ------ | ----------------------------- |
-| NO_FORCE_ROUND | 不取整计算。|
-| FORCE_CEIL | 取上整计算。|
-| FORCE_FLOOR | 取下整计算。|
+| 名称     |值| 说明                            |
+| ------ | ----|----------------------------- |
+| NO_FORCE_ROUND |0| 不取整计算。|
+| FORCE_CEIL |1| 取上整计算。|
+| FORCE_FLOOR |2| 取下整计算。|
 
 ## TextDecorationStyle<sup>12+</sup>
 
@@ -993,12 +993,12 @@ type Nullable\<T> = T | undefined;
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 说明                            |
-| ------ | ----------------------------- |
-| ROTATION_0 | 应用方向为0度。|
-| ROTATION_90 |应用方向为90度。|
-| ROTATION_180 | 应用方向为180度。|
-| ROTATION_270 | 应用方向为270度。|
+| 名称     |值| 说明                            |
+| ------ |-----| ----------------------------- |
+| ROTATION_0 |0| 应用方向为0度。|
+| ROTATION_90 |1|应用方向为90度。|
+| ROTATION_180 |2| 应用方向为180度。|
+| ROTATION_270 |3| 应用方向为270度。|
 
 ## ScrollSource<sup>12+</sup>
 
