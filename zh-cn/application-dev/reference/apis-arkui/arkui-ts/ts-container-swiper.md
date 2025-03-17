@@ -1567,7 +1567,7 @@ Swiper即将滑动前触发的回调，返回值表示是否允许此次滑动�
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ---- | ---- | ---- |
-| result | [SwiperContentWillScrollResult](#swipercontentwillscrollresult15) | 是 | 即将滑动的相关信息，主要包括：当前页面对应的index、滑动方向上即将显示的页面index和此次滑动的位移。 |
+| result | [SwiperContentWillScrollResult](#swipercontentwillscrollresult15对象说明) | 是 | 即将滑动的相关信息，主要包括：当前页面对应的index、滑动方向上即将显示的页面index和此次滑动的位移。 |
 
 **返回值：**
 
@@ -1575,7 +1575,7 @@ Swiper即将滑动前触发的回调，返回值表示是否允许此次滑动�
 | ------ | ---- |
 | boolean | Swiper是否响应本次滑动，true表示响应，false表示不响应。 |
 
-## SwiperContentWillScrollResult<sup>15+</sup>
+## SwiperContentWillScrollResult<sup>15+</sup>对象说明
 
 滑动的相关信息，主要包括：当前页面对应的index、滑动方向上即将显示的页面index和此次滑动的位移。
 
@@ -1587,9 +1587,9 @@ Swiper即将滑动前触发的回调，返回值表示是否允许此次滑动�
 
 | 名称 | 类型 | 必填 | 说明 |
 | ------ | ---- | ---- | ---- |
-| currentIndex | number | 否 | 当前页面对应的index。在一次跟手滑动过程中，只要手指未离开屏幕，该值将保持不变，即使该页面已完全移出视窗，如在涉及多个页面的场景中。 |
-| comingIndex | number | 否 | 滑动方向上即将显示的页面index。 |
-| offset | number | 否 | 此次滑动的位移，带有符号，正负分别指示不同的翻页方向。正数表示从index=1向index=0翻页，负数表示从index=0向index=1翻页。<br>在手指滑动的场景中，该值为滑动事件中每帧传递下来的偏移量。在滚动鼠标滚轮和使用键盘方向键导航的场景中，该值代表即将翻页的距离。 |
+| currentIndex | number | 是 | 当前页面对应的index。在一次跟手滑动过程中，只要手指未离开屏幕，该值将保持不变，即使该页面已完全移出视窗，如在涉及多个页面的场景中。 |
+| comingIndex | number | 是 | 滑动方向上即将显示的页面index。 |
+| offset | number | 是 | 此次滑动的位移，带有符号，正负分别指示不同的翻页方向。正数表示从index=1向index=0翻页，负数表示从index=0向index=1翻页。<br>在手指滑动的场景中，该值为滑动事件中每帧传递下来的偏移量。在滚动鼠标滚轮和使用键盘方向键导航的场景中，该值代表即将翻页的距离。 |
 
 ## SwiperAnimationEvent<sup>10+</sup>对象说明
 
