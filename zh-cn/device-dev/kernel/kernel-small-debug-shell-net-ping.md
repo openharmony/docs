@@ -17,10 +17,10 @@ ping _[-4] [-c cnt] [-f] [-i interval] [-q] [-s size] &lt;IP&gt;_
 
 | 参数 | 参数说明 | 取值范围 | 
 | -------- | -------- | -------- |
-| --help | 查看ping命令支持的参数列表 | N/A | 
+| --help | 查看ping命令支持的参数列表。 | N/A | 
 | -4 | 强制以IPV4通讯协议ping目标地址。 | 0-65500 | 
 | -c&nbsp;CNT | 执行的次数，不带本参数则默认为3次。 | 1-65535 | 
-| -f | 隐式的ping&nbsp;IPv4地址，其默认参数配置等价于"-c&nbsp;15&nbsp;-i&nbsp;0.2" | N/A | 
+| -f | 隐式的ping&nbsp;IPv4地址，其默认参数配置等价于"-c&nbsp;15&nbsp;-i&nbsp;0.2"。 | N/A | 
 | -i&nbsp;interval | 发送两次ping包的时间间隔，单位毫秒。 | 1-200 | 
 | -q | 隐式的ping&nbsp;IPv4地址，如果主机还存活，则在返回&nbsp;true&nbsp;后停止ping。 | N/A | 
 | -s&nbsp;SIZE | 设置每个ping包的大小，SIZE是以字节为单位的数据（默认为56字节）。 | 0-4088 | 
@@ -40,12 +40,12 @@ ping _[-4] [-c cnt] [-f] [-i interval] [-q] [-s size] &lt;IP&gt;_
 
 ## 使用实例
 
-举例：输入ping 192.168.1.3
+举例：输入ping 192.168.1.3。
 
 
 ## 输出说明
 
-**示例** ping tftp 服务器地址
+**示例** ping tftp 服务器地址。
 
 ```
 OHOS:/$ ping 192.168.1.3
