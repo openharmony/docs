@@ -219,7 +219,7 @@ totalCount表示期望加载的数据长度，默认为原数组长度，可以�
 
 ### onTotalCount：计算期望的数据长度
 
-onTotalCount: () => number;
+onTotalCount?(): number;
 
 onTotalCount从API version 18开始支持，需在virtualScroll模式下使用。开发者可设置自定义方法，用于计算期望的数组长度。其返回值应当为自然数，可以不等于实际数据源长度arr.length。以下为onTotalCount的处理规则：
 
@@ -235,7 +235,7 @@ onTotalCount从API version 18开始支持，需在virtualScroll模式下使用�
 
 ### onLazyLoading：数据精准懒加载
 
-onLazyLoading: (index: number) => void;
+onLazyLoading?(index: number): void;
 
 onLazyLoading从API version 18开始支持，需在virtualScroll模式下使用。开发者可设置自定义方法，用于向指定的数据源index中写入数据。以下为onLazyLoading的处理规则：
 
