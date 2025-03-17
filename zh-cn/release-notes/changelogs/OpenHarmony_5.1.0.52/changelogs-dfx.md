@@ -1,4 +1,6 @@
-## cl.DFX.1 hiperf命令行调试工具使用权限缩小
+# DFX子系统Changelog
+
+## cl.dfx.1 hiperf命令行调试工具使用权限缩小
 
 **访问级别**
 
@@ -24,7 +26,7 @@ API18
 
 **变更发生版本**
 
-从OpenHarmony 5.1.0.54 开始。
+从OpenHarmony 5.1.0.52 版本开始。
 
 **变更的接口/组件**
 
