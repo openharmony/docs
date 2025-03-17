@@ -8,7 +8,7 @@
 
 ## 功能说明
 
-双向链表模块为用户提供下面几种功能，接口详细信息可以查看API参考。
+双向链表模块为用户提供下面几种功能，接口详细信息可以查看[API参考](https://gitee.com/openharmony/kernel_liteos_m/blob/master/utils/los_list.h)。
 
   | | |
 | -------- | -------- |

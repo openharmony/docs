@@ -32,7 +32,7 @@ I2C通常用于与各类支持I2C协议的传感器、执行器或输入输出�
 
 ### 接口说明
 
-I2C模块提供的主要接口如表1所示，具体API详见//drivers/hdf_core/framework/include/platform/i2c_if.h。
+I2C模块提供的主要接口如表1所示，具体API[详见](https://gitee.com/openharmony/drivers_hdf_core/blob/master/framework/include/platform/i2c_if.h)。
 
 **表 1** I2C驱动API接口功能介绍
 
