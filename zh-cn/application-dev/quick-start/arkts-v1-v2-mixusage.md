@@ -46,7 +46,7 @@ static makeV1Observed\<T extends object\>(source: T): T
 
 **接口说明**
 - makeV1Observed主要和enableV2Compatibility搭配使用，实现V2->V1的传递。
-- makeV1Observed可将普通class、Array、Map、Set、Date类型转换为V1的状态变量，其能力等同于\@Observed, 所以其返回值可以初始化\@ObjectLink。
+- makeV1Observed可将普通class、Array、Map、Set、Date类型转换为V1的状态变量，其能力等同于\@Observed，所以其返回值可以初始化\@ObjectLink。
 - 如果makeV1Observed接受的数据已经是V1的状态变量，则返回自身，不做任何改变。
 - makeV1Observed不会递归执行，仅会将第一层包装成V1的状态变量。
 
@@ -160,9 +160,9 @@ struct CompV1 {
 |------|----|
 | \@Observed装饰class的嵌套类 | 在\@ComponentV2可深度观察嵌套属性的变化。 |
 | 普通class  | 可以观察，需要调用`makeV1Observed`使得`enableV2Compatibility`正常工作。 |
-| Array\<number\>，或其他简单类型数组  | 可以观察，需要调用`makeV1Observed`。</br>例子： `@Local local : Array<number> = UIUtils.enableV2Compatibility(UIUtils.makeV1Observed([1, 2, 3]))` |
+| Array\<number\>，或其他简单类型数组  | 可以观察，需要调用`makeV1Observed`。</br>例子： `@Local local : Array<number> = UIUtils.enableV2Compatibility(UIUtils.makeV1Observed([1, 2, 3]))`。 |
 | Array\<ObservedClass\>，即数组项是\@Observed装饰的class  | 可以观察，需要调用`makeV1Observed`。</br>例子： `@Local local : Array<ObservedClass> = UIUtils.enableV2Compatibility(UIUtils.makeV1Observed([new ObservedClass()]))`。 |
-|  Array\<Array\<number\>\>，二维数组，数组项或为其他简单类型。 | 可以观察，需要调用`makeV1Observed`。</br>例子： `@Local local : Array<Array<number>>> = UIUtils.enableV2Compatibility(UIUtils.makeV1Observed([UIUtils.makeV1Observed([1, 2, 3])]))`。|
+|  Array\<Array\<number\>\>，二维数组，数组项或为其他简单类型 | 可以观察，需要调用`makeV1Observed`。</br>例子： `@Local local : Array<Array<number>>> = UIUtils.enableV2Compatibility(UIUtils.makeV1Observed([UIUtils.makeV1Observed([1, 2, 3])]))`。|
 
 
 ## 混用规则
