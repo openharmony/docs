@@ -6207,7 +6207,7 @@ windowClass.snapshot((err: BusinessError, pixelMap: image.PixelMap) => {
 
 snapshot(): Promise&lt;image.PixelMap&gt;
 
-获取窗口截图，使用Promise异步回调。
+获取当前窗口截图。若当前窗口设置为隐私模式（可通过[setWindowPrivacyMode](#setwindowprivacymode9)接口设置），截图结果为白屏。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -6246,7 +6246,7 @@ promise.then((pixelMap: image.PixelMap) => {
 
 snapshotIgnorePrivacy(): Promise&lt;image.PixelMap&gt;
 
-获取窗口截图，无视安全图层。使用Promise异步回调。
+获取当前窗口截图。即使当前窗口设置为隐私模式（可通过[setWindowPrivacyMode](#setwindowprivacymode9)接口设置），仍可调用本接口返回当前窗口截图。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
