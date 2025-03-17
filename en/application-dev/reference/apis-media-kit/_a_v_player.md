@@ -138,9 +138,7 @@ You can refer to the corresponding development guide and samples based on your d
 ```
 typedef enum AVPlaybackSpeed AVPlaybackSpeed
 ```
-
 **Description**
-
 Defines an enum for the playback speeds of the AVPlayer.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -153,9 +151,7 @@ Defines an enum for the playback speeds of the AVPlayer.
 ```
 typedef enum AVPlayerBufferingType AVPlayerBufferingType
 ```
-
 **Description**
-
 Defines an enum for the types of buffer messages of the AVPlayer.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -168,9 +164,7 @@ Defines an enum for the types of buffer messages of the AVPlayer.
 ```
 typedef struct AVPlayerCallback AVPlayerCallback
 ```
-
 **Description**
-
 Contains the set of the **OH_AVPlayerOnInfo** and **OH_AVPlayerOnInfo** callback function pointers. To ensure the normal running of **OH_AVPlayer**, you must register the instance of this struct with the **OH_AVPlayer** instance and process the information reported by the callback functions.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -194,9 +188,7 @@ Contains the set of the **OH_AVPlayerOnInfo** and **OH_AVPlayerOnInfo** callback
 ```
 typedef enum AVPlayerOnInfoType AVPlayerOnInfoType
 ```
-
 **Description**
-
 Defines an enum for the types of messages received by the AVPlayer.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -209,9 +201,7 @@ Defines an enum for the types of messages received by the AVPlayer.
 ```
 typedef enum AVPlayerSeekMode AVPlayerSeekMode
 ```
-
 **Description**
-
 Defines an enum for the seek modes of the AVPlayer.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -224,9 +214,7 @@ Defines an enum for the seek modes of the AVPlayer.
 ```
 typedef enum AVPlayerState AVPlayerState
 ```
-
 **Description**
-
 Defines an enum for the AVPlayer states.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -239,9 +227,7 @@ Defines an enum for the AVPlayer states.
 ```
 typedef struct DRM_MediaKeySystemInfo DRM_MediaKeySystemInfo
 ```
-
 **Description**
-
 Defines a struct for the media key system information.
 
 **Since**: 12
@@ -252,9 +238,7 @@ Defines a struct for the media key system information.
 ```
 typedef struct MediaKeySession MediaKeySession
 ```
-
 **Description**
-
 Defines a struct for the media key session.
 
 **Since**: 12
@@ -265,9 +249,7 @@ Defines a struct for the media key session.
 ```
 typedef void(* OH_AVPlayerOnError) (OH_AVPlayer *player, int32_t errorCode, const char *errorMsg)
 ```
-
 **Description**
-
 Defines the callback when an error occurs in the AVPlayer. This type is available in API version 9 or later.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -282,8 +264,8 @@ Defines the callback when an error occurs in the AVPlayer. This type is availabl
 
 | Name| Description| 
 | -------- | -------- |
-| player | Pointer to an **OH_AVPlayer** instance. | 
-| errorCode | Error code.<br>**AV_ERR_NO_MEMORY**: No memory. The value is **1**.<br>**AV_ERR_OPERATE_NOT_PERMIT**: The operation is not allowed. The value is **2**.<br>**AV_ERR_INVALID_VAL**: Invalid value. The value is **3**.<br>**AV_ERR_IO**: I/O error. The value is **4**.<br>**AV_ERR_TIMEOUT**: Timeout. The value is **5**.<br>**AV_ERR_UNKNOWN**: Unknown error. The value is **6**.<br>**AV_ERR_SERVICE_DIED**: The service is dead. The value is **7**.<br>**AV_ERR_INVALID_STATE**: The operation is not supported in the current state. The value is **8**.<br>**AV_ERR_UNSUPPORT**: The function is not supported. The value is **9**.<br>**AV_ERR_EXTEND_START**: Initial value for extended error codes. The value is **100**.| 
+| Pointer to an **OH_AVPlayer** instance.|  | 
+| errorCode | Error code.<br> **AV_ERR_NO_MEMORY**: No memory. The value is **1**.<br>**AV_ERR_OPERATE_NOT_PERMIT**: The operation is not allowed. The value is **2**.<br>**AV_ERR_INVALID_VAL**: Invalid value. The value is **3**.<br>**AV_ERR_IO**: I/O error. The value is **4**.<br>**AV_ERR_TIMEOUT**: Timeout. The value is **5**.<br>**AV_ERR_UNKNOWN**: Unknown error. The value is **6**.<br>**AV_ERR_SERVICE_DIED**: The service is dead. The value is **7**.<br>**AV_ERR_INVALID_STATE**: The operation is not supported in the current state. The value is **8**.<br>**AV_ERR_UNSUPPORT**: The function is not supported. The value is **9**.<br>**AV_ERR_EXTEND_START**: Initial value for extended error codes. The value is **100**.| 
 | errorMsg | Pointer to an error message. | 
 
 
@@ -292,9 +274,7 @@ Defines the callback when an error occurs in the AVPlayer. This type is availabl
 ```
 typedef void(* OH_AVPlayerOnErrorCallback) (OH_AVPlayer *player, int32_t errorCode, const char *errorMsg, void *userData)
 ```
-
 **Description**
-
 Defines the callback invoked when an error occurs in the AVPlayer. If this callback is successfully set, the **OH_AVPlayerOnError** function will not be invoked.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -306,7 +286,7 @@ Defines the callback invoked when an error occurs in the AVPlayer. If this callb
 | Name| Description| 
 | -------- | -------- |
 | player | Pointer to an **OH_AVPlayer** instance. | 
-| errorCode | Error code.<br>**AV_ERR_NO_MEMORY**: No memory. The value is **1**.<br>**AV_ERR_OPERATE_NOT_PERMIT**: The operation is not allowed. The value is **2**.<br>**AV_ERR_INVALID_VAL**: Invalid value. The value is **3**.<br>**AV_ERR_IO**: I/O error. The value is **4**.<br>**AV_ERR_TIMEOUT**: Timeout. The value is **5**.<br>**AV_ERR_UNKNOWN**: Unknown error. The value is **6**.<br>**AV_ERR_SERVICE_DIED**: The service is dead. The value is **7**.<br>**AV_ERR_INVALID_STATE**: The operation is not supported in the current state. The value is **8**.<br>**AV_ERR_UNSUPPORT**: The function is not supported. The value is **9**.<br>**AV_ERR_EXTEND_START**: Initial value for extended error codes. The value is **100**.| 
+| errorCode | Error code.<br> **AV_ERR_NO_MEMORY**: No memory. The value is **1**.<br>**AV_ERR_OPERATE_NOT_PERMIT**: The operation is not allowed. The value is **2**.<br>**AV_ERR_INVALID_VAL**: Invalid value. The value is **3**.<br>**AV_ERR_IO**: I/O error. The value is **4**.<br>**AV_ERR_TIMEOUT**: Timeout. The value is **5**.<br>**AV_ERR_UNKNOWN**: Unknown error. The value is **6**.<br>**AV_ERR_SERVICE_DIED**: The service is dead. The value is **7**.<br>**AV_ERR_INVALID_STATE**: The operation is not supported in the current state. The value is **8**.<br>**AV_ERR_UNSUPPORT**: The function is not supported. The value is **9**.<br>**AV_ERR_EXTEND_START**: Initial value for extended error codes. The value is **100**.| 
 | errorMsg | Pointer to the error message. | 
 | userData | Pointer to the user data passed in. The same data is returned. | 
 
@@ -316,7 +296,6 @@ Defines the callback invoked when an error occurs in the AVPlayer. If this callb
 ```
 typedef void(* OH_AVPlayerOnInfo) (OH_AVPlayer *player, AVPlayerOnInfoType type, int32_t extra)
 ```
-
 **Description**
 Defines the callback invoked when the AVPlayer receives a message.
 
@@ -365,9 +344,7 @@ The following table lists the mappings between **type** and **extra** values.
 ```
 typedef void(* OH_AVPlayerOnInfoCallback) (OH_AVPlayer *player, AVPlayerOnInfoType type, OH_AVFormat *infoBody, void *userData)
 ```
-
 **Description**
-
 Defines the callback invoked when the AVPlayer receives a message. If this callback is successfully set, the **OH_AVPlayerOnInfo** function will not be invoked.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -389,9 +366,7 @@ Defines the callback invoked when the AVPlayer receives a message. If this callb
 ```
 typedef void(* Player_MediaKeySystemInfoCallback) (OH_AVPlayer *player, DRM_MediaKeySystemInfo *mediaKeySystemInfo)
 ```
-
 **Description**
-
 Defines the callback invoked when media key system information of the AVPlayer is updated.
 
 **Since**: 12
@@ -416,10 +391,8 @@ void
 ```
 enum AVPlaybackSpeed
 ```
-
 **Description**
-
-Enumerates the playback speeds of the AVPlayer.
+Defines an enum for the playback speeds of the AVPlayer.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -444,10 +417,8 @@ Enumerates the playback speeds of the AVPlayer.
 ```
 enum AVPlayerBufferingType
 ```
-
 **Description**
-
-Enumerates the types of buffer messages of the AVPlayer.
+Defines an enum for the types of buffer messages of the AVPlayer.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -466,9 +437,7 @@ Enumerates the types of buffer messages of the AVPlayer.
 ```
 enum AVPlayerOnInfoType
 ```
-
 **Description**
-
 Enumerates the types of messages received by the AVPlayer.
 
 The enum can be used in [OH_AVPlayerOnInfoCallback](#oh_avplayeroninfocallback) and [OH_AVPlayerOnInfo (deprecated)](#oh_avplayeroninfo) to indicate the type of information received by the AVPlayer.
@@ -508,10 +477,8 @@ The enum can be used in [OH_AVPlayerOnInfoCallback](#oh_avplayeroninfocallback) 
 ```
 enum AVPlayerSeekMode
 ```
-
 **Description**
-
-Enumerates the seek modes of the AVPlayer.
+Defines an enum for the seek modes of the AVPlayer.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -529,10 +496,8 @@ Enumerates the seek modes of the AVPlayer.
 ```
 enum AVPlayerState
 ```
-
 **Description**
-
-Enumerates the AVPlayer states.
+Defines an enum for the AVPlayer states.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -540,15 +505,15 @@ Enumerates the AVPlayer states.
 
 | Value| Description| 
 | -------- | -------- |
-| AV_IDLE | The AVPlayer is idle.| 
-| AV_INITIALIZED | The AVPlayer is initialized.| 
-| AV_PREPARED | The AVPlayer is ready for playback.| 
-| AV_PLAYING | The AVPlayer is playing.| 
-| AV_PAUSED | The AVPlayer is paused.| 
-| AV_STOPPED | The AVPlayer is stopped.| 
-| AV_COMPLETED | The AVPlayer finishes playing.| 
-| AV_RELEASED | The AVPlayer is released.| 
-| AV_ERROR | An error occurs.| 
+| AV_IDLE | Idle.| 
+| AV_INITIALIZED | Initialized.| 
+| AV_PREPARED | Ready.| 
+| AV_PLAYING | Playing.| 
+| AV_PAUSED | Paused.| 
+| AV_STOPPED | Stopped.| 
+| AV_COMPLETED | Completed.| 
+| AV_RELEASED | Released.| 
+| AV_ERROR | Error.| 
 
 
 ## Function Description
@@ -559,9 +524,7 @@ Enumerates the AVPlayer states.
 ```
 OH_AVPlayer* OH_AVPlayer_Create (void)
 ```
-
 **Description**
-
 Creates an **OH_AVPlayer** instance.
 
 > **NOTE**
@@ -588,9 +551,7 @@ The possible causes of an operation failure are as follows:
 ```
 OH_AVErrCode OH_AVPlayer_DeselectTrack (OH_AVPlayer *player, int32_t index)
 ```
-
 **Description**
-
 Deselects an audio track. This function is not supported yet.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -618,9 +579,7 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 ```
 OH_AVErrCode OH_AVPlayer_GetCurrentTime (OH_AVPlayer *player, int32_t *currentTime)
 ```
-
 **Description**
-
 Obtains the playback position, in milliseconds.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -648,9 +607,7 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 ```
 OH_AVErrCode OH_AVPlayer_GetCurrentTrack (OH_AVPlayer *player, int32_t trackType, int32_t *index)
 ```
-
 **Description**
-
 Obtains the currently valid track. This function is not supported yet.
 
 You can set the track to the prepared, playing, paused, or completed state.
@@ -665,7 +622,7 @@ You can set the track to the prepared, playing, paused, or completed state.
 | -------- | -------- |
 | player | Pointer to an **OH_AVPlayer** instance.| 
 | trackType | Media type. The value **0** means audio and **1** means video.| 
-| index | Pointer to the index of the track.|  
+| index | Index of the track.|  
 
 **Returns**
 
@@ -681,9 +638,7 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 ```
 OH_AVErrCode OH_AVPlayer_GetDuration (OH_AVPlayer *player, int32_t *duration)
 ```
-
 **Description**
-
 Obtains the total duration of a media file, in milliseconds.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -711,9 +666,7 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 ```
 OH_AVErrCode OH_AVPlayer_GetMediaKeySystemInfo (OH_AVPlayer *player, DRM_MediaKeySystemInfo *mediaKeySystemInfo)
 ```
-
 **Description**
-
 Obtains the media key system information to create a media key session.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -740,9 +693,7 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 ```
 OH_AVErrCode OH_AVPlayer_GetPlaybackSpeed (OH_AVPlayer *player, AVPlaybackSpeed *speed)
 ```
-
 **Description**
-
 Obtains the playback speed of an AVPlayer.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -770,9 +721,7 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 ```
 OH_AVErrCode OH_AVPlayer_GetState (OH_AVPlayer *player, AVPlayerState *state)
 ```
-
 **Description**
-
 Obtains the AVPlayer state.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -800,9 +749,7 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 ```
 OH_AVErrCode OH_AVPlayer_GetVideoHeight (OH_AVPlayer *player, int32_t *videoHeight)
 ```
-
 **Description**
-
 Obtains the video height.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -830,9 +777,7 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 ```
 OH_AVErrCode OH_AVPlayer_GetVideoWidth (OH_AVPlayer *player, int32_t *videoWidth)
 ```
-
 **Description**
-
 Obtains the video width.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -860,9 +805,7 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 ```
 bool OH_AVPlayer_IsLooping (OH_AVPlayer *player)
 ```
-
 **Description**
-
 Checks whether an AVPlayer is looping.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -885,9 +828,7 @@ Returns **true** if the AVPlayer is looping; returns **false** if the AVPlayer i
 ```
 bool OH_AVPlayer_IsPlaying (OH_AVPlayer *player)
 ```
-
 **Description**
-
 Checks whether an AVPlayer is playing.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -910,9 +851,7 @@ Returns **true** if the AVPlayer is playing; returns **false** if the AVPlayer i
 ```
 OH_AVErrCode OH_AVPlayer_Pause (OH_AVPlayer *player)
 ```
-
 **Description**
-
 Pauses playback.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -939,9 +878,7 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 ```
 OH_AVErrCode OH_AVPlayer_Play (OH_AVPlayer *player)
 ```
-
 **Description**
-
 Starts playback.
 
 This function must be called after **Prepare**. In other words, you can call this function when the AVPlayer is in the prepared state.
@@ -970,9 +907,7 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 ```
 OH_AVErrCode OH_AVPlayer_Prepare (OH_AVPlayer *player)
 ```
-
 **Description**
-
 Prepares the playback environment and buffers media data.
 
 This function must be called after **SetSource**.
@@ -1001,9 +936,7 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 ```
 OH_AVErrCode OH_AVPlayer_Release (OH_AVPlayer *player)
 ```
-
 **Description**
-
 Asynchronously releases an **OH_AVPlayer** instance.
 
 The asynchronous function ensures the performance, but cannot ensure that the surface buffer of the playback window is released. You must ensure the lifecycle of the playback window.
@@ -1032,9 +965,7 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 ```
 OH_AVErrCode OH_AVPlayer_ReleaseSync (OH_AVPlayer *player)
 ```
-
 **Description**
-
 Synchronously releases an **OH_AVPlayer** instance.
 
 The synchronous function ensures that the display buffer of the playback window is released, with a long time. Therefore, you need to design an asynchronous mechanism.
@@ -1062,9 +993,7 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 ```
 OH_AVErrCode OH_AVPlayer_Reset (OH_AVPlayer *player)
 ```
-
 **Description**
-
 Restores the AVPlayer to the initial state.
 
 After the function is called, you can call **SetSource** to set the media source to play, and then call **Prepare** and **Play** in sequence.
@@ -1093,9 +1022,7 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 ```
 OH_AVErrCode OH_AVPlayer_Seek (OH_AVPlayer *player, int32_t mSeconds, AVPlayerSeekMode mode)
 ```
-
 **Description**
-
 Seeks to a playback position.
 
 This function can be used when the AVPlayer is in the playing or paused state.
@@ -1124,9 +1051,7 @@ AV_ERR_OK: The seek operation is complete.
 ```
 OH_AVErrCode OH_AVPlayer_SelectBitRate (OH_AVPlayer *player, uint32_t bitRate)
 ```
-
 **Description**
-
 Sets the bit rate used by an HLS player,
 
 in bit/s. This function is valid only for HLS network streams. By default, the player selects a proper bit rate and speed based on the network connection. You can set a bit rate available in the valid bit rates reported in **INFO_TYPE_BITRATE_COLLECT**. The player selects a bit rate that is lower than or closest to the specified bit rate for playback. When ready, you can query the selected bit rate.
@@ -1158,9 +1083,7 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 ```
 OH_AVErrCode OH_AVPlayer_SelectTrack (OH_AVPlayer *player, int32_t index)
 ```
-
 **Description**
-
 Selects an audio track. This function is not supported yet.
 
 By default, the first audio stream with data is played. After the setting takes effect, the original track becomes invalid. This API sets the audio track to the ready state.
@@ -1190,9 +1113,7 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 ```
 OH_AVErrCode OH_AVPlayer_SetAudioEffectMode (OH_AVPlayer *player, OH_AudioStream_AudioEffectMode effectMode)
 ```
-
 **Description**
-
 Sets the audio effect mode for an AVPlayer.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -1220,9 +1141,7 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 ```
 OH_AVErrCode OH_AVPlayer_SetAudioInterruptMode (OH_AVPlayer *player, OH_AudioInterrupt_Mode interruptMode)
 ```
-
 **Description**
-
 Sets the audio interruption mode for an AVPlayer.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -1250,9 +1169,7 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 ```
 OH_AVErrCode OH_AVPlayer_SetAudioRendererInfo (OH_AVPlayer *player, OH_AudioStream_Usage streamUsage)
 ```
-
 **Description**
-
 Sets the audio stream type for an AVPlayer.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -1280,9 +1197,7 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 ```
 OH_AVErrCode OH_AVPlayer_SetDecryptionConfig (OH_AVPlayer *player, MediaKeySession *mediaKeySession, bool secureVideoPath)
 ```
-
 **Description**
-
 Sets the decryption information.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -1311,9 +1226,7 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 ```
 OH_AVErrCode OH_AVPlayer_SetFDSource (OH_AVPlayer *player, int32_t fd, int64_t offset, int64_t size)
 ```
-
 **Description**
-
 Sets the file descriptor of a media source to be played by an AVPlayer.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -1343,9 +1256,7 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 ```
 OH_AVErrCode OH_AVPlayer_SetLooping (OH_AVPlayer *player, bool loop)
 ```
-
 **Description**
-
 Enables loop playback.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -1373,9 +1284,7 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 ```
 OH_AVErrCode OH_AVPlayer_SetMediaKeySystemInfoCallback (OH_AVPlayer *player, Player_MediaKeySystemInfoCallback callback)
 ```
-
 **Description**
-
 Sets a callback to return the media key system information for an AVPlayer.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -1403,9 +1312,7 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 ```
 OH_AVErrCode OH_AVPlayer_SetOnErrorCallback (OH_AVPlayer * player, OH_AVPlayerOnErrorCallback callback, void * userData )
 ```
-
 **Description**
-
 Sets a callback for the event indicating that an error occurs in the AVPlayer.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -1436,9 +1343,7 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 ```
 OH_AVErrCode OH_AVPlayer_SetOnInfoCallback (OH_AVPlayer * player, OH_AVPlayerOnInfoCallback callback, void * userData )
 ```
-
 **Description**
-
 Sets a callback for the event indicating that the AVPlayer receives a message.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -1469,9 +1374,7 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 ```
 OH_AVErrCode OH_AVPlayer_SetPlaybackSpeed (OH_AVPlayer *player, AVPlaybackSpeed speed)
 ```
-
 **Description**
-
 Sets the playback speed for an AVPlayer.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -1497,11 +1400,8 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 ```
 OH_AVErrCode OH_AVPlayer_SetPlayerCallback (OH_AVPlayer *player, AVPlayerCallback callback)
 ```
-
 **Description**
-Sets an AVPlayer callback.
-
-The callbacks [OH_AVPlayerOnInfo](#oh_avplayeroninfo) and [OH_AVPlayerOnError](#oh_avplayeronerror) set by using this function can transfer limited information. In addition, it is inconvenient for the application to distinguish between multiple **AVPlayer** instances. Therefore, since API version 12, [OH_AVPlayer_SetOnInfoCallback()](#oh_avplayer_setoninfocallback) and [OH_AVPlayer_SetOnErrorCallback()](#oh_avplayer_setonerrorcallback) are provided to set the callbacks [OH_AVPlayerOnInfoCallback](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeroninfocallback) and [OH_AVPlayerOnErrorCallback](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeronerrorcallback), respectively.
+Sets an AVPlayer callback. The callbacks [OH_AVPlayerOnInfo](#oh_avplayeroninfo) and [OH_AVPlayerOnError](#oh_avplayeronerror) set by using this function can transfer limited information. In addition, it is inconvenient for the application to distinguish between multiple **AVPlayer** instances. Therefore, since API version 12, [OH_AVPlayer_SetOnInfoCallback()](#oh_avplayer_setoninfocallback) and [OH_AVPlayer_SetOnErrorCallback()](#oh_avplayer_setonerrorcallback) are provided to set the callbacks [OH_AVPlayerOnInfoCallback](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeroninfocallback) and [OH_AVPlayerOnErrorCallback](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeronerrorcallback), respectively.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1528,9 +1428,7 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 ```
 OH_AVErrCode OH_AVPlayer_SetURLSource (OH_AVPlayer *player, const char *url)
 ```
-
 **Description**
-
 Sets the HTTP URL of a media source to be played by an AVPlayer.  
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -1558,9 +1456,7 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 ```
 OH_AVErrCode OH_AVPlayer_SetVideoSurface (OH_AVPlayer *player, OHNativeWindow *window)
 ```
-
 **Description**
-
 Sets a playback window.
 This function must be called after **SetSource** and before **Prepare**.
 
@@ -1587,9 +1483,7 @@ AV_ERR_OK: The playback window is set.
 ```
 OH_AVErrCode OH_AVPlayer_SetVolume (OH_AVPlayer *player, float leftVolume, float rightVolume)
 ```
-
 **Description**
-
 Sets the volume for an AVPlayer.
 
 This function can be used when the AVPlayer is in the playing or paused state. The value **0** means that the AVPlayer is muted, and **1** means that the original volume is used.
@@ -1620,9 +1514,7 @@ AV_ERR_OK: The volume is set.
 ```
 OH_AVErrCode OH_AVPlayer_Stop (OH_AVPlayer *player)
 ```
-
 **Description**
-
 Stops playback.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -1653,7 +1545,6 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 const char* OH_PLAYER_AUDIO_DEVICE_CHANGE_REASON
 ```
 **Description**
-
 Pointer to the key for obtaining the audio device change reason. The value is of the int32_t type.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -1666,9 +1557,7 @@ Pointer to the key for obtaining the audio device change reason. The value is of
 ```
 const char* OH_PLAYER_AUDIO_INTERRUPT_FORCE
 ```
-
 **Description**
-
 Pointer to the key for obtaining the FORCE type of audio interruption. The value is of the int32_t type.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -1681,9 +1570,7 @@ Pointer to the key for obtaining the FORCE type of audio interruption. The value
 ```
 const char* OH_PLAYER_AUDIO_INTERRUPT_HINT
 ```
-
 **Description**
-
 Pointer to the key for obtaining the HINT type of audio interruption. The value is of the int32_t type.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -1696,9 +1583,7 @@ Pointer to the key for obtaining the HINT type of audio interruption. The value 
 ```
 const char* OH_PLAYER_AUDIO_INTERRUPT_TYPE
 ```
-
 **Description**
-
 Pointer to the key for obtaining the audio interruption type. The value is of the int32_t type.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -1711,9 +1596,7 @@ Pointer to the key for obtaining the audio interruption type. The value is of th
 ```
 const char* OH_PLAYER_BITRATE
 ```
-
 **Description**
-
 Pointer to the key for obtaining the bit rate. The value is of the int32_t type.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -1726,9 +1609,7 @@ Pointer to the key for obtaining the bit rate. The value is of the int32_t type.
 ```
 const char* OH_PLAYER_BITRATE_ARRAY
 ```
-
 **Description**
-
 Pointer to the key for obtaining the bit rate array. The value is of the uint8_t byte array type. When this key is used to obtain information, you need to:
 - Use a pointer variable of the uint8_t type to store the bit rate list and use a variable of the size_t type to store the byte array length.
 - Allocate several storage spaces of the uint32_t type to receive the bit rate integer of the uint32_t type, which is converted from the uint8_t byte array. For details, see the **OHAVPlayerOnInfoCallback** function in [Sample Code](../../media/media/using-ndk-avplayer-for-playback.md#sample-code).
@@ -1743,9 +1624,7 @@ Pointer to the key for obtaining the bit rate array. The value is of the uint8_t
 ```
 const char* OH_PLAYER_BUFFERING_TYPE
 ```
-
 **Description**
-
 Pointer to the key for obtaining the type of the buffer update message. The value type is [AVPlayerBufferingType](#avplayerbufferingtype-1). When this key is used to obtain information, you must use a variable of the int32_t type to save the result and then convert the result to a value of [AVPlayerBufferingType](#avplayerbufferingtype-1).
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -1758,9 +1637,7 @@ Pointer to the key for obtaining the type of the buffer update message. The valu
 ```
 const char* OH_PLAYER_BUFFERING_VALUE
 ```
-
 **Description**
-
 Pointer to the key for obtaining the value of the buffer update message. The value is of the int32_t type. For details about the available options, see [AVPlayerBufferingType](#avplayerbufferingtype-1). This key is valid when the buffer update message type is **AVPLAYER_BUFFERING_PERCENT** or **AVPLAYER_BUFFERING_CACHED_DURATION**.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -1773,9 +1650,7 @@ Pointer to the key for obtaining the value of the buffer update message. The val
 ```
 const char* OH_PLAYER_CURRENT_POSITION
 ```
-
 **Description**
-
 Pointer to the key for obtaining the playback progress information. The value is of the int32_t type.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -1788,9 +1663,7 @@ Pointer to the key for obtaining the playback progress information. The value is
 ```
 const char* OH_PLAYER_DURATION
 ```
-
 **Description**
-
 Pointer to the key for obtaining the media asset duration. The value type is int64_t.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -1803,9 +1676,7 @@ Pointer to the key for obtaining the media asset duration. The value type is int
 ```
 const char* OH_PLAYER_IS_LIVE_STREAM
 ```
-
 **Description**
-
 Pointer to the key for checking whether a media asset is live streaming. The value is of the int32_t type.
 
 The value **1** means live streaming.
@@ -1820,9 +1691,7 @@ The value **1** means live streaming.
 ```
 const char* OH_PLAYER_MESSAGE_TYPE
 ```
-
 **Description**
-
 Pointer to the key for obtaining the type of message received by the AVPlayer. The value is of the int32_t type.
 
 The value **1** means that the video frame starts to be rendered.
@@ -1837,9 +1706,7 @@ The value **1** means that the video frame starts to be rendered.
 ```
 const char* OH_PLAYER_PLAYBACK_SPEED
 ```
-
 **Description**
-
 Pointer to the key for obtaining the playback speed. The value type is [AVPlaybackSpeed](#avplaybackspeed-1). When this key is used to obtain information, you must use a variable of the int32_t type to save the result and then convert the result to a value of [AVPlaybackSpeed](#avplaybackspeed-1).
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -1852,9 +1719,7 @@ Pointer to the key for obtaining the playback speed. The value type is [AVPlayba
 ```
 const char* OH_PLAYER_SEEK_POSITION
 ```
-
 **Description**
-
 Pointer to the key for obtaining the playback progress after the seek operation. The value is of the int32_t type.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -1867,9 +1732,7 @@ Pointer to the key for obtaining the playback progress after the seek operation.
 ```
 const char* OH_PLAYER_STATE
 ```
-
 **Description**
-
 Pointer to the key for obtaining the AVPlayer state. The value is of the int32_t type.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -1882,9 +1745,7 @@ Pointer to the key for obtaining the AVPlayer state. The value is of the int32_t
 ```
 const char* OH_PLAYER_STATE_CHANGE_REASON
 ```
-
 **Description**
-
 Pointer to the key for obtaining the AVPlayer state change reason. The value is of the int32_t type.
 
 The value **1** means that the change is triggered by user operations, and **2** means that the change is triggered by the system.
@@ -1899,9 +1760,7 @@ The value **1** means that the change is triggered by user operations, and **2**
 ```
 const char* OH_PLAYER_VIDEO_HEIGHT
 ```
-
 **Description**
-
 Pointer to the key for obtaining the video height. The value is of the int32_t type.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -1914,9 +1773,7 @@ Pointer to the key for obtaining the video height. The value is of the int32_t t
 ```
 const char* OH_PLAYER_VIDEO_WIDTH
 ```
-
 **Description**
-
 Pointer to the key for obtaining the video width. The value is of the int32_t type.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -1929,9 +1786,7 @@ Pointer to the key for obtaining the video width. The value is of the int32_t ty
 ```
 const char* OH_PLAYER_VOLUME
 ```
-
 **Description**
-
 Pointer to the key for obtaining the volume. The value type is float.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer

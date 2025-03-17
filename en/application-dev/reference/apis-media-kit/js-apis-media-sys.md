@@ -321,7 +321,7 @@ A recording management class that provides APIs to record media assets. Before c
 >
 > To use the camera to record videos, the camera module is required. For details about how to use the APIs provided by the camera module, see [Camera Management](../apis-camera-kit/js-apis-camera.md).
 
-### isWatermarkSupported<sup>12+</sup>
+### isWatermarkSupported<sup>13+</sup>
 
 isWatermarkSupported(): Promise\<boolean>
 
@@ -351,7 +351,7 @@ avRecorder.isWatermarkSupported().then((isWatermarkSupported: boolean) => {
 });
 ```
 
-### setWatermark<sup>12+</sup>
+### setWatermark<sup>13+</sup>
 
 setWatermark(watermark: image.PixelMap, config: WatermarkConfig): Promise\<void>
 
@@ -368,7 +368,7 @@ This API can be called only after the [prepare()](js-apis-media.md#prepare9-3) e
 | Name  | Type                 | Mandatory| Description                        |
 | -------- | -------------------- | ---- | --------------------------- |
 | watermark | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)      | Yes  | PixelMap data.<br>Currently, the following specifications are supported:<br>- Only RGBA8888 is supported.<br>- If the original image is 8 KB, the watermark resolution is 3072 x 288; if the original image is 4 KB, the watermark resolution is 1536 x 144.|
-| config    | [WatermarkConfig](#watermarkconfig12)   | Yes  | Watermark configuration.|
+| config    | [WatermarkConfig](#watermarkconfig13)   | Yes  | Watermark configuration.|
 
 **Return value**
 
@@ -391,7 +391,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-let watermark: image.PixelMap|undefined = undefined; // need data
+let watermark: image.PixelMap|undefined = undefined; // need data.
 let watermarkConfig: media.WatermarkConfig = { top: 100, left: 100 }
 
 avRecorder.setWatermark(watermark, watermarkConfig).then(() => {
@@ -476,7 +476,7 @@ let videoConfig: media.VideoRecorderConfig = {
   location : { latitude : 30, longitude : 130 }
 }
 
-// asyncallback
+// asyncallback.
 videoRecorder.prepare(videoConfig, (err: BusinessError) => {
   if (err == null) {
     console.info('prepare success');
@@ -549,7 +549,7 @@ let videoConfig: media.VideoRecorderConfig = {
   location : { latitude : 30, longitude : 130 }
 }
 
-// promise
+// promise.
 videoRecorder.prepare(videoConfig).then(() => {
   console.info('prepare success');
 }).catch((err: BusinessError) => {
@@ -592,7 +592,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// asyncallback
+// asyncallback.
 let surfaceID: string; // Surface ID passed to the external system.
 videoRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
   if (err == null) {
@@ -639,7 +639,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// promise
+// promise.
 let surfaceID: string; // Surface ID passed to the external system.
 videoRecorder.getInputSurface().then((surfaceId: string) => {
   console.info('getInputSurface success');
@@ -682,7 +682,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// asyncallback
+// asyncallback.
 videoRecorder.start((err: BusinessError) => {
   if (err == null) {
     console.info('start videorecorder success');
@@ -725,7 +725,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// promise
+// promise.
 videoRecorder.start().then(() => {
   console.info('start videorecorder success');
 }).catch((err: BusinessError) => {
@@ -766,7 +766,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// asyncallback
+// asyncallback.
 videoRecorder.pause((err: BusinessError) => {
   if (err == null) {
     console.info('pause videorecorder success');
@@ -809,7 +809,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// promise
+// promise.
 videoRecorder.pause().then(() => {
   console.info('pause videorecorder success');
 }).catch((err: BusinessError) => {
@@ -848,7 +848,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// asyncallback
+// asyncallback.
 videoRecorder.resume((err: BusinessError) => {
   if (err == null) {
     console.info('resume videorecorder success');
@@ -889,7 +889,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// promise
+// promise.
 videoRecorder.resume().then(() => {
   console.info('resume videorecorder success');
 }).catch((err: BusinessError) => {
@@ -930,7 +930,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// asyncallback
+// asyncallback.
 videoRecorder.stop((err: BusinessError) => {
   if (err == null) {
     console.info('stop videorecorder success');
@@ -973,7 +973,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// promise
+// promise.
 videoRecorder.stop().then(() => {
   console.info('stop videorecorder success');
 }).catch((err: BusinessError) => {
@@ -1010,7 +1010,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// asyncallback
+// asyncallback.
 videoRecorder.release((err: BusinessError) => {
   if (err == null) {
     console.info('release videorecorder success');
@@ -1049,7 +1049,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// promise
+// promise.
 videoRecorder.release().then(() => {
   console.info('release videorecorder success');
 }).catch((err: BusinessError) => {
@@ -1089,7 +1089,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// asyncallback
+// asyncallback.
 videoRecorder.reset((err: BusinessError) => {
   if (err == null) {
     console.info('reset videorecorder success');
@@ -1131,7 +1131,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// promise
+// promise.
 videoRecorder.reset().then(() => {
   console.info('reset videorecorder success');
 }).catch((err: BusinessError) => {
@@ -1233,7 +1233,7 @@ Describes the video recording profile.
 | videoFrameHeight | number                                       | Yes  | Height of the recorded video frame.|
 | videoFrameRate   | number                                       | Yes  | Video frame rate.  |
 
-## WatermarkConfig<sup>12+</sup>
+## WatermarkConfig<sup>13+</sup>
 
 Describes the watermark configuration set for the AVRecorder. The start point is the upper left corner of the image.
 
