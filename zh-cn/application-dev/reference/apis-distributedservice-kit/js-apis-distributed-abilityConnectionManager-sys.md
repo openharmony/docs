@@ -187,7 +187,7 @@ createStream(sessionId:&nbsp;number,&nbsp;param:&nbsp;StreamParam):&nbsp;Promise
 
 | 类型                  | 说明               |
 | ------------------- | ---------------- |
-| Promise&lt;number&gt; | 返回number结果的promise对象。 |
+| Promise&lt;number&gt; | 返回number结果的promise对象。number为创建结果。 |
 
 **错误码：**
 
