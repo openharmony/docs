@@ -3,13 +3,50 @@
 
 > **说明：**
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.wifiManager (WLAN)](js-apis-wifiManager.md)
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.wifiManager (WLAN)](js-apis-wifiManager.md)。
 
 ## 导入模块
 
 ```ts
 import { wifiManager } from '@kit.ConnectivityKit';
 ```
+
+## wifiManager.disableWifi<sup>9+</sup>
+
+disableWifi(): void
+
+去使能WLAN，异步接口，需要通过注册"wifiStateChange"事件的回调来监听是否关闭成功。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
+| 2501000  | Operation failed.|
+| 2501004  | Operation failed because the service is being opened. |
+
+**示例：**
+
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+
+	try {
+		wifiManager.disableWifi();
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
 ## wifiManager.enableSemiWifi<sup>12+</sup>
 
 enableSemiWifi(): void
@@ -138,7 +175,7 @@ getScanAlwaysAllowed(): boolean
 
 | **类型** | **说明** |
 | -------- | -------- |
-| boolean| 是否始终允许扫描。 true 表示允许触发扫描，false表示在禁用wifi时不允许触发扫描|
+| boolean| 是否始终允许扫描。 true 表示允许触发扫描，false表示在禁用wifi时不允许触发扫描。|
 
 **错误码：**
 
@@ -226,7 +263,7 @@ Wifi 代理配置。
 
 | **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
-| proxyMethod | ProxyMethod | 是 | 否 | 代理方法 |
+| proxyMethod | ProxyMethod | 是 | 否 | 代理方法。 |
 | pacWebAddress | string | 是 | 否 | 自动配置代理的PAC web 地址。 |
 | serverHostName | string | 是 | 否 | 手动配置代理的服务器主机名。 |
 | serverPort | number | 是 | 否 | 手动配置代理的服务器端口。 |
@@ -364,7 +401,7 @@ getSupportedFeatures(): number
 | 0x0040 | Wi-Fi&nbsp;AWare组网特性。 |
 | 0x8000 | AP&nbsp;STA共存特性。 |
 | 0x8000000 | WPA3-Personal&nbsp;SAE特性。 |
-| 0x10000000 | WPA3-Enterprise&nbsp;Suite-B |
+| 0x10000000 | WPA3-Enterprise&nbsp;Suite-B。|
 | 0x20000000 | 增强开放特性。 |
 
 **错误码：**
@@ -999,7 +1036,7 @@ isHotspotDualBandSupported(): boolean
 
   | **类型** | **说明** |
   | -------- | -------- |
-  | boolean | true:支持，&nbsp;false:不支持.|
+  | boolean | true:支持，&nbsp;false:不支持。|
 
 **错误码：**
 
@@ -1040,7 +1077,7 @@ isOpenSoftApAllowed(): boolean
 
   | **类型** | **说明** |
   | -------- | -------- |
-  | boolean | true:允许，&nbsp;false:不允许.|
+  | boolean | true:允许，&nbsp;false:不允许。|
 
 **错误码：**
 
@@ -1639,7 +1676,7 @@ on(type: 'deviceConfigChange', callback: Callback&lt;number&gt;): void
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 固定填"deviceConfigChange"字符串。 |
-| callback | Callback&lt;number&gt; | 是 | 状态改变回调函数，返回0: 添加配置, 1: 更改配置, 2: 删除配置. |
+| callback | Callback&lt;number&gt; | 是 | 状态改变回调函数，返回值为 0: 添加配置。1: 更改配置。2: 删除配置。 |
 
 **错误码：**
 
@@ -1670,7 +1707,7 @@ off(type: 'deviceConfigChange', callback?: Callback&lt;number&gt;): void
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 固定填"deviceConfigChange"字符串。 |
-| callback | Callback&lt;number&gt; | 否 | 状态改变回调函数，返回0: 添加配置, 1: 更改配置, 2: 删除配置.|
+| callback | Callback&lt;number&gt; | 否 | 状态改变回调函数，返回值为 0: 添加配置。1: 更改配置。2: 删除配置。|
 
 **错误码：**
 
