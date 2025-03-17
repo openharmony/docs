@@ -4,7 +4,7 @@
 
 > **说明：** 
 >
-> 本模块首批接口从API version 14开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 16开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.telephony.esim (eSIM卡管理)](js-apis-esim.md)。
 
 ## 导入模块
@@ -81,7 +81,7 @@ getOsuStatus\(slotId: number\): Promise\<OsuStatus\>
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[OsuStatus](#osustatus14)\> |  Promise对象，返回操作系统升级的状态。<br/> 1. 正在升级。 <br/>   2. 升级失败。<br/>  3. 升级成功。<br/>  4. 当前版本是最新版本。<br/> 5. 升级服务不可用。 |
+| Promise\<[OsuStatus](#osustatus16)\> |  Promise对象，返回操作系统升级的状态。<br/> 1. 正在升级。 <br/>   2. 升级失败。<br/>  3. 升级成功。<br/>  4. 当前版本是最新版本。<br/> 5. 升级服务不可用。 |
 
 **错误码：**
 
@@ -131,7 +131,7 @@ startOsu\(slotId: number\): Promise\<OsuStatus\>
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[OsuStatus](#osustatus14)\> |  Promise对象，返回操作系统升级的状态。<br/> 1. 正在升级。 <br/>   2. 升级失败。<br/>  3. 升级成功。<br/>  4. 当前版本是最新版本。<br/> 5. 升级服务不可用。 |
+| Promise\<[OsuStatus](#osustatus16)\> |  Promise对象，返回操作系统升级的状态。<br/> 1. 正在升级。 <br/>   2. 升级失败。<br/>  3. 升级成功。<br/>  4. 当前版本是最新版本。<br/> 5. 升级服务不可用。 |
 
 **错误码：**
 
@@ -178,14 +178,14 @@ getDownloadableProfileMetadata\(slotId: number, portIndex: number,
 | ------ | ------ | ----- | ----- |
 | slotId              | number                                        | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | portIndex           | number                                        | 是 | 插槽的端口索引。     |
-| profile             | [DownloadableProfile](#downloadableprofile14) | 是 | 可下载的配置文件信息。|
+| profile             | [DownloadableProfile](#downloadableprofile16) | 是 | 可下载的配置文件信息。|
 | forceDisableProfile | boolean | 是 | 如果值为true，则必须停用活动SIM才能执行操作。如果值为false，则提示用户首先同意此操作。|
 
 **返回值：**
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[GetDownloadableProfileMetadataResult](#getdownloadableprofilemetadataresult14)\> | Promise对象，返回填充可下载配置文件的元数据。 |
+| Promise\<[GetDownloadableProfileMetadataResult](#getdownloadableprofilemetadataresult16)\> | Promise对象，返回填充可下载配置文件的元数据。 |
 
 **错误码：**
 
@@ -249,7 +249,7 @@ getDownloadableProfiles\(slotId: number, portIndex: number,
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[GetDownloadableProfilesResult](#getdownloadableprofilesresult14)\> | Promise对象，返回可下载配置文件列表。 |
+| Promise\<[GetDownloadableProfilesResult](#getdownloadableprofilesresult16)\> | Promise对象，返回可下载配置文件列表。 |
 
 **错误码：**
 
@@ -296,14 +296,14 @@ downloadProfile\(slotId: number, portIndex: number, profile: DownloadableProfile
 | ------ | ------ | ----- | ----- |
 | slotId        | number                                            | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | portIndex     | number                                            | 是 | 插槽的端口索引。 |
-| profile       | [DownloadableProfile](#downloadableprofile14)     | 是 | 可下载的配置文件信息。 |
-| configuration | [DownloadConfiguration](#downloadconfiguration14) | 是 | 下载的配置信息。 |
+| profile       | [DownloadableProfile](#downloadableprofile16)     | 是 | 可下载的配置文件信息。 |
+| configuration | [DownloadConfiguration](#downloadconfiguration16) | 是 | 下载的配置信息。 |
 
 **返回值：**
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[DownloadProfileResult](#downloadprofileresult14)\> | Promise对象，返回下载配置文件的结果。 |
+| Promise\<[DownloadProfileResult](#downloadprofileresult16)\> | Promise对象，返回下载配置文件的结果。 |
 
 **错误码：**
 
@@ -370,7 +370,7 @@ getEuiccProfileInfoList\(slotId: number\): Promise\<GetEuiccProfileInfoListResul
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[GetEuiccProfileInfoListResult](#geteuiccprofileinfolistresult14)\> | Promise对象，返回配置文件信息列表。 |
+| Promise\<[GetEuiccProfileInfoListResult](#geteuiccprofileinfolistresult16)\> | Promise对象，返回配置文件信息列表。 |
 
 **错误码：**
 
@@ -420,7 +420,7 @@ getEuiccInfo\(slotId: number\): Promise\<EuiccInfo\>
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[EuiccInfo](#euiccinfo14)\> | Promise对象，返回eUicc信息。 |
+| Promise\<[EuiccInfo](#euiccinfo16)\> | Promise对象，返回eUicc信息。 |
 
 **错误码：**
 
@@ -471,7 +471,7 @@ deleteProfile\(slotId: number, iccid: string\): Promise\<ResultCode\>
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#resultcode14)\> | Promise对象，返回删除配置文件的结果码。 |
+| Promise\<[ResultCode](#resultcode16)\> | Promise对象，返回删除配置文件的结果码。 |
 
 **错误码：**
 
@@ -525,7 +525,7 @@ switchToProfile\(slotId: number, portIndex: number, iccid: string,
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#resultcode14)\> | Promise对象，返回切换配置文件的结果码。 |
+| Promise\<[ResultCode](#resultcode16)\> | Promise对象，返回切换配置文件的结果码。 |
 
 **错误码：**
 
@@ -577,7 +577,7 @@ setProfileNickname\(slotId: number, iccid: string, nickname: string\): Promise\<
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#resultcode14)\> | Promise对象，返回设置昵称的结果码。 |
+| Promise\<[ResultCode](#resultcode16)\> | Promise对象，返回设置昵称的结果码。 |
 
 **错误码：**
 
@@ -622,13 +622,13 @@ resetMemory\(slotId: number, options?: ResetOption\): Promise\<ResultCode\>
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
 | slotId  | number                        | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
-| options | [ResetOption](#resetoption14) | 否 | 重置状态。 |
+| options | [ResetOption](#resetoption16) | 否 | 重置状态。 |
 
 **返回值：**
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#resultcode14)\> | Promise对象，返回重置的结果码。 |
+| Promise\<[ResultCode](#resultcode16)\> | Promise对象，返回重置的结果码。 |
 
 **错误码：**
 
@@ -678,7 +678,7 @@ reserveProfilesForFactoryRestore\(slotId: number\): Promise\<ResultCode\>
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#resultcode14)\> | Promise对象，返回恢复出厂设置的结果码。 |
+| Promise\<[ResultCode](#resultcode16)\> | Promise对象，返回恢复出厂设置的结果码。 |
 
 **错误码：**
 
@@ -729,7 +729,7 @@ setDefaultSmdpAddress\(slotId: number, address: string\): Promise\<ResultCode\>
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#resultcode14)\> | Promise对象，返回设置默认SM-DP+地址的结果码。 |
+| Promise\<[ResultCode](#resultcode16)\> | Promise对象，返回设置默认SM-DP+地址的结果码。 |
 
 **错误码：**
 
@@ -825,13 +825,13 @@ cancelSession\(slotId: number, transactionId: string, cancelReason: CancelReason
 | ------ | ------ | ----- | ----- |
 | slotId        | number                          | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | transactionId | string                          | 是 | 业务ID。|
-| cancelReason  | [CancelReason](#cancelreason14) | 是 | 取消会话的原因。|
+| cancelReason  | [CancelReason](#cancelreason16) | 是 | 取消会话的原因。|
 
 **返回值：**
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#resultcode14)\> | Promise对象，返回取消会话的结果码。 |
+| Promise\<[ResultCode](#resultcode16)\> | Promise对象，返回取消会话的结果码。 |
 
 **错误码：**
 
@@ -1051,7 +1051,7 @@ euicc信息。
 | RESULT_RESPONSE_HTTP_FAILED                              | 211 | HTTP响应失败。 |
 | RESULT_CONFIRMATION_CODE_INCORRECT                       | 212 | 确认码不正确。 |
 | RESULT_EXCEEDED_CONFIRMATION_CODE_TRY_LIMIT              | 213 | 已达到最大确认码尝试次数。      |
-| RESULT_NO_PROFILE_ON_SERVER                              | 214 | 服务器上没有可供下载的配置文件。 |
+| RESULT_NO_PROFILE_ON_SERVER                              | 216 | 服务器上没有可供下载的配置文件。 |
 | RESULT_TRANSACTION_ID_INVALID                            | 215 | 事务ID无效。    |
 | RESULT_SERVER_ADDRESS_INVALID                            | 216 | 服务器地址无效。 |
 | RESULT_GET_BOUND_PROFILE_PACKAGE_FAILED                  | 217 | 获取BPP失败。    |
