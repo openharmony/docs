@@ -7,7 +7,7 @@ The TransientTask_DelaySuspendInfo struct describes the returned information abo
 
 **Since**: 13
 
-**Related module**: [TransientTask](_transient_task.md)
+**Related module**: [TransientTask](capi-_transient_task.md)
 
 **Head file**: [os_account.h](capi-transient__task__type_8h.md)
 
