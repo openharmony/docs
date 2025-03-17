@@ -5028,6 +5028,18 @@ PhotoAsset的成员类型。
 | IMAGE<sup>12+</sup>               | 1031       | 图片相册。                           |
 | ANY                               | 2147483647 | 任意相册。                           |
 
+## PositionType<sup>16+</sup>
+
+枚举，文件位置，表示文件在本地或云端。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| LOCAL |  1  |  文件只存在于本端设备。 |
+| CLOUD |  2  |  文件只存在于云端。 |
+| LOCAL_AND_CLOUD |  3  |  文件存在于本端设备和云端。 |
+
 ## PhotoKeys
 
 枚举，图片和视频文件关键信息。
@@ -5059,6 +5071,7 @@ PhotoAsset的成员类型。
 | THM_SIZE<sup>12+</sup>  | 'thm_size'  | THUMB图片的宽高，值为width:height拼接而成的字符串。|
 | DETAIL_TIME<sup>13+</sup>  | 'detail_time'  | 大图浏览时间，值为拍摄时对应时区的时间的字符串，不会跟随时区变化。|
 | DATE_TAKEN_MS<sup>13+</sup>  | 'date_taken_ms'  | 拍摄时的Unix时间戳（单位：毫秒）。 |
+| POSITION<sup>16+</sup>  | 'position'            | 文件位置类型。                               |
 
 ## AlbumKeys
 
