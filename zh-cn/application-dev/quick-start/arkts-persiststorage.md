@@ -35,7 +35,7 @@ PersistentStorage允许的类型和值有：
 
 PersistentStorage不允许的类型和值有：
 
-- 不支持嵌套对象（对象数组，对象的属性是对象等）。因为目前框架无法检测AppStorage中嵌套对象（包括数组）值的变化，所以无法写回到PersistentStorage中。
+- 嵌套对象（对象数组，对象的属性是对象等）。因为目前框架无法检测AppStorage中嵌套对象（包括数组）值的变化，所以无法写回到PersistentStorage中。
 
 持久化数据是一个相对缓慢的操作，应用程序应避免以下情况：
 
