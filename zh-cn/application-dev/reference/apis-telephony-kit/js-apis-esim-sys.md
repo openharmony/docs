@@ -59,7 +59,7 @@ let eid: string = eSIM.getEid(0);
 console.log(`the EID is:` + eid);
 ```
 
-## eSIM.getOsuStatus16
+## eSIM.getOsuStatus<sup>16+</sup>
 
 getOsuStatus\(slotId: number\): Promise\<OsuStatus\>
 
@@ -109,7 +109,7 @@ eSIM.getOsuStatus(0).then(() => {
 });
 ```
 
-## eSIM.startOsu16
+## eSIM.startOsu<sup>16+</sup>
 
 startOsu\(slotId: number\): Promise\<OsuStatus\>
 
@@ -159,7 +159,7 @@ eSIM.startOsu(0).then(() => {
 });
 ```
 
-## eSIM.getDownloadableProfileMetadata16
+## eSIM.getDownloadableProfileMetadata<sup>16+</sup>
 
 getDownloadableProfileMetadata\(slotId: number, portIndex: number,
     profile: DownloadableProfile, forceDisableProfile: boolean\): Promise\<GetDownloadableProfileMetadataResult\>
@@ -224,7 +224,7 @@ eSIM.getDownloadableProfileMetadata(0, 0, profile, true).then((data: eSIM.GetDow
 });
 ```
 
-## eSIM.getDownloadableProfiles16
+## eSIM.getDownloadableProfiles<sup>16+</sup>
 
 getDownloadableProfiles\(slotId: number, portIndex: number,
     forceDisableProfile: boolean\): Promise\<GetDownloadableProfilesResult\>
@@ -277,7 +277,7 @@ eSIM.getDownloadableProfiles(0, 0, true).then((data: eSIM.GetDownloadableProfile
 });
 ```
 
-## eSIM.downloadProfile16
+## eSIM.downloadProfile<sup>16+</sup>
 
 downloadProfile\(slotId: number, portIndex: number, profile: DownloadableProfile,
       configuration: DownloadConfiguration\): Promise\<DownloadProfileResult\>
@@ -348,7 +348,7 @@ eSIM.downloadProfile(0, 0, profile, configuration).then((data: eSIM.DownloadProf
 });
 ```
 
-## eSIM.getEuiccProfileInfoList16
+## eSIM.getEuiccProfileInfoList<sup>16+</sup>
 
 getEuiccProfileInfoList\(slotId: number\): Promise\<GetEuiccProfileInfoListResult\>
 
@@ -398,7 +398,7 @@ eSIM.getEuiccProfileInfoList(0).then((data: eSIM.GetEuiccProfileInfoListResult) 
 });
 ```
 
-## eSIM.getEuiccInfo16
+## eSIM.getEuiccInfo<sup>16+</sup>
 
 getEuiccInfo\(slotId: number\): Promise\<EuiccInfo\>
 
