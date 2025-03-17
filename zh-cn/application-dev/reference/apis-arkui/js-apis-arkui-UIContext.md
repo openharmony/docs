@@ -2633,6 +2633,8 @@ struct NormalEts {
 
 ### dispatchKeyEvent<sup>15+</sup>
 
+dispatchKeyEvent(node: number | string, event: KeyEvent): boolean
+
 按键事件应分发给指定的组件。为了确保行为的可预测性，目标组件必须位于分发组件的子树中。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
@@ -8175,11 +8177,12 @@ cancelDataLoading(key: string): void
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[拖拽事件错误码](./errorcode-drag-event.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. |
+| 190004      | Operation failed. |
 
 ## OverlayManager<sup>12+</sup>
 
