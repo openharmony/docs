@@ -1051,7 +1051,7 @@ euicc信息。
 | RESULT_RESPONSE_HTTP_FAILED                              | 211 | HTTP响应失败。 |
 | RESULT_CONFIRMATION_CODE_INCORRECT                       | 212 | 确认码不正确。 |
 | RESULT_EXCEEDED_CONFIRMATION_CODE_TRY_LIMIT              | 213 | 已达到最大确认码尝试次数。      |
-| RESULT_NO_PROFILE_ON_SERVER                              | 216 | 服务器上没有可供下载的配置文件。 |
+| RESULT_NO_PROFILE_ON_SERVER                              | 214 | 服务器上没有可供下载的配置文件。 |
 | RESULT_TRANSACTION_ID_INVALID                            | 215 | 事务ID无效。    |
 | RESULT_SERVER_ADDRESS_INVALID                            | 216 | 服务器地址无效。 |
 | RESULT_GET_BOUND_PROFILE_PACKAGE_FAILED                  | 217 | 获取BPP失败。    |
