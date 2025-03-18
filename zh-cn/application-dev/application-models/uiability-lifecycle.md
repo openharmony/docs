@@ -217,11 +217,9 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### WillForeground和WillBackground状态 <sup>18+</sup>
+### WillForeground状态 <sup>18+</sup>
 
 WillForeground状态在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例从[WindowStageCreate](#windowstagecreate和windowstagedestroy状态)至前台过程中触发，对应[onWillForeground()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwillforeground)回调。
-
-WillBackground状态在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例从WindowStage PAUSED（前台不可交互状态）切换至后台过程中触发，对应[onWillBackground()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwillbackground)回调。
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
@@ -230,8 +228,20 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWillForeground(): void {
-    // 申请系统需要的资源，或者重新申请在onWillBackground()中释放的资源
+    // 用于进入应用统计时长开始
   }
+}
+```
+
+### WillBackground状态 <sup>18+</sup>
+
+WillBackground状态在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例从WindowStage PAUSED（前台不可交互状态）切换至后台过程中触发，对应[onWillBackground()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwillbackground)回调。
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
 
   onWillBackground(): void {
     // 释放UI即将不可见时无用的资源，或者在此回调中执行较为耗时的操作
