@@ -15,23 +15,35 @@
 import { AVCastPicker } from '@kit.AVSessionKit';
 ```
 
+## 属性
+
+支持[通用属性](../apis-arkui/arkui-ts/ts-component-general-attributes.md)。
+
 ## AVCastPicker
 
-AVCastPicker()
+```
+AVCastPicker({
+  normalColor?: Color | number | string;
+  activeColor?: Color | number | string;
+  pickerStyle?: AVCastPickerStyle;
+  colorMode?: AVCastPickerColorMode;
+  sessionType?: string;
+  customPicker?: CustomBuilder;
+  onStateChange?: (state: AVCastPickerState) => void;
+})
+```
 
 投播组件，可用于将音视频资源投放到其它设备播放。
 
 该组件为自定义组件，开发者在使用前需要先了解[@Component](../../quick-start/arkts-create-custom-components.md#component)。
 
+**装饰器类型：** [@Component](../../quick-start/arkts-create-custom-components.md)
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-## 属性
-
-除支持[通用属性](../apis-arkui/arkui-ts/ts-component-general-attributes.md)外，还支持以下属性：
-
-| 名称 | 参数类型 | 必填 | 装饰器修饰类型 | 说明 |
+| 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | normalColor<sup>11+</sup> | Color &#124; number &#124; string | 否 | @Prop | 指正常状态下投播组件的颜色。<br>未设置将采用colorMode下的颜色设置。 |
 | activeColor<sup>11+</sup> | Color &#124; number &#124; string | 否 | @Prop | 指设备切换成功状态下投播组件的颜色。未设置系统将优先根据normalColor的颜色匹配；如果normalColor也未设置，将采用colorMode下的颜色设置。 |
