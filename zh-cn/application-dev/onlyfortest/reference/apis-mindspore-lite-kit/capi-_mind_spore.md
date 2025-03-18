@@ -75,7 +75,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_AI_ContextCreate () | 创建一个上下文的对象。注意：此接口需跟[OH_AI_ContextDestroy](#oh_ai_contextdestroy)配套使用。 |
+| OH_AI_ContextCreate () | 创建一个上下文的对象。注意：此接口需跟OH_AI_ContextDestroy配套使用。 |
 | OH_AI_ContextDestroy (OH_AI_ContextHandle \*context) | 释放上下文对象。 |
 | OH_AI_ContextSetThreadNum (OH_AI_ContextHandle context, int32_t thread_num) | 设置运行时的线程数量。 |
 | OH_AI_ContextGetThreadNum (const OH_AI_ContextHandle context) | 获取线程数量。 |
@@ -85,7 +85,7 @@
 | OH_AI_ContextGetThreadAffinityCoreLis (const OH_AI_ContextHandle context, size_t \*core_num) | 获取CPU绑核列表。 |
 | OH_AI_ContextSetEnableParallel (OH_AI_ContextHandle context, bool is_parallel) | 设置运行时是否支持并行。此接口特性当前未开启，设置无效。 |
 | OH_AI_ContextGetEnableParallel (const OH_AI_ContextHandle context) | 获取是否支持算子间并行。 |
-| OH_AI_ContextAddDeviceInfo (OH_AI_ContextHandle context, [OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info) | 将一个用户定义的运行设备信息附加到推理上下文中。 |
+| OH_AI_ContextAddDeviceInfo (OH_AI_ContextHandle context, OH_AI_DeviceInfoHandle device_info) | 将一个用户定义的运行设备信息附加到推理上下文中。 |
 | OH_AI_DeviceInfoCreate (OH_AI_DeviceType device_type) | 创建一个设备信息对象。 |
 | OH_AI_DeviceInfoDestroy (OH_AI_DeviceInfoHandle \*device_info) | 释放设备信息实例。注意：设备信息实例被添加到context后，无须调用者手动释放。 |
 | OH_AI_DeviceInfoSetProvider (OH_AI_DeviceInfoHandle device_info, const char \*provider) | 设置生产商的名称。 |
