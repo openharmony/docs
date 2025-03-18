@@ -28,7 +28,7 @@ Shows a calendar picker dialog box.
 
 ## CalendarDialogOptions
 
-Inherits [CalendarOptions](ts-basic-components-calendarpicker.md#calendaroptions).
+Inherits from [CalendarOptions](ts-basic-components-calendarpicker.md#calendaroptions).
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -49,11 +49,15 @@ Inherits [CalendarOptions](ts-basic-components-calendarpicker.md#calendaroptions
 | enableHoverMode<sup>14+</sup>              | boolean | No  | Whether to enable the hover mode.<br>Default value: **false**, meaning not to enable the hover mode.|
 | hoverModeArea<sup>14+</sup>              | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype14) | No  | Display area of the dialog box in hover mode.<br>Default value: **HoverModeAreaType.BOTTOM_SCREEN**|
 
+> **NOTE**
+>
+> When the application window is resized, the width of the dialog box is continuously compressed. If the window width is reduced below a certain threshold, the content of the dialog box may not be fully visible. To ensure that the content of the **CalendarPickerDialog** component is fully displayed, the minimum window width required is 386 vp.
+
 ## Example
 
-### Example 1
+### Example 1: Displaying a Calendar Picker Dialog Box
 
-This example shows the basic usage of **CalendarPickerDialog**.
+This example demonstrates how to display a calendar picker dialog box when a button is touched.
 
 ```ts
 // xxx.ets
@@ -100,9 +104,9 @@ struct CalendarPickerDialogExample {
 
 ![CalendarPickerDialog](figures/CalendarPickerDialog.gif)
 
-### Example 2
+### Example 2: Customizing the Button Style
 
-This example shows how to customize the button style.
+This example demonstrates how to customize the button style using **acceptButtonStyle** and **cancelButtonStyle**.
 
 ```ts
 // xxx.ets
@@ -154,7 +158,7 @@ struct CalendarPickerDialogExample {
 
 ![CalendarPickerDialog](figures/CalendarPickerDialog_CustomButton.png)
 
-### Example 3
+### Example 3: Configuring a Dialog Box in the Hover State
 
 This example demonstrates how to set the layout area of a dialog box in hover mode on a foldable device.
 

@@ -1,11 +1,8 @@
 # 使用AES对称密钥（ECB模式）加解密(ArkTS)
 
-
 对应的算法规格请查看[对称密钥加解密算法规格：AES](crypto-sym-encrypt-decrypt-spec.md#aes)。
 
-
 **加密**
-
 
 1. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)、[SymKeyGenerator.generateSymKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkey-1)，生成密钥算法为AES、密钥长度为128位的对称密钥（SymKey）。
    
@@ -17,7 +14,6 @@
 
 4. 加密内容较短时，可以不调用update，直接调用[Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1)，获取加密后的数据。
 
-
 **解密**
 
 1. 调用[cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher)，指定字符串参数'AES128|ECB|PKCS7'，创建对称密钥类型为AES128、分组模式为ECB、填充模式为PKCS7的Cipher实例，用于完成解密操作。
@@ -26,21 +22,20 @@
 
 3. 解密内容较短时，可以不调用update，直接调用[Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1)，获取解密后的数据。
 
-
 - 异步方法示例：
 
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
 
-  // 加密消息
+  // 加密消息。
   async function encryptMessagePromise(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
     let cipher = cryptoFramework.createCipher('AES128|ECB|PKCS7');
     await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null); // ECB模式params为null。
     let cipherData = await cipher.doFinal(plainText);
     return cipherData;
   }
-  // 解密消息
+  // 解密消息。
   async function decryptMessagePromise(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
     let decoder = cryptoFramework.createCipher('AES128|ECB|PKCS7');
     await decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, null); // ECB模式params为null。
@@ -82,14 +77,14 @@
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
 
-  // 加密消息
+  // 加密消息。
   function encryptMessage(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
     let cipher = cryptoFramework.createCipher('AES128|ECB|PKCS7');
     cipher.initSync(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null); // ECB模式params为null。
     let cipherData = cipher.doFinalSync(plainText);
     return cipherData;
   }
-  // 解密消息
+  // 解密消息。
   function decryptMessage(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
     let decoder = cryptoFramework.createCipher('AES128|ECB|PKCS7');
     decoder.initSync(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, null); // ECB模式params为null。

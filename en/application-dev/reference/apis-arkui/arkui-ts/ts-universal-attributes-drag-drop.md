@@ -66,6 +66,23 @@ Sets the preview displayed when the component is dragged.
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo) \| string<sup>12+</sup> | Yes  | Preview displayed when the component is dragged. This attribute has effect for **onDragStart** only.<br>If the component supports drag and drop and a preview is specified through [bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8), that specified preview is displayed when the component is dragged. The priority of the background image returned in [onDragStart](ts-universal-events-drag-drop.md#onDragStart) is lower than that of the preview set in [dragPreview](ts-universal-attributes-drag-drop.md#dragPreview11). This means that, once set, the latter will be used in place of the former. Because [CustomBuilder](ts-types.md#custombuilder8) can be used only after offline rendering, it may increase performance overhead and latency. In light of this, you are advised to use [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) in [DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo) to set the preview.<br> When an ID of the string type is passed in, the snapshot of the component assigned the ID is used as the preview image. If the component assigned the ID cannot be found or its **Visibility** attribute is set to **none** or **hidden**, a snapshot of the current component is used as the preview image. Currently, snapshots do not support visual effects, such as brightness, shadow, blur, and rotation.<br>Default value: empty<br>|
 
+## dragPreview<sup>15+</sup>
+
+dragPreview(preview: CustomBuilder | DragItemInfo | string, config?: PreviewConfiguration):T
+
+Sets the preview displayed when the component is dragged. It is used only for setting or disabling the lifting effect.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| preview  | [CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo) \| string | Yes  | Preview displayed when the component is dragged. This attribute has effect for **onDragStart** only.<br>If the component supports drag and drop and a preview is specified through [bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8), that specified preview is displayed when the component is dragged. The priority of the background image returned in [onDragStart](ts-universal-events-drag-drop.md#ondragstart) is lower than that of the preview set in [dragPreview](ts-universal-attributes-drag-drop.md#dragpreview11). This means that, once set, the latter will be used in place of the former. Because [CustomBuilder](ts-types.md#custombuilder8) can be used only after offline rendering, it may increase performance overhead and latency. In light of this, you are advised to use [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) in [DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo) to set the preview.<br> When an ID of the string type is passed in, the snapshot of the component assigned the ID is used as the preview image. If the component assigned the ID cannot be found or its **Visibility** attribute is set to **none** or **hidden**, a snapshot of the current component is used as the preview image. Currently, snapshots do not support visual effects, such as brightness, shadow, blur, and rotation.<br>Default value: empty|
+| config | [PreviewConfiguration](ts-universal-events-drag-drop.md#previewconfiguration15) | Yes| Additional settings for the drag preview.<br>This parameter is effective only for previews set using [dragPreview](#dragpreview11).<br>Default value: empty|
+
 ## dragPreviewOptions<sup>11+</sup>
 
 dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
@@ -112,6 +129,7 @@ Sets the processing mode of the drag preview and the display of the number badge
 | -------- | -------- | -------- | -------- |
 | isMultiSelectionEnabled | boolean | No| Whether to enable multiselect for the drag preview. This parameter takes effect only for the [grid items](ts-container-griditem.md) and [list items](ts-container-listitem.md) in the [Grid](ts-container-grid.md) and [List](ts-container-list.md) containers.<br>When multiselect is enabled for an item, the child components of the item cannot be dragged. The precendence levels of drag previews for multiselect, from high to low, are as follows: preview specified through a string value in [dragPreview](#dragpreview11), preview specified through **PixelMap** in **dragPreview**, and component snapshot. The Builder format in **dragPreview** is not supported.<br>The context menu bound to the component through [bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu12) cannot contain the **isShown** parameter.<br>Default value: **false**<br>|
 | defaultAnimationBeforeLifting | boolean | No| Whether to enable the default pressed state animation (compressing in size) of the component before a lift animation starts.<br>Default value: **false**<br>|
+| isLiftingDisabled<sup>15+</sup> | boolean | No| Whether to disable the lifting effect during dragging.<br>With the value **true**, only the custom menu preview (set using [bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8)), also known as the long-press preview, is displayed if both the long-press preview and drag preview are configured.<br>Default value: **false**|
 
 ## Example
 ### Example 1: Allowing Drag and Drop
@@ -635,3 +653,100 @@ struct ImageDrag {
 ```
 
 ![imageDrag.gif](figures/imageDrag.gif)
+### Example 8: Customizing the Drag Preview
+This example demonstrates how to customize the drag preview using **onlyForLifting** for lifting effects and **isLiftingDisabled** to disable the lifting effect.
+```ts
+// xxx.ets
+@Entry
+@Component
+struct LiftingExampleDemo {
+  @Builder
+  dragPreviewBuilder() {
+    Column() {
+      Text("dragPreview builder")
+        .width(150)
+        .height(50)
+        .fontSize(20)
+        .borderRadius(10)
+        .textAlign(TextAlign.Center)
+        .fontColor(Color.Black)
+        .backgroundColor(Color.Green)
+    }
+  }
+  @Builder
+  MenuBuilder() {
+    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+      Text("menu 1")
+        .fontSize(25)
+        .width(200)
+        .height(60)
+        .textAlign(TextAlign.Center)
+        .fontColor(Color.Black)
+        .backgroundColor(Color.Green)
+      Divider()
+        .height(5)
+      Text("menu 2")
+        .fontSize(25)
+        .width(200)
+        .height(60)
+        .textAlign(TextAlign.Center)
+        .fontColor(Color.Black)
+        .backgroundColor(Color.Green)
+    }
+    .width(100)
+  }
+  build() {
+    Column() {
+      Column() {
+        Text("Lifting effect disabled")
+          .fontSize(30)
+          .height(30)
+          .backgroundColor('#FFFFFF')
+          .margin({ top: 30 })
+        Image($r('app.media.startIcon'))
+          .width("40%")
+          .draggable(true)
+          .margin({ top: 15 })
+          .bindContextMenu(this.MenuBuilder, ResponseType.LongPress)
+          .onDragStart(() => {
+          })
+          .dragPreviewOptions({}, {
+            isLiftingDisabled: true
+          })
+          .dragPreview(this.dragPreviewBuilder, {
+            onlyForLifting: true,
+            delayCreating: true
+          })
+      }.width("%")
+      Column() {
+        Text("Lifting effect only")
+          .fontSize(30)
+          .height(30)
+          .backgroundColor('#FFFFFF')
+          .margin({ top: 80 })
+        Image($r('app.media.startIcon'))
+          .width("40%")
+          .draggable(true)
+          .margin({ top: 15 })
+          .onDragStart(() => {
+          })
+          .dragPreviewOptions({}, {
+            isLiftingDisabled: false
+          })
+          .dragPreview(this.dragPreviewBuilder, {
+            onlyForLifting: true,
+            delayCreating: true
+          })
+      }.width("100%")
+    }.height("100%")
+  }
+}
+```
+
+Custom preview for the lifting effect only
+
+![onlyForLifting.gif](figures/onlyForLifting.gif)
+
+Custom preview with the lifting effect disabled
+
+![isLiftingDisabled.gif](figures/isLiftingDisabled.gif)

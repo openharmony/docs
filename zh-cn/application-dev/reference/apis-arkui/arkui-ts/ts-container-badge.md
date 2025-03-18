@@ -124,10 +124,10 @@ BadgeParamWithString继承自[BadgeParam](#badgeparam对象说明)，具有Badge
 | 名称                      | 类型                                                         | 必填 | 说明                                                         |
 | ------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | color                     | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 文本颜色。<br/>默认值：Color.White<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| fontSize                  | number&nbsp;\|&nbsp;string                                   | 否   | 文本大小。<br/>默认值：10<br/>单位：fp<br/>**说明：** <br/>不支持设置百分比。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| badgeSize                 | number&nbsp;\|&nbsp;string                                   | 否   | Badge的大小。<br/>默认值：16<br/>单位：vp<br/>**说明：** <br/>不支持设置百分比。当设置为非法值时，按照默认值处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| fontSize                  | number&nbsp;\|&nbsp;string                                   | 否   | 文本大小。string类型仅支持number类型取值的字符串形式，可以附带单位，例如"10"、"10fp"。<br/>默认值：10<br/>单位：fp<br/>取值范围：大于0，小于0时取默认值。<br/>**说明：** <br/>不支持设置百分比。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| badgeSize                 | number&nbsp;\|&nbsp;string                                   | 否   | Badge的大小。string类型支持number类型取值的字符串形式，可以附带单位，例如"16"、"16vp"。<br/>默认值：16<br/>单位：vp<br/>取值范围：大于0，小于0时取默认值。<br/>**说明：** <br/>不支持设置百分比。当设置为非法值时，按照默认值处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | badgeColor                | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | Badge的颜色。<br/>默认值：Color.Red<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| fontWeight<sup>10+</sup>  | number \|[FontWeight](ts-appendix-enums.md#fontweight) \| string | 否   | 设置文本的字体粗细。<br/>默认值：FontWeight.Normal<br/>**说明：** <br/>不支持设置百分比。 |
+| fontWeight<sup>10+</sup>  | number \|[FontWeight](ts-appendix-enums.md#fontweight) \| string | 否   | 设置文本的字体粗细。number类型取值范围：[100, 900]，取值间隔为100。默认值为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal<br/>**说明：** <br/>不支持设置百分比。 |
 | borderColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 底板描边颜色。<br/>默认值：Color.Red                         |
 | borderWidth<sup>10+</sup> | [Length](ts-types.md#length)                                 | 否   | 底板描边粗细。<br/>默认值：1<br/>单位：vp<br/>**说明：** <br/>不支持设置百分比。 |
 

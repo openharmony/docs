@@ -17,7 +17,7 @@ ArkTS会对自定义组件的成员变量使用的访问限定符private/public/
 
 - [\@State](./arkts-state.md)/[\@Prop](./arkts-prop.md)/[\@Provide](./arkts-provide-and-consume.md)/[\@BuilderParam](./arkts-builderparam.md)/常规成员变量(不涉及更新的普通变量)的初始化规则为可以被外部初始化，也可以使用本地值进行初始化。当组件开发者不希望当前变量被外部初始化时，可以使用private进行修饰，此时会有编译告警日志提示。
 
-- [\@StorageLink](./arkts-appstorage.md)/[\@StorageProp](./arkts-appstorage.md)/[\@LocalStorageLink](./arkts-localstorage.md)/[\@LocalStorageProp](./arkts-localstorage.md)/[\@Consume](./arkts-provide-and-consume.md)变量的初始化规则为不可以被外部初始化，当组件开发者希望当前变量被外部初始化而使用public修饰时，这和装饰器本身的初始化规则是相违背的，会有编译告警日志提示。
+- [\@StorageLink](./arkts-appstorage.md#storagelink)/[\@StorageProp](./arkts-appstorage.md#storageprop)/[\@LocalStorageLink](./arkts-localstorage.md#localstoragelink)/[\@LocalStorageProp](./arkts-localstorage.md#localstorageprop)/[\@Consume](./arkts-provide-and-consume.md)变量的初始化规则为不可以被外部初始化，当组件开发者希望当前变量被外部初始化而使用public修饰时，这和装饰器本身的初始化规则是相违背的，会有编译告警日志提示。
 
 - [\@Link](./arkts-link.md)/[\@ObjectLink](./arkts-observed-and-objectlink.md)变量的初始化规则为必须被外部初始化，禁止本地初始化。当组件开发者使用private对变量进行修饰时，这和装饰器本身的初始化规则相矛盾，会有编译告警日志提示。
 

@@ -13,7 +13,7 @@ The **inputMethod** module is oriented to common foreground applications (third-
 import { inputMethod } from '@kit.IMEKit';
 ```
 
-## Constants
+## Constant
 
 Provides the constants.
 
@@ -230,15 +230,15 @@ Switches to another input method. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  |target |  [InputMethodProperty](#inputmethodproperty8)| Yes| Target input method.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+|target |  [InputMethodProperty](#inputmethodproperty8)| Yes| Target input method.|
 
 **Return value**
 
-  | Type                                     | Description                        |
-  | ----------------------------------------- | ---------------------------- |
-  | Promise\<boolean> | Promise used to return the result. The value **true** means that the switching is successful, and **false** means the opposite.|
+| Type                                     | Description                        |
+| ----------------------------------------- | ---------------------------- |
+| Promise\<boolean> | Promise used to return the result. The value **true** means that the switching is successful, and **false** means the opposite.|
 
 **Error codes**
 
@@ -791,6 +791,7 @@ Indicates whether the input method is enabled.
 | DISABLED   | 0 |Disabled.|
 | BASIC_MODE  | 1 |Basic mode.|
 | FULL_EXPERIENCE_MODE  | 2 |Full experience mode.|
+
 ## MessageHandler<sup>15+</sup>
 
 Represents a custom communication object.
@@ -819,10 +820,10 @@ Receives custom data sent by the input method application.
 
 **Parameters**
 
-| Name  | Type       | Optional| Description                            |
+| Name  | Type       | Mandatory | Description                            |
 | -------- | ----------- | ---- | -------------------------------- |
-| msgId    | string      | No  | Identifier of the received custom communication data.|
-| msgParam | ArrayBuffer | Yes  | Message body of the received custom communication data.|
+| msgId    | string      | Yes | Identifier of the received custom communication data.|
+| msgParam | ArrayBuffer | No | Message body of the received custom communication data.|
 
 **Example**
 
@@ -830,7 +831,7 @@ Receives custom data sent by the input method application.
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    let messageHandler: inputmethod.MessageHandler = {
+    let messageHandler: inputMethod.MessageHandler = {
         onTerminated(): void {
             console.log('OnTerminated.');
         },
@@ -864,7 +865,7 @@ Listens for MessageHandler termination.
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    let messageHandler: inputmethod.MessageHandler = {
+    let messageHandler: inputMethod.MessageHandler = {
         onTerminated(): void {
             console.log('OnTerminated.');
         },
@@ -1899,10 +1900,10 @@ Sends the custom communication to the input method application. This API uses a 
 
 **Parameters**
 
-| Name  | Type       | Optional| Description                                      |
+| Name  | Type       | Mandatory | Description                                      |
 | -------- | ----------- | ---- | ------------------------------------------ |
-| msgId    | string      | No  | Identifier of the custom data to be sent to the input method application.|
-| msgParam | ArrayBuffer | Yes  | Message body of the custom data to be sent to the input method application.|
+| msgId    | string      | Yes | Identifier of the custom data to be sent to the input method application.|
+| msgParam | ArrayBuffer | No | Message body of the custom data to be sent to the input method application.|
 
 **Return value**
 
@@ -1955,7 +1956,7 @@ Registers or unregisters MessageHandler.
 
 | Name    | Type                               | Mandatory| Description                                                        |
 | ---------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| msgHandler | [MessageHandler](#messagehandler15) | No  | This object receives custom communication data from the input method application through [onMessage](#onmessage15) and receives a message for terminating the subscription to this object through [onTerminated](#onterminated15). If no parameter is set, unregister [MessageHandler](#messagehandler15). Its [onTerminated](#onterminated15) callback will be triggered.|
+| msgHandler | [MessageHandler](#messagehandler15) | No  | This object receives custom communication data from the input method application through [onMessage](#onmessage15) and receives a message for terminating the subscription to this object through [onTerminated](#onterminated15). If no parameter is set, unregister [MessageHandler](#messagehandler15). Its [onTerminated](#onterminated15) callback will be triggered. |
 
 **Return value**
 
@@ -1969,13 +1970,13 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message        |
 | -------- | ---------------- |
-| 401      | parameter error. |
+| 401      | parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-let messageHandler: inputmethod.MessageHandler = {
+let messageHandler: inputMethod.MessageHandler = {
     onTerminated(): void {
         console.log('OnTerminated.');
     },
@@ -3554,7 +3555,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 12800004 | not an input method.              |
+| 12800004 | not an input method application. |
 | 12800008 | input method manager service error. |
 
 **Example**

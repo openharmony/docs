@@ -34,7 +34,7 @@ Panel(show: boolean)
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### type
 
@@ -232,7 +232,7 @@ Sets whether to display the close icon.
 | WRAP_CONTENT | When the type is **CUSTOM**, the panel automatically adapts its height to the content.|
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onChange
 

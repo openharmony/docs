@@ -349,6 +349,7 @@
             - [TaskPool任务与宿主线程通信](arkts-utils/taskpool-communicates-with-mainthread.md)
             - [Worker和宿主线程的即时消息通信](arkts-utils/worker-communicates-with-mainthread.md)
             - [Worker同步调用宿主线程的接口](arkts-utils/worker-invoke-mainthread-interface.md)
+            - [多级Worker间高性能消息通信](arkts-utils/worker-postMessage-sendable.md)
         - 应用多线程开发<!--multithread-develop-guide-->
           - [应用多线程开发概述](arkts-utils/multithread-develop-overview.md)
           - 耗时任务并发场景<!--time-consuming-task-->
@@ -1431,6 +1432,7 @@
         - [使用ImagePacker完成图片编码](media/image/image-encoding.md)
         - [使用ImagePacker完成多图对象编码](media/image/image-picture-encoding.md)
         - [编辑图片EXIF信息](media/image/image-tool.md)
+        - [申请图片解码内存](media/image/image-allocator-type.md)
       - 图片开发指导(C/C++)<!--image-native-->
         - [介绍Image_NativeModule结构体信息](media/image/image-structure-c.md)
         - [使用Image_NativeModule完成图片解码](media/image/image-source-c.md)
@@ -1441,6 +1443,7 @@
         - [使用Image_NativeModule完成图片编码](media/image/image-packer-c.md)
         - [使用Image_NativeModule完成多图对象编码](media/image/image-packer-picture-c.md)
         - [使用ImageEffect编辑图片](media/image/image-effect-guidelines.md)
+        - [申请图片解码内存](media/image/image-allocator-type-c.md)
       - 图片开发指导(依赖JS对象)(C/C++)<!--image-native-js-objects-->
         - [使用Image完成图片解码](media/image/image-decoding-native.md)
         - [使用Image完成图片接收器](media/image/image-receiver-native.md)
@@ -1547,10 +1550,11 @@
       - [Contacts Kit开发概述](contacts/contacts-intro.md)
     - Location Kit（位置服务）<!--location-kit-->
       - [Location Kit简介](device/location/location-kit-intro.md)
-      - [申请位置权限开发指导](device/location/location-permission-guidelines.md)
-      - [获取设备的位置信息开发指导](device/location/location-guidelines.md)
-      - [地理编码转化与逆地理编码转化开发指导](device/location/geocode-guidelines.md)
-      - [基于设备自身定位的地理围栏开发指导](device/location/geofence-guidelines.md)
+      - [申请位置权限开发指导(ArkTS)](device/location/location-permission-guidelines.md)
+      - [获取设备的位置信息开发指导(C/C++)](device/location/location-guidelines-capi.md)
+      - [获取设备的位置信息开发指导(ArkTS)](device/location/location-guidelines.md)
+      - [地理编码转化与逆地理编码转化开发指导(ArkTS)](device/location/geocode-guidelines.md)
+      - [基于设备自身定位的地理围栏开发指导(ArkTS)](device/location/geofence-guidelines.md)
       - [基于FenceExtensionAbility的云侧地理围栏开发指导](device/location/fenceExtensionAbility.md)
       - [相关实例](device/location/app-samples.md)
     - Notification Kit（用户通知服务）<!--notification-kit-->
@@ -3362,7 +3366,6 @@
       - Telephony Kit（蜂窝通信服务）<!--telephony-api-->
         - ArkTS API<!--telephony-arkts-->
           - [@ohos.telephony.call (拨打电话)](reference/apis-telephony-kit/js-apis-call.md)
-          - [@ohos.telephony.esim (eSIM卡管理)](reference/apis-telephony-kit/js-apis-esim.md)
           - [@ohos.telephony.data (蜂窝数据)](reference/apis-telephony-kit/js-apis-telephony-data.md)
           - [@ohos.telephony.observer (observer)](reference/apis-telephony-kit/js-apis-observer.md)
           - [@ohos.telephony.radio (网络搜索)](reference/apis-telephony-kit/js-apis-radio.md)
@@ -3371,7 +3374,6 @@
           <!--Del-->
           - [@ohos.telephony.call (拨打电话)（系统接口）](reference/apis-telephony-kit/js-apis-call-sys.md)
           - [@ohos.telephony.data (蜂窝数据)（系统接口）](reference/apis-telephony-kit/js-apis-telephony-data-sys.md)
-          - [@ohos.telephony.esim (eSIM卡管理)（系统接口）](reference/apis-telephony-kit/js-apis-esim-sys.md)
           - [@ohos.telephony.observer (observer)（系统接口）](reference/apis-telephony-kit/js-apis-observer-sys.md)
           - [@ohos.telephony.radio (网络搜索)（系统接口）](reference/apis-telephony-kit/js-apis-radio-sys.md)
           - [@ohos.telephony.sim (SIM卡管理)（系统接口）](reference/apis-telephony-kit/js-apis-sim-sys.md)
@@ -3450,7 +3452,7 @@
               - [CommonEventPublishData](reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventPublishData.md)
               - [CommonEventSubscriber](reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventSubscriber.md)
               - [CommonEventSubscribeInfo](reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventSubscribeInfo.md)
-          - 其他<!--others-->
+          - 其他<!--basic-services-others-->
             <!--Del-->
             - [@ohos.ai.intelligentVoice (智能语音)(系统接口)](reference/apis-basic-services-kit/js-apis-intelligentVoice-sys.md)
             <!--DelEnd-->
@@ -4225,6 +4227,9 @@
         - [@ohos.advertising.AdsServiceExtensionAbility (广告扩展服务)](reference/apis-ads-kit/js-apis-adsserviceextensionability.md)
         - [@ohos.advertising.AdsServiceExtensionAbility (广告扩展服务)(系统接口)](reference/apis-ads-kit/js-apis-adsserviceextensionability-sys.md)
         - [@ohos.identifier.oaid (广告标识服务)(系统接口)](reference/apis-ads-kit/js-apis-oaid-sys.md)
+        - 接口依赖的元素及定义<!--ads-api-interface-depend-->
+          - advertising<!--ads-advertising-->
+            - [Advertisement](reference/apis-ads-kit/js-apis-inner-advertising-advertisement.md)
       - ArkTS组件<!--ads-comp-->
         - [@ohos.advertising.AdComponent (非全屏广告展示组件)](reference/apis-ads-kit/js-apis-adcomponent.md)
         - [@ohos.advertising.AutoAdComponent (轮播广告展示组件)](reference/apis-ads-kit/js-apis-autoadcomponent.md)
@@ -4240,6 +4245,8 @@
     - Contacts Kit（联系人服务）<!--contacts-->
       - ArkTS API<!--contacts-arkts-->
         - [@ohos.contact (联系人)](reference/apis-contacts-kit/js-apis-contact.md)
+      - 错误码<!--contacts-arkts-errcode-->
+        - [Contacts错误码](reference/apis-contacts-kit/errorcode-contacts.md)
     - Location Kit（位置服务）<!--location-api-->
       - ArkTS API<!--location-arkts-->
         - [@ohos.geoLocationManager (位置服务)](reference/apis-location-kit/js-apis-geoLocationManager.md)

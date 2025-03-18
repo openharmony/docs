@@ -1962,7 +1962,7 @@ OH_Cursor* OH_Rdb_Query (OH_Rdb_Store *store, OH_Predicates *predicates, const c
 | store | 表示指向[OH_Rdb_Store](_o_h___rdb___store.md)实例的指针。 |
 | predicates | 表示指向[OH_Predicates](_o_h___predicates.md)实例的指针，指定查询条件。 |
 | columnNames | 表示要查询的列。如果值为空，则查询应用于所有列。 |
-| length | 表示columnNames数组的长度。若length大于columnNames数组的实际长度，则会访问越界。 |
+| length | 该参数为输入参数，表示开发者传入的columnNames数组的长度。若length大于columnNames数组的实际长度，则会访问越界。 |
 
 **返回：**
 
@@ -1991,7 +1991,7 @@ OH_Cursor *OH_Rdb_QueryLockedRow (OH_Rdb_Store *store, OH_Predicates *predicates
 | store | 表示指向[OH_Rdb_Store](_o_h___rdb___store.md)实例的指针。 | 
 | predicates | 表示指向[OH_Predicates](_o_h___predicates.md)实例的指针，指定查询条件。 | 
 | columnNames | 表示要查询的列。如果值为空，则查询应用于所有列。 | 
-| length | 表示columnNames数组的长度。若length大于columnNames数组的实际长度，则会访问越界。 | 
+| length | 该参数为输入参数，表示开发者传入的columnNames数组的长度。若length大于columnNames数组的实际长度，则会访问越界。 | 
 
 **返回：**
 
@@ -2919,7 +2919,7 @@ int(*getAssets) (OH_Cursor *cursor, int32_t columnIndex, Data_Asset **value, uin
 | cursor | 表示指向[OH_Cursor](_o_h___cursor.md)实例的指针。 |
 | columnIndex | 表示结果集中指定列的索引, 索引值从0开始。 |
 | value | 该参数是输出参数，结果集中指定列的值会以资产数组形式写入该变量。 |
-| length | 表示资产数组的长度。 |
+| length | 既是入参又是出参：作为入参，需要开发者传入一个uint32_t类型的变量，表示输入缓冲区的大小；作为出参，表示函数执行后，length指向的变量会被更新为实际返回的资产数组的长度。 |
 
 **返回：**
 
@@ -2949,7 +2949,7 @@ int(*getBlob) (OH_Cursor *cursor, int32_t columnIndex, unsigned char *value, int
 | cursor | 表示指向[OH_Cursor](_o_h___cursor.md)实例的指针。 |
 | columnIndex | 表示结果集中指定列的索引, 索引值从0开始。 |
 | value | 该参数是输出参数，结果集中指定列的值会以字节数组形式写入该变量。 |
-| length | 表示value的长度，该值可通过getSize获取。 |
+| length | 该参数为输入参数，表示传入的value的长度，该值可通过getSize获取。 |
 
 **返回：**
 
@@ -3036,7 +3036,7 @@ int(*getColumnName) (OH_Cursor *cursor, int32_t columnIndex, char *name, int len
 | cursor | 表示指向[OH_Cursor](_o_h___cursor.md)实例的指针。 |
 | columnIndex | 表示结果集中指定列的索引, 索引值从0开始。 |
 | name | 该参数是输出参数，结果集中指定列的名称会写入该变量。 |
-| length | 表示列名的长度。 |
+| length | 该参数为输入参数，表示开发者传入的包括终止符在内的列名字符串的总长度。 |
 
 **返回：**
 
@@ -3210,7 +3210,7 @@ int(*getText) (OH_Cursor *cursor, int32_t columnIndex, char *value, int length)
 | cursor | 表示指向[OH_Cursor](_o_h___cursor.md)实例的指针。 |
 | columnIndex | 表示结果集中指定列的索引, 索引值从0开始。 |
 | value | 该参数是输出参数，结果集中指定列的值会以字符串形式写入该变量。 |
-| length | 表示value的长度，该值可通过getSize获取。 |
+| length | 该参数是输入参数，表示value的长度，该值可通过getSize获取。 |
 
 **返回：**
 
@@ -3330,7 +3330,7 @@ OH_Predicates *(*groupBy) (OH_Predicates *predicates, char const *const *fields,
 | -------- | -------- |
 | predicates | 表示指向[OH_Predicates](_o_h___predicates.md)实例的指针。 |
 | fields | 指定分组依赖的列名。 |
-| length | 表示fields数值的长度。 |
+| length | 该参数为输入参数，表示开发者传入的fields数值的长度。 |
 
 **返回：**
 

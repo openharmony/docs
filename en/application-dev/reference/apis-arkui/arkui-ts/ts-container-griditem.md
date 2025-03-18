@@ -17,6 +17,8 @@ This component can contain a single child component.
 
 GridItem(value?: GridItemOptions)
 
+Creates a **GridItem** component.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -43,7 +45,7 @@ Sets the start row number of the component.
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| value  | number | Yes  | Start row number of the component.<br>In situations where you need to designate the start row and column numbers as well as the number of rows and columns a grid item spans, you are advised to use the [layoutOptions parameter](ts-container-grid.md#gridlayoutoptions10) of the **Grid** component. For reference, see [Grid Example 1](ts-container-grid.md#example-1) and [Grid Example 3](ts-container-grid.md#example-3).|
+| value  | number | Yes  | Start row number of the component.<br>In situations where you need to designate the start row and column numbers as well as the number of rows and columns a grid item spans, you are advised to use the [layoutOptions parameter](ts-container-grid.md#gridlayoutoptions10) of the **Grid** component. For reference, see [Grid Example 1](ts-container-grid.md#example-1-creating-a-fixed-row-and-column-grid-layout) and [Grid Example 3](ts-container-grid.md#example-3-implementing-a-scrollable-grid-with-grid-items-spanning-rows-and-columns).|
 
 ### rowEnd
 
@@ -59,7 +61,7 @@ Sets the end row number of the component.
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| value  | number | Yes  | End row number of the component.<br>In situations where you need to designate the start row and column numbers as well as the number of rows and columns a grid item spans, you are advised to use the [layoutOptions parameter](ts-container-grid.md#gridlayoutoptions10) of the **Grid** component. For reference, see [Grid Example 1](ts-container-grid.md#example-1) and [Grid Example 3](ts-container-grid.md#example-3).|
+| value  | number | Yes  | End row number of the component.<br>In situations where you need to designate the start row and column numbers as well as the number of rows and columns a grid item spans, you are advised to use the [layoutOptions parameter](ts-container-grid.md#gridlayoutoptions10) of the **Grid** component. For reference, see [Grid Example 1](ts-container-grid.md#example-1-creating-a-fixed-row-and-column-grid-layout) and [Grid Example 3](ts-container-grid.md#example-3-implementing-a-scrollable-grid-with-grid-items-spanning-rows-and-columns).|
 
 ### columnStart
 
@@ -75,7 +77,7 @@ Sets the start column number of the component.
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| value  | number | Yes  | Start column number of the component.<br>In situations where you need to designate the start row and column numbers as well as the number of rows and columns a grid item spans, you are advised to use the [layoutOptions parameter](ts-container-grid.md#gridlayoutoptions10) of the **Grid** component. For reference, see [Grid Example 1](ts-container-grid.md#example-1) and [Grid Example 3](ts-container-grid.md#example-3).|
+| value  | number | Yes  | Start column number of the component.<br>In situations where you need to designate the start row and column numbers as well as the number of rows and columns a grid item spans, you are advised to use the [layoutOptions parameter](ts-container-grid.md#gridlayoutoptions10) of the **Grid** component. For reference, see [Grid Example 1](ts-container-grid.md#example-1-creating-a-fixed-row-and-column-grid-layout) and [Grid Example 3](ts-container-grid.md#example-3-implementing-a-scrollable-grid-with-grid-items-spanning-rows-and-columns).|
 
 ### columnEnd
 
@@ -91,11 +93,11 @@ Sets the end column number of the component.
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| value  | number | Yes  | End column number of the component.<br>In situations where you need to designate the start row and column numbers as well as the number of rows and columns a grid item spans, you are advised to use the [layoutOptions parameter](ts-container-grid.md#gridlayoutoptions10) of the **Grid** component. For reference, see [Grid Example 1](ts-container-grid.md#example-1) and [Grid Example 3](ts-container-grid.md#example-3).|
+| value  | number | Yes  | End column number of the component.<br>In situations where you need to designate the start row and column numbers as well as the number of rows and columns a grid item spans, you are advised to use the [layoutOptions parameter](ts-container-grid.md#gridlayoutoptions10) of the **Grid** component. For reference, see [Grid Example 1](ts-container-grid.md#example-1-creating-a-fixed-row-and-column-grid-layout) and [Grid Example 3](ts-container-grid.md#example-3-implementing-a-scrollable-grid-with-grid-items-spanning-rows-and-columns).|
 
 >  **NOTE**
 >
->  In situations where you need to designate the start row and column numbers as well as the number of rows and columns a grid item spans, you are advised to use the [layoutOptions parameter](ts-container-grid.md#gridlayoutoptions10) of the **Grid** component. For reference, see [Grid Example 1](ts-container-grid.md#example-1) and [Grid Example 3](ts-container-grid.md#example-3).
+>  In situations where you need to designate the start row and column numbers as well as the number of rows and columns a grid item spans, you are advised to use the [layoutOptions parameter](ts-container-grid.md#gridlayoutoptions10) of the **Grid** component. For reference, see [Grid Example 1](ts-container-grid.md#example-1-creating-a-fixed-row-and-column-grid-layout) and [Grid Example 3](ts-container-grid.md#example-3-implementing-a-scrollable-grid-with-grid-items-spanning-rows-and-columns).
 >
 >  Rules for setting **rowStart**, **rowEnd**, **columnStart**, and **columnEnd**:
 >
@@ -169,6 +171,8 @@ This attribute must be used before the [style for the selected state](./ts-unive
 
 ## GridItemOptions<sup>11+</sup>
 
+Defines the style of a grid item.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -178,6 +182,8 @@ This attribute must be used before the [style for the selected state](./ts-unive
 | style | [GridItemStyle](#griditemstyle11) | No  | Style of the grid item.<br>Default value: **GridItemStyle.NONE**<br>If this parameter is set to **GridItemStyle.NONE**, no style is applied.<br>If this parameter is set to **GridItemStyle.PLAIN**, the grid item is in hover or press style depending on the state.|
 
 ## GridItemStyle<sup>11+</sup>
+
+Enumerates styles of grid items.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -212,7 +218,8 @@ Triggered when the selected state of the grid item changes.
 
 ## Example
 
-### Example 1
+### Example 1: Setting the Grid Item Position
+This example shows how to set the grid item position using **ColumnStart**, **ColumnEnd**, **RowStart**, and **RowEnd**. In situations where you need to designate the start row and column numbers as well as the number of rows and columns a grid item spans, you are advised to use the [layoutOptions parameter](ts-container-grid.md#gridlayoutoptions10) of the **Grid** component. For reference, see [Grid Example 1](ts-container-grid.md#example-1-creating-a-fixed-row-and-column-grid-layout) and [Grid Example 3](ts-container-grid.md#example-3-implementing-a-scrollable-grid-with-grid-items-spanning-rows-and-columns).
 
 ```ts
 // xxx.ets
@@ -263,9 +270,9 @@ struct GridItemExample {
 
 ![en-us_image_0000001174582870](figures/en-us_image_0000001174582870.gif)
 
-### Example 2
+### Example 2: Setting the Grid Item Style
 
-This example shows how to use **GridItemOptions**.
+This example shows how to set the grid item style using **GridItemOptions**.
 
 ```ts
 // xxx.ets

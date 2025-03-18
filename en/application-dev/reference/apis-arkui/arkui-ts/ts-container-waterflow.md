@@ -22,6 +22,8 @@ Only the [FlowItem](ts-container-flowitem.md) child component is allowed, with s
 
 WaterFlow(options?:  WaterFlowOptions)
 
+Creates a **WaterFlow** component.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -34,6 +36,8 @@ WaterFlow(options?:  WaterFlowOptions)
 
 
 ## WaterFlowOptions
+
+Provides parameters of the **WaterFlow** component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -207,6 +211,8 @@ Obtains the main axis size of a specified water flow item based on its index.
 
 ## WaterFlowLayoutMode<sup>12+</sup>
 
+Enumerates the layout modes of the **WaterFlow** component.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -219,7 +225,7 @@ Obtains the main axis size of a specified water flow item based on its index.
 
 ## Attributes
 
-In addition to [universal attributes](ts-universal-attributes-size.md) and [scrollable component common attributes](ts-container-scrollable-common.md#attributes), the following attributes are also supported.
+In addition to [universal attributes](ts-component-general-attributes.md) and [scrollable component common attributes](ts-container-scrollable-common.md#attributes), the following attributes are also supported.
 
 ### columnsTemplate
 
@@ -399,13 +405,13 @@ Sets the number of items to be cached. This attribute is effective only in [Lazy
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                    |
-| ------ | ------ | ---- | ---------------------------------------- |
-| value  | number | Yes  | Number of water flow items to be preloaded (cached).<br> Default value: **1**|
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| value  | number | Yes  | Number of water flow items to be preloaded (cached).<br>Default value: number of nodes visible on the screen, with the maximum value of 16|
 
 ### cachedCount<sup>14+</sup>
 
-cachedCount(value: number, show: boolean)
+cachedCount(count: number, show: boolean)
 
 Sets the number of water flow items to be cached (preloaded) and specifies whether to display the cached nodes.
 
@@ -421,12 +427,12 @@ In [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md) an
 
 | Name| Type  | Mandatory| Description                                    |
 | ------ | ------ | ---- | ---------------------------------------- |
-| value  | number | Yes  | Number of water flow items to be preloaded (cached).<br> Default value: **1**|
+| count | number | Yes  | Number of water flow items to be preloaded (cached).<br>Default value: number of nodes visible on the screen, with the maximum value of 16|
 | show  | boolean | Yes  | Whether to display the cached water flow items.<br> Default value: **false**|
 
 ## Events
 
-In addition to [universal events](ts-universal-events-click.md) and [scrollable component common events](ts-container-scrollable-common.md#events), the following events are also supported.
+In addition to [universal events](ts-component-general-events.md) and [scrollable component common events](ts-container-scrollable-common.md#events), the following events are also supported.
 
 ### onReachStart
 
@@ -496,57 +502,59 @@ This event is triggered when either of the preceding indexes changes.
 
 ### Example 1: Using a Basic WaterFlow Component
 This example demonstrates the basic usage of the **WaterFlow** component, including data loading, attribute setting, and event callbacks.
+
+<!--code_no_check-->
 ```ts
 // WaterFlowDataSource.ets
 
 // Object that implements the IDataSource API, which is used by the WaterFlow component to load data.
 export class WaterFlowDataSource implements IDataSource {
-  private dataArray: number[] = []
-  private listeners: DataChangeListener[] = []
+  private dataArray: number[] = [];
+  private listeners: DataChangeListener[] = [];
 
   constructor() {
     for (let i = 0; i < 100; i++) {
-      this.dataArray.push(i)
+      this.dataArray.push(i);
     }
   }
 
   // Obtain the data corresponding to the specified index.
   public getData(index: number): number {
-    return this.dataArray[index]
+    return this.dataArray[index];
   }
 
   // Notify the controller of data reloading.
   notifyDataReload(): void {
     this.listeners.forEach(listener => {
-      listener.onDataReloaded()
+      listener.onDataReloaded();
     })
   }
 
   // Notify the controller of data addition.
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataAdd(index)
+      listener.onDataAdd(index);
     })
   }
 
   // Notify the controller of data changes.
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataChange(index)
+      listener.onDataChange(index);
     })
   }
 
   // Notify the controller of data deletion.
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataDelete(index)
+      listener.onDataDelete(index);
     })
   }
 
   // Notify the controller of the data location change.
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataMove(from, to)
+      listener.onDataMove(from, to);
     })
   }
 
@@ -559,107 +567,108 @@ export class WaterFlowDataSource implements IDataSource {
 
   // Obtain the total number of data records.
   public totalCount(): number {
-    return this.dataArray.length
+    return this.dataArray.length;
   }
 
   // Register the data change listener.
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {
-      this.listeners.push(listener)
+      this.listeners.push(listener);
     }
   }
 
   // Unregister the data change listener.
   unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener)
+    const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
-      this.listeners.splice(pos, 1)
+      this.listeners.splice(pos, 1);
     }
   }
 
   // Add data.
   public add1stItem(): void {
-    this.dataArray.splice(0, 0, this.dataArray.length)
-    this.notifyDataAdd(0)
+    this.dataArray.splice(0, 0, this.dataArray.length);
+    this.notifyDataAdd(0);
   }
 
   // Add an item to the end of the data.
   public addLastItem(): void {
-    this.dataArray.splice(this.dataArray.length, 0, this.dataArray.length)
-    this.notifyDataAdd(this.dataArray.length - 1)
+    this.dataArray.splice(this.dataArray.length, 0, this.dataArray.length);
+    this.notifyDataAdd(this.dataArray.length - 1);
   }
 
   // Add an item to the position corresponding to the specified index.
   public addItem(index: number): void {
-    this.dataArray.splice(index, 0, this.dataArray.length)
-    this.notifyDataAdd(index)
+    this.dataArray.splice(index, 0, this.dataArray.length);
+    this.notifyDataAdd(index);
   }
 
   // Delete the first item.
   public delete1stItem(): void {
-    this.dataArray.splice(0, 1)
-    this.notifyDataDelete(0)
+    this.dataArray.splice(0, 1);
+    this.notifyDataDelete(0);
   }
 
   // Delete the second item.
   public delete2ndItem(): void {
-    this.dataArray.splice(1, 1)
-    this.notifyDataDelete(1)
+    this.dataArray.splice(1, 1);
+    this.notifyDataDelete(1);
   }
 
   // Delete the last item.
   public deleteLastItem(): void {
-    this.dataArray.splice(-1, 1)
-    this.notifyDataDelete(this.dataArray.length)
+    this.dataArray.splice(-1, 1);
+    this.notifyDataDelete(this.dataArray.length);
   }
 
   // Delete an item at the specified index position.
   public deleteItem(index: number): void {
-    this.dataArray.splice(index, 1)
-    this.notifyDataDelete(index)
+    this.dataArray.splice(index, 1);
+    this.notifyDataDelete(index);
   }
 
   // Reload data.
   public reload(): void {
-    this.dataArray.splice(1, 1)
-    this.dataArray.splice(3, 2)
-    this.notifyDataReload()
+    this.dataArray.splice(1, 1);
+    this.dataArray.splice(3, 2);
+    this.notifyDataReload();
   }
 }
 ```
 
+<!--code_no_check-->
 ```ts
 // Index.ets
-import { WaterFlowDataSource } from './WaterFlowDataSource'
+import { WaterFlowDataSource } from './WaterFlowDataSource';
 
 @Entry
 @Component
 struct WaterFlowDemo {
-  @State minSize: number = 80
-  @State maxSize: number = 180
-  @State fontSize: number = 24
-  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
-  scroller: Scroller = new Scroller()
-  dataSource: WaterFlowDataSource = new WaterFlowDataSource()
-  private itemWidthArray: number[] = []
-  private itemHeightArray: number[] = []
+  @State minSize: number = 80;
+  @State maxSize: number = 180;
+  @State fontSize: number = 24;
+  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F];
+  scroller: Scroller = new Scroller();
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource();
+  private itemWidthArray: number[] = [];
+  private itemHeightArray: number[] = [];
 
   // Calculate the width and height of a water flow item.
   getSize() {
-    let ret = Math.floor(Math.random() * this.maxSize)
-    return (ret > this.minSize ? ret : this.minSize)
+    let ret = Math.floor(Math.random() * this.maxSize);
+    return (ret > this.minSize ? ret : this.minSize);
   }
 
   // Set the width and height array of the water flow item.
   setItemSizeArray() {
     for (let i = 0; i < 100; i++) {
-      this.itemWidthArray.push(this.getSize())
-      this.itemHeightArray.push(this.getSize())
+      this.itemWidthArray.push(this.getSize());
+      this.itemHeightArray.push(this.getSize());
     }
   }
 
   aboutToAppear() {
-    this.setItemSizeArray()
+    this.setItemSizeArray();
   }
 
   @Builder
@@ -693,7 +702,7 @@ struct WaterFlowDemo {
             // Add data in advance when scrolling is about to end.
             if (item + 20 == this.dataSource.totalCount()) {
               for (let i = 0; i < 100; i++) {
-                this.dataSource.addLastItem()
+                this.dataSource.addLastItem();
               }
             }
           })
@@ -709,17 +718,17 @@ struct WaterFlowDemo {
       .width('100%')
       .height('100%')
       .onReachStart(() => {
-        console.info('waterFlow reach start')
+        console.info('waterFlow reach start');
       })
       .onScrollStart(() => {
-        console.info('waterFlow scroll start')
+        console.info('waterFlow scroll start');
       })
       .onScrollStop(() => {
-        console.info('waterFlow scroll stop')
+        console.info('waterFlow scroll stop');
       })
       .onScrollFrameBegin((offset: number, state: ScrollState) => {
-        console.info('waterFlow scrollFrameBegin offset: ' + offset + ' state: ' + state.toString())
-        return { offsetRemain: offset }
+        console.info('waterFlow scrollFrameBegin offset: ' + offset + ' state: ' + state.toString());
+        return { offsetRemain: offset };
       })
     }
   }
@@ -730,36 +739,38 @@ struct WaterFlowDemo {
 
 ### Example 2: Implementing Automatic Column Count Calculation
 This example showcases how to implement automatic column count calculation using the **auto-fill** feature.
+
+<!--code_no_check-->
 ```ts
 // Index.ets
-import { WaterFlowDataSource } from './WaterFlowDataSource'
+import { WaterFlowDataSource } from './WaterFlowDataSource';
 
 @Entry
 @Component
 struct WaterFlowDemo {
-  @State minSize: number = 80
-  @State maxSize: number = 180
-  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
-  dataSource: WaterFlowDataSource = new WaterFlowDataSource()
-  private itemWidthArray: number[] = []
-  private itemHeightArray: number[] = []
+  @State minSize: number = 80;
+  @State maxSize: number = 180;
+  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F];
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource();
+  private itemWidthArray: number[] = [];
+  private itemHeightArray: number[] = [];
 
   // Calculate the width and height of a water flow item.
   getSize() {
-    let ret = Math.floor(Math.random() * this.maxSize)
-    return (ret > this.minSize ? ret : this.minSize)
+    let ret = Math.floor(Math.random() * this.maxSize);
+    return (ret > this.minSize ? ret : this.minSize);
   }
 
   // Set the width and height array of the water flow item.
   setItemSizeArray() {
     for (let i = 0; i < 100; i++) {
-      this.itemWidthArray.push(this.getSize())
-      this.itemHeightArray.push(this.getSize())
+      this.itemWidthArray.push(this.getSize());
+      this.itemHeightArray.push(this.getSize());
     }
   }
 
   aboutToAppear() {
-    this.setItemSizeArray()
+    this.setItemSizeArray();
   }
 
   build() {
@@ -795,23 +806,25 @@ struct WaterFlowDemo {
 ### Example 3: Using WaterFlowSections
 This example illustrates the initialization of **WaterFlowSections** and the different effects of various APIs such as **splice**, **push**, **update**, **values**, and **length**.
 For details about how to use these features in conjunction with state management V2, see [WaterFlow](../../../quick-start/arkts-v1-v2-migration.md#waterflow).
+
+<!--code_no_check-->
 ```ts
 // Index.ets
-import { WaterFlowDataSource } from './WaterFlowDataSource'
+import { WaterFlowDataSource } from './WaterFlowDataSource';
 
 @Reusable
 @Component
 struct ReusableFlowItem {
-  @State item: number = 0
+  @State item: number = 0;
 
   // Invoked when a reusable custom component is re-added to the component tree from the reuse cache. The component state variable can be updated here to display the correct content.
   aboutToReuse(params: Record<string, number>) {
     this.item = params.item;
-    console.info('Reuse item:' + this.item)
+    console.info('Reuse item:' + this.item);
   }
 
   aboutToAppear() {
-    console.info('new item:' + this.item)
+    console.info('new item:' + this.item);
   }
 
   build() {
@@ -826,16 +839,16 @@ struct ReusableFlowItem {
 @Entry
 @Component
 struct WaterFlowDemo {
-  minSize: number = 80
-  maxSize: number = 180
-  fontSize: number = 24
-  colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
-  scroller: Scroller = new Scroller()
-  dataSource: WaterFlowDataSource = new WaterFlowDataSource()
-  dataCount: number = this.dataSource.totalCount()
-  private itemHeightArray: number[] = []
-  @State sections: WaterFlowSections = new WaterFlowSections()
-  sectionMargin: Margin = { top: 10, left: 5, bottom: 10, right: 5 }
+  minSize: number = 80;
+  maxSize: number = 180;
+  fontSize: number = 24;
+  colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F];
+  scroller: Scroller = new Scroller();
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource();
+  dataCount: number = this.dataSource.totalCount();
+  private itemHeightArray: number[] = [];
+  @State sections: WaterFlowSections = new WaterFlowSections();
+  sectionMargin: Margin = { top: 10, left: 5, bottom: 10, right: 5 };
   oneColumnSection: SectionOptions = {
     itemsCount: 4,
     crossCount: 1,
@@ -843,58 +856,58 @@ struct WaterFlowDemo {
     rowsGap: 10,
     margin: this.sectionMargin,
     onGetItemMainSizeByIndex: (index: number) => {
-      return this.itemHeightArray[index % 100]
+      return this.itemHeightArray[index % 100];
     }
   }
   twoColumnSection: SectionOptions = {
     itemsCount: 2,
     crossCount: 2,
     onGetItemMainSizeByIndex: (index: number) => {
-      return 100
+      return 100;
     }
   }
   lastSection: SectionOptions = {
     itemsCount: 20,
     crossCount: 2,
     onGetItemMainSizeByIndex: (index: number) => {
-      return this.itemHeightArray[index % 100]
+      return this.itemHeightArray[index % 100];
     }
   }
 
   // Calculate the FlowItem height.
   getSize() {
-    let ret = Math.floor(Math.random() * this.maxSize)
-    return (ret > this.minSize ? ret : this.minSize)
+    let ret = Math.floor(Math.random() * this.maxSize);
+    return (ret > this.minSize ? ret : this.minSize);
   }
 
   // Set the height array for FlowItems.
   setItemSizeArray() {
     for (let i = 0; i < 100; i++) {
-      this.itemHeightArray.push(this.getSize())
+      this.itemHeightArray.push(this.getSize());
     }
   }
 
   aboutToAppear() {
-    this.setItemSizeArray()
+    this.setItemSizeArray();
     // Initialize the water flow section information.
-    let sectionOptions: SectionOptions[] = []
-    let count = 0
-    let oneOrTwo = 0
+    let sectionOptions: SectionOptions[] = [];
+    let count = 0;
+    let oneOrTwo = 0;
     while (count < this.dataCount) {
       if (this.dataCount - count < 20) {
-        this.lastSection.itemsCount = this.dataCount - count
-        sectionOptions.push(this.lastSection)
+        this.lastSection.itemsCount = this.dataCount - count;
+        sectionOptions.push(this.lastSection);
         break;
       }
       if (oneOrTwo++ % 2 == 0) {
-        sectionOptions.push(this.oneColumnSection)
-        count += this.oneColumnSection.itemsCount
+        sectionOptions.push(this.oneColumnSection);
+        count += this.oneColumnSection.itemsCount;
       } else {
-        sectionOptions.push(this.twoColumnSection)
-        count += this.twoColumnSection.itemsCount
+        sectionOptions.push(this.twoColumnSection);
+        count += this.twoColumnSection.itemsCount;
       }
     }
-    this.sections.splice(0, 0, sectionOptions)
+    this.sections.splice(0, 0, sectionOptions);
   }
 
   build() {
@@ -904,16 +917,16 @@ struct WaterFlowDemo {
           .height('5%')
           .onClick(() => {
             // Replace all sections with a new section. Ensure that the number of data array items in LazyForEach is the same as the value of itemsCount of the new section.
-            let totalCount: number = this.dataSource.totalCount()
+            let totalCount: number = this.dataSource.totalCount();
             let newSection: SectionOptions = {
               itemsCount: totalCount,
               crossCount: 2,
               onGetItemMainSizeByIndex: (index: number) => {
-                return this.itemHeightArray[index % 100]
+                return this.itemHeightArray[index % 100];
               }
             }
-            let oldLength: number = this.sections.length()
-            this.sections.splice(0, oldLength, [newSection])
+            let oldLength: number = this.sections.length();
+            this.sections.splice(0, oldLength, [newSection]);
           })
           .margin({ top: 10, left: 20 })
         Button('update')
@@ -927,15 +940,15 @@ struct WaterFlowDemo {
               rowsGap: 10,
               margin: this.sectionMargin,
               onGetItemMainSizeByIndex: (index: number) => {
-                return this.itemHeightArray[index % 100]
+                return this.itemHeightArray[index % 100];
               }
             }
-            this.dataSource.addItem(this.oneColumnSection.itemsCount)
-            this.dataSource.addItem(this.oneColumnSection.itemsCount + 1)
-            this.dataSource.addItem(this.oneColumnSection.itemsCount + 2)
-            this.dataSource.addItem(this.oneColumnSection.itemsCount + 3)
-            const result: boolean = this.sections.update(1, newSection)
-            console.info('update:' + result)
+            this.dataSource.addItem(this.oneColumnSection.itemsCount);
+            this.dataSource.addItem(this.oneColumnSection.itemsCount + 1);
+            this.dataSource.addItem(this.oneColumnSection.itemsCount + 2);
+            this.dataSource.addItem(this.oneColumnSection.itemsCount + 3);
+            const result: boolean = this.sections.update(1, newSection);
+            console.info('update:' + result);
           })
           .margin({ top: 10, left: 20 })
         Button('delete')
@@ -949,14 +962,14 @@ struct WaterFlowDemo {
               rowsGap: 10,
               margin: this.sectionMargin,
               onGetItemMainSizeByIndex: (index: number) => {
-                return this.itemHeightArray[index % 100]
+                return this.itemHeightArray[index % 100];
               }
             }
-            this.dataSource.deleteItem(this.oneColumnSection.itemsCount)
-            this.dataSource.deleteItem(this.oneColumnSection.itemsCount)
-            this.dataSource.deleteItem(this.oneColumnSection.itemsCount)
-            this.dataSource.deleteItem(this.oneColumnSection.itemsCount)
-            this.sections.update(1, newSection)
+            this.dataSource.deleteItem(this.oneColumnSection.itemsCount);
+            this.dataSource.deleteItem(this.oneColumnSection.itemsCount);
+            this.dataSource.deleteItem(this.oneColumnSection.itemsCount);
+            this.dataSource.deleteItem(this.oneColumnSection.itemsCount);
+            this.sections.update(1, newSection);
           })
           .margin({ top: 10, left: 20 })
         Button('values')
@@ -966,7 +979,7 @@ struct WaterFlowDemo {
             for (const value of sections) {
               console.log(JSON.stringify(value));
             }
-            console.info('count:' + this.sections.length())
+            console.info('count:' + this.sections.length());
           })
           .margin({ top: 10, left: 20 })
       }.margin({ bottom: 20 })
@@ -993,7 +1006,7 @@ struct WaterFlowDemo {
         // Add data in advance when scrolling is about to end.
         if (last + 20 >= this.dataSource.totalCount()) {
           for (let i = 0; i < 100; i++) {
-            this.dataSource.addLastItem()
+            this.dataSource.addLastItem();
           }
           // After the data source is updated, update sections synchronously and change the number of FlowItems in the last section.
           const sections: Array<SectionOptions> = this.sections.values();
@@ -1011,23 +1024,25 @@ struct WaterFlowDemo {
 
 ### Example 4: Using the Pinch Gesture to Change the Column Count
 This example demonstrates how to use [priorityGesture](ts-gesture-settings.md) and [PinchGesture](ts-basic-gestures-pinchgesture.md) to implement the feature of using a pinch gesture to change the number of columns in a layout.
+
+<!--code_no_check-->
 ```ts
 // Index.ets
-import { WaterFlowDataSource } from './WaterFlowDataSource'
+import { WaterFlowDataSource } from './WaterFlowDataSource';
 
 @Reusable
 @Component
 struct ReusableFlowItem {
-  @State item: number = 0
+  @State item: number = 0;
 
   // Invoked when a reusable custom component is re-added to the component tree from the reuse cache. The component state variable can be updated here to display the correct content.
   aboutToReuse(params: Record<string, number>) {
     this.item = params.item;
-    console.info('Reuse item:' + this.item)
+    console.info('Reuse item:' + this.item);
   }
 
   aboutToAppear() {
-    console.info('item:' + this.item)
+    console.info('item:' + this.item);
   }
 
   build() {
@@ -1044,34 +1059,34 @@ struct ReusableFlowItem {
 @Entry
 @Component
 struct WaterFlowDemo {
-  minSize: number = 80
-  maxSize: number = 180
-  colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
-  @State columns: number = 2
-  dataSource: WaterFlowDataSource = new WaterFlowDataSource()
-  private itemWidthArray: number[] = []
-  private itemHeightArray: number[] = []
+  minSize: number = 80;
+  maxSize: number = 180;
+  colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F];
+  @State columns: number = 2;
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource();
+  private itemWidthArray: number[] = [];
+  private itemHeightArray: number[] = [];
 
   // Calculate the width and height of a water flow item.
   getSize() {
-    let ret = Math.floor(Math.random() * this.maxSize)
-    return (ret > this.minSize ? ret : this.minSize)
+    let ret = Math.floor(Math.random() * this.maxSize);
+    return (ret > this.minSize ? ret : this.minSize);
   }
 
   // Set the width and height array of the water flow item.
   setItemSizeArray() {
     for (let i = 0; i < 100; i++) {
-      this.itemWidthArray.push(this.getSize())
-      this.itemHeightArray.push(this.getSize())
+      this.itemWidthArray.push(this.getSize());
+      this.itemHeightArray.push(this.getSize());
     }
   }
 
   aboutToAppear() {
-    let lastCount = AppStorage.get<number>('columnsCount')
+    let lastCount = AppStorage.get<number>('columnsCount');
     if (typeof lastCount != 'undefined') {
-      this.columns = lastCount
+      this.columns = lastCount;
     }
-    this.setItemSizeArray()
+    this.setItemSizeArray();
   }
 
   build() {
@@ -1107,16 +1122,16 @@ struct WaterFlowDemo {
       .priorityGesture(
         PinchGesture()
           .onActionEnd((event: GestureEvent) => {
-            console.info('end scale:' + event.scale)
+            console.info('end scale:' + event.scale);
             // When a user performs a pinch-to-zoom gesture by moving their fingers apart, and the number of columns decreases to a certain threshold (in this case, 2), it will cause the items to enlarge.
             if (event.scale > 2) {
-              this.columns--
+              this.columns--;
             } else if (event.scale < 0.6) {
-              this.columns++
+              this.columns++;
             }
             // You can set the maximum and minimum number of columns based on the device screen width. Here, the minimum number of columns is 1, and the maximum number of columns is 4.
             this.columns = Math.min(4, Math.max(1, this.columns));
-            AppStorage.setOrCreate<number>('columnsCount', this.columns)
+            AppStorage.setOrCreate<number>('columnsCount', this.columns);
           })
       )
     }
@@ -1128,37 +1143,39 @@ struct WaterFlowDemo {
 
 ### Example 5: Setting the Edge Fading Effect
 This example demonstrates how to enable the edge fading effect for the **WaterFlow** component using the [fadingEdge](ts-container-scrollable-common.md#fadingedge14) API and set the length of the fading edge using the **fadingEdgeLength** parameter.
+
+<!--code_no_check-->
 ```ts
 // Index.ets
-import { LengthMetrics } from '@kit.ArkUI'
-import { WaterFlowDataSource } from './WaterFlowDataSource'
+import { LengthMetrics } from '@kit.ArkUI';
+import { WaterFlowDataSource } from './WaterFlowDataSource';
 @Entry
 @Component
 struct WaterFlowDemo {
-  @State minSize: number = 80
-  @State maxSize: number = 180
-  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
-  dataSource: WaterFlowDataSource = new WaterFlowDataSource()
-  scroller: Scroller = new Scroller()
-  private itemWidthArray: number[] = []
-  private itemHeightArray: number[] = []
+  @State minSize: number = 80;
+  @State maxSize: number = 180;
+  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F];
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource();
+  scroller: Scroller = new Scroller();
+  private itemWidthArray: number[] = [];
+  private itemHeightArray: number[] = [];
 
   // Calculate the width and height of a water flow item.
   getSize() {
-    let ret = Math.floor(Math.random() * this.maxSize)
-    return (ret > this.minSize ? ret : this.minSize)
+    let ret = Math.floor(Math.random() * this.maxSize);
+    return (ret > this.minSize ? ret : this.minSize);
   }
 
   // Set the width and height array of the water flow item.
   setItemSizeArray() {
     for (let i = 0; i < 100; i++) {
-      this.itemWidthArray.push(this.getSize())
-      this.itemHeightArray.push(this.getSize())
+      this.itemWidthArray.push(this.getSize());
+      this.itemHeightArray.push(this.getSize());
     }
   }
 
   aboutToAppear() {
-    this.setItemSizeArray()
+    this.setItemSizeArray();
   }
 
   build() {
@@ -1180,6 +1197,7 @@ struct WaterFlowDemo {
       .columnsGap(10)
       .rowsGap(5)
       .height('90%')
+      .scrollBar(BarState.On)
       .fadingEdge(true,{fadingEdgeLength:LengthMetrics.vp(80)})
 
     }

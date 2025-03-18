@@ -22,7 +22,7 @@ import { MeasureText } from '@kit.ArkUI'
 
 ## MeasureText.measureText
 
-measureText(options: MeasureOptions): number
+static measureText(options: MeasureOptions): number
 
 Measures the width of the given text.
 
@@ -55,7 +55,8 @@ import { MeasureText } from '@kit.ArkUI'
 @Entry
 @Component
 struct Index {
-  @State textWidth: number = MeasureText.measureText({ // You are advised to use this.getUIContext().getMeasureUtils().measureText().
+  @State textWidth: number = MeasureText.measureText({
+    // You are advised to this.getUIContext().getMeasureUtils().measureText().
     textContent: "Hello World",
     fontSize: '50px'
   })
@@ -74,7 +75,7 @@ struct Index {
 
 ## MeasureText.measureTextSize<sup>10+</sup>
 
-measureTextSize(options: MeasureOptions): SizeOptions
+static measureTextSize(options: MeasureOptions): SizeOptions
 
 Measures the width and height of the given text.
 
@@ -107,10 +108,12 @@ import { MeasureText } from '@kit.ArkUI'
 @Entry
 @Component
 struct Index {
-  textSize : SizeOptions = MeasureText.measureTextSize({ // You are advised to use this.getUIContext().getMeasureUtils().measureText().
+  textSize: SizeOptions = MeasureText.measureTextSize({
+    // You are advised to this.getUIContext().getMeasureUtils().measureText().
     textContent: "Hello World",
     fontSize: '50px'
   })
+
   build() {
     Row() {
       Column() {

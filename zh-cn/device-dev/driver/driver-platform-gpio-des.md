@@ -54,7 +54,7 @@ GPIO主要是对GPIO管脚资源进行管理。开发者可以使用提供的GPI
 
 ### 接口说明
 
-GPIO模块提供的主要接口如表1所示。具体API详见//drivers/hdf_core/framework/include/platform/gpio_if.h。
+GPIO模块提供的主要接口如表1所示。具体API[详见](https://gitee.com/openharmony/drivers_hdf_core/blob/master/framework/include/platform/gpio_if.h)。
 
 **表 1** GPIO驱动API接口功能介绍
 

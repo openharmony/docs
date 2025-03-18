@@ -1,10 +1,8 @@
 # 适配新的文件系统
 
-
 ## 基本概念
 
 所谓对接VFS层，其实就是指实现VFS层定义的若干接口函数，可根据文件系统的特点和需要适配其中部分接口。一般情况下，支持文件读写，最小的文件系统适配看起来是这样的：
-
   
 ```
 struct MountOps g_yourFsMountOps = {
@@ -117,12 +115,12 @@ int VfsJffs2Bind(struct Mount *mnt, struct Vnode *blkDriver, const void *data)
 ERROR_WITH_VNODE:
     return ret;
 }
-...
-...
+// ...
+// ...
 const struct MountOps jffs_operations = {
     .Mount = VfsJffs2Bind,
-    ...
-    ...
+    // ...
+    // ...
 };
 ```
 

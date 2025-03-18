@@ -1,6 +1,6 @@
 # PasteButton
 
-The **PasteButton** security component represents a Paste button that allows you to obtain temporary pasteboard permissions from users with a simple button touch.
+The **PasteButton** security component represents a paste button that allows you to obtain temporary pasteboard permissions from users with a simple button touch.
 
 > **NOTE**
 >
@@ -16,7 +16,7 @@ Not supported
 
 PasteButton()
 
-Creates a Paste button with an icon, text, and background.
+Creates a **PasteButton** component with an icon, text, and background.
 
 You may want to learn the [restrictions on security component styles](../../../security/AccessToken/security-component-overview.md#constraints) to avoid authorization failures caused by incompliant styles.
 
@@ -26,9 +26,9 @@ You may want to learn the [restrictions on security component styles](../../../s
 
 ### PasteButton
 
-PasteButton(options:PasteButtonOptions)
+PasteButton(options: PasteButtonOptions)
 
-Creates a Paste button that contains the specified elements.
+Creates a **PasteButton** component that contains the specified elements.
 
 You may want to learn the [restrictions on security component styles](../../../security/AccessToken/security-component-overview.md#constraints) to avoid authorization failures caused by incompliant styles.
 
@@ -40,16 +40,23 @@ You may want to learn the [restrictions on security component styles](../../../s
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| options | [PasteButtonOptions](#pastebuttonoptions) | Yes| Options for creating the Paste button.<br>Default value:<br>{<br>icon: PasteIconStyle.LINES,<br>text: PasteDescription.PASTE,<br>buttonType: ButtonType.Capsule <br>} |
+| options | [PasteButtonOptions](#pastebuttonoptions) | Yes| Options for creating the **PasteButton** component.<br>Default value:<br>{<br>icon: PasteIconStyle.LINES,<br>text: PasteDescription.PASTE,<br>buttonType: ButtonType.Capsule <br>} |
 
 ## PasteButtonOptions
 
-Describes the icon, text, and other specific elements for the Paste button.
+Describes the icon, text, and other specific elements for the **PasteButton** component.
 
 > **NOTE**
-> 
-> At least one of **icon** or **text** must be provided.<br>
-> If neither **icon** nor **text** is provided, the **options** parameter in [[PasteButton](#pastebutton-1) will not take effect, and the created Paste button will be in the default style.
+>
+> - At least one of **icon** or **text** must be provided.<br>
+> - If neither **icon** nor **text** is provided, the **options** parameter in [PasteButton](#pastebutton-1) will not take effect, and the created **PasteButton** component will use the default style:
+>
+>   The default value of **PasteIconStyle** is **LINES**.
+>
+>   The default style of **PasteDescription** is **PASTE**.
+>
+>   The default value of **ButtonType** is **Capsule**.
+> - The **icon**, **text**, and **buttonType** parameters do not support dynamic modification.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -57,9 +64,9 @@ Describes the icon, text, and other specific elements for the Paste button.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| icon | [PasteIconStyle](#pasteiconstyle) | No| Icon style of the Paste button.<br>If this parameter is not specified, there is no icon.|
-| text | [PasteDescription](#pastedescription) | No| Text on the Paste button.<br>If this parameter is not specified, there is no text description.|
-| buttonType | [ButtonType](ts-basic-components-button.md#buttontype) | No| Background style of the Paste button.<br>If this parameter is not specified, the system uses a capsule-type button.|
+| icon | [PasteIconStyle](#pasteiconstyle) | No| Icon style of the **PasteButton** component.<br>If this parameter is not specified, there is no icon.|
+| text | [PasteDescription](#pastedescription) | No| Text on the **PasteButton** component.<br>If this parameter is not specified, there is no text description.|
+| buttonType | [ButtonType](ts-basic-components-button.md#buttontype) | No| Background style of the **PasteButton** componen.<br>If this parameter is not specified, the system uses a capsule-type button.|
 
 ## Attributes
 
@@ -83,7 +90,7 @@ This component can only inherit the [universal attributes of security components
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| PASTE | 0 | The text on the Paste button is **Paste**.|
+| PASTE | 0 | The text on the **PasteButton** component is **Paste**.|
 
 ## PasteButtonOnClickResult
 
@@ -93,8 +100,8 @@ This component can only inherit the [universal attributes of security components
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| SUCCESS | 0 | The Paste button is touched successfully.|
-| TEMPORARY_AUTHORIZATION_FAILED | 1 | Temporary authorization fails after the Paste button is touched.|
+| SUCCESS | 0 | The **PasteButton** component is touched successfully.|
+| TEMPORARY_AUTHORIZATION_FAILED | 1 | Temporary authorization fails after the **PasteButton** component is touched.|
 
 ## Events
 

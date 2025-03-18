@@ -34,6 +34,8 @@ Requests to publish a widget to the widget host. This API uses an asynchronous c
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | ID| Error Message|
 | -------- | -------- |
 | 202 | The application is not a system application. |
@@ -42,8 +44,6 @@ Requests to publish a widget to the widget host. This API uses an asynchronous c
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 | 16501008 | Waiting for the form addition to the desktop timed out. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -100,6 +100,8 @@ Requests to publish a widget to the widget host. This API uses a promise to retu
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | ID| Error Message|
 | -------- | -------- |
 | 202 | The application is not a system application. |
@@ -108,8 +110,6 @@ Requests to publish a widget to the widget host. This API uses a promise to retu
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 | 16501008 | Waiting for the form addition to the desktop timed out. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 

@@ -18,7 +18,7 @@ import { AVVolumePanel } from '@kit.AudioKit';
 ```
 ## Attributes
 
-The [universal attributes](../apis-arkui/arkui-ts/ts-universal-attributes-size.md) are supported.
+The [universal attributes](../apis-arkui/arkui-ts/ts-component-general-attributes.md) are supported.
 
 ## AVVolumePanel
 
@@ -32,7 +32,7 @@ Volume panel, which can be used to display the volume adjustment panel in your a
 
 ## Attributes
 
-In addition to the [universal attributes](../apis-arkui/arkui-ts/ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](../apis-arkui/arkui-ts/ts-component-general-attributes.md), the following attributes are supported.
 
 **Parameters**
 
@@ -49,7 +49,12 @@ In addition to the [universal attributes](../apis-arkui/arkui-ts/ts-universal-at
 
 ## Events
 
-The [universal events](../apis-arkui/arkui-ts/ts-universal-events-click.md) are supported.
+The [universal events](../apis-arkui/arkui-ts/ts-component-general-events.md) are supported.
+
+## How to Use
+
+1. When customizing the volume bar, you are advised to use the volume change listener of the audio framework to obtain the volume type (**volumeEvent.volumeType**), volume level (**volumeEvent.volume**), and whether to display the volume bar (**volumeEvent.updateUi**). The applications can determine whether to handle the current data and display their custom volume bar. For details, see [Volume Change Callback](js-apis-audio.md#onvolumechange9).
+2. To ensure users are aware of volume changes, applications are not allowed to adjust the volume in the background. The system will take corresponding control measures.
 
 ## Example
 

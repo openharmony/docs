@@ -14,7 +14,7 @@ Supported
 
 ## APIs
 
-Row(value?:{space?:  number | string })
+Row(value?:{space?:  string | number })
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -26,12 +26,12 @@ Row(value?:{space?:  number | string })
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| space | number \| string | No| Horizontal spacing between two adjacent child components.<br>Since API version 9, this parameter does not take effect when it is set to a negative number or when **justifyContent** is set to **FlexAlign.SpaceBetween**, **FlexAlign.SpaceAround** or **FlexAlign.SpaceEvenly**.<br>Default value: **0**, in vp<br>**NOTE**<br>The value can be a number greater than or equal to 0 or a string that can be converted to a number.|
+| value | {space?:  string \| number }  | No| Horizontal spacing between two adjacent child components.<br>Since API version 9, this parameter does not take effect when it is set to a negative number or when **justifyContent** is set to **FlexAlign.SpaceBetween**, **FlexAlign.SpaceAround** or **FlexAlign.SpaceEvenly**.<br>Default value: **0**, in vp<br>**NOTE**<br>The value can be a number greater than or equal to 0 or a string that can be converted to a number.|
 
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### alignItems
 
@@ -97,9 +97,23 @@ Sets whether to reverse the arrangement of child components on the main axis (ho
 
 ## Events
 
-The [universal events](ts-universal-events-click.md) are supported.
+The [universal events](ts-component-general-events.md) are supported.
 
 ## Example
+
+This example demonstrates how to set horizontal layout properties, such as spacing and alignment, using the **Row** component.
+
+```json
+// resources/base/element/string.json
+{
+  "string": [
+    {
+      "name": "stringSpace",
+      "value": "5"
+    }
+  ]
+}
+```
 
 ```ts
 // xxx.ets

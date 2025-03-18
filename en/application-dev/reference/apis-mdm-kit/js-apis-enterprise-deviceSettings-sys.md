@@ -22,7 +22,7 @@ import { deviceSettings } from '@kit.MDMKit';
 
 setScreenOffTime(admin: Want, time: number): void
 
-Sets the device screen-off time through the specified device administrator application. This API returns the result synchronously. If the operation is successful, **null** is returned. If the operation fails, an exception will be thrown.
+Sets the device screen-off time through the specified device administrator application. This API returns the result synchronously. If the operation is successful, **null** is returned. If the operation fails, an exception is thrown.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_SCREENOFF_TIME
 
@@ -78,7 +78,7 @@ Obtains the device screen-off time through the specified device administrator ap
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| callback | AsyncCallback&lt;number&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the screen-off time in ms. If the operation fails, **err** is an error object.      |
+| callback | AsyncCallback&lt;number&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the screen-off time in ms. If the operation fails, **err** is an error object.      |
 
 **Error codes**
 
@@ -177,7 +177,7 @@ Installs a user certificate through the specified device administrator applicati
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | certificate    | [CertBlob](#certblob)     | Yes   | Information about the certificate to install.                 |
-| callback | AsyncCallback&lt;string&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.     |
+| callback | AsyncCallback&lt;string&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.     |
 
 **Error codes**
 
@@ -308,7 +308,7 @@ Uninstalls a user certificate through the specified device administrator applica
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | certUri    | string    | Yes   | Certificate URI, which is returned by **installUserCertificate()**.                 |
-| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.     |
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.     |
 
 **Error codes**
 
@@ -398,7 +398,7 @@ deviceSettings.uninstallUserCertificate(wantTemp, aliasStr).then(() => {
 
 setPowerPolicy(admin: Want, powerScene: PowerScene, powerPolicy: PowerPolicy): void
 
-Sets the device power policy through the specified device administrator application. This API returns the result synchronously. If the operation is successful, **null** is returned. If the operation fails, an exception will be thrown.
+Sets the device power policy through the specified device administrator application. This API returns the result synchronously. If the operation is successful, **null** is returned. If the operation fails, an exception is thrown.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SETTINGS
 
@@ -448,7 +448,7 @@ try {
 
 getPowerPolicy(admin: Want, powerScene: PowerScene): PowerPolicy
 
-Obtains the device power policy through the specified device administrator application. This API returns the result synchronously. If the operation is successful, the power policy obtained is returned. If the operation fails, an exception will be thrown.
+Obtains the device power policy through the specified device administrator application. This API returns the result synchronously. If the operation is successful, the power policy obtained is returned. If the operation fails, an exception is thrown.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SETTINGS
 

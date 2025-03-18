@@ -48,7 +48,6 @@
   - [Using HiDebug (C/C++)](hidebug-guidelines-ndk.md)
 - HiCollie
   - [Using HiCollie to Detect Service Thread Stuck and Jank Events](hicollie-guidelines-ndk.md)
-  - [Using HiCollie (C/C++)](hicollie-guidelines-ndk.md)
 - Error Management
   - [Development of Error Manager](errormanager-guidelines.md)
   - [Development of Application Recovery](apprecovery-guidelines.md)
@@ -66,3 +65,4 @@
   - [hisysevent](hisysevent.md)
   - [uinput](uinput.md)
   <!--DelEnd-->
+  

@@ -30,6 +30,8 @@ Refresh(value: RefreshOptions)
 
 ## RefreshOptions对象说明
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称         | 类型                                      | 必填   | 说明                                     |
@@ -544,7 +546,6 @@ struct ListRefreshLoad {
   @State refreshing: boolean = false;
   @State refreshOffset: number = 0;
   @State refreshState: RefreshStatus = RefreshStatus.Inactive;
-  @State canLoad: boolean = false;
   @State isLoading: boolean = false;
 
   @Builder
@@ -596,8 +597,7 @@ struct ListRefreshLoad {
       }
       .onScrollIndex((start: number, end: number) => {
         // 当达到列表末尾时，触发新数据加载
-        if (this.canLoad && end >= this.arr.length - 1) {
-          this.canLoad = false;
+        if (end >= this.arr.length - 1) {
           this.isLoading = true;
           // 模拟新数据加载
           setTimeout(() => {
@@ -607,13 +607,6 @@ struct ListRefreshLoad {
             }
           }, 700)
         }
-      })
-      .onScrollFrameBegin((offset: number, state: ScrollState) => {
-        // 只有当向上滑动时触发新数据加载
-        if (offset > 5 && !this.isLoading) {
-          this.canLoad = true;
-        }
-        return { offsetRemain: offset };
       })
       .scrollBar(BarState.Off)
       // 开启边缘滑动效果

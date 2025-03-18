@@ -1,6 +1,6 @@
 # ArkData (ArkData Management)
 
-- ArkTS APIs
+- ArkTS APIs<!--arkdata-arkts-->
   - [@ohos.data.commonType (Common Data Types)](js-apis-data-commonType.md)
   - [@ohos.data.dataAbility (DataAbility Predicates)](js-apis-data-ability.md)
   - [@ohos.data.dataSharePredicates (DataShare Predicates)](js-apis-data-dataSharePredicates.md)
@@ -14,6 +14,7 @@
   - [@ohos.data.uniformDataStruct (Uniform Data Structs)](js-apis-data-uniformDataStruct.md)
   - [@ohos.data.uniformTypeDescriptor (Uniform Data Definition and Description)](js-apis-data-uniformTypeDescriptor.md)
   - [@ohos.data.ValuesBucket (Value Bucket)](js-apis-data-valuesBucket.md)
+  - [@ohos.data.intelligence (ArkData Intelligence Platform)](js-apis-data-intelligence.md)
   <!--Del-->
   - [@ohos.application.DataShareExtensionAbility (DataShare ExtensionAbility) (System API)](js-apis-application-dataShareExtensionAbility-sys.md)
   <!--DelEnd-->
@@ -27,27 +28,23 @@
   - [@ohos.data.distributedKVStore (Distributed KV Store) (System API)](js-apis-distributedKVStore-sys.md)
   - [@ohos.data.relationalStore (RDB Store) (System API)](js-apis-data-relationalStore-sys.md)
   <!--DelEnd-->
-  - APIs No Longer Maintained
+  - APIs No Longer Maintained<!--arkdata-arkts-dep-->
     - [@ohos.data.distributedData (Distributed Data Management)](js-apis-distributed-data.md)
     - [@ohos.data.rdb (RDB)](js-apis-data-rdb.md)
     - [@ohos.data.storage (Lightweight Data Storage)](js-apis-data-storage.md)
     - [@system.storage (Data Storage)](js-apis-system-storage.md)
     - data/rdb
       - [resultSet (Result Set)](js-apis-data-resultset.md) 
-- C APIs
-  - Modules
+- C APIs<!--arkdata-c-->
+  - Modules<!--arkdata-module-->
     - [Data](_data.md)
     - [RDB](_r_d_b.md)
     - [UDMF](_u_d_m_f.md)
     - [Preferences](_preferences.md)
-  - Header Files
+  - Header Files<!--arkdata-headerfile-->
     - [data_asset.h](data__asset_8h.md)
     - [oh_cursor.h](oh__cursor_8h.md)
-    - [oh_data_value.h](oh__data__value_8h.md)
-    - [oh_data_values.h](oh__data__values_8h.md)
-    - [oh_data_values_buckets.h](oh__data__values__buckets_8h.md)
     - [oh_predicates.h](oh__predicates_8h.md)
-    - [oh_rdb_transaction.h](oh__rdb__transaction_8h.md)
     - [oh_value_object.h](oh__value__object_8h.md)
     - [oh_values_bucket.h](oh__values__bucket_8h.md)
     - [relational_store_error_code.h](relational__store__error__code_8h.md)
@@ -61,7 +58,7 @@
     - [oh_preferences_err_code.h](oh__preferences__err__code_8h.md)
     - [oh_preferences_option.h](oh__preferences__option_8h.md)
     - [oh_preferences_value.h](oh__preferences__value_8h.md)
-  - Structs
+  - Structs<!--arkdata-struct-->
     - [OH_Cursor](_o_h___cursor.md)
     - [OH_Predicates](_o_h___predicates.md)
     - [OH_Rdb_Config](_o_h___rdb___config.md)
@@ -78,10 +75,12 @@
     - [Rdb_Statistic](_rdb___statistic.md)
     - [Rdb_SubscribeCallback](union_rdb___subscribe_callback.md)
     - [Rdb_TableDetails](_rdb___table_details.md)
-- Error Codes
+- Error Codes<!--arkdata-arkts-errcode-->
   - [RDB Error Codes](errorcode-data-rdb.md)
   - [DataShare Error Codes](errorcode-datashare.md)
   - [Distributed Data Object Error Codes](errorcode-distributed-dataObject.md)
   - [Distributed KV Store Error Codes](errorcode-distributedKVStore.md)
   - [User Preferences Error Codes](errorcode-preferences.md)
   - [UDMF Error Codes](errorcode-udmf.md)
+  - [AIP Error Codes](errorcode-intelligence.md)
+

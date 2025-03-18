@@ -1476,11 +1476,11 @@ Navigation首页名字。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 说明                                                         |
-| -------- | ------------------------------------------------------------ |
-| NORMAL   | 设置工具栏单个选项为NORMAL态，该选项显示默认样式，可以触发Hover，Press，Focus事件并显示对应的多态样式。 |
-| DISABLED | 设置工具栏单个选项为DISABLED态， 该选项显示DISABLED态样式，并且不可交互。 |
-| ACTIVE   | 设置工具栏单个选项为ACTIVE态， 该选项通过点击事件可以将icon图标更新为activeIcon对应的图片资源。 |
+| 名称     | 值 | 说明                                                         |
+| -------- | --- | ------------------------------------------------------------ |
+| NORMAL   | 0 | 设置工具栏单个选项为NORMAL态，该选项显示默认样式，可以触发Hover，Press，Focus事件并显示对应的多态样式。 |
+| DISABLED | 1 | 设置工具栏单个选项为DISABLED态， 该选项显示DISABLED态样式，并且不可交互。 |
+| ACTIVE   | 2 | 设置工具栏单个选项为ACTIVE态， 该选项通过点击事件可以将icon图标更新为activeIcon对应的图片资源。 |
 
 ## NavigationTitleMode枚举说明
 
@@ -1488,11 +1488,11 @@ Navigation首页名字。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 说明                                                         |
-| ---- | ------------------------------------------------------------ |
-| Free | 当内容为满一屏的可滚动组件时，标题随着内容向上滚动而缩小（子标题的大小不变、淡出）。向下滚动内容到顶时则恢复原样。<br/>**说明：** <br/>标题随着内容滚动大小联动的动效在title设置为ResourceStr和NavigationCommonTitle时生效，设置成其余自定义节点类型时字体样式无法变化，下拉时只影响标题栏偏移。<br/>可滚动组件不满一屏时，如果想使用联动效果，就要使用滚动组件提供的[edgeEffect](ts-container-list.md#edgeeffect)接口将options参数设置为true。未滚动状态，标题栏高度与Full模式一致；滚动时，标题栏的最小高度与Mini模式一致。 |
-| Mini | 固定为小标题模式。<br/>默认值：API version 12之前，只有主标题时，标题栏高度为56vp；同时有主标题和副标题时，标题栏高度为82vp。从API version 12开始，该模式下标题栏高度为56vp。 |
-| Full | 固定为大标题模式。<br/>默认值：只有主标题时，标题栏高度为112vp；同时有主标题和副标题时，标题栏高度为138vp。 |
+| 名称 | 值 | 说明                                                         |
+| ---- | --- | ------------------------------------------------------------ |
+| Free | 0 | 当内容为满一屏的可滚动组件时，标题随着内容向上滚动而缩小（子标题的大小不变、淡出）。向下滚动内容到顶时则恢复原样。<br/>**说明：** <br/>标题随着内容滚动大小联动的动效在title设置为ResourceStr和NavigationCommonTitle时生效，设置成其余自定义节点类型时字体样式无法变化，下拉时只影响标题栏偏移。<br/>可滚动组件不满一屏时，如果想使用联动效果，就要使用滚动组件提供的[edgeEffect](ts-container-list.md#edgeeffect)接口将options参数设置为true。未滚动状态，标题栏高度与Full模式一致；滚动时，标题栏的最小高度与Mini模式一致。 |
+| Mini | 1 | 固定为小标题模式。<br/>默认值：API version 12之前，只有主标题时，标题栏高度为56vp；同时有主标题和副标题时，标题栏高度为82vp。从API version 12开始，该模式下标题栏高度为56vp。 |
+| Full | 2 | 固定为大标题模式。<br/>默认值：只有主标题时，标题栏高度为112vp；同时有主标题和副标题时，标题栏高度为138vp。 |
 
 ## NavigationCommonTitle<sup>9+</sup>
 
@@ -1545,11 +1545,11 @@ Navigation首页名字。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 说明 |
-|---------|------|
-|PUSH | 本次转场为页面进场。|
-|POP | 本次转场为页面退场。|
-| REPLACE | 本次转场为页面替换。|
+| 名称    | 值 | 说明 |
+|---------| --- |------|
+|PUSH | 1 | 本次转场为页面进场。|
+|POP | 2 | 本次转场为页面退场。|
+| REPLACE | 3 | 本次转场为页面替换。|
 
 ## BarStyle<sup>12+</sup>枚举说明
 
@@ -1557,11 +1557,11 @@ Navigation首页名字。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 说明 |
-|---------|------|
-|STANDARD | 指定该模式的标题栏或工具栏与内容区采用上下布局。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-|STACK | 指定该模式的标题栏或工具栏与内容区采用层叠布局，标题栏或工具栏布局在内容区上层。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-|SAFE_AREA_PADDING<sup>14+</sup> | 将指定该模式的标题栏或工具栏设置为[组件级安全区](./ts-universal-attributes-size.md#safeareapadding14)。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| 名称    | 值 | 说明 |
+|---------| --- |------|
+|STANDARD | 0 | 指定该模式的标题栏或工具栏与内容区采用上下布局。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+|STACK | 1 | 指定该模式的标题栏或工具栏与内容区采用层叠布局，标题栏或工具栏布局在内容区上层。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+|SAFE_AREA_PADDING<sup>14+</sup> | 2 | 将指定该模式的标题栏或工具栏设置为[组件级安全区](./ts-universal-attributes-size.md#safeareapadding14)。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 
 ## NavigationTitleOptions<sup>11+</sup>
 
@@ -1594,12 +1594,12 @@ Navigation首页名字。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 说明 |
-| --------- | ------ |
-| STANDARD | 系统默认的栈操作模式。<br/>push操作会将指定的NavDestination入栈；replace操作会将当前栈顶NavDestination替换。 |
-| MOVE_TO_TOP_SINGLETON | 从栈底向栈顶查找，如果指定的名称已经存在，则将对应的NavDestination页面移到栈顶（replace操作会将最后的栈顶替换成指定的NavDestination），否则行为和STANDARD一致。 |
-| POP_TO_SINGLETON | 从栈底向栈顶查找，如果指定的名称已经存在，则将其上方的NavDestination页面全部移除（replace操作会将最后的栈顶替换成指定的NavDestination），否则行为和STANDARD一致。 |
-| NEW_INSTANCE | 创建新的NavDestination实例。与STANDARD模式相比，该方法不会复用栈中同名实例。 |
+| 名称    | 值 | 说明 |
+| --------- | --- | ------ |
+| STANDARD | 0 | 系统默认的栈操作模式。<br/>push操作会将指定的NavDestination入栈；replace操作会将当前栈顶NavDestination替换。 |
+| MOVE_TO_TOP_SINGLETON | 1 | 从栈底向栈顶查找，如果指定的名称已经存在，则将对应的NavDestination页面移到栈顶（replace操作会将最后的栈顶替换成指定的NavDestination），否则行为和STANDARD一致。 |
+| POP_TO_SINGLETON | 2 | 从栈底向栈顶查找，如果指定的名称已经存在，则将其上方的NavDestination页面全部移除（replace操作会将最后的栈顶替换成指定的NavDestination），否则行为和STANDARD一致。 |
+| NEW_INSTANCE | 3 | 创建新的NavDestination实例。与STANDARD模式相比，该方法不会复用栈中同名实例。 |
 
 ## NavigationOptions<sup>12+</sup>
 

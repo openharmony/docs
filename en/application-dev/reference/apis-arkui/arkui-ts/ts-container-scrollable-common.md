@@ -135,7 +135,7 @@ Sets the maximum initial velocity at the start of the fling animation that occur
 
 | Name    | Type  | Mandatory| Description                           |
 | ---------- | ------ | ---- | ------------------------------- |
-| speedLimit | number | Yes  | Maximum initial velocity at the start of the fling animation.<br>Default value: **12000**<br>Unit: vp/s|
+| speedLimit | number | Yes  | Maximum initial velocity at the start of the fling animation.<br>Default value: **9000**<br>Unit: vp/s|
 
 ### fadingEdge<sup>14+</sup>
 
@@ -169,6 +169,25 @@ Sets the content clipping area for this scrollable component.
 | Name | Type                                             | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | clip | [ContentClipMode](#contentclipmode14) \| [RectShape](../js-apis-arkui-shape.md#rectshape)   | Yes  | Clipping to apply, which is effective only for the content (that is, child components) of the scrollable component, not the background. When a custom rectangular area is passed through **RectShape**, only width, height, and [offset](../js-apis-arkui-shape.md#offset) relative to the component's upper left corner are supported, and rounded corners are not supported.<br></div>Default value: The default value for **Grid** and **Scroll** is **ContentClipMode.BOUNDARY**, and the default value for **List** and **WaterFlow** is **ContentClipMode.CONTENT_ONLY**.|
+
+### backToTop<sup>15+</sup>
+
+backToTop(backToTop: boolean)
+
+Sets whether to enable the back-to-top feature for a scrollable component when the status bar is touched.
+
+If this feature is enabled, the scrollable component on the current page scrolls to the top when the user touches the status bar. This behavior does not affect scrollable components in background applications, which will not scroll to the top. This attribute is independent of the [enableScrollInteraction](#enablescrollinteraction11) setting.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                          |
+| ------ | ------- | ---- | ---------------------------------------------- |
+| backToTop  | boolean | Yes  | Whether to enable the back-to-top feature for a scrollable component when the status bar is touched.<br>Default value: **false**|
+
 
 
 ## Events
@@ -332,7 +351,6 @@ This API is deprecated since API version 12. For the **Scroll** component, the *
 | Name          | Type                                                        | Mandatory| Description                                                        |
 | ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | fadingEdgeLength | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No  | Length of the fading edge. If the value is smaller than 0, the default length, 32 vp, is used.<br>If the value exceeds half the height of the container, it is adjusted to exactly half the height of the container.|
-
 
 ## ContentClipMode<sup>14+</sup>
 

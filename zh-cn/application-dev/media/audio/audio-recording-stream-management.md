@@ -41,7 +41,6 @@
 
 详细API含义可参考[AudioStreamManager](../../reference/apis-audio-kit/js-apis-audio.md#audiostreammanager9)。
 
-
 ## 开发步骤及注意事项
 
 1. 创建AudioStreamManager实例。
