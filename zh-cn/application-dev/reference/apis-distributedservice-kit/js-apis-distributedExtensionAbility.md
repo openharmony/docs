@@ -1,4 +1,4 @@
-# @ohos.application.DistributedExtensionAbility (协同Extension)(系统接口)
+# @ohos.application.DistributedExtensionAbility (协同Extension)
 
 DistributedExtensionAbility模块提供分布式相关扩展能力，提供分布式创建、销毁、连接的生命周期回调。
 
@@ -7,8 +7,6 @@ DistributedExtensionAbility模块提供分布式相关扩展能力，提供分�
 > 本模块首批接口从API version 18开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > 本模块接口仅可在Stage模型下使用。
->
-> 本模块为系统接口。
 
 ## 导入模块
 
@@ -19,9 +17,6 @@ import { DistributedExtensionAbility} from '@kit.DistributedServiceKit';
 ## 属性
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**: 此接口为系统接口
-
 
 | 名称    | 类型                          | 可读 | 可写 | 说明                                                       |
 | ------- | ----------------------------- | ---- | ---- | ---------------------------------------------------------- |
@@ -35,15 +30,11 @@ Extension生命周期回调，在创建时回调，执行初始化业务逻辑�
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口
-
 **参数：**
 
-
-| 参数名                                              | 类型 | 必填                                                             | 说明 |
-| --------------------------------------------------- | ---- | ---------------------------------------------------------------- | ---- |
-| want                                                | [Wan |                                                                  |      |
-| t](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 |      |
+| 参数名     | 类型 | 必填                                                             | 说明 |
+| ----------| ---- | ---------------------------------------------------------------- | ---- |
+| want      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 |
 
 **示例：**
 
@@ -68,10 +59,7 @@ onCollaborate(wantParam: Record <string, Object>) : AbilityConstant.CollaborateR
 
 **系统功能**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-**系统API**: 此接口为系统接口
-
 **参数：**
-
 
 | 参数名    | 类型   | 必填 | 说明                                                                                                                                   |
 | --------- | ------ | ---- | -------------------------------------------------------------------------------------------------------------------------------------- |
@@ -79,10 +67,9 @@ onCollaborate(wantParam: Record <string, Object>) : AbilityConstant.CollaborateR
 
 **返回值：**
 
-
-| 名称                                                                                                                                                                                          | 值                       | 说明 |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ | ---- |
-| [AbilityConstant.CollaborateResult](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#collaborateresult) | 协同方应用是否接受协同。 |      |
+| 名称 | 说明 |
+| ---------- | ---- |
+| [AbilityConstant.CollaborateResult](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#collaborateresult) | 协同方应用是否接受协同。 |
 
 **示例**
 
@@ -91,16 +78,15 @@ import { DistributedExtensionAbility} from '@kit.DistributedServiceKit';
 import { AbilityConstant } from '@kit.AbilityKit';
 
 class DistributedExtensionAbility  {
-  onCollaborate(wantParam: Record<string, Object>)  {
-	console.info(TAG, `DistributedExterntionon onCollabRequest Accept to the result of Ability collaborate`);
-	let sessionId = -1;
-	const collabrationType = wantParam["CollabrationType"] as abilityConnectionManager.CollabrationType;
-	if (collabrationType == undefined) {
-	  return sessionId;
-	}
-
-	console.info(TAG, `onCollab, peerInfo: ${JSON.stringify(collabrationType)}`);
-	return AbilityConstant.CollaborateResult.ACCEPT;
+    onCollaborate(wantParam: Record<string, Object>)  {
+        console.info(TAG, `DistributedExterntionon onCollabRequest Accept to the result of Ability collaborate`);
+        let sessionId = -1;
+        const collabrationType = wantParam["CollabrationType"] as abilityConnectionManager.CollabrationType;
+        if (collabrationType == undefined) {
+            return sessionId;
+        }
+        console.info(TAG, `onCollab, peerInfo: ${JSON.stringify(collabrationType)}`);
+        return AbilityConstant.CollaborateResult.ACCEPT;
   }
 }
 ```
@@ -113,8 +99,6 @@ Extension生命周期回调，在销毁时回调，执行资源清理等操作�
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口
-
 **示例：**
 
 ```ts
@@ -126,15 +110,3 @@ class DistributedExtensionAbility{
   }
 }
 ```
-
-## CollabrationType
-
-分布式配置的参数。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-
-| 枚举值                                  | 描述                       |
-| --------------------------------------- | -------------------------- |
-| VALUE_ABILITY_COLLAB_TYPE_CONNECT_PROXY | 分布式能力协作型连接代理。 |
-| VALUE_ABILITY_COLLAB_TYPE_DEFAULT       | 分布式能力协作类型默认值。 |
