@@ -379,6 +379,32 @@ import { window } from '@kit.ArkUI';
 | ------ | ------ | ---- | ------------------------------------------ |
 | displayId | number | 否 | 目标屏幕ID，该参数应该为整数，非整数输入将向下取整。此参数不填或者传入目标屏幕ID不存在，将默认保持为当前屏幕。 |
 
+## Callback<sup>15+</sup>
+
+### (data: T)<sup>15+</sup>
+
+(data: T): V;
+
+通用回调函数。
+
+开发者在使用时，可自定义data的参数类型，回调函数返回对应类型的信息。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ---- | ---- | ---- | -------------------------- |
+| data | T    | 是   | 回调函数调用时需要传入T类型的参数。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------------------------------- | ------------------------------------ |
+| V | 回调函数需要返回V类型的返回值。 |
+
 ## window.createWindow<sup>9+</sup>
 
 createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
