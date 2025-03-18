@@ -9807,7 +9807,7 @@ async function buildX509CertChain() {
   try {
     const caCert = await createX509Cert(caPem);
     const x509Cert = await createX509Cert(certPem);
-    let certCrlCollection = await cert.createCertCRLCollection([x509Cert]);
+    let certCrlCollection = cert.createCertCRLCollection([x509Cert]);
     let param: cert.CertChainBuildParameters = {
       certMatchParameters: {validDate:'20240812080000Z'},
       maxLength: 3,
