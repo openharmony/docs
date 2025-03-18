@@ -9,7 +9,7 @@ The AVSession_PlaybackPosition struct describes the information related to the p
 
 **Related module**: [OHAVSession](capi-_o_h_a_v_session.md)
 
-**Head file**: [data_asset.h](capi-native__avsession_8h.md)
+**Header file**: [data_asset.h](capi-native__avsession_8h.md)
 
 
 ## Summary
