@@ -335,13 +335,13 @@ struct MyComponent {
 }
 ```
 
-## getDialogController<sup>16+</sup>
+## getDialogController<sup>18+</sup>
 
 getDialogController(): PromptActionDialogController | undefined
 
 获取PromptActionDialogController实例对象。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -349,7 +349,7 @@ getDialogController(): PromptActionDialogController | undefined
 
 | 类型                                                         | 说明                         |
 | ------------------------------------------------------------ | ---------------------------- |
-| [PromptActionDialogController](#promptactiondialogcontroller16) \| undefined | 返回PromptActionDialogController实例对象。 |
+| [PromptActionDialogController](#promptactiondialogcontroller18) \| undefined | 返回PromptActionDialogController实例对象。 |
 
 **示例：**
 
@@ -417,13 +417,13 @@ struct Index {
 }
 ```
 
-## PromptActionDialogController<sup>16+</sup>
+## PromptActionDialogController<sup>18+</sup>
 
 type PromptActionDialogController = promptAction.DialogController
 
 自定义弹窗控制器，可以控制当前自定义弹窗，具体控制能力包括关闭弹窗等，详见[promptAction.DialogController](../js-apis-promptAction.md#dialogcontroller18)。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
