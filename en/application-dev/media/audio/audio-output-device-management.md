@@ -9,9 +9,9 @@ Before using **AudioRoutingManager** to manage audio devices, import the audio m
 ```ts
 import { audio } from '@kit.AudioKit';  // Import the audio module.
 
-let audioManager = audio.getAudioManager(); // Create an AudioManager instance.
+let audioManager = audio.getAudioManager();  // Create an AudioManager instance.
 
-let audioRoutingManager = audioManager.getRoutingManager(); // Call an API of AudioManager to create an AudioRoutingManager instance.
+let audioRoutingManager = audioManager.getRoutingManager();  // Call an API of AudioManager to create an AudioRoutingManager instance.
 ```
 
 ## Supported Audio Output Device Types
@@ -43,6 +43,10 @@ audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data:
 ## Listening for Device Connection State Changes
 
 Set a listener to listen for changes of the device connection state. When a device is connected or disconnected, a callback is triggered.
+
+> **NOTE**
+>
+> The listener captures all changes in device connections. It is not recommended that the changes be used as a basis for handling automatic pausing in applications. If an application needs to manage services related to automatic pause, it should consider the [reasons behind changes in the audio stream output device](audio-output-device-change.md).
 
 ```ts
 import { audio } from '@kit.AudioKit';
