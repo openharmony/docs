@@ -12,7 +12,7 @@
 import { serialManager } from '@kit.BasicServicesKit';
 ```
 
-## getPortList
+## serialManager.getPortList
 
 getPortList(): Readonly&lt;serialport&gt;[];
 
@@ -42,7 +42,7 @@ if (portList === undefined || portList.length === 0) {
 let portId: number = portList[0].portId;
 ```
 
-## hasSerialRight
+## serialManager.hasSerialRight
 
 hasSerialRight(portId: number): boolean;
 
@@ -96,7 +96,7 @@ if (serialManager.hasSerialRight(portId)) {
 }
 ```
 
-## requestSerialRight
+## serialManager.requestSerialRight
 
 requestSerialRight(portId: number): Promise&lt;boolean&gt;
 
@@ -156,7 +156,7 @@ if (!serialManager.hasSerialRight(portId)) {
 }
 ```
 
-## open
+## serialManager.open
 
 open(portId: number): void;
 
@@ -219,7 +219,7 @@ try {
 }
 ```
 
-## getAttribute
+## serialManager.getAttribute
 
 getAttribute(portId: number): Readonly&lt;[SerialAttribute](#serialattribute)&gt;;
 
@@ -299,7 +299,7 @@ try {
 }
 ```
 
-## setAttribute
+## serialManager.setAttribute
 
 setAttribute(portId: number, attribute: [SerialAttribute](#serialattribute)): void;
 
@@ -376,7 +376,7 @@ try {
 }
 ```
 
-## read
+## serialManager.read
 
 read(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt;;
 
@@ -456,7 +456,7 @@ serialManager.read(portId, readBuffer, 2000).then((size: number) => {
 })
 ```
 
-## readSync
+## serialManager.readSync
 
 readSync(portId: number, buffer: Uint8Array, timeout?: number): number;
 
@@ -537,7 +537,7 @@ try {
 }
 ```
 
-## write
+## serialManager.write
 
 write(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt;;
 
@@ -617,7 +617,7 @@ serialManager.write(portId, writeBuffer, 2000).then((size: number) => {
 })
 ```
 
-## writeSync
+## serialManager.writeSync
 
 writeSync(portId: number, buffer: Uint8Array, timeout?: number): number;
 
@@ -698,7 +698,7 @@ try {
 }
 ```
 
-## close
+## serialManager.close
 
 close(portId: number): void;
 
@@ -768,7 +768,7 @@ try {
 }
 ```
 
-## cancelSerialRight
+## serialManager.cancelSerialRight
 
 cancelSerialRight(portId: number): void;
 

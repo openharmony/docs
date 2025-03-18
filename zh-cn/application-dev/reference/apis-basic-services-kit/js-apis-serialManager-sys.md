@@ -14,7 +14,7 @@
 import { serialManager } from '@kit.BasicServicesKit';
 ```
 
-## addSerialRight
+## serialManager.addSerialRight
 
 addSerialRight(tokenId: number, portId: number): void;
 
