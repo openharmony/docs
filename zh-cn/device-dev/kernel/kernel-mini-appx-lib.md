@@ -14,7 +14,7 @@
 
 #### 接口说明
 
-CMSIS-RTOS v2提供下面几种功能，接口详细信息可以查看API参考。
+CMSIS-RTOS v2提供下面几种功能，接口详细信息可以查看[API参考](https://gitee.com/openharmony/kernel_liteos_m/blob/master/kal/cmsis/cmsis_liteos2.c)。
 
   **表1** 内核信息与控制
 

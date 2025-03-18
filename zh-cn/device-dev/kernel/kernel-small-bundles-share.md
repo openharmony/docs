@@ -43,7 +43,7 @@ VDSO其核心思想就是内核看护一段内存，并将这段内存映射（�
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 >
->  - 当前VDSO机制支持LibC库clock_gettime接口的CLOCK_REALTIME_COARSE与CLOCK_MONOTONIC_COARSE功能，clock_gettime接口的使用方法详见POSIX标准。
+>  - 当前VDSO机制支持LibC库clock_gettime接口的CLOCK_REALTIME_COARSE与CLOCK_MONOTONIC_COARSE功能，clock_gettime接口的使用方法详见[POSIX标准](https://gitee.com/openharmony/kernel_liteos_m/tree/master/kal/posix)。
 >
 >  - 用户调用C库接口clock_gettime(CLOCK_REALTIME_COARSE, &amp;ts)或者clock_gettime(CLOCK_MONOTONIC_COARSE, &amp;ts)即可使用VDSO机制。
 >
