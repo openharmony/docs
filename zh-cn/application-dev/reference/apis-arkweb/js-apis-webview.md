@@ -18,7 +18,7 @@
 import { webview } from '@kit.ArkWeb';
 ```
 
-## once
+## webview.once
 
 once(type: string, callback: Callback\<void\>): void
 

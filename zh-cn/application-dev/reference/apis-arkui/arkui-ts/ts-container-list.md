@@ -684,7 +684,7 @@ onItemDragStart(event: (event: ItemDragInfo, itemIndex: number) => ((() => any) 
 
 onItemDragEnter(event: (event: ItemDragInfo) => void)
 
-拖拽进入列表元素范围内时触发。
+拖拽列表元素进入列表范围内时触发。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -700,7 +700,7 @@ onItemDragEnter(event: (event: ItemDragInfo) => void)
 
 onItemDragMove(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number) => void)
 
-拖拽在列表元素范围内移动时触发。
+拖拽列表元素在列表范围内移动时触发。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -718,7 +718,7 @@ onItemDragMove(event: (event: ItemDragInfo, itemIndex: number, insertIndex: numb
 
 onItemDragLeave(event: (event: ItemDragInfo, itemIndex: number) => void)
 
-拖拽离开列表元素时触发。
+拖拽列表元素离开列表范围时触发。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -735,7 +735,7 @@ onItemDragLeave(event: (event: ItemDragInfo, itemIndex: number) => void)
 
 onItemDrop(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => void)
 
-绑定该事件的列表元素可作为拖拽释放目标，当在列表元素内停止拖拽时触发。
+绑定该事件的列表可作为拖拽释放目标，当在列表范围内停止拖拽时触发。
 
 跨List拖拽时，当拖拽释放的位置绑定了onItemDrop时会返回true，否则为false。List内部拖拽时，isSuccess为onItemMove事件的返回值。
 

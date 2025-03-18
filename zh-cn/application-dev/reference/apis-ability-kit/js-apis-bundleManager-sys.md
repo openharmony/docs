@@ -4370,7 +4370,7 @@ try {
 }
 ```
 
-## bundleManager.getJsonProfile<sup>12+</sup>
+## bundleManager.getJsonProfile<sup>11+</sup>
 
 getJsonProfile(profileType: ProfileType, bundleName: string, moduleName?: string, userId?: number): string
 
@@ -4391,7 +4391,7 @@ getJsonProfile(profileType: ProfileType, bundleName: string, moduleName?: string
 | profileType           | [ProfileType](#profiletype11)     | 是   | 表示要查询的配置文件类型。                                   |
 | bundleName            | string                          | 是   | 表示要查询应用程序的bundleName。                                  |
 | moduleName            | string                          | 否   | 表示要查询应用程序的module的名称，缺省时在入口模块中查找。            |
-| userId                | number                          | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。  |
+| userId<sup>12+</sup>  | number                          | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。  |
 
 **返回值：**
 

@@ -56,7 +56,6 @@
 | <!--DelRow--> disableAirplaneMode(callback: AsyncCallback\<void>): void;| 关闭网络飞行模式，使用callback回调。 |
 | createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnection; | 返回一个NetConnection对象，netSpecifier指定关注的网络的各项特征。timeout是超时时间(单位：毫秒)，netSpecifier是timeout的必要条件，两者都没有则表示关注默认网络。 |
 | bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>): void; | 将TCPSocket或UDPSockett绑定到当前网络，使用callback回调。 |
-| getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void; |使用对应网络解析域名，获取所有IP，使用callback回调。 |
 | getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void; |使用对应网络解析域名，获取一个IP，调用callback。 |
 | on(type: 'netAvailable', callback: Callback\<NetHandle>): void;                   |订阅网络可用事件。 |
 | on(type: 'netCapabilitiesChange', callback: Callback\<NetCapabilityInfo\>): void; |订阅网络能力变化事件。 |

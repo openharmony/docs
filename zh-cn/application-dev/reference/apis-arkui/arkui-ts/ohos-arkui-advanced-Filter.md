@@ -52,8 +52,8 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters?: FilterParam
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| name | [ResourceStr](ts-types.md#resourcestr) | 是 | 筛选项维度名称。 |
-| options | Array&lt;[ResourceStr](ts-types.md#resourcestr)&gt; | 是 | 筛选项维度可选项列表。 |
+| name | [ResourceStr](ts-types.md#resourcestr) | 是 | 筛选项维度名称。<br/>默认值：空字符串。<br/>**说明**：如果文本大于列宽时，文本被截断。 |
+| options | Array&lt;[ResourceStr](ts-types.md#resourcestr)&gt; | 是 | 筛选项维度可选项列表。<br/>默认值：空字符串。<br/>**说明**：文本超长显示省略号。 |
 
 ## FilterType
 
@@ -74,9 +74,9 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters?: FilterParam
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| name | [ResourceStr](ts-types.md#resourcestr) | 是 | 筛选项维度名称。 |
-| index | number | 是 | 该维度筛选项选中项目的索引值。 |
-| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 该维度筛选项选中项目的值。 |
+| name | [ResourceStr](ts-types.md#resourcestr) | 是 | 筛选项维度名称。<br/>默认值：空字符串。<br/>**说明**：如果文本大于列宽时，文本被截断。                       |
+| index | number | 是 | 该维度筛选项选中项目的索引值。<br/>取值范围：大于等于-1的整数。<br/>默认值：-1，没有选中项。若设置数值小于-1，按没有选中项处理。 |
+| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 该维度筛选项选中项目的值。<br/>默认值：空字符串。<br/>**说明**：如果文本大于列宽时，文本被截断。                  |
 
 ## 事件
 不支持[通用事件](ts-universal-events-click.md)

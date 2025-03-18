@@ -43,7 +43,7 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | ---------------  | -------------------------   | -----------|
 | tag              | string                      | 手势标记。<br/>**说明：**<br/>如果未设置事件标识tag属性的情况下，此处tag不返回或者返回undefined。  |
 | type             | [GestureControl.GestureType](#gesturetype12)  | 手势类型。<br/>**说明：**<br/> 当手势为未暴露类型的系统内置手势事件时，type的值为-1。 |
-| isSystemGesture  | boolean                     | 判断当前手势是否是组件自带的手势。<br/>默认值：false |
+| isSystemGesture  | boolean                     | 判断当前手势是否是组件自带的手势。true表示是组件自带的手势，false表示非组件自带手势。<br/>默认值：false |
 
 ## GestureType<sup>12+</sup>
 
@@ -108,7 +108,7 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 
 | 名称      | 类型                                      | 描述         |
 | ---------  | ----------------------------------------  | -----------|
-| repeat     | boolean | 是否为重复触发事件。  |
+| repeat     | boolean | 是否为重复触发事件。true表示为重复触发事件，false表示非重复触发事件。  |
 
 ## PanGestureEvent对象说明
 继承于[BaseGestureEvent](#basegestureevent对象说明)。可将该对象作为[onGestureJudgeBegin](#ongesturejudgebegin)的event参数来传递。
