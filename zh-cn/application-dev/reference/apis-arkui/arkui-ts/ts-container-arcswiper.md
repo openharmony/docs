@@ -78,7 +78,7 @@ indicator(value: ArcDotIndicator | boolean)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ArcDotIndicator](#arcdotindicator)&nbsp;&nbsp;\|&nbsp;boolean | 是   | 弧形圆点指示器样式。<br/> \- ArcDotIndicator：弧形圆点指示器属性及功能。<br/> \- boolean：是否启用弧形圆点指示器。<br/>&nbsp;&nbsp;默认值：true<br/>&nbsp;&nbsp;默认类型：ArcDotIndicator |
+| value  | [ArcDotIndicator](#arcdotindicator)&nbsp;&nbsp;\|&nbsp;boolean | 是   | 弧形圆点指示器样式。<br/> \- ArcDotIndicator：弧形圆点指示器属性及功能。<br/> \- boolean：是否启用弧形圆点指示器。设置为true启用，false不启用。<br/> 默认值：true<br/> 默认类型：ArcDotIndicator |
 
 ### duration
 
@@ -110,7 +110,7 @@ vertical(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| value  | boolean | 是   | 是否为纵向滑动。<br/>默认值：false |
+| value  | boolean | 是   | 是否为纵向滑动。true为纵向滑动，false为横向滑动。<br/>默认值：false |
 
 ### disableSwipe
 
@@ -126,7 +126,7 @@ disableSwipe(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                     |
 | ------ | ------- | ---- | ---------------------------------------- |
-| value  | boolean | 是   | 禁用组件滑动切换功能。<br/>默认值：false |
+| value  | boolean | 是   | 禁用组件滑动切换功能。设置为true禁用，false不禁用。<br/>默认值：false |
 
 ### digitalCrownSensitivity
 
@@ -192,7 +192,7 @@ disableTransitionAnimation(disabled: Optional\<boolean>)
 
 | 参数名   | 类型               | 必填 | 说明                                    |
 | -------- | ------------------ | ---- | --------------------------------------- |
-| disabled | Optional\<boolean> | 是   | 是否关闭特殊动效效果。<br>默认值：false |
+| disabled | Optional\<boolean> | 是   | 是否关闭特殊动效效果。<br>默认值：false，不关闭特殊动效效果。 |
 
 ## ArcSwiperController
 
