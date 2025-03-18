@@ -689,6 +689,70 @@ struct IndexPage {
 }
 ```
 
+API version 18及以后，\@ObjectLink也可以被[makeV1Observed](../reference/apis-arkui/js-apis-StateManagement.md#makev1observed18)的返回值初始化。所以开发者如果不想额外声明继承Array的类，也可以使用makeV1Observed来达到同样的效果。
+
+完整例子如下。
+
+```ts
+import { UIUtils } from '@kit.ArkUI';
+
+@Component
+struct Item {
+  @ObjectLink itemArr: Array<string>;
+
+  build() {
+    Row() {
+      ForEach(this.itemArr, (item: string, index: number) => {
+        Text(`${index}: ${item}`)
+          .width(100)
+          .height(100)
+      }, (item: string) => item)
+    }
+  }
+}
+
+@Entry
+@Component
+struct IndexPage {
+  @State arr: Array<Array<string>> =
+    [UIUtils.makeV1Observed(['apple']), UIUtils.makeV1Observed(['banana']), UIUtils.makeV1Observed(['orange'])];
+
+  build() {
+    Column() {
+      ForEach(this.arr, (itemArr: Array<string>) => {
+        Item({ itemArr: itemArr })
+      })
+
+      Divider()
+
+      Button('push two-dimensional array item')
+        .margin(10)
+        .onClick(() => {
+          this.arr[0].push('strawberry');
+        })
+
+      Button('push array item')
+        .margin(10)
+        .onClick(() => {
+          this.arr.push(UIUtils.makeV1Observed(['pear']));
+        })
+
+      Button('change two-dimensional array first item')
+        .margin(10)
+        .onClick(() => {
+          this.arr[0][0] = 'APPLE';
+        })
+
+      Button('change array first item')
+        .margin(10)
+        .onClick(() => {
+          this.arr[0] = UIUtils.makeV1Observed(['watermelon']);
+        })
+    }
+  }
+}
+```
+
 ![Observed_ObjectLink_2D_array](figures/Observed_ObjectLink_2D_array.gif)
 
 ### 继承Map类
