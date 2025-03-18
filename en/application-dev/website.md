@@ -31,12 +31,12 @@
     - C API<!--reference-c-->
       - Background Tasks Kit<!--reference-c-background-tasks-->
         - Modules<!--reference-c-background-tasks-module-->
-            - [TransientTask](onlyfortest/reference/apis-backgroundtasks-kit/capi-_transient_task.md)
-          - Header Files<!--reference-c-background-tasks-headerfile-->
-            - [jsvm.h](onlyfortest/reference/apis-backgroundtasks-kit/capi-transient__task__api_8h.md)
-            - [os_account.h](onlyfortest/reference/apis-backgroundtasks-kit/capi-transient__task__type_8h.md)
-          - Structs<!--reference-c-background-tasks-struct-->
-            - [TransientTask_DelaySuspendInfo](onlyfortest/reference/apis-backgroundtasks-kit/capi-_transient_task___delay_suspend_info.md)
+          - [TransientTask](onlyfortest/reference/apis-backgroundtasks-kit/capi-_transient_task.md)
+        - Header Files<!--reference-c-background-tasks-headerfile-->
+          - [jsvm.h](onlyfortest/reference/apis-backgroundtasks-kit/capi-transient__task__api_8h.md)
+          - [os_account.h](onlyfortest/reference/apis-backgroundtasks-kit/capi-transient__task__type_8h.md)
+        - Structs<!--reference-c-background-tasks-struct-->
+          - [TransientTask_DelaySuspendInfo](onlyfortest/reference/apis-backgroundtasks-kit/capi-_transient_task___delay_suspend_info.md)
       - Avsession<!--reference-c-avsession-->
         - Modules<!--reference-c-avsession-module-->
           - [OHAVSession](onlyfortest/reference/apis-avsession-kit/capi-_o_h_a_v_session.md)
