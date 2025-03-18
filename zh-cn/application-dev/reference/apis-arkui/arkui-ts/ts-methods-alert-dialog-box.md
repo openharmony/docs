@@ -41,7 +41,7 @@ static show(value: AlertDialogParamWithConfirm | AlertDialogParamWithButtons | A
 | cancel                            | ()&nbsp;=&gt;&nbsp;void | 否   | 点击遮障层关闭dialog时的回调。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                               |
 | alignment                         | [DialogAlignment](#dialogalignment枚举说明)                  | 否   | 弹窗在竖直方向上的对齐方式。<br/>默认值：DialogAlignment.Default <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**说明**：<br/>若在UIExtension中设置showInSubWindow为true, 弹窗将基于UIExtension的宿主窗口对齐。|
 | offset                            | [Offset](ts-types.md#offset)                                 | 否   | 弹窗相对alignment所在位置的偏移量。<br/>默认值：{&nbsp;dx:&nbsp;0&nbsp;,&nbsp;dy:&nbsp;0&nbsp;}<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| gridCount                         | number                                                       | 否   | 弹窗容器宽度所占用栅格数。<br/>默认值：4 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                    |
+| gridCount                         | number                                                       | 否   | 弹窗容器宽度所占用栅格数。<br/>默认值：4 <br>取值范围：大于等于0的整数。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                    |
 | maskRect<sup>10+</sup>            | [Rectangle](#rectangle8类型说明)                             | 否   | 弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。<br/>默认值：{ x: 0, y: 0, width: '100%', height: '100%' } <br/>**说明：**<br/>showInSubWindow为true时，maskRect不生效。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | showInSubWindow<sup>11+</sup>     | boolean                                                      | 否   | 某弹框需要显示在主窗口之外时，是否在子窗口显示此弹窗。<br/>默认值：false，弹窗显示在应用内，而非独立子窗口。<br/>**说明**：showInSubWindow为true的弹窗无法触发显示另一个showInSubWindow为true的弹窗。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | isModal<sup>11+</sup>             | boolean                                                      | 否   | 弹窗是否为模态窗口，模态窗口有蒙层，非模态窗口无蒙层。<br/>默认值：true，此时弹窗有蒙层。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -137,11 +137,11 @@ confirm参数优先级：fontColor、backgroundColor  > style > defaultFocus
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                       | 说明    |
-| -------------------------- | --------- |
-| AUTO                      | 两个及以下按钮水平排布，两个以上为竖直排布。 |
-| HORIZONTAL                      | 按钮水平布局。 |
-| VERTICAL                      | 按钮竖直布局。 |
+| 名称                       | 值                      | 说明    |
+| -------------------------- | --------- | --------- |
+| AUTO                      | 0                     | 两个及以下按钮水平排布，两个以上为竖直排布。 |
+| HORIZONTAL                      | 1                     | 按钮水平布局。 |
+| VERTICAL                      | 2                     | 按钮竖直布局。 |
 
 ## DialogAlignment枚举说明
 
