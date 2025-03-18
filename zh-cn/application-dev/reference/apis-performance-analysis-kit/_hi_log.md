@@ -19,20 +19,20 @@ HiLog模块实现日志打印功能。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [log.h](log_8h.md) | HiLog模块日志接口定义，通过这些接口实现日志打印相关功能。<br>**引用文件**：<hilog/log.h> <br>**库**：libhilog_ndk.z.so |
+| [log.h](log_8h.md) | HiLog模块日志接口定义，通过这些接口实现日志打印相关功能。<br>**引用文件**：<hilog/log.h> <br>**库**：libhilog_ndk.z.so | 
 
 
 ### 宏定义
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [LOG_DOMAIN](#log_domain)&nbsp;&nbsp;&nbsp;0 | 日志所对应的业务领域，用于标识业务的子系统、模块。 | 
-| [LOG_TAG](#log_tag)&nbsp;&nbsp;&nbsp;NULL | 字符串常量，标识调用所在的类或者业务。 | 
-| [OH_LOG_DEBUG](#oh_log_debug)(type, ...)&nbsp;&nbsp;&nbsp;((void)[OH_LOG_Print](#oh_log_print)((type), LOG_DEBUG, [LOG_DOMAIN](#log_domain), [LOG_TAG](#log_tag), \_\_VA_ARGS\_\_)) | DEBUG级别写日志，宏封装接口。 | 
-| [OH_LOG_INFO](#oh_log_info)(type, ...)&nbsp;&nbsp;&nbsp;((void)[OH_LOG_Print](#oh_log_print)((type), LOG_INFO, [LOG_DOMAIN](#log_domain), [LOG_TAG](#log_tag), \_\_VA_ARGS\_\_)) | INFO级别写日志，宏封装接口。 | 
-| [OH_LOG_WARN](#oh_log_warn)(type, ...)&nbsp;&nbsp;&nbsp;((void)[OH_LOG_Print](#oh_log_print)((type), LOG_WARN, [LOG_DOMAIN](#log_domain), [LOG_TAG](#log_tag), \_\_VA_ARGS\_\_)) | WARN级别写日志，宏封装接口。 | 
-| [OH_LOG_ERROR](#oh_log_error)(type, ...)&nbsp;&nbsp;&nbsp;((void)[OH_LOG_Print](#oh_log_print)((type), LOG_ERROR, [LOG_DOMAIN](#log_domain), [LOG_TAG](#log_tag), \_\_VA_ARGS\_\_)) | ERROR级别写日志，宏封装接口。 | 
-| [OH_LOG_FATAL](#oh_log_fatal)(type, ...)&nbsp;&nbsp;&nbsp;((void)HiLogPrint((type), LOG_FATAL, [LOG_DOMAIN](#log_domain), [LOG_TAG](#log_tag), \_\_VA_ARGS\_\_)) | FATAL级别写日志，宏封装接口。 | 
+| [LOG_DOMAIN](#log_domain)&nbsp;&nbsp;&nbsp;0 | 日志所对应的业务领域，用于标识业务的子系统、模块。16进制整数，有效范围为0x0~0xFFFF，超出范围则日志无法打印。  | 
+| [LOG_TAG](#log_tag)&nbsp;&nbsp;&nbsp;NULL | 字符串常量，标识调用所在的类或者业务。tag最多为31字节，超出后会截断。不建议使用中文字符，可能出现乱码或者对齐问题。  | 
+| [OH_LOG_DEBUG](#oh_log_debug)(type, ...)&nbsp;&nbsp;&nbsp;((void)[OH_LOG_Print](#oh_log_print)((type), LOG_DEBUG, [LOG_DOMAIN](#log_domain), [LOG_TAG](#log_tag), \_\_VA_ARGS\_\_)) | DEBUG级别写日志，宏封装接口。  | 
+| [OH_LOG_INFO](#oh_log_info)(type, ...)&nbsp;&nbsp;&nbsp;((void)[OH_LOG_Print](#oh_log_print)((type), LOG_INFO, [LOG_DOMAIN](#log_domain), [LOG_TAG](#log_tag), \_\_VA_ARGS\_\_)) | INFO级别写日志，宏封装接口。  | 
+| [OH_LOG_WARN](#oh_log_warn)(type, ...)&nbsp;&nbsp;&nbsp;((void)[OH_LOG_Print](#oh_log_print)((type), LOG_WARN, [LOG_DOMAIN](#log_domain), [LOG_TAG](#log_tag), \_\_VA_ARGS\_\_)) | WARN级别写日志，宏封装接口。  | 
+| [OH_LOG_ERROR](#oh_log_error)(type, ...)&nbsp;&nbsp;&nbsp;((void)[OH_LOG_Print](#oh_log_print)((type), LOG_ERROR, [LOG_DOMAIN](#log_domain), [LOG_TAG](#log_tag), \_\_VA_ARGS\_\_)) | ERROR级别写日志，宏封装接口。  | 
+| [OH_LOG_FATAL](#oh_log_fatal)(type, ...)&nbsp;&nbsp;&nbsp;((void)HiLogPrint((type), LOG_FATAL, [LOG_DOMAIN](#log_domain), [LOG_TAG](#log_tag), \_\_VA_ARGS\_\_)) | FATAL级别写日志，宏封装接口。  | 
 
 
 ### 类型定义
@@ -47,14 +47,14 @@ HiLog模块实现日志打印功能。
 | 名称 | 描述 | 
 | -------- | -------- |
 | [LogType](#logtype) { LOG_APP = 0 } | 日志类型。 | 
-| [LogLevel](#loglevel) {<br/>LOG_DEBUG = 3,<br/>LOG_INFO = 4,<br/>LOG_WARN = 5,<br/>LOG_ERROR = 6,<br/>LOG_FATAL = 7<br/>} | 日志级别。 | 
+| [LogLevel](#loglevel) {<br/>LOG_DEBUG = 3,<br>LOG_INFO = 4,<br>LOG_WARN = 5,<br>LOG_ERROR = 6,<br/>LOG_FATAL = 7<br/>} | 日志级别。 | 
 
 
 ### 函数
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| int [OH_LOG_Print](#oh_log_print) ([LogType](#logtype) type, [LogLevel](#loglevel) level, unsigned int domain, const char \*tag, const char \*fmt,...) \_\_attribute\_\_((\_\_format\_\_(os_log | 写日志接口。 | 
+| int [OH_LOG_Print](#oh_log_print) ([LogType](#logtype) type, [LogLevel](#loglevel) level, unsigned int domain, const char \*tag, const char \*fmt,...) \_\_attribute\_\_((\_\_format\_\_(os_log, 5, 6))) | 写日志接口。 | 
 | int bool [OH_LOG_IsLoggable](#oh_log_isloggable) (unsigned int domain, const char \*tag, [LogLevel](#loglevel) level) | 检查指定业务领域、TAG、级别的日志是否可以打印。 | 
 | void [OH_LOG_SetCallback](#oh_log_setcallback) ([LogCallback](#logcallback) callback) | 注册函数。 | 
 
@@ -72,7 +72,7 @@ HiLog模块实现日志打印功能。
 
 日志所对应的业务领域，用于标识业务的子系统、模块。
 
-16进制整数，有效范围0x0~0xFFFF，超过自动截掉高位。
+16进制整数，有效范围为0x0~0xFFFF，超出范围则日志无法打印。
 
 **起始版本：** 8
 
@@ -85,7 +85,7 @@ HiLog模块实现日志打印功能。
 
 **描述**
 
-字符串常量，标识调用所在的类或者业务。tag最多为31字节，超出后会截断，不建议使用中文字符，可能出现乱码或者对齐问题。
+字符串常量，标识调用所在的类或者业务。tag最多为31字节，超出后会截断。不建议使用中文字符，可能出现乱码或者对齐问题。
 
 **起始版本：** 8
 
@@ -109,7 +109,7 @@ DEBUG级别写日志，宏封装接口。
 | 名称 | 描述 | 
 | -------- | -------- |
 | type | 日志类型，三方应用日志类型为LOG_APP。 | 
-| fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中符号后类型前增加{public}、{private}标识。 | 
+| fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中%符号后类型前增加{public}、{private}标识。  | 
 | ... | 与格式字符串里参数类型对应的参数列表，参数数目、参数类型必须与格式字符串中的标识一一对应。 | 
 
 **参见：**
@@ -136,7 +136,7 @@ ERROR级别写日志，宏封装接口。
 | 名称 | 描述 | 
 | -------- | -------- |
 | type | 日志类型，三方应用日志类型为LOG_APP。 | 
-| fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中符号后类型前增加{public}、{private}标识。 | 
+| fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中%符号后类型前增加{public}、{private}标识。  | 
 | ... | 与格式字符串里参数类型对应的参数列表，参数数目、参数类型必须与格式字符串中的标识一一对应。 | 
 
 **参见：**
@@ -163,7 +163,7 @@ FATAL级别写日志，宏封装接口。
 | 名称 | 描述 | 
 | -------- | -------- |
 | type | 日志类型，三方应用日志类型为LOG_APP。 | 
-| fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中符号后类型前增加{public}、{private}标识。 | 
+| fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中%符号后类型前增加{public}、{private}标识。  | 
 | ... | 与格式字符串里参数类型对应的参数列表，参数数目、参数类型必须与格式字符串中的标识一一对应。 | 
 
 **参见：**
@@ -190,7 +190,7 @@ INFO级别写日志，宏封装接口。
 | 名称 | 描述 | 
 | -------- | -------- |
 | type | 日志类型，三方应用日志类型为LOG_APP。 | 
-| fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中符号后类型前增加{public}、{private}标识。 | 
+| fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中%符号后类型前增加{public}、{private}标识。 | 
 | ... | 与格式字符串里参数类型对应的参数列表，参数数目、参数类型必须与格式字符串中的标识一一对应。 | 
 
 **参见：**
@@ -217,7 +217,7 @@ WARN级别写日志，宏封装接口。
 | 名称 | 描述 | 
 | -------- | -------- |
 | type | 日志类型，三方应用日志类型为LOG_APP。 | 
-| fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中符号后类型前增加{public}、{private}标识。 | 
+| fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中%符号后类型前增加{public}、{private}标识。 | 
 | ... | 与格式字符串里参数类型对应的参数列表，参数数目、参数类型必须与格式字符串中的标识一一对应。 | 
 
 **参见：**
@@ -246,7 +246,7 @@ typedef void(* LogCallback) (const LogType type, const LogLevel level, const uns
 | -------- | -------- |
 | type | 日志类型，三方应用日志类型为LOG_APP。 | 
 | level | 日志级别，日志级别包括LOG_DEBUG、LOG_INFO、LOG_WARN、LOG_ERROR、LOG_FATAL。 | 
-| domain | 日志业务领域，16进制整数，范围0x0~0xFFFF。 | 
+| domain | 日志业务领域，16进制整数，范围为0x0~0xFFFF，超出范围则日志无法打印。 | 
 | tag | 日志TAG，字符串，标识调用所在的类或者业务。tag最多为31字节，超出后会截断，不建议使用中文字符，可能出现乱码或者对齐问题。 | 
 | msg | 日志内容，格式化之后的日志字符串。 | 
 
@@ -280,11 +280,11 @@ FATAL：重大致命异常，表明程序或功能即将崩溃，故障无法恢
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| LOG_DEBUG | DEBUG日志级别，使用OH_LOG_DEBUG接口打印 | 
-| LOG_INFO | INFO日志级别，使用OH_LOG_INFO接口打印 | 
-| LOG_WARN | WARN日志级别，使用OH_LOG_WARN接口打印 | 
-| LOG_ERROR | ERROR日志级别，使用OH_LOG_ERROR接口打印 | 
-| LOG_FATAL | FATAL日志级别，使用OH_LOG_FATAL接口打印 | 
+| LOG_DEBUG | DEBUG日志级别，使用OH_LOG_DEBUG接口打印。| 
+| LOG_INFO | INFO日志级别，使用OH_LOG_INFO接口打印。| 
+| LOG_WARN | WARN日志级别，使用OH_LOG_WARN接口打印。| 
+| LOG_ERROR | ERROR日志级别，使用OH_LOG_ERROR接口打印。| 
+| LOG_FATAL | FATAL日志级别，使用OH_LOG_FATAL接口打印。| 
 
 
 ### LogType
@@ -325,9 +325,9 @@ int bool OH_LOG_IsLoggable (unsigned int domain, const char * tag, LogLevel leve
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| domain | 指定日志业务领域。 | 
-| tag | 指定日志TAG。 | 
-| level | 指定日志level。 | 
+| domain | 日志业务领域，16进制整数，范围0x0~0xFFFF，超出范围则日志无法打印。  | 
+| tag | 日志TAG，字符串，标识调用所在的类或者业务。tag最多为31字节，超出后会截断，不建议使用中文字符，可能出现乱码或者对齐问题。  | 
+| level | 日志级别，日志级别包括LOG_DEBUG、LOG_INFO、LOG_WARN、LOG_ERROR、LOG_FATAL。  | 
 
 **返回：**
 
@@ -354,9 +354,9 @@ int OH_LOG_Print (LogType type, LogLevel level, unsigned int domain, const char 
 | -------- | -------- |
 | type | 日志类型，三方应用日志类型为LOG_APP。 | 
 | level | 日志级别，日志级别包括LOG_DEBUG、LOG_INFO、LOG_WARN、LOG_ERROR、LOG_FATAL。 | 
-| domain | 日志业务领域，16进制整数，范围0x0~0xFFFF。 | 
+| domain | 日志业务领域，16进制整数，范围0x0~0xFFFF，超出范围则日志无法打印。  | 
 | tag | 日志TAG，字符串，标识调用所在的类或者业务。tag最多为31字节，超出后会截断，不建议使用中文字符，可能出现乱码或者对齐问题。 | 
-| fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中符号后类型前增加{public}、{private}标识。 | 
+| fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中%符号后类型前增加{public}、{private}标识。  | 
 | ... | 与格式字符串里参数类型对应的参数列表，参数数目、参数类型必须与格式字符串中的标识一一对应。 | 
 
 **返回：**
@@ -369,12 +369,12 @@ int OH_LOG_Print (LogType type, LogLevel level, unsigned int domain, const char 
 ```
 void OH_LOG_SetCallback (LogCallback callback)
 ```
-
 **描述**
 
 注册函数。
 
-调用此函数后，用户实现的回调函数可以接收当前进程的所有hilog日志。 请注意，无论是否调用该接口，它都不会更改当前进程的hilog日志的默认行为。
+调用此函数后，用户实现的回调函数可以接收当前进程的所有hilog日志。  
+请注意，无论是否调用该接口，它都不会更改当前进程的hilog日志的默认行为。
 
 **起始版本：** 11
 
