@@ -43,7 +43,7 @@
 
 ### 接口说明
 
-OpenHarmony LiteOS-A的堆内存管理主要为用户提供以下功能，接口详细信息可以查看API参考。
+OpenHarmony LiteOS-A的堆内存管理主要为用户提供以下功能，接口详细信息可以查看[API参考](https://gitee.com/openharmony/kernel_liteos_m/blob/master/kernel/include/los_memory.h)。
 
   **表1** 堆内存管理接口
 
