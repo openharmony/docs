@@ -19,9 +19,9 @@
 | -------- | -------- |
 | [Camera_Device](_camera___device.md) [camera](#camera) | 相机实例。 | 
 | [Camera_ConcurrentType](_o_h___camera.md#camera_concurrenttype) [type](#type) | 并发类型。 | 
-| [Camera_SceneMode](_o_h___camera.md#camera_scenemode) \* [sceneModes](#sceneModes) | 支持的模式。 | 
-| [Camera_OutputCapability](_o_h___camera.md#outputcapability) \* [outputCapabilities](#outputCapabilities) | 与模式对应的输出能力集。 | 
-| uint32_t [modeAndCapabilitySize](#modeAndCapabilitySize) | 数组大小。 | 
+| [Camera_SceneMode](_o_h___camera.md#camera_scenemode) \* [sceneModes](#scenemodes) | 支持的模式。 | 
+| [Camera_OutputCapability](_o_h___camera.md#outputcapability) \* [outputCapabilities](#outputcapabilities) | 与模式对应的输出能力集。 | 
+| uint32_t [modeAndCapabilitySize](#modeandcapabilitysize) | 数组大小。 | 
 
 ## 结构体成员变量说明
 
