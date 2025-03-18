@@ -580,7 +580,7 @@ static rgba(red: number, green: number, blue: number, alpha?: number): ColorMetr
 | red   | number | 是   | 颜色的R分量（红色），值是0~255的整数。 |
 | green | number | 是   | 颜色的G分量（绿色），值是0~255的整数。 |
 | blue  | number | 是   | 颜色的B分量（蓝色），值是0~255的整数。 |
-| alpha | number | 否   | 颜色的A分量（透明度），值是0~1.0的浮点数。 |
+| alpha | number | 否   | 颜色的A分量（透明度），值是0.0~1.0的浮点数，默认值为1.0，不透明。 |
 
 **返回值：**
 
