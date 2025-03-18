@@ -1366,8 +1366,8 @@ OH_NN_ReturnCode OH_NNDevice_GetAllDevicesID (const size_t **allDevicesID, uint3
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| allDevicesID | 指向size_t数组的指针。要求传入的**\*allDevicesID**为空指针，否则将返回错误码OH_NN_INVALID_PARAMETER。 | 
-| deviceCount | uint32_t类型的指针，用于返回**\*allDevicesID**的长度。 | 
+| allDevicesID | 指向size_t数组的指针。要求传入的\*allDevicesID为空指针，否则将返回错误码OH_NN_INVALID_PARAMETER。 | 
+| deviceCount | uint32_t类型的指针，用于返回\*allDevicesID的长度。 | 
 
 **返回：**
 
