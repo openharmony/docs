@@ -12,7 +12,7 @@ OpenHarmony内核使用[musl libc库](../../application-dev/reference/native-lib
 
 musl libc库支持POSIX标准，涉及的系统调用相关接口由OpenHarmony内核适配支持 ，以满足接口对外描述的功能要求。
 
-标准库支持接口的详细情况请参考[C库的API文档](application-dev/reference/native-lib/musl.md)，其中也涵盖了与POSIX标准之间的差异说明。
+标准库支持接口的详细情况请参考[C库的API文档](../../application-dev/reference/native-lib/musl.md)，其中也涵盖了与POSIX标准之间的差异说明。
 
 
 ### 编程实例
