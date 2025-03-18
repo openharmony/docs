@@ -32,12 +32,6 @@ AVVolumePanel({volumeLevel?: number, volumeParameter?: AVVolumePanelParameter})
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
-## 属性
-
-除支持[通用属性](../apis-arkui/arkui-ts/ts-component-general-attributes.md)外，还支持以下属性：
-
-**参数：**
-
 | 名称 | 类型 | 必填 | 装饰器类型 | 描述                                                                                                                                                                                                    |
 | -------- | -------- | -------- | -------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |volumeLevel | number | 否 | @Prop | 通过音量面板设置设备音量。该值应介于当前设备音量的最小值和最大值之间。如果该值大于当前设备音量的最大值，则视为设置设备最大音量值；如果该值小于当前设备音量的最小值，则视为设置设备最小音量值。获取音量的最大值与最小值可参考[AudioVolumeGroupManager](../apis-audio-kit/js-apis-audio.md#audiovolumegroupmanager9)。 |
