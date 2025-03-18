@@ -11,7 +11,7 @@
 
 **相关模块：** MindSpore
 
-**所在头文件：** [model.h](capi-model_8h.md)
+**所在头文件：** [resmgr_common.h](capi-model_8h.md)
 
 
 ## 汇总
