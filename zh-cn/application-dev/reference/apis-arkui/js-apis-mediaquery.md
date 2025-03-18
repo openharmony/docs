@@ -145,7 +145,7 @@ listener.off('change', onPortrait) // 去取消注册回调
 
 | 名称    | 类型    | 可读 | 可写 | 说明                 |
 | ------- | ------- | ---- | ---- | -------------------- |
-| matches | boolean | 是   | 否   | 是否符合匹配条件。   |
+| matches | boolean | 是   | 否   | 是否符合匹配条件。true表示满足查询条件，false表示不满足查询条件。  |
 | media   | string  | 是   | 否   | 媒体事件的匹配条件。 |
 
 
