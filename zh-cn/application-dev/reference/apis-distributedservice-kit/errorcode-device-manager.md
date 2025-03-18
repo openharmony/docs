@@ -124,7 +124,7 @@ Color space not supported.
 
 **可能原因**
 
-色彩空间设置范围不支持。
+色彩空间输出类型指定为OH_COLORSPACE_BT2020_HLG_LIMIT，当前输出类型不是指定类型。
 
 **处理步骤**
 
