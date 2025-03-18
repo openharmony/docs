@@ -6922,7 +6922,7 @@ hideAllComponentContents(): void
 
 | 名称             | 类型                | 必填     | 说明                     |
 | --------------- | ---------------------- | ------------ | --------------------- |
-| renderRootOverlay   | boolean | 否 | 是否渲染overlay根节点，默认值为true。 |
+| renderRootOverlay   | boolean | 否 | 是否渲染overlay根节点，true表示渲染overlay根节点，false表示不渲染overlay根节点，默认值为true。|
 
 ## AtomicServiceBar<sup>11+</sup>
 
