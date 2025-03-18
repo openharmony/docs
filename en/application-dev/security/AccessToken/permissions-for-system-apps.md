@@ -4564,3 +4564,15 @@ This permission prevents authorized access to custom EDM configuration files, su
 **Enable via ACL**：true
 
 **Valid since**：18
+
+## ohos.permission.CHANGE_DEFAULT_APPLICATION
+
+Allows a system application or system service to subscribe the default app change event usual.event.DEFAULT_APP_CHANGED.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：17

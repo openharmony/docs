@@ -4574,3 +4574,15 @@
 **ACL使能**：true
 
 **起始版本**：18
+
+## ohos.permission.CHANGE_DEFAULT_APPLICATION
+
+允许系统应用或系统服务订阅默认应用变更事件usual.event.DEFAULT_APP_CHANGED。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：17
