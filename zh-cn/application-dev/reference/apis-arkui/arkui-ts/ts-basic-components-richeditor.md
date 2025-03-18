@@ -5020,3 +5020,50 @@ struct richEditorNew03 {
 }
 ```
 ![StyledString](figures/builderspan_drag_config.gif)
+
+### 示例27（文本设置Url样式）
+通过在addTextSpan、UpdateSpanStyle接口中添加UrlStyle，可以实现文本点击跳转链接的功能。
+
+```ts
+// xxx.ets
+
+@Entry
+@Component
+struct RichEditorExample {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller };
+  styledStringController: RichEditorStyledStringController = new RichEditorStyledStringController();
+  styledStringOptions: RichEditorStyledStringOptions = { controller: this.styledStringController };
+
+  build() {
+    Column() {
+      Row() {
+        Button("Add Example Url").onClick(() => {
+          this.controller.addTextSpan("示例网址", {
+            urlStyle: { url: "https://www.example.com" }
+          })
+        })
+        Button("Clear Url").onClick(() => {
+          this.controller.updateSpanStyle({
+            start: 0,
+            textStyle: {},
+            urlStyle: { url: "" }
+          })
+        })
+      }
+
+      Row() {
+        RichEditor(this.options)
+          .height('35%')
+          .border({ width: 1, color: Color.Blue })
+      }
+
+      Row() {
+        RichEditor(this.styledStringOptions)
+          .height('35%')
+          .border({ width: 1, color: Color.Red })
+      }
+    }
+  }
+}
+```
