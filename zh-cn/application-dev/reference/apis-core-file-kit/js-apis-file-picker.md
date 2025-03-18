@@ -787,8 +787,8 @@ async function example18(context: common.Context) { // 需确保 context 由 UIA
 | authMode<sup>12+</sup>    | boolean                              | 否   | 拉起授权picker，默认为false（非授权模式）。当authMode为true时为授权模式，defaultFilePathUri必填，表明待授权uri。仅支持2in1设备。<br>**系统能力**：SystemCapability.FileManagement.UserFileService.FolderSelection  | 
 |multiAuthMode<sup>15+</sup>  | boolean                             |否    | 支持批量授权模式，默认为false（非批量授权模式）。当multAuthMode为true时为批量授权模式。当multAuthMode为true时，只有multiUriArray参数生效，其他参数不生效。仅支持手机设备。<br>**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。|
 |multiUriArray<sup>15+</sup>  | Array&lt;string&gt;                             |否    | 传入需要批量授权的uri数组（仅支持文件，文件夹不生效）。配合multAuthMode使用。当multAuthMode为false时，配置该参数不生效。仅支持手机设备。<br>**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。|
-|mergeMode<sup>15+</sup>  | [MergeTypeMode](#mergetypemode15)                             |否    | 开启聚合视图模式，支持拉起文件管理应用的聚合视图。默认为DEFAULT，表示该参数不生效，非聚合视图。当该参数置为非DEFAULT时，其他参数不生效。仅支持手机设备。<br>**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。|    
-|isEncryptionSupported<sup>18+</sup>    | boolean |否    | 是否支持加密（仅支持文件，文件夹不生效），默认为false。该参数为true时，在picker界面可以选择对文件进行加密。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。  |    
+|mergeMode<sup>15+</sup>  | [MergeTypeMode](#mergetypemode15)                             |否    | 开启聚合视图模式，支持拉起文件管理应用的聚合视图。默认为DEFAULT，表示该参数不生效，非聚合视图。当该参数置为非DEFAULT时，其他参数不生效。仅支持手机设备。<br>**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。|
+|isEncryptionSupported<sup>18+</sup>    | boolean |否    | 是否支持加密（仅支持文件，文件夹不生效），默认为false。该参数为true时，在picker界面可以选择对文件进行加密。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。  |
 ## DocumentPickerMode<sup>12+</sup>
 
 枚举，picker保存的模式。
