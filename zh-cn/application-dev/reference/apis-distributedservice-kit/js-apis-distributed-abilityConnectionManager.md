@@ -408,7 +408,7 @@ disconnect(sessionId:&nbsp;number):&nbsp;void;
 
 reject(token:&nbsp;string,&nbsp;reason:&nbsp;string):&nbsp;void;
 
-通知对端连接被拒绝的原因。该函数用于在应用协同过程中，当连接请求被拒绝时，向对端发送拒绝原因。
+在跨端应用协同过程中，在拒绝对端的连接请求后，向对端发送拒绝原因。
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
