@@ -103,7 +103,7 @@ interval(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                       |
 | ------ | ------ | ---- | ---------------------------------------------------------- |
-| value  | number | 是   | 自动播放时播放的时间间隔。<br/>默认值：3000<br/>单位：毫秒 |
+| value  | number | 是   | 自动播放时播放的时间间隔。<br/>默认值：3000<br/>单位：毫秒<br/>取值范围：[0, +∞)，设置小于0的值时，按照默认值处理。 |
 
 ### indicator
 
@@ -159,7 +159,7 @@ curve默认曲线为[interpolatingSpring](../js-apis-curve.md#curvesinterpolatin
 
 | 参数名 | 类型   | 必填 | 说明                                                  |
 | ------ | ------ | ---- | ----------------------------------------------------- |
-| value  | number | 是   | 子组件切换的动画时长。<br/>默认值：400<br/>单位：毫秒 |
+| value  | number | 是   | 子组件切换的动画时长。<br/>默认值：400<br/>单位：毫秒<br/>取值范围：[0, +∞)，设置小于0的值时，按照默认值处理。 |
 
 ### vertical
 
@@ -197,7 +197,7 @@ itemSpace(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                                   |
 | ------ | -------------------------- | ---- | -------------------------------------- |
-| value  | number&nbsp;\|&nbsp;string | 是   | 子组件与子组件之间间隙。<br/>默认值：0 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 子组件与子组件之间间隙。<br/>默认值：0<br/>取值范围：[0, +∞)，设置小于0的值时，按照默认值处理。 |
 
 ### displayMode
 
@@ -233,7 +233,7 @@ cachedCount(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                             |
 | ------ | ------ | ---- | -------------------------------- |
-| value  | number | 是   | 预加载子组件个数。<br/>默认值：1 |
+| value  | number | 是   | 预加载子组件个数。<br/>默认值：1<br/>取值范围：[0, +∞)，设置小于0的值时，按照默认值处理。 |
 
 ### disableSwipe<sup>8+</sup>
 
@@ -307,7 +307,7 @@ displayCount(value: number | string | SwiperAutoFill, swipeByGroup?: boolean)
 
 | 参数名                     | 类型                                                         | 必填 | 说明                                                         |
 | -------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value                      | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[SwiperAutoFill](#swiperautofill10对象说明)<sup>10+</sup> | 是   | 视窗内显示的子元素个数。<br/> 默认值：1                      |
+| value                      | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[SwiperAutoFill](#swiperautofill10对象说明)<sup>10+</sup> | 是   | 视窗内显示的子元素个数。<br/> 默认值：1<br/>取值范围：(0, +∞)，设置小于等于0的值时，按照默认值处理。|
 | swipeByGroup<sup>11+</sup> | boolean                                                      | 否   | 是否按组进行翻页。如果设为true，在翻页时会按组进行翻页，每组内子元素的数量为displayCount value的值；如果为false，则为默认翻页行为，即按照子元素进行翻页。<br/> 默认值：false |
 
 > **说明：**
