@@ -527,9 +527,9 @@ orientation(orientation: ImageRotateOrientation)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 说明                    |
-| ------ | -------------------------- |
-| EMPTY   | 空图像。                   |
+| 名称     | 值    | 说明                    |
+| ------ | ----- | -------------------------- |
+| EMPTY   | 0  | 空图像。                   |
 
 ## ImageInterpolation
 
@@ -694,9 +694,9 @@ type ImageMatrix = Matrix4Transit
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型       | 只读 | 必填 | 说明           |
-| ------ | --------- | ---- | --- | ------------- |
-| ORIGIN  | ColorContent | 是 | 否 | 重置[fillColor](#fillcolor)接口，效果上与不设置[fillColor](#fillcolor)一致。 |
+| 名称 | 类型       | 必填 | 说明           |
+| ------ | --------- | --- | ------------- |
+| ORIGIN  | ColorContent | 否 | 重置[fillColor](#fillcolor)接口，效果上与不设置[fillColor](#fillcolor)一致。 |
 
 ## 事件
 
