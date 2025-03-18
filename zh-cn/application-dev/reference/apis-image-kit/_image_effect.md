@@ -1897,10 +1897,10 @@ ImageEffect_ErrorCode OH_ImageEffect_SetInputUri (OH_ImageEffect * imageEffect, 
 
 **参数:**
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| imageEffect | 效果器指针。 | 
-| uri | 图片URI。 | 
+| imageEffect | 效果器指针。 |
+| uri | 图片URI（只支持Jpeg，Heif）。 |
 
 **返回：**
 
@@ -2037,10 +2037,10 @@ ImageEffect_ErrorCode OH_ImageEffect_SetOutputUri (OH_ImageEffect * imageEffect,
 
 **参数:**
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| imageEffect | 效果器指针。 | 
-| uri | 图片URI。 | 
+| imageEffect | 效果器指针。 |
+| uri | 图片URI。输出URI的格式和输入保持一致，如果不支持Heif编码能力，则进行Jpeg编码。 |
 
 **返回：**
 
