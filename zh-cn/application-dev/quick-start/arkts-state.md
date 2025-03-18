@@ -1098,13 +1098,13 @@ struct Index {
 }
 ```
 
-### 自定义组件外改变状态变量
+### 用注册回调的方式更改状态变量需要执行解注册
 
 开发者可以在aboutToAppear中注册箭头函数，并以此来改变组件中的状态变量。但需要注意的是在aboutToDisappear中将之前注册的函数置空，否则会因为箭头函数捕获了自定义组件的this实例，导致自定义组件无法被释放，从而造成内存泄漏。
 
 ```ts
 class Model {
-  private callback: Function | undefined = () => {}
+  private callback: (() => void) | undefined = () => {};
 
   add(callback: () => void): void {
     this.callback = callback;
