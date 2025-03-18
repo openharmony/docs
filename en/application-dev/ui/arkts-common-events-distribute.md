@@ -74,7 +74,7 @@ When a user performs a press action, the callback for [custom event interception
 
 ### Security Components
 
-ArkUI provides security components, such as [LocationButton](../security/AccessToken/locationbutton.md), [PasteButton](../security/AccessToken/pastebutton.md) and [SaveButton](../security/AccessToken/savebutton.md).
+ArkUI provides security components, such as [PasteButton](../security/AccessToken/pastebutton.md) and [SaveButton](../security/AccessToken/savebutton.md).
 
 If a component has a higher [z-order](../reference/apis-arkui/arkui-ts/ts-universal-attributes-z-order.md) than a security component and covers it, the security component's touch events are sent directly to the parent node for further touch testing.
 

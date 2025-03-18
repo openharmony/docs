@@ -19,10 +19,10 @@ Provides APIs for obtaining component snapshots.
 
 | Name| Description| 
 | -------- | -------- |
-| int32_t [OH_ArkUI_GetNodeSnapshot](native__node_8h.md#OH_ArkUI_GetNodeSnapshot) () | Obtains a snapshot of a given component. If the node is not in the component tree or has not been rendered, the snapshot operation will fail. When the **Pixelmap** object created is no longer in use, it should be released by calling **OH_PixelmapNative_Release**.| 
-| ArkUI_SnapshotOptions [OH_ArkUI_CreateSnapshotOptions](native__type_8h.md#OH_ArkUI_CreateSnapshotOptions) () | Creates a snapshot options object, which must be released using **OH_ArkUI_SnapshotOptions_Dispose** when no longer in use.| 
-| void [OH_ArkUI_DestroySnapshotOptions](native__type_8h.md#OH_ArkUI_DestroySnapshotOptions) () | Destroys a snapshot options object.| 
-| int32_t [OH_ArkUI_SnapshotOptions_SetScale](native__type_8h.md#OH_ArkUI_SnapshotOptions_SetScale) () | Sets the scale property in the snapshot options.| 
+| int32_t [OH_ArkUI_GetNodeSnapshot](native__node_8h#OH_ArkUI_GetNodeSnapshot) () | Obtains a snapshot of a given component. If the node is not in the component tree or has not been rendered, the snapshot operation will fail. When the **Pixelmap** object created is no longer in use, it should be released by calling **OH_PixelmapNative_Release**.| 
+| ArkUI_SnapshotOptions [OH_ArkUI_CreateSnapshotOptions](native__type_8h#OH_ArkUI_CreateSnapshotOptions) () | Creates a snapshot options object, which must be released using **OH_ArkUI_SnapshotOptions_Dispose** when no longer in use.| 
+| void [OH_ArkUI_DestroySnapshotOptions](native__type_8h#OH_ArkUI_DestroySnapshotOptions) () | Destroys a snapshot options object.| 
+| int32_t [OH_ArkUI_SnapshotOptions_SetScale](native__type_8h#OH_ArkUI_SnapshotOptions_SetScale) () | Sets the scale property in the snapshot options.| 
 
 ### Creates a snapshot options object.
 

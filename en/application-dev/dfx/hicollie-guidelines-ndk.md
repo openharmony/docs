@@ -16,7 +16,7 @@ HiCollie provides APIs for detecting service thread stuck and jank events and re
 > For details about the specifications of service thread jank event logs, see [Main Thread Jank Event Specifications](./hiappevent-watcher-mainthreadjank-events.md#main-thread-jank-event-specifications).
 
 
-For details (such as parameter usage and value ranges), see [HiCollie](../reference/apis-performance-analysis-kit/_hi_hicollie.md).
+For details (such as parameter usage and value ranges), see [HiCollie](../reference/apis-performance-analysis-kit/_hi_collie.md).
 
 ## How to Develop
 
