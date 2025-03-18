@@ -162,7 +162,7 @@ RouterPageInfo包含的信息。
 | 名称    | 类型                                      | 必填 | 说明                                   |
 | ------- | ----------------------------------------- | ---- | -------------------------------------- |
 | context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 屏幕像素密度变化时页面对应的上下文信息。 |
-| density | number                                    | 是   | 变化后的屏幕像素密度。                 |
+| density | number                                    | 是   | 变化后的屏幕像素密度。<br/>取值范围：[0, +∞)                 |
 
 ## NavDestinationSwitchInfo<sup>12+</sup>
 

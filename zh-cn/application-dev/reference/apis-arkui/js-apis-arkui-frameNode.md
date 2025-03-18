@@ -26,7 +26,7 @@ import { FrameNode, LayoutConstraint, ExpandMode, typeNode, NodeAdapter } from "
 
 | 名称   | 类型   | 只读 | 可选 | 说明                   |
 | ------ | ------ | ---- | ---- | ---------------------- |
-| attributeSetting  | boolean | 否   | 是   | FrameNode是否支持跨ArkTS语言进行属性设置。默认为false。 |
+| attributeSetting  | boolean | 否   | 是   | FrameNode是否支持跨ArkTS语言进行属性设置。<br/>true表示支持跨ArkTS语言进行属性设置，false表示不支持跨ArkTS语言进行属性设置。<br/>默认为false。 |
 
 ## ExpandMode<sup>15+</sup>
 
@@ -242,7 +242,7 @@ getChild(index: number): FrameNode | null
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| index  | number | 是   | 需要查询的子节点的序列号。 |
+| index  | number | 是   | 需要查询的子节点的序列号。<br/>若当前节点有n个子节点，index取值范围为[0, n-1]。 |
 
 **返回值：**
 
@@ -268,8 +268,8 @@ getChild(index: number, expandMode?: ExpandMode): FrameNode | null
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| index  | number | 是   | 需要查询的子节点的序列号。 |
-| expandMode | [ExpandMode](#expandmode15) | 否 | 指定子节点展开模式。<br/>默认值：ExpandMode.Expand |
+| index  | number | 是   | 需要查询的子节点的序列号。<br/>若当前节点有n个子节点，index取值范围为[0, n-1]。 |
+| expandMode | [ExpandMode](#expandmode15) | 否 | 指定子节点展开模式。<br/>默认值：ExpandMode.EXPAND |
 
 **返回值：**
 
@@ -430,7 +430,7 @@ moveTo(targetParent: FrameNode, index?: number): void
 
 > **说明：**
 >
-> 当前仅支持以下类型的[TypedFrameNode](#typedframenode12)进行移动操作：[Stack](#stack12)、[XComponent](#xcomponent12)。
+> 当前仅支持以下类型的[TypedFrameNode](#typedframenode12)进行移动操作：[Stack](#stack12)、[XComponent](#xcomponent12)。对于其他类型的节点，移动操作不会生效。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -441,7 +441,7 @@ moveTo(targetParent: FrameNode, index?: number): void
 | 参数名        | 类型                    | 必填 | 说明                  |
 | ------------ | ----------------------- | ---- | --------------------- |
 | targetParent | [FrameNode](#framenode) | 是   | 目标父节点。<br/>**说明：**<br/>targetParent节点不可以为声明式创建的节点，即不可修改的FrameNode。若目标父节点不符合规格，则抛出异常信息。 |
-| index        | number                  | 否   | 子节点序列号。当前FrameNode将被添加到目标FrameNode对应序列号的子节点之前，若目标FrameNode有n个节点，index取值范围为0到n-1。<br/>若参数无效或不指定，则添加到目标FrameNode的最后。<br/>默认值：-1 |
+| index        | number                  | 否   | 子节点序列号。当前FrameNode将被添加到目标FrameNode对应序列号的子节点之前，若目标FrameNode有n个节点，index取值范围为[0, n-1]。<br/>若参数无效或不指定，则添加到目标FrameNode的最后。<br/>默认值：-1 |
 
 **错误码：**
 
@@ -791,7 +791,7 @@ isVisible(): boolean
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| boolean | 节点是否可见。 |
+| boolean | 节点是否可见。<br/>true表示节点可见，false表示节点不可见。 |
 
 **示例：**
 
@@ -811,7 +811,7 @@ isClipToFrame(): boolean
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| boolean | 节点是否是剪裁到组件区域。 |
+| boolean | 节点是否是剪裁到组件区域。<br/>true表示节点剪裁到组件区域，false表示节点不是剪裁到组件区域。 |
 
 **示例：**
 
@@ -831,7 +831,7 @@ isAttached(): boolean
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| boolean | 节点是否被挂载到主节点树上。 |
+| boolean | 节点是否被挂载到主节点树上。<br/>true表示节点被挂载到主节点树上，false表示节点不是被挂载到主节点树上。 |
 
 **示例：**
 
@@ -1854,7 +1854,7 @@ createNode(context: UIContext, nodeType: 'Flex'): Flex
 | ------------------ | ------------------ |
 | [Flex](#flex12) | Flex类型的FrameNode节点。 |
 
-**示例： **
+**示例：**
 
 <!--code_no_check-->
 
@@ -1896,7 +1896,7 @@ createNode(context: UIContext, nodeType: 'Swiper'): Swiper
 | ------------------ | ------------------ |
 | [Swiper](#swiper12) | Swiper类型的FrameNode节点。 |
 
-**示例： ** 
+**示例：** 
 
 <!--code_no_check-->
 
@@ -2801,7 +2801,7 @@ createNode(context: UIContext, nodeType: 'Grid'): Grid
 | ------------------ | ------------------ |
 | [Grid](#grid14) | Grid类型的FrameNode节点。 |
 
-**示例： ** 
+**示例：** 
 
 <!--code_no_check-->
 
@@ -2887,7 +2887,7 @@ createNode(context: UIContext, nodeType: 'TextClock'): TextClock
 | ------------------ | ------------------ |
 | [TextClock](#textclock14) | TextClock类型的FrameNode节点。 |
 
-**示例： ** 
+**示例：** 
 
 <!--code_no_check-->
 
@@ -3102,7 +3102,7 @@ createNode(context: UIContext, nodeType: 'Checkbox'): Checkbox
 | ------------------ | ------------------ |
 | [Checkbox](#checkbox16) | Checkbox类型的FrameNode节点。 |
 
-**示例： ** 
+**示例：** 
 
 <!--code_no_check-->
 
@@ -3416,7 +3416,7 @@ set totalNodeCount(count: number)
 
 | 参数名  | 类型                                                   | 必填 | 说明             |
 | ------- | ------------------------------------------------------ | ---- | ---------------- |
-| count | number | 是   | 数据节点总数。 |
+| count | number | 是   | 数据节点总数。<br/>取值范围：[0, +∞) |
 
 get totalNodeCount(): number
 
@@ -3430,7 +3430,7 @@ get totalNodeCount(): number
 
 | 类型                     | 说明                 |
 | ----------------- | ------------ |
-| number | 数据节点总数。 |
+| number | 数据节点总数。<br/>取值范围：[0, +∞) |
 
 ### reloadAllItems<sup>12+</sup>
 
@@ -3456,8 +3456,8 @@ reloadItem(start: number, count: number): void
 
 | 参数名  | 类型                                                   | 必填 | 说明             |
 | ------- | ------------------------------------------------------ | ---- | ---------------- |
-| start | number | 是   | 重新加载的节点开始索引值。 |
-| count | number | 是   | 重新加载数据节点的数量。 |
+| start | number | 是   | 重新加载的节点开始索引值。<br/>取值范围：[0, +∞) |
+| count | number | 是   | 重新加载数据节点的数量。<br/>取值范围：[0, +∞) |
 
 ### removeItem<sup>12+</sup>
 
@@ -3473,8 +3473,8 @@ removeItem(start: number, count: number): void
 
 | 参数名  | 类型                                                   | 必填 | 说明             |
 | ------- | ------------------------------------------------------ | ---- | ---------------- |
-| start | number | 是   | 删除的节点开始索引值。 |
-| count | number | 是   | 删除数据节点的数量。 |
+| start | number | 是   | 删除的节点开始索引值。<br/>取值范围：[0, +∞) |
+| count | number | 是   | 删除数据节点的数量。<br/>取值范围：[0, +∞) |
 
 ### insertItem<sup>12+</sup>
 
@@ -3490,8 +3490,8 @@ insertItem(start: number, count: number): void
 
 | 参数名  | 类型                                                   | 必填 | 说明             |
 | ------- | ------------------------------------------------------ | ---- | ---------------- |
-| start | number | 是   | 新增的节点开始索引值。 |
-| count | number | 是   | 新增数据节点的数量。 |
+| start | number | 是   | 新增的节点开始索引值。<br/>取值范围：[0, +∞) |
+| count | number | 是   | 新增数据节点的数量。<br/>取值范围：[0, +∞) |
 
 ### moveItem<sup>12+</sup>
 
@@ -3507,8 +3507,8 @@ moveItem(from: number, to: number): void
 
 | 参数名  | 类型                                                   | 必填 | 说明             |
 | ------- | ------------------------------------------------------ | ---- | ---------------- |
-| from | number | 是   | 数据移动的原始索引值。 |
-| to | number | 是   | 数据移动的目的索引值。 |
+| from | number | 是   | 数据移动的原始索引值。<br/>取值范围：[0, +∞) |
+| to | number | 是   | 数据移动的目的索引值。<br/>取值范围：[0, +∞) |
 
 ### getAllAvailableItems<sup>12+</sup>
 
@@ -3566,7 +3566,7 @@ onGetChildId?(index: number): number
 
 | 参数名  | 类型                                                   | 必填 | 说明             |
 | ------- | ------------------------------------------------------ | ---- | ---------------- |
-| index | number | 是   | 加载节点索引值。 |
+| index | number | 是   | 加载节点索引值。<br/>取值范围：[0, +∞) |
 
 **返回值：**
 
@@ -3588,7 +3588,7 @@ onCreateChild?(index: number): FrameNode
 
 | 参数名  | 类型                                                   | 必填 | 说明             |
 | ------- | ------------------------------------------------------ | ---- | ---------------- |
-| index | number | 是   | 加载节点索引值。 |
+| index | number | 是   | 加载节点索引值。<br/>取值范围：[0, +∞) |
 
 **返回值：**
 
