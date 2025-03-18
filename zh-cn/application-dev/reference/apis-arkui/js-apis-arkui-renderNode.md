@@ -2595,7 +2595,7 @@ set markNodeGroup(isNodeGroup: boolean)
 
 | 参数名    | 类型                                               | 必填 | 说明               |
 | --------- | -------------------------------------------------- | ---- | ------------------ |
-| isNodeGroup | boolean | 是   | 设置是否优先绘制节点及其子节点。 |
+| isNodeGroup | boolean | 是   | 设置是否优先绘制节点及其子节点。<br/>true表示优先绘制节点及其子节点，false表示不是优先绘制节点及其子节点。 |
 
 get markNodeGroup(): boolean
 
@@ -2607,7 +2607,7 @@ get markNodeGroup(): boolean
 
 | 类型    | 说明                                        |
 | ------- | ------------------------------------------- |
-| boolean | 当前节点是否标记了优先绘制，默认值为false。 |
+| boolean | 当前节点是否标记了优先绘制。<br/>true表示当前节点标记了优先绘制，false表示当前节点没有标记优先绘制。<br/>默认值：false |
 
 **示例：**
 
