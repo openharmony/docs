@@ -36,7 +36,7 @@ RTC主要用于提供实时时间和定时报警功能。
 
 ### 接口说明
 
-RTC模块提供的主要接口如表1所示，具体API详见//drivers/hdf_core/framework/include/platform/rtc_if.h。
+RTC模块提供的主要接口如表1所示，具体API[详见](https://gitee.com/openharmony/drivers_hdf_core/blob/master/framework/include/platform/rtc_if.h)。
 
 **表 1** RTC设备API接口功能介绍
 
