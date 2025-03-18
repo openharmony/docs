@@ -595,7 +595,7 @@ getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------------------------------------- | -- | ---------------------------------------- |
 | ctx      | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是 | 当前应用上下文信息。 |
-| callback | AsyncCallback&lt;[Window](#window)&gt; | 是 | 回调函数。返回当前应用内最后显示的窗口对象。 |
+| callback | AsyncCallback&lt;[Window](#window)&gt; | 是 | 回调函数。返回当前应用内最上层的窗口对象。 |
 
 **错误码：**
 
@@ -604,7 +604,7 @@ getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002 | This window state is abnormal.   |
+| 1300002 | This window state is abnormal. Top window or main window is null or destroyed.  |
 | 1300006 | This window context is abnormal. |
 
 **示例：**
@@ -656,7 +656,7 @@ getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
 | 类型 | 说明 |
 | -------------------------------- | ------------------------------------------- |
-| Promise&lt;[Window](#window)&gt; | Promise对象。返回当前应用内最后显示的窗口对象。 |
+| Promise&lt;[Window](#window)&gt; | Promise对象。返回当前应用内最上层的窗口对象。 |
 
 **错误码：**
 
@@ -665,7 +665,7 @@ getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002 | This window state is abnormal.   |
+| 1300002 | This window state is abnormal. Top window or main window is null or destroyed.   |
 | 1300006 | This window context is abnormal. |
 
 **示例：**
