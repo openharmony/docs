@@ -30,7 +30,7 @@
           - [MindSpore](onlyfortest/reference/apis-mindspore-lite-kit/capi-_mind_spore.md)
         - 头文件<!--reference-c-ai-head-file-->
           - [egl.h](onlyfortest/reference/apis-mindspore-lite-kit/capi-context_8h.md)
-          - [oh_fileio.h](onlyfortest/reference/apis-mindspore-lite-kit/capi-data__type_8h.md)
+          - [drawing_surface.h](onlyfortest/reference/apis-mindspore-lite-kit/capi-data__type_8h.md)
           - [uscript.h](onlyfortest/reference/apis-mindspore-lite-kit/capi-format_8h.md)
           - [resmgr_common.h](onlyfortest/reference/apis-mindspore-lite-kit/capi-model_8h.md)
           - [oh_fileio.h](onlyfortest/reference/apis-mindspore-lite-kit/capi-status_8h.md)
