@@ -29,13 +29,13 @@
         - 模块<!--reference-c-ai-module-->
           - [MindSpore](onlyfortest/reference/apis-mindspore-lite-kit/capi-_mind_spore.md)
         - 头文件<!--reference-c-ai-head-file-->
-          - [context.h](onlyfortest/reference/apis-mindspore-lite-kit/capi-context_8h.md)
-          - [data_type.h](onlyfortest/reference/apis-mindspore-lite-kit/capi-data__type_8h.md)
-          - [format.h](onlyfortest/reference/apis-mindspore-lite-kit/capi-format_8h.md)
-          - [model.h](onlyfortest/reference/apis-mindspore-lite-kit/capi-model_8h.md)
-          - [status.h](onlyfortest/reference/apis-mindspore-lite-kit/capi-status_8h.md)
-          - [tensor.h](onlyfortest/reference/apis-mindspore-lite-kit/capi-tensor_8h.md)
-          - [types.h](onlyfortest/reference/apis-mindspore-lite-kit/capi-types_8h.md)
+          - [egl.h](onlyfortest/reference/apis-mindspore-lite-kit/capi-context_8h.md)
+          - [oh_fileio.h](onlyfortest/reference/apis-mindspore-lite-kit/capi-data__type_8h.md)
+          - [uscript.h](onlyfortest/reference/apis-mindspore-lite-kit/capi-format_8h.md)
+          - [resmgr_common.h](onlyfortest/reference/apis-mindspore-lite-kit/capi-model_8h.md)
+          - [oh_fileio.h](onlyfortest/reference/apis-mindspore-lite-kit/capi-status_8h.md)
+          - [ohprint.h](onlyfortest/reference/apis-mindspore-lite-kit/capi-tensor_8h.md)
+          - [jsvm_types.h](onlyfortest/reference/apis-mindspore-lite-kit/capi-types_8h.md)
         - 结构体<!--reference-c-ai-struct-->
           - [OH_AI_CallBackParam](onlyfortest/reference/apis-mindspore-lite-kit/capi-_o_h___a_i___call_back_param.md)
           - [OH_AI_ShapeInfo](onlyfortest/reference/apis-mindspore-lite-kit/capi-_o_h___a_i___shape_info.md)
