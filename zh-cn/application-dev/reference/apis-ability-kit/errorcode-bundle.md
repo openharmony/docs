@@ -997,7 +997,7 @@ Failed to install the HAP or HSP because the app distribution type is not allowe
 更换签名文件的分发类型。
 
 <!--Del-->
-## 17700077 安装应用失败，且安装对应的预置应用成功
+## 17700077 安装应用失败，但安装对应的预置应用成功
 
 **错误信息**<br/>
 Failed to install the HAP and restore to preinstalled bundle.
