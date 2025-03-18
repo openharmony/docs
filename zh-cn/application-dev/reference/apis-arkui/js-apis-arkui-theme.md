@@ -1,4 +1,4 @@
-# @ohos.arkui.Theme(主题换肤)
+# @ohos.arkui.theme(主题换肤)
 
 支持自定义主题风格，实现App组件风格跟随Theme切换。
 
