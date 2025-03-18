@@ -101,29 +101,29 @@
 <!--Del-->
 ## 电话
 
-- [ohos.permission.ANSWER_CALL](permissions-for-system-apps.md#ohospermissionanswer_call)
+- [ohos.permission.ANSWER_CALL](permissions-for-system-apps-user.md#ohospermissionanswer_call)
 
-- [ohos.permission.MANAGE_VOICEMAIL](permissions-for-system-apps.md#ohospermissionmanage_voicemail)
+- [ohos.permission.MANAGE_VOICEMAIL](permissions-for-system-apps-user.md#ohospermissionmanage_voicemail)
 
 ## 通话记录
 
-- [ohos.permission.READ_CALL_LOG](permissions-for-system-apps.md#ohospermissionread_call_log)
+- [ohos.permission.READ_CALL_LOG](permissions-for-system-apps-user.md#ohospermissionread_call_log)
 
-- [ohos.permission.WRITE_CALL_LOG](permissions-for-system-apps.md#ohospermissionwrite_call_log)
+- [ohos.permission.WRITE_CALL_LOG](permissions-for-system-apps-user.md#ohospermissionwrite_call_log)
 
 ## 信息
 
-- [ohos.permission.READ_CELL_MESSAGES](permissions-for-system-apps.md#ohospermissionread_cell_messages)
+- [ohos.permission.READ_CELL_MESSAGES](permissions-for-system-apps-user.md#ohospermissionread_cell_messages)
 
-- [ohos.permission.READ_MESSAGES](permissions-for-system-apps.md#ohospermissionread_messages)
+- [ohos.permission.READ_MESSAGES](permissions-for-system-apps-user.md#ohospermissionread_messages)
 
-- [ohos.permission.RECEIVE_MMS](permissions-for-system-apps.md#ohospermissionreceive_mms)
+- [ohos.permission.RECEIVE_MMS](permissions-for-system-apps-user.md#ohospermissionreceive_mms)
 
-- [ohos.permission.RECEIVE_SMS](permissions-for-system-apps.md#ohospermissionreceive_sms)
+- [ohos.permission.RECEIVE_SMS](permissions-for-system-apps-user.md#ohospermissionreceive_sms)
 
-- [ohos.permission.RECEIVE_WAP_MESSAGES](permissions-for-system-apps.md#ohospermissionreceive_wap_messages)
+- [ohos.permission.RECEIVE_WAP_MESSAGES](permissions-for-system-apps-user.md#ohospermissionreceive_wap_messages)
 
-- [ohos.permission.SEND_MESSAGES](permissions-for-system-apps.md#ohospermissionsend_messages)
+- [ohos.permission.SEND_MESSAGES](permissions-for-system-apps-user.md#ohospermissionsend_messages)
 <!--DelEnd-->
 
 ## 剪切板
@@ -138,8 +138,7 @@
 - [ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY](permissions-for-all-user.md#ohospermissionread_write_download_directory)
 
 - [ohos.permission.READ_WRITE_DESKTOP_DIRECTORY](restricted-permissions.md#ohospermissionread_write_desktop_directory)
-
-- [ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY](restricted-permissions.md#ohospermissionread_write_documents_directory)
+- [ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY](permissions-for-all-user.md#ohospermissionread_write_documents_directory)
 
 ## 文件<sup>(deprecated)</sup>
 
