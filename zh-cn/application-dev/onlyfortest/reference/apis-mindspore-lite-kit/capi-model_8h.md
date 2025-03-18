@@ -1,4 +1,4 @@
-# model.h
+# resmgr_common.h
 
 
 ## 概述
