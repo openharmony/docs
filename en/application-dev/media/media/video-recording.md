@@ -62,11 +62,11 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
    import { BusinessError } from '@kit.BasicServicesKit';
 
    // Callback function for state changes.
-   avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
+   this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
      console.info('current state is: ' + state);
    })
    // Callback function for errors.
-   avRecorder.on('error', (err: BusinessError) => {
+   this.avRecorder.on('error', (err: BusinessError) => {
      console.error('error happened, error message is ' + err);
    })
    ```
@@ -88,6 +88,7 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
    ```ts
    import { media } from '@kit.MediaKit';
    import { BusinessError } from '@kit.BasicServicesKit';
+   import { fileIo as fs } form '@kit.CoreFileKit';
 
    let avProfile: media.AVRecorderProfile = {
      fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file container format. Only MP4 is supported.
@@ -97,19 +98,19 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
      videoFrameHeight: 480, // Video frame height.
      videoFrameRate: 30 // Video frame rate.
    };
-
+   
    const context: Context = getContext(this); // Refer to Application File Access and Management.
    let filePath: string = context.filesDir + '/example.mp4';
-   let videoFile: fs.File = fs.openSync(filePath, OpenMode.READ_WRITE | OpenMode.CREATE);
+   let videoFile: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
    let fileFd = videoFile.fd; // Obtain the file FD.
-    
+  
    let avConfig: media.AVRecorderConfig = {
      videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // Video source type. YUV and ES are supported.
      profile : avProfile,
      url: 'fd://' + fileFd.toString(), // Create, read, and write a video file by referring to the sample code in Application File Access and Management.
      rotation: 0 // Video rotation angle. The default value is 0, indicating that the video is not rotated. The value can be 0, 90, 180, or 270.
    };
-   avRecorder.prepare(avConfig).then(() => {
+   this.avRecorder.prepare(avConfig).then(() => {
      console.info('avRecorder prepare success');
    }, (error: BusinessError) => {
      console.error('avRecorder prepare failed');
@@ -125,7 +126,7 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
 
-   avRecorder.getInputSurface().then((surfaceId: string) => {
+   this.avRecorder.getInputSurface().then((surfaceId: string) => {
      console.info('avRecorder getInputSurface success');
    }, (error: BusinessError) => {
      console.error('avRecorder getInputSurface failed');
@@ -159,18 +160,21 @@ Refer to the sample code below to complete the process of starting, pausing, res
 ```ts
 import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
+import { fileIo as fs, fileUri } from '@kit.CoreFileKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 
 const TAG = 'VideoRecorderDemo:';
 export class VideoRecorderDemo {
-  const context: Context = getContext(this);
+  private context: Context;
+  constructor() {
+    this.context = getContext(this);
+  }
   private avRecorder: media.AVRecorder | undefined = undefined;
   private videoOutSurfaceId: string = "";
   private avProfile: media.AVRecorderProfile = {
     fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file container format. Only MP4 is supported.
-    videoBitrate : 100000, // Video bit rate.
+    videoBitrate: 100000, // Video bit rate.
     videoCodec: media.CodecMimeType.VIDEO_AVC, // Video file encoding format. AVC is supported.
     videoFrameWidth: 640, // Video frame width.
     videoFrameHeight: 480, // Video frame height.
@@ -182,24 +186,24 @@ export class VideoRecorderDemo {
     url: 'fd://35', // Create, read, and write a file by referring to the sample code in Application File Access and Management.
     rotation: 0 // Video rotation angle. The default value is 0, indicating that the video is not rotated. The value can be 0, 90, 180, or 270.
   };
-  
+
   private uriPath: string = ''; // File URI, which can be used by the security component to save the media asset.
   private filePath: string = ''; // File path.
   private fileFd: number = 0;
   
   // Create a file and set avConfig.url.
   async createAndSetFd() {
-    const path: string = context.filesDir + '/example.mp4'; // File sandbox path. The file name extension must match the container format.
-    const videoFile: fs.File = fs.openSync(path, OpenMode.READ_WRITE | OpenMode.CREATE);
+    const path: string = this.context.filesDir + '/example.mp4'; // File sandbox path. The file name extension must match the container format.
+    const videoFile: fs.File = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
     this.avConfig.url = 'fd://' + videoFile.fd; // Set the URL.
     this.fileFd = videoFile.fd; // File FD.
     this.filePath = path;
   }
-
+  
   // Set AVRecorder callback functions.
   setAvRecorderCallback() {
     if (this.avRecorder != undefined) {
-      // Callback function for state changes.
+      // Callback for state changes.
       this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
         console.info(TAG + 'current state is: ' + state);
       })
@@ -279,22 +283,22 @@ export class VideoRecorderDemo {
       // 3. Release the AVRecorder instance.
       await this.avRecorder.release();
       // 4. After the file is recorded, close the file descriptor. The implementation is omitted here.
-      await fs.close(videoFile);
+      await fs.close(this.fileFd);
       // 5. Release the camera instance.
       await this.releaseCamera();
     }
   }
-  
+
   // The security component saves the media asset to Gallery.
   async saveRecorderAsset() {
     let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
     // Ensure that the asset specified by uriPath exists.
-    this.uriPath = file.Uri.getUriFromPath(this.filePath); // Obtain the file URI, which is used by the security component when saving the file to Gallery.
+    this.uriPath = fileUri.getUriFromPath(this.filePath); // Obtain the file URI, which is used by the security component when saving the file to Gallery.
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = 
       photoAccessHelper.MediaAssetChangeRequest.createVideoAssetRequest(this.context, this.uriPath);
     await phAccessHelper.applyChanges(assetChangeRequest);
   }
-
+  
   // Complete sample code for starting, pausing, resuming, and stopping recording.
   async videoRecorderDemo() {
     await this.startRecordingProcess();         // Start recording.

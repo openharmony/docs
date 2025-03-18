@@ -30,7 +30,7 @@ get varName(): T {
 | ------------------ | ----------------------------------------------------- |
 | 支持类型           | getter访问器。 |
 | 从父组件初始化      | 禁止。 |
-| 可初始化子组件      | \@Param  |
+| 可初始化子组件      | \@Param。  |
 | 被执行的时机        | \@ComponentV2被初始化时，计算属性会被触发计算。当被计算的值改变的时候，计算属性也会发生计算。 |
 |是否允许赋值         | @Computed装饰的属性是只读的，不允许赋值，详情见[使用限制](#使用限制)。 |
 
@@ -248,7 +248,7 @@ struct MyView {
 }
 ```
 ### \@Computed装饰的属性可以初始化\@Param
-下面的例子展示了\@Computed初始\@Param。
+下面的例子使用\@Computed初始化\@Param。
 - 点击`Button('-')`和`Button('+')`改变商品数量，`quantity`是被\@Trace装饰的，其改变时可以被观察到的。
 - `quantity`的改变触发`total`和`qualifiesForDiscount`重新计算，计算商品总价和是否可以享有优惠。
 - `total`和`qualifiesForDiscount`的改变触发子组件`Child`对应Text组件刷新。
