@@ -15,7 +15,7 @@
 | 名称 | 描述 |
 | -------- | -------- |
 | [egl.h](capi-context_8h.md) | 提供了Context相关的接口，可以配置运行时信息。<br/>引用文件：&lt;mindspore/context.h&gt;<br/>库：libmindspore_lite_ndk.so |
-| [oh_fileio.h](capi-data__type_8h.md) | 声明了张量的数据的类型。<br/>引用文件：&lt;mindspore/data_type.h&gt;<br/>库：libmindspore_lite_ndk.so |
+| [drawing_surface.h](capi-data__type_8h.md) | 声明了张量的数据的类型。<br/>引用文件：&lt;mindspore/data_type.h&gt;<br/>库：libmindspore_lite_ndk.so |
 | [uscript.h](capi-format_8h.md) | 提供张量数据的排列格式。<br/>引用文件：&lt;mindspore/format.h&gt;<br/>库：libmindspore_lite_ndk.so |
 | [resmgr_common.h](capi-model_8h.md)| 提供了模型相关接口，可以用于模型创建、模型推理等。<br/>引用文件：&lt;mindspore/model.h&gt;<br/>库：libmindspore_lite_ndk.so |
 | [oh_fileio.h](capi-status_8h.md) | 提供了MindSpore Lite运行时的状态码。<br/>引用文件：&lt;mindspore/status.h&gt;<br/>库：libmindspore_lite_ndk.so |
