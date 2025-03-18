@@ -17,7 +17,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OnSaCommands](#onsacommands) ([in] struct [SaCommand](_sa_command_faceauth_v11.md)[] commands) | 定义进程中sa命令的函数。  | 
+| [OnSaCommands](#onsacommands) ([in] struct [SaCommand](_sa_command_faceauth_v11.md)[] commands) | 定义进程中SA命令的函数。  | 
 
 
 ## 成员函数说明

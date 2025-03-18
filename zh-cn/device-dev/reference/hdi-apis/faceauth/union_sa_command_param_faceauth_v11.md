@@ -17,7 +17,7 @@ sa命令参数。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct [SaCommandParamNone](_sa_command_param_none_faceauth_v11.md)[none](#none) | sa命令参数为空。详细说明请参考[SaCommandParamNone](_sa_command_param_none_faceauth_v11.md)。  | 
+| struct [SaCommandParamNone](_sa_command_param_none_faceauth_v11.md) [none](#none) | sa命令参数为空。详细说明请参考[SaCommandParamNone](_sa_command_param_none_faceauth_v11.md)。  | 
 
 
 ## 类成员变量说明
