@@ -21,7 +21,7 @@ import { FormExtensionAbility } from '@kit.FormKit';
 
 ## FormExtensionAbility
 
-卡片扩展类。
+卡片扩展类。包含卡片提供方接收创建卡片、修改可见性等通知接口
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
