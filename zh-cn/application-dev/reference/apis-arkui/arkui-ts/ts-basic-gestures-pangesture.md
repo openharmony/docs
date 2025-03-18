@@ -59,10 +59,10 @@ PanGestureOptions(value?: { fingers?: number, direction?: PanDirection, distance
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| setDirection(value:&nbsp;[PanDirection](#pandirection枚举说明)) | 设置direction属性。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| setDistance(value:&nbsp;number) | 设置distance属性。<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| setFingers(value:&nbsp;number) | 设置fingers属性。<br/>取值范围：[0, +∞) <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| getDirection()<sup>12+</sup>: [PanDirection](#pandirection枚举说明) | 获取direction属性。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| setDirection(value:&nbsp;[PanDirection](#pandirection枚举说明)) | 设置滑动方向。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| setDistance(value:&nbsp;number) | 设置触发滑动手势事件的最小滑动距离，单位为vp。<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| setFingers(value:&nbsp;number) | 设置触发滑动的最少手指数。<br/>取值范围：[1, 10]，整数。<br/>取值范围：[0, +∞) <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| getDirection()<sup>12+</sup>: [PanDirection](#pandirection枚举说明) | 获取滑动方向。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 
 ## 事件
