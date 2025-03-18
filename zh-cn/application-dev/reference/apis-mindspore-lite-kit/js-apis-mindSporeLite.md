@@ -1052,7 +1052,7 @@ mindSporeLite.loadTrainModelFromFile(modelFile).then((mindSporeLiteModel: mindSp
 
 ### exportWeightsCollaborateWithMicro<sup>12+</sup>
 
-exportWeightsCollaborateWithMicro(weightFile: string, isInference?: boolean, enableFp16?: boolean, changeableWeightsName?: string[]): boolean;
+exportWeightsCollaborateWithMicro(weightFile: string, isInference?: boolean, enableFp16?: boolean, changeableWeightsName?: string[]): boolean
 
 导出供**micro推理**使用的模型权重，仅用于端侧训练。
 
