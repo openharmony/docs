@@ -731,9 +731,9 @@ Sensor.unsubscribeGyroscope();
 
 **系统能力**：SystemCapability.Sensors.Sensor.Lite
 
-| 名称  | 类型    | 必填 | 说明         |
-| ----- | ------- | ---- | ------------ |
-| value | boolean | 是   | 是否已佩戴。 |
+| 名称  | 类型    | 必填 | 说明                                               |
+| ----- | ------- | ---- | -------------------------------------------------- |
+| value | boolean | 是   | 是否已佩戴设备，当返回true表示已佩戴，否则未佩戴。 |
 
 ## GetOnBodyStateOptions
 

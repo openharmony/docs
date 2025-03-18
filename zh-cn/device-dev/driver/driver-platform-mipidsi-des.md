@@ -60,7 +60,7 @@ MIPI DSI主要用于连接显示屏。
 
 ### 接口说明
 
-MIPI DSI模块提供的主要接口如表1所示，具体API详见//drivers/hdf_core/framework/include/platform/mipi_dsi_if.h。
+MIPI DSI模块提供的主要接口如表1所示，具体API[详见](https://gitee.com/openharmony/drivers_hdf_core/blob/master/framework/include/platform/mipi_dsi_if.h)。
 
 **表1** MIPI DSI API接口功能介绍
 
