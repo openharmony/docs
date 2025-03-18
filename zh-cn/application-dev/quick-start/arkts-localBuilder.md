@@ -263,7 +263,7 @@ struct Parent {
 ```ts
 @Component
 struct Child {
-  label: string = `Child`;
+  label: string = 'Child';
   @BuilderParam customBuilderParam: () => void;
 
   build() {
@@ -276,7 +276,7 @@ struct Child {
 @Entry
 @Component
 struct Parent {
-  label: string = `Parent`;
+  label: string = 'Parent';
 
   @Builder componentBuilder() {
     Text(`${this.label}`)
