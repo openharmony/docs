@@ -5,7 +5,7 @@
 
 当用户打开、切换和返回到对应应用时，应用中的[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例会在其生命周期的不同状态之间转换。UIAbility类提供了一系列回调，通过这些回调可以知道当前UIAbility实例的某个状态发生改变，会经过UIAbility实例的创建和销毁，或者UIAbility实例发生了前后台的状态切换。
 
-UIAbility的生命周期包括Create、Foreground、Background、Destroy四个状态，如图1所示。从API18开始，UIAbility生命周期新增支持WillForeground、DidForeground、WillBackground、DidBackground，如图2所示。
+UIAbility的生命周期包括Create、Foreground、Background、Destroy四个状态，如图1所示。从API18开始，UIAbility生命周期新增支持WillForeground、DidForeground、WillBackground、DidBackground，如图2所示。WindowStage参考[windowstagecreate和windowstagedestroy状态](#windowstagecreate和windowstagedestroy状态)。
 
 **图1** UIAbility生命周期状态
 
