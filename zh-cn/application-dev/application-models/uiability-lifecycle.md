@@ -211,7 +211,7 @@ export default class EntryAbility extends UIAbility {
 
 ### WillForeground状态 <sup>18+</sup>
 
-WillForeground状态在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例从[WindowStageCreate](#windowstagecreate和windowstagedestroy状态)至前台过程中触发，对应[onWillForeground()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwillforeground)回调。
+WillForeground状态在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例从[WindowStageCreate](#windowstagecreate和windowstagedestroy状态)至前台过程中触发，对应[onWillForeground()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwillforeground)回调，应用可以在此回调中做进入应用统计时长的开始。
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
@@ -220,14 +220,14 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWillForeground(): void {
-    // 用于进入应用统计时长开始
+    // 进入应用统计时长开始时间打点
   }
 }
 ```
 
 ### WillBackground状态 <sup>18+</sup>
 
-WillBackground状态在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例从WindowStage PAUSED（前台不可交互状态）切换至后台过程中触发，对应[onWillBackground()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwillbackground)回调。
+WillBackground状态在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例从WindowStage PAUSED（前台不可交互状态）切换至后台过程中触发，对应[onWillBackground()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwillbackground)回调，应用可以在此回调中释放UI即将不可见时无用的资源。
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
@@ -236,34 +236,39 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWillBackground(): void {
-    // 释放UI即将不可见时无用的资源，或者在此回调中执行较为耗时的操作
+    // 释放UI即将不可见时无用的资源
   }
 }
 ```
 
-### DidForeground和DidBackground状态<sup>18+</sup>
+### DidForeground状态<sup>18+</sup>
 
-DidForeground状态在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例从WindowStage SHOWN（切前台触发）至WindowStage RESUMED（前台处于可交互状态时触发）过程中触发，对应[onDidForeground()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityondidforeground)回调，应用可以在该回调中进行[性能打点](#../dfx/hitracemeter-guidelines-arkts.md)。
-
-DidBackground状态在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例从WindowStage HIDDEN（切后台触发）至[WindowStageWillDestroy](#WindowStageWillDestroy状态)过程中触发，对应[onDidBackground()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityondidbackground)回调，应用可以在该回调中进行[性能打点](../dfx/hitracemeter-guidelines-arkts.md)。
+DidForeground状态在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例从WindowStage SHOWN（切前台触发）至WindowStage RESUMED（前台处于可交互状态时触发）过程中触发，对应[onDidForeground()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityondidforeground)回调，应用可以在此回调中进行统计打点。
 
 ```ts
-import hiTraceMeter from '@ohos.hiTraceMeter';
 import { UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   // ...
 
   onDidForeground(): void {
-    // 应用打点。
-    let traceCount = 3;
-	hiTraceMeter.traceByValue("myTestCount", traceCount);
+    // 应用统计打点。
   }
+}
+```
+
+### DidBackground状态<sup>18+</sup>
+
+DidBackground状态在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例从WindowStage HIDDEN（切后台触发）至[WindowStageWillDestroy](#WindowStageWillDestroy状态)过程中触发，对应[onDidBackground()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityondidbackground)回调，应用可以在此回调中进行统计打点。
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
 
   onDidBackground(): void {
-    // 应用打点。
-    let traceCount = 4;
-	hiTraceMeter.traceByValue("myTestCount", traceCount);
+    // 应用统计打点。
   }
 }
 ```
