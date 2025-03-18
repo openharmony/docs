@@ -1,6 +1,5 @@
 # 软件定时器
 
-
 ## 基本概念
 
 软件定时器，是基于系统Tick时钟中断且由软件来模拟的定时器，当经过设定的Tick时钟计数值后会触发用户定义的回调函数。定时精度与系统Tick时钟的周期有关。
@@ -22,7 +21,6 @@
 - 软件定时器删除。
 
 - 软件定时器剩余Tick数获取。
-
 
 ## 运行机制
 
@@ -55,9 +53,7 @@ Tick中断处理函数结束后，软件定时器任务（优先级为最高）�
 
 - 第三类也是单次触发定时器，但与第一类不同之处在于这类定时器超时后不会自动删除，需要调用定时器删除接口删除定时器。
 
-
 ## 开发指导
-
 
 ### 接口说明
 
@@ -67,10 +63,9 @@ OpenHarmony LiteOS-A内核的软件定时器模块提供以下几种功能。
 
 | 功能分类               | 接口描述                                                     |
 | ---------------------- | ------------------------------------------------------------ |
-| 创建、删除定时器       | LOS_SwtmrCreate：创建软件定时器<br/>LOS_SwtmrDelete：删除软件定时器 |
-| 启动、停止定时器       | LOS_SwtmrStart：启动软件定时器<br/>LOS_SwtmrStop：停止软件定时器 |
-| 获得软件定时剩余Tick数 | LOS_SwtmrTimeGet：获得软件定时器剩余Tick数                   |
-
+| 创建、删除定时器。       | LOS_SwtmrCreate：创建软件定时器。<br/>LOS_SwtmrDelete：删除软件定时器。 |
+| 启动、停止定时器。       | LOS_SwtmrStart：启动软件定时器。<br/>LOS_SwtmrStop：停止软件定时器。 |
+| 获得软件定时剩余Tick数。 | LOS_SwtmrTimeGet：获得软件定时器剩余Tick数。                   |
 
 ### 开发流程
 
@@ -105,7 +100,6 @@ OpenHarmony LiteOS-A内核的软件定时器模块提供以下几种功能。
 >
 > - 创建单次不自删除属性的定时器，用户需要调用定时器删除接口删除定时器，回收定时器资源，避免资源泄露。
 
-
 ### 编程实例
 
 **前置条件**
@@ -116,7 +110,7 @@ OpenHarmony LiteOS-A内核的软件定时器模块提供以下几种功能。
 
 - 配置好OS_SWTMR_HANDLE_QUEUE_SIZE软件定时器队列最大长度。
 
-  **编程示例**
+**编程示例**
 
 ```
 #include "los_swtmr.h"
@@ -127,16 +121,16 @@ void Timer2_Callback(uint32_t arg);
 UINT32 g_timercount1 = 0;
 UINT32 g_timercount2 = 0;
 
-void Timer1_Callback(uint32_t arg) // 回调函数1
+void Timer1_Callback(uint32_t arg) // 回调函数1。
 {
     unsigned long tick_last1;
     g_timercount1++;
-    tick_last1=(UINT32)LOS_TickCountGet(); // 获取当前Tick数
+    tick_last1=(UINT32)LOS_TickCountGet(); // 获取当前Tick数。
     PRINTK("g_timercount1=%d\n",g_timercount1);
     PRINTK("tick_last1=%d\n",tick_last1);
 }
 
-void Timer2_Callback(uint32_t arg) // 回调函数2
+void Timer2_Callback(uint32_t arg) // 回调函数2。
 {
     unsigned long tick_last2;
     tick_last2=(UINT32)LOS_TickCountGet();
@@ -148,7 +142,7 @@ void Timer2_Callback(uint32_t arg) // 回调函数2
 void Timer_example(void)
 {
     UINT16 id1;
-    UINT16 id2; // timer id
+    UINT16 id2; // timer id.
     UINT32 uwTick;
 
     /* 创建单次软件定时器，Tick数为1000，启动到1000Tick数时执行回调函数1 */
@@ -158,21 +152,21 @@ void Timer_example(void)
     LOS_SwtmrCreate(100, LOS_SWTMR_MODE_PERIOD, Timer2_Callback, &id2, 1);
     PRINTK("create Timer1 success\n");
 
-    LOS_SwtmrStart (id1); //启动单次软件定时器
+    LOS_SwtmrStart (id1); //启动单次软件定时器。
     dprintf("start Timer1 success\n");
-    LOS_TaskDelay(200); // 延时200Tick数
-    LOS_SwtmrTimeGet(id1, &uwTick); // 获得单次软件定时器剩余Tick数
+    LOS_TaskDelay(200); // 延时200Tick数。
+    LOS_SwtmrTimeGet(id1, &uwTick); // 获得单次软件定时器剩余Tick数。
     PRINTK("uwTick =%d\n", uwTick);
 
-    LOS_SwtmrStop(id1); // 停止软件定时器
+    LOS_SwtmrStop(id1); // 停止软件定时器。
     PRINTK("stop Timer1 success\n");
 
     LOS_SwtmrStart(id1);
     LOS_TaskDelay(1000);
-    LOS_SwtmrDelete(id1); // 删除软件定时器
+    LOS_SwtmrDelete(id1); // 删除软件定时器。
     PRINTK("delete Timer1 success\n");
 
-    LOS_SwtmrStart(id2); // 启动周期性软件定时器
+    LOS_SwtmrStart(id2); // 启动周期性软件定时器。
     PRINTK("start Timer2\n");
 
     LOS_TaskDelay(1000);
@@ -182,7 +176,6 @@ void Timer_example(void)
 ```
 
 **运行结果**
-
 
 ```
 create Timer1 success
