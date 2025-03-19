@@ -114,11 +114,15 @@
 
 定义事件是由左手点击还是右手点击触发。
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 描述 |
 | -------- | -------- |
-| NONE | 未知。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
-| LEFT | 左手。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
-| RIGHT | 右手。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| NONE | 未知。 |
+| LEFT | 左手。 |
+| RIGHT | 右手。 |
 
 
 ## 示例
