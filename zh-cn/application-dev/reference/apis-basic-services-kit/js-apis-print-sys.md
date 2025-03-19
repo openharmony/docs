@@ -13,7 +13,7 @@ import { print } from '@kit.BasicServicesKit';
 ```
 
 
-## PrintMargin
+## print.PrintMargin
 
 定义打印页边距的接口。
 
@@ -29,7 +29,7 @@ import { print } from '@kit.BasicServicesKit';
 | left | number | 否 | 表示页面左边距。 |
 | right | number | 否 | 表示页面右边距。 |
 
-## PrinterRange
+## print.PrinterRange
 
 定义打印范围的接口。
 
@@ -44,7 +44,7 @@ import { print } from '@kit.BasicServicesKit';
 | endPage | number | 否 | 表示结束页。 |
 | pages | Array&lt;number&gt; | 否 | 表示离散页面。 |
 
-## PreviewAttribute
+## print.PreviewAttribute
 
 定义打印预览属性的接口。
 
@@ -58,7 +58,7 @@ import { print } from '@kit.BasicServicesKit';
 | previewRange | [PrinterRange](#printerrange) | 是 | 表示预览页面范围。 |
 | result | number | 否 | 表示预览文件结果。 |
 
-## PrintResolution
+## print.PrintResolution
 
 定义打印分辨率的接口。
 
@@ -75,7 +75,7 @@ import { print } from '@kit.BasicServicesKit';
 
 
 
-## PrinterCapability
+## print.PrinterCapability
 
 定义打印能力的接口。
 
@@ -93,7 +93,7 @@ import { print } from '@kit.BasicServicesKit';
 | minMargin | [PrintMargin](#printmargin) | 否 | 表示打印机最小边距。 |
 | options<sup>11+</sup> | Object | 否 | 表示JSON对象字符串。 |
 
-## PrinterInfo
+## print.PrinterInfo
 
 定义打印信息的接口。
 
@@ -112,7 +112,7 @@ import { print } from '@kit.BasicServicesKit';
 | capability | [PrinterCapability](#printercapability) | 否 | 表示打印机功能。 |
 | options | Object | 否 | 表示JSON对象字符串。 |
 
-## PrintJob
+## print.PrintJob
 
 定义打印任务的接口。
 
@@ -139,7 +139,7 @@ import { print } from '@kit.BasicServicesKit';
 | preview | [PreviewAttribute](#previewattribute) | 否 | 表示预览设置。 |
 | options | Object | 否 | 表示JSON对象字符串。 |
 
-## PrinterExtensionInfo
+## print.PrinterExtensionInfo
 
 定义打印扩展信息的接口。
 
@@ -156,7 +156,7 @@ import { print } from '@kit.BasicServicesKit';
 | vendorIcon | number | 是 | 表示供应商图标。 |
 | version | string | 是 | 表示当前打印机扩展的版本。 |
 
-## queryAllPrinterExtensionInfos
+## print.queryAllPrinterExtensionInfos
 
 queryAllPrinterExtensionInfos(callback: AsyncCallback&lt;Array&lt;PrinterExtensionInfo&gt;&gt;): void
 
@@ -197,7 +197,7 @@ print.queryAllPrinterExtensionInfos((err: BusinessError, extensionInfos: print.P
 })
 ```
 
-## queryAllPrinterExtensionInfos
+## print.queryAllPrinterExtensionInfos
 
 queryAllPrinterExtensionInfos(): Promise&lt;Array&lt;PrinterExtensionInfo&gt;&gt;
 
@@ -237,7 +237,7 @@ print.queryAllPrinterExtensionInfos().then((extensionInfos: print.PrinterExtensi
 })
 ```
 
-## startDiscoverPrinter
+## print.startDiscoverPrinter
 
 startDiscoverPrinter(extensionList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
@@ -282,7 +282,7 @@ print.startDiscoverPrinter(extensionList, (err: BusinessError, data : void) => {
 })
 ```
 
-## startDiscoverPrinter
+## print.startDiscoverPrinter
 
 startDiscoverPrinter(extensionList: Array&lt;string&gt;): Promise&lt;void&gt;
 
@@ -329,7 +329,7 @@ print.startDiscoverPrinter(extensionList).then((data : void) => {
 })
 ```
 
-## stopDiscoverPrinter
+## print.stopDiscoverPrinter
 
 stopDiscoverPrinter(callback: AsyncCallback&lt;void&gt;): void
 
@@ -370,7 +370,7 @@ print.stopDiscoverPrinter((err: BusinessError, data : void) => {
 })
 ```
 
-## stopDiscoverPrinter
+## print.stopDiscoverPrinter
 
 stopDiscoverPrinter(): Promise&lt;void&gt;
 
@@ -409,7 +409,7 @@ print.stopDiscoverPrinter().then((data : void) => {
 })
 ```
 
-## connectPrinter
+## print.connectPrinter
 
 connectPrinter(printerId: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -453,7 +453,7 @@ print.connectPrinter(printerId, (err: BusinessError, data : void) => {
 })
 ```
 
-## connectPrinter
+## print.connectPrinter
 
 connectPrinter(printerId: string): Promise&lt;void&gt;
 
@@ -499,7 +499,7 @@ print.connectPrinter(printerId).then((data : void) => {
 })
 ```
 
-## disconnectPrinter
+## print.disconnectPrinter
 
 disconnectPrinter(printerId: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -543,7 +543,7 @@ print.disconnectPrinter(printerId, (err: BusinessError, data : void) => {
 })
 ```
 
-## disconnectPrinter
+## print.disconnectPrinter
 
 disconnectPrinter(printerId: string): Promise&lt;void&gt;
 
@@ -589,7 +589,7 @@ print.disconnectPrinter(printerId).then((data : void) => {
 })
 ```
 
-## queryPrinterCapability
+## print.queryPrinterCapability
 
 queryPrinterCapability(printerId: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -633,7 +633,7 @@ print.queryPrinterCapability(printerId, (err: BusinessError, data : void) => {
 })
 ```
 
-## queryPrinterCapability
+## print.queryPrinterCapability
 
 queryPrinterCapability(printerId: string): Promise&lt;void&gt;
 
@@ -679,7 +679,7 @@ print.queryPrinterCapability(printerId).then((data : void) => {
 })
 ```
 
-## startPrintJob
+## print.startPrintJob
 
 startPrintJob(jobInfo: PrintJob, callback: AsyncCallback&lt;void&gt;): void
 
@@ -739,7 +739,7 @@ print.startPrintJob(jobInfo, (err: BusinessError, data : void) => {
 })
 ```
 
-## startPrintJob
+## print.startPrintJob
 
 startPrintJob(jobInfo: PrintJob): Promise&lt;void&gt;
 
@@ -801,7 +801,7 @@ print.startPrintJob(jobInfo).then((data : void) => {
 })
 ```
 
-## cancelPrintJob
+## print.cancelPrintJob
 
 cancelPrintJob(jobId: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -845,7 +845,7 @@ print.cancelPrintJob(jobId, (err: BusinessError, data : void) => {
 })
 ```
 
-## cancelPrintJob
+## print.cancelPrintJob
 
 cancelPrintJob(jobId: string): Promise&lt;void&gt;
 
@@ -891,7 +891,7 @@ print.cancelPrintJob(jobId).then((data : void) => {
 })
 ```
 
-## requestPrintPreview
+## print.requestPrintPreview
 
 requestPrintPreview(jobInfo: PrintJob, callback: Callback&lt;number&gt;): void
 
@@ -947,7 +947,7 @@ print.requestPrintPreview(jobInfo, (num : number) => {
 })
 ```
 
-## requestPrintPreview
+## print.requestPrintPreview
 
 requestPrintPreview(jobInfo: PrintJob): Promise&lt;number&gt;
 
@@ -1009,7 +1009,7 @@ print.requestPrintPreview(jobInfo).then((num: number) => {
 })
 ```
 
-## on
+## print.on
 
 on(type: 'printerStateChange', callback: (state: PrinterState, info: PrinterInfo) => void): void
 
@@ -1053,7 +1053,7 @@ print.on('printerStateChange', (state: print.PrinterState, info: print.PrinterIn
 })
 ```
 
-## off
+## print.off
 
 off(type: 'printerStateChange', callback?: Callback&lt;boolean&gt;): void
 
@@ -1091,7 +1091,7 @@ print.off('printerStateChange', (data: boolean) => {
 })
 ```
 
-## on
+## print.on
 
 on(type: 'jobStateChange', callback: (state: PrintJobState, job: PrintJob) => void): void
 
@@ -1129,7 +1129,7 @@ print.on('jobStateChange', (state: print.PrintJobState, job: print.PrintJob) => 
 })
 ```
 
-## off
+## print.off
 
 off(type: 'jobStateChange', callback?: Callback&lt;boolean&gt;): void
 
@@ -1167,7 +1167,7 @@ print.off('jobStateChange', (data: boolean) => {
 })
 ```
 
-## on
+## print.on
 
 on(type: 'extInfoChange', callback: (extensionId: string, info: string) => void): void
 
@@ -1205,7 +1205,7 @@ print.on('extInfoChange', (extensionId: string, info: string) => {
 })
 ```
 
-## off
+## print.off
 
 off(type: 'extInfoChange', callback?: Callback&lt;boolean&gt;): void
 
@@ -1243,7 +1243,7 @@ print.off('extInfoChange', (data: boolean) => {
 })
 ```
 
-## addPrinters
+## print.addPrinters
 
 addPrinters(printers: Array&lt;PrinterInfo&gt;, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1295,7 +1295,7 @@ print.addPrinters([printerInfo], (err: BusinessError, data : void) => {
 })
 ```
 
-## addPrinters
+## print.addPrinters
 
 addPrinters(printers: Array&lt;PrinterInfo&gt;): Promise&lt;void&gt;
 
@@ -1349,7 +1349,7 @@ print.addPrinters([printerInfo]).then((data : void) => {
 })
 ```
 
-## removePrinters
+## print.removePrinters
 
 removePrinters(printerIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1393,7 +1393,7 @@ print.removePrinters([printerId], (err: BusinessError, data : void) => {
 })
 ```
 
-## removePrinters
+## print.removePrinters
 
 removePrinters(printerIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
@@ -1439,7 +1439,7 @@ print.removePrinters([printerId]).then((data : void) => {
 })
 ```
 
-## updatePrinters
+## print.updatePrinters
 
 updatePrinters(printers: Array&lt;PrinterInfo&gt;, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1491,7 +1491,7 @@ print.updatePrinters([printerInfo], (err: BusinessError, data : void) => {
 })
 ```
 
-## updatePrinters
+## print.updatePrinters
 
 updatePrinters(printers: Array&lt;PrinterInfo&gt;): Promise&lt;void&gt;
 
@@ -1545,7 +1545,7 @@ print.updatePrinters([printerInfo]).then((data : void) => {
 })
 ```
 
-## updatePrinterState
+## print.updatePrinterState
 
 updatePrinterState(printerId: string, state: PrinterState, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1591,7 +1591,7 @@ print.updatePrinterState(printerId, state, (err: BusinessError, data : void) => 
 })
 ```
 
-## updatePrinterState
+## print.updatePrinterState
 
 updatePrinterState(printerId: string, state: PrinterState): Promise&lt;void&gt;
 
@@ -1639,7 +1639,7 @@ print.updatePrinterState(printerId, state).then((data : void) => {
 })
 ```
 
-## updatePrintJobState
+## print.updatePrintJobState
 
 updatePrintJobState(jobId: string, state: PrintJobState, subState: PrintJobSubState, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1687,7 +1687,7 @@ print.updatePrintJobState(jobId, state, subState, (err: BusinessError, data : vo
 })
 ```
 
-## updatePrintJobState
+## print.updatePrintJobState
 
 updatePrintJobState(jobId: string, state: PrintJobState, subState: PrintJobSubState): Promise&lt;void&gt;
 
@@ -1737,7 +1737,7 @@ print.updatePrintJobState(jobId, state, subState).then((data : void) => {
 })
 ```
 
-## updateExtensionInfo
+## print.updateExtensionInfo
 
 updateExtensionInfo(info: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1781,7 +1781,7 @@ print.updateExtensionInfo(info, (err: BusinessError, data : void) => {
 })
 ```
 
-## updateExtensionInfo
+## print.updateExtensionInfo
 
 updateExtensionInfo(info: string): Promise&lt;void&gt;
 
@@ -1827,7 +1827,7 @@ print.updateExtensionInfo(info).then((data : void) => {
 })
 ```
 
-## queryAllPrintJobs<sup>(deprecated)</sup>
+## print.queryAllPrintJobs<sup>(deprecated)</sup>
 
 > 从API version 10开始支持，从API version 11开始废弃。
 > 建议使用[queryPrintJobList](#queryprintjoblist11)替代。
@@ -1871,7 +1871,7 @@ print.queryAllPrintJobs((err: BusinessError, data : void) => {
 })
 ```
 
-## queryAllPrintJobs<sup>(deprecated)</sup>
+## print.queryAllPrintJobs<sup>(deprecated)</sup>
 
 > 从API version 10开始支持，从API version 11开始废弃。
 > 建议使用[queryPrintJobList](#queryprintjoblist11-1)替代。
@@ -1913,7 +1913,7 @@ print.queryAllPrintJobs().then((data : void) => {
 })
 ```
 
-## queryPrintJobList<sup>11+</sup>
+## print.queryPrintJobList<sup>11+</sup>
 
 queryPrintJobList(callback: AsyncCallback&lt;Array&lt;PrintJob&gt;&gt;): void
 
@@ -1954,7 +1954,7 @@ print.queryPrintJobList((err: BusinessError, printJobs : print.PrintJob[]) => {
 })
 ```
 
-## queryPrintJobList<sup>11+</sup>
+## print.queryPrintJobList<sup>11+</sup>
 
 queryPrintJobList(): Promise&lt;Array&lt;PrintJob&gt;&gt;
 
@@ -1993,7 +1993,7 @@ print.queryPrintJobList().then((printJobs : print.PrintJob[]) => {
 })
 ```
 
-## queryPrintJobById<sup>11+</sup>
+## print.queryPrintJobById<sup>11+</sup>
 
 queryPrintJobById(jobId: string, callback: AsyncCallback&lt;PrintJob&gt;): void
 
@@ -2037,7 +2037,7 @@ print.queryPrintJobById(jobId, (err: BusinessError, printJob : print.PrintJob) =
 })
 ```
 
-## queryPrintJobById<sup>11+</sup>
+## print.queryPrintJobById<sup>11+</sup>
 
 queryPrintJobById(jobId: string): Promise&lt;PrintJob&gt;
 
@@ -2083,7 +2083,7 @@ print.queryPrintJobById(jobId).then((printJob : print.PrintJob) => {
 })
 ```
 
-## startGettingPrintFile<sup>11+</sup>
+## print.startGettingPrintFile<sup>11+</sup>
 
 startGettingPrintFile(jobId: string, printAttributes: PrintAttributes, fd: number, onFileStateChanged: Callback&lt;PrintFileCreationState&gt;): void
 
@@ -2159,7 +2159,7 @@ print.startGettingPrintFile(jobId, printAttributes, fd, (state: print.PrintFileC
 })
 ```
 
-## notifyPrintService<sup>11+</sup>
+## print.notifyPrintService<sup>11+</sup>
 
 notifyPrintService(jobId: string, type: 'spooler_closed_for_cancelled' | 'spooler_closed_for_started', callback: AsyncCallback&lt;void&gt;): void
 
@@ -2204,7 +2204,7 @@ print.notifyPrintService(jobId, 'spooler_closed_for_started', (err: BusinessErro
 })
 ```
 
-## notifyPrintService<sup>11+</sup>
+## print.notifyPrintService<sup>11+</sup>
 
 notifyPrintService(jobId: string, type: 'spooler_closed_for_cancelled' | 'spooler_closed_for_started'): Promise&lt;void&gt;
 
@@ -2251,7 +2251,7 @@ print.notifyPrintService(jobId, 'spooler_closed_for_started').then((data : void)
 })
 ```
 
-## getAddedPrinters<sup>12+</sup>
+## print.getAddedPrinters<sup>12+</sup>
 
 getAddedPrinters(): Promise&lt;Array&lt;string&gt;&gt;
 
@@ -2291,7 +2291,7 @@ print.getAddedPrinters().then((printers: string[]) => {
 })
 ```
 
-## getPrinterInfoById<sup>12+</sup>
+## print.getPrinterInfoById<sup>12+</sup>
 
 getPrinterInfoById(printerId: string): Promise&lt;PrinterInfo&gt;
 
@@ -2337,7 +2337,7 @@ print.getPrinterInfoById(printerId).then((printerInfo : print.PrinterInfo) => {
 })
 ```
 
-## notifyPrintServiceEvent<sup>12+</sup>
+## print.notifyPrintServiceEvent<sup>12+</sup>
 
 notifyPrintServiceEvent(event: ApplicationEvent): Promise&lt;void&gt;
 
