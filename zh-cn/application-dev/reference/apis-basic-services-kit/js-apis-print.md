@@ -369,10 +369,10 @@ onStartLayoutWrite(jobId: string, oldAttrs: PrintAttributes, newAttrs: PrintAttr
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | jobId | string | 是 | 表示打印任务ID。 |
-| oldAttrs | [PrintAttributes](#printattributes11) | 是 | 表示旧打印参数。 |
-| newAttrs | [PrintAttributes](#printattributes11) | 是 | 表示新打印参数。 |
+| oldAttrs | [PrintAttributes](#printprintattributes11) | 是 | 表示旧打印参数。 |
+| newAttrs | [PrintAttributes](#printprintattributes11) | 是 | 表示新打印参数。 |
 | fd | number | 是 | 表示打印文件传给接口调用方的pdf文件的文件描述符。 |
-| writeResultCallback | (jobId: string, writeResult: [PrintFileCreationState](#printfilecreationstate11)) | 是 | 表示三方应用使用新的打印参数更新待打印文件完成后的回调。 |
+| writeResultCallback | (jobId: string, writeResult: [PrintFileCreationState](#printprintfilecreationstate11)) | 是 | 表示三方应用使用新的打印参数更新待打印文件完成后的回调。 |
 
 **错误码：**
 
@@ -424,7 +424,7 @@ onJobStateChanged(jobId: string, state: PrintDocumentAdapterState): void
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | jobId | string | 是 | 表示打印任务ID。 |
-| state | [PrintDocumentAdapterState](#printdocumentadapterstate11) | 是 | 表示打印任务更改为该状态。 |
+| state | [PrintDocumentAdapterState](#printprintdocumentadapterstate11) | 是 | 表示打印任务更改为该状态。 |
 
 **错误码：**
 
@@ -475,8 +475,8 @@ print(files: Array&lt;string&gt;, callback: AsyncCallback&lt;PrintTask&gt;): voi
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。系统应用传入uri时，需先调用uriPermissionManager.grantUriPermission()接口给打印应用授权，此接口为系统接口。三方应用建议使用[print](#print11-2)。 |
-| callback | AsyncCallback&lt;[PrintTask](#printtask)&gt; | 是 | 异步获取打印完成之后的回调。 |
+| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。系统应用传入uri时，需先调用uriPermissionManager.grantUriPermission()接口给打印应用授权，此接口为系统接口。三方应用建议使用[print](#printprint11-2)。 |
+| callback | AsyncCallback&lt;[PrintTask](#printprinttask)&gt; | 是 | 异步获取打印完成之后的回调。 |
 
 **错误码：**
 
@@ -522,12 +522,12 @@ print(files: Array&lt;string&gt;): Promise&lt;PrintTask&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。系统应用传入uri时，需先调用uriPermissionManager.grantUriPermission()接口给打印应用授权，此接口为系统接口。三方应用建议使用[print](#print11-2)。 |
+| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。系统应用传入uri时，需先调用uriPermissionManager.grantUriPermission()接口给打印应用授权，此接口为系统接口。三方应用建议使用[print](#printprint11-2)。 |
 
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;[PrintTask](#printtask)&gt; | 打印完成结果。 |
+| Promise&lt;[PrintTask](#printprinttask)&gt; | 打印完成结果。 |
 
 **错误码：**
 
@@ -571,9 +571,9 @@ print(files: Array&lt;string&gt;, context: Context, callback: AsyncCallback&lt;P
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。系统应用传入uri时，需先调用uriPermissionManager.grantUriPermission()接口给打印应用授权，此接口为系统接口。三方应用建议使用[print](#print11-2)。 |
+| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。系统应用传入uri时，需先调用uriPermissionManager.grantUriPermission()接口给打印应用授权，此接口为系统接口。三方应用建议使用[print](#printprint11-2)。 |
 | context | Context | 是 | 用于拉起系统打印界面的UIAbilityContext。 |
-| callback | AsyncCallback&lt;[PrintTask](#printtask)&gt; | 是 | 异步获取打印完成之后的回调。 |
+| callback | AsyncCallback&lt;[PrintTask](#printprinttask)&gt; | 是 | 异步获取打印完成之后的回调。 |
 
 **错误码：**
 
@@ -620,13 +620,13 @@ print(files: Array&lt;string&gt;, context: Context): Promise&lt;PrintTask&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。系统应用传入uri时，需先调用uriPermissionManager.grantUriPermission()接口给打印应用授权，此接口为系统接口。三方应用建议使用[print](#print11-2)。 |
+| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。系统应用传入uri时，需先调用uriPermissionManager.grantUriPermission()接口给打印应用授权，此接口为系统接口。三方应用建议使用[print](#printprint11-2)。 |
 | context | Context | 是 | 用于拉起系统打印界面的UIAbilityContext。 |
 
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;[PrintTask](#printtask)&gt; | 打印完成结果。 |
+| Promise&lt;[PrintTask](#printprinttask)&gt; | 打印完成结果。 |
 
 **错误码：**
 
@@ -671,15 +671,15 @@ print(jobName: string, printAdapter: PrintDocumentAdapter, printAttributes: Prin
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| jobName | string | 是 | 表示待打印文件名称，例如：test.pdf。打印侧会通过[onStartLayoutWrite](#onstartlayoutwrite)接口将空的pdf文件的fd传给接口调用方，由调用方使用新的打印参数更新待打印文件。 |
-| printAdapter | [PrintDocumentAdapter](#printdocumentadapter11) | 是 | 表示三方应用实现的[PrintDocumentAdapter](#printdocumentadapter11)接口实例。 |
-| printAttributes | [PrintAttributes](#printattributes11) | 是 | 表示打印参数。 |
+| jobName | string | 是 | 表示待打印文件名称，例如：test.pdf。打印侧会通过[onStartLayoutWrite](#printonstartlayoutwrite)接口将空的pdf文件的fd传给接口调用方，由调用方使用新的打印参数更新待打印文件。 |
+| printAdapter | [PrintDocumentAdapter](#printprintdocumentadapter11) | 是 | 表示三方应用实现的[PrintDocumentAdapter](#printprintdocumentadapter11)接口实例。 |
+| printAttributes | [PrintAttributes](#printprintattributes11) | 是 | 表示打印参数。 |
 | context | Context | 是 | 用于拉起系统打印界面的UIAbilityContext。 |
 
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;[PrintTask](#printtask)&gt; | 打印完成结果。 |
+| Promise&lt;[PrintTask](#printprinttask)&gt; | 打印完成结果。 |
 
 **错误码：**
 
@@ -732,11 +732,11 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 | **名称** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | copyNumber | number | 否 | 表示文件打印份数。 |
-| pageRange | [PrintPageRange](#printpagerange11) | 否 | 表示待打印文件的页面范围。 |
-| pageSize | [PrintPageSize](#printpagesize11) \| [PrintPageType](#printpagetype11) | 否 | 表示代打印文件的纸张类型。 |
-| directionMode | [PrintDirectionMode](#printdirectionmode11) | 否 | 表示待打印文件的方向。 |
-| colorMode | [PrintColorMode](#printcolormode11) | 否 | 表示待打印文件的色彩模式。 |
-| duplexMode | [PrintDuplexMode](#printduplexmode11) | 否 | 表示待打印文件的单双面模式。 |
+| pageRange | [PrintPageRange](#printprintpagerange11) | 否 | 表示待打印文件的页面范围。 |
+| pageSize | [PrintPageSize](#printprintpagesize11) \| [PrintPageType](#printprintpagetype11) | 否 | 表示代打印文件的纸张类型。 |
+| directionMode | [PrintDirectionMode](#printprintdirectionmode11) | 否 | 表示待打印文件的方向。 |
+| colorMode | [PrintColorMode](#printprintcolormode11) | 否 | 表示待打印文件的色彩模式。 |
+| duplexMode | [PrintDuplexMode](#printprintduplexmode11) | 否 | 表示待打印文件的单双面模式。 |
 
 ## print.PrintPageRange<sup>11+</sup>
 
@@ -960,7 +960,7 @@ addPrinterToDiscovery(printerInformation: PrinterInformation): Promise&lt;void&g
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printerInformation | [PrinterInformation](#printerinformation14) | 是 | 表示新发现的打印机。 |
+| printerInformation | [PrinterInformation](#printprinterinformation14) | 是 | 表示新发现的打印机。 |
 
 **返回值：**
 | **类型** | **说明** |
@@ -1011,7 +1011,7 @@ updatePrinterInDiscovery(printerInformation: PrinterInformation): Promise&lt;voi
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printerInformation | [PrinterInformation](#printerinformation14) | 是 | 表示待更新能力的打印机。 |
+| printerInformation | [PrinterInformation](#printprinterinformation14) | 是 | 表示待更新能力的打印机。 |
 
 **返回值：**
 | **类型** | **说明** |
@@ -1128,7 +1128,7 @@ getPrinterInformationById(printerId: string): Promise&lt;PrinterInformation&gt;
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;[PrinterInformation](#printerinformation14)&gt; | 根据打印机id获取的对应打印机信息。 |
+| Promise&lt;[PrinterInformation](#printprinterinformation14)&gt; | 根据打印机id获取的对应打印机信息。 |
 
 **错误码：**
 
@@ -1164,9 +1164,9 @@ print.getPrinterInformationById(printerId).then((printerInformation : print.Prin
 | -------- | -------- | -------- | -------- |
 | printerId | string | 是 | 表示打印机ID。 |
 | printerName | string | 是 | 表示打印机名称。 |
-| printerStatus | [PrinterStatus](#printerstatus14) | 是 | 表示当前打印机状态。 |
+| printerStatus | [PrinterStatus](#printprinterstatus14) | 是 | 表示当前打印机状态。 |
 | description | string | 否 | 表示打印机说明。 |
-| capability | [PrinterCapabilities](#printercapabilities14) | 否 | 表示打印机能力。 |
+| capability | [PrinterCapabilities](#printprintercapabilities14) | 否 | 表示打印机能力。 |
 | uri | string | 否 | 表示打印机uri。 |
 | printerMake | string | 否 | 表示打印机型号。 |
 | options | string | 否 | 表示打印机详细信息。 |
@@ -1180,12 +1180,12 @@ print.getPrinterInformationById(printerId).then((printerInformation : print.Prin
 **属性：**
 | **名称** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| supportedPageSizes | Array&lt;[PrintPageSize](#printpagesize11)&gt; | 是 | 表示打印机支持的纸张尺寸列表。 |
-| supportedColorModes | Array&lt;[PrintColorMode](#printcolormode11)&gt; | 是 | 表示打印机支持的色彩模式列表。 |
-| supportedDuplexModes | Array&lt;[PrintDuplexMode](#printduplexmode11)&gt; | 是 | 表示打印机支持的单双面模式列表。 |
+| supportedPageSizes | Array&lt;[PrintPageSize](#printprintpagesize11)&gt; | 是 | 表示打印机支持的纸张尺寸列表。 |
+| supportedColorModes | Array&lt;[PrintColorMode](#printprintcolormode11)&gt; | 是 | 表示打印机支持的色彩模式列表。 |
+| supportedDuplexModes | Array&lt;[PrintDuplexMode](#printprintduplexmode11)&gt; | 是 | 表示打印机支持的单双面模式列表。 |
 | supportedMediaTypes | Array&lt;string&gt; | 否 | 表示打印机支持的纸张类型列表。 |
-| supportedQualities | Array&lt;[PrintQuality](#printquality14)&gt; | 否 | 表示打印机支持的打印质量列表。 |
-| supportedOrientations | Array&lt;[PrintOrientationMode](#printorientationmode14)&gt; | 否 | 表示打印机支持的打印方向列表。 |
+| supportedQualities | Array&lt;[PrintQuality](#printprintquality14)&gt; | 否 | 表示打印机支持的打印质量列表。 |
+| supportedOrientations | Array&lt;[PrintOrientationMode](#printprintorientationmode14)&gt; | 否 | 表示打印机支持的打印方向列表。 |
 | options | string | 否 | 表示打印机能力详细信息。 |
 
 ## print.PrintQuality<sup>14+</sup>
