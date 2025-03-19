@@ -46,8 +46,8 @@ TonePlayer<sup>9+</sup>提供播放和管理DTMF（Dual Tone Multi Frequency，�
 import { audio } from '@kit.AudioKit';
 
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage : audio.StreamUsage.STREAM_USAGE_DTMF,
-  rendererFlags : 0
+  usage: audio.StreamUsage.STREAM_USAGE_DTMF, // 音频流使用类型：拨号音。根据业务场景配置，参考StreamUsage。
+  rendererFlags: 0 // 音频渲染器标志。
 };
 
 async function createTonePlayer() {
@@ -106,8 +106,8 @@ async function testTonePlayerPromise(type: audio.ToneType) {
   if (timerPro) clearTimeout(timerPro);
   let tonePlayerPromise: audio.TonePlayer;
   let audioRendererInfo: audio.AudioRendererInfo = {
-    usage : audio.StreamUsage.STREAM_USAGE_DTMF,
-    rendererFlags : 0
+    usage: audio.StreamUsage.STREAM_USAGE_DTMF, // 音频流使用类型：拨号音。根据业务场景配置，参考StreamUsage。
+    rendererFlags: 0 // 音频渲染器标志。
   };
   timerPro = setTimeout(async () => {
     try {
