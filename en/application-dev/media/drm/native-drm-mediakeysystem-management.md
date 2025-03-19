@@ -1,6 +1,6 @@
 # DRM Media Key System Management (C/C++)
 
-Using the **MediaKeySystem** class of the DRM module, you can manage **MediaKeySystem** instances, generate media key system requests to obtain DRM certificates, process responses to these requests, manage media key sessions, manage offline media keys, and obtain DRM statistics and device configuration information. Before using DRM Kit, check whether the device supports the DRM capabilities of a specific DRM scheme. In DRM Kit, the DRM scheme exists as a plug-in.
+Using the **MediaKeySystem** class of the DRM module, you can manage **MediaKeySystem** instances, generate media key system requests to obtain DRM certificates, process responses to these requests, manage media key sessions, manage offline media keys, and obtain DRM statistics and device configuration information. Before using DRM Kit, check whether the device supports the DRM capabilities of a specific DRM solution. In DRM Kit, the DRM solution exists as a plugin.
 
 ## How to Develop
 
@@ -21,7 +21,7 @@ Read [DRM](../../reference/apis-drm-kit/_drm.md) for the API reference.
     target_link_libraries(PUBLIC libnative_drm.so)
    ```
 
-3. Check whether the device supports the DRM scheme based on the specified name, MIME type, and content protection level.
+3. Check whether the device supports the DRM solution based on the specified name, MIME type, and content protection level.
 
    ```c++
     bool isSupported = OH_MediaKeySystem_IsSupported3("com.clearplay.drm", "video/avc", CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
@@ -30,10 +30,10 @@ Read [DRM](../../reference/apis-drm-kit/_drm.md) for the API reference.
     }
    ```
 
-4. (Optional) Obtain the name and ID list of the DRM schemes supported by the device.
+4. (Optional) Obtain the name and ID list of the DRM solutions supported by the device.
 
    ```c++
-    uint32_t count = 1; // count indicates the number of DRM plug-ins supported by the device. Pass in the actual number.
+    uint32_t count = 1; // count indicates the number of DRM plugins supported by the device. Pass in the actual number.
     DRM_MediaKeySystemDescription descriptions[1];
     memset(descriptions, 0, sizeof(descriptions));
     Drm_ErrCode ret = OH_MediaKeySystem_GetMediaKeySystems(descriptions, &count);
@@ -144,7 +144,7 @@ Read [DRM](../../reference/apis-drm-kit/_drm.md) for the API reference.
 
     > **NOTE**
     >
-    > The configuration information may vary according to the DRM scheme. The supported configuration item names are "vendor", "version", "description", "algorithms", "maxSessionNum", and "currentHDCPLevel." The DRM configuration information can be set only when the scheme supports the setting of configuration items.
+    > The configuration information may vary according to the DRM solution. The supported configuration item names are "vendor", "version", "description", "algorithms", "maxSessionNum", and "currentHDCPLevel." The DRM configuration information can be set only when the scheme supports the setting of configuration items.
     
        ```c++
         ret = OH_MediaKeySystem_SetConfigurationString(mediaKeySystem, "version", "2.0"); // Set the configuration information of the string type.
