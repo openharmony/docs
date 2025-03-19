@@ -855,7 +855,7 @@ removeByIndexes(indexes: Array<number\>): number
 
 | 参数名    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
-| indexes  | Array<number\>  | 是    | 待删除NavDestination页面的索引值数组。   |
+| indexes  | Array<number\>  | 是    | 待删除NavDestination页面的索引值数组。索引值从0开始。   |
 
 **返回值：**
 
@@ -1015,7 +1015,7 @@ popToIndex(index: number, animated?: boolean): void
 
 | 参数名    | 类型     | 必填   | 说明                     |
 | ----- | ------ | ---- | ---------------------- |
-| index | number | 是    | NavDestination页面的位置索引。 |
+| index | number | 是    | NavDestination页面的位置索引。索引值从0开始。 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 ### popToIndex<sup>11+</sup>
@@ -1032,7 +1032,7 @@ popToIndex(index: number, result: Object, animated?: boolean): void
 
 | 参数名    | 类型     | 必填   | 说明                     |
 | ----- | ------ | ---- | ---------------------- |
-| index | number | 是    | NavDestination页面的位置索引。 |
+| index | number | 是    | NavDestination页面的位置索引。索引值从0开始。 |
 | result | Object | 是 | 页面自定义处理结果。不支持boolean类型。 |
 | animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
@@ -1073,7 +1073,7 @@ moveIndexToTop(index: number, animated?: boolean): void
 
 | 参数名    | 类型     | 必填   | 说明                     |
 | ----- | ------ | ---- | ---------------------- |
-| index | number | 是    | NavDestination页面的位置索引。 |
+| index | number | 是    | NavDestination页面的位置索引。索引值从0开始。|
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 ### clear<sup>10+</sup>
@@ -1122,7 +1122,7 @@ getParamByIndex(index: number): unknown | undefined
 
 | 参数名    | 类型     | 必填   | 说明                     |
 | ----- | ------ | ---- | ---------------------- |
-| index | number | 是    | NavDestination页面的位置索引。 |
+| index | number | 是    | NavDestination页面的位置索引。 索引值从0开始。|
 
 **返回值：**
 
@@ -1173,7 +1173,7 @@ getIndexByName(name: string): Array<number\>
 
 | 类型             | 说明                                |
 | -------------- | --------------------------------- |
-| Array<number\> | 返回全部名为name的NavDestination页面的位置索引。 |
+| Array<number\> | 返回全部名为name的NavDestination页面的位置索引。 当页面栈中不存在此name，返回空数组。索引取值范围为[0, 页面栈大小-1] |
 
 ### size<sup>10+</sup>
 
