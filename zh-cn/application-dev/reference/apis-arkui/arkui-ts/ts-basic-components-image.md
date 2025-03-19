@@ -625,10 +625,10 @@ orientation(orientation: ImageRotateOrientation)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名 | 类型       | 必填 | 说明           |
+| 名称 | 类型       | 必填 | 说明           |
 | ------ | --------- | ---- | ------------- |
-| width  | number | 是   | 图片解码尺寸宽度。<br/>单位：vp |
-| height  | number | 是   | 图片解码尺寸高度。<br/>单位：vp |
+| width<sup>7+</sup>  | number | 是   | 图片解码尺寸宽度。<br/>单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| height<sup>7+</sup>  | number | 是   | 图片解码尺寸高度。<br/>单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## DrawableDescriptor<sup>10+<sup>
 
@@ -696,7 +696,7 @@ type ImageMatrix = Matrix4Transit
 
 | 名称 | 类型       | 必填 | 说明           |
 | ------ | --------- | --- | ------------- |
-| ORIGIN  | ColorContent | 否 | 重置[fillColor](#fillcolor)接口，效果上与不设置[fillColor](#fillcolor)一致。 |
+| ORIGIN  | ColorContent | 是 | 重置[fillColor](#fillcolor)接口，效果上与不设置[fillColor](#fillcolor)一致。 |
 
 ## 事件
 
