@@ -409,7 +409,7 @@ occupyEvents(eventFlags: number): Promise&lt;void&gt;
 
 | 参数名 | 类型    | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| eventFlags | number | 是 | 占用的事件类型，取值参考[EventFlag](js-apis-arkui-uiExtension.md#EventFlag18)中的定义 |
+| eventFlags | number | 是 | 占用的事件类型，取值参考[EventFlag](js-apis-arkui-uiExtension.md#eventflag18)中的定义 |
 
 **返回值：**
 
