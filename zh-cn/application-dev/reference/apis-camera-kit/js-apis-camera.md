@@ -5405,7 +5405,7 @@ function getExposureValue(photoSession: camera.PhotoSession): number {
 
 提供了针对设备的自动曝光特性提供了一系列查询功能。
 
-### isExposureModeSupported<sup>12+</sup>
+### isExposureModeSupported<sup>11+</sup>
 
 isExposureModeSupported(aeMode: ExposureMode): boolean
 
