@@ -6173,12 +6173,12 @@ submitCloudEnhancementTasks(photoAssets: Array&lt;PhotoAsset&gt;, hasCloudWaterm
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
 | photoAssets | Array<[PhotoAsset](#photoasset)> | 是   | 需要增强照片的[PhotoAsset](#photoasset)集合。 |
-| hasCloudWatermark | boolean | 是   | 增强后图片是否添加云增强水印。 |
-| triggerMode | number | 否   | 云增强任务触发类型。0：手动触发；1：自动触发。默认值为0。 |
+| hasCloudWatermark | boolean | 是   | 若为true，增强后图片添加云增强水印；若为false，增强后图片不添加云增强水印 |
+| triggerMode | number | 否   | 云增强任务触发类型。<br>- 0：手动触发；<br>- 1：自动触发。<br>- 默认值为0。 |
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -6376,7 +6376,7 @@ queryCloudEnhancementTaskState(photoAsset: PhotoAsset): Promise&lt;CloudEnhancem
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
 
 **参数：**
 
@@ -6459,7 +6459,7 @@ syncCloudEnhancementTaskStatus(): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
 
 **错误码：**
 
@@ -6498,7 +6498,7 @@ getCloudEnhancementPair(asset: PhotoAsset): Promise&lt;PhotoAsset&gt;
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
 
 **参数：**
 
