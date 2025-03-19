@@ -254,7 +254,7 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 >  **说明：**
 >
->  用于穿戴设备圆形屏幕使用。
+>  用于穿戴设备圆形屏幕使用。组件响应[表冠事件](ts-universal-events-crown.md)，需要先获取焦点。
 
 ## PickerTextStyle<sup>10+</sup>类型说明
 
