@@ -93,8 +93,8 @@ import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 | rawX        | number | 是    | 否    | 输入设备上的x坐标。                          |
 | rawY        | number | 是    | 否    | 输入设备上的y坐标。                           |
 | toolType    | [ToolType](#tooltype) | 是    | 否    | 工具类型。                                |
-| <!--DelRow-->fixedDisplayX<sup>18+</sup>| number| 是    | 否    | screenX的修正值。<br> 说明： 该接口仅在手机设备上生效。            |
-| <!--DelRow-->fixedDisplayY<sup>18+</sup>| number| 是    | 否    | screenY的修正值。<br> 说明： 该接口仅在手机设备上生效。            |
+| <!--DelRow-->fixedDisplayX<sup>18+</sup>| number| 是    | 否    | screenX的修正值。<br> **说明**： 该接口仅在手机设备上生效。            |
+| <!--DelRow-->fixedDisplayY<sup>18+</sup>| number| 是    | 否    | screenY的修正值。<br> **说明**： 该接口仅在手机设备上生效。            |
 
 ## TouchEvent
 
@@ -108,4 +108,4 @@ import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 | touch      | [Touch](#touch)      | 是    | 否    | 当前触摸点信息。   |
 | touches    | [Touch](#touch)[]    | 是    | 否    | 所有触摸点。     |
 | sourceType | [SourceType](#sourcetype) | 是    | 否    | 触摸来源的设备类型。 |
-| <!--DelRow-->fixedMode<sup>18+</sup>  | [FixedMode](#fixedmode18)   | 是    | 否    | 修正坐标的模式。<br> 说明： 该接口仅在手机设备上生效。|
+| <!--DelRow-->fixedMode<sup>18+</sup>  | [FixedMode](#fixedmode18)   | 是    | 是    | 修正坐标的模式。<br> **说明**：该接口仅在手机设备上生效。|
