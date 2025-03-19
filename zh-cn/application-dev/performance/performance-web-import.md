@@ -48,9 +48,9 @@ WebView在onAppear阶段进行预连接socket， 当Web内核真正发起请求�
 @ohos.web.webview提供了prepareForPageLoad方法实现预连接url，在加载url之前调用此API，对url只进行DNS解析、socket建链操作，并不获取主资源子资源。  
 参数：
 
-| 参数名            | 类型      | 说明                                                                                        |
-|----------------|---------|-------------------------------------------------------------------------------------------|
-| url            | string  | 预连接的url。                                                                                  |
+| 参数名         | 类型    | 说明                                                         |
+| -------------- | ------- | ------------------------------------------------------------ |
+| url            | string  | 预连接的url。                                                |
 | preconnectable | boolean | 是否进行预连接。如果preconnectable为true，则对url进行dns解析，socket建链预连接；如果preconnectable为false，则不做任何预连接操作。 |
 | numSockets     | number  | 要预连接的socket数。socket数目连接需要大于0，最多允许6个连接。                                                    |
 
@@ -67,9 +67,9 @@ webview.WebviewController.prepareForPageLoad("https://www.example.com", true, 2)
 @ohos.web.webview提供prefetchPage方法实现在预测到将要加载的页面之前调用，提前下载页面所需的资源，包括主资源子资源，但不会执行网页JavaScript代码或呈现网页，以加快加载速度。  
 参数：
 
-| 参数名               | 类型                | 说明             |
-|-------------------|-------------------|----------------|
-| url               | string            | 预加载的url。       |
+| 参数名            | 类型              | 说明                  |
+| ----------------- | ----------------- | --------------------- |
+| url               | string            | 预加载的url。         |
 | additionalHeaders | Array\<WebHeader> | url的附加HTTP请求头。 |
 
 使用方法如下：
@@ -85,22 +85,22 @@ struct WebComponent {
 
   build() {
     Column() {
-      // ...
-      Web({ src: 'https://www.example.com', controller: this.controller })
-        .onPageEnd((event) => {
-          //  ...
-          // 在确定即将跳转的页面时开启预加载，url请替换真实地址
-          this.controller.prefetchPage('https://www.example.com/nextpage');
-        })
-        .width('100%')
-        .height('80%')
-
-      Button('下一页')
-        .onClick(() => {
-          // ...
-          // 跳转下一页
-          this.controller.loadUrl('https://www.example.com/nextpage');
-        })
+       // ...
+       Web({ src: 'https://www.example.com', controller: this.controller })
+         .onPageEnd((event) => {
+           //  ...
+           // 在确定即将跳转的页面时开启预加载，url请替换真实地址。
+           this.controller.prefetchPage('https://www.example.com/nextpage');
+         })
+         .width('100%')
+         .height('80%')
+         
+       Button('下一页')
+         .onClick(() => {
+           // ...
+           // 跳转下一页。
+           this.controller.loadUrl('https://www.example.com/nextpage');
+         })
     }
   }
 }
@@ -114,7 +114,7 @@ struct WebComponent {
 
 #### 反例
 
-入口页通过router实现跳转
+入口页通过router实现跳转。
 ```javascript
 // ../src/main/ets/pages/WebUninitialized.ets
 
@@ -124,7 +124,7 @@ Button('进入网页')
     router.pushUrl({ url: 'pages/WebBrowser' });
   })
 ```
-Web页使用Web组件加载指定网页
+Web页使用Web组件加载指定网页。
 ```javascript
 // ../src/main/ets/pages/WebBrowser.ets
 
@@ -139,7 +139,7 @@ Web({ src: 'https://www.example.com', controller: this.controller })
 
 #### 正例
 
-入口页提前进行Web组件的初始化和预连接
+入口页提前进行Web组件的初始化和预连接。
 
 ```typescript
 // ../src/main/ets/pages/WebInitialized.ets
@@ -169,7 +169,9 @@ struct WebComponent {
   }
 }
 ```
-Web页加载的同时使用prefetchPage预加载下一页
+
+Web页加载的同时使用prefetchPage预加载下一页。
+
 ```typescript
 // ../src/main/ets/pages/WebBrowser.ets
 
