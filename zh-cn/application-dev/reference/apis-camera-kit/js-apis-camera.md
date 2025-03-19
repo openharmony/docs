@@ -5277,6 +5277,46 @@ function setMeteringPoint(photoSession: camera.PhotoSession): void {
 }
 ```
 
+### getExposureBiasRange<sup>11+</sup>
+
+getExposureBiasRange(): Array\<number\>
+
+查询曝光补偿范围。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+| Array\<number\>   | 获取补偿范围的数组。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config, only throw in session usage.               |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getExposureBiasRange(photoSession: camera.PhotoSession): Array<number> {
+  let biasRangeArray: Array<number> = [];
+  try {
+    biasRangeArray = photoSession.getExposureBiasRange();
+  } catch (error) {
+    // 失败返回错误码error.code并处理。
+    let err = error as BusinessError;
+    console.error(`The getExposureBiasRange call failed. error code: ${err.code}`);
+  }
+  return biasRangeArray;
+}
+```
+
 ### setExposureBias<sup>11+</sup>
 
 setExposureBias(exposureBias: number): void
@@ -8730,7 +8770,7 @@ setQualityPrioritization(quality : QualityPrioritization) : void;
 | 错误码ID | 错误信息                                                                                                                                        |
 | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 7400103  | Session not config.                                                                                                                             |
+| 7400103  | Session not config. The session has not been committed or configured.                                                                           |
 
 **示例：**
 
