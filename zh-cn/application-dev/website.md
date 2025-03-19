@@ -52,6 +52,15 @@
           - [OH_NN_QuantParam](onlyfortest/reference/apis-neural-network-runtime-kit/capi-_o_h___n_n___quant_param.md)
           - [OH_NN_Tensor](onlyfortest/reference/apis-neural-network-runtime-kit/capi-_o_h___n_n___tensor.md)
           - [OH_NN_UInt32Array](onlyfortest/reference/apis-neural-network-runtime-kit/capi-_o_h___n_n___u_int32_array.md)
+      - Avsession<!--reference-c-avsession-->
+        - 模块<!--reference-c-avsession-module-->
+          - [OHAVSession](onlyfortest/reference/apis-avsession-kit/_o_h_a_v_session.md)
+        - 头文件<!--reference-c-avsession-headerfile-->
+          - [native_avmetadata.h](onlyfortest/reference/apis-avsession-kit/native__avmetadata_8h.md)
+          - [native_avsession.h](onlyfortest/reference/apis-avsession-kit/native__avsession_8h.md)
+          - [native_avsession_errors.h](onlyfortest/reference/apis-avsession-kit/native__avsession__errors_8h.md)
+        - 结构体<!--reference-c-avsession-struct-->
+          - [AVSession_PlaybackPosition](onlyfortest/reference/apis-avsession-kit/_a_v_session___playback_position.md)
 - 非reference文件夹<!--not--reference-fold-->
   - C APIC API新增版本筛选标签需求<!--not--reference-fold--0624-->
     - [Audio Kit简介](onlyfortest/media/audio/audio-kit-intro.md)
