@@ -26,8 +26,8 @@ Ellipse(options?: {width?: string | number, height?: string | number})
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| width | string \| number | 否 | 宽度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
-| height | string \| number | 否 | 高度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| width | string \| number | 否 | 宽度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| height | string \| number | 否 | 高度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
 
 ## 属性
 
@@ -91,7 +91,7 @@ stroke(value: ResourceColor)
 
 strokeDashArray(value: Array&lt;any&gt;)
 
-设置边框间隙。异常值按照默认值处理。
+设置边框间隙。取值范围≥0，异常值按照默认值处理。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -211,7 +211,7 @@ strokeWidth(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                     |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 边框宽度。<br/>默认值：1<br/>默认单位：vp |
+| value  | [Length](ts-types.md#length) | 是   | 边框宽度，取值范围≥0。<br/>默认值：1<br/>默认单位：vp<br/>异常值按照默认值处理。 |
 
 ### antiAlias
 
