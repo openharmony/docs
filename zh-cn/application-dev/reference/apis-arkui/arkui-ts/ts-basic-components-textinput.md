@@ -1050,7 +1050,7 @@ maxFontScale(scale: Optional\<number | Resource>)
 
 ### cancelButton<sup>18+</sup>
 
-cancelButton(value: CancelButtonSymbolOptions)
+cancelButton(symbolOptions: CancelButtonSymbolOptions)
 
 设置右侧清除按钮样式。不支持内联模式。
 
@@ -1062,7 +1062,7 @@ cancelButton(value: CancelButtonSymbolOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [CancelButtonSymbolOptions](ts-basic-components-search.md#cancelbuttonsymboloptions12对象说明) | 是   | 右侧清除按钮样式。<br />默认值：<br />{<br />style: CancelButtonStyle.INPUT<br />} |
+| symbolOptions  | [CancelButtonSymbolOptions](ts-basic-components-search.md#cancelbuttonsymboloptions12对象说明) | 是   | 右侧清除按钮样式。<br />默认值：<br />{<br />style: CancelButtonStyle.INPUT<br />} |
 
 ### ellipsisMode<sup>18+</sup>
 
