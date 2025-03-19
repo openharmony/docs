@@ -180,6 +180,8 @@ try {
 
 on(type: 'keyPressed', options: KeyPressedConfig, callback: Callback&lt;KeyEvent&gt;): void
 
+当前应用进程为焦点窗口所在进程时，如果用户操作了指定按键，则会触发回调。
+
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
 **参数：**
@@ -219,6 +221,8 @@ try {
 ## inputConsumer.off('keyPressed')<sup>16+</sup>
 
 off(type: 'keyPressed', callback?: Callback&lt;KeyEvent&gt;): void
+
+取消消费按键事件。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
