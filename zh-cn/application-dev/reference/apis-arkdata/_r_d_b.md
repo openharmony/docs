@@ -2283,7 +2283,7 @@ int OH_Value_GetAssets (OH_Data_Value *value, Data_Asset **val, size_t inLen, si
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
 | val | 表示指向**Data_Asset**对象的指针。 需要申请数据内存。 此函数仅填充数据。否则执行失败。 |
 | inLen | 表示val的大小。可以通过[OH_Values_GetAssetsCount](#oh_values_getassetscount)获取。 |
-| outLen | 一个输出参数，表示实际获取的数据大小。 |
+| outLen | 该参数为输出参数，表示实际获取的数据大小。 |
 
 **返回：**
 
@@ -2319,7 +2319,7 @@ int OH_Value_GetAssetsCount (OH_Data_Value *value, size_t *length )
 | 名称 | 描述 |
 | -------- | -------- |
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
-| length | 一个输出参数，表示ASSETS类型数据的大小。 |
+| length | 该参数是输出参数，表示ASSETS类型数据的大小。 |
 
 **返回：**
 
@@ -2351,8 +2351,8 @@ int OH_Value_GetBlob (OH_Data_Value *value, const uint8_t **val, size_t *length 
 | 名称 | 描述 |
 | -------- | -------- |
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
-| val | 一个输出参数，表示指向BLOB类型数据的指针。 无需申请内存和释放内存。 val的生命周期遵循value中index的值。 |
-| length | 表示BLOB类型数组的大小。 |
+| val | 该参数是输出参数，表示指向BLOB类型数据的指针。 无需申请内存和释放内存。 val的生命周期遵循value中index的值。 |
+| length | 该参数是输出参数，表示BLOB类型数组的大小。 |
 
 **返回：**
 
@@ -2386,7 +2386,7 @@ int OH_Value_GetFloatVector (OH_Data_Value *value, float *val, size_t inLen, siz
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
 | val | 表示指向float数组的指针。 需要申请数据内存。 此函数仅填充数据。否则执行失败。 |
 | inLen | 表示val的大小。可以通过[OH_Values_GetFloatVectorCount](#oh_values_getfloatvectorcount)获取。 |
-| outLen | 一个输出参数，表示实际获取的数据大小。 |
+| outLen | 该参数为输出参数，表示实际获取的数据大小。 |
 
 **返回：**
 
@@ -2422,7 +2422,7 @@ int OH_Value_GetFloatVectorCount (OH_Data_Value *value, size_t *length )
 | 名称 | 描述 |
 | -------- | -------- |
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
-| length | 一个输出参数，表示float数组类型数据的大小。 |
+| length | 该参数是输出参数，表示float数组类型数据的大小。 |
 
 **返回：**
 
@@ -2454,7 +2454,7 @@ int OH_Value_GetInt (OH_Data_Value *value, int64_t *val )
 | 名称 | 描述 |
 | -------- | -------- |
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
-| val | 一个输出参数，表示指向整型数据的指针。 |
+| val | 该参数为输出参数，表示指向整型数据的指针。 |
 
 **返回：**
 
@@ -2486,7 +2486,7 @@ int OH_Value_GetReal (OH_Data_Value *value, double *val )
 | 名称 | 描述 |
 | -------- | -------- |
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
-| val | 一个输出参数，表示指向REAL类型数据的指针。 |
+| val | 该参数为输出参数，表示指向REAL类型数据的指针。 |
 
 **返回：**
 
@@ -2518,7 +2518,7 @@ int OH_Value_GetText (OH_Data_Value *value, const char **val )
 | 名称 | 描述 |
 | -------- | -------- |
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
-| val | 一个输出参数，表示指向字符串类型数据的指针。 无需申请内存和释放内存。 val的生命周期遵循value中index的值。 |
+| val | 该参数为输出参数，表示指向字符串类型数据的指针。 无需申请内存和释放内存。 val的生命周期遵循value中index的值。 |
 
 **返回：**
 
@@ -2549,7 +2549,7 @@ int OH_Value_GetType (OH_Data_Value *value, OH_ColumnType *type )
 | 名称 | 描述 |
 | -------- | -------- |
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
-| type | 一个输出参数，表示数据类型。 |
+| type | 该参数为输出参数，表示数据类型。 |
 
 **返回：**
 
@@ -2577,10 +2577,10 @@ int OH_Value_GetUnlimitedInt (OH_Data_Value *value, int *sign, uint64_t *trueFor
 | 名称 | 描述 |
 | -------- | -------- |
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
-| sign | 一个输出参数，表示正负数，0表示正整数，1表示负整数。 |
+| sign | 该参数为输出参数，表示正负数，0表示正整数，1表示负整数。 |
 | trueForm | 表示指向整型数组的指针。 需要申请数据内存。 此函数仅填充数据。否则执行失败。 |
 | inLen | 表示trueForm的大小。可以通过[OH_Values_GetUnlimitedIntBand](#oh_values_getunlimitedintband)获取。 |
-| outLen | 一个输出参数，表示实际获取的数据大小。 |
+| outLen | 该参数为输出参数，表示实际获取的数据大小。 |
 
 **返回：**
 
@@ -2616,7 +2616,7 @@ int OH_Value_GetUnlimitedIntBand (OH_Data_Value *value, size_t *length )
 | 名称 | 描述 |
 | -------- | -------- |
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
-| length | 一个输出参数，表示整型数组的大小。 |
+| length | 该参数是输出参数，表示整型数组的大小。 |
 
 **返回：**
 
@@ -2647,7 +2647,7 @@ int OH_Value_IsNull (OH_Data_Value *value, bool *val )
 | 名称 | 描述 |
 | -------- | -------- |
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
-| val | 一个输出参数，ture表示空，false表示不为空。 |
+| val | 该参数为输出参数，ture表示空，false表示不为空。 |
 
 **返回：**
 
@@ -2704,7 +2704,7 @@ int OH_Value_PutAssets (OH_Data_Value *value, const Data_Asset * const * val, si
 | -------- | -------- |
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
 | val | 表示指向**Data_Asset**对象的指针。 |
-| length | 表示传入的**Data_Asset**对象数组元素的个数。 |
+| length | 该参数是输入参数，表示开发者传入的**Data_Asset**对象数组元素的个数。 |
 
 **返回：**
 
@@ -2733,7 +2733,7 @@ int OH_Value_PutBlob (OH_Data_Value *value, const unsigned char *val, size_t len
 | -------- | -------- |
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
 | val | 表示BLOB类型数据。 |
-| length | 表示BLOB类型数据的大小。 |
+| length | 该参数是输入参数，表示开发者传入的BLOB类型数据的大小。 |
 
 **返回：**
 
@@ -2762,7 +2762,7 @@ int OH_Value_PutFloatVector (OH_Data_Value *value, const float *val, size_t leng
 | -------- | -------- |
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
 | val | 表示指向float数组对象的指针。 |
-| length | 表示float数组的大小。 |
+| length | 该参数是输入参数，表示开发者传入的表示float数组的大小。 |
 
 **返回：**
 
@@ -2902,7 +2902,7 @@ int OH_Value_PutUnlimitedInt (OH_Data_Value *value, int sign, const uint64_t *tr
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
 | sign | 表示正负数，0表示正整数，1表示负整数。 |
 | trueForm | 表示指向整型数组的指针。 |
-| length | 表示整型数组的大小。 |
+| length | 该参数是输入参数，表示开发者传入的表示整型数组的大小。 |
 
 **返回：**
 
@@ -2929,7 +2929,7 @@ int OH_Values_Count (OH_Data_Values *values, size_t *count )
 | 名称 | 描述 |
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
-| count | 一个输出参数，表示values中数据的个数。 |
+| count | 该参数为输出参数，表示values中数据的个数。 |
 
 **返回：**
 
@@ -3006,7 +3006,7 @@ int OH_Values_Get (OH_Data_Values *values, int index, OH_Data_Value **val )
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | index | 表示values中目标数据的从零开始的索引。 |
-| val | 一个输出参数，表示指向[OH_Data_Value](#oh_data_value)实例的指针。 无需申请内存和释放内存。 |
+| val | 该参数为输出参数，表示指向[OH_Data_Value](#oh_data_value)实例的指针。 无需申请内存和释放内存。 |
 
 **返回：**
 
@@ -3069,7 +3069,7 @@ int OH_Values_GetAssets (OH_Data_Values *values, int index, Data_Asset **val, si
 | index | 表示values中目标数据的从零开始的索引。 |
 | val | 表示指向**Data_Asset**对象的指针。 使用时需要申请数据内存。 此函数仅填充数据。否则执行失败。 |
 | inLen | 表示val的大小。可以通过[OH_Values_GetAssetsCount](#oh_values_getassetscount)获取。 |
-| outLen | 一个输出参数，表示实际获取的数据大小。 |
+| outLen | 该参数为输出参数，表示实际获取的数据大小。 |
 
 **返回：**
 
@@ -3106,7 +3106,7 @@ int OH_Values_GetAssetsCount (OH_Data_Values *values, int index, size_t *length 
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | index | 表示values中目标数据的从零开始的索引。 |
-| length | 一个输出参数，表示ASSETS类型数据的大小。 |
+| length | 该参数为输出参数，表示ASSETS类型数据的大小。 |
 
 **返回：**
 
@@ -3139,8 +3139,8 @@ int OH_Values_GetBlob (OH_Data_Values *values, int index, const uint8_t **val, s
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | index | 表示values中目标数据的从零开始的索引。 |
-| val | 一个输出参数，表示指向BLOB类型数据的指针。 无需申请内存和释放内存。 val的生命周期遵循values中index的值。 |
-| length | 表示BLOB类型数组的大小。 |
+| val | 该参数为输出参数，表示指向BLOB类型数据的指针。 无需申请内存和释放内存。 val的生命周期遵循values中index的值。 |
+| length | 该参数为输出参数，表示BLOB类型数组的大小。 |
 
 **返回：**
 
@@ -3174,7 +3174,7 @@ int OH_Values_GetFloatVector (OH_Data_Values *values, int index, float *val, siz
 | index | 表示values中目标数据的从零开始的索引。 |
 | val | 表示指向float数组的指针。 需要申请数据内存。 此函数仅填充数据。否则执行失败。 |
 | inLen | 表示val的大小。可以通过[OH_Values_GetFloatVectorCount](#oh_values_getfloatvectorcount)获取。 |
-| outLen | 一个输出参数，表示实际获取的数据大小。 |
+| outLen | 该参数为输出参数，表示实际获取的数据大小。 |
 
 **返回：**
 
@@ -3211,7 +3211,7 @@ int OH_Values_GetFloatVectorCount (OH_Data_Values *values, int index, size_t *le
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | index | 表示values中目标数据的从零开始的索引。 |
-| length | 一个输出参数，表示float数组类型数据的大小。 |
+| length | 该参数为输出参数，表示float数组类型数据的大小。 |
 
 **返回：**
 
@@ -3244,7 +3244,7 @@ int OH_Values_GetInt (OH_Data_Values *values, int index, int64_t *val )
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | index | 表示values中目标数据的从零开始的索引。 |
-| val | 一个输出参数，表示指向整型数据的指针。 |
+| val | 该参数为输出参数，表示指向整型数据的指针。 |
 
 **返回：**
 
@@ -3276,7 +3276,7 @@ int OH_Values_GetReal (OH_Data_Values *values, int index, double *val )
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | index | 表示values中目标数据的从零开始的索引。 |
-| val | 一个输出参数，表示指向REAL类型数据的指针。 |
+| val | 该参数为输出参数，表示指向REAL类型数据的指针。 |
 
 **返回：**
 
@@ -3309,7 +3309,7 @@ int OH_Values_GetText (OH_Data_Values *values, int index, const char **val )
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | index | 表示values中目标数据的从零开始的索引。 |
-| val | 一个输出参数，表示指向字符串类型数据的指针。 无需申请内存和释放内存。 val的生命周期遵循values中index的值。 |
+| val | 该参数为输出参数，表示指向字符串类型数据的指针。 无需申请内存和释放内存。 val的生命周期遵循values中index的值。 |
 
 **返回：**
 
@@ -3342,7 +3342,7 @@ int OH_Values_GetType (OH_Data_Values *values, int index, OH_ColumnType *type )
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | index | 表示values中目标数据的从零开始的索引。 |
-| type | 一个输出参数，表示数据类型。 |
+| type | 该参数为输出参数，表示数据类型。 |
 
 **返回：**
 
@@ -3371,10 +3371,10 @@ int OH_Values_GetUnlimitedInt (OH_Data_Values *values, int index, int *sign, uin
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | index | 表示values中目标数据的从零开始的索引。 |
-| sign | 一个输出参数，表示正负数，0表示正整数，1表示负整数。 |
+| sign | 该参数为输出参数，表示正负数，0表示正整数，1表示负整数。 |
 | trueForm | 表示指向整型数组的指针。 需要申请数据内存。 此函数仅填充数据。否则执行失败。 |
 | inLen | 表示trueForm的大小。可以通过[OH_Values_GetUnlimitedIntBand](#oh_values_getunlimitedintband)获取。 |
-| outLen | 一个输出参数，表示实际获取的数据大小。 |
+| outLen | 该参数为输出参数，表示实际获取的数据大小。 |
 
 **返回：**
 
@@ -3411,7 +3411,7 @@ int OH_Values_GetUnlimitedIntBand (OH_Data_Values *values, int index, size_t *le
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | index | 表示values中目标数据的从零开始的索引。 |
-| length | 一个输出参数，表示整型数组的大小。 |
+| length | 该参数为输出参数，表示整型数组的大小。 |
 
 **返回：**
 
@@ -3444,7 +3444,7 @@ int OH_Values_IsNull (OH_Data_Values *values, int index, bool *val )
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | index | 表示values中目标数据的从零开始的索引。 |
-| val | 一个输出参数，ture表示空，false表示不为空。 |
+| val | 该参数为输出参数，ture表示空，false表示不为空。 |
 
 **返回：**
 
@@ -3528,7 +3528,7 @@ int OH_Values_PutAssets (OH_Data_Values *values, const Data_Asset * const * val,
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | val | 表示指向**Data_Asset**对象的指针。 |
-| length | 表示传入的**Data_Asset**对象数组元素的个数。 |
+| length | 该参数为输入参数，表示开发者传入的**Data_Asset**对象数组元素的个数。 |
 
 **返回：**
 
@@ -3557,7 +3557,7 @@ int OH_Values_PutBlob (OH_Data_Values *values, const unsigned char *val, size_t 
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | val | 表示BLOB类型数据。 |
-| length | 表示BLOB类型数据的大小。 |
+| length | 该参数为输入参数，表示开发者传入的BLOB类型数据的大小。 |
 
 **返回：**
 
@@ -3586,7 +3586,7 @@ int OH_Values_PutFloatVector (OH_Data_Values *values, const float *val, size_t l
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | val | 表示指向float数组对象的指针。 |
-| length | 表示float数组的长度。 |
+| length | 该参数为输入参数，表示开发者传入的float数组的长度。 |
 
 **返回：**
 
@@ -3727,7 +3727,7 @@ int OH_Values_PutUnlimitedInt (OH_Data_Values *values, int sign, const uint64_t 
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | sign | 表示正负数，0表示正整数，1表示负整数。 |
 | trueForm | 表示指向整型数组的指针。 |
-| length | 表示整型数组的大小。 |
+| length | 该参数为输入参数，表示开发者传入的整型数组的大小。 |
 
 **返回：**
 
@@ -3927,7 +3927,7 @@ int OH_VBuckets_RowCount (OH_Data_VBuckets *buckets, size_t *count )
 | 名称 | 描述 |
 | -------- | -------- |
 | buckets | 表示指向[OH_Data_VBuckets](#oh_data_vbuckets)实例的指针。 |
-| count | 一个输出参数，表示[OH_Data_VBuckets](#oh_data_vbuckets)中[OH_VBucket](_o_h___v_bucket.md)的个数。 |
+| count | 该参数为输出参数，表示[OH_Data_VBuckets](#oh_data_vbuckets)中[OH_VBucket](_o_h___v_bucket.md)的个数。 |
 
 **返回：**
 
@@ -4962,7 +4962,7 @@ OH_Cursor* OH_Rdb_Query (OH_Rdb_Store *store, OH_Predicates *predicates, const c
 | store | 表示指向[OH_Rdb_Store](_o_h___rdb___store.md)实例的指针。 |
 | predicates | 表示指向[OH_Predicates](_o_h___predicates.md)实例的指针，指定查询条件。 |
 | columnNames | 表示要查询的列。如果值为空，则查询应用于所有列。 |
-| length | 表示columnNames数组的长度。若length大于columnNames数组的实际长度，则会访问越界。 |
+| length | 该参数为输入参数，表示开发者传入的columnNames数组的长度。若length大于columnNames数组的实际长度，则会访问越界。 |
 
 **返回：**
 
@@ -4991,7 +4991,7 @@ OH_Cursor *OH_Rdb_QueryLockedRow (OH_Rdb_Store *store, OH_Predicates *predicates
 | store | 表示指向[OH_Rdb_Store](_o_h___rdb___store.md)实例的指针。 |
 | predicates | 表示指向[OH_Predicates](_o_h___predicates.md)实例的指针，指定查询条件。 |
 | columnNames | 表示要查询的列。如果值为空，则查询应用于所有列。 |
-| length | 表示columnNames数组的长度。若length大于columnNames数组的实际长度，则会访问越界。 |
+| length | 该参数为输入参数，表示开发者传入的columnNames数组的长度。若length大于columnNames数组的实际长度，则会访问越界。 |
 
 **返回：**
 
@@ -5947,7 +5947,7 @@ int(*getAssets) (OH_Cursor *cursor, int32_t columnIndex, Data_Asset **value, uin
 | cursor | 表示指向[OH_Cursor](_o_h___cursor.md)实例的指针。 |
 | columnIndex | 表示结果集中指定列的索引, 索引值从0开始。 |
 | value | 该参数是输出参数，结果集中指定列的值会以资产数组形式写入该变量。 |
-| length | 表示资产数组的长度。 |
+| length | 既是入参又是出参：作为入参，需要开发者传入一个uint32_t类型的变量，表示输入缓冲区的大小；作为出参，表示函数执行后，length指向的变量会被更新为实际返回的资产数组的长度。 |
 
 **返回：**
 
@@ -5977,7 +5977,7 @@ int(*getBlob) (OH_Cursor *cursor, int32_t columnIndex, unsigned char *value, int
 | cursor | 表示指向[OH_Cursor](_o_h___cursor.md)实例的指针。 |
 | columnIndex | 表示结果集中指定列的索引, 索引值从0开始。 |
 | value | 该参数是输出参数，结果集中指定列的值会以字节数组形式写入该变量。 |
-| length | 表示value的长度，该值可通过getSize获取。 |
+| length | 该参数为输入参数，表示传入的value的长度，该值可通过getSize获取。 |
 
 **返回：**
 
@@ -6064,7 +6064,7 @@ int(*getColumnName) (OH_Cursor *cursor, int32_t columnIndex, char *name, int len
 | cursor | 表示指向[OH_Cursor](_o_h___cursor.md)实例的指针。 |
 | columnIndex | 表示结果集中指定列的索引, 索引值从0开始。 |
 | name | 该参数是输出参数，结果集中指定列的名称会写入该变量。 |
-| length | 表示列名的长度。 |
+| length | 该参数为输入参数，表示开发者传入的包括终止符在内的列名字符串的总长度。 |
 
 **返回：**
 
@@ -6238,7 +6238,7 @@ int(*getText) (OH_Cursor *cursor, int32_t columnIndex, char *value, int length)
 | cursor | 表示指向[OH_Cursor](_o_h___cursor.md)实例的指针。 |
 | columnIndex | 表示结果集中指定列的索引, 索引值从0开始。 |
 | value | 该参数是输出参数，结果集中指定列的值会以字符串形式写入该变量。 |
-| length | 表示value的长度，该值可通过getSize获取。 |
+| length | 该参数是输入参数，表示value的长度，该值可通过getSize获取。 |
 
 **返回：**
 
@@ -6358,7 +6358,7 @@ OH_Predicates *(*groupBy) (OH_Predicates *predicates, char const *const *fields,
 | -------- | -------- |
 | predicates | 表示指向[OH_Predicates](_o_h___predicates.md)实例的指针。 |
 | fields | 指定分组依赖的列名。 |
-| length | 表示fields数值的长度。 |
+| length | 该参数为输入参数，表示开发者传入的fields数值的长度。 |
 
 **返回：**
 
