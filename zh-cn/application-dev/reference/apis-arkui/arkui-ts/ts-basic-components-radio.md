@@ -77,9 +77,9 @@ checked(value: boolean)
 
 **参数：** 
 
-| 参数名 | 类型    | 必填 | 说明                                 |
-| ------ | ------- | ---- | ------------------------------------ |
-| value  | boolean | 是   | 单选框的选中状态。<br/>默认值：false |
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 单选框的选中状态。<br/>默认值：false<br/>值为true时，单选框被选中。值为false时，单选框不被选中。 |
 
 ### checked<sup>18+</sup>
 
@@ -99,7 +99,7 @@ checked(isChecked: Optional\<boolean>)
 
 | 参数名    | 类型                                                         | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| isChecked | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 单选框的选中状态。<br/>当isChecked的值为undefined时，默认值：false |
+| isChecked | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 单选框的选中状态。<br/>当isChecked的值为undefined时取默认值false。<br/>值为true时，单选框被选中。值为false时，单选框不被选中。 |
 
 ### radioStyle<sup>10+</sup>
 
@@ -207,7 +207,7 @@ type OnRadioChangeCallback = (isChecked: boolean) => void
 
 | 参数名    | 类型    | 必填 | 说明                                                         |
 | --------- | ------- | ---- | ------------------------------------------------------------ |
-| isChecked | boolean | 是   | 单选框的状态。<br/>为true时，表示从未选中变为选中。为false时，表示从选中变为未选中。 |
+| isChecked | boolean | 是   | 单选框的状态。<br/>值为true时，表示从未选中变为选中。值为false时，表示从选中变为未选中。 |
 
 ## RadioStyle<sup>10+</sup>对象说明
 
@@ -232,8 +232,8 @@ type OnRadioChangeCallback = (isChecked: boolean) => void
 | 名称  | 类型    | 只读 | 可选  |  说明              |
 | ------ | ------ |-------------------------------- |-------------------------------- |-------------------------------- |
 | value | string | 否 | 否 |当前单选框的值。 |
-| checked | boolean| 否 | 否 | 设置单选框的选中状态。<br/>默认值：false |
-| triggerChange |Callback\<boolean>|否|否|触发单选框选中状态变化。 |
+| checked | boolean| 否 | 否 | 设置单选框的选中状态。<br/>默认值：false<br/>值为true时，单选框被选中。值为false时，单选框不被选中。 |
+| triggerChange |Callback\<boolean>|否|否|触发单选框选中状态变化。<br/>值为true时，表示从未选中变为选中。值为false时，表示从选中变为未选中。 |
 
 
 ## 示例

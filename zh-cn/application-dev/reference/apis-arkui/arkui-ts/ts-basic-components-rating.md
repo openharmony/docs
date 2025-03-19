@@ -262,7 +262,7 @@ type OnRatingChangeCallback = (value: number) => void
 | 名称  | 类型    |    只读    |    可选      |  说明              |
 | ------ | ------ | ------ |-------------------------------- |-------------------------------- |
 | rating | number | 否 | 否 |评分条当前评分数。<br/>默认值：0 |
-| indicator | boolean | 否 | 否 | 评分条是否作为一个指示器。<br/>默认值：false |
+| indicator | boolean | 否 | 否 | 评分条是否作为一个指示器。<br/>默认值：false<br/>值为true时，评分条不可以改变评分。值为false时，评分条可以进行评分。 |
 | stars | number | 否 | 否 |评分条的星级总数。<br/>默认值：5 |
 | stepSize | number | 否 | 否 |评分条的评分步长。<br/>默认值：0.5 |
 | triggerChange | Callback\<number> | 否 | 否 |触发评分数量变化。 |
