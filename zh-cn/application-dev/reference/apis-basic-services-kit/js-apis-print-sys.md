@@ -88,7 +88,7 @@ import { print } from '@kit.BasicServicesKit';
 | -------- | -------- | -------- | -------- |
 | colorMode | number | 是 | 表示色彩模式。 |
 | duplexMode | number | 是 | 表示单双面打印模式。 |
-| pageSize | Array&lt;[PrintPageSize](./js-apis-print.md/#printpagesize11)&gt; | 是 | 表示打印机支持的页面尺寸列表。 |
+| pageSize | Array&lt;[PrintPageSize](./js-apis-print.md#printpagesize11)&gt; | 是 | 表示打印机支持的页面尺寸列表。 |
 | resolution | Array&lt;[PrintResolution](#printresolution)&gt; | 否 | 表示打印机支持的分辨率列表。 |
 | minMargin | [PrintMargin](#printmargin) | 否 | 表示打印机最小边距。 |
 | options<sup>11+</sup> | Object | 否 | 表示JSON对象字符串。 |
@@ -106,7 +106,7 @@ import { print } from '@kit.BasicServicesKit';
 | -------- | -------- | -------- | -------- |
 | printerId | string | 是 | 表示打印机ID。 |
 | printerName | string | 是 | 表示打印机名称。 |
-| printerState | [PrinterState](./js-apis-print.md/#printerstate14) | 是 | 表示当前打印机状态。 |
+| printerState | [PrinterState](./js-apis-print.md#printerstate14) | 是 | 表示当前打印机状态。 |
 | printerIcon | number | 否 | 表示打印机图标的资源ID。 |
 | description | string | 否 | 表示打印机说明。 |
 | capability | [PrinterCapability](#printercapability) | 否 | 表示打印机功能。 |
@@ -126,12 +126,12 @@ import { print } from '@kit.BasicServicesKit';
 | fdList | Array&lt;number&gt; | 是 | 表示待打印文件fd列表。 |
 | jobId | string | 是 | 表示打印任务ID。 |
 | printerId | string | 是 | 表示负责打印的打印机ID。 |
-| jobState | [PrintJobState](./js-apis-print.md/#printjobstate14) | 是 | 表示当前打印任务状态。 |
-| jobSubstate<sup>11+</sup> | [PrintJobSubState](./js-apis-print.md/#printjobsubstate14) | 是 | 表示当前打印任务子状态。 |
+| jobState | [PrintJobState](./js-apis-print.md#printjobstate14) | 是 | 表示当前打印任务状态。 |
+| jobSubstate<sup>11+</sup> | [PrintJobSubState](./js-apis-print.md#printjobsubstate14) | 是 | 表示当前打印任务子状态。 |
 | copyNumber | number | 是 | 表示文件列表副本。 |
 | pageRange | [PrinterRange](#printerrange) | 是 | 表示打印范围大小。 |
 | isSequential | boolean | 是 | 表示是否连续打印。true表示连续打印，false表示不连续打印。默认值为false。 |
-| pageSize | [PrintPageSize](./js-apis-print.md/#printpagesize11) | 是 | 表示选定的页面尺寸。 |
+| pageSize | [PrintPageSize](./js-apis-print.md#printpagesize11) | 是 | 表示选定的页面尺寸。 |
 | isLandscape | boolean | 是 | 表示是否横向打印。true表示横向打印，false表示纵向打印。默认值为false。 |
 | colorMode | number | 是 | 表示色彩模式。 |
 | duplexMode | number | 是 | 表示单双面打印模式。 |
@@ -1025,7 +1025,7 @@ on(type: 'printerStateChange', callback: (state: PrinterState, info: PrinterInfo
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | type | 'printerStateChange' | 是 | 表示打印机状态改变。 |
-| callback | (state: [PrinterState](./js-apis-print.md/#printerstate14), info: [PrinterInfo](#printerinfo)) => void | 是 | 打印机状态改变之后的回调。 |
+| callback | (state: [PrinterState](./js-apis-print.md#printerstate14), info: [PrinterInfo](#printerinfo)) => void | 是 | 打印机状态改变之后的回调。 |
 
 **错误码：**
 
@@ -1107,7 +1107,7 @@ on(type: 'jobStateChange', callback: (state: PrintJobState, job: PrintJob) => vo
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | type | 'jobStateChange' | 是 | 表示打印任务状态改变。 |
-| callback | (state: [PrintJobState](./js-apis-print.md/#printjobstate14), job: [PrintJob](#printjob)) => void | 是 | 打印任务状态改变之后的回调。 |
+| callback | (state: [PrintJobState](./js-apis-print.md#printjobstate14), job: [PrintJob](#printjob)) => void | 是 | 打印任务状态改变之后的回调。 |
 
 **错误码：**
 
@@ -1561,7 +1561,7 @@ updatePrinterState(printerId: string, state: PrinterState, callback: AsyncCallba
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | printerId | string | 是 | 表示打印机ID。 |
-| state | [PrinterState](./js-apis-print.md/#printerstate14) | 是 | 表示打印机状态。 |
+| state | [PrinterState](./js-apis-print.md#printerstate14) | 是 | 表示打印机状态。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步更新打印机状态之后的回调。 |
 
 **错误码：**
@@ -1607,7 +1607,7 @@ updatePrinterState(printerId: string, state: PrinterState): Promise&lt;void&gt;
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | printerId | string | 是 | 表示打印机ID。 |
-| state | [PrinterState](./js-apis-print.md/#printerstate14) | 是 | 表示打印机状态。 |
+| state | [PrinterState](./js-apis-print.md#printerstate14) | 是 | 表示打印机状态。 |
 
 **返回值：**
 | **类型** | **说明** |
@@ -1655,8 +1655,8 @@ updatePrintJobState(jobId: string, state: PrintJobState, subState: PrintJobSubSt
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | jobId | string | 是 | 表示打印任务ID。 |
-| state | [PrintJobState](./js-apis-print.md/#printjobstate14) | 是 | 表示打印任务状态。 |
-| subState | [PrintJobSubState](./js-apis-print.md/#printjobsubstate14) | 是 | 表示打印任务子状态。 |
+| state | [PrintJobState](./js-apis-print.md#printjobstate14) | 是 | 表示打印任务状态。 |
+| subState | [PrintJobSubState](./js-apis-print.md#printjobsubstate14) | 是 | 表示打印任务子状态。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步更新打印任务状态之后的回调。 |
 
 **错误码：**
@@ -1703,8 +1703,8 @@ updatePrintJobState(jobId: string, state: PrintJobState, subState: PrintJobSubSt
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | jobId | string | 是 | 表示打印任务ID。 |
-| state | [PrintJobState](./js-apis-print.md/#printjobstate14) | 是 | 表示打印任务状态。 |
-| subState | [PrintJobSubState](./js-apis-print.md/#printjobsubstate14) | 是 | 表示打印任务子状态。 |
+| state | [PrintJobState](./js-apis-print.md#printjobstate14) | 是 | 表示打印任务状态。 |
+| subState | [PrintJobSubState](./js-apis-print.md#printjobsubstate14) | 是 | 表示打印任务子状态。 |
 
 **返回值：**
 | **类型** | **说明** |
@@ -2099,9 +2099,9 @@ startGettingPrintFile(jobId: string, printAttributes: PrintAttributes, fd: numbe
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | jobId | string | 是 | 表示打印任务ID。 |
-| printAttributes | [PrintAttributes](./js-apis-print.md/#printattributes11) | 是 | 表示打印参数。 |
+| printAttributes | [PrintAttributes](./js-apis-print.md#printattributes11) | 是 | 表示打印参数。 |
 | fd | number | 是 | 表示打印文件描述符。 |
-| onFileStateChanged | Callback&lt;[PrintFileCreationState](./js-apis-print.md/#printfilecreationstate11)&gt; | 是 | 表示更新文件状态的回调。 |
+| onFileStateChanged | Callback&lt;[PrintFileCreationState](./js-apis-print.md#printfilecreationstate11)&gt; | 是 | 表示更新文件状态的回调。 |
 
 **错误码：**
 
@@ -2352,7 +2352,7 @@ notifyPrintServiceEvent(event: ApplicationEvent): Promise&lt;void&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| event | [ApplicationEvent](./js-apis-print.md/#applicationevent14) | 是 | 表示打印应用事件。 |
+| event | [ApplicationEvent](./js-apis-print.md#applicationevent14) | 是 | 表示打印应用事件。 |
 
 **返回值：**
 | **类型** | **说明** |
