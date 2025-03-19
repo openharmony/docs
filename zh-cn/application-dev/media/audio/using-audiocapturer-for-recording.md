@@ -32,8 +32,8 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
     };
     
     let audioCapturerInfo: audio.AudioCapturerInfo = {
-      source: audio.SourceType.SOURCE_TYPE_MIC,
-      capturerFlags: 0
+      source: audio.SourceType.SOURCE_TYPE_MIC, // 音源类型：Mic音频源。根据业务场景配置，参考SourceType。
+      capturerFlags: 0 // 音频采集器标志。
     };
     
     let audioCapturerOptions: audio.AudioCapturerOptions = {
@@ -145,7 +145,7 @@ let audioStreamInfo: audio.AudioStreamInfo = {
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式。
 };
 let audioCapturerInfo: audio.AudioCapturerInfo = {
-  source: audio.SourceType.SOURCE_TYPE_MIC, // 音源类型。
+  source: audio.SourceType.SOURCE_TYPE_MIC, // 音源类型：Mic音频源。根据业务场景配置，参考SourceType。
   capturerFlags: 0 // 音频采集器标志。
 };
 let audioCapturerOptions: audio.AudioCapturerOptions = {
