@@ -17,11 +17,11 @@ SIM卡锁信息。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| int [classx](#classx) | 业务类别，取值为该类信息的整数之和，默认为255。 | 
+| int [classx](#classx) | 业务类别，取值为该类信息的整数之和，默认为255 | 
 | int [serial](#serial) | 请求的序列号  | 
-| String [fac](#fac) | SIM锁类型。 | 
-| int [mode](#mode) | 模式。 | 
-| int [status](#status) | SIM卡锁状态。 当fac参数为PN，PU，PP时，表示的是锁网锁卡前三层锁的激活状态。 | 
+| String [fac](#fac) | SIM锁类型 | 
+| int [mode](#mode) | 模式 | 
+| int [status](#status) | SIM卡锁状态。 当fac参数为PN，PU，PP时，表示的是锁网锁卡前三层锁的激活状态 | 
 | String [passwd](#passwd) | 密码文本  | 
 
 
