@@ -10,7 +10,7 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 | 名称       | 类型                 | 只读 | 可选 | 说明                                                    |
 | ---------- |-------------------- | ---- | ---- |  ------------------------------------------------------- |
