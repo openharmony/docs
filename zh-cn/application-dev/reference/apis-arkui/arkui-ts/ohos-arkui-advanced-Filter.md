@@ -21,7 +21,7 @@ import { Filter } from '@kit.ArkUI'
 无
 
 ## 属性
-不支持[通用属性](ts-universal-attributes-size.md)
+不支持[通用属性](ts-universal-attributes-size.md)。
 
 ## Filter
 
@@ -79,7 +79,7 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters?: FilterParam
 | value | [ResourceStr](ts-types.md#resourcestr) | 是 | 该维度筛选项选中项目的值。<br/>默认值：空字符串。<br/>**说明**：如果文本大于列宽时，文本被截断。                  |
 
 ## 事件
-不支持[通用事件](ts-universal-events-click.md)
+不支持[通用事件](ts-universal-events-click.md)。
 
 ## 示例
 
