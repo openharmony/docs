@@ -488,3 +488,17 @@ The application must have the related plugin mechanism to ensure that plugins ca
 **Authorization mode**: system_grant
 
 **Valid since**: 18
+
+### ohos.permission.PERSISTENT_BLUETOOTH_PEERS_MAC
+
+Allows an application to persist the virtual random address corresponding to the MAC address of the peer Bluetooth device.
+
+With this permission, the application can persist the virtual random address of the peer Bluetooth device obtained via BLE scanning, BR scanning, or listening for connections. The persistent virtual random address can still be used even if Bluetooth is enabled or disabled, or the Bluetooth device is restarted.
+
+<!--RP36--><!--RP36End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 16
