@@ -2311,7 +2311,7 @@ getPrinterInfoById(printerId: string): Promise&lt;PrinterInfo&gt;
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;[PrinterInfo](#printerinfo)&gt; | 根据打印机id获取打印机信息后的完成结果回调。 |
+| Promise&lt;[PrinterInfo](#printprinterinfo)&gt; | 根据打印机id获取打印机信息后的完成结果回调。 |
 
 **错误码：**
 
