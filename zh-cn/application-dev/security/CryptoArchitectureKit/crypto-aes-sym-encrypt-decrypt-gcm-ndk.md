@@ -34,8 +34,7 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
    - 由于已使用update传入数据，此处data传入null。
    - final输出结果可能为null，在访问具体数据前，需要先判断结果是否为null，避免产生异常。
    > **注意：**
-   > 在GCM模式下，final会返回authTag，作为解密时初始化的认证信息，需要保存。
-   > 在GCM模式下，算法库当前只支持16字节的authTag，作为解密时初始化的认证信息。示例中authTag恰好为16字节。
+   > 在GCM模式下，final会返回authTag，作为解密时初始化的认证信息，需要保存。在GCM模式下，算法库当前只支持16字节的authTag，作为解密时初始化的认证信息。示例中authTag恰好为16字节。
 
 
 **解密**
