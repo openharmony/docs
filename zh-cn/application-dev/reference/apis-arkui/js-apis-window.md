@@ -2555,7 +2555,9 @@ try {
 
 setWindowDelayRaiseOnDrag(isEnabled: boolean): void
 
-设置窗口是否使能延迟抬升，仅主窗和子窗可设置。使能延迟抬升后，在跨窗拖拽场景，可拖拽组件所在窗口在鼠标左键按下时不会立即抬升，直到鼠标左键抬起。
+设置窗口是否使能延迟抬升，仅主窗和子窗可设置。<br>
+不调用此接口时或传入false，主窗和子窗在鼠标左键按下时，默认立即抬升。<br>
+调用此接口使能延迟抬升后，在跨窗拖拽场景，可拖拽组件所在窗口在鼠标左键按下时不会立即抬升，直到鼠标左键抬起。<br>
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
 **系统能力**：SystemCapability.Window.SessionManager
@@ -2566,7 +2568,7 @@ setWindowDelayRaiseOnDrag(isEnabled: boolean): void
 
 | 参数名      | 类型    | 必填 | 说明                                                         |
 | ---------- | ------- | ---- | ------------------------------------------------------------ |
-| isEnabled    | boolean | 是   | 是否使能延迟抬升。<br>true表示使能窗口延迟抬升；false表示不使能窗口延迟抬升。默认值是false。</br> |
+| isEnabled    | boolean | 是   | 是否使能延迟抬升。<br>true表示使能窗口延迟抬升；false表示不使能窗口延迟抬升。 |
 
 **错误码：**
 
