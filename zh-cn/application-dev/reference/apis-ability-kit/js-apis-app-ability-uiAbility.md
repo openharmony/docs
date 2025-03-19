@@ -218,7 +218,8 @@ class MyUIAbility extends UIAbility {
 
 onWillForeground(): void
 
-UIAbility生命周期回调，在应用转到前台前触发，在[onForeground](#uiabilityonforeground)前被调用，可在该回调中做进入应用统计时长的开始。同步接口，不支持异步回调。
+UIAbility生命周期回调，应用转到前台前触发，在[onForeground](#uiabilityonforeground)前被调用。[onForeground](#uiabilityonforeground)和ArkUI页面[OnPageShow](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)无法保证时序，如果应用认为在[onForeground](#uiabilityonforeground)时进入应用，[OnPageShow](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)时进入页面，可能存在进入页面时长超过进入应用时长问题，影响计时统计相关业务，该回调提供确定地进入应用在进入页面之前时序，可用于统计从进入应用到前台时长的开始时间打点。同步接口，不支持异步回调。
+典型使用场景如广告计费。
 
 **原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -231,7 +232,23 @@ import { UIAbility } from '@kit.AbilityKit';
 
 class MyUIAbility extends UIAbility {
   onWillForeground() {
-    console.log('onWillForeground');
+    // 进入前台事件打点
+    let eventParams: Record<string, number> = { 'xxxx': 100 };
+    let eventInfo: hiAppEvent.AppEventInfo = {
+      // 事件领域定义
+      domain: "lifecycle",
+      // 事件名称定义
+      name: "ondidforeground",
+      // 事件类型定义
+      eventType: hiAppEvent.EventType.BEHAVIOR,
+      // 事件参数定义
+      params: eventParams,
+    };
+    hiAppEvent.write(eventInfo).then(() => {
+      hilog.info(0x0000, 'testTag', `HiAppEvent success to write event`)
+    }).catch((err: BusinessError) => {
+      hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`)
+    });
   }
 }
 ```
@@ -240,7 +257,7 @@ class MyUIAbility extends UIAbility {
 
 onForeground(): void
 
-UIAbility生命周期回调，当应用从后台转到前台触发，在[onWillForeground](#uiabilityonwillbackground18)与[onDidForeground](#uiabilityondidforeground18)之间被调用，可在该回调中申请系统需要的资源。同步接口，不支持异步回调。
+UIAbility生命周期回调，应用从后台转到前台时触发，在[onWillForeground](#uiabilityonwillbackground18)与[onDidForeground](#uiabilityondidforeground18)之间被调用，可在该回调中申请系统需要的资源。同步接口，不支持异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -262,7 +279,7 @@ class MyUIAbility extends UIAbility {
 
 onDidForeground(): void
 
-UIAbility生命周期回调，当应用转到前台后触发，在[onForeground](#uiabilityonforeground)后被调用，可在该回调中进行打点统计。同步接口，不支持异步回调。
+UIAbility生命周期回调，应用转到前台后触发，在[onForeground](#uiabilityonforeground)后被调用，该回调可用于应用从进入到前台过程时长的结束时间打点，配合[onWillForeground](#uiabilityonwillforeground18)进行计时统计相关业务。同步接口，不支持异步回调。
 
 **原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -275,7 +292,23 @@ import { UIAbility } from '@kit.AbilityKit';
 
 class MyUIAbility extends UIAbility {
   onDidForeground() {
-    console.log('onDidForeground');
+    // 进入前台事件打点
+    let eventParams: Record<string, number> = { 'xxxx': 100 };
+    let eventInfo: hiAppEvent.AppEventInfo = {
+      // 事件领域定义
+      domain: "lifecycle",
+      // 事件名称定义
+      name: "ondidforeground",
+      // 事件类型定义
+      eventType: hiAppEvent.EventType.BEHAVIOR,
+      // 事件参数定义
+      params: eventParams,
+    };
+    hiAppEvent.write(eventInfo).then(() => {
+      hilog.info(0x0000, 'testTag', `HiAppEvent success to write event`)
+    }).catch((err: BusinessError) => {
+      hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`)
+    });
   }
 }
 ```
@@ -284,7 +317,7 @@ class MyUIAbility extends UIAbility {
 
 onWillBackground(): void
 
-UIAbility生命周期回调，当应用从前台转到后台前触发，在[onBackground](#uiabilityonbackground)前被调用，可在该回调中释放UI即将不可见时无用的资源。同步接口，不支持异步回调。
+UIAbility生命周期回调，当应用从前台转到后台前触发，在[onBackground](#uiabilityonbackground)前被调用，该回调可用于打点采集数据，记录在运行过程中发生的故障信息、统计信息、安全信息、用户行为信息等。同步接口，不支持异步回调。
 
 **原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -294,10 +327,28 @@ UIAbility生命周期回调，当应用从前台转到后台前触发，在[onBa
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
+import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class MyUIAbility extends UIAbility {
-  onWillBackground() {
-    console.log('onWillBackground');
+  onWillBackground(): void {
+    let eventParams: Record<string, number | string> = {
+      "int_data": 100,
+      "str_data": "strValue",
+    };
+    // 应用记录打点故障信息
+    hiAppEvent.write({
+      domain: "test_domain",
+      name: "test_event",
+      eventType: hiAppEvent.EventType.FAULT,
+      params: eventParams,
+    }, (err: BusinessError) => {
+      if (err) {
+        hilog.error(0x0000, 'hiAppEvent', `code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      hilog.info(0x0000, 'hiAppEvent', `success to write event`);
+    });
   }
 }
 ```
@@ -306,7 +357,7 @@ class MyUIAbility extends UIAbility {
 
 onBackground(): void
 
-UIAbility生命周期回调，当应用从前台转到后台触发，在[onWillBackground](#uiabilityonwillbackground18)与[onDidBackground](#uiabilityondidbackground18)之间被调用，可在该回调中释放UI不可见时无用的资源。同步接口，不支持异步回调。
+UIAbility生命周期回调，当应用从前台转到后台时触发，在[onWillBackground](#uiabilityonwillbackground18)与[onDidBackground](#uiabilityondidbackground18)之间被调用，可在该回调中释放UI不可见时无用的资源。同步接口，不支持异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -329,7 +380,7 @@ class MyUIAbility extends UIAbility {
 
 onDidBackground(): void
 
-UIAbility生命周期回调，当应用从前台转到后台后触发，在[onBackground](#uiabilityonbackground)后被调用，可在该回调中进行打点统计。同步接口，不支持异步回调。
+UIAbility生命周期回调，当应用从前台转到后台后触发，在[onBackground](#uiabilityonbackground)后被调用，可在该回调中进行应用进入后台后释放资源。同步接口，不支持异步回调。
 
 **原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -338,11 +389,31 @@ UIAbility生命周期回调，当应用从前台转到后台后触发，在[onBa
 **示例：**
 
 ```ts
+import { audio } from '@kit.AudioKit';
 import { UIAbility } from '@kit.AbilityKit';
 
 class MyUIAbility extends UIAbility {
+  static audioRenderer: audio.AudioRenderer;
+  // ...
+  onForeground(): void {
+    // ...
+    audio.createAudioRenderer(audioRendererOptions).then((data) => {
+      EntryAbility.audioRenderer = data;
+      console.info('AudioRenderer Created : Success : Stream Type: SUCCESS');
+    }).catch((err: BusinessError) => {
+      console.error(`AudioRenderer Created : ERROR : ${err}`);
+    });
+  }
+
   onDidBackground() {
-    console.log('onDidBackground');
+    // 释放audioRenderer
+    audioRenderer.release((err: BusinessError) => {
+      if (err) {
+        console.error('AudioRenderer release failed');
+      } else {
+        console.info('AudioRenderer released.');
+      }
+    });
   }
 }
 ```
