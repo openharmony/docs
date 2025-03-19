@@ -275,7 +275,7 @@ java -jar app_packing_tool.jar --mode fastApp [--hap-path <path>] [--hsp-path <p
 | --force            | 否     | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。                                                                    |
 | --encrypt-path     | 否     | NA         | 文件名必须为encrypt.json。                                                                    |
 
-## 打包工具工具错误码
+## 打包工具错误码
 
 ### 10010001 执行打包工具失败
 **错误信息**
@@ -284,40 +284,45 @@ Execute packing tool failed.
 
 **错误描述**
 
-执行构建打包操作时，例如构建HAP包或App包，打包失败。
+执行打包工具失败。
 
 **可能原因**
 
-1. 解析打包参数命令失败。
-2. 打包过程中校验打包文件合法性不通过。
+1. 打包指令参数错误。
+2. 打包文件合法性校验失败。
 
 **处理步骤**
 
-1. 检查打包指令参数是否正确，例如传入参数为文件路径时，确保该路径下存在该文件。详细可参考[打包指令](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/packing-tool-V13#hap打包指令)。
-2. 根据相关报错信息检查 HAP 包的合法性。打包生成 App 包时，需要确保：
-   - 每个HAP在JSON文件中配置的`bundleName`、`versionCode`、`minCompatibleVersionCode`、`debug`、`minAPIVersion`、`targetAPIVersion`相同。
-   - `moduleName`唯一。
-   - FA 模型需确保`package`唯一。
-   - HAP 模块之间`apiReleaseType`需相同（HSP模块不校验`apiReleaseType`）。
+1. 检查打包指令参数是否正确，例如传入参数为文件路径时，需确保该路径下存在该文件。详细请参见[HAP打包指令](#hap打包指令)、[HSP打包指令](#hsp打包指令)、[App打包指令](#app打包指令)。
+2. 根据相关报错信息检查打包文件是否正确，例如下图使用DevEco Studio进行打包HAP包时，配置`app.json5`中`asanEnabled`和`tsanEnable`同时为true，会同时给出错误码10010001和[10012004](#10012004-检查参数asanenabled失败)的错误信息以及相关解决方案。当有多条报错信息时，通常根据第一条报错信息进行排查解决。
 
-### 10012001 执行打包操作失败
+![alt text](figures/zh_cn_packing_tool_image_10010001_01.png)
+
+HAP包文件合法性，详细可参见:
+- [应用配置文件概述（Stage模型）](../../application-dev/quick-start/application-configuration-file-overview-stage.md)
+- [应用配置文件概述（FA模型）](../../application-dev/quick-start/application-configuration-file-overview-fa.md)
+
+### 10012001 执行压缩操作失败
 **错误信息**
 
 Execute compress process failed.
 
 **错误描述**
 
-执行打包操作时，例如构建HAP包或App包，打包失败。
+执行打包操作时，例如打包HAP或App，发生压缩失败，导致打包中断。
 
 **可能原因**
 
-1. 打包文件校验不通过。
-2. 需要打包的文件正在被其他程序使用。
+1. 打包文件校验不通过，例如`app.json5`配置错误。
+2. 需要打包的文件正在被其他程序使用，例如IDE、压缩软件或文件管理器。
 
 **处理步骤**
 
-1. 根据相关日志检查打包文件内容是否正确。
-2. 关闭使用打包文件的相关程序或进程。
+1. 查看错误日志，检查具体报错的文件路径，确认打包文件是否完整、配置是否正确。例如下图使用DevEco Studio进行打包HAP包时，错误配置了`app.json5`中`asanEnabled`和`tsanEnable`同时为true，会同时给出错误码10012001和[10012004](#10012004-检查参数asanenabled失败)的错误信息以及相关解决方案。当有多条报错信息时，通常根据第一条报错信息进行排查解决。
+   
+![alt text](figures/zh_cn_packing_tool_image_10012001_01.png)
+
+2. 关闭可能占用打包文件的相关程序或进程，例如IDE、压缩软件或文件管理器。
 
 ### 10012002 压缩HAP失败
 **错误信息**
@@ -326,15 +331,17 @@ Compress Stage Hap failed.
 
 **错误描述**
 
-打包HAP时，压缩Stage类型HAP包失败。
+打包HAP时，压缩Stage类型的HAP包失败。
 
 **可能原因**
 
-校验HAP包内容失败。
+1. HAP文件合法性校验失败，例如 `config.json`、`module.json5`、`app.json5`配置错误。
+2. 其他进程正在占用打包HAP所需文件。
 
 **处理步骤**
 
-根据错误信息提示进行修改。
+1. 查看错误日志，检查具体的错误信息（参考[执行压缩操作失败](#10012001-执行压缩操作失败)），确认失败的文件或目录。检查HAP相关配置文件（如`config.json`、`module.json5`、`app.json5`），确保格式正确、内容完整。
+2. 关闭可能占用打包文件的相关程序或进程，例如压缩软件或文件管理器。
 
 ### 10012003 校验HAP信息失败
 **错误信息**
@@ -347,6 +354,7 @@ Verify stage hap info failed.
 
 **可能原因**
 
+以下配置项可能存在错误，检查`module.json5`和`app.json5`是否配置正确：
 1. `asanEnabled`配置错误。
 2. `hwasanEnabled`配置错误。
 3. `atomicService`配置错误。
@@ -354,10 +362,10 @@ Verify stage hap info failed.
 
 **处理步骤**
 
-1. 参考[asanEnabled配置错误](packing-tool.md#10012004-检查参数- asanEnabled-失败)。
-2. 参考[hwasanEnabled配置出错](packing-tool.md#10012005-检查参数hwasanenabled失败)。
-3. 参考[atomicService配置出错](packing-tool.md#10012006-检查-atomicservice-失败)。
-4. 参考[continueBundleName配置出错](packing-tool.md#10012007-检查-continuebundlename-无效)。
+1. 参考[asanEnabled配置错误](#10012004-检查参数asanenabled失败)。
+2. 参考[hwasanEnabled配置错误](#10012005-检查参数hwasanenabled失败)。
+3. 参考[atomicService配置错误](#10012006-检查atomicservice失败)。
+4. 参考[continueBundleName配置错误](#10012007-检查continuebundlename无效)。
 
 ### 10012004 检查参数asanEnabled失败
 **错误信息**
@@ -366,16 +374,17 @@ Check asanEnabled failed.
 
 **错误描述**
 
-构建HAP/HSP时,app.json5中`asanEnabled`设置错误。
+打包HAP/HSP时，`app.json5`中`asanEnabled`配置错误。
 
 **可能原因**
 
-`asanEnabled`和`tsanEnabled`被同时设置为true。如下图所示：
-   ![alt text](figures/zh_cn_packing_tool_image_10012004_01.png)
+`asanEnabled`和`tsanEnabled`被同时设置为true（如下图所示）。
+
+![alt text](figures/zh_cn_packing_tool_image_10012004_01.png)
 
 **处理步骤**
 
-修改`asanEnabled`和`tsanEnabled`，确保二者不会同时为`true`。
+检查`app.json5`文件，修改`asanEnabled`和`tsanEnabled`，确保二者不会同时为true。
 
 ### 10012005 检查参数hwasanEnabled失败
 **错误信息**
@@ -384,18 +393,20 @@ Check hwasanEnabled failed.
 
 **错误描述**
 
-构建HAP/HSP时，参数`hwasanEnabled`设置错误。
+打包HAP/HSP时，`app.json5`中`hwasanEnabled`配置错误。
 
 **可能原因**
 
-1. `hwasanEnabled`和`asanEnabled`被同时设置为true。
-   ![alt text](figures/zh_cn_packing_tool_image_10012005_01.png)
-2. `hwasanEnabled`和`tsanEnabled`被同时设置为true。
-3. `hwasanEnabled`和`GWPAsanEnabled`被同时设置为true。
+1. `hwasanEnabled`和`asanEnabled`被同时配置为true（如下图所示）。
+
+![alt text](figures/zh_cn_packing_tool_image_10012005_01.png)
+
+2. `hwasanEnabled`和`tsanEnabled`被同时配置为true。
+3. `hwasanEnabled`和`GWPAsanEnabled`被同时配置为true。
 
 **处理步骤**
 
-修改app.json5，确保`hwasanEnabled`、`asanEnabled`、`tsanEnabled`和`GWPAsanEnabled`不会同时为true。
+检查`app.json5`，确保`hwasanEnabled`和`asanEnabled`、`tsanEnabled`和`GWPAsanEnabled`不会同时配置为true。
 
 ### 10012006 检查atomicService失败
 **错误信息**
@@ -404,17 +415,17 @@ Check atomicService failed.
 
 **错误描述**
 
-检查元服务失败。
+打包HAP/HSP时，`atomicService`配置检查失败。
 
 **可能原因**
 
-1. entry模块中不含ability。
-2. 当bundleType配置为元服务时，模块中的installationFree为false。
+1. `module.json5`中`entry`模块未配置ability，导致`atomicService`配置检查失败，详细请参见错误码[10013006 检查 entry 模块中的 ability 失败](#10013006-检查entry模块中的ability失败)。
+2. 当`app.json5`中`bundleType`配置为`atomicService`时，`module.json5`中`installationFree`为false。
 
 **处理步骤**
 
-1. 确保entry模块中包含ability。
-2. 修改bundleType或installationFree。
+1. 检查`module.json5`，确保`module.json5`文件中正确配置了`abilities`标签，并且至少包含一个ability，详细请参见[abilities标签](../../application-dev/quick-start/module-configuration-file.md#abilities标签)。
+2. 检查`module.json5`和`app.json5`，当`bundleType`为`atomicService`时，确保`installationFree`配置为true，反之，需要配置为false。
 
 ### 10012007 检查continueBundleName无效
 **错误信息**
@@ -422,15 +433,18 @@ Check atomicService failed.
 Check continueBundleName invalid.
 
 **错误描述**
-检查模块中配置的continueBundleName是无效的。
+
+打包HAP/HSP时，检查`module.json5`中的`continueBundleName`配置错误。
 
 **可能原因**
 
-continueBundleName与当前包名称相同。
+`continueBundleName`与当前包名称相同。例如下图中`module.json5`配置的`continueBundleName`为`app.json5`中配置的`bundleName`。
+
+![alt text](figures/zh_cn_packing_tool_image_10012007_01.png)
 
 **处理步骤**
 
-检查continueBundleName中是否存在自身包名。
+修改`continueBundleName`，确保其未配置自身包名。
 
 ### 10012008 检查overlay失败
 **错误信息**
@@ -439,23 +453,37 @@ Check whether is an overlay hsp failed.
 
 **错误描述**
 
-配置动态共享包（HSP）时，配置targetModuleName标识指定的目标module存在错误。
+HSP包配置的`targetModuleName`指定的目标module存在错误。
 
 **可能原因**
 
-1. 模块中同时配置了targetModuleName与requestPermissions。
-2. targetModuleName设置为自己的moduleName。
-3. 模块中未配置targetModuleName或targetBundleName，但配置了targetPriority。
-4. 应用配置targetBundleName, 但是模块中未配置targetModuleName。
-5. targetBundleName与自身bundleName相同。
+1. 在`module.json5`中同时配置了`targetModuleName`与`requestPermissions`。
+
+![alt text](figures/zh_cn_packing_tool_image_10012008_01.png)
+
+2. 在`module.json5`中`targetModuleName`配置为自身的模块名。
+
+![alt text](figures/zh_cn_packing_tool_image_10012008_02.png)
+
+3.  在`module.json5`中配置了`targetPriority`，但未配置`targetModuleName`。
+
+![alt text](figures/zh_cn_packing_tool_image_10012008_03.png)
+
+4. 仅在`app.json5`中配置了targetBundleName，`module.json5`中未配置targetModuleName。
+
+![alt text](figures/zh_cn_packing_tool_image_10012008_04.png)
+
+5. 在`app.json5`中`targetBundleName`与`bundleName`配置相同。
+
+![alt text](figures/zh_cn_packing_tool_image_10012008_05.png)
 
 **处理步骤**
 
-1. 检查配置文件，确保targetModuleName和requestPermissions不会同时出现。
-2. 根据需要修改targetModuleName。
-3. 根据需要修改相关配置，确保配置targetPriority前配置了targetModuleName或targetBundleName。
-4. 根据需要增加targetModuleName。
-5. 根据需要修改targetBundleName。
+1. 检查`module.json5`，确保`targetModuleName`和`requestPermissions`不会同时出现。
+2. 检查`module.json5`，确保`targetModuleName`和自身模块名不同。
+3. 检查`module.json5`，确保配置`targetPriority`前配置了`targetModuleName`。
+4. 检查`app.json5`和`module.json5`，根据需要增加`targetModuleName`。`targetModuleName`详细请参见[module.json5配置文件标签](../../application-dev/quick-start/module-configuration-file.md#配置文件标签)中targetModuleName标签。
+5. 检查`app.json5`，确保`targetBundleName`与`bundleName`不同。
 
 ### 10012009 执行压缩操作时异常
 **错误信息**
@@ -468,11 +496,13 @@ Process compress exception.
 
 **可能原因**
 
-校验HAP/HSP/App内容错误。
+校验HAP/HSP/App的包内容错误，例如`module.json5`文件配置错误。
 
 **处理步骤**
 
-通常会有其他错误码及错误信息给出，根据相关报错信息进行修改。
+根据相关报错信息检查打包文件是否正确，例如下图使用DevEco Studio进行打包HAP包时，配置了`app.json5`中`asanEnabled`和`tsanEnabled`同时为true，DevEco Studio日志会同时给出错误码10012009和[10012004](#10012004-检查参数asanenabled失败)的错误信息以及相关解决方案。当有多条报错信息时，通常根据第一条报错信息进行排查解决。
+
+![alt text](figures/zh_cn_packing_tool_image_10012009_01.png)
 
 ### 10012015 构建App包失败
 **错误信息**
@@ -485,11 +515,12 @@ Compress app file failed.
 
 **可能原因**
 
-校验App打包文件失败。
-
+校验HAP/HSP/App合法性失败。
 **处理步骤**
 
-通常会有其他错误码及错误信息给出，根据相关报错信息进行修改。
+根据相关报错信息进行修改。例如下图使用DevEco Studio构建shared类型App包，检查SharedApp无效，DevEco Studio日志会同时给出错误码10012015和[10012017](#10012017-检查sharedapp无效)的错误信息以及相关解决方案。当有多条报错信息时，通常根据第一条报错信息进行排查解决。
+
+![alt text](figures/zh_cn_packing_tool_image_10012015_01.png)
 
 ### 10012017 检查SharedAPP无效
 **错误信息**
@@ -498,17 +529,22 @@ Check shared App mode invalid.
 
 **错误描述**
 
-构建Shared类型的App包时，检查打包文件不通过。
+构建shared类型的App包（共享库应用，详细请参见[app.json5文件及bundleType标签](../../application-dev/quick-start/app-configuration-file.md#配置文件标签)）时，检查HSP包不通过。
 
 **可能原因**
 
-1. 存在两个以上的hsp模块。
-2. hsp包依赖了其他包。
+1. 存在两个以上的HSP包（动态共享包，详细请参见[module.json5文件及type标签](../../application-dev/quick-start/module-configuration-file.md#配置文件标签)）。例如下图使用DevEco Studio构建App时，工程中包含了两个HSP包library和library1，此时打包APP包失败。
+
+![alt text](figures/zh_cn_packing_tool_image_10012017_01.png)
+
+2. HSP包在`module.json5`中配置了`dependencies`。
+
+![alt text](figures/zh_cn_packing_tool_image_10012017_02.png)
 
 **处理步骤**
 
-1. 检查打包文件类型确保hsp模块不超过一个。
-2. 删除hsp模块配置的dependencies。
+1. 检查打包文件，确保打包shared类型的App包，HSP包不超过一个。
+2. 检查打包文件，删除HSP包`module.json5`配置的`dependencies`。
 
 ### 10012022 校验Stage HSP失败
 **错误信息**
@@ -517,10 +553,11 @@ Verify stage hsp info failed.
 
 **错误描述**
 
-打包HAP时，校验Stage类型HSP包失败。
+打包HSP时，校验Stage类型HSP包失败。
 
 **可能原因**
 
+以下配置项可能存在错误，请检查`module.json`、`config.json`、`app.json5`是否配置正确:
 1. `asanEnabled`配置出错。
 2. `hwasanEnabled`配置出错。
 3. `atomicService`配置出错。
@@ -529,11 +566,28 @@ Verify stage hsp info failed.
 
 **处理步骤**
 
-1. 参考[asanEnabled配置错误](packing-tool.md#10012004-检查参数-asanEnabled-失败)。
-2. 参考[hwasanEnabled配置出错](packing-tool.md#10012005-检查参数hwasanenabled失败)。
-3. 参考[atomicService配置出错](packing-tool.md#10012006-检查-atomicservice-失败)。
-4. 参考[continueBundleName配置出错](packing-tool.md#10012007-检查-continuebundlename-无效)。
-5. 参考[overlay配置出错](packing-tool.md#10012008-检查-overlay-失败)。
+1. 参考[asanEnabled配置错误](#10012004-检查参数asanenabled失败)。
+2. 参考[hwasanEnabled配置出错](#10012005-检查参数hwasanenabled失败)。
+3. 参考[atomicService配置出错](#10012006-检查atomicservice失败)。
+4. 参考[continueBundleName配置出错](#10012007-检查continuebundlename无效)。
+5. 参考[检查overlay失败](#10012008-检查overlay失败)。
+
+### 10012024 校验元服务大小失败
+**错误信息**
+
+Check atomicService size failed.
+
+**错误描述**
+
+打包App时，检查元服务包的大小超出了2MB。
+
+**可能原因**
+
+元服务包及依赖的共享库或资源文件大小超出了2MB的限制。
+
+**处理步骤**
+
+优化并减少包的大小，例如删除不必要的资源、精简代码或减少依赖。
 
 ### 10013006 检查entry模块中的ability失败
 **错误信息**
@@ -542,15 +596,19 @@ check entry module at least one ability failed.
 
 **错误描述**
 
-检测到entry模块中没有ability。
+Entry类型包中没有ability。
 
 **可能原因**
 
-Entry类型的模块中不存在ability。
+Entry类型包中不存在ability，该错误可能是由于`module.json5`未配置`abilities`或者`abilities`配置为空引起。
+
+![alt text](figures/zh_cn_packing_tool_image_10013006_01.png)
+
+![alt text](figures/zh_cn_packing_tool_image_10013006_02.png)
 
 **处理步骤**
 
-确认Entry类型的模块至少配置了一个ability。
+检查`module.json5`，确保Entry类型包`abilities`正确配置了ability。
 
 ### 10013007 检查installationFree错误
 **错误信息**
@@ -559,19 +617,19 @@ Check module atomicService installationFree invalid.
 
 **错误描述**
 
-检查元服务和installationFree配置出错。
+打包HAP/HSP时，检查`atomicService`和`installationFree`配置出错。
 
 **可能原因**
 
-1. bundleType配置了无效值。
-2. 当bundleType为shared时，installationFree不为false。
-3. 当installationFree为true时，bundleType为atomicService以外的配置。
+1. `bundleType`配置了无效值。
+2. 当`bundleType`为shared时，`installationFree`未设置为false。
+3. 当`installationFree`为true时，`bundleType`未设置为atomicService。
 
 **处理步骤**
 
-1. 检查bundleType是否为以下值app, atomicService, shared, appService。
-2. 根据需要修改bundleType或installationFree。
-3. 根据需要修改bundleType或installationFree。
+1. 检查`app.json5`，确保`bundleType`设置为app，atomicService，shared，appService之一。
+2. 如果`bundleType`为shared，确保`module.json5`中`installationFree`设置为false。
+3. 如果`installationFree`为true，确保`app.json5`中`bundleType`设置为atomicService。
 
 ### 10014001 未找到可用文件
 **错误信息**
@@ -584,15 +642,15 @@ File available not found exception.
 
 **可能原因**
 
-1. 传入文件地址不正确。
-2. 文件正在被使用。
-3. 文件权限不允许。
+1. 指定的文件路径错误或文件不存在。
+2. 文件正在被其他程序占用。
+3. 当前用户没有访问该文件的权限。
 
 **处理步骤**
 
-1. 检查传入参数的文件地址是否存在该文件。
-2. 关闭使用文件的相关程序或进程。
-3. 检查文件的使用权限。
+1. 确认提供的文件路径正确，并检查该文件是否存在。
+2. 如果文件被占用，关闭可能正在使用该文件的程序或进程。
+3. 检查并调整文件的访问权限，例如当前用户可以读取、修改、删除文件。
 
 ### 10016003 检查分发策略交集错误
 **错误信息**
@@ -601,15 +659,15 @@ Check two distroFilter policy disjoint invalid.
 
 **错误描述**
 
-当一个工程中存在多个Entry，且多个Entry配置的deviceTypes存在交集时，检查Entry对应配置的分发策略时出错。
+构建App包时，如果工程中存在多个Entry类型模块，并且这些 Entry 配置的`deviceTypes`存在交集时，检查其分发策略错误。
 
 **可能原因**
 
-1. 分发策略`policy`和`value`标签为空或无效值。
+1. 分发策略`policy`和`value`标签为空，或无效值。
 
 **处理步骤**
 
-1. 检查分发策略相关配置，确保`policy`的值均为`include`或`exclude`, 可参考[distributionFilter标签](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/module-configuration-file-V5#distributionfilter标签)。
+1. 检查分发策略相关配置，确保`policy`的值为`include`或`exclude`，`value`为支持的取值，详细请参见[distributionFilter标签](../../application-dev/quick-start/module-configuration-file.md#distributionfilter标签)。
 
 ### 10016006 检查HAP包无效
 **错误信息**
@@ -618,27 +676,27 @@ Verify hap info is invalid.
 
 **错误描述**
 
-构建App包时，检查用于打包的HAP包无效。
+构建App包时，校验用于打包的HAP/HSP失败。
 
 **可能原因**
 
-1. 传入的HAP文件路径有错。
-2. 不同HAP包App配置不同。
-3. FA模型packageName重复。
-4. 模块依赖项无效。
+1. HAP文件路径有错。
+2. 不同HAP包的App配置不一致。
+3. FA模型`packageName`重复。
+4. 存在无效的模块依赖。
 5. 元服务应用预加载失败。
-6. 目标模块未找到。
-7. 不同HAP编译sdk版本不一致。
+6. 目标模块缺失。
+7. 不同HAP使用的编译sdk版本不一致。
 
 **处理步骤**
 
-1. 检查打包参数传入HAP的路径是否正确包含HAP包。
-2. 检查不同HAP中App的配置是否相同。
-3. 检查config.json中是否存在重复的packageName。
+1. 检查打包参数传入HAP的路径是否正确。
+2. 检查各HAP中App的配置是否一致。
+3. 检查`config.json`，避免`packageName`重复。
 4. 检查打包模块中是否存在循坏依赖或无效的依赖项。
-5. 检查元服务预加载模块是否存在且非自身。
-6. 检查目标模块是否存在。
-7. 检查不同模块使用的编译sdk版本是否一致。
+5. 检查元服务预加载模块是否存在，且非当前模块自身。
+6. 检查所有目标模块是否均存在。
+7. 统一各个HAP包编译sdk版本。
 
 ### 10016007 检查entry模块无效
 **错误信息**
@@ -647,15 +705,15 @@ Check entry module invalid.
 
 **错误描述**
 
-当一个工程中存在多个Entry，检查多个Entry配置时出错。
+构建App包时，当工程中存在多个Entry类型HAP时，配置检查失败。
 
 **可能原因**
 
-多个Entry模块的配置的deviceType或distroFilter存在交集，未满足HAP唯一性校验逻辑。
+多个Entry类型HAP配置的deviceType以及distroFilter存在交集，不符合HAP唯一性校验规则。
 
 **处理步骤**
 
-根据[HAP唯一性校验](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-verification-rule-V5)修改工程中的entry模块。
+参考[HAP唯一性校验](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-verification-rule-V5)，调整工程中的Entry类型HAP配置。
 
 ### 10016009 检查依赖错误
 **错误信息**
@@ -664,20 +722,23 @@ Check dependency list is invalid.
 
 **错误描述**
 
-检查模块之间的依赖无效。
+构建App包时，模块依赖关系检查失败。
 
 **可能原因**
 
 1. 存在循环依赖
-    例如：模块library依赖了library1, library1依赖了library, 则这两个模块之间构成循环依赖。
+    例如：模块library依赖了library1，library1依赖了library，则这两个模块之间构成循环依赖。
+
    ![alt text](figures/zh_cn_packing_tool_image_10016009_01.png)
+
    ![alt text](figures/zh_cn_packing_tool_image_10016009_02.png)
+
 2. 依赖的模块类型为entry或feature。
 
 **处理步骤**
 
-1. 修改module.josn5中`dependencies`的配置， 删除循环依赖，确保App中不存在循环依赖。
-2. 修改module.josn5中`dependencies`的配置，删除在entry或feature类型上配置的依赖。
+1. 检查不同模块`module.json5`中`dependencies`的配置，删除循环依赖，确保App中不存在循环依赖。
+2. 检查不同模块`module.json5`中`dependencies`的配置，删除对entry或feature类型上配置的依赖。
 
 ### 10016010 检查元服务无效
 **错误信息**
@@ -686,7 +747,7 @@ Check atomicservice is invalid.
 
 **错误描述**
 
-检查元服务应用无效。
+构建App包时，检查元服务无效。
 
 **可能原因**
 
@@ -694,7 +755,7 @@ Check atomicservice is invalid.
 
 **处理步骤**
 
-检查元服务预加载模块是否有效，不能配置自身modulename，且必须有对应的模块，取值为长度不超过31字节的字符串。
+检查`module.json5`中元服务预加载模块是否有效（参考[atomicservice标签](../../application-dev/quick-start/module-configuration-file.md#atomicservice标签)），不能配置自身moduleName，且必须有对应的模块，取值为长度不超过31字节的字符串。
 
 ### 10016011 检查元服务预加载无效
 **错误信息**
@@ -703,7 +764,7 @@ Atomicservice preloads is invalid.
 
 **错误描述**
 
-检查元服务预加载模块无效。
+构建App包时，检查元服务预加载的模块无效。
 
 **可能原因**
 
@@ -713,7 +774,7 @@ Atomicservice preloads is invalid.
 
 **处理步骤**
 
-检查元服务预加载模块是否有效，不能配置自身moduleName，且必须有对应的模块存在。
+检查`module.json5`中元服务预加载模块是否有效（参考[atomicservice标签](../../application-dev/quick-start/module-configuration-file.md#atomicservice标签)），确保没有配置重复的模块，所有配置的模块都存在，并且不能配置自身的moduleName。
 
 ### 10016012 目标模块不存在
 **错误信息**
@@ -722,15 +783,15 @@ TargetModuleName is not exist.
 
 **错误描述**
 
-构建App时, 模块中配置了目标模块，检查目标模块不在打包工程中。
+构建App时，模块中配置了目标模块，但检查时未在打包文件或工程中找到该模块。
 
 **可能原因**
 
-工程中缺少匹配的目标模块。
+打包文件或工程中缺少匹配的目标模块。
 
 **处理步骤**
 
-检查目标模块是否存在工程中，创建目标模块。
+检查目标模块是否存在于打包文件或工程中，确保其正确配置（详细请参见[abilities标签](../../application-dev/quick-start/module-configuration-file.md#abilities标签)及targetModuleName属性），必要时创建目标模块。
 
 ### 10016014 代理数据不唯一
 **错误信息**
@@ -739,7 +800,7 @@ Proxy data uri is not unique.
 
 **错误描述**
 
-模块中配置的代理数据uri不唯一。
+数据代理uri不唯一，存在重复项。
 
 **可能原因**
 
@@ -747,7 +808,7 @@ Proxy data uri is not unique.
 
 **处理步骤**
 
-去除代理数据中配置的重复的uri, 可参考[proxyData](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/module-configuration-file-V13#proxydata标签)标签。
+检查`module.json5`文件，删除`proxyData`中重复的uri，确保每个uri都是唯一的（详细请参见[proxyData](../../application-dev/quick-start/module-configuration-file.md#proxydata标签)标签）。
 
 ### 10016015 ContinueType配置无效
 **错误信息**
@@ -756,16 +817,16 @@ Check continueType is invalid.
 
 **错误描述**
 
-构建App时，检查到ContinueType配置出错。
+构建App时，检查continueType配置错误。
 
 **可能原因**
 
-1. 同一个module中不同的Ability存在重复的continueType。
-2. 不同的module中同时存在重复的device类型和continueType。
+1. `module.json5`不同的ability存在重复的`continueType`配置项。
+2. 不同的module中同时存在重复的`deviceType`配置项和`continueType`配置项。
 
 **处理步骤**
 
-去除重复的continueTypep或device配置。
+检查`module.json5`，删除`continueType`或`deviceType`重复的配置项。
 
 ### 10016016 文件大小检查错误
 **错误信息**
@@ -774,45 +835,46 @@ Check file size failed.
 
 **错误描述**
 
-检查元服务单个包文件大小超过2MB。
+构建元服务类型App时，检查单个包大小超过2MB。
 
 **可能原因**
 
-元服务单个包文件大小超过2MB。
+单个包大小超过2MB，超出限制。
 
 **处理步骤**
 
-减少对应单个文件包的大小。
+优化并减少对应单个包文件的大小，例如删除不必要的资源、精简代码或压缩文件。
 
 ### 10016018 元服务模块大小检查错误
 **错误信息**
 
-AtomicService module size check failed.
+Check the atomicService module size failed.
 
 **错误描述**
 
-检查元服务单个包和其依赖的共享库大小超过2MB。
+构建元服务类型App时，检查单个包和其依赖的共享库大小超过2MB。
 
 **可能原因**
 
-元服务单个包和其依赖的共享库大小超过2MB。
+单个包和其依赖的共享库总大小超过2MB，超出限制。
 
 **处理步骤**
 
-减少相应模块的大小。
+优化并减少相应包的大小，例如删除不必要的资源、精简代码或减少依赖项。
 
 ### 10016019 检查分发策略无效
 **错误信息**
 
-Check feature module distributionFilter is invalid.
+Check the entry module distributionFilter is invalid.
 
 **错误描述**
 
-检查Feature模块分发信息无效。
+检查Entry类型模块分发策略错误。
 
 **可能原因**
 
-工程中Entry模块分发策略配置存在错误，无法对Feature模块的分发信息进行匹配。
+工程中Entry类型模块分发策略配置存在错误。
 
 **处理步骤**
-检查工程中Entry模块分发策略是否正确配置，例如配置 `policy` 为 `exclude` 或 `include`, 参考[distributionFilter标签](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/module-configuration-file-V13#distributionfilter标签)。
+
+检查Entry模块分发策略是否正确配置，例如`policy`的值应为`exclude`或`include`，参考[distributionFilter标签](../../application-dev/quick-start/module-configuration-file.md#distributionfilter标签)。
