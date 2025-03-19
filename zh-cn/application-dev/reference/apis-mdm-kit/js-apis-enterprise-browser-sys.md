@@ -22,7 +22,7 @@ import { browser } from '@kit.MDMKit';
 
 setPolicies(admin: Want, appId: string, policies: string, callback: AsyncCallback&lt;void&gt;): void
 
-指定设备管理应用为指定的浏览器设置浏览策略，使用callback异步回调。
+为指定的浏览器设置浏览策略，使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BROWSER_POLICY
 
@@ -33,7 +33,7 @@ setPolicies(admin: Want, appId: string, policies: string, callback: AsyncCallbac
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。            |
 | appId    | string              | 是    | 应用ID，用于指定浏览器。                  |
 | policies    | string              | 是    | 浏览器策略，当参数policies为空字符串时，表示取消指定浏览器的策略。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
@@ -58,7 +58,8 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appId: string = 'com.example.myapplication';
+// 此处参数appId的赋值应替换为开发者自己指定的浏览器的应用ID
+let appId: string = 'com.example.******_******/******5t5CoBM=';
 let policies: string = '{"InsecurePrivateNetworkRequestsAllowed":{"level":"mandatory","scope":"machine","source":"platform","value":true},"LegacySameSiteCookieBehaviorEnabledForDomainList":{"level":"mandatory","scope":"machine","source":"platform","value":["[*.]"]}}';
 browser.setPolicies(wantTemp, appId, policies, (err) => {
   if (err) {
@@ -73,7 +74,7 @@ browser.setPolicies(wantTemp, appId, policies, (err) => {
 
 setPolicies(admin: Want, appId: string, policies: string): Promise&lt;void&gt;
 
-指定设备管理应用为指定的浏览器设置浏览策略，使用promise异步回调。
+为指定的浏览器设置浏览策略，使用promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BROWSER_POLICY
 
@@ -84,7 +85,7 @@ setPolicies(admin: Want, appId: string, policies: string): Promise&lt;void&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。            |
 | appId    | string              | 是    | 应用ID，用于指定浏览器。                  |
 | policies    | string                | 是    | 浏览器策略，当参数policies为空字符串时，表示取消指定浏览器的策略。                  |
 
@@ -92,7 +93,7 @@ setPolicies(admin: Want, appId: string, policies: string): Promise&lt;void&gt;
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。当指定设备管理应用设置浏览器策略失败时，会抛出错误对象。  |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。当设置浏览器策略失败时，会抛出错误对象。  |
 
 **错误码**：
 
@@ -115,7 +116,8 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appId: string = 'com.example.myapplication';
+// 此处参数appId的赋值应替换为开发者自己指定的浏览器的应用ID
+let appId: string = 'com.example.******_******/******5t5CoBM=';
 let policies: string = '{"InsecurePrivateNetworkRequestsAllowed":{"level":"mandatory","scope":"machine","source":"platform","value":true},"LegacySameSiteCookieBehaviorEnabledForDomainList":{"level":"mandatory","scope":"machine","source":"platform","value":["[*.]"]}}';
 browser.setPolicies(wantTemp, appId, policies).then(() => {
   console.info('Succeeded in setting browser policies.');
@@ -128,7 +130,7 @@ browser.setPolicies(wantTemp, appId, policies).then(() => {
 
 getPolicies(admin: Want, appId: string, callback: AsyncCallback&lt;string&gt;): void
 
-指定管理员应用获取指定浏览器的策略，使用callback异步回调。
+获取指定浏览器的策略，使用callback异步回调。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -137,7 +139,7 @@ getPolicies(admin: Want, appId: string, callback: AsyncCallback&lt;string&gt;): 
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。            |
 | appId    | string              | 是    | 应用ID，用于指定浏览器。                  |
 | callback | AsyncCallback&lt;string&gt;       | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。       |
 
@@ -159,7 +161,8 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appId: string = 'com.example.myapplication';
+// 此处参数appId的赋值应替换为开发者自己指定的浏览器的应用ID
+let appId: string = 'com.example.******_******/******5t5CoBM=';
 browser.getPolicies(wantTemp, appId, (err, result) => {
   if (err) {
     console.error(`Failed to get browser policies. Code is ${err.code}, message is ${err.message}`);
@@ -173,7 +176,7 @@ browser.getPolicies(wantTemp, appId, (err, result) => {
 
 getPolicies(admin: Want, appId: string): Promise&lt;string&gt;
 
-指定管理员应用获取指定浏览器的策略，使用promise异步回调。
+获取指定浏览器的策略，使用promise异步回调。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -182,7 +185,7 @@ getPolicies(admin: Want, appId: string): Promise&lt;string&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | appId    | string              | 是    | 应用ID，用于指定浏览器。                  |
 
 **返回值：**
@@ -210,7 +213,8 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appId: string = 'com.example.myapplication';
+// 此处参数appId的赋值应替换为开发者自己指定的浏览器的应用ID
+let appId: string = 'com.example.******_******/******5t5CoBM=';
 browser.getPolicies(wantTemp, appId).then((result) => {
   console.info(`Succeeded in getting browser policies, result : ${JSON.stringify(result)}`);
 }).catch((err: BusinessError) => {

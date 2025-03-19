@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 16开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API Version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 导入模块
 
@@ -43,7 +43,7 @@ ArcSlider({options?: ArcSliderOptions})
 
 **装饰器类型：**@ComponentV2
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -59,7 +59,7 @@ ArcSlider({options?: ArcSliderOptions})
 
 **装饰器类型：**@ComponentV2
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -78,7 +78,7 @@ constructor(options?: ArcSliderOptionsConstructorOptions)
 
 ArcSliderOptions的构造函数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -94,7 +94,7 @@ ArcSliderOptions的构造函数。
 
 **装饰器类型：**@ComponentV2
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -110,7 +110,7 @@ constructor(options?: ArcSliderValueOptionsConstructorOptions)
 
 ArcSliderValueOptions的构造函数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -126,7 +126,7 @@ ArcSliderValueOptions的构造函数。
 
 **装饰器类型：**@ComponentV2
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -141,7 +141,7 @@ constructor(options?: ArcSliderLayoutOptionsConstructorOptions)
 
 ArcSliderLayoutOptions的构造函数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -157,7 +157,7 @@ ArcSliderLayoutOptions的构造函数。
 
 **装饰器类型：**@ComponentV2
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -175,7 +175,7 @@ constructor(options?: ArcSliderStyleOptionsConstructorOptions)
 
 ArcSliderStyleOptions的构造函数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -189,7 +189,7 @@ ArcSliderStyleOptions的构造函数。
 
 配置弧形Slider的屏幕显示位置。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -204,7 +204,7 @@ type ArcSliderTouchHandler = (event: TouchEvent) => void
 
 弧形Slider被触摸时，告知应用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -220,7 +220,7 @@ type ArcSliderChangeHandler = (progress: number) => void
 
 弧形Slider的进度值发生变化时，告知应用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -234,7 +234,7 @@ type ArcSliderChangeHandler = (progress: number) => void
 
 ArcSliderOptions的构造信息。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -253,7 +253,7 @@ ArcSliderOptions的构造信息。
 
 ArcSliderValueOptions的构造信息。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -269,7 +269,7 @@ ArcSliderValueOptions的构造信息。
 
 ArcSliderLayoutValueOptions的构造信息。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -284,7 +284,7 @@ ArcSliderLayoutValueOptions的构造信息。
 
 ArcSliderStyleOptions的构造信息。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 

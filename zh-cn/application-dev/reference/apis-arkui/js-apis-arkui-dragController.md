@@ -268,9 +268,9 @@ struct DragControllerPage {
 
 | 名称        | 类型                                                   | 必填 | 说明                                     |
 | ----------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
-| pointerId   | number                                                 | 是   | 设置启动拖拽时屏幕上触摸点的Id。         |
+| pointerId   | number                                                 | 是   | 设置启动拖拽时屏幕上触摸点的Id。取值范围为0-9的整数。         |
 | data        | [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 否   | 设置拖拽过程中携带的数据。               |
-| extraParams | string                                                 | 否   | 设置拖拽事件额外信息，具体功能暂未实现。 |
+| extraParams | string                                                 | 否   | 设置拖拽事件额外信息，具体功能暂未实现。默认值为空。 |
 | touchPoint<sup>11+</sup>    | [TouchPoint](arkui-ts/ts-types.md#touchpoint11)  | 否   | 配置跟手点坐标。不配置时，左右居中，顶部向下偏移20%。 |
 | previewOptions<sup>11+</sup>| [DragPreviewOptions](arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)                                | 否   | 设置拖拽过程中背板图处理模式及数量角标的显示。 |
 
@@ -667,7 +667,7 @@ struct DragControllerPage {
 | -----------   | ------------------------------------------------------ | ---- | ---------------------------------------- |
 | status       | [DragStatus](#dragstatus11)                                                 | 是   | 当前拖拽状态（启动和结束）。         |
 | event        | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent) | 是   | 当前状态所对应的拖拽事件。通过dragController发起的dragEvent仅支持获取result和behavior，且用于拖拽结束状态。 |
-| extraParams| string                                                 | 否   | 设置拖拽事件额外信息，具体功能暂未实现。 |
+| extraParams| string                                                 | 否   | 设置拖拽事件额外信息，具体功能暂未实现。默认值为空。 |
 
 ## DragStatus<sup>11+</sup>
 

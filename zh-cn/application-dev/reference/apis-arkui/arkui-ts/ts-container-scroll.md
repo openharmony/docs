@@ -272,7 +272,7 @@ onScrollFrameBegin(event: OnScrollFrameBeginCallback)
 
 | 参数名 | 类型                              | 必填 | 说明               |
 | ------ | --------------------------------- | ---- | ------------------ |
-| event   | [OnScrollFrameBeginCallback](#onscrollframebegincallback16) | 是   | 每帧滚动开始回调函数。 |
+| event   | [OnScrollFrameBeginCallback](#onscrollframebegincallback18) | 是   | 每帧滚动开始回调函数。 |
 
 ### onScroll<sup>(deprecated)</sup>
 
@@ -371,7 +371,7 @@ onScrollEdge(event: OnScrollEdgeCallback)
 
 | 参数名 | 类型                              | 必填 | 说明               |
 | ------ | --------------------------------- | ---- | ------------------ |
-| event   | [OnScrollEdgeCallback](#onscrolledgecallback16) | 是   | 滚动到的边缘位置。 |
+| event   | [OnScrollEdgeCallback](#onscrolledgecallback18) | 是   | 滚动到的边缘位置。 |
 
 ### onScrollEnd<sup>(deprecated) </sup>
 
@@ -470,13 +470,13 @@ Scroll滚动前触发的回调。
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | void \| [OffsetResult](#offsetresult11对象说明) |  返回OffsetResult时按照开发者指定的偏移量滚动；不返回时按回调参数(xOffset，yOffset)滚动。 |
 
-## OnScrollEdgeCallback<sup>16+</sup>
+## OnScrollEdgeCallback<sup>18+</sup>
 
 type OnScrollEdgeCallback = (side: Edge) => void
 
 滚动到边缘时触发的回调。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -484,13 +484,13 @@ type OnScrollEdgeCallback = (side: Edge) => void
 | ------- | ----- | ---- | ------ |
 | side    | [Edge](ts-appendix-enums.md#edge)  | 是   | 滚动到的边缘位置。 |
 
-## OnScrollFrameBeginCallback<sup>16+</sup>
+## OnScrollFrameBeginCallback<sup>18+</sup>
 
 type OnScrollFrameBeginCallback = (offset: number, scrollState: ScrollState) => OnScrollFrameBeginHandlerResult;
 
 Scroll每帧滚动前触发的回调。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -505,11 +505,11 @@ Scroll每帧滚动前触发的回调。
 
 | 类型                     | 说明                 |
 | ------------------------ | -------------------- |
-| [OnScrollFrameBeginHandlerResult](#onscrollframebeginhandlerresult16对象说明) | 返回实际滑动量。 |
+| [OnScrollFrameBeginHandlerResult](#onscrollframebeginhandlerresult18对象说明) | 返回实际滑动量。 |
 
-## OnScrollFrameBeginHandlerResult<sup>16+</sup>对象说明
+## OnScrollFrameBeginHandlerResult<sup>18+</sup>对象说明
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -546,7 +546,7 @@ Scroller的构造函数。
 
 ### scrollTo
 
-scrollTo(options: [ScrollOptions](#scrolloptions16对象说明))
+scrollTo(options: [ScrollOptions](#scrolloptions18对象说明))
 
 
 滑动到指定位置。
@@ -559,7 +559,7 @@ scrollTo(options: [ScrollOptions](#scrolloptions16对象说明))
 
 | 参数名   | 类型 | 必填   | 说明      |
 | ----- | ---- | ---- | --------- |
-| options | [ScrollOptions](#scrolloptions16对象说明) | 是    | 滑动到指定位置的参数。 
+| options | [ScrollOptions](#scrolloptions18对象说明) | 是    | 滑动到指定位置的参数。 
 
 ### scrollEdge
 
@@ -888,11 +888,11 @@ getItemIndex(x: number, y: number): number
 | --------- | -------- | ---- | ------------------------------------------------------------ |
 | velocity      | number  | 否   | 设置滚动到容器边缘的固定速度。如果设置小于等于0的值，参数不生效。<br/>默认值：0<br/>  单位： vp/s          |
 
-## ScrollOptions<sup>16+</sup>对象说明
+## ScrollOptions<sup>18+</sup>对象说明
 
 滚动到指定位置的参数选项。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

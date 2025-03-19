@@ -126,7 +126,7 @@ interval(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                       |
 | ------ | ------ | ---- | ---------------------------------------------------------- |
-| value  | number | 是   | 自动播放时播放的时间间隔。<br/>默认值：3000<br/>单位：毫秒 |
+| value  | number | 是   | 自动播放时播放的时间间隔。<br/>默认值：3000<br/>单位：毫秒<br/>取值范围：[0, +∞)，设置小于0的值时，按照默认值处理。 |
 
 ### indicator
 
@@ -201,7 +201,7 @@ curve默认曲线为[interpolatingSpring](../js-apis-curve.md#curvesinterpolatin
 
 | 参数名 | 类型   | 必填 | 说明                                                  |
 | ------ | ------ | ---- | ----------------------------------------------------- |
-| value  | number | 是   | 子组件切换的动画时长。<br/>默认值：400<br/>单位：毫秒 |
+| value  | number | 是   | 子组件切换的动画时长。<br/>默认值：400<br/>单位：毫秒<br/>取值范围：[0, +∞)，设置小于0的值时，按照默认值处理。 |
 
 ### vertical
 
@@ -239,7 +239,7 @@ itemSpace(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                                   |
 | ------ | -------------------------- | ---- | -------------------------------------- |
-| value  | number&nbsp;\|&nbsp;string | 是   | 子组件与子组件之间间隙。<br/>默认值：0 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 子组件与子组件之间间隙。<br/>默认值：0<br/>取值范围：[0, +∞)，设置小于0的值时，按照默认值处理。 |
 
 ### displayMode
 
@@ -275,7 +275,7 @@ cachedCount(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                             |
 | ------ | ------ | ---- | -------------------------------- |
-| value  | number | 是   | 预加载子组件个数。<br/>默认值：1 |
+| value  | number | 是   | 预加载子组件个数。<br/>默认值：1<br/>取值范围：[0, +∞)，设置小于0的值时，按照默认值处理。 |
 
 ### cachedCount<sup>15+</sup>
 
@@ -293,7 +293,7 @@ cachedCount(count: number, isShown: boolean)
 
 | 参数名 | 类型   | 必填 | 说明                             |
 | ------ | ------ | ---- | -------------------------------- |
-| count  | number | 是   | 预加载子组件个数。<br/>默认值：1 |
+| count  | number | 是   | 预加载子组件个数。<br/>默认值：1<br/>取值范围：[0, +∞)，设置小于0的值时，按照默认值处理。 |
 | isShown  | boolean | 是   | 预加载范围内的节点是否全部进行绘制，不下渲染树。<br/>默认值：false |
 
 ### disableSwipe<sup>8+</sup>
@@ -368,7 +368,7 @@ displayCount(value: number | string | SwiperAutoFill, swipeByGroup?: boolean)
 
 | 参数名                     | 类型                                                         | 必填 | 说明                                                         |
 | -------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value                      | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[SwiperAutoFill](#swiperautofill10)<sup>10+</sup> | 是   | 视窗内显示的子元素个数。<br/> 默认值：1                      |
+| value                      | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[SwiperAutoFill](#swiperautofill10)<sup>10+</sup> | 是   | 视窗内显示的子元素个数。<br/> 默认值：1<br/>取值范围：(0, +∞)，设置小于等于0的值时，按照默认值处理。|
 | swipeByGroup<sup>11+</sup> | boolean                                                      | 否   | 是否按组进行翻页。如果设为true，在翻页时会按组进行翻页，每组内子元素的数量为displayCount value的值；如果为false，则为默认翻页行为，即按照子元素进行翻页。<br/> 默认值：false |
 
 > **说明：**
@@ -798,7 +798,7 @@ bottom(value: Length): T
 
 ### bottom<sup>18+</sup>
 
- bottom(bottom: LengthMetrics, ignoreSize: boolean): T
+bottom(bottom: LengthMetrics | Length, ignoreSize: boolean): T
 
 导航点底部相对于Swiper的位置，并可通过ignoreSize属性忽略导航点大小。
 
@@ -810,10 +810,12 @@ bottom(value: Length): T
 
 **参数：** 
 
+
 | 参数名 | 类型                         | 必填 | 说明                                                         |
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
-| bottom  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 设置导航点底部相对于Swiper的位置。<br/>未设置top和bottom时，进行自适应大小布局，按照指示器本身大小和Swiper的大小，在交叉轴方向上，位于底部，效果与设置bottom=0一致。<br/>设置为0时：按照0位置布局计算。<br/>优先级：低于top属性。<br/>取值范围：[0,Swiper高度-导航点区域高度]，超出该范围时，取最近的边界值。 |
-| ignoreSize  | boolean | 是   | 设置是否忽略导航点本身大小，默认false。<br/>设为true时可以将导航点更靠近Swiper底部。 |
+| bottom  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&nbsp;\|&nbsp;[Length](ts-types.md#length)| 是   | 设置导航点底部相对于Swiper的位置。<br/>未设置top和bottom时，进行自适应大小布局，按照指示器本身大小和Swiper的大小，在交叉轴方向上，位于底部，效果与设置bottom=0一致。<br/>设置为0时：按照0位置布局计算。<br/>优先级：低于top属性。<br/>取值范围：[0,Swiper高度-导航点区域高度]，超出该范围时，取最近的边界值。 |
+| ignoreSize  | boolean | 是   | 设置是否忽略导航点本身大小，默认false。<br/>设为true时可以将导航点更靠近Swiper底部。<br/> 说明：数字导航点ignoreSize属性，不生效的场景如下：<br/> &bull;  当[vertical](#vertical) 设置为false，且bottom > 0。<br/>  &bull;  当[vertical](#vertical) 设置为true时：<br/>1、bottom > 0 时。<br/> 2、bottom设为undefined。 <br/> 3、isSidebarMiddle设置为false时。|
+
 ### start<sup>12+</sup>
 
 start(value: LengthMetrics): T
@@ -1567,7 +1569,7 @@ Swiper即将滑动前触发的回调，返回值表示是否允许此次滑动�
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ---- | ---- | ---- |
-| result | [SwiperContentWillScrollResult](#swipercontentwillscrollresult15) | 是 | 即将滑动的相关信息，主要包括：当前页面对应的index、滑动方向上即将显示的页面index和此次滑动的位移。 |
+| result | [SwiperContentWillScrollResult](#swipercontentwillscrollresult15对象说明) | 是 | 即将滑动的相关信息，主要包括：当前页面对应的index、滑动方向上即将显示的页面index和此次滑动的位移。 |
 
 **返回值：**
 
@@ -1575,7 +1577,7 @@ Swiper即将滑动前触发的回调，返回值表示是否允许此次滑动�
 | ------ | ---- |
 | boolean | Swiper是否响应本次滑动，true表示响应，false表示不响应。 |
 
-## SwiperContentWillScrollResult<sup>15+</sup>
+## SwiperContentWillScrollResult<sup>15+</sup>对象说明
 
 滑动的相关信息，主要包括：当前页面对应的index、滑动方向上即将显示的页面index和此次滑动的位移。
 
@@ -1587,9 +1589,9 @@ Swiper即将滑动前触发的回调，返回值表示是否允许此次滑动�
 
 | 名称 | 类型 | 必填 | 说明 |
 | ------ | ---- | ---- | ---- |
-| currentIndex | number | 否 | 当前页面对应的index。在一次跟手滑动过程中，只要手指未离开屏幕，该值将保持不变，即使该页面已完全移出视窗，如在涉及多个页面的场景中。 |
-| comingIndex | number | 否 | 滑动方向上即将显示的页面index。 |
-| offset | number | 否 | 此次滑动的位移，带有符号，正负分别指示不同的翻页方向。正数表示从index=1向index=0翻页，负数表示从index=0向index=1翻页。<br>在手指滑动的场景中，该值为滑动事件中每帧传递下来的偏移量。在滚动鼠标滚轮和使用键盘方向键导航的场景中，该值代表即将翻页的距离。 |
+| currentIndex | number | 是 | 当前页面对应的index。在一次跟手滑动过程中，只要手指未离开屏幕，该值将保持不变，即使该页面已完全移出视窗，如在涉及多个页面的场景中。 |
+| comingIndex | number | 是 | 滑动方向上即将显示的页面index。 |
+| offset | number | 是 | 此次滑动的位移，带有符号，正负分别指示不同的翻页方向。正数表示从index=1向index=0翻页，负数表示从index=0向index=1翻页。<br>在手指滑动的场景中，该值为滑动事件中每帧传递下来的偏移量。在滚动鼠标滚轮和使用键盘方向键导航的场景中，该值代表即将翻页的距离。 |
 
 ## SwiperAnimationEvent<sup>10+</sup>对象说明
 

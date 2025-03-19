@@ -810,7 +810,7 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_GetRawInfo()
 
 ```
-int32_t OH_Hid_GetRawInfo (Hid_DeviceHandle * dev, Hid_RawDevInfo * rawDevInfo )
+int32_t OH_Hid_GetRawInfo (Hid_DeviceHandle * dev, Hid_RawDevInfo * rawDevInfo)
 ```
 
 **描述**

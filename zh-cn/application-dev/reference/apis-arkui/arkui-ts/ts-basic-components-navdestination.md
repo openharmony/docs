@@ -343,10 +343,10 @@ customTransition(delegate: NavDestinationTransitionDelegate)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 说明                                     |
-| ---- | ---------------------------------------- |
-| STANDARD | 标准模式的NavDestination。                       |
-| DIALOG | 默认透明，进出页面栈不影响下层NavDestination的生命周期。<br />API version 13之前，默认无系统转场动画。从API version 13开始，支持系统转场动画。  |
+| 名称   | 值 | 说明                                     |
+| ---- | --- | ---------------------------------------- |
+| STANDARD | 0 | 标准模式的NavDestination。                       |
+| DIALOG | 1 | 默认透明，进出页面栈不影响下层NavDestination的生命周期。<br />API version 13之前，默认无系统转场动画。从API version 13开始，支持系统转场动画。  |
 
 ## NavigationSystemTransitionType<sup>14+</sup>枚举说明
 

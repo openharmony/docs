@@ -498,9 +498,9 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
-| 名称                    | 值   | 说明                                                         |
-| ----------------------- | ---- | ------------------------------------------------------------ |
-| HOST_WINDOW_RECT_CHANGE | 1    | 组件所在的宿主窗口矩形变化。 |
+| 名称                    | 值     | 说明                                                         |
+| ----------------------- | ------ | ------------------------------------------------------------ |
+| HOST_WINDOW_RECT_CHANGE | 0x0001 | 组件所在的宿主窗口矩形变化。 |
 
 ## RectChangeOptions<sup>14+</sup>
 

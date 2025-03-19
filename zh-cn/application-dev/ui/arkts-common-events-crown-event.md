@@ -14,7 +14,7 @@
 onDigitalCrown(event: (event?: CrownEvent) => void)
 ```
 
-其中，event参数提供表冠事件的时间戳，旋转角速度，旋转角度和[表冠动作](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#crownaction16)。
+其中，event参数提供表冠事件的时间戳，旋转角速度，旋转角度和[表冠动作](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#crownaction18)。
 
 当组件需要获取旋转角度等信息时，可以通过onDigitalCrown接收表冠事件来获得上报信息。以下以Text组件为例，介绍表冠事件开发的基本步骤及开发过程中需要注意的事项。
 

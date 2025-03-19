@@ -1384,7 +1384,7 @@ class VehicleDB {
   public vehicleItems: VehicleData[] = [];
 
   constructor() {
-    // init data size 20
+    // 数组初始化大小 20
     for (let i = 1; i <= 20; i++) {
       this.vehicleItems.push(new VehicleData(`Vehicle${i}`, i));
     }
@@ -1403,7 +1403,7 @@ struct entryCompSucc {
     Column({ space: 3 }) {
       List({ scroller: this.scroller }) {
         Repeat(this.vehicleItems)
-          .virtualScroll({ totalCount: 50 }) // total data size 50
+          .virtualScroll({ totalCount: 50 }) // 数组预期长度 50
           .templateId(() => 'default')
           .template('default', (ri) => {
             ListItem() {
@@ -1437,7 +1437,7 @@ struct entryCompSucc {
       .alignListItem(ListItemAlign.Center)
       .onScrollIndex((start, end) => {
         console.log('onScrollIndex', start, end);
-        // lazy data loading
+        // 数据懒加载
         if (this.vehicleItems.length < 50) {
           for (let i = 0; i < 10; i++) {
             if (this.vehicleItems.length < 50) {

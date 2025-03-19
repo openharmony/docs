@@ -116,6 +116,12 @@ getRecentOperatingHandStatus(): OperatingHandStatus;
 
 **系统能力**：SystemCapability.MultimodalAwarness.Motion
 
+**返回值**：
+
+| 类型                          | 说明                                 |
+| ----------------------------- | ------------------------------------ |
+| [OperatingHandStatus](#operatinghandstatus) | 返回触控操作手状态信息。 |
+
 **错误码**：
 
 以下错误码的详细介绍请参见[行为动作感知错误码](errorcode-motion.md)和[通用错误码](../errorcode-universal.md)。

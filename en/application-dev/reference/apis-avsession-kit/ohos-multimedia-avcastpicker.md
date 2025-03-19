@@ -21,7 +21,7 @@ AVCastPicker()
 
 Implements an **AVCastPicker** component, which can be used to cast audio and video onto other devices.
 
-This component is a custom component. Some basic knowledge of [@Component](../../quick-start/arkts-create-custom-components.md) will be helpful in using the component.
+This component is a custom component. Some basic knowledge of [@Component](../../quick-start/arkts-create-custom-components.md#component) will be helpful in using the component.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -29,7 +29,7 @@ This component is a custom component. Some basic knowledge of [@Component](../..
 
 ## Attributes
 
-In addition to the [universal attributes](../apis-arkui/arkui-ts/ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](../apis-arkui/arkui-ts/ts-component-general-attributes.md), the following attributes are supported.
 
 | Name| Type| Mandatory| Decorator| Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -43,7 +43,7 @@ In addition to the [universal attributes](../apis-arkui/arkui-ts/ts-universal-at
 
 ## Events
 
-The [universal events](../apis-arkui/arkui-ts/ts-universal-events-click.md) are supported.
+The [universal events](../apis-arkui/arkui-ts/ts-component-general-events.md) are supported.
 
 ## Example
 
@@ -91,3 +91,5 @@ struct Index {
   }
 }
 ```
+
+ <!--no_check--> 

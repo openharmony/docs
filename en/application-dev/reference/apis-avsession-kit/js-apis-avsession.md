@@ -131,6 +131,20 @@ Enumerates the protocol types supported by the remote device.
 | TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+ stream mode, indicating that the media asset is being displayed on another device.|
 | TYPE_DLNA<sup>12+</sup>      | 4    | DLNA protocol, indicating that the media asset is being displayed on another device.|
 
+## DistributedSessionType<sup>18+</sup>
+
+Enumerates the session types supported by the remote distributed device.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+| Name                                    | Value| Description                       |
+|----------------------------------------|---|---------------------------|
+| TYPE_SESSION_REMOTE      | 0 | Session on the remote device.      |
+| TYPE_SESSION_MIGRATE_IN  | 1 | Session migrated to the local device.|
+| TYPE_SESSION_MIGRATE_OUT | 2 | Session migrated to the remote device.|
+
 ## AVSessionType<sup>10+<sup>
 
 type AVSessionType = 'audio' | 'video' | 'voice_call' | 'video_call'
@@ -4994,6 +5008,19 @@ Unsubscribes from DRM error events during cast control.
 aVCastController.off('castControlDrmError');
 ```
 
+## ExtraInfo<sup>18+</sup>
+type ExtraInfo = { [key: string]: Object; }
+
+Defines the custom media packet set by the provider.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+| Type                               | Description                         |
+| ----------------------------------- | ----------------------------- |
+| [key: string]: Object   | **key** specifies the remote distributed event type. Currently, the following event types are supported:<br>**'AUDIO_GET_VOLUME'**: obtains the volume of the remote device.<br>**'AUDIO_GET_AVAILABLE_DEVICES'**: obtains all remote devices that can be connected.<br>**'AUDIO_GET_PREFERRED_OUTPUT_DEVICE_FOR_RENDERER_INFO'**: obtains the actual remote audio device.<br>The provider returns the corresponding media packet object based on the event type.|
+
 ## KeyRequestCallback<sup>12+</sup>
 type KeyRequestCallback = (assetId: string, requestData: Uint8Array) => void
 
@@ -5312,7 +5339,7 @@ Enumerates the media playback states.
 | PLAYBACK_STATE_PLAY         | 2    | Playing.    |
 | PLAYBACK_STATE_PAUSE        | 3    | Paused.        |
 | PLAYBACK_STATE_FAST_FORWARD | 4    | Fast-forwarding.        |
-| PLAYBACK_STATE_REWIND       | 5    | Rewinded.        |
+| PLAYBACK_STATE_REWIND       | 5    | Rewinding.        |
 | PLAYBACK_STATE_STOP         | 6    | Stopped.        |
 | PLAYBACK_STATE_COMPLETED    | 7    | Playback complete.    |
 | PLAYBACK_STATE_RELEASED     | 8    | Released.        |
@@ -6610,6 +6637,100 @@ if (avSessionController !== undefined) {
       console.info(`getExtras : SUCCESS : ${extras}`);
     }
   });
+}
+```
+
+### getExtrasWithEvent<sup>18+</sup>
+
+getExtrasWithEvent(extraEvent: string): Promise\<ExtraInfo>
+
+Obtains the custom media packet set by the remote distributed media provider based on the remote distributed event type. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Parameters**
+
+| Name  | Type                                     | Mandatory| Description                      |
+| -------- | ----------------------------------------- | ---- | -------------------------- |
+| extraEvent | string | Yes| Remote distributed event type.<br>Currently, the following event types are supported:<br>**'AUDIO_GET_VOLUME'**: obtains the volume of the remote device.<br>**'AUDIO_GET_AVAILABLE_DEVICES'**: obtains all remote devices that can be connected.<br>**'AUDIO_GET_PREFERRED_OUTPUT_DEVICE_FOR_RENDERER_INFO'**: obtains the actual remote audio device.|
+
+**Return value**
+
+| Type                               | Description                         |
+| ----------------------------------- | ----------------------------- |
+| Promise<[ExtraInfo](#extrainfo18)\>   | Promise used to return the custom media packet set by the remote distributed media provider.<br>The **ExtraInfo** parameter supports the following data types: string, number, Boolean, object, array, and file descriptor. For details, see [@ohos.app.ability.Want(Want)](../apis-ability-kit/js-apis-app-ability-want.md).|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
+| 6600105  | Invalid session command. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(40)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            getExtrasWithEventTest();
+          })
+      }
+    }
+  }
+}
+
+async function getExtrasWithEventTest() {
+  let controllerList: Array<avSession.AVSessionController>;
+  let controller: avSession.AVSessionController | ESObject;
+  
+  try {
+    controllerList = await avSession.getDistributedSessionController(avSession.DistributedSessionType.TYPE_SESSION_REMOTE);
+    controller = controllerList[0];
+  } catch (err) {
+    console.info(`getDistributedSessionController fail with err: ${err}`);
+  }
+
+  const COMMON_COMMAND_STRING_1 = 'AUDIO_GET_VOLUME';
+  const COMMON_COMMAND_STRING_2 = 'AUDIO_GET_AVAILABLE_DEVICES';
+  const COMMON_COMMAND_STRING_3 = 'AUDIO_GET_PREFERRED_OUTPUT_DEVICE_FOR_RENDERER_INFO';
+  if (controller !== undefined) {
+    controller.getExtrasWithEvent(COMMON_COMMAND_STRING_1).then((extras: avSession.ExtraInfo) => {
+      console.info(`${extras[COMMON_COMMAND_STRING_1]}`);
+    }).catch((err: BusinessError) => {
+      console.info(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
+    })
+
+    controller.getExtrasWithEvent(COMMON_COMMAND_STRING_2).then((extras: avSession.ExtraInfo) => {
+      console.info(`${extras[COMMON_COMMAND_STRING_2]}`);
+    }).catch((err: BusinessError) => {
+      console.info(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
+    })
+
+    controller.getExtrasWithEvent(COMMON_COMMAND_STRING_3).then((extras: avSession.ExtraInfo) => {
+      console.info(`${extras[COMMON_COMMAND_STRING_3]}`);
+    }).catch((err: BusinessError) => {
+      console.info(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
+    })
+  }
 }
 ```
 
@@ -7999,15 +8120,6 @@ Creates an **AVCastPickerHelper** instance. For details about how to obtain the 
 | --------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context | Yes  | Application context. (Only [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) is supported.)|
 
-**Error codes**
-
-For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception. |
-
 **Example**
 
 ```ts
@@ -8064,11 +8176,12 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
+import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function avCastPicker(context: common.Context) {
@@ -8106,17 +8219,20 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
+import { common } from '@kit.AbilityKit';
 import { AVCastPickerState } from '@kit.AVSessionKit';
 
-avCastPicker.on('pickerStateChange', (state: AVCastPickerState) => {
-  console.info(`picker state change : ${state}`);
-});
+async function onPickerStateChange(context: common.Context) {
+  let avCastPicker = new avSession.AVCastPickerHelper(context);
+  avCastPicker.on('pickerStateChange', (state: AVCastPickerState) => {
+    console.info(`picker state change : ${state}`);
+  });
+}
 ```
 
 ### off('pickerStateChange')<sup>14+</sup>
@@ -8142,13 +8258,17 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-avCastPicker.off('pickerStateChange');
+import { common } from '@kit.AbilityKit';
+
+async function onPickerStateChange(context: common.Context) {
+  let avCastPicker = new avSession.AVCastPickerHelper(context);
+  avCastPicker.off('pickerStateChange');
+}
 ```
 
 ## AVSessionErrorCode<sup>10+</sup>

@@ -706,6 +706,10 @@
 | uint32_t [OH_ArkUI_SwiperIndicator_GetSelectedColor](#oh_arkui_swiperindicator_getselectedcolor) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | 获取被选中 Swiper 组件圆点导航指示器的颜色。  | 
 | int32_t [OH_ArkUI_SwiperIndicator_SetMaxDisplayCount](#oh_arkui_swiperindicator_setmaxdisplaycount) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, int32_t maxDisplayCount) | 设置圆点导航点指示器样式下，导航点显示个数的最大值。  | 
 | int32_t [OH_ArkUI_SwiperIndicator_GetMaxDisplayCount](#oh_arkui_swiperindicator_getmaxdisplaycount) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | 获取圆点导航点指示器样式下，导航点显示个数的最大值。  | 
+| void [OH_ArkUI_SwiperIndicator_SetSpace](#oh_arkui_swiperindicator_setspace) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, float space) | 设置导航点间距。 | 
+| float [OH_ArkUI_SwiperIndicator_GetSpace](#oh_arkui_swiperindicator_getspace) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | 获取导航点间距。|
+| void [OH_ArkUI_SwiperIndicator_SetIgnoreSizeOfBottom](#oh_arkui_swiperindicator_setignoresizeofbottom) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, int32_t ignoreSize) | 设置OH_ArkUI_SwiperIndicator_SetBottomPosition是否忽略导航点大小。 | 
+| int32_t [OH_ArkUI_SwiperIndicator_GetIgnoreSizeOfBottom](#oh_arkui_swiperindicator_getignoresizeofbottom) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | 获取OH_ArkUI_SwiperDigitIndicator_SetBottomPosition是否忽略导航点大小。|
 | [ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* [OH_ArkUI_SwiperDigitIndicator_Create](#oh_arkui_swiperdigitindicator_create)() | 创建 Swiper 组件的数字导航指示器。  | 
 | void [OH_ArkUI_SwiperDigitIndicator_SetStartPosition](#oh_arkui_swiperdigitindicator_setstartposition)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator, float value) | 设置数字导航指示器距离 Swiper 组件左边的距离，在从右至左显示的语言模式下，设置其距离 Swiper 组件右边的距离。  | 
 | float [OH_ArkUI_SwiperDigitIndicator_GetStartPosition](#oh_arkui_swiperdigitindicator_getstartposition)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator) | 获取数字导航指示器距离 Swiper 组件左边的距离，在从右至左显示的语言模式下，获取其距离 Swiper 组件右边的距离。  | 
@@ -728,6 +732,8 @@
 | void [OH_ArkUI_SwiperDigitIndicator_SetSelectedFontWeight](#oh_arkui_swiperdigitindicator_setselectedfontweight)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator, [ArkUI_FontWeight](#arkui_fontweight) selectedFontWeight) | 设置被选中 Swiper 组件数字导航指示器字体粗细属性。 | 
 | [ArkUI_FontWeight](#arkui_fontweight) [OH_ArkUI_SwiperDigitIndicator_GetSelectedFontWeight](#oh_arkui_swiperdigitindicator_getselectedfontweight)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator) | 获取被选中 Swiper 组件数字导航指示器字体粗细属性。  | 
 |void [OH_ArkUI_SwiperDigitIndicator_Dispose](#oh_arkui_swiperdigitindicator_dispose)() | 销毁Swiper组件的数字导航指示器指针。  | 
+| void [OH_ArkUI_SwiperDigitIndicator_SetIgnoreSizeOfBottom](#oh_arkui_swiperdigitindicator_setignoresizeofbottom)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator, int32_t ignoreSize) | 设置OH_ArkUI_SwiperDigitIndicator_SetBottomPosition是否忽略导航点大小。 | 
+| int32_t [OH_ArkUI_SwiperDigitIndicator_GetIgnoreSizeOfBottom](#oh_arkui_swiperdigitindicator_getignoresizeofbottom)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator) | 获取OH_ArkUI_SwiperDigitIndicator_SetBottomPosition是否忽略导航点大小。| 
 | [ArkUI_SwiperArrowStyle](#arkui_swiperarrowstyle)* [OH_ArkUI_SwiperArrowStyle_Create](#oh_arkui_swiperarrowstyle_create)() | 创建 Swiper 组件的导航箭头。  | 
 | void [OH_ArkUI_SwiperArrowStyle_SetShowBackground](#oh_arkui_swiperarrowstyle_setshowbackground)([ArkUI_SwiperArrowStyle](#arkui_swiperarrowstyle)* indicator, int32_t showBackground) | 设置 Swiper 组件导航箭头底板是否显示。 | 
 | int32_t [OH_ArkUI_SwiperArrowStyle_GetShowBackground](#oh_arkui_swiperarrowstyle_getshowbackground)([ArkUI_SwiperArrowStyle](#arkui_swiperarrowstyle)* indicator) | 获取 Swiper 组件导航箭头底板是否显示。  | 
@@ -15566,6 +15572,83 @@ int32_t OH_ArkUI_SwiperIndicator_GetMaxDisplayCount (ArkUI_SwiperIndicator * ind
 
 导航点显示个数最大值，有效取值范围6-9。
 
+### OH_ArkUI_SwiperIndicator_SetSpace()
+
+```
+void OH_ArkUI_SwiperIndicator_SetSpace (ArkUI_SwiperIndicator * indicator， float space)
+```
+**描述：**
+
+设置导航点间距。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| indicator | 导航指示器对象指针。  | 
+| space | 导航点间距。  | 
+
+### OH_ArkUI_SwiperIndicator_GetSpace()
+
+```
+float OH_ArkUI_SwiperIndicator_GetSpace (ArkUI_SwiperIndicator * indicator)
+```
+**描述：**
+
+获取导航点间距。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| indicator | 导航指示器对象指针。  | 
+
+**返回：**
+
+导航点间距，默认值为8.0。
+
+### OH_ArkUI_SwiperIndicator_SetIgnoreSizeOfBottom()
+
+```
+void OH_ArkUI_SwiperIndicator_SetIgnoreSizeOfBottom (ArkUI_SwiperIndicator * indicator，int32_t ignoreSize)
+```
+**描述：**
+
+设置OH_ArkUI_SwiperIndicator_SetBottomPosition是否忽略导航点大小。 
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| indicator | 导航指示器对象指针。  | 
+| ignoreSize | 是否忽略导航点大小。1表示忽略导航点大小，0表示不忽略，默认值0。 | 
+
+### OH_ArkUI_SwiperIndicator_GetIgnoreSizeOfBottom()
+
+```
+int32_t OH_ArkUI_SwiperIndicator_GetIgnoreSizeOfBottom (ArkUI_SwiperIndicator * indicator)
+```
+**描述：**
+
+获取OH_ArkUI_SwiperIndicator_SetBottomPosition是否忽略导航点大小。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| indicator | 导航指示器对象指针。  | 
+
+**返回：**
+
+是否忽略导航点大小。
 
 ### OH_ArkUI_SwiperDigitIndicator_Create()
 
@@ -15988,6 +16071,45 @@ void OH_ArkUI_SwiperDigitIndicator_Dispose(ArkUI_SwiperDigitIndicator* indicator
 | 名称 | 描述 | 
 | -------- | -------- |
 | indicator | 数字导航指示器对象指针。  | 
+
+### OH_ArkUI_SwiperDigitIndicator_SetIgnoreSizeOfBottom
+
+```
+void OH_ArkUI_SwiperDigitIndicator_SetIgnoreSizeOfBottom(ArkUI_SwiperDigitIndicator* indicator, int32_t ignoreSize)
+```
+**描述：**
+
+设置OH_ArkUI_SwiperDigitIndicator_SetBottomPosition是否忽略导航点大小。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| indicator | 数字导航指示器对象指针。  | 
+| ignoreSize | 是否忽略导航点大小。1表示忽略导航点大小，0表示不忽略，默认值0。| 
+
+### OH_ArkUI_SwiperDigitIndicator_GetIgnoreSizeOfBottom()
+
+```
+int32_t OH_ArkUI_SwiperDigitIndicator_GetIgnoreSizeOfBottom(ArkUI_SwiperDigitIndicator* indicator)
+```
+**描述：**
+
+获取OH_ArkUI_SwiperDigitIndicator_SetBottomPosition是否忽略导航点大小。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| indicator | 数字导航指示器对象指针。 | 
+
+**返回：**
+
+是否忽略导航点大小。
 
 ### OH_ArkUI_SwiperArrowStyle_Create()
 

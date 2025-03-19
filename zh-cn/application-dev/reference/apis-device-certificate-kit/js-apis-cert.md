@@ -1343,6 +1343,10 @@ getIssuerName() : DataBlob
 
 表示获取X509证书颁发者名称。
 
+> **说明：**
+>
+> 获取到的X509证书颁发者名称数据带字符串结束符。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
@@ -1415,6 +1419,10 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
 getSubjectName(encodingType?: EncodingType) : DataBlob
 
 表示获取X509证书主体名称。
+
+> **说明：**
+>
+> 获取到的X509证书主体名称数据带字符串结束符。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2146,6 +2154,10 @@ getSubjectAltNames() : DataArray
 
 表示获取X509证书主体可选名称。
 
+> **说明：**
+>
+> 获取到的X509证书主体可选名称数据带字符串结束符。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
@@ -2218,6 +2230,10 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
 getIssuerAltNames() : DataArray
 
 表示获取X509证书颁发者可选名称。
+
+> **说明：**
+>
+> 获取到的X509证书颁发者可选名称数据带字符串结束符。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5996,6 +6012,10 @@ getIssuerName() : DataBlob
 
 表示获取X509证书吊销列表颁发者名称。
 
+> **说明：**
+>
+> 获取到的X509证书吊销列表颁发者名称数据带字符串结束符。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
@@ -8332,6 +8352,10 @@ cert.createX509CRL(encodingBlob, (err, x509CRL) => {
 getCertIssuer() : DataBlob
 
 表示获取被吊销证书的颁发者信息。
+
+> **说明：**
+>
+> 获取到的被吊销证书的颁发者信息数据带字符串结束符。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

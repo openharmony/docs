@@ -267,9 +267,9 @@ struct ReusableV2Component {
 建议按下面顺序进行操作：
 
 1. 点击`step1. appear`，此时`condition1`变为true，`Index`中的if组件切换分支，创建出`NormalV2Component`，由于`condition2`初始值为true，所以`NormalV2Component`中的if条件满足，尝试创建`ReusableV2Component`。此时复用池中无元素，因此会创建`ReusableV2Component`，并回调`aboutToAppear`的方法，输出`ReusableV2Component aboutToAppear called`的日志。
-2. 点击`step2. recycle`，此时`condition2`变为false，通过\@Param同步给`NormalComponent`，if条件切换，由于`ReusableV2Component`使用了\@ReusableV2，因此会将该组件回收至复用池而不是销毁，回调`aboutToRecycle`的方法并输出`ReusableV2Component aboutToRecycle called`的日志。
-3. 点击`step3. reuse`，此时`condition2`变为true，通过\@Param传递给`NormalComponent`，if条件切换，由于`ReusableV2Component`使用了\@ReusableV2，因此在创建该组件时尝试去复用池中寻找。此时复用池中有第二步放入的组件实例，因此从复用池中取出复用，回调`aboutToReuse`方法并输出`ReusableV2Component aboutToReuse called`的日志。
-4. 点击`step4. disappear`，此时`condition1`变为false，`Index`组件中的if组件切换分支，销毁`NormalComponent`，此时`ReusableV2Component`因为父组件销毁，所以会被一起销毁，回调`aboutToDisappear`的方法并输出`ReusableV2Component aboutToDisappear called`的日志。
+2. 点击`step2. recycle`，此时`condition2`变为false，通过\@Param同步给`NormalV2Component`，if条件切换，由于`ReusableV2Component`使用了\@ReusableV2，因此会将该组件回收至复用池而不是销毁，回调`aboutToRecycle`的方法并输出`ReusableV2Component aboutToRecycle called`的日志。
+3. 点击`step3. reuse`，此时`condition2`变为true，通过\@Param传递给`NormalV2Component`，if条件切换，由于`ReusableV2Component`使用了\@ReusableV2，因此在创建该组件时尝试去复用池中寻找。此时复用池中有第二步放入的组件实例，因此从复用池中取出复用，回调`aboutToReuse`方法并输出`ReusableV2Component aboutToReuse called`的日志。
+4. 点击`step4. disappear`，此时`condition1`变为false，`Index`组件中的if组件切换分支，销毁`NormalV2Component`，此时`ReusableV2Component`因为父组件销毁，所以会被一起销毁，回调`aboutToDisappear`的方法并输出`ReusableV2Component aboutToDisappear called`的日志。
 
 倘若该复用组件下有子组件时，会在回收和复用时递归调用子组件的aboutToRecycle和aboutToReuse（与子组件是否被标记复用无关），直到遍历完所有的孩子组件。
 

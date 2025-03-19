@@ -2,7 +2,6 @@
 
 TonePlayer<sup>9+</sup>提供播放和管理DTMF（Dual Tone Multi Frequency，双音多频）音调的方法，包括各种系统监听音调、专有音调，如拨号音、通话回铃音等。主要工作是将需要生成音调的[ToneType](../../reference/apis-audio-kit/js-apis-audio-sys.md#tonetype9)类型，通过自带算法生成多个不同频率的正弦波叠加形成声音数据，通过[AudioRenderer](../../reference/apis-audio-kit/js-apis-audio.md#audiorenderer8)进行播放，同时对播放任务进行管理。包含加载DTMF音调配置、启动DTMF音调播放、停止当前正在播放的音调、释放与此TonePlayer对象关联的资源等流程。详细API说明请参考[TonePlayer API文档](../../reference/apis-audio-kit/js-apis-audio-sys.md#toneplayer9)。
 
-
 ## 支持的播放音调类型
 
 播放音调类型[ToneType](../../reference/apis-audio-kit/js-apis-audio-sys.md#tonetype9)信息（如下表所示），可通过"audio.ToneType.指定类型" 作为参数调用load()方法加载指定类型的音调资源。
@@ -36,7 +35,6 @@ TonePlayer<sup>9+</sup>提供播放和管理DTMF（Dual Tone Multi Frequency，�
 | TONE_TYPE_COMMON_PROPRIETARY_ACK | 201 | 专有声调，ACK。 | 
 | TONE_TYPE_COMMON_PROPRIETARY_PROMPT | 203 | 专有声调，PROMPT。 | 
 | TONE_TYPE_COMMON_PROPRIETARY_DOUBLE_BEEP | 204 | 专有声调，双重蜂鸣声。 | 
-
 
 ## 开发步骤及注意事项
 
@@ -91,14 +89,12 @@ async function release() {
 
 在接口未按此正常调用时序调用时，接口会返回错误码6800301 NAPI_ERR_SYSTEM。
 
-
 ## 完整示例
 
 参考以下示例，点击键盘拨号按键，并启动对应的DTMF音调播放。
 
 为保证UI线程不被阻塞，大部分TonePlayer调用都是异步的。对于每个API均提供了callback函数和Promise函数，以下示例均采用Promise函数，更多方式可参考API文档[TonePlayer](../../reference/apis-audio-kit/js-apis-audio-sys.md#toneplayer9)。
 
-  
 ```ts
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -116,24 +112,24 @@ async function testTonePlayerPromise(type: audio.ToneType) {
   timerPro = setTimeout(async () => {
     try {
       console.info('testTonePlayerPromise: createTonePlayer');
-      // 创建DTMF播放器      
+      // 创建DTMF播放器。   
       tonePlayerPromise = await audio.createTonePlayer(audioRendererInfo);
       console.info('testTonePlayerPromise: createTonePlayer-success');
       console.info(`testTonePlayerPromise: load type: ${type}`);
-      // 加载type类型音调
+      // 加载type类型音调。
       await tonePlayerPromise.load(type);
       console.info('testTonePlayerPromise: load-success');
       console.info(`testTonePlayerPromise: start type: ${type}`);
-      // 启动DTMF音调播放
+      // 启动DTMF音调播放。
       await tonePlayerPromise.start();
       console.info('testTonePlayerPromise: start-success');
       console.info(`testTonePlayerPromise: stop type: ${type}`);
       setTimeout(async()=>{
-        // 停止当前正在播放的音调
+        // 停止当前正在播放的音调。
         await tonePlayerPromise.stop();
         console.info('testTonePlayerPromise: stop-success');
         console.info(`testTonePlayerPromise: release type: ${type}`);
-        // 释放与此TonePlayer对象关联的资源
+        // 释放与此TonePlayer对象关联的资源。
         await tonePlayerPromise.release();
         console.info('testTonePlayerPromise: release-success');
       }, 30)

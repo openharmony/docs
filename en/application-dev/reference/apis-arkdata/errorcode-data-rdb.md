@@ -55,11 +55,11 @@ Database corrupted.
 
 **Description**
 
-The RDB store is corrupted when an API for adding, deleting, querying, or synchronizing data is invoked.
+The database is abnormal.
 
 **Possible Causes**
 
-The RDB store file has been corrupted.
+The database file is damaged and incomplete, the database FD is incorrectly operated, or the database memory is illegally accessed.
 
 **Solution**
 
@@ -95,10 +95,10 @@ The column value is null, or the column data type is incompatible with the API c
 
 **Possible Causes**
 
-- The result set is empty.
-- The current row number in the result set is out of range [0, m - 1]. **m** is **resultsetV9.rowCount**.
-- The column number is out of the range [0, n - 1]. **n** is **resultsetV9.columnCount**.
-- The API called does not support the type of the column data.
+1. The result set is empty.
+2. The current row number in the result set is out of range [0, m - 1]. **m** is **resultsetV9.rowCount**.
+3. The column number is out of the range [0, n - 1]. **n** is **resultsetV9.columnCount**.
+4. The API called does not support the type of the column data.
 
 **Solution**
 

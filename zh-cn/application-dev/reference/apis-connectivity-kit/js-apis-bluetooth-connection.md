@@ -1393,7 +1393,7 @@ try {
 ```
 
 
-## connection.on('discoveryResult')<sup>16+</sup>
+## connection.on('discoveryResult')<sup>18+</sup>
 
 on(type: 'discoveryResult', callback: Callback&lt;Array&lt;DiscoveryResult&gt;&gt;): void
 
@@ -1408,7 +1408,7 @@ on(type: 'discoveryResult', callback: Callback&lt;Array&lt;DiscoveryResult&gt;&g
 | 参数名      | 类型                                  | 必填   | 说明                                     |
 | -------- | ----------------------------------- | ---- | -------------------------------------- |
 | type     | string                              | 是    | 填写"discoveryResult"字符串，表示蓝牙设备发现事件。 |
-| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult16)&gt;&gt; | 是    | 表示回调函数的入参，发现的设备集合。回调函数由用户创建通过该接口注册。    |
+| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult18)&gt;&gt; | 是    | 表示回调函数的入参，发现的设备集合。回调函数由用户创建通过该接口注册。    |
 
 **错误码**：
 
@@ -1436,7 +1436,7 @@ try {
 ```
 
 
-## connection.off('discoveryResult')<sup>16+</sup>
+## connection.off('discoveryResult')<sup>18+</sup>
 
 off(type: 'discoveryResult', callback?: Callback&lt;Array&lt;DiscoveryResult&gt;&gt;): void
 
@@ -1451,7 +1451,7 @@ off(type: 'discoveryResult', callback?: Callback&lt;Array&lt;DiscoveryResult&gt;
 | 参数名      | 类型                                  | 必填   | 说明                                       |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
 | type     | string                              | 是    | 填写"discoveryResult"字符串，表示蓝牙设备发现事件。   |
-| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult16)&gt;&gt; | 否    | 表示取消订阅蓝牙设备发现事件上报。不填该参数则取消订阅该type对应的所有回调。 
+| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult18)&gt;&gt; | 否    | 表示取消订阅蓝牙设备发现事件上报。不填该参数则取消订阅该type对应的所有回调。 
 
 **错误码**：
 
@@ -1654,7 +1654,7 @@ try {
 | DEVICE_SUPER_CHARGE_NOT_CHARGED        | 2    | 未充电，支持超级充电。|
 | DEVICE_SUPER_CHARGE_IN_CHARGING       | 3    | 正在充电，支持超级充电。|
 
-## DiscoveryResult<sup>16+</sup>
+## DiscoveryResult<sup>18+</sup>
 
 描述扫描设备状态参数。
 

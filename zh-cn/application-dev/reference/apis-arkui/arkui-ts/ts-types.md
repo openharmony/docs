@@ -732,6 +732,38 @@ getSelection(): TextRange
 | ----------------------- | ---------------- |
 | [TextRange](ts-text-common.md#textrange12) | 文本当前的选择范围，未选中返回光标位置。 |
 
+### clearPreviewText<sup>18+</sup>
+
+clearPreviewText(): void
+
+清除当前的预上屏文本内容。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### getText<sup>18+</sup>
+
+getText(range?: TextRange): string
+
+获取指定范围的文本内容。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型   | 必填   | 说明  |
+| ------- | ------ | ---- | ----- |
+| range | [TextRange](ts-text-common.md#textrange12) | 否    | 获取文本的范围，包括需要获取文本的起始位置和终止位置。<br>未指定范围时，默认将获取全部文本。未指定获取文本的起始位置，则默认从下标0开始；未指定获取文本的终止位置，则默认以文本末尾作为结束点。 |
+
+**返回值：**
+
+| 类型    | 说明               |
+| ------ | ---------------- |
+| string | 指定范围的文本内容。 |
+
 ## TextDecorationOptions<sup>12+</sup>对象说明
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full

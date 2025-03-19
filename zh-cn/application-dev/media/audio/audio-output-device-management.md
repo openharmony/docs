@@ -7,11 +7,11 @@
 在使用AudioRoutingManager管理音频设备前，需要先导入模块并创建实例。
 
 ```ts
-import { audio } from '@kit.AudioKit';  // 导入audio模块
+import { audio } from '@kit.AudioKit';  // 导入audio模块。
 
-let audioManager = audio.getAudioManager();  // 需要先创建AudioManager实例
+let audioManager = audio.getAudioManager();  // 需要先创建AudioManager实例。
 
-let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioManager的方法创建AudioRoutingManager实例
+let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioManager的方法创建AudioRoutingManager实例。
 ```
 
 ## 支持的音频输出设备类型
@@ -50,15 +50,15 @@ audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data:
 ```ts
 import { audio } from '@kit.AudioKit';
 
-// 监听音频设备状态变化
+// 监听音频设备状态变化。
 audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (deviceChanged: audio.DeviceChangeAction) => {
-  console.info(`device change type : ${deviceChanged.type}`);  // 设备连接状态变化，0为连接，1为断开连接
+  console.info(`device change type : ${deviceChanged.type}`);  // 设备连接状态变化，0为连接，1为断开连接。
   console.info(`device descriptor size : ${deviceChanged.deviceDescriptors.length}`);
-  console.info(`device change descriptor : ${deviceChanged.deviceDescriptors[0].deviceRole}`);  // 设备角色
-  console.info(`device change descriptor : ${deviceChanged.deviceDescriptors[0].deviceType}`);  // 设备类型
+  console.info(`device change descriptor : ${deviceChanged.deviceDescriptors[0].deviceRole}`);  // 设备角色。
+  console.info(`device change descriptor : ${deviceChanged.deviceDescriptors[0].deviceType}`);  // 设备类型。
 });
 
-// 取消监听音频设备状态变化
+// 取消监听音频设备状态变化。
 audioRoutingManager.off('deviceChange');
 ```
 
@@ -136,12 +136,12 @@ let rendererInfo: audio.AudioRendererInfo = {
     rendererFlags : 0
 };
 
-// 监听最高优先级输出设备变化
+// 监听最高优先级输出设备变化。
 audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (desc: audio.AudioDeviceDescriptors) => {
-    console.info(`device change descriptor : ${desc[0].deviceRole}`);  // 设备角色
-    console.info(`device change descriptor : ${desc[0].deviceType}`);  // 设备类型
+    console.info(`device change descriptor : ${desc[0].deviceRole}`);  // 设备角色。
+    console.info(`device change descriptor : ${desc[0].deviceType}`);  // 设备类型。
 });
 
-// 取消监听最高优先级输出设备变化
+// 取消监听最高优先级输出设备变化。
 audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo');
 ```
