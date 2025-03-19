@@ -4780,3 +4780,18 @@ try {
 | id | number | 是 | 勿扰模式编号。 |
 | name | string  | 是 | 勿扰模式名称。 |
 | trustlist | Array\<[BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)> | 否 | 勿扰模式的信任列表。 |
+
+## NotificationLiveViewContent<sup>11+</sup>
+
+type NotificationLiveViewContent = _NotificationLiveViewContent
+
+描述普通实况通知。
+
+**系统能力：** SystemCapability.Notification.Notification
+
+**系统接口**：此接口为系统接口。
+
+| 类型 | 说明 |
+| --- | --- |
+| [_NotificationLiveViewContent](js-apis-inner-notification-notificationContent-sys.md#notificationliveviewcontent11) | 描述普通实况通知。 |
+
