@@ -4288,18 +4288,6 @@ Allows an application to read the data of Account Suggestions and start the UIEx
 
 **Valid since**: 18
 
-## ohos.permission.ACCESS_VIRTUAL_SCREEN
-
-Allows an application to manage virtual screens.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 18
-
 ## ohos.permission.GET_PAGE_INFO
 
 Allows a system application to obtain the page information of a specified application.
