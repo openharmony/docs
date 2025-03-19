@@ -20,6 +20,10 @@ ArkUI提供的Native侧自定义弹窗接口集合。
 | [ArkUI_NativeDialogAPI_1](_ark_u_i___native_dialog_a_p_i__1.md#ArkUI_NativeDialogAPI_1) nativeDialogAPI1 | ArkUI提供的Native侧自定义弹窗接口集合。  | 
 | [ArkUI_NativeDialogAPI_2](_ark_u_i___native_dialog_a_p_i__2.md#ArkUI_NativeDialogAPI_2) nativeDialogAPI2 | ArkUI提供的Native侧自定义弹窗接口集合2。  |
 | int32_t(\* [setLevelOrder](#setlevelorder) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, double levelOrder) | 设置自定义弹窗显示的顺序。  | 
+| int32_t(\* [registerOnWillAppear](#registeronwillappear) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, void* userData, void (* callback)(void* userData)) | 注册自定义弹窗显示之前的回调函数。  | 
+| int32_t(\* [registerOnDidAppear](#registerondidappear) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, void* userData, void (* callback)(void* userData)) | 注册自定义弹窗显示之后的回调函数。  | 
+| int32_t(\* [registerOnWillDisappear](#registeronwilldisappear) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, void* userData, void (* callback)(void* userData)) | 注册自定义弹窗关闭之前的回调函数。  | 
+| int32_t(\* [registerOnDidDisappear](#registerondiddisappear) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, void* userData, void (* callback)(void* userData)) | 注册自定义弹窗关闭之后的回调函数。  | 
 | int32_t(\* [setBorderWidth](#setborderwidth) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, float top, float right, float bottom, float left, [ArkUI_LengthMetricUnit](_ark_u_i___native_module.md#arkui_lengthmetricunit) unit) | 设置自定义弹窗的边框宽度。  | 
 | int32_t(\* [setBorderColor](#setbordercolor) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, uint32_t top, uint32_t right, uint32_t bottom, uint32_t left) | 设置自定义弹窗的边框颜色。  | 
 | int32_t(\* [setBorderStyle](#setborderstyle) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, int32_t top, int32_t right, int32_t bottom, int32_t left) | 设置自定义弹窗的边框样式。  | 
@@ -62,6 +66,122 @@ setLevelOrder方法需要在调用show方法之前调用。
 
 [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。
 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 函数参数异常。
+
+
+### registerOnWillAppear
+
+```
+int32_t (*registerOnWillAppear)(ArkUI_NativeDialogHandle handle, void* userData, void (*callback)(void* userData))
+```
+**描述：**
+
+注册自定义弹窗显示之前的回调函数。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+| userData | 用户自定义数据。  | 
+| callback | 自定义弹窗显示之前的回调函数。  | 
+
+**注解：**
+
+registerOnWillAppear方法需要在调用show方法之前调用。
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode)成功。 
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode)函数参数异常。
+
+
+### registerOnDidAppear
+
+```
+int32_t (*registerOnDidAppear)(ArkUI_NativeDialogHandle handle, void* userData, void (*callback)(void* userData))
+```
+**描述：**
+
+注册自定义弹窗显示之后的回调函数。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+| userData | 用户自定义数据。  | 
+| callback | 自定义弹窗显示之后的回调函数。  | 
+
+**注解：**
+
+registerOnDidAppear方法需要在调用show方法之前调用。
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode)成功。 
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode)函数参数异常。
+
+
+### registerOnWillDisappear
+
+```
+int32_t (*registerOnWillDisappear)(ArkUI_NativeDialogHandle handle, void* userData, void (*callback)(void* userData))
+```
+**描述：**
+
+注册自定义弹窗关闭之前的回调函数。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+| userData | 用户自定义数据。  | 
+| callback | 自定义弹窗关闭之前的回调函数。  | 
+
+**注解：**
+
+registerOnWillDisappear方法需要在调用show方法之前调用。
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode)成功。 
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode)函数参数异常。
+
+
+### registerOnDidDisappear
+
+```
+int32_t (*registerOnDidDisappear)(ArkUI_NativeDialogHandle handle, void* userData, void (*callback)(void* userData))
+```
+**描述：**
+
+注册自定义弹窗关闭之后的回调函数。
+
+**起始版本：** 18   
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+| userData | 用户自定义数据。  | 
+| callback | 自定义弹窗关闭之后的回调函数。  | 
+
+**注解：**
+
+registerOnDidDisappear方法需要在调用show方法之前调用。
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode)成功。 
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode)函数参数异常。
 
 
 ### setBorderWidth
