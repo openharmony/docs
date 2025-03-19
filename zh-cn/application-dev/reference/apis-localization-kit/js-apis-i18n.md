@@ -1227,7 +1227,7 @@ getLocationName(number: string, locale: string): string
 | measureSystem | string | 是    | 是    | 单位的度量体系，取值包括："SI",&nbsp;"US",&nbsp;"UK"。 |
 
 
-## getInstance<sup>8+</sup>
+## i18n.getInstance<sup>8+</sup>
 
 getInstance(locale?:string): IndexUtil
 
