@@ -81,7 +81,9 @@ let nativeHeapFreeSize: bigint = hidebug.getNativeHeapFreeSize();
 
 getPss(): bigint
 
-获取应用进程实际使用的物理内存大小。
+获取应用进程实际使用的物理内存大小。接口实现方式：读取/proc/{pid}/smaps_rollup节点中的Pss与SwapPss值并求和。
+
+**注意：** 由于/proc/{pid}/smaps_rollup的读取比较耗时，该接口不建议在主线程中使用，以免造成应用卡顿。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -102,7 +104,7 @@ let pss: bigint = hidebug.getPss();
 
 getVss(): bigint
 
-获取应用进程虚拟耗用内存大小。
+获取应用进程虚拟耗用内存大小。接口实现方式：读取/proc/{pid}/statm节点中的size值(内存页数)，vss = size * 页大小（4K/页）。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -124,7 +126,9 @@ let vss: bigint = hidebug.getVss();
 
 getSharedDirty(): bigint
 
-获取进程的共享脏内存大小。
+获取进程的共享脏内存大小。接口实现方式：读取/proc/{pid}/smaps_rollup节点中的Shared_Dirty值。
+
+**注意：** 由于/proc/{pid}/smaps_rollup的读取比较耗时，该接口不建议在主线程中使用，以免造成应用卡顿。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -146,7 +150,9 @@ let sharedDirty: bigint = hidebug.getSharedDirty();
 
 getPrivateDirty(): bigint
 
-获取进程的私有脏内存大小。
+获取进程的私有脏内存大小。接口实现方式：读取/proc/{pid}/smaps_rollup节点中的Private_Dirty值。
+
+**注意：** 由于/proc/{pid}/smaps_rollup的读取比较耗时，该接口不建议在主线程中使用，以免造成应用卡顿。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -637,6 +643,7 @@ try {
 setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
 
 设置应用的fd数量、线程数量、js内存或者native内存资源限制。
+
 **注意：** 当设置的开发者选项开关打开并重启设备后,此功能有效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -680,9 +687,11 @@ try {
 
 getAppNativeMemInfo(): NativeMemInfo
 
-获取应用进程内存信息。
+获取应用进程内存信息。接口实现方式：读取/proc/{pid}/smaps_rollup节点与/proc/{pid}/statm节点的数据，详情请参考接口返回值介绍。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**注意：** 由于/proc/{pid}/smaps_rollup的读取比较耗时，该接口不建议在主线程中使用，以免造成应用卡顿。
 
 **返回值：**
 
@@ -705,7 +714,7 @@ console.info(`pss: ${nativeMemInfo.pss}, vss: ${nativeMemInfo.vss}, rss: ${nativ
 
 getSystemMemInfo(): SystemMemInfo
 
-获取系统内存信息。
+获取系统内存信息。接口实现方式：读取节proc/meminfo节点的数据，详情请参考接口返回值介绍。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -838,7 +847,7 @@ try {
 
 描述支持trace使用场景的标签, 用户可通过[hitrace](../../dfx/hitrace.md)中的命令行工具，抓取指定标签的trace内容以进行预览。
 
-注意：以下标签实际值由系统定义，可能随版本升级而发生改变，为避免升级后出现兼容性问题，在生产中应直接使用标签名称而非标签数值。
+**注意：** 以下标签实际值由系统定义，可能随版本升级而发生改变，为避免升级后出现兼容性问题，在生产中应直接使用标签名称而非标签数值。
 
 **系统能力:** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -883,15 +892,15 @@ try {
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| 名称      | 类型   | 必填 | 说明         |
-| --------- | ------ | ---- | ------------ |
-| pss  | bigint |  是  | 实际占用的物理内存的大小(比例分配共享库占用的内存)，以KB为单位。 |
-| vss  | bigint |  是  | 占用虚拟内存大小(包括共享库所占用的内存)，以KB为单位。      |
-| rss  | bigint |  是  | 实际占用的物理内存的大小(包括共享库占用)，以KB为单位。      |
-| sharedDirty  | bigint |  是  | 共享脏内存的大小，以KB为单位。                   |
-| privateDirty  | bigint |  是  | 专用脏内存的大小，以KB为单位。                   |
-| sharedClean  | bigint |  是  | 共享干净内存的大小，以KB为单位。                  |
-| privateClean  | bigint |  是  | 专用干净内存的大小，以KB为单位。                  |
+| 名称      | 类型   | 必填 | 说明                                                                           |
+| --------- | ------ | ---- |------------------------------------------------------------------------------|
+| pss  | bigint |  是  | 实际占用的物理内存的大小(比例分配共享库占用的内存)，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Pss + SwapPss |
+| vss  | bigint |  是  | 占用虚拟内存大小(包括共享库所占用的内存)，以KB为单位，计算方式：/proc/{pid}/statm: size * 4                  |
+| rss  | bigint |  是  | 实际占用的物理内存的大小(包括共享库占用)，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Rss                |
+| sharedDirty  | bigint |  是  | 共享脏内存的大小，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Shared_Dirty                    |
+| privateDirty  | bigint |  是  | 专用脏内存的大小，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Private_Dirty                   |
+| sharedClean  | bigint |  是  | 共享干净内存的大小，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Shared_Clean                   |
+| privateClean  | bigint |  是  | 专用干净内存的大小，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Private_Clean                  |
 
 ## SystemMemInfo<sup>12+</sup>
 
@@ -899,11 +908,11 @@ try {
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| 名称      | 类型   | 必填 | 说明         |
-| --------- | ------ | ---- | ------------ |
-| totalMem  | bigint |  是  | 系统总的内存，以KB为单位。  |
-| freeMem  | bigint |  是  | 系统空闲的内存，以KB为单位。 |
-| availableMem  | bigint |  是  | 系统可用的内存，以KB为单位。 |
+| 名称      | 类型   | 必填 | 说明                                              |
+| --------- | ------ | ---- |-------------------------------------------------|
+| totalMem  | bigint |  是  | 系统总的内存，以KB为单位，计算方式：/proc/meminfo: MemTotal      |
+| freeMem  | bigint |  是  | 系统空闲的内存，以KB为单位，计算方式：/proc/meminfo: MemFree      |
+| availableMem  | bigint |  是  | 系统可用的内存，以KB为单位，计算方式：/proc/meminfo: MemAvailable |
 
 ## TraceFlag<sup>12+</sup>
 
