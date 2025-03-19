@@ -474,13 +474,11 @@ GNSS地理围栏请求参数。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-**系统API**：此接口为系统接口。
-
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| deviceId | string | 是 | 否 | 表示扫描到的设备地址。例如："XX:XX:XX:XX:XX:XX"，基于信息安全考虑，此处获取的设备地址为随机MAC地址，配对成功后，该地址不会变更，已配对设备取消配对后重新扫描或蓝牙服务下电时，该随机地址会变更。 |
+| deviceId | string | 是 | 否 | 表示扫描到的设备地址。例如："XX:XX:XX:XX:XX:XX"。 |
 | rssi | number | 是 | 否 | 表示扫描到的设备的rssi值。 |
-| data | ArrayBuffer | 是 | 否 | 表示扫描到的设备发送的广播包。 |
+| data | ArrayBuffer | 是 | 是 | 表示扫描到的设备发送的广播包。 |
 | deviceName | string | 是 | 否 | 表示扫描到的设备名称。 |
 | connectable | boolean | 是 | 否 | 表示扫描到的设备是否可连接。true表示可连接，false表示不可连接。 |
 
@@ -2419,6 +2417,10 @@ on(type: 'bluetoothScanResultChange', callback: Callback&lt;BluetoothScanResult&
 
 订阅蓝牙扫描信息上报事件，使用callback异步回调。
 
+本API会启动蓝牙扫描，为了避免产生较多功耗，需要开发者在适当的时机调用 [geoLocationManager.off('bluetoothScanResultChange')](#geolocationmanageroffbluetoothScanResultChange16）接口停止蓝牙扫描。
+
+当前仅支持扫描BLE设备。
+
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION 和 ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Core
@@ -2464,7 +2466,7 @@ on(type: 'bluetoothScanResultChange', callback: Callback&lt;BluetoothScanResult&
 
 off(type: 'bluetoothScanResultChange', callback?: Callback&lt;BluetoothScanResult&gt;): void
 
-取消订阅蓝牙扫描信息上报事件。
+取消订阅蓝牙扫描信息上报事件并停止蓝牙扫描。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION 和 ohos.permission.LOCATION
 
@@ -2474,7 +2476,7 @@ off(type: 'bluetoothScanResultChange', callback?: Callback&lt;BluetoothScanResul
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 设置事件类型。type为“bluetoothScanResultChange”，表示位置变化。 |
+  | type | string | 是 | 设置事件类型。type为“bluetoothScanResultChange”，表示停止订阅蓝牙扫描信息上报事件。 |
   | callback | Callback&lt;[BluetoothScanResult](#bluetoothscanresult16)&gt; | 否 | 需要取消订阅的回调函数。该回调函数需要与on接口传入的回调函数保持一致。若无此参数，则取消当前类型的所有订阅。 |
 
 **错误码**：
