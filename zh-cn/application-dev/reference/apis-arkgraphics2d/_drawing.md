@@ -2506,7 +2506,7 @@ enum OH_Drawing_FontStyle
 | -------- | -------- |
 | FONT_STYLE_NORMAL | 非斜体。 | 
 | FONT_STYLE_ITALIC | 斜体。 | 
-| FONT_STYLE_OBLIQUE | 倾斜字体<br/>自从<br/>12 | 
+| FONT_STYLE_OBLIQUE<sup>12+</sup> | 倾斜字体。 | 
 
 
 ### OH_Drawing_FontWeight
