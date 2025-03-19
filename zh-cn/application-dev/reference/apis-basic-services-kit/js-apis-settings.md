@@ -657,34 +657,6 @@ const context: Context =  getContext(this);
 let ret = settings.unregisterKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS,  settings.domainName.DEVICE_SHARED);
 ```
 
-## settings.enableAirplaneMode
-
-enableAirplaneMode(enable: boolean, callback: AsyncCallback\<void>): void
-
-启用或禁用飞行模式。使用callback异步回调。(暂不支持)
-
-**系统能力**：SystemCapability.Applications.Settings.Core
-
-**参数**：
-
-| 参数名   | 类型                 | 必填 | 说明                                            |
-| -------- | -------------------- | ---- | ----------------------------------------------- |
-| enable   | boolean              | 是   | 是否开启飞行模式。true表示开启，false表示禁用。 |
-| callback | AsyncCallback\<void> | 是   | 回调函数。                                      |
-
-**示例**：
-
-```js
-let isEnabled :boolean = true;
-settings.enableAirplaneMode(isEnabled, (err:Error) => {
-    if (err) {
-        console.log('Failed to enable AirplaneMode.');
-        return;
-    }
-    console.log('Return true if enable.');
-})
-```
-
 ## settings.openNetworkManagerSettings<sup>18+</sup>
 
 openNetworkManagerSettings(context: Context): Promise\<boolean>
@@ -726,6 +698,34 @@ const context: Context =  getContext(this);
 settings.openNetworkManagerSettings(context).then((status) => {
   console.log(`callback:return whether setings is open.`)
 });
+```
+
+## settings.enableAirplaneMode
+
+enableAirplaneMode(enable: boolean, callback: AsyncCallback\<void>): void
+
+启用或禁用飞行模式。使用callback异步回调。(暂不支持)
+
+**系统能力**：SystemCapability.Applications.Settings.Core
+
+**参数**：
+
+| 参数名   | 类型                 | 必填 | 说明                                            |
+| -------- | -------------------- | ---- | ----------------------------------------------- |
+| enable   | boolean              | 是   | 是否开启飞行模式。true表示开启，false表示禁用。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。                                      |
+
+**示例**：
+
+```js
+let isEnabled :boolean = true;
+settings.enableAirplaneMode(isEnabled, (err:Error) => {
+    if (err) {
+        console.log('Failed to enable AirplaneMode.');
+        return;
+    }
+    console.log('Return true if enable.');
+})
 ```
 
 ## settings.enableAirplaneMode
