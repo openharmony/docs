@@ -188,7 +188,7 @@ on(type: 'keyPressed', options: KeyPressedConfig, callback: Callback&lt;KeyEvent
 | ---------- | --------------------------             | ----  | ---------- |
 | type       | string                                 | 是     | 事件类型，固定取值为'keyPressed'。        |
 | options    | [KeyPressedConfig](#keypressedconfig16)| 是     | 按键消费设置。             |
-| callback   | Callback&lt;KeyEvent&gt; | 是    | 用于返回按键事件的回调函数。 |
+| callback   | Callback&lt;[KeyEvent](./js-apis-keyevent.md#keyevent)&gt; | 是    | 用于返回按键事件的回调函数。 |
 
 **错误码**：
 
@@ -227,7 +227,7 @@ off(type: 'keyPressed', callback?: Callback&lt;KeyEvent&gt;): void
 | 参数名         | 类型                         | 必填   | 说明                              |
 | ---------- | -------------------------- | ---- | ---------- |
 | type       | string                     | 是    | 事件类型，固定取值为'keyPressed'。        |
-| callback   | Callback&lt;KeyEvent&gt; | 否    | 需要取消订阅的回调函数。若不填，则取消当前已订阅的所有回调函数。 |
+| callback   | Callback&lt;[KeyEvent](./js-apis-keyevent.md#keyevent)&gt; | 否    | 需要取消订阅的回调函数。若不填，则取消当前已订阅的所有回调函数。 |
 
 **错误码**：
 
