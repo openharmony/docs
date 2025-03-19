@@ -19,7 +19,7 @@ ArkGraphics 3D（方舟3D图形）基于轻量级的3D引擎以及渲染管线�
 
 如上图 ArkGraphics 3D接口能力由图形后端、引擎层以及接口层三个关键部分共同组成。
 - 图形后端：主要指GPU硬件提供的驱动接口类型，业界通用的主要包含OpenGL ES以及Vulkan两类。引擎层通过下发GPU指令调用这些接口，实现场景的渲染。
-- 引擎层：依托Ark Graphics Platform渲染引擎部件提供渲染能力，AGP引擎具有易用性、高画质、可扩展等特性。引擎使用先进的ECS（Entity-Component-System）架构设计，进行模块化封装（如材质定义、后处理特效等），为开发者提供了灵活易用的开发套件。引擎具体介绍请参见[AGP引擎](https://gitee.com/openharmony/graphic_graphic_3d)。
+- 引擎层：依托Ark Graphics Platform渲染引擎部件提供渲染能力，AGP引擎具有易用性、高画质、可扩展等特性。引擎使用先进的ECS（Entity-Component-System）架构设计，进行模块化封装（如材质定义、后处理特效等），为开发者提供了灵活易用的开发套件。
 - 接口层：基于引擎的ECS Framework，通过NAPI层对数据进行组织处理，向开发者暴露简单易用的3D渲染接口，支持开发者使用少量代码完成3D场景的开发。
 
 
