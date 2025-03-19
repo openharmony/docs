@@ -944,7 +944,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 | **名称** | **值** | **说明** |
 | -------- | -------- | -------- |
 | APPLICATION_CREATED | 0 | 表示打印应用被拉起的事件。 |
-| APPLICATION_CLOSED_FOR_STARTED | 1 | 表示由于点击打印而关于打印应用的事件。 |
+| APPLICATION_CLOSED_FOR_STARTED | 1 | 表示由于点击打印而关闭打印应用的事件。 |
 | APPLICATION_CLOSED_FOR_CANCELED | 2 | 表示由于点击取消而关闭打印应用的事件。 |
 
 ## addPrinterToDiscovery<sup>14+</sup>
@@ -1208,10 +1208,10 @@ print.getPrinterInformationById(printerId).then((printerInformation : print.Prin
 
 | **名称** | **值** | **说明** |
 | -------- | -------- | -------- |
-| ORIENTATION_MODE_PORTRAIT | 0 | 表示横向打印。 |
-| ORIENTATION_MODE_LANDSCAPE | 1 | 表示纵向打印。 |
-| ORIENTATION_MODE_REVERSE_LANDSCAPE | 2 | 表示纵向翻转打印。 |
-| ORIENTATION_MODE_REVERSE_PORTRAIT | 3 | 表示横向翻转打印。 |
+| ORIENTATION_MODE_PORTRAIT | 0 | 表示纵向打印。 |
+| ORIENTATION_MODE_LANDSCAPE | 1 | 表示横向打印。 |
+| ORIENTATION_MODE_REVERSE_LANDSCAPE | 2 | 表示横向翻转打印。 |
+| ORIENTATION_MODE_REVERSE_PORTRAIT | 3 | 表示纵向翻转打印。 |
 | ORIENTATION_MODE_NONE | 4 | 表示自适应方向打印。 |
 
 ## PrinterStatus<sup>14+</sup>
