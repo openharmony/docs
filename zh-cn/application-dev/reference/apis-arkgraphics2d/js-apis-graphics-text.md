@@ -367,7 +367,7 @@ struct Index {
 | ALL                   | 0x0 | 高度修饰符设置为段落中第一行和最后一行都上升。            |
 | DISABLE_FIRST_ASCENT  | 0x1 | 高度修饰符设置为禁止段落中第一行上升。                   |
 | DISABLE_LAST_ASCENT   | 0x2 | 高度修饰符设置为禁止段落中最后一行上升。                 |
-| DISABLE_ALL           | 0x3 | 高度修饰符设置为段落中第一行和最后一行都不上升。          |
+| DISABLE_ALL           | 0x1 \| 0x2 | 高度修饰符设置为段落中第一行和最后一行都不上升。          |
 
 ## TextBaseline
 
