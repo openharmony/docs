@@ -37,7 +37,7 @@ The startup subsystem is responsible for starting key system processes and servi
 
 <a name="table2977131081412"></a>
 
-<table><thead align="left"><tr id="row7977610131417"><th class="cellrowborder" valign="top" width="20.880000000000003%" id="mcps1.2.4.1.1"><p id="p18792459121314"><a name="p18792459121314"></a><a name="p18792459121314"></a>Directory</p>
+</table><thead align="left"><tr id="row7977610131417"><th class="cellrowborder" valign="top" width="20.880000000000003%" id="mcps1.2.4.1.1"><p id="p18792459121314"><a name="p18792459121314"></a><a name="p18792459121314"></a>Directory</p>
 </th>
 <th class="cellrowborder" valign="top" width="65.2%" id="mcps1.2.4.1.2"><p id="p77921459191317"><a name="p77921459191317"></a><a name="p77921459191317"></a>Description</p>
 </th>
@@ -45,7 +45,7 @@ The startup subsystem is responsible for starting key system processes and servi
 </th>
 </tr>
 </thead>
-<tbody><tr id="row17977171010144"><td class="cellrowborder" valign="top" width="20.880000000000003%" headers="mcps1.2.4.1.1 "><p id="p2793159171311"><a name="p2793159171311"></a><a name="p2793159171311"></a>base/startup/appspawn_lite</p>
+</tbody><tr id="row17977171010144"><td class="cellrowborder" valign="top" width="20.880000000000003%" headers="mcps1.2.4.1.1 "><p id="p2793159171311"><a name="p2793159171311"></a><a name="p2793159171311"></a>base/startup/appspawn_lite</p>
 </td>
 <td class="cellrowborder" valign="top" width="65.2%" headers="mcps1.2.4.1.2 "><p id="p879375920132"><a name="p879375920132"></a><a name="p879375920132"></a>appspawn module of the Standard version for spawning application processes. It receives Ability Manager Service (AMS) messages via IPC, parses the messages, starts application processes based on the parsing result, and grants permissions to them.</p>
 </td>

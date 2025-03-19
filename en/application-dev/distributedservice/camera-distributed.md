@@ -441,3 +441,5 @@
   hidumper -s 4700 -a "buscenter -l remote_device_info"
   ```
   If **remote device num = 0** is displayed in the command output, the networking fails. In this case, disable and then enable Wi-Fi, and connect devices to the same Wi-Fi again. If the networking is successful, run the shell command again and the number of networking devices is displayed, for example, **remote device num = 1**.
+
+<!--no_check-->
