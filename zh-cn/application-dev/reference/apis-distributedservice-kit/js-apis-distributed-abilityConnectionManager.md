@@ -404,6 +404,41 @@ disconnect(sessionId:&nbsp;number):&nbsp;void;
   abilityConnectionManager.disconnect(this.sessionId);
   ```
 
+## abilityConnectionManager.reject
+
+reject(token:&nbsp;string,&nbsp;reason:&nbsp;string):&nbsp;void;
+
+在跨端应用协同过程中，在拒绝对端的连接请求后，向对端发送拒绝原因。
+
+**系统能力**：SystemCapability.DistributedSched.AppCollaboration
+
+**参数：**
+
+| 参数名       | 类型                                      | 必填   | 说明    |
+| --------- | --------------------------------------- | ---- | ----- |
+| token | string | 是    | 用于协作服务管理的令牌。    |
+| reason | string | 是    | 连接被拒绝的原因。    |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+  ```ts
+  import { abilityConnectionManager } from '@kit.DistributedServiceKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
+  hilog.info(0x0000, 'testTag', 'reject begin');
+  const collabToken = collabParam["ohos.dms.collabToken"] as string;
+  const reason = "test";
+  abilityConnectionManager.reject(collabToken, reason);
+  ```
+
 ## abilityConnectionManager.on
 
 on(type:&nbsp;'connect'&nbsp;|&nbsp;'disconnect'&nbsp;|&nbsp;'receiveMessage'|&nbsp;'receiveData',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
@@ -490,7 +525,6 @@ off(type:&nbsp;'connect'&nbsp;|&nbsp;'disconnect'&nbsp;|&nbsp;'receiveMessage'|&
   abilityConnectionManager.off("receiveData", this.sessionId);
 
   ```
-
 
 ## abilityConnectionManager.sendMessage
 
@@ -631,11 +665,22 @@ sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;v
 
 | 名称       | 类型    | 可读   | 可写   | 说明          |
 | -------- | ------ | ---- | ---- | ----------- |
-| sessionId | number   | 是    | shi    |   表示当前事件对应的协同会话ID。 |
+| sessionId | number   | 是    | 是    |   表示当前事件对应的协同会话ID。 |
 | reason | [DisconnectReason](#disconnectreason)     | 是    | 否    |   表示断连原因。 |
 | msg | string   | 是    | 否    |   表示接收的消息。 |
 | data  | ArrayBuffer | 是    | 否    |   表示接收的字节流。 |
 | image  | image.PixelMap | 是    | 否    |   表示接收的图片。 |
+
+## CollaborateEventInfo
+
+协同事件信息。
+
+**系统能力**：SystemCapability.DistributedSched.AppCollaboration
+
+| 名称       | 类型   | 可读   | 可写   | 必填   | 说明      |
+| -------- | ------ | ---- | ---- | ---- | ------- |
+| eventType | [CollaborateEventType](#collaborateeventtype) | 是    | 否    | 是    | 协同事件的类型。 |
+| eventMsg | string | 是    | 否    | 否    | 协同事件的消息内容。 |
 
 ## ConnectErrorCode
 
@@ -661,6 +706,17 @@ sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;v
 | -------- | -------- |
 | START_IN_FOREGROUND | 表示将对端应用启动至前台。 |
 | START_IN_BACKGROUND | 表示将对端应用启动至后台。 |
+
+## CollaborateEventType
+
+协同事件类型的枚举。
+
+**系统能力**：SystemCapability.DistributedSched.AppCollaboration
+
+| 枚举值 | 描述 |
+| -------- | -------- |
+| SEND_FAILURE | 表示任务发送失败。 |
+| COLOR_SPACE_CONVERSION_FAILURE | 表示色彩空间转换失败。 |
 
 ## DisconnectReason
 
