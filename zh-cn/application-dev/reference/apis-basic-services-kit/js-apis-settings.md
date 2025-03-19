@@ -693,7 +693,7 @@ openNetworkManagerSettings(context: Context): Promise\<boolean>
 ```js
 import settings from '@ohos.settings';
 
-// 更新数据项亮度的值(该数据项在数据库中已存在，故setValue方法将更新该数据项的值)。
+// 跳转网络管理器设置页面。
 const context: Context =  getContext(this);
 settings.openNetworkManagerSettings(context).then((status) => {
   console.log(`callback:return whether setings is open.`)
