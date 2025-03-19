@@ -469,6 +469,30 @@ accessibilityScrollTriggerable(isTriggerable: boolean)
 | -------------- | ------- | ---- | ------------------------------------------------------------ |
 | isTriggerable  | boolean | 是   | 用于表示组件是否支持该能力。<br/>支持的值为：<br/>true：屏幕朗读焦点切换而容器内当前页面无可聚焦的组件时，需要自动滚动操作。<br/>false：屏幕朗读焦点切换而容器内当前页面无可聚焦的组件时，不需要自动滚动操作。<br/>undefined：还原默认值。<br/>默认值：true。<br/>**说明：**<br/>1. 该属性不影响原先无障碍节点属性中的scrollable。<br/>2. 组件最终在屏幕朗读下的滚动逻辑由屏幕朗读最终根据该属性和组件是否支持scroll来决定。<br/>3. 该属性为通用属性，所有基础组件均可配置。建议配置的滚动组件类型，如List，Grid，Scroll，Waterflow，Swiper等。|
 
+## accessibilityFocusDrawLevel<sup>18+</sup>
+
+accessibilityFocusDrawLevel(drawLevel: FocusDrawLevel)
+
+无障碍获焦绿框绘制层级设置能力。
+> **说明：**
+>
+> 1、在聚焦节点层级绘制获焦无障碍绿框，默认使用这个层级绘制，由于绘制组件数顺序以及图形绘制顺序，绘制绿框会被父组件或者z序更高的兄弟组件遮挡裁切。
+>
+> 2、在Z序顶层绘制绿框情况下，可以避免由于组件遮挡、裁切导致无障碍绿框被裁切遮挡。但由于具备较高的绘制层级，如果需要交互过程中，需要遮挡当前获焦的组件，并且不希望显示无障碍绿框则不适合使用这种配置。
+
+
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                                                         |
+| -------- | ------- | ---- | ------------------------------------------------------------ |
+| drawLevel | [FocusDrawLevel](ts-appendix-enums.md#focusdrawlevel18) | 是   | 无障碍绘制能力，默认绘制聚焦节点本身。 |
+
 ## 示例1（设置无障碍文本和无障碍说明）
 
 该示例主要演示accessibilityText无障碍文本和accessibilityDescription无障碍说明的播报内容。
