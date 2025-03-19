@@ -421,11 +421,11 @@ The AI subsystem is the part of OpenHarmony that provides native distributed AI 
 
 ## Dependency Repositories
 
-[build\_lite](https://gitee.com/openharmony/build_lite/blob/master/README_zh.md)
+[build\_lite](https://gitee.com/openharmony/build_lite/blob/master/README.md)
 
-[systemabilitymgr\_samgr\_lite](https://gitee.com/openharmony/systemabilitymgr_samgr_lite/blob/master/README_zh.md)
+[systemabilitymgr\_samgr\_lite](https://gitee.com/openharmony/systemabilitymgr_samgr_lite/blob/master/README.md)
 
-[startup\_init\_lite](https://gitee.com/openharmony/startup_init_lite/blob/master/README_zh.md)
+[startup\_init\_lite](https://gitee.com/openharmony/startup_init/blob/master/README.md)
 
 ## Reference<a name="section6808423133718"></a>
 

@@ -14,9 +14,9 @@
 
   Before started, you are advised to read the following topics to have a basic understanding of related functions:
   - [UIAbility Connection Development](abilityconnectmanager-guidelines.md)
-  - [Camera Device Management (ArkTS)](media/camera/camera-device-management.md)
+  - [Camera Device Management (ArkTS)](../media/camera/camera-device-management.md)
   - [Camera Development Preparations](../media/camera/camera-preparation.md)
-  - [Camera Session Management (ArkTS)](media/camera/camera-session-management.md)
+  - [Camera Session Management (ArkTS)](../media/camera/camera-session-management.md)
   - [Photo Capture (ArkTS)](../media/camera/camera-shooting.md)
   - [Video Recording (ArkTS)](../media/camera/camera-recording.md)
 
@@ -31,7 +31,7 @@
 ### Environment Setup
 
   1. Install [DevEco Studio](https://developer.huawei.com/consumer/cn/download/deveco-studio) 5.0 or later.
-  2. Update the public-SDK to API version 16 or later. For details, see [OpenHarmony SDK Upgrade Assistant](../../tools/openharmony_sdk_upgrade_assistant.md).
+  2. Update the public-SDK to API version 16 or later. For details, see [OpenHarmony SDK Upgrade Assistant](../tools/openharmony_sdk_upgrade_assistant.md).
   3. Connect device A and device B to the PC using USB cables.
   4. Connect device A and device B to the same Wi-Fi, identify each other, and start networking. For details, see [UIAbility Connection Development](abilityconnectmanager-guidelines.md#initiating-a-session-between-applications).
 

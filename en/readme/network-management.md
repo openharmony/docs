@@ -13,7 +13,7 @@ The figure below shows the architecture of the network management subsystem. The
 
 **Figure 1** Architecture of the network management subsystem
 
-![](figures/zh-cn_architecture-of-netmanager-subsystem.png)
+![](figures/en_architecture-of-netmanager-subsystem.png)
 
 ## Directory Structure<a name="section119mcpsimp"></a>
 
@@ -154,4 +154,6 @@ httpRequest.request(
 
 [communication_netmanager_base](https://gitee.com/openharmony/communication_netmanager_base/blob/master/README.md)
 [communication_netmanager_ext](https://gitee.com/openharmony/communication_netmanager_ext/blob/master/README.md)
-[communication_netstack](https://gitee.com/openharmony/communication_netstack/blob/master/README.md)
+[communication_netstack](https://gitee.com/openharmony/communication_netstack/blob/master/READEME.md)
+
+<!--no_check-->

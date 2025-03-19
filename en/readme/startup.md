@@ -125,3 +125,6 @@ base/startup/
 [startup_init_lite](https://gitee.com/openharmony/startup_init_lite)
 
 [startup\_syspara\_lite](https://gitee.com/openharmony/startup_syspara_lite)
+
+
+<!--no_check-->
