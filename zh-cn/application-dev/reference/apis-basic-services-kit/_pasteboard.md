@@ -408,7 +408,7 @@ OH_UdmfData* OH_Pasteboard_GetData (OH_Pasteboard * pasteboard, int * status )
 
 [OH_Pasteboard](#oh_pasteboard)
 
-OH_UdmfData
+[OH_UdmfData](#oh_udmfdata)
 
 [PASTEBOARD_ErrCode](#pasteboard_errcode)
 
