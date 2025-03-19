@@ -6,6 +6,10 @@
 
 语言基础类库提供ConvertXML类将XML文本转换为JavaScript对象，输入为待转换的XML字符串及转换选项，输出为转换后的JavaScript对象。具体转换选项可见[API参考@ohos.convertxml](../reference/apis-arkts/js-apis-convertxml.md)。
 
+> **说明**：
+>
+> XML转换能力仅在ArkTS1.1可用，ArkTS1.2不再支持此能力。
+
 
 ## 注意事项
 

@@ -6,6 +6,8 @@
 
 线性容器，充分考虑了数据访问的速度，运行时（Runtime）通过一条字节码指令就可以完成增、删、改、查等操作。
 
+ArkTS1.2不再支持Vector容器。
+
 
 ## ArrayList
 
@@ -168,7 +170,9 @@ Stack进行增、删、改、查操作的常用API如下：
 
 > **说明**：
 >
-> API version 9开始，该接口不再维护，推荐使用[ArrayList](../reference/apis-arkts/js-apis-arraylist.md)。
+> - API version 9开始，该接口不再维护，推荐使用[ArrayList](../reference/apis-arkts/js-apis-arraylist.md)。
+>
+> - ArkTS1.2不再支持Vector容器。
 
 [Vector](../reference/apis-arkts/js-apis-vector.md)是指连续存储结构，可用来构造全局的数组对象。Vector依据泛型定义，要求存储位置是一片连续的内存空间，初始容量大小为10，并支持动态扩容，每次扩容大小为原始容量的2倍。
 
