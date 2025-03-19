@@ -11,7 +11,7 @@
 import { advertising } from '@kit.AdsKit';
 ```
 
-## showAd
+## advertising.showAd
 
 showAd(ad: Advertisement, options: AdDisplayOptions, context?: common.UIAbilityContext): void
 
@@ -76,7 +76,7 @@ export struct ShowAd {
 }
 ```
 
-## getAdRequestBody<sup>12+</sup>
+## advertising.getAdRequestBody<sup>12+</sup>
 
 getAdRequestBody(adParams: AdRequestParams[], adOptions: AdOptions): Promise&lt;string&gt;
 
@@ -153,7 +153,7 @@ function getAdRequestBody(): void {
 }
 ```
 
-## parseAdResponse<sup>12+</sup>
+## advertising.parseAdResponse<sup>12+</sup>
 
 parseAdResponse(adResponse: string, listener: MultiSlotsAdLoadListener, context: common.UIAbilityContext): void
 
@@ -211,7 +211,7 @@ function parseAdResponse(adResponse: string, context: common.UIAbilityContext): 
 }
 ```
 
-## registerWebAdInterface<sup>12+</sup>
+## advertising.registerWebAdInterface<sup>12+</sup>
 
 registerWebAdInterface(controller: web_webview.WebviewController, context: common.UIAbilityContext): void
 
@@ -274,7 +274,7 @@ struct Index {
 }
 ```
 
-## registerWebAdInterface<sup>16+</sup>
+## advertising.registerWebAdInterface<sup>16+</sup>
 
 registerWebAdInterface(controller: web_webview.WebviewController, context: common.UIAbilityContext, needRefresh: boolean): void
 
@@ -337,7 +337,7 @@ struct Index {
 }
 ```
 
-## deleteWebAdInterface<sup>16+</sup>
+## advertising.deleteWebAdInterface<sup>16+</sup>
 
 deleteWebAdInterface(controller: web_webview.WebviewController, needRefresh: boolean): void
 
