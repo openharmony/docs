@@ -21,7 +21,7 @@ import { ToolBar, ToolBarOptions } from '@kit.ArkUI'
 无
 
 ## 属性
-不支持[通用属性](ts-universal-attributes-size.md)
+不支持[通用属性](ts-universal-attributes-size.md)。
 
 ## ToolBar
 
@@ -69,7 +69,7 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 | ACTIVATE | 3 | 工具栏子项为激活状态，可点击。 |
 
 ## 事件
-支持[通用事件](ts-universal-events-click.md)
+不支持[通用事件](ts-universal-events-click.md)。
 
 ## 示例
 该示例展示了工具栏子项state属性分别设置ENABLE、DISABLE、ACTIVATE状态的不同显示效果。
