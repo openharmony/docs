@@ -55,7 +55,7 @@ import { print } from '@kit.BasicServicesKit';
 **属性：**
 | **名称** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| previewRange | PrinterRange | 是 | 表示预览页面范围。 |
+| previewRange | [PrinterRange](#printerrange) | 是 | 表示预览页面范围。 |
 | result | number | 否 | 表示预览文件结果。 |
 
 ## PrintResolution
@@ -88,9 +88,9 @@ import { print } from '@kit.BasicServicesKit';
 | -------- | -------- | -------- | -------- |
 | colorMode | number | 是 | 表示色彩模式。 |
 | duplexMode | number | 是 | 表示单双面打印模式。 |
-| pageSize | Array&lt;PrintPageSize&gt; | 是 | 表示打印机支持的页面尺寸列表。 |
-| resolution | Array&lt;PrintResolution&gt; | 否 | 表示打印机支持的分辨率列表。 |
-| minMargin | PrintMargin | 否 | 表示打印机最小边距。 |
+| pageSize | Array&lt;[PrintPageSize](./js-apis-print.md/#printpagesize11)&gt; | 是 | 表示打印机支持的页面尺寸列表。 |
+| resolution | Array&lt;[PrintResolution](#printresolution)&gt; | 否 | 表示打印机支持的分辨率列表。 |
+| minMargin | [PrintMargin](#printmargin) | 否 | 表示打印机最小边距。 |
 | options<sup>11+</sup> | Object | 否 | 表示JSON对象字符串。 |
 
 ## PrinterInfo
@@ -106,10 +106,10 @@ import { print } from '@kit.BasicServicesKit';
 | -------- | -------- | -------- | -------- |
 | printerId | string | 是 | 表示打印机ID。 |
 | printerName | string | 是 | 表示打印机名称。 |
-| printerState | PrinterState | 是 | 表示当前打印机状态。 |
+| printerState | [PrinterState](./js-apis-print.md/#printerstate14) | 是 | 表示当前打印机状态。 |
 | printerIcon | number | 否 | 表示打印机图标的资源ID。 |
 | description | string | 否 | 表示打印机说明。 |
-| capability | PrinterCapability | 否 | 表示打印机功能。 |
+| capability | [PrinterCapability](#printercapability) | 否 | 表示打印机功能。 |
 | options | Object | 否 | 表示JSON对象字符串。 |
 
 ## PrintJob
@@ -126,17 +126,17 @@ import { print } from '@kit.BasicServicesKit';
 | fdList | Array&lt;number&gt; | 是 | 表示待打印文件fd列表。 |
 | jobId | string | 是 | 表示打印任务ID。 |
 | printerId | string | 是 | 表示负责打印的打印机ID。 |
-| jobState | PrintJobState | 是 | 表示当前打印任务状态。 |
-| jobSubstate<sup>11+</sup> | PrintJobSubState | 是 | 表示当前打印任务子状态。 |
+| jobState | [PrintJobState](./js-apis-print.md/#printjobstate14) | 是 | 表示当前打印任务状态。 |
+| jobSubstate<sup>11+</sup> | [PrintJobSubState](./js-apis-print.md/#printjobsubstate14) | 是 | 表示当前打印任务子状态。 |
 | copyNumber | number | 是 | 表示文件列表副本。 |
-| pageRange | PrinterRange | 是 | 表示打印范围大小。 |
-| isSequential | boolean | 是 | 表示连续打印。 |
-| pageSize | PrintPageSize | 是 | 表示选定的页面尺寸。 |
-| isLandscape | boolean | 是 | 表示垂直打印。 |
+| pageRange | [PrinterRange](#printerrange) | 是 | 表示打印范围大小。 |
+| isSequential | boolean | 是 | 表示是否连续打印。true表示连续打印，false表示不连续打印。默认值为false。 |
+| pageSize | [PrintPageSize](./js-apis-print.md/#printpagesize11) | 是 | 表示选定的页面尺寸。 |
+| isLandscape | boolean | 是 | 表示是否横向打印。true表示横向打印，false表示纵向打印。默认值为false。 |
 | colorMode | number | 是 | 表示色彩模式。 |
 | duplexMode | number | 是 | 表示单双面打印模式。 |
-| margin | PrintMargin | 否 | 表示当前页边距设置。 |
-| preview | PreviewAttribute | 否 | 表示预览设置。 |
+| margin | [PrintMargin](#printmargin) | 否 | 表示当前页边距设置。 |
+| preview | [PreviewAttribute](#previewattribute) | 否 | 表示预览设置。 |
 | options | Object | 否 | 表示JSON对象字符串。 |
 
 ## PrinterExtensionInfo
@@ -171,7 +171,7 @@ queryAllPrinterExtensionInfos(callback: AsyncCallback&lt;Array&lt;PrinterExtensi
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;PrinterExtensionInfo&gt;&gt; | 是 | 异步查询所有已安装的打印机扩展服务之后的回调。 |
+| callback | AsyncCallback&lt;Array&lt;[PrinterExtensionInfo](#printerextensioninfo)&gt;&gt; | 是 | 异步查询所有已安装的打印机扩展服务之后的回调。 |
 
 **错误码：**
 
@@ -212,7 +212,7 @@ queryAllPrinterExtensionInfos(): Promise&lt;Array&lt;PrinterExtensionInfo&gt;&gt
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;Array&lt;PrinterExtensionInfo&gt;&gt; | 查询所有已安装的打印机扩展服务完成结果。 |
+| Promise&lt;Array&lt;[PrinterExtensionInfo](#printerextensioninfo)&gt;&gt; | 查询所有已安装的打印机扩展服务完成结果。 |
 
 **错误码：**
 
@@ -694,7 +694,7 @@ startPrintJob(jobInfo: PrintJob, callback: AsyncCallback&lt;void&gt;): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| jobInfo | PrintJob | 是 | 打印任务信息。 |
+| jobInfo | [PrintJob](#printjob) | 是 | 打印任务信息。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步开始打印任务之后的回调。 |
 
 **错误码：**
@@ -754,7 +754,7 @@ startPrintJob(jobInfo: PrintJob): Promise&lt;void&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| jobInfo | PrintJob | 是 | 打印任务信息。 |
+| jobInfo | [PrintJob](#printjob) | 是 | 打印任务信息。 |
 
 **返回值：**
 | **类型** | **说明** |
@@ -906,7 +906,7 @@ requestPrintPreview(jobInfo: PrintJob, callback: Callback&lt;number&gt;): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| jobInfo | PrintJob | 是 | 打印任务信息。 |
+| jobInfo | [PrintJob](#printjob) | 是 | 打印任务信息。 |
 | callback | Callback&lt;number&gt; | 是 | 请求预览打印数据之后的回调。 |
 
 **错误码：**
@@ -962,7 +962,7 @@ requestPrintPreview(jobInfo: PrintJob): Promise&lt;number&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| jobInfo | PrintJob | 是 | 打印任务信息。 |
+| jobInfo | [PrintJob](#printjob) | 是 | 打印任务信息。 |
 
 **返回值：**
 | **类型** | **说明** |
@@ -1025,7 +1025,7 @@ on(type: 'printerStateChange', callback: (state: PrinterState, info: PrinterInfo
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | type | 'printerStateChange' | 是 | 表示打印机状态改变。 |
-| callback | (state: PrinterState, info: PrinterInfo) => void | 是 | 打印机状态改变之后的回调。 |
+| callback | (state: [PrinterState](./js-apis-print.md/#printerstate14), info: [PrinterInfo](#printerinfo)) => void | 是 | 打印机状态改变之后的回调。 |
 
 **错误码：**
 
@@ -1069,7 +1069,7 @@ off(type: 'printerStateChange', callback?: Callback&lt;boolean&gt;): void
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | type | 'printerStateChange' | 是 | 表示打印机状态改变。 |
-| callback | Callback&lt;boolean&gt; | 否 | 打印机状态改变之后的回调。 |
+| callback | Callback&lt;boolean&gt; | 否 | 表示取消注册打印机状态变化事件是否成功。true表示成功，false表示失败。 |
 
 **错误码：**
 
@@ -1107,7 +1107,7 @@ on(type: 'jobStateChange', callback: (state: PrintJobState, job: PrintJob) => vo
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | type | 'jobStateChange' | 是 | 表示打印任务状态改变。 |
-| callback | (state: PrintJobState, job: PrintJob) => void | 是 | 打印任务状态改变之后的回调。 |
+| callback | (state: [PrintJobState](./js-apis-print.md/#printjobstate14), job: [PrintJob](#printjob)) => void | 是 | 打印任务状态改变之后的回调。 |
 
 **错误码：**
 
@@ -1145,7 +1145,7 @@ off(type: 'jobStateChange', callback?: Callback&lt;boolean&gt;): void
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | type | 'jobStateChange' | 是 | 表示打印任务状态改变。 |
-| callback | Callback&lt;boolean&gt; | 否 | 打印任务状态改变之后的回调。 |
+| callback | Callback&lt;boolean&gt; | 否 | 表示取消注册打印任务状态变化事件是否成功。true表示成功，false表示失败。 |
 
 **错误码：**
 
@@ -1221,7 +1221,7 @@ off(type: 'extInfoChange', callback?: Callback&lt;boolean&gt;): void
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | type | 'extInfoChange' | 是 | 表示打印扩展信息改变。 |
-| callback | Callback&lt;boolean&gt; | 否 | 打印任务扩展信息改变之后的回调。 |
+| callback | Callback&lt;boolean&gt; | 否 | 表示取消注册打印扩展信息变化事件是否成功。true表示成功，false表示失败。 |
 
 **错误码：**
 
@@ -1258,7 +1258,7 @@ addPrinters(printers: Array&lt;PrinterInfo&gt;, callback: AsyncCallback&lt;void&
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printers | Array&lt;PrinterInfo&gt; | 是 | 表示新到达的打印机列表。 |
+| printers | Array&lt;[PrinterInfo](#printerinfo)&gt; | 是 | 表示新到达的打印机列表。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步添加打印机之后的回调。 |
 
 **错误码：**
@@ -1310,7 +1310,7 @@ addPrinters(printers: Array&lt;PrinterInfo&gt;): Promise&lt;void&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printers | Array&lt;PrinterInfo&gt; | 是 | 表示新到达的打印机列表。 |
+| printers | Array&lt;[PrinterInfo](#printerinfo)&gt; | 是 | 表示新到达的打印机列表。 |
 
 **返回值：**
 | **类型** | **说明** |
@@ -1454,7 +1454,7 @@ updatePrinters(printers: Array&lt;PrinterInfo&gt;, callback: AsyncCallback&lt;vo
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printers | Array&lt;PrinterInfo&gt; | 是 | 表示待更新的打印机列表。 |
+| printers | Array&lt;[PrinterInfo](#printerinfo)&gt; | 是 | 表示待更新的打印机列表。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步更新打印机信息之后的回调。 |
 
 **错误码：**
@@ -1506,7 +1506,7 @@ updatePrinters(printers: Array&lt;PrinterInfo&gt;): Promise&lt;void&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printers | Array&lt;PrinterInfo&gt; | 是 | 表示待更新的打印机列表。 |
+| printers | Array&lt;[PrinterInfo](#printerinfo)&gt; | 是 | 表示待更新的打印机列表。 |
 
 **返回值：**
 | **类型** | **说明** |
@@ -1561,7 +1561,7 @@ updatePrinterState(printerId: string, state: PrinterState, callback: AsyncCallba
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | printerId | string | 是 | 表示打印机ID。 |
-| state | PrinterState | 是 | 表示打印机状态。 |
+| state | [PrinterState](./js-apis-print.md/#printerstate14) | 是 | 表示打印机状态。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步更新打印机状态之后的回调。 |
 
 **错误码：**
@@ -1607,7 +1607,7 @@ updatePrinterState(printerId: string, state: PrinterState): Promise&lt;void&gt;
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | printerId | string | 是 | 表示打印机ID。 |
-| state | PrinterState | 是 | 表示打印机状态。 |
+| state | [PrinterState](./js-apis-print.md/#printerstate14) | 是 | 表示打印机状态。 |
 
 **返回值：**
 | **类型** | **说明** |
@@ -1655,8 +1655,8 @@ updatePrintJobState(jobId: string, state: PrintJobState, subState: PrintJobSubSt
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | jobId | string | 是 | 表示打印任务ID。 |
-| state | PrintJobState | 是 | 表示打印任务状态。 |
-| subState | PrintJobSubState | 是 | 表示打印任务子状态。 |
+| state | [PrintJobState](./js-apis-print.md/#printjobstate14) | 是 | 表示打印任务状态。 |
+| subState | [PrintJobSubState](./js-apis-print.md/#printjobsubstate14) | 是 | 表示打印任务子状态。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步更新打印任务状态之后的回调。 |
 
 **错误码：**
@@ -1703,8 +1703,8 @@ updatePrintJobState(jobId: string, state: PrintJobState, subState: PrintJobSubSt
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | jobId | string | 是 | 表示打印任务ID。 |
-| state | PrintJobState | 是 | 表示打印任务状态。 |
-| subState | PrintJobSubState | 是 | 表示打印任务子状态。 |
+| state | [PrintJobState](./js-apis-print.md/#printjobstate14) | 是 | 表示打印任务状态。 |
+| subState | [PrintJobSubState](./js-apis-print.md/#printjobsubstate14) | 是 | 表示打印任务子状态。 |
 
 **返回值：**
 | **类型** | **说明** |
@@ -1928,7 +1928,7 @@ queryPrintJobList(callback: AsyncCallback&lt;Array&lt;PrintJob&gt;&gt;): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;PrintJob&gt;&gt; | 是 | 异步查询所有打印任务之后的回调。 |
+| callback | AsyncCallback&lt;Array&lt;[PrintJob](#printjob)&gt;&gt; | 是 | 异步查询所有打印任务之后的回调。 |
 
 **错误码：**
 
@@ -1969,7 +1969,7 @@ queryPrintJobList(): Promise&lt;Array&lt;PrintJob&gt;&gt;
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;Array&lt;PrintJob&gt;&gt; | 查询所有打印任务完成结果。 |
+| Promise&lt;Array&lt;[PrintJob](#printjob)&gt;&gt; | 查询所有打印任务完成结果。 |
 
 **错误码：**
 
@@ -2009,7 +2009,7 @@ queryPrintJobById(jobId: string, callback: AsyncCallback&lt;PrintJob&gt;): void
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | jobId | string | 是 | 表示打印任务ID。 |
-| callback | AsyncCallback&lt;PrintJob&gt; | 是 | 异步按打印任务ID查询打印任务之后的回调。 |
+| callback | AsyncCallback&lt;[PrintJob](#printjob)&gt; | 是 | 异步按打印任务ID查询打印任务之后的回调。 |
 
 **错误码：**
 
@@ -2057,7 +2057,7 @@ queryPrintJobById(jobId: string): Promise&lt;PrintJob&gt;
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;PrintJob&gt; | 按打印任务ID查询打印任务完成结果。 |
+| Promise&lt;[PrintJob](#printjob)&gt; | 按打印任务ID查询打印任务完成结果。 |
 
 **错误码：**
 
@@ -2099,9 +2099,9 @@ startGettingPrintFile(jobId: string, printAttributes: PrintAttributes, fd: numbe
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | jobId | string | 是 | 表示打印任务ID。 |
-| printAttributes | PrintAttributes | 是 | 表示打印参数。 |
+| printAttributes | [PrintAttributes](./js-apis-print.md/#printattributes11) | 是 | 表示打印参数。 |
 | fd | number | 是 | 表示打印文件描述符。 |
-| onFileStateChanged | Callback&lt;PrintFileCreationState&gt; | 是 | 表示更新文件状态的回调。 |
+| onFileStateChanged | Callback&lt;[PrintFileCreationState](./js-apis-print.md/#printfilecreationstate11)&gt; | 是 | 表示更新文件状态的回调。 |
 
 **错误码：**
 
@@ -2311,7 +2311,7 @@ getPrinterInfoById(printerId: string): Promise&lt;PrinterInfo&gt;
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;PrinterInfo&gt; | 根据打印机id获取打印机信息后的完成结果回调。 |
+| Promise&lt;[PrinterInfo](#printerinfo)&gt; | 根据打印机id获取打印机信息后的完成结果回调。 |
 
 **错误码：**
 
@@ -2352,7 +2352,7 @@ notifyPrintServiceEvent(event: ApplicationEvent): Promise&lt;void&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| event | ApplicationEvent | 是 | 表示打印应用事件。 |
+| event | [ApplicationEvent](./js-apis-print.md/#applicationevent14) | 是 | 表示打印应用事件。 |
 
 **返回值：**
 | **类型** | **说明** |
