@@ -659,11 +659,11 @@ let ret = settings.unregisterKeyObserver(context, settings.display.SCREEN_BRIGHT
 
 ## settings.openNetworkManagerSettings<sup>18+</sup>
 
-function openNetworkManagerSettings(context: Context): Promise\<boolean>
+openNetworkManagerSettings(context: Context): Promise\<boolean>
 
-打开网络管理器设置页面。使用 Promise异步回调。
+打开网络管理器设置页面。使用Promise异步回调。
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
@@ -681,7 +681,7 @@ function openNetworkManagerSettings(context: Context): Promise\<boolean>
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../apis-arkdata/errorcode-data-rdb.md)。
 
 | 错误码ID    | 错误信息                    |
 |----------|-------------------------|
