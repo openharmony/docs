@@ -117,35 +117,6 @@ constructor()
   let fileSync = new cloudSync.FileSync()
   ```
 
-### constructor<sup>12+</sup>
-
-constructor(bundleName: string)
-
-端云同步流程的构造函数，用于获取FileSync类的实例。
-
-**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**参数：**
-
-| 参数名     | 类型   | 必填 | 说明 |
-| ---------- | ------ | ---- | ---- |
-| bundleName | string | 是   | 应用包名|
-
-**错误码：**
-
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
-
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-
-**示例：**
-
-  ```ts
-  let fileSync = new cloudSync.FileSync("com.ohos.demo")
-  ```
-
 ### on<sup>12+</sup>
 
 on(event: 'progress', callback: Callback\<SyncProgress>): void
