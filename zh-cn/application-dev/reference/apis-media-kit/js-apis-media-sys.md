@@ -176,13 +176,11 @@ getScreenCaptureMonitor(): Promise\<ScreenCaptureMonitor>;
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 let screenCaptureMonitor: media.ScreenCaptureMonitor;
 try {
   screenCaptureMonitor = await media.getScreenCaptureMonitor();
-} catch (err: BussinessError) {
-  console.error(`getScreenCaptureMonitor failed, error message:${error.message}`);
+} catch (err) {
+  console.error(`getScreenCaptureMonitor failed, error message:${err.message}`);
 }
 ```
 
