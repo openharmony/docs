@@ -1315,7 +1315,7 @@ Input_DeviceInfo* OH_Input_CreateDeviceInfo (void )
 如果操作成功，返回设备信息[Input_DeviceInfo](#input_deviceinfo)实例的指针。否则返回空指针，可能的原因是分配内存失败。
 
 
-### OH_Input_CreateHotkey(void)
+### OH_Input_CreateHotkey()
 
 ```
 Input_Hotkey* OH_Input_CreateHotkey (void)
