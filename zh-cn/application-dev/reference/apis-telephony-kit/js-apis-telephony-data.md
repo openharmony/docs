@@ -494,6 +494,99 @@ import { data } from '@kit.TelephonyKit';
 console.log("Result: "+ data.getDefaultCellularDataSimId());
 ```
 
+## data.queryAllApns<sup>16+</sup>
+
+queryAllApns(): Promise<Array<ApnInfo>>
+
+获取默认移动数据的SIM卡的APN信息。
+
+**需要权限**：ohos.permission.MANAGE_APN_SETTING
+
+**系统能力**：SystemCapability.Telephony.CellularData
+
+**返回值：**
+
+| 类型              | 说明                                         |
+| ------ |--------------------------------------------|
+| Promise<Array<ApnInfo>> | 获取默认移动数据的SIM卡的APN信息列表。 |
+
+**示例：**
+
+```ts
+import { data } from '@kit.TelephonyKit';
+
+cellular.queryAllApns().then((data: Array<cellular.ApnInfo>) => {
+    console.log(`queryAllApns success, promise: data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+    console.error(`queryAllApns failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## data.queryApnIds<sup>16+</sup>
+
+queryApnIds(apnInfo: ApnInfo): Promise<Array<number>>
+
+获取传入的ApnInfo对应的ApnId信息。
+
+**需要权限**：ohos.permission.MANAGE_APN_SETTING
+
+**系统能力**：SystemCapability.Telephony.CellularData
+
+**返回值：**
+
+| 类型              | 说明                          |
+| ------ |-----------------------------|
+| Promise<Array<number>> | 获取到的传入的ApnInfo对应的ApnId信息列表。 |
+
+**示例：**
+
+```ts
+import { data } from '@kit.TelephonyKit';
+
+let apnInfo: cellular.ApnInfo;
+apnInfo = {
+  apnName: "CMNET",
+  apn: "cmnet",
+  mcc: "460",
+  mnc: "07",
+};
+
+cellular.queryApnIds(apnInfo).then((data: Array<number>) => {
+    console.log(`queryApnIds success, promise: data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+    console.error(`queryApnIds failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## data.setPreferredApn<sup>16+</sup>
+
+setPreferredApn(apnId: number): Promise<boolean>
+
+设置apnId对应的APN为首选APN，需要注意的是，如果传入的apnId为无效的apnId，切回运营商默认配置的优选Apn。
+
+**需要权限**：ohos.permission.MANAGE_APN_SETTING
+
+**系统能力**：SystemCapability.Telephony.CellularData
+
+**返回值：**
+
+| 类型              | 说明                     |
+| ------ |------------------------|
+| Promise<boolean> | 设置的返回结果，在未插卡时会返回fasle。 |
+
+**示例：**
+
+```ts
+import { data } from '@kit.TelephonyKit';
+
+let apnId: number = 0; // apnId为通过queryApnIds返回的有效值，setPreferredApn传入无效的apnId会切回运营商默认配置的优选Apn
+cellular.setPreferredApn(apnId).then((data: boolean) => {
+    console.log(`setPreferredApn success, promise: data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+    console.error(`setPreferredApn failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
 ## DataFlowType
 
 描述蜂窝数据流类型。 
@@ -521,3 +614,20 @@ console.log("Result: "+ data.getDefaultCellularDataSimId());
 | DATA_STATE_CONNECTING   | 1    | 表示正在连接蜂窝数据链路。 |
 | DATA_STATE_CONNECTED    | 2    | 表示蜂窝数据链路已连接。   |
 | DATA_STATE_SUSPENDED    | 3    | 表示蜂窝数据链路被挂起。   |
+
+## ApnInfo<sup>16+</sup>
+
+Apn信息。
+
+**系统能力**：SystemCapability.Telephony.CellularData
+
+| 名称       | 类型      | 必填  | 说明         |
+|----------|---------|-----|------------|
+| apnName  | string  | 是   | Apn名称。     |
+| apn      | string  | 是   | apn。       |
+| mcc      | string  | 是   | Sim卡的mcc。  |
+| mnc      | string  | 是   | 卡Sim卡的mnc。 |
+| user     | string  | 否   | 用户名。       |
+| type     | string  | 否   | apn类型。     |
+| proxy    | string  | 否   | 代理地址。      |
+| mmsproxy | string  | 否   | 彩信代理。      |
