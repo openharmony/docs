@@ -1908,8 +1908,7 @@ sendableImageSourceApi.createPixelMap().then((pixelMap: sendableImage.PixelMap) 
 
 release(): Promise\<void>
 
-释放图片源实例，使用Promise形式返回结果。
-release是线程不安全的。
+释放图片源实例，使用Promise形式返回结果。release是线程不安全的。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1954,8 +1953,7 @@ sendableImageSourceApi.release().then(() => {
 
 getComponent(componentType: image.ComponentType): Promise\<image.Component>
 
-根据图像的组件类型从图像中获取组件缓存并使用Promise方式返回结果。
-getComponent是线程不安全的。
+根据图像的组件类型从图像中获取组件缓存并使用Promise方式返回结果。getComponent是线程不安全的。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -2181,8 +2179,7 @@ receiver.on('imageArrival', () => {
 
 release(): Promise\<void>
 
-释放ImageReceiver实例并使用promise返回结果。
-release是线程不安全的。
+释放ImageReceiver实例并使用promise返回结果。release是线程不安全的。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
