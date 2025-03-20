@@ -38,7 +38,7 @@ Read [DRM](../../reference/apis-drm-kit/js-apis-drm.md) for the API reference.
        });
        ```
 
-    - Listen for vendor-defined events, which are triggered when a custom event of the DRM scheme occurs.
+    - Listen for vendor-defined events, which are triggered when a custom event of the DRM solution occurs.
 
        ```ts
        mediaKeySession.on('vendorDefined', (eventInfo: drm.EventInfo) => {
@@ -68,7 +68,7 @@ Read [DRM](../../reference/apis-drm-kit/js-apis-drm.md) for the API reference.
 
    ```ts
    let initData = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
-   // Set optional data based on the DRM scheme.
+   // Set optional data based on the DRM solution.
    let optionalData:drm.OptionsData[] = [{
      name: "...",
      value: "..."

@@ -3246,7 +3246,6 @@
       - Telephony Kit<!--telephony-api-->
         - ArkTS APIs<!--telephony-arkts-->
           - [@ohos.telephony.call (Call)](reference/apis-telephony-kit/js-apis-call.md)
-          - [@ohos.telephony.esim (eSIM Management)](reference/apis-telephony-kit/js-apis-esim.md)
           - [@ohos.telephony.data (Cellular Data)](reference/apis-telephony-kit/js-apis-telephony-data.md)
           - [@ohos.telephony.observer (Observer)](reference/apis-telephony-kit/js-apis-observer.md)
           - [@ohos.telephony.radio (Radio)](reference/apis-telephony-kit/js-apis-radio.md)
@@ -3255,7 +3254,6 @@
           <!--Del-->
           - [@ohos.telephony.call (Call) (System API)](reference/apis-telephony-kit/js-apis-call-sys.md)
           - [@ohos.telephony.data (Cellular Data) (System API)](reference/apis-telephony-kit/js-apis-telephony-data-sys.md)
-          - [@ohos.telephony.esim (eSIM Management) (System API)](reference/apis-telephony-kit/js-apis-esim-sys.md)
           - [@ohos.telephony.observer (Observer) (System API)](reference/apis-telephony-kit/js-apis-observer-sys.md)
           - [@ohos.telephony.radio (Radio) (System API)](reference/apis-telephony-kit/js-apis-radio-sys.md)
           - [@ohos.telephony.sim (SIM Management) (System API)](reference/apis-telephony-kit/js-apis-sim-sys.md)
