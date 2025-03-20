@@ -107,7 +107,7 @@ reclaim(): void
 
 writeRemoteObject(object: IRemoteObject): void
 
-序列化远程对象并将其写入MessageSequence对象。
+序列化远程对象并将其写入[MessageSequence](#messagesequence9)对象。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
