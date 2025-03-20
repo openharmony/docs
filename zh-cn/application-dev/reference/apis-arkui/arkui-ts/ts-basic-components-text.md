@@ -188,7 +188,7 @@ minFontSize(value: number | string | Resource)
 
 minFontSize小于或等于0时，自适应字号不生效，此时按照[fontSize](#fontsize)属性的值生效，未设置时按照其默认值生效。
 
-从API Version 16开始支持在子组件和属性字符串上生效，未设置字号的部分自适应字号。
+从API Version 18开始支持在子组件和属性字符串上生效，未设置字号的部分自适应字号。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -214,7 +214,7 @@ maxFontSize(value: number | string | Resource)
 
 maxFontSize小于或等于0时，自适应字号不生效，此时按照[fontSize](#fontsize)属性的值生效，未设置时按照其默认值生效。
 
-从API Version 16开始支持在子组件和属性字符串上生效，未设置字号的部分自适应字号。
+从API Version 18开始支持在子组件和属性字符串上生效，未设置字号的部分自适应字号。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
