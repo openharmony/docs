@@ -306,7 +306,7 @@ get hasHybrid()
 
 | 类型    | 说明                 |
 | ------- | -------------------- |
-| boolean | 是否有图文混合选项。 |
+| boolean | 是否有图文混合选项。<br>true：有图文混合选项；false：无图文混合选项。 |
 
 ## SegmentButtonV2Item
 
@@ -325,7 +325,7 @@ get hasHybrid()
 | text                     | [ResourceStr](ts-types.md#resourcestr)                               | @Trace | 否   | 分段按钮选项文本。                              |
 | icon                     | [ResourceStr](ts-types.md#resourcestr)                               | @Trace | 否   | 分段按钮选项图片类型图标。                      |
 | symbol                   | [Resource](ts-types.md#resource)                                     | @Trace | 否   | 分段按钮选项 HM Symbol 类型图标。               |
-| enabled                  | boolean                                                              | @Trace | 否   | 分段按钮选项是否可用。                          |
+| enabled                  | boolean                                                              | @Trace | 否   | 分段按钮选项是否可用。<br>默认值：true。<br>true：分段按钮选项可用；false：分段按钮选项不可用。                          |
 | textModifier             | [TextModifier](ts-universal-attributes-attribute-modifier.md)        | @Trace | 否   | 分段按钮选项文本属性样式修改器。                |
 | iconModifier             | [ImageModifier](ts-universal-attributes-attribute-modifier.md)       | @Trace | 否   | 分段按钮选项图片类型图标属性样式修改器。        |
 | symbolModifier           | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | @Trace | 否   | 分段按钮选项 HM Symbol 类型图标属性样式修改器。 |
