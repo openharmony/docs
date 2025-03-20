@@ -394,49 +394,7 @@ struct ButtonExample {
 
 ```
 
-## cl.arkui.9 enabled属性UX样式变更
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-Rating组件与Slider组件enabled属性UX样式不符合规范
-
-**变更影响**
-
-此变更不涉及应用适配。
-
-Rating组件变更场景：
-
-| 变更前 | 变更后 |
-|------ |--------|
-|Rating组件设置enable为false时，未叠加40%透明度。</br>![rating_enable](figures/rating_enable.PNG)|Rating组件设置enable为false时，叠加40%透明度。</br>![rating_enable_opacity](figures/rating_enable_opacity.PNG)|
-
-Slider组件变更场景：
-
-| 变更前 | 变更后 |
-|------ |--------|
-|Slider组件设置enable为false时，未叠加40%透明度。</br>![slider_enable](figures/slider_enable.PNG)|Slider组件设置enable为false时，叠加40%透明度。</br>![slider_enable_opacity](figures/slider_enable_opacity.PNG)|
-
-**起始API Level**
-
-7
-
-**变更发生版本**
-
-从OpenHarmony 5.1.0.53 版本开始。
-
-**变更的接口/组件**
-
-通用属性enabled属性。
-
-**适配指导**
-
-默认行为变更，无需适配。
-
-## cl.arkui.10 修复Popup高级组件宽度限制计算错误的问题
+## cl.arkui.9 修复Popup高级组件宽度限制计算错误的问题
 
 **访问级别**
 
