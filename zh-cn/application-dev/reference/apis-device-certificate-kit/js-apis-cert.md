@@ -109,7 +109,7 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | subject | [X500DistinguishedName](#x500distinguishedname12) | 是   | 是   | X509定义的Name类型的对象。 |
 | mdName | string | 是   | 是   | 摘要算法名。 |
-| attributes | [CsrAttribute](#csrattribute18) | 是   | 是   | 拓展。 |
+| attributes | Array\<[CsrAttribute](#csrattribute18)> | 是   | 是   | 拓展。 |
 | outFormat | [EncodingBaseFormat](#encodingbaseformat18) | 是   | 是   | 输出类型。 |
 
 > **说明：**
@@ -10970,12 +10970,7 @@ generateCsr(keyInfo: PrivateKeyInfo, config: CsrGenerationConfig): string | Uint
 | 19020001 | memory error. |
 | 19020002 | runtime error. |
 | 19030001 | crypto operation error. |
-| 19030002 | the certificate signature verification failed. |
-| 19030003 | the certificate has not taken effect. |
-| 19030004 | the certificate has expired. |
-| 19030005 | failed to obtain the certificate issuer. |
-| 19030006 | the key cannot be used for signing a certificate. |
-| 19030007 | the key cannot be used for digital signature. |
+| 19030008 | maybe wrong password. |
 
 **示例：**
 
