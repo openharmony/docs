@@ -220,7 +220,7 @@ getOriginalFileName(fileName: string): string
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 返回DLP文件的原始文件名。例如：DLP文件名为test.txt.dlp，则返回的原始文件名为test.txt。无长度限制。 |
+| string | 返回DLP文件的原始文件名。例如：DLP文件名为test.txt.dlp，则返回的原始文件名为test.txt。 |
 
 **错误码：**
 
@@ -257,7 +257,7 @@ getDLPSuffix(): string
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 返回DLP文件扩展名。例如：原文件"text.txt"，加密后的DLP文件名为"test.txt.dlp"，返回拓展名为".dlp"。无长度限制。 |
+| string | 返回DLP文件扩展名。例如：原文件"text.txt"，加密后的DLP文件名为"test.txt.dlp"，返回拓展名为".dlp"。 |
 
 **错误码：**
 
@@ -454,7 +454,7 @@ getDLPSupportedFileTypes(): Promise&lt;Array&lt;string&gt;&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise对象。返回当前可支持权限设置和校验的文件扩展名类型列表。Array和string均无长度限制。 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象。返回当前可支持权限设置和校验的文件扩展名类型列表。 |
 
 **错误码：**
 
@@ -491,7 +491,7 @@ getDLPSupportedFileTypes(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): vo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。Array和string均无长度限制。 |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。其中Array和string均无长度限制。 |
 
 **错误码：**
 
@@ -1211,5 +1211,5 @@ DLP文件授权类型的枚举。
 | -------- | -------- | -------- | -------- | -------- |
 | appIndex | number | 是 | 否 | 表示DLP沙箱应用索引。 |
 | bundleName | string | 是 | 否 | 表示应用包名。无长度限制。 |
-| docUris | Array&lt;string&gt; | 是 | 否 | 表示DLP文件的URI列表。无长度限制。 |
+| docUris | Array&lt;string&gt; | 是 | 否 | 表示DLP文件的URI列表。Array和string均无长度限制 |
 
