@@ -34,7 +34,7 @@ LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程
 在LazyForEach首次渲染时，会根据上述键值生成规则为数据源的每个数组项生成唯一键值，并创建相应的组件。
 
 ```ts
-/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
+/** BasicDataSource代码见文档末尾BasicDataSource示例代码: string类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -93,7 +93,7 @@ struct MyComponent {
 当不同数据项生成的键值相同时，框架的行为是不可预测的。例如，在以下代码中，`LazyForEach`渲染的数据项键值均相同，在滑动过程中，`LazyForEach`会对划入划出当前页面的子组件进行预加载，而新建的子组件和销毁的原子组件具有相同的键值，框架可能存在取用缓存错误的情况，导致子组件渲染有问题。
 
 ```ts
-/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
+/** BasicDataSource代码见文档末尾BasicDataSource示例代码: string类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -152,7 +152,7 @@ struct MyComponent {
 #### 添加数据
 
 ```ts
-/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
+/** BasicDataSource代码见文档末尾BasicDataSource示例代码: string类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -213,7 +213,7 @@ struct MyComponent {
 #### 删除数据
 
 ```ts
-/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
+/** BasicDataSource代码见文档末尾BasicDataSource示例代码: string类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -282,7 +282,7 @@ struct MyComponent {
 #### 交换数据
 
 ```ts
-/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
+/** BasicDataSource代码见文档末尾BasicDataSource示例代码: string类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -358,7 +358,7 @@ struct MyComponent {
 #### 改变单个数据
 
 ```ts
-/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
+/** BasicDataSource代码见文档末尾BasicDataSource示例代码: string类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -424,7 +424,7 @@ struct MyComponent {
 #### 改变多个数据
 
 ```ts
-/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
+/** BasicDataSource代码见文档末尾BasicDataSource示例代码: string类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -495,7 +495,7 @@ struct MyComponent {
 #### 精准批量修改数据
 
 ```ts
-/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
+/** BasicDataSource代码见文档末尾BasicDataSource示例代码: string类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -578,7 +578,7 @@ onDatasetChange接口允许开发者一次性通知LazyForEach进行数据添加
 第二个例子，直接给数组赋值，不涉及 splice 操作。operations直接从比较原数组和新数组得到。
 
 ```ts
-/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
+/** BasicDataSource代码见文档末尾BasicDataSource示例代码: string类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -674,7 +674,7 @@ struct MyComponent {
 若仅靠`LazyForEach`的刷新机制，当`item`变化时若想更新子组件，需要将原来的子组件全部销毁再重新构建，在子组件结构较为复杂的情况下，靠改变键值去刷新渲染性能较低。因此框架提供了`@Observed`与@`ObjectLink`机制进行深度观测，可以做到仅刷新使用了该属性的组件，提高渲染性能。开发者可根据其自身业务特点选择使用哪种刷新方式。
 
 ```ts
-/** BasicDataSource代码见文档末尾附件: StringData类型数组的BasicDataSource代码 **/
+/** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -753,7 +753,7 @@ struct ChildComponent {
 #### 嵌套类属性变化观测
 
 ```ts
-/** BasicDataSource代码见文档末尾附件: StringData类型数组的BasicDataSource代码 **/
+/** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -836,7 +836,7 @@ struct MyComponent {
 #### 组件内部状态
 
 ```ts
-/** BasicDataSource代码见文档末尾附件: StringData类型数组的BasicDataSource代码 **/
+/** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -915,7 +915,7 @@ struct ChildComponent {
 #### 组件外部输入
 
 ```ts
-/** BasicDataSource代码见文档末尾附件: StringData类型数组的BasicDataSource代码 **/
+/** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -986,7 +986,7 @@ struct ChildComponent {
 当LazyForEach在List组件下使用，并且设置了onMove事件，可以使能拖拽排序。拖拽排序离手后，如果数据位置发生变化，则会触发onMove事件，上报数据移动原始索引号和目标索引号。在onMove事件中，需要根据上报的起始索引号和目标索引号修改数据源。onMove中修改数据源不需要调用DataChangeListener中接口通知数据源变化。
 
 ```ts
-/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
+/** BasicDataSource代码见文档末尾BasicDataSource示例代码: string类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -1054,7 +1054,7 @@ struct Parent {
 ### 渲染结果非预期
 
 ```ts
-/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
+/** BasicDataSource代码见文档末尾BasicDataSource示例代码: string类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -1118,7 +1118,7 @@ struct MyComponent {
 修复代码如下所示。
 
 ```ts
-/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
+/** BasicDataSource代码见文档末尾BasicDataSource示例代码: string类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -1188,7 +1188,7 @@ struct MyComponent {
 ### 重渲染时图片闪烁
 
 ```ts
-/** BasicDataSource代码见文档末尾附件: StringData类型数组的BasicDataSource代码 **/
+/** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -1265,7 +1265,7 @@ struct MyComponent {
 修复代码如下所示。
 
 ```ts
-/** BasicDataSource代码见文档末尾附件: StringData类型数组的BasicDataSource代码 **/
+/** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -1345,7 +1345,7 @@ struct ChildComponent {
 ### @ObjectLink属性变化UI未更新
 
 ```ts
-/** BasicDataSource代码见文档末尾附件: StringData类型数组的BasicDataSource代码 **/
+/** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -1428,7 +1428,7 @@ struct ChildComponent {
 修复代码如下所示。
 
 ```ts
-/** BasicDataSource代码见文档末尾附件: StringData类型数组的BasicDataSource代码 **/
+/** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -1511,7 +1511,7 @@ struct ChildComponent {
 在List的onScrollIndex方法中调用onDataReloaded有产生屏幕闪烁的风险。
 
 ```ts
-/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
+/** BasicDataSource代码见文档末尾BasicDataSource示例代码: string类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -1583,7 +1583,7 @@ struct MyComponent {
 用onDatasetChange代替onDataReloaded，不仅可以修复闪屏的问题，还能提升加载性能。
 
 ```ts
-/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
+/** BasicDataSource代码见文档末尾BasicDataSource示例代码: string类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -1658,7 +1658,7 @@ struct MyComponent {
 `@Reusable`与`@ComponentV2`混用会导致组件渲染异常。
 
 ```ts
-/** BasicDataSource代码见文档末尾附件: StringData类型数组的BasicDataSource代码 **/
+/** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -1747,7 +1747,7 @@ struct ChildComponent {
 开发者需要定义合适的键值生成函数，返回与目标数据相关联的键值。目标数据发生改变时，LazyForEach识别到键值改变才会刷新对应组件。
 
 ```ts
-/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
+/** BasicDataSource代码见文档末尾BasicDataSource示例代码: string类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
