@@ -1,42 +1,6 @@
 # ArkUI子系统Changelog
 
-## cl.arkui.1 禁用键盘Ctrl按键和触控板轴事件触发缩放手势变更
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-UX规格变化。
-
-**变更影响**
-
-此变更不涉及应用适配。
-
-变更前：键盘Ctrl按键和触控板双指水平滑动或者垂直滑动时，可以触发缩放手势。
-
-变更前：键盘Ctrl按键和触控板双指水平滑动或者垂直滑动时，不可以触发缩放手势。
-
-**起始API Level**
-
-接口起始版本为API version 7。
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.1.0.54开始。
-
-**变更的接口/组件**
-
-ArkTS：PinchGestureInterface、PinchGestureHandler
-
-C API：createPinchGesture
-
-**适配指导**
-
-默认UX变更无需适配。
-
-## cl.arkui.2 FrameNode的isAttached接口返回值含义发生变更
+## cl.arkui.1 FrameNode的isAttached接口返回值含义发生变更
 
 **访问级别**
 
@@ -123,7 +87,7 @@ node.isAttached(); // 变更前
 node.isVisible(); // 变更后
 ```
 
-## cl.arkui.3 命令式节点跨页面复用行为变更
+## cl.arkui.2 命令式节点跨页面复用行为变更
 
 **访问级别**
 
@@ -845,7 +809,7 @@ node.isVisible(); // 变更后
     }
     ```
 
-## cl.arkui.4 使用RichEditorStyledStringController构造方式的富文本组件支持预上屏功能
+## cl.arkui.3 使用RichEditorStyledStringController构造方式的富文本组件支持预上屏功能
 **访问级别**
 
 公开接口
@@ -906,7 +870,7 @@ struct Index {
 }
 ```
 
-## cl.arkui.5 RichEditor（富文本）组件鼠标右击文本触发onSelectionChange回调变更
+## cl.arkui.4 RichEditor（富文本）组件鼠标右击文本触发onSelectionChange回调变更
 **访问级别**
 
 公开接口
@@ -939,7 +903,7 @@ API 12
 
 不涉及应用适配。
 
-## cl.arkui.6  半模态底部样式最大高度默认避让状态栏安全区
+## cl.arkui.5  半模态底部样式最大高度默认避让状态栏安全区
 
 **访问级别**
 
@@ -991,7 +955,7 @@ bindSheet的LARGE属性
 
 若按变更前的最大高度规格限制的builder内容，需要变更为新规格计算。
 
-## cl.arkui.7 sharedTransition在id入参为undefined或空字符串时的行为变更
+## cl.arkui.6 sharedTransition在id入参为undefined或空字符串时的行为变更
 
 **访问级别**
 
@@ -1025,7 +989,7 @@ common.d.ts文件的sharedTransition接口
 
 开发者如果希望同一组件的sharedTransition的id维持有效值不变，且开发者已经主动设置id为空字符串或undefined时，需要适配。适配方式为不更改sharedTransition的id，维持之前的有效值不变。其余情况无需适配。
 
-## cl.arkui.8 半模态弹簧曲线时长设置默认值
+## cl.arkui.7 半模态弹簧曲线时长设置默认值
 
 **访问级别**
 
@@ -1061,7 +1025,7 @@ bindSheet的SheetSize.FIT_CONTENT属性。
 
 UX效果调优，应用无需适配。
 
-## cl.arkui.9 bindSheet在2in1设备中默认避让窗口安全区
+## cl.arkui.8 bindSheet在2in1设备中默认避让窗口安全区
 
 **访问级别**
 
@@ -1115,7 +1079,7 @@ bindSheet的preferType属性
 
 若按变更前的最大高度规格限制的builder内容，需要变更为新规格计算。
 
-## cl.arkui.10 XComponent设置为Texture模式使用blendMode接口的行为由不生效变更为正常生效
+## cl.arkui.9 XComponent设置为Texture模式使用blendMode接口的行为由不生效变更为正常生效
 **访问级别**
 
 公开接口
