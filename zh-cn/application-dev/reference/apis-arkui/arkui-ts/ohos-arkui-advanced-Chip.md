@@ -41,8 +41,8 @@ ChipOptions定义chip的样式及具体式样参数。
 | 名称            | 类型                                                         | 必填 | 说明                                                         |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | size            | [ChipSize](#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | 否   | 操作块尺寸。<br/>默认值：ChipSize：ChipSize.NORMAL，<br/>   SizeOptions类型参数不支持百分比设置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| enabled         | boolean                                                      | 否   | 操作块是否可选中。<br>默认值：true。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| activated<sup>12+</sup>    | boolean                                        | 否   | 操作块是否为激活态。<br>默认值：false。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                      |
+| enabled         | boolean                                                      | 否   | 操作块是否可选中。<br>默认值：true。<br>true：操作块可选中；false：操作块不可选中。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| activated<sup>12+</sup>    | boolean                                        | 否   | 操作块是否为激活态。<br>默认值：false。<br>true：操作块为激活态；false：操作块为非激活态。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                      |
 | prefixIcon      | [PrefixIconOptions](#prefixiconoptions)                      | 否   | 前缀图标属性。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | prefixSymbol<sup>12+</sup>  | [ChipSymbolGlyphOptions](#chipsymbolglyphoptions12)              | 否   | 前缀图标属性，symbol类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | label           | [LabelOptions](#labeloptions)                                | 是   | 文本属性。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
