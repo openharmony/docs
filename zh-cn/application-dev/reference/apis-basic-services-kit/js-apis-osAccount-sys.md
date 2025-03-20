@@ -1004,9 +1004,7 @@ createOsAccount(localName: string, type: OsAccountType, options?: CreateOsAccoun
   import { BusinessError } from '@kit.BasicServicesKit';
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let options: osAccount.CreateOsAccountOptions = {
-    shortName: 'myShortName',
-    disallowedPreinstalledBundles: [],
-    allowedPreinstalledBundles: [],
+    shortName: 'myShortName'
   }
   try {
     accountManager.createOsAccount('testAccountName', osAccount.OsAccountType.NORMAL, options).then(
@@ -2591,7 +2589,7 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 12300002 | Invalid challenge, authType or authTrustLevel. |
 | 12300013 | Network exception. |
 | 12300101 | The credential is incorrect. |
-| 12300102 | Credential not enrolled. |
+| 12300102 | The credential does not exist. |
 | 12300105 | The trust level is not supported. |
 | 12300106 | The authentication type is not supported. |
 | 12300109 | The authentication, enrollment, or update operation is canceled. |
@@ -2661,7 +2659,7 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
 | 12300101 | The credential is incorrect. |
-| 12300102 | Credential not enrolled. |
+| 12300102 | The credential does not exist. |
 | 12300105 | The trust level is not supported. |
 | 12300106 | The authentication type is not supported. |
 | 12300109 | The authentication, enrollment, or update operation is canceled. |
@@ -2734,7 +2732,7 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
 | 12300101 | The credential is incorrect. |
-| 12300102 | Credential not enrolled. |
+| 12300102 | The credential does not exist. |
 | 12300105 | The trust level is not supported. |
 | 12300106 | The authentication type is not supported. |
 | 12300109 | The authentication, enrollment, or update operation is canceled. |
@@ -2781,7 +2779,7 @@ cancelAuth(contextID: Uint8Array): void
 
 | 参数名    | 类型       | 必填  | 说明                                        |
 | ----------| ---------- | ---- | ------------------------------------------ |
-| contextId | Uint8Array | 是   | 指示身份验证上下文ID，此ID动态生成没有具体值。 |
+| contextID | Uint8Array | 是   | 指示身份验证上下文ID，此ID动态生成没有具体值。 |
 
 **错误码：**
 
@@ -3767,7 +3765,7 @@ hasAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;bool
 | 12300002 | Invalid domainAccountInfo. |
 | 12300013 | Network exception. |
 | 12300014 | Not authenticated. |
-| 12300111 | The authentication time out. |
+| 12300111 | The operation time out. |
 | 12300114 | The authentication service works abnormally. |
 | 12300211 | Server unreachable. |
 
@@ -3827,7 +3825,7 @@ hasAccount(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;
 | 12300002 | Invalid domainAccountInfo. |
 | 12300013 | Network exception. |
 | 12300014 | Not authenticated. |
-| 12300111 | The authentication time out. |
+| 12300111 | The operation time out. |
 | 12300114 | The authentication service works abnormally. |
 | 12300211 | Server unreachable. |
 
@@ -3958,6 +3956,56 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array): Pro
   }
   ```
 
+### updateAccountInfo<sup>12+</sup>
+
+updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccountInfo): Promise&lt;void&gt;
+
+修改指定域账号信息。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名      | 类型                                    | 必填 | 说明             |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| oldAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示旧域账号信息。|
+| newAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示新域账号信息。|
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
+| 12300002 | The new account info is invalid. |
+| 12300003 | The old account not found. |
+| 12300004 | The new account already exists. |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let oldDomainInfo: osAccount.DomainAccountInfo =
+    {domain: 'testDomain', accountName: 'oldtestAccountName'};
+  let newDomainInfo: osAccount.DomainAccountInfo =
+    {domain: 'testDomain', accountName: 'newtestAccountName'};
+  try {
+    osAccount.DomainAccountManager.updateAccountInfo(oldDomainInfo, newDomainInfo).then(() => {
+      console.log('updateAccountInfo, success');
+    }).catch((err: BusinessError) => {
+      console.log('updateAccountInfo err: ' + err);
+    });
+  } catch (e) {
+    console.log('updateAccountInfo exception: ' + e);
+  }
+  ```
+
 ### getAccountInfo<sup>10+</sup>
 
 getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;DomainAccountInfo&gt;): void
@@ -3989,7 +4037,7 @@ getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
 | 12300014 | Not authenticated. |
-| 12300111 | The authentication time out. |
+| 12300111 | The operation time out. |
 | 12300114 | The authentication service works abnormally. |
 | 12300211 | Server unreachable. |
 
@@ -4050,7 +4098,7 @@ getAccountInfo(options: GetDomainAccountInfoOptions): Promise&lt;DomainAccountIn
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
 | 12300014 | Not authenticated. |
-| 12300111 | The authentication time out. |
+| 12300111 | The operation time out. |
 | 12300114 | The authentication service works abnormally. |
 | 12300211 | Server unreachable. |
 
@@ -4102,7 +4150,7 @@ getAccessToken(businessParams: Record<string, Object>, callback: AsyncCallback&l
 | 12300003 | Domain account not found. |
 | 12300013 | Network exception. |
 | 12300014 | The domain account is not authenticated. |
-| 12300111 | The authentication time out. |
+| 12300111 | The operation time out. |
 | 12300114 | The authentication service works abnormally. |
 | 12300211 | Server unreachable. |
 
@@ -4161,7 +4209,7 @@ getAccessToken(businessParams: Record<string, Object>): Promise&lt;Uint8Array&gt
 | 12300003 | Domain account not found. |
 | 12300013 | Network exception. |
 | 12300014 | The domain account is not authenticated. |
-| 12300111 | The authentication time out. |
+| 12300111 | The operation time out. |
 | 12300114 | The authentication service works abnormally. |
 | 12300211 | Server unreachable. |
 
@@ -4387,7 +4435,7 @@ addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void
 | 12300101 | The token is invalid. |
 | 12300106 | The authentication type is not supported. |
 | 12300109 | The authentication, enrollment, or update operation is canceled. |
-| 12300111 | The authentication time out. |
+| 12300111 | The operation time out. |
 | 12300115 | The number of credentials reaches the upper limit. |
 | 12300116 | Credential complexity verification failed. |
 
@@ -4448,13 +4496,13 @@ updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | The system service works abnormally. |
-| 12300002 | Invalid credentialInfo, i.e. authType or authSubType or token. |
+| 12300002 | Invalid credentialInfo, i.e. authType or authSubType. |
 | 12300003 | Account not found. |
 | 12300101 | The token is invalid. |
-| 12300102 | Credential not enrolled.|
+| 12300102 | The credential does not exist. |
 | 12300106 | The authentication type is not supported. |
 | 12300109 | The authentication, enrollment, or update operation is canceled. |
-| 12300111 | The authentication time out. |
+| 12300111 | The operation time out. |
 | 12300116 | Credential complexity verification failed. |
 
 **示例：**
@@ -4648,7 +4696,7 @@ delCred(credentialId: Uint8Array, token: Uint8Array, callback: IIdmCallback): vo
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid credentialId. |
 | 12300101 | The token is invalid. |
-| 12300102 | Credential not enrolled. |
+| 12300102 | The credential does not exist. |
 
 **示例：**
   ```ts
@@ -4890,7 +4938,7 @@ getEnrolledId(authType: AuthType, accountId?: number): Promise&lt;Uint8Array&gt;
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid authType. |
 | 12300003 | Account not found. |
-| 12300102 | Credential not enrolled. |
+| 12300102 | The credential does not exist. |
 | 12300106 | The authentication type is not supported. |
 
 **示例：**
@@ -5496,7 +5544,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | ----------- | ------ | ---- | ---------- |
 | accountName | string | 是   | 域账号名。 |
 | domain      | string | 否   | 域名。默认为undefined。|
-| serverConfigId<sup>12+</sup>| boolean | 否 | 域账号所属服务器标识。默认为undefined。|
+| serverConfigId<sup>12+</sup>| string | 否 | 域账号所属服务器标识。默认为undefined。|
 
 ## GetDomainAccountInfoPluginOptions<sup>10+</sup>
 
@@ -5533,9 +5581,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| shortName | string | 是   | 表示账号短名称（用作个人文件夹目录）。 <br/>**约束：** <br>1）不允许出现的字符：\< \> \| : " * ? / \\<br>2）不允许独立出现的字符串：.或..<br>3）长度不超过255个字符。|
-| disallowedPreinstalledBundles<sup>18+</sup> | Array&lt;string&gt; | 否   | 表示预置应用禁止名单，名单中的应用不可被安装在设备上。|
-| allowedPreinstalledBundles<sup>18+</sup> | Array&lt;string&gt; | 否   | 表示预置应用允许名单，仅名单中的应用可以被安装在设备上。|
+| shortName | string | 是   | 表示账号短名称（用作个人文件夹目录） <br/>**约束：** <br>1）不允许出现的字符：\< \> \| : " * ? / \\<br>2）不允许独立出现的字符串：.或..<br>3）长度不超过255个字符|
 
 ## CreateOsAccountForDomainOptions<sup>12+</sup>
 
