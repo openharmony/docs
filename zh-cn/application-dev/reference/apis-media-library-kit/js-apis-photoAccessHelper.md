@@ -5442,7 +5442,7 @@ async function example() {
 
 | 名称                   | 类型                | 必填 | 说明                                              |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
-| title | string | 否  | 图片或者视频的标题。|
+| title | string | 否  | 图片或者视频的标题。参数规格为：<br>- 不应包含扩展名。<br>- 文件名字符串长度为1~255（资产文件名为标题+扩展名）。<br>- 不允许出现非法字符，包括：. \ / : * ? " ' ` < > \| { } [ ]|
 | fileNameExtension | string | 是  | 文件扩展名，例如'jpg'。|
 | photoType | [PhotoType](#phototype) | 是  | 创建的文件类型[PhotoType](#phototype)，IMAGE或者VIDEO。|
 | subtype | [PhotoSubtype](#photosubtype12) | 否  | 图片或者视频的文件子类型[PhotoSubtype](#photosubtype12)，当前仅支持DEFAULT。|
