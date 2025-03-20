@@ -1,40 +1,6 @@
 # ArkUI子系统Changelog
 
-## cl.arkui.1 Progress组件动态改变宽高时，内容区宽高变更
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-容器宽高改变，Progress组件内容区未能实时触发刷新，需要更新别的属性后宽高才会改变。
-
-**变更影响**
-
-此变更无需应用适配。
-
-| 变更前                                                                                                                                                        | 变更后                                                                                                                |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| 当容器的宽度或高度发生变化时，Progress组件的内容区域未能实时更新。需要更改其他属性后，其尺寸才会相应调整。<br>![progress_before](figures/progress_before.png) | 当容器的宽高发生变化时，Progress组件的内容区域宽高也会随之相应调整。<br>![progress_after](figures/progress_after.png) |
-
-**起始API Level**
-
-9
-
-**变更发生版本**
-
-从OpenHarmony 5.1.0.53 版本开始。
-
-**变更的接口/组件**
-
-Progress。
-
-**适配指导**
-
-展示效果变更，无需适配，但应注意变更后的效果是否符合开发者预期。
-
-## cl.arkui.2 无障碍绿框绘制区域和聚焦区域修改为组件触摸热区
+## cl.arkui.1 无障碍绿框绘制区域和聚焦区域修改为组件触摸热区
 
 **访问级别**
 
@@ -68,7 +34,7 @@ arkui无障碍
 
 此处无需应用适配，热区显示大小的调整，无论是否配置热区，均为内部逻辑调整绿框显示位置或大小。
 
-## cl.arkui.3 拖拽缩放比例UX规则变更
+## cl.arkui.2 拖拽缩放比例UX规则变更
 
 **访问级别**
 
@@ -119,7 +85,7 @@ UX规格变更，不涉及接口和组件。
 
 默认行为变更，无需适配。
 
-## cl.arkui.4 在使用手写笔操作时，应用从onTouch回调中获取到的TouchEvent，其中touches数组内的TouchObject的id值发生变更。
+## cl.arkui.3 在使用手写笔操作时，应用从onTouch回调中获取到的TouchEvent，其中touches数组内的TouchObject的id值发生变更。
 
 **访问级别**
 
@@ -156,7 +122,7 @@ UX规格变更，不涉及接口和组件。
 
 默认行为变更，应用无需适配。
 
-## cl.arkui.5 TEXTURE模式XComponent的本地窗口缓冲区支持设置旋转变换
+## cl.arkui.4 TEXTURE模式XComponent的本地窗口缓冲区支持设置旋转变换
 
 **访问级别**
 
@@ -210,7 +176,7 @@ OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, SET_TRANSFORM, NATIVEBUFFER_
 // ......
 ```
 
-## cl.arkui.6 Toast和Popup/Menu同时存在时，点击Toast子窗不再关闭Popup/Menu
+## cl.arkui.5 Toast和Popup/Menu同时存在时，点击Toast子窗不再关闭Popup/Menu
 
 **访问级别**
 
@@ -245,7 +211,7 @@ API 9
 
 默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
 
-## cl.arkui.7 按钮默认值变更为新增圆角矩形类型
+## cl.arkui.6 按钮默认值变更为新增圆角矩形类型
 
 **访问级别**
 
@@ -312,7 +278,7 @@ struct ButtonExample {
 
 ```
 
-## cl.arkui.8 enabled属性UX样式变更
+## cl.arkui.7 enabled属性UX样式变更
 
 **访问级别**
 
@@ -354,7 +320,7 @@ Slider组件变更场景：
 
 默认行为变更，无需适配。
 
-## cl.arkui.9 修复Popup高级组件宽度限制计算错误的问题
+## cl.arkui.8 修复Popup高级组件宽度限制计算错误的问题
 
 **访问级别**
 
@@ -392,7 +358,7 @@ Popup高级组件。
 
 如果用户原来没有自定义Popup高级组件的宽度，且内容宽度大于320vp，变更前按320vp显示，变更后，Popup高级组件会变宽；如不符合预期，可以手动修改为想要的宽度。
 
-## cl.arkui.12 getKeyboardAvoidMode接口返回值变更
+## cl.arkui.9 getKeyboardAvoidMode接口返回值变更
 
 **访问级别**
 
