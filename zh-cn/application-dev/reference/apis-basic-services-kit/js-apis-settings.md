@@ -681,7 +681,7 @@ openNetworkManagerSettings(context: Context): Promise\<boolean>
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](../apis-arkdata/errorcode-data-rdb.md)。
+以下错误码详细介绍请参考[设置数据项错误码](./errorcode-settings.md)。
 
 | 错误码ID    | 错误信息                    |
 |----------|-------------------------|
