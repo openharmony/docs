@@ -693,7 +693,7 @@ bool OH_ResourceManager_ReleaseRawFileDescriptorData (const RawFileDescriptor * 
 
 已打开的文件描述符在使用完以后必须释放，防止文件描述符泄露。
 
-**起始版本：** 11
+**起始版本：** 12
 
 **参数:**
 
