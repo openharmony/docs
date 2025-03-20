@@ -462,7 +462,9 @@ FFRT任务中使用标准库的互斥锁可能发生死锁，需要更换为FFRT
 - 错误示例1，重复调用销毁函数可能造成不可预知的数据损坏：
 
     ```cpp
-    #include "ffrt.h"
+    #include <stdio.h>
+    #include <ffrt/cpp/task.h>
+
     void abnormal_case_1()
     {
         ffrt_task_handle_t h = ffrt_submit_h([](){printf("Test task running...\n");}, NULL, NULL, NULL, NULL, NULL);
@@ -475,7 +477,9 @@ FFRT任务中使用标准库的互斥锁可能发生死锁，需要更换为FFRT
 - 错误示例2，未调用销毁函数会造成内存泄漏：
 
     ```cpp
-    #include "ffrt.h"
+    #include <stdio.h>
+    #include <ffrt/cpp/task.h>
+
     void abnormal_case_2()
     {
         ffrt_task_handle_t h = ffrt_submit_h([](){printf("Test task running...\n");}, NULL, NULL, NULL, NULL, NULL);
@@ -487,7 +491,9 @@ FFRT任务中使用标准库的互斥锁可能发生死锁，需要更换为FFRT
 - 建议示例，仅调用一次销毁函数，如有必要可进行置空：
 
     ```cpp
-    #include "ffrt.h"
+    #include <stdio.h>
+    #include <ffrt/cpp/task.h>
+
     void normal_case()
     {
         ffrt_task_handle_t h = ffrt_submit_h([](){printf("Test task running...\n");}, NULL, NULL, NULL, NULL, NULL);
@@ -503,7 +509,10 @@ FFRT任务中使用标准库的互斥锁可能发生死锁，需要更换为FFRT
 - 错误示例1，变量生命周期已结束导致的UAF问题：
 
     ```cpp
-    #include "ffrt.h"
+    #include "ffrt/cpp/mutex.h"
+    #include <ffrt/cpp/task.h>
+    #include <unistd.h>
+
     void abnormal_case_3()
     {
         int x = 0;
@@ -517,7 +526,10 @@ FFRT任务中使用标准库的互斥锁可能发生死锁，需要更换为FFRT
 - 错误示例2，互斥锁生命周期已结束继续使用导致功能异常：
 
     ```cpp
-    #include "ffrt.h"
+    #include "ffrt/cpp/mutex.h"
+    #include <ffrt/cpp/task.h>
+    #include <unistd.h>
+
     void abnormal_case_4()
     {
         ffrt::mutex lock;
