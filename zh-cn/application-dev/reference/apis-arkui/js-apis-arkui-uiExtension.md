@@ -409,7 +409,7 @@ occupyEvents(eventFlags: number): Promise&lt;void&gt;
 
 | 参数名 | 类型    | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| eventFlags | [EventFlag](js-apis-arkui-uiExtension.md#EventFlag) | 是 | 占用的事件类型。 |
+| eventFlags | number | 是 | 占用的事件类型，具体取值可见[EventFlag](#eventflag18)枚举值。 |
 
 **返回值：**
 
@@ -423,7 +423,7 @@ occupyEvents(eventFlags: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.   |
 | 1300002  | This window state is abnormal. |
 | 1300003  | This window manager service works abnormally. |
 
@@ -454,6 +454,8 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 事件类型枚举。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 | 名称                        | 值              | 说明            |
 |-----------------------------| --------------- |----------------|
