@@ -239,9 +239,9 @@ typedef void(* Input_AxisEventCallback) (const Input_AxisEvent *axisEvent)
 
 **参数：**
 
-  | 名称 | 描述    | 
-  | ------ | ------ |
-  | axisEvent | 轴事件对象。 |
+| 名称 | 描述    | 
+| ------ | ------ |
+| axisEvent | 轴事件对象。 |
 
 ### Input_DeviceAddedCallback
 
@@ -397,9 +397,9 @@ typedef void(* Input_KeyEventCallback) (const Input_KeyEvent *keyEvent)
 
 **参数：**
 
-  | 名称 |描述    | 
-  | ------ | ------ |
-  | keyEvent | 按键事件对象。 |
+| 名称 |描述    | 
+| ------ | ------ |
+| keyEvent | 按键事件对象。 |
 
 ### Input_KeyState
 
@@ -473,9 +473,9 @@ typedef void(* Input_MouseEventCallback) (const Input_MouseEvent *mouseEvent)
 
 **参数：**
 
-  | 名称 | 描述    |
-  | ------ | ------ |
-  | mouseEvent | 鼠标事件对象。 |
+| 名称 | 描述    |
+| ------ | ------ |
+| mouseEvent | 鼠标事件对象。 |
 
 ### Input_Result
 
@@ -526,9 +526,9 @@ typedef void(* Input_TouchEventCallback) (const Input_TouchEvent *touchEvent)
 
 **参数：**
 
-  | 名称 | 描述    |
-  | ------ | ------ |
-  | touchEvent | 触摸事件对象。 |
+| 名称 | 描述    |
+| ------ | ------ |
+| touchEvent | 触摸事件对象。 |
 
 ### InputEvent_AxisAction
 
