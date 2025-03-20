@@ -43,8 +43,8 @@
 | typedef enum [OH_AVCProfile](_codec_base.md#oh_avcprofile-1) [OH_AVCProfile](_codec_base.md#oh_avcprofile) | AVC档次。 | 
 | typedef enum [OH_HEVCProfile](_codec_base.md#oh_hevcprofile-1) [OH_HEVCProfile](_codec_base.md#oh_hevcprofile) | HEVC档次。 | 
 | typedef enum [OH_VVCProfile](_codec_base.md#oh_vvcprofile-1) [OH_VVCProfile](_codec_base.md#oh_vvcprofile) | VVC档次。 | 
-| typedef enum [OH_MPEG2Profile](_codec_base.md#oh_mpeg2profile-1) [OH_MPEG2Profile](_codec_base.md#oh_mpeg2profile) |  MPEG2档次。 | 
-| typedef enum [OH_MPEG4Profile](_codec_base.md#oh_mpeg4profile-1) [OH_MPEG4Profile](_codec_base.md#oh_mpeg4profile) | MPEG4档次。 | 
+| typedef enum [OH_MPEG2Profile](_codec_base.md#oh_mpeg2profile) [OH_MPEG2Profile](_codec_base.md#oh_mpeg2profile) | MPEG2档次。 | 
+| typedef enum [OH_MPEG4Profile](_codec_base.md#oh_mpeg4profile) [OH_MPEG4Profile](_codec_base.md#oh_mpeg4profile) | MPEG4档次。 | 
 | typedef enum [OH_AVOutputFormat](_codec_base.md#oh_avoutputformat-1) [OH_AVOutputFormat](_codec_base.md#oh_avoutputformat) | 封装器支持的输出文件格式。 | 
 | typedef enum [OH_AVSeekMode](_codec_base.md#oh_avseekmode-1) [OH_AVSeekMode](_codec_base.md#oh_avseekmode) | 跳转模式。 | 
 | typedef enum [OH_ScalingMode](_codec_base.md#oh_scalingmode-1) [OH_ScalingMode](_codec_base.md#oh_scalingmode) | 缩放模式，只在surface模式下使用。（API14废弃） | 
@@ -55,8 +55,8 @@
 | typedef enum [OH_AVCLevel](_codec_base.md#oh_avclevel-1) [OH_AVCLevel](_codec_base.md#oh_avclevel) | AVC级别。  | 
 | typedef enum [OH_HEVCLevel](_codec_base.md#oh_hevclevel-1) [OH_HEVCLevel](_codec_base.md#oh_hevclevel) | HEVC级别。  | 
 | typedef enum [OH_VVCLevel](_codec_base.md#oh_vvclevel-1) [OH_VVCLevel](_codec_base.md#oh_vvclevel) | VVC级别。  | 
-| typedef enum [OH_MPEG2Level](_codec_base.md#oh_mpeg2level-1) [OH_MPEG2Level](_codec_base.md#oh_mpeg2level) | MPEG2级别。  | 
-| typedef enum [OH_MPEG4Level](_codec_base.md#oh_mpeg4level-1) [OH_MPEG4Level](_codec_base.md#oh_mpeg4level) | MPEG4级别。  | 
+| typedef enum [OH_MPEG2Level](_codec_base.md#oh_mpeg2level) [OH_MPEG2Level](_codec_base.md#oh_mpeg2level) | MPEG2级别。 | 
+| typedef enum [OH_MPEG4Level](_codec_base.md#oh_mpeg4level) [OH_MPEG4Level](_codec_base.md#oh_mpeg4level) | MPEG4级别。 | 
 | typedef enum [OH_TemporalGopReferenceMode](_codec_base.md#oh_temporalgopreferencemode-1) [OH_TemporalGopReferenceMode](_codec_base.md#oh_temporalgopreferencemode) | 时域图片组参考模式。  | 
 
 
@@ -110,8 +110,6 @@
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_RAW](_codec_base.md#oh_avcodec_mimetype_audio_raw) | RAW音频码流的MIME类型。 |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_APE](_codec_base.md#oh_avcodec_mimetype_audio_ape) |APE音频解码器的MIME类型。                         |
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_VVC](_codec_base.md#oh_avcodec_mimetype_video_vvc) | VVC(H.266)视频编解码器的MIME类型。 | 
-| const char \* [OH_AVCODEC_MIMETYPE_VIDEO_MPEG2](_codec_base.md#oh_avcodec_mimetype_video_mpeg2) | 视频MPEG2编解码器的MIME类型。                        |
-| const char \* [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2](_codec_base.md#oh_avcodec_mimetype_video_mpeg4_part2) | 视频MPEG4 Part2编解码器的MIME类型。         |
 | const char \* [OH_AVCODEC_MIMETYPE_SUBTITLE_SRT](_codec_base.md#oh_avcodec_mimetype_subtitle_srt) |SRT字幕解封装器的MIME类型。                         |
 | const char \* [OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT](_codec_base.md#oh_avcodec_mimetype_subtitle_webvtt) |WEBVTT字幕解封装器的MIME类型。                         |
 | const char \* [OH_ED_KEY_TIME_STAMP](_codec_base.md#oh_ed_key_time_stamp) | 表示surfacebuffer中时间戳的键，值类型为int64_t。（API14废弃） |
