@@ -67,11 +67,11 @@ API 9
 
 [@ohos.bundle.installer.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.bundle.installer.d.ts)中如下接口：
 
-1. function install(hapFilePaths: Array<string>, installParam: InstallParam, callback: AsyncCallback<void>): void;
+1. function install(hapFilePaths: Array\<string\>, installParam: InstallParam, callback: AsyncCallback<void>): void;
 
-2. function install(hapFilePaths: Array<string>, callback: AsyncCallback<void>): void;
+2. function install(hapFilePaths: Array\<string\>, callback: AsyncCallback<void>): void;
 
-3. function install(hapFilePaths: Array<string>, installParam?: InstallParam): Promise<void>;
+3. function install(hapFilePaths: Array\<string\>, installParam?: InstallParam): Promise<void>;
 
 **适配指导**
 
