@@ -16,7 +16,11 @@ import { continueManager } from '@kit.AbilityKit';
 
 on(type: 'prepareContinue', context: Context, callback: AsyncCallback&lt;ContinueResultInfo&gt;): void
 
-注册回调函数以获取快速拉起结果，仅可以在应用快速拉起时注册。使用callback异步回调。
+在应用快速拉起时，注册回调函数以获取快速拉起结果。使用callback异步回调。
+
+> **说明：**
+>
+> 在源端应用continueType标签中添加“_ContinueQuickStart”后缀可以开启快速拉起功能，此时发起迁移后会立即拉起对端的目标应用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
@@ -78,7 +82,11 @@ export default class MigrationAbility extends UIAbility {
 
 off(type: 'prepareContinue', context: Context, callback: AsyncCallback&lt;ContinueResultInfo&gt;): void
 
-注销回调函数，不再获取快速拉起结果，仅可以在应用快速拉起时注销。使用callback异步回调。
+在应用快速拉起时，注销回调函数，不再获取快速拉起结果。使用callback异步回调。
+
+> **说明：**
+>
+> 在源端应用continueType标签中添加“_ContinueQuickStart”后缀可以开启快速拉起功能，此时发起迁移后会立即拉起对端的目标应用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
