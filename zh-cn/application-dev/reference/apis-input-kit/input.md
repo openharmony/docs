@@ -177,8 +177,8 @@
 | [Input_Result](#input_result) [OH_Input_RemoveAxisEventMonitor](#oh_input_removeaxiseventmonitor) ([InputEvent_AxisEventType](#inputevent_axiseventtype) axisEventType, [Input_AxisEventCallback](#input_axiseventcallback) callback) | 移除指定类型轴事件监听，轴事件类型定义在[InputEvent_AxisEventType](#inputevent_axiseventtype)中。  | 
 | [Input_Result](#input_result) [OH_Input_AddKeyEventInterceptor](#oh_input_addkeyeventinterceptor) ([Input_KeyEventCallback](#input_keyeventcallback) callback, [Input_InterceptorOptions](#input_interceptoroptions) \*option) | 添加按键事件的拦截，重复添加只有第一次生效。  | 
 | [Input_Result](#input_result) [OH_Input_AddInputEventInterceptor](#oh_input_addinputeventinterceptor) ([Input_InterceptorEventCallback](_input___interceptor_event_callback.md) \*callback [Input_InterceptorOptions](#input_interceptoroptions) \*option) | 添加输入事件拦截，包括鼠标、触摸和轴事件，重复添加只有第一次生效。  | 
-| [Input_Result](#input_result) [OH_Input_RemoveKeyEventInterceptor](#oh_input_removekeyeventinterceptor) () | 移除按键事件拦截。  | 
-| [Input_Result](#input_result) [OH_Input_RemoveInputEventInterceptor](#oh_input_removeinputeventinterceptor) () | 移除输入事件拦截，包括鼠标、触摸和轴事件。  | 
+| [Input_Result](#input_result) [OH_Input_RemoveKeyEventInterceptor](#oh_input_removekeyeventinterceptor) (void) | 移除按键事件拦截。  | 
+| [Input_Result](#input_result) [OH_Input_RemoveInputEventInterceptor](#oh_input_removeinputeventinterceptor) (void) | 移除输入事件拦截，包括鼠标、触摸和轴事件。  | 
 | [Input_Result](#input_result) [OH_Input_GetIntervalSinceLastInput](#oh_input_getintervalsincelastinput) (int64_t \*timeInterval) | 获取距离上次系统输入事件的时间间隔。  | 
 | [Input_Hotkey](#input_hotkey) \* [OH_Input_CreateHotkey](#oh_input_createhotkey) (void) | 创建快捷键对象的实例。  | 
 | void [OH_Input_DestroyHotkey](#oh_input_destroyhotkey) ([Input_Hotkey](#input_hotkey) \*\*hotkey) | 销毁快捷键对象的实例。  | 
@@ -239,9 +239,9 @@ typedef void(* Input_AxisEventCallback) (const Input_AxisEvent *axisEvent)
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明                                   |
-  | ------ | ------ | ---- | ------------------------------------- |
-  | axisEvent |  [Input_AxisEvent](#input_axisevent) | 是   | 轴事件对象。 |
+| 名称 | 描述    | 
+| ------ | ------ |
+| axisEvent | 轴事件对象。 |
 
 ### Input_DeviceAddedCallback
 
@@ -397,9 +397,9 @@ typedef void(* Input_KeyEventCallback) (const Input_KeyEvent *keyEvent)
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明                                   |
-  | ------ | ------ | ---- | ------------------------------------- |
-  | keyEvent |  [Input_KeyEvent](#input_keyevent) | 是   | 按键事件对象。 |
+| 名称 |描述    | 
+| ------ | ------ |
+| keyEvent | 按键事件对象。 |
 
 ### Input_KeyState
 
@@ -526,9 +526,9 @@ typedef void(* Input_TouchEventCallback) (const Input_TouchEvent *touchEvent)
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明                                   |
-  | ------ | ------ | ---- | ------------------------------------- |
-  | touchEvent |  [Input_TouchEvent](#input_touchevent) | 是   | 触摸事件对象。 |
+| 名称 | 描述    |
+| ------ | ------ |
+| touchEvent | 触摸事件对象。 |
 
 ### InputEvent_AxisAction
 
@@ -2973,7 +2973,7 @@ INPUT_PARAMETER_ERROR 表示参数检查失败。
 ### OH_Input_RemoveInputEventInterceptor()
 
 ```
-Input_Result OH_Input_RemoveInputEventInterceptor ()
+Input_Result OH_Input_RemoveInputEventInterceptor (void)
 ```
 **描述**
 
@@ -2995,7 +2995,7 @@ ohos.permission.INTERCEPT_INPUT_EVENT
 ### OH_Input_RemoveKeyEventInterceptor()
 
 ```
-Input_Result OH_Input_RemoveKeyEventInterceptor ()
+Input_Result OH_Input_RemoveKeyEventInterceptor (void)
 ```
 **描述**
 
