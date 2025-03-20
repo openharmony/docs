@@ -312,6 +312,8 @@ onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void): T
 
 ## ItemDragInfo对象说明
 
+拖拽点信息对象。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -322,6 +324,8 @@ onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void): T
 | y | number |  当前拖拽点的y坐标，单位vp。    |
 
 ## NestedScrollOptions<sup>10+</sup>对象说明
+
+[nestedScroll](#nestedscroll11)属性参数对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -334,6 +338,8 @@ onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void): T
 
 ## EdgeEffectOptions<sup>11+</sup>对象说明
 
+[edgeEffect](#edgeeffect11)属性参数对象。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -344,6 +350,8 @@ onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void): T
 | effectEdge<sup>18+</sup> | number | 否 | 设置边缘效果生效的边缘。<br/>如果设置[EffectEdge](#effectedge18枚举说明).START表示只有起始边生效。如果设置[EffectEdge](#effectedge18枚举说明).END表示只有末尾边生效。<br/>默认值为[EffectEdge](#effectedge18枚举说明).START \| [EffectEdge](#effectedge18枚举说明).END表示双边同时生效。当设置为其它异常值时，则默认双边同时生效。<br/>如果需要双边都不生效，可将edgeEffect设置为EdgeEffect.None。 |
 
 ## FadingEdgeOptions<sup>14+</sup>对象说明
+
+[fadingEdge](#fadingedge14)属性边缘渐隐参数对象。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -427,6 +435,8 @@ type OnScrollCallback = (scrollOffset: number, scrollState: ScrollState) => void
 
 ## ScrollResult<sup>12+</sup>对象说明
 
+[OnWillScrollCallback](#onwillscrollcallback12)返回值对象。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -440,6 +450,8 @@ type OnScrollCallback = (scrollOffset: number, scrollState: ScrollState) => void
 维护List组件或ListItemGroup组件的子组件在主轴方向的大小信息，仅支持一对一绑定到List组件或ListItemGroup组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### constructor<sup>12+</sup>
 
