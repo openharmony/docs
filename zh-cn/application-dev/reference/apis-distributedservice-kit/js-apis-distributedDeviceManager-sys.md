@@ -206,7 +206,7 @@ setHeartbeatPolicy(policy: StrategyForHeartbeat, delayTime: number): void;
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
   | policy        |  &nbsp;[StrategyForHeartbeat](#strategyforheartbeat15)&nbsp;         | 是    | 心跳广播策略。       |
-  | delayTime     | number          | 是    | 临时关闭心跳广播的时长，单位为：ms，范围1000ms到15000ms。            |
+  | delayTime     | number          | 是    | 临时关闭心跳广播的时长，单位为：ms，取值范围1000ms到15000ms。            |
 
 **错误码：**
 
