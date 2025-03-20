@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Remote error.
+remote error. Possible causes: remote is not work.
 
 **错误描述**
 
@@ -21,4 +21,4 @@ Remote error.
 
 **处理步骤**
 
-系统服务内部工作异常，请稍候重试，或者重启设备尝试。
+请稍后（1S）重试
