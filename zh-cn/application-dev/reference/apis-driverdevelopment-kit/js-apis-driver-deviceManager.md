@@ -57,7 +57,7 @@ try {
 }
 ```
 
-## deviceManager.bindDevice<sup>(deprecated)</sup>
+## deviceManager.bindDevice
 
 bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
   callback: AsyncCallback&lt;{deviceId: number; remote: rpc.IRemoteObject;}&gt;): void;
@@ -65,9 +65,6 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 根据queryDevices()返回的设备信息绑定设备。
 
 需要调用[deviceManager.queryDevices()](#devicemanagerquerydevices)获取设备信息以及device。
-
-> **说明**
-> 从 API version 10开始支持，从API version 18开始废弃。建议使用[deviceManager.bindDriverWithDeviceId](#devicemanagerbinddriverwithdeviceid18)替代。
 
 **需要权限：** ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
@@ -117,16 +114,13 @@ try {
 }
 ```
 
-## deviceManager.bindDeviceDriver<sup>(deprecated)</sup>
+## deviceManager.bindDeviceDriver<sup>11+</sup>
 bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
   callback: AsyncCallback&lt;RemoteDeviceDriver&gt;): void;
 
 根据queryDevices()返回的设备信息绑定设备。
 
 需要调用[deviceManager.queryDevices()](#devicemanagerquerydevices)获取设备信息以及device。
-
-> **说明**
-> 从 API version 11开始支持，从API version 18开始废弃。建议使用[deviceManager.bindDriverWithDeviceId](#devicemanagerbinddriverwithdeviceid18)替代。
 
 **需要权限：** ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
@@ -171,7 +165,7 @@ try {
 }
 ```
 
-## deviceManager.bindDevice<sup>(deprecated)</sup>
+## deviceManager.bindDevice
 
 bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;{deviceId: number;
   remote: rpc.IRemoteObject;}&gt;;
@@ -179,9 +173,6 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise
 根据queryDevices()返回的设备信息绑定设备。
 
 需要调用[deviceManager.queryDevices](#devicemanagerquerydevices)获取设备信息以及device。
-
-> **说明**
-> 从 API version 10开始支持，从API version 18开始废弃。建议使用[deviceManager.bindDriverWithDeviceId](#devicemanagerbinddriverwithdeviceid18)替代。
 
 **需要权限：** ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
@@ -228,16 +219,13 @@ try {
   console.error(`bindDevice fail. Code is ${error.code}, message is ${error.message}`);
 }
 ```
-## deviceManager.bindDeviceDriver<sup>(deprecated)</sup>
+## deviceManager.bindDeviceDriver<sup>11+</sup>
 
 bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;RemoteDeviceDriver&gt;;
 
 根据queryDevices()返回的设备信息绑定设备。
 
 需要调用[deviceManager.queryDevices](#devicemanagerquerydevices)获取设备信息以及device。
-
-> **说明**
-> 从 API version 11开始支持，从API version 18开始废弃。建议使用[deviceManager.bindDriverWithDeviceId](#devicemanagerbinddriverwithdeviceid18)替代。
 
 **需要权限：** ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
@@ -285,14 +273,11 @@ try {
 }
 ```
 
-## deviceManager.unbindDevice<sup>(deprecated)</sup>
+## deviceManager.unbindDevice
 
 unbindDevice(deviceId: number, callback: AsyncCallback&lt;number&gt;): void
 
 解除设备绑定。
-
-> **说明**
-> 从 API version 10开始支持，从API version 18开始废弃。建议使用[deviceManager.unbindDriverWithDeviceId](#devicemanagerunbinddriverwithdeviceid18)替代。
 
 **需要权限**：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
@@ -332,14 +317,11 @@ try {
   console.error(`unbindDevice fail. Code is ${error.code}, message is ${error.message}`);
 }
 ```
-## deviceManager.unbindDevice<sup>(deprecated)</sup>
+## deviceManager.unbindDevice
 
 unbindDevice(deviceId: number): Promise&lt;number&gt;
 
 解除设备绑定。
-
-> **说明**
-> 从 API version 10开始支持，从API version 18开始废弃。建议使用[deviceManager.unbindDriverWithDeviceId](#devicemanagerunbinddriverwithdeviceid18)替代。
 
 **需要权限**：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
@@ -380,109 +362,6 @@ try {
   });
 } catch (error) {
   console.error(`unbindDevice fail. Code is ${error.code}, message is ${error.message}`);
-}
-```
-## deviceManager.bindDriverWithDeviceId<sup>18+</sup>
-
-bindDriverWithDeviceId(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;RemoteDeviceDriver&gt;;
-
-根据queryDevices()返回的设备信息绑定设备。
-
-需要调用[deviceManager.queryDevices](#devicemanagerquerydevices)获取设备信息列表。
-
-**需要权限：** ohos.permission.ACCESS_DDK_DRIVERS
-
-**系统能力：** SystemCapability.Driver.ExternalDevice
-
-**参数：**
-
-| 参数名       | 类型                        | 必填 | 说明                         |
-| ------------ | --------------------------- | ---- | ---------------------------- |
-| deviceId     | number                      | 是   | 设备ID，通过queryDevices获得。 |
-| onDisconnect | AsyncCallback&lt;number&gt; | 是   | 绑定设备断开的回调。           |
-
-**返回值：**
-
-| 类型                              | 说明                                      |
-| --------------------------------- | -----------------------------------------|
-| Promise&lt;RemoteDeviceDriver&gt; | Promise对象，返回[RemoteDeviceDriver](#remotedevicedriver11)对象。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
-| 201      | The permission check failed.             |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
-| 26300001  | ExternalDeviceManager service exception. |
-| 26300002  | Service not allowed. |
-
-**示例：**
-
-```ts
-import { deviceManager } from '@kit.DriverDevelopmentKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
-  deviceManager.bindDriverWithDeviceId(12345678, (error : BusinessError, data : number) => {
-    console.error(`Device is disconnected`);
-  }).then((data: deviceManager.RemoteDeviceDriver) => {
-    console.info(`bindDriverWithDeviceId success, Device_Id is ${data.deviceId}.
-    remote is ${data.remote != null ? data.remote.getDescriptor() : "null"}`);
-  }, (error: BusinessError) => {
-    console.error(`bindDriverWithDeviceId async fail. Code is ${error.code}, message is ${error.message}`);
-  });
-} catch (error) {
-  console.error(`bindDriverWithDeviceId fail. Code is ${error.code}, message is ${error.message}`);
-}
-```
-
-## deviceManager.unbindDriverWithDeviceId<sup>18+</sup>
-
-unbindDriverWithDeviceId(deviceId: number): Promise&lt;number&gt;
-
-解除设备绑定。
-
-**需要权限**：ohos.permission.ACCESS_DDK_DRIVERS
-
-**系统能力：**  SystemCapability.Driver.ExternalDevice
-
-**参数：**
-
-| 参数名   | 类型   | 必填 | 说明                           |
-| -------- | ------ | ---- | ------------------------------ |
-| deviceId | number | 是   | 设备ID，通过queryDevices获得。 |
-
-**返回值：**
-
-| 类型                  | 说明                      |
-| --------------------- | ------------------------- |
-| Promise&lt;number&gt; | Promise对象，返回设备ID。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
-| 201      | The permission check failed.             |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
-| 26300001 | ExternalDeviceManager service exception. |
-| 26300003 | There is no binding relationship. |
-
-**示例：**
-
-```ts
-import { deviceManager } from '@kit.DriverDevelopmentKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
-  deviceManager.unbindDriverWithDeviceId(12345678).then((data : number) => {
-    console.info(`unbindDriverWithDeviceId success, Device_Id is ${data}.`);
-  }, (error : BusinessError) => {
-    console.error(`unbindDriverWithDeviceId async fail. Code is ${error.code}, message is ${error.message}`);
-  });
-} catch (error) {
-  console.error(`unbindDriverWithDeviceId fail. Code is ${error.code}, message is ${error.message}`);
 }
 ```
 
