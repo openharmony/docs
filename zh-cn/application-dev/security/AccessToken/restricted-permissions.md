@@ -523,7 +523,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 允许应用读取或设置APN信息。
 
-<!--RP35--><!--RP35End-->
+<!--RP38--><!--RP38End-->
 
 **权限级别**：system_basic
 
