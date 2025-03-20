@@ -17,7 +17,7 @@ SIM卡密码信息。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| String [fac](#fac) | SIM锁类型。 | 
+| String [fac](#fac) | SIM锁类型 | 
 | String [oldPassword](#oldpassword) | 旧密码文本  | 
 | String [newPassword](#newpassword) | 新密码文本  | 
 | int [serial](#serial) | 请求的序列号  | 
