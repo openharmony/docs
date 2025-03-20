@@ -217,7 +217,7 @@ setOverlayManagerOptions(options: OverlayManagerOptions): boolean
 
 | 类型    | 说明           |
 | ------- | -------------- |
-| boolean | 是否设置成功。 |
+| boolean | 是否设置成功。<br/>返回true时，设置成功。返回false时，设置失败。 |
 
 **示例：**
 
