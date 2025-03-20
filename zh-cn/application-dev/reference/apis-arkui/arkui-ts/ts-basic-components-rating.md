@@ -261,8 +261,8 @@ type OnRatingChangeCallback = (value: number) => void
 
 | 名称  | 类型    |    只读    |    可选      |  说明              |
 | ------ | ------ | ------ |-------------------------------- |-------------------------------- |
-| rating | number | 否 | 否 |评分条当前评分数。<br/>默认值：0 |
-| indicator | boolean | 否 | 否 | 评分条是否作为一个指示器。<br/>默认值：false<br/>值为true时，评分条不可以改变评分。值为false时，评分条可以进行评分。 |
+| rating    | number  | 否 | 否 | 设置并接收评分值。<br/>默认值：0<br/>取值范围： [0, stars]<br/>小于0取0，大于[stars](#stars)取最大值stars。<br />该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| indicator | boolean | 否 | 否 | 评分条是否作为一个指示器。值为true时，表示作为一个指示器，值为false时，表示不作为一个指示器。<br/>默认值：false |
 | stars | number | 否 | 否 |评分条的星级总数。<br/>默认值：5 |
 | stepSize | number | 否 | 否 |评分条的评分步长。<br/>默认值：0.5 |
 | triggerChange | Callback\<number> | 否 | 否 |触发评分数量变化。 |
@@ -277,7 +277,7 @@ type OnRatingChangeCallback = (value: number) => void
 
 | 名称      | 类型    | 必填 | 说明                                                         |
 | --------- | ------- | ---- | ------------------------------------------------------------ |
-| rating    | number  | 是   | 设置并接收评分值。<br/>默认值：0<br/>取值范围： [0, stars]<br/>小于0取0，大于stars取最大值stars。<br />该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| rating    | number  | 是   | 设置并接收评分值。<br/>默认值：0<br/>取值范围： [0, stars]<br/>小于0取0，大于[stars](#stars)取最大值stars。<br />该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | indicator | boolean | 否   | 设置评分组件作为指示器使用，不可改变评分。<br/>默认值：false, 可进行评分<br/>**说明：** <br/>indicator=true时，默认组件高度height=12.0vp，组件width=height * stars。 <br/>indicator=false时，默认组件高度height=28.0vp，组件width=height * stars。 |
 
 ## StarStyleOptions<sup>18+</sup>对象说明
