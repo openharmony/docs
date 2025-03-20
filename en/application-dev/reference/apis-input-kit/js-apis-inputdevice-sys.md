@@ -378,11 +378,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 try {
   inputDevice.setInputDeviceEnabled(0, true).then(() => {
     console.info(`Set input device enable success`);
-  }).catch((error) => {
-    console.info(`Set input device enable failed, error=${JSON.stringify(error)}`);
   });
 } catch (error) {
     console.info(`Set input device enable error`);
 }
 ```
-## 
+

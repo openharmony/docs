@@ -234,7 +234,7 @@ struct SpecialImage {
     return 1;
   }
   build() {
-    Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
+    Image($r('app.media.icon')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
       .width(this.uiStyle.imageWidth)
       .height(this.uiStyle.imageHeight)
       .margin({ top: 20 })
@@ -272,7 +272,7 @@ struct PageChild {
       })
       Stack() {
         Column() {
-            Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
+            Image($r('app.media.icon')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
               .opacity(this.uiStyle.alpha)
               .scale({
                 x: this.uiStyle.scaleX,
@@ -435,7 +435,7 @@ struct SpecialImage {
     return 1;
   }
   build() {
-    Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
+    Image($r('app.media.icon')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
       .width(this.needRenderImage.imageWidth) // 使用this.needRenderImage.xxx
       .height(this.needRenderImage.imageHeight)
       .margin({top:20})
@@ -481,7 +481,7 @@ struct PageChild {
       })
       Stack() {
         Column() {
-          Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
+          Image($r('app.media.icon')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
             .opacity(this.needRenderAlpha.alpha)
             .scale({
               x: this.needRenderScale.scaleX, // 使用this.needRenderXxx.xxx
@@ -629,7 +629,7 @@ struct SpecialImage {
     return 1;
   }
   build() {
-    Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
+    Image($r('app.media.icon')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
       .width(this.uiStyle.imageWidth)
       .height(this.uiStyle.imageHeight)
       .margin({ top: 20 })
@@ -667,7 +667,7 @@ struct PageChild {
       })
       Stack() {
         Column() {
-            Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
+            Image($r('app.media.icon')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
               .opacity(this.uiStyle.alpha)
               .scale({
                 x: this.uiStyle.scaleX,
@@ -1185,7 +1185,8 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i <= 9; i++) {
-      this.data.pushData(new StringData(`Click to add ${i}`, $r('app.media.icon'))); // 在API12及以后的工程中使用app.media.app_icon
+      // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+      this.data.pushData(new StringData(`Click to add ${i}`, $r('app.media.icon')));
     }
   }
 
@@ -1322,7 +1323,8 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i <= 9; i++) {
-      this.data.pushData(new StringData(`Click to add ${i}`, $r('app.media.icon'))); // 在API12及以后的工程中使用app.media.app_icon
+      // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+      this.data.pushData(new StringData(`Click to add ${i}`, $r('app.media.icon')));
     }
   }
 

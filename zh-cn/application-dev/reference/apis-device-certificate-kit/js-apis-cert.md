@@ -360,6 +360,7 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 ## KeyUsageType<sup>12+</sup>
 
  表示证书中密钥用途的枚举。
+ 
  **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
  **系统能力：** SystemCapability.Security.Cert
@@ -9982,7 +9983,7 @@ async function buildX509CertChain() {
   try {
     const caCert = await createX509Cert(caPem);
     const x509Cert = await createX509Cert(certPem);
-    let certCrlCollection = await cert.createCertCRLCollection([x509Cert]);
+    let certCrlCollection = cert.createCertCRLCollection([x509Cert]);
     let param: cert.CertChainBuildParameters = {
       certMatchParameters: {validDate:'20240812080000Z'},
       maxLength: 3,

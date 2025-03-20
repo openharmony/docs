@@ -41,7 +41,7 @@ isEnabled: boolean, colorOptions?: ProgressButtonColorOptions, progressButtonRad
 | progressButtonRadius<sup>18+<sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否  | \@Param                | 下载按钮的圆角（不支持百分比设置）。<br/>取值范围：[0, height/2]<br/>默认值：height/2<br/>设置非法数值时，按照默认值处理。    |
 
 ## 属性
-不支持[通用属性](ts-component-general-attributes.md)
+不支持[通用属性](ts-component-general-attributes.md)。
 
 ## ClickCallback
 
@@ -100,7 +100,7 @@ constructor(options: ProgressButtonV2ColorOptions);
 | backgroundColor | ColorMetrics | 否  | 按钮背景颜色。<br/>默认值：undefined。 |
 
 ## 事件
-不支持[通用事件](ts-component-general-events.md)
+不支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 

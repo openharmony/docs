@@ -1932,6 +1932,7 @@
           - [@ohos.app.ability.AbilityConstant (AbilityConstant)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-abilityConstant-sys.md)
           - [@ohos.app.ability.application (Application)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-application-sys.md)
           - [@ohos.app.ability.AutoFillExtensionAbility (AutoFillExtensionAbility)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)
+          - [@ohos.app.ability.autoFillManager (autoFillManager)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-autoFillManager-sys.md)
           - [@ohos.app.ability.autoStartupManager(autoStartupManager)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-autoStartupManager-sys.md)
           - [@ohos.app.ability.common (应用上下文Context)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-common-sys.md)
           - [@ohos.app.ability.dialogSession (dialogSession)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-dialogSession-sys.md)
@@ -3432,6 +3433,7 @@
         - ArkTS API<!--distributed-service-arkts-->
           - [@ohos.distributedDeviceManager (设备管理)](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md)
           - [@ohos.abilityConnectionManager (应用多端协同管理)](reference/apis-distributedservice-kit/js-apis-distributed-abilityConnectionManager.md)
+          - [@ohos.application.DistributedExtensionAbility (协同Extension)](reference/apis-distributedservice-kit/js-apis-distributedExtensionAbility.md)
           <!--Del-->
           - [@ohos.distributedHardware.hardwareManager (分布式硬件管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributedHardwareManager-sys.md)
           - [@ohos.distributedDeviceManager (设备管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager-sys.md)

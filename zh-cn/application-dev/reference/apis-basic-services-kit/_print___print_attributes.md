@@ -17,9 +17,9 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Print_Range](_print___range.md)[pageRange](#pagerange) | 打印范围。  | 
-| [Print_PageSize](_print___page_size.md)[pageSize](#pagesize) | 打印尺寸。  | 
-| [Print_Margin](_print___margin.md)[pageMargin](#pagemargin) | 打印边距。  | 
+| [Print_Range](_print___range.md) [pageRange](#pagerange) | 打印范围。  | 
+| [Print_PageSize](_print___page_size.md) [pageSize](#pagesize) | 打印尺寸。  | 
+| [Print_Margin](_print___margin.md) [pageMargin](#pagemargin) | 打印边距。  | 
 | uint32_t [copyNumber](#copynumber) | 打印份数。  | 
 | uint32_t [duplexMode](#duplexmode) | 单双面。  | 
 | uint32_t [colorMode](#colormode) | 彩色。  | 

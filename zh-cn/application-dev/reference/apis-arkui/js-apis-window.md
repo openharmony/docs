@@ -402,13 +402,39 @@ import { window } from '@kit.ArkUI';
 | ------ | ------ | ---- | ------------------------------------------ |
 | rect | [Rect](#rect7)  | 是 | 软键盘窗口的位置和大小。 |
 
+## Callback<sup>15+</sup>
+
+### (data: T)<sup>15+</sup>
+
+(data: T): V;
+
+通用回调函数。
+
+开发者在使用时，可自定义data的参数类型，回调函数返回对应类型的信息。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ---- | ---- | ---- | -------------------------- |
+| data | T    | 是   | 回调函数调用时需要传入T类型的参数。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------------------------------- | ------------------------------------ |
+| V | 回调函数需要返回V类型的返回值。 |
+
 ## window.createWindow<sup>9+</sup>
 
 createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 
 创建子窗口或者系统窗口，使用callback异步回调。
 
-**需要权限：** 当创建窗口类型为window.WindowType.TYPE_FLOAT时，需要ohos.permission.SYSTEM_FLOAT_WINDOW权限。
+**需要权限：** ohos.permission.SYSTEM_FLOAT_WINDOW（仅当创建窗口类型为window.WindowType.TYPE_FLOAT时需要申请）
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -476,7 +502,7 @@ createWindow(config: Configuration): Promise&lt;Window&gt;
 
 创建子窗口或者系统窗口，使用Promise异步回调。
 
-**需要权限：** 当创建窗口类型为window.WindowType.TYPE_FLOAT时，需要ohos.permission.SYSTEM_FLOAT_WINDOW权限。
+**需要权限：** ohos.permission.SYSTEM_FLOAT_WINDOW（仅当创建窗口类型为window.WindowType.TYPE_FLOAT时需要申请）
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

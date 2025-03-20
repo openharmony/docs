@@ -75,15 +75,15 @@ createAudioRenderer(options: AudioRendererOptions, callback: AsyncCallback\<Audi
 import { audio } from '@kit.AudioKit';
 
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
-  channels: audio.AudioChannel.CHANNEL_2,
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率。
+  channels: audio.AudioChannel.CHANNEL_2, // 通道。
+  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式。
+  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式。
 };
 
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
-  rendererFlags: 0
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型：音乐。根据业务场景配置，参考StreamUsage。
+  rendererFlags: 0 // 音频渲染器标志。
 };
 
 let audioRendererOptions: audio.AudioRendererOptions = {
@@ -128,15 +128,15 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
-  channels: audio.AudioChannel.CHANNEL_2,
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率。
+  channels: audio.AudioChannel.CHANNEL_2, // 通道。
+  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式。
+  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式。
 };
 
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
-  rendererFlags: 0
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型：音乐。根据业务场景配置，参考StreamUsage。
+  rendererFlags: 0 // 音频渲染器标志。
 };
 
 let audioRendererOptions: audio.AudioRendererOptions = {
@@ -179,15 +179,15 @@ createAudioCapturer(options: AudioCapturerOptions, callback: AsyncCallback<Audio
 import { audio } from '@kit.AudioKit';
 
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
-  channels: audio.AudioChannel.CHANNEL_2,
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率。
+  channels: audio.AudioChannel.CHANNEL_2, // 通道。
+  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式。
+  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式。
 };
 
 let audioCapturerInfo: audio.AudioCapturerInfo = {
-  source: audio.SourceType.SOURCE_TYPE_MIC,
-  capturerFlags: 0
+  source: audio.SourceType.SOURCE_TYPE_MIC, // 音源类型：Mic音频源。根据业务场景配置，参考SourceType。
+  capturerFlags: 0 // 音频采集器标志。
 };
 
 let audioCapturerOptions: audio.AudioCapturerOptions = {
@@ -236,15 +236,15 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
-  channels: audio.AudioChannel.CHANNEL_2,
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率。
+  channels: audio.AudioChannel.CHANNEL_2, // 通道。
+  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式。
+  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式。
 };
 
 let audioCapturerInfo: audio.AudioCapturerInfo = {
-  source: audio.SourceType.SOURCE_TYPE_MIC,
-  capturerFlags: 0
+  source: audio.SourceType.SOURCE_TYPE_MIC, // 音源类型：Mic音频源。根据业务场景配置，参考SourceType。
+  capturerFlags: 0 // 音频采集器标志。
 };
 
 let audioCapturerOptions:audio.AudioCapturerOptions = {
@@ -897,17 +897,11 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 > **说明：**
 > 从 API version 10 开始支持，从 API version 12 开始废弃。Audio不再提供内录接口，请通过[录屏接口AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md)进行内录。
 
-**需要权限：** ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO，具体请参考以下说明。
-
-- 在API version 10时，CaptureFilterOptions支持使用StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION，使用时需要申请权限ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO，该权限仅系统应用可申请。
-
-- 从API version 11开始，CaptureFilterOptions不再支持使用StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION，所以当前接口不再涉及此权限。
-
 **系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture
 
 | 名称   | 类型                               | 必填 | 说明                                                         |
 | ------ | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| usages | Array<[StreamUsage](#streamusage)> | 是   | 指定需要录制的音频播放流的StreamUsage类型。可同时指定0个或多个StreamUsage。Array为空时，默认录制StreamUsage为STREAM_USAGE_MUSIC、STREAM_USAGE_MOVIE、STREAM_USAGE_GAME和STREAM_USAGE_AUDIOBOOK的音频播放流。 |
+| usages | Array<[StreamUsage](#streamusage)> | 是   | 指定需要录制的音频播放流的StreamUsage类型。可同时指定0个或多个StreamUsage。Array为空时，默认录制StreamUsage为STREAM_USAGE_MUSIC、STREAM_USAGE_MOVIE、STREAM_USAGE_GAME和STREAM_USAGE_AUDIOBOOK的音频播放流。<br>在API version 10时，CaptureFilterOptions支持使用StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION，使用时需要申请权限ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO，该权限仅系统应用可申请。<br>从API version 11开始，CaptureFilterOptions不再支持使用StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION，所以当前接口不再涉及此权限。 |
 
 ## AudioScene<sup>8+</sup>
 
@@ -3623,8 +3617,8 @@ getMaxAmplitudeForInputDevice(inputDevice: AudioDeviceDescriptor): Promise&lt;nu
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let capturerInfo: audio.AudioCapturerInfo = {
-  source: audio.SourceType.SOURCE_TYPE_MIC,
-  capturerFlags: 0
+  source: audio.SourceType.SOURCE_TYPE_MIC, // 音源类型：Mic音频源。根据业务场景配置，参考SourceType。
+  capturerFlags: 0 // 音频采集器标志。
 };
 
 audio.getAudioManager().getRoutingManager().getPreferredInputDeviceForCapturerInfo(capturerInfo).then((data) => {
@@ -3674,8 +3668,8 @@ getMaxAmplitudeForOutputDevice(outputDevice: AudioDeviceDescriptor): Promise&lt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
-  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
-  rendererFlags : 0
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型：音乐。根据业务场景配置，参考StreamUsage。
+  rendererFlags: 0 // 音频渲染器标志。
 };
 
 audio.getAudioManager().getRoutingManager().getPreferOutputDeviceForRendererInfo(rendererInfo).then((data) => {
@@ -4950,8 +4944,8 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
-  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
-  rendererFlags : 0
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型：音乐。根据业务场景配置，参考StreamUsage。
+  rendererFlags: 0 // 音频渲染器标志。
 };
 
 async function getPreferOutputDevice() {
@@ -5001,8 +4995,8 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
-  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
-  rendererFlags : 0
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型：音乐。根据业务场景配置，参考StreamUsage。
+  rendererFlags: 0 // 音频渲染器标志。
 };
 
 async function getPreferOutputDevice() {
@@ -5049,8 +5043,8 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
-  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
-  rendererFlags : 0
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型：音乐。根据业务场景配置，参考StreamUsage。
+  rendererFlags: 0 // 音频渲染器标志。
 };
 
 try {
@@ -5093,8 +5087,8 @@ on(type: 'preferOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererI
 import { audio } from '@kit.AudioKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
-  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
-  rendererFlags : 0
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型：音乐。根据业务场景配置，参考StreamUsage。
+  rendererFlags: 0 // 音频渲染器标志。
 };
 
 audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (desc: audio.AudioDeviceDescriptors) => {
@@ -5137,8 +5131,8 @@ let preferOutputDeviceChangeForRendererInfoCallback = (desc: audio.AudioDeviceDe
   console.info(`device descriptor: ${desc}`);
 };
 let rendererInfo: audio.AudioRendererInfo = {
-  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
-  rendererFlags : 0
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型：音乐。根据业务场景配置，参考StreamUsage。
+  rendererFlags: 0 // 音频渲染器标志。
 };
 
 audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, preferOutputDeviceChangeForRendererInfoCallback);
@@ -5177,8 +5171,8 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let capturerInfo: audio.AudioCapturerInfo = {
-  source: audio.SourceType.SOURCE_TYPE_MIC,
-  capturerFlags: 0
+  source: audio.SourceType.SOURCE_TYPE_MIC, // 音源类型：Mic音频源。根据业务场景配置，参考SourceType。
+  capturerFlags: 0 // 音频采集器标志。
 };
 
 audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo, (err: BusinessError, desc: audio.AudioDeviceDescriptors) => {
@@ -5227,8 +5221,8 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let capturerInfo: audio.AudioCapturerInfo = {
-  source: audio.SourceType.SOURCE_TYPE_MIC,
-  capturerFlags: 0
+  source: audio.SourceType.SOURCE_TYPE_MIC, // 音源类型：Mic音频源。根据业务场景配置，参考SourceType。
+  capturerFlags: 0 // 音频采集器标志。
 };
 
 audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo).then((desc: audio.AudioDeviceDescriptors) => {
@@ -5274,8 +5268,8 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let capturerInfo: audio.AudioCapturerInfo = {
-  source: audio.SourceType.SOURCE_TYPE_MIC,
-  capturerFlags: 0
+  source: audio.SourceType.SOURCE_TYPE_MIC, // 音源类型：Mic音频源。根据业务场景配置，参考SourceType。
+  capturerFlags: 0 // 音频采集器标志。
 };
 
 try {
@@ -5318,8 +5312,8 @@ on(type: 'preferredInputDeviceChangeForCapturerInfo', capturerInfo: AudioCapture
 import { audio } from '@kit.AudioKit';
 
 let capturerInfo: audio.AudioCapturerInfo = {
-  source: audio.SourceType.SOURCE_TYPE_MIC,
-  capturerFlags: 0
+  source: audio.SourceType.SOURCE_TYPE_MIC, // 音源类型：Mic音频源。根据业务场景配置，参考SourceType。
+  capturerFlags: 0 // 音频采集器标志。
 };
 
 audioRoutingManager.on('preferredInputDeviceChangeForCapturerInfo', capturerInfo, (desc: audio.AudioDeviceDescriptors) => {
@@ -5362,8 +5356,8 @@ let preferredInputDeviceChangeForCapturerInfoCallback = (desc: audio.AudioDevice
   console.info(`device descriptor: ${desc}`);
 };
 let capturerInfo: audio.AudioCapturerInfo = {
-  source: audio.SourceType.SOURCE_TYPE_MIC,
-  capturerFlags: 0
+  source: audio.SourceType.SOURCE_TYPE_MIC, // 音源类型：Mic音频源。根据业务场景配置，参考SourceType。
+  capturerFlags: 0 // 音频采集器标志。
 };
 
 audioRoutingManager.on('preferredInputDeviceChangeForCapturerInfo', capturerInfo, preferredInputDeviceChangeForCapturerInfoCallback);
@@ -7704,9 +7698,13 @@ setDefaultOutputDevice(deviceType: DeviceType): Promise&lt;void&gt;
 
 设置默认本机内置发声设备。使用Promise方式异步返回结果。
 
-本接口仅适用于[音频流类型](#streamusage)为语音消息、VoIP语音通话或者VoIP视频通话的场景使用，以及可选的设备类型为听筒、扬声器和系统默认设备。
-
-本接口允许在AudioRenderer创建以后的任何时间被调用，系统会记录应用设置的默认本机内置发声设备。在应用启动播放时，若有外接设备如蓝牙耳机/有线耳机接入，系统优先从外接设备发声；否则系统遵循应用设置的默认本机内置发声设备发声。
+> **说明：**
+>
+> - 本接口仅适用于[音频流类型](#streamusage)为语音消息、VoIP语音通话或者VoIP视频通话的场景使用，可选的设备类型为听筒、扬声器和系统默认设备。
+>
+> - 本接口允许在AudioRenderer创建以后的任何时间被调用，系统会记录应用设置的默认本机内置发声设备。在应用启动播放时，若有外接设备如蓝牙耳机/有线耳机接入，系统优先从外接设备发声；否则系统遵循应用设置的默认本机内置发声设备发声。
+>
+> - 本接口优先级低于[AVCastPicker](../apis-avsession-kit/ohos-multimedia-avcastpicker.md#avcastpicker)。如果使用AVCastPicker切换过发声设备，再调用本接口切换设备不生效。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 

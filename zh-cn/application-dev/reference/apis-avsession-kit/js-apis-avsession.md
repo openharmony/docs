@@ -5251,30 +5251,32 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-| 名称            | 类型                      | 必填 | 说明                                                                  |
-| --------------- |-------------------------| ---- |---------------------------------------------------------------------|
-| assetId         | string                  | 是   | 媒体ID。歌曲的唯一标识，由应用自定义。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                     |
-| title           | string                  | 否   | 标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                 |
-| artist          | string                  | 否   | 艺术家。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                |
-| author          | string                  | 否   | 专辑作者。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                               |
-| avQueueName<sup>12+</sup>       | string                  | 否   | 歌单（歌曲列表）名称。                                                               |
-| avQueueId<sup>11+</sup>       | string                  | 否   | 歌单（歌曲列表）唯一标识Id。                                                               |
-| avQueueImage<sup>11+</sup>    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 歌单（歌曲列表）封面图，图片的像素数据或者图片路径地址(本地路径或网络路径)。<br>应用通过setAVMetadata设置图片数据，当设置的数据类型为PixelMap时，通过getAVMetadata获取的将为PixelMap。设置为url图片路径，获取的亦为url图片路径  |                       
-| album           | string                  | 否   | 专辑名称。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                               |
-| writer          | string                  | 否   | 词作者。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                |
-| composer        | string                  | 否   | 作曲者。                                                                |
-| duration        | number                  | 否   | 媒体时长，单位毫秒（ms）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                  |
-| mediaImage      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 图片的像素数据或者图片路径地址(本地路径或网络路径)。<br>应用通过setAVMetadata设置图片数据，当设置的数据类型为PixelMap时，通过getAVMetadata获取的将为PixelMap。设置为url图片路径，获取的亦为url图片路径。  <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                             |
-| publishDate     | Date                    | 否   | 发行日期。                                                             |
-| subtitle        | string                  | 否   | 子标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                |
-| description     | string                  | 否   | 媒体描述。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                               |
-| lyric           | string                  | 否   | 媒体歌词内容。应用需将歌词内容拼接为一个字符串传入。<br>字符串长度需小于等于40960字节。<br>**说明：** 系统支持简单版的LRC格式（Simple LRC format）的歌词文本内容。当传入的歌词内容不规范（如出现重复的时间戳等），将导致解析失败以及在系统中显示异常。 |
-| previousAssetId | string                  | 否   | 上一首媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                            |
-| nextAssetId     | string                  | 否   | 下一首媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                            |
-| filter<sup>11+</sup>        | number         | 否   | 当前session支持的协议，默认为TYPE_CAST_PLUS_STREAM。具体取值参考[ProtocolType](#protocoltype11)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
-| drmSchemes<sup>12+</sup>        | Array\<string>         | 否   | 当前session支持的DRM方案，取值为DRM方案uuid。|
-| skipIntervals<sup>11+</sup>  | [SkipIntervals](#skipintervals11)        | 否   | 快进快退支持的时间间隔，默认为SECONDS_15，即15秒。                            |
-|displayTags<sup>11+</sup>     | number                           | 否   | 媒体资源的金标类型，取值参考[DisplayTag](#displaytag11)。                                                          |
+| 名称            | 类型                      | 只读 | 可选 | 说明                                                                  |
+| --------------- |-------------------------| ---- | ---- |---------------------------------------------------------------------|
+| assetId         | string                  | 否   | 否   | 媒体ID。歌曲的唯一标识，由应用自定义。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                     |
+| title           | string                  | 否   | 是   | 标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                 |
+| artist          | string                  | 否   | 是   | 艺术家。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                |
+| author          | string                  | 否   | 是   | 专辑作者。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                               |
+| avQueueName<sup>12+</sup>       | string                  | 否   | 是   | 歌单（歌曲列表）名称。                                                               |
+| avQueueId<sup>11+</sup>       | string                  | 否   | 是   | 歌单（歌曲列表）唯一标识Id。                                                               |
+| avQueueImage<sup>11+</sup>    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 是   | 歌单（歌曲列表）封面图。<br>图片的像素数据或者图片路径地址（本地路径或网络路径）。应用通过setAVMetadata设置图片数据。<br>- 设置的数据类型为PixelMap时，通过getAVMetadata获取的将为PixelMap。<br>- 设置为url图片路径，获取的为url图片路径。  |
+| album           | string                  | 否   | 是   | 专辑名称。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                               |
+| writer          | string                  | 否   | 是   | 词作者。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                |
+| composer        | string                  | 否   | 是   | 作曲者。                                                                |
+| duration        | number                  | 否   | 是   | 媒体时长，单位毫秒（ms）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                  |
+| mediaImage      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 是   | 图片的像素数据或者图片路径地址(本地路径或网络路径)。应用通过setAVMetadata设置图片数据。<br>- 设置的数据类型为PixelMap时，通过getAVMetadata获取的将为PixelMap。<br>- 设置为url图片路径，获取的为url图片路径。  <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                             |
+| bundleIcon<sup>18+</sup>      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 是   | 应用图标图片的像素数据。只读类型，不从应用侧设置。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| publishDate     | Date                    | 否   | 是   | 发行日期。                                                             |
+| subtitle        | string                  | 否   | 是   | 子标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                |
+| description     | string                  | 否   | 是   | 媒体描述。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                               |
+| lyric           | string                  | 否   | 是   | 媒体歌词内容。应用需将歌词内容拼接为一个字符串传入。<br>字符串长度需<=40960字节。<br>**说明：** 系统支持简单版的LRC格式（Simple LRC format）的歌词文本内容。当传入的歌词内容不规范（例如：出现重复的时间戳等），将导致解析失败，并在系统中显示异常。 |
+| singleLyricText<sup>18+</sup> | string    | 否   | 是   | 单条媒体歌词内容。应用需将歌词内容拼接为一个字符串传入（不包含时间戳）。<br>字符串长度<=40960字节。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| previousAssetId | string                  | 否   | 是   | 上一首媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                            |
+| nextAssetId     | string                  | 否   | 是   | 下一首媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                            |
+| filter<sup>11+</sup>        | number         | 否   | 是   | 当前session支持的协议，默认为TYPE_CAST_PLUS_STREAM。具体取值参考[ProtocolType](#protocoltype11)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
+| drmSchemes<sup>12+</sup>        | Array\<string>         | 否   | 是   | 当前session支持的DRM方案，取值为DRM方案uuid。|
+| skipIntervals<sup>11+</sup>  | [SkipIntervals](#skipintervals11)        | 否   | 是   | 快进快退支持的时间间隔。默认为SECONDS_15，即15秒。                            |
+|displayTags<sup>11+</sup>     | number                           | 否   | 是   | 媒体资源的金标类型，取值参考[DisplayTag](#displaytag11)。                                                          |
 
 ## AVMediaDescription<sup>10+</sup>
 

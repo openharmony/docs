@@ -14,7 +14,7 @@ import { abilityConnectionManager } from '@kit.DistributedServiceKit';
 
 ## abilityConnectionManager.createAbilityConnectionSession
 
-createAbilityConnectionSession(serverId:&nbsp;string,&nbsp;context:&nbsp;Context,&nbsp;peerInfo:&nbsp;PeerInfo ,&nbsp;connectOpt:&nbsp;ConnectOption):&nbsp;number;
+createAbilityConnectionSession(serviceName:&nbsp;string,&nbsp;context:&nbsp;Context,&nbsp;peerInfo:&nbsp;PeerInfo ,&nbsp;connectOptions:&nbsp;ConnectOptions):&nbsp;number;
 
 创建应用间的协同会话。
 
@@ -24,10 +24,10 @@ createAbilityConnectionSession(serverId:&nbsp;string,&nbsp;context:&nbsp;Context
 
 | 参数名       | 类型                                      | 必填   | 说明        |
 | --------- | --------------------------------------- | ---- | --------- |
-| serverId  | string | 是    | 应用设置的服务名称（两端必须一致）。 |
+| serviceName  | string | 是    | 应用设置的服务名称（两端必须一致）。 |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是 | 表示应用上下文。 | 
 | peerInfo  | [PeerInfo](#peerinfo)               | 是    | 对端的协同信息。 |
-| connectOpt  | [ConnectOption](#connectoption)               | 是    | 应用设置的连接选项。 |
+| connectOptions  | [ConnectOptions](#connectoptions)               | 是    | 应用设置的连接选项。 |
 
 **返回值：**
 
@@ -88,7 +88,7 @@ createAbilityConnectionSession(serverId:&nbsp;string,&nbsp;context:&nbsp;Context
      bundleName: 'com.example.remotephotodemo',
      moduleName: 'entry',
      abilityName: 'EntryAbility',
-     serverId: 'collabTest'
+     serviceName: 'collabTest'
    };
    const myRecord: Record<string, string> = {
      "newKey1": "value1",
@@ -98,7 +98,7 @@ createAbilityConnectionSession(serverId:&nbsp;string,&nbsp;context:&nbsp;Context
      'ohos.collabrate.key.start.option': 'ohos.collabrate.value.foreground',
    };
  
-   const connectOption: abilityConnectionManager.ConnectOption = {
+   const connectOptions: abilityConnectionManager.ConnectOptions = {
      needSendBigData: true,
      needSendStream: false,
      needReceiveStream: true,
@@ -107,7 +107,7 @@ createAbilityConnectionSession(serverId:&nbsp;string,&nbsp;context:&nbsp;Context
    };
    let context = getContext(this) as common.UIAbilityContext;
    try {
-     this.sessionId = abilityConnectionManager.createAbilityConnectionSession("collabTest", context, peerInfo, connectOption);
+     this.sessionId = abilityConnectionManager.createAbilityConnectionSession("collabTest", context, peerInfo, connectOptions);
      hilog.info(0x0000, 'testTag', 'createSession sessionId is', this.sessionId);
    } catch (error) {
      hilog.error(0x0000, 'testTag', error);
@@ -144,7 +144,7 @@ createAbilityConnectionSession(serverId:&nbsp;string,&nbsp;context:&nbsp;Context
          return sessionId;
        }
  
-       const options = collabParam["ConnectOption"] as abilityConnectionManager.ConnectOption;
+       const options = collabParam["ConnectOptions"] as abilityConnectionManager.ConnectOptions;
        options.needSendBigData = true;
        options.needSendStream = true;
        options.needReceiveStream = false;
@@ -159,6 +159,7 @@ createAbilityConnectionSession(serverId:&nbsp;string,&nbsp;context:&nbsp;Context
      }
    }
    ```
+
 ## abilityConnectionManager.destroyAbilityConnectionSession
 
 destroyAbilityConnectionSession(sessionId:&nbsp;number):&nbsp;void;
@@ -190,6 +191,45 @@ destroyAbilityConnectionSession(sessionId:&nbsp;number):&nbsp;void;
 
   hilog.info(0x0000, 'testTag', 'destroyAbilityConnectionSession called');
   abilityConnectionManager.destroyAbilityConnectionSession(this.sessionId);
+  ```
+
+## abilityConnectionManager.getPeerInfoById
+
+getPeerInfoById(sessionId:&nbsp;number):&nbsp;PeerInfo&nbsp;|&nbsp;undefined;
+
+获取指定会话中对端应用信息。
+
+**系统能力**：SystemCapability.DistributedSched.AppCollaboration
+
+**参数：**
+
+| 参数名       | 类型                                       | 必填   | 说明       |
+| --------- | ---------------------------------------- | ---- | -------- |
+| sessionId | string  | 是    | 协同应用会话ID。   |
+
+**返回值：**
+
+| 类型                  | 说明               |
+| ------------------- | ---------------- |
+| PeerInfo | 接收端的协作应用信息。 |
+| undefined | 未知情况。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
+**示例：**
+
+  ```ts
+  import { abilityConnectionManager } from '@kit.DistributedServiceKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
+  hilog.info(0x0000, 'testTag', 'getPeerInfoById called');
+  const peerInfo = abilityConnectionManager.getPeerInfoById(this.sessionId);
   ```
 
 ## abilityConnectionManager.connect
@@ -311,7 +351,7 @@ acceptConnect(sessionId:&nbsp;number,&nbsp;token:&nbsp;string):&nbsp;Promise&lt;
         return sessionId;
       }
 
-      const options = collabParam["ConnectOption"] as abilityConnectionManager.ConnectOption;
+      const options = collabParam["ConnectOptions"] as abilityConnectionManager.ConnectOptions;
       options.needSendBigData = true;
       options.needSendStream = true;
       options.needReceiveStream = false;
@@ -364,11 +404,46 @@ disconnect(sessionId:&nbsp;number):&nbsp;void;
   abilityConnectionManager.disconnect(this.sessionId);
   ```
 
+## abilityConnectionManager.reject
+
+reject(token:&nbsp;string,&nbsp;reason:&nbsp;string):&nbsp;void;
+
+在跨端应用协同过程中，在拒绝对端的连接请求后，向对端发送拒绝原因。
+
+**系统能力**：SystemCapability.DistributedSched.AppCollaboration
+
+**参数：**
+
+| 参数名       | 类型                                      | 必填   | 说明    |
+| --------- | --------------------------------------- | ---- | ----- |
+| token | string | 是    | 用于协作服务管理的令牌。    |
+| reason | string | 是    | 连接被拒绝的原因。    |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+  ```ts
+  import { abilityConnectionManager } from '@kit.DistributedServiceKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
+  hilog.info(0x0000, 'testTag', 'reject begin');
+  const collabToken = collabParam["ohos.dms.collabToken"] as string;
+  const reason = "test";
+  abilityConnectionManager.reject(collabToken, reason);
+  ```
+
 ## abilityConnectionManager.on
 
-on(type:&nbsp;'connect'&nbsp;|&nbsp;'disconnect'&nbsp;|&nbsp;'receiveMessage',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+on(type:&nbsp;'connect'&nbsp;|&nbsp;'disconnect'&nbsp;|&nbsp;'receiveMessage'|&nbsp;'receiveData',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
 
-注册connect、disconnect、receiveMessage事件的回调监听。
+注册connect、disconnect、receiveMessage、receiveData事件的回调监听。
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
@@ -376,7 +451,7 @@ on(type:&nbsp;'connect'&nbsp;|&nbsp;'disconnect'&nbsp;|&nbsp;'receiveMessage',&n
 
 | 参数名       | 类型                                    | 必填   | 说明    |
 | --------- | ------------------------------------- | ---- | ----- |
-| type | string  | 是    |   事件回调类型，支持的事件包括：<br/>\- `'connect'`：完成`connect()`调用，触发该事件。<br/>\- `'disconnect'`：完成`disconnect()`调用，触发该事件。<br/>\- `'receiveMessage'`：完成`sendMessage()`调用，触发该事件。   |
+| type | string  | 是    |   事件回调类型，支持的事件包括：<br/>\- `'connect'`：完成`connect()`调用，触发该事件。<br/>\- `'disconnect'`：完成`disconnect()`调用，触发该事件。<br/>\- `'receiveMessage'`：完成`sendMessage()`调用，触发该事件。<br/>\- `'receiveData'`：完成`sendData()`调用，触发该事件。   |
 | sessionId | number  | 是    | 创建的协同会话ID。    |
 | callback | Callback&lt;[EventCallbackInfo](#eventcallbackinfo)&gt; | 是    | 注册的回调函数。    |
 
@@ -407,13 +482,17 @@ on(type:&nbsp;'connect'&nbsp;|&nbsp;'disconnect'&nbsp;|&nbsp;'receiveMessage',&n
     hilog.info(0x0000, 'testTag', 'session receiveMessage, sessionId is', callbackInfo.sessionId);
   });
 
+  abilityConnectionManager.on("receiveData", this.sessionId,(callbackInfo) => {
+    hilog.info(0x0000, 'testTag', 'session receiveData, sessionId is', callbackInfo.sessionId);
+  });
+
   ```
 
 ## abilityConnectionManager.off
 
-off(type:&nbsp;'connect'&nbsp;|&nbsp;'disconnect'&nbsp;|&nbsp;'receiveMessage',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+off(type:&nbsp;'connect'&nbsp;|&nbsp;'disconnect'&nbsp;|&nbsp;'receiveMessage'|&nbsp;'receiveData',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
 
-取消connect、disconnect、receiveMessage事件的回调监听。
+取消connect、disconnect、receiveMessage、receiveData事件的回调监听。
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
@@ -421,7 +500,7 @@ off(type:&nbsp;'connect'&nbsp;|&nbsp;'disconnect'&nbsp;|&nbsp;'receiveMessage',&
 
 | 参数名       | 类型                                    | 必填   | 说明    |
 | --------- | ------------------------------------- | ---- | ----- |
-| type | string  | 是    |   事件回调类型，支持的事件包括：<br/>\- `'connect'`：完成`connect()`调用，触发该事件。<br/>\- `'disconnect'`：完成`disconnect()`调用，触发该事件。<br/>\- `'receiveMessage'`：完成`sendMessage()`调用，触发该事件。    |
+| type | string  | 是    |   事件回调类型，支持的事件包括：<br/>\- `'connect'`：完成`connect()`调用，触发该事件。<br/>\- `'disconnect'`：完成`disconnect()`调用，触发该事件。<br/>\- `'receiveMessage'`：完成`sendMessage()`调用，触发该事件。<br/>\- `'receiveData'`：完成`sendData()`调用，触发该事件。    |
 | sessionId | number  | 是    | 创建的协同会话ID。    |
 | callback | Callback&lt;[EventCallbackInfo](#eventcallbackinfo)&gt; | 否    | 注册的回调函数。    |
 
@@ -443,9 +522,9 @@ off(type:&nbsp;'connect'&nbsp;|&nbsp;'disconnect'&nbsp;|&nbsp;'receiveMessage',&
   abilityConnectionManager.off("connect", this.sessionId);
   abilityConnectionManager.off("disconnect", this.sessionId);
   abilityConnectionManager.off("receiveMessage", this.sessionId);
+  abilityConnectionManager.off("receiveData", this.sessionId);
 
   ```
-
 
 ## abilityConnectionManager.sendMessage
 
@@ -491,6 +570,52 @@ sendMessage(sessionId:&nbsp;number,&nbsp;msg:&nbsp;string):&nbsp;Promise&lt;void
   })
   ```
 
+## abilityConnectionManager.sendData
+
+sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;void&gt;;
+
+应用连接成功后，设备A或设备B可向对端设备发送[ArrayBuffer](../../arkts-utils/arraybuffer-object.md)字节流。
+
+**系统能力**：SystemCapability.DistributedSched.AppCollaboration
+
+**参数：**
+
+| 参数名       | 类型                                      | 必填   | 说明    |
+| --------- | --------------------------------------- | ---- | ----- |
+| sessionId | number | 是    | 协同会话ID。 |
+| data | [ArrayBuffer](../../arkts-utils/arraybuffer-object.md) | 是    | 字节流信息。 |
+
+**返回值：**
+
+| 类型                  | 说明               |
+| ------------------- | ---------------- |
+| Promise&lt;void&gt; | 无返回结果的promise对象。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.|
+| 202      | Permission verification failed. A non-system application calls a system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+  ```ts
+  import { abilityConnectionManager } from '@kit.DistributedServiceKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
+  let textEncoder = util.TextEncoder.create("utf-8");
+  const arrayBuffer  = textEncoder.encodeInto("data send success");
+
+  abilityConnectionManager.sendData(this.sessionId, arrayBuffer.buffer).then(() => {
+    hilog.info(0x0000, 'testTag', "sendMessage success");
+  }).catch(() => {
+    hilog.info(0x0000, 'testTag', "sendMessage failed");
+  })
+  ```
 
 ## PeerInfo
 
@@ -498,27 +623,27 @@ sendMessage(sessionId:&nbsp;number,&nbsp;msg:&nbsp;string):&nbsp;Promise&lt;void
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
-| 名称                    | 类型       | 可读   | 可写   | 说明                 |
-| --------------------- | -------- | ---- | ---- | ------------------ |
-| deviceId | string | 是    | 否    | 对端设备ID。     |
-| bundleName        | string | 是    | 否    | 对端应用的包名。 |
-| moduleName        | string | 是    | 否    | 对端应用的模块名。 |
-| abilityName        | string | 是    | 否    | 对端应用的组件名。 |
-| serverId        | string | 是    | 否    | 应用设置的服务ID。 |
+| 名称                    | 类型       | 可读   | 可写   | 必填   | 说明                 |
+| --------------------- | -------- | ---- | ---- | ---- | ------------------ |
+| deviceId | string | 是    | 否    | 是    | 对端设备ID。     |
+| bundleName        | string | 是    | 否   |  是    | 对端应用的包名。 |
+| moduleName        | string | 是    | 否   |  是    | 对端应用的模块名。 |
+| abilityName        | string | 是    | 否  |  是     | 对端应用的组件名。 |
+| serviceName        | string | 是    | 否  |  否     | 应用设置的服务名称。 |
 
-## ConnectOption
+## ConnectOptions
 
 应用连接时所需的连接选项。
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
-| 名称          | 类型    | 可读   | 可写   | 说明          |
-| ----------- | ------- | ---- | ---- | ----------- |
-| needSendData    | boolean  | 是    | 是    | true代表需要传输数据，false代表不需要传输数据。     |
-| needSendStream    | boolean  | 是    | 是    | true代表需要发送流，false代表不需要发送流。    |
-| needReceiveStream    | boolean  | 是    | 是    | true代表需要接收流，false代表不需要接收流。     |
-| options | Record&lt;string, string&gt; | 是    | 是    | 配置应用启动选项。 |
-| parameters | Record&lt;string, string&gt;  | 是    | 是    | 配置连接所需的额外信息。    |
+| 名称          | 类型    | 可读   | 可写   | 必填   | 说明          |
+| ----------- | ------- | ---- | ---- | ---- | ----------- |
+| needSendData    | boolean  | 是    | 是    | 否    | true代表需要传输数据，false代表不需要传输数据。     |
+| needSendStream    | boolean  | 是    | 是    | 否    | true代表需要发送流，false代表不需要发送流。    |
+| needReceiveStream    | boolean  | 是    | 是    | 否    | true代表需要接收流，false代表不需要接收流。     |
+| startOptions | [StartOptionParams](#startoptionparams) | 是    | 是    | 否    | 配置应用启动选项。 |
+| parameters | Record&lt;string, string&gt;  | 是    | 是    | 否    | 配置连接所需的额外信息。    |
 
 ## ConnectResult
 
@@ -526,10 +651,11 @@ sendMessage(sessionId:&nbsp;number,&nbsp;msg:&nbsp;string):&nbsp;Promise&lt;void
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
-| 名称       | 类型   | 可读   | 可写   | 说明      |
-| -------- | ------ | ---- | ---- | ------- |
-| isConnected | boolean | 是    | 否    | true表示连接成功，false表示连接失败。 |
-| reason | string | 是    | 否    | 表示拒绝连接的原因。 |
+| 名称       | 类型   | 可读   | 可写   | 必填   | 说明      |
+| -------- | ------ | ---- | ---- | ---- | ------- |
+| isConnected | boolean | 是    | 否    | 是    | true表示连接成功，false表示连接失败。 |
+| errorCode | [ConnectErrorCode](#connecterrorcode) | 是    | 否    | 否    | 表示连接错误码。 |
+| reason | string | 是    | 否    | 否    | 表示拒绝连接的原因。 |
 
 ## EventCallbackInfo
 
@@ -539,11 +665,58 @@ sendMessage(sessionId:&nbsp;number,&nbsp;msg:&nbsp;string):&nbsp;Promise&lt;void
 
 | 名称       | 类型    | 可读   | 可写   | 说明          |
 | -------- | ------ | ---- | ---- | ----------- |
-| sessionId | number   | 是    | shi    |   表示当前事件对应的协同会话ID。 |
+| sessionId | number   | 是    | 是    |   表示当前事件对应的协同会话ID。 |
 | reason | [DisconnectReason](#disconnectreason)     | 是    | 否    |   表示断连原因。 |
 | msg | string   | 是    | 否    |   表示接收的消息。 |
 | data  | ArrayBuffer | 是    | 否    |   表示接收的字节流。 |
 | image  | image.PixelMap | 是    | 否    |   表示接收的图片。 |
+
+## CollaborateEventInfo
+
+协同事件信息。
+
+**系统能力**：SystemCapability.DistributedSched.AppCollaboration
+
+| 名称       | 类型   | 可读   | 可写   | 必填   | 说明      |
+| -------- | ------ | ---- | ---- | ---- | ------- |
+| eventType | [CollaborateEventType](#collaborateeventtype) | 是    | 否    | 是    | 协同事件的类型。 |
+| eventMsg | string | 是    | 否    | 否    | 协同事件的消息内容。 |
+
+## ConnectErrorCode
+
+连接的错误码。
+
+**系统能力**：SystemCapability.DistributedSched.AppCollaboration
+
+| 枚举值 | 描述 |
+| -------- | -------- |
+| CONNECTED_SESSION_EXISTS | 表示应用之间存在已连接的会话。 |
+| PEER_APP_REJECTED | 表示对端应用拒绝了协作请求。 |
+| LOCAL_WIFI_NOT_OPEN  | 表示本端WiFi未开启。 |
+| PEER_WIFI_NOT_OPEN  | 表示对端WiFi未开启。 |
+| PEER_ABILITY_NO_ONCOLLABORATE | 表示未实现onCollaborate方法。 |
+
+## StartOptionParams
+
+启动选项参数的枚举。
+
+**系统能力**：SystemCapability.DistributedSched.AppCollaboration
+
+| 枚举值 | 描述 |
+| -------- | -------- |
+| START_IN_FOREGROUND | 表示将对端应用启动至前台。 |
+| START_IN_BACKGROUND | 表示将对端应用启动至后台。 |
+
+## CollaborateEventType
+
+协同事件类型的枚举。
+
+**系统能力**：SystemCapability.DistributedSched.AppCollaboration
+
+| 枚举值 | 描述 |
+| -------- | -------- |
+| SEND_FAILURE | 表示任务发送失败。 |
+| COLOR_SPACE_CONVERSION_FAILURE | 表示色彩空间转换失败。 |
 
 ## DisconnectReason
 
@@ -551,7 +724,31 @@ sendMessage(sessionId:&nbsp;number,&nbsp;msg:&nbsp;string):&nbsp;Promise&lt;void
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
-| 枚举值 | 描述 | 
+| 枚举值 | 描述 |
 | -------- | -------- |
-| PEER_APP_EXIT | 表示对端应用退出。 | 
-| NETWORK_DISCONNECTED | 表示网络断开原因。 | 
+| PEER_APP_CLOSE_COLLABORATION | 表示对端应用主动关闭了协作。 |
+| PEER_APP_EXIT | 表示对端应用退出。 |
+| NETWORK_DISCONNECTED | 表示网络断开原因。 |
+
+## CollaborationKeys
+
+应用协作键值的枚举。
+
+**系统能力**：SystemCapability.DistributedSched.AppCollaboration
+
+| 名称                |                  值             | 说明                   |
+| -------------------| ------------------------------- | ---------------------- |
+| PEER_INFO           | ohos.collaboration.key.peerInfo | 表示对端设备信息的键值。 |
+| CONNECT_OPTIONS     | ohos.collaboration.key.connectOptions | 表示连接选项的键值。   |
+| COLLABORATE_TYPE    | ohos.collaboration.key.abilityCollaborateType | 表示协作类型的键值。   |
+
+## CollaborationValues
+
+应用协作相关值的枚举。
+
+**系统能力**：SystemCapability.DistributedSched.AppCollaboration
+
+| 名称                                      | 值       | 说明                   |
+| ----------------------------------------- | -------- | ---------------------- |
+| ABILITY_COLLABORATION_TYPE_DEFAULT | ohos.collaboration.value.abilityCollab | 表示默认的协作类型。 |
+| ABILITY_COLLABORATION_TYPE_CONNECT_PROXY  | ohos.collaboration.value.connectProxy | 表示连接代理的协作类型。   |
