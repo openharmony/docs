@@ -206,9 +206,9 @@ typedef void(* Input_AxisEventCallback) (const Input_AxisEvent *axisEvent)
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明                                   |
-  | ------ | ------ | ---- | ------------------------------------- |
-  | axisEvent |  [Input_AxisEvent](#input_axisevent) | 是   | 轴事件对象。 |
+| 名称 | 描述    | 
+| ------ | ------ |
+| axisEvent | 轴事件对象。 |
 
 ### Input_DeviceAddedCallback
 
@@ -340,9 +340,9 @@ typedef void(* Input_KeyEventCallback) (const Input_KeyEvent *keyEvent)
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明                                   |
-  | ------ | ------ | ---- | ------------------------------------- |
-  | keyEvent |  [Input_KeyEvent](#input_keyevent) | 是   | 按键事件对象。 |
+| 名称 |描述    | 
+| ------ | ------ |
+| keyEvent | 按键事件对象。 |
 
 ### Input_KeyState
 
@@ -416,9 +416,9 @@ typedef void(* Input_MouseEventCallback) (const Input_MouseEvent *mouseEvent)
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明                                   |
-  | ------ | ------ | ---- | ------------------------------------- |
-  | mouseEvent |  [Input_MouseEvent](#input_mouseevent) | 是   | 鼠标事件对象。 |
+| 名称 | 描述    |
+| ------ | ------ |
+| mouseEvent | 鼠标事件对象。 |
 
 ### Input_Result
 
@@ -469,9 +469,9 @@ typedef void(* Input_TouchEventCallback) (const Input_TouchEvent *touchEvent)
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明                                   |
-  | ------ | ------ | ---- | ------------------------------------- |
-  | touchEvent |  [Input_TouchEvent](#input_touchevent) | 是   | 触摸事件对象。 |
+| 名称 | 描述    |
+| ------ | ------ |
+| touchEvent | 触摸事件对象。 |
   
 ### InputEvent_AxisAction
 
@@ -2430,7 +2430,7 @@ ohos.permission.INPUT_MONITORING
 若移除轴事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED； 若callback为空或者没有被添加监听，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
 
 
-### OH_Input_RemoveInputEventInterceptor(void)
+### OH_Input_RemoveInputEventInterceptor()
 
 ```
 Input_Result OH_Input_RemoveInputEventInterceptor (void)
@@ -2452,7 +2452,7 @@ ohos.permission.INTERCEPT_INPUT_EVENT
 若移除输入事件拦截成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED； 若服务异常，则返回INPUT_SERVICE_EXCEPTION。
 
 
-### OH_Input_RemoveKeyEventInterceptor(void)
+### OH_Input_RemoveKeyEventInterceptor()
 
 ```
 Input_Result OH_Input_RemoveKeyEventInterceptor (void)
