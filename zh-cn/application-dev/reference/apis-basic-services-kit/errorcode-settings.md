@@ -4,7 +4,7 @@
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
 
-##  14800000 参数检查失败
+## 14800000 参数检查失败
 
 **错误信息**
 
@@ -24,7 +24,7 @@ Parameter error. Possible causes: 1. Parameter verification failed.
 
 **处理步骤**
 
-请检查必选参数是否传入。对于参数校验失败，阅读参数规格约束，按照可能原因进行排查。
+请检查必选参数是否传入。如果参数校验失败，请阅读参数规格约束，并根据可能原因进行排查。
 
 ## 14800010 上下文参数不是UIAbility类型
 
@@ -38,7 +38,7 @@ Original service error.
 
 **可能原因**
 
-当前上下文环境非UIAbility界面
+当前上下文环境非UIAbility界面。
 
 **处理步骤**
 
