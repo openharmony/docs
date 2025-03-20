@@ -1905,7 +1905,7 @@ struct Index {
 
 应用若需保持变更前行为，XComponent组件上的blendMode接口使用BlendMode.None入参即可。
 
-## cl.arkui.20 XComponent实例下树时停止响应设置期望帧率时注册的每帧回调函数
+## cl.arkui.20 在XComponent实例从组件树中移除时，停止响应设置期望帧率时注册的每帧回调函数。
 
 **访问级别**
 
@@ -1913,15 +1913,15 @@ struct Index {
 
 **变更原因**
 
-应用使用OH_NativeXComponent_RegisterOnFrameCallback接口注册回调后，若下树时未及时移除回调请求，存在影响性能功耗的风险。变更为XComponent实例下树时停止响应注册的每帧回调函数。
+应用在使用OH_NativeXComponent_RegisterOnFrameCallback接口注册回调后，若在从组件树中移除时未能及时取消回调请求，可能会导致性能和功耗问题。应变更为在XComponent实例从组件树中移除时停止响应注册的每帧回调函数。
 
 **变更影响**
 
 此变更不涉及应用适配。
 
-变更前：应用调用上述接口设置期望回调，如果没有取消注册，在XComponent实例存在期间，能一直收到期望回调。
+变更前：应用调用OH_NativeXComponent_RegisterOnFrameCallback接口设置期望回调，如果没有取消注册，在XComponent实例存在期间，能一直收到期望回调。
 
-变更后：应用调用上述接口设置期望回调，如果没有取消注册，只在XComponent上树期间，能收到期望回调。
+变更后：应用调用OH_NativeXComponent_RegisterOnFrameCallback接口设置期望回调，如果没有取消注册，只在XComponent上树期间，能收到期望回调。
 
 **起始API Level**
 
