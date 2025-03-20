@@ -2920,12 +2920,53 @@ on(type: 'navDestinationUpdate', callback: Callback\<observer.NavDestinationInfo
 
 <!--code_no_check-->
 ```ts
-import { UIObserver } from '@kit.ArkUI';
+// Index.ets
+// 演示 uiObserver.on('navDestinationUpdate', callback)
+// uiObserver.off('navDestinationUpdate', callback)
 
-let observer:UIObserver = uiContext.getUIObserver();
-observer.on('navDestinationUpdate', (info) => {
-    console.info('NavDestination state update', JSON.stringify(info));
-});
+@Component
+struct PageOne {
+  build() {
+    NavDestination() {
+      Text("pageOne")
+    }.title("pageOne")
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  aboutToAppear() {
+    this.getUIContext().getUIObserver().on('navDestinationUpdate', (info) => {
+      console.info('NavDestination state update', JSON.stringify(info));
+    });
+  }
+
+  aboutToDisappear() {
+    this.getUIContext().getUIObserver().off('navDestinationUpdate');
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({ name: "pageOne" });
+        })
+      }
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ### off('navDestinationUpdate')<sup>11+</sup>
@@ -2947,13 +2988,7 @@ off(type: 'navDestinationUpdate', callback?: Callback\<observer.NavDestinationIn
 
 **示例：** 
 
-<!--code_no_check-->
-```ts
-import { UIObserver } from '@kit.ArkUI';
-
-let observer:UIObserver = uiContext.getUIObserver();
-observer.off('navDestinationUpdate');
-```
+参考[uiObserver.on('navDestinationUpdate')](#onnavdestinationupdate11)示例。
 
 ### on('navDestinationUpdate')<sup>11+</sup>
 
@@ -2977,12 +3012,53 @@ on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callbac
 
 <!--code_no_check-->
 ```ts
-import { UIObserver } from '@kit.ArkUI';
+// Index.ets
+// 演示 uiObserver.on('navDestinationUpdate', navigationId, callback)
+// uiObserver.off('navDestinationUpdate', navigationId, callback)
+@Component
+struct PageOne {
+  build() {
+    NavDestination() {
+      Text("pageOne")
+    }.title("pageOne")
+  }
+}
 
-let observer:UIObserver = uiContext.getUIObserver();
-observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
-    console.info('NavDestination state update', JSON.stringify(info));
-});
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  aboutToAppear() {
+    this.getUIContext().getUIObserver().on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
+      console.info('NavDestination state update', JSON.stringify(info));
+    });
+  }
+
+  aboutToDisappear() {
+    this.getUIContext().getUIObserver().off('navDestinationUpdate', { navigationId: "testId" });
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({ name: "pageOne" });
+        })
+      }
+      .id("testId")
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ### off('navDestinationUpdate')<sup>11+</sup>
@@ -3005,13 +3081,7 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 
 **示例：**
 
-<!--code_no_check-->
-```ts
-import { UIObserver } from '@kit.ArkUI';
-
-let observer:UIObserver = uiContext.getUIObserver();
-observer.off('navDestinationUpdate', { navigationId: "testId" });
-```
+参考[uiObserver.on('navDestinationUpdate')](#onnavdestinationupdate11-1)示例。
 
 ### on('scrollEvent')<sup>12+</sup>
 
