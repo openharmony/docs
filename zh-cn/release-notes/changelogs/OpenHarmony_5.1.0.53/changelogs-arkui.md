@@ -412,7 +412,7 @@ getKeyboardAvoidMode接口实际返回值为字符串，与文档描述返回值
 
 **起始API Level**
 
-16
+11
 
 **变更发生版本**
 
@@ -442,7 +442,7 @@ export default class EntryAbility extends UIAbility {
     windowStage.loadContent('pages/Index', (err, data) => {
       //获取并打印当前KeyboardAvoidMode
       let keyboardAvoidMode = windowStage.getMainWindowSync().getUIContext().getKeyboardAvoidMode();
-      console.log("=====keyboardAvoidMode0=====: ", keyboardAvoidMode);
+      console.log("=====keyboardAvoidMode=====: ", keyboardAvoidMode);
 
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
