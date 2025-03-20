@@ -35,34 +35,16 @@
 
 当前支持的解码能力如下：
 
-| 容器规格 | 音频解码类型                 |
-| -------- | :--------------------------- |
-| mp4      | AAC、MPEG(MP3)、Flac、Vorbis<!--RP1--><!--RP1End--> |
-| m4a      | AAC                          |
-| flac     | Flac                         |
-| ogg      | Vorbis<!--RP2--><!--RP2End-->    |
-| aac      | AAC                          |
-| mp3      | MPEG(MP3)                    |
-| amr      | AMR(amrnb、amrwb)            |
-| raw      | G711mu                       |
-| ape      | APE                          |
+AAC、MPEG(MP3)、Flac、Vorbis、AMR(amrnb、amrwb)、G711mu、APE<!--RP1--><!--RP1End-->。
 
 具体开发指导请参考[音频解码](audio-decoding.md)。
 
 
 ### 音频编码
 
-当前支持的编码能力如下：
+当前支持的编码能力：
 
-| 容器规格 | 音频编码类型       |
-| -------- | :--------------- |
-| mp4      | AAC、Flac        |
-| m4a      | AAC              |
-| flac     | Flac             |
-| aac      | AAC              |
-| mp3      | MP3              |
-| raw      | G711mu           |
-<!--RP3--><!--RP3End-->
+AAC、Flac、MP3、G711mu<!--RP3--><!--RP3End-->。
 
 具体开发指导请参考[音频编码](audio-encoding.md)。
 

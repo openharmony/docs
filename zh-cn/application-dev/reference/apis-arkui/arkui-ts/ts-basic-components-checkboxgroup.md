@@ -62,9 +62,9 @@ selectAll(value: boolean)
 
 **参数：** 
 
-| 参数名 | 类型    | 必填 | 说明                         |
-| ------ | ------- | ---- | ---------------------------- |
-| value  | boolean | 是   | 是否全选。<br/>默认值：false |
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 是否全选。<br/>默认值：false<br/>值为true时，多选框群组都被选中。值为false时，多选框群组都不被选中。 |
 
 ### selectAll<sup>18+</sup>
 
@@ -84,7 +84,7 @@ selectAll(isAllSelected: Optional\<boolean>)
 
 | 参数名        | 类型                                                         | 必填 | 说明                                                         |
 | ------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| isAllSelected | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否全选。<br/>当isAllSelected的值为undefined时，默认值：false |
+| isAllSelected | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否全选。<br/>当isAllSelected的值为undefined时取默认值false。<br/>值为true时，多选框群组都被选中。值为false时，多选框群组都不被选中。 |
 
 ### selectedColor
 
