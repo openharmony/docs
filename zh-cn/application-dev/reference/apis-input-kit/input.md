@@ -186,9 +186,9 @@ typedef void(* Input_AxisEventCallback) (const Input_AxisEvent *axisEvent)
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明                                   |
-  | ------ | ------ | ---- | ------------------------------------- |
-  | axisEvent |  [Input_AxisEvent](#input_axisevent) | 是   | 轴事件对象。 |
+| 名称 | 描述    | 
+| ------ | ------ |
+| axisEvent | 轴事件对象。 |
 
 
 ### Input_InterceptorEventCallback
@@ -252,9 +252,9 @@ typedef void(* Input_KeyEventCallback) (const Input_KeyEvent *keyEvent)
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明                                   |
-  | ------ | ------ | ---- | ------------------------------------- |
-  | keyEvent |  [Input_KeyEvent](#input_keyevent) | 是   | 按键事件对象。 |
+| 名称 |描述    | 
+| ------ | ------ |
+| keyEvent | 按键事件对象。 |
 
 
 ### Input_KeyState
