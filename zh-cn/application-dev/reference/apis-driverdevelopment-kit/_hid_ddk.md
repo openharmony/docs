@@ -661,7 +661,7 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_CreateDevice()
 
 ```
-int32_t OH_Hid_CreateDevice (Hid_Device * hidDevice, Hid_EventProperties * hidEventProperties )
+int32_t OH_Hid_CreateDevice (Hid_Device * hidDevice, Hid_EventProperties * hidEventProperties)
 ```
 
 **描述**
@@ -730,7 +730,7 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_EmitEvent()
 
 ```
-int32_t OH_Hid_EmitEvent (int32_t deviceId, const Hid_EmitItem items[], uint16_t length )
+int32_t OH_Hid_EmitEvent (int32_t deviceId, const Hid_EmitItem items[], uint16_t length)
 ```
 
 **描述**
@@ -769,7 +769,7 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_GetPhysicalAddress()
 
 ```
-int32_t OH_Hid_GetPhysicalAddress (Hid_DeviceHandle * dev, char * data, uint32_t bufSize )
+int32_t OH_Hid_GetPhysicalAddress (Hid_DeviceHandle * dev, char * data, uint32_t bufSize)
 ```
 
 **描述**
@@ -850,7 +850,7 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_GetRawName()
 
 ```
-int32_t OH_Hid_GetRawName (Hid_DeviceHandle * dev, char * data, uint32_t bufSize )
+int32_t OH_Hid_GetRawName (Hid_DeviceHandle * dev, char * data, uint32_t bufSize)
 ```
 
 **描述**
@@ -891,7 +891,7 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_GetRawUniqueId()
 
 ```
-int32_t OH_Hid_GetRawUniqueId (Hid_DeviceHandle * dev, uint8_t * data, uint32_t bufSize )
+int32_t OH_Hid_GetRawUniqueId (Hid_DeviceHandle * dev, uint8_t * data, uint32_t bufSize)
 ```
 
 **描述**
@@ -932,7 +932,7 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_GetReport()
 
 ```
-int32_t OH_Hid_GetReport (Hid_DeviceHandle * dev, Hid_ReportType reportType, uint8_t * data, uint32_t bufSize )
+int32_t OH_Hid_GetReport (Hid_DeviceHandle * dev, Hid_ReportType reportType, uint8_t * data, uint32_t bufSize)
 ```
 
 **描述**
@@ -976,7 +976,7 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_GetReportDescriptor()
 
 ```
-int32_t OH_Hid_GetReportDescriptor (Hid_DeviceHandle * dev, uint8_t * buf, uint32_t bufSize, uint32_t * bytesRead )
+int32_t OH_Hid_GetReportDescriptor (Hid_DeviceHandle * dev, uint8_t * buf, uint32_t bufSize, uint32_t * bytesRead)
 ```
 
 **描述**
@@ -1020,7 +1020,7 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_Init()
 
 ```
-int32_t OH_Hid_Init (void )
+int32_t OH_Hid_Init (void)
 ```
 
 **描述**
@@ -1047,7 +1047,7 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_Open()
 
 ```
-int32_t OH_Hid_Open (uint64_t deviceId, uint8_t interfaceIndex, Hid_DeviceHandle ** dev )
+int32_t OH_Hid_Open (uint64_t deviceId, uint8_t interfaceIndex, Hid_DeviceHandle ** dev)
 ```
 
 **描述**
@@ -1090,7 +1090,7 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_Read()
 
 ```
-int32_t OH_Hid_Read (Hid_DeviceHandle * dev, uint8_t * data, uint32_t bufSize, uint32_t * bytesRead )
+int32_t OH_Hid_Read (Hid_DeviceHandle * dev, uint8_t * data, uint32_t bufSize, uint32_t * bytesRead)
 ```
 
 **描述**
@@ -1134,7 +1134,7 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_ReadTimeout()
 
 ```
-int32_t OH_Hid_ReadTimeout (Hid_DeviceHandle * dev, uint8_t * data, uint32_t bufSize, int timeout, uint32_t * bytesRead )
+int32_t OH_Hid_ReadTimeout (Hid_DeviceHandle * dev, uint8_t * data, uint32_t bufSize, int timeout, uint32_t * bytesRead)
 ```
 
 **描述**
@@ -1179,7 +1179,7 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_Release()
 
 ```
-int32_t OH_Hid_Release (void )
+int32_t OH_Hid_Release (void)
 ```
 
 **描述**
@@ -1206,7 +1206,7 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_SendReport()
 
 ```
-int32_t OH_Hid_SendReport (Hid_DeviceHandle * dev, Hid_ReportType reportType, const uint8_t * data, uint32_t length )
+int32_t OH_Hid_SendReport (Hid_DeviceHandle * dev, Hid_ReportType reportType, const uint8_t * data, uint32_t length)
 ```
 
 **描述**
@@ -1248,7 +1248,7 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_SetNonBlocking()
 
 ```
-int32_t OH_Hid_SetNonBlocking (Hid_DeviceHandle * dev, int nonBlock )
+int32_t OH_Hid_SetNonBlocking (Hid_DeviceHandle * dev, int nonBlock)
 ```
 
 **描述**
@@ -1284,7 +1284,7 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_Write()
 
 ```
-int32_t OH_Hid_Write (Hid_DeviceHandle * dev, uint8_t * data, uint32_t length, uint32_t * bytesWritten )
+int32_t OH_Hid_Write (Hid_DeviceHandle * dev, uint8_t * data, uint32_t length, uint32_t * bytesWritten)
 ```
 
 **描述**
