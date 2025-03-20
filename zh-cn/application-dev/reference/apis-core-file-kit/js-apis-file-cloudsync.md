@@ -298,7 +298,7 @@ stop(): Promise&lt;void&gt;
 
 异步方法停止云盘端云同步, 以Promise形式返回结果。
 
-调用stop接口，同步流程会停止。再次调用[start](#start)接口会继续同步。
+调用stop接口，同步流程会停止。再次调用[start](#start12)接口会继续同步。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
@@ -340,7 +340,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
 异步方法停止云盘端云同步, 以callback形式返回结果。
 
-调用stop接口，同步流程会停止。再次调用[start](#start)接口会继续同步。
+调用stop接口，同步流程会停止。再次调用[start](#start12)接口会继续同步。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
