@@ -422,7 +422,7 @@ getParent(): FrameNode | null;
 
 请参考[节点操作示例](#节点操作示例)。
 
-### moveTo<sup>16+</sup>
+### moveTo<sup>18+</sup>
 
 moveTo(targetParent: FrameNode, index?: number): void
 
@@ -432,7 +432,7 @@ moveTo(targetParent: FrameNode, index?: number): void
 >
 > 当前仅支持以下类型的[TypedFrameNode](#typedframenode12)进行移动操作：[Stack](#stack12)、[XComponent](#xcomponent12)。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
