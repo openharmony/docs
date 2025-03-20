@@ -5116,7 +5116,7 @@ Describes the attributes related to the media metadata in the playlist.
 | lyricUri     | string                  | No  | Lyric URI of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
 | artist     | string                  | No  | Author of the lyric of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
 | fdSrc     | media.AVFileDescriptor        | No  | Handle to the local media file in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
-| dataSrc<sup>12+</sup>     | media.AVDataSrcDescriptor        | No  | Descriptor of the data source in the playlist.        |
+| dataSrc<sup>12+</sup>     | media.AVDataSrcDescriptor        | No  | Descriptor of the data source in the playlist. This property is unavailable in current version.        |
 | drmScheme<sup>12+</sup>     | string        | No  | DRM scheme supported by the playlist. The value is the UUID of the DRM scheme.      |
 | duration     | number                  | No  | Playback duration of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
 | startPosition     | number                  | No  | Start position for playing the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
@@ -5312,7 +5312,7 @@ Enumerates the media playback states.
 | PLAYBACK_STATE_PLAY         | 2    | Playing.    |
 | PLAYBACK_STATE_PAUSE        | 3    | Paused.        |
 | PLAYBACK_STATE_FAST_FORWARD | 4    | Fast-forwarding.        |
-| PLAYBACK_STATE_REWIND       | 5    | Rewinded.        |
+| PLAYBACK_STATE_REWIND       | 5    | Rewinding.        |
 | PLAYBACK_STATE_STOP         | 6    | Stopped.        |
 | PLAYBACK_STATE_COMPLETED    | 7    | Playback complete.    |
 | PLAYBACK_STATE_RELEASED     | 8    | Released.        |
@@ -8069,6 +8069,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
+import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function avCastPicker(context: common.Context) {
@@ -8112,11 +8113,15 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
+import { common } from '@kit.AbilityKit';
 import { AVCastPickerState } from '@kit.AVSessionKit';
 
-avCastPicker.on('pickerStateChange', (state: AVCastPickerState) => {
-  console.info(`picker state change : ${state}`);
-});
+async function onPickerStateChange(context: common.Context) {
+  let avCastPicker = new avSession.AVCastPickerHelper(context);
+  avCastPicker.on('pickerStateChange', (state: AVCastPickerState) => {
+    console.info(`picker state change : ${state}`);
+  });
+}
 ```
 
 ### off('pickerStateChange')<sup>14+</sup>
@@ -8148,7 +8153,12 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-avCastPicker.off('pickerStateChange');
+import { common } from '@kit.AbilityKit';
+
+async function onPickerStateChange(context: common.Context) {
+  let avCastPicker = new avSession.AVCastPickerHelper(context);
+  avCastPicker.off('pickerStateChange');
+}
 ```
 
 ## AVSessionErrorCode<sup>10+</sup>
