@@ -42,12 +42,12 @@ function setProcessPriority(pid: number, priority: ProcessPriority): Promise&lt;
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { backgroundProcessManaer } from '@kit.BackgroundTasksKit';
+import { backgroundProcessManager } from '@kit.BackgroundTasksKit';
 
 let childProcessPid = 33333;
 try {
-    backgroundProcessManaer.setProcessPriority(childProcessPid,
-        backgroundProcessManaer.ProcessPriority.PROCESS_INACTIVE);
+    backgroundProcessManager.setProcessPriority(childProcessPid,
+        backgroundProcessManager.ProcessPriority.PROCESS_INACTIVE);
 } catch (error) {
     console.error(`setProcessPriority failed, errCode: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
@@ -77,11 +77,11 @@ function resetProcessPriority(pid: number): Promise&lt;void&gt;
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { backgroundProcessManaer } from '@kit.BackgroundTasksKit';
+import { backgroundProcessManager } from '@kit.BackgroundTasksKit';
 
 let childProcessPid = 33333;
 try {
-    backgroundProcessManaer.resetProcessPriority(childProcessPid);
+    backgroundProcessManager.resetProcessPriority(childProcessPid);
 } catch (error) {
     console.error(`setProcessPriority failed, errCode: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
