@@ -166,7 +166,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     };
     ```
 
-4. 全局变量
+4. 全局变量。
 
     仅做参考，可以根据实际情况将其封装到对象中。
 
