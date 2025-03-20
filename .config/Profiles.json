@@ -1,0 +1,10 @@
+{
+    "sampleCodeAccuracy": {
+      "AC": ["OpenHarmony-5.1.0-Release"],
+      "CI": ["master", "OpenHarmony-5.1.0-Release"]
+    },
+    "deprecatedInterface": {
+      "AC": ["master"],
+      "CI": ["master", "OpenHarmony-5.1.0-Release"]
+    }
+  }
