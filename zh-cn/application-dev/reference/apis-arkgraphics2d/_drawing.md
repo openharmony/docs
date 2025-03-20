@@ -241,6 +241,9 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 | 名称 | 描述 |
 | -------- | -------- |
+| [OH_Drawing_Surface](#oh_drawing_surface) \* [OH_Drawing_SurfaceCreateOnScreen](#oh_drawing_surfacecreateonscreen) ([OH_Drawing_GpuContext](#oh_drawing_gpucontext) \*gpuContext, [OH_Drawing_Image_Info](_o_h___drawing___image___info.md) imageInfo, void \*window) | 使用图形处理器上下文创建一个与屏幕窗口绑定的surface对象，用于管理画布绘制的内容。  | 
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_SurfaceFlush](#oh_drawing_surfaceflush) ([OH_Drawing_Surface](#oh_drawing_surface) \*surface) | 将surface对象上的画布绘制内容提交给GPU处理，完成绘制内容上屏显示。  | 
+| [OH_Drawing_GpuContext](#oh_drawing_gpucontext) \* [OH_Drawing_GpuContextCreate](#oh_drawing_gpucontextcreate) (void) | 用于创建一个图形处理器上下文对象, 使用的后端类型取决于运行设备。  | 
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_FontSetThemeFontFollowed](#oh_drawing_fontsetthemefontfollowed) ([OH_Drawing_Font](#oh_drawing_font) \*font, bool followed) | 设置字型中的字体是否跟随主题字体。设置跟随主题字体后，若系统启用主题字体并且字型未被设置字体，字型会使用该主题字体。 | 
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_FontIsThemeFontFollowed](#oh_drawing_fontisthemefontfollowed) (const [OH_Drawing_Font](#oh_drawing_font) \*font, bool \*followed) | 获取字型中的字体是否跟随主题字体。默认不跟随主题字体。 | 
 | OH_Drawing_FontCollection \* [OH_Drawing_GetFontCollectionGlobalInstance](#oh_drawing_getfontcollectionglobalinstance) (void) | 获取全局字体集对象OH_Drawing_FontCollection，可感知主题字信息，禁止释放该对象。  | 
@@ -2993,6 +2996,75 @@ enum OH_Drawing_WordBreakType
 
 
 ## 函数说明
+
+### OH_Drawing_SurfaceCreateOnScreen()
+
+```
+OH_Drawing_Surface* OH_Drawing_SurfaceCreateOnScreen (OH_Drawing_GpuContext* gpuContext, OH_Drawing_Image_Info imageInfo, void* window )
+```
+**描述**
+
+使用图形处理器上下文创建一个与屏幕窗口绑定的surface对象，用于管理画布绘制的内容。
+
+本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码的取值。 gpuContext或window为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| gpuContext | 指向图形处理器上下文对象的指针[OH_Drawing_GpuContext](#oh_drawing_gpucontext)。 该图形处理器上下文对象必须由[OH_Drawing_GpuContextCreate](#oh_drawing_gpucontextcreate)创建，否则surface对象会创建失败。  | 
+| imageInfo | 图片信息[OH_Drawing_Image_Info](_o_h___drawing___image___info.md)结构体。  | 
+| window | 指向屏幕窗口对象的指针。  | 
+
+**返回：**
+
+返回一个指针，指针指向创建的surface对象[OH_Drawing_Surface](#oh_drawing_surface)。
+
+### OH_Drawing_SurfaceFlush()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_SurfaceFlush (OH_Drawing_Surface* surface)
+```
+
+**描述**
+
+将surface对象上的画布绘制内容提交给GPU处理，完成绘制内容上屏显示。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| surface | 指向创建的surface对象的指针[OH_Drawing_Surface](#oh_drawing_surface)。 该surface对象必须由[OH_Drawing_SurfaceCreateOnScreen](#oh_drawing_surfacecreateonscreen)创建，否则该接口调用将没有任何效果。  | 
+
+**返回：**
+
+函数返回执行错误码。 返回OH_DRAWING_SUCCESS，表示执行成功。 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数surface为空。
+
+### OH_Drawing_GpuContextCreate()
+
+```
+OH_Drawing_GpuContext* OH_Drawing_GpuContextCreate (void)
+```
+
+**描述**
+
+用于创建一个图形处理器上下文对象, 使用的后端类型取决于运行设备。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 16
+
+**返回：**
+
+返回一个指针，指针指向创建的图形处理器上下文对象[OH_Drawing_GpuContext](#oh_drawing_gpucontext)。
 
 ### OH_Drawing_FontSetThemeFontFollowed()
 
