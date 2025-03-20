@@ -56,8 +56,8 @@
         - 模块<!--reference-c-avsession-module-->
           - [OHAVSession](onlyfortest/reference/apis-avsession-kit/_o_h_a_v_session.md)
         - 头文件<!--reference-c-avsession-headerfile-->
-          - [native_avmetadata.h](onlyfortest/reference/apis-avsession-kit/native__avmetadata_8h.md)
-          - [native_avsession.h](onlyfortest/reference/apis-avsession-kit/native__avsession_8h.md)
+          - [jsvm.h](onlyfortest/reference/apis-avsession-kit/native__avmetadata_8h.md)
+          - [net_websocket.h](onlyfortest/reference/apis-avsession-kit/native__avsession_8h.md)
           - [native_avsession_errors.h](onlyfortest/reference/apis-avsession-kit/native__avsession__errors_8h.md)
         - 结构体<!--reference-c-avsession-struct-->
           - [AVSession_PlaybackPosition](onlyfortest/reference/apis-avsession-kit/_a_v_session___playback_position.md)

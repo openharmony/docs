@@ -11,6 +11,8 @@
 
 **系统能力：** SystemCapability.PowerManager.DisplayPowerManager.Lite
 
+**所在结构体：**[jsvm.h](native__avmetadata_8h.md)
+
 
 ## 汇总
 
