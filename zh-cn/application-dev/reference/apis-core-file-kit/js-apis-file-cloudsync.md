@@ -21,8 +21,6 @@ import { cloudSync } from '@kit.CoreFileKit';
 
 **系统能力**： SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
-
 | 名称 |  值|  说明 |
 | ----- |  ---- |  ---- |
 | UPLOADING |  0 | 上行同步中 |
@@ -43,8 +41,6 @@ import { cloudSync } from '@kit.CoreFileKit';
 
 **系统能力**： SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
-
 | 名称 |  值|  说明 |
 | ----- |  ---- |  ---- |
 | NO_ERROR |  0 | 没有错误 |
@@ -61,8 +57,6 @@ import { cloudSync } from '@kit.CoreFileKit';
 端云同步过程。
 
 **系统能力**： SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口：** 该接口为系统接口。
 
 | 名称     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
@@ -108,8 +102,6 @@ constructor()
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
-
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
@@ -134,8 +126,6 @@ on(event: 'progress', callback: Callback\<SyncProgress>): void
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口：** 该接口为系统接口。
 
 **参数：**
 
@@ -175,8 +165,6 @@ off(event: 'progress', callback?: Callback\<SyncProgress>): void
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口：** 该接口为系统接口。
 
 **参数：**
 
@@ -219,8 +207,6 @@ start(): Promise&lt;void&gt;
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口：** 该接口为系统接口。
 
 **返回值：**
 
@@ -271,8 +257,6 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
-
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
@@ -320,8 +304,6 @@ stop(): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
-
 **返回值：**
 
 | 类型                  | 说明             |
@@ -363,8 +345,6 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口：** 该接口为系统接口。
 
 **参数：**
 
@@ -408,8 +388,6 @@ getLastSyncTime(): Promise&lt;number&gt;
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
-
 **返回值：**
 
 | 类型                  | 说明             |
@@ -451,8 +429,6 @@ getLastSyncTime(callback: AsyncCallback&lt;number&gt;): void;
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口：** 该接口为系统接口。
 
 **参数：**
 
@@ -818,8 +794,6 @@ registerChange(uri: string, recursion: boolean, callback: Callback&lt;ChangeData
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
-
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
@@ -867,8 +841,6 @@ unregisterChange(uri: string): void
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
-
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
@@ -912,8 +884,6 @@ unregisterChange(uri: string): void
 
 **系统能力**： SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
-
 | 名称 |  值|  说明 |
 | ----- |  ---- |  ---- |
 | NOTIFY_ADDED |  0 | 文件已新建 |
@@ -926,8 +896,6 @@ unregisterChange(uri: string): void
 定义变更数据。
 
 **系统能力**： SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口：** 该接口为系统接口。
 
 | 名称     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
