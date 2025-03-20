@@ -22,8 +22,8 @@ Input设备基础设备信息。
 | String [chipInfo](#chipinfo) | 驱动芯片编码信息  | 
 | String [vendorName](#vendorname) | 模组厂商名  | 
 | String [chipName](#chipname) | 驱动芯片型号  | 
-| struct [DevAttr](_dev_attr_v10.md)[attrSet](#attrset) | 设备属性  | 
-| struct [DevAbility](_dev_ability_v10.md)[abilitySet](#abilityset) | 设备能力属性  | 
+| struct [DevAttr](_dev_attr_v10.md) [attrSet](#attrset) | 设备属性  | 
+| struct [DevAbility](_dev_ability_v10.md) [abilitySet](#abilityset) | 设备能力属性  | 
 
 
 ## 类成员变量说明

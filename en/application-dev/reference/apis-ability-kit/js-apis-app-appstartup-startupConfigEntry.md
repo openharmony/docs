@@ -25,9 +25,9 @@ Called during application startup to configure AppStartup.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| StartupConfig | AppStartup configuration. |
+| StartupConfig | AppStartup configuration.|
 
 **Example**
 

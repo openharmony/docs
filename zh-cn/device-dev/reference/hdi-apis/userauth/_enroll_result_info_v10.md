@@ -17,7 +17,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| unsigned long [credentialId](#credentialid) | 认证凭据ID  | 
+| unsigned long [credentialId](#credentialid) | 认证凭据ID。  | 
 | struct [CredentialInfo](_credential_info_v10.md)[oldInfo](#oldinfo) | 旧凭据信息[CredentialInfo](_credential_info_v10.md)。  | 
 | unsigned char[] [rootSecret](#rootsecret) | 保护文件加密密钥的密钥。  | 
 
@@ -32,7 +32,7 @@ unsigned long EnrollResultInfo::credentialId
 ```
 **描述**
 
-认证凭据ID
+认证凭据ID。
 
 
 ### oldInfo

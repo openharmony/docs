@@ -609,7 +609,7 @@ type VisibleAreaChangeCallback = (isExpanding: boolean, currentRatio: number) =>
 | color  | [ResourceColor](#resourcecolor) | 否  | 分割线的颜色。         |
 | startMargin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否  | 分割线与菜单侧边起始端的距离。 |
 | endMargin  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup>| 否  | 分割线与菜单侧边结束端的距离。 |
-| mode  | [DividerMode](#dividermode16枚举说明)<sup>16+</sup>| 否  | 设置分割线模式。 |
+| mode  | [DividerMode](#dividermode18枚举说明)<sup>18+</sup>| 否  | 设置分割线模式。 |
 
 ## TextContentControllerBase<sup>10+</sup>
 
@@ -732,6 +732,38 @@ getSelection(): TextRange
 | ----------------------- | ---------------- |
 | [TextRange](ts-text-common.md#textrange12) | 文本当前的选择范围，未选中返回光标位置。 |
 
+### clearPreviewText<sup>18+</sup>
+
+clearPreviewText(): void
+
+清除当前的预上屏文本内容。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### getText<sup>18+</sup>
+
+getText(range?: TextRange): string
+
+获取指定范围的文本内容。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型   | 必填   | 说明  |
+| ------- | ------ | ---- | ----- |
+| range | [TextRange](ts-text-common.md#textrange12) | 否    | 获取文本的范围，包括需要获取文本的起始位置和终止位置。<br>未指定范围时，默认将获取全部文本。未指定获取文本的起始位置，则默认从下标0开始；未指定获取文本的终止位置，则默认以文本末尾作为结束点。 |
+
+**返回值：**
+
+| 类型    | 说明               |
+| ------ | ---------------- |
+| string | 指定范围的文本内容。 |
+
 ## TextDecorationOptions<sup>12+</sup>对象说明
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -853,11 +885,11 @@ setTextSelection选中文字时的配置。
 | --------- | ------ | ---- | ---- | ---------- |
 | offset | number | 是   | 是   | 插入文本的位置。 |
 
-## DividerMode<sup>16+</sup>枚举说明
+## DividerMode<sup>18+</sup>枚举说明
 
 分割线模式
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

@@ -164,13 +164,13 @@ wukong部件架构图以及部件内子模块职责如下所述。
 | -C, --component | 设置随机控件测试比例。                 | 否   | 默认70%。                                  |
 | -I, --screenshot | 控件测试截图。                 | 否   | - |
 | -T,--time       | 设置测试总时间，与设置执行次数-c冲突。二者取其一。 | 否   | 单位分钟，默认10分钟。         |
-| -e, --allow ability   |  设置允许测试的ability | 否 | - |
-| -E, --block ability   |  设置禁止测试的ability | 否 | - |
-| -Y, --blockCompId     |  设置不进行注入的CompId | 否 | - |
-| -y, --blockCompType   |  设置不进行注入的CompType | 否 | - |
-| -B, --checkBWScreen   |  设置启用黑白屏检测 | 否 | - |
-| -U, -uri              |  设置应用拉起页面uri | 否 | - |
-| -x, -uriType          |  设置应用拉起页面uriType | 否 | - |
+| -e, --allow ability   |  设置允许测试的ability。 | 否 | - |
+| -E, --block ability   |  设置禁止测试的ability。 | 否 | - |
+| -Y, --blockCompId     |  设置不进行注入的CompId。 | 否 | - |
+| -y, --blockCompType   |  设置不进行注入的CompType。 | 否 | - |
+| -B, --checkBWScreen   |  设置启用黑白屏检测。 | 否 | - |
+| -U, -uri              |  设置应用拉起页面uri。 | 否 | - |
+| -x, -uriType          |  设置应用拉起页面uriType。 | 否 | - |
 
 ### 使用示例
 
@@ -262,11 +262,11 @@ wukong部件架构图以及部件内子模块职责如下所述。
 | -C, --component | 设置随机控件测试比例。                 | 否   | 默认70%。                                  |
 | -I, --screenshot | 控件测试截图。                 | 否   | - |
 | -T,--time       | 设置测试总时间，与设置执行次数-c冲突。二者取其一。 | 否   | 单位分钟，默认10分钟。         |
-| -e, --allow ability   |  设置允许测试的ability | 否 | - |
-| -E, --block ability   |  设置禁止测试的ability | 否 | - |
-| -Y, --blockCompId     |  设置不进行注入的CompId | 否 | - |
-| -y, --blockCompType   |  设置不进行注入的CompType | 否 | - |
-| -B, --checkBWScreen   |  设置启用黑白屏检测 | 否 | - |
+| -e, --allow ability   |  设置允许测试的ability。 | 否 | - |
+| -E, --block ability   |  设置禁止测试的ability。 | 否 | - |
+| -Y, --blockCompId     |  设置不进行注入的CompId。 | 否 | - |
+| -y, --blockCompType   |  设置不进行注入的CompType。 | 否 | - |
+| -B, --checkBWScreen   |  设置启用黑白屏检测。 | 否 | - |
 
 ### 使用示例
 

@@ -1,6 +1,5 @@
 # 签名/验签(ArkTS)
 
-
 当前指导共提供四种示例，供开发者参考完成签名、验签开发：
 
 - [密钥算法为ECC256、摘要算法为SHA256](#ecc256sha256)
@@ -9,7 +8,6 @@
 - [密钥算法为RSA、摘要算法为SHA256、填充模式为PKCS1_V1_5](#rsasha256pkcs1_v1_5)
 
 具体的场景介绍及支持的算法规格，请参考[签名/验签支持的算法](huks-signing-signature-verification-overview.md#支持的算法)。
-
 
 ## 开发步骤
 

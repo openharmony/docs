@@ -8,7 +8,7 @@
 
 原则上应尽可能划分为细颗粒度的Part，以满足最大限度的复用。主要考虑以下几点：
 
-- 独立性：Part的功能应该相对独立，支持独立编译，可以单独对外提供接口和服务；
+- 独立性：Part的功能应该相对独立，支持独立编译，可以单独对外提供接口和服务。
 
 - 耦合性：如果Part必须依赖其他的Part，才能对外提供服务，应考虑和被依赖的Part合并为一个Part。
 
@@ -165,7 +165,7 @@ Part的全生命周期管理，可以通过hpm命令工具进行操作，hpm的�
 | 卸载 | hpm&nbsp;uninstall&nbsp;bundle | 删除depedencies依赖的Part。 | 
 || hpm&nbsp;remove或hpm&nbsp;rm&nbsp;bundlename | 删除depedencies依赖的Part。 | 
 | 查看 | hpm&nbsp;list或者hpm&nbsp;ls | 显示当前HPM&nbsp;Part的依赖树。 | 
-|| hpm&nbsp;dependencies | 生成当前HPM&nbsp;Part依赖关系数据（在hpm&nbsp;ui也集成了该命令的调用，可以图形化的展示） | 
+|| hpm&nbsp;dependencies | 生成当前HPM&nbsp;Part依赖关系数据（在hpm&nbsp;ui也集成了该命令的调用，可以图形化的展示）。 | 
 | 搜索 | hpm&nbsp;search&nbsp;name | 搜索Bundle，--json，可以以json格式输出&nbsp;-type&nbsp;可以设置搜索Bundle的类型，包括part、distribution、code-segment三种。 | 
 | 设置hpm配置项 | hpm&nbsp;config&nbsp;set&nbsp;key&nbsp;value | 设置配置值，如服务器地址，网络代理。 | 
 || hpm&nbsp;config&nbsp;delete&nbsp;key | 删除配置。 | 
@@ -177,11 +177,11 @@ Part的全生命周期管理，可以通过hpm命令工具进行操作，hpm的�
 | 烧录 | hpm&nbsp;run&nbsp;flash | 烧录固件（依赖bundle.json的scripts中的flash脚本）。 | 
 | 发布 | hpm&nbsp;publish | 发布Part，发布的Part在仓库中必须唯一，且版本唯一（需要账号登录）。 | 
 | 执行扩展命令 | hpm&nbsp;run | 执行bundle.json文件中定义的scripts脚本命令，支持多个命令可用&nbsp;&amp;&amp;&nbsp;连接。 | 
-| 解压包 | hpm&nbsp;extract | 解压文件.&nbsp;支持格式'zip'、'tar','tgz'&nbsp;和'.tar.gz' | 
-| 启动图形化界面 | hpm&nbsp;ui | 本地启动HPM&nbsp;UI，可通过-p参数指定端口，Windows平台下会启动默认的浏览器打开 | 
-| 多语言切换 | hpm&nbsp;lang | 切换中英文操作界面（同时支持命令行和UI） | 
-| 转换为hpm包格式 | hpm&nbsp;x2h | 将一个maven格式或npm格式包转换成hpm的包格式，并发布到HPM | 
-| 代码段还原或清理 | hpm&nbsp;code&nbsp;clean\|restore | 针对依赖的代码段(code-segment)Part，执行清理或还原操作（即根据segment.destPath执行拷贝/删除操作） | 
+| 解压包 | hpm&nbsp;extract | 解压文件，支持格式'zip'、'tar','tgz'&nbsp;和'.tar.gz'。 | 
+| 启动图形化界面 | hpm&nbsp;ui | 本地启动HPM&nbsp;UI，可通过-p参数指定端口，Windows平台下会启动默认的浏览器打开。 | 
+| 多语言切换 | hpm&nbsp;lang | 切换中英文操作界面（同时支持命令行和UI）。 | 
+| 转换为hpm包格式 | hpm&nbsp;x2h | 将一个maven格式或npm格式包转换成hpm的包格式，并发布到HPM。 | 
+| 代码段还原或清理 | hpm&nbsp;code&nbsp;clean\|restore | 针对依赖的代码段(code-segment)Part，执行清理或还原操作（即根据segment.destPath执行拷贝/删除操作）。 | 
 | 生成秘钥 | hpm&nbsp;gen-keys | 生成公钥/私钥对，将公钥配置到[DevEco&nbsp;Marketplace](https://repo.harmonyos.com)，可以实现hpm-cli免密登录，发布Part。 | 
 | 生成第三方开源说明 | hpm&nbsp;gen-notice | 根据每个Part的说明，生成一份合并后的第三方开源说明的合并文件。 | 
 

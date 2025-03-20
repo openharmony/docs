@@ -17,11 +17,11 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| unsigned int [id](#id) | 缓冲区ID. | 
+| unsigned int [id](#id) | 缓冲区ID | 
 | unsigned int [size](#size) | 缓冲区大小 | 
-| NativeBuffer [buffer](#buffer) | 用于编码或解码的缓冲区句柄。 | 
+| NativeBuffer [buffer](#buffer) | 用于编码或解码的缓冲区句柄 | 
 | FileDescriptor [fenceFd](#fencefd) | Fence文件描述符 | 
-| [CodecImageRole](_codec_v10.md#codecimagerole)[bufferRole](#bufferrole) | 图像编码格式。详见[CodecImageRole](_codec_v10.md#codecimagerole). | 
+| [CodecImageRole](_codec_v10.md#codecimagerole)[bufferRole](#bufferrole) | 图像编码格式。详见[CodecImageRole](_codec_v10.md#codecimagerole) | 
 
 
 ## 类成员变量说明

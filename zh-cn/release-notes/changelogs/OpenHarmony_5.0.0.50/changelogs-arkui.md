@@ -100,6 +100,7 @@ gesture.d.ts文件GestureGroupGestureHandlerOptions接口。
 class MyModifierGestureGroup implements GestureModifier {
   applyGesture(event: UIGestureEvent): void {
     event.addGesture(
+      // 将手势组的mode设置为GestureMode.Exclusive，使手势组中的手势组合成为互斥手势组。 
       new GestureGroupHandler({ mode: GestureMode.Exclusive, gestures: [
         new LongPressGestureHandler()
               .onAction(() => {}),
@@ -173,6 +174,7 @@ struct PanGesture {
       .width(150)
       .height(150)
       .gesture(
+        // 设置滑动手势的滑动距离为5vp
         PanGesture({distance: 5})
           .onActionStart(() => {})
       )

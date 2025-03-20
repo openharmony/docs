@@ -1,6 +1,6 @@
 # @ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable object)
 
-The **sendablePhotoAccessHelper** module provides APIs for album management, including creating an album and accessing and modifying media data in an album, based on a sendable object.
+The sendablePhotoAccessHelper module provides APIs for album management, including creating an album and accessing and modifying media data in an album, based on a [Sendable](../../arkts-utils/arkts-sendable.md) object.
 
 > **NOTE**
 >
@@ -226,7 +226,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 201      | Permission denied.                                           |
 | 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **Example**
 
@@ -438,14 +438,14 @@ Provides APIs for encapsulating file asset attributes.
 | Name       | Type                   | Read-Only| Optional| Description                                                        |
 | ----------- | ----------------------- | ---- | ---- | ------------------------------------------------------------ |
 | uri         | string                  | Yes  | No  | Media asset URI, for example, **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**. For details, see [Media File URI](../../file-management/user-file-uri-intro.md#media-file-uri).|
-| photoType   | [PhotoType](#phototype) | Yes  | No  | Type of the file.                                                |
+| photoType   | [PhotoType](#phototype) | Yes  | No  | Type of the file.                                              |
 | displayName | string                  | Yes  | No  | File name, including the file name extension, to display.                                    |
 
 ### convertToPhotoAsset
 
 convertToPhotoAsset():  photoAccessHelper.PhotoAsset
 
-Converts a sendable **PhotoAsset** object to a non-sendable **PhotoAsset** object.
+Converts a Sendable **PhotoAsset** object to a non-Sendable **PhotoAsset** object.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -453,7 +453,7 @@ Converts a sendable **PhotoAsset** object to a non-sendable **PhotoAsset** objec
 
 | Type                        | Description                                                        |
 | ---------------------------- | ------------------------------------------------------------ |
-| photoAccessHelper.PhotoAsset | [PhotoAsset](js-apis-photoAccessHelper.md#photoasset) object of the non-sendable type.|
+| photoAccessHelper.PhotoAsset | [PhotoAsset](js-apis-photoAccessHelper.md#photoasset) object of the non-Sendable type.|
 
 **Error codes**
 
@@ -627,6 +627,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   console.info('commitModifyDemo');
@@ -1093,7 +1094,7 @@ Provides APIs to manage albums.
 
 convertToPhotoAlbum(): photoAccessHelper.Album
 
-Converts this sendable album to a non-sendable album.
+Converts this Sendable album to a non-Sendable album.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
@@ -1103,7 +1104,7 @@ Converts this sendable album to a non-sendable album.
 
 | Type                   | Description                                                     |
 | ----------------------- | --------------------------------------------------------- |
-| photoAccessHelper.Album | Non-sendable [Album](js-apis-photoAccessHelper.md#album).|
+| photoAccessHelper.Album | Non-Sendable [Album](js-apis-photoAccessHelper.md#album).|
 
 **Error codes**
 

@@ -3,7 +3,7 @@
 
 ## 概述
 
-UIAbility组件是一种包含UI的应用组件，主要用于和用户交互。
+[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)组件是一种包含UI的应用组件，主要用于和用户交互。
 
 UIAbility的设计理念：
 

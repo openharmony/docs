@@ -18,7 +18,7 @@
 import { webview } from '@kit.ArkWeb';
 ```
 
-## once
+## webview.once
 
 once(type: string, callback: Callback\<void\>): void
 
@@ -1208,6 +1208,12 @@ accessBackward(): boolean
 
 可以结合使用[getBackForwardEntries](#getbackforwardentries)来获取当前WebView的历史信息列表，以及使用[accessStep](#accessstep)来判断是否可以按照给定的步数前进或后退。
 
+> **说明：**
+>
+> 在Web组件首次加载过程中调用[setCustomUserAgent](#setcustomuseragent10)，可能会导致在当前存在多个历史节点的情况下，获取的accessBackForward实际为false，即没有后退节点。建议先调用setCustomUserAgent方法设置UserAgent，再通过loadUrl加载具体页面。
+>
+> 该现象是由于在Web组件首次加载时，调用[setCustomUserAgent](#setcustomuseragent10)会导致组件重新加载并保持初始历史节点的状态。随后新增的节点将替换初始历史节点，不会生成新的历史节点，导致accessBackward为false。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
@@ -1542,7 +1548,7 @@ getHitTest(): WebHitTestType
 
 > **说明：**
 >
-> 从API version11开始支持，从API version 16开始废弃。建议使用[getLastHitTest](#getlasthittest16)替代。
+> 从API version11开始支持，从API version 18开始废弃。建议使用[getLastHitTest](#getlasthittest18)替代。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3125,7 +3131,7 @@ getHitTestValue(): HitTestValue
 
 > **说明：**
 >
-> 从API version11开始支持，从API version 16开始废弃。建议使用[getLastHitTest](#getlasthittest16)替代。
+> 从API version11开始支持，从API version 18开始废弃。建议使用[getLastHitTest](#getlasthittest18)替代。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -9127,7 +9133,7 @@ struct WebComponent {
 }
 ```
 
-### getLastHitTest<sup>16+</sup>
+### getLastHitTest<sup>18+</sup>
 
 getLastHitTest(): HitTestValue
 
@@ -11764,7 +11770,7 @@ Web组件发送的资源请求信息。
 
 ## WebHitTestType
 
-[getLastHitTest](#getlasthittest16)接口用于指示游标节点。
+[getLastHitTest](#getlasthittest18)接口用于指示游标节点。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -11794,7 +11800,7 @@ Web组件发送的资源请求信息。
 
 ##  HitTestValue
 
-提供点击区域的元素信息。示例代码参考[getLastHitTest](#getlasthittest16)。
+提供点击区域的元素信息。示例代码参考[getLastHitTest](#getlasthittest18)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

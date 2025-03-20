@@ -2,10 +2,10 @@
 
 穿戴设备支持eSIM，电话服务提供API给eSIM卡管理和eSIM卡服务使用。
 
->**说明：** 
+> **说明：** 
 >
->本模块首批接口从API version 14开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.telephony.esim (eSIM卡管理)](js-apis-esim.md)
+> 本模块首批接口从API version 16开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.telephony.esim (eSIM卡管理)](js-apis-esim.md)。
 
 ## 导入模块
 
@@ -13,9 +13,9 @@
 import { eSIM } from '@kit.TelephonyKit';
 ```
 
-## eSIM.getEid<sup>14+</sup>
+## eSIM.getEid<sup>16+</sup>
 
-getEid\(slotId: number\): string
+getEid\(slotId: number\): Promise\<string\>
 
 获取指定卡槽标识eUICC硬件的EID。
 
@@ -29,14 +29,17 @@ getEid\(slotId: number\): string
 
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2   |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。   |
 
 **返回值：**
 
 | 类型                  | 说明                                |
 | --------------------- | ---------------------------------- |
 | string | 返回指定卡槽标识eUICC硬件的EID。 |
+
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID                 | 错误信息                         |
 | --------------------- | ---------------------------------- |
@@ -46,6 +49,7 @@ getEid\(slotId: number\): string
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
+
 **示例：**
 
 ```ts
@@ -55,7 +59,7 @@ let eid: string = eSIM.getEid(0);
 console.log(`the EID is:` + eid);
 ```
 
-## eSIM.getOsuStatus<sup>14+</sup>
+## eSIM.getOsuStatus<sup>16+</sup>
 
 getOsuStatus\(slotId: number\): Promise\<OsuStatus\>
 
@@ -71,15 +75,17 @@ getOsuStatus\(slotId: number\): Promise\<OsuStatus\>
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 
 **返回值：**
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[OsuStatus](#osustatus14)\> |  Promise对象，返回操作系统升级的状态。<br/> 1.正在升级 <br/>   2. 升级失败<br/>  3.升级成功<br/>  4.当前版本是最新版本<br/> 5.升级服务不可用 |
+| Promise\<[OsuStatus](#osustatus16)\> |  Promise对象，返回操作系统升级的状态。<br/> 1. 正在升级。 <br/>   2. 升级失败。<br/>  3. 升级成功。<br/>  4. 当前版本是最新版本。<br/> 5. 升级服务不可用。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID                 | 错误信息                               |
 | --------------------- | ---------------------------------- |
@@ -103,7 +109,7 @@ eSIM.getOsuStatus(0).then(() => {
 });
 ```
 
-## eSIM.startOsu<sup>14+</sup>
+## eSIM.startOsu<sup>16+</sup>
 
 startOsu\(slotId: number\): Promise\<OsuStatus\>
 
@@ -119,15 +125,18 @@ startOsu\(slotId: number\): Promise\<OsuStatus\>
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 
 **返回值：**
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[OsuStatus](#osustatus14)\> |  Promise对象，返回操作系统升级的状态。<br/> 1.正在升级 <br/>   2. 升级失败<br/>  3.升级成功<br/>  4.当前版本是最新版本<br/> 5.升级服务不可用 |
+| Promise\<[OsuStatus](#osustatus16)\> |  Promise对象，返回操作系统升级的状态。<br/> 1. 正在升级。 <br/>   2. 升级失败。<br/>  3. 升级成功。<br/>  4. 当前版本是最新版本。<br/> 5. 升级服务不可用。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID                 | 错误信息                               |
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
@@ -136,7 +145,6 @@ startOsu\(slotId: number\): Promise\<OsuStatus\>
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
-
 
 **示例：**
 
@@ -151,7 +159,7 @@ eSIM.startOsu(0).then(() => {
 });
 ```
 
-## eSIM.getDownloadableProfileMetadata<sup>14+</sup>
+## eSIM.getDownloadableProfileMetadata<sup>16+</sup>
 
 getDownloadableProfileMetadata\(slotId: number, portIndex: number,
     profile: DownloadableProfile, forceDisableProfile: boolean\): Promise\<GetDownloadableProfileMetadataResult\>
@@ -168,18 +176,20 @@ getDownloadableProfileMetadata\(slotId: number, portIndex: number,
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId              | number                                        | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| slotId              | number                                        | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | portIndex           | number                                        | 是 | 插槽的端口索引。     |
-| profile             | [DownloadableProfile](#downloadableprofile14) | 是 | 可下载的配置文件信息。|
+| profile             | [DownloadableProfile](#downloadableprofile16) | 是 | 可下载的配置文件信息。|
 | forceDisableProfile | boolean | 是 | 如果值为true，则必须停用活动SIM才能执行操作。如果值为false，则提示用户首先同意此操作。|
 
 **返回值：**
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[GetDownloadableProfileMetadataResult](#getdownloadableprofilemetadataresult14)\> | Promise对象，返回填充可下载配置文件的元数据。 |
+| Promise\<[GetDownloadableProfileMetadataResult](#getdownloadableprofilemetadataresult16)\> | Promise对象，返回填充可下载配置文件的元数据。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID                 | 错误信息                               |
 | --------------------- | ---------------------------------- |
@@ -214,7 +224,7 @@ eSIM.getDownloadableProfileMetadata(0, 0, profile, true).then((data: eSIM.GetDow
 });
 ```
 
-## eSIM.getDownloadableProfiles<sup>14+</sup>
+## eSIM.getDownloadableProfiles<sup>16+</sup>
 
 getDownloadableProfiles\(slotId: number, portIndex: number,
     forceDisableProfile: boolean\): Promise\<GetDownloadableProfilesResult\>
@@ -231,7 +241,7 @@ getDownloadableProfiles\(slotId: number, portIndex: number,
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId              | number  | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| slotId              | number  | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | portIndex           | number  | 是 | 插槽的端口索引。 |
 | forceDisableProfile | boolean | 是 | 如果值为true，则必须停用活动SIM才能执行操作。如果值为false，则提示用户首先同意此操作。|
 
@@ -239,9 +249,11 @@ getDownloadableProfiles\(slotId: number, portIndex: number,
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[GetDownloadableProfilesResult](#getdownloadableprofilesresult14)\> | Promise对象，返回可下载配置文件列表。 |
+| Promise\<[GetDownloadableProfilesResult](#getdownloadableprofilesresult16)\> | Promise对象，返回可下载配置文件列表。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID                 | 错误信息                               |
 | --------------------- | ---------------------------------- |
@@ -265,10 +277,10 @@ eSIM.getDownloadableProfiles(0, 0, true).then((data: eSIM.GetDownloadableProfile
 });
 ```
 
-## eSIM.downloadProfile<sup>14+</sup>
+## eSIM.downloadProfile<sup>16+</sup>
 
 downloadProfile\(slotId: number, portIndex: number, profile: DownloadableProfile,
-      configuration: DownloadConfiguration\): Promise\<DownloadProfileResult\>;
+      configuration: DownloadConfiguration\): Promise\<DownloadProfileResult\>
 
 下载配置文件。使用Promise异步回调。
 
@@ -282,18 +294,20 @@ downloadProfile\(slotId: number, portIndex: number, profile: DownloadableProfile
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId        | number                                            | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| slotId        | number                                            | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | portIndex     | number                                            | 是 | 插槽的端口索引。 |
-| profile       | [DownloadableProfile](#downloadableprofile14)     | 是 | 可下载的配置文件信息。 |
-| configuration | [DownloadConfiguration](#downloadconfiguration14) | 是 | 下载的配置信息。 |
+| profile       | [DownloadableProfile](#downloadableprofile16)     | 是 | 可下载的配置文件信息。 |
+| configuration | [DownloadConfiguration](#downloadconfiguration16) | 是 | 下载的配置信息。 |
 
 **返回值：**
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[DownloadProfileResult](#downloadprofileresult14)\> | Promise对象，返回下载配置文件的结果。 |
+| Promise\<[DownloadProfileResult](#downloadprofileresult16)\> | Promise对象，返回下载配置文件的结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID                 | 错误信息                               |
 | --------------------- | ---------------------------------- |
@@ -334,7 +348,7 @@ eSIM.downloadProfile(0, 0, profile, configuration).then((data: eSIM.DownloadProf
 });
 ```
 
-## eSIM.getEuiccProfileInfoList<sup>14+</sup>
+## eSIM.getEuiccProfileInfoList<sup>16+</sup>
 
 getEuiccProfileInfoList\(slotId: number\): Promise\<GetEuiccProfileInfoListResult\>
 
@@ -350,15 +364,17 @@ getEuiccProfileInfoList\(slotId: number\): Promise\<GetEuiccProfileInfoListResul
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 
 **返回值：**
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[GetEuiccProfileInfoListResult](#geteuiccprofileinfolistresult14)\> | Promise对象，返回配置文件信息列表。 |
+| Promise\<[GetEuiccProfileInfoListResult](#geteuiccprofileinfolistresult16)\> | Promise对象，返回配置文件信息列表。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID                 | 错误信息                               |
 | --------------------- | ---------------------------------- |
@@ -382,9 +398,9 @@ eSIM.getEuiccProfileInfoList(0).then((data: eSIM.GetEuiccProfileInfoListResult) 
 });
 ```
 
-## eSIM.getEuiccInfo<sup>14+</sup>
+## eSIM.getEuiccInfo<sup>16+</sup>
 
-getEuiccInfo\(slotId: number\): Promise\<EuiccInfo\>;
+getEuiccInfo\(slotId: number\): Promise\<EuiccInfo\>
 
 获取eUICC信息。使用Promise异步回调。
 
@@ -398,15 +414,17 @@ getEuiccInfo\(slotId: number\): Promise\<EuiccInfo\>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 
 **返回值：**
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[EuiccInfo](#euiccinfo14)\> | Promise对象，返回eUicc信息。 |
+| Promise\<[EuiccInfo](#euiccinfo16)\> | Promise对象，返回eUicc信息。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID                 | 错误信息                               |
 | --------------------- | ---------------------------------- |
@@ -430,9 +448,9 @@ eSIM.getEuiccInfo(0).then((data: eSIM.EuiccInfo) => {
 });
 ```
 
-## eSIM.deleteProfile<sup>14+</sup>
+## eSIM.deleteProfile<sup>16+</sup>
 
-deleteProfile\(slotId: number, iccid: string\): Promise\<ResultCode\>;
+deleteProfile\(slotId: number, iccid: string\): Promise\<ResultCode\>
 
 删除配置文件。使用Promise异步回调。
 
@@ -446,16 +464,18 @@ deleteProfile\(slotId: number, iccid: string\): Promise\<ResultCode\>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| iccid  | string | 是 | 配置文件的Id |
+| slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| iccid  | string | 是 | 配置文件的Id。 |
 
 **返回值：**
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#resultcode14)\> | Promise对象，返回删除配置文件的结果码。 |
+| Promise\<[ResultCode](#resultcode16)\> | Promise对象，返回删除配置文件的结果码。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID                 | 错误信息                               |
 | --------------------- | ---------------------------------- |
@@ -479,12 +499,12 @@ eSIM.deleteProfile(0, testId).then(() => {
 });
 ```
 
-## eSIM.switchToProfile<sup>14+</sup>
+## eSIM.switchToProfile<sup>16+</sup>
 
 switchToProfile\(slotId: number, portIndex: number, iccid: string,
-    forceDisableProfile: boolean\): Promise\<ResultCode\>;
+    forceDisableProfile: boolean\): Promise\<ResultCode\>
 
-切换到（启用）给定的配置文件。使用Promise异步回调。
+切换到(启用)给定的配置文件。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -496,7 +516,7 @@ switchToProfile\(slotId: number, portIndex: number, iccid: string,
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId              | number  | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| slotId              | number  | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | portIndex           | number  | 是 | 插槽的端口索引。 |
 | iccid               | string  | 是 | 配置文件的Id。   |
 | forceDisableProfile | boolean | 是 | 如果值为true，则必须停用活动SIM才能执行操作。如果值为false，则提示用户首先同意此操作。|
@@ -505,9 +525,11 @@ switchToProfile\(slotId: number, portIndex: number, iccid: string,
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#resultcode14)\> | Promise对象，返回切换配置文件的结果码。 |
+| Promise\<[ResultCode](#resultcode16)\> | Promise对象，返回切换配置文件的结果码。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID                 | 错误信息                               |
 | --------------------- | ---------------------------------- |
@@ -531,9 +553,9 @@ eSIM.switchToProfile(0, 0, testId, true).then(() => {
 });
 ```
 
-## eSIM.setProfileNickname<sup>14+</sup>
+## eSIM.setProfileNickname<sup>16+</sup>
 
-setProfileNickname\(slotId: number, iccid: string, nickname: string\): Promise\<ResultCode\>;
+setProfileNickname\(slotId: number, iccid: string, nickname: string\): Promise\<ResultCode\>
 
 设置给定配置文件的昵称。使用Promise异步回调。
 
@@ -547,7 +569,7 @@ setProfileNickname\(slotId: number, iccid: string, nickname: string\): Promise\<
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId   | number | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| slotId   | number | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | iccid    | string | 是 | 配置文件的Id。 |
 | nickname | string | 是 | 昵称。 |
 
@@ -555,9 +577,11 @@ setProfileNickname\(slotId: number, iccid: string, nickname: string\): Promise\<
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#resultcode14)\> | Promise对象，返回设置昵称的结果码。 |
+| Promise\<[ResultCode](#resultcode16)\> | Promise对象，返回设置昵称的结果码。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID                 | 错误信息                               |
 | --------------------- | ---------------------------------- |
@@ -581,9 +605,9 @@ eSIM.setProfileNickname(0, testId, testName).then(() => {
 });
 ```
 
-## eSIM.resetMemory<sup>14+</sup>
+## eSIM.resetMemory<sup>16+</sup>
 
-resetMemory\(slotId: number, options?: ResetOption\): Promise\<ResultCode\>;
+resetMemory\(slotId: number, options?: ResetOption\): Promise\<ResultCode\>
 
 清除所有特定配置文件并重置eUICC。使用Promise异步回调。
 
@@ -597,16 +621,18 @@ resetMemory\(slotId: number, options?: ResetOption\): Promise\<ResultCode\>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId  | number                        | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| options | [ResetOption](#resetoption14) | 否 | 重置状态。 |
+| slotId  | number                        | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| options | [ResetOption](#resetoption16) | 否 | 重置状态。 |
 
 **返回值：**
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#resultcode14)\> | Promise对象，返回重置的结果码。 |
+| Promise\<[ResultCode](#resultcode16)\> | Promise对象，返回重置的结果码。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID                 | 错误信息                               |
 | --------------------- | ---------------------------------- |
@@ -630,9 +656,9 @@ eSIM.resetMemory(0).then(() => {
 });
 ```
 
-## eSIM.reserveProfilesForFactoryRestore<sup>14+</sup>
+## eSIM.reserveProfilesForFactoryRestore<sup>16+</sup>
 
-reserveProfilesForFactoryRestore\(slotId: number\): Promise\<ResultCode\>;
+reserveProfilesForFactoryRestore\(slotId: number\): Promise\<ResultCode\>
 
 恢复出厂设置，并保留profiles。使用Promise异步回调。
 
@@ -646,15 +672,17 @@ reserveProfilesForFactoryRestore\(slotId: number\): Promise\<ResultCode\>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 
 **返回值：**
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#resultcode14)\> | Promise对象，返回恢复出厂设置的结果码。 |
+| Promise\<[ResultCode](#resultcode16)\> | Promise对象，返回恢复出厂设置的结果码。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID                 | 错误信息                               |
 | --------------------- | ---------------------------------- |
@@ -678,9 +706,9 @@ eSIM.reserveProfilesForFactoryRestore(0).then(() => {
 });
 ```
 
-## eSIM.setDefaultSmdpAddress<sup>14+</sup>
+## eSIM.setDefaultSmdpAddress<sup>16+</sup>
 
-setDefaultSmdpAddress\(slotId: number, address: string\): Promise\<ResultCode\>;
+setDefaultSmdpAddress\(slotId: number, address: string\): Promise\<ResultCode\>
 
 设置或更新eUICC中存储的默认SM-DP+地址。使用Promise异步回调。
 
@@ -694,16 +722,18 @@ setDefaultSmdpAddress\(slotId: number, address: string\): Promise\<ResultCode\>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId  | number | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| slotId  | number | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | address | string | 是 | 要设置的默认SM-DP+地址。 |
 
 **返回值：**
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#resultcode14)\> | Promise对象，返回设置默认SM-DP+地址的结果码。 |
+| Promise\<[ResultCode](#resultcode16)\> | Promise对象，返回设置默认SM-DP+地址的结果码。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID                 | 错误信息                               |
 | --------------------- | ---------------------------------- |
@@ -727,9 +757,9 @@ eSIM.setDefaultSmdpAddress(0, testAddress).then(() => {
 });
 ```
 
-## eSIM.getDefaultSmdpAddress<sup>14+</sup>
+## eSIM.getDefaultSmdpAddress<sup>16+</sup>
 
-getDefaultSmdpAddress\(slotId: number\): Promise\<string\>;
+getDefaultSmdpAddress\(slotId: number\): Promise\<string\>
 
 获取存储在eUICC中的默认SM-DP+地址。使用Promise异步回调。
 
@@ -743,7 +773,7 @@ getDefaultSmdpAddress\(slotId: number\): Promise\<string\>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 
 **返回值：**
 
@@ -752,6 +782,8 @@ getDefaultSmdpAddress\(slotId: number\): Promise\<string\>;
 | Promise\<string\> | Promise对象，返回SM-DP+地址。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID                 | 错误信息                               |
 | --------------------- | ---------------------------------- |
@@ -775,9 +807,9 @@ eSIM.getDefaultSmdpAddress(0).then((data: string) => {
 });
 ```
 
-## eSIM.cancelSession<sup>14+</sup>
+## eSIM.cancelSession<sup>16+</sup>
 
-cancelSession\(slotId: number, transactionId: string, cancelReason: CancelReason\): Promise\<ResultCode\>;  
+cancelSession\(slotId: number, transactionId: string, cancelReason: CancelReason\): Promise\<ResultCode\>
 
 取消会话。使用Promise异步回调。
 
@@ -791,17 +823,19 @@ cancelSession\(slotId: number, transactionId: string, cancelReason: CancelReason
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId        | number                          | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| slotId        | number                          | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | transactionId | string                          | 是 | 业务ID。|
-| cancelReason  | [CancelReason](#cancelreason14) | 是 | 取消会话的原因。|
+| cancelReason  | [CancelReason](#cancelreason16) | 是 | 取消会话的原因。|
 
 **返回值：**
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#resultcode14)\> | Promise对象，返回取消会话的结果码。 |
+| Promise\<[ResultCode](#resultcode16)\> | Promise对象，返回取消会话的结果码。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID                 | 错误信息                               |
 | --------------------- | ---------------------------------- |
@@ -825,7 +859,7 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 });
 ```
 
-## AccessRule<sup>14+</sup>
+## AccessRule<sup>16+</sup>
 
 访问规则。
 
@@ -839,7 +873,7 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 | packageName           | string  |  是  | 规则适用的程序包名称。 |
 | accessType            | number  |  是  | 规则的类型。 |
 
-## DownloadableProfile<sup>14+</sup>
+## DownloadableProfile<sup>16+</sup>
 
 可下载的配置文件。
 
@@ -849,12 +883,12 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 
 | 名称 | 类型 | 必填 | 说明 |
 | ----- | ----- | ----- | -----|
-| activationCode   | string             |  是  | 激活码，对于不基于激活码的配置文件，可能为空。 |
+| activationCode   | string             |  是  | 激活码。对于不基于激活码的配置文件，可能为空。 |
 | confirmationCode | string             |  否  | 确认码。      |
 | carrierName      | string             |  否  | 订阅名称。    |
 | accessRules      | Array\<AccessRule> |  否  | 访问规则数组。 |
 
-## GetDownloadableProfileMetadataResult<sup>14+</sup>
+## GetDownloadableProfileMetadataResult<sup>16+</sup>
 
 获取可下载配置文件的元数据。
 
@@ -874,7 +908,7 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 | solvableErrors      | SolvableErrors       |  是  | 可解决的错误。 |
 | responseResult      | ResultCode           |  是  | 操作结果码。   |
 
-## GetDownloadableProfilesResult<sup>14+</sup>
+## GetDownloadableProfilesResult<sup>16+</sup>
 
 获取默认可下载配置文件的列表。
 
@@ -887,7 +921,7 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 | responseResult       | ResultCode                   |  是  | 返回操作结果码。     |
 | downloadableProfiles | Array\<DownloadableProfile>  |  是  | 可下载配置文件数组。 |
 
-## DownloadProfileResult<sup>14+</sup>
+## DownloadProfileResult<sup>16+</sup>
 
 下载配置文件的结果。
 
@@ -901,7 +935,7 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 | solvableErrors | SolvableErrors |  是  | 可解决错误。 |
 | cardId         | number         |  是  | 获取卡Id。   |
 
-## GetEuiccProfileInfoListResult<sup>14+</sup>
+## GetEuiccProfileInfoListResult<sup>16+</sup>
 
 获取配置文件信息列表。
 
@@ -915,7 +949,7 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 | profiles        | Array\<EuiccProfile> |  是  | 配置文件数组。      |
 | isRemovable     | boolean              |  是  | 获取eUICC是否可移除。|
 
-## OperatorId<sup>14+</sup>
+## OperatorId<sup>16+</sup>
 
 获取eUICC芯片/设备的相关信息。
 
@@ -930,7 +964,7 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 | gid1 | string |  是  | 组id级别1。   |
 | gid2 | string |  是  | 组id级别2。   |
 
-## EuiccProfile<sup>14+</sup>
+## EuiccProfile<sup>16+</sup>
 
 配置文件信息。
 
@@ -950,7 +984,7 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 | policyRules         | PolicyRules        |  是  | 配置文件策略。   |
 | accessRules         | Array\<AccessRule> |  是  | 配置文件规则。   |
 
-## EuiccInfo<sup>14+</sup>
+## EuiccInfo<sup>16+</sup>
 
 euicc信息。
 
@@ -962,7 +996,7 @@ euicc信息。
 | ----- | ----- | ----- | -----|
 | osVersion | string |  是  | 系统版本。 |
 
-## ResetOption<sup>14+</sup>
+## ResetOption<sup>16+</sup>
 
 重置状态。
 
@@ -976,7 +1010,7 @@ euicc信息。
 |DELETE_FIELD_LOADED_TEST_PROFILES | 1 << 1 | 删除所有字段加载的测试配置文件。 |
 |RESET_DEFAULT_SMDP_ADDRESS        | 1 << 2 | 重置默认SM-DP+地址。 |
 
-## OsuStatus<sup>14+</sup>
+## OsuStatus<sup>16+</sup>
 
 操作系统升级状态。
 
@@ -992,7 +1026,7 @@ euicc信息。
 |EUICC_UPGRADE_ALREADY_LATEST      | 4 | 当前为最新版本，无需升级 。|
 |EUICC_UPGRADE_SERVICE_UNAVAILABLE | 5 | 升级服务不可用。 |
 
-## ResultCode<sup>14+</sup>
+## ResultCode<sup>16+</sup>
 
 结果码。
 
@@ -1033,12 +1067,14 @@ euicc信息。
 | RESULT_CERTIFICATE_INVALID                               | 251 | 证书无效。 |
 | RESULT_OUT_OF_MEMORY                                     | 263 | 由于内存不足，配置文件安装失败。 |
 | RESULT_PPR_FORBIDDEN                                     | 268 | PPR规则禁止此操作。 |
+| RESULT_NOTHING_TO_DELETE                                 | 270 | 没有可删除的配置文件。 |
 | RESULT_PPR_NOT_MATCH                                     | 276 | 与PPR约束不匹配。   |
+| RESULT_CAT_BUSY                                          | 283 | 会话正在进行。   |
 | RESULT_PROFILE_EID_INVALID                               | 284 | 此eSIM配置文件已被使用或无效。 |
 | RESULT_DOWNLOAD_TIMEOUT                                  | 287 | 下载超时。                   |
 | RESULT_SGP_22_OTHER                                      | 400 | SGP.22中定义的其他错误。      |
 
-## CancelReason<sup>14+</sup>
+## CancelReason<sup>16+</sup>
 
 取消会话的原因。
 
@@ -1053,7 +1089,7 @@ euicc信息。
 |CANCEL_REASON_TIMEOUT            | 2 | 下载已超时，稍后可以重新启动。 |
 |CANCEL_REASON_PPR_NOT_ALLOWED    | 3 | 由于eUICC上的授权表或其他已安装的配置文件不允许其策略规则，因此无法安装。 |
 
-## ProfileState<sup>14+</sup>
+## ProfileState<sup>16+</sup>
 
 配置文件状态。
 
@@ -1067,7 +1103,7 @@ euicc信息。
 |PROFILE_STATE_DISABLED    | 0  | 禁用配置文件。   |
 |PROFILE_STATE_ENABLED     | 1  | 已启用配置文件。 |
 
-## ProfileClass<sup>14+</sup>
+## ProfileClass<sup>16+</sup>
 
 配置文件类。
 
@@ -1082,7 +1118,7 @@ euicc信息。
 |PROFILE_CLASS_PROVISIONING | 1  | 预加载在eUICC上的配置文件。   |
 |PROFILE_CLASS_OPERATIONAL  | 2  | 可预加载或下载的操作配置文件。 |
 
-## PolicyRules<sup>14+</sup>
+## PolicyRules<sup>16+</sup>
 
 配置文件的策略规则。
 
@@ -1096,7 +1132,7 @@ euicc信息。
 |POLICY_RULE_DELETE_NOT_ALLOWED  | 1 << 1 | 无法删除此配置文件。          |
 |POLICY_RULE_DISABLE_AND_DELETE  | 1 << 2 | 禁用后应删除此配置文件。      |
 
-## SolvableErrors<sup>14+</sup>
+## SolvableErrors<sup>16+</sup>
 
 可解决错误码。
 
@@ -1109,7 +1145,7 @@ euicc信息。
 |SOLVABLE_ERROR_NEED_CONFIRMATION_CODE | 1 << 0 | 下载过程需要用户输入确认码。                |
 |SOLVABLE_ERROR_NEED_POLICY_RULE       | 1 << 1 | 下载过程需要用户同意才能允许配置文件策略规则。|
 
-## DownloadConfiguration<sup>14+</sup>
+## DownloadConfiguration<sup>16+</sup>
 
 下载过程中的属性配置。
 

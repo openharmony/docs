@@ -510,62 +510,67 @@ Error: install parse profile prop check error.
 
 **可能原因**
 
-应用使用了应用特权，但应用的签名文件发生变化后未将新的签名指纹重新配置到设备的特权管控白名单文件install_list_capability.json中。
+1. [app.json5配置文件](../quick-start/app-configuration-file.md#配置文件标签)中的bundleName、[module.json5配置文件](../quick-start/module-configuration-file.md#配置文件标签)中name不符合命名规则。
+
+<!--Del-->
+2. [extensionAbilities](../quick-start/module-configuration-file.md#extensionabilities标签)中type字段配置为service或dataShare。
+<!--DelEnd-->
+
 
 **处理步骤**
+1. 根据命名规则调整app.json5配置文件中bundleName、module.json5文件中的name字段。
+<!--Del-->
+2. 若extensionAbilities中type字段配置为service或dataShare，应用需要配置[allowAppUsePrivilegeExtension特权](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)，配置方式如下。
 
-1. 获取新的签名指纹。
+    1. 获取新的签名指纹。
 
-    a. 在[项目级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-hvigor-compilation-options-customizing-sample-V13#section1448071082016)文件中，signingConfigs字段内的profile的值即为签名文件的存储路径。
+        a. 在工程级build-profile.json5(工程根目录下)文件中，signingConfigs字段内的profile的值即为签名文件的存储路径。
 
-    b. 打开该签名文件（后缀为.p7b），打开后在文件内搜索“development-certificate”，将“-----BEGIN CERTIFICATE-----”和“-----END CERTIFICATE-----”以及中间的信息拷贝到新的文本中，注意换行并去掉换行符，保存为一个新的.cer文件，如命名为xxx.cer。
+        b. 打开该签名文件（后缀为.p7b），打开后在文件内搜索“development-certificate”，将“-----BEGIN CERTIFICATE-----”和“-----END CERTIFICATE-----”以及中间的信息拷贝到新的文本中，注意换行并去掉换行符，保存为一个新的.cer文件，如命名为xxx.cer。
 
-    新的.cer文件格式如下图（仅作为格式示意，内容以实际为准）：
+        新的.cer文件格式如下图（仅作为格式示意，内容以实际为准）：
 
-    ![示例图](figures/zh-cn_image_0000001585521364.png)
+        ![示例图](figures/zh-cn_image_0000001585521364.png)
 
+        c. 使用keytool工具（在DevEco Studio安装目录下的jbr/bin文件夹内），执行如下命令，通过.cer文件获取证书指纹的SHA256值。
+          ```
+          keytool -printcert -file xxx.cer
+          ```
+        d. 将证书指纹中SHA256的内容去掉冒号，即为最终要获得的签名指纹。
 
+        如下图（仅作为格式示意，内容以实际为准）：
+        ![示例图](figures/zh-cn_image_0000001635921233.png)
 
-    c. 使用keytool工具（在DevEco Studio安装目录下的jbr/bin文件夹内），执行如下命令通过.cer文件获取证书指纹的SHA256值。
-      ```
-      keytool -printcert -file xxx.cer
-      ```
-    d. 将证书指纹中SHA256的内容去掉冒号，即为最终要获得的签名指纹。
+        去掉冒号后的签名指纹为：5753DDBC1A8EF88A62058A9FC4B6AFAFC1C5D8D1A1B86FB3532739B625F8F3DB。
 
-    如SHA256值为下图（仅作为格式示意，内容以实际为准）：
-    ![示例图](figures/zh-cn_image_0000001635921233.png)
+    2. 获取设备的特权管控白名单文件install_list_capability.json。
 
-    去掉冒号后的签名指纹为：5753DDBC1A8EF88A62058A9FC4B6AFAFC1C5D8D1A1B86FB3532739B625F8F3DB
+        a. 连接设备，进入shell。
+        ```
+        hdc shell
+        ```
+        b. 执行如下命令查看设备的特权管控白名单文件install_list_capability.json。
+        ```
+        // 设备中查询白名单文件的位置
+        find /system -name install_list_capability.json
+        ```
+        c. 执行如下命令拉取install_list_capability.json。
+        ```
+        hdc target mount
+        hdc file recv /system/etc/app/install_list_capability.json
+        ```
 
-2. 获取设备的特权管控白名单文件install_list_capability.json。
+    3. 将步骤1获取到的签名指纹配置到install_list_capability.json文件的app_signature中，注意要配置到对应的bundleName下。
+    ![示例图](figures/zh-cn_image_0000001635641893.png)
+    4. 将修改后的install_list_capability.json文件重新推到设备上，并重启设备。
 
-    a. 连接设备。
-
-    b. 执行如下命令查看设备的特权管控白名单文件install_list_capability.json。
-    ```
-    find /system -name install_list_capability.json
-    ```
-    设备上install_list_capability.json的位置通常为以下目录地址，通过bundleName找到对应的配置文件：
-    ```
-    /system/etc/app/install_list_capability.json
-    ```
-    c. 执行如下命令拉取install_list_capability.json。
-    ```
-    hdc shell mount -o rw,remount /
-    hdc file recv /system/etc/app/install_list_capability.json
-    ```
-
-3. 将步骤1获取到的签名指纹配置到install_list_capability.json文件的app_signature中，注意要配置到对应的bundleName下。
-![示例图](figures/zh-cn_image_0000001635641893.png)
-4. 将修改后的install_list_capability.json文件重新推到设备上，并重启设备。
-
-    ```
-    hdc shell mount -o rw,remount /
-    hdc file send install_list_capability.json /system/etc/app/install_list_capability.json
-    hdc shell chmod 644 /system/etc/app/install_list_capability.json
-    hdc shell reboot
-    ```
-5. 设备重启后，重新安装新的应用即可。
+        ```
+        hdc target mount
+        hdc file send install_list_capability.json /system/etc/app/install_list_capability.json
+        hdc shell chmod 644 /system/etc/app/install_list_capability.json
+        hdc shell reboot
+        ```
+    5. 设备重启后，重新安装新的应用即可。<!--DelEnd-->
 
 
 ### 9568305 依赖的模块不存在
@@ -666,10 +671,25 @@ Error: signature verification failed due to not trusted app source.
 * 场景一：
 	1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13#section18815157237)。在连接设备后，重新为应用进行签名。
 	2. 如果使用的是手动签名，对于OpenHarmony应用，请参考<!--RP2-->[OpenHarmony应用手动签名](../security/hapsigntool-guidelines.md)<!--RP2End-->，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**。
-		```
-		//UDID获取命令
-		hdc shell bm get -u
-		```
+
+        1. 获取当前设备的UDID。
+
+        ```
+          //UDID获取命令
+          hdc shell bm get -u
+        ```
+
+        2. 打开IDE安装路径，在sdk目录下找到UnsgnedDebugProfileTemplate.json配置文件。
+
+        ```
+          IDE安装路径\sdk\版本号或者default\openharmony\toolchains\lib\
+
+          例如：xxxx\Huawei\DevEco Studio\sdk\HarmonyOS-NEXT-DB1\openharmony\toolchains\lib\
+          例如：xxxx\Huawei\DevEco Studio\sdk\default\openharmony\toolchains\lib\
+        ```
+
+        3. 在UnsgnedDebugProfileTemplate.json文件的device-ids字段中，添加当前设备的UDID。
+
   3. 查看签名中是否包含调试设备的UDID，可以使用文本编辑器打开已签名的HAP搜索device-ids。
 * 场景二：使用[调试证书和调试profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-debug-app-0000001914423098)重新签名应用。
 
@@ -691,7 +711,14 @@ Error: install failed due to grant request permissions failed.
 
 **处理步骤**
 
-1. 在UnsgnedDebugProfileTemplate.json文件中修改APL等级，调整成system_basic或system_core等级，重新签名打包即可。
+1. 打开IDE安装路径，在sdk目录下找到UnsgnedDebugProfileTemplate.json配置文件。
+```
+IDE安装路径\sdk\版本号或者default\openharmony\toolchains\lib\
+
+例如：xxxx\Huawei\DevEco Studio\sdk\HarmonyOS-NEXT-DB1\openharmony\toolchains\lib\
+例如：xxxx\Huawei\DevEco Studio\sdk\default\openharmony\toolchains\lib\
+```
+2. 在UnsgnedDebugProfileTemplate.json文件中修改APL等级，修改APL等级为system_core等级，重新签名打包即可。
 
 
 ### 9568297 由于设备sdk版本较低导致安装失败

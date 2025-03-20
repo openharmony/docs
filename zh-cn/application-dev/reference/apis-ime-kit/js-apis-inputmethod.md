@@ -792,6 +792,19 @@ Enter键的功能类型。
 | BASIC_MODE  | 1 |基础模式。 |
 | FULL_EXPERIENCE_MODE  | 2 |完整体验模式。 |
 
+## RequestKeyboardReason<sup>15+</sup>
+
+请求键盘输入原因。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称 | 值 |说明 |
+| -------- | -------- |-------- |
+| NONE   | 0 |表示没有特定的原因触发键盘请求。 |
+| MOUSE  | 1 |表示键盘请求是由鼠标操作触发的。 |
+| TOUCH  | 2 |表示键盘请求是由触摸操作触发的。 |
+| OTHER  | 20 |表示键盘请求是由其他原因触发的。 |
+
 ## MessageHandler<sup>15+</sup>
 
 自定义通信对象。
@@ -906,7 +919,7 @@ attach(showKeyboard: boolean, textConfig: TextConfig, callback: AsyncCallback&lt
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| showKeyboard | boolean | 是 | 绑定输入法成功后，是否拉起输入法键盘。<br>- true表示拉起，false表示不拉起。 |
+| showKeyboard | boolean | 是 | 绑定输入法成功后，是否拉起输入法键盘。<br>- true表示拉起。<br>- false表示不拉起。 |
 | textConfig | [TextConfig](#textconfig10) | 是 | 编辑框的配置信息。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当绑定输入法成功后，err为undefined；否则为错误对象。 |
 
@@ -960,7 +973,7 @@ attach(showKeyboard: boolean, textConfig: TextConfig): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| showKeyboard | boolean | 是 | 绑定输入法成功后，是否拉起输入法键盘。<br>- true表示拉起，false表示不拉起。|
+| showKeyboard | boolean | 是 | 绑定输入法成功后，是否拉起输入法键盘。<br>- true表示拉起。<br>- false表示不拉起。|
 | textConfig | [TextConfig](#textconfig10) | 是 | 编辑框的配置信息。 |
 
 **返回值：**
@@ -992,6 +1005,67 @@ try {
     }
   };
   inputMethodController.attach(true, textConfig).then(() => {
+    console.log('Succeeded in attaching inputMethod.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to attach: ${JSON.stringify(err)}`);
+  })
+} catch(err) {
+  console.error(`Failed to attach: ${JSON.stringify(err)}`);
+}
+```
+
+### attach<sup>15+</sup>
+
+attach(showKeyboard: boolean, textConfig: TextConfig, requestKeyboardReason: RequestKeyboardReason): Promise&lt;void&gt;
+
+自绘控件绑定输入法。使用promise异步回调。
+
+> **说明：**
+>
+> 需要先调用此接口，完成自绘控件与输入法的绑定，才能使用以下功能：显示/隐藏键盘、更新光标信息、更改编辑框选中范围、保存配置信息、监听处理由输入法应用发送的信息或命令等。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| showKeyboard | boolean | 是 | 绑定输入法成功后，是否拉起输入法键盘。<br>- true表示拉起。<br>- false表示不拉起。|
+| textConfig | [TextConfig](#textconfig10) | 是 | 编辑框的配置信息。 |
+| requestKeyboardReason | [RequestKeyboardReason](#requestkeyboardreason15) | 是 | 请求键盘输入原因。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)和[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | -------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let textConfig: inputMethod.TextConfig = {
+    inputAttribute: {
+      textInputType: 0,
+      enterKeyType: 1
+    }
+  };
+
+  let requestKeyboardReason: inputMethod.RequestKeyboardReason = inputMethod.RequestKeyboardReason.MOUSE;
+
+  inputMethodController.attach(true, textConfig, requestKeyboardReason).then(() => {
     console.log('Succeeded in attaching inputMethod.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to attach: ${JSON.stringify(err)}`);
@@ -1077,6 +1151,54 @@ showTextInput(): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.showTextInput().then(() => {
+  console.log('Succeeded in showing text input.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to showTextInput: ${JSON.stringify(err)}`);
+});
+```
+
+### showTextInput<sup>15+</sup>
+
+showTextInput(requestKeyboardReason: RequestKeyboardReason): Promise&lt;void&gt;
+
+进入文本编辑状态。使用promise异步回调。
+
+> **说明：**
+>
+> 编辑框与输入法绑定成功后，可调用该接口拉起软键盘，进入文本编辑状态。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| requestKeyboardReason | [RequestKeyboardReason](#requestkeyboardreason15) | 是 | 请求键盘输入原因。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | -------------------------------------- |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
+| 12800009 | input method client detached. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let requestKeyboardReason = inputMethod.RequestKeyboardReason.MOUSE;
+
+inputMethodController.showTextInput(requestKeyboardReason).then(() => {
   console.log('Succeeded in showing text input.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to showTextInput: ${JSON.stringify(err)}`);

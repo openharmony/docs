@@ -23,7 +23,7 @@ Trace提供2种工作模式，离线模式和在线模式。
 
 ## 接口说明
 
-OpenHarmony LiteOS-M内核的Trace模块提供下面几种功能，接口详细信息可以查看API参考。
+OpenHarmony LiteOS-M内核的Trace模块提供下面几种功能，接口详细信息可以查看[API参考](https://gitee.com/openharmony/kernel_liteos_m/blob/master/components/trace/los_trace.h)。
 
   **表1** Trace模块接口说明
 

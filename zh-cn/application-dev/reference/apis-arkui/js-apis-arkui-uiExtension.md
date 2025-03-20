@@ -395,7 +395,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 }
 ```
 
-### occupyEvents<sup>16+</sup>
+### occupyEvents<sup>18+</sup>
 
 occupyEvents(eventFlags: number): Promise&lt;void&gt;
 
@@ -403,7 +403,7 @@ occupyEvents(eventFlags: number): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -449,7 +449,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 }
 ```
 
-## EventFlag<sup>16+</sup>
+## EventFlag<sup>18+</sup>
 
 事件类型枚举。
 
@@ -498,9 +498,9 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
-| 名称                    | 值   | 说明                                                         |
-| ----------------------- | ---- | ------------------------------------------------------------ |
-| HOST_WINDOW_RECT_CHANGE | 1    | 组件所在的宿主窗口矩形变化。 |
+| 名称                    | 值     | 说明                                                         |
+| ----------------------- | ------ | ------------------------------------------------------------ |
+| HOST_WINDOW_RECT_CHANGE | 0x0001 | 组件所在的宿主窗口矩形变化。 |
 
 ## RectChangeOptions<sup>14+</sup>
 

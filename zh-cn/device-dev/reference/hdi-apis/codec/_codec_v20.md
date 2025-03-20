@@ -250,8 +250,8 @@ enum CodecBufferType
 | CODEC_BUFFER_TYPE_INVALID | 无效的buffer类型 | 
 | CODEC_BUFFER_TYPE_VIRTUAL_ADDR | Virtual address type | 
 | CODEC_BUFFER_TYPE_AVSHARE_MEM_FD | 共享内存 | 
-| CODEC_BUFFER_TYPE_HANDLE | Handle. | 
-| CODEC_BUFFER_TYPE_DYNAMIC_HANDLE | Dynamic handle. | 
+| CODEC_BUFFER_TYPE_HANDLE | Handle | 
+| CODEC_BUFFER_TYPE_DYNAMIC_HANDLE | Dynamic handle | 
 | CODEC_BUFFER_TYPE_DMA_MEM_FD | DMA内存 | 
 
 

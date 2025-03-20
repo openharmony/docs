@@ -22,4 +22,4 @@ import { distributedMissionManager } from '@kit.AbilityKit';
 
 | Name      | Type  | Readable  | Writable  | Description     |
 | -------- | ------ | ---- | ---- | ------- |
-| deviceId | string | Yes   | Yes   | Device ID. |
+| deviceId | string | Yes   | Yes   | Device ID.|

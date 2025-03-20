@@ -67,7 +67,7 @@
 | typedef enum [Camera_SmoothZoomMode](_o_h___camera.md#camera_smoothzoommode) [Camera_SmoothZoomMode](_o_h___camera.md#camera_smoothzoommode) | 平滑变焦模式的枚举。 | 
 | typedef enum [Camera_PreconfigType](_o_h___camera.md#camera_preconfigtype) [Camera_PreconfigType](_o_h___camera.md#camera_preconfigtype) | 预配置照片分辨率的枚举 | 
 | typedef enum [Camera_PreconfigRatio](_o_h___camera.md#camera_preconfigratio) [Camera_PreconfigRatio](_o_h___camera.md#camera_preconfigratio) | 预配置照片比例的枚举。 | 
-| typedef enum [Camera_HostDeviceType](_o_h___camera.md#camera_hostdevicetype)[Camera_HostDeviceType](_o_h___camera.md#camera_hostdevicetype) | 远程设备类型枚举。 | 
+| typedef enum [Camera_HostDeviceType](_o_h___camera.md#camera_hostdevicetype) [Camera_HostDeviceType](_o_h___camera.md#camera_hostdevicetype) | 远程设备类型枚举。 | 
 | typedef struct [Camera_Size](_camera___size.md) [Camera_Size](_o_h___camera.md#camera_size) | 大小参数。 | 
 | typedef struct [Camera_Profile](_camera___profile.md) [Camera_Profile](_o_h___camera.md#camera_profile) | 相机流的配置文件。 | 
 | typedef struct [Camera_FrameRateRange](_camera___frame_rate_range.md) [Camera_FrameRateRange](_o_h___camera.md#camera_frameraterange) | 帧速率范围。 | 

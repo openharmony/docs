@@ -185,7 +185,7 @@
 
 **描述**
 
-维度信息，最大的维度为**OH_AI_MAX_SHAPE_NUM**。
+形状维度大小，预留最大维度是32，当前实际支持的最大维度是8。
 
 **起始版本：** 9
 
@@ -502,9 +502,9 @@ enum OH_AI_DeviceType
 | 枚举值 | 描述 |
 | -------- | -------- |
 | OH_AI_DEVICETYPE_CPU | 设备类型是CPU。 |
-| OH_AI_DEVICETYPE_GPU | 设备类型是GPU<br/>该配置为上游开源社区选项，在OpenHarmony上不支持。 |
-| OH_AI_DEVICETYPE_KIRIN_NPU | 设备类型是麒麟NPU<br/>该配置为上游开源社区选项，在OpenHarmony上不支持<br/>如需使用KIRIN_NPU请通过OH_AI_DEVICETYPE_NNRT配置。 |
-| OH_AI_DEVICETYPE_NNRT | 设备类型是NNRt（Neural Network Runtime, 神经网络运行时是面向AI领域的跨芯片推理计算运行时）<br/>OHOS设备范围是[60,80)。 |
+| OH_AI_DEVICETYPE_GPU | 设备类型是GPU。<br/>该配置为上游开源社区选项，在OpenHarmony上不支持。 |
+| OH_AI_DEVICETYPE_KIRIN_NPU | 设备类型是麒麟NPU。<br/>该配置为上游开源社区选项，在OpenHarmony上不支持。<br/>如需使用KIRIN_NPU请通过OH_AI_DEVICETYPE_NNRT配置。 |
+| OH_AI_DEVICETYPE_NNRT | 设备类型是NNRt（Neural Network Runtime, 神经网络运行时是面向AI领域的跨芯片推理计算运行时）。<br/>OHOS设备范围是[60,80)。 |
 | OH_AI_DEVICETYPE_INVALID | 设备类型无效。 |
 
 
@@ -1924,6 +1924,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelSetLearningRate (OH_AI_ModelHandle model, floa
 
 | 名称 | 描述 |
 | -------- | -------- |
+| model | 模型对象指针。 |
 | learning_rate | 学习率。 |
 
 **返回：**
@@ -1997,6 +1998,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelUpdateWeights (OH_AI_ModelHandle model, const 
 
 | 名称 | 描述 |
 | -------- | -------- |
+| model | 模型对象指针。 |
 | new_weights | 要更新的权重Tensor。 |
 
 **返回：**

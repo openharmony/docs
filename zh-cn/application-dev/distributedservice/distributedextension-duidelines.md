@@ -54,7 +54,7 @@
 ### 搭建环境
 
 1. 在PC上安装[DevEco Studio](https://gitee.com/link?target=https%3A%2F%2Fdeveloper.huawei.com%2Fconsumer%2Fcn%2Fdownload%2Fdeveco-studio)，要求版本在4.1及以上。
-2. 将public-SDK更新到API 16或以上，更新SDK的具体操作可参见[更新指南](../tools/openharmony_sdk_upgrade_assistant.md)。
+2. 将public-SDK更新到API 18或以上，更新SDK的具体操作可参见[更新指南](../tools/openharmony_sdk_upgrade_assistant.md)。
 3. 打开设备A和设备B的蓝牙，互相识别，实现组网。
 
 ### 检验环境是否搭建成功
@@ -74,7 +74,7 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
 
 ### 接口说明
 
-分布式扩展能力API的接口使用指导请参见[DistributedExtensionAbility API参考](../reference/apis-distributedservice-kit/js-apis-distributedExtensionAbility-sys.md)。
+分布式扩展能力API的接口使用指导请参见[DistributedExtensionAbility API参考](../reference/apis-distributedservice-kit/js-apis-distributedExtensionAbility.md)。
 
 | 接口名                                                               | 描述                       |
 | -------------------------------------------------------------------- | -------------------------- |

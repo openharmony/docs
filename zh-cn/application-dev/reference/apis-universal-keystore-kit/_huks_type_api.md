@@ -67,10 +67,10 @@
 | -------- | -------- |
 | [OH_Huks_KeyPurpose](#oh_huks_keypurpose) {<br/>OH_HUKS_KEY_PURPOSE_ENCRYPT = 1, <br/>OH_HUKS_KEY_PURPOSE_DECRYPT = 2,<br/> OH_HUKS_KEY_PURPOSE_SIGN = 4, <br/>OH_HUKS_KEY_PURPOSE_VERIFY = 8,<br/>OH_HUKS_KEY_PURPOSE_DERIVE = 16, <br/>OH_HUKS_KEY_PURPOSE_WRAP = 32, <br/>OH_HUKS_KEY_PURPOSE_UNWRAP = 64, <br/>OH_HUKS_KEY_PURPOSE_MAC = 128,<br/>OH_HUKS_KEY_PURPOSE_AGREE = 256<br/>} | 密钥用途类型。 | 
 | [OH_Huks_KeyDigest](#oh_huks_keydigest) {<br/>OH_HUKS_DIGEST_NONE = 0, <br/>OH_HUKS_DIGEST_MD5 = 1, <br/>OH_HUKS_DIGEST_SM3 = 2, <br/>OH_HUKS_DIGEST_SHA1 = 10,<br/>OH_HUKS_DIGEST_SHA224 = 11, <br/>OH_HUKS_DIGEST_SHA256 = 12, <br/>OH_HUKS_DIGEST_SHA384 = 13, <br/>OH_HUKS_DIGEST_SHA512 = 14<br/>} | 摘要算法类型。 | 
-| [OH_Huks_KeyPadding](#oh_huks_keypadding) {<br/>OH_HUKS_PADDING_NONE = 0, <br/>OH_HUKS_PADDING_OAEP = 1, <br/>OH_HUKS_PADDING_PSS = 2, <br/>OH_HUKS_PADDING_PKCS1_V1_5 = 3,<br/>OH_HUKS_PADDING_PKCS5 = 4, <br/>OH_HUKS_PADDING_PKCS7 = 5<br/>} | 补齐算法类型。 | 
+| [OH_Huks_KeyPadding](#oh_huks_keypadding) {<br/>OH_HUKS_PADDING_NONE = 0, <br/>OH_HUKS_PADDING_OAEP = 1, <br/>OH_HUKS_PADDING_PSS = 2, <br/>OH_HUKS_PADDING_PKCS1_V1_5 = 3,<br/>OH_HUKS_PADDING_PKCS5 = 4, <br/>OH_HUKS_PADDING_PKCS7 = 5, <br/>OH_HUKS_PADDING_ISO_IEC_9796_2 = 6<br/>} | 补齐算法类型。 | 
 | [OH_Huks_CipherMode](#oh_huks_ciphermode) {<br/>OH_HUKS_MODE_ECB = 1, <br/>OH_HUKS_MODE_CBC = 2, <br/>OH_HUKS_MODE_CTR = 3, <br/>OH_HUKS_MODE_OFB = 4, <br/>OH_HUKS_MODE_CFB = 5, <br/>OH_HUKS_MODE_CCM = 31, <br/>OH_HUKS_MODE_GCM = 32<br/>} | 加解密算法工作模式。 | 
-| [OH_Huks_KeySize](#oh_huks_keysize) {<br/>OH_HUKS_RSA_KEY_SIZE_512 = 512, <br/>OH_HUKS_RSA_KEY_SIZE_768 = 768, <br/>OH_HUKS_RSA_KEY_SIZE_1024 = 1024, <br/>OH_HUKS_RSA_KEY_SIZE_2048 = 2048,<br/>OH_HUKS_RSA_KEY_SIZE_3072 = 3072, <br/>OH_HUKS_RSA_KEY_SIZE_4096 = 4096, <br/>OH_HUKS_ECC_KEY_SIZE_224 = 224, <br/>OH_HUKS_ECC_KEY_SIZE_256 = 256,<br/>OH_HUKS_ECC_KEY_SIZE_384 = 384, <br/>OH_HUKS_ECC_KEY_SIZE_521 = 521, <br/>OH_HUKS_AES_KEY_SIZE_128 = 128, <br/>OH_HUKS_AES_KEY_SIZE_192 = 192,<br/>OH_HUKS_AES_KEY_SIZE_256 = 256, <br/>OH_HUKS_AES_KEY_SIZE_512 = 512, <br/>OH_HUKS_CURVE25519_KEY_SIZE_256 = 256, <br/>OH_HUKS_DH_KEY_SIZE_2048 = 2048,<br/>OH_HUKS_DH_KEY_SIZE_3072 = 3072, <br/>OH_HUKS_DH_KEY_SIZE_4096 = 4096, <br/>OH_HUKS_SM2_KEY_SIZE_256 = 256, <br/>OH_HUKS_SM4_KEY_SIZE_128 = 128<br/>} | 算法密钥长度。 | 
-| [OH_Huks_KeyAlg](#oh_huks_keyalg) {<br/>OH_HUKS_ALG_RSA = 1, <br/>OH_HUKS_ALG_ECC = 2, <br/>OH_HUKS_ALG_DSA = 3, <br/>OH_HUKS_ALG_AES = 20,<br/>OH_HUKS_ALG_HMAC = 50, <br/>OH_HUKS_ALG_HKDF = 51, <br/>OH_HUKS_ALG_PBKDF2 = 52, <br/>OH_HUKS_ALG_ECDH = 100,<br/>OH_HUKS_ALG_X25519 = 101, <br/>OH_HUKS_ALG_ED25519 = 102, <br/>OH_HUKS_ALG_DH = 103, <br/>OH_HUKS_ALG_SM2 = 150,<br/>OH_HUKS_ALG_SM3 = 151, <br/>OH_HUKS_ALG_SM4 = 152<br/>} | 密钥使用的算法。 | 
+| [OH_Huks_KeySize](#oh_huks_keysize) {<br/>OH_HUKS_RSA_KEY_SIZE_512 = 512, <br/>OH_HUKS_RSA_KEY_SIZE_768 = 768, <br/>OH_HUKS_RSA_KEY_SIZE_1024 = 1024, <br/>OH_HUKS_RSA_KEY_SIZE_2048 = 2048,<br/>OH_HUKS_RSA_KEY_SIZE_3072 = 3072, <br/>OH_HUKS_RSA_KEY_SIZE_4096 = 4096, <br/>OH_HUKS_ECC_KEY_SIZE_224 = 224, <br/>OH_HUKS_ECC_KEY_SIZE_256 = 256,<br/>OH_HUKS_ECC_KEY_SIZE_384 = 384, <br/>OH_HUKS_ECC_KEY_SIZE_521 = 521, <br/>OH_HUKS_AES_KEY_SIZE_128 = 128, <br/>OH_HUKS_AES_KEY_SIZE_192 = 192,<br/>OH_HUKS_AES_KEY_SIZE_256 = 256, <br/>OH_HUKS_AES_KEY_SIZE_512 = 512, <br/>OH_HUKS_CURVE25519_KEY_SIZE_256 = 256, <br/>OH_HUKS_DH_KEY_SIZE_2048 = 2048,<br/>OH_HUKS_DH_KEY_SIZE_3072 = 3072, <br/>OH_HUKS_DH_KEY_SIZE_4096 = 4096, <br/>OH_HUKS_SM2_KEY_SIZE_256 = 256, <br/>OH_HUKS_SM4_KEY_SIZE_128 = 128, <br/>OH_HUKS_DES_KEY_SIZE_64 = 64, <br/>OH_HUKS_3DES_KEY_SIZE_128 = 128, <br/>OH_HUKS_3DES_KEY_SIZE_192 = 192<br/>} | 算法密钥长度。 | 
+| [OH_Huks_KeyAlg](#oh_huks_keyalg) {<br/>OH_HUKS_ALG_RSA = 1, <br/>OH_HUKS_ALG_ECC = 2, <br/>OH_HUKS_ALG_DSA = 3, <br/>OH_HUKS_ALG_AES = 20,<br/>OH_HUKS_ALG_HMAC = 50, <br/>OH_HUKS_ALG_HKDF = 51, <br/>OH_HUKS_ALG_PBKDF2 = 52, <br/>OH_HUKS_ALG_ECDH = 100,<br/>OH_HUKS_ALG_X25519 = 101, <br/>OH_HUKS_ALG_ED25519 = 102, <br/>OH_HUKS_ALG_DH = 103, <br/>OH_HUKS_ALG_SM2 = 150,<br/>OH_HUKS_ALG_SM3 = 151, <br/>OH_HUKS_ALG_SM4 = 152, <br/>OH_HUKS_ALG_DES = 160, <br/>OH_HUKS_ALG_3DES = 161<br/>} | 密钥使用的算法。 | 
 | [OH_Huks_AlgSuite](#oh_huks_algsuite) { <br/>OH_HUKS_UNWRAP_SUITE_X25519_AES_256_GCM_NOPADDING = 1, <br/>OH_HUKS_UNWRAP_SUITE_ECDH_AES_256_GCM_NOPADDING = 2 <br/>} | 密文导入所需的算法套件类型。 | 
 | [OH_Huks_KeyGenerateType](#oh_huks_keygeneratetype) {<br/> OH_HUKS_KEY_GENERATE_TYPE_DEFAULT = 0, <br/>OH_HUKS_KEY_GENERATE_TYPE_DERIVE = 1, <br/>OH_HUKS_KEY_GENERATE_TYPE_AGREE = 2 <br/>} | 生成的密钥类型。 | 
 | [OH_Huks_KeyFlag](#oh_huks_keyflag) {<br/>OH_HUKS_KEY_FLAG_IMPORT_KEY = 1, <br/>OH_HUKS_KEY_FLAG_GENERATE_KEY = 2, <br/>OH_HUKS_KEY_FLAG_AGREE_KEY = 3, <br/>OH_HUKS_KEY_FLAG_DERIVE_KEY = 4 } | 密钥的产生方式。 | 
@@ -297,6 +297,8 @@ enum OH_Huks_KeyAlg
 | OH_HUKS_ALG_SM2 | 使用SM2算法。 | 
 | OH_HUKS_ALG_SM3 | 使用SM3算法。 | 
 | OH_HUKS_ALG_SM4 | 使用SM4算法。 | 
+| OH_HUKS_ALG_DES | 使用DES算法。<br>**起始版本：** 18 | 
+| OH_HUKS_ALG_3DES | 使用3DES算法。<br>**起始版本：** 18 | 
 
 
 ### OH_Huks_KeyDigest
@@ -382,6 +384,7 @@ enum OH_Huks_KeyPadding
 | OH_HUKS_PADDING_PKCS1_V1_5 | 使用PKCS1_V1_5补齐算法。 | 
 | OH_HUKS_PADDING_PKCS5 | 使用PKCS5补齐算法。 | 
 | OH_HUKS_PADDING_PKCS7 | 使用PKCS7补齐算法。 | 
+| OH_HUKS_PADDING_ISO_IEC_9796_2 | 使用ISO IEC 9796-2补齐算法。<br>**起始版本：** 18 | 
 
 
 ### OH_Huks_KeyPurpose
@@ -443,6 +446,9 @@ enum OH_Huks_KeySize
 | OH_HUKS_DH_KEY_SIZE_4096 | 使用DH算法的密钥长度为4096bit。 | 
 | OH_HUKS_SM2_KEY_SIZE_256 | 使用SM2算法的密钥长度为256bit。 | 
 | OH_HUKS_SM4_KEY_SIZE_128 | 使用SM4算法支持的密钥长度为128位。 | 
+| OH_HUKS_DES_KEY_SIZE_64 | 使用DES算法的密钥长度为64bit。<br>**起始版本：** 18 | 
+| OH_HUKS_3DES_KEY_SIZE_128 | 使用3DES算法的密钥长度为128bit。<br>**起始版本：** 18 | 
+| OH_HUKS_3DES_KEY_SIZE_192 | 使用3DES算法的密钥长度为192bit。<br>**起始版本：** 18 | 
 
 
 ### OH_Huks_KeyStorageType

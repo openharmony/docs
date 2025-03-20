@@ -32,6 +32,7 @@ getFont(): Font
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getFont();
 ```
@@ -53,6 +54,7 @@ getComponentUtils(): ComponentUtils
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getComponentUtils();
 ```
@@ -75,6 +77,7 @@ getUIInspector(): UIInspector
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getUIInspector();
 ```
@@ -97,6 +100,7 @@ getUIObserver(): UIObserver
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getUIObserver();
 ```
@@ -119,6 +123,7 @@ getMediaQuery(): MediaQuery
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getMediaQuery();
 ```
@@ -141,6 +146,7 @@ getRouter(): Router
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getRouter();
 ```
@@ -163,6 +169,7 @@ getPromptAction(): PromptAction
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getPromptAction();
 ```
@@ -185,6 +192,7 @@ getOverlayManager(): OverlayManager
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getOverlayManager();
 ```
@@ -213,8 +221,9 @@ setOverlayManagerOptions(options: OverlayManagerOptions): boolean
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
-uiContext.setOverlayManagerOptions({ renderRootOverlay: true });
+uiContext.setOverlayManagerOptions({ renderRootOverlay: true, enableBackPressedEvent: true });
 ```
 
 ### getOverlayManagerOptions<sup>15+</sup>
@@ -235,6 +244,7 @@ getOverlayManagerOptions(): OverlayManagerOptions
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getOverlayManagerOptions();
 ```
@@ -357,65 +367,42 @@ getSharedLocalStorage(): LocalStorage | undefined
 **示例：**
 
 ```ts
-// index.ets
-import { router } from '@kit.ArkUI';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  storage: LocalStorage = new LocalStorage();
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    windowStage.loadContent('pages/Index', this.storage);
+  }
+}
+```
+
+```ts
+// Index.ets
 
 @Entry
 @Component
 struct SharedLocalStorage {
-  localStorage = this.getUIContext().getSharedLocalStorage()
+  localStorage = this.getUIContext().getSharedLocalStorage();
 
   build() {
     Row() {
       Column() {
         Button("Change Local Storage to 47")
           .onClick(() => {
-            this.localStorage?.setOrCreate("propA",47)
+            this.localStorage?.setOrCreate("propA", 47);
           })
         Button("Get Local Storage")
           .onClick(() => {
-            console.info(`localStorage: ${this.localStorage?.get("propA")}`)
-          })
-        Button("To Page")
-          .onClick(() => {
-            router.pushUrl({
-              url: 'pages/GetSharedLocalStorage'
-            })
+            console.info(`localStorage: ${this.localStorage?.get("propA")}`);
           })
       }
       .width('100%')
     }
     .height('100%')
-  }
-}
-
-// GetSharedLocalStorage.ets
-import {router} from '@kit.ArkUI';
-
-@Entry
-@Component
-struct GetSharedLocalStorage {
-  localStorage = this.getUIContext().getSharedLocalStorage()
-
-  build() {
-    Row() {
-      Column() {
-        Button("Change Local Storage to 100")
-          .onClick(() => {
-            this.localStorage?.setOrCreate("propA",100)
-          })
-        Button("Get Local Storage")
-          .onClick(() => {
-            console.info(`localStorage: ${this.localStorage?.get("propA")}`)
-          })
-
-        Button("Back Index")
-          .onClick(() => {
-            router.back()
-          })
-      }
-      .width('100%')
-    }
   }
 }
 ```
@@ -487,6 +474,7 @@ getFrameNodeById(id: string): FrameNode | null
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getFrameNodeById("TestNode")
 ```
@@ -519,6 +507,7 @@ getAttachedFrameNodeById(id: string): FrameNode | null
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getAttachedFrameNodeById("TestNode")
 ```
@@ -690,6 +679,7 @@ showAlertDialog(options: AlertDialogParamWithConfirm | AlertDialogParamWithButto
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.showAlertDialog(
   {
@@ -730,6 +720,7 @@ showActionSheet(value: ActionSheetOptions): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.showActionSheet({
   title: 'ActionSheet title',
@@ -787,6 +778,7 @@ showDatePickerDialog(options: DatePickerDialogOptions): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 let selectedDate: Date = new Date("2010-1-1")
 uiContext.showDatePickerDialog({
@@ -971,6 +963,7 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 **示例：**
 
 ```ts
+// EntryAbility.ets
 import { AnimatorOptions, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -1000,13 +993,13 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 }
 ```
 
-### createAnimator<sup>16+</sup>
+### createAnimator<sup>18+</sup>
 
 createAnimator(options: AnimatorOptions | SimpleAnimatorOptions): AnimatorResult
 
-创建animator动画结果对象（AnimatorResult）。与[createAnimator](#createanimator)相比，新增对[SimpleAnimatorOptions](js-apis-animator.md#simpleanimatoroptions16)类型入参的支持。
+创建animator动画结果对象（AnimatorResult）。与[createAnimator](#createanimator)相比，新增对[SimpleAnimatorOptions](js-apis-animator.md#simpleanimatoroptions18)类型入参的支持。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -1014,7 +1007,7 @@ createAnimator(options: AnimatorOptions | SimpleAnimatorOptions): AnimatorResult
 
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
-| options | [AnimatorOptions](js-apis-animator.md#animatoroptions) \| [SimpleAnimatorOptions](js-apis-animator.md#simpleanimatoroptions16) | 是    | 定义动画选项。 |
+| options | [AnimatorOptions](js-apis-animator.md#animatoroptions) \| [SimpleAnimatorOptions](js-apis-animator.md#simpleanimatoroptions18) | 是    | 定义动画选项。 |
 
 **返回值：**
 
@@ -1071,6 +1064,7 @@ runScopedTask(callback: () => void): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.runScopedTask(
   () => {
@@ -1098,6 +1092,7 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 **示例：**
 
 ```ts
+// EntryAbility.ets
 import { KeyboardAvoidMode, UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -1136,6 +1131,7 @@ getKeyboardAvoidMode(): KeyboardAvoidMode
 **示例：**
 
 ```ts
+// EntryAbility.ets
 import { KeyboardAvoidMode, UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -1176,6 +1172,7 @@ getAtomicServiceBar(): Nullable\<AtomicServiceBar>
 **示例：**
 
 ```ts
+// EntryAbility.ets
 import { UIContext, AtomicServiceBar, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 onWindowStageCreate(windowStage: window.WindowStage) {
@@ -1210,6 +1207,7 @@ getDragController(): DragController
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getDragController();
 ```
@@ -1249,6 +1247,7 @@ getFocusController(): FocusController
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getFocusController();
 ```
@@ -1285,6 +1284,7 @@ getFilteredInspectorTree(filters?: Array\<string\>): string
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getFilteredInspectorTree(['id', 'src', 'content']);
 ```
@@ -1324,6 +1324,7 @@ getFilteredInspectorTreeById(id: string, depth: number, filters?: Array\<string\
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getFilteredInspectorTreeById('testId', 0, ['id', 'src', 'content']);
 ```
@@ -1346,6 +1347,7 @@ getCursorController(): CursorController
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.CursorController();
 ```
@@ -1368,6 +1370,7 @@ getContextMenuController(): ContextMenuController
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getContextMenuController();
 ```
@@ -1390,6 +1393,7 @@ getMeasureUtils(): MeasureUtils
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getMeasureUtils();
 ```
@@ -1412,6 +1416,7 @@ getComponentSnapshot(): ComponentSnapshot
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getComponentSnapshot();
 ```
@@ -1440,7 +1445,8 @@ vp2px(value : number) : number
 
 **示例：**
 
-```tx
+<!--code_no_check-->
+```ts
 uiContext.vp2px(200);
 ```
 
@@ -1468,7 +1474,8 @@ px2vp(value : number) : number
 
 **示例：**
 
-```tx
+<!--code_no_check-->
+```ts
 uiContext.px2vp(200);
 ```
 
@@ -1496,7 +1503,8 @@ fp2px(value : number) : number
 
 **示例：**
 
-```tx
+<!--code_no_check-->
+```ts
 uiContext.fp2px(200);
 ```
 
@@ -1524,7 +1532,8 @@ px2fp(value : number) : number
 
 **示例：**
 
-```tx
+<!--code_no_check-->
+```ts
 uiContext.px2fp(200);
 ```
 
@@ -1552,7 +1561,8 @@ lpx2px(value : number) : number
 
 **示例：**
 
-```tx
+<!--code_no_check-->
+```ts
 uiContext.lpx2px(200);
 ```
 
@@ -1580,7 +1590,8 @@ px2lpx(value : number) : number
 
 **示例：**
 
-```tx
+<!--code_no_check-->
+```ts
 uiContext.px2lpx(200);
 ```
 
@@ -1852,6 +1863,8 @@ requireDynamicSyncScene(id: string): Array&lt;DynamicSyncScene&gt;
 | Array&lt;DynamicSyncScene&gt; | 获取DynamicSyncScene对象数组。 |
 
 **示例：**
+
+<!--code_no_check-->
 ```ts
 uiContext.DynamicSyncScene("dynamicSyncScene")
 ```
@@ -2262,6 +2275,8 @@ isFollowingSystemFontScale(): boolean
 | boolean | 当前UI上下文是否跟随系统字体倍率。 |
 
 **示例：**
+
+<!--code_no_check-->
 ```ts
 uiContext.isFollowingSystemFontScale()
 ```
@@ -2283,6 +2298,8 @@ getMaxFontScale(): number
 | number | 当前UI上下文最大字体倍率。 |
 
 **示例：**
+
+<!--code_no_check-->
 ```ts
 uiContext.getMaxFontScale()
 ```
@@ -2472,13 +2489,13 @@ unbindTabsFromNestedScrollable(tabsController: TabsController, parentScroller: S
 
 参考[bindTabsToScrollable](#bindtabstoscrollable13)接口示例。
 
-### enableSwipeBack<sup>16+</sup>
+### enableSwipeBack<sup>18+</sup>
 
 enableSwipeBack(enabled: Optional\<boolean\>): void
 
 设置是否支持应用内横向滑动返回上一级。
 
-**原子化服务API:** 从API Version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务API:** 从API Version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -2529,13 +2546,13 @@ getTextMenuController(): TextMenuController
 
 参考[TextMenuController](#textmenucontroller16)接口示例。
 
-### notifyDragStartRequest<sup>16+</sup>
+### notifyDragStartRequest<sup>18+</sup>
 
 notifyDragStartRequest(requestStatus: draController.DragStartRequestStatus): void
 
 控制应用是否可以发起拖拽。
 
-**原子化服务API**: 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API**: 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -2543,7 +2560,7 @@ notifyDragStartRequest(requestStatus: draController.DragStartRequestStatus): voi
 
 | 参数名 | 类型   | 必填| 说明                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| requestStatus  | [draController.DragStartRequestStatus](js-apis-arkui-dragController.md#dragstartrequeststatus16)    | 是  |定义应用是否可以发起拖拽。|
+| requestStatus  | [draController.DragStartRequestStatus](js-apis-arkui-dragController.md#dragstartrequeststatus18)    | 是  |定义应用是否可以发起拖拽。|
 
 **示例：**
 
@@ -2615,6 +2632,8 @@ struct NormalEts {
 ```
 
 ### dispatchKeyEvent<sup>15+</sup>
+
+dispatchKeyEvent(node: number | string, event: KeyEvent): boolean
 
 按键事件应分发给指定的组件。为了确保行为的可预测性，目标组件必须位于分发组件的子树中。
 
@@ -2690,6 +2709,7 @@ registerFont(options: font.FontOptions): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { Font } from '@kit.ArkUI';
 
@@ -2721,6 +2741,7 @@ getSystemFontList(): Array\<string>
 
 **示例：** 
 
+<!--code_no_check-->
 ```ts
 import { Font } from '@kit.ArkUI';
 
@@ -2754,6 +2775,7 @@ getFontByName(fontName: string): font.FontInfo
 
 **示例：** 
 
+<!--code_no_check-->
 ```ts
 import { Font } from '@kit.ArkUI';
 
@@ -2815,6 +2837,7 @@ getRectangleById(id: string): componentUtils.ComponentInfo
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { ComponentUtils } from '@kit.ArkUI';
 
@@ -2852,6 +2875,7 @@ createComponentObserver(id: string): inspector.ComponentObserver
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { UIInspector } from '@kit.ArkUI';
 
@@ -2894,6 +2918,7 @@ on(type: 'navDestinationUpdate', callback: Callback\<observer.NavDestinationInfo
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { UIObserver } from '@kit.ArkUI';
 
@@ -2922,6 +2947,7 @@ off(type: 'navDestinationUpdate', callback?: Callback\<observer.NavDestinationIn
 
 **示例：** 
 
+<!--code_no_check-->
 ```ts
 import { UIObserver } from '@kit.ArkUI';
 
@@ -2949,6 +2975,7 @@ on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callbac
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { UIObserver } from '@kit.ArkUI';
 
@@ -2978,6 +3005,7 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { UIObserver } from '@kit.ArkUI';
 
@@ -4047,6 +4075,296 @@ off(type: 'tabContentUpdate', options: observer.ObserverOptions, callback?: Call
 
 参考[on('tabContentUpdate')](#ontabcontentupdate12-1)接口示例。
 
+### on('beforePanStart')<sup>18+</sup>
+
+on(type: 'beforePanStart', callback: PanListenerCallback): void
+
+监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件，在onActionStart事件执行之前执行callback回调。支持手指滑动、鼠标滑动、鼠标滚轮和触摸板拖动，暂不支持屏幕朗读触控模式。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                        | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                      | 是   | 监听事件，固定为'beforePanStart'，用于监听Pan手势onActionStart事件执行前的指令下发情况，所注册回调将于Pan手势onActionStart事件触发前触发。 |
+| callback | [PanListenerCallback](#panlistenercallback18) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { uiObserver } from '@kit.ArkUI';
+import router from '@ohos.router';
+
+let TEST_TAG: string = 'node'
+
+function callbackFunc() {
+  console.info('on == beforePanStart');
+}
+
+function afterPanCallBack() {
+  console.info('on == afterPanStart')
+}
+
+function beforeEndCallBack() {
+  console.info('on == beforeEnd')
+}
+
+function afterEndCallBack() {
+  console.info('on == afterEnd')
+}
+
+function beforeStartCallBack() {
+  console.info('bxq on == beforeStartCallBack')
+}
+
+function panGestureCallBack(event: GestureEvent, current: GestureRecognizer, node?: FrameNode) {
+  TEST_TAG = 'panGestureEvent';
+  console.info('===' + TEST_TAG + '=== event.repeat is ' + event.repeat);
+  console.info('===' + TEST_TAG + '=== event target is ' + event.target.id);
+  TEST_TAG = 'panGestureCurrent';
+  console.info('===' + TEST_TAG + '=== current.getTag() is ' + current.getTag());
+  TEST_TAG = 'panGestureNode';
+  console.info('===' + TEST_TAG + '=== node?.getId() is ' + node?.getId());
+}
+
+
+@Entry
+@Component
+struct PanExample {
+  @State offsetX: number = 0
+  @State offsetY: number = 0
+  @State positionX: number = 0
+  @State positionY: number = 0
+  private panOption: PanGestureOptions = new PanGestureOptions({direction: PanDirection.All })
+
+  aboutToAppear(): void {
+    let observer = this.getUIContext().getUIObserver();
+    observer.on('beforePanStart', callbackFunc);
+    observer.on('beforePanStart', panGestureCallBack);
+    observer.on('beforePanStart', beforeStartCallBack);
+    observer.on('afterPanStart', afterPanCallBack);
+    observer.on('beforePanEnd', beforeEndCallBack);
+    observer.on('afterPanEnd', afterEndCallBack)
+  }
+
+  aboutToDisappear(): void {
+    let observer = this.getUIContext().getUIObserver();
+    observer.off('beforePanStart', callbackFunc);
+    observer.off('beforePanStart');
+    observer.off('afterPanStart', afterPanCallBack);
+    observer.off('beforePanEnd');
+    observer.off('afterPanEnd');
+  }
+  build() {
+    Column(){
+      Column(){
+        Text('PanGesture :\nX: ' + this.offsetX + '\n' + 'Y: ' + this.offsetY)
+      }
+      .height(200)
+      .width(300)
+      .padding(20)
+      .border({ width: 3 })
+      .margin(50)
+      .translate({ x: this.offsetX, y: this.offsetY, z: 0 })
+      .id('columnOuter')
+      .gesture(
+        PanGesture(this.panOption)
+          .onActionStart((event: GestureEvent) => {
+            console.info('Pan start')
+          })
+          .onActionUpdate((event: GestureEvent) => {
+            if (event) {
+              this.offsetX = this.positionX + event.offsetX
+              this.offsetY = this.positionY + event.offsetY
+            }
+          })
+          .onActionEnd((event: GestureEvent) => {
+            this.positionX = this.offsetX
+            this.positionY = this.offsetY
+            console.info('Pan end')
+            }))
+          }
+  }
+}
+```
+
+### off('beforePanStart')<sup>18+</sup>
+
+off(type: 'beforePanStart', callback?: PanListenerCallback): void
+
+取消[on('beforePanStart')](#onbeforepanstart18)监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行前的callback回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                        | 必填 | 说明                                                 |
+| -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
+| type     | string                                                      | 是   | 监听事件，固定为'beforePanStart'，即Pan手势onActionStart事件执行前的指令下发情况。 |
+| callback | [PanListenerCallback](#panlistenercallback18) | 否   | 需要被注销的回调函数。                               |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
+
+// callback是开发者定义的监听回调函数
+let callback = (event: GestureEvent, current: GestureRecognizer, node?: FrameNode) => {};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.off('beforePanStart', callback);
+```
+
+### on('afterPanStart')<sup>18+</sup>
+
+on(type: 'afterPanStart', callback: PanListenerCallback): void
+
+监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行后的指令下发情况，在onActionStart事件执行之后执行callback回调。支持手指滑动、鼠标滑动、鼠标滚轮和触摸板拖动，暂不支持屏幕朗读触控模式。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                        | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                      | 是   | 监听事件，固定为'afterPanStart'，用于监听Pan手势onActionStart事件执行后的指令下发情况，所注册回调将于Pan手势onActionStart事件触发后触发。 |
+| callback | [PanListenerCallback](#panlistenercallback18) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
+
+**示例：**
+
+参考[on('beforePanStart')](#onbeforepanstart18)接口示例
+
+### off('afterPanStart')<sup>18+</sup>
+
+off(type: 'afterPanStart', callback?: PanListenerCallback): void
+
+取消[on('afterPanStart')](#onafterpanstart18)监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行后的callback回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                        | 必填 | 说明                                                 |
+| -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
+| type     | string                                                      | 是   | 监听事件，固定为'afterPanStart'，即Pan手势onActionStart事件执行后的指令下发情况。 |
+| callback | [PanListenerCallback](#panlistenercallback18) | 否   | 需要被注销的回调函数。                               |
+
+**示例：**
+
+参考[on('beforePanStart')](#onbeforepanstart18)接口示例
+
+### on('beforePanEnd')<sup>18+</sup>
+
+on(type: 'beforePanEnd', callback: PanListenerCallback): void
+
+监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行前的指令下发情况，在onActionEnd事件执行之前执行callback回调。支持手指滑动、鼠标滑动、鼠标滚轮和触摸板拖动，暂不支持屏幕朗读触控模式。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                        | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                      | 是   | 监听事件，固定为'beforePanEnd'，用于监听Pan手势onActionEnd事件执行前的指令下发情况，所注册回调将于Pan手势onActionEnd事件触发前触发。 |
+| callback | [PanListenerCallback](#panlistenercallback18) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
+
+**示例：**
+
+参考[on('beforePanStart')](#onbeforepanstart18)接口示例
+
+### off('beforePanEnd')<sup>18+</sup>
+
+off(type: 'beforePanEnd', callback?: PanListenerCallback): void
+
+取消[on('beforePanEnd')](#onbeforepanend18)监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行前的callback回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                        | 必填 | 说明                                                 |
+| -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
+| type     | string                                                      | 是   | 监听事件，固定为'beforePanEnd'，即Pan手势onActionEnd事件执行前的指令下发情况。 |
+| callback | [PanListenerCallback](#panlistenercallback18) | 否   | 需要被注销的回调函数。                               |
+
+**示例：**
+
+参考[on('beforePanStart')](#onbeforepanstart18)接口示例
+
+### on('afterPanEnd')<sup>18+</sup>
+
+on(type: 'afterPanEnd', callback: PanListenerCallback): void
+
+监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行后的指令下发情况，在onActionEnd事件执行之后执行callback回调。支持手指滑动、鼠标滑动、鼠标滚轮和触摸板拖动，暂不支持屏幕朗读触控模式。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                        | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                      | 是   | 监听事件，固定为'beforePanEnd'，用于监听Pan手势onActionEnd事件执行后的指令下发情况，所注册回调将于Pan手势onActionEnd事件触发后触发。 |
+| callback | [PanListenerCallback](#panlistenercallback18) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
+
+**示例：**
+
+参考[on('beforePanStart')](#onbeforepanstart18)接口示例
+
+### off('afterPanEnd')<sup>18+</sup>
+
+off(type: 'afterPanEnd', callback?: PanListenerCallback): void
+
+取消[on('afterPanEnd')](#onafterpanend18)监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行后的callback回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                        | 必填 | 说明                                                 |
+| -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
+| type     | string                                                      | 是   | 监听事件，固定为'afterPanEnd'，即Pan手势onActionEnd事件执行后的指令下发情况。 |
+| callback | [PanListenerCallback](#panlistenercallback18) | 否   | 需要被注销的回调函数。                               |
+
+**示例：**
+
+参考[on('beforePanStart')](#onbeforepanstart18)接口示例
+
+
+## PanListenerCallback<sup>18+</sup>
+type PanListenerCallback = (event: GestureEvent, current: GestureRecognizer, node?: FrameNode) => void
+
+Pan手势事件监听函数类型。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型              | 必填 | 说明                                |
+| ------- | ----------------- | ---- | --------------------------------- |
+| event   | [GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent对象说明)      | 是   | 触发事件监听的手势事件的相关信息。   |
+| current | [GestureRecognizer](arkui-ts/ts-gesture-blocking-enhancement.md#gesturerecognizer) | 是   | 触发事件监听的手势识别器的相关信息。  |
+| node    | [FrameNode](js-apis-arkui-frameNode.md#framenode)         | 否   | 触发事件监听的手势事件所绑定的组件。 |
+
 ## GestureEventListenerCallback<sup>12+</sup>
 type GestureEventListenerCallback = (event: GestureEvent, node?: FrameNode) => void
 
@@ -4107,6 +4425,7 @@ matchMediaSync(condition: string): mediaQuery.MediaQueryListener
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { MediaQuery } from '@kit.ArkUI';
 
@@ -5493,6 +5812,7 @@ getState(): router.RouterState
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { Router } from '@kit.ArkUI';
 
@@ -5527,6 +5847,7 @@ getStateByIndex(index: number): router.RouterState | undefined
 
 **示例：** 
 
+<!--code_no_check-->
 ```ts
 import { Router } from '@kit.ArkUI';
 
@@ -5563,6 +5884,7 @@ getStateByUrl(url: string): Array<router.[RouterState](js-apis-router.md#outerst
 
 **示例：** 
 
+<!--code_no_check-->
 ```ts
 import { Router } from '@kit.ArkUI';
 let router: Router = uiContext.getRouter();
@@ -5602,6 +5924,7 @@ showAlertBeforeBackPage(options: router.EnableAlertOptions): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5630,6 +5953,7 @@ hideAlertBeforeBackPage(): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { Router } from '@kit.ArkUI';
 
@@ -5655,6 +5979,8 @@ getParams(): Object
 
 **示例：**
 
+<!--code_no_check-->
+
 ```ts
 import { Router } from '@kit.ArkUI';
 
@@ -5662,13 +5988,13 @@ let router: Router = uiContext.getRouter();
 router.getParams();
 ```
 
-## CustomBuilderWithId<sup>16+</sup>
+## CustomBuilderWithId<sup>18+</sup>
 
 type CustomBuilderWithId = (id: number)&nbsp;=&gt;&nbsp;void
 
 组件属性方法参数可使用CustomBuilderWithId类型来自定义UI描述，并且可以指定组件ID生成用户自定义组件。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -5678,11 +6004,11 @@ type CustomBuilderWithId = (id: number)&nbsp;=&gt;&nbsp;void
 | -------- | -------- | -------- | -------- |
 | id | number | 是 | 组件ID |
 
-## TargetInfo<sup>16+</sup>
+## TargetInfo<sup>18+</sup>
 
 指定组件绑定的目标节点。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -5724,6 +6050,7 @@ showToast(options: promptAction.ShowToastOptions): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { PromptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5741,11 +6068,11 @@ try {
 };
 ```
 
-### openToast<sup>16+</sup>
+### openToast<sup>18+</sup>
 
 openToast(options: ShowToastOptions): Promise&lt;number&gt;
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -5814,11 +6141,11 @@ struct toastExample {
 }
 ```
 
-### closeToast<sup>16+</sup>
+### closeToast<sup>18+</sup>
 
 closeToast(toastId: number): void
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -5839,7 +6166,7 @@ closeToast(toastId: number): void
 
 **示例：**
 
-示例请看[openToaset16](#opentoast16)的示例。
+示例请看[openToaset18](#opentoast18)的示例。
 
 ### showDialog
 
@@ -5868,6 +6195,8 @@ showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;p
 | 100001 | Internal error. |
 
 **示例：**
+
+<!--code_no_check-->
 
 ```ts
 import { PromptAction } from '@kit.ArkUI';
@@ -5935,6 +6264,7 @@ showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.Sho
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { PromptAction } from '@kit.ArkUI';
 
@@ -5989,6 +6319,7 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { PromptAction, promptAction  } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -6049,6 +6380,7 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: [promptAction.
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { PromptAction,promptAction  } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -6108,6 +6440,7 @@ showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { PromptAction } from '@kit.ArkUI';
 
@@ -6137,7 +6470,7 @@ promptAction.showActionMenu({
 
 openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options?: promptAction.BaseDialogOptions): Promise&lt;void&gt;
 
-创建并弹出dialogContent对应的自定义弹窗，使用Promise异步回调。通过该接口弹出的弹窗内容样式完全按照dialogContent中设置的样式显示，即相当于customdialog设置customStyle为true时的显示效果。暂不支持isModal = true与showInSubWindow = true同时使用。
+创建并弹出dialogContent对应的自定义弹窗，使用Promise异步回调。通过该接口弹出的弹窗内容样式完全按照dialogContent中设置的样式显示，即相当于customdialog设置customStyle为true时的显示效果。暂不支持[isModal](js-apis-promptAction.md#basedialogoptions11) = true与[showInSubWindow](js-apis-promptAction.md#basedialogoptions11) = true同时使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -6220,7 +6553,7 @@ struct Index {
 }
 ```
 
-### openCustomDialogWithController<sup>16+</sup>
+### openCustomDialogWithController<sup>18+</sup>
 
 openCustomDialogWithController\<T extends Object>(dialogContent: ComponentContent\<T>, controller: promptAction.DialogController, options?: promptAction.BaseDialogOptions): Promise&lt;void&gt;
 
@@ -6228,9 +6561,9 @@ openCustomDialogWithController\<T extends Object>(dialogContent: ComponentConten
 
 通过该接口弹出的弹窗内容样式完全按照dialogContent中设置的样式显示，即相当于customdialog设置customStyle为true时的显示效果。
 
-暂不支持isModal = true与showInSubWindow = true同时使用。
+暂不支持[isModal](js-apis-promptAction.md#basedialogoptions11) = true与[showInSubWindow](js-apis-promptAction.md#basedialogoptions11) = true同时使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -6239,7 +6572,7 @@ openCustomDialogWithController\<T extends Object>(dialogContent: ComponentConten
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
 | dialogContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | 自定义弹窗中显示的组件内容。 |
-| controller | [promptAction.DialogController](js-apis-promptAction.md#dialogcontroller16) | 是 | 自定义弹窗的控制器。 |
+| controller | [promptAction.DialogController](js-apis-promptAction.md#dialogcontroller18) | 是 | 自定义弹窗的控制器。 |
 | options | [promptAction.BaseDialogOptions](js-apis-promptAction.md#basedialogoptions11) | 否    | 自定义弹窗的样式。 |
 
 **返回值：**
@@ -6545,7 +6878,7 @@ openCustomDialog(options: promptAction.CustomDialogOptions): Promise\<number>
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 | 100001   | Internal error.                                              |
 
-### presentCustomDialog<sup>16+</sup>
+### presentCustomDialog<sup>18+</sup>
 
 presentCustomDialog(builder: CustomBuilder \| CustomBuilderWithId, controller?: promptAction.DialogController, options?: promptAction.DialogOptions): Promise\<number>
 
@@ -6555,7 +6888,7 @@ presentCustomDialog(builder: CustomBuilder \| CustomBuilderWithId, controller?: 
 
 暂不支持isModal = true与showInSubWindow = true同时使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -6563,9 +6896,9 @@ presentCustomDialog(builder: CustomBuilder \| CustomBuilderWithId, controller?: 
 
 | 参数名  | 类型                                                         | 必填 | 说明               |
 | ------- | ------------------------------------------------------------ | ---- | ------------------ |
-| builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [CustomBuilderWithId](#custombuilderwithid16) | 是   | 自定义弹窗的内容。 |
-| controller | [promptAction.DialogController](js-apis-promptAction.md#dialogcontroller16) | 否 | 自定义弹窗的控制器。 |
-| options | [promptAction.DialogOptions](js-apis-promptAction.md#dialogoptions16) | 否 | 自定义弹窗的样式。 |
+| builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [CustomBuilderWithId](#custombuilderwithid18) | 是   | 自定义弹窗的内容。 |
+| controller | [promptAction.DialogController](js-apis-promptAction.md#dialogcontroller18) | 否 | 自定义弹窗的控制器。 |
+| options | [promptAction.DialogOptions](js-apis-promptAction.md#dialogoptions18) | 否 | 自定义弹窗的样式。 |
 
 **返回值：**
 
@@ -6743,7 +7076,7 @@ struct Index {
 }
 ```
 
-### getTopOrder<sup>16+</sup>
+### getTopOrder<sup>18+</sup>
 
 getTopOrder(): LevelOrder
 
@@ -6751,7 +7084,7 @@ getTopOrder(): LevelOrder
 
 获取最顶层显示的弹窗的顺序，可以在下一个弹窗时指定期望的顺序。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -6759,7 +7092,7 @@ getTopOrder(): LevelOrder
 
 | 类型                | 说明                                    |
 | ------------------- | --------------------------------------- |
-| [LevelOrder](js-apis-promptAction.md#levelorder16) | 返回弹窗层级信息。 |
+| [LevelOrder](js-apis-promptAction.md#levelorder18) | 返回弹窗层级信息。 |
 
 **示例：**
 
@@ -6823,7 +7156,7 @@ struct Index {
 }
 ```
 
-### getBottomOrder<sup>16+</sup>
+### getBottomOrder<sup>18+</sup>
 
 getBottomOrder(): LevelOrder
 
@@ -6831,7 +7164,7 @@ getBottomOrder(): LevelOrder
 
 获取最底层显示的弹窗的顺序，可以在下一个弹窗时指定期望的顺序。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -6839,7 +7172,7 @@ getBottomOrder(): LevelOrder
 
 | 类型                | 说明                                    |
 | ------------------- | --------------------------------------- |
-| [LevelOrder](js-apis-promptAction.md#levelorder16) | 返回弹窗层级信息。 |
+| [LevelOrder](js-apis-promptAction.md#levelorder18) | 返回弹窗层级信息。 |
 
 **示例：**
 
@@ -6903,7 +7236,7 @@ struct Index {
 }
 ```
 
-### openPopup<sup>16+</sup>
+### openPopup<sup>18+</sup>
 
 openPopup\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, options?: PopupCommonOptions): Promise&lt;void&gt;
 
@@ -6913,11 +7246,11 @@ openPopup\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, 
 >
 > 1. 使用该接口时，若未传入有效的target，则无法弹出popup弹窗。
 >
-> 2. 由于[updatePopup](#updatepopup16)和[closePopup](#closepopup16)依赖content去更新或者关闭指定的popup弹窗，开发者需自行维护传入的content。
+> 2. 由于[updatePopup](#updatepopup18)和[closePopup](#closepopup18)依赖content去更新或者关闭指定的popup弹窗，开发者需自行维护传入的content。
 >
-> 3. 如果在wrapBuilder中包含其他组件（例如：[Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup)、[Chip](arkui-ts/ohos-arkui-advanced-Chip.md#chip)组件），则ComponentContent应采用带有四个参数的构造函数[constructor](./js-apis-arkui-ComponentContent.md#constructor-2)，其中options参数应传递{ nestingBuilderSupported: true }。
+> 3. 如果在wrapBuilder中包含其他组件（例如：[Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup)、[Chip](arkui-ts/ohos-arkui-advanced-Chip.md#chip)组件），则[ComponentContent](./js-apis-arkui-ComponentContent.md#componentcontent-1)应采用带有四个参数的构造函数constructor，其中options参数应传递{ nestingBuilderSupported: true }。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -6926,8 +7259,8 @@ openPopup\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, 
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
 | content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | popup弹窗中显示的组件内容。 |
-| target | [TargetInfo](#targetinfo16) | 是 | 需要绑定组件的信息。 |
-| options | [PopupCommonOptions](arkui-ts/ts-universal-attributes-popup.md#popupcommonoptions16类型说明) | 否 | popup弹窗样式。 |
+| target | [TargetInfo](#targetinfo18) | 是 | 需要绑定组件的信息。 |
+| options | [PopupCommonOptions](arkui-ts/ts-universal-attributes-popup.md#popupcommonoptions18类型说明) | 否 | popup弹窗样式。 |
 
 **返回值：**
 
@@ -7030,7 +7363,7 @@ struct Index {
 }
 ```
 
-### updatePopup<sup>16+</sup>
+### updatePopup<sup>18+</sup>
 
 updatePopup\<T extends Object>(content: ComponentContent\<T>, options: PopupCommonOptions, partialUpdate?: boolean ): Promise&lt;void&gt;
 
@@ -7041,7 +7374,7 @@ updatePopup\<T extends Object>(content: ComponentContent\<T>, options: PopupComm
 > 不支持更新showInSubWindow、focusable、onStateChange、onWillDismiss、transition。
 >
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -7050,7 +7383,7 @@ updatePopup\<T extends Object>(content: ComponentContent\<T>, options: PopupComm
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
 | content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | popup弹窗中显示的组件内容。 |
-| options | [PopupCommonOptions](arkui-ts/ts-universal-attributes-popup.md#popupcommonoptions16类型说明) | 是 | popup弹窗样式。<br/>**说明：** <br/>不支持更新showInSubWindow、focusable、onStateChange、onWillDismiss、transition。 |
+| options | [PopupCommonOptions](arkui-ts/ts-universal-attributes-popup.md#popupcommonoptions18类型说明) | 是 | popup弹窗样式。<br/>**说明：** <br/>不支持更新showInSubWindow、focusable、onStateChange、onWillDismiss、transition。 |
 | partialUpdate | boolean | 否 | popup弹窗更新方式, 默认值为false。<br/>**说明：** <br/>1. true为增量更新，保留当前值，更新options中的指定属性。 <br/>2. false为全量更新，除options中的指定属性，其他属性恢复默认值。 |
 
 **返回值：**
@@ -7071,15 +7404,15 @@ updatePopup\<T extends Object>(content: ComponentContent\<T>, options: PopupComm
 
 **示例：**
 
-请参考[openPopup](#openpopup16)示例。
+请参考[openPopup](#openpopup18)示例。
 
-### closePopup<sup>16+</sup>
+### closePopup<sup>18+</sup>
 
 closePopup\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt;
 
 关闭content对应的popup弹窗，使用Promise异步回调。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -7107,9 +7440,9 @@ closePopup\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt
 
 **示例：**
 
-请参考[openPopup](#openpopup16)示例。
+请参考[openPopup](#openpopup18)示例。
 
-### openMenu<sup>16+</sup>
+### openMenu<sup>18+</sup>
 
 openMenu\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, options?: MenuOptions): Promise&lt;void&gt;
 
@@ -7119,11 +7452,11 @@ openMenu\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, o
 >
 > 1. 使用该接口时，若未传入有效的target，则无法弹出menu弹窗。
 >
-> 2. 由于[updateMenu](#updatemenu16)和[closeMenu](#closemenu16)依赖content去更新或者关闭指定的menu弹窗，开发者需自行维护传入的content。
+> 2. 由于[updateMenu](#updatemenu18)和[closeMenu](#closemenu18)依赖content去更新或者关闭指定的menu弹窗，开发者需自行维护传入的content。
 >
-> 3. 如果在wrapBuilder中包含其他组件（例如：[Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup)、[Chip](arkui-ts/ohos-arkui-advanced-Chip.md#chip)组件），则ComponentContent应采用带有四个参数的构造函数[constructor](./js-apis-arkui-ComponentContent.md#constructor-2)，其中options参数应传递{ nestingBuilderSupported: true }。
+> 3. 如果在wrapBuilder中包含其他组件（例如：[Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup)、[Chip](arkui-ts/ohos-arkui-advanced-Chip.md#chip)组件），则[ComponentContent](./js-apis-arkui-ComponentContent.md#componentcontent-1)应采用带有四个参数的构造函数constructor，其中options参数应传递{ nestingBuilderSupported: true }。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -7132,7 +7465,7 @@ openMenu\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, o
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
 | content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | menu弹窗中显示的组件内容。 |
-| target | [TargetInfo](#targetinfo16) | 是 | 需要绑定组件的信息。 |
+| target | [TargetInfo](#targetinfo18) | 是 | 需要绑定组件的信息。 |
 | options | [MenuOptions](./arkui-ts/ts-universal-attributes-menu.md#menuoptions10) | 否 | menu弹窗样式。<br/>**说明：**<br/>title属性不生效。<br/>preview参数仅支持设置MenuPreviewMode类型。 |
 
 **返回值：**
@@ -7207,7 +7540,7 @@ struct Index {
 }
 ```
 
-### updateMenu<sup>16+</sup>
+### updateMenu<sup>18+</sup>
 
 updateMenu\<T extends Object>(content: ComponentContent\<T>, options: MenuOptions, partialUpdate?: boolean ): Promise&lt;void&gt;
 
@@ -7218,7 +7551,7 @@ updateMenu\<T extends Object>(content: ComponentContent\<T>, options: MenuOption
 > 不支持更新showInSubWindow、preview、previewAnimationOptions、transition、onAppear、aboutToAppear、onDisappear、aboutToDisappear。
 >
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -7306,13 +7639,13 @@ struct Index {
 }
 ```
 
-### closeMenu<sup>16+</sup>
+### closeMenu<sup>18+</sup>
 
 closeMenu\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt;
 
 关闭content对应的menu弹窗。使用Promise异步回调。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -7799,7 +8132,7 @@ setDragEventStrictReportingEnabled(enable: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| enable | boolean | 是   | 将目标从父组件拖拽到子组件时，是否会触发父组件的onDragLeave的回调。 |
+| enable | boolean | 是   | 将目标从父组件拖拽到子组件时，是否会触发父组件的onDragLeave的回调。true表示触发父组件的onDragLeave的回调，false表示不触发。 |
 
 **示例：**
 
@@ -7844,11 +8177,12 @@ cancelDataLoading(key: string): void
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[拖拽事件错误码](./errorcode-drag-event.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. |
+| 190004      | Operation failed. |
 
 ## OverlayManager<sup>12+</sup>
 
@@ -7976,7 +8310,7 @@ struct OverlayExample {
 }
 ```
 
-### addComponentContentWithOrder<sup>16+</sup>
+### addComponentContentWithOrder<sup>18+</sup>
 
 addComponentContentWithOrder(content: ComponentContent, levelOrder?: LevelOrder): void
 
@@ -7984,7 +8318,7 @@ addComponentContentWithOrder(content: ComponentContent, levelOrder?: LevelOrder)
 
 支持在浮层节点创建时指定显示的顺序。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -7993,7 +8327,7 @@ addComponentContentWithOrder(content: ComponentContent, levelOrder?: LevelOrder)
 | 参数名     | 类型                                       | 必填   | 说明          |
 | ------- | ---------------------------------------- | ---- | ----------- |
 | content | [ComponentContent](js-apis-arkui-ComponentContent.md) | 是    | 在OverlayManager上新增指定节点上添加此content。 <br>**说明：** <br/> 新增的节点默认处于页面居中位置，按层级堆叠。|
-| levelOrder | [LevelOrder](js-apis-promptAction.md#levelorder16) | 否    | 新增浮层节点的显示顺序。<br />**说明：**<br />- 默认值：LevelOrder.clamp(0)。|
+| levelOrder | [LevelOrder](js-apis-promptAction.md#levelorder18) | 否    | 新增浮层节点的显示顺序。<br />**说明：**<br />- 默认值：LevelOrder.clamp(0)。|
 
 **示例：**
 
@@ -8174,7 +8508,8 @@ hideAllComponentContents(): void
 
 | 名称             | 类型                | 必填     | 说明                     |
 | --------------- | ---------------------- | ------------ | --------------------- |
-| renderRootOverlay   | boolean | 否 | 是否渲染overlay根节点，默认值为true。 |
+| renderRootOverlay   | boolean | 否 | 是否渲染overlay根节点，true表示渲染overlay根节点，false表示不渲染overlay根节点，默认值为true。|
+| enableBackPressedEvent<sup>18+</sup>   | boolean | 否 | 是否支持通过侧滑手势关闭OverlayManager下的ComponentContent，默认值为false。 |
 
 ## AtomicServiceBar<sup>11+</sup>
 
@@ -8242,7 +8577,7 @@ setBackgroundColor(color:Nullable<Color | number | string>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------ |
-| color | Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | 是 | 通过该方法设置原子化服务menuBar的背景颜色，undefined代表使用默认颜色。|
+| color | Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | 是 | 通过该方法设置原子化服务menuBar的背景颜色，undefined代表使用默认颜色。number为HEX格式颜色，支持rgb或者argb，示例：0xffffff。string为rgb或者argb格式颜色，示例：'#ffffff'。|
 
 **示例：**
 
@@ -8656,7 +8991,7 @@ setAutoFocusTransfer(isAutoFocusTransfer: boolean): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | ------- | ------- | ------- |
-| isAutoFocusTransfer | boolean| 是 | 设置页面切换时，新的页面是否需要主动获取焦点，例如[Router](js-apis-router.md#routerpushurl9)、[Navigation](arkui-ts/ts-basic-components-navigation.md#navigation)、[Menu](arkui-ts/ts-basic-components-menu.md#menu)、[Dialog](arkui-ts/ohos-arkui-advanced-Dialog.md)、[Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup)等。默认值为true。 |
+| isAutoFocusTransfer | boolean| 是 | 设置页面切换时，新的页面是否需要主动获取焦点，例如[Router](js-apis-router.md#routerpushurl9)、[Navigation](arkui-ts/ts-basic-components-navigation.md#navigation)、[Menu](arkui-ts/ts-basic-components-menu.md#menu)、[Dialog](arkui-ts/ohos-arkui-advanced-Dialog.md)、[Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup)等。true表示需要主动获取焦点，false表示不需要主动获取焦点。默认值为true。 |
 
 ```ts
 @CustomDialog
@@ -9629,13 +9964,13 @@ struct SnapshotExample {
 }
 ```
 
-### createFromComponent<sup>16+</sup>
+### createFromComponent<sup>18+</sup>
 
 createFromComponent\<T extends Object>(content: ComponentContent\<T>, delay?: number, checkImageStatus?: boolean, options?: componentSnapshot.SnapshotOptions): Promise<image.PixelMap>
 
 将传入的content对象进行截图，并通过Promise返回结果。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -10045,7 +10380,7 @@ MarqueeDynamicSyncScene继承自[DynamicSyncScene](#dynamicsyncscene12)，对应
 **示例：**
 
 ```ts
-import { MarqueeDynamicSyncSceneType, MarqueeDynamicSyncScene } from '@kit.ArkUI'
+import { MarqueeDynamicSyncSceneType, MarqueeDynamicSyncScene } from '@ohos.arkui.UIContext';
 
 @Entry
 @Component

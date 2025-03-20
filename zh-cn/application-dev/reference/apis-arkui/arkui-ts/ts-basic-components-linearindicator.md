@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 16开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API Version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -18,7 +18,7 @@ LinearIndicator(count?: number, controller?: LinearIndicatorController)
 
 线性导航条组件的构造函数，可配置该组件的进度条个数与控制器。
 
-**原子化服务API：** 从API Version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API Version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -39,7 +39,7 @@ indicatorStyle(style: Optional\<LinearIndicatorStyle\>)
 
 设置导航条样式属性。
 
-**原子化服务API：** 从API Version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API Version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -55,7 +55,7 @@ indicatorLoop(loop: Optional\<boolean\>)
 
 设置是否支持循环播放。循环播放为true时，当最后一个进度条播放完成，会等待预先设置的间隔毫秒数后，从第一个进度条重新开始播放。
 
-**原子化服务API：** 从API Version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API Version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -75,7 +75,7 @@ onChange(callback: Optional\<OnLinearIndicatorChangeCallback\>)
 
 设置进度条变化时的回调函数，当进度发生变化时会触发该回调。
 
-**原子化服务API：** 从API Version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API Version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -96,7 +96,7 @@ constructor()
 LinearIndicatorController的构造函数。
 
 
-**原子化服务API：** 从API Version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API Version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -106,7 +106,7 @@ setProgress(index: number, progress: number): void
 
 为与index相对应的进度条设定进度值。所有小于index的进度条进度将统一调整至100%。而所有大于index的进度条进度则统一调整为0%。
 
-**原子化服务API：** 从API Version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API Version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -123,7 +123,7 @@ start(options?: LinearIndicatorStartOptions): void
 
 开始自动播放，可以指定自动播放参数，每一个进度条的自动播放参数相同。
 
-**原子化服务API：** 从API Version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API Version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -139,7 +139,7 @@ pause(): void
 
 暂停播放。如果当前为自动播放状态，将切换至暂停播放状态。若已处于暂停播放状态，则维持现状。
 
-**原子化服务API：** 从API Version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API Version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -149,7 +149,7 @@ stop(): void
 
 停止播放。调用后将恢复成初始状态（当前索引值为0，进度值为0）。
 
-**原子化服务API：** 从API Version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API Version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -157,7 +157,7 @@ stop(): void
 
 组件内置进度条属性信息。
 
-**原子化服务API：** 从API Version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API Version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -173,7 +173,7 @@ stop(): void
 
 自动播放参数。
 
-**原子化服务API：** 从API Version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API Version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -192,7 +192,7 @@ stop(): void
 type OnLinearIndicatorChangeCallback = (index: number, progress: number) => void
 
 
-**原子化服务API：** 从API Version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API Version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

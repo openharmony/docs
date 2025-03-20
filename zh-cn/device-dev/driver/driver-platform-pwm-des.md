@@ -50,7 +50,7 @@ PWM模块各分层作用：
 
 ### 接口说明
 
-PWM模块设备属性如表1所示，PWM模块提供的主要接口如表2所示，具体API详见//drivers/hdf_core/framework/include/platform/pwm_if.h。
+PWM模块设备属性如表1所示，PWM模块提供的主要接口如表2所示，具体API[详见](https://gitee.com/openharmony/drivers_hdf_core/blob/master/framework/include/platform/pwm_if.h)。
 
 **表 1** PwmConfig结构体介绍
 

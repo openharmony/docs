@@ -28,7 +28,7 @@ Registers a listener to observe the mission status.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -130,7 +130,7 @@ Deregisters a mission status listener.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -228,7 +228,7 @@ Deregisters a mission status listener. This API uses a promise to return the res
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -330,7 +330,7 @@ Obtains the information about a given mission. This API uses an asynchronous cal
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -396,7 +396,7 @@ Obtains the information about a given mission. This API uses a promise to return
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -451,7 +451,7 @@ Obtains information about all missions. This API uses an asynchronous callback t
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -504,7 +504,7 @@ Obtains information about all missions. This API uses a promise to return the re
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -557,7 +557,7 @@ Obtains the snapshot of a given mission. This API uses an asynchronous callback 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -608,7 +608,7 @@ Obtains the snapshot of a given mission. This API uses a promise to return the r
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -662,7 +662,7 @@ Obtains the low-resolution snapshot of a given mission. This API uses an asynchr
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -713,7 +713,7 @@ Obtains the low-resolution snapshot of a given mission. This API uses a promise 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -769,7 +769,7 @@ Locks a given mission. This API uses an asynchronous callback to return the resu
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -821,7 +821,7 @@ Locks a given mission. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -875,7 +875,7 @@ Unlocks a given mission. This API uses an asynchronous callback to return the re
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -926,7 +926,7 @@ Unlocks a given mission. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -981,7 +981,7 @@ Clears a given mission, regardless of whether it is locked. This API uses an asy
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -1033,7 +1033,7 @@ Clears a given mission, regardless of whether it is locked. This API uses a prom
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -1087,7 +1087,7 @@ Clears all unlocked missions. This API uses an asynchronous callback to return t
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -1135,7 +1135,7 @@ Clears all unlocked missions. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Return value**
 
@@ -1180,7 +1180,7 @@ Switches a given mission to the foreground. This API uses an asynchronous callba
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -1232,7 +1232,7 @@ Switches a given mission to the foreground, with the startup parameters for the 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -1285,7 +1285,7 @@ Switches a given mission to the foreground, with the startup parameters for the 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 

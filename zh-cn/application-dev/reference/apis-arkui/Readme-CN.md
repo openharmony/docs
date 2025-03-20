@@ -109,6 +109,7 @@
       - [形状裁剪](arkui-ts/ts-universal-attributes-sharp-clipping.md)
       - [颜色渐变](arkui-ts/ts-universal-attributes-gradient-color.md)
       - [Popup控制](arkui-ts/ts-universal-attributes-popup.md)
+      - [Tips控制](arkui-ts/ts-universal-attributes-tips.md)
       - [菜单控制](arkui-ts/ts-universal-attributes-menu.md)
       - [焦点控制](arkui-ts/ts-universal-attributes-focus.md)
       - [悬浮态效果](arkui-ts/ts-universal-attributes-hover-effect.md)
@@ -194,6 +195,7 @@
     - [ArcSwiper](arkui-ts/ts-container-arcswiper.md)
     - [WaterFlow](arkui-ts/ts-container-waterflow.md)
     - [FlowItem](arkui-ts/ts-container-flowitem.md)
+    - [LazyVGridLayout](arkui-ts/ts-container-lazyvgridlayout.md)
     - [ScrollBar](arkui-ts/ts-basic-components-scrollbar.md)
     - [Refresh](arkui-ts/ts-container-refresh.md)
     - [ComposeListItem](arkui-ts/ohos-arkui-advanced-ComposeListItem.md)
@@ -351,6 +353,7 @@
     - [时间滑动选择器弹窗 (TimePickerDialog)](arkui-ts/ts-methods-timepicker-dialog.md)
     - [文本滑动选择器弹窗 (TextPickerDialog)](arkui-ts/ts-methods-textpicker-dialog.md)
     - [弹出框 (Dialog)](arkui-ts/ohos-arkui-advanced-Dialog.md)
+    - [弹出框V2 (DialogV2)](arkui-ts/ohos-arkui-advanced-DialogV2.md)
   - 卡片<!--service-widgets-->
     - [FormLink](arkui-ts/ts-container-formlink.md)
     - [FormMenu](arkui-ts/ohos-arkui-advanced-formmenu.md)
@@ -368,6 +371,7 @@
     - [WithTheme](arkui-ts/ts-container-with-theme.md) 
   - 原子化服务<!--atomic-services-->
     - [AtomicServiceNavigation](arkui-ts/ohos-atomicservice-AtomicServiceNavigation.md)
+    - [AtomicServiceSearch](arkui-ts/ohos-atomicservice-AtomicServiceSearch.md)
     - [AtomicServiceTabs](arkui-ts/ohos-atomicservice-AtomicServiceTabs.md)
     - [AtomicServiceWeb](arkui-ts/ohos-atomicservice-AtomicServiceWeb.md)
     - [InterstitialDialogAction](arkui-ts/ohos-atomicservice-InterstitialDialogAction.md)

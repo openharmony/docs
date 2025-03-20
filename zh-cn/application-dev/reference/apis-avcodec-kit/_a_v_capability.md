@@ -283,7 +283,7 @@ OH_AVErrCode OH_AVCapability_GetEncoderBitrateRange (OH_AVCapability *capability
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| capability | 编码器能力指针。不能填入解码器能力指针。  | 
+| capability | 编码器能力指针。如果给的是解码器能力指针，会导致未定义行为。  | 
 | bitrateRange | 输出参数。编码器码率范围。  | 
 
 **返回：**
@@ -309,7 +309,7 @@ OH_AVErrCode OH_AVCapability_GetEncoderComplexityRange (OH_AVCapability *capabil
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| capability | 编码器能力指针。不能填入解码器能力指针。  | 
+| capability | 编码器能力指针。如果给的是解码器能力指针，会导致未定义行为。  | 
 | complexityRange | 输出参数。编码器复杂度范围。  | 
 
 **返回：**
@@ -335,7 +335,7 @@ OH_AVErrCode OH_AVCapability_GetEncoderQualityRange (OH_AVCapability *capability
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| capability | 编码器能力指针。不能填入解码器能力指针。  | 
+| capability | 编码器能力指针。如果给的是解码器能力指针，会导致未定义行为。  | 
 | qualityRange | 输出参数。编码器质量范围。  | 
 
 **返回：**
@@ -725,7 +725,7 @@ bool OH_AVCapability_IsEncoderBitrateModeSupported (OH_AVCapability *capability,
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| capability | 编码器能力指针。不能填入解码器能力指针。  | 
+| capability | 编码器能力指针。如果给的是解码器能力指针，会导致未定义行为。  | 
 | bitrateMode | 比特率模式。  | 
 
 **返回：**

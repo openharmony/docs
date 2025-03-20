@@ -2038,7 +2038,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoData(CommonEvent_PublishInfo* i
 
 **描述**
 
-设置公共事件结果数据。
+设置公共事件的发布信息结果数据。
 
 **起始版本：** 16
 
@@ -2047,7 +2047,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoData(CommonEvent_PublishInfo* i
 | 名称 | 描述 |
 | -------- | -------- |
 | info | 公共事件属性对象。|
-| code | 设置的结果数据。|
+| data | 设置的结果数据。|
 | length | 结果数据的长度。|
 
 **返回：**

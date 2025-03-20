@@ -65,7 +65,7 @@ struct Star {
 
 ## 使用限制
 - `!!`双向绑定语法不支持多层父子组件传递。
-- 不支持与@Event混用。当使用`!!`双向绑定语法时，在给子组件传递参数时，不允许给对应的@Event方法传参。
+- 不支持与@Event混用。从API version 18开始，当使用`!!`双向绑定语法给子组件传递参数时，给对应的@Event方法传参会编译报错。
 - 当使用大于等于3个感叹号（!!!、!!!!、!!!!!等）时，不支持双向绑定功能。
 
 
@@ -86,9 +86,9 @@ struct Star {
   | [bindPopup](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#bindpopup) | show | 13   |
   | [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md#textinputoptions对象说明) | text | 16   |
   | [TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md#textareaoptions对象说明) | text | 16   |
-  | [Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md#searchoptions16对象说明) | value | 16   |
-  | [BindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md) | isShow | 16   |
-  | [BindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md) | isShow | 16   |
+  | [Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md#searchoptions18对象说明) | value | 16   |
+  | [BindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md) | isShow | 18   |
+  | [BindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md) | isShow | 18   |
 
 - !!绑定的[\@Local](arkts-new-local.md)变量变化时，会触发UI的同步刷新。
 

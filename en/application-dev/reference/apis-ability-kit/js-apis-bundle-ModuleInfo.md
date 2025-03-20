@@ -1,6 +1,6 @@
 # ModuleInfo
 
-The **ModuleInfo** module provides module information of an application.
+The ModuleInfo module provides module information of an application.
 
 > **NOTE**
 >

@@ -21,8 +21,8 @@ Provides APIs for persisting permissions, activating or deactivating permissions
 
 | Name| Description| 
 | -------- | -------- |
-| struct  [FileShare_PolicyErrorResult](_file_share___policy_error_result.md) | Represents the permission policy error information. | 
-| struct  [FileShare_PolicyInfo](_file_share___policy_info.md) | Represents the permission policy information. | 
+| struct  [FileShare_PolicyErrorResult](_file_share___policy_error_result.md) | Defines a struct for the permission policy error information. | 
+| struct  [FileShare_PolicyInfo](_file_share___policy_info.md) | Defines a struct for the permission policy information. | 
 
 
 ### Types
@@ -39,8 +39,8 @@ Provides APIs for persisting permissions, activating or deactivating permissions
 
 | Name| Description| 
 | -------- | -------- |
-| [FileShare_OperationMode](file_share.md#fileshare_operationmode) { [READ_MODE](file_share.md) = 1 &lt;&lt; 0, [WRITE_MODE](file_share.md) = 1 &lt;&lt; 1 } | Enumerates the permissions on a URI. | 
-| [FileShare_PolicyErrorCode](file_share.md#fileshare_policyerrorcode) { [PERSISTENCE_FORBIDDEN](file_share.md) = 1, [INVALID_MODE](file_share.md) = 2, [INVALID_PATH](file_share.md) = 3, [PERMISSION_NOT_PERSISTED](file_share.md) = 4 } | Enumerates the permission policy error codes. | 
+| [FileShare_OperationMode](file_share.md#fileshare_operationmode) { [READ_MODE](file_share.md#enum-description) = 1 &lt;&lt; 0, [WRITE_MODE](file_share.md#enum-description) = 1 &lt;&lt; 1 }| Enumerates the permissions on a URI. | 
+| [FileShare_PolicyErrorCode](file_share.md#enum-description) { [PERSISTENCE_FORBIDDEN](file_share.md#enum-description) = 1, [INVALID_MODE](file_share.md#enum-description) = 2, [INVALID_PATH](file_share.md#enum-description) = 3, [PERMISSION_NOT_PERSISTED](file_share.md#enum-description) = 4 }| Enumerates the permission policy error codes. | 
 
 
 ### Functions

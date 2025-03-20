@@ -772,4 +772,4 @@ HiDebug_ErrorCode OH_HiDebug_StopAppTraceCapture ()
 
 11400104 - 系统内部错误。
 
-11400105 - 当前没有trace正在运行
+11400105 - 当前没有trace正在运行。

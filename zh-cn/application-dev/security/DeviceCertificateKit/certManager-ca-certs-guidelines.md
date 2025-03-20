@@ -24,13 +24,12 @@
 
 | 实例名          | 接口名                                                       | 描述                                         |
 | --------------- | ------------------------------------------------------------ | -------------------------------------------- |
-| certificateManager        | installUserTrustedCertificateSync(cert: Uint8Array, certScope: CertScope) : CMResult<sup>16+</sup> | 安装用户CA证书。        |
-| certificateManager        | uninstallUserTrustedCertificateSync(certUri: string) : void<sup>16+</sup> | 删除用户CA证书。       |
+| certificateManager        | installUserTrustedCertificateSync(cert: Uint8Array, certScope: CertScope) : CMResult<sup>18+</sup> | 安装用户CA证书。        |
+| certificateManager        | uninstallUserTrustedCertificateSync(certUri: string) : void<sup>18+</sup> | 删除用户CA证书。       |
 | certificateManager        | getAllUserTrustedCertificates(): Promise\<CMResult> | 获取当前用户和设备公共位置的所有用户根CA证书列表。 |
-| certificateManager        | getAllUserTrustedCertificates(scope: CertScope): Promise\<CMResult><sup>16+</sup> | 根据证书的位置获取用户根CA证书列表。 |
+| certificateManager        | getAllUserTrustedCertificates(scope: CertScope): Promise\<CMResult><sup>18+</sup> | 根据证书的位置获取用户根CA证书列表。 |
 | certificateManager        | getUserTrustedCertificate(certUri: string): Promise\<CMResult> | 获取用户根CA证书的详细信息。 |
-| certificateManager | getCertificateStorePath(property: CertStoreProperty): string<sup>16+</sup> | 获取证书的存储路径。 |
-
+| certificateManager | getCertificateStorePath(property: CertStoreProperty): string<sup>18+</sup> | 获取证书的存储路径。 |
 
 ## 开发步骤
 

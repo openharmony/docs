@@ -27,11 +27,9 @@
    #include <cstdint>
    #include <cstdio>
    #include <cwchar>
-   #include <vector>
    #include <string.h>
    #include "hilog/log.h"
    #include "BasicServicesKit/oh_commonevent.h"
-   #include "BasicServicesKit/oh_commonevent_support.h"
    ```
 
 2. 在CMake脚本中添加动态链接库。
@@ -58,50 +56,50 @@
        
        // 设置int类型附加信息和key
        ret = OH_CommonEvent_SetIntToParameters(param, "intKey", 10);
-       OH_LOG_INFO(LOG_APP, "OH_CommonEvent_SetIntToParameters ret <%{public}d>.", ret);
+       OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_SetIntToParameters ret <%{public}d>.", ret);
 
        // 设置int数组类型附加信息和key
        int intArray[] = {123, 234, 567};
        size_t arraySize = 3;
        ret = OH_CommonEvent_SetIntArrayToParameters(param, "intArrayKey", intArray, arraySize);
-       OH_LOG_INFO(LOG_APP, "OH_CommonEvent_SetIntArrayToParameters ret <%{public}d>.", ret);
+       OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_SetIntArrayToParameters ret <%{public}d>.", ret);
        
        // 设置long类型附加信息和key
        ret = OH_CommonEvent_SetLongToParameters(param, "longKey", 2147483646);
-       OH_LOG_INFO(LOG_APP, "OH_CommonEvent_SetLongToParameters ret <%{public}d>.", ret);
+       OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_SetLongToParameters ret <%{public}d>.", ret);
 
        // 设置long数组类型附加信息和key
        long longArray[] = {2147483646, 555, 2147483645};
        ret = OH_CommonEvent_SetLongArrayToParameters(param, "longArrayKey", longArray, arraySize);
-       OH_LOG_INFO(LOG_APP, "OH_CommonEvent_SetLongArrayToParameters ret <%{public}d>.", ret);
+       OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_SetLongArrayToParameters ret <%{public}d>.", ret);
        
        // 设置double类型附加信息和key
        ret = OH_CommonEvent_SetDoubleToParameters(param, "doubleKey", 11.22);
-       OH_LOG_INFO(LOG_APP, "OH_CommonEvent_SetDoubleToParameters ret <%{public}d>.", ret);
+       OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_SetDoubleToParameters ret <%{public}d>.", ret);
 
        // 设置double数组类型附加信息和key
        double doubleArray[] = {11.22, 33.44, 55.66};
        ret = OH_CommonEvent_SetDoubleArrayToParameters(param, "doubleArrayKey", doubleArray, arraySize);
-       OH_LOG_INFO(LOG_APP, "OH_CommonEvent_SetDoubleArrayToParameters ret <%{public}d>.", ret);
+       OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_SetDoubleArrayToParameters ret <%{public}d>.", ret);
        
        // 设置boolean类型附加信息和key
        ret = OH_CommonEvent_SetBoolToParameters(param, "boolKey", true);
-       OH_LOG_INFO(LOG_APP, "OH_CommonEvent_SetBoolToParameters ret <%{public}d>.", ret);
+       OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_SetBoolToParameters ret <%{public}d>.", ret);
 
        // 设置boolean数组类型附加信息和key
        bool boolArray[] = {true, false, true};
        ret = OH_CommonEvent_SetBoolArrayToParameters(param, "boolArrayKey", boolArray, arraySize);
-       OH_LOG_INFO(LOG_APP, "OH_CommonEvent_SetBoolArrayToParameters ret <%{public}d>.", ret);
+       OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_SetBoolArrayToParameters ret <%{public}d>.", ret);
        
        // 设置char类型附加信息和key
        ret = OH_CommonEvent_SetCharToParameters(param, "charKey", 'A');
-       OH_LOG_INFO(LOG_APP, "OH_CommonEvent_SetCharToParameters ret <%{public}d>.", ret);
+       OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_SetCharToParameters ret <%{public}d>.", ret);
 
        // 设置char数组类型附加信息和key
        char* value= "AAAAAAAAAAAAAA";
        size_t valueLength = strlen(value);
        ret = OH_CommonEvent_SetCharArrayToParameters(param, "charArrayKey", value, valueLength);
-       OH_LOG_INFO(LOG_APP, "OH_CommonEvent_SetCharArrayToParameters ret <%{public}d>.", ret);
+       OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_SetCharArrayToParameters ret <%{public}d>.", ret);
        return param;
    }
    
@@ -114,25 +112,25 @@
 
        // 设置公共事件包名称
        ret = OH_CommonEvent_SetPublishInfoBundleName(info, bundleName);
-       OH_LOG_INFO(LOG_APP, "OH_CommonEvent_SetPublishInfoBundleName ret <%{public}d>.", ret);
+       OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_SetPublishInfoBundleName ret <%{public}d>.", ret);
 
        // 设置公共事件权限，参数为权限数组和权限的数量
        ret = OH_CommonEvent_SetPublishInfoPermissions(info, permissions, num);
-       OH_LOG_INFO(LOG_APP, "OH_CommonEvent_SetPublishInfoPermissions ret <%{public}d>.", ret);
+       OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_SetPublishInfoPermissions ret <%{public}d>.", ret);
 
        // 设置公共事件结果码
        ret = OH_CommonEvent_SetPublishInfoCode(info, code);
-       OH_LOG_INFO(LOG_APP, "OH_CommonEvent_SetPublishInfoCode ret <%{public}d>.", ret);
+       OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_SetPublishInfoCode ret <%{public}d>.", ret);
 
        // 设置公共事件结果数据
        size_t dataLength = strlen(data);
        ret = OH_CommonEvent_SetPublishInfoData(info, data, dataLength);
-       OH_LOG_INFO(LOG_APP, "OH_CommonEvent_SetPublishInfoData ret <%{public}d>.", ret);
+       OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_SetPublishInfoData ret <%{public}d>.", ret);
 
        // 设置公共事件附加信息
        CommonEvent_Parameters* param = CreateParameters();
        ret = OH_CommonEvent_SetPublishInfoParameters(info, param);
-       OH_LOG_INFO(LOG_APP, "OH_CommonEvent_SetPublishInfoParameters ret <%{public}d>.", ret);
+       OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_SetPublishInfoParameters ret <%{public}d>.", ret);
    }
    ```
 
@@ -148,7 +146,7 @@
      void Publish(const char* event)
      {
          int32_t ret = OH_CommonEvent_Publish(event);
-         OH_LOG_INFO(LOG_APP, "OH_CommonEvent_Publish ret <%{public}d>.", ret);
+         OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_Publish ret <%{public}d>.", ret);
      }
      ```
 
@@ -159,7 +157,7 @@
      {
          // 创建时带入公共事件属性对象
          int32_t ret = OH_CommonEvent_PublishWithInfo(event, info);
-         OH_LOG_INFO(LOG_APP, "OH_CommonEvent_PublishWithInfo ret <%{public}d>.", ret);
+         OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_PublishWithInfo ret <%{public}d>.", ret);
      }
      ```
 

@@ -1,4 +1,4 @@
-# 应用跨设备连接管理开发指南
+# UIAbility与UIAbility连接开发指南
 
 
 ## 简介
@@ -24,6 +24,15 @@
 - **DMS**
   
   DMS（Distributedsched Management Service）是分布式组件管理框架，提供分布式组件的管理能力。
+
+- **UIAbility**
+
+  描述应用程序的界面交互能力，负责管理应用界面的生命周期、用户交互以及界面渲染等任务。
+
+- **Extension**
+
+  用于扩展应用的功能或实现跨设备协同。它允许应用在后台运行某些任务，或者将部分功能迁移到其他设备上执行，从而实现分布式能力。
+
 <!--Del-->
 - **字节流**
   
@@ -65,7 +74,7 @@
 ### 搭建环境
 
 1. 在PC上安装[DevEco Studio](https://developer.huawei.com/consumer/cn/download/deveco-studio)，要求版本在4.1及以上。
-2. 将public-SDK更新到API 16或以上<!--Del-->，更新SDK的具体操作可参见[更新指南](../faqs/full-sdk-switch-guide.md)<!--DelEnd-->。
+2. 将public-SDK更新到API 18或以上，更新SDK的具体操作可参见[更新指南]( ../tools/openharmony_sdk_upgrade_assistant.md)。
 3. 用USB线缆将两台调测设备（设备A和设备B）连接到PC。
 4. 打开设备A和设备B的蓝牙，互相识别，实现组网。
 

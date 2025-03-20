@@ -25,14 +25,14 @@
 
    此列表中的权限仅面向系统应用/系统服务开放，分为三类：
 
-   1. 可通过ACL跨级别申请的系统授权权限：
+   1. [可通过ACL跨级别申请的系统授权权限](permissions-for-system-apps.md)：
 
        应用可通过[ACL](declare-permissions-in-acl.md)的方式，跨级别申请。符合条件的应用申请了此类权限后，系统将在用户安装应用时，自动把相应权限授予给应用。
-   2. 不可通过ACL跨级别申请的系统授权权限：
+   2. [不可通过ACL跨级别申请的系统授权权限](permissions-for-system-apps-no-acl.md)：
 
        应用需查询权限自身的APL级别，判断是否可申请。符合条件的应用申请了此类权限后，系统将在用户安装应用时，自动把相应权限授予给应用。
 
-   3. 可通过ACL跨级别申请的用户授权权限：
+   3. [可通过ACL跨级别申请的用户授权权限](permissions-for-system-apps-user.md)：
 
        应用可通过[ACL](declare-permissions-in-acl.md)的方式，跨级别申请。应用申请了此类权限后，还需要在应用动态运行时，通过发送弹窗的方式请求用户授权。
 

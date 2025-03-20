@@ -22,8 +22,8 @@ Input设备基础设备信息。
 | char [chipInfo](#chipinfo) [[CHIP_INFO_LEN](_input.md#chip_info_len)] | 驱动芯片编码信息  | 
 | char [vendorName](#vendorname) [[VENDOR_NAME_LEN](_input.md#vendor_name_len)] | 模组厂商名  | 
 | char [chipName](#chipname) [[CHIP_NAME_LEN](_input.md#chip_name_len)] | 驱动芯片型号  | 
-| [InputDevAttr](_input_dev_attr.md)[attrSet](#attrset) | 设备属性  | 
-| [InputDevAbility](_input_dev_ability.md)[abilitySet](#abilityset) | 设备能力属性  | 
+| [InputDevAttr](_input_dev_attr.md) [attrSet](#attrset) | 设备属性  | 
+| [InputDevAbility](_input_dev_ability.md) [abilitySet](#abilityset) | 设备能力属性  | 
 
 
 ## 类成员变量说明
@@ -34,6 +34,7 @@ Input设备基础设备信息。
 ```
 InputDevAbility InputDeviceInfo::abilitySet
 ```
+
 **描述**
 
 设备能力属性
@@ -44,6 +45,7 @@ InputDevAbility InputDeviceInfo::abilitySet
 ```
 InputDevAttr InputDeviceInfo::attrSet
 ```
+
 **描述**
 
 设备属性
@@ -54,6 +56,7 @@ InputDevAttr InputDeviceInfo::attrSet
 ```
 char InputDeviceInfo::chipInfo[CHIP_INFO_LEN]
 ```
+
 **描述**
 
 驱动芯片编码信息
@@ -64,6 +67,7 @@ char InputDeviceInfo::chipInfo[CHIP_INFO_LEN]
 ```
 char InputDeviceInfo::chipName[CHIP_NAME_LEN]
 ```
+
 **描述**
 
 驱动芯片型号
@@ -74,6 +78,7 @@ char InputDeviceInfo::chipName[CHIP_NAME_LEN]
 ```
 uint32_t InputDeviceInfo::devIndex
 ```
+
 **描述**
 
 设备索引
@@ -84,6 +89,7 @@ uint32_t InputDeviceInfo::devIndex
 ```
 uint32_t InputDeviceInfo::devType
 ```
+
 **描述**
 
 设备类型
@@ -94,6 +100,7 @@ uint32_t InputDeviceInfo::devType
 ```
 char InputDeviceInfo::vendorName[VENDOR_NAME_LEN]
 ```
+
 **描述**
 
 模组厂商名

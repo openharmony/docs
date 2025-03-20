@@ -144,7 +144,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let context: vpnExtension.VpnExtensionContext;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
-  onDestroy(want: Want) {
+  onDestroy() {
     let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
     console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
     VpnConnection.destroy().then(() => {
@@ -187,7 +187,10 @@ import { vpnExtension} from '@kit.NetworkKit';
 let vpnConfig: vpnExtension.VpnConfig = {
   // Configure the IP address of the vNIC.
   addresses: [{
-    address:'192.x.x.5',
+    address: {
+      address:'192.x.x.5',
+      family:1
+    },
     prefixLength:24
   }],
   // Configure route information.

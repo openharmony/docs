@@ -183,15 +183,17 @@ try {
 ```
 
 
-## connection.getRemoteDeviceName
+## connection.getRemoteDeviceName<sup>16+</sup>
 
-getRemoteDeviceName(deviceId: string): string
+getRemoteDeviceName(deviceId: string, alias?: boolean): string
 
-获取对端蓝牙设备的名称。
+获取对端蓝牙设备的名称，其中alias为可选参数。
+- 如果携带alias，则根据alias判断是否获取对端蓝牙设备别名。
+- 如果未携带alias，则默认返回对端蓝牙设备别名。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
@@ -200,6 +202,7 @@ getRemoteDeviceName(deviceId: string): string
 | 参数名      | 类型     | 必填   | 说明                                |
 | -------- | ------ | ---- | --------------------------------- |
 | deviceId | string | 是    | 表示远程设备的地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| alias | boolean | 否    | 是否获取对端蓝牙设备别名。获取成功为true，否则设置为false。 |
 
 **返回值：**
 
@@ -214,18 +217,18 @@ getRemoteDeviceName(deviceId: string): string
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth disabled.                 |
-|2900099 | Operation failed.                        |
+|2900099 | Failed to obtain the name or alias of the peer Bluetooth device.                        |
 
 **示例：**
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
-    let remoteDeviceName: string = connection.getRemoteDeviceName('XX:XX:XX:XX:XX:XX');
+    let remoteDeviceName: string = connection.getRemoteDeviceName('XX:XX:XX:XX:XX:XX', true);
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -560,7 +563,7 @@ setDevicePairingConfirmation(deviceId: string, accept: boolean): void
 
 设置设备配对请求确认。
 
-**需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH(该权限仅系统应用可申请)
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH（该权限仅系统应用可申请）
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
@@ -1393,7 +1396,7 @@ try {
 ```
 
 
-## connection.on('discoveryResult')<sup>16+</sup>
+## connection.on('discoveryResult')<sup>18+</sup>
 
 on(type: 'discoveryResult', callback: Callback&lt;Array&lt;DiscoveryResult&gt;&gt;): void
 
@@ -1408,7 +1411,7 @@ on(type: 'discoveryResult', callback: Callback&lt;Array&lt;DiscoveryResult&gt;&g
 | 参数名      | 类型                                  | 必填   | 说明                                     |
 | -------- | ----------------------------------- | ---- | -------------------------------------- |
 | type     | string                              | 是    | 填写"discoveryResult"字符串，表示蓝牙设备发现事件。 |
-| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult16)&gt;&gt; | 是    | 表示回调函数的入参，发现的设备集合。回调函数由用户创建通过该接口注册。    |
+| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult18)&gt;&gt; | 是    | 表示回调函数的入参，发现的设备集合。回调函数由用户创建通过该接口注册。    |
 
 **错误码**：
 
@@ -1436,7 +1439,7 @@ try {
 ```
 
 
-## connection.off('discoveryResult')<sup>16+</sup>
+## connection.off('discoveryResult')<sup>18+</sup>
 
 off(type: 'discoveryResult', callback?: Callback&lt;Array&lt;DiscoveryResult&gt;&gt;): void
 
@@ -1451,7 +1454,7 @@ off(type: 'discoveryResult', callback?: Callback&lt;Array&lt;DiscoveryResult&gt;
 | 参数名      | 类型                                  | 必填   | 说明                                       |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
 | type     | string                              | 是    | 填写"discoveryResult"字符串，表示蓝牙设备发现事件。   |
-| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult16)&gt;&gt; | 否    | 表示取消订阅蓝牙设备发现事件上报。不填该参数则取消订阅该type对应的所有回调。 
+| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult18)&gt;&gt; | 否    | 表示取消订阅蓝牙设备发现事件上报。不填该参数则取消订阅该type对应的所有回调。 
 
 **错误码**：
 
@@ -1478,6 +1481,230 @@ try {
 }
 ```
 
+
+## connection.getLastConnectionTime<sup>15+</sup>
+
+getLastConnectionTime(deviceId: string): Promise&lt;number&gt;
+
+获取蓝牙远端设备最近一次连接的时间点。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+**参数：**
+
+| 参数名    | 类型      | 必填   | 说明                               |
+| ------ | ------- | ---- | -------------------------------- |
+| deviceId | string  | 是    | 表示远端设备MAC地址。例如："XX:XX:XX:XX:XX:XX"。 |
+
+**返回值：**
+
+| 类型                  | 说明         |
+| ------------------- | ------------- |
+| Promise&lt;number&gt; | 以Promise形式返回设置蓝牙远端设备最近一次连接的时间点结果，返回promise对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth disabled.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { connection } from '@kit.ConnectivityKit';
+// promise
+try {
+    connection.getLastConnectionTime('11:22:33:44:55:66').then((time: number) => {
+        console.info('connectionTime: ${time}');
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+## connection.connectAllowedProfiles<sup>16+</sup>
+
+connectAllowedProfiles(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
+
+连接远端设备所有允许连接的profiles。使用Callback异步回调。<br/>需先调用pairDevice发起配对，且仅允许在每次发起配对后30s内调用此接口一次。<br/>建议用法：订阅UUID_VALUE公共事件回调，配对成功后会收到公共事件回调。建议在此回调中调用connectAllowedProfiles接口。
+
+**需要权限：**: ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力：**: SystemCapability.Communication.Bluetooth.Core
+
+**参数：**
+
+| 参数名     | 类型    | 必填  | 说明                                 |
+| -------- | ------ | ---- | ----------------------------------- |
+| deviceId | string | 是   | 表示连接的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。|
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当发起连接成功，err为undefined，否则为错误对象。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见 [通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID| 错误信息|
+| -------- | ---------------------------- |
+|201     | Permission denied.                       |
+|401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                       |
+|801     | Capability not supported.                |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth disabled.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { commonEventManager, AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { connection } from '@kit.ConnectivityKit';
+// 定义订阅者，用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+let subscriber: commonEventManager.CommonEventSubscriber;
+// 订阅者信息
+let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
+  events: ["usual.event.bluetooth.remotedevice.UUID_VALUE"]
+};
+// 订阅公共事件回调
+function SubscribeCB(err: BusinessError, data: commonEventManager.CommonEventData) {
+  if (err) {
+    console.error(`Failed to subscribe. Code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info(`Succeeded in subscribing, data is ` + JSON.stringify(data));
+    // 调用connectAllowedProfiles前，需确保已收到UUID_VALUE的系统公共事件
+    try {
+        connection.connectAllowedProfiles('68:13:24:79:4C:8C', (err: BusinessError) => {
+            if (err) {
+                console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+                return;
+            }
+            console.info('connectAllowedProfiles, err: ' + JSON.stringify(err));
+        });
+    } catch (err) {
+        console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+    }
+  }
+}
+// 创建订阅者回调
+function createCB(err: BusinessError, commonEventSubscriber: commonEventManager.CommonEventSubscriber) {
+  if(!err) {
+    console.info(`Succeeded in creating subscriber.`);
+    subscriber = commonEventSubscriber;
+    // 订阅公共事件
+    try {
+      commonEventManager.subscribe(subscriber, SubscribeCB);
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`Failed to subscribe. Code is ${err.code}, message is ${err.message}`);
+    }
+  } else {
+    console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
+  }
+}
+
+// 创建订阅者，并订阅公共事件回调
+try {
+  commonEventManager.createSubscriber(subscribeInfo, createCB);
+} catch (error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+
+## connection.connectAllowedProfiles<sup>16+</sup>
+
+connectAllowedProfiles(deviceId: string): Promise&lt;void&gt;
+
+连接远端设备所有允许连接的profiles。使用Promise异步回调。<br/>需先调用pairDevice发起配对，且仅允许在每次发起配对后30s内调用此接口一次。<br/>建议用法：订阅UUID_VALUE公共事件回调，配对成功后会收到公共事件回调.建议在此回调中调用connectAllowedProfiles接口。
+
+**需要权限：**: ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力：**: SystemCapability.Communication.Bluetooth.Core
+
+**参数：**
+
+| 参数名     | 类型    | 必填  | 说明                                 |
+| -------- | ------ | ---- | ----------------------------------- |
+| deviceId | string | 是   | 表示连接的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。|
+
+**返回值：**
+
+| 类型                                             | 说明               |
+| ------------------------------------------------- | ------------------- |
+| Promise&lt;void&gt; | Promise对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见 [通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID| 错误信息|
+| -------- | ---------------------------- |
+|201     | Permission denied.                       |
+|401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                       |
+|801     | Capability not supported.                |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth disabled.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { commonEventManager, AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { connection } from '@kit.ConnectivityKit';
+// 定义订阅者，用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+let subscriber: commonEventManager.CommonEventSubscriber;
+// 订阅者信息
+let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
+  events: ["usual.event.bluetooth.remotedevice.UUID_VALUE"]
+};
+// 订阅公共事件回调
+function SubscribeCB(err: BusinessError, data: commonEventManager.CommonEventData) {
+  if (err) {
+    console.error(`Failed to subscribe. Code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info(`Succeeded in subscribing, data is ` + JSON.stringify(data));
+    // 调用connectAllowedProfiles前，需确保已收到UUID_VALUE的系统公共事件
+    try {
+        connection.connectAllowedProfiles('68:13:24:79:4C:8C').then(() => {
+            console.info('connectAllowedProfiles');
+        }, (err: BusinessError) => {
+            console.error('connectAllowedProfiles:errCode' + err.code + ', errMessage: ' + err.message);
+        });
+    } catch (err) {
+        console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+    }
+  }
+}
+// 创建订阅者回调
+function createCB(err: BusinessError, commonEventSubscriber: commonEventManager.CommonEventSubscriber) {
+  if(!err) {
+    console.info(`Succeeded in creating subscriber.`);
+    subscriber = commonEventSubscriber;
+    // 订阅公共事件
+    try {
+      commonEventManager.subscribe(subscriber, SubscribeCB);
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`Failed to subscribe. Code is ${err.code}, message is ${err.message}`);
+    }
+  } else {
+    console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
+  }
+}
+
+// 创建订阅者，并订阅公共事件回调
+try {
+  commonEventManager.createSubscriber(subscribeInfo, createCB);
+} catch (error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
+}
+```
 
 ## BondStateParam
 
@@ -1606,7 +1833,7 @@ try {
 | DEVICE_SUPER_CHARGE_NOT_CHARGED        | 2    | 未充电，支持超级充电。|
 | DEVICE_SUPER_CHARGE_IN_CHARGING       | 3    | 正在充电，支持超级充电。|
 
-## DiscoveryResult<sup>16+</sup>
+## DiscoveryResult<sup>18+</sup>
 
 描述扫描设备状态参数。
 

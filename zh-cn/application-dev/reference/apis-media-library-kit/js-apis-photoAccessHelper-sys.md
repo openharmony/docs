@@ -24,7 +24,7 @@ createAsset(displayName: string, callback: AsyncCallback&lt;PhotoAsset&gt;): voi
 待创建的文件名参数规格为：
 - 应包含有效文件主名和图片或视频扩展名。
 - 文件名字符串长度为1~255。
-- 文件主名中不允许出现的非法英文字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- 文件主名中不允许出现的非法英文字符。<br>API18开始，非法字符包括： \ / : * ? " < > | <br>API10-17，非法字符包括：. .. \ / : * ? " ' ` < > | { } [ ]
 
 **系统接口**：此接口为系统接口。
 
@@ -78,7 +78,7 @@ createAsset(displayName: string): Promise&lt;PhotoAsset&gt;
 待创建的文件名参数规格为：
 - 应包含有效文件主名和图片或视频扩展名。
 - 文件名字符串长度为1~255。
-- 文件主名中不允许出现的非法英文字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- 文件主名中不允许出现的非法英文字符。<br>API18开始，非法字符包括： \ / : * ? " < > | <br>API10-17，非法字符包括：. .. \ / : * ? " ' ` < > | { } [ ]
 
 **系统接口**：此接口为系统接口。
 
@@ -136,7 +136,7 @@ createAsset(displayName: string, options: PhotoCreateOptions, callback: AsyncCal
 待创建的文件名参数规格为：
 - 应包含有效文件主名和图片或视频扩展名。
 - 文件名字符串长度为1~255。
-- 文件主名中不允许出现的非法英文字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- 文件主名中不允许出现的非法英文字符。<br>API18开始，非法字符包括： \ / : * ? " < > | <br>API10-17，非法字符包括：. .. \ / : * ? " ' ` < > | { } [ ]
 
 **系统接口**：此接口为系统接口。
 
@@ -194,7 +194,7 @@ createAsset(displayName: string, options: PhotoCreateOptions): Promise&lt;PhotoA
 待创建的文件名参数规格为：
 - 应包含有效文件主名和图片或视频扩展名。
 - 文件名字符串长度为1~255。
-- 文件主名中不允许出现的非法英文字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- 文件主名中不允许出现的非法英文字符。<br>API18开始，非法字符包括： \ / : * ? " < > | <br>API10-17，非法字符包括：. .. \ / : * ? " ' ` < > | { } [ ]
 
 **系统接口**：此接口为系统接口。
 
@@ -1310,9 +1310,9 @@ async function example() {
 }
 ```
 
-### grantPhotoUriPermission<sup>12+</sup>
+### grantPhotoUriPermission<sup>15+</sup>
 
-grantPhotoUriPermission(appid: string, uri: string, photoPermissionType: PhotoPermissionType, hideSensitiveType: HideSensitiveType): Promise&lt;number&gt;
+grantPhotoUriPermission(tokenId: number, uri: string, photoPermissionType: PhotoPermissionType, hideSensitiveType: HideSensitiveType): Promise&lt;number&gt;
 
 给应用授予uri的访问权限，使用Promise方式返回结果。
 
@@ -1326,7 +1326,7 @@ grantPhotoUriPermission(appid: string, uri: string, photoPermissionType: PhotoPe
 
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
-| appid | string | 是 | 应用标识，将访问权限授予给appid标识的应用。 |
+| tokenId | number | 是 | 应用标识，将访问权限授予给tokenId标识的应用。 |
 | uri | string | 是 | 媒体资源的uri，uri表示的资源的访问权限将授予给应用。|
 | photoPermissionType | [PhotoPermissionType](#photopermissiontype12) | 是 | 权限类型，将photoPermissionType表示的权限授予给应用。权限的覆盖规则参考枚举类。|
 | hideSensitiveType | [HideSensitiveType](#hidesensitivetype12) | 是 | 脱敏类型，预留参数，目前可传枚举类中任一值。|
@@ -1355,7 +1355,8 @@ async function example() {
   console.info('grantPhotoUriPermissionDemo');
 
   try {
-    let result = await phAccessHelper.grantPhotoUriPermission('com.example.myapplication01',
+    let tokenId = 502334412;
+    let result = await phAccessHelper.grantPhotoUriPermission(tokenId,
         'file://media/Photo/1/IMG_datetime_0001/displayName.jpg',
         photoAccessHelper.PhotoPermissionType.TEMPORARY_READ_IMAGEVIDEO,
         photoAccessHelper.HideSensitiveType.HIDE_LOCATION_AND_SHOTING_PARM);
@@ -1367,9 +1368,9 @@ async function example() {
 }
 ```
 
-### grantPhotoUrisPermission<sup>12+</sup>
+### grantPhotoUrisPermission<sup>15+</sup>
 
-grantPhotoUrisPermission(appid: string, uriList: Array&lt;string&gt;, photoPermissionType: PhotoPermissionType, hideSensitiveType: HideSensitiveType): Promise&lt;number&gt;
+grantPhotoUrisPermission(tokenId: number, uriList: Array&lt;string&gt;, photoPermissionType: PhotoPermissionType, hideSensitiveType: HideSensitiveType): Promise&lt;number&gt;
 
 给应用授予uri列表的访问权限，使用Promise方式返回结果。
 
@@ -1383,7 +1384,7 @@ grantPhotoUrisPermission(appid: string, uriList: Array&lt;string&gt;, photoPermi
 
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
-| appid | string | 是 | 应用标识，将访问权限授予给appid标识的应用。 |
+| tokenId | number | 是 | 应用标识，将访问权限授予给tokenId标识的应用。 |
 | uriList | Array&lt;string&gt; | 是 | 媒体资源的uri列表，uri列表中的资源的访问权限将授予给应用。uri列表最多容纳 1000 条uri。|
 | photoPermissionType | [PhotoPermissionType](#photopermissiontype12) | 是 | 权限类型，将photoPermissionType表示的权限授予给应用。权限的覆盖规则参考枚举类。|
 | hideSensitiveType | [HideSensitiveType](#hidesensitivetype12) | 是 | 脱敏类型，预留参数，目前可传枚举类中任一值。|
@@ -1416,7 +1417,8 @@ async function example() {
     let uris: Array<string> = [
       'file://media/Photo/11/IMG_datetime_0001/displayName1.jpg',
       'file://media/Photo/22/IMG_datetime_0002/displayName2.jpg'];
-    let result = await phAccessHelper.grantPhotoUrisPermission('com.example.myapplication01', uris,
+    let tokenId = 502334412;
+    let result = await phAccessHelper.grantPhotoUrisPermission(tokenId, uris,
         photoAccessHelper.PhotoPermissionType.TEMPORARY_READ_IMAGEVIDEO,
         photoAccessHelper.HideSensitiveType.HIDE_LOCATION_AND_SHOTING_PARM);
 
@@ -1427,9 +1429,9 @@ async function example() {
 }
 ```
 
-### cancelPhotoUriPermission<sup>12+</sup>
+### cancelPhotoUriPermission<sup>15+</sup>
 
-cancelPhotoUriPermission(appid: string, uri: string, photoPermissionType: PhotoPermissionType): Promise&lt;number&gt;
+cancelPhotoUriPermission(tokenId: number, uri: string, photoPermissionType: PhotoPermissionType): Promise&lt;number&gt;
 
 取消应用对uri的访问权限，使用Promise方式返回结果。
 
@@ -1443,7 +1445,7 @@ cancelPhotoUriPermission(appid: string, uri: string, photoPermissionType: PhotoP
 
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
-| appid | string | 是 | 应用标识，将取消appid标识应用对媒体资源的访问权限。 |
+| tokenId | number | 是 | 应用标识，将取消tokenId标识应用对媒体资源的访问权限。 |
 | uri | string | 是 | 媒体资源的uri，取消应用对uri表示的资源的访问权限。|
 | photoPermissionType | [PhotoPermissionType](#photopermissiontype12) | 是 | 权限类型，取消应用对媒体资源的访问权限为photoPermissionType。|
 
@@ -1471,13 +1473,68 @@ async function example() {
   console.info('cancelPhotoUriPermissionDemo');
 
   try {
-    let result = await phAccessHelper.cancelPhotoUriPermission('com.example.myapplication01',
+    let tokenId = 502334412;
+    let result = await phAccessHelper.cancelPhotoUriPermission(tokenId,
         'file://media/Photo/11/IMG_datetime_0001/displayName.jpg',
         photoAccessHelper.PhotoPermissionType.TEMPORARY_READ_IMAGEVIDEO);
 
     console.info('cancelPhotoUriPermission success, result=' + result);
   } catch (err) {
     console.error('cancelPhotoUriPermission failed, error=' + err);
+  }
+}
+```
+
+### startAssetAnalysis<sup>18+</sup>
+
+startAssetAnalysis(type: AnalysisType, assetUris?: Array&lt;string&gt;): Promise&lt;number&gt;
+
+启动资产分析服务。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限：** ohos.permission.WRITE_IMAGEVIDEO
+
+**参数：**
+
+| 参数名    | 类型                | 必填 | 说明                                                         |
+| --------- | ------------------- | ---- | ------------------------------------------------------------ |
+| type      | number              | 是   | 需要启动的智慧分析类型。                                     |
+| assetUris | Array&lt;string&gt; | 否   | 资产uri的数组。<br>- 填写：仅分析指定资产。<br>- 不填：全量分析。 |
+
+**返回值：**
+
+| 类型                  | 说明                        |
+| --------------------- | --------------------------- |
+| Promise&lt;number&gt; | Promise对象。服务的任务id。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 202      | Called by non-system application.                            |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+async function example() {
+  console.info('startAssetAnalysisDemo');
+
+  try {
+    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
+    let uris = ["file://media/Photo/14/IMG_1729066473_013/IMG_20241016_122253.jpg",
+                "file://media/Photo/68/IMG_1729033213_018/IMG_20241016_100082.jpg"];
+    let taskId = await phAccessHelper.startAssetAnalysis(photoAccessHelper.AnalysisType.ANALYSIS_SEARCH_INDEX,
+        uris);
+    console.info('startAssetAnalysis success, taskId=' + taskId);
+  } catch (err) {
+    console.error('startAssetAnalysis failed, error=' + err);
   }
 }
 ```
@@ -1550,7 +1607,8 @@ async function example() {
   }
 }
 ```
-### getKeyFrameThumbnail<sup>16+</sup>
+
+### getKeyFrameThumbnail<sup>18+</sup>
 
 getKeyFrameThumbnail(beginFrameTimeMs: number, type: ThumbnailType): Promise<image.PixelMap>
 
@@ -1655,6 +1713,9 @@ saveGalleryFormInfo(info:GalleryFormInfo):Promise&lt;void&gt;
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
+import {photoAccessHelper} from '@kit.MediaLibraryKit';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
   console.info('saveGalleryFormInfoDemo');
@@ -1722,6 +1783,9 @@ updateGalleryFormInfo(info:GalleryFormInfo):Promise&lt;void&gt;
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
+import {photoAccessHelper} from '@kit.MediaLibraryKit';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
   console.info('updateGalleryFormInfoDemo');
@@ -1790,6 +1854,9 @@ removeGalleryFormInfo(info:GalleryFormInfo):Promise&lt;void&gt;
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {photoAccessHelper} from '@kit.MediaLibraryKit';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
   console.info('removeGalleryFormInfoDemo');
@@ -3454,6 +3521,66 @@ async function example() {
 }
 ```
 
+### getThumbnailData<sup>18+</sup>
+
+getThumbnailData(type: ThumbnailType): Promise&lt;ArrayBuffer&gt;
+
+获取文件缩略图的ArrayBuffer，传入缩略图的类型，使用promise异步回调。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型             | 必填   | 说明    |
+| ---- | -------------- | ---- | ----- |
+| type | [ThumbnailType](#thumbnailtype13) | 是    | 缩略图类型。 |
+
+**返回值：**
+
+| 类型                            | 说明                    |
+| ----------------------------- | --------------------- |
+| Promise\<ArrayBuffer> | Promise对象，返回缩略图的ArrayBuffer。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+import {photoAccessHelper} from '@kit.MediaLibraryKit';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+
+async function example() {
+  console.info('getThumbnailDataDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let asset = await fetchResult.getFirstObject();
+  console.info('asset displayName = ', asset.displayName);
+  asset.getThumbnailData(photoAccessHelper.ThumbnailType.LCD).then((buffer: ArrayBuffer) => {
+    console.info('getThumbnailData successful, buffer byteLength = ${buffer.byteLength}');
+  }).catch((err: BusinessError) => {
+    console.error(`getThumbnailData fail with error: ${err.code}, ${err.message}`);
+  });
+}
+```
+
 ## Album
 
 实体相册
@@ -3464,7 +3591,7 @@ async function example() {
 
 | 名称           | 类型    | 只读   | 可选  | 说明   |
 | ------------ | ------ | ---- | ---- | ------- |
-| lpath<sup>16+</sup>    | string | 是    | 是   | 相册虚拟路径。<br>**系统接口**：此接口为系统接口。|
+| lpath<sup>18+</sup>    | string | 是    | 是   | 相册虚拟路径。<br>**系统接口**：此接口为系统接口。|
 
 ### recoverAssets<sup>(deprecated)</sup>
 
@@ -3939,7 +4066,7 @@ static createAssetRequest(context: Context, displayName: string, options?: Photo
 待创建的文件名参数规格为：
 - 应包含有效文件主名和图片或视频扩展名。
 - 文件名字符串长度为1~255。
-- 文件主名中不允许出现非法字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- 文件主名中不允许出现的非法英文字符。<br>API18开始，非法字符包括： \ / : * ? " < > | <br>API10-17，非法字符包括：. .. \ / : * ? " ' ` < > | { } [ ]
 
 **系统接口**：此接口为系统接口。
 
@@ -4450,7 +4577,7 @@ async function example() {
 }
 ```
 
-### deleteLocalAssetsPermanently<sup>16+</sup>
+### deleteLocalAssetsPermanently<sup>18+</sup>
 
 static deleteLocalAssetsPermanently(context: Context, assets: Array\<PhotoAsset>): Promise&lt;void&gt;
 
@@ -4512,6 +4639,62 @@ struct Index {
     } catch (err) {
       console.error(`deleteAssetsPermanentlyDemo failed with error: ${err.code}, ${err.message}`);
     }
+  }
+}
+```
+
+### setDisplayName<sup>18+</sup>
+
+setDisplayName(displayName: string): void
+
+修改媒体资产的文件名（含扩展名）。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| displayName | string | 是   | 待修改的资产文件名（含扩展名）。<br>参数规格：<br>- 需要包含扩展名。<br>- 文件名（不含扩展名）的字符串长度为1~255。<br>- 文件名中不允许出现非法字符，如：\ / : * ? " < > \| |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011       | Internal system error.         |
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+
+async function example() {
+  console.info('setDisplayNameDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+    let asset = await fetchResult.getFirstObject();
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+    let newDisplayName: string = 'newDisplayName.jpg';
+    assetChangeRequest.setDisplayName(newDisplayName);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('apply setDisplayName successfully');
+  } catch (err) {
+    console.error(`apply setDisplayName failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -5600,7 +5783,7 @@ async function example() {
 }
 ```
 
-### setSubTitle<sup>16+</sup>
+### setSubTitle<sup>18+</sup> 
 
 setSubTitle(title: string): void
 
@@ -5608,7 +5791,7 @@ setSubTitle(title: string): void
 
 副标题参数规格为：
 
-- 相册名字符串长度为1~255。
+- 副标题字符串长度为1~255。
 - 不允许出现的非法英文字符，包括：<br> . \ / : * ? " ' ` < > | { } [ ]
 - 英文字符大小写不敏感。
 
@@ -5665,13 +5848,78 @@ async function example() {
 }
 ```
 
-## MediaAnalysisAlbumChangeRequest<sup>16+</sup>
+### deleteHighlightAlbums<sup>18+</sup>
+
+static deleteHighlightAlbums(context: Context, albums: Array&lt;Album&gt;): Promise&lt;number&gt;
+
+删除指定时刻相册。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE\_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| albums       | Array&lt;[Album](#album)&gt;   | 是    | 需要删除的时刻相册。 |
+
+**返回值：**
+
+| 类型                | 说明                                |
+| :------------------ | :---------------------------------- |
+| Promise&lt;number&gt; | 是否成功删除相册。成功返回0，失败返回1。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID    | 错误信息                              |
+| :------- | :-------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out.            |
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  try {
+    console.info('deleteHighlightAlbums');
+    let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
+    let albumFetchOption: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: new dataSharePredicates.DataSharePredicates()
+    };
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> =
+      await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, albumFetchOption);
+    if (albumFetchResult.getCount() === 0) {
+      console.error('No album');
+      return;
+    }
+    let highlightAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    albumFetchResult.close();
+    let result = await photoAccessHelper.HighlightAlbum.deleteHighlightAlbums(getContext(this), [highlightAlbum]);
+    console.info('deleteHighlightAlbums success');
+  } catch (err) {
+    console.error(`deleteHighlightAlbums with error: ${err}`);
+  }
+}
+```
+
+## MediaAnalysisAlbumChangeRequest<sup>18+</sup> 
 
 智慧相册变更请求。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-### constructor<sup>16+</sup>
+### constructor<sup>18+</sup> 
 
 constructor(album: Album)
 
@@ -5721,7 +5969,7 @@ async function example() {
 }
 ```
 
-### setOrderPosition<sup>16+</sup>
+### setOrderPosition<sup>18+</sup> 
 
 setOrderPosition(assets: Array&lt;PhotoAsset&gt;, position: Array&lt;number&gt;): void
 
@@ -5795,13 +6043,13 @@ async function example() {
 }
 ```
 
-## AnalysisAlbum<sup>16+</sup>
+## AnalysisAlbum<sup>18+</sup> 
 
 智慧相册。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-### constructor<sup>16+</sup>
+### constructor<sup>18+</sup> 
 
 constructor(album: Album)
 
@@ -5850,7 +6098,7 @@ async function example() {
 }
 ```
 
-### getOrderPosition<sup>16+</sup>
+### getOrderPosition<sup>18+</sup> 
 
 getOrderPosition(assets: Array&lt;PhotoAsset&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
@@ -5993,6 +6241,8 @@ submitCloudEnhancementTasks(photoAssets: Array&lt;PhotoAsset&gt;, hasCloudWaterm
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
 **参数：**
 
 | 参数名   | 类型                      | 必填 | 说明       |
@@ -6037,6 +6287,64 @@ async function example() {
 }
 ```
 
+### submitCloudEnhancementTasks<sup>18+</sup>
+
+submitCloudEnhancementTasks(photoAssets: Array&lt;PhotoAsset&gt;, hasCloudWatermark: boolean, triggerMode?: number): Promise&lt;void&gt;
+
+提交云增强任务。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| photoAssets | Array<[PhotoAsset](#photoasset)> | 是   | 需要增强照片的[PhotoAsset](#photoasset)集合。 |
+| hasCloudWatermark | boolean | 是   | 若为true，增强后图片添加云增强水印；若为false，增强后图片不添加云增强水印。 |
+| triggerMode | number | 否   | 云增强任务触发类型。<br>- 0：手动触发。<br>- 1：自动触发。<br>- 默认值为0。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error.            |
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  console.info('submitCloudEnhancementTasksDemo');
+  let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let photoFetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: photoPredicates
+  };
+  let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+  try {
+    let fetchResult = await phAccessHelper.getAssets(photoFetchOptions);
+    let asset = await fetchResult.getLastObject();
+    let cloudEnhancementInstance: photoAccessHelper.CloudEnhancement
+      = photoAccessHelper.CloudEnhancement.getCloudEnhancementInstance(context);
+    let hasCloudWatermark = true;
+    let triggerAuto = 1;
+    await cloudEnhancementInstance.submitCloudEnhancementTasks([asset], hasCloudWatermark, triggerAuto);
+  } catch (err) {
+    console.error(`submitCloudEnhancementTasksDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
 ### prioritizeCloudEnhancementTask<sup>13+</sup>
 
 prioritizeCloudEnhancementTask(photoAsset: PhotoAsset): Promise&lt;void&gt;
@@ -6046,6 +6354,8 @@ prioritizeCloudEnhancementTask(photoAsset: PhotoAsset): Promise&lt;void&gt;
 **系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
 **参数：**
 
@@ -6102,6 +6412,8 @@ cancelCloudEnhancementTasks(photoAssets: Array&lt;PhotoAsset&gt;): Promise&lt;vo
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
 **参数：**
 
 | 参数名   | 类型                      | 必填 | 说明       |
@@ -6156,6 +6468,8 @@ cancelAllCloudEnhancementTasks(): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
 **错误码：**
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
@@ -6192,6 +6506,8 @@ queryCloudEnhancementTaskState(photoAsset: PhotoAsset): Promise&lt;CloudEnhancem
 **系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
 
 **参数：**
 
@@ -6274,6 +6590,8 @@ syncCloudEnhancementTaskStatus(): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
 **错误码：**
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
@@ -6310,6 +6628,8 @@ getCloudEnhancementPair(asset: PhotoAsset): Promise&lt;PhotoAsset&gt;
 **系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
 
 **参数：**
 
@@ -6757,19 +7077,6 @@ async function example() {
 | ----- |  ---- |  ---- |
 | SCREENSHOT |  1 |  截屏录屏文件类型。<br>**系统接口**：此接口为系统接口。 |
 
-## PositionType
-
-枚举，文件位置，表示文件在本地或云端。
-
-**系统接口**：此接口为系统接口。
-
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-| 名称  |  值 |  说明 |
-| ----- |  ---- |  ---- |
-| LOCAL |  1 << 0 |  文件只存在于本端设备。 |
-| CLOUD |  1 << 1 |  文件只存在于云端。 |
-
 ## AlbumType
 
 枚举，相册类型，表示是用户相册还是系统预置相册。
@@ -6825,7 +7132,6 @@ async function example() {
 
 | 名称          | 值              | 说明                                                       |
 | ------------- | ------------------- | ---------------------------------------------------------- |
-| POSITION  | 'position'            | 文件位置类型。**系统接口**：此接口为系统接口。                               |
 | DATE_TRASHED  | 'date_trashed'  | 删除日期（删除文件时间距1970年1月1日的秒数值）。**系统接口**：此接口为系统接口。                 |
 | HIDDEN  | 'hidden'            | 文件的隐藏状态。**系统接口**：此接口为系统接口。                               |
 | CAMERA_SHOT_KEY  | 'camera_shot_key'  | 锁屏相机拍照或录像的标记字段（仅开放给系统相机,其key值由系统相机定义）。**系统接口**：此接口为系统接口。            |
@@ -6838,6 +7144,7 @@ async function example() {
 | MOVING_PHOTO_EFFECT_MODE<sup>12+</sup>  | 'moving_photo_effect_mode' | 动态照片效果模式。**系统接口**：此接口为系统接口。 |
 | CE_AVAILABLE<sup>13+</sup>  | 'ce_available' | 云增强任务标识。**系统接口**：此接口为系统接口。 |
 | SUPPORTED_WATERMARK_TYPE<sup>14+</sup>  | 'supported_watermark_type' | 水印可编辑标识。**系统接口**：此接口为系统接口。 |
+| IS_CE_AUTO<sup>18+</sup>  | 'is_auto' | 是否支持自动云增强。**系统接口**：此接口为系统接口。 |
 
 ## AlbumKeys
 
@@ -6847,7 +7154,7 @@ async function example() {
 
 | 名称                              | 值                    | 说明                                                       |
 | --------------------------------- | -------------------- | ----------------------------------------------------- |
-| ALBUM_LPATH<sup>16+</sup>         | 'lpath'                 | 相册的虚拟路径。<br>**系统接口**：此接口为系统接口。            |
+| ALBUM_LPATH<sup>18+</sup>          | 'lpath'                 | 相册的虚拟路径。<br>**系统接口**：此接口为系统接口。            |
 
 ## HiddenPhotosDisplayMode<sup>11+</sup>
 

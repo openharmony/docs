@@ -1,16 +1,12 @@
 # 消息认证码计算HMAC
 
-
 HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入，生成消息认证码用于检验传递报文的完整性。HMAC在消息摘要算法的基础上增加了密钥的输入，确保了信息的正确性。生成的消息认证码为固定长度。
-
-
 
 ## 开发步骤
 
 在调用update接口传入数据时，可以[一次性传入所有数据](#hmac一次性传入)，也可以把数据人工分段，然后[分段update](#分段hmac)。对于同一段数据而言，是否分段，计算结果没有差异。对于数据量较大的数据，开发者可以根据实际需求选择是否分段传入。
 
 下面分别提供两种方式的示例代码。
-
 
 ### HMAC（一次性传入）
 
@@ -41,14 +37,14 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
     return symKey;
   }
   async function doHmac() {
-    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节
+    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节。
     let keyData = new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer);
     let key = await genSymKeyByData(keyData);
-    let macAlgName = 'SHA256'; // 摘要算法名
-    let message = 'hmacTestMessage'; // 待进行HMAC的数据
+    let macAlgName = 'SHA256'; // 摘要算法名。
+    let message = 'hmacTestMessage'; // 待进行HMAC的数据。
     let mac = cryptoFramework.createMac(macAlgName);
     await mac.init(key);
-    // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
+    // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制。
     await mac.update({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
     let macResult = await mac.doFinal();
     console.info('HMAC result:' + macResult.data);
@@ -71,14 +67,14 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
     return symKey;
   }
   function doHmacBySync() {
-    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节
+    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节。
     let keyData = new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer);
     let key = genSymKeyByData(keyData);
-    let macAlgName = 'SHA256'; // 摘要算法名
-    let message = 'hmacTestMessage'; // 待进行HMAC的数据
+    let macAlgName = 'SHA256'; // 摘要算法名。
+    let message = 'hmacTestMessage'; // 待进行HMAC的数据。
     let mac = cryptoFramework.createMac(macAlgName);
     mac.initSync(key);
-    // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
+    // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制。
     mac.updateSync({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
     let macResult = mac.doFinalSync();
     console.info('[Sync]HMAC result:' + macResult.data);
@@ -116,15 +112,15 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
     return symKey;
   }
   async function doLoopHmac() {
-    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节
+    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节。
     let keyData = new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer);
     let key = await genSymKeyByData(keyData);
-    let macAlgName = "SHA256"; // 摘要算法名
+    let macAlgName = "SHA256"; // 摘要算法名。
     let mac = cryptoFramework.createMac(macAlgName);
-    // 假设信息总共43字节，根据utf-8解码后，也是43字节
+    // 假设信息总共43字节，根据utf-8解码后，也是43字节。
     let messageText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee";
     let messageData = new Uint8Array(buffer.from(messageText, 'utf-8').buffer);
-    let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无要求
+    let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无要求。
     await mac.init(key);
     for (let i = 0; i < messageData.length; i += updateLength) {
       let updateMessage = messageData.subarray(i, i + updateLength);
@@ -152,15 +148,15 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
     return symKey;
   }
   function doLoopHmacBySync() {
-    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节
+    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节。
     let keyData = new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer);
     let key = genSymKeyByData(keyData);
-    let macAlgName = "SHA256"; // 摘要算法名
+    let macAlgName = "SHA256"; // 摘要算法名。
     let mac = cryptoFramework.createMac(macAlgName);
-    // 假设信息总共43字节，根据utf-8解码后，也是43字节
+    // 假设信息总共43字节，根据utf-8解码后，也是43字节。
     let messageText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee";
     let messageData = new Uint8Array(buffer.from(messageText, 'utf-8').buffer);
-    let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无要求
+    let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无要求。
     mac.initSync(key);
     for (let i = 0; i < messageData.length; i += updateLength) {
       let updateMessage = messageData.subarray(i, i + updateLength);
@@ -203,17 +199,17 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
     return symKey;
   }
   async function doHmac() {
-    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节
+    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节。
     let keyData = new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer);
     let key = await genSymKeyByData(keyData);
     let spec: cryptoFramework.HmacSpec = {
         algName: "HMAC",
         mdName: "SHA256",
     };
-    let message = 'hmacTestMessage'; // 待进行HMAC的数据
+    let message = 'hmacTestMessage'; // 待进行HMAC的数据。
     let mac = cryptoFramework.createMac(spec);
     await mac.init(key);
-    // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
+    // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制。
     await mac.update({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
     let macResult = await mac.doFinal();
     console.info('HMAC result:' + macResult.data);

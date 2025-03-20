@@ -16,7 +16,7 @@
 
    avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length);
 
-   // 或者使用addSubtitleFromUrl接口
+   // 或者使用addSubtitleFromUrl接口。
    let fdUrl:string = "http://xxx.xxx.xxx.xxx:xx/xx/index.srt" ;
    avPlayer.addSubtitleFromUrl(fdUrl);
    ```
@@ -52,14 +52,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 export class AVPlayerSubtitleDemo {
   private avPlayer: media.AVPlayer | undefined = undefined;
-  // 注册avplayer回调函数
+  // 注册avplayer回调函数。
   setAVPlayerCallback(avPlayer: media.AVPlayer) {
-    // error回调监听函数,当avPlayer在操作过程中出现错误时调用reset接口触发重置流程
+    // error回调监听函数,当avPlayer在操作过程中出现错误时调用reset接口触发重置流程。
     avPlayer.on('error', (err: BusinessError) => {
       console.error(`Invoke avPlayer failed, code is ${err.code}, message is ${err.message}`);
-      avPlayer.reset(); // 调用reset重置资源，触发idle状态
+      avPlayer.reset(); // 调用reset重置资源，触发idle状态。
     });
-    // 注册字幕回调函数
+    // 注册字幕回调函数。
     avPlayer.on('subtitleUpdate', (info: media.SubtitleInfo) => {
       if (info) {
         let text = (!info.text) ? '' : info.text;
@@ -72,12 +72,12 @@ export class AVPlayerSubtitleDemo {
     });
   }
 
-  // 以下demo为使用资源管理接口获取打包在HAP内的媒体资源文件并通过url属性设置
+  // 以下demo为使用资源管理接口获取打包在HAP内的媒体资源文件并通过url属性设置。
   async avPlayerSubtitleUrlDemo() {
-    // 创建avPlayer实例对象
+    // 创建avPlayer实例对象。
     this.avPlayer = await media.createAVPlayer();
-    // 设置视频信息
-    // 创建回调函数
+    // 设置视频信息。
+    // 创建回调函数。
     this.setAVPlayerCallback(this.avPlayer);
 
     let fdUrl:string = "http://xxx.xxx.xxx.xxx:xx/xx/index.srt";
@@ -85,12 +85,12 @@ export class AVPlayerSubtitleDemo {
     this.avPlayer.addSubtitleFromUrl(fdUrl);
   }
 
-  // 以下demo为使用资源管理接口获取打包在HAP内的媒体资源文件并通过FromFd属性设置
+  // 以下demo为使用资源管理接口获取打包在HAP内的媒体资源文件并通过FromFd属性设置。
   async avPlayerSubtitleFromFdDemo() {
-    // 创建avPlayer实例对象
+    // 创建avPlayer实例对象。
     this.avPlayer = await media.createAVPlayer();
-    // 设置视频信息
-    // 创建回调函数
+    // 设置视频信息。
+    // 创建回调函数。
     this.setAVPlayerCallback(this.avPlayer);
 
     let context = getContext(this) as common.UIAbilityContext;
@@ -99,7 +99,7 @@ export class AVPlayerSubtitleDemo {
     this.avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length);
   }
 
-  // 注销字幕回调函数
+  // 注销字幕回调函数。
   async avPlayerSubtitleOffDemo() {
     if(this.avPlayer) {
       this.avPlayer.off('subtitleUpdate');

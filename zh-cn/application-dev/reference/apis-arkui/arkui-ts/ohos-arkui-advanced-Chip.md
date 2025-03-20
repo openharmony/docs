@@ -18,7 +18,7 @@ import { Chip, ChipOptions, ChipSize } from '@kit.ArkUI';
 
 ## Chip
 
-Chip({options:ChipOptions}): void
+Chip(options:ChipOptions): void
 
 **装饰器类型：**@Builder
 
@@ -28,9 +28,9 @@ Chip({options:ChipOptions}): void
 
 **参数**：
 
-| 名称    | 类型                        | 必填 | 装饰器类型 | 说明                 |
-| ------- | --------------------------- | ---- | ---------- | -------------------- |
-| options | [ChipOptions](#chipoptions) | 是   | @Builder   | 定义chip组件的参数。 |
+| 参数名    | 类型                        | 必填 | 说明                 |
+| ------- | --------------------------- | ---- | -------------------- |
+| options | [ChipOptions](#chipoptions) | 是   | 定义Chip组件的参数。 |
 
 ## ChipOptions
 

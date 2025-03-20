@@ -17,5 +17,5 @@ The OH_MediaKeySession_Callback struct describes the callback used to listen for
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_MediaKeySession_EventCallback](_drm.md#oh_mediakeysession_eventcallback)[eventCallback](_drm.md#eventcallback-22) | Event callback, for example, a media key expiry event.| 
-| [OH_MediaKeySession_KeyChangeCallback](_drm.md#oh_mediakeysession_keychangecallback)[keyChangeCallback](_drm.md#keychangecallback-22) | Callback of the media key change event.| 
+| [OH_MediaKeySession_EventCallback](_drm.md#oh_mediakeysession_eventcallback) [eventCallback](_drm.md#eventcallback-22) | Event callback, for example, a media key expiry event.| 
+| [OH_MediaKeySession_KeyChangeCallback](_drm.md#oh_mediakeysession_keychangecallback) [keyChangeCallback](_drm.md#keychangecallback-22) | Callback of the media key change event.| 

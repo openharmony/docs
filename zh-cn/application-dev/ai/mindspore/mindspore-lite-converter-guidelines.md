@@ -42,13 +42,8 @@ MindSpore Lite AI模型部署流程是：
      -  CMake >= 3.18.3
      -  Git >= 2.28.0
 
-2. 取[MindSpore Lite源码](https://gitee.com/openharmony/third_party_mindspore)。此代码仓采用 “压缩包 + 补丁”的方式管理源码。首先执行以下命令解压源码，打入补丁。
-
-   ```bash
-   python3 build_helper.py --in_zip_path=./mindspore-v2.3.0.zip --patch_dir=./patches/ --out_src_path=./mindspore-src
-   ```
-
-   执行完毕，MindSpore Lite完整源码位于：`mindspore-src/source/`。
+2. 取[MindSpore Lite源码](https://gitee.com/openharmony/third_party_mindspore)。
+   MindSpore Lite完整源码位于：`mindspore-src/source/`。
 
 3. 执行编译。
 

@@ -43,7 +43,7 @@ ArkTS卡片相较于JS卡片具备了更加丰富的能力，但也增加了使�
 
 - 当导入模块时，仅支持导入标识“支持在ArkTS卡片中使用”的模块。
 
-- 不支持导入共享包。
+- 支持导入[HAR](../quick-start/har-package.md)静态共享包，不支持导入[HSP](../quick-start/in-app-hsp.md)动态共享包。
 
 - 不支持使用native语言开发。
 

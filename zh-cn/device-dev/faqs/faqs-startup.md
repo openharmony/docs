@@ -99,11 +99,11 @@ ueventd服务启动一段时间后，出现打印日志 “poll ueventd socket t
 
 **现象描述**
 
-符合JSON格式的服务配置无法被正确解析，打印日志 “Service is invalid which has both critical and ondemand attribute”，启动该服务时提示“Cannot find service”.
+符合JSON格式的服务配置无法被正确解析，打印日志 “Service is invalid which has both critical and ondemand attribute”，启动该服务时提示“Cannot find service”。
 
 **可能原因**
 
-ondemand属性默认是按需启动的，ondemand和critical属性互斥，两者同时配置，服务不能被正确解析 。
+ondemand属性默认是按需启动的，ondemand和critical属性互斥，两者同时配置，服务不能被正确解析。
 
 **解决办法**
 
@@ -114,7 +114,7 @@ ondemand属性默认是按需启动的，ondemand和critical属性互斥，两�
 
 **现象描述**
 
-配置ondemand属性的服务并没有在并行启动阶段被拉起，start-mode设置无效
+配置ondemand属性的服务并没有在并行启动阶段被拉起，start-mode设置无效。
 
 **可能原因**
 

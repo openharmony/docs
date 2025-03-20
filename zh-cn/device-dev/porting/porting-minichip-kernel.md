@@ -20,26 +20,26 @@
 
   
 ```
-kernel/liteos_m/arch          # 不同版本路径有差异
-├── arm                       # arm系列
+kernel/liteos_m/arch          # 不同版本路径有差异。
+├── arm                       # arm系列。
 │   ├── arm9
 │   ├── cortex-m3
 │   ├── cortex-m33
-│   │   ├── gcc               # 使用gcc编译器编译的架构代码
-│   │   └── iar               # 使用iar编译器编译的架构代码
+│   │   ├── gcc               # 使用gcc编译器编译的架构代码。
+│   │   └── iar               # 使用iar编译器编译的架构代码。
 │   ├── cortex-m4
 │   ├── cortex-m7
-├── csky                      # csky系列
-├── include                   # 包含通用的芯片架构所需要实现的函数
-│   ├── los_arch.h            # 定义芯片架构初始化所需要的函数
-│   ├── los_atomic.h          # 定义芯片架构所需要实现的原子操作函数
-│   ├── los_context.h         # 定义芯片架构所需要实现的任务上下文相关函数
-│   ├── los_interrupt.h       # 定义芯片架构所需要实现的中断和异常相关的函数
-│   └── los_timer.h           # 定义芯片架构所需要实现的系统时钟相关的函数
-├── risc-v                    # risc-v系列
+├── csky                      # csky系列。
+├── include                   # 包含通用的芯片架构所需要实现的函数。
+│   ├── los_arch.h            # 定义芯片架构初始化所需要的函数。
+│   ├── los_atomic.h          # 定义芯片架构所需要实现的原子操作函数。
+│   ├── los_context.h         # 定义芯片架构所需要实现的任务上下文相关函数。
+│   ├── los_interrupt.h       # 定义芯片架构所需要实现的中断和异常相关的函数。
+│   └── los_timer.h           # 定义芯片架构所需要实现的系统时钟相关的函数。
+├── risc-v                    # risc-v系列。
 │   ├── nuclei
 │   └── riscv32
-└── xtensa                    # xtensa系列
+└── xtensa                    # xtensa系列。
      └── lx6
 ```
 
@@ -55,48 +55,48 @@ kernel/liteos_m/arch          # 不同版本路径有差异
    ```
    import("//build/lite/config/component/lite_component.gni")
     
-   executable("OHOS_Image.elf") {    # 生成可执行程序
+   executable("OHOS_Image.elf") {    # 生成可执行程序。
      libs = [
-       "xxx/xxx/libxxx.a",           # 链接厂商闭源静态库方法一
+       "xxx/xxx/libxxx.a",           # 链接厂商闭源静态库方法一。
      ]
-     asmflags = [                    # 汇编编译参数
+     asmflags = [                    # 汇编编译参数。
        "",
      ]
      ldflags = [
-       "-T./xxx/xxx/xxx.ld",         # 链接脚本文件
-       "-Lxxx/xxx/",                 # 指定厂商静态库路径
-       "-lxxx",                      # 链接厂商闭源静态库方法二
+       "-T./xxx/xxx/xxx.ld",         # 链接脚本文件。
+       "-Lxxx/xxx/",                 # 指定厂商静态库路径。
+       "-lxxx",                      # 链接厂商闭源静态库方法二。
        "-Wl,--whole-archive",
        "-lmodule_xxx",
        "-Wl,--no-whole-archive",
      ]
      deps = [
-       "//build/lite:ohos",          # 依赖OpenHarmony静态库编译完成，链接OpenHarmony编译出来的静态库
-       ":sdk",                       # 依赖厂商源码静态库编译完成，链接厂商源码生成的静态库
+       "//build/lite:ohos",          # 依赖OpenHarmony静态库编译完成，链接OpenHarmony编译出来的静态库。
+       ":sdk",                       # 依赖厂商源码静态库编译完成，链接厂商源码生成的静态库。
      ]
    }
     
-   copy("prebuilt") {                # 准备镜像生成工具等，一般把镜像生成工具拷贝到out目录
-     sources = [ ]                   # 复制的源文件
-     outputs = [ ]                   # 复制的目标文件
+   copy("prebuilt") {                # 准备镜像生成工具等，一般把镜像生成工具拷贝到out目录。
+     sources = [ ]                   # 复制的源文件。
+     outputs = [ ]                   # 复制的目标文件。
    }
    static_library("sdk") {
-     sources = [ ]                   # 添加厂商源码编译成静态库
-     include_dirs = [ ]              # 厂商源码包含头文件路径
+     sources = [ ]                   # 添加厂商源码编译成静态库。
+     include_dirs = [ ]              # 厂商源码包含头文件路径。
    }
-   build_ext_component("image") {    # 调用shell命令，生成可烧写镜像文件                             
-     exec_path = rebase_path(root_out_dir)   #指定shell命令执行目录
+   build_ext_component("image") {    # 调用shell命令，生成可烧写镜像文件 。                            
+     exec_path = rebase_path(root_out_dir)   #指定shell命令执行目录。
      objcopy = "arm-none-eabi-objcopy"
      objdump = "arm-none-eabi-objdump"
      command = "$objcopy -O binary OHOS_Image.elf OHOS_Image.bin" 
      command += " && sh -c '$objdump -t OHOS_Image.elf | sort > OHOS_Image.sym.sorted'" 
      command += " && sh -c '$objdump -d OHOS_Image.elf > OHOS_Image.asm'"                  
      deps = [
-       ":prebuilt",                  # 无需准备镜像生成工具等可以删除此依赖
-       ":OHOS_Image.elf",            # 依赖elf文件的生成
+       ":prebuilt",                  # 无需准备镜像生成工具等可以删除此依赖。
+       ":OHOS_Image.elf",            # 依赖elf文件的生成。
      ]
    }
-   group("MyBoard") {                # MyBoard与当前路径名称一致
+   group("MyBoard") {                # MyBoard与当前路径名称一致。
    }
    ```
 
@@ -182,12 +182,12 @@ kernel/liteos_m/arch          # 不同版本路径有差异
      
    ```
    declare_args() {
-     enable_ohos_kernel_liteos_m_cppsupport = true        # cpp支持
-     enable_ohos_kernel_liteos_m_cpup = true              # CPU占用率支持
-     enable_ohos_kernel_liteos_m_exchook = true           # 异常处理支持
-     enable_ohos_kernel_liteos_m_kal = true               # kal接口支持
-     enable_ohos_kernel_liteos_m_fs = true                # 文件系统支持
-     enable_ohos_kernel_liteos_m_backtrace = true         # backtrace支持
+     enable_ohos_kernel_liteos_m_cppsupport = true        # cpp支持。
+     enable_ohos_kernel_liteos_m_cpup = true              # CPU占用率支持。
+     enable_ohos_kernel_liteos_m_exchook = true           # 异常处理支持。
+     enable_ohos_kernel_liteos_m_kal = true               # kal接口支持。
+     enable_ohos_kernel_liteos_m_fs = true                # 文件系统支持。
+     enable_ohos_kernel_liteos_m_backtrace = true         # backtrace支持。
    }
    group("kernel") {
    deps = [
@@ -196,7 +196,7 @@ kernel/liteos_m/arch          # 不同版本路径有差异
        "utils:utils",
      ]
      if (enable_ohos_kernel_liteos_m_cppsupport == true) {
-       deps += [ "components/cppsupport:cppsupport" ]     # 如果内核特性true，则会加入相应的代码进行编译
+       deps += [ "components/cppsupport:cppsupport" ]     # 如果内核特性true，则会加入相应的代码进行编译。
      }
      ……
      if (enable_ohos_kernel_liteos_m_kal == true) {
@@ -212,16 +212,16 @@ kernel/liteos_m/arch          # 不同版本路径有差异
      
    ```
    declare_args() {
-     enable_ohos_kernel_liteos_m_cmsis = true  # cmsis支持
-     enable_ohos_kernel_liteos_m_posix = true  # posix支持
+     enable_ohos_kernel_liteos_m_cmsis = true  # cmsis支持。
+     enable_ohos_kernel_liteos_m_posix = true  # posix支持。
    }
    static_library("kal") {
      sources = [ "kal.c" ]
      if (enable_ohos_kernel_liteos_m_cmsis == true) {
-       deps += [ "cmsis/" ]                    # 如果cmsis enable，加入cmsis目录编译
+       deps += [ "cmsis/" ]                    # 如果cmsis enable，加入cmsis目录编译。
      }
      if (enable_ohos_kernel_liteos_m_posix == true) {
-       deps += [ "posix/" ]                    # 如果posix enable，加入posix目录编译
+       deps += [ "posix/" ]                    # 如果posix enable，加入posix目录编译。
      }
    }
    ```

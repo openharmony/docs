@@ -4,7 +4,7 @@ When starting a modal page, you can transfer custom data to the autofill service
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The initial APIs of this module are supported since API version 13. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 > The APIs of this module can be used only in the stage model. 
 > The APIs provided by this module are system APIs.
 
@@ -12,6 +12,6 @@ When starting a modal page, you can transfer custom data to the autofill service
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name | Type                  | Mandatory | Description                                                |
+| Name| Type                  | Mandatory| Description                                                |
 | ---- | ---------------------- | ---- | ---------------------------------------------------- |
-| data | Record<string, Object> | Yes  | Custom data transferred for starting the modal page. The data is of the Record type. |
+| data | Record<string, Object> | Yes  | Custom data transferred for starting the modal page. The data is of the Record type.|

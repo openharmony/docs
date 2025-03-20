@@ -72,7 +72,7 @@ ICodecComponent::AllocateBuffer ([in] unsigned int portIndex, [in] struct OmxCod
 
 - 在去使能端口上，组件处于OMX_StateExecuting、OMX_StatePause或OMX_StateIdle状态。
 
-更多组件状态的说明请详见**OMX_STATETYPE**。
+更多组件状态的说明请详见[CodecStateType](_codec_types_8idl_v20.md)。
 
 **起始版本：** 4.1
 

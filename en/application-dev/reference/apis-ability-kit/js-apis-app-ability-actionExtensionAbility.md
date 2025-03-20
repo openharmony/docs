@@ -123,7 +123,7 @@ See [Creating an ActionExtensionAbility](#creating-an-actionextensionability).
 
 To manually create an ActionExtensionAbility in the DevEco Studio project, perform the following steps:
 
-1. In the **ets** directory of a module in the project, right-click and choose **New > Directory** to create a directory named **ActionExtAbility**.
+1. In the **ets** directory of a module in the project, right-click and choose **New > Directory** to create a directory named **actionextability**.
 
 2. In the **actionextability** directory, right-click and choose **New > ArkTS File** to create a file named **ActionExtAbility.ets**.
 
@@ -176,7 +176,7 @@ To manually create an ActionExtensionAbility in the DevEco Studio project, perfo
    ```json
    {
      "module": {
-       ...
+       // ...
        "extensionAbilities": [
          {
            "name": "ActionExtAbility",

@@ -75,7 +75,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 let seService : omapi.SEService;
 
 function secureElementDemo() {
-    // get the service
+    // 获取 service
     try {
         seService = omapi.newSEService("serviceState", (state) => {
         hilog.info(0x0000, 'testTag', 'se service state = %{public}s', JSON.stringify(state));
@@ -137,7 +137,7 @@ function secureElementDemo() {
 }
 ```
 
-## omapi.on<sup>16+</sup>
+## omapi.on<sup>18+</sup>
 
 on(type: 'stateChanged', callback: Callback\<ServiceState>): void;
 
@@ -165,9 +165,9 @@ on(type: 'stateChanged', callback: Callback\<ServiceState>): void;
 
 **示例：**
 
-示例请参见[off](#omapioff16)接口的示例。
+示例请参见[off](#omapioff18)接口的示例。
 
-## omapi.off<sup>16+</sup>
+## omapi.off<sup>18+</sup>
 
 off(type: 'stateChanged', callback?: Callback\<ServiceState>): void;
 
@@ -271,9 +271,9 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 let seService : omapi.SEService;
 let seReaders : omapi.Reader[];
 
-// Before use seService, initialization for seService is required
+// 在使用seService之前，需要对seService进行初始化
 function secureElementDemo() {
-    // get readers
+    // 获取readers
     try {
         seReaders = seService.getReaders();
     } catch (error) {
@@ -319,7 +319,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 let seService : omapi.SEService;
 
 function secureElementDemo() {
-    // get the service
+    // 获取service
     try {
         seService = omapi.newSEService("serviceState", (state) => {
         hilog.info(0x0000, 'testTag', 'se service state = %{public}s', JSON.stringify(state));
@@ -360,7 +360,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let seService : omapi.SEService;
 
-// Before use seService, initialization for seService is required
+// 在使用seService之前，需要对seService进行初始化
 
 try {
     seService.shutdown();
@@ -401,7 +401,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let seService : omapi.SEService;
 
-// Before use seService, initialization for seService is required
+// 在使用seService之前，需要对seService进行初始化
 
 try {
     let version = seService.getVersion();
@@ -445,10 +445,10 @@ import { omapi } from '@kit.ConnectivityKit';
 
 let seReaders : omapi.Reader[];
 
-// Before use seReaders, initialization for seReaders is required
+// 在使用seReaders之前，需要对seReaders进行初始化
 
 try {
-    let reader = seReaders[0]; // change it to the selected reader, ese or sim.
+    let reader = seReaders[0]; // 将其更改为所选的reader：ese 或 sim
     let name = reader.getName();
     hilog.info(0x0000, 'testTag', 'name %{public}s', JSON.stringify(name));
 } catch (error) {
@@ -488,10 +488,10 @@ import { omapi } from '@kit.ConnectivityKit';
 
 let seReaders : omapi.Reader[];
 
-// Before use seReaders, initialization for seReaders is required
+// 在使用seReaders之前，需要对seReaders进行初始化
 
 try {
-    let reader = seReaders[0]; // change it to the selected reader, ese or sim.
+    let reader = seReaders[0]; // 将其更改为所选的reader：ese 或 sim
     let isPresent = reader.isSecureElementPresent();
     hilog.info(0x0000, 'testTag', 'isPresent %{public}s', JSON.stringify(isPresent));
 } catch (error) {
@@ -533,10 +533,10 @@ import { omapi } from '@kit.ConnectivityKit';
 let seReaders : omapi.Reader[];
 let seSession : omapi.Session;
 
-// Before use seReaders, initialization for seReaders is required
+// 在使用seReaders之前，需要对seReaders进行初始化
 function secureElementDemo() {
     try {
-        let reader = seReaders[0]; // change it to the selected reader, ese or sim.
+        let reader = seReaders[0]; // 将其更改为所选的reader：ese 或 sim
         seSession = reader.openSession();
     } catch (error) {
         hilog.error(0x0000, 'testTag', 'openSession error %{public}s', JSON.stringify(error));
@@ -576,10 +576,10 @@ let seReaders : omapi.Reader[];
 let seSession : omapi.Session;
 let reader : omapi.Reader;
 
-// Before use seReaders, initialization for seReaders is required
+// 在使用seReaders之前，需要对seReaders进行初始化
 function secureElementDemo() {
     try {
-        reader = seReaders[0]; // change it to the selected reader, ese or sim.
+        reader = seReaders[0]; // 将其更改为所选的reader：ese 或 sim
         seSession = reader.openSession();
     } catch (error) {
         hilog.error(0x0000, 'testTag', 'openSession error %{public}s', JSON.stringify(error));
@@ -633,10 +633,10 @@ let seReaders : omapi.Reader[];
 let seSession : omapi.Session;
 let reader : omapi.Reader;
 
-// Before use seReaders, initialization for seReaders is required
+// 在使用seReaders之前，需要对seReaders进行初始化
 function secureElementDemo() {
     try {
-        reader = seReaders[0]; // change it to the selected reader, ese or sim.
+        reader = seReaders[0]; // 将其更改为所选的reader：ese 或 sim
         seSession = reader.openSession();
     } catch (error) {
         hilog.error(0x0000, 'testTag', 'openSession error %{public}s', JSON.stringify(error));
@@ -685,7 +685,7 @@ import { omapi } from '@kit.ConnectivityKit';
 
 let seSession : omapi.Session;
 
-// Before use seSession, initialization for seSession is required
+// 在使用seSession之前，需要对seSession进行初始化
 
 try {
     let atr = seSession.getATR();
@@ -721,7 +721,7 @@ import { omapi } from '@kit.ConnectivityKit';
 
 let seSession : omapi.Session;
 
-// Before use seSession, initialization for seSession is required
+// 在使用seSession之前，需要对seSession进行初始化
 
 try {
     seSession.close();
@@ -761,7 +761,7 @@ import { omapi } from '@kit.ConnectivityKit';
 
 let seSession : omapi.Session;
 
-// Before use seSession, initialization for seSession is required
+// 在使用seSession之前，需要对seSession进行初始化
 
 try {
     let isClosed = seSession.isClosed();
@@ -797,7 +797,7 @@ import { omapi } from '@kit.ConnectivityKit';
 
 let seSession : omapi.Session;
 
-// Before use seSession, initialization for seSession is required
+// 在使用seSession之前，需要对seSession进行初始化
 
 try {
     seSession.closeChannels();
@@ -850,10 +850,10 @@ let seSession : omapi.Session;
 let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 
-// Before use seSession, initialization for seSession is required
+// 在使用seSession之前，需要对seSession进行初始化
 function secureElementDemo() {
     try {
-        // change the aid value for open channel.
+        // 改为在此channel上选择的App的aid
         seSession.openBasicChannel(aidArray).then((data) => {
             seChannel = data;
         }).catch((error : BusinessError)=> {
@@ -908,10 +908,10 @@ let seSession : omapi.Session;
 let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 
-// Before use seSession, initialization for seSession is required
+// 在使用seSession之前，需要对seSession进行初始化
 function secureElementDemo() {
     try {
-        // change the aid value for open channel.
+        // 改为在此channel上选择的App的aid
         seSession.openBasicChannel(aidArray, (error, data) => {
             if (error) {
                 hilog.error(0x0000, 'testTag', 'openBasicChannel error %{public}s', JSON.stringify(error));
@@ -975,10 +975,10 @@ let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 let p2 : number = 0x00;
 
-// Before use seSession, initialization for seSession is required
+// 在使用seSession之前，需要对seSession进行初始化
 function secureElementDemo() {
     try {
-        // change the aid value for open channel.
+        // 改为在此channel上选择的App的aid
         seSession.openBasicChannel(aidArray, p2).then((data) => {
             seChannel = data;
         }).catch((error : BusinessError)=> {
@@ -1035,10 +1035,10 @@ let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 let p2 : number = 0x00;
 
-// Before use seSession, initialization for seSession is required
+// 在使用seSession之前，需要对seSession进行初始化
 function secureElementDemo() {
     try {
-        // change the aid value for open channel.
+        // 改为在此channel上选择的App的aid
         seSession.openBasicChannel(aidArray, p2, (error, data) => {
             if (error) {
                 hilog.error(0x0000, 'testTag', 'openBasicChannel error %{public}s', JSON.stringify(error));
@@ -1100,10 +1100,10 @@ let seSession : omapi.Session;
 let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 
-// Before use seSession, initialization for seSession is required
+// 在使用seSession之前，需要对seSession进行初始化
 function secureElementDemo() {
     try {
-        // change the aid value for open channel.
+        // 改为在此channel上选择的App的aid
         seSession.openLogicalChannel(aidArray).then((data) => {
             seChannel = data;
         }).catch((error : BusinessError)=> {
@@ -1158,10 +1158,10 @@ let seSession : omapi.Session;
 let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 
-// Before use seSession, initialization for seSession is required
+// 在使用seSession之前，需要对seSession进行初始化
 function secureElementDemo() {
     try {
-        // change the aid value for open channel.
+        // 改为在此channel上选择的App的aid
         seSession.openLogicalChannel(aidArray, (error, data) => {
             if (error) {
                 hilog.error(0x0000, 'testTag', 'openLogicalChannel error %{public}s', JSON.stringify(error));
@@ -1225,10 +1225,10 @@ let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 let p2 : number = 0x00;
 
-// Before use seSession, initialization for seSession is required
+// 在使用seSession之前，需要对seSession进行初始化
 function secureElementDemo() {
     try {
-        // change the aid value for open channel.
+        // 改为在此channel上选择的App的aid
         seSession.openLogicalChannel(aidArray, p2).then((data) => {
             seChannel = data;
         }).catch((error : BusinessError)=> {
@@ -1285,10 +1285,10 @@ let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 let p2 : number = 0x00;
 
-// Before use seSession, initialization for seSession is required
+// 在使用seSession之前，需要对seSession进行初始化
 function secureElementDemo() {
     try {
-    // change the aid value for open channel.
+    // 改为在此channel上选择的App的aid
         seSession.openLogicalChannel(aidArray, p2, (error, data) => {
             if (error) {
                 hilog.error(0x0000, 'testTag', 'openLogicalChannel error %{public}s', JSON.stringify(error));
@@ -1341,7 +1341,7 @@ import { omapi } from '@kit.ConnectivityKit';
 let seSession : omapi.Session;
 let seChannel : omapi.Channel;
 
-// Before use seChannel, initialization for seChannel is required
+// 在使用seChannel之前，需要对seChannel进行初始化
 
 try {
     seSession = seChannel.getSession();
@@ -1375,8 +1375,7 @@ import { omapi } from '@kit.ConnectivityKit';
 
 let seChannel : omapi.Channel;
 
-// Before use seChannel, initialization for seChannel is required
-
+// 在使用seChannel之前，需要对seChannel进行初始化
 try {
     seChannel.close();
 } catch (exception) {
@@ -1415,8 +1414,7 @@ import { omapi } from '@kit.ConnectivityKit';
 
 let seChannel : omapi.Channel;
 
-// Before use seChannel, initialization for seChannel is required
-
+// 在使用seChannel之前，需要对seChannel进行初始化
 try {
     let isBasic = seChannel.isBasicChannel();
     hilog.info(0x0000, 'testTag', 'isBasic = %{public}s', JSON.stringify(isBasic));
@@ -1456,8 +1454,7 @@ import { omapi } from '@kit.ConnectivityKit';
 
 let seChannel : omapi.Channel;
 
-// Before use seChannel, initialization for seChannel is required
-
+// 在使用seChannel之前，需要对seChannel进行初始化
 try {
     let isClosed = seChannel.isClosed();
     hilog.info(0x0000, 'testTag', 'isClosed = %{public}s', JSON.stringify(isClosed));
@@ -1497,8 +1494,7 @@ import { omapi } from '@kit.ConnectivityKit';
 
 let seChannel : omapi.Channel;
 
-// Before use seChannel, initialization for seChannel is required
-
+// 在使用seChannel之前，需要对seChannel进行初始化
 try {
     let response = seChannel.getSelectResponse();
     hilog.info(0x0000, 'testTag', 'response = %{public}s', JSON.stringify(response));
@@ -1548,9 +1544,8 @@ import { omapi } from '@kit.ConnectivityKit';
 
 let seChannel : omapi.Channel;
 
-// Before use seChannel, initialization for seChannel is required
-
-let cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
+// 在使用seChannel之前，需要对seChannel进行初始化
+let cmdData = [0x01, 0x02, 0x03, 0x04]; // 请更改为正确的data
 try {
     seChannel.transmit(cmdData).then((response) => {
         hilog.info(0x0000, 'testTag', 'transmit response = %{public}s.', JSON.stringify(response));
@@ -1598,9 +1593,8 @@ import { omapi } from '@kit.ConnectivityKit';
 
 let seChannel : omapi.Channel;
 
-// Before use seChannel, initialization for seChannel is required
-
-let cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
+// 在使用seChannel之前，需要对seChannel进行初始化
+let cmdData = [0x01, 0x02, 0x03, 0x04]; // 请更改为正确的data
 try {
     seChannel.transmit(cmdData, (error, response) => {
     if (error) {

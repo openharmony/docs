@@ -41,16 +41,16 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef struct [Hid_EmitItem](_hid___emit_item.md)[Hid_EmitItem](_hid_ddk.md#hid_emititem) | 事件信息。 | 
-| typedef struct [Hid_Device](_hid___device.md)[Hid_Device](_hid_ddk.md#hid_device) | 设备基本信息。 | 
-| typedef struct [Hid_EventTypeArray](_hid___event_type_array.md)[Hid_EventTypeArray](_hid_ddk.md#hid_eventtypearray) | 事件类型编码数组。 | 
-| typedef struct [Hid_KeyCodeArray](_hid___key_code_array.md)[Hid_KeyCodeArray](_hid_ddk.md#hid_keycodearray) | 键值属性数组。 | 
-| typedef struct [Hid_AbsAxesArray](_hid___abs_axes_array.md)[Hid_AbsAxesArray](_hid_ddk.md#hid_absaxesarray) | 绝对坐标属性数组。 | 
-| typedef struct [Hid_RelAxesArray](_hid___rel_axes_array.md)[Hid_RelAxesArray](_hid_ddk.md#hid_relaxesarray) | 相对坐标属性数组。 | 
-| typedef struct [Hid_MscEventArray](_hid___msc_event_array.md)[Hid_MscEventArray](_hid_ddk.md#hid_msceventarray) | 其它特殊事件属性数组。 | 
-| typedef struct [Hid_EventProperties](_hid___event_properties.md)[Hid_EventProperties](_hid_ddk.md#hid_eventproperties) | 设备关注事件属性。 | 
-| typedef struct [Hid_DeviceHandle](_hid_ddk.md#hid_devicehandle)[Hid_DeviceHandle](_hid_ddk.md#hid_devicehandle) | 不透明的USB HID设备结构。 | 
-| typedef struct [Hid_RawDevInfo](_hid___raw_dev_info.md)[Hid_RawDevInfo](_hid_ddk.md#hid_rawdevinfo) | 原始设备信息定义。 | 
+| typedef struct [Hid_EmitItem](_hid___emit_item.md) [Hid_EmitItem](_hid_ddk.md#hid_emititem) | 事件信息。 | 
+| typedef struct [Hid_Device](_hid___device.md) [Hid_Device](_hid_ddk.md#hid_device) | 设备基本信息。 | 
+| typedef struct [Hid_EventTypeArray](_hid___event_type_array.md) [Hid_EventTypeArray](_hid_ddk.md#hid_eventtypearray) | 事件类型编码数组。 | 
+| typedef struct [Hid_KeyCodeArray](_hid___key_code_array.md) [Hid_KeyCodeArray](_hid_ddk.md#hid_keycodearray) | 键值属性数组。 | 
+| typedef struct [Hid_AbsAxesArray](_hid___abs_axes_array.md) [Hid_AbsAxesArray](_hid_ddk.md#hid_absaxesarray) | 绝对坐标属性数组。 | 
+| typedef struct [Hid_RelAxesArray](_hid___rel_axes_array.md) [Hid_RelAxesArray](_hid_ddk.md#hid_relaxesarray) | 相对坐标属性数组。 | 
+| typedef struct [Hid_MscEventArray](_hid___msc_event_array.md) [Hid_MscEventArray](_hid_ddk.md#hid_msceventarray) | 其它特殊事件属性数组。 | 
+| typedef struct [Hid_EventProperties](_hid___event_properties.md) [Hid_EventProperties](_hid_ddk.md#hid_eventproperties) | 设备关注事件属性。 | 
+| typedef struct [Hid_DeviceHandle](_hid_ddk.md#hid_devicehandle) [Hid_DeviceHandle](_hid_ddk.md#hid_devicehandle) | 不透明的USB HID设备结构。 | 
+| typedef struct [Hid_RawDevInfo](_hid___raw_dev_info.md) [Hid_RawDevInfo](_hid_ddk.md#hid_rawdevinfo) | 原始设备信息定义。 | 
 
 
 ### 枚举

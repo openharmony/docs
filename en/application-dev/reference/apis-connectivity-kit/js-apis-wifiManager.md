@@ -54,9 +54,9 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 enableWifi(): void
 
-Enable Wi-Fi.
+Enables the WLAN.
 
-**Required permissions** ohos.permission.SET_WIFI_INFO and (ohos.permission.MANAGE_WIFI_CONNECTION or ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION)
+**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.MANAGE_WIFI_CONNECTION (available only to system applications) or ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION (available only to enterprise applications)
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -731,47 +731,6 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 	}
 ```
 
-## wifiManager.removeDevice<sup>15+</sup>
-
-removeDevice(id: number): void
-
-Remove a Wi-Fi DeviceConfig with networkId.
-
-**Required permissions**: ohos.permission.SET_WIFI_INFO and (ohos.permission.MANAGE_WIFI_CONNECTION or ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION)
-
-**System capability**: SystemCapability.Communication.WiFi.STA
-
-**Parameters**
-
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | id | number | Yes| ID of the network configuration to remove.|
-
-**Error codes**
-
-For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
-
-| **ID**| **Error Message**|
-| -------- | ---------------------------- |
-| 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed.|
-| 801 | Capability not supported.          |
-| 2501000  | Operation failed.|
-| 2501001  | Wi-Fi STA disabled. |
-
-**Example**
-
-```ts
-	import { wifiManager } from '@kit.ConnectivityKit';
-  
-    try {
-      let id = 0;
-      wifiManager.removeDevice(id);
-    }catch(error){
-      console.error("failed:" + JSON.stringify(error));
-    }
-```
-
 ## wifiManager.removeCandidateConfig<sup>9+</sup>
 
 removeCandidateConfig(networkId: number, callback: AsyncCallback&lt;void&gt;): void
@@ -815,6 +774,46 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
+```
+
+## wifiManager.removeDevice<sup>15+</sup>
+
+removeDevice(id: number): void
+
+Removes the network configuration.
+
+**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.MANAGE_WIFI_CONNECTION (available only to system applications) or ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION (available only to enterprise applications)
+
+**System capability**: SystemCapability.Communication.WiFi.STA
+
+**Parameters**
+
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | id | number | Yes| ID of the network configuration to remove.|
+
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
+
+| **ID**| **Error Message**|
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801 | Capability not supported.          |
+| 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled. |
+
+**Example**
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+  
+    try {
+      let id = 0;
+      wifiManager.removeDevice(id);	
+    }catch(error){
+      console.error("failed:" + JSON.stringify(error));
+    }
 ```
 
 ## wifiManager.getCandidateConfigs<sup>9+</sup>
@@ -904,18 +903,19 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
-		let networkId = 0; // Candidate network ID, which is generated when a candidate network is added. The value is obtained from WifiDeviceConfig.netId.
+		let networkId = 0; // Candidate network ID, which is generated when a candidate network is added.
 		wifiManager.connectToCandidateConfig(networkId);
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
 	
 ```
-## wifiManager.addDeviceConfig<sup>9+</sup>
+
+## wifiManager.addDeviceConfig<sup>15+</sup>
 
 addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 
-Add Wi-Fi connection configuration to the device. The configuration will be updated when the configuration is added.
+Adds network configuration. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.SET_WIFI_CONFIG
 
@@ -925,7 +925,7 @@ Add Wi-Fi connection configuration to the device. The configuration will be upda
 
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| WLAN configuration to add. The default **bssidType** is random device address.|
+| config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| WLAN configuration to add. The value of **bssidType** is random device address by default.|
 
 **Return value**
 
@@ -960,7 +960,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 		}).catch((err:number) => {
 			console.error("failed:" + JSON.stringify(err));
 		});
-	}catch(error){
+	}catch(error){  
 		console.error("failed:" + JSON.stringify(error));
 	}
 ```
@@ -969,7 +969,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;): void
 
-Add Wi-Fi connection configuration to the device. The configuration will be updated when the configuration is added.
+Adds network configuration. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.SET_WIFI_CONFIG
 
@@ -979,7 +979,7 @@ Add Wi-Fi connection configuration to the device. The configuration will be upda
 
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| WLAN configuration to add. The default **bssidType** is random device address.|
+| config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| WLAN configuration to add. The value of **bssidType** is random device address by default.|
 | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If **err** is not **0**, an error has occurred.|
 
 **Error codes**
@@ -1010,13 +1010,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
     }catch(error){
       console.error("failed:" + JSON.stringify(error));
     }
+
 ```
 
 ## wifiManager.getDeviceConfigs<sup>15+</sup>
 
 getDeviceConfigs(): &nbsp;Array&lt;WifiDeviceConfig&gt;
 
-Obtain the list of all existed Wi-Fi configurations
+Obtains network configuration.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG
 
@@ -1026,7 +1027,7 @@ Obtain the list of all existed Wi-Fi configurations
 
   | **Type**| **Description**|
   | -------- | -------- |
-  | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig9)&gt; | network configuration obtained.|
+  | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig9)&gt; | Network configuration array.|
 
 **Error codes**
 
@@ -1049,16 +1050,16 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
     }catch(error){
       console.error("failed:" + JSON.stringify(error));
     }
-
+	
 ```
 
 ## wifiManager.connectToNetwork<sup>15+</sup>
 
 connectToNetwork(networkId: number): void
 
-Connect to Wi-Fi hotspot by networkId.
+Connects to a hotspot.
 
-**Required permissions**: ohos.permission.MANAGE_WIFI_CONNECTION or ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
+**Required permissions**: ohos.permission.MANAGE_WIFI_CONNECTION (available only to system applications) or ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION (available only to enterprise applications)
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -1356,10 +1357,10 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 disconnect(): void
 
-Disconnect the WLAN.
+Disconnects from a WLAN.
 
-**Required permissions**: ohos.permission.SET_WIFI_INFO and (ohos.permission.MANAGE_WIFI_CONNECTION or
-   ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION)
+**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.MANAGE_WIFI_CONNECTION (available only to system applications) or
+   ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION (available only to enterprise applications)
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -1813,7 +1814,7 @@ Represents the P2P link information.
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | connectState | [P2pConnectState](#p2pconnectstate9) | Yes| No| P2P connection state.|
-| isGroupOwner | boolean | Yes| No| Whether it is the group owner (GO).|
+| isGroupOwner | boolean | Yes| No| Whether the device is the group owner. The value **true** indicates that the device is the group owner, and the value **false** indicates the opposite.|
 | groupOwnerAddr | string | Yes| No| IP address of the group.| 
 
 
@@ -2232,7 +2233,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
   }
   wifiManager.on("p2pConnectionChange", recvP2pConnectionChangeFunc);
   
-  let recvP2pDeviceChangeFunc = (result:wifiManager.WifiP2pDevice[]) => {
+  let recvP2pDeviceChangeFunc = (result:wifiManager.WifiP2pDevice) => {
       console.info("p2p device change receive event: " + JSON.stringify(result));
   }
   wifiManager.on("p2pDeviceChange", recvP2pDeviceChangeFunc);

@@ -54,7 +54,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     同时，录屏存文件需要设置状态回调，感知录制状态。
 
     ```c++
-    //录屏时获取麦克风或者内录，内录参数必填，如果都设置了，内录和麦克风的参数设置需要一致
+    //录屏时获取麦克风或者内录，内录参数必填，如果都设置了，内录和麦克风的参数设置需要一致。
     OH_AudioCaptureInfo micCapInfo = {
         .audioSampleRate = 48000,
         .audioChannels = 2,
@@ -140,19 +140,19 @@ void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCo
     (void)capture;
     
     if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
-        // 处理状态变更
+        // 处理状态变更。
     }
     if (stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL ||
         stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER_SWITCHES) {
-        // 录屏中断状态处理
+        // 录屏中断状态处理。
     }
     if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER) {
-        // 处理状态变更
+        // 处理状态变更。
     }
     (void)userData;
 }
 
-// 获取录屏屏幕id的回调函数OnDisplaySelected()
+// 获取录屏屏幕id的回调函数OnDisplaySelected()。
 void OnDisplaySelected(struct OH_AVScreenCapture *capture, uint64_t displayId, void *userData) {
     (void)capture;
     (void)displayId;
@@ -210,7 +210,7 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
 
     struct OH_AVScreenCapture *capture = OH_AVScreenCapture_Create();
 
-    // 初始化录屏参数，传入配置信息OH_AVScreenRecorderConfig
+    // 初始化录屏参数，传入配置信息OH_AVScreenRecorderConfig。
     OH_RecorderInfo recorderInfo;
     const std::string SCREEN_CAPTURE_ROOT = "/data/storage/el2/base/files/";
     int32_t outputFd = open((SCREEN_CAPTURE_ROOT + "screen01.mp4").c_str(), O_RDWR | O_CREAT, 0777);
@@ -219,31 +219,31 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     recorderInfo.fileFormat = OH_ContainerFormatType::CFT_MPEG_4;
     config.recorderInfo = recorderInfo;
 
-    //设置状态回调
+    //设置状态回调。
     OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, nullptr);
 
-    // 可选 设置录屏屏幕Id回调，必须在开始录屏前调用
+    // 可选 设置录屏屏幕Id回调，必须在开始录屏前调用。
     OH_AVScreenCapture_SetDisplayCallback(capture, OnDisplaySelected, nullptr);
 
-    // 可选 设置光标显示开关，开始录屏前后均可调用
+    // 可选 设置光标显示开关，开始录屏前后均可调用。
     OH_AVScreenCapture_ShowCursor(capture, false);
 
-    // 进行初始化操作
+    // 进行初始化操作。
     int32_t retInit = OH_AVScreenCapture_Init(capture, config);
     
-    // 开始录屏
+    // 开始录屏。
     int32_t retStart = OH_AVScreenCapture_StartScreenRecording(capture);
 
-    // 录制10s
+    // 录制10s。
     sleep(10);
 
-    // 结束录屏
+    // 结束录屏。
     int32_t retStop = OH_AVScreenCapture_StopScreenRecording(capture);
 
-    // 释放ScreenCapture
+    // 释放ScreenCapture。
     int32_t retRelease = OH_AVScreenCapture_Release(capture);
 
-    // 返回调用结果，示例仅返回随意值
+    // 返回调用结果，示例仅返回随意值。
     napi_value sum;
     napi_create_double(env, 5, &sum);
 

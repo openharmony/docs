@@ -1050,7 +1050,7 @@ struct Parent {
 **图11** LazyForEach拖拽排序效果图  
 ![LazyForEach-Drag-Sort](./figures/ForEach-Drag-Sort.gif)
 
-## 常见使用问题
+## 常见问题
 
 ### 渲染结果非预期
 
@@ -1303,6 +1303,7 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
+      // 此处'app.media.img'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
       this.data.pushData(new StringData(`Hello ${i}`, $r('app.media.img')));
     }
   }
@@ -1816,7 +1817,7 @@ LazyForEach(this.data, (item: string) => {
 定义键值生成函数后，点击按钮更新数据，组件刷新。  
 ![LazyForEach-Refresh-Not-Expected-Repair](./figures/LazyForEach-Refresh-Not-Expected-Repair.gif)
 
-## 附件
+## BasicDataSource示例代码
 
 ### string类型数组的BasicDataSource代码
 

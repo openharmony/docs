@@ -26,7 +26,7 @@
 
 获取当前系统用户内所有应用与备份恢复相关基础信息的能力文件。能力文件在应用备份恢复数据时是不可缺少的，开发者可以根据需要获取能力文件。
 
-该文件包含设备类型、设备版本、应用的基础性信息，如应用名称、应用数据大小、应用版本信息、是否支持备份恢复、是否在恢复时安装应用。
+该文件包含设备类型、设备版本、应用的基础性信息。如应用名称、应用数据大小、应用版本信息、是否支持备份恢复、是否在恢复时安装应用。
 
 调用[backup.getLocalCapabilities()](../reference/apis-core-file-kit/js-apis-file-backup-sys.md#backupgetlocalcapabilities)获取能力文件。
 
@@ -58,16 +58,16 @@ async function getLocalCapabilities(): Promise<void> {
 
 | 属性名称       | 数据类型 | 必填 | 含义                   |
 | -------------- | -------- | ---- | ---------------------- |
-| bundleInfos    | 数组     | 是   | 应用信息列表           |
-| allToBackup    | 布尔值   | 是   | 是否允许备份恢复       |
-| extensionName  | 字符串   | 是   | 应用的扩展名           |
-| name           | 字符串   | 是   | 应用的包名             |
-| needToInstall  | 布尔值   | 是   | 应用恢复时是否需要安装 |
-| spaceOccupied  | 数值     | 是   | 应用数据占用的空间大小 |
-| versionCode    | 数值     | 是   | 应用的版本号           |
-| versionName    | 字符串   | 是   | 应用的版本名称         |
-| deviceType     | 字符串   | 是   | 设备类型               |
-| systemFullName | 字符串   | 是   | 设备版本               |
+| bundleInfos    | 数组     | 是   | 应用信息列表。           |
+| allToBackup    | 布尔值   | 是   | 是否允许备份恢复。       |
+| extensionName  | 字符串   | 是   | 应用的扩展名。           |
+| name           | 字符串   | 是   | 应用的包名。             |
+| needToInstall  | 布尔值   | 是   | 应用恢复时是否需要安装。 |
+| spaceOccupied  | 数值     | 是   | 应用数据占用的空间大小。 |
+| versionCode    | 数值     | 是   | 应用的版本号。           |
+| versionName    | 字符串   | 是   | 应用的版本名称。         |
+| deviceType     | 字符串   | 是   | 设备类型。               |
+| systemFullName | 字符串   | 是   | 设备版本。               |
 
 ```json
 {

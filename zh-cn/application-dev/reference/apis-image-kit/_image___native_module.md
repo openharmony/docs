@@ -183,7 +183,7 @@
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromData](#oh_imagesourcenative_createfromdata) (uint8_t \*data, size_t dataSize, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | 通过缓冲区数据创建OH_ImageSourceNative指针。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromRawFile](#oh_imagesourcenative_createfromrawfile) (RawFileDescriptor \*rawFile, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | 通过图像资源文件的RawFileDescriptor创建OH_ImageSourceNative指针。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | 通过图片解码参数创建OH_PixelmapNative指针。  | 
-| [Image_ErrorCode](#image_errorcode)[OH_ImageSourceNative_CreatePixelmapUsingAllocator](#oh_imagesourcenative_createpixelmapusingallocator) (OH_ImageSourceNative \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, [IMAGE_ALLOCATOR_TYPE](#image_allocator_type) allocator, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | 根据解码参数创建一个PixelMap，PixelMap使用的内存类型可以通过allocatorType来指定。<br/>默认情况下，系统会根据图像类型、图像大小、平台能力等选择内存类型。 在处理通过此接口返回的PixelMap时，请始终考虑步幅（stride）的影响。 | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePixelmapUsingAllocator](#oh_imagesourcenative_createpixelmapusingallocator) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, [IMAGE_ALLOCATOR_TYPE](#image_allocator_type) allocator, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | 根据解码参数创建一个PixelMap，PixelMap使用的内存类型可以通过allocatorType来指定。<br/>默认情况下，系统会根据图像类型、图像大小、平台能力等选择内存类型。 在处理通过此接口返回的PixelMap时，请始终考虑步幅（stride）的影响。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePixelmapList](#oh_imagesourcenative_createpixelmaplist) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, OH_PixelmapNative \*resVecPixMap[], size_t size) | 通过图片解码参数创建OH_PixelmapNative数组。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePicture](#oh_imagesourcenative_createpicture) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, OH_DecodingOptionsForPicture \*options, [OH_PictureNative](#oh_picturenative) \*\*picture) | 通过图片解码创建OH_PictureNative指针。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_GetDelayTimeList](#oh_imagesourcenative_getdelaytimelist) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, int32_t \*delayTimeList, size_t size) | 获取图像延迟时间数组。  | 
@@ -237,6 +237,8 @@
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetRowStride](#oh_pixelmapinitializationoptions_setrowstride) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t rowStride) | 设置图像跨距。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_GetAlphaType](#oh_pixelmapinitializationoptions_getalphatype) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t \*alphaType) | 获取透明度类型。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetAlphaType](#oh_pixelmapinitializationoptions_setalphatype) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t alphaType) | 设置透明度类型。  | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_GetEditable](#oh_pixelmapinitializationoptions_geteditable) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, bool \*editable) | 获取可编辑标志。 | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetEditable](#oh_pixelmapinitializationoptions_seteditable) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, bool editable) | 设置可编辑标志。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_Release](#oh_pixelmapinitializationoptions_release) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options) | 释放OH_Pixelmap_InitializationOptions指针。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapImageInfo_Create](#oh_pixelmapimageinfo_create) ([OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) \*\*info) | 创建OH_Pixelmap_ImageInfo指针。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapImageInfo_GetWidth](#oh_pixelmapimageinfo_getwidth) ([OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) \*info, uint32_t \*width) | 获取图片宽。  | 
@@ -263,7 +265,8 @@
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Rotate](#oh_pixelmapnative_rotate) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, float angle) | 根据输入的角度对图片进行旋转。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Flip](#oh_pixelmapnative_flip) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, bool shouldFilpHorizontally, bool shouldFilpVertically) | 根据输入的条件对图片进行翻转。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Crop](#oh_pixelmapnative_crop) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [Image_Region](_image___region.md) \*region) | 根据输入的尺寸对图片进行裁剪  | 
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Release](#oh_pixelmapnative_release) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap) | 释放OH_PixelmapNative指针。  | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Release](#oh_pixelmapnative_release) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap) | 释放OH_PixelmapNative指针，推荐使用 [OH_PixelmapNative_Destroy](#oh_pixelmapnative_destroy)。 | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Destroy](#oh_pixelmapnative_destroy) (OH_PixelmapNative \*\*pixelmap) | 释放OH_PixelmapNative指针。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_ConvertAlphaFormat](#oh_pixelmapnative_convertalphaformat) ([OH_PixelmapNative](#oh_pixelmapnative) \*srcpixelmap, [OH_PixelmapNative](#oh_pixelmapnative) \*dstpixelmap, const bool isPremul) | 将pixlemap的像素数据做预乘和非预乘之间的转换。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_CreateEmptyPixelmap](#oh_pixelmapnative_createemptypixelmap) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | 利用OH_Pixelmap_InitializationOptions创建空的pixelmap对象，内存数据为0。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetNativeBuffer](#oh_pixelmapnative_getnativebuffer) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, OH_NativeBuffer \*\*nativeBuffer) | 从DMA内存的PixelMap中，获取NativeBuffer对象。  | 
@@ -272,10 +275,10 @@
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_SetColorSpaceNative](#oh_pixelmapnative_setcolorspacenative) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [OH_NativeColorSpaceManager](#oh_nativecolorspacemanager) \*colorSpaceNative) | 设置NativeColorSpaceManager对象。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetColorSpaceNative](#oh_pixelmapnative_getcolorspacenative) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [OH_NativeColorSpaceManager](#oh_nativecolorspacemanager) \*\*colorSpaceNative) | 获取NativeColorSpaceManager对象。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_SetMemoryName](#oh_pixelmapnative_setmemoryname) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, char \*name, size_t \*size) | 设置pixelMap内存名字。  | 
-| [Image_ErrorCode](#image_errorcode)[OH_PixelmapNative_GetByteCount](#oh_pixelmapnative_getbytecount) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint32_t \*byteCount) | 获取Pixelmap中所有像素所占用的总字节数，不包含内存填充。 | 
-| [Image_ErrorCode](#image_errorcode)[OH_PixelmapNative_GetAllocationByteCount](#oh_pixelmapnative_getallocationbytecount) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint32_t \*allocationByteCount) | 获取Pixelmap用于储存像素数据的内存字节数。 | 
-| [Image_ErrorCode](#image_errorcode)[OH_PixelmapNative_AccessPixels](#oh_pixelmapnative_accesspixels) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, void \*\*addr) | 获取Pixelmap像素数据的内存地址，并锁定这块内存。<br/>当该内存被锁定时，任何修改或释放该Pixelmap的像素数据的操作均会失败或无效。 | 
-| [Image_ErrorCode](#image_errorcode)[OH_PixelmapNative_UnaccessPixels](#oh_pixelmapnative_unaccesspixels) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap) | 释放Pixelmap像素数据的内存锁。<br/>该函数需要与[OH_PixelmapNative_AccessPixels](#oh_pixelmapnative_accesspixels)匹配使用。 | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetByteCount](#oh_pixelmapnative_getbytecount) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint32_t \*byteCount) | 获取Pixelmap中所有像素所占用的总字节数，不包含内存填充。 | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetAllocationByteCount](#oh_pixelmapnative_getallocationbytecount) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint32_t \*allocationByteCount) | 获取Pixelmap用于储存像素数据的内存字节数。 | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_AccessPixels](#oh_pixelmapnative_accesspixels) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, void \*\*addr) | 获取Pixelmap像素数据的内存地址，并锁定这块内存。<br/>当该内存被锁定时，任何修改或释放该Pixelmap的像素数据的操作均会失败或无效。 | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_UnaccessPixels](#oh_pixelmapnative_unaccesspixels) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap) | 释放Pixelmap像素数据的内存锁。<br/>该函数需要与[OH_PixelmapNative_AccessPixels](#oh_pixelmapnative_accesspixels)匹配使用。 | 
 
 
 ### 变量
@@ -3973,6 +3976,30 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetAlphaType(OH_Pixelmap_Initia
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 
+### OH_PixelmapInitializationOptions_GetEditable()
+
+```
+Image_ErrorCode OH_PixelmapInitializationOptions_GetEditable(OH_Pixelmap_InitializationOptions *options, bool *editable)
+```
+
+**描述**
+
+获取可编辑标志。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_Pixelmap_InitializationOptions指针。 | 
+| editable | 可编辑标志。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
 ### OH_PixelmapInitializationOptions_GetHeight()
 
 ```
@@ -4126,6 +4153,30 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetAlphaType(OH_Pixelmap_Initia
 **返回：**
 
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapInitializationOptions_SetEditable()
+
+```
+Image_ErrorCode OH_PixelmapInitializationOptions_SetEditable(OH_Pixelmap_InitializationOptions *options, bool editable)
+```
+
+**描述**
+
+设置可编辑标志。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_Pixelmap_InitializationOptions指针。 | 
+| editable | 可编辑标志。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 
 ### OH_PixelmapInitializationOptions_SetHeight()
@@ -4391,7 +4442,7 @@ Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMap(OH_PixelmapNative *srcPix
 
 根据输入的宽高的缩放比例，创建一个新的缩放后的图片。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -4417,7 +4468,7 @@ Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMapWithAntiAliasing(OH_Pixelm
 
 根据指定的缩放算法和输入的宽高的缩放比例，创建一个新的缩放后的图片。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -4456,6 +4507,29 @@ Image_ErrorCode OH_PixelmapNative_Crop(OH_PixelmapNative *pixelmap, Image_Region
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 
+### OH_PixelmapNative_Destroy()
+
+```
+Image_ErrorCode OH_PixelmapNative_Destroy(OH_PixelmapNative **pixelmap)
+```
+
+**描述**
+
+释放OH_PixelmapNative指针。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pixelmap | 被释放的OH_PixelmapNative指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
 ### OH_PixelmapNative_Flip()
 
 ```
@@ -4489,7 +4563,7 @@ Image_ErrorCode OH_PixelmapNative_GetAllocationByteCount(OH_PixelmapNative *pixe
 
 获取Pixelmap用于储存像素数据的内存字节数。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -4536,7 +4610,7 @@ Image_ErrorCode OH_PixelmapNative_GetByteCount(OH_PixelmapNative *pixelmap, uint
 
 获取Pixelmap中所有像素所占用的总字节数，不包含内存填充。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -4690,7 +4764,7 @@ Image_ErrorCode OH_PixelmapNative_ReadPixels(OH_PixelmapNative *pixelmap, uint8_
 Image_ErrorCode OH_PixelmapNative_Release(OH_PixelmapNative *pixelmap)
 ```
 **描述**
-释放OH_PixelmapNative指针。
+释放OH_PixelmapNative指针，推荐使用 [OH_PixelmapNative_Destroy](#oh_pixelmapnative_destroy)。
 
 **起始版本：** 12
 

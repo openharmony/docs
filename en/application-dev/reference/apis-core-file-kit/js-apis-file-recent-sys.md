@@ -94,7 +94,7 @@ Lists the files that are accessed recently.
 
   | Type| Description|
   | --- | -- |
-  |  Array<[FileInfo](#fileinfo)> | List of the files obtained.|
+  |  Array<[FileInfo](#fileinfo)> | List of the files and folders obtained.|
 
 **Error codes**
 
@@ -126,7 +126,7 @@ Represents information about the recent file list.
 | Name| Type  | Read-Only| Writable| Description    |
 | ------ | ------ | -------- | ------ | -------- |
 | uri | string | Yes| No| URI of the file.|
-| srcPath | string | Yes| No| File path. |
+| srcPath | string | Yes| No| File path.|
 | fileName | string | Yes| No| File name.|
 | mode | number | Yes| No| [Permissions on the file](js-apis-file-fs.md#stat).|
 | size | number | Yes| No|  File size, in bytes.|

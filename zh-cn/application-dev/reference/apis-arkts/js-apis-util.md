@@ -582,7 +582,7 @@ static addBefore(targetClass: Object, methodName: string, isStatic: boolean, bef
 | -------- | ------- | ---- | -------------------------------------|
 | targetClass  | Object   | 是   | 指定的类对象。                    |
 | methodName   | string   | 是   | 指定的方法名，不支持read-only方法。                    |
-| isStatic     | boolean  | 是   | 指定的原方法是否为静态方法，true表示静态方法，false表示实例方法。      |
+| isStatic     | boolean  | 是   | 指定的原方法是否为静态方法。true表示静态方法，false表示实例方法。      |
 | before       | Function | 是   | 要插入的函数对象。函数有参数，则第一个参数是this对象（若isStatic为true，则为类对象即targetClass；若isStatic为false，则为调用方法的实例对象），其余参数是原方法的参数。函数也可以无参数，无参时不做处理。 |
 
 **错误码：**
@@ -674,7 +674,7 @@ static addAfter(targetClass: Object, methodName: string, isStatic: boolean, afte
 | -------- | ------- | ---- | -------------------------------------|
 | targetClass  | Object   | 是   | 指定的类对象。                    |
 | methodName   | string   | 是   | 指定的原方法名，不支持read-only方法。                   |
-| isStatic     | boolean  | 是   | 指定的原方法是否为静态方法，true表示静态方法，false表示实例方法。      |
+| isStatic     | boolean  | 是   | 指定的原方法是否为静态方法。true表示静态方法，false表示实例方法。      |
 | after        | Function | 是   | 要插入的函数。函数有参数时，则第一个参数是this对象（若isStatic为true，则为类对象即targetClass；若isStatic为false，则为调用方法的实例对象），第二个参数是原方法的返回值（如果原方法没有返回值，则为undefined），其余参数是原方法的参数。函数也可以无参，无参时不做处理。  |
 
 **错误码：**
@@ -757,7 +757,7 @@ static replace(targetClass: Object, methodName: string, isStatic: boolean, inste
 | -------- | ------- | ---- | -------------------------------------|
 | targetClass  | Object   | 是   | 指定的类对象。                    |
 | methodName   | string   | 是   | 指定的原方法名，不支持read-only方法。                  |
-| isStatic     | boolean  | 是   | 指定的原方法是否为静态方法，true表示静态方法，false表示实例方法。       |
+| isStatic     | boolean  | 是   | 指定的原方法是否为静态方法。true表示静态方法，false表示实例方法。       |
 | instead      | Function | 是   | 要用来替换原方法的函数。函数有参数时，则第一个参数是this对象（若isStatic为true，则为类对象即targetClass；若isStatic为false，则为调用方法的实例对象），其余参数是原方法的参数。函数也可以无参，无参时不做处理。   |
 
 **错误码：**

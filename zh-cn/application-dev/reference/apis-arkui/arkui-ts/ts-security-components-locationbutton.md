@@ -118,7 +118,7 @@ LocationButtonCallback = (event: ClickEvent, result: LocationButtonOnClickResult
 
 点击位置按钮触发该回调。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -150,7 +150,7 @@ onClick(event: LocationButtonCallback)
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| event | [LocationButtonCallback](#locationbuttoncallback) |是 |见LocationButtonCallback。|
+| event | [LocationButtonCallback](#locationbuttoncallback) |是 |见LocationButtonCallback。<br>在API10-17时，参数类型为：(event: [ClickEvent](ts-universal-events-click.md#clickevent对象说明), result: [LocationButtonOnClickResult](#locationbuttononclickresult枚举说明)) => void。<br>从API18开始，变更为LocationButtonCallback。|
 
 ## 示例
 
@@ -161,39 +161,61 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct Index {
-  handleLocationButtonClick: LocationButtonCallback = (event: ClickEvent, result: LocationButtonOnClickResult, error: BusinessError<void>) => {
-    if (result == LocationButtonOnClickResult.SUCCESS) {
-      console.info("success");
-    } else {
-      console.info("errCode: " + error.code);
-      console.info("errMessage: " + error.message);
-    }
-  };
+  handleLocationButtonClick: LocationButtonCallback =
+    (event: ClickEvent, result: LocationButtonOnClickResult, error: BusinessError<void>) => {
+      if (result == LocationButtonOnClickResult.SUCCESS) {
+        console.info("success");
+      } else {
+        console.info("errCode: " + error.code);
+        console.info("errMessage: " + error.message);
+      }
+    };
 
   build() {
     Row() {
       Column({ space: 10 }) {
-        // 默认参数下，图标、文字、背景都存在
+        // 默认参数下，图标、文字、背景都存在。
         LocationButton().onClick(this.handleLocationButtonClick)
         // 传入参数即表示元素存在，不传入的参数表示元素不存在，如果不传入buttonType，会默认添加ButtonType.Capsule配置，显示图标+背景。
         LocationButton({ icon: LocationIconStyle.LINES })
-        // 只显示图标+背景，如果设置背景色高八位的α值低于0x1A，则会被系统强制调整为0xFF
+        // 只显示图标+背景，如果设置背景色高八位的α值低于0x1A，则会被系统强制调整为0xFF。
         LocationButton({ icon: LocationIconStyle.LINES, buttonType: ButtonType.Capsule })
           .backgroundColor(0x10007dff)
-        // 图标、文字、背景都存在，如果设置背景色高八位的α值低于0x1A，则会被系统强制调整为0xFF
-        LocationButton({ icon: LocationIconStyle.LINES, text: LocationDescription.CURRENT_LOCATION, buttonType: ButtonType.Capsule })
+        // 图标、文字、背景都存在，如果设置背景色高八位的α值低于0x1A，则会被系统强制调整为0xFF。
+        LocationButton({
+          icon: LocationIconStyle.LINES,
+          text: LocationDescription.CURRENT_LOCATION,
+          buttonType: ButtonType.Capsule
+        })
         // 图标、文字、背景都存在，如果设置宽度小于当前属性组合下允许的最小宽度时，宽度仍为设置值，此时按钮文本信息会自动换行，以保证安全控件显示的完整性。
-        LocationButton({ icon: LocationIconStyle.LINES, text: LocationDescription.CURRENT_LOCATION, buttonType: ButtonType.Capsule })
+        LocationButton({
+          icon: LocationIconStyle.LINES,
+          text: LocationDescription.CURRENT_LOCATION,
+          buttonType: ButtonType.Capsule
+        })
           .fontSize(16)
           .width(30)
         // 图标、文字、背景都存在，如果设置宽度小于当前属性组合下允许的最小宽度时，宽度仍为设置值，此时按钮文本信息会自动换行，以保证安全控件显示的完整性。
-        LocationButton({ icon: LocationIconStyle.LINES, text: LocationDescription.CURRENT_LOCATION, buttonType: ButtonType.Capsule })
+        LocationButton({
+          icon: LocationIconStyle.LINES,
+          text: LocationDescription.CURRENT_LOCATION,
+          buttonType: ButtonType.Capsule
+        })
           .fontSize(16)
           .size({ width: 30, height: 30 })
         // 图标、文字、背景都存在，如果设置宽度小于当前属性组合下允许的最小宽度时，宽度仍为设置值，此时按钮文本信息会自动换行，以保证安全控件显示的完整性。
-        LocationButton({ icon: LocationIconStyle.LINES, text: LocationDescription.CURRENT_LOCATION, buttonType: ButtonType.Capsule })
+        LocationButton({
+          icon: LocationIconStyle.LINES,
+          text: LocationDescription.CURRENT_LOCATION,
+          buttonType: ButtonType.Capsule
+        })
           .fontSize(16)
-          .constraintSize({ minWidth: 0, maxWidth: 30, minHeight: 0, maxHeight: 30 })
+          .constraintSize({
+            minWidth: 0,
+            maxWidth: 30,
+            minHeight: 0,
+            maxHeight: 30
+          })
       }.width('100%')
     }.height('100%')
   }

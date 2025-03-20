@@ -1,11 +1,8 @@
 # 对称密钥加解密算法规格
 
-
 当前章节将说明系统目前支持的算法及其对应的规格。
 
-
 对于每种算法采用支持的加密模式，将会在具体的每个算法规格中介绍。
-
 
 ## AES
 
@@ -43,7 +40,6 @@
   
   举例说明，当需要分组模式为CFB、不带密钥长度、填充模式为NoPadding的AES密钥，其字符串参数为"AES|CFB|NoPadding"。
 
-
 ## 3DES
 
 [3DES](crypto-sym-key-generation-conversion-spec.md#3des)算法的加解密过程分别是对明文/密文数据进行三次DES加密或解密，得到相应的密文或明文。
@@ -77,7 +73,6 @@
 - 从API版本10开始，支持对称加解密不带密钥长度的规格。加解密参数输入密钥类型时，支持不带长度，加解密运算取决于实际输入的密钥长度。
   举例说明，当需要分组模式为CFB、不带密钥长度、填充模式为NoPadding的3DES密钥，其字符串参数为"3DES|CFB|NoPadding"。
 
-
 ## SM4
 
 算法库当前提供了[SM4](crypto-sym-key-generation-conversion-spec.md#sm4)加解密常用的7种加密模式：ECB、CBC、CTR、OFB、CFB、CFB128和GCM。不同的加密模式适用的加解密参数不同，具体请参考[ParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#paramsspec)。
@@ -110,7 +105,6 @@
   | CFB | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ | 
   | CFB128 | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ | 
   | GCM | 128 | [NoPadding\|PKCS5\|PKCS7] | 12+ | 
-
 
 ## 填充模式
 

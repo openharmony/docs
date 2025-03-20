@@ -737,7 +737,7 @@ usbManager.setPortRoleTypes(portId, usbManager.PowerRoleType.SOURCE, usbManager.
 
 ## addAccessoryRight<sup>14+<sup>
 
-addAccessoryRight(tokenId: number, accessory: USBAccessory): void;
+addAccessoryRight(tokenId: number, accessory: USBAccessory): void
 
 为应用程序添加访问USB配件权限。
 

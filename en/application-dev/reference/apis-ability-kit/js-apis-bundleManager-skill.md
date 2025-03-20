@@ -22,7 +22,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | actions     | Array\<string> | Yes  | No  | Actions received by the skill.|
 | entities    | Array\<string> | Yes  | No  | Entities received by the skill.  |
 | uris | Array\<SkillUri> | Yes  | No  | URIs that match Want.|
-| domainVerify     | boolean | Yes  | No  | DomainVerify value received by the skill. This parameter exists only in **AbilityInfo**.|
+| domainVerify     | boolean | Yes  | No  | DomainVerify value received by the skill. This parameter exists only in **AbilityInfo** and specifies whether domain name verification is enabled. The value **true** means that domain name verification is enabled, and **false** means the opposite.|
 
 ## SkillUri
 

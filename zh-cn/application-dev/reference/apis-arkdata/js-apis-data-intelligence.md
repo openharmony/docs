@@ -9,6 +9,8 @@
 > **说明：**
 >
 > 本模块首批接口从API version 15开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 考虑到数据向量化处理的计算量和资源占用较大，当前仅支持在2in1设备上使用。
 
 
 ## 导入模块
@@ -52,14 +54,14 @@ getTextEmbeddingModel(config: ModelConfig): Promise&lt;TextEmbedding&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let config:intelligence.ModelConfig = {
-  version:1,
+let textConfig:intelligence.ModelConfig = {
+  version:intelligence.ModelVersion.BASIC_MODEL,
   isNpuAvailable:false,
   cachePath:"/data"
 }
 let textEmbedding:intelligence.TextEmbedding;
 
-intelligence.getTextEmbeddingModel(config)
+intelligence.getTextEmbeddingModel(textConfig)
   .then((data:intelligence.TextEmbedding) => {
     console.info("Succeeded in getting TextModel");
     textEmbedding = data;
@@ -104,14 +106,14 @@ getImageEmbeddingModel(config: ModelConfig): Promise&lt;ImageEmbedding&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let config:intelligence.ModelConfig = {
-    version:1,
+let imageConfig:intelligence.ModelConfig = {
+    version:intelligence.ModelVersion.BASIC_MODEL,
     isNpuAvailable:false,
     cachePath:"/data"
 }
 let imageEmbedding:intelligence.ImageEmbedding;
 
-intelligence.getImageEmbeddingModel(config)
+intelligence.getImageEmbeddingModel(imageConfig)
   .then((data:intelligence.ImageEmbedding) => {
     console.info("Succeeded in getting ImageModel");
     imageEmbedding = data;
@@ -161,9 +163,9 @@ let splitConfig:intelligence.SplitConfig = {
   size:10,
   overlapRatio:0.1
 }
-let text = 'text';
+let splitText = 'text';
 
-intelligence.splitText(text, splitConfig)
+intelligence.splitText(splitText, splitConfig)
   .then((data:Array<string>) => {
     console.info("Succeeded in splitting Text");
   })

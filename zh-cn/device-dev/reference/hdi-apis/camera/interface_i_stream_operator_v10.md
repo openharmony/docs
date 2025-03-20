@@ -39,7 +39,7 @@
 ### AttachBufferQueue()
 
 ```
-IStreamOperator::AttachBufferQueue ([in] int streamId, [in] BufferProducerSequenceable bufferProducer )
+IStreamOperator::AttachBufferQueue ([in] int streamId, [in] BufferProducerSequenceable bufferProducer)
 ```
 
 **描述**
@@ -104,7 +104,7 @@ NO_ERROR 表示执行成功。
 ### Capture()
 
 ```
-IStreamOperator::Capture ([in] int captureId, [in] struct CaptureInfo info, [in] boolean isStreaming )
+IStreamOperator::Capture ([in] int captureId, [in] struct CaptureInfo info, [in] boolean isStreaming)
 ```
 
 **描述**
@@ -147,7 +147,7 @@ OnFrameShutter
 ### ChangeToOfflineStream()
 
 ```
-IStreamOperator::ChangeToOfflineStream ([in] int[] streamIds, [in] IStreamOperatorCallback callbackObj, [out] IOfflineStreamOperator offlineOperator )
+IStreamOperator::ChangeToOfflineStream ([in] int[] streamIds, [in] IStreamOperatorCallback callbackObj, [out] IOfflineStreamOperator offlineOperator)
 ```
 
 **描述**
@@ -176,7 +176,7 @@ NO_ERROR 表示执行成功。
 ### CommitStreams()
 
 ```
-IStreamOperator::CommitStreams ([in] enum OperationMode mode, [in] unsigned char[] modeSetting )
+IStreamOperator::CommitStreams ([in] enum OperationMode mode, [in] unsigned char[] modeSetting)
 ```
 
 **描述**
@@ -287,7 +287,7 @@ NO_ERROR 表示执行成功。
 ### IsStreamsSupported()
 
 ```
-IStreamOperator::IsStreamsSupported ([in] enum OperationMode mode, [in] unsigned char[] modeSetting, [in] struct StreamInfo[] infos, [out] enum StreamSupportType type )
+IStreamOperator::IsStreamsSupported ([in] enum OperationMode mode, [in] unsigned char[] modeSetting, [in] struct StreamInfo[] infos, [out] enum StreamSupportType type)
 ```
 
 **描述**

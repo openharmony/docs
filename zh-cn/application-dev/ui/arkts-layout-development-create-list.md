@@ -359,7 +359,7 @@ List() {
    private listScroller: Scroller = new Scroller();
    ```
 
-2. 然后，列表通过[scroller](../reference/apis-arkui/arkui-ts/ts-container-list.md#listoptions16对象说明)参数绑定滚动控制器。
+2. 然后，列表通过[scroller](../reference/apis-arkui/arkui-ts/ts-container-list.md#listoptions18对象说明)参数绑定滚动控制器。
 
    ```ts
    // listScroller初始化List组件的scroller参数，绑定listScroller与列表。

@@ -30,11 +30,11 @@ Disallows a user to add system accounts through the specified device administrat
 
 **Parameters**
 
-| Name   | Type                                                   | Mandatory| Description                                                       |
-| --------- | ------------------------------------------------------- | ---- | ----------------------------------------------------------- |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                             |
-| disallow  | boolean                                                 | Yes  | Whether to forbid the addition of local user accounts. The value **true** means the addition of local user accounts is forbidden, and the value **false** means the opposite. |
-| accountId | number                                                  | No  | User ID, which must be greater than or equal to 0.                |
+| Name   | Type                                                   | Mandatory| Description                                                        |
+| --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                      |
+| disallow  | boolean                                                 | Yes  | Whether to forbid the creation of local user accounts. The value **true** means the creation of local user accounts is forbidden, and the value **false** means the opposite. |
+| accountId | number                                                  | No  | User ID, which specifies a user. If this parameter is not specified, all users are not allowed to add accounts. If this parameter is specified, specified users are not allowed to add accounts. The value must be greater than or equal to 0.<br>You can call the [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) API to obtain the user ID.|
 
 **Error codes**
 
@@ -78,16 +78,16 @@ Checks whether a user is not allowed to add system accounts through the specifie
 
 **Parameters**
 
-| Name   | Type                                                   | Mandatory| Description                                       |
-| --------- | ------------------------------------------------------- | ---- | ------------------------------------------- |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                             |
-| accountId | number                                                  | No  | User ID, which must be greater than or equal to 0.|
+| Name   | Type                                                   | Mandatory| Description                                                        |
+| --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                      |
+| accountId | number                                                  | No  | User ID, which specifies a user. If this parameter is not specified, the system queries whether all users are not allowed to add accounts. If this parameter is specified, the system queries whether specified users are not allowed to add accounts. The value must be greater than or equal to 0.<br>You can call the [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) API to obtain the user ID.|
 
 **Return value**
 
-| Type   | Description                                                        |
-| ------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if the user is not allowed to add system accounts;<br>returns **false** otherwise.|
+| Type   | Description                                                      |
+| ------- | ---------------------------------------------------------- |
+| boolean | If **true** is returned, accounts cannot be added.<br>If **false** is returned, the account can be added.|
 
 **Error codes**
 
@@ -121,7 +121,7 @@ try {
 
 addOsAccountAsync(admin: Want, name: string, type: osAccount.OsAccountType): Promise&lt;osAccount.OsAccountInfo&gt;
 
-Adds a system account in the background through the specified device administrator application. This API uses a promise to return the result.
+Adds an account in the background. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
@@ -133,8 +133,8 @@ Adds a system account in the background through the specified device administrat
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | Yes  | Device administrator application.                                              |
-| name   | string                                                       | Yes  | User ID, which must be greater than or equal to 0.                 |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | Yes  | EnterpriseAdminExtensionAbility.                                      |
+| name   | string                                                       | Yes  | Account name, which is the name of the account to be added. An account with the same name or an empty name cannot be created.|
 | type   | [osAccount.OsAccountType](../apis-basic-services-kit/js-apis-osAccount.md#osaccounttype) | Yes  | Type of the account to add.<br>The value can be any of the following:<br>· **ADMIN**: administrator account.<br>· **NORMAL**: normal account.<br>· **GUEST**: guest account.|
 
 **Return value**
