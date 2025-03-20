@@ -719,6 +719,7 @@ console.info("Readable test pause", readableStream.isPaused()); // Readable test
 setEncoding(encoding?: string): boolean
 
 设置可读流的字符编码。
+当缓冲区有数据时，不允许设置字符编码，返回值为false。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
