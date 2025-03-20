@@ -448,7 +448,7 @@ Webview提供mixedMode(mixedMode: MixedMode)接口，设置是否允许加载超
 
 **参考链接**
 
-[动态创建Web组件](../web/web-page-loading-with-web-components.md#动态创建web组件)
+[动态创建Web组件](../web/web-page-loading-with-web-components.md)
 
 
 ## 目前OpenHarmony是否有提供类似其他系统的JavaScript引擎能力?
