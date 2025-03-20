@@ -28,7 +28,7 @@ import { inputConsumer } from '@kit.InputKit';
 
 ## KeyPressedConfig<sup>16+</sup>
 
-按键消费设置。
+按键消费设置。响应处理按键事件。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -36,7 +36,7 @@ import { inputConsumer } from '@kit.InputKit';
 | --------- | ------ | ------- | ------- | ------- |
 | key       | number  | 是      | 否      | 按键键值。<br>当前仅支持[KEYCODE_VOLUME_UP](./js-apis-keycode.md#KEYCODE_VOLUME_UP)键和[KEYCODE_VOLUME_DOWN](./js-apis-keycode.md#KEYCODE_VOLUME_DOWN)键。 |  
 | action    | number  | 是      | 否      | 按键事件类型。取值：<br>- 1：按键按下。<br>- 2：按键抬起。当前仅支持注册按键按下。 |  
-| isRepeat  | boolean  | 是      | 否      | 是否上报重复的按键事件。true表示上报，false表示不上报，若不填默认为true。 |
+| isRepeat  | boolean  | 是      | 否      | 是否上报重复的按键事件。 |
 
 ## inputConsumer.getAllSystemHotkeys<sup>14+</sup>
 
