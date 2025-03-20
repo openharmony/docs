@@ -936,7 +936,8 @@ getFileSyncState(uri: string): FileSyncState
     console.error("getFileSyncStatefailed with error:" + JSON.stringify(error));
   }
   ```
-  ## FileSyncState<sup>11+</sup>
+
+## FileSyncState<sup>11+</sup>
 
 端云文件同步状态，为枚举类型。
 
