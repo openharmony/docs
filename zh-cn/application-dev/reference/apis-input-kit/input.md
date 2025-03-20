@@ -473,9 +473,9 @@ typedef void(* Input_MouseEventCallback) (const Input_MouseEvent *mouseEvent)
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明                                   |
-  | ------ | ------ | ---- | ------------------------------------- |
-  | mouseEvent |  [Input_MouseEvent](#input_mouseevent) | 是   | 鼠标事件对象。 |
+| 名称 | 描述    |
+| ------ | ------ |
+| mouseEvent | 鼠标事件对象。 |
 
 ### Input_Result
 
