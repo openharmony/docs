@@ -2680,18 +2680,6 @@ Allows a system application to start HiViewCare.
 
 **Valid since**: 11
 
-## ohos.permission.CONNECT_UI_EXTENSION_ABILITY
-
-Allows a system service to connect to UIExtensionAbility.
-
-**Permission level**: system_core
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 11
-
 ## ohos.permission.SET_SANDBOX_POLICY
 
 Allows a system application to set dynamic sandbox policies.
