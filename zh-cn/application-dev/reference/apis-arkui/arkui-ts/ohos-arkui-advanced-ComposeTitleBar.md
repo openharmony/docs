@@ -21,7 +21,7 @@ import { ComposeTitleBar } from '@kit.ArkUI'
 无
 
 ## 属性
-不支持[通用属性](ts-universal-attributes-size.md)
+不支持[通用属性](ts-universal-attributes-size.md)。
 
 
 ## ComposeTitleBar
@@ -58,7 +58,7 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 | action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包，item属性不支持触发action事件。 |
 
 ## 事件
-不支持[通用事件](ts-universal-events-click.md)
+不支持[通用事件](ts-universal-events-click.md)。
 
 ## 示例
 
