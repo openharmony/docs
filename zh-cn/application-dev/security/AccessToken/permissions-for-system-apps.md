@@ -4288,18 +4288,6 @@
 
 **起始版本**：18
 
-## ohos.permission.ACCESS_VIRTUAL_SCREEN
-
-允许应用管控虚拟屏。
-
-**权限级别**：system_basic
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
-
-**起始版本**：18
-
 ## ohos.permission.GET_PAGE_INFO
 
 允许系统应用获取指定应用页面信息。
