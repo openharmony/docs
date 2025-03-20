@@ -151,8 +151,8 @@
 | [Input_Result](input.md#input_result) [OH_Input_RemoveAxisEventMonitor](input.md#oh_input_removeaxiseventmonitor) ([InputEvent_AxisEventType](input.md#inputevent_axiseventtype) axisEventType, [Input_AxisEventCallback](input.md#input_axiseventcallback) callback) | 移除指定类型轴事件监听，轴事件类型定义在[InputEvent_AxisEventType](input.md#inputevent_axiseventtype)中。  | 
 | [Input_Result](input.md#input_result) [OH_Input_AddKeyEventInterceptor](input.md#oh_input_addkeyeventinterceptor) ([Input_KeyEventCallback](input.md#input_keyeventcallback) callback, [Input_InterceptorOptions](input.md#input_interceptoroptions) \*option) | 添加按键事件的拦截,重复添加只有第一次生效。  | 
 | [Input_Result](input.md#input_result) [OH_Input_AddInputEventInterceptor](input.md#oh_input_addinputeventinterceptor) ([Input_InterceptorEventCallback](_input___interceptor_event_callback.md) \*callback [Input_InterceptorOptions](input.md#input_interceptoroptions) \*option) | 添加输入事件拦截，包括鼠标、触摸和轴事件，重复添加只有第一次生效。  | 
-| [Input_Result](input.md#input_result) [OH_Input_RemoveKeyEventInterceptor](input.md#oh_input_removekeyeventinterceptor) () | 移除按键事件拦截。  | 
-| [Input_Result](input.md#input_result) [OH_Input_RemoveInputEventInterceptor](input.md#oh_input_removeinputeventinterceptor) () | 移除输入事件拦截，包括鼠标、触摸和轴事件。  | 
+| [Input_Result](input.md#input_result) [OH_Input_RemoveKeyEventInterceptor](input.md#oh_input_removekeyeventinterceptor) (void) | 移除按键事件拦截。  | 
+| [Input_Result](input.md#input_result) [OH_Input_RemoveInputEventInterceptor](input.md#oh_input_removeinputeventinterceptor) (void) | 移除输入事件拦截，包括鼠标、触摸和轴事件。  | 
 | [Input_Result](input.md#input_result) [OH_Input_GetDeviceIds](input.md#oh_input_getdeviceids) (int32_t \*deviceIds, int32_t inSize, int32_t \*outSize) | 获取所有输入设备的ID列表。  | 
 | [Input_Result](input.md#input_result) [OH_Input_GetDevice](input.md#oh_input_getdevice) (int32_t deviceId, [Input_DeviceInfo](input.md#input_deviceinfo) \*\*deviceInfo) | 获取输入设备信息。  | 
 | [Input_DeviceInfo](input.md#input_deviceinfo) \* [OH_Input_CreateDeviceInfo](input.md#oh_input_createdeviceinfo) (void) | 创建输入设备信息的对象。  | 
