@@ -1120,7 +1120,7 @@ try {
 
 | 名称   | 类型                       | 必填 | 说明                                                 |
 | ------ | -------------------------- | ---- | ---------------------------------------------------- |
-| time   | time                       | 是   | 振动绝对起始时间。                                   |
+| time   | number                     | 是   | 振动绝对起始时间。                                   |
 | events | Array&lt;VibratorEvent&gt; | 是   | 振动事件数组，build()方法返回的VibratorPattern对象。 |
 
 ## ContinuousParam<sup>18+</sup>
