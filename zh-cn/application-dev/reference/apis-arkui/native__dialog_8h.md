@@ -25,6 +25,7 @@
 | -------- | -------- |
 | struct&nbsp;&nbsp;[ArkUI_NativeDialogAPI_1](_ark_u_i___native_dialog_a_p_i__1.md) | ArkUI提供的Native侧自定义弹窗接口集合，范围为ArkUI_NativeDialogAPI_1。  | 
 | struct&nbsp;&nbsp;[ArkUI_NativeDialogAPI_2](_ark_u_i___native_dialog_a_p_i__2.md) | ArkUI提供的Native侧自定义弹窗接口集合，范围为ArkUI_NativeDialogAPI_2。  |
+| struct&nbsp;&nbsp;[ArkUI_NativeDialogAPI_3](_ark_u_i___native_dialog_a_p_i__3.md) | ArkUI提供的Native侧自定义弹窗接口集合，范围为ArkUI_NativeDialogAPI_3。  |
 
 
 ### 类型定义
