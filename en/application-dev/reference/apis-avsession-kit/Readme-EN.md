@@ -1,6 +1,6 @@
 # AVSession Kit
 
-- ArkTS APIs
+- ArkTS APIs<!--avsession-arkts-->
   - [@ohos.multimedia.avsession (AVSession Management)](js-apis-avsession.md)
   - [@ohos.multimedia.avCastPickerParam (AVCastPicker Parameters)](js-apis-avCastPickerParam.md)
   <!--Del-->
@@ -9,7 +9,7 @@
   - application
     - [MediaControlExtensionContext (ExtensionAbility Context for Media Playback Control) (System API)](js-apis-inner-application-MediaControlExtensionContext-sys.md)
   <!--DelEnd-->
-- ArkTS Components
+- ArkTS Components<!--avsession-comp-->
   - [@ohos.multimedia.avCastPicker (AVCastPicker)](ohos-multimedia-avcastpicker.md)
-- Error Codes
+- Error Codes<!--avsession-arkts-errcode-->
   - [AVSession Management Error Codes](errorcode-avsession.md)
