@@ -123,8 +123,6 @@ on(event: 'progress', callback: Callback\<SyncProgress>): void
 
 添加同步过程事件监听。
 
-**需要权限**：ohos.permission.CLOUDFILE_SYNC
-
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 **参数：**
@@ -161,8 +159,6 @@ on(event: 'progress', callback: Callback\<SyncProgress>): void
 off(event: 'progress', callback?: Callback\<SyncProgress>): void
 
 移除同步过程事件监听。
-
-**需要权限**：ohos.permission.CLOUDFILE_SYNC
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -203,8 +199,6 @@ off(event: 'progress', callback?: Callback\<SyncProgress>): void
 start(): Promise&lt;void&gt;
 
 异步方法启动云盘端云同步, 以Promise形式返回结果。
-
-**需要权限**：ohos.permission.CLOUDFILE_SYNC
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -253,8 +247,6 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 异步方法启动云盘端云同步, 以callback形式返回结果。
 
-**需要权限**：ohos.permission.CLOUDFILE_SYNC
-
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 **参数：**
@@ -300,8 +292,6 @@ stop(): Promise&lt;void&gt;
 
 调用stop接口，同步流程会停止。再次调用[start](#start12)接口会继续同步。
 
-**需要权限**：ohos.permission.CLOUDFILE_SYNC
-
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 **返回值：**
@@ -341,8 +331,6 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 异步方法停止云盘端云同步, 以callback形式返回结果。
 
 调用stop接口，同步流程会停止。再次调用[start](#start12)接口会继续同步。
-
-**需要权限**：ohos.permission.CLOUDFILE_SYNC
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -384,8 +372,6 @@ getLastSyncTime(): Promise&lt;number&gt;
 
 异步方法获取上次同步时间, 以promise形式返回结果。
 
-**需要权限**：ohos.permission.CLOUDFILE_SYNC
-
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 **返回值：**
@@ -425,8 +411,6 @@ getLastSyncTime(): Promise&lt;number&gt;
 getLastSyncTime(callback: AsyncCallback&lt;number&gt;): void
 
 异步方法获取上次同步时间, 以callback形式返回结果。
-
-**需要权限**：ohos.permission.CLOUDFILE_SYNC
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
