@@ -41,7 +41,7 @@ HiCollie模块对外提供检测业务线程卡死、卡顿，以及上报卡死
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [HiCollie_ErrorCode](_hi_collie.md#hicollie_errorcode) { [HICOLLIE_SUCCESS](_hi_collie.md) = 0, [HICOLLIE_INVALID_ARGUMENT](_hi_collie.md) = 401, [HICOLLIE_WRONG_THREAD_CONTEXT](_hi_collie.md) = 29800001, [HICOLLIE_REMOTE_FAILED](_hi_collie.md) = 29800002 } | 错误码定义。  | 
+| [HiCollie_ErrorCode](_hi_collie.md#hicollie_errorcode) {<br/>HICOLLIE_SUCCESS = 0, <br/>HICOLLIE_INVALID_ARGUMENT = 401, <br/>HICOLLIE_WRONG_THREAD_CONTEXT = 29800001, <br/>HICOLLIE_REMOTE_FAILED = 29800002 } | 错误码定义。  | 
 
 
 ### 函数

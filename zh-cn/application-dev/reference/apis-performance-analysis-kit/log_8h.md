@@ -74,8 +74,8 @@ HILOG_WARN(LOG_APP, "Failed to visit %{private}s, reason:%{public}d.", url, errn
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [LogType](_hi_log.md#logtype) { [LOG_APP](_hi_log.md) = 0 } | 日志类型。 | 
-| [LogLevel](_hi_log.md#loglevel) {<br/>LOG_DEBUG = 3, LOG_INFO = 4, LOG_WARN = 5, LOG_ERROR = 6, LOG_FATAL = 7<br/>} | 日志级别。 | 
+| [LogType](_hi_log.md#logtype) {<br/>LOG_APP = 0<br/>} | 日志类型。  | 
+| [LogLevel](_hi_log.md#loglevel) {<br/>LOG_DEBUG = 3, <br/>LOG_INFO = 4, <br/>LOG_WARN = 5, <br/>LOG_ERROR = 6, <br/>LOG_FATAL = 7<br/>} | 日志级别。  | 
 
 
 ### 函数
