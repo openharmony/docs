@@ -24,7 +24,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_OnFrameAvailableListener](_o_h___on_frame_available_listener.md) | 一个OH_NativeImage的监听者，通过OH_NativeImage_SetOnFrameAvailableListener接口注册， 该监听结构体当有帧可用时，将触发回调。 |
+| [OH_OnFrameAvailableListener](_o_h___on_frame_available_listener.md) | 一个OH_NativeImage的监听者，通过OH_NativeImage_SetOnFrameAvailableListener接口注册，该监听结构体当有帧可用时，将触发回调。 |
 
 
 ### 类型定义
@@ -49,8 +49,8 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [OH_NativeImage](#oh_nativeimage-1) \* [OH_NativeImage_Create](#oh_nativeimage_create) (uint32_t textureId, uint32_t textureTarget) | 创建一个**OH_NativeImage**实例，该实例与OpenGL ES的纹理ID和纹理目标相关联。<br/>本接口需要与[OH_NativeImage_Destroy](#oh_nativeimage_destroy)接口配合使用，否则会存在内存泄露。<br/>本接口为非线程安全类型接口。 | 
-| [OHNativeWindow](_native_window.md#ohnativewindow) \* [OH_NativeImage_AcquireNativeWindow](#oh_nativeimage_acquirenativewindow) ([OH_NativeImage](#oh_nativeimage-1) \*image) | 获取与OH_NativeImage相关联的OHNativeWindow指针。<br/>本接口为非线程安全类型接口。<br/>OH_NativeImage析构时会将对应的OHNativeWindow实例释放。若从本接口获取OHNativeWindow指针， 当OH_NativeImage实例释放时，请将获取到的OHNativeWindow指针置空，防止后续产生野指针。 | 
-| int32_t [OH_NativeImage_AttachContext](#oh_nativeimage_attachcontext) ([OH_NativeImage](#oh_nativeimage-1) \*image, uint32_t textureId) | 将OH_NativeImage实例附加到当前OpenGL ES上下文, 且该OpenGL ES纹理会绑定到 GL_TEXTURE_EXTERNAL_OES, 并通过OH_NativeImage进行更新。<br/>本接口为非线程安全类型接口。 | 
+| [OHNativeWindow](_native_window.md#ohnativewindow) \* [OH_NativeImage_AcquireNativeWindow](#oh_nativeimage_acquirenativewindow) ([OH_NativeImage](#oh_nativeimage-1) \*image) | 获取与OH_NativeImage相关联的OHNativeWindow指针。<br/>本接口为非线程安全类型接口。<br/>OH_NativeImage析构时会将对应的OHNativeWindow实例释放。若从本接口获取OHNativeWindow指针，当OH_NativeImage实例释放时，请将获取到的OHNativeWindow指针置空，防止后续产生野指针。 | 
+| int32_t [OH_NativeImage_AttachContext](#oh_nativeimage_attachcontext) ([OH_NativeImage](#oh_nativeimage-1) \*image, uint32_t textureId) | 将OH_NativeImage实例附加到当前OpenGL ES上下文, 且该OpenGL ES纹理会绑定到GL_TEXTURE_EXTERNAL_OES, 并通过OH_NativeImage进行更新。<br>本接口为非线程安全类型接口。 | 
 | int32_t [OH_NativeImage_DetachContext](#oh_nativeimage_detachcontext) ([OH_NativeImage](#oh_nativeimage-1) \*image) | 将OH_NativeImage实例从当前OpenGL ES上下文分离。<br/>本接口为非线程安全类型接口。 | 
 | int32_t [OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage) ([OH_NativeImage](#oh_nativeimage-1) \*image) | 通过OH_NativeImage获取最新帧更新相关联的OpenGL ES纹理。<br/>本接口需要在Opengl ES环境上下文的线程中调用。<br/>本接口需要在接收到[OH_OnFrameAvailableListener](_o_h___on_frame_available_listener.md)回调后调用。<br/>本接口为非线程安全类型接口。 | 
 | int64_t [OH_NativeImage_GetTimestamp](#oh_nativeimage_gettimestamp) ([OH_NativeImage](#oh_nativeimage-1) \*image) | 获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的相关时间戳。<br/>本接口为非线程安全类型接口。 | 
@@ -112,7 +112,7 @@ typedef struct OH_OnFrameAvailableListener OH_OnFrameAvailableListener
 
 **描述**
 
-一个OH_NativeImage的监听者，通过[OH_NativeImage_SetOnFrameAvailableListener](#oh_nativeimage_setonframeavailablelistener)接口注册， 该监听结构体，当有buffer可获取时，将触发回调给用户。
+一个OH_NativeImage的监听者，通过[OH_NativeImage_SetOnFrameAvailableListener](#oh_nativeimage_setonframeavailablelistener)接口注册，该监听结构体，当有buffer可获取时，将触发回调给用户。
 
 **起始版本：** 11
 
