@@ -681,7 +681,7 @@ openNetworkManagerSettings(context: Context): Promise\<boolean>
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](../apis-arkdata/errorcode-data-rdb.md)。
+以下错误码详细介绍请参考[设置数据项错误码](./errorcode-settings.md)。
 
 | 错误码ID    | 错误信息                    |
 |----------|-------------------------|
@@ -693,7 +693,7 @@ openNetworkManagerSettings(context: Context): Promise\<boolean>
 ```js
 import settings from '@ohos.settings';
 
-// 更新数据项亮度的值(该数据项在数据库中已存在，故setValue方法将更新该数据项的值)。
+// 跳转网络管理器设置页面。
 const context: Context =  getContext(this);
 settings.openNetworkManagerSettings(context).then((status) => {
   console.log(`callback:return whether setings is open.`)
