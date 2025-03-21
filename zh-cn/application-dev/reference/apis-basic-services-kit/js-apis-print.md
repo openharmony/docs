@@ -45,9 +45,10 @@ on(type: 'block', callback: Callback&lt;void&gt;): void
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.on('block', () => {
         console.log('print state is block');
     })
@@ -87,9 +88,10 @@ on(type: 'succeed', callback: Callback&lt;void&gt;): void
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.on('succeed', () => {
         console.log('print state is succeed');
     })
@@ -129,9 +131,10 @@ on(type: 'fail', callback: Callback&lt;void&gt;): void
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.on('fail', () => {
         console.log('print state is fail');
     })
@@ -171,9 +174,10 @@ on(type: 'cancel', callback: Callback&lt;void&gt;): void
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.on('cancel', () => {
         console.log('print state is cancel');
     })
@@ -213,9 +217,10 @@ off(type: 'block', callback?: Callback&lt;void&gt;): void
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.off('block', () => {
         console.log('unregister state block');
     })
@@ -255,9 +260,10 @@ off(type: 'succeed', callback?: Callback&lt;void&gt;): void
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.off('succeed', () => {
         console.log('unregister state succeed');
     })
@@ -297,9 +303,10 @@ off(type: 'fail', callback?: Callback&lt;void&gt;): void
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.off('fail', () => {
         console.log('unregister state fail');
     })
@@ -339,9 +346,10 @@ off(type: 'cancel', callback?: Callback&lt;void&gt;): void
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.off('cancel', () => {
         console.log('unregister state cancel');
     })
@@ -495,7 +503,7 @@ import { BusinessError } from '@ohos.base';
 import { fileUri } from '@kit.CoreFileKit';
 
 //传入文件的uri
-let filePath = 'file://data/storage/el2/base/haps/entry/files/test.pdf';
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
 print.print([fileUri.getUriFromPath(filePath)], (err: BusinessError, printTask: print.PrintTask) => {
     if (err) {
         console.log('print err ' + JSON.stringify(err));
@@ -545,7 +553,7 @@ import { BusinessError } from '@ohos.base';
 import { fileUri } from '@kit.CoreFileKit';
 
 //传入文件的uri
-let filePath = 'file://data/storage/el2/base/haps/entry/files/test.pdf';
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
 print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.on('succeed', () => {
         console.log('print state is succeed');
@@ -590,7 +598,7 @@ import { BusinessError } from '@ohos.base';
 import { fileUri } from '@kit.CoreFileKit';
 
 //传入文件的uri
-let filePath = 'file://data/storage/el2/base/haps/entry/files/test.pdf';
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
 let context = getContext(this);
 print.print([fileUri.getUriFromPath(filePath)], context, (err: BusinessError, printTask: print.PrintTask) => {
     if (err) {
@@ -642,7 +650,7 @@ import { BusinessError } from '@ohos.base';
 import { fileUri } from '@kit.CoreFileKit';
 
 //传入文件的uri
-let filePath = 'file://data/storage/el2/base/haps/entry/files/test.pdf';
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
 let context = getContext(this);
 print.print([fileUri.getUriFromPath(filePath)], context).then((printTask: print.PrintTask) => {
     printTask.on('succeed', () => {
