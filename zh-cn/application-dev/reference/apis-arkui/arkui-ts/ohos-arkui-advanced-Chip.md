@@ -261,6 +261,7 @@ struct Index {
     Column({ space: 10 }) {
       Chip({
         prefixIcon: {
+          // 'app.media.chips'仅作示例，请替换为实际使用图片。
           src: $r('app.media.chips'),
           size: { width: 16, height: 16 },
           fillColor: Color.Red
@@ -273,6 +274,7 @@ struct Index {
           labelMargin: { left: 20, right: 30 }
         },
         suffixIcon: {
+          // 'app.media.close'仅作示例，请替换为实际使用图片。
           src: $r('app.media.close'),
           size: { width: 16, height: 16 },
           fillColor: Color.Red
@@ -305,6 +307,7 @@ struct Index {
     Column({ space: 10 }) {
       Chip({
         prefixIcon: {
+          // 'app.media.chips'仅作示例，请替换为实际使用图片。
           src: $r('app.media.chips'),
           size: { width: 16, height: 16 },
           fillColor: Color.Blue
@@ -344,6 +347,7 @@ struct Index {
     Column({ space: 10 }) {
       Chip({
         prefixIcon: {
+          // 'app.media.chips'仅作示例，请替换为实际使用图片。
           src: $r('app.media.chips'),
           size: { width: 16, height: 16 },
           fillColor: Color.Blue
@@ -388,6 +392,7 @@ struct Index {
     Column({ space: 10 }) {
       Chip({
         prefixIcon: {
+          // 'app.media.chips'仅作示例，请替换为实际使用图片。
           src: $r('app.media.chips'),
           size: { width: 16, height: 16 },
           fillColor: Color.Blue,
@@ -443,6 +448,7 @@ struct Index {
     Column({ space: 10 }) {
       Chip({
         prefixIcon: {
+          // 'app.media.chips'仅作示例，请替换为实际使用图片。
           src: $r('app.media.chips'),
           size: { width: 16, height: 16 },
           fillColor: Color.Blue,
@@ -502,6 +508,7 @@ struct ChipPage {
       Chip({
         direction: Direction.Rtl,
         prefixIcon: {
+          // 'app.media.chips'仅作示例，请替换为实际使用图片。
           src: $r('app.media.chips'),
           size: { width: 16, height: 16 },
           fillColor: Color.Red,
@@ -514,6 +521,7 @@ struct ChipPage {
           localizedLabelMargin: { start: LengthMetrics.vp(20), end: LengthMetrics.vp(20) },
         },
         suffixIcon: {
+          // 此处'app.media.close'仅作示例，请替换为实际使用图片。
           src: $r('app.media.close'),
           size: { width: 16, height: 16 },
           fillColor: Color.Red,
