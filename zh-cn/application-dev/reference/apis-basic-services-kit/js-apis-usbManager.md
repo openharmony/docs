@@ -1503,7 +1503,7 @@ libusb实际处理完成后通过回调返回的状态码。
 | TRANSFER_COMPLETED    | 0    | 传输完成。|
 | TRANSFER_ERROR | 1    | 传输失败。 |
 | TRANSFER_TIMED_OUT  | 2    | 传输超时。 |
-| TRANSFER_CANCELLED     | 3    |传输已被取消。 |
+| TRANSFER_CANCELED     | 3    |传输已被取消。 |
 | TRANSFER_STALL  | 4    | 检测到暂停（批量/中断端点）。|
 | TRANSFER_NO_DEVICE     | 5    | 设备已断开。|
 | TRANSFER_OVERFLOW     | 6    | 设备发送的数据比请求的多。|
