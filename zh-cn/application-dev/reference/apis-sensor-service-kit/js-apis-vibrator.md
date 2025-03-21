@@ -813,7 +813,9 @@ try {
 }
 ```
 
-## vibrator.VibratorPatternBuilder<sup>18+</sup>
+## VibratorPatternBuilder<sup>18+</sup>
+
+### vibrator('addContinuousEvent')<sup>18+</sup>
 
 addContinuousEvent(time: number, duration: number, options?: ContinuousParam): VibratorPatternBuilder;
 
@@ -874,7 +876,7 @@ try {
 }
 ```
 
-## vibrator.addTransientEvent<sup>18+</sup>
+### vibrator('addTransientEvent')<sup>18+</sup>
 
 addTransientEvent(time: number, options?: TransientParam): VibratorPatternBuilder;
 
@@ -920,7 +922,7 @@ try {
 }
 ```
 
-## vibrator.build<sup>18+</sup>
+### vibrator('build')<sup>18+</sup>
 
 build(): VibratorPattern;
 
