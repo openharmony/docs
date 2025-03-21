@@ -150,7 +150,7 @@ try {
 
 ## media.getScreenCaptureMonitor<sup>18+</sup>
 
-getScreenCaptureMonitor(): Promise\<ScreenCaptureMonitor>;
+getScreenCaptureMonitor(): Promise\<ScreenCaptureMonitor>
 
 获取录屏监控模块实例。使用Promise异步回调。
 
@@ -162,7 +162,7 @@ getScreenCaptureMonitor(): Promise\<ScreenCaptureMonitor>;
 
 | 类型                                      | 说明                                                         |
 | ----------------------------------------- | ------------------------------------------------------------ |
-| Promise<[ScreenCaptureMonitor](#screencapturemonitor18)> | Promise对象。异步返回ScreenCaptureMonitor实例，失败时返回null。可用于查询和监听系统录屏状态。 |
+| Promise<[ScreenCaptureMonitor](#screencapturemonitor18)> | Promise对象。可用于查询和监听系统录屏状态。<br>异步返回ScreenCaptureMonitor实例，失败时返回null。 |
 
 **错误码：**
 
@@ -1282,7 +1282,7 @@ videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回�
 
 ## ScreenCaptureMonitor<sup>18+</sup>
 
-录屏状态监控类，用于查询和监听系统录屏的录屏状态。在调用ScreenCaptureMonitor的方法前，需要先通过[getScreenCaptureMonitor()](#mediagetscreencapturemonitor18)构建一个[ScreenCaptureMonitor](#screencapturemonitor18)实例。
+录屏状态监控类，用于查询和监听系统录屏的录屏状态。在调用ScreenCaptureMonitor方法前，需要先通过[getScreenCaptureMonitor()](#mediagetscreencapturemonitor18)构建一个[ScreenCaptureMonitor](#screencapturemonitor18)实例。
 
 ### 属性
 
@@ -1298,7 +1298,7 @@ videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回�
 
 on(type: 'systemScreenRecorder', callback: Callback\<ScreenCaptureEvent>): void
 
-开始订阅系统录屏的录屏状态。当上报ScreenCaptureEvent事件后，用户可以根据ScreenCaptureEvent事件得知系统录屏当前是开启录屏还是停止录屏的状态。
+开始订阅系统录屏的录屏状态。当上报ScreenCaptureEvent事件后，用户可以根据ScreenCaptureEvent事件得知系统录屏当前处于开启还是停止的状态。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -1356,6 +1356,7 @@ off(type: 'systemScreenRecorder', callback?: Callback\<ScreenCaptureEvent>): voi
 | 202  | Not System App.    |
 
 **示例：**
+
 ```ts
 screenCaptureMonitor.off('systemScreenRecorder');   
 ```
