@@ -2604,7 +2604,6 @@
           - [ExceptionPrompt](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ExceptionPrompt.md)
           - [Gauge](reference/apis-arkui/arkui-ts/ts-basic-components-gauge.md)
           - [LoadingProgress](reference/apis-arkui/arkui-ts/ts-basic-components-loadingprogress.md)
-          - [LinearIndicator](reference/apis-arkui/arkui-ts/ts-basic-components-linearindicator.md)
           - [Marquee](reference/apis-arkui/arkui-ts/ts-basic-components-marquee.md)
           - [PatternLock](reference/apis-arkui/arkui-ts/ts-basic-components-patternlock.md)
           - [Progress](reference/apis-arkui/arkui-ts/ts-basic-components-progress.md)
