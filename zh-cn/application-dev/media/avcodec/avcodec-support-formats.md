@@ -33,7 +33,7 @@
 
 ### 音频解码
 
-当前支持的解码能力:
+当前支持的解码能力如下：
 
 AAC、MPEG(MP3)、Flac、Vorbis、AMR(amrnb、amrwb)、G711mu、APE<!--RP1--><!--RP1End-->。
 
