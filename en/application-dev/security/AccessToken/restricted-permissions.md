@@ -519,7 +519,7 @@ With this permission, the application can call APIs to perform virtual screen ma
 
 ### ohos.permission.MANAGE_APN_SETTING
 
-Allows an application to read or set APN information.
+Allows an application to read and set APN information.
 
 You can request this permission when the application needs to use the APN information.
 
