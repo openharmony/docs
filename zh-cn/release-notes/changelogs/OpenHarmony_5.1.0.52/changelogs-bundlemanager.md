@@ -35,7 +35,7 @@ module.json5中supportWindowModes标签
 API version 15及之后的版本, 开发者需要关注supportWindowModes配置fullscreen和split时，2in1设备上窗口全屏启动。
 若预期是以自由窗口启动，则需要在supportWindowModes原来的配置项中增加floating配置项。
 
-## cl.bundlemanager.2 [@ohos.bundle.installer.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.bundle.installer.d.ts)中install接口行为变更
+## cl.bundlemanager.2 install接口安装系统应用前，若对应的预置版本应用已卸载，会先安装预置版本应用
 
 **访问级别**
 
@@ -43,9 +43,7 @@ API version 15及之后的版本, 开发者需要关注supportWindowModes配置f
 
 **变更原因**
 
-1. 防止安装一个低版本的预置系统应用。
-
-2. 安装一个已卸载的系统预置应用，能够继承预置应用的独立selinux标签。
+安装系统应用前，若对应的预置版本应用已卸载，会先安装预置版本应用，再安装目标版本应用。防止安装不大于预置版本的系统应用，且安装后能够继承预置应用的预置属性。
 
 **变更影响**
 
@@ -53,7 +51,7 @@ API version 15及之后的版本, 开发者需要关注supportWindowModes配置f
 
 变更前：安装一个已卸载的预置系统应用，能够直接安装成功。
 
-变更后：安装一个已卸载的预置系统应用，会先进行预置版本应用的安装，然后再继续安装目标版本应用。如果目标版本号比预置的低，会返回安装失败错误码，但预置版本的应用安装成功。
+变更后：安装一个已卸载的预置系统应用，若存在预置版本，会先进行预置版本应用的安装，再安装目标版本应用。如果安装预置版本应用成功但安装目标版本应用失败，会返回安装失败但保留预置版本应用。
 
 **起始API Level**
 
@@ -67,12 +65,10 @@ API 9
 
 [@ohos.bundle.installer.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.bundle.installer.d.ts)中如下接口：
 
-1. function install(hapFilePaths: Array\<string\>, installParam: InstallParam, callback: AsyncCallback\<void\>): void;
-
-2. function install(hapFilePaths: Array\<string\>, callback: AsyncCallback\<void\>): void;
-
-3. function install(hapFilePaths: Array\<string\>, installParam?: InstallParam): Promise\<void\>;
+1. install(hapFilePaths: Array\<string\>, installParam: InstallParam, callback: AsyncCallback\<void\>)
+2. install(hapFilePaths: Array\<string\>, callback: AsyncCallback\<void\>)
+3. install(hapFilePaths: Array\<string\>, installParam?: InstallParam): Promise\<void\>
 
 **适配指导**
 
-系统应用开发者需要处理该场景下新增的错误码--安装预置版本成功，但目标版本应用安装失败。
+开发者在安装预置系统应用场景，若出现安装失败但预置版本应用安装成功，检查并确保待安装应用版本号大于对应的预置版本号，再重新安装指定应用。
