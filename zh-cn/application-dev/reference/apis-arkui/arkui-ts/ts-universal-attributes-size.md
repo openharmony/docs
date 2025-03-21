@@ -212,7 +212,7 @@ constraintSize(value: ConstraintSizeOptions)
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
 | value | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 是    | 设置约束尺寸。constraintSize的优先级高于Width和Height。取值结果参考constraintSize取值对width/height影响。<br/>默认值：<br/>{<br/>minWidth:&nbsp;0,<br/>maxWidth:&nbsp;Infinity,<br/>minHeight:&nbsp;0,<br/>maxHeight:&nbsp;Infinity<br/>}<br/>单位：vp<br/> |
 
-**constraintSize(minWidth/maxWidth/minHeight/maxHeight)取值对width/height影响**
+**constraintSize(minWidth/maxWidth/minHeight/maxHeight)取值对width/height影响：**
 
 | 缺省值                                      | 结果                                       |
 | ---------------------------------------- | ---------------------------------------- |
