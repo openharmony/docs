@@ -32,7 +32,7 @@
 float OH_NativeBuffer_Cta861::maxContentLightLevel
 ```
 
-**描述**
+**描述：**
 
 最大内容亮度水平。
 
@@ -43,6 +43,6 @@ float OH_NativeBuffer_Cta861::maxContentLightLevel
 float OH_NativeBuffer_Cta861::maxFrameAverageLightLevel
 ```
 
-**描述**
+**描述：**
 
 最大的帧平均亮度水平。

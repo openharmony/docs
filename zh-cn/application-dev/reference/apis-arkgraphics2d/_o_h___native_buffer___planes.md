@@ -32,7 +32,7 @@ OH_NativeBuffer的图像平面格式信息。
 uint32_t OH_NativeBuffer_Planes::planeCount
 ```
 
-**描述**
+**描述：**
 
 不同平面的数量。
 
@@ -43,6 +43,6 @@ uint32_t OH_NativeBuffer_Planes::planeCount
 OH_NativeBuffer_Plane OH_NativeBuffer_Planes::planes[4]
 ```
 
-**描述**
+**描述：**
 
 图像平面格式信息数组。

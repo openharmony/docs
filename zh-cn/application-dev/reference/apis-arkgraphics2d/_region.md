@@ -37,7 +37,7 @@
 int32_t Region::rectNumber
 ```
 
-**描述**
+**描述：**
 
 如果rectNumber为0，默认Buffer大小为脏区。
 
