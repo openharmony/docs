@@ -132,7 +132,7 @@ getBurstAssets(burstKey: string, options: photoAccessHelper.FetchOptions): Promi
 
 | 参数名   | 类型                                                      | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| burstKey | string                                                    | 是   | 一组连拍照片的唯一标识：uuid(可传入[PhotoKeys](js-apis-photoAccessHelper.md#photokeys)的BURST_KEY) |
+| burstKey | string                                                    | 是   | 一组连拍照片的唯一标识：uuid(可传入[PhotoKeys](js-apis-photoAccessHelper.md#photokeys)的BURST_KEY) 。|
 | options  | [photoAccessHelper.FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 是   | 连拍照片检索选项。                                           |
 
 **返回值：**
@@ -1073,7 +1073,7 @@ convertToPhotoAlbum(): photoAccessHelper.Album
 
 | 类型                    | 说明                                                      |
 | ----------------------- | --------------------------------------------------------- |
-| photoAccessHelper.Album | 非Sendable类型[Album](js-apis-photoAccessHelper.md#album) |
+| photoAccessHelper.Album | 非Sendable类型[Album](js-apis-photoAccessHelper.md#album)。 |
 
 **错误码：**
 
