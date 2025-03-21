@@ -21,4 +21,4 @@ remote error. Possible causes: remote is not work.
 
 **处理步骤**
 
-请稍后（1S）重试
+请1s后重试，或重启设备。
