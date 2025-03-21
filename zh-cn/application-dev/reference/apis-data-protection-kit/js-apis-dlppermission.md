@@ -25,7 +25,7 @@ isDLPFile(fd: number): Promise&lt;boolean&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| fd | number | 是 | 待查询文件的fd(文件描述符)。 |
+| fd | number | 是 | 待查询文件的fd（文件描述符）。 |
 
 **返回值：**
 | 类型 | 说明 |
@@ -73,7 +73,7 @@ isDLPFile(fd: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| fd | number | 是 | 待查询文件的fd(文件描述符)。 |
+| fd | number | 是 | 待查询文件的fd（文件描述符）。 |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。返回true表示是DLP文件，返回false表示非DLP文件。 |
 
 **错误码：**
@@ -1211,5 +1211,5 @@ DLP文件授权类型的枚举。
 | -------- | -------- | -------- | -------- | -------- |
 | appIndex | number | 是 | 否 | 表示DLP沙箱应用索引。 |
 | bundleName | string | 是 | 否 | 表示应用包名。无长度限制。 |
-| docUris | Array&lt;string&gt; | 是 | 否 | 表示DLP文件的URI列表。Array和string均无长度限制 |
+| docUris | Array&lt;string&gt; | 是 | 否 | 表示DLP文件的URI列表。Array和string均无长度限制。 |
 
