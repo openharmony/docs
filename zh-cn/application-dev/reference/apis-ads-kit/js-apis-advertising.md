@@ -42,14 +42,14 @@ showAd(ad: Advertisement, options: AdDisplayOptions, context?: common.UIAbilityC
 **示例：**
 
 ```ts
-import { advertising } from '@kit.AdsKit';
-import { hilog } from '@kit.PerformanceAnalysisKit'; 
 import { common } from '@kit.AbilityKit';
+import { advertising } from '@kit.AdsKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Entry
 @Component
-export struct ShowAd {
-  private context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+struct Index {
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   // 请求到的广告内容
   private ad?: advertising.Advertisement;
   // 广告展示参数
@@ -60,15 +60,15 @@ export struct ShowAd {
 
   build() {
     Column() {
-        Button('展示广告')
-          .onClick(() => {
-            try {
-              // 调用全屏广告展示接口
-              advertising.showAd(this.ad, this.adDisplayOptions, this.context);
-            } catch (err) {
-              hilog.error(0x0000, 'testTag', '%{public}s', `show ad catch error: ${err.code} ${err.message}`);
-            }
-          });
+      Button('showAd')
+        .onClick(() => {
+          try {
+            // 调用全屏广告展示接口
+            advertising.showAd(this.ad, this.adDisplayOptions, this.context);
+          } catch (err) {
+            hilog.error(0x0000, 'testTag', `Fail to show ad. Code is ${err.code}, message is ${err.message}`);
+          }
+        });
     }
     .width('100%')
     .height('100%')
@@ -107,44 +107,42 @@ getAdRequestBody(adParams: AdRequestParams[], adOptions: AdOptions): Promise&lt;
 | 801      | Device not supported.                                                                                                                                   |
 | 21800001 | System internal error.                                                                                                                                  |
 
-**示例代码**
+**示例：**
 
 ```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 import { advertising } from '@kit.AdsKit';
 import { Prompt } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 function getAdRequestBody(): void {
-  let adReqParamsListForRequest: Array<advertising.AdRequestParams> = [];
-  const adReqParams: Record<string, Object> = {
-    'adId': 'testu7m3hc4gvm',
-    'adType': 3,
-    'adCount': 2,
-    'adWidth': 100,
-    'adHeight': 100
+  const adRequestParamsArray: advertising.AdRequestParams[] = [];
+  const adRequestParams: advertising.AdRequestParams = {
+    adId: 'testu7m3hc4gvm',
+    adType: 3,
+    adCount: 2,
+    adWidth: 100,
+    adHeight: 100
   };
-
-  adReqParamsListForRequest.push(adReqParams as advertising.AdRequestParams);
-  const adOption: Record<string, Object> = {
-    // 设置广告内容分级上限 w:3+,所有受众 PI：7+，家长指导 J：12+，青少年 A：16+/18+,成人受众
-    'adContentClassification': 'A',
+  adRequestParamsArray.push(adRequestParams);
+  const adOptions: advertising.AdOptions = {
     // 设置是否只请求非个性化广告 0：请求个性化广告与非个性化广告 1：只请求非个性化广告。不填以业务逻辑为准
-    'nonPersonalizedAd': 0,
-    // 是否希望根据 COPPA 的规定将您的内容视为面向儿童的内容，: -1默认值，不确定 0不希望 1希望
-    'tagForChildProtection': 1,
-    // 是否希望按适合未达到法定承诺年龄的欧洲经济区 (EEA) 用户的方式处理该广告请求 -1默认值,不确定 0不希望 1希望
-    'tagForUnderAgeOfPromise': -1
+    nonPersonalizedAd: 0,
+    // 是否希望根据 COPPA 的规定将您的内容视为面向儿童的内容: -1默认值，不确定 0不希望 1希望
+    tagForChildProtection: -1,
+    // 是否希望按适合未达到法定承诺年龄的欧洲经济区 (EEA) 用户的方式处理该广告请求： -1默认值，不确定 0不希望 1希望
+    tagForUnderAgeOfPromise: -1,
+    // 设置广告内容分级上限: W: 3+,所有受众 PI: 7+,家长指导 J:12+,青少年 A: 16+/18+，成人受众
+    adContentClassification: 'A'
   };
-  advertising.getAdRequestBody(adReqParamsListForRequest, adOption as advertising.AdOptions).then((data) => {
-    hilog.info(0x0000, 'testTag', '%{public}s', `succeeded in getting AdRequestBody by promise: ${data}`);
+  advertising.getAdRequestBody(adRequestParamsArray, adOptions).then((data) => {
+    hilog.info(0x0000, 'testTag', `Succeeded in getting ad request body. Data is ${JSON.stringify(data)}`);
     Prompt.showToast({
       message: data,
       duration: 1000
     });
   }).catch((error: BusinessError) => {
-    hilog.error(0x0000, 'testTag', '%{public}s',
-      `getAdRequestBody failed, code: ${error.code}, message: ${error.message}`);
+    hilog.error(0x0000, 'testTag', `Fail to get ad request body. Code is ${error.code}, message is ${error.message}`);
     Prompt.showToast({
       message: error.code.toString() + ',' + error.message,
       duration: 1000
@@ -194,19 +192,18 @@ function parseAdResponse(adResponse: string, context: common.UIAbilityContext): 
   const multiSlotsAdLoaderListener: advertising.MultiSlotsAdLoadListener = {
     // 广告解析处理失败回调
     onAdLoadFailure: (errorCode: number, errorMsg: string) => {
-      hilog.error(0x0000, 'testTag', '%{public}s',
-        `request multi ads errorCode is: ${errorCode}, errorMsg is: ${errorMsg}`);
+      hilog.error(0x0000, 'testTag', `Fail to load multiSlots ad. Code is ${errorCode}, message is ${errorMsg}`);
     },
     // 广告解析处理成功回调
     onAdLoadSuccess: (ads: Map<string, Array<advertising.Advertisement>>) => {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'succeeded in requesting multi ads!');
+      hilog.info(0x0000, 'testTag', 'Succeed in loading multiSlots ad');
       // 保存解析处理完成的广告内容为数组用于展示
-      let returnAds: Array<advertising.Advertisement> = [];
+      const returnAds: Array<advertising.Advertisement> = [];
       ads.forEach((adsArray) => returnAds.push(...adsArray));
     }
   };
   // 调用响应体解析接口
-  hilog.info(0x0000, 'testTag', '%{public}s', 'parse ad response!');
+  hilog.info(0x0000, 'testTag', 'Start to parse ad response');
   advertising.parseAdResponse(adResponse, multiSlotsAdLoaderListener, context);
 }
 ```
@@ -240,32 +237,31 @@ registerWebAdInterface(controller: web_webview.WebviewController, context: commo
 **示例：**
 
 ```ts
-import { webview } from '@kit.ArkWeb';
 import { common } from '@kit.AbilityKit';
 import { advertising } from '@kit.AdsKit';
+import { webview } from '@kit.ArkWeb';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Entry
 @Component
 struct Index {
   private webController: webview.WebviewController = new webview.WebviewController();
-  private context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
     Column() {
-      Button('广告对象注入Web')
+      Button('registerWebAdInterface')
         .onClick(() => {
           try {
             advertising.registerWebAdInterface(this.webController, this.context);
           } catch (err) {
-            hilog.error(0x0000, 'testTag', '%{public}s', 
-              `register web ad interface error: ${err.code}, ${err.message}`);
+            hilog.error(0x0000, 'testTag', `Fail to register web ad interface. Code is ${err.code}, message is ${err.message}`);
           }
         })
 
       Web({
         src: 'www.example.com',
-        controller: this.webController,
+        controller: this.webController
       })
         .width("100%")
         .height("100%")
@@ -307,7 +303,7 @@ import { advertising } from '@kit.AdsKit';
 import { common } from '@kit.AbilityKit';
 
 function createConstructor(context: common.Context): void {
-  const load: advertising.AdLoader = new advertising.AdLoader(context);
+  const adLoader: advertising.AdLoader = new advertising.AdLoader(context);
 }
 ```
 
@@ -345,46 +341,45 @@ loadAd(adParam: AdRequestParams, adOptions: AdOptions, listener: AdLoadListener)
 其中context的获取方式参见[各类Context的获取方式](../../application-models/application-context-stage.md#概述)。
 
 ```ts
-import { advertising } from '@kit.AdsKit';
 import { common } from '@kit.AbilityKit';
+import { advertising } from '@kit.AdsKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-function requestAd(context: common.Context): void {
-  const adRequestParam: advertising.AdRequestParams = {
+function loadAd(context: common.Context): void {
+  const adRequestParams: advertising.AdRequestParams = {
     // 广告类型
     adType: 3,
     // 测试广告位ID
-    adId: "testy63txaom86"
+    adId: 'testy63txaom86'
   };
   const adOptions: advertising.AdOptions = {
-    // 可选自定义参数，设置是否允许使用流量下载广告素材 0：不允许，1：允许
+    // 可选自定义参数，设置是否允许使用流量下载广告素材 0：不允许，1：允许，不设置以广告主设置为准。
     allowMobileTraffic: 0,
-    // 设置广告内容分级上限： w:3+,所有受众 PI：7+，家长指导 J：12+，青少年 A：16+/18+,成人受众
-    adContentClassification: 'A',
     // 是否希望根据 COPPA 的规定将您的内容视为面向儿童的内容: -1默认值，不确定 0不希望 1希望
     tagForChildProtection: -1,
-    // 是否希望按适合未达到法定承诺年龄的欧洲经济区 (EEA) 用户的方式处理该广告请求: -1默认值,不确定 0不希望 1希望
-    tagForUnderAgeOfPromise: -1
-  }
+    // 是否希望按适合未达到法定承诺年龄的欧洲经济区 (EEA) 用户的方式处理该广告请求： -1默认值，不确定 0不希望 1希望
+    tagForUnderAgeOfPromise: -1,
+    // 设置广告内容分级上限: W: 3+,所有受众 PI: 7+,家长指导 J:12+,青少年 A: 16+/18+，成人受众
+    adContentClassification: 'A'
+  };
   // 广告请求回调监听
   const adLoaderListener: advertising.AdLoadListener = {
     // 广告请求失败回调
     onAdLoadFailure: (errorCode: number, errorMsg: string) => {
-      hilog.error(0x0000, 'testTag', '%{public}s',
-        `request single ad errorCode is: ${errorCode}, errorMsg is: ${errorMsg}`);
+      hilog.error(0x0000, 'testTag', `Fail to load ad. Code is ${errorCode}, message is ${errorMsg}`);
     },
     // 广告请求成功回调
     onAdLoadSuccess: (ads: Array<advertising.Advertisement>) => {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'succeed in requesting single ad!');
+      hilog.info(0x0000, 'testTag', 'Succeed in loading ad');
       // 保存请求到的广告内容用于展示
       const returnAds = ads;
     }
   };
   // 创建AdLoader广告对象
-  const load: advertising.AdLoader = new advertising.AdLoader(context);
+  const adLoader: advertising.AdLoader = new advertising.AdLoader(context);
   // 调用广告请求接口
-  hilog.info(0x0000, 'testTag', '%{public}s', 'request single ad!');
-  load.loadAd(adRequestParam, adOptions, adLoaderListener);
+  hilog.info(0x0000, 'testTag', 'Start to load ad');
+  adLoader.loadAd(adRequestParams, adOptions, adLoaderListener);
 }
 ```
 
@@ -422,54 +417,54 @@ loadAdWithMultiSlots(adParams: AdRequestParams[], adOptions: AdOptions, listener
 其中context的获取方式参见[各类Context的获取方式](../../application-models/application-context-stage.md#概述)。
 
 ```ts
-import { advertising } from '@kit.AdsKit';
 import { common } from '@kit.AbilityKit';
+import { advertising } from '@kit.AdsKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-function requestMultiAd(context: common.Context): void {
-  const adRequestParamArray: advertising.AdRequestParams[] = [{
-    // 广告类型
-    adType: 3,
-    // 测试广告位ID
-    adId: "testy63txaom86"
-  } as advertising.AdRequestParams,
+function loadAdWithMultiSlots(context: common.Context): void {
+  const adRequestParamsArray: advertising.AdRequestParams[] = [
     {
       // 广告类型
       adType: 3,
       // 测试广告位ID
-      adId: "testy63txaom86"
-    } as advertising.AdRequestParams
+      adId: 'testy63txaom86'
+    },
+    {
+      // 广告类型
+      adType: 3,
+      // 测试广告位ID
+      adId: 'testy63txaom86'
+    }
   ];
   const adOptions: advertising.AdOptions = {
-    // 可选自定义参数，设置是否允许使用流量下载广告素材 0：不允许，1：允许
+    // 可选自定义参数，设置是否允许使用流量下载广告素材 0：不允许，1：允许，不设置以广告主设置为准。
     allowMobileTraffic: 0,
-    // 设置广告内容分级上限： w:3+,所有受众 PI：7+，家长指导 J：12+，青少年 A：16+/18+,成人受众
-    adContentClassification: 'A',
     // 是否希望根据 COPPA 的规定将您的内容视为面向儿童的内容: -1默认值，不确定 0不希望 1希望
     tagForChildProtection: -1,
-    // 是否希望按适合未达到法定承诺年龄的欧洲经济区 (EEA) 用户的方式处理该广告请求 -1默认值,不确定 0不希望 1希望
-    tagForUnderAgeOfPromise: -1
+    // 是否希望按适合未达到法定承诺年龄的欧洲经济区 (EEA) 用户的方式处理该广告请求： -1默认值，不确定 0不希望 1希望
+    tagForUnderAgeOfPromise: -1,
+    // 设置广告内容分级上限: W: 3+,所有受众 PI: 7+,家长指导 J:12+,青少年 A: 16+/18+，成人受众
+    adContentClassification: 'A'
   };
   // 广告请求回调监听
   const multiSlotsAdLoaderListener: advertising.MultiSlotsAdLoadListener = {
     // 广告请求失败回调
     onAdLoadFailure: (errorCode: number, errorMsg: string) => {
-      hilog.error(0x0000, 'testTag', '%{public}s',
-        `request multi ads errorCode is: ${errorCode}, errorMsg is: ${errorMsg}`);
+      hilog.error(0x0000, 'testTag', `Fail to load multiSlots ad. Code is ${errorCode}, message is ${errorMsg}`);
     },
     // 广告请求成功回调
     onAdLoadSuccess: (ads: Map<string, Array<advertising.Advertisement>>) => {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'succeed in requesting multi ads!');
+      hilog.info(0x0000, 'testTag', 'Succeed in loading multiSlots ad');
       // 保存请求到的广告内容为数组用于展示
-      let returnAds: Array<advertising.Advertisement> = [];
+      const returnAds: Array<advertising.Advertisement> = [];
       ads.forEach((adsArray) => returnAds.push(...adsArray));
     }
   };
   // 创建AdLoader广告对象
-  const load: advertising.AdLoader = new advertising.AdLoader(context);
+  const adLoader: advertising.AdLoader = new advertising.AdLoader(context);
   // 调用广告请求接口
-  hilog.info(0x0000, 'testTag', '%{public}s', 'request multi ads!');
-  load.loadAdWithMultiSlots(adRequestParamArray, adOptions, multiSlotsAdLoaderListener);
+  hilog.info(0x0000, 'testTag', 'Start to load multiSlots ad');
+  adLoader.loadAdWithMultiSlots(adRequestParamsArray, adOptions, multiSlotsAdLoaderListener);
 }
 ```
 
@@ -519,7 +514,7 @@ onAdLoadSuccess(ads: Array&lt;Advertisement&gt;): void
 ```ts
 import { advertising } from '@kit.AdsKit';
 
-let adLoaderListener: advertising.AdLoadListener = {
+const adLoaderListener: advertising.AdLoadListener = {
   onAdLoadFailure: (errorCode: number, errorMsg: string) => {
   },
   onAdLoadSuccess: (ads: Array<advertising.Advertisement>) => {
@@ -573,7 +568,7 @@ onAdLoadSuccess(adsMap: Map&lt;string, Array&lt;Advertisement&gt;&gt;): void
 ```ts
 import { advertising } from '@kit.AdsKit';
 
-let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
+const multiSlotsAdLoadListener: advertising.MultiSlotsAdLoadListener = {
   onAdLoadFailure: (errorCode: number, errorMsg: string) => {
   },
   onAdLoadSuccess: (adsMap: Map<string, Array<advertising.Advertisement>>) => {
@@ -612,7 +607,7 @@ onStatusChanged(status: string, ad: Advertisement, data: string)
 ```ts
 import { advertising } from '@kit.AdsKit';
 
-let adInteractionListener: advertising.AdInteractionListener = {
+const adInteractionListener: advertising.AdInteractionListener = {
   onStatusChanged: (status: string, ad: advertising.Advertisement, data: string) => {
 
   }
