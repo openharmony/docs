@@ -496,7 +496,7 @@ console.log("Result: "+ data.getDefaultCellularDataSimId());
 
 ## data.queryAllApns<sup>16+</sup>
 
-queryAllApns(): Promise<Array<ApnInfo>>
+queryAllApns(): Promise\<Array\<ApnInfo\>\>
 
 获取默认移动数据的SIM卡的APN（access point name，接入点名称）信息。
 
@@ -532,7 +532,7 @@ cellular.queryAllApns().then((data: Array<cellular.ApnInfo>) => {
 
 ## data.queryApnIds<sup>16+</sup>
 
-queryApnIds(apnInfo: ApnInfo): Promise<Array<number>>
+queryApnIds(apnInfo: ApnInfo): Promise\<Array\<number\>\>
 
 获取传入的ApnInfo对应的ApnId信息。
 
@@ -576,7 +576,7 @@ cellular.queryApnIds(apnInfo).then((data: Array<number>) => {
 
 ## data.setPreferredApn<sup>16+</sup>
 
-setPreferredApn(apnId: number): Promise<boolean>
+setPreferredApn(apnId: number): Promise\<boolean\>
 
 设置apnId对应的APN为首选APN。
 
@@ -649,13 +649,13 @@ APN信息。
 
 **系统能力**：SystemCapability.Telephony.CellularData
 
-| 名称       | 类型      | 必填  | 说明         |
-|----------|---------|-----|------------|
-| apnName  | string  | 是   | APN名称。     |
-| apn      | string  | 是   | APN。       |
-| mcc      | string  | 是   | Sim卡的mcc。  |
-| mnc      | string  | 是   | 卡Sim卡的mnc。 |
-| user     | string  | 否   | 用户名。       |
-| type     | string  | 否   | APN类型。     |
-| proxy    | string  | 否   | 代理地址。      |
-| mmsproxy | string  | 否   | 彩信代理。      |
+| 名称       | 类型      | 只读    |  可选      | 说明         |
+|------------|----------|---------|------------|-------------|
+| apnName   | string     | 否      | 是         | APN名称。    |
+| apn       | string     | 否      | 是         | APN。        |
+| mcc       | string     | 否      | 是         | Sim卡的mcc。 |
+| mnc       | string     | 否      | 是         | Sim卡的mnc。 |
+| user      | string     | 否      | 否         | 用户名。     |
+| type      | string     | 否      | 否         | APN类型。    |
+| proxy     | string     | 否      | 否         | 代理地址。   |
+| mmsproxy  | string     | 否      | 否         | 彩信代理。   |
