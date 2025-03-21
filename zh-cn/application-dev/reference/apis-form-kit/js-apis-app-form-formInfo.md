@@ -28,9 +28,9 @@ import { formInfo } from '@kit.FormKit';
 | displayNameId<sup>11+</sup> | number               | 是    | 否     | 卡片预览时标识卡片名称的ID。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | description | string               | 是    | 否     | 卡片描述。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | descriptionId<sup>10+</sup>      | number               | 是    | 否     | 卡片描述id。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| type        | [FormType](#formInfoformtype)             | 是    | 否     | 卡片类型。当前支持JS卡片、ArkTS卡片。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| type        | [FormType](#forminfoformtype)             | 是    | 否     | 卡片类型。当前支持JS卡片、ArkTS卡片。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | jsComponentName      | string               | 是    | 否     | js卡片的组件名。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| colorMode  | [ColorMode](#formInfocolormode) | 是    | 否     | 卡片颜色模式。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| colorMode  | [ColorMode](#forminfocolormode) | 是    | 否     | 卡片颜色模式。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | isDefault    | boolean      | 是    | 否     | 卡片是否是默认卡片。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | updateEnabled  | boolean               | 是    | 否     | 卡片是否使能更新。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | formVisibleNotify  | boolean        | 是    | 否     | 卡片是否使能可见通知。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -38,14 +38,14 @@ import { formInfo } from '@kit.FormKit';
 | formConfigAbility | string               | 是    | 否     | 卡片配置ability。指定长按卡片弹出的选择框内，编辑选项所对应的ability。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | updateDuration        | number       | 是    | 否     | 卡片更新周期。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | defaultDimension  | number | 是    | 否     | 卡片规格  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| supportDimensions    | Array&lt;number&gt;      | 是    | 否     | 卡片支持的规格。具体可选规格参考[FormDimension](#formInfoformdimension) <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| supportDimensions    | Array&lt;number&gt;      | 是    | 否     | 卡片支持的规格。具体可选规格参考[FormDimension](#forminfoformdimension) <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | customizeData    | Record\<string, string>      | 是    | 否     | 卡片用户数据。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | isDynamic<sup>10+</sup>      | boolean               | 是    | 否     | 卡片是否为动态卡片。<br/>仅ArkTS卡片区分动静态卡片，JS卡片均为动态卡片。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | transparencyEnabled<sup>11+</sup>      | boolean               | 是    | 否     | 卡片是否支持设置背景透明度。<br/>ArkTS卡片由用户配置决定是否支持，JS卡片均不支持。  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| supportedShapes<sup>12+</sup>    | Array&lt;number&gt;      | 是    | 否     | 卡片支持的形状。具体可选形状参考[FormShape<sup>12+</sup>](#formInfoformshape12) <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| supportedShapes<sup>12+</sup>    | Array&lt;number&gt;      | 是    | 否     | 卡片支持的形状。具体可选形状参考[FormShape<sup>12+</sup>](#forminfoformshape12) <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 | previewImages<sup>18+</sup> | Array&lt;number&gt; | 是 | 否 | 卡片预览图资源ID。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 | enableBlurBackground<sup>18+</sup>  | boolean               | 是    | 否     | 卡片是否使用模糊背板。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
-|renderingMode<sup>18+</sup>|[RenderingMode](#formInforenderingmode18)|是|否|卡片渲染模式。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+|renderingMode<sup>18+</sup>|[RenderingMode](#forminforenderingmode18)|是|否|卡片渲染模式。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 ## formInfo.FormType
 
@@ -84,7 +84,7 @@ import { formInfo } from '@kit.FormKit';
 
 | 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
-| formState  | [FormState](#formInfoformstate)               | 是    | 否     | 卡片状态。                          |
+| formState  | [FormState](#forminfoformstate)               | 是    | 否     | 卡片状态。                          |
 | want  | [Want](../apis-ability-kit/js-apis-app-ability-want.md)         | 是    | 否     | Want文本内容。    |
 
 ##  formInfo.FormState
