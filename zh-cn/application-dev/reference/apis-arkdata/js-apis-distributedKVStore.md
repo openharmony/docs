@@ -4064,7 +4064,7 @@ getResultSize(query: Query): Promise&lt;number&gt;
 
 | 类型                  | 说明                                            |
 | --------------------- | ----------------------------------------------- |
-| Promise&lt;number&gt; | Promise对象。获取与指定QuerV9对象匹配的结果数。 |
+| Promise&lt;number&gt; | Promise对象。获取与指定Query对象匹配的结果数。 |
 
 **错误码：**
 
