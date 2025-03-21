@@ -10380,7 +10380,7 @@ MarqueeDynamicSyncScene继承自[DynamicSyncScene](#dynamicsyncscene12)，对应
 **示例：**
 
 ```ts
-import { MarqueeDynamicSyncSceneType, MarqueeDynamicSyncScene } from '@ohos.arkui.UIContext';
+import { MarqueeDynamicSyncSceneType, MarqueeDynamicSyncScene } from '@kit.ArkUI';
 
 @Entry
 @Component
