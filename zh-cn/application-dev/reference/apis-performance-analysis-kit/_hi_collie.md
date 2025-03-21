@@ -48,7 +48,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [HiCollie_ErrorCode](#hicollie_errorcode) { HICOLLIE_SUCCESS = 0, HICOLLIE_INVALID_ARGUMENT = 401, HICOLLIE_WRONG_THREAD_CONTEXT = 29800001, HICOLLIE_REMOTE_FAILED = 29800002 } | 错误码定义。  | 
+| [HiCollie_ErrorCode](#hicollie_errorcode) {<br/>HICOLLIE_SUCCESS = 0, <br/>HICOLLIE_INVALID_ARGUMENT = 401, <br/>HICOLLIE_WRONG_THREAD_CONTEXT = 29800001, <br/>HICOLLIE_REMOTE_FAILED = 29800002 } | 错误码定义。  | 
 
 
 ### 函数
