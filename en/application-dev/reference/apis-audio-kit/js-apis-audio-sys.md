@@ -572,9 +572,9 @@ Obtains an **AudioSpatializationManager** instance.
 
 **Return value**
 
-| Type                                      | Description                         |
-|------------------------------------------| ----------------------------- |
-| [AudioSpatializationManager](#audiospatializationmanager11) | **AudioSpatializationManager** instance.|
+| Type                                          | Description                         |
+|----------------------------------------------| ----------------------------- |
+| [AudioSpatializationManager](#audiospatializationmanager11) | **AudioSpatializationManager** instance. |
 
 **Error codes**
 
@@ -1281,7 +1281,7 @@ This permission is required only for muting or unmuting the ringer when **volume
 For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
-| ------- | --------------------------------------------|
+| -------- | --------------------------------------------|
 | 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. Return by promise.                     |
@@ -1695,7 +1695,7 @@ Describes the enabled status of spatial audio rendering of the device.
 
 ## AudioSpatializationManager<sup>11+</sup>
 
-Implements spatial audio management. Before calling an API in **AudioSpatializationManager**, you must use [getSpatializationManager](#getspatializationmanager11) to obtain an **AudioSpatializationManager** instance.
+Implements spatial audio management. Before calling any API in **AudioSpatializationManager**, you must use [getSpatializationManager](#getspatializationmanager11) to obtain an **AudioSpatializationManager** instance.
 
 ### isSpatializationSupported<sup>11+</sup>
 
