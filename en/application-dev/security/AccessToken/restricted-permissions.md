@@ -502,3 +502,17 @@ With this permission, the application can persist the virtual random address of 
 **Authorization mode**: system_grant
 
 **Valid since**: 16
+
+### ohos.permission.MANAGE_APN_SETTING
+
+Allows an application to read and set APN information.
+
+You can request this permission when the application needs to use the APN information.
+
+<!--RP37--><!--RP37End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 16
