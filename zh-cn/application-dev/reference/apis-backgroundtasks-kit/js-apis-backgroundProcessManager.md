@@ -91,9 +91,7 @@ try {
 
 ## ProcessPriority
 
->  **说明：**
->
-> 子进程压制档位。
+子进程压制档位。
 
 **系统能力：** SystemCapability.Resourceschedule.BackgroundProcessManager
 
