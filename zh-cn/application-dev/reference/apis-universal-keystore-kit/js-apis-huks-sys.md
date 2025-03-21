@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import { huks } from '@kit.UniversalKeystoreKit'
+import { huks } from '@kit.UniversalKeystoreKit';
 ```
 
 ## huks.generateKeyItemAsUser

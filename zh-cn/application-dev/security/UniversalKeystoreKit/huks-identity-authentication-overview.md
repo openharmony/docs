@@ -102,23 +102,23 @@ HUKS提供了完备的密钥访问控制能力，以保证存储在HUKS中的密
 
 | 用户身份认证                      | 授权访问类型     | 说明                                                  |
 | -------------------------------| -------------- | -------------------------------------   |
-| PIN                            | INVALID_CLEAR_PASSWORD | 当前仅支持锁屏密码进行身份认证，清除锁屏密码后，密钥永久失效  |
-| FACE                           | INVALID_CLEAR_PASSWORD | 当前仅支持人脸进行身份认证，清除锁屏密码后，密钥永久失效  |
-| FINGERPRINT                    | INVALID_CLEAR_PASSWORD | 当前仅支持指纹进行身份认证，清除锁屏密码后，密钥永久失效  |
-| PIN  \|  FACE                  | INVALID_CLEAR_PASSWORD | 当前支持锁屏密码或人脸任一凭据进行身份认证，清除锁屏密码后，密钥永久失效  |
-| PIN  \|  FINGERPRINT           | INVALID_CLEAR_PASSWORD | 当前支持锁屏密码或指纹任一凭据进行身份认证，清除锁屏密码后，密钥永久失效    |
-| PIN  \|  FACE  \|  FINGERPRINT | INVALID_CLEAR_PASSWORD | 当前支持锁屏密码、人脸或指纹任一凭据进行身份认证，清除锁屏密码后，密钥永久失效    |
-| FACE                           | INVALID_NEW_BIO_ENROLL | 当前仅支持人脸进行身份认证，录入新的人脸后，密钥永久失效  |
-| FINGERPRINT                    | INVALID_NEW_BIO_ENROLL | 当前仅支持指纹进行身份认证，录入新的指纹后，密钥永久失效  |
-| PIN  \|  FACE                  | INVALID_NEW_BIO_ENROLL | 当前支持锁屏密码或人脸任一凭据进行身份认证，录入新的人脸后，用户通过人脸凭据无法使用密钥，通过锁屏密码仍可正常使用密钥；清除锁屏密码后，密钥永久失效   |
-| PIN  \|  FINGERPRINT           | INVALID_NEW_BIO_ENROLL | 当前支持锁屏密码或指纹任一凭据进行身份认证，录入新的指纹后，用户通过指纹凭据无法使用密钥，通过锁屏密码仍可正常使用密钥；清除锁屏密码后，密钥永久失效   |
-| FACE  \|  FINGERPRINT          | INVALID_NEW_BIO_ENROLL | 当前支持人脸或指纹任一凭据进行身份认证，录入新的生物特征后，用户通过该生物特征凭据无法使用密钥，其它凭据不受影响仍可正常使用密钥    |
-| PIN  \|  FACE  \|  FINGERPRINT | INVALID_NEW_BIO_ENROLL | 当前支持锁屏密码、人脸或指纹任一凭据进行身份认证，录入新的生物特征后，用户通过该生物特征凭据无法使用密钥，其它凭据不受影响仍可正常使用密钥；清除锁屏密码后，密钥永久失效    |
-| PIN                            | ALWAYS_VALID           | 当前仅支持锁屏密码进行身份认证，密钥永久有效    |
-| FACE                           | ALWAYS_VALID           | 当前仅支持人脸进行身份认证，密钥永久有效    |
-| FINGERPRINT                    | ALWAYS_VALID           | 当前仅支持指纹进行身份认证，密钥永久有效    |
-| PIN  \|  FACE                  | ALWAYS_VALID           | 当前支持锁屏密码或人脸进行身份认证，密钥永久有效    |
-| PIN  \|  FINGERPRINT           | ALWAYS_VALID           | 当前支持锁屏密码或指纹进行身份认证，密钥永久有效    |
-| FACE  \|  FINGERPRINT          | ALWAYS_VALID           | 当前支持人脸或指纹进行身份认证，密钥永久有效    |
-| PIN  \|  FACE  \|  FINGERPRINT | ALWAYS_VALID           | 当前支持锁屏密码、人脸或指纹进行身份认证，密钥永久有效    |
+| PIN                            | INVALID_CLEAR_PASSWORD | 当前仅支持锁屏密码进行身份认证，清除锁屏密码后，密钥永久失效。  |
+| FACE                           | INVALID_CLEAR_PASSWORD | 当前仅支持人脸进行身份认证，清除锁屏密码后，密钥永久失效。  |
+| FINGERPRINT                    | INVALID_CLEAR_PASSWORD | 当前仅支持指纹进行身份认证，清除锁屏密码后，密钥永久失效。  |
+| PIN  \|  FACE                  | INVALID_CLEAR_PASSWORD | 当前支持锁屏密码或人脸任一凭据进行身份认证，清除锁屏密码后，密钥永久失效。  |
+| PIN  \|  FINGERPRINT           | INVALID_CLEAR_PASSWORD | 当前支持锁屏密码或指纹任一凭据进行身份认证，清除锁屏密码后，密钥永久失效。    |
+| PIN  \|  FACE  \|  FINGERPRINT | INVALID_CLEAR_PASSWORD | 当前支持锁屏密码、人脸或指纹任一凭据进行身份认证，清除锁屏密码后，密钥永久失效。    |
+| FACE                           | INVALID_NEW_BIO_ENROLL | 当前仅支持人脸进行身份认证，录入新的人脸后，密钥永久失效。  |
+| FINGERPRINT                    | INVALID_NEW_BIO_ENROLL | 当前仅支持指纹进行身份认证，录入新的指纹后，密钥永久失效。  |
+| PIN  \|  FACE                  | INVALID_NEW_BIO_ENROLL | 当前支持锁屏密码或人脸任一凭据进行身份认证，录入新的人脸后，用户通过人脸凭据无法使用密钥，通过锁屏密码仍可正常使用密钥；清除锁屏密码后，密钥永久失效。   |
+| PIN  \|  FINGERPRINT           | INVALID_NEW_BIO_ENROLL | 当前支持锁屏密码或指纹任一凭据进行身份认证，录入新的指纹后，用户通过指纹凭据无法使用密钥，通过锁屏密码仍可正常使用密钥；清除锁屏密码后，密钥永久失效。   |
+| FACE  \|  FINGERPRINT          | INVALID_NEW_BIO_ENROLL | 当前支持人脸或指纹任一凭据进行身份认证，录入新的生物特征后，用户通过该生物特征凭据无法使用密钥，其它凭据不受影响仍可正常使用密钥。    |
+| PIN  \|  FACE  \|  FINGERPRINT | INVALID_NEW_BIO_ENROLL | 当前支持锁屏密码、人脸或指纹任一凭据进行身份认证，录入新的生物特征后，用户通过该生物特征凭据无法使用密钥，其它凭据不受影响仍可正常使用密钥；清除锁屏密码后，密钥永久失效。    |
+| PIN                            | ALWAYS_VALID           | 当前仅支持锁屏密码进行身份认证，密钥永久有效。    |
+| FACE                           | ALWAYS_VALID           | 当前仅支持人脸进行身份认证，密钥永久有效。    |
+| FINGERPRINT                    | ALWAYS_VALID           | 当前仅支持指纹进行身份认证，密钥永久有效。    |
+| PIN  \|  FACE                  | ALWAYS_VALID           | 当前支持锁屏密码或人脸进行身份认证，密钥永久有效。    |
+| PIN  \|  FINGERPRINT           | ALWAYS_VALID           | 当前支持锁屏密码或指纹进行身份认证，密钥永久有效。    |
+| FACE  \|  FINGERPRINT          | ALWAYS_VALID           | 当前支持人脸或指纹进行身份认证，密钥永久有效。    |
+| PIN  \|  FACE  \|  FINGERPRINT | ALWAYS_VALID           | 当前支持锁屏密码、人脸或指纹进行身份认证，密钥永久有效。    |
 
