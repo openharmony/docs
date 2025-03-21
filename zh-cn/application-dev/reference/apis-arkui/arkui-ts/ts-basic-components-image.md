@@ -682,7 +682,7 @@ type ImageMatrix = Matrix4Transit
 
 | 名称 | 类型       | 必填 | 说明           |
 | ------ | --------- | --- | ------------- |
-| ORIGIN  | ColorContent | 否 | 重置[fillColor](#fillcolor)接口，效果上与不设置[fillColor](#fillcolor)一致。 |
+| ORIGIN  | ColorContent | 是 | 重置[fillColor](#fillcolor)接口，效果上与不设置[fillColor](#fillcolor)一致。 |
 
 ## 事件
 
