@@ -1173,7 +1173,7 @@ move(offset: number): boolean
 
 | 参数名 | 类型 | 必填 | 说明                                                         |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| offset | number   | 是   | 表示与当前位置的相对偏移量，负偏移表示向后移动，正偏移表示向前移动。 |
+| offset | number   | 是   | 表示与当前位置的相对偏移量，正偏移表示向前移动，负偏移表示向后移动，当前位置加偏移量之和需大于等于0小于结果集中的总行数，否则报401错误。|
 
 **返回值：**
 
@@ -1223,7 +1223,7 @@ moveToPosition(position: number): boolean
 
 | 参数名   | 类型 | 必填 | 说明           |
 | -------- | -------- | ---- | -------------- |
-| position | number   | 是   | 表示绝对位置。 |
+| position | number   | 是   | 表示绝对位置，绝对位置需大于等于0小于结果集中的总行数，否则报401错误。|
 
 **返回值：**
 
@@ -4859,7 +4859,7 @@ try {
 
 setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback&lt;void&gt;): void
 
-设置数据库同步允许的默认延迟，使用callback异步回调。
+设置一个延时时间在此延时时间之后发起同步，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4867,7 +4867,7 @@ setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback&lt;void&gt;)
 
 | 参数名                | 类型                  | 必填 | 说明                                         |
 | --------------------- | ------------------------- | ---- | -------------------------------------------- |
-| defaultAllowedDelayMs | number                    | 是   | 表示数据库同步允许的默认延迟，以毫秒为单位。 |
+| defaultAllowedDelayMs | number                    | 是   | 表示一个延时时间，以毫秒为单位。 |
 | callback              | AsyncCallback&lt;void&gt; | 是   | 回调函数。设置成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -4902,7 +4902,7 @@ try {
 
 setSyncParam(defaultAllowedDelayMs: number): Promise&lt;void&gt;
 
-设置数据库同步允许的默认延迟，使用Promise异步回调。
+设置一个延时时间在此延时时间之后发起同步，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4910,7 +4910,7 @@ setSyncParam(defaultAllowedDelayMs: number): Promise&lt;void&gt;
 
 | 参数名                | 类型 | 必填 | 说明                                         |
 | --------------------- | -------- | ---- | -------------------------------------------- |
-| defaultAllowedDelayMs | number   | 是   | 表示数据库同步允许的默认延迟，以毫秒为单位。 |
+| defaultAllowedDelayMs | number   | 是   | 表示一个延时时间，以毫秒为单位。 |
 
 **返回值：**
 
