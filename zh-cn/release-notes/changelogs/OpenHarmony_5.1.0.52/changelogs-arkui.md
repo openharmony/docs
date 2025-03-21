@@ -102,45 +102,7 @@ UIContext的bindTabsToScrollable、bindTabsToNestedScrollable接口
 
 默认行为变更，无需适配。
 
-## cl.arkui.4 MenuItem高度设置百分比情况下文本垂直对齐方式由顶部对齐变更为居中对齐
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-UX规范变更。
-
-**变更影响**
-
-此变更不涉及应用适配。
-
-- 变更前：MenuItem高度设置百分比，菜单项文本垂直方向顶部对齐。
-  
-- 变更后：MenuItem高度设置百分比，菜单项文本垂直方向居中对齐。
-
-| 变更前 | 变更后 |
-|---------|---------|
-|  ![变更前](figures/MenuItemHeightPercent_before.png)       |  ![变更后](figures/MenuItemHeightPercent_after.png)       |
-
-**起始API Level**
-
-7
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.1.0.52开始。
-
-**变更的接口/组件**
-
-MenuItem组件
-
-**适配指导**
-
-默认效果变更，无需适配。
-
-## cl.arkui.5 修复fromHtml接口解析颜色rgb顺序错误的问题
+## cl.arkui.4 修复fromHtml接口解析颜色rgb顺序错误的问题
 
 **访问级别**
 
@@ -174,7 +136,7 @@ MenuItem组件
 
 此变更不涉及应用适配。
 
-## cl.arkui.6 C API轴事件接口OH_ArkUI_UIInputEvent_GetSourceType和OH_ArkUI_UIInputEvent_GetToolType接口返回值变更
+## cl.arkui.5 C API轴事件接口OH_ArkUI_UIInputEvent_GetSourceType和OH_ArkUI_UIInputEvent_GetToolType接口返回值变更
 
 **访问级别**
 
@@ -232,7 +194,7 @@ if (toolType != UI_INPUT_EVENT_TOOL_TYPE_MOUSE) { // 是鼠标滚轮尝试的轴
 }
 ```
 
-## cl.arkui.7 CanvasRenderingContext2D使用putImageData方法绘制透明度小于1的ImageData效果变更
+## cl.arkui.6 CanvasRenderingContext2D使用putImageData方法绘制透明度小于1的ImageData效果变更
 
 **访问级别**
 
@@ -295,7 +257,7 @@ struct Demo {
 }
 ```
 
-## cl.arkui.8 预览器OffscreenCanvasRenderingContext2D使用drawImage方法绘制透明度小于1的ImageBitmap效果变更
+## cl.arkui.7 预览器OffscreenCanvasRenderingContext2D使用drawImage方法绘制透明度小于1的ImageBitmap效果变更
 
 **访问级别**
 
@@ -353,7 +315,7 @@ struct Demo {
 }
 ```
 
-## cl.arkui.9 TextInput/TextArea使用attributeModifier修改borderWidth的行为变更
+## cl.arkui.8 TextInput/TextArea使用attributeModifier修改borderWidth的行为变更
 
 **访问级别**
 
