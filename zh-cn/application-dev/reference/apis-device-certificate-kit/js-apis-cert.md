@@ -204,13 +204,13 @@ buffer数组的列表。
 | x509Cert | [X509Cert](#x509cert)    | 否 |  指定具体的证书对象。  |
 | validDate | string    | 否  |  指定证书有效期。  |
 | issuer | Uint8Array | 否  | 指定证书颁发者，为DER编码格式。 |
-| keyUsage | Array\<boolean> | 否  | 指定是否需要匹配密钥用途。 |
+| keyUsage | Array\<boolean> | 否  | 指定是否需要匹配密钥用途。true为需要，false为不需要。  |
 | serialNumber | bigint    | 否  |  指定证书的序列号。  |
 | subject | Uint8Array | 否  | 指定证书主题，DER编码格式。 |
 | publicKey | [DataBlob](#datablob) | 否  | 指定证书公钥，DER编码格式。 |
 | publicKeyAlgID | string | 否  | 指定证书公钥的算法。 |
 | subjectAlternativeNames<sup>12+</sup> | Array\<[GeneralName](#generalname12)> | 否  | 指定证书主体名称。 |
-| matchAllSubjectAltNames<sup>12+</sup> | boolean | 否  | 指定是否需要匹配证书主体名称。 |
+| matchAllSubjectAltNames<sup>12+</sup> | boolean | 否  | 指定是否需要匹配证书主体名称。true为需要，false为不需要。  |
 | authorityKeyIdentifier<sup>12+</sup> | Uint8Array | 否  | 指定证书颁发机构秘钥。 |
 | minPathLenConstraint<sup>12+</sup> | number | 否  | 指定证书CA路径长度。 |
 | extendedKeyUsage<sup>12+</sup> | Array\<string> | 否  | 指定证书扩展用途。 |
