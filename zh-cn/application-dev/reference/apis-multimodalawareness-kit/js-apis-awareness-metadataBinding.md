@@ -13,8 +13,8 @@ import { motion } from '@kit.MultimodalAwarenessKit';
 ```
 
 ## encodeImage(image.PixelMap, string)
-encodeImage(srcImage: image.PixelMap, metadata: string): Promise<image.PixelMap>; 
-在图片中加入信息 
+encodeImage(srcImage: image.PixelMap, metadata: string): Promise<image.PixelMap>;  
+在图片中加入信息  
 **系统能力**：SystemCapability.MultimodalAwarness.metadataBinding
 
 **参数**：
@@ -25,7 +25,8 @@ encodeImage(srcImage: image.PixelMap, metadata: string): Promise<image.PixelMap>
 | metadata     | string                             | 是   | 嵌入的信息|
 | Promise | Promise<image.PixelMap>                 | 是   |  回调函数，返回嵌入信息的图片|
 
-**错误码**：
+**错误码**:  
+
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 |   202    | 权限管控，非系统应用调用系统API|
@@ -45,18 +46,20 @@ metadataBinding.encodeImage(metadataValue, captureImage).then((pixelMap : imageM
 ```
 
 ## decodeImage(image.PixelMap)
-function decodeImage(encodedImage: image.PixelMap): Promise<string>; 
+function decodeImage(encodedImage: image.PixelMap): Promise\<string\>
 从图片中解析出信息
 
 **系统能力**：SystemCapability.MultimodalAwarness.metadataBinding
 
-**参数**：
+**参数**：  
+
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 | srcImage     | PixelMap                           | 是   | 带有信息的图片 |
-|Promise|Promise<string>|是|回调函数，返回从图片解析出的信息|
+|Promise|Promise\<string\>|是|回调函数，返回从图片解析出的信息|
 
-**错误码**：
+**错误码**：  
+
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 |   202    | 权限管控，非系统应用调用系统API|
@@ -66,15 +69,17 @@ function decodeImage(encodedImage: image.PixelMap): Promise<string>;
 
 ## notifyMetadataBindingEvent(string)
 submitMetadata(metadata: string): void；
-把需要嵌入的信息传递给需要调用编码接口的应用或服务
+把需要嵌入的信息传递给需要调用编码接口的应用或服务  
 **系统能力**：SystemCapability.MultimodalAwarness.metadataBinding
 
-**参数**：
+**参数**：  
+
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 | metadata     | string                           | 是   | 要嵌入图片中的信息 |
 
-**错误码**：
+**错误码**：  
+
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 |   401    | 参数校验失败，输入参数不满足要求|
@@ -91,16 +96,18 @@ metadataBinding.notifyMetadataBindingEvent(bundleName).then((metadata : string) 
 ```
 
 ## submitMetadata(string)
-function submitMetadata(metadata: string): void;
-三方应用把需要编码的内容传递给MSDP，由MSDP决定适时传递给调用编码接口的系统应用或服务 
+function submitMetadata(metadata: string): void;  
+三方应用把需要编码的内容传递给MSDP，由MSDP决定适时传递给调用编码接口的系统应用或服务  
 **系统能力**：SystemCapability.MultimodalAwarness.metadataBinding
 
 **参数**：
+
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 | metadata     | string                           | 是   | 要嵌入图片中的信息 |
 
-**错误码**：
+**错误码**：  
+
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 |   401    | 参数校验失败，输入参数不满足要求|
@@ -115,18 +122,20 @@ metadataBinding.submitMetadata(metadata).catch((error:BusinessError)=>{
 ```
 
 ## metadataBinding.on('operationSubmitMetadata', string)
-metadataBinding.on(type: 'operationSubmitMetadata', bundleName: string, callback: Callback<number>): void;
+metadataBinding.on(type: 'operationSubmitMetadata', bundleName: string, callback: Callback\<number\>): void;  
 
-订阅系统要求获取编码内容的事件，应用注册回调，当事件发生时回传编码内容
-系统能力：SystemCapability.MultimodalAwarness.metadataBinding
-**参数**：
+订阅系统要求获取编码内容的事件，应用注册回调，当事件发生时回传编码内容  
+系统能力：SystemCapability.MultimodalAwarness.metadataBinding  
+**参数**： 
+
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 |type| string|是|type为，‘operationSubmitMetadata’事件类型，|
 |bundlename|string|是|应用包名|标识注册应用的包名|
-|callback|Callback<number>|是|回调函数，用于返回编码内容| 
+|callback|Callback\<number\>|是|回调函数，用于返回编码内容| 
 
 **错误码**：
+
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 |401|参数错误|
@@ -135,15 +144,18 @@ metadataBinding.on(type: 'operationSubmitMetadata', bundleName: string, callback
 
 
 ## metadataBinding.off('operationSubmitMetadata', string)
-off(type: 'operationSubmitMetadata', bundleName: string, callback?: Callback<number>): void;
-去订阅系统获取编码内容的事件。去注册回调接口
-**系统能力**：SystemCapability.MultimodalAwarness.metadataBinding
+off(type: 'operationSubmitMetadata', bundleName: string, callback?: Callback\<number>): void;  
+去订阅系统获取编码内容的事件。去注册回调接口  
+**系统能力**：SystemCapability.MultimodalAwarness.metadataBinding  
 **参数**：
+
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 |type|string|是|事件类型，type为“operationSubmitMetadata”，表示系统应用获取编码内容|
-|callback|Callback<number>|是|回调函数，返回编码内容|
-**错误码**：
+|callback|Callback\<number\>|是|回调函数，返回编码内容|
+
+**错误码**：  
+
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 |401|参数错误|
