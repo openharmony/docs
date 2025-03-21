@@ -38,7 +38,7 @@ Toggle(options: ToggleOptions)
 | 名称 | 类型                              | 必填 | 说明                                                         |
 | ---- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | type | [ToggleType](#toggletype枚举说明) | 是   | 开关的样式。<br/>默认值：ToggleType.Switch                   |
-| isOn | boolean                           | 否   | 开关是否打开，true：打开，false：关闭。<br/>默认值：false<br />该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| isOn | boolean                           | 否   | 开关是否打开，true：打开，false：关闭。<br/>默认值：false<br />该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br />该属性支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。 |
 
 ## ToggleType枚举说明
 
