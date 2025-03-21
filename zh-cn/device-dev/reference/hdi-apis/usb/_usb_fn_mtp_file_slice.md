@@ -19,9 +19,9 @@
 | -------- | -------- |
 | FileDescriptor [fd](#fd) | 文件描述符。  | 
 | long [offset](#offset) | 管道。  | 
-| long [length](#length) | 数据长度  | 
-| unsigned short [command](#command) | 请求命令  | 
-| unsigned int [transactionId](#transactionid) | 传输id  | 
+| long [length](#length) | 数据长度。  | 
+| unsigned short [command](#command) | 请求命令。  | 
+| unsigned int [transactionId](#transactionid) | 传输id。  | 
 
 
 ## 类成员变量说明
@@ -65,7 +65,6 @@ long UsbFnMtpFileSlice::offset
 **描述**
 
 管道。
-
 
 ### transactionId
 
