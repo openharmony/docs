@@ -46,8 +46,8 @@ HiLog模块实现日志打印功能。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [LogType](#logtype) { LOG_APP = 0 } | 日志类型。  | 
-| [LogLevel](#loglevel) {<br/>LOG_DEBUG = 3,<br>LOG_INFO = 4,<br>LOG_WARN = 5,<br>LOG_ERROR = 6,<br/>LOG_FATAL = 7<br/>} | 日志级别。  | 
+| [LogType](#logtype) {<br/>LOG_APP = 0<br/>} | 日志类型。  | 
+| [LogLevel](#loglevel) {<br/>LOG_DEBUG = 3, <br/>LOG_INFO = 4, <br/>LOG_WARN = 5, <br/>LOG_ERROR = 6, <br/>LOG_FATAL = 7<br/>} | 日志级别。  | 
 
 
 ### 函数
