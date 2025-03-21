@@ -32,7 +32,7 @@
 ```
 uint32_t OH_NativeBuffer_Plane::columnStride
 ```
-**描述**
+**描述：**
 
 从图像一列的第一个值到下一列的第一个值的距离，单位为Byte。
 
@@ -42,7 +42,7 @@ uint32_t OH_NativeBuffer_Plane::columnStride
 ```
 uint64_t OH_NativeBuffer_Plane::offset
 ```
-**描述**
+**描述：**
 
 图像平面的偏移量，单位为Byte。
 
@@ -52,6 +52,6 @@ uint64_t OH_NativeBuffer_Plane::offset
 ```
 uint32_t OH_NativeBuffer_Plane::rowStride
 ```
-**描述**
+**描述：**
 
 从图像一行的第一个值到下一行的第一个值的距离，单位为Byte。
