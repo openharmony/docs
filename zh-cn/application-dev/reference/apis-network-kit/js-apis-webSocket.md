@@ -127,7 +127,7 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-**注意：**URL地址长度不能超过1024个字符，否则会连接失败。
+**注意：** URL地址长度不能超过1024个字符，否则会连接失败。从API15开始，URL地址长度限制由1024修改为2048。
 
 **参数：**
 
