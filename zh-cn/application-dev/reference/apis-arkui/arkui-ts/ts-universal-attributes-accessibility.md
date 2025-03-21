@@ -10,7 +10,9 @@
 
 accessibilityGroup(value: boolean)
 
-无障碍组。
+设置是否启用无障碍分组。启用无障碍分组后该组件及其所有子组件将作为一整个可以选中的组件，无障碍服务将不再关注其子组件内容。
+
+若组件启用无障碍分组，当组件不包含通用文本属性，同时未设置[无障碍文本](#accessibilitytext)时，将默认拼接其子组件的通用文本属性作为组件的合并文本，若某一子组件没有通用文本属性，则忽略该子组件不进行拼接。此时合并文本不使用子组件的无障碍文本。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -22,13 +24,17 @@ accessibilityGroup(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 无障碍组，设置为true时表示该组件及其所有子组件为一整个可以选中的组件，无障碍服务将不再关注其子组件内容。<br/>默认值：false |
+| value  | boolean | 是   | 无障碍分组，设置为true时表示该组件及其所有子组件为一整个可以选中的组件，无障碍服务将不再关注其子组件内容。<br/>默认值：false |
 
 ## accessibilityGroup<sup>14+</sup>
 
 accessibilityGroup(isGroup: boolean, accessibilityOptions: AccessibilityOptions)
 
-无障碍组，支持优先拼接无障碍文本进行朗读。
+设置是否启用无障碍分组，支持优先拼接无障碍文本进行朗读。启用无障碍分组后该组件及其所有子组件将作为一整个可以选中的组件，无障碍服务将不再关注其子组件内容。
+
+若组件启用无障碍分组，当组件不包含通用文本属性，同时未设置[无障碍文本](#accessibilitytext)时，将默认拼接其子组件的通用文本属性作为组件的合并文本，若某一子组件没有通用文本属性，则忽略该子组件不进行拼接。
+
+通过accessibilityPreferred启用优先拼接无障碍文本进行朗读后，将优先拼接其子组件的无障碍文本属性作为组件的合并文本，若某一子组件未设置无障碍文本，则继续拼接该子组件的通用文本属性，若该子组件没有通用文本属性，则忽略该子组件不进行拼接。
 
 **卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
 
@@ -40,8 +46,8 @@ accessibilityGroup(isGroup: boolean, accessibilityOptions: AccessibilityOptions)
 
 | 参数名               | 类型                                                    | 必填 | 说明                                                         |
 | -------------------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| isGroup              | boolean                                                 | 是   | 无障碍组，设置为true时表示该组件及其所有子组件为一整个可以选中的组件，无障碍服务将不再关注其子组件内容。<br/>默认值：false |
-| accessibilityOptions | [AccessibilityOptions](#accessibilityoptions14对象说明) | 否   | 设置为true时，使应用优先拼接无障碍文本进行朗读。             |
+| isGroup              | boolean                                                 | 是   | 无障碍分组，设置为true时表示该组件及其所有子组件为一整个可以选中的组件，无障碍服务将不再关注其子组件内容。<br/>默认值：false |
+| accessibilityOptions | [AccessibilityOptions](#accessibilityoptions14对象说明) | 是   | accessibilityPreferred设置为true时，使应用优先拼接无障碍文本进行朗读。<br/>默认值：false            |
 
 ## AccessibilityOptions<sup>14+</sup>对象说明
 
@@ -49,13 +55,13 @@ accessibilityGroup(isGroup: boolean, accessibilityOptions: AccessibilityOptions)
 
 | 名称                   | 类型    | 必填 | 说明                                                         |
 | ---------------------- | ------- | ---- | ------------------------------------------------------------ |
-| accessibilityPreferred | boolean | 否   | 若accessibilityPreferred设置为true，则深度遍历每个子节点时优先选择该子节点的无障碍文本accessibilityText。<br/>若无障碍文本为空则选择本身Text文本，最终将拼接完成的文本设置给accessibilityText与Text都为空的父节点。 |
+| accessibilityPreferred | boolean | 否   | 若accessibilityPreferred设置为true，则深度遍历每个子节点时优先选择该子节点的无障碍文本accessibilityText。<br/>若无障碍文本为空则选择本身Text文本，最终将拼接完成的文本设置给accessibilityText与Text都为空的父节点。<br/>默认值：false |
 
 ## accessibilityText
 
 accessibilityText(value: string)
 
-无障碍文本。
+设置无障碍文本。当组件不包含文本属性时，开发人员可通过设置无障碍文本属性，使不包含文字信息的组件能够播报无障碍文本的内容。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -73,7 +79,7 @@ accessibilityText(value: string)
 
 accessibilityText(text: Resource)
 
-无障碍文本，支持通过Resource引用资源文件。
+设置无障碍文本，支持通过Resource引用资源文件。当组件不包含文本属性时，开发人员可通过设置无障碍文本属性，使不包含文字信息的组件能够播报无障碍文本的内容。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -92,7 +98,7 @@ accessibilityText(text: Resource)
 
 accessibilityDescription(value: string)
 
-无障碍说明。
+设置无障碍说明。该属性用于为用户进一步说明当前组件，开发人员可为组件设置相对较详细的解释文本，帮助用户理解将要执行的操作。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -110,7 +116,7 @@ accessibilityDescription(value: string)
 
 accessibilityDescription(description: Resource)
 
-无障碍说明，支持通过Resource引用资源文件。
+设置无障碍说明，支持通过Resource引用资源文件。该属性用于为用户进一步说明当前组件，开发人员可为组件设置相对较详细的解释文本，帮助用户理解将要执行的操作。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -128,7 +134,7 @@ accessibilityDescription(description: Resource)
 
 accessibilityLevel(value: string)
 
-无障碍重要性。
+设置无障碍重要性。该属性用于控制某个组件是否可被无障碍辅助服务所识别。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -140,13 +146,13 @@ accessibilityLevel(value: string)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | string | 是   | 无障碍重要性，用于控制某个组件是否可被无障碍辅助服务所识别。<br/>支持的值为:<br/>"auto"：根据组件不同会转换为“yes”或者“no”。<br/>"yes"：当前组件可被无障碍辅助服务所识别。<br/>"no"：当前组件不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br/>默认值："auto"<br/>**说明：**<br/>以下组件当accessibilityLevel设置成"auto"时，当前组件可被无障碍辅助服务所识别：Checkbox, CheckboxGroup, Gauge, Marquee, MenuItem, MenuItemGroup, Menu, Navigation,  DatePicker, Progress, Radio, Rating, ScrollBar, Select, Slider, Stepper, Text, TextClock, TextPicker, TextTimer, TimePicker, Toggle, Web. |
+| value  | string | 是   | 无障碍重要性，用于控制某个组件是否可被无障碍辅助服务所识别。<br/>支持的值为:<br/>"auto"：当前组件由无障碍分组服务和ArkUl进行综合判断组件是否可被无障碍辅助服务所识别。<br/>"yes"：当前组件可被无障碍辅助服务所识别。<br/>"no"：当前组件不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br/>默认值："auto"<br/>**说明：**<br/>当accessibilityLevel设置成"auto"时，组件是否可被无障碍辅助服务所识别取决于以下多方面因素：<br/>1. 组件是否可被识别由无障碍辅助服务内部判断，自行选择。<br/>2. 若组件的父组件accessibilityGroup属性中isGroup设置为true，无障碍服务将不再关注其子组件内容，组件不可被无障碍辅助服务所识别。<br/>3. 若组件的父组件accessibilityLevel属性设置为"no-hide-descendants"，组件不可被无障碍辅助服务所识别。 |
 
 ## accessibilityVirtualNode<sup>11+</sup>
 
 accessibilityVirtualNode(builder: CustomBuilder)
 
-无障碍虚拟节点。
+设置无障碍虚拟子节点。对自绘制组件传入一个自定义的CustomBuilder，该CustomBuilder中的组件在后端仅做布局不做显示，辅助应用获取无障碍节点信息时会返回CustomBuilder中的节点信息。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -164,7 +170,7 @@ accessibilityVirtualNode(builder: CustomBuilder)
 
 accessibilityChecked(isCheck: boolean)
 
-无障碍节点是否选中的状态维护，用于支持多选的情况使用。
+无障碍节点是否选中的状态维护，用于支持多选的情况使用，表示组件是否被选中。
 
 **卡片能力：** 从API version 13开始，该接口支持在ArkTS卡片中使用。
 
@@ -182,7 +188,7 @@ accessibilityChecked(isCheck: boolean)
 
 accessibilitySelected(isSelect: boolean)
 
-无障碍节点是否选中的状态维护，用于支持单选的情况使用。
+无障碍节点是否选中的状态维护，用于支持单选的情况使用，表示组件是否被选中。
 
 **卡片能力：** 从API version 13开始，该接口支持在ArkTS卡片中使用。
 
@@ -196,7 +202,23 @@ accessibilitySelected(isSelect: boolean)
 | -------- | ------- | ---- | ------------------------------------------------------------ |
 | isSelect | boolean | 是   | 用于表示组件是否被选中。<br/>支持的值为:<br/>true:当前组件被选中。<br/>false:当前组件未被选中。<br/>undefined:由组件自行确定选中状态。<br/>默认值:undefined。<br/>**说明：**<br/>1. 使用该接口设置true或false后，如果需要同时使用accessibilityChecked接口则需要将accessibilityChecked接口的参数设置为undefined。 |
 
+## accessibilityTextHint<sup>12+</sup>
 
+accessibilityTextHint(value: string)
+
+设置组件的文本提示信息，供无障碍辅助应用查询。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名         |  类型    | 必填 | 说明                                                         |
+| -------------- | ------- | ---- | ------------------------------------------------------------ |
+| value  | string | 是   | 组件的文本提示信息，供无障碍辅助应用查询。 |
 
 ## 示例1（设置无障碍文本和无障碍说明）
 
