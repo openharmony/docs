@@ -33,7 +33,7 @@ dmesg &gt; [_fileA_]
 ## 使用指南
 
 - 该命令依赖于LOSCFG_SHELL_DMESG，在kernel/liteos_a中输入make menuconfig命令。此时会弹出配置项，找到Debug选项并进入，然后在配置项中开启"Enable Shell dmesg"：
-  Debug  ---&gt; Enable a Debug Version ---&gt; Enable Shell ---&gt; Enable Shell dmesg
+  Debug  ---&gt; Enable a Debug Version ---&gt; Enable Shell ---&gt; Enable Shell dmesg。
 
 - dmesg参数缺省时，默认打印缓存区内容。
 
