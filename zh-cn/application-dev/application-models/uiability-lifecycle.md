@@ -7,6 +7,8 @@
 
 UIAbility的生命周期包括Create、Foreground、Background、Destroy四个状态，如下图所示。
 
+从API version18开始支持OnWillForeground、OnDidForeground、OnWillBackground、OnDidBackground生命周期。
+
 **图1** UIAbility生命周期状态
 
 ![Ability-Life-Cycle](figures/Ability-Life-Cycle.png)
@@ -214,11 +216,11 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### onWillForeground和onDidForeground生命周期 <sup>18+</sup>
+### onWillForeground和onDidForeground生命周期
 
-[onWillForeground()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwillforeground)在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例从[WindowStageCreate](#windowstagecreate和windowstagedestroy状态)至前台过程中触发，可以在此回调中记录应用从进入到前台时长的开始时间。
+[onWillForeground()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwillforeground)在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例在系统创建完WindowStage，切至前台前触发，可在此回调中进行应用从进入到前台统计时长开始时间打点。
 
-[onDidForeground()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityondidforeground)在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例从WindowStage SHOWN（切前台触发）至WindowStage RESUMED（前台处于可交互状态时触发）过程中触发，可以在此回调中记录应用从进入到前台时长的结束时间。
+[onDidForeground()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityondidforeground)在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例在切至前台后触发，可在此回调中进行应用从进入到前台统计时长结束时间打点。
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
@@ -271,7 +273,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### onWillBackground生命周期 <sup>18+</sup>
+### onWillBackground生命周期
 
 [onWillBackground()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwillbackground)在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例从WindowStage PAUSED（前台不可交互状态）切换至后台过程中触发，可用于打点数据采集，例如，记录应用在运行过程中发生的故障信息、统计信息、安全信息、用户行为信息等。
 
@@ -304,7 +306,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### onDidBackground生命周期<sup>18+</sup>
+### onDidBackground生命周期
 
 [onDidBackground()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityondidbackground)在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例从WindowStage HIDDEN（切后台触发）至[WindowStageWillDestroy](#WindowStageWillDestroy状态)过程中触发，可用于释放应用申请的资源。
 
