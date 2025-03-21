@@ -218,8 +218,8 @@ class MyUIAbility extends UIAbility {
 
 onWillForeground(): void
 
-UIAbility生命周期回调，应用转到前台前触发，在[onForeground](#uiabilityonforeground)前被调用。[onForeground](#uiabilityonforeground)和ArkUI页面[OnPageShow](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)无法保证时序，如果应用认为在[onForeground](#uiabilityonforeground)时进入应用，[OnPageShow](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)时进入页面，可能存在进入页面时长超过进入应用时长问题，影响计时统计相关业务，该回调提供确定地进入应用在进入页面之前时序，可用于统计从进入应用到前台时长的开始时间打点。同步接口，不支持异步回调。
-典型使用场景如广告计费。
+UIAbility生命周期回调，应用转到前台前触发，在[onForeground](#uiabilityonforeground)前被调用。[onForeground](#uiabilityonforeground)和ArkUI页面[OnPageShow](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)无法保证时序，如果应用认为在[onForeground](#uiabilityonforeground)时进入应用，[OnPageShow](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)时进入页面，可能存在进入页面时长超过进入应用时长问题，影响计时统计相关业务，该回调提供确定地进入应用在进入页面之前时序，通常用于统计应用从进入到前台时长的开始时间打点，典型使用场景如广告计费。
+同步接口，不支持异步回调。
 
 **原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -228,6 +228,8 @@ UIAbility生命周期回调，应用转到前台前触发，在[onForeground](#u
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
 import { UIAbility } from '@kit.AbilityKit';
 
 class MyUIAbility extends UIAbility {
@@ -257,7 +259,8 @@ class MyUIAbility extends UIAbility {
 
 onForeground(): void
 
-UIAbility生命周期回调，应用从后台转到前台时触发，在[onWillForeground](#uiabilityonwillbackground18)与[onDidForeground](#uiabilityondidforeground18)之间被调用，可在该回调中申请系统需要的资源。同步接口，不支持异步回调。
+UIAbility生命周期回调，应用从后台转到前台时触发，在[onWillForeground](#uiabilityonwillbackground18)与[onDidForeground](#uiabilityondidforeground18)之间被调用，通常用于申请系统需要的资源。
+同步接口，不支持异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -279,7 +282,8 @@ class MyUIAbility extends UIAbility {
 
 onDidForeground(): void
 
-UIAbility生命周期回调，应用转到前台后触发，在[onForeground](#uiabilityonforeground)后被调用，该回调可用于应用从进入到前台过程时长的结束时间打点，配合[onWillForeground](#uiabilityonwillforeground18)进行计时统计相关业务。同步接口，不支持异步回调。
+UIAbility生命周期回调，应用转到前台后触发，在[onForeground](#uiabilityonforeground)后被调用，通常用于统计应用从进入到前台过程时长的结束时间打点，配合[onWillForeground](#uiabilityonwillforeground18)进行计时统计相关业务。
+同步接口，不支持异步回调。
 
 **原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -288,6 +292,8 @@ UIAbility生命周期回调，应用转到前台后触发，在[onForeground](#u
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
 import { UIAbility } from '@kit.AbilityKit';
 
 class MyUIAbility extends UIAbility {
@@ -317,7 +323,8 @@ class MyUIAbility extends UIAbility {
 
 onWillBackground(): void
 
-UIAbility生命周期回调，当应用从前台转到后台前触发，在[onBackground](#uiabilityonbackground)前被调用，该回调可用于打点采集数据，记录在运行过程中发生的故障信息、统计信息、安全信息、用户行为信息等。同步接口，不支持异步回调。
+UIAbility生命周期回调，当应用从前台转到后台前触发，在[onBackground](#uiabilityonbackground)前被调用，通常用于打点采集数据，例如，采集在运行过程中发生的故障信息、统计信息、安全信息、用户行为信息等。
+同步接口，不支持异步回调。
 
 **原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -357,7 +364,8 @@ class MyUIAbility extends UIAbility {
 
 onBackground(): void
 
-UIAbility生命周期回调，当应用从前台转到后台时触发，在[onWillBackground](#uiabilityonwillbackground18)与[onDidBackground](#uiabilityondidbackground18)之间被调用，可在该回调中释放UI不可见时无用的资源。同步接口，不支持异步回调。
+UIAbility生命周期回调，当应用从前台转到后台时触发，在[onWillBackground](#uiabilityonwillbackground18)与[onDidBackground](#uiabilityondidbackground18)之间被调用，通常用于实现UI不可见时的资源释放操作。
+同步接口，不支持异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -380,7 +388,8 @@ class MyUIAbility extends UIAbility {
 
 onDidBackground(): void
 
-UIAbility生命周期回调，当应用从前台转到后台后触发，在[onBackground](#uiabilityonbackground)后被调用，可在该回调中进行应用进入后台后释放资源。同步接口，不支持异步回调。
+UIAbility生命周期回调，当应用从前台转到后台后触发，在[onBackground](#uiabilityonbackground)之后被调用，通常用于释放应用进入后台后资源。
+同步接口，不支持异步回调。
 
 **原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -389,8 +398,9 @@ UIAbility生命周期回调，当应用从前台转到后台后触发，在[onBa
 **示例：**
 
 ```ts
-import { audio } from '@kit.AudioKit';
 import { UIAbility } from '@kit.AbilityKit';
+import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class MyUIAbility extends UIAbility {
   static audioRenderer: audio.AudioRenderer;
