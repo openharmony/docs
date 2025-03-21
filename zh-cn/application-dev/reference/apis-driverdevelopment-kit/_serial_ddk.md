@@ -35,6 +35,7 @@ USB Serial DDK是为开发者提供的USB Serial DDK设备驱动程序开发套�
 | -------- | -------- |
 | typedef struct [UsbSerial_DeviceHandle](#usbserial_devicehandle) [UsbSerial_DeviceHandle](#usbserial_devicehandle) | USB串口设备数据结构（不透明）。 | 
 | typedef struct [UsbSerial_Params](_usb_serial___params.md) attribute((aligned(8))) [UsbSerial_Params](_usb_serial___params.md) | USB Serial DDK使用的USB串口参数。 | 
+| typedef struct [UsbSerial_Params](_usb_serial___params.md) \__attribute\__((aligned(8))) [UsbSerial_Params](_usb_serial___params.md) | USB Serial DDK使用的USB串口参数。 | 
 
 
 ### 枚举

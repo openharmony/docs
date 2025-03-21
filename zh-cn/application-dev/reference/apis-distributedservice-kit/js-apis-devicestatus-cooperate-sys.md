@@ -708,10 +708,8 @@ try {
 | ---------      | -------------- | ---- | ---- | ------------------------       |
 | displayX       | number         | 是   | 否   | 鼠标指针位于屏幕的X坐标上的位置。 |
 | displayY       | number         | 是   | 否   | 鼠标指针位于屏幕的y坐标上的位置。 |
-| displayWidth   | number         | 是   | 否   | 屏幕宽度。                      |
-| displayHeight  | number         | 是   | 否   | 屏幕高度。                      |
-
-
+| displayWidth   | number         | 是   | 否   | 屏幕宽度，单位：px。                      |
+| displayHeight  | number         | 是   | 否   | 屏幕高度，单位：px。                      |
 
 ## CooperateState<sup>11+</sup>
 
@@ -743,8 +741,8 @@ try {
 | ---------     | -------------- | ---- | ---- | ------------------------ |
 | displayX      | number         | 是   | 否   | 鼠标X坐标位置。 |
 | displayY      | number         | 是   | 否   | 鼠标Y坐标位置。 |
-| displayWidth  | number         | 是   | 否   | 鼠标所在屏幕宽度。 |
-| displayHeight | number         | 是   | 否   | 鼠标所在屏幕高度。 |
+| displayWidth  | number         | 是   | 否   | 鼠标所在屏幕宽度，单位：px。 |
+| displayHeight | number         | 是   | 否   | 鼠标所在屏幕高度，单位：px。 |
 
 
 ## cooperate.prepare<sup>(deprecated)</sup>

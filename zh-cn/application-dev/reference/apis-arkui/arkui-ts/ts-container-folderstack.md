@@ -34,7 +34,7 @@ FolderStack(options?: FolderStackOptions)
 
 | 名称       | 类型         | 必填 | 说明                       |
 | ------------ | -------------------------- | ---- |----------------------------|
-| upperItems |    Array<string\>  | 否   | FolderStack的配置项。<br/>upperItems：定义悬停态会被移到上半屏的子组件的id，组件id在此数组中的子组件悬停触发时自动避让折叠屏折痕区后移到上半屏，其它组件堆叠在下半屏区域。 |
+| upperItems<sup>11+</sup> |    Array<string\>  | 否   | FolderStack的配置项。<br/>upperItems：定义悬停态会被移到上半屏的子组件的id，组件id在此数组中的子组件悬停触发时自动避让折叠屏折痕区后移到上半屏，其它组件堆叠在下半屏区域。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## 属性
 
@@ -168,7 +168,7 @@ type OnFoldStatusChangeCallback = (event: OnFoldStatusChangeInfo) => void
 
 | 名称     | 类型                                            | 必填 | 说明                 |
 | ---------- | ----------------------------------------------- | ---- | -------------------- |
-| foldStatus | [FoldStatus](ts-appendix-enums.md#foldstatus11) | 是   | 当前设备的折叠状态。 |
+| foldStatus<sup>11+</sup> | [FoldStatus](ts-appendix-enums.md#foldstatus11) | 是   | 当前设备的折叠状态。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## HoverEventParam<sup>12+</sup>对象说明
 

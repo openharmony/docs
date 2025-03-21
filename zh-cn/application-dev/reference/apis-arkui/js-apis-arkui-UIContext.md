@@ -217,7 +217,7 @@ setOverlayManagerOptions(options: OverlayManagerOptions): boolean
 
 | 类型    | 说明           |
 | ------- | -------------- |
-| boolean | 是否设置成功。 |
+| boolean | 是否设置成功。<br/>返回true时，设置成功。返回false时，设置失败。 |
 
 **示例：**
 
@@ -2546,6 +2546,71 @@ getTextMenuController(): TextMenuController
 
 参考[TextMenuController](#textmenucontroller16)接口示例。
 
+### createUIContextWithoutWindow<sup>18+</sup>
+
+static createUIContextWithoutWindow(context: common.UIAbilityContext | common.ExtensionContext) : UIContext | undefined
+
+创建一个不依赖窗口的UI实例，并返回其UI上下文。该接口所创建的UI实例是单例。
+
+> **说明：**
+>
+> 返回的UI上下文只可用于创建[自定义节点](../../ui/arkts-user-defined-node.md)，不能执行其他UI操作。
+
+**原子化服务API:** 从API version 18 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                     | 必填 | 说明        |
+| ------- | ---------------------------------------- | ---- | ----------- |
+| context | common.[UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| common.[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md) | 是    | [UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)或[ExtensionAbility](../apis-ability-kit/js-apis-app-ability-extensionAbility.md)所对应的上下文环境。 |
+
+**返回值：**
+
+|类型|说明|
+|----|----|
+| UIContext \| undefined | 创建的UI实例的上下文，创建失败时返回undefined。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[UI上下文](errorcode-uicontext.md)错误码。
+
+| 错误码ID  | 错误信息                        |
+| ------ | ---------------------------------- |
+| 401    | Parameter error. Possible causes: <br> 1. The number of parameters is incorrect.<br> 2. Invalid parameter type of context. |
+| 100001 | Internal error. |
+
+
+**示例：**
+```ts
+import { UIContext } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    let uiContext : UIContext | undefined = UIContext.createUIContextWithoutWindow(this.context);
+  }
+
+  // ......
+}
+```
+
+### destroyUIContextWithoutWindow<sup>18+</sup>
+
+static destroyUIContextWithoutWindow(): void
+
+销毁[createUIContextWithoutWindow](#createuicontextwithoutwindow18)创建的UI实例。
+
+**原子化服务API:** 从API version 18 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+```ts
+UIContext.destroyUIContextWithoutWindow();
+```
+
 ### notifyDragStartRequest<sup>18+</sup>
 
 notifyDragStartRequest(requestStatus: draController.DragStartRequestStatus): void
@@ -2855,7 +2920,7 @@ let localOffsetHeight = modePosition.size.height;
 
 createComponentObserver(id: string): inspector.ComponentObserver
 
-注册组件布局和绘制完成回调通知。
+注册组件布局和组件绘制送显完成回调通知。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2865,7 +2930,7 @@ createComponentObserver(id: string): inspector.ComponentObserver
 
 | 参数名  | 类型     | 必填   | 说明      |
 | ---- | ------ | ---- | ------- |
-| id   | string | 是    | 指定组件id。 |
+| id   | string | 是    | 指定组件id，该id通过通用属性[id](./arkui-ts/ts-universal-attributes-component-id.md#id)或者[key](./arkui-ts/ts-universal-attributes-component-id.md#key12)设置。 |
 
 **返回值：** 
 
@@ -5975,7 +6040,7 @@ getParams(): Object
 
 | 类型     | 说明                |
 | ------ | ----------------- |
-| object | 发起跳转的页面往当前页传入的参数。 |
+| Object | 发起跳转的页面往当前页传入的参数。 |
 
 **示例：**
 

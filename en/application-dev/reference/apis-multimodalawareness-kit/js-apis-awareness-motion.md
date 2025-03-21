@@ -1,4 +1,4 @@
-# @ohos.mulitmodalawareness.motion (Motion Sensing)
+# @ohos.multimodalawareness.motion (Motion Sensing)
 
 The **motion** module provides the capability of sensing user motions, including user gestures and actions.
 

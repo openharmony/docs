@@ -34,7 +34,7 @@ Search初始化参数。
 
 | 参数名      | 类型         | 必填 | 说明        |
 | ----------- | ------------- | ---- | ------------- |
-| value       | string                                               | 否   | 设置当前显示的搜索文本内容。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br />从API version 16开始，该参数支持[!!](../../../quick-start/arkts-new-binding.md#内置组件参数双向绑定)双向绑定变量。 |
+| value       | string                                               | 否   | 设置当前显示的搜索文本内容。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../quick-start/arkts-new-binding.md#内置组件参数双向绑定)双向绑定变量。 |
 | placeholder | [ResourceStr](ts-types.md#resourcestr) | 否   | 设置无输入时的提示文本。                                     |
 | icon        | string                                               | 否   | 设置搜索图标路径，默认使用系统搜索图标。<br/>**说明：** <br/>icon的数据源支持本地图片和网络图片。<br/>-&nbsp;支持的图片格式包括png、jpg、bmp、svg、gif、pixelmap和heif。<br/>-&nbsp;支持Base64字符串。格式data:image/[png\|jpeg\|bmp\|webp\|heif];base64,[base64 data], 其中[base64 data]为Base64字符串数据。<br/>如果与属性searchIcon同时设置，则searchIcon优先。 |
 | controller  | [SearchController](#searchcontroller) | 否   | 设置Search组件控制器。                                       |
@@ -372,7 +372,7 @@ decoration(value: TextDecorationOptions)
 
 letterSpacing(value: number | string | Resource)
 
-设置文本字符间距。设置该值为百分比时，按默认值显示。设置该值为0时，按默认值显示。
+设置文本字符间距。设置该值为百分比时，按默认值显示。设置该值为0时，按默认值显示。string类型支持number类型取值的字符串形式，可以附带单位，例如"10"、"10fp"。
 
 当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。
 
@@ -384,7 +384,7 @@ letterSpacing(value: number | string | Resource)
 
 | 参数名 | 类型                       | 必填 | 说明           |
 | ------ | -------------------------- | ---- | -------------- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本字符间距。 |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本字符间距。<br/>单位：fp |
 
 ### fontFeature<sup>12+</sup>
 
@@ -469,7 +469,7 @@ textIndent(value: Dimension)
 
 minFontSize(value: number | string | Resource)
 
-设置文本最小显示字号。
+设置文本最小显示字号。string类型支持number类型取值的字符串形式，可以附带单位，例如"10"、"10fp"。
 
 需配合[maxFontSize](#maxfontsize12)以及布局大小限制使用，单独设置不生效。
 
@@ -483,13 +483,13 @@ minFontSize(value: number | string | Resource)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。 |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。<br/>单位：fp |
 
 ### maxFontSize<sup>12+</sup>
 
 maxFontSize(value: number | string | Resource)
 
-设置文本最大显示字号。
+设置文本最大显示字号。string类型支持number类型取值的字符串形式，可以附带单位，例如"10"、"10fp"。
 
 需配合[minFontSize](#minfontsize12)以及布局大小限制使用，单独设置不生效。
 
@@ -503,7 +503,7 @@ maxFontSize(value: number | string | Resource)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。 |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。<br/>单位：fp |
 
 ### halfLeading<sup>18+</sup>
 
