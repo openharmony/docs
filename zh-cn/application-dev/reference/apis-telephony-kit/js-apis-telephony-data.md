@@ -651,11 +651,11 @@ APN信息。
 
 | 名称       | 类型      | 只读    |  可选      | 说明         |
 |------------|----------|---------|------------|-------------|
-| apnName   | string     | 否      | 是         | APN名称。    |
-| apn       | string     | 否      | 是         | APN。        |
-| mcc       | string     | 否      | 是         | Sim卡的mcc。 |
-| mnc       | string     | 否      | 是         | Sim卡的mnc。 |
-| user      | string     | 否      | 否         | 用户名。     |
-| type      | string     | 否      | 否         | APN类型。    |
-| proxy     | string     | 否      | 否         | 代理地址。   |
-| mmsproxy  | string     | 否      | 否         | 彩信代理。   |
+| apnName   | string     | 否      | 否         | APN名称。    |
+| apn       | string     | 否      | 否         | APN。        |
+| mcc       | string     | 否      | 否         | Sim卡的mcc。 |
+| mnc       | string     | 否      | 否         | Sim卡的mnc。 |
+| user      | string     | 否      | 是         | 用户名。     |
+| type      | string     | 否      | 是         | APN类型。    |
+| proxy     | string     | 否      | 是         | 代理地址。   |
+| mmsproxy  | string     | 否      | 是         | 彩信代理。   |
