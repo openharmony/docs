@@ -249,8 +249,8 @@ enum ffrt_dependence_type_t
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ffrt_dependence_data  | 数据依赖类型&nbsp;&nbsp; | 
-| ffrt_dependence_task  | 任务依赖类型&nbsp;&nbsp; | 
+| ffrt_dependence_data  | 数据依赖类型。 | 
+| ffrt_dependence_task  | 任务依赖类型。 | 
 
 
 ### ffrt_error_t
@@ -265,12 +265,12 @@ FFRT错误码。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ffrt_error  | 失败&nbsp;&nbsp; | 
-| ffrt_success  | 成功&nbsp;&nbsp; | 
-| ffrt_error_nomem  | 内存不足&nbsp;&nbsp; | 
-| ffrt_error_timedout  | 超时&nbsp;&nbsp; | 
-| ffrt_error_busy  | 重新尝试&nbsp;&nbsp; | 
-| ffrt_error_inval  | 值无效&nbsp;&nbsp; | 
+| ffrt_error  | 失败。 | 
+| ffrt_success  | 成功。 | 
+| ffrt_error_nomem  | 内存不足。 | 
+| ffrt_error_timedout  | 超时。 | 
+| ffrt_error_busy  | 重新尝试。 | 
+| ffrt_error_inval  | 值无效。 | 
 
 
 ### ffrt_function_kind_t
@@ -285,8 +285,8 @@ enum ffrt_function_kind_t
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ffrt_function_kind_general  | 通用任务类型&nbsp;&nbsp; | 
-| ffrt_function_kind_queue  | 队列任务类型&nbsp;&nbsp; | 
+| ffrt_function_kind_general  | 通用任务类型。 | 
+| ffrt_function_kind_queue  | 队列任务类型。 | 
 
 
 ### ffrt_mutex_type
@@ -303,9 +303,9 @@ mutex类型枚举。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ffrt_mutex_normal  | 普通互斥锁&nbsp;&nbsp; | 
-| ffrt_mutex_recursive  | 递归互斥锁&nbsp;&nbsp; | 
-| ffrt_mutex_default  | 默认互斥锁&nbsp;&nbsp; | 
+| ffrt_mutex_normal  | 普通互斥锁。 | 
+| ffrt_mutex_recursive  | 递归互斥锁。 | 
+| ffrt_mutex_default  | 默认互斥锁。 | 
 
 
 ### ffrt_qos_default_t
@@ -320,11 +320,11 @@ enum ffrt_qos_default_t
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ffrt_qos_inherit  | 继承当前任务QoS属性&nbsp;&nbsp; | 
-| ffrt_qos_background  | 后台任务&nbsp;&nbsp; | 
-| ffrt_qos_utility  | 实时工具&nbsp;&nbsp; | 
-| ffrt_qos_default  | 默认类型&nbsp;&nbsp; | 
-| ffrt_qos_user_initiated  | 用户期望&nbsp;&nbsp; | 
+| ffrt_qos_inherit  | 继承当前任务QoS属性。 | 
+| ffrt_qos_background  | 后台任务。 | 
+| ffrt_qos_utility  | 实时工具。 | 
+| ffrt_qos_default  | 默认类型。 | 
+| ffrt_qos_user_initiated  | 用户期望。 | 
 
 
 ### ffrt_queue_priority_t
@@ -339,10 +339,10 @@ enum ffrt_queue_priority_t
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ffrt_queue_priority_immediate  | immediate 优先级&nbsp;&nbsp; | 
-| ffrt_queue_priority_high  | high 优先级&nbsp;&nbsp; | 
-| ffrt_queue_priority_low  | low 优先级&nbsp;&nbsp; | 
-| ffrt_queue_priority_idle  | lowest 优先级&nbsp;&nbsp; | 
+| ffrt_queue_priority_immediate  | immediate 优先级。 | 
+| ffrt_queue_priority_high  | high 优先级。 | 
+| ffrt_queue_priority_low  | low 优先级。 | 
+| ffrt_queue_priority_idle  | lowest 优先级。 | 
 
 
 ### ffrt_queue_type_t
@@ -357,9 +357,9 @@ enum ffrt_queue_type_t
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ffrt_queue_serial  | 串行队列&nbsp;&nbsp; | 
-| ffrt_queue_concurrent  | 并行队列&nbsp;&nbsp; | 
-| ffrt_queue_max  | 无效队列类型&nbsp;&nbsp; | 
+| ffrt_queue_serial  | 串行队列。 | 
+| ffrt_queue_concurrent  | 并行队列。 | 
+| ffrt_queue_max  | 无效队列类型。 | 
 
 
 ### ffrt_storage_size_t
@@ -374,11 +374,11 @@ enum ffrt_storage_size_t
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ffrt_task_attr_storage_size  | 任务属性&nbsp;&nbsp; | 
-| ffrt_auto_managed_function_storage_size  | 任务执行体&nbsp;&nbsp; | 
-| ffrt_mutex_storage_size  | 互斥锁&nbsp;&nbsp; | 
-| ffrt_cond_storage_size  | 条件变量&nbsp;&nbsp; | 
-| ffrt_queue_attr_storage_size  | 队列属性&nbsp;&nbsp; | 
+| ffrt_task_attr_storage_size  | 任务属性。 | 
+| ffrt_auto_managed_function_storage_size  | 任务执行体。 | 
+| ffrt_mutex_storage_size  | 互斥锁。 | 
+| ffrt_cond_storage_size  | 条件变量。 | 
+| ffrt_queue_attr_storage_size  | 队列属性。 | 
 
 
 ## 函数说明
@@ -1519,7 +1519,7 @@ FFRT_C_API uint32_t ffrt_task_handle_dec_ref (ffrt_task_handle_t handle)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| handle | 任务句柄  | 
+| handle | 任务句柄。  | 
 
 **返回：**
 
