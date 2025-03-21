@@ -475,7 +475,7 @@ print(files: Array&lt;string&gt;, callback: AsyncCallback&lt;PrintTask&gt;): voi
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。文件的uri需先使用fileUri.getUriFromPath获取到沙箱路径，再作为参数传入到本接口。 |
+| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。文件需先保存到应用沙箱，再通过fileUri.getUriFromPath获取到沙箱uri，再作为参数传入到本接口。 |
 | callback | AsyncCallback&lt;[PrintTask](#printprinttask)&gt; | 是 | 异步获取打印完成之后的回调。 |
 
 **错误码：**
@@ -495,7 +495,7 @@ import { BusinessError } from '@ohos.base';
 import { fileUri } from '@kit.CoreFileKit';
 
 //传入文件的uri
-let filePath = 'file://data/print/a.png';
+let filePath = 'file://data/storage/el2/base/haps/entry/files/test.pdf';
 print.print([fileUri.getUriFromPath(filePath)], (err: BusinessError, printTask: print.PrintTask) => {
     if (err) {
         console.log('print err ' + JSON.stringify(err));
@@ -521,7 +521,7 @@ print(files: Array&lt;string&gt;): Promise&lt;PrintTask&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。文件的uri需先使用fileUri.getUriFromPath获取到沙箱路径，再作为参数传入到本接口。 |
+| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。文件需先保存到应用沙箱，再通过fileUri.getUriFromPath获取到沙箱uri，再作为参数传入到本接口。 |
 
 **返回值：**
 | **类型** | **说明** |
@@ -545,7 +545,7 @@ import { BusinessError } from '@ohos.base';
 import { fileUri } from '@kit.CoreFileKit';
 
 //传入文件的uri
-let filePath = 'file://data/print/a.png';
+let filePath = 'file://data/storage/el2/base/haps/entry/files/test.pdf';
 print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.on('succeed', () => {
         console.log('print state is succeed');
@@ -569,7 +569,7 @@ print(files: Array&lt;string&gt;, context: Context, callback: AsyncCallback&lt;P
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。文件的uri需先使用fileUri.getUriFromPath获取到沙箱路径，再作为参数传入到本接口。 |
+| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。文件需先保存到应用沙箱，再通过fileUri.getUriFromPath获取到沙箱uri，再作为参数传入到本接口。 |
 | context | Context | 是 | 用于拉起系统打印界面的UIAbilityContext。 |
 | callback | AsyncCallback&lt;[PrintTask](#printprinttask)&gt; | 是 | 异步获取打印完成之后的回调。 |
 
@@ -590,7 +590,7 @@ import { BusinessError } from '@ohos.base';
 import { fileUri } from '@kit.CoreFileKit';
 
 //传入文件的uri
-let filePath = 'file://data/print/a.png';
+let filePath = 'file://data/storage/el2/base/haps/entry/files/test.pdf';
 let context = getContext(this);
 print.print([fileUri.getUriFromPath(filePath)], context, (err: BusinessError, printTask: print.PrintTask) => {
     if (err) {
@@ -617,7 +617,7 @@ print(files: Array&lt;string&gt;, context: Context): Promise&lt;PrintTask&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。文件的uri需先使用fileUri.getUriFromPath获取到沙箱路径，再作为参数传入到本接口。 |
+| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。文件需先保存到应用沙箱，再通过fileUri.getUriFromPath获取到沙箱uri，再作为参数传入到本接口。 |
 | context | Context | 是 | 用于拉起系统打印界面的UIAbilityContext。 |
 
 **返回值：**
@@ -642,7 +642,7 @@ import { BusinessError } from '@ohos.base';
 import { fileUri } from '@kit.CoreFileKit';
 
 //传入文件的uri
-let filePath = 'file://data/print/a.png';
+let filePath = 'file://data/storage/el2/base/haps/entry/files/test.pdf';
 let context = getContext(this);
 print.print([fileUri.getUriFromPath(filePath)], context).then((printTask: print.PrintTask) => {
     printTask.on('succeed', () => {
