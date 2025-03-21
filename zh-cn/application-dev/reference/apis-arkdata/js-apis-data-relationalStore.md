@@ -12,8 +12,8 @@
 
 该模块提供以下关系型数据库相关的常用功能：
 
-- [RdbPredicates](#rdbpredicates)： 数据库中用来代表数据实体的性质、特征或者数据实体之间关系的词项，主要用来定义数据库的操作条件。
-- [RdbStore](#rdbstore)：提供管理关系数据库(RDB)方法的接口。
+- [RdbPredicates](#rdbpredicates)：数据库中用来代表数据实体的性质、特征或者数据实体之间关系的词项，主要用来定义数据库的操作条件。
+- [RdbStore](#rdbstore)：提供管理关系数据库（RDB）方法的接口。
 - [ResultSet](#resultset)：提供用户调用关系型数据库查询接口之后返回的结果集合。
 - [Transaction](#transaction14)：提供管理事务对象的接口。
 
@@ -48,7 +48,7 @@ getRdbStore目前不支持多线程并发操作。
 
 | 参数名   | 类型                                           | 必填 | 说明                                                         |
 | -------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                        | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
+| context  | Context                                        | 是   | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
 | config   | [StoreConfig](#storeconfig)               | 是   | 与此RDB存储相关的数据库配置。                                |
 | callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | 是   | 指定callback回调函数，返回RdbStore对象。                   |
 
@@ -150,7 +150,7 @@ getRdbStore目前不支持多线程并发操作。
 
 | 参数名  | 类型                             | 必填 | 说明                                                         |
 | ------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                          | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
+| context | Context                          | 是   | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
 | config  | [StoreConfig](#storeconfig) | 是   | 与此RDB存储相关的数据库配置。                                |
 
 **返回值**：
@@ -246,7 +246,7 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                   | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
+| context  | Context                   | 是   | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
 | name     | string                    | 是   | 数据库名称。                                                 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 指定callback回调函数。                                       |
 
@@ -319,7 +319,7 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
+| context | Context | 是   | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
 | name    | string  | 是   | 数据库名称。                                                 |
 
 **返回值**：
@@ -393,7 +393,7 @@ deleteRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback\<v
 
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                     | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
+| context  | Context                     | 是   | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
 | config   | [StoreConfig](#storeconfig) | 是   | 与此RDB存储相关的数据库配置。                                |
 | callback | AsyncCallback&lt;void&gt;   | 是   | 指定callback回调函数。                                       |
 
@@ -477,7 +477,7 @@ deleteRdbStore(context: Context, config: StoreConfig): Promise\<void>
 
 | 参数名  | 类型                        | 必填 | 说明                                                         |
 | ------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                     | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
+| context | Context                     | 是   | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
 | config  | [StoreConfig](#storeconfig) | 是   | 与此RDB存储相关的数据库配置。                                |
 
 **返回值**：
@@ -558,12 +558,12 @@ class EntryAbility extends UIAbility {
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
 | name          | string        | 是   | 数据库文件名，也是数据库唯一标识符。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core   |
 | securityLevel | [SecurityLevel](#securitylevel) | 是   | 设置数据库安全级别。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core|
-| encrypt       | boolean       | 否   | 指定数据库是否加密，默认不加密。<br/> true:加密。<br/> false:非加密。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| encrypt       | boolean       | 否   | 指定数据库是否加密，默认不加密。<br/> true：加密。<br/> false：非加密。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | dataGroupId<sup>10+</sup> | string | 否 | 应用组ID，<!--RP3-->暂不支持指定dataGroupId在对应的沙箱路径下创建RdbStore实例。<!--RP3End--><br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。dataGroupId共沙箱的方式不支持多进程访问加密数据库，当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | customDir<sup>11+</sup> | string | 否 | 数据库自定义路径。<br/>**使用约束：** 数据库路径大小限制为128字节，如果超过该大小会开库失败，返回错误。<br/>从API version 11开始，支持此可选参数。数据库将在如下的目录结构中被创建：context.databaseDir + "/rdb/" + customDir，其中context.databaseDir是应用沙箱对应的路径，"/rdb/"表示创建的是关系型数据库，customDir表示自定义的路径。当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | autoCleanDirtyData<sup>11+</sup> | boolean | 否 | 指定是否自动清理云端删除后同步到本地的数据，true表示自动清理，false表示手动清理，默认自动清理。<br/>对于端云协同的数据库，当云端删除的数据同步到设备端时，可通过该参数设置设备端是否自动清理。手动清理可以通过[cleanDirtyData<sup>11+</sup>](#cleandirtydata11)接口清理。<br/>从API version 11开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
-| allowRebuild<sup>12+</sup> | boolean | 否 | 指定数据库是否支持异常时自动删除，并重建一个空库空表，默认不删除。<br/>true:自动删除。<br/>false:不自动删除。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
-| isReadOnly<sup>12+</sup> | boolean | 否 | 指定数据库是否只读，默认为数据库可读写。<br/>true:只允许从数据库读取数据，不允许对数据库进行写操作，否则会返回错误码801。<br/>false:允许对数据库进行读写操作。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| allowRebuild<sup>12+</sup> | boolean | 否 | 指定数据库是否支持异常时自动删除，并重建一个空库空表，默认不删除。<br/>true：自动删除。<br/>false：不自动删除。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| isReadOnly<sup>12+</sup> | boolean | 否 | 指定数据库是否只读，默认为数据库可读写。<br/>true：只允许从数据库读取数据，不允许对数据库进行写操作，否则会返回错误码801。<br/>false：允许对数据库进行读写操作。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | pluginLibs<sup>12+</sup> | Array\<string> | 否 | 表示包含有fts（Full-Text Search，即全文搜索引擎）等能力的动态库名的数组。<br/>**使用约束：** <br/>1. 动态库名的数量限制最多为16个，如果超过该数量会开库失败，返回错误。<br/>2. 动态库名需为本应用沙箱路径下或系统路径下的动态库，如果动态库无法加载会开库失败，返回错误。<br/>3. 动态库名需为完整路径，用于被sqlite加载。<br/>样例：[context.bundleCodeDir+ "/libs/arm64/" + libtokenizer.so]，其中context.bundleCodeDir是应用沙箱对应的路径，"/libs/arm64/"表示子目录，libtokenizer.so表示动态库的文件名。当此参数不填时，默认不加载动态库。<br/>4. 动态库需要包含其全部依赖，避免依赖项丢失导致无法运行。<br/>例如：在ndk工程中，使用默认编译参数构建libtokenizer.so，此动态库依赖c++标准库。在加载此动态库时，由于namespace与编译时不一致，链接到了错误的libc++_shared.so，导致`__emutls_get_address`符号找不到。要解决此问题，需在编译时静态链接c++标准库，具体请参见[NDK工程构建概述](../../napi/build-with-ndk-overview.md)。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | cryptoParam<sup>14+</sup> | [CryptoParam](#cryptoparam14) | 否 | 指定用户自定义的加密参数。<br/>当此参数不填时，使用默认的加密参数，见[CryptoParam](#cryptoparam14)各参数默认值。<br/>此配置只有在encrypt选项设置为真时才有效。<br/>从API version 14开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 
@@ -695,7 +695,7 @@ type ValueType = null | number | string | boolean | Uint8Array | Asset | Assets 
 | Asset<sup>10+</sup>  | 表示值类型为附件[Asset](#asset10)。<br/>当字段类型是Asset时，在创建表的sql语句中，类型应当为：ASSET。 |
 | Assets<sup>10+</sup> | 表示值类型为附件数组[Assets](#assets10)。<br/>当字段类型是Assets时，在创建表的sql语句中，类型应当为：ASSETS。 |
 | Float32Array<sup>12+</sup> | 表示值类型为浮点数组。<br/>当字段类型是Float32Array时，在创建表的sql语句中，类型应当为：floatvector(128)。 |
-| bigint<sup>12+</sup> | 表示值类型为任意长度的整数。<br/>当字段类型是bigint时，在创建表的sql语句中，类型应当为：UNLIMITED INT, 详见[通过关系型数据库实现数据持久化](../../database/data-persistence-by-rdb-store.md)。<br/>**说明：** bigint类型当前不支持比较大小，不支持如下谓词：between、notBetween、greaterThanlessThan、greaterThanOrEqualTo、lessThanOrEqualTo、orderByAsc、orderByDesc。<br/>bigint类型字段的数据写入时，需通过BigInt()方法或在数据尾部添加'n'的方式明确为bigint类型，如'let data = BigInt(1234)'或'let data = 1234n'。<br/>bigint字段如果写入number类型的数据，则查询该数据的返回类型为number，而非bigint。 |
+| bigint<sup>12+</sup> | 表示值类型为任意长度的整数。<br/>当字段类型是bigint时，在创建表的sql语句中，类型应当为：UNLIMITED INT，详见[通过关系型数据库实现数据持久化](../../database/data-persistence-by-rdb-store.md)。<br/>**说明：** bigint类型当前不支持比较大小，不支持如下谓词：between、notBetween、greaterThanlessThan、greaterThanOrEqualTo、lessThanOrEqualTo、orderByAsc、orderByDesc。<br/>bigint类型字段的数据写入时，需通过BigInt()方法或在数据尾部添加'n'的方式明确为bigint类型，如'let data = BigInt(1234)'或'let data = 1234n'。<br/>bigint字段如果写入number类型的数据，则查询该数据的返回类型为number，而非bigint。 |
 
 ## ValuesBucket
 
@@ -971,7 +971,7 @@ type ModifyTime = Map<PRIKeyType, UTCTime>
 
 ## RdbPredicates
 
-表示关系型数据库（RDB）的谓词。该类确定RDB中条件表达式的值是true还是false。谓词间支持多语句拼接，拼接时默认使用and()连接。不支持Sendable跨线程传递。 
+表示关系型数据库（RDB）的谓词。该类确定RDB中条件表达式的值是true还是false。谓词间支持多语句拼接，拼接时默认使用and()连接。不支持Sendable跨线程传递。
 
 ### constructor
 
@@ -1831,7 +1831,7 @@ predicates.equalTo("NAME", "Rose").distinct();
 
 limitAs(value: number): RdbPredicates
 
-设置最大数据记录数的谓词。
+设置谓词的最大数据记录数量。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1839,7 +1839,7 @@ limitAs(value: number): RdbPredicates
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
-| value  | number | 是   | 最大数据记录数。 |
+| value  | number | 是   | 最大数据记录数，取值应为正整数，传入值小于等于0时，不会限制记录数量。 |
 
 **返回值**：
 
@@ -1866,7 +1866,7 @@ predicates.equalTo("NAME", "Rose").limitAs(3);
 
 offsetAs(rowOffset: number): RdbPredicates
 
-配置谓词以指定返回结果的起始位置。
+设置谓词查询结果返回的起始位置。需要同步调用limitAs接口指定查询数量，否则将无查询结果。如需查询指定偏移位置后的所有行，limitAs接口调用需传参数-1。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1874,7 +1874,7 @@ offsetAs(rowOffset: number): RdbPredicates
 
 | 参数名    | 类型   | 必填 | 说明                               |
 | --------- | ------ | ---- | ---------------------------------- |
-| rowOffset | number | 是   | 返回结果的起始位置，取值为正整数。 |
+| rowOffset | number | 是   | 返回结果的起始位置，取值应为正整数。结果集指针起始位置为0，传入值小于等于0时，查询结果将从0下标位置返回。 |
 
 **返回值**：
 
@@ -1894,7 +1894,7 @@ offsetAs(rowOffset: number): RdbPredicates
 
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "Rose").offsetAs(3);
+predicates.equalTo("NAME", "Rose").limitAs(-1).offsetAs(3);
 ```
 
 ### groupBy
@@ -2083,7 +2083,7 @@ predicates.notContains("NAME", "os");
 
 notLike(field: string, value: string): RdbPredicates
 
-配置谓词以匹配数据表的field列中值不存在类似于value的字段。 
+配置谓词以匹配数据表的field列中值不存在类似于value的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2120,7 +2120,7 @@ predicates.notLike("NAME", "os");
 
 ## RdbStore
 
-提供管理关系数据库(RDB)方法的接口。
+提供管理关系数据库（RDB）方法的接口。
 
 在使用以下相关接口前，请使用[executeSql](#executesql)接口初始化数据库表结构和相关数据。
 
@@ -3427,7 +3427,7 @@ delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 | 参数名     | 类型                                 | 必填 | 说明                                      |
 | ---------- | ------------------------------------ | ---- | ----------------------------------------- |
 | predicates | [RdbPredicates](#rdbpredicates) | 是   | RdbPredicates的实例对象指定的删除条件。 |
-| callback   | AsyncCallback&lt;number&gt;          | 是   | 指定callback回调函数。返回受影响的行数。  |
+| callback   | AsyncCallback&lt;number&gt;          | 是   | 指定callback回调函数。返回受影响的行数量。 |
 
 **错误码：**
 
@@ -3490,7 +3490,7 @@ delete(predicates: RdbPredicates):Promise&lt;number&gt;
 
 | 类型                  | 说明                            |
 | --------------------- | ------------------------------- |
-| Promise&lt;number&gt; | Promise对象。返回受影响的行数。 |
+| Promise&lt;number&gt; | Promise对象。返回受影响的行数量。|
 
 **错误码：**
 
@@ -3553,7 +3553,7 @@ deleteSync(predicates: RdbPredicates):number
 
 | 类型   | 说明               |
 | ------ | ------------------ |
-| number | 返回受影响的行数。 |
+| number | 返回受影响的行数量。|
 
 **错误码：**
 
@@ -4389,7 +4389,7 @@ execute(sql: string, args?: Array&lt;ValueType&gt;):Promise&lt;ValueType&gt;
 
 执行包含指定参数的SQL语句，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，返回值类型为ValueType，使用Promise异步回调。
 
-该接口支持执行增删改操作，支持执行PRAGMA语法的sql，支持对表的操作（建表、删表、修改表）,返回结果类型由执行具体sql的结果决定。
+该接口支持执行增删改操作，支持执行PRAGMA语法的sql，支持对表的操作（建表、删表、修改表），返回结果类型由执行具体sql的结果决定。
 
 此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
@@ -6190,7 +6190,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
 | type     | [SubscribeType](#subscribetype)    | 是   | 订阅类型。 |
-| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | 是   | 回调函数。<br>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端账号。 <br> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。<br>当type为SUBSCRIBE_TYPE_LOCAL_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为本地数据库中的数据更改的详情。 |
+| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | 是   | 回调函数。<br>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端账号。<br> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。<br>当type为SUBSCRIBE_TYPE_LOCAL_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为本地数据库中的数据更改的详情。 |
 
 **错误码：**
 
@@ -6284,7 +6284,7 @@ on(event: string, interProcess: boolean, observer: Callback\<void>): void
 
 | 参数名       | 类型            | 必填 | 说明                                                         |
 | ------------ | --------------- | ---- | ------------------------------------------------------------ |
-| event        | string          | 是   | 订阅事件名称。                                               |
+| event        | string          | 是   | 订阅事件名称，与emit接口触发事件时的名称一致。               |
 | interProcess | boolean         | 是   | 指定是进程间还是本进程订阅。<br/> true：进程间。<br/> false：本进程。 |
 | observer     | Callback\<void> | 是   | 回调函数。                                                   |
 
@@ -6509,7 +6509,7 @@ off(event:'dataChange', type: SubscribeType, observer?: Callback&lt;Array&lt;str
 | -------- | ---------------------------------- | ---- | ------------------------------------------ |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
 | type     | [SubscribeType](#subscribetype)     | 是   | 订阅类型。                                 |
-| observer | Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | 否 | 回调函数。<br/>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br/> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端账号。 <br/> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。<br>当type为SUBSCRIBE_TYPE_LOCAL_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为本地数据库中的数据更改的详情。<br> 当observer没有传入时，表示取消当前type类型下所有数据变更的事件监听。 |
+| observer | Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | 否 | 回调函数。<br/>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br/> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端账号。<br/> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。<br>当type为SUBSCRIBE_TYPE_LOCAL_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为本地数据库中的数据更改的详情。<br> 当observer没有传入时，表示取消当前type类型下所有数据变更的事件监听。 |
 
 **错误码：**
 
@@ -6569,7 +6569,7 @@ off(event: string, interProcess: boolean, observer?: Callback\<void>): void
 
 | 参数名       | 类型            | 必填 | 说明                                                         |
 | ------------ | --------------- | ---- | ------------------------------------------------------------ |
-| event        | string          | 是   | 取消订阅事件名称。                                           |
+| event        | string          | 是   | 取消订阅事件名称。事件名称与on接口调用时订阅事件的名称一致。 |
 | interProcess | boolean         | 是   | 指定是进程间还是本进程取消订阅。<br/> true：进程间。<br/> false：本进程。 |
 | observer     | Callback\<void> | 否   | 该参数存在，则取消指定Callback监听回调，否则取消该event事件的所有监听回调。 |
 
@@ -6723,7 +6723,7 @@ emit(event: string): void
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| event  | string | 是   | 通知订阅事件的名称。 |
+| event  | string | 是   | 通知订阅事件的名称，可自定义事件名称，不能与系统已有事件[dataChange](#ondatachange)，[autoSyncProgress](#onautosyncprogress11)，[statistics](#onstatistics12)名称重复。 |
 
 **错误码：**
 
@@ -7010,7 +7010,7 @@ attach不能并发调用，可能出现未响应情况，报错14800015，需要
 
 | 参数名        | 类型     | 必填  | 说明           |
 | ----------- | ------ | --- | ------------ |
-| context | Context                          | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
+| context | Context                          | 是   | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
 | config  | [StoreConfig](#storeconfig) | 是   | 与此RDB存储相关的数据库配置。                                |
 | attachName | string | 是   | 表示附加后的数据库的别名。 |
 | waitTime | number | 否   | 表示附加数据库文件的等待时长。默认值2s，最小值1s，最大值300s。 |
@@ -7472,14 +7472,14 @@ class EntryAbility extends UIAbility {
 | 名称         | 类型            | 必填 | 说明                             |
 | ------------ | ------------------- | ---- | -------------------------------- |
 | columnNames  | Array&lt;string&gt; | 是   | 获取结果集中所有列的名称。       |
-| columnCount  | number              | 是   | 获取结果集中的列数。             |
-| rowCount     | number              | 是   | 获取结果集中的行数。             |
-| rowIndex     | number              | 是   | 获取结果集当前行的索引。         |
-| isAtFirstRow | boolean             | 是   | 检查结果集是否位于第一行。       |
-| isAtLastRow  | boolean             | 是   | 检查结果集是否位于最后一行。     |
-| isEnded      | boolean             | 是   | 检查结果集是否位于最后一行之后。 |
-| isStarted    | boolean             | 是   | 检查指针是否移动过。             |
-| isClosed     | boolean             | 是   | 检查当前结果集是否关闭。         |
+| columnCount  | number              | 是   | 获取结果集中列的数量。             |
+| rowCount     | number              | 是   | 获取结果集中行的数量。             |
+| rowIndex     | number              | 是   | 获取结果集当前行的索引位置，默认值为-1。索引位置下标从0开始。 |
+| isAtFirstRow | boolean             | 是   | 检查结果集指针是否位于第一行（行索引为0），true表示位于第一行，false表示不位于第一行。 |
+| isAtLastRow  | boolean             | 是   | 检查结果集指针是否位于最后一行，true表示位于最后一行，false表示不位于最后一行。 |
+| isEnded      | boolean             | 是   | 检查结果集指针是否位于最后一行之后，true表示位于最后一行之后，false表示不位于最后一行之后。 |
+| isStarted    | boolean             | 是   | 检查指针是否移动过，true表示指针已移动过，false表示指针未移动过。             |
+| isClosed     | boolean             | 是   | 检查当前结果集是否关闭，true表示结果集已关闭，false表示结果集未关闭。         |
 
 ### getColumnIndex
 
@@ -7600,7 +7600,7 @@ if(resultSet != undefined) {
 
 goTo(offset:number): boolean
 
-向前或向后转至结果集的指定行，相对于其当前位置偏移。
+指定相对当前结果集指针位置的偏移量，以移动结果集的指针位置。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -7608,7 +7608,7 @@ goTo(offset:number): boolean
 
 | 参数名 | 类型   | 必填 | 说明                         |
 | ------ | ------ | ---- | ---------------------------- |
-| offset | number | 是   | 表示相对于当前位置的偏移量。 |
+| offset | number | 是   | 表示相对当前结果集指针位置的偏移量，正值表示向后移动，负值表示向前移动。 |
 
 **返回值：**
 
@@ -9023,7 +9023,7 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict?: ConflictResol
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | values     | [ValuesBucket](#valuesbucket)               | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
 | predicates | [RdbPredicates](#rdbpredicates)            | 是   | RdbPredicates的实例对象指定的更新条件。                      |
-| conflict   | [ConflictResolution](#conflictresolution10) | 否   | 指定冲突解决模式。 默认值是relationalStore.ConflictResolution.ON_CONFLICT_NONE。                                          |
+| conflict   | [ConflictResolution](#conflictresolution10) | 否   | 指定冲突解决模式。默认值是relationalStore.ConflictResolution.ON_CONFLICT_NONE。                                          |
 
 **返回值**：
 
