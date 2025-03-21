@@ -41,6 +41,7 @@ TimePicker(options?: TimePickerOptions)
 
 >  **说明：**
 >
+>  在TimePicker组件滑动过程中修改TimePickerOptions中的属性（selected、start、end）,会导致这些属性无法生效。  
 >  Date对象用于处理日期和时间。
 >
 >  **方式1：** new Date()
