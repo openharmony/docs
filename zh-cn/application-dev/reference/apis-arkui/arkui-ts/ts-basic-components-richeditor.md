@@ -1561,16 +1561,14 @@ SymbolSpan样式选项。
 
 段落样式。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称            | 类型                                       | 必填   | 说明                 |
 | ------------- | ---------------------------------------- | ---- | ------------------ |
 | textAlign     | [TextAlign](ts-appendix-enums.md#textalign) | 否    | 设置文本段落在水平方向的对齐方式。默认值：TextAlign.START  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | leadingMargin | [Dimension](ts-types.md#dimension10) \| [LeadingMarginPlaceholder](#leadingmarginplaceholder11) | 否    | 设置文本段落缩进，当段落仅存在ImageSpan或BuilderSpan时，此属性值不生效。参数为Dimension类型时，不支持以Percentage形式设置。默认值：{"size":["0.00px","0.00px"]} <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| wordBreak<sup>12+</sup> |  [WordBreak](ts-appendix-enums.md#wordbreak11) | 否    | 设置断行规则。 <br />默认值：WordBreak.BREAK_WORD  |
-| lineBreakStrategy<sup>12+</sup> | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | 否 | 设置折行规则。 <br />默认值：LineBreakStrategy.GREEDY<br />在wordBreak不等于breakAll的时候生效，不支持连字符。 |
+| wordBreak<sup>12+</sup> |  [WordBreak](ts-appendix-enums.md#wordbreak11) | 否    | 设置断行规则。 <br />默认值：WordBreak.BREAK_WORD <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| lineBreakStrategy<sup>12+</sup> | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | 否 | 设置折行规则。 <br />默认值：LineBreakStrategy.GREEDY<br />在wordBreak不等于breakAll的时候生效，不支持连字符。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | paragraphSpacing<sup>18+</sup> | number | 否    | 设置段落间距大小。<br/>单位：fp<br/>段落间距默认大小为0。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 ## LeadingMarginPlaceholder<sup>11+</sup>
