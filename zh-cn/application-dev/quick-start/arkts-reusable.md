@@ -328,7 +328,7 @@ struct Child {
 ### 列表滚动配合LazyForEach使用
 
 - 示例代码将CardView自定义组件标记为复用组件，List上下滑动，触发CardView复用;
-- 变量item的被\@State修饰，才能更新，非\@State修饰变量存在无法更新问题。
+- 被\@State修饰的变量item才能更新，未被\@State修饰的变量不会更新。
 
 ```ts
 class MyDataSource implements IDataSource {
