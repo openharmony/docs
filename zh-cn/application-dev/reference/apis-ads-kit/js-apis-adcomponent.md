@@ -37,32 +37,33 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Entry
 @Component
-struct ShowNonFullScreenAd {
+struct Index {
   // 请求到的广告内容
-  private ads: Array<advertising.Advertisement> = [];
+  private ads: advertising.Advertisement[] = [];
   // 广告展示参数
   private adDisplayOptions: advertising.AdDisplayOptions = {
     // 是否静音，默认不静音
     mute: false
-  }
+  };
 
   build() {
     Column() {
       // AdComponent组件用于展示非全屏广告
       AdComponent({
-        ads: this.ads, displayOptions: this.adDisplayOptions,
+        ads: this.ads,
+        displayOptions: this.adDisplayOptions,
         interactionListener: {
           // 广告状态变化回调
           onStatusChanged: (status: string, ad: advertising.Advertisement, data: string) => {
             switch (status) {
               case 'onAdOpen':
-                hilog.info(0x0000, 'testTag', '%{public}s', 'onAdOpen');
+                hilog.info(0x0000, 'testTag', 'onAdOpen');
                 break;
               case 'onAdClick':
-                hilog.info(0x0000, 'testTag', '%{public}s', 'onAdClick');
+                hilog.info(0x0000, 'testTag', 'onAdClick');
                 break;
               case 'onAdClose':
-                hilog.info(0x0000, 'testTag', '%{public}s', 'onAdClose');
+                hilog.info(0x0000, 'testTag', 'onAdClose');
                 break;
             }
           }
@@ -70,7 +71,9 @@ struct ShowNonFullScreenAd {
       })
         .width('100%')
         .height('100%')
-    }.width('100%').height('100%')
+    }
+    .width('100%')
+    .height('100%')
   }
 }
 ```
