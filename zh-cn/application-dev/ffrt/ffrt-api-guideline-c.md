@@ -1127,7 +1127,6 @@ ffrt_queue_t ffrt_get_current_queue();
 
 描述
 
-- 此接口已于API 15版本后废弃，不建议继续使用。
 - 获取ArkTS Worker线程队列，用于FFRT线程与ArkTS Worker线程通信。
 
 #### 样例

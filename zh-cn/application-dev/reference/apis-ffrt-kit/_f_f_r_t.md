@@ -545,8 +545,6 @@ FFRT_C_API ffrt_queue_t ffrt_get_current_queue (void )
 **描述**
 获取应用Worker(ArkTs)线程队列。
 
-**废弃版本：** 15
-
 **起始版本：** 12
 
 **返回：**
