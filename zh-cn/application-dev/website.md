@@ -2972,7 +2972,6 @@
           - [ArkUI_NativeAnimateAPI_1](reference/apis-arkui/_ark_u_i___native_animate_a_p_i__1.md)
           - [ArkUI_NativeDialogAPI_1](reference/apis-arkui/_ark_u_i___native_dialog_a_p_i__1.md)
           - [ArkUI_NativeDialogAPI_2](reference/apis-arkui/_ark_u_i___native_dialog_a_p_i__2.md)
-          - [ArkUI_NativeDialogAPI_3](reference/apis-arkui/_ark_u_i___native_dialog_a_p_i__3.md)
           - [ArkUI_NativeGestureAPI_1](reference/apis-arkui/_ark_u_i___native_gesture_a_p_i__1.md)
           - [ArkUI_NativeGestureAPI_2](reference/apis-arkui/_ark_u_i___native_gesture_a_p_i__2.md)
           - [ArkUI_NativeNodeAPI_1](reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md)
