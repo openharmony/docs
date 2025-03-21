@@ -114,8 +114,8 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
-    usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
-    rendererFlags : 0
+    usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type: music. Set this parameter based on the service scenario.
+    rendererFlags: 0 // AudioRenderer flag.
 };
 
 async function getPreferOutputDeviceForRendererInfo() {
@@ -133,8 +133,8 @@ async function getPreferOutputDeviceForRendererInfo() {
 import { audio } from '@kit.AudioKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
-    usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
-    rendererFlags : 0
+    usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type: music. Set this parameter based on the service scenario.
+    rendererFlags: 0 // AudioRenderer flag.
 };
 
 // Listen for changes of the output device with the highest priority.
