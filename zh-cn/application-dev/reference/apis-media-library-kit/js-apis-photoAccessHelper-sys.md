@@ -2701,7 +2701,7 @@ isEdited(): Promise&lt;boolean&gt;
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-|Promise&lt;boolean&gt; | Promise对象，返回图片或视频资源是否被编辑过。 |
+|Promise&lt;boolean&gt; | Promise对象，返回图片或视频资源是否被编辑过。true为被编辑过，false为没有被编辑过，默认是true。 |
 
 
 **错误码：**
