@@ -143,11 +143,11 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ArkUI_DragResult](#arkui_dragresult) { ARKUI_DRAG_RESULT_SUCCESSFUL, ARKUI_DRAG_RESULT_FAILED, ARKUI_DRAG_RESULT_CANCELED } | 拖拽结果定义，由数据接收方设置，并由系统传递给数据拖出方，拖出方可感知接收方对数据的处理结果。  | 
-| [ArkUI_DropProposal](#arkui_dropproposal) { ARKUI_DROP_PROPOSAL_COPY, ARKUI_DROP_PROPOSAL_MOVE } | 定义拖拽释放时的数据处理方式，可影响角标的显示。  | 
+| [ArkUI_DragResult](#arkui_dragresult) { ARKUI_DRAG_RESULT_SUCCESSFUL = 0, ARKUI_DRAG_RESULT_FAILED, ARKUI_DRAG_RESULT_CANCELED } | 拖拽结果定义，由数据接收方设置，并由系统传递给数据拖出方，拖出方可感知接收方对数据的处理结果。  | 
+| [ArkUI_DropOperation](#arkui_dropoperation) { ARKUI_DROP_OPERATION_COPY = 0, ARKUI_DROP_OPERATION_MOVE } | 定义拖拽释放时的数据处理方式，可影响角标的显示。  | 
 | [ArkUI_PreDragStatus](#arkui_predragstatus) {<br/>ARKUI_PRE_DRAG_STATUS_UNKNOWN = -1, ARKUI_PRE_DRAG_STATUS_ACTION_DETECTING, ARKUI_PRE_DRAG_STATUS_READY_TO_TRIGGER_DRAG, ARKUI_PRE_DRAG_STATUS_PREVIEW_LIFT_STARTED,<br/>ARKUI_PRE_DRAG_STATUS_PREVIEW_LIFT_FINISHED, ARKUI_PRE_DRAG_STATUS_PREVIEW_LANDING_STARTED, ARKUI_PRE_DRAG_STATUS_PREVIEW_LANDING_FINISHED, ARKUI_PRE_DRAG_STATUS_CANCELED_BEFORE_DRAG<br/>} | 定义拖拽发起前的长按交互阶段的变化状态。  | 
-| [ArkUI_DragPreviewScaleMode](#arkui_dragpreviewscalemode) { ARKUI_DRAG_PREVIEW_SCALE_AUTO, ARKUI_DRAG_PREVIEW_SCALE_DISABLED } | 拖拽预览缩放模式。  | 
-| [ArkUI_DragStatus](#arkui_dragstatus) { ArkUI_DRAG_STATUS_UNKNOWN, ArkUI_DRAG_STATUS_STARTED, ArkUI_DRAG_STATUS_ENDED } | 拖拽状态。  | 
+| [ArkUI_DragPreviewScaleMode](#arkui_dragpreviewscalemode) { ARKUI_DRAG_PREVIEW_SCALE_AUTO = 0, ARKUI_DRAG_PREVIEW_SCALE_DISABLED } | 拖拽预览缩放模式。  | 
+| [ArkUI_DragStatus](#arkui_dragstatus) { ARKUI_DRAG_STATUS_UNKNOWN = -1, ARKUI_DRAG_STATUS_STARTED, ARKUI_DRAG_STATUS_ENDED } | 拖拽状态。  | 
 | [ArkUI_DismissReason](#arkui_dismissreason) { DIALOG_DISMISS_BACK_PRESS = 0, DIALOG_DISMISS_TOUCH_OUTSIDE, DIALOG_DISMISS_CLOSE_BUTTON, DIALOG_DISMISS_SLIDE_DOWN } | 弹窗关闭的触发方式。  | 
 | [ArkUI_LevelMode](#arkui_levelmode) { ARKUI_LEVEL_MODE_OVERLAY = 0, ARKUI_LEVEL_MODE_EMBEDDED } | 设置弹窗显示层级。  |
 | [ArkUI_ImmersiveMode](#arkui_immersivemode) { ARKUI_IMMERSIVE_MODE_DEFAULT = 0, ARKUI_IMMERSIVE_MODE_EXTEND } | 指定嵌入式弹窗的蒙层覆盖区域。  |
@@ -282,13 +282,14 @@ ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR = 150002,ARKUI_ERROR_CODE_FOCUS_NO
 | [ArkUI_DragEvent](#arkui_dragevent) \* [OH_ArkUI_NodeEvent_GetDragEvent](#oh_arkui_nodeevent_getdragevent) ([ArkUI_NodeEvent](#arkui_nodeevent-12) \*nodeEvent) | 从 NodeEvent 中获取DragEvent。  | 
 | [ArkUI_PreDragStatus](#arkui_predragstatus) [OH_ArkUI_NodeEvent_GetPreDragStatus](#oh_arkui_nodeevent_getpredragstatus) ([ArkUI_NodeEvent](#arkui_nodeevent-12) \*nodeEvent) | 获取预览拖拽事件状态。  | 
 | int32_t [OH_ArkUI_DragEvent_DisableDefaultDropAnimation](#oh_arkui_dragevent_disabledefaultdropanimation) ([ArkUI_DragEvent](#arkui_dragevent) \*event, bool disable) | 设置是否禁用松手时的系统默认动效，默认不禁用，通常在应用需要自定义落位动效时配置。  | 
-| int32_t [OH_ArkUI_DragEvent_SetSuggestedDropOperation](#oh_arkui_dragevent_setsuggesteddropoperation) ([ArkUI_DragEvent](#arkui_dragevent) \*event, [ArkUI_DropProposal](#arkui_dropproposal) proposal) | 设置数据处理方式  | 
+| int32_t [OH_ArkUI_DragEvent_SetSuggestedDropOperation](#oh_arkui_dragevent_setsuggesteddropoperation) ([ArkUI_DragEvent](#arkui_dragevent) \*event, [ArkUI_DropOperation](#arkui_dropoperation) dropOperation) | 设置数据处理方式  | 
 | int32_t [OH_ArkUI_DragEvent_SetDragResult](#oh_arkui_dragevent_setdragresult) ([ArkUI_DragEvent](#arkui_dragevent) \*event, [ArkUI_DragResult](#arkui_dragresult) result) | 设置拖拽事件的结果。  | 
 | int32_t [OH_ArkUI_DragEvent_SetData](#oh_arkui_dragevent_setdata) ([ArkUI_DragEvent](#arkui_dragevent) \*event, [OH_UdmfData](#oh_udmfdata) \*data) | 向ArkUI_DragEvent中设置拖拽数据。  | 
 | int32_t [OH_ArkUI_DragEvent_GetUdmfData](#oh_arkui_dragevent_getudmfdata) ([ArkUI_DragEvent](#arkui_dragevent) \*event, [OH_UdmfData](#oh_udmfdata) \*data) | 从ArkUI_DragEvent中获取拖拽默认相关数据。  | 
-| int32_t [OH_ArkUI_DragEvent_GetDataTypesCount](#oh_arkui_dragevent_getdatatypescount) ([ArkUI_DragEvent](#arkui_dragevent) \*event, int32_t \*count) | 从ArkUI_DragEvent中获取所拖拽的数据类型种类个数。  | 
+| int32_t [OH_ArkUI_DragEvent_GetDataTypeCount](#oh_arkui_dragevent_getdatatypecount) ([ArkUI_DragEvent](#arkui_dragevent) \*event, int32_t \*count) | 从ArkUI_DragEvent中获取所拖拽的数据类型种类个数。  | 
 | int32_t [OH_ArkUI_DragEvent_GetDataTypes](#oh_arkui_dragevent_getdatatypes) ([ArkUI_DragEvent](#arkui_dragevent) \*event, char \*\*result[], int32_t length) | 从ArkUI_DragEvent中获取拖拽数据的类型列表。  | 
 | int32_t [OH_ArkUI_DragEvent_GetDragResult](#oh_arkui_dragevent_getdragresult) ([ArkUI_DragEvent](#arkui_dragevent) \*event, [ArkUI_DragResult](#arkui_dragresult) \*result) | 从ArkUI_DragEvent中获取拖拽结果。  | 
+| int32_t [OH_ArkUI_DragEvent_GetDropOperation](#oh_arkui_dragevent_getdropoperation) ([ArkUI_DragEvent](#arkui_dragevent) \*event, [ArkUI_DropOperation](#arkui_dropoperation) \*operation) | 从ArkUI_DragEvent中获取数据处理方式。  | 
 | float [OH_ArkUI_DragEvent_GetPreviewTouchPointX](#oh_arkui_dragevent_getpreviewtouchpointx) ([ArkUI_DragEvent](#arkui_dragevent) \*event) | 从ArkUI_DragEvent中获取预览图跟手点的x轴坐标。  | 
 | float [OH_ArkUI_DragEvent_GetPreviewTouchPointY](#oh_arkui_dragevent_getpreviewtouchpointy) ([ArkUI_DragEvent](#arkui_dragevent) \*event) | 从ArkUI_DragEvent中获取预览图跟手点的y轴坐标。  | 
 | float [OH_ArkUI_DragEvent_GetPreviewRectWidth](#oh_arkui_dragevent_getpreviewrectwidth) ([ArkUI_DragEvent](#arkui_dragevent) \*event) | 从ArkUI_DragEvent中获取预览图的宽。  | 
@@ -300,7 +301,7 @@ ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR = 150002,ARKUI_ERROR_CODE_FOCUS_NO
 | float [OH_ArkUI_DragEvent_GetVelocityX](#oh_arkui_dragevent_getvelocityx) ([ArkUI_DragEvent](#arkui_dragevent) \*event) | 获取当前拖拽的x轴方向拖动速度。  | 
 | float [OH_ArkUI_DragEvent_GetVelocityY](#oh_arkui_dragevent_getvelocityy) ([ArkUI_DragEvent](#arkui_dragevent) \*event) | 获取当前拖拽的y轴方向拖动速度。  | 
 | float [OH_ArkUI_DragEvent_GetVelocity](#oh_arkui_dragevent_getvelocity) ([ArkUI_DragEvent](#arkui_dragevent) \*event) | 获取当前拖拽的主方向拖动速度。  | 
-| int32_t [OH_ArkUI_DragEvent_GetModifierKeyStates](#oh_arkui_dragevent_getmodifierkeystates) ([ArkUI_DragEvent](#arkui_dragevent) \*event, int64_t \*keys) | 获取功能键按压状态。  | 
+| int32_t [OH_ArkUI_DragEvent_GetModifierKeyStates](#oh_arkui_dragevent_getmodifierkeystates) ([ArkUI_DragEvent](#arkui_dragevent) \*event, uint64_t \*keys) | 获取功能键按压状态。  | 
 | int32_t [OH_ArkUI_SetDragEventStrictReportWithNode](#oh_arkui_setdrageventstrictreportwithnode) ([ArkUI_NodeHandle](#arkui_nodehandle) node, bool enabled) | 控制是否使能严格dragEvent上报，建议开启；默认是不开启的； 当不开启时，从父组件拖移进子组件时，父组件并不会收到leave的通知；而开启之后，只要前后两个组件发生变化，上一个组件就会收到 leave，新的组件收到enter通知；该配置与具体的UI实例相关，需要通过传入一个当前UI实例上的一个具体的组件节点来关联。  | 
 | int32_t [OH_ArkUI_SetDragEventStrictReportWithContext](#oh_arkui_setdrageventstrictreportwithcontext) ([ArkUI_ContextHandle](#arkui_contexthandle-12) uiContext, bool enabled) | 控制是否使能严格dragEvent上报，建议开启；默认是不开启的; 当不开启时，从父组件拖移进子组件时，父组件并不会收到leave的通知；而开启之后，只要前后两个组件发生变化，上一个组件就会收到 leave，新的组件收到enter通知；该配置与具体的UI实例相关，可通过传入一个UI实例进行关联。  | 
 | int32_t [OH_ArkUI_SetNodeAllowedDropDataTypes](#oh_arkui_setnodealloweddropdatatypes) ([ArkUI_NodeHandle](#arkui_nodehandle) node, const char \*typesArray[], int32_t count) | 配置组件允许接受落入的数据类型，该接口会重置通过 [OH_ArkUI_DisallowNodeAnyDropDataTypes](#oh_arkui_disallownodeanydropdatatypes) 或 [OH_ArkUI_AllowNodeAllDropDataTypes](#oh_arkui_allownodealldropdatatypes)进行的配置。  | 
@@ -2168,10 +2169,10 @@ enum ArkUI_DragStatus
 | ArkUI_DRAG_STATUS_ENDED  | Ended。  | 
 
 
-### ArkUI_DropProposal
+### ArkUI_DropOperation
 
 ```
-enum ArkUI_DropProposal
+enum ArkUI_DropOperation
 ```
 **描述：**
 
@@ -2181,8 +2182,8 @@ enum ArkUI_DropProposal
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_DROP_PROPOSAL_COPY  | 复制行为。  | 
-| ARKUI_DROP_PROPOSAL_MOVE  | 剪切行为。  | 
+| ARKUI_DROP_OPERATION_COPY  | 复制行为。  | 
+| ARKUI_DROP_OPERATION_MOVE  | 剪切行为。  | 
 
 
 ### ArkUI_EdgeEffect
@@ -8324,7 +8325,7 @@ int32_t OH_ArkUI_DragEvent_DisableDefaultDropAnimation (ArkUI_DragEvent * event,
 | 名称 | 描述 | 
 | -------- | -------- |
 | event | ArkUI_DragEvent事件指针。  | 
-| disable | 是否禁用松手时的系统默认动效，true禁用，false使能。  | 
+| disable | 是否禁用松手时的系统默认动效，true禁用，false不禁用。  | 
 
 **返回：**
 
@@ -8334,7 +8335,7 @@ ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数�
 ### OH_ArkUI_DragEvent_GetDataTypes()
 
 ```
-int32_t OH_ArkUI_DragEvent_GetDataTypes (ArkUI_DragEvent * event, char ** result[], int32_t length )
+int32_t OH_ArkUI_DragEvent_GetDataTypes (ArkUI_DragEvent * event, char * eventTypeArray[], int32_t length, int32_t maxStrLen)
 ```
 **描述：**
 
@@ -8347,18 +8348,19 @@ int32_t OH_ArkUI_DragEvent_GetDataTypes (ArkUI_DragEvent * event, char ** result
 | 名称 | 描述 | 
 | -------- | -------- |
 | event | ArkUI_DragEvent事件指针。  | 
-| char | \*\*result[] 返回拖拽数据的类型列表，需要先自行创建字符串数组。  | 
-| length | 数组总长度，不应少于使用[OH_ArkUI_DragEvent_GetDataTypesCount](#oh_arkui_dragevent_getdatatypescount)获取到的数量。  | 
+| char | eventTypeArray 返回拖拽数据的类型列表，需要先自行创建字符串数组。  | 
+| length | 数组总长度，不应少于使用[OH_ArkUI_DragEvent_GetDataTypeCount](#oh_arkui_dragevent_getdatatypecount)获取到的数量。  | 
+| maxStrLen | 拖拽数据类型的最大字符串长度。  | 
 
 **返回：**
 
-ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR 缓冲区大小不足。
 
 
-### OH_ArkUI_DragEvent_GetDataTypesCount()
+### OH_ArkUI_DragEvent_GetDataTypeCount()
 
 ```
-int32_t OH_ArkUI_DragEvent_GetDataTypesCount (ArkUI_DragEvent * event, int32_t * count )
+int32_t OH_ArkUI_DragEvent_GetDataTypeCount (ArkUI_DragEvent * event, int32_t * count )
 ```
 **描述：**
 
@@ -8401,10 +8403,33 @@ int32_t OH_ArkUI_DragEvent_GetDragResult (ArkUI_DragEvent * event, ArkUI_DragRes
 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
 
+### OH_ArkUI_DragEvent_GetDropOperation()
+
+```
+int32_t OH_ArkUI_DragEvent_GetDropOperation (ArkUI_DragEvent * event, ArkUI_DropOperation * operation)
+```
+**描述：**
+
+从ArkUI_DragEvent中获取数据处理方式。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | ArkUI_DragEvent事件指针。  | 
+| operation | 出参，返回拖拽事件对应的数据处理方式。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+
 ### OH_ArkUI_DragEvent_GetModifierKeyStates()
 
 ```
-int32_t OH_ArkUI_DragEvent_GetModifierKeyStates (ArkUI_DragEvent * event, int64_t * keys )
+int32_t OH_ArkUI_DragEvent_GetModifierKeyStates (ArkUI_DragEvent * event, uint64_t * keys )
 ```
 **描述：**
 
@@ -8505,11 +8530,11 @@ float OH_ArkUI_DragEvent_GetPreviewTouchPointY (ArkUI_DragEvent * event)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| event | ArkUI_DragEvent事件指针，单位为PX，传入参数无效时返回默认值 0。  | 
+| event | ArkUI_DragEvent事件指针。  | 
 
 **返回：**
 
-float 返回拖拽跟手点的y轴坐标。
+float 返回拖拽跟手点的y轴坐标，单位为PX，传入参数无效时返回默认值 0。
 
 
 ### OH_ArkUI_DragEvent_GetTouchPointXToDisplay()
@@ -8738,7 +8763,7 @@ ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数�
 ### OH_ArkUI_DragEvent_SetSuggestedDropOperation()
 
 ```
-int32_t OH_ArkUI_DragEvent_SetSuggestedDropOperation (ArkUI_DragEvent * event, ArkUI_DropProposal proposal )
+int32_t OH_ArkUI_DragEvent_SetSuggestedDropOperation (ArkUI_DragEvent * event, ArkUI_DropOperation dropOperation)
 ```
 **描述：**
 
@@ -8829,7 +8854,7 @@ int32_t OH_ArkUI_DragPreviewOption_SetDefaultRadiusEnabled (ArkUI_DragPreviewOpt
 ```
 **描述：**
 
-设置跟手图背板默认的圆角效果，默认使能。
+设置跟手图背板默认的圆角效果，默认不开启。
 
 **起始版本：** 12
 
@@ -8852,7 +8877,7 @@ int32_t OH_ArkUI_DragPreviewOption_SetDefaultShadowEnabled (ArkUI_DragPreviewOpt
 ```
 **描述：**
 
-设置跟手图背板默认的投影效果，默认使能。
+设置跟手图背板默认的投影效果，默认不开启。
 
 **起始版本：** 12
 
@@ -8875,7 +8900,7 @@ int32_t OH_ArkUI_DragPreviewOption_SetNumberBadgeEnabled (ArkUI_DragPreviewOptio
 ```
 **描述：**
 
-设置跟手图背板是否显示角标,默认使能,开启后,系统会根据拖拽数量自动进行角标显示。
+设置跟手图背板是否显示角标,开启后,系统会根据拖拽数量自动进行角标显示。
 
 **起始版本：** 12
 
