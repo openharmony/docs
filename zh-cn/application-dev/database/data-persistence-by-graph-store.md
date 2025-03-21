@@ -247,8 +247,6 @@ DML（Data Manipulation Language）语句: 数据操纵语言，主要是对数�
    >
    > 图数据库没有显式的flush操作实现持久化，数据插入即保存在持久化文件。
 
-   示例代码如下所示：
-
    ```ts
    const INSERT_VERTEX_1 = "INSERT (:Person {name: 'name_1', age: 11});";
    const INSERT_VERTEX_2 = "INSERT (:Person {name: 'name_2', age: 22});";
@@ -427,7 +425,7 @@ DML（Data Manipulation Language）语句: 数据操纵语言，主要是对数�
    }
    ```
 
-7. 删除数据库。调用deleteStore()方法，删除数据库及数据库相关文件。示例代码如下：
+7. 删除数据库。调用deleteStore()方法，删除数据库及数据库相关文件。示例代码如下所示：
 
    ```ts
    const DROP_GRAPH_GQL = "DROP GRAPH test;"
