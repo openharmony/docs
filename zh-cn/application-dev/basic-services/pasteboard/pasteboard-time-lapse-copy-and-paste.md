@@ -12,7 +12,9 @@
 
 - 剪贴板内容大小&lt;128MB时支持使用。
 
-- NDK接口仅支持Record级别的延迟复制粘贴，ArkTS接口仅支持PasteData级别的延迟复制粘贴。
+- NDK接口仅支持Record级别的延迟复制粘贴。
+
+- ArkTS接口仅支持PasteData级别的延迟复制粘贴。
 
 ## 使用基于Record级别的延迟复制粘贴（推荐）
 
