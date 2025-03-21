@@ -498,7 +498,7 @@ console.log("Result: "+ data.getDefaultCellularDataSimId());
 
 queryAllApns(): Promise<Array<ApnInfo>>
 
-获取默认移动数据的SIM卡的APN信息。
+获取默认移动数据的SIM卡的APN（access point name，接入点名称）信息。
 
 **需要权限**：ohos.permission.MANAGE_APN_SETTING
 
@@ -508,7 +508,15 @@ queryAllApns(): Promise<Array<ApnInfo>>
 
 | 类型              | 说明                                         |
 | ------ |--------------------------------------------|
-| Promise<Array<ApnInfo>> | 获取默认移动数据的SIM卡的APN信息列表。 |
+| Promise\<Array\<ApnInfo\>\> | 获取默认移动数据的SIM卡的APN信息列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
 
 **示例：**
 
@@ -516,7 +524,7 @@ queryAllApns(): Promise<Array<ApnInfo>>
 import { data } from '@kit.TelephonyKit';
 
 cellular.queryAllApns().then((data: Array<cellular.ApnInfo>) => {
-    console.log(`queryAllApns success, promise: data->${JSON.stringify(data)}`);
+    console.info(`queryAllApns success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`queryAllApns failed, promise: err->${JSON.stringify(err)}`);
 });
@@ -536,7 +544,15 @@ queryApnIds(apnInfo: ApnInfo): Promise<Array<number>>
 
 | 类型              | 说明                          |
 | ------ |-----------------------------|
-| Promise<Array<number>> | 获取到的传入的ApnInfo对应的ApnId信息列表。 |
+| Promise\<Array\<number\>\> | 获取到的传入的ApnInfo对应的ApnId信息列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
 
 **示例：**
 
@@ -552,7 +568,7 @@ apnInfo = {
 };
 
 cellular.queryApnIds(apnInfo).then((data: Array<number>) => {
-    console.log(`queryApnIds success, promise: data->${JSON.stringify(data)}`);
+    console.info(`queryApnIds success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`queryApnIds failed, promise: err->${JSON.stringify(err)}`);
 });
@@ -562,7 +578,11 @@ cellular.queryApnIds(apnInfo).then((data: Array<number>) => {
 
 setPreferredApn(apnId: number): Promise<boolean>
 
-设置apnId对应的APN为首选APN，需要注意的是，如果传入的apnId为无效的apnId，切回运营商默认配置的优选Apn。
+设置apnId对应的APN为首选APN。
+
+> 注意:
+>
+> 如果传入的apnId为无效的apnId，切回运营商默认配置的优选Apn。
 
 **需要权限**：ohos.permission.MANAGE_APN_SETTING
 
@@ -572,16 +592,24 @@ setPreferredApn(apnId: number): Promise<boolean>
 
 | 类型              | 说明                     |
 | ------ |------------------------|
-| Promise<boolean> | 设置的返回结果，在未插卡时会返回fasle。 |
+| Promise\<boolean\> | 设置的返回结果，在未插卡时会返回fasle。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
 
 **示例：**
 
 ```ts
 import { data } from '@kit.TelephonyKit';
 
-let apnId: number = 0; // apnId为通过queryApnIds返回的有效值，setPreferredApn传入无效的apnId会切回运营商默认配置的优选Apn
+let apnId: number = 0; // apnId为通过queryApnIds返回的有效值，setPreferredApn传入无效的apnId会切回运营商默认配置的优选APN。
 cellular.setPreferredApn(apnId).then((data: boolean) => {
-    console.log(`setPreferredApn success, promise: data->${JSON.stringify(data)}`);
+    console.info(`setPreferredApn success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`setPreferredApn failed, promise: err->${JSON.stringify(err)}`);
 });
@@ -617,17 +645,17 @@ cellular.setPreferredApn(apnId).then((data: boolean) => {
 
 ## ApnInfo<sup>16+</sup>
 
-Apn信息。
+APN信息。
 
 **系统能力**：SystemCapability.Telephony.CellularData
 
 | 名称       | 类型      | 必填  | 说明         |
 |----------|---------|-----|------------|
-| apnName  | string  | 是   | Apn名称。     |
-| apn      | string  | 是   | apn。       |
+| apnName  | string  | 是   | APN名称。     |
+| apn      | string  | 是   | APN。       |
 | mcc      | string  | 是   | Sim卡的mcc。  |
 | mnc      | string  | 是   | 卡Sim卡的mnc。 |
 | user     | string  | 否   | 用户名。       |
-| type     | string  | 否   | apn类型。     |
+| type     | string  | 否   | APN类型。     |
 | proxy    | string  | 否   | 代理地址。      |
 | mmsproxy | string  | 否   | 彩信代理。      |
