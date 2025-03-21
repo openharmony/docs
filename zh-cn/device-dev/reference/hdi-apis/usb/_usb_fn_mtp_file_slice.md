@@ -34,7 +34,7 @@ unsigned short UsbFnMtpFileSlice::command
 ```
 **描述**
 
-请求命令
+请求命令。
 
 
 ### fd
@@ -54,7 +54,7 @@ long UsbFnMtpFileSlice::length
 ```
 **描述**
 
-数据长度
+数据长度。
 
 
 ### offset
@@ -74,4 +74,4 @@ unsigned int UsbFnMtpFileSlice::transactionId
 ```
 **描述**
 
-传输id
+传输id。
