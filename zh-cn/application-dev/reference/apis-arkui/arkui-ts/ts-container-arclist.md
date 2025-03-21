@@ -208,7 +208,7 @@ scrollBarColor(color: Optional\<ColorMetrics>)
 
 flingSpeedLimit(speed: Optional\<number>)
 
-限制跟手滑动结束后，惯性滚动动效开始时的最大初始速度。单位是vp/s。
+限制跟手滑动结束后，惯性滚动动效开始时的最大初始速度。设置为小于等于0的值时，按默认值处理。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -218,7 +218,7 @@ flingSpeedLimit(speed: Optional\<number>)
 
 | 参数名 | 类型              | 必填 | 说明                            |
 | ------ | ----------------- | ---- | ------------------------------- |
-| speed  | Optional\<number> | 是   | 惯性滚动动效开始时的最大初始速度 |
+| speed  | Optional\<number> | 是   | 惯性滚动动效开始时的最大初始速度。<br/>默认值：9000<br/>单位：vp/s |
 
 ### childrenMainSize
 
@@ -395,7 +395,7 @@ onDidScroll(handler: Optional\<OnScrollCallback>)
 | ------------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | scrollOffset | number                                                  | 是   | 每帧滚动的偏移量，ArcList的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
 | scrollState  | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是   | 当前滑动状态。                                               |
-| scrollSource | ScrollSource                                            | 是   | 当前滑动来源。                                               |
+| scrollSource | [ScrollSource](ts-appendix-enums.md#scrollsource12)    | 是   | 当前滑动来源。                                               |
 
 ## 示例
 
