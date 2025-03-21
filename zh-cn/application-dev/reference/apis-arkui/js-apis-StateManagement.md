@@ -36,7 +36,7 @@ static&nbsp;connect\<T extends object\>( </br >
   &nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;TypeConstructorWithArgs\<T\>, </br >
   &nbsp;&nbsp;&nbsp;&nbsp;keyOrDefaultCreator?:&nbsp;string&nbsp;|&nbsp;StorageDefaultCreator\<T\>, </br >
   &nbsp;&nbsp;&nbsp;&nbsp;defaultCreator?:&nbsp;StorageDefaultCreator\<T\> </br >
-):&nbsp;T&nbsp;|&nbsp;undefined;
+):&nbsp;T&nbsp;|&nbsp;undefined
 
 将键值对数据储存在应用内存中。如果给定的key已经存在于[AppStorageV2](../../quick-start/arkts-new-appstoragev2.md)中，返回对应的值；否则，通过获取默认值的构造器构造默认值，并返回。
 
@@ -90,7 +90,7 @@ const as3: SampleClass = AppStorageV2.connect(SampleClass) as SampleClass;
 
 ### remove
 
-static&nbsp;remove\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithArgs\<T\>):&nbsp;void;
+static&nbsp;remove\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithArgs\<T\>):&nbsp;void
 
 将指定的键值对数据从[AppStorageV2](../../quick-start/arkts-new-appstoragev2.md)里面删除。如果指定的键值不存在于AppStorageV2中，将删除失败。
 
@@ -125,7 +125,7 @@ AppStorageV2.remove('key_as1');
 
 ### keys
 
-static&nbsp;keys():&nbsp;Array\<string\>;
+static&nbsp;keys():&nbsp;Array\<string\>
 
 获取[AppStorageV2](../../quick-start/arkts-new-appstoragev2.md)中的所有key。
 
@@ -160,19 +160,19 @@ const keys: Array<string> = AppStorageV2.keys();
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-### globalConnect<sup>16+</sup>
+### globalConnect<sup>18+</sup>
 
-static globalConnect<T extends object>(type: ConnectOptions\<T\>): T | undefined;
+static globalConnect<T extends object>(type: ConnectOptions\<T\>): T | undefined
 
 将键值对数据储存在应用磁盘中。如果给定的key已经存在于[PersistenceV2](../../quick-start/arkts-new-persistencev2.md)中，返回对应的值；否则，会通过获取默认值的构造器构造默认值，并返回。如果globalConnect的是\@ObservedV2对象，该对象\@Trace属性的变化，会触发整个关联对象的自动刷新；非\@Trace属性变化则不会，如有必要，可调用PersistenceV2.save接口手动存储。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称   |类型   |必填   | 说明                                                      |
 | ------------- | ------------|-------------------|-------------------------- |
-| type    |[ConnectOptions\<T\>](#connectoptions16)    |是  |传入的connect参数，详细说明见ConnectOptions参数说明。 |
+| type    |[ConnectOptions\<T\>](#connectoptions18)    |是  |传入的connect参数，详细说明见ConnectOptions参数说明。 |
 
 **返回值：**
 
@@ -236,7 +236,7 @@ options: ConnectOptions<Sample> = {type: Sample, key: 'global2', defaultCreator:
 
 ### save
 
-static&nbsp;save\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithArgs\<T\>):&nbsp;void;
+static&nbsp;save\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithArgs\<T\>):&nbsp;void
 
 将指定的键值对数据持久化一次。
 
@@ -273,7 +273,7 @@ PersistenceV2.remove('key_as1');
 
 ### notifyOnError
 
-static notifyOnError(callback: PersistenceErrorCallback | undefined): void;
+static notifyOnError(callback: PersistenceErrorCallback | undefined): void
 
 在持久化失败时调用。
 
@@ -296,9 +296,9 @@ PersistenceV2.notifyOnError((key: string, reason: string, msg: string) => {
 });
 ```
 
-## ConnectOptions<sup>16+</sup>
+## ConnectOptions<sup>18+</sup>
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -319,7 +319,7 @@ UIUtils提供一些方法，用于处理状态管理相关的数据转换。
 
 ### getTarget
 
-static getTarget\<T extends object\>(source: T): T;
+static getTarget\<T extends object\>(source: T): T
 
 从状态管理框架包裹的代理对象中获取原始对象。详见[getTarget接口：获取状态管理框架代理前的原始对象](../../quick-start/arkts-new-getTarget.md)。
 
@@ -362,7 +362,7 @@ struct Index {
 ```
 ### makeObserved
 
-static makeObserved\<T extends object\>(source: T): T;
+static makeObserved\<T extends object\>(source: T): T
 
 将普通不可观察数据变为可观察数据。详见[makeObserved接口：将非观察数据变为可观察数据](../../quick-start/arkts-new-makeObserved.md)。
 
@@ -545,7 +545,7 @@ struct Child {
 
 ## StorageDefaultCreator\<T\>
 
-type StorageDefaultCreator\<T\> = () => T;
+type StorageDefaultCreator\<T\> = () => T
 
 返回默认构造器的函数。
 
@@ -602,7 +602,7 @@ struct SampleComp {
 
 ### new
 
-new(...args: any): T;
+new(...args: any): T
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -655,7 +655,7 @@ struct SampleComp {
 
 ## PersistenceErrorCallback
 
-type PersistenceErrorCallback = (key: string, reason: 'quota' | 'serialization' | 'unknown', message: string) => void;
+type PersistenceErrorCallback = (key: string, reason: 'quota' | 'serialization' | 'unknown', message: string) => void
 
 持久化失败时返回错误原因的回调。
 
@@ -723,7 +723,7 @@ struct Index {
 
 ### new
 
-new(): T;
+new(): T
 
 **返回值：**
 
@@ -773,7 +773,7 @@ struct Index {
 
 ## TypeDecorator
 
-type TypeDecorator = \<T\>(type: TypeConstructor\<T\>) => PropertyDecorator;
+type TypeDecorator = \<T\>(type: TypeConstructor\<T\>) => PropertyDecorator
 
 属性装饰器。
 

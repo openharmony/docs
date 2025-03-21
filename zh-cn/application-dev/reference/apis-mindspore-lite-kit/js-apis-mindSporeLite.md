@@ -1,6 +1,6 @@
 # @ohos.ai.mindSporeLite (端侧AI框架)
 
-MindSpore Lite是一个轻量化、高性能的端侧AI引擎，提供了标准的模型推理和训练接口，内置通用硬件高性能算子库，原生支持Neural Network Runtime Kit使能AI专用芯片加速推理，助力打造全场景智能应用。
+MindSpore Lite是一个轻量化、高性能的端侧AI引擎，提供了标准的模型推理和训练接口，内置通用硬件高性能算子库，支持Neural Network Runtime Kit使能AI专用芯片加速推理，助力打造全场景智能应用。
 
 本模块主要介绍MindSpore Lite AI引擎支持模型端侧推理/训练的相关能力。
 
@@ -1052,7 +1052,7 @@ mindSporeLite.loadTrainModelFromFile(modelFile).then((mindSporeLiteModel: mindSp
 
 ### exportWeightsCollaborateWithMicro<sup>12+</sup>
 
-exportWeightsCollaborateWithMicro(weightFile: string, isInference?: boolean, enableFp16?: boolean, changeableWeightsName?: string[]): boolean;
+exportWeightsCollaborateWithMicro(weightFile: string, isInference?: boolean, enableFp16?: boolean, changeableWeightsName?: string[]): boolean
 
 导出供**micro推理**使用的模型权重，仅用于端侧训练。
 

@@ -22,8 +22,8 @@
 
 | 场景  | API version 18以前 | API version 18及以后  |
 |------|----|------|
-| V2装饰器和\@Observed同时使用 | 报错 | 不报错 |
 | V1装饰器和\@ObservedV2同时使用   | 报错 | 报错 |
+| V2装饰器和\@Observed同时使用 | 报错 | 不报错 |
 | V1->V2 普通class  | 报错 | 不报错 |
 | V1->V2 built-in类型Array、Map、Set、Date  | 报错 | 不报错 |
 | V1->V2 \@Observed装饰的class  | 报错 | 不报错 |
@@ -31,7 +31,7 @@
 | V2->V1 built-in类型Array、Map、Set、Date  | 报错 | 不报错 |
 | \@ObjectLink被非\@Observed装饰的class初始化  | 报错 | 不报错 |
 
-依旧禁止第1条，是因为@ObserveV2/@Trace有自己独立的观察能力，不仅可以在\@ComponentV2中使用，也可以独立在\@Component中使用，状态管理框架不希望其观察能力和V1的观察能力混合使用，所以依旧维持禁止现状。
+依旧禁止第1条，是因为\@ObservedV2/\@Trace有自己独立的观察能力，不仅可以在\@ComponentV2中使用，也可以独立在\@Component中使用，状态管理框架不希望其观察能力和V1的观察能力混合使用，所以依旧维持禁止现状。
 
 ## 新增接口
 ### makeV1Observed
@@ -46,7 +46,7 @@ static makeV1Observed\<T extends object\>(source: T): T
 
 **接口说明**
 - makeV1Observed主要和enableV2Compatibility搭配使用，实现V2->V1的传递。
-- makeV1Observed可将普通class、Array、Map、Set、Date类型转换为V1的状态变量，其能力等同于\@Observed, 所以其返回值可以初始化\@ObjectLink。
+- makeV1Observed可将普通class、Array、Map、Set、Date类型转换为V1的状态变量，其能力等同于\@Observed，所以其返回值可以初始化\@ObjectLink。
 - 如果makeV1Observed接受的数据已经是V1的状态变量，则返回自身，不做任何改变。
 - makeV1Observed不会递归执行，仅会将第一层包装成V1的状态变量。
 
@@ -160,9 +160,9 @@ struct CompV1 {
 |------|----|
 | \@Observed装饰class的嵌套类 | 在\@ComponentV2可深度观察嵌套属性的变化。 |
 | 普通class  | 可以观察，需要调用`makeV1Observed`使得`enableV2Compatibility`正常工作。 |
-| Array\<number\>，或其他简单类型数组  | 可以观察，需要调用`makeV1Observed`。</br>例子： `@Local local : Array<number> = UIUtils.enableV2Compatibility(UIUtils.makeV1Observed([1, 2, 3]))` |
+| Array\<number\>，或其他简单类型数组  | 可以观察，需要调用`makeV1Observed`。</br>例子： `@Local local : Array<number> = UIUtils.enableV2Compatibility(UIUtils.makeV1Observed([1, 2, 3]))`。 |
 | Array\<ObservedClass\>，即数组项是\@Observed装饰的class  | 可以观察，需要调用`makeV1Observed`。</br>例子： `@Local local : Array<ObservedClass> = UIUtils.enableV2Compatibility(UIUtils.makeV1Observed([new ObservedClass()]))`。 |
-|  Array\<Array\<number\>\>，二维数组，数组项或为其他简单类型。 | 可以观察，需要调用`makeV1Observed`。</br>例子： `@Local local : Array<Array<number>>> = UIUtils.enableV2Compatibility(UIUtils.makeV1Observed([UIUtils.makeV1Observed([1, 2, 3])]))`。|
+|  Array\<Array\<number\>\>，二维数组，数组项或为其他简单类型 | 可以观察，需要调用`makeV1Observed`。</br>例子： `@Local local : Array<Array<number>>> = UIUtils.enableV2Compatibility(UIUtils.makeV1Observed([UIUtils.makeV1Observed([1, 2, 3])]))`。|
 
 
 ## 混用规则
@@ -393,9 +393,9 @@ struct CompV1 {
 - `name`是`@Track`装饰的属性，其在V1和V2均是可观察的。
 - `count`是非`@Track`装饰的属性，其在V1和V2的UI中使用均是非法的。
     - 在V1中，如果将非`@Track`装饰的属性使用在UI中，是非法行为，会有运行时报错。
-    - 在V2中，非`@Track`装饰的属性使用在UI不会有运行时报错，但不会影响刷新。
+    - 在V2中，非`@Track`装饰的属性使用在UI不会有运行时报错，但不会响应更新。
 
-```
+```ts
 import { UIUtils } from '@kit.ArkUI';
 
 @Observed
@@ -541,7 +541,7 @@ struct ArrayCompV1 {
         // V1代理，可触发ArrayCompV1的刷新，但无法触发ArrayCompV2的刷新
         this.arr[0]++;
       })
-      // 传递给ArrayCompV2被再次包装V2的代理
+      // 传递给ArrayCompV2，被再次包装V2的代理
       ArrayCompV2({ arr: this.arr })
     }
     .height('100%')
@@ -641,6 +641,134 @@ struct ArrayCompV1 {
   }
 }
 ```
+### 二维数组
+#### V1->V2
+
+下面的例子中：
+- 使用makeV1Observed将二维数组的内层数组变成V1的状态变量。
+- 在传递给V2子组件时，调用enableV2Compatibility，使其具有V2的观察能力，也避免V1V2的双重代理。
+
+```ts
+import { UIUtils } from '@kit.ArkUI';
+
+@ComponentV2
+struct Item {
+  @Require @Param itemArr: Array<string>;
+
+  build() {
+    Row() {
+      ForEach(this.itemArr, (item: string, index: number) => {
+        Text(`${index}: ${item}`)
+      }, (item: string) => item + Math.random())
+
+      Button('@Param push')
+        .onClick(() => {
+          this.itemArr.push('Param');
+        })
+    }
+  }
+}
+
+@Entry
+@Component
+struct IndexPage {
+  @State arr: Array<Array<string>> =
+    [UIUtils.makeV1Observed(['apple']), UIUtils.makeV1Observed(['banana']), UIUtils.makeV1Observed(['orange'])];
+
+  build() {
+    Column() {
+      ForEach(this.arr, (itemArr: Array<string>) => {
+        Item({ itemArr: UIUtils.enableV2Compatibility(itemArr) })
+      }, (itemArr: Array<string>) => JSON.stringify(itemArr) + Math.random())
+      Divider()
+      Button('@State push two-dimensional array item')
+        .onClick(() => {
+          this.arr[0].push('strawberry');
+        })
+
+      Button('@State push array item')
+        .onClick(() => {
+          this.arr.push(UIUtils.makeV1Observed(['pear']));
+        })
+
+      Button('@State change two-dimensional array first item')
+        .onClick(() => {
+          this.arr[0][0] = 'APPLE';
+        })
+
+      Button('@State change array first item')
+        .onClick(() => {
+          this.arr[0] = UIUtils.makeV1Observed(['watermelon']);
+        })
+    }
+  }
+}
+```
+
+#### V2->V1
+
+下面的例子中：
+- 使用makeV1Observed将二维数组的内层数组变成V1的状态变量。调用enableV2Compatibility，使其具有V2的观察能力，也避免V1V2的双重代理。
+- 在V1中，使用\@ObjectLink接收二维数组的内层数组，因为其为makeV1Observed的返回值，所以点击`Button('@ObjectLink push')`，会正常响应刷新。
+
+```ts
+import { UIUtils } from '@kit.ArkUI';
+
+@Component
+struct Item {
+  @ObjectLink itemArr: Array<string>;
+
+  build() {
+    Row() {
+      ForEach(this.itemArr, (item: string, index: number) => {
+        Text(`${index}: ${item}`)
+      }, (item: string) => item + Math.random())
+
+      Button('@ObjectLink push')
+        .onClick(() => {
+          this.itemArr.push('ObjectLink');
+        })
+    }
+  }
+}
+
+@Entry
+@ComponentV2
+struct IndexPage {
+  @Local arr: Array<Array<string>> =
+    UIUtils.enableV2Compatibility(UIUtils.makeV1Observed([UIUtils.makeV1Observed(['apple']),
+      UIUtils.makeV1Observed(['banana']), UIUtils.makeV1Observed(['orange'])]));
+
+  build() {
+    Column() {
+      ForEach(this.arr, (itemArr: Array<string>) => {
+        Item({ itemArr: itemArr })
+      }, (itemArr: Array<string>) => JSON.stringify(itemArr) + Math.random())
+      Divider()
+      Button('@Local push two-dimensional array item')
+        .onClick(() => {
+          this.arr[0].push('strawberry');
+        })
+
+      Button('@Local push array item')
+        .onClick(() => {
+          this.arr.push(UIUtils.makeV1Observed(['pear']));
+        })
+
+      Button('@Local change two-dimensional array first item')
+        .onClick(() => {
+          this.arr[0][0] = 'APPLE';
+        })
+
+      Button('@Local change array first item')
+        .onClick(() => {
+          this.arr[0] = UIUtils.makeV1Observed(['watermelon']);
+        })
+    }
+  }
+}
+```
+
 ### 嵌套类型
 #### V1->V2
 结合上面的基本场景后，来看下面嵌套场景的例子。

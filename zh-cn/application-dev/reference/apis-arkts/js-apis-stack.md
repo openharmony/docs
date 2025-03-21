@@ -301,7 +301,7 @@ let result = stack.isEmpty();
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象,并返回该对象。
+返回一个迭代器，迭代器的每一项都是一个JavaScript对象，并返回该对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

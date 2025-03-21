@@ -31,12 +31,7 @@ Web组件为开发者提供了丰富的控制Web页面能力。包括：
 
 ## 约束与限制
 
-- Web内核版本：ArkWeb基于谷歌Chromium内核开发，使用的Chromium版本为：
-
-| 系统版本 | Chromium版本 |
-|  ---|---|
-| 历史 | M114 |
-| OpenHarmony 5.1 | M132 |
+- Web内核版本：ArkWeb基于谷歌Chromium内核开发，使用的Chromium版本为M114。
 
 ## 相关实例
 

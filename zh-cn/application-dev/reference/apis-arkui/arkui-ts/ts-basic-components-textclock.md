@@ -369,7 +369,7 @@ stop()
 | 名称 | 类型    |    必填      |  说明              |
 | ------ | ------ | ------ |-------------------------------- |
 | timeZoneOffset | number | 是 | 当前文本时钟时区偏移量。 |
-| started | boolean | 是 | 指示文本时钟是否启动。<br>默认值：true。 |
+| started | boolean | 是 | 指示文本时钟是否启动。<br>默认值：true，true表示启动文本时钟，false表示关闭文本时钟。 |
 | timeValue | number | 是 | 当前文本时钟时区的UTC秒数。 |
 
 ## 示例

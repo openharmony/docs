@@ -77,7 +77,7 @@ closeEffect(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                   |
 | ------ | ------- | ---- | ------------------------------------------------------ |
-| value  | boolean | 是   | 关闭数据占比图表旋转动效和投影效果。<br/>默认值：false |
+| value  | boolean | 是   | 关闭数据占比图表旋转动效和投影效果。<br/>默认值：false，false表示关闭数据占比图表旋转动效和投影效果，true表示开启数据占比图表旋转动效和投影效果。 |
 
 ### valueColors<sup>10+</sup>
 
@@ -214,8 +214,8 @@ constructor(colorStops: ColorStop[])
 
 | 名称  | 类型    |    必填      |  说明              |
 | ------ | ------ | ------ |-------------------------------- |
-| values | number[] | 是 | 当前DataPanel的数据值，最大长度为9。 |
-| maxValue | number | 是 | DataPanel显示的最大值。<br/>默认值：100。 |
+| values | number[] | 是 | 当前DataPanel的数据值。<br>取值范围：[0, 9]，若数据值小于0，则置为0。 |
+| maxValue | number | 是 | DataPanel显示的最大值。<br/>默认值：100。<br>**说明：** <br/>如果小于或等于0，maxValue将被设为values数组中所有项的总和，并按比例显示。 |
 
 ## 示例
 

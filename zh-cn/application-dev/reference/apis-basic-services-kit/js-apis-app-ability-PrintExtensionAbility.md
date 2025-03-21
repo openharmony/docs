@@ -9,10 +9,10 @@
 ## 导入模块
 
 ```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
+import { PrintExtensionAbility } from '@kit.BasicServicesKit';
 ```
 
-## onCreate
+## PrintExtensionAbility.onCreate
 
 onCreate(want: Want): void
 
@@ -39,7 +39,7 @@ export default class HWPrintExtension extends PrintExtensionAbility {
 }
 ```
 
-## onStartDiscoverPrinter
+## PrintExtensionAbility.onStartDiscoverPrinter
 
 onStartDiscoverPrinter(): void
 
@@ -60,7 +60,7 @@ export default class HWPrintExtension extends PrintExtensionAbility {
 }
 ```
 
-## onStopDiscoverPrinter
+## PrintExtensionAbility.onStopDiscoverPrinter
 
 onStopDiscoverPrinter(): void
 
@@ -81,7 +81,7 @@ export default class HWPrintExtension extends PrintExtensionAbility {
 }
 ```
 
-## onConnectPrinter
+## PrintExtensionAbility.onConnectPrinter
 
 onConnectPrinter(printerId: number): void
 
@@ -107,7 +107,7 @@ export default class HWPrintExtension extends PrintExtensionAbility {
 }
 ```
 
-## onDisconnectPrinter
+## PrintExtensionAbility.onDisconnectPrinter
 
 onDisconnectPrinter(printerId: number): void
 
@@ -133,7 +133,7 @@ export default class HWPrintExtension extends PrintExtensionAbility {
 }
 ```
 
-## onDestroy
+## PrintExtensionAbility.onDestroy
 
 onDestroy(): void
 

@@ -285,13 +285,13 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## Context.createDisplayContext<sup>16+</sup>
+## Context.createDisplayContext<sup>15+</sup>
 
 createDisplayContext(displayId: number): Context
 
 Creates the context based on the specified display ID, so as to obtain and use other application contexts with screen information (including [ScreenDensity](../apis-localization-kit/js-apis-resource-manager.md#screendensity) and [Direction](../apis-localization-kit/js-apis-resource-manager.md#direction)).
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

@@ -1,10 +1,11 @@
 # DataAbilityOperation
 
-The **DataAbilityOperation** module defines the operation on DataAbilities. It can be used as an input parameter of [executeBatch](js-apis-inner-ability-dataAbilityHelper.md#dataabilityhelperexecutebatch) to specify the database operation information.
+The DataAbilityOperation module defines the operation on DataAbilities. It can be used as an input parameter of [executeBatch](js-apis-inner-ability-dataAbilityHelper.md#dataabilityhelperexecutebatch) to specify the database operation information.
 
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> 
 > The APIs of this module can be used only in the FA model.
 
 ## Modules to Import

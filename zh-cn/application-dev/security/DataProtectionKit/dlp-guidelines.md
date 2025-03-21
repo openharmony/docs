@@ -28,22 +28,22 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| isDLPFile(fd: number): Promise&lt;boolean&gt; <br> isDLPFile(fd: number, callback: AsyncCallback&lt;boolean&gt;): void| 判断是否是dlp文件 |
-| getDLPPermissionInfo(): Promise&lt;DLPPermissionInfo&gt; <br>getDLPPermissionInfo(callback: AsyncCallback&lt;DLPPermissionInfo&gt;): void  | 获取当前沙箱应用的权限类型 |
-| getOriginalFileName(fileName: string): string | 获取dlp文件原始文件名 |
-| getDLPSuffix(): string | 获取dlp文件dlp后缀名 |
-| on(type: 'openDLPFile', listener: Callback&lt;AccessedDLPFileInfo&gt;): void | 注册dlp文件打开事件监听，用于原始应用获取dlp文件打开事件 |
-| off(type: 'openDLPFile', listener?: Callback&lt;AccessedDLPFileInfo&gt;): void | 取消dlp文件打开事件监听 |
-| isInSandbox(): Promise&lt;boolean&gt; <br>isInSandbox(callback: AsyncCallback&lt;boolean&gt;): void | 判断当前是否是dlp沙箱应用 |
-| getDLPSupportedFileTypes(): Promise&lt;Array&lt;string&gt;&gt;<br>getDLPSupportedFileTypes(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void | 获取当前系统支持添加权限保护的文件格式类型 |
-| setRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt; <br> setRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void | 设置dlp分身应用保留状态 |
-| cancelRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;<br> cancelRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void | 取消dlp分身应用保留状态 |
-| getRetentionSandboxList(bundleName?: string): Promise&lt;Array&lt;RetentionSandboxInfo&gt;&gt; <br> getRetentionSandboxList(bundleName: string, callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo&gt;&gt;): void  <br> getRetentionSandboxList(callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo&gt;&gt;): void| 获取当前保留沙箱列表 |
-| getDLPFileAccessRecords(): Promise&lt;Array&lt;AccessedDLPFileInfo&gt;&gt; <br> getDLPFileAccessRecords(callback: AsyncCallback&lt;Array&lt;AccessedDLPFileInfo&gt;&gt;): void | 获取dlp文件访问记录 |
-|setSandboxAppConfig(configInfo: string): Promise&lt;void&gt;|设置沙箱应用配置信息|
-|getSandboxAppConfig(): Promise&lt;string&gt;|查询沙箱应用配置信息|
-|cleanSandboxAppConfig(): Promise&lt;void&gt;|清理沙箱应用配置信息|
-| startDLPManagerForResult(context: common.UIAbilityContext, want: Want): Promise&lt;DLPManagerResult&gt; <br> | 在当前UIAbility界面以无边框形式打开DLP权限管理应用（只支持Stage模式） |
+| isDLPFile(fd: number): Promise&lt;boolean&gt; <br> isDLPFile(fd: number, callback: AsyncCallback&lt;boolean&gt;): void| 判断是否是dlp文件。 |
+| getDLPPermissionInfo(): Promise&lt;DLPPermissionInfo&gt; <br>getDLPPermissionInfo(callback: AsyncCallback&lt;DLPPermissionInfo&gt;): void  | 获取当前沙箱应用的权限类型。 |
+| getOriginalFileName(fileName: string): string | 获取dlp文件原始文件名。 |
+| getDLPSuffix(): string | 获取dlp文件dlp后缀名。 |
+| on(type: 'openDLPFile', listener: Callback&lt;AccessedDLPFileInfo&gt;): void | 注册dlp文件打开事件监听，用于原始应用获取dlp文件打开事件。 |
+| off(type: 'openDLPFile', listener?: Callback&lt;AccessedDLPFileInfo&gt;): void | 取消dlp文件打开事件监听。 |
+| isInSandbox(): Promise&lt;boolean&gt; <br>isInSandbox(callback: AsyncCallback&lt;boolean&gt;): void | 判断当前是否是dlp沙箱应用。 |
+| getDLPSupportedFileTypes(): Promise&lt;Array&lt;string&gt;&gt;<br>getDLPSupportedFileTypes(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void | 获取当前系统支持添加权限保护的文件格式类型。 |
+| setRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt; <br> setRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void | 设置dlp分身应用保留状态。 |
+| cancelRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;<br> cancelRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void | 取消dlp分身应用保留状态。 |
+| getRetentionSandboxList(bundleName?: string): Promise&lt;Array&lt;RetentionSandboxInfo&gt;&gt; <br> getRetentionSandboxList(bundleName: string, callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo&gt;&gt;): void  <br> getRetentionSandboxList(callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo&gt;&gt;): void| 获取当前保留沙箱列表。 |
+| getDLPFileAccessRecords(): Promise&lt;Array&lt;AccessedDLPFileInfo&gt;&gt; <br> getDLPFileAccessRecords(callback: AsyncCallback&lt;Array&lt;AccessedDLPFileInfo&gt;&gt;): void | 获取dlp文件访问记录。 |
+|setSandboxAppConfig(configInfo: string): Promise&lt;void&gt;|设置沙箱应用配置信息。|
+|getSandboxAppConfig(): Promise&lt;string&gt;|查询沙箱应用配置信息。|
+|cleanSandboxAppConfig(): Promise&lt;void&gt;|清理沙箱应用配置信息。|
+| startDLPManagerForResult(context: common.UIAbilityContext, want: Want): Promise&lt;DLPManagerResult&gt; <br> | 在当前UIAbility界面以无边框形式打开DLP权限管理应用（只支持Stage模式）。 |
 
 ## 开发步骤
 
@@ -76,7 +76,7 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
         }
       }
 
-      let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
+      let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext。
 
       try {
         console.log('openDLPFile:' + JSON.stringify(want));
@@ -105,7 +105,7 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
     ]
     ```
 
-3. 生成DLP文件
+3. 生成DLP文件。
 
     [该功能云端对接模块当前需要开发者自行搭建。](../DataProtectionKit/dlp-overview.md)
 
@@ -123,17 +123,17 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
     try {
       let fileUri: string = "file://docs/storage/Users/currentUser/test.txt";
       let fileName: string = "test.txt";
-      let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
+      let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext。
       let want: Want = {
         'uri': fileUri,
         'parameters': {
           'displayName': fileName
         }
-      }; // 请求参数
+      }; // 请求参数。
       dlpPermission.startDLPManagerForResult(context, want).then((res: dlpPermission.DLPManagerResult) => {
         console.info('startDLPManagerForResult res.resultCode:' + res.resultCode);
         console.info('startDLPManagerForResult res.want:' + JSON.stringify(res.want));
-      }); // 拉起DLP权限管理应用 设置权限
+      }); // 拉起DLP权限管理应用 设置权限。
     } catch (err) {
       console.error('startDLPManagerForResult error:' + (err as BusinessError).code + (err as BusinessError).message);
     }
@@ -186,10 +186,10 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
     let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
     let file = fileIo.openSync(uri);
     try {
-      let res = dlpPermission.isDLPFile(file.fd); // 是否加密DLP文件
+      let res = dlpPermission.isDLPFile(file.fd); // 是否加密DLP文件。
       console.info('res', res);
     } catch (err) {
-      console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+      console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
     }
     fileIo.closeSync(file);
     ```
@@ -206,16 +206,16 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
       }
       unSubscribe() {
         try {
-          dlpPermission.off('openDLPFile', this.event); // 取消订阅
+          dlpPermission.off('openDLPFile', this.event); // 取消订阅。
         } catch (err) {
-          console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+          console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
         }
       }
       subscribe() {
         try {
-          dlpPermission.on('openDLPFile', this.event); // 订阅
+          dlpPermission.on('openDLPFile', this.event); // 订阅。
         } catch (err) {
-          console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+          console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
         }
       }
       onCreate() {
@@ -235,10 +235,10 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
 
     async function getDLPFileAccessRecords() {
       try {
-        let res:Array<dlpPermission.AccessedDLPFileInfo> = await dlpPermission.getDLPFileAccessRecords(); // 获取DLP访问列表
+        let res:Array<dlpPermission.AccessedDLPFileInfo> = await dlpPermission.getDLPFileAccessRecords(); // 获取DLP访问列表。
         console.info('res', JSON.stringify(res))
       } catch (err) {
-        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
       }
     }
     ```
@@ -251,10 +251,10 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
 
     async function getRetentionSandboxList() {
       try {
-        let res:Array<dlpPermission.RetentionSandboxInfo> = await dlpPermission.getRetentionSandboxList(); // 获取沙箱保留列表
+        let res:Array<dlpPermission.RetentionSandboxInfo> = await dlpPermission.getRetentionSandboxList(); // 获取沙箱保留列表。
         console.info('res', JSON.stringify(res))
       } catch (err) {
-        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
       }
     }
     ```
@@ -267,9 +267,9 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
 
     async function setSandboxAppConfig() {
       try {
-        await dlpPermission.setSandboxAppConfig('configInfo'); // 设置沙箱应用配置信息
+        await dlpPermission.setSandboxAppConfig('configInfo'); // 设置沙箱应用配置信息。
       } catch (err) {
-        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
       }
     }
     ```
@@ -282,9 +282,9 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
 
     async function cleanSandboxAppConfig() {
       try {
-        await dlpPermission.cleanSandboxAppConfig(); // 清理沙箱应用配置信息
+        await dlpPermission.cleanSandboxAppConfig(); // 清理沙箱应用配置信息。
       } catch (err) {
-        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
       }
     }
     ```
@@ -297,10 +297,10 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
 
     async function getSandboxAppConfig() {
       try {
-        let res:string = await dlpPermission.getSandboxAppConfig(); // 查询沙箱应用配置信息
+        let res:string = await dlpPermission.getSandboxAppConfig(); // 查询沙箱应用配置信息。
         console.info('res', JSON.stringify(res))
       } catch (err) {
-        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
       }
     }
     ```
@@ -313,19 +313,19 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
     import { BusinessError } from '@kit.BasicServicesKit';
 
     try {
-      let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
+      let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext。
       let want: Want = {
         "uri": "file://docs/storage/Users/currentUser/Desktop/1.txt",
         "parameters": {
           "displayName": "1.txt"
         }
-      }; // 请求参数
+      }; // 请求参数。
       dlpPermission.startDLPManagerForResult(context, want).then((res) => {
         console.info('res.resultCode', res.resultCode);
         console.info('res.want', JSON.stringify(res.want));
-      }); // 打开DLP权限管理应用
+      }); // 打开DLP权限管理应用。
     } catch (err) {
-      console.error('error', err.code, err.message); // 失败报错
+      console.error('error', err.code, err.message); // 失败报错。
     }
     ```
 
@@ -337,6 +337,6 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
     dlpPermission.isDLPFeatureProvided().then((res) => {
       console.info('res', JSON.stringify(res));
     }).catch((err: BusinessError) => {
-      console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+      console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
     });
     ```

@@ -4,7 +4,7 @@
 
 **权限说明**
 
-- 通过Picker获取的URI默认只具备**临时读写权限**，临时授权在应用退出后台自动失效。
+- 通过Picker获取的uri默认只具备**临时读写权限**，临时授权在应用退出后台自动失效。
 - 获取持久化权限需要通过[FilePicker设置永久授权](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)方式获取。（仅限2in1设备）。
 - 使用picker对音频、图片、视频、文档类文件的保存操作**无需申请权限**。
 
@@ -58,14 +58,14 @@
 
    > **注意**：
    >
-   > 1、URI存储建议：<br>
-   > - 避免在Picker回调中直接操作URI。<br>
-   > - 建议使用全局变量保存URI以供后续使用。<br>
+   > 1、uri存储建议：<br>
+   > - 避免在Picker回调中直接操作uri。<br>
+   > - 建议使用全局变量保存uri以供后续使用。<br>
    >
    > 2、快捷保存:<br>
    > - 可以通过[DOWNLOAD模式](#download模式保存文件)直达下载目录。<br>
 
-4. 待界面从FilePicker返回后，使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过URI打开这个文件得到文件描述符(fd)。
+4. 待界面从FilePicker返回后，使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到文件描述符(fd)。
 
    ```ts
    const uri = '';
@@ -118,14 +118,14 @@
 
    > **注意**：
    >
-   > 1、URI存储建议：<br>
-   > - 避免在Picker回调中直接操作URI。<br>
-   > - 建议使用全局变量保存URI以供后续使用。<br>
+   > 1、uri存储建议：<br>
+   > - 避免在Picker回调中直接操作uri。<br>
+   > - 建议使用全局变量保存uri以供后续使用。<br>
    >
    > 2、快捷保存：<br>
    > - 可以通过[DOWNLOAD模式](#download模式保存文件)直达下载目录。<br>
 
-4. 待界面从FilePicker返回后，可以使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过URI打开这个文件得到文件描述符(fd)。
+4. 待界面从FilePicker返回后，可以使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到文件描述符(fd)。
 
    ```ts
    //这里需要注意接口权限参数是fileIo.OpenMode.READ_WRITE。
@@ -148,7 +148,7 @@
 
 - 自动创建在`Download/包名/`目录。
 - 跳过文件选择界面直接保存。
-- 返回的URI已具备持久化权限， 用户可在该URI下创建文件。
+- 返回的uri已具备持久化权限， 用户可在该uri下创建文件。
 
 1. 模块导入。
 
@@ -181,9 +181,10 @@
      console.info('documentViewPicker.save succeed and uri is:' + uri);
      const testFilePath = new fileUri.FileUri(uri + '/test.txt').path;
      const file = fs.openSync(testFilePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-     fs.writeSync(file.fd, 'Hello HarmonyOS');
+     fs.writeSync(file.fd, 'Hello World!');
      fs.closeSync(file.fd);
    }).catch((err: BusinessError) => {
      console.error(`Invoke documentViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
    })
    ```
+   

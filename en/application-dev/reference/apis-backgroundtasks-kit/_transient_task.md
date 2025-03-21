@@ -58,7 +58,6 @@ The TransientTask module provides C APIs for transient tasks.
 typedef void(* TransientTask_Callback) (void)
 ```
 **Description**
-
 Defines a callback for transient task timeout.
 
 **Since**: 13
@@ -70,7 +69,6 @@ Defines a callback for transient task timeout.
 typedef struct TransientTask_DelaySuspendInfo TransientTask_DelaySuspendInfo
 ```
 **Description**
-
 Defines a struct for the returned information about a transient task.
 
 **Since**: 13
@@ -82,7 +80,6 @@ Defines a struct for the returned information about a transient task.
 typedef enum TransientTask_ErrorCode TransientTask_ErrorCode
 ```
 **Description**
-
 Defines an enum for the error codes available for a transient task.
 
 **Since**: 13
@@ -122,7 +119,6 @@ Enumerates the error codes available for a transient task.
 int32_t OH_BackgroundTaskManager_CancelSuspendDelay (int32_t requestId)
 ```
 **Description**
-
 Cancels a transient task.
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
@@ -160,7 +156,6 @@ For details about error codes, see [TransientTask_ErrorCode](#transienttask_erro
 int32_t OH_BackgroundTaskManager_GetRemainingDelayTime (int32_t requestId, int32_t * delayTime )
 ```
 **Description**
-
 Obtains the remaining time of a transient task.
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
@@ -199,7 +194,6 @@ For details about error codes, see [TransientTask_ErrorCode](#transienttask_erro
 int32_t OH_BackgroundTaskManager_RequestSuspendDelay (const char * reason, TransientTask_Callback callback, TransientTask_DelaySuspendInfo * info )
 ```
 **Description**
-
 Requests a transient task.
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask

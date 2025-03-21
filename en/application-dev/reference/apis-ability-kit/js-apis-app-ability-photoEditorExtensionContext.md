@@ -50,6 +50,7 @@ import { common, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG = '[ExamplePhotoEditorAbility]';
 

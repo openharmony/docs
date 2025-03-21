@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 该组件从API Version 16开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 导入模块
 
@@ -15,7 +15,7 @@ import {
   ArcDotIndicator,
   ArcDirection,
   ArcSwiperController
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 ```
 
 ## 子组件
@@ -31,7 +31,9 @@ import {
 
 ArcSwiper(controller?: ArcSwiperController)
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+创建弧形滑块视图容器。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -52,7 +54,7 @@ index(value: number)
 
 设置当前在容器中显示的子组件的索引值。设置小于0或大于等于子组件数量时，按照默认值0处理。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -68,7 +70,7 @@ indicator(value: ArcDotIndicator | boolean)
 
 设置弧形圆点指示器样式。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -84,7 +86,7 @@ duration(value: number)
 
 设置子组件切换的动画时长。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -100,7 +102,7 @@ vertical(value: boolean)
 
 设置是否为纵向滑动。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -116,7 +118,7 @@ disableSwipe(value: boolean)
 
 设置禁用组件滑动切换功能。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -132,7 +134,7 @@ disableSwipe(value: CrownSensitivity)
 
 设置旋转表冠的灵敏度。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -140,7 +142,7 @@ disableSwipe(value: CrownSensitivity)
 
 | 参数名 | 类型                                                        | 必填 | 说明                                                |
 | ------ | ----------------------------------------------------------- | ---- | --------------------------------------------------- |
-| value  | [CrownSensitivity](ts-appendix-enums.md#crownsensitivity16) | 是   | 旋转表冠的灵敏度。<br/>默认值：CrownSensitivity.LOW |
+| value  | [CrownSensitivity](ts-appendix-enums.md#crownsensitivity18) | 是   | 旋转表冠的灵敏度。<br/>默认值：CrownSensitivity.LOW |
 
 ### effectMode
 
@@ -148,7 +150,7 @@ effectMode(value: EdgeEffect)
 
 设置边缘滑动效果。 目前支持的滑动效果参见[EdgeEffect](ts-appendix-enums.md#edgeeffect)的枚举说明。调用控制器接口时回弹不生效。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -166,7 +168,7 @@ customContentTransition(transition: SwiperContentAnimatedTransition)
 
 在页面跟手滑动和离手后执行切换动画的过程中，会对视窗内所有页面逐帧触发[SwiperContentTransitionProxy](#swipercontenttransitionproxy)回调。例如，当视窗内有下标为0、1的两个页面时，会每帧触发两次index值分别为0和1的回调。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -182,7 +184,7 @@ disableTransitionAnimation(disabled: Optional\<boolean>)
 
 是否关闭特殊动效效果。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -196,7 +198,7 @@ disableTransitionAnimation(disabled: Optional\<boolean>)
 
 ArcSwiper容器组件的控制器，可以将此对象绑定至ArcSwiper组件，可以通过它控制翻页。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -206,7 +208,7 @@ constructor()
 
 ArcSwiperController的构造函数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -216,7 +218,7 @@ showNext(): void
 
 翻至下一页。翻页带动效切换过程，时长通过[duration](#duration)指定。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -226,7 +228,7 @@ showPrevious(): void
 
 翻至上一页。翻页带动效切换过程，时长通过[duration](#duration)指定。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -236,7 +238,7 @@ finishAnimation(handler?: FinishAnimationHandler): void
 
 停止播放动画。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -250,7 +252,7 @@ finishAnimation(handler?: FinishAnimationHandler): void
 
 提供弧形圆点指示器属性及功能。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -260,7 +262,7 @@ constructor()
 
 ArcDotIndicator的构造函数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -270,7 +272,7 @@ arcDirection(direction: Optional\<ArcDirection>): ArcDotIndicator
 
 设置弧形指示器的方向。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -278,7 +280,7 @@ arcDirection(direction: Optional\<ArcDirection>): ArcDotIndicator
 
 | 参数名    | 类型                                     | 必填 | 说明                                                         |
 | --------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| direction | [Optional\<ArcDirection>](#arcdirection) | 否   | 设置弧形指示器的方向。<br/>默认值：ArcDirection.SIX_CLOCK_DIRECTION，6点钟方向 |
+| direction | [Optional\<ArcDirection>](#arcdirection) | 否   | 设置弧形指示器的方向。<br/>默认值：ArcDirection.SIX_CLOCK_DIRECTION，6点钟方向。 |
 
 **返回值：** 
 
@@ -292,7 +294,7 @@ itemColor(color: Optional\<ResourceColor>): ArcDotIndicator
 
 设置弧形指示器中，未选中导航点的颜色。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -314,7 +316,7 @@ selectedItemColor(color: Optional\<ResourceColor>): ArcDotIndicator
 
 设置弧形指示器中，选中导航点的颜色。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -336,7 +338,7 @@ backgroundColor(color: Optional\<ResourceColor>): ArcDotIndicator
 
 设置弧形指示器被长按时，弧形指示器的颜色。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -358,7 +360,7 @@ maskColor(color: Optional\<LinearGradient>): ArcDotIndicator
 
 设置弧形指示器的遮罩渐变色。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -378,7 +380,7 @@ maskColor(color: Optional\<LinearGradient>): ArcDotIndicator
 
 弧形方向。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -394,7 +396,7 @@ type FinishAnimationHandler = () => void
 
 停止播放动画时，告知应用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -404,7 +406,7 @@ type IndexChangedHandler = (index: number) => void
 
 当前显示元素的索引变化时，告知应用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -420,7 +422,7 @@ type AnimationStartHandler = (index: number, targetIndex: number, event: SwiperA
 
 切换动画开始时的回调。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -438,7 +440,7 @@ type AnimationEndHandler = (index: number, event: SwiperAnimationEvent) => void
 
 切换动画结束时的回调。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -455,7 +457,7 @@ type GestureSwipeHandler = (index: number, event: SwiperAnimationEvent) => void
 
 在页面跟手滑动过程中，逐帧触发的回调。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -478,7 +480,7 @@ onChange(handler: Optional\<IndexChangedHandler>)
 
 ArcSwiper组件结合LazyForEach使用时，不能在onChange事件里触发子页面UI的刷新。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -494,7 +496,7 @@ onAnimationStart(handler: Optional\<AnimationStartHandler>)
 
 切换动画开始时触发该回调。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -512,7 +514,7 @@ onAnimationEnd(handler: Optional\<AnimationEndHandler>)
 
 当ArcSwiper切换动效结束时触发，包括动画过程中手势中断，通过SwiperController调用finishAnimation。参数为动画结束后的index值，多列ArcSwiper时，index为最左侧组件的索引。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -528,7 +530,7 @@ onGestureSwipe(handler: Optional\<GestureSwipeHandler>)
 
 在页面跟手滑动过程中，逐帧触发该回调。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -542,7 +544,7 @@ onGestureSwipe(handler: Optional\<GestureSwipeHandler>)
 
 ArcSwiper自定义切换动画相关信息。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -555,7 +557,7 @@ ArcSwiper自定义切换动画相关信息。
 
 ArcSwiper自定义切换动画执行过程中，返回给开发者的proxy对象。开发者可通过该对象获取自定义动画视窗内的页面信息，同时，也可以通过调用该对象的finishTransition接口通知ArcSwiper组件页面自定义动画已结束。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -585,7 +587,7 @@ finishTransition(): void
 
 通知ArcSwiper组件，此页面的自定义动画已结束。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 

@@ -907,3 +907,45 @@ Enumerates the operation types of a DataAbility. The DataAbility can use an enum
 | TYPE_UPDATE | 2    | Update operation.|
 | TYPE_DELETE | 3    | Deletion operation.|
 | TYPE_ASSERT | 4    | Assert operation.|
+
+## Context<sup>9+</sup>
+
+type Context = _Context
+
+Defines the Context module.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Model restriction**: This API can be used only in the FA model.
+
+| Type| Description|
+| --- | --- |
+| [_Context](js-apis-inner-app-context.md) | Context module.|
+
+## AppVersionInfo<sup>9+</sup>
+
+type AppVersionInfo = _AppVersionInfo
+
+Defines an **AppVersionInfo** object.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Model restriction**: This API can be used only in the FA model.
+
+| Type| Description|
+| --- | --- |
+| [_AppVersionInfo](js-apis-inner-app-appVersionInfo.md) | **AppVersionInfo** object.|
+
+## ProcessInfo<sup>9+</sup>
+
+type ProcessInfo = _ProcessInfo
+
+Defines a **ProcessInfo** object.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Model restriction**: This API can be used only in the FA model.
+
+| Type| Description|
+| --- | --- |
+| [_ProcessInfo](js-apis-inner-app-processInfo.md) | **ProcessInfo** object.|

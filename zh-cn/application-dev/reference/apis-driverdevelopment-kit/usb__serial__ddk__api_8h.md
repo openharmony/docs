@@ -11,7 +11,7 @@
 
 **系统能力：** SystemCapability.Driver.SERIAL.Extension
 
-**起始版本：** 16
+**起始版本：** 18
 
 **相关模块：**[USB Serial DDK](_serial_ddk.md)
 

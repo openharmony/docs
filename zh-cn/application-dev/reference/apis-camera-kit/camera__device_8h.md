@@ -24,5 +24,5 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CameraDevice_GetCameraOrientation](_o_h___camera.md#oh_cameradevice_getcameraorientation) ([Camera_Device](_camera___device.md) \*camera, uint32_t \*orientation) | 获取相机设备的传感器方向属性。  | 
-| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode)[OH_CameraDevice_GetHostDeviceName](_o_h___camera.md#oh_cameradevice_gethostdevicename) ([Camera_Device](_camera___device.md) \*camera, char \*\*hostDeviceName) | 获取远程设备名称。 | 
-| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode)[OH_CameraDevice_GetHostDeviceType](_o_h___camera.md#oh_cameradevice_gethostdevicetype) ([Camera_Device](_camera___device.md) \*camera, [Camera_HostDeviceType](_o_h___camera.md#camera_hostdevicetype) \*hostDeviceType) | 获取远程设备类型。 | 
+| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CameraDevice_GetHostDeviceName](_o_h___camera.md#oh_cameradevice_gethostdevicename) ([Camera_Device](_camera___device.md) \*camera, char \*\*hostDeviceName) | 获取远程设备名称。 | 
+| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CameraDevice_GetHostDeviceType](_o_h___camera.md#oh_cameradevice_gethostdevicetype) ([Camera_Device](_camera___device.md) \*camera, [Camera_HostDeviceType](_o_h___camera.md#camera_hostdevicetype) \*hostDeviceType) | 获取远程设备类型。 | 

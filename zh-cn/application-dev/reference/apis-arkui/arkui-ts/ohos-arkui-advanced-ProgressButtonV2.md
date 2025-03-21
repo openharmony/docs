@@ -8,7 +8,7 @@
 
 > **说明：**
 >
-> - 该组件从API Version 16开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API Version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 导入模块
@@ -19,27 +19,29 @@ import { ColorMetrics, LengthMetrics, ProgressButtonV2,  ProgressButtonV2Color }
 
 ## ProgressButtonV2
 
-ProgressButtonV2({progress: number, content: ResourceStr, progressButtonWidth?: LengthMetrics, onClicked: ClickCallback, isEnabled: boolean, colorOptions: ProgressButtonV2Color})
+ProgressButtonV2({progress: number, content: ResourceStr, progressButtonWidth?: LengthMetrics, onClicked: ClickCallback,
+isEnabled: boolean, colorOptions?: ProgressButtonColorOptions, progressButtonRadius?: LengthMetrics})
 
 文本下载按钮，可显示具体下载进度。
 
 **装饰器类型：**\@ComponentV2
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型                                                            | 必填 | 装饰器类型             | 说明                                                                                |
-| -------- |---------------------------------------------------------------|----|-------------------|-----------------------------------------------------------------------------------|
-| progress | number                                                        | 是  | \@Require <br/>\@Param | 下载按钮的当前进度值。                                                                       |
-| content | [ResourceStr](ts-types.md#resourcestr)                        | 是  | \@Require <br/>\@Param | 下载按钮的文本。                                                                          |
-| progressButtonWidth | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否  | \@Require <br/>\@Once  | 下载按钮的宽度。<br/>默认值：44vp                                                             |
-| onClicked | [ClickCallback](#clickcallback)                               | 否  | \@Param               | 下载按钮的点击回调。<br/>默认值：() => {}                                                       |
-| isEnabled | boolean                                                       | 否  | \@Param       | 下载按钮是否可以点击。<br> isEnabled为true时，表示可以点击。<br> isEnabled为false时，表示不可点击。<br/>默认值：true |
-| colorOptions | [ProgressButtonV2Color](#progressbuttonv2color)               | 否  | \@Param       | 下载按钮颜色选项。<br/>默认值：undefined。                                                      |
+| 名称                                | 类型                                                            | 必填 | 装饰器类型                  | 说明                                                                                 |
+|-----------------------------------|---------------------------------------------------------------|----|------------------------|------------------------------------------------------------------------------------|
+| progress                          | number                                                        | 是  | \@Require <br/>\@Param | 下载按钮的当前进度值。                                                                        |
+| content                           | [ResourceStr](ts-types.md#resourcestr)                        | 是  | \@Require <br/>\@Param | 下载按钮的文本。                                                                           |
+| progressButtonWidth               | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否  | \@Param <br/>\@Once  | 下载按钮的宽度。<br/>默认值：44vp                                                           |
+| onClicked                         | [ClickCallback](#clickcallback)                               | 是  | \@Param                | 下载按钮的点击回调。                                                       |
+| isEnabled                         | boolean                                                       | 是  | \@Param                | 下载按钮是否可以点击。<br> isEnabled为true时，表示可以点击。<br> isEnabled为false时，表示不可点击。 |
+| colorOptions                      | [ProgressButtonV2Color](#progressbuttonv2color)               | 否  | \@Param                | 下载按钮颜色选项。<br/>默认值：undefined。                                                       |
+| progressButtonRadius<sup>18+<sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否  | \@Param                | 下载按钮的圆角（不支持百分比设置）。<br/>取值范围：[0, height/2]<br/>默认值：height/2<br/>设置非法数值时，按照默认值处理。    |
 
 ## 属性
-不支持[通用属性](ts-component-general-attributes.md)
+不支持[通用属性](ts-component-general-attributes.md)。
 
 ## ClickCallback
 
@@ -47,7 +49,7 @@ type ClickCallback = () => void
 
 下载按钮的点击回调。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -58,47 +60,47 @@ type ClickCallback = () => void
 
 ### 属性
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 装饰器类型         | 说明                 |
-| -------- | -------- |---|---------------|--------------------|
-| progressColor | ColorMetrics | 否 | \@Trace       | 进度条颜色。<br/>默认值：undefined |
-| borderColor | ColorMetrics | 否 | \@Trace | 按钮描边颜色。<br/>默认值：undefined            |
-| textColor | ColorMetrics | 否 | \@Trace | 按钮文本颜色。<br/>默认值：undefined            |
-| backgroundColor | ColorMetrics | 否 | \@Trace       | 按钮背景颜色。<br/>默认值：undefined            |
+| 名称              | 类型           | 必填 | 装饰器类型   | 说明                         |
+|-----------------|--------------|----|---------|----------------------------|
+| progressColor   | ColorMetrics | 否  | \@Trace | 进度条颜色。<br/>默认值：undefined。  |
+| borderColor     | ColorMetrics | 否  | \@Trace | 按钮描边颜色。<br/>默认值：undefined。 |
+| textColor       | ColorMetrics | 否  | \@Trace | 按钮文本颜色。<br/>默认值：undefined。 |
+| backgroundColor | ColorMetrics | 否  | \@Trace | 按钮背景颜色。<br/>默认值：undefined。 |
 
 ### constructor
 constructor(options: ProgressButtonV2ColorOptions);
 
 下载按钮颜色选项构造函数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型 | 必填 | 说明    |
-|---------| -------- |----|-------|
+| 名称      | 类型                           | 必填 | 说明    |
+|---------|------------------------------|----|-------|
 | options | ProgressButtonV2ColorOptions | 是  | 色彩信息。 |
 
 ## ProgressButtonV2ColorOptions
 
 下载按钮色彩信息选项。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 |  说明      |
-| -------- | -------- |---|---------|
-| progressColor | ColorMetrics | 否 | 进度条颜色。<br/>默认值：undefined  |
-| borderColor | ColorMetrics | 否 | 按钮描边颜色。<br/>默认值：undefined |
-| textColor | ColorMetrics | 否 | 按钮文本颜色。<br/>默认值：undefined |
-| backgroundColor | ColorMetrics | 否 | 按钮背景颜色。<br/>默认值：undefined |
+| 名称              | 类型           | 必填 | 说明                         |
+|-----------------|--------------|----|----------------------------|
+| progressColor   | ColorMetrics | 否  | 进度条颜色。<br/>默认值：undefined。  |
+| borderColor     | ColorMetrics | 否  | 按钮描边颜色。<br/>默认值：undefined。 |
+| textColor       | ColorMetrics | 否  | 按钮文本颜色。<br/>默认值：undefined。 |
+| backgroundColor | ColorMetrics | 否  | 按钮背景颜色。<br/>默认值：undefined。 |
 
 ## 事件
-不支持[通用事件](ts-component-general-events.md)
+不支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 

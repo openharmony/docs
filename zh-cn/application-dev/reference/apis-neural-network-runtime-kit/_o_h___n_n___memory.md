@@ -21,8 +21,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| void \*const [data](#data) | 指向共享内存的指针，该共享内存通常由底层硬件驱动申请 | 
-| const size_t [length](#length) | 记录共享内存的字节长度 | 
+| void \*const [data](#data) | 指向共享内存的指针，该共享内存通常由底层硬件驱动申请。 | 
+| const size_t [length](#length) | 记录共享内存的字节长度。 | 
 
 
 ## 结构体成员变量说明
@@ -36,7 +36,7 @@ void* const OH_NN_Memory::data
 
 **描述**
 
-指向共享内存的指针，该共享内存通常由底层硬件驱动申请
+指向共享内存的指针，该共享内存通常由底层硬件驱动申请。
 
 
 ### length
@@ -47,4 +47,4 @@ const size_t OH_NN_Memory::length
 
 **描述**
 
-记录共享内存的字节长度
+记录共享内存的字节长度。

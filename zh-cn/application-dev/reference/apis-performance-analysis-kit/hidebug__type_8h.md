@@ -82,5 +82,5 @@ HiDebug模块代码结构体定义。 \@kit PerformanceAnalysisKit
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [HiDebug_ErrorCode](_hi_debug.md#hidebug_errorcode-1) {<br/>[HIDEBUG_SUCCESS](_hi_debug.md) = 0, [HIDEBUG_INVALID_ARGUMENT](_hi_debug.md) = 401, [HIDEBUG_TRACE_CAPTURED_ALREADY](_hi_debug.md) = 11400102, [HIDEBUG_NO_PERMISSION](_hi_debug.md) = 11400103,<br/>[HIDEBUG_TRACE_ABNORMAL](_hi_debug.md) = 11400104, [HIDEBUG_NO_TRACE_RUNNING](_hi_debug.md) = 11400105<br/>} | 错误码定义。  | 
-| [HiDebug_TraceFlag](_hi_debug.md#hidebug_traceflag-1) { [HIDEBUG_TRACE_FLAG_MAIN_THREAD](_hi_debug.md) = 1, [HIDEBUG_TRACE_FLAG_ALL_THREADS](_hi_debug.md) = 2 } | 采集trace线程的类型。  | 
+| [HiDebug_ErrorCode](_hi_debug.md#hidebug_errorcode-1) {<br/>HIDEBUG_SUCCESS = 0,<br/>HIDEBUG_INVALID_ARGUMENT = 401,<br/>HIDEBUG_TRACE_CAPTURED_ALREADY = 11400102,<br/>HIDEBUG_NO_PERMISSION = 11400103,<br/>HIDEBUG_TRACE_ABNORMAL = 11400104,<br/>HIDEBUG_NO_TRACE_RUNNING = 11400105<br/>} | 错误码定义。  | 
+| [HiDebug_TraceFlag](_hi_debug.md#hidebug_traceflag-1) {<br/>HIDEBUG_TRACE_FLAG_MAIN_THREAD = 1,<br/>HIDEBUG_TRACE_FLAG_ALL_THREADS = 2<br/>} | 采集trace线程的类型。  | 

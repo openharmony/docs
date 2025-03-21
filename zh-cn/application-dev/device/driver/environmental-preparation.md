@@ -16,8 +16,8 @@ DevEco Studio作为驱动开发工具，是进行驱动开发的必备条件之�
 |----------------|----------|
 | USB DDK        | API10及以上 |
 | HID DDK        | API11及以上 |
-| USB Serial DDK | API16及以上 |
-| SCSI Peripheral DDK  | API16及以上 |
+| USB Serial DDK | API18及以上 |
+| SCSI Peripheral DDK  | API18及以上 |
 
 ### 检验环境是否搭建成功
 

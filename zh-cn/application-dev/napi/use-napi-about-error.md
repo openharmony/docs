@@ -20,7 +20,7 @@
 以下Node-API接口主要用于与ArkTS交互时处理错误和异常情况。他们的使用场景如下：
 | 接口 | 描述 |
 | -------- | -------- |
-| napi_create_error、napi_create_type_error、napi_create_range_error | 在C/C++中需要创建一个错误对象时，可以使用这些函数。创建的错误对象可以使用napi_throw抛出到ArkTS |
+| napi_create_error、napi_create_type_error、napi_create_range_error | 在C/C++中需要创建一个错误对象时，可以使用这些函数。创建的错误对象可以使用napi_throw抛出到ArkTS。 |
 | napi_throw | 当在C/C++中出现了错误或异常情况时，通过使用napi_create_error或napi_get_last_error_info方法创建或获取ArkTS Error对象，使用该方法抛出已有的ArkTS Error对象。 |
 | napi_throw_error、napi_throw_type_error、napi_throw_range_error | 当在C/C++中出现了错误或异常情况时，可以使用这些函数来抛出ArkTS中的异常。 |
 | napi_is_error | 检查一个napi_value是否代表一个错误对象时，可以使用这个函数。 |

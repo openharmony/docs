@@ -28,6 +28,7 @@
 8. Buffer模式和Surface模式使用方式一致的接口，所以只提供了Surface模式的示例。
 9. 在Buffer模式下，开发者通过输出回调函数OH_AVCodecOnNewOutputBuffer获取到OH_AVBuffer的指针实例后，必须通过调用OH_VideoDecoder_FreeOutputBuffer接口
    来通知系统该实例已被使用完毕。这样系统才能够将后续解码的数据写入到相应的位置。如果开发者在调用OH_AVBuffer_GetNativeBuffer接口时获取到OH_NativeBuffer指针实例，并且该实例的生命周期超过了当前的OH_AVBuffer指针实例，那么需要进行一次数据的拷贝操作。在这种情况下，开发者需要自行管理新生成的OH_NativeBuffer实例的生命周期，确保其正确使用和释放。
+<!--RP6--><!--RP6End-->
 
 ## surface输出与buffer输出
 

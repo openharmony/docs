@@ -12,7 +12,7 @@ Image为图片组件，常用于在应用中显示图片。Image支持加载[Pix
 >
 > 动图的播放依赖于Image节点的可见性变化，其默认行为是不播放的。当节点可见时，通过回调启动动画，当节点不可见时，停止动画。可见性状态的判断是通过[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)事件触发的，当可见阈值ratios大于0时，表明Image处于可见状态。
 >
-> API version 16及之后，Image组件在显示网络图片时，网络图片下载与缓存能力将不再内嵌于Image组件中，而是剥离至[缓存下载模块](../../apis-basic-services-kit/js-apis-request-cacheDownload.md)进行统一管理。缓存下载模块提供独立的预下载接口，允许应用开发者在创建Image组件前预下载所需图片。组件创建后，通过向缓存下载模块请求数据，从而优化了Image组件的显示流程。关于网络缓存的位置，对于API version 16之前的版本，Image组件的缓存位于应用的本地沙箱路径下，而对于API version 16及之后的版本，缓存则移至应用根目录下的cache目录中。
+> API version 18及之后，Image组件在显示网络图片时，网络图片下载与缓存能力将不再内嵌于Image组件中，而是剥离至[缓存下载模块](../../apis-basic-services-kit/js-apis-request-cacheDownload.md)进行统一管理。缓存下载模块提供独立的预下载接口，允许应用开发者在创建Image组件前预下载所需图片。组件创建后，通过向缓存下载模块请求数据，从而优化了Image组件的显示流程。关于网络缓存的位置，对于API version 18之前的版本，Image组件的缓存位于应用的本地沙箱路径下，而对于API version 18及之后的版本，缓存则移至应用根目录下的cache目录中。
 
 ## 需要权限
 
@@ -135,11 +135,11 @@ objectFit(value: ImageFit)
 
 imageMatrix(matrix: ImageMatrix)
 
-设置图片的变换矩阵。通过ImageMatrix对象使用平移、旋转、缩放等函数，实现宫格缩略图的最佳呈现。svg类型图源不支持该属性。
+设置图片的变换矩阵。通过[ImageMatrix](#imagematrix15对象说明)对象使用平移、旋转、缩放等函数，实现宫格缩略图的最佳呈现。svg类型图源不支持该属性。
 
-设置resizable、objectRepeat属性时，该属性设置不生效。
+设置resizable、objectRepeat属性时，该属性设置不生效。该属性只针对图源做处理，不会触发Image组件的回调事件。
 
-该属性只针对图源做处理，不会触发Image组件的回调事件。
+该属性与[objectFit](#objectfit)属性强关联，仅在[objectFit](#objectfit)属性设置为[ImageFit](ts-appendix-enums.md#imagefit).MATRIX时生效。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -149,7 +149,7 @@ imageMatrix(matrix: ImageMatrix)
 
 | 参数名 | 类型                                                 | 必填 | 说明           |
 | ------ | --------------------------------------------------- | ---- | -------------- |
-| matrix  | ImageMatrix | 是   | 图片的变换矩阵。|
+| matrix  | [ImageMatrix](#imagematrix15对象说明) | 是   | 图片的变换矩阵。|
 
 ### objectRepeat
 
@@ -251,7 +251,7 @@ matchTextDirection(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                         |
 | ------ | ------- | ---- | -------------------------------------------- |
-| value  | boolean | 是   | 图片是否跟随系统语言方向。<br/>默认值：false |
+| value  | boolean | 是   | 图片是否跟随系统语言方向。<br/>默认值：false，false表示图片不跟随系统语言方向，true表示图片跟随系统语言方向。 |
 
 ### fitOriginalSize
 
@@ -335,7 +335,7 @@ autoResize(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 图片解码过程中是否对图源自动缩放。设置为true时，组件会根据显示区域的尺寸决定用于绘制的图源尺寸，有利于减少内存占用。如原图大小为1920x1080，而显示区域大小为200x200，则图片会降采样解码到200x200的尺寸，大幅度节省图片占用的内存。<br/>默认值：false |
+| value  | boolean | 是   | 图片解码过程中是否对图源自动缩放。设置为true时，组件会根据显示区域的尺寸决定用于绘制的图源尺寸，有利于减少内存占用。如原图大小为1920x1080，而显示区域大小为200x200，则图片会降采样解码到200x200的尺寸，大幅度节省图片占用的内存。<br/>默认值：false，false表示关闭图源自动缩放，true表示开启图源自动缩放。 |
 
 ### syncLoad<sup>8+</sup>
 
@@ -355,7 +355,7 @@ syncLoad(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false |
+| value  | boolean | 是   | 是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false，fasle表示异步加载图片，true表示同步加载图片。 |
 
 ### copyOption<sup>9+</sup>
 
@@ -441,7 +441,7 @@ alt占位图不支持分析，objectRepeat属性仅在ImageRepeat.NoRepeat下支
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| enable  | boolean | 是   | 组件支持AI分析，设置为true时，组件可进行AI分析。<br/>默认值：false |
+| enable  | boolean | 是   | 组件支持AI分析，设置为true时，组件可进行AI分析。<br/>默认值：false，表示不开启AI分析。 |
 
 ### resizable<sup>11+</sup>
 
@@ -527,9 +527,9 @@ orientation(orientation: ImageRotateOrientation)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 说明                    |
-| ------ | -------------------------- |
-| EMPTY   | 空图像。                   |
+| 名称     | 值    | 说明                    |
+| ------ | ----- | -------------------------- |
+| EMPTY   | 0  | 空图像。                   |
 
 ## ImageInterpolation
 
@@ -672,7 +672,7 @@ type DrawingLattice = Lattice
 | ------ | ---------- |
 | [Lattice](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#lattice12) | 返回一个矩阵网格对象。 |
 
-## ImageMatrix<sup>15+<sup>
+## ImageMatrix<sup>15+<sup>对象说明
 
 type ImageMatrix = Matrix4Transit
 
@@ -694,9 +694,9 @@ type ImageMatrix = Matrix4Transit
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型       | 只读 | 必填 | 说明           |
-| ------ | --------- | ---- | --- | ------------- |
-| ORIGIN  | ColorContent | 是 | 否 | 重置[fillColor](#fillcolor)接口，效果上与不设置[fillColor](#fillcolor)一致。 |
+| 名称 | 类型       | 必填 | 说明           |
+| ------ | --------- | --- | ------------- |
+| ORIGIN  | ColorContent | 否 | 重置[fillColor](#fillcolor)接口，效果上与不设置[fillColor](#fillcolor)一致。 |
 
 ## 事件
 
@@ -1377,9 +1377,9 @@ struct ImageExample11 {
 
 ![imageContent](figures/imageScanEffect.gif)
 
-### 示例12（通过imageMatrix为图片设置旋转、平移等）
+### 示例12（为图片添加变换效果）
 
-该示例通过[imageMatrix](#imagematrix15)接口和[objectFit](#objectfit)实现了给图片设置变换效果。
+该示例通过[imageMatrix](#imagematrix15)和[objectFit](#objectfit)属性，为图片添加旋转和平移的效果。
 
 ```ts
 import { matrix4 } from '@kit.ArkUI'

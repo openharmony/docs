@@ -218,7 +218,7 @@ createPixelMapSync(colors: ArrayBuffer, options: image.InitializationOptions): P
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 
 **示例：**
 
@@ -259,7 +259,8 @@ convertFromPixelMap(pixelMap: image.PixelMap): PixelMap
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
+| 62980104 | Failed to initialize the internal object.|
 
 **示例：**
 
@@ -302,6 +303,7 @@ convertToPixelMap(pixelMap: PixelMap): image.PixelMap
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 |  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
+| 62980104 | Failed to initialize the internal object.|
 
 **示例：**
 
@@ -396,8 +398,8 @@ readPixelsToBufferSync(dst: ArrayBuffer): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **示例：**
 
@@ -479,8 +481,8 @@ readPixelsSync(area: image.PositionArea): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **示例：**
 
@@ -572,8 +574,8 @@ writePixelsSync(area: image.PositionArea): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **示例：**
 
@@ -663,8 +665,8 @@ writeBufferToPixelsSync(src: ArrayBuffer): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **示例：**
 
@@ -882,8 +884,8 @@ opacitySync(rate: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **示例：**
 
@@ -952,8 +954,8 @@ createAlphaPixelmapSync(): PixelMap
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **示例：**
 
@@ -1031,8 +1033,8 @@ scaleSync(x: number, y: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **示例：**
 
@@ -1112,8 +1114,8 @@ translateSync(x: number, y: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **示例：**
 
@@ -1190,8 +1192,8 @@ rotateSync(angle: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **示例：**
 
@@ -1271,8 +1273,8 @@ flipSync(horizontal: boolean, vertical: boolean): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **示例：**
 
@@ -1351,8 +1353,8 @@ cropSync(region: image.Region): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **示例：**
 
@@ -1844,7 +1846,7 @@ createImageReceiver(size: image.Size, format: image.ImageFormat, capacity: numbe
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401| Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;   |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 

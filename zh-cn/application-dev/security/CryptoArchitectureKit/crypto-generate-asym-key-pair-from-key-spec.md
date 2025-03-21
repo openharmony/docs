@@ -4,7 +4,6 @@
 
 该对象可用于后续的加解密等操作。获取的密钥参数属性可用于存储或运输。
 
-
 ## 指定密钥参数生成RSA公钥
 
 对应的算法规格请查看[非对称密钥生成和转换规格：RSA](crypto-asym-key-generation-conversion-spec.md#rsa)。
@@ -28,7 +27,7 @@
 - 以使用callback方式根据密钥参数生成RSA公钥为例：
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
-  // RSA公钥密钥参数生成函数
+  // RSA公钥密钥参数生成函数。
   function genRsaPubKeySpec(nIn: bigint, eIn: bigint): cryptoFramework.RSAPubKeySpec {
     let rsaCommSpec: cryptoFramework.RSACommonParamsSpec = {
       n: nIn,
@@ -43,13 +42,13 @@
     };
     return rsaPubKeySpec;
   }
-  // 根据密钥参数构造RSA公钥规范对象
+  // 根据密钥参数构造RSA公钥规范对象。
   function genRsa2048PubKeySpec() {
     let nIn = BigInt('0x9260d0750ae117eee55c3f3deaba74917521a262ee76007cdf8a56755ad73a1598a1408410a01434c3f5bc54a88b57fa19fc4328daea0750a4c44e88cff3b2382621b80f670464433e4336e6d003e8cd65bff211da144b88291c2259a00a72b711c116ef7686e8fee34e4d933c868187bdc26f7be071493c86f7a5941c3510806ad67b0f94d88f5cf5c02a092821d8626e8932b65c5bd8c92049c210932b7afa7ac59c0e886ae5c1edb00d8ce2c57633db26bd6639bff73cee82be9275c402b4cf2a4388da8cf8c64eefe1c5a0f5ab8057c39fa5c0589c3e253f0960332300f94bea44877b588e1edbde97cf2360727a09b775262d7ee552b3319b9266f05a25');
     let eIn = BigInt('0x010001');
     return genRsaPubKeySpec(nIn, eIn);
   }
-  // 将RSA公钥规格与预期值进行比较
+  // 将RSA公钥规格与预期值进行比较。
   function compareRsaPubKeyBySpec(rsaKeySpec: cryptoFramework.RSAPubKeySpec, n: bigint | string | number, e: bigint | string | number) {
     if (typeof n === 'string' || typeof e === 'string') {
       console.error('type is string');
@@ -67,7 +66,7 @@
     }
     return true;
   }
-  // 根据RSA公钥规格生成RSA公钥，获取密钥规格，并与预期值进行比较
+  // 根据RSA公钥规格生成RSA公钥，获取密钥规格，并与预期值进行比较。
   function rsaUsePubKeySpecGetCallback() {
     let rsaPubKeySpec = genRsa2048PubKeySpec();
     let rsaGeneratorSpec = cryptoFramework.createAsyKeyGeneratorBySpec(rsaPubKeySpec);
@@ -90,7 +89,7 @@
 - 同步返回结果（调用方法[generatePubKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatepubkeysync12)）：
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
-  // RSA公钥密钥参数生成函数
+  // RSA公钥密钥参数生成函数。
   function genRsaPubKeySpec(nIn: bigint, eIn: bigint): cryptoFramework.RSAPubKeySpec {
     let rsaCommSpec: cryptoFramework.RSACommonParamsSpec = {
       n: nIn,
@@ -105,13 +104,13 @@
     };
     return rsaPubKeySpec;
   }
-  // 根据密钥参数构造RSA公钥规范对象
+  // 根据密钥参数构造RSA公钥规范对象。
   function genRsa2048PubKeySpec() {
     let nIn = BigInt('0x9260d0750ae117eee55c3f3deaba74917521a262ee76007cdf8a56755ad73a1598a1408410a01434c3f5bc54a88b57fa19fc4328daea0750a4c44e88cff3b2382621b80f670464433e4336e6d003e8cd65bff211da144b88291c2259a00a72b711c116ef7686e8fee34e4d933c868187bdc26f7be071493c86f7a5941c3510806ad67b0f94d88f5cf5c02a092821d8626e8932b65c5bd8c92049c210932b7afa7ac59c0e886ae5c1edb00d8ce2c57633db26bd6639bff73cee82be9275c402b4cf2a4388da8cf8c64eefe1c5a0f5ab8057c39fa5c0589c3e253f0960332300f94bea44877b588e1edbde97cf2360727a09b775262d7ee552b3319b9266f05a25');
     let eIn = BigInt('0x010001');
     return genRsaPubKeySpec(nIn, eIn);
   }
-  // 将RSA公钥规格与预期值进行比较
+  // 将RSA公钥规格与预期值进行比较。
   function compareRsaPubKeyBySpec(rsaKeySpec: cryptoFramework.RSAPubKeySpec, n: bigint | string | number, e: bigint | string | number) {
     if (typeof n === 'string' || typeof e === 'string') {
       console.error('type is string');
@@ -129,7 +128,7 @@
     }
     return true;
   }
-  // 根据RSA公钥规格生成RSA公钥，获取密钥规格，并与预期值进行比较
+  // 根据RSA公钥规格生成RSA公钥，获取密钥规格，并与预期值进行比较。
   function rsaUsePubKeySpecGetSync() {
     let rsaPubKeySpec = genRsa2048PubKeySpec();
     let rsaGeneratorSpec = cryptoFramework.createAsyKeyGeneratorBySpec(rsaPubKeySpec);
@@ -152,7 +151,6 @@
   }
   ```
 
-
 ## 指定密钥参数生成ECC密钥对
 
 对应的算法规格请查看[非对称密钥生成和转换规格：ECC](crypto-asym-key-generation-conversion-spec.md#ecc)。
@@ -173,7 +171,7 @@
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  // 打印bigint信息
+  // 打印bigint信息。
   function showBigIntInfo(bnName: string, bnValue: bigint | string | number) {
     if (typeof bnValue === 'string') {
       console.error('type is string');
@@ -188,7 +186,7 @@
     console.info('. Hexadecimal: ' + bnValue.toString(16));
     console.info('. Length (bits): ' + bnValue.toString(2).length);
   }
-  // 根据关键规范构造EccCommonSpec结构体。EccCommonSpec结构体定义了ECC私钥和公钥的公共参数
+  // 根据关键规范构造EccCommonSpec结构体。EccCommonSpec结构体定义了ECC私钥和公钥的公共参数。
   function genEccCommonSpec(): cryptoFramework.ECCCommonParamsSpec {
     let fieldFp: cryptoFramework.ECFieldFp = {
       fieldType: 'Fp',
@@ -210,7 +208,7 @@
     }
     return eccCommonSpec;
   }
-  // 打印ECC密钥规格
+  // 打印ECC密钥规格。
   function showEccSpecDetailInfo(key: cryptoFramework.PubKey | cryptoFramework.PriKey, keyType: string) {
     console.info('show detail of ' + keyType + ':');
     try {
@@ -249,22 +247,22 @@
       console.error(`getAsyKeySpec failed, ${e.code}, ${e.message}`);
     }
   }
-  // 根据EccCommonSpec实例生成ECC密钥对，获取密钥规格
+  // 根据EccCommonSpec实例生成ECC密钥对，获取密钥规格。
   function testEccUseCommKeySpecGet() {
     try {
-      let commKeySpec = genEccCommonSpec(); // 使用参数属性，构造ECC公私钥公共密钥参数对象
-      let generatorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(commKeySpec); // 使用密钥参数对象创建生成器
+      let commKeySpec = genEccCommonSpec(); // 使用参数属性，构造ECC公私钥公共密钥参数对象。
+      let generatorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(commKeySpec); // 使用密钥参数对象创建生成器。
       let keyPairPromise = generatorBySpec.generateKeyPair(); // Generate an ECC key pair.
-      keyPairPromise.then(keyPair => { // 使用生成器创建ECC密钥对
-        showEccSpecDetailInfo(keyPair.priKey, 'priKey'); // 对私钥获取相关密钥参数属性
-        showEccSpecDetailInfo(keyPair.pubKey, 'pubKey'); // 对公钥获取相关密钥参数属性
+      keyPairPromise.then(keyPair => { // 使用生成器创建ECC密钥对。
+        showEccSpecDetailInfo(keyPair.priKey, 'priKey'); // 对私钥获取相关密钥参数属性。
+        showEccSpecDetailInfo(keyPair.pubKey, 'pubKey'); // 对公钥获取相关密钥参数属性。
       }).catch((error: BusinessError) => {
-        // 逻辑错误等异步异常在此捕获
+        // 逻辑错误等异步异常在此捕获。
         console.error('generateComm error');
         console.error('error code: ' + error.code + ', message is: ' + error.message);
       })
     } catch (error) {
-      // 参数错误等同步异常在此捕获
+      // 参数错误等同步异常在此捕获。
       console.error('testEccUseCommSpec error');
       let e: BusinessError = error as BusinessError;
       console.error(`ecc comm spec failed, ${e.code}, ${e.message}`);
@@ -290,7 +288,7 @@
     console.info('. Hexadecimal: ' + bnValue.toString(16));
     console.info('. Length (bits): ' + bnValue.toString(2).length);
   }
-  // 根据关键规范构造EccCommonSpec结构体。EccCommonSpec结构体定义了ECC私钥和公钥的公共参数
+  // 根据关键规范构造EccCommonSpec结构体。EccCommonSpec结构体定义了ECC私钥和公钥的公共参数。
   function genEccCommonSpec(): cryptoFramework.ECCCommonParamsSpec {
     let fieldFp: cryptoFramework.ECFieldFp = {
       fieldType: 'Fp',
@@ -312,7 +310,7 @@
     }
     return eccCommonSpec;
   }
-  // 打印ECC密钥规格
+  // 打印ECC密钥规格。
   function showEccSpecDetailInfo(key: cryptoFramework.PubKey | cryptoFramework.PriKey, keyType: string) {
     console.info('show detail of ' + keyType + ':');
     try {
@@ -349,20 +347,20 @@
       console.error(`getAsyKeySpec failed, ${e.code}, ${e.message}`);
     }
   }
-  // 根据EccCommonSpec实例生成ECC密钥对，获取密钥规格
+  // 根据EccCommonSpec实例生成ECC密钥对，获取密钥规格。
   function testEccUseCommKeySpecGetSync() {
     try {
-      let commKeySpec = genEccCommonSpec(); // 使用参数属性，构造ECC公私钥公共密钥参数对象
-      let generatorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(commKeySpec); // 使用密钥参数对象创建生成器
+      let commKeySpec = genEccCommonSpec(); // 使用参数属性，构造ECC公私钥公共密钥参数对象。
+      let generatorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(commKeySpec); // 使用密钥参数对象创建生成器。
       let keyPair = generatorBySpec.generateKeyPairSync(); // Generate an ECC key pair.
       if (keyPair !== null) {
-        showEccSpecDetailInfo(keyPair.priKey, 'priKey'); // 对私钥获取相关密钥参数属性
-        showEccSpecDetailInfo(keyPair.pubKey, 'pubKey'); // 对公钥获取相关密钥参数属性
+        showEccSpecDetailInfo(keyPair.priKey, 'priKey'); // 对私钥获取相关密钥参数属性。
+        showEccSpecDetailInfo(keyPair.pubKey, 'pubKey'); // 对公钥获取相关密钥参数属性。
       } else {
         console.error('get key pair result fail!');
       }
     } catch (e) {
-      // 逻辑错误等异常在此捕获
+      // 逻辑错误等异常在此捕获。
       console.error(`get key pair result fail, ${e.code}, ${e.message}`);
     }
   }

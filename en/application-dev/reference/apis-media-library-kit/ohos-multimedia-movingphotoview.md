@@ -38,11 +38,11 @@ MovingPhotoView(options: MovingPhotoViewOptions)
 | ----------- | ------------------------------------------------------------------------------------------------ | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | movingPhoto | [MovingPhoto](js-apis-photoAccessHelper.md#movingphoto12) | Yes  | **MovingPhoto** instance. For details, see [MovingPhoto](js-apis-photoAccessHelper.md#movingphoto12).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | controller  | [MovingPhotoViewController](#movingphotoviewcontroller)                                          | No  | Controller used to control the playback status of the moving photo.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                     |
-| imageAIOptions<sup>14+</sup>  | [ImageAIOptions](../apis-arkui/arkui-ts/ts-image-common.md#imageaioptions) | No  | AI options. You can set the image analyzer type or bind an image analyzer controller.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| imageAIOptions<sup>16+</sup>  | [ImageAIOptions](../apis-arkui/arkui-ts/ts-image-common.md#imageaioptions) | No  | AI options. You can set the image analyzer type or bind an image analyzer controller.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
 
 ## Properties
 
-In addition to the [universal properties](../apis-arkui/arkui-ts/ts-universal-attributes-size.md), the following properties are supported.
+In addition to the [universal properties](../apis-arkui/arkui-ts/ts-component-general-attributes.md), the following properties are supported.
 
 ### muted
 
@@ -132,13 +132,13 @@ Sets repeat play. **repeatPlay** is mutually exclusive with **autoPlay** and **L
 | ------- | ------- | ---- | ---------------------------- |
 | isRepeatPlay| boolean| Yes  | Whether to enable repeat play.<br>The value **true** means to enable repeat play; the value **false** means the opposite.<br>Default value: **false**|
 
-### enableAnalyzer<sup>14+</sup>
+### enableAnalyzer<sup>16+</sup>
 
 enableAnalyzer(enabled: boolean)
 
 Sets the AI analyzer. Currently, the AI analyzer supports features, such as subject recognition, text recognition, and object search.
 
-**Atomic service API**: This API can be used in atomic services since API version 14.
+**Atomic service API**: This API can be used in atomic services since API version 16.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -151,7 +151,7 @@ Sets the AI analyzer. Currently, the AI analyzer supports features, such as subj
 
 ## Events
 
-In addition to [universal events](../apis-arkui/arkui-ts/ts-universal-events-click.md), the following events are supported.
+In addition to [universal events](../apis-arkui/arkui-ts/ts-component-general-events.md), the following events are supported.
 
 ### onComplete<sup>13+</sup>
 
@@ -282,6 +282,16 @@ stopPlayback(): void
 Stops playback. Once started again, the playback starts from the beginning.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### refreshMovingPhoto<sup>16+</sup>
+
+refreshMovingPhoto(): void
+
+Forcibly refreshes the video and image resources loaded by the **MovingPhotoView** component. This API will interrupt the ongoing actions of the component. Exercise caution when using it.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -660,6 +670,10 @@ struct Index {
             .onClick(() => {
               this.controller.stopPlayback()
             })
+          Button('refreshMovingPhoto')
+            .onClick(() => {
+              this.controller.refreshMovingPhoto()
+            })
           Button('mute').id('MovingPhotoView_true')
             .onClick(() => {
               this.flag = false
@@ -670,3 +684,5 @@ struct Index {
   }
 }
 ```
+
+ <!--no_check--> 

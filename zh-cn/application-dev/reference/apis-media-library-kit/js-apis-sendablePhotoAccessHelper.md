@@ -56,7 +56,7 @@ let phAccessHelper = sendablePhotoAccessHelper.getPhotoAccessHelper(context);
 
 ### getAssets
 
-getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
+getAssets(options: photoAccessHelper.FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 获取图片和视频资源，使用Promise方式返回结果。
 
@@ -70,7 +70,7 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 | 参数名  | 类型                                                      | 必填 | 说明                 |
 | ------- | --------------------------------------------------------- | ---- | -------------------- |
-| options | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 是   | 图片和视频检索选项。 |
+| options | [photoAccessHelper.FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 是   | 图片和视频检索选项。 |
 
 **返回值：**
 
@@ -86,8 +86,7 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 201      | Permission denied.                                           |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
@@ -121,7 +120,7 @@ async function example() {
 
 ### getBurstAssets
 
-getBurstAssets(burstKey: string, options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
+getBurstAssets(burstKey: string, options: photoAccessHelper.FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 获取连拍照片资源，使用Promise方式返回结果。
 
@@ -134,7 +133,7 @@ getBurstAssets(burstKey: string, options: FetchOptions): Promise&lt;FetchResult&
 | 参数名   | 类型                                                      | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | burstKey | string                                                    | 是   | 一组连拍照片的唯一标识：uuid(可传入[PhotoKeys](js-apis-photoAccessHelper.md#photokeys)的BURST_KEY) |
-| options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 是   | 连拍照片检索选项。                                           |
+| options  | [photoAccessHelper.FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 是   | 连拍照片检索选项。                                           |
 
 **返回值：**
 
@@ -170,28 +169,28 @@ async function example() {
   let photoAsset: sendablePhotoAccessHelper.PhotoAsset;
   // burstKey为36位的uuid，可以根据photoAccessHelper.PhotoKeys获取。
   for(photoAsset of photoAssetList){
-      let burstKey: string = photoAccessHelper.PhotoKeys.BURST_KEY.toString();
-      let photoAccessBurstKey: photoAccessHelper.MemberType = photoAsset.get(burstKey).toString();
-      try {
-         let fetchResult: sendablePhotoAccessHelper.FetchResult<sendablePhotoAccessHelper.PhotoAsset> = await 
+    let burstKey: string = photoAccessHelper.PhotoKeys.BURST_KEY.toString();
+    let photoAccessBurstKey: photoAccessHelper.MemberType = photoAsset.get(burstKey).toString();
+    try {
+      let fetchResult: sendablePhotoAccessHelper.FetchResult<sendablePhotoAccessHelper.PhotoAsset> = await
       phAccessHelper.getBurstAssets(photoAccessBurstKey, fetchOption);
-         if (fetchResult !== undefined) {
-           console.info('fetchResult success');
-           let photoAsset: sendablePhotoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-           if (photoAsset !== undefined) {
-              console.info('photoAsset.displayName :' + photoAsset.displayName);
+      if (fetchResult !== undefined) {
+        console.info('fetchResult success');
+        let photoAsset: sendablePhotoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+        if (photoAsset !== undefined) {
+          console.info('photoAsset.displayName :' + photoAsset.displayName);
+        }
       }
+    } catch (err) {
+      console.error(`getBurstAssets failed, error: ${err.code}, ${err.message}`);
     }
-  } catch (err) {
-    console.error(`getBurstAssets failed, error: ${err.code}, ${err.message}`);
   }
-}
 }
 ```
 
 ### createAsset
 
-createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): Promise&lt;string&gt;
+createAsset(photoType: PhotoType, extension: string, options?: photoAccessHelper.CreateOptions): Promise&lt;string&gt;
 
 指定待创建的文件类型、后缀和创建选项，创建图片或视频资源，使用Promise方式返回结果。
 
@@ -209,7 +208,7 @@ createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): P
 | --------- | ----------------------------------------------------------- | ---- | ------------------------------------ |
 | photoType | [PhotoType](#phototype)                                     | 是   | 创建的文件类型，IMAGE或者VIDEO类型。 |
 | extension | string                                                      | 是   | 文件名后缀参数，例如：'jpg'。        |
-| options   | [CreateOptions](js-apis-photoAccessHelper.md#createoptions) | 否   | 创建选项，例如{title: 'testPhoto'}。 |
+| options   | [photoAccessHelper.CreateOptions](js-apis-photoAccessHelper.md#createoptions) | 否   | 创建选项，例如{title: 'testPhoto'}。 |
 
 **返回值：**
 
@@ -225,7 +224,6 @@ createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): P
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 201      | Permission denied.                                           |
-| 13900020 | Invalid argument.                                            |
 | 14000011 | Internal system error.                                        |
 
 **示例：**
@@ -252,7 +250,7 @@ async function example() {
 
 ### getAlbums
 
-getAlbums(type: AlbumType, subtype: AlbumSubtype, options?: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;
+getAlbums(type: AlbumType, subtype: AlbumSubtype, options?: photoAccessHelper.FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;
 
 根据检索选项和相册类型获取相册，使用Promise方式返回结果。
 
@@ -268,7 +266,7 @@ getAlbums(type: AlbumType, subtype: AlbumSubtype, options?: FetchOptions): Promi
 | ------- | --------------------------------------------------------- | ---- | -------------------------------------- |
 | type    | [AlbumType](#albumtype)                                   | 是   | 相册类型。                             |
 | subtype | [AlbumSubtype](#albumsubtype)                             | 是   | 相册子类型。                           |
-| options | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 否   | 检索选项，不填时默认根据相册类型检索。 |
+| options | [photoAccessHelper.FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 否   | 检索选项，不填时默认根据相册类型检索。 |
 
 **返回值：**
 
@@ -284,8 +282,7 @@ getAlbums(type: AlbumType, subtype: AlbumSubtype, options?: FetchOptions): Promi
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 201      | Permission denied.                                           |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
@@ -319,7 +316,7 @@ async function example() {
 
 ### getAlbums
 
-getAlbums(options: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;
+getAlbums(options: photoAccessHelper.FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;
 
 根据检索选项获取相册，使用Promise方式返回结果。
 
@@ -333,7 +330,7 @@ getAlbums(options: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;
 
 | 参数名  | 类型                                                      | 必填 | 说明     |
 | ------- | --------------------------------------------------------- | ---- | -------- |
-| options | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 是   | 检索选项。 |
+| options | [photoAccessHelper.FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 是   | 检索选项。 |
 
 **返回值：**
 
@@ -349,8 +346,7 @@ getAlbums(options: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 201      | Permission denied.                                           |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
@@ -403,9 +399,7 @@ release(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
@@ -437,9 +431,9 @@ async function example() {
 
 | 名称        | 类型                    | 只读 | 可选 | 说明                                                         |
 | ----------- | ----------------------- | ---- | ---- | ------------------------------------------------------------ |
-| uri         | string                  | 是   | 否   | 媒体文件资源uri（如：file://media/Photo/1/IMG_datetime_0001/displayName.jpg），详情参见用户文件uri介绍中的[媒体文件uri](../../file-management/user-file-uri-intro.md#媒体文件uri)。 |
-| photoType   | [PhotoType](#phototype) | 是   | 否   | 媒体文件类型。                                               |
-| displayName | string                  | 是   | 否   | 显示文件名，包含后缀名。                                     |
+| uri<sup>12+</sup>         | string                  | 是   | 否   | 媒体文件资源uri（如：file://media/Photo/1/IMG_datetime_0001/displayName.jpg），详情参见用户文件uri介绍中的[媒体文件uri](../../file-management/user-file-uri-intro.md#媒体文件uri)。 |
+| photoType<sup>12+</sup>   | [PhotoType](#phototype) | 是   | 否   | 媒体文件类型。                                               |
+| displayName<sup>12+</sup> | string                  | 是   | 否   | 显示文件名，包含后缀名。                                     |
 
 ### convertToPhotoAsset
 
@@ -461,9 +455,8 @@ convertToPhotoAsset():  photoAccessHelper.PhotoAsset
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 13900020 | Invalid argument.                                            |
-| 14000014 | Member is not a valid PhotoKey.                              |
+| 201      | Permission denied.                                           |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
@@ -491,7 +484,7 @@ async function example() {
 
 ### get
 
-get(member: string): MemberType
+get(member: string): photoAccessHelper.MemberType
 
 获取PhotoAsset成员参数。
 
@@ -507,7 +500,7 @@ get(member: string): MemberType
 
 | 类型                                                  | 说明                         |
 | ----------------------------------------------------- | ---------------------------- |
-| [MemberType](js-apis-photoAccessHelper.md#membertype) | 获取PhotoAsset成员参数的值。 |
+| [photoAccessHelper.MemberType](js-apis-photoAccessHelper.md#membertype) | 获取PhotoAsset成员参数的值。 |
 
 **错误码：**
 
@@ -516,8 +509,6 @@ get(member: string): MemberType
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 13900020 | Invalid argument.                                            |
-| 14000014 | Member is not a valid PhotoKey.                              |
 
 **示例：**
 
@@ -566,8 +557,6 @@ set(member: string, value: string): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 13900020 | Invalid argument.                                            |
-| 14000014 | Member is not a valid PhotoKey.                              |
 
 **示例：**
 
@@ -617,11 +606,9 @@ commitModify(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 201      | Permission denied.                                           |
-| 13900020 | Invalid argument.                                            |
-| 14000001 | Invalid display name.                                        |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
@@ -682,8 +669,7 @@ getThumbnail(size?: image.Size): Promise&lt;image.PixelMap&gt;
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 201      | Permission denied.                                           |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
@@ -736,9 +722,7 @@ getCount(): number
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
@@ -779,9 +763,7 @@ isAfterLast(): boolean
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
@@ -821,9 +803,7 @@ close(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
@@ -868,9 +848,7 @@ getFirstObject(): Promise&lt;T&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
@@ -912,9 +890,7 @@ getNextObject(): Promise&lt;T&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
@@ -931,8 +907,8 @@ async function example() {
   };
   let fetchResult: sendablePhotoAccessHelper.FetchResult<sendablePhotoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   await fetchResult.getFirstObject();
-    let photoAsset: sendablePhotoAccessHelper.PhotoAsset = await fetchResult.getNextObject();
-    console.info('photoAsset displayName: ', photoAsset.displayName);
+  let photoAsset: sendablePhotoAccessHelper.PhotoAsset = await fetchResult.getNextObject();
+  console.info('photoAsset displayName: ', photoAsset.displayName);
 }
 ```
 
@@ -956,9 +932,7 @@ getLastObject(): Promise&lt;T&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
@@ -1006,8 +980,7 @@ getObjectByPosition(index: number): Promise&lt;T&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
@@ -1048,9 +1021,7 @@ getAllObjects(): Promise&lt;Array&lt;T&gt;&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
@@ -1110,10 +1081,8 @@ convertToPhotoAlbum(): photoAccessHelper.Album
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 201      | Permission denied.                                           |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
@@ -1175,7 +1144,7 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 201      | Permission denied.                                           |
 | 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
@@ -1227,10 +1196,8 @@ commitModify(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 201      | Permission denied.                                           |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
@@ -1269,6 +1236,31 @@ async function example() {
 | ----- | ---- | ------ |
 | IMAGE | 1    | 图片。 |
 | VIDEO | 2    | 视频。 |
+
+## PhotoSubtype<sup>14+</sup>
+
+枚举，不同[PhotoAsset](#photoasset)的类型。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| DEFAULT |  0 |  默认照片类型。 |
+| MOVING_PHOTO |  3 |  动态照片文件类型。 |
+| BURST |  4 |  连拍照片文件类型。 |
+
+## DynamicRangeType<sup>14+</sup>
+
+枚举，媒体文件的动态范围类型。
+
+**系统能力**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| SDR |  0 |  标准动态范围类型。|
+| HDR |  1 |  高动态范围类型。  |
 
 ## AlbumType
 

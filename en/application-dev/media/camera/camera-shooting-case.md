@@ -62,7 +62,7 @@ function setPhotoOutputCb(photoOutput: camera.PhotoOutput): void {
 }
 
 async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: string): Promise<void> {
-  // Create a CameraManager instance.
+  // Create a CameraManager object.
   let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
   if (!cameraManager) {
     console.error("camera.getCameraManager error");
@@ -120,7 +120,7 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
     console.error('photo mode not support');
     return;
   }
-  // Obtain the output stream capabilities supported by the camera.
+  // Obtain the output stream capability supported by the camera.
   let cameraOutputCap: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraArray[0], camera.SceneMode.NORMAL_PHOTO);
   if (!cameraOutputCap) {
     console.error("cameraManager.getSupportedOutputCapability error");

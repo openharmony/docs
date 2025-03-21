@@ -784,7 +784,7 @@ static staticClear(): boolean
 
 | 类型      | 说明                                |
 | ------- | --------------------------------- |
-| boolean | 删除所有的属性，如果当前有状态变量依旧引用此属性，返回false。 |
+| boolean | 删除所有的属性。如果删除成功，返回true；如果当前有状态变量依旧引用此属性，返回false。 |
 
 **示例：**
 ```ts
@@ -839,7 +839,7 @@ static IsMutable(propName: string): boolean
 
 | 类型      | 说明                               |
 | ------- | -------------------------------- |
-| boolean | 返回AppStorage中propNam对应的属性是否是可变的。 |
+| boolean | 返回AppStorage中propNam对应的属性是否是可变的。当前该返回值恒为true。 |
 
 **示例：**
 ```ts

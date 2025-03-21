@@ -18,7 +18,7 @@
 import { webview } from '@kit.ArkWeb';
 ```
 
-## once
+## webview.once
 
 once(type: string, callback: Callback\<void\>): void
 
@@ -1208,6 +1208,12 @@ accessBackward(): boolean
 
 可以结合使用[getBackForwardEntries](#getbackforwardentries)来获取当前WebView的历史信息列表，以及使用[accessStep](#accessstep)来判断是否可以按照给定的步数前进或后退。
 
+> **说明：**
+>
+> 在Web组件首次加载过程中调用[setCustomUserAgent](#setcustomuseragent10)，可能会导致在当前存在多个历史节点的情况下，获取的accessBackForward实际为false，即没有后退节点。建议先调用setCustomUserAgent方法设置UserAgent，再通过loadUrl加载具体页面。
+>
+> 该现象是由于在Web组件首次加载时，调用[setCustomUserAgent](#setcustomuseragent10)会导致组件重新加载并保持初始历史节点的状态。随后新增的节点将替换初始历史节点，不会生成新的历史节点，导致accessBackward为false。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
@@ -1542,7 +1548,7 @@ getHitTest(): WebHitTestType
 
 > **说明：**
 >
-> 从API version11开始支持，从API version 16开始废弃。建议使用[getLastHitTest](#getlasthittest16)替代。
+> 从API version11开始支持，从API version 18开始废弃。建议使用[getLastHitTest](#getlasthittest18)替代。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3125,7 +3131,7 @@ getHitTestValue(): HitTestValue
 
 > **说明：**
 >
-> 从API version11开始支持，从API version 16开始废弃。建议使用[getLastHitTest](#getlasthittest16)替代。
+> 从API version11开始支持，从API version 18开始废弃。建议使用[getLastHitTest](#getlasthittest18)替代。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4357,6 +4363,60 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.controller.removeCache(false);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### removeAllCache<sup>18+</sup>
+
+static removeAllCache(clearRom: boolean): void
+
+清除应用中的资源缓存文件，此方法将会清除同一应用中所有webview的缓存文件。
+
+> **说明：**
+>
+> 可以通过在data/app/el2/100/base/\<applicationPackageName\>/cache/web/目录下查看webview的缓存。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                                                     |
+| -------- | ------- | ---- | -------------------------------------------------------- |
+| clearRom | boolean | 是   | 设置为true时同时清除ROM和RAM中的缓存，设置为false时只清除RAM中的缓存。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('removeAllCache')
+        .onClick(() => {
+          try {
+            webview.WebviewController.removeAllCache(false);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -9127,7 +9187,7 @@ struct WebComponent {
 }
 ```
 
-### getLastHitTest<sup>16+</sup>
+### getLastHitTest<sup>18+</sup>
 
 getLastHitTest(): HitTestValue
 
@@ -11764,7 +11824,7 @@ Web组件发送的资源请求信息。
 
 ## WebHitTestType
 
-[getLastHitTest](#getlasthittest16)接口用于指示游标节点。
+[getLastHitTest](#getlasthittest18)接口用于指示游标节点。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -11794,7 +11854,7 @@ Web组件发送的资源请求信息。
 
 ##  HitTestValue
 
-提供点击区域的元素信息。示例代码参考[getLastHitTest](#getlasthittest16)。
+提供点击区域的元素信息。示例代码参考[getLastHitTest](#getlasthittest18)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -17191,57 +17251,3 @@ pdfArrayBuffer(): Uint8Array
 | ---- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | x    | number | 是   | 是   | 网页在水平方向的滚动偏移量。取值为网页左边界x坐标与Web组件左边界x坐标的差值。单位为vp。<br/>当网页向右过滚动时，取值范围为负值。<br/>当网页没有过滚动或者网页向左过滚动时，取值为0或正值。 |
 | y    | number | 是   | 是   | 网页在垂直方向的滚动偏移量。取值为网页上边界y坐标与Web组件上边界y坐标的差值。单位为vp。<br/>当网页向下过滚动时，取值范围为负值。<br/>当网页没有过滚动或者网页向上过滚动时，取值为0或正值。 |
-
-### removeAllCache<sup>16+</sup>
-
-static removeAllCache(clearRom: boolean): void
-
-清除应用中的资源缓存文件，此方法将会清除同一应用中所有webview的缓存文件。
-
-> **说明：**
->
-> 可以通过在data/app/el2/100/base/\<applicationPackageName\>/cache/web/目录下查看webview的缓存。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名   | 类型    | 必填 | 说明                                                     |
-| -------- | ------- | ---- | -------------------------------------------------------- |
-| clearRom | boolean | 是   | 设置为true时同时清除ROM和RAM中的缓存，设置为false时只清除RAM中的缓存。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-
-**示例：**
-
-```ts
-// xxx.ets
-import { webview } from '@kit.ArkWeb';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-@Entry
-@Component
-struct WebComponent {
-  controller: webview.WebviewController = new webview.WebviewController();
-
-  build() {
-    Column() {
-      Button('removeAllCache')
-        .onClick(() => {
-          try {
-            webview.WebviewController.removeAllCache(false);
-          } catch (error) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-          }
-        })
-      Web({ src: 'www.example.com', controller: this.controller })
-    }
-  }
-}
-```

@@ -1,264 +1,6 @@
 # ArkUI子系统Changelog
 
-
-## cl.arkui.1 通用属性backgroundEffect在modifier中radius参数单位修改
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
- 直接使用backgroundEffect时对应的模糊参数radius单位为vp。通过modifier或者CAPI使用时，单位为px。现将单位同一为vp。
-
-**变更影响**
-
-此变更涉及应用适配。
-
-变更前：backgroundEffect通过modifier使用时单位为px。<br/>
-![addComponentContent_before](figures/backgroundEffect_before.png)
-
-变更后：backgroundEffect通过modifier使用时单位为vp。<br/>
-![addComponentContent_after](figures//backgroundEffect_after.png)
-
-
-
-**起始API Level**
-
-API 12
-
-**变更发生版本**
-
-从OpenHarmony 5.1.0.45 版本开始。
-
-**变更的接口/组件**
-
-backgroundEffect
-
-**适配指导**
-
-默认无需适配。如需要保持之前模糊效果，在modifier中使用px2vp方法把radius参数转换为vp。
-
-```ts
-
-import { CommonModifier } from '@kit.ArkUI';
-
-class ColumnModifier extends CommonModifier {
-  public radius: number = 0;
-  applyNormalAttribute(instance: CommonAttribute): void {
-    instance.backgroundEffect({ radius: this.radius })
-  }
-}
-
-@Entry
-@Component
-struct Index {
-  @State testSize: number = 200;
-  @State modifier:ColumnModifier = new ColumnModifier();
-  onPageShow(): void {
-    // 变更前
-    // this.modifier.radius = 10;
-    // 变更后适配
-    this.modifier.radius = px2vp(10);
-  }
-  build() {
-    Column() {
-      Stack() {
-        Image($r('app.media.test')).width(this.testSize).height(this.testSize)
-        Column().width(this.testSize).height(this.testSize).attributeModifier(this.modifier)
-      }.width('100%')
-    }
-  }
-}
-```
-
-## cl.arkui.2 DrawModifier的invalidate接口行为变更
-
-**变更原因**
-
-实现bug，之前实现中未在节点标脏后请求下一帧vsync信号，导致部分场景下invalidate无法刷新绘制内容。
-
-**变更影响**
-
-此变更不涉及应用适配。
-
-变更前：invalidate接口仅对节点标脏，不请求下一帧。导致节点标脏但不会刷新重绘。等到其他操作，例如点击触发下一帧信号的时候才会重绘。
-
-变更后：nvalidate接口对节点标脏后主动请求下一帧，使节点及时刷新重绘。
-
-使用如下示例代码对影响补充说明。
-
-```ts
-import { drawing } from '@kit.ArkGraphics2D';
-
-class MyFrontDrawModifier extends DrawModifier {
-  public scaleX: number = 1;
-  public scaleY: number = 1;
-
-  drawFront(context: DrawContext): void {
-    const brush = new drawing.Brush();
-    brush.setColor({
-      alpha: 255,
-      red: 0,
-      green: 0,
-      blue: 255
-    });
-    context.canvas.attachBrush(brush);
-    const halfWidth = context.size.width / 2;
-    const halfHeight = context.size.width / 2;
-    const radiusScale = (this.scaleX + this.scaleY) / 2;
-    context.canvas.drawCircle(vp2px(halfWidth), vp2px(halfHeight), vp2px(20 * radiusScale));
-  }
-}
-
-@Entry
-@Component
-struct DrawModifierExample {
-  @State modifier: MyFrontDrawModifier = new MyFrontDrawModifier();
-  @State changeScale: boolean = false;
-
-  build() {
-    Column() {
-      Row() {
-        Text()
-          .width(100)
-          .height(100)
-          .margin(10)
-          .backgroundColor(Color.Gray)
-          .drawModifier(this.modifier)
-      }
-
-      Button('invalidate immediately')
-        .onClick(() => {
-          this.changeScale = !this.changeScale
-          // 变更前后不影响，节点在invalidate的下一帧刷新
-          this.changeScale ? this.modifier.scaleX = 2 : this.modifier.scaleX = 1
-          this.changeScale ? this.modifier.scaleY = 2 : this.modifier.scaleY = 1
-          this.modifier.invalidate()
-        }
-        )
-      Button('invalidate in setTimeout ')
-        .onClick(() => {
-          setTimeout(() => {
-            // 变更前：invalidate对节点标脏，但不请求下一帧，等到其他事件触发下一帧，进行刷新绘制
-            // 变更后：节点在invalidate的下一帧刷新
-            this.changeScale = !this.changeScale
-            this.changeScale ? this.modifier.scaleX = 2 : this.modifier.scaleX = 1
-            this.changeScale ? this.modifier.scaleY = 2 : this.modifier.scaleY = 1
-            this.modifier.invalidate()
-          }, 1000)
-        }
-        )
-    }
-  }
-}
-```
-
-**起始API Level**
-
-API 12
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.1.0.54开始。
-
-**变更的接口/组件**
-
-common.d.ts#DrawModifier.invalidate
-
-**适配指导**
-
-默认行为变更，无需适配。但需要注意invalidate调用后没有其他操作产生请求下一帧的场景下的影响。
-
-## cl.arkui.3 节点默认生命周期回调策略变更
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-节点复用情况下，造成冗余的性能损耗。
-
-**变更影响**
-
-此变更不涉及应用适配。
-
-变更前：节点复用情况下,如果存在父布局约束。节点通过addChild重新上树默认触发测量，布局以及绘制。
-
-变更后：节点复用情况下节点通过addChild重新上树，只有布局约束发生变化才会触发测量布局以及绘制。
-
-示例代码如下，完整实例可参考使用ndk接口构建接入UI中的接入ArkTS页面。
-
-```ts
-
-static std::vector<ArkUI_NodeHandle> childList;
-
-void registerCustomEvent(ArkUI_NodeHandle node) {
-    nodeApi->registerNodeCustomEvent(node, ARKUI_NODE_CUSTOM_EVENT_ON_MEASURE, 0, nullptr);
-    nodeApi->registerNodeCustomEvent(node, ARKUI_NODE_CUSTOM_EVENT_ON_LAYOUT, 0, nullptr);
-    nodeApi->registerNodeCustomEvent(node, ARKUI_NODE_CUSTOM_EVENT_ON_DRAW, 0, nullptr);
-}
-
-void customEventReceiver(ArkUI_NodeCustomEvent *event) {
-   auto eventType = OH_ArkUI_NodeEvent_GetEventType(event);
-  // 变更前会触发自定义测量，布局，绘制事件
-  // 变更后不会触发自定义测量，布局，绘制事件
-} 
-
-void init() {
-
-auto rootNode = nodeApi->CreateNode(ARKUI_NODE_CUSTOM);
-auto child1 = nodeApi->CreateNode(ARKUI_NODE_CUSTOM);
-auto child2 = nodeApi->CreateNode(ARKUI_NODE_CUSTOM);
-nodeApi->addChild(rootNode, child1);
-nodeApi->addChild(rootNode, child2);
-childList.push_back(child1);
-childList.push_back(child2);
-ArkUI_NumberValue value[] = {{.f32 = 100}};
-ArkUI_AttributeItem item = {value, 1};
-nodeApi->setAttribute(rootNode, NODE_WIDTH, item);
-nodeApi->setAttribute(child1, NODE_WIDTH, item);
-nodeApi->setAttribute(child2, NODE_WIDTH, item);
-nodeApi->setAttribute(rootNode, NODE_HEIGHT, item);
-nodeApi->setAttribute(child1, NODE_HEIGHT, item);
-nodeApi->setAttribute(child2, NODE_HEIGHT, item);
-
-// 注册订阅自定义事件
-registerCustomEvent(rootNode);
-registerCustomEvent(child1);
-registerCustomEvent(child2);
-nodeApi->registerNodeCustomEventReceiver(customEventReceiver);
-}
-
-void rebuildTree(ArkUI_NodeHandle root) {
-  // 触发组件上下树
-  auto front = childList.front();
-  nodeApi->removeChild(root, front);
-  childList.erase(childList.begin());
-  nodeApi->addChild(root, front);
-  childList.push_back(front);
-} 
-
-```
-
-**起始API Level**
-
-API 12
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.1.0.54开始。
-
-**变更的接口/组件**
-
-frameNode 生命周期。
-
-**适配指导**
-
-默认行为变更无需适配。
-
-## cl.arkui.4 禁用键盘Ctrl按键和触控板轴事件触发缩放手势变更
+## cl.arkui.1 禁用键盘Ctrl按键和触控板轴事件触发缩放手势变更
 
 **访问级别**
 
@@ -294,7 +36,7 @@ C API：createPinchGesture
 
 默认UX变更无需适配。
 
-## cl.arkui.5 FrameNode的isAttached接口返回值含义发生变更
+## cl.arkui.2 FrameNode的isAttached接口返回值含义发生变更
 
 **访问级别**
 
@@ -381,279 +123,7 @@ node.isAttached(); // 变更前
 node.isVisible(); // 变更后
 ```
 
-## cl.arkui.6 RenderNode的rotation接口角度单位从vp变为度
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-用户使用RenderNode的rotation接口时，传入的默认角度单位是vp，这不是正常规格的角度单位，需要变更为度。
-
-**变更影响**
-
-此变更涉及应用适配。
-
-变更前：角度单位为vp，需要经过px2vp单位转换才能转为角度。
-
-变更后：角度单位为度，直接传入数值即可，无需单位转换。
-
-当用户通过该接口设置RenderNode的旋转时，会发生变更; 例如：
-```ts
-import { FrameNode, NodeController, RenderNode, UIContext } from '@kit.ArkUI';
-
-class MyNodeController extends NodeController {
-  private rootNode: FrameNode | null = null;
-
-  makeNode(uiContext: UIContext) {
-    this.rootNode = new FrameNode(uiContext);
-
-    // 直接传入90
-    const renderNodeSrc = new RenderNode();
-    renderNodeSrc.backgroundColor = 0xffdddddd;
-    renderNodeSrc.frame = { x: 10, y: 110, width: 200, height: 100 };
-    const renderNodeDst  = new RenderNode();
-    renderNodeDst.backgroundColor = 0xfffcc0ea;
-    renderNodeDst.frame = { x: 10, y: 110, width: 200, height: 100 };
-    renderNodeDst.rotation = { x: 0, y: 0, z: 90 };
-
-    // 传入px2vp(90)
-    const renderNodeSrc1 = new RenderNode();
-    renderNodeSrc1.backgroundColor = 0xffdddddd;
-    renderNodeSrc1.frame = { x: 10, y: 360, width: 200, height: 100 };
-    const renderNodeDst1  = new RenderNode();
-    renderNodeDst1.backgroundColor = 0xfffcc0ea;
-    renderNodeDst1.frame = { x: 10, y: 360, width: 200, height: 100 };
-    renderNodeDst1.rotation = { x: 0, y: 0, z: px2vp(90) };
-
-    // 传入vp2px(90)
-    const renderNodeSrc2 = new RenderNode();
-    renderNodeSrc2.backgroundColor = 0xffdddddd;
-    renderNodeSrc2.frame = { x: 10, y: 610, width: 200, height: 100 };
-    const renderNodeDst2  = new RenderNode();
-    renderNodeDst2.backgroundColor = 0xfffcc0ea;
-    renderNodeDst2.frame = { x: 10, y: 610, width: 200, height: 100 };
-    renderNodeDst2.rotation = { x: 0, y: 0, z: vp2px(90) };
-
-    const rootRenderNode = this.rootNode.getRenderNode();
-    rootRenderNode?.appendChild(renderNodeSrc);
-    rootRenderNode?.appendChild(renderNodeDst);
-    rootRenderNode?.appendChild(renderNodeSrc1);
-    rootRenderNode?.appendChild(renderNodeDst1);
-    rootRenderNode?.appendChild(renderNodeSrc2);
-    rootRenderNode?.appendChild(renderNodeDst2);
-
-    return this.rootNode;
-  }
-}
-
-@Entry
-@Component
-struct MyComponent {
-  @State myNodeController: MyNodeController = new MyNodeController();
-
-  build() {
-    Row() {
-      Column() {
-        Text('90')
-        Text('px2vp(90)')
-        Text('vp2px(90)')
-      }
-      .justifyContent(FlexAlign.SpaceAround)
-      .height('100%')
-      .width('30%')
-      NodeContainer(this.myNodeController)
-        .height('100%')
-        .width('70%')
-    }
-    .width('100%')
-    .alignItems(VerticalAlign.Top)
-  }
-}
-```
-
-![demoRenderNodeRotation](figures/demoRenderNodeRotation.png)
-
-**起始API Level**
-
-API 12
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.1.0.54开始。
-
-**变更的接口/组件**
-
-RenderNode.d.ts文件rotation接口。
-
-**适配指导**
-
-```ts
-// 变更前RenderNode的rotation接口的旋转角度单位为“vp”，变更后单位为“度”，若需保持变更前行为，使用vp2px进行单位转换即可。
-renderNode.rotation = { x: 0, y: 0, z: 90 }; // 变更前
-renderNode.rotation = { x: 0, y: 0, z: vp2px(90) }; // 变更后
-```
-
-## cl.arkui.7 当AttributeModifier的applyNormalAttribute方法中instance参数设置为资源类型数据时更新的行为发生变更
-
-当开发者使用资源文件作为AttributeModifier的applyNormalAttribute方法中instance对象的入参时，无法通过配置资源文件更新参数，该行为与系统资源的规格不一致。
-
-**变更影响**
-
-此变更不涉及应用适配。
-
-运行以下示例时:
-
-```ts
-class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
-  private color?: ResourceColor;
-  private fontColor?: ResourceColor;
-
-  constructor(color: ResourceColor, fontColor: ResourceColor) {
-    this.color = color;
-    this.fontColor = fontColor;
-  }
-
-  applyNormalAttribute(instance: ButtonAttribute): void {
-    // instance为Button的属性对象，设置正常状态下属性值
-    instance.backgroundColor(this.color)
-      .fontColor(this.fontColor)
-      .borderWidth(1)
-  }
-}
-
-@Entry
-@Component
-struct attributeDemo {
-  @State modifier: MyButtonModifier = new MyButtonModifier($r('app.color.backColor'), $r('app.color.fontColor'));
-
-  build() {
-    Row() {
-      Column() {
-        Button("Button")
-          .attributeModifier(this.modifier)
-      }.width("100%")
-    }
-    .height('100%')
-    .backgroundColor(Color.White)
-  }
-}
-```
-
-```json
-// src/main/resources/base/element/color.json
-{
-  "color": [
-    {
-      "name": "start_window_background",
-      "value": "#FFFFFF"
-    },
-    {
-      "name": "backColor",
-      "value": "#000000"
-    },
-    {
-      "name": "fontColor",
-      "value": "#FFFFFF"
-    }
-  ]
-}
-```
-
-```json
-// src/main/resources/dark/element/color.json
-{
-  "color": [
-    {
-      "name": "start_window_background",
-      "value": "#000000"
-    },
-    {
-      "name": "backColor",
-      "value": "#FFFFFF"
-    },
-    {
-      "name": "fontColor",
-      "value": "#000000"
-    }
-  ]
-}
-```
-
-| 变更前                                                                               | 变更后                                                                             |
-| ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
-| 浅色模式拉起。<br>![light_mode](figures/light_mode1.jpg)                             | 浅色模式拉起。<br>![light_mode](figures/light_mode1.jpg)                           |
-|                                                                                      |
-| 切换深色时，无法使用资源文件触发UI的更新。<br>![light_mode](figures/light_mode1.jpg) | 切换深色时，可以使用资源文件触发UI的更新。<br>![dark_mode](figures/dark_mode1.jpg) |
-|                                                                                      |
-
-**起始API Level**
-
-API 11
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.0.1.54开始。
-
-**变更的接口/组件**
-
-common.d.ts文件attributeModifier接口。
-
-**适配指导**
-
-默认行为变更，无需适配。
-
-如不期望资源随配置文件更新可以将资源取出后使用。
-
-```ts
-class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
-  public  color?: ResourceColor;
-  public fontColor?: ResourceColor;
-
-  constructor(color: ResourceColor, fontColor: ResourceColor) {
-    this.color = color;
-    this.fontColor = fontColor;
-  }
-
-  applyNormalAttribute(instance: ButtonAttribute): void {
-    // instance为Button的属性对象，设置正常状态下属性值
-    instance.backgroundColor(this.color)
-      .fontColor(this.fontColor)
-      .borderWidth(1)
-  }
-}
-
-@Entry
-@Component
-struct attributeDemo {
-  @State modifier: MyButtonModifier = new MyButtonModifier($r('app.color.backColor'), $r('app.color.fontColor'));
-
-  aboutToAppear(): void {
-    // 解析获取资源文件。
-    this.modifier.color = getContext().resourceManager.getColorSync($r('app.color.backColor').id);
-    this.modifier.fontColor = getContext().resourceManager.getColorSync($r('app.color.fontColor').id);
-  }
-
-  build() {
-    Row() {
-      Column() {
-        Button("Button")
-          .attributeModifier(this.modifier)
-      }.width("100%")
-    }
-    .height('100%')
-    .backgroundColor(Color.White)
-  }
-}
-```
-
-| 变更前                                                   | 变更后                                                 |
-| -------------------------------------------------------- | ------------------------------------------------------ |
-| 浅色模式拉起。<br>![light_mode](figures/light_mode1.jpg) | 深色模式拉起。<br>![dark_mode](figures/dark_mode1.jpg) |
-| 切换深色。<br>![light_mode](figures/light_mode1.jpg)     | 切换浅色。<br>![dark_mode](figures/dark_mode1.jpg)     |
-
-## cl.arkui.8 命令式节点跨页面复用行为变更
+## cl.arkui.3 命令式节点跨页面复用行为变更
 
 **访问级别**
 
@@ -1375,7 +845,7 @@ struct attributeDemo {
     }
     ```
 
-## cl.arkui.5 使用RichEditorStyledStringController构造方式的富文本组件支持预上屏功能
+## cl.arkui.4 使用RichEditorStyledStringController构造方式的富文本组件支持预上屏功能
 **访问级别**
 
 公开接口
@@ -1436,7 +906,7 @@ struct Index {
 }
 ```
 
-## cl.arkui.6 RichEditor（富文本）组件鼠标右击文本触发onSelectionChange回调变更
+## cl.arkui.5 RichEditor（富文本）组件鼠标右击文本触发onSelectionChange回调变更
 **访问级别**
 
 公开接口
@@ -1469,7 +939,7 @@ API 12
 
 不涉及应用适配。
 
-## cl.arkui.7 RichEditor（富文本）预上屏候选词替换已上屏内容行为变更
+## cl.arkui.6 RichEditor（富文本）预上屏候选词替换已上屏内容行为变更
 
 **访问级别**
 
@@ -1529,7 +999,7 @@ struct Index {
 }
 ```
 
-## cl.arkui.8 RichEditor（富文本）设置提示文本时鼠标拖动光标回调变更。
+## cl.arkui.7 RichEditor（富文本）设置提示文本时鼠标拖动光标回调变更。
 
 **访问级别**
 
@@ -1565,7 +1035,7 @@ RichEditor
 
 默认行为变更，无需适配。
 
-## cl.arkui.9 RichEditor（富文本）onDeleteComplete回调变更。
+## cl.arkui.8 RichEditor（富文本）onDeleteComplete回调变更。
 
 **访问级别**
 
@@ -1601,7 +1071,7 @@ RichEditor
 
 默认行为变更，无需适配。
 
-## cl.arkui.10 RichEditor（富文本）RichEditorTextSpanResult接口返回值变更
+## cl.arkui.9 RichEditor（富文本）RichEditorTextSpanResult接口返回值变更
 
 **访问级别**
 
@@ -1637,7 +1107,7 @@ RichEditor
 
 默认行为变更，无需适配。
 
-## cl.arkui.11  半模态底部样式最大高度默认避让状态栏安全区
+## cl.arkui.10  半模态底部样式最大高度默认避让状态栏安全区
 
 **访问级别**
 
@@ -1689,7 +1159,7 @@ bindSheet的LARGE属性
 
 若按变更前的最大高度规格限制的builder内容，需要变更为新规格计算。
 
-## cl.arkui.12 sharedTransition在id入参为undefined或空字符串时的行为变更
+## cl.arkui.11 sharedTransition在id入参为undefined或空字符串时的行为变更
 
 **访问级别**
 
@@ -1723,7 +1193,7 @@ common.d.ts文件的sharedTransition接口
 
 开发者如果希望同一组件的sharedTransition的id维持有效值不变，且开发者已经主动设置id为空字符串或undefined时，需要适配。适配方式为不更改sharedTransition的id，维持之前的有效值不变。其余情况无需适配。
 
-## cl.arkui.13 半模态弹簧曲线时长设置默认值
+## cl.arkui.12 半模态弹簧曲线时长设置默认值
 
 **访问级别**
 
@@ -1759,7 +1229,7 @@ bindSheet的SheetSize.FIT_CONTENT属性。
 
 UX效果调优，应用无需适配。
 
-## cl.arkui.14 bindSheet在2in1设备中默认避让窗口安全区
+## cl.arkui.13 bindSheet在2in1设备中默认避让窗口安全区
 
 **访问级别**
 
@@ -1812,3 +1282,95 @@ bindSheet的preferType属性
 若开发者自定义的builder面板内容是固定高度，建议使用100%布局，变更后自定义的内容也可以自动撑满半模态面板。
 
 若按变更前的最大高度规格限制的builder内容，需要变更为新规格计算。
+
+## cl.arkui.14 XComponent设置为Texture模式使用blendMode接口的行为由不生效变更为正常生效
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+用户使用XComponent组件并设置为Texture模式时，使用blendMode接口没有效果，不符合接口正常规格，需要变更为blendMode接口正常生效。
+
+**变更影响**
+
+此变更涉及应用适配。
+
+变更前：XComponent组件设置为Texture模式，使用blendMode接口不生效。
+
+变更后：XComponent组件设置为Texture模式，使用blendMode接口正常生效。
+
+**起始API Level**
+
+API 11
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.54开始。
+
+**变更的接口/组件**
+
+common.d.ts文件的blendMode接口。
+
+**适配指导**
+
+需适配场景：
+当应用使用XComponent组件并设置为Texture模式（`type`设置为`XComponentType.TEXTURE`）时，使用blendMode接口，可能会出现显示效果变更前后不一致的情况，以下是使用场景示意：
+
+```ts
+@Entry
+@Component
+struct Index {
+  private contextOne: Record<string, () => void> = {};
+  private contextTwo: Record<string, () => void> = {};
+
+  build() {
+    Column() {
+      Stack() {
+        XComponent({
+          id: 'circle',
+          type: XComponentType.TEXTURE,
+          libraryname: 'nativerender'
+        }).height(50)
+          .backgroundColor(Color.Transparent)
+          .onLoad((contextOne?: object | Record<string, () => void>) => {
+            if (contextOne) {
+              this.contextOne = contextOne as Record<string, () => void>;
+            }
+          })
+
+        XComponent({
+          id: 'rect',
+          type: XComponentType.TEXTURE,
+          libraryname: 'nativerender'
+        }).height(50)
+          .backgroundColor(Color.Transparent)
+          .onLoad((contextTwo?: object | Record<string, () => void>) => {
+            if (contextTwo) {
+              this.contextTwo = contextTwo as Record<string, () => void>;
+            }
+          })
+          .blendMode(BlendMode.XOR) // 变更后生效，若需保持变更前行为，可使用BlendMode.None入参
+      }
+      .height(50)
+      .onClick(() => {
+        if (this.contextOne) {
+          this.contextOne.drawCircle();
+        }
+        if (this.contextTwo) {
+          this.contextTwo.drawRectangle();
+        }
+      })
+    }
+    .blendMode(BlendMode.SRC_OVER, BlendApplyType.OFFSCREEN)
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+| 混合类型 | 变更前 | 变更后 |
+| ------- | - | ---- |
+| BlendMode.XOR | ![demoBlendModeXor](figures/demoBlendModeNone.png) | ![demoBlendModeXor](figures/demoBlendModeXor.png) |
+| BlendMode.NONE  | ![demoBlendModeNone](figures/demoBlendModeNone.png) | ![demoBlendModeNone](figures/demoBlendModeNone.png) |
+
+应用若需保持变更前行为，XComponent组件上的blendMode接口使用BlendMode.None入参即可。

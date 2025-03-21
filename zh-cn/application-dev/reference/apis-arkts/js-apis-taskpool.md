@@ -29,7 +29,7 @@ import { taskpool } from '@kit.ArkTS';
 
 execute(func: Function, ...args: Object[]): Promise\<Object>
 
-将待执行的函数放入taskpool内部任务队列, 函数不会立即执行，而是等待分发到工作线程执行。当前执行模式不可取消任务。
+将待执行的函数放入taskpool内部任务队列，函数不会立即执行，而是等待分发到工作线程执行。当前执行模式不可取消任务。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1842,6 +1842,7 @@ type CallbackFunctionWithError = (e: Error) => void
 **系统能力：** SystemCapability.Utils.Lang
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明               |

@@ -1,6 +1,6 @@
 # @ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object) (System API)
 
-The **sendablePhotoAccessHelper** module provides APIs for album management, including creating an album and accessing and modifying media data in an album, based on a sendable object.
+The sendablePhotoAccessHelper module provides APIs for album management, including creating an album and accessing and modifying media data in an album, based on a [Sendable](../../arkts-utils/arkts-sendable.md) object.
 
 > **NOTE**
 >
@@ -151,8 +151,8 @@ Obtains hidden albums based on the specified display mode and retrieval options.
 
 | Name | Type                                                        | Mandatory| Description                                          |
 | ------- | ------------------------------------------------------------ | ---- | ---------------------------------------------- |
-| mode    | [HiddenPhotosDisplayMode](js-apis-photoAccessHelper-sys.md#hiddenphotosdisplaymode11) | Yes  | Display mode of hidden albums.                        |
-| options | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)    | No  | Options for retrieving the albums. If this parameter is not specified, the albums are retrieved based on the display mode. |
+| mode    | [HiddenPhotosDisplayMode](js-apis-photoAccessHelper-sys.md#hiddenphotosdisplaymode11) | Yes  | Display mode of hidden albums.                              |
+| options | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)    | No  | Options for retrieving the albums. If this parameter is not specified, the albums are retrieved based on the display mode.|
 
 **Return value**
 
@@ -169,7 +169,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **Example**
 
@@ -421,16 +421,16 @@ Enumerate the album subtypes.
 
 | Name                 | Value  | Description                                                      |
 | --------------------- | ---- | ---------------------------------------------------------- |
-| HIDDEN                | 1027 | Hidden album.<br/>**System API**: This is a system API.           |
-| TRASH                 | 1028 | Trash.<br/>**System API**: This is a system API.             |
-| SCREENSHOT            | 1029 | Album for screenshots and screen recording files.<br/>**System API**: This is a system API.     |
-| CAMERA                | 1030 | Album for photos and videos taken by the camera.<br/>**System API**: This is a system API. |
-| SOURCE\_GENERIC       | 2049 | Source album.<br/>**System API**: This is a system API.           |
-| CLASSIFY              | 4097 | Classified album. <br/>**System API**: This is a system API.           |
-| GEOGRAPHY\_LOCATION   | 4099 | Geographic location album. <br/>**System API**: This is a system API.           |
-| GEOGRAPHY\_CITY       | 4100 | City album. <br/>**System API**: This is a system API.           |
-| SHOOTING\_MODE        | 4101 | Shooting mode album. <br/>**System API**: This is a system API.       |
-| PORTRAIT              | 4102 | Portrait album. <br/>**System API**: This is a system API.           |
-| GROUP_PHOTO           | 4103 | Group photo album. <br/>**System API**: This is a system API.           |
-| HIGHLIGHT             | 4104 | Highlights album. <br/>**System API**: This is a system API.           |
-| HIGHLIGHT_SUGGESTIONS | 4105 | Highlights suggestion album. <br/>**System API**: This is a system API.       |
+| HIDDEN                | 1027 | Hidden album. <br>**System API**: This is a system API.                |
+| TRASH                 | 1028 | Trash. <br>**System API**: This is a system API.                  |
+| SCREENSHOT            | 1029 | Album for screenshots and screen recording files. <br>**System API**: This is a system API.          |
+| CAMERA                | 1030 | Album for photos and videos taken by the camera. <br>**System API**: This is a system API.|
+| SOURCE\_GENERIC       | 2049 | Source album. <br>**System API**: This is a system API.                |
+| CLASSIFY              | 4097 | Classified album. <br>**System API**: This is a system API.                |
+| GEOGRAPHY\_LOCATION   | 4099 | Geographic location album. <br>**System API**: This is a system API.                |
+| GEOGRAPHY\_CITY       | 4100 | City album. <br>**System API**: This is a system API.                |
+| SHOOTING\_MODE        | 4101 | Shooting mode album. <br>**System API**: This is a system API.            |
+| PORTRAIT              | 4102 | Portrait album. <br>**System API**: This is a system API.                |
+| GROUP_PHOTO           | 4103 | Group photo album. <br>**System API**: This is a system API.                |
+| HIGHLIGHT             | 4104 | Highlights album. <br>**System API**: This is a system API.                |
+| HIGHLIGHT_SUGGESTIONS | 4105 | Highlights suggestion album. <br>**System API**: This is a system API.            |

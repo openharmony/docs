@@ -4,7 +4,7 @@
 
 ## 开发步骤
 
-1. 构造[ScryptSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#scryptspec16)对象，作为密钥派生参数进行密钥派生。
+1. 构造[ScryptSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#scryptspec18)对象，作为密钥派生参数进行密钥派生。
    
    SCRYPTSpec是[KdfSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#kdfspec11)的子类，需要指定：
 
@@ -12,7 +12,7 @@
    - passphrase：用于生成派生密钥的原始密码。
       如果使用string类型，需要直接传入用于密钥派生的数据，而不是HexString、base64等字符串类型。同时需要确保该字符串为utf-8编码，否则派生结果会有差异。
    - salt：盐值。
-   - n：迭代次数，需要为正整数。
+   - n: 迭代次数，需要为正整数。
    - p: 并行化参数，需要为正整数。
    - r: 块大小参数，需要为正整数。
    - maxMemory ：最大内存限制参数，需要为正整数。

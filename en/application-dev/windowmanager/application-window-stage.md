@@ -5,7 +5,7 @@
 
 - Immersive window: a window display mode where the system windows (generally the status bar and navigation bar) are hidden to allow users to fully engage with the content.
 
-  The immersive window feature is applicable only to the main window of an application in full-screen mode. It does not apply to a main window in freeform window mode or a subwindow (for example, a dialog box or a floating window).
+  The immersive window feature is applicable only to the main window of an application in full-screen mode. It does not apply to a main window in freeform window mode or a child window (for example, a dialog box or a floating window).
 
 - Floating window: a special application window that can still be displayed in the foreground when the main window and corresponding ability are running in the background.
   
@@ -18,7 +18,7 @@ In the stage model, you can perform the following operations during application 
 
 - Setting the properties and content of the main window of an application
 
-- Setting the properties and content of the subwindow of an application
+- Setting the properties and content of the child window of an application
 
 - Experiencing the immersive window feature
 
@@ -34,9 +34,9 @@ The table below lists the common APIs used for application window development. F
 | -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | WindowStage    | getMainWindow(callback: AsyncCallback&lt;Window&gt;): void   | Obtains the main window of this window stage.<br>This API can be used only in the stage model.|
 | WindowStage    | loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads content to the main window in this window stage.<br>**path**: path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project.<br>This API can be used only in the stage model.|
-| WindowStage    | createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void | Creates a subwindow.<br>This API can be used only in the stage model.            |
+| WindowStage    | createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void | Creates a child window.<br>This API can be used only in the stage model.            |
 | WindowStage    | on(type: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void | Subscribes to window stage lifecycle change events.<br>This API can be used only in the stage model.|
-| Window static method| createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a subwindow or system window.<br>**config**: parameters used for creating the window.            |
+| Window static method| createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a child window or system window.<br>**config**: parameters used for creating the window.            |
 | Window         | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the content of a page, with its path in the current project specified, to this window.<br>**path**: path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project in the stage model.                                    |
 | Window         | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | Sets the brightness for this window.                                            |
 | Window         | setWindowTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): void | Sets whether this window is touchable.                                    |
@@ -109,36 +109,36 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-## Setting a Subwindow of an Application
+## Setting a Child Window of an Application
 
-You can create an application subwindow, such as a dialog box, and set its properties.
+You can create an application child window, such as a dialog box, and set its properties.
 
 > **NOTE**
 >
-> Due to the following limitations, using subwindows is not recommended in mobile device scenarios. Instead, you are advised to use the [overlay](../reference/apis-arkui/arkui-ts/ts-universal-attributes-overlay.md) capability of components. 
-> - Subwindows on mobile devices are constrained within the main window's boundaries, mirroring the limitations of components. 
-> - In split-screen or freeform window mode, components, when compared with subwindows, offer better real-time adaptability to changes in the main window's position and size. 
-> - On certain platforms, system configurations may restrict subwindows to default system animations and rounded shadows, offering no customization options for applications and thereby limiting their versatility.
+> Due to the following limitations, using child windows is not recommended in mobile device scenarios. Instead, you are advised to use the [overlay](../reference/apis-arkui/arkui-ts/ts-universal-attributes-overlay.md) capability of components. 
+> - Child windows on mobile devices are constrained within the main window's boundaries, mirroring the limitations of components. 
+> - In split-screen or freeform window mode, components, when compared with child windows, offer better real-time adaptability to changes in the main window's position and size. 
+> - On certain platforms, system configurations may restrict child windows to default system animations and rounded shadows, offering no customization options for applications and thereby limiting their versatility.
 
 ### How to Develop
 
-1. Create a subwindow.
+1. Create a child window.
 
-   Call **createSubWindow** to create a subwindow.
+   Call **createSubWindow** to create a child window.
 
-2. Set the properties of the subwindow.
+2. Set the properties of the child window.
 
-   After the subwindow is created, you can set its properties, such as the size, position, background color, and brightness.
+   After the child window is created, you can set its properties, such as the size, position, background color, and brightness.
 
-3. Load content to and show the subwindow.
+3. Load content to and show the child window.
 
-   Call **setUIContent** to load content to the subwindow and **showWindow** to show the subwindow.
+   Call **setUIContent** to load content to the child window and **showWindow** to show the child window.
 
-4. Destroy the subwindow.
+4. Destroy the child window.
 
-   When the subwindow is no longer needed, you can call **destroyWindow** to destroy it.
+   When the child window is no longer needed, you can call **destroyWindow** to destroy it.
 
-The code snippet for creating a subwindow in **onWindowStageCreate** is as follows:
+The code snippet for creating a child window in **onWindowStageCreate** is as follows:
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
@@ -150,7 +150,7 @@ let sub_windowClass: window.Window | null = null;
 
 export default class EntryAbility extends UIAbility {
   showSubWindow() {
-    // 1. Create a subwindow.
+    // 1. Create a child window.
     if (windowStage_ == null) {
       console.error('Failed to create the subwindow. Cause: windowStage_ is null');
     }
@@ -163,7 +163,7 @@ export default class EntryAbility extends UIAbility {
         }
         sub_windowClass = data;
         console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
-        // 2. Set the position, size, and other properties of the subwindow.
+        // 2. Set the position, size, and other properties of the child window.
         sub_windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
           let errCode: number = err.code;
           if (errCode) {
@@ -180,7 +180,7 @@ export default class EntryAbility extends UIAbility {
           }
           console.info('Succeeded in changing the window size.');
         });
-        // 3.1 Load content to the subwindow.
+        // 3.1 Load content to the child window.
         sub_windowClass.setUIContent("pages/page3", (err: BusinessError) => {
           let errCode: number = err.code;
           if (errCode) {
@@ -188,7 +188,7 @@ export default class EntryAbility extends UIAbility {
             return;
           }
           console.info('Succeeded in loading the content.');
-          // 3.2 Show the subwindow.
+          // 3.2 Show the child window.
           (sub_windowClass as window.Window).showWindow((err: BusinessError) => {
             let errCode: number = err.code;
             if (errCode) {
@@ -203,7 +203,7 @@ export default class EntryAbility extends UIAbility {
   }
 
   destroySubWindow() {
-    // 4. Destroy the subwindow when it is no longer needed (depending on the service logic).
+    // 4. Destroy the child window when it is no longer needed (depending on the service logic).
     (sub_windowClass as window.Window).destroyWindow((err: BusinessError) => {
       let errCode: number = err.code;
       if (errCode) {
@@ -216,18 +216,18 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     windowStage_ = windowStage;
-    // Create a subwindow when it is needed, for example, when a touch event occurs in the main window. Calling onWindowStageCreate is not always necessary. The code here is for reference only.
+    // Create a child window when it is needed, for example, when a touch event occurs in the main window. Calling onWindowStageCreate is not always necessary. The code here is for reference only.
     this.showSubWindow();
   }
 
   onWindowStageDestroy() {
-    // Destroy the subwindow when it is no longer needed, for example, when the Close button in the subwindow is touched. Calling onWindowStageDestroy is not always necessary. The code here is for reference only.
+    // Destroy the child window when it is no longer needed, for example, when the Close button in the child window is touched. Calling onWindowStageDestroy is not always necessary. The code here is for reference only.
     this.destroySubWindow();
   }
 };
 ```
 
-You can also click a button on a page to create a subwindow. The code snippet is as follows:
+You can also click a button on a page to create a child window. The code snippet is as follows:
 
 ```ts
 // EntryAbility.ets
@@ -259,7 +259,7 @@ struct Index {
   private CreateSubWindow(){
     // Obtain the window stage.
     windowStage_ = AppStorage.get('windowStage');
-    // 1. Create a subwindow.
+    // 1. Create a child window.
     if (windowStage_ == null) {
       console.error('Failed to create the subwindow. Cause: windowStage_ is null');
     }
@@ -272,7 +272,7 @@ struct Index {
         }
         sub_windowClass = data;
         console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
-        // 2. Set the position, size, and other properties of the subwindow.
+        // 2. Set the position, size, and other properties of the child window.
         sub_windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
           let errCode: number = err.code;
           if (errCode) {
@@ -289,7 +289,7 @@ struct Index {
           }
           console.info('Succeeded in changing the window size.');
         });
-        // 3. Load content to the subwindow.
+        // 3. Load content to the child window.
         sub_windowClass.setUIContent("pages/subWindow", (err: BusinessError) => {
           let errCode: number = err.code;
           if (errCode) {
@@ -297,7 +297,7 @@ struct Index {
             return;
           }
           console.info('Succeeded in loading the content.');
-          // 3. Show the subwindow.
+          // 3. Show the child window.
           (sub_windowClass as window.Window).showWindow((err: BusinessError) => {
             let errCode: number = err.code;
             if (errCode) {
@@ -311,7 +311,7 @@ struct Index {
     }
   }
   private destroySubWindow(){
-    // 4. Destroy the subwindow when it is no longer needed (depending on the service logic).
+    // 4. Destroy the child window when it is no longer needed (depending on the service logic).
     (sub_windowClass as window.Window).destroyWindow((err: BusinessError) => {
       let errCode: number = err.code;
       if (errCode) {

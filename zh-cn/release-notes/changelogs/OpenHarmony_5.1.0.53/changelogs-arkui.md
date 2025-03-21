@@ -156,124 +156,7 @@ UX规格变更，不涉及接口和组件。
 
 默认行为变更，应用无需适配。
 
-## cl.arkui.5 tablet和2in1设备的onPageHide和onHidden生命周期函数变更
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-优化tablet和2in1设备的onPageHide和onHidden生命周期函数，确保函数内部修改状态变量时能够触发页面刷新，也能够触发状态变量的监听函数。
-
-**变更影响**
-
-此变更涉及应用适配。
-
-- 变更前：
-  1. 在onPageHide/onHidden中修改状态变量可能不会触发对应的监听函数，示例如下：
-     ```ts
-     @Component
-     struct TestComponent {
-       @Prop @Watch('onPageVisibilityChange') isPageShow: boolean;
-       onPageVisibilityChange(): void {
-         // 期望状态变量的修改会触发当前函数，实际不一定会触发。
-         console.log(`onPageVisibilityChange ${this.isPageShow}`)
-       }
-       build() {
-         Text('test')
-       }
-     }
-     @Component
-     struct DestA {
-       @State isPageShow: boolean = false;
-       build() {
-         NavDestination() {
-           Stack() {
-             TestComponent({isPageShow: this.isPageShow})
-           }
-         }.onShown(() => {
-           this.isPageShow = true;
-         })
-         .onHidden(() => {
-           // 退后台时会触发该生命周期，进一步改变状态变量
-           this.isPageShow = false;
-         })
-       }
-     }
-     @Entry
-     @Component
-     struct TestPage {
-       private stack: NavPathStack = new NavPathStack();
-       aboutToAppear(): void {
-         this.stack.pushPath({name: 'page'})
-       }
-       @Builder
-       MyPageMap(name: string) {
-         DestA()
-       }
-       build() {
-         Navigation(this.stack) {
-         }.hideNavBar(true)
-         .navDestination(this.MyPageMap)
-       }
-     }
-     ```
-  2. 在onPageHide/onHidden中修改状态变量可能不会刷新页面，示例如下：
-     ```ts
-     @Component
-     struct TestComponent {
-       build() {
-         Text('test1')
-       }
-       aboutToDisappear(): void {
-         console.log(`TestComponent aboutToDisappear`)
-       }
-     }
-     @Entry
-     @Component
-     struct TestPage {
-       @State isPageShow: boolean = true;
-       build() {
-         // 期望状态变量的修改会导致TestComponent会被销毁，实际不一定会被销毁。
-         if (this.isPageShow) {
-           TestComponent()
-         } else {
-           Text('test2')
-         }
-       }
-       onPageShow(): void {
-         this.isPageShow = true;
-       }
-       onPageHide(): void {
-         // 退后台时会触发该生命周期，进一步改变状态变量
-         this.isPageShow = false;
-       }
-     }
-     ```
-
-- 变更后：
-  1. 在onPageHide/onHidden中修改状态变量能够触发对应的监听函数；
-  2. 在onPageHide/onHidden中修改状态变量能够刷新页面。
-
-**起始API Level**
-
-onPageHide：API version 7，onHidden：API version 10
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.1.0.53开始。
-
-**变更发生的接口/组件**
-
-[onPageHide](../../../application-dev/reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpagehide)，所在文件：api/@internal/component/ets/common.d.ts；[onHidden](../../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md#onhidden10)，所在文件：api/@internal/component/ets/nav_destination.d.ts。
-
-**适配指导**
-
-仅**tablet**和**2ni1**设备需要做以下适配：
-检查是否在onPageHide/onHidden生命周期函数中修改状态变量，本次变更之后能够保证触发页面刷新，触发监听函数。
-
-## cl.arkui.7 TEXTURE模式XComponent的本地窗口缓冲区支持设置旋转变换
+## cl.arkui.5 TEXTURE模式XComponent的本地窗口缓冲区支持设置旋转变换
 
 **访问级别**
 
@@ -325,4 +208,263 @@ OH_NativeWindow_CreateNativeWindowFromSurfaceId(surfaceId, &window);
 OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, SET_TRANSFORM, NATIVEBUFFER_ROTATE_90);
 
 // ......
+```
+
+## cl.arkui.6 Toast和Popup/Menu同时存在时，点击Toast子窗不再关闭Popup/Menu
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+子窗口中显示Popup/Menu，弹出与其有相同父窗口的Toast时，Toast窗口上的点击事件会关闭Popup/Menu。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+变更前：点击Toast窗口时，会主动关闭与其有相同父窗口的Popup/Menu。
+
+变更后：点击Toast窗口时，不再主动关闭与其有相同父窗口的Popup/Menu。
+
+
+**起始API Level**
+
+API 9
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.53开始。
+
+**变更的接口/组件**
+
+不涉及。
+
+**适配指导**
+
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
+
+## cl.arkui.7 按钮默认值变更为新增圆角矩形类型
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+原有默认类型按钮是胶囊按钮，在适老化场景下字体过大，在多行等场景下胶囊按钮文字易超出其圆角范围。不符合简单易用及高端精致原则，因此新增圆角矩形类型按钮，默认值变为新增的圆角矩形类型。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+变更前：ButtonOptions中type的默认值为ButtonType.Capsule。
+
+变更后：ButtonOptions中type的默认值为ButtonType.ROUNDED_RECTANGLE
+
+![roundedRectButton](figures/roundedRectButton.PNG)
+
+**起始API Level**
+
+API 9
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.53开始。
+
+**变更的接口/组件**
+
+Button组件中ButtonOptions对象的type属性默认值。
+
+**适配指导**
+
+开发者在使用Button组件，创建默认类型的Button按钮时，Button按钮为ROUNDED_RECTANGLE类型。
+
+```ts
+
+@Entry
+@Component
+struct ButtonExample {
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
+      Text('Capsule button with rounded corners by default.').fontSize(9).fontColor(0xCCCCCC)
+      Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
+        Button('Capsule')
+          .type(ButtonType.Capsule)
+          .backgroundColor(0x317aff)
+          .height(60)
+          .controlSize(ControlSize.NORMAL)
+          .width(180)
+      }
+      Text('Rounded rectangle button with rounded corners by default.').fontSize(9).fontColor(0xCCCCCC)
+      Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
+        Button('Rounded rectangle')
+          .type(ButtonType.ROUNDED_RECTANGLE)
+          .backgroundColor(0x317aff)
+          .controlSize(ControlSize.NORMAL)
+          .height(60)
+          .width(180)
+      }
+    }.height(400).padding({ left: 35, right: 35, top: 35 })
+  }
+}
+
+```
+
+## cl.arkui.8 enabled属性UX样式变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+Rating组件与Slider组件enabled属性UX样式不符合规范
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+Rating组件变更场景：
+
+| 变更前 | 变更后 |
+|------ |--------|
+|Rating组件设置enable为false时，未叠加40%透明度。</br>![rating_enable](figures/rating_enable.PNG)|Rating组件设置enable为false时，叠加40%透明度。</br>![rating_enable_opacity](figures/rating_enable_opacity.PNG)|
+
+Slider组件变更场景：
+
+| 变更前 | 变更后 |
+|------ |--------|
+|Slider组件设置enable为false时，未叠加40%透明度。</br>![slider_enable](figures/slider_enable.PNG)|Slider组件设置enable为false时，叠加40%透明度。</br>![slider_enable_opacity](figures/slider_enable_opacity.PNG)|
+
+**起始API Level**
+
+7
+
+**变更发生版本**
+
+从OpenHarmony 5.1.0.53 版本开始。
+
+**变更的接口/组件**
+
+通用属性enabled属性。
+
+**适配指导**
+
+默认行为变更，无需适配。
+
+## cl.arkui.9 修复Popup高级组件宽度限制计算错误的问题
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+目前宽度最大限制不符合ux规范，在手机屏幕场景下，会出现Popup高级组件无法撑满屏幕的情况，影响体验。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+变更前：屏幕宽度小于400vp时，Popup高级组件最大宽度为当前屏幕宽度-80vp。
+
+变更后：屏幕宽度小于400vp时，Popup高级组件最大宽度为当前屏幕宽度。
+
+| 变更前                                   | 变更后                                   |
+| ---------------------------------------- | ---------------------------------------- |
+| ![popup_before](figures/popup_before.png) | ![popup_after](figures/popup_after.png) |
+
+**起始API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony 5.1.0.53 版本开始。
+
+**变更的接口/组件**
+
+Popup高级组件。
+
+**适配指导**
+
+如果用户原来没有自定义Popup高级组件的宽度，且内容宽度大于320vp，变更前按320vp显示，变更后，Popup高级组件会变宽；如不符合预期，可以手动修改为想要的宽度。
+
+## cl.arkui.12 getKeyboardAvoidMode接口返回值变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+getKeyboardAvoidMode接口实际返回值为字符串，与文档描述返回值为KeyboardAvoidMode枚举值类型不符。
+
+**变更影响**
+
+此变更涉及应用适配。
+
+- 变更前：getKeyboardAvoidMode接口返回字符串类型。
+  
+- 变更后：getKeyboardAvoidMode接口返回KeyboardAvoidMode枚举值，为整数类型。
+
+**起始API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.53开始。
+
+**适配指导**
+
+如下代码实现：
+```ts
+//EntryAbility.ets
+import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window, KeyboardAvoidMode } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+  }
+  onDestroy(): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
+  }
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      //获取并打印当前KeyboardAvoidMode
+      let keyboardAvoidMode = windowStage.getMainWindowSync().getUIContext().getKeyboardAvoidMode();
+      console.log("=====keyboardAvoidMode=====: ", keyboardAvoidMode);
+
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    });
+  }
+
+  onWindowStageDestroy(): void {
+    // Main window is destroyed, release UI related resources
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
+  }
+
+  onForeground(): void {
+    // Ability has brought to foreground
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+  }
+
+  onBackground(): void {
+    // Ability has back to background
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
+  }
+}
 ```

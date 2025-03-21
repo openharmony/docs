@@ -5,8 +5,6 @@ The **http** module provides APIs for implementing HTTP data request capabilitie
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
-> **You are advised to use [Remote Communication Kit](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/remote-communication-kit-guide-V5) for implementing HTTP data request capabilities. The Kit will continue to evolve to provide more functions.**
 ## Modules to Import
 
 ```ts
@@ -73,6 +71,7 @@ httpRequest.request(// Customize EXAMPLE_URL in extraData on your own. It is up 
         remoteFileName: 'fileName.txt' // Optional. This field is supported since API version 11.
       }
     ]
+    addressFamily: http.AddressFamily.DEFAULT // Optional. By default, the IPv4 or IPv6 address of the target domain name is selected. This attribute is supported since API version 15.
   },
   (err: BusinessError, data: http.HttpResponse) => {
     if (!err) {
@@ -223,7 +222,7 @@ request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpR
 Initiates an HTTP request containing specified options to a given URL. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> This API supports only receiving of data not greater than 5 MB.
+> This API can receive only data whose size is less than 5 MB. If the data size exceeds 5 MB, you need to set **maxLimit** to a larger value in **HttpRequestOptions**.
 >
 > If you need to pass in cookies, add them to the **options** parameter.
 
@@ -331,7 +330,7 @@ request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 Initiates an HTTP request containing specified options to a given URL. This API uses a promise to return the result. 
 
 > **NOTE**
-> This API supports only receiving of data not greater than 5 MB.
+> This API can receive only data whose size is less than 5 MB. If the data size exceeds 5 MB, you need to set **maxLimit** to a larger value in **HttpRequestOptions**.
 >
 > If you need to pass in cookies, add them to the **options** parameter.
 
@@ -747,9 +746,9 @@ Unregisters the observer for HTTP Response Header events.
 
 > **NOTE**
 >
->1. This API has been deprecated. You are advised to use [off("headersReceive")<sup>8+</sup>](#offheadersreceive8).
+>- This API has been deprecated. You are advised to use [off("headersReceive")<sup>8+</sup>](#offheadersreceive8).
 >
->2. You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+>- You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -1033,6 +1032,8 @@ on(type: 'dataSendProgress', callback: Callback\<DataSendProgressInfo\>): void
 
 Registers an observer for events indicating progress of sending HTTP requests.
 
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -1062,6 +1063,8 @@ Unregisters the observer for events indicating progress of sending HTTP requests
 
 > **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -1111,6 +1114,7 @@ Specifies the type and value range of the optional parameters in the HTTP reques
 | maxLimit<sup>11+</sup>   | number   | No| Maximum number of bytes in a response. The default value is 5\*1024\*1024, in bytes. The maximum value is **100\*1024\*1024**. |
 | multiFormDataList<sup>11+</sup> | Array<[MultiFormData](#multiformdata11)> | No| Form data list. This field is valid when **content-Type** is set to **multipart/form-data**.|
 | certificatePinning<sup>12+</sup> | [CertificatePinning](#certificatepinning12) \| CertificatePinning[] | No| Dynamic configuration of certificate pinning. One or more certificate PINs can be specified.|
+| addressFamily<sup>15+</sup> | [AddressFamily](#addressfamily15) | No| IP address family. You can specify an address type for domain name resolution.|
 
 ## RequestMethod
 
@@ -1237,6 +1241,8 @@ Defines the data receiving progress information.
 ## DataSendProgressInfo<sup>11+</sup>
 
 Defines the data sending progress information.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -1549,3 +1555,15 @@ Defines the network proxy configuration.
 |       Type      |            Description            |
 | ---------------- | --------------------------- |
 | connection.HttpProxy | Network proxy configuration.    |
+
+## AddressFamily<sup>15+</sup>
+
+Enumerates the address types for domain name resolution.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Name      |            Description            |
+| ---------------- | --------------------------- |
+| DEFAULT | Automatically selects the IPv4 or IPv6 address of the target domain name.    |
+| ONLY_V4 | Resolves only the IPv4 address of the target domain name and ignores the IPv6 address.    |
+| ONLY_V6 | Resolves only the IPv6 address of the target domain name and ignores the IPv4 address.    |

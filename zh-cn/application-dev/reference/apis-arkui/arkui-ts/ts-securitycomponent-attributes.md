@@ -1,13 +1,10 @@
 # 安全控件通用属性
 
-
 安全控件的基础属性，用于设置安全控件通用的属性。
-
 
 > **说明：**
 >
 > 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
 
 ## iconSize
 
@@ -45,7 +42,7 @@ layoutDirection(value: SecurityComponentLayoutDirection): T
 
 | 参数名 | 类型 | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | [SecurityComponentLayoutDirection](#securitycomponentlayoutdirection枚举说明) |是 | 安全控件上图标和文字分布的方向。<br/>默认值：SecurityComponentLayoutDirection.HORIZONTAL|
+| value | [SecurityComponentLayoutDirection](#securitycomponentlayoutdirection枚举说明) |是 | 安全控件上图标和文字分布的方向。<br/>默认值：SecurityComponentLayoutDirection.HORIZONTAL。|
 
 **返回值：**
 
@@ -67,7 +64,7 @@ position(value: Position): T
 
 | 参数名 | 类型 | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | [Position](ts-types.md#position) |是 |安全控件的左上角相对于父容器左上角的偏移位置。<br/>默认值：<br/>{<br/>x: 0,<br/>y: 0<br/>}|
+| value | [Position](ts-types.md#position) |是 |安全控件的左上角相对于父容器左上角的偏移位置。<br/>默认值：<br/>{<br/>x: 0,<br/>y: 0<br/>}。|
 
 **返回值：**
 
@@ -89,7 +86,7 @@ markAnchor(value: Position): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | [Position](ts-types.md#position) |是 |安全控件在位置定位时的锚点，以控件左上角作为基准点进行偏移。通常配合position和offset属性使用，单独使用时，效果类似offset。<br/>默认值：<br/>{<br/>x: 0,<br/>y: 0<br/>}|
+| value | [Position](ts-types.md#position) |是 |安全控件在位置定位时的锚点，以控件左上角作为基准点进行偏移。通常配合position和offset属性使用，单独使用时，效果类似offset。<br/>默认值：<br/>{<br/>x: 0,<br/>y: 0<br/>}。|
 
 **返回值：**
 
@@ -111,7 +108,7 @@ offset(value: Position | Edges | LocalizedEdges): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | [Position](ts-types.md#position) \| [Edges<sup>12+</sup>](ts-types.md#edges12) \| [LocalizedEdges<sup>12+</sup>](ts-types.md#localizededges12) |是 |安全控件相对于自身布局位置的坐标偏移。设置此属性不会影响父容器的布局，仅在绘制过程中调整位置。<br/>默认值：<br/>{<br/>x: 0,<br/>y: 0<br/>}|
+| value | [Position](ts-types.md#position) \| [Edges<sup>12+</sup>](ts-types.md#edges12) \| [LocalizedEdges<sup>12+</sup>](ts-types.md#localizededges12) |是 |安全控件相对于自身布局位置的坐标偏移。设置此属性不会影响父容器的布局，仅在绘制过程中调整位置。<br/>默认值：<br/>{<br/>x: 0,<br/>y: 0<br/>}。|
 
 **返回值：**
 
@@ -155,7 +152,7 @@ fontStyle(value: FontStyle): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | [FontStyle](ts-appendix-enums.md#fontstyle) |是 |安全控件上文字的样式。<br/>默认值：FontStyle.Normal|
+| value | [FontStyle](ts-appendix-enums.md#fontstyle) |是 |安全控件上文字的样式。<br/>默认值：FontStyle.Normal。|
 
 **返回值：**
 
@@ -177,7 +174,7 @@ fontWeight(value: number | FontWeight | string): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string |是 |安全控件上文字粗细。<br/>默认值：FontWeight.Medium|
+| value | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string |是 |安全控件上文字粗细。<br/>默认值：FontWeight.Medium。|
 
 **返回值：**
 
@@ -199,7 +196,7 @@ fontFamily(value: string | Resource): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | string \| [Resource](ts-types.md#resource) |是 |安全控件上文字的字体。<br/>默认字体：'HarmonyOS Sans'|
+| value | string \| [Resource](ts-types.md#resource) |是 |安全控件上文字的字体。<br/>默认字体：'HarmonyOS Sans'。|
 
 **返回值：**
 
@@ -221,7 +218,7 @@ fontColor(value: ResourceColor): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | [ResourceColor](ts-types.md#resourcecolor) |是 |安全控件上文字的颜色。<br/>默认值：$r('sys.color.font_on_primary')|
+| value | [ResourceColor](ts-types.md#resourcecolor) |是 |安全控件上文字的颜色。<br/>默认值：$r('sys.color.font_on_primary')。|
 
 **返回值：**
 
@@ -243,7 +240,7 @@ iconColor(value: ResourceColor): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | [ResourceColor](ts-types.md#resourcecolor) |是 |安全控件上图标的颜色。<br/>默认值：$r('sys.color.icon_on_primary')|
+| value | [ResourceColor](ts-types.md#resourcecolor) |是 |安全控件上图标的颜色。<br/>默认值：$r('sys.color.icon_on_primary')。|
 
 **返回值：**
 
@@ -265,7 +262,7 @@ backgroundColor(value: ResourceColor): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | [ResourceColor](ts-types.md#resourcecolor) |是 |安全控件的背景颜色。安全控件按钮背景色高八位的α值低于0x1a（例如0x1800ff00）时，安全控件按钮背景色高八位的α值会被系统强制调整为0xff。<br/>默认值：$r('sys.color.icon_emphasize')|
+| value | [ResourceColor](ts-types.md#resourcecolor) |是 |安全控件的背景颜色。安全控件按钮背景色高八位的α值低于0x1a（例如0x1800ff00）时，安全控件按钮背景色高八位的α值会被系统强制调整为0xff。<br/>默认值：$r('sys.color.icon_emphasize')。|
 
 **返回值：**
 
@@ -287,7 +284,7 @@ borderStyle(value: BorderStyle): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | [BorderStyle](ts-appendix-enums.md#borderstyle) |是 |安全控件的边框的样式。<br/>默认不设置边框样式|
+| value | [BorderStyle](ts-appendix-enums.md#borderstyle) |是 |安全控件的边框的样式。<br/>默认不设置边框样式。|
 
 **返回值：**
 
@@ -309,7 +306,7 @@ borderWidth(value: Dimension): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | [Dimension](ts-types.md#dimension10) |是 |安全控件的边框的宽度。<br/>默认不设置边框宽度|
+| value | [Dimension](ts-types.md#dimension10) |是 |安全控件的边框的宽度。<br/>默认不设置边框宽度。|
 
 **返回值：**
 
@@ -331,7 +328,7 @@ borderColor(value: ResourceColor): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | [ResourceColor](ts-types.md#resourcecolor) |是 |安全控件的边框的颜色。<br/>默认不设置边框颜色|
+| value | [ResourceColor](ts-types.md#resourcecolor) |是 |安全控件的边框的颜色。<br/>默认不设置边框颜色。|
 
 **返回值：**
 
@@ -397,7 +394,7 @@ padding(value: Padding | Dimension): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) |是 |安全控件的内边距。<br/>默认值：上下8vp, 左右16vp|
+| value | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) |是 |安全控件的内边距。<br/>默认值：上下8vp，左右16vp。|
 
 **返回值：**
 
@@ -419,7 +416,7 @@ align(alignType: Alignment): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| alignType | [Alignment](ts-appendix-enums.md#alignment) |是 |安全控件图标文本的对齐方式，图标文本作为整体在控件背托范围内进行对齐，UX显示受[padding](ts-securitycomponent-attributes.md#padding)影响。<br/>默认值：Alignment.Center|
+| alignType | [Alignment](ts-appendix-enums.md#alignment) |是 |安全控件图标文本的对齐方式，图标文本作为整体在控件背托范围内进行对齐，UX显示受[padding](ts-securitycomponent-attributes.md#padding)影响。<br/>默认值：Alignment.Center。|
 
 **返回值：**
 
@@ -441,7 +438,7 @@ textIconSpace(value: Dimension): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | [Dimension](ts-types.md#dimension10) |是 |安全控件中图标和文字的间距。从API 14开始，若设置值为负值，则使用默认值。<br/>默认值：4vp|
+| value | [Dimension](ts-types.md#dimension10) |是 |安全控件中图标和文字的间距。从API 14开始，若设置值为负值，则使用默认值。<br/>默认值：4vp。|
 
 **返回值：**
 
@@ -529,7 +526,7 @@ constraintSize(value: ConstraintSizeOptions): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) |是 |约束尺寸，组件布局时，进行尺寸范围限制。constraintSize的优先级高于Width和Height。取值结果参考[constraintSize取值对width/height影响](ts-universal-attributes-size.md)。<br>同width/height一样，若设置尺寸小于当前属性组合下允许的最小尺寸时, 高度不会缩减到设置值，宽度会调整到设置值，此时按钮文本信息会自动换行，以保证安全控件显示的完整性。<br>默认值：<br>{<br/>minWidth:&nbsp;0,<br/>maxWidth:&nbsp;Infinity,<br/>minHeight:&nbsp;0,<br/>maxHeight:&nbsp;Infinity<br/>}|
+| value | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) |是 |约束尺寸，组件布局时，进行尺寸范围限制。constraintSize的优先级高于Width和Height。取值结果参考[constraintSize取值对width/height影响](ts-universal-attributes-size.md)。<br>同width/height一样，若设置尺寸小于当前属性组合下允许的最小尺寸时，高度不会缩减到设置值，宽度会调整到设置值，此时按钮文本信息会自动换行，以保证安全控件显示的完整性。<br>默认值：<br>{<br/>minWidth:&nbsp;0,<br/>maxWidth:&nbsp;Infinity,<br/>minHeight:&nbsp;0,<br/>maxHeight:&nbsp;Infinity<br/>}。|
 
 **返回值：**
 
@@ -595,7 +592,7 @@ id(description: string): T
 
 | 名称   | 类型      | 必填 | 说明                       |
 | ------ | -------- | -----|---------------------- |
-| description | string   |  是  | 组件的唯一标识，唯一性由使用者保证。<br>默认值：''<br/> |
+| description | string   |  是  | 组件的唯一标识，唯一性由使用者保证。<br>默认值：''。<br/> |
 
 **返回值：**
 
@@ -640,7 +637,7 @@ minFontScale(scale: number | Resource): T
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最小的字体缩放倍数。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时，按值为0处理，即缩小不受限制；设置的值大于1，按值为1处理，即缩小不生效；取值范围外为异常值，默认不生效。 |
+| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最小的字体缩放倍数。<br/>取值范围：[0, 1]。<br/>**说明：** <br/>设置的值小于0时，按值为0处理，即缩小不受限制；设置的值大于1，按值为1处理，即缩小不生效；取值范围外为异常值，默认不生效。 |
 
 **返回值：**
 
@@ -662,7 +659,7 @@ maxFontScale(scale: number | Resource): T
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最大的字体缩放倍数。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理，异常值默认不生效。 |
+| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最大的字体缩放倍数。<br/>取值范围：[1, +∞)。<br/>**说明：** <br/>设置的值小于1时，按值为1处理，异常值默认不生效。 |
 
 **返回值：**
 
@@ -733,7 +730,7 @@ maxLines(line: number): T
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
-| value  | number | 是   | 文本的最大行数。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按默认值100000处理。 |
+| value  | number | 是   | 文本的最大行数。<br/>取值范围：[1, +∞)。<br/>**说明：** <br/>设置的值小于1时，按默认值100000处理。 |
 
 **返回值：**
 
@@ -767,7 +764,7 @@ heightAdaptivePolicy(policy: TextHeightAdaptivePolicy): T
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 是   | 文本自适应高度的方式。<br/>默认值：TextHeightAdaptivePolicy.MAX_LINES_FIRST |
+| value  | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 是   | 文本自适应高度的方式。<br/>默认值：TextHeightAdaptivePolicy.MAX_LINES_FIRST。 |
 
 **返回值：**
 
@@ -789,7 +786,7 @@ enabled(respond: boolean): T
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 值为true表示组件可交互，响应点击等操作。<br/>值为false表示组件不可交互，不响应点击等操作。<br/>默认值：true |
+| value  | boolean | 是   | 值为true表示组件可交互，响应点击等操作。<br/>值为false表示组件不可交互，不响应点击等操作。<br/>默认值：true。 |
 
 **返回值：**
 
@@ -850,7 +847,7 @@ struct Index {
   build() {
     Row() {
       Column({ space: 5 }) {
-        // 生成一个保存按钮，并设置它的SecurityComponent属性
+        // 生成一个保存按钮，并设置它的SecurityComponent属性。
         SaveButton()
           .fontSize(35)
           .fontColor(Color.White)
@@ -862,17 +859,27 @@ struct Index {
           .borderRadius(20)
           .fontWeight(100)
           .iconColor(Color.White)
-          .padding({left:50, top:50, bottom:50, right:50})
+          .padding({
+            left: 50,
+            top: 50,
+            bottom: 50,
+            right: 50
+          })
           .textIconSpace(20)
           .backgroundColor(0x3282f6)
-        SaveButton().size({width:200, height:100})
+        SaveButton().size({ width: 200, height: 100 })
         SaveButton()
-          .size({width:200, height:100})
+          .size({ width: 200, height: 100 })
           .align(Alignment.Start)
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
           .size({ width: 150, height: 80 })
-          .borderRadius({ topLeft: 20, topRight: 25, bottomRight: 30, bottomLeft: 35 })
-        SaveButton().constraintSize({maxWidth:60})
+          .borderRadius({
+            topLeft: 20,
+            topRight: 25,
+            bottomRight: 30,
+            bottomLeft: 35
+          })
+        SaveButton().constraintSize({ maxWidth: 60 })
       }.width('100%')
     }.height('100%')
   }
@@ -893,20 +900,22 @@ struct Index {
     Row() {
       RelativeContainer() {
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
-          .width(100).height(100)
+          .width(100)
+          .height(100)
           .backgroundColor("#A3CF62")
           .alignRules({
-            top: {anchor: "__container__", align: VerticalAlign.Top},
-            left: {anchor: "__container__", align: HorizontalAlign.Start}
+            top: { anchor: "__container__", align: VerticalAlign.Top },
+            left: { anchor: "__container__", align: HorizontalAlign.Start }
           })
           .id("row1")
 
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
-          .width(100).height(100)
+          .width(100)
+          .height(100)
           .backgroundColor("#00AE9D")
           .alignRules({
-            top: {anchor: "__container__", align: VerticalAlign.Top},
-            right: {anchor: "__container__", align: HorizontalAlign.End}
+            top: { anchor: "__container__", align: VerticalAlign.Top },
+            right: { anchor: "__container__", align: HorizontalAlign.End }
           })
           .id("row2")
 
@@ -914,35 +923,35 @@ struct Index {
           .height(100)
           .backgroundColor("#0A59F7")
           .alignRules({
-            top: {anchor: "row1", align: VerticalAlign.Bottom},
-            left: {anchor: "row1", align: HorizontalAlign.End},
-            right: {anchor: "row2", align: HorizontalAlign.Start}
+            top: { anchor: "row1", align: VerticalAlign.Bottom },
+            left: { anchor: "row1", align: HorizontalAlign.End },
+            right: { anchor: "row2", align: HorizontalAlign.Start }
           })
           .id("row3")
 
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
           .backgroundColor("#2CA9E0")
           .alignRules({
-            top: {anchor: "row3", align: VerticalAlign.Bottom},
-            bottom: {anchor: "__container__", align: VerticalAlign.Bottom},
-            left: {anchor: "__container__", align: HorizontalAlign.Start},
-            right: {anchor: "row1", align: HorizontalAlign.End}
+            top: { anchor: "row3", align: VerticalAlign.Bottom },
+            bottom: { anchor: "__container__", align: VerticalAlign.Bottom },
+            left: { anchor: "__container__", align: HorizontalAlign.Start },
+            right: { anchor: "row1", align: HorizontalAlign.End }
           })
           .id("row4")
 
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
           .backgroundColor("#30C9F7")
           .alignRules({
-            top: {anchor: "row3", align: VerticalAlign.Bottom},
-            bottom: {anchor: "__container__", align: VerticalAlign.Bottom},
-            left: {anchor: "row2", align: HorizontalAlign.Start},
-            right: {anchor: "__container__", align: HorizontalAlign.End}
+            top: { anchor: "row3", align: VerticalAlign.Bottom },
+            bottom: { anchor: "__container__", align: VerticalAlign.Bottom },
+            left: { anchor: "row2", align: HorizontalAlign.Start },
+            right: { anchor: "__container__", align: HorizontalAlign.End }
           })
           .id("row5")
       }
       .width(300).height(300)
       .margin({ left: 50 })
-      .border({ width:2, color: "#6699FF" })
+      .border({ width: 2, color: "#6699FF" })
     }
     .height('100%')
   }

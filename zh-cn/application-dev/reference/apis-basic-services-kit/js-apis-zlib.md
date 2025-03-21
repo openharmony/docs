@@ -3735,7 +3735,7 @@ async function demo() {
 | level    | [CompressLevel](#compresslevel)     | 是   | 否  | 参考[CompressLevel枚举定义](#compresslevel)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
 | memLevel | [MemLevel](#memlevel)         | 是   | 否  | 参考[MemLevel枚举定义](#memlevel)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                        |
 | strategy | [CompressStrategy](#compressstrategy) | 是   | 否  | 参考[CompressStrategy枚举定义](#compressstrategy)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
-| parallel<sup>16+</sup> | [ParallelStrategy](#parallelstrategy16) | 是   | 否  | 参考[ParallelStrategy枚举定义](#parallelstrategy16)。<br>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。        |
+| parallel<sup>18+</sup> | [ParallelStrategy](#parallelstrategy18) | 是   | 否  | 参考[ParallelStrategy枚举定义](#parallelstrategy18)。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。        |
 
 ## CompressLevel
 
@@ -3776,9 +3776,9 @@ async function demo() {
 | COMPRESS_STRATEGY_RLE              | 3    | 游标编码压缩策略。         |
 | COMPRESS_STRATEGY_FIXED            | 4    | 固定的压缩策略。           |
 
-## ParallelStrategy<sup>16+</sup>
+## ParallelStrategy<sup>18+</sup>
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 

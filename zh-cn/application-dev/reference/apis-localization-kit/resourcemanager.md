@@ -75,7 +75,11 @@
 | [ResourceManager_ErrorCode](#resourcemanager_errorcode) [OH_ResourceManager_GetStringArrayByName](#oh_resourcemanager_getstringarraybyname) (const [NativeResourceManager](rawfile.md#nativeresourcemanager) \*mgr, const char \*resName, char \*\*\*resultValue, uint32_t \*resultLen) | 通过指定资源名称，获取字符串数组。 | 
 | [ResourceManager_ErrorCode](#resourcemanager_errorcode) [OH_ResourceManager_ReleaseStringArray](#oh_resourcemanager_releasestringarray) (char \*\*\*resValue, uint32_t len) | 释放字符串数组内存。 | 
 | [ResourceManager_ErrorCode](#resourcemanager_errorcode) [OH_ResourceManager_GetPluralString](#oh_resourcemanager_getpluralstring) (const [NativeResourceManager](rawfile.md#nativeresourcemanager) \*mgr, uint32_t resId, uint32_t num, char \*\*resultValue) | 通过指定资源ID，获取对应的单复数字符串。 | 
-| [ResourceManager_ErrorCode](#resourcemanager_errorcode) [OH_ResourceManager_GetPluralStringByName](#oh_resourcemanager_getpluralstringbyname) (const [NativeResourceManager](rawfile.md#nativeresourcemanager) \*mgr, const char \*resName, uint32_t num, char \*\*resultValue) | 通过指定资源名称，获取对应的单复数字符串。 | 
+| [ResourceManager_ErrorCode](#resourcemanager_errorcode) [OH_ResourceManager_GetPluralStringByName](#oh_resourcemanager_getpluralstringbyname) (const [NativeResourceManager](rawfile.md#nativeresourcemanager) \*mgr, const char \*resName, uint32_t num, char \*\*resultValue) | 通过指定资源名称，获取对应的单复数字符串。 |
+| [ResourceManager_ErrorCode](#resourcemanager_errorcode)[OH_ResourceManager_GetIntPluralString](#oh_resourcemanager_getintpluralstring) (const [NativeResourceManager](rawfile.md#nativeresourcemanager) \*mgr, uint32_t resId, uint32_t num, char \*\*resultValue,...) | 通过指定资源ID，获取对应的单复数字符串。  | 
+| [ResourceManager_ErrorCode](#resourcemanager_errorcode)[OH_ResourceManager_GetDoublePluralString](#oh_resourcemanager_getdoublepluralstring) (const [NativeResourceManager](rawfile.md#nativeresourcemanager) \*mgr, uint32_t resId, double num, char \*\*resultValue,...) | 通过指定资源ID，获取对应的单复数字符串。  | 
+| [ResourceManager_ErrorCode](#resourcemanager_errorcode)[OH_ResourceManager_GetIntPluralStringByName](#oh_resourcemanager_getintpluralstringbyname) (const [NativeResourceManager](rawfile.md#nativeresourcemanager) \*mgr, const char \*resName, uint32_t num, char \*\*resultValue,...) | 通过指定资源名称，获取对应的单复数字符串。  | 
+| [ResourceManager_ErrorCode](#resourcemanager_errorcode)[OH_ResourceManager_GetDoublePluralStringByName](#oh_resourcemanager_getdoublepluralstringbyname) (const [NativeResourceManager](rawfile.md#nativeresourcemanager) \*mgr, const char \*resName, double num, char \*\*resultValue,...) | 通过指定资源名称，获取对应的单复数字符串。  |  
 | [ResourceManager_ErrorCode](#resourcemanager_errorcode) [OH_ResourceManager_GetColor](#oh_resourcemanager_getcolor) (const [NativeResourceManager](rawfile.md#nativeresourcemanager) \*mgr, uint32_t resId, uint32_t \*resultValue) | 通过指定资源ID，获取对应的颜色值。 | 
 | [ResourceManager_ErrorCode](#resourcemanager_errorcode) [OH_ResourceManager_GetColorByName](#oh_resourcemanager_getcolorbyname) (const [NativeResourceManager](rawfile.md#nativeresourcemanager) \*mgr, const char \*resName, uint32_t \*resultValue) | 通过指定资源ID，获取对应的颜色值。 | 
 | [ResourceManager_ErrorCode](#resourcemanager_errorcode) [OH_ResourceManager_GetInt](#oh_resourcemanager_getint) (const [NativeResourceManager](rawfile.md#nativeresourcemanager) \*mgr, uint32_t resId, int \*resultValue) | 通过指定资源ID，获取对应的int值。 | 
@@ -451,6 +455,83 @@ ERROR_CODE_SYSTEM_RES_MANAGER_GET_FAILED 9001009 - 无法访问系统资源。
 ERROR_CODE_OUT_OF_MEMORY 9001100 - 内存溢出。
 
 
+### OH_ResourceManager_GetDoublePluralString()
+
+```
+ResourceManager_ErrorCode OH_ResourceManager_GetDoublePluralString (const NativeResourceManager * mgr, uint32_t resId, double num, char ** resultValue,  ... )
+```
+
+**描述**
+
+通过指定资源ID，获取对应的单复数字符串。
+
+使用此接口后，需要调用free()方法来释放字符串的内存。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| mgr | 指向[NativeResourceManager](rawfile.md#nativeresourcemanager)的指针，此指针通过[OH_ResourceManager_InitNativeResourceManager](rawfile.md#oh_resourcemanager_initnativeresourcemanager)方法获取。  | 
+| resId | 资源ID。  | 
+| num | 数量值（浮点数）。根据当前语言的复数规则获取该数量值对应的字符串数字。  | 
+| resultValue | 写入resultValue的结果。  | 
+| ... | 格式化字符串资源参数，可变参数，支持const char\*、int、float类型。  | 
+
+**返回：**
+
+SUCCESS 0 - 成功。 
+
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。 
+
+ERROR_CODE_RES_ID_NOT_FOUND 9001001 - 无效的资源ID。 
+
+ERROR_CODE_RES_NOT_FOUND_BY_ID 9001002 - 没有根据资源ID找到匹配的资源。 
+
+ERROR_CODE_RES_REF_TOO_MUCH 9001006 - 资源被循环引用。 
+
+ERROR_CODE_OUT_OF_MEMORY 9001100 - 内存溢出。
+
+
+### OH_ResourceManager_GetDoublePluralStringByName()
+
+```
+ResourceManager_ErrorCode OH_ResourceManager_GetDoublePluralStringByName (const NativeResourceManager * mgr, const char * resName, double num, char ** resultValue,  ... )
+```
+**描述**
+
+通过指定资源名称，获取对应的单复数字符串。
+
+使用此接口后，需要调用free()方法来释放字符串的内存。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| mgr | 指向[NativeResourceManager](rawfile.md#nativeresourcemanager)的指针，此指针通过[OH_ResourceManager_InitNativeResourceManager](rawfile.md#oh_resourcemanager_initnativeresourcemanager)方法获取。  | 
+| resName | 资源名称。  | 
+| num | 数量值（浮点数）。根据当前语言的复数规则获取该数量值对应的字符串数字。  | 
+| resultValue | 写入resultValue的结果。  | 
+| ... | 格式化字符串资源参数，可变参数，支持const char\*、int、float类型。  | 
+
+**返回：**
+
+SUCCESS 0 - 成功。 
+
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。 
+
+ERROR_CODE_RES_ID_NOT_FOUND 9001003 - 无效的资源名称。 
+
+ERROR_CODE_RES_NOT_FOUND_BY_ID 9001004 - 没有根据资源名称找到匹配的资源。 
+
+ERROR_CODE_RES_REF_TOO_MUCH 9001006 - 资源被循环引用。 
+
+ERROR_CODE_OUT_OF_MEMORY 9001100 - 内存溢出。
+
+
 ### OH_ResourceManager_GetDrawableDescriptor()
 
 ```
@@ -713,6 +794,83 @@ ERROR_CODE_RES_ID_NOT_FOUND 9001003 - 无效的资源名称。
 ERROR_CODE_RES_NOT_FOUND_BY_ID 9001004 - 没有根据资源名称找到匹配的资源。
 
 ERROR_CODE_RES_REF_TOO_MUCH 9001006 - 资源被循环引用。
+
+
+### OH_ResourceManager_GetIntPluralString()
+
+```
+ResourceManager_ErrorCode OH_ResourceManager_GetIntPluralString (const NativeResourceManager * mgr, uint32_t resId, uint32_t num, char ** resultValue,  ... )
+```
+
+**描述**
+
+通过指定资源ID，获取对应的单复数字符串。
+
+使用此接口后，需要调用free()方法来释放字符串的内存。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| mgr | 指向[NativeResourceManager](rawfile.md#nativeresourcemanager)的指针，此指针通过[OH_ResourceManager_InitNativeResourceManager](rawfile.md#oh_resourcemanager_initnativeresourcemanager)方法获取。  | 
+| resId | 资源ID。  | 
+| num | 数量值（整数）。根据当前语言的复数规则获取该数量值对应的字符串数字。  | 
+| resultValue | 写入resultValue的结果。  | 
+| ... | 格式化字符串资源参数，可变参数，支持const char\*、int、float类型。  | 
+
+**返回：**
+
+SUCCESS 0 - 成功。 
+
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。 
+
+ERROR_CODE_RES_ID_NOT_FOUND 9001001 - 无效的资源ID。 
+
+ERROR_CODE_RES_NOT_FOUND_BY_ID 9001002 - 没有根据资源ID找到匹配的资源。 
+
+ERROR_CODE_RES_REF_TOO_MUCH 9001006 - 资源被循环引用。 
+
+ERROR_CODE_OUT_OF_MEMORY 9001100 - 内存溢出。
+
+
+### OH_ResourceManager_GetIntPluralStringByName()
+
+```
+ResourceManager_ErrorCode OH_ResourceManager_GetIntPluralStringByName (const NativeResourceManager * mgr, const char * resName, uint32_t num, char ** resultValue,  ... )
+```
+**描述**
+
+通过指定资源名称，获取对应的单复数字符串。
+
+使用此接口后，需要调用free()方法来释放字符串的内存。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| mgr | 指向[NativeResourceManager](rawfile.md#nativeresourcemanager)的指针，此指针通过[OH_ResourceManager_InitNativeResourceManager](rawfile.md#oh_resourcemanager_initnativeresourcemanager)方法获取。  | 
+| resName | 资源名称。  | 
+| num | 数量值（整数）。根据当前语言的复数规则获取该数量值对应的字符串数字。  | 
+| resultValue | 写入resultValue的结果。  | 
+| ... | 格式化字符串资源参数，可变参数，支持const char\*、int、float类型。  | 
+
+**返回：**
+
+SUCCESS 0 - 成功。 
+
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。 
+
+ERROR_CODE_RES_ID_NOT_FOUND 9001003 - 无效的资源名称。 
+
+ERROR_CODE_RES_NOT_FOUND_BY_ID 9001004 - 没有根据资源名称找到匹配的资源。 
+
+ERROR_CODE_RES_REF_TOO_MUCH 9001006 - 资源被循环引用。 
+
+ERROR_CODE_OUT_OF_MEMORY 9001100 - 内存溢出。
 
 
 ### OH_ResourceManager_GetLocales()
@@ -1073,26 +1231,30 @@ ResourceManager_ErrorCode OH_ResourceManager_GetPluralString (const NativeResour
 
 **起始版本：** 12
 
+**废弃版本：** 18
+
+**替代接口：**[OH_ResourceManager_GetIntPluralString](#oh_resourcemanager_getintpluralstring)
+
 **参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mgr | 指向[NativeResourceManager](rawfile.md#nativeresourcemanager)的指针，此指针通过[OH_ResourceManager_InitNativeResourceManager](rawfile.md#oh_resourcemanager_initnativeresourcemanager)方法获取。 | 
-| resId | 资源ID。 | 
-| num | 数量值。 | 
-| resultValue | 写入resultValue的结果。 | 
+| mgr | 指向[NativeResourceManager](rawfile.md#nativeresourcemanager)的指针，此指针通过[OH_ResourceManager_InitNativeResourceManager](rawfile.md#oh_resourcemanager_initnativeresourcemanager)方法获取。  | 
+| resId | 资源ID。  | 
+| num | 数量值。  | 
+| resultValue | 写入resultValue的结果。  | 
 
 **返回：**
 
-SUCCESS 0 - 成功。
+SUCCESS 0 - 成功。 
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确；2.参数验证失败。
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。 
 
-ERROR_CODE_RES_ID_NOT_FOUND 9001001 - 无效的资源ID。
+ERROR_CODE_RES_ID_NOT_FOUND 9001001 - 无效的资源ID。 
 
-ERROR_CODE_RES_NOT_FOUND_BY_ID 9001002 - 没有根据资源ID找到匹配的资源。
+ERROR_CODE_RES_NOT_FOUND_BY_ID 9001002 - 没有根据资源ID找到匹配的资源。 
 
-ERROR_CODE_RES_REF_TOO_MUCH 9001006 - 资源被循环引用。
+ERROR_CODE_RES_REF_TOO_MUCH 9001006 - 资源被循环引用。 
 
 ERROR_CODE_OUT_OF_MEMORY 9001100 - 内存溢出。
 
@@ -1102,7 +1264,6 @@ ERROR_CODE_OUT_OF_MEMORY 9001100 - 内存溢出。
 ```
 ResourceManager_ErrorCode OH_ResourceManager_GetPluralStringByName (const NativeResourceManager * mgr, const char * resName, uint32_t num, char ** resultValue )
 ```
-
 **描述**
 
 通过指定资源名称，获取对应的单复数字符串。
@@ -1111,26 +1272,30 @@ ResourceManager_ErrorCode OH_ResourceManager_GetPluralStringByName (const Native
 
 **起始版本：** 12
 
+**废弃版本：** 18
+
+**替代接口：**[OH_ResourceManager_GetIntPluralStringByName](#oh_resourcemanager_getintpluralstringbyname)
+
 **参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mgr | 指向[NativeResourceManager](rawfile.md#nativeresourcemanager)的指针，此指针通过[OH_ResourceManager_InitNativeResourceManager](rawfile.md#oh_resourcemanager_initnativeresourcemanager)方法获取。 | 
-| resName | 资源名称。 | 
-| num | 数量值。 | 
-| resultValue | 写入resultValue的结果。 | 
+| mgr | 指向[NativeResourceManager](rawfile.md#nativeresourcemanager)的指针，此指针通过[OH_ResourceManager_InitNativeResourceManager](rawfile.md#oh_resourcemanager_initnativeresourcemanager)方法获取。  | 
+| resName | 资源名称。  | 
+| num | 数量值。  | 
+| resultValue | 写入resultValue的结果。  | 
 
 **返回：**
 
-SUCCESS 0 - 成功。
+SUCCESS 0 - 成功。 
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确；2.参数验证失败。
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。 
 
-ERROR_CODE_RES_ID_NOT_FOUND 9001003 - 无效的资源名称。
+ERROR_CODE_RES_ID_NOT_FOUND 9001003 - 无效的资源名称。 
 
-ERROR_CODE_RES_NOT_FOUND_BY_ID 9001004 - 没有根据资源名称找到匹配的资源。
+ERROR_CODE_RES_NOT_FOUND_BY_ID 9001004 - 没有根据资源名称找到匹配的资源。 
 
-ERROR_CODE_RES_REF_TOO_MUCH 9001006 - 资源被循环引用。
+ERROR_CODE_RES_REF_TOO_MUCH 9001006 - 资源被循环引用。 
 
 ERROR_CODE_OUT_OF_MEMORY 9001100 - 内存溢出。
 

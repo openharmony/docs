@@ -10,10 +10,10 @@ For details about the supported encoding capabilities, see [AVCodec Supported Fo
 
 - Audio recording
 
-  Record and pass in PCM data, and encode the data into streams in the desired format.
+  Record incoming PCM data, encode it into the desired stream format, and then [wrap](audio-video-muxer.md#media-data-muxing) it in the target file format.
 - Audio editing
 
-  Export edited PCM data, and encode the data into streams in the desired format.
+  When exporting edited PCM data as an audio file, the PCM data must be encoded into the appropriate audio format and then [wrapped](audio-video-muxer.md#media-data-muxing) into a file.
 > **NOTE**
 >
 > AAC encoders adopt the VBR mode by default, which may differ in the configured parameters.
@@ -93,16 +93,20 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     AEncBufferSignal *signal_;
     ```
 
-3. Call **OH_AudioCodec_RegisterCallback()** to register callback functions. 
+3. Call **OH_AudioCodec_RegisterCallback()** to register callback functions.
 
    Register the **OH_AVCodecCallback** struct that defines the following callback function pointers:
 
    - **OH_AVCodecOnError**, a callback used to report a codec operation error
-   - **OH_AVCodecOnStreamChanged**, a callback used to report a codec stream change, for example, audio channel change
+   - **OH_AVCodecOnStreamChanged**. This callback is not supported by the audio encoder.
    - **OH_AVCodecOnNeedInputBuffer**, a callback used to report input data required, which means that the encoder is ready for receiving PCM data
    - **OH_AVCodecOnNewOutputBuffer**, a callback used to report output data generated, which means that encoding is complete
 
    You need to process the callback functions to ensure that the encoder runs properly.
+
+   > **NOTE**
+   >
+   > You are not advised to perform time-consuming operations in the callback.
 
     ```cpp
     // Implement the OH_AVCodecOnError callback function.
@@ -146,7 +150,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     // Set the asynchronous callbacks.
     int32_t ret = OH_AudioCodec_RegisterCallback(audioEnc_, cb_, signal_);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     ```
 
@@ -161,7 +165,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    The sample below lists the value range of each audio encoding type.
    | Audio Encoding Type| Sampling Rate (Hz)                                                                      |       Audio Channel Count      |
    | ----------- | ------------------------------------------------------------------------------- | :----------------: |
-   | AAC         | 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000| 1, 2, 3, 4, 5, 6, and 8|
+   | <!--DelRow-->AAC         | 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000| 1, 2, 3, 4, 5, 6, and 8|
    | FLAC       | 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000|        1–8        |
    | MP3         | 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000                    |        1–2        |
    | G711mu      | 8000                                                                            |         1          |
@@ -183,7 +187,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     constexpr OH_BitsPerSample SAMPLE_FORMAT = OH_BitsPerSample::SAMPLE_S16LE;
     // A frame of audio data takes 20 ms.
     constexpr float TIME_PER_FRAME = 0.02;
-    // (Optional) Configure the maximum input length and the size of each frame of audio data.
+    // (Optional) Configure the maximum input length and the size of each audio frame.
     constexpr uint32_t DEFAULT_MAX_INPUT_SIZE = DEFAULT_SAMPLERATE * TIME_PER_FRAME * DEFAULT_CHANNEL_COUNT * sizeof(short); // aac
     OH_AVFormat *format = OH_AVFormat_Create();
     // Set the format.
@@ -196,7 +200,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     // Configure the encoder.
     ret = OH_AudioCodec_Configure(audioEnc_, format);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     ```
     <!--RP4End-->
@@ -230,7 +234,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     // Configure the encoder.
     ret = OH_AudioCodec_Configure(audioEnc_, format);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     ```
 
@@ -241,7 +245,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```cpp
     ret = OH_AudioCodec_Prepare(audioEnc_);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     ```
 
@@ -257,11 +261,13 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     // Start encoding.
     ret = OH_AudioCodec_Start(audioEnc_);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     ```
 
-7. Call **OH_AudioCodec_PushInputBuffer()** to write the data to encode.
+7. Call **OH_AudioCodec_PushInputBuffer()** to write the data to encode. You should fill in complete input data before calling this API.
+
+   Set **SAMPLES_PER_FRAME** as follows:
 
    For AAC encoding, set **SAMPLES_PER_FRAME** to the number of PCM samples every 20 ms, that is, sampling rate x 0.02.
 
@@ -289,6 +295,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     // Number of audio channels. For AMR encoding, only mono audio input is supported.
     constexpr int32_t DEFAULT_CHANNEL_COUNT = 2;
     // Length of the input data of each frame, that is, number of audio channels x number of samples per frame x number of bytes per sample (SAMPLE_S16LE used as an example).
+    // If the last frame of data does not meet the required length,you are advised to discard it or add padding.
     constexpr int32_t INPUT_FRAME_BYTES = DEFAULT_CHANNEL_COUNT * SAMPLES_PER_FRAME * sizeof(short);
     uint32_t index = signal_->inQueue_.front();
     auto buffer = signal_->inBufferQueue_.front();
@@ -305,19 +312,22 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     // Send the data to the input queue for encoding. The index is the subscript of the queue.
     ret = OH_AudioCodec_PushInputBuffer(audioEnc_, index);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     ```
    In the preceding example, **attr.flags** indicates the type of the buffer flag.
-   
+
    To indicate the End of Stream (EOS), pass in the **AVCODEC_BUFFER_FLAGS_EOS** flag.
+
    | Value| Description| 
    | -------- | -------- |
    | AVCODEC_BUFFER_FLAGS_NONE | Common frame.| 
    | AVCODEC_BUFFER_FLAGS_EOS | The buffer is an end-of-stream frame.| 
    | AVCODEC_BUFFER_FLAGS_CODEC_DATA | The buffer contains codec-specific data.| 
 
-8. Call **OH_AudioCodec_FreeOutputBuffer()** to output the encoded stream.
+8. Call **OH_AudioCodec_FreeOutputBuffer()** to release the encoded data.
+
+   Once you have retrieved the encoded stream, call **OH_AudioCodec_FreeOutputBuffer()** to free up the data.
 
     ```c++
     uint32_t index = signal_->outQueue_.front();
@@ -326,17 +336,17 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     OH_AVCodecBufferAttr attr = {0};
     ret = OH_AVBuffer_GetBufferAttr(avBuffer, &attr);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     // Write the encoded data (specified by data) to the output file.
     outputFile_->write(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(avBuffer)), attr.size);
     // Release the output buffer.
     ret = OH_AudioCodec_FreeOutputBuffer(audioEnc_, index);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     if (attr.flags == AVCODEC_BUFFER_FLAGS_EOS) {
-        // End
+        // End.
     }
     ```
 
@@ -355,12 +365,12 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     // Refresh the encoder.
     ret = OH_AudioCodec_Flush(audioEnc_);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     // Start encoding again.
     ret = OH_AudioCodec_Start(audioEnc_);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     ```
 
@@ -372,22 +382,24 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     // Reset the encoder.
     ret = OH_AudioCodec_Reset(audioEnc_);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     // Reconfigure the encoder.
     ret = OH_AudioCodec_Configure(audioEnc_, format);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     ```
 
 11. Call **OH_AudioCodec_Stop()** to stop the encoder.
 
+    After the encoder is stopped, you can call **Start** to start it again. If you have passed specific data in the previous **Start** for the encoder, you must pass it again.
+
     ```c++
     // Stop the encoder.
     ret = OH_AudioCodec_Stop(audioEnc_);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     ```
 
@@ -401,7 +413,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     // Call OH_AudioCodec_Destroy to destroy the encoder.
     ret = OH_AudioCodec_Destroy(audioEnc_);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     } else {
         audioEnc_ = NULL; // The encoder cannot be destroyed repeatedly.
     }

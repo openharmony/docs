@@ -26,7 +26,7 @@ Checks whether logs are printable based on the specified service domain, log tag
 
 | Name| Type                 | Mandatory| Description                                                        |
 | ------ | --------------------- | ---- | ------------------------------------------------------------ |
-| domain | number                | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**.<br>You can define the value as required.|
+| domain | number                | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**. If the value exceeds the range, logs cannot be printed.<br>You can define the value as required.|
 | tag    | string                | Yes  | Log tag in the string format. You are advised to use this parameter to identify a particular service behavior or the class holding the ongoing method. A tag can contain a maximum of 31 bytes. If a tag exceeds this limit, it will be truncated. Chinese characters are not recommended because garbled characters or alignment problems may occur.|
 | level  | [LogLevel](#loglevel) | Yes  | Log level.                                                  |
 
@@ -74,7 +74,7 @@ DEBUG logs are not recorded in official versions by default. They are available 
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| domain | number | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**.<br>You can define the value as required.|
+| domain | number | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**. If the value exceeds the range, logs cannot be printed.<br>You can define the value as required.|
 | tag    | string | Yes  | Log tag in the string format. You are advised to use this parameter to identify a particular service behavior or the class holding the ongoing method. A tag can contain a maximum of 31 bytes. If a tag exceeds this limit, it will be truncated. Chinese characters are not recommended because garbled characters or alignment problems may occur.|
 | format | string | Yes  | Format string used to output logs in a specified format. It can contain several elements, where the parameter type and privacy identifier are mandatory.<br>Parameters labeled **{public}** are public data and are displayed in plaintext; parameters labeled **{private}** (default value) are private data and are filtered by **\<private>**.|
 | args   | any[]  | No  | Variable-length parameter list corresponding to the format string. The number and type of parameters must map to the identifier in the format string.|
@@ -107,7 +107,7 @@ Prints INFO logs.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| domain | number | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**.<br>You can define the value as required. |
+| domain | number | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**. If the value exceeds the range, logs cannot be printed.<br>You can define the value as required. |
 | tag    | string | Yes  | Log tag in the string format. You are advised to use this parameter to identify a particular service behavior or the class holding the ongoing method. A tag can contain a maximum of 31 bytes. If a tag exceeds this limit, it will be truncated. Chinese characters are not recommended because garbled characters or alignment problems may occur.|
 | format | string | Yes  | Format string used to output logs in a specified format. It can contain several elements, where the parameter type and privacy identifier are mandatory.<br>Parameters labeled **{public}** are public data and are displayed in plaintext; parameters labeled **{private}** (default value) are private data and are filtered by **\<private>**.|
 | args   | any[]  | No  | Variable-length parameter list corresponding to the format string. The number and type of parameters must map to the identifier in the format string.|
@@ -140,7 +140,7 @@ Prints WARN logs.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| domain | number | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**.<br>You can define the value as required. |
+| domain | number | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**. If the value exceeds the range, logs cannot be printed.<br>You can define the value as required. |
 | tag    | string | Yes  | Log tag in the string format. You are advised to use this parameter to identify a particular service behavior or the class holding the ongoing method. A tag can contain a maximum of 31 bytes. If a tag exceeds this limit, it will be truncated. Chinese characters are not recommended because garbled characters or alignment problems may occur.|
 | format | string | Yes  | Format string used to output logs in a specified format. It can contain several elements, where the parameter type and privacy identifier are mandatory.<br>Parameters labeled **{public}** are public data and are displayed in plaintext; parameters labeled **{private}** (default value) are private data and are filtered by **\<private>**.|
 | args   | any[]  | No  | Variable-length parameter list corresponding to the format string. The number and type of parameters must map to the identifier in the format string.|
@@ -173,7 +173,7 @@ Prints ERROR logs.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| domain | number | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**.<br>You can define the value as required. |
+| domain | number | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**. If the value exceeds the range, logs cannot be printed.<br>You can define the value as required. |
 | tag    | string | Yes  | Log tag in the string format. You are advised to use this parameter to identify a particular service behavior or the class holding the ongoing method. A tag can contain a maximum of 31 bytes. If a tag exceeds this limit, it will be truncated. Chinese characters are not recommended because garbled characters or alignment problems may occur.|
 | format | string | Yes  | Format string used to output logs in a specified format. It can contain several elements, where the parameter type and privacy identifier are mandatory.<br>Parameters labeled **{public}** are public data and are displayed in plaintext; parameters labeled **{private}** (default value) are private data and are filtered by **\<private>**.|
 | args   | any[]  | No  | Variable-length parameter list corresponding to the format string. The number and type of parameters must map to the identifier in the format string.|
@@ -206,7 +206,7 @@ Prints FATAL logs.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| domain | number | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**.<br>You can define the value as required. |
+| domain | number | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**. If the value exceeds the range, logs cannot be printed.<br>You can define the value as required. |
 | tag    | string | Yes  | Log tag in the string format. You are advised to use this parameter to identify a particular service behavior or the class holding the ongoing method. A tag can contain a maximum of 31 bytes. If a tag exceeds this limit, it will be truncated. Chinese characters are not recommended because garbled characters or alignment problems may occur.|
 | format | string | Yes  | Format string used to output logs in a specified format. It can contain several elements, where the parameter type and privacy identifier are mandatory.<br>Parameters labeled **{public}** are public data and are displayed in plaintext; parameters labeled **{private}** (default value) are private data and are filtered by **\<private>**.|
 | args   | any[]  | No  | Variable-length parameter list corresponding to the format string. The number and type of parameters must map to the identifier in the format string.|
@@ -225,13 +225,13 @@ If `"hello"` is filled in `%{public}s` and `3` in `%{private}d`, the output log 
 08-05 12:21:47.579  2695 2703 F A00001/testTag: hello World <private>
 ```
 
-## hilog.setMinLogLevel<sup>16+</sup>
+## hilog.setMinLogLevel<sup>15+</sup>
 
 setMinLogLevel(level: LogLevel): void;
 
 Sets the minimum log level. When a process prints logs, both the minimum log level and the global log level are verified. Therefore, the minimum log level cannot be lower than the global log level. The default value of [global log level](../../dfx/hilog.md#displaying-and-setting-log-levels) is **Info**.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.HiviewDFX.HiLog
 

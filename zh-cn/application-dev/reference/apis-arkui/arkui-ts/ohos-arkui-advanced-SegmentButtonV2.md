@@ -4,7 +4,7 @@
 
 > **说明：** 
 >
-> 该组件及其子组件从 API Version 16 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件及其子组件从 API version 18 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 导入模块
 
@@ -57,7 +57,7 @@ TabSegmentButtonV2({
 
 **装饰器类型：** @ComponentV2
 
-**原子化服务 API：** 从 API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务 API：** 从 API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -140,7 +140,7 @@ CapsuleSegmentButtonV2({
 
 **装饰器类型：** @ComponentV2
 
-**原子化服务 API：** 从 API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务 API：** 从 API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -219,7 +219,7 @@ MultiCapsuleSegmentButtonV2({
 
 **装饰器类型：** @ComponentV2
 
-**原子化服务 API：** 从 API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务 API：** 从 API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -264,7 +264,7 @@ MultiCapsuleSegmentButtonV2({
 
 **装饰器类型：** @ObservedV2
 
-**原子化服务 API：** 从 API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务 API：** 从 API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -272,7 +272,7 @@ MultiCapsuleSegmentButtonV2({
 
 **装饰器类型**： @ObservedV2
 
-**原子化服务 API：** 从 API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务 API：** 从 API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
@@ -282,7 +282,7 @@ constructor(items: SegmentButtonV2ItemOptions[])
 
 构造函数。
 
-**原子化服务 API**： 从 API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务 API**： 从 API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
@@ -298,7 +298,7 @@ get hasHybrid()
 
 是否有图文混合选项。
 
-**原子化服务 API**： 从 API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务 API**： 从 API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
@@ -306,7 +306,7 @@ get hasHybrid()
 
 | 类型    | 说明                 |
 | ------- | -------------------- |
-| boolean | 是否有图文混合选项。 |
+| boolean | 是否有图文混合选项。<br>true：有图文混合选项；false：无图文混合选项。 |
 
 ## SegmentButtonV2Item
 
@@ -314,7 +314,7 @@ get hasHybrid()
 
 **装饰器类型**： @ObservedV2
 
-**原子化服务 API**： 从 API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务 API**： 从 API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
@@ -325,7 +325,7 @@ get hasHybrid()
 | text                     | [ResourceStr](ts-types.md#resourcestr)                               | @Trace | 否   | 分段按钮选项文本。                              |
 | icon                     | [ResourceStr](ts-types.md#resourcestr)                               | @Trace | 否   | 分段按钮选项图片类型图标。                      |
 | symbol                   | [Resource](ts-types.md#resource)                                     | @Trace | 否   | 分段按钮选项 HM Symbol 类型图标。               |
-| enabled                  | boolean                                                              | @Trace | 否   | 分段按钮选项是否可用。                          |
+| enabled                  | boolean                                                              | @Trace | 否   | 分段按钮选项是否可用。<br>默认值：true。<br>true：分段按钮选项可用；false：分段按钮选项不可用。                          |
 | textModifier             | [TextModifier](ts-universal-attributes-attribute-modifier.md)        | @Trace | 否   | 分段按钮选项文本属性样式修改器。                |
 | iconModifier             | [ImageModifier](ts-universal-attributes-attribute-modifier.md)       | @Trace | 否   | 分段按钮选项图片类型图标属性样式修改器。        |
 | symbolModifier           | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | @Trace | 否   | 分段按钮选项 HM Symbol 类型图标属性样式修改器。 |
@@ -344,7 +344,7 @@ constructor(options: SegmentButtonV2ItemOptions)
 
 构造函数。
 
-**原子化服务 API**： 从 API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务 API**： 从 API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
@@ -360,7 +360,7 @@ get isHybrid()
 
 分段按钮选项是否同时配置了文本和图标。
 
-**原子化服务 API**： 从 API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务 API**： 从 API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
@@ -374,7 +374,7 @@ get isHybrid()
 
 分段按钮选项配置参数。
 
-**原子化服务 API：** 从 API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务 API：** 从 API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -406,7 +406,7 @@ type OnSelectedIndexChange = (selectedIndex: number) => void
 
 单选的分段按钮选中项变更时调用的回调函数的类型。
 
-**原子化服务 API：** 从 API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务 API：** 从 API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -422,7 +422,7 @@ type OnSelectedIndexesChange = (selectedIndexes: number[]) => void
 
 多选的分段按钮选中项变更时调用的回调函数的类型。
 
-**原子化服务 API：** 从 API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务 API：** 从 API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

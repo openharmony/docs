@@ -1,4 +1,4 @@
-# AutoFillExtensionContext (System API) 
+# AutoFillExtensionContext (System API)
 
 The **AutoFillExtensionContext** module, inherited from [ExtensionContext](js-apis-inner-application-extensionContext.md), provides the context environment for the AutoFillExtensionAbility.
 
@@ -22,7 +22,7 @@ class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
 }
 ```
 
-## AutoFillExtensionContext.reloadInModal<sup>12+</sup>
+## AutoFillExtensionContext.reloadInModal<sup>13+</sup>
 
 reloadInModal(customData: CustomData): Promise\<void>
 
@@ -32,21 +32,21 @@ Starts a modal page.
 
 **Parameters**
 
-| Name    | Type                                                     | Mandatory | Description                        |
+| Name    | Type                                                     | Mandatory| Description                        |
 | ---------- | --------------------------------------------------------- | ---- | ---------------------------- |
-| customData | [CustomData](js-apis-inner-application-customData-sys.md) | Yes  | Custom information for starting the modal page. |
+| customData | [CustomData](js-apis-inner-application-customData-sys.md) | Yes  | Custom information for starting the modal page.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 202      | Not System App. Interface caller is not a system app.        |
 | 401      | If the input parameter is not valid parameter.               |

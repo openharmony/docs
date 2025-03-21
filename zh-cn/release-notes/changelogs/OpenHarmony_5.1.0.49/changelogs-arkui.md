@@ -1,69 +1,6 @@
 # ArkUI子系统Changelog
 
-## cl.arkui.1 DatePicker、TextPicker和TimePicker的enabled、visibility参数动态改变后文本显示颜色变更
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-DatePicker、TextPicker和TimePicker的enabled、visibility属性动态改变后，文本颜色呈现半透明。
-
-**变更影响**
-
-此变更无需应用适配。   
-DatePicker、TextPicker和TimePicker的enabled参数由false变为true或者visibility参数由None/Hidden变为Visible后，文本颜色由之前的半透明变为初始颜色。
-
-执行以下TextPicker示例时：
-
-```ts
-@Entry
-@Component
-struct TextPickerExample {
-  private fruits: string[] = ['apple', 'orange', 'peach', 'grape'];
-  @State isEnabled: boolean = true;
-
-  build() {
-    Column() {
-      TextPicker({ range: this.fruits })
-        .onChange(() => {
-        })
-        .disappearTextStyle({ color: Color.Red, font: { size: 20, weight: FontWeight.Lighter } })
-        .textStyle({ color: Color.Black, font: { size: 25, weight: FontWeight.Normal } })
-        .selectedTextStyle({ color: Color.Blue, font: { size: 30, weight: FontWeight.Bolder } })
-        .divider(null)
-        .enabled(this.isEnabled)
-
-      Button("enabled : " + this.isEnabled).onClick(() => {
-        this.isEnabled = !this.isEnabled // 点击button，动态切换组件的使能
-      })
-    }.width('100%').height('100%')
-  }
-}
-```
-
-| 变更前 | 变更后 |
-|---------|---------|
-|  ![变更前](figures/textpicker-before.png)       |  ![变更后](figures/textpicker-after.png)       |
-
-**起始API Level**
-
-API 8
-
-**变更发生版本**
-
-从OpenHarmony 5.1.0.49开始。
-
-**变更的接口/组件**
-
-DatePicker、TextPicker和TimePicker组件。
-
-**适配指导**
-
-DatePicker、TextPicker和TimePicker的enabled参数由"false"变为"true"或者visibility参数由"None/Hidden"变为"Visible"后，文本颜色恢复默认，开发者无需适配。
-
-## cl.arkui.2 属性字符串TextStyle类型fontStyle、fontWeight字段返回类型变更
+## cl.arkui.1 属性字符串TextStyle类型fontStyle、fontWeight字段返回类型变更
 
 **访问级别**
 
@@ -84,11 +21,11 @@ DatePicker、TextPicker和TimePicker的enabled参数由"false"变为"true"或者
 
 **起始API Level**
 
-接口起始版本为API version 12。此变更从API version 16开始，做版本隔离。
+接口起始版本为API version 12。
 
 **变更发生版本**
 
-从OpenHarmony SDK 5.1.0.49开始。
+从OpenHarmony SDK 5.1.0.49开始，API version 18及以上生效。
 
 **变更的接口/组件**
 
@@ -184,3 +121,71 @@ PanGestureInterface、PinchGestureInterface、PanGestureHandler、PinchGestureHa
 **适配指导**
 
 默认行为变更，无需适配。
+
+## cl.arkui.3 CanvasRenderer的measureText方法传undefined参数时返回值变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+measureText方法传undefined参数时，返回的textMetrics为undefined，和W3C标准行为不一致。
+
+**变更影响**
+
+变更前：
+measureText方法传undefined参数时，返回的textMetrics为undefined。
+
+变更后：
+measureText方法传undefined参数时，返回值为按照字符串"undefined"测量的textMetrics。
+
+
+**起始API Level**
+
+API 8
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.49开始。
+
+**变更的接口/组件**
+
+CanvasRenderingContext2D和OffscreenCanvasRenderingContext2D的measureText方法
+
+**适配指导**
+
+如果应用无需获取undefined参数的textMetrics，可在调用measureText方法前对参数做判断。
+
+**示例**
+
+```ts
+@Entry
+@Component
+struct Demo {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+
+  measureText(text: string)
+  {
+    if (text != undefined) {
+      let metrics = this.context.measureText(text);
+      console.info('width = ' + metrics.width);
+    }
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .onReady(() => {
+          this.measureText(undefined)
+          this.measureText('Hello World')
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```

@@ -153,3 +153,71 @@ struct Index {
   }
 }
 ```
+
+## cl.arkui.4 CanvasRenderer的shadowColor属性传非法字符串时设置不生效
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+shadowColor属性在传入某些非法字符串时，仍能产生阴影效果，与W3C标准不一致。
+
+**变更影响**
+
+| 变更前                                   | 变更后                                   |
+| ---------------------------------------- | ---------------------------------------- |
+| CanvasRenderer的shadowColor属性传某些不符合W3C标准的颜色字符串时仍设置生效。<br>![shadowColor_before](figures/Canvas_shadowColor_before.png) | CanvasRenderer的shadowColor属性传某些不符合W3C标准的颜色字符串时设置不生效。<br>![globalCompositeOperation_after](figures/Canvas_shadowColor_after.png) |
+
+
+**起始API Level**
+
+API 8
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.47开始。
+
+**变更的接口/组件**
+
+CanvasRenderingContext2D和OffscreenCanvasRenderingContext2D的shadowColor接口。
+
+**适配指导**
+
+传异常参数行为变更，无需适配。
+设置阴影颜色需要按照规范传入字符串参数：
+1、使用rgb()或rgba()。例：context.shadowColor = 'rgba(255, 0, 0, 255)'
+2、使用十六进制颜色值。例：context.shadowColor = '#FF0000'
+
+**示例**
+
+```ts
+@Entry
+@Component
+struct Demo {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .onReady(() => {
+          this.context.shadowBlur = 10
+          this.context.shadowOffsetX = 10
+          this.context.shadowOffsetY = 10
+          /**
+           * 变更前：设置生效为蓝色。
+           * 变更后：设置不生效，没有阴影效果。
+           */
+          this.context.shadowColor = "2024-11-28T07:27:10.607Z"
+          this.context.fillRect(10, 10, 100, 100)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```

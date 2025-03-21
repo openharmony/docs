@@ -5,7 +5,7 @@
 
 Defines APIs and enums related to multiple data values.
 
-**File to include**: &lt;database/rdb/oh_data_values.h&gt;
+**File to include**: &lt;database/data/oh_data_values.h&gt;
 
 **Library**: libnative_rdb_ndk.z.so
 

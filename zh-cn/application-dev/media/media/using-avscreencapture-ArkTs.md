@@ -39,9 +39,9 @@
 2. 创建AVScreenCaptureRecorder类型的成员变量screenCapture。
 
     ```javascript
-    // 声明一个AVScreenCaptureRecorder类型的变量
+    // 声明一个AVScreenCaptureRecorder类型的变量。
     private screenCapture?: media.AVScreenCaptureRecorder;
-    // 创建一个AVScreenCaptureRecorder，并赋值给screenCapture成员变量
+    // 创建一个AVScreenCaptureRecorder，并赋值给screenCapture成员变量。
     this.screenCapture = await media.createAVScreenCaptureRecorder();
     ```
 
@@ -79,7 +79,7 @@
                 console.info("录屏麦克风被用户取消静音");
                 break;
             case media.AVScreenCaptureStateCode.SCREENCAPTURE_STATE_ENTER_PRIVATE_SCENE:
-                // 目前可以从系统直接注册监听到进入隐私场景
+                // 目前可以从系统直接注册监听到进入隐私场景。
                 console.info("录屏进入隐私场景");
                 break;
             case media.AVScreenCaptureStateCode.SCREENCAPTURE_STATE_EXIT_PRIVATE_SCENE:
@@ -107,12 +107,12 @@
 
     ```javascript
     captureConfig: media.AVScreenCaptureRecordConfig = {
-        // 开发者可以根据自身的需要设置宽高
+        // 开发者可以根据自身的需要设置宽高。
         frameWidth: 768,
         frameHeight: 1280,
-        // 参考应用文件访问与管理开发示例新建并读写一个文件fd
+        // 参考应用文件访问与管理开发示例新建并读写一个文件fd。
         fd: 0,
-        // 可选参数及其默认值
+        // 可选参数及其默认值。
         videoBitrate: 10000000,
         audioSampleRate: 48000,
         audioChannelCount: 2,
@@ -128,7 +128,7 @@
     await this.screenCapture.init(this.captureConfig);
     ```
 
-6. 创建豁免隐私窗口，这里填写的是子窗口id和主窗口id，具体开发步骤可参见[窗口API](../../reference/apis-arkui/js-apis-window.md#windowproperties)
+6. 创建豁免隐私窗口，这里填写的是子窗口id和主窗口id，具体开发步骤可参见[窗口API](../../reference/apis-arkui/js-apis-window.md#windowproperties)。
 
     ```javascript
     let windowIDs = [57, 86];
@@ -167,12 +167,12 @@ import media from '@ohos.multimedia.media';
 export class AVScreenCaptureDemo {
   private screenCapture?: media.AVScreenCaptureRecorder;
   captureConfig: media.AVScreenCaptureRecordConfig = {
-    // 开发者可以根据自身的需要设置宽高
+    // 开发者可以根据自身的需要设置宽高。
     frameWidth: 768,
     frameHeight: 1280,
-    // 参考应用文件访问与管理开发示例新建并读写一个文件fd
+    // 参考应用文件访问与管理开发示例新建并读写一个文件fd。
     fd: 0,
-    // 可选参数及其默认值
+    // 可选参数及其默认值。
     videoBitrate: 10000000,
     audioSampleRate: 48000,
     audioChannelCount: 2,
@@ -185,9 +185,9 @@ export class AVScreenCaptureDemo {
   public async startRecording() {
     this.screenCapture = await media.createAVScreenCaptureRecorder();
     if (this.screenCapture != undefined) {
-      // success
+      // success.
     } else {
-      // failed
+      // failed.
         return;
     }
     this.screenCapture?.on('stateChange', async (infoType: media.AVScreenCaptureStateCode) => {
@@ -221,7 +221,7 @@ export class AVScreenCaptureDemo {
           console.info("录屏麦克风被用户取消静音");
           break;
         case media.AVScreenCaptureStateCode.SCREENCAPTURE_STATE_ENTER_PRIVATE_SCENE:
-          // 目前可以从系统直接注册监听到进入隐私场景
+          // 目前可以从系统直接注册监听到进入隐私场景。
           console.info("录屏进入隐私场景");
           break;
         case media.AVScreenCaptureStateCode.SCREENCAPTURE_STATE_EXIT_PRIVATE_SCENE:
@@ -239,7 +239,7 @@ export class AVScreenCaptureDemo {
     })
     await this.screenCapture?.init(this.captureConfig);
 
-    // 豁免隐私窗口
+    // 豁免隐私窗口。
     let windowIDs = [57, 86];
     await this.screenCapture?.skipPrivacyMode(windowIDs);
 
@@ -249,7 +249,7 @@ export class AVScreenCaptureDemo {
   // 可以主动调用stopRecording方法来停止录屏。
   public async stopRecording() {
     if (this.screenCapture == undefined) {
-      // Error
+      // Error.
       return;
     }
     await this.screenCapture?.stopRecording();

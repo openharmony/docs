@@ -4,7 +4,7 @@
 
 ## 约束限制
 
-仅[UIAbility](uiability-overview.md)和[UIExtensionAbility](uiextensionability.md)支持获取上次的退出原因。
+仅[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)和[UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)支持获取上次的退出原因。
 
 ## 接口说明
 
@@ -13,7 +13,7 @@
 | **接口名**  | **描述** |
 | -------- | -------- |
 | [LaunchParam](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#launchparam)       | 启动参数。此接口的lastExitReason、lastExitMessage、lastExitDetailInfo成员记录Ability上次异常退出的信息。  |
-| [LastExitDetailInfo](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#lastexitdetailinfo16)       | 最后退出时的进程状态和详细原因。 |
+| [LastExitDetailInfo](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#lastexitdetailinfo18)       | 最后退出时的进程状态和详细原因。 |
 
 ## 开发步骤
 

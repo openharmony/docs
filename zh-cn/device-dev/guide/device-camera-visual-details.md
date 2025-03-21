@@ -29,10 +29,10 @@ import router from '@system.router'
 export default {
     backMain() {
         router.replace({
-            //页面地址
+            //页面地址。
             uri: 'pages/index/index',
             params: {
-                //返回主页时带的参数
+                //返回主页时带的参数。
                 selectedCityIndex: this.selectedCityIndex
             }
         });

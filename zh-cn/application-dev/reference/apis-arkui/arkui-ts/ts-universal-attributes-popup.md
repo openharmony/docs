@@ -35,7 +35,7 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 | secondaryButton                       | {<br/>value:&nbsp;string,<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否   | 第二个按钮。<br/>value:&nbsp;弹窗里辅助按钮的文本。<br/>action:&nbsp;点击辅助按钮的回调函数。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onStateChange                         | (event:&nbsp;{&nbsp;isVisible:&nbsp;boolean&nbsp;})&nbsp;=&gt;&nbsp;void | 否   | 弹窗状态变化事件回调，参数isVisible为弹窗当前的显示状态。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。    |
 | arrowOffset<sup>9+</sup>              | [Length](ts-types.md#length)                                 | 否   | popup箭头在弹窗处的偏移。箭头在气泡上下方时，数值为0表示箭头居最左侧，偏移量为箭头至最左侧的距离，默认居中。箭头在气泡左右侧时，偏移量为箭头至最上侧的距离，默认居中。如果显示在屏幕边缘，气泡会自动左右偏移，数值为0时箭头始终指向绑定组件。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| showInSubWindow<sup>9+</sup>          | boolean                                                      | 否   | 是否在子窗口显示气泡，默认值为false。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                        |
+| showInSubWindow<sup>9+</sup>          | boolean                                                      | 否   | 取值为true时，气泡会显示在创建的子窗里，取值为false时，气泡会显示在对应的主窗中。<br />默认值：false<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                        |
 | mask<sup>10+</sup>                    | boolean&nbsp;\|&nbsp;{ color : [ResourceColor](ts-types.md#resourcecolor) }| 否   | 设置气泡是否有遮罩层及遮罩颜色。如果设置为false，则没有遮罩层；如果设置为true，则设置有遮罩层并且颜色为透明色；如果设置为Color，则为遮罩层的颜色。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | messageOptions<sup>10+</sup>          | [PopupMessageOptions](#popupmessageoptions10类型说明)        | 否   | 设置弹窗信息文本参数。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                       |
 | targetSpace<sup>10+</sup>             | [Length](ts-types.md#length)                                 | 否   | 设置popup与目标的间隙。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                      |
@@ -55,7 +55,7 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 | onWillDismiss<sup>12+</sup>           | boolean \| Callback\<([DismissPopupAction](#dismisspopupaction12类型说明))> | 否   | 设置popup交互式关闭拦截开关及拦截回调函数，默认值为true，popup响应点击、左滑/右滑、三键back。<br />1.当为boolean类型时，如果设置为false，则不响应点击、左滑/右滑、三键back或键盘ESC退出事件，仅当设置“弹窗显示状态”参数show值为false时才退出；如果设置为true，则正常响应退出事件；<br />2.如果设置为函数类型，则拦截退出事件且执行回调函数。<br />**说明：**<br />在onWillDismiss回调中，不能再做onWillDismiss拦截。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | followTransformOfTarget<sup>13+</sup>          | boolean | 否   | 气泡绑定的宿主组件或其宿主组件的父容器添加了旋转、缩放等变换时，气泡是否能显示在对应变化后的位置上。<br/>默认值：false <br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 | keyboardAvoidMode<sup>15+</sup>          | [KeyboardAvoidMode](ts-types.md#keyboardavoidmode12枚举说明) | 否   | 气泡是否避让软键盘，默认不避让。设置为避让后，气泡显示空间不足时，由原先居中覆盖父组件的方式改为平移覆盖父组件，且气泡箭头不指向宿主时，不再显示箭头。<br/>默认值：KeyboardAvoidMode.NONE <br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
-|  enableHoverMode<sup>16+</sup>| boolean  | 否   | Popup组件是否响应悬停态变化。如果Popup的点击位置在悬停态折痕区域，Popup组件不会响应悬停态。默认值：false，Popup组件不响应悬停态变化。<br />**说明：** <br />enableHoverMode为 false，未设置或者值为非法值时，Popup组件不会响应悬停态，enableHoverMode为true时，响应悬停态。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+|  enableHoverMode<sup>18+</sup>| boolean  | 否   | Popup组件是否响应悬停态变化。如果Popup的点击位置在悬停态折痕区域，Popup组件不会响应悬停态。默认值：false，Popup组件不响应悬停态变化。<br />**说明：** <br />enableHoverMode为 false，未设置或者值为非法值时，Popup组件不会响应悬停态，enableHoverMode为true时，响应悬停态。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## PopupMessageOptions<sup>10+</sup>类型说明
 
@@ -101,7 +101,7 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 | autoCancel                   | boolean                                  | 否    | 页面有操作时，是否自动关闭气泡。<br/>默认值：true<br />**说明：**<br />如果要实现点击气泡内消失需要在builder中先放一个布局组件，然后再将Popup高级组件放在布局组件里面，再在布局组件的onClick事件中修改的传入bindPopup的变量（show:&nbsp;boolean）值。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onStateChange                | (event:&nbsp;{&nbsp;isVisible:&nbsp;boolean&nbsp;})&nbsp;=&gt;&nbsp;void | 否    | 弹窗状态变化事件回调，参数为弹窗当前的显示状态。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                 |
 | arrowOffset<sup>9+</sup>     | [Length](ts-types.md#length) | 否    | popup箭头在弹窗处的偏移。箭头在气泡上下方时，数值为0表示箭头居最左侧，偏移量为箭头至最左侧的距离，默认居中。箭头在气泡左右侧时，偏移量为箭头至最上侧的距离，默认居中。如果显示在屏幕边缘，气泡会自动左右偏移，数值为0时箭头始终指向绑定组件。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| showInSubWindow<sup>9+</sup> | boolean                                  | 否    | 是否在子窗口显示气泡，默认值为false。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                    |
+| showInSubWindow<sup>9+</sup> | boolean                                  | 否    | 取值为true时，气泡会显示在创建的子窗里，取值为false时，气泡会显示在对应的主窗中。<br />默认值：false<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                    |
 | maskColor<sup>(deprecated)</sup> | [Resource](ts-types.md#resource)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;&nbsp;[Color](ts-types.md#color) | 否   | 设置气泡遮罩层颜色。<br />**说明：**<br />从 API version 10 开始废弃，建议使用`mask`替代。 |
 | mask<sup>10+</sup>           | boolean&nbsp;\|&nbsp;{ color : [ResourceColor](ts-types.md#resourcecolor) }| 否    | 设置气泡是否有遮罩层及遮罩颜色。如果设置为false，则没有遮罩层；如果设置为true，则设置有遮罩层并且颜色为透明色；如果设置为Color，则为遮罩层的颜色。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | targetSpace<sup>10+</sup>    | [Length](ts-types.md#length)             | 否    | 设置popup与目标的间隙。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                           |
@@ -118,7 +118,7 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 | onWillDismiss<sup>12+</sup>           | boolean \| Callback\<([DismissPopupAction](#dismisspopupaction12类型说明))> | 否   | 设置popup交互式关闭拦截开关及拦截回调函数，默认值为true，popup响应点击、左滑/右滑、三键back。<br />1.当为boolean类型时，如果设置为false，则不响应点击、左滑/右滑、三键back或键盘ESC退出事件，仅当设置“弹窗显示状态”参数show值为false时才退出；如果设置为true，则正常响应退出事件；<br />2.如果设置为函数类型，则拦截退出事件且执行回调函数。<br />**说明：**<br />在onWillDismiss回调中，不能再做onWillDismiss拦截。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | followTransformOfTarget<sup>13+</sup>          | boolean | 否   | 气泡绑定的宿主组件或其宿主组件的父容器添加了旋转、缩放等变换时，气泡是否能显示在对应变化后的位置上。<br/>默认值：false <br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 | keyboardAvoidMode<sup>15+</sup>          | [KeyboardAvoidMode](ts-types.md#keyboardavoidmode12枚举说明) | 否   | 气泡是否避让软键盘，默认不避让。设置为避让后，气泡显示空间不足时，由原先居中覆盖父组件的方式改为平移覆盖父组件，且气泡箭头不指向宿主时，不再显示箭头。<br/>默认值：KeyboardAvoidMode.NONE <br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
-|enableHoverMode<sup>16+</sup>  | boolean  | 否   |  Popup组件是否响应悬停态变化。如果Popup的点击位置在悬停态折痕区域，Popup组件不会响应悬停态。默认值：false，Popup组件不响应悬停态变化。<br />**说明：** <br />enableHoverMode为false，未设置或者值为非法值时，Popup组件不会响应悬停态，enableHoverMode为true时，响应悬停态。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+|enableHoverMode<sup>18+</sup>  | boolean  | 否   |  Popup组件是否响应悬停态变化。如果Popup的点击位置在悬停态折痕区域，Popup组件不会响应悬停态。默认值：false，Popup组件不响应悬停态变化。<br />**说明：** <br />enableHoverMode为false，未设置或者值为非法值时，Popup组件不会响应悬停态，enableHoverMode为true时，响应悬停态。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## PopupCommonOptions<sup>18+</sup>类型说明
 
@@ -136,7 +136,7 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 | autoCancel                   | boolean                                  | 否    | 页面有操作时，是否自动关闭气泡。<br/>默认值：true |
 | onStateChange                | [PopupStateChangeCallback](#popupstatechangecallback18类型说明) | 否    | 弹窗状态变化事件回调。<br />**说明：**<br />不支持通过[updatePopup](../js-apis-arkui-UIContext.md#updatepopup18)进行更新。 |
 | arrowOffset     | [Length](ts-types.md#length) | 否    | popup箭头在弹窗处的偏移。箭头在气泡上下方时，数值为0表示箭头居最左侧，偏移量为箭头至最左侧的距离，默认居中。箭头在气泡左右侧时，偏移量为箭头至最上侧的距离，默认居中。如果显示在屏幕边缘，气泡会自动左右偏移，数值为0时箭头始终指向绑定组件。 |
-| showInSubWindow | boolean                                  | 否    | 是否在子窗口显示气泡，默认值为false。<br />**说明：**<br />不支持通过[updatePopup](../js-apis-arkui-UIContext.md#updatepopup18)进行更新。 |
+| showInSubWindow | boolean                                  | 否    | 取值为true时，气泡会显示在创建的子窗里，取值为false时，气泡会显示在对应的主窗中。<br />默认值：false<br />**说明：**<br />不支持通过[updatePopup](../js-apis-arkui-UIContext.md#updatepopup18)进行更新。 |
 | mask           | boolean&nbsp;\|&nbsp;[PopupMaskType](#popupmasktype18类型说明) | 否    | 设置气泡是否有遮罩层及遮罩颜色。如果设置为false，则没有遮罩层；如果设置为true，则设置有遮罩层并且颜色为透明色；如果设置为Color，则为遮罩层的颜色。 |
 | targetSpace    | [Length](ts-types.md#length)             | 否    | 设置popup与目标的间隙。 |
 | offset         | [Position](ts-types.md#position)                            | 否   | 设置popup组件相对于placement设置的显示位置的偏移。<br />**说明：**<br />不支持设置百分比。 |

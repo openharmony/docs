@@ -214,7 +214,7 @@ typedef struct {
 
 当 id 为 JSVM_COMPILE_SCRIPT_ORIGIN 时，content 的类型，存放待编译脚本的源码信息：
 
-- sourceMapUrl : sourceMap 的路径，当前仅支持运行设备上的本地路径, 可以为空。
+- sourceMapUrl : sourceMap 的路径，当前仅支持运行设备上的本地路径，可以为空。
 - resourceName : 待编译的 js script 的名字。
 
 ```c

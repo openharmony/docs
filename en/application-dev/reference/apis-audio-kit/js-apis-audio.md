@@ -352,6 +352,7 @@ Enumerates the audio device types.
 | USB_HEADSET          | 22     | USB Type-C headset.                                      |
 | DISPLAY_PORT<sup>12+</sup>        | 23     | Display port (DP), which is used to connect to external devices.          |
 | REMOTE_CAST<sup>12+</sup>        | 24     | Remote cast device.          |
+| USB_DEVICE<sup>18+</sup>        | 25 | USB device (excluding USB headsets).          |
 | DEFAULT<sup>9+</sup> | 1000   | Default device type.                                           |
 
 ## CommunicationDeviceType<sup>9+</sup>
@@ -660,6 +661,17 @@ You can determine whether the operation is forcibly performed by the system base
 | INTERRUPT_HINT_DUCK                | 4      | A hint is displayed, indicating that audio ducking starts and the audio is played at a lower volume.|
 | INTERRUPT_HINT_UNDUCK<sup>8+</sup> | 5      | A hint is displayed, indicating that audio ducking ends and the audio is played at the normal volume.           |
 
+## AudioVolumeMode<sup>18+</sup>
+
+Enumerates the audio volume modes.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+| Name          | Value    | Description          |
+| -------------- | ------ |--------------|
+| SYSTEM_GLOBAL  | 0 | System-level volume (default mode).|
+| APP_INDIVIDUAL | 1 | Application-level volume.      |
+
 ## AudioStreamInfo<sup>8+</sup>
 
 Describes audio stream information.
@@ -680,11 +692,12 @@ Describes audio renderer information.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
-| Name         | Type                       | Mandatory | Description            |
-| ------------- | --------------------------- | ---- | ---------------- |
+| Name         | Type                       | Mandatory | Description           |
+| ------------- | --------------------------- | ---- | --------------- |
 | content       | [ContentType](#contenttypedeprecated) | No  | Audio content type.<br>This parameter is mandatory in API versions 8 and 9 and optional since API version 10. The default value is **CONTENT_TYPE_UNKNOWN**. [ContentType](#contenttypedeprecated) is deprecated. You are advised to use [StreamUsage](#streamusage) to declare the audio stream type.|
 | usage         | [StreamUsage](#streamusage) | Yes  | Audio stream usage.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | rendererFlags | number                      | Yes  | Audio renderer flags.<br>The value **0** means an audio renderer.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| volumeMode<sup>18+</sup> | [AudioVolumeMode](#audiovolumemode18) | No| Audio volume mode. The default value is **SYSTEM_GLOBAL**.|
 
 ## AudioRendererOptions<sup>8+</sup>
 
@@ -732,6 +745,7 @@ Describes the event received by the application when the volume is changed.
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                   |
 | volume     | number                              | Yes  | Volume to set. The value range can be obtained by calling **getMinVolume** and **getMaxVolume**. |
 | updateUi   | boolean                             | Yes  | Whether the volume change is shown on the UI. The value **true** means that the volume change is shown, and **false** means the opposite.            |
+| volumeMode<sup>18+</sup> | [AudioVolumeMode](#audiovolumemode18) | No| Audio volume mode. The default value is **SYSTEM_GLOBAL**.|
 
 ## MicStateChangeEvent<sup>9+</sup>
 
@@ -862,6 +876,7 @@ Enumerates the audio source types.
 | SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | Voice communication source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core|
 | SOURCE_TYPE_VOICE_MESSAGE<sup>12+</sup>      | 10     | Voice message source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core|
 | SOURCE_TYPE_CAMCORDER<sup>13+</sup>          | 13     | Video recording source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core|
+| SOURCE_TYPE_UNPROCESSED<sup>14+</sup>     | 14 |  Audio source for raw microphone recording, where the system does not perform any algorithm processing.<br>**System capability**: SystemCapability.Multimedia.Audio.Core|
 
 ## AudioPlaybackCaptureConfig<sup>(deprecated)</sup>
 
@@ -1272,6 +1287,27 @@ import { audio } from '@kit.AudioKit';
 let audioSessionManager: audio.AudioSessionManager = audioManager.getSessionManager();
 ```
 
+### getSpatializationManager<sup>18+</sup>
+
+getSpatializationManager(): AudioSpatializationManager
+
+Obtains an **AudioSpatializationManager** instance.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Return value**
+
+| Type                                      | Description                         |
+|------------------------------------------| ----------------------------- |
+| [AudioSpatializationManager](#audiospatializationmanager18) | **AudioSpatializationManager** instance.|
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
+let audioSpatializationManager: audio.AudioSpatializationManager = audioManager.getSpatializationManager();
+```
+
 ### setVolume<sup>(deprecated)</sup>
 
 setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&lt;void&gt;): void
@@ -1279,8 +1315,10 @@ setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&l
 Sets the volume for a stream. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setVolume](#setvolume9) in **AudioVolumeGroupManager**. The substitute API is available only for system applications.
+> 
+> This API is supported since API version 7 and deprecated since API version 9. The substitute API is available only for system applications.
+> 
+> Applications cannot directly adjust the system volume. It is recommended that they invoke the system volume panel for users to adjust the volume. When the user adjusts the volume, a volume prompt UI is displayed to explicitly notify the user that the system volume changes. For details about the samples and introduction, see [AVVolumePanel Reference](ohos-multimedia-avvolumepanel.md).
 
 **Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1318,7 +1356,9 @@ Sets the volume for a stream. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setVolume](#setvolume9) in **AudioVolumeGroupManager**. The substitute API is available only for system applications.
+> This API is supported since API version 7 and deprecated since API version 9. The substitute API is available only for system applications.
+>
+> Applications cannot directly adjust the system volume. It is recommended that they invoke the system volume panel for users to adjust the volume. When the user adjusts the volume, a volume prompt UI is displayed to explicitly notify the user that the system volume changes. For details about the samples and introduction, see [AVVolumePanel Reference](ohos-multimedia-avvolumepanel.md).
 
 **Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -2481,6 +2521,72 @@ try {
 }
 ```
 
+### getAppVolumePercentage<sup>18+</sup>
+
+getAppVolumePercentage(): Promise<number\>
+
+Obtains the volume of the application. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Return value**
+
+| Type               | Description                |
+| ------------------- |--------------------|
+| Promise&lt;number&gt; | Promise used to return the application volume (ranging from 0 to 100).|
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+audioVolumeManager.getAppVolumePercentage().then((value: number) => {
+  console.info(`app volume is ${value}.`);
+});
+```
+
+### setAppVolumePercentage<sup>18+</sup>
+
+setAppVolumePercentage(volume: number\): Promise<void\>
+
+Sets the volume for the application. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name    | Type                                     | Mandatory| Description      |
+| ---------- | ---------------------------------------- | ---- |----------|
+| volume    | number                                   | Yes  | Volume to set.|
+
+**Return value**
+
+| Type               | Description                           |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed.|
+| 6800301 | Crash or blocking occurs in system process. |
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+audioVolumeManager.setAppVolumePercentage(20).then(() => {
+  console.info(`set app volume success.`);
+});
+```
+
 ### on('volumeChange')<sup>9+</sup>
 
 on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
@@ -2555,6 +2661,82 @@ let volumeChangeCallback = (volumeEvent: audio.VolumeEvent) => {
 audioVolumeManager.on('volumeChange', volumeChangeCallback);
 
 audioVolumeManager.off('volumeChange', volumeChangeCallback);
+```
+
+### on('appVolumeChange')<sup>18+</sup>
+
+on(type: 'appVolumeChange', callback: Callback\<VolumeEvent>): void
+
+Subscribes to the application-level volume change events of the application. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name  | Type                                  | Mandatory| Description                                                        |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                 | Yes  | Event type. The value is fixed at **'appVolumeChange'**.|
+| callback | Callback<[VolumeEvent](js-apis-audio.md#volumeevent9)> | Yes  | Callback used to return the changed volume.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**Example**
+
+```ts
+audioVolumeManager.on('appVolumeChange', (volumeEvent: audio.VolumeEvent) => {
+  console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
+  console.info(`Volume level: ${volumeEvent.volume} `);
+  console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
+});
+```
+
+### off('appVolumeChange')<sup>18+</sup>
+
+off(type: 'appVolumeChange', callback?: Callback\<VolumeEvent>): void
+
+Unsubscribes from the application-level volume change event of the application. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name  | Type                                  | Mandatory| Description                                                        |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                 | Yes  | Event type. The value is fixed at **'appVolumeChange'**.|
+| callback | Callback<[VolumeEvent](js-apis-audio.md#volumeevent9)> | No  | Callback used to return the changed volume.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters missing; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**Example**
+
+```ts
+// Cancel all subscriptions to the event.
+audioVolumeManager.off('appVolumeChange');
+
+// For the same event, if the callback parameter passed to the off API is the same as that passed to the on API, the off API cancels the subscription registered with the specified callback parameter.
+let appVolumeChangeCallback = (volumeEvent: audio.VolumeEvent) => {
+  console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
+  console.info(`Volume level: ${volumeEvent.volume} `);
+  console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
+};
+
+audioVolumeManager.on('appVolumeChange', appVolumeChangeCallback);
+
+audioVolumeManager.off('appVolumeChange', appVolumeChangeCallback);
 ```
 
 ## AudioVolumeGroupManager<sup>9+</sup>
@@ -3250,6 +3432,46 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 audioVolumeGroupManager.on('micStateChange', (micStateChange: audio.MicStateChangeEvent) => {
   console.info(`Current microphone status is: ${micStateChange.mute} `);
 });
+```
+
+### off('micStateChange')<sup>12+</sup>
+
+off(type: 'micStateChange', callback?: Callback&lt;MicStateChangeEvent&gt;): void
+
+Unsubscribes from system microphone state change event. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name  | Type                                  | Mandatory| Description                                                        |
+| -------- | -------------------------------------- |----| ------------------------------------------------------------ |
+| type     | string                                 | Yes | Event type. The value is fixed at **'micStateChange'**.|
+| callback | Callback<[MicStateChangeEvent](#micstatechangeevent9)> | No | Callback used to return the changed microphone state.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters missing; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**Example**
+
+```ts
+// Cancel all subscriptions to the event.
+audioVolumeGroupManager.off('micStateChange');
+
+// For the same event, if the callback parameter passed to the off API is the same as that passed to the on API, the off API cancels the subscription registered with the specified callback parameter.
+let micStateChangeCallback = (micStateChange: audio.MicStateChangeEvent) => {
+  console.info(`Current microphone status is: ${micStateChange.mute} `);
+};
+
+audioVolumeGroupManager.on('micStateChange', micStateChangeCallback);
+
+audioVolumeGroupManager.off('micStateChange', micStateChangeCallback);
 ```
 
 ### isVolumeUnadjustable<sup>10+</sup>
@@ -4318,15 +4540,15 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 **Example**
 
 ```ts
-let blockMic: boolean = audioRoutingManager.isMicBlockDetectionSupported();
-if (blockMic == true) {
-  audioRoutingManager.on('micBlockStatusChanged', (micBlockStatusChanged: audio.DeviceBlockStatusInfo) => {
-    if (micBlockStatusChanged.blockStatus == audio.DeviceBlockStatus.BLOCKED ||
-      micBlockStatusChanged.blockStatus == audio.DeviceBlockStatus.UNBLOCKED) {
-      console.info(`${Tag}: on_micBlockStatusChanged: SUCCESS`);
-    }
-  });
-}
+// Before the subscription, check whether the current device supports detection.
+audioRoutingManager.isMicBlockDetectionSupported().then((value: boolean) => {
+  console.info(`Query whether microphone block detection is supported on current device result is ${value}.`);
+  if (value) {
+    audioRoutingManager.on('micBlockStatusChanged', (micBlockStatusChanged: audio.DeviceBlockStatusInfo) => {
+      console.info(`block status : ${micBlockStatusChanged.blockStatus} `);
+    });
+  }
+});
 ```
 
 ### off('micBlockStatusChanged')<sup>13+</sup>
@@ -4361,7 +4583,6 @@ audioRoutingManager.off('micBlockStatusChanged');
 
 // For the same event, if the callback parameter passed to the off API is the same as that passed to the on API, the off API cancels the subscription registered with the specified callback parameter.
 let micBlockStatusCallback = (micBlockStatusChanged: audio.DeviceBlockStatusInfo) => {
-  console.info(`device descriptor size : ${micBlockStatusChanged.deviceDescriptors.length} `);
   console.info(`block status : ${micBlockStatusChanged.blockStatus} `);
 };
 
@@ -5366,6 +5587,100 @@ audioSessionManager.on('audioSessionDeactivated', audioSessionDeactivatedCallbac
 audioSessionManager.off('audioSessionDeactivated', audioSessionDeactivatedCallback);
 ```
 
+## AudioSpatializationManager<sup>18+</sup>
+
+Implements spatial audio management.
+
+Before calling an API in **AudioSpatializationManager**, you must use [getSpatializationManager](#getspatializationmanager18) to obtain an **AudioSpatializationManager** instance.
+
+### isSpatializationEnabledForCurrentDevice<sup>18+</sup>
+
+isSpatializationEnabledForCurrentDevice(): boolean
+
+Checks whether spatial audio rendering is enabled for the current device. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Return value**
+
+| Type                  | Description                                                        |
+| ---------------------- | ------------------------------------------------------------ |
+| boolean | **true**: Spatial audio rendering is enabled for the device.<br>**false**: Spatial audio rendering is disabled for the device..|
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+let isSpatializationEnabledForCurrentDevice: boolean = audioSpatializationManager.isSpatializationEnabledForCurrentDevice();
+console.info(`AudioSpatializationManager isSpatializationEnabledForCurrentDevice: ${isSpatializationEnabledForCurrentDevice}`);
+```
+
+### on('spatializationEnabledChangeForCurrentDevice')<sup>18+</sup>
+
+on(type: 'spatializationEnabledChangeForCurrentDevice', callback: Callback<boolean\>): void
+
+Subscribes to the spatial audio rendering status change event of the current device. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Parameters**
+
+| Name  | Type                                                | Mandatory| Description                                          |
+| :------- | :--------------------------------------------------- | :--- |:---------------------------------------------|
+| type     | string                                               | Yes  | Event type. The event **'spatializationEnabledChangeForCurrentDevice'** is triggered when the status of spatial audio rendering changes.|
+| callback | Callback<boolean\> | Yes  | Callback used to return the result. The value **true** means that spatial audio rendering is enabled, and **false** means the opposite.  |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+audioSpatializationManager.on('spatializationEnabledChangeForCurrentDevice', (isSpatializationEnabledForCurrentDevice: boolean) => {
+  console.info(`isSpatializationEnabledForCurrentDevice: ${isSpatializationEnabledForCurrentDevice}`);
+});
+```
+
+### off('spatializationEnabledChangeForCurrentDevice')<sup>18+</sup>
+
+off(type: 'spatializationEnabledChangeForCurrentDevice', callback?: Callback<boolean\>): void
+
+Unsubscribes from the spatial audio rendering status change event of the current device. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Parameters**
+
+| Name  | Type                                               | Mandatory| Description                                      |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                              | Yes  | Event type. The event **'spatializationEnabledChangeForCurrentDevice'** is triggered when the status of spatial audio rendering changes.|
+| callback | Callback<boolean\> | No  | Callback used to return the result. The value **true** means that spatial audio rendering is enabled, and **false** means the opposite.  |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
+audioSpatializationManager.off('spatializationEnabledChangeForCurrentDevice');
+```
+
 ## AudioRendererChangeInfoArray<sup>9+</sup>
 
 type AudioRendererChangeInfoArray = Array&lt;Readonly&lt;AudioRendererChangeInfo&gt;&gt;
@@ -5519,6 +5834,7 @@ Describes an audio device.
 | channelMasks<sup>9+</sup>     | Array&lt;number&gt;        | Yes  | No  | Supported channel masks.<br> **System capability**: SystemCapability.Multimedia.Audio.Device|
 | displayName<sup>10+</sup>     | string                     | Yes  | No  | Display name of the device.<br> **System capability**: SystemCapability.Multimedia.Audio.Device|
 | encodingTypes<sup>11+</sup>    | Array&lt;[AudioEncodingType](#audioencodingtype8)&gt;                     | Yes  | No  | Supported encoding types.<br> **System capability**: SystemCapability.Multimedia.Audio.Core|
+| spatializationSupported<sup>18+</sup>     | boolean                     | Yes  | No  | Spatial audio rendering.<br>**System capability**: SystemCapability.Multimedia.Audio.Spatialization|
 
 **Example**
 
@@ -7897,11 +8213,11 @@ let writeDataCallback = (buffer: ArrayBuffer) => {
   try {
     fs.readSync(file.fd, buffer, options);
     bufferSize += buffer.byteLength;
-    // API version 11 does not support the return of the callback result. API version 12 and later support the return of the callback result.
+    // This API does not return a callback result in API version 11, but does so in API version 12 and later versions.
     return audio.AudioDataCallbackResult.VALID;
   } catch (error) {
     console.error('Error reading file:', error);
-    // API version 11 does not support the return of the callback result. API version 12 and later support the return of the callback result.
+    // This API does not return a callback result in API version 11, but does so in API version 12 and later versions.
     return audio.AudioDataCallbackResult.INVALID;
   }
 };

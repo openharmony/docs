@@ -23,7 +23,7 @@ FormBindingData相关描述。
 | data | Object | 是 | js卡片要展示的数据。可以是包含若干键值对的Object或者 json 格式的字符串。|
 
 
-## createFormBindingData
+## formBindingData.createFormBindingData
 
 createFormBindingData(obj?: Object | string): FormBindingData
 

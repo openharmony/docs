@@ -196,6 +196,8 @@ Enumerates the uniform data types. Some data types are related. For example, the
 | OFD<sup>12+</sup>                         | 'general.ofd'                    | Open Fixed-layout Document (OFD).<br>This type belongs to **COMPOSITE_OBJECT**.      |
 | CAD<sup>12+</sup>                         | 'general.cad'                    | Generic type of all computer-aided design types.<br>This type belongs to **OBJECT**.      |
 | OCTET_STREAM<sup>12+</sup>                         | 'general.octet-stream'                    | Any binary data type.<br>This type belongs to **OBJECT**.      |
+| FILE_URI<sup>15+</sup>                         | 'general.file-uri'                    | File address type.<br>This type belongs to **TEXT**.      |
+| CONTENT_FORM<sup>15+<sup>                         | 'general.content-form'                    | Content widget type.<br>This type belongs to **OBJECT**.      |
 
 
 ## TypeDescriptor<sup>11+</sup> 
@@ -234,7 +236,7 @@ Checks whether this data type belongs to the specified uniform data type.
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if the data type belongs to or is the same as the specified uniform data type; returns **false** if they are not related. |
+| boolean | Returns **true** if the data type belongs to or is the same as the specified uniform data type; returns **false** if they are not related.|
 
 **Error codes**
 
@@ -280,7 +282,7 @@ Checks whether this data type is a lower-level type of the specified uniform dat
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if the data type is a lower-level type of the specified uniform data type; returns **false** otherwise. |
+| boolean | Returns **true** if the data type is a lower-level type of the specified uniform data type; returns **false** otherwise.|
 
 **Error codes**
 
@@ -326,7 +328,7 @@ Checks whether this data type is a higher-level type of the specified uniform da
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if this data type is a higher-level type of the specified uniform data type; returns **false** otherwise.|
+| boolean | Returns **true** if the data type is a higher-level type of the specified uniform data type; returns **false** otherwise.|
 
 **Error codes**
 

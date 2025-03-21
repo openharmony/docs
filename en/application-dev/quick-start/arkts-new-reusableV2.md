@@ -6,7 +6,7 @@ Before reading this topic, you are advised to read [\@Reusable Decorator: Reusin
 
 >**NOTE**
 >
->The \@ReusableV2 decorator is supported since API version 16.
+>The \@ReusableV2 decorator is supported since API version 18.
 >
 
 ## Overview
@@ -350,7 +350,7 @@ The reset is performed based on the sequence of variables defined in the compone
 | Decorator    | Method for Resetting                                                    |
 | ---------- | ------------------------------------------------------------ |
 | \@Local    | Use the initial value for reassignment.                            |
-| \@Param    | Use external input value for re-assignment. If there is no external input value, use the local initial value. Note that variables decorated by \@Once are also reset and initialized.|
+| \@Param    | Use external input value for reassignment. If there is no external input value, use the local initial value. Note that variables decorated by \@Once are also reset and initialized.|
 | \@Event    | Use external input value for reassignment. If there is no external input value, use the local initial value. If there is no local initial value, the default empty implementation is generated.|
 | \@Provider | Use the initial value for reassignment.                            |
 | \@Consumer | If the corresponding \@Provider exists, use the value of \@Provider. Otherwise, use the local initial value for reassignment.|

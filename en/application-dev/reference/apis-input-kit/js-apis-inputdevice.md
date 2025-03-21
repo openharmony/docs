@@ -657,7 +657,7 @@ try {
 
 isFunctionKeyEnabled(functionKey: FunctionKey): Promise&lt;boolean&gt;
 
-Checks whether the function key is enabled.
+Checks whether the function key is enabled. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -665,12 +665,12 @@ Checks whether the function key is enabled.
 
 | Name    | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| functionKey | [FunctionKey](js-apis-inputdevice.md#functionkey15) | Yes  | ID of the function key.|
+| functionKey | [FunctionKey](#functionkey15) | Yes  | Type of the function key.|
 
 **Return value**
 
-| Parameters                                         | Description                           |
-| --------------------------------------------- | ------------------------------- |
+| Parameters                  | Description                                                        |
+| ---------------------- | ------------------------------------------------------------ |
 | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the function key is enabled, and the value **false** indicates the opposite.|
 
 **Error codes**
@@ -685,9 +685,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-// Query the CapsLock status.
+import { inputDevice } from '@kit.InputKit';
+
 try {
-  inputDevice.isFunctionKeyEnabled(1).then((state: boolean) => {
+  inputDevice.isFunctionKeyEnabled(inputDevice.FunctionKey.CAPS_LOCK).then((state: boolean) => {
     console.log(`capslock state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -699,7 +700,7 @@ try {
 
 setFunctionKeyEnabled(functionKey: FunctionKey, enabled: boolean): Promise&lt;void&gt;
 
-Sets whether to enable the function key.
+Sets the status of the function key . This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INPUT_KEYBOARD_CONTROLLER
 
@@ -709,8 +710,8 @@ Sets whether to enable the function key.
 
 | Name  | Type   | Mandatory| Description                     |
 | -------- | ------- | ---- | ------------------------- |
-| functionKey | [FunctionKey](js-apis-inputdevice.md#functionkey15) | Yes  |  ID of the function key.         |
-| enabled  | boolean | Yes  | Whether the function key is enabled. The value **true** indicates that the function key is enabled, and the value **false** indicates the opposite.|
+| functionKey | [FunctionKey](#functionkey15) | Yes  | Type of the function key.|
+| enabled  | boolean | Yes  | Status of the function key. The value **true** indicates that the function key is enabled, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -727,10 +728,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
+import { inputDevice } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
-  inputDevice.setFunctionKeyEnabled(1, true).then(() => {
+  inputDevice.setFunctionKeyEnabled(inputDevice.FunctionKey.CAPS_LOCK, true).then(() => {
     console.info(`Set capslock state success`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.info(`Set capslock state failed, error=${JSON.stringify(error)}`);
   });
 } catch (error) {
@@ -879,4 +883,4 @@ Defines the type of a function key.
 
 | Name                 | Value   | Description       |
 | ------------------- | ---- | --------- |
-| CAPS_LOCK                | 1    | CapsLock key. This key can be enabled or disabled only for the input keyboard extension. |
+| CAPS_LOCK                | 1    | CapsLock key. This key can be enabled or disabled only for the input keyboard extension.|

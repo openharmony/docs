@@ -1148,7 +1148,7 @@ sharing.off('sharingUpstreamChange', (data: object) => {
 
 ## InterfaceSharingStateInfo<sup>11+</sup>
 
-唤醒在网络共享模式下的变化时的监听器
+唤醒在网络共享模式下的变化时的监听器。
 
 **系统接口**：此接口为系统接口。
 
