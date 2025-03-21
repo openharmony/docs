@@ -77,35 +77,35 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Hid_EmitItem::type](#type) | 事件类型  | 
-| [Hid_EmitItem::code](#code) | 事件编码  | 
-| [Hid_EmitItem::value](#value) | 事件值  | 
-| [Hid_Device::deviceName](#devicename) | 设备名称  | 
-| [Hid_Device::vendorId](#vendorid) | 厂商ID  | 
-| [Hid_Device::productId](#productid) | 产品ID  | 
-| [Hid_Device::version](#version) | 版本号  | 
-| [Hid_Device::bustype](#bustype) | 总线类型  | 
-| [Hid_Device::properties](#properties) | 设备特性  | 
-| [Hid_Device::propLength](#proplength) | 设备特性数量  | 
-| [Hid_EventTypeArray::hidEventType](#hideventtype) | 事件类型编码  | 
-| [Hid_EventTypeArray::length](#length-15) | 数组长度  | 
-| [Hid_KeyCodeArray::hidKeyCode](#hidkeycode) | 键值编码  | 
-| [Hid_KeyCodeArray::length](#length-25) | 数组长度  | 
-| [Hid_AbsAxesArray::hidAbsAxes](#hidabsaxes) | 绝对坐标属性编码  | 
-| [Hid_AbsAxesArray::length](#length-35) | 数组长度  | 
-| [Hid_RelAxesArray::hidRelAxes](#hidrelaxes) | 相对坐标属性编码  | 
-| [Hid_RelAxesArray::length](#length-45) | 数组长度  | 
-| [Hid_MscEventArray::hidMscEvent](#hidmscevent) | 其它特殊事件属性编码  | 
-| [Hid_MscEventArray::length](#length-55) | 数组长度  | 
-| [Hid_EventProperties::hidEventTypes](#hideventtypes) | 事件类型属性编码数组  | 
-| [Hid_EventProperties::hidKeys](#hidkeys) | 键值属性编码数组  | 
-| [Hid_EventProperties::hidAbs](#hidabs) | 绝对坐标属性编码数组  | 
-| [Hid_EventProperties::hidRelBits](#hidrelbits) | 相对坐标属性编码数组  | 
-| [Hid_EventProperties::hidMiscellaneous](#hidmiscellaneous) | 其它特殊事件属性编码数组  | 
-| [Hid_EventProperties::hidAbsMax](#hidabsmax) [64] | 绝对坐标属性最大值  | 
-| [Hid_EventProperties::hidAbsMin](#hidabsmin) [64] | 绝对坐标属性最小值  | 
-| [Hid_EventProperties::hidAbsFuzz](#hidabsfuzz) [64] | 绝对坐标属性模糊值  | 
-| [Hid_EventProperties::hidAbsFlat](#hidabsflat) [64] | 绝对坐标属性固定值  | 
+| [Hid_EmitItem::type](#type) | 事件类型。  | 
+| [Hid_EmitItem::code](#code) | 事件编码。  | 
+| [Hid_EmitItem::value](#value) | 事件值。  | 
+| [Hid_Device::deviceName](#devicename) | 设备名称。  | 
+| [Hid_Device::vendorId](#vendorid) | 厂商ID。  | 
+| [Hid_Device::productId](#productid) | 产品ID。  | 
+| [Hid_Device::version](#version) | 版本号。  | 
+| [Hid_Device::bustype](#bustype) | 总线类型。  | 
+| [Hid_Device::properties](#properties) | 设备特性。  | 
+| [Hid_Device::propLength](#proplength) | 设备特性数量。  | 
+| [Hid_EventTypeArray::hidEventType](#hideventtype) | 事件类型编码。  | 
+| [Hid_EventTypeArray::length](#length-15) | 数组长度。  | 
+| [Hid_KeyCodeArray::hidKeyCode](#hidkeycode) | 键值编码。  | 
+| [Hid_KeyCodeArray::length](#length-25) | 数组长度。  | 
+| [Hid_AbsAxesArray::hidAbsAxes](#hidabsaxes) | 绝对坐标属性编码。  | 
+| [Hid_AbsAxesArray::length](#length-35) | 数组长度。  | 
+| [Hid_RelAxesArray::hidRelAxes](#hidrelaxes) | 相对坐标属性编码。  | 
+| [Hid_RelAxesArray::length](#length-45) | 数组长度。  | 
+| [Hid_MscEventArray::hidMscEvent](#hidmscevent) | 其它特殊事件属性编码。  | 
+| [Hid_MscEventArray::length](#length-55) | 数组长度。  | 
+| [Hid_EventProperties::hidEventTypes](#hideventtypes) | 事件类型属性编码数组。  | 
+| [Hid_EventProperties::hidKeys](#hidkeys) | 键值属性编码数组。  | 
+| [Hid_EventProperties::hidAbs](#hidabs) | 绝对坐标属性编码数组。  | 
+| [Hid_EventProperties::hidRelBits](#hidrelbits) | 相对坐标属性编码数组。  | 
+| [Hid_EventProperties::hidMiscellaneous](#hidmiscellaneous) | 其它特殊事件属性编码数组。  | 
+| [Hid_EventProperties::hidAbsMax](#hidabsmax) [64] | 绝对坐标属性最大值。  | 
+| [Hid_EventProperties::hidAbsMin](#hidabsmin) [64] | 绝对坐标属性最小值。  | 
+| [Hid_EventProperties::hidAbsFuzz](#hidabsfuzz) [64] | 绝对坐标属性模糊值。  | 
+| [Hid_EventProperties::hidAbsFlat](#hidabsflat) [64] | 绝对坐标属性固定值。  | 
 
 
 ## 类型定义说明
@@ -214,32 +214,32 @@ enum Hid_AbsAxes
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| HID_ABS_X  | X轴 | 
-| HID_ABS_Y  | Y轴 | 
-| HID_ABS_Z  | Z轴 | 
-| HID_ABS_RX  | 右模拟摇杆的 X 轴 | 
-| HID_ABS_RY  | 右模拟摇杆的 Y 轴 | 
-| HID_ABS_RZ  | 右模拟摇杆的 Z 轴 | 
-| HID_ABS_THROTTLE  | 油门 | 
-| HID_ABS_RUDDER  | 舵 | 
-| HID_ABS_WHEEL  | 滚轮 | 
-| HID_ABS_GAS  | 气 | 
-| HID_ABS_BRAKE  | 制动 | 
-| HID_ABS_HAT0X  | HAT0X | 
-| HID_ABS_HAT0Y  | HAT0Y | 
-| HID_ABS_HAT1X  | HAT1X | 
-| HID_ABS_HAT1Y  | HAT1Y | 
-| HID_ABS_HAT2X  | HAT2X | 
-| HID_ABS_HAT2Y  | HAT2Y | 
-| HID_ABS_HAT3X  | HAT3X | 
-| HID_ABS_HAT3Y  | HAT3Y | 
-| HID_ABS_PRESSURE  | 压力 | 
-| HID_ABS_DISTANCE  | 距离 | 
-| HID_ABS_TILT_X  | X轴倾斜度 | 
-| HID_ABS_TILT_Y  | Y轴倾斜度 | 
-| HID_ABS_TOOL_WIDTH  | 触摸工具的宽度 | 
-| HID_ABS_VOLUME  | 音量 | 
-| HID_ABS_MISC  | 其它 | 
+| HID_ABS_X  | X轴。 | 
+| HID_ABS_Y  | Y轴。 | 
+| HID_ABS_Z  | Z轴。 | 
+| HID_ABS_RX  | 右模拟摇杆的 X 轴。 | 
+| HID_ABS_RY  | 右模拟摇杆的 Y 轴。 | 
+| HID_ABS_RZ  | 右模拟摇杆的 Z 轴。 | 
+| HID_ABS_THROTTLE  | 油门。 | 
+| HID_ABS_RUDDER  | 舵。 | 
+| HID_ABS_WHEEL  | 滚轮。 | 
+| HID_ABS_GAS  | 气。 | 
+| HID_ABS_BRAKE  | 制动。 | 
+| HID_ABS_HAT0X  | HAT0X。 | 
+| HID_ABS_HAT0Y  | HAT0Y。 | 
+| HID_ABS_HAT1X  | HAT1X。 | 
+| HID_ABS_HAT1Y  | HAT1Y。 | 
+| HID_ABS_HAT2X  | HAT2X。 | 
+| HID_ABS_HAT2Y  | HAT2Y。 | 
+| HID_ABS_HAT3X  | HAT3X。 | 
+| HID_ABS_HAT3Y  | HAT3Y。 | 
+| HID_ABS_PRESSURE  | 压力。 | 
+| HID_ABS_DISTANCE  | 距离。 | 
+| HID_ABS_TILT_X  | X轴倾斜度。 | 
+| HID_ABS_TILT_Y  | Y轴倾斜度。 | 
+| HID_ABS_TOOL_WIDTH  | 触摸工具的宽度。 | 
+| HID_ABS_VOLUME  | 音量。 | 
+| HID_ABS_MISC  | 其它。 | 
 
 
 ### Hid_DdkErrCode
@@ -254,13 +254,13 @@ HID DDK错误码定义。
 
 | 枚举定义 | 值 | 描述 | 
 | -------- | -------- |-------- |
-| HID_DDK_SUCCESS | 0 | 操作成功 | 
-| HID_DDK_NO_PERM | 201 | 没有权限 | 
-| HID_DDK_INVALID_PARAMETER | 401 | 非法参数 | 
-| HID_DDK_FAILURE | 27300001 | 操作失败 | 
-| HID_DDK_NULL_PTR | 27300002 | 空指针异常 | 
-| HID_DDK_INVALID_OPERATION | 27300003 | 非法操作 | 
-| HID_DDK_TIMEOUT | 27300004 | 超时 | 
+| HID_DDK_SUCCESS | 0 | 操作成功。 | 
+| HID_DDK_NO_PERM | 201 | 没有权限。 | 
+| HID_DDK_INVALID_PARAMETER | 401 | 非法参数。 | 
+| HID_DDK_FAILURE | 27300001 | 操作失败。 | 
+| HID_DDK_NULL_PTR | 27300002 | 空指针异常。 | 
+| HID_DDK_INVALID_OPERATION | 27300003 | 非法操作。 | 
+| HID_DDK_TIMEOUT | 27300004 | 超时。 | 
 
 ### Hid_DeviceProp
 
@@ -274,13 +274,13 @@ enum Hid_DeviceProp
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| HID_PROP_POINTER  | 指针设备 | 
-| HID_PROP_DIRECT  | 直接输入设备 | 
-| HID_PROP_BUTTON_PAD  | 底部按键触摸设备 | 
-| HID_PROP_SEMI_MT  | 全多点触控设备 | 
-| HID_PROP_TOP_BUTTON_PAD  | 顶部软按键触摸设备 | 
-| HID_PROP_POINTING_STICK  | 指点杆设备 | 
-| HID_PROP_ACCELEROMETER  | 加速度传感器设备 | 
+| HID_PROP_POINTER  | 指针设备。 | 
+| HID_PROP_DIRECT  | 直接输入设备。 | 
+| HID_PROP_BUTTON_PAD  | 底部按键触摸设备。 | 
+| HID_PROP_SEMI_MT  | 全多点触控设备。 | 
+| HID_PROP_TOP_BUTTON_PAD  | 顶部软按键触摸设备。 | 
+| HID_PROP_POINTING_STICK  | 指点杆设备。 | 
+| HID_PROP_ACCELEROMETER  | 加速度传感器设备。 | 
 
 
 ### Hid_EventType
@@ -295,11 +295,11 @@ enum Hid_EventType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| HID_EV_SYN  | 同步事件 | 
-| HID_EV_KEY  | 按键事件 | 
-| HID_EV_REL  | 相对坐标事件 | 
-| HID_EV_ABS  | 绝对坐标事件 | 
-| HID_EV_MSC  | 特殊事件 | 
+| HID_EV_SYN  | 同步事件。 | 
+| HID_EV_KEY  | 按键事件。 | 
+| HID_EV_REL  | 相对坐标事件。 | 
+| HID_EV_ABS  | 绝对坐标事件。 | 
+| HID_EV_MSC  | 特殊事件。 | 
 
 
 ### Hid_KeyCode
@@ -314,115 +314,115 @@ enum Hid_KeyCode
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| HID_KEY_A  | 键A | 
-| HID_KEY_B  | 键B | 
-| HID_KEY_C  | 键C | 
-| HID_KEY_D  | 键D | 
-| HID_KEY_E  | 键E | 
-| HID_KEY_F  | 键F | 
-| HID_KEY_G  | 键G | 
-| HID_KEY_H  | 键H | 
-| HID_KEY_I  | 键I | 
-| HID_KEY_J  | 键J | 
-| HID_KEY_K  | 键K | 
-| HID_KEY_L  | 键L | 
-| HID_KEY_M  | 键M | 
-| HID_KEY_N  | 键N | 
-| HID_KEY_O  | 键O | 
-| HID_KEY_P  | 键P | 
-| HID_KEY_Q  | 键Q | 
-| HID_KEY_R  | 键R | 
-| HID_KEY_S  | 键S | 
-| HID_KEY_T  | 键T | 
-| HID_KEY_U  | 键U | 
-| HID_KEY_V  | 键V | 
-| HID_KEY_W  | 键W | 
-| HID_KEY_X  | 键X | 
-| HID_KEY_Y  | 键Y | 
-| HID_KEY_Z  | 键Z | 
-| HID_KEY_ESC  | 键ESC | 
-| HID_KEY_0  | 键0 | 
-| HID_KEY_1  | 键1 | 
-| HID_KEY_2  | 键2 | 
-| HID_KEY_3  | 键3 | 
-| HID_KEY_4  | 键4 | 
-| HID_KEY_5  | 键5 | 
-| HID_KEY_6  | 键6 | 
-| HID_KEY_7  | 键7 | 
-| HID_KEY_8  | 键8 | 
-| HID_KEY_9  | 键9 | 
-| HID_KEY_GRAVE  | 键` | 
-| HID_KEY_MINUS  | 键- | 
-| HID_KEY_EQUALS  | 键= | 
-| HID_KEY_BACKSPACE  | 键退格 | 
-| HID_KEY_LEFT_BRACKET  | 键[ | 
-| HID_KEY_RIGHT_BRACKET  | 键] | 
-| HID_KEY_ENTER  | 键回车 | 
-| HID_KEY_LEFT_SHIFT  | 键左shift | 
-| HID_KEY_BACKSLASH  | 键\ | 
-| HID_KEY_SEMICOLON  | 键; | 
-| HID_KEY_APOSTROPHE  | 键' | 
-| HID_KEY_SPACE  | 键空格 | 
-| HID_KEY_SLASH  | 键/ | 
-| HID_KEY_COMMA  | 键, | 
-| HID_KEY_PERIOD  | 键. | 
-| HID_KEY_RIGHT_SHIFT  | 键右shift | 
-| HID_KEY_NUMPAD_0  | 数字键0 | 
-| HID_KEY_NUMPAD_1  | 数字键1 | 
-| HID_KEY_NUMPAD_2  | 数字键2 | 
-| HID_KEY_NUMPAD_3  | 数字键3 | 
-| HID_KEY_NUMPAD_4  | 数字键4 | 
-| HID_KEY_NUMPAD_5  | 数字键5 | 
-| HID_KEY_NUMPAD_6  | 数字键6 | 
-| HID_KEY_NUMPAD_7  | 数字键7 | 
-| HID_KEY_NUMPAD_8  | 数字键8 | 
-| HID_KEY_NUMPAD_9  | 数字键9 | 
-| HID_KEY_NUMPAD_DIVIDE  | 数字键/ | 
-| HID_KEY_NUMPAD_MULTIPLY  | 数字键\* | 
-| HID_KEY_NUMPAD_SUBTRACT  | 数字键- | 
-| HID_KEY_NUMPAD_ADD  | 数字键+ | 
-| HID_KEY_NUMPAD_DOT  | 数字键. | 
-| HID_KEY_SYSRQ  | 键ESC | 
-| HID_KEY_MUTE  | 键静音 | 
-| HID_KEY_VOLUME_DOWN  | 键音量- | 
-| HID_KEY_VOLUME_UP  | 键音量+ | 
-| HID_KEY_BRIGHTNESS_DOWN  | 键亮度- | 
-| HID_KEY_BRIGHTNESS_UP  | 键亮度+ | 
-| HID_BTN_0  | 按钮0 | 
-| HID_BTN_1  | 按钮1 | 
-| HID_BTN_2  | 按钮2 | 
-| HID_BTN_3  | 按钮3 | 
-| HID_BTN_4  | 按钮4 | 
-| HID_BTN_5  | 按钮5 | 
-| HID_BTN_6  | 按钮6 | 
-| HID_BTN_7  | 按钮7 | 
-| HID_BTN_8  | 按钮8 | 
-| HID_BTN_9  | 按钮9 | 
-| HID_BTN_LEFT  | 鼠标按键左键 | 
-| HID_BTN_RIGHT  | 鼠标按键右键 | 
-| HID_BTN_MIDDLE  | 鼠标按键中键 | 
-| HID_BTN_SIDE  | 鼠标侧面按键 | 
-| HID_BTN_EXTRA  | 鼠标附加按键 | 
-| HID_BTN_FORWARD  | 鼠标向前按键 | 
-| HID_BTN_BACKWARD  | 鼠标向后按键 | 
-| HID_BTN_TASK  | 鼠标任务按键 | 
-| HID_BTN_TOOL_PEN  | 画笔 | 
-| HID_BTN_TOOL_RUBBER  | 橡皮擦 | 
-| HID_BTN_TOOL_BRUSH  | 笔刷 | 
-| HID_BTN_TOOL_PENCIL  | 铅笔 | 
-| HID_BTN_TOOL_AIRBRUSH  | 喷枪 | 
-| HID_BTN_TOOL_FINGER  | 手指 | 
-| HID_BTN_TOOL_MOUSE  | 鼠标 | 
-| HID_BTN_TOOL_LENS  | 镜头 | 
-| HID_BTN_TOOL_QUINT_TAP  | 五指触控 | 
-| HID_BTN_STYLUS3  | 手写笔3 | 
-| HID_BTN_TOUCH  | 触摸 | 
-| HID_BTN_STYLUS  | 手写笔 | 
-| HID_BTN_STYLUS2  | 手写笔2 | 
-| HID_BTN_TOOL_DOUBLE_TAP  | 二指触控 | 
-| HID_BTN_TOOL_TRIPLE_TAP  | 三指触控 | 
-| HID_BTN_TOOL_QUAD_TAP  | 四指触控 | 
-| HID_BTN_WHEEL  | 滚轮 | 
+| HID_KEY_A  | 键A。 | 
+| HID_KEY_B  | 键B。 | 
+| HID_KEY_C  | 键C。 | 
+| HID_KEY_D  | 键D。 | 
+| HID_KEY_E  | 键E。 | 
+| HID_KEY_F  | 键F。 | 
+| HID_KEY_G  | 键G。 | 
+| HID_KEY_H  | 键H。 | 
+| HID_KEY_I  | 键I。 | 
+| HID_KEY_J  | 键J。 | 
+| HID_KEY_K  | 键K。 | 
+| HID_KEY_L  | 键L。 | 
+| HID_KEY_M  | 键M。 | 
+| HID_KEY_N  | 键N。 | 
+| HID_KEY_O  | 键O。 | 
+| HID_KEY_P  | 键P。 | 
+| HID_KEY_Q  | 键Q。 | 
+| HID_KEY_R  | 键R。 | 
+| HID_KEY_S  | 键S。 | 
+| HID_KEY_T  | 键T。 | 
+| HID_KEY_U  | 键U。 | 
+| HID_KEY_V  | 键V。 | 
+| HID_KEY_W  | 键W。 | 
+| HID_KEY_X  | 键X。 | 
+| HID_KEY_Y  | 键Y。 | 
+| HID_KEY_Z  | 键Z。 | 
+| HID_KEY_ESC  | 键ESC。 | 
+| HID_KEY_0  | 键0。 | 
+| HID_KEY_1  | 键1。 | 
+| HID_KEY_2  | 键2。 | 
+| HID_KEY_3  | 键3。 | 
+| HID_KEY_4  | 键4。 | 
+| HID_KEY_5  | 键5。 | 
+| HID_KEY_6  | 键6。 | 
+| HID_KEY_7  | 键7。 | 
+| HID_KEY_8  | 键8。 | 
+| HID_KEY_9  | 键9。 | 
+| HID_KEY_GRAVE  | 键`。 | 
+| HID_KEY_MINUS  | 键-。 | 
+| HID_KEY_EQUALS  | 键=。 | 
+| HID_KEY_BACKSPACE  | 键退格。 | 
+| HID_KEY_LEFT_BRACKET  | 键[。 | 
+| HID_KEY_RIGHT_BRACKET  | 键]。 | 
+| HID_KEY_ENTER  | 键回车。 | 
+| HID_KEY_LEFT_SHIFT  | 键左shift。 | 
+| HID_KEY_BACKSLASH  | 键\。 | 
+| HID_KEY_SEMICOLON  | 键;。 | 
+| HID_KEY_APOSTROPHE  | 键'。 | 
+| HID_KEY_SPACE  | 键空格。 | 
+| HID_KEY_SLASH  | 键/。 | 
+| HID_KEY_COMMA  | 键,。 | 
+| HID_KEY_PERIOD  | 键.。 | 
+| HID_KEY_RIGHT_SHIFT  | 键右shift。 | 
+| HID_KEY_NUMPAD_0  | 数字键0。 | 
+| HID_KEY_NUMPAD_1  | 数字键1。 | 
+| HID_KEY_NUMPAD_2  | 数字键2。 | 
+| HID_KEY_NUMPAD_3  | 数字键3。 | 
+| HID_KEY_NUMPAD_4  | 数字键4。 | 
+| HID_KEY_NUMPAD_5  | 数字键5。 | 
+| HID_KEY_NUMPAD_6  | 数字键6。 | 
+| HID_KEY_NUMPAD_7  | 数字键7。 | 
+| HID_KEY_NUMPAD_8  | 数字键8。 | 
+| HID_KEY_NUMPAD_9  | 数字键9。 | 
+| HID_KEY_NUMPAD_DIVIDE  | 数字键/。 | 
+| HID_KEY_NUMPAD_MULTIPLY  | 数字键\*。 | 
+| HID_KEY_NUMPAD_SUBTRACT  | 数字键-。 | 
+| HID_KEY_NUMPAD_ADD  | 数字键+。 | 
+| HID_KEY_NUMPAD_DOT  | 数字键.。 | 
+| HID_KEY_SYSRQ  | 键ESC。 | 
+| HID_KEY_MUTE  | 键静音。 | 
+| HID_KEY_VOLUME_DOWN  | 键音量-。 | 
+| HID_KEY_VOLUME_UP  | 键音量+。 | 
+| HID_KEY_BRIGHTNESS_DOWN  | 键亮度-。 | 
+| HID_KEY_BRIGHTNESS_UP  | 键亮度+。 | 
+| HID_BTN_0  | 按钮0。 | 
+| HID_BTN_1  | 按钮1。 | 
+| HID_BTN_2  | 按钮2。 | 
+| HID_BTN_3  | 按钮3。 | 
+| HID_BTN_4  | 按钮4。 | 
+| HID_BTN_5  | 按钮5。 | 
+| HID_BTN_6  | 按钮6。 | 
+| HID_BTN_7  | 按钮7。 | 
+| HID_BTN_8  | 按钮8。 | 
+| HID_BTN_9  | 按钮9。 | 
+| HID_BTN_LEFT  | 鼠标按键左键。 | 
+| HID_BTN_RIGHT  | 鼠标按键右键。 | 
+| HID_BTN_MIDDLE  | 鼠标按键中键。 | 
+| HID_BTN_SIDE  | 鼠标侧面按键。 | 
+| HID_BTN_EXTRA  | 鼠标附加按键。 | 
+| HID_BTN_FORWARD  | 鼠标向前按键。 | 
+| HID_BTN_BACKWARD  | 鼠标向后按键。 | 
+| HID_BTN_TASK  | 鼠标任务按键。 | 
+| HID_BTN_TOOL_PEN  | 画笔。 | 
+| HID_BTN_TOOL_RUBBER  | 橡皮擦。 | 
+| HID_BTN_TOOL_BRUSH  | 笔刷。 | 
+| HID_BTN_TOOL_PENCIL  | 铅笔。 | 
+| HID_BTN_TOOL_AIRBRUSH  | 喷枪。 | 
+| HID_BTN_TOOL_FINGER  | 手指。 | 
+| HID_BTN_TOOL_MOUSE  | 鼠标。 | 
+| HID_BTN_TOOL_LENS  | 镜头。 | 
+| HID_BTN_TOOL_QUINT_TAP  | 五指触控。 | 
+| HID_BTN_STYLUS3  | 手写笔3。 | 
+| HID_BTN_TOUCH  | 触摸。 | 
+| HID_BTN_STYLUS  | 手写笔。 | 
+| HID_BTN_STYLUS2  | 手写笔2。 | 
+| HID_BTN_TOOL_DOUBLE_TAP  | 二指触控。 | 
+| HID_BTN_TOOL_TRIPLE_TAP  | 三指触控。 | 
+| HID_BTN_TOOL_QUAD_TAP  | 四指触控。 | 
+| HID_BTN_WHEEL  | 滚轮。 | 
 
 
 ### Hid_MscEvent
@@ -437,12 +437,12 @@ enum Hid_MscEvent
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| HID_MSC_SERIAL  | 序列号 | 
-| HID_MSC_PULSE_LED  | 脉冲 | 
-| HID_MSC_GESTURE  | 手势 | 
-| HID_MSC_RAW  | 开始事件 | 
-| HID_MSC_SCAN  | 扫描 | 
-| HID_MSC_TIMESTAMP  | 时间戳 | 
+| HID_MSC_SERIAL  | 序列号。 | 
+| HID_MSC_PULSE_LED  | 脉冲。 | 
+| HID_MSC_GESTURE  | 手势。 | 
+| HID_MSC_RAW  | 开始事件。 | 
+| HID_MSC_SCAN  | 扫描。 | 
+| HID_MSC_TIMESTAMP  | 时间戳。 | 
 
 
 ### Hid_RelAxes
@@ -457,19 +457,19 @@ enum Hid_RelAxes
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| HID_REL_X  | X轴 | 
-| HID_REL_Y  | Y轴 | 
-| HID_REL_Z  | Z轴 | 
-| HID_REL_RX  | 右模拟摇杆的 X 轴 | 
-| HID_REL_RY  | 右模拟摇杆的 Y 轴 | 
-| HID_REL_RZ  | 右模拟摇杆的 Z 轴 | 
-| HID_REL_HWHEEL  | 水平滚轮 | 
-| HID_REL_DIAL  | 刻度 | 
-| HID_REL_WHEEL  | 滚轮 | 
-| HID_REL_MISC  | 其它 | 
-| HID_REL_RESERVED  | 预留 | 
-| HID_REL_WHEEL_HI_RES  | 高分辨率滚轮 | 
-| HID_REL_HWHEEL_HI_RES  | 高分辨率水平滚轮 | 
+| HID_REL_X  | X轴。 | 
+| HID_REL_Y  | Y轴。 | 
+| HID_REL_Z  | Z轴。 | 
+| HID_REL_RX  | 右模拟摇杆的 X 轴。 | 
+| HID_REL_RY  | 右模拟摇杆的 Y 轴。 | 
+| HID_REL_RZ  | 右模拟摇杆的 Z 轴。 | 
+| HID_REL_HWHEEL  | 水平滚轮。 | 
+| HID_REL_DIAL  | 刻度。 | 
+| HID_REL_WHEEL  | 滚轮。 | 
+| HID_REL_MISC  | 其它。 | 
+| HID_REL_RESERVED  | 预留。 | 
+| HID_REL_WHEEL_HI_RES  | 高分辨率滚轮。 | 
+| HID_REL_HWHEEL_HI_RES  | 高分辨率水平滚轮。 | 
 
 
 ### Hid_SynEvent
@@ -484,10 +484,10 @@ enum Hid_SynEvent
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| HID_SYN_REPORT  | 表示一个事件的结束 | 
-| HID_SYN_CONFIG  | 表示配置同步 | 
-| HID_SYN_MT_REPORT  | 表示多点触摸的ABS数据包结束 | 
-| HID_SYN_DROPPED  | 表示该事件被丢弃 | 
+| HID_SYN_REPORT  | 表示一个事件的结束。 | 
+| HID_SYN_CONFIG  | 表示配置同步。 | 
+| HID_SYN_MT_REPORT  | 表示多点触摸的ABS数据包结束。 | 
+| HID_SYN_DROPPED  | 表示该事件被丢弃。 | 
 
 
 ## 函数说明
