@@ -1871,7 +1871,7 @@ DLP沙箱身份。
 | ownerAccountType | [AccountType](#accounttype) | 否 | 是 | 表示权限设置者账号类型。 |
 | authUserList | Array&lt;[AuthUser](#authuser)&gt; | 否 | 否 | 表示授权用户列表，默认为空。 |
 | contactAccount | string | 否 | 是 | 表示联系人账号。无长度限制。 |
-| offlineAccess | boolean | 否 | 是 | 表示是否是离线打开。true表示允许离线打开，false表示不可离线打开 |
+| offlineAccess | boolean | 否 | 是 | 表示是否是离线打开。true表示允许离线打开，false表示不可离线打开。 |
 | everyoneAccessList | Array&lt;[DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess)&gt; | 否 | 否 | 表示授予所有人的权限，默认为空。 |
 | expireTime<sup>11+</sup> | number | 否 | 否 | 表示文件权限到期时间戳，默认为空。 |
 
