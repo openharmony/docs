@@ -536,8 +536,8 @@ udp.bind(bindAddr, (err: BusinessError) => {
   }
   console.log('bind success');
   let udpextraoptions: socket.UDPExtraOptions = {
-    receiveBufferSize: 1000,
-    sendBufferSize: 1000,
+    receiveBufferSize: 6000000,
+    sendBufferSize: 2000000,
     reuseAddress: false,
     socketTimeout: 6000,
     broadcast: true
@@ -603,8 +603,8 @@ udp.bind(bindAddr, (err: BusinessError) => {
   }
   console.log('bind success');
   let udpextraoptions: socket.UDPExtraOptions = {
-    receiveBufferSize: 1000,
-    sendBufferSize: 1000,
+    receiveBufferSize: 6000000,
+    sendBufferSize: 2000000,
     reuseAddress: false,
     socketTimeout: 6000,
     broadcast: true
