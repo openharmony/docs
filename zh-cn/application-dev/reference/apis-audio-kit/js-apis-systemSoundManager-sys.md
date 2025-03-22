@@ -119,6 +119,8 @@ setTitle(title: string): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息              |
 |-------| -------------------- |
 | 202   | Caller is not a system application. |
@@ -150,6 +152,8 @@ getFileName(): string
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息              |
 |---------| -------------------- |
 | 202     | Caller is not a system application. |
@@ -178,6 +182,8 @@ setFileName(name: string): void
 | name  | string | 是   | 铃声的文件名。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 |-------| -------------------- |
@@ -210,6 +216,8 @@ getUri(): string
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息              |
 |---------| -------------------- |
 | 202     | Caller is not a system application. |
@@ -238,6 +246,8 @@ getCustomizedType(): string
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID   | 错误信息              |
 |---------| -------------------- |
 | 202     | Caller is not a system application. |
@@ -265,6 +275,8 @@ setCategory(category: number): void
 | category | number   | 是   | 铃声类别，取值参考[铃声类别的常量](#常量)。  |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 |-------| -------------------- |
@@ -296,6 +308,8 @@ getCategory(): string
 | number | 铃声类别，取值参考[铃声类别的常量](#常量)。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息              |
 |---------| -------------------- |
@@ -338,7 +352,7 @@ createCustomizedToneAttrs(): ToneAttrs
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息              |
 |---------| -------------------- |
@@ -426,6 +440,8 @@ getUri(): string
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID   | 错误信息              |
 |---------| -------------------- |
 | 202     | Caller is not a system application. |
@@ -454,6 +470,8 @@ getTitle(): string
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID   | 错误信息              |
 |---------| -------------------- |
 | 202     | Caller is not a system application. |
@@ -481,6 +499,8 @@ getFileName(): string
 | string | 文件名。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息              |
 |---------| -------------------- |
@@ -812,7 +832,7 @@ setRingtoneUri(context: BaseContext, uri: string, type: RingtoneType): Promise&l
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
@@ -863,7 +883,7 @@ getRingtoneUri(context: BaseContext, type: RingtoneType): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
@@ -913,7 +933,7 @@ getRingtonePlayer(context: BaseContext, type: RingtoneType): Promise&lt;Ringtone
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
@@ -965,7 +985,7 @@ setSystemToneUri(context: BaseContext, uri: string, type: SystemToneType): Promi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
@@ -1016,7 +1036,7 @@ getSystemToneUri(context: BaseContext, type: SystemToneType): Promise&lt;string&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
@@ -1066,7 +1086,7 @@ getSystemTonePlayer(context: BaseContext, type: SystemToneType): Promise&lt;Syst
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
@@ -1117,7 +1137,7 @@ getDefaultRingtoneAttrs(context: BaseContext, type: RingtoneType): Promise&lt;To
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
@@ -1167,7 +1187,7 @@ getRingtoneAttrList(context: BaseContext, type: RingtoneType): Promise&lt;ToneAt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
@@ -1217,7 +1237,7 @@ getDefaultSystemToneAttrs(context: BaseContext, type: SystemToneType): Promise&l
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
@@ -1267,7 +1287,7 @@ getSystemToneAttrList(context: BaseContext, type: SystemToneType): Promise&lt;To
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
@@ -1316,7 +1336,7 @@ getDefaultAlarmToneAttrs(context: BaseContext): Promise&lt;ToneAttrs&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
@@ -1442,7 +1462,7 @@ getAlarmToneAttrList(context: BaseContext): Promise&lt;ToneAttrsArray&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
@@ -1491,7 +1511,7 @@ openAlarmTone(context: Context, uri: string): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
@@ -1541,7 +1561,7 @@ close(fd: number): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
@@ -1592,7 +1612,7 @@ addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, externalUri: string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID   | 错误信息              |
 |---------| -------------------- |
@@ -1656,7 +1676,7 @@ addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, fd: number, offset?
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID   | 错误信息              |
 |---------| -------------------- |
@@ -1719,7 +1739,7 @@ removeCustomizedTone(context: BaseContext, uri: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID   | 错误信息              |
 |---------| -------------------- |
@@ -1771,7 +1791,7 @@ getToneHapticsSettings(context: BaseContext, type: ToneHapticsType): Promise&lt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID   | 错误信息              |
 |---------| -------------------- |
@@ -1823,7 +1843,7 @@ setToneHapticsSettings(context: BaseContext, type: ToneHapticsType, settings: To
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID   | 错误信息              |
 |---------| -------------------- |
@@ -1869,7 +1889,7 @@ getToneHapticsList(context: BaseContext, isSynced: boolean): Promise&lt;ToneHapt
 | 参数名 | 类型        | 必填 | 说明                                                                          |
 |-----|-----------| ---- |----------------------------------------------------------------------------------|
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。   |
-| isSynced  | boolean    | 是   | 待获取的振动是否与某个铃音同步。 |
+| isSynced  | boolean    | 是   | 表示待获取的振动是否与某个铃音同步。true表示同步，false表示不同步。 |
 
 **返回值：**
 
@@ -1879,7 +1899,7 @@ getToneHapticsList(context: BaseContext, isSynced: boolean): Promise&lt;ToneHapt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID   | 错误信息              |
 |---------| -------------------- |
@@ -1929,7 +1949,7 @@ getHapticsAttrsSyncedWithTone(context: BaseContext, toneUri: string): Promise&lt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID   | 错误信息              |
 |---------| -------------------- |
@@ -1981,7 +2001,7 @@ openToneHaptics(context: Context, hapticsUri: string): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
