@@ -61,10 +61,10 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-      let displayCountry: string = i18n.System.getDisplayCountry("zh-CN", "en-GB"); // displayCountry = "China"
+    let displayCountry: string = i18n.System.getDisplayCountry('CN', 'en-GB'); // displayCountry = 'China'
   } catch (error) {
-      let err: BusinessError = error as BusinessError;
-      console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -72,7 +72,7 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
 
 static getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): string
 
-文本按指定语言进行本地化显示。例如，getDisplayLanguage("de", "zh-Hans-CN")用中文显示德文，接口输出结果为：德文。
+文本按指定语言进行本地化显示。例如，getDisplayLanguage('de', 'zh-Hans-CN')用中文显示德文，接口输出结果为：德文。
 
 **原子化服务API**： 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -106,8 +106,9 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let displayLanguage: string = i18n.System.getDisplayLanguage("zh", "en-GB"); // 用英文形式显示中文，displayLanguage = Chinese
-  } catch(error) {
+    let displayLanguage: string =
+      i18n.System.getDisplayLanguage('zh', 'en-GB'); // 用英文形式显示中文，displayLanguage = Chinese
+  } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getDisplayLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
@@ -133,7 +134,8 @@ static getSystemLanguages(): Array&lt;string&gt;
 
 **示例：**
   ```ts
-  let systemLanguages: Array<string> = i18n.System.getSystemLanguages(); // [ "ug", "bo", "zh-Hant", "en-Latn-US", "zh-Hans" ]
+  let systemLanguages: Array<string> =
+    i18n.System.getSystemLanguages(); // systemLanguages = [ 'ug', 'bo', 'zh-Hant', 'en-Latn-US', 'zh-Hans' ]
   ```
 
 ### getSystemCountries<sup>9+</sup>
@@ -176,8 +178,9 @@ static getSystemCountries(language: string): Array&lt;string&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let systemCountries: Array<string> = i18n.System.getSystemCountries('zh'); // systemCountries = [ "ZW", "YT", "YE", ..., "ER", "CN", "DE" ]
-  } catch(error) {
+    let systemCountries: Array<string> =
+      i18n.System.getSystemCountries('zh'); // systemCountries = [ 'ZW', 'YT', 'YE', ..., 'ER', 'CN', 'DE' ]
+  } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getSystemCountries failed, error code: ${err.code}, message: ${err.message}.`);
   }
@@ -225,8 +228,8 @@ static isSuggested(language: string, region?: string): boolean
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let res: boolean = i18n.System.isSuggested('zh', 'CN');  // res = true
-  } catch(error) {
+    let res: boolean = i18n.System.isSuggested('zh', 'CN'); // res = true
+  } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.isSuggested failed, error code: ${err.code}, message: ${err.message}.`);
   }
@@ -252,7 +255,7 @@ static getSystemLanguage(): string
 
 **示例：**
   ```ts
-  let systemLanguage: string = i18n.System.getSystemLanguage();  // systemLanguage为当前系统语言
+  let systemLanguage: string = i18n.System.getSystemLanguage();
   ```
 
 ### getSystemRegion<sup>9+</sup>
@@ -273,7 +276,7 @@ static getSystemRegion(): string
 
 **示例：**
   ```ts
-  let systemRegion: string = i18n.System.getSystemRegion(); // 获取系统当前地区设置
+  let systemRegion: string = i18n.System.getSystemRegion();
   ```
 
 ### getSystemLocale<sup>9+</sup>
@@ -294,7 +297,7 @@ static getSystemLocale(): string
 
 **示例：**
   ```ts
-  let systemLocale: string = i18n.System.getSystemLocale();  // 获取系统当前Locale
+  let systemLocale: string = i18n.System.getSystemLocale();
   ```
 
 ### is24HourClock<sup>9+</sup>
@@ -317,7 +320,7 @@ static is24HourClock(): boolean
 
 **示例：**
   ```ts
-  let is24HourClock: boolean = i18n.System.is24HourClock();  // 系统24小时开关是否开启
+  let is24HourClock: boolean = i18n.System.is24HourClock();
   ```
 
 
@@ -339,7 +342,7 @@ static getPreferredLanguageList(): Array&lt;string&gt;
 
 **示例：**
   ```ts
-  let preferredLanguageList: Array<string> = i18n.System.getPreferredLanguageList(); // 获取系统当前偏好语言列表
+  let preferredLanguageList: Array<string> = i18n.System.getPreferredLanguageList();
   ```
 
 ### getFirstPreferredLanguage<sup>9+</sup>
@@ -360,14 +363,14 @@ static getFirstPreferredLanguage(): string
 
 **示例：**
   ```ts
-  let firstPreferredLanguage: string = i18n.System.getFirstPreferredLanguage();  // 获取系统当前偏好语言列表中的第一个偏好语言
+  let firstPreferredLanguage: string = i18n.System.getFirstPreferredLanguage();
   ```
 
 ### setAppPreferredLanguage<sup>11+</sup>
 
 static setAppPreferredLanguage(language: string): void
 
-设置应用的偏好语言。设置偏好语言为"default"后，应用语言将跟随系统语言，应用冷启动生效。
+设置应用的偏好语言。设置偏好语言为'default'后，应用语言将跟随系统语言，应用冷启动生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -377,7 +380,7 @@ static setAppPreferredLanguage(language: string): void
 
 | 参数名      | 类型     | 必填   | 说明    |
 | -------- | ------ | ---- | ----- |
-| language | string | 是    | 合法的语言ID或"default"。 |
+| language | string | 是    | 合法的语言ID或'default'。 |
 
 **错误码：**
 
@@ -393,8 +396,8 @@ static setAppPreferredLanguage(language: string): void
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    i18n.System.setAppPreferredLanguage('zh'); // 设置应用当前的偏好语言为 "zh"
-  } catch(error) {
+    i18n.System.setAppPreferredLanguage('zh');
+  } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.setAppPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
@@ -418,7 +421,7 @@ static getAppPreferredLanguage(): string
 
 **示例：**
   ```ts
-  let appPreferredLanguage: string = i18n.System.getAppPreferredLanguage(); // 获取应用偏好语言
+  let appPreferredLanguage: string = i18n.System.getAppPreferredLanguage();
   ```
 
 
@@ -440,14 +443,14 @@ static getUsingLocalDigit(): boolean
 
 **示例：**
   ```ts
-  let status: boolean = i18n.System.getUsingLocalDigit();  // 判断本地化数字开关是否打开
+  let status: boolean = i18n.System.getUsingLocalDigit();
   ```
 
 ### getSimplifiedLanguage<sup>15+</sup>
 
 static getSimplifiedLanguage(language?: string): string
 
-获取语言的简化表示。如："en-Latn-US"的简化表示是"en"，"en-Latn-GB"的简化表示为"en-GB"。
+获取语言的简化表示。如：'en-Latn-US'的简化表示是'en'，'en-Latn-GB'的简化表示为'en-GB'。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -479,9 +482,10 @@ static getSimplifiedLanguage(language?: string): string
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let simplifiedLanguage: string = i18n.System.getSimplifiedLanguage("zh-Hans-CN");  // simplifiedLanguage = zh
-    let simplifiedSystemLanguage: string = i18n.System.getSimplifiedLanguage();  // simplifiedSystemLanguage = zh-Hans, 如果当前系统语言为简体中文
-  } catch(error) {
+    let simplifiedLanguage: string = i18n.System.getSimplifiedLanguage('zh-Hans-CN'); // simplifiedLanguage = 'zh'
+    let simplifiedSystemLanguage: string =
+      i18n.System.getSimplifiedLanguage(); // simplifiedSystemLanguage = 'zh-Hans', 如果当前系统语言为简体中文
+  } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getSimplifiedLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
@@ -511,8 +515,8 @@ isRTL(locale: string): boolean
 
 **示例：**
   ```ts
-  i18n.isRTL("zh-CN");// 中文不是RTL语言，返回false
-  i18n.isRTL("ar-EG");// 阿语是RTL语言，返回true
+  let isZhRTL: boolean = i18n.isRTL('zh-CN'); // 中文不是RTL语言，返回false
+  let isArRTL: boolean = i18n.isRTL('ar-EG'); // 阿语是RTL语言，返回true
   ```
 
 ## i18n.getCalendar<sup>8+</sup>
@@ -540,7 +544,7 @@ getCalendar(locale: string, type? : string): Calendar
 
 **示例：**
   ```ts
-  i18n.getCalendar("zh-Hans", "chinese"); // 获取中国农历日历对象
+  let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans', 'chinese'); // 获取中国农历日历对象
   ```
 
 ## EntityRecognizer<sup>11+</sup>
@@ -572,7 +576,14 @@ constructor(locale?: string)
 
 **示例：**
   ```ts
-  let entityRecognizer: i18n.EntityRecognizer = new i18n.EntityRecognizer("zh-CN");
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    let entityRecognizer: i18n.EntityRecognizer = new i18n.EntityRecognizer('zh-CN');
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call new i18n.EntityRecognizer failed, error code: ${err.code}, message: ${err.message}.`);
+  }
   ```
 
 ### findEntityInfo<sup>11+</sup>
@@ -607,11 +618,20 @@ findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
 
 **示例：**
   ```ts
-  let entityRecognizer: i18n.EntityRecognizer = new i18n.EntityRecognizer("zh-CN");
-  let text1: string = "如有疑问，请联系158****2312";
-  let result1: Array<i18n.EntityInfoItem> = entityRecognizer.findEntityInfo(text1); // result1[0].type = "phone_number", result1[0].begin = 8, result1[0].end = 19
-  let text2: string = "我们2023年12月1日一起吃饭吧。";
-  let result2: Array<i18n.EntityInfoItem> = entityRecognizer.findEntityInfo(text2); // result2[0].type = "date", result2[0].begin = 2, result2[0].end = 12
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    let entityRecognizer: i18n.EntityRecognizer = new i18n.EntityRecognizer('zh-CN');
+    let text1: string = '如有疑问，请联系158****2312';
+    let result1: Array<i18n.EntityInfoItem> =
+      entityRecognizer.findEntityInfo(text1); // result1[0].type = 'phone_number', result1[0].begin = 8, result1[0].end = 19
+    let text2: string = '我们2023年12月1日一起吃饭吧。';
+    let result2: Array<i18n.EntityInfoItem> =
+      entityRecognizer.findEntityInfo(text2); // result2[0].type = 'date', result2[0].begin = 2, result2[0].end = 12
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call EntityRecognizer.findEntityInfo failed, error code: ${err.code}, message: ${err.message}.`);
+  }
   ```
 
 ## EntityInfoItem<sup>11+</sup>
@@ -648,9 +668,8 @@ setTime(date: Date): void
 
 **示例：**
   ```ts
-  let calendar: i18n.Calendar = i18n.getCalendar("en-US", "gregory");
-  // 时间日期为2021.11.07 08:00:00
-  let date: Date = new Date(2021, 10, 7, 8, 0, 0);
+  let calendar: i18n.Calendar = i18n.getCalendar('en-US', 'gregory');
+  let date: Date = new Date(2021, 10, 7, 8, 0, 0); // 时间日期为2021.11.07 08:00:00
   calendar.setTime(date);
   ```
 
@@ -673,7 +692,7 @@ setTime(time: number): void
 
 **示例：**
   ```ts
-  let calendar: i18n.Calendar = i18n.getCalendar("en-US", "gregory");
+  let calendar: i18n.Calendar = i18n.getCalendar('en-US', 'gregory');
   calendar.setTime(10540800000);
   ```
 
@@ -700,7 +719,7 @@ set(year: number, month: number, date:number, hour?: number, minute?: number, se
 
 **示例：**
   ```ts
-  let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
+  let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans');
   calendar.set(2021, 10, 1, 8, 0, 0); // 设置时间日期为2021.11.1 08:00:00
   ```
 
@@ -722,8 +741,8 @@ setTimeZone(timezone: string): void
 
 **示例：**
   ```ts
-  let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
-  calendar.setTimeZone("Asia/Shanghai");
+  let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans');
+  calendar.setTimeZone('Asia/Shanghai');
   ```
 
 
@@ -745,9 +764,9 @@ getTimeZone(): string
 
 **示例：**
   ```ts
-  let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
-  calendar.setTimeZone("Asia/Shanghai");
-  let timezone: string = calendar.getTimeZone(); // timezone = "Asia/Shanghai"
+  let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans');
+  calendar.setTimeZone('Asia/Shanghai');
+  let timezone: string = calendar.getTimeZone(); // timezone = 'Asia/Shanghai'
   ```
 
 
@@ -769,7 +788,7 @@ getFirstDayOfWeek(): number
 
 **示例：**
   ```ts
-  let calendar: i18n.Calendar = i18n.getCalendar("en-US", "gregory");
+  let calendar: i18n.Calendar = i18n.getCalendar('en-US', 'gregory');
   let firstDayOfWeek: number = calendar.getFirstDayOfWeek(); // firstDayOfWeek = 1
   ```
 
@@ -792,7 +811,7 @@ setFirstDayOfWeek(value: number): void
 
 **示例：**
   ```ts
-  let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
+  let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans');
   calendar.setFirstDayOfWeek(3);
   let firstDayOfWeek: number = calendar.getFirstDayOfWeek(); // firstDayOfWeek = 3
   ```
@@ -815,7 +834,7 @@ getMinimalDaysInFirstWeek(): number
 
 **示例：**
   ```ts
-  let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
+  let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans');
   let minimalDaysInFirstWeek: number = calendar.getMinimalDaysInFirstWeek(); // minimalDaysInFirstWeek = 1
   ```
 
@@ -838,7 +857,7 @@ setMinimalDaysInFirstWeek(value: number): void
 
 **示例：**
   ```ts
-  let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
+  let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans');
   calendar.setMinimalDaysInFirstWeek(3);
   let minimalDaysInFirstWeek: number = calendar.getMinimalDaysInFirstWeek(); // minimalDaysInFirstWeek = 3
   ```
@@ -890,13 +909,13 @@ get(field: string): number
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 与field相关联的值，如当前Calendar对象的内部日期的年份为1990，get("year")返回1990。 |
+| number | 与field相关联的值，如当前Calendar对象的内部日期的年份为1990，get('year')返回1990。 |
 
 **示例：**
   ```ts
-  let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
+  let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans');
   calendar.set(2021, 10, 1, 8, 0, 0); // 设置时间日期为2021.11.1 08:00:00
-  let hourOfDay: number = calendar.get("hour_of_day"); // hourOfDay = 8
+  let hourOfDay: number = calendar.get('hour_of_day'); // hourOfDay = 8
   ```
 
 
@@ -924,8 +943,8 @@ getDisplayName(locale: string): string
 
 **示例：**
   ```ts
-  let calendar: i18n.Calendar = i18n.getCalendar("en-US", "buddhist");
-  let calendarName: string = calendar.getDisplayName("zh"); // calendarName = "佛历"
+  let calendar: i18n.Calendar = i18n.getCalendar('en-US', 'buddhist');
+  let calendarName: string = calendar.getDisplayName('zh'); // calendarName = '佛历'
   ```
 
 
@@ -953,11 +972,11 @@ isWeekend(date?: Date): boolean
 
 **示例：**
   ```ts
-  let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
+  let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans');
   calendar.set(2021, 11, 11, 8, 0, 0); // 设置时间为2021.12.11 08:00:00
-  calendar.isWeekend(); // true
+  let isWeekend_1: boolean = calendar.isWeekend(); // isWeekend_1 = true
   let date: Date = new Date(2011, 11, 6, 9, 0, 0); // 时间日期为2011.12.06 09:00:00
-  calendar.isWeekend(date); // false
+  let isWeekend_2: boolean = calendar.isWeekend(date); // isWeekend_2 = false
   ```
 
 
@@ -992,11 +1011,11 @@ add(field: string, amount: number): void
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
+    let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans');
     calendar.set(2021, 11, 11, 8, 0, 0); // 设置时间日期为2021.12.11 08:00:00
-    calendar.add("year", 8); // 2021 + 8
-    let year: number = calendar.get("year"); // year = 2029
-  } catch(error) {
+    calendar.add('year', 8); // 2021 + 8
+    let year: number = calendar.get('year'); // year = 2029
+  } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call Calendar.add failed, error code: ${err.code}, message: ${err.message}.`);
   }
@@ -1021,7 +1040,7 @@ getTimeInMillis(): number
 
 **示例：**
   ```ts
-  let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
+  let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans');
   calendar.setTime(5000);
   let millisecond: number = calendar.getTimeInMillis(); // millisecond = 5000
   ```
@@ -1062,11 +1081,11 @@ compareDays(date: Date): number
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
+    let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans');
     calendar.setTime(5000);
     let date: Date = new Date(6000);
     let diff: number = calendar.compareDays(date); // diff = 1
-  } catch(error) {
+  } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call Calendar.compareDays failed, error code: ${err.code}, message: ${err.message}.`);
   }
@@ -1094,8 +1113,8 @@ constructor(country: string, options?: PhoneNumberFormatOptions)
 
 **示例：**
   ```ts
-  let option: i18n.PhoneNumberFormatOptions = {type: "E164"};
-  let phoneNumberFormat: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat("CN", option);
+  let option: i18n.PhoneNumberFormatOptions = { type: 'E164' };
+  let phoneNumberFormat: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN', option);
   ```
 
 ### isValidNumber<sup>8+</sup>
@@ -1122,8 +1141,8 @@ isValidNumber(number: string): boolean
 
 **示例：**
   ```ts
-  let phonenumberfmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat("CN");
-  let isValidNumber: boolean = phonenumberfmt.isValidNumber("158****2312"); // isValidNumber = true
+  let phonenumberfmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN');
+  let isValidNumber: boolean = phonenumberfmt.isValidNumber('158****2312'); // isValidNumber = true
   ```
 
 
@@ -1154,19 +1173,20 @@ format(number: string): string
 
 **示例：**
   ```ts
-  let phonenumberfmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat("CN");
-  let formattedPhoneNumber: string = phonenumberfmt.format("158****2312"); // formattedPhoneNumber = "158 **** 2312"
+  let phonenumberfmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN');
+  let formattedPhoneNumber: string =
+    phonenumberfmt.format('158****2312'); // formattedPhoneNumber = '158 **** 2312'
 
   // 拨号中的号码格式化
-  let option: i18n.PhoneNumberFormatOptions = {type: "TYPING"};
-  let phoneNumberFmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat("CN", option);
-  let phoneNumber : string = "130493";
-  let formatResult : string = "";
+  let option: i18n.PhoneNumberFormatOptions = { type: 'TYPING' };
+  let phoneNumberFmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN', option);
+  let phoneNumber: string = '130493';
+  let formatResult: string = '';
   for (let i = 0; i < phoneNumber.length; i++) {
     formatResult += phoneNumber.charAt(i);
     formatResult = phoneNumberFmt.format(formatResult);
   }
-  console.log(formatResult); // formatResult: 130 493
+  console.info(`formatResult: ${formatResult}`); // formatResult: '130 493'
   ```
 
 ### getLocationName<sup>9+</sup>
@@ -1194,9 +1214,9 @@ getLocationName(number: string, locale: string): string
 
 **示例：**
   ```ts
-  let phonenumberfmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat("CN");
-  let locationName: string = phonenumberfmt.getLocationName("158****2345", "zh-CN"); // locationName = "广东省湛江市"
-  let locName: string = phonenumberfmt.getLocationName("0039312****789", "zh-CN"); // locName = "意大利"
+  let phonenumberfmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN');
+  let locationName: string = phonenumberfmt.getLocationName('158****2345', 'zh-CN'); // locationName = '广东省湛江市'
+  let locName: string = phonenumberfmt.getLocationName('0039312****789', 'zh-CN'); // locName = '意大利'
   ```
 
 
@@ -1210,7 +1230,7 @@ getLocationName(number: string, locale: string): string
 
 | 名称   | 类型     | 可读   | 可写   | 说明                                       |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| type | string | 是    | 是    | 表示对电话号码格式化的类型，取值包括："E164",&nbsp;"INTERNATIONAL",&nbsp;"NATIONAL",&nbsp;"RFC3966",&nbsp;"TYPING"。<br>-在API version 8版本，type为必填项。 <br>-API version 9版本开始，type为选填项。<br>-API version 12版本开始支持TYPING，表示对拨号中的号码格式化。|
+| type | string | 是    | 是    | 表示对电话号码格式化的类型，取值包括：'E164',&nbsp;'INTERNATIONAL',&nbsp;'NATIONAL',&nbsp;'RFC3966',&nbsp;'TYPING'。<br>-在API version 8版本，type为必填项。 <br>-API version 9版本开始，type为选填项。<br>-API version 12版本开始支持TYPING，表示对拨号中的号码格式化。|
 
 
 ## UnitInfo<sup>8+</sup>
@@ -1223,8 +1243,8 @@ getLocationName(number: string, locale: string): string
 
 | 名称            | 类型     | 可读   | 可写   | 说明                                       |
 | ------------- | ------ | ---- | ---- | ---------------------------------------- |
-| unit          | string | 是    | 是    | 单位的名称，如："meter",&nbsp;"inch",&nbsp;"cup"等。 |
-| measureSystem | string | 是    | 是    | 单位的度量体系，取值包括："SI",&nbsp;"US",&nbsp;"UK"。 |
+| unit          | string | 是    | 是    | 单位的名称，如：'meter',&nbsp;'inch',&nbsp;'cup'等。 |
+| measureSystem | string | 是    | 是    | 单位的度量体系，取值包括：'SI',&nbsp;'US',&nbsp;'UK'。 |
 
 
 ## i18n.getInstance<sup>8+</sup>
@@ -1251,7 +1271,7 @@ getInstance(locale?:string): IndexUtil
 
 **示例：**
   ```ts
-  let indexUtil: i18n.IndexUtil = i18n.getInstance("zh-CN");
+  let indexUtil: i18n.IndexUtil = i18n.getInstance('zh-CN');
   ```
 
 
@@ -1277,9 +1297,9 @@ getIndexList(): Array&lt;string&gt;
 
 **示例：**
   ```ts
-  let indexUtil: i18n.IndexUtil = i18n.getInstance("zh-CN");
-  // indexList = [ "...", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
-  //              "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "..." ]
+  let indexUtil: i18n.IndexUtil = i18n.getInstance('zh-CN');
+  // indexList = [ '...', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
+  //              'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '...' ]
   let indexList: Array<string> = indexUtil.getIndexList();
   ```
 
@@ -1302,8 +1322,8 @@ addLocale(locale: string): void
 
 **示例：**
   ```ts
-  let indexUtil: i18n.IndexUtil = i18n.getInstance("zh-CN");
-  indexUtil.addLocale("en-US");
+  let indexUtil: i18n.IndexUtil = i18n.getInstance('zh-CN');
+  indexUtil.addLocale('en-US');
   ```
 
 ### getIndex<sup>8+</sup>
@@ -1330,8 +1350,8 @@ getIndex(text: string): string
 
 **示例：**
   ```ts
-  let indexUtil: i18n.IndexUtil = i18n.getInstance("zh-CN");
-  let index: string = indexUtil.getIndex("hi");  // index = "H"
+  let indexUtil: i18n.IndexUtil = i18n.getInstance('zh-CN');
+  let index: string = indexUtil.getIndex('hi'); // index = 'H'
   ```
 
 
@@ -1359,7 +1379,7 @@ getLineInstance(locale: string): BreakIterator
 
 **示例：**
   ```ts
-  let iterator: i18n.BreakIterator = i18n.getLineInstance("en");
+  let iterator: i18n.BreakIterator = i18n.getLineInstance('en');
   ```
 
 
@@ -1384,8 +1404,8 @@ setLineBreakText(text: string): void
 
 **示例：**
   ```ts
-  let iterator: i18n.BreakIterator = i18n.getLineInstance("en");
-  iterator.setLineBreakText("Apple is my favorite fruit."); // 设置短句文本
+  let iterator: i18n.BreakIterator = i18n.getLineInstance('en');
+  iterator.setLineBreakText('Apple is my favorite fruit.'); // 设置短句文本
   ```
 
 
@@ -1407,9 +1427,9 @@ getLineBreakText(): string
 
 **示例：**
   ```ts
-  let iterator: i18n.BreakIterator = i18n.getLineInstance("en");
-  iterator.setLineBreakText("Apple is my favorite fruit.");
-  let breakText: string = iterator.getLineBreakText(); // breakText = "Apple is my favorite fruit."
+  let iterator: i18n.BreakIterator = i18n.getLineInstance('en');
+  iterator.setLineBreakText('Apple is my favorite fruit.');
+  let breakText: string = iterator.getLineBreakText(); // breakText = 'Apple is my favorite fruit.'
   ```
 
 
@@ -1431,8 +1451,8 @@ current(): number
 
 **示例：**
   ```ts
-  let iterator: i18n.BreakIterator = i18n.getLineInstance("en");
-  iterator.setLineBreakText("Apple is my favorite fruit.");
+  let iterator: i18n.BreakIterator = i18n.getLineInstance('en');
+  iterator.setLineBreakText('Apple is my favorite fruit.');
   let currentPos: number = iterator.current(); // currentPos = 0
   ```
 
@@ -1455,8 +1475,8 @@ first(): number
 
 **示例：**
   ```ts
-  let iterator: i18n.BreakIterator = i18n.getLineInstance("en");
-  iterator.setLineBreakText("Apple is my favorite fruit.");
+  let iterator: i18n.BreakIterator = i18n.getLineInstance('en');
+  iterator.setLineBreakText('Apple is my favorite fruit.');
   let firstPos: number = iterator.first(); // firstPos = 0
   ```
 
@@ -1479,8 +1499,8 @@ last(): number
 
 **示例：**
   ```ts
-  let iterator: i18n.BreakIterator = i18n.getLineInstance("en");
-  iterator.setLineBreakText("Apple is my favorite fruit.");
+  let iterator: i18n.BreakIterator = i18n.getLineInstance('en');
+  iterator.setLineBreakText('Apple is my favorite fruit.');
   let lastPos: number = iterator.last(); // lastPos = 27
   ```
 
@@ -1509,8 +1529,8 @@ next(index?: number): number
 
 **示例：**
   ```ts
-  let iterator: i18n.BreakIterator = i18n.getLineInstance("en");
-  iterator.setLineBreakText("Apple is my favorite fruit.");
+  let iterator: i18n.BreakIterator = i18n.getLineInstance('en');
+  iterator.setLineBreakText('Apple is my favorite fruit.');
   let pos: number = iterator.first(); // pos = 0
   pos = iterator.next(); // pos = 6
   pos = iterator.next(10); // pos = -1
@@ -1535,8 +1555,8 @@ previous(): number
 
 **示例：**
   ```ts
-  let iterator: i18n.BreakIterator = i18n.getLineInstance("en");
-  iterator.setLineBreakText("Apple is my favorite fruit.");
+  let iterator: i18n.BreakIterator = i18n.getLineInstance('en');
+  iterator.setLineBreakText('Apple is my favorite fruit.');
   let pos: number = iterator.first(); // pos = 0
   pos = iterator.next(3); // pos = 12
   pos = iterator.previous(); // pos = 9
@@ -1567,8 +1587,8 @@ following(offset: number): number
 
 **示例：**
   ```ts
-  let iterator: i18n.BreakIterator = i18n.getLineInstance("en");
-  iterator.setLineBreakText("Apple is my favorite fruit.");
+  let iterator: i18n.BreakIterator = i18n.getLineInstance('en');
+  iterator.setLineBreakText('Apple is my favorite fruit.');
   let pos: number = iterator.following(0); // pos = 6
   pos = iterator.following(100); // pos = -1
   pos = iterator.current(); // pos = 27
@@ -1599,8 +1619,8 @@ isBoundary(offset: number): boolean
 
 **示例：**
   ```ts
-  let iterator: i18n.BreakIterator = i18n.getLineInstance("en");
-  iterator.setLineBreakText("Apple is my favorite fruit.");
+  let iterator: i18n.BreakIterator = i18n.getLineInstance('en');
+  iterator.setLineBreakText('Apple is my favorite fruit.');
   let isBoundary: boolean = iterator.isBoundary(0); // isBoundary = true;
   isBoundary = iterator.isBoundary(5); // isBoundary = false;
   ```
@@ -1630,7 +1650,7 @@ getTimeZone(zoneID?: string): TimeZone
 
 **示例：**
   ```ts
-  let timezone: i18n.TimeZone = i18n.getTimeZone();
+  let timezone: i18n.TimeZone = i18n.getTimeZone('Asia/Shanghai');
   ```
 
 ## TimeZone
@@ -1653,8 +1673,8 @@ getID(): string
 
 **示例：**
   ```ts
-  let timezone: i18n.TimeZone = i18n.getTimeZone();
-  let timezoneID: string = timezone.getID(); // timezoneID = "Asia/Shanghai"
+  let timezone: i18n.TimeZone = i18n.getTimeZone('Asia/Shanghai');
+  let timezoneID: string = timezone.getID(); // timezoneID = 'Asia/Shanghai'
   ```
 
 
@@ -1683,8 +1703,8 @@ getDisplayName(locale?: string, isDST?: boolean): string
 
 **示例：**
   ```ts
-  let timezone: i18n.TimeZone = i18n.getTimeZone();
-  let timezoneName: string = timezone.getDisplayName("zh-CN", false); // timezoneName = "中国标准时间"
+  let timezone: i18n.TimeZone = i18n.getTimeZone('Asia/Shanghai');
+  let timezoneName: string = timezone.getDisplayName('zh-CN', false); // timezoneName = '中国标准时间'
   ```
 
 
@@ -1706,7 +1726,7 @@ getRawOffset(): number
 
 **示例：**
   ```ts
-  let timezone: i18n.TimeZone = i18n.getTimeZone();
+  let timezone: i18n.TimeZone = i18n.getTimeZone('Asia/Shanghai');
   let offset: number = timezone.getRawOffset(); // offset = 28800000
   ```
 
@@ -1735,7 +1755,7 @@ getOffset(date?: number): number
 
 **示例：**
   ```ts
-  let timezone: i18n.TimeZone = i18n.getTimeZone();
+  let timezone: i18n.TimeZone = i18n.getTimeZone('Asia/Shanghai');
   let offset: number = timezone.getOffset(1234567890); // offset = 28800000
   ```
 
@@ -1758,7 +1778,7 @@ static getAvailableIDs(): Array&lt;string&gt;
 
 **示例：**
   ```ts
-  // ids = ["America/Adak", "America/Anchorage", "America/Bogota", "America/Denver", "America/Los_Angeles", "America/Montevideo", "America/Santiago", "America/Sao_Paulo", "Asia/Ashgabat", "Asia/Hovd", "Asia/Jerusalem", "Asia/Magadan", "Asia/Omsk", "Asia/Shanghai", "Asia/Tokyo", "Asia/Yerevan", "Atlantic/Cape_Verde", "Australia/Lord_Howe", "Europe/Dublin", "Europe/London", "Europe/Moscow", "Pacific/Auckland", "Pacific/Easter", "Pacific/Pago-Pago"]
+  // ids = ['America/Adak', 'America/Anchorage', 'America/Bogota', 'America/Denver', 'America/Los_Angeles', 'America/Montevideo', 'America/Santiago', 'America/Sao_Paulo', 'Asia/Ashgabat', 'Asia/Hovd', 'Asia/Jerusalem', 'Asia/Magadan', 'Asia/Omsk', 'Asia/Shanghai', 'Asia/Tokyo', 'Asia/Yerevan', 'Atlantic/Cape_Verde', 'Australia/Lord_Howe', 'Europe/Dublin', 'Europe/London', 'Europe/Moscow', 'Pacific/Auckland', 'Pacific/Easter', 'Pacific/Pago-Pago']
   let ids: Array<string> = i18n.TimeZone.getAvailableIDs();
   ```
 
@@ -1781,7 +1801,7 @@ static getAvailableZoneCityIDs(): Array&lt;string&gt;
 
 **示例：**
   ```ts
-  // cityIDs = ["Auckland", "Magadan", "Lord Howe Island", "Tokyo", "Shanghai", "Hovd", "Omsk", "Ashgabat", "Yerevan", "Moscow", "Tel Aviv", "Dublin", "London", "Praia", "Montevideo", "Brasília", "Santiago", "Bogotá", "Easter Island", "Salt Lake City", "Los Angeles", "Anchorage", "Adak", "Pago Pago"]
+  // cityIDs = ['Auckland', 'Magadan', 'Lord Howe Island', 'Tokyo', 'Shanghai', 'Hovd', 'Omsk', 'Ashgabat', 'Yerevan', 'Moscow', 'Tel Aviv', 'Dublin', 'London', 'Praia', 'Montevideo', 'Brasília', 'Santiago', 'Bogotá', 'Easter Island', 'Salt Lake City', 'Los Angeles', 'Anchorage', 'Adak', 'Pago Pago']
   let cityIDs: Array<string> = i18n.TimeZone.getAvailableZoneCityIDs();
   ```
 
@@ -1810,7 +1830,7 @@ static getCityDisplayName(cityID: string, locale: string): string
 
 **示例：**
   ```ts
-  let displayName: string = i18n.TimeZone.getCityDisplayName("Shanghai", "zh-CN"); // displayName = "上海 (中国)"
+  let displayName: string = i18n.TimeZone.getCityDisplayName('Shanghai', 'zh-CN'); // displayName = '上海 (中国)'
   ```
 
 
@@ -1838,7 +1858,7 @@ static getTimezoneFromCity(cityID: string): TimeZone
 
 **示例：**
   ```ts
-  let timezone: i18n.TimeZone = i18n.TimeZone.getTimezoneFromCity("Shanghai");
+  let timezone: i18n.TimeZone = i18n.TimeZone.getTimezoneFromCity('Shanghai');
   ```
 
 ### getTimezonesByLocation<sup>10+</sup>
@@ -1880,9 +1900,13 @@ static getTimezonesByLocation(longitude: number, latitude: number): Array&lt;Tim
 
 **示例：**
   ```ts
-  let timezoneArray: Array<i18n.TimeZone> = i18n.TimeZone.getTimezonesByLocation(-118.1, 34.0);
-  for (let i = 0; i < timezoneArray.length; i++) {
-      let tzId: string = timezoneArray[i].getID();
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    let timezoneArray: Array<i18n.TimeZone> = i18n.TimeZone.getTimezonesByLocation(-118.1, 34.0);
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call TimeZone.getTimezonesByLocation failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -1908,7 +1932,7 @@ static getAvailableIDs(): string[]
 
 **示例：**
   ```ts
-  // ids共支持742个。每一个id由使用中划线分割的两部分组成，格式为 source-destination。例如ids = ["Han-Latin","Latin-ASCII", "Amharic-Latin/BGN","Accents-Any", ...]，Han-Latin表示汉语转为译拉丁文，Amharic-Latin表示阿姆哈拉语转为拉丁文。
+  // ids共支持742个。每一个id由使用中划线分割的两部分组成，格式为 source-destination。例如ids = ['Han-Latin','Latin-ASCII', 'Amharic-Latin/BGN','Accents-Any', ...]，Han-Latin表示汉语转为译拉丁文，Amharic-Latin表示阿姆哈拉语转为拉丁文。
   // 更多使用信息可以参考ISO-15924。
   let ids: string[] = i18n.Transliterator.getAvailableIDs();
   ```
@@ -1938,7 +1962,7 @@ static getInstance(id: string): Transliterator
 
 **示例：**
   ```ts
-  let transliterator: i18n.Transliterator = i18n.Transliterator.getInstance("Any-Latn");
+  let transliterator: i18n.Transliterator = i18n.Transliterator.getInstance('Any-Latn');
   ```
 
 
@@ -1966,10 +1990,10 @@ transform(text: string): string
 
 **示例：**
   ```ts
-  let transliterator: i18n.Transliterator = i18n.Transliterator.getInstance("Any-Latn");
-  let wordArray = ["中国", "德国", "美国", "法国"]
+  let transliterator: i18n.Transliterator = i18n.Transliterator.getInstance('Any-Latn');
+  let wordArray = ['中国', '德国', '美国', '法国']
   for (let i = 0; i < wordArray.length; i++) {
-      let res = transliterator.transform(wordArray[i]); // res: zhōng guó, dé guó, měi guó, fǎ guó
+    let res = transliterator.transform(wordArray[i]); // res: zhōng guó, dé guó, měi guó, fǎ guó
   }
 
   // 汉语音译去声调
@@ -2011,7 +2035,7 @@ static isDigit(char: string): boolean
 
 **示例：**
   ```ts
-  let isdigit: boolean = i18n.Unicode.isDigit("1");  // isdigit = true
+  let isdigit: boolean = i18n.Unicode.isDigit('1'); // isdigit = true
   ```
 
 
@@ -2039,7 +2063,7 @@ static isSpaceChar(char: string): boolean
 
 **示例：**
   ```ts
-  let isspacechar: boolean = i18n.Unicode.isSpaceChar("a");  // isspacechar = false
+  let isspacechar: boolean = i18n.Unicode.isSpaceChar('a'); // isspacechar = false
   ```
 
 
@@ -2067,7 +2091,7 @@ static isWhitespace(char: string): boolean
 
 **示例：**
   ```ts
-  let iswhitespace: boolean = i18n.Unicode.isWhitespace("a");  // iswhitespace = false
+  let iswhitespace: boolean = i18n.Unicode.isWhitespace('a'); // iswhitespace = false
   ```
 
 
@@ -2095,7 +2119,7 @@ static isRTL(char: string): boolean
 
 **示例：**
   ```ts
-  let isrtl: boolean = i18n.Unicode.isRTL("a");  // isrtl = false
+  let isrtl: boolean = i18n.Unicode.isRTL('a'); // isrtl = false
   ```
 
 
@@ -2123,7 +2147,7 @@ static isIdeograph(char: string): boolean
 
 **示例：**
   ```ts
-  let isideograph: boolean = i18n.Unicode.isIdeograph("a");  // isideograph = false
+  let isideograph: boolean = i18n.Unicode.isIdeograph('a'); // isideograph = false
   ```
 
 
@@ -2151,7 +2175,7 @@ static isLetter(char: string): boolean
 
 **示例：**
   ```ts
-  let isletter: boolean = i18n.Unicode.isLetter("a");  // isletter = true
+  let isletter: boolean = i18n.Unicode.isLetter('a'); // isletter = true
   ```
 
 
@@ -2179,7 +2203,7 @@ static isLowerCase(char: string): boolean
 
 **示例：**
   ```ts
-  let islowercase: boolean = i18n.Unicode.isLowerCase("a");  // islowercase = true
+  let islowercase: boolean = i18n.Unicode.isLowerCase('a'); // islowercase = true
   ```
 
 
@@ -2207,7 +2231,7 @@ static isUpperCase(char: string): boolean
 
 **示例：**
   ```ts
-  let isuppercase: boolean = i18n.Unicode.isUpperCase("a");  // isuppercase = false
+  let isuppercase: boolean = i18n.Unicode.isUpperCase('a'); // isuppercase = false
   ```
 
 
@@ -2271,7 +2295,7 @@ static getType(char: string): string
 
 **示例：**
   ```ts
-  let type: string = i18n.Unicode.getType("a"); // type = "U_LOWERCASE_LETTER"
+  let type: string = i18n.Unicode.getType('a'); // type = 'U_LOWERCASE_LETTER'
   ```
 
 ## I18NUtil<sup>9+</sup>
@@ -2295,7 +2319,7 @@ static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: 
 | toUnit   | [UnitInfo](#unitinfo8) | 是    | 转换成的目标单位。                                 |
 | value    | number                 | 是    | 需要转换的单位的数量值。                             |
 | locale   | string                 | 是    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成，如：zh-Hans-CN。                |
-| style    | string                 | 否    | 格式化使用的风格，取值包括："long",&nbsp;"short",&nbsp;"narrow"。默认值：short。<br>不同取值显示效果请参考[数字与度量衡国际化](../../internationalization/i18n-numbers-weights-measures.md)。 |
+| style    | string                 | 否    | 格式化使用的风格，取值包括：'long',&nbsp;'short',&nbsp;'narrow'。默认值：short。<br>不同取值显示效果请参考[数字与度量衡国际化](../../internationalization/i18n-numbers-weights-measures.md)。 |
 
 **返回值：**
 
@@ -2305,9 +2329,9 @@ static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: 
 
 **示例：**
   ```ts
-  let fromUnit: i18n.UnitInfo = {unit: "cup", measureSystem: "US"};
-  let toUnit: i18n.UnitInfo = {unit: "liter", measureSystem: "SI"};
-  let res: string = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, "en-US", "long"); // res = 236.588 liters
+  let fromUnit: i18n.UnitInfo = { unit: 'cup', measureSystem: 'US' };
+  let toUnit: i18n.UnitInfo = { unit: 'liter', measureSystem: 'SI' };
+  let res: string = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US', 'long'); // res = '236.588 liters'
   ```
 
 ### getDateOrder<sup>9+</sup>
@@ -2334,7 +2358,7 @@ static getDateOrder(locale: string): string
 
 **示例：**
   ```ts
-  let order: string = i18n.I18NUtil.getDateOrder("zh-CN");  // order = "y-L-d"
+  let order: string = i18n.I18NUtil.getDateOrder('zh-CN'); // order = 'y-L-d'
   ```
 
 
@@ -2375,8 +2399,8 @@ static getTimePeriodName(hour:number, locale?: string): string
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let name: string = i18n.I18NUtil.getTimePeriodName(2, "zh-CN");  // name = "凌晨"
-  } catch(error) {
+    let name: string = i18n.I18NUtil.getTimePeriodName(2, 'zh-CN'); // name = '凌晨'
+  } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call I18NUtil.getTimePeriodName failed, error code: ${err.code}, message: ${err.message}.`);
   }
@@ -2420,8 +2444,9 @@ static getBestMatchLocale(locale: string, localeList: string[]): string
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let matchedLocaleId: string = i18n.I18NUtil.getBestMatchLocale("zh-Hans-CN", ["en-Latn-US", "en-GB", "zh-Hant-CN", "zh-Hans-MO"]);  // matchedLocaleId = "zh-Hans-MO"
-  } catch(error) {
+    let matchedLocaleId: string = i18n.I18NUtil.getBestMatchLocale('zh-Hans-CN',
+      ['en-Latn-US', 'en-GB', 'zh-Hant-CN', 'zh-Hans-MO']); // matchedLocaleId = 'zh-Hans-MO'
+  } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call I18NUtil.getBestMatchLocale failed, error code: ${err.code}, message: ${err.message}.`);
   }
@@ -2458,9 +2483,10 @@ static getThreeLetterLanguage(locale: string): string
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let language : string = i18n.I18NUtil.getThreeLetterLanguage('zh')  // zho
-  } catch(error) {
-    console.error(`call I18NUtil.getThreeLetterLanguage failed, error code: ${error.code}, message: ${error.message}.`);
+    let language: string = i18n.I18NUtil.getThreeLetterLanguage('zh') // 'zho'
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call I18NUtil.getThreeLetterLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -2495,9 +2521,10 @@ static getThreeLetterRegion(locale: string): string
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let region : string = i18n.I18NUtil.getThreeLetterRegion('CN')  // CHN
-  } catch(error) {
-    console.error(`call I18NUtil.getThreeLetterRegion failed, error code: ${error.code}, message: ${error.message}.`);
+    let region: string = i18n.I18NUtil.getThreeLetterRegion('CN') // 'CHN'
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call I18NUtil.getThreeLetterRegion failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -2536,7 +2563,14 @@ static getInstance(mode: NormalizerMode): Normalizer
 
 **示例：**
   ```ts
-  let normalizer: i18n.Normalizer = i18n.Normalizer.getInstance(i18n.NormalizerMode.NFC);
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    let normalizer: i18n.Normalizer = i18n.Normalizer.getInstance(i18n.NormalizerMode.NFC);
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call Normalizer.getInstance failed, error code: ${err.code}, message: ${err.message}.`);
+  }
   ```
 
 
@@ -2572,8 +2606,15 @@ normalize(text: string): string
 
 **示例：**
   ```ts
-  let normalizer: i18n.Normalizer = i18n.Normalizer.getInstance(i18n.NormalizerMode.NFC);
-  let normalizedText: string = normalizer.normalize('\u1E9B\u0323'); // normalizedText = ẛ̣
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    let normalizer: i18n.Normalizer = i18n.Normalizer.getInstance(i18n.NormalizerMode.NFC);
+    let normalizedText: string = normalizer.normalize('\u1E9B\u0323'); // normalizedText = 'ẛ̣'
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call Normalizer.getInstance failed, error code: ${err.code}, message: ${err.message}.`);
+  }
   ```
 
 ## NormalizerMode<sup>10+</sup>
@@ -2622,7 +2663,14 @@ constructor(icsPath: String)
 
 **示例：**
   ```ts
-  let holidayManager= new i18n.HolidayManager("/system/lib/US.ics");
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    let holidayManager = new i18n.HolidayManager('/system/lib/US.ics');
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call i18n.HolidayManager failed, error code: ${err.code}, message: ${err.message}.`);
+  }
   ```
 
 ### isHoliday<sup>11+</sup>
@@ -2660,12 +2708,10 @@ isHoliday(date?: Date): boolean
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let holidayManager= new i18n.HolidayManager("/system/lib/US.ics"); // 需要将"/system/lib/US.ics"替换为实际ics文件路径
+    let holidayManager = new i18n.HolidayManager('/system/lib/US.ics'); // 需要将'/system/lib/US.ics'替换为实际ics文件路径
     let isHoliday = holidayManager.isHoliday();
-    console.log(isHoliday.toString());
-    let isHoliday2 = holidayManager.isHoliday(new Date(2023,5,25)); // 时间日期为2023.06.25
-    console.log(isHoliday2.toString());
-  } catch(error) {
+    let isHoliday2 = holidayManager.isHoliday(new Date(2023, 5, 25)); // 时间日期为2023.06.25
+  } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call holidayManager.isHoliday failed, error code: ${err.code}, message: ${err.message}.`);
   }
@@ -2708,12 +2754,9 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let holidayManager= new i18n.HolidayManager("/system/lib/US.ics"); // 需要将"/system/lib/US.ics"替换为实际ics文件路径
+    let holidayManager = new i18n.HolidayManager('/system/lib/US.ics'); // 需要将'/system/lib/US.ics'替换为实际ics文件路径
     let holidayInfoItemArray = holidayManager.getHolidayInfoItemArray(2023);
-    for (let i =0; i < holidayInfoItemArray.length; i++) {
-        console.log(JSON.stringify(holidayInfoItemArray[i]));
-    }
-  } catch(error) {
+  } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call holidayManager.getHolidayInfoItemArray failed, error code: ${err.code}, message: ${err.message}.`);
   }
@@ -2775,8 +2818,8 @@ getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): stri
 
 **示例：**
   ```ts
-  let countryName: string = i18n.getDisplayCountry("zh-CN", "en-GB", true); // countryName = China
-  countryName = i18n.getDisplayCountry("zh-CN", "en-GB"); // countryName = China
+  let countryName: string = i18n.getDisplayCountry('zh-CN', 'en-GB', true); // countryName = 'China'
+  countryName = i18n.getDisplayCountry('zh-CN', 'en-GB'); // countryName = 'China'
   ```
 
 ## i18n.getDisplayCountry<sup>(deprecated)</sup>
@@ -2805,8 +2848,8 @@ getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): stri
 
 **示例：**
   ```ts
-  let countryName: string = i18n.getDisplayCountry("zh-CN", "en-GB", true); // countryName = China
-  countryName = i18n.getDisplayCountry("zh-CN", "en-GB"); // countryName = China
+  let countryName: string = i18n.getDisplayCountry('zh-CN', 'en-GB', true); // countryName = 'China'
+  countryName = i18n.getDisplayCountry('zh-CN', 'en-GB'); // countryName = 'China'
   ```
 
 
@@ -2836,8 +2879,8 @@ getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): st
 
 **示例：**
   ```ts
-  let languageName: string = i18n.getDisplayLanguage("zh", "en-GB", true); // languageName = "Chinese"
-  languageName = i18n.getDisplayLanguage("zh", "en-GB"); // languageName = "Chinese"
+  let languageName: string = i18n.getDisplayLanguage('zh', 'en-GB', true); // languageName = 'Chinese'
+  languageName = i18n.getDisplayLanguage('zh', 'en-GB'); // languageName = 'Chinese'
   ```
 
 
@@ -3091,7 +3134,7 @@ unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string,
 | toUnit   | [UnitInfo](#unitinfo8) | 是    | 要转换为的单位。                                 |
 | value    | number                 | 是    | 要被转换的单位的数量值。                             |
 | locale   | string                 | 是    | 格式化时使用的区域参数，如：zh-Hans-CN。                |
-| style    | string                 | 否    | 格式化使用的风格，取值包括："long",&nbsp;"short",&nbsp;"narrow"。默认值：short。 |
+| style    | string                 | 否    | 格式化使用的风格，取值包括：'long',&nbsp;'short',&nbsp;'narrow'。默认值：short。 |
 
 **返回值：**
 
