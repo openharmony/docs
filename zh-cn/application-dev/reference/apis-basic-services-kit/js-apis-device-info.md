@@ -215,7 +215,7 @@ import { deviceInfo } from '@kit.BasicServicesKit';
     // 输出结果：the value of the deviceInfo diskSN is :2502EM400567
     console.info('the value of the deviceInfo diskSN is :' + diskSN);
 
-    let performanceClass: number = deviceInfo.performanceClass;
+    let performanceClass = deviceInfo.performanceClass;
     // 输出结果：the value of the deviceInfo performanceClass is :0
     console.info('the value of the deviceInfo performanceClass is :' + performanceClass);
 
