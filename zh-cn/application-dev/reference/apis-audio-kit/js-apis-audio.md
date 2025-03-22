@@ -334,25 +334,23 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，设备类型。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 | 名称                 | 值     | 说明                                                      |
 | ---------------------| ------ | --------------------------------------------------------- |
-| INVALID              | 0      | 无效设备。                                                |
-| EARPIECE             | 1      | 听筒。                                                    |
-| SPEAKER              | 2      | 扬声器。                                                  |
-| WIRED_HEADSET        | 3      | 有线耳机，带麦克风。                                      |
-| WIRED_HEADPHONES     | 4      | 有线耳机，无麦克风。                                      |
-| BLUETOOTH_SCO        | 7      | 蓝牙设备SCO（Synchronous Connection Oriented）连接。      |
-| BLUETOOTH_A2DP       | 8      | 蓝牙设备A2DP（Advanced Audio Distribution Profile）连接。 |
-| MIC                  | 15     | 麦克风。                                                  |
-| USB_HEADSET          | 22     | USB耳机，带麦克风。                                       |
-| DISPLAY_PORT<sup>12+</sup>        | 23     | DisplayPort（显示接口，简称DP），用于外接扩展设备。           |
-| REMOTE_CAST<sup>12+</sup>        | 24     | 音频被系统应用投送到其他远程的设备。           |
+| INVALID              | 0      | 无效设备。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| EARPIECE             | 1      | 听筒。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| SPEAKER              | 2      | 扬声器。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| WIRED_HEADSET        | 3      | 有线耳机，带麦克风。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| WIRED_HEADPHONES     | 4      | 有线耳机，无麦克风。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| BLUETOOTH_SCO        | 7      | 蓝牙设备SCO（Synchronous Connection Oriented）连接。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| BLUETOOTH_A2DP       | 8      | 蓝牙设备A2DP（Advanced Audio Distribution Profile）连接。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| MIC                  | 15     | 麦克风。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| USB_HEADSET          | 22     | USB耳机，带麦克风。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| DISPLAY_PORT<sup>12+</sup>        | 23     | DisplayPort（显示接口，简称DP），用于外接扩展设备。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| REMOTE_CAST<sup>12+</sup>        | 24     | 音频被系统应用投送到其他远程的设备。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | USB_DEVICE<sup>18+</sup>        | 25 | USB设备（不包含USB耳机）。           |
-| DEFAULT<sup>9+</sup> | 1000   | 默认设备类型。                                            |
+| DEFAULT<sup>9+</sup> | 1000   | 默认设备类型。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## CommunicationDeviceType<sup>9+</sup>
 
