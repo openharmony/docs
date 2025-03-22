@@ -85,3 +85,37 @@ audio模块下的接口支持PCM编码，包括AudioRenderer、AudioCapturer、T
 针对Audio Kit开发，有以下相关实例可供参考：
 
 - [音频管理（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/Audio)
+
+## 音频架构
+
+开发者基于Audio Kit接口，能使用音频系统所提供的播放、录音和音频策略管理能力，进一步使用对应的音频硬件能力。
+
+音频架构定义了系统是如何将音频硬件的能力封装和管理的。
+
+音频架构图：
+
+![Audio Architecture](figures/audio-architecture.png)
+
+**Application**
+
+应用开发者通过Audio Kit提供的公开API接口，使用音频系统提供的软件和硬件能力，完成应用所需的播放、录音功能。
+
+**Napi**
+
+通过NAPI，一种Node.js推出的用于开发C++模块的接口，封装OS底层能力并对外暴露Arkts接口。通过NAPI实现Arkts与C/C++代码互相访问。
+
+**Native framework**
+
+Native框架层中，音频系统提供了播放、录音、音量、设备路由、音效接口的框架实现，通过跨进程接口连接音频服务。
+
+**Native SystemAility**
+
+音频服务进程audio_server承载了软件实现的音频系统能力组件，提供了丰富的音频策略管理和音频数据处理能力。组件进一步通过HDI接口连接HAL层，使用音频硬件能力。
+
+**HAL**
+
+HAL对外暴露的接口是统一的HDI，不同的音频硬件开发人员通过实现HDI接口，让音频服务能通过多种不同的音频设备进行播放和录音。
+
+**Kernel**
+
+内核驱动程序与音频硬件交互，不同规模的操作系统存在多种内核选择，如Linux，LiteOS，鸿蒙内核等。
