@@ -1,4 +1,4 @@
-# Location Kit（位置服务）
+# Location Kit（位置服务）<!--location-api-->
 
 - [Location Kit简介](location-kit-intro.md)
 - [申请位置权限开发指导(ArkTS)](location-permission-guidelines.md)
