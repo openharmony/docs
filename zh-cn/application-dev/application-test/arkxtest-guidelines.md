@@ -484,7 +484,7 @@ hdc shell uitest uiInput longClick 100 100
 | from_y   | 是                | 滑动起点y坐标。 | 
 | to_x   | 是                | 滑动终点x坐标。 |
 | to_y   | 是                | 滑动终点y坐标。 |
-| swipeVelocityPps_   | 否      | 滑动速度，单位：（px/s），取值范围：200-40000。<br> 默认值：600。 | 
+| swipeVelocityPps_   | 否      | 滑动速度，单位：px/s，取值范围：200-40000。<br> 默认值：600。 | 
 | stepLength_   | 否 | 滑动步长。默认值：滑动距离/50。<br>  **为实现更好的模拟效果，推荐参数缺省/使用默认值。**  | 
 
 
@@ -501,7 +501,7 @@ hdc shell uitest uiInput fling 10 10 200 200 500
 | from_y   | 是                | 滑动起点y坐标。 | 
 | to_x   | 是                | 滑动终点x坐标。 |
 | to_y   | 是                | 滑动终点y坐标。 |
-| swipeVelocityPps_   | 否      | 滑动速度，单位: (px/s)，取值范围：200-40000。<br> 默认值: 600。 | 
+| swipeVelocityPps_   | 否      | 滑动速度，单位：px/s，取值范围：200-40000。<br> 默认值: 600。 | 
 
 ```shell  
 # 执行慢滑操作。
