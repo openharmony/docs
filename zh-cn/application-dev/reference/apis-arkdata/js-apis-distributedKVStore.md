@@ -4979,7 +4979,7 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
 **说明：**
 
-delayMs参数设置后调用sync接口时延时时间以delayMs的时长为准，未设置时以[setSyncParam](#setSyncParam)设置的时长为准。
+delayMs参数设置后调用sync接口时延时时间以delayMs的时长为准，未设置时以[setSyncParam](#setsyncparam)设置的时长为准。
 
 **错误码：**
 
@@ -5070,7 +5070,7 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 
 **说明：**
 
-delayMs参数设置后调用sync接口时延时时间以delayMs的时长为准，未设置时以[setSyncParam](#setSyncParam)设置的时长为准。
+delayMs参数设置后调用sync接口时延时时间以delayMs的时长为准，未设置时以[setSyncParam](#setsyncparam)设置的时长为准。
 
 **错误码：**
 
