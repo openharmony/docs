@@ -3045,7 +3045,7 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): P
 | 参数名 | 类型             | 必填 | 说明                                                        |
 | ------ | ---------------- | ---- | ----------------------------------------------------------- |
 | p      | [Point](#point9) | 是   | 鼠标点击的坐标。                                            |
-| down   | boolean          | 是   | 滚轮滑动方向是否向下，true表示向下滑动，false表示向上滚动。 |
+| down   | boolean          | 是   | 滚轮滑动方向是否向下。true表示向下滑动。false表示向上滚动。 |
 | d      | number           | 是   | 鼠标滚轮滚动的格数，每格对应目标点位移120px。         |
 | key1   | number           | 否   | 指定的第一个key值。默认值为0。                              |
 | key2   | number           | 否   | 指定的第二个key值。默认值为0。                              |
@@ -3153,7 +3153,7 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number, sp
 | 参数名 | 类型             | 必填 | 说明                                                         |
 | ------ | ---------------- | ---- | ------------------------------------------------------------ |
 | p      | [Point](#point9) | 是   | 鼠标点击的坐标。                                             |
-| down   | boolean          | 是   | 滚轮滑动方向是否向下，true表示向下滑动，false表示向上滚动。  |
+| down   | boolean          | 是   | 滚轮滑动方向是否向下。true表示向下滑动。false表示向上滚动。  |
 | d      | number           | 是   | 鼠标滚轮滚动的格数，每格对应目标点位移120px。          |
 | key1   | number           | 否   | 指定的第一个key值。默认值为0。                               |
 | key2   | number           | 否   | 指定的第二个key值。默认值为0。                               |
@@ -3924,7 +3924,7 @@ isActived(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回窗口对象是否为用户正在交互窗口，true表示是交互窗口，false表示非交互窗口。 |
+| Promise\<boolean> | 以Promise形式返回窗口对象是否为用户正在交互窗口。true表示是交互窗口。false表示非交互窗口。 |
 
 **错误码：**
 
