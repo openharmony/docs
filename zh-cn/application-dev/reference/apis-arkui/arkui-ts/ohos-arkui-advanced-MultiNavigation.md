@@ -20,7 +20,7 @@ import { MultiNavigation, MultiNavPathStack, SplitPolicy } from '@kit.ArkUI';
 
 ## MultiNavigation
 
-MultiNavigation(navDestination: navDestination, multiStack: MultiNavPathStack, onNavigationModeChange?: OnNavigationModeChangeCallback, onHomeShowOnTop?: OnHomeShowOnTopCallback)
+MultiNavigation({navDestination: navDestination, multiStack: MultiNavPathStack, onNavigationModeChange?: OnNavigationModeChangeCallback, onHomeShowOnTop?: OnHomeShowOnTopCallback})
 
 创建并初始化MultiNavigation组件。
 
@@ -31,8 +31,6 @@ MultiNavigation组件遵循默认的左起右清栈规则，这意味着从左�
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
 
 |   名称   |          类型          | 必填  | 装饰器类型 | 说明 |
 |:---------:|:----------------------:|-----| ------ |-----------|
