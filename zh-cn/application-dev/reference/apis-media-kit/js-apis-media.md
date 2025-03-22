@@ -3106,7 +3106,7 @@ SEI信息内容，描述SEI信息的负载类型和数据。
 
 ## OnSeiMessageHandle<sup>18+</sup>
 
-type OnSeiMessageHandle = (messages: Array<SeiMessage>, playbackPosition?: number) => void
+type OnSeiMessageHandle = (messages: Array\<SeiMessage>, playbackPosition?: number) => void
 
 获取SEI信息，使用场景：订阅SEI信息事件，回调返回SEI详细信息。
 
