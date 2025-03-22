@@ -1279,7 +1279,7 @@ export default class EntryAbility extends UIAbility {
 
 setMissionIcon(icon: image.PixelMap, callback: AsyncCallback\<void>): void
 
-设置当前ability在任务中显示的图标, 图标大小最大为600M（callback形式）。
+设置当前ability在任务中显示的图标，图标大小最大为600M。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1290,7 +1290,7 @@ setMissionIcon(icon: image.PixelMap, callback: AsyncCallback\<void>): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | icon | image.PixelMap | 是 | 在最近的任务中显示的ability图标。 |
-| callback | AsyncCallback\<void> | 是 | 指定的回调函数的结果。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数。当设置当前ability在任务中显示的图标成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1335,7 +1335,7 @@ export default class EntryAbility extends UIAbility {
 
 setMissionIcon(icon: image.PixelMap): Promise\<void>
 
-设置当前ability在任务中显示的图标, 图标大小最大为600M（promise形式）。
+设置当前ability在任务中显示的图标, 图标大小最大为600M。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1351,7 +1351,7 @@ setMissionIcon(icon: image.PixelMap): Promise\<void>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 

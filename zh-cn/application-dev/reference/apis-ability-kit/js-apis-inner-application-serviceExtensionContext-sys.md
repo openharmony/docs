@@ -38,9 +38,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startAbility
 
-startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
+startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
-启动Ability。仅支持在主线程调用。
+启动Ability。仅支持在主线程调用。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -51,7 +51,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当启动Ability成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -120,9 +120,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startAbility
 
-startAbility(want: Want, options?: StartOptions): Promise\<void>;
+startAbility(want: Want, options?: StartOptions): Promise\<void>
 
-启动Ability，结果以Promise的形式返回。仅支持在主线程调用。
+启动Ability。仅支持在主线程调用。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -139,7 +139,7 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 返回一个Promise，包含启动的结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -213,7 +213,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
-启动Ability，结果以Callback的形式返回。仅支持在主线程调用。
+启动Ability。仅支持在主线程调用。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -225,7 +225,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md)  | 是 | 启动Ability的want信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当启动Ability成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -298,9 +298,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startAbilityWithAccount
 
-startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void;
+startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void
 
-根据account启动Ability（callback形式）。仅支持在主线程调用。
+根据account启动Ability。仅支持在主线程调用。使用callback异步回调。
 
 > **说明：**
 >
@@ -318,7 +318,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统账号的账号ID，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated)。 |
-| callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
+| callback | AsyncCallback\<void\> | 是 | 回调函数。当根据account启动Ability成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -390,9 +390,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startAbilityWithAccount
 
-startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void;
+startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void
 
-根据account启动Ability（callback形式）。仅支持在主线程调用。
+根据account启动Ability。仅支持在主线程调用。使用callback异步回调。
 
 > **说明：**
 >
@@ -411,7 +411,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 | want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统账号的账号ID，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated)。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
-| callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
+| callback | AsyncCallback\<void\> | 是 | 回调函数。当根据account启动Ability成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -487,9 +487,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startAbilityWithAccount
 
-startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<void>;
+startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<void>
 
-根据account启动Ability（Promise形式）。仅支持在主线程调用。
+根据account启动Ability。仅支持在主线程调用。使用Promise异步回调。
 
 > **说明：**
 >
@@ -513,7 +513,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -588,9 +588,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startServiceExtensionAbility
 
-startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
+startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void
 
-启动一个新的ServiceExtensionAbility（callback形式）。
+启动一个新的ServiceExtensionAbility。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -601,7 +601,7 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
-| callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
+| callback | AsyncCallback\<void\> | 是 | 回调函数。当启动一个新的ServiceExtensionAbility成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -659,9 +659,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startServiceExtensionAbility
 
-startServiceExtensionAbility(want: Want): Promise\<void>;
+startServiceExtensionAbility(want: Want): Promise\<void>
 
-启动一个新的ServiceExtensionAbility（Promise形式）。
+启动一个新的ServiceExtensionAbility。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -677,7 +677,7 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -735,9 +735,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startServiceExtensionAbilityWithAccount
 
-startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void;
+startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void
 
-启动一个新的ServiceExtensionAbility（callback形式）。
+启动一个新的ServiceExtensionAbility。使用callback异步回调。
 
 > **说明：**
 > 
@@ -756,7 +756,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统账号的账号ID，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated)。 |
-| callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
+| callback | AsyncCallback\<void\> | 是 | 回调函数。当启动一个新的ServiceExtensionAbility成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -815,9 +815,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startServiceExtensionAbilityWithAccount
 
-startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>;
+startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>
 
-启动一个新的ServiceExtensionAbility（Promise形式）。
+启动一个新的ServiceExtensionAbility。使用Promise异步回调。
 
 > **说明：**
 > 
@@ -841,7 +841,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -900,7 +900,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startAbilityAsCaller<sup>10+<sup>
 
-startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
+startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 
 使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用callback异步回调。仅支持在主线程调用。
 
@@ -980,7 +980,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startAbilityAsCaller<sup>10+<sup>
 
-startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void;
+startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void
 
 使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用callback异步回调。仅支持在主线程调用。
 
@@ -1063,7 +1063,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startAbilityAsCaller<sup>10+<sup>
 
-startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>;
+startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 
 使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用Promise异步回调。仅支持在主线程调用。
 
@@ -1154,9 +1154,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.stopServiceExtensionAbility
 
-stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
+stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void
 
-停止同一应用程序内的服务（callback形式）。
+停止同一应用程序内的服务。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1167,7 +1167,7 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 停止Ability的want信息。 |
-| callback | AsyncCallback\<void\> | 是 | 停止Ability的回调函数。 |
+| callback | AsyncCallback\<void\> | 是 | 回调函数。当停止同一应用程序内的服务成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1221,9 +1221,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.stopServiceExtensionAbility
 
-stopServiceExtensionAbility(want: Want): Promise\<void>;
+stopServiceExtensionAbility(want: Want): Promise\<void>
 
-停止同一应用程序内的服务（Promise形式）。
+停止同一应用程序内的服务。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1239,7 +1239,7 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1293,9 +1293,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.stopServiceExtensionAbilityWithAccount
 
-stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void;
+stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void
 
-使用帐户停止同一应用程序内的服务（callback形式）。
+使用帐户停止同一应用程序内的服务。使用callback异步回调。
 
 > **说明：**
 > 
@@ -1313,7 +1313,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 停止Ability的want信息。 |
 | accountId | number | 是 | 需要停止的系统账号的账号ID，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated)。 |
-| callback | AsyncCallback\<void\> | 是 | 停止Ability的回调函数。 |
+| callback | AsyncCallback\<void\> | 是 | 回调函数。当使用帐户停止同一应用程序内的服务成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1368,9 +1368,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.stopServiceExtensionAbilityWithAccount
 
-stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>;
+stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>
 
-使用帐户停止同一应用程序内的服务（Promise形式）。
+使用帐户停止同一应用程序内的服务。使用Promise异步回调。
 
 > **说明：**
 > 
@@ -1393,7 +1393,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1448,9 +1448,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.terminateSelf
 
-terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
+terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
-停止Ability自身。仅支持在主线程调用。
+停止Ability自身。仅支持在主线程调用。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1460,7 +1460,7 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当停止Ability自身成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1499,9 +1499,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.terminateSelf
 
-terminateSelf(): Promise&lt;void&gt;;
+terminateSelf(): Promise&lt;void&gt;
 
-停止Ability自身。通过Promise返回结果。仅支持在主线程调用。
+停止Ability自身。仅支持在主线程调用。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1511,7 +1511,7 @@ terminateSelf(): Promise&lt;void&gt;;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1547,7 +1547,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.connectServiceExtensionAbility
 
-connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
+connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 将当前Ability连接到一个ServiceExtensionAbility。仅支持在主线程调用。
 
@@ -1632,7 +1632,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.connectServiceExtensionAbilityWithAccount
 
-connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number;
+connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number
 
 将当前Ability连接到一个指定account的ServiceExtensionAbility。仅支持在主线程调用。
 
@@ -1726,9 +1726,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.disconnectServiceExtensionAbility
 
-disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;void&gt;): void;
+disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;void&gt;): void
 
-将一个Ability与绑定的服务类型的Ability解绑，断开连接之后需要将连接成功时返回的remote对象置空。仅支持在主线程调用。
+将一个Ability与绑定的服务类型的Ability解绑，断开连接之后需要将连接成功时返回的remote对象置空。仅支持在主线程调用。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1739,7 +1739,7 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | connection | number | 是 | 在connectServiceExtensionAbility中返回的number。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当Ability与绑定服务类型的Ability解绑成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1786,9 +1786,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.disconnectServiceExtensionAbility
 
-disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
+disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;
 
-将一个Ability与绑定的服务类型的Ability解绑，断开连接之后需要将连接成功时返回的remote对象置空(Promise形式返回结果)。仅支持在主线程调用。
+将一个Ability与绑定的服务类型的Ability解绑，断开连接之后需要将连接成功时返回的remote对象置空。仅支持在主线程调用。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1804,7 +1804,7 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1852,15 +1852,16 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startAbilityByCall
 
-startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
+startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 
-启动指定Ability至前台或后台，同时获取其Caller通信接口，调用方可使用Caller与被启动的Ability进行通信。仅支持在主线程调用。
+启动指定Ability至前台或后台，同时获取其Caller通信接口，调用方可使用Caller与被启动的Ability进行通信。仅支持在主线程调用。使用Promise异步回调。
+
 该接口不支持拉起启动模式为[specified模式](../../application-models/uiability-launch-type.md#specified启动模式)的UIAbility。
 
 使用规则：
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 同设备与跨设备场景下，该接口的使用规则存在差异，详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+ - 同设备与跨设备场景下，该接口的使用规则存在差异，详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **需要权限**：ohos.permission.ABILITY_BACKGROUND_COMMUNICATION
 
@@ -1878,7 +1879,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;Caller&gt; | 获取要通讯的caller对象。 |
+| Promise&lt;Caller&gt; | Promise对象，返回要通讯的caller对象。 |
 
 **错误码：**
 
@@ -1974,9 +1975,9 @@ class EntryAbility extends ServiceExtensionAbility {
 ```
 ## ServiceExtensionContext.startRecentAbility
 
-startRecentAbility(want: Want, callback: AsyncCallback\<void>): void;
+startRecentAbility(want: Want, callback: AsyncCallback\<void>): void
 
-启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。启动结果以callback的形式返回开发者。仅支持在主线程调用。
+启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。启动结果以callback的形式返回开发者。仅支持在主线程调用。使用callback异步回调。
 
 > **说明：**
 >
@@ -1991,7 +1992,7 @@ startRecentAbility(want: Want, callback: AsyncCallback\<void>): void;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 需要启动Ability的want信息。 |
-| callback | AsyncCallback\<void> | 是 | 指定的回调函数的结果。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数。当启动一个指定的Ability成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -2050,9 +2051,10 @@ class EntryAbility extends ServiceExtensionAbility {
 ```
 ## ServiceExtensionContext.startRecentAbility
 
-startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void;
+startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void
 
-启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。启动结果以callback的形式返回开发者。
+启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。使用callback异步回调。
+
 当开发者需要携带启动参数时可以选择此API。仅支持在主线程调用。
 
 > **说明：**
@@ -2069,7 +2071,7 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback\<v
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 需要启动Ability的want信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
-| callback | AsyncCallback\<void> | 是 | 指定的回调函数的结果。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数。当启动一个指定的Ability成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -2132,10 +2134,9 @@ class EntryAbility extends ServiceExtensionAbility {
 ```
 ## ServiceExtensionContext.startRecentAbility
 
-startRecentAbility(want: Want, options?: StartOptions): Promise\<void>;
+startRecentAbility(want: Want, options?: StartOptions): Promise\<void>
 
-启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。
-当开发者期望启动结果以Promise形式返回时可以选择此API。仅支持在主线程调用。
+启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。仅支持在主线程调用。使用Promise异步回调。
 
 > **说明：**
 >
@@ -2213,16 +2214,17 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startAbilityByCallWithAccount<sup>10+</sup>
 
-startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&gt;;
+startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&gt;
 
-根据accountId对指定的Ability进行call调用，并且可以使用返回的Caller通信接口与被调用方进行通信。仅支持在主线程调用。
+根据accountId对指定的Ability进行call调用，并且可以使用返回的Caller通信接口与被调用方进行通信。仅支持在主线程调用。使用Promise异步回调。
+
 该接口不支持拉起启动模式为[specified模式](../../application-models/uiability-launch-type.md#specified启动模式)的UIAbility。
 
 使用规则：
- - 跨用户场景下，Call调用目标Ability时，调用方应用需同时申请`ohos.permission.ABILITY_BACKGROUND_COMMUNICATION`与`ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS`权限
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 同设备与跨设备场景下，该接口的使用规则存在差异，详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+ - 跨用户场景下，Call调用目标Ability时，调用方应用需同时申请`ohos.permission.ABILITY_BACKGROUND_COMMUNICATION`与`ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS`权限。
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+ - 同设备与跨设备场景下，该接口的使用规则存在差异，详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **需要权限**：ohos.permission.ABILITY_BACKGROUND_COMMUNICATION, ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -2241,7 +2243,7 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;Caller&gt; | 获取要通讯的caller对象。 |
+| Promise&lt;Caller&gt; | Promise对象，返回要通讯的caller对象。 |
 
 **错误码：**
 
@@ -2635,9 +2637,10 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
 ```
 
 ## ServiceExtensionContext.startUIServiceExtensionAbility<sup>14+<sup>
+
 startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
 
-启动一个新的[UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionAbility-sys.md)（Promise形式）。
+启动一个新的[UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionAbility-sys.md)。使用Promise异步回调。
 
 > **说明：**
 >

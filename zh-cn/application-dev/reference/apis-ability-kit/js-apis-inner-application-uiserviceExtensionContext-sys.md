@@ -380,7 +380,7 @@ struct Page_UIServiceExtensionAbility {
 
 disconnectServiceExtensionAbility(connectionId: number): Promise&lt;void&gt;
 
-断开与[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)的连接, 与[connectServiceExtensionAbility](#uiserviceextensioncontextconnectserviceextensionability)功能相反。
+断开与[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)的连接，与[connectServiceExtensionAbility](#uiserviceextensioncontextconnectserviceextensionability)功能相反。
 
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
