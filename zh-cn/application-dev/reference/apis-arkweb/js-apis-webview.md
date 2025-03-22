@@ -2470,7 +2470,7 @@ zoom(factor: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| factor | number   | 是   | 基于当前网页所需调整的相对缩放比例，入参要求大于0，当入参为1时为默认加载网页的缩放比例，入参小于1为缩小，入参大于1为放大。 |
+| factor | number   | 是   | 基于当前网页所需调整的相对缩放比例，入参要求大于0，当入参为1时为默认加载网页的缩放比例，入参小于1为缩小，入参大于1为放大。<br>取值范围：(0，100]。 |
 
 **错误码：**
 
@@ -3037,7 +3037,7 @@ struct WebComponent {
 
 zoomIn(): void
 
-调用此接口将当前网页进行放大，比例为20%。
+调用此接口将当前网页进行放大，比例为25%。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4218,7 +4218,7 @@ hasImage(callback: AsyncCallback\<boolean>): void
 
 | 参数名   | 类型                    | 必填 | 说明                       |
 | -------- | ----------------------- | ---- | -------------------------- |
-| callback | AsyncCallback\<boolean> | 是   | 返回查找页面是否存在图像。 |
+| callback | AsyncCallback\<boolean> | 是   | 返回查找页面是否存在图像。<br> true:存在图像；false:不存在图像。 |
 
 **错误码：**
 
@@ -4275,7 +4275,7 @@ hasImage(): Promise\<boolean>
 
 | 类型              | 说明                                    |
 | ----------------- | --------------------------------------- |
-| Promise\<boolean> | Promise实例，返回查找页面是否存在图像。 |
+| Promise\<boolean> | Promise实例，返回查找页面是否存在图像。 <br>true:存在图像；false:不存在图像。 |
 
 **错误码：**
 
@@ -6728,7 +6728,7 @@ getPrintBackground(): boolean
 
 | 类型                 | 说明                      |
 | -------------------- | ------------------------- |
-| boolean              | 返回Webview是否打印网页背景。 |
+| boolean              | 返回Webview是否打印网页背景。true:打印网页背景；false:不打印网页背景。 |
 
 **错误码：**
 
@@ -10903,8 +10903,8 @@ static getOriginQuota(origin: string, callback: AsyncCallback\<number>): void
 
 | 参数名   | 类型                  | 必填 | 说明               |
 | -------- | --------------------- | ---- | ------------------ |
-| origin   | string                | 是   | 指定源的字符串索引 |
-| callback | AsyncCallback\<number> | 是   | 指定源的存储配额   |
+| origin   | string                | 是   | 指定源的字符串索引。 |
+| callback | AsyncCallback\<number> | 是   | 指定源的存储配额。<br>number是long型整数，范围为(-2,147,483,648)~(2,147,483,647)。   |
 
 **错误码：**
 
