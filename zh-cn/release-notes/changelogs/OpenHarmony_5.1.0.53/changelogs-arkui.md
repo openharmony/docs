@@ -85,44 +85,7 @@ UX规格变更，不涉及接口和组件。
 
 默认行为变更，无需适配。
 
-## cl.arkui.3 在使用手写笔操作时，应用从onTouch回调中获取到的TouchEvent，其中touches数组内的TouchObject的id值发生变更。
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-在手写笔场景下，TouchEvent中changedTouches数组内的TouchObject的id，与touches数组内的TouchObject的id不一致。
-
-**变更影响**
-
-此变更不涉及应用适配。
-
-- 变更前：在使用手写笔操作时，应用在onTouch回调中获取到的TouchEvent中，touches数组中TouchObject的id和changedTouches中的TouchObject的id不一致。
-  
-- 变更后：在使用手写笔操作时，应用在onTouch回调中获取到的TouchEvent中，touches数组中TouchObject的id和changedTouches中的TouchObject的id保持一致。
-
-**起始API Level**
-
-7
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.1.0.53开始。
-
-**变更的接口/组件**
-
-| 文件               | 接口                                       |
-| ------------------ | ------------------------------------------ |
-| common.d.ts        | onTouch回调中的TouchEvent                  |
-| common.d.ts        | onTouchIntercept回调中的TouchEvent         |
-
-**适配指导**
-
-默认行为变更，应用无需适配。
-
-## cl.arkui.4 TEXTURE模式XComponent的本地窗口缓冲区支持设置旋转变换
+## cl.arkui.3 TEXTURE模式XComponent的本地窗口缓冲区支持设置旋转变换
 
 **访问级别**
 
@@ -176,7 +139,7 @@ OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, SET_TRANSFORM, NATIVEBUFFER_
 // ......
 ```
 
-## cl.arkui.5 按钮默认值变更为新增圆角矩形类型
+## cl.arkui.4 按钮默认值变更为新增圆角矩形类型
 
 **访问级别**
 
@@ -243,7 +206,7 @@ struct ButtonExample {
 
 ```
 
-## cl.arkui.6 修复Popup高级组件宽度限制计算错误的问题
+## cl.arkui.5 修复Popup高级组件宽度限制计算错误的问题
 
 **访问级别**
 
@@ -281,7 +244,7 @@ Popup高级组件。
 
 如果用户原来没有自定义Popup高级组件的宽度，且内容宽度大于320vp，变更前按320vp显示，变更后，Popup高级组件会变宽；如不符合预期，可以手动修改为想要的宽度。
 
-## cl.arkui.7 getKeyboardAvoidMode接口返回值变更
+## cl.arkui.6 getKeyboardAvoidMode接口返回值变更
 
 **访问级别**
 
