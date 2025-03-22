@@ -42,7 +42,7 @@ isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 |以回调方式返回接口运行结果及当前是否处于稳定性测试场景，可进行错误处理或其他自定义处理。true: 处于稳定性测试场景，false：处于非稳定性测试场景。  | 
+  | callback | AsyncCallback&lt;boolean&gt; | 是 |以回调方式返回接口运行结果及当前是否处于稳定性测试场景，可进行错误处理或其他自定义处理。返回true表示处于稳定性测试场景，返回false表示处于非稳定性测试场景。  | 
 
 **错误码**：
 
@@ -82,7 +82,7 @@ isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | 以Promise方式返回接口运行结果及当前是否处于稳定性测试场景，可进行错误处理或其他自定义处理。true: 处于稳定性测试场景，false：处于非稳定性测试场景。 | 
+  | Promise&lt;boolean&gt; | 以Promise方式返回接口运行结果及当前是否处于稳定性测试场景，可进行错误处理或其他自定义处理。返回true表示处于稳定性测试场景，返回false表示处于非稳定性测试场景。 | 
 
 **错误码**：
 
