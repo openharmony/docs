@@ -7908,6 +7908,17 @@ setMimeType(mimeType: AVMimeTypes): void
 | SCREENCAPTURE_STATE_EXIT_PRIVATE_SCENE   | 9    | 录屏退出隐私页面。       |
 | SCREENCAPTURE_STATE_STOPPED_BY_USER_SWITCHES   | 10    | 系统用户切换，录屏中断。       |
 
+## AVScreenCaptureFillMode<sup>18+</sup>
+
+进行屏幕录制时视频填充模式的枚举。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+| 名称                              | 值   | 说明                                         |
+| --------------------------------- | ---- | -------------------------------------------- |
+| PRESERVE_ASPECT_RATIO | 0    | 保持与原始图像相同的宽高比例，即与物理屏幕宽高比例一致。 |
+| SCALE_TO_FILL | 1    | 进行图像拉伸填充，适配设置的宽度和高度。 |
+
 ## AVScreenCaptureRecordConfig<sup>12+</sup>
 
 表示录屏参数配置。
@@ -7925,6 +7936,7 @@ setMimeType(mimeType: AVMimeTypes): void
 | audioBitrate      | number                                                       | 否   | 录屏的音频比特率，内录的系统音和外录的麦克风都是用此比特率，默认96000。 |
 | preset            | [AVScreenCaptureRecordPreset](#avscreencapturerecordpreset12) | 否   | 录屏使用的编码和封装格式，默认SCREEN_RECORD_PRESET_H264_AAC_MP4格式。 |
 | displayId<sup>15+</sup>            | number | 否   | 指定录屏使用的屏幕，默认主屏幕。 |
+| fillMode<sup>18+</sup>            | [AVScreenCaptureFillMode](#avscreencapturefillmode18)| 否   | 录屏时视频流的填充模式。 |
 
 ## AVScreenCaptureRecorder<sup>12+</sup>
 
