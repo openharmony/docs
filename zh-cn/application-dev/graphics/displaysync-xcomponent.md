@@ -83,6 +83,8 @@
    >
    > - Callback回调函数运行于UI主线程，故涉及UI线程的耗时操作不应运行于回调函数中，以免影响性能。
    > - 实例在调用NapiRegister后，在不需要进行帧率控制时，应进行NapiUnregister操作，避免内存泄漏问题。
+   > - API version 18之前，应用调用OH_NativeXComponent_RegisterOnFrameCallback接口设置期望回调，如果没有取消注册，在XComponent实例存在期间，能一直收到期望回调。
+   > - 从API version 18开始，应用调用OH_NativeXComponent_RegisterOnFrameCallback接口设置期望回调，如果没有取消注册，只在XComponent上树期间，能收到期望回调。
 
    ```ts
    void SampleXComponent::RegisterOnFrameCallback(OH_NativeXComponent *nativeXComponent) 
