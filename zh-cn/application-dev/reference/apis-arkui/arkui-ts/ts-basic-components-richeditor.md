@@ -1696,6 +1696,18 @@ SymbolSpan样式选项。
 | renderingStrategy | [SymbolRenderingStrategy](ts-basic-components-symbolGlyph.md#symbolrenderingstrategy11枚举说明)	| 否 | 设置SymbolSpan组件渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE。 |
 | effectStrategy | [SymbolEffectStrategy](ts-basic-components-symbolGlyph.md#symboleffectstrategy11枚举说明)	| 否 | 设置SymbolSpan组件动效策略。<br/>默认值：SymbolEffectStrategy.NONE。 |
 
+## RichEditorBuilderSpanOptions<sup>11+</sup>
+
+添加builder的偏移位置和builder样式信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 类型     | 必填   | 说明                                    |
+| ------ | ------ | ---- | ------------------------------------- |
+| offset | number | 否    | 添加builder的位置。省略或者为异常值时，添加到所有内容的最后。 |
+
 ## RichEditorSpan<sup>12+</sup>
 
 type RichEditorSpan = RichEditorImageSpanResult | RichEditorTextSpanResult
@@ -1773,6 +1785,17 @@ RichEditor span信息。
 | 名称             | 类型          | 必填   | 说明                            |
 | -------------- | ----------- | ---- | ----------------------------- |
 | preventDefault | Callback\<void\>  | 否    | 阻止系统默认拷贝事件。 |
+
+## RichEditorGesture<sup>11+</sup>
+
+用户行为回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 类型         | 必填   | 说明            |
+| ----------- | ---------- | ---- | ------------- |
+| onClick    | Callback\<[ClickEvent](ts-universal-events-click.md#clickevent对象说明)\> | 否    | [ClickEvent](ts-universal-events-click.md#clickevent对象说明)为用户点击事件。<br/>点击完成时回调事件。<br/>双击时，第一次点击触发回调事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| onLongPress | Callback\<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)\>  | 否    | [GestureEvent](ts-gesture-settings.md#gestureevent对象说明)为用户长按事件。<br/>长按完成时回调事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## KeyboardOptions<sup>12+</sup>
 
