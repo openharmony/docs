@@ -50,7 +50,7 @@ on(evt: 'progress', callback: (pg: SyncProgress) => void): void
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | evt | string | 是   | 订阅的事件类型，取值为'progress'（同步过程事件）。 |
-| callback | (pg: SyncProgress) => void | 是   | 同步过程事件回调，回调入参为[SyncProgress](./js-apis-file-cloudsync.md#syncprogress12), 返回值为void。|
+| callback | (pg: SyncProgress) => void | 是   | 同步过程事件回调，回调入参为[SyncProgress](./js-apis-file-cloudsync.md#syncprogress12)，返回值为void。|
 
 **错误码：**
 
@@ -90,7 +90,7 @@ off(evt: 'progress', callback: (pg: SyncProgress) => void): void
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | evt | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）。|
-| callback | (pg: SyncProgress) => void | 是   | 同步过程事件回调，回调入参为[SyncProgress](./js-apis-file-cloudsync.md#syncprogress12), 返回值为void。|
+| callback | (pg: SyncProgress) => void | 是   | 同步过程事件回调，回调入参为[SyncProgress](./js-apis-file-cloudsync.md#syncprogress12)，返回值为void。|
 
 **错误码：**
 
@@ -162,7 +162,7 @@ off(evt: 'progress'): void
 
 start(): Promise&lt;void&gt;
 
-异步方法启动端云同步, 以Promise形式返回结果。
+异步方法启动端云同步，以Promise形式返回结果。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
@@ -256,7 +256,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 stop(): Promise&lt;void&gt;
 
-异步方法停止端云同步, 以Promise形式返回结果。
+异步方法停止端云同步，以Promise形式返回结果。
 
 > **说明：**
 >
@@ -301,7 +301,7 @@ stop(): Promise&lt;void&gt;
 
 stop(callback: AsyncCallback&lt;void&gt;): void
 
-异步方法停止端云同步, 以callback形式返回结果。
+异步方法停止端云同步，以callback形式返回结果。
 
 > **说明：**
 >
@@ -381,7 +381,7 @@ on(evt: 'progress', callback: (pg: DownloadProgress) => void): void
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | evt | string | 是   | 订阅的事件类型，取值为'progress'（下载过程事件）。|
-| callback | (pg: DownloadProgress) => void | 是   | 云文件下载过程事件回调，回调入参为[DownloadProgress](js-apis-file-cloudsync.md#downloadprogress11), 返回值为void。|
+| callback | (pg: DownloadProgress) => void | 是   | 云文件下载过程事件回调，回调入参为[DownloadProgress](js-apis-file-cloudsync.md#downloadprogress11)，返回值为void。|
 
 **错误码：**
 
@@ -493,7 +493,7 @@ off(evt: 'progress'): void
 
 start(uri: string): Promise&lt;void&gt;
 
-异步方法启动云文件下载, 以Promise形式返回结果。
+异步方法启动云文件下载，以Promise形式返回结果。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
@@ -547,7 +547,7 @@ start(uri: string): Promise&lt;void&gt;
 
 start(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
-异步方法启动云文件下载, 以callback形式返回结果。
+异步方法启动云文件下载，以callback形式返回结果。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
@@ -594,11 +594,11 @@ start(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 stop(uri: string): Promise&lt;void&gt;
 
-异步方法停止云文件下载, 以Promise形式返回结果。
+异步方法停止云文件下载，以Promise形式返回结果。
 
 > **说明：**
 >
-> 调用stop接口, 当前文件下载流程会终止, 缓存文件会被删除，再次调用start接口会重新开始下载。
+> 调用stop接口，当前文件下载流程会终止，缓存文件会被删除，再次调用start接口会重新开始下载。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
@@ -646,11 +646,11 @@ stop(uri: string): Promise&lt;void&gt;
 
 stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
-异步方法停止云文件下载, 以callback形式返回结果。
+异步方法停止云文件下载，以callback形式返回结果。
 
 > **说明：**
 >
-> 调用stop接口, 当前文件下载流程会终止, 缓存文件会被删除, 再次调用start接口会重新开始下载。
+> 调用stop接口，当前文件下载流程会终止，缓存文件会被删除，再次调用start接口会重新开始下载。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
@@ -785,7 +785,7 @@ cleanCache(uri: string): void
 
 getFileSyncState(uri: Array&lt;string&gt;): Promise&lt;Array&lt;FileSyncState&gt;&gt;
 
-异步方法获取文件同步状态, 以promise形式返回结果。
+异步方法获取文件同步状态，以promise形式返回结果。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
@@ -838,7 +838,7 @@ getFileSyncState(uri: Array&lt;string&gt;): Promise&lt;Array&lt;FileSyncState&gt
 
 getFileSyncState(uri: Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;FileSyncState&gt;&gt;): void
 
-异步方法获取文件同步状态, 以callback形式返回结果。
+异步方法获取文件同步状态，以callback形式返回结果。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
@@ -940,7 +940,7 @@ getFileSyncState(uri: string): FileSyncState
 
 端云文件同步状态，为枚举类型。
 
-**系统能力**： SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 **系统接口**：该接口为系统接口。
 
