@@ -7257,6 +7257,7 @@ async function example() {
 | ----- |  ---- |  ---- |
 | PHOTO_PROXY |  3 |  表示照片代理资源。**系统接口**：此接口为系统接口。 |
 | PRIVATE_MOVING_PHOTO_RESOURCE<sup>13+</sup> |  4 |  表示私有动态照片资源。**系统接口**：此接口为系统接口。 |
+| PRIVATE_MOVING_PHOTO_METADATA<sup>18+</sup> |  5 |  表示私有动态照片的元数据资源。**系统接口**：此接口为系统接口。 |
 
 ## DefaultChangeUri
 
