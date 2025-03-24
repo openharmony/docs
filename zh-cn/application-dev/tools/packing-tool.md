@@ -509,7 +509,7 @@ Check shared App mode invalid.
 
 **处理步骤**
 
-1. 检查打包文件，确保打包`bundleType`为shared的App包，HSP包不超过一个。
+1. 检查打包文件，确保`bundleType`为shared的App包中，HSP包不超过一个。
 2. 检查打包文件，删除HSP包中[module.json5](../quick-start/module-configuration-file.md)配置的`dependencies`。
 
 ### 10012022 校验Stage HSP失败
@@ -582,7 +582,7 @@ Check module atomicService installationFree invalid.
 
 **处理步骤**
 
-1. 检查[app.json5](../quick-start/app-configuration-file.md)，确保`bundleType`设置为app，atomicService，shared，appService之一。
+1. 检查[app.json5](../quick-start/app-configuration-file.md)，确保`bundleType`设置为app，atomicService，shared<!--Del-->，appService<!--DelEnd-->之一。
 2. 如果`bundleType`为shared，确保[module.json5](../quick-start/module-configuration-file.md)中的`installationFree`设置为false。
 3. 如果`installationFree`为true，确保`bundleType`设置为atomicService。
 
@@ -618,11 +618,11 @@ Check two distroFilter policy disjoint invalid.
 
 **可能原因**
 
-1. 分发策略`policy`和`value`标签为空，或无效值。
+分发策略`policy`和`value`标签为空，或无效值。
 
 **处理步骤**
 
-1. 检查分发策略相关配置，确保`policy`的值为`include`或`exclude`，`value`为支持的取值，详细请参见[distributionFilter标签](../quick-start/module-configuration-file.md#distributionfilter标签)。
+检查分发策略相关配置，确保`policy`的值为`include`或`exclude`，`value`取值参见[distributionFilter标签](../quick-start/module-configuration-file.md#distributionfilter标签)。
 
 ### 10016006 检查HAP包无效
 **错误信息**
@@ -635,11 +635,11 @@ Verify hap info is invalid.
 
 **可能原因**
 
-1. 多个HAP/HSP包配置之间存在冲突。
+多个HAP/HSP包配置之间存在冲突。
 
 **处理步骤**
 
-1. 根据报错信息检查[app.json5](../quick-start/app-configuration-file.md)和[module.json5](../quick-start/module-configuration-file.md)中的配置项是否准确。当有多条报错信息时，优先根据第一条报错信息进行排查。
+根据报错信息检查[app.json5](../quick-start/app-configuration-file.md)和[module.json5](../quick-start/module-configuration-file.md)中的配置项是否准确。当有多条报错信息时，优先根据第一条报错信息进行排查。
 
 ### 10016007 检查entry模块无效
 **错误信息**
@@ -652,11 +652,11 @@ Check entry module invalid.
 
 **可能原因**
 
-多个Entry类型HAP配置的deviceType以及distroFilter存在交集，不符合HAP唯一性校验规则。
+不符合HAP唯一性校验规则。
 
 **处理步骤**
 
-参考[HAP唯一性校验](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-verification-rule-V5)，调整工程中的Entry类型HAP配置。
+参考[HAP唯一性校验](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-verification-rule)，调整工程中的Entry类型HAP配置。
 
 ### 10016009 检查依赖错误
 **错误信息**
@@ -669,13 +669,8 @@ Check dependency list is invalid.
 
 **可能原因**
 
-1. `module.json5`配置存在循环依赖（`dependencies`配置项对应被依赖的模块），例如：模块library依赖了library1，library1依赖了library，则这两个模块之间构成循环依赖。
-
-   ![alt text](figures/zh_cn_packing_tool_image_10016009_01.png)
-
-   ![alt text](figures/zh_cn_packing_tool_image_10016009_02.png)
-
-2. `module.json5`配置中依赖的模块对应的`module.json`中的`type`为entry或feature。
+1. 模块间存在循环依赖，例如：模块library1的`module.json5`中`dependencies`配置了library2，同时模块library2中的`dependencies`配置了library1，则这两个模块之间构成循环依赖。
+2. `module.json5`配置中依赖的模块对应的`module.json5`中的`type`为entry或feature。
 
 **处理步骤**
 
@@ -697,7 +692,7 @@ Check atomicservice is invalid.
 
 **处理步骤**
 
-检查[module.json5](../quick-start/module-configuration-file.md)中的`preloads`属性是否有效（参考[atomicservice标签](../quick-start/module-configuration-file.md#atomicservice标签)），不能配置自身模块`module.json5`中的`name`，且必须有对应的模块。
+检查[module.json5](../quick-start/module-configuration-file.md)中的[preloads属性](../quick-start/module-configuration-file.md#atomicservice标签)下的`moduleName`，不能配置为自身模块`module.json5`中的`name`，且`moduleName`对应的模块必须存在。
 
 ### 10016011 检查元服务预加载无效
 **错误信息**
@@ -716,7 +711,7 @@ Atomicservice preloads is invalid.
 
 **处理步骤**
 
-检查[module.json5](../quick-start/module-configuration-file.md)中元服务预加载模块是否有效（参考[atomicservice标签](../quick-start/module-configuration-file.md#atomicservice标签)），确保没有配置重复的模块，所有配置的模块都存在，并且不能配置自身的模块名。
+检查[module.json5](../quick-start/module-configuration-file.md)中元服务[preloads属性](../quick-start/module-configuration-file.md#atomicservice标签)，确保没有配置重复的模块，配置所有的模块都存在且不能配置自身的模块名。
 
 ### 10016012 目标模块不存在
 **错误信息**
