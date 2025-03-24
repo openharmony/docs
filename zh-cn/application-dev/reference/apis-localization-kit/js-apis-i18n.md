@@ -1352,7 +1352,7 @@ getLocationName(number: string, locale: string): string
 
 ## i18n.getInstance<sup>8+</sup>
 
-getInstance(locale?:string): IndexUtil
+getInstance(locale?: string): IndexUtil
 
 创建并返回IndexUtil对象。
 
