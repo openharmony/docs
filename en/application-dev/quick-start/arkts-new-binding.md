@@ -65,7 +65,8 @@ struct Star {
 
 ## Constraints
 - **!!** does not support multi-layer parent-child component transfer.
-- **!!** cannot be used together with @Event. When it is used, parameters cannot be passed to the corresponding @Event method when parameters are passed to the child component.
+- **!!** cannot be used together with @Event. Since API version 18, when **!!** is used to pass parameters to the @Event method of a child component, a compilation error is reported.
+- When three or more exclamation marks (!!!, !!!!, or !!!!!) are used, two-way binding is not supported.
 
 
 ### Two-Way Binding Between Built-in Component Parameters
@@ -83,9 +84,11 @@ What the internal state is depends on the component. For example, the **isShow**
   | [bindMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu11) | isShow | 13          |
   | [bindContextMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu12) | isShown | 13          |
   | [bindPopup](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#bindpopup) | show | 13   |
-  | [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md) | text | 16   |
-  | [TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md) | text | 16   |
-  | [Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md) | value | 16   |
+  | [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md#textinputoptions)| text | 16   |
+  | [TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md#textareaoptions)| text | 16   |
+  | [Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md#searchoptions18)| value | 16   |
+  | [BindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md) | isShow | 16   |
+  | [BindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md) | isShow | 16   |
 
 - When the [\@Local](arkts-new-local.md) decorated variable bound to **!!** changes, the UI is rendered synchronously.
 
@@ -136,3 +139,5 @@ struct BindMenuInterface {
 ```
 
 ![bindMenu](figures/bindmenu_doublebind.gif)
+
+<!--no_check-->

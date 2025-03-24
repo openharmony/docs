@@ -108,6 +108,7 @@ Typically, a widget includes local images or online images downloaded from the n
               } catch (err) {
                 hilog.error(DOMAIN_NUMBER, TAG, "write data to file failed with error message: " + err.message + ", error code: " + err.code);
               } finally {
+                // Before executing fileIo.closeSync, ensure that formProvider.updateForm has been executed.
                 fileIo.closeSync(imgFile);
               };
             } catch (e) {

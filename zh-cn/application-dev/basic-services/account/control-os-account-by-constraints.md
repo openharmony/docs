@@ -4,7 +4,7 @@
 
 ## 约束列表
 
-预定义的账号约束条件，可以参考 ：[系统账号约束列表](../../reference/apis-basic-services-kit/js-apis-osAccount.md#系统账号约束列表)
+预定义的账号约束条件，可以参考 ：[系统账号约束列表](../../reference/apis-basic-services-kit/js-apis-osAccount.md#系统账号约束列表)。
 
 ## 开发准备
 
@@ -48,8 +48,7 @@
 
 ## 判断目标系统账号的指定约束是否使能
 
-业务应用需要判断目标系统账号的指定约束是否使能，以此来决策是否对目标系统账号的行为做管控。
-开发者可以使用[isOsAccountConstraintEnabled](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#isosaccountconstraintenabled11)接口完成此操作。
+业务应用需要判断目标系统账号的指定约束是否使能，以此来决策是否对目标系统账号的行为做管控。开发者可以使用[isOsAccountConstraintEnabled](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#isosaccountconstraintenabled11)接口完成此操作。
 
 具体开发实例如下：
 

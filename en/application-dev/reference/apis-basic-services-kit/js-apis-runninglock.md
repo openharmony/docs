@@ -18,7 +18,7 @@ isSupported(type: RunningLockType): boolean;
 
 Checks whether the specified type of running locks is supported.
 
-**System capability:** SystemCapability.PowerManager.PowerManager.Core
+**System capability**: SystemCapability.PowerManager.PowerManager.Core
 
 **Parameters**
 
@@ -58,9 +58,9 @@ create(name: string, type: RunningLockType, callback: AsyncCallback&lt;RunningLo
 
 Creates a **RunningLock** object.
 
-**System capability:** SystemCapability.PowerManager.PowerManager.Core
+**System capability**: SystemCapability.PowerManager.PowerManager.Core
 
-**Required permission:** ohos.permission.RUNNING_LOCK
+**Required permission**: ohos.permission.RUNNING_LOCK
 
 **Parameters**
 
@@ -98,9 +98,9 @@ create(name: string, type: RunningLockType): Promise&lt;RunningLock&gt;
 
 Creates a **RunningLock** object.
 
-**System capability:** SystemCapability.PowerManager.PowerManager.Core
+**System capability**: SystemCapability.PowerManager.PowerManager.Core
 
-**Required permission:** ohos.permission.RUNNING_LOCK
+**Required permission**: ohos.permission.RUNNING_LOCK
 
 **Parameters**
 
@@ -128,12 +128,12 @@ For details about the error codes, see [RunningLock Error Codes](errorcode-runni
 
 ```js
 
-runningLock.create('running_lock_test', runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL, (err: Error, lock: runningLock.RunningLock) => {
-    if (typeof err === 'undefined') {
-        console.info('created running lock: ' + lock);
-    } else {
-        console.error('create running lock failed, err: ' + err);
-    }
+runningLock.create('running_lock_test', runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL)
+.then((lock: runningLock.RunningLock) => {
+    console.info('created running lock: ' + lock);
+})
+.catch((err: Error) => {
+    console.error('create running lock failed, err: ' + err);
 });
 ```
 
@@ -143,9 +143,9 @@ isRunningLockTypeSupported(type: RunningLockType, callback: AsyncCallback&lt;boo
 
 > **NOTE**<br>This API is deprecated since API version 9. You are advised to use [runningLock.isSupported](#runninglockissupported9).
 
-Checks whether the specified type of **RunningLock** is supported. This API uses an asynchronous callback to return the result.
+Checks whether the specified type of running locks is supported. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.PowerManager.PowerManager.Core
+**System capability**: SystemCapability.PowerManager.PowerManager.Core
 
 **Parameters**
 
@@ -172,9 +172,9 @@ isRunningLockTypeSupported(type: RunningLockType): Promise&lt;boolean>
 
 > **NOTE**<br>This API is deprecated since API version 9. You are advised to use [runningLock.isSupported](#runninglockissupported9).
 
-Checks whether the specified type of **RunningLock** is supported. This API uses a promise to return the result.
+Checks whether the specified type of running locks is supported. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.PowerManager.PowerManager.Core
+**System capability**: SystemCapability.PowerManager.PowerManager.Core
 
 **Parameters**
 
@@ -208,9 +208,9 @@ createRunningLock(name: string, type: RunningLockType, callback: AsyncCallback&l
 
 Creates a **RunningLock** object.
 
-**System capability:** SystemCapability.PowerManager.PowerManager.Core
+**System capability**: SystemCapability.PowerManager.PowerManager.Core
 
-**Required permission:** ohos.permission.RUNNING_LOCK
+**Required permission**: ohos.permission.RUNNING_LOCK
 
 **Parameters**
 
@@ -240,9 +240,9 @@ createRunningLock(name: string, type: RunningLockType): Promise&lt;RunningLock&g
 
 Creates a **RunningLock** object.
 
-**System capability:** SystemCapability.PowerManager.PowerManager.Core
+**System capability**: SystemCapability.PowerManager.PowerManager.Core
 
-**Required permission:** ohos.permission.RUNNING_LOCK
+**Required permission**: ohos.permission.RUNNING_LOCK
 
 **Parameters**
 
@@ -279,9 +279,9 @@ hold(timeout: number): void
 
 Locks and holds a **RunningLock** object.
 
-**System capability:** SystemCapability.PowerManager.PowerManager.Core
+**System capability**: SystemCapability.PowerManager.PowerManager.Core
 
-**Required permission:** ohos.permission.RUNNING_LOCK
+**Required permission**: ohos.permission.RUNNING_LOCK
 
 **Parameters**
 
@@ -331,9 +331,9 @@ unhold(): void
 
 Releases a **RunningLock** object.
 
-**System capability:** SystemCapability.PowerManager.PowerManager.Core
+**System capability**: SystemCapability.PowerManager.PowerManager.Core
 
-**Required permission:** ohos.permission.RUNNING_LOCK
+**Required permission**: ohos.permission.RUNNING_LOCK
 
 **Error codes**
 
@@ -375,15 +375,15 @@ if (recordLock) {
 
 isHolding(): boolean
 
-Checks the hold status of the **Runninglock** object.
+Checks the hold status of the **RunningLock** object.
 
-**System capability:** SystemCapability.PowerManager.PowerManager.Core
+**System capability**: SystemCapability.PowerManager.PowerManager.Core
 
 **Return value**
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | The value **true** indicates that the **Runninglock** object is held; and the value **false** indicates that the **Runninglock** object is released.|
+| boolean | The value **true** indicates that the **RunningLock** object is held; and the value **false** indicates that the **RunningLock** object is released.|
 
 **Error codes**
 
@@ -428,9 +428,9 @@ lock(timeout: number): void
 
 Locks and holds a **RunningLock** object.
 
-**System capability:** SystemCapability.PowerManager.PowerManager.Core
+**System capability**: SystemCapability.PowerManager.PowerManager.Core
 
-**Required permission:** ohos.permission.RUNNING_LOCK
+**Required permission**: ohos.permission.RUNNING_LOCK
 
 **Parameters**
 
@@ -459,9 +459,9 @@ unlock(): void
 
 Releases a **RunningLock** object.
 
-**System capability:** SystemCapability.PowerManager.PowerManager.Core
+**System capability**: SystemCapability.PowerManager.PowerManager.Core
 
-**Required permission:** ohos.permission.RUNNING_LOCK
+**Required permission**: ohos.permission.RUNNING_LOCK
 
 **Example**
 
@@ -482,14 +482,14 @@ isUsed(): boolean
 
 > **NOTE**<br>This API is deprecated since API version 9. You are advised to use [RunningLock.isHolding](#isholding9).
 
-Checks the hold status of the **Runninglock** object.
+Checks the hold status of the **RunningLock** object.
 
-**System capability:** SystemCapability.PowerManager.PowerManager.Core
+**System capability**: SystemCapability.PowerManager.PowerManager.Core
 
 **Return value**
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | The value **true** indicates that the **Runninglock** object is held; and the value **false** indicates that the **Runninglock** object is released.|
+| boolean | The value **true** indicates that the **RunningLock** object is held; and the value **false** indicates that the **RunningLock** object is released.|
 
 **Example**
 
@@ -508,9 +508,9 @@ runningLock.createRunningLock('running_lock_test', runningLock.RunningLockType.B
 
 Enumerates the types of **RunningLock** objects.
 
-**System capability:** SystemCapability.PowerManager.PowerManager.Core
+**System capability**: SystemCapability.PowerManager.PowerManager.Core
 
 | Name                             | Value  | Description                                                        |
 | --------------------------------- | ---- | ------------------------------------------------------------ |
-| BACKGROUND<sup>(deprecated)</sup> | 1    | A lock that prevents the system from hibernating when the screen is off.<br>**NOTE**<br/>This parameter is supported since API version 7 and deprecated since API version 10.|
+| BACKGROUND<sup>(deprecated)</sup> | 1    | A lock that prevents the system from hibernating when the screen is off.<br>**NOTE**<br>This parameter is supported since API version 7 and deprecated since API version 10.|
 | PROXIMITY_SCREEN_CONTROL          | 2    | A lock that enables the proximity sensor and turns on or off the screen based on the distance between the sensor and the obstacle. |

@@ -71,7 +71,7 @@ HDF_FAILURE 表示执行失败。
 ### EventHandler()
 
 ```
-ICodecCallback::EventHandler ([in] enum OMX_EVENTTYPE event, [in] struct EventInfo info )
+ICodecCallback::EventHandler ([in] enum CodecEventType event, [in] struct EventInfo info )
 ```
 **描述**
 
@@ -97,7 +97,7 @@ ICodecCallback::EventHandler ([in] enum OMX_EVENTTYPE event, [in] struct EventIn
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| event | 要通知的事件类型，详见**OMX_EVENTTYPE**。  | 
+| event | 要通知的事件类型，详见[CodecEventType](_codec_types_8idl_v20.md)。  | 
 | info | 指向事件上报携带的信息指针，详见[EventInfo](_event_info_v20.md)。 | 
 
 **返回：**

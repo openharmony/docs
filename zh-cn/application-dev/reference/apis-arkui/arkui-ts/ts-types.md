@@ -287,10 +287,10 @@
 
 | 名称   | 类型     | 必填   | 说明                          |
 | ---- | ------ | ---- | --------------------------- |
-| top    | [Dimension](#dimension10) | 否    | 相对顶边的偏移量 |
-| bottom    | [Dimension](#dimension10) | 否    | 相对底边的偏移量 |
-| left    | [Dimension](#dimension10) | 否    | 相对左边的偏移量 |
-| right    | [Dimension](#dimension10) | 否    | 相对右边的偏移量 |
+| top    | [Dimension](#dimension10) | 否    | 相对顶边的偏移量。 |
+| bottom    | [Dimension](#dimension10) | 否    | 相对底边的偏移量。 |
+| left    | [Dimension](#dimension10) | 否    | 相对左边的偏移量。 |
+| right    | [Dimension](#dimension10) | 否    | 相对右边的偏移量。 |
 
 ## LocalizedEdges<sup>12+</sup>
 
@@ -339,7 +339,7 @@
 | width  | [Length](#length)  \| [EdgeWidths](#edgewidths9)<sup>9+</sup> \| [LocalizedEdgeWidths](#localizededgewidths12)<sup>12+</sup> | 否    | 边框宽度。   |
 | color  | [ResourceColor](#resourcecolor) \| [EdgeColors](#edgecolors9)<sup>9+</sup> | 否    | 边框颜色。   |
 | radius | [Length](#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup> | 否    | 边框圆角半径。 |
-| style  | [BorderStyle](ts-appendix-enums.md#borderstyle)  \| [EdgeStyles](#EdgeStyles9)<sup>9+</sup>| 否    | 边框样式。   |
+| style  | [BorderStyle](ts-appendix-enums.md#borderstyle)  \| [EdgeStyles](#edgestyles9)<sup>9+</sup>| 否    | 边框样式。   |
 
 ## ColorFilter<sup>9+</sup>
 
@@ -609,6 +609,7 @@ type VisibleAreaChangeCallback = (isExpanding: boolean, currentRatio: number) =>
 | color  | [ResourceColor](#resourcecolor) | 否  | 分割线的颜色。         |
 | startMargin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否  | 分割线与菜单侧边起始端的距离。 |
 | endMargin  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup>| 否  | 分割线与菜单侧边结束端的距离。 |
+| mode  | [DividerMode](#dividermode18枚举说明)<sup>18+</sup>| 否  | 设置分割线模式。 |
 
 ## TextContentControllerBase<sup>10+</sup>
 
@@ -680,14 +681,14 @@ getCaretOffset(): CaretOffset
 > - 在Search组件中，不输入文本时，返回值中有相对Search组件的位置信息。
 > - 返回值中的位置信息是光标相对于可编辑组件的位置。
 
-### addText<sup>16+</sup>
+### addText<sup>15+</sup>
 
 addText(text: string, textOperationOptions?: TextContentControllerOptions): number
 
 在已编辑文本的指定位置插入文本，默认插入至文本末尾。
 拖拽文本的状态下不生效。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -696,16 +697,16 @@ addText(text: string, textOperationOptions?: TextContentControllerOptions): numb
 | 参数名  | 类型   | 必填   | 说明  |
 | ------- | ------ | ---- | ----- |
 | text | string | 是    | 插入的文本内容。 |
-| textOperationOptions   | [TextContentControllerOptions](#textcontentcontrolleroptions16) | 否    | 插入文本的配置选项，不设置时默认插入文本至末尾。 |
+| textOperationOptions   | [TextContentControllerOptions](#textcontentcontrolleroptions15) | 否    | 插入文本的配置选项，不设置时默认插入文本至末尾。 |
 
-### deleteText<sup>16+</sup>
+### deleteText<sup>15+</sup>
 
 deleteText(range?: TextRange): void
 
 删除已编辑文本的指定区域的内容。
 拖拽文本的状态下不生效。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -715,13 +716,13 @@ deleteText(range?: TextRange): void
 | ------- | ------ | ---- | ----- |
 | range | [TextRange](ts-text-common.md#textrange12) | 否    | 删除文本的范围，包括删除文本的起始位置和终止位置。<br>未指定删除范围时，默认将删除全部文本。未指定删除文本的起始位置，则默认从下标0开始删除；未指定删除文本的终止位置，则默认以文本末尾作为删除的结束点。 |
 
-### getSelection<sup>16+</sup>
+### getSelection<sup>15+</sup>
 
 getSelection(): TextRange
 
 返回当前文本的选择范围。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -730,6 +731,38 @@ getSelection(): TextRange
 | 类型                      | 说明               |
 | ----------------------- | ---------------- |
 | [TextRange](ts-text-common.md#textrange12) | 文本当前的选择范围，未选中返回光标位置。 |
+
+### clearPreviewText<sup>18+</sup>
+
+clearPreviewText(): void
+
+清除当前的预上屏文本内容。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### getText<sup>18+</sup>
+
+getText(range?: TextRange): string
+
+获取指定范围的文本内容。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型   | 必填   | 说明  |
+| ------- | ------ | ---- | ----- |
+| range | [TextRange](ts-text-common.md#textrange12) | 否    | 获取文本的范围，包括需要获取文本的起始位置和终止位置。<br>未指定范围时，默认将获取全部文本。未指定获取文本的起始位置，则默认从下标0开始；未指定获取文本的终止位置，则默认以文本末尾作为结束点。 |
+
+**返回值：**
+
+| 类型    | 说明               |
+| ------ | ---------------- |
+| string | 指定范围的文本内容。 |
 
 ## TextDecorationOptions<sup>12+</sup>对象说明
 
@@ -818,13 +851,13 @@ setTextSelection选中文字时的配置。
 | colorMode | string | 是   | 否   | 颜色模式。 |
 | fontScale | number | 是   | 否   | 字体缩放。 |
 
-## LayoutPolicy<sup>16+</sup>
+## LayoutPolicy<sup>15+</sup>
 
 用于设置线性布局的布局策略。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -840,14 +873,27 @@ setTextSelection选中文字时的配置。
 > 
 >  - MATCH_PARENT会强制将自身大小设置成父组件大小，因此其设置的其他约束大小的属性将会失效。
 
-## TextContentControllerOptions<sup>16+</sup>
+## TextContentControllerOptions<sup>15+</sup>
 
 用于设置输入框插入字符时的配置选项。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 类型   | 只读 | 可选 | 说明       |
 | --------- | ------ | ---- | ---- | ---------- |
 | offset | number | 是   | 是   | 插入文本的位置。 |
+
+## DividerMode<sup>18+</sup>枚举说明
+
+分割线模式
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称            | 值 | 说明                                       |
+| ------------------ | - | ---------------------------------------- |
+| FLOATING_ABOVE_MENU| 0 | 悬浮在Menu之上，默认值，不占用高度。      |
+| EMBEDDED_IN_MENU   | 1 | 在Menu中展开，参与布局计算，占用高度。    |

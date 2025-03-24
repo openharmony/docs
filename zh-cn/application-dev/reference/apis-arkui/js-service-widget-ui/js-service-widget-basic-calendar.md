@@ -35,7 +35,7 @@
 | year           | int    | 表示年份。                                   |
 | isFirstOfLuanr | bool   | 表示是否是农历的第一天，在农历第一天的数据下绘制横线。             |
 | hasSchedule    | bool   | 表示是否有日程，在有日程的日期数据上绘制圆。                  |
-| markLunarDay   | bool   | 表示节假日，农历数据会变成蓝色。                        |
+| markLunarDay   | bool   | 表示节假日时，农历数据部分是否会变成蓝色。                        |
 | lunarDay       | string | 农历日期。                                   |
 | lunarMonth     | string | 农历月份。                                   |
 | dayMark        | string | 表示工作日。<br>- “work”：工作日。<br>- “off”：休息日。 |

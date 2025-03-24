@@ -1,10 +1,8 @@
 # 系统调用
 
-
 ## 基本概念
 
 OpenHarmony LiteOS-A实现了用户态与内核态的区分隔离，用户态程序不能直接访问内核资源，而系统调用则为用户态程序提供了一种访问内核资源、与内核进行交互的通道。
-
 
 ## 运行机制
 
@@ -18,11 +16,9 @@ Syscall Handler的具体实现在kernel/liteos_a/syscall/los_syscall.c中OsArmA3
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 系统调用提供基础的用户态程序与内核的交互功能，不建议开发者直接使用系统调用接口，推荐使用内核提供的对外POSIX接口，若需要新增系统调用接口，详见开发指导。
 > 
-> - 内核向用户态提供的系统调用接口清单详见kernel/liteos_a/syscall/syscall_lookup.h，内核相应的系统调用对接函数清单详见kernel/liteos_a/syscall/los_syscall.h。
-
+> - 内核向用户态提供的系统调用接口清单[详见](https://gitee.com/openharmony/kernel_liteos_a/blob/master/syscall/syscall_lookup.h)，内核相应的系统调用对接函数清单[详见](https://gitee.com/openharmony/kernel_liteos_a/blob/master/syscall/los_syscall.h)。
 
 ## 开发指导
-
 
 ### 开发流程
 
@@ -35,7 +31,6 @@ Syscall Handler的具体实现在kernel/liteos_a/syscall/los_syscall.c中OsArmA3
 3. 在内核系统调用头文件中确定并添加新增的系统调用号及对应内核处理函数的声明。
 
 4. 在内核中新增该系统调用对应的内核处理函数。
-
 
 ### 编程实例
 
@@ -71,7 +66,7 @@ Syscall Handler的具体实现在kernel/liteos_a/syscall/los_syscall.c中OsArmA3
    ...
    ```
 
-2. 在LibC库中新增用户态接口的声明与实现
+2. 在LibC库中新增用户态接口的声明与实现。
      
    ```
    #include "stdio_impl.h"
@@ -88,8 +83,7 @@ Syscall Handler的具体实现在kernel/liteos_a/syscall/los_syscall.c中OsArmA3
 
 3. 在内核系统调用头文件中新增系统调用号
    如下所示，在third_party/musl/porting/liteos_a/kernel/include/bits/syscall.h文件中，__NR_new_syscall_sample为新增系统调用号。
-
-     
+    
    ```
    ...
    /* 当前现有的系统调用清单 */
@@ -118,8 +112,7 @@ Syscall Handler的具体实现在kernel/liteos_a/syscall/los_syscall.c中OsArmA3
    ```
 
    在kernel/liteos_a/syscall/syscall_lookup.h中，增加一行SYSCALL_HAND_DEF(__NR_new_syscall_sample, SysNewSyscallSample, void, ARG_NUM_1)：
-
-     
+  
    ```
    ...
    /* 当前现有的系统调用清单 */
@@ -136,8 +129,7 @@ Syscall Handler的具体实现在kernel/liteos_a/syscall/los_syscall.c中OsArmA3
 
 4. 在内核中新增内核该系统调用对应的处理函数
    如下所示，在kernel/liteos_a/syscall/los_syscall.h中，SysNewSyscallSample为新增系统调用的内核处理函数声明：
-
-     
+ 
    ```
    ...
    /* 当前现有的系统调用内核处理函数声明清单 */
@@ -165,14 +157,10 @@ Syscall Handler的具体实现在kernel/liteos_a/syscall/los_syscall.c中OsArmA3
    }
    ```
 
-
 **结果验证：**
 
-
 用户态程序调用newSyscallSample(10)接口，得到输出结果如下：
-
-
-  
+ 
 ```
 /* 用户态接口与内核态接口均有输出，证明系统调用已使能 */
 user mode: num = 10

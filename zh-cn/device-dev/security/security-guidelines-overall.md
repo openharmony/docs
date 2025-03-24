@@ -207,7 +207,7 @@ HUKS在使用中有如下约束：
   | ohos.permission.MICROPHONE | user_grant（动态权限） | 此应用可随时使用麦克风进行录音。 | 
   | ohos.permission.WRITE_MEDIA | user_grant（动态权限） | 允许该应用写入您的音乐收藏。 | 
   | ohos.permission.DISTRIBUTED_DATASYNC | user_grant（动态权限） | 管控分布式数据传输能力。 | 
-  | ohos.permission.DISTRIBUTED_VIRTUALDEVICE | user_grant（动态权限） | 允许应用使用分布式虚拟能力 | 
+  | ohos.permission.DISTRIBUTED_VIRTUALDEVICE | user_grant（动态权限） | 允许应用使用分布式虚拟能力。 | 
 
 ### 推荐做法
 
@@ -215,4 +215,4 @@ HUKS在使用中有如下约束：
 
 > **说明：**
 > 
-> 不同应用模型的应用配置文件不同，FA模型为config.json，Stage模型为module.json5。应用模型相关解释可参考[应用模型解读](../../application-dev/application-models/application-model-description.md)。
+> 不同应用模型的应用配置文件不同，FA模型为config.json，Stage模型为module.json5。应用模型相关解释可参考[应用模型解读](../../application-dev/application-models/application-models.md)。

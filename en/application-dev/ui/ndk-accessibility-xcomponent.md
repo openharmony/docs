@@ -21,7 +21,7 @@ The following example shows how to integrate accessibility capabilities. After i
 2. Implement callback functions based on the API definition.
 
 ```c
-int32_t FindAccessibilityNodeInfoById(int64_t elementId, ArkUI_AccessibilitySearchMode mode, int32_t requestId, ArkUI_AccessibilityElementInfoList* elementList)
+int32_t FindAccessibilityNodeInfosById(int64_t elementId, ArkUI_AccessibilitySearchMode mode, int32_t requestId, ArkUI_AccessibilityElementInfoList* elementList)
 {
     // Query the element information list based on mode.
 	if (elementList == nullptr) {
@@ -61,6 +61,41 @@ int32_t FindNextFocusAccessibilityNode(int64_t elementId, ArkUI_AccessibilityFoc
     OH_ArkUI_AccessibilityElementInfoSetElementId(element, nodes[i].id);
     OH_ArkUI_AccessibilityElementInfoSetComponentType(element, nodes[i].type);
     // ...
+}
+```
+
+
+
+```c
+int32_t FindAccessibilityNodeInfosByText(int64_t elementId, const char *text, int32_t requestId, ArkUI_AccessibilityElementInfoList* elementList)
+{
+    if (elementList == nullptr) {
+        return OH_NATIVEXCOMPONENT_RESULT_FAILED;
+    }
+    
+    ArkUI_AccessibilityElementInfo *elementInfo = OH_ArkUI_AddAndGetAccessibilityElementInfo(elementList);
+    
+    // The third-party platform needs to set elementInfo.
+    
+    if (elementInfo == nullptr) {
+        return OH_NATIVEXCOMPONENT_RESULT_FAILED;
+    }
+    return OH_NATIVEXCOMPONENT_RESULT_SUCCESS;
+}
+```
+
+
+
+```c
+int32_t FindFocusedAccessibilityNode(int64_t elementId, ArkUI_AccessibilityFocusType focusType, int32_t requestId, ArkUI_AccessibilityElementInfo *elementInfo)
+{   
+    if (elementInfo == nullptr) {
+        return OH_NATIVEXCOMPONENT_RESULT_FAILED;
+    }
+    
+    // The third-party platform needs to set elementInfo.
+    
+    return OH_NATIVEXCOMPONENT_RESULT_SUCCESS;
 }
 ```
 
@@ -182,6 +217,7 @@ void PluginRender::RegisterAccessibility(OH_NativeXComponent* nativeXComponent)
     accessibilityProviderCallbacks_->findAccessibilityNodeInfosById = FindAccessibilityNodeInfosById;
     accessibilityProviderCallbacks_->findAccessibilityNodeInfosByText = FindAccessibilityNodeInfosByText;
     accessibilityProviderCallbacks_->findFocusedAccessibilityNode = FindFocusedAccessibilityNode;
+    accessibilityProviderCallbacks_->findNextFocusAccessibilityNode = FindNextFocusAccessibilityNode;
     accessibilityProviderCallbacks_->executeAccessibilityAction = ExecuteAccessibilityAction;
     accessibilityProviderCallbacks_->clearFocusedFocusAccessibilityNode = ClearFocusedFocusAccessibilityNode;
     accessibilityProviderCallbacks_->getAccessibilityNodeCursorPosition = GetAccessibilityNodeCursorPosition;

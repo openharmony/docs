@@ -1,8 +1,6 @@
 # 加密导入密钥(C/C++)
 
-
 以加密导入ECDH密钥对为例，涉及业务侧加密密钥的[密钥生成](huks-key-generation-overview.md)、[协商](huks-key-agreement-overview.md)等操作不在本示例中体现。
-
 
 具体的场景介绍及支持的算法规格，请参考[密钥导入的支持的算法](huks-key-import-overview.md#支持的算法)。
 
@@ -13,7 +11,7 @@ target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 
 ## 开发步骤
 > **说明：**
-> 下文中wrap指加密，unwrap指解密
+> 下文中wrap指加密，unwrap指解密。
 1. 设备A（导入设备）将待导入密钥转换成[HUKS密钥材料格式](huks-concepts.md#密钥材料格式)To_Import_Key（仅针对非对称密钥，若待导入密钥是对称密钥则可省略此步骤）。
 
 2. 设备B（被导入设备）生成一个加密导入用途的、用于协商的非对称密钥对Wrapping_Key（公钥Wrapping_Pk，私钥Wrapping_Sk），其密钥用途设置为unwrap，导出Wrapping_Key的公钥材料Wrapping_Pk并保存。
@@ -58,7 +56,7 @@ OH_Huks_Result InitParamSet(struct OH_Huks_ParamSet **paramSet, const struct OH_
     return ret;
 }
 struct HksImportWrappedKeyTestParams {
-    // server key, for real
+    // server key, for real.
     struct OH_Huks_Blob *wrappingKeyAlias;
     struct OH_Huks_ParamSet *genWrappingKeyParamSet;
     uint32_t publicKeySize;
@@ -75,13 +73,13 @@ struct HksImportWrappedKeyTestParams {
     uint32_t keyMaterialLen;
 };
 static const uint32_t IV_SIZE = 16;
-static uint8_t IV[IV_SIZE] = "bababababababab"; // 此处仅为测试数据，实际使用时该值每次应该不同
+static uint8_t IV[IV_SIZE] = "bababababababab"; // 此处仅为测试数据，实际使用时该值每次应该不同。
 static const uint32_t WRAPPED_KEY_IV_SIZE = 16;
-static uint8_t WRAPPED_KEY_IV[IV_SIZE] = "bababababababab"; // 此处仅为测试数据，实际使用时该值每次应该不同
+static uint8_t WRAPPED_KEY_IV[IV_SIZE] = "bababababababab"; // 此处仅为测试数据，实际使用时该值每次应该不同。
 static const uint32_t AAD_SIZE = 16;
-static uint8_t AAD[AAD_SIZE] = "abababababababa"; // 此处仅为测试数据，实际使用时该值每次应该不同
+static uint8_t AAD[AAD_SIZE] = "abababababababa"; // 此处仅为测试数据，实际使用时该值每次应该不同。
 static const uint32_t NONCE_SIZE = 12;
-static uint8_t NONCE[NONCE_SIZE] = "hahahahahah"; // 此处仅为测试数据，实际使用时该值每次应该不同
+static uint8_t NONCE[NONCE_SIZE] = "hahahahahah"; // 此处仅为测试数据，实际使用时该值每次应该不同。
 static const uint32_t AEAD_TAG_SIZE = 16;
 static const uint32_t X25519_256_SIZE = 256;
 static struct OH_Huks_Blob g_wrappingKeyAliasAes256 = {.size = (uint32_t)strlen("test_wrappingKey_x25519_aes256"),
@@ -108,9 +106,9 @@ static struct OH_Huks_Param g_importWrappedAes256Params[] = {
     {.tag = OH_HUKS_TAG_DIGEST, .uint32Param = OH_HUKS_DIGEST_NONE},
     {.tag = OH_HUKS_TAG_UNWRAP_ALGORITHM_SUITE, .uint32Param = OH_HUKS_UNWRAP_SUITE_X25519_AES_256_GCM_NOPADDING},
     {.tag = OH_HUKS_TAG_ASSOCIATED_DATA,
-     .blob = {.size = AAD_SIZE, .data = (uint8_t *)AAD}}, // 此处仅为测试数据，实际使用时该值应与调用者信息相关
+     .blob = {.size = AAD_SIZE, .data = (uint8_t *)AAD}}, // 此处仅为测试数据，实际使用时该值应与调用者信息相关。
     {.tag = OH_HUKS_TAG_NONCE,
-     .blob = {.size = NONCE_SIZE, .data = (uint8_t *)NONCE}}}; // 此处仅为测试数据，实际使用时该值每次应该不同
+     .blob = {.size = NONCE_SIZE, .data = (uint8_t *)NONCE}}}; // 此处仅为测试数据，实际使用时该值每次应该不同。
 static const uint32_t g_x25519PubKeySize = 32;
 static struct OH_Huks_Param g_genWrappingKeyParams[] = {
     {.tag = OH_HUKS_TAG_ALGORITHM, .uint32Param = OH_HUKS_ALG_X25519},
@@ -129,7 +127,7 @@ static struct OH_Huks_Param g_importParamsCallerKek[] = {
     {.tag = OH_HUKS_TAG_DIGEST, .uint32Param = OH_HUKS_DIGEST_NONE},
     {.tag = OH_HUKS_TAG_IV,
      .blob = {.size = WRAPPED_KEY_IV_SIZE,
-              .data = (uint8_t *)WRAPPED_KEY_IV}}}; // 此处仅为测试数据，实际使用时该值每次应该不同
+              .data = (uint8_t *)WRAPPED_KEY_IV}}}; // 此处仅为测试数据，实际使用时该值每次应该不同。
 static struct OH_Huks_Param g_callerAgreeParams[] = {
     {.tag = OH_HUKS_TAG_ALGORITHM, .uint32Param = OH_HUKS_ALG_X25519},
     {.tag = OH_HUKS_TAG_PURPOSE, .uint32Param = OH_HUKS_KEY_PURPOSE_AGREE},
@@ -142,9 +140,9 @@ static struct OH_Huks_Param g_aesKekEncryptParams[] = {
     {.tag = OH_HUKS_TAG_BLOCK_MODE, .uint32Param = OH_HUKS_MODE_GCM},
     {.tag = OH_HUKS_TAG_DIGEST, .uint32Param = OH_HUKS_DIGEST_NONE},
     {.tag = OH_HUKS_TAG_ASSOCIATED_DATA,
-     .blob = {.size = AAD_SIZE, .data = (uint8_t *)AAD}}, // 此处仅为测试数据，实际使用时该值应与调用者信息相关
+     .blob = {.size = AAD_SIZE, .data = (uint8_t *)AAD}}, // 此处仅为测试数据，实际使用时该值应与调用者信息相关。
     {.tag = OH_HUKS_TAG_NONCE,
-     .blob = {.size = NONCE_SIZE, .data = (uint8_t *)NONCE}}}; // 此处仅为测试数据，实际使用时该值每次应该不同
+     .blob = {.size = NONCE_SIZE, .data = (uint8_t *)NONCE}}}; // 此处仅为测试数据，实际使用时该值每次应该不同。
 static struct OH_Huks_Param g_importAgreeKeyParams[] = {
     {.tag = OH_HUKS_TAG_ALGORITHM, .uint32Param = OH_HUKS_ALG_AES},
     {.tag = OH_HUKS_TAG_PURPOSE, .uint32Param = OH_HUKS_KEY_PURPOSE_ENCRYPT},
@@ -153,7 +151,7 @@ static struct OH_Huks_Param g_importAgreeKeyParams[] = {
     {.tag = OH_HUKS_TAG_BLOCK_MODE, .uint32Param = OH_HUKS_MODE_GCM},
     {.tag = OH_HUKS_TAG_DIGEST, .uint32Param = OH_HUKS_DIGEST_NONE},
     {.tag = OH_HUKS_TAG_IV,
-     .blob = {.size = IV_SIZE, .data = (uint8_t *)IV}}}; // 此处仅为测试数据，实际使用时该值每次应该不同
+     .blob = {.size = IV_SIZE, .data = (uint8_t *)IV}}}; // 此处仅为测试数据，实际使用时该值每次应该不同。
 OH_Huks_Result HuksAgreeKey(const struct OH_Huks_ParamSet *paramSet, const struct OH_Huks_Blob *keyAlias,
                             const struct OH_Huks_Blob *peerPublicKey, struct OH_Huks_Blob *agreedKey) {
     uint8_t temp[10] = {0};
@@ -583,9 +581,9 @@ static napi_value IsKeyExist(napi_env env, napi_callback_info info)
     /* 2.调用OH_Huks_IsKeyItemExist判断密钥是否存在  */
     struct OH_Huks_Result ohResult = OH_Huks_IsKeyItemExist(&keyAlias, NULL);
     if (ohResult.errorCode != OH_HUKS_SUCCESS) {
-        // 失败 
+        // 失败。
     } else {
-        // 成功
+        // 成功。
     }
 }
 ```

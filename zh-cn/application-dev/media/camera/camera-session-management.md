@@ -104,14 +104,14 @@
        let err = error as BusinessError;
        console.error(`Failed to beginConfig. error: ${JSON.stringify(err)}`);
      }
-     // 从会话中移除拍照输出流
+     // 从会话中移除拍照输出流。
      try {
        photoSession.removeOutput(photoOutput);
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to remove photoOutput. error: ${JSON.stringify(err)}`);
      }
-     // 向会话中添加视频输出流
+     // 向会话中添加视频输出流。
      try {
        photoSession.addOutput(videoOutput);
      } catch (error) {

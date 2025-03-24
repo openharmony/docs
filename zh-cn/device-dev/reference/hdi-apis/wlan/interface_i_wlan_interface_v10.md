@@ -297,7 +297,7 @@ IWlanInterface::GetIfNamesByChipId ([in] unsigned char chipId, [out] String ifNa
 | 名称 | 描述 | 
 | -------- | -------- |
 | chipId | 需要获取网卡名称的芯片ID。  | 
-| ifNames | 网卡名称。  | 
+| ifName | 网卡名称。  | 
 | num | 网卡的数量。 | 
 
 **返回：**

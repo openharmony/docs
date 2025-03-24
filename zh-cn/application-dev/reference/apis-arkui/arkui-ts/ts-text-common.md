@@ -13,8 +13,8 @@
 
 | 名称 | 类型                                   | 必填 | 说明 |
 | ------ | ------------------------------------------ | ---- | -------- |
-| width  | [Length](ts-types.md#length)               | 否   | 光标尺寸，不支持百分比。 |
-| color  | [ResourceColor](ts-types.md#resourcecolor) | 否   | 光标颜色。 |
+| width  | [Length](ts-types.md#length)               | 否   | 光标尺寸，不支持百分比。<br/>默认值：'2vp' |
+| color  | [ResourceColor](ts-types.md#resourcecolor) | 否   | 光标颜色。<br/>默认值：'#ff007dff' |
 
 ## LayoutManager<sup>12+</sup>
 
@@ -84,13 +84,13 @@ getLineMetrics(lineNumber: number): LineMetrics
 
 | 参数名    | 类型   | 必填   | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| lineNumber | number | 是    | 行号。从0开始。 |
+| lineNumber | number | 是    | 行号，从0开始。 |
 
 **返回值：**
 
 | 类型                                       | 说明       |
 | ---------------------------------------- | -------- |
-| [LineMetrics](#linemetrics12) | 行信息、文本样式信息、以及字体属性信息。 |
+| [LineMetrics](#linemetrics12) | 行信息、文本样式信息、以及字体属性信息。<br/>当行号小于0或超出实际行，返回无效值。 |
 
 ### getRectsForRange<sup>14+</sup>
 
@@ -150,9 +150,9 @@ getRectsForRange(range: TextRange, widthStyle: RectWidthStyle, heightStyle: Rect
 | COLLABORATION_SERVICE   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 互通服务。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | CAMERA_INPUT   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是   | 拍摄输入。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | AI_WRITER<sup>13+</sup>   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 可对选中的文本进行润色、摘要提取、排版等。该菜单项依赖大模型能力，否则不生效。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
-| TRANSLATE<sup>16+</sup>   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 对选中的文本提供翻译服务。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
-| SHARE<sup>16+</sup>   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 对选中的文本提供分享服务，拉起分享窗口分享选中文本内容。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
-| SEARCH<sup>16+</sup>   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 对选中的文本提供搜索服务，拉起浏览器搜索选中文本内容。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| TRANSLATE<sup>15+</sup>   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 对选中的文本提供翻译服务。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| SHARE<sup>18+</sup>   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 对选中的文本提供分享服务，拉起分享窗口分享选中文本内容。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| SEARCH<sup>18+</sup>   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 对选中的文本提供搜索服务，拉起浏览器搜索选中文本内容。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ### of
 
@@ -209,7 +209,7 @@ equals(id: TextMenuItemId): boolean
 | content | [ResourceStr](ts-types.md#resourcestr) | 是   | 菜单名称。 |
 | icon | [ResourceStr](ts-types.md#resourcestr) | 否   | 菜单图标。<br/>不支持网络图片。 |
 | id | [TextMenuItemId](#textmenuitemid12) | 是   | 菜单id。 |
-| labelInfo<sup>16+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 快捷键提示。<br/>该字段仅2in1设备支持。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| labelInfo<sup>15+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 快捷键提示。<br/>该字段仅2in1设备支持。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 ## EditMenuOptions
 
@@ -291,7 +291,7 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText, o
 | -- | -- | -- | -- |
 | value | string | 是 | 文本框内正式上屏的文本内容。 |
 | previewText | [PreviewText](#previewtext12) | 否 | 预上屏文本信息，包含预上屏起始位置和文本内容。 |
-| options<sup>16+</sup> | [TextChangeOptions](#textchangeoptions16对象说明) | 否 | 文本内容变化信息，包含变化前后的选区范围、变化前的文本内容和预上屏文本信息。 |
+| options<sup>15+</sup> | [TextChangeOptions](#textchangeoptions15对象说明) | 否 | 文本内容变化信息，包含变化前后的选区范围、变化前的文本内容和预上屏文本信息。 |
 
 ## TextDataDetectorType<sup>11+</sup>枚举说明
 
@@ -333,11 +333,11 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText, o
 | SELECTION_MENU | 0 | 文本选择菜单。|
 | PREVIEW_MENU | 1 | 图片预览菜单。|
 
-## KeyboardAppearance<sup>16+</sup>枚举说明
+## KeyboardAppearance<sup>15+</sup>枚举说明
 
 键盘外观。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -409,7 +409,7 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText, o
 
 | 名称     | 类型                                             | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
-| enableVariableFontWeight | boolean | 否   | 是否支持字重无极调节。<br/>默认值：false |
+| enableVariableFontWeight | boolean | 否   | 是否支持字重无极调节。<br/>默认值：false<br/>值为true，表示支持字重调节，值为false，表示不支持字重调节。 |
 
 ## OnDidChangeCallback<sup>12+</sup>
 
@@ -491,8 +491,8 @@ selectionStart和selectionEnd均为-1时表示全选。
 
 | 参数名            | 类型   | 必填   | 说明    |
 | -------------- | ------ | ---- | ------- |
-| selectionStart | number | 是    | 选中开始位置。 |
-| selectionEnd   | number | 是    | 选中结束位置。 |
+| selectionStart | number | 是    | 选中开始位置。<br/>取值小于0时，按0处理。 |
+| selectionEnd   | number | 是    | 选中结束位置。<br/>取值大于文本长度时，按当前文本长度处理。 |
 | options   | [SelectionOptions](ts-types.md#selectionoptions12对象说明) | 否    | 选择项配置。 |
 
 ### closeSelectionMenu<sup>12+</sup>
@@ -735,11 +735,11 @@ type RectWidthStyle = RectWidthStyle
 | --------------------------------- | --------------------------------- |
 | [RectWidthStyle](../../apis-arkgraphics2d/js-apis-graphics-text.md#rectwidthstyle) | 矩形区域宽度规格枚举。 |
 
-## TextChangeOptions<sup>16+</sup>对象说明
+## TextChangeOptions<sup>15+</sup>对象说明
 
 变化前的文本信息，以及变化后的选区范围。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -750,11 +750,11 @@ type RectWidthStyle = RectWidthStyle
 | oldContent  | string | 是   | 变化前的文本内容。 |
 | oldPreviewText | [PreviewText](#previewtext12) | 是 | 变化前的预上屏信息。 |
 
-## EditableTextChangeValue<sup>16+</sup>
+## EditableTextChangeValue<sup>15+</sup>
 
 文本变化的详细信息，包括预上屏。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -762,7 +762,7 @@ type RectWidthStyle = RectWidthStyle
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | content  | string | 是   | 当前的文本内容。 |
 | previewText  | [PreviewText](#previewtext12) | 否   | 预上屏的内容信息。 |
-| options  | [TextChangeOptions](#textchangeoptions16对象说明) | 否   | 变化的文本内容信息。 |
+| options  | [TextChangeOptions](#textchangeoptions15对象说明) | 否   | 变化的文本内容信息。 |
 
 ## TextMenuShowMode<sup>16+</sup>
 

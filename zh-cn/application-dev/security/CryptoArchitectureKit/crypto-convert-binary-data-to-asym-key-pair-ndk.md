@@ -1,6 +1,5 @@
 # 指定二进制数据转换非对称密钥对(C/C++)
 
-
 以RSA、ECC、SM2为例，根据指定的对称密钥二进制数据，生成非对称密钥对（OH_CryptoKeyPair），即将外部或存储的二进制数据转换为算法库的密钥对象，该对象可用于后续的加解密等操作。
 
 > **说明：**
@@ -13,7 +12,7 @@
 
 ## 在CMake脚本中链接相关动态库
 ```txt
-   target_link_libraries(entry PUBLIC libohcrypto.so)
+target_link_libraries(entry PUBLIC libohcrypto.so)
 ```
 
 ## 指定二进制数据转换RSA密钥对
@@ -51,7 +50,7 @@ static OH_Crypto_ErrCode doTestDataCovertAsymKey()
    226,248,211,157,213,194,131,109,181,41,173,217,127,252,121,126,26,130,55,4,134,104,73,5,132,
    91,214,146,232,64,99,87,33,222,155,159,9,59,212,144,46,183,83,89,220,189,148,13,176,5,139,156,
    230,143,16,152,79,36,8,112,40,174,35,83,82,57,137,87,123,215,99,199,66,131,150,31,143,56,252,2,
-   73,41,70,159,2,3,1,0,1 }
+   73,41,70,159,2,3,1,0,1 };
    Crypto_DataBlob retBlob = { .data = rsaDatablob, .len = sizeof(rsaDatablob) };
 
    OH_CryptoKeyPair *dupKeyPair = nullptr;

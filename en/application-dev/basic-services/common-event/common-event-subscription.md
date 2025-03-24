@@ -9,6 +9,9 @@ For example, if an application expects to be notified of low battery so that it 
 
 Certain system common events [require specific permissions](../../security/AccessToken/determine-application-mode.md) to subscribe to. For details, see [System Common Events](../../reference/apis-basic-services-kit/common_event/commonEventManager-definitions.md).
 
+> **NOTE**
+>
+> The lifecycle of the subscriber object needs to be managed by the application. If the subscriber object is no longer used, it needs to be destroyed and released to avoid memory leakage.
 
 ## Available APIs
 
@@ -44,7 +47,7 @@ For details about the APIs, see [API Reference](../../reference/apis-basic-servi
    };
    ```
 
-3. Create a subscriber object and save the returned object for subsequent operations such as subscription and unsubscription.
+3. Create a subscriber object and save the returned object for subsequent operations such as subscription, unsubscription, and event callback.
    
    ```ts
    // Callback for subscriber creation.

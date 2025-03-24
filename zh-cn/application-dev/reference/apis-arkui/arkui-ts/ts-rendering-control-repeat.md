@@ -4,11 +4,16 @@
 > 
 > 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+Repeat基于数组类型数据来进行循环渲染，一般与容器组件配合使用。
 本文档仅为API参数说明。开发者指南见：[Repeat开发者指南](../../../quick-start/arkts-new-rendering-control-repeat.md)。
+
+## 属性
+
+继承自[DynamicNode](./ts-rendering-control-foreach.md#dynamicnode12)。
 
 ## 接口
 
-Repeat: \<T\>(arr: Array\<T\>)
+### Repeat: \<T\>(arr: Array\<T\>)
 
 Repeat组件non-virtualScroll场景（不开启virtualScroll开关）中，Repeat基于数据源进行循环渲染，需要与容器组件配合使用，且接口返回的组件应当是允许包含在Repeat父容器组件中的子组件。Repeat循环渲染和ForEach相比有两个区别，一是优化了部分更新场景下的渲染性能，二是组件生成函数的索引index由框架侧来维护。
 
@@ -31,6 +36,24 @@ Repeat组件virtualScroll场景中，Repeat将从提供的数据源中按需迭�
 // arr是Array<string>类型的数组，以arr为数据源创建Repeat组件
 Repeat<string>(this.arr)
 ```
+
+### Repeat: \<T\>(arr: RepeatArray\<T\>)<sup>18+</sup>
+
+> **说明：**
+>
+> 从API version 18开始，Repeat数据源参数支持RepeatArray类型。
+
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型       | 必填 | 说明      |
+| ------ | ---------- | -------- | -------- |
+| arr    | [RepeatArray\<T\>](#repeatarrayt18) | 是 | 数据源，为`RepeatArray<T>`类型的数组，由开发者决定数据类型。 |
 
 ## 事件
 
@@ -187,6 +210,28 @@ List() {
 }
 ```
 
+## 属性
+
+从API version 18开始，继承自[DynamicNode](./ts-rendering-control-foreach.md#dynamicnode12)。
+
+## RepeatArray\<T\><sup>18+</sup>
+
+type RepeatArray\<T\> = Array\<T\> | ReadonlyArray\<T\> | Readonly\<Array\<T\>\>
+
+Repeat数据源参数联合类型。
+
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+|  类型       | 说明      |
+| -------- | -------- |
+| Array\<T\> | 常规数组类型。 |
+| ReadonlyArray\<T\> | 只读数组类型，不允许数组对象变更。 |
+| Readonly\<Array\<T\>> | 只读数组类型，不允许数组对象变更。 |
+
 ## RepeatItem\<T\>
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
@@ -208,8 +253,10 @@ List() {
 
 | 名称     | 类型   | 必填 | 说明                                                         |
 | ---------- | ------ | ---- | ------------------------------------------------------------ |
-| totalCount | number | 否   | 加载的数据项总数，可以大于/小于数据源长度。 |
-| reusable<sup>16+</sup> | boolean | 否   | 是否开启复用功能，true表示开启，false表示不开启，默认开启。 |
+| totalCount | number | 否   | 加载的数据项总数，可以不等于数据源长度。 |
+| reusable<sup>18+</sup> | boolean | 否   | 是否开启复用功能，true表示开启，false表示不开启，默认开启。 |
+| onLazyLoading<sup>18+</sup> | (index: number) => void | 否   | 数据懒加载函数，向指定的数据源index中写入数据。 |
+| onTotalCount<sup>18+</sup> | () => number | 否   | 数据项总数计算函数，返回值可以不等于数据源长度。推荐使用onTotalCount代替totalCount。同时设置totalCount与onTotalCount时，忽略totalCount。 |
 
 **示例：**
 ```ts
@@ -219,6 +266,17 @@ List() {
   Repeat<string>(this.arr)
     .each((obj: RepeatItem<string>) => { ListItem() { Text(obj.item) }})
     .virtualScroll( { totalCount: this.arr.length, reusable: true } )
+}
+
+// 假设数据项总数为100，首屏渲染需3项数据
+// 初始数组提供前3项数据（arr = ['No.0', 'No.1', 'No.2']），并开启数据懒加载功能
+List() {
+  Repeat<string>(this.arr)
+    .each((obj: RepeatItem<string>) => { ListItem() { Text(obj.item) }})
+    .virtualScroll( { 
+      onTotalCount: () => { return 100; },
+      onLazyLoading: (index: number) => { this.arr[index] = `No.${index}`; }
+      } )
 }
 ```
 

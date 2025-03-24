@@ -29,6 +29,10 @@ To enable Emitter's capabilities mentioned above, perform the following steps:
    
    ```ts
    import { emitter } from '@kit.BasicServicesKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
+
+   const TAG: string = 'ProcessModel';
+   const DOMAIN_NUMBER: number = 0xFF00;
    ```
 
 2. Subscribe to an event.
@@ -42,7 +46,7 @@ To enable Emitter's capabilities mentioned above, perform the following steps:
     
     // Use on() to subscribe to the event. After the event whose eventId is 1 is received, the callback function is executed.
     emitter.on(event, () => {
-      console.info('on callback');
+      hilog.info(DOMAIN_NUMBER, TAG, 'on callback');
     });
    ```
 
@@ -50,7 +54,7 @@ To enable Emitter's capabilities mentioned above, perform the following steps:
    // Execute the callback after receiving the event whose eventId is 1.
    // Note that the event is received only once using once(), while the event is received until the subscription is canceled using on().
    emitter.once(event, () => {
-     console.info('once callback');
+     hilog.info(DOMAIN_NUMBER, TAG, 'once callback');
    });
    ```
 
@@ -66,9 +70,9 @@ To enable Emitter's capabilities mentioned above, perform the following steps:
 
    // Subscribes to the event and receive eventData.
    emitter.once(event, (eventData : emitter.EventData) => {
-     console.info('enter callback, eventData-content:' + eventData?.data?.content);
-     console.info('enter callback, eventData-id:' + eventData?.data?.id);
-     console.info('enter callback, eventData-isEmpty:' + eventData?.data?.isEmpty);
+     hilog.info(DOMAIN_NUMBER, TAG, 'enter callback, eventData-content:' + eventData?.data?.content);
+     hilog.info(DOMAIN_NUMBER, TAG, 'enter callback, eventData-id:' + eventData?.data?.id);
+     hilog.info(DOMAIN_NUMBER, TAG, 'enter callback, eventData-isEmpty:' + eventData?.data?.isEmpty);
    });
 
    let eventData: emitter.EventData = {

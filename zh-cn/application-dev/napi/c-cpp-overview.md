@@ -34,7 +34,7 @@ OpenHarmony中动态库加载namespace配置的情况
 
 - app ns: 应用启动时创建的ns，它的搜索路径一般是应用的安装路径(可能为沙箱路径)，即可加载应用的so。
 
-当前这一套命名空间机制主要限制了应用native库和系统native库之间的调用，如图所示，具体规则为
+当前这一套命名空间机制主要限制了应用native库和系统native库之间的调用，如图所示，具体规则为：
 
 1. default ns和ndk ns可以互相访问全部so，不能访问app ns的so。
 2. app ns能访问ndk ns的全部so，不能访问default ns的so。

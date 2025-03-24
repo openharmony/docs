@@ -8,7 +8,7 @@
 
 **错误信息**
 
-NFC state is abnormal in service.
+The NFC state is abnormal in the service.
 
 **错误描述**
 
@@ -21,14 +21,13 @@ NFC服务内部执行NFC打开或关闭异常。
 
 **处理步骤**
 
-1. 重新执行打开或关闭NFC。
-2. 重新执行打开或关闭NFC，或重启设备尝试。
+1. 重新执行打开或关闭NFC或重启设备尝试。
 
 ## 3100201
 
 **错误信息**
 
-Tag running state is abnormal in service.
+The tag running state is abnormal in the service.
 
 **错误描述**
 
@@ -68,7 +67,7 @@ The element state is invalid.
 
 **错误信息**
 
-The off() can be called only when the on() has been called.
+The off() API can be called only when the on() has been called.
 
 **错误描述**
 
@@ -84,7 +83,7 @@ The off() can be called only when the on() has been called.
 
 **错误信息**
 
-Tag I/O operation failed.
+The The tag I/O operation failed.
 
 **错误描述**
 
@@ -96,6 +95,22 @@ NFC Tag I/O操作失败。
 **处理步骤**
 1. 应用程序根据业务场景进行异常处理或提示。
 
+## 3100205
+
+**错误信息**
+
+The tag leaves the field.
+
+**错误描述**
+
+NFC标签已经离场。
+
+**可能原因**
+1. NFC标签已离开nfc设备感应范围。
+
+**处理步骤**
+1. 重新将标签靠近nfc读卡设备。
+   
 ## 3100301
 
 **错误信息**

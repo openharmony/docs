@@ -21,7 +21,7 @@ If you are just starting out with JSVM-API, see [JSVM-API Development Process](u
 
 ### OH_JSVM_AdjustExternalMemory
 
-Use **OH_JSVM_AdjustExternalMemory** to adjust the amount of externally allocated memory that is kept alive for a JS object.
+Call **OH_JSVM_AdjustExternalMemory** to adjust the amount of externally allocated memory that is kept alive for a JS object.
 
 CPP code:
 
@@ -52,7 +52,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = AdjustExternalMemory},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named adjustExternalMemory and associate it with a callback. This allows the AdjustExternalMemory callback to be called from JS.
+// Alias for the AdjustExternalMemory method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"adjustExternalMemory", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -70,7 +70,7 @@ JSVM Allocate memory size: 1048576
 
 ### OH_JSVM_MemoryPressureNotification
 
-Use **OH_JSVM_MemoryPressureNotification** to notify the underlying JSVM that the VM system memory is insufficient and selectively trigger GC.
+Call **OH_JSVM_MemoryPressureNotification** to notify the underlying JSVM that the VM system memory is insufficient and selectively trigger GC.
 
 CPP code:
 
@@ -97,7 +97,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = MemoryPressureNotification},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named memoryPressureNotification and associate it with a callback. This allows the MemoryPressureNotification callback to be called from JS.
+// Alias for the MemoryPressureNotification method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"memoryPressureNotification", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };

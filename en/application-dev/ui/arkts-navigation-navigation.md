@@ -56,7 +56,10 @@ The **Navigation** component uses the **mode** attribute to set the page display
   @Entry
   @Component
   struct NavigationExample {
-    @State TooTmp: ToolbarItem = {'value': "func", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
+    @State TooTmp: ToolbarItem = {
+      'value': "func", 'icon': "./image/ic_public_highlights.svg", 'action': () => {
+      }
+    }
     @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack()
     private arr: number[] = [1, 2, 3];
 
@@ -70,7 +73,7 @@ The **Navigation** component uses the **mode** attribute to set the page display
         pageThreeTmp()
       }
     }
-  
+
     build() {
       Column() {
         Navigation(this.pageInfos) {
@@ -78,9 +81,9 @@ The **Navigation** component uses the **mode** attribute to set the page display
             .width("90%")
             .height(40)
             .backgroundColor('#FFFFFF')
-  
+
           List({ space: 12 }) {
-            ForEach(this.arr, (item:number) => {
+            ForEach(this.arr, (item: number) => {
               ListItem() {
                 Text("Page" + item)
                   .width("100%")
@@ -90,11 +93,11 @@ The **Navigation** component uses the **mode** attribute to set the page display
                   .fontSize(16)
                   .fontWeight(500)
                   .textAlign(TextAlign.Center)
-                  .onClick(()=>{
-                    this.pageInfos.pushPath({ name: "NavDestinationTitle" + item})
+                  .onClick(() => {
+                    this.pageInfos.pushPath({ name: "NavDestinationTitle" + item })
                   })
               }
-            }, (item:number) => item.toString())
+            }, (item: number) => item.toString())
           }
           .width("90%")
           .margin({ top: 12 })
@@ -103,11 +106,26 @@ The **Navigation** component uses the **mode** attribute to set the page display
         .mode(NavigationMode.Split)
         .navDestination(this.PageMap)
         .menus([
-          {value: "", icon: "./image/ic_public_search.svg", action: ()=> {}},
-          {value: "", icon: "./image/ic_public_add.svg", action: ()=> {}},
-          {value: "", icon: "./image/ic_public_add.svg", action: ()=> {}},
-          {value: "", icon: "./image/ic_public_add.svg", action: ()=> {}},
-          {value: "", icon: "./image/ic_public_add.svg", action: ()=> {}}
+          {
+            value: "", icon: "./image/ic_public_search.svg", action: () => {
+            }
+          },
+          {
+            value: "", icon: "./image/ic_public_add.svg", action: () => {
+            }
+          },
+          {
+            value: "", icon: "./image/ic_public_add.svg", action: () => {
+            }
+          },
+          {
+            value: "", icon: "./image/ic_public_add.svg", action: () => {
+            }
+          },
+          {
+            value: "", icon: "./image/ic_public_add.svg", action: () => {
+            }
+          }
         ])
         .toolbarConfiguration([this.TooTmp, this.TooTmp, this.TooTmp])
       }
@@ -121,6 +139,7 @@ The **Navigation** component uses the **mode** attribute to set the page display
   @Component
   export struct pageOneTmp {
     @Consume('pageInfos') pageInfos: NavPathStack;
+
     build() {
       NavDestination() {
         Column() {
@@ -139,6 +158,7 @@ The **Navigation** component uses the **mode** attribute to set the page display
   @Component
   export struct pageTwoTmp {
     @Consume('pageInfos') pageInfos: NavPathStack;
+
     build() {
       NavDestination() {
         Column() {
@@ -157,6 +177,7 @@ The **Navigation** component uses the **mode** attribute to set the page display
   @Component
   export struct pageThreeTmp {
     @Consume('pageInfos') pageInfos: NavPathStack;
+
     build() {
       NavDestination() {
         Column() {
@@ -792,4 +813,3 @@ You can implement cross-package dynamic routing through a custom routing table.
 2. Use [dynamic import](../arkts-utils/arkts-dynamic-import.md) to load the module containing the target page at runtime. Once the module is loaded, call a method within the module that uses **import** to load and display the target page, then return the **Builder** function defined after the page has finished loading.
 3. Execute the **Builder** function loaded in step 2 on the [navDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navdestination10) attribute of the **Navigation** component to navigate to the target page.
 <!--RP2--><!--RP2End-->
-<!--no_check-->

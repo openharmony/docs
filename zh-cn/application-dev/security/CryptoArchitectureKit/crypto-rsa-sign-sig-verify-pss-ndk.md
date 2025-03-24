@@ -1,16 +1,13 @@
 # 使用RSA密钥对验签（PSS模式）(C/C++)
 
-
 对应的算法规格请查看[验签算法规格：RSA](crypto-sign-sig-verify-overview.md#rsa)。
-
 
 ## 在CMake脚本中链接相关动态库
 ```txt
-   target_link_libraries(entry PUBLIC libohcrypto.so)
+target_link_libraries(entry PUBLIC libohcrypto.so)
 ```
 
 ## 开发步骤
-
 
 1. 调用[OH_CryptoVerify_Create](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_create)，指定字符串参数'RSA2048|PSS|SHA256|MGF1_SHA256'，创建非对称密钥类型为RSA2048、填充模式为PSS、摘要算法为SHA256、掩码算法为MGF1_SHA256的Verify实例，用于完成验签操作。
 
@@ -18,11 +15,9 @@
 
 3. 调用[OH_CryptoVerify_Init](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_init)，使用公钥（OH_CryptoPubKey）初始化Verify实例。
 
-4. 调用[OH_CryptoVerify_Update](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_update)，传入待验证的数据。
-   当前单次update长度没有限制，开发者可以根据数据量判断如何调用update，如果数据量较小，可以直接调用OH_CryptoVerify_Final接口一次性传入。
+4. 调用[OH_CryptoVerify_Update](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_update)，传入待验证的数据。当前单次update长度没有限制，开发者可以根据数据量判断如何调用update，如果数据量较小，可以直接调用OH_CryptoVerify_Final接口一次性传入。
 
 5. 调用[OH_CryptoVerify_Final](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_final)，对数据进行验签。
-
 
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"

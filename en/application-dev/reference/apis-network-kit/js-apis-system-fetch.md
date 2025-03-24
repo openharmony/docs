@@ -105,9 +105,9 @@ export default {
 >       "network": {
 >         "cleartextTraffic": true
 >       }
->       ...
+>       ... // Other configuration information
 >     }
 >   }
->   ...
+>   ... // Other configuration information
 > }
 > ```

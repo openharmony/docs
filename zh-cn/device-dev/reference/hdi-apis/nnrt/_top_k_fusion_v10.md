@@ -30,7 +30,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | boolean [sorted](#sorted) | 如果为True，按照大到小排序，如果为False，按照小到大排序。  | 
-| long [axis](#axis) | 作用的轴  | 
+| long [axis](#axis) | 作用的轴。  | 
 
 
 ## 类成员变量说明
@@ -43,7 +43,7 @@ long TopKFusion::axis
 ```
 **描述**
 
-作用的轴
+作用的轴。
 
 
 ### sorted

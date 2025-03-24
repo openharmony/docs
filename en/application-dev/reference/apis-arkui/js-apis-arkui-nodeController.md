@@ -45,16 +45,11 @@ This callback can also be invoked through the **rebuild()** method of **NodeCont
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [FrameNode](./js-apis-arkui-frameNode.md#framenode)\| null | **FrameNode** object, which will be mounted to the placeholder node of the **NodeContainer** component. If a **null** object is returned, the child nodes of the corresponding **NodeContainer** component are removed.|
 
-> **NOTE**
-> Since the **rebuild** API is actively called by the application and is tied to the UI, you need to ensure that the UI context is valid at the time of the call, that is, it must be consistent with the UI context of the bound NodeContainer.
->
-> In cases where the UI context is unclear, for example, during event callbacks, you can use the [runScopedTask](./js-apis-arkui-UIContext.md#runscopedtask) method of [UIContext](./js-apis-arkui-UIContext.md) to explicitly define the UI context at the time of the call.
-
 ### aboutToAppear
 
 aboutToAppear?(): void
 
-Called after the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component bound to this **NodeController** instance is mounted and about to be displayed.
+Called after the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component bound to this **NodeController** instance is attached and about to appear.
 
 > **NOTE**
 >
@@ -68,7 +63,7 @@ Called after the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#n
 
 aboutToDisappear?(): void
 
-Called when the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component bound to this **NodeController** instance is unmounted and about to be hidden.
+Called when the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component bound to this **NodeController** instance is detached and about to be hidden.
 
 > **NOTE**
 >
@@ -77,6 +72,98 @@ Called when the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#no
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### onAttach<sup>16+</sup>
+
+onAttach?(): void
+
+Called when the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component bound to this **NodeController** instance is attached to the main node tree.
+
+> **NOTE**
+>
+> For details about the callback timing, see [onAttach](arkui-ts/ts-universal-events-show-hide.md#onattach12).
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### onDetach<sup>16+</sup>
+
+onDetach?(): void
+
+Called when the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component bound to this **NodeController** instance is detached from the main node tree.
+
+> **NOTE**
+>
+> For details about the callback timing, see [onDetach](arkui-ts/ts-universal-events-show-hide.md#ondetach12).
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### onWillBind<sup>16+</sup>
+
+onWillBind?(containerId: number): void
+
+Called when this **NodeController** instance is about to be bound to a [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name   | Type                                     | Mandatory| Description                                                                                                         |
+| ----------- | ------ |----- |---------------------------------------------------------------------------------------------------------------------------------- |
+| containerId | number | Yes  | ID of the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component to which the **NodeController** instance is about to be bound.|
+
+### onWillUnbind<sup>16+</sup>
+
+onWillUnbind?(containerId: number): void
+
+Called when this **NodeController** instance is about to be unbound from a [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name   | Type                                     | Mandatory| Description                                                                                                         |
+| ----------- | ------ |----- |---------------------------------------------------------------------------------------------------------------------------------- |
+| containerId | number | Yes  | ID of the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component from which the **NodeController** instance is about to be unbound.|
+
+### onBind<sup>16+</sup>
+
+onBind?(containerId: number): void
+
+Called after this **NodeController** instance is bound to a [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name   | Type                                     | Mandatory| Description                                                                                                         |
+| ----------- | ------ |----- |---------------------------------------------------------------------------------------------------------------------------------- |
+| containerId | number | Yes  | ID of the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component to which the **NodeController** instance is bound.|
+
+### onUnbind<sup>16+</sup>
+
+onUnbind?(containerId: number): void
+
+Called after this **NodeController** instance is unbound from a [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name   | Type                                     | Mandatory| Description                                                                                                         |
+| ----------- | ------ |----- |---------------------------------------------------------------------------------------------------------------------------------- |
+| containerId | number | Yes  | ID of the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component from which the **NodeController** instance is unbound.|
 
 ### aboutToResize
 
@@ -120,7 +207,20 @@ Instructs the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#node
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Example
+> **NOTE**
+> Since the **rebuild** API is actively called by the application and is tied to the UI, you need to ensure that the UI context is valid at the time of the call, that is, it must be consistent with the UI context of the bound NodeContainer.
+>
+> In cases where the UI context is unclear, for example, during event callbacks, you can use the [runScopedTask](./js-apis-arkui-UIContext.md#runscopedtask) method of [UIContext](./js-apis-arkui-UIContext.md) to explicitly define the UI context at the time of the call.
+
+## Example
+
+### Example 1: Implementing Lifecycle Callbacks for Node Layout, Touch, Mounting, and Unmounting Events
+
+This example demonstrates how to manage the lifecycle of a **NodeContainer** component using **aboutToResize**, **onTouchEvent**,
+
+**aboutToAppear**, and **aboutToDisappear**.
+
+It also shows how to mount a BuilderNode using **NodeController**.
 
 ```ts
 import {  NodeController, BuilderNode, Size, FrameNode ,UIContext } from '@kit.ArkUI';
@@ -185,3 +285,97 @@ struct Index {
 }
 ```
 ![patternlock](figures/node_controller.jpg)
+
+### Example 2: Implementing Lifecycle Callbacks for Node Binding/Unbinding and Tree Attachment/Detachment
+
+This example demonstrates how to manage the lifecycle of a **NodeContainer** component when it is attached to or detached from the main node tree and
+
+when it is bound or unbound, using **onAttach**, **onDetach**, **onWillBind**, **onWillUnbind**, **onBind**, and **onUnbind**.
+
+```ts
+import { NodeController, BuilderNode, Size, FrameNode, UIContext } from '@kit.ArkUI';
+class Params {
+  text: string = "this is a text"
+}
+
+@Builder
+function buttonBuilder(params: Params) {
+  Column() {
+    Button(params.text)
+      .fontSize(20)
+      .borderRadius(8)
+      .borderWidth(2)
+      .backgroundColor(Color.Grey)
+  }
+}
+
+class MyNodeController extends NodeController {
+  private buttonNode: BuilderNode<[Params]> | null = null;
+  private wrapBuilder: WrappedBuilder<[Params]> = wrapBuilder(buttonBuilder);
+
+  makeNode(uiContext: UIContext): FrameNode {
+    if (this.buttonNode == null) {
+      this.buttonNode = new BuilderNode(uiContext);
+      this.buttonNode.build(this.wrapBuilder, { text: "This is a Button" })
+    }
+    return this.buttonNode!.getFrameNode()!;
+  }
+
+  onAttach(): void {
+    console.log("myButton on attach");
+  }
+
+  onDetach(): void {
+    console.log("myButton on detach");
+  }
+
+  onWillBind(containerId: number): void{
+    console.log("myButton on WillBind" + containerId);
+  }
+
+  onWillUnbind(containerId: number): void{
+    console.log("myButton on WillUnbind" + containerId);
+  }
+
+  onBind(containerId: number): void {
+    console.log("myButton on bind: " + containerId);
+  }
+
+  onUnbind(containerId: number): void {
+    console.log("myButton on unbind: " + containerId);
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State buttonShow: boolean = true
+  @State buttonIndex: number = 0
+  private buttonController: MyNodeController = new MyNodeController();
+  private buttonNull: null = null;
+  private buttonControllerArray: Array < MyNodeController | null > = [this.buttonController,this.buttonNull]
+
+  build() {
+    Column() {
+      Row(){
+        Button("Bind/Unbind")
+          .onClick(() => {
+            this.buttonIndex++;
+          }).margin(5)
+        Button("onAttach/onDetach")
+          .onClick(() => {
+            this.buttonShow = !this.buttonShow
+          }).margin(5)
+      }
+      if(this.buttonShow){
+        NodeContainer(this.buttonControllerArray[this.buttonIndex % this.buttonControllerArray.length])
+      }
+    }
+    .padding({ left: 35, right: 35})
+    .width("100%")
+    .height("100%")
+  }
+}
+```
+
+![patternlock2](figures/node_controller2.jpg)

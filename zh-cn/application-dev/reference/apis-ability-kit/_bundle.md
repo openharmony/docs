@@ -83,7 +83,7 @@ char* OH_NativeBundle_GetAppIdentifier()
 
 **描述**
 
-获取自身应用的appIdentifier信息。appIdentifier指应用的唯一标识，是云端统一分配的随机字符串。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。
+获取自身应用的appIdentifier信息。appIdentifier指应用的唯一标识，是AppGallery Connect创建应用时分配的APP ID，为云端统一分配的随机字符串。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。
 
 **起始版本：** 11
 

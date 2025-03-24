@@ -1,21 +1,21 @@
 # ArkWeb（方舟Web）
 
-- ArkTS API
+- ArkTS API<!--arkweb-arkts-->
   - [@ohos.web.webview (Webview)](js-apis-webview.md)
   - [@ohos.web.netErrorList](js-apis-netErrorList.md)
-- ArkTS 组件
+- ArkTS 组件<!--arkweb-comp-->
   - [Web](ts-basic-components-web.md)
-- C API
-  - 模块
+- C API<!--arkweb-c-->
+  - 模块<!--arkweb-module-->
     - [Web](_web.md)
-  - 头文件
+  - 头文件<!--arkweb-headerfile-->
     - [arkweb_error_code.h](arkweb__error__code_8h.md)
     - [arkweb_interface.h](arkweb__interface_8h.md)
     - [arkweb_net_error_list.h](arkweb__net__error__list_8h.md)
     - [arkweb_scheme_handler.h](arkweb__scheme__handler_8h.md)
     - [arkweb_type.h](arkweb__type_8h.md)
     - [native_interface_arkweb.h](native__interface__arkweb_8h.md)
-  - 结构体
+  - 结构体<!--arkweb-struct-->
     - [ArkWeb_AnyNativeAPI](_ark_web___any_native_a_p_i.md)
     - [ArkWeb_ComponentAPI](_ark_web___component_a_p_i.md)
     - [ArkWeb_ControllerAPI](_ark_web___controller_a_p_i.md)
@@ -29,5 +29,5 @@
     - [ArkWeb_ProxyObjectWithResult](_ark_web___proxy_object_with_result.md)
     - [ArkWeb_WebMessageAPI](_ark_web___web_message_a_p_i.md)
     - [ArkWeb_WebMessagePortAPI](_ark_web___web_message_port_a_p_i.md)
-- 错误码
+- 错误码<!--arkweb-arkts-errcode-->
   - [Webview错误码](errorcode-webview.md)

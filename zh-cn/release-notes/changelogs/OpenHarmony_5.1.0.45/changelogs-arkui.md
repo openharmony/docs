@@ -13,7 +13,7 @@
 
 **变更影响**
 
-该变更为不兼容变更。
+此变更不涉及应用适配。
 
 变更前：带标题栏窗口应用内弹出菜单位置偏移4vp，菜单没有和按钮对齐。
 
@@ -51,7 +51,7 @@ Menu UX默认效果变更，无需适配，但应注意变更后的默认效果�
 
 **变更影响**
 
-该变更为不兼容变更。
+此变更不涉及应用适配。
 
 变更前：MenuItem设置padding属性时，布局和预期不符合。
 
@@ -111,100 +111,7 @@ MenuItem组件。
 
 MenuItem设置padding属性时默认布局效果变更，开发者无需适配。
 
-## cl.arkui.3 DatePickerDialog和TimePickerDialog调用show()方法，参数缺省时的行为变更
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-DatePickerDialog和TimePickerDialog调用show()方法，若参数缺省，无法弹出对话框。该参数为可选参数，会对开发者造成困惑。
-
-**变更影响**
-
-该变更为不兼容变更。
-
-举例说明，执行以下用例：
-
-```ts
-@Entry
-@Component
-struct PickerDialogExample {
-  build() {
-    Column() {
-      Button("DatePickerDialog")
-        .onClick(() => {
-          DatePickerDialog.show()
-        })
-
-      Button("TimePickerDialog")
-        .margin(20)
-        .onClick(() => {
-          TimePickerDialog.show()
-        })
-    }
-  }
-}
-```
-
-变更前:  
-DatePickerDialog.show()和TimePickerDialog.show()无法弹出日期选择器对话框。 
-
-变更后:  
-DatePickerDialog.show()和TimePickerDialog.show()可以弹出日期选择器对话框。
-
-**起始API Level**
-
-API 8
-
-**变更发生版本**
-
-从OpenHarmony 5.1.0.45开始。
-
-**变更的接口/组件**
-
-TimePickerDialog和DatePickerDialog组件。
-
-**适配指导**
-
-DatePickerDialog和TimePickerDialog调用show()方法，参数缺省时，可弹出默认样式的对话框。
-
-## cl.arkui.4 Gauge设置第一个颜色占比过小时绘制效果更改
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-Gauge设置第一个颜色占比过小时绘制效果不符合UX效果。
-
-**变更影响**
-
-该变更为不兼容变更。
-
-| 变更前                                                                                                                     | 变更后                                                                                                                   |
-| -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| 设置第一个颜色占比过小时，第一个圆环未被正确裁切，出现逆时针向0的方向绘制的情况。<br>![gauge_before](figures/gauge_before.png)| 设置第一个颜色占比过小时，第一个圆环绘制正常，能被正常裁切。<br>![gauge_after](figures/gauge_after.png) |
-
-**起始API Level**
-
-11
-
-**变更发生版本**
-
-从OpenHarmony 5.1.0.45 版本开始。
-
-**变更的接口/组件**
-
-Gauge。
-
-**适配指导**
-
-展示效果变更，无需适配，但应注意变更后的效果是否符合开发者预期。
-
-## cl.arkui.5 Repeat VirtualScroll 支持二级缓存冻结
+## cl.arkui.3 Repeat VirtualScroll 支持二级缓存冻结
 
 **访问级别**
 
@@ -329,7 +236,7 @@ struct ChildComponent {
 }
 ```
 
-## cl.arkui.5 通用属性backgroundEffect在modifier中radius参数单位修改
+## cl.arkui.4 ImageSpan组件borderRadius边框圆角属性Modifier设置变更
 
 **访问级别**
 
@@ -337,23 +244,53 @@ struct ChildComponent {
 
 **变更原因**
 
- 直接使用backgroundEffect时对应的模糊参数radius单位为vp。通过modifier或者CAPI使用时，单位为px。现将单位同一为vp。
+ImageSpan组件的borderRadius边框圆角属性通过Modifier设置不生效，边框实际不显示圆角效果。
 
 **变更影响**
 
-该变更为不兼容变更。
+此变更不涉及应用适配。
 
-变更前：backgroundEffect通过modifier使用时单位为px。<br/>
-![addComponentContent_before](figures/backgroundEffect_before.png)
-
-变更后：backgroundEffect通过modifier使用时单位为vp。<br/>
-![addComponentContent_after](figures//backgroundEffect_after.png)
-
-
+| 变更前                                                                                           | 变更后                                                                                    |
+| ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| ImageSpan组件borderRadius边框圆角属性通过Modifier设置不生效。<br>![imageSpan-border-radius-before](figures/imageSpan-border-radius-before.png)| ImageSpan组件borderRadius边框圆角属性通过Modifier设置生效。<br>![imageSpan-border-radius-after](figures/imageSpan-border-radius-after.png) |
 
 **起始API Level**
 
-API 12
+ImageSpanModifier ： 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.45开始。
+
+**变更的接口/组件**
+
+ImageSpanModifier接口的borderRadius属性
+
+**适配指导**
+
+无需应用适配，变更后ImageSpan组件的borderRadius边框圆角在Modifier接口设置生效，效果与开发者实际设置的圆角值显示一致。
+
+## cl.arkui.5 Search组件回车键类型为EnterKeyType.NEW_LINE（换行）时onSubmit回调中执行keepEditableState()函数，参数缺省时的行为变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+开发者通过Search组件的onSubmit接口设置自定义提交事件，并在keepEditableState()函数中配置是否收起键盘。当回车键类型设置为EnterKeyType.NEW_LINE（换行）时，无论是否设置keepEditableState()接口，用户点击输入法软键盘上的换行按钮或按下回车键，键盘均不会收起。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+变更前：回车键类型为EnterKeyType.NEW_LINE（换行），不设置keepEditableState()接口，用户点击输入法软键盘上的换行按钮或按下回车键，Search组件保持编辑态。
+
+变更后：回车键类型为EnterKeyType.NEW_LINE（换行），不设置keepEditableState()接口，用户点击输入法软键盘上的换行按钮或按下回车键，Search组件退出编辑态。
+
+**起始API Level**
+
+12
 
 **变更发生版本**
 
@@ -361,41 +298,69 @@ API 12
 
 **变更的接口/组件**
 
-backgroundEffect
+onSubmit事件keepEditableState()接口
 
 **适配指导**
 
-在modifier中使用px2vp方法把radius参数转换为vp。
+使用Search组件onSubmit接口设置自定义提交事件。触发onSubmit时，如果回车键类型为EnterKeyType.NEW_LINE（换行）且未设置keepEditableState()接口，键盘退出编辑态。举例说明：
 
 ```ts
-
-import { CommonModifier } from '@kit.ArkUI';
-
-class ColumnModifier extends CommonModifier {
-  public radius: number = 0;
-  applyNormalAttribute(instance: CommonAttribute): void {
-    instance.backgroundEffect({ radius: this.radius })
-  }
-}
+import { SymbolGlyphModifier } from '@kit.ArkUI'
 
 @Entry
 @Component
-struct Index {
-  @State testSize: number = 200;
-  @State modifier:ColumnModifier = new ColumnModifier();
-  onPageShow(): void {
-    // 变更前
-    // this.modifier.radius = 10;
-    // 变更后适配
-    this.modifier.radius = px2vp(10);
-  }
+struct EnterKeyTypeIsNewLineDemo {
+  mySearchController: SearchController = new SearchController()
+
   build() {
     Column() {
-      Stack() {
-        Image($r('app.media.test')).width(this.testSize).height(this.testSize)
-        Column().width(this.testSize).height(this.testSize).attributeModifier(this.modifier)
-      }.width('100%')
-    }
+      Text('Search').fontSize(25).fontColor(Color.Blue)
+      Search({ value: '', placeholder: 'Type to search ...', controller: this.mySearchController })
+        .searchIcon(new SymbolGlyphModifier($r('sys.symbol.magnifyingglass')).fontColor([Color.Red]))
+        .searchButton('SEARCH')
+        // 回车键类型设置为EnterKeyType.NEW_LINE（换行）
+        .enterKeyType(EnterKeyType.NEW_LINE)
+        .onSubmit((value: string, event?: SubmitEvent) => {
+          // 设置键盘保持编辑态，否则，默认情况键盘退出编辑态
+          event?.keepEditableState()
+        })
+    }.width('100%').margin({ top: 100 })
   }
 }
 ```
+
+## cl.arkui.6 TextInput/TextArea组件border属性dashGap、dashWidth参数Modifier设置变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+TextInput/TextArea组件的border属性中，虚线参数dashGap和dashWidth通过Modifier设置后未生效。当前TextInput/TextArea组件的实际虚线边框显示为默认效果，而非Modifier设置的值。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+| 变更前                                                                                           | 变更后                                                                                      |
+| ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| TextInput/TextArea组件的border属性中，虚线参数dashGap和dashWidth通过Modifier设置后未生效。![textInput-textArea-border-dash-before](figures/textInput-textArea-border-dash-before.png)| TextInput/TextArea组件的border属性中，虚线参数dashGap和dashWidth通过Modifier设置后生效。![textInput-textArea-border-dash-after](figures/textInput-textArea-border-dash-after.png) |
+
+**起始API Level**
+
+TextInputModifier ：12
+
+TextAreaModifier ：12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.45开始。
+
+**变更的接口/组件**
+
+TextInputModifier、TextAreaModifier接口的border属性dashGap、dashWidth参数
+
+**适配指导**
+
+无需应用适配，变更后TextInput/TextArea组件的border属性虚线参数dashGap、dashWidth通过Modifier设置生效，显示虚线边框间距和长度效果与开发者设置值一致。

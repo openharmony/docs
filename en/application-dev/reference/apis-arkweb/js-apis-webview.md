@@ -1534,11 +1534,15 @@ struct WebComponent {
 }
 ```
 
-### getHitTest
+### getHitTest<sup>(deprecated)</sup>
 
 getHitTest(): WebHitTestType
 
 Obtains the element type of the area being clicked.
+
+> **NOTE**
+>
+> This API is supported since API version 11 and deprecated since API version 16. You are advised to use [getLastHitTest](#getlasthittest16) instead.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -1632,7 +1636,7 @@ class TestObj {
   constructor() {
   }
 
-  test(testStr:string): string {
+  test(testStr: string): string {
     console.log('Web Component str' + testStr);
     return testStr;
   }
@@ -1641,12 +1645,12 @@ class TestObj {
     console.log('Web Component toString');
   }
 
-  testNumber(testNum:number): number {
+  testNumber(testNum: number): number {
     console.log('Web Component number' + testNum);
     return testNum;
   }
 
-  asyncTestBool(testBol:boolean): void {
+  asyncTestBool(testBol: boolean): void {
     console.log('Web Component boolean' + testBol);
   }
 }
@@ -1673,7 +1677,7 @@ class AsyncObj {
     console.log('Async test');
   }
 
-  asyncString(testStr:string): void {
+  asyncString(testStr: string): void {
     console.log('Web async string' + testStr);
   }
 }
@@ -1699,8 +1703,11 @@ struct Index {
       Button('Register JavaScript To Window')
         .onClick(() => {
           try {
+            // Register both synchronous and asynchronous functions.
             this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString", "testNumber"], ["asyncTestBool"]);
+            // Register only the synchronous function.
             this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
+            // Register only the asynchronous function.
             this.controller.registerJavaScriptProxy(this.asyncTestObj, "objAsyncName", [], ["asyncTest", "asyncString"]);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -3110,11 +3117,15 @@ struct WebComponent {
 }
 ```
 
-### getHitTestValue
+### getHitTestValue<sup>(deprecated)</sup>
 
 getHitTestValue(): HitTestValue
 
 Obtains the element information of the area being clicked.
+
+> **NOTE**
+>
+> This API is supported since API version 11 and deprecated since API version 16. You are advised to use [getLastHitTest](#getlasthittest16) instead.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -5199,11 +5210,15 @@ export default class EntryAbility extends UIAbility {
     webview.WebviewController.initializeWebEngine();
     // Replace "https://www.example1.com/post?e=f&g=h" with the actual website address to visit. 
     webview.WebviewController.prefetchResource(
-      {url:"https://www.example1.com/post?e=f&g=h",
-        method:"POST",
-        formData:"a=x&b=y",},
-      [{headerKey:"c",
-        headerValue:"z",},],
+      {
+        url: "https://www.example1.com/post?e=f&g=h",
+        method: "POST",
+        formData: "a=x&b=y",
+      },
+      [{
+        headerKey: "c",
+        headerValue: "z",
+      },],
       "KeyX", 500);
     AppStorage.setOrCreate("abilityWant", want);
     console.log("EntryAbility onCreate done");
@@ -5235,17 +5250,22 @@ import { webview } from '@kit.ArkWeb';
 @Component
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
+
   build() {
     Column() {
-      Web({ src: "https://www.example.com/", controller: this.controller})
+      Web({ src: "https://www.example.com/", controller: this.controller })
         .onAppear(() => {
           // Replace "https://www.example1.com/post?e=f&g=h" with the actual website address to visit. 
           webview.WebviewController.prefetchResource(
-            {url:"https://www.example1.com/post?e=f&g=h",
-              method:"POST",
-              formData:"a=x&b=y",},
-            [{headerKey:"c",
-              headerValue:"z",},],
+            {
+              url: "https://www.example1.com/post?e=f&g=h",
+              method: "POST",
+              formData: "a=x&b=y",
+            },
+            [{
+              headerKey: "c",
+              headerValue: "z",
+            },],
             "KeyX", 500);
         })
         .onPageEnd(() => {
@@ -5969,20 +5989,14 @@ This API can be called only in the UI thread.
 ```ts
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
-@Entry
-@Component
-struct WebComponent {
-  controller: webview.WebviewController = new webview.WebviewController();
-
-  build() {
-    Column() {
-      Button('getDefaultUserAgent')
-        .onClick(() => {
-          let defaultUserAgent = webview.WebviewController.getDefaultUserAgent();
-          console.log("defaultUserAgent: " + defaultUserAgent);
-        })
-    }
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("EntryAbility onCreate");
+    webview.WebviewController.initializeWebEngine();
+    let defaultUserAgent = webview.WebviewController.getDefaultUserAgent();
+    console.log("defaultUserAgent: " + defaultUserAgent);
   }
 }
 ```
@@ -9112,6 +9126,58 @@ struct WebComponent {
   }
 }
 ```
+
+### getLastHitTest<sup>16+</sup>
+
+getLastHitTest(): HitTestValue
+
+Obtains the element information of the area being clicked last time.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type        | Description                |
+| ------------ | -------------------- |
+| [HitTestValue](#hittestvalue) | Element information of the area being clicked.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**Example**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('getLastHitTest')
+        .onClick(() => {
+          try {
+            let hitValue = this.controller.getLastHitTest();
+            console.log("hitType: " + hitValue.type);
+            console.log("extra: " + hitValue.extra);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
 ## WebCookieManager
 
 Implements a **WebCookieManager** instance to manage behavior of cookies in **Web** components. All **Web** components in an application share a **WebCookieManager** instance.
@@ -9743,7 +9809,7 @@ Sets the value of a single cookie for a specified URL. This API uses a promise t
 
 | Name| Type  | Mandatory| Description                     |
 | ------ | ------ | ---- | :------------------------ |
-| url    | string | Yes  | URL of the cookie to obtain. A complete URL is recommended.|
+| url    | string | Yes  | URL of the cookie to set. A complete URL is recommended.|
 | value  | string | Yes  | Cookie value to set.     |
 | incognito    | boolean | Yes  | Whether to set the cookies in incognito mode. The value **true** means to set the cookies in incognito mode, and **false** means the opposite.|
 | includeHttpOnly    | boolean | Yes  | Whether to overwrite cookies containing **HttpOnly**. The value **true** means to overwrite cookies containing **HttpOnly**, and **false** means the opposite.|
@@ -9788,6 +9854,46 @@ struct WebComponent {
               .catch((error: BusinessError) => {
                 console.log('error: ' + JSON.stringify(error));
               })
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### saveCookieSync<sup>15+</sup>
+
+static saveCookieSync(): void
+
+Saves the cookies in the memory to the drive. This API uses a synchronous callback to return the result.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+> **NOTE**
+>
+> **saveCookieSync** is used to forcibly write cookies that need to be persisted to disks. By default, session cookies in 2-in-1 and tablets are not persisted.
+
+**Example**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('saveCookieSync')
+        .onClick(() => {
+          try {
+            webview.WebCookieManager.saveCookieSync();
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -11657,7 +11763,7 @@ Describes the information about the resource request sent by the **Web** compone
 
 ## WebHitTestType
 
-The [getHitTest](#gethittest) API is used to indicate a cursor node.
+The [getLastHitTest](#getlasthittest16) API is used to indicate a cursor node.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -11682,12 +11788,12 @@ Defines the security level of the web page.
 | ------------- | -- |----------------------------------------- |
 | NONE          | 0 |The web page is neither absolutely secure nor insecure, that is, neutral. A typical example is a web page whose URL scheme is not HTTP or HTTPS.|
 | SECURE        | 1 |The web page is secure, using the HTTPS protocol and a trusted certificate.|
-| WARNING       | 2 |The web page is possibly compromised. A typical example is a web page that uses the HTTP or HTTPS protocol but an outdated TLS version.|
-| DANGEROUS     | 3 |The web page is insecure. This means that the page may have attempted to load HTTPS scripts to no avail, have failed authentication, or contain insecure active content in HTTPS, malware, phishing, or any other sources of major threats.|
+| WARNING       | 2 |The web page is insecure. A typical example is a web page that uses the HTTP or HTTPS protocol but an outdated TLS version.|
+| DANGEROUS     | 3 |The web page is dangerous. This means that the page may have attempted to load HTTPS scripts to no avail, have failed authentication, or contain insecure active content in HTTPS, malware, phishing, or any other sources of major threats.|
 
 ##  HitTestValue
 
-Provides the element information of the area being clicked. For details about the sample code, see [getHitTestValue](#gethittestvalue).
+Provides the element information of the area being clicked. For details about the sample code, see [getLastHitTest](#getlasthittest16).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -12309,7 +12415,7 @@ Defines a custom URL scheme.
 | isDisplayIsolated<sup>12+</sup> | boolean   | Yes  | Yes  | Whether the content of the scheme can be displayed or accessed from other content that uses the same scheme.          |
 | isSecure<sup>12+</sup> | boolean   | Yes  | Yes  | Whether the scheme is treated with the same security rules as those applied to HTTPS URLs.          |
 | isCspBypassing<sup>12+</sup> | boolean   | Yes  | Yes  | Whether the scheme can bypass the content security policy (CSP) checks. In most cases, this value should not be set when **isStandard** is set to **true**.        |
-| isCodeCacheSupported<sup>12+</sup> | boolean   | Yes  | Yes  | Whether JavaScript resources loaded with the scheme can be used to create a code cache.        |
+| isCodeCacheSupported<sup>12+</sup> | boolean   | Yes  | Yes  | Whether JavaScript resources loaded with the scheme can be used to create a code cache. The default value is **false**.        |
 
 ## SecureDnsMode<sup>10+</sup>
 
@@ -14327,6 +14433,397 @@ struct WebComponent {
 }
 ```
 
+## ProxySchemeFilter<sup>15+</sup>
+
+Filters the scheme that uses the proxy.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name         | Value| Description                                     |
+| ------------- | -- |----------------------------------------- |
+| MATCH_ALL_SCHEMES | 0 |All schemes use proxies.|
+| MATCH_HTTP        | 1 |HTTP requests use proxies.|
+| MATCH_HTTPS       | 2 |HTTPS requests use proxies.|
+
+## ProxyConfig<sup>15+</sup>
+
+Implements a ProxyConfig class. You can use the APIs of this class to configure proxies.
+
+### insertProxyRule<sup>15+</sup>
+
+insertProxyRule(proxyRule: string, schemeFilter?: ProxySchemeFilter): void
+
+Inserts a rule to specify a proxy for URLs matching **schemeFilter**. If **schemeFilter** is empty, all URLs use the specified proxy.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name         | Type    |  Mandatory | Description          |
+| ---------------| ------- | ---- | ------------- |
+| proxyRule      | string  | Yes  | The specified proxy.|
+| schemeFilter   | [ProxySchemeFilter](#proxyschemefilter15)  | No  | Used to filter URLs to use the proxy. Default value: **MATCH_ALL_SCHEMES**.|
+
+**Error codes**
+
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.  |
+
+**Example**
+
+For details, see [removeProxyOverride](#removeproxyoverride15).
+
+### insertDirectRule<sup>15+</sup>
+
+insertDirectRule(schemeFilter?: ProxySchemeFilter): void
+
+Inserts a proxy rule to specify that URLs matching **schemeFilter** are directly connected to the server.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name         | Type    |  Mandatory | Description          |
+| ---------------| ------- | ---- | ------------- |
+| schemeFilter   | [ProxySchemeFilter](#proxyschemefilter15)  | No  | Used to filter URLs to be directly connected to the server. Default value: **MATCH_ALL_SCHEMES**.|
+
+**Error codes**
+
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.  |
+
+**Example**
+
+For details, see [removeProxyOverride](#removeproxyoverride15).
+
+### insertBypassRule<sup>15+</sup>
+
+insertBypassRule(bypassRule: string): void
+
+Inserts a bypass rule to specify the URLs that should bypass the proxy and directly connect to the server.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name         | Type    |  Mandatory | Description          |
+| ---------------| ------- | ---- | ------------- |
+| bypassRule     | string  | Yes  | Used to specify the URLs that should bypass the proxy.|
+
+**Error codes**
+
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
+**Example**
+
+For details, see [removeProxyOverride](#removeproxyoverride15).
+
+### bypassHostnamesWithoutPeriod<sup>15+</sup>
+
+bypassHostnamesWithoutPeriod(): void
+
+Specifies that domain names without a period should bypass the proxy and directly connect to the server.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Example**
+
+For details, see [removeProxyOverride](#removeproxyoverride15).
+
+### clearImplicitRules<sup>15+</sup>
+
+clearImplicitRules(): void
+
+Overrides the default behavior and forces local host or local IP address to be sent through the proxy. (By default, if host names are local IP addresses or local host addresses, they bypass the proxy.)  
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Example**
+
+For details, see [removeProxyOverride](#removeproxyoverride15).
+
+### enableReverseBypass<sup>15+</sup>
+
+enableReverseBypass(reverse: boolean): void
+
+Reverses the bypass rule.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name         | Type    |  Mandatory | Description          |
+| ---------------| ------- | ---- | ------------- |
+| reverse     | boolean  | Yes  | Whether to reverse the bypass rule. The default value is **false**, indicating the bypass rule set in [insertBypassRule](#insertbypassrule15) is not reversed. The value **true** indicates the opposite.|
+
+**Error codes**
+
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.  |
+
+**Example**
+
+For details, see [removeProxyOverride](#removeproxyoverride15).
+
+### getBypassRules<sup>15+</sup>
+
+getBypassRules(): Array\<string\>
+
+Obtains the list of URLs that do not use the proxy.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type  | Description                     |
+| ------ | ------------------------- |
+| Array\<string\> | List of URLs that do not use the proxy.|
+
+**Example**
+
+For details, see [removeProxyOverride](#removeproxyoverride15).
+
+### getProxyRules<sup>15+</sup>
+
+getProxyRules(): Array\<ProxyRule\>
+
+Obtains proxy rules.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type  | Description                     |
+| ------ | ------------------------- |
+| Array\<[ProxyRule](#proxyrule15)\> | Proxy rule.|
+
+**Example**
+
+For details, see [removeProxyOverride](#removeproxyoverride15).
+
+### isReverseBypassEnabled<sup>15+</sup>
+
+isReverseBypassEnabled(): boolean
+
+Obtains the value of [enableReverseBypass](#enablereversebypass15). For details, see [enableReverseBypass](#enablereversebypass15).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type  | Description                     |
+| ------ | ------------------------- |
+| boolean | Value of [enableReverseBypass](#enablereversebypass15). The default value is **false**, indicating the bypass rule set in [insertBypassRule](#insertbypassrule15) is not reversed. The value **true** indicates the opposite.|
+
+**Example**
+
+For details, see [removeProxyOverride](#removeproxyoverride15).
+
+
+## ProxyRule<sup>15+</sup>
+
+Indicates the proxy rule used in the [insertProxyRule](#insertproxyrule15).
+
+### getSchemeFilter<sup>15+</sup>
+
+getSchemeFilter(): ProxySchemeFilter
+
+Obtains the [ProxySchemeFilter](#proxyschemefilter15) information in the proxy rule.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type  | Description                     |
+| ------ | ------------------------- |
+| [ProxySchemeFilter](#proxyschemefilter15) | The [ProxySchemeFilter](#proxyschemefilter15) information in the proxy rule.|
+
+**Example**
+
+For details, see [removeProxyOverride](#removeproxyoverride15).
+
+### getUrl<sup>15+</sup>
+
+getUrl(): string
+
+Obtains the URL specified in the proxy rule.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type  | Description                     |
+| ------ | ------------------------- |
+| string | The URL specified in the proxy rule.|
+
+**Example**
+
+For details, see [removeProxyOverride](#removeproxyoverride15).
+
+## OnProxyConfigChangeCallback<sup>15+</sup>
+
+type OnProxyConfigChangeCallback = () => void
+
+Called when the proxy is set successfully.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Example**
+
+For details, see [removeProxyOverride](#removeproxyoverride15).
+
+## ProxyController<sup>15+</sup>
+
+Implements a **ProxyController** object to set a proxy for an application.
+
+### applyProxyOverride<sup>15+</sup>
+
+static applyProxyOverride(proxyConfig: ProxyConfig, callback: OnProxyConfigChangeCallback): void
+
+Set the proxy used by all webs in an application. URLs that match the bypass rule inserted through [insertBypassRule](#insertbypassrule15) do not use the proxy. Instead, their requests are directly sent to the source addresses specified by the URLs. The new proxy may not be used immediately after the network is connected. Before loading the page, wait for the listener to be triggered in the UI thread.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name         | Type    |  Mandatory | Description          |
+| ---------------| ------- | ---- | ------------- |
+| proxyConfig     | [ProxyConfig](#proxyconfig15)  | Yes  | Configuration of the proxy.|
+| callback     | [OnProxyConfigChangeCallback](#onproxyconfigchangecallback15)   | Yes  | Callback used when the proxy is successfully set.|
+
+**Error codes**
+
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
+**Example**
+
+For details, see [removeProxyOverride](#removeproxyoverride15).
+
+### removeProxyOverride<sup>15+</sup>
+
+static removeProxyOverride(callback: OnProxyConfigChangeCallback): void
+
+Removes the proxy configuration. The new proxy may not be used immediately after the network is connected. Before loading the page, wait for the listener to be triggered in the UI thread.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name         | Type    |  Mandatory | Description          |
+| ---------------| ------- | ---- | ------------- |
+| callback     | [OnProxyConfigChangeCallback](#onproxyconfigchangecallback15)   | Yes  | Callback used when the proxy is successfully set.|
+
+**Error codes**
+
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.  |
+
+**Example**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+  proxyRules: webview.ProxyRule[] = [];
+
+  build() {
+    Row() {
+      Column() {
+        Button("applyProxyOverride").onClick(()=>{
+          let proxyConfig:webview.ProxyConfig = new webview.ProxyConfig();
+          // The first proxy configuration https://proxy.XXX.com is preferentially used.
+          // When the proxy fails, insertDirectRule is used.
+          try {
+            proxyConfig.insertProxyRule("https://proxy.XXX.com", webview.ProxySchemeFilter.MATCH_ALL_SCHEMES);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+          try {
+            proxyConfig.insertDirectRule(webview.ProxySchemeFilter.MATCH_HTTP);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+          try {
+            proxyConfig.insertBypassRule("*.example.com");
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+          proxyConfig.clearImplicitRules();
+          proxyConfig.bypassHostnamesWithoutPeriod();
+          try {
+            proxyConfig.enableReverseBypass(true);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+          let bypassRules = proxyConfig.getBypassRules();
+          for (let i = 0; i < bypassRules.length; i++) {
+            console.log("bypassRules: " + bypassRules[i]);
+          }
+          this.proxyRules = proxyConfig.getProxyRules();
+          for (let i = 0; i < this.proxyRules.length; i++) {
+            console.log("SchemeFiletr: " + this.proxyRules[i].getSchemeFilter());
+            console.log("Url: " + this.proxyRules[i].getUrl());
+          }
+          let isReverseBypassRule = proxyConfig.isReverseBypassEnabled();
+          console.log("isReverseBypassRules: " + isReverseBypassRule);
+          try {
+            webview.ProxyController.applyProxyOverride(proxyConfig, () => {
+              console.log("PROXYCONTROLLER proxy changed");
+            });
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+        Button("loadUrl-https").onClick(()=>{
+          this.controller.loadUrl("https://www.example.com")
+        })
+        Button("loadUrl-http").onClick(()=>{
+          this.controller.loadUrl("http://www.example.com")
+        })
+        Button("removeProxyOverride").onClick(()=>{
+          try {
+          webview.ProxyController.removeProxyOverride(() => {
+            console.log("PROXYCONTROLLER proxy changed");
+          });
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+        Web({ src: 'www.example.com', controller: this.controller})
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+```
+
 ## WebHttpBodyStream<sup>12+</sup>
 
 Represents the body of the data being sent in POST and PUT requests. It accepts data of the BYTES, FILE, BLOB, and CHUNKED types. Note that other APIs in this class can be called only after [initialize](#initialize12) is called successfully.
@@ -14989,7 +15486,7 @@ For the complete sample code, see [constructor](#constructor12).
 
 getNetErrorCode(): WebNetErrorList
 
-Obtains the network error code of this response.
+Obtains the network error code of the response.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -15007,7 +15504,7 @@ For the complete sample code, see [constructor](#constructor12).
 
 getStatus(): number
 
-Obtains the HTTP status code of this response.
+Obtains the HTTP status code of the response.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -15694,7 +16191,7 @@ Enumerates the suspension types of the player.
 ## NativeMediaPlayerBridge<sup>12+<sup>
 
 Implements a **NativeMediaPlayerBridge** object, which is the return value of the [CreateNativeMediaPlayerCallback](#createnativemediaplayercallback12) callback.
-It is an interface class that acts as a bridge between the web media player and the ArkWeb kernel.
+It is an API class that acts as a bridge between the web media player and the ArkWeb kernel.
 The ArkWeb engine uses an object of this interface class to control the player created by the application to take over web page media.
 
 ### updateRect<sup>12+<sup>
@@ -15981,7 +16478,7 @@ This object is used to create a player to take over media playback of the web pa
 
 | Type| Description|
 |------|------|
-| [NativeMediaPlayerBridge](#nativemediaplayerbridge12) | Instance of the interface class between the player that takes over web media and the ArkWeb kernel.<br>The application needs to implement the interface class.<br> Object used by the ArkWeb engine to control the player created by the application to take over web page media.<br>If the application returns **null**, the application does not take over the media playback, and the media will be played by the ArkWeb engine.|
+| [NativeMediaPlayerBridge](#nativemediaplayerbridge12) | Instance of the API class between the player that takes over web media and the ArkWeb kernel.<br>The application needs to implement the interface class.<br> Object used by the ArkWeb engine to control the player created by the application to take over web page media.<br>If the application returns **null**, the application does not take over the media playback, and the media will be played by the ArkWeb engine.|
 
 **Example**
 
@@ -16694,4 +17191,56 @@ Represents the current scrolling offset of a web page.
 | x    | number | Yes  | Yes  | Horizontal scrolling offset of a web page. The value is the difference between the x-coordinate of the left boundary of the web page and that of the left boundary of the **Web** component. The unit is vp.<br>When the web page is scrolled rightwards, the value is negative.<br>When the web page is not scrolled or scrolled leftwards, the value is **0** or positive.|
 | y    | number | Yes  | Yes  | Vertical scrolling offset of a web page. The value is the difference between the y-coordinate of the upper boundary of the web page and that of the upper boundary of the **Web** component. The unit is vp.<br>When the web page is scrolled downwards, the value is negative.<br>When the web page is not scrolled or scrolled upwards, the value is **0** or positive.|
 
-<!--no_check-->
+### removeAllCache<sup>16+</sup>
+
+static removeAllCache(clearRom: boolean): void
+
+Removes all webview cache files in an application.
+
+> **NOTE**
+>
+> You can view the webview cache files in the **data/app/el2/100/base/\<applicationPackageName\>/cache/web/** directory.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name  | Type   | Mandatory| Description                                                    |
+| -------- | ------- | ---- | -------------------------------------------------------- |
+| clearRom | boolean | Yes  | Whether to clear the cache files in both ROM and RAM. If this parameter is set to **true**, the cache files in both ROM and RAM are cleared. If this parameter is set to **false**, only the cache files in RAM are cleared.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
+**Example**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('removeAllCache')
+        .onClick(() => {
+          try {
+            webview.WebviewController.removeAllCache(false);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```

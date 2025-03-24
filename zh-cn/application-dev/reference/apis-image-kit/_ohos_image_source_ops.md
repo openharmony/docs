@@ -19,6 +19,6 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| int32_t [density](image.md#density-12) | 图像源像素密度 | 
-| int32_t [pixelFormat](image.md#pixelformat-13) | 图像源像素格式，通常用于描述YUV缓冲区 | 
-| struct [OhosImageSize](_ohos_image_size.md) [size](image.md#size-17) | 图像源像素宽高的大小 | 
+| int32_t [density](image.md#density-12) | 图像源像素密度。 |
+| int32_t [pixelFormat](image.md#pixelformat-13) | 图像源像素格式，通常用于描述YUV缓冲区。 |
+| struct [OhosImageSize](_ohos_image_size.md) [size](image.md#size-17) | 图像源像素宽高的大小。 |

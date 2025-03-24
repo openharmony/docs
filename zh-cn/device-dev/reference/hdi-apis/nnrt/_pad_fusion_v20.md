@@ -1,6 +1,5 @@
 # PadFusion
 
-
 ## 概述
 
 在x指定维度的数据前后，添加指定数值进行增广。
@@ -11,7 +10,7 @@
 
 输入：
 
-- x，n维tensor
+- x，n维tensor。
 
 - paddings，一个2维tensor，指定每一维度增补的长度，shape为[n，2]。paddings[i][0]表示第i维上，需要在输入张量前增补的数量； paddings[i][1]表示第i维上，需要在输入张量x后增补的数量。
 
@@ -23,9 +22,7 @@
 
 **相关模块：**[NNRt](_n_n_rt_v20.md)
 
-
 ## 汇总
-
 
 ### Public 属性
 
@@ -35,9 +32,7 @@
 | enum [PaddingMode](_n_n_rt_v20.md#paddingmode)[paddingMode](#paddingmode) | 填充类型。 详情请参考：[PaddingMode](_n_n_rt_v20.md#paddingmode)。  | 
 | float [constantValue](#constantvalue) | 一个常数，数据类型和x一致，指定Pad操作增广的数值。 仅paddingMode==PADDING_MODE_CONSTANT时生效，默认值为0。  | 
 
-
 ## 类成员变量说明
-
 
 ### constantValue
 
@@ -48,7 +43,6 @@ float PadFusion::constantValue
 
 一个常数，数据类型和x一致，指定Pad操作增广的数值。 仅paddingMode==PADDING_MODE_CONSTANT时生效，默认值为0。
 
-
 ### paddingMode
 
 ```
@@ -57,7 +51,6 @@ enum PaddingMode PadFusion::paddingMode
 **描述**
 
 填充类型。 详情请参考：[PaddingMode](_n_n_rt_v20.md#paddingmode)。
-
 
 ### paddings
 

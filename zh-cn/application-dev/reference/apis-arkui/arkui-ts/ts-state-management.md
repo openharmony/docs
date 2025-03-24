@@ -784,7 +784,7 @@ static staticClear(): boolean
 
 | 类型      | 说明                                |
 | ------- | --------------------------------- |
-| boolean | 删除所有的属性，如果当前有状态变量依旧引用此属性，返回false。 |
+| boolean | 删除所有的属性。如果删除成功，返回true；如果当前有状态变量依旧引用此属性，返回false。 |
 
 **示例：**
 ```ts
@@ -839,7 +839,7 @@ static IsMutable(propName: string): boolean
 
 | 类型      | 说明                               |
 | ------- | -------------------------------- |
-| boolean | 返回AppStorage中propNam对应的属性是否是可变的。 |
+| boolean | 返回AppStorage中propNam对应的属性是否是可变的。当前该返回值恒为true。 |
 
 **示例：**
 ```ts
@@ -1630,7 +1630,7 @@ prop3.set(undefined);
 
 abstract aboutToBeDeleted(): void
 
-取消[SubscribedAbstractProperty](#subscribedabstractproperty)实例对[AppStorage](../../../quick-start/arkts-appstorage.md)/[LocalStorage](../../../quick-start/arkts-localstorage.md)的单/双向同步关系，并无效化SubscribedAbstractProperty实例，即当调用aboutToBeDelted方法之后不能再使用SubscribedAbstractProperty实例调用[set](#set9-1)或[get](#get9-1)方法。
+取消[SubscribedAbstractProperty](#subscribedabstractproperty)实例对[AppStorage](../../../quick-start/arkts-appstorage.md)/[LocalStorage](../../../quick-start/arkts-localstorage.md)的单/双向同步关系，并无效化SubscribedAbstractProperty实例，即当调用aboutToBeDeleted方法之后不能再使用SubscribedAbstractProperty实例调用[set](#set9-1)或[get](#get9-1)方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

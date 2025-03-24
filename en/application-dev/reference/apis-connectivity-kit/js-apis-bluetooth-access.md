@@ -125,9 +125,7 @@ try {
 
 on(type: 'stateChange', callback: Callback&lt;BluetoothState&gt;): void
 
-Subscribes to Bluetooth state changes. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+Subscribes to Bluetooth state changes. This API uses an asynchronous callback to return the result. Since API version 16, the **ohos.permission.ACCESS_BLUETOOTH** permission is no longer verified.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -146,7 +144,6 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 |ID  | Error Message          |
 | -------- | ------------------ |
-|201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900099   | Operation failed.  |

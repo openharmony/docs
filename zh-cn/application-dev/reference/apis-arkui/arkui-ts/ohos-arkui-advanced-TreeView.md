@@ -24,7 +24,7 @@ import { TreeView } from "@kit.ArkUI"
 无
 
 ## 属性
-不支持[通用属性](ts-universal-attributes-size.md)。
+不支持[通用属性](ts-component-general-attributes.md)。
 
 ## TreeView
 
@@ -125,24 +125,22 @@ refreshNode(parentId: number, parentSubTitle: ResourceStr, currentSubtitle: Reso
 
 ## NodeParam
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| parentNodeId | number | 否 | 父节点。 |
-| currentNodeId | number | 否 | 当前子节点。 |
-| isFolder | boolean | 否 | 是否是目录。默认值：false。true：是目录，false：不是目录。 |
-| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 图标。 |
-| symbolIconStyle<sup>16+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | Symbol图标，优先级大于icon。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
-| selectedIcon | [ResourceStr](ts-types.md#resourcestr) | 否 | 选中图标。 |
-| symbolSelectedIconStyle<sup>16+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | Symbol选中图标，优先级大于selectedIcon。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
-| editIcon | [ResourceStr](ts-types.md#resourcestr) | 否 | 编辑图标。 |
-| symbolEditIconStyle<sup>16+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | Symbol编辑图标，优先级大于editIcon。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
-| primaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 主标题。 |
-| secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 副标题。 |
-| container | ()&nbsp;=&gt;&nbsp;void | 否 | 绑定在节点上的右键子组件，子组件由@Builder修饰。 |
+| 名称 | 类型 | 必填 | 说明                                                                                                                                               |
+| -------- | -------- | -------- |--------------------------------------------------------------------------------------------------------------------------------------------------|
+| parentNodeId | number | 否 | 父节点。<br />取值范围：大于等于-1。<br />默认值：-1，根节点id值为-1。若设置数值小于-1，做不生效处理。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                               |
+| currentNodeId | number | 否 | 当前子节点。<br />取值范围：大于等于-1。<br />不能为根节点id，不能为null，否则会抛出异常。且不能设置两个相同的currentNodeId。<br />默认值：-1 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| isFolder | boolean | 否 | 是否是目录。默认值：false。true：是目录，false：不是目录。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                         |
+| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 图标。<br/>默认值：空字符串  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                           |
+| symbolIconStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | Symbol图标，优先级大于icon。<br/>默认值：undefined <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                       |
+| selectedIcon | [ResourceStr](ts-types.md#resourcestr) | 否 | 选中图标。<br/>默认值：空字符串  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                         |
+| symbolSelectedIconStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | Symbol选中图标，优先级大于selectedIcon。<br/>默认值：undefined <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                             |
+| editIcon | [ResourceStr](ts-types.md#resourcestr) | 否 | 编辑图标。<br/>默认值：空字符串  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                         |
+| symbolEditIconStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | Symbol编辑图标，优先级大于editIcon。<br/>默认值：undefined <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                 |
+| primaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 主标题。<br/>默认值：空字符串  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                          |
+| secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 副标题。<br/>默认值：空字符串 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                           |
+| container | ()&nbsp;=&gt;&nbsp;void | 否 | 绑定在节点上的右键子组件，子组件由@Builder修饰。<br/>默认值：()&nbsp;=&gt;&nbsp;void <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                |
 
 
 ## TreeListenerManager
@@ -258,14 +256,14 @@ off(type: TreeListenType, callback?: (callbackParam: CallbackParam) =&gt; void):
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| currentNodeId | number | 是 | 当前子节点。 |
-| parentNodeId | number | 否 | 父节点。 |
-| childIndex | number | 否 | 子索引。 |
+| 名称 | 类型 | 必填 | 说明                                       |
+| -------- | -------- | -------- |------------------------------------------|
+| currentNodeId | number | 是 | 返回当前子节点id。<br />取值范围：大于等于0。              |
+| parentNodeId | number | 否 | 返回当前父节点id。<br />取值范围：大于等于-1。<br />默认值：-1 |
+| childIndex | number | 否 | 返回子索引。<br />取值范围：大于等于-1。<br />默认值：-1   |
 
 ## 事件
-不支持[通用事件](ts-universal-events-click.md)。
+不支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 
@@ -281,7 +279,7 @@ import { TreeController, TreeListener, TreeListenerManager, TreeListenType, Node
 struct TreeViewDemo {
   private treeController: TreeController = new TreeController();
   private treeListener: TreeListener = TreeListenerManager.getInstance().getTreeListener();
-  @State clickNodeId: number = 0;
+  @State clickId: number = 0;
 
   aboutToDisappear(): void {
     this.treeListener.off(TreeListenType.NODE_CLICK, undefined);
@@ -311,16 +309,16 @@ struct TreeViewDemo {
 
   aboutToAppear(): void {
     this.treeListener.on(TreeListenType.NODE_CLICK, (callbackParam: CallbackParam) => {
-      this.clickNodeId = callbackParam.currentNodeId;
+      this.clickId = callbackParam.currentNodeId;
     })
     this.treeListener.on(TreeListenType.NODE_ADD, (callbackParam: CallbackParam) => {
-      this.clickNodeId = callbackParam.currentNodeId;
+      this.clickId = callbackParam.currentNodeId;
     })
     this.treeListener.on(TreeListenType.NODE_DELETE, (callbackParam: CallbackParam) => {
-      this.clickNodeId = callbackParam.currentNodeId;
+      this.clickId = callbackParam.currentNodeId;
     })
     this.treeListener.once(TreeListenType.NODE_MOVE, (callbackParam: CallbackParam) => {
-      this.clickNodeId = callbackParam.currentNodeId;
+      this.clickId = callbackParam.currentNodeId;
     })
 
     let normalResource: Resource = $r('sys.media.ohos_ic_normal_white_grid_folder');
@@ -358,7 +356,7 @@ struct TreeViewDemo {
         Row() {
           Divider().vertical(true).strokeWidth(2).color(0x000000).lineCap(LineCapStyle.Round)
           Column({ space: 30 }) {
-            Text('ClickNodeId=' + this.clickNodeId).fontSize('16fp')
+            Text('ClickId=' + this.clickId).fontSize('16fp')
             Button('Add', { type: ButtonType.Normal, stateEffect: true })
               .borderRadius(8).backgroundColor(0x317aff).width(90)
               .onClick((event: ClickEvent) => {

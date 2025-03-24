@@ -54,7 +54,7 @@ struct Index {
           .width(300)
           .height(400)
           .offset({ y: 100 })
-          .geometryTransition("picture", {hierarchyStrategy: TransitionHierarchyStrategy.ADAPTIVE})
+          .geometryTransition("picture", { hierarchyStrategy: TransitionHierarchyStrategy.ADAPTIVE })
           .transition(TransitionEffect.OPACITY)
       } else {
         // geometryTransition is bound to a container. Therefore, a relative layout must be configured for the child components of the container.
@@ -71,7 +71,7 @@ struct Index {
         // In other words, rounded corner settings of the container are synchronized, and those of the child components are not.
         .borderRadius(20)
         .clip(true)
-        .geometryTransition("picture", {hierarchyStrategy: TransitionHierarchyStrategy.ADAPTIVE})
+        .geometryTransition("picture", { hierarchyStrategy: TransitionHierarchyStrategy.ADAPTIVE })
         // transition ensures that the component is not destructed immediately when it exits. You can customize the transition effect.
         .transition(TransitionEffect.OPACITY)
       }

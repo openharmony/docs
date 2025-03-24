@@ -5701,7 +5701,7 @@ call.setDisplaySurface(1, "surfaceId1").then(() => {
 
 setDeviceDirection\(callId: number, deviceDirection: DeviceDirection\): Promise\<void\>
 
-Sets the video image to follow the device direction. This API uses a promise to return the result.
+Sets the video call screen to follow the device direction. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -5714,7 +5714,7 @@ Sets the video image to follow the device direction. This API uses a promise to 
 | Name| Type                                            | Mandatory| Description          |
 | ------ | ----------------------------------------------- | ---- | -------------- |
 | callId | number                                          | Yes  | Call ID. You can obtain the value by subscribing to **callDetailsChange** events.|
-| deviceDirection  | [DeviceDirection](#devicedirection11) | Yes  | Device direction. It determines the direction of the video image.    |
+| deviceDirection  | [DeviceDirection](#devicedirection11) | Yes  | Device direction. It determines the direction of the video call screen.    |
 
 **Return value**
 

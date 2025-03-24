@@ -514,8 +514,8 @@ TextShadowStyle | GestureStyle | ImageAttachment | ParagraphStyle | LineHeightSt
 
 | 名称  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| start | number | 否   | 设置属性字符串样式的开始位置。 |
-| length | number | 否   | 设置属性字符串样式的长度。 |
+| start | number | 否   | 设置属性字符串样式的开始位置。<br/>当start的值小于0或超出字符串长度时，按0处理。 |
+| length | number | 否   | 设置属性字符串样式的长度。<br/>当length的值小于0或超出字符串长度与start的差值时，按字符串长度与start的差值处理。 |
 | styledKey | [StyledStringKey](#styledstringkey枚举说明) | 是   | 样式类型的枚举值。 |
 | styledValue | [StyledStringValue](#styledstringvalue) | 是   | 样式对象。 |
 
@@ -578,8 +578,8 @@ constructor(value?: TextStyleInterface)
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 字体颜色。 |
 | fontFamily | [ResourceStr](ts-types.md#resourcestr) | 否   | 文本字体。 |
-| fontSize | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 字体大小。如果LengthMetrics的unit值是percent，当前设置不生效，处理为16fp。 |
-| fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | 否   | 字体粗细。 |
+| fontSize | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 字体大小。如果LengthMetrics的unit值是percent，当前设置不生效，处理为16fp。<br/>单位：fp |
+| fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | 否   | 字体粗细。<br/>number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。 |
 | fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle) | 否   | 字体样式。 |
 
 ## GestureStyle
@@ -647,7 +647,7 @@ constructor(value: DecorationStyleInterface)
 
 | 参数名  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| value | [DecorationStyleInterface](#decorationstyleinterface对象说明) | 是   | 文本装饰线设置项。 |
+| value | [DecorationStyleInterface](#decorationstyleinterface对象说明) | 是   | 文本装饰线设置项。<br/>默认值：<br/>{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
 
 ## DecorationStyleInterface对象说明
 
@@ -803,10 +803,10 @@ constructor(value: ShadowOptions | Array\<ShadowOptions>)
 | ------------ |---------------------| ---- | ---- | ------ |
 | value  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  是  |  否  | 获取属性字符串的图片数据源。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | size  | [SizeOptions](ts-types.md#sizeoptions) |  是  |  是  | 获取属性字符串的图片尺寸。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) |  是  |  是  | 获取属性字符串的图片对齐方式。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| verticalAlign  | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) |  是  |  是  | 获取属性字符串的图片对齐方式。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) |  是  |  是  | 获取属性字符串的图片缩放类型。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | layoutStyle  | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle对象说明) |  是  |  是  | 获取属性字符串的图片布局。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| colorFilter<sup>16+</sup>  | [ColorFilter](ts-types.md#colorfilter9) \| [DrawingColorFilter](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#colorfilter) |  是  |  是  | 获取属性字符串的图片颜色滤镜效果。**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| colorFilter<sup>15+</sup>  | [ColorFilterType](#colorfiltertype15) |  是  |  是  | 获取属性字符串的图片颜色滤镜效果。**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 ### constructor
 
@@ -824,13 +824,13 @@ constructor(value: ImageAttachmentInterface)
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | value | [ImageAttachmentInterface](#imageattachmentinterface对象说明) | 是   | 图片设置项。 |
 
-### constructor<sup>16+</sup>
+### constructor<sup>15+</sup>
 
 constructor(attachment: Optional\<AttachmentType\>)
 
 图片对象的构造函数。与value类型入参构造函数相比，attachment参数增加了对undefined类型和[ResourceStr](ts-types.md#resourcestr)类型图片的支持。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -838,22 +838,37 @@ constructor(attachment: Optional\<AttachmentType\>)
 
 | 参数名  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| attachment | Optional<[AttachmentType](#attachmenttype16)> | 是   | PixelMap类型或[ResourceStr](ts-types.md#resourcestr)类型图片设置项。 |
+| attachment | Optional<[AttachmentType](#attachmenttype15)> | 是   | PixelMap类型或[ResourceStr](ts-types.md#resourcestr)类型图片设置项。 |
 
-## AttachmentType<sup>16+</sup>
+## AttachmentType<sup>15+</sup>
 
 type AttachmentType = ImageAttachmentInterface | ResourceImageAttachmentOptions
 
 图片设置项类型，用于设置属性字符串PixelMap类型或[ResourceStr](ts-types.md#resourcestr)类型图片。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型  | 说明   |
 | ------ | ---------- |
 | [ImageAttachmentInterface](#imageattachmentinterface对象说明) | PixelMap类型图片设置项。|
-| [ResourceImageAttachmentOptions](#resourceimageattachmentoptions16) | ResourceStr类型图片设置项。 |
+| [ResourceImageAttachmentOptions](#resourceimageattachmentoptions15) | ResourceStr类型图片设置项。 |
+
+## ColorFilterType<sup>15+</sup>
+
+type ColorFilterType = ColorFilter | DrawingColorFilter
+
+图片颜色滤镜设置项类型。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型  | 说明   |
+| ------ | ---------- |
+| [ColorFilter](ts-types.md#colorfilter9) | ColorFilter类型图片颜色滤镜设置项。 |
+| [DrawingColorFilter](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#colorfilter) | DrawingColorFilter类型图片颜色滤镜设置项。 |
 
 ## ImageAttachmentInterface对象说明
 
@@ -862,11 +877,11 @@ type AttachmentType = ImageAttachmentInterface | ResourceImageAttachmentOptions
 | 名称  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | value | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  是  | 设置图片数据源。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| size | [SizeOptions](ts-types.md#sizeoptions) | 否   | 设置图片大小。 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| verticalAlign | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 否   | 设置图片基于文本的对齐方式。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | 否   | 设置图片的缩放类型。 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| size | [SizeOptions](ts-types.md#sizeoptions) | 否   | 设置图片大小。 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>size的默认值与objectFit的值有关，不同的objectFit的值对应size的默认值不同。比如当objectFit的值为Cover时，图片高度为组件高度减去组件上下的内边距，图片宽度为组件宽度减去组件左右的内边距。 |
+| verticalAlign | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) | 否   | 设置图片基于文本的对齐方式。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>默认值：ImageSpanAlignment.BOTTOM |
+| objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | 否   | 设置图片的缩放类型。 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>默认值：ImageFit.Cover |
 | layoutStyle | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle对象说明) | 否   | 设置图片布局。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| colorFilter<sup>16+</sup>  | [ColorFilter](ts-types.md#colorfilter9) \| [DrawingColorFilter](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#colorfilter) |  否  | 设置属性字符串的图片颜色滤镜效果。**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| colorFilter<sup>15+</sup>  | [ColorFilterType](#colorfiltertype15) |  否  | 设置属性字符串的图片颜色滤镜效果。**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 ## ImageAttachmentLayoutStyle对象说明
 
@@ -876,15 +891,15 @@ type AttachmentType = ImageAttachmentInterface | ResourceImageAttachmentOptions
 
 | 名称  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| margin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Margin](ts-types.md#margin) | 否   | 设置图片外边距。 |
-| padding | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Padding](ts-types.md#padding) | 否   | 设置图片内边距。 |
-| borderRadius | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [BorderRadiuses](ts-types.md#borderradiuses9) | 否   | 设置圆角。 |
+| margin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Margin](ts-types.md#margin) | 否   | 设置图片外边距。<br/>默认值：0<br/>单位：vp |
+| padding | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Padding](ts-types.md#padding) | 否   | 设置图片内边距。<br/>默认值：0<br/>单位：vp |
+| borderRadius | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [BorderRadiuses](ts-types.md#borderradiuses9) | 否   | 设置圆角。<br/>默认值：0<br/>单位：vp |
 
-## ResourceImageAttachmentOptions<sup>16+</sup>
+## ResourceImageAttachmentOptions<sup>15+</sup>
 
 ResourceStr类型图片设置项。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -892,10 +907,10 @@ ResourceStr类型图片设置项。
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | resourceValue | Optional<[ResourceStr](ts-types.md#resourcestr)> |  是  | 设置图片数据源。 |
 | size | [SizeOptions](ts-types.md#sizeoptions) | 否   | 设置图片大小。 |
-| verticalAlign | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 否   | 设置图片基于文本的对齐方式。<br/>默认值：ImageSpanAlignment.BOTTOM |
+| verticalAlign | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) | 否   | 设置图片基于文本的对齐方式。<br/>默认值：ImageSpanAlignment.BOTTOM |
 | objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | 否   | 设置图片的缩放类型。<br/>默认值：ImageFit.Cover |
 | layoutStyle | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle对象说明) | 否   | 设置图片布局。 |
-| colorFilter  | [ColorFilter](ts-types.md#colorfilter9) \| [DrawingColorFilter](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#colorfilter) |  否  | 设置属性字符串的图片颜色滤镜效果。 |
+| colorFilter  | [ColorFilterType](#colorfiltertype15) |  否  | 设置属性字符串的图片颜色滤镜效果。 |
 | syncLoad  | boolean |  否  | 是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false |
 
 ## CustomSpan
@@ -1013,6 +1028,7 @@ invalidate(): void
 | overflow   | [TextOverflow](ts-appendix-enums.md#textoverflow)   | 是    | 是   | 获取属性字符串文本段落超长时的显示方式。 |
 | wordBreak   | [WordBreak](ts-appendix-enums.md#wordbreak11) | 是    | 是    | 获取属性字符串文本段落的断行规则。 |
 | leadingMargin   | number \| [LeadingMarginPlaceholder](ts-basic-components-richeditor.md#leadingmarginplaceholder11) | 是    | 是   | 获取属性字符串文本段落的缩进。 |
+| paragraphSpacing<sup>18+</sup>  | number | 是    | 是   | 获取属性字符串文本段落的段落间距。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 >  **说明：**
 >
@@ -1048,6 +1064,7 @@ constructor(value?: ParagraphStyleInterface)
 | overflow   | [TextOverflow](ts-appendix-enums.md#textoverflow)   |  否    | 设置文本段落超长时的显示方式。<br />需配合maxLines使用，单独设置不生效。不支持TextOverflow.MARQUEE。 |
 | wordBreak   | [WordBreak](ts-appendix-enums.md#wordbreak11) | 否    | 设置文本段落的断行规则。 |
 | leadingMargin   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [LeadingMarginPlaceholder](ts-basic-components-richeditor.md#leadingmarginplaceholder11) | 否    | 设置文本段落的缩进。 |
+| paragraphSpacing<sup>18+</sup>   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否  | 设置文本段落的段落间距。<br/>段落间距默认大小为0。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## UserDataSpan
 
@@ -1063,21 +1080,21 @@ constructor(value?: ParagraphStyleInterface)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     |说明                           |
-| ------ | ----------------------------- |
-| FONT | 字体样式键。[TextStyle](./ts-universal-styled-string.md#textstyle)所属键。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| DECORATION | 文本装饰线样式键。[DecorationStyle](./ts-universal-styled-string.md#decorationstyle)所属键。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| BASELINE_OFFSET | 文本基线偏移量样式键。[BaselineOffsetStyle](./ts-universal-styled-string.md#baselineoffsetstyle)所属键。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| LETTER_SPACING | 文本字符间距样式键。[LetterSpacingStyle](./ts-universal-styled-string.md#letterspacingstyle)所属键。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| LINE_HEIGHT | 文本行高样式键。[LineHeightStyle](./ts-universal-styled-string.md#lineheightstyle)所属键。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| TEXT_SHADOW | 文本阴影样式键。[TextShadowStyle](./ts-universal-styled-string.md#textshadowstyle)所属键。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| BACKGROUND_COLOR<sup>14+</sup> | 文本背景色样式键。[BackgroundColorStyle](./ts-universal-styled-string.md#backgroundcolorstyle14)所属键。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
-| URL<sup>14+</sup> | 超链接样式键。[UrlStyle](./ts-universal-styled-string.md#urlstyle14)所属键。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
-| GESTURE | 事件手势键。[GestureStyle](./ts-universal-styled-string.md#gesturestyle)所属键。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| PARAGRAPH_STYLE | 段落样式键。[ParagraphStyle](./ts-universal-styled-string.md#paragraphstyle)所属键。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| IMAGE | 图片键。[ImageAttachment](./ts-universal-styled-string.md#imageattachment)所属键。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| CUSTOM_SPAN | 自定义绘制Span键。[CustomSpan](./ts-universal-styled-string.md#customspan)所属键。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| USER_DATA | UserDataSpan键。[UserDataSpan](./ts-universal-styled-string.md#userdataspan)所属键。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| 名称     | 值 | 说明                           |
+| ------ | --- | ----------------------------- |
+| FONT | 0 | 字体样式键。[TextStyle](./ts-universal-styled-string.md#textstyle)所属键。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| DECORATION | 1 | 文本装饰线样式键。[DecorationStyle](./ts-universal-styled-string.md#decorationstyle)所属键。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| BASELINE_OFFSET | 2 | 文本基线偏移量样式键。[BaselineOffsetStyle](./ts-universal-styled-string.md#baselineoffsetstyle)所属键。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| LETTER_SPACING | 3 | 文本字符间距样式键。[LetterSpacingStyle](./ts-universal-styled-string.md#letterspacingstyle)所属键。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| TEXT_SHADOW | 4 | 文本阴影样式键。[TextShadowStyle](./ts-universal-styled-string.md#textshadowstyle)所属键。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| LINE_HEIGHT | 5 | 文本行高样式键。[LineHeightStyle](./ts-universal-styled-string.md#lineheightstyle)所属键。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| BACKGROUND_COLOR<sup>14+</sup> | 6 | 文本背景色样式键。[BackgroundColorStyle](./ts-universal-styled-string.md#backgroundcolorstyle14)所属键。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| URL<sup>14+</sup> | 7 | 超链接样式键。[UrlStyle](./ts-universal-styled-string.md#urlstyle14)所属键。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| GESTURE | 100 | 事件手势键。[GestureStyle](./ts-universal-styled-string.md#gesturestyle)所属键。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| PARAGRAPH_STYLE | 200 | 段落样式键。[ParagraphStyle](./ts-universal-styled-string.md#paragraphstyle)所属键。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| IMAGE | 300 | 图片键。[ImageAttachment](./ts-universal-styled-string.md#imageattachment)所属键。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| CUSTOM_SPAN | 400 | 自定义绘制Span键。[CustomSpan](./ts-universal-styled-string.md#customspan)所属键。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| USER_DATA | 500 | UserDataSpan键。[UserDataSpan](./ts-universal-styled-string.md#userdataspan)所属键。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## BackgroundColorStyle<sup>14+</sup>
 
@@ -1766,7 +1783,7 @@ struct Index {
     pixelMap: this.leadingMarkCreatorInstance.genSquareMark(24),
     size:[15, 15]
   }
-  titleParagraphStyleAttr: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.Center });
+  titleParagraphStyleAttr: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.Center, paragraphSpacing: LengthMetrics.px(10)});
   //第一段落首行缩进15vp
   paragraphStyleAttr1: ParagraphStyle = new ParagraphStyle({ textIndent: LengthMetrics.vp(15) });
   //第二段落缩进15vp且首行有placeholder占位显示

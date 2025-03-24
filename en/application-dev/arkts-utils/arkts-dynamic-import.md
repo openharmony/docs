@@ -1,18 +1,18 @@
 # Dynamic Import
 
-Dynamic import is a powerful feature that allows for conditional loading and partial reflection, which improves the page load time. You can use it to dynamically load HSP modules, HAR, ohpm packages, and native libraries. Better yet, HAR modules can be decoupled when only variables are dynamically imported between the modules.
+Dynamic imports support conditional loading and partial reflection, enhancing page load speed. It allows loading HSP modules, HAR modules, ohpm packages, and native libraries. It also enables module decoupling when only variables are dynamically imported between HAR modules.
 
 ## When to Use
-Unlike [static import]](../quick-start/introduction-to-arkts.md#static-import), dynamic import allows you to load a module conditionally or on demand. The following are some cases where you might want to use dynamic import:
+Dynamic imports can be used in application development when you need to import modules conditionally or on-demand, as an alternative to [static import](../quick-start/introduction-to-arkts.md#static-import). The following are some cases where you might want to use dynamic import:
 
-* The statically imported module significantly slows the loading of your code, and there is a low likelihood that you will need the module, or you will not need it until a later time.
-* The statically imported modules occupy a large amount of system memory and are unlikely to be used.
-* The module being imported does not exist at load time.
-* The import specifier string needs to be constructed dynamically. (Static import only supports static specifiers.)
-* The module being imported has side effects (which can be understood as code that runs directly in the module), and you do not want those side effects unless some condition is true.
+* Statically imported modules significantly slow the loading of your code and are rarely used or not immediately needed.
+* Statically imported modules consume a large amount of system memory and are rarely used.
+* The imported module does not exist at load time and needs to be fetched asynchronously.
+* The import specifier string needs to be constructed dynamically. Static imports only support static specifiers.
+* The imported module has side effects (which can be understood as code that runs directly in the module) that are only needed when certain conditions are triggered.
 
-## Bonus
-As aforementioned, in addition to conditional loading, dynamic import can also implement partial reflection. In the following example, the HAP dynamically imports **harlibrary** and calls the static member function **staticAdd()**, member function **instanceAdd()**, and global method **addHarlibrary()**.
+## Service Expansion Scenarios
+As aforementioned, in addition to conditional loading, dynamic imports can implement partial reflection. In the following example, an HAP dynamically imports a HAR package (**harlibrary**) and calls its static member function **staticAdd()**, instance member function **instanceAdd()**, and global function **addHarlibrary()**.
 ```typescript
 // harlibrary's src/main/ets/utils/Calc.ets
 export class Calc {
@@ -53,33 +53,33 @@ export { Calc, addHarlibrary } from './src/main/ets/utils/Calc'
 import('harlibrary').then((ns:ESObject) => {
   ns.Calc.staticAdd(8, 9);  // Call the static member function staticAdd().
   let calc:ESObject = new ns.Calc();  // Instantiate the class Calc.
-  calc.instanceAdd(10, 11);  // Call the member function instanceAdd().
-  ns.addHarlibrary(6, 7);  // Call the global method addHarlibrary().
+  calc.instanceAdd(10, 11);  // Call the instance member function instanceAdd().
+  ns.addHarlibrary(6, 7);  // Call the global function addHarlibrary().
 
-  // Call classes, member functions, and methods by name using reflection.
+  // Reflection using class, member function, and method names as strings.
   let className = 'Calc';
   let methodName = 'instanceAdd';
   let staticMethod = 'staticAdd';
   let functionName = 'addHarlibrary';
   ns[className][staticMethod](12, 13);  // Call the static member function staticAdd().
   let calc1:ESObject = new ns[className]();  // Instantiate the class Calc.
-  calc1[methodName](14, 15);  // Call the member function instanceAdd().
-  ns[functionName](16, 17);  // Call the global method addHarlibrary().
+  calc1[methodName](14, 15);  // Call the instance member function instanceAdd().
+  ns[functionName](16, 17);  // Call the global function addHarlibrary().
 });
 ```
 
-## Implementation
-A dynamic import expression accepts a constant or variable as its argument.
+## Implementation of Dynamic Import
+A dynamic import expression accepts a constant or variable as its argument. 
 The following table lists the specifications of dynamic import.
 
 | Scenario| Module Specifier            | Description                                                    |
 | :------------- | :----------------------------- | :------------------------------------------------------- |
 | Local module  | File path      | The path must start with **./** or **../**.                                   |
 | Local module  | HSP module name          | -                                                        |
-| Local module  | HSP module file path    | Currently, dynamic import expressions with constants are supported, but not ones with variables.|
+| Local module  | HSP module file path    | Currently, dynamic imports with constants are supported, but not ones with variables.|
 | Local module  | HAR module name          | -                                                        |
-| Local module  | HAR module file path    | Currently, dynamic import expressions with constants are supported, but not ones with variables.|
-| Remote module        | HAR module name       | -                                                        |
+| Local module  | HAR module file path    | Currently, dynamic imports with constants are supported, but not ones with variables.|
+| Remote module        | Remote HAR module name       | -                                                        |
 | Remote module        | ohpm package name           | -                                                        |
 | API            | @system.*          | -                                                        |
 | API            | @ohos.*            | -                                                        |
@@ -88,19 +88,19 @@ The following table lists the specifications of dynamic import.
 
 Notes:
 
-1. The module names used in imports are the aliases under **dependencies** in the **oh-package.json5** file.
-2. It is recommended that the alias under **dependencies** be the same as the values of **moduleName** and **packageName**, both of which indicate the name of the module to import. **moduleName** is set in the **module.json5** file of the module, and **packageName** is set in the **oh-package.json5** file.
-3. Importing a module by name is importing the module's entry point file, generally **index.ets/ts**.
+1. Module names used in all imports are the aliases defined under **dependencies** in the **oh-package.json5** file.
+2. It is recommended that the alias configured under **dependencies** be the same as the values of **moduleName** and **packageName**, both of which indicate the name of the module to import. **moduleName** is set in the **module.json5** file of the module, and **packageName** is set in the **oh-package.json5** file.
+3. Importing a module by name is importing the module's entry file, generally **index.ets/ts**.
 
-## Implementation Key Points
+## Key Points in Dynamic Import Implementation
 
-### Dynamic Import Constant Expression
+### Dynamic Imports with Constant Expressions
 
-A dynamic import constant expression is a dynamic import expression that takes in a constant as its argument. The following examples show how to use this type of dynamic import expression to import a module or API into a HAP module.
+Dynamic imports with constant expressions refer to scenarios where the input to **import** is a constant. The following examples show how to use this type of dynamic import to import a module or API into a HAP module.
 
 Note: In the examples, the paths, such as the path to **Index.ets**, are set based on the current DevEco Studio module configuration and are subject to change.
 
-- **Dynamically importing a HAR module based on the HAR module name**
+- **HAP dynamically imports a HAR module using a constant module name**
 
   ```typescript
   // HAR's Index.ets
@@ -125,7 +125,7 @@ Note: In the examples, the paths, such as the path to **Index.ets**, are set bas
   }
   ```
 
-- **Dynamically importing a HAR module based on the HAR module file path**
+- **HAP dynamically imports a HAR module using a constant file path**
 
   ```typescript
   // HAR's Index.ets
@@ -150,7 +150,7 @@ Note: In the examples, the paths, such as the path to **Index.ets**, are set bas
   }
   ```
 
-- **Dynamically importing an HSP module based on the HSP module name**
+- **HAP dynamically imports an HSP module using a constant module name**
 
   ```typescript
   // HSP's Index.ets
@@ -175,7 +175,7 @@ Note: In the examples, the paths, such as the path to **Index.ets**, are set bas
   }
   ```
 
-- **Dynamically importing an HSP module based on the HSP module file path**
+- **HAP dynamically imports an HSP module using a constant file path**
 
   ```typescript
   // HSP's Index.ets
@@ -200,7 +200,7 @@ Note: In the examples, the paths, such as the path to **Index.ets**, are set bas
   }
   ```
 
-- **Dynamically importing a remote HAR module based on the HAR module name**
+- **HAP dynamically imports a remote HAR module using a constant module name**
 
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
@@ -216,7 +216,7 @@ Note: In the examples, the paths, such as the path to **Index.ets**, are set bas
   }
   ```
 
-- **Dynamically importing an ohpm package**
+- **HAP dynamically imports an ohpm package using a constant**
 
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
@@ -232,7 +232,7 @@ Note: In the examples, the paths, such as the path to **Index.ets**, are set bas
   }
   ```
 
-- **Dynamically importing a file of the HAP module itself**
+- **HAP dynamically imports its own single file using a constant**
 
   ```typescript
   // HAP's src/main/ets/Calc.ets
@@ -250,7 +250,7 @@ Note: In the examples, the paths, such as the path to **Index.ets**, are set bas
   });
   ```
 
-- **Dynamically importing a native library of the HAP module itself**
+- **HAP dynamically imports its own native library using a constant**
 
   ```typescript
   // libnativeapi.so's index.d.ts
@@ -271,7 +271,7 @@ Note: In the examples, the paths, such as the path to **Index.ets**, are set bas
   }
   ```
 
-- **Dynamically importing APIs**
+- **HAP dynamically imports APIs using a constant**
 
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
@@ -282,14 +282,14 @@ Note: In the examples, the paths, such as the path to **Index.ets**, are set bas
   import('@ohos.hilog').then((ns:ESObject) => { ns.default.info(0x0000, 'testTag', '%{public}s', 'DynamicImport @ohos.hilog.'); });
   ```
 
-### Dynamic Import Variable Expression
+### Dynamic Imports with Variable Expressions
 
-In DevEco Studio, the dependencies between modules are configured through **dependencies** in the **oh-package.json5** file. By default, all modules listed under **dependencies** are installed (local modules) or downloaded (remote modules), but are not built. During a HAP/HSP build, the dependency relationship is searched from the entry point file (generally **Index.ets/ts**), and only the dependencies found are added to the build.
-At compile time, static imports and dynamic import constant expressions can be identified and parsed by the packaging tool rollup and its plug-ins. This means that the related dependencies can be added to the dependency tree, participate in the build process, and finally generate Ark bytecode. As for dynamic import variable expressions, since the variable value may need to be calculated or obtained from an external source, it cannot be determined at compile time; as a result, the related dependencies cannot participate in the build process. To add these dependencies to the build process, add **runtimeOnly** under **buildOption** and set it to the actual module name or file path pertaining to the variable.
+In DevEco Studio, module dependencies are configured through **dependencies** in the **oh-package.json5** file. By default, all modules listed under **dependencies** are installed (for local modules) or downloaded (for remote modules), but are not built. During a HAP/HSP build, the dependency relationship is searched from the entry file (generally **Index.ets/ts**), and only the dependencies found are added to the build.
+During compilation, static imports and dynamic imports with constant expressions can be identified and parsed by the packaging tool rollup and its plug-ins. This means that the related dependencies can be added to the dependency tree, participate in the build process, and finally generate Ark bytecode. However, dynamic imports with variable expressions cannot be resolved at compile-time because their values may depend on runtime calculations or external inputs. To add these dependencies to the build process, add **runtimeOnly** under **buildOption** and set it to the actual module name or file path pertaining to the variable.
 
-**1. Schema configuration format of the runtimeOnly field**
+**Schema configuration format of the runtimeOnly field**
 
-If you are using a dynamic import variable expression to import modules or files, but not APIs, you need to add the **runtimeOnly** field under **buildOption** in the **build-profile.json5** file of the HAP/HSP/HAR module.
+If you are using dynamic imports with variable expressions to import modules or files, but not APIs, you need to add the **runtimeOnly** field under **buildOption** in the **build-profile.json5** file of the HAP/HSP/HAR module.
 The following are some examples.
 
 ```typescript
@@ -318,9 +318,9 @@ The corresponding **runtimeOnly** configuration is as follows:
 **packages** of **runtimeOnly**: name of the module to dynamically import. It must be the same as the one specified under **dependencies**.
 **sources** of **runtimeOnly**: path of the file to dynamically import. The path is relative to the **build-profile.json5** file of the module.
 
-**2. Examples**
+**Usage Examples**
 
-- **Dynamically importing a HAR module based on the HAR module name**
+- **HAP dynamically imports a HAR module using a variable module name**
 
   ```typescript
   // HAR's Index.ets
@@ -356,7 +356,7 @@ The corresponding **runtimeOnly** configuration is as follows:
   }
   ```
 
-- **Dynamically importing an HSP module based on the HSP module name**
+- **HAP dynamically imports an HSP module using a variable module name**
 
   ```typescript
   // HSP's Index.ets
@@ -392,7 +392,7 @@ The corresponding **runtimeOnly** configuration is as follows:
   }
   ```
 
-- **Dynamically importing a remote HAR module based on the HAR module name**
+- **HAP dynamically imports a remote HAR module using a variable module name**
 
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
@@ -420,7 +420,7 @@ The corresponding **runtimeOnly** configuration is as follows:
   }
   ```
 
-- **Dynamically importing an ohpm package**
+- **HAP dynamically imports an ohpm package using a variable**
 
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
@@ -448,7 +448,7 @@ The corresponding **runtimeOnly** configuration is as follows:
   }
   ```
 
-- **Dynamically importing a file of the HAP module itself**
+- **HAP dynamically imports its own single file using a variable**
 
   ```typescript
   // HAP's src/main/ets/Calc.ets
@@ -478,7 +478,7 @@ The corresponding **runtimeOnly** configuration is as follows:
   }
   ```
 
-- **Dynamically importing a native library of the HAP module itself**
+- **HAP dynamically imports its own native library using a variable**
 
   ```typescript
   // libnativeapi.so's index.d.ts
@@ -510,7 +510,7 @@ The corresponding **runtimeOnly** configuration is as follows:
   }
   ```
 
-- **Dynamically importing APIs**
+- **HAP dynamically imports APIs using a variable**
 
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
@@ -527,29 +527,29 @@ The corresponding **runtimeOnly** configuration is as follows:
   ```
 You do not need to set **runtimeOnly** when dynamically importing APIs with variables.
 
-### Decoupling Between HAR modules with Dynamic Import
-When an application contains multiple HAR modules, and the dependency between the modules are complex, configuring their dependencies in DevEco Studio can be challenging and, if not handled carefully, can lead to cyclic dependencies. To simplify dependency management, if only variables are dynamically imported between HAR modules, you can convert dependency between HAR modules into dependency between HAR modules and HAP/HSP modules. In this way, the HAR modules are decoupled. The figure shows the dependency graph before dependency conversion.
+### Decoupling Dynamic Imports Between HAR Modules
+When an application contains multiple HAR packages with complex dependency relationships, circular dependencies may occur when configuring dependencies in DevEco Studio. If the dependencies between HAR packages are only through dynamic imports with variable expressions, the direct dependency relationships between HAR packages can be transferred to the HAP/HSP configuration. This decouples the dependencies between HAR packages, as shown in the figure below.
 
-![Cyclic dependency between HAR modules before dependency conversion](figures/dynamicimport1.png)
+![Circular dependency between HAR packages](figures/dynamicimport1.png)
 
 The figure shows the dependency graph after dependency conversion.
 
-![Dependency between HAR modules and a HAP after dependency conversion](figures/dynamicimport2.png)
+![Dependency between HAR and HAP](figures/dynamicimport2.png)
 
 
-**1. Constraints**
-- Dependency conversion is applicable only when cyclic dependency is formed between local HAR modules.
-- In HAR modules for which you want to convert dependency, only dynamic import variable expressions are allowed, but not static import or dynamic import constant expressions.
-- When converting dependencies, you must transfer both **dependencies** and **runtimeOnly**.
-- Dependency conversion does not work for HSP modules. For example, in the case of HAP -> HSP1 -> HSP2 -> HSP3, dependency between HSP2 and HSP3 cannot be converted into dependency with the HAP.
-- Only HAR modules are allowed throughout the dependency conversion chain. In other words, no HSP module is allowed between HAR modules. An incorrect use is as follows: HAP -> HAR1 -> HAR2 -> HSP -> HAR3 -> HAR4.
+**Constraints**
+- This workaround is only applicable when circular dependencies occur between local HAR packages.
+- The transferred dependencies between HAR packages can only be through dynamic imports with variable expressions, not static imports or dynamic imports with constant expressions.
+- When transferring dependencies, both **dependencies** and **runtimeOnly** configurations must be transferred simultaneously.
+- HSP does not support transferring dependencies. For example, in the chain HAP -> HSP1 -> HSP2 -> HSP3, dependency between HSP2 and HSP3 cannot be transferred to HAP.
+- The entire chain of transferred dependencies must consist only of HAR packages. Dependencies cannot be transferred across HSP packages. An incorrect use is as follows: HAP -> HAR1 -> HAR2 -> HSP -> HAR3 -> HAR4.
 
-  The dependency of HAR 1 on HAR 2 can be transferred to a HAP, and the dependency of HAR 3 on HAR 4 can be transferred to an HSP. However, HAR3 or HAR4 cannot be transferred to the HAP.
+  The dependency of HAR1 on HAR2 can be transferred to a HAP, and the dependency of HAR3 on HAR4 can be transferred to an HSP. However, HAR3 or HAR4 cannot be transferred to the HAP.
 
 
-**2. Examples**
+**Usage Examples**
 
-In the following example, the HAP dynamically imports HAR module har1 based on the module name variable, and har1 dynamically imports another HAR module har2 based on the module name variable.
+In the following example, HAP dynamically imports HAR package har1, and har1 dynamically imports another HAR package har2 using variables.
 
 ```json5
 // HAP's oh-package.json5

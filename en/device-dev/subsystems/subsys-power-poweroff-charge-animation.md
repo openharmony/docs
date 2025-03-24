@@ -199,7 +199,7 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
 1. Modify the code configuration.
     Code path: `base/startup/init/services/init/init_config.c`
     Function: `ReadConfig`
-    Before the modification:
+    Before:
     ```c
     void ReadConfig(void)
     {
@@ -224,7 +224,7 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
         }
     }
     ```
-    After the modification:
+    After:
     ```c
     void ReadConfig(void)
     {

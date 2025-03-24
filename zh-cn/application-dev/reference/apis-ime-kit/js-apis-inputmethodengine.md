@@ -179,7 +179,7 @@ try {
 }
 ```
 
-## SizeChangeCallback<sup>16+</sup>
+## SizeChangeCallback<sup>15+</sup>
 
 type SizeChangeCallback = (size: window.Size, keyboardArea?: KeyboardArea) => void
 
@@ -190,7 +190,7 @@ type SizeChangeCallback = (size: window.Size, keyboardArea?: KeyboardArea) => vo
 | 参数名       | 类型                                                 | 必填 | 说明                             |
 | ------------ | ---------------------------------------------------- | ---- | -------------------------------- |
 | size         | [window.Size](../apis-arkui/js-apis-window.md#size7) | 是   | 当前面板大小。                   |
-| keyboardArea | [KeyboardArea](#keyboardarea16)                      | 否   | 当前面板中可作为键盘区域的大小。 |
+| keyboardArea | [KeyboardArea](#keyboardarea15)                      | 否   | 当前面板中可作为键盘区域的大小。 |
 
 ## InputMethodEngine
 
@@ -723,6 +723,79 @@ try {
 } catch (err) {
   let error = err as BusinessError;
   console.error(`regist private command error: ${error.code} ${error.message}`);
+}
+```
+
+### on('callingDisplayDidChange')<sup>18+</sup>
+
+on(type: 'callingDisplayDidChange', callback: Callback\<number>): void
+
+订阅编辑框对应窗口所在屏幕ID变化。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                                          | 必填 | 说明                                       |
+| -------- | --------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                        | 是   | 设置监听类型，固定取值为'callingDisplayDidChange'。 |
+| callback |  Callback\<number> | 是   | 回调函数，返回编辑框设置对应窗口屏幕ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 801 | capability not supported. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { inputMethodEngine } from '@kit.IMEKit';
+
+let callingDisplayDidChangeCallback = (num: number) => {
+  console.log(`display id: ${num}`);
+}
+try {
+  console.log(`regist calling display changed`);
+  inputMethodEngine.getInputMethodAbility().on('callingDisplayDidChange', callingDisplayDidChangeCallback);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`regist calling display changed error: ${error.code} ${error.message}`);
+}
+```
+
+### off('callingDisplayDidChange')<sup>18+</sup>
+
+off(type: 'callingDisplayDidChange', callback?: Callback\<number>): void
+
+取消编辑框对应窗口所在屏幕ID变化。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                                        | 必填 | 说明                                                         |
+| -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                      | 是   | 设置监听类型，固定取值为'callingDisplayDidChange'。                   |
+| callback | Callback\<number>  | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { inputMethodEngine } from '@kit.IMEKit';
+
+try {
+  console.log(`unregist calling display changed `);
+  inputMethodEngine.getInputMethodAbility().off('callingDisplayDidChange', (num: number) => {
+    console.log('InputMethodAbility delete calling display  notification.');
+  });
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`unregist calling display changed error: ${error.code} ${error.message}`);
 }
 ```
 
@@ -1686,7 +1759,7 @@ try {
 }
 ```
 
-### startMoving<sup>16+</sup>
+### startMoving<sup>15+</sup>
 
 startMoving(): void
 
@@ -1696,10 +1769,11 @@ startMoving(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md),[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
+| 801 | Capability not supported. |
 | 12800002 | input method engine error. |
 | 12800013 | window manager service error. |
 | 12800017 | invalid panel type or panel flag. |
@@ -1716,7 +1790,7 @@ try {
 }
 ```
 
-### getDisplayId<sup>16+</sup>
+### getDisplayId<sup>15+</sup>
 
 getDisplayId(): Promise\<number>
 
@@ -1904,17 +1978,17 @@ try {
 }
 ```
 
-### adjustPanelRect<sup>16+</sup>
+### adjustPanelRect<sup>15+</sup>
 
 adjustPanelRect(flag: PanelFlag, rect: EnhancedPanelRect): void
 
-预设置输入法应用横竖屏大小位置，以及自定义避让区域与热区。
+预设置输入法应用横竖屏大小、位置、自定义避让区域以及热区。
 
->**说明:**
+> **说明:**
 >
->仅用于SOFT_KEYBOARD类型，状态为FLG_FIXED或FLG_FLOATING的面板。此接口兼容[adjustPanelRect](#adjustpanelrect12)的调用方法，若入参rect仅填写属性landscapeRect和portraitRect，则默认调用[adjustPanelRect](#adjustpanelrect12)。
+> 仅用于SOFT_KEYBOARD类型，状态为FLG_FIXED或FLG_FLOATING的面板。此接口兼容[adjustPanelRect](#adjustpanelrect12)的调用方法，若入参rect仅填写属性landscapeRect和portraitRect，则默认调用[adjustPanelRect](#adjustpanelrect12)。
 >
->此接口为同步接口，接口返回仅代表系统侧收到设置的请求，不代表已完成设置。
+> 此接口为同步接口，接口返回仅代表系统侧收到设置的请求，不代表已完成设置。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1922,8 +1996,8 @@ adjustPanelRect(flag: PanelFlag, rect: EnhancedPanelRect): void
 
 | 参数名 | 类型                                      | 必填 | 说明                                                       |
 | ------ | ----------------------------------------- | ---- | ---------------------------------------------------------- |
-| flag   | [PanelFlag](#panelflag10)                 | 是   | 目标面板状态类型。类型为FLG_FIXED或FLG_FLOATING。            |
-| rect   | [EnhancedPanelRect](#enhancedpanelrect16) | 是   | 目标面板横屏状态及竖屏状态的位置、大小，避让区域以及热区。 |
+| flag   | [PanelFlag](#panelflag10)                 | 是   | 目标面板状态类型。类型为FLG_FIXED或FLG_FLOATING。          |
+| rect   | [EnhancedPanelRect](#enhancedpanelrect15) | 是   | 目标面板横屏状态及竖屏状态的位置、大小、避让区域以及热区。 |
 
 **错误码：**
 
@@ -1955,17 +2029,17 @@ try {
 }
 ```
 
-### updatelnputRegion<sup>16+</sup>
+### updatelnputRegion<sup>15+</sup>
 
 updateRegion(inputRegion: Array&lt;window.Rect&gt;): void
 
 更新当前状态下输入法面板内的热区。
 
->**说明:**
+> **说明:**
 >
->仅用于SOFT_KEYBOARD类型，状态为FLG_FIXED或FLG_FLOATING的面板。
+> 仅用于SOFT_KEYBOARD类型，状态为FLG_FIXED或FLG_FLOATING的面板。
 >
->此接口为同步接口，接口返回仅代表系统侧收到更新热区的请求，不代表已完成热区更新。
+> 此接口为同步接口，接口返回仅代表系统侧收到更新热区的请求，不代表已完成热区更新。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1973,7 +2047,7 @@ updateRegion(inputRegion: Array&lt;window.Rect&gt;): void
 
 | 参数名      | 类型                                                         | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| inputRegion | Array&lt;[window.Rect](../apis-arkui/js-apis-window.md#rect7)&gt; | 是   | 面板内接收输入事件的区域。数组大小限制为[1, 4]。<br/>- 传入的热区位置是相对于输入法面板窗口左顶点的位置。 |
+| inputRegion | Array&lt;[window.Rect](../apis-arkui/js-apis-window.md#rect7)&gt; | 是   | 面板内接收输入事件的区域。<br/>- 数组大小限制为[1, 4]。<br/>- 传入的热区位置是相对于输入法面板窗口左顶点的位置。 |
 
 **错误码：**
 
@@ -2055,25 +2129,25 @@ try {
 
 ### on('sizeChange')<sup>12+</sup>
 
-on(type: 'sizeChange', callback: SizeChangeCallback): void;
+on(type: 'sizeChange', callback: SizeChangeCallback): void
 
 监听当前面板大小变化，使用callback异步回调。
 
->**说明:**
+> **说明:**
 >
->仅用于SOFT_KEYBOARD类型，状态为FLG_FIXED或FLG_FLOATING的面板。由于输入法通过adjustPanelRect等接口对面板大小调节时，系统往往要根据一定规则校验计算得出最终的数值（例如超出屏幕等场景），输入法应用可通过该回调做最终的面板布局刷新。
+> 仅用于SOFT_KEYBOARD类型，状态为FLG_FIXED或FLG_FLOATING的面板。输入法通过adjustPanelRect等接口对面板大小进行调节时，系统会根据一定规则校验计算出最终的数值（例如超出屏幕等场景），输入法应用可通过该回调获取的真实面板大小，完成最终的面板布局刷新。
 >
-> - 在API version 12-15版本，此接口回调函数中仅包含类型为[window.Size](../apis-arkui/js-apis-window.md#size7)的必选参数。
-> - 在API version 16版本起，在调用了[adjustPanelRect](#adjustpanelrect16)接口后，此接口回调函数增加类型为[KeyboardArea](#keyboardarea16)可选参数。
+>-  从API version 12-14开始支持，此接口回调函数中仅包含[window.Size](../apis-arkui/js-apis-window.md#size7)类型的必选参数。
+>-  从API version 15起，调用[adjustPanelRect](#adjustpanelrect15)接口后，此接口回调函数增加[KeyboardArea](#keyboardarea15)类型的可选参数。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 说明     |
-| -------- | ---------------------- | ---- | -------- |
-| type | string | 是 | 监听当前面板的大小是否产生变化，固定取值为'sizeChange'。 |
-| callback | [SizeChangeCallback](#sizechangecallback16) |  是  | 回调函数。返回当前软键盘面板的大小，包含宽度和高度值。 |
+| 参数名   | 类型                                        | 必填 | 说明                                                   |
+| -------- | ------------------------------------------- | ---- | ------------------------------------------------------ |
+| type     | string                                      | 是   | 监听当前面板的大小是否产生变化，固定值为'sizeChange'。 |
+| callback | [SizeChangeCallback](#sizechangecallback15) | 是   | 回调函数。返回当前软键盘面板的大小，包含宽度和高度值。 |
 
 **示例：**
 
@@ -2163,25 +2237,25 @@ try {
 
 ### off('sizeChange')<sup>12+</sup>
 
-off(type: 'sizeChange', callback?: SizeChangeCallback): void;
+off(type: 'sizeChange', callback?: SizeChangeCallback): void
 
 取消监听当前面板大小变化，使用callback异步回调。
 
->**说明:**
+> **说明:**
 >
->仅用于SOFT_KEYBOARD类型，状态为FLG_FIXED或FLG_FLOATING的面板。由于输入法通过adjustPanelRect等接口对面板大小调节时，系统往往要根据一定规则校验计算得出最终的数值（例如超出屏幕等场景），输入法应用可通过该回调做最终的面板布局刷新。
+> 仅用于SOFT_KEYBOARD类型，状态为FLG_FIXED或FLG_FLOATING的面板。输入法通过adjustPanelRect等接口对面板大小进行调节时，系统会根据一定规则校验计算出最终的数值（例如超出屏幕等场景），输入法应用可通过该回调获取的真实面板大小，完成最终的面板布局刷新。
 >
-> - 在API version 12-15版本，此接口回调函数中仅包含类型为[window.Size](../apis-arkui/js-apis-window.md#size7)的必选参数。
-> - 在API version 16版本起，在调用了[adjustPanelRect](#adjustpanelrect16)接口后，此接口回调函数增加类型为[KeyboardArea](#keyboardarea16)可选参数。
+>-  从API version 12-14开始支持，此接口回调函数中仅包含[window.Size](../apis-arkui/js-apis-window.md#size7)类型的必选参数。
+>-  从API version 15起，调用[adjustPanelRect](#adjustpanelrect15)接口后，此接口回调函数增加[KeyboardArea](#keyboardarea15)类型的可选参数。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 说明     |
-| -------- | ---------------------- | ---- | -------- |
-| type | string | 是 | 监听当前面板的大小是否产生变化，固定取值为'sizeChange'。 |
-| callback | [SizeChangeCallback](#sizechangecallback16) | 否   | 回调函数。返回当前软键盘面板的大小，包含宽度和高度值。 |
+| 参数名   | 类型                                        | 必填 | 说明                                                     |
+| -------- | ------------------------------------------- | ---- | -------------------------------------------------------- |
+| type     | string                                      | 是   | 监听当前面板的大小是否产生变化，固定取值为'sizeChange'。 |
+| callback | [SizeChangeCallback](#sizechangecallback15) | 否   | 回调函数。返回当前软键盘面板的大小，包含宽度和高度值。   |
 
 **示例：**
 
@@ -2264,6 +2338,65 @@ try {
     console.error(`Failed to set privacy mode: ${JSON.stringify(err)}`);
 }
 ```
+
+### setImmersiveMode<sup>15+</sup>
+
+setImmersiveMode(mode: ImmersiveMode): void
+
+设置输入法应用的沉浸模式。只能设置不使用沉浸模式(NONE_IMMERSIVE)、浅色沉浸模式(LIGHT_IMMERSIVE)或深色沉浸模式(DARK_IMMERSIVE)。不能设置为沉浸模式(IMMERSIVE)。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| mode | [ImmersiveMode](#immersivemode15) | 是   | 沉浸模式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401      | parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.           |
+| 12800002  | input method engine error.                                |
+| 12800013  | window manager service error.                          |
+
+**示例：**
+
+```ts
+try {
+  panel.setImmersiveMode(inputMethodEngine.ImmersiveMode.LIGHT_IMMERSIVE);
+} catch (err) {
+  console.error(`Failed to setImmersiveMode: ${JSON.stringify(err)}`);
+}
+```
+
+### getImmersiveMode<sup>15+</sup>
+
+getImmersiveMode(): ImmersiveMode
+
+获取输入法应用沉浸模式。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型                            | 说明       |
+| ------------------------------- | ---------- |
+| [ImmersiveMode](#immersivemode15) | 沉浸模式。 |
+
+**示例：**
+
+```ts
+try {
+  let mode = panel.getImmersiveMode();
+} catch (err) {
+  console.error(`Failed to getImmersiveMode: ${JSON.stringify(err)}`);
+}
+```
+
 
 ## KeyboardController
 
@@ -2531,17 +2664,17 @@ keyboardController.exitCurrentInputType().then(() => {
 | -------- | -------- | -------- | -------- | -------- |
 | direction  | [Direction](#direction10) | 否 | 否 | 选中文本时，光标的移动方向。|
 
-## MessageHandler<sup>16+</sup>
+## MessageHandler<sup>15+</sup>
 
 自定义通信对象。
 
 > **说明**
 >
-> 开发者可通过注册此对象来接收已绑定当前输入法应用的编辑框应用所发送的自定义通信数据，接收到自定义通信数据时会触发此对象中[onMessage](#messagehandleronmessage16)回调函数。
+> 开发者可通过注册此对象来接收已绑定当前输入法应用的编辑框应用所发送的自定义通信数据，接收到自定义通信数据时会触发此对象中[onMessage](#messagehandleronmessage15)回调函数。
 >
-> 此对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#messagehandleronterminated16)回调函数。
+> 此对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#messagehandleronterminated15)回调函数。
 >
-> 若取消注册全局已注册的对象时，会触发被取消对象中[onTerminated](#messagehandleronterminated16)回调函数。
+> 若取消注册全局已注册的对象时，会触发被取消对象中[onTerminated](#messagehandleronterminated15)回调函数。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2550,7 +2683,7 @@ keyboardController.exitCurrentInputType().then(() => {
 | onTerminated | function | 否   | 对象终止接收的回调函数。           |
 | onMessage    | function | 否   | 对象接收自定义通信数据的回调函数。 |
 
-## MessageHandler.onMessage<sup>16+</sup>
+## MessageHandler.onMessage<sup>15+</sup>
 
 onMessage(msgId: string, msgParam?: ArrayBuffer): void
 
@@ -2591,7 +2724,7 @@ try {
 }
 ```
 
-## MessageHandler.onTerminated<sup>16+</sup>
+## MessageHandler.onTerminated<sup>15+</sup>
 
 onTerminated(): void
 
@@ -4335,7 +4468,7 @@ try {
 }
 ```
 
-### sendMessage<sup>16+</sup>
+### sendMessage<sup>15+</sup>
 
 sendMessage(msgId: string, msgParam?: ArrayBuffer): Promise<void&gt;
 
@@ -4389,7 +4522,7 @@ inputMethodController.sendMessage(msgId, msgParam).then(() => {
 });
 ```
 
-### recvMessage<sup>16+</sup>
+### recvMessage<sup>15+</sup>
 
 recvMessage(msgHandler?: MessageHandler): void;
 
@@ -4397,9 +4530,9 @@ recvMessage(msgHandler?: MessageHandler): void;
 
 > **说明：**
 >
-> [MessageHandler](#messagehandler16)对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#messagehandleronterminated16)回调函数。
+> [MessageHandler](#messagehandler15)对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#messagehandleronterminated15)回调函数。
 >
-> 未填写参数，则取消全局已注册的[MessageHandler](#messagehandler16)，并会触发被取消注册对象中[onTerminated](#messagehandleronterminated16)回调函数。
+> 未填写参数，则取消全局已注册的[MessageHandler](#messagehandler15)，并会触发被取消注册对象中[onTerminated](#messagehandleronterminated15)回调函数。
 
 **系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
@@ -4407,7 +4540,7 @@ recvMessage(msgHandler?: MessageHandler): void;
 
 | 参数名     | 类型                                | 必填 | 说明                                                         |
 | ---------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| msgHandler | [MessageHandler](#messagehandler16) | 否   | 该对象将通过[onMessage](#messagehandleronmessage16)接收来自已绑定当前输入法应用的编辑框应用所发送的自定义通信数据，以及[onTerminated](#messagehandleronterminated16)接收终止此对象订阅的消息。若不填写此参数，则取消全局已注册的[MessageHandler](#messagehandler16)对象，并触发其[onTerminated](#messagehandleronterminated16)回调函数。 |
+| msgHandler | [MessageHandler](#messagehandler15) | 否   | 该对象将通过[onMessage](#messagehandleronmessage15)接收来自已绑定当前输入法应用的编辑框应用所发送的自定义通信数据，以及[onTerminated](#messagehandleronterminated15)接收终止此对象订阅的消息。若不填写此参数，则取消全局已注册的[MessageHandler](#messagehandler15)对象，并触发其[onTerminated](#messagehandleronterminated15)回调函数。 |
 
 **返回值：**
 
@@ -4451,6 +4584,9 @@ inputMethodController.recvMessage();
 | inputPattern | number   | 是   | 否   | 编辑框的文本属性。 |
 | isTextPreviewSupported<sup>12+</sup> | boolean | 否 | 否 | 编辑框是否支持预上屏。 |
 | bundleName<sup>14+</sup> | string | 是 | 是 | 编辑框所属应用包名；该值可能为""，使用该属性时需要考虑为""的场景。 |
+| immersiveMode<sup>15+</sup> | number | 是   | 是   | 输入法沉浸模式。 |
+| windowId<sup>18+</sup> | number | 是 | 是 | 编辑框设置所属窗口ID。 |
+| displayId<sup>18+</sup> | number | 是   | 是   | 编辑框设置窗口对应的屏幕ID。如果没有设置windowId，取当前焦点窗口屏幕ID。|
 
 ## KeyEvent
 
@@ -4508,9 +4644,9 @@ inputMethodController.recvMessage();
 | landscapeRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | 否   | 否   | 横屏状态时输入法面板窗口的位置大小。 |
 | portraitRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | 否   | 否   | 竖屏状态时输入法面板窗口的位置大小。 |
 
-## EnhancedPanelRect<sup>16+</sup>
+## EnhancedPanelRect<sup>15+</sup>
 
-增强的输入法面板位置大小信息，包含自定义避让区域、自定义热区。
+增强的输入法面板位置、大小信息，包含自定义避让区域、自定义热区。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -4524,7 +4660,7 @@ inputMethodController.recvMessage();
 | portraitInputRegion  | Array&lt;[window.Rect](../apis-arkui/js-apis-window.md#rect7)&gt; | 否   | 是   | 竖屏状态时，面板接收输入事件的区域。<br/>- 数组大小限制为[1, 4]。默认值为竖屏时的面板大小。<br/>- 传入的热区位置是相对于输入法面板窗口左顶点的位置。 |
 | fullScreenMode       | boolean                                                      | 否   | 是   | 是否开启全屏模式。默认值为false。<br/>- 值为true，landscapeRect和portraitRect可不填写。<br/>- 值为false，landscapeRect和portraitRect为必选属性。 |
 
-## KeyboardArea<sup>16+</sup>
+## KeyboardArea<sup>15+</sup>
 
 面板中的键盘区域。
 
@@ -4547,6 +4683,19 @@ inputMethodController.recvMessage();
 | ------ | ------------------------------------------------------------ | ---- | ---- | -------------- |
 | rect   | [window.Rect](../apis-arkui/js-apis-window.md#rect7)         | 否   | 否   | 窗口矩形区域。 |
 | status | [window.WindowStatusType](../apis-arkui/js-apis-window.md#windowstatustype11) | 否   | 否   | 窗口模式类型。 |
+
+## ImmersiveMode<sup>15+</sup>
+
+枚举，输入法沉浸模式。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称         | 值 | 说明               |
+| ------------ | -- | ------------------ |
+| NONE_IMMERSIVE | 0 | 不使用沉浸模式。 |
+| IMMERSIVE      | 1 | 沉浸模式，由输入法应用确定沉浸模式类型。 |
+| LIGHT_IMMERSIVE  | 2 | 浅色沉浸模式。 |
+| DARK_IMMERSIVE   | 3 | 深色沉浸模式。 |
 
 ## TextInputClient<sup>(deprecated)</sup>
 

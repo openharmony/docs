@@ -55,7 +55,7 @@
 
 | 名称                  | 参数                                       | 描述                                       |
 | ------------------- | ---------------------------------------- | ---------------------------------------- |
-| setNextButtonStatus | {&nbsp;status:&nbsp;string,&nbsp;label:&nbsp;label&nbsp;} | 设置当前步骤中下一步按钮的文本与状态，参数中label为指定按钮文本，status指定按钮状态，status可选值为：<br/>-&nbsp;normal：正常状态，下一步文本按钮正常显示，可点击进入下一个步骤；<br/>-&nbsp;disabled：不可用状态，下一步文本按钮灰度显示，不可点击进入下一个步骤；<br/>-&nbsp;waiting：等待状态，下一步文本按钮不显示，使用等待进度条，不可点击进入下一个步骤。<br/>-&nbsp;skip：跳过状态，下一步文本按钮显示跳过按钮，点击时会跳过剩下步骤。 |
+| setNextButtonStatus | {&nbsp;status:&nbsp;string,&nbsp;label:&nbsp;label&nbsp;} | 设置当前步骤中下一步按钮的文本与状态，参数中label为指定按钮文本，status指定按钮状态，status可选值为：<br/>-&nbsp;normal：正常状态，下一步文本按钮正常显示，可点击进入下一个步骤；<br/>-&nbsp;disabled：不可用状态，下一步文本按钮灰度显示，不可点击进入下一个步骤；<br/>-&nbsp;waiting：等待状态，下一步文本按钮不显示，使用等待进度条，不可点击进入下一个步骤；<br/>-&nbsp;skip：跳过状态，下一步文本按钮显示跳过按钮，点击时会跳过剩下步骤。 |
 
 
 ## 示例

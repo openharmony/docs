@@ -19,21 +19,21 @@ API 10在API 9的基础上新增支持多Ability的Stage模型应用开发。支
 
 | 接口名称                                                       | 说明                                                 |
 | ------------------------------------------------------------ | ---------------------------------------------------- |
-| enableAppRecovery(restart?: RestartFlag, saveOccasion?: SaveOccasionFlag, saveMode?: SaveModeFlag) : void;<sup>9+</sup> | 使能应用恢复功能，参数按顺序填入。该接口调用后，应用从启动器启动时第一个Ability支持恢复。|
-| saveAppState(): boolean;<sup>9+</sup> | 主动保存当前应用中支持恢复的Ability的状态。 |
-| restartApp(): void;<sup>9+</sup> | 重启当前进程，并启动由**setRestartWant**指定的Ability，如果未指定，将重新拉起处于前台且支持恢复的Ability。 |
-| saveAppState(context?: UIAbilityContext): boolean;<sup>10+</sup> | 主动保存由Context指定的Ability状态。 |
-| setRestartWant(want: Want): void;<sup>10+</sup> | 设置主动调用**restartApp**以及**RestartFlag**不为**NO_RESTART**时重启的Ability。该Ability必须在同一个包名下，且必须为**UIAbility**。 |
+| enableAppRecovery(restart?: RestartFlag, saveOccasion?: SaveOccasionFlag, saveMode?: SaveModeFlag) : void<sup>9+</sup> | 使能应用恢复功能，参数按顺序填入。该接口调用后，应用从启动器启动时第一个Ability支持恢复。|
+| saveAppState(): boolean<sup>9+</sup> | 主动保存当前应用中支持恢复的Ability的状态。 |
+| restartApp(): void<sup>9+</sup> | 重启当前进程，并启动由**setRestartWant**指定的Ability，如果未指定，将重新拉起处于前台且支持恢复的Ability。 |
+| saveAppState(context?: UIAbilityContext): boolean<sup>10+</sup> | 主动保存由Context指定的Ability状态。 |
+| setRestartWant(want: Want): void<sup>10+</sup> | 设置主动调用**restartApp**以及**RestartFlag**不为**NO_RESTART**时重启的Ability。该Ability必须在同一个包名下，且必须为**UIAbility**。 |
 
 由于上述接口可能在故障处理时使用，所以不会返回异常，需要开发者熟悉使用的场景。
 
-**enableAppRecovery:** 需要在应用初始化阶段调用，比如AbilityStage的OnCreate调用。具体其各参数定义详见[参数说明](../reference/apis-ability-kit/js-apis-app-ability-appRecovery.md)。
+**enableAppRecovery**：需要在应用初始化阶段调用，比如AbilityStage的OnCreate调用。具体其各参数定义详见[参数说明](../reference/apis-ability-kit/js-apis-app-ability-appRecovery.md)。
 
-**saveAppState:** 调用后框架会回调当前进程中所有支持恢复的Ability的onSaveState方法，如果在onSaveState方法中同意保存数据，则会将相关数据及Ability的页面栈持久化到应用的本地缓存。如果需要保存指定Ability，则需要指定Ability对应的Context。
+**saveAppState**：调用后框架会回调当前进程中所有支持恢复的Ability的onSaveState方法。如果在onSaveState方法中同意保存数据，则会将相关数据及Ability的页面栈持久化到应用的本地缓存。如果需要保存指定Ability，则需要指定Ability对应的Context。
 
-**setRestartWant:** 指定由appRecovery发起重启的Ability。
+**setRestartWant**：指定由appRecovery发起重启的Ability。
 
-**restartApp:** 调用后框架会杀死当前应用进程，并重新拉起由**setRestartWant**指定的Ability，其中启动原因为APP_RECOVERY。API 9以及未使用**setRestartWant**指定Ability的场景，会拉起最后一个支持恢复且在前台的Ability，如果当前前台的Ability不支持恢复，则应用表现闪退。如果重启的Ability存在已经保存的状态，这些状态数据会在Ability的OnCreate生命周期回调的want参数中作为wantParam属性传入。两次重启的间隔应大于一分钟，一分钟之内重复调用此接口只会退出应用不会重启应用。自动重启的行为与主动重启一致。
+**restartApp**：调用后框架会杀死当前应用进程，并重新拉起由**setRestartWant**指定的Ability，其中启动原因为APP_RECOVERY。API 9以及未使用**setRestartWant**指定Ability的场景，会拉起最后一个支持恢复且在前台的Ability，如果当前前台的Ability不支持恢复，则应用表现闪退。如果重启的Ability存在已经保存的状态，这些状态数据会在Ability的OnCreate生命周期回调的want参数中作为wantParam属性传入。两次重启的间隔应大于一分钟，一分钟之内重复调用此接口只会退出应用不会重启应用。自动重启的行为与主动重启一致。
 
 ### 应用恢复状态管理示意
 从API 10起，应用恢复的场景不仅局限于异常时自动重启。所以需要理解应用何时会加载恢复的状态。
@@ -60,6 +60,7 @@ API 10开始支持应用卡死时的状态保存。JsError故障时，onSaveStat
 
 下图中并没有标记[faultLogger](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md)的调用时机，开发者可以根据应用启动时传入的[LastExitReason](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#abilityconstantlastexitreason)来决定是否调用[faultLogger](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md)查询上次的故障信息。
 ![故障处理流程示意](./figures/20221106203527.png)
+
 这里建议应用开发者使用[errorManager](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md)对应用的异常进行处理，处理完成后开发者可以选择调用状态保存接口并主动重启应用。
 如果开发者没有注册[ErrorObserver](../reference/apis-ability-kit/js-apis-inner-application-errorObserver.md)也没有使能应用恢复，则按照系统的默认逻辑执行进程退出。用户可以选择从启动器再次打开应用。
 如果开发者使能应用恢复，框架会首先检查当前故障是否支持状态保存以及开发者是否配置了状态保存，如果支持则会回调[Ability](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的[onSaveState](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonsavestate)的接口。最后重启应用。

@@ -2,7 +2,7 @@
 
 ## When to Use
 
-Before accessing or operating a user file, a third-party application needs to obtain the user directory. The **Environment** module provides the APIs for obtaining the user directories.
+You can use [Environment](../reference/apis-core-file-kit/_environment.md) to allow a third-party application to access files in a user directory.
 
 ## Constraints
 
@@ -16,7 +16,7 @@ For details about the APIs, see [Environment](../reference/apis-core-file-kit/_e
 | API| Description|
 | -------- | -------- |
 | FileManagement_ErrCode OH_Environment_GetUserDownloadDir (char **result)| Obtains the sandbox path of the **Download** directory. This API is available only for 2-in-1 devices.|
-| FileManagement_ErrCode OH_Environment_GetUserDesktopDir (char **result)	 | Obtains the sandbox path of the **Desktop** directory. This API is available only for 2-in-1 devices.|
+| FileManagement_ErrCode OH_Environment_GetUserDesktopDir (char **result) | Obtains the sandbox path of the **Desktop** directory. This API is available only for 2-in-1 devices.|
 | FileManagement_ErrCode OH_Environment_GetUserDocumentDir (char **result) | Obtains the sandbox path of the **Documents** directory. This API is available only for 2-in-1 devices.|
 
 ## How to Develop
@@ -66,7 +66,7 @@ target_link_libraries(sample PUBLIC libohenvironment.so)
     }
    ```
 
-3. Call **OH_Environment_GetUserDocumentDir** to obtain the sandbox path of the user **Documents** directory. The memory allocated must be released using **free()**. <br>Example:
+3. Call **OH_Environment_GetUserDocumentDir** to obtain the sandbox path of the user **Document** directory. The memory allocated must be released using **free()**. <br>Example:
 
     ```c
     void GetUserDocumentDirPathExample() {

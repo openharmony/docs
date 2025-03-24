@@ -2,9 +2,9 @@
 
 eSIM卡管理模块提供了eSIM卡管理的基础能力，包括获取指定卡槽是否支持eSIM功能，如果支持则允许用户添加单个配置文件。
 
->**说明：** 
+> **说明：** 
 >
->本模块首批接口从API version 14开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 16开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 
 ## 导入模块
@@ -13,7 +13,7 @@ eSIM卡管理模块提供了eSIM卡管理的基础能力，包括获取指定卡
 import { eSIM } from '@kit.TelephonyKit';
 ```
 
-## eSIM.isSupported<sup>14+</sup>
+## eSIM.isSupported<sup>16+</sup>
 
 isSupported\(slotId: number\): boolean
 
@@ -25,14 +25,17 @@ isSupported\(slotId: number\): boolean
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 
 **返回值：**
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
 | boolean | 返回指定卡槽是否支持eSIM功能，如果支持返回true。 |
+
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID              | 错误信息                           |
 | --------------------- | ---------------------------------- |
@@ -49,11 +52,13 @@ let isSupported: boolean = eSIM.isSupported(0);
 console.log(`the esim is Supported:` + isSupported);
 ```
 
-## eSIM.addProfile<sup>14+</sup>
+## eSIM.addProfile<sup>16+</sup>
 
 addProfile\(profile: DownloadableProfile\): Promise\<boolean\>
 
 通过该接口拉起下载界面，允许用户添加单个配置文件。使用Promise异步回调。
+
+**需要权限**：ohos.permission.SET_TELEPHONE_ESIM_STATE_OPEN
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -61,18 +66,21 @@ addProfile\(profile: DownloadableProfile\): Promise\<boolean\>
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| profile | [DownloadableProfile](js-apis-esim-sys.md#downloadableprofile14) | 是   | 可下载的配置文件信息。 |
+| profile | DownloadableProfile | 是   | 可下载的配置文件信息。 |
 
 **返回值：**
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<boolean\> | 以Promise形式返回最终用户添加单个配置文件的结果，返回true为成功，false为失败。 |
+| Promise\<boolean\> | 以Promise形式返回最终用户添加单个配置文件的结果。返回true为成功，false为失败。 |
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID              | 错误信息                           |
 | --------------------- | ---------------------------------- |
+| 201 | Permission denied.           |
 | 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
 | 801 | Capability not supported.    |
 |3120001| Service connection failed. |
@@ -84,7 +92,7 @@ addProfile\(profile: DownloadableProfile\): Promise\<boolean\>
 import { BusinessError } from '@kit.BasicServicesKit';
 import { eSIM } from '@kit.TelephonyKit';
 
-let profile: eSIM.DownloadableProfile={
+let profile: eSIM.DownloadableProfile = {
   activationCode:'1',
   confirmationCode:'1',
   carrierName:'test',

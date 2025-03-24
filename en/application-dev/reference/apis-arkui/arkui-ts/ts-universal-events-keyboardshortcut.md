@@ -24,8 +24,8 @@ Sets a keyboard shortcut for the component.
 
 | Name  | Type                                 | Mandatory  | Description                                    |
 | ----- | ------------------------------------- | ---- | ---------------------------------------- |
-| value | string \| [FunctionKey](ts-appendix-enums.md#functionkey) | Yes| Character key (which can be entered through the keyboard) or [function key](ts-appendix-enums.md#functionkey).<br>An empty string means to disable the keyboard shortcut.<br>|
-| keys  | Array\<[ModifierKey](ts-appendix-enums.md#modifierkey)> | Yes| Modifier keys.<br>This parameter can be left empty only when **value** is set to a [function key](ts-appendix-enums.md#functionkey#functionkey).<br>|
+| value | string \| [FunctionKey](ts-appendix-enums.md#functionkey10) | Yes| Character key (which can be entered through the keyboard) or [function key](ts-appendix-enums.md#functionkey10).<br>An empty string means to disable the keyboard shortcut.<br>|
+| keys  | Array\<[ModifierKey](ts-appendix-enums.md#modifierkey10)> | Yes| Modifier keys.<br>This parameter can be left empty only when **value** is set to a [function key](ts-appendix-enums.md#functionkey10).<br>|
 | action  | () => void    | No   | Callback for a custom event after the keyboard shortcut is triggered.<br>                              |
 
 **Return value**
@@ -46,7 +46,7 @@ Keyboard shortcuts, as system keys, take precedence over the common key event **
 | When the component is focused or not                              | The component responds to the custom keyboard shortcut as long as the window is focused.                     | –                                       |
 | Using a single function key to trigger a keyboard shortcut| A keyboard shortcut can consist of a single function key without any modifier keys.| Button('button1').keyboardShortcut(FunctionKey.F2,[])                                        |
 | The input parameter **value** of **keyboardShortcut** is empty| The keyboard shortcut is disabled.<br>This does not apply when there are multiple keyboard shortcuts.| Button('button1').keyboardShortcut('',[ModifierKey.CTRL])<br>Button('button2').keyboardShortcut('',[]) |
-| The independent pipeline sub-window and main window coexist                 | The focused window responds to the keyboard shortcut.                        | –                                       |
+| The independent pipeline subwindow and main window coexist                 | The focused window responds to the keyboard shortcut.                        | –                                       |
 | The input parameter **keys** of **keyboardShortcut** is set to the Ctrl, Shift, or Alt key| Both the keys on the left or right sides of the keyboard work.                         | Button('button1').keyboardShortcut('a',[ModifierKey.CTRL, ModifierKey.ALT]) |
 | Character key in the **value** parameter of the **keyboardShortcut** API           | The response is case-insensitive.                         | Button('button1').keyboardShortcut('a',[ModifierKey.CTRL])<br>Button('button2').keyboardShortcut('A',[ModifierKey.CTRL]) |
 | Response to keyboard shortcuts                                  | The component responds to a keyboard shortcut when the keys specified by **keys** are pressed and the key specified by **value** triggers a down event. (Long-pressing leads to continuous response.)             | –                                       |

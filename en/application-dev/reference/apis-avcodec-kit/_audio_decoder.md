@@ -40,7 +40,7 @@ The AudioDecoder module provides the functions for audio decoding.
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioDecoder_Reset](#oh_audiodecoder_reset) (OH_AVCodec \*codec) | Resets an audio decoder. To continue decoding, you must call **Configure** to configure the decoder again.| 
 | OH_AVFormat \* [OH_AudioDecoder_GetOutputDescription](#oh_audiodecoder_getoutputdescription) (OH_AVCodec \*codec) | Obtains the description information about the output data of an audio decoder.| 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioDecoder_SetParameter](#oh_audiodecoder_setparameter) (OH_AVCodec \*codec, OH_AVFormat \*format) | Sets dynamic parameters for an audio decoder.| 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioDecoder_PushInputData](#oh_audiodecoder_pushinputdata) (OH_AVCodec \*codec, uint32_t index, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) attr) | Pushes the input buffer filled with data to an audio decoder.| 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioDecoder_PushInputData](#oh_audiodecoder_pushinputdata) (OH_AVCodec \*codec, uint32_t index, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) attr) | Notifies the audio decoder that the input data has been written to the buffer identified by **index**.| 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioDecoder_FreeOutputData](#oh_audiodecoder_freeoutputdata) (OH_AVCodec \*codec, uint32_t index) | Frees an output buffer of an audio decoder.| 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioDecoder_IsValid](#oh_audiodecoder_isvalid) (OH_AVCodec \*codec, bool \*isValid) | Checks whether an audio decoder instance is valid. This function is used to check the decoder validity when the background recovers from a fault or an application is switched from the background.| 
 
@@ -326,7 +326,7 @@ OH_AVErrCode OH_AudioDecoder_PushInputData (OH_AVCodec *codec, uint32_t index, O
 
 **Description**
 
-Pushes the input buffer filled with data to an audio decoder.
+Notifies the audio decoder that the input data has been written to the buffer identified by **index**.
 
 The [OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata) callback reports the available input buffer and the index. After being pushed to the decoder, a buffer is not accessible until the buffer with the same index is reported again through the [OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata) callback.
 

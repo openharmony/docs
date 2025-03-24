@@ -48,7 +48,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    ```
 
 3. 编辑工程中的“entry > src > main > ets  > pages > Index.ets”文件，添加按钮并在其onClick函数构造资源泄漏场景，以触发资源泄漏事件。
-   此处需要使用[hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12)设置内存限制，造成内存内存泄漏，需要同步在“开发者选项”中打开“系统资源泄漏日志”(打开或关闭开关均需重启设备)。接口示例代码如下：
+   此处需要使用[hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12)设置内存限制，造成内存泄漏，同步在“开发者选项”中打开“系统资源泄漏日志”(打开或关闭开关均需重启设备)。接口示例代码如下：
 
    ```ts
     import hidebug from "@ohos.hidebug";
@@ -100,7 +100,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     ]
     ```
 
-    因堆快照文件大小约为0.4~1.2GB（zip压缩后约为50~100MB），体积较大，因此系统会对堆快照的生成次数做管控，具体规格如下：
+    因堆快照文件大小约为0.4至1.2GB（zip压缩后约为50至100MB），体积较大，因此系统会对堆快照的生成次数做管控，具体规格如下：
       - 整机: 每周生成oom堆快照的次数为5次，若整机配额用完，则所有应用都无法继续生成堆快照；
       - 应用: 每周仅有1次生成oom堆快照的机会，自应用触发oomdump功能后的7天内，将无法再次触发；
       - 若整机剩余存储空间不足30GB，则不触发oomdump功能。

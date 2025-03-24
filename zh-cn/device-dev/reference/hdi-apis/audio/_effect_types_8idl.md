@@ -23,7 +23,7 @@ Effect模块接口定义中使用的控制器参数、控制器描述符、音�
 | -------- | -------- |
 | struct&nbsp;&nbsp;[EffectInfo](_effect_info.md) | 定义effect加载的音效信息。 | 
 | struct&nbsp;&nbsp;[ControllerId](_controller_id.md) | 定义效果控制器信息，包括其所属的库及其effectId。 | 
-| struct&nbsp;&nbsp;[EffectControllerDescriptor](_effect_controller_descriptor.md) | 定义音效控制器描述 | 
+| struct&nbsp;&nbsp;[EffectControllerDescriptor](_effect_controller_descriptor.md) | 定义音效控制器描述。 | 
 | struct&nbsp;&nbsp;[AudioEffectBuffer](_audio_effect_buffer.md) | 定义音效进程输入输出buffer。 | 
 
 

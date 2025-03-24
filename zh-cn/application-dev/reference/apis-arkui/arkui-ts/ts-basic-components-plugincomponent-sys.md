@@ -61,7 +61,7 @@ PluginComponent(options: PluginComponentOptions)
 
 支持[绑定手势方法](ts-gesture-settings.md)，并分发给提供方页面，在提供方页面内部处理。
 
-除支持[通用事件](ts-universal-events-click.md)，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)，还支持以下事件：
 
 ### onComplete
 

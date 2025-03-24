@@ -28,7 +28,7 @@ import { AddFormMenuItem } from '@kit.ArkUI';
 无
 
 ## 属性
-不支持[通用属性](ts-universal-attributes-size.md)。
+不支持[通用属性](ts-component-general-attributes.md)。
 
 ## AddFormMenuItem 
 
@@ -40,7 +40,7 @@ AddFormMenuItem(
 ): void
 
 
-**装饰器类型：**@Component
+**装饰器类型：**@Builder
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -48,11 +48,11 @@ AddFormMenuItem(
 
 **参数：**
 
-| 名称           | 参数类型                        | 必填 | 装饰器类型 | 说明                                                             |
-| -------------- | ------------------------------- | ---- | ---------- | ---------------------------------------------------------------- |
-| want           | [Want](../../apis-ability-kit/js-apis-app-ability-want.md#want)                            | 是   | \@Prop     | 待发布功能组件的want信息。                                         |
-| componentId    | string                          | 是   | -          | 应用内功能组件ID，组件ID对应的界面与待添加的服务卡片界面相似。 |
-| AddFormOptions| [AddFormOptions](#addformoptions) | 否   | -          | 添加卡片选项。                                                         |
+| 参数名           | 类型                        | 必填 | 说明                                                             |
+| -------------- | ------------------------------- | ---- | ---------------------------------------------------------------- |
+| want           | [Want](../../apis-ability-kit/js-apis-app-ability-want.md#want)                            | 是   | 待发布功能组件的want信息。                                         |
+| componentId    | string                          | 是   | 应用内功能组件ID，组件ID对应的界面与待添加的服务卡片界面相似。 |
+| options| [AddFormOptions](#addformoptions) | 否   | 添加卡片选项。                                                         |
 
 ## AddFormOptions
 
@@ -61,7 +61,7 @@ AddFormMenuItem(
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-| 名称             | 参数类型                | 必填 | 说明                                                      |
+| 名称             | 类型                | 必填 | 说明                                                      |
 | --------------- | ---- | ---- | ---------------------------------------------------------------- |
 | formBindingData | [formBindingData.FormBindingData](../../apis-form-kit/js-apis-app-form-formBindingData.md#formbindingdata) | 否 | 卡片数据。 |
 | callback        | AsyncCallback\<string>                                                                                                | 否 | 返回结果的回调。  |
@@ -75,7 +75,7 @@ AddFormMenuItem(
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-| 名称            | 参数类型           | 必填 | 说明 |
+| 名称            | 类型           | 必填 | 说明 |
 | --------------- | ----------------- | ---- | ---- |
 | options | [MenuItemOptions](ts-basic-components-menuitem.md#menuitemoptions对象说明) | 否   | 包含设置MenuItem的各项信息。|
 
@@ -218,6 +218,6 @@ struct WidgetCard {
 
 **调用高级自定义控件桌面加桌结果**
 
-左侧是formbdingdata为空加桌结果，右侧是formbindingdata为{ data: 'share' }的加桌结果。
+左侧是formbindingdata为空加桌结果，右侧是formbindingdata为{ data: 'share' }的加桌结果。
 
 ![zh-cn_image_0000001616959836](figures/zh-cn_image_add_form_to_desktop_result.jpeg)

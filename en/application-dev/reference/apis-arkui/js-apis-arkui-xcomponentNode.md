@@ -4,7 +4,7 @@ The **XComponentNode** module provides APIs for the XComponentNode, which repres
 
 > **NOTE**
 >
-> The APIs of this module are deprecated since API version 12. You are advised to use BuilderNode](./js-apis-arkui-builderNode.md#buildernode) with the [XComponent](arkui-ts/ts-basic-components-xcomponent.md#xcomponent) component instead.
+> The APIs of this module are deprecated since API version 12. You are advised to use [XComponent type node](./js-apis-arkui-frameNode.md#xcomponent12) for implementation instead.
 >
 > The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
@@ -22,7 +22,7 @@ import { XComponentNode } from "@kit.ArkUI";
 
 constructor(uiContext: UIContext, options: RenderOptions, id: string, type: XComponentType, libraryName?: string)
 
-Constructor used to create an XComponentNode.
+A constructor used to create an XComponentNode.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

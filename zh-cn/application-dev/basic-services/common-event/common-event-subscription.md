@@ -9,6 +9,9 @@
 
 订阅部分系统公共事件需要先[申请权限](../../security/AccessToken/determine-application-mode.md)，订阅这些事件所需要的权限请见[公共事件权限列表](../../reference/apis-basic-services-kit/common_event/commonEventManager-definitions.md)。
 
+> **说明：**
+>
+> 订阅者对象的生命周期需要接入方管理，不再使用时需主动销毁释放，避免内存泄漏。
 
 ## 接口说明
 
@@ -44,7 +47,7 @@
    };
    ```
 
-3. 创建订阅者，保存返回的订阅者对象subscriber，用于执行后续的订阅、退订等操作。
+3. 创建订阅者，保存返回的订阅者对象subscriber，用于执行后续的订阅、退订、接收事件回调等操作。
    
    ```ts
    // 创建订阅者回调

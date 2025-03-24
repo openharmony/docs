@@ -5,7 +5,7 @@
 
 定义事件打点配置函数的所有配置项名称。
 
-如果您想要对应用事件打点功能进行配置，您可以直接使用配置项常量。
+如果开发者想要对应用事件打点功能进行配置，开发者可以直接使用配置项常量。
 
 示例代码：
 
@@ -13,7 +13,11 @@
 bool res = OH_HiAppEvent_Configure(MAX_STORAGE, "100M");
 ```
 
+**库：** libhiappevent_ndk.z.so
+
 **引用文件：** &lt;hiappevent/hiappevent_cfg.h&gt;
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 **起始版本：** 8
 

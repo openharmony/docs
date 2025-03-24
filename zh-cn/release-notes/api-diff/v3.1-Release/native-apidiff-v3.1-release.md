@@ -23,8 +23,8 @@ OpenHarmony 3.1 Release相较于OpenHarmony 3.0 LTS版本的API变更如下:
   | 图形-drawing  | void OH_Drawing_SetTextStyleDecorationColor(OH_Drawing_TextStyle*, uint32_t /* color */) | 新增     | 设置装饰颜色                                    |
   | 图形-drawing  | void OH_Drawing_SetTextStyleFontHeight(OH_Drawing_TextStyle*, double /* fontHeight */) | 新增     | 设置行高，按当前字体大小的倍数进行设置                                    |
   | 图形-drawing  | void OH_Drawing_SetTextStyleFontFamilies(OH_Drawing_TextStyle*,int /* fontFamiliesNumber \*/, const char* fontFamilies[]); | 新增     | 设置字体类型                                    |
-  | 图形-drawing  | void OH_Drawing_SetTextStyleFontStyle(OH_Drawing_TextStyle*, int /* OH_Drawing_FontStyle */) | 新增     | 设置字体风格                                    |
-  | 图形-drawing  | void OH_Drawing_SetTextStyleLocale(OH_Drawing_TextStyle*, const char*) | 新增     | 设置语言区域                                    |
+  | 图形-drawing  | void OH_Drawing_SetTextStyleFontStyle(OH_Drawing_TextStyle*, int /* OH_Drawing_FontStyle */) | 新增     | 设置字体样式                                    |
+  | 图形-drawing  | void OH_Drawing_SetTextStyleLocale(OH_Drawing_TextStyle*, const char*) | 新增     | 设置语言环境                                 |
   | 图形-drawing  | OH_Drawing_TypographyCreate* OH_Drawing_CreateTypographyHandler(OH_Drawing_TypographyStyle*, OH_Drawing_FontCollection*) | 新增     | 创建指向OH_Drawing_TypographyCreate对象的指针   |
   | 图形-drawing  | void OH_Drawing_DestroyTypographyHandler(OH_Drawing_TypographyCreate*) | 新增     | 释放被OH_Drawing_TypographyCreate对象占据的内存 |
   | 图形-drawing  | void OH_Drawing_TypographyHandlerPushTextStyle(OH_Drawing_TypographyCreate*, OH_Drawing_TextStyle*) | 新增     | 排版风格入栈                                    |

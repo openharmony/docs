@@ -29,7 +29,7 @@
 ### OpenCamera_V1_1()
 
 ```
-ICameraHost::OpenCamera_V1_1 ([in] String cameraId, [in] ICameraDeviceCallback callbackObj, [out] ICameraDevice device )
+ICameraHost::OpenCamera_V1_1 ([in] String cameraId, [in] ICameraDeviceCallback callbackObj, [out] ICameraDevice device)
 ```
 
 **描述**

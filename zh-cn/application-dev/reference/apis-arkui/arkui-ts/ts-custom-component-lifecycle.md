@@ -106,6 +106,110 @@ struct IndexComponent {
 ```
 ![zh-cn_image_lifecycle](figures/zh-cn_image_lifecycle.gif)
 
+## onNewParam<sup>18+</sup>
+
+onNewParam?(param: ESObject): void
+
+该回调仅生效于由\@Entry装饰的、作为[router路由](../js-apis-router.md)页面存在的自定义组件。当之前存在于路由栈中的页面，通过[单实例模式](../js-apis-router.md#routermode9)移动到栈顶时触发该回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型     |              说明         |
+|-------|----------|---------------------------|
+| param | ESObject | 路由跳转时传递到目标页面的数据。|
+
+```ts
+// pages/Index.ets
+import { router } from '@kit.ArkUI';
+
+export class routerParam {
+  msg: string = '__NA__';
+
+  constructor(msg: string) {
+    this.msg = msg;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  aboutToAppear(): void {
+    console.log('onNewParam', 'Index aboutToAppear');
+  }
+
+  onNewParam(param: ESObject) {
+    console.log('onNewParam', 'Index onNewParam, param: ' + JSON.stringify(param));
+  }
+
+  build() {
+    Column() {
+      Button('push pageOne Standard')
+        .margin(10)
+        .onClick(() => {
+          this.getUIContext().getRouter().pushUrl({
+            url: 'pages/PageOne',
+            params: new routerParam('push pageOne Standard')
+          }, router.RouterMode.Standard);
+        })
+      Button('push pageOne Single')
+        .margin(10)
+        .onClick(() => {
+          this.getUIContext().getRouter().pushUrl({
+            url: 'pages/PageOne',
+            params: new routerParam('push pageOne Single')
+          }, router.RouterMode.Single)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+```ts
+// pages/PageOne.ets
+import { router } from '@kit.ArkUI';
+import { routerParam } from './Index';
+
+@Entry
+@Component
+struct PageOne {
+  aboutToAppear(): void {
+    console.log('onNewParam', 'PageOne aboutToAppear');
+  }
+
+  onNewParam(param: ESObject) {
+    console.log('onNewParam', 'PageOne onNewParam, param: ' + JSON.stringify(param));
+  }
+
+  build() {
+    Column() {
+      Button('push Index Standard')
+        .margin(10)
+        .onClick(() => {
+          this.getUIContext().getRouter().pushUrl({
+            url: 'pages/Index',
+            params: new routerParam('push Index Standard')
+          }, router.RouterMode.Standard);
+        })
+      Button('push Index Single')
+        .margin(10)
+        .onClick(() => {
+          this.getUIContext().getRouter().pushUrl({
+            url: 'pages/Index',
+            params: new routerParam('push Index Single')
+          }, router.RouterMode.Single)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
 ## aboutToReuse<sup>10+</sup>
 
 aboutToReuse?(params: { [key: string]: unknown }): void
@@ -175,7 +279,7 @@ struct Child {
 }
 ```
 
-## aboutToReuse<sup>16+</sup>
+## aboutToReuse<sup>18+</sup>
 
 aboutToReuse?(): void
 
@@ -183,7 +287,7 @@ aboutToReuse?(): void
 
 详细内容请参考[\@ReusableV2](../../../quick-start/arkts-new-reusableV2.md)。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -293,7 +397,7 @@ onWillApplyTheme函数用于获取当前组件上下文的Theme对象，在创�
 
 > **说明：**
 >
-> 从API version 16开始，该接口支持在状态管理V2组件中使用。
+> 从API version 18开始，该接口支持在状态管理V2组件中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

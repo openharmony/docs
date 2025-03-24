@@ -52,7 +52,7 @@ import { uri } from '@kit.ArkTS';
 将URI格式进一步细化可分为：
 [scheme:][//[user-info@]host[:port]][path][?query][#fragment]。
 
-- scheme: 协议名，与scheme-specific-part以：进行分隔，包含scheme部分的URI为绝对URI，不包含scheme部分的URI为相对URI，根据需要填写。例如http、https、ftp、datashare等。
+- scheme: 协议名，与scheme-specific-part以:进行分隔，包含scheme部分的URI为绝对URI，不包含scheme部分的URI为相对URI，根据需要填写。例如http、https、ftp、datashare等。
 - scheme-specific-part: URI的特定解码方案特定部分，位于[scheme:]和[#fragment]之间由[//][authority][path][?query]组成，此部分以/开头的为分层URI，不以/开头的为不透明URI，根据需要填写。
     - authority: URI的解码权限组件部分。由[userinfo@]host[:port]组成，根据需要填写。
         - userinfo: 用户信息，与host通过@进行分隔，根据需要填写。
@@ -606,7 +606,7 @@ getBooleanQueryValue(key:string,defaultValue:boolean): boolean
 | 参数名       | 类型    | 必填 | 说明                                  |
 | ------------ | ------- | ---- | ------------------------------------- |
 | key          | string  | 是   | 要获取的查询参数的名称。               |
-| defaultValue | boolean | 是   | 返回的默认值。 |
+| defaultValue | boolean | 是   | 设置查询参数中未包含指定键时返回的默认值。 |
 
 **返回值：**
 
@@ -633,6 +633,8 @@ const uriInstance2 = new uri.URI("https://www.test.com/search?active=aa&active=f
 console.info(`${uriInstance2.getBooleanQueryValue("active", false)}`); // true
 const uriInstance3 = new uri.URI("https://www.test.com/search?active=0");
 console.info(`${uriInstance3.getBooleanQueryValue("active", true)}`); // false
+const uriInstance4 = new uri.URI("https://www.test.com/search");
+console.info(`${uriInstance4.getBooleanQueryValue("active", true)}`); // true
 ```
 
 ### clearQuery<sup>12+</sup>

@@ -1,6 +1,6 @@
 # @ohos.ai.mindSporeLite (端侧AI框架)
 
-MindSpore Lite 是一个轻量化、高性能的端侧AI引擎，提供了标准的模型推理和训练接口，内置通用硬件高性能算子库，原生支持Neural Network Runtime Kit使能AI专用芯片加速推理，助力打造全场景智能应用。
+MindSpore Lite是一个轻量化、高性能的端侧AI引擎，提供了标准的模型推理和训练接口，内置通用硬件高性能算子库，支持Neural Network Runtime Kit使能AI专用芯片加速推理，助力打造全场景智能应用。
 
 本模块主要介绍MindSpore Lite AI引擎支持模型端侧推理/训练的相关能力。
 
@@ -679,8 +679,8 @@ cfg.optimizationLevel = mindSporeLite.OptimizationLevel.O0;
 | 名称 | 值   | 说明                                                       |
 | ---- | ---- | ---------------------------------------------------------- |
 | O0   | 0    | 无优化等级。                                               |
-| O2   | 2    | 将网络转换为float16, 保持批量归一化层和损失函数为float32。 |
-| O3   | 3    | 将网络转换为float16, 包括批量归一化层。                    |
+| O2   | 2    | 将网络转换为float16，保持批量归一化层和损失函数为float32。 |
+| O3   | 3    | 将网络转换为float16，包括批量归一化层。                    |
 | AUTO | 4    | 根据设备选择优化等级。                                     |
 
 
@@ -1052,7 +1052,7 @@ mindSporeLite.loadTrainModelFromFile(modelFile).then((mindSporeLiteModel: mindSp
 
 ### exportWeightsCollaborateWithMicro<sup>12+</sup>
 
-exportWeightsCollaborateWithMicro(weightFile: string, isInference?: boolean, enableFp16?: boolean, changeableWeightsName?: string[]): boolean;
+exportWeightsCollaborateWithMicro(weightFile: string, isInference?: boolean, enableFp16?: boolean, changeableWeightsName?: string[]): boolean
 
 导出供**micro推理**使用的模型权重，仅用于端侧训练。
 
@@ -1065,7 +1065,7 @@ exportWeightsCollaborateWithMicro(weightFile: string, isInference?: boolean, ena
 | 参数名                | 类型     | 必填 | 说明                                                         |
 | --------------------- | -------- | ---- | ------------------------------------------------------------ |
 | weightFile            | string   | 是   | 权重文件路径。                                               |
-| isInference           | boolean  | 否   | 是否从推理模型中导出权重。true表示从推理模型中导出权重，目前只支持`true`，默认为true。 |
+| isInference           | boolean  | 否   | 是否从推理模型中导出权重。true表示从推理模型中导出权重，目前只支持true，默认为true。 |
 | enableFp16            | boolean  | 否   | 浮点权重是否以float16格式保存。true表示以float16格式保存，false表示不以float16格式保存。默认为false。 |
 | changeableWeightsName | string[] | 否   | 设置可变权重的名称。默认为空字符串数组。                     |
 

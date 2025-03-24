@@ -310,7 +310,7 @@ export default function HuksAsUserTest() {
 
 attestKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<HuksReturnResult>
 
-指定用户身份获取密钥证书，使用Promise方式异步返回结果 。
+指定用户身份获取密钥证书，使用Promise方式异步返回结果。
 
 **需要权限**：ohos.permission.ATTEST_KEY, ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS 必须同时拥有两个权限。
 
@@ -437,9 +437,9 @@ async function LetKeyAttest(keyAlias: string, keyOptions: Array<huks.HuksParam>)
   console.info('开始attest')
   await huks.attestKeyItemAsUser(userId, keyAlias, attestOptions).then((data) => {
     console.info('attestation ok!')
-    console.debug(`拿到的证书链是${JSON.stringify(data)}`) // 这里是调试信息，实际业务功能开发无需打印证书链
+    console.debug(`拿到的证书链是${JSON.stringify(data)}`) // 这里是调试信息，实际业务功能开发无需打印证书链。
     for (let i = 0; data?.certChains?.length && i < data?.certChains?.length; ++i) {
-      console.debug(`证书${i}是${data.certChains[i]}`) // 这里是调试信息，实际业务功能开发无需打印证书链
+      console.debug(`证书${i}是${data.certChains[i]}`) // 这里是调试信息，实际业务功能开发无需打印证书链。
     }
     console.info("attest 成功")
   }).catch((err: BusinessError) => {
@@ -1506,7 +1506,7 @@ export default function HuksAsUserTest() {
 
 hasKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<boolean>
 
-指定用户身份判断密钥是否存在，使用Promise回调异步返回结果 。
+指定用户身份判断密钥是否存在，使用Promise回调异步返回结果。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 

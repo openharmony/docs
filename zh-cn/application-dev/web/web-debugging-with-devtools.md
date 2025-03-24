@@ -86,7 +86,11 @@ Web组件支持使用DevTools工具调试前端页面。DevTools是一个 Web前
      (2) 应用使用Web组件加载了网页。
 
 2. 将查询到的domain socket转发至电脑的TCP 9222端口。  
-   退出hdc shell，在命令行里执行如下命令转发端口。
+   执行exit退出hdc shell。
+   ```shell
+   exit
+   ```
+   在命令行里执行如下命令转发端口。
    ```shell
    hdc fport tcp:9222 localabstract:webview_devtools_remote_38532
    ```
@@ -207,6 +211,7 @@ Web组件支持使用DevTools工具调试前端页面。DevTools是一个 Web前
    ```
 ### Linux或Mac平台
 请复制以下信息建立sh文件，注意chmod以及格式转换，开启调试应用后执行。
+本脚本会先删除所有的端口转发，如果有其他的工具(如：DevEco Studio)也在使用端口转发功能，会受到影响。
    ```
    #!/bin/bash
 

@@ -38,11 +38,11 @@ MovingPhotoView(options: MovingPhotoViewOptions)
 | ----------- | ------------------------------------------------------------------------------------------------ | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | movingPhoto | [MovingPhoto](js-apis-photoAccessHelper.md#movingphoto12) | 是   | 支持媒体库MovingPhoto数据源，具体信息详见[MovingPhoto说明](js-apis-photoAccessHelper.md#movingphoto12)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | controller  | [MovingPhotoViewController](#movingphotoviewcontroller)                                          | 否   | 设置动态照片控制器，可以控制动态照片的播放状态。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                      |
-| imageAIOptions<sup>16+</sup>  | [ImageAIOptions](../apis-arkui/arkui-ts/ts-image-common.md#imageaioptions) | 否   | 设置动态照片AI分析选项，可配置分析类型或绑定一个分析控制器。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| imageAIOptions<sup>18+</sup>   | [ImageAIOptions](../apis-arkui/arkui-ts/ts-image-common.md#imageaioptions) | 否   | 设置动态照片AI分析选项，可配置分析类型或绑定一个分析控制器。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## 属性
 
-除支持[通用属性](../apis-arkui/arkui-ts/ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](../apis-arkui/arkui-ts/ts-component-general-attributes.md)外，还支持以下属性：
 
 ### muted
 
@@ -59,7 +59,7 @@ muted(isMuted: boolean)
 
 | 参数名  | 类型    | 必填 | 说明                         |
 | ------- | ------- | ---- | ---------------------------- |
-| isMuted | boolean | 是   | 是否静音。<br/>默认值：false<br/>false：非静音<br/>true：静音|
+| isMuted | boolean | 是   | 是否静音。<br/>默认值：false。<br/>false：非静音。<br/>true：静音。|
 
 ### objectFit
 
@@ -76,7 +76,7 @@ objectFit(value: ImageFit)
 
 | 参数名 | 类型                                                                          | 必填 | 说明                             |
 | ------ | ----------------------------------------------------------------------------- | ---- | -------------------------------- |
-| value  | [ImageFit](../apis-arkui/arkui-ts/ts-appendix-enums.md#imagefit) | 是   | 视频显示模式。<br/>默认值：Cover |
+| value  | [ImageFit](../apis-arkui/arkui-ts/ts-appendix-enums.md#imagefit) | 是   | 视频显示模式。<br/>默认值：Cover。 |
 
 ### autoPlayPeriod<sup>13+</sup>
 
@@ -95,8 +95,8 @@ autoPlayPeriod(startTime: number, endTime: number)
 
 | 参数名  | 类型    | 必填 | 说明                         |
 | ------- | ------- | ---- | ---------------------------- |
-| startTime| number| 是   | 区间播放开始时间，单位：ms。<br/>取值范围：大于等于0|
-| endTime| number| 是   | 区间播放结束时间，单位：ms。<br/>取值范围：大于startTime |
+| startTime| number| 是   | 区间播放开始时间，单位：ms。<br/>取值范围：大于等于0。|
+| endTime| number| 是   | 区间播放结束时间，单位：ms。<br/>取值范围：大于startTime。 |
 
 ### autoPlay<sup>13+</sup>
 
@@ -113,7 +113,7 @@ autoPlay(isAutoPlay: boolean)
 
 | 参数名  | 类型    | 必填 | 说明                         |
 | ------- | ------- | ---- | ---------------------------- |
-| isAutoPlay| boolean| 是   | 是否自动播放。<br/>false：不自动播放<br/>true：自动播放<br/>默认值：false|
+| isAutoPlay| boolean| 是   | 是否自动播放。<br/>false：不自动播放。<br/>true：自动播放。<br/>默认值：false。|
 
 ### repeatPlay<sup>13+</sup>
 
@@ -130,15 +130,15 @@ repeatPlay(isRepeatPlay: boolean)
 
 | 参数名  | 类型    | 必填 | 说明                         |
 | ------- | ------- | ---- | ---------------------------- |
-| isRepeatPlay| boolean| 是   | 是否循环播放。<br/>false：不循环播放<br/>true：循环播放<br/>默认值：false|
+| isRepeatPlay| boolean| 是   | 是否循环播放。<br/>false：不循环播放。<br/>true：循环播放。<br/>默认值：false|
 
-### enableAnalyzer<sup>16+</sup>
+### enableAnalyzer<sup>18+</sup> 
 
 enableAnalyzer(enabled: boolean)
 
 设置该图片是否支持AI分析，当前支持主体识别、文字识别和对象查找等功能。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -147,11 +147,11 @@ enableAnalyzer(enabled: boolean)
 
 | 参数名  | 类型    | 必填 | 说明                         |
 | ------- | ------- | ---- | ---------------------------- |
-| enabled| boolean| 是   | 是否开启AI分析。<br/>false：不开启AI分析<br/>true：开启AI分析<br/>默认值：true|
+| enabled| boolean| 是   | 是否开启AI分析。<br/>。false：不开启AI分析。<br/>true：开启AI分析。<br/>默认值：true|
 
 ## 事件
 
-除支持[通用事件](../apis-arkui/arkui-ts/ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](../apis-arkui/arkui-ts/ts-component-general-events.md)外，还支持以下事件：
 
 ### onComplete<sup>13+</sup>
 
@@ -285,13 +285,13 @@ stopPlayback(): void
 
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-### refreshMovingPhoto<sup>16+</sup>
+### refreshMovingPhoto<sup>18+</sup> 
 
 refreshMovingPhoto(): void
 
 强制刷新动态照片组件加载的视频和图片资源，会打断组件当前的行为，使用时要谨慎。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -603,7 +603,7 @@ let context = getContext(this)
 let data: photoAccessHelper.MovingPhoto
 async function loading() {
   try {
-    // 需要确保imageFileUri和videoFileUri对应的资源在应用沙箱存在
+    // 需要确保imageFileUri和videoFileUri对应的资源在应用沙箱存在。
     let imageFileUri = 'file://{bundleName}/data/storage/el2/base/haps/entry/files/xxx.jpg';
     let videoFileUri = 'file://{bundleName}/data/storage/el2/base/haps/entry/files/xxx.mp4';
     data = await photoAccessHelper.MediaAssetManager.loadMovingPhoto(context, imageFileUri, videoFileUri);

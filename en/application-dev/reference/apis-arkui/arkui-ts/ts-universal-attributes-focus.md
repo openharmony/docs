@@ -42,8 +42,8 @@ Sets the Tab order of the component in sequential focus navigation with the **Ta
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| index  | number | Yes  | Tab order of the component in sequential focus navigation with the **Tab** key. When components with positive **tabIndex** values are present, only these components are reachable through sequential focus navigation, and they are navigated cyclically in ascending order based on the **tabIndex** value. When components with positive **tabIndex** values are not present, those components with a **tabIndex** value of **0** are navigated based on the preset focus navigation rule.<br>**tabIndex** is not yet compatible with [UiExtension](../js-apis-arkui-uiExtension.md) component. As such, using **tabIndex** on a page that contains [UiExtension](../js-apis-arkui-uiExtension.md) may lead to disordered focus navigation.<br>- **tabIndex** >= 0: The component is focusable and can be reached through sequential keyboard navigation.<br>- **tabIndex** < 0 (usually **tabIndex** = -1): The component is focusable, but cannot be reached through sequential keyboard navigation.<br>Default value: **0**<br> **NOTE**<br> **tabIndex** and **focusScopeId** cannot be used together.
-|
+| index  | number | Yes  | Tab order of the component in sequential focus navigation with the **Tab** key. When components with positive **tabIndex** values are present, only these components are reachable through sequential focus navigation, and they are navigated cyclically in ascending order based on the **tabIndex** value. When components with positive **tabIndex** values are not present, those components with a **tabIndex** value of **0** are navigated based on the preset focus navigation rule.<br>**tabIndex** is not yet compatible with [UiExtension](../js-apis-arkui-uiExtension.md) component. As such, using **tabIndex** on a page that contains [UiExtension](../js-apis-arkui-uiExtension.md) may lead to disordered focus navigation.<br>- **tabIndex** >= 0: The component is focusable and can be reached through sequential keyboard navigation.<br>- **tabIndex** < 0 (usually **tabIndex** = -1): The component is focusable, but cannot be reached through sequential keyboard navigation.<br>Default value: **0**<br> **NOTE**<br> **tabIndex** and **focusScopeId** cannot be used together.|
+
 
 ## defaultFocus<sup>9+</sup>
 
@@ -179,6 +179,19 @@ Sets the focus priority of this component in a specified container. It must be u
 | PRIOR | Priority that indicates the component is prioritized in the container. This level is higher than **AUTO**.|
 | PREVIOUS | Priority of a previously focused node in the container. This level is higher than **PRIOR**.|
 
+### KeyProcessingMode<sup>15+</sup>
+
+Enumerates the modes for processing key events.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Value   | Description       |
+| -----------| ----------- | --------- |
+| FOCUS_NAVIGATION  | 0 | Default value. When the current component does not consume the key event, focus navigation using the **Tab** and arrow keys preferentially stays within the current container.|
+| ANCESTOR_EVENT  | 1  |  When the current component does not consume the key event, focus navigation using the **Tab** and arrow keys is bubbled up to the parent component.|
+
 ## focusScopeId<sup>12+</sup>
 
 focusScopeId(id: string, isGroup?: boolean)
@@ -226,13 +239,46 @@ Sets whether this container component is a focus stop. During focus traversal, t
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| isTabStop  | boolean | Yes  | Whether the current container component is a focus stop.<br>**NOTE**<br>1. To configure **tabStop**, make sure the component is a container and has focusable child components. By default, container components cannot directly gain focus.<br> 2. When [requestFocus](../js-apis-arkui-UIContext.md#requestfocus12) is used for requesting focus, if the component is a container and **tabStop** is configured, the focus can stop at the container. If **tabStop** is not configured, the component can still gain focus, even if there are other components in the focus chain with **tabStop** configured.<br>3. Containers with **tabStop** configured should not be nested more than two levels deep.<br>Focus traversal rules with **tabStop**:<br>1. During focus traversal using the **Tab** key or arrow keys, the focus stops at components with **tabStop** configured. If the focus is inside a container with **tabStop** configured, it can move to the next focusable component within the container. If the focus is outside such a container, it can move to the next focusable component outside the container.<br>2. When the focus is on a container with **tabStop** configured, pressing **Enter** will move the focus to the first focusable component inside the container. Pressing **ESC** will move the focus back to the previous component with **tabStop** configured, not exceeding the current level of the page root container. Pressing the spacebar will trigger the **onClick** event of the container.<br>3. Whenever possible, avoid configuring **tabStop** on the root container. If **tabStop** is configured on the root container, the following behaviors will occur:<br>- Using [clearFocus](../js-apis-arkui-UIContext.md#clearfocus12) to clear the focus to the root container and then pressing **Enter** will return to the previously focused component inside the root container.<br>Using **ESC** to clear the focus to the root container and then pressing **Enter** will move the focus to the first focusable component inside the root container.|
+| isTabStop  | boolean | Yes  | Whether the current container component is a focus stop.<br>**NOTE**<br>1. To configure **tabStop**, make sure the component is a container and has focusable child components. By default, container components cannot directly gain focus.<br> 2. When [requestFocus](../js-apis-arkui-UIContext.md#requestfocus12) is used for requesting focus, if the component is a container and **tabStop** is configured, the focus can stop at the container. If **tabStop** is not configured, the component can still gain focus, even if there are other components in the focus chain with **tabStop** configured.<br>3. Containers with **tabStop** configured should not be nested more than two levels deep.<br>Focus traversal rules with **tabStop**:<br>1. During focus traversal using the **Tab** key or arrow keys, the focus stops at components with **tabStop** configured. If the focus is inside a container with **tabStop** configured, it can move to the next focusable component within the container. If the focus is outside such a container, it can move to the next focusable component outside the container.<br>2. When the focus is on a container with **tabStop** configured, pressing **Enter** moves the focus to the first focusable component inside the container. Pressing **ESC** moves the focus back to the previous component with **tabStop** configured, without exceeding the current level of the page root container. Pressing the spacebar triggers the **onClick** event of the container.<br>3. Whenever possible, avoid configuring **tabStop** on the root container. If **tabStop** is configured on the root container, the following behaviors will occur:<br>- Using [clearFocus](../js-apis-arkui-UIContext.md#clearfocus12) to clear the focus to the root container and then pressing **Enter** will move the focus to the previously focused component inside the root container.<br>- Using **ESC** to clear the focus to the root container and then pressing **Enter** will move the focus to the first focusable component inside the root container.|
 
 **Example for describing the keys and focusable components during focus traversal**
 
 ![tabStop](figures/tabStop.png)
 
 If the current focus is on **button2**, pressing the **Tab** key will move the focus to **Column3**. Pressing the **Tab** key again will move the focus back to **button1**.
+
+## nextFocus<sup>16+</sup>
+
+nextFocus(nextStep: Optional\<FocusMovement>): T
+
+Sets the custom focus movement logic for the component.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| nextStep  | [FocusMovement](#focusmovement16) | No| Custom focus movement logic of the component.<br>**NOTE**<br>The default value resets **nextStep** to empty.<br>If custom focus movement is not set or the specified component does not exist, the default focus movement logic applies.|
+
+## FocusMovement<sup>16+</sup>
+
+Sets the target component for focus movement based on key presses. If it is not specified, the default focus movement logic applies.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type| Read-Only/Optional| Description|
+| ---- | ---- | ---- | ---- |
+| forward  | string | Optional| ID of the component to focus on when the **Tab** key is pressed.<br>The default value resets **forward** to empty.|
+| backward  | string | Optional| ID of the component to focus on when **Shift+Tab** is pressed.<br>The default value resets **backward** to empty.|
+| up  | string | Optional| ID of the component to focus on when the up arrow key is pressed.<br>The default value resets **up** to empty.|
+| down  | string | Optional| ID of the component to focus on when the down arrow key is pressed.<br>The default value resets **down** to empty.|
+| left  | string | Optional| ID of the component to focus on when the left arrow key is pressed.<br>The default value resets **left** to empty.|
+| right  | string | Optional| ID of the component to focus on when the right arrow key is pressed.<br>The default value resets **right** to empty.|
 
 ## Example
 
@@ -562,7 +608,7 @@ struct FocusableExample {
                 .width(80)
                 .height(40)
                 .fontColor(Color.White)
-                .focusScopePriority('ColumnScope1', FocusPriority.PRIOR) // Focuses when Column1 first gains focus.
+                .focusScopePriority('ColumnScope1', FocusPriority.PRIOR) // Focus when Column1 first gains focus.
             }
             Row({ space: 5 }) {
               Button()
@@ -653,7 +699,7 @@ struct TabStop {
               .width(200).height(70).fontColor(Color.White)
               .focusBox({
                 margin: LengthMetrics.px(20),
-                strokeColor: ColorMetrics.rgba(255, 0, 0),
+                strokeColor: ColorMetrics.rgba(23, 169, 141),
                 strokeWidth: LengthMetrics.px(10)
               })
           }
@@ -662,7 +708,7 @@ struct TabStop {
               .width(200).height(70).fontColor(Color.White)
               .focusBox({
                 margin: LengthMetrics.px(20),
-                strokeColor: ColorMetrics.rgba(255, 0, 0),
+                strokeColor: ColorMetrics.rgba(23, 169, 141),
                 strokeWidth: LengthMetrics.px(10)
               })
           }
@@ -677,7 +723,7 @@ struct TabStop {
               .fontColor(Color.White)
               .focusBox({
                 margin: LengthMetrics.px(20),
-                strokeColor: ColorMetrics.rgba(255, 0, 0),
+                strokeColor: ColorMetrics.rgba(23, 169, 141),
                 strokeWidth: LengthMetrics.px(10)
               })
               .margin({ top: 15 })
@@ -690,7 +736,7 @@ struct TabStop {
         .tabStop(true)
         .focusBox({
           margin: LengthMetrics.px(20),
-          strokeColor: ColorMetrics.rgba(255, 0, 0),
+          strokeColor: ColorMetrics.rgba(23, 169, 141),
           strokeWidth: LengthMetrics.px(10)
         })
         .borderWidth(1)
@@ -701,14 +747,72 @@ struct TabStop {
 ```
 Diagrams:
 
-When the **Tab** key is pressed twice in succession, the focus is on the second child component.
-
-![tabStop1](figures/tabStop1.png)
-
-After the **Tab** key is pressed again, the focus moves to the component configured with **tabStop**.
+Pressing **Tab** twice moves the focus to **button2**.
 
 ![tabStop2](figures/tabStop2.png)
 
-After the **Tab** key is pressed once more, the focus loops back to the first child component.
+Pressing **Tab** again moves the focus to the component configured with **tabStop**.
 
 ![tabStop3](figures/tabStop3.png)
+
+Pressing **Enter** moves the focus to **button3**.
+
+![tabStop4](figures/tabStop4.png)
+
+Pressing **ESC** again moves the focus to the component configured with **tabStop**.
+
+![tabStop3](figures/tabStop3.png)
+
+Pressing **Tab** moves the focus back to **button1**.
+
+![tabStop1](figures/tabStop1.png)
+
+### Example 6: Setting Custom Focus Movement
+
+This example demonstrates how to implement custom focus movement logic using the **nextFocus** API.
+Without **nextFocus** configured, the default focus navigation order using the **Tab** key is as follows: M -> A -> B -> C. After **nextFocus** is configured, the order changes to the following: M -> D -> F -> B.
+
+```ts
+class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
+  applyNormalAttribute(instance: ButtonAttribute): void {
+    instance.id('M')
+    instance.nextFocus({forward: 'D', up: 'C', down: 'D'})
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State modifier: MyButtonModifier = new MyButtonModifier()
+  @State idList: string[] = ['A', 'B', 'C', 'D', 'E', 'F']
+
+  build() {
+    Column({space: 10}) {
+      Row({space: 10}) {
+        Button("id: M")
+          .attributeModifier(this.modifier)
+        Button("id: " + this.idList[0])
+          .id(this.idList[0])
+          .nextFocus({forward: 'C', backward: 'M', up: 'E', right: 'F', down: 'B', left: 'D'});
+        Button("id: " + this.idList[1])
+          .id(this.idList[1])
+      }
+      Column({space: 10}) {
+        Button("id: " + this.idList[2])
+          .id(this.idList[2]);
+        Button("id: " + this.idList[3])
+          .id(this.idList[3])
+          .nextFocus({forward: 'F'});
+      }
+      Row({space: 10}) {
+        Button("id: " + this.idList[4])
+          .id(this.idList[4]);
+        Button("id: " + this.idList[5])
+          .id(this.idList[5])
+          .nextFocus({forward: 'B'});
+      }
+    }
+  }
+}
+```
+![focusBox](figures/nextStep.gif)

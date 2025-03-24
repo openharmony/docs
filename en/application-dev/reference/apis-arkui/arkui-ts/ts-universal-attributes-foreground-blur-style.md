@@ -23,13 +23,13 @@ Applies a foreground blur style to the component.
 | value   | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | Yes  | Settings of the foreground blur style.          |
 | options | [ForegroundBlurStyleOptions](#foregroundblurstyleoptions) | No  | Foreground blur options.|
 
-## foregroundBlurStyle<sup>16+</sup>
+## foregroundBlurStyle<sup>18+</sup>
 
 foregroundBlurStyle(style: Optional\<BlurStyle>, options?: ForegroundBlurStyleOptions)
 
 Applies a foreground blur style to the component. Compared to [foregroundBlurStyle](#foregroundblurstyle), the **style** parameter supports the **undefined** type.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -47,6 +47,8 @@ Inherited from [BlurStyleOptions](#blurstyleoptions).
 
 ## BlurStyleOptions
 
+Defines the background blur options.
+
 | Name                       | Type                                               | Mandatory| Description                                                        |
 | --------------------------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | colorMode     | [ThemeColorMode](ts-container-with-theme.md#themecolormode10) | No  | Color mode used for the foreground blur.<br>Default value: **ThemeColorMode.SYSTEM**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -55,6 +57,8 @@ Inherited from [BlurStyleOptions](#blurstyleoptions).
 | scale<sup>12+</sup> | number   | No  | Foreground blur scale.<br>Default value: **1.0**<br>Value range: [0.0, 1.0]<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## AdaptiveColor<sup>10+</sup>
+
+Enumerates the adaptive color modes used for the background blur effect.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -92,7 +96,8 @@ struct ForegroundBlurStyleDemo {
       Image($r('app.media.bg'))
         .width(300)
         .height(350)
-        .foregroundBlurStyle(BlurStyle.Thin, { colorMode: ThemeColorMode.LIGHT, adaptiveColor: AdaptiveColor.DEFAULT, scale: 1.0 })
+        .foregroundBlurStyle(BlurStyle.Thin,
+          { colorMode: ThemeColorMode.LIGHT, adaptiveColor: AdaptiveColor.DEFAULT, scale: 1.0 })
     }
     .height('100%')
     .width('100%')

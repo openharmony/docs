@@ -44,7 +44,7 @@ CheckboxGroup(options?: CheckboxGroupOptions)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### selectAll
 
@@ -62,11 +62,11 @@ selectAll(value: boolean)
 
 **参数：** 
 
-| 参数名 | 类型    | 必填 | 说明                         |
-| ------ | ------- | ---- | ---------------------------- |
-| value  | boolean | 是   | 是否全选。<br/>默认值：false |
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 是否全选。<br/>默认值：false<br/>值为true时，多选框群组都被选中。值为false时，多选框群组都不被选中。 |
 
-### selectAll<sup>16+</sup>
+### selectAll<sup>18+</sup>
 
 selectAll(isAllSelected: Optional\<boolean>)
 
@@ -74,9 +74,9 @@ selectAll(isAllSelected: Optional\<boolean>)
 
 该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -84,7 +84,7 @@ selectAll(isAllSelected: Optional\<boolean>)
 
 | 参数名        | 类型                                                         | 必填 | 说明                                                         |
 | ------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| isAllSelected | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否全选。<br/>当isAllSelected的值为undefined时，默认值：false |
+| isAllSelected | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否全选。<br/>当isAllSelected的值为undefined时取默认值false。<br/>值为true时，多选框群组都被选中。值为false时，多选框群组都不被选中。 |
 
 ### selectedColor
 
@@ -104,15 +104,15 @@ selectedColor(value: ResourceColor)
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 被选中或部分选中状态的颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_activated')<br/>异常值按照默认值处理。 |
 
-### selectedColor<sup>16+</sup>
+### selectedColor<sup>18+</sup>
 
 selectedColor(resColor: Optional\<ResourceColor>)
 
 设置被选中或部分选中状态的颜色。与[selectedColor](#selectedcolor)相比，resColor参数新增了对undefined类型的支持。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -138,13 +138,13 @@ unselectedColor(value: ResourceColor)
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 非选中状态边框颜色。<br/>默认值：$r('sys.color.ohos_id_color_switch_outline_off')。 |
 
-### unselectedColor<sup>16+</sup>
+### unselectedColor<sup>18+</sup>
 
 unselectedColor(resColor: Optional\<ResourceColor>)
 
 设置非选中状态边框颜色。与[unselectedColor](#unselectedcolor10)<sup>10+</sup>相比，resColor参数新增了对undefined类型的支持。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -170,13 +170,13 @@ mark(value: MarkStyle)
 | ------ | -------------------------------------------- | ---- | -------------------- |
 | value  | [MarkStyle](ts-types.md#markstyle10对象说明) | 是   | 多选框内部图标样式。 |
 
-### mark<sup>16+</sup>
+### mark<sup>18+</sup>
 
 mark(style: Optional\<MarkStyle>)
 
 设置多选框内部图标样式。与[mark](#mark10)<sup>10+</sup>相比，style参数新增了对undefined类型的支持。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -204,15 +204,15 @@ checkboxShape(value: CheckBoxShape)
 | ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [CheckBoxShape](ts-appendix-enums.md#checkboxshape11) | 是   | 设置CheckboxGroup组件形状， 包括圆形和圆角方形。<br/>默认值:CheckBoxShape.CIRCLE。 <br />**说明**：<br/>CheckboxGroup组件形状按照设置显示。<br/>CheckboxGroup内所有没有单独设置shape类型的Checkbox形状和CheckboxGroup的保持一致。<br/>CheckboxGroup内有单独设置shape类型的Checkbox形状则优先于CheckboxGroup，按照设置形状显示。 |
 
-### checkboxShape<sup>16+</sup>
+### checkboxShape<sup>18+</sup>
 
 checkboxShape(shape: Optional\<CheckBoxShape>)
 
 设置CheckboxGroup组件形状， 包括圆形和圆角方形。与[checkboxShape](#checkboxshape12)<sup>12+</sup>相比，shape参数新增了对undefined类型的支持。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -224,7 +224,7 @@ checkboxShape(shape: Optional\<CheckBoxShape>)
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onChange
 
@@ -242,17 +242,17 @@ CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化�
 
 | 参数名   | 类型                                                         | 必填 | 说明               |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
-| callback | [OnCheckboxGroupChangeCallback](#oncheckboxgroupchangecallback16) | 是   | 多选框群组的信息。 |
+| callback | [OnCheckboxGroupChangeCallback](#oncheckboxgroupchangecallback18) | 是   | 多选框群组的信息。 |
 
-### onChange<sup>16+</sup>
+### onChange<sup>18+</sup>
 
 onChange(callback: Optional\<OnCheckboxGroupChangeCallback>)
 
 CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化时，触发回调。与[onChange](#onchange)相比，callback参数新增了对undefined类型的支持。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -260,17 +260,17 @@ CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化�
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnCheckboxGroupChangeCallback](#oncheckboxgroupchangecallback16)> | 是   | 多选框群组的信息。<br/>当callback的值为undefined时，不使用回调函数。 |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnCheckboxGroupChangeCallback](#oncheckboxgroupchangecallback18)> | 是   | 多选框群组的信息。<br/>当callback的值为undefined时，不使用回调函数。 |
 
-## OnCheckboxGroupChangeCallback<sup>16+</sup>
+## OnCheckboxGroupChangeCallback<sup>18+</sup>
 
 type OnCheckboxGroupChangeCallback  = (value: CheckboxGroupResult) => void
 
 多选框群组的信息。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

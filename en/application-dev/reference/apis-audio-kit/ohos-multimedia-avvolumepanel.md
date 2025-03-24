@@ -9,7 +9,9 @@ An application cannot directly adjust the system volume. However, it can invoke 
 >
 > - The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The sample effect is subject to the real device in use. Currently, DevEco Studio Previewer cannot display the actual volume or adjust the volume.
-> <!--RP1--><!--RP1End-->
+> - **Device restrictions**
+>   - Currently, this module cannot be used on 2-in-1 devices.
+>   - On wearable devices, the module can be used to adjust the system volume, but no UI is displayed. You need to design the UI by yourself.
 
 ## Modules to Import
 
@@ -18,7 +20,7 @@ import { AVVolumePanel } from '@kit.AudioKit';
 ```
 ## Attributes
 
-The [universal attributes](../apis-arkui/arkui-ts/ts-universal-attributes-size.md) are supported.
+The [universal attributes](../apis-arkui/arkui-ts/ts-component-general-attributes.md) are supported.
 
 ## AVVolumePanel
 
@@ -32,7 +34,7 @@ Volume panel, which can be used to display the volume adjustment panel in your a
 
 ## Attributes
 
-In addition to the [universal attributes](../apis-arkui/arkui-ts/ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](../apis-arkui/arkui-ts/ts-component-general-attributes.md), the following attributes are supported.
 
 **Parameters**
 
@@ -49,7 +51,12 @@ In addition to the [universal attributes](../apis-arkui/arkui-ts/ts-universal-at
 
 ## Events
 
-The [universal events](../apis-arkui/arkui-ts/ts-universal-events-click.md) are supported.
+The [universal events](../apis-arkui/arkui-ts/ts-component-general-events.md) are supported.
+
+## How to Use
+
+1. When customizing the volume bar, you are advised to use the volume change listener of the audio framework to obtain the volume type (**volumeEvent.volumeType**), volume level (**volumeEvent.volume**), and whether to display the volume bar (**volumeEvent.updateUi**). The applications can determine whether to handle the current data and display their custom volume bar. For details, see [Volume Change Callback](js-apis-audio.md#onvolumechange9).
+2. To ensure users are aware of volume changes, applications are not allowed to adjust the volume in the background. The system will take corresponding control measures.
 
 ## Example
 
@@ -81,3 +88,5 @@ struct Index {
   }
 }
 ```
+
+ <!--no_check--> 

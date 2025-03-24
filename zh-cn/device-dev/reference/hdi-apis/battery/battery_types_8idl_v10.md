@@ -28,6 +28,6 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| 名称 | 电池的健康状态。 | 
-| [BatteryHealthState](battery_v10.md#batteryhealthstate) { BATTERY_HEALTH_UNKNOWN = 0, BATTERY_HEALTH_GOOD, BATTERY_HEALTH_OVERHEAT, BATTERY_HEALTH_OVERVOLTAGE,&nbsp;&nbsp;&nbsp;BATTERY_HEALTH_COLD, BATTERY_HEALTH_DEAD, BATTERY_HEALTH_RESERVED } | 电池的充电状态。 | 
-| [BatteryChargeState](battery_v10.md#batterychargestate) { CHARGE_STATE_NONE = 0, CHARGE_STATE_ENABLE, CHARGE_STATE_DISABLE, CHARGE_STATE_FULL, CHARGE_STATE_RESERVED }<br/>[BatteryPluggedType](battery_v10.md#batterypluggedtype) { PLUGGED_TYPE_NONE = 0, PLUGGED_TYPE_AC, PLUGGED_TYPE_USB, PLUGGED_TYPE_WIRELESS,&nbsp;&nbsp;&nbsp;PLUGGED_TYPE_BUTT } | 电池的充电设备类型。 | 
+| [BatteryHealthState](battery_v10.md#batteryhealthstate) { BATTERY_HEALTH_UNKNOWN = 0, BATTERY_HEALTH_GOOD, BATTERY_HEALTH_OVERHEAT, BATTERY_HEALTH_OVERVOLTAGE,&nbsp;&nbsp;&nbsp;BATTERY_HEALTH_COLD, BATTERY_HEALTH_DEAD, BATTERY_HEALTH_RESERVED } | 电池的健康状态。 | 
+| [BatteryChargeState](battery_v10.md#batterychargestate) { CHARGE_STATE_NONE = 0, CHARGE_STATE_ENABLE, CHARGE_STATE_DISABLE, CHARGE_STATE_FULL, CHARGE_STATE_RESERVED } | 电池的充电状态。 | 
+| [BatteryPluggedType](battery_v10.md#batterypluggedtype) { PLUGGED_TYPE_NONE = 0, PLUGGED_TYPE_AC, PLUGGED_TYPE_USB, PLUGGED_TYPE_WIRELESS,&nbsp;&nbsp;&nbsp;PLUGGED_TYPE_BUTT } | 电池的充电设备类型。 | 

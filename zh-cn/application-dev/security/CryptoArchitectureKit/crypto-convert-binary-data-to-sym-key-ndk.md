@@ -1,11 +1,10 @@
 # 指定二进制数据转换对称密钥(C/C++)
 
-
 以3DES和HMAC为例，根据指定的对称密钥二进制数据，生成密钥（OH_CryptoSymKey），即将外部或存储的二进制数据转换为算法库的密钥对象，该对象可用于后续的加解密等操作。
 
 ## 在CMake脚本中链接相关动态库
 ```txt
-   target_link_libraries(entry PUBLIC libohcrypto.so)
+target_link_libraries(entry PUBLIC libohcrypto.so)
 ```
 
 ## 指定二进制数据转换3DES密钥

@@ -20,6 +20,8 @@ This section uses a simple to-do list as an example to introduce the decorators 
 First, start with the most basic static to-do list with no state change or dynamic interaction.
 
 ```ts
+// src/main/ets/pages/1-Basic.ets
+
 @Entry
 @ComponentV2
 struct TodoList {
@@ -43,6 +45,8 @@ After the static to-do list is displayed, it needs to respond to interactions an
 In this example, the **isFinish** property decorated by \@Local is added to indicate whether the task is finished. Two icons, **finished.png** and **unfinished.png**, are provided to display the task status. When a user taps a to-do item, the **isFinish** state is switched to change the icon and add a strikethrough.
 
 ```ts 
+// src/main/ets/pages/2-Local.ets
+
 @Entry
 @ComponentV2
 struct TodoList {
@@ -73,6 +77,8 @@ After the local status of the task is switched, to enhance flexibility of the to
 In this example, each to-do item is abstracted as a **TaskItem** component. The **taskName** attribute decorated by \@Param passes the task name from the parent component **TodoList** so that the **TaskItem** component is flexible and reusable, and can receive and render different task names. After receiving the initial value, the **isFinish** property decorated by \@Param and \@Once can be updated in the child component.
 
 ```ts
+// src/main/ets/pages/3-Param.ets
+
 @ComponentV2
 struct TaskItem {
   @Param taskName: string = '';
@@ -114,6 +120,8 @@ After the task name can be dynamically set, the content of the task list is stil
 In this example, the delete button is added to each task item, and the function of adding a new task is added to the bottom of the task list. When the delete button of the child component **TaskItem** is clicked, the **deleteTask** event is triggered and passed to the parent component **TodoList**. Then the parent component responds and removes the task from the list. By using \@Param and \@Event, the child component can receive data from and pass events back to the parent component to implement two-way data synchronization.
 
 ```ts
+// src/main/ets/pages/4-Event.ets
+
 @ComponentV2
 struct TaskItem {
   @Param taskName: string = '';
@@ -171,9 +179,11 @@ struct TodoList {
 
 As the number of task list items increases after the function of adding or deleting tasks is added, a method for efficiently rendering multiple child components with the same structure is required to improve the performance of the UI. Therefore, the **Repeat** method is introduced to optimize the rendering process of the task list. **Repeat** supports two modes: virtualScroll is applicable to scenarios with a large amount of data. It loads components as required in scrolling containers, greatly saving memory and improving rendering efficiency; non-virtualScroll is applicable to scenarios with a small amount of data. All components are rendered at a time, and only the changed data is updated, avoiding overall re-rendering.
 
-In this example, the non-virtualScroll mode is selected because of few task items. Create an array **tasks**, use the **Repeat** method to iterate each item in the array, and dynamically generate and reuse the **TaskItem** component. When a task is added or deleted, this method can efficiently reuse existing components to avoid rendering repeated components, improving the UI response speed and performance.  
+In this example, the non-virtualScroll mode is selected because of few task items. Create an array **tasks**, use the **Repeat** method to iterate each item in the array, and dynamically generate and reuse the **TaskItem** component. When a task is added or deleted, this method can efficiently reuse existing components to avoid rendering repeated components, improving the UI response speed and performance.
 
 ```ts
+// src/main/ets/pages/5-Repeat.ets
+
 @ComponentV2
 struct TaskItem {
   @Param taskName: string = '';
@@ -235,6 +245,8 @@ After multiple functions are implemented, the management of the task list become
 In this example, **Task** is abstracted as a class and marked by \@ObservedV2. \@Trace is used to mark the **isFinish** property. **Task** is nested in **TaskItem** when the later is nested in the **TodoList** component. In the outermost **TodoList**, the "All finished" and "All unfinished" buttons are added. Each time these buttons are clicked, the **isFinish** property of the innermost **Task** class is directly updated. \@ObservedV2 and \@Trace ensure that the re-render of the corresponding UI component of **isFinish** can be observed, thereby implementing in-depth observation of nested class properties.
 
 ```ts
+// src/main/ets/pages/6-ObservedV2Trace.ets
+
 @ObservedV2
 class Task {
   taskName: string = '';
@@ -322,6 +334,8 @@ Based on the current task list function, some additional functions can be added 
 In this example, \@Monitor is used to listen for the in-depth **isFinish** property of **task** in **TaskItem**. When the task status changes, the **onTasksFinished** callback is invoked to output a log to record the change. In addition, the number of unfinished tasks in the **TodoList** is recorded. Use \@Computed to decorate **tasksUnfinished**. The value is automatically recomputed when the task status changes. The two decorators are used to implement in-depth listening and efficient computation of state variables.
 
 ```ts
+// src/main/ets/pages/7-MonitorComputed.ets
+
 @ObservedV2
 class Task {
   taskName: string = '';
@@ -419,6 +433,8 @@ With continuous enhancement of a to-do list function, an application may involve
 In this example, **SettingAbility** is added to load **SettingPage**. **SettingPage** contains a **Setting** class, in which the **showCompletedTask** property is used to control whether to display finished tasks. Users can switch the option by using a switch. Two abilities share the data through **AppStorageV2** with the key **Setting**, and the corresponding data is of the **Setting** class. When **AppStorageV2** connects to **Setting** for the first time, if no stored data exists, a **Setting** instance whose **showCompletedTask** is **true** is created by default. After you change the settings on the settings page, the task list on the home page is updated accordingly. With **AppStorageV2**, data can be shared across abilities and pages.
 
 ```ts
+// src/main/ets/pages/8-AppStorageV2.ets
+
 import { AppStorageV2 } from '@kit.ArkUI';
 import { common, Want } from '@kit.AbilityKit';
 import { Setting } from './SettingPage';
@@ -503,7 +519,7 @@ struct TodoList {
           .onClick(() => {
             let wantInfo: Want = {
               deviceId: '', // An empty deviceId indicates the local device.
-              bundleName: 'com.example.mvvmv2_new', // Replace it with the bundle name in AppScope/app.json5.
+              bundleName: 'com.samples.statemgmtv2mvvm', // Replace it with the bundle name in AppScope/app.json5.
               abilityName: 'SettingAbility',
             };
             this.context.startAbility(wantInfo);
@@ -568,6 +584,8 @@ To ensure that the user can still view the previous task status when the applica
 In this example, a **TaskList** class is created to persistently store all task information through **PersistenceV2** with the key **TaskList**, and the corresponding data is of the **TaskList** class. When **PersistenceV2** connects to the **TaskList** for the first time, if there is no data, a **TaskList** instance whose array **tasks** is empty by default. In the **aboutToAppear** lifecycle function, if **TaskList** connected to **PersistenceV2** does not store task data, tasks are loaded from the local file **defaultTasks.json** and stored in **PersistenceV2**. After that, the completion status of each task is synchronized to **PersistenceV2**. In this way, even if the application is closed and restarted, all task data remains unchanged, thereby storing application status persistently.
 
 ```ts
+// src/main/ets/pages/9-PersistenceV2.ets
+
 import { AppStorageV2, PersistenceV2, Type } from '@kit.ArkUI';
 import { common, Want } from '@kit.AbilityKit';
 import { Setting } from './SettingPage';
@@ -638,7 +656,7 @@ struct TodoList {
 
   async aboutToAppear() {
     this.taskList = PersistenceV2.connect(TaskList, 'TaskList', () => new TaskList([]))!;
-    if (this.taskList.tasks.length == 0) {
+    if (this.taskList.tasks.length === 0) {
       await this.taskList.loadTasks(this.context);
     }
   }
@@ -676,7 +694,7 @@ struct TodoList {
           .onClick(() => {
             let wantInfo: Want = {
               deviceId: '', // An empty deviceId indicates the local device.
-              bundleName: 'com.example.mvvmv2_new',
+              bundleName: 'com.samples.statemgmtv2mvvm', // Replace it with the bundle name in AppScope/app.json5.
               abilityName: 'SettingAbility',
             };
             this.context.startAbility(wantInfo);
@@ -717,6 +735,8 @@ As application functions gradually expand, some UI elements in the code start to
 In this example, \@Builder is used to define the **ActionButton** method to manage the text, style, and touch events of various buttons in a unified manner, making the code simpler and improving the code maintainability. On this basis, \@Builder adjusts the layout and style, such as spacing, color, and size of the components, to make the to-do list UI more attractive and present a to-do list application with complete functions and a user-friendly UI.
 
 ```ts
+// src/main/ets/pages/10-Builder.ets
+
 import { AppStorageV2, PersistenceV2, Type } from '@kit.ArkUI';
 import { common, Want } from '@kit.AbilityKit';
 import { Setting } from './SettingPage';
@@ -798,7 +818,7 @@ struct TodoList {
 
   async aboutToAppear() {
     this.taskList = PersistenceV2.connect(TaskList, 'TaskList', () => new TaskList([]))!;
-    if (this.taskList.tasks.length == 0) {
+    if (this.taskList.tasks.length === 0) {
       await this.taskList.loadTasks(this.context);
     }
   }
@@ -834,7 +854,7 @@ struct TodoList {
         ActionButton('Settings', (): void => {
           let wantInfo: Want = {
             deviceId: '', // An empty deviceId indicates the local device.
-            bundleName: 'com.example.mvvmv2_new',
+            bundleName: 'com.samples.statemgmtv2mvvm', // Replace it with the bundle name in AppScope/app.json5.
             abilityName: 'SettingAbility',
           };
           this.context.startAbility(wantInfo);
@@ -981,11 +1001,11 @@ export default class TaskListViewModel {
 
   async loadTasks(context: common.UIAbilityContext) {
     let taskList = new TaskListModel([]);
-    await taskList.loadTasks(context)
+    await taskList.loadTasks(context);
     for(let task of taskList.tasks){
       let taskViewModel = new TaskViewModel();
-      taskViewModel.updateTask(task)
-      this.tasks.push(taskViewModel)
+      taskViewModel.updateTask(task);
+      this.tasks.push(taskViewModel);
     }
   }
 
@@ -1115,7 +1135,7 @@ export default struct BottomView {
         ActionButton('Settings', (): void => {
           let wantInfo: Want = {
             deviceId: '', // An empty deviceId indicates the local device.
-            bundleName: 'com.example.mvvmv2_new',
+            bundleName: 'com.samples.statemgmtv2mvvm', // Replace it with the bundle name in AppScope/app.json5.
             abilityName: 'SettingAbility',
           };
           this.context.startAbility(wantInfo);
@@ -1160,7 +1180,7 @@ struct TodoList {
 
   async aboutToAppear() {
     this.taskList = PersistenceV2.connect(TaskListViewModel, 'TaskList', () => new TaskListViewModel())!;
-    if (this.taskList.tasks.length == 0) {
+    if (this.taskList.tasks.length === 0) {
       await this.taskList.loadTasks(this.context);
     }
   }
@@ -1227,4 +1247,7 @@ struct SettingPage {
 ## Summary
 
 This guide uses a simple to-do list application as an example to introduce decorators of V2 and implement the MVVM architecture through code reconstruction. Finally, data, logic, and views are layered to provide a clearer code structure and easier maintenance. Proper use of Model, View, and ViewModel helps efficiently synchronize data with the UI, simplify the development process, and reduce complexity. It is hoped that you can better understand the MVVM mode and flexibly apply it to your application development, thereby improving the development efficiency and code quality.
+
+## Sample Code
+[Complete Source Code](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/StateMgmtV2MVVM/entry)
 

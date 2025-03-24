@@ -298,59 +298,88 @@ cat server.pem \
 
 ```
 
-**各个字段含义:**
+整体、按域名的明文HTTP是否允许的配置例子如下:
+```json
+{
+  "network-security-config": {
+    "base-config": {
+      "cleartextTrafficPermitted": true
+    },
+    "domain-config": [
+      {
+        "domains": [
+          {
+            "include-subdomains": true,
+            "name": "example.com"
+          }
+        ],
+        "cleartextTrafficPermitted": false
+      }
+    ]
+  }
+}
 
-**network-security-config(object:网络安全配置)**
+```
 
-可包含0或者1个base-config
+**各个字段含义。**
 
-必须包含1个domain-config
+**network-security-config(object:网络安全配置)。**
 
-**trust-global-user-ca: 是否信任企业MDM系统或设备管理员用户手动安装的CA证书，默认true**
+可包含0个或者1个base-config。
 
-**trust-current-user-ca: 是否信任当前用户安装的证书，默认true**
+必须包含1个domain-config。
 
-**base-config(object:指示应用程序范围的安全配置)**
+**trust-global-user-ca: 是否信任企业MDM系统或设备管理员用户手动安装的CA证书，默认true。**
 
-必须包含1个trust-anchors
+**trust-current-user-ca: 是否信任当前用户安装的证书，默认true。**
 
-**domain-config(array:指示每个域的安全配置)**
+**base-config(object:指示应用程序范围的安全配置)。**
 
-可以包含任意个item
+必须包含1个trust-anchors。
 
-item必须包含1个domain
+可以包含0个或者1个cleartextTrafficPermitted(boolean:指示整体明文HTTP是否允许，默认为true)。
 
-item可以包含0或者1个trust-anchors
+**domain-config(array:指示每个域的安全配置)。**
 
-item可包含0个或者1个pin-set
+可以包含任意个item。
 
-**trust-anchors(array:受信任的CA)**
+item必须包含1个domain。
 
-可以包含任意个item
+item可以包含0个或者1个trust-anchors。
 
-item必须包含1个certificates(string:CA证书路径)
+item可包含0个或者1个pin-set。
 
-**domain(array:域)**
+item可以包含0个或者1个cleartextTrafficPermitted(boolean:指示按域名的明文HTTP是否允许，默认为true)。
 
-可以包含任意个item
+**trust-anchors(array:受信任的CA)。**
 
-item必须包含1个name(string:指示域名)
+可以包含任意个item。
 
-item可以包含0或者1个include-subdomains(boolean:指示规则是否适用于子域)
+item必须包含1个certificates(string:CA证书路径)。
 
-**pin-set(object:证书PIN设置)**
+**domain(array:域)。**
 
-必须包含1个pin
+可以包含任意个item。
 
-可以包含0或者1个expiration(string:指示证书PIN的过期时间)
+item必须包含1个name(string:指示域名)。
 
-**pin(array:证书PIN)**
+item可以包含0个或者1个include-subdomains(boolean:指示规则是否适用于子域)。
 
-可以包含任意个item
+**pin-set(object:证书PIN设置)。**
 
-item必须包含1个digest-algorithm(string:指示用于生成pin的摘要算法)
+必须包含1个pin。
 
-item必须包含1个digest(string:指示公钥PIN)
+可以包含0个或者1个expiration(string:指示证书PIN的过期时间)。
+
+**pin(array:证书PIN)。**
+
+可以包含任意个item。
+
+item必须包含1个digest-algorithm(string:指示用于生成pin的摘要算法)。
+
+item必须包含1个digest(string:指示公钥PIN)。
+
+**cleartextTrafficPermitted(boolean:明文HTTP是否允许，默认为true)。**
 
 ## connection.getDefaultHttpProxy<sup>10+</sup>
 
@@ -1818,6 +1847,73 @@ connection.clearCustomDnsRules().then(() => {
 }).catch((error: BusinessError) => {
     console.log(JSON.stringify(error));
 })
+```
+
+## connection.setPacUrl<sup>15+</sup>
+
+setPacUrl(pacUrl: string): void
+
+设置系统级代理自动配置（PAC）脚本地址。
+
+**需要权限**：ohos.permission.SET_PAC_URL
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名   | 类型                                              | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| pacUrl   | string                                            | 是   | 需要设置的PAC脚本地址，该接口不会对脚本地址进行校验。             |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
+
+**示例：**
+
+```ts
+import { connection } from '@kit.NetworkKit';
+
+let pacUrl = "xxx";
+connection.setPacUrl(pacUrl);
+```
+
+## connection.getPacUrl<sup>15+</sup>
+
+getPacUrl(): string
+
+获取系统级代理自动配置（PAC）脚本地址。
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**返回值：**
+
+| 类型                   | 说明                    |
+| ---------------------- | ----------------------- |
+| string        | 返回PAC脚本地址。不存在时，抛出2100003错误码。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
+
+**示例：**
+
+```ts
+import { connection } from '@kit.NetworkKit';
+
+let pacUrl = connection.getPacUrl();
 ```
 
 

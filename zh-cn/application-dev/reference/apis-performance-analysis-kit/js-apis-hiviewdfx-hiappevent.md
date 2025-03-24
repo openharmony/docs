@@ -308,19 +308,19 @@ let params: Record<string, hiAppEvent.ParamType> = {
 };
 // 给应用事件追加自定义参数
 hiAppEvent.setEventParam(params, "test_domain", "test_event").then(() => {
-  hilog.info(0x0000, 'hiAppEvent', `success to set svent param`);
+  hilog.info(0x0000, 'hiAppEvent', `success to set event param`);
 }).catch((err: BusinessError) => {
   hilog.error(0x0000, 'hiAppEvent', `code: ${err.code}, message: ${err.message}`);
 });
 ```
 
-## hiAppEvent.setEventConfig<sup>16+</sup>
+## hiAppEvent.setEventConfig<sup>15+</sup>
 
 setEventConfig(name: string, config: Record&lt;string, ParamType&gt;): Promise&lt;void&gt;
 
 事件自定义门限触发条件的参数设置方法，使用Promise方式作为异步回调。在同一生命周期中，可以通过事件名称，自定义事件门限触发条件相关的参数。**现在仅支持MAIN_THREAD_JANK事件。参数配置详见：[主线程超时事件检测](../../dfx/hiappevent-watcher-mainthreadjank-events.md#自定义采样栈参数介绍)**。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -343,7 +343,7 @@ setEventConfig(name: string, config: Record&lt;string, ParamType&gt;): Promise&l
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
-| 401 | Parameter error. Possible causes: Parameter error. Possible reasons: 1. Incorrect number of parameters; 2. The parameter type is incorrect; 3.Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed. |
 
 **示例：**
 
@@ -358,7 +358,7 @@ let params: Record<string, hiAppEvent.ParamType> = {
   "log_type": "0"
 };
 
-hiAppEvent.setEventParam("MAIN_THREAD_JANK", params).then(() => {
+hiAppEvent.setEventConfig(hiAppEvent.event.MAIN_THREAD_JANK, params).then(() => {
   hilog.info(0x0000, 'hiAppEvent', `success to set event config`);
 }).catch((err: BusinessError) => {
   hilog.error(0x0000, 'hiAppEvent', `code: ${err.code}, message: ${err.message}`);
@@ -377,7 +377,7 @@ let params: Record<string, hiAppEvent.ParamType> = {
   "sample_count": "21",
   "report_times_per_app": "3",
 };
-hiAppEvent.setEventParam("MAIN_THREAD_JANK", params).then(() => {
+hiAppEvent.setEventConfig(hiAppEvent.event.MAIN_THREAD_JANK, params).then(() => {
   hilog.info(0x0000, 'hiAppEvent', `success to set event config`);
 }).catch((err: BusinessError) => {
   hilog.error(0x0000, 'hiAppEvent', `code: ${err.code}, message: ${err.message}`);
@@ -392,7 +392,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 let params: Record<string, hiAppEvent.ParamType> = {
   "log_type": "2"
 };
-hiAppEvent.setEventParam("MAIN_THREAD_JANK", params).then(() => {
+hiAppEvent.setEventConfig(hiAppEvent.event.MAIN_THREAD_JANK, params).then(() => {
   hilog.info(0x0000, 'hiAppEvent', `success to set event config`);
 }).catch((err: BusinessError) => {
   hilog.error(0x0000, 'hiAppEvent', `code: ${err.code}, message: ${err.message}`);
@@ -562,7 +562,7 @@ setUserProperty(name: string, value: string): void
 | 参数名     | 类型                      | 必填 | 说明           |
 | --------- | ------------------------- | ---- | -------------- |
 | name      | string                    | 是   | 用户属性的key。只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度非空且不超过256个字符。  |
-| value     | string                    | 是   | 用户属性的值。长度不超过1024，当值为null、undefine或空，则清除用户属性。  |
+| value     | string                    | 是   | 用户属性的值。长度不超过1024，当值为null或空字符串时，则清除用户属性。  |
 
 **错误码：**
 

@@ -108,8 +108,8 @@
 |:----------------------------------------------|:---------------|:-----------|:------------|:-----------|
 | import lazy { x } from "mod";                 | "mod"          | "x"        | "x"         | API12      |
 | import lazy { x as v } from "mod";            | "mod"          | "x"        | "v"         | API12      |
-| import lazy x from "mod";                     | "mod"          | "default"  | "x"         | API16      |
-| import lazy { KitClass } from "@kit.SomeKit"; | "@kit.SomeKit" | "KitClass" | "KitClass"  | API16      |
+| import lazy x from "mod";                     | "mod"          | "default"  | "x"         | API18      |
+| import lazy { KitClass } from "@kit.SomeKit"; | "@kit.SomeKit" | "KitClass" | "KitClass"  | API18      |
 
 - 延迟加载共享模块或依赖路径内包含共享模块。
     延迟加载对于共享模块依旧生效，使用限制参考[共享模块开发指导](../arkts-utils/arkts-sendable-module.md)。
@@ -197,7 +197,7 @@
     ```
 
 - 开发者需要评估使用延迟加载存在的影响。
-    * 不依赖该模块的执行的side-effect(如初始化全局变量，挂载globalThis等)。
+    * 不依赖该模块的执行的side-effect(如初始化全局变量，挂载globalThis等)。可参考：[模块加载副作用及优化](./arkts-module-side-effects.md)。
     * 使用导出对象时，触发延迟加载的耗时导致对应特性的功能劣化。
     * 使用lazy特性导致模块未执行而导致的bug。
 

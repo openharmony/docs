@@ -52,6 +52,16 @@ import {
   SceneResourceParameters,
   SceneNodeParameters,
   SceneResourceFactory,
-  Scene
+  Scene,
+  BloomSettings,
+  MeshResource,
+  RenderParameters,
+  GeometryType,
+  GeometryDefinition,
+  PrimitiveTopology,
+  CustomGeometry,
+  CubeGeometry,
+  PlaneGeometry,
+  SphereGeometry
 } from '@kit.ArkGraphics3D';
 ```

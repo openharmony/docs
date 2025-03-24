@@ -1,6 +1,6 @@
 # Accessibility Kit
 
-- ArkTS APIs
+- ArkTS APIs<!--accessibility-arkts-->
   - [@ohos.accessibility (Accessibility)](js-apis-accessibility.md)
   - [@ohos.accessibility.GesturePath (Gesture Path)](js-apis-accessibility-GesturePath.md)
   - [@ohos.accessibility.GesturePoint (Gesture Point)](js-apis-accessibility-GesturePoint.md)
@@ -10,5 +10,5 @@
   - [@ohos.accessibility.config (System Accessibility Configuration) (System API)](js-apis-accessibility-config-sys.md)
   - [AccessibilityExtensionContext (System API)](js-apis-inner-application-accessibilityExtensionContext-sys.md)
   <!--DelEnd-->
-- Error Codes
+- Error Codes<!--accessibility-arkts-errcode-->
   - [Accessibility Error Codes](errorcode-accessibility.md)

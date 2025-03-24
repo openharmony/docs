@@ -136,7 +136,7 @@ The relational database (RDB) store manages data based on relational models. The
 | [OH_Data_Value](#oh_data_value) \* [OH_Value_Create](#oh_value_create) (void) | Creates an [OH_Data_Value](#oh_data_value) instance to store a single KV pair.|
 | int [OH_Value_Destroy](#oh_value_destroy) ([OH_Data_Value](#oh_data_value) \*value) | Destroys an [OH_Data_Value](#oh_data_value) instance.|
 | int [OH_Value_PutNull](#oh_value_putnull) ([OH_Data_Value](#oh_data_value) \*value) | Adds empty data.|
-| int [OH_Value_PutInt](#oh_value_putint) ([OH_Data_Value](#oh_data_value) \*value, int64_t val) | Adds integer data. |
+| int [OH_Value_PutInt](#oh_value_putint) ([OH_Data_Value](#oh_data_value) \*value, int64_t val) | Adds integer data.|
 | int [OH_Value_PutReal](#oh_value_putreal) ([OH_Data_Value](#oh_data_value) \*value, double val) | Adds data of the REAL type.|
 | int [OH_Value_PutText](#oh_value_puttext) ([OH_Data_Value](#oh_data_value) \*value, const char \*val) | Adds data of the string type.|
 | int [OH_Value_PutBlob](#oh_value_putblob) ([OH_Data_Value](#oh_data_value) \*value, const unsigned char \*val, size_t length) | Adds data of the BLOB type.|
@@ -184,18 +184,18 @@ The relational database (RDB) store manages data based on relational models. The
 | int [OH_Values_GetFloatVector](#oh_values_getfloatvector) ([OH_Data_Values](#oh_data_values) \*values, int index, float \*val, size_t inLen, size_t \*outLen) | Obtains data of the floating-point array type.|
 | int [OH_Values_GetUnlimitedIntBand](#oh_values_getunlimitedintband) ([OH_Data_Values](#oh_data_values) \*values, int index, size_t \*length) | Obtains the length of an unlimited integer.|
 | int [OH_Values_GetUnlimitedInt](#oh_values_getunlimitedint) ([OH_Data_Values](#oh_data_values) \*values, int index, int \*sign, uint64_t \*trueForm, size_t inLen, size_t \*outLen) | Obtains integer data of any length.|
-| [OH_Data_VBuckets](#oh_data_vbuckets) \* [OH_VBuckets_Create](#oh_vbuckets_create) (void) | Creates an **OH_Data_VBuckets** instance. |
+| [OH_Data_VBuckets](#oh_data_vbuckets) \* [OH_VBuckets_Create](#oh_vbuckets_create) (void) | Creates an **OH_Data_VBuckets** instance.|
 | int [OH_VBuckets_Destroy](#oh_vbuckets_destroy) ([OH_Data_VBuckets](#oh_data_vbuckets) \*buckets) | Destroys an **OH_Data_VBuckets** instance.|
 | int [OH_VBuckets_PutRow](#oh_vbuckets_putrow) ([OH_Data_VBuckets](#oh_data_vbuckets) \*buckets, const [OH_VBucket](_o_h___v_bucket.md) \*row) | Adds data of the **OH_VBucket** type.|
 | int [OH_VBuckets_PutRows](#oh_vbuckets_putrows) ([OH_Data_VBuckets](#oh_data_vbuckets) \*buckets, const [OH_Data_VBuckets](#oh_data_vbuckets) \*rows) | Adds data of the **OH_Data_VBuckets** type.|
 | int [OH_VBuckets_RowCount](#oh_vbuckets_rowcount) ([OH_Data_VBuckets](#oh_data_vbuckets) \*buckets, size_t \*count) | Obtains the number of rows in **OH_VBucket** in **OH_Data_VBuckets**.|
-| [OH_RDB_TransOptions](#oh_rdb_transoptions) \* [OH_RdbTrans_CreateOptions](#oh_rdbtrans_createoptions) (void) | Creates a transaction configuration object. |
+| [OH_RDB_TransOptions](#oh_rdb_transoptions) \* [OH_RdbTrans_CreateOptions](#oh_rdbtrans_createoptions) (void) | Creates a transaction configuration object.|
 | int [OH_RdbTrans_DestroyOptions](#oh_rdbtrans_destroyoptions) ([OH_RDB_TransOptions](#oh_rdb_transoptions) \*opitons) | Destroys a transaction configuration instance.|
-| int [OH_RdbTransOption_SetType](#oh_rdbtransoption_settype) ([OH_RDB_TransOptions](#oh_rdb_transoptions) \*opitons, [OH_RDB_TransType](#oh_rdb_transtype) type) | Sets the transaction type of an RDB store. |
+| int [OH_RdbTransOption_SetType](#oh_rdbtransoption_settype) ([OH_RDB_TransOptions](#oh_rdb_transoptions) \*opitons, [OH_RDB_TransType](#oh_rdb_transtype) type) | Sets the transaction type of an RDB store.|
 | int [OH_RdbTrans_Commit](#oh_rdbtrans_commit) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans) | Commits a transaction.|
 | int [OH_RdbTrans_Rollback](#oh_rdbtrans_rollback) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans) | Rolls back a transaction.|
 | int [OH_RdbTrans_Insert](#oh_rdbtrans_insert) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans, const char \*table, const [OH_VBucket](_o_h___v_bucket.md) \*row, int64_t \*rowId) | Inserts a row of data into a table.|
-| int [OH_RdbTrans_BatchInsert](#oh_rdbtrans_batchinsert) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans, const char \*table, const [OH_Data_VBuckets](#oh_data_vbuckets) \*rows, int64_t \*changes) | Batch inserts data into a table.|
+| int [OH_RdbTrans_BatchInsert](#oh_rdbtrans_batchinsert) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans, const char \*table, const [OH_Data_VBuckets](#oh_data_vbuckets) \*rows, Rdb_ConflictResolution resolution, int64_t \*changes) | Batch inserts data into a table.|
 | int [OH_RdbTrans_Update](#oh_rdbtrans_update) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans, const [OH_VBucket](_o_h___v_bucket.md) \*row, const [OH_Predicates](_o_h___predicates.md) \*predicates, int64_t \*changes) | Updates data in an RDB store based on specified conditions.|
 | int [OH_RdbTrans_Delete](#oh_rdbtrans_delete) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans, const [OH_Predicates](_o_h___predicates.md) \*predicates, int64_t \*changes) | Deletes data from the database based on the specified conditions.|
 | [OH_Cursor](_o_h___cursor.md) \* [OH_RdbTrans_Query](#oh_rdbtrans_query) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans, const [OH_Predicates](_o_h___predicates.md) \*predicates, const char \*columns[], int len) | Queries data in the database based on specified conditions.|
@@ -1263,18 +1263,32 @@ Obtains the value in a specified column of the current row in the form of a floa
 **Returns**
 
 Returns the execution result.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_ERROR** indicates a common database error.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
 **RDB_E_SQLITE_CORRUPT** indicates the database is corrupted.
+
 **RDB_E_STEP_RESULT_CLOSED** indicates the result set is closed.
+
 **RDB_E_ALREADY_CLOSED** indicates the database is closed.
+
 **RDB_E_SQLITE_PERM** indicates an SQLite error: access denied.
+
 **RDB_E_SQLITE_BUSY** indicates an SQLite error: database file locked.
+
 **RDB_E_SQLITE_LOCKED** indicates an SQLite error: database table locked.
+
 **RDB_E_SQLITE_NOMEM** indicates an SQLite: insufficient database memory.
+
 **RDB_E_SQLITE_IOERR** indicates an SQLite: disk I/O error.
-**RDB_E_SQLITE_TOO_BIG** indicates an SQLite error: TEXT or BLOB exceeds the limit. **RDB_E_SQLITE_MISMATCH** indicates an SQLite error: data types mismatch.
+
+**RDB_E_SQLITE_TOO_BIG** indicates an SQLite error: TEXT or BLOB exceeds the limit. 
+
+**RDB_E_SQLITE_MISMATCH** indicates an SQLite error: data types mismatch.
 
 **See**
 
@@ -1304,18 +1318,31 @@ Obtains the length of the floating-point array in the specified column of the cu
 **Returns**
 
 Returns the execution result.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_ERROR** indicates a common database error.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
 **RDB_E_SQLITE_CORRUPT** indicates the database is corrupted.
+
 **RDB_E_STEP_RESULT_CLOSED** indicates the result set is closed.
+
 **RDB_E_ALREADY_CLOSED** indicates the database is closed.
+
 **RDB_E_SQLITE_PERM** indicates an SQLite error: access denied.
+
 **RDB_E_SQLITE_BUSY** indicates an SQLite error: database file locked.
+
 **RDB_E_SQLITE_LOCKED** indicates an SQLite error: database table locked.
+
 **RDB_E_SQLITE_NOMEM** indicates an SQLite: insufficient database memory.
+
 **RDB_E_SQLITE_IOERR** indicates an SQLite: disk I/O error.
+
 **RDB_E_SQLITE_TOO_BIG** indicates an SQLite error: TEXT or BLOB exceeds the limit.
+
 **RDB_E_SQLITE_MISMATCH** indicates an SQLite error: data types mismatch.
 
 ### OH_Rdb_CreateTransaction()
@@ -1481,7 +1508,11 @@ Checks whether the specified tokenizer is supported.
 
 **Returns**
 
-Returns the operation status code. **RDB_OK** indicates the operation is successful. **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+Returns the operation status code.
+
+**RDB_OK** indicates the operation is successful.
+
+**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
 ### OH_Rdb_SetTokenizer()
@@ -1509,15 +1540,15 @@ Returns the operation status code.
 
 **RDB_OK** indicates the operation is successful.
 
-<br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
-<br>**RDB_E_NOT_SUPPORTED** indicates that the current operation is not supported.
+**RDB_E_NOT_SUPPORTED** indicates that the current operation is not supported.
 
 
 ### OH_RdbTrans_BatchInsert()
 
 ```
-int OH_RdbTrans_BatchInsert (OH_Rdb_Transaction *trans, const char *table, const OH_Data_VBuckets *rows, int64_t *changes )
+int OH_RdbTrans_BatchInsert (OH_Rdb_Transaction *trans, const char *table, const OH_Data_VBuckets *rows, Rdb_ConflictResolution resolution, int64_t *changes )
 ```
 
 **Description**
@@ -1533,26 +1564,44 @@ Batch inserts data into a table.
 | trans | Pointer to the [OH_Rdb_Transaction](#oh_rdb_transaction) instance.|
 | table | Pointer to the target table.|
 | rows | Pointer to the rows of data to insert.|
+| resolution | Policy used to resolve file conflicts.|
 | changes | Pointer to the number of successful insertions.|
 
 **Returns**
 
 Returns the execution result.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_ERROR** indicates a common database error.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
 **RDB_E_ALREADY_CLOSED** indicates the database is closed.
+
 **RDB_E_WAL_SIZE_OVER_LIMIT** indicates the size of the WAL log file exceeds the default value.
+
 **RDB_E_SQLITE_FULL** indicates an SQLite error: the database is full.
+
 **RDB_E_SQLITE_CORRUPT** indicates the database is corrupted.
+
 **RDB_E_SQLITE_PERM** indicates an SQLite error: access denied.
+
 **RDB_E_SQLITE_BUSY** indicates an SQLite error: database file locked.
+
 **RDB_E_SQLITE_LOCKED** indicates an SQLite error: database table locked.
+
 **RDB_E_SQLITE_NOMEM** indicates an SQLite: insufficient database memory.
+
 **RDB_E_SQLITE_READONLY** indicates an SQLite error: attempt to write a read-only database.
+
 **RDB_E_SQLITE_IOERR** indicates an SQLite: disk I/O error.
+
 **RDB_E_SQLITE_TOO_BIG** indicates an SQLite error: TEXT or BLOB exceeds the limit.
+
 **RDB_E_SQLITE_MISMATCH** indicates an SQLite error: data types mismatch.
+
+**RDB_E_SQLITE_CONSTRAINT** indicates an SQLite error code: SQLite constraint.
 
 ### OH_RdbTrans_Commit()
 
@@ -1575,16 +1624,27 @@ Commits a transaction.
 **Returns**
 
 Returns the execution result.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_ERROR** indicates a common database error.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
 **RDB_E_ALREADY_CLOSED** indicates the database is closed.
+
 **RDB_E_SQLITE_FULL** indicates an SQLite error: the database is full.
+
 **RDB_E_SQLITE_CORRUPT** indicates the database is corrupted.
+
 **RDB_E_SQLITE_PERM** indicates an SQLite error: access denied.
+
 **RDB_E_SQLITE_BUSY** indicates an SQLite error: database file locked.
+
 **RDB_E_SQLITE_NOMEM** indicates an SQLite: insufficient database memory.
+
 **RDB_E_SQLITE_READONLY** indicates an SQLite error: attempt to write a read-only database.
+
 **RDB_E_SQLITE_IOERR** indicates an SQLite: disk I/O error.
 
 ### OH_RdbTrans_Delete()
@@ -1610,20 +1670,35 @@ Deletes data from the database based on the specified conditions.
 **Returns**
 
 Returns the execution result.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_ERROR** indicates a common database error.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
 **RDB_E_ALREADY_CLOSED** indicates the database is closed.
+
 **RDB_E_WAL_SIZE_OVER_LIMIT** indicates the size of the WAL log file exceeds the default value.
+
 **RDB_E_SQLITE_FULL** indicates an SQLite error: the database is full.
+
 **RDB_E_SQLITE_CORRUPT** indicates the database is corrupted.
+
 **RDB_E_SQLITE_PERM** indicates an SQLite error: access denied.
+
 **RDB_E_SQLITE_BUSY** indicates an SQLite error: database file locked.
+
 **RDB_E_SQLITE_LOCKED** indicates an SQLite error: database table locked.
+
 **RDB_E_SQLITE_NOMEM** indicates an SQLite: insufficient database memory.
+
 **RDB_E_SQLITE_READONLY** indicates an SQLite error: attempt to write a read-only database.
+
 **RDB_E_SQLITE_IOERR** indicates an SQLite: disk I/O error.
+
 **RDB_E_SQLITE_TOO_BIG** indicates an SQLite error: TEXT or BLOB exceeds the limit.
+
 **RDB_E_SQLITE_MISMATCH** indicates an SQLite error: data types mismatch.
 
 ### OH_RdbTrans_CreateOptions()
@@ -1634,7 +1709,7 @@ OH_RDB_TransOptions* OH_RdbTrans_CreateOptions (void )
 
 **Description**
 
-Create a transaction configuration object.
+Creates a transaction configuration object.
 
 **Since**: 16
 
@@ -1666,7 +1741,11 @@ Destroys a transaction object.
 
 **Returns**
 
-Returns the operation status code. **RDB_OK** indicates the operation is successful. **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+Returns the operation status code.
+
+**RDB_OK** indicates the operation is successful.
+
+**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
 ### OH_RdbTrans_DestroyOptions()
@@ -1690,7 +1769,9 @@ Destroys a transaction configuration instance.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
@@ -1718,20 +1799,35 @@ Executes an SQL statement that contains specified parameters.
 **Returns**
 
 Returns the execution result.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_ERROR** indicates a common database error.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
 **RDB_E_ALREADY_CLOSED** indicates the database is closed.
+
 **RDB_E_WAL_SIZE_OVER_LIMIT** indicates the size of the WAL log file exceeds the default value.
+
 **RDB_E_SQLITE_FULL** indicates an SQLite error: the database is full.
+
 **RDB_E_SQLITE_CORRUPT** indicates the database is corrupted.
+
 **RDB_E_SQLITE_PERM** indicates an SQLite error: access denied.
+
 **RDB_E_SQLITE_BUSY** indicates an SQLite error: database file locked.
+
 **RDB_E_SQLITE_LOCKED** indicates an SQLite error: database table locked.
+
 **RDB_E_SQLITE_NOMEM** indicates an SQLite: insufficient database memory.
+
 **RDB_E_SQLITE_READONLY** indicates an SQLite error: attempt to write a read-only database.
+
 **RDB_E_SQLITE_IOERR** indicates an SQLite: disk I/O error.
+
 **RDB_E_SQLITE_TOO_BIG** indicates an SQLite error: TEXT or BLOB exceeds the limit.
+
 **RDB_E_SQLITE_MISMATCH** indicates an SQLite error: data types mismatch.
 
 **See**
@@ -1763,20 +1859,35 @@ Inserts a row of data into a table.
 **Returns**
 
 Returns the execution result.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_ERROR** indicates a common database error.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
 **RDB_E_ALREADY_CLOSED** indicates the database is closed.
+
 **RDB_E_WAL_SIZE_OVER_LIMIT** indicates the size of the WAL log file exceeds the default value.
+
 **RDB_E_SQLITE_FULL** indicates an SQLite error: the database is full.
+
 **RDB_E_SQLITE_CORRUPT** indicates the database is corrupted.
+
 **RDB_E_SQLITE_PERM** indicates an SQLite error: access denied.
+
 **RDB_E_SQLITE_BUSY** indicates an SQLite error: database file locked.
+
 **RDB_E_SQLITE_LOCKED** indicates an SQLite error: database table locked.
+
 **RDB_E_SQLITE_NOMEM** indicates an SQLite: insufficient database memory.
+
 **RDB_E_SQLITE_READONLY** indicates an SQLite error: attempt to write a read-only database.
+
 **RDB_E_SQLITE_IOERR** indicates an SQLite: disk I/O error.
+
 **RDB_E_SQLITE_TOO_BIG** indicates an SQLite error: TEXT or BLOB exceeds the limit.
+
 **RDB_E_SQLITE_MISMATCH** indicates an SQLite error: data types mismatch.
 
 ### OH_RdbTrans_Query()
@@ -1851,16 +1962,27 @@ Rolls back a transaction.
 **Returns**
 
 Returns the execution result.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_ERROR** indicates a common database error.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
 **RDB_E_ALREADY_CLOSED** indicates the database is closed.
+
 **RDB_E_SQLITE_FULL** indicates an SQLite error: the database is full.
+
 **RDB_E_SQLITE_CORRUPT** indicates the database is corrupted.
+
 **RDB_E_SQLITE_PERM** indicates an SQLite error: access denied.
+
 **RDB_E_SQLITE_BUSY** indicates an SQLite error: database file locked.
+
 **RDB_E_SQLITE_NOMEM** indicates an SQLite: insufficient database memory.
+
 **RDB_E_SQLITE_READONLY** indicates an SQLite error: attempt to write a read-only database.
+
 **RDB_E_SQLITE_IOERR** indicates an SQLite: disk I/O error.
 
 
@@ -1888,20 +2010,35 @@ Updates data in an RDB store based on specified conditions.
 **Returns**
 
 Returns the execution result.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_ERROR** indicates a common database error.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
 **RDB_E_ALREADY_CLOSED** indicates the database is closed.
+
 **RDB_E_WAL_SIZE_OVER_LIMIT** indicates the size of the WAL log file exceeds the default value.
+
 **RDB_E_SQLITE_FULL** indicates an SQLite error: the database is full.
+
 **RDB_E_SQLITE_CORRUPT** indicates the database is corrupted.
+
 **RDB_E_SQLITE_PERM** indicates an SQLite error: access denied.
+
 **RDB_E_SQLITE_BUSY** indicates an SQLite error: database file locked.
+
 **RDB_E_SQLITE_LOCKED** indicates an SQLite error: database table locked.
+
 **RDB_E_SQLITE_NOMEM** indicates an SQLite: insufficient database memory.
+
 **RDB_E_SQLITE_READONLY** indicates an SQLite error: attempt to write a read-only database.
+
 **RDB_E_SQLITE_IOERR** indicates an SQLite: disk I/O error.
+
 **RDB_E_SQLITE_TOO_BIG** indicates an SQLite error: TEXT or BLOB exceeds the limit.
+
 **RDB_E_SQLITE_MISMATCH** indicates an SQLite error: data types mismatch.
 
 ### OH_RdbTransOption_SetType()
@@ -1912,7 +2049,7 @@ int OH_RdbTransOption_SetType (OH_RDB_TransOptions *opitons, OH_RDB_TransType ty
 
 **Description**
 
-Set the transaction type of an RDB store.
+Sets the transaction type of an RDB store.
 
 **Since**: 16
 
@@ -1926,7 +2063,9 @@ Set the transaction type of an RDB store.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
@@ -1971,7 +2110,11 @@ Destroys an [OH_Data_Value](#oh_data_value) instance.
 
 **Returns**
 
-Returns the operation status code. **RDB_OK** indicates the operation is successful. **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+Returns the operation status code.
+
+**RDB_OK** indicates the operation is successful.
+
+**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
 ### OH_Value_GetAsset()
@@ -1996,9 +2139,13 @@ Obtains data of the ASSET type.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
 **RDB_E_DATA_TYPE_NULL** indicates the stored data is empty.
+
 **RDB_E_TYPE_MISMATCH** indicates the data types do not match.
 
 ### OH_Value_GetAssets()
@@ -2025,9 +2172,13 @@ Obtains data of the ASSETS type.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
 **RDB_E_DATA_TYPE_NULL** indicates the stored data is empty.
+
 **RDB_E_TYPE_MISMATCH** indicates the data types do not match.
 
 **See**
@@ -2057,9 +2208,13 @@ Obtains the length of ASSETS data.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
 **RDB_E_DATA_TYPE_NULL** indicates the stored data is empty.
+
 **RDB_E_TYPE_MISMATCH** indicates the data types do not match.
 
 
@@ -2086,9 +2241,13 @@ Obtains data of the BLOB type.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
 **RDB_E_DATA_TYPE_NULL** indicates the stored data is empty.
+
 **RDB_E_TYPE_MISMATCH** indicates the data types do not match.
 
 
@@ -2116,9 +2275,13 @@ Obtains data of the floating-point array type.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
 **RDB_E_DATA_TYPE_NULL** indicates the stored data is empty.
+
 **RDB_E_TYPE_MISMATCH** indicates the data types do not match.
 
 **See**
@@ -2148,9 +2311,13 @@ Obtains the length of a floating-point array.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
 **RDB_E_DATA_TYPE_NULL** indicates the stored data is empty.
+
 **RDB_E_TYPE_MISMATCH** indicates the data types do not match.
 
 
@@ -2176,9 +2343,13 @@ Obtains integer data.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
 **RDB_E_DATA_TYPE_NULL** indicates the stored data is empty.
+
 **RDB_E_TYPE_MISMATCH** indicates the data types do not match.
 
 
@@ -2204,9 +2375,13 @@ Obtains data of the REAL type.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
 **RDB_E_DATA_TYPE_NULL** indicates the stored data is empty.
+
 **RDB_E_TYPE_MISMATCH** indicates the data types do not match.
 
 
@@ -2232,9 +2407,13 @@ Obtains data of the string type.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
 **RDB_E_DATA_TYPE_NULL** indicates the stored data is empty.
+
 **RDB_E_TYPE_MISMATCH** indicates the data types do not match.
 
 ### OH_Value_GetType()
@@ -2259,7 +2438,9 @@ Obtains the data type.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
@@ -2288,9 +2469,13 @@ Obtains integer data of any length.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
 **RDB_E_DATA_TYPE_NULL** indicates the stored data is empty.
+
 **RDB_E_TYPE_MISMATCH** indicates the data types do not match.
 
 **See**
@@ -2320,9 +2505,13 @@ Obtains the length of an unlimited integer.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
 **RDB_E_DATA_TYPE_NULL** indicates the stored data is empty.
+
 **RDB_E_TYPE_MISMATCH** indicates the data types do not match.
 
 ### OH_Value_IsNull()
@@ -2347,7 +2536,9 @@ Checks whether a value is null.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
@@ -2373,7 +2564,9 @@ Adds data of the ASSET type.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
@@ -2400,7 +2593,9 @@ Adds data of the ASSETS type.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
@@ -2427,7 +2622,9 @@ Adds data of the BLOB type.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
@@ -2454,7 +2651,9 @@ Adds data of the floating-point array type.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 ### OH_Value_PutInt()
@@ -2479,7 +2678,9 @@ Add integer data.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
@@ -2504,7 +2705,9 @@ Adds empty data.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
@@ -2530,7 +2733,9 @@ Adds data of the REAL type.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
@@ -2556,7 +2761,9 @@ Adds data of the string type.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
@@ -2584,7 +2791,9 @@ Adds an integer array of any length.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 ### OH_Values_Count()
@@ -2609,7 +2818,9 @@ Obtains the number of values.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
@@ -2655,7 +2866,9 @@ Destroys an [OH_Data_Values](#oh_data_values) instance.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
@@ -2682,7 +2895,9 @@ Obtains data of the **OH_Data_Value** type.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 ### OH_Values_GetAsset()
@@ -2708,9 +2923,13 @@ Obtains data of the ASSET type.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
 **RDB_E_DATA_TYPE_NULL** indicates the stored data is empty.
+
 **RDB_E_TYPE_MISMATCH** indicates the data types do not match.
 
 
@@ -2739,9 +2958,13 @@ Obtains data of the ASSETS type.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
 **RDB_E_DATA_TYPE_NULL** indicates the stored data is empty.
+
 **RDB_E_TYPE_MISMATCH** indicates the data types do not match.
 
 **See**
@@ -2772,9 +2995,13 @@ Obtains the length of ASSETS data.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
 **RDB_E_DATA_TYPE_NULL** indicates the stored data is empty.
+
 **RDB_E_TYPE_MISMATCH** indicates the data types do not match.
 
 
@@ -2802,9 +3029,13 @@ Obtains data of the BLOB type.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
 **RDB_E_DATA_TYPE_NULL** indicates the stored data is empty.
+
 **RDB_E_TYPE_MISMATCH** indicates the data types do not match.
 
 ### OH_Values_GetFloatVector()
@@ -2832,9 +3063,13 @@ Obtains data of the floating-point array type.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
 **RDB_E_DATA_TYPE_NULL** indicates the stored data is empty.
+
 **RDB_E_TYPE_MISMATCH** indicates the data types do not match.
 
 **See**
@@ -2865,9 +3100,13 @@ Obtains the length of a floating-point array.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
 **RDB_E_DATA_TYPE_NULL** indicates the stored data is empty.
+
 **RDB_E_TYPE_MISMATCH** indicates the data types do not match.
 
 
@@ -2894,9 +3133,13 @@ Obtains integer data.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
 **RDB_E_DATA_TYPE_NULL** indicates the stored data is empty.
+
 **RDB_E_TYPE_MISMATCH** indicates the data types do not match.
 
 ### OH_Values_GetReal()
@@ -2922,9 +3165,13 @@ Obtains data of the REAL type.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
 **RDB_E_DATA_TYPE_NULL** indicates the stored data is empty.
+
 **RDB_E_TYPE_MISMATCH** indicates the data types do not match.
 
 
@@ -2951,9 +3198,13 @@ Obtains data of the string type.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
 **RDB_E_DATA_TYPE_NULL** indicates the stored data is empty.
+
 **RDB_E_TYPE_MISMATCH** indicates the data types do not match.
 
 
@@ -2980,7 +3231,9 @@ Obtains the data type.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
@@ -3010,9 +3263,13 @@ Obtains integer data of any length.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
 **RDB_E_DATA_TYPE_NULL** indicates the stored data is empty.
+
 **RDB_E_TYPE_MISMATCH** indicates the data types do not match.
 
 **See**
@@ -3043,9 +3300,13 @@ Obtains the length of an unlimited integer.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
 **RDB_E_DATA_TYPE_NULL** indicates the stored data is empty.
+
 **RDB_E_TYPE_MISMATCH** indicates the data types do not match.
 
 
@@ -3072,7 +3333,9 @@ Checks whether a value is null.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 ### OH_Values_Put()
@@ -3097,7 +3360,9 @@ Adds data of the **OH_Data_Value** type to an **OH_Data_Values** instance.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
@@ -3123,7 +3388,9 @@ Adds data of the ASSET type to an **OH_Data_Values** instance.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
@@ -3150,7 +3417,9 @@ Adds data of the ASSETS type to an **OH_Data_Values** instance.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
@@ -3177,7 +3446,9 @@ Adds data of the BLOB type to an **OH_Data_Values** instance.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
@@ -3204,7 +3475,9 @@ Adds data of the floating-point array type to an **OH_Data_Values** instance.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
@@ -3230,7 +3503,9 @@ Adds integer data to an **OH_Data_Values** instance.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
@@ -3255,7 +3530,9 @@ Adds empty data to an **OH_Data_Values** instance.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
@@ -3281,7 +3558,9 @@ Adds data of the REAL type to an **OH_Data_Values** instance.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
@@ -3307,7 +3586,9 @@ Adds data of the string type to an **OH_Data_Values** instance.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
@@ -3335,7 +3616,9 @@ Adds an integer array of any length to an **OH_Data_Values** instance.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 ### OH_VBucket_PutFloatVector()
@@ -3362,7 +3645,10 @@ Puts a floating-point array into an [OH_VBucket](_o_h___v_bucket.md) object in t
 **Returns**
 
 Returns **RDB_OK** if the operation is successful; returns an error code otherwise.
-**RDB_OK** indicates the operation is successful. <br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
+**RDB_OK** indicates the operation is successful.
+
+**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 **See**
 
@@ -3394,8 +3680,10 @@ Puts an integer of any length into an [OH_VBucket](_o_h___v_bucket.md) object in
 **Returns**
 
 Returns **RDB_OK** if the operation is successful; returns an error code otherwise.
+
 **RDB_OK** indicates the operation is successful.
-<br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
+**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 **See**
 
@@ -3410,7 +3698,7 @@ OH_Data_VBuckets* OH_VBuckets_Create (void)
 
 **Description**
 
-Create an **OH_Data_VBuckets** instance.
+Creates an **OH_Data_VBuckets** instance.
 
 **Since**: 16
 
@@ -3444,7 +3732,9 @@ Destroys an **OH_Data_VBuckets** instance.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
@@ -3470,7 +3760,9 @@ Adds data of the **OH_VBucket** type.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
@@ -3496,7 +3788,9 @@ Adds data of the **OH_Data_VBuckets** type.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
@@ -3522,7 +3816,9 @@ Obtains the number of rows in **OH_VBucket** in **OH_Data_VBuckets**.
 **Returns**
 
 Returns the operation status code.
+
 **RDB_OK** indicates the operation is successful.
+
 **RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 ### OH_Rdb_CreateOrOpen()
@@ -3574,7 +3870,13 @@ Begins a transaction and obtains the transaction ID before executing an SQL stat
 
 **Returns**
 
-Returns **RDB_OK** if the operation is successful; returns an error code otherwise. **RDB_OK** indicates the operation is successful. <br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified. <br>**RDB_E_NOT_SUPPORTED** indicates that the current operation is not supported.
+Returns **RDB_OK** if the operation is successful; returns an error code otherwise.
+
+**RDB_OK** indicates the operation is successful.
+
+**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
+**RDB_E_NOT_SUPPORTED** indicates that the current operation is not supported.
 
 **See**
 
@@ -3602,7 +3904,13 @@ Commits the executed SQL statement based on the specified transaction ID. This A
 
 **Returns**
 
-Returns **RDB_OK** if the operation is successful; returns an error code otherwise. <br>**RDB_OK** indicates the operation is successful. <br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.<br>Possible causes: A null pointer is passed in; the transaction ID is not obtained by [OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid); the transaction ID has been used by [OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid); the transaction ID has been used by [OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid). <br>**RDB_E_NOT_SUPPORTED** indicates that the current operation is not supported.
+Returns **RDB_OK** if the operation is successful; returns an error code otherwise.
+
+**RDB_OK** indicates the operation is successful.
+
+**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.<br>Possible causes: A null pointer is passed in; the transaction ID is not obtained by [OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid); the transaction ID has been used by [OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid); the transaction ID has been used by [OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid).
+
+**RDB_E_NOT_SUPPORTED** indicates that the current operation is not supported.
 
 **See**
 
@@ -3651,7 +3959,11 @@ Deletes an RDB store based on the given [OH_Rdb_ConfigV2](#oh_rdb_configv2). If 
 
 **Returns**
 
-Returns **RDB_OK** if the operation is successful; returns an error code otherwise. **RDB_OK** indicates the operation is successful. <br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+Returns **RDB_OK** if the operation is successful; returns an error code otherwise.
+
+**RDB_OK** indicates the operation is successful.
+
+**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 **See**
 
@@ -3678,7 +3990,11 @@ Destroys an [OH_Rdb_ConfigV2](#oh_rdb_configv2) instance.
 
 **Returns**
 
-Returns **RDB_OK** if the operation is successful; returns an error code otherwise. **RDB_OK** indicates the operation is successful. <br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+Returns **RDB_OK** if the operation is successful; returns an error code otherwise.
+
+**RDB_OK** indicates the operation is successful.
+
+**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
 ### OH_Rdb_ExecuteByTrxId()
@@ -3703,7 +4019,13 @@ Executes an SQL statement that returns no value based on the specified transacti
 
 **Returns**
 
-Returns **RDB_OK** if the operation is successful; returns an error code otherwise. **RDB_OK** indicates the operation is successful. <br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified. Possible causes: A null pointer is passed in; the transaction ID is not obtained by [OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid); the transaction ID has been used by [OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid); the transaction ID has been used by [OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid); **store** or **sql** is **NULL**. <br>**RDB_E_NOT_SUPPORTED** indicates that the current operation is not supported.
+Returns **RDB_OK** if the operation is successful; returns an error code otherwise.
+
+**RDB_OK** indicates the operation is successful.
+
+**RDB_E_INVALID_ARGS** indicates invalid parameters are specified. Possible causes: A null pointer is passed in; the transaction ID is not obtained by [OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid); the transaction ID has been used by [OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid); the transaction ID has been used by [OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid); **store** or **sql** is **NULL**.
+
+**RDB_E_NOT_SUPPORTED** indicates that the current operation is not supported.
 
 **See**
 
@@ -3730,7 +4052,11 @@ Obtains the supported database types.
 
 **Returns**
 
-Returns **RDB_OK** if the operation is successful; returns an error code otherwise. **RDB_OK** indicates the operation is successful. <br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+Returns **RDB_OK** if the operation is successful; returns an error code otherwise.
+
+**RDB_OK** indicates the operation is successful.
+
+**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
 ### OH_Rdb_RollBackByTrxId()
@@ -3754,7 +4080,13 @@ Rolls back the executed SQL statement based on the specified transaction ID. Thi
 
 **Returns**
 
-Returns **RDB_OK** if the operation is successful; returns an error code otherwise. **RDB_OK** indicates the operation is successful. <br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified. Possible causes: A null pointer is passed in; the transaction ID is not obtained by [OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid); the transaction ID has been used by [OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid); the transaction ID has been used by [OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid). <br>**RDB_E_NOT_SUPPORTED** indicates that the current operation is not supported.
+Returns **RDB_OK** if the operation is successful; returns an error code otherwise.
+
+**RDB_OK** indicates the operation is successful.
+
+**RDB_E_INVALID_ARGS** indicates invalid parameters are specified. Possible causes: A null pointer is passed in; the transaction ID is not obtained by [OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid); the transaction ID has been used by [OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid); the transaction ID has been used by [OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid);
+
+**RDB_E_NOT_SUPPORTED** indicates that the current operation is not supported.
 
 **See**
 
@@ -3782,7 +4114,11 @@ Sets the security area level ([Rdb_SecurityArea](#rdb_securityarea)) for an [OH_
 
 **Returns**
 
-Returns **RDB_OK** if the operation is successful; returns an error code otherwise. **RDB_OK** indicates the operation is successful. <br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+Returns **RDB_OK** if the operation is successful; returns an error code otherwise.
+
+**RDB_OK** indicates the operation is successful.
+
+<br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
 ### OH_Rdb_SetBundleName()
@@ -3806,7 +4142,11 @@ Sets the application bundle name for an [OH_Rdb_ConfigV2](#oh_rdb_configv2) inst
 
 **Returns**
 
-Returns **RDB_OK** if the operation is successful; returns an error code otherwise. **RDB_OK** indicates the operation is successful. <br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+Returns **RDB_OK** if the operation is successful; returns an error code otherwise.
+
+**RDB_OK** indicates the operation is successful.
+
+<br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
 ### OH_Rdb_SetDatabaseDir()
@@ -3830,7 +4170,11 @@ Sets the database file path for an [OH_Rdb_ConfigV2](#oh_rdb_configv2) instance.
 
 **Returns**
 
-Returns **RDB_OK** if the operation is successful; returns an error code otherwise. **RDB_OK** indicates the operation is successful. <br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+Returns **RDB_OK** if the operation is successful; returns an error code otherwise.
+
+**RDB_OK** indicates the operation is successful.
+
+<br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
 ### OH_Rdb_SetDbType()
@@ -3854,7 +4198,13 @@ Sets the database type ([Rdb_DBType](#rdb_dbtype)) for an [OH_Rdb_ConfigV2](#oh_
 
 **Returns**
 
-Returns **RDB_OK** if the operation is successful; returns an error code otherwise. **RDB_OK** indicates the operation is successful. <br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified. <br>**RDB_E_NOT_SUPPORTED** indicates that the current operation is not supported.
+Returns **RDB_OK** if the operation is successful; returns an error code otherwise.
+
+**RDB_OK** indicates the operation is successful.
+
+<br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+
+<br>**RDB_E_NOT_SUPPORTED** indicates that the current operation is not supported.
 
 
 ### OH_Rdb_SetEncrypted()
@@ -3878,7 +4228,11 @@ Sets whether to encrypt the RDB store for an [OH_Rdb_ConfigV2](#oh_rdb_configv2)
 
 **Returns**
 
-Returns **RDB_OK** if the operation is successful; returns an error code otherwise. **RDB_OK** indicates the operation is successful. <br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+Returns **RDB_OK** if the operation is successful; returns an error code otherwise.
+
+**RDB_OK** indicates the operation is successful.
+
+<br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
 ### OH_Rdb_SetModuleName()
@@ -3902,7 +4256,11 @@ Sets the module name for an [OH_Rdb_ConfigV2](#oh_rdb_configv2) instance.
 
 **Returns**
 
-Returns **RDB_OK** if the operation is successful; returns an error code otherwise. **RDB_OK** indicates the operation is successful. <br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+Returns **RDB_OK** if the operation is successful; returns an error code otherwise.
+
+**RDB_OK** indicates the operation is successful.
+
+<br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
 ### OH_Rdb_SetSecurityLevel()
@@ -3926,7 +4284,11 @@ Sets the RDB store security level ([OH_Rdb_SecurityLevel](#oh_rdb_securitylevel)
 
 **Returns**
 
-Returns **RDB_OK** if the operation is successful; returns an error code otherwise. **RDB_OK** indicates the operation is successful. <br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+Returns **RDB_OK** if the operation is successful; returns an error code otherwise.
+
+**RDB_OK** indicates the operation is successful.
+
+<br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 
 ### OH_Rdb_SetStoreName()
@@ -3950,7 +4312,11 @@ Sets the RDB store name for an [OH_Rdb_ConfigV2](#oh_rdb_configv2) instance.
 
 **Returns**
 
-Returns **RDB_OK** if the operation is successful; returns an error code otherwise. **RDB_OK** indicates the operation is successful. <br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+Returns **RDB_OK** if the operation is successful; returns an error code otherwise.
+
+**RDB_OK** indicates the operation is successful.
+
+<br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 ### OH_Rdb_Backup()
 
@@ -3973,7 +4339,11 @@ Backs up an RDB store using the backup file of the specified path. This API supp
 
 **Returns**
 
-Returns **RDB_OK** if the operation is successful; returns an error code otherwise. **RDB_OK** indicates the operation is successful. <br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+Returns **RDB_OK** if the operation is successful; returns an error code otherwise.
+
+**RDB_OK** indicates the operation is successful.
+
+<br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 **See**
 
@@ -4000,7 +4370,11 @@ Starts the transaction before executing the SQL statement.
 
 **Returns**
 
-Returns **RDB_OK** if the operation is successful; returns an error code otherwise. **RDB_OK** indicates the operation is successful. <br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+Returns **RDB_OK** if the operation is successful; returns an error code otherwise.
+
+**RDB_OK** indicates the operation is successful.
+
+<br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 **See**
 
@@ -4027,7 +4401,11 @@ Closes an [OH_Rdb_Store](_o_h___rdb___store.md) object to reclaim the memory occ
 
 **Returns**
 
-Returns **RDB_OK** if the operation is successful; returns an error code otherwise. **RDB_OK** indicates the operation is successful. <br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+Returns **RDB_OK** if the operation is successful; returns an error code otherwise.
+
+**RDB_OK** indicates the operation is successful.
+
+<br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 **See**
 
@@ -4058,7 +4436,11 @@ Performs device-cloud sync.
 
 **Returns**
 
-Returns **RDB_OK** if the operation is successful; returns an error code otherwise. **RDB_OK** indicates the operation is successful. <br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+Returns **RDB_OK** if the operation is successful; returns an error code otherwise.
+
+**RDB_OK** indicates the operation is successful.
+
+<br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 **See**
 
@@ -4085,7 +4467,11 @@ Commits the executed SQL statement.
 
 **Returns**
 
-Returns **RDB_OK** if the operation is successful; returns an error code otherwise. **RDB_OK** indicates the operation is successful. <br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+Returns **RDB_OK** if the operation is successful; returns an error code otherwise.
+
+**RDB_OK** indicates the operation is successful.
+
+<br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 **See**
 
@@ -4233,7 +4619,11 @@ Executes an SQL statement but returns no value.
 
 **Returns**
 
-Returns **RDB_OK** if the operation is successful; returns an error code otherwise. **RDB_OK** indicates the operation is successful. <br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+Returns **RDB_OK** if the operation is successful; returns an error code otherwise.
+
+**RDB_OK** indicates the operation is successful.
+
+<br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 **See**
 
@@ -4518,7 +4908,11 @@ Restores a database from a specified database backup file. This API supports vec
 
 **Returns**
 
-Returns **RDB_OK** if the operation is successful; returns an error code otherwise. **RDB_OK** indicates the operation is successful. <br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+Returns **RDB_OK** if the operation is successful; returns an error code otherwise.
+
+**RDB_OK** indicates the operation is successful.
+
+<br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 **See**
 
@@ -4545,7 +4939,11 @@ Rolls back the SQL statement executed.
 
 **Returns**
 
-Returns **RDB_OK** if the operation is successful; returns an error code otherwise. **RDB_OK** indicates the operation is successful. <br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+Returns **RDB_OK** if the operation is successful; returns an error code otherwise.
+
+**RDB_OK** indicates the operation is successful.
+
+<br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 **See**
 
@@ -4576,7 +4974,11 @@ Sets distributed database tables.
 
 **Returns**
 
-Returns **RDB_OK** if the operation is successful; returns an error code otherwise. **RDB_OK** indicates the operation is successful. <br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+Returns **RDB_OK** if the operation is successful; returns an error code otherwise.
+
+**RDB_OK** indicates the operation is successful.
+
+<br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 **See**
 
@@ -4604,7 +5006,11 @@ Sets the RDB store version.
 
 **Returns**
 
-Returns **RDB_OK** if the operation is successful; returns an error code otherwise. **RDB_OK** indicates the operation is successful. <br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+Returns **RDB_OK** if the operation is successful; returns an error code otherwise.
+
+**RDB_OK** indicates the operation is successful.
+
+<br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 **See**
 
@@ -4633,7 +5039,11 @@ Registers an observer for an RDB store. When data in the RDB store changes, a ca
 
 **Returns**
 
-Returns **RDB_OK** if the operation is successful; returns an error code otherwise. **RDB_OK** indicates the operation is successful. <br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+Returns **RDB_OK** if the operation is successful; returns an error code otherwise.
+
+**RDB_OK** indicates the operation is successful.
+
+<br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 **See**
 
@@ -4720,7 +5130,11 @@ Unregisters the observer of the specified type.
 
 **Returns**
 
-Returns **RDB_OK** if the operation is successful; returns an error code otherwise. **RDB_OK** indicates the operation is successful. <br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+Returns **RDB_OK** if the operation is successful; returns an error code otherwise.
+
+**RDB_OK** indicates the operation is successful.
+
+<br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 **See**
 
@@ -4750,7 +5164,11 @@ Unsubscribes from the automatic sync process of an RDB store.
 
 **Returns**
 
-Returns **RDB_OK** if the operation is successful; returns an error code otherwise. **RDB_OK** indicates the operation is successful. <br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
+Returns **RDB_OK** if the operation is successful; returns an error code otherwise.
+
+**RDB_OK** indicates the operation is successful.
+
+<br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.
 
 **See**
 
@@ -4796,7 +5214,7 @@ int OH_VBucket_PutAsset (OH_VBucket *bucket, const char *field, OH_Asset *value 
 
 **Description**
 
-Puts an **OH_Asset** object into an [OH_VBucket](_o_h___v_bucket.md) object with the given column name.
+Puts an **OH_Asset** object into an [OH_VBucket](_o_h___v_bucket.md) object in the given column.
 
 **Since**: 11
 
@@ -4825,7 +5243,7 @@ int OH_VBucket_PutAssets (OH_VBucket *bucket, const char *field, OH_Asset **valu
 
 **Description**
 
-Puts an array of **OH_Asset** objects into an [OH_VBucket](_o_h___v_bucket.md) object with the given column name.
+Puts an array of **OH_Asset** objects into an [OH_VBucket](_o_h___v_bucket.md) object in the given column.
 
 **Since**: 11
 

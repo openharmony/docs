@@ -236,7 +236,7 @@ const normalAsset = sendableRelationalStore.fromSendableAsset(sendableAsset);
 | createTime | string | 否   | 否   | 资产被创建出来的时间。             |
 | modifyTime | string | 否   | 否   | 资产最后一次被修改的时间。         |
 | size       | string | 否   | 否   | 资产占用空间的大小。               |
-| status     | number | 否   | 是   | 资产的状态, 取值与[relationalStore.AssetStatus](./js-apis-data-relationalStore.md#assetstatus10)枚举值保持一致，默认值为relationalStore.AssetStatus.ASSET_NORMAL。|
+| status     | number | 否   | 是   | 资产的状态，取值与[relationalStore.AssetStatus](./js-apis-data-relationalStore.md#assetstatus10)枚举值保持一致，默认值为relationalStore.AssetStatus.ASSET_NORMAL。|
 
 
 ## Assets
@@ -269,7 +269,7 @@ type ValueType = null | number | string | boolean | collection.Uint8Array | Asse
 | [Asset](#asset)  | 表示值类型为附件Asset。<br/>当字段类型是Asset时，在创建表的sql语句中，类型应当为：ASSET。             |
 | [Assets](#assets) | 表示值类型为附件数据集合Assets。<br/>当字段类型是Assets时，在创建表的sql语句中，类型应当为：ASSETS。 |
 | [collection.Float32Array](../apis-arkts/js-apis-arkts-collections.md#collectionstypedarray) | 表示值类型为浮点数组。<br/>当字段类型是collection.Float32Array时，在创建表的sql语句中，类型应当为：floatvector(128)。 |
-| bigint | 表示值类型为任意长度的整数。<br/>当字段类型是bigint时，在创建表的sql语句中，类型应当为：UNLIMITED INT, 详见[通过关系型数据库实现数据持久化](../../database/data-persistence-by-rdb-store.md)。<br/>**说明：** bigint类型当前不支持比较大小，不支持如下谓词：between、notBetween、greaterThanlessThan、greaterThanOrEqualTo、lessThanOrEqualTo、orderByAsc、orderByDesc。<br/>bigint类型字段的数据写入时，需通过BigInt()方法或在数据尾部添加'n'的方式明确为bigint类型，如'let data = BigInt(1234)'或'let data = 1234n'。<br/>bigint字段如果写入number类型的数据，则查询该数据的返回类型为number，而非bigint。 |
+| bigint | 表示值类型为任意长度的整数。<br/>当字段类型是bigint时，在创建表的sql语句中，类型应当为：UNLIMITED INT, 详见[通过关系型数据库实现数据持久化](../../database/data-persistence-by-rdb-store.md)。<br/>**说明：** <br>bigint类型当前不支持比较大小，不支持如下谓词：between、notBetween、greaterThanlessThan、greaterThanOrEqualTo、lessThanOrEqualTo、orderByAsc、orderByDesc。<br/>bigint类型字段的数据写入时，需通过BigInt()方法或在数据尾部添加'n'的方式明确为bigint类型，如'let data = BigInt(1234)'或'let data = 1234n'。<br/>bigint字段如果写入number类型的数据，则查询该数据的返回类型为number，而非bigint。 |
 
 ## ValuesBucket
 

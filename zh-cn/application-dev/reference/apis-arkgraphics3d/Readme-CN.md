@@ -1,8 +1,8 @@
 # ArkGraphics 3D（方舟3D图形服务）
 
-- ArkTS API
+- ArkTS API<!--arkgraphics-3d-arkts-->
   - [@ohos.graphics.scene (ArkGraphics 3D模块)](js-apis-scene.md)
-  - graphics3d
+  - graphics3d<!--graphics3d-->
     - [Scene](js-apis-inner-scene.md)
     - [SceneNode](js-apis-inner-scene-nodes.md)
     - [SceneType](js-apis-inner-scene-types.md)

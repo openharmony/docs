@@ -58,7 +58,7 @@ Defines the UUID of a profile.
 
 type MajorClass = constant.MajorClass
 
-Defines the major class of the Bluetooth device.
+Main class of the Bluetooth device.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -71,7 +71,7 @@ Defines the major class of the Bluetooth device.
 
 type MajorMinorClass = constant.MajorMinorClass
 
-Defines the major and minor classes of the Bluetooth device.
+Major and minor classes of the Bluetooth device.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -116,7 +116,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-//callback
+// callback
 try {
     connection.pairDevice('11:22:33:44:55:66', (err: BusinessError) => {
         console.info('pairDevice, device name err:' + JSON.stringify(err));
@@ -169,7 +169,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-//promise
+// promise
 try {
     connection.pairDevice('11:22:33:44:55:66').then(() => {
         console.info('pairDevice');
@@ -236,9 +236,7 @@ try {
 
 getRemoteDeviceClass(deviceId: string): DeviceClass
 
-Obtains the class of a remote Bluetooth device.
-
-**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+Obtains the class of a remote Bluetooth device. Since API version 16, the **ohos.permission.ACCESS_BLUETOOTH** permission is no longer verified.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -260,7 +258,6 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
-|201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
@@ -430,7 +427,7 @@ Obtains the paired devices.
 
 | Type                 | Description           |
 | ------------------- | ------------- |
-| Array&lt;string&gt; | Addresses of the paired Bluetooth devices. For security purposes, the device addresses obtained are random MAC addresses. The random MAC address remains unchanged after a device is paired successfully. It changes when the paired device is unpaired and scanned again or the Bluetooth service is turned off.|
+| Array&lt;string&gt; | Addresses of the paired Bluetooth devices.<br>- For security purposes, the device addresses obtained are random MAC addresses.<br>- The random MAC address remains unchanged after a device is paired successfully.<br>- The random address changes when the paired device is unpaired and scanned again or the Bluetooth service is turned off.|
 
 **Error codes**
 
@@ -510,7 +507,9 @@ try {
 
 getProfileConnectionState(profileId?: ProfileId): ProfileConnectionState
 
-Obtains the connection state of a Bluetooth profile. The **ProfileId** parameter is optional. If **ProfileId** is specified, the connection state of the specified profile is returned. If no **ProfileId** is specified, [STATE_CONNECTED](js-apis-bluetooth-constant.md#profileconnectionstate) is returned by any connected profile. If no profile is connected, [STATE_DISCONNECTED](js-apis-bluetooth-constant.md#profileconnectionstate) is returned.
+Obtains the connection state of a Bluetooth profile. The **ProfileId** parameter is optional.
+- If **ProfileId** is specified, the connection state of the specified profile is returned.
+- If no **ProfileId** is specified, [STATE_CONNECTED](js-apis-bluetooth-constant.md#profileconnectionstate) is returned by any connected profile. If no profile is connected, [STATE_DISCONNECTED](js-apis-bluetooth-constant.md#profileconnectionstate) is returned.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -637,7 +636,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-//callback
+// callback
 try {
     connection.setDevicePinCode('11:22:33:44:55:66', '12345', (err: BusinessError) => {
         console.info('setDevicePinCode,device name err:' + JSON.stringify(err));
@@ -688,7 +687,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-//promise
+// promise
 try {
     connection.setDevicePinCode('11:22:33:44:55:66', '12345').then(() => {
         console.info('setDevicePinCode');
@@ -761,7 +760,7 @@ Sets the Bluetooth scan mode so that the device can be discovered by a remote de
 | Name     | Type                   | Mandatory  | Description                          |
 | -------- | --------------------- | ---- | ---------------------------- |
 | mode     | [ScanMode](#scanmode) | Yes   | Bluetooth scan mode to set. If the scan times out (**duration** is not **0**) when the scan mode is **SCAN_MODE_GENERAL_DISCOVERABLE**, the scan mode will be reset to **SCAN_MODE_CONNECTABLE**.              |
-| duration | number                | Yes   | Duration (in ms) in which the device can be discovered. The value **0** indicates unlimited time.|
+| duration | number                | Yes   | Duration (in seconds) in which the device can be discovered. The value **0** indicates unlimited time.|
 
 **Error codes**
 
@@ -985,7 +984,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-//promise
+// promise
 try {
     connection.setRemoteDeviceName('11:22:33:44:55:66', 'RemoteDeviceName').then(() => {
         console.info('setRemoteDeviceName success');
@@ -1352,90 +1351,6 @@ try {
 
 ## connection.off('pinRequired')
 
-## connection.on('discoveryResult')<sup>16+</sup>
-
-on(type: 'discoveryResult', callback: Callback&lt;Array&lt;DiscoveryResult&gt;&gt;): void
-
-Subscribes to the Bluetooth device discovery result. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
-
-**System capability**: SystemCapability.Communication.Bluetooth.Core
-
-**Parameters**
-
-| Name     | Type                                 | Mandatory  | Description                                    |
-| -------- | ----------------------------------- | ---- | -------------------------------------- |
-| type     | string                              | Yes   | Event type. The value is **discoveryResult**, which indicates information about the Bluetooth devices discovered.|
-| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult16)&gt;&gt; | Yes   | Callback used to return information about the discovered devices. You need to create the callback and register it here.   |
-
-**Error codes**
-
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
-
-| ID| Error Message|
-| -------- | ---------------------------- |
-|201 | Permission denied.                 |
-|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
-|801 | Capability not supported.          |
-|2900099 | Operation failed.                        |
-
-**Example**
-
-```js
-import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-let onReceiveEvent: (data: Array<connection.DiscoveryResult>) => void = (data: Array<connection.DiscoveryResult>) => { // data is an array of Bluetooth devices discovered.
-    console.info('bluetooth device find = '+ JSON.stringify(data));
-}
-try {
-    connection.on('discoveryResult', onReceiveEvent);
-} catch (err) {
-    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
-}
-```
-
-## connection.off('discoveryResult')<sup>16+</sup>
-
-off(type: 'discoveryResult', callback?: Callback&lt;Array&lt;DiscoveryResult&gt;&gt;): void
-
-Unsubscribes from the Bluetooth device discovery result.
-
-**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
-
-**System capability**: SystemCapability.Communication.Bluetooth.Core
-
-**Parameters**
-
-| Name     | Type                                 | Mandatory  | Description                                      |
-| -------- | ----------------------------------- | ---- | ---------------------------------------- |
-| type     | string                              | Yes   | Event type. The value is **discoveryResult**, which indicates information about the Bluetooth devices discovered.  |
-| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult16)&gt;&gt; | No   | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified event type.|
-
-**Error codes**
-
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
-
-| ID| Error Message|
-| -------- | ---------------------------- |
-|201 | Permission denied.                 |
-|801 | Capability not supported.          |
-|2900099 | Operation failed.                        |
-
-**Example**
-
-```js
-import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-let onReceiveEvent: (data: Array<connection.DiscoveryResult>) => void = (data: Array<connection.DiscoveryResult>) => { // data is an array of Bluetooth devices discovered.
-    console.info('bluetooth device find = '+ JSON.stringify(data));
-}
-try {
-    connection.on('discoveryResult', onReceiveEvent);
-    connection.off('discoveryResult', onReceiveEvent);
-} catch (err) {
-    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
-}
-```
-
 off(type: 'pinRequired', callback?: Callback&lt;PinRequiredParam&gt;): void
 
 Unsubscribes from the pairing request events of the remote Bluetooth device.
@@ -1472,6 +1387,92 @@ function onReceiveEvent(data: connection.PinRequiredParam) {
 try {
     connection.on('pinRequired', onReceiveEvent);
     connection.off('pinRequired', onReceiveEvent);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## connection.on('discoveryResult')<sup>16+</sup>
+
+on(type: 'discoveryResult', callback: Callback&lt;Array&lt;DiscoveryResult&gt;&gt;): void
+
+Subscribes to the Bluetooth device discovered. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name     | Type                                 | Mandatory  | Description                                    |
+| -------- | ----------------------------------- | ---- | -------------------------------------- |
+| type     | string                              | Yes   | Event type. The value is **discoveryResult**, which indicates information about the Bluetooth devices discovered.|
+| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult16)&gt;&gt; | Yes   | Callback used to return the discovered devices. You need to implement this callback.   |
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+let onReceiveEvent: (data: Array<connection.DiscoveryResult>) => void = (data: Array<connection.DiscoveryResult>) => { // data is an array of Bluetooth devices discovered.
+    console.info('bluetooth device find = '+ JSON.stringify(data));
+}
+try {
+    connection.on('discoveryResult', onReceiveEvent);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## connection.off('discoveryResult')<sup>16+</sup>
+
+off(type: 'discoveryResult', callback?: Callback&lt;Array&lt;DiscoveryResult&gt;&gt;): void
+
+Unsubscribes from the Bluetooth device discovered.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name     | Type                                 | Mandatory  | Description                                      |
+| -------- | ----------------------------------- | ---- | ---------------------------------------- |
+| type     | string                              | Yes   | Event type. The value is **discoveryResult**, which indicates information about the Bluetooth devices discovered.  |
+| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult16)&gt;&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+let onReceiveEvent: (data: Array<connection.DiscoveryResult>) => void = (data: Array<connection.DiscoveryResult>) => { // data is an array of Bluetooth devices discovered.
+    console.info('bluetooth device find = '+ JSON.stringify(data));
+}
+try {
+    connection.on('discoveryResult', onReceiveEvent);
+    connection.off('discoveryResult', onReceiveEvent);
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }

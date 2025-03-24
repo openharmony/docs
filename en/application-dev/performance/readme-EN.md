@@ -10,7 +10,6 @@
     - [High-Performance Swiper Development](swiper_optimization.md)
     - [Proper State Management](proper_state_management.md)
     - [Precisely Controlling Render Scope](precisely-control-render-scope.md)
-    - [Reducing Animation Frame Loss](reduce-animation-frame-loss.md)
     - [Reasonably Using Multithreaded Shared Memory](thread_memory_shared.md)
   - Improving Application Startup and Response Times
     - [Speeding Up Application Cold Start](improve-application-cold-start-speed.md)

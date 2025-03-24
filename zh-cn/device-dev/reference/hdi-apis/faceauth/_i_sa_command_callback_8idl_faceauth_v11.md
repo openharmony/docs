@@ -3,7 +3,7 @@
 
 ## 概述
 
-定义异步 API 的回调，该回调可用于向 SA 发送命令。详细说明请参考[IExecutor](interface_i_executor_faceauth_v11.md).
+定义异步 API 的回调，该回调可用于向 SA 发送命令。详细说明请参考[IExecutor](interface_i_executor_faceauth_v11.md)。
 
 模块包路径：ohos.hdi.face_auth.v1_1
 
@@ -21,4 +21,4 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| interface&nbsp;&nbsp;[ISaCommandCallback](interface_i_sa_command_callback_faceauth_v11.md) | 定义异步 API 的回调，该回调可用于向 SA 发送命令。详细说明请参考[IExecutor](interface_i_executor_faceauth_v11.md).  | 
+| interface&nbsp;&nbsp;[ISaCommandCallback](interface_i_sa_command_callback_faceauth_v11.md) | 定义异步 API 的回调，该回调可用于向 SA 发送命令。详细说明请参考[IExecutor](interface_i_executor_faceauth_v11.md)。  | 

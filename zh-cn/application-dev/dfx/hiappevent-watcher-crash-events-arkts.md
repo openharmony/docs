@@ -111,7 +111,10 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 5. 点击DevEco Studio界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“appCrash”，触发一次崩溃事件。崩溃事件发生后，系统会根据崩溃类型（JsError或NativeCrash）采用不同的栈回溯方式生成崩溃日志，然后再进行回调。其中NativeCrash栈回溯耗时约2秒，实际耗时与业务线程数量、进程间通信耗时有关。JsError触发进程内栈回溯，NativeCrash触发进程外栈回溯，因此NativeCrash栈回溯会比JsError栈回溯更耗时。用户可以订阅崩溃事件，栈回溯完成后会异步上报，不会阻塞当前业务。
 
-6. 下次应用启动后，HiAppEvent将崩溃事件上报给应用已注册的监听，完成回调。并可以在Log窗口看到对系统事件数据的处理日志：
+6. 若应用未捕获崩溃异常，则系统处理崩溃后应用退出，应用下次启动后HiAppEvent将崩溃事件上报给应用已注册的监听，完成回调。
+<br>若应用主动捕获崩溃异常，如下两种场景，HiAppEvent事件将会在应用退出前回调。
+<br>&emsp;&emsp;场景1：异常处理中未主动退出，应用发生崩溃后将不会退出。例如采用[errorManger.on](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageronerror)方法捕获JsError崩溃；应用主动注册NativeCrash崩溃信号处理函数未主动退出。<br>&emsp;&emsp;场景2：异常处理耗时太久，应用退出时机延后。
+<br>HiAppEvent上报事件完成回调后，可以在Log窗口看到对系统事件数据的处理日志：
 
    ```text
    HiAppEvent onReceive: domain=OS

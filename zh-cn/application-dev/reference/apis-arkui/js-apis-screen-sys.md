@@ -813,7 +813,59 @@ screen.setVirtualScreenSurface(screenId, surfaceId, (err: BusinessError) => {
   console.info('Succeeded in setting the surface for the virtual screen.');
 });
 ```
+## screen.setScreenPrivacyMaskImage<sup>18+</sup>
 
+setScreenPrivacyMaskImage(screenId:number, image?: image.PixelMap): Promise&lt;void&gt;
+
+设置屏幕的隐私蒙版图片，使用Promise异步回调。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明          |
+| --------- | ------ | ---- | ------------- |
+| screenId  | number | 是   | 屏幕的id，该参数仅支持正整数输入。    |
+| image | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否   | 屏幕的隐私蒙版图片，不传入时，则清除隐私蒙版图片，恢复为未传入的样式。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1400001 | Invalid display or screen. |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
+
+const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
+  console.info('Succeeded in creating pixelmap.');
+  let screenId: number = 1;
+  screen.setScreenPrivacyMaskImage(screenId, pixelMap).then(() => {
+    console.info('Succeeded in setting the privacy mask image for the screen.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set the privacy mask image for the screen. Code:${err.code},message is ${err.message}`);
+  });
+}).catch((error: BusinessError) => {
+  console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
+})
+```
 ## screen.setVirtualScreenSurface
 
 setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
@@ -945,7 +997,7 @@ setScreenRotationLocked(isLocked: boolean): Promise&lt;void&gt;
 
 | 参数名    | 类型   | 必填 | 说明          |
 | --------- | ------ | ---- | ------------- |
-| isLocked  | boolean | 是   | 自动转屏开关是否锁定。true为锁定，false为未锁定. |
+| isLocked  | boolean | 是   | 自动转屏开关是否锁定。true为锁定，false为未锁定。 |
 
 **返回值：**
 
@@ -987,7 +1039,7 @@ setScreenRotationLocked(isLocked: boolean, callback: AsyncCallback&lt;void&gt;):
 
 | 参数名    | 类型                      | 必填 | 说明                                                         |
 | --------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| isLocked  | boolean                   | 是   | 自动转屏开关是否锁定。true为锁定，false为未锁定.                 |
+| isLocked  | boolean                   | 是   | 自动转屏开关是否锁定。true为锁定，false为未锁定。                 |
 | callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。当设置自动转屏是否锁定成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -1228,16 +1280,16 @@ screen.makeMirrorWithRegion(mainScreenId, mirrorScreenIds, mainScreenRegion).the
 
 ### 属性
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称              | 类型                                       | 可读 | 可写 | 说明                                                          |
+| 名称              | 类型                                       | 只读 | 可选 | 说明                                                          |
 | ----------------- | ---------------------------------------------- | ---- | ---- |-------------------------------------------------------------|
-| id                | number                                         | 是   | 否   | 屏幕的id，该参数应为整数。                                              |
-| parent            | number                                         | 是   | 否   | 屏幕所属群组的id，该参数应为整数。                                          |
-| supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | 是   | 否   | 屏幕支持的模式集合。                                                  |
-| activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化。该参数应为整数。 |
-| orientation       | [Orientation](#orientation)                     | 是   | 否   | 屏幕方向。                                                       |
-| sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | 是   | 否   | 屏幕来源模式。                                                     |
+| id                | number                                         | 是   | 否   | 屏幕的id，该参数应为整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core                                              |
+| parent            | number                                         | 是   | 否   | 屏幕所属群组的id，该参数应为整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core                                          |
+| supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | 是   | 否   | 屏幕支持的模式集合。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core                                                  |
+| activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化。该参数应为整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
+| orientation       | [Orientation](#orientation)                     | 是   | 否   | 屏幕方向。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core                                                       |
+| sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | 是   | 否   | 屏幕来源模式。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core                                                     |
+| serialNumber<sup>15+</sup> | string        | 是   | 是   | 扩展屏幕的序列号，当前仅2in1设备支持此属性。其他设备暂不支持使用此属性。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager                        |       
 
 ### setOrientation
 

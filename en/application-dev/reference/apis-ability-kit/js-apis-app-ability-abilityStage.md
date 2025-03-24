@@ -16,6 +16,16 @@
 import { AbilityStage } from '@kit.AbilityKit';
 ```
 
+## Properties
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Name| Type| Read-Only| Optional| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| context  | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md) | No| No| Context of an AbilityStage.|
+
 ## AbilityStage.onCreate
 
 onCreate(): void
@@ -208,6 +218,82 @@ import { AbilityStage } from '@kit.AbilityKit';
 class MyAbilityStage extends AbilityStage {
   onDestroy() {
     console.log('MyAbilityStage.onDestroy is called');
+  }
+}
+```
+
+## AbilityStage.onPrepareTermination<sup>15+<sup>
+
+onPrepareTermination(): AbilityConstant.PrepareTermination
+
+Called when the application is closed by the user, allowing the user to choose between immediate termination or cancellation. Currently, this API takes effect only on 2-in-1 devices.
+
+> **NOTE**
+>
+> - This API is called only when the application exits normally. It is not called if the application is forcibly closed.
+> 
+> - This API is not executed when [AbilityStage.onPrepareTerminationAsync](#abilitystageonprepareterminationasync15) is implemented.
+
+**Required permissions**: ohos.permission.PREPARE_APP_TERMINATE
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+| Type| Description| 
+| -------- | -------- |
+| [AbilityConstant.PrepareTermination](js-apis-app-ability-abilityConstant.md#preparetermination15) | The user's choice.| 
+
+**Example**
+
+```ts
+import { AbilityConstant, AbilityStage } from '@kit.AbilityKit';
+
+class MyAbilityStage extends AbilityStage {
+  onPrepareTermination(): AbilityConstant.PrepareTermination {
+    console.info('MyAbilityStage.onPrepareTermination is called');
+    return AbilityConstant.PrepareTermination.CANCEL;
+  }
+}
+```
+
+## AbilityStage.onPrepareTerminationAsync<sup>15+<sup>
+
+onPrepareTerminationAsync(): Promise\<AbilityConstant.PrepareTermination>
+
+Called when the application is closed by the user, allowing the user to choose between immediate termination or cancellation. This API uses a promise to return the result. Currently, this API takes effect only on 2-in-1 devices.
+
+> **NOTE**
+>
+> - This API is called only when the application exits normally. It is not called if the application is forcibly closed.
+>
+> - If an asynchronous callback crashes, it will be handled as a timeout. If the application does not respond within 10 seconds, it will be terminated forcibly.
+
+**Required permissions**: ohos.permission.PREPARE_APP_TERMINATE
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+| Type| Description| 
+| -------- | -------- |
+| Promise\<[AbilityConstant.PrepareTermination](js-apis-app-ability-abilityConstant.md#preparetermination15)> | Promise used to return the user's choice.| 
+
+**Example**
+
+```ts
+import { AbilityConstant, AbilityStage } from '@kit.AbilityKit';
+
+class MyAbilityStage extends AbilityStage {
+  async onPrepareTerminationAsync(): Promise<AbilityConstant.PrepareTermination> {
+    await new Promise<AbilityConstant.PrepareTermination>((res, rej) => {
+      setTimeout(res, 3000); // Execute the operation after 3 seconds.
+    });
+    return AbilityConstant.PrepareTermination.CANCEL;
   }
 }
 ```

@@ -261,7 +261,7 @@ Provides methods for the web controller.
 
 ## Attributes
 
-Common attributes support only [aspectRatio](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio), [backdropBlur](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backdropblur), [backgroundColor](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundcolor), [bindContentCover](../apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover), [bindContextMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8), [bindMenu ](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu), [bindSheet](../apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet), [borderColor](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#bordercolor), [borderRadius](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderradius), [borderStyle](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderstyle), [borderWidth](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderwidth), [clip](../apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md#clip), [constraintSize](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#constraintsize), [defaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9), [focusable](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusable), [tabIndex](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#tabindex9), [groupDefaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#groupdefaultfocus9), [focusOnTouch](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusontouch9), [displayPriority](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority), [enabled](../apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled), [flexBasis](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexbasis), [flexShrink](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink), [layoutWeight](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#layoutweight), [id](../apis-arkui/arkui-ts/ts-universal-attributes-component-id.md), [gridOffset](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [gridSpan](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [useSizeType](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [height](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#height), [touchable](../apis-arkui/arkui-ts/ts-universal-attributes-click.md), [margin](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin), [markAnchor](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#markanchor), [offset](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#offset), [width](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#width), [zIndex](../apis-arkui/arkui-ts/ts-universal-attributes-z-order.md#zindex), [visibility](../apis-arkui/arkui-ts/ts-universal-attributes-visibility.md#visibility), [scale](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale), [translate](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#translate), [responseRegion](../apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md#responseregion), [size](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#size), [opacity](../apis-arkui/arkui-ts/ts-universal-attributes-opacity.md#opacity), [shadow](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#shadow), [sharedTransition](../apis-arkui/arkui-ts/ts-transition-animation-shared-elements.md) and [transition](../apis-arkui/arkui-ts/ts-transition-animation-component.md).
+Supported common attributes: [aspectRatio](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio), [backdropBlur](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backdropblur), [backgroundColor](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundcolor), [bindContentCover](../apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover), [bindContextMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8), [bindMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu), [bindSheet](../apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet), [borderColor](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#bordercolor), [borderRadius](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderradius), [borderStyle](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderstyle), [borderWidth](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderwidth), [clip](../apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md#clip), [constraintSize](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#constraintsize), [defaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9), [focusable](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusable), [tabIndex](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#tabindex9), [groupDefaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#groupdefaultfocus9), [displayPriority](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority), [enabled](../apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled), [flexBasis](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexbasis), [flexShrink](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink), [layoutWeight](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#layoutweight), [id](../apis-arkui/arkui-ts/ts-universal-attributes-component-id.md), [gridOffset](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [gridSpan](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [useSizeType](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [height](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#height), [touchable](../apis-arkui/arkui-ts/ts-universal-attributes-click.md), [margin](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin), [markAnchor](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#markanchor), [offset](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#offset), [width](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#width), [zIndex](../apis-arkui/arkui-ts/ts-universal-attributes-z-order.md#zindex), [visibility](../apis-arkui/arkui-ts/ts-universal-attributes-visibility.md#visibility), [scale](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale), [translate](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#translate), [responseRegion](../apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md#responseregion), [size](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#size), [opacity](../apis-arkui/arkui-ts/ts-universal-attributes-opacity.md#opacity), [shadow](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#shadow), [sharedTransition](../apis-arkui/arkui-ts/ts-transition-animation-shared-elements.md), and [transition](../apis-arkui/arkui-ts/ts-transition-animation-component.md).
 
 ### domStorageAccess
 
@@ -2237,7 +2237,7 @@ Sets nested scrolling options.
 
 | Name  | Type                                    | Mandatory  | Description            |
 | ----- | ---------------------------------------- | ---- | ---------------- |
-| value | [NestedScrollOptions](../apis-arkui/arkui-ts/ts-container-scrollable-common.md#nestedscrolloptions10)\| [NestedScrollOptionsExt](#nestedscrolloptionsext14) <sup>14+</sup> | Yes   | Nested scrolling options.|
+| value | [NestedScrollOptions](../apis-arkui/arkui-ts/ts-container-scrollable-common.md#nestedscrolloptions10)\| [NestedScrollOptionsExt](#nestedscrolloptionsext14) <sup>14+</sup>| Yes   | Nested scrolling options.|
 
 **Example**
 
@@ -3100,47 +3100,6 @@ Sets the blur mode of the **Web** component when the soft keyboard is hidden. Th
 </html>
 ```
 
-### enableSmoothDragResize<sup>16+</sup>
-
-enableSmoothDragResize(mode: boolean)
-
-
-Sets whether to enable the smooth drag resizing function for a **Web** component. This function is disabled by default. After this function is enabled, the white block area is reduced when the **Web** component is dragged and zoomed in on the 2-in-1 page.
-
-> **NOTE**
->
-> **WebLayoutMode.FIT_CONTENT** and **RenderMode.SYNC_RENDER** are not supported.
-> 
-
-**System capability**: SystemCapability.Web.Webview.Core
-
-**Parameters**
-
-| Name | Type| Mandatory| Description          |
-| ------- | -------- | ---- | ------------------ |
-| mode | boolean  | Yes  | Whether to enable the smooth drag resizing function for a **Web** component. The default value is **false**.|
-
-
-**Example**
-
-  ```ts
-  // xxx.ets
-  import { webview } from '@kit.ArkWeb';
-
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController();
-
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-          .enableSmoothDragResize(true)
-      }
-    }
-  }
-  ```
-
 ### enableFollowSystemFontWeight<sup>16+</sup>
 
 enableFollowSystemFontWeight(follow: boolean)
@@ -3178,7 +3137,7 @@ Set whether the font weight of a **Web** component follows the system settings. 
   }
   ```
 
-### optimizeParserBudget<sup>16+</sup>
+### optimizeParserBudget<sup>15+</sup>
 
 optimizeParserBudget(optimizeParserBudget: boolean)
 
@@ -3194,9 +3153,9 @@ When the FCP of a page is triggered, the default segment parsing logic is restor
 
 **Parameters**
 
-| Name       | Type   | Mandatory  | Default Value | Description                  |
-| ---------- | ------- | ---- | ---- | ---------------------- |
-| optimizeParserBudget | boolean | Yes   | false | If this parameter is set to **true**, the number of parsed records instead of the parsing time is used as the segment point for HTML segment parsing, and the upper limit of the number of parsed records in each segment is reduced. If it is set to **false**, the parsing time is used as the segment point for HTML segment parsing. The default value is **false**.|
+| Name       | Type   | Mandatory  | Description                  |
+| ---------- | ------- | ---- | ---------------------- |
+| optimizeParserBudget | boolean | Yes   | If this parameter is set to **true**, the number of parsed records instead of the parsing time is used as the segment point for HTML segment parsing, and the upper limit of the number of parsed records in each segment is reduced. If it is set to **false**, the parsing time is used as the segment point for HTML segment parsing. The default value is **false**.|
 
 
 **Example**
@@ -3216,6 +3175,108 @@ When the FCP of a page is triggered, the default segment parsing logic is restor
       }
     }
   }
+  ```
+
+### enableWebAVSession<sup>16+</sup>
+
+enableWebAVSession(enabled: boolean)
+
+Sets whether to support the application to connect to media controller. By default, the application can be connected to media controller.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name | Type| Mandatory| Description          |
+| ------- | -------- | ---- | ------------------ |
+| enabled | boolean  | Yes  | Whether to support the application to connect to media controller. Default value: **true**|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    build() {
+      Column() {
+        Web({ src: $rawfile('index.html'), controller: this.controller })
+          .enableWebAVSession(true)
+      }
+    }
+  }
+  ```
+
+  HTML file to be loaded:
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>Video playback page</title>
+  </head>
+  <body>
+      <h1>Video playback</h1>
+      <video id="testVideo" controls>
+          // Save an MP4 media file in the rawfile directory of resources and name it example.mp4.
+          <source src="example.mp4" type="video/mp4">
+      </video>
+  </body>
+  </html>
+  ```
+
+### nativeEmbedOptions<sup>16+</sup>
+
+nativeEmbedOptions(options?: EmbedOptions)
+
+Sets the same-layer rendering configuration. This attribute takes effect only when [enableNativeEmbedMode](#enablenativeembedmode11) is enabled and cannot be dynamically modified.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name      | Type                            | Mandatory| Description                               |
+| ------------ | ------------------------------- | ---- | ----------------------------------- |
+| options | [EmbedOptions](#embedoptions16) | No   | Same-layer rendering configuration. The default value is **{supportDefaultIntrinsicSize: false}**.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    options: EmbedOptions = {supportDefaultIntrinsicSize: true};
+
+    build() {
+      Column() {
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+          .enableNativeEmbedMode(true)
+          .nativeEmbedOptions(this.options)
+      }
+    }
+  }
+  ```
+HTML file to be loaded:
+  ```
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>HTML for Fixed-Size Same-Layer Rendering Test</title>
+  </head>
+  <body>
+  <div>
+      <embed id="input" type = "native/view" style = "background-color:red"/>
+  </div>
+  </body>
+  </html>
   ```
 
 ## Events
@@ -4186,6 +4247,57 @@ Called to process an HTML form whose input type is **file**. If this function is
    }
    ```
 
+3. Start the camera picker.
+
+   ```ts
+   // xxx.ets
+   import { webview } from '@kit.ArkWeb';
+   import { cameraPicker, camera } from '@kit.CameraKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { common } from '@kit.AbilityKit';
+
+   let mContext = getContext(this) as common.Context;
+
+   async function openCamera(callback: Callback<string>) {
+     try {
+       let pickerProfile: cameraPicker.PickerProfile = {
+         cameraPosition: camera.CameraPosition.CAMERA_POSITION_BACK
+       };
+       let pickerResult: cameraPicker.PickerResult = await cameraPicker.pick(mContext,
+         [cameraPicker.PickerMediaType.PHOTO, cameraPicker.PickerMediaType.VIDEO], pickerProfile);
+       callback(pickerResult.resultUri);
+     } catch (error) {
+       let err = error as BusinessError;
+       console.error(`the pick call failed. error code: ${err.code}`);
+     }
+   }
+
+   @Entry
+   @Component
+   struct WebComponent {
+     controller: webview.WebviewController = new webview.WebviewController()
+
+     build() {
+       Column() {
+         Web({ src: $rawfile('index.html'), controller: this.controller })
+           .onShowFileSelector((event) => {
+             openCamera((result) => {
+               if (event) {
+                 console.log('Title is ' + event.fileSelector.getTitle());
+                 console.log('Mode is ' + event.fileSelector.getMode());
+                 console.log('Accept types are ' + event.fileSelector.getAcceptType());
+                 console.log('Capture is ' + event.fileSelector.isCapture());
+                 console.log('Mime types are ' + event.fileSelector.getMimeTypes());
+                 event.result.handleFileList([result]);
+               }
+             })
+             return true;
+           })
+       }
+     }
+   }
+   ```
+
    HTML file to be loaded:
    ```html
    <!DOCTYPE html>
@@ -4195,7 +4307,7 @@ Called to process an HTML form whose input type is **file**. If this function is
    </head>
    <body>
      <form id="upload-form" enctype="multipart/form-data">
-       <input type="file" id="upload" name="upload"/>
+       <input type="file" id="upload" name="upload" accept="image/*, video/*"/>
        </form>
    </body>
    </html>
@@ -5361,7 +5473,7 @@ Note that there is no reliable method to determine which page requests a new win
 
 | Name   | Type  | Mandatory  | Description                 |
 | ------ | ------ | ---- | --------------------- |
-| callback       | Callback\<[OnWindowNewEvent](#onwindownewevent12)\>           | Yes| Callback invoked when the web page requests the user to create a new window.   |
+| callback       | Callback\<[OnWindowNewEvent](#onwindownewevent12)\>           | Yes| Callback invoked when the web page requests the user to create a window.   |
 
 **Example**
 
@@ -7136,6 +7248,18 @@ Closes this custom keyboard.
 
 Implements the **ConsoleMessage** object. For the sample code, see [onConsole](#onconsole).
 
+### constructor
+
+constructor(message: string, sourceId: string, lineNumber: number, messageLevel: MessageLevel)
+
+Constructs the **ConsoleMessage** object.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [constructor](#constructor9) instead.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
 ### constructor<sup>9+</sup>
 
 constructor()
@@ -7294,7 +7418,7 @@ Sets a **WebviewController** object. If opening a new window is not needed, set 
 
 Implements the **WebResourceError** object. For the sample code, see [onErrorReceive](#onerrorreceive).
 
-### constructor<sup>9+</sup>
+### constructor
 
 constructor()
 
@@ -7757,6 +7881,20 @@ Checks whether multimedia capabilities are invoked.
 | ------- | ------------ |
 | boolean | Whether multimedia capabilities are invoked.|
 
+### getMimeTypes<sup>16+</sup>
+
+getMimeTypes(): Array\<string\>
+
+Obtains the MIME type of a file.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type             | Description       |
+| --------------- | --------- |
+| Array\<string\> | MIME type of a file.|
+
 ## HttpAuthHandler<sup>9+</sup>
 
 Implements the **HttpAuthHandler** object. For the sample code, see [onHttpAuthRequest](#onhttpauthrequest9).
@@ -7967,7 +8105,7 @@ Grants the permission for resources requested by the web page.
 
 Implements the **ScreenCaptureHandler** object for accepting or rejecting a screen capture request. For the sample code, see [onScreenCaptureRequest Event](#onscreencapturerequest10).
 
-### constructor<sup>9+</sup>
+### constructor<sup>10+</sup>
 
 constructor()
 
@@ -8029,9 +8167,9 @@ Constructs the EventResult object.
 
 ### setGestureEventResult<sup>12+</sup>
 
-Sets the gesture event consumption result.
-
 setGestureEventResult(result: boolean): void
+
+Sets the gesture event consumption result.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -8045,11 +8183,11 @@ setGestureEventResult(result: boolean): void
 
 See [onNativeEmbedGestureEvent](#onnativeembedgestureevent11).
 
-### setGestureEventResult<sup>12+</sup>
-
-Sets the gesture event consumption result.
+### setGestureEventResult<sup>14+</sup>
 
 setGestureEventResult(result: boolean, stopPropagation?: boolean): void
+
+Sets the gesture event consumption result.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -8058,7 +8196,7 @@ setGestureEventResult(result: boolean, stopPropagation?: boolean): void
 | Name         | Type| Mandatory | Description            |
 | --------------- | -------- | ----  |------- |
 | result          | boolean  | Yes   | Whether to consume the gesture event. Default value: **true**|
-| stopPropagation<sup>14+</sup>| boolean  | No  | Whether to stop propagation. This parameter is valid only when **result** is set to **true**. Default value: **true**|
+| stopPropagation | boolean  | No  | Whether to stop propagation. This parameter is valid only when **result** is set to **true**. Default value: **true**|
 
 **Example**
 
@@ -8455,7 +8593,7 @@ Enumerates the reasons why the rendering process exits.
 | Default<sup>9+</sup> | 0 | The cache that has not expired is preferentially used to load resources. If the cache is invalid or no cache is available, resources are obtained from the network.|
 | None    | 1 | The cache (including expired caches) is preferentially used to load resources. If no cache is available, resources are obtained from the network.    |
 | Online  | 2 | The latest resources are forcibly obtained from the network without using any cache.              |
-| Only    | 3 | The local cache alone is used to load the resources.                       |
+| Only    | 3 | Only the local cache is used to load resources.                       |
 
 ## FileSelectorMode<sup>9+</sup>
 
@@ -8671,6 +8809,18 @@ This API is deprecated since API version 9. You are advised to use [WebviewContr
 ```ts
 let webController: WebController = new WebController()
 ```
+
+### constructor
+
+constructor()
+
+Constructs a **WebController** object.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. No API is provided for substitute.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 ### getCookieManager<sup>(deprecated)</sup>
 
@@ -9428,7 +9578,7 @@ This API is deprecated since API version 9. You are advised to use [clearHistory
 
 Manages behavior of cookies in **Web** components. All **Web** components in an application share a **WebCookie**. You can use the **getCookieManager** API in **controller** to obtain the **WebCookie** for subsequent cookie management.
 
-### constructor<sup>9+</sup>
+### constructor
 
 constructor()
 
@@ -10154,7 +10304,7 @@ Represents the callback invoked when the web page receives an SSL error.
 | -------------- | ---- | ---- | ---------------------------------------- |
 | handler | [SslErrorHandler](#sslerrorhandler9) | Yes| User operation.|
 | error   | [SslError](#sslerror9)          | Yes| Error code.          |
-| certChainData<sup>14+</sup>   | Array<Uint8Array\>           | No| Certificate chain data.          |
+| certChainData<sup>15+</sup>   | Array<Uint8Array\>           | No| Certificate chain data.          |
 
 ## OnClientAuthenticationEvent<sup>12+</sup>
 
@@ -10172,7 +10322,7 @@ Represents the callback invoked when an SSL client certificate is required from 
 
 ## OnWindowNewEvent<sup>12+</sup>
 
-Represents the callback invoked when the web page requests the user to create a new window.
+Represents the callback invoked when the web page requests the user to create a window.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -10380,3 +10530,13 @@ Enumerates whether the **Web** component loses focus when the soft keyboard is m
 | ------ | -- | ----------- |
 | SILENT  | 0 | The **Web** component does not lose focus when the soft keyboard is manually collapsed.|
 | BLUR | 1 | The **Web** component loses focus when the soft keyboard is manually collapsed.|
+
+## EmbedOptions<sup>16+</sup>
+
+Defines the same-layer rendering configuration of the **Web** component.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name            | Type     | Mandatory  | Description                                      |
+| -------------- | ------- | ---- | ---------------------------------------- |
+| supportDefaultIntrinsicSize | boolean | No   | Whether a same-layer rendering element supports the fixed size of 300 × 150.<br>If the value is **true**, the fixed size is 300 × 150.<br>If the value is **false**, the fixed size is 0 × 0.<br>Default value: **false**<br>Unit: px |

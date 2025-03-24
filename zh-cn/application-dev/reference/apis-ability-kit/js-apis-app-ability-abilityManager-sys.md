@@ -630,7 +630,7 @@ on(type: 'abilityForegroundState', observer: AbilityForegroundStateObserver): vo
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 调用接口类型，固定填'abilityForegroundState'字符串。 |
-| observer | [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver-sys) | 是 | Ability状态观测器，用于观测Ability的启动和退出。 |
+| observer | [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver-sys.md) | 是 | Ability状态观测器，用于观测Ability的启动和退出。 |
 
 **错误码**：
 
@@ -680,7 +680,7 @@ off(type: 'abilityForegroundState', observer?: AbilityForegroundStateObserver): 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 调用接口类型，固定填'abilityForegroundState'字符串。 |
-| observer | [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver-sys) | 否 | Ability状态观测器，用于观测Ability的启动和退出。如果未配置该参数，则取消当前应用注册的所有observer。如果配置了该参数，则取消该observer。 |
+| observer | [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver-sys.md) | 否 | Ability状态观测器，用于观测Ability的启动和退出。如果未配置该参数，则取消当前应用注册的所有observer。如果配置了该参数，则取消该observer。 |
 
 **错误码**：
 
@@ -868,7 +868,7 @@ export default class UiExtAbility extends UIExtensionAbility {
 }
 ```
 
-## abilityManager.isEmbeddedOpenAllowed<sup>12</sup>
+## abilityManager.isEmbeddedOpenAllowed<sup>12+</sup>
 
 isEmbeddedOpenAllowed(context: Context, appId: string): Promise\<boolean>
 
@@ -980,7 +980,7 @@ try {
 }
 ```
 
-## AtomicServiceStartupRule<sup>16+</sup>
+## AtomicServiceStartupRule<sup>18+</sup>
 
 嵌入式拉起原子化服务的规则。
 
@@ -993,7 +993,7 @@ try {
 | isOpenAllowed | boolean   | 是   | 否   | 是否允许拉起原子化服务。 |
 | isEmbeddedAllowed | boolean   | 是   | 否  | 是否允许嵌入式拉起原子化服务。          |
 
-## abilityManager.queryAtomicServiceStartupRule<sup>16+</sup>
+## abilityManager.queryAtomicServiceStartupRule<sup>18+</sup>
 
 queryAtomicServiceStartupRule(context: Context, appId: string): Promise\<AtomicServiceStartupRule>
 
@@ -1014,7 +1014,7 @@ queryAtomicServiceStartupRule(context: Context, appId: string): Promise\<AtomicS
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<[AtomicServiceStartupRule](#atomicservicestartuprule16)> | Promise对象。返回嵌入式拉起原子化服务的规则。 |
+| Promise\<[AtomicServiceStartupRule](#atomicservicestartuprule18)> | Promise对象。返回嵌入式拉起原子化服务的规则。 |
 
 **错误码**：
 

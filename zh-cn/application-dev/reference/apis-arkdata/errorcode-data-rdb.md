@@ -587,7 +587,7 @@ The operation is supported in the stage model only.
 
 **错误信息**
 
-Invalid data ground ID.
+Invalid data group ID.
 
 **错误描述**
 

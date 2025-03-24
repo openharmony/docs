@@ -159,7 +159,7 @@ try {
 
 getAllBundleResourceInfo(resourceFlags: [number](#resourceflag), callback: AsyncCallback<Array<[BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo-sys.md)>>): void
 
-Obtains resource information of all applications based on the given resource flags. This API uses an asynchronous callback to return the result.
+Obtains the bundle resource information of all applications based on the given resource flags. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -209,7 +209,7 @@ try {
 
 getAllBundleResourceInfo(resourceFlags: [number](#resourceflag)): Promise<Array<[BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo-sys.md)>>;
 
-Obtains resource information of all applications based on the given resource flags. This API uses a promise to return the result.
+Obtains the bundle resource information of all applications based on the given resource flags. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -262,7 +262,7 @@ try {
 
 getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag), callback: AsyncCallback<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)>>): void
 
-Obtains resource information of the entry abilities of all applications based on the given resource flags. This API uses an asynchronous callback to return the result.
+Obtains the resource information of the entry abilities of the current application based on the given resource flags. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -312,7 +312,7 @@ try {
 
 getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag)) : Promise<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)>>
 
-Obtains resource information of the entry abilities of all applications based on the given resource flags. This API uses a promise to return the result.
+Obtains the resource information of the entry abilities of the current application based on the given resource flags. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 

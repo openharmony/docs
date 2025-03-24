@@ -1,6 +1,6 @@
-# Connectivity Kit（短距通信服务）
+# Connectivity Kit（短距通信服务）<!--connectivity-api-->
 
-- ArkTS API
+- ArkTS API<!--connectivity-arkts-->
   - [@ohos.bluetooth.a2dp(蓝牙a2dp模块)(推荐)](js-apis-bluetooth-a2dp.md)
   - [@ohos.bluetooth.access(蓝牙access模块)(推荐)](js-apis-bluetooth-access.md)
   - [@ohos.bluetooth.baseProfile(蓝牙baseProfile模块)(推荐)](js-apis-bluetooth-baseProfile.md)
@@ -37,7 +37,7 @@
   - [@ohos.nfc.tag (标准NFC-Tag)(系统接口)](js-apis-nfcTag-sys.md)
   - [@ohos.wifiManager (WLAN)(推荐)(系统接口)](js-apis-wifiManager-sys.md)
   <!--DelEnd-->
-  - tag
+  - tag<!--connectivity-nfc-tag-arkts-->
     - [nfctech (标准NFC-Tag Nfc 技术)](js-apis-nfctech.md)
     - [tagSession (标准NFC-Tag TagSession)](js-apis-tagSession.md)
 - C API<!--connectivity-c-->
@@ -47,12 +47,12 @@
   - 头文件<!--connectivity-headerfile-->
     - [oh_bluetooth.h](oh__bluetooth_8h.md)
     - [oh_wifi.h](oh__wifi_8h.md)
-- 错误码
+- 错误码<!--connectivity-arkts-errcode-->
   - [Bluetooth错误码](errorcode-bluetoothManager.md)
   - [WIFI错误码](errorcode-wifi.md)
   - [NFC错误码](errorcode-nfc.md)
   - [SE(secureElement)错误码](errorcode-se.md)
-- 已停止维护的接口
+- 已停止维护的接口<!--connectivity-arkts-dep-->
   - [@ohos.bluetooth (蓝牙)(待停用)](js-apis-bluetooth.md)
   - [@ohos.bluetoothManager (蓝牙)(待停用)](js-apis-bluetoothManager.md)
   - [@ohos.wifi (WLAN)(待停用)](js-apis-wifi.md)

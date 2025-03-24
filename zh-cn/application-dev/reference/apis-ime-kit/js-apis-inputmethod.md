@@ -792,17 +792,30 @@ Enter键的功能类型。
 | BASIC_MODE  | 1 |基础模式。 |
 | FULL_EXPERIENCE_MODE  | 2 |完整体验模式。 |
 
-## MessageHandler<sup>16+</sup>
+## RequestKeyboardReason<sup>15+</sup>
+
+请求键盘输入原因。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称 | 值 |说明 |
+| -------- | -------- |-------- |
+| NONE   | 0 |表示没有特定的原因触发键盘请求。 |
+| MOUSE  | 1 |表示键盘请求是由鼠标操作触发的。 |
+| TOUCH  | 2 |表示键盘请求是由触摸操作触发的。 |
+| OTHER  | 20 |表示键盘请求是由其他原因触发的。 |
+
+## MessageHandler<sup>15+</sup>
 
 自定义通信对象。
 
 > **说明**
 >
-> 开发者可通过注册此对象来接收输入法应用发送的自定义通信数据，接收到自定义通信数据时会触发此对象中[onMessage](#messagehandleronmessage16)回调函数。
+> 开发者可通过注册此对象来接收输入法应用发送的自定义通信数据，接收到自定义通信数据时会触发此对象中[onMessage](#messagehandleronmessage15)回调函数。
 >
-> 此对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#messagehandleronterminated16)回调函数。
+> 此对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#messagehandleronterminated15)回调函数。
 >
-> 若取消注册全局已注册的对象时，会触发被取消对象中[onTerminated](#messagehandleronterminated16)回调函数。
+> 若取消注册全局已注册的对象时，会触发被取消对象中[onTerminated](#messagehandleronterminated15)回调函数。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -811,7 +824,7 @@ Enter键的功能类型。
 | onTerminated | function | 否   | 对象终止接收的回调函数。           |
 | onMessage    | function | 否   | 对象接收自定义通信数据的回调函数。 |
 
-## MessageHandler.onMessage<sup>16+</sup>
+## MessageHandler.onMessage<sup>15+</sup>
 
 onMessage(msgId: string, msgParam?: ArrayBuffer): void
 
@@ -852,7 +865,7 @@ try {
 }
 ```
 
-## MessageHandler.onTerminated<sup>16+</sup>
+## MessageHandler.onTerminated<sup>15+</sup>
 
 onTerminated(): void
 
@@ -906,7 +919,7 @@ attach(showKeyboard: boolean, textConfig: TextConfig, callback: AsyncCallback&lt
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| showKeyboard | boolean | 是 | 绑定输入法成功后，是否拉起输入法键盘。<br>- true表示拉起，false表示不拉起。 |
+| showKeyboard | boolean | 是 | 绑定输入法成功后，是否拉起输入法键盘。<br>- true表示拉起。<br>- false表示不拉起。 |
 | textConfig | [TextConfig](#textconfig10) | 是 | 编辑框的配置信息。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当绑定输入法成功后，err为undefined；否则为错误对象。 |
 
@@ -960,7 +973,7 @@ attach(showKeyboard: boolean, textConfig: TextConfig): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| showKeyboard | boolean | 是 | 绑定输入法成功后，是否拉起输入法键盘。<br>- true表示拉起，false表示不拉起。|
+| showKeyboard | boolean | 是 | 绑定输入法成功后，是否拉起输入法键盘。<br>- true表示拉起。<br>- false表示不拉起。|
 | textConfig | [TextConfig](#textconfig10) | 是 | 编辑框的配置信息。 |
 
 **返回值：**
@@ -992,6 +1005,67 @@ try {
     }
   };
   inputMethodController.attach(true, textConfig).then(() => {
+    console.log('Succeeded in attaching inputMethod.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to attach: ${JSON.stringify(err)}`);
+  })
+} catch(err) {
+  console.error(`Failed to attach: ${JSON.stringify(err)}`);
+}
+```
+
+### attach<sup>15+</sup>
+
+attach(showKeyboard: boolean, textConfig: TextConfig, requestKeyboardReason: RequestKeyboardReason): Promise&lt;void&gt;
+
+自绘控件绑定输入法。使用promise异步回调。
+
+> **说明：**
+>
+> 需要先调用此接口，完成自绘控件与输入法的绑定，才能使用以下功能：显示/隐藏键盘、更新光标信息、更改编辑框选中范围、保存配置信息、监听处理由输入法应用发送的信息或命令等。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| showKeyboard | boolean | 是 | 绑定输入法成功后，是否拉起输入法键盘。<br>- true表示拉起。<br>- false表示不拉起。|
+| textConfig | [TextConfig](#textconfig10) | 是 | 编辑框的配置信息。 |
+| requestKeyboardReason | [RequestKeyboardReason](#requestkeyboardreason15) | 是 | 请求键盘输入原因。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)和[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | -------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let textConfig: inputMethod.TextConfig = {
+    inputAttribute: {
+      textInputType: 0,
+      enterKeyType: 1
+    }
+  };
+
+  let requestKeyboardReason: inputMethod.RequestKeyboardReason = inputMethod.RequestKeyboardReason.MOUSE;
+
+  inputMethodController.attach(true, textConfig, requestKeyboardReason).then(() => {
     console.log('Succeeded in attaching inputMethod.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to attach: ${JSON.stringify(err)}`);
@@ -1077,6 +1151,54 @@ showTextInput(): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.showTextInput().then(() => {
+  console.log('Succeeded in showing text input.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to showTextInput: ${JSON.stringify(err)}`);
+});
+```
+
+### showTextInput<sup>15+</sup>
+
+showTextInput(requestKeyboardReason: RequestKeyboardReason): Promise&lt;void&gt;
+
+进入文本编辑状态。使用promise异步回调。
+
+> **说明：**
+>
+> 编辑框与输入法绑定成功后，可调用该接口拉起软键盘，进入文本编辑状态。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| requestKeyboardReason | [RequestKeyboardReason](#requestkeyboardreason15) | 是 | 请求键盘输入原因。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | -------------------------------------- |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
+| 12800009 | input method client detached. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let requestKeyboardReason = inputMethod.RequestKeyboardReason.MOUSE;
+
+inputMethodController.showTextInput(requestKeyboardReason).then(() => {
   console.log('Succeeded in showing text input.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to showTextInput: ${JSON.stringify(err)}`);
@@ -1891,7 +2013,7 @@ inputMethodController.hideSoftKeyboard().then(() => {
 });
 ```
 
-### sendMessage<sup>16+</sup>
+### sendMessage<sup>15+</sup>
 
 sendMessage(msgId: string, msgParam?: ArrayBuffer): Promise<void&gt;
 
@@ -1945,7 +2067,7 @@ inputMethodController.sendMessage(msgId, msgParam).then(() => {
 });
 ```
 
-### recvMessage<sup>16+</sup>
+### recvMessage<sup>15+</sup>
 
 recvMessage(msgHandler?: MessageHandler): void
 
@@ -1953,9 +2075,9 @@ recvMessage(msgHandler?: MessageHandler): void
 
 > **说明：**
 >
-> [MessageHandler](#messagehandler16)对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#messagehandleronterminated16)回调函数。
+> [MessageHandler](#messagehandler15)对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#messagehandleronterminated15)回调函数。
 >
-> 未填写参数，则取消全局已注册的[MessageHandler](#messagehandler16)，并会触发被取消注册对象中[onTerminated](#messagehandleronterminated16)回调函数。
+> 未填写参数，则取消全局已注册的[MessageHandler](#messagehandler15)，并会触发被取消注册对象中[onTerminated](#messagehandleronterminated15)回调函数。
 
 **系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
@@ -1963,7 +2085,7 @@ recvMessage(msgHandler?: MessageHandler): void
 
 | 参数名     | 类型                                | 必填 | 说明                                                         |
 | ---------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| msgHandler | [MessageHandler](#messagehandler16) | 否   | 该对象将通过[onMessage](#messagehandleronmessage16)接收来自输入法应用所发送的自定义通信数据，以及[onTerminated](#messagehandleronterminated16)接收终止此对象订阅的消息。若不填写此参数，则取消全局已注册的[MessageHandler](#messagehandler16)对象，并触发其[onTerminated](#messagehandleronterminated16)回调函数。 |
+| msgHandler | [MessageHandler](#messagehandler15) | 否   | 该对象将通过[onMessage](#messagehandleronmessage15)接收来自输入法应用所发送的自定义通信数据，以及[onTerminated](#messagehandleronterminated15)接收终止此对象订阅的消息。若不填写此参数，则取消全局已注册的[MessageHandler](#messagehandler15)对象，并触发其[onTerminated](#messagehandleronterminated15)回调函数。 |
 
 **返回值：**
 
@@ -3542,7 +3664,7 @@ inputMethodSetting.displayOptionalInputMethod().then(() => {
 })
 ```
 
-### getInputMethodState<sup>16+</sup>
+### getInputMethodState<sup>15+</sup>
 
 getInputMethodState(): Promise&lt;EnabledState&gt;
 

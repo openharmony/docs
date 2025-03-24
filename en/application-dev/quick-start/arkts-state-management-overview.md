@@ -26,7 +26,7 @@ Custom components have variables. A variable must be decorated by a decorator wh
 - State: data that drives the UI to re-render. State data is changed by invoking the event method of the component. The change of the state data triggers the re-rendering of the UI.
 
 
-Before reading this topic, you are advised to read [Basic Syntax Overview](./arkts-basic-syntax-overview.md), [Declarative UI Description](./arkts-declarative-ui-description.md), and [Creating a Custom Component](./arkts-create-custom-components.md) to have a understanding of the basic syntax of UI paradigms.
+Before reading this topic, you are advised to read [Basic Syntax Overview](./arkts-basic-syntax-overview.md), [Declarative UI Description](./arkts-declarative-ui-description.md), and [Creating a Custom Component](./arkts-create-custom-components.md) to have an understanding of the basic syntax of UI paradigms.
 
 ## Basic Concepts
 
@@ -216,10 +216,11 @@ State management of V2 provides a new set of decorators.
 | PersistentStorage     | PersistenceV2   | The persistence capability of PersistentStorage is coupled with the AppStorage, while that of PersistenceV2 can be used independently.|
 | Custom component lifecycle    | Custom component lifecycle  | Both supported. Example: [aboutToAppear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear), [onDidBuild](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#ondidbuild12), and [aboutToDisappear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear)|
 | Page lifecycle    | Page lifecycle  | Both supported. Example: [onPageShow](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow), [onPageHide](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpagehide), and [onBackPress](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onbackpress) |
-| @Reusable     |  Not available yet | Component reuse. Example: [aboutToReuse](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoreuse10) and [aboutToRecycle](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttorecycle10)|
+| \@Reusable   | \@ReusableV2                                                 | Component reuse. Example: [aboutToReuse](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoreuse10) and [aboutToRecycle](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttorecycle10)|
 | $$            | !!         | Two-way binding. For V2, you are advised to use **!!** to implement a two-way binding.|
-| @CustomDialog | The [openCustomDialog](../../application-dev/reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialog12) API  | Custom dialog box. For V2, you are advised to use **openCustomDialog** to implement a custom dialog box.|
-| withTheme     | Not available yet  | Theme. Used to set a custom theme style for specific application pages. Example: [onWillApplyTheme](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onwillapplytheme12)|
+| \@CustomDialog | The [openCustomDialog](../../application-dev/reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialog12) API  | Custom dialog box. For V2, you are advised to use **openCustomDialog** to implement a custom dialog box.|
+| withTheme     | withTheme   | Theme. Used to set a custom theme style for specific application pages. Example: [onWillApplyTheme](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onwillapplytheme12)<br>Since API version 16, this API is supported in the components of V2.|
 | Advanced components    | Not available yet  | Advanced components. Example: [DownloadFileButton](../../application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-DownloadFileButton.md), [ProgressButton](../../application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ProgressButton.md), and [SegmentButton](../../application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SegmentButton.md)|
+| animateTo | Partially supported| In some scenarios, exception occurs when **animateTo** is used in state management V2. For details, see [Using animationTo Failed in State Management V2](./arkts-new-local.md#using-animationto-failed-in-state-management-v2).|
 
 For details about how to migrate applications from V1 to V2, see [Migrating Applications from V1 to V2](./arkts-v1-v2-migration.md).<br>For details about how to use decorators of V1 and V2 together, see [Mixing Use of Custom Components](./arkts-custom-component-mixed-scenarios.md).

@@ -1,7 +1,7 @@
-# \@BuilderParam Decorator: @Builder Function Reference
+# \@BuilderParam Decorator: Referencing the \@Builder Function
 
 
-In certain circumstances, you may need to add a specific feature, such as a click-to-jump action, to a custom component. However, embedding an event method directly in a component will add the feature to all places where the component is imported. To solve this problem, ArkUI uses the \@BuilderParam decorator to decorate variables pointing to the [\@Builder](./arkts-builder.md) method (that is, @BuilderParam is used to decorate the @Builder function). When initializing a custom component, you can use different methods (such as modifying parameters, trailing closure, or using arrow function) to change values of the custom builder functions decorated by \@BuilderParam and call the \@BuilderParam in a custom component to add specific features. This decorator can be used to declare an element of any UI description, similar to a slot placeholder.
+When you create a custom component and want to add a specific function, for example, a click-to-redirect operation, to a specified custom component, if you directly embed an event method into the component, the function will be added to all instances of the custom component. To solve this problem, ArkUI uses the \@BuilderParam decorator to decorate variables pointing to the [\@Builder](./arkts-builder.md) method (that is, @BuilderParam is used to decorate the @Builder function). When initializing a custom component, you can use different methods (such as modifying parameters, trailing closure, or using arrow function) to change values of the custom builder functions decorated by \@BuilderParam and call the \@BuilderParam in a custom component to add specific features. This decorator can be used to declare an element of any UI description, similar to a slot placeholder.
 
 
 Before reading this topic, you are advised to read [\@Builder](./arkts-builder.md).
@@ -18,7 +18,7 @@ Before reading this topic, you are advised to read [\@Builder](./arkts-builder.m
 
 ### Initializing \@BuilderParam Decorated Methods
 
-An \@BuilderParam decorated method can be initialized only by an \@Builder function reference. If this decorator is used together with [\@Require](arkts-require.md) in API version 11, the parent component must construct input parameters.
+An \@BuilderParam decorated method can be initialized only by an \@Builder function reference.
 
 - Local initialization with the owning component's custom \@Builder function reference or a global \@Builder function reference
 
@@ -28,7 +28,6 @@ An \@BuilderParam decorated method can be initialized only by an \@Builder funct
   @Component
   struct Child {
     @Builder doNothingBuilder() {};
-
     // Use the custom builder function of the custom component for @BuilderParam initialization.
     @BuilderParam customBuilderParam: () => void = this.doNothingBuilder;
     // Use the global custom builder function for @BuilderParam initialization.
@@ -43,7 +42,6 @@ An \@BuilderParam decorated method can be initialized only by an \@Builder funct
   @Component
   struct Child {
     @Builder customBuilder() {};
-    // Use the @Builder decorated method in the parent component for @BuilderParam initialization.
     @BuilderParam customBuilderParam: () => void = this.customBuilder;
 
     build() {
@@ -74,98 +72,63 @@ An \@BuilderParam decorated method can be initialized only by an \@Builder funct
 
 - **this** in the function body must point to the correct object.
 
-Example:
+  Example:
 
-  ```ts
-  @Component
-  struct Child {
-    label: string = `Child`;
-    @Builder customBuilder() {};
-    @Builder customChangeThisBuilder() {};
-    @BuilderParam customBuilderParam: () => void = this.customBuilder;
-    @BuilderParam customChangeThisBuilderParam: () => void = this.customChangeThisBuilder;
+    ```ts
+    @Component
+    struct Child {
+      label: string = `Child`;
+      @Builder customBuilder() {};
+      @Builder customChangeThisBuilder() {};
+      @BuilderParam customBuilderParam: () => void = this.customBuilder;
+      @BuilderParam customChangeThisBuilderParam: () => void = this.customChangeThisBuilder;
 
-    build() {
-      Column() {
-        this.customBuilderParam()
-        this.customChangeThisBuilderParam()
+      build() {
+        Column() {
+          this.customBuilderParam()
+          this.customChangeThisBuilderParam()
+        }
       }
     }
-  }
 
-  @Entry
-  @Component
-  struct Parent {
-    label: string = `Parent`;
+    @Entry
+    @Component
+    struct Parent {
+      label: string = `Parent`;
 
-    @Builder componentBuilder() {
-      Text(`${this.label}`)
-    }
+      @Builder componentBuilder() {
+        Text(`${this.label}`)
+      }
 
-    build() {
-      Column() {
-        // When this.componentBuilder() is called, this points to the Parent component decorated by the @Entry. That is, the value of the label variable is Parent.
-        this.componentBuilder()
-        Child({
-          // Pass this.componentBuilder to @BuilderParam customBuilderParam of the Child component. this points to the Child, that is, the value of the label variable is Child.
-          customBuilderParam: this.componentBuilder,
-          // Pass ():void=>{this.componentBuilder()} to @BuilderParam customChangeThisBuilderParam of the Child component.
-          // this of the arrow function points to the host object, so the value of the label variable is Parent.
-          customChangeThisBuilderParam: (): void => { this.componentBuilder() }
-        })
+      build() {
+        Column() {
+          // When this.componentBuilder() is called, this points to the Parent component decorated by the @Entry. That is, the value of the label variable is Parent.
+          this.componentBuilder()
+          Child({
+            // Pass this.componentBuilder to @BuilderParam customBuilderParam of the Child component. this points to the Child, that is, the value of the label variable is Child.
+            customBuilderParam: this.componentBuilder,
+            // Pass ():void=>{this.componentBuilder()} to @BuilderParam customChangeThisBuilderParam of the Child component.
+            // this of the arrow function points to the host object, so the value of the label variable is Parent.
+            customChangeThisBuilderParam: (): void => { this.componentBuilder() }
+          })
+        }
       }
     }
-  }
-  ```
- **Figure 2** Example effect
+    ```
+  **Figure 2** Example effect
 
- ![builderparam-demo2](figures/builderparam-demo2.png)
+  ![builderparam-demo2](figures/builderparam-demo2.png)
 
 
 ## Constraints
 
-- The \@BuilderParam decorated variable receives the \@Builder decorated function from the parent component. In addition, only local \@Builder function can be passed as a parameter.
+- \@BuilderParam decorated variables can be initialized only by using the \@Builder function. For details, see [Initialized Value of @BuilderParam Must Be @Builder](#initialized-value-of-builderparam-must-be-builder).
 
-```ts
-@Component
-struct Child {
-  header: string = '';
-  @BuilderParam content: () => void;
-  footer: string = '';
-
-  build() {
-    Column() {
-      Text(this.header)
-      this.content();
-      Text(this.footer)
-    }
-  }
-}
-
-@Entry
-@Component
-struct Parent {
-  @Builder
-  test() {
-    Text('Hello')
-  }
-
-  build() {
-    Column() {
-      // Incorrect format. @BuilderParam needs to be initialized.
-      Child()
-      // Correct format.
-      Child({ content: this.test })
-    }
-  }
-}
-```
+- When the @Require and \@BuilderParam decorators are used together, the latter must be initialized. For details, see [Using @Require and @BuilderParam Together](#using-require-and-builderparam-together).
 
 - In the scenario where a custom component trailing closure is used, the child component has only one \@BuilderParam to receive this trailing closure, and the \@BuilderParam cannot contain parameters. For details, see [Component Initialization Through Trailing Closure](#component-initialization-through-trailing-closure).
 
-
 ## Use Scenarios
-
 
 ### Component Initialization Through Parameters
 
@@ -589,6 +552,131 @@ struct ParentPage {
         .onClick(() => {
           this.label = 'Hello World';
         })
+    }
+  }
+}
+```
+
+### Using @Require and @BuilderParam Together
+
+The variables decorated by @Require need to be initialized; otherwise, an error is reported during compilation.
+
+[Incorrect Example]
+
+```ts
+@Builder function globalBuilder() {
+  Text('Hello World')
+}
+
+@Entry
+@Component
+struct customBuilderDemo {
+  build() {
+    Column() {
+      // No value is assigned to ChildBuilder. An error is reported during compilation or editing.
+      ChildPage()
+    }
+  }
+}
+
+@Component
+struct ChildPage {
+  @Require @BuilderParam ChildBuilder: () => void = globalBuilder;
+  build() {
+    Column() {
+      this.ChildBuilder()
+    }
+  }
+}
+```
+
+Initialize the variables decorated by @Require. In this case, no error is reported during compilation.
+
+[Correct Example]
+
+```ts
+@Builder function globalBuilder() {
+  Text('Hello World')
+}
+
+@Entry
+@Component
+struct customBuilderDemo {
+  build() {
+    Column() {
+      ChildPage({ChildBuilder: globalBuilder})
+    }
+  }
+}
+
+@Component
+struct ChildPage {
+  @Require @BuilderParam ChildBuilder: () => void = globalBuilder;
+  build() {
+    Column() {
+      this.ChildBuilder()
+    }
+  }
+}
+```
+
+### Initialized Value of @BuilderParam Must Be @Builder
+
+Use the @State decorated variables to initialize the variables of @BuilderParam decorated child component **ChildBuilder**. An error is reported during compilation.
+
+[Incorrect Example]
+
+```ts
+@Builder function globalBuilder() {
+  Text('Hello World')
+}
+@Entry
+@Component
+struct customBuilderDemo {
+  @State message: string = "";
+  build() {
+    Column() {
+      // ChildBuilder receives the variable decorated by @State. An error is reported during compilation or editing.
+      ChildPage({ChildBuilder: this.message})
+    }
+  }
+}
+
+@Component
+struct ChildPage {
+  @BuilderParam ChildBuilder: () => void = globalBuilder;
+  build() {
+    Column() {
+      this.ChildBuilder()
+    }
+  }
+}
+```
+
+Use @Builder decorated **globalBuilder()** to initialize the variables of @BuilderParam decorated **ChildBuilder**. No error is reported during compilation.
+
+[Correct Example]
+
+```ts
+@Builder function globalBuilder() {
+  Text('Hello World')
+}
+@Entry
+@Component
+struct customBuilderDemo {
+  build() {
+    Column() {
+      ChildPage({ChildBuilder: globalBuilder})
+    }
+  }
+}
+
+@Component
+struct ChildPage {
+  @BuilderParam ChildBuilder: () => void = globalBuilder;
+  build() {
+    Column() {
+      this.ChildBuilder()
     }
   }
 }

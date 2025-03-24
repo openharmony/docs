@@ -1,17 +1,17 @@
-# Data Sharing Between C++ Threads
+# C++ Inter-Thread Data Sharing
 
-When an application performs multi-thread concurrent computing at the C++ layer, the ArkTS API needs to be executed in the ArkTS environment. To prevent the non-UI main thread from waiting for the API calling result in the ArkTS environment, you need to create an ArkTS execution environment and directly call APIs on these C++ threads. In addition, you may need to share and operate Sendable objects between C++ threads.
+When an application performs multithreaded computations at the C++ layer, ArkTS APIs needs to be executed within the ArkTS environment. To prevent the non-UI main thread from waiting for the API call results within the ArkTS environment of the UI main thread, you need to create an ArkTS execution environment on these C++ threads and directly call the APIs. In addition, you may need to share and manipulate Sendable objects across C++ threads.
 
-To support this scenario, you need to create and call ArkTS on the C++ thread, and perform multi-thread sharing and operations on the Sendable object.
+To support this scenario, you must create the capabilities to call ArkTS APIs on C++ threads, and share and manipulate Sendable objects across threads.
 
 
-## Calling ArkTS Capabilities on a C++ Thread
+## Calling ArkTS APIs on C++ Threads
 
-For details about how to use Node-APIs to create and call an ArkTS runtime environment in a C++ thread, see [Creating an ArkTs Runtime Environment Using Node-API](../napi/use-napi-ark-runtime.md).
+For details about how to use Node-API to create an ArkTS runtime environment and call ArkTS APIs on C++ threads, see [Creating an ArkTS Runtime Environment Using Node-API](../napi/use-napi-ark-runtime.md).
 
 The core code snippet is as follows:
 
-ArkTS File Definition
+ArkTS file definition
 
 ```ts
 // SendableObjTest.ets
@@ -24,7 +24,7 @@ export class SendableObjTest {
 ```
 
 
-The Naitve implements the capability of loading the ArkTS module.
+Native implementation to load ArkTS modules
 
 ```cpp
 // napi_init.cpp
@@ -38,7 +38,7 @@ static void *CreateArkRuntimeFunc(void *arg)
     if (ret != napi_ok) {
         std::abort();
     }
-    // 2. Load the customized module. Assume that SendableObjTest provides the newSendable method for creating the sendable object.
+    // 2. Load the custom module, assuming that SendableObjTest provides the newSendable function for creating Sendable objects.
     napi_value test = nullptr;
     ret = napi_load_module_with_info(env, "entry/src/main/ets/pages/SendableObjTest", "com.example.myapplication/entry", &test);
     if (ret != napi_ok) {
@@ -49,39 +49,39 @@ static void *CreateArkRuntimeFunc(void *arg)
     if (ret != napi_ok) {
         std::abort();
     }
-    // 3. Use newSendable in ArkTS. Assume that the newSendable function in sendableObjTest can return the sendable object.
+    // 3. Use newSendable in ArkTS, assuming that the newSendable function in sendableObjTest returns a Sendable object.
     napi_value newSendable = nullptr;
     ret = napi_get_named_property(env, sendableObjTest, "newSendable", &newSendable);
     if (ret != napi_ok) {
         std::abort();
     }
-    // 4. Call the newSendable function to return the newly created sendable object and save it in the result.
+    // 4. Call the newSendable function to return the newly created Sendable object and store it in result.
     napi_value result = nullptr;
     ret = napi_call_function(env, sendableObjTest, newSendable, 0, nullptr, &result);
     if (ret != napi_ok) {
         std::abort();
     }
-    // 4. Obtain the result returned by ArkTS.
+    // 5. Obtain the result returned by ArkTS.
     int value0;
     napi_get_value_int32(env, result, &value0);
     if (value0 != 1024) {
         std::abort();
     }
-    // 6. Destroy the ArkTS environment.
+    // 6. Destroy the ArkTS runtime environment.
     ret = napi_destroy_ark_runtime(&env);
     return nullptr;
 }
 ```
 
-The process consists of four steps: creating an execution environment, loading a module, searching for and calling the functions of the module (or directly creating a Sendable object through the Node-API), and destroying the execution environment. For details about how to load a module in the second step, see [Loading a Module Using Node-API](../napi/use-napi-load-module-with-info.md). For details about how to search for and call a function and more Node-API interface capabilities, see [Node-API](../reference/native-lib/napi.md).
+The process consists of four steps: creating an execution environment, loading modules, searching for and calling functions (or directly creating Sendable objects through Node-API), and finally destroying the execution environment. For details about how to load modules, see [Loading a Module Using Node-API](../napi/use-napi-load-module-with-info.md). For details about how to search for and call functions and more Node-API capabilities, see [Node-API](../reference/native-lib/napi.md).
 
-## Operates Sendable shared objects between C++ threads.
+## Manipulating Sendable Objects Across C++ Threads
 
-After the ArkTS capability is called in C++, the implementation needs to be transferred across threads through serialization and deserialization. The napi_value variable cannot be directly shared among multiple threads because it is not multi-thread secure.
+After implementing the capabilities to call ArkTS APIs from C++, serialize and deserialize objects for cross-thread transfer. The **napi_value** variable cannot be directly shared across threads because it is not thread-safe.
 
-The following code example describes how to serialize and deserialize the transferred object. Note that the Sendable shared object is transferred by reference. Therefore, serialization does not generate another copy of data. Instead, the object reference is directly transferred to the deserialization thread. Therefore, the performance is more efficient than that of serialization and deserialization of non-Sendable objects.
+The following code example demonstrates how to serialize and deserialize objects. Since Sendable objects are passed by reference, serialization does not create an additional copy of the data but directly passes the object reference to the deserializing thread. This makes serialization and deserialization more efficient than non-Sendable objects.
 
-ArkTS File Definition
+ArkTS file definition
 
 ```ts
 // SendableObjTest.ets
@@ -93,7 +93,7 @@ export class SendableObjTest {
 }
 ```
 
-The Naitve implements the serialization and deserialization logic of the Sendable of two threads.
+Native implementation for serialization and deserialization of Sendable objects
 
 ```cpp
 // napi_init.cpp
@@ -108,7 +108,7 @@ static void *CreateEnvAndSendSendable(void *) {
     if (ret != napi_ok) {
         std::abort();
     }
-    // 2. Load the customized module. Assume that SendableObjTest provides the newSendable method for creating the sendable object.
+    // 2. Load the custom module, assuming that SendableObjTest provides the newSendable function for creating Sendable objects.
     napi_value test = nullptr;
     ret = napi_load_module_with_info(env, "entry/src/main/ets/pages/SendableObjTest", "com.example.myapplication/entry",
                                      &test);
@@ -120,19 +120,19 @@ static void *CreateEnvAndSendSendable(void *) {
     if (ret != napi_ok) {
         std::abort();
     }
-    // 3. Use newSendable in ArkTS. Assume that the newSendable function in sendableObjTest can return the sendable object.
+    // 3. Use newSendable in ArkTS, assuming that the newSendable function in sendableObjTest returns a Sendable object.
     napi_value newSendable = nullptr;
     ret = napi_get_named_property(env, sendableObjTest, "newSendable", &newSendable);
     if (ret != napi_ok) {
         std::abort();
     }
-    // 4. Call the newSendable function to return the newly created sendable object and save it in the result.
+    // 4. Call the newSendable function to return the newly created Sendable object and store it in result.
     napi_value result = nullptr;
     ret = napi_call_function(env, sendableObjTest, newSendable, 0, nullptr, &result);
     if (ret != napi_ok) {
         std::abort();
     }
-    // 5. Serialize the sendable object.
+    // 5. Serialize the Sendable object.
     napi_value undefined;
     napi_get_undefined(env, &undefined);
     ret = napi_serialize(env, result, undefined, undefined, &serializationData);
@@ -149,13 +149,13 @@ static void *CreateEnvAndReceiveSendable(void *) {
     if (ret != napi_ok) {
         std::abort();
     }
-    // 2. Obtain the sendable shared object through deserialization and save the result in the result. The result can be used to perform various operations through the napi interface.
+    // 2. Deserialize the Sendable object and store it in result, which can then be manipulated via Node-API.
     napi_value result = nullptr;
     ret = napi_deserialize(env, serializationData, &result);
     if (ret != napi_ok) {
         std::abort();
     }
-    // 3. Delete serialized data.
+    // 3. Delete the serialization data.
     ret = napi_delete_serialization_data(env, serializationData);
     if (ret != napi_ok) {
         std::abort();
@@ -211,7 +211,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void) {
 export const testSendSendable: () => void;
 ```
 
-The UI main thread initiates an invoking request.
+UI main thread invocation
 
 ```ts
 // Index.ets
@@ -246,10 +246,10 @@ struct Index {
 
 The logic implementation of the entire process is as follows:
 
-1. Create the ArkTS running environment in the UI main thread where the main function is located, create a Sendable object and save it to the result, and serialize the Sendable object referenced by the result to a global serialization data serializationData.
+1. In the UI main thread where the **main** function resides, create an ArkTS runtime environment and initiate a C++child thread to create a Sendable object and store the object in **result**. Serialize the Sendable object referenced by **result** into global serialization data **serializationData**.
 
-2. After these processes are complete, another C++ subthread is initiated and the ArkTS runtime environment is created in the new thread. Then, the Sendable object created by the UI main thread is deserialized from serializationData through the deserialization interface, and is saved to the result. In this way, the Sendable object is transferred across C++ threads. After deserialization is complete, destroy the deserialized data to avoid memory leakage. In this case, both the UI main thread and sub-threads hold the Sendable shared object. You can perform object operations through the Node-API, such as reading, writing, or transferring the object to the ArkTS layer.
+2. After the preceding steps are complete, initiate another C++ child thread. In this new thread, create the ArkTS runtime environment. Then, deserialize the Sendable object created in the UI main thread from **serializationData** using the deserialization interface and store it in **result**. This enables the transfer of Sendable objects across C++ thread. After deserialization, the deserialization data must be destroyed to prevent memory leaks. In this case, both the UI main thread and the child thread hold the Sendable object, which can be manipulated via Node-API, such as reading/writing or passing it to the ArkTS layer.
 
-   > **Note**
+   > **NOTE**
    >
-   > The operation object must comply with the rules of the Sendable object. For details, see [Sendable Usage Rules and Constraints](sendable-constraints.md).
+   > The object being manipulated must comply with the rules of Sendable objects. For details, see [Usage Rules and Constraints for Sendable](sendable-constraints.md).

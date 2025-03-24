@@ -845,7 +845,7 @@ Enumerate the keys of asset attributes ([AssetMap](#assetmap)), which are in key
 | UPDATE_TIME<sup>12+</sup> | TagType.BYTES &#124; 0x45 | Data update time, in timestamp.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | OPERATION_TYPE<sup>12+</sup> | TagType.NUMBER &#124; 0x46 | Additional operation type.|
 | REQUIRE_ATTR_ENCRYPTED<sup>14+</sup> | TagType.BOOL &#124; 0x47 | Whether to encrypt the additional asset information customized by the service.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
-| GROUP_ID<sup>16+</sup> | TagType.BYTES &#124; 0x48 | Group to which the asset belongs.|
+| GROUP_ID<sup>18+</sup> | TagType.BYTES &#124; 0x48 | Group to which the asset belongs.|
 
 ## Value
 
@@ -901,8 +901,8 @@ Enumerates the types of user authentication supported by an asset.
 
 | Name| Value  | Description                                                        |
 | ---- | ---- | ------------------------------------------------------------ |
-| NONE | 0    | No user authentication is required before the asset is accessed.                                |
-| ANY  | 255  | The asset can be accessed if any user authentication (such as PIN, facial, or fingerprint authentication) is successful.|
+| NONE | 0x00 | No user authentication is required before the asset is accessed.                                |
+| ANY  | 0xFF | The asset can be accessed if any user authentication (such as PIN, facial, or fingerprint authentication) is successful.|
 
 ## SyncType
 

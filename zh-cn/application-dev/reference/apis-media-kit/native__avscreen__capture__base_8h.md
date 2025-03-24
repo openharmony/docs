@@ -70,6 +70,7 @@
 | typedef void(\* [OH_AVScreenCapture_OnStateChange](_a_v_screen_capture.md#oh_avscreencapture_onstatechange)) (struct [OH_AVScreenCapture](_a_v_screen_capture.md#oh_avscreencapture) \*capture, [OH_AVScreenCaptureStateCode](_a_v_screen_capture.md#oh_avscreencapturestatecode) stateCode, void \*userData) | 当OH_AVScreenCapture实例操作期间发生状态变更时，将调用函数指针。 | 
 | typedef void(\* [OH_AVScreenCapture_OnError](_a_v_screen_capture.md#oh_avscreencapture_onerror)) ([OH_AVScreenCapture](_a_v_screen_capture.md#oh_avscreencapture) \*capture, int32_t errorCode, void \*userData) | 当OH_AVScreenCapture实例操作期间发生错误时，将调用函数指针。 | 
 | typedef void(\* [OH_AVScreenCapture_OnBufferAvailable](_a_v_screen_capture.md#oh_avscreencapture_onbufferavailable)) ([OH_AVScreenCapture](_a_v_screen_capture.md#oh_avscreencapture) \*capture, OH_AVBuffer \*buffer, [OH_AVScreenCaptureBufferType](_a_v_screen_capture.md#oh_avscreencapturebuffertype) bufferType, int64_t timestamp, void \*userData) | 当OH_AVScreenCapture实例操作期间音频或视频缓存区可用时，将调用该函数指针。 | 
+| typedef void(\* [OH_AVScreenCapture_OnDisplaySelected](_a_v_screen_capture.md#oh_avscreencapture_ondisplayselected)) ([OH_AVScreenCapture](_a_v_screen_capture.md#oh_avscreencapture) \*capture, uint64_t displayId, void \*userData) | 当录屏事件开始时，将调用函数指针。 | 
 
 
 ### 枚举

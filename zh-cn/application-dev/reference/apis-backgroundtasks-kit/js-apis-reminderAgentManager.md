@@ -245,8 +245,6 @@ reminderAgentManager.getValidReminders((err: BusinessError, reminders: Array<rem
       }
       console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent?.pkgName);
       console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent?.abilityName);
-      console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent?.pkgName);
-      console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent?.abilityName);
       console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
       console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
       console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
@@ -301,8 +299,6 @@ reminderAgentManager.getValidReminders().then((reminders: Array<reminderAgentMan
     }
     console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent?.pkgName);
     console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent?.abilityName);
-    console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent?.pkgName);
-    console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent?.abilityName);
     console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
     console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
     console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
@@ -599,8 +595,6 @@ reminderAgentManager.getAllValidReminders().then((reminders: Array<reminderAgent
     }
     console.log("getAllValidReminders, wantAgent.pkgName = " + reminders[i].reminderReq.wantAgent?.pkgName);
     console.log("getAllValidReminders, wantAgent.abilityName = " + reminders[i].reminderReq.wantAgent?.abilityName);
-    console.log("getAllValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].reminderReq.maxScreenWantAgent?.pkgName);
-    console.log("getAllValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].reminderReq.maxScreenWantAgent?.abilityName);
     console.log("getAllValidReminders, ringDuration = " + reminders[i].reminderReq.ringDuration);
     console.log("getAllValidReminders, snoozeTimes = " + reminders[i].reminderReq.snoozeTimes);
     console.log("getAllValidReminders, timeInterval = " + reminders[i].reminderReq.timeInterval);
@@ -828,13 +822,13 @@ reminderAgentManager.getExcludeDates(reminderId).then((dates) => {
 | snoozeTimes | number | 否 | 指明延时提醒次数，默认0次(不适用于倒计时提醒类型)。 |
 | timeInterval | number | 否 | 执行延时提醒间隔（单位：秒），最少5分钟(不适用于倒计时提醒类型)。 |
 | title | string | 否 | 指明提醒标题。 |
-| titleResourceId<sup>16+</sup> | number | 否 | 指明提醒标题的资源ID。 |
+| titleResourceId<sup>18+</sup> | number | 否 | 指明提醒标题的资源ID。 |
 | content | string | 否 | 指明提醒内容。 |
-| contentResourceId<sup>16+</sup> | number | 否 | 指明提醒内容的资源ID。 |
+| contentResourceId<sup>18+</sup> | number | 否 | 指明提醒内容的资源ID。 |
 | expiredContent | string | 否 | 指明提醒过期后需要显示的内容。 |
-| expiredContentResourceId<sup>16+</sup> | number | 否 | 指明提醒过期后内容的资源ID。 |
+| expiredContentResourceId<sup>18+</sup> | number | 否 | 指明提醒过期后内容的资源ID。 |
 | snoozeContent | string | 否 | 指明延时提醒时需要显示的内容(不适用于倒计时提醒类型)。 |
-| snoozeContentResourceId<sup>16+</sup> | number | 否 | 指明延时提醒内容的资源ID。 |
+| snoozeContentResourceId<sup>18+</sup> | number | 否 | 指明延时提醒内容的资源ID。 |
 | notificationId | number | 否 | 指明提醒使用的通知的id号，需开发者传入，相同id号的提醒会覆盖。 |
 | groupId<sup>11+</sup> | string | 否 | 指明提醒使用相同的组id。相同组id中，一个提醒被点击不在提醒后，组内其他提醒也会被取消。 |
 | slotType | [notification.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | 否 | 指明提醒的通道渠道类型。 |

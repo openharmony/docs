@@ -15,7 +15,7 @@ import { common } from '@kit.AbilityKit';
 
 ## 使用说明
 
-在使用ApplicationContext的功能前，需要通过context的实例获取。
+在使用ApplicationContext的功能前，需要通过Context的实例获取。
 
 ## ApplicationContext.on('abilityLifecycle')
 

@@ -1,6 +1,6 @@
-# Network Kit（网络服务）
+# Network Kit（网络服务）<!--network-api-->
 
-- ArkTS API
+- ArkTS API<!--network-api-arkts-->
   - [@ohos.net.connection (网络连接管理)](js-apis-net-connection.md)
   - [@ohos.net.ethernet (以太网连接管理)](js-apis-net-ethernet.md)
   - [@ohos.net.http (数据请求)](js-apis-http.md)
@@ -26,18 +26,18 @@
   - [@ohos.net.vpnExtension (VPN增强管理)（系统接口）](js-apis-net-vpnExtension-sys.md)
   - [@ohos.net.netFirewall (网络防火墙)（系统接口）](js-apis-net-netfirewall-sys.md)
   <!--DelEnd-->
-- C API
-  - 模块
+- C API<!--network-c-->
+  - 模块<!--network-module-->
     - [Netstack](netstack.md)
     - [NetConnection](_net_connection.md)
-  - 头文件
+  - 头文件<!--network-headerfile-->
     - [net_connection.h](net__connection_8h.md)
     - [net_connection_type.h](net__connection__type_8h.md)
     - [net_ssl_c.h](net__ssl__c_8h.md)
     - [net_ssl_c_type.h](net__ssl__c__type_8h.md)
     - [net_websocket.h](net__websocket_8h.md)
     - [net_websocket_type.h](net__websocket__type_8h.md)
-  - 结构体
+  - 结构体<!--network-struct-->
     - [NetConn_ConnectionProperties](_net_conn___connection_properties.md)
     - [NetConn_HttpProxy](_net_conn___http_proxy.md)
     - [NetConn_NetAddr](_net_conn___net_addr.md)
@@ -57,10 +57,10 @@
     - [WebSocket_Header](_web_socket___header.md)
     - [WebSocket_OpenResult](_web_socket___open_result.md)
     - [WebSocket_RequestOptions](_web_socket___request_options.md)
-- 已停止维护的接口
+- 已停止维护的接口<!--network-arkts-dep-->
   - [@system.network (网络状态)](js-apis-system-network.md)
   - [@system.fetch (数据请求)](js-apis-system-fetch.md)
-- 错误码
+- 错误码<!--network-arkts-errcode-->
   - [HTTP错误码](errorcode-net-http.md)
   - [Socket错误码](errorcode-net-socket.md)
   - [webSocket错误码](errorcode-net-webSocket.md)

@@ -58,4 +58,4 @@ NFC芯片上报给协议栈事件的函数定义。
 | 名称 | 描述 | 
 | -------- | -------- |
 | event | 上报事件的事件ID。  | 
-| status | NFC状态，具体定义见NfcStatus。 事件ID具体见 **NfcTypes**。 | 
+| status | NFC状态，具体定义见NfcStatus。 事件ID具体见 [**NfcTypes**](_nfc_types_8idl_v10.md)。| 

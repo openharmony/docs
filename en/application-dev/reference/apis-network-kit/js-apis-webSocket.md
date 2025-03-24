@@ -982,7 +982,9 @@ Represents the result obtained from the **close** event reported when the WebSoc
 | reason | string | Yes  | Error cause for closing the connection.|
 
 ## ResponseHeaders<sup>12+</sup>
-type ResponseHeaders = {[k: string]: string | string[] | undefined;}
+type ResponseHeaders = {
+  [k: string]: string | string[] | undefined;
+}
 
 Enumerates the response headers sent by the server.
 
@@ -1006,7 +1008,7 @@ You can customize the result codes sent to the server. The result codes in the f
 | 1003      | Data unable to be processed.|
 | 1004~1015 | Reserved.            |
 
-## HttpProxy
+## HttpProxy<sup>12+</sup>
 
 type HttpProxy = connection.HttpProxy
 

@@ -21,9 +21,9 @@ import { distributedMissionManager } from '@kit.AbilityKit';
 
 **Parameters**
 
-| Name | Template | Mandatory | Description |
+| Name| Template| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| deviceId |  string | Yes | Device ID in the callback that notifies a mission change.|
+| deviceId |  string | Yes| Device ID in the callback that notifies a mission change.|
 
 **Example**
 ```ts
@@ -57,10 +57,10 @@ distributedMissionManager.registerMissionListener(
 
 **Parameters**
 
-| Name | Template | Mandatory | Description |
+| Name| Template| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| deviceId |  string | Yes | Device ID in the callback that notifies a snapshot change. |
-| mission |  number | Yes | Mission ID in the callback that notifies a snapshot change. |
+| deviceId |  string | Yes| Device ID in the callback that notifies a snapshot change.|
+| mission |  number | Yes| Mission ID in the callback that notifies a snapshot change.|
 
 **Example**
 ```ts
@@ -94,10 +94,10 @@ distributedMissionManager.registerMissionListener(
 
 **Parameters**
 
-| Name | Template | Mandatory | Description |
+| Name| Template| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| deviceId |  string | Yes | Device ID in the callback that notifies disconnection. |
-| state |  number | Yes | Network status in the callback that notifies disconnection. |
+| deviceId |  string | Yes| Device ID in the callback that notifies disconnection.|
+| state |  number | Yes| Network status in the callback that notifies disconnection.|
 
 **Example**
 ```ts

@@ -45,15 +45,25 @@ The **params** parameter in the freeze event information is described as follows
 | tid | number | Thread ID.|
 | frames | object[] | Thread call stack. For details, see **frame**.|
 
-**frame**
+**frame (native)**
 
 | Name   | Type  | Description                      |
 | ------- | ------ | ------------------------- |
-| symbol | string | Function name.|
+| symbol | string | Function name. When the device is heavily loaded and the call stack is obtained in low-overhead mode, the function name may be lost.|
 | file | string | File name.|
-| buildId | string | Unique file ID.|
+| buildId | string | Unique file ID. When the device is heavily loaded and the call stack is obtained in low-overhead mode, the **buildId** information may be lost.|
 | pc | string | PC register address.|
 | offset | number | Function offset.|
+
+**frame (JS)**
+
+| Name   | Type  | Description                      |
+| ------- | ------ | ------------------------- |
+| file | string | File name.|
+| packageName | string | Package name of the module.|
+| symbol | string | Function name.|
+| column | number | The column where an exception occurs.|
+| line | number | The line where an exception occurs.|
 
 **memory**
 

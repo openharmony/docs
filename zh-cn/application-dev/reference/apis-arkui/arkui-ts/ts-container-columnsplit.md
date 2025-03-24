@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 ## 子组件
 
 可以包含子组件。
@@ -15,6 +15,8 @@ ColumnSplit通过分割线限制子组件的高度。初始化时，分割线位
 ## 接口
 
 ColumnSplit()
+
+带分割线的子组件纵向布局。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -55,6 +57,8 @@ divider(value: ColumnSplitDividerStyle | null)
 | value  | [ColumnSplitDividerStyle](#columnsplitdividerstyle10对象说明)&nbsp;\|&nbsp;null | 是   | 分割线的margin。<br/>默认值：null，分割线上下margin为0。ColumnSplitDividerStyle设置分割线与上下子节点的距离。 |
 
 ## ColumnSplitDividerStyle<sup>10+</sup>对象说明
+
+设置分割线与上下子节点的距离。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

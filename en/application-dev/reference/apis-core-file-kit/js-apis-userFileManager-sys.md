@@ -1,6 +1,6 @@
 # @ohos.filemanagement.userFileManager (User Data Management) (System API)
 
-The **userFileManager** module provides user data management capabilities, including accessing and modifying user media data (audio and video clips, images, and documents).
+The **userFileManager** module provides user data management capabilities, including accessing and modifying user media data.
 
 > **NOTE**
 >
@@ -47,7 +47,7 @@ let mgr = userFileManager.getUserFileMgr(context);
 
 ### getPhotoAssets
 
-getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void;
+getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void
 
 Obtains image and video assets. This API uses an asynchronous callback to return the result.
 
@@ -99,7 +99,7 @@ async function example() {
 
 ### getPhotoAssets
 
-getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;;
+getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;
 
 Obtains image and video assets. This API uses a promise to return the result.
 
@@ -155,7 +155,7 @@ async function example() {
 ```
 ### createPhotoAsset
 
-createPhotoAsset(displayName: string, albumUri: string, callback: AsyncCallback&lt;FileAsset&gt;): void;
+createPhotoAsset(displayName: string, albumUri: string, callback: AsyncCallback&lt;FileAsset&gt;): void
 
 Creates an image or video asset with the specified file name and URI. This API uses an asynchronous callback to return the result.
 
@@ -207,7 +207,7 @@ async function example() {
 
 ### createPhotoAsset
 
-createPhotoAsset(displayName: string, callback: AsyncCallback&lt;FileAsset&gt;): void;
+createPhotoAsset(displayName: string, callback: AsyncCallback&lt;FileAsset&gt;): void
 
 Creates an image or video asset with the specified file name. This API uses an asynchronous callback to return the result.
 
@@ -220,7 +220,7 @@ Creates an image or video asset with the specified file name. This API uses an a
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
 | displayName  | string        | Yes  | File name of the image or video to create.             |
-| callback |  AsyncCallback&lt;[FileAsset](#fileasset)&gt; | Yes  | Callback used to return the image or video asset created.|
+| callback |  AsyncCallback&lt;[FileAsset](#fileasset)&gt; | Yes  | Callback used to return the image or video created.|
 
 **Error codes**
 
@@ -250,7 +250,7 @@ async function example() {
 
 ### createPhotoAsset
 
-createPhotoAsset(displayName: string, albumUri?: string): Promise&lt;FileAsset&gt;;
+createPhotoAsset(displayName: string, albumUri?: string): Promise&lt;FileAsset&gt;
 
 Creates an image or video asset with the specified file name and URI. This API uses a promise to return the result.
 
@@ -269,7 +269,7 @@ Creates an image or video asset with the specified file name and URI. This API u
 
 | Type                       | Description          |
 | --------------------------- | -------------- |
-| Promise&lt;[FileAsset](#fileasset)&gt; | Promise used to return the created image or video asset created.|
+| Promise&lt;[FileAsset](#fileasset)&gt; | Promise used to return the created image or video asset.|
 
 **Error codes**
 
@@ -297,7 +297,7 @@ async function example() {
 
 ### createPhotoAsset
 
-createPhotoAsset(displayName: string, createOption: PhotoCreateOptions, callback: AsyncCallback&lt;FileAsset&gt;): void;
+createPhotoAsset(displayName: string, createOption: PhotoCreateOptions, callback: AsyncCallback&lt;FileAsset&gt;): void
 
 Creates an image or video asset with the specified file name and options. This API uses an asynchronous callback to return the result.
 
@@ -344,7 +344,7 @@ async function example() {
 
 ### createPhotoAsset
 
-createPhotoAsset(displayName: string, createOption: PhotoCreateOptions): Promise&lt;FileAsset&gt;;
+createPhotoAsset(displayName: string, createOption: PhotoCreateOptions): Promise&lt;FileAsset&gt;
 
 Creates an image or video asset with the specified file name and options. This API uses a promise to return the result.
 
@@ -363,7 +363,7 @@ Creates an image or video asset with the specified file name and options. This A
 
 | Type                       | Description          |
 | --------------------------- | -------------- |
-| Promise&lt;[FileAsset](#fileasset)&gt; | Promise used to return the created image or video asset created.|
+| Promise&lt;[FileAsset](#fileasset)&gt; | Promise used to return the created image or video asset.|
 
 **Error codes**
 
@@ -394,7 +394,7 @@ async function example() {
 
 ### createAudioAsset<sup>10+</sup>
 
-createAudioAsset(displayName: string, callback: AsyncCallback&lt;FileAsset&gt;): void;
+createAudioAsset(displayName: string, callback: AsyncCallback&lt;FileAsset&gt;): void
 
 Creates an audio asset. This API uses an asynchronous callback to return the result.
 
@@ -437,7 +437,7 @@ async function example() {
 
 ### createAudioAsset<sup>10+</sup>
 
-createAudioAsset(displayName: string): Promise&lt;FileAsset&gt;;
+createAudioAsset(displayName: string): Promise&lt;FileAsset&gt;
 
 Creates an audio asset. This API uses a promise to return the result.
 
@@ -483,7 +483,7 @@ async function example() {
 
 ### createAlbum<sup>10+</sup>
 
-createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void;
+createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void
 
 Creates an album. This API uses an asynchronous callback to return the result.
 
@@ -522,7 +522,7 @@ async function example() {
 
 ### createAlbum<sup>10+</sup>
 
-createAlbum(name: string): Promise&lt;Album&gt;;
+createAlbum(name: string): Promise&lt;Album&gt;
 
 Creates an album. This API uses a promise to return the result.
 
@@ -566,7 +566,7 @@ async function example() {
 
 ### deleteAlbums<sup>10+</sup>
 
-deleteAlbums(albums: Array&lt;Album&gt;, callback: AsyncCallback&lt;void&gt;): void;
+deleteAlbums(albums: Array&lt;Album&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Deletes albums. This API uses an asynchronous callback to return the result.
 
@@ -612,7 +612,7 @@ async function example() {
 
 ### deleteAlbums<sup>10+</sup>
 
-deleteAlbums(albums: Array&lt;Album&gt;): Promise&lt;void&gt;;
+deleteAlbums(albums: Array&lt;Album&gt;): Promise&lt;void&gt;
 
 Deletes albums. This API uses a promise to return the result.
 
@@ -662,7 +662,7 @@ async function example() {
 
 ### getAlbums<sup>10+</sup>
 
-getAlbums(type: AlbumType, subType: AlbumSubType, options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void;
+getAlbums(type: AlbumType, subType: AlbumSubType, options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void
 
 Obtains albums based on the specified options and album type. This API uses an asynchronous callback to return the result.
 
@@ -723,7 +723,7 @@ async function example() {
 
 ### getAlbums<sup>10+</sup>
 
-getAlbums(type: AlbumType, subType: AlbumSubType, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void;
+getAlbums(type: AlbumType, subType: AlbumSubType, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void
 
 Obtains albums by type. This API uses an asynchronous callback to return the result.
 
@@ -775,7 +775,7 @@ async function example() {
 
 ### getAlbums<sup>10+</sup>
 
-getAlbums(type: AlbumType, subType: AlbumSubType, options?: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;;
+getAlbums(type: AlbumType, subType: AlbumSubType, options?: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;
 
 Obtains albums based on the specified options and album type. This API uses a promise to return the result.
 
@@ -840,7 +840,7 @@ async function example() {
 
 ### getPhotoAlbums
 
-getPhotoAlbums(options: AlbumFetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void;
+getPhotoAlbums(options: AlbumFetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void
 
 Obtains image and video albums. This API uses an asynchronous callback to return the result.
 
@@ -898,7 +898,7 @@ async function example() {
 
 ### getPhotoAlbums
 
-getPhotoAlbums(options: AlbumFetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;;
+getPhotoAlbums(options: AlbumFetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;
 
 Obtains image and video albums. This API uses a promise to return the result.
 
@@ -954,7 +954,7 @@ async function example() {
 
 ### getPrivateAlbum
 
-getPrivateAlbum(type: PrivateAlbumType, callback: AsyncCallback&lt;FetchResult&lt;PrivateAlbum&gt;&gt;): void;
+getPrivateAlbum(type: PrivateAlbumType, callback: AsyncCallback&lt;FetchResult&lt;PrivateAlbum&gt;&gt;): void
 
 Obtains the system album. This API uses an asynchronous callback to return the result.
 
@@ -997,7 +997,7 @@ async function example() {
 
 ### getPrivateAlbum
 
-getPrivateAlbum(type: PrivateAlbumType): Promise&lt;FetchResult&lt;PrivateAlbum&gt;&gt;;
+getPrivateAlbum(type: PrivateAlbumType): Promise&lt;FetchResult&lt;PrivateAlbum&gt;&gt;
 
 Obtains the system album. This API uses a promise to return the result.
 
@@ -1044,7 +1044,7 @@ async function example() {
 
 ### getAudioAssets
 
-getAudioAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void;
+getAudioAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void
 
 Obtains audio assets. This API uses an asynchronous callback to return the result.
 
@@ -1056,7 +1056,7 @@ Obtains audio assets. This API uses an asynchronous callback to return the resul
 
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| options  | [FetchOptions](#fetchoptions)        | Yes  | Options for fetching the audio assets.             |
+| options  | [FetchOptions](#fetchoptions)        | Yes  | Options for fetching the albums.             |
 | callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[FileAsset](#fileasset)&gt;&gt; | Yes  | Callback used to return the audio assets obtained.|
 
 **Error codes**
@@ -1096,7 +1096,7 @@ async function example() {
 
 ### getAudioAssets
 
-getAudioAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;;
+getAudioAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;
 
 
 Obtains audio assets. This API uses a promise to return the result.
@@ -1154,7 +1154,7 @@ async function example() {
 
 ### delete
 
-delete(uri: string, callback: AsyncCallback&lt;void&gt;): void;
+delete(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 Deletes a media file. This API uses an asynchronous callback to return the result. The deleted file is moved to the recycle bin.
 
@@ -1166,7 +1166,7 @@ Deletes a media file. This API uses an asynchronous callback to return the resul
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| uri | string | Yes  | URI of the media file to delete.|
+| uri | string | Yes  | URI of the media file.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
 **Error codes**
@@ -1213,7 +1213,7 @@ async function example() {
 
 ### delete
 
-delete(uri: string): Promise&lt;void&gt;;
+delete(uri: string): Promise&lt;void&gt;
 
 Deletes a media file. This API uses a promise to return the result. The deleted file is moved to the recycle bin.
 
@@ -1225,7 +1225,7 @@ Deletes a media file. This API uses a promise to return the result. The deleted 
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| uri | string | Yes  | URI of the media file to delete.|
+| uri | string | Yes  | URI of the media file.|
 
 **Return value**
 
@@ -1270,7 +1270,7 @@ async function example() {
 
 ### getActivePeers
 
-getActivePeers(callback: AsyncCallback&lt;Array&lt;PeerInfo&gt;&gt;): void;
+getActivePeers(callback: AsyncCallback&lt;Array&lt;PeerInfo&gt;&gt;): void
 
 Obtains information about online peer devices. This API uses an asynchronous callback to return the result.
 
@@ -1302,7 +1302,7 @@ async function example() {
 
 ### getActivePeers
 
-getActivePeers(): Promise&lt;Array&lt;PeerInfo&gt;&gt;;
+getActivePeers(): Promise&lt;Array&lt;PeerInfo&gt;&gt;
 
 Obtains information about online peer devices. This API uses a promise to return the result.
 
@@ -1337,7 +1337,7 @@ async function example() {
 
 ### getAllPeers
 
-getAllPeers(callback: AsyncCallback&lt;Array&lt;PeerInfo&gt;&gt;): void;
+getAllPeers(callback: AsyncCallback&lt;Array&lt;PeerInfo&gt;&gt;): void
 
 Obtains information about all peer devices. This API uses an asynchronous callback to return the result.
 
@@ -1347,7 +1347,7 @@ Obtains information about all peer devices. This API uses an asynchronous callba
 
 | Name  | Type                             | Mandatory| Description        |
 | -------- | --------------------------------- | ---- | ------------ |
-| callback | AsyncCallback&lt;Array&lt;[PeerInfo](#peerinfo)&gt;&gt; | Yes  | Callback used to return the peer device information obtained.|
+| callback | AsyncCallback&lt;Array&lt;[PeerInfo](#peerinfo)&gt;&gt; | Yes  | Callback used to return a list of online peer devices.|
 
 **Example**
 
@@ -1369,7 +1369,7 @@ async function example() {
 
 ### getAllPeers
 
-getAllPeers(): Promise&lt;Array&lt;PeerInfo&gt;&gt;;
+getAllPeers(): Promise&lt;Array&lt;PeerInfo&gt;&gt;
 
 Obtains information about all peer devices. This API uses a promise to return the result.
 
@@ -1556,7 +1556,7 @@ Call this API when the APIs in the **UserFileManager** instance are no longer us
 
 | Name  | Type                     | Mandatory| Description                |
 | -------- | ------------------------- | ---- | -------------------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -1615,7 +1615,7 @@ Registers a listener for the specified URI.
 | Name   | Type                                       | Mandatory| Description                                                        |
 | --------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | uri       | string                                      | Yes  | URI of the file asset or album, or [DefaultChangeUri](#defaultchangeuri10).|
-| forSubUri | boolean                                     | Yes  | Whether to perform fuzzy listening.<br>If **uri** is the URI of an album, the value **true** means to listen for the changes of the files in the album; the value **false** means to listen for the changes of the album. <br>If **uri** is the URI of a file asset, there is no difference whether **forSubUri** is **true** or **false**. <br>If **uri** is **DefaultChangeUri**, **forSubUri** must be set to **true**. If **forSubUri** is **false**, the URI cannot be found and no message can be received.|
+| forSubUri | boolean                                     | Yes  | Whether to perform fuzzy listening. If **uri** is the URI of an album, the value **true** means to listen for the changes of the files in the album; the value **false** means to listen for the changes of the album only. If **uri** is **fileAsset**, there is no difference whether **forSubUri** is **true** or **false**. If **uri** is **DefaultChangeUri**, **forSubUri** must be **true**. If **forSubUri** is set to **false**, the URI cannot be found and no message can be received.|
 | callback  | Callback&lt;[ChangeData](#changedata10)&gt; | Yes  | Callback used to return [ChangeData](#changedata10). <br>**NOTE**: Different callbacks can be registered for a URI. You can use [off<sup>10+</sup>](#off10) to disable the specified callback or all callbacks for the URI.|
 
 **Error codes**
@@ -1649,7 +1649,7 @@ async function example() {
   }
   let onCallback2 = (changeData: userFileManager.ChangeData) => {
       console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
-    // File changed. Do something.
+    //file had changed, do something
   }
   // Register onCallback1.
   mgr.on(fileAsset.uri, false, onCallback1);
@@ -1742,7 +1742,7 @@ This API will be deprecated. Use [on<sup>10+</sup>](#on10) instead.
 
 | Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | [ChangeEvent](#changeevent)               | Yes  | Type of event to subscribe to.<br>**deviceChange** indicates the device change.<br>**albumChange** indicates the album change.<br>**imageChange** indicates the image change.<br>**audioChange** indicates the audio file change.<br>**videoChange** indicates the video file change.<br>**remoteFileChange** indicates the file change on the registered device.|
+| type     | [ChangeEvent](#changeevent)               | Yes  | Type of event to subscribe to.<br>**'deviceChange'**: device change.<br>**'albumChange'**: album change.<br>**'imageChange'**: image change.<br>**'audioChange'**: audio file change.<br>**'videoChange'**: video file change.<br>**remoteFileChange** indicates the change of the file on a registered device.|
 | callback | Callback&lt;void&gt; | Yes  | Callback that returns no value.                                                  |
 
 **Example**
@@ -1789,7 +1789,7 @@ This API will be deprecated. Use [off<sup>10+</sup>](#off10) instead.
 
 | Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | [ChangeEvent](#changeevent)               | Yes  | Type of event to subscribe to.<br>**deviceChange** indicates the device change.<br>**albumChange** indicates the album change.<br>**imageChange** indicates the image change.<br>**audioChange** indicates the audio file change.<br>**videoChange** indicates the video file change.<br>**remoteFileChange** indicates the change of the file on a registered device.|
+| type     | [ChangeEvent](#changeevent)               | Yes  | Type of event to subscribe to.<br>**'deviceChange'**: device change.<br>**'albumChange'**: album change.<br>**'imageChange'**: image change.<br>**'audioChange'**: audio file change.<br>**'videoChange'**: video file change.<br>**remoteFileChange** indicates the change of the file on a registered device.|
 | callback | Callback&lt;void&gt; | No  | Callback that returns no value.                                                  |
 
 **Example**
@@ -1828,7 +1828,7 @@ async function example() {
 
 Provides APIs for encapsulating file asset attributes.
 
-### Properties
+### Attributes
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
@@ -1840,7 +1840,7 @@ Provides APIs for encapsulating file asset attributes.
 
 ### get
 
-get(member: string): MemberType;
+get(member: string): MemberType
 
 Obtains the value of a **FileAsset** parameter.
 
@@ -1850,7 +1850,7 @@ Obtains the value of a **FileAsset** parameter.
 
 | Name     | Type                       | Mandatory  | Description   |
 | -------- | ------------------------- | ---- | ----- |
-| member | string | Yes   | Member parameter name, for example, **ImageVideoKey.DISPLAY_NAME**. You need to enter the **PhotoKeys** to be obtained in **fetchColumns** for all attributes except **uri**, **photoType**, and **displayName**. For example, **fetchColumns: ['title']**.|
+| member | string | Yes   | Member parameter name, for example, **ImageVideoKey.DISPLAY_NAME**. You need to set **PhotoKeys** to be obtained in **fetchColumns** for all attributes except **uri**, **photoType**, and **displayName**. For example, **fetchColumns: ['title']**.|
 
 **Example**
 
@@ -1878,7 +1878,7 @@ async function example() {
 
 ### set
 
-set(member: string, value: string): void;
+set(member: string, value: string): void
 
 Sets a **FileAsset** parameter.
 
@@ -2013,7 +2013,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 Opens this file asset. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to release the resource.
+**NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to release the resource.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO, ohos.permission.READ_AUDIO, ohos.permission.WRITE_IMAGEVIDEO, or ohos.permission.WRITE_AUDIO
 
@@ -2023,7 +2023,7 @@ Opens this file asset. This API uses an asynchronous callback to return the resu
 
 | Name     | Type                         | Mandatory  | Description                                 |
 | -------- | --------------------------- | ---- | ----------------------------------- |
-| mode     | string                      | Yes   | File open mode, which can be **r** (read-only), **w** (write-only), or **rw** (read-write).|
+| mode     | string                      | Yes   | Mode of opening the file, for example, **'r'** (read-only), **'w'** (write-only), and **'rw'** (read-write).|
 | callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the file descriptor (FD) of the file opened.                           |
 
 **Example**
@@ -2050,7 +2050,7 @@ open(mode: string): Promise&lt;number&gt;
 
 Opens this file asset. This API uses a promise to return the result.
 
-> **NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to release the resource.
+**NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to release the resource.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO, ohos.permission.READ_AUDIO, ohos.permission.WRITE_IMAGEVIDEO, or ohos.permission.WRITE_AUDIO
 
@@ -2326,7 +2326,7 @@ Favorites or unfavorites this file asset. This API uses an asynchronous callback
 
 | Name       | Type                       | Mandatory  | Description                                |
 | ---------- | ------------------------- | ---- | ---------------------------------- |
-| isFavorite | boolean                   | Yes   | Whether to favorite the file. The value **true** means to favorite the file, and **false** means to unfavorite the file.|
+| isFavorite | boolean                   | Yes   | Whether to favorite or unfavorite the file. The value **true** means to favorite the file, and **false** means to unfavorite the file.|
 | callback   | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.                             |
 
 **Example**
@@ -2367,7 +2367,7 @@ Favorites or unfavorites this file asset. This API uses a promise to return the 
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| isFavorite | boolean | Yes   | Whether to favorite the file. The value **true** means to favorite the file, and **false** means to unfavorite the file.|
+| isFavorite | boolean | Yes   | Whether to favorite or unfavorite the file. The value **true** means to favorite the file, and **false** means to unfavorite the file.|
 
 **Return value**
 
@@ -2414,7 +2414,7 @@ The private files set to hidden state are located in the private album (in hidde
 
 | Name       | Type                       | Mandatory  | Description                                |
 | ---------- | ------------------------- | ---- | ---------------------------------- |
-| hiddenState | boolean                   | Yes   | Whether to set a file to hidden state. The value **true** means to hide the file; the value **false** means the opposite.|
+| hiddenState | boolean                   | Yes   | Whether to hide the file. The value **true** means to hide the file; the value **false** means the opposite.|
 | callback   | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.                             |
 
 **Error codes**
@@ -2466,7 +2466,7 @@ The private files set to hidden state are located in the private album (in hidde
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| hiddenState | boolean | Yes   | Whether to set a file to hidden state. The value **true** means to hide the file; the value **false** means the opposite.|
+| hiddenState | boolean | Yes   | Whether to hide the file. The value **true** means to hide the file; the value **false** means the opposite.|
 
 **Return value**
 
@@ -2515,7 +2515,7 @@ getExif(): Promise&lt;string&gt;
 
 Obtains a JSON string consisting of the exchangeable image file format (EXIF) tags of this JPG image. This API uses a promise to return the result.
 
-> **NOTE**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and [ImageVideoKey.USER_COMMENT](#imagevideokey). These two fields must be passed in via **fetchColumns**.
+**NOTE**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and [ImageVideoKey.USER_COMMENT](#imagevideokey). These two fields must be passed in via **fetchColumns**.
 
 **System API**: This is a system API.
 
@@ -2527,7 +2527,7 @@ Obtains a JSON string consisting of the exchangeable image file format (EXIF) ta
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;string&gt; | Promise used to return the JSON string obtained.|
+| Promise&lt;string&gt; | Promise used to return the EXIF data, in JSON strings.|
 
 **Supported EXIF tags**
 
@@ -2535,25 +2535,25 @@ For details about the EXIF tags, see [image.PropertyKey](../apis-image-kit/js-ap
 
 | Key Value                                   | Description             |
 | --------------------------------------- | ----------------- |
-| BitsPerSample | Number of bits per pixel.|
+| BitsPerSample | Number of bits per sample.|
 | Orientation | Image orientation.|
 | ImageLength | Image length.|
 | ImageWidth | Image width.|
 | GPSLatitude | GPS latitude of the image.|
 | GPSLongitude | GPS longitude of the image.|
-| GPSLatitudeRef | Longitude reference, for example, W or E.|
-| GPSLongitudeRef | Latitude reference, for example, N or S.|
+| GPSLatitudeRef | Whether the longitude is east or west longitude.|
+| GPSLongitudeRef | Whether the latitude is north or south latitude.|
 | DateTimeOriginal | Shooting time.|
 | ExposureTime | Exposure time.|
-| SceneType | Shooting scene type.|
+| SceneType | Scene type.|
 | ISOSpeedRatings | ISO sensitivity or speed.|
 | FNumber | f-number.|
-| DateTime | Date and time when the image was last modified.|
+| DateTime | Modification time.|
 | GPSTimeStamp | GPS timestamp.|
 | GPSDateStamp | GPS date stamp.|
 | ImageDescription | Image description.|
-| Make | Camera vendor.|
-| MakeNote | Description of the camera vendor.|
+| Make | Manufacturer.|
+| MakeNote | Manufacturer.|
 | Model | Model.|
 | PhotoMode | Photo mode.|
 | SensitivityType | Sensitivity type.|
@@ -2564,7 +2564,7 @@ For details about the EXIF tags, see [image.PropertyKey](../apis-image-kit/js-ap
 | LightSource | Light source.|
 | Flash | Flash status.|
 | FocalLength | Focal length.|
-| UserComment | User comment.|
+| UserComment | User comments.|
 | PixelXDimension | Pixel X dimension.|
 | PixelYDimension | Pixel Y dimension.|
 | WhiteBalance | White balance.|
@@ -2603,9 +2603,9 @@ async function example() {
 
 getExif(callback: AsyncCallback&lt;string&gt;): void
 
-Obtains a JSON string consisting of the EXIF tags of this JPG image. This API uses an asynchronous callback to return the result.
+Obtains a JSON string consisting of the EXIF tags of this JPG image. This API uses a promise to return the result.
 
-> **NOTE**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and [ImageVideoKey.USER_COMMENT](#imagevideokey). These two fields must be passed in via **fetchColumns**.
+**NOTE**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and [ImageVideoKey.USER_COMMENT](#imagevideokey). These two fields must be passed in via **fetchColumns**.
 
 **System API**: This is a system API.
 
@@ -2625,25 +2625,25 @@ For details about the EXIF tags, see [image.PropertyKey](../apis-image-kit/js-ap
 
 | Key Value                                   | Description             |
 | --------------------------------------- | ----------------- |
-| BitsPerSample | Number of bits per pixel.|
+| BitsPerSample | Number of bits per sample.|
 | Orientation | Image orientation.|
 | ImageLength | Image length.|
 | ImageWidth | Image width.|
 | GPSLatitude | GPS latitude of the image.|
 | GPSLongitude | GPS longitude of the image.|
-| GPSLatitudeRef | Longitude reference, for example, W or E.|
-| GPSLongitudeRef | Latitude reference, for example, N or S.|
+| GPSLatitudeRef | Whether the longitude is east or west longitude.|
+| GPSLongitudeRef | Whether the latitude is north or south latitude.|
 | DateTimeOriginal | Shooting time.|
 | ExposureTime | Exposure time.|
-| SceneType | Shooting scene type.|
+| SceneType | Scene type.|
 | ISOSpeedRatings | ISO sensitivity or speed.|
 | FNumber | f-number.|
-| DateTime | Date and time when the image was last modified.|
+| DateTime | Modification time.|
 | GPSTimeStamp | GPS timestamp.|
 | GPSDateStamp | GPS date stamp.|
 | ImageDescription | Image description.|
-| Make | Camera vendor.|
-| MakeNote | Description of the camera vendor.|
+| Make | Manufacturer.|
+| MakeNote | Manufacturer.|
 | Model | Model.|
 | PhotoMode | Photo mode.|
 | SensitivityType | Sensitivity type.|
@@ -2654,7 +2654,7 @@ For details about the EXIF tags, see [image.PropertyKey](../apis-image-kit/js-ap
 | LightSource | Light source.|
 | Flash | Flash status.|
 | FocalLength | Focal length.|
-| UserComment | User comment.|
+| UserComment | User comments.|
 | PixelXDimension | Pixel X dimension.|
 | PixelYDimension | Pixel Y dimension.|
 | WhiteBalance | White balance.|
@@ -2700,7 +2700,7 @@ setUserComment(userComment: string): Promise&lt;void&gt;
 
 Sets user comment information of an image or video. This API uses a promise to return the result.
 
-> **NOTE**<br>This API can be used to modify the comment information of only images or videos.
+**NOTE**<br>This API can be used to modify the comment information of only images or videos.
 
 **System API**: This is a system API.
 
@@ -2758,7 +2758,7 @@ setUserComment(userComment: string, callback: AsyncCallback&lt;void&gt;): void
 
 Sets user comment information of an image or video. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>This API can be used to modify the comment information of only images or videos.
+**NOTE**<br>This API can be used to modify the comment information of only images or videos.
 
 **System API**: This is a system API.
 
@@ -2827,7 +2827,7 @@ Obtains the total number of files in the result set.
 
 | Type    | Description      |
 | ------ | -------- |
-| number | Total number of files obtained.|
+| number | Returns the total number of files obtained.|
 
 **Example**
 
@@ -2926,7 +2926,7 @@ Obtains the first file asset in the result set. This API uses an asynchronous ca
 
 | Name  | Type                                         | Mandatory| Description                                       |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------- |
-| callback | AsyncCallback&lt;T&gt; | Yes  | Callback used to return the first file asset.|
+| callback | AsyncCallback&lt;T&gt; | Yes  | Callback used to return the first file asset obtained.|
 
 **Example**
 
@@ -3292,15 +3292,15 @@ async function example() {
 
 ## Album
 
-Provides APIs to manage albums.
+Provides APIs to implement a physical album.
 
-### Properties
+### Attributes
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
 | Name          | Type   | Read-Only  | Writable | Description  |
 | ------------ | ------ | ---- | ---- | ------- |
-| albumType<sup>10+</sup> | [AlbumType]( #albumtype10) | Yes   | No   | Type of the album.   |
+| albumType<sup>10+</sup> | [AlbumType]( #albumtype10) | Yes   | No   | Type of the album to obtain.   |
 | albumSubType<sup>10+</sup> | [AlbumSubType]( #albumsubtype10) | Yes   | No  | Subtype of the album.   |
 | albumName | string | Yes   | Yes for a user album; no for a system album.  | Name of the album.   |
 | albumUri | string | Yes   | No   | URI of the album.  |
@@ -3309,7 +3309,7 @@ Provides APIs to manage albums.
 
 ### getPhotoAssets
 
-getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void;
+getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void
 
 Obtains image and video assets. This API uses an asynchronous callback to return the result.
 
@@ -3321,7 +3321,7 @@ Obtains image and video assets. This API uses an asynchronous callback to return
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| options | [FetchOptions](#fetchoptions) | Yes  | Options for fetching the image and video assets.|
+| options | [FetchOptions](#fetchoptions) | Yes  | Options for fetching the albums.|
 | callback | AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[FileAsset](#fileasset)&gt;&gt; | Yes  | Callback used to return the image and video assets obtained.|
 
 **Error codes**
@@ -3362,7 +3362,7 @@ async function example() {
 
 ### getPhotoAssets
 
-getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;;
+getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;
 
 Obtains image and video assets. This API uses a promise to return the result.
 
@@ -3419,7 +3419,7 @@ async function example() {
 
 ### commitModify
 
-commitModify(callback: AsyncCallback&lt;void&gt;): void;
+commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 Commits the modification on the album attributes to the database. This API uses an asynchronous callback to return the result.
 
@@ -3459,7 +3459,7 @@ async function example() {
 
 ### commitModify
 
-commitModify(): Promise&lt;void&gt;;
+commitModify(): Promise&lt;void&gt;
 
 Commits the modification on the album attributes to the database. This API uses a promise to return the result.
 
@@ -3502,7 +3502,7 @@ async function example() {
 
 ### addPhotoAssets<sup>10+</sup>
 
-addPhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;void&gt;): void;
+addPhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Adds image and video assets to an album. Before the operation, ensure that the image and video assets to add and the album exist. This API uses an asynchronous callback to return the result.
 
@@ -3557,7 +3557,7 @@ async function example() {
 
 ### addPhotoAssets<sup>10+</sup>
 
-addPhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;;
+addPhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;
 
 Adds image and video assets to an album. Before the operation, ensure that the image and video assets to add and the album exist. This API uses a promise to return the result.
 
@@ -3616,7 +3616,7 @@ async function example() {
 
 ### removePhotoAssets<sup>10+</sup>
 
-removePhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;void&gt;): void;
+removePhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Removes image and video assets from an album. The album and file resources must exist. This API uses an asynchronous callback to return the result.
 
@@ -3671,7 +3671,7 @@ async function example() {
 
 ### removePhotoAssets<sup>10+</sup>
 
-removePhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;;
+removePhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;
 
 Removes image and video assets from an album. The album and file resources must exist. This API uses a promise to return the result.
 
@@ -3730,7 +3730,7 @@ async function example() {
 
 ### recoverPhotoAssets<sup>10+</sup>
 
-recoverPhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;void&gt;): void;
+recoverPhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Recovers image or video assets from the recycle bin. Before the operation, ensure that the image or video assets exist in the recycle bin. This API uses an asynchronous callback to return the result.
 
@@ -3785,7 +3785,7 @@ async function example() {
 
 ### recoverPhotoAssets<sup>10+</sup>
 
-recoverPhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;;
+recoverPhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;
 
 Recovers image or video assets from the recycle bin. Before the operation, ensure that the image or video assets exist in the recycle bin. This API uses a promise to return the result.
 
@@ -3844,7 +3844,7 @@ async function example() {
 
 ### deletePhotoAssets<sup>10+</sup>
 
-deletePhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;void&gt;): void;
+deletePhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Deletes image or video assets from the recycle bin. Before the operation, ensure that the image or video assets exist in the recycle bin. This API uses an asynchronous callback to return the result.
 
@@ -3901,7 +3901,7 @@ async function example() {
 
 ### deletePhotoAssets<sup>10+</sup>
 
-deletePhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;;
+deletePhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;
 
 Deletes image or video assets from the recycle bin. Before the operation, ensure that the image or video assets exist in the recycle bin. This API uses a promise to return the result.
 
@@ -3966,7 +3966,7 @@ Provides APIs for managing the system albums.
 
 This API will be discarded. Use [Album](#album) instead.
 
-### Properties
+### Attributes
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
@@ -3980,7 +3980,7 @@ This API will be discarded. Use [Album](#album) instead.
 
 ### getPhotoAssets
 
-getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void;
+getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void
 
 Obtains image and video assets from a system album. This API uses an asynchronous callback to return the result.
 
@@ -4033,7 +4033,7 @@ async function example() {
 
 ### getPhotoAssets
 
-getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;;
+getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;
 
 Obtains image and video assets from a system album. This API uses a promise to return the result.
 
@@ -4085,7 +4085,7 @@ async function example() {
 
 ### delete
 
-delete(uri: string, callback: AsyncCallback&lt;void&gt;): void;
+delete(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 Deletes a file from the system album. Only the files in the trash can be deleted.
 
@@ -4131,7 +4131,7 @@ async function example() {
 
 ### delete
 
-delete(uri: string): Promise&lt;void&gt;;
+delete(uri: string): Promise&lt;void&gt;
 
 Deletes a file from the system album. Only the files in the trash can be deleted.
 
@@ -4181,7 +4181,7 @@ async function example() {
 
 ### recover
 
-recover(uri: string, callback: AsyncCallback&lt;void&gt;): void;
+recover(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 Recovers a file in the system album. Only the files in the trash can be recovered.
 
@@ -4227,7 +4227,7 @@ async function example() {
 
 ### recover
 
-recover(uri: string): Promise&lt;void&gt;;
+recover(uri: string): Promise&lt;void&gt;
 
 Recovers a file in the system album. Only the files in the trash can be recovered.
 
@@ -4446,7 +4446,7 @@ Defines the key album information.
 | URI           | uri                 | URI of the album.                                                  |
 | FILE_TYPE     | file_type           | Type of the file.                                             |
 | ALBUM_NAME    | album_name          | Name of the album.                                                  |
-| DATE_ADDED    | date_added          | Date when the album was added. The value is the number of seconds elapsed since the Epoch time (00:00:00 UTC on January 1, 1970).            |
+| DATE_ADDED    | date_added          | Date when the file was added. The value is the number of seconds elapsed since the Epoch time (00:00:00 UTC on January 1, 1970).            |
 | DATE_MODIFIED | date_modified       | Date when the album file content (not the album name) was last modified. The value is the number of seconds elapsed since the Epoch time.|
 
 ## PhotoCreateOptions<sup>10+</sup>
@@ -4462,13 +4462,13 @@ Options for creating an image or video asset.
 
 ## FetchOptions
 
-Defines the options for fetching media files.
+Defines the options for fetching file attributes.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
 | Name                  | Type               | Read-Only| Writable| Description                                             |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Options for fetching files based on the attributes in columns.<br>If this parameter is left empty, files are fetched by URI, name, and type (the specific field names vary with the file asset or album object) by default. In addition, an error will be reported if [get](#get) is called to obtain other attributes of this object.<br>Example:<br>fetchColumns: ['uri', 'title']|
+| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Options for fetching files based on the attributes in columns. If this parameter is left empty, files are fetched by URI, name, and type (the specific field names vary with the file asset or album object) by default. In addition, an error will be reported if [get](#get) is called to obtain other attributes of this object. Example:<br>fetchColumns: ['uri', 'title']|
 | predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates-sys.md) | Yes  | Yes  | Predicates that specify the fetch criteria.|
 
 ## AlbumFetchOptions

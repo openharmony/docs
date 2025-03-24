@@ -935,7 +935,7 @@ Creates an instance of a compressed or decompressed object and uses a promise to
 
 | Type                        | Description                                 |
 | ---------------------------- | ------------------------------------- |
-| Promise&lt;[Zip](#zip12)&gt; | Promise used to return the result.  |
+| Promise&lt;[Zip](#zip12)&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -2401,7 +2401,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
 
-**Example**<br>For details, see [inflateBack<sup>12+</sup>](#inflateback12).
+**Example**
+
+For details about the sample code, see [inflateBack](#inflateback12).
 
 ### inflateBackEnd<sup>12+</sup>
 
@@ -2434,7 +2436,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
 
-**Example**<br>For details, see [inflateBack<sup>12+</sup>](#inflateback12).
+**Example**
+
+For details about the sample code, see [inflateBack](#inflateback12).
 
 ### inflateBack<sup>12+</sup>
 
@@ -2456,32 +2460,6 @@ Uses callback APIs to input and output data for raw decompression. This API uses
 | backOut | InflateBackOutputCallback | Yes  | Writes the decompressed data to the destination buffer.                                |
 | outDesc | object                    | Yes  | Common object.                                                  |
 
-### InflateBackInputCallback
-
-InflateBackInputCallback = (inDesc: object) => ArrayBuffer
-
-Inputs data.
-
-**System capability**: SystemCapability.BundleManager.Zlib
-
-| Name  | Type  | Mandatory| Description            |
-| ------ | ------ | ---- | ---------------- |
-| inDesc | object | Yes  | User-defined data object.|
-
-### InflateBackOutputCallback
-
-InflateBackOutputCallback = (outDesc: object, buf: ArrayBuffer, length: number) => number
-
-Outputs data.
-
-**System capability**: SystemCapability.BundleManager.Zlib
-
-| Name   | Type       | Mandatory| Description                  |
-| ------- | ----------- | ---- | ---------------------- |
-| outDesc | object      | Yes  | User-defined data object.      |
-| buf     | ArrayBuffer | Yes  | Stores the data to be written.|
-| length  | number      | Yes  | Length of the data written to the output buffer.|
-
 **Return value**
 
 | Type                                          | Description                       |
@@ -2494,7 +2472,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
+| 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified. <br>2. Incorrect parameter types. <br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
 
 **Example**
@@ -2633,6 +2611,52 @@ async function demo() {
   inflateBackTest();
 }
 ```
+
+### InflateBackInputCallback<sup>12+</sup>
+
+type InflateBackInputCallback = (inDesc: object) => ArrayBuffer
+
+Inputs data.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.BundleManager.Zlib
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| inDesc | object | Yes  | User-defined data object.|
+
+**Return value**
+
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| ArrayBuffer | Content buffer that is successfully read from the input data source.|
+
+### InflateBackOutputCallback<sup>12+</sup>
+
+type InflateBackOutputCallback = (outDesc: object, buf: ArrayBuffer, length: number) => number
+
+Outputs data.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.BundleManager.Zlib
+
+**Parameters**
+
+| Name | Type       | Mandatory| Description                  |
+| ------- | ----------- | ---- | ---------------------- |
+| outDesc | object      | Yes  | User-defined data object.    |
+| buf     | ArrayBuffer | Yes  | Stores the data to be written.|
+| length  | number      | Yes  | Length of the data written to the output buffer.|
+
+**Return value**
+
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| number | Number of bytes in the output buffer.|
 
 ### inflate<sup>12+</sup>
 
@@ -3704,16 +3728,14 @@ async function demo() {
 
 ## Options
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 **System capability**: SystemCapability.BundleManager.Zlib
 
 | Name    | Type            | Readable| Writable| Description                                                      |
 | -------- | ---------------- | ---- | ---------------------------------------------------------- | ---- |
-| level    | CompressLevel     | Yes  | No | For details, see [CompressLevel](#compresslevel).      |
-| memLevel | MemLevel         | Yes  | No | For details, see [MemLevel](#memlevel).                |
-| strategy | CompressStrategy | Yes  | No | For details, see [CompressStrategy](#compressstrategy).|
-| parallel | ParallelStrategy | Yes  | No | For details, see [ParallelStrategy](#parallelstrategy16).|
+| level    | [CompressLevel](#compresslevel)     | Yes  | No | For details, see [CompressLevel](#compresslevel).<br>**Atomic service API**: This API can be used in atomic services since API version 11.      |
+| memLevel | [MemLevel](#memlevel)         | Yes  | No | For details, see [MemLevel](#memlevel).<br>**Atomic service API**: This API can be used in atomic services since API version 11.                       |
+| strategy | [CompressStrategy](#compressstrategy) | Yes  | No | For details, see [CompressStrategy](#compressstrategy).<br>**Atomic service API**: This API can be used in atomic services since API version 11.       |
+| parallel<sup>16+</sup> | [ParallelStrategy](#parallelstrategy16) | Yes  | No | For details, see [ParallelStrategy](#parallelstrategy16).<br>**Atomic service API**: This API can be used in atomic services since API version 16.       |
 
 ## CompressLevel
 
@@ -5534,7 +5556,7 @@ Converts and formats the parameters under the control of the string format and t
 | Name| Type                         | Mandatory| Description                  |
 | ------ | ----------------------------- | ---- | ---------------------- |
 | format | string                        | Yes  | Format descriptors and plain text.|
-| args   | Array&lt;string \| number&gt; | No  | List of variable parameters.        |
+| ...args   | Array&lt;string \| number&gt; | No  | List of variable parameters.        |
 
 **Return value**
 

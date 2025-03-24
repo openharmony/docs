@@ -86,10 +86,11 @@
 | [OH_AudioSession_DeactivatedReason](#oh_audiosession_deactivatedreason) { <br/>DEACTIVATED_LOWER_PRIORITY = 0, <br/>DEACTIVATED_TIMEOUT = 1 } | 音频会话停用原因。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) {<br/>AUDIOSTREAM_SUCCESS = 0,<br/>AUDIOSTREAM_ERROR_INVALID_PARAM = 1,<br/>AUDIOSTREAM_ERROR_ILLEGAL_STATE = 2,<br/>AUDIOSTREAM_ERROR_SYSTEM = 3<br/>} | 音频错误码。 | 
 | [OH_AudioStream_Type](#oh_audiostream_type) {<br/>AUDIOSTREAM_TYPE_RENDERER = 1,<br/>AUDIOSTREAM_TYPE_CAPTURER = 2<br/>} | 音频流类型。 | 
-| [OH_AudioStream_SampleFormat](#oh_audiostream_sampleformat) {<br/>AUDIOSTREAM_SAMPLE_U8 = 0,<br/>AUDIOSTREAM_SAMPLE_S16LE = 1,<br/>AUDIOSTREAM_SAMPLE_S24LE = 2,<br/>AUDIOSTREAM_SAMPLE_S32LE = 3<br/>} | 定义音频流采样格式。 | 
+| [OH_AudioStream_SampleFormat](#oh_audiostream_sampleformat) {<br/>AUDIOSTREAM_SAMPLE_U8 = 0,<br/>AUDIOSTREAM_SAMPLE_S16LE = 1,<br/>AUDIOSTREAM_SAMPLE_S24LE = 2,<br/>AUDIOSTREAM_SAMPLE_S32LE = 3,<br/>AUDIOSTREAM_SAMPLE_F32LE = 4<br/>} | 定义音频流采样格式。 | 
 | [OH_AudioStream_EncodingType](#oh_audiostream_encodingtype) { <br/>AUDIOSTREAM_ENCODING_TYPE_RAW = 0, <br/>AUDIOSTREAM_ENCODING_TYPE_AUDIOVIVID = 1 <br/>} | 定义音频流编码类型。  | 
 | [OH_AudioStream_Usage](#oh_audiostream_usage) {<br/>AUDIOSTREAM_USAGE_UNKNOWN = 0,<br/>AUDIOSTREAM_USAGE_MUSIC = 1,<br/>AUDIOSTREAM_USAGE_VOICE_COMMUNICATION = 2,<br/>AUDIOSTREAM_USAGE_VOICE_ASSISTANT = 3,<br/>AUDIOSTREAM_USAGE_ALARM = 4,<br/>AUDIOSTREAM_USAGE_VOICE_MESSAGE = 5,<br/>AUDIOSTREAM_USAGE_RINGTONE = 6,<br/>AUDIOSTREAM_USAGE_NOTIFICATION = 7,<br/>AUDIOSTREAM_USAGE_ACCESSIBILITY = 8,<br/>AUDIOSTREAM_USAGE_MOVIE = 10,<br/>AUDIOSTREAM_USAGE_GAME = 11,<br/>AUDIOSTREAM_USAGE_AUDIOBOOK = 12,<br/>AUDIOSTREAM_USAGE_NAVIGATION = 13,<br/>AUDIOSTREAM_USAGE_VIDEO_COMMUNICATION = 17<br/>} | 定义音频流使用场景。 | 
 | [OH_AudioStream_LatencyMode](#oh_audiostream_latencymode) {<br/>AUDIOSTREAM_LATENCY_MODE_NORMAL = 0,<br/>AUDIOSTREAM_LATENCY_MODE_FAST = 1<br/>} | 定义音频时延模式。 | 
+| [OH_AudioStream_VolumeMode](#oh_audiostream_volumemode) {<br/>AUDIOSTREAM_VOLUMEMODE_SYSTEM_GLOBAL = 0,<br/>AUDIOSTREAM_VOLUMEMODE_APP_INDIVIDUAL = 1 } | 定义音频流音量模式。 | 
 | [OH_AudioStream_State](#oh_audiostream_state) {<br/>AUDIOSTREAM_STATE_INVALID = -1,<br/>AUDIOSTREAM_STATE_NEW = 0,<br/>AUDIOSTREAM_STATE_PREPARED = 1,<br/>AUDIOSTREAM_STATE_RUNNING = 2,<br/>AUDIOSTREAM_STATE_STOPPED = 3,<br/>AUDIOSTREAM_STATE_RELEASED = 4,<br/>AUDIOSTREAM_STATE_PAUSED = 5<br/>} | 定义音频流的状态。 | 
 | [OH_AudioStream_SourceType](#oh_audiostream_sourcetype) {<br/>AUDIOSTREAM_SOURCE_TYPE_INVALID = -1,<br/>AUDIOSTREAM_SOURCE_TYPE_MIC = 0,<br/>AUDIOSTREAM_SOURCE_TYPE_VOICE_RECOGNITION = 1,<br/>AUDIOSTREAM_SOURCE_TYPE_PLAYBACK_CAPTURE = 2,<br/>AUDIOSTREAM_SOURCE_TYPE_VOICE_COMMUNICATION = 7,<br/>AUDIOSTREAM_SOURCE_TYPE_CAMCORDER = 13<br/>} | 定义音频流使用场景。 | 
 | [OH_AudioStream_Event](#oh_audiostream_event) {<br/>AUDIOSTREAM_EVENT_ROUTING_CHANGED = 0<br/>} | 定义音频事件。 | 
@@ -165,6 +166,8 @@
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetEncodingType](#oh_audiorenderer_getencodingtype)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, [OH_AudioStream_EncodingType](#oh_audiostream_encodingtype) \*encodingType) | 查询当前输出音频流编码类型。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetFramesWritten](#oh_audiorenderer_getframeswritten)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, int64_t \*frames) | 查询自创建流以来已写入的帧数。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetTimestamp](#oh_audiorenderer_gettimestamp)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, clockid_t clockId, int64_t \*framePosition, int64_t \*timestamp) | 获取输出音频流时间戳和位置信息。  | 
+| [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetAudioTimestampInfo](#oh_audiorenderer_getaudiotimestampinfo) ([OH_AudioRenderer](#oh_audiorenderer)
+ \*renderer, int64_t \*framePosition, int64_t \*timestamp) | 获取输出音频流时间戳和位置信息，适配倍速接口。 | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetFrameSizeInCallback](#oh_audiorenderer_getframesizeincallback)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, int32_t \*frameSize) | 在回调中查询帧大小。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetSpeed](#oh_audiorenderer_getspeed)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, float \*speed) | 获取音频渲染速率。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_SetSpeed](#oh_audiorenderer_setspeed)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, float speed) | 设置音频渲染速率。  | 
@@ -190,6 +193,7 @@
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetLatencyMode](#oh_audiostreambuilder_setlatencymode)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioStream_LatencyMode](#oh_audiostream_latencymode) latencyMode) | 设置音频流的时延模式。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetChannelLayout](#oh_audiostreambuilder_setchannellayout)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioChannelLayout](../apis-avcodec-kit/_core.md#oh_audiochannellayout-1) channelLayout) | 设置音频流的声道布局。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetRendererInfo](#oh_audiostreambuilder_setrendererinfo)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioStream_Usage](#oh_audiostream_usage) usage) | 设置输出音频流的工作场景。  | 
+| [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetVolumeMode](#oh_audiostreambuilder_setvolumemode) ([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioStream_VolumeMode](#oh_audiostream_volumemode) volumeMode) | 设置音频流音量模式。 | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetCapturerInfo](#oh_audiostreambuilder_setcapturerinfo)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioStream_SourceType](#oh_audiostream_sourcetype) sourceType) | 设置输入音频流的工作场景。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetRendererCallback](#oh_audiostreambuilder_setrenderercallback)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioRenderer_Callbacks](#oh_audiorenderer_callbacks) callbacks, void \*userData) | 设置输出音频流的回调。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetRendererOutputDeviceChangeCallback](#oh_audiostreambuilder_setrendereroutputdevicechangecallback)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioRenderer_OutputDeviceChangeCallback](#oh_audiorenderer_outputdevicechangecallback) callback, void \*userData) | 设置输出音频流设备变更的回调。  | 
@@ -328,7 +332,7 @@ typedef OH_AudioData_Callback_Result(* OH_AudioRenderer_OnWriteDataCallback)(OH_
 
 回调函数仅用来写入音频数据，请勿在回调函数中调用AudioRenderer相关接口。
 
-该函数类似于 [OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnWriteData](_o_h___audio_renderer___callbacks___struct.md#oh_audiorenderer_onwritedata) 函数指针。但具有返回值，用于标识音频数据回调结果。 该函数的返回结果表示填充到缓冲区的数据是否有效。如果结果无效，用户填写的数据将不被播放。回调函数结束后，音频服务会把audioData指针数据放入队列里等待播放，因此请勿在回调外再次更改audioData指向的数据, 且务必保证往audioData填满audioDataSize长度的待播放数据, 否则会导致音频服务播放杂音。参数audioDataSize可以通过[OH_AudioStreamBuilder_SetFrameSizeInCallBack()](#OH_AudioStreamBuilder_SetFrameSizeInCallback)设置。
+该函数类似于 [OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnWriteData](_o_h___audio_renderer___callbacks___struct.md#oh_audiorenderer_onwritedata) 函数指针。但具有返回值，用于标识音频数据回调结果。 该函数的返回结果表示填充到缓冲区的数据是否有效。如果结果无效，用户填写的数据将不被播放。回调函数结束后，音频服务会把audioData指针数据放入队列里等待播放，因此请勿在回调外再次更改audioData指向的数据, 且务必保证往audioData填满audioDataSize长度的待播放数据, 否则会导致音频服务播放杂音。参数audioDataSize可以通过[OH_AudioStreamBuilder_SetFrameSizeInCallBack()](#oh_audiostreambuilder_setframesizeincallback)设置。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -945,6 +949,7 @@ enum OH_AudioStream_SampleFormat
 | AUDIOSTREAM_SAMPLE_S16LE  | Short 16位小端。   | 
 | AUDIOSTREAM_SAMPLE_S24LE  | Short 24位小端。   | 
 | AUDIOSTREAM_SAMPLE_S32LE  | Short 32位小端。   | 
+| AUDIOSTREAM_SAMPLE_F32LE  | Float 32位小端。<br>**起始版本：** 18   | 
 
 
 ### OH_AudioStream_SourceType
@@ -1042,6 +1047,24 @@ enum OH_AudioStream_Usage
 | AUDIOSTREAM_USAGE_AUDIOBOOK  | 有声读物（包括听书、相声、评书）、听新闻、播客等。   | 
 | AUDIOSTREAM_USAGE_NAVIGATION  | 导航。   | 
 | AUDIOSTREAM_USAGE_VIDEO_COMMUNICATION | VoIP视频通话。<br>**起始版本：** 12 | 
+
+
+### OH_AudioStream_VolumeMode
+
+```
+enum OH_AudioStream_VolumeMode
+```
+
+**描述**
+
+定义音频流音量模式。
+
+**起始版本：** 18
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| AUDIOSTREAM_VOLUMEMODE_SYSTEM_GLOBAL | 系统级音量（默认模式）。 | 
+| AUDIOSTREAM_VOLUMEMODE_APP_INDIVIDUAL | 应用级音量（设置为该模式后可以通过提供的接口设置、查询应用音量）。 | 
 
 
 ## 函数说明
@@ -1858,6 +1881,54 @@ AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数renderer为nullptr。
 AUDIOSTREAM_ERROR_ILLEGAL_STATE：执行状态异常。
 
 
+### OH_AudioRenderer_GetAudioTimestampInfo()
+
+```
+OH_AudioStream_Result OH_AudioRenderer_GetAudioTimestampInfo(OH_AudioRenderer* renderer, int64_t* framePosition, int64_t* timestamp)
+```
+
+**描述**
+
+获取输出音频流时间戳和位置信息，适配倍速接口。
+
+获取输出音频流时间戳和位置信息，通常用于进行音画同步对齐。
+
+注意，当实际播放位置（framePosition）为0时，时间戳（timestamp）是固定值，直到流真正跑起来时才会更新。当调用Flush接口时实际播放位置也会被重置。 当音频流路由(route)变化时，例如设备变化或者输出类型变化时，播放位置也会被重置，但此时时间戳仍会持续增长。
+
+推荐当实际播放位置和时间戳都稳定后再调用该接口获取相应值。
+
+该接口适配倍速接口，例如当播放速度设置为2倍时，实际播放位置也会返回为正常的2倍。
+
+**起始版本：** 15
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer)创建的音频流实例。 | 
+| framePosition | 指向要接收位置的变量的指针（作为返回值使用）。 | 
+| timestamp | 指向接收时间戳的变量的指针（作为返回值使用）。 | 
+
+**返回：**
+
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
+
+AUDIOSTREAM_SUCCESS：函数执行成功。
+
+AUDIOSTREAM_ERROR_INVALID_PARAM：
+1. 参数renderer为nullptr。
+2. 参数framePosition或timestamp为nullptr。 
+
+AUDIOSTREAM_ERROR_ILLEGAL_STATE：当前流状态不为合法状态时返回。
+
+AUDIOSTREAM_ERROR_SYSTEM：
+
+1. 系统进程崩溃或被阻塞。
+2. 内部系统其他错误。
+
+
 ### OH_AudioRenderer_GetChannelCount()
 
 ```
@@ -2288,6 +2359,8 @@ OH_AudioStream_Result OH_AudioRenderer_GetTimestamp(OH_AudioRenderer *renderer, 
 获取输出音频流时间戳和位置信息。
 
 该接口可以获取到音频通道实际播放位置（framePosition）以及播放到该位置时的时间戳（timestamp），时间戳单位为纳秒。
+
+当设备切换或暂停恢复时，由于播放通路本身需要一段时间恢复，调用该接口获取的播放位置和时间戳会短暂地保持在切换或暂停前的状态。
 
 该接口一般用来实现音画同步，建议频率不要太频繁，可以每分钟一次，最好不要低于200ms一次。频繁调用可能会带来功耗问题，因此在能保证音画同步效果的情况下，不需要频繁的查询时间戳。
 
@@ -3724,8 +3797,41 @@ AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
 AUDIOSTREAM_ERROR_INVALID_PARAM：
 
-  1. 参数builder为nullptr；
+  1. 参数builder为nullptr。
   2. 参数rate无效。
+
+
+### OH_AudioStreamBuilder_SetVolumeMode()
+
+```
+OH_AudioStream_Result OH_AudioStreamBuilder_SetVolumeMode(OH_AudioStreamBuilder* builder, OH_AudioStream_VolumeMode volumeMode);
+```
+
+**描述**
+
+设置音频流音量模式。
+
+**起始版本：** 18
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| builder | 指向OH_AudioStreamBuilder_Create()创建的构造器实例。 | 
+| volumeMode | 要设置的音频流音量模式。 | 
+
+**返回：**
+
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
+
+AUDIOSTREAM_SUCCESS：函数执行成功。 
+
+AUDIOSTREAM_ERROR_INVALID_PARAM：
+
+1. 参数builder为nullptr。
+2. 参数volumeMode无效。
 
 
 ### OH_AudioStreamBuilder_SetWriteDataWithMetadataCallback()

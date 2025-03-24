@@ -4,7 +4,7 @@ You can use [FilePicker](../reference/apis-core-file-kit/js-apis-file-picker.md)
 
 **FilePicker** provides the following types of Pickers by file type:
 
-- [PhotoViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#photoviewpicker): used to select and save images and videos. However, the APIs of this Picker will not be maintained in later versions. You are advised to use [PhotoViewPicker of PhotoAccessHelper](../media/medialibrary/photoAccessHelper-photoviewpicker.md) to select images, and use [security components to create media assets](../media/medialibrary/photoAccessHelper-savebutton.md).
+- [PhotoViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#photoviewpickerdeprecated): used to select and save images and videos. However, the APIs of this Picker will not be maintained in later versions. You are advised to use [PhotoViewPicker of PhotoAccessHelper](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoviewpicker) to select images and the [security component to save them](../media/medialibrary/photoAccessHelper-savebutton.md).
 
 - [DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#documentviewpicker): used to select and save documents. The **DocumentViewPicker** API triggers the **FilePicker** application. Documents are not distinguished by file name extensions. For example, the images and files downloaded from a browser are documents.
 
@@ -12,7 +12,7 @@ You can use [FilePicker](../reference/apis-core-file-kit/js-apis-file-picker.md)
 
 ## Selecting Images or Videos
 
-[PhotoViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#photoviewpicker) will not be maintained in later versions. You are advised to use [PhotoViewPicker of PhotoAccessHelper](../media/medialibrary/photoAccessHelper-photoviewpicker.md) to select images.
+[PhotoViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#photoviewpickerdeprecated) will not be maintained in later versions. You are advised to use [PhotoViewPicker of PhotoAccessHelper](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoviewpicker) to select images.
 
 ## Selecting Documents
 
@@ -29,14 +29,22 @@ You can use [FilePicker](../reference/apis-core-file-kit/js-apis-file-picker.md)
 
    ```ts
    const documentSelectOptions = new picker.DocumentSelectOptions();
-   // (Optional) Set the maximum number of documents that can be selected.
+   // Set the maximum number of documents that can be selected. This parameter is optional.
    documentSelectOptions.maxSelectNumber = 5;
-   // (Optional) Specify the path of the files or folder to select.
+   // Specify the path of the files or folder to select. This parameter is optional.
    documentSelectOptions.defaultFilePathUri = "file://docs/storage/Users/currentUser/test";
-   // (Optional) Set the file name extension types ['File name extension description|File name extension type'] that can be selected. Use a comma to separate multiple file name extensions, which cannot exceed 100. To select all files, use 'All files(*.*)|.*'.
+   // (Optional. If this parameter is not transferred, all files are displayed by default.) Set the file name extension types ['File name extension description|File name extension type'] that can be selected. (Optional) Use a comma to separate multiple file name extensions, which cannot exceed 100. The wildcard ['All files (*.*)|.*'] can be used on 2-in-1 devices to display all files. Currently, mobile phones do not support this configuration.
     documentSelectOptions.fileSuffixFilters = ['Image(.png, .jpg)|.png, .jpg', 'Document|.txt', 'Video|.mp4', '.pdf'];
-   // Whether to grant the permission for the specified files or folder. The value true means to grant the permission, the value false means the opposite. If this parameter is true, defaultFilePathUri is mandatory and the file management authorization page is displayed. If this parameter is false, a common file management page is displayed. This parameter is optional.
-   documentSelectOptions.authMode = true;
+   // Whether to grant the permission for the specified files or folder. The value true means to grant the permission, the value false (default) means the opposite. If this parameter is true, defaultFilePathUri is mandatory and the file management authorization page is displayed. If this parameter is false, a common file management page is displayed. This parameter is optional and only 2-in-1 devices are supported.
+   documentSelectOptions.authMode = false;
+   // Whether to enable the batch authorization mode. The value true means to enable the batch authorization mode, and the value false (default) means the opposite. When multAuthMode is set to true, only the multiUriArray parameter takes effect. Only mobile phones are supported.
+   documentSelectOptions.multiAuthMode = false;
+   // Wherther to pass the URIs for batch authorization. (Only files are supported and folders are not supported.) This parameter does not take effect when multAuthMode is set to false. Only mobile phones are supported.
+   documentSelectOptions.multiAuthMode = ["file://docs/storage/Users/currentUser/test", "file://docs/storage/Users/currentUser/2test"];
+   // Whether to enable the aggregation view mode to launch the file management application. The value DEFAULT means that this parameter does not take effect and the aggregation view mode is disabled. Values other than DEFAULT means that other parameters do not take effect. Only mobile phones are supported.
+   documentSelectOptions.mergeMode = picker.MergeTypeMode.DEFAULT;
+   // Whether to support encryption (only files are supported). The default value is false. If this parameter is set to true, files can be encrypted on the picker page.
+   documentSelectOptions.isEncryptionSupported = false;
    ```
 
 3. Create a [DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#documentviewpicker) instance, and call [select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3) to start the FilePicker application page for the user to select documents.
@@ -105,7 +113,7 @@ You can use [FilePicker](../reference/apis-core-file-kit/js-apis-file-picker.md)
    const audioSelectOptions = new picker.AudioSelectOptions();
    ```
 
-3. Create an [AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker) instance, and call [select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-6) to start the FilePicker application page for the user to select audio clips.
+3. Create an [AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker) instance, and call [select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-5) to start the FilePicker application page for the user to select audio clips.
    
    ```ts
    let uris: string = '';

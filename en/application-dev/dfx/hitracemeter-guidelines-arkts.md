@@ -18,11 +18,11 @@
 
 The performance tracing APIs are provided by the **hiTraceMeter** module. For details, see [Hitrace](../reference/apis-performance-analysis-kit/js-apis-hitracemeter.md).
 
-| API | Description | 
+| API| Description| 
 | -------- | -------- |
-| hiTraceMeter.startTrace(name: string, taskId: number) | Starts an asynchronous time slice trace task. If multiple tracing tasks with the same name need to be performed at the same time, different task IDs must be specified through **taskId**. If the tracing tasks with the same name are not performed at the same time, the same task ID can be used. | 
+| hiTraceMeter.startTrace(name: string, taskId: number) | Starts an asynchronous time slice trace task. If multiple tracing tasks with the same name need to be performed at the same time, different task IDs must be specified through **taskId**. If the tracing tasks with the same name are not performed at the same time, the same task ID can be used.| 
 | hiTraceMeter.finishTrace(name: string, taskId: number) | Stops an asynchronous time slice trace task. The values of **name** and **taskId** must be the same as those of **hiTraceMeter.startTrace**. | 
-| hiTraceMeter.traceByValue(name: string, value: number) | Traces the value changes of a numeric variable, which is an integer. | 
+| hiTraceMeter.traceByValue(name: string, value: number) | Traces the value changes of a numeric variable, which is an integer.| 
 
 HiTraceMeter logging APIs are classified into three types by functionality/behavior: API for synchronous time slice tracing, API for asynchronous time slice tracing, and API for integer tracing. APIs for synchronous and asynchronous time slice tracing are synchronous and are used in the same thread. Cross-thread logging and analysis are not supported.
 

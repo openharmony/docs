@@ -20,7 +20,7 @@
 | [FaceAuthTypes.idl](_face_auth_types_8idl_v11.md) | 定义人脸认证驱动的枚举类和数据结构，包括AuthType, ExecutorRole, ExecutorSecureLevel, CommandId, FaceTipsCode, ExecutorInfo, 和TemplateInfo。 | 
 | [IExecutor.idl](_i_executor_8idl_faceauth_v11.md) | 定义执行器接口，用于获取执行器，获取凭据模版信息，注册人脸特征模版，进行用户人脸认证，删除人脸特征模版等。 | 
 | [IFaceAuthInterface.idl](_i_face_auth_interface_8idl_v11.md) | 定义获取人脸认证驱动的执行器列表接口，用于从人脸认证驱动获取执行器对象列表。 | 
-| [ISaCommandCallback.idl](_i_sa_command_callback_8idl_faceauth_v11.md) | 定义异步 API 的回调，该回调可用于向 SA 发送命令。详细说明请参考[IExecutor](interface_i_executor_faceauth_v11.md). | 
+| [ISaCommandCallback.idl](_i_sa_command_callback_8idl_faceauth_v11.md) | 定义异步 API 的回调，该回调可用于向 SA 发送命令。详细说明请参考[IExecutor](interface_i_executor_faceauth_v11.md)。 | 
 
 
 ### 类
@@ -33,7 +33,7 @@
 | struct&nbsp;&nbsp;[SaCommand](_sa_command_faceauth_v11.md) | SA命令相关。 | 
 | interface&nbsp;&nbsp;[IExecutor](interface_i_executor_faceauth_v11.md) | 定义执行器接口，用于获取执行器，获取凭据模版信息，注册人脸特征模版，进行用户人脸认证，删除人脸特征模版等。 | 
 | interface&nbsp;&nbsp;[IFaceAuthInterface](interface_i_face_auth_interface_v11.md) | 定义获取人脸认证驱动执行器列表的接口。 | 
-| interface&nbsp;&nbsp;[ISaCommandCallback](interface_i_sa_command_callback_faceauth_v11.md) | 定义异步 API 的回调，该回调可用于向 SA 发送命令。详细说明请参考[IExecutor](interface_i_executor_faceauth_v11.md). | 
+| interface&nbsp;&nbsp;[ISaCommandCallback](interface_i_sa_command_callback_faceauth_v11.md) | 定义异步 API 的回调，该回调可用于向 SA 发送命令。详细说明请参考[IExecutor](interface_i_executor_faceauth_v11.md)。 | 
 
 
 ### 枚举
@@ -106,5 +106,5 @@ enum SaCommandId : int
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| BEGIN_SCREEN_BRIGHTNESS_INCREASE | 开始增加屏幕亮度 | 
-| END_SCREEN_BRIGHTNESS_INCREASE | 结束增加屏幕亮度 | 
+| BEGIN_SCREEN_BRIGHTNESS_INCREASE | 开始增加屏幕亮度。 | 
+| END_SCREEN_BRIGHTNESS_INCREASE | 结束增加屏幕亮度。 | 

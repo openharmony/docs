@@ -182,11 +182,13 @@ Currently, this permission is available only to 2-in-1 device applications.
 
 <!--RP2--><!--RP2End-->
 
-**Permission level**: system_basic for API version 11 and normal for API versions 12 and later.
+**Permission level**: normal
 
 **Authorization mode**: user_grant
 
 **Valid since**: 11
+
+**Changelog**: The permission level is system_basic in API version 11, and is changed to normal since API version 12.
 
 ## ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
 
@@ -196,11 +198,13 @@ Currently, this permission is available only to 2-in-1 device applications.
 
 <!--RP2--><!--RP2End-->
 
-**Permission level**: system_basic for API version 11 and normal for API versions 12 and later.
+**Permission level**: normal
 
 **Authorization mode**: user_grant
 
 **Valid since**: 11
+
+**Changelog**: The permission level is system_basic in API version 11, and is changed to normal since API version 12.
 
 ## ohos.permission.READ_MEDIA
 

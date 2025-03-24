@@ -5,13 +5,13 @@
 
 提供与存储数据值相关的结构定义、函数和枚举。
 
-**引用文件：**&lt;database/rdb/oh_data_values_buckets.h&gt;
+**引用文件：**&lt;database/data/oh_data_values_buckets.h&gt;
 
 **库：** libnative_rdb_ndk.z.so
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
-**起始版本：** 16
+**起始版本：** 18
 
 **相关模块：**[RDB](_r_d_b.md)
 

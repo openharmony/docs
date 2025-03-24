@@ -93,8 +93,8 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 201 | the permissions check fails |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
-  | 13400002 | bad file path. |
+  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 13400002 | bad file path |
 
 **示例：**
 
@@ -103,10 +103,10 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
 
   let uploadTask: request.UploadTask;
   let uploadConfig: request.UploadConfig = {
-    url: 'http://www.example.com', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://www.example.com', // 需要手动将url替换为真实服务器的HTTP协议地址
     header: { 'Accept': '*/*' },
     method: "POST",
-    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
+    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "image/jpeg" }], // 建议type填写HTTP协议规范的MIME类型
     data: [{ name: "name123", value: "123" }],
   };
   try {
@@ -150,8 +150,8 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 201 | the permissions check fails |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
-  | 13400002 | bad file path. |
+  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 13400002 | bad file path |
 
 **示例：**
 
@@ -160,10 +160,10 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
 
   let uploadTask: request.UploadTask;
   let uploadConfig: request.UploadConfig = {
-    url: 'http://www.example.com', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://www.example.com', // 需要手动将url替换为真实服务器的HTTP协议地址
     header: { 'Accept': '*/*' },
     method: "POST",
-    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
+    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "image/jpeg" }], // 建议type填写HTTP协议规范的MIME类型
     data: [{ name: "name123", value: "123" }],
   };
   try {
@@ -224,10 +224,10 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'http://www.example.com', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://www.example.com', // 需要手动将url替换为真实服务器的HTTP协议地址
     header: { 'Accept': '*/*' },
     method: "POST",
-    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
+    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "image/jpeg" }], // 建议type填写HTTP协议规范的MIME类型
     data: [{ name: "name123", value: "123" }],
   };
   request.upload(uploadConfig).then((data) => {
@@ -274,10 +274,10 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'http://www.example.com', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://www.example.com', // 需要手动将url替换为真实服务器的HTTP协议地址
     header: { 'Accept': '*/*' },
     method: "POST",
-    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
+    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "image/jpeg" }], // 建议type填写HTTP协议规范的MIME类型
     data: [{ name: "name123", value: "123" }],
   };
   request.upload(uploadConfig, (err, data) => {
@@ -327,7 +327,7 @@ on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; vo
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -367,7 +367,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -402,7 +402,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -452,7 +452,7 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -494,7 +494,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -535,7 +535,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -616,7 +616,7 @@ delete(): Promise&lt;boolean&gt;
 
 > **说明：**
 >
-> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### delete<sup>9+</sup>
@@ -658,7 +658,7 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 
 > **说明：**
 >
-> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### remove<sup>(deprecated)</sup>
@@ -751,13 +751,13 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| url | string | 是 | 资源地址，其最大长度为2048个字符。 |
+| url | string | 是 | 资源地址。从API 6到API 14，最大长度为2048个字符；从API 15开始，最大长度为8192个字符。支持[HTTP拦截](../../basic-services/request/app-file-upload-download.md#添加网络配置)功能。 |
 | header | Object | 是 | 添加要包含在上传请求中的HTTP或HTTPS标志头。 |
 | method | string | 是 |  HTTP请求方法：POST、PUT，缺省为POST。使用PUT修改资源，使用POST新增资源。 |
 | index<sup>11+</sup> | number | 否 | 任务的路径索引，默认值为0。 |
 | begins<sup>11+</sup> | number | 否 | 在上传开始时读取的文件起点。默认值为0，取值为闭区间。|
 | ends<sup>11+</sup> | number | 否 | 在上传结束时读取的文件终点。默认值为-1，取值为闭区间。 |
-| files | Array&lt;[File](#file)&gt; | 是 | 要上传的文件列表。文件以 HTTP 的 multipart/form-data 格式提交。 |
+| files | Array&lt;[File](#file)&gt; | 是 | 要上传的文件列表。文件以HTTP的multipart/form-data格式提交。 |
 | data | Array&lt;[RequestData](#requestdata)&gt; | 是 | 请求的表单数据。 |
 
 ## TaskState<sup>9+</sup>
@@ -842,7 +842,7 @@ downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadT
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 201 | the permissions check fails |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
   | 13400001 | file operation error. |
   | 13400002 | bad file path. |
   | 13400003 | task service ability error. |
@@ -853,7 +853,7 @@ downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadT
 import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    // 需要手动将url替换为真实服务器的HTTP协议地址
     request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
        let downloadTask: request.DownloadTask = data;
     }).catch((err: BusinessError) => {
@@ -894,7 +894,7 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 201 | the permissions check fails |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
   | 13400001 | file operation error. |
   | 13400002 | bad file path. |
   | 13400003 | task service ability error. |
@@ -905,7 +905,7 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
 import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    // 需要手动将url替换为真实服务器的HTTP协议地址
     request.downloadFile(getContext(), {
       url: 'https://xxxx/xxxxx.hap',
       filePath: 'xxx/xxxxx.hap'
@@ -965,7 +965,7 @@ download(config: DownloadConfig): Promise&lt;DownloadTask&gt;
 
   ```js
   let downloadTask;
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.download({ url: 'https://xxxx/xxxx.hap' }).then((data) => {
     downloadTask = data;
   }).catch((err) => {
@@ -1009,7 +1009,7 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 
   ```js
   let downloadTask;
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.download({ url: 'https://xxxx/xxxxx.hap', 
   filePath: 'xxx/xxxxx.hap'}, (err, data) => {
     if (err) {
@@ -1049,7 +1049,7 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 | 参数名 | 类型 | 必填 | 说明                                                                      |
 | -------- | -------- | -------- |-------------------------------------------------------------------------|
 | receivedSize | number | 是 | 当前下载的进度，单位为字节。                                                           |
-| totalSize | number | 是 | 下载文件的总大小，单位为字节。在下载过程中，若服务器使用 chunk 方式传输导致无法从请求头中获取文件总大小时，totalSize 为 -1。 |
+| totalSize | number | 是 | 下载文件的总大小，单位为字节。在下载过程中，若服务器使用chunk方式传输导致无法从请求头中获取文件总大小时，totalSize为 -1。 |
 
 **错误码：**
 
@@ -1057,7 +1057,7 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1065,7 +1065,7 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    // 需要手动将url替换为真实服务器的HTTP协议地址
     request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
       let downloadTask: request.DownloadTask = data;
       let progressCallback = (receivedSize: number, totalSize: number) => {
@@ -1101,7 +1101,7 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 | 参数名 | 类型 | 必填 | 说明                                                                      |
 | -------- | -------- | -------- |-------------------------------------------------------------------------|
 | receivedSize | number | 是 | 当前下载的进度，单位为字节。                                                           |
-| totalSize | number | 是 | 下载文件的总大小，单位为字节。在下载过程中，若服务器使用 chunk 方式传输导致无法从请求头中获取文件总大小时，totalSize 为 -1。 |
+| totalSize | number | 是 | 下载文件的总大小，单位为字节。在下载过程中，若服务器使用chunk方式传输导致无法从请求头中获取文件总大小时，totalSize为 -1。 |
 
 
 **错误码：**
@@ -1110,7 +1110,7 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1118,7 +1118,7 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let progressCallback1 = (receivedSize: number, totalSize: number) => {
@@ -1163,7 +1163,7 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1171,7 +1171,7 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let completeCallback = () => {
@@ -1218,7 +1218,7 @@ off(type: 'complete'|'pause'|'remove', callback?: () =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1226,7 +1226,7 @@ off(type: 'complete'|'pause'|'remove', callback?: () =&gt; void): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let completeCallback1 = () => {
@@ -1304,7 +1304,7 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1312,7 +1312,7 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let failCallback = (err: number) => {
@@ -1349,7 +1349,7 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1357,7 +1357,7 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let failCallback1 = (err: number) => {
@@ -1410,7 +1410,7 @@ delete(): Promise&lt;boolean&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.delete().then((result: boolean) => {
@@ -1428,7 +1428,7 @@ try {
 
 > **说明：**
 >
-> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### delete<sup>9+</sup>
@@ -1461,7 +1461,7 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.delete((err: BusinessError, result: boolean) => {
@@ -1481,7 +1481,7 @@ try {
 
 > **说明：**
 >
-> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### getTaskInfo<sup>9+</sup>
@@ -1514,7 +1514,7 @@ getTaskInfo(): Promise&lt;DownloadInfo&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskInfo().then((downloadInfo: request.DownloadInfo) => {
@@ -1532,7 +1532,7 @@ try {
 
 > **说明：**
 >
-> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### getTaskInfo<sup>9+</sup>
@@ -1565,7 +1565,7 @@ getTaskInfo(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskInfo((err: BusinessError, downloadInfo: request.DownloadInfo) => {
@@ -1585,7 +1585,7 @@ try {
 
 > **说明：**
 >
-> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### getTaskMimeType<sup>9+</sup>
@@ -1618,7 +1618,7 @@ getTaskMimeType(): Promise&lt;string&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskMimeType().then((data: string) => {
@@ -1636,7 +1636,7 @@ try {
 
 > **说明：**
 >
-> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### getTaskMimeType<sup>9+</sup>
@@ -1669,7 +1669,7 @@ getTaskMimeType(callback: AsyncCallback&lt;string&gt;): void;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskMimeType((err: BusinessError, data: string) => {
@@ -1689,7 +1689,7 @@ try {
 
 > **说明：**
 >
-> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### suspend<sup>9+</sup>
@@ -1722,7 +1722,7 @@ suspend(): Promise&lt;boolean&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.suspend().then((result: boolean) => {
@@ -1740,7 +1740,7 @@ try {
 
 > **说明：**
 >
-> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### suspend<sup>9+</sup>
@@ -1773,7 +1773,7 @@ suspend(callback: AsyncCallback&lt;boolean&gt;): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.suspend((err: BusinessError, result: boolean) => {
@@ -1793,7 +1793,7 @@ try {
 
 > **说明：**
 >
-> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### restore<sup>9+</sup>
@@ -1826,7 +1826,7 @@ restore(): Promise&lt;boolean&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.restore().then((result: boolean) => {
@@ -1844,7 +1844,7 @@ try {
 
 > **说明：**
 >
-> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### restore<sup>9+</sup>
@@ -1877,7 +1877,7 @@ restore(callback: AsyncCallback&lt;boolean&gt;): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.restore((err: BusinessError, result: boolean) => {
@@ -1897,7 +1897,7 @@ try {
 
 > **说明：**
 >
-> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### remove<sup>(deprecated)</sup>
@@ -2307,15 +2307,15 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| url | string | 是 | 资源地址，其最大长度为2048个字符。 |
+| url | string | 是 | 资源地址。从API 6到API 14，最大长度为2048个字符；从API 15开始，最大长度为8192个字符。支持[HTTP拦截](../../basic-services/request/app-file-upload-download.md#添加网络配置)功能。 |
 | header | Object | 否 | 添加要包含在下载请求中的HTTPS标志头。|
 | enableMetered | boolean | 否 | 设置是否允许在按流量计费的连接下下载(默认使用false)。Wi-Fi为非计费网络，数据流量为计费网络。<br/>-&nbsp;true：是<br/>-&nbsp;false：否 |
 | enableRoaming | boolean | 否 | 设置是否允许在漫游网络中下载(默认使用false)。 <br/>-&nbsp;true：是<br/>-&nbsp;false：否|
 | description | string | 否 | 设置下载会话的描述。 |
-| filePath<sup>7+</sup> | string | 否 | 设置下载路径。默认为调用方（即传入的context）对应的缓存路径。默认文件名从url的最后一个"/"后截取。<br/>-&nbsp;FA模型下使用[context](../apis-ability-kit/js-apis-inner-app-context.md#contextgetcachedir) 获取应用存储路径。<br/>-&nbsp;Stage模型下使用[AbilityContext](../apis-ability-kit/js-apis-inner-application-context.md) 类获取文件路径。|
+| filePath<sup>7+</sup> | string | 否 | 设置下载路径。默认为调用方（即传入的context）对应的缓存路径。默认文件名从url的最后一个"/"后截取。<br/>-&nbsp;FA模型下使用[context](../apis-ability-kit/js-apis-inner-app-context.md#contextgetcachedir)获取应用存储路径。<br/>-&nbsp;Stage模型下使用[AbilityContext](../apis-ability-kit/js-apis-inner-application-context.md)类获取文件路径。|
 | networkType | number | 否 | 设置允许下载的网络类型(默认使用NETWORK_MOBILE&NETWORK_WIFI)。<br/>-&nbsp;NETWORK_MOBILE：0x00000001<br/>-&nbsp;NETWORK_WIFI：0x00010000|
 | title | string | 否 | 设置下载任务名称。 |
-| background<sup>9+</sup> | boolean | 否 | 后台任务通知开关，开启后可在通知中显示下载状态(默认使用false)。 |
+| background<sup>9+</sup> | boolean | 否 | 后台任务通知开关，开启后可在通知中显示下载状态(默认使用false)。 <br/>-&nbsp;true：显示下载状态 <br/>-&nbsp;false：不显示下载状态 |
 
 
 ## DownloadInfo<sup>7+</sup>
@@ -2382,9 +2382,9 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 ## BroadcastEvent<sup>11+</sup>
 
 定义自定义系统事件。用户可以使用公共事件接口获取该事件。
-上传下载 SA 具有 'ohos.permission.SEND_TASK_COMPLETE_EVENT' 该权限，用户可以配置事件的 metadata 指向的二级配置文件来拦截其他事件发送者。
+上传下载 SA 具有 'ohos.permission.SEND_TASK_COMPLETE_EVENT' 该权限，用户可以配置事件的metadata指向的二级配置文件来拦截其他事件发送者。
 
-使用 CommonEventData 类型传输公共事件相关数据。成员的内容填写和 [CommonEventData介绍](js-apis-inner-commonEvent-commonEventData.md) 介绍的有所区别，其中 CommonEventData.code 表示任务的状态，目前为 0x40 COMPLETE 或 0x41 FAILED; CommonEventData.data 表示任务的 taskId。
+使用CommonEventData类型传输公共事件相关数据。成员的内容填写和 [CommonEventData介绍](js-apis-inner-commonEvent-commonEventData.md) 介绍的有所区别，其中CommonEventData.code表示任务的状态，目前为0x40 COMPLETE或0x41 FAILED; CommonEventData.data表示任务的taskId。
 
 <!--Del-->
 事件配置信息请参考[静态订阅公共事件](../../basic-services/common-event/common-event-static-subscription.md)。<!--DelEnd-->
@@ -2398,16 +2398,15 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 ## FileSpec<sup>10+</sup> 
 表单项的文件信息。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Request.FileTransferAgent
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| path | string | 是 | 文件路径：<br/>-相对路径，位于调用方的缓存路径下，如"./xxx/yyy/zzz.html"、"xxx/yyy/zzz.html"。<br/>-internal协议路径，支持"internal://"及其子路径，internal为调用方（即传入的context）对应路径，"internal://cache"对应context.cacheDir。如"internal://cache/path/to/file.txt"。<br/>-应用沙箱目录，只支持到base及其子目录下，如"/data/storage/el1/base/path/to/file.txt"。<br/>-file协议路径，必须匹配应用包名，只支持到base及其子目录下，如"file://com.example.test/data/storage/el2/base/file.txt"。<br/>-用户公共文件，如"file://media/Photo/path/to/file.img"。仅支持前端任务。 |
-| mimeType | string | 否 | 文件的mimetype通过文件名获取。 |
-| filename | string | 否 | 文件名，默认值通过路径获取。 |
-| extras | object | 否 | 文件信息的附加内容，该参数不会体现在HTTP请求中。 |
+| path | string | 是 | 文件路径。<br/>- 相对路径，位于调用方的缓存路径下。<br/>例如："./xxx/yyy/zzz.html"、"xxx/yyy/zzz.html"。<br/>- internal协议路径，支持"internal://"及其子路径。internal为调用方（即传入的context）对应路径，"internal://cache"对应context.cacheDir。<br/>例如："internal://cache/path/to/file.txt"。<br/>- 应用沙箱目录，只支持到base及其子目录下。<br/>例如："/data/storage/el1/base/path/to/file.txt"。<br/>- file协议路径，必须匹配应用包名，只支持到base及其子目录下。<br/>例如："file://com.example.test/data/storage/el2/base/file.txt"。<br/>- 用户公共文件。<br/>例如："file://media/Photo/path/to/file.img"。仅支持前端任务。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| mimeType<sup>(deprecated)</sup> | string | 否 | 文件的mimetype通过文件名获取，默认值为文件名后缀。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br/> 从 API Version 18 开始废弃，建议使用contentType替代。 |
+| contentType<sup>18+</sup> | string | 否 | 文件内容类型，默认值为文件名后缀。该选项会被填写到HTTP表单指定的Content-Type字段中。 |
+| filename | string | 否 | 文件名，默认值通过路径获取。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| extras | object | 否 | 文件信息的附加内容，该参数不会体现在HTTP请求中。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 
 ## FormItem<sup>10+</sup> 
@@ -2431,14 +2430,14 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | action | [Action](#action10) | 是 | 任务操作选项。<br/>-UPLOAD表示上传任务。<br/>-DOWNLOAD表示下载任务。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| url | string | 是 | 资源地址，其最大长度为2048个字符。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| url | string | 是 | 资源地址。从API 6到API 14，最大长度为2048个字符；从API 15开始，最大长度为8192个字符。支持[HTTP拦截](../../basic-services/request/app-file-upload-download.md#添加网络配置)功能。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | title | string | 否 | 任务标题，其最大长度为256个字符，默认值为小写的 upload 或 download，与上面的 action 保持一致。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | description | string | 否 | 任务的详细信息，其最大长度为1024个字符，默认值为空字符串。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | mode | [Mode](#mode10) | 否 | 任务模式,默认为后台任务。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | overwrite | boolean | 否 | 下载过程中路径已存在时的解决方案选择，默认为false。<br/>- true，覆盖已存在的文件。<br/>- false，下载失败。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | method | string | 否 | 上传或下载的HTTP标准方法，包括GET、POST和PUT，不区分大小写。<br/>-上传时，使用PUT或POST，默认值为PUT。<br/>-下载时，使用GET或POST，默认值为GET。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | headers | object | 否 | 添加要包含在任务中的HTTP协议标志头。<br/>-对于上传请求，默认的Content-Type为"multipart/form-data"。<br/>-对于下载请求，默认的Content-Type为"application/json"。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| data | string \| Array&lt;[FormItem](#formitem10)&gt; | 否 | -下载时，data为字符串类型，通常使用json(object将被转换为json文本)，默认为空。<br/>-上传时，data是表单项数组Array&lt;[FormItem](#formitem10)&gt;，默认为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| data | string \| Array&lt;[FormItem](#formitem10)&gt; | 否 | -下载时，data为字符串类型，通常使用json(object将被转换为json文本)，默认为空。<br/>-上传时，data是表单项数组Array&lt;[FormItem](#formitem10)&gt;。从API version 15开始，创建单个任务最多上传100个文件。默认为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | saveas | string | 否 | 保存下载文件的路径，包括如下几种：<br/>-相对路径，位于调用方的缓存路径下，如"./xxx/yyy/zzz.html"、"xxx/yyy/zzz.html"。<br/>-internal协议路径，支持"internal://"及其子路径，internal为调用方（即传入的context）对应路径，"internal://cache"对应context.cacheDir。如"internal://cache/path/to/file.txt"。<br/>-应用沙箱目录，只支持到base及其子目录下，如"/data/storage/el1/base/path/to/file.txt"。<br/>-file协议路径，必须匹配应用包名，只支持到base及其子目录下，如"file://com.example.test/data/storage/el2/base/file.txt"。<br/>默认为调用方（即传入的context）对应的缓存路径。默认文件名从url的最后一个"/"后截取。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | network | [Network](#network10) | 否 | 网络选项，当前支持无线网络WIFI和蜂窝数据网络CELLULAR，默认为ANY（WIFI或CELLULAR）。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | metered | boolean | 否 | 是否允许在按流量计费的网络中工作，默认为false。<br/>-true：是 <br/>-false：否<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -2454,6 +2453,8 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | token | string | 否 | 当创建了一个带有token的任务后，token则为正常查询期间必须提供的，否则将无法通过查询进行检索。其最小为8个字节，最大为2048个字节。默认为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | priority<sup>11+</sup> | number | 否 | 任务的优先级。任务模式相同的情况下，该配置项的数字越小优先级越高，默认值为0。 |
 | extras | object | 否 | 配置的附加功能，默认为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| multipart<sup>15+</sup> | boolean | 否 | 是否使用单个请求进行上传，单个请求上传时必定使用multipart/form-data。<br/>-值为false时每个文件使用一个请求传输。 <br/>-值为true时使用多文件单请求上传。 <br/>默认值为false。 |
+| notification<sup>15+</sup> | [Notification](#notification15) | 否 | 通知栏自定义设置。|
 
 ## State<sup>10+</sup>  
 
@@ -2488,7 +2489,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | state | [State](#state10) | 是 | 任务当前的状态。                                                            |
 | index | number | 是 | 任务中当前正在处理的文件索引。                                                     |
 | processed | number | 是 | 任务中当前文件的已处理数据大小，单位为字节。                                               |
-| sizes | Array&lt;number&gt; | 是 | 任务中文件的大小，单位为字节。在下载过程中，若服务器使用 chunk 方式传输导致无法从请求头中获取文件总大小时，sizes 为 -1。 |
+| sizes | Array&lt;number&gt; | 是 | 任务中文件的大小，单位为字节。在下载过程中，若服务器使用chunk方式传输导致无法从请求头中获取文件总大小时，sizes为 -1。 |
 | extras | object | 否 | 交互的额外内容，例如来自服务器的响应的header和body。                                     |
 
 
@@ -2548,15 +2549,14 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | priority<sup>11+</sup> | number | 是 | 任务配置中的优先级。前端任务的优先级比后台任务高。相同模式的任务，数字越小优先级越高。 |
 | mimeType | string | 是 | 任务配置中的mimetype。 |
 | progress | [Progress](#progress10) | 是 | 任务的过程进度。 |
-| gauge | boolean | 是 | 后台任务的进度通知策略。 |
+| gauge | boolean | 是 | 后台任务的进度通知策略。<br/>-false：代表仅完成或失败的通知。<br/>-true，发出每个进度已完成或失败的通知。 |
 | ctime | number | 是 | 创建任务的Unix时间戳（毫秒），由当前设备的系统生成。<br/>说明：使用[request.agent.search<sup>10+</sup>](#requestagentsearch10-1)进行查询时，该值需处于[after,before]区间内才可正常查询到任务id，before和after信息详见[Filter](#filter10)。
 | mtime | number | 是 | 任务状态改变时的Unix时间戳（毫秒），由当前设备的系统生成。|
-| retry | boolean | 是 | 任务的重试开关，仅应用于后台任务。 |
+| retry | boolean | 是 | 任务的重试开关，仅应用于后台任务。<br/>-true：是 <br/>-false：否 |
 | tries | number | 是 | 任务的尝试次数。 |
 | faults | [Faults](#faults10) | 是 | 任务的失败原因。|
 | reason | string | 是 | 等待/失败/停止/暂停任务的原因。|
 | extras | object | 否 | 任务的额外部分。|
-| notification | [Notification](#notification15) | 否 | 通知栏自定义设置。|
 
 ## HttpResponse<sup>12+</sup> 
 任务响应头的数据结构。
@@ -2591,8 +2591,8 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 | 名称           | 类型                                            | 必填 | 说明                                                           |
 |--------------|-----------------------------------------------|----|--------------------------------------------------------------|
-| gauge        | boolean                                       | 否  | 后台任务的进度通知策略，若为true，显示进度、成功、失败通知，若为false，仅显示成功、失败通知。默认为false。 |
-| notification | [Notification](#notification15) | 否  | 通知栏自定义设置。                                                    |
+| gauge        | boolean                                       | 否  | 后台任务的进度通知策略。 <br/>-若为true，显示进度、成功、失败通知。 <br/>-若为false，仅显示成功、失败通知。<br/>默认为false。 |
+| notification<sup>15+</sup> | [Notification](#notification15) | 是  | 通知栏自定义设置。                                                    |
 
 ## Task<sup>10+</sup> 
 上传或下载任务。使用该方法前需要先获取Task对象，promise形式通过[request.agent.create<sup>10+</sup>](#requestagentcreate10-1)获取，callback形式通过[request.agent.create<sup>10+</sup>](#requestagentcreate10)获取。
@@ -2636,7 +2636,7 @@ on(event: 'progress', callback: (progress: [Progress](#progress10)) =&gt; void):
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2653,7 +2653,7 @@ on(event: 'progress', callback: (progress: [Progress](#progress10)) =&gt; void):
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2712,7 +2712,7 @@ on(event: 'completed', callback: (progress: [Progress](#progress10)) =&gt; void)
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2729,7 +2729,7 @@ on(event: 'completed', callback: (progress: [Progress](#progress10)) =&gt; void)
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2788,7 +2788,7 @@ on(event: 'failed', callback: (progress: [Progress](#progress10)) =&gt; void): v
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2805,7 +2805,7 @@ on(event: 'failed', callback: (progress: [Progress](#progress10)) =&gt; void): v
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2862,7 +2862,7 @@ on(event: 'pause', callback: (progress: [Progress](#progress10)) =&gt; void): vo
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2879,7 +2879,7 @@ on(event: 'pause', callback: (progress: [Progress](#progress10)) =&gt; void): vo
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2936,7 +2936,7 @@ on(event: 'resume', callback: (progress: [Progress](#progress10)) =&gt; void): v
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2953,7 +2953,7 @@ on(event: 'resume', callback: (progress: [Progress](#progress10)) =&gt; void): v
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -3010,7 +3010,7 @@ on(event: 'remove', callback: (progress: [Progress](#progress10)) =&gt; void): v
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -3027,7 +3027,7 @@ on(event: 'remove', callback: (progress: [Progress](#progress10)) =&gt; void): v
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -3086,7 +3086,7 @@ on(event: 'response', callback: Callback&lt;HttpResponse&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -3103,7 +3103,7 @@ on(event: 'response', callback: Callback&lt;HttpResponse&gt;): void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -3162,7 +3162,7 @@ off(event: 'progress', callback?: (progress: [Progress](#progress10)) =&gt; void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -3179,7 +3179,7 @@ off(event: 'progress', callback?: (progress: [Progress](#progress10)) =&gt; void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -3246,7 +3246,7 @@ off(event: 'completed', callback?: (progress: [Progress](#progress10)) =&gt; voi
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -3263,7 +3263,7 @@ off(event: 'completed', callback?: (progress: [Progress](#progress10)) =&gt; voi
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -3330,7 +3330,7 @@ off(event: 'failed', callback?: (progress: [Progress](#progress10)) =&gt; void):
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -3347,7 +3347,7 @@ off(event: 'failed', callback?: (progress: [Progress](#progress10)) =&gt; void):
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -3412,7 +3412,7 @@ off(event: 'pause', callback?: (progress: [Progress](#progress10)) =&gt; void): 
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -3429,7 +3429,7 @@ off(event: 'pause', callback?: (progress: [Progress](#progress10)) =&gt; void): 
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -3494,7 +3494,7 @@ off(event: 'resume', callback?: (progress: [Progress](#progress10)) =&gt; void):
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -3511,7 +3511,7 @@ off(event: 'resume', callback?: (progress: [Progress](#progress10)) =&gt; void):
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -3576,7 +3576,7 @@ off(event: 'remove', callback?: (progress: [Progress](#progress10)) =&gt; void):
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -3593,7 +3593,7 @@ off(event: 'remove', callback?: (progress: [Progress](#progress10)) =&gt; void):
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -3660,7 +3660,7 @@ off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -3677,7 +3677,7 @@ off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -3758,7 +3758,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskStartTest',
     description: 'Sample code for start the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3801,8 +3801,8 @@ start(callback: AsyncCallback&lt;void&gt;): void
 start(): Promise&lt;void&gt;
 
 以下状态的任务可以被启动：
-1. 刚被request.agent.create 接口创建的任务
-2. 使用request.agent.create 接口创建的已经失败或者停止的下载任务
+1. 刚被request.agent.create接口创建的任务
+2. 使用request.agent.create接口创建的已经失败或者停止的下载任务
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -3833,7 +3833,7 @@ start(): Promise&lt;void&gt;
 
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskStartTest',
     description: 'Sample code for start the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3899,7 +3899,7 @@ pause(callback: AsyncCallback&lt;void&gt;): void
 
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskPauseTest',
     description: 'Sample code for pause the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3965,7 +3965,7 @@ pause(): Promise&lt;void&gt;
 
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskPauseTest',
     description: 'Sample code for pause the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -4032,7 +4032,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskResumeTest',
     description: 'Sample code for resume the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -4103,7 +4103,7 @@ resume(): Promise&lt;void&gt;
 
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskResumeTest',
     description: 'Sample code for resume the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -4171,7 +4171,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskStopTest',
     description: 'Sample code for stop the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -4240,7 +4240,7 @@ stop(): Promise&lt;void&gt;
 
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskStopTest',
     description: 'Sample code for stop the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -4274,7 +4274,7 @@ stop(): Promise&lt;void&gt;
   });
   ```
 
-### setMaxSpeed<sup>16+</sup>
+### setMaxSpeed<sup>18+</sup>
 
 setMaxSpeed(speed: number): Promise\<void\>
 
@@ -4292,7 +4292,7 @@ setMaxSpeed(speed: number): Promise\<void\>
 
 | 类型              | 说明                         |
 |-----------------|----------------------------|
-| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -4300,7 +4300,7 @@ setMaxSpeed(speed: number): Promise\<void\>
 
 | 错误码ID    | 错误信息                                                                                                                           |
 |----------|--------------------------------------------------------------------------------------------------------------------------------|
-| 401      | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401      | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed.. |
 | 13400003 | task service ability error.                                                                                                    |
 
 **示例：**
@@ -4310,14 +4310,14 @@ setMaxSpeed(speed: number): Promise\<void\>
 
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     saveas: "./",
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     // 设置任务速度上限。
     task.setMaxSpeed(10 * 1024 * 1024).then(() => {
       console.info(`Succeeded in setting the max speed of the task. result: ${task.tid}`);
-    }).catch((err: BussinessError) => {
+    }).catch((err: BusinessError) => {
       console.error(`Failed to set the max speed of the task. result: ${task.tid}`);
     });
   }).catch((err: BusinessError) => {
@@ -4353,7 +4353,7 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 201 | permission denied. |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
   | 13400001 | file operation error. |
   | 13400003 | task service ability error. |
   | 21900004 | the application task queue is full. |
@@ -4374,7 +4374,7 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'createTest',
     description: 'Sample code for create task',
     mode: request.agent.Mode.BACKGROUND,
@@ -4443,7 +4443,7 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 201 | permission denied. |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
   | 13400001 | file operation error. |
   | 13400003 | task service ability error. |
   | 21900004 | the application task queue is full. |
@@ -4464,7 +4464,7 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'createTest',
     description: 'Sample code for create task',
     mode: request.agent.Mode.BACKGROUND,
@@ -4526,7 +4526,7 @@ getTask(context: BaseContext, id: string, token?: string): Promise&lt;Task&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
   | 13400003 | task service ability error. |
   | 21900006 | task not found. |
 
@@ -4565,7 +4565,7 @@ remove(id: string, callback: AsyncCallback&lt;void&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
   | 13400003 | task service ability error. |
   | 21900006 | task not found. |
 
@@ -4612,7 +4612,7 @@ remove(id: string): Promise&lt;void&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
   | 13400003 | task service ability error. |
   | 21900006 | task not found. |
 
@@ -4645,11 +4645,12 @@ show(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
   | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | 是 | 回调函数。当查询任务操作成功，err为undefined，data为查询到的任务TaskInfo信息；否则为错误对象。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
   | 13400003 | task service ability error. |
   | 21900006 | task not found. |
 
@@ -4689,11 +4690,12 @@ show(id: string): Promise&lt;TaskInfo&gt;
 | Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise对象。返回任务详细信息TaskInfo的Promise对象。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
   | 13400003 | task service ability error. |
   | 21900006 | task not found. |
 
@@ -4727,11 +4729,12 @@ touch(id: string, token: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
   | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | 是 | 回调函数。当查询任务操作成功，err为undefined，data为查询到的任务TaskInfo信息；否则为错误对象。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
   | 13400003 | task service ability error. |
   | 21900006 | task not found. |
 
@@ -4772,11 +4775,12 @@ touch(id: string, token: string): Promise&lt;TaskInfo&gt;
 | Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise对象。返回任务详细信息TaskInfo的Promise对象。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
   | 13400003 | task service ability error. |
   | 21900006 | task not found. |
 
@@ -4807,11 +4811,12 @@ search(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
   | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是 | 回调函数。当根据过滤条件查找任务成功，err为undefined，data为满足条件的任务id；否则为错误对象。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
+  | 401 | parameter error. Possible causes: 1. Incorrect parameter type. 2. Parameter verification failed. |
   | 13400003 | task service ability error. |
 
 **示例：**
@@ -4844,11 +4849,12 @@ search(filter: Filter, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
   | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是 | 回调函数。当根据过滤条件查找任务成功，err为undefined，data为满足条件的任务id；否则为错误对象。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
+  | 401 | parameter error. Possible causes: 1. Incorrect parameter type. 2. Parameter verification failed. |
   | 13400003 | task service ability error. |
 
 **示例：**
@@ -4891,11 +4897,12 @@ search(filter?: Filter): Promise&lt;Array&lt;string&gt;&gt;
 | Promise&lt;Array&lt;string&gt;&gt; | Promise对象。返回满足条件任务id的Promise对象。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
+  | 401 | parameter error. Possible causes: 1. Incorrect parameter type. 2. Parameter verification failed. |
   | 13400003 | task service ability error. |
 
 **示例：**
@@ -4935,11 +4942,12 @@ createGroup(config: GroupConfig): Promise\<string\>
 | Promise\<string\> | Promise对象。返回创建完成的分组ID的Promise对象。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID    | 错误信息                                                                                           |
 |----------|------------------------------------------------------------------------------------------------|
-| 401      | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
+| 401      | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 | 13400003 | task service ability error.                                                                    |
 
 **示例：**
@@ -4955,7 +4963,7 @@ createGroup(config: GroupConfig): Promise\<string\>
   request.agent.createGroup(config).then((gid: string) => {
     console.info(`Succeeded in creating a download task group. `);
   }).catch((err: BusinessError) => {
-    console.error(`Failed to search a upload task, Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to create a download group, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -4980,16 +4988,18 @@ attachGroup(gid: string, tids: string[]): Promise\<void\>
 
 | 类型              | 说明         |
 |-----------------|------------|
-| Promise\<void\> | Promise对象。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID    | 错误信息                                                                                           |
 |----------|------------------------------------------------------------------------------------------------|
-| 401      | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
+| 401      | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 | 13400003 | task service ability error                                                                     |
 | 21900005 | task mode error                                                                                |
+| 21900006 | task not found                                                                                 |
 | 21900007 | task state error                                                                               |
 | 21900008 | group deleted or not found                                                                     |
 
@@ -5029,14 +5039,15 @@ deleteGroup(gid: string): Promise\<void\>
 
 | 类型              | 说明         |
 |-----------------|------------|
-| Promise\<void\> | Promise对象。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID    | 错误信息                                                                                           |
 |----------|------------------------------------------------------------------------------------------------|
-| 401      | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
+| 401      | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 | 13400003 | task service ability error                                                                     |
 | 21900008 | group deleted or not found                                                                     |
 

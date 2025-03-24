@@ -6,18 +6,22 @@ HiLog is a subsystem that provides logging for the system framework, services, a
 
 ## Available APIs
 
-HiLog defines five log levels (DEBUG, INFO, WARN, ERROR, and FATAL) and provides APIs to output logs of different levels. For details about the APIs, see [hilog](../reference/apis-performance-analysis-kit/_hi_log.md)).
+HiLog defines five log levels (DEBUG, INFO, WARN, ERROR, and FATAL) and provides APIs to output logs of different levels. For details about the APIs, see [hilog](../reference/apis-performance-analysis-kit/_hi_log.md).
 
 | API/Macro| Description|
 | -------- | -------- |
 | bool OH_LOG_IsLoggable(unsigned int domain, const char \*tag, LogLevel level) | Checks whether logs of the specified service domain, tag, and level can be printed.<br>This API returns **true** if the specified logs can be printed and returns **false** otherwise.| 
-| int OH_LOG_Print(LogType type, LogLevel level, unsigned int domain, const char \*tag, const char \*fmt, ...) | Outputs logs of the specified domain, tag, and log level, with the variable parameters in the **printf** format.<br>This API returns the total number of bytes if log printing is successful and returns **-1** otherwise.|
+| int OH_LOG_Print(LogType type, LogLevel level, unsigned int domain, const char \*tag, const char \*fmt, ...) | Outputs logs of the specified domain, tag, and log level, with the variable parameters in the **printf** format.<br>If the return value is greater than or equal to 0, the operation is successful. Otherwise, the operation fails.|
+| int OH_LOG_PrintMsg(LogType type, LogLevel level, unsigned int domain, const char *tag, const char *message) | Outputs log strings of the specified domain, tag, and log level.<br>If the return value is greater than or equal to 0, the operation is successful. Otherwise, the operation fails.|
+| int OH_LOG_PrintMsgByLen(LogType type, LogLevel level, unsigned int domain, const char *tag, size_t tagLen, const char *message, size_t messageLen) | Outputs the log string of the specified domain, tag, and log level, with the tag and string length specified.<br>If the return value is greater than or equal to 0, the operation is successful. Otherwise, the operation fails.|
+| int OH_LOG_VPrint(LogType type, LogLevel level, unsigned int domain, const char *tag, const char *fmt, va_list ap) | Used in the same way as **OH_LOG_Print**, but the parameter list is **va_list**.|
 | \#define OH_LOG_DEBUG(type, ...) ((void)OH_LOG_Print((type), LOG_DEBUG, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | Outputs DEBUG logs. This is a function-like macro.|
 | \#define OH_LOG_INFO(type, ...) ((void)OH_LOG_Print((type), LOG_INFO, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | Outputs INFO logs. This is a function-like macro.|
 | \#define OH_LOG_WARN(type, ...) ((void)OH_LOG_Print((type), LOG_WARN, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | Outputs WARN logs. This is a function-like macro.|
 | \#define OH_LOG_ERROR(type, ...) ((void)OH_LOG_Print((type), LOG_ERROR, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | Outputs ERROR logs. This is a function-like macro.|
 | \#define OH_LOG_FATAL(type, ...) ((void)OH_LOG_Print((type), LOG_FATAL, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | Outputs FATAL logs. This is a function-like macro.|
 | void OH_LOG_SetCallback(LogCallback callback) | Registers a callback function to return all logs for the process.|
+| void OH_LOG_SetMinLogLevel(LogLevel level)|Sets the minimum log level. When a process prints logs, both the minimum log level and the global log level are verified. Therefore, the minimum log level cannot be lower than the global log level. The default value of [global log level](hilog.md#displaying-and-setting-log-levels) is **Info**.|
 
 ### Parameters
 
@@ -75,16 +79,21 @@ The maximum size of a log file is 4096 bytes. Excess content will be discarded.
    #define LOG_TAG "MY_TAG" // Global tag, which identifies the module log tag.
    ```
 
-3. Print logs, for example, print ERROR logs.
+3. Print logs.
 
    ```c++
-   OH_LOG_ERROR(LOG_APP, "Failed to visit %{private}s, reason:%{public}d.", url, errno);
+   OH_LOG_INFO(LOG_APP, "Failed to visit %{private}s, reason:%{public}d.", url, errno);
+   // Set the minimum log level to Warn.
+   OH_LOG_SetMinLogLevel(LOG_WARN);
+   OH_LOG_INFO(LOG_APP, "this is an info level log");
+   OH_LOG_ERROR(LOG_APP, "this is an info level log");
    ```
 
 4. The output is as follows:
 
    ```
-   12-11 12:21:47.579  2695 2695 E A03200/MY_TAG: Failed to visit <private>, reason:11.
+   01-02 08:39:38.915   9012-9012     A03200/MY_TAG                   pid-9012              I     Failed to visit <private>, reason:11.
+   01-02 08:39:38.915   9012-9012     A03200/MY_TAG                   pid-9012              E     this is an info level log
    ```
 
 ### Registering a Log Callback
@@ -109,7 +118,7 @@ static void Test(void)
    // 1. Register a callback.
     OH_LOG_SetCallback(MyHiLog);
     
-   // 2. Call the hilog API to print logs. Logs are output to HiLog and returned to MyHiLog() through the registered callback. Then, MyHiLog() is called to process the logs.
+   // 2. Call the hilog API to print logs. Logs are output to HiLog and returned to **MyHiLog()** through the registered callback. Then, **MyHiLog()** is called to process the logs.
    HiLog::Info(LABEL, "hello world");
 }
 ```

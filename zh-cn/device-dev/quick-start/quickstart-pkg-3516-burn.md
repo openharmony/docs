@@ -33,7 +33,7 @@
           <Part Sel="1" PartitionName="" FlashType="emmc" FileSystem="none" Start="60M" Length="50M" SelectFile="D:\liteos\userfs_vfat.img"/>
           </Partition_Info>
           ```
-      - Hi3516DV300对应的Linux内核小型系统的启动引导文件为“[u-boot-hi3516dv300.bin](https://gitee.com/openharmony/device_board_hisilicon/tree/master/hispark_taurus/uboot/out/boot)”，烧写配置文件需要开发者自行准备（可自行命名，例如LS_3516_linux.xml），模板如下
+      - Hi3516DV300对应的Linux内核小型系统的启动引导文件为“[u-boot-hi3516dv300.bin](https://gitee.com/openharmony/device_board_hisilicon/tree/master/hispark_taurus/uboot/out/boot)”，烧写配置文件需要开发者自行准备（可自行命名，例如LS_3516_linux.xml），模板如下：
           
           ```
           <?xml version="1.0" encoding="GB2312" ?>

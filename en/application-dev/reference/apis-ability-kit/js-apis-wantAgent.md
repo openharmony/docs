@@ -643,7 +643,7 @@ Checks whether two **WantAgent** objects are equal to determine whether the same
 | ---------- | ------------------------ | ---- | --------------------------------------- |
 | agent      | WantAgent                | Yes  | The first **WantAgent** object.                          |
 | otherAgent | WantAgent                | Yes  | **WantAgent** object.                          |
-| callback   | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
+| callback   | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that the two **WantAgent** objects are equal, and **false** means the opposite.|
 
 **Example**
 
@@ -724,7 +724,7 @@ Checks whether two **WantAgent** objects are equal to determine whether the same
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result.|
+| Promise\<boolean\> | Promise used to return the result. The value **true** means that the two **WantAgent** objects are equal, and **false** means the opposite.|
 
 **Example**
 
@@ -818,3 +818,17 @@ wantAgent.getWantAgent({
 | finalCode      | number                          | Yes  | Request code that triggers the **WantAgent** object.|
 | finalData      | string                          | Yes  | Final data collected by the common event. |
 | extraInfo      | { [key: string]: any }            | No  | Extra information.              |
+
+## WantAgent
+
+type WantAgent = object
+
+Defines the **WantAgent** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Type| Description|
+| --- | --- |
+| object | **WantAgent** object.|

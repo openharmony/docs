@@ -163,7 +163,7 @@ setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void
 
 设置sessionId，使用callback方式异步回调。当可信组网中有多个设备处于协同状态时，如果多个设备间的分布式对象设置为同一个sessionId，就能自动同步。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC。
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
@@ -203,7 +203,7 @@ setSessionId(callback: AsyncCallback&lt;void&gt;): void
 
 退出所有已加入的session，使用callback方式异步回调。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC。
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
@@ -242,7 +242,7 @@ setSessionId(sessionId?: string): Promise&lt;void&gt;
 
 设置sessionId，使用Promise异步返回。当可信组网中有多个设备处于协同状态时，如果多个设备间的分布式对象设置为同一个sessionId，就能自动同步。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC。
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
@@ -855,7 +855,7 @@ setSessionId(sessionId?: string): boolean
 >
 > 从 API Version 8 开始支持，从 API Version 9 开始废弃，建议使用[setSessionId](#setsessionid9)替代。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC。
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 

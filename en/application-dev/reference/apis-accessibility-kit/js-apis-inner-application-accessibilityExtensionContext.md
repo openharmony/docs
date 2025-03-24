@@ -28,7 +28,7 @@ Provides attribute names and value types of a node element.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-### Name
+### Attributes
 
 | Name                  | Type                                                                | Readable | Writable | Description                 |
 |----------------------|--------------------------------------------------------------------|-----|-----| ------------------- |
@@ -84,8 +84,10 @@ Provides attribute names and value types of a node element.
 | offset<sup>12+</sup>             | number                                                             | Yes  | No  | Pixel offset of the content area relative to the top coordinate of a scrollable component, such as **List** and **Grid**.|
 | hotArea<sup>12+</sup>             | [Rect](#rect)                                                              | Yes  | No  | Touchable area of an element.|
 | customComponentType<sup>16+</sup>             | string                                                             | Yes  | No  | Custom component type.|
-| accessibilityNextFocusId<sup>16+</sup>             | number                                                             | Yes  | No  | ID of the next component to be focused on.|
+| accessibilityNextFocusId<sup>16+</sup>             | number                | Yes  | No  | ID of the next component to be focused on. You can use **findElement('elementId')** to obtain the value of this attribute set on the component from the **AccessibilityElementInfo** object.|
+| accessibilityPreviousFocusId<sup>16+</sup>             | number                | Yes  | No  | ID of the previous component to be focused on. You can use **findElement('elementId')** to obtain the value of this attribute set on the component from the **AccessibilityElementInfo** object.|
 | extraInfo<sup>16+</sup>             | string                                                             | Yes  | No  | Extended attribute, which is used to define the attributes that are available only to specific components.|
+| accessibilityScrollable<sup>16+</sup>             | boolean                 | Yes  | No  | Whether an element is scrollable for accessibility. This attribute has a higher priority than **scrollable**. <br>- **true** (default): the element is scrollable.<br>- **false**: the element is not scrollable.|
 
 ## FocusDirection
 

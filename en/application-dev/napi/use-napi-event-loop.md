@@ -1,4 +1,4 @@
-# Running or Stopping an Event Loop in an Asynchronous Thread Using Node-API Extensions
+# Running or Stopping an Event Loop in an Asynchronous Thread Using Node-API Extension APIs
 
 ## **Scenario**
 When calling asynchronous ArkTS APIs in the ArkTS running environment, you can use **napi_run_event_loop** to run an event loop and use **napi_stop_event_loop** to stop an event loop.

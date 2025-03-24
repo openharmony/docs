@@ -2,11 +2,7 @@
 
 ## When to Use
 
-Use **createJsCore** to create a JavaScript virtual machine (JSVM), which a runtime environment for executing JS code. The **createJsCore** returns a core ID, which uniquely identifies a VM. 
-
-Use **evaluateJS** to run JS code in the VM of the specified core ID and define a promise in the JS code and run the function asynchronously.
-
-Use **releaseJsCore** to release a JSVM.
+Use **createJsCore** to create a JavaScript virtual machine (JSVM), which a runtime environment for executing JS code. The **createJsCore** returns a core ID, which uniquely identifies a VM. <br>Use **evaluateJS** to run JS code in the VM of the specified core ID and define a promise in the JS code and run the function asynchronously. <br>Use **releaseJsCore** to release a JSVM.
 
 ## Example
 
@@ -57,7 +53,7 @@ static JSVM_Value CreatePromise(JSVM_Env env, JSVM_CallbackInfo info) {
         }
     }
     if (envID == -1) {
-        OH_LOG_ERROR(LOG_APP, "JSVM API TEST: CreatePromise envID faild");
+        OH_LOG_ERROR(LOG_APP, "JSVM API TEST: CreatePromise envID failed");
         return nullptr;
     }
     JSVM_Value promise;

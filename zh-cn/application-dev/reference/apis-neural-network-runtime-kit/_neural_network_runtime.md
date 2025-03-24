@@ -625,7 +625,7 @@ Neural Network Runtime 支持算子的类型。
 | OH_NN_OPS_REDUCE_PROD | 沿着axis指定的维度，计算input的累积值。<br/>输入：<br/>- input，n维输入张量，n&lt;8。<br/>- axis，一维张量，指定计算乘的维度，axis中每个元素的取值范围为[-n，n)。<br/>参数：<br/>- keepDims，布尔值，是否保留维度的标志位。当keepDims为true时，output的维数和input保持一致；当keepDims为false时， output的维数缩减。<br/>- reduceToEnd，bool值，是否需要执行reduce操作直到最后一轴。<br/>- coeff，一个OH_NN_FLOAT32标量，表示输出的缩放因子。<br/>输出：<br/>- output，m维输出张量，数据类型和input相同。当keepDims为false时，m&lt;n；当keepDims为true时，m==n。 | 
 | OH_NN_OPS_REDUCE_ALL | 计算指定维度上的逻辑与。当keepDims为false时，减少input的维数；当keepDims为true时，保留相应的维度。<br/>输入：<br/>- n维输入张量，n&lt;8。<br/>- 一维张量，指定计算逻辑与的维度，axis中每个元素的取值范围为[-n，n)。<br/>参数：<br/>- keepDims，布尔值，是否保留维度的标志位。<br/>- reduceToEnd，bool值，是否需要执行reduce操作直到最后一轴。<br/>- coeff，一个OH_NN_FLOAT32标量，表示输出的缩放因子。<br/>输出：<br/>- output，m维输出张量，数据类型和input相同。当keepDims为false时，m&lt;n；当keepDims为true时，m==n。 | 
 | OH_NN_OPS_QUANT_DTYPE_CAST | 数据类型转换。<br/>输入：<br/>- input，n维张量，如果是量化类型和浮点类型之间的转换，输入张量应包含量化参数。<br/>参数：<br/>- srcT，定义输入的数据类型。<br/>- dstT，定义输出的数据类型。<br/>- axis，指定提取量化参数的维度，如果输入张量量化参数的size为1，算子功能是层量化转换，该参数不生效； 如果输入张量量化参数的size大于1，算子功能是通道量化转换，该参数生效。<br/>输出：<br/>- output，n维张量，数据类型由dstT决定 输出shape和输入相同。 | 
-| OH_NN_OPS_TOP_K | 查找沿最后一个维度的k个最大条目的值和索引。<br/>输入：<br/>- input，n维张量。<br/>- k，指明是得到前k个数据以及其index。<br/>参数：<br/>- sorted，如果为true，按照大到小排序，如果为false，按照小到大排序。<br/>- axis，一个OH_NN_INT32标量，指定需要排序的维度，默认-1，指向最后一个维度。<br/>输出：<br/>- output0,最后一维的每个切片中的k个最大元素。<br/>- output1，输入的最后一个维度内的值的索引。 | 
+| OH_NN_OPS_TOP_K | 查找沿最后一个维度的k个最大条目的值和索引。<br/>输入：<br/>- input，n维张量。<br/>- k，指明是得到前k个数据以及其index。<br/>参数：<br/>- sorted，如果为true，按照大到小排序，如果为false，按照小到大排序。<br/>- axis，一个OH_NN_INT32标量，指定需要排序的维度，默认-1，指向最后一个维度。<br/>输出：<br/>- output0，最后一维的每个切片中的k个最大元素。<br/>- output1，输入的最后一个维度内的值的索引。 | 
 | OH_NN_OPS_ARG_MAX | 返回跨轴的张量最大值的索引。<br/>输入：<br/>- input，n维张量，输入张量(N，∗)，其中∗意味着任意数量的附加维度。<br/>参数：<br/>- axis，指定求最大值索引的维度。<br/>- keepDims，bool值，是否维持输入张量维度。<br/>- topK，要返回最大值的数量，默认为1，当topK等于1时，将返回输入张量中最大值的索引；当topK大于1时，返回输入张量中前topK个最大值的索引。 如果输入张量中有多个值相同且都是最大值，则返回其中任意一个。<br/>- outMaxValue，是否输出最大值，默认为false。<br/>输出：<br/>- output，张量，轴上输入张量最大值的索引。 | 
 | OH_NN_OPS_UNSQUEEZE | 根据输入axis的值。增加一个维度。<br/>输入：<br/>- input，n维张量。<br/>参数：<br/>- axis，指定增加的维度。axis可以是一个整数或一组整数，整数的取值范围为[-n，n)。<br/>输出：<br/>- output，输出张量。 | 
 | OH_NN_OPS_GELU | 高斯误差线性单元激活函数。output=0.5∗input∗(1+tanh(input/2))，不支持int量化输入。<br/>输入：<br/>- 一个n维输入张量。<br/>参数：<br/>- approximate，bool值，近似函数的选项，值为true时，近似函数为Tanh函数，值为false时，近似函数为Erf函数。<br/>输出：<br/>- output，n维Relu输出张量，数据类型和shape和input一致。 | 
@@ -636,7 +636,7 @@ Neural Network Runtime 支持算子的类型。
 | OH_NN_OPS_LESS<sup>12+</sup> | 对input1和input2逐元素计算input1[i]&lt;input2[i]的结果，i是输入张量中每个元素的索引。<br/>输入：<br/>- input1，可以是实数、布尔值或数据类型是实数/OH_NN_BOOL的张量。<br/>- input2，如果input1是张量，input2可以是实数、布尔值，否则只能是张量，其数据类型是实数或OH_NN_BOOL。<br/>输出：<br/>- output，数据类型为OH_NN_BOOL的张量，使用量化模型时，output的量化参数不可省略，但量化参数的数值不会对输入结果产生影响。 | 
 | OH_NN_OPS_SELECT<sup>12+</sup> | 根据输入条件逐元素判定输出是从输入1还是输入2中选取值；当条件为true时，从输入1中取元素； 当条件为false时，从输入2中取元素。当条件为张量时，三个输入的形状需要保持一致。<br/>输入：<br/>- condition，判定条件，实数或n维张量。<br/>- input1，待挑选的输入1。<br/>- input2，待挑选的输入2。<br/>输出：<br/>- output，n维张量，形状和数据类型和输入保持一致。 | 
 | OH_NN_OPS_SQUARE<sup>12+</sup> | 逐元素计算输入的平方。<br/>输入：<br/>- input，n维张量。<br/>输出：<br/>- output，n维张量，数据类型和形状和输入一致。 | 
-| OH_NN_OPS_FLATTEN<sup>12+</sup> | 指定axis轴将输入Tensor扁平化。<br/>输入：<br/>- input，n维张量。<br/>参数：<br/>- axis, 扁平化轴，将输入沿着axis维展平，对于输入维度为(d_0, d_1, ..., d_n)的张量， 输出的维度应为(d_0\*\d_1\*...\*d_(axis-1)， d_axis\*d_(axis+1)\*...\*d_n)。<br/>输出：<br/>- output，展平后的2维张量。 | 
+| OH_NN_OPS_FLATTEN<sup>12+</sup> | 指定axis轴将输入Tensor扁平化。<br/>输入：<br/>- input，n维张量。<br/>参数：<br/>- axis，扁平化轴，将输入沿着axis维展平，对于输入维度为(d_0, d_1, ..., d_n)的张量， 输出的维度应为(d_0\*\d_1\*...\*d_(axis-1)， d_axis\*d_(axis+1)\*...\*d_n)。<br/>输出：<br/>- output，展平后的2维张量。 | 
 | OH_NN_OPS_DEPTH_TO_SPACE<sup>12+</sup> | 将输入张量的深度数据块重新排列为空间维度。<br/>输入：<br/>- input，4维张量，NHWC或NCHW格式，目前仅支持NHWC，形状为[batchSize, height, width, channels]。<br/>参数：<br/>- blockSize，指定转换的块大小，必须是整数。<br/>- mode，指定转换的方式，0表示"DCR"，1表示"CRD"，"DCR"是深度-列-行顺序重排，"CRD"是列-行-深度顺序重排。<br/>输出：<br/>- output，4维张量，format格式和输入一致， 形状为[batchSize, height \* blockSize, weight \* blockSize, channel / blockSize^2]。 | 
 | OH_NN_OPS_RANGE<sup>12+</sup> | 生成一个序列张量，其生成范围为[start, limit)，步长为delta。<br/>输入：<br/>- input，n维张量，输出的数据类型和输入保持一致。<br/>参数：<br/>- start，生成序列的起始数。<br/>- limit，生成序列的截止数，不包括该数值。<br/>- delta，步长，从生成序列范围中按步长跳过部分数据。<br/>输出：<br/>- output，生成的1维序列张量。 | 
 | OH_NN_OPS_INSTANCE_NORM<sup>12+</sup> | 对输入的每个通道进行标准化处理，使得输入的每个通道的均值为0，方差为1。<br/>输入：<br/>- input，4维张量。<br/>- scale，1维张量，缩放系数，尺寸和输入的通道数一致。<br/>- bias，1维张量，偏置常量，尺寸和输入的通道数一致。<br/>参数：<br/>- epsilon，加在分母上一个很小的数值，保证计算稳定性。<br/>输出：<br/>- output，4维张量，形状与输入相同。 | 
@@ -1366,8 +1366,8 @@ OH_NN_ReturnCode OH_NNDevice_GetAllDevicesID (const size_t **allDevicesID, uint3
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| allDevicesID | 指向size_t数组的指针。要求传入的**\*allDevicesID**为空指针，否则将返回错误码OH_NN_INVALID_PARAMETER。 | 
-| deviceCount | uint32_t类型的指针，用于返回**\*allDevicesID**的长度。 | 
+| allDevicesID | 指向size_t数组的指针。要求传入的\*allDevicesID为空指针，否则将返回错误码OH_NN_INVALID_PARAMETER。 | 
+| deviceCount | uint32_t类型的指针，用于返回\*allDevicesID的长度。 | 
 
 **返回：**
 
@@ -1680,13 +1680,13 @@ OH_NN_ReturnCode OH_NNExecutor_GetInputDimRange (const OH_NNExecutor *executor, 
 
 获取所有输入张量的维度范围。
 
-当输入张量具有动态形状时，它在不同硬件上支持的维度范围可能是不同的，可以通过该接口获取当前设备上支持的维度范围。 **\*minInputDims**保存了指定输入张量的最小维度（维度数与形状匹配），而**\*maxInputDims**则保存了最大维度。 例如，一个输入张量具有动态形状 [-1, -1, -1, 3]，那么当前设备上它的**\*minInputDims**可以是[1, 10, 10, 3]， 而**\*maxInputDims**可以是[100, 1024, 1024, 3]。
+当输入张量具有动态形状时，它在不同硬件上支持的维度范围可能是不同的，可以通过该接口获取当前设备上支持的维度范围。 \***minInputDims**保存了指定输入张量的最小维度（维度数与形状匹配），而\***maxInputDims**则保存了最大维度。 例如，一个输入张量具有动态形状 [-1, -1, -1, 3]，那么当前设备上它的\***minInputDims**可以是[1, 10, 10, 3]， 而\***maxInputDims**可以是[100, 1024, 1024, 3]。
 
 注意：如果索引值**index**达到或超过输入张量的数量，接口将返回错误。输入张量的数量可以通过 [OH_NNExecutor_GetInputCount](#oh_nnexecutor_getinputcount)获取。
 
-作为输出参数，**\*minInputDims**和**\*maxInputDims**不能为空指针，否则会返回错误。 例如您应该定义int32_t\* minInDims = NULL，然后将&amp;minInDims作为参数传入。
+作为输出参数，\***minInputDims**和\***maxInputDims**不能为空指针，否则会返回错误。 例如您应该定义int32_t\* minInDims = NULL，然后将&amp;minInDims作为参数传入。
 
-您无需释放**\*minInputDims**和**\*maxInputDims**的内存，它会随**executor**一起被释放。
+您无需释放\***minInputDims**和\***maxInputDims**的内存，它会随**executor**一起被释放。
 
 **起始版本：** 11
 

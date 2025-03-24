@@ -25,14 +25,14 @@ Line(options?: LineOptions)
 
 | 参数名 | 类型 | 必填 | 说明 
 | -------- | -------- | -------- | -------- |
-| options | [LineOptions](ts-drawing-components-line.md#lineoptions14对象说明) | 否 | Line绘制区域。 |
+| options | [LineOptions](ts-drawing-components-line.md#lineoptions18对象说明) | 否 | Line绘制区域。 |
 
-## LineOptions<sup>14+</sup>对象说明
+## LineOptions<sup>18+</sup>对象说明
 用于描述Line绘制区域。
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -43,7 +43,7 @@ Line(options?: LineOptions)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### startPoint
 
@@ -139,7 +139,7 @@ stroke(value: ResourceColor)
 
 strokeDashArray(value: Array&lt;any&gt;)
 
-设置边框间隙。线段相交时可能会出现重叠现象。异常值按照默认值处理。
+设置边框间隙。线段相交时可能会出现重叠现象。取值范围≥0，异常值按照默认值处理。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -229,7 +229,7 @@ strokeMiterLimit(value: number | string)
 
 strokeOpacity(value: number | string | Resource)
 
-设置边框透明度。该属性的取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0，其余异常值按1.0处理 。
+设置边框透明度。该属性的取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0，其余异常值按1.0处理。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -259,7 +259,7 @@ strokeWidth(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                     |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 边框宽度。<br/>默认值：1<br/>默认单位：vp |
+| value  | [Length](ts-types.md#length) | 是   | 边框宽度，取值范围≥0。<br/>默认值：1<br/>默认单位：vp<br/>异常值按照默认值处理。 |
 
 ### antiAlias
 

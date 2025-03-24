@@ -30,7 +30,7 @@ Starts a deferred task.
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -85,7 +85,7 @@ Stops a deferred task.
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -139,7 +139,7 @@ Obtains the information a deferred task. This API uses an asynchronous callback 
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -185,7 +185,7 @@ Obtains the information a deferred task. This API uses a promise to return the r
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -224,7 +224,7 @@ Obtains all the deferred tasks. This API uses an asynchronous callback to return
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -249,7 +249,7 @@ Obtains all the deferred tasks. This API uses an asynchronous callback to return
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -288,7 +288,7 @@ Obtains all the deferred tasks. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -319,7 +319,7 @@ Stops and clears all the deferred tasks.
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -360,7 +360,7 @@ Checks whether the last execution of a task timed out. This API uses an asynchro
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -387,7 +387,7 @@ Checks whether the last execution of a task timed out. This API uses an asynchro
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -433,7 +433,7 @@ Checks whether the last execution of a task timed out. This API uses a promise t
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -469,16 +469,16 @@ Defines the information about the deferred task.
 | bundleName      | string                            | Yes   | Bundle name of the application where the deferred task is located.          |
 | abilityName     | string                            | Yes   | Ability name in the bundle.|
 | networkType     | [NetworkType](#networktype)       | No   | Network type.            |
-| isCharging      | boolean                           | No   | Whether the device needs to enter the charging state to trigger deferred task scheduling.<br>The value **true** means that the device needs to enter the charging state to trigger deferred task scheduling, and **false** means the opposite.|
+| isCharging      | boolean                           | No   | Whether the device needs to enter the charging state to trigger deferred task scheduling.<br>- **true**: The device needs to enter the charging state to trigger deferred task scheduling.<br>- **false**: The device does not need to enter the charging state to trigger deferred task scheduling.|
 | chargerType     | [ChargingType](#chargingtype)     | No   | Charging type.            |
 | batteryLevel    | number                            | No   | Battery level.             |
 | batteryStatus   | [BatteryStatus](#batterystatus)   | No   | Battery status.            |
 | storageRequest  | [StorageRequest](#storagerequest) | No   | Storage status.            |
-| isRepeat        | boolean                           | No   | Whether the task is repeated.<br>The value **true** means that the task is repeated, and **false** means the opposite.|
+| isRepeat        | boolean                           | No   | Whether the task is repeated.<br>- **true**: The task is repeated.<br>- **false**: The task is not repeated.|
 | repeatCycleTime | number                            | No   | Repeat interval, in milliseconds.            |
 | repeatCount     | number                            | No   | Number of repeat times.            |
-| isPersisted     | boolean                           | No   | Whether the registered deferred task can be saved in the system.<br>The value **true** means that the task can be saved. That is, the task can be restored after the system restarts. The value **false** means the opposite.|
-| isDeepIdle      | boolean                           | No   | Whether the device needs to enter the idle state to trigger deferred task scheduling.<br>The value **true** means that the device needs to enter the idle state to trigger deferred task scheduling, and **false** means the opposite.  |
+| isPersisted     | boolean                           | No   | Whether the registered deferred task can be saved in the system.<br>- **true**: The task can be saved. That is, the task can be restored after the system restarts.<br>- **false**: The task cannot be saved.|
+| isDeepIdle      | boolean                           | No   | Whether the device needs to enter the idle state to trigger deferred task scheduling.<br>- **true**: The device needs to enter the idle state to trigger deferred task scheduling.<br>- **false**: The device does not need to enter the idle state to trigger deferred task scheduling.  |
 | idleWaitTime    | number                            | No   | Time to wait in the idle state before triggering deferred task scheduling, in milliseconds.          |
 | parameters      | Record<string, number \| string \| boolean>  | No   | Carried parameters.|
 

@@ -557,7 +557,7 @@ export default {
 
 > **说明：** 
 >
-> ltr布局模式下start和left一致，rtl布局模式下start和right一致·。
+> ltr布局模式下start和left一致，rtl布局模式下start和right一致。
 
 
 ## 添加图片

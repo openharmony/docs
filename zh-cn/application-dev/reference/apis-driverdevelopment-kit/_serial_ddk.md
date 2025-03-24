@@ -1,14 +1,14 @@
-# Serial DDK
+# USB Serial DDK
 
 ## 概述
 
-Serial DDK是为开发者提供的USB Serial DDK设备驱动程序开发套件，此模块提供USB Serial DDK接口，包括枚举类型和USB Serial DDK API使用的数据结构。
+USB Serial DDK是为开发者提供的USB Serial DDK设备驱动程序开发套件，此模块提供USB Serial DDK接口，包括枚举类型和USB Serial DDK API使用的数据结构。
 
 在工业用途场景以及一些老旧设备上，常会使用到串口通信，如：发卡机、身份证读卡器等。通过USB Serial DDK提供的接口，开发者可以开发非标外设扩展驱动，实现USB串口设备的扩展功能。
 
 **系统能力：** SystemCapability.Driver.SERIAL.Extension
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ## 汇总
@@ -33,8 +33,8 @@ Serial DDK是为开发者提供的USB Serial DDK设备驱动程序开发套件�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef struct [UsbSerial_DeviceHandle](#usbserial_devicehandle)[UsbSerial_DeviceHandle](#usbserial_devicehandle) | USB串口设备数据结构（不透明）。 | 
-| typedef struct [UsbSerial_Params](_usb_serial___params.md) __attribute__((aligned(8))) [UsbSerial_Params](_usb_serial___params.md) | USB Serial DDK使用的USB串口参数。 | 
+| typedef struct [UsbSerial_DeviceHandle](#usbserial_devicehandle) [UsbSerial_DeviceHandle](#usbserial_devicehandle) | USB串口设备数据结构（不透明）。 | 
+| typedef struct [UsbSerial_Params](_usb_serial___params.md) \__attribute\__((aligned(8))) [UsbSerial_Params](_usb_serial___params.md) | USB Serial DDK使用的USB串口参数。 | 
 
 
 ### 枚举
@@ -60,7 +60,7 @@ Serial DDK是为开发者提供的USB Serial DDK设备驱动程序开发套件�
 | int32_t [OH_UsbSerial_SetParams](#oh_usbserial_setparams) ([UsbSerial_DeviceHandle](#usbserial_devicehandle) \*dev, [UsbSerial_Params](_usb_serial___params.md) \*params) | 设置USB串口设备的参数。 如果USB串口设备的参数不为默认值（数据位默认为8，停止位默认为1，数据传输默认无校验），则需要调用该接口进行参数设置。 | 
 | int32_t [OH_UsbSerial_SetTimeout](#oh_usbserial_settimeout) ([UsbSerial_DeviceHandle](#usbserial_devicehandle) \*dev, int timeout) | 设置读取USB串口设备上报数据的超时时间（毫秒）。 在不调用此函数的情况下，超时值默认为0，表示不管是否读取到数据都立即返回。如果需要等待一定的时间或者必须读取到数据，则调用该接口。 | 
 | int32_t [OH_UsbSerial_SetFlowControl](#oh_usbserial_setflowcontrol) ([UsbSerial_DeviceHandle](#usbserial_devicehandle) \*dev, [UsbSerial_FlowControl](#usbserial_flowcontrol) flowControl) | 设置流控参数。 USB串口设备通信中的流控用于管理数据传输的速率，以确保发送方不会发送超过接收方处理能力的数据量。<br/>如果USB串口设备实现了流控处理，则需要调用此接口。如果不调用此接口，默认为无流控。 | 
-| int32_t [OH_UsbSerial_Flush](#oh_usbserial_flush) ([UsbSerial_DeviceHandle](#usbserial_devicehandle) \*dev) | 写入完成后清空输入和输出缓冲区。 在向USB串口设备发送数据时，可能会有大量数据缓冲在内核中等待发送。如果应用程序关闭文件描述符或者退出之前<br/>没有等待这些数据被实际发送出去，那么部分数据可能会丢失。调用该接口可以确保所有的数据都被发送完毕再继续执行后续操作。 | 
+| int32_t [OH_UsbSerial_Flush](#oh_usbserial_flush) ([UsbSerial_DeviceHandle](#usbserial_devicehandle) \*dev) | 写入完成后清空输入和输出缓冲区。 在向USB串口设备发送数据时，可能会有大量数据缓冲在内核中等待发送。如果应用程序关闭文件描述符或者退出之前没有等待这些数据被实际发送出去，那么部分数据可能会丢失。调用该接口可以确保所有的数据都被发送完毕再继续执行后续操作。 | 
 | int32_t [OH_UsbSerial_FlushInput](#oh_usbserial_flushinput) ([UsbSerial_DeviceHandle](#usbserial_devicehandle) \*dev) | 刷新输入缓冲区，缓冲区中的数据会被立刻清空。 在和USB串口设备通信过程中，特别是在调试阶段，有时会遇到乱序的数据包或者其他异常情况。<br/>调用该接口可以帮助清理这些异常状况，使通信恢复正常。 | 
 | int32_t [OH_UsbSerial_FlushOutput](#oh_usbserial_flushoutput) ([UsbSerial_DeviceHandle](#usbserial_devicehandle) \*dev) | 刷新输出缓冲区，缓冲区中的数据会被立刻清空。 在和USB串口设备通信过程中，特别是在调试阶段，有时会遇到乱序的数据包或者其他异常情况。<br/>调用该接口可以帮助清理这些异常状况，使通信恢复正常。 | 
 
@@ -71,27 +71,27 @@ Serial DDK是为开发者提供的USB Serial DDK设备驱动程序开发套件�
 ### UsbSerial_DeviceHandle
 
 ```
-typedef struct UsbSerial_DeviceHandleUsbSerial_DeviceHandle
+typedef struct UsbSerial_DeviceHandle UsbSerial_DeviceHandle
 ```
 
 **描述**
 
 USB串口设备数据结构（不透明）。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### UsbSerial_Params
 
 ```
-typedef struct UsbSerial_Params __attribute__((aligned(8))) UsbSerial_Params
+typedef struct UsbSerial_Params \__attribute\__((aligned(8))) UsbSerial_Params
 ```
 
 **描述**
 
 定义USB Serial DDK使用的USB串口参数。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ## 枚举类型说明
@@ -107,7 +107,7 @@ enum UsbSerial_DdkRetCode
 
 定义USB Serial DDK使用的返回码。
 
-**起始版本：** 16
+**起始版本：** 18
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -132,7 +132,7 @@ enum UsbSerial_FlowControl
 
 定义USB Serial DDK中的流量控制。
 
-**起始版本：** 16
+**起始版本：** 18
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -151,7 +151,7 @@ enum UsbSerial_Parity
 
 定义USB Serial DDK使用的校验参数枚举。
 
-**起始版本：** 16
+**起始版本：** 18
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -173,7 +173,7 @@ int32_t OH_UsbSerial_Close (UsbSerial_DeviceHandle * dev)
 
 关闭USB串口设备。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -214,7 +214,7 @@ int32_t OH_UsbSerial_Flush (UsbSerial_DeviceHandle * dev)
 
 在向USB串口设备发送数据时，可能会有大量数据缓冲在内核中等待发送。如果应用程序关闭文件描述符或者退出之前没有等待这些数据被实际发送出去，那么部分数据可能会丢失。调用该接口可以确保所有的数据都被发送完毕再继续执行后续操作。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -255,7 +255,7 @@ int32_t OH_UsbSerial_FlushInput (UsbSerial_DeviceHandle * dev)
 
 调用该接口可以帮助清理这些异常状况，使通信恢复正常。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -296,7 +296,7 @@ int32_t OH_UsbSerial_FlushOutput (UsbSerial_DeviceHandle * dev)
 
 调用该接口可以帮助清理这些异常状况，使通信恢复正常。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -328,14 +328,14 @@ ohos.permission.ACCESS_DDK_USB_SERIAL
 ### OH_UsbSerial_Init()
 
 ```
-int32_t OH_UsbSerial_Init (void )
+int32_t OH_UsbSerial_Init (void)
 ```
 
 **描述**
 
 初始化USB Serial DDK。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **Permission：**
 
@@ -353,21 +353,21 @@ ohos.permission.ACCESS_DDK_USB_SERIAL
 ### OH_UsbSerial_Open()
 
 ```
-int32_t OH_UsbSerial_Open (uint64_t deviceId, uint8_t interfaceIndex, UsbSerial_DeviceHandle ** dev )
+int32_t OH_UsbSerial_Open (uint64_t deviceId, uint8_t interfaceIndex, UsbSerial_DeviceHandle ** dev)
 ```
 
 **描述**
 
 通过deviceId和interfaceIndex打开USB串口设备。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
 | deviceId | 设备ID，代表要操作的设备。 | 
-| interfaceIndex | 接口索引，对应USB协议中的**bInterfaceNumber**。 | 
+| interfaceIndex | 接口索引，对应USB协议中的[bInterfaceNumber](usb__ddk__types_8h.md#binterfacenumber)。 | 
 | dev | 设备句柄。 | 
 
 **Permission：**
@@ -396,14 +396,14 @@ ohos.permission.ACCESS_DDK_USB_SERIAL
 ### OH_UsbSerial_Read()
 
 ```
-int32_t OH_UsbSerial_Read (UsbSerial_DeviceHandle * dev, uint8_t * buff, uint32_t bufferSize, uint32_t * bytesRead )
+int32_t OH_UsbSerial_Read (UsbSerial_DeviceHandle * dev, uint8_t * buff, uint32_t bufferSize, uint32_t * bytesRead)
 ```
 
 **描述**
 
 从USB串口设备读入数据到缓冲区。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -440,14 +440,14 @@ ohos.permission.ACCESS_DDK_USB_SERIAL
 ### OH_UsbSerial_Release()
 
 ```
-int32_t OH_UsbSerial_Release (void )
+int32_t OH_UsbSerial_Release (void)
 ```
 
 **描述**
 
 释放USB Serial DDK。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **Permission：**
 
@@ -467,14 +467,14 @@ ohos.permission.ACCESS_DDK_USB_SERIAL
 ### OH_UsbSerial_SetBaudRate()
 
 ```
-int32_t OH_UsbSerial_SetBaudRate (UsbSerial_DeviceHandle * dev, uint32_t baudRate )
+int32_t OH_UsbSerial_SetBaudRate (UsbSerial_DeviceHandle * dev, uint32_t baudRate)
 ```
 
 **描述**
 
 设置USB串口设备的波特率。 如果USB串口设备的参数为默认值（数据位为8，停止位为1，数据传输无校验），则只需要调用该接口设置波特率。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -507,7 +507,7 @@ ohos.permission.ACCESS_DDK_USB_SERIAL
 ### OH_UsbSerial_SetFlowControl()
 
 ```
-int32_t OH_UsbSerial_SetFlowControl (UsbSerial_DeviceHandle * dev, UsbSerial_FlowControl flowControl )
+int32_t OH_UsbSerial_SetFlowControl (UsbSerial_DeviceHandle * dev, UsbSerial_FlowControl flowControl)
 ```
 
 **描述**
@@ -516,7 +516,7 @@ int32_t OH_UsbSerial_SetFlowControl (UsbSerial_DeviceHandle * dev, UsbSerial_Flo
 
 如果USB串口设备实现了流控处理，则需要调用此接口。如果不调用此接口，默认为无流控。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -549,14 +549,14 @@ ohos.permission.ACCESS_DDK_USB_SERIAL
 ### OH_UsbSerial_SetParams()
 
 ```
-int32_t OH_UsbSerial_SetParams (UsbSerial_DeviceHandle * dev, UsbSerial_Params * params )
+int32_t OH_UsbSerial_SetParams (UsbSerial_DeviceHandle * dev, UsbSerial_Params * params)
 ```
 
 **描述**
 
 设置USB串口设备的参数。 如果USB串口设备的参数不为默认值（数据位默认为8，停止位默认为1，数据传输默认无校验），则需要调用该接口进行参数设置。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -589,7 +589,7 @@ ohos.permission.ACCESS_DDK_USB_SERIAL
 ### OH_UsbSerial_SetTimeout()
 
 ```
-int32_t OH_UsbSerial_SetTimeout (UsbSerial_DeviceHandle * dev, int timeout )
+int32_t OH_UsbSerial_SetTimeout (UsbSerial_DeviceHandle * dev, int timeout)
 ```
 
 **描述**
@@ -598,7 +598,7 @@ int32_t OH_UsbSerial_SetTimeout (UsbSerial_DeviceHandle * dev, int timeout )
 
 在不调用此函数的情况下，超时值默认为0，表示不管是否读取到数据都立即返回。如果需要等待一定的时间或者必须读取到数据，则调用该接口。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -631,14 +631,14 @@ ohos.permission.ACCESS_DDK_USB_SERIAL
 ### OH_UsbSerial_Write()
 
 ```
-int32_t OH_UsbSerial_Write (UsbSerial_DeviceHandle * dev, uint8_t * buff, uint32_t bufferSize, uint32_t * bytesWritten )
+int32_t OH_UsbSerial_Write (UsbSerial_DeviceHandle * dev, uint8_t * buff, uint32_t bufferSize, uint32_t * bytesWritten)
 ```
 
 **描述**
 
 将buff中的数据写入USB串口设备。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 

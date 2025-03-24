@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-FileIO模块提供了文件基础操作能力。
+FileIO模块提供了部分文件基础操作能力，其他能力请参考[libc标准库](../reference/native-lib/musl.md)/[标准C++库](../reference/native-lib/cpp.md)。
 
 ## 基本概念
 
@@ -14,13 +14,13 @@ FileIO模块提供了文件基础操作能力。
 
 ## 接口说明
 
-接口的详细说明，请参考[API参考](../reference/apis-core-file-kit/_file_i_o.md)
+接口的详细说明，请参考[FileIO](../reference/apis-core-file-kit/_file_i_o.md)。
 
 | 接口名称 | 描述 |
 | -------- | -------- |
 | FileManagement_ErrCode OH_FileIO_GetFileLocation(char *uri, int uriLength, FileIO_FileLocation *location)| 获取文件存储位置。|
 | enum FileIO_FileLocation FileIO_FileLocation| 文件存储位置枚举值。 |
-| enum enum FileManagement_ErrCode FileManagement_ErrCode| 文件管理模块错误码。|
+| enum FileManagement_ErrCode FileManagement_ErrCode| 文件管理模块错误码。|
 
 ## 开发步骤
 

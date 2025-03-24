@@ -1,42 +1,42 @@
 # Disassembler
 
-## Introduction
+## Overview
 
-Disassembler is an ArkTS disassembly tool. If you need to analyze issues related to Ark bytecode files (\*.abc), you can use Disassembler to disassemble byte data into readable assembly instructions.
+Disassembler is a utility in the ArkTS toolchain designed to convert Ark bytecode files (*.abc) into human-readable assembly instructions. It is particularly useful when you want to analyze or debug issues related to Ark bytecode files.
 
-The tool is released with the DevEco Studio SDK. Take the Windows platform as an example. The Disassembler tool is stored in [DevEco Studio installation directory]\sdk\[SDK version]\openharmony\toolchains\ark_disasm.exe.
+Disassembler is released with the DevEco Studio SDK. For instance, on Windows, the tool can be found at: [DevEco Studio installation directory]\sdk\[SDK version]\openharmony\toolchains\ark_disasm.exe.
 
-## Commands
+## Command-Line Instructions
 
-Disassembly command:
+To use Disassembler, run the following command:
 
 ```
 ark_disasm.exe [options] input_file output_file
 ```
 
-Parameter description
+Parameters
 
-| Option| Left Unspecified Allowed| Description| 
+| Parameter| Optional| Description| 
 | -------- | -------- | -------- |
-| [options] | This parameter can be left unspecified.| Command option. For details, see the following description of options.| 
-| input_file | No| Path of the ARK bytecode file to be disassembled.| 
-| output_file | No| Output file path of the disassembled content.| 
+| [options] | Yes| Command options. For details, see **Description of options** below.| 
+| input_file | No| Path of the Ark bytecode file to be disassembled.| 
+| output_file | No| Path where the disassembled file will be saved.| 
 
-Description of options
+Description of **options**
 
-| Option| Left Unspecified Allowed| Argument Carried| Description| 
+| Option| Optional| Argument Carried| Description| 
 | -------- | -------- | -------- | -------- |
-| --debug | This parameter can be left unspecified.| No| Enables the function of outputting debugging information. By default, debugging information is output to the screen.| 
-| --debug-file | This parameter can be left unspecified.| Yes| Specifies the output file of debugging information if --debug is enabled.| 
-| --help | This parameter can be left unspecified.| No| Prints help information.| 
-| --skip-string-literals | This parameter can be left unspecified.| No| Skips disassembly of string literals.| 
-| --quiet | This parameter can be left unspecified.| No| Enables all options starting with '--skip-'.| 
-| --verbose | This parameter can be left unspecified.| No| Enables the output of additional information (byte position, ARK bytecode format, and operation code).| 
-| --version | This parameter can be left unspecified.| No| Displays the version number of the Ark bytecode file and the earliest supported Ark bytecode file version.| 
+| --debug | Yes| No| Enables the function of outputting debugging information. By default, debugging information is output to the screen.| 
+| --debug-file | Yes| Yes| Specifies the output file of debugging information if **--debug** is enabled.| 
+| --help | Yes| No| Displays help information.| 
+| --skip-string-literals | Yes| No| Skips disassembly of string literals.| 
+| --quiet | Yes| No| Enables all options prefixed with **--skip-**.| 
+| --verbose | Yes| No| Enables the output of additional information (byte position, ARK bytecode format, and operation code).| 
+| --version | Yes| No| Displays the version of the Ark bytecode file and the minimum supported version.| 
 
-## Samples
+## Usage Example
 
-Assume that the Ark bytecode file test.abc exists. The source code is as follows:
+Assume that the Ark bytecode file **test.abc** exists, with the following source code:
 
 ```
 let i = 99;
@@ -45,28 +45,28 @@ show();
 ```
 
 
-Run the following command to generate the disassembly file test.txt: The generated disassembly file contains information such as the operation code and format.
+Run the following command to generate a disassembled file named **test.txt**, which contains information such as the operation code and format:
 
 ```
 ark_disasm.exe test.abc test.txt
 ```
 
-View the content of the disassembly file.
+Run the following command to view the content of the disassembled file:
 
 
 ```
 cat test.txt
 ```
 
-Modify the file as follows:
+The file content is as follows:
 
 ```
-# source binary: test.abc // Disassembled Ark bytecode file
+# source binary: test.abc                                                    // Disassembled Ark bytecode file.
 
 .language ECMAScript
 
 # ====================
-# LITERALS // Literal data
+# LITERALS                                                                   // Literal data.
 
 0 0x203 { 0 [
 	MODULE_REQUEST_ARRAY: {
@@ -74,60 +74,60 @@ Modify the file as follows:
 ]}
 
 # ====================
-# RECORDS // Module definition data
+# RECORDS                                                                    // Module definition data.
 
-The data starts with .record _ESConcurrentModuleRequestsAnnotation { // _ and is fixed module data.
+.record _ESConcurrentModuleRequestsAnnotation {                              // Data prefixed with _ is fixed module data.
 }
 
-.record test { // One JS file corresponds to one module data, including the module information (location in the ARK bytecode file, whether it is commonjs...).
+.record test {                                                               // One JS file corresponds to one module. It contains the module information, for example, location in the ARK bytecode file and whether it is CommonJS.
 	u8 isCommonjs = 0x0
 	u32 moduleRecordIdx = 0x203
 	......
 }
 
 # ====================
-# METHODS // Method definition data
+# METHODS                                                                    // Method definition data.
 
 L_ESSlotNumberAnnotation:
 	u32 slotNumberIdx { 0x0 }
-The show method in the source code of the .function any test.#*#show(any a0, any a1, any a2) <static> { // method belongs to the test module.
+.function any test.#*#show(any a0, any a1, any a2) <static> {                // The show method in the source code. It belongs to the test module.
 	ldlexvar 0x0, 0x0
 	......
 }
 
 L_ESSlotNumberAnnotation:
 	u32 slotNumberIdx { 0x3 }
-The .function any test.func_main_0(any a0, any a1, any a2) <static> { // method is automatically generated. The entire JS file can be regarded as a method. The method name is func_main_0.
+.function any test.func_main_0(any a0, any a1, any a2) <static> {            // The method is automatically generated. The entire JS file can be regarded as a method named func_main_0.
 	newlexenv 0x1
 	......
 }
 
 # ====================
-# STRING // Symbol table information
+# STRING                                                                     // Symbol table information
 
 [offset:0x88, name_value:i]
 ```
 
-Use the --verbose parameter to print more details such as the offset.
+Use the **--verbose** parameter to print more details such as the offset.
 
 
 ```
 ark_disasm.exe --verbose test.abc test.txt
 ```
 
-Some examples are listed here.
+Here are some examples of the output with **--verbose**:
 
 ```
-.record _ESSlotNumberAnnotation { # offset: 0x00cd, size: 0x0026 (38) //: Prints the specific position and size of the module in the ARK bytecode file.
+.record _ESSlotNumberAnnotation { # offset: 0x00cd, size: 0x0026 (38)                                  // This prints the location and size of the module within the ARK bytecode file.
 }
 
-.record test {# offset: 0x00f3, size: 0x0098 (152) // The specific position of the module in the ARK bytecode file is displayed.
-	u32 moduleRecordIdx = 0x203 # offset: 0x0144 // Location where the module information is printed
+.record test { # offset: 0x00f3, size: 0x0098 (152)                                                    // This prints the location of the module within the ARK bytecode file.
+	u32 moduleRecordIdx = 0x203 # offset: 0x0144                                                   // This prints the location of the module information.
 }
 ......
-.function any test.#*#show(any a0, any a1, any a2) <static> { # offset: 0x0153, code offset: 0x0245 //: indicates the specific location of the method information and the specific location of the instruction in the method.
+.function any test.#*#show(any a0, any a1, any a2) <static> { # offset: 0x0153, code offset: 0x0245    // This prints the location of the method information and the location of the instruction in the method.
 #   CODE:
-	ldlexvar 0x0, 0x0 # offset: 0x0249, [IMM4_IMM4].........[0x3c 0x00] //: indicates the location of each command.
+	ldlexvar 0x0, 0x0 # offset: 0x0249, [IMM4_IMM4].........[0x3c 0x00]                            // This prints the location of each command.
 	......
 }
 ```

@@ -10,13 +10,13 @@
 
 ## ShortcutWant<sup>(deprecated)<sup>
 
-> 从API version 9开始不再维护，建议使用[bundleManager-ShortcutWant](js-apis-bundleManager-shortcutInfo-sys.md)替代。
+> 从API version 9开始不再维护，建议使用[bundleManager-ShortcutWant](js-apis-bundleManager-shortcutInfo-sys.md#shortcutwant)替代。
 
  **系统能力:** SystemCapability.BundleManager.BundleFramework
 
- **系统接口：**  此接口为系统接口，三方应用不支持调用。
+ **系统接口：** 此接口为系统接口，三方应用不支持调用。
 
 | 名称                      | 类型   | 只读 | 可选 | 说明                 |
 | ------------------------- | ------ | ---- | ---- | -------------------- |
-| targetBundle              | string | 是   | 否   | 快捷方式的目标捆绑包 |
-| targetClass               | string | 是   | 否   | 快捷方式所需的目标类 |
+| targetBundle              | string | 是   | 否   | 快捷方式的目标捆绑包。 |
+| targetClass               | string | 是   | 否   | 快捷方式所需的目标类。 |

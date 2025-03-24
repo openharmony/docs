@@ -32,7 +32,7 @@ OpenHarmony系统当前没有提供获取CPU特性的接口，开发者可以导
 
 2. 在代码中加入判断CPU特性支持能力语句，如下以支持ARM与AARCH64两种架构举例：
    ```c++
-   ...
+   // ...
    // 包含CPU架构目标检测头文件
    #include "cpu_features_macros.h"
    // 在ARM架构上，这个宏在上面头文件中根据目标自动定义

@@ -11,7 +11,7 @@
 1. 导入NDK接口。选择系统提供的NDK接口能力，导入NDK接口的方法如下。
 
    ```c++
-    // 导入NDK接口头文件
+    // 导入NDK接口头文件。
     #include "hilog/log.h"
     #include "ohcamera/camera.h"
     #include "ohcamera/camera_input.h"
@@ -39,22 +39,22 @@
    const Camera_Profile* photoProfile = nullptr;
    uint32_t size = 0;
    uint32_t cameraDeviceIndex = 0;
-   // 创建CameraManager对象
+   // 创建CameraManager对象。
    Camera_ErrorCode ret = OH_Camera_GetCameraManager(&cameraManager);
    if (cameraManager == nullptr || ret != CAMERA_OK) {
       OH_LOG_ERROR(LOG_APP, "OH_Camera_GetCameraMananger failed.");
    }
-   // 监听相机状态变化
+   // 监听相机状态变化。
    ret = OH_CameraManager_RegisterCallback(cameraManager, GetCameraManagerListener());
    if (ret != CAMERA_OK) {
       OH_LOG_ERROR(LOG_APP, "OH_CameraManager_RegisterCallback failed.");
    }
-   // 获取相机列表
+   // 获取相机列表。
     ret = OH_CameraManager_GetSupportedCameras(cameraManager, &cameras, &size);
     if (cameras == nullptr || size < 0 || ret != CAMERA_OK) {
       OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameras failed.");
     }
-   // 创建相机输入流
+   // 创建相机输入流。
    ret = OH_CameraManager_CreateCameraInput(cameraManager, &cameras[cameraDeviceIndex], &cameraInput);
    if (cameraInput == nullptr || ret != CAMERA_OK) {
       OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreateCameraInput failed.");
@@ -63,14 +63,14 @@
    if (ret != CAMERA_OK) {
       OH_LOG_ERROR(LOG_APP, "OH_CameraInput_RegisterCallback failed.");
    }
-   // 打开相机
+   // 打开相机。
    ret = OH_CameraInput_Open(cameraInput);
    if (ret != CAMERA_OK) {
       OH_LOG_ERROR(LOG_APP, "OH_CameraInput_open failed.");
    }
    ```
    ```c++
-   // 监听cameraInput错误信息
+   // 监听cameraInput错误信息。
    void OnCameraInputError(const Camera_Input* cameraInput, Camera_ErrorCode errorCode)
    {
       OH_LOG_INFO(LOG_APP, "OnCameraInput errorCode: %{public}d", errorCode);
@@ -87,7 +87,7 @@
 
    > **说明：**
    >
-   > 在相机设备输入之前需要先完成相机管理，详细开发步骤请参考[相机管理](native-camera-device-management.md)
+   > 在相机设备输入之前需要先完成相机管理，详细开发步骤请参考[相机管理](native-camera-device-management.md)。
 
 4. 通过[OH_CameraManager_GetSupportedSceneModes()](../../reference/apis-camera-kit/_o_h___camera.md#oh_cameramanager_getsupportedscenemodes)方法，获获取当前相机设备支持的模式列表，列表中存储了相机设备支持的所有模式[Camera_SceneMode](../../reference/apis-camera-kit/_o_h___camera.md#camera_scenemode)。
 
@@ -100,7 +100,7 @@
       OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedSceneModes failed.");
    }
    for (int index = 0; index < length; index++) {
-      OH_LOG_INFO(LOG_APP, "scene mode = %{public}s ", sceneModes[index]);    // 获取相机指定模式
+      OH_LOG_INFO(LOG_APP, "scene mode = %{public}s ", sceneModes[index]);    // 获取相机指定模式。
    }
    ```
 
@@ -108,7 +108,7 @@
 
 
    ```c++
-   // 获取相机设备支持的输出流能力
+   // 获取相机设备支持的输出流能力。
    Camera_OutputCapability* cameraOutputCapability = nullptr;
    const Camera_Profile* previewProfile = nullptr;
    const Camera_Profile* photoProfile = nullptr;
@@ -117,7 +117,7 @@
    if (cameraOutputCapability == nullptr || ret != CAMERA_OK) {
       OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameraOutputCapability failed.");
    }
-   // 以NORMAL_PHOTO模式为例，需要添加预览流、拍照流
+   // 以NORMAL_PHOTO模式为例，需要添加预览流、拍照流。
    if (cameraOutputCapability->previewProfilesSize < 0) {
       OH_LOG_ERROR(LOG_APP, "previewProfilesSize == null");
    }

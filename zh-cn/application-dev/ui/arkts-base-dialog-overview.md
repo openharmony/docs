@@ -1,6 +1,6 @@
 # 弹出框概述
 
-弹出框是一种模态窗口，通常用于在保持当前上下文环境的同时，临时展示用户需关注的信息或待处理的操作。用户需在模态弹出框内完成相关交互任务之后，才能退出模态模式。弹出框可以不与任何组件绑定，其内容通常由多种组件组成，如文本、列表、输入框、图片等，以实现布局。ArkUI当前提供了**固定样式**和**自定义**两类弹出框组件。
+弹出框是一种模态窗口，通常用于在保持当前上下文环境的同时，临时展示用户需关注的信息或待处理的操作。用户需在模态弹出框内完成相关交互任务之后，才能退出模态模式。弹出框可以不与任何组件绑定，其内容通常由多种组件组成，如文本、列表、输入框、图片等，以实现布局。ArkUI当前提供了**自定义**和**固定样式**两类弹出框组件。
 
 * **自定义弹出框：** 开发者需要根据使用场景，传入自定义组件填充在弹出框中实现自定义的弹出框内容。主要包括基础自定义弹出框 (CustomDialog)、不依赖UI组件的自定义弹出框 (openCustomDialog)。
 * **固定样式弹出框：** 开发者可使用固定样式弹出框，指定需要显示的文本内容和按钮操作，完成简单的交互效果。主要包括警告弹窗 (AlertDialog)、列表选择弹窗 (ActionSheet)、选择器弹窗 (PickerDialog)、对话框 (showDialog)、操作菜单 (showActionMenu)。
@@ -16,10 +16,11 @@
 |[选择器弹窗 (PickerDialog)](arkts-fixes-style-dialog.md#选择器弹窗-pickerdialog) | 固定样式，当用户需要在弹出框内选择日期、时间和文本时使用。 |
 | [对话框 (showDialog)](arkts-fixes-style-dialog.md#对话框-showdialog) | 固定样式，当用户需要对在弹出框响应后异步返回结果进行处理时使用。 |
 | [操作菜单 (showActionMenu)](arkts-fixes-style-dialog.md#操作菜单-showactionmenu) | 固定样式，当用户需要对在操作菜单响应后异步返回结果进行处理时使用。 |
+| [页面级弹出框](arkts-embedded-dialog.md) | 页面级弹出框，当用户期望路由导航切换时弹出框随导航页面切换时使用。 |
+| [弹出框层级管理](arkts-dialog-levelorder.md) | 从API version 18开始，可以通过设置[levelOrder](../reference/apis-arkui/js-apis-promptAction.md#basedialogoptions11)参数来管理弹出框的显示顺序。 |
 
 ## 规格约束
 
-* UIContext.getPromptAction.showDialog、UIContext.getPromptAction.showActionMenu、UIContext.getPromptAction.openCustomDialog依赖UI的执行上下文，不可以在UI上下文不明确的地方使用，参见[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)说明。
 * 建议在<!--Del-->除[ServiceExtension](../../application-dev/application-models/serviceextensionability.md)等<!--DelEnd-->无UI界面的场景外，均使用UIContext中的弹出框方法。
 * 可以通过使用UIContext中的[getPromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#promptaction)对象。
 

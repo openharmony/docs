@@ -1,7 +1,9 @@
 # GATT Development
 
 ## Introduction
-Generic Attribute Profile (GATT) provides profile discovery and description services for BLE protocol. It defines how ATT attributes are organized and exchanged over a BLE connection.<br>A GATT server (referred to as server in this topic) is a device that stores attribute data locally and provides data access to a remote GATT client paired via BLE. A GATT client (referred to as client in this topic) is a device that accesses data on the remote GATT server via read, write, notify, or indicate operations.
+Generic Attribute Profile (GATT) provides profile discovery and description services for BLE protocol. It defines how ATT attributes are organized and exchanged over a BLE connection.
+
+A GATT server (referred to as server in this topic) is a device that stores attribute data locally and provides data access to a remote GATT client paired via BLE. A GATT client (referred to as client in this topic) is a device that accesses data on the remote GATT server via read, write, notify, or indicate operations.
 
 ## When to Use
 
@@ -63,7 +65,7 @@ The following table describes the related APIs.
 4. Read characteristics and descriptors from the server.
 5. Write characteristics and descriptors to the server.
 6. Disconnect from the server and destroy the **gattClient** instance.
-7. Example:
+Example:
 
     ```ts
     import { ble } from '@kit.ConnectivityKit';
@@ -351,7 +353,7 @@ The following table describes the related APIs.
     export default gattClientManager as GattClientManager;
     ```
 
-9. For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).
+For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).
 
 
 ### Managing Services on the Server and Notifying the Client
@@ -361,7 +363,7 @@ The following table describes the related APIs.
 4. Notify the client after a characteristic is written to the server.
 5. Remove services.
 6. Close the gattServer instance.
-7. Example:
+Example:
 
     ```ts
     import { ble } from '@kit.ConnectivityKit';
@@ -636,4 +638,4 @@ The following table describes the related APIs.
     export default gattServerManager as GattServerManager;
     ```
 
-8. For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).
+For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).

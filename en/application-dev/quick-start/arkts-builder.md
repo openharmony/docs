@@ -15,18 +15,43 @@ Before reading this topic, you are advised to read [Basic Syntax Overview](./ark
 
 ## Rules of Use
 
-### Private Custom Builder Function
+The \@Builder decorator can be used for the private custom build function defined in the custom component and global custom build function defined globally.
+
+### Private Custom Build Function
 
 Syntax:
 
 ```ts
-@Builder MyBuilderFunction() {}
+@Entry
+@Component
+struct BuilderDemo {
+  @Builder
+  showTextBuilder() {
+    Text('Hello World')
+      .fontSize(30)
+      .fontWeight(FontWeight.Bold)
+  }
+  @Builder
+  showTextValueBuilder(param: string) {
+    Text(param)
+      .fontSize(30)
+      .fontWeight(FontWeight.Bold)
+  }
+  build() {
+    Column() {
+      // Without parameter.
+      this.showTextBuilder()
+      // With a parameter.
+      this.showTextValueBuilder('Hello @Builder')
+    }
+  }
+}
 ```
 
 Usage:
 
 ```ts
-this.MyBuilderFunction()
+this.showTextBuilder()
 ```
 
 - You can define one or more @Builder decorated methods in a custom component. Such a method is considered as a private, special type of member function of the component.
@@ -41,13 +66,27 @@ this.MyBuilderFunction()
 Syntax:
 
 ```ts
-@Builder function MyGlobalBuilderFunction() { ... }
+@Builder
+function showTextBuilder() {
+  Text('Hello World')
+    .fontSize(30)
+    .fontWeight(FontWeight.Bold)
+}
+@Entry
+@Component
+struct BuilderDemo {
+  build() {
+    Column() {
+      showTextBuilder()
+    }
+  }
+}
 ```
 
 Usage:
 
 ```ts
-MyGlobalBuilderFunction()
+showTextBuilder()
 ```
 
 - Use of a global custom builder function is recommended if no own state is involved.
@@ -67,6 +106,27 @@ For custom builder functions, parameters can be passed [by value](#by-value-para
 
 - Parameters are passed by value in all cases except when only one parameter is passed in and the parameter needs to be directly passed to the object literal.
 
+### By-Value Parameter Passing
+
+By default, parameters in the \@Builder decorated functions are passed by value. In this case, when the passed parameter is a state variable, the change of the state variable does not cause UI re-rendering in the \@Builder decorated function. Therefore, when passing state variables, you are advised to use [by-reference parameter passing](#by-reference-parameter-passing).
+
+```ts
+@Builder function overBuilder(paramA1: string) {
+  Row() {
+    Text(`UseStateVarByValue: ${paramA1} `)
+  }
+}
+@Entry
+@Component
+struct Parent {
+  @State label: string = 'Hello';
+  build() {
+    Column() {
+      overBuilder(this.label)
+    }
+  }
+}
+```
 
 ### By-Reference Parameter Passing
 
@@ -74,7 +134,7 @@ In by-reference parameter passing, state variables can be passed, and the change
 
 ```ts
 class Tmp {
-  paramA1: string = ''
+  paramA1: string = '';
 }
 
 @Builder function overBuilder(params: Tmp) {
@@ -100,256 +160,17 @@ struct Parent {
 }
 ```
 
-When parameters are passed by reference, if a custom component is called within the \@Builder method, ArkUI provides [$$](arkts-two-way-sync.md) as the paradigm for passing parameters by reference.
-
-```ts
-class Tmp {
-  paramA1: string = ''
-}
-
-@Builder function overBuilder($$: Tmp) {
-  Row() {
-    Column() {
-      Text(`overBuilder===${$$.paramA1}`)
-      HelloComponent({message: $$.paramA1})
-    }
-  }
-}
-
-@Component
-struct HelloComponent {
-  @Prop message: string;
-
-  build() {
-    Row() {
-      Text(`HelloComponent===${this.message}`)
-    }
-  }
-}
-
-@Entry
-@Component
-struct Parent {
-  @State label: string = 'Hello';
-  build() {
-    Column() {
-      // When the overBuilder component is called in the parent component,
-      // pass this.label to the overBuilder component by reference.
-      overBuilder({paramA1: this.label})
-      Button('Click me').onClick(() => {
-        // After you click "Click me", the UI text changes from "Hello" to "ArkUI".
-        this.label = 'ArkUI';
-      })
-    }
-  }
-}
-```
-
-### By-Value Parameter Passing
-
-By default, parameters in the \@Builder decorated functions are passed by value. In this case, when the passed parameter is a state variable, the change of the state variable does not cause UI re-rendering in the \@Builder decorated function. Therefore, when passing state variables, you are advised to use [by-reference parameter passing](#by-reference-parameter-passing).
-
-```ts
-@Builder function overBuilder(paramA1: string) {
-  Row() {
-    Text(`UseStateVarByValue: ${paramA1} `)
-  }
-}
-@Entry
-@Component
-struct Parent {
-  @State label: string = 'Hello';
-  build() {
-    Column() {
-      overBuilder(this.label)
-    }
-  }
-}
-```
-
-In the way of passing parameters by value, the @ObservedV2 and @Trace decorators can be used together in the @ComponentV2 decorated custom component to re-render the UI.
-
-[Positive Example]
-
-In @ComponentV2, only the @ObservedV2 decorated **ParamTmp** class and the @Trace decorated **count** property can trigger the UI re-render.
-
-```ts
-@ObservedV2
-class ParamTmp {
-  @Trace count : number = 0;
-}
-
-@Builder
-function renderText(param: ParamTmp) {
-  Column() {
-    Text(`param : ${param.count}`)
-      .fontSize(20)
-      .fontWeight(FontWeight.Bold)
-  }
-}
-
-@Builder
-function renderMap(paramMap: Map<string,number>) {
-  Text(`paramMap : ${paramMap.get('name')}`)
-    .fontSize(20)
-    .fontWeight(FontWeight.Bold)
-}
-
-@Builder
-function renderSet(paramSet: Set<number>) {
-  Text(`paramSet : ${paramSet.size}`)
-    .fontSize(20)
-    .fontWeight(FontWeight.Bold)
-}
-
-@Builder
-function renderNumberArr(paramNumArr: number[]) {
-  Text(`paramNumArr : ${paramNumArr[0]}`)
-    .fontSize(20)
-    .fontWeight(FontWeight.Bold)
-}
-
-@Entry
-@ComponentV2
-struct PageBuilder {
-  @Local builderParams: ParamTmp = new ParamTmp();
-  @Local map_value: Map<string,number> = new Map();
-  @Local set_value: Set<number> = new Set([0]);
-  @Local numArr_value: number[] = [0];
-  private progressTimer: number = -1;
-
-  aboutToAppear(): void {
-    this.progressTimer = setInterval(() => {
-      if (this.builderParams.count < 100) {
-        this.builderParams.count += 5;
-        this.map_value.set('name', this.builderParams.count);
-        this.set_value.add(this.builderParams.count);
-        this.numArr_value[0] = this.builderParams.count;
-      } else {
-        clearInterval(this.progressTimer)
-      }
-    }, 500);
-  }
-
-  @Builder
-  localBuilder() {
-    Column() {
-      Text(`localBuilder : ${this.builderParams.count}`)
-        .fontSize(20)
-        .fontWeight(FontWeight.Bold)
-    }
-  }
-
-  build() {
-    Column() {
-      this.localBuilder()
-      Text(`builderParams :${this.builderParams.count}`)
-        .fontSize(20)
-        .fontWeight(FontWeight.Bold)
-      renderText(this.builderParams)
-      renderText({ count: this.builderParams.count })
-      renderMap(this.map_value)
-      renderSet(this.set_value)
-      renderNumberArr(this.numArr_value)
-    }
-    .width('100%')
-    .height('100%')
-  }
-}
-```
-
-[Negative Example]
-
-In the @ComponentV2 decorated custom component, the use of simple data types cannot trigger UI re-render.
-
-```ts
-@ObservedV2
-class ParamTmp {
-  @Trace count : number = 0;
-}
-
-@Builder
-function renderNumber(paramNum: number) {
-  Text(`paramNum : ${paramNum}`)
-    .fontSize(30)
-    .fontWeight(FontWeight.Bold)
-}
-
-@Entry
-@ComponentV2
-struct PageBuilder {
-  @Local class_value: ParamTmp = new ParamTmp();
-  // Using simple data type cannot trigger UI re-render
-  @Local num_value: number = 0;
-  private progressTimer: number = -1;
-
-  aboutToAppear(): void {
-    this.progressTimer = setInterval(() => {
-      if (this.class_value.count < 100) {
-        this.class_value.count += 5;
-        this.num_value += 5;
-      } else {
-        clearInterval(this.progressTimer)
-      }
-    }, 500);
-  }
-
-  build() {
-    Column() {
-      renderNumber(this.num_value)
-    }
-    .width('100%')
-    .height('100%')
-    .padding(50)
-  }
-}
-```
-
 ## Constraints
 
-1. Parameter values cannot be changed in \@Builder decorated functions. Otherwise, the framework throws a runtime error. You can change the parameters in the \@Builder decorated custom components.
+1. Parameter values cannot be changed in \@Builder decorated functions. Otherwise, the framework throws a runtime error. You can change the parameters in the \@Builder decorated custom components. For details, see [Changing the Input Parameters in the \@Builder Decorated Function](#changing-the-input-parameters-in-the-builder-decorated-function).
 
-```ts
-interface Temp {
-  paramA: string;
-}
+2. The \@Builder triggers dynamic UI rendering for only when parameters are passed in by reference. Only one parameter can be passed. For details, see [By-Reference Parameter Passing](#by-reference-parameter-passing).
 
-@Builder function overBuilder($$: Temp) {
-  Row() {
-    Column() {
-      Button(`overBuilder === ${$$.paramA}`)
-        .onClick(() => {
-          // Incorrect format. Parameter values cannot be changed in the function decorated by @Builder.
-          $$.paramA = 'Yes';
-      })
-    }
-  }
-}
+3. If the \@Builder passes in two or more parameters, dynamic UI rendering is not triggered. For details, see [Two or More Parameters Are Used in \@Builder](#two-or-more-parameters-are-used-in-builder).
 
-@Entry
-@Component
-struct Parent {
-  @State label: string = 'Hello';
+4. If the \@Builder passes in parameters by value and by reference, dynamic UI rendering is not triggered. For details, see [Two or More Parameters Are Used in \@Builder](#two-or-more-parameters-are-used-in-builder).
 
-  build() {
-    Column() {
-      overBuilder({paramA: this.label})
-      Button('click me')
-        .onClick(() => {
-          this.label = 'ArkUI';
-        })
-    }
-  }
-}
-```
-
-2. The \@Builder triggers dynamic UI rendering for only when parameters are passed in by reference. Only one parameter can be passed.
-
-3. If the \@Builder passes in two or more parameters, dynamic UI rendering is not triggered.
-
-4. If the \@Builder passes in parameters by value and by reference, dynamic UI rendering is not triggered.
-
-5. \@Builder parameters must be passed in one by one in the form of object literals to trigger dynamic UI rendering.
+5. \@Builder parameters must be passed in one by one in the form of object literals to trigger dynamic UI rendering. For details, see [Two or More Parameters Are Used in \@Builder](#two-or-more-parameters-are-used-in-builder).
 
 
 ## Use Scenarios
@@ -387,7 +208,7 @@ struct PrivateBuilder {
         this.builder()
         Button('Click to change builder_value')
           .onClick(() => {
-            this.builder_value = 'builder_value clicked'
+            this.builder_value = 'builder_value is clicked'
           })
       }
     }
@@ -452,7 +273,7 @@ struct Parent {
 
 ### Changing the Variables Decorated by the Decorator Triggers UI Re-rendering
 
-In this case, the decorator feature is used. The change of the listening value triggers UI re-rendering and parameters are not passed through the \@Builder.
+In this scenario, @Builder is used only to display the **Text** component instead of directly triggering dynamic UI re-rendering. UI re-rendering is triggered by the value change of the **Text** component listened by the decorator.
 
 ```ts
 class Tmp {
@@ -491,6 +312,8 @@ struct Parent {
 ```
 
 ### Using the Global and Local @Builder to Pass in Parameters of the customBuilder Type
+
+When a parameter is of the **customBuilder** type, the defined \@Builder function can be passed in because **customBuilder** is a **Function(() => any)** or **void** type and \@Builder is also a function type. In this case, \@Builder is passed to implement a specific effect.
 
 ```ts
 @Builder
@@ -545,7 +368,7 @@ struct customBuilderDemo {
 
 ### Nesting of Multi-layer \@Builder Method
 
-Call the custom components or other methods within \@Builder method. ArkUI provides [$$](arkts-two-way-sync.md) as a paradigm for passing parameters by reference.
+Call the custom component or other \@Builder methods in the \@Builder method to implement a nesting of multiple \@Builder methods. To trigger the dynamic UI re-rendering in the innermost \@Builder, you should ensure that \@Builder is called by reference at each layer. [\$$](./arkts-two-way-sync.md) can be replaced with another name, which is not a mandatory parameter.
 
 ```ts
 class Tmp {
@@ -642,7 +465,7 @@ struct Parent {
 
 ### Using \@Builder Functions Together with the Decorators in V2
 
-Call the global @Builder and local @Builder in the @ComponentV2 decorated custom component to change related variables, triggering UI re-renders.
+Use the global @Builder and local @Builder in the @ComponentV2 decorated custom components and use the @ObservedV2 and @Trace decorators to listen for specific value changes to trigger UI re-rendering.
 
 ```ts
 @ObservedV2
@@ -725,8 +548,8 @@ struct ParentPage {
         .backgroundColor('#000000').margin(10)
       Button("change info1&info2")
         .onClick(() => {
-          this.info1 = { name: "Cat", age: 18} // Text1 is not re-rendered because no decorator is used to listen for value changes.
-          this.info2 = { name: "Cat", age: 18} // Text2 is re-rendered because a decorator is used to listen for value changes.
+          this.info1 = { name: "Cat", age: 18}; // Text1 is not re-rendered because no decorator is used to listen for value changes.
+          this.info2 = { name: "Cat", age: 18}; // Text2 is re-rendered because a decorator is used to listen for value changes.
         })
     }
   }
@@ -735,7 +558,7 @@ struct ParentPage {
 
 ## FAQs
 
-### Two or More Parameters Are Used in the \@Builder
+### Two or More Parameters Are Used in \@Builder
 
 When two or more parameters are used, the value change does not trigger the UI re-rendering even if the parameters are passed in the form of object literals.
 
@@ -850,6 +673,216 @@ struct Parent {
         this.objParam.str_value = 'Hello World';
         this.objParam.num_value = 1;
       })
+    }
+  }
+}
+```
+
+### Using the @ComponentV2 Decorator to Trigger Dynamic Re-render
+
+In the way of passing parameters by value, the @ObservedV2 and @Trace decorators can be used together in the @ComponentV2 decorated custom component to re-render the UI.
+
+[Negative Example]
+
+In the @ComponentV2 decorated custom component, the use of simple data types cannot trigger UI re-render.
+
+```ts
+@ObservedV2
+class ParamTmp {
+  @Trace count : number = 0;
+}
+
+@Builder
+function renderNumber(paramNum: number) {
+  Text(`paramNum : ${paramNum}`)
+    .fontSize(30)
+    .fontWeight(FontWeight.Bold)
+}
+
+@Entry
+@ComponentV2
+struct PageBuilder {
+  @Local class_value: ParamTmp = new ParamTmp();
+  // Using simple data type cannot trigger UI re-render
+  @Local num_value: number = 0;
+  private progressTimer: number = -1;
+
+  aboutToAppear(): void {
+    this.progressTimer = setInterval(() => {
+      if (this.class_value.count < 100) {
+        this.class_value.count += 5;
+        this.num_value += 5;
+      } else {
+        clearInterval(this.progressTimer);
+      }
+    }, 500);
+  }
+
+  build() {
+    Column() {
+      renderNumber(this.num_value)
+    }
+    .width('100%')
+    .height('100%')
+    .padding(50)
+  }
+}
+```
+
+[Positive Example]
+
+In @ComponentV2, only the @ObservedV2 decorated **ParamTmp** class and the @Trace decorated **count** property can trigger the UI re-render.
+
+```ts
+@ObservedV2
+class ParamTmp {
+  @Trace count : number = 0;
+}
+
+@Builder
+function renderText(param: ParamTmp) {
+  Column() {
+    Text(`param : ${param.count}`)
+      .fontSize(20)
+      .fontWeight(FontWeight.Bold)
+  }
+}
+
+@Builder
+function renderMap(paramMap: Map<string,number>) {
+  Text(`paramMap : ${paramMap.get('name')}`)
+    .fontSize(20)
+    .fontWeight(FontWeight.Bold)
+}
+
+@Builder
+function renderSet(paramSet: Set<number>) {
+  Text(`paramSet : ${paramSet.size}`)
+    .fontSize(20)
+    .fontWeight(FontWeight.Bold)
+}
+
+@Builder
+function renderNumberArr(paramNumArr: number[]) {
+  Text(`paramNumArr : ${paramNumArr[0]}`)
+    .fontSize(20)
+    .fontWeight(FontWeight.Bold)
+}
+
+@Entry
+@ComponentV2
+struct PageBuilder {
+  @Local builderParams: ParamTmp = new ParamTmp();
+  @Local map_value: Map<string,number> = new Map();
+  @Local set_value: Set<number> = new Set([0]);
+  @Local numArr_value: number[] = [0];
+  private progressTimer: number = -1;
+
+  aboutToAppear(): void {
+    this.progressTimer = setInterval(() => {
+      if (this.builderParams.count < 100) {
+        this.builderParams.count += 5;
+        this.map_value.set('name', this.builderParams.count);
+        this.set_value.add(this.builderParams.count);
+        this.numArr_value[0] = this.builderParams.count;
+      } else {
+        clearInterval(this.progressTimer);
+      }
+    }, 500);
+  }
+
+  @Builder
+  localBuilder() {
+    Column() {
+      Text(`localBuilder : ${this.builderParams.count}`)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+    }
+  }
+
+  build() {
+    Column() {
+      this.localBuilder()
+      Text(`builderParams :${this.builderParams.count}`)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+      renderText(this.builderParams)
+      renderText({ count: this.builderParams.count })
+      renderMap(this.map_value)
+      renderSet(this.set_value)
+      renderNumberArr(this.numArr_value)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+### Changing the Input Parameters in the \@Builder Decorated Function
+
+[Negative Example]
+
+```ts
+interface Temp {
+  paramA: string;
+}
+
+@Builder function overBuilder(param: Temp) {
+  Row() {
+    Column() {
+      Button(`overBuilder === ${param.paramA}`)
+        .onClick(() => {
+          // Incorrect format. Parameter values cannot be changed in the function decorated by @Builder.
+          param.paramA = 'Yes';
+      })
+    }
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State label: string = 'Hello';
+
+  build() {
+    Column() {
+      overBuilder({paramA: this.label})
+      Button('click me')
+        .onClick(() => {
+          this.label = 'ArkUI';
+        })
+    }
+  }
+}
+```
+
+[Positive Example]
+
+```ts
+interface Temp {
+  paramA: string;
+}
+
+@Builder function overBuilder(param: Temp) {
+  Row() {
+    Column() {
+      Button(`overBuilder === ${param.paramA}`)
+    }
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State label: string = 'Hello';
+
+  build() {
+    Column() {
+      overBuilder({paramA: this.label})
+      Button('click me')
+        .onClick(() => {
+          this.label = 'ArkUI';
+        })
     }
   }
 }

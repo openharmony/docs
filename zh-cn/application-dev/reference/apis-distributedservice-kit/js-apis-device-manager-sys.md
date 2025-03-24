@@ -38,7 +38,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -153,12 +153,11 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | mode          | [DiscoverMode ](#discovermode)    | 是    | 发现模式。             |
 | medium        | [ExchangeMedium](#exchangemedium) | 是    | 发现类型。             |
 | freq          | [ExchangeFreq](#exchangefreq)     | 是    | 发现频率。             |
-| isSameAccount | boolean                           | 否    | 是否同帐号。            |
-| isWakeRemote  | boolean                           | 否    | 是否唤醒设备。           |
+| isSameAccount | boolean                           | 否    | 是否同账号，true表示同账号，false表示异账号。            |
+| isWakeRemote  | boolean                           | 否    | 是否唤醒设备，true表示唤醒，false表示不用唤醒。           |
 | capability    | [SubscribeCap](#subscribecap)     | 是    | 发现能力。             |
 
-
-## DiscoverMode 
+## DiscoverMode
 
 表示发现模式的枚举。
 
@@ -257,7 +256,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | publishId     | number                            | 是    | 发布设备标识，用于标识不同的发布周期。 |
 | mode          | [DiscoverMode ](#discovermode)    | 是    | 发现模式。             |
 | freq          | [ExchangeFreq](#exchangefreq)     | 是    | 发现频率。             |
-| ranging       | boolean                           | 是    | 发布的设备是否支持测距能力。             |
+| ranging       | boolean                           | 是    | 发布的设备是否支持测距能力，true表示支持测距能力，false表示不支持测距能力。             |
 
 ## DeviceManager
 
@@ -277,7 +276,7 @@ release(): void
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -319,7 +318,7 @@ getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -358,7 +357,7 @@ getTrustedDeviceListSync(isRefresh: boolean): Array&lt;DeviceInfo&gt;
 
 | 参数名        | 类型                               | 必填 | 说明                                |
 | ------------- | --------------------------------- | ---- | ---------------------------------- |
-|   isRefresh   | boolean                           | 是   | 是否打开心跳模式，刷新可信列表。      |
+|   isRefresh   | boolean                           | 是   | 是否打开心跳模式，刷新可信列表，true表示打开心跳模式，false表示关闭心跳模式。      |
 
 **返回值：**
 
@@ -368,7 +367,7 @@ getTrustedDeviceListSync(isRefresh: boolean): Array&lt;DeviceInfo&gt;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                         |
 | -------- | --------------------------------------------------------------- |
@@ -412,7 +411,7 @@ getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): voi
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                         |
 | -------- | --------------------------------------------------------------- |
@@ -460,7 +459,7 @@ getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                         |
 | -------- | --------------------------------------------------------------- |
@@ -500,7 +499,7 @@ getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo)
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -543,7 +542,7 @@ getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                         |
 | -------- | --------------------------------------------------------------- |
@@ -592,7 +591,7 @@ getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                         |
 | -------- | --------------------------------------------------------------- |
@@ -633,7 +632,7 @@ getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                         |
 | -------- | --------------------------------------------------------------- |
@@ -689,7 +688,7 @@ getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                         |
 | -------- | --------------------------------------------------------------- |
@@ -732,7 +731,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -798,7 +797,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -885,7 +884,7 @@ stopDeviceDiscovery(subscribeId: number): void
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -930,7 +929,7 @@ publishDeviceDiscovery(publishInfo: PublishInfo): void
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -990,7 +989,7 @@ unPublishDeviceDiscovery(publishId: number): void
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1037,7 +1036,7 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1071,7 +1070,7 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
   }
 
   interface AuthParam {
-    authType: number; // 认证类型： 1 - 无帐号PIN码认证
+    authType: number; // 认证类型： 1 - 无账号PIN码认证
     extraInfo: ExtraInfo;
   }
 
@@ -1091,7 +1090,7 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
     business: '0'
   };
   let authParam: AuthParam = {
-    authType: 1,// 认证类型： 1 - 无帐号PIN码认证
+    authType: 1,// 认证类型： 1 - 无账号PIN码认证
     extraInfo: extraInfo
   };
 
@@ -1130,7 +1129,7 @@ unAuthenticateDevice(deviceInfo: DeviceInfo): void
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1190,7 +1189,7 @@ verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string,
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1245,7 +1244,7 @@ verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string,
 
 ### setUserOperation<sup>9+</sup>
 
-setUserOperation(operateAction: number, params: string): void;
+setUserOperation(operateAction: number, params: string): void
 
 设置用户ui操作行为。
 
@@ -1264,7 +1263,7 @@ setUserOperation(operateAction: number, params: string): void;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1297,7 +1296,7 @@ setUserOperation(operateAction: number, params: string): void;
 
 ### requestCredentialRegisterInfo<sup>10+</sup>
 
-requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{registerInfo: string}>): void;
+requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{registerInfo: string}>): void
 
 获取凭据的注册信息。
 
@@ -1316,7 +1315,7 @@ requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{regi
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1359,7 +1358,7 @@ requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{regi
 
 ### importCredential<sup>10+</sup>
 
-importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: string}>): void;
+importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: string}>): void
 
 导入凭据信息。
 
@@ -1378,7 +1377,7 @@ importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: st
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1454,7 +1453,7 @@ importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: st
 
 ### deleteCredential<sup>10+</sup>
 
-deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}>): void;
+deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}>): void
 
 删除凭据信息。
 
@@ -1473,7 +1472,7 @@ deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1519,7 +1518,7 @@ deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}
 
 ### on('uiStateChange')<sup>9+</sup>
 
-on(type: 'uiStateChange', callback: Callback&lt;{ param: string}&gt;): void;
+on(type: 'uiStateChange', callback: Callback&lt;{ param: string}&gt;): void
 
 ui状态变更回调。
 
@@ -1538,7 +1537,7 @@ ui状态变更回调。
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1574,7 +1573,7 @@ ui状态变更回调。
 
 ### off('uiStateChange')<sup>9+</sup>
 
-off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void;
+off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void
 
 取消ui状态变更回调。
 
@@ -1593,7 +1592,7 @@ off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1635,7 +1634,7 @@ on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChange
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1692,7 +1691,7 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1749,7 +1748,7 @@ on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: Dev
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1806,7 +1805,7 @@ off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: D
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1863,7 +1862,7 @@ on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: nu
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1912,7 +1911,7 @@ off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: 
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1961,7 +1960,7 @@ on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): voi
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -2009,7 +2008,7 @@ off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): v
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -2052,12 +2051,12 @@ on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: numbe
 
   | 参数名     | 类型                                              | 必填 | 说明                             |
   | -------- | ----------------------------------------------------- | ---- | ------------------------------ |
-  | type     | string                                                | 是   | 注册设备发布失败回调，以便在发布设备失败时通知应用程序，固定为publishFail |
+  | type     | string                                                | 是   | 注册设备发布失败回调，以便在发布设备失败时通知应用程序，固定为publishFail。 |
   | callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | 是   | 注册设备发布失败的回调方法。                 |
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -2106,7 +2105,7 @@ off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: num
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -2155,7 +2154,7 @@ on(type: 'serviceDie', callback: () =&gt; void): void
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -2199,7 +2198,7 @@ off(type: 'serviceDie', callback?: () =&gt; void): void
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |

@@ -82,7 +82,7 @@ Failed to activate the administrator application of the device.
 
 1. 检查是否激活多个SDA设备管理器，SDA设备管理器只允许激活一个。
 2. 检查指定的设备管理器是否已激活了，且重复激活时管理器类型发生变化，此时需要先去激活，再重新激活。
-3. 检查待激活的设备管理器应用中是否已有设备管理元能力组件激活过，同一个应用只允许激活一个设备管理器元能力组件
+3. 检查待激活的设备管理器应用中是否已有设备管理元能力组件激活过，同一个应用只允许激活一个设备管理器元能力组件。
 
 ## 9200005 去激活设备管理器失败
 
@@ -202,6 +202,27 @@ A conflict policy has been configured.
 **处理步骤**
 
 先取消与当前策略互斥的策略，然后再下发策略。
+
+<!--Del-->
+## 9200011 设备管理应用替换失败
+
+**错误信息**
+
+Failed to replace the administrator application of the device.
+
+**错误描述**
+
+设备管理应用替换失败。
+
+**可能原因**
+
+指定应用为被委托、被授权的设备管理应用或普通设备管理应用，无法成为超级设备管理应用。
+
+**处理步骤**
+
+1. 采用[disableSuperAdmin](js-apis-enterprise-adminManager-sys.md#adminmanagerdisablesuperadmin)接口取消超级设备管理权限，即可取消指定应用的被委托、被授权的设备管理权限。
+2. 采用[disableAdmin](js-apis-enterprise-adminManager.md#adminmanagerdisableadmin)接口取消指定应用的普通设备管理权限。
+<!--DelEnd-->
 
 ## 9201001 管理证书失败
 

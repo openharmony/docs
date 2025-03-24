@@ -8,7 +8,7 @@
 - [FontCollection](#fontcollection)：字体管理器，控制各种不同的字体。
 - [ParagraphStyle](#paragraphstyle)：段落样式，控制整个段落的显示样式。
 - [Paragraph](#paragraph)：段落，由ParagraphBuilder类调用[build()](#build)接口构建而成。
-- [LineTypeset](#linetypeset16)：行排版器，由ParagraphBuilder类调用[buildLineTypeset()](#buildlinetypeset16)接口构建而成。
+- [LineTypeset](#linetypeset18)：行排版器，由ParagraphBuilder类调用[buildLineTypeset()](#buildlinetypeset18)接口构建而成。
 - [ParagraphBuilder](#paragraphbuilder)：段落生成器，控制生成不同的段落对象。
 - [TextLine](#textline)：以行为单位的段落文本的载体，由段落类调用[getTextLines()](#gettextlines)接口获取。
 - [Run](#run)：文本排版的渲染单元，由行文本类调用[getGlyphRuns()](#getglyphruns)接口获取。
@@ -23,7 +23,7 @@
 import { text } from '@kit.ArkGraphics2D';
 ```
 
-## text.matchFontDescriptors<sup>16+</sup>
+## text.matchFontDescriptors<sup>18+</sup>
 
 matchFontDescriptors(desc: FontDescriptor): Promise&lt;Array&lt;FontDescriptor&gt;&gt;
 
@@ -261,11 +261,12 @@ struct Index {
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
-| 名称        | 值   | 说明                                                                                                                  |
-| ----------- | ---- | -------------------------------------------------------------------------------------------------------------------- |
-| NORMAL      | 0    | 默认的换行规则。依据各自语言的规则，允许在字间发生换行。                                                                  |
-| BREAK_ALL   | 1    | 对于 Non-CJK（非中文，日文，韩文）文本允许在任意字符内发生换行。该值适合包含一些非亚洲文本的亚洲文本，比如使连续的英文字符断行。|
-| BREAK_WORD  | 2    | 与`BREAK_ALL`基本相同，不同的地方在于它要求一个没有断行破发点的词必须保持为一个整体单位。                                   |
+| 名称                          | 值   | 说明                                                                                                                  |
+|-----------------------------| ---- | -------------------------------------------------------------------------------------------------------------------- |
+| NORMAL                      | 0    | 默认的换行规则。依据各自语言的规则，允许在字间发生换行。                                                                  |
+| BREAK_ALL                   | 1    | 对于Non-CJK（非中文，日文，韩文）文本允许在任意字符内发生换行。该值适合包含一些非亚洲文本的亚洲文本，比如使连续的英文字符断行。|
+| BREAK_WORD                  | 2    | 与`BREAK_ALL`基本相同，不同的地方在于它要求一个没有断行破发点的词必须保持为一个整体单位。                                   |
+| BREAK_HYPHEN<sup>18+</sup>  | 3    | 每行末尾单词尝试通过连字符“-”进行断行，若无法添加连字符“-”，则跟`BREAK_WORD`保持一致。                        |
 
 ## Decoration
 
@@ -366,7 +367,7 @@ struct Index {
 | ALL                   | 0x0 | 高度修饰符设置为段落中第一行和最后一行都上升。            |
 | DISABLE_FIRST_ASCENT  | 0x1 | 高度修饰符设置为禁止段落中第一行上升。                   |
 | DISABLE_LAST_ASCENT   | 0x2 | 高度修饰符设置为禁止段落中最后一行上升。                 |
-| DISABLE_ALL           | 0x3 | 高度修饰符设置为段落中第一行和最后一行都不上升。          |
+| DISABLE_ALL           | 0x1 \| 0x2 | 高度修饰符设置为段落中第一行和最后一行都不上升。          |
 
 ## TextBaseline
 
@@ -503,7 +504,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 | fullName | string | 否 | 是 | 字体名称，可取任意值，默认值为空字符串。 |
 | fontFamily | string | 否 | 是 | 字体家族，可取任意值，默认值为空字符串。 |
 | fontSubfamily | string | 否 | 是 | 子字体家族，可取任意值，默认值为空字符串。 |
-| weight | [FontWeight](#fontweight) | 否 | 是 | 字体字重，默认值为FontWeight.W100的取值，即0。作为[matchFontDescriptors](#textmatchfontdescriptors16)接口入参使用时，不使用该字段视作该字段为默认值。 |
+| weight | [FontWeight](#fontweight) | 否 | 是 | 字体字重，默认值为FontWeight.W100的取值，即0。作为[matchFontDescriptors](#textmatchfontdescriptors18)接口入参使用时，不使用该字段视作该字段为默认值。 |
 | width | number | 否 | 是 | 字体宽度，取值范围是1-9整数，默认值为0。 |
 | italic | number | 否 | 是 | 是否是斜体字体，0表示非斜体，1表示斜体字体，默认值为0。 |
 | monoSpace | boolean | 否 | 是 | 是否是等宽字体，true表示等宽字体，false表示非等宽字体，默认值为false。 |
@@ -601,7 +602,7 @@ struct RenderTest {
 }
 ```
 
-### loadFont<sup>16+</sup>
+### loadFont<sup>18+</sup>
 
 loadFont(name: string, path: string | Resource): Promise\<void>
 
@@ -699,7 +700,7 @@ struct Index {
 | breakStrategy        | [BreakStrategy](#breakstrategy)            | 是   | 是   | 断行策略，默认为GREEDY。                        |
 | strutStyle           | [StrutStyle](#strutstyle)                  | 是   | 是   | 支柱样式，默认为初始的StrutStyle。               |
 | textHeightBehavior   | [TextHeightBehavior](#textheightbehavior)  | 是   | 是   | 文本高度修饰符模式，默认为ALL。                              |
-| tab<sup>16+</sup>   | [TextTab](#texttab16)  | 是   | 是   | 表示段落中文本制表符之后文本的对齐方式及位置，默认为将制表符替换为一个空格。与文本对齐方式（即align属性）或省略号样式（即[TextStyle](#textstyle)中的ellipsis属性）共同配置时，此参数不生效。 |
+| tab<sup>18+</sup>   | [TextTab](#texttab18)  | 是   | 是   | 表示段落中文本制表符之后文本的对齐方式及位置，默认为将制表符替换为一个空格。与文本对齐方式（即align属性）或省略号样式（即[TextStyle](#textstyle)中的ellipsis属性）共同配置时，此参数不生效。 |
 
 
 ## PlaceholderAlignment
@@ -776,7 +777,7 @@ layoutSync(width: number): void
 paragraph.layoutSync(100);
 ```
 
-### layout<sup>16+</sup>
+### layout<sup>18+</sup>
 
 layout(width: number): Promise\<void>
 
@@ -1371,7 +1372,7 @@ getLineMetrics(lineNumber: number): LineMetrics | undefined
 
 | 参数名 | 类型   | 必填 | 说明      |
 | ----- | ------ | ---- | --------- |
-| lineNumber  | number | 是   | 要查询度量信息的行的编号, 行号从0开始。|
+| lineNumber  | number | 是   | 要查询度量信息的行的编号，行号从0开始。|
 
 **返回值：**
 
@@ -1385,13 +1386,13 @@ getLineMetrics(lineNumber: number): LineMetrics | undefined
 let lineMetrics =  paragraph.getLineMetrics(0);
 ```
 
-## LineTypeset<sup>16+</sup>
+## LineTypeset<sup>18+</sup>
 
 保存着文本内容以及样式的载体，可以用于计算单行排版信息。
 
-下列API示例中都需先使用[ParagraphBuilder](#paragraphbuilder)类的[buildLineTypeset()](#buildlinetypeset16)接口获取到LineTypeset对象实例，再通过此实例调用对应方法。
+下列API示例中都需先使用[ParagraphBuilder](#paragraphbuilder)类的[buildLineTypeset()](#buildlinetypeset18)接口获取到LineTypeset对象实例，再通过此实例调用对应方法。
 
-### getLineBreak<sup>16+</sup>
+### getLineBreak<sup>18+</sup>
 
 getLineBreak(startIndex: number, width: number): number
 
@@ -1428,7 +1429,7 @@ let width = 100.0;
 let count = lineTypeset.getLineBreak(startIndex, width);
 ```
 
-### createLine<sup>16+</sup>
+### createLine<sup>18+</sup>
 
 createLine(startIndex: number, count: number): TextLine
 
@@ -1441,7 +1442,7 @@ createLine(startIndex: number, count: number): TextLine
 | 参数名 | 类型   | 必填 | 说明           |
 | ----- | ------ | ---- | -------------- |
 | startIndex | number | 是 | 开始计算排版的起始位置，整数，取值范围为[0, 文本字符总数)。|
-| count | number | 是   | 从指定排版起始位置开始进行排版的字符个数，取值为[0,文本字符总数)的整数，startIndex和count之和不能大于文本字符总数。当count为0时，表示指定的排版区间为[startIndex, 文本结尾]。可以先使用[getLineBreak](#getlinebreak16)获得合理的可用于进行排版的字符总数。|
+| count | number | 是   | 从指定排版起始位置开始进行排版的字符个数，取值为[0,文本字符总数)的整数，startIndex和count之和不能大于文本字符总数。当count为0时，表示指定的排版区间为[startIndex, 文本结尾]。可以先使用[getLineBreak](#getlinebreak18)获得合理的可用于进行排版的字符总数。|
 
 **返回值：**
 
@@ -1857,7 +1858,7 @@ struct Index {
 }
 ```
 
-### buildLineTypeset<sup>16+</sup>
+### buildLineTypeset<sup>18+</sup>
 
 buildLineTypeset(): LineTypeset
 
@@ -1869,7 +1870,7 @@ buildLineTypeset(): LineTypeset
 
 | 类型                     | 说明                           |
 | ------------------------ | ------------------------------ |
-| [LineTypeset](#linetypeset16)  | 可用于行排版的LineTypeset对象。|
+| [LineTypeset](#linetypeset18)  | 可用于行排版的LineTypeset对象。|
 
 **示例：**
 
@@ -1912,7 +1913,7 @@ addSymbol(symbolId: number): void
 
 | 参数名    | 类型    | 必填 | 说明                                                        |
 | -------- | ------- | ---- | ----------------------------------------------------------- |
-| symbolId | number  | 是   | 要设置的symbol码位，十六进制，当前支持的取值范围为：0xF0000-0xF0C97。可设置的symbol码位及其对应的symbol名称请参阅以下链接中 JSON 文件的 value 字段和 name 字段： [https://gitee.com/openharmony/global_system_resources/blob/master/systemres/main/resources/base/element/symbol.json](https://gitee.com/openharmony/global_system_resources/blob/master/systemres/main/resources/base/element/symbol.json)|
+| symbolId | number  | 是   | 要设置的symbol码位，十六进制，当前支持的取值范围为：0xF0000-0xF0C97。可设置的symbol码位（即列表视图下的unicode值）请见[主题图标库](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/)。|
 
 **示例：**
 
@@ -1948,7 +1949,7 @@ struct Index {
 }
 ```
 
-## TypographicBounds<sup>16+</sup>
+## TypographicBounds<sup>18+</sup>
 
 文本行的排版边界。文本行排版边界与排版字体、排版字号有关，与字符本身无关，例如字符串为" a b "，'a'字符前面有1个空格，'b'字符后面有1个空格，排版边界就包括行首和末尾空格的边界。例如字符串为"j"或"E"，排版边界相同，即与字符本身无关。
 
@@ -1975,7 +1976,7 @@ struct Index {
 >
 >![zh-ch_image_TypographicBounds_Character.png](figures/zh-ch_image_TypographicBounds_Character.png)
 
-## CaretOffsetsCallback<sup>16+</sup>
+## CaretOffsetsCallback<sup>18+</sup>
 
 type CaretOffsetsCallback = (offset: number, index: number, leadingEdge: boolean) => boolean
 
@@ -2000,7 +2001,7 @@ type CaretOffsetsCallback = (offset: number, index: number, leadingEdge: boolean
 
 描述段落基础文本行结构的载体。
 
-下列API示例中都需先使用[Paragraph](#paragraph)类的[getTextLines()](#gettextlines)接口或者[LineTypeset](#linetypeset16)类的[createLine()](#createline16)接口获取到TextLine对象实例，再通过此实例调用对应方法。
+下列API示例中都需先使用[Paragraph](#paragraph)类的[getTextLines()](#gettextlines)接口或者[LineTypeset](#linetypeset18)类的[createLine()](#createline18)接口获取到TextLine对象实例，再通过此实例调用对应方法。
 ### getGlyphCount
 
 getGlyphCount(): number
@@ -2042,7 +2043,7 @@ struct Index {
 
 getTextRange(): Range
 
-获取该文本行中的文本在整个段落文本中的索引区间。使用[LineTypeset](#linetypeset16)类的[creatLine](#createline16)方法创建的[TextLine](#textline)对象属于一个内部的临时对象，通过该对象调用[getTextRange](#gettextrange)方法返回的索引区间是相对于临时的[Paragraph](#paragraph)对象的区间，该临时对象在下一次调用[creatLine](#createline16)方法时会自动销毁。
+获取该文本行中的文本在整个段落文本中的索引区间。使用[LineTypeset](#linetypeset18)类的[creatLine](#createline18)方法创建的[TextLine](#textline)对象属于一个内部的临时对象，通过该对象调用[getTextRange](#gettextrange)方法返回的索引区间是相对于临时的[Paragraph](#paragraph)对象的区间，该临时对象在下一次调用[creatLine](#createline18)方法时会自动销毁。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -2124,7 +2125,7 @@ paint(canvas: drawing.Canvas, x: number, y: number): void
 
 | 参数名 | 类型                                                  | 必填 | 说明                    |
 | ------ | ---------------------------------------------------- | ---- | ---------------------- |
-| canvas | [drawing.Canvas](js-apis-graphics-drawing.md#canvas) | 是   | 绘制的目标 canvas。      |
+| canvas | [drawing.Canvas](js-apis-graphics-drawing.md#canvas) | 是   | 绘制的目标canvas。      |
 |    x   | number                                               | 是   | 绘制的左上角位置的横坐标，浮点数。|
 |    y   | number                                               | 是   | 绘制的左上角位置的纵坐标，浮点数。|
 
@@ -2162,7 +2163,7 @@ struct Index {
 }
 ```
 
-### createTruncatedLine<sup>16+</sup>
+### createTruncatedLine<sup>18+</sup>
 
 createTruncatedLine(width: number, ellipsisMode: EllipsisMode, ellipsis: string): TextLine
 
@@ -2225,7 +2226,7 @@ struct Index {
 }
 ```
 
-### getTypographicBounds<sup>16+</sup>
+### getTypographicBounds<sup>18+</sup>
 
 getTypographicBounds(): TypographicBounds
 
@@ -2247,7 +2248,7 @@ getTypographicBounds(): TypographicBounds
 
 | 类型 | 说明  |
 | -| - |
-| [TypographicBounds](#typographicbounds16) | 文本行的排版边界。|
+| [TypographicBounds](#typographicbounds18) | 文本行的排版边界。|
 
 **示例：**
 
@@ -2273,7 +2274,7 @@ struct Index {
 }
 ```
 
-### getImageBounds<sup>16+</sup>
+### getImageBounds<sup>18+</sup>
 
 getImageBounds(): common2D.Rect
 
@@ -2322,7 +2323,7 @@ struct Index {
 }
 ```
 
-### getTrailingSpaceWidth<sup>16+</sup>
+### getTrailingSpaceWidth<sup>18+</sup>
 
 getTrailingSpaceWidth(): number
 
@@ -2360,7 +2361,7 @@ struct Index {
 }
 ```
 
-### getStringIndexForPosition<sup>16+</sup>
+### getStringIndexForPosition<sup>18+</sup>
 
 getStringIndexForPosition(point: common2D.Point): number
 
@@ -2413,7 +2414,7 @@ struct Index {
 }
 ```
 
-### getOffsetForStringIndex<sup>16+</sup>
+### getOffsetForStringIndex<sup>18+</sup>
 
 getOffsetForStringIndex(index: number): number
 
@@ -2465,7 +2466,7 @@ struct Index {
 }
 ```
 
-### enumerateCaretOffsets<sup>16+</sup>
+### enumerateCaretOffsets<sup>18+</sup>
 
 enumerateCaretOffsets(callback: CaretOffsetsCallback): void
 
@@ -2477,7 +2478,7 @@ enumerateCaretOffsets(callback: CaretOffsetsCallback): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -| - | - | - |
-| callback | [CaretOffsetsCallback](#caretoffsetscallback16) | 是 | 用户自定义函数。将文本行中枚举的每个字符偏移量、索引值作为参数的回调方法 |
+| callback | [CaretOffsetsCallback](#caretoffsetscallback18) | 是 | 用户自定义函数。将文本行中枚举的每个字符偏移量、索引值作为参数的回调方法。 |
 
 **错误码：**
 
@@ -2515,7 +2516,7 @@ struct Index {
 }
 ```
 
-### getAlignmentOffset<sup>16+</sup>
+### getAlignmentOffset<sup>18+</sup>
 
 getAlignmentOffset(alignmentFactor: number, alignmentWidth: number): number
 
@@ -2648,7 +2649,7 @@ struct Index {
 }
 ```
 
-### getGlyphs<sup>16+</sup>
+### getGlyphs<sup>18+</sup>
 
 getGlyphs(range: Range): Array\<number>
 
@@ -2740,7 +2741,7 @@ struct Index {
   }
 }
 ```
-### getPositions<sup>16+</sup>
+### getPositions<sup>18+</sup>
 
 getPositions(range: Range): Array<common2D.Point>
 
@@ -2921,7 +2922,7 @@ struct Index {
 }
 ```
 
-### getStringRange<sup>16+</sup>
+### getStringRange<sup>18+</sup>
 
 getStringRange(): Range
 
@@ -2961,7 +2962,7 @@ struct Index {
 }
 ```
 
-### getStringIndices<sup>16+</sup>
+### getStringIndices<sup>18+</sup>
 
 getStringIndices(range?: Range): Array\<number>
 
@@ -3017,7 +3018,7 @@ struct Index {
 }
 ```
 
-### getImageBounds<sup>16+</sup>
+### getImageBounds<sup>18+</sup>
 
 getImageBounds(): common2D.Rect
 
@@ -3064,7 +3065,7 @@ struct Index {
 }
 ```
 
-### getTypographicBounds<sup>16+</sup>
+### getTypographicBounds<sup>18+</sup>
 
 getTypographicBounds(): TypographicBounds
 
@@ -3086,7 +3087,7 @@ getTypographicBounds(): TypographicBounds
 
 | 类型                   | 说明           |
 | ---------------------- | -------------- |
-|  [TypographicBounds](#typographicbounds16)  | 该渲染单元的排版边界。|
+|  [TypographicBounds](#typographicbounds18)  | 该渲染单元的排版边界。|
 
 **示例：**
 
@@ -3111,7 +3112,7 @@ struct Index {
 }
 ```
 
-## TextTab<sup>16+</sup>
+## TextTab<sup>18+</sup>
 
 段落风格的文本制表符，储存了对齐方式和位置。
 
@@ -3148,4 +3149,4 @@ alignment为RIGHT，location为100，文本为"aabcdef/tg hi/tjkl/tmno/tp qr"：
 | GENERIC  | 1 << 1 | 系统字体类型。 |
 | STYLISH  | 1 << 2 | 风格字体类型。风格字体类型是专为2in1设备设计的字体类型。 |
 | INSTALLED  | 1 << 3 | 用户已安装的字体类型。 |
-| CUSTOMIZED<sup>16+</sup>  | 1 << 4 | 自定义字体类型。 |
+| CUSTOMIZED<sup>18+</sup>  | 1 << 4 | 自定义字体类型。 |

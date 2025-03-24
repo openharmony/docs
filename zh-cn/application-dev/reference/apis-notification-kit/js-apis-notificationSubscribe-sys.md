@@ -22,9 +22,9 @@ subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, c
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -82,9 +82,9 @@ subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): 
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -138,9 +138,9 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -196,7 +196,7 @@ subscribeSelf(subscriber: NotificationSubscriber): Promise\<void\>
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -251,9 +251,9 @@ unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>)
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -304,9 +304,9 @@ unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -359,9 +359,9 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -421,9 +421,9 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -483,9 +483,9 @@ remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>):
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -534,9 +534,9 @@ remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -587,9 +587,9 @@ remove(hashCodes: Array\<String\>, reason: RemoveReason, callback: AsyncCallback
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -637,9 +637,9 @@ remove(hashCodes: Array\<String\>, reason: RemoveReason): Promise\<void\>
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -689,7 +689,7 @@ removeAll(bundle: BundleOption, callback: AsyncCallback\<void\>): void
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
 **系统接口**：此接口为系统接口。
 
@@ -740,9 +740,9 @@ removeAll(callback: AsyncCallback\<void\>): void
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -786,9 +786,9 @@ removeAll(bundle?: BundleOption): Promise\<void\>
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -837,9 +837,9 @@ removeAll(userId: number, callback: AsyncCallback\<void>): void
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -887,9 +887,9 @@ removeAll(userId: number): Promise\<void>
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -924,11 +924,58 @@ notificationSubscribe.removeAll(userId).then(() => {
 });
 ```
 
+## notificationSubscribe.distributeOperation<sup>18+</sup>
+
+distributeOperation(hashcode: string, operationInfo?: OperationInfo): Promise\<void>
+
+触发指定通知的跨设备协同操作（例如通知跨设备点击跳转、通知跨设备快捷回复等）。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型         | 必填 | 说明       |
+| ------ | ------------ | ---- | ---------- |
+| hashcode | string | 是   | 通知唯一ID。 |
+| operationInfo | [OperationInfo](#operationinfo18) | 是   | 跨设备协同操作信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 1600010  | Distributed operation failed.                     |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let hashcode: string = 'hashcode';
+let operationInfo: notificationSubscribe.OperationInfo = {
+  actionName: "actionName",
+  userInput: "userInput",
+};
+notificationSubscribe.distributeOperation(hashcode, operationInfo).then(() => {
+	console.info("distributeOperation success");
+}).catch((err: BusinessError) => {
+  console.error("distributeOperation fail: " + JSON.stringify(err));
+});
+```
+
 ## NotificationKey
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 | 名称  | 类型   | 必填 | 说明     |
 | ----- | ------ | --- | -------- |
@@ -939,9 +986,20 @@ notificationSubscribe.removeAll(userId).then(() => {
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 | 名称                 | 值  | 说明                  |
 | -------------------- | --- | -------------------- |
 | CLICK_REASON_REMOVE  | 1   | 点击通知后删除通知。    |
 | CANCEL_REASON_REMOVE | 2   | 用户删除通知。         |
+
+## OperationInfo<sup>18+</sup>
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
+**系统接口**：此接口为系统接口。
+
+| 名称  | 类型   | 必填 | 说明     |
+| ----- | ------ | --- | -------- |
+| actionName    | string | 是  | 描述通知中显示的操作按钮（与通知[NotificationActionButton](js-apis-inner-notification-notificationActionButton.md#notificationactionbutton)中title字段保持一致）。   |
+| userInput | string | 否  | 用户输入（用于通知跨设备快捷回复场景传递用户输入，与通知[NotificationUserInput](js-apis-inner-notification-notificationUserInput.md#notificationuserinput)中inputKey字段保持一致）。 |

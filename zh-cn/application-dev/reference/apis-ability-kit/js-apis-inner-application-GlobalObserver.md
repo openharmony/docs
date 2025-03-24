@@ -1,6 +1,6 @@
 # GlobalObserver
 
-定义异常监听，可以作为[ErrorManager.on('globalErrorOccurred')](./js-apis-app-ability-errorManager.md#errormanageronglobalerroroccurred16) 和 [ErrorManager.on('globalUnhandledRejectionDetected')](./js-apis-app-ability-errorManager.md#errormanageronglobalunhandledrejectiondetected16)的入参监听当前应用主线程事件处理事件。
+定义异常监听，可以作为[ErrorManager.on('globalErrorOccurred')](./js-apis-app-ability-errorManager.md#errormanageronglobalerroroccurred18) 和 [ErrorManager.on('globalUnhandledRejectionDetected')](./js-apis-app-ability-errorManager.md#errormanageronglobalunhandledrejectiondetected18)的入参监听当前应用主线程事件处理事件。
 
 > **说明：**
 > 
@@ -29,7 +29,7 @@ import { errorManager } from '@kit.AbilityKit';
 ```ts
 import { errorManager } from '@kit.AbilityKit';
 
-function errorFunc(observer: errorManager.GlobalObserver) {
+function errorFunc(observer: errorManager.GlobalError) {
     console.log("result name :" + observer.name);
     console.log("result message :" + observer.message);
     console.log("result stack :" + observer.stack);

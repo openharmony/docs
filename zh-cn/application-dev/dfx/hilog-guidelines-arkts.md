@@ -56,7 +56,7 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 
 ## 约束与限制
 
-日志打印最多打印4096字节，超出限制文本将被截断。
+日志最多打印4096字节，超出限制文本将被截断。
 
 ## 开发示例
 
@@ -115,7 +115,7 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
    ```txt
    '%{public}s World %{public}d'
    ```
-   其中变参"%{public}s"为公共的字符串，%{public}d为公共的整型数。
+   其中变参"%{public}s"为公共的字符串，"%{public}d"为公共的整型数。
 
 4. 在真机上运行该工程，单击应用/服务界面上的“Next”按钮。
 

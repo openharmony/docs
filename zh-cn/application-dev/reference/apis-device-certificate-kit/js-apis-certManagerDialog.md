@@ -22,10 +22,10 @@ import certificateManagerDialog from '@ohos.security.certManagerDialog';
 
 | 名称       | 值 |  说明      |
 | ---------- | ------ | --------- |
-| PAGE_MAIN | 1      | 证书管理应用主页面 |
-| PAGE_CA_CERTIFICATE | 2      | CA证书列表页面 |
-| PAGE_CREDENTIAL | 3      | 凭据列表页面 |
-| PAGE_INSTALL_CERTIFICATE | 4      | 安装证书页面 |
+| PAGE_MAIN | 1      | 证书管理应用主页面。 |
+| PAGE_CA_CERTIFICATE | 2      | CA证书列表页面。 |
+| PAGE_CREDENTIAL | 3      | 凭据列表页面。 |
+| PAGE_INSTALL_CERTIFICATE | 4      | 安装证书页面。 |
 
 ## CertificateType<sup>14+</sup>
 
@@ -37,7 +37,7 @@ import certificateManagerDialog from '@ohos.security.certManagerDialog';
 
 | 名称       | 值 |  说明      |
 | ---------- | ------ | --------- |
-| CA_CERT | 1      | CA证书 |
+| CA_CERT | 1      | CA证书。 |
 
 ## CertificateScope<sup>14+</sup>
 
@@ -49,9 +49,9 @@ import certificateManagerDialog from '@ohos.security.certManagerDialog';
 
 | 名称       | 值 |  说明      |
 | ---------- | ------ | --------- |
-| NOT_SPECIFIED<sup>16+</sup>  | 0      | 未指定用户 |
-| CURRENT_USER | 1      | 当前用户 |
-| GLOBAL_USER<sup>16+</sup> | 2      | 公共目录 |
+| NOT_SPECIFIED<sup>18+</sup>  | 0      | 未指定用户。 |
+| CURRENT_USER | 1      | 当前用户。 |
+| GLOBAL_USER<sup>18+</sup> | 2      | 公共目录。 |
 
 
 ## CertificateDialogErrorCode
@@ -69,7 +69,7 @@ import certificateManagerDialog from '@ohos.security.certManagerDialog';
 | ERROR_OPERATION_FAILED<sup>14+</sup>  | 29700003      | 表示调用接口时安装证书失败。 |
 | ERROR_DEVICE_NOT_SUPPORTED<sup>14+</sup>  | 29700004      | 表示调用接口时设备类型不支持。 |
 
-## CertificateDialogProperty<sup>16+</sup>
+## CertificateDialogProperty<sup>18+</sup>
 
 表示证书管理对话框的属性。
 
@@ -79,7 +79,7 @@ import certificateManagerDialog from '@ohos.security.certManagerDialog';
 
 | 名称              | 类型    | 只读 | 可选 | 说明                         |
 | ----------------- | ------- | ---- | ---- | ---------------------------- |
-| showInstallButton | boolean | 否   | 否   | 表示是否显示安装证书的按钮。 |
+| showInstallButton | boolean | 否   | 否   | 表示是否显示安装证书的按钮，true为显示，false为不显示。 |
 
 ## certificateManagerDialog.openCertificateManagerDialog
 
@@ -163,7 +163,7 @@ openInstallCertificateDialog(context: common.Context, certType: CertificateType,
 
 | 类型                                        | 说明                 |
 | ------------------------------------------- | -------------------- |
-| Promise\<string> | Promise对象。表示返回证书uri的结果。 |
+| Promise\<string> | Promise对象。表示返回证书uri的结果，最大长度为256字节。 |
 
 **错误码：**
 
@@ -177,7 +177,7 @@ openInstallCertificateDialog(context: common.Context, certType: CertificateType,
 | 29700002 | The user cancels the installation operation.     |
 | 29700003 | The user install certificate failed in the certificate manager dialog, such as the certificate is in an invalid format.     |
 | 29700004 | The API is not supported on this device.     |
-| 29700005<sup>16+</sup> | The operation does not comply with the device security policy, such as the device does not allow users to manage the ca certificate of the global user.     |
+| 29700005<sup>18+</sup> | The operation does not comply with the device security policy, such as the device does not allow users to manage the ca certificate of the global user.     |
 
 **示例**：
 ```ts
@@ -206,7 +206,7 @@ try {
 }
 ```
 
-## certificateManagerDialog.openUninstallCertificateDialog<sup>16+</sup>
+## certificateManagerDialog.openUninstallCertificateDialog<sup>18+</sup>
 
 openUninstallCertificateDialog(context: common.Context, certType: CertificateType, certUri: string): Promise\<void>
 
@@ -226,7 +226,7 @@ openUninstallCertificateDialog(context: common.Context, certType: CertificateTyp
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
 | context | [common.Context](../apis-ability-kit/js-apis-app-ability-common.md)                   | 是   | 表示应用的上下文信息。 |
 | certType | [CertificateType](#certificatetype14)                   | 是   | 表示删除证书类型。 |
-| certUri | string                  | 是   | 表示待删除证书的唯一标识符。 |
+| certUri | string                  | 是   | 表示待删除证书的唯一标识符，最大长度为256字节。 |
 
 **返回值**：
 
@@ -271,9 +271,9 @@ try {
 }
 ```
 
-## certificateManagerDialog.openCertificateDetailDialog<sup>16+</sup>
+## certificateManagerDialog.openCertificateDetailDialog<sup>18+</sup>
 
-openCertificateDetailDialog(context: common.Context, cert: Uint8Array, property: CertificateDialogProperty): Promise\<void> 
+openCertificateDetailDialog(context: common.Context, cert: Uint8Array, property: CertificateDialogProperty): Promise\<void>
 
 表示拉起证书管理对话框显示证书的详情，使用Promise方式异步返回结果。
 
@@ -291,7 +291,7 @@ openCertificateDetailDialog(context: common.Context, cert: Uint8Array, property:
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
 | context | [common.Context](../apis-ability-kit/js-apis-app-ability-common.md)                   | 是   | 表示应用的上下文信息。 |
 | cert     | Uint8Array                                                   | 是   | 表示安装证书数据。             |
-| property | [CertificateDialogProperty](#certificatedialogproperty16) | 是   | 表示拉起证书管理对话框的属性。 |
+| property | [CertificateDialogProperty](#certificatedialogproperty18) | 是   | 表示拉起证书管理对话框的属性。 |
 
 **返回值**：
 

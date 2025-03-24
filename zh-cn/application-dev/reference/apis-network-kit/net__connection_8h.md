@@ -34,3 +34,5 @@
 | [OHOS_NetConn_UnregisterDnsResolver](_net_connection.md#ohos_netconn_unregisterdnsresolver-deprecated) (void) | 取消注册自定义 DNS 解析器。<br/>**弃用：** 从API version 13开始废弃。<br/>**替代：** 推荐使用OH_NetConn_UnregisterDnsResolver。|
 | [OH_NetConn_RegisterDnsResolver](_net_connection.md#oh_netconn_registerdnsresolver) ([OH_NetConn_CustomDnsResolver](_net_connection.md#oh_netconn_customdnsresolver) resolver) | 注册自定义 DNS 解析器。 |
 | [OH_NetConn_UnregisterDnsResolver](_net_connection.md#oh_netconn_unregisterdnsresolver) (void) | 取消注册自定义 DNS 解析器。 |
+| [OH_NetConn_SetPacUrl](_net_connection.md#oh_netconn_setpacurl) (const char \*pacUrl) | 设置系统级代理自动配置(PAC)脚本地址。 |
+| [OH_NetConn_GetPacUrl](_net_connection.md#oh_netconn_getpacurl) (char \*pacUrl) | 获取系统级代理自动配置(PAC)脚本地址。 |

@@ -80,7 +80,7 @@
 应用冷启动过程中，会在**HandleLaunchAbility**中执行冷启动相关.ets文件，所有被主页面import的.ets文件均会被执行，包括数据结构、变量、全局函数的初始化等。首页需要用到的变量及函数等可能来源于其他ets文件，通过export的形式提供给首页使用。  
 例：Numbers文件导出`export One`，需要在MainPage.ets中使用，尽量直接导入或者只嵌套一层Index文件，即在MainPage.ets中直接`import { One } from './Numbers'`。避免在Utils文件`export * from './Numbers'`，在SecondPage文件再次`export * from './Utils'`，最后在A文件中`import * from './SecondPage'`。  
 以下为示例代码：  
-【优化前】存在多层嵌套export *的方式全量导出
+【优化前】存在多层嵌套export *的方式全量导出。
 ```ts
 // Numbers.ets
 export const One: number = 1;
@@ -97,7 +97,7 @@ export * from './Utils';
 // Index.ets
 import * from './SecondPage';
 ```
-【优化后】不存在嵌套export *，从目标文件中直接import
+【优化后】不存在嵌套export *，从目标文件中直接import。
 ```ts
 // 去掉冗余嵌套的export，即在Index.ets中直接import { One } from './Numbers'。
 
@@ -110,10 +110,10 @@ import { One } from './Numbers';
 由于依赖模块解析采用深度优先遍历的方式来遍历模块依赖关系图中每一个模块记录，会先从入口文件的第一个导入语句开始一层层往更深层查找，直到最后一个没有导入语句的模块为止，连接好这个模块的导出变量之后会回到上一级的模块继续这个步骤，因此多层export *的使用会导致依赖模块解析、文件执行阶段耗时增长。  
 针对上述示例代码关注该阶段耗时差异，对优化前后启动性能进行对比分析。分析阶段的起点为开始加载abc文件（即`H:JSPandaFileExecutor::ExecuteFromAbcFile`），阶段终点为`abc文件`加载完成。
 
-【优化前】存在8层嵌套export *  
+【优化前】存在8层嵌套export *。
 ![](./figures/application_coldstart1.png)
 
-【优化后】不存在嵌套export *，从目标文件中直接import
+【优化后】不存在嵌套export *，从目标文件中直接import。
 ![](./figures/application_coldstart2.png)
 
 对比数据如下：
@@ -159,10 +159,10 @@ export const Two: number = 2;
 ```
 下面对优化前后启动性能进行对比分析，分析阶段的起点为UI Ability Launching开始（即`H:void OHOS::AppExecFwk::MainThread::HandleLaunchAbility(const std::shared_ptr<AbilityLocalRecord> &`)的开始点），阶段终点为UI Ability Launching结束（即`H:void OHOS::AppExecFwk::MainThread::HandleLaunchAbility(const std::shared_ptr<AbilityLocalRecord> &)`的结束点）。  
 
-【优化前】使用import * as nm全量引用2000条数据
+【优化前】使用import * as nm全量引用2000条数据。
 ![](./figures/application_coldstart3.png)
 
-【优化后】使用import { One }按需引用
+【优化后】使用import { One }按需引用。
 ![](./figures/application_coldstart4.png)
 
 对比数据如下：
@@ -222,7 +222,7 @@ export default class EntryAbility extends UIAbility {
 **场景示例：**  
 应用存在两个页面，首页Index展示为HAR包中**MainPage.ets**的Text组件，该文件中不包含耗时操作；首页点击Text跳转至**SecondPage**，其中引用了HAR包中的**SubPage.ets**，该文件存在全局函数的耗时操作，会在模块加载时执行。但是HAR包中的导出文件Index.ets同时导出了**MainPage.ets和SubPage.ets**，而首页直接import { MainPage } from 'library/Index'的方式会导致应用在冷启动过程中执行了非冷启动强相关文件**SubPage.ets**，增加了冷启动耗时。
 
-【优化前】加载模块时执行了非冷启动相关文件SubPage.ets  
+【优化前】加载模块时执行了非冷启动相关文件SubPage.ets。
 
 ![](./figures/application_coldstart5.png)
 
@@ -407,13 +407,13 @@ struct Index {
 
 下面对优化前后启动性能进行对比分析。阶段起点为`UI Ability Launching`的开始点，阶段终点为应用首帧即`First Frame - App Phase`的开始点。  
 
-【优化前】加载模块时执行了非冷启动相关文件  
+【优化前】加载模块时执行了非冷启动相关文件。
 ![](./figures/application_coldstart8.png)
 
-【优化方案一】拆分HAR导出文件   
+【优化方案一】拆分HAR导出文件。  
 ![](./figures/application_coldstart9.png)
 
-【优化方案二】导入冷启动文件时全路径展开  
+【优化方案二】导入冷启动文件时全路径展开。
 ![](./figures/application_coldstart10.png)
 
 优化前后的对比数据如下：
@@ -436,7 +436,7 @@ struct Index {
 在应用开发的过程中，可以使用[HSP](../quick-start/in-app-hsp.md)或[HAR](../quick-start/har-package.md)的共享包方式将同类的模块进行整合，用于实现多个模块或多个工程间共享ArkUI组件、资源等相关代码。    
 由于共享包的动态和静态差异，在多HAP/HSP引用相同HAR包的情况下，会存在HAR包中的单例失效，从而影响到应用冷启动的性能。
 
-【优化前】HAP包和HSP包分别引用相同HAR包
+【优化前】HAP包和HSP包分别引用相同HAR包。
 
 ![](./figures/application_coldstart11.png)
 
@@ -444,7 +444,7 @@ struct Index {
 由于HAP和HSP模块同时引用HAR_COMMON模块时会破坏HAR的单例模式，所以HAP和HSP模块使用**HAR_COMMON**中的**funcResult**时，会导致func方法在两个模块加载时各执行一次，使得文件执行时间耗时增长。  
 如果仅从性能的角度考虑，可以使用以下方式进行修改，从而达到缩短冷启动阶段耗时的目的。
 
-【优化后】切换为HAP包和HAR包分别引用相同HAR包
+【优化后】切换为HAP包和HAR包分别引用相同HAR包。
 
 ![](./figures/application_coldstart12.png)
 
@@ -495,10 +495,10 @@ export let funcResult = func();
   ```
 下面对优化前后启动性能进行对比分析。分析阶段的起点为启动Ability（即`H:void OHOS::AppExecFwk::MainThread::HandleLaunchAbility`的开始点），阶段终点为应用第一次接到vsync（即`H:ReceiveVsync dataCount:24Bytes now:timestamp expectedEnd:timestamp vsyncId:int`的开始点）。
 
-【优化前】使用HSP包
+【优化前】使用HSP包。
 ![](./figures/application_coldstart13.png)
 
-【优化后】使用HAR代替HSP
+【优化后】使用HAR代替HSP。
 ![](./figures/application_coldstart14.png)
 
 优化前后的对比数据如下：
@@ -733,12 +733,12 @@ struct Index {
 
 可将网络请求及网络请求前的初始化流程放置在AbilityStage/UIAbility的onCreate()生命周期中，在AbilityStage/UIAbility中仅执行网络相关预处理，等待网络请求发送后可继续执行首页数据准备、UI相关操作。在服务端处理流程相同的情况下，应用可以更早的拿到网络数据并行展示。
 
-【优化前】应用首页框架加载时进行网络数据请求
+【优化前】应用首页框架加载时进行网络数据请求。
 ![](./figures/application_coldstart15.png)
 
 将网络请求提前至AbilityStage/UIAbility生命的onCreate()生命周期回调函数中，可以将首刷或二刷的时间提前，减少用户等待时间。此处为了体现性能收益，将网络请求放到了更早的AbilityStage的onCreate()生命周期回调中。
 
-【优化后】网络请求提前至AbilityStage的onCreate()周期回调中
+【优化后】网络请求提前至AbilityStage的onCreate()周期回调中。
 ![](./figures/application_coldstart16.png)
 
 以下为示例代码：  
@@ -918,10 +918,10 @@ struct Index {
 
 下面对优化前后启动性能进行对比分析，分析阶段的起点为启动Ability（即`H:void OHOS::AppExecFwk::MainThread::HandleLaunchAbility`的开始点），阶段终点为应用接收到网络数据返回后的首帧刷新（即`H:ReceiveVsync dataCount:24Bytes now:timestamp expectedEnd:timestamp vsyncId:int`的开始点）。  
 
-【优化前】优化网络请求时机前
+【优化前】优化网络请求时机前。
 ![](./figures/application_coldstart17.png)
 
-【优化后】优化网络请求时机后
+【优化后】优化网络请求时机后。
 ![](./figures/application_coldstart18.png)
 
 对比数据如下：

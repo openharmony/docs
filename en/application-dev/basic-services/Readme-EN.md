@@ -7,4 +7,4 @@
 - [Update Service](update/Readme-EN.md)
 - [Pasteboard Service](pasteboard/Readme-EN.md)
 - [Upload/Download](request/Readme-EN.md)
-
+- [Compression/Decompression](compress/Readme-EN.md)

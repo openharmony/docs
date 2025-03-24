@@ -32,7 +32,7 @@ Sets the default slot of the SIM card used for mobile data. This API uses an asy
 
 | Name  | Type                 | Mandatory| Description                                                        |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| slotId   | number                | Yes  | SIM card slot ID. <br>- **0**: card slot 1.<br>- **1**: card slot 2.|
+| slotId   | number                | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
@@ -82,7 +82,7 @@ Sets the default slot of the SIM card used for mobile data. This API uses a prom
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| slotId | number | Yes  | SIM card slot ID. <br>- **0**: card slot 1.<br>- **1**: card slot 2.|
+| slotId | number | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Return value**
 
@@ -316,7 +316,7 @@ Enables the cellular data roaming service. This API uses an asynchronous callbac
 
 | Name  | Type                 | Mandatory| Description                                    |
 | -------- | --------------------- | ---- | ---------------------------------------- |
-| slotId   | number                | Yes  | Card slot ID.<br>**0**: card slot 1.<br>**1**: card slot 2.|
+| slotId   | number                | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                              |
 
 **Error codes**
@@ -364,7 +364,7 @@ Enables the cellular data roaming service. This API uses a promise to return the
 
 | Name| Type  | Mandatory| Description                                    |
 | ------ | ------ | ---- | ---------------------------------------- |
-| slotId | number | Yes  | Card slot ID.<br>**0**: card slot 1.<br>**1**: card slot 2.|
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Return value**
 
@@ -415,7 +415,7 @@ Disables the cellular data roaming service. This API uses an asynchronous callba
 
 | Name  | Type                 | Mandatory| Description                                    |
 | -------- | --------------------- | ---- | ---------------------------------------- |
-| slotId   | number                | Yes  | Card slot ID.<br>**0**: card slot 1.<br>**1**: card slot 2.|
+| slotId   | number                | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                              |
 
 **Error codes**
@@ -463,7 +463,7 @@ Disables the cellular data roaming service. This API uses a promise to return th
 
 | Name| Type  | Mandatory| Description                                    |
 | ------ | ------ | ---- | ---------------------------------------- |
-| slotId | number | Yes  | Card slot ID.<br>**0**: card slot 1.<br>**1**: card slot 2.|
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Return value**
 

@@ -50,8 +50,20 @@ Button(label: ResourceStr, options?: ButtonOptions)
 
 | 参数名  | 类型                                    | 必填 | 说明                 |
 | ------- | --------------------------------------- | ---- | -------------------- |
-| label   | [ResourceStr](ts-types.md#resourcestr)  | 是   | 按钮文本内容。       |
+| label   | [ResourceStr](ts-types.md#resourcestr)  | 是   | 按钮文本内容。<br/>**说明**：当文本字符的长度超过按钮本身的宽度时，文本将会被截断。 |
 | options | [ButtonOptions](#buttonoptions对象说明) | 否   | 配置按钮的显示样式。 |
+
+### Button
+
+Button()
+
+创建个空按钮。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## ButtonOptions对象说明
 
@@ -59,7 +71,7 @@ Button(label: ResourceStr, options?: ButtonOptions)
 
 | 名称                      | 类型                                          | 必填 | 说明                                                       |
 | ------------------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type                      | [ButtonType](#buttontype枚举说明)             | 否   | 描述按钮显示样式。<br/>默认值：ButtonType.ROUNDED_RECTANGLE。从API version 16开始，ButtonType的默认值修改为ButtonType.ROUNDED_RECTANGLE。API version 15及之前的版本，ButtonType的默认值为ButtonType.Capsule。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| type                      | [ButtonType](#buttontype枚举说明)             | 否   | 描述按钮显示样式。<br/>默认值：ButtonType.ROUNDED_RECTANGLE。从API version 18开始，ButtonType的默认值修改为ButtonType.ROUNDED_RECTANGLE。API version 15及之前的版本，ButtonType的默认值为ButtonType.Capsule。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | stateEffect               | boolean                                       | 否   | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true<br/>**说明：** <br/>当开启按压态显示效果，开发者设置状态样式时，会基于状态样式设置完成后的背景色再进行颜色叠加。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | buttonStyle<sup>11+</sup> | [ButtonStyleMode](#buttonstylemode11枚举说明) | 否   | 描述按钮的样式和重要程度。<br/>默认值：ButtonStyleMode.EMPHASIZED <br/>**说明：**  <br/>按钮重要程度：强调按钮>普通按钮>文字按钮。<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | controlSize<sup>11+</sup> | [ControlSize](#controlsize11枚举说明)         | 否   | 描述按钮的尺寸。<br/>默认值：ControlSize.NORMAL<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -67,7 +79,7 @@ Button(label: ResourceStr, options?: ButtonOptions)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### type
 
@@ -103,7 +115,7 @@ fontSize(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                                                         |
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 文本显示字号。<br/>默认值：当controlSize为ControlSize.NORMAL时，默认值为`$r('sys.float.Body_L')`<br/>当controlSize为ControlSize.SMALL时，默认值为`$r('sys.float.Body_S')`。 |
+| value  | [Length](ts-types.md#length) | 是   | 文本显示字号。<br/>默认值：当controlSize为ControlSize.NORMAL时，默认值为`$r('sys.float.Body_L')`。<br/>当controlSize为ControlSize.SMALL时，默认值为`$r('sys.float.Body_S')`。<br/>**说明**：设置string类型时，不支持百分比。 |
 
 ### fontColor
 
@@ -285,13 +297,13 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
 | modifier  | [ContentModifier\<ButtonConfiguration>](#buttonconfiguration12对象说明) | 是   | 在Button组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
-### minFontScale<sup>16+</sup>
+### minFontScale<sup>18+</sup>
 
 minFontScale(scale: number | Resource)
 
 设置文本最小的字体缩放倍数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -301,13 +313,13 @@ minFontScale(scale: number | Resource)
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
 | scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最小的字体缩放倍数。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时，按值为0处理，设置的值大于1，按值为1处理，异常值默认不生效。<br/>倍数设置为0时不显示内容。 |
 
-### maxFontScale<sup>16+</sup>
+### maxFontScale<sup>18+</sup>
 
 maxFontScale(scale: number | Resource)
 
 设置文本最大的字体缩放倍数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -326,7 +338,7 @@ maxFontScale(scale: number | Resource)
 | Capsule | 胶囊型按钮（圆角默认为高度的一半）。**<br>卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。**<br>原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | Circle  | 圆形按钮。**<br>卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。**<br>原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。              |
 | Normal  | 普通按钮（默认不带圆角）。 **<br>卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。**<br>原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。     |
-| ROUNDED_RECTANGLE<sup>16+</sup> | 圆角矩形按钮（默认值：controlSize为NORMAL，圆角大小20vp，controlSize为SMALL，圆角大小14vp）。**<br>卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。**<br>原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| ROUNDED_RECTANGLE<sup>15+</sup> | 圆角矩形按钮（默认值：controlSize为NORMAL，圆角大小20vp，controlSize为SMALL，圆角大小14vp）。**<br>卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。**<br>原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 >  **说明：**
 >  - 按钮圆角通过[通用属性borderRadius](ts-universal-attributes-border.md#borderradius)设置。
@@ -359,11 +371,11 @@ maxFontScale(scale: number | Resource)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 说明               |
-| ------- | ------------------ |
-| EMPHASIZED | 强调按钮（用于强调当前操作）。 |
-| NORMAL  | 普通按钮（一般界面操作）。              |
-| TEXTUAL  | 文本按钮（纯文本，无背景颜色）。      |
+| 名称      | 值 | 说明               |
+| ------- | -- |------------------ |
+| NORMAL  | 0 |普通按钮（一般界面操作）。              |
+| EMPHASIZED | 1 |强调按钮（用于强调当前操作）。 |
+| TEXTUAL  | 2 |文本按钮（纯文本，无背景颜色）。      |
 
 ## ControlSize<sup>11+</sup>枚举说明
 
@@ -373,10 +385,10 @@ maxFontScale(scale: number | Resource)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 说明               |
-| ------- | ------------------ |
-| SMALL | 小尺寸按钮。 |
-| NORMAL  | 正常尺寸按钮。              |
+| 名称      | 值 |说明               |
+| ------- | -- |------------------ |
+| SMALL | "small" |小尺寸按钮。 |
+| NORMAL  | "normal" |正常尺寸按钮。              |
 
 ## ButtonRole<sup>12+</sup>枚举说明
 
@@ -386,10 +398,10 @@ maxFontScale(scale: number | Resource)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 说明               |
-| ------- | ------------------ |
-| NORMAL | 正常按钮。 |
-| ERROR  | 警示按钮。              |
+| 名称      | 值 |说明               |
+| ------- | -- |------------------ |
+| NORMAL | 0 |正常按钮。 |
+| ERROR  | 1 |警示按钮。              |
 
 ## ButtonConfiguration<sup>12+</sup>对象说明
 
@@ -401,8 +413,8 @@ maxFontScale(scale: number | Resource)
 
 | 名称  | 类型    | 只读  | 可选 | 说明              |
 | ------ | ------ | ---------------- | ---------------- | ---------------- |
-| label | string | 否 | 否 | Button的文本标签。 |
-| pressed | boolean | 否 | 否 | 指示是否按下Button。<br/>**说明：**  <br/>此属性指示的是原本Button是否被按压，而非build出来的新组件。若新build出来的组件超过原本组件的大小，那么超出部分按压不触发。 |
+| label | string | 否 | 否 | Button的文本标签。<br/>**说明**：当文本字符的长度超过按钮本身的宽度时，文本将会被截断。 |
+| pressed | boolean | 否 | 否 | 指示是否按下Button。值为true时，表示按下，值为false时，表示未按下。<br/>**说明：**  <br/>此属性指示的是原本Button是否被按压，而非build出来的新组件。若新build出来的组件超过原本组件的大小，那么超出部分按压不触发。<br/>默认值：false |
 | triggerClick | [ButtonTriggerClickCallback](#buttontriggerclickcallback12) | 否 | 否 | 使用builder新构建出来组件的点击事件。 |
 
 ## ButtonTriggerClickCallback<sup>12+</sup>
@@ -419,12 +431,12 @@ type ButtonTriggerClickCallback = (xPos: number, yPos: number) => void
 
 | 参数名  | 类型    | 必填 | 说明              |
 | ------ | ------ | ---- | ---------------- |
-| xPos | number | 是 | 点击位置x的坐标。 |
-| yPos | number | 是 | 点击位置y的坐标。 |
+| xPos | number | 是 | 点击位置x的坐标。<br/>单位：vp |
+| yPos | number | 是 | 点击位置y的坐标。<br/>单位：vp |
 
 ## 事件
 
-支持[通用事件](ts-universal-events-click.md)。
+支持[通用事件](ts-component-general-events.md)。
 ## 示例
 
 ### 示例1（设置按钮的显示样式）

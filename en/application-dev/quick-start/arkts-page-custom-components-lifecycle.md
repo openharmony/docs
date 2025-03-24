@@ -76,6 +76,8 @@ Use of **async await** is not recommended inside the **aboutToDisappear** callba
 
 The following example shows when the lifecycle callbacks are invoked:
 
+
+
 ```ts
 // Index.ets
 import { router } from '@kit.ArkUI';
@@ -84,12 +86,13 @@ import { router } from '@kit.ArkUI';
 @Component
 struct MyComponent {
   @State showChild: boolean = true;
-  @State btnColor:string = "#FF007DFF";
+  @State btnColor: string = "#FF007DFF";
 
   // Only components decorated by @Entry can call the lifecycle callbacks of a page.
   onPageShow() {
     console.info('Index onPageShow');
   }
+
   // Only components decorated by @Entry can call the lifecycle callbacks of a page.
   onPageHide() {
     console.info('Index onPageHide');
@@ -98,8 +101,8 @@ struct MyComponent {
   // Only components decorated by @Entry can call the lifecycle callbacks of a page.
   onBackPress() {
     console.info('Index onBackPress');
-    this.btnColor ="#FFEE0606";
-    return true // The value true means that the page executes its own return logic instead of the , and false (default) means that the default return logic is used.
+    this.btnColor = "#FFEE0606";
+    return true // The value true means that the page executes its own return logic, and false means that the default return logic is used.
   }
 
   // Component lifecycle
@@ -123,17 +126,17 @@ struct MyComponent {
       if (this.showChild) {
         Child()
       }
-      // When this.showChild is false, delete the Child child component and invoke Child aboutToDisappear.
       Button('delete Child')
         .margin(20)
         .backgroundColor(this.btnColor)
         .onClick(() => {
+        // When this.showChild is false, delete the Child child component and invoke Child aboutToDisappear.
         this.showChild = false;
       })
-      // Push to the page and execute onPageHide.
+      // Push to Page and execute onPageHide.
       Button('push to next page')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/page' });
+          router.pushUrl({ url: 'pages/Page' });
         })
     }
   }
@@ -168,26 +171,30 @@ struct Child {
 }
 ```
 ```ts
-// page.ets
+// Page.ets
 @Entry
 @Component
-struct page {
+struct Page {
   @State textColor: Color = Color.Black;
   @State num: number = 0;
 
+  // Only components decorated by @Entry can call the lifecycle callbacks of a page.
   onPageShow() {
     this.num = 5;
   }
 
+  // Only components decorated by @Entry can call the lifecycle callbacks of a page.
   onPageHide() {
-    console.log("page onPageHide");
+    console.log("Page onPageHide");
   }
 
+  // Only components decorated by @Entry can call the lifecycle callbacks of a page.
   onBackPress() { // If the value is not set, false is used.
     this.textColor = Color.Grey;
     this.num = 0;
   }
 
+  // Component lifecycle
   aboutToAppear() {
     this.textColor = Color.Blue;
   }
@@ -211,7 +218,8 @@ struct page {
 In the preceding example, the **Index** page contains two custom components. One is **MyComponent** decorated with \@Entry, which is also the entry component (root node) of the page. The other is **Child**, which is a child component of **MyComponent**. Only components decorated by \@Entry can call the page lifecycle callbacks. Therefore, the lifecycle callbacks of the **Index** page – **onPageShow**, **onPageHide**, and **onBackPress**, are declared in **MyComponent**. In **MyComponent** and its child components, component lifecycle callbacks – **aboutToAppear**, **onDidBuild**, and **aboutToDisappear** – are also declared.
 
 
-- The initialization process of application cold start is as follows: **MyComponent aboutToAppear** -> **MyComponent build** -> **MyComponent onDidBuild** -> **Child aboutToAppear** -> **Child build** -> **Child onDidBuild** -> **Index onPageShow**,
+- The initialization process of application cold start is as follows: **MyComponent aboutToAppear** -> **MyComponent build** -> **MyComponent onDidBuild** -> **Child aboutToAppear** -> **Child build** -> **Child onDidBuild** -> **Index onPageShow**
+
 - When **delete Child** is clicked, the value of **this.showChild** linked to **if** changes to **false**. As a result, the **Child** component is deleted, and the **Child aboutToDisappear** callback is invoked.
 
 
@@ -224,7 +232,7 @@ In the preceding example, the **Index** page contains two custom components. One
 - When the application is minimized or switched to the background, the **Index onPageHide** callback is invoked. As the current **Index** page is not destroyed, **aboutToDisappear** of the component is not executed. When the application returns to the foreground, the **Index onPageShow** callback is invoked.
 
 
-- When the application exits, the following callbacks are executed in order: Index onPageHide -> MyComponent aboutToDisappear -> Child aboutToDisappear.
+- When the application exits, the following callbacks are executed in order: **Index onPageHide** -> **MyComponent aboutToDisappear** -> **Child aboutToDisappear**.
 
 ## Custom Component's Listening for Page Changes
 

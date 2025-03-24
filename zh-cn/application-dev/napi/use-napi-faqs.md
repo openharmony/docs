@@ -18,18 +18,18 @@
 
 | **已知关键错误日志** | **修改建议** |
 | -------- | -------- |
-| module $SO is not allowed to load in restricted runtime | $SO表示模块名。该模块不在受限worker线程的so加载白名单，不允许加载，建议用户删除该模块。 |
-| module $SO is in blocklist, loading prohibited | $SO表示模块名。受卡片或者Extension管控，该模块在黑名单内，不允许加载，建议用户删除该模块。 |
-| load module failed. $ERRMSG | 动态库加载失败。$ERRMSG表示加载失败原因，一般常见原因是so文件不存在、依赖的so文件不存在或者符号未定义，需根据加载失败原因具体分析。 |
+| module $SO is not allowed to load in restricted runtime. | $SO表示模块名。该模块不在受限worker线程的so加载白名单，不允许加载，建议用户删除该模块。 |
+| module $SO is in blocklist, loading prohibited. | $SO表示模块名。受卡片或者Extension管控，该模块在黑名单内，不允许加载，建议用户删除该模块。 |
+| load module failed. $ERRMSG. | 动态库加载失败。$ERRMSG表示加载失败原因，一般常见原因是so文件不存在、依赖的so文件不存在或者符号未定义，需根据加载失败原因具体分析。 |
 | try to load abc file from $FILEPATH failed. | 通常加载动态库和abc文件为二选一：如果是要加载动态库并且加载失败，该告警可以忽略；如果是要加载abc文件，则该错误打印的原因是abc文件不存在，$FILEPATH表示模块路径。 |
 
 5. 如果有明确的Error message，可以通过Error message判断当前问题。
 
 | **Error message** | **修改建议** |
 | -------- | -------- |
-| First attempt: $ERRMSG | 首先加载后缀不拼接'_napi'的模块名为'xxx'的so，如果加载失败会有该错误信息，$ERRMSG表示具体加载时的错误信息。 |
-| Second attempt: $ERRMSG | 第二次加载后缀拼接'_napi'的模块名为'xxx_napi'的so，如果加载失败会有该错误信息，$ERRMSG表示具体加载时的错误信息。 |
-| try to load abc file from xxx failed | 第三次加载名字为'xxx'的abc文件，如果加载失败会有该错误信息。 |
+| First attempt: $ERRMSG. | 首先加载后缀不拼接'_napi'的模块名为'xxx'的so，如果加载失败会有该错误信息，$ERRMSG表示具体加载时的错误信息。 |
+| Second attempt: $ERRMSG. | 第二次加载后缀拼接'_napi'的模块名为'xxx_napi'的so，如果加载失败会有该错误信息，$ERRMSG表示具体加载时的错误信息。 |
+| try to load abc file from xxx failed. | 第三次加载名字为'xxx'的abc文件，如果加载失败会有该错误信息。 |
 | module xxx is not allowed to load in restricted runtime. | 该模块不允许在受限运行时中使用，xxx表示模块名，建议用户删除该模块。 |
 | module xxx is in blocklist, loading prohibited. | 该模块不允许在当前extension下使用，xxx表示模块名，建议用户删除该模块。 |
 

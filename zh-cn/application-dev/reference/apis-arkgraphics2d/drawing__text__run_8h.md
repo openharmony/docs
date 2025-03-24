@@ -21,7 +21,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_Drawing_Array](_drawing.md#oh_drawing_array) \* [OH_Drawing_GetRunStringIndices](_drawing.md#oh_drawing_getrunstringindices) (OH_Drawing_Run \*run, int64_t start, int64_t length) | 获取渲染单元指定范围内字形的字符索引，该索引是相对于整个段落的偏移。  |
+| [OH_Drawing_Array](_drawing.md#oh_drawing_array) \* [OH_Drawing_GetRunStringIndices](_drawing.md#oh_drawing_getrunstringindices) (OH_Drawing_Run \*run, int64_t start, int64_t length) | 获取渲染单元指定范围内字形的字符索引数组，该索引是相对于整个段落的偏移。  |
 | uint64_t [OH_Drawing_GetRunStringIndicesByIndex](_drawing.md#oh_drawing_getrunstringindicesbyindex) ([OH_Drawing_Array](_drawing.md#oh_drawing_array) \*stringIndices, size_t index) | 获取字符索引数组中指定下标的字符索引值。  |
 | void [OH_Drawing_DestroyRunStringIndices](_drawing.md#oh_drawing_destroyrunstringindices) ([OH_Drawing_Array](_drawing.md#oh_drawing_array) \*stringIndices) | 释放字形的字符索引数组对象指针。  |
 | void [OH_Drawing_GetRunStringRange](_drawing.md#oh_drawing_getrunstringrange) (OH_Drawing_Run \*run, uint64_t \*location, uint64_t \*length) | 获取渲染单元生成字形的字符范围。  |

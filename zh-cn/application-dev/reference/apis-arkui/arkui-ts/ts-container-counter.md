@@ -24,7 +24,7 @@ Counter()
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性。 
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性。 
 
 ### enableInc<sup>10+</sup>
 
@@ -40,7 +40,7 @@ enableInc(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                  |
 | ------ | ------- | ---- | ------------------------------------- |
-| value  | boolean | 是   | 增加按钮禁用或使能。<br/>默认值：true |
+| value  | boolean | 是   | 增加按钮禁用或使能。<br/>默认值：true，true表示可以增加按钮，false表示禁止增加按钮。 |
 
 ### enableDec<sup>10+</sup>
 
@@ -56,11 +56,11 @@ enableDec(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                  |
 | ------ | ------- | ---- | ------------------------------------- |
-| value  | boolean | 是   | 减少按钮禁用或使能。<br/>默认值：true |
+| value  | boolean | 是   | 减少按钮禁用或使能。<br/>默认值：true，true表示可以减少按钮，false表示禁止减少按钮。 |
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onInc
 

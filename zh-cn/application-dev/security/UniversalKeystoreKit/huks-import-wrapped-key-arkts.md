@@ -1,11 +1,8 @@
 # 加密导入密钥(ArkTS)
 
-
 以加密导入ECDH密钥对为例，涉及业务侧加密密钥的[密钥生成](huks-key-generation-overview.md)、[协商](huks-key-agreement-overview.md)等操作不在本示例中体现。
 
-
 具体的场景介绍及支持的算法规格，请参考[密钥导入的支持的算法](huks-key-import-overview.md#支持的算法)。
-
 
 ## 开发步骤
 
@@ -623,8 +620,8 @@ let keyProperties: Array<huks.HuksParam> = [{
   value: huks.HuksKeyAlg.HUKS_ALG_AES,
 }];
 let huksOptions: huks.HuksOptions = {
-  properties: keyProperties, // 非空填充
-  inData: new Uint8Array(new Array()) // 非空填充
+  properties: keyProperties, // 非空填充。
+  inData: new Uint8Array(new Array()) // 非空填充。
 }
 try {
   huks.isKeyItemExist(keyAlias, huksOptions, (error, data) => {

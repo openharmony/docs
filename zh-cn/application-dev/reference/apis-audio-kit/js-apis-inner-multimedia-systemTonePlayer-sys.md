@@ -437,3 +437,168 @@ try {
   console.error(`Failed to get haptics feature. ${err}`);
 }
 ```
+
+### on('playFinished')<sup>18+</sup>
+
+on(type: 'playFinished', streamId: number, callback: Callback\<number>): void
+
+铃音播放完成监听，监听对象为传入的streamId对应音频流。当streamId传入0时，监听本播放器对应的所有音频流。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                                                         |
+| -------- | ----------------------- | ---- | --------------------------------------------------------------- |
+| type     | string                  | 是   | 支持事件：'playFinished'。音频流播放完成会触发此回调，需要传入监听的音频流的streamId。 |
+| streamId | number                  | 是   | 监听对象为指定streamId对应的音频流，streamId通过[start](#start)获取。当streamId传入0时，可监听当前播放器对应的所有音频流。 |
+| callback | Callback\<number>  | 是   | 'playFinished'的回调方法。返回播放完成的音频流的streamId。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[铃声错误码说明文档](./errorcode-ringtone.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202      | Not system App.  |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 20700002 | Parameter check error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// 监听所有音频流的结束事件。
+systemTonePlayer.on('playFinished', 0, (streamId: number) => {
+  console.info(`Receive the callback of playFinished, streamId: ${streamId}.`);
+});
+
+// 监听指定音频流的结束事件。
+systemTonePlayer.start().then((value: number) => {
+  systemTonePlayer.on('playFinished', value, (streamId: number) => {
+    console.info(`Receive the callback of playFinished, streamId: ${streamId}.`);
+  });
+}).catch((err: BusinessError) => {
+  console.error(`Failed to start system tone player. ${err}`);
+});
+```
+
+### off('playFinished')<sup>18+</sup>
+
+off(type: 'playFinished', callback?: Callback\<number>): void
+
+取消铃音播放完成监听。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                              |
+| ----- | ----- | ---- | ------------------------------------------------ |
+| type   | string | 是   | 要取消监听事件的类型。支持事件为：'playFinished'。 |
+| callback | Callback\<number>    | 否   | 回调函数，返回结束事件的音频流的streamId。不填入此参数时，会取消该事件的所有监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[铃声错误码说明文档](./errorcode-ringtone.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202      | Not system App.  |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 20700002 | Parameter check error. |
+
+**示例：**
+
+```ts
+// 取消该事件的所有监听。
+systemTonePlayer.off('playFinished');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let playFinishedCallback = (streamId: number) => {
+  console.info(`Receive the callback of playFinished, streamId: ${streamId}.`);
+};
+
+systemTonePlayer.on('playFinished', 0, playFinishedCallback);
+
+systemTonePlayer.off('playFinished', playFinishedCallback);
+```
+
+### on('error')<sup>18+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+铃音播放播放过程中的错误事件监听。
+
+**系统能力**：SystemCapability.Multimedia.SystemSound.Core
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                 |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | 是   | 监听的事件类型。支持事件为：error事件。 |
+| callback | ErrorCallback | 是   | 回调函数，返回错误码和错误信息。错误码请参考AVPlayer的[on('error')](../apis-media-kit/js-apis-media.md#onerror9)。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[铃声错误码说明文档](./errorcode-ringtone.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202      | Not system App.  |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 20700002 | Parameter check error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+systemTonePlayer.on('error', (err: BusinessError) => {
+  console.log("on error, err:" + JSON.stringify(err));
+});
+```
+
+### off('error')<sup>18+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void
+
+取消铃音播放播放过程中的错误事件监听。
+
+**系统能力**：SystemCapability.Multimedia.SystemSound.Core
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                 |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | 是   | 要取消监听事件的类型。支持的事件为：error事件。 |
+| callback | ErrorCallback | 否   | 回调函数，返回错误码和错误信息。不填入此参数时，会取消该事件的所有监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[铃声错误码说明文档](./errorcode-ringtone.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202      | Not system App.  |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 20700002 | Parameter check error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// 取消该事件的所有监听。
+systemTonePlayer.off('error');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let callback = (err: BusinessError) => {
+  console.log("on error, err:" + JSON.stringify(err));
+};
+
+systemTonePlayer.on('error', callback);
+
+systemTonePlayer.off('error', callback);
+```

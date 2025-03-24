@@ -6,7 +6,7 @@
 >
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> FA模型配置在[config.json文件中进行配置](../../quick-start/module-structure.md)，Stage模型配置参考[shortcuts对象内部结构](../../quick-start/module-configuration-file.md#shortcuts标签)。
+> FA模型配置在[config.json文件中进行配置](../../quick-start/module-structure.md#shortcuts对象的内部结构)，Stage模型配置参考[shortcuts对象内部结构](../../quick-start/module-configuration-file.md#shortcuts标签)。
 >
 > 本模块为系统接口。
 
@@ -27,7 +27,7 @@
 
 **系统能力:**  SystemCapability.BundleManager.BundleFramework.Launcher
 
- **系统接口：**  此接口为系统接口。
+**系统接口：**  此接口为系统接口。
 
 | 名称                    | 类型                                       | 只读 | 可选 | 说明                         |
 | ----------------------- | ------------------------------------------ | ---- | ---- | ---------------------------- |
@@ -41,13 +41,13 @@
 | labelId    | number                                     | 是   | 是  | 快捷方式的标签ID。           |
 | wants                   | Array\<[ShortcutWant](#shortcutwant)> | 是   | 是  | 快捷方式所需要的信息。        |
 | appIndex<sup>12+</sup> | number | 否 | 否 | 应用程序分身的索引。 |
-| sourceType<sup>12+</sup> | number | 否 | 否 | 快捷方式来源类型， 0：自定义快捷方式； 1：静态快捷方式。 |
+| sourceType<sup>12+</sup> | number | 否 | 否 | 快捷方式来源类型，0：自定义快捷方式；1：静态快捷方式。 |
 
 ## ParameterItem<sup>12+</sup>
 
 描述快捷方式配置信息中的自定义数据。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Launcher。
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Launcher
 
 | 名称          | 类型    | 只读 | 可选 | 说明                   |
 | ------------- | ------ | ---- | ---------------------- | ---------------------- |

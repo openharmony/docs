@@ -15,7 +15,7 @@ The following figure shows the relationship.
 ![hdc](figures/hdc_image_005.PNG)
 > **NOTE**
 >
-> When **client** is started, it checks whether **server** is running by default. If not, a new hdc program is started as the** server** and runs in the background.
+> When **client** is started, it checks whether **server** is running by default. If not, a new hdc program is started as the **server** and runs in the background.
 >
 > When **server** is running, it listens for port 8710 of the PC by default. You can set the system environment variable **OHOS_HDC_SERVER_PORT** to listen for a port.
 
@@ -114,7 +114,7 @@ Before using hdc, enable the USB debugging function on the device and connect th
 | -h [verbose] | Displays the hdc help information. The optional parameter **verbose** can be used to display detailed help information.|
 | help | Displays the hdc help information.|
 
-Display hdc help information.
+Display the hdc help information.
 
    ```shell
    hdc -h [verbose]
@@ -148,7 +148,7 @@ hdc -h verbose
 
 Run the **list targets** command to display all connected target devices.
 You can add the **-v** parameter to display detailed device information.
-
+Run the following commands:
 
 ```shell
 hdc list targets [-v]
@@ -255,7 +255,7 @@ Run the following commands:
 
    If the corresponding device ID is returned, the USB connection is successful.
 
-3. When the device is found, run the related commands to interact with the device. If you want to perform USB command operations without the device ID, ensure that the device is not in TCP connection mode (the device information displayed by running the **hdc list targets **command does not contain **IP:port**) and directly connect to the device. For example:
+3. When the device is found, run the related commands to interact with the device. If you want to perform USB command operations without the device ID, ensure that the device is not in TCP connection mode (the device information displayed by running the **hdc list targets** command does not contain **IP:port**) and directly connect to the device. For example:
 
    ```shell
    hdc shell
@@ -345,7 +345,7 @@ The hdc client runs on PC1, and the hdc server runs on PC2, which is connected t
 
 - Procedure
 
-   1. Configuring the server
+   1. Configure the server
 
    Connect the server to the device using a USB cable and run the following commands:
 
@@ -357,7 +357,7 @@ The hdc client runs on PC1, and the hdc server runs on PC2, which is connected t
                      // After startup, the server prints logs.
    ```
 
-   2. Connecting to the client
+   2. Connect to the client
 
    Ensure that the client can connect to the server IP address, and then run the following command:
 
@@ -470,26 +470,35 @@ The command format is as follows:
    **Parameters**
 | Parameter| Description|
 | -------- | -------- |
-| [-b _bundlename_] | Name of the application to debug.<br>If this parameter is specified, commands are executed in non-interactive mode in the application data directory of the debuggable application.<br>Otherwise, commands are executed in the system root directory by default.|
-| [command] | A single command to execute on the device. The command varies depending on the system type or version. You can run the **hdc shell ls /system/bin** command to obtain the supported command list. Currently, many commands are provided by [toybox](../tools/toybox.md). You can run the **hdc shell toybox --help** command to obtain the help information.|
+| [-b _bundlename_] | The bundle name of a debug application. The command is executed in non-interactive mode in the data directory of the debug application.<br>Currently, this parameter can be used only in non-interactive mode, and the **command** parameter must be specified to enter an interactive shell session.<br>Otherwise, commands are executed in the system root directory by default.|
+| [command] | A single command to execute on the device. The command varies depending on the system type or version. You can run the **hdc shell ls /system/bin** command to obtain the supported command list. Currently, many commands are provided by [toybox](../tools/toybox.md). You can run the **hdc shell toybox --help** command to obtain the help information.<br>If this parameter is not specified, hdc starts an interactive shell session, in which you can enter commands such as **ls**, **cd**, and **pwd** at the command prompt.|
 
    **Return value**
 | Return Value| Description|
 | -------- | -------- |
 | Command execution result| Execution result of the command. For details, see the corresponding command output.|
 | /bin/sh: XXX : inaccessible or not found | The specified command is not supported.|
-| [Fail]Error information| Failed to execute the command.|
+| [Fail]Error information| The execution fails. For details, see [hdc Error Codes](#hdc-error-codes).|
 
    **Usage**
 
    ```shell
+   # Enter the interactive mode to run a commands
+   hdc shell
+
+   # Run the command in non-interactive mode.
    hdc shell ps -ef
-   hdc shell help -a # List all available commands.
-   hdc shell -b com.example.myapplication ls # Specify an application data directory to execute the shell command. The touch, rm, Is, stat, cat, and mkdir commands are supported.
+
+   # Obtain the help information.
+   hdc shell help -a
+
+   # Specify the bundle name of an application to run the command in non-interactive mode in its data directory. The **touch**, **rm**, **ls**, **stat**, **cat** and **mkdir** commands are supported.
+   hdc shell -b com.example.myapplication ls data/storage/el2/base/
    ```
 
    > **NOTE**
-   > The **[-b _bundlename_]** parameter can only be used to specify the debug application. For details about how to check whether an application is a debug application, see [E003001 The Specified Bundle Name Is Invalid In the Command](#e003001-the-specified-bundle-name-is-invalid-in-the-command).
+   >
+   > To use the **\[-b _bundlename_]** parameter, ensure that the installed application to be specified is an application built in debug mode. For details about how to build an application in debug mode, see [Building a HAR in Debug Mode](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110).
 
 ## Managing Applications
 
@@ -574,7 +583,7 @@ The command format is as follows:
    | -sync | Used to transfer only the files whose **mtime** is updated.|
    | -z | Used to compress and transmit files in LZ4 format. This parameter is unavailable.|
    | -m | Used to synchronize the DAC permission, UID, GID, and MAC permission during file transfer.|
-   |-b |Used to transfer files in the application data directory of the specified debug application process.|
+   | -b | Used to transfer files in the application data directory of the specified debug application process.|
    | _bundlename_ | Bundle name of the debug application process.|
 
    **Return value**
@@ -590,7 +599,9 @@ The command format is as follows:
 
    > **NOTE**
    >
-   > The **-b** parameter is specified in the **hdc file send -b com.example.myapplication a.txt data/storage/el2/base/b.txt** command, which transfers the **a.txt** file in the local current directory to the application data relative path **data/storage/el2/base/** of the debug application whose name is **com.example.myapplication** and renames the file as **b.txt**.
+   > In the **hdc file send -b com.example.myapplication a.txt data/storage/el2/base/b.txt** command, the **-b** parameter is specified to transfer the **a.txt** file in the current local directory to the relative path **data/storage/el2/base/** of the **com.example.myapplication** application data directory and rename the file to **b.txt**.
+   >
+   > To use the **\[-b _bundlename_]** parameter, ensure that the installed application to be specified is an application built in debug mode. For details about how to build an application in debug mode, see [Building a HAR in Debug Mode](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110).
 
 2. Send a file from a remote device to the local device.
 
@@ -607,7 +618,7 @@ The command format is as follows:
    | -sync | Used to transfer only the files whose **mtime** is updated.|
    | -z | Used to compress and transmit files in LZ4 format. This parameter is unavailable.|
    | -m | Used to synchronize the DAC permission, UID, GID, and MAC permission during file transfer.|
-   |-b|Used to transfer files in the application data directory of the specified debug application process.|
+   | -b | Used to transfer files in the application data directory of the specified debug application process.|
    | _bundlename_ | Bundle name of the debug application process.|
 
    **Return value**
@@ -618,8 +629,14 @@ The command format is as follows:
 
    ```shell
    hdc file recv  /data/local/tmp/a.txt   ./a.txt
-   hdc file recv -b com.example.myapplication data/storage/el2/base/a.txt ./a.txt
+   hdc file recv -b com.example.myapplication data/storage/el2/base/b.txt   a.txt
    ```
+
+   > **NOTE**
+   >
+   > In the **hdc file recv -b com.example.myapplication data/storage/el2/base/b.txt a.txt** command, the **-b** parameter is specified to transfer the **b.txt** file in the relative path **data/storage/el2/base/** of the **com.example.myapplication** application data directory to the current local directory and rename the file to **a.txt**.
+   >
+   > To use the **\[-b _bundlename_]** parameter, ensure that the installed application to be specified is an application built in debug mode. For details about how to build an application in debug mode, see [Building a HAR in Debug Mode](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110).
 
 ## Port Forwarding
 
@@ -826,7 +843,7 @@ Port forwarding type supported by the device: TCP, DEV, localabstract, localfile
 
 | Command| Description|
 | -------- | -------- |
-| hilog [-h] | Display the log information of the device. You can run the **hdc hilog -h** command to obtain the supported parameters. |
+| hilog [-h] | Displays the log information of the device. You can run the **hdc hilog -h** command to obtain the supported parameters. |
 | jpid | Displays the PIDs of all applications that have enabled JDWP on the device.|
 | track-jpid [-a\|-p]  | Displays the PID and name of the application for which JDWP is enabled on the device in real time. If no parameter is specified, only the processes of the **debug** application are displayed. If the **-a** parameter is specified, the processes of the **debug** and **release** applications are displayed. If the **-p** parameter is specified, the **debug** and **release** labels are not displayed.|
 | target boot [-bootloader\|-recovery] | Restarts the target device. You can use the **-bootloader** option to enter the fastboot mode and the **-recovery** option to enter the recovery mode.|
@@ -1078,7 +1095,7 @@ Specify the hdc log level. The default value is **LOG_INFO**.
    ```
 
    > **NOTE**
-   > The **-m** parameter is used to start the server process in the foreground. You can directly view the foreground log output and press **Ctrl+C **to exit the process.
+   > The **-m** parameter is used to start the server process in the foreground. You can directly view the foreground log output and press **Ctrl+C** to exit the process.
 
    Start the server process in the background with the log level set to **LOG_LIBUSB**.
 
@@ -1131,7 +1148,7 @@ The following shows how to set the **OHOS_HDC_LOG_LEVEL** environment variable t
 |---|---|
 | Windows  | Choose **This PC >Properties >Advanced system settings >Advanced >Environment Variables**, add the environment variable **OHOS_HDC_LOG_LEVEL**, and set its value to **5**. After the configuration is complete, click **OK**. Restart the CLI or other software that uses OpenHarmony SDK for the new environment variable to take effect. |
 | Linux  | Add **export OHOS_HDC_LOG_LEVEL=5** to the end of the **~/.bash_profile** file, save the file, and run the **source ~/.bash_profile** command for the current environment variable to take effect.|
-| macOS | Add **export OHOS_HDC_LOG_LEVEL=5** to the end of the **~/.zshrc** file, save the file, and run the **source ~/.zshrc** command for the current environment variable to take effect. After the environment variable is configured, restart the CLI or other software that uses OpenHarmony SDK for the new environment variable to take effect.|
+| macOS | Add **export OHOS_HDC_LOG_LEVEL=5** to the end of the **~/.zshrc** file, save the file, and run the **source ~/.zshrc** command for the current environment variable to take effect. Restart the CLI or other software that uses OpenHarmony SDK for the new environment variable to take effect.|
 
 ### Device Logs
 
@@ -1334,7 +1351,7 @@ The **hdc.exe**/hdc binary file cannot be executed using the CLI.
 
 ## hdc Error Codes
 
-### E003001 The Specified Bundle Name Is Invalid In the Command
+### E003001 The Specified Bundle Name Is Invalid
 
 **Error Message**
 
@@ -1342,21 +1359,21 @@ Invalid bundle name: _bundlename_
 
 **Symptom**
 
-The **_bundlename_** in the **hdc shell [-b bundlename] [command]** command is not a debug application, or the bundle directory does not exist.
+The **_bundlename_** specified in the **hdc shell [-b bundlename] [command]** command is not the bundle name of an installed debug application, or the application directory does not exist.
 
 **Possible Causes**
 
-* Scenario 1: The specified bundle is not installed on the device.
+* Scenario 1: The specified application is not installed on the device.
 
-* Scenario 2: The specified bundle is not a debug application.
+* Scenario 2: The specified application is not built in debug mode.
 
-* Scenario 3: The specified bundle is not started.
+* Scenario 3: The specified application is not started.
 
 **Solution**
 
-* Scenario 1: Ensure that the bundle specified in the command has been installed on the device.
+* Scenario 1: Ensure that the application specified in the command has been installed on the device.
 
-   a. **Run the hdc shell "bm dump -a | grep bundlename"** command to check whether the bundle has been installed on the device. The expected command output is **_bundlename_**.
+   a. Run the **hdc shell "bm dump -a | grep bundlename"** command to check whether the application corresponding to the bundle name has been installed on the device. The expected result is **_bundlename_**.
    
    For example, if the bundle name is **com.example.myapplication**, run the following command:
 
@@ -1370,25 +1387,26 @@ The **_bundlename_** in the **hdc shell [-b bundlename] [command]** command is n
    com.example.myapplication
    ```
 
-   b. If the bundle is a debug application but is not installed on the device, run the **hdc install [app_path]** command to install it.
+   b. If the application is a debug application but is not installed on the device, run the **hdc install [app_path]** command to install it.
 
-   c. If the bundle is not a debug application but a release application, the** _bundlename_** cannot be specified.
+   c. If the application is not a debug application but a release application, the** _bundlename_** cannot be specified.
 
-* Scenario 2: Run the **hdc shell "bm dump -n bundlename | grep appProvisionType"** command to check whether the bundle specified in the command is a debug application. The expected command output is **"appProvisionType": "debug"**.
+* Scenario 2: Run the **hdc shell "bm dump -n bundlename | grep debug"** command to check whether the specified application is built in debug mode. The expected result is **"appProvisionType": "debug", "debug": true**.
 
-   For example, to check the bundle name **com.example.myapplication**, run the following command:
-
-   ```shell
-   hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
-   ```
-
-   If the bundle is a debug application, the following information is displayed:
+   For example, run the following command to check the bundle name **com.example.myapplication**:
 
    ```shell
-   "appProvisionType": "debug"
+   hdc shell "bm dump -n com.example.myapplication | grep debug"
    ```
 
-   For details about how to build a debug application, see [Building a HAR in Debug Mode](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110).
+   If the application corresponding to the bundle name is built in debug mode, the following information is displayed:
+
+   ```shell
+   "appProvisionType": "debug",
+   "debug": true,
+   ```
+
+   For details about how to build an application in debug mode, see [Building a HAR in Debug Mode](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110).
 
 * Scenario 3: Ensure that the bundle specified by the command has been started.
 
@@ -1400,7 +1418,7 @@ The **_bundlename_** in the **hdc shell [-b bundlename] [command]** command is n
    hdc shell "mount |grep com.example.myapplication"
    ```
 
-   If the corresponding resource directory has been mounted, multiple lines of mounting information are expected to be returned. (The returned information varies according to the actual mounting status and is not displayed here.)
+   If the corresponding resource directory has been mounted, mounting information is expected to be returned. (The returned information varies according to the actual mounting status and is not displayed here.)
 
    If the corresponding resource directory is not mounted, no information is returned.
 
@@ -1466,7 +1484,7 @@ The system version of the device is too early to support the new command paramet
 
 **Solution**
 
-Upgrade the device system version. The **hdc shell -b** option is supported by API version 16.
+Upgrade the device system to the latest version.
 
 ### E003005 The Parameter Is Missing
 
@@ -1494,15 +1512,15 @@ Invalid bundle name: _bundlename_
 
 **Symptom**
 
-The **_bundlename_** specified in the **hdc file send/recv [-b bundlename] [localpath] [remotepath]** command is not a debug application, or the application directory does not exist.
+The specified **_bundlename_** in the **hdc file send/recv [-b bundlename] [localpath] [remotepath]** command is not the bundle name of an installed debug application, or the application directory does not exist.
 
 **Possible Causes**
 
-Same as [E003001 The Specified Bundle Name Is Invalid In the Command](#e003001-the-specified-bundle-name-is-invalid-in-the-command).
+Same as [E003001 The Specified Bundle Name Is Invalid](#e003001-the-specified-bundle-name-is-invalid).
 
 **Solution**
 
-Same as [E003001 The Specified Bundle Name Is Invalid In the Command](#e003001-the-specified-bundle-name-is-invalid-in-the-command).
+Same as [E003001 The Specified Bundle Name Is Invalid](#e003001-the-specified-bundle-name-is-invalid).
 
 ### E005102 The Remote Path Is Invalid
 
@@ -1564,6 +1582,6 @@ The **hdc file send/recv** command contains the **-b** option, but the hdc in SD
 
 **Solution**
 
-* Scenario 1: Upgrade the system version. The **hdc file send/recv -b** options are supported by API version 16.
+* Scenario 1: Update the system to the latest version.
 
-* Scenario 2: Upgrade the SDK version. The **hdc file send/recv -b** options are supported by API version 16.
+* Scenario 2: Upgrade the SDK to the latest version.

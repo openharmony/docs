@@ -197,6 +197,7 @@ Custom component updates follow the update mechanisms of [state management](../q
 To update nodes within a BuilderNode:
 
 - Use the **update** API to update individual nodes within the BuilderNode.
+
 - Use the [updateConfiguration](../reference/apis-arkui/js-apis-arkui-builderNode.md#updateconfiguration12) API to trigger a full update of all nodes within the BuilderNode.
 
  
@@ -518,7 +519,7 @@ struct Index {
 
 ## Updating Nodes Based on System Environment Changes
 
-Use the [updateConfiguration](../reference/apis-arkui/js-apis-arkui-builderNode.md#reuse12) API to listen for [system environment changes](../reference/apis-ability-kit/js-apis-app-ability-configuration.md). This will trigger a full update of all nodes within the BuilderNode.
+Use the [updateConfiguration](../reference/apis-arkui/js-apis-arkui-builderNode.md#updateconfiguration12) API to listen for [system environment changes](../reference/apis-ability-kit/js-apis-app-ability-configuration.md). This will trigger a full update of all nodes within the BuilderNode.
 
 > **NOTE**
 >
@@ -654,6 +655,215 @@ struct Index {
       }
       .width('100%')
       .height('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+## Cross-Page Reuse Considerations
+
+With use of [routing](../reference/apis-arkui/js-apis-router.md) APIs such as [router.replaceUrl](../reference/apis-arkui/js-apis-router.md#routerreplaceurl9), [router.back](../reference/apis-arkui/js-apis-router.md#routerback), [router.clear](../reference/apis-arkui/js-apis-router.md#routerclear), and [router.replaceNamedRoute](../reference/apis-arkui/js-apis-router.md#routerreplacenamedroute10) to navigate between pages, issues may arise when you reuse a cached BuilderNode from a page that is about to be destroyed. Specifically, the reused BuilderNode might not update its data correctly, or newly created nodes might not display as expected. For example, when you use [router.replaceNamedRoute](../reference/apis-arkui/js-apis-router.md#routerreplacenamedroute10), consider the following scenario: When the **router replace** button is clicked, the page switches to PageTwo, and the flag **isShowText** is set to **false**.
+
+```ts
+// ets/pages/Index.ets
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
+import "ets/pages/PageTwo"
+
+@Builder
+function buildText() {
+  // Use syntax nodes to generate a BuilderProxyNode within @Builder.
+  if (true) {
+    MyComponent()
+  }
+}
+
+@Component
+struct MyComponent {
+  @StorageLink("isShowText") isShowText: boolean = true;
+
+  build() {
+    if (this.isShowText) {
+      Column() {
+        Text("BuilderNode Reuse")
+          .fontSize(36)
+          .fontWeight(FontWeight.Bold)
+          .padding(16)
+      }
+    }
+  }
+}
+
+class TextNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+  private textNode: BuilderNode<[]> | null = null;
+
+  makeNode(context: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(context);
+
+    if (AppStorage.has("textNode")) {
+      // Reuse the BuilderNode from AppStorage.
+      this.textNode = AppStorage.get<BuilderNode<[]>>("textNode") as BuilderNode<[]>;
+      const parent = this.textNode.getFrameNode()?.getParent();
+      if (parent) {
+        parent.removeChild(this.textNode.getFrameNode());
+      }
+    } else {
+      this.textNode = new BuilderNode(context);
+      this.textNode.build(wrapBuilder<[]>(buildText));
+      // Save the created BuilderNode to AppStorage.
+      AppStorage.setOrCreate<BuilderNode<[]>>("textNode", this.textNode);
+    }
+    this.rootNode.appendChild(this.textNode.getFrameNode());
+
+    return this.rootNode;
+  }
+}
+
+@Entry({ routeName: "myIndex" })
+@Component
+struct Index {
+  aboutToAppear(): void {
+    AppStorage.setOrCreate<boolean>("isShowText", true);
+  }
+
+  build() {
+    Row() {
+      Column() {
+        NodeContainer(new TextNodeController())
+          .width('100%')
+          .backgroundColor('#FFF0F0F0')
+        Button('Router pageTwo')
+          .onClick(() => {
+            // Change the state variable in AppStorage to trigger re-creation of the Text node.
+            AppStorage.setOrCreate<boolean>("isShowText", false);
+
+            this.getUIContext().getRouter().replaceNamedRoute({ name: "pageTwo" });
+          })
+          .margin({ top: 16 })
+      }
+      .width('100%')
+      .height('100%')
+      .padding(16)
+    }
+    .height('100%')
+  }
+}
+```
+
+The implementation of **PageTwo** is as follows:
+
+```ts
+// ets/pages/PageTwo.ets
+// This page contains a button to navigate back to the home page, where the original text disappears.
+import "ets/pages/Index"
+
+@Entry({ routeName: "pageTwo" })
+@Component
+struct PageTwo {
+  build() {
+    Column() {
+      Button('Router replace to index')
+        .onClick(() => {
+          this.getUIContext().getRouter().replaceNamedRoute({ name: "myIndex" });
+        })
+    }
+    .height('100%')
+    .width('100%')
+    .alignItems(HorizontalAlign.Center)
+    .padding(16)
+  }
+}
+```
+
+![BuilderNode Reuse Example](./figures/builder_node_reuse.gif)
+
+In versions earlier than API version 16, you need to manually remove the BuilderNode from the cache, AppStorage in this example, when the page is destroyed.
+
+Since API version 16, the BuilderNode automatically refreshes its content when reused in a new page. This means you no longer need to remove the BuilderNode from the cache when the page is destroyed.
+
+```ts
+// ets/pages/Index.ets
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
+import "ets/pages/PageTwo"
+
+@Builder
+function buildText() {
+  // Use syntax nodes to generate a BuilderProxyNode within @Builder.
+  if (true) {
+    MyComponent()
+  }
+}
+
+@Component
+struct MyComponent {
+  @StorageLink("isShowText") isShowText: boolean = true;
+
+  build() {
+    if (this.isShowText) {
+      Column() {
+        Text("BuilderNode Reuse")
+          .fontSize(36)
+          .fontWeight(FontWeight.Bold)
+          .padding(16)
+      }
+    }
+  }
+}
+
+class TextNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+  private textNode: BuilderNode<[]> | null = null;
+
+  makeNode(context: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(context);
+
+    if (AppStorage.has("textNode")) {
+      // Reuse the BuilderNode from AppStorage.
+      this.textNode = AppStorage.get<BuilderNode<[]>>("textNode") as BuilderNode<[]>;
+      const parent = this.textNode.getFrameNode()?.getParent();
+      if (parent) {
+        parent.removeChild(this.textNode.getFrameNode());
+      }
+    } else {
+      this.textNode = new BuilderNode(context);
+      this.textNode.build(wrapBuilder<[]>(buildText));
+      // Save the created BuilderNode to AppStorage.
+      AppStorage.setOrCreate<BuilderNode<[]>>("textNode", this.textNode);
+    }
+    this.rootNode.appendChild(this.textNode.getFrameNode());
+
+    return this.rootNode;
+  }
+}
+
+@Entry({ routeName: "myIndex" })
+@Component
+struct Index {
+  aboutToAppear(): void {
+    AppStorage.setOrCreate<boolean>("isShowText", true);
+  }
+
+  build() {
+    Row() {
+      Column() {
+        NodeContainer(new TextNodeController())
+          .width('100%')
+          .backgroundColor('#FFF0F0F0')
+        Button('Router pageTwo')
+          .onClick(() => {
+            // Change the state variable in AppStorage to trigger re-creation of the Text node.
+            AppStorage.setOrCreate<boolean>("isShowText", false);
+            // Remove the BuilderNode from AppStorage.
+            AppStorage.delete("textNode");
+
+            this.getUIContext().getRouter().replaceNamedRoute({ name: "pageTwo" });
+          })
+          .margin({ top: 16 })
+      }
+      .width('100%')
+      .height('100%')
+      .padding(16)
     }
     .height('100%')
   }

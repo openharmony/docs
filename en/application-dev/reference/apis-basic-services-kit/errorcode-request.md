@@ -62,7 +62,7 @@ Verify the task settings.
 
 **Error Message**
 
-other error.
+Other error.
 
 **Description**
 
@@ -81,7 +81,7 @@ Verify the task settings.
 
 **Error Message**
 
-application task queue full error.
+The application task queue is full.
 
 **Description**
 
@@ -103,7 +103,7 @@ The application fails to create a background task (resources are preempted by fo
 
 **Error Message**
 
-task mode error.
+Task mode error.
 
 **Description**
 
@@ -123,7 +123,7 @@ The application attempts to create a foreground task when it is not running in t
 
 **Error Message**
 
-task not found error.
+Task not found.
 
 **Description**
 
@@ -145,7 +145,7 @@ The task to remove or query does not exist.
 
 **Error Message**
 
-task state error.
+Task state error.
 
 **Description**
 
@@ -165,6 +165,26 @@ This error code is reported when the operation performed is not supported.
 
 **Solution**
 
-1. Check the task status.
+1. Query the task status.
 
 2. Perform the operation supported by the current task status.
+
+## 21900008 Task Group Not Found or Deleted
+
+**Error Message**
+
+Group deleted or not found.
+
+**Description**
+
+This error code is reported when a task group does not exist or has been deleted.
+
+**Possible Causes**
+
+1. Delete a task group that has been deleted or does not exist.
+
+2. Add a task to a group that has been deleted or does not exist.
+
+**Solution**
+
+1. Check whether the target group has been deleted.

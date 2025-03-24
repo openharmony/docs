@@ -21,7 +21,7 @@ You can create text in either of the following ways:
 ![en-us_image_0000001563060685](figures/en-us_image_0000001563060685.png)
 
 
-- Referencing Resource objects
+- Referencing **Resource** objects
 
   You can use **$r** to create a **Resource** object to reference resources in **/resources/base/element/string.json**.
 
@@ -42,7 +42,7 @@ You can create text in either of the following ways:
 
 The [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) component can only act as a child of the [Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md) and [RichEditor](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md) components. You can add one or more **Span** child components to a **Text** component to display a piece of information, such as the product description and statement of commitment.
 
-- Creating a Span Component
+- Create a **Span** component.
 
   The **Span** component works only when included in a **Text** component. It does not display any content when used alone. If both the **Span** and **Text** components have text configured, the text of the **Span** overwrites that of the **Text** component.
 
@@ -91,7 +91,7 @@ The [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) compone
 
   ![en-us_image_0000001562940525](figures/en-us_image_0000001562940525.png)
 
-- Add events.
+- Add an event.
 
   The **Span** component does not have size information. Therefore, only an [onClick](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#onclick) event can be added for this component.
 
@@ -100,8 +100,8 @@ The [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) compone
   Text() {
     Span('I am Upper-span').fontSize(12)
       .textCase(TextCase.UpperCase)
-      .onClick(()=>{
-        console.info('I am Span - onClick')
+      .onClick(() => {
+        console.info('I am Span - onClick');
       })
   }
   ```
@@ -134,7 +134,7 @@ The [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) compone
 - Use the [textOverflow](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#textoverflow) attribute to set the display mode for when the text is too long. This attribute must be used together with [maxLines](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#maxlines). By default, the text is automatically wrapped.
 
   ```ts
-  Text('This is the setting of textOverflow to Clip text content This is the setting of textOverflow to None text content. This is the setting of textOverflow to Clip text content This is the setting of textOverflow to None text content.')
+  Text('This is the setting of textOverflow to Clip text content. This is the setting of textOverflow to None text content. This is the setting of textOverflow to Clip text content This is the setting of textOverflow to None text content.')
     .width(250)
     .textOverflow({ overflow: TextOverflow.None })
     .maxLines(1)
@@ -274,9 +274,9 @@ The [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) compone
     .border({ width: 1 })
     .padding(10)
     .margin(5)
-  Text('My maximum font size is 30, minimum font size is 15, width is 250, and line height is 50')
+  Text('My maximum font size is 30, minimum font size is 15, width is 250, and line height is 80')
     .width(250)
-    .height(50)
+    .height(80)
     .maxFontSize(30)
     .minFontSize(15)
     .border({ width: 1 })
@@ -338,12 +338,12 @@ You can bind the **Text** component to the [onClick](../reference/apis-arkui/ark
 
 ```ts
 Text('Click Me')
-  .onClick(()=>{
+  .onClick(() => {
       console.info('I am the response to the click event');
    })
 ```
 
-## Example Scenario
+## Example
 
 This example demonstrates how to implement a hot search list using the **maxLines**, **textOverflow**, **textAlign**, and **constraintSize** attributes.
 
@@ -370,7 +370,7 @@ struct TextExample {
           .fontWeight(600)
           .backgroundColor(0x770100)
           .borderRadius(5)
-          .width(15)
+          .width(40)
           .height(14)
       }.width('100%').margin(5)
 
@@ -380,7 +380,7 @@ struct TextExample {
           .fontSize(12)
           .fontColor(Color.Blue)
           .fontWeight(300)
-          .constraintSize({ maxWidth: 200 })
+          .constraintSize({ maxWidth: 180 })
           .maxLines(1)
           .textOverflow({ overflow: TextOverflow.Ellipsis })
         Text("Hot")
@@ -391,7 +391,7 @@ struct TextExample {
           .fontWeight(600)
           .backgroundColor(0xCC5500)
           .borderRadius(5)
-          .width(15)
+          .width(20)
           .height(14)
       }.width('100%').margin(5)
 
@@ -412,7 +412,7 @@ struct TextExample {
           .fontWeight(600)
           .backgroundColor(0xCC5500)
           .borderRadius(5)
-          .width(15)
+          .width(20)
           .height(14)
       }.width('100%').margin(5)
 

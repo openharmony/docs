@@ -5,7 +5,7 @@
 
 WLAN模块相关的数据类型。
 
-WLAN模块中使用的数据类型，包括feature对象信息、STA信息、扫描信息、网络设备信息等。
+WLAN模块中使用的数据类型，包括Feature对象信息、STA信息、扫描信息、网络设备信息等。
 
 模块包路径：ohos.hdi.wlan.v1_0
 
@@ -21,7 +21,7 @@ WLAN模块中使用的数据类型，包括feature对象信息、STA信息、扫
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[HdfFeatureInfo](_hdf_feature_info_v10.md) | feature对象信息。  | 
+| struct&nbsp;&nbsp;[HdfFeatureInfo](_hdf_feature_info_v10.md) | Feature对象信息。  | 
 | struct&nbsp;&nbsp;[HdfStaInfo](_hdf_sta_info_v10.md) | STA的信息。  | 
 | struct&nbsp;&nbsp;[HdfWifiDriverScanSsid](_hdf_wifi_driver_scan_ssid_v10.md) | WiFi扫描参数SSID信息。  | 
 | struct&nbsp;&nbsp;[HdfWifiScan](_hdf_wifi_scan_v10.md) | WiFi扫描参数。  | 

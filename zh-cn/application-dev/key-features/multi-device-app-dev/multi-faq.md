@@ -2,8 +2,8 @@
 
 
 ## 如何查询设备类型
-
-设备类型分为default（默认设备）、tablet、tv、wearable、2in1等，有多种查询设备类型的方式。
+<!--RP1-->
+设备类型分为default（默认设备）、tablet、tv、wearable、PC/2in1等，有多种查询设备类型的方式。<!--RP1End-->
 
 1. 通过命令行的方式查询设备类型。
    通过命令行查询指定系统参数（const.product.devicetype）进而确定设备类型<!--Del-->，详见[系统参数介绍](../../../device-dev/subsystems/subsys-boot-init-sysparam.md)<!--DelEnd-->。

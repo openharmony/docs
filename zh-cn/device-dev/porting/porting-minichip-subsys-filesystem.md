@@ -32,14 +32,14 @@ OpenHarmony文件系统需要适配如下HAL层接口：
 ├── BUILD.gn
 └── src
      └── file_impl_hal
-            └── file.c             #file接口
+            └── file.c             #file接口。
 ```
 
   
 ```
 //utils/native/lite/hals
 └── file
-└── hal_file.h                   #hal层接口头文件
+└── hal_file.h                   #hal层接口头文件。
 ```
 
 其中BUILD.gn的内容如下：
@@ -56,7 +56,7 @@ static_library("native_file") {
     "//utils/native/lite/include",
     "//utils/native/lite/hals/file",
   ]
-  deps = ["$ohos_vendor_adapter_dir/hals/utils/file:hal_file_static"]  #依赖厂商的适配
+  deps = ["$ohos_vendor_adapter_dir/hals/utils/file:hal_file_static"]  #依赖厂商的适配。
 }
  
 lite_component("file") {
@@ -112,8 +112,8 @@ lite_component("file") {
      
    ```
    import("//build/lite/config/component/lite_component.gni")
-   static_library("hal_file_static") {     #目标名
-     sources = [ "src/hal_file.c" ]        #厂商适配的源文件
+   static_library("hal_file_static") {     #目标名。
+     sources = [ "src/hal_file.c" ]        #厂商适配的源文件。
      include_dirs = [
        "//utils/native/lite/hals/file",
      ]

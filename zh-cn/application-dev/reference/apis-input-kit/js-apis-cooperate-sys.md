@@ -129,7 +129,7 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number, callback: AsyncCal
 | -------- | ---------------------------------------- |
 | 401      | Parameter error.    |
 | 4400001  | Incorrect descriptor for the target device.                |
-| 4400002  | Screen hop failed.    |
+| 4400002  | Screen hop failed.   |
 
 **示例**：
 
@@ -183,7 +183,7 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number): Promise\<void>
 | -------- | ---------------------------------------- |
 | 401      | Parameter error.    |
 | 4400001  | Incorrect descriptor for the target device.          |
-| 4400002  | Screen hop failed.               |
+| 4400002  | Screen hop failed.              |
 
 **示例**：
 

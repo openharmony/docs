@@ -9,7 +9,7 @@
 1. 导入NDK接口，接口中提供了相机相关的属性和方法，导入方法如下。
      
    ```c++
-    // 导入NDK接口头文件
+    // 导入NDK接口头文件。
     #include "hilog/log.h"
     #include "ohcamera/camera.h"
     #include "ohcamera/camera_input.h"
@@ -62,7 +62,7 @@
         OH_LOG_ERROR(LOG_APP, "videorofilesSize == null");
       }
       videoProfile = cameraOutputCapability->videoProfiles[0];
-      // 创建VideoOutput对象
+      // 创建VideoOutput对象。
       ret = OH_CameraManager_CreateVideoOutput(cameraManager, videoProfile, videoSurfaceId, &videoOutput);
       if (videoProfile == nullptr || videoOutput == nullptr || ret != CAMERA_OK) {
           OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreateVideoOutput failed.");
@@ -75,7 +75,7 @@
    通过videoOutput的[OH_VideoOutput_Start()](../../reference/apis-camera-kit/_o_h___camera.md#oh_videooutput_start)方法启动录像输出流。
 
    ```c++
-      // 启动录像输出流
+      // 启动录像输出流。
       ret = OH_VideoOutput_Start(videoOutput);
       if (ret != CAMERA_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_VideoOutput_Start failed.");
@@ -87,7 +87,7 @@
    通过videoOutput的[OH_VideoOutput_Stop()](../../reference/apis-camera-kit/_o_h___camera.md#oh_videooutput_stop)方法停止录像输出流。
 
    ```c++
-      // 停止录像输出流
+      // 停止录像输出流。
       ret = OH_VideoOutput_Stop(videoOutput);
       if (ret != CAMERA_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_VideoOutput_Stop failed.");

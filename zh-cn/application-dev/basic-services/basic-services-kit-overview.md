@@ -40,7 +40,7 @@ Basic Services Kit为开发者提供了多种基础能力，满足开发者不�
   - [系统电源管理](../reference/apis-basic-services-kit/js-apis-power.md)：提供系统电源管理相关的能力，比如查询屏幕状态能力等。
   - [RunningLock锁操作](../reference/apis-basic-services-kit/js-apis-runninglock.md)：提供RunningLock锁相关操作的能力，包括创建、查询、持锁、释放锁等操作。
   - [热管理](../reference/apis-basic-services-kit/js-apis-thermal.md)：提供热管理相关的能力，比如热档位查询等。
-  - [USB管理](../reference/apis-basic-services-kit/js-apis-usbManager.md)：提供USB设备管理相关的能力，比如查询USB设备列表、批量数据传输、控制命令传输、权限控制等，相关开发指南请参考[USB服务开发概述](usb/usb-overview.md)。
+  - [USB管理](../reference/apis-basic-services-kit/js-apis-usbManager.md)：提供USB设备管理相关的能力，比如查询USB设备列表、批量数据传输、控制命令传输、权限控制等，相关开发指南请参考[USB服务开发概述](usb/usbManager/usbHost-overview.md)。
 
 - 其他：
   - [应用账号管理](../reference/apis-basic-services-kit/js-apis-appAccount.md)：提供应用账号的期管理以及数据管理的能力，相关开发指南请参考[管理应用账号](account/manage-application-account.md)。

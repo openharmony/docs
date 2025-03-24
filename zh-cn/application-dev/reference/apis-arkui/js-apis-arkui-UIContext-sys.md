@@ -137,3 +137,232 @@ struct AnimateToImmediatelyExample {
 }
 ```
 ![animateToImmediately](figures/animateToImmediately.gif)
+
+### freezeUINode<sup>18+</sup>
+
+freezeUINode(id: string, isFrozen: boolean): void
+
+使用id设置组件冻结状态，防止自身脏区标记并进行布局更新。
+
+**原子化服务API:** 从API version 18 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型    | 必填   | 说明      |
+| --- | --- | --- | --- |
+| id | string | 是 | 组件的id。|
+| isFrozen | boolean | 是 | 是否设置冻结，默认值为false。|
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | The caller is not a system application. |
+
+```js
+@Entry
+@Component
+struct Index {
+  @State columnWidth1: string = '100%';
+  @State currentIndex: number = 0;
+  private controller: TabsController = new TabsController();
+
+  build() {
+    Column() {
+      Tabs({ 
+        barPosition: BarPosition.Start, 
+        index: this.currentIndex, 
+        controller: this.controller 
+      }) {
+        TabContent() {
+          Column()
+          .width(this.columnWidth1)
+          .height('100%')
+          .backgroundColor('#00CB87')
+        }
+        .tabBar('green')
+        .id('tab1')
+        .onWillHide(() => {
+          this.getUIContext().freezeUINode('tab1', true);
+        })
+        .onWillShow(() => {
+          this.getUIContext().freezeUINode('tab1', false);
+        })
+
+        TabContent() {
+          Column()
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#007DFF')
+        }
+        .tabBar('blue')
+        .id('tab2')
+        .onWillHide(() => {
+          this.getUIContext().freezeUINode('tab2', true);
+        })
+        .onWillShow(() => {
+          this.getUIContext().freezeUINode('tab1', true);
+          this.columnWidth1 = '50%';
+          setTimeout(() => {
+            this.getUIContext().freezeUINode('tab1', false);
+            this.columnWidth1 = '20%';
+          }, 5000)
+        })
+
+         TabContent() {
+          Column()
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#FFBF00')
+        }
+        .tabBar('yellow')
+        .id('tab3')
+        .onWillHide(() => {
+          this.getUIContext().freezeUINode('tab3', true);
+        })
+        .onWillShow(() => {
+          this.getUIContext().freezeUINode('tab3', false);
+        })
+
+      }
+      .vertical(false)
+      .barMode(BarMode.Fixed)
+      .barWidth(360)
+      .barHeight(56)
+      .animationDuration(0)
+      .onChange((index: number) => {
+        this.currentIndex = index;
+      })
+      .width(360)
+      .height(296)
+      .margin({ top: 52 })
+      .backgroundColor('#F1F3F5')
+    }.width('100%')
+  }
+}
+```
+
+### freezeUINode<sup>18+</sup>
+
+freezeUINode(uniqueId: number, isFrozen: boolean): void
+
+使用uniqueId设置组件冻结状态，防止自身脏区标记并进行布局更新。
+
+**原子化服务API:** 从API version 18 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型    | 必填   | 说明      |
+| --- | --- | --- | --- |
+| uniqueId | number | 是 | 组件的number。|
+| isFrozen | boolean | 是 | 是否设置冻结，默认值为false。|
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | The caller is not a system application. |
+
+```js
+@Entry
+@Component
+struct Index {
+  @State columnWidth1: string = '100%';
+  @State currentIndex: number = 0;
+  private controller: TabsController = new TabsController();
+
+  build() {
+    Column() {
+      Tabs({ 
+        barPosition: BarPosition.Start, 
+        index: this.currentIndex, 
+        controller: this.controller 
+      }) {
+        TabContent() {
+          Column()
+          .width(this.columnWidth1)
+          .height('100%')
+          .backgroundColor('#00CB87')
+        }
+        .tabBar('green')
+        .id('tab1')
+        .onWillHide(() => {
+          const node = this.getUIContext().getFrameNodeById('tab1');
+          const uniqueId = node?.getUniqueId();
+          this.getUIContext().freezeUINode(uniqueId, true);
+        })
+        .onWillShow(() => {
+          const node = this.getUIContext().getFrameNodeById('tab1');
+          const uniqueId = node?.getUniqueId();
+          this.getUIContext().freezeUINode(uniqueId, false)
+        })
+
+        TabContent() {
+          Column()
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#007DFF')
+        }
+        .tabBar('blue')
+        .id('tab2')
+        .onWillHide(() => {
+          const node = this.getUIContext().getFrameNodeById('tab2');
+          const uniqueId = node?.getUniqueId();
+          this.getUIContext().freezeUINode(uniqueId, true);
+        })
+        .onWillShow(() => {
+          const node = this.getUIContext().getFrameNodeById('tab1');
+          const uniqueId = node?.getUniqueId();
+          this.getUIContext().freezeUINode(uniqueId, true);
+
+          this.columnWidth1 = '50%';
+          setTimeout(() => {
+            this.getUIContext().freezeUINode(uniqueId, false);
+            this.columnWidth1 = '20%';
+          }, 5000)
+        })
+
+         TabContent() {
+          Column()
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#FFBF00')
+        }
+        .tabBar('yellow')
+        .id('tab3')
+        .onWillHide(() => {
+          const node = this.getUIContext().getFrameNodeById('tab3');
+          const uniqueId = node?.getUniqueId();
+          this.getUIContext().freezeUINode(uniqueId, true);
+        })
+        .onWillShow(() => {
+          const node = this.getUIContext().getFrameNodeById('tab3');
+          const uniqueId = node?.getUniqueId();
+          this.getUIContext().freezeUINode(uniqueId, false);
+        })
+
+      }
+      .vertical(false)
+      .barMode(BarMode.Fixed)
+      .barWidth(360)
+      .barHeight(56)
+      .animationDuration(0)
+      .onChange((index: number) => {
+        this.currentIndex = index;
+      })
+      .width(360)
+      .height(296)
+      .margin({ top: 52 })
+      .backgroundColor('#F1F3F5')
+    }.width('100%')
+  }
+}
+```

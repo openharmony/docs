@@ -4,8 +4,8 @@ The **bluetooth.wearDetection** module provides APIs for checking whether a Blue
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs provided by this module are system APIs.
+> The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The APIs provided by this module are system APIs.
 
 
 
@@ -227,7 +227,7 @@ Checks whether a device supports wear detection. This API uses an asynchronous c
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
 | deviceId | string | Yes   | Address of the remote device.|
-| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. If the device supports wear detection, **supported** is returned.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. If the device supports wear detection, **supported** is returned. If the operation fails, the corresponding error code will be returned.|
 
 **Error codes**
 
@@ -277,7 +277,7 @@ Checks whether a device supports wear detection. This API uses a promise to retu
 
 | Type                           | Description        |
 | ----------------------------- | ---------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. If the device supports wear detection, **supported** is returned.|
+| Promise&lt;boolean&gt; | Promise used to return the result. If the device supports wear detection, **supported** is returned. If the operation fails, the corresponding error code will be returned.|
 
 **Error codes**
 
@@ -322,7 +322,7 @@ Checks whether wear detection is enabled for a device. This API uses an asynchro
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
 | deviceId | string | Yes   | Address of the remote device.|
-| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. If wear detection is enabled, **enabled** is returned.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. If wear detection is enabled, **enabled** is returned. If the operation fails, the corresponding error code will be returned.|
 
 **Error codes**
 
@@ -372,7 +372,7 @@ Checks whether wear detection is enabled for a device. This API uses a promise t
 
 | Type                           | Description        |
 | ----------------------------- | ---------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. If wear detection is enabled, **enabled** is returned.|
+| Promise&lt;boolean&gt; | Promise used to return the result. If wear detection is enabled, **enabled** is returned. If the operation fails, the corresponding error code will be returned.|
 
 **Error codes**
 

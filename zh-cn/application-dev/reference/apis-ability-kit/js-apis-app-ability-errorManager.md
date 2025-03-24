@@ -78,13 +78,13 @@ try {
 }
 ```
 
-## errorManager.on('globalErrorOccurred')<sup>16+</sup>
+## errorManager.on('globalErrorOccurred')<sup>18+</sup>
 
 on(type: 'globalErrorOccurred', observer: GlobalObserver): void
 
 在进程中的任一线程注册errormanager.on接口，支持捕获其他子线程（如：taskpool）中的异常,应用崩溃时进程不会退出，建议在回调函数执行完后，增加同步退出操作。
 
-**原子化服务API**：从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -133,13 +133,13 @@ try {
 }
 ```
 
-## errorManager.off('globalErrorOccurred')<sup>16+</sup>
+## errorManager.off('globalErrorOccurred')<sup>18+</sup>
 
 off(type: 'globalErrorOccurred', observer?: GlobalObserver): void
 
 注销错误观测器，即取消以前注册的callback监听，取消之后无法实现全局监听。
 
-**原子化服务API**：从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -333,13 +333,13 @@ let observer: errorManager.LoopObserver = {
 errorManager.on("loopObserver", 1, observer);
 ```
 
-## errorManager.on('globalUnhandledRejectionDetected')<sup>16+</sup>
+## errorManager.on('globalUnhandledRejectionDetected')<sup>18+</sup>
 
 on(type: 'globalUnhandledRejectionDetected', observer: GlobalObserver): void
 
 在进程中任一线程注册被拒绝promise监听器，注册后可以捕获到当前进程中未被捕获到的promise rejection。
 
-**原子化服务API**：从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -431,6 +431,46 @@ let promise1 = new Promise<void>(() => {}).then(() => {
   throw new Error("uncaught error");
 });
 ```
+## errorManager.on('freeze')<sup>18+</sup>
+
+on(type: 'freeze', observer: FreezeObserver): void
+
+注册应用主线程freeze监听。只能在主线程调用，多次注册后，后一次的注册会覆盖前一次的。
+
+> **注意：**
+>
+> 如果该回调函数执行时间超过1s，可能导致[AppRecovery](./js-apis-app-ability-appRecovery.md)功能不可用。通过解析hilog日志中的begin与Freeze callback execution completed两者的时间差可以计算回调函数执行时长，如果超过1秒，可以尝试采用异步处理、减少阻塞操作、优化数据结构等方法优化回调逻辑，降低执行时长。
+> 
+
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+ 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 填写'freeze'，表示应用主线程freeze观察器。 |
+| observer | [FreezeObserver](#freezeobserver18) | 是 | 由on接口注册的freeze监听的callback。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.   |
+
+**示例：**
+    
+```ts
+import { errorManager } from '@kit.AbilityKit';
+
+function freezeCallback() {
+    console.log("freezecallback");
+}
+errorManager.on("freeze", freezeCallback);
+```
 
 ## errorManager.off('loopObserver')<sup>12+</sup>
 
@@ -465,13 +505,13 @@ import { errorManager } from '@kit.AbilityKit';
 errorManager.off("loopObserver");
 ```
 
-## errorManager.off('globalUnhandledRejectionDetected')<sup>16+</sup>
+## errorManager.off('globalUnhandledRejectionDetected')<sup>18+</sup>
 
 off(type: 'globalUnhandledRejectionDetected', observer?: GlobalObserver): void
 
 注销被拒绝promise监听器，注销后无法监听进程中的promise异常。
 
-**原子化服务API**：从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -597,6 +637,44 @@ let promise1 = new Promise<void>(() => {}).then(() => {
 errorManager.off("unhandledRejection", observer);
 ```
 
+## errorManager.off('freeze')<sup>18+</sup>
+
+off(type: 'freeze', observer?: FreezeObserver): void
+
+取消以前注册的应用主线程freeze监听。只能在主线程调用。
+
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+ 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 填写'freeze'，表示应用主线程freeze观察器。 |
+| observer | [FreezeObserver](#freezeobserver18) | 否 | 由on接口注册的freeze监听的callback。如果参数不填会直接清空callback否则删除指定的callback。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 16300004 | If the observer does not exist. |
+
+**示例：**
+    
+```ts
+import { errorManager } from '@kit.AbilityKit';
+
+function freezeCallback() {
+    console.log("freezecallback");
+}
+errorManager.on("freeze", freezeCallback);
+errorManager.off("freeze", freezeCallback);
+```
+
 ## ErrorObserver
 
 type ErrorObserver = _ErrorObserver.default
@@ -641,3 +719,13 @@ type UnhandledRejectionObserver = (reason: Error | any, promise: Promise\<any>) 
 |--------|---------------|---| -------- |
 | reason | Error \| any  | 是 | 通常是`Error`类型，表示被拒绝的理由。 |
 | promise | Promise\<any> | 是 | 被拒绝的promise。 |
+
+## FreezeObserver<sup>18+</sup>
+
+type FreezeObserver = () => void
+
+定义应用主线程freeze回调，用于应用自定义添加freeze信息。
+
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core

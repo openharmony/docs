@@ -25,6 +25,7 @@
 |typedef struct [CommonEvent_RcvData](./capi-common-event.md#commonevent_rcvdata) [CommonEvent_RcvData](./capi-common-event.md#commonevent_rcvdata) | 公共事件的数据。 |
 |typedef void [CommonEvent_Parameters](./capi-common-event.md#commonevent_parameters) | 公共事件的附加信息。 |
 |typedef void (*[CommonEvent_ReceiveCallback](./capi-common-event.md#commonevent_receivecallback))(const [CommonEvent_RcvData](./capi-common-event.md#commonevent_rcvdata) *data) | 公共事件的回调函数。 |
+|typedef struct [CommonEvent_PublishInfo](./capi-common-event.md#commonevent_publishinfo) [CommonEvent_PublishInfo](./capi-common-event.md#commonevent_publishinfo) | 发布自定义公共事件时使用的公共事件属性对象。 |
 
 ### 枚举
 
@@ -61,3 +62,33 @@
 | int32_t [OH_CommonEvent_GetCharArrayFromParameters](./capi-common-event.md#oh_commonevent_getchararrayfromparameters)(const CommonEvent_Parameters* para, const char* key, char** array);| 获取公共事件附加信息中字符数组信息。 |
 | double [OH_CommonEvent_GetDoubleFromParameters](./capi-common-event.md#oh_commonevent_getdoublefromparameters)(const CommonEvent_Parameters* para, const char* key, const double defaultValue);| 获取公共事件附加信息中double数据信息。 |
 | int32_t [OH_CommonEvent_GetDoubleArrayFromParameters](./capi-common-event.md#oh_commonevent_getdoublearrayfromparameters)(const CommonEvent_Parameters* para, const char* key, double** array);| 获取公共事件附加信息中double数组信息。 |
+| CommonEvent_Parameters* [OH_CommonEvent_CreateParameters](./capi-common-event.md#oh_commonevent_createparameters)();| 创建公共事件附加信息对象。 |
+| void [OH_CommonEvent_DestroyParameters](./capi-common-event.md#oh_commonevent_destroyparameters)(CommonEvent_Parameters* param);| 销毁公共事件附加信息对象。 |
+| CommonEvent_ErrCode [OH_CommonEvent_SetIntToParameters](./capi-common-event.md#oh_commonevent_setinttoparameters)(CommonEvent_Parameters* param, const char* key, const int value);| 设置公共事件附加信息的int类型内容。 |
+| CommonEvent_ErrCode [OH_CommonEvent_SetIntArrayToParameters](./capi-common-event.md#oh_commonevent_setintarraytoparameters)(CommonEvent_Parameters* param, const char* key, const int* value, const size_t num);| 设置公共事件附加信息的int数组内容。 |
+| CommonEvent_ErrCode [OH_CommonEvent_SetLongToParameters](./capi-common-event.md#oh_commonevent_setlongtoparameters)(CommonEvent_Parameters* param, const char* key, const long value);| 设置公共事件附加信息的long类型内容。 |
+| CommonEvent_ErrCode [OH_CommonEvent_SetLongArrayToParameters](./capi-common-event.md#oh_commonevent_setlongarraytoparameters)(CommonEvent_Parameters* param, const char* key, const long* value, const size_t num);| 设置公共事件附加信息的long数组内容。 |
+| CommonEvent_ErrCode [OH_CommonEvent_SetDoubleToParameters](./capi-common-event.md#oh_commonevent_setdoubletoparameters)(CommonEvent_Parameters* param, const char* key, const double value);| 设置公共事件附加信息的double类型内容。 |
+| CommonEvent_ErrCode [OH_CommonEvent_SetDoubleArrayToParameters](./capi-common-event.md#oh_commonevent_setdoublearraytoparameters)(CommonEvent_Parameters* param, const char* key, const double* value, const size_t num);| 设置公共事件附加信息的double数组内容。 |
+| CommonEvent_ErrCode [OH_CommonEvent_SetBoolToParameters](./capi-common-event.md#oh_commonevent_setbooltoparameters)(CommonEvent_Parameters* param, const char* key, const bool value);| 设置公共事件附加信息的布尔类型内容。 |
+| CommonEvent_ErrCode [OH_CommonEvent_SetBoolArrayToParameters](./capi-common-event.md#oh_commonevent_setboolarraytoparameters)(CommonEvent_Parameters* param, const char* key, const bool* value, const size_t num);| 设置公共事件附加信息的布尔数组内容。 |
+| CommonEvent_ErrCode [OH_CommonEvent_SetCharToParameters](./capi-common-event.md#oh_commonevent_setchartoparameters)(CommonEvent_Parameters* param, const char* key, const char value);| 设置公共事件附加信息的字符类型内容。 |
+| CommonEvent_ErrCode [OH_CommonEvent_SetCharArrayToParameters](./capi-common-event.md#oh_commonevent_setchararraytoparameters)(CommonEvent_Parameters* param, const char* key, const char* value, const size_t num);| 设置公共事件附加信息的字符数组内容。 |
+| CommonEvent_PublishInfo* [OH_CommonEvent_CreatePublishInfo](./capi-common-event.md#oh_commonevent_createpublishinfo)(const bool ordered);| 创建公共事件属性对象。 |
+| void [OH_CommonEvent_DestroyPublishInfo](./capi-common-event.md#oh_commonevent_destroypublishinfo)(CommonEvent_PublishInfo* info);| 销毁公共事件属性对象。 |
+| CommonEvent_ErrCode [OH_CommonEvent_SetPublishInfoBundleName](./capi-common-event.md#oh_commonevent_setpublishinfobundlename)(CommonEvent_PublishInfo* info, const char* bundleName);| 设置公共事件包名称。 |
+| CommonEvent_ErrCode [OH_CommonEvent_SetPublishInfoPermissions](./capi-common-event.md#oh_commonevent_setpublishinfopermissions)(CommonEvent_PublishInfo* info，const char* permissions[], const int32_t num);| 设置公共事件权限。 |
+| CommonEvent_ErrCode [OH_CommonEvent_SetPublishInfoCode](./capi-common-event.md#oh_commonevent_setpublishinfocode)(CommonEvent_PublishInfo* info, const int32_t code);| 设置公共事件结果码。 |
+| CommonEvent_ErrCode [OH_CommonEvent_SetPublishInfoData](./capi-common-event.md#oh_commonevent_setpublishinfodata)(CommonEvent_PublishInfo* info, const char* data, const size_t length);| 设置公共事件结果数据。 |
+| CommonEvent_ErrCode [OH_CommonEvent_SetPublishInfoParameters](./capi-common-event.md#oh_commonevent_setpublishinfoparameters)(CommonEvent_PublishInfo* info, CommonEvent_Parameters* param);| 设置公共事件附加信息。 |
+| CommonEvent_ErrCode [OH_CommonEvent_Publish](./capi-common-event.md#oh_commonevent_publish)(const char* event);| 发布自定义公共事件。 |
+| CommonEvent_ErrCode [OH_CommonEvent_PublishWithInfo](./capi-common-event.md#oh_commonevent_publishwithinfo)(const char* event, const CommonEvent_PublishInfo* info);| 发布带有指定属性的自定义公共事件。 |
+| bool [OH_CommonEvent_IsOrderedCommonEvent](./capi-common-event.md#oh_commonevent_isorderedcommonevent)(const CommonEvent_Subscriber* subscriber);| 查询当前公共事件是否为有序公共事件。 |
+| bool [OH_CommonEvent_FinishCommonEvent](./capi-common-event.md#oh_commonevent_finishcommonevent)(CommonEvent_Subscriber* subscriber);| 用于订阅者结束对当前有序公共事件的处理。 |
+| bool [OH_CommonEvent_GetAbortCommonEvent](./capi-common-event.md#oh_commonevent_getabortcommonevent)(const CommonEvent_Subscriber* subscriber);| 获取当前有序公共事件是否处于中止状态。 |
+| bool [OH_CommonEvent_AbortCommonEvent](./capi-common-event.md#oh_commonevent_abortcommonevent)(CommonEvent_Subscriber* subscriber);| 中止当前的有序公共事件。 |
+| bool [OH_CommonEvent_ClearAbortCommonEvent](./capi-common-event.md#oh_commonevent_clearabortcommonevent)(CommonEvent_Subscriber* subscriber);| 取消当前有序公共事件的中止状态。 |
+| int32_t [OH_CommonEvent_GetCodeFromSubscriber](./capi-common-event.md#oh_commonevent_getcodefromsubscriber)(const CommonEvent_Subscriber* subscriber);| 获取有序公共事件代码。 |
+| int32_t [OH_CommonEvent_GetDataFromSubscriber](./capi-common-event.md#oh_commonevent_getdatafromsubscriber)(const CommonEvent_Subscriber* subscriber);| 获取有序公共事件的数据。 |
+| int32_t [OH_CommonEvent_SetCodeToSubscriber](./capi-common-event.md#oh_commonevent_setcodetosubscriber)(CommonEvent_Subscriber* subscriber, const int32_t code);| 设置有序公共事件的代码。 |
+| int32_t [OH_CommonEvent_SetDataToSubscriber](./capi-common-event.md#oh_commonevent_setdatatosubscriber)(CommonEvent_Subscriber* subscriber, const char* data, const size_t length);| 设置有序公共事件的数据。 |

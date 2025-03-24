@@ -43,9 +43,9 @@
 
 | 接口名 | 描述 | 
 | -------- | -------- |
-| int&nbsp;APPVERI_AppVerify(const&nbsp;char&nbsp;\*filePath,&nbsp;VerifyResult&nbsp;\*verifyRst) | 主入口函数，输入文件路径，进行验签，并将从描述文件中获取的数据通过verifyRst返回给调用者 | 
+| int&nbsp;APPVERI_AppVerify(const&nbsp;char&nbsp;\*filePath,&nbsp;VerifyResult&nbsp;\*verifyRst) | 主入口函数，输入文件路径，进行验签，并将从描述文件中获取的数据通过verifyRst返回给调用者。 | 
 | int&nbsp;APPVERI_SetDebugMode(bool&nbsp;mode) | 设置测试模式，设置mode为true，则支持基于测试根密钥的证书链校验，设置mode为false，则关闭基于测试根密钥的证书链校验。<br/>注：当前没有基于现有测试根密钥的证书，开发者可根据自身需要，替换测试根密钥并进行相关验证。 | 
-| void&nbsp;APPVERI_FreeVerifyRst(VerifyResult&nbsp;\*verifyRst) | 释放verifyRst中申请的内存 | 
+| void&nbsp;APPVERI_FreeVerifyRst(VerifyResult&nbsp;\*verifyRst) | 释放verifyRst中申请的内存。 | 
 
   **表2** 标准系统验签组件API接口功能介绍
 

@@ -190,17 +190,19 @@
        console.error(`Failed to get RdbStore. Code:${err.code},message:${err.message}`);
        return;
      }
-     store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)', (err) => {
-     })
      console.info('Succeeded in getting RdbStore.');
-
-     // "Backup.db"为备份数据库文件名，默认在RdbStore同路径下备份。也可指定路径：customDir + "backup.db"
+     store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)', (err) => {
+     /**
+      * "Backup.db"为备份数据库文件名，默认在RdbStore同路径下备份。
+      * 也可指定绝对路径："/data/storage/el2/database/Backup.db"，文件路径需要存在，不会自动创建目录。
+      */
      (store as relationalStore.RdbStore).backup("Backup.db", (err: BusinessError) => {
        if (err) {
          console.error(`Failed to backup RdbStore. Code:${err.code}, message:${err.message}`);
            return;
         }
         console.info(`Succeeded in backing up RdbStore.`);
+      })
      })
    })
    ```
@@ -332,12 +334,15 @@
    ```ts
    try {
      let context = getContext();
-     // "Backup.db"为备份数据库文件名，默认在RdbStore同路径下备份。也可指定路径：customDir + "backup.db"
-     let backup = context.databaseDir + '/backup/test_backup.db';
-     if(!fileIo.access(backup)) {
+     /**
+      * "Backup.db"为备份数据库文件名，默认在当前 store 所在路径下查找备份文件 Backup.db。
+      * 如在备份时指定了绝对路径："/data/storage/el2/database/Backup.db", 需要传入绝对路径。
+      */
+     let backup = context.databaseDir + '/entry/rdb/Backup.db';
+     if (!fileIo.access(backup)) {
        console.info("no backup file");
        try {
-         (store as relationalStore.RdbStore).close;
+         (store as relationalStore.RdbStore).close();
          store = undefined;
        } catch (e) {
            if (e.code != 14800014) {
@@ -354,7 +359,7 @@
        return
      }
      // 调用restore接口恢复数据
-     (store as relationalStore.RdbStore).restore(backup);
+     (store as relationalStore.RdbStore).restore("Backup.db");
    } catch (e) {
        console.error(`Code:${e.code}, message:${e.message}`);
    }

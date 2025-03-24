@@ -1,6 +1,6 @@
 # ArkGraphics 2D（方舟2D图形服务）
 
-- ArkTS API 
+- ArkTS API<!--arkgraphics-arkts-->
   - [@ohos.effectKit (图像效果)](js-apis-effectKit.md)
   - [@ohos.graphics.colorSpaceManager (色彩管理)](js-apis-colorSpaceManager.md)
   - [@ohos.graphics.sendableColorSpaceManager (可共享的色彩管理)](js-apis-sendableColorSpaceManager.md)
@@ -10,9 +10,11 @@
   - [@ohos.graphics.hdrCapability (HDR能力)](js-apis-hdrCapability.md)
   - [@ohos.graphics.text (文本模块)](js-apis-graphics-text.md)
   - [@ohos.graphics.uiEffect (效果级联)](js-apis-uiEffect.md)
+  <!--Del-->
   - [@ohos.graphics.uiEffect (效果级联)(系统接口)](js-apis-uiEffect-sys.md)
-- C API
-  - 模块
+  <!--DelEnd-->
+- C API<!--arkgraphics-c-->
+  - 模块<!--arkgraphics-module-->
     - [Drawing](_drawing.md)
     - [EffectKit](effect_kit.md)
     - [NativeDisplaySoloist](_native_display_soloist.md)
@@ -21,7 +23,7 @@
     - [OH_NativeBuffer](_o_h___native_buffer.md)
     - [OH_NativeImage](_o_h___native_image.md)
     - [NativeColorSpaceManager](_native_color_space_manager.md)
-  - 头文件
+  - 头文件<!--arkgraphics-headerfile-->
     - [drawing_bitmap.h](drawing__bitmap_8h.md)
     - [drawing_brush.h](drawing__brush_8h.md)
     - [drawing_canvas.h](drawing__canvas_8h.md)
@@ -66,12 +68,13 @@
     - [effect_types.h](effect__types_8h.md)
     - [buffer_handle.h](buffer__handle_8h.md)
     - [external_window.h](external__window_8h.md)
+    - [buffer_common.h](buffer__common_8h.md)
     - [native_buffer.h](native__buffer_8h.md)
     - [native_display_soloist.h](native__display__soloist_8h.md)
     - [native_image.h](native__image_8h.md)
     - [native_vsync.h](native__vsync_8h.md)
     - [native_color_space_manager.h](native__color__space__manager_8h.md)
-  - 结构体
+  - 结构体<!--arkgraphics-struct-->
     - [DisplaySoloist_ExpectedRateRange](_display_soloist___expected_rate_range.md)
     - [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md)
     - [OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md)
@@ -111,6 +114,6 @@
     - [Rect](_rect.md)
     - [ColorSpacePrimaries](_color_space_primaries.md)
     - [WhitePointArray](_white_point_array.md)
-- 错误码
+- 错误码<!--arkgraphics-arkts-errcode-->
   - [色彩管理错误码](errorcode-colorspace-manager.md)
 

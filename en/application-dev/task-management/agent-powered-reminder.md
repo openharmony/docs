@@ -16,11 +16,11 @@ After an application switches to the background or an application process is ter
 
 - **Quantity limit**: A third-party application supports a maximum of 30 valid reminders.<!--Del--> A system application supports a maximum of 10,000 valid reminders. The entire system supports a maximum of 12,000 valid reminders.<!--DelEnd-->
 
-   > **NOTE**
-   >
-   > When the reminder time arrives, the notification center displays the relevant reminder. The reminder remains active and unexpired unless the user touches the CLOSE button, at which point the reminder becomes expired.
-   >
-   > For a recurring reminder (for example, a daily reminder), the reminder is always valid regardless of whether the user touches the CLOSE button.
+> **NOTE**
+>
+> When the reminder time arrives, the notification center displays the relevant reminder. The reminder remains active and unexpired unless the user touches the CLOSE button, at which point the reminder becomes expired.
+>
+> For a recurring reminder (for example, a daily reminder), the reminder is always valid regardless of whether the user touches the CLOSE button.
 
 - **Redirection limit**: The application that is redirected to upon a click on the notification must be the application that requested the agent-powered reminder.
 
@@ -29,13 +29,12 @@ After an application switches to the background or an application process is ter
 
 ## Available APIs
 
-The table below uses promise as an example to describe the APIs used for developing agent-powered reminders. For details about more APIs and their usage, see [reminderAgentManager](../reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager.md).
-
 **Table 1** Main APIs for agent-powered reminders
 
+The table below uses promise as an example to describe the APIs used for developing agent-powered reminders. For details about more APIs and their usage, see [reminderAgentManager](../reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager.md).
 | API| Description|
 | -------- | -------- |
-| publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt; | Publishes a reminder.|
+| publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt; | Publishes a scheduled reminder.|
 | cancelReminder(reminderId: number): Promise&lt;void&gt; | Cancels a reminder.|
 | getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt; | Obtains all valid reminders set by the current application.|
 | cancelAllReminders(): Promise&lt;void&gt; | Cancels all reminders set by the current application.|
@@ -72,10 +71,6 @@ The table below uses promise as an example to describe the APIs used for develop
           }
         ],
         wantAgent: {     // Information about the target UIAbility that is displayed after the reminder notification is touched.
-          pkgName: 'com.example.myapplication',
-          abilityName: 'EntryAbility'
-        },
-        maxScreenWantAgent: { // Information about the target UIAbility that is automatically started when the specified reminder time arrives is displayed in full screen.
           pkgName: 'com.example.myapplication',
           abilityName: 'EntryAbility'
         },
@@ -116,10 +111,6 @@ The table below uses promise as an example to describe the APIs used for develop
           pkgName: 'com.example.myapplication',
           abilityName: 'EntryAbility'
         },
-        maxScreenWantAgent: { // Information about the target UIAbility that is automatically started when the specified reminder time arrives is displayed in full screen.
-          pkgName: 'com.example.myapplication',
-          abilityName: 'EntryAbility'
-        },
         ringDuration: 5, // Ringing duration, in seconds.
         snoozeTimes: 2, // Number of reminder snooze times.
         timeInterval: 5*60, // Reminder snooze interval, in seconds.
@@ -151,10 +142,6 @@ The table below uses promise as an example to describe the APIs used for develop
           },
         ],
         wantAgent: { // Information about the target UIAbility that is displayed after the reminder notification is touched.
-          pkgName: 'com.example.myapplication',
-          abilityName: 'EntryAbility'
-        },
-        maxScreenWantAgent: { // Information about the target UIAbility that is automatically started when the specified reminder time arrives is displayed in full screen.
           pkgName: 'com.example.myapplication',
           abilityName: 'EntryAbility'
         },

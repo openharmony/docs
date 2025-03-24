@@ -65,7 +65,7 @@ type Scene = Scene
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### environment
 
@@ -146,7 +146,7 @@ shaderInputBuffer(buffer: Array&lt;number&gt;)
 
 | 参数名 | 类型           | 必填 | 说明                       |
 | ------ | -------------- | ---- | -------------------------- |
-| buffer | Array<number\> | 是   | 自定义渲染用到的动效参数。 |
+| buffer | Array<number\> | 是   | 自定义渲染用到的动效参数，数组长度范围为[0, 1048576]。 |
 
 ### renderWidth
 
@@ -166,7 +166,7 @@ renderWidth(value: Dimension)
 
 | 参数名 | 类型                                 | 必填 | 说明                 |
 | ------ | ------------------------------------ | ---- | -------------------- |
-| value  | [Dimension](ts-types.md#dimension10) | 是   | 3D渲染分辨率的宽度。 |
+| value  | [Dimension](ts-types.md#dimension10) | 是   | 3D渲染分辨率的宽度，当前仅支持设置Dimension.Percetage，取值范围是[0, 100%]。 |
 
 ### renderHeight
 
@@ -186,11 +186,11 @@ renderHeight(value: Dimension)
 
 | 参数名 | 类型                                 | 必填 | 说明                 |
 | ------ | ------------------------------------ | ---- | -------------------- |
-| value  | [Dimension](ts-types.md#dimension10) | 是   | 3D渲染分辨率的长度。 |
+| value  | [Dimension](ts-types.md#dimension10) | 是   | 3D渲染分辨率的长度，当前仅支持设置Dimension.Percetage，取值范围是[0, 100%]。 |
 
 ## 事件
 
-支持[通用事件](ts-universal-events-click.md)。
+支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。<br/>

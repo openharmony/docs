@@ -45,9 +45,9 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
    应用需要napi_env来创建编码器。
 
    ```cpp
-   // 使用napi_value 承接创建的编码器对象
+   // 使用napi_value 承接创建的编码器对象。
    napi_value packer;
-   // 通过 napi_env 创建编码器，返回result为 IMAGE_RESULT_SUCCESS则创建成功
+   // 通过 napi_env 创建编码器，返回result为 IMAGE_RESULT_SUCCESS则创建成功。
    int32_t result = OH_ImagePacker_Create(env, &packer);
    ```
 
@@ -56,7 +56,7 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
    通过OH_ImagePacker_InitNative来初始化编码器原生实例对象。
 
    ```cpp
-   // 通过 napi_env 及上述创建的编码器对象初始化原生实例对象
+   // 通过 napi_env 及上述创建的编码器对象初始化原生实例对象。
    ImagePacker_Native* nativePacker = OH_ImagePacker_InitNative(env, packer);
    ```
 
@@ -79,35 +79,35 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
    例如向缓存区（内存）输出：
 
    ```cpp
-   // 编码参数
+   // 编码参数。
    struct ImagePacker_Opts_ opts;
-   // 配置编码格式（必须）
+   // 配置编码格式（必须）。
    opts.format = "image/jpeg";
-   // 配置编码质量（必须）
+   // 配置编码质量（必须）。
    opts.quality = 100;
-   // 配置输出的缓存区大小为4k（缓存区大小视应用场景定）
+   // 配置输出的缓存区大小为4k（缓存区大小视应用场景定）。
    size_t bufferSize = 4*1024;
-   // 申请图片编码缓存区
+   // 申请图片编码缓存区。
    uint8_t* outData = (uint8_t *)(malloc(bufferSize));
-   // 开始对输入source进行编码过程，返回result为 IMAGE_RESULT_SUCCESS则编码成功，同时bufferSize中包含编码实际使用缓存区大小
+   // 开始对输入source进行编码过程，返回result为 IMAGE_RESULT_SUCCESS则编码成功，同时bufferSize中包含编码实际使用缓存区大小。
    int32_t result = OH_ImagePacker_PackToData(nativePacker, source, &opts, outData, &bufferSize);
    ```
 
    例如向文件输出：
 
    ```cpp
-   // 编码参数
+   // 编码参数。
    struct ImagePacker_Opts_ opts;
-   // 配置编码格式（必须）
+   // 配置编码格式（必须）。
    opts.format = "image/jpeg";
-   // 配置编码质量（必须）
+   // 配置编码质量（必须）。
    opts.quality = 100;
-   // 打开需要输出的文件（请确保应用有权限访问这个路径）
+   // 打开需要输出的文件（请确保应用有权限访问这个路径）。
    int fd = open("/data/test.jpg", O_RDWR | O_CREAT, S_IRUSR | S_IWUSR);
    if (fd >= 0) {
-      // 开始对输入source进行编码过程，返回result为 IMAGE_RESULT_SUCCESS则编码成功
+      // 开始对输入source进行编码过程，返回result为 IMAGE_RESULT_SUCCESS则编码成功。
       int32_t result = OH_ImagePacker_PackToFile(nativePacker, source, &opts, fd);  
-      // 关闭输出文件  
+      // 关闭输出文件。 
       close(fd);
    }
    ```
@@ -118,11 +118,11 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
    > 资源不能重复销毁。
 
    ```c++
-   // 调用OH_ImagePacker_Release, 销毁编码器
+   // 调用OH_ImagePacker_Release, 销毁编码器。
    int32_t ret = OH_ImagePacker_Release(nativePacker);
    if (result != IMAGE_RESULT_SUCCESS) {
-       // 异常处理
+       // 异常处理。
    } else {
-       nativePacker = NULL; //不可重复destroy
+       nativePacker = NULL; //不可重复destroy。
    }
    ```

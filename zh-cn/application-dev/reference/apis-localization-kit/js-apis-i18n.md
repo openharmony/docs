@@ -447,7 +447,7 @@ static getUsingLocalDigit(): boolean
 
 static getSimplifiedLanguage(language?: string): string
 
-获取语言的最简化表示。如："zh-Hans-CN"的最简化表示是"zh"，"zh-Hant-TW"的最简表示为"zh-TW"。
+获取语言的简化表示。如："en-Latn-US"的简化表示是"en"，"en-Latn-GB"的简化表示为"en-GB"。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -463,7 +463,7 @@ static getSimplifiedLanguage(language?: string): string
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| string | 不传入language时，会根据系统语言和地区判断是否存在系统支持的方言，若存在则返回方言的最简表示；若不存在，则返回系统语言的最简表示。<br>传入language时，返回language的最简表示。 |
+| string | 不传入language时，会根据系统语言和地区判断是否存在系统支持的方言，若存在则返回方言的简化表示；若不存在，则返回系统语言的简化表示。<br>传入language时，返回language的简化表示。 |
 
 **错误码：**
 
@@ -480,20 +480,20 @@ static getSimplifiedLanguage(language?: string): string
 
   try {
     let simplifiedLanguage: string = i18n.System.getSimplifiedLanguage("zh-Hans-CN");  // simplifiedLanguage = zh
-    let simplifiedSystemLanguage: string = i18n.System.getSimplifiedLanguage();  // simplifiedSystemLanguage = zh, 如果当前系统语言为简体中文
+    let simplifiedSystemLanguage: string = i18n.System.getSimplifiedLanguage();  // simplifiedSystemLanguage = zh-Hans, 如果当前系统语言为简体中文
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getSimplifiedLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
-### getTemperatureType<sup>16+</sup>
+### getTemperatureType<sup>18+</sup>
 
 static getTemperatureType(): TemperatureType
 
 获取当前用户偏好的温度单位。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -501,20 +501,20 @@ static getTemperatureType(): TemperatureType
 
 | 类型     | 说明            |
 | ------ | ------------- |
-| [TemperatureType](#temperaturetype16) | 温度单位。 |
+| [TemperatureType](#temperaturetype18) | 温度单位。 |
 
 **示例：**
   ```ts
   let type: i18n.TemperatureType = i18n.System.getTemperatureType();
   ```
 
-### getTemperatureName<sup>16+</sup>
+### getTemperatureName<sup>18+</sup>
 
 static getTemperatureName(type: TemperatureType): string
 
 获取温度单位的名称。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -522,7 +522,7 @@ static getTemperatureName(type: TemperatureType): string
 
 | 参数名      | 类型     | 必填   | 说明            |
 | -------- | ------ | ---- | ------------- |
-| type| [TemperatureType](#temperaturetype16) | 是    | 温度单位。 |
+| type| [TemperatureType](#temperaturetype18) | 是    | 温度单位。 |
 
 **返回值：**
 
@@ -556,13 +556,13 @@ static getTemperatureName(type: TemperatureType): string
   }
   ```
 
-### getFirstDayOfWeek<sup>16+</sup>
+### getFirstDayOfWeek<sup>18+</sup>
 
 static getFirstDayOfWeek(): WeekDay
 
 获取当前用户偏好的周起始日。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -570,18 +570,18 @@ static getFirstDayOfWeek(): WeekDay
 
 | 类型     | 说明            |
 | ------ | ------------- |
-| [WeekDay](#weekday16) | 周起始日。 |
+| [WeekDay](#weekday18) | 周起始日。 |
 
 **示例：**
   ```ts
   let type: i18n.WeekDay = i18n.System.getFirstDayOfWeek();
   ```
 
-## TemperatureType<sup>16+</sup>
+## TemperatureType<sup>18+</sup>
 
 温度单位的枚举。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -591,11 +591,11 @@ static getFirstDayOfWeek(): WeekDay
 | FAHRENHEIT | 2 | 华氏度。 |
 | KELVIN | 3 | 开尔文。 |
 
-## WeekDay<sup>16+</sup>
+## WeekDay<sup>18+</sup>
 
 周起始日的枚举，取值是周一至周日的某天。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1002,7 +1002,7 @@ get(field: string): number
 | day_of_year | 一年中的第几天。 |
 | day_of_week | 一周中的第几天(星期)。 |
 | milliseconds_in_day | 一天中的第几毫秒。 |
-| zone_offset | 以毫秒计时的时区固定偏移量(不含夏令时)。 |
+| zone_offset | 以毫秒计时的时区固定偏移量（不含夏令时）。 |
 | dst_offset | 以毫秒计时的夏令时偏移量。 |
 | dow_local | 本地星期。 |
 | extended_year | 扩展的年份数值，支持负数。 |
@@ -1350,7 +1350,7 @@ getLocationName(number: string, locale: string): string
 | measureSystem | string | 是    | 是    | 单位的度量体系，取值包括："SI",&nbsp;"US",&nbsp;"UK"。 |
 
 
-## getInstance<sup>8+</sup>
+## i18n.getInstance<sup>8+</sup>
 
 getInstance(locale?:string): IndexUtil
 
@@ -2624,13 +2624,13 @@ static getThreeLetterRegion(locale: string): string
   }
   ```
 
-### getUnicodeWrappedFilePath<sup>16+</sup>
+### getUnicodeWrappedFilePath<sup>18+</sup>
 
 static getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: intl.Locale): string
 
 文件路径镜像处理。<br>例如，将/data/out/tmp镜像处理后生成tmp/out/data/。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -2916,13 +2916,13 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
 | name            | string           |   是    | 节假日的本地名称，例如Sacrifice Feast(宰牲节)的土耳其语名称为Kurban Bayrami。      |
 
 
-## i18n.getSimpleDateTimeFormatByPattern<sup>16+</sup>
+## i18n.getSimpleDateTimeFormatByPattern<sup>18+</sup>
 
 getSimpleDateTimeFormatByPattern(pattern: string, locale?: intl.Locale): SimpleDateTimeFormat
 
-通过模式字符串获取SimpleDateTimeFormat对象。与getSimpleDateTimeFormatBySkeleton接口获取的对象在格式化后显示差异请参考[SimpleDateTimeFormat](#simpledatetimeformat16)。
+通过模式字符串获取SimpleDateTimeFormat对象。与getSimpleDateTimeFormatBySkeleton接口获取的对象在格式化后显示差异请参考[SimpleDateTimeFormat](#simpledatetimeformat18)。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -2937,7 +2937,7 @@ getSimpleDateTimeFormatByPattern(pattern: string, locale?: intl.Locale): SimpleD
 
 | 类型                     | 说明    |
 | ---------------------- | ----- |
-| [SimpleDateTimeFormat](#simpledatetimeformat16) | SimpleDateTimeFormat对象。 |
+| [SimpleDateTimeFormat](#simpledatetimeformat18) | SimpleDateTimeFormat对象。 |
 
 **错误码：**
 
@@ -2956,13 +2956,13 @@ getSimpleDateTimeFormatByPattern(pattern: string, locale?: intl.Locale): SimpleD
   let formatter : i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatByPattern("'month('M')'", locale);
   ```
 
-## i18n.getSimpleDateTimeFormatBySkeleton<sup>16+</sup>
+## i18n.getSimpleDateTimeFormatBySkeleton<sup>18+</sup>
 
 getSimpleDateTimeFormatBySkeleton(skeleton: string, locale?: intl.Locale): SimpleDateTimeFormat
 
-通过框架字符串获取SimpleDateTimeFormat对象。与getSimpleDateTimeFormatByPattern接口获取的对象在格式化后显示差异请参考[SimpleDateTimeFormat](#simpledatetimeformat16)。
+通过框架字符串获取SimpleDateTimeFormat对象。与getSimpleDateTimeFormatByPattern接口获取的对象在格式化后显示差异请参考[SimpleDateTimeFormat](#simpledatetimeformat18)。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -2977,7 +2977,7 @@ getSimpleDateTimeFormatBySkeleton(skeleton: string, locale?: intl.Locale): Simpl
 
 | 类型                     | 说明    |
 | ---------------------- | ----- |
-| [SimpleDateTimeFormat](#simpledatetimeformat16) | SimpleDateTimeFormat对象。 |
+| [SimpleDateTimeFormat](#simpledatetimeformat18) | SimpleDateTimeFormat对象。 |
 
 **错误码：**
 
@@ -2996,15 +2996,15 @@ getSimpleDateTimeFormatBySkeleton(skeleton: string, locale?: intl.Locale): Simpl
   let formatter : i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatBySkeleton("yMd", locale);
   ```
 
-## SimpleDateTimeFormat<sup>16+</sup>
+## SimpleDateTimeFormat<sup>18+</sup>
 
-### format<sup>16+</sup>
+### format<sup>18+</sup>
 
 format(date: Date): string
 
 对时间、日期进行格式化。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -3046,13 +3046,13 @@ format(date: Date): string
   ```
 
 
-## i18n.getSimpleNumberFormatBySkeleton<sup>16+</sup>
+## i18n.getSimpleNumberFormatBySkeleton<sup>18+</sup>
 
 getSimpleNumberFormatBySkeleton(skeleton: string, locale?: intl.Locale): SimpleNumberFormat
 
 通过框架字符串获取SimpleNumberFormat对象。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -3067,7 +3067,7 @@ getSimpleNumberFormatBySkeleton(skeleton: string, locale?: intl.Locale): SimpleN
 
 | 类型                     | 说明    |
 | ---------------------- | ----- |
-| [SimpleNumberFormat](#simplenumberformat16) | SimpleNumberFormat对象。 |
+| [SimpleNumberFormat](#simplenumberformat18) | SimpleNumberFormat对象。 |
 
 **错误码：**
 
@@ -3086,15 +3086,15 @@ getSimpleNumberFormatBySkeleton(skeleton: string, locale?: intl.Locale): SimpleN
   let formatter : i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton("%", locale);
   ```
 
-## SimpleNumberFormat<sup>16+</sup>
+## SimpleNumberFormat<sup>18+</sup>
 
-### format<sup>16+</sup>
+### format<sup>18+</sup>
 
 format(value: number): string
 
 格式化数字字符串。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -3127,15 +3127,15 @@ format(value: number): string
   let result : string = formatter.format(10); // result = 10%
   ```
 
-## StyledNumberFormat<sup>16+</sup>
+## StyledNumberFormat<sup>18+</sup>
 
-### constructor<sup>16+</sup>
+### constructor<sup>18+</sup>
 
 constructor(numberFormat: intl.NumberFormat | SimpleNumberFormat, options?: StyledNumberFormatOptions)
 
 创建需要富文本显示的数字格式化的对象。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -3143,8 +3143,8 @@ constructor(numberFormat: intl.NumberFormat | SimpleNumberFormat, options?: Styl
 
 |   参数名  |      类型      | 必填 |     说明      |
 | --------- | ------------- | ---- | ------------- |
-| numberFormat | [intl.NumberFormat](js-apis-intl.md#numberformat) \| [SimpleNumberFormat](#simplenumberformat16) | 是   | 用于格式化数字的对象。  |
-| options | [StyledNumberFormatOptions](#stylednumberformatoptions16) | 否 | 指定数字格式化对象的配置项。默认值：默认的文本样式。  |
+| numberFormat | [intl.NumberFormat](js-apis-intl.md#numberformat) \| [SimpleNumberFormat](#simplenumberformat18) | 是   | 用于格式化数字的对象。  |
+| options | [StyledNumberFormatOptions](#stylednumberformatoptions18) | 否 | 指定数字格式化对象的配置项。默认值：默认的文本样式。  |
 
 **错误码：**
 
@@ -3170,7 +3170,7 @@ constructor(numberFormat: intl.NumberFormat | SimpleNumberFormat, options?: Styl
     decimal: decimal_textStyle,
     fraction: fraction_textStyle,
     unit: unit_textStyle });
-  
+
   // 通过SimpleNumberFormat创建StyledNumberFormat对象
   let locale = new intl.Locale("zh");
   let simpleNumFmt = i18n.getSimpleNumberFormatBySkeleton("percent", locale);
@@ -3181,13 +3181,13 @@ constructor(numberFormat: intl.NumberFormat | SimpleNumberFormat, options?: Styl
     unit: unit_textStyle });
   ```
 
-### format<sup>16+</sup>
+### format<sup>18+</sup>
 
 format(value: number): StyledString
 
 对创建的数字格式化对象处理，返回富文本对象。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -3229,7 +3229,7 @@ format(value: number): StyledString
     fraction: fraction_textStyle,
     unit: unit_textStyle });
   let result_1 = styledNumFmt_1.format(1234.5678);  // result_1.getString() 为 "1,234.568%"。显示result_1时"1,234"是红色，"."是棕色，"568"是蓝色，"%"是绿色。
-  
+
   // 通过SimpleNumberFormat创建StyledNumberFormat对象
   let locale = new intl.Locale("zh");
   let simpleNumFmt = i18n.getSimpleNumberFormatBySkeleton("percent", locale);
@@ -3241,11 +3241,11 @@ format(value: number): StyledString
   let result_2 = styledNumFmt_2.format(1234.5678);  // result_2.getString() 为 "1,234.5678%"。显示result_2时"1,234"是红色，"."是棕色，"5678"是蓝色，"%"是绿色。
   ```
 
-## StyledNumberFormatOptions<sup>16+</sup>
+## StyledNumberFormatOptions<sup>18+</sup>
 
 创建需要富文本显示的数字格式化的对象时，可选的配置项。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 

@@ -1,4 +1,4 @@
-# Geocoding and Reverse Geocoding
+# Geocoding and Reverse Geocoding (ArkTS)
 
 ## Scenario
 
@@ -13,8 +13,6 @@ The geocoding information describes a location using several attributes, includi
 ## Available APIs
 
 The following table lists the APIs used for mutual conversion between coordinates and geographic descriptions. For details, see [Location Kit](../../reference/apis-location-kit/js-apis-geoLocationManager.md).
-
-**Table 3** Geocoding and reverse geocoding APIs
 
 | API| Description| 
 | -------- | -------- |
@@ -53,9 +51,9 @@ The following table lists the APIs used for mutual conversion between coordinate
       try {
           geoLocationManager.getAddressesFromLocation(reverseGeocodeRequest, (err, data) => {
               if (err) {
-                  console.log('getAddressesFromLocation err: ' + JSON.stringify(err));
+                  console.error('getAddressesFromLocation err: ' + JSON.stringify(err));
               } else {
-                  console.log('getAddressesFromLocation data: ' + JSON.stringify(data));
+                  console.info('getAddressesFromLocation data: ' + JSON.stringify(data));
               }
           });
       } catch (err) {
@@ -70,9 +68,9 @@ The following table lists the APIs used for mutual conversion between coordinate
       try {
           geoLocationManager.getAddressesFromLocationName(geocodeRequest, (err, data) => {
               if (err) {
-                  console.log('getAddressesFromLocationName err: ' + JSON.stringify(err));
+                  console.error('getAddressesFromLocationName err: ' + JSON.stringify(err));
               } else {
-                  console.log('getAddressesFromLocationName data: ' + JSON.stringify(data));
+                  console.info('getAddressesFromLocationName data: ' + JSON.stringify(data));
               }
           });
       } catch (err) {

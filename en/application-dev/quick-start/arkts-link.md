@@ -18,12 +18,12 @@ An \@Link decorated variable in a child component shares the same value with a v
 
 ## Rules of Use
 
-| \@Link Decorator                         | Description                                                  |
-| ---------------------------------------- | ------------------------------------------------------------ |
-| Decorator parameters                     | None.                                                        |
-| Synchronization type                     | Two-way:<br>The state variable in the parent component can be synchronized with the child component \@Link in a two-way manner. When one of them changes, the other can sense the change. |
-| Allowed variable types                   | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types.<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>The type must be specified and must be the same as that of the counterpart variable of the parent component.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>**any** is not supported.<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, **string \| number**, **string \| undefined** or **ClassA \| null**. For details, see [Union Type @Link](#union-type-link).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@Link a: string \| undefined = undefined**. |
-| Initial value for the decorated variable | Forbidden.                                                   |
+| \@Link Decorator                                            | Description                                                        |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Decorator parameters                                                  | None.                                                          |
+| Synchronization type                                                    | Two-way:<br>The state variable in the parent component can be synchronized with the child component \@Link in a two-way manner. When one of them changes, the other can sense the change.|
+| Allowed variable types                                          | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types.<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>The type must be specified and must be the same as that of the counterpart variable of the parent component.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>**any** is not supported.<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, **string \| number**, **string \| undefined** or **ClassA \| null**. For details, see [Union Type @Link](#union-type-link).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@Link a: string \| undefined = undefined**. |
+| Initial value for the decorated variable                                          | Forbidden.                                        |
 
 
 ## Variable Transfer/Access Rules
@@ -59,13 +59,14 @@ struct DateComponent {
 
   build() {
     Column() {
-      Button(`child increase the year by 1`).onClick(() => {
-        this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1)
+      Button(`child increase the year by 1`)
+      .onClick(() => {
+        this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1);
       })
       Button('child update the new date')
         .margin(10)
         .onClick(() => {
-          this.selectedDate = new Date('2023-09-09')
+          this.selectedDate = new Date('2023-09-09');
         })
       DatePicker({
         start: new Date('1970-1-1'),
@@ -87,12 +88,12 @@ struct ParentComponent {
       Button('parent increase the month by 1')
         .margin(10)
         .onClick(() => {
-          this.parentSelectedDate.setMonth(this.parentSelectedDate.getMonth() + 1)
+          this.parentSelectedDate.setMonth(this.parentSelectedDate.getMonth() + 1);
         })
       Button('parent update the new date')
         .margin(10)
         .onClick(() => {
-          this.parentSelectedDate = new Date('2023-07-07')
+          this.parentSelectedDate = new Date('2023-07-07');
         })
       DatePicker({
         start: new Date('1970-1-1'),
@@ -116,7 +117,7 @@ An \@Link decorated variable shares the lifecycle of its owning component.
 
 To understand the value initialization and update mechanism of the \@Link decorated variable, it is necessary to consider the parent component and the initial render and update process of the child component that owns the \@Link decorated variable (in this example, the \@State decorated variable in the parent component is used).
 
-1. Initial render: The execution of the parent component's **build()** function creates an instance of the child component. The initialization process is as follows:
+1. Initial render: The execution of the parent component's **build()** creates an instance of the child component. The initialization process is as follows:
    1. An \@State decorated variable of the parent component must be specified to initialize the child component's \@Link decorated variable. The child component's \@Link decorated variable value and its source variable are kept in sync (two-way data synchronization).
    2. The \@State state variable wrapper class of the parent component is passed to the child component through the build function. After obtaining the \@State state variable of the parent component, the \@Link wrapper class of the child component registers the **this** pointer to the current \@Link wrapper class with the \@State variable of the parent component.
 
@@ -448,7 +449,7 @@ In this example, the **value** variable is of the Map<number, string> type. When
 ```ts
 @Component
 struct Child {
-  @Link value: Map<number, string>
+  @Link value: Map<number, string>;
 
   build() {
     Column() {
@@ -458,19 +459,19 @@ struct Child {
         Divider()
       })
       Button('child init map').onClick(() => {
-        this.value = new Map([[0, "a"], [1, "b"], [3, "c"]])
+        this.value = new Map([[0, "a"], [1, "b"], [3, "c"]]);
       })
       Button('child set new one').onClick(() => {
-        this.value.set(4, "d")
+        this.value.set(4, "d");
       })
       Button('child clear').onClick(() => {
-        this.value.clear()
+        this.value.clear();
       })
       Button('child replace the first one').onClick(() => {
-        this.value.set(0, "aa")
+        this.value.set(0, "aa");
       })
       Button('child delete the first one').onClick(() => {
-        this.value.delete(0)
+        this.value.delete(0);
       })
     }
   }
@@ -480,7 +481,7 @@ struct Child {
 @Entry
 @Component
 struct MapSample {
-  @State message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]])
+  @State message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]);
 
   build() {
     Row() {
@@ -505,7 +506,7 @@ In this example, the **message** variable is of the Set\<number\> type. When the
 ```ts
 @Component
 struct Child {
-  @Link message: Set<number>
+  @Link message: Set<number>;
 
   build() {
     Column() {
@@ -514,16 +515,16 @@ struct Child {
         Divider()
       })
       Button('init set').onClick(() => {
-        this.message = new Set([0, 1, 2, 3, 4])
+        this.message = new Set([0, 1, 2, 3, 4]);
       })
       Button('set new one').onClick(() => {
-        this.message.add(5)
+        this.message.add(5);
       })
       Button('clear').onClick(() => {
-        this.message.clear()
+        this.message.clear();
       })
       Button('delete the first one').onClick(() => {
-        this.message.delete(0)
+        this.message.delete(0);
       })
     }
     .width('100%')
@@ -534,7 +535,7 @@ struct Child {
 @Entry
 @Component
 struct SetSample {
-  @State message: Set<number> = new Set([0, 1, 2, 3, 4])
+  @State message: Set<number> = new Set([0, 1, 2, 3, 4]);
 
   build() {
     Row() {
@@ -552,7 +553,7 @@ struct SetSample {
 
 Use [\@Watch](./arkts-watch.md) to change local variables during two-way synchronization.
 
-In the following example, the \@State decorated variable **sourceNumber** is modified in \@Watch of \@Link to implement variable synchronization between parent and child components. However, the local modification of the \@State decorated variable **memberMessage** does not affect the variable change in the parent component.
+In the following example, the \@State decorated variable **memberMessage** is changed in \@Watch of \@Link to implement variable synchronization between parent and child components. However, the local modification of the \@State decorated variable **memberMessage** does not affect the variable change in the parent component.
 
 ```ts
 @Entry
@@ -603,19 +604,19 @@ struct Child {
 ```ts
 @Component
 struct Child {
-  @Link name: string | undefined
+  @Link name: string | undefined;
 
   build() {
     Column() {
 
       Button('Child change name to Bob')
         .onClick(() => {
-          this.name = "Bob"
+          this.name = "Bob";
         })
 
       Button('Child change name to undefined')
         .onClick(() => {
-          this.name = undefined
+          this.name = undefined;
         })
 
     }.width('100%')
@@ -625,7 +626,7 @@ struct Child {
 @Entry
 @Component
 struct Index {
-  @State name: string | undefined = "mary"
+  @State name: string | undefined = "mary";
 
   build() {
     Column() {
@@ -635,12 +636,12 @@ struct Index {
 
       Button('Parents change name to Peter')
         .onClick(() => {
-          this.name = "Peter"
+          this.name = "Peter";
         })
 
       Button('Parents change name to undefined')
         .onClick(() => {
-          this.name = undefined
+          this.name = undefined;
         })
     }
   }
@@ -860,4 +861,4 @@ struct Child {
 }
 ```
 
-<!--no_check-->
+

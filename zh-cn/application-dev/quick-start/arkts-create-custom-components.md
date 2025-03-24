@@ -133,7 +133,7 @@ build()函数用于定义自定义组件的声明式UI描述，自定义组件�
   >
   > 从API version 9开始，该装饰器支持在ArkTS卡片中使用。
   >
-  > 从API version 10开始，\@Entry可以接受一个可选的[LocalStorage](arkts-localstorage.md)的参数或者一个可选的[EntryOptions](#entryOptions)参数。
+  > 从API version 10开始，\@Entry可以接受一个可选的[LocalStorage](arkts-localstorage.md)的参数或者一个可选的[EntryOptions](#entryoptions10)参数。
   >
   > 从API version 11开始，该装饰器支持在原子化服务中使用。
 
@@ -317,7 +317,7 @@ struct Son {
   build() {
     // 反例：不允许本地作用域
     {
-      ...
+      // ...
     }
   }
   ```
@@ -447,12 +447,12 @@ struct Son {
     @State arr : Array<...> = [ ... ];
     ForEach(this.arr.sort().filter(...), 
       item => { 
-      ...
+      // ...
     })
     // 正确的执行方式为：filter返回一个新数组，后面的sort方法才不会改变原数组this.arr
     ForEach(this.arr.filter(...).sort(), 
       item => { 
-      ...
+      // ...
     })
     ```
 

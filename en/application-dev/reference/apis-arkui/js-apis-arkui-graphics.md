@@ -122,7 +122,7 @@ Sets the rotation angle of the component.
 
 | Type               | Description                                  |
 | ------------------- | -------------------------------------- |
-| [Vector3](#vector3) | Rotation angle along the x- and y-axis.<br>Unit: vp|
+| [Vector3](#vector3) | Rotation angle along the x- and y-axis.<br>Unit: degree|
 
 ## Offset
 
@@ -140,7 +140,19 @@ Sets the offset of the component or effect.
 
 ## Matrix4
 
-Sets the transformation information of the component, which is a 4 x 4 matrix represented by a 16-bit number[]. For example:
+type Matrix4 = [number,number,number,number,number,number,number,number,number,number,number,number,number,number,number,number]
+
+Sets a 4x4 matrix.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Type                                                        | Description                                |
+| ------------------------------------------------------------ | ------------------------------------ |
+| [number,number,number,number,<br>number,number,number,number,<br>number,number,number,number,<br>number,number,number,number] | A 16-element array representing a 4x4 matrix.|
+
+The **Matrix4** type is used to set transformation information for components. The following is an example:
 ```ts
 const transform: Matrix4 = [
   1, 0, 45, 0,
@@ -369,7 +381,7 @@ Sets the metrics of length. When the length unit is [PERCENT](arkui-ts/ts-types.
 
 constructor(value: number, unit?: LengthUnit)
 
-Constructor used to create a **LengthMetrics** instance. If the **unit** parameter is not set or is set to **undefined**, the default unit VP is used. If the **unit** parameter is set to a value that is not of the LengthUnit type, the default value 0 VP is used.
+A constructor used to create a **LengthMetrics** instance. If the **unit** parameter is not set or is set to **undefined**, the default unit VP is used. If the **unit** parameter is set to a value that is not of the LengthUnit type, the default value 0 VP is used.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -723,14 +735,15 @@ Obtains the alpha component of the ColorMetrics color.
 import { ColorMetrics } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-function getBlendColor(baseColor: ResourceColor):ColorMetrics {
-  let sourceColor:ColorMetrics;
+function getBlendColor(baseColor: ResourceColor): ColorMetrics {
+  let sourceColor: ColorMetrics;
   try {
     // When resourceColor and blendColor of ColorMetrics are used, add exception handling.
     // Error codes 401 and 180003 of the ArkUI subsystem may be returned.
     sourceColor = ColorMetrics.resourceColor(baseColor).blendColor(ColorMetrics.resourceColor("#19000000"));
   } catch (error) {
-    console.log("getBlendColor failed, code = " + (error as BusinessError).code + ", message = " + (error as BusinessError).message);
+    console.log("getBlendColor failed, code = " + (error as BusinessError).code + ", message = " +
+    (error as BusinessError).message);
     sourceColor = ColorMetrics.resourceColor("#19000000");
   }
   return sourceColor;
@@ -745,7 +758,7 @@ struct ColorMetricsSample {
         .width('80%')
         .align(Alignment.Center)
         .height(50)
-        .backgroundColor(getBlendColor($r("app.color.background_red")).color)
+        .backgroundColor(getBlendColor(Color.Red).color)
     }
     .width('100%')
     .height('100%')

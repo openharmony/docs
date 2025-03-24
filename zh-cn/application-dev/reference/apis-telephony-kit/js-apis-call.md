@@ -218,7 +218,7 @@ call.makeCall("138xxxxxxxx").then(() => {
 
 makeCall\(context: Context, phoneNumber: string\): Promise\<void\>
 
-跳转到拨号界面，并显示待拨出的号码。使用Promise异步回调。后台调用需要申请ohos.permission.START_ABILITIES_FROM_BACKGROUND权限
+跳转到拨号界面，并显示待拨出的号码。使用Promise异步回调。后台调用需要申请ohos.permission.START_ABILITIES_FROM_BACKGROUND权限。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -709,7 +709,7 @@ call.formatPhoneNumber("138xxxxxxxx", options).then((data: string) => {
 
 formatPhoneNumberToE164\(phoneNumber: string, countryCode: string, callback: AsyncCallback\<string\>\): void
 
-将电话号码格式化为E.164表示形式。使用callback异步回调。
+将电话号码格式化为E.164表示形式，使用callback异步回调。
 
 待格式化的电话号码需要与传入的国家码相匹配，如中国电话号码需要传入国家码CN，否则格式化后的电话号码为null。
 
@@ -754,7 +754,7 @@ call.formatPhoneNumberToE164("138xxxxxxxx", "CN", (err: BusinessError, data: str
 
 formatPhoneNumberToE164\(phoneNumber: string, countryCode: string\): Promise\<string\>
 
-将电话号码格式化为E.164表示形式。使用Promise异步回调。
+将电话号码格式化为E.164表示形式，使用Promise异步回调。
 
 待格式化的电话号码需要与传入的国家码相匹配，如中国电话号码需要传入国家码CN，否则格式化后的电话号码为null。
 

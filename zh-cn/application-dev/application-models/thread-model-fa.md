@@ -22,4 +22,4 @@ FA模型下的线程主要有如下三类：
 
 
 > **说明：**
-> FA模型每个Ability都有一个独立的线程，Emiter可用于Ability线程内、Ability线程间、Ability线程与Worker线程的事件同步。
+> FA模型每个Ability都有一个独立的线程，Emitter可用于Ability线程内、Ability线程间、Ability线程与Worker线程的事件同步。

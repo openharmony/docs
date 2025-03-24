@@ -24,6 +24,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | struct&nbsp;&nbsp;[ArkUI_NativeGestureAPI_1](_ark_u_i___native_gesture_a_p_i__1.md) | 手势模块接口集合。  | 
+| struct&nbsp;&nbsp;[ArkUI_NativeGestureAPI_2](_ark_u_i___native_gesture_a_p_i__2.md) | 手势模块接口集合。 |
 
 
 ### 类型定义
@@ -34,8 +35,11 @@
 | typedef uint32_t [ArkUI_GestureDirectionMask](_ark_u_i___native_module.md#arkui_gesturedirectionmask) | 定义滑动手势方向集合。  | 
 | typedef ArkUI_GestureRecognizer \* [ArkUI_GestureRecognizerHandle](_ark_u_i___native_module.md#arkui_gesturerecognizerhandle) | 提供手势识别器句柄类型对象定义。  | 
 | typedef [ArkUI_GestureRecognizerHandle](_ark_u_i___native_module.md#arkui_gesturerecognizerhandle) \* [ArkUI_GestureRecognizerHandleArray](_ark_u_i___native_module.md#arkui_gesturerecognizerhandlearray) | 提供手势识别器句柄类型数组对象定义。  | 
+| typedef ArkUI_TouchRecognizer \* [ArkUI_TouchRecognizerHandle](_ark_u_i___native_module.md#arkui_touchrecognizerhandle) | 提供触摸识别器句柄类型对象定义。  | 
+| typedef [ArkUI_TouchRecognizerHandle](_ark_u_i___native_module.md#arkui_touchrecognizerhandle) \* [ArkUI_TouchRecognizerHandleArray](_ark_u_i___native_module.md#arkui_touchrecognizerhandlearray) | 提供触摸识别器句柄类型数组对象定义。  | 
 | typedef struct [ArkUI_GestureEventTargetInfo](_ark_u_i___native_module.md#arkui_gestureeventtargetinfo) [ArkUI_GestureEventTargetInfo](_ark_u_i___native_module.md#arkui_gestureeventtargetinfo) | 提供手势事件目标信息类型对象定义。  | 
 | typedef struct [ArkUI_ParallelInnerGestureEvent](_ark_u_i___native_module.md#arkui_parallelinnergestureevent) [ArkUI_ParallelInnerGestureEvent](_ark_u_i___native_module.md#arkui_parallelinnergestureevent) | 提供并行内部手势事件类型对象定义。  | 
+| typedef struct [ArkUI_GestureInterruptInfo](_ark_u_i___native_module.md#arkui_gestureinterruptinfo) [ArkUI_GestureInterruptInfo](_ark_u_i___native_module.md#arkui_gestureinterruptinfo) | 获取手势中断事件中的用户自定义数据。 |
 | typedef void(\* [ArkUI_GestureRecognizerDestructNotifyCallback](_ark_u_i___native_module.md#arkui_gesturerecognizerdestructnotifycallback)) (ArkUI_GestureRecognizer \*recognizer, void \*userData) | 定义手势识别器析构通知事件的回调函数类型。  | 
 
 
@@ -61,6 +65,9 @@
 | ArkUI_GestureRecognizer \* [OH_ArkUI_GestureInterruptInfo_GetRecognizer](_ark_u_i___native_module.md#oh_arkui_gestureinterruptinfo_getrecognizer) (const ArkUI_GestureInterruptInfo \*event) | 返回被打断的手势指针。  | 
 | ArkUI_GestureEvent \* [OH_ArkUI_GestureInterruptInfo_GetGestureEvent](_ark_u_i___native_module.md#oh_arkui_gestureinterruptinfo_getgestureevent) (const ArkUI_GestureInterruptInfo \*event) | 返回打断的手势事件数据。  | 
 | int32_t [OH_ArkUI_GestureInterruptInfo_GetSystemRecognizerType](_ark_u_i___native_module.md#oh_arkui_gestureinterruptinfo_getsystemrecognizertype) (const ArkUI_GestureInterruptInfo \*event) | 当要触发的是系统内部手势时，使用该方法可返回该系统内部手势的类型。  | 
+| int32_t [OH_ArkUI_GestureInterruptInfo_GetTouchRecognizers](_ark_u_i___native_module.md#oh_arkui_gestureinterruptinfo_gettouchrecognizers) (const ArkUI_GestureInterruptInfo\* info, ArkUI_TouchRecognizerHandleArray\* recognizers, int32_t\* size) | 使用该方法可返回与该手势相关的所有触摸识别器。  | 
+| int32_t [OH_ArkUI_TouchRecognizer_GetNodeHandle](_ark_u_i___native_module.md#oh_arkui_touchrecognizer_getnodehandle) (const ArkUI_TouchRecognizerHandle recognizer) | 使用该方法可返回与触摸识别器绑定的组件句柄。  |
+| int32_t [OH_ArkUI_TouchRecognizer_CancelTouch](_ark_u_i___native_module.md#oh_arkui_touchrecognizer_canceltouch) (ArkUI_TouchRecognizerHandle recognizer, ArkUI_GestureInterruptInfo\* info) | 使用该方法向对应触摸识别器分发Cancel事件拦截后续触摸事件。  |
 | [ArkUI_GestureEventActionType](_ark_u_i___native_module.md#arkui_gestureeventactiontype) [OH_ArkUI_GestureEvent_GetActionType](_ark_u_i___native_module.md#oh_arkui_gestureevent_getactiontype) (const ArkUI_GestureEvent \*event) | 返回手势事件类型。  | 
 | [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) [OH_ArkUI_GestureEvent_GetResponseNode](_ark_u_i___native_module.md#oh_arkui_gestureevent_getresponsenode) (ArkUI_GestureEvent \*event) | 返回响应手势的节点。  | 
 | const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \* [OH_ArkUI_GestureEvent_GetRawInputEvent](_ark_u_i___native_module.md#oh_arkui_gestureevent_getrawinputevent) (const ArkUI_GestureEvent \*event) | 返回手势输入。  | 
@@ -91,6 +98,16 @@
 | int32_t [OH_ArkUI_GetGestureBindNodeId](_ark_u_i___native_module.md#oh_arkui_getgesturebindnodeid) (ArkUI_GestureRecognizer \*recognizer, char \*nodeId, int32_t size, int32_t \*result) | 获取手势识别器绑定的组件的ID。  | 
 | bool [OH_ArkUI_IsGestureRecognizerValid](_ark_u_i___native_module.md#oh_arkui_isgesturerecognizervalid) (ArkUI_GestureRecognizer \*recognizer) | 当前手势识别器是否有效。  | 
 | void \* [OH_ArkUI_ParallelInnerGestureEvent_GetUserData](_ark_u_i___native_module.md#oh_arkui_parallelinnergestureevent_getuserdata) ([ArkUI_ParallelInnerGestureEvent](_ark_u_i___native_module.md#arkui_parallelinnergestureevent) \*event) | 获取并行内部手势事件中的用户自定义数据。  | 
+| void* [OH_ArkUI_GestureInterrupter_GetUserData](_ark_u_i___native_module.md#oh_arkui_gestureinterrupter_getuserdata)([ArkUI_GestureInterruptInfo](_ark_u_i___native_module.md#arkui_gestureinterruptinfo)* event) | 获取手势中断事件中的用户自定义数据。 |
 | ArkUI_GestureRecognizer \* [OH_ArkUI_ParallelInnerGestureEvent_GetCurrentRecognizer](_ark_u_i___native_module.md#oh_arkui_parallelinnergestureevent_getcurrentrecognizer) ([ArkUI_ParallelInnerGestureEvent](_ark_u_i___native_module.md#arkui_parallelinnergestureevent) \*event) | 获取并行内部手势事件中的当前手势识别器。  | 
 | int32_t [OH_ArkUI_ParallelInnerGestureEvent_GetConflictRecognizers](_ark_u_i___native_module.md#oh_arkui_parallelinnergestureevent_getconflictrecognizers) ([ArkUI_ParallelInnerGestureEvent](_ark_u_i___native_module.md#arkui_parallelinnergestureevent) \*event, [ArkUI_GestureRecognizerHandleArray](_ark_u_i___native_module.md#arkui_gesturerecognizerhandlearray) \*array, int32_t \*size) | 获取并行内部手势事件中的冲突的手势识别器。  | 
 | int32_t [OH_ArkUI_SetArkUIGestureRecognizerDisposeNotify](_ark_u_i___native_module.md#oh_arkui_setarkuigesturerecognizerdisposenotify) (ArkUI_GestureRecognizer \*recognizer, [ArkUI_GestureRecognizerDestructNotifyCallback](_ark_u_i___native_module.md#arkui_gesturerecognizerdestructnotifycallback) callback, void \*userData) | 设置手势识别器对象析构通知回调函数。  | 
+| int32_t [OH_ArkUI_GetGestureParam_DirectMask](_ark_u_i___native_module.md#oh_arkui_getgestureparam_directmask) (ArkUI_GestureRecognizer \*recognizer, [ArkUI_GestureDirectionMask](_ark_u_i___native_module.md#arkui_gesturedirectionmask) \*directMask) | 获取手势识别器的滑动方向。  | 
+| int32_t [OH_ArkUI_GetGestureParam_FingerCount](_ark_u_i___native_module.md#oh_arkui_getgestureparam_fingercount) (ArkUI_GestureRecognizer \*recognizer, int \*finger) | 获取手势识别器的手指数。  | 
+| int32_t [OH_ArkUI_GetGestureParam_limitFingerCount](_ark_u_i___native_module.md#oh_arkui_getgestureparam_limitfingercount) (ArkUI_GestureRecognizer \*recognizer, bool \*isLimited) | 获取手势识别器是否有手指数限制。  | 
+| int32_t [OH_ArkUI_GetGestureParam_repeat](_ark_u_i___native_module.md#oh_arkui_getgestureparam_repeat) (ArkUI_GestureRecognizer \*recognizer, bool \*isRepeat) | 获取手势识别器是否连续触发事件回调。  | 
+| int32_t [OH_ArkUI_GetGestureParam_distance](_ark_u_i___native_module.md#oh_arkui_getgestureparam_distance) (ArkUI_GestureRecognizer \*recognizer, double \*distance) | 获取手势识别器的手指允许的移动距离范围。  | 
+| int32_t [OH_ArkUI_GetGestureParam_speed](_ark_u_i___native_module.md#oh_arkui_getgestureparam_speed) (ArkUI_GestureRecognizer \*recognizer, double \*speed) | 获取手势识别器的识别滑动的最小速度。  | 
+| int32_t [OH_ArkUI_GetGestureParam_duration](_ark_u_i___native_module.md#oh_arkui_getgestureparam_duration) (ArkUI_GestureRecognizer \*recognizer, int \*duration) | 获取手势识别器的触发长按的最短时间。  | 
+| int32_t [OH_ArkUI_GetGestureParam_angle](_ark_u_i___native_module.md#oh_arkui_getgestureparam_angle) (ArkUI_GestureRecognizer \*recognizer, double \*angle) | 获取手势识别器的旋转手势的最小改变度数。  | 
+| int32_t [OH_ArkUI_GetGestureParam_distanceThreshold](_ark_u_i___native_module.md#oh_arkui_getgestureparam_distancethreshold) (ArkUI_GestureRecognizer \*recognizer, double \*distanceThreshold) | 获取手势识别器的手势移动阈值。  | 

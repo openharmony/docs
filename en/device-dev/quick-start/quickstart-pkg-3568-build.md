@@ -1,9 +1,6 @@
 # Building Source Code
 
 
-You can build source code with hb or the **build.sh** script. This topic describes how to build source code with hb. For details about how to use the **build.sh** script, see [Building Source Code Using the build.sh Script](quickstart-pkg-common-build.md).
-
-
 For details about the functions of the OpenHarmony compilation and building module, see [Compilation and Building Guide](../subsystems/subsys-build-all.md).
 
 
@@ -19,6 +16,8 @@ For details about the functions of the OpenHarmony compilation and building modu
 
 
 ## Procedure
+
+Method 1: using hb for compilation (install [compilation tools](quickstart-pkg-install-tool.md) first)
 
 Go to the root directory of the source code in the Ubuntu environment and perform the following steps:
 
@@ -71,3 +70,7 @@ Go to the root directory of the source code in the Ubuntu environment and perfor
    > ![icon-notice.gif](public_sys-resources/icon-notice.gif) **NOTICE**
    >
    > The build result and log files are stored in **out/rk3568**.
+
+Method 2: using the **build.sh** script for compilation
+
+For details, see [Building Source Code Using the build.sh Script](quickstart-pkg-common-build.md).

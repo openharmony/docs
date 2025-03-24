@@ -26,7 +26,7 @@ Queries system capabilities. This API uses an asynchronous callback to return th
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback<string> | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the result.|
 
 
 **Example**

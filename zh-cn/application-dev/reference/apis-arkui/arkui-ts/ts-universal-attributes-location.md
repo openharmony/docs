@@ -22,7 +22,7 @@ align(value: Alignment)
 
 | 参数名 | 类型                                        | 必填 | 说明                                                         |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Alignment](ts-appendix-enums.md#alignment) | 是   | 设置容器元素绘制区域内的子元素的对齐方式。<br/>只在Stack、Button、Marquee、StepperItem、Text、TextArea、TextInput、FolderStack中生效，其中和文本相关的组件Marquee、Text、TextArea、TextInput的align结果参考[textAlign](ts-basic-components-text.md#textalign)。<br/>不支持textAlign属性的组件则无法设置水平方向的文字对齐。<br/>默认值：Alignment.Center<br/>**说明：** <br/>在Stack中该属性与alignContent效果一致，只能设置子组件在容器内的对齐方式。 |
+| value  | [Alignment](ts-appendix-enums.md#alignment) | 是   | 设置容器元素绘制区域内的子元素的对齐方式。<br/>只在Stack、Button、Marquee、StepperItem、Text、TextArea、TextInput、FolderStack中生效，其中和文本相关的组件Marquee、Text、TextArea、TextInput的align结果参考[textAlign](ts-basic-components-text.md#textalign)。<br/>不支持textAlign属性的组件则无法设置水平方向的文字对齐。<br/>默认值：Alignment.Center<br/>**说明：** <br/>该属性不支持镜像能力。<br/>在Stack中该属性与alignContent效果一致，只能设置子组件在容器内的对齐方式。 |
 
 ## direction
 
@@ -198,7 +198,7 @@ alignRules(alignRule: LocalizedAlignRuleOptions)
 
 chainMode(direction: Axis, style: ChainStyle)
 
-指定以该组件为链头所构成的链的参数，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。链头指满足[规则说明](ts-container-relativecontainer.md#规则说明)中成链规则时链的第一个组件（水平方向从左边起始，镜像语言下从右边起始；竖直方向从上边起始）。
+指定以该组件为链头所构成的链的参数，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。链头指满足成链规则时链的第一个组件（水平方向从左边起始，镜像语言下从右边起始；竖直方向从上边起始）。
 详细用法请参考[RelativeContainer示例7（设置链）](ts-container-relativecontainer.md#示例7设置链)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full

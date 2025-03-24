@@ -34,7 +34,7 @@ hasPrivateWindow(displayId: number): boolean
 
 | 类型                             | 说明                                                                    |
 | -------------------------------- |-----------------------------------------------------------------------|
-|boolean | 查询的display对象上是否有可见的隐私窗口。<br>true表示此display对象上有可见的隐私窗口，false表示此display对象上没有可见的隐私窗口。</br> |
+|boolean | 查询的display对象上是否有可见的隐私窗口。true表示此display对象上有可见的隐私窗口，false表示此display对象上没有可见的隐私窗口。 |
 
 **错误码：**
 

@@ -6,14 +6,14 @@ NetConnection模块提供了常用网络信息查询的能力。
 
 ## 接口说明
 
-NetConnection常用接口如下表所示，详细的接口说明请参考[NetConnection](../reference/apis-network-kit/_net_connection.md)
+NetConnection常用接口如下表所示，详细的接口说明请参考[NetConnection](../reference/apis-network-kit/_net_connection.md)。
 
 
 | 接口名 | 描述 |
 | -------- | -------- |
 | OH_NetConn_HasDefaultNet(int32_t \*hasDefaultNet) | 检查默认数据网络是否被激活，判断设备是否有网络连接，以便在应用程序中采取相应的措施。 |
 | OH_NetConn_GetDefaultNet(NetConn_NetHandle \*netHandle) | 获得默认激活的数据网络。 |
-| OH_NetConn_IsDefaultNetMetered(int32_t \*isMetered) | 检查当前网络上的数据流量使用是否被计量 |
+| OH_NetConn_IsDefaultNetMetered(int32_t \*isMetered) | 检查当前网络上的数据流量使用是否被计量。 |
 | OH_NetConn_GetConnectionProperties(NetConn_NetHandle \*netHandle, NetConn_ConnectionProperties *prop) | 获取netHandle对应的网络的连接信息。 |
 | OH_NetConn_GetNetCapabilities (NetConn_NetHandle \*netHandle, NetConn_NetCapabilities \*netCapacities) | 获取netHandle对应的网络的能力信息。 |
 | OH_NetConn_GetDefaultHttpProxy (NetConn_HttpProxy \*httpProxy) | 获取网络默认的代理配置信息。 如果设置了全局代理，则会返回全局代理配置信息。如果进程已经绑定到指定netHandle对应的网络，则返回网络句柄对应网络的代理配置信息。在其它情况下，将返回默认网络的代理配置信息。 |
@@ -24,6 +24,8 @@ NetConnection常用接口如下表所示，详细的接口说明请参考[NetCon
 | OHOS_NetConn_UnregisterDnsResolver(void) | 去注册自定义dns解析器。<br/>**弃用：** 从API version 13开始废弃。<br/>**替代：** 推荐使用OH_NetConn_UnregisterDnsResolver。|
 | OH_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver) | 注册自定义dns解析器。 |
 | OH_NetConn_UnregisterDnsResolver(void) | 去注册自定义dns解析器。|
+| OH_NetConn_SetPacUrl(const char \*pacUrl) | 设置系统级代理自动配置(PAC)脚本地址。 |
+| OH_NetConn_GetPacUrl(char \*pacUrl) | 获取系统级代理自动配置(PAC)脚本地址。 |
 
 ## 网络管理接口开发示例
 

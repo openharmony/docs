@@ -45,7 +45,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                    |
 
 **Example**
@@ -104,7 +104,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                    |
 
 **Example**
@@ -166,7 +166,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                    |
 
 **Example**
@@ -220,7 +220,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                    |
 
 **Example**
@@ -273,7 +273,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **Example**
 
@@ -331,7 +331,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **Example**
 
@@ -383,7 +383,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600007  | The notification is not exist.           |
 | 17700001 | The specified bundle name was not found. |
 
@@ -450,7 +450,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600007  | The notification is not exist.           |
 | 17700001 | The specified bundle name was not found. |
 
@@ -506,7 +506,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600007  | The notification is not exist.      |
 
 **Example**
@@ -562,7 +562,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600007  | The notification is not exist.      |
 
 **Example**
@@ -610,7 +610,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **Example**
 
@@ -665,7 +665,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **Example**
 
@@ -711,7 +711,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
@@ -761,7 +761,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **Example**
 
@@ -813,7 +813,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
@@ -859,7 +859,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600008  | The user does not exist.              |
 
 **Example**
@@ -908,7 +908,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600008  | The user does not exist.              |
 
 **Example**
@@ -921,6 +921,53 @@ notificationSubscribe.removeAll(userId).then(() => {
 	console.info("removeAll success");
 }).catch((err: BusinessError) => {
   console.error("removeAll fail: " + JSON.stringify(err));
+});
+```
+
+## notificationSubscribe.distributeOperation<sup>18+</sup>
+
+distributeOperation(hashcode: string, operationInfo?: OperationInfo): Promise\<void>
+
+Triggers a notification for cross-device operations, such as tap-to-redirect and quick reply. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type        | Mandatory| Description      |
+| ------ | ------------ | ---- | ---------- |
+| hashcode | string | Yes  | Unique notification ID.|
+| operationInfo | [OperationInfo](#operationinfo18) | Yes  | Cross-device operation information.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 1600010  | Distributed operation failed.                     |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let hashcode: string = 'hashcode';
+let operationInfo: notificationSubscribe.OperationInfo = {
+  actionName: "actionName",
+  userInput: "userInput",
+};
+notificationSubscribe.distributeOperation(hashcode, operationInfo).then(() => {
+	console.info("distributeOperation success");
+}).catch((err: BusinessError) => {
+  console.error("distributeOperation fail: " + JSON.stringify(err));
 });
 ```
 
@@ -945,3 +992,14 @@ notificationSubscribe.removeAll(userId).then(() => {
 | -------------------- | --- | -------------------- |
 | CLICK_REASON_REMOVE  | 1   | The notification is removed after a click on it.   |
 | CANCEL_REASON_REMOVE | 2   | The notification is removed by the user.        |
+
+## OperationInfo<sup>18+</sup>
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API.
+
+| Name | Type  | Mandatory| Description    |
+| ----- | ------ | --- | -------- |
+| actionName    | string | Yes | Operation button displayed in the notification. The value must be the same as that of **title** in [NotificationActionButton](js-apis-inner-notification-notificationActionButton.md#notificationactionbutton).  |
+| userInput | string | No | User input, used to apply quick reply across devices. The value must be the same as that of **inputKey** in [NotificationUserInput](js-apis-inner-notification-notificationUserInput.md#notificationuserinput).|

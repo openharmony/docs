@@ -24,7 +24,7 @@
 | [AddWififences](#addwififences) ([in] struct [WififenceRequest](_wififence_request.md)[] wififence) | 添加Wi-Fi围栏。 | 
 | [RemoveWififences](#removewififences) ([in] int[] wififenceId) | 删除Wi-Fi围栏。 | 
 | [GetWififenceStatus](#getwififencestatus) ([in] int wififenceId) | 获取设备与一个Wi-Fi围栏的状态关系。 | 
-| [GetWififenceSize](#getwififencesize) () | 获取Wi-Fi围栏使用信息 | 
+| [GetWififenceSize](#getwififencesize) () | 获取Wi-Fi围栏使用信息。 | 
 
 
 ## 成员函数说明

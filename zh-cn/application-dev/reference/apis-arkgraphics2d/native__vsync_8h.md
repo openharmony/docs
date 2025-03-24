@@ -3,15 +3,11 @@
 
 ## 概述
 
-定义获取和使用NativeVsync的相关函数
+定义获取和使用NativeVsync的相关函数。
 
-**起始版本:**
+**起始版本：** 9
 
-9
-
-**相关模块:**
-
-[NativeVsync](_native_vsync.md)
+**相关模块：**[NativeVsync](_native_vsync.md)
 
 
 ## 汇总

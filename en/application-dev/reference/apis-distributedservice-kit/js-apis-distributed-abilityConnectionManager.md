@@ -1,6 +1,6 @@
 # @ohos.abilityConnectionManager (Cross-Device Connection Management)
 
-The **abilityConnectionManager** module provides APIs for cross-device connection management. After successful networking between devices (login with the same account and enabling of Bluetooth on the devices), a system application and third-party application can start a [UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md) of the same application across the devices. After a connection is successfully established, data can be transmitted across the devices, including strings, [ArrayBuffer](../../arkts-utils/arraybuffer-object.md) byte streams, images, and transport streams (only text for third-party applications).
+The **abilityConnectionManager** module provides APIs for cross-device connection management. After successful networking between devices (login with the same account and enabling of Bluetooth on the devices), a system application and a third-party application can start a [UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md) of the same application across these devices to establish a Bluetooth connection. This way, data (specifically, text) can be transmitted across the devices over the connection.
 
 > **NOTE**
 >

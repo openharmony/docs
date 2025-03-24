@@ -22,8 +22,7 @@ You can specify the modality of a dialog box by setting [isModal](../reference/a
        Column() {
          Text('I am content')
            .fontSize(20)
-           .margin({ top: 10, bottom: 10 })
-       }
+       }.height(60).justifyContent(FlexAlign.Center)
      }
    }
    ```
@@ -220,7 +219,7 @@ Custom dialog boxes can be used for data interactions to complete a series of op
    
      build() {
        Column() {
-         Button('click me')
+         Button('Click Me')
            .onClick(() => {
              if (this.dialogController != null) {
                this.dialogController.open()
@@ -240,7 +239,6 @@ Custom dialog boxes can be used for data interactions to complete a series of op
      build() {
        Column() {
          Button(this.message)
-           .fontSize(50)
            .fontWeight(FontWeight.Bold).onClick(() => {
            this.getUIContext().getRouter().back({
              url: 'pages/Index',

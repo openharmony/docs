@@ -94,34 +94,34 @@ import { common } from '@kit.AbilityKit';
 async function enableQuickThumbnail(baseContext: common.BaseContext, photoProfile: camera.Profile): Promise<void> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
-  // 创建PhotoSession实例
+  // 创建PhotoSession实例。
   let photoSession: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
-  // 开始配置会话
+  // 开始配置会话。
   photoSession.beginConfig();
-  // 把CameraInput加入到会话
+  // 把CameraInput加入到会话。
   let cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameras[0]);
   cameraInput.open();
   photoSession.addInput(cameraInput);
-  // 把PhotoOutPut加入到会话
+  // 把PhotoOutPut加入到会话。
   let photoOutPut: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile);
   photoSession.addOutput(photoOutPut);
   let isSupported: boolean = photoOutPut.isQuickThumbnailSupported();
   if (isSupported) {
-    // 使能快速缩略图
+    // 使能快速缩略图。
     photoOutPut.enableQuickThumbnail(true);
     photoOutPut.on('quickThumbnail', (err: BusinessError, pixelMap: image.PixelMap) => {
       if (err || pixelMap === undefined) {
         console.error('photoOutPut on thumbnail failed');
         return;
       }
-      // 显示或保存pixelmap
+      // 显示或保存pixelmap。
       showOrSavePicture(pixelMap);
     });
   }
 }
 
 function showOrSavePicture(pixelMap: image.PixelMap): void {
-  //do something
+  //do something。
 }
 ```
 

@@ -22,7 +22,7 @@
 调用创建和删除事件拦截前，需链接相关动态库。链接动态库的方法是，在CMakeList.txt文件中做下面例子所示的配置：
 
 ```txt
-   target_link_libraries(entry PUBLIC libohinput.so)
+target_link_libraries(entry PUBLIC libohinput.so)
 ```
 
 ### 申请所需权限

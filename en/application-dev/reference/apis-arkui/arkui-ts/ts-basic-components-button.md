@@ -315,7 +315,7 @@ Setting the scale factor to **0** hides the content.
 
 | Name| Type                                         | Mandatory| Description                                         |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | number \| [Resource](ts-types.md#resource) | Yes  | Maximum font scale factor for text.<br>Value range: [1, +��)<br>**NOTE**<br>A value less than 1 is handled as **1**. Abnormal values are ineffective by default.<br>If not set, the maximum scale factor for circle buttons is 1.|
+| scale  | number \| [Resource](ts-types.md#resource) | Yes  | Maximum font scale factor for text.<br>Value range: [1, +∞)<br>**NOTE**<br>A value less than 1 is handled as **1**. Abnormal values are ineffective by default.<br>If not set, the maximum scale factor for circle buttons is 1.|
 
 ## ButtonType
 
@@ -324,9 +324,9 @@ Setting the scale factor to **0** hides the content.
 | Name     | Description              |
 | ------- | ------------------ |
 | Capsule | Capsule-type button (the round corner is half of the height by default).**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| Circle  | Circle button.**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.**<br>**Atomic service API**: This API can be used in atomic services since API version 11.             |
-| Normal  | Normal button (without rounded corners by default). **<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.**<br>**Atomic service API**: This API can be used in atomic services since API version 11.    |
-| ROUNDED_RECTANGLE<sup>16+</sup> | Rounded rectangle button (default value: when **controlSize** is **NORMAL**, the corner radius is 20 vp; when controlSize is **SMALL**, the corner radius is 14 vp).**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 16.**<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
+| Circle  | Circular button.**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.**<br>**Atomic service API**: This API can be used in atomic services since API version 11.             |
+| Normal  | Normal button, with no rounded corners by default. **<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.**<br>**Atomic service API**: This API can be used in atomic services since API version 11.    |
+| ROUNDED_RECTANGLE<sup>15+</sup> | Rounded rectangle button (default value: when **controlSize** is **NORMAL**, the corner radius is 20 vp; when controlSize is **SMALL**, the corner radius is 14 vp).**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 15.**<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 
 >  **NOTE**
 >  - The corner radius of the rounded rectangle button is set using the universal attribute [borderRadius](ts-universal-attributes-border.md#borderradius).
@@ -359,11 +359,11 @@ Setting the scale factor to **0** hides the content.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name     | Description              |
-| ------- | ------------------ |
-| EMPHASIZED | Emphasized button (used to direct the user to the most important task).|
-| NORMAL  | Normal button (used to direct the user to a common task).             |
-| TEXTUAL  | Text button (displayed as simple text without any background color).     |
+| Name     | Value| Description              |
+| ------- | -- |------------------ |
+| NORMAL  | 0 |Normal button (used to direct the user to a common task).             |
+| EMPHASIZED | 1 |Emphasized button (used to direct the user to the most important task).|
+| TEXTUAL  | 2 |Text button (displayed as simple text without any background color).     |
 
 ## ControlSize<sup>11+</sup>
 
@@ -373,10 +373,10 @@ Setting the scale factor to **0** hides the content.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name     | Description              |
-| ------- | ------------------ |
-| SMALL | Small button.|
-| NORMAL  | Normal button.             |
+| Name     | Value|Description              |
+| ------- | -- |------------------ |
+| SMALL | "small" |Small button.|
+| NORMAL  | "normal" |Normal button.             |
 
 ## ButtonRole<sup>12+</sup>
 
@@ -386,10 +386,10 @@ Setting the scale factor to **0** hides the content.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name     | Description              |
-| ------- | ------------------ |
-| NORMAL | Normal button.|
-| ERROR  | Warning button.             |
+| Name     | Value|Description              |
+| ------- | -- |------------------ |
+| NORMAL | 0 |Normal button.|
+| ERROR  | 1 |Warning button.             |
 
 ## ButtonConfiguration<sup>12+</sup>
 

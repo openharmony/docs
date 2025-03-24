@@ -54,7 +54,7 @@ rowsTemplate和columnsTemplate属性值是一个由多个空格和'数字+fr'间
 
 ```ts
 Grid() {
-  ...
+  // ...
 }
 .rowsTemplate('1fr 1fr 1fr')
 .columnsTemplate('1fr 2fr 1fr')
@@ -81,7 +81,7 @@ Grid() {
 
 在网格中，可以通过onGetRectByIndex返回的[rowStart,columnStart,rowSpan,columnSpan]来实现跨行跨列布局，其中rowStart和columnStart属性表示指定当前元素起始行号和起始列号，rowSpan和columnSpan属性表示指定当前元素的占用行数和占用列数。
 
-所以“0”按键横跨第一列和第二列，“=”按键横跨第五行和第六行，只要将“0”对应onGetRectByIndex的rowStart和columnStart设为5和0，rowSpan和columnSpan设为1和2，将“=”对应onGetRectByIndex的rowStart和columnStart设为4和3，rowSpan和columnSpan设为2和1即可。
+所以“0”按键横跨第一列和第二列，“=”按键横跨第五行和第六行，只要将“0”对应onGetRectByIndex的rowStart和columnStart设为6和0，rowSpan和columnSpan设为1和2，将“=”对应onGetRectByIndex的rowStart和columnStart设为5和3，rowSpan和columnSpan设为2和1即可。
 
 
 ```ts
@@ -89,9 +89,9 @@ layoutOptions: GridLayoutOptions = {
   regularSize: [1, 1],
   onGetRectByIndex: (index: number) => {
     if (index == key1) { // key1是“0”按键对应的index
-      return [5, 0, 1, 2]
+      return [6, 0, 1, 2];
     } else if (index == key2) { // key2是“=”按键对应的index
-      return [4, 3, 2, 1]
+      return [5, 3, 2, 1];
     }
     // ...
     // 这里需要根据具体布局返回其他item的位置
@@ -102,7 +102,7 @@ Grid(undefined, this.layoutOptions) {
   // ...
 }
 .columnsTemplate('1fr 1fr 1fr 1fr')
-.rowsTemplate('2fr 1fr 1fr 1fr 1fr 1fr')
+.rowsTemplate('1fr 1fr 1fr 1fr 1fr 1fr 1fr')
 ```
 
 
@@ -119,7 +119,7 @@ Grid(undefined, this.layoutOptions) {
 
 ```ts
 Grid() {
-  ...
+  // ...
 }
 .maxCount(3)
 .layoutDirection(GridDirection.Row)
@@ -147,22 +147,22 @@ Grid组件可以通过二维布局的方式显示一组GridItem子组件。
 Grid() {
   GridItem() {
     Text('会议')
-      ...
+      // ...
   }
 
   GridItem() {
     Text('签到')
-      ...
+      // ...
   }
 
   GridItem() {
     Text('投票')
-      ...
+      // ...
   }
 
   GridItem() {
     Text('打印')
-      ...
+      // ...
   }
 }
 .rowsTemplate('1fr 1fr')
@@ -208,7 +208,7 @@ struct OfficeService {
 
 ```ts
 Grid() {
-  ...
+  // ...
 }
 .columnsGap(10)
 .rowsGap(15)
@@ -293,6 +293,40 @@ Column({ space: 5 }) {
 }
 ```
 
+
+## 添加外置滚动条
+
+网格组件[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)可与[ScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md)组件配合使用，为网格添加外置滚动条。两者通过绑定同一个[Scroller](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scroller)滚动控制器对象实现联动。
+
+1. 首先，需要创建一个[Scroller](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scroller)类型的对象gridScroller。
+
+   ```ts
+   private gridScroller: Scroller = new Scroller();
+   ```
+
+2. 然后，通过[scroller](../reference/apis-arkui/arkui-ts/ts-container-grid.md#接口)参数绑定滚动控制器。
+
+   ```ts
+   // gridScroller初始化Grid组件的scroller参数，绑定gridScroller与网格。
+   Grid({ scroller: this.gridScroller }) {
+   // ...
+   }
+   ```
+
+3. 最后，滚动条通过[scroller](../reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md#scrollbaroptions对象说明)参数绑定滚动控制器。
+
+   ```ts
+   // gridScroller初始化ScrollBar组件的scroller参数，绑定gridScroller与滚动条。
+   ScrollBar({ scroller: this.gridScroller })
+   ```
+
+  **图11** 网格的外置滚动条 
+
+![ScrollBar](figures/grid_scrollbar.gif)
+
+>**说明：**
+>- 滚动条组件[ScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md)，还可配合其他可滚动组件使用，如[ArcList](../reference/apis-arkui/arkui-ts/ts-container-arclist.md)、[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md)、[WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)。
+>- 在圆形屏幕设备上，[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)可以与弧形滚动条组件[ArcScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-arcscrollbar.md)配合使用为网格添加弧形外置滚动条，使用方式可参考[创建弧形列表 (ArcList)](./arkts-layout-development-create-arclist.md)的[添加外置滚动条ArcScrollBar](./arkts-layout-development-create-arclist.md#添加外置滚动条arcscrollbar)章节。
 
 ## 性能优化
 

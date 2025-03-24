@@ -728,7 +728,7 @@ import { asset } from '@kit.AssetStoreKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let handle: asset.AssetMap = new Map();
-// 此处传入的new Uint8Array(32)仅作为示例，实际应传入asset.preQuery执行成功返回的挑战值
+// 此处传入的new Uint8Array(32)仅作为示例，实际应传入asset.preQuery执行成功返回的挑战值。
 handle.set(asset.Tag.AUTH_CHALLENGE, new Uint8Array(32));
 try {
   asset.postQuery(handle).then(() => {
@@ -779,7 +779,7 @@ import { asset } from '@kit.AssetStoreKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let handle: asset.AssetMap = new Map();
-// 此处传入的new Uint8Array(32)仅作为示例，实际应传入asset.preQuerySync执行成功返回的挑战值
+// 此处传入的new Uint8Array(32)仅作为示例，实际应传入asset.preQuerySync执行成功返回的挑战值。
 handle.set(asset.Tag.AUTH_CHALLENGE, new Uint8Array(32));
 try {
   asset.postQuerySync(handle)
@@ -845,7 +845,8 @@ try {
 | UPDATE_TIME<sup>12+</sup> | TagType.BYTES &#124; 0x45 | 数据的更新时间（时间戳形式）。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 | OPERATION_TYPE<sup>12+</sup> | TagType.NUMBER &#124; 0x46 | 附加的操作类型。 |
 | REQUIRE_ATTR_ENCRYPTED<sup>14+</sup> | TagType.BOOL &#124; 0x47 | 是否加密业务自定义附属信息。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
-| GROUP_ID<sup>16+</sup> | TagType.BYTES &#124; 0x48 | 关键资产所属群组。<br> |
+| GROUP_ID<sup>18+</sup> | TagType.BYTES &#124; 0x48 | 关键资产所属群组。<br> |
+| WRAP_TYPE<sup>18+</sup> | TagType.NUMBER &#124; 0x49 | 关键资产支持的加密导入导出类型。<br> |
 
 ## Value
 
@@ -887,9 +888,9 @@ type AssetMap = Map\<Tag, Value>
 
 | 名称                  | 值   | 说明                                                         |
 | --------------------- | ---- | ------------------------------------------------------------ |
-| DEVICE_POWERED_ON     | 0    | 开机后可访问                                   |
-| DEVICE_FIRST_UNLOCKED | 1    | 首次解锁后可访问<br>**备注：** 未设置锁屏密码时，等同于开机后可访问 |
-| DEVICE_UNLOCKED       | 2    | 解锁状态时可访问<br/>**备注：** 未设置锁屏密码时，等同于开机后可访问 |
+| DEVICE_POWERED_ON     | 0    | 开机后可访问。                                   |
+| DEVICE_FIRST_UNLOCKED | 1    | 首次解锁后可访问<br>**说明：** 未设置锁屏密码时，等同于开机后可访问。 |
+| DEVICE_UNLOCKED       | 2    | 解锁状态时可访问<br/>**说明：** 未设置锁屏密码时，等同于开机后可访问。 |
 
 ## AuthType
 
@@ -901,8 +902,8 @@ type AssetMap = Map\<Tag, Value>
 
 | 名称 | 值   | 说明                                                         |
 | ---- | ---- | ------------------------------------------------------------ |
-| NONE | 0    | 访问关键资产前无需用户认证。                                 |
-| ANY  | 255  | 任意一种用户认证方式（PIN码、人脸、指纹等）通过后，均可访问关键资产。 |
+| NONE | 0x00 | 访问关键资产前无需用户认证。                                 |
+| ANY  | 0xFF | 任意一种用户认证方式（PIN码、人脸、指纹等）通过后，均可访问关键资产。 |
 
 ## SyncType
 
@@ -934,7 +935,7 @@ type AssetMap = Map\<Tag, Value>
 | 名称       | 值   | 说明                                                         |
 | ---------- | ---- | ------------------------------------------------------------ |
 | ALL        | 0    | 返回关键资产明文及属性。<br/>**说明：** 查询单条关键资产明文时，需设置此类型。 |
-| ATTRIBUTES | 1    | 返回关键资产属性，不含关键资产明文。<br>**备注：** 批量查询关键资产属性时，需设置此类型。 |
+| ATTRIBUTES | 1    | 返回关键资产属性，不含关键资产明文。<br>**说明：** 批量查询关键资产属性时，需设置此类型。 |
 
 ## ConflictResolution
 
@@ -959,6 +960,17 @@ type AssetMap = Map\<Tag, Value>
 | ----------- | ---- | ------------------ |
 | NEED_SYNC   | 0    | 需要进行同步操作。 |
 | NEED_LOGOUT | 1    | 需要进行登出操作。 |
+
+## WrapType<sup>18+</sup>
+
+枚举，关键资产支持的加密导入导出类型。
+
+**系统能力：** SystemCapability.Security.Asset
+
+| 名称        | 值   | 说明               |
+| ----------- | ---- | ------------------ |
+| NEVER   | 0    | 不允许加密导入导出关键资产。|
+| TRUSTED_ACCOUNT | 1    | 只在登录可信账号的设备进行加密导入导出关键资产。 |
 
 ## ErrorCode
 

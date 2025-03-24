@@ -32,3 +32,4 @@
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVSource_Destroy](_a_v_source.md#oh_avsource_destroy) ([OH_AVSource](_a_v_source.md#oh_avsource) \*source) | 销毁OH_AVSource实例并清理内部资源。 | 
 | [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVSource_GetSourceFormat](_a_v_source.md#oh_avsource_getsourceformat) ([OH_AVSource](_a_v_source.md#oh_avsource) \*source) | 获取媒体资源文件的基础信息。 | 
 | [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVSource_GetTrackFormat](_a_v_source.md#oh_avsource_gettrackformat) ([OH_AVSource](_a_v_source.md#oh_avsource) \*source, uint32_t trackIndex) | 获取轨道的基础信息。 | 
+| OH_AVFormat \* [OH_AVSource_GetCustomMetadataFormat](_a_v_source.md#oh_avsource_getcustommetadataformat) ([OH_AVSource](_a_v_source.md#oh_avsource) \*source) | 获取自定义元数据的基础信息。 | 

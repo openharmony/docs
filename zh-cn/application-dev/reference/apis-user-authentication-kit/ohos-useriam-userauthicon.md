@@ -11,18 +11,15 @@
 > **说明：**
 > - 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-
 ## 导入模块
 
 ```ts
 import { userAuth, UserAuthIcon } from '@kit.UserAuthenticationKit';
 ```
 
-
 ## 子组件
 
 无
-
 
 ## 属性
 
@@ -56,7 +53,6 @@ UserAuthIcon({
 | onIconClick    | ()=>void                                                      | 否   | 用户点击icon回调接口。                                         |
 | onAuthResult   | (result: [UserAuthResult](js-apis-useriam-userauth.md#userauthresult10))=>void| 是   | 用户认证结果信息回调接口。<br/>**需要权限：** ohos.permission.ACCESS_BIOMETRIC  |
 
-
 ## 事件
 
 不支持通用事件。
@@ -64,13 +60,17 @@ UserAuthIcon({
 ## 示例
 
 ```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { userAuth, UserAuthIcon } from '@kit.UserAuthenticationKit';
 
 @Entry
 @Component
 struct Index {
+  rand = cryptoFramework.createRandom();
+  len: number = 16;
+  randData: Uint8Array = this.rand?.generateRandomSync(this.len)?.data;
   authParam: userAuth.AuthParam = {
-    challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+    challenge: this.randData,
     authType: [userAuth.UserAuthType.FACE, userAuth.UserAuthType.PIN],
     authTrustLevel: userAuth.AuthTrustLevel.ATL3
   };

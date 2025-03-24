@@ -1,6 +1,6 @@
-# Network Connection Development
+# NetConnection Development
 
-## When to Use
+## Use Cases
 
 The **NetConnection** module provides the capability of querying common network information.
 
@@ -9,7 +9,7 @@ The **NetConnection** module provides the capability of querying common network 
 The following table lists the common **NetConnection** APIs. For details, see [NetConnection](../reference/apis-network-kit/_net_connection.md).
 
 
-| API| **Test Description**|
+| Name| Description|
 | -------- | -------- |
 | OH_NetConn_HasDefaultNet(int32_t \*hasDefaultNet) | Checks whether the default data network is activated and determines whether a network connection is available.|
 | OH_NetConn_GetDefaultNet(NetConn_NetHandle \*netHandle) | Obtains the default active data network.|
@@ -22,14 +22,17 @@ The following table lists the common **NetConnection** APIs. For details, see [N
 | OH_NetConn_GetAllNets(NetConn_NetHandleList \*netHandleList) | Obtains the list of all connected networks.|
 | OHOS_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver) | Registers a custom DNS resolver.<br>Note: This API is deprecated since API version 13.<br>You are advised to use **OH_NetConn_RegisterDnsResolver** instead.|
 | OHOS_NetConn_UnregisterDnsResolver(void) | Unregisters a custom DNS resolver.<br>Note: This API is deprecated since API version 13.<br>You are advised to use **OH_NetConn_UnregisterDnsResolver** instead.|
+| OH_NetConn_BindSocket(int32_t socketFd, NetConn_NetHandle \*netHandle) | Binds a socket to the specified network.|
 | OH_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver) | Registers a custom DNS resolver.|
 | OH_NetConn_UnregisterDnsResolver(void) | Unregisters a custom DNS resolver.|
+| OH_NetConn_SetPacUrl(const char \*pacUrl) | Sets the URL of the system-level proxy auto-config (PAC) script.|
+| OH_NetConn_GetPacUrl(char \*pacUrl) | Obtains the URL of the system-level PAC script.|
 
 ## Development Example
 
 ### How to Develop
 
-To use related APIs to obtain network information, you need to create a Native C++ project, encapsulate the APIs in the source file, and call these APIs at the ArkTs layer. You can use hilog or console.log to print the log information on the console or generate device logs.
+To use related APIs to obtain network information, you need to create a Native C++ project, encapsulate the APIs in the source file, and call these APIs at the ArkTS layer. You can use hilog or console.log to print the log information on the console or generate device logs.
 
 This document describes how to obtain the default active data network as an example.
 
@@ -54,7 +57,7 @@ libnet_connection.so
 
 ### Building the Project
 
-1. Write the code for calling the API in the source file, encapsulate it into a value of the `napi_value` type, and return the value to the Node.js environment.
+1. Write the code for calling the API in the source file, encapsulate it into a value of the `napi_value` type, and return the value to the `Node.js` environment.
 
 ```C
 // Get the execution results of the default network connection.
@@ -93,7 +96,7 @@ static napi_value NetId(napi_env env, napi_callback_info info) {
 }
 ```
 
-> **NOTE**<br>The two functions are used to obtain information about the default network connection of the system. Wherein, GetDefaultNet is used to receive the test parameters passed from ArkTs and return the corresponding return value after the API is called. You can change param as needed. If the return value is **0**, the parameters are obtained successfully. If the return value is **401**, the parameters are incorrect. If the return value is **201**, the user does not have the operation permission. NetId indicates the ID of the default network connection. You can use the information for further network operations.
+> **NOTE**<br>The two functions are used to obtain information about the default network connection of the system. Wherein, GetDefaultNet is used to receive the test parameters passed from ArkTS and return the corresponding return value after the API is called. You can change param as needed. If the return value is **0**, the parameters are obtained successfully. If the return value is **401**, the parameters are incorrect. If the return value is **201**, the user does not have the operation permission. NetId indicates the ID of the default network connection. You can use the information for further network operations.
 
 
 2. Initialize and export the `napi_value` objects encapsulated through **NAPI**, and expose the preceding two functions to JavaScript through external function APIs.
@@ -112,7 +115,7 @@ static napi_value Init(napi_env env, napi_value exports)
 EXTERN_C_END
 ```
 
-3. Register the objects successfully initialized in the previous step into the Node.js file by using the `napi_module_register` function of `RegisterEntryModule`.
+3. Register the objects successfully initialized in the previous step into the `Node.js` file by using the `napi_module_register` function of `RegisterEntryModule`.
 
 ```C
 static napi_module demoModule = {
@@ -131,9 +134,9 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 }
 ```
 
-4. Define the types of the two functions in the `index.d.ts ` file of the project.
+4. Define the types of the two functions in the `index.d.ts` file of the project.
 
-- The `GetDefaultNet ` function accepts the numeric parameter code and returns a numeric value.
+- The `GetDefaultNet` function accepts the numeric parameter `code` and returns a numeric value.
 - The `NetId` function does not accept parameters and returns a numeric value.
 
 ```ts
@@ -191,7 +194,7 @@ struct Index {
 
 6. Configure the `CMakeLists.txt` file. Add the required shared library, that is, `libnet_connection.so`, to `target_link_libraries` in the `CMakeLists.txt` file automatically generated by the project.
 
-Note: As shown in the following figure, `entry` in `add_library` is the modename automatically generated by the project. If you want to change the `modename`, ensure that it is the same as the `.nm_modname` in step 3.
+Note: As shown in the following figure, `entry` in `add_library` is the `modename` automatically generated by the project. If you want to change the `modename`, ensure that it is the same as the `.nm_modname` in step 3.
 
 ![netmanager-4.png](./figures/netmanager-4.png)
 

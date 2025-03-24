@@ -23,7 +23,7 @@
 | struct&nbsp;&nbsp;[SaCommandParamEnableSensorIllumination](_sa_command_param_enable_sensor_illumination_fingerauth_v11.md) | 光斑使能的sa命令参数。 | 
 | struct&nbsp;&nbsp;[SaCommandParamNone](_sa_command_param_none_fingerauth_v11.md) | sa命令参数为空。 | 
 | union&nbsp;&nbsp;[SaCommandParam](union_sa_command_param_fingerauth_v11.md) | sa命令参数。 | 
-| struct&nbsp;&nbsp;[SaCommand](_sa_command_fingerauth_v11.md) | sa命令ID | 
+| struct&nbsp;&nbsp;[SaCommand](_sa_command_fingerauth_v11.md) | sa命令ID。 | 
 
 
 ### 枚举

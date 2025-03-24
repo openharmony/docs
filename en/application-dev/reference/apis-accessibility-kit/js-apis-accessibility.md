@@ -84,20 +84,20 @@ Target actions supported by the application. The target actions for which parame
 | 'clearSelection'          | Clearing selection. Not supported yet.|
 | 'accessibilityFocus'      | Obtaining the accessibility focus.      |
 | 'clearAccessibilityFocus'      | Clearing the accessibility focus.      |
-| 'cut'                     | Cut.  |
-| 'copy'                    | Copy.  |
-| 'paste'                   | Paste.  |
-| 'select'                  | Select.  |
-| 'setCursorPosition'                 | Set text. You need to set the **setText** parameter.|
+| 'cut'                     | Cutting.  |
+| 'copy'                    | Copying.  |
+| 'paste'                   | Pasting.  |
+| 'select'                  | Selecting.  |
+| 'setText'                 | Setting text. You need to set the **setText** parameter.|
 | 'delete'                  | Delete. Not supported yet.  |
-| 'setSelection'            | Select. You need to set the **selectTextBegin**, **selectTextEnd** and **selectTextInForWard** parameters.  |
+| 'setSelection'            | Selecting. You need to set the **selectTextBegin**, **selectTextEnd** and **selectTextInForWard** parameters.  |
 | 'common'            | Common actions used in auto-focusing and auto-broadcasting.  |
-| 'home'                | Return to the home screen.  |
-| 'back'                | Return to the previous screen.  |
-| 'recentTask'          | Open a recent task.  |
-| 'notificationCenter'      | Open the notification bar.  |
-| 'controlCenter'       | Open the control center.  |
-| 'setCursorPosition'     | Set cursor location. You need to set the **offset** parameter.  |
+| 'home'                | Returning to the home screen.  |
+| 'back'                | Returning to the previous screen.  |
+| 'recentTask'          | Opening a recent task.  |
+| 'notificationCenter'      | Opening the notification bar.  |
+| 'controlCenter'       | Opening the control center.  |
+| 'setCursorPosition'     | Setting cursor location. You need to set the **offset** parameter.  |
 
 ## Capability
 
@@ -362,6 +362,7 @@ Describes a GUI change event.
 | itemCount        | number                                | No  | Total number of records.       |
 | elementId<sup>12+</sup>        | number                                | No  | Element ID of the component.       |
 | textAnnouncedForAccessibility<sup>12+</sup>        | string                                | No  | Content for auto-broadcasting.       |
+| textResourceAnnouncedForAccessibility<sup>16+</sup>        | Resource      | No  | Content for auto-broadcasting, which supports resources of the string type. |
 | customId<sup>12+</sup>        | string                                | No  | Component ID for auto-focusing.       |
 
 ### constructor
@@ -402,7 +403,7 @@ Implements a constructor.
 
 | Name | Type               | Mandatory| Description           |
 |------|-------------------|---|---------------|
-| type | [EventType](#eventtype)          | Yes| Enumerates accessibility event types.     |
+| type | [EventType](#eventtype)          | Yes| Accessibility event types.     |
 | bundleName | string | Yes| Target application name.       |
 | triggerAction | [Action](#action) | Yes| Action that triggers the event.|
 
@@ -419,7 +420,8 @@ Implements a constructor.
 type EventType = 'accessibilityFocus' | 'accessibilityFocusClear' |
 'click' | 'longClick' | 'focus' | 'select' | 'hoverEnter' | 'hoverExit' |
 'textUpdate' | 'textSelectionUpdate' | 'scroll' | 'requestFocusForAccessibility' |
-'announceForAccessibility'
+'announceForAccessibility' | 'requestFocusForAccessibilityNotInterrupt' |
+'announceForAccessibilityNotInterrupt' | 'scrolling'
 
 Enumerates accessibility event types.
 
@@ -427,10 +429,10 @@ Enumerates accessibility event types.
 
 | Type                     | Description                    |
 | ----------------------- |------------------------|
-| 'accessibilityFocus'      | Represents an event indicating that the accessibility focus is obtained.         |
-| 'accessibilityFocusClear' | Represents an event indicating that the accessibility focus is cleared.         |
+| 'accessibilityFocus'      | Event indicating that the accessibility focus is obtained.         |
+| 'accessibilityFocusClear' | Event indicating that the accessibility focus is cleared.         |
 | 'click'                   | Event of clicking a component.            |
-| 'longClick'               | Represents an event indicating that the component is long pressed.            |
+| 'longClick'               | Event indicating that the component is long pressed.            |
 | 'select'                  | Event of selecting a component.   |
 | 'hoverEnter'              | Event indicating that the hover enters a component. |
 | 'hoverExit'               | Event indicating that the hover exits a component. |
@@ -440,7 +442,9 @@ Enumerates accessibility event types.
 | 'scroll'                  | Event of the scroll view.   |
 | 'requestFocusForAccessibility'     | Event of the auto-focusing.|
 | 'announceForAccessibility'         | Event of the auto-broadcasting.|
-
+| 'requestFocusForAccessibilityNotInterrupt'     | Event of the auto-focusing without interruption.<br>This event is supported since API version 16.|
+| 'announceForAccessibilityNotInterrupt'         | Event of the auto-broadcasting without interruption.<br>This event is supported since API version 16.|
+| 'scrolling'                  | Event indicating that an item is scrolled out of the screen in the scrolling view.<br>This event is supported since API version 16.|
 
 ## TextMoveUnit
 
@@ -1315,6 +1319,28 @@ let eventInfo: accessibility.EventInfo = ({
   bundleName: 'com.example.MyApplication',
   triggerAction: 'common',
   customId: 'click' // ID of the component to be focused.
+});
+
+accessibility.sendAccessibilityEvent(eventInfo, (err: BusinessError) => {
+  if (err) {
+    console.error(`failed to send event, Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in send event, eventInfo is ${eventInfo}`);
+});
+```
+
+**Example of resource-supported auto-broadcasting<sup>16+</sup>:**
+
+```ts
+import { accessibility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let eventInfo: accessibility.EventInfo = ({
+  type: 'announceForAccessibility',
+  bundleName: 'com.example.MyApplication',
+  triggerAction: 'common',
+  textResourceAnnouncedForAccessibility: $r('app.string.ResourceName'),
 });
 
 accessibility.sendAccessibilityEvent(eventInfo, (err: BusinessError) => {

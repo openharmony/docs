@@ -19,7 +19,7 @@ IntelligentVoiceTrigger模块向上层服务提供了智能语音触发器回调
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OnRecognitionHdiEvent](#onrecognitionhdievent) ([in] struct [IntellVoiceRecognitionEvent](_intell_voice_recognition_event.md) event, [in] int cookie) | 识别事件上报  | 
+| [OnRecognitionHdiEvent](#onrecognitionhdievent) ([in] struct [IntellVoiceRecognitionEvent](_intell_voice_recognition_event.md) event, [in] int cookie) | 识别事件上报。  | 
 
 
 ## 成员函数说明
@@ -32,7 +32,7 @@ IIntellVoiceTriggerCallback::OnRecognitionHdiEvent ([in] struct IntellVoiceRecog
 ```
 **描述**
 
-识别事件上报
+识别事件上报。
 
 **起始版本：** 4.0
 

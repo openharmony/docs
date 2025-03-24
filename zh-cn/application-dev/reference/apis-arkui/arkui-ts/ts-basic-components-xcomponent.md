@@ -138,7 +138,7 @@ enableSecure(isSecure: boolean)
 
 ## 事件
 
-从API version 12开始，type为SURFACE或TEXTURE时，支持[通用事件](ts-universal-events-click.md)。
+从API version 12开始，type为SURFACE或TEXTURE时，支持[通用事件](ts-component-general-events.md)。
 
 > **说明：** 
 >
@@ -162,7 +162,7 @@ onLoad(callback: OnNativeLoadCallback )
 
 | 参数名   | 类型   | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
-| callback | [OnNativeLoadCallback](#onnativeloadcallback14) | 是    | XComponent持有的Surface创建后回调事件。 |
+| callback | [OnNativeLoadCallback](#onnativeloadcallback18) | 是    | XComponent持有的Surface创建后回调事件。 |
 
 ### onDestroy
 
@@ -180,13 +180,13 @@ onDestroy(event: VoidCallback )
 | ----- | ------ | ---- | ---------------------------------------- |
 | event | [VoidCallback](ts-types.md#voidcallback12) | 是    | XComponent销毁后回调事件。 |
 
-## OnNativeLoadCallback<sup>14+</sup>
+## OnNativeLoadCallback<sup>18+</sup>
 
 type OnNativeLoadCallback = (event?: object) =\> void
 
 XComponent持有的Surface创建后回调事件。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -378,7 +378,7 @@ onSurfaceDestroyed(surfaceId: string): void
 
 startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 
-配置AI分析并启动AI分析功能，使用前需先[使能](#enableanalyzer12)图像AI分析能力。<br>该方法调用时，将截取调用时刻的画面帧进行分析，使用时需注意启动分析的时机，避免出现画面和分析内容不一致的情况。<br>若该方法尚未执行完毕，此时重复调用，则会触发错误回调。
+配置AI分析并启动AI分析功能，使用前需先[启用图像AI分析能力](#enableanalyzer12)。<br>该方法调用时，将截取调用时刻的画面帧进行分析，使用时需注意启动分析的时机，避免出现画面和分析内容不一致的情况。<br>若该方法尚未执行完毕，此时重复调用，则会触发错误回调。
 
 > **说明：**
 > 

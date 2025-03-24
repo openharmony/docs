@@ -184,14 +184,14 @@ To reference this object, at least one parameter must be passed.
 
 | Name         | Type                        | Mandatory  | Description      |
 | ----------- | ---------------------------- | ---- | -------- |
-| topLeft     | [Length](ts-types.md#length) | No   | Radius of the upper-left rounded corner.|
-| topRight    | [Length](ts-types.md#length) | No   | Radius of the upper-right rounded corner.|
-| bottomLeft  | [Length](ts-types.md#length) | No   | Radius of the lower-left rounded corner.|
-| bottomRight | [Length](ts-types.md#length) | No   | Radius of the lower-right rounded corner.|
+| topLeft     | [Length](ts-types.md#length) | No   | Radius of the upper left rounded corner.|
+| topRight    | [Length](ts-types.md#length) | No   | Radius of the upper right rounded corner.|
+| bottomLeft  | [Length](ts-types.md#length) | No   | Radius of the lower left rounded corner.|
+| bottomRight | [Length](ts-types.md#length) | No   | Radius of the lower right rounded corner.|
 
 ## LocalizedBorderRadiuses<sup>12+</sup>
 
-Represents the radius of the rounded corners of the component.
+Describes the corner radius of a component's border.
 
 To reference this object, at least one parameter must be passed.
 
@@ -201,10 +201,10 @@ To reference this object, at least one parameter must be passed.
 
 | Name         | Type                        | Mandatory  | Description      |
 | ----------- | ---------------------------- | ---- | -------- |
-| topStart     | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | No   | Radius of the upper-left rounded corner.<br>Radius of the upper-right rounded corner for right-to-left scripts.|
-| topEnd       | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | No   | Radius of the upper-right rounded corner.<br>Radius of the upper-left rounded corner for right-to-left scripts.|
-| bottomStart  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | No   | Radius of the lower-left rounded corner.<br>Radius of the lower-right rounded corner for right-to-left scripts.|
-| bottomEnd    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | No   | Radius of the lower-right rounded corner.<br>Radius of the lower-left rounded corner for right-to-left scripts.|
+| topStart     | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | No   | Radius of the upper left rounded corner.<br>Radius of the upper right rounded corner for right-to-left scripts.|
+| topEnd       | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | No   | Radius of the upper right rounded corner.<br>Radius of the upper left rounded corner for right-to-left scripts.|
+| bottomStart  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | No   | Radius of the lower left rounded corner.<br>Radius of the lower right rounded corner for right-to-left scripts.|
+| bottomEnd    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | No   | Radius of the lower right rounded corner.<br>Radius of the lower left rounded corner for right-to-left scripts.|
 
 ## EdgeStyles<sup>9+</sup>
 

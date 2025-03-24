@@ -25,13 +25,13 @@ Toggle(options: ToggleOptions)
 
 | 参数名 | 类型 | 必填   | 说明           |
 | ---- | ---------- | -----| -------------- |
-| options | [ToggleOptions](#toggleoptions16对象说明) | 是   | Toggle的信息。 |
+| options | [ToggleOptions](#toggleoptions18对象说明) | 是   | Toggle的信息。 |
 
-## ToggleOptions<sup>16+</sup>对象说明
+## ToggleOptions<sup>18+</sup>对象说明
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -56,7 +56,7 @@ Toggle(options: ToggleOptions)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### selectedColor
 
@@ -134,14 +134,14 @@ contentModifier(modifier: ContentModifier\<ToggleConfiguration>)
 
 | 名称              | 类型                                        | 必填 | 说明                                                         |
 | ----------------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| pointRadius       | number \|  [Resource](ts-types.md#resource) | 否   | 设置Switch类型的圆形滑块半径。<br />**说明：**<br/>不支持百分比，设定值小于0时按照默认算法设置，设定值大于等于0时按照设定值设置。<br/>未设定此属性时，圆形滑块半径根据默认算法设置。<br/>默认算法：（组件高度（单位：vp） / 2） - （2vp * 组件高度（单位：vp） / 20vp）。 |
+| pointRadius       | number \|  [Resource](ts-types.md#resource) | 否   | 设置Switch类型的圆形滑块半径，单位为vp。<br />**说明：**<br/>不支持百分比，设定值小于0时按照默认算法设置，设定值大于等于0时按照设定值设置。<br/>未设定此属性时，圆形滑块半径根据默认算法设置。<br/>默认算法：（组件高度（单位：vp） / 2） - （2vp * 组件高度（单位：vp） / 20vp）。 |
 | unselectedColor   | [ResourceColor](ts-types.md#resourcecolor)  | 否   | 设置Switch类型关闭状态的背景颜色。<br />默认值：0x337F7F7F。 |
 | pointColor        | [ResourceColor](ts-types.md#resourcecolor)  | 否   | 设置Switch类型的圆形滑块颜色。<br />默认值：$r('sys.color.ohos_id_color_foreground_contrary') |
-| trackBorderRadius | number \|  [Resource](ts-types.md#resource) | 否   | 设置Switch类型的滑轨的圆角。<br />**说明：**<br/>不支持百分比，设定值小于0时按照默认算法设置，设定值大于组件高度一半时按照组件高度一半设置，其他场合按照设定值设置。<br/>未设定此属性时，滑轨圆角根据默认算法设置。<br/>默认算法：组件高度（单位：vp） / 2。 |
+| trackBorderRadius | number \|  [Resource](ts-types.md#resource) | 否   | 设置Switch类型的滑轨的圆角，单位为vp。<br />**说明：**<br/>不支持百分比，设定值小于0时按照默认算法设置，设定值大于组件高度一半时按照组件高度一半设置，其他场合按照设定值设置。<br/>未设定此属性时，滑轨圆角根据默认算法设置。<br/>默认算法：组件高度（单位：vp） / 2。 |
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onChange
 
@@ -171,9 +171,9 @@ onChange(callback:&nbsp;(isOn:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 
 | 名称  | 类型    |    只读    |    可选    |  说明              |
 | ------ | ------ | ------ |-------------------------------- |-------------------------------- |
-| isOn   | boolean| 否  | 否 | 开关是否打开。<br/>默认值：false |
-| enabled | boolean | 否 | 否 | 是否可以切换状态。 |
-| triggerChange |Callback\<boolean>| 否 | 否 |触发switch选中状态变化。 |
+| isOn   | boolean| 否  | 否 | 开关是否打开。<br/>默认值：false<br/>值为true时，开关打开。值为false时，开关关闭。 |
+| enabled | boolean | 否 | 否 | 是否可以切换状态。<br/>默认值：true<br/>值为true时，可以切换状态。值为false时，不可以切换状态。 |
+| triggerChange |Callback\<boolean>| 否 | 否 |触发switch选中状态变化。<br/>为true时，代表状态从关切换为开。false时，代表状态从开切换为关。 |
 
 
 ## 示例
@@ -290,7 +290,7 @@ struct ToggleExample {
 
 ![toggle](figures/toggleSwitchStyle.gif)
 
-### 示例3（自定义Togge样式）
+### 示例3（自定义Toggle样式）
 
 该示例实现了自定义Toggle样式的功能。自定义样式实现了通过按钮切换圆形颜色的功能：点击蓝圆按钮，圆形背景变蓝色，点击黄圆按钮，圆形背景变黄色。
 

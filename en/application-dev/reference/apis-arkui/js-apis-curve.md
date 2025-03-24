@@ -113,9 +113,9 @@ Creates a cubic Bezier curve. The curve values must be between 0 and 1.
 
 | Name | Type  | Mandatory | Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| x1     | number | Yes  | X coordinate of the first point on the Bezier curve.<br>Value range: [0, 1]<br>**NOTE**<br>A value less than 0 evaluates to the value **0**. A value greater than 1 evaluates to the value **1**. |
+| x1     | number | Yes  | X coordinate of the first point on the Bezier curve.<br>Value range: [0, 1]<br>**NOTE**<br>A value less than 0 is handed as **0**. A value greater than 1 is handed as **1**.|
 | y1     | number | Yes  | Y coordinate of the first point on the Bezier curve.<br>Value range: (-∞, +∞)         |
-| x2     | number | Yes  | X coordinate of the second point on the Bezier curve.<br>Value range: [0, 1]<br>**NOTE**<br>A value less than 0 evaluates to the value **0**. A value greater than 1 evaluates to the value **1**. |
+| x2     | number | Yes  | X coordinate of the second point on the Bezier curve.<br>Value range: [0, 1]<br>**NOTE**<br>A value less than 0 is handed as **0**. A value greater than 1 is handed as **1**.|
 | y2     | number | Yes  | Y coordinate of the second point on the Bezier curve.<br>Value range: (-∞, +∞)         |
 
 **Return value**
@@ -317,7 +317,7 @@ Implements calculation.
 
 | Name  | Type  | Mandatory | Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| fraction | number | Yes  | Current normalized time.<br>Value range: [0, 1]<br>**NOTE**<br>A value less than 0 evaluates to the value **0**. A value greater than 1 evaluates to the value **1**. |
+| fraction | number | Yes  | Current normalized time.<br>Value range: [0, 1]<br>**NOTE**<br>A value less than 0 is handed as **0**. A value greater than 1 is handed as **1**.|
 
 **Return value**
 

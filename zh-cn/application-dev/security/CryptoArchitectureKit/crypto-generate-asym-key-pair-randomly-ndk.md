@@ -1,14 +1,12 @@
 # 随机生成非对称密钥对(C/C++)
 
-
 以RSA和SM2为例，随机生成非对称密钥对（OH_CryptoKeyPair），并获得二进制数据。
-
 
 非对称密钥对可用于后续加解密等操作，二进制数据可用于存储或运输。
 
 ## 在CMake脚本中链接相关动态库
 ```txt
-   target_link_libraries(entry PUBLIC libohcrypto.so)
+target_link_libraries(entry PUBLIC libohcrypto.so)
 ```
 
 ## 随机生成RSA密钥对
@@ -20,7 +18,6 @@
 2. 调用[OH_CryptoAsymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_generate)，随机生成非对称密钥对象（OH_CryptoKeyPair）。
 
 3. 调用[OH_CryptoPubKey_Encode](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptopubkey_encode)获取公钥密钥对象的二进制数据。
-
 
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"

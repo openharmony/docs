@@ -16,6 +16,7 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 > - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本模块接口在<!--RP1-->[自动化测试脚本](../../application-test/arkxtest-guidelines.md)<!--RP1End-->中使用。
 > - 本模块接口不支持并发调用。
+> - 本模块接口适用于手机、平板、2in1、智能穿戴设备。
 
 
 ## 导入模块
@@ -28,17 +29,16 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 
 控件属性支持的匹配模式。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Test.UiTest
 
-| 名称        | 值   | 说明           |
-| ----------- | ---- | -------------- |
-| EQUALS      | 0    | 等于给定值。   |
-| CONTAINS    | 1    | 包含给定值。   |
-| STARTS_WITH | 2    | 以给定值开始。 |
-| ENDS_WITH   | 3    | 以给定值结束。 |
-
+| 名称                    | 值 | 说明                                                                  |
+|-----------------------|---|---------------------------------------------------------------------|
+| EQUALS                | 0 | 等于给定值。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。         |
+| CONTAINS              | 1 | 包含给定值。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。         |
+| STARTS_WITH           | 2 | 以给定值开始。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
+| ENDS_WITH             | 3 | 以给定值结束。 <br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
+| REG_EXP<sup>18+</sup> | 4 | 正则表达式匹配。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。       |
+| REG_EXP_ICASE<sup>18+</sup>          | 5 | 正则表达式匹配，忽略大小写。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 ## ResizeDirection<sup>9+</sup>
 
 窗口调整大小的方向。
@@ -173,6 +173,20 @@ UI事件的相关信息。
 | type       | string | 是   | 否   | 控件/窗口类型。       |
 | text       | string | 是   | 否   | 控件/窗口的文本信息。 |
 
+
+## TouchPadSwipeOptions<sup>18+</sup>
+
+触摸板多指滑动手势选项相关信息。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+| 名称       | 类型   | 可读 | 可写 | 说明                                                       |
+| ---------- | ------ |----|----|----------------------------------------------------------|
+| stay | boolean | 否  | 是  | 触摸板多指滑动结束是否停留1s后再抬起，默认为false（不停留1s）。                     |
+| speed       | number | 否  | 是  | 滑动速率，取值范围为200-40000，默认值为2000，不在范围内设为默认值为2000，单位：px/s。 |
+
 ## On<sup>9+</sup>
 
 UiTest框架在API 9中，通过On类提供了丰富的控件特征描述API，用于进行控件筛选来匹配/查找出目标控件。<br>
@@ -180,6 +194,7 @@ On提供的API能力具有以下几个特点:<br>1、支持单属性匹配和多
 
 ```ts
 import { ON } from '@kit.TestKit';
+
 ON.text('123').type('Button');
 ```
 
@@ -255,9 +270,47 @@ id(id: string): On
 
 ```ts
 import { On, ON } from '@kit.TestKit';
+
 let on:On = ON.id('123'); // 使用静态构造器ON创建On对象，指定目标控件的id属性。
 ```
 
+### id<sup>18+</sup>
+
+id(id: string, pattern?: MatchPattern): On
+
+指定目标控件id属性，返回On对象自身。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名                   | 类型   | 必填 | 说明                                    |
+|-----------------------| ------ |----|---------------------------------------|
+| id                    | string | 是  | 指定控件的id值。                             |
+| pattern | [MatchPattern](#matchpattern) | 否  | 指定的文本匹配模式，默认为[EQUALS](#matchpattern)。 |
+
+**返回值：**
+
+| 类型       | 说明                             |
+| ---------- | -------------------------------- |
+| [On](#on9) | 返回指定目标控件id属性的On对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+import { MatchPattern, On, ON } from '@kit.TestKit';
+let on:On = ON.id('id', MatchPattern.REG_EXP_ICASE) // 忽略大小写匹配控件的id属性值
+```
 
 ### type<sup>9+</sup>
 
@@ -300,6 +353,47 @@ import { On, ON } from '@kit.TestKit';
 let on:On = ON.type('Button'); // 使用静态构造器ON创建On对象，指定目标控件的控件类型属性。
 ```
 
+### type<sup>18+</sup>
+
+type(tp: string, pattern?: MatchPattern): On
+
+指定目标控件的控件类型属性，返回On对象自身。
+
+>**说明**
+>
+>控件类型是开发者自定义的。同时，可以借助[DevEco Testing工具](https://developer.huawei.com/consumer/cn/download)进行查询。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名                   | 类型   | 必填 | 说明                                    |
+|-----------------------| ------ | ---- |---------------------------------------|
+| tp                    | string | 是   | 指定控件类型。                               |
+| pattern | [MatchPattern](#matchpattern) | 否  | 指定的文本匹配模式，默认为[EQUALS](#matchpattern)。 |
+
+**返回值：**
+
+| 类型       | 说明                                     |
+| ---------- | ---------------------------------------- |
+| [On](#on9) | 返回指定目标控件的控件类型属性的On对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+import { On, ON } from '@kit.TestKit';
+let on:On = ON.type('Button'); // 使用静态构造器ON创建On对象，指定目标控件的控件类型属性。
+```
 
 ### clickable<sup>9+</sup>
 
@@ -787,6 +881,45 @@ description(val: string, pattern?: MatchPattern): On
 ```ts
 import { On, ON } from '@kit.TestKit';
 let on:On = ON.description('123'); // 使用静态构造器ON创建On对象，指定目标控件的description属性。
+```
+
+### hint<sup>18+</sup>
+
+hint(val: string, pattern?: MatchPattern): On
+
+获取指定提示文本的控件对象，返回On对象自身。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                    |
+| ------ | ------ |----|---------------------------------------|
+| val     | string | 是  | 指定控件提示文本。                              |
+| pattern | [MatchPattern](#matchpattern) | 否  | 指定的文本匹配模式，默认为[EQUALS](#matchpattern)。 |
+
+**返回值：**
+
+| 类型       | 说明                                     |
+| ---------- | ---------------------------------------- |
+| [On](#on9) | 指定提示文本控件的On对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+ import { MatchPattern, On, ON } from '@kit.TestKit';
+ 
+ let on:On = ON.hint('welcome', MatchPattern.EQUALS); // 使用静态构造器ON创建On对象，指定目标控件的提示文本属性。
 ```
 
 ## Component<sup>9+</sup>
@@ -1389,7 +1522,7 @@ async function demo() {
 
 inputText(text: string): Promise\<void>
 
-向控件中输入文本(适用于文本框控件)。
+向控件中输入文本（适用于文本框控件），清空组件内原有文本后输入。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1399,7 +1532,7 @@ inputText(text: string): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
-| text   | string | 是   | 输入的文本信息，当前支持英文和特殊字符。 |
+| text   | string | 是   | 输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在智能穿戴设备中，该接口不支持输入包含中文的文本。 |
 
 **错误码：**
 
@@ -1455,7 +1588,7 @@ async function demo() {
 
 scrollSearch(on: On): Promise\<Component>
 
-在控件上滑动查找目标控件(适用支持滑动的控件)。
+在控件上滑动查找目标控件（适用支持滑动的控件），使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1487,6 +1620,52 @@ scrollSearch(on: On): Promise\<Component>
 
 ```ts
 import { Component, Driver, ON } from '@kit.TestKit';
+
+async function demo() {
+  let driver: Driver = Driver.create();
+  let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
+  let button = await scrollBar.scrollSearch(ON.text('next page'));
+}
+```
+
+### scrollSearch<sup>18+</sup>
+
+scrollSearch(on: On, vertical?: boolean, offset?: number): Promise\<Component>
+
+在控件上滑动查找目标控件（适用支持滑动的控件），使用Promise异步回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名                    | 类型       | 必填 | 说明                                |
+|------------------------| ---------- | ---- |-----------------------------------|
+| on                     | [On](#on9) | 是   | 目标控件的属性要求。                        |
+| vertical |    boolean | 否 | 默认为true，表示查找方向是纵向。false表示查找方向为横向。 |
+| offset   | number| 否 | 滑动起点/终点到组件边框的偏移, 默认80，单位：px。    |
+
+**返回值：**
+
+| 类型                               | 说明                                  |
+| ---------------------------------- | ------------------------------------- |
+| Promise\<[Component](#component9)> | 以Promise形式返回找到的目标控件对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                               |
+| -------- | ---------------------------------------- |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
@@ -1506,9 +1685,9 @@ scrollToTop(speed?: number): Promise\<void>
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| speed  | number | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
+| 参数名 | 类型   | 必填 | 说明                                                     |
+| ------ | ------ | ---- |--------------------------------------------------------|
+| speed  | number | 否   | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
 
 **错误码：**
 
@@ -1543,9 +1722,9 @@ scrollToBottom(speed?: number): Promise\<void>
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| speed  | number | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
+| 参数名 | 类型   | 必填 | 说明                                                     |
+| ------ | ------ | ---- |--------------------------------------------------------|
+| speed  | number | 否   | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
 
 **错误码：**
 
@@ -1573,6 +1752,10 @@ async function demo() {
 dragTo(target: Component): Promise\<void>
 
 将控件拖拽至目标控件处。
+
+> **说明**
+>
+> 该接口仅在手机、平板、2in1设备上生效。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1713,6 +1896,41 @@ async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
   let description = await button.getDescription();
+}
+```
+### getHint<sup>18+</sup>
+
+getHint(): Promise\<string>
+
+获取控件对象的提示文本，使用Promise异步回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型             | 说明                   |
+| ---------------- |----------------------|
+| Promise\<string> | 以Promise形式返回控件的提示文本。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+
+**示例：**
+
+```ts
+import { Component, Driver, ON } from '@kit.TestKit';
+async function demo() {
+  let driver: Driver = Driver.create();
+  let button: Component = await driver.findComponent(ON.type('TextInput'));
+  let hints = await button.getHint();
 }
 ```
 
@@ -2211,13 +2429,13 @@ Driver对象采取如下操作：从起始坐标点滑向目的坐标点。
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| startx | number | 是   | 以number的形式传入起始点的横坐标信息，取值大于等于0。              |
-| starty | number | 是   | 以number的形式传入起始点的纵坐标信息，取值大于等于0。              |
-| endx   | number | 是   | 以number的形式传入目的点的横坐标信息，取值大于等于0。              |
-| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息，取值大于等于0。              |
-| speed  | number | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
+| 参数名 | 类型   | 必填 | 说明                                                   |
+| ------ | ------ | ---- |------------------------------------------------------|
+| startx | number | 是   | 以number的形式传入起始点的横坐标信息，取值大于等于0。                       |
+| starty | number | 是   | 以number的形式传入起始点的纵坐标信息，取值大于等于0。                       |
+| endx   | number | 是   | 以number的形式传入目的点的横坐标信息，取值大于等于0。                       |
+| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息，取值大于等于0。                       |
+| speed  | number | 否   | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
 
 **错误码：**
 
@@ -2244,19 +2462,23 @@ drag(startx: number, starty: number, endx: number, endy: number, speed?: number)
 
 Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点。
 
+> **说明**
+>
+> 该接口仅在手机、平板、2in1设备上生效。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| startx | number | 是   | 以number的形式传入起始点的横坐标信息，取值大于等于0。              |
-| starty | number | 是   | 以number的形式传入起始点的纵坐标信息，取值大于等于0。              |
-| endx   | number | 是   | 以number的形式传入目的点的横坐标信息，取值大于等于0。              |
-| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息，取值大于等于0。              |
-| speed  | number | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
+| 参数名 | 类型   | 必填 | 说明                                                     |
+| ------ | ------ | ---- |--------------------------------------------------------|
+| startx | number | 是   | 以number的形式传入起始点的横坐标信息，取值大于等于0。                         |
+| starty | number | 是   | 以number的形式传入起始点的纵坐标信息，取值大于等于0。                         |
+| endx   | number | 是   | 以number的形式传入目的点的横坐标信息，取值大于等于0。                         |
+| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息，取值大于等于0。                         |
+| speed  | number | 否   | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
 
 **错误码：**
 
@@ -2281,7 +2503,7 @@ async function demo() {
 
 screenCap(savePath: string): Promise\<boolean>
 
-Driver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的图片至给出的保存路径中。
+Driver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的图片至给出的保存路径中。适用于支持截屏的场景。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2323,6 +2545,10 @@ async function demo() {
 setDisplayRotation(rotation: DisplayRotation): Promise\<void>
 
 将当前场景的显示方向设置为指定的显示方向。适用于可旋转的应用场景。
+
+> **说明**
+>
+> 该接口仅在手机、平板、2in1设备上生效。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2392,6 +2618,10 @@ async function demo() {
 setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 
 启用/禁用设备旋转屏幕的功能。
+
+> **说明**
+>
+> 该接口仅在手机、平板、2in1设备上生效。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2525,6 +2755,10 @@ pressHome(): Promise\<void>
 
 设备返回到桌面。
 
+> **说明**
+>
+> 该接口仅在手机、平板、2in1设备上生效。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
@@ -2601,12 +2835,12 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 
 **参数：**
 
-| 参数名  | 类型             | 必填 | 说明                                                         |
-| ------- | ---------------- | ---- | ------------------------------------------------------------ |
-| from    | [Point](#point9) | 是   | 手指接触屏幕的起始点坐标。                                   |
-| to      | [Point](#point9) | 是   | 手指离开屏幕时的坐标点。                                     |
-| stepLen | number           | 是   | 间隔距离，单位：像素点。                                     |
-| speed   | number           | 是   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
+| 参数名  | 类型             | 必填 | 说明                                                   |
+| ------- | ---------------- | ---- |------------------------------------------------------|
+| from    | [Point](#point9) | 是   | 手指接触屏幕的起始点坐标。                                        |
+| to      | [Point](#point9) | 是   | 手指离开屏幕时的坐标点。                                         |
+| stepLen | number           | 是   | 间隔距离，单位：px。                                         |
+| speed   | number           | 是   | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
 
 **错误码：**
 
@@ -2639,10 +2873,10 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 
 **参数：**
 
-| 参数名   | 类型                             | 必填 | 说明                                                         |
-| -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| pointers | [PointerMatrix](#pointermatrix9) | 是   | 滑动轨迹，包括操作手指个数和滑动坐标序列。                   |
-| speed    | number                           | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
+| 参数名   | 类型                             | 必填 | 说明                                                     |
+| -------- | -------------------------------- | ---- |--------------------------------------------------------|
+| pointers | [PointerMatrix](#pointermatrix9) | 是   | 滑动轨迹，包括操作手指个数和滑动坐标序列。                                  |
+| speed    | number                           | 否   | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
 
 **返回值：**
 
@@ -2692,10 +2926,10 @@ fling(direction: UiDirection, speed: number): Promise\<void>;
 
 **参数：**
 
-| 参数名    | 类型                          | 必填 | 说明                                                         |
-| --------- | ----------------------------- | ---- | ------------------------------------------------------------ |
-| direction | [UiDirection](#uidirection10) | 是   | 进行抛滑的方向。                                             |
-| speed     | number                        | 是   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
+| 参数名    | 类型                          | 必填 | 说明                                                     |
+| --------- | ----------------------------- | ---- |--------------------------------------------------------|
+| direction | [UiDirection](#uidirection10) | 是   | 进行抛滑的方向。                                               |
+| speed     | number                        | 是   | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
 
 **错误码：**
 
@@ -2720,7 +2954,7 @@ async function demo() {
 
 screenCapture(savePath: string, rect?: Rect): Promise\<boolean>;
 
-捕获当前屏幕的指定区域，并保存为PNG格式的图片至给出的保存路径中。
+捕获当前屏幕的指定区域，并保存为PNG格式的图片至给出的保存路径中。适用于支持截屏的场景。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2812,7 +3046,7 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): P
 | ------ | ---------------- | ---- | ----------------------------------------------------------- |
 | p      | [Point](#point9) | 是   | 鼠标点击的坐标。                                            |
 | down   | boolean          | 是   | 滚轮滑动方向是否向下，true表示向下滑动，false表示向上滚动。 |
-| d      | number           | 是   | 鼠标滚轮滚动的格数，每格对应目标点位移120个像素点。         |
+| d      | number           | 是   | 鼠标滚轮滚动的格数，每格对应目标点位移120px。         |
 | key1   | number           | 否   | 指定的第一个key值。默认值为0。                              |
 | key2   | number           | 否   | 指定的第二个key值。默认值为0。                              |
 
@@ -2920,7 +3154,7 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number, sp
 | ------ | ---------------- | ---- | ------------------------------------------------------------ |
 | p      | [Point](#point9) | 是   | 鼠标点击的坐标。                                             |
 | down   | boolean          | 是   | 滚轮滑动方向是否向下，true表示向下滑动，false表示向上滚动。  |
-| d      | number           | 是   | 鼠标滚轮滚动的格数，每格对应目标点位移120个像素点。          |
+| d      | number           | 是   | 鼠标滚轮滚动的格数，每格对应目标点位移120px。          |
 | key1   | number           | 否   | 指定的第一个key值。默认值为0。                               |
 | key2   | number           | 否   | 指定的第二个key值。默认值为0。                               |
 | speed  | number           | 否   | 鼠标滚轮滚动的速度，范围：1-500，不在范围内设为默认值为20，单位：格/秒。 |
@@ -3032,11 +3266,11 @@ mouseMoveWithTrack(from: Point, to: Point, speed?: number): Promise\<void>
 
 **参数：**
 
-| 参数名 | 类型             | 必填 | 说明                                                         |
-| ------ | ---------------- | ---- | ------------------------------------------------------------ |
+| 参数名 | 类型             | 必填 | 说明                                                     |
+| ------ | ---------------- | ---- |--------------------------------------------------------|
 | from   | [Point](#point9) | 是   | 起始点坐标。                                                 |
-| to     | [Point](#point9) | 是   | 终点坐标。                                                   |
-| speed  | number           | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
+| to     | [Point](#point9) | 是   | 终点坐标。                                                  |
+| speed  | number           | 否   | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
 
 **错误码：**
 
@@ -3063,17 +3297,21 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 
 鼠标按住鼠标左键从起始坐标点拖拽至终点坐标点。
 
+> **说明**
+>
+> 该接口仅在手机、平板、2in1设备上生效。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型             | 必填 | 说明                                                         |
-| ------ | ---------------- | ---- | ------------------------------------------------------------ |
+| 参数名 | 类型             | 必填 | 说明                                                     |
+| ------ | ---------------- | ---- |--------------------------------------------------------|
 | from   | [Point](#point9) | 是   | 起始点坐标。                                                 |
-| to     | [Point](#point9) | 是   | 终点坐标。                                                   |
-| speed  | number           | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
+| to     | [Point](#point9) | 是   | 终点坐标。                                                  |
+| speed  | number           | 否   | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
 
 **错误码：**
 
@@ -3098,7 +3336,7 @@ async function demo() {
 
 inputText(p: Point, text: string): Promise\<void>
 
-在指定坐标点输入文本。
+在指定坐标点输入文本，不清空组件内原有文本，直接在坐标处追加输入。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3109,7 +3347,7 @@ inputText(p: Point, text: string): Promise\<void>
 | 参数名 | 类型             | 必填 | 说明               |
 | ------ | ---------------- | ---- | ------------------ |
 | p      | [Point](#point9) | 是   | 输入文本的坐标点。 |
-| text   | string           | 是   | 输入的文本信息。   |
+| text   | string           | 是   |输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在智能穿戴设备中，该接口不支持输入包含中文的文本。 |
 
 **错误码：**
 
@@ -3129,6 +3367,271 @@ async function demo() {
   let text: Component = await driver.findComponent(ON.type('TextInput'));
   let point = await text.getBoundsCenter();
   await driver.inputText(point, '123');
+}
+```
+
+### touchPadMultiFingerSwipe<sup>18+</sup>
+
+touchPadMultiFingerSwipe(fingers: number, direction: UiDirection, options?: TouchPadSwipeOptions): Promise\<void>
+
+模拟触摸板多指滑动手势，使用Promise异步回调。
+
+> **说明**
+>
+> 该接口仅在2in1设备上生效。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型                                            | 必填 | 说明                    |
+| ------ |-----------------------------------------------|----|-----------------------|
+| fingers      | number                                        | 是  | 触摸板多指滑动的手指数。取值范围为3~4。 |
+| direction | [UiDirection](#uidirection10)                 | 是  | 触摸板多指滑动的方向。           |
+| options      | [TouchPadSwipeOptions](#touchpadswipeoptions18) | 否  | 触摸板多指滑动手势附加选项。        |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | 无返回值的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 17000005 | This operation is not supported.         |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+import { Driver, UiDirection } from '@kit.TestKit';
+async function demo() {
+  let driver:Driver = Driver.create();
+  await driver.touchPadMultiFingerSwipe(3, UiDirection.UP);
+}
+```
+
+### penClick<sup>18+</sup>
+
+penClick(point: Point): Promise\<void>
+
+模拟手写笔点击操作，使用Promise异步回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型                                            | 必填 | 说明      |
+| ------ |-----------------------------------------------|----|---------|
+| point      | [Point](#point9) | 是   | 点击的坐标点。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | 无返回值的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+import { Driver } from '@kit.TestKit';
+async function demo() {
+  let driver: Driver = Driver.create();
+  await driver.penClick({x: 100, y: 100});
+}
+```
+
+### penLongClick<sup>18+</sup>
+
+penLongClick(point: Point, pressure?: number): Promise\<void>
+
+模拟手写笔长按操作，使用Promise异步回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型                                            | 必填 | 说明                            |
+| ------ |-----------------------------------------------|----|-------------------------------|
+| point      | [Point](#point9) | 是  | 长按的坐标点。                       |
+| pressure      | number | 否  | 手写笔滑动操作的压力，默认为1.0，取值范围为0.0到1.0。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | 无返回值的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+import { Driver } from '@kit.TestKit';
+async function demo() {
+  let driver: Driver = Driver.create();
+  await driver.penLongClick({x: 100, y: 100}, 0.5);
+}
+```
+
+### penDoubleClick<sup>18+</sup>
+
+penDoubleClick(point: Point): Promise\<void>
+
+模拟手写笔双击操作，使用Promise异步回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型                                            | 必填 | 说明      |
+| ------ |-----------------------------------------------|----|---------|
+| point      | [Point](#point9) | 是  | 双击的坐标点。 |
+
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | 无返回值的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+import { Driver } from '@kit.TestKit';
+async function demo() {
+  let driver: Driver = Driver.create();
+  await driver.penDoubleClick({x: 100, y: 100});
+}
+```
+
+### penSwipe<sup>18+</sup>
+
+penSwipe(startPoint: Point, endPoint: Point, speed?: number, pressure?: number): Promise\<void>
+
+模拟手写笔的滑动操作，使用Promise异步回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型                                            | 必填 | 说明                                                     |
+| ------ |-----------------------------------------------|----|--------------------------------------------------------|
+| startPoint      | [Point](#point9) | 是  | 起始位置的坐标点。                                              |
+| endPoint      | [Point](#point9) | 是  | 结束位置的坐标点。                                              |
+| speed      | number | 否  | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
+| pressure      | number | 否  | 手写笔滑动操作的压力，默认为1.0，取值范围为0.0到1.0。                        |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | 无返回值的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+ import { Driver } from '@kit.TestKit';
+async function demo() {
+  let driver: Driver = Driver.create();
+  await driver.penSwipe({x: 100, y: 100}, {x: 100, y: 500}, 600, 0.5);
+}
+```
+
+### injectPenPointerAction<sup>18+</sup>
+
+injectPenPointerAction(pointers: PointerMatrix, speed?: number, pressure?: number): Promise\<void>
+
+模拟手写笔多点连续注入操作，使用Promise异步回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型                                            | 必填 | 说明                                                                |
+| ------ |-----------------------------------------------|----|-------------------------------------------------------------------|
+| pointers | [PointerMatrix](#pointermatrix9) | 是  |滑动轨迹，包括操作手指个数和滑动坐标序列。当前仅支持单指操作，PointerMatrix中的操作手指个数fingers必须设置为1。 |
+| speed      | number| 否  | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：px/s。            |
+| pressure      | number | 否  | 手写笔多点连续注入的压力，默认为1.0，取值范围为0.0到1.0。                                 |
+
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | 无返回值的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+import { Driver, PointerMatrix } from '@kit.TestKit';
+async function demo() {
+  let driver: Driver = Driver.create();
+  let pointer = PointerMatrix.create(1,8);
+  for (let step = 0; step < 8; step++) {
+    pointer.setPoint(0, step, {x: 500, y: 1100 - 100 *step});
+  }
+  await driver.injectPenPointerAction(pointer, 600, 0.5);
 }
 ```
 
@@ -3192,7 +3695,7 @@ setPoint(finger: number, step: number, point: Point): void
 | ------ | ---------------- | ---- | ---------------------------------------------------------- |
 | finger | number           | 是   | 手指的序号。                                               |
 | step   | number           | 是   | 步骤的序号。                                               |
-| point  | [Point](#point9) | 是   | 该行为的坐标点。建议相邻的坐标点距离在10至80像素点范围内。 |
+| point  | [Point](#point9) | 是   | 该行为的坐标点。建议相邻的坐标点距离在10px至80px范围内。 |
 
 **错误码：**
 
@@ -3761,8 +4264,8 @@ once(type: 'toastShow', callback: Callback\<UIElementInfo>): void;
 
 | 参数名   | 类型                                         | 必填 | 说明                              |
 | -------- | -------------------------------------------- | ---- | --------------------------------- |
-| type     | string                                       | 是   | 订阅的事件类型，取值为'toastShow' |
-| callback | Callback\<[UIElementInfo](#uielementinfo10)> | 是   | 事件发生时执行的回调函数          |
+| type     | string                                       | 是   | 订阅的事件类型，取值为'toastShow'。 |
+| callback | Callback\<[UIElementInfo](#uielementinfo10)> | 是   | 事件发生时执行的回调函数。          |
 
 **错误码：**
 

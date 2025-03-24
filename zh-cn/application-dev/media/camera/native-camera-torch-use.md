@@ -14,7 +14,7 @@
 1. 导入NDK接口。选择系统提供的NDK接口能力，导入NDK接口的方法如下。
 
    ```c++
-    // 导入NDK接口头文件
+    // 导入NDK接口头文件。
     #include "hilog/log.h"
     #include "ohcamera/camera.h"
     #include "ohcamera/camera_input.h"
@@ -31,7 +31,7 @@
 3. 通过[OH_CameraManager_IsTorchSupported()](../../reference/apis-camera-kit/_o_h___camera.md#oh_cameramanager_istorchsupported)方法，检测当前设备是否支持手电筒。
 
     ```c++
-   // 判断设备是否支持手电筒模式
+   // 判断设备是否支持手电筒模式。
    Camera_OutputCapability* cameraOutputCapability = nullptr;
    Camera_TorchMode torchMode = AUTO;
    bool isTorchSupported = false;
@@ -66,7 +66,7 @@
    ```c++
    if (torchModeSupported) {
       OH_LOG_INFO(LOG_APP, "OH_CameraManager_IsTorchModeSupported success.");
-      // 设置手电筒模式
+      // 设置手电筒模式。
       ret = OH_CameraManager_SetTorchMode(cameraManager, torchMode);
       if (ret != CAMERA_OK) {
           OH_LOG_ERROR(LOG_APP, "OH_CameraManager_SetTorchMode failed. %{public}d ", ret);

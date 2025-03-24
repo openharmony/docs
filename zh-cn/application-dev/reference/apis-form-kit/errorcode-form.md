@@ -76,15 +76,23 @@ Failed to obtain configuration information.
 
 确认并验证卡片配置信息正确性。
 
-## 16501000 内部错误
+## 16501000 内部功能错误
 
 **错误信息**
 
-A functional error occurred.
+An internal functional error occurred.
 
 **错误描述**
 
 系统内为执行当前请求时发生内部错误，系统会报此错误码。
+
+**可能原因**
+
+系统业务内部执行异常。
+
+**处理步骤**
+
+待系统重启后重试。
 
 ## 16501001 卡片ID不存在
 

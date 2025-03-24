@@ -22,26 +22,26 @@ Search(options?: SearchOptions)
 
 | 参数名      | 类型         | 必填 | 说明        |
 | ----------- | ------------- | ---- | ------------- |
-| options       | [SearchOptions](#searchoptions16对象说明)| 否   | 搜索框组件初始化选项 |
+| options       | [SearchOptions](#searchoptions18对象说明)| 否   | 搜索框组件初始化选项 |
 
-## SearchOptions<sup>16+</sup>对象说明
+## SearchOptions<sup>18+</sup>对象说明
 
 Search初始化参数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名      | 类型         | 必填 | 说明        |
 | ----------- | ------------- | ---- | ------------- |
-| value       | string                                               | 否   | 设置当前显示的搜索文本内容。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br />从API version 16开始，该参数支持[!!](../../../quick-start/arkts-new-binding.md#组件参数双向绑定)双向绑定变量。 |
+| value       | string                                               | 否   | 设置当前显示的搜索文本内容。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../quick-start/arkts-new-binding.md#内置组件参数双向绑定)双向绑定变量。 |
 | placeholder | [ResourceStr](ts-types.md#resourcestr) | 否   | 设置无输入时的提示文本。                                     |
 | icon        | string                                               | 否   | 设置搜索图标路径，默认使用系统搜索图标。<br/>**说明：** <br/>icon的数据源支持本地图片和网络图片。<br/>-&nbsp;支持的图片格式包括png、jpg、bmp、svg、gif、pixelmap和heif。<br/>-&nbsp;支持Base64字符串。格式data:image/[png\|jpeg\|bmp\|webp\|heif];base64,[base64 data], 其中[base64 data]为Base64字符串数据。<br/>如果与属性searchIcon同时设置，则searchIcon优先。 |
 | controller  | [SearchController](#searchcontroller) | 否   | 设置Search组件控制器。                                       |
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### searchButton
 
@@ -50,6 +50,8 @@ searchButton(value: string, option?: SearchButtonOptions)
 设置搜索框末尾搜索按钮。
 
 点击搜索按钮，同时触发onSubmit与onClick回调。
+
+wearable设备上默认字体大小为18fp。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -66,7 +68,7 @@ searchButton(value: string, option?: SearchButtonOptions)
 
 placeholderColor(value: ResourceColor)
 
-设置placeholder文本颜色。
+设置placeholder文本颜色，wearable设备上默认值为'#99ffffff'。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -84,6 +86,8 @@ placeholderFont(value?: Font)
 
 设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。
 
+wearable设备上大小为18px。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -99,6 +103,8 @@ placeholderFont(value?: Font)
 textFont(value?: Font)
 
 设置搜索框内输入文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。
+
+wearable设备上默认字体大小为18fp。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -150,6 +156,8 @@ searchIcon(value: IconOptions | SymbolGlyphModifier)
 
 设置左侧搜索图标样式。
 
+wearable设备上默认图标大小为16vp。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -166,6 +174,8 @@ cancelButton(value: CancelButtonOptions | CancelButtonSymbolOptions)
 
 设置右侧清除按钮样式。
 
+wearable设备上默认图标大小为18fp。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -181,6 +191,8 @@ cancelButton(value: CancelButtonOptions | CancelButtonSymbolOptions)
 fontColor(value: ResourceColor)
 
 设置输入文本的字体颜色。[文本通用属性](ts-universal-attributes-text-style.md)fontSize、fontStyle、fontWeight和fontFamily在[textFont](#textfont)属性中设置。
+
+wearable设备上默认值为'#dbffffff'。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -282,7 +294,7 @@ type(value: SearchType)
 
 设置输入框类型。
 
-<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -360,7 +372,7 @@ decoration(value: TextDecorationOptions)
 
 letterSpacing(value: number | string | Resource)
 
-设置文本字符间距。设置该值为百分比时，按默认值显示。设置该值为0时，按默认值显示。
+设置文本字符间距。设置该值为百分比时，按默认值显示。设置该值为0时，按默认值显示。string类型支持number类型取值的字符串形式，可以附带单位，例如"10"、"10fp"。
 
 当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。
 
@@ -372,7 +384,7 @@ letterSpacing(value: number | string | Resource)
 
 | 参数名 | 类型                       | 必填 | 说明           |
 | ------ | -------------------------- | ---- | -------------- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本字符间距。 |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本字符间距。<br/>单位：fp |
 
 ### fontFeature<sup>12+</sup>
 
@@ -457,7 +469,7 @@ textIndent(value: Dimension)
 
 minFontSize(value: number | string | Resource)
 
-设置文本最小显示字号。
+设置文本最小显示字号。string类型支持number类型取值的字符串形式，可以附带单位，例如"10"、"10fp"。
 
 需配合[maxFontSize](#maxfontsize12)以及布局大小限制使用，单独设置不生效。
 
@@ -471,13 +483,13 @@ minFontSize(value: number | string | Resource)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。 |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。<br/>单位：fp |
 
 ### maxFontSize<sup>12+</sup>
 
 maxFontSize(value: number | string | Resource)
 
-设置文本最大显示字号。
+设置文本最大显示字号。string类型支持number类型取值的字符串形式，可以附带单位，例如"10"、"10fp"。
 
 需配合[minFontSize](#minfontsize12)以及布局大小限制使用，单独设置不生效。
 
@@ -491,15 +503,15 @@ maxFontSize(value: number | string | Resource)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。 |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。<br/>单位：fp |
 
-### halfLeading<sup>16+</sup>
+### halfLeading<sup>18+</sup>
 
 halfLeading(halfLeading: boolean)
 
 设置文本是否将行间距平分至行的顶部与底部。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -509,13 +521,13 @@ halfLeading(halfLeading: boolean)
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
 | halfLeading | boolean | 是  | 文本是否将行间距平分至行的顶部与底部。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false |
 
-### minFontScale<sup>16+</sup>
+### minFontScale<sup>18+</sup>
 
 minFontScale(scale: Optional\<number | Resource>)
 
 设置文本最小的字体缩放倍数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -525,13 +537,13 @@ minFontScale(scale: Optional\<number | Resource>)
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
 | scale  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最小的字体缩放倍数，支持undefined类型。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时，按值为0处理。设置的值大于1，按值为1处理。异常值默认不生效。 |
 
-### maxFontScale<sup>16+</sup>
+### maxFontScale<sup>18+</sup>
 
 maxFontScale(scale: Optional\<number | Resource>)
 
 设置文本最大的字体缩放倍数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -575,18 +587,6 @@ enablePreviewText(enable: boolean)
 | ------ | ------- | ---- | ---------------------------------- |
 | enable | boolean | 是   | 是否开启输入预上屏。<br/>默认值：true |
 
->  **说明：**
->
->  该接口在CAPI场景使用时下，默认关闭。可以在工程的module.json5中配置[metadata](../../../../application-dev/quick-start/module-structure.md#metadata对象内部结构)字段控制是否启用预上屏，配置如下：
-> ```json
-> "metadata": [
->  {
->     "name": "can_preview_text",
->     "value": "true",
->  }
-> ]
-> ```
-
 ### enableHapticFeedback<sup>13+</sup>
 
 enableHapticFeedback(isEnabled: boolean)
@@ -616,7 +616,7 @@ enableHapticFeedback(isEnabled: boolean)
 
 ### keyboardAppearance<sup>15+</sup>
 
-keyboardAppearance(appearance: KeyboardAppearance)
+keyboardAppearance(appearance: Optional\<KeyboardAppearance>)
 
 设置输入框拉起的键盘样式。
 
@@ -628,15 +628,15 @@ keyboardAppearance(appearance: KeyboardAppearance)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
-| appearance | [KeyboardAppearance](ts-text-common.md#keyboardappearance16枚举说明) | 是   | 键盘样式。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
+| appearance | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[KeyboardAppearance](ts-text-common.md#keyboardappearance15枚举说明)> | 是   | 键盘样式。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
 
-### stopBackPress<sup>16+</sup>
+### stopBackPress<sup>15+</sup>
 
-stopBackPress(isStopped: boolean)
+stopBackPress(isStopped: Optional\<boolean>)
 
 设置是否阻止返回键向其它组件或应用侧传递。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -644,7 +644,7 @@ stopBackPress(isStopped: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| isStopped | boolean | 是   | 是否消费返回键。 <br />默认值：true |
+| isStopped | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否消费返回键。 <br />默认值：true |
 
 ## IconOptions<sup>10+</sup>对象说明
 
@@ -668,7 +668,7 @@ stopBackPress(isStopped: boolean)
 | --------- | ------------------------------------------ | ---- | ---------------- |
 | fontSize  | [Length](ts-types.md#length)               | 否   | 文本按钮字体大小，不支持百分比。 |
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 文本按钮字体颜色。 |
-| autoDisable<sup>16+</sup>  | boolean                   | 否  | Search无文本内容时按钮置灰且不可点击。|
+| autoDisable<sup>18+</sup>  | boolean                   | 否  | Search无文本内容时按钮置灰且不可点击。|
 
 ## CancelButtonStyle<sup>10+</sup>枚举说明
 
@@ -721,7 +721,7 @@ stopBackPress(isStopped: boolean)
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onSubmit
 
@@ -818,7 +818,7 @@ onPaste(callback:OnPasteCallback )
 **参数：** 
 | 参数名              | 类型                                                         | 必填 | 说明                   |
 | ------------------- | ------------------------------------------------------------ | ---- | ---------------------- |
-| callback | [OnPasteCallback](ts-basic-components-textinput.md#onpastecallback16)       | 是   | 粘贴回调。 |
+| callback | [OnPasteCallback](ts-basic-components-textinput.md#onpastecallback18)       | 是   | 粘贴回调。 |
 
 ### onTextSelectionChange<sup>10+</sup>
 
@@ -834,7 +834,7 @@ onTextSelectionChange(callback: OnTextSelectionChangeCallback)
 
 | 参数名         | 类型   | 必填 | 说明                                              |
 | -------------- | ------ | ---- | ------------------------------------------------- |
-| callback | [OnTextSelectionChangeCallback](ts-basic-components-textinput.md#ontextselectionchangecallback16) | 是   | 文本选择变化回调或光标位置变化回调。 |
+| callback | [OnTextSelectionChangeCallback](ts-basic-components-textinput.md#ontextselectionchangecallback18) | 是   | 文本选择变化回调或光标位置变化回调。 |
 
 ### onContentScroll<sup>10+</sup>
 
@@ -850,7 +850,7 @@ onContentScroll(callback: OnContentScrollCallback)
 
 | 参数名       | 类型   | 必填 | 说明                               |
 | ------------ | ------ | ---- | ---------------------------------- |
-| callback | [OnContentScrollCallback](ts-basic-components-textinput.md#oncontentscrollcallback16) | 是   | 文本内容滚动回调。 |
+| callback | [OnContentScrollCallback](ts-basic-components-textinput.md#oncontentscrollcallback18) | 是   | 文本内容滚动回调。 |
 
 ### onEditChange<sup>12+</sup>
 
@@ -882,7 +882,7 @@ onWillInsert(callback: Callback\<InsertValue, boolean>)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<[InsertValue](ts-text-common.md#insertvalue12对象说明), boolean> | 是   | 在将要输入时调用的回调。<br/>在返回true时，表示正常插入，返回false时，表示不插入。<br/>在预上屏操作时，该回调不触发。<br/>仅支持系统输入法输入的场景。 |
+| callback  | Callback\<[InsertValue](ts-text-common.md#insertvalue12对象说明), boolean> | 是   | 在将要输入时调用的回调。<br/>在返回true时，表示正常插入，返回false时，表示不插入。<br/>在预上屏和候选词操作时，该回调不触发。<br/>仅支持系统输入法输入的场景。 |
 
 ### onDidInsert<sup>12+</sup>
 
@@ -932,13 +932,15 @@ onDidDelete(callback: Callback\<DeleteValue>)
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | callback  | Callback\<[DeleteValue](ts-text-common.md#deletevalue12对象说明)> | 是   | 在删除完成时调用的回调。<br/>仅支持系统输入法输入的场景。 |
 
-### onWillChange<sup>16+</sup>
+### onWillChange<sup>15+</sup>
 
 onWillChange(callback: Callback\<EditableTextChangeValue, boolean>)
 
 在文本内容将要发生变化时，触发该回调。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+onWillChange的回调时序晚于onWillInsert、onWillDelete，早于onDidInsert、onDidDelete。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -946,7 +948,7 @@ onWillChange(callback: Callback\<EditableTextChangeValue, boolean>)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<[EditableTextChangeValue](ts-text-common.md#editabletextchangevalue16), boolean> | 是   | 在文本内容将要发生变化时的回调。 |
+| callback  | Callback\<[EditableTextChangeValue](ts-text-common.md#editabletextchangevalue15), boolean> | 是   | 在文本内容将要发生变化时的回调。<br/>返回true时，表示正常修改。返回false时，表示拦截此次触发。 |
 
 ## SearchController
 
@@ -1819,48 +1821,47 @@ export struct TextAreaExample11 {
   @State minFontScale: number = 0.85;
   @State maxFontScale: number = 2;
   @State changeValue: string = 'abcde';
-  @State currentFontSizeScale : string = "";
-  async setFontScale(scale: number): Promise<void> {
-    let configInit: Configuration = {
-      fontSizeScale: scale
-    };
-    abilityManager.updateConfiguration(configInit, (err: BusinessError) => {
-      if (!err) {
-        this.currentFontSizeScale = scale.toString();
-      }
-    });
-  }
 
   build() {
     Column() {
       Column({ space: 30 }) {
-        Text("字体倍数：" + this.currentFontSizeScale)
-        Search({ value: this.changeValue,
-          placeholder: 'Type to search...'
+        Text("系统字体变大变小，变大变小aaaaaaaAAAAAA")
+        TextArea({
+          placeholder: 'The text area can hold an unlimited amount of text. input your word...',
         })
-          .minFontScale(this.minFontScale)
-          .maxFontScale(this.maxFontScale)
+        //设置最小字体缩放倍数，参数为undefined则跟随系统默认倍数缩放。
+          .minFontScale(0.85)
+          //设置最大字体缩放倍数，参数为undefined则跟随系统默认倍数缩放。
+          .maxFontScale(2)
       }.width('100%')
-        
-      Row(){
-        Button("2倍").onClick(() => {
-          this.setFontScale(2)
-        }).alignSelf(ItemAlign.Start)
-        Button("1倍")
-          .margin({ left: 20 })
-          .onClick(() => {
-            this.setFontScale(1)
-          }).alignSelf(ItemAlign.Start)
-        Button("0.85")
-          .margin({ left: 20 })
-          .onClick(() => {
-            this.setFontScale(0.85)
-          }).alignSelf(ItemAlign.Start)
-      }.margin({ top: 30 })
     }
   }
 }
 ```
 
-![searchMaxAndMinFontScale](figures/searchMaxAndMinFontScale.gif)
+```ts
+路径：AppScope/resources/base，新建文件夹profile。
+路径：AppScope/resources/base/profile，新建文件configuration.json。
+路径：AppScope/resources/base/profile/configuration.json，增加如下代码。
+{
+  "configuration":{
+    "fontSizeScale": "followSystem",
+    "fontSizeMaxScale": "3.2"
+}
+}
+```
 
+```ts
+路径：AppScope/app.json5，修改如下代码。
+{
+  "app": {
+    "bundleName": "com.example.myapplication",
+    "vendor": "example",
+    "versionCode": 1000000,
+    "versionName": "1.0.0",
+    "icon": "$media:app_icon",
+    "label": "$string:app_name",
+    "configuration": "$profile:configuration"
+  }
+}
+```

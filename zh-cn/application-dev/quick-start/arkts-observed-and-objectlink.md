@@ -1,7 +1,7 @@
 # \@Observed装饰器和\@ObjectLink装饰器：嵌套类对象属性变化
 
 
-上文所述的装饰器仅能观察到第一层的变化，但是在实际应用开发中，应用会根据开发需要，封装自己的数据模型。对于多层嵌套的情况，比如二维数组，或者数组项class，或者class的属性是class，他们的第二层的属性变化是无法观察到的。这就引出了\@Observed/\@ObjectLink装饰器。
+上文所述的装饰器（包括[\@State](./arkts-state.md)、[\@Prop](./arkts-prop.md)、[\@Link](./arkts-link.md)、[\@Provide和\@Consume](./arkts-provide-and-consume.md)装饰器）仅能观察到第一层的变化，但是在实际应用开发中，应用会根据开发需要，封装自己的数据模型。对于多层嵌套的情况，比如二维数组，或者数组项class，或者class的属性是class，他们的第二层的属性变化是无法观察到的。这就引出了\@Observed/\@ObjectLink装饰器。
 
 \@Observed/\@ObjectLink配套使用是用于嵌套场景的观察，主要是为了弥补装饰器仅能观察一层的能力限制，开发者最好对装饰器的基本观察能力有一定的了解，再来对比阅读该文档。建议提前阅读：[\@State](./arkts-state.md)的基本用法。
 
@@ -32,7 +32,7 @@
 | \@ObjectLink变量装饰器 | 说明                                       |
 | ----------------- | ---------------------------------------- |
 | 装饰器参数             | 无。                                       |
-| 允许装饰的变量类型         | 必须为被\@Observed装饰的class实例，必须指定类型。<br/>\@ObjectLink不支持简单类型，如果开发者需要使用简单类型，可以使用[\@Prop](arkts-prop.md)。<br/>支持继承Date、[Array](#二维数组)的class实例，API11及以上支持继承[Map](#继承map类)、[Set](#继承set类)的class实例。示例见[观察变化](#观察变化)。<br/>API11及以上支持\@Observed装饰类和undefined或null组成的联合类型，比如ClassA \| ClassB, ClassA \| undefined 或者 ClassA \| null, 示例见[@ObjectLink支持联合类型](#objectlink支持联合类型)。<br/>\@ObjectLink的属性是可以改变的，但是变量的分配是不允许的，也就是说这个装饰器装饰变量是只读的，不能被改变。 |
+| 允许装饰的变量类型         | API version 18之前，必须为被\@Observed装饰的class实例。<br/>API version 18及以后，\@ObjectLink也可以被[makeV1Observed](../reference/apis-arkui/js-apis-StateManagement.md#makev1observed18)的返回值初始化。<br/>\@ObjectLink不支持简单类型，如果开发者需要使用简单类型，可以使用[\@Prop](arkts-prop.md)。<br/>支持继承Date、[Array](#二维数组)的class实例，API11及以上支持继承[Map](#继承map类)、[Set](#继承set类)的class实例。示例见[观察变化](#观察变化)。<br/>API11及以上支持\@Observed装饰类和undefined或null组成的联合类型，比如ClassA \| ClassB, ClassA \| undefined 或者 ClassA \| null, 示例见[@ObjectLink支持联合类型](#objectlink支持联合类型)。<br/>\@ObjectLink的属性可以被改变的，但不允许整体赋值，即\@ObjectLink装饰的变量是只读的。 |
 | 被装饰变量的初始值         | 不允许。                                     |
 
 \@ObjectLink装饰的数据为可读示例。
@@ -201,7 +201,10 @@ struct Parent {
 
 2. \@ObjectLink装饰器不能在\@Entry装饰的自定义组件中使用。
 
-3. \@ObjectLink装饰的变量类型需要为显式的被@Observed装饰的类，如果未指定类型，或其不是\@Observed装饰的class，编译期会报错。
+3. \@ObjectLink装饰的类型必须是复杂类型，否则会有编译期报错。
+
+4. API version 18前，\@ObjectLink装饰的变量类型必须是显式地由@Observed装饰的类。如果未指定类型，或不是\@Observed装饰的class，编译期会报错。
+API version 18及以后，\@ObjectLink也可以被[makeV1Observed](../reference/apis-arkui/js-apis-StateManagement.md#makev1observed18)的返回值初始化，否则会有运行时告警日志。
 
   ```ts
   @Observed
@@ -230,7 +233,7 @@ struct Parent {
   @ObjectLink count: Info;
   ```
 
-4. \@ObjectLink装饰的变量不能本地初始化，仅能通过构造参数从父组件传入初始值，否则编译期会报错。
+5. \@ObjectLink装饰的变量不能本地初始化，仅能通过构造参数从父组件传入初始值，否则编译期会报错。
 
   ```ts
   @Observed
@@ -249,7 +252,7 @@ struct Parent {
   @ObjectLink count: Info;
   ```
 
-5. \@ObjectLink装饰的变量是只读的，不能被赋值，否则会有运行时报错提示Cannot set property when setter is undefined。如果需要对\@ObjectLink装饰的变量进行整体替换，可以在父组件对其进行整体替换。
+6. \@ObjectLink装饰的变量是只读的，不能被赋值，否则会有运行时报错提示Cannot set property when setter is undefined。如果需要对\@ObjectLink装饰的变量进行整体替换，可以在父组件对其进行整体替换。
 
   【反例】
 
@@ -341,148 +344,156 @@ struct Parent {
 
 ## 使用场景
 
-
-### 嵌套对象
-
-> **说明：**
->
-> NextID是用来在[ForEach循环渲染](./arkts-rendering-control-foreach.md)过程中，为每个数组元素生成一个唯一且持久的键值，用于标识对应的组件。
-
+### 继承对象
 
 ```ts
-// objectLinkNestedObjects.ets
-let NextID: number = 1;
-
 @Observed
-class Bag {
-  public id: number;
-  public size: number;
+class Animal {
+  name: string;
+  age: number;
 
-  constructor(size: number) {
-    this.id = NextID++;
-    this.size = size;
+  constructor(name: string, age: number) {
+    this.name = name;
+    this.age = age;
   }
 }
 
 @Observed
-class User {
-  public bag: Bag;
+class Dog extends Animal {
+  kinds: string;
 
-  constructor(bag: Bag) {
-    this.bag = bag;
+  constructor(name: string, age: number, kinds: string) {
+    super(name, age);
+    this.kinds = kinds;
   }
 }
 
-@Observed
-class Book {
-  public bookName: BookName;
-
-  constructor(bookName: BookName) {
-    this.bookName = bookName;
-  }
-}
-
-@Observed
-class BookName extends Bag {
-  public nameSize: number;
-
-  constructor(nameSize: number) {
-    // 调用父类方法对nameSize进行处理
-    super(nameSize);
-    this.nameSize = nameSize;
-  }
-}
-
+@Entry
 @Component
-struct Son {
-  label: string = 'Son';
-  @ObjectLink bag: Bag;
+struct Index {
+  @State dog: Dog = new Dog('Molly', 2, 'Husky');
+
+  @Styles
+  pressedStyles() {
+    .backgroundColor('#ffd5d5d5')
+  }
+
+  @Styles
+  normalStyles() {
+    .backgroundColor('#ffffff')
+  }
 
   build() {
     Column() {
-      Text(`Son [${this.label}] this.bag.size = ${this.bag.size}`)
-        .fontColor('#ffffffff')
-        .backgroundColor('#ff3d9dba')
+      Text(`${this.dog.name}`)
         .width(320)
-        .height(50)
-        .borderRadius(25)
         .margin(10)
+        .fontSize(30)
         .textAlign(TextAlign.Center)
-      Button(`Son: this.bag.size add 1`)
-        .width(320)
-        .backgroundColor('#ff17a98d')
-        .margin(10)
+        .stateStyles({
+          pressed: this.pressedStyles,
+          normal: this.normalStyles
+        })
         .onClick(() => {
-          this.bag.size += 1;
+          this.dog.name = 'DouDou';
+        })
+
+      Text(`${this.dog.age}`)
+        .width(320)
+        .margin(10)
+        .fontSize(30)
+        .textAlign(TextAlign.Center)
+        .stateStyles({
+          pressed: this.pressedStyles,
+          normal: this.normalStyles
+        })
+        .onClick(() => {
+          this.dog.age = 3;
+        })
+
+      Text(`${this.dog.kinds}`)
+        .width(320)
+        .margin(10)
+        .fontSize(30)
+        .textAlign(TextAlign.Center)
+        .stateStyles({
+          pressed: this.pressedStyles,
+          normal: this.normalStyles
+        })
+        .onClick(() => {
+          this.dog.kinds = 'Samoyed';
         })
     }
   }
 }
+```
+
+![Observed_ObjectLink_inheritance_object](figures/Observed_ObjectLink_inheritance_object.gif)
+
+上述示例中，Dog类中的部分属性（name、age）继承自Animal类，直接修改\@State装饰的变量dog中的属性name和age可以正常触发UI刷新。
+
+### 嵌套对象
+
+```ts
+@Observed
+class Book {
+  name: string;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+@Observed
+class Bag {
+  book: Book;
+
+  constructor(book: Book) {
+    this.book = book;
+  }
+}
 
 @Component
-struct Father {
-  label: string = 'Father';
-  @ObjectLink bookName: BookName;
+struct BookCard {
+  @ObjectLink book: Book;
 
   build() {
-    Row() {
-      Column() {
-        Text(`Father [${this.label}] this.bookName.size = ${this.bookName.size}`)
-          .fontColor('#ffffffff')
-          .backgroundColor('#ff3d9dba')
-          .width(320)
-          .height(50)
-          .borderRadius(25)
-          .margin(10)
-          .textAlign(TextAlign.Center)
-        Button(`Father: this.bookName.size add 1`)
-          .width(320)
-          .backgroundColor('#ff17a98d')
-          .margin(10)
-          .onClick(() => {
-            this.bookName.size += 1;
-            console.log('this.bookName.size:' + this.bookName.size);
-          })
-      }
-      .width(320)
+    Column() {
+      Text(`BookCard: ${this.book.name}`) // 可以观察到name的变化
+        .width(320)
+        .margin(10)
+        .textAlign(TextAlign.Center)
+
+      Button('change book.name')
+        .width(320)
+        .margin(10)
+        .onClick(() => {
+          this.book.name = 'C++';
+        })
     }
   }
 }
 
 @Entry
 @Component
-struct GrandFather {
-  @State user: User = new User(new Bag(0));
-  @State child: Book = new Book(new BookName(0));
+struct Index {
+  @State bag: Bag = new Bag(new Book('JS'));
 
   build() {
     Column() {
-      Son({ label: 'Son #1', bag: this.user.bag })
+      Text(`Index: ${this.bag.book.name}`) // 无法观察到name的变化
         .width(320)
-      Father({ label: 'Father #3', bookName: this.child.bookName })
+        .margin(10)
+        .textAlign(TextAlign.Center)
+
+      Button('change bag.book.name')
         .width(320)
-      Button(`GrandFather: this.child.bookName.size add 10`)
-        .width(320)
-        .backgroundColor('#ff17a98d')
         .margin(10)
         .onClick(() => {
-          this.child.bookName.size += 10;
-          console.log('this.child.bookName.size:' + this.child.bookName.size);
+          this.bag.book.name = 'TS';
         })
-      Button(`GrandFather: this.user.bag = new Bag(10)`)
-        .width(320)
-        .backgroundColor('#ff17a98d')
-        .margin(10)
-        .onClick(() => {
-          this.user.bag = new Bag(10);
-        })
-      Button(`GrandFather: this.user = new User(new Bag(20))`)
-        .width(320)
-        .backgroundColor('#ff17a98d')
-        .margin(10)
-        .onClick(() => {
-          this.user = new User(new Bag(20));
-        })
+
+      BookCard({ book: this.bag.book })
     }
   }
 }
@@ -490,29 +501,15 @@ struct GrandFather {
 
 ![Observed_ObjectLink_nested_object](figures/Observed_ObjectLink_nested_object.gif)
 
-被@Observed装饰的BookName类，可以观测到继承基类的属性的变化。
-
-
-GrandFather中的事件句柄：
-
-
-- this.user.bag = new Bag(10) 和this.user = new User(new Bag(20))： 对@State装饰的变量user和其属性的修改。
-
-- this.child.bookName.size += ... ：该变化属于第二层的变化，@State无法观察到第二层的变化，但是Bag被\@Observed装饰，Bag的属性size的变化可以被\@ObjectLink观察到。
-
-
-Father中的事件句柄：
-
-
-- this.bookName.size += 1：对\@ObjectLink变量size的修改，将触发Text组件的刷新。\@ObjectLink和\@Prop不同，\@ObjectLink不拷贝来自父组件的数据源，而是在本地构建了指向其数据源的引用。
-
-- \@ObjectLink变量是只读的，this.bookName = new bookName(...)是不允许的，因为一旦赋值操作发生，指向数据源的引用将被重置，同步将被打断。
-
+上述示例中，Index组件中的Text组件不刷新，因为该变化属于第二层的变化，\@State无法观察到第二层的变化。但是Book被\@Observed装饰，Book的属性name可以被\@ObjectLink观察到，所以无论点击哪个Button，BookCard组件中的Text组件都会刷新。
 
 ### 对象数组
 
 对象数组是一种常用的数据结构。以下示例展示了数组对象的用法。
 
+> **说明：**
+>
+> NextID是用来在[ForEach循环渲染](./arkts-rendering-control-foreach.md)过程中，为每个数组元素生成一个唯一且持久的键值，用于标识对应的组件。
 
 ```ts
 let NextID: number = 1;
@@ -624,9 +621,6 @@ struct Parent {
 ```ts
 @Observed
 class ObservedArray<T> extends Array<T> {
-  constructor(args: T[]) {
-    super(...args);
-  }
 }
 ```
 
@@ -637,9 +631,6 @@ class ObservedArray<T> extends Array<T> {
 ```ts
 @Observed
 class ObservedArray<T> extends Array<T> {
-  constructor(args: T[]) {
-    super(...args);
-  }
 }
 
 @Component
@@ -660,7 +651,7 @@ struct Item {
 @Entry
 @Component
 struct IndexPage {
-  @State arr: Array<ObservedArray<string>> = [new ObservedArray<string>(['apple']), new ObservedArray<string>(['banana']), new ObservedArray<string>(['orange'])];
+  @State arr: Array<ObservedArray<string>> = [new ObservedArray<string>('apple'), new ObservedArray<string>('banana'), new ObservedArray<string>('orange')];
 
   build() {
     Column() {
@@ -679,7 +670,7 @@ struct IndexPage {
       Button('push array item')
         .margin(10)
         .onClick(() => {
-          this.arr.push(new ObservedArray<string>(['pear']));
+          this.arr.push(new ObservedArray<string>('pear'));
         })
 
       Button('change two-dimensional array first item')
@@ -691,7 +682,71 @@ struct IndexPage {
       Button('change array first item')
         .margin(10)
         .onClick(() => {
-          this.arr[0] = new ObservedArray<string>(['watermelon']);
+          this.arr[0] = new ObservedArray<string>('watermelon');
+        })
+    }
+  }
+}
+```
+
+API version 18及以后，\@ObjectLink也可以被[makeV1Observed](../reference/apis-arkui/js-apis-StateManagement.md#makev1observed18)的返回值初始化。所以开发者如果不想额外声明继承Array的类，也可以使用makeV1Observed来达到同样的效果。
+
+完整例子如下。
+
+```ts
+import { UIUtils } from '@kit.ArkUI';
+
+@Component
+struct Item {
+  @ObjectLink itemArr: Array<string>;
+
+  build() {
+    Row() {
+      ForEach(this.itemArr, (item: string, index: number) => {
+        Text(`${index}: ${item}`)
+          .width(100)
+          .height(100)
+      }, (item: string) => item)
+    }
+  }
+}
+
+@Entry
+@Component
+struct IndexPage {
+  @State arr: Array<Array<string>> =
+    [UIUtils.makeV1Observed(['apple']), UIUtils.makeV1Observed(['banana']), UIUtils.makeV1Observed(['orange'])];
+
+  build() {
+    Column() {
+      ForEach(this.arr, (itemArr: Array<string>) => {
+        Item({ itemArr: itemArr })
+      })
+
+      Divider()
+
+      Button('push two-dimensional array item')
+        .margin(10)
+        .onClick(() => {
+          this.arr[0].push('strawberry');
+        })
+
+      Button('push array item')
+        .margin(10)
+        .onClick(() => {
+          this.arr.push(UIUtils.makeV1Observed(['pear']));
+        })
+
+      Button('change two-dimensional array first item')
+        .margin(10)
+        .onClick(() => {
+          this.arr[0][0] = 'APPLE';
+        })
+
+      Button('change array first item')
+        .margin(10)
+        .onClick(() => {
+          this.arr[0] = UIUtils.makeV1Observed(['watermelon']);
         })
     }
   }

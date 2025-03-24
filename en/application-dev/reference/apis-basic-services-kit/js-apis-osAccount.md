@@ -451,7 +451,7 @@ Checks whether this system account is a test account. This API uses a promise to
     console.log('checkOsAccountTestable exception: ' + JSON.stringify(err));
   }
   ```
-  
+
 ### isOsAccountUnlocked<sup>11+</sup>
 
 isOsAccountUnlocked(): Promise&lt;boolean&gt;
@@ -2784,7 +2784,7 @@ Obtains the name of the system account of the caller. This API uses a promise to
   }
   ```
 
-### getForegroundOsAccountLocalId<sup>14+</sup>
+### getForegroundOsAccountLocalId<sup>15+</sup>
 
 getForegroundOsAccountLocalId(): Promise&lt;number&gt;;
 
@@ -2796,7 +2796,7 @@ Obtains the ID of the foreground system account.
 
 | Type                  | Description                                                              |
 | ---------------------- | ----------------------------------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the result.  |
+| Promise&lt;number&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -2820,7 +2820,7 @@ Obtains the ID of the foreground system account.
   }
   ```
 
-### getOsAccountDomainInfo<sup>14+</sup>
+### getOsAccountDomainInfo<sup>15+</sup>
 
 getOsAccountDomainInfo(localId: number): Promise&lt;DomainAccountInfo&gt;;
 
@@ -2834,14 +2834,14 @@ Obtains the domain account information associated with a specified system accoun
 
 | Type                  | Description                                                              |
 | ---------------------- | ----------------------------------------------------------------- |
-| Promise&lt;DomainAccountInfo&gt; | Promise used to return the result.  |
+| Promise&lt;DomainAccountInfo&gt; | Promise used to return the result.|
 
 **Error codes**
 
 | ID| Error Message      |
 | -------- | ------------- |
 | 201 | Permission denied. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | The system service works abnormally. |
 | 12300003 | OS account not found. |
 
