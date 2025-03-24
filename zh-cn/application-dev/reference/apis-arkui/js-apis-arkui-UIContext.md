@@ -2546,91 +2546,6 @@ getTextMenuController(): TextMenuController
 
 参考[TextMenuController](#textmenucontroller16)接口示例。
 
-### notifyDragStartRequest<sup>18+</sup>
-
-notifyDragStartRequest(requestStatus: draController.DragStartRequestStatus): void
-
-控制应用是否可以发起拖拽。
-
-**原子化服务API**: 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力**: SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型   | 必填| 说明                                                        |
-| ------ | ------- | ---- | ------------------------------------------------------------ |
-| requestStatus  | [draController.DragStartRequestStatus](js-apis-arkui-dragController.md#dragstartrequeststatus18)    | 是  |定义应用是否可以发起拖拽。|
-
-**示例：**
-
-```ts
-import { unifiedDataChannel } from '@kit.ArkData';
-import { image } from '@kit.ImageKit';
-import { dragController } from "@kit.ArkUI";
-
-// xxx.ets
-@Entry
-@Component
-struct NormalEts {
-  @State finished: boolean = false
-  @State timeout1: number = 1
-  @State pixmap: image.PixelMap | undefined = undefined
-  @State unifiedData1: unifiedDataChannel.UnifiedData | undefined = undefined
-  @State previewData: DragItemInfo | undefined = undefined
-
-  loadData() {
-    let timeout = setTimeout(() => {
-      this.getUIContext().getComponentSnapshot().get("image1", (error: Error, pixmap: image.PixelMap) => {
-        this.pixmap = pixmap
-        this.previewData = {
-          pixelMap: this.pixmap
-        }
-      })
-
-      let data: unifiedDataChannel.Image = new unifiedDataChannel.Image();
-      data.imageUri = "app.media.startIcon";
-      let unifiedData = new unifiedDataChannel.UnifiedData(data);
-      this.unifiedData1 = unifiedData
-
-      this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.READY)
-    }, 4000);
-    this.timeout1 = timeout
-  }
-
-
-    build() {
-      Column({space: 20}) {
-        Image($r("app.media.startIcon"))
-          .width(300)
-          .height(200)
-          .id("image1")
-          .draggable(true)
-          .dragPreview(this.previewData)
-          .onPreDrag((status: PreDragStatus) => {
-            if (status == PreDragStatus.PREPARING_FOR_DRAG_DETECTION) {
-              this.loadData()
-            } else {
-              clearTimeout(this.timeout1);
-            }
-          })
-          .onDragStart((event: DragEvent) => {
-            if (this.finished == false) {
-              this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.WAITING)
-            } else {
-              event.setData(this.unifiedData1);
-            }
-          })
-          .onDragEnd(()=>{
-            this.finished = false
-          })
-      }
-      .height(400)
-      .backgroundColor(Color.Pink)
-    }
-}
-```
-
 ### dispatchKeyEvent<sup>15+</sup>
 
 dispatchKeyEvent(node: number | string, event: KeyEvent): boolean
@@ -7964,6 +7879,91 @@ cancelDataLoading(key: string): void
 | 401      | Parameter error. |
 | 190004      | Operation failed. |
 
+### notifyDragStartRequest<sup>18+</sup>
+
+notifyDragStartRequest(requestStatus: draController.DragStartRequestStatus): void
+
+控制应用是否可以发起拖拽。
+
+**原子化服务API**: 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**: SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填| 说明                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| requestStatus  | [draController.DragStartRequestStatus](js-apis-arkui-dragController.md#dragstartrequeststatus18)    | 是  |定义应用是否可以发起拖拽。|
+
+**示例：**
+
+```ts
+import { unifiedDataChannel } from '@kit.ArkData';
+import { image } from '@kit.ImageKit';
+import { dragController } from "@kit.ArkUI";
+
+// xxx.ets
+@Entry
+@Component
+struct NormalEts {
+  @State finished: boolean = false
+  @State timeout1: number = 1
+  @State pixmap: image.PixelMap | undefined = undefined
+  @State unifiedData1: unifiedDataChannel.UnifiedData | undefined = undefined
+  @State previewData: DragItemInfo | undefined = undefined
+
+  loadData() {
+    let timeout = setTimeout(() => {
+      this.getUIContext().getComponentSnapshot().get("image1", (error: Error, pixmap: image.PixelMap) => {
+        this.pixmap = pixmap
+        this.previewData = {
+          pixelMap: this.pixmap
+        }
+      })
+
+      let data: unifiedDataChannel.Image = new unifiedDataChannel.Image();
+      data.imageUri = "app.media.startIcon";
+      let unifiedData = new unifiedDataChannel.UnifiedData(data);
+      this.unifiedData1 = unifiedData
+
+      this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.READY)
+    }, 4000);
+    this.timeout1 = timeout
+  }
+
+
+    build() {
+      Column({space: 20}) {
+        Image($r("app.media.startIcon"))
+          .width(300)
+          .height(200)
+          .id("image1")
+          .draggable(true)
+          .dragPreview(this.previewData)
+          .onPreDrag((status: PreDragStatus) => {
+            if (status == PreDragStatus.PREPARING_FOR_DRAG_DETECTION) {
+              this.loadData()
+            } else {
+              clearTimeout(this.timeout1);
+            }
+          })
+          .onDragStart((event: DragEvent) => {
+            if (this.finished == false) {
+              this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.WAITING)
+            } else {
+              event.setData(this.unifiedData1);
+            }
+          })
+          .onDragEnd(()=>{
+            this.finished = false
+          })
+      }
+      .height(400)
+      .backgroundColor(Color.Pink)
+    }
+}
+```
+
 ## OverlayManager<sup>12+</sup>
 
 以下API需先使用UIContext中的[getOverlayManager()](#getoverlaymanager12)方法获取到OverlayManager对象，再通过该对象调用对应方法。
@@ -8314,7 +8314,7 @@ setVisible(visible: boolean): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | ------- | ------- | ------- |
-| visible | boolean | 是 | 原子化服务menuBar是否可见。|
+| visible | boolean | 是 | 原子化服务menuBar是否可见。true表示设置menuBar可见，false表示设置menuBar不可见。|
 
 
 **示例：**
@@ -8478,7 +8478,7 @@ setIconColor(color:Nullable<Color | number | string>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | ------- | ------- | ------- |
-| color | Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | 是 | 原子化服务图标的颜色，undefined代表使用默认颜色。 |
+| color | Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | 是 | 原子化服务图标的颜色，undefined代表使用默认颜色。number为HEX格式颜色，支持rgb或者argb，示例：0xffffff。string为rgb或者argb格式颜色，示例：'#ffffff'。 |
 
 
 **示例：**
