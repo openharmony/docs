@@ -259,7 +259,7 @@ contentModifier(modifier: Optional<ContentModifier\<CheckBoxConfiguration>>)
 
 ### onChange
 
-onChange(callback: Optional\<OnCheckboxChangeCallback>)
+onChange(callback: OnCheckboxChangeCallback)
 
 当选中状态发生变化时，触发该回调。
 

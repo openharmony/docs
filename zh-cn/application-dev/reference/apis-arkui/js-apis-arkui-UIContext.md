@@ -223,7 +223,7 @@ setOverlayManagerOptions(options: OverlayManagerOptions): boolean
 
 <!--code_no_check-->
 ```ts
-uiContext.setOverlayManagerOptions({ renderRootOverlay: true, enableBackPressedEvent: true });
+uiContext.setOverlayManagerOptions({ renderRootOverlay: true });
 ```
 
 ### getOverlayManagerOptions<sup>15+</sup>
@@ -2546,91 +2546,6 @@ getTextMenuController(): TextMenuController
 
 参考[TextMenuController](#textmenucontroller16)接口示例。
 
-### notifyDragStartRequest<sup>18+</sup>
-
-notifyDragStartRequest(requestStatus: draController.DragStartRequestStatus): void
-
-控制应用是否可以发起拖拽。
-
-**原子化服务API**: 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力**: SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型   | 必填| 说明                                                        |
-| ------ | ------- | ---- | ------------------------------------------------------------ |
-| requestStatus  | [draController.DragStartRequestStatus](js-apis-arkui-dragController.md#dragstartrequeststatus18)    | 是  |定义应用是否可以发起拖拽。|
-
-**示例：**
-
-```ts
-import { unifiedDataChannel } from '@kit.ArkData';
-import { image } from '@kit.ImageKit';
-import { dragController } from "@kit.ArkUI";
-
-// xxx.ets
-@Entry
-@Component
-struct NormalEts {
-  @State finished: boolean = false
-  @State timeout1: number = 1
-  @State pixmap: image.PixelMap | undefined = undefined
-  @State unifiedData1: unifiedDataChannel.UnifiedData | undefined = undefined
-  @State previewData: DragItemInfo | undefined = undefined
-
-  loadData() {
-    let timeout = setTimeout(() => {
-      this.getUIContext().getComponentSnapshot().get("image1", (error: Error, pixmap: image.PixelMap) => {
-        this.pixmap = pixmap
-        this.previewData = {
-          pixelMap: this.pixmap
-        }
-      })
-
-      let data: unifiedDataChannel.Image = new unifiedDataChannel.Image();
-      data.imageUri = "app.media.startIcon";
-      let unifiedData = new unifiedDataChannel.UnifiedData(data);
-      this.unifiedData1 = unifiedData
-
-      this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.READY)
-    }, 4000);
-    this.timeout1 = timeout
-  }
-
-
-    build() {
-      Column({space: 20}) {
-        Image($r("app.media.startIcon"))
-          .width(300)
-          .height(200)
-          .id("image1")
-          .draggable(true)
-          .dragPreview(this.previewData)
-          .onPreDrag((status: PreDragStatus) => {
-            if (status == PreDragStatus.PREPARING_FOR_DRAG_DETECTION) {
-              this.loadData()
-            } else {
-              clearTimeout(this.timeout1);
-            }
-          })
-          .onDragStart((event: DragEvent) => {
-            if (this.finished == false) {
-              this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.WAITING)
-            } else {
-              event.setData(this.unifiedData1);
-            }
-          })
-          .onDragEnd(()=>{
-            this.finished = false
-          })
-      }
-      .height(400)
-      .backgroundColor(Color.Pink)
-    }
-}
-```
-
 ### dispatchKeyEvent<sup>15+</sup>
 
 dispatchKeyEvent(node: number | string, event: KeyEvent): boolean
@@ -2920,12 +2835,53 @@ on(type: 'navDestinationUpdate', callback: Callback\<observer.NavDestinationInfo
 
 <!--code_no_check-->
 ```ts
-import { UIObserver } from '@kit.ArkUI';
+// Index.ets
+// 演示 uiObserver.on('navDestinationUpdate', callback)
+// uiObserver.off('navDestinationUpdate', callback)
 
-let observer:UIObserver = uiContext.getUIObserver();
-observer.on('navDestinationUpdate', (info) => {
-    console.info('NavDestination state update', JSON.stringify(info));
-});
+@Component
+struct PageOne {
+  build() {
+    NavDestination() {
+      Text("pageOne")
+    }.title("pageOne")
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  aboutToAppear() {
+    this.getUIContext().getUIObserver().on('navDestinationUpdate', (info) => {
+      console.info('NavDestination state update', JSON.stringify(info));
+    });
+  }
+
+  aboutToDisappear() {
+    this.getUIContext().getUIObserver().off('navDestinationUpdate');
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({ name: "pageOne" });
+        })
+      }
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ### off('navDestinationUpdate')<sup>11+</sup>
@@ -2947,13 +2903,7 @@ off(type: 'navDestinationUpdate', callback?: Callback\<observer.NavDestinationIn
 
 **示例：** 
 
-<!--code_no_check-->
-```ts
-import { UIObserver } from '@kit.ArkUI';
-
-let observer:UIObserver = uiContext.getUIObserver();
-observer.off('navDestinationUpdate');
-```
+参考[uiObserver.on('navDestinationUpdate')](#onnavdestinationupdate11)示例。
 
 ### on('navDestinationUpdate')<sup>11+</sup>
 
@@ -2977,12 +2927,53 @@ on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callbac
 
 <!--code_no_check-->
 ```ts
-import { UIObserver } from '@kit.ArkUI';
+// Index.ets
+// 演示 uiObserver.on('navDestinationUpdate', navigationId, callback)
+// uiObserver.off('navDestinationUpdate', navigationId, callback)
+@Component
+struct PageOne {
+  build() {
+    NavDestination() {
+      Text("pageOne")
+    }.title("pageOne")
+  }
+}
 
-let observer:UIObserver = uiContext.getUIObserver();
-observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
-    console.info('NavDestination state update', JSON.stringify(info));
-});
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  aboutToAppear() {
+    this.getUIContext().getUIObserver().on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
+      console.info('NavDestination state update', JSON.stringify(info));
+    });
+  }
+
+  aboutToDisappear() {
+    this.getUIContext().getUIObserver().off('navDestinationUpdate', { navigationId: "testId" });
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({ name: "pageOne" });
+        })
+      }
+      .id("testId")
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ### off('navDestinationUpdate')<sup>11+</sup>
@@ -3005,13 +2996,7 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 
 **示例：**
 
-<!--code_no_check-->
-```ts
-import { UIObserver } from '@kit.ArkUI';
-
-let observer:UIObserver = uiContext.getUIObserver();
-observer.off('navDestinationUpdate', { navigationId: "testId" });
-```
+参考[uiObserver.on('navDestinationUpdate')](#onnavdestinationupdate11-1)示例。
 
 ### on('scrollEvent')<sup>12+</sup>
 
@@ -4074,296 +4059,6 @@ off(type: 'tabContentUpdate', options: observer.ObserverOptions, callback?: Call
 **示例：**
 
 参考[on('tabContentUpdate')](#ontabcontentupdate12-1)接口示例。
-
-### on('beforePanStart')<sup>18+</sup>
-
-on(type: 'beforePanStart', callback: PanListenerCallback): void
-
-监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件，在onActionStart事件执行之前执行callback回调。支持手指滑动、鼠标滑动、鼠标滚轮和触摸板拖动，暂不支持屏幕朗读触控模式。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名   | 类型                                                        | 必填 | 说明                                                         |
-| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                      | 是   | 监听事件，固定为'beforePanStart'，用于监听Pan手势onActionStart事件执行前的指令下发情况，所注册回调将于Pan手势onActionStart事件触发前触发。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
-
-**示例：**
-
-```ts
-// 在页面Component中使用
-import { uiObserver } from '@kit.ArkUI';
-import router from '@ohos.router';
-
-let TEST_TAG: string = 'node'
-
-function callbackFunc() {
-  console.info('on == beforePanStart');
-}
-
-function afterPanCallBack() {
-  console.info('on == afterPanStart')
-}
-
-function beforeEndCallBack() {
-  console.info('on == beforeEnd')
-}
-
-function afterEndCallBack() {
-  console.info('on == afterEnd')
-}
-
-function beforeStartCallBack() {
-  console.info('bxq on == beforeStartCallBack')
-}
-
-function panGestureCallBack(event: GestureEvent, current: GestureRecognizer, node?: FrameNode) {
-  TEST_TAG = 'panGestureEvent';
-  console.info('===' + TEST_TAG + '=== event.repeat is ' + event.repeat);
-  console.info('===' + TEST_TAG + '=== event target is ' + event.target.id);
-  TEST_TAG = 'panGestureCurrent';
-  console.info('===' + TEST_TAG + '=== current.getTag() is ' + current.getTag());
-  TEST_TAG = 'panGestureNode';
-  console.info('===' + TEST_TAG + '=== node?.getId() is ' + node?.getId());
-}
-
-
-@Entry
-@Component
-struct PanExample {
-  @State offsetX: number = 0
-  @State offsetY: number = 0
-  @State positionX: number = 0
-  @State positionY: number = 0
-  private panOption: PanGestureOptions = new PanGestureOptions({direction: PanDirection.All })
-
-  aboutToAppear(): void {
-    let observer = this.getUIContext().getUIObserver();
-    observer.on('beforePanStart', callbackFunc);
-    observer.on('beforePanStart', panGestureCallBack);
-    observer.on('beforePanStart', beforeStartCallBack);
-    observer.on('afterPanStart', afterPanCallBack);
-    observer.on('beforePanEnd', beforeEndCallBack);
-    observer.on('afterPanEnd', afterEndCallBack)
-  }
-
-  aboutToDisappear(): void {
-    let observer = this.getUIContext().getUIObserver();
-    observer.off('beforePanStart', callbackFunc);
-    observer.off('beforePanStart');
-    observer.off('afterPanStart', afterPanCallBack);
-    observer.off('beforePanEnd');
-    observer.off('afterPanEnd');
-  }
-  build() {
-    Column(){
-      Column(){
-        Text('PanGesture :\nX: ' + this.offsetX + '\n' + 'Y: ' + this.offsetY)
-      }
-      .height(200)
-      .width(300)
-      .padding(20)
-      .border({ width: 3 })
-      .margin(50)
-      .translate({ x: this.offsetX, y: this.offsetY, z: 0 })
-      .id('columnOuter')
-      .gesture(
-        PanGesture(this.panOption)
-          .onActionStart((event: GestureEvent) => {
-            console.info('Pan start')
-          })
-          .onActionUpdate((event: GestureEvent) => {
-            if (event) {
-              this.offsetX = this.positionX + event.offsetX
-              this.offsetY = this.positionY + event.offsetY
-            }
-          })
-          .onActionEnd((event: GestureEvent) => {
-            this.positionX = this.offsetX
-            this.positionY = this.offsetY
-            console.info('Pan end')
-            }))
-          }
-  }
-}
-```
-
-### off('beforePanStart')<sup>18+</sup>
-
-off(type: 'beforePanStart', callback?: PanListenerCallback): void
-
-取消[on('beforePanStart')](#onbeforepanstart18)监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行前的callback回调。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名   | 类型                                                        | 必填 | 说明                                                 |
-| -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
-| type     | string                                                      | 是   | 监听事件，固定为'beforePanStart'，即Pan手势onActionStart事件执行前的指令下发情况。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 否   | 需要被注销的回调函数。                               |
-
-**示例：**
-
-```ts
-// 在页面Component中使用
-import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
-
-// callback是开发者定义的监听回调函数
-let callback = (event: GestureEvent, current: GestureRecognizer, node?: FrameNode) => {};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.off('beforePanStart', callback);
-```
-
-### on('afterPanStart')<sup>18+</sup>
-
-on(type: 'afterPanStart', callback: PanListenerCallback): void
-
-监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行后的指令下发情况，在onActionStart事件执行之后执行callback回调。支持手指滑动、鼠标滑动、鼠标滚轮和触摸板拖动，暂不支持屏幕朗读触控模式。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名   | 类型                                                        | 必填 | 说明                                                         |
-| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                      | 是   | 监听事件，固定为'afterPanStart'，用于监听Pan手势onActionStart事件执行后的指令下发情况，所注册回调将于Pan手势onActionStart事件触发后触发。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
-
-**示例：**
-
-参考[on('beforePanStart')](#onbeforepanstart18)接口示例
-
-### off('afterPanStart')<sup>18+</sup>
-
-off(type: 'afterPanStart', callback?: PanListenerCallback): void
-
-取消[on('afterPanStart')](#onafterpanstart18)监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行后的callback回调。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名   | 类型                                                        | 必填 | 说明                                                 |
-| -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
-| type     | string                                                      | 是   | 监听事件，固定为'afterPanStart'，即Pan手势onActionStart事件执行后的指令下发情况。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 否   | 需要被注销的回调函数。                               |
-
-**示例：**
-
-参考[on('beforePanStart')](#onbeforepanstart18)接口示例
-
-### on('beforePanEnd')<sup>18+</sup>
-
-on(type: 'beforePanEnd', callback: PanListenerCallback): void
-
-监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行前的指令下发情况，在onActionEnd事件执行之前执行callback回调。支持手指滑动、鼠标滑动、鼠标滚轮和触摸板拖动，暂不支持屏幕朗读触控模式。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名   | 类型                                                        | 必填 | 说明                                                         |
-| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                      | 是   | 监听事件，固定为'beforePanEnd'，用于监听Pan手势onActionEnd事件执行前的指令下发情况，所注册回调将于Pan手势onActionEnd事件触发前触发。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
-
-**示例：**
-
-参考[on('beforePanStart')](#onbeforepanstart18)接口示例
-
-### off('beforePanEnd')<sup>18+</sup>
-
-off(type: 'beforePanEnd', callback?: PanListenerCallback): void
-
-取消[on('beforePanEnd')](#onbeforepanend18)监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行前的callback回调。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名   | 类型                                                        | 必填 | 说明                                                 |
-| -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
-| type     | string                                                      | 是   | 监听事件，固定为'beforePanEnd'，即Pan手势onActionEnd事件执行前的指令下发情况。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 否   | 需要被注销的回调函数。                               |
-
-**示例：**
-
-参考[on('beforePanStart')](#onbeforepanstart18)接口示例
-
-### on('afterPanEnd')<sup>18+</sup>
-
-on(type: 'afterPanEnd', callback: PanListenerCallback): void
-
-监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行后的指令下发情况，在onActionEnd事件执行之后执行callback回调。支持手指滑动、鼠标滑动、鼠标滚轮和触摸板拖动，暂不支持屏幕朗读触控模式。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名   | 类型                                                        | 必填 | 说明                                                         |
-| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                      | 是   | 监听事件，固定为'beforePanEnd'，用于监听Pan手势onActionEnd事件执行后的指令下发情况，所注册回调将于Pan手势onActionEnd事件触发后触发。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
-
-**示例：**
-
-参考[on('beforePanStart')](#onbeforepanstart18)接口示例
-
-### off('afterPanEnd')<sup>18+</sup>
-
-off(type: 'afterPanEnd', callback?: PanListenerCallback): void
-
-取消[on('afterPanEnd')](#onafterpanend18)监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行后的callback回调。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名   | 类型                                                        | 必填 | 说明                                                 |
-| -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
-| type     | string                                                      | 是   | 监听事件，固定为'afterPanEnd'，即Pan手势onActionEnd事件执行后的指令下发情况。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 否   | 需要被注销的回调函数。                               |
-
-**示例：**
-
-参考[on('beforePanStart')](#onbeforepanstart18)接口示例
-
-
-## PanListenerCallback<sup>18+</sup>
-type PanListenerCallback = (event: GestureEvent, current: GestureRecognizer, node?: FrameNode) => void
-
-Pan手势事件监听函数类型。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名  | 类型              | 必填 | 说明                                |
-| ------- | ----------------- | ---- | --------------------------------- |
-| event   | [GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent对象说明)      | 是   | 触发事件监听的手势事件的相关信息。   |
-| current | [GestureRecognizer](arkui-ts/ts-gesture-blocking-enhancement.md#gesturerecognizer) | 是   | 触发事件监听的手势识别器的相关信息。  |
-| node    | [FrameNode](js-apis-arkui-frameNode.md#framenode)         | 否   | 触发事件监听的手势事件所绑定的组件。 |
 
 ## GestureEventListenerCallback<sup>12+</sup>
 type GestureEventListenerCallback = (event: GestureEvent, node?: FrameNode) => void
@@ -8184,6 +7879,91 @@ cancelDataLoading(key: string): void
 | 401      | Parameter error. |
 | 190004      | Operation failed. |
 
+### notifyDragStartRequest<sup>18+</sup>
+
+notifyDragStartRequest(requestStatus: draController.DragStartRequestStatus): void
+
+控制应用是否可以发起拖拽。
+
+**原子化服务API**: 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**: SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填| 说明                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| requestStatus  | [draController.DragStartRequestStatus](js-apis-arkui-dragController.md#dragstartrequeststatus18)    | 是  |定义应用是否可以发起拖拽。|
+
+**示例：**
+
+```ts
+import { unifiedDataChannel } from '@kit.ArkData';
+import { image } from '@kit.ImageKit';
+import { dragController } from "@kit.ArkUI";
+
+// xxx.ets
+@Entry
+@Component
+struct NormalEts {
+  @State finished: boolean = false
+  @State timeout1: number = 1
+  @State pixmap: image.PixelMap | undefined = undefined
+  @State unifiedData1: unifiedDataChannel.UnifiedData | undefined = undefined
+  @State previewData: DragItemInfo | undefined = undefined
+
+  loadData() {
+    let timeout = setTimeout(() => {
+      this.getUIContext().getComponentSnapshot().get("image1", (error: Error, pixmap: image.PixelMap) => {
+        this.pixmap = pixmap
+        this.previewData = {
+          pixelMap: this.pixmap
+        }
+      })
+
+      let data: unifiedDataChannel.Image = new unifiedDataChannel.Image();
+      data.imageUri = "app.media.startIcon";
+      let unifiedData = new unifiedDataChannel.UnifiedData(data);
+      this.unifiedData1 = unifiedData
+
+      this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.READY)
+    }, 4000);
+    this.timeout1 = timeout
+  }
+
+
+    build() {
+      Column({space: 20}) {
+        Image($r("app.media.startIcon"))
+          .width(300)
+          .height(200)
+          .id("image1")
+          .draggable(true)
+          .dragPreview(this.previewData)
+          .onPreDrag((status: PreDragStatus) => {
+            if (status == PreDragStatus.PREPARING_FOR_DRAG_DETECTION) {
+              this.loadData()
+            } else {
+              clearTimeout(this.timeout1);
+            }
+          })
+          .onDragStart((event: DragEvent) => {
+            if (this.finished == false) {
+              this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.WAITING)
+            } else {
+              event.setData(this.unifiedData1);
+            }
+          })
+          .onDragEnd(()=>{
+            this.finished = false
+          })
+      }
+      .height(400)
+      .backgroundColor(Color.Pink)
+    }
+}
+```
+
 ## OverlayManager<sup>12+</sup>
 
 以下API需先使用UIContext中的[getOverlayManager()](#getoverlaymanager12)方法获取到OverlayManager对象，再通过该对象调用对应方法。
@@ -8509,7 +8289,6 @@ hideAllComponentContents(): void
 | 名称             | 类型                | 必填     | 说明                     |
 | --------------- | ---------------------- | ------------ | --------------------- |
 | renderRootOverlay   | boolean | 否 | 是否渲染overlay根节点，true表示渲染overlay根节点，false表示不渲染overlay根节点，默认值为true。|
-| enableBackPressedEvent<sup>18+</sup>   | boolean | 否 | 是否支持通过侧滑手势关闭OverlayManager下的ComponentContent，默认值为false。 |
 
 ## AtomicServiceBar<sup>11+</sup>
 
@@ -8535,7 +8314,7 @@ setVisible(visible: boolean): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | ------- | ------- | ------- |
-| visible | boolean | 是 | 原子化服务menuBar是否可见。|
+| visible | boolean | 是 | 原子化服务menuBar是否可见。true表示设置menuBar可见，false表示设置menuBar不可见。|
 
 
 **示例：**
@@ -8699,7 +8478,7 @@ setIconColor(color:Nullable<Color | number | string>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | ------- | ------- | ------- |
-| color | Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | 是 | 原子化服务图标的颜色，undefined代表使用默认颜色。 |
+| color | Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | 是 | 原子化服务图标的颜色，undefined代表使用默认颜色。number为HEX格式颜色，支持rgb或者argb，示例：0xffffff。string为rgb或者argb格式颜色，示例：'#ffffff'。 |
 
 
 **示例：**
@@ -10380,7 +10159,7 @@ MarqueeDynamicSyncScene继承自[DynamicSyncScene](#dynamicsyncscene12)，对应
 **示例：**
 
 ```ts
-import { MarqueeDynamicSyncSceneType, MarqueeDynamicSyncScene } from '@ohos.arkui.UIContext';
+import { MarqueeDynamicSyncSceneType, MarqueeDynamicSyncScene } from '@kit.ArkUI';
 
 @Entry
 @Component

@@ -34,7 +34,7 @@ ArcButton({ options: ArcButtonOptions })
 
 创建ArcButton实例，入参是弧形按钮配置选项。
 
-**装饰器类型：**@Component
+**装饰器类型：** @Component
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 

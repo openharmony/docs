@@ -953,6 +953,7 @@ distributeOperation(hashcode: string, operationInfo?: OperationInfo): Promise\<v
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600010  | Distributed operation failed.                     |
+| 1600021  | Distributed operation timed out.                    |
 
 **示例：**
 

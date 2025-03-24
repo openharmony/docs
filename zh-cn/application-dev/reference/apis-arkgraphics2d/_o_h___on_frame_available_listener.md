@@ -3,7 +3,7 @@
 
 ## 概述
 
-一个OH_NativeImage的监听者，通过OH_NativeImage_SetOnFrameAvailableListener接口注册， 该监听结构体当有帧可用时，将触发回调
+一个OH_NativeImage的监听者，通过OH_NativeImage_SetOnFrameAvailableListener接口注册，该监听结构体当有帧可用时，将触发回调。
 
 **起始版本：** 11
 
@@ -17,8 +17,8 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [context](#context) | 用户自定义的上下文信息，会在回调触发时返回给用户 |
-| [onFrameAvailable](#onframeavailable) | 有buffer可获取时触发的回调函数 |
+| [context](#context) | 用户自定义的上下文信息，会在回调触发时返回给用户。 |
+| [onFrameAvailable](#onframeavailable) | 有buffer可获取时触发的回调函数。 |
 
 
 ## 结构体成员变量说明
@@ -32,7 +32,7 @@ void* OH_OnFrameAvailableListener::context
 
 **描述**
 
-用户自定义的上下文信息，会在回调触发时返回给用户
+用户自定义的上下文信息，会在回调触发时返回给用户。
 
 
 ### onFrameAvailable
@@ -43,4 +43,4 @@ OH_OnFrameAvailable OH_OnFrameAvailableListener::onFrameAvailable
 
 **描述**
 
-有buffer可获取时触发的回调函数
+有buffer可获取时触发的回调函数。

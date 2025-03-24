@@ -77,6 +77,9 @@ task5(OUT A);
 借助FFRT提供了图依赖并发范式，可以描述任务依赖关系，同时并行化上述视频处理流程，代码如下所示：
 
 ```cpp
+#include <iostream>
+#include "ffrt/cpp/task.h"
+
 int main()
 {
     auto handle_A = ffrt::submit_h([] () { std::cout << "视频解析\n"; });
@@ -105,6 +108,9 @@ int main()
 斐波那契数列中每个数字是前两个数字之和，计算斐波那契数的过程可以很好地通过数据对象来表达任务依赖关系。使用FFRT并发编程框架计算斐波那契数的代码如下所示：
 
 ```cpp
+#include <iostream>
+#include "ffrt/cpp/task.h"
+
 void Fib(int x, int& y)
 {
     if (x <= 1) {

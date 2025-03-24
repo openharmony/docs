@@ -35,8 +35,6 @@
 | struct&nbsp;&nbsp;[ArkUI_TranslationOptions](_ark_u_i___translation_options.md) | 定义组件转场时的平移效果对象。  | 
 | struct&nbsp;&nbsp;[ArkUI_ScaleOptions](_ark_u_i___scale_options.md) | 定义组件转场时的缩放效果对象。  | 
 | struct&nbsp;&nbsp;[ArkUI_RotationOptions](_ark_u_i___rotation_options.md) | 定义组件转场时的旋转效果对象。  | 
-| struct&nbsp;&nbsp;[ArkUI_KeyboardAvoidMode](_ark_u_i___native_module.md) | 设置弹窗避让键盘模式。  | 
-| struct&nbsp;&nbsp;[ArkUI_HoverModeAreaType](_ark_u_i___native_module.md) | 设置悬停态下弹窗默认展示区域。  | 
 
 ### 类型定义
 
@@ -367,11 +365,3 @@
 | int32_t [OH_ArkUI_VisibleAreaEventOptions_SetExpectedUpdateInterval](_ark_u_i___native_module.md#oh_arkui_visibleareaeventoptions_setexpectedupdateinterval) ([ArkUI_VisibleAreaEventOptions](_ark_u_i___native_module.md#arkui_visibleareaeventoptions) \*option, int32_t value) | 设置预期更新间隔，单位为ms。定义了开发者期望的更新间隔。 |
 | int32_t [OH_ArkUI_VisibleAreaEventOptions_GetRatios](_ark_u_i___native_module.md#oh_arkui_visibleareaeventoptions_getratios) ([ArkUI_VisibleAreaEventOptions](_ark_u_i___native_module.md#arkui_visibleareaeventoptions) \*option, float\* value, int32_t\* size) | 获取阈值数组。  | 
 | int32_t [OH_ArkUI_VisibleAreaEventOptions_GetExpectedUpdateInterval](_ark_u_i___native_module.md#oh_arkui_visibleareaeventoptions_getexpectedupdateinterval) ([ArkUI_VisibleAreaEventOptions](_ark_u_i___native_module.md#arkui_visibleareaeventoptions) \*option,) |  获取预期更新间隔。 | 
-| [ArkUI_TextPickerRangeContentArray](_ark_u_i___native_module.md#arkui_textpickerrangecontentarray)\* [OH_ArkUI_TextPickerRangeContentArray_Create](_ark_u_i___native_module.md#oh_arkui_textpickerrangecontentarray_create) (int32_t length) |  创建TextPickerRangeContent数组的对象。 |
-| void [OH_ArkUI_TextPickerRangeContentArray_SetIconAtIndex](_ark_u_i___native_module.md#oh_arkui_textpickerrangearray_seticonatindex) ([ArkUI_TextPickerRangeContentArray](_ark_u_i___native_module.md#arkui_textpickerrangecontentarray) \*handle,char\* icon,int32_t index) |  指定TextPickerRangeContent数组指定位置的icon数据。 |
-| void [OH_ArkUI_TextPickerRangeContentArray_SetTextAtIndex](_ark_u_i___native_module.md#oh_arkui_textpickerrangecontentarray_settextatindex) ([ArkUI_TextPickerRangeContentArray](_ark_u_i___native_module.md#arkui_textpickerrangecontentarray) \*handle,char\* text,int32_t index) |  指定TextPickerRangeContent数组指定位置的text数据。 |
-| void [OH_ArkUI_TextPickerRangeContentArray_Destroy](_ark_u_i___native_module.md#oh_arkui_textpickerrangecontentarray_destroy) ([ArkUI_TextPickerRangeContentArray](_ark_u_i___native_module.md#arkui_textpickerrangecontentarray) \*handle) |  删除TextPickerRangeContent数组对象。 |
-| [ArkUI_TextCascadePickerRangeContentArray](_ark_u_i___native_module.md#arkui_textcascadepickerrangecontentarray)\* [OH_ArkUI_TextCascadePickerRangeContentArray_Create](_ark_u_i___native_module.md#oh_arkui_textcascadepickerrangecontentarray_create) (int32_t length) |  创建TextCascadePickerRangeContent数组对象。 |
-| void [OH_ArkUI_TextCascadePickerRangeContentArray_SetTextAtIndex](_ark_u_i___native_module.md#oh_arkui_textcascadepickerrangecontentarray_settextatindex) ([ArkUI_TextCascadePickerRangeContentArray](_ark_u_i___native_module.md#arkui_textcascadepickerrangecontentarray) \*handle,char\* text,int32_t index) |   指定TextCascadePickerRangeContent数组指定位置的text数据。 |
-| void [OH_ArkUI_TextCascadePickerRangeContentArray_setChildAtIndex](_ark_u_i___native_module.md#oh_arkui_textcascadepickerrangecontentarray_setchildatindex) ([ArkUI_TextCascadePickerRangeContentArray](_ark_u_i___native_module.md#arkui_textcascadepickerrangecontentarray) \*handle,[ArkUI_TextCascadePickerRangeContentArray](_ark_u_i___native_module.md#arkui_textcascadepickerrangecontentarray)\* child,int32_t index) |   指定TextCascadePickerRangeContent数组指定位置的child数据。 |
-| void [OH_ArkUI_TextCascadePickerRangeContentArray_Destroy](_ark_u_i___native_module.md#oh_arkui_textcascadepickerrangecontentarray_destroy) ([ArkUI_TextCascadePickerRangeContentArray](_ark_u_i___native_module.md#arkui_textcascadepickerrangecontentarray) \*handle) |  删除TextCascadePickerRangeContent数组对象。 |

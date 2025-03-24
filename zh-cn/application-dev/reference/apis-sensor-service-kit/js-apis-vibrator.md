@@ -813,6 +813,8 @@ try {
 }
 ```
 
+## VibratorPatternBuilder<sup>18+</sup>
+
 ### vibrator('addContinuousEvent')<sup>18+</sup>
 
 addContinuousEvent(time: number, duration: number, options?: ContinuousParam): VibratorPatternBuilder;
