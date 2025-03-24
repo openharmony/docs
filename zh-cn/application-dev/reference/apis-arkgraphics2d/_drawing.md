@@ -256,7 +256,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [OH_Drawing_PathEffect](#oh_drawing_patheffect) \* [OH_Drawing_CreateDiscretePathEffect](#oh_drawing_creatediscretepatheffect) (float segLength, float deviation) | 创建一种将路径打散并且在路径上产生不规则分布的路径效果对象。  | 
 | [OH_Drawing_PathEffect](#oh_drawing_patheffect) \* [OH_Drawing_CreateCornerPathEffect](#oh_drawing_createcornerpatheffect) (float radius) | 创建一个将路径的夹角变成指定半径的圆角的路径效果对象。  | 
 | [OH_Drawing_PathEffect](#oh_drawing_patheffect) \* [OH_Drawing_CreateComposePathEffect](#oh_drawing_createcomposepatheffect) ([OH_Drawing_PathEffect](#oh_drawing_patheffect) \*outer, [OH_Drawing_PathEffect](#oh_drawing_patheffect) \*inner) | 创建路径组合的路径效果对象。首先应用内部路径效果，然后应用外部路径效果。  | 
-| [OH_Drawing_GpuContext](#oh_drawing_gpucontext) \* [OH_Drawing_GpuContextCreate](#oh_drawing_gpucontextcreate) () | 用于创建一个图形处理器上下文对象, 使用的后端类型取决于运行设备。  | 
+| [OH_Drawing_GpuContext](#oh_drawing_gpucontext) \* [OH_Drawing_GpuContextCreate](#oh_drawing_gpucontextcreate) (void) | 用于创建一个图形处理器上下文对象, 使用的后端类型取决于运行设备。  | 
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_CanvasDrawArcWithCenter](#oh_drawing_canvasdrawarcwithcenter) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*canvas, const [OH_Drawing_Rect](#oh_drawing_rect) \*rect, float startAngle, float sweepAngle, bool useCenter) | 绘制一段圆弧。该方法允许指定圆弧的起始角度、扫描角度以及圆弧的起点和终点是否连接圆弧的中心点。  | 
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_CanvasDrawNestedRoundRect](#oh_drawing_canvasdrawnestedroundrect) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*canvas, const [OH_Drawing_RoundRect](#oh_drawing_roundrect) \*outer, const [OH_Drawing_RoundRect](#oh_drawing_roundrect) \*inner) | 绘制两个嵌套的圆角矩形，外部矩形边界必须包含内部矩形边界，否则无绘制效果。| 
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_CanvasQuickRejectPath](#oh_drawing_canvasquickrejectpath) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*canvas, const [OH_Drawing_Path](#oh_drawing_path) \*path, bool \*quickReject) | 判断路径与画布区域是否不相交。画布区域包含边界。  | 
@@ -3316,7 +3316,7 @@ OH_Drawing_PathEffect* OH_Drawing_CreateComposePathEffect (OH_Drawing_PathEffect
 ### OH_Drawing_GpuContextCreate()
 
 ```
-OH_Drawing_GpuContext* OH_Drawing_GpuContextCreate ()
+OH_Drawing_GpuContext* OH_Drawing_GpuContextCreate (void)
 ```
 
 **描述**
@@ -17670,7 +17670,7 @@ void OH_Drawing_TypographyHandlerAddSymbol (OH_Drawing_TypographyCreate* , uint3
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_TypographyCreate | 指向[OH_Drawing_TypographyCreate](#oh_drawing_typographycreate)对象的指针，由[OH_Drawing_CreateTypographyHandler](#oh_drawing_createtypographyhandler)获取。 | 
-| uint32_t | 要设置的符号，可支持设置的符号参见下面链接json文件中的value值。 [https://gitee.com/openharmony/global_system_resources/blob/master/systemres/main/resources/base/element/symbol.json](https://gitee.com/openharmony/global_system_resources/blob/master/systemres/main/resources/base/element/symbol.json) | 
+| uint32_t | 要设置的符号，可支持设置的符号参见下面链接json文件中的value值。可设置的符号（即列表视图下的unicode值）请见[主题图标库](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/)。 | 
 
 
 ### OH_Drawing_TypographyHandlerAddText()

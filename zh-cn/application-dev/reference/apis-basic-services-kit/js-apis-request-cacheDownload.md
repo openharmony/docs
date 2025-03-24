@@ -59,8 +59,8 @@ download(url: string, options: CacheDownloadOptions)
 
 | 错误码ID    | 错误信息                                                                                                                                      |
 |----------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| 201      | the permissions check fails.                                                                                                              |
-| 401      | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+| 201      | permission denied.                                                                                                              |
+| 401      | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -102,7 +102,7 @@ cancel(url: string)
 
 | 错误码ID    | 错误信息                                                                                                                                      |
 |----------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| 401      | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+| 401      | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -153,7 +153,7 @@ setMemoryCacheSize(bytes: number)
 
 | 错误码ID    | 错误信息                                                                                                                                      |
 |----------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| 401      | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+| 401      | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -192,7 +192,7 @@ setFileCacheSize(bytes: number)
 
 | 错误码ID    | 错误信息                                                                                                                                      |
 |----------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| 401      | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+| 401      | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 

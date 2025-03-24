@@ -3106,11 +3106,15 @@ SEI信息内容，描述SEI信息的负载类型和数据。
 
 ## OnSeiMessageHandle<sup>18+</sup>
 
+type OnSeiMessageHandle = (messages: Array\<SeiMessage>, playbackPosition?: number) => void
+
 获取SEI信息，使用场景：订阅SEI信息事件，回调返回SEI详细信息。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
+
+**参数：**
 
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |

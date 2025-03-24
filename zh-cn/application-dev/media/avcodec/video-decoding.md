@@ -166,7 +166,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     };
     ```
 
-4. 全局变量
+4. 全局变量。
 
     仅做参考，可以根据实际情况将其封装到对象中。
 
@@ -227,9 +227,9 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     ```c++
     // 通过MIME TYPE创建解码器，只能创建系统推荐的特定编解码器。
     // 涉及创建多路编解码器时，优先创建硬件解码器实例，硬件资源不够时再创建软件解码器实例。
-    // 软/硬解: 创建H.264解码器实例。
+    // 软/硬解：创建H.264解码器实例。
     OH_AVCodec *videoDec = OH_VideoDecoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
-    // 软/硬解: 创建H.265解码器实例。
+    // 软/硬解：创建H.265解码器实例。
     OH_AVCodec *videoDec = OH_VideoDecoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_HEVC);
     ```
 
@@ -319,7 +319,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     <!--RP4-->使用示例：<!--RP4End-->
 
     ```c++
-    // 根据DRM信息创建指定的DRM系统, 以创建"com.clearplay.drm"为例。
+    // 根据DRM信息创建指定的DRM系统，以创建"com.clearplay.drm"为例。
     MediaKeySystem *system = nullptr;
     int32_t ret = OH_MediaKeySystem_Create("com.clearplay.drm", &system);
     if (system == nullptr) {
@@ -344,7 +344,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     // 获取许可证请求、设置许可证响应等。
 
-    // 设置解密配置, 即将解密会话、安全视频通路标志设置到解码器中。
+    // 设置解密配置，即将解密会话、安全视频通路标志设置到解码器中。
     // 如果DRM解决方案支持安全视频通路，在使用安全视频通路时，需将secureVideoPath设置为true，并在此之前须创建安全解码器。
     // 即在步骤2使用OH_VideoDecoder_CreateByName函数、参数为解码器名称后拼接.secure（如“[CodecName].secure”）创建安全解码器。
     bool secureVideoPath = false;
@@ -504,7 +504,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口获取输入码流虚拟地址；
     - index：回调函数OnNeedInputBuffer传入的参数，与buffer唯一对应的标识；
-    - size, offset, pts, frameData：输入尺寸、偏移量、时间戳、帧数据等字段信息，获取方式可以参考[音视频解封装](./audio-video-demuxer.md)“步骤-9：开始解封装，循环获取sample”；
+    - size、offset、pts、frameData：输入尺寸、偏移量、时间戳、帧数据等字段信息，获取方式可以参考[音视频解封装](./audio-video-demuxer.md)“步骤-9：开始解封装，循环获取sample”；
     - flags：缓冲区标记的类别，请参考[OH_AVCodecBufferFlags](../../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags)。
 
     ```c++
@@ -591,7 +591,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     此时需要调用OH_VideoDecoder_Start接口重新开始解码。
     以下示例中：
 
-    - xpsData, xpsSize：PPS/SPS信息，获取方式可以参考[音视频解封装](./audio-video-demuxer.md)。
+    - xpsData、xpsSize：PPS/SPS信息，获取方式可以参考[音视频解封装](./audio-video-demuxer.md)。
 
     ```c++
     std::unique_lock<std::shared_mutex> lock(codecMutex);
@@ -738,9 +738,9 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     ```c++
     // 通过MIME TYPE创建解码器，只能创建系统推荐的特定编解码器。
     // 涉及创建多路编解码器时，优先创建硬件解码器实例，硬件资源不够时再创建软件解码器实例。
-    // 软/硬解: 创建H.264解码器。
+    // 软/硬解：创建H.264解码器。
     OH_AVCodec *videoDec = OH_VideoDecoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
-    // 硬解: 创建H.265解码器。
+    // 硬解：创建H.265解码器。
     OH_AVCodec *videoDec = OH_VideoDecoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_HEVC);
     ```
 
@@ -775,7 +775,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     // 解码数据流变化回调OH_AVCodecOnStreamChanged实现。
     static void OnStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
     {
-        // 可选, 开发者需要获取视频宽、高、跨距等时可配置。
+        // 可选，开发者需要获取视频宽、高、跨距等时可配置。
         // 可通过format获取到变化后的视频宽、高、跨距等。
         (void)codec;
         (void)userData;
@@ -802,7 +802,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     // 解码输出回调OH_AVCodecOnNewOutputBuffer实现。
     static void OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
     {
-        // 可选, 开发者需要获取视频宽、高、跨距等时可配置。
+        // 可选，开发者需要获取视频宽、高、跨距等时可配置。
         // 获取视频宽、高、跨距。
         if (isFirstFrame) {
             OH_AVFormat *format = OH_VideoDecoder_GetOutputDescription(codec);
@@ -856,7 +856,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     使用示例：
 
     ```c++
-    // 根据DRM信息创建指定的DRM系统, 以创建"com.clearplay.drm"为例。
+    // 根据DRM信息创建指定的DRM系统，以创建"com.clearplay.drm"为例。
     MediaKeySystem *system = nullptr;
     int32_t ret = OH_MediaKeySystem_Create("com.clearplay.drm", &system);
     if (system == nullptr) {
@@ -879,7 +879,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         return;
     }
     // 获取许可证请求、设置许可证响应等。
-    // 设置解密配置, 即将解密会话、安全视频通路标志设置到解码器中。
+    // 设置解密配置，即将解密会话、安全视频通路标志设置到解码器中。
     bool secureVideoPath = false;
     ret = OH_VideoDecoder_SetDecryptionConfig(videoDec, session, secureVideoPath);
     ```
@@ -1046,7 +1046,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-    NV12/NV21图像如果需要依次将Y,U,V三个分量拷贝至另一块buffer中，以NV12图像为例，按行拷贝示例如下：
+    NV12/NV21图像如果需要依次将Y、U、V三个分量拷贝至另一块buffer中，以NV12图像为例，按行拷贝示例如下：
 
     以NV12图像为例，width、height、wStride、hStride图像排布参考下图：
 

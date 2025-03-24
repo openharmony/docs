@@ -14,7 +14,7 @@ import { abilityConnectionManager } from '@kit.DistributedServiceKit';
 
 ## abilityConnectionManager.createAbilityConnectionSession
 
-createAbilityConnectionSession(serviceName:&nbsp;string,&nbsp;context:&nbsp;Context,&nbsp;peerInfo:&nbsp;PeerInfo ,&nbsp;connectOptions:&nbsp;ConnectOptions):&nbsp;number;
+createAbilityConnectionSession(serviceName:&nbsp;string,&nbsp;context:&nbsp;Context,&nbsp;peerInfo:&nbsp;PeerInfo ,&nbsp;connectOptions:&nbsp;ConnectOptions):&nbsp;number
 
 创建应用间的协同会话。
 
@@ -24,8 +24,8 @@ createAbilityConnectionSession(serviceName:&nbsp;string,&nbsp;context:&nbsp;Cont
 
 | 参数名       | 类型                                      | 必填   | 说明        |
 | --------- | --------------------------------------- | ---- | --------- |
-| serviceName  | string | 是    | 应用设置的服务名称（两端必须一致）。 |
-| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是 | 表示应用上下文。 | 
+| serviceName  | string | 是    | 应用设置的服务名称（两端必须一致），最大长度为256字符。 |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是 | 表示应用上下文。 |
 | peerInfo  | [PeerInfo](#peerinfo)               | 是    | 对端的协同信息。 |
 | connectOptions  | [ConnectOptions](#connectoptions)               | 是    | 应用设置的连接选项。 |
 
@@ -113,7 +113,7 @@ createAbilityConnectionSession(serviceName:&nbsp;string,&nbsp;context:&nbsp;Cont
      hilog.error(0x0000, 'testTag', error);
    }
    ```
-   
+
 2. 在设备B上，对于createAbilityConnectionSession接口的调用，可在应用被拉起后触发协同生命周期函数onCollaborate时，在onCollaborate内进行。
 
    ```ts
@@ -162,7 +162,7 @@ createAbilityConnectionSession(serviceName:&nbsp;string,&nbsp;context:&nbsp;Cont
 
 ## abilityConnectionManager.destroyAbilityConnectionSession
 
-destroyAbilityConnectionSession(sessionId:&nbsp;number):&nbsp;void;
+destroyAbilityConnectionSession(sessionId:&nbsp;number):&nbsp;void
 
 销毁应用间的协同会话。
 
@@ -195,7 +195,7 @@ destroyAbilityConnectionSession(sessionId:&nbsp;number):&nbsp;void;
 
 ## abilityConnectionManager.getPeerInfoById
 
-getPeerInfoById(sessionId:&nbsp;number):&nbsp;PeerInfo&nbsp;|&nbsp;undefined;
+getPeerInfoById(sessionId:&nbsp;number):&nbsp;PeerInfo&nbsp;|&nbsp;undefined
 
 获取指定会话中对端应用信息。
 
@@ -234,7 +234,7 @@ getPeerInfoById(sessionId:&nbsp;number):&nbsp;PeerInfo&nbsp;|&nbsp;undefined;
 
 ## abilityConnectionManager.connect
 
-connect(sessionId:&nbsp;number):&nbsp;Promise&lt;ConnectResult&gt;;
+connect(sessionId:&nbsp;number):&nbsp;Promise&lt;ConnectResult&gt;
 
 创建协同会话成功并获得会话ID后，设备A上可进行UIAbility的连接。
 
@@ -281,7 +281,7 @@ connect(sessionId:&nbsp;number):&nbsp;Promise&lt;ConnectResult&gt;;
 
 ## abilityConnectionManager.acceptConnect
 
-acceptConnect(sessionId:&nbsp;number,&nbsp;token:&nbsp;string):&nbsp;Promise&lt;void&gt;;
+acceptConnect(sessionId:&nbsp;number,&nbsp;token:&nbsp;string):&nbsp;Promise&lt;void&gt;
 
 设备B上的应用，在创建协同会话成功并获得会话ID后，调用acceptConnect()方法接受连接。
 
@@ -369,7 +369,7 @@ acceptConnect(sessionId:&nbsp;number,&nbsp;token:&nbsp;string):&nbsp;Promise&lt;
 
 ## abilityConnectionManager.disconnect
 
-disconnect(sessionId:&nbsp;number):&nbsp;void;
+disconnect(sessionId:&nbsp;number):&nbsp;void
 
 当协同业务执行完毕后，协同双端的任意一台设备，应断开UIAbility的连接，结束协同状态。
 
@@ -528,7 +528,7 @@ off(type:&nbsp;'connect'&nbsp;|&nbsp;'disconnect'&nbsp;|&nbsp;'receiveMessage'|&
 
 ## abilityConnectionManager.sendMessage
 
-sendMessage(sessionId:&nbsp;number,&nbsp;msg:&nbsp;string):&nbsp;Promise&lt;void&gt;;
+sendMessage(sessionId:&nbsp;number,&nbsp;msg:&nbsp;string):&nbsp;Promise&lt;void&gt;
 
 应用连接成功后，设备A或设备B可向对端设备发送文本信息。
 
@@ -572,7 +572,7 @@ sendMessage(sessionId:&nbsp;number,&nbsp;msg:&nbsp;string):&nbsp;Promise&lt;void
 
 ## abilityConnectionManager.sendData
 
-sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;void&gt;;
+sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;void&gt;
 
 应用连接成功后，设备A或设备B可向对端设备发送[ArrayBuffer](../../arkts-utils/arraybuffer-object.md)字节流。
 
