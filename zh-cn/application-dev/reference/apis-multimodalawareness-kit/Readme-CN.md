@@ -6,3 +6,4 @@
   - [@js-apis-awareness-metadataBinding (回旋镖)](js-apis-awareness-metadataBinding.md)
 - 错误码
   - [行为动作感知错误码](errorcode-motion.md)
+  - [回旋镖错误码](errorcode-metadataBinding.md)

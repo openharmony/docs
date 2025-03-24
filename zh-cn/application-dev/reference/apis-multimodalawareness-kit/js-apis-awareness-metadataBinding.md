@@ -71,6 +71,15 @@ function decodeImage(encodedImage: image.PixelMap): Promise\<string\>
 |32100001  | Internal handling failed. File read failed.|
 |32100003  | Decode process fail.|
 
+**示例：**  
+```ts
+let encodeImage: imageManager.PixelMap | undefined;
+metadataBinding.decodeImage(encodeImage).then((metadata : string) =>{
+}).catch((error:Error)=>{
+	console.error("decode image error" + error);
+}); 
+```
+
 ## notifyMetadataBindingEvent(string)
 submitMetadata(metadata: string): void；
 把需要嵌入的信息传递给需要调用编码接口的应用或服务。  
@@ -121,6 +130,7 @@ function submitMetadata(metadata: string): void;
 |   401    | Parameter error. Parameter verification failed.|
 |32100001|Internal handling failed. Set Meta data to screenshot app fail.|
 
+**示例**：
 
 ```ts
 let metadata:string = "";
@@ -152,6 +162,18 @@ metadataBinding.on(type: 'operationSubmitMetadata', bundleName: string, callback
 |32100001|Internal handling failed. Service exception.|
 |32100004|Subscribe Failed.|
 
+**示例：**  
+```ts
+let bundleName:string = '';
+metadataBinding.on('operationSubmitMetadata', bundleName, (evnet:number)=>{
+	if (event == 1) {
+		console.info("The screenshot request is intercepted and the app link is obtained");
+	}
+}).catch((error:Error)=>{
+	console.error("subscript screenshot event" + error);
+});
+```
+
 
 ## metadataBinding.off('operationSubmitMetadata', string)
 off(type: 'operationSubmitMetadata', bundleName: string, callback?: Callback\<number>): void;  
@@ -173,6 +195,8 @@ off(type: 'operationSubmitMetadata', bundleName: string, callback?: Callback\<nu
 |401|Parameter error. Parameter verification failed.|
 |32100001|Internal handling failed. Service exception.|
 |32100005|Unsubscribe Failed.|
+
+**示例**：
 
 ```ts
 let bundleName:string = '';
