@@ -27,8 +27,7 @@
 
 2. 指定待签名的明文数据。
 
-3. 获取属性参数HuksOptions，包括两个字段properties和inData。
-   inData传入明文数据，properties传入[算法参数配置](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksparam)。
+3. 获取属性参数HuksOptions，包括两个字段properties和inData。inData传入明文数据，properties传入[算法参数配置](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksparam)。
 
 4. 调用[initSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksinitsession9)初始化密钥会话，并获取会话的句柄handle。
 
@@ -40,8 +39,7 @@
 
 2. 获取待验证的签名signature。
 
-3. 获取属性参数HuksOptions，包括两个字段properties和inData。
-   inData传入签名signature，properties传入[算法参数配置](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksparam)。
+3. 获取属性参数HuksOptions，包括两个字段properties和inData。inData传入签名signature，properties传入[算法参数配置](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksparam)。
 
 4. 调用[initSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksinitsession9)初始化密钥会话，并获取会话的句柄handle。
 
