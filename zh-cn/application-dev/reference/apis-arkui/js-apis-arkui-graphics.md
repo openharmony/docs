@@ -555,7 +555,7 @@ static numeric(value: number): ColorMetrics
 
 | 参数名 | 类型          | 必填 | 说明         |
 | ------ | ------------- | ---- | ------------ |
-| value   | number | 是   | HEX格式颜色，支持rgb或者argb。 |
+| value   | number | 是   | HEX格式颜色。<br/>取值范围：支持rgb或者argb |
 
 **返回值：**
 
@@ -847,7 +847,7 @@ type Rect = common2D.Rect
 | ------- | ------ | ---- | ---- | ------------------------- |
 | centerX | number | 是   | 是   | 圆心x轴的位置，单位为px。 |
 | centerY | number | 是   | 是   | 圆心y轴的位置，单位为px。 |
-| radius  | number | 是   | 是   | 圆形的半径，单位为px。    |
+| radius  | number | 是   | 是   | 圆形的半径，单位为px。 <br/> 取值范围：[0, +∞)   |
 
 ## CommandPath<sup>12+</sup>
 
