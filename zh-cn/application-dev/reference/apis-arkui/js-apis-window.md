@@ -8107,14 +8107,38 @@ raiseToAppTop(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { window } from '@kit.ArkUI';
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let promise = windowClass.raiseToAppTop();
-promise.then(() => {
-  console.info('Succeeded in raising the window to app top.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to raise the window to app top. Cause code: ${err.code}, message: ${err.message}`);
-});
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    // 创建子窗
+    try {
+      let subWindowPromise = windowStage.createSubWindow("testSubWindow");
+      subWindowPromise.then((data) => {
+        if (data == null) {
+          console.error("Failed to create the subWindow. Cause: The data is empty");
+          return;
+        }
+        let showWindowPromise = data.showWindow();
+        showWindowPromise.then(() => {
+          let raiseToTopPromise = data.raiseToAppTop();
+          raiseToTopPromise.then(() => {
+            console.info('Succeeded in raising window to app top.');
+          }).catch((err: BusinessError)=>{
+            console.error(`Failed to raise window to app top. Cause code: ${err.code}, message: ${err.message}`);
+          });
+        });
+      });
+    } catch (exception) {
+      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+}
 ```
 
 ### setRaiseByClickEnabled<sup>14+</sup>
@@ -8158,6 +8182,7 @@ setRaiseByClickEnabled(enable: boolean): Promise&lt;void&gt;
 
 ```ts
 // EntryAbility.ets
+import { window } from '@kit.ArkUI';
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -8165,22 +8190,23 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
     // 创建子窗
     try {
-      let subWindow = windowStage.createSubWindow("testSubWindow");
-      subWindow.then((data) => {
+      let subWindowPromise = windowStage.createSubWindow("testSubWindow");
+      subWindowPromise.then((data) => {
         if (data == null) {
           console.error("Failed to create the subWindow. Cause: The data is empty");
           return;
         }
-        windowClass = data;
-        let enabled = false;
-        let promise = windowClass.setRaiseByClickEnabled(enabled);
-        promise.then(()=> {
-          console.info('Succeeded in disabling the raise-by-click function.');
-        }).catch((err: BusinessError)=>{
-          console.error(`Failed to disable the raise-by-click function. Cause code: ${err.code}, message: ${err.message}`);
+        let showWindowPromise = data.showWindow();
+        showWindowPromise.then(() => {
+          let enabled = false;
+          let setRaisePromise = data.setRaiseByClickEnabled(enabled);
+          setRaisePromise.then(() => {
+            console.info('Succeeded in disabling the raise-by-click function.');
+          }).catch((err: BusinessError)=>{
+            console.error(`Failed to disable the raise-by-click function. Cause code: ${err.code}, message: ${err.message}`);
+          });
         });
       });
     } catch (exception) {
