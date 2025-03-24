@@ -24,8 +24,8 @@ FFRT串行队列基于协程调度模型实现，提供高效的消息队列功�
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include "ffrt/cpp/task.h"
 #include "ffrt/queue.h"
+#include "ffrt/task.h"
 
 typedef struct {
     FILE *logFile;          // 日志文件指针
@@ -77,7 +77,7 @@ void logger_destroy(logger_t *logger)
         // 关闭日志文件
         if (logger->logFile) {
             fclose(logger->logFile);
-            printf("Log file closed.\n");
+            printf("Log file closed\n");
         }
 
         free(logger);
