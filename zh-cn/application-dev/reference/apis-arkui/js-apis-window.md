@@ -5511,15 +5511,15 @@ on(type: 'rotationChange', callback: RotationChangeCallback&lt;info: RotationCha
 **示例：**
 
 ```ts
-function calculateRect(info: RotationChangeInfo) : Rect {
+function calculateRect(info: window.RotationChangeInfo) : window.Rect => {
     // calculate result with info
     return rect;
 }
 
-const callback：RotationChangeCallback = (info: RotationChangeInfo) =>  RotationChangeResult | void {
-    if (info.type === RotationChangeType.WINDOW_WILL_ROTATE) {
-        RotationChangeResult result;
-        result.rectType = RectType.RELATIVE_TO_SCREEN;
+const callback = (info: window.RotationChangeInfo) => window.RotationChangeResult | void {
+    if (info.type === window.RotationChangeType.WINDOW_WILL_ROTATE) {
+        let result: window.RotationChangeResult;
+        result.rectType = window.RectType.RELATIVE_TO_SCREEN;
         result.windowRect = calculateRect(info);
         return result;
     } else {
@@ -5566,7 +5566,7 @@ off(type: 'rotationChange', callback?: RotationChangeCallback&lt;info: RotationC
 **示例：**
 
 ```ts
-const callback = (info: RotationChangeInfo) => RotationChangeResult | void {
+const callback = (info: window.RotationChangeInfo) => window.RotationChangeResult | void {
   // ...
   return;
 }
