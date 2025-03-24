@@ -1207,7 +1207,7 @@ OH_NativeXComponent_RegisterOnFrameCallback 接口
 
 默认UX变更无需适配。
 
-## cl.arkui.21 半模态跟手样式弹窗显示位置避让规则变更
+## cl.arkui.11 半模态跟手样式弹窗显示位置避让规则变更
 **访问级别**
 
 公开接口
