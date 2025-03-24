@@ -56,6 +56,8 @@ import { cloudSync } from '@kit.CoreFileKit';
 
 端云同步过程。
 
+### 属性
+
 **系统能力**： SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 | 名称     | 类型   | 必填 | 说明 |
@@ -80,6 +82,8 @@ import { cloudSync } from '@kit.CoreFileKit';
 
 云文件下载过程。
 
+### 属性
+
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 | 名称     | 类型   | 必填 | 说明 |
@@ -93,6 +97,8 @@ import { cloudSync } from '@kit.CoreFileKit';
 ## FileSync<sup>12+</sup>
 
 云盘同步对象，用于支撑文件管理器应用完成云盘文件的端云同步流程。在使用前，需要先创建FileSync实例。
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 ### constructor<sup>12+</sup>
 
