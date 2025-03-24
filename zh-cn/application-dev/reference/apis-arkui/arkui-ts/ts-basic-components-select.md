@@ -768,7 +768,7 @@ avoidance(mode: AvoidanceMode)
 
 | 名称                | 说明             |
 | ------------------- | ------------------ |
-| COVER_TARGET        | 当四周都无足够空间显示时，覆盖目标组件。 |
+| COVER_TARGET        | 目标组件下方无足够空间时，覆盖目标组件。 |
 | AVOID_AROUND_TARGET | 目标组件四周无足够空间时，在最大空间处压缩显示（可滚动）。 |
 
 ## MenuItemConfiguration<sup>12+</sup>对象说明
