@@ -25,7 +25,7 @@
 | [OH_Rdb_Store](_o_h___rdb___store.md) | 表示数据库类型。 |
 | [Rdb_DistributedConfig](_rdb___distributed_config.md) | 记录表的分布式配置信息。 |
 | [Rdb_KeyInfo](_rdb___key_info.md) | 描述发生变化的行的主键或者行号。 |
-| [Rdb_KeyInfo::Rdb_KeyData](union_rdb___key_info_1_1_rdb___key_data.md) | 存放变化的具体数据 |
+| [Rdb_KeyInfo::Rdb_KeyData](union_rdb___key_info_1_1_rdb___key_data.md) | 存放变化的具体数据。 |
 | [Rdb_ChangeInfo](_rdb___change_info.md) | 记录端云同步过程详情。 |
 | [Rdb_SubscribeCallback](union_rdb___subscribe_callback.md) | 表示回调函数。 |
 | [Rdb_DataObserver](_rdb___data_observer.md) | 表示数据观察者。 |
@@ -62,7 +62,7 @@
 | [Rdb_DetailsObserver](_r_d_b.md#rdb_detailsobserver) | 端云数据更改事件的细节的回调函数。 |
 | [Rdb_SubscribeCallback](union_rdb___subscribe_callback.md) | 表示回调函数。 |
 | [Rdb_DataObserver](_rdb___data_observer.md) | 表示数据观察者。 |
-| [Rdb_SyncMode](_r_d_b.md#rdb_syncmode) | 表示数据库的同步模式 |
+| [Rdb_SyncMode](_r_d_b.md#rdb_syncmode) | 表示数据库的同步模式。 |
 | [Rdb_Statistic](_r_d_b.md#rdb_statistic) | 描述数据库表的端云同步过程的统计信息。 |
 | [Rdb_TableDetails](_r_d_b.md#rdb_tabledetails) | 描述数据库表执行端云同步任务上传和下载的统计信息。 |
 | [Rdb_Progress](_r_d_b.md#rdb_progress) | 描述端云同步过程。 |
@@ -83,7 +83,7 @@
 | [Rdb_DistributedType](_r_d_b.md#rdb_distributedtype-1) { RDB_DISTRIBUTED_CLOUD } | 描述表的分布式类型的枚举。 |
 | [Rdb_ChangeType](_r_d_b.md#rdb_changetype-1) { RDB_DATA_CHANGE, RDB_ASSET_CHANGE } | 描述数据变更类型。 |
 | [Rdb_SubscribeType](_r_d_b.md#rdb_subscribetype-1) { RDB_SUBSCRIBE_TYPE_CLOUD, RDB_SUBSCRIBE_TYPE_CLOUD_DETAILS, RDB_SUBSCRIBE_TYPE_LOCAL_DETAILS } | 描述订阅类型。 |
-| [Rdb_SyncMode](_r_d_b.md#rdb_syncmode-1) { RDB_SYNC_MODE_TIME_FIRST, RDB_SYNC_MODE_NATIVE_FIRST, RDB_SYNC_MODE_CLOUD_FIRST } | 表示数据库的同步模式 |
+| [Rdb_SyncMode](_r_d_b.md#rdb_syncmode-1) { RDB_SYNC_MODE_TIME_FIRST, RDB_SYNC_MODE_NATIVE_FIRST, RDB_SYNC_MODE_CLOUD_FIRST } | 表示数据库的同步模式。 |
 | [Rdb_Progress](_r_d_b.md#rdb_progress-1) { RDB_SYNC_BEGIN, RDB_SYNC_IN_PROGRESS, RDB_SYNC_FINISH } | 描述端云同步过程。 |
 | [Rdb_ProgressCode](_r_d_b.md#rdb_progresscode-1) {<br/>RDB_SUCCESS, RDB_UNKNOWN_ERROR, RDB_NETWORK_ERROR, RDB_CLOUD_DISABLED,<br/>RDB_LOCKED_BY_OTHERS, RDB_RECORD_LIMIT_EXCEEDED, RDB_NO_SPACE_FOR_ASSET<br/>} | 表示端云同步过程的状态。 |
 
@@ -110,11 +110,11 @@
 | int [OH_Rdb_SetArea](_r_d_b.md#oh_rdb_setarea) ([OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) \*config, int area) | 给指定的数据库文件配置[OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2)，设置数据库安全区域等级[Rdb_SecurityArea](_r_d_b.md#rdb_securityarea)。 |
 | int [OH_Rdb_SetDbType](_r_d_b.md#oh_rdb_setdbtype) ([OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) \*config, int dbType) | 给指定的数据库文件配置[OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2)，设置数据库类型[Rdb_DBType](_r_d_b.md#rdb_dbtype)。 |
 | const int \* [OH_Rdb_GetSupportedDbType](_r_d_b.md#oh_rdb_getsupporteddbtype) (int \*typeCount) | 获得支持的数据库类型[Rdb_DBType](_r_d_b.md#rdb_dbtype)。 |
-| [OH_Rdb_Store](_o_h___rdb___store.md) \* [OH_Rdb_CreateOrOpen](_r_d_b.md#oh_rdb_createoropen) (const [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) \*config, int \*errCode) | 使用指定的数据库文件配置[OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2), 获得一个对应的[OH_Rdb_Store](_o_h___rdb___store.md)实例，用来操作关系型数据库。 |
+| [OH_Rdb_Store](_o_h___rdb___store.md) \* [OH_Rdb_CreateOrOpen](_r_d_b.md#oh_rdb_createoropen) (const [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) \*config, int \*errCode) | 使用指定的数据库文件配置[OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2)，获得一个对应的[OH_Rdb_Store](_o_h___rdb___store.md)实例，用来操作关系型数据库。 |
 | int [OH_Rdb_ExecuteByTrxId](_r_d_b.md#oh_rdb_executebytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId, const char \*sql) | 使用指定的事务ID执行无返回值的SQL语句，支持向量数据库。 |
-| int [OH_Rdb_BeginTransWithTrxId](_r_d_b.md#oh_rdb_begintranswithtrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t \*trxId) | 在开始执行SQL语句之前，开始事务, 并获得该事务的ID，支持向量数据库。 |
-| int [OH_Rdb_RollBackByTrxId](_r_d_b.md#oh_rdb_rollbackbytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId) | 使用指定的事务ID, 回滚已经执行的SQL语句，支持向量数据库。 |
-| int [OH_Rdb_CommitByTrxId](_r_d_b.md#oh_rdb_commitbytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId) | 使用指定的事务ID, 提交已经执行的SQL语句，支持向量数据库。 |
+| int [OH_Rdb_BeginTransWithTrxId](_r_d_b.md#oh_rdb_begintranswithtrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t \*trxId) | 在开始执行SQL语句之前，开始事务，并获得该事务的ID，支持向量数据库。 |
+| int [OH_Rdb_RollBackByTrxId](_r_d_b.md#oh_rdb_rollbackbytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId) | 使用指定的事务ID，回滚已经执行的SQL语句，支持向量数据库。 |
+| int [OH_Rdb_CommitByTrxId](_r_d_b.md#oh_rdb_commitbytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId) | 使用指定的事务ID，提交已经执行的SQL语句，支持向量数据库。 |
 | [OH_Rdb_CreateValueObject](_r_d_b.md#oh_rdb_createvalueobject) (void) | 创建[OH_VObject](_o_h___v_object.md)实例。 |
 | [OH_Rdb_CreateValuesBucket](_r_d_b.md#oh_rdb_createvaluesbucket) (void) | 创建[OH_VBucket](_o_h___v_bucket.md)实例。 |
 | [OH_Rdb_CreatePredicates](_r_d_b.md#oh_rdb_createpredicates) (const char \*table) | 创建[OH_Predicates](_o_h___predicates.md)实例。 |
@@ -125,12 +125,12 @@
 | [OH_Rdb_Insert](_r_d_b.md#oh_rdb_insert) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*table, [OH_VBucket](_o_h___v_bucket.md) \*valuesBucket) | 向目标表中插入一行数据。 |
 | [OH_Rdb_Update](_r_d_b.md#oh_rdb_update) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_VBucket](_o_h___v_bucket.md) \*valuesBucket, [OH_Predicates](_o_h___predicates.md) \*predicates) | 根据指定的条件更新数据库中的数据。 |
 | [OH_Rdb_Delete](_r_d_b.md#oh_rdb_delete) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates) | 根据指定的条件删除数据库中的数据。 |
-| [OH_Rdb_Query](_r_d_b.md#oh_rdb_query) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates, const char \*const \*columnNames, int length) | 根据指定条件查询数据库中的数据 |
+| [OH_Rdb_Query](_r_d_b.md#oh_rdb_query) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates, const char \*const \*columnNames, int length) | 根据指定条件查询数据库中的数据。 |
 | [OH_Rdb_Execute](_r_d_b.md#oh_rdb_execute) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*sql) | 执行无返回值的SQL语句。 |
 | [OH_Rdb_ExecuteQuery](_r_d_b.md#oh_rdb_executequery) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*sql) | 根据指定SQL语句查询数据库中的数据，支持向量数据库。 |
 | [OH_Rdb_BeginTransaction](_r_d_b.md#oh_rdb_begintransaction) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store) | 在开始执行SQL语句之前，开始事务。 |
 | [OH_Rdb_RollBack](_r_d_b.md#oh_rdb_rollback) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store) | 回滚已经执行的SQL语句。 |
-| [OH_Rdb_Commit](_r_d_b.md#oh_rdb_commit) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store) | 提交已执行的SQL语句 |
+| [OH_Rdb_Commit](_r_d_b.md#oh_rdb_commit) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store) | 提交已执行的SQL语句。 |
 | [OH_Rdb_Backup](_r_d_b.md#oh_rdb_backup) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*databasePath) | 以指定路径备份数据库，支持向量数据库。 |
 | [OH_Rdb_Restore](_r_d_b.md#oh_rdb_restore) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*databasePath) | 从指定的数据库备份文件恢复数据库，支持向量数据库。 |
 | [OH_Rdb_GetVersion](_r_d_b.md#oh_rdb_getversion) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int \*version) | 获取数据库版本。 |
@@ -141,7 +141,7 @@
 | [OH_Rdb_Unsubscribe](_r_d_b.md#oh_rdb_unsubscribe) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SubscribeType](_r_d_b.md#rdb_subscribetype) type, const [Rdb_DataObserver](_rdb___data_observer.md) \*observer) | 从数据库中删除指定类型的指定观察者。 |
 | [OH_Rdb_GetTableDetails](_r_d_b.md#oh_rdb_gettabledetails) ([Rdb_ProgressDetails](_rdb___progress_details.md) \*progress, int32_t version) | 从端云同步任务的统计信息中获取数据库表的统计信息。 |
 | [OH_Rdb_CloudSync](_r_d_b.md#oh_rdb_cloudsync) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SyncMode](_r_d_b.md#rdb_syncmode) mode, const char \*tables, int count, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 进行端云同步。 |
-| [OH_Rdb_SubscribeAutoSyncProgress](_r_d_b.md#oh_rdb_subscribeautosyncprogress) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 订阅RDB存储的自动同步进度。 当收到自动同步进度的通知时，将调用回调。 |
+| [OH_Rdb_SubscribeAutoSyncProgress](_r_d_b.md#oh_rdb_subscribeautosyncprogress) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 订阅RDB存储的自动同步进度。当收到自动同步进度的通知时，将调用回调。 |
 | [OH_Rdb_UnsubscribeAutoSyncProgress](_r_d_b.md#oh_rdb_unsubscribeautosyncprogress) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 取消订阅RDB存储的自动同步进程。 |
 | int [OH_Rdb_LockRow](_r_d_b.md#oh_rdb_lockrow) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates) | 根据指定的条件锁定数据库中的数据，锁定数据不执行端云同步。 |
 | int [OH_Rdb_UnlockRow](_r_d_b.md#oh_rdb_unlockrow) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates) | 根据指定的条件锁解锁数据库中的数据。 |
