@@ -25,7 +25,7 @@ constructor()
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **示例：**
 
@@ -43,14 +43,14 @@ on(evt: 'progress', callback: (pg: SyncProgress) => void): void
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| evt | string | 是   | 订阅的事件类型，取值为'progress'（同步过程事件） |
-| callback | (pg: SyncProgress) => void | 是   | 同步过程事件回调，回调入参为[SyncProgress](./js-apis-file-cloudsync.md#syncprogress12), 返回值为void|
+| evt | string | 是   | 订阅的事件类型，取值为'progress'（同步过程事件）。 |
+| callback | (pg: SyncProgress) => void | 是   | 同步过程事件回调，回调入参为[SyncProgress](./js-apis-file-cloudsync.md#syncprogress12)，返回值为void。|
 
 **错误码：**
 
@@ -83,14 +83,14 @@ off(evt: 'progress', callback: (pg: SyncProgress) => void): void
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| evt | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）|
-| callback | (pg: SyncProgress) => void | 是   | 同步过程事件回调，回调入参为[SyncProgress](./js-apis-file-cloudsync.md#syncprogress12)), 返回值为void|
+| evt | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）。|
+| callback | (pg: SyncProgress) => void | 是   | 同步过程事件回调，回调入参为[SyncProgress](./js-apis-file-cloudsync.md#syncprogress12)，返回值为void。|
 
 **错误码：**
 
@@ -127,13 +127,13 @@ off(evt: 'progress'): void
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| evt | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）|
+| evt | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）。|
 
 **错误码：**
 
@@ -162,19 +162,19 @@ off(evt: 'progress'): void
 
 start(): Promise&lt;void&gt;
 
-异步方法启动端云同步, 以Promise形式返回结果。
+异步方法启动端云同步，以Promise形式返回结果。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **返回值：**
 
 | 类型                  | 说明             |
 | --------------------- | ---------------- |
-| Promise&lt;void&gt; | 使用Promise形式返回启动端云同步的结果 |
+| Promise&lt;void&gt; | 使用Promise形式返回启动端云同步的结果。 |
 
 **错误码：**
 
@@ -216,13 +216,13 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 异步启动端云同步的回调 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 异步启动端云同步的回调。 |
 
 **错误码：**
 
@@ -256,7 +256,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 stop(): Promise&lt;void&gt;
 
-异步方法停止端云同步, 以Promise形式返回结果。
+异步方法停止端云同步，以Promise形式返回结果。
 
 > **说明：**
 >
@@ -266,13 +266,13 @@ stop(): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **返回值：**
 
 | 类型                  | 说明             |
 | --------------------- | ---------------- |
-| Promise&lt;void&gt; | 使用Promise形式返回停止端云同步的结果 |
+| Promise&lt;void&gt; | 使用Promise形式返回停止端云同步的结果。 |
 
 **错误码：**
 
@@ -301,7 +301,7 @@ stop(): Promise&lt;void&gt;
 
 stop(callback: AsyncCallback&lt;void&gt;): void
 
-异步方法停止端云同步, 以callback形式返回结果。
+异步方法停止端云同步，以callback形式返回结果。
 
 > **说明：**
 >
@@ -311,13 +311,13 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 异步停止端云同步的回调 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 异步停止端云同步的回调。 |
 
 **错误码：**
 
@@ -356,7 +356,7 @@ constructor()
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **示例：**
 
@@ -374,14 +374,14 @@ on(evt: 'progress', callback: (pg: DownloadProgress) => void): void
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| evt | string | 是   | 订阅的事件类型，取值为'progress'（下载过程事件）|
-| callback | (pg: DownloadProgress) => void | 是   | 云文件下载过程事件回调，回调入参为[DownloadProgress](js-apis-file-cloudsync.md#downloadprogress11), 返回值为void|
+| evt | string | 是   | 订阅的事件类型，取值为'progress'（下载过程事件）。|
+| callback | (pg: DownloadProgress) => void | 是   | 云文件下载过程事件回调，回调入参为[DownloadProgress](js-apis-file-cloudsync.md#downloadprogress11)，返回值为void。|
 
 **错误码：**
 
@@ -414,14 +414,14 @@ off(evt: 'progress', callback: (pg: DownloadProgress) => void): void
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| evt | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）|
-| callback | (pg: DownloadProgress) => void | 是   | 云文件下载过程事件回调，回调入参为[DownloadProgress](js-apis-file-cloudsync.md#downloadprogress11), 返回值为void|
+| evt | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）。|
+| callback | (pg: DownloadProgress) => void | 是   | 云文件下载过程事件回调，回调入参为[DownloadProgress](js-apis-file-cloudsync.md#downloadprogress11), 返回值为void。|
 
 **错误码：**
 
@@ -458,13 +458,13 @@ off(evt: 'progress'): void
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| evt | string | 是   | 取消订阅的事件类型，取值为'progress'（下载过程事件）|
+| evt | string | 是   | 取消订阅的事件类型，取值为'progress'（下载过程事件）。|
 
 **错误码：**
 
@@ -493,25 +493,25 @@ off(evt: 'progress'): void
 
 start(uri: string): Promise&lt;void&gt;
 
-异步方法启动云文件下载, 以Promise形式返回结果。
+异步方法启动云文件下载，以Promise形式返回结果。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| uri | string | 是   | 待下载文件uri |
+| uri | string | 是   | 待下载文件uri。 |
 
 **返回值：**
 
 | 类型                  | 说明             |
 | --------------------- | ---------------- |
-| Promise&lt;void&gt; | 使用Promise形式返回启动云文件下载的结果 |
+| Promise&lt;void&gt; | 使用Promise形式返回启动云文件下载的结果。 |
 
 **示例：**
 
@@ -547,20 +547,20 @@ start(uri: string): Promise&lt;void&gt;
 
 start(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
-异步方法启动云文件下载, 以callback形式返回结果。
+异步方法启动云文件下载，以callback形式返回结果。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| uri | string | 是   | 待下载文件uri |
-| callback | AsyncCallback&lt;void&gt; | 是   | 异步启动云文件下载的回调 |
+| uri | string | 是   | 待下载文件uri。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 异步启动云文件下载的回调。 |
 
 **错误码：**
 
@@ -594,29 +594,29 @@ start(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 stop(uri: string): Promise&lt;void&gt;
 
-异步方法停止云文件下载, 以Promise形式返回结果。
+异步方法停止云文件下载，以Promise形式返回结果。
 
 > **说明：**
 >
-> 调用stop接口, 当前文件下载流程会终止, 缓存文件会被删除，再次调用start接口会重新开始下载
+> 调用stop接口，当前文件下载流程会终止，缓存文件会被删除，再次调用start接口会重新开始下载。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| uri | string | 是   | 待下载文件uri |
+| uri | string | 是   | 待下载文件uri。 |
 
 **返回值：**
 
 | 类型                  | 说明             |
 | --------------------- | ---------------- |
-| Promise&lt;void&gt; | 使用Promise形式返回停止云文件下载的结果 |
+| Promise&lt;void&gt; | 使用Promise形式返回停止云文件下载的结果。 |
 
 **错误码：**
 
@@ -646,24 +646,24 @@ stop(uri: string): Promise&lt;void&gt;
 
 stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
-异步方法停止云文件下载, 以callback形式返回结果。
+异步方法停止云文件下载，以callback形式返回结果。
 
 > **说明：**
 >
-> 调用stop接口, 当前文件下载流程会终止, 缓存文件会被删除, 再次调用start接口会重新开始下载
+> 调用stop接口，当前文件下载流程会终止，缓存文件会被删除，再次调用start接口会重新开始下载。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| uri | string | 是   | 待下载文件uri |
-| callback | AsyncCallback&lt;void&gt; | 是   | 异步停止云文件下载的回调 |
+| uri | string | 是   | 待下载文件uri。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 异步停止云文件下载的回调。 |
 
 **错误码：**
 
@@ -695,7 +695,6 @@ stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 云盘同步对象，用于支撑文件管理器应用完成云盘文件的端云同步流程。在使用前，需要先创建FileSync实例。
 
-
 ### constructor<sup>12+</sup>
 
 constructor(bundleName: string)
@@ -704,13 +703,13 @@ constructor(bundleName: string)
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| bundleName | string | 是   | 应用包名|
+| bundleName | string | 是   | 应用包名。|
 
 **错误码：**
 
@@ -735,15 +734,15 @@ constructor(bundleName: string)
 
 ### cleanCache<sup>11+</sup>
 
-cleanCache(uri: string): void;
+cleanCache(uri: string): void
 
-同步方法删除文件缓存
+同步方法删除文件缓存。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
@@ -786,13 +785,13 @@ cleanCache(uri: string): void;
 
 getFileSyncState(uri: Array&lt;string&gt;): Promise&lt;Array&lt;FileSyncState&gt;&gt;
 
-异步方法获取文件同步状态, 以promise形式返回结果。
+异步方法获取文件同步状态，以promise形式返回结果。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
@@ -839,13 +838,13 @@ getFileSyncState(uri: Array&lt;string&gt;): Promise&lt;Array&lt;FileSyncState&gt
 
 getFileSyncState(uri: Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;FileSyncState&gt;&gt;): void
 
-异步方法获取文件同步状态, 以callback形式返回结果。
+异步方法获取文件同步状态，以callback形式返回结果。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
@@ -892,7 +891,7 @@ getFileSyncState(uri: string): FileSyncState
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
@@ -941,16 +940,16 @@ getFileSyncState(uri: string): FileSyncState
 
 端云文件同步状态，为枚举类型。
 
-**系统能力**： SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 | 名称 |  值|  说明 |
 | ----- |  ---- |  ---- |
-| UPLOADING |  0 | 上行同步中 |
-| DOWNLOADING |  1 | 下行同步中 |
-| COMPLETED |  2 | 同步成功 |
-| STOPPED |  3 | 同步已停止 |
-| TO_BE_UPLOADED<sup>12+</sup> |  4 | 正在等待上行 |
-| UPLOAD_SUCCESS<sup>12+</sup> |  5 | 文件已成功上行 |
-| UPLOAD_FAILURE<sup>12+</sup> |  6 | 文件上行失败 |
+| UPLOADING |  0 | 上行同步中。 |
+| DOWNLOADING |  1 | 下行同步中。 |
+| COMPLETED |  2 | 同步成功。 |
+| STOPPED |  3 | 同步已停止。 |
+| TO_BE_UPLOADED<sup>12+</sup> |  4 | 正在等待上行。 |
+| UPLOAD_SUCCESS<sup>12+</sup> |  5 | 文件已成功上行。 |
+| UPLOAD_FAILURE<sup>12+</sup> |  6 | 文件上行失败。 |
