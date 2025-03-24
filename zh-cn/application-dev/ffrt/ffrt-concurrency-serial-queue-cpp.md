@@ -20,10 +20,9 @@ FFRT串行队列基于协程调度模型实现，提供高效的消息队列功�
 用例简化了异常处理和线程安全相关的一些逻辑，实现代码如下所示：
 
 ```cpp
-#include <iostream>
+#include <chrono>
 #include <fstream>
-#include <string>
-#include <memory>
+#include <iostream>
 #include <thread>
 #include "ffrt/cpp/queue.h"
 
@@ -48,7 +47,7 @@ public:
 
         if (logFile_.is_open()) {
             logFile_.close();
-            std::cout << "Log file closed." << std::endl;
+            std::cout << "Log file closed" << std::endl;
         }
     }
 
