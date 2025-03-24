@@ -10,11 +10,11 @@ ArcButton通过调用以下接口来创建。
 
   ```ts
 ArcButton({
-  options: new ArcButtonOptions({
-    label: 'OK',
-    position: ArcButtonPosition.TOP_EDGE,
-    styleMode: ArcButtonStyleMode.EMPHASIZED_LIGHT
-  })
+    options: new ArcButtonOptions({
+      label: 'OK',
+      position: ArcButtonPosition.TOP_EDGE,
+      styleMode: ArcButtonStyleMode.EMPHASIZED_LIGHT
+    })
 })
   ```
 
