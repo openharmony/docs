@@ -1154,7 +1154,7 @@ addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): nu
 > **说明：**
 >
 > - RichEditor组件添加占位Span，占位Span调用系统的measure方法计算真实的长宽和位置。
-> - 可通过[RichEditorBuilderSpanOptions](#richeditorbuilderspanoptions11)设置此builder在RichEditor中的index（一个文字为一个单位）。
+> - 可通过[RichEditorBuilderSpanOptions](ts-basic-components-richeditor-sys.md#richeditorbuilderspanoptions11)设置此builder在RichEditor中的index（一个文字为一个单位）。
 > - 此占位Span不可获焦，支持拖拽，支持部分通用属性，占位、删除等能力等同于ImageSpan，长度视为一个文字。
 > - 支持通过[bindSelectionMenu](#bindselectionmenu)设置自定义菜单。
 > - 不支持通过[getSpans](#getspans)，[getSelection](#getselection11)，[onSelect](#onselect)，[aboutToDelete](#abouttodelete)获取builderSpan信息。
@@ -1176,7 +1176,7 @@ addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): nu
 | 参数名     | 类型                                     | 必填   | 说明       |
 | ------- | ---------------------------------------- | ---- | ---------- |
 | value   | [CustomBuilder](ts-types.md#custombuilder8) | 是    | 自定义组件。     |
-| options | [RichEditorBuilderSpanOptions](#richeditorbuilderspanoptions11) | 否    | builder选项。 |
+| options | [RichEditorBuilderSpanOptions](ts-basic-components-richeditor-sys.md#richeditorbuilderspanoptions11) | 否    | builder选项。 |
 
 **返回值：**
 
@@ -1604,7 +1604,7 @@ SymbolSpan样式选项。
 | offset                       | number                                   | 否    | 添加文本的位置。省略时，添加到所有内容的最后。<br/>当值小于0时，放在所有内容最前面；当值大于所有内容长度时，放在所有内容最后面。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | style                        | [RichEditorTextStyle](#richeditortextstyle) | 否    | 文本样式信息。省略时，使用系统默认文本信息。     <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | paragraphStyle<sup>11+</sup> | [RichEditorParagraphStyle](#richeditorparagraphstyle11) | 否    | 段落样式。                     <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| gesture<sup>11+</sup>        | [RichEditorGesture](#richeditorgesture11) | 否    | 行为触发回调。省略时，仅使用系统默认行为。      <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| gesture<sup>11+</sup>        | [RichEditorGesture](ts-basic-components-richeditor-sys.md#richeditorgesture11) | 否    | 行为触发回调。省略时，仅使用系统默认行为。      <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | urlStyle<sup>18+</sup>  | [RichEditorUrlStyle](#richeditorurlstyle18)   | 否   | url信息。<br/>默认值：undefined <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 ## RichEditorTextStyle
@@ -1651,7 +1651,7 @@ SymbolSpan样式选项。
 | --------------------- | ---------------------------------------- | ---- | -------------------------- |
 | offset                | number                                   | 否    | 添加图片的位置。省略时，添加到所有内容的最后。<br/>当值小于0时，放在所有内容最前面；当值大于所有内容长度时，放在所有内容最后面。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | imageStyle            | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | 否    | 图片样式信息。省略时，使用系统默认图片信息。     <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| gesture<sup>11+</sup> | [RichEditorGesture](#richeditorgesture11) | 否    | 行为触发回调。省略时，仅使用系统默认行为。      <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| gesture<sup>11+</sup> | [RichEditorGesture](ts-basic-components-richeditor-sys.md#richeditorgesture11) | 否    | 行为触发回调。省略时，仅使用系统默认行为。      <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | onHover<sup>14+</sup> | [OnHoverCallback](#onhovercallback14) | 否    | 鼠标悬停触发回调。省略时，不执行相关行为。     <br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 
 ## RichEditorImageSpanStyle
@@ -1695,20 +1695,6 @@ SymbolSpan样式选项。
 | fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | 否 | 设置SymbolSpan组件粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。 |
 | renderingStrategy | [SymbolRenderingStrategy](ts-basic-components-symbolGlyph.md#symbolrenderingstrategy11枚举说明)	| 否 | 设置SymbolSpan组件渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE。 |
 | effectStrategy | [SymbolEffectStrategy](ts-basic-components-symbolGlyph.md#symboleffectstrategy11枚举说明)	| 否 | 设置SymbolSpan组件动效策略。<br/>默认值：SymbolEffectStrategy.NONE。 |
-
-## RichEditorBuilderSpanOptions<sup>11+</sup>
-
-添加builder的偏移位置和builder样式信息。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称     | 类型     | 必填   | 说明                                    |
-| ------ | ------ | ---- | ------------------------------------- |
-| offset | number | 否    | 添加builder的位置。省略或者为异常值时，添加到所有内容的最后。 |
-| dragBackgroundColor<sup>18+</sup> | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否    | 添加builder单独拖拽时的背板背景颜色。不配置或者异常值时，颜色按系统默认配置。 |
-| isDragShadowNeeded<sup>18+</sup> | boolean | 否    | 添加builder单独拖拽时是否需要投影。不配置或者异常值时，默认需要投影。 |
 
 ## RichEditorSpan<sup>12+</sup>
 
@@ -1787,19 +1773,6 @@ RichEditor span信息。
 | 名称             | 类型          | 必填   | 说明                            |
 | -------------- | ----------- | ---- | ----------------------------- |
 | preventDefault | Callback\<void\>  | 否    | 阻止系统默认拷贝事件。 |
-
-## RichEditorGesture<sup>11+</sup>
-
-用户行为回调。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称          | 类型         | 必填   | 说明            |
-| ----------- | ---------- | ---- | ------------- |
-| onClick    | Callback\<[ClickEvent](ts-universal-events-click.md#clickevent对象说明)\> | 否    | [ClickEvent](ts-universal-events-click.md#clickevent对象说明)为用户点击事件。<br/>点击完成时回调事件。<br/>双击时，第一次点击触发回调事件。|
-| onLongPress | Callback\<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)\>  | 否    | [GestureEvent](ts-gesture-settings.md#gestureevent对象说明)为用户长按事件。<br/>长按完成时回调事件。 |
 
 ## KeyboardOptions<sup>12+</sup>
 
@@ -2916,7 +2889,7 @@ struct Index {
 ![ImageSpanStyle](figures/richEditorImageSpanStyle.gif)
 
 ### 示例5（Span绑定手势事件）
-为Span绑定[gesture](#richeditorgesture11)回调。
+为Span绑定[gesture](ts-basic-components-richeditor-sys.md#richeditorgesture11)回调。
 
 ```ts
 // xxx.ets
