@@ -114,7 +114,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
 ## AppDistributionType<sup>12+</sup>
 
-标识应用分发类型。
+标识应用[分发类型](../../security/app-provision-structure.md)。
 
  **系统能力:** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -4338,7 +4338,7 @@ try {
 ## bundleManager.getSpecifiedDistributionType<sup>10+</sup>
 getSpecifiedDistributionType(bundleName: string): string
 
-以同步的方法查询指定bundleName的分发类型，该返回值是在调用install接口时传入的[InstallParam](./js-apis-installer-sys.md#installparam)中的specifiedDistributionType字段。
+以同步的方法查询指定bundleName的[分发类型](../../security/app-provision-structure.md)，该返回值是在调用install接口时传入的[InstallParam](./js-apis-installer-sys.md#installparam)中的specifiedDistributionType字段。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4356,7 +4356,7 @@ getSpecifiedDistributionType(bundleName: string): string
 
 | 类型          | 说明                                   |
 | ------------- | -------------------------------------- |
-| string | 返回指定bundleName的分发类型。 |
+| string | 返回指定bundleName的[分发类型](../../security/app-provision-structure.md)。 |
 
 **错误码：**
 
@@ -4911,7 +4911,7 @@ try {
 
 getDeveloperIds(appDistributionType?: number): Array\<String>
 
-根据给定的应用分发类型获取当前用户下的所有的开发者ID列表。
+根据给定的应用[分发类型](#appdistributiontype12)获取当前用户下的所有的开发者ID列表。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4923,7 +4923,7 @@ getDeveloperIds(appDistributionType?: number): Array\<String>
 
 | 参数名                | 类型      | 必填 | 说明                     |
 | --------------------- | ---------| ---- | --------------------- |
-| appDistributionType  | [number](#appdistributiontype12)   | 否   | 表示应用的分发类型，当该参数缺省时，会返回所有应用的开发者ID列表。       |
+| [appDistributionType](#appdistributiontype12)  | number   | 否   | 表示应用的分发类型，当该参数缺省时，会返回所有应用的开发者ID列表。       |
 
 **返回值：**
 

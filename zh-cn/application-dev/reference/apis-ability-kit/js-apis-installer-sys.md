@@ -1675,7 +1675,7 @@ try {
 | hashParams        | Array<[HashParam](#hashparam)> | 否 | 哈希值参数，默认值为空。         |
 | crowdtestDeadline| number                         | 否                        | 众测活动的截止日期，默认值为-1，表示无截止日期约束。 |
 | sharedBundleDirPaths<sup>10+</sup> | Array\<String> | 否 |共享包文件所在路径，默认值为空。 |
-| specifiedDistributionType<sup>10+</sup> | string | 否 |应用安装时指定的分发类型，默认值为空，最大长度为128字节。该字段通常由操作系统运营方的应用市场指定。 |
+| specifiedDistributionType<sup>10+</sup> | string | 否 |应用安装时指定的[分发类型](../../security/app-provision-structure.md)，默认值为空，最大长度为128字节。该字段通常由操作系统运营方的应用市场指定。 |
 | additionalInfo<sup>10+</sup> | string | 否 |应用安装时的额外信息，默认值为空，最大长度为3000字节。该字段通常由操作系统运营方的应用市场在安装企业应用时指定，用于保存应用的额外信息。 |
 | verifyCodeParams<sup>deprecated<sup> | Array<[VerifyCodeParam](#verifycodeparamdeprecated)> | 否 | 代码签名文件参数，默认值为空。         |
 | pgoParams<sup>11+</sup> | Array<[PGOParam](#pgoparam11)> | 否 | PGO配置文件参数，默认值为空。         |
