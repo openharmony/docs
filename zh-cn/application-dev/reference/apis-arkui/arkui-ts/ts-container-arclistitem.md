@@ -48,7 +48,7 @@ autoScale(enable: Optional\<boolean>)
 
 | 参数名 | 类型               | 必填 | 说明                                        |
 | ------ | ------------------ | ---- | ------------------------------------------- |
-| enable | Optional\<boolean> | 是   | ArcListItem是否支持自动缩放显示。<br/>默认值：true |
+| enable | Optional\<boolean> | 是   | ArcListItem是否支持自动缩放显示。<br/>默认值：true，支持自动缩放显示。 |
 
 ### swipeAction
 

@@ -76,15 +76,15 @@ Creates an **AudioRenderer** instance. This API uses an asynchronous callback to
 import { audio } from '@kit.AudioKit';
 
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
-  channels: audio.AudioChannel.CHANNEL_2,
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // Sampling rate.
+  channels: audio.AudioChannel.CHANNEL_2, // Channel.
+  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // Sampling format.
+  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // Encoding format.
 };
 
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
-  rendererFlags: 0
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type: music. Set this parameter based on the service scenario.
+  rendererFlags: 0 // AudioRenderer flag.
 };
 
 let audioRendererOptions: audio.AudioRendererOptions = {
@@ -129,15 +129,15 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
-  channels: audio.AudioChannel.CHANNEL_2,
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // Sampling rate.
+  channels: audio.AudioChannel.CHANNEL_2, // Channel.
+  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // Sampling format.
+  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // Encoding format.
 };
 
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
-  rendererFlags: 0
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type: music. Set this parameter based on the service scenario.
+  rendererFlags: 0 // AudioRenderer flag.
 };
 
 let audioRendererOptions: audio.AudioRendererOptions = {
@@ -180,15 +180,15 @@ This permission is required when [SourceType](#sourcetype8) is set to **SOURCE_T
 import { audio } from '@kit.AudioKit';
 
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
-  channels: audio.AudioChannel.CHANNEL_2,
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // Sampling rate.
+  channels: audio.AudioChannel.CHANNEL_2, // Channel.
+  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // Sampling format.
+  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // Encoding format.
 };
 
 let audioCapturerInfo: audio.AudioCapturerInfo = {
-  source: audio.SourceType.SOURCE_TYPE_MIC,
-  capturerFlags: 0
+  source: audio.SourceType.SOURCE_TYPE_MIC, // Audio source type: microphone. Set this parameter based on the service scenario.
+  capturerFlags: 0 // AudioCapturer flag.
 };
 
 let audioCapturerOptions: audio.AudioCapturerOptions = {
@@ -237,15 +237,15 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
-  channels: audio.AudioChannel.CHANNEL_2,
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // Sampling rate.
+  channels: audio.AudioChannel.CHANNEL_2, // Channel.
+  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // Sampling format.
+  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // Encoding format.
 };
 
 let audioCapturerInfo: audio.AudioCapturerInfo = {
-  source: audio.SourceType.SOURCE_TYPE_MIC,
-  capturerFlags: 0
+  source: audio.SourceType.SOURCE_TYPE_MIC, // Audio source type: microphone. Set this parameter based on the service scenario.
+  capturerFlags: 0 // AudioCapturer flag.
 };
 
 let audioCapturerOptions:audio.AudioCapturerOptions = {
@@ -900,17 +900,11 @@ Defines the options for filtering the played audio streams to be recorded.
 >
 > This API is supported since API version 10 and deprecated since API version 12. The Audio module does not provide APIs for internal recording. You can use [AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md) to perform internal recording.
 
-**Required permissions**: ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
-
-- In API version 10, **CaptureFilterOptions** supports **StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION**, and therefore the **ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO** permission is required. Only system applications can request this permission.
-
-- Since API version 11, **CaptureFilterOptions** does not support **StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION**. Therefore, no permission is required for calling this API.
-
 **System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture
 
 | Name  | Type                              | Mandatory| Description                                                        |
 | ------ | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| usages | Array<[StreamUsage](#streamusage)> | Yes  | **StreamUsage** of the audio stream to be recorded. You can specify zero or more stream usages. If the array is empty, the audio stream for which **StreamUsage** is **STREAM_USAGE_MUSIC**, **STREAM_USAGE_MOVIE**, **STREAM_USAGE_GAME**, or **STREAM_USAGE_AUDIOBOOK** is recorded by default.|
+| usages | Array<[StreamUsage](#streamusage)> | Yes  | **StreamUsage** of the audio stream to be recorded. You can specify zero or more stream usages. If the array is empty, the audio stream for which **StreamUsage** is **STREAM_USAGE_MUSIC**, **STREAM_USAGE_MOVIE**, **STREAM_USAGE_GAME**, or **STREAM_USAGE_AUDIOBOOK** is recorded by default.<br>In API version 10, **CaptureFilterOptions** supports **StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION**, and therefore the **ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO** permission is required. Only system applications can request this permission.<br>Since API version 11, **CaptureFilterOptions** does not support **StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION**. Therefore, no permission is required for calling this API.|
 
 ## AudioScene<sup>8+</sup>
 
@@ -2667,7 +2661,7 @@ audioVolumeManager.off('volumeChange', volumeChangeCallback);
 
 on(type: 'appVolumeChange', callback: Callback\<VolumeEvent>): void
 
-Subscribes to the application-level volume change events of the application. This API uses an asynchronous callback to return the result.
+Subscribes to the application-level volume change event of the application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -3660,8 +3654,8 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let capturerInfo: audio.AudioCapturerInfo = {
-  source: audio.SourceType.SOURCE_TYPE_MIC,
-  capturerFlags: 0
+  source: audio.SourceType.SOURCE_TYPE_MIC, // Audio source type: microphone. Set this parameter based on the service scenario.
+  capturerFlags: 0 // AudioCapturer flag.
 };
 
 audio.getAudioManager().getRoutingManager().getPreferredInputDeviceForCapturerInfo(capturerInfo).then((data) => {
@@ -3711,8 +3705,8 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
-  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
-  rendererFlags : 0
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type: music. Set this parameter based on the service scenario.
+  rendererFlags: 0 // AudioRenderer flag.
 };
 
 audio.getAudioManager().getRoutingManager().getPreferOutputDeviceForRendererInfo(rendererInfo).then((data) => {
@@ -4990,8 +4984,8 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
-  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
-  rendererFlags : 0
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type: music. Set this parameter based on the service scenario.
+  rendererFlags: 0 // AudioRenderer flag.
 };
 
 async function getPreferOutputDevice() {
@@ -5041,8 +5035,8 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
-  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
-  rendererFlags : 0
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type: music. Set this parameter based on the service scenario.
+  rendererFlags: 0 // AudioRenderer flag.
 };
 
 async function getPreferOutputDevice() {
@@ -5089,8 +5083,8 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
-  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
-  rendererFlags : 0
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type: music. Set this parameter based on the service scenario.
+  rendererFlags: 0 // AudioRenderer flag.
 };
 
 try {
@@ -5133,8 +5127,8 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 import { audio } from '@kit.AudioKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
-  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
-  rendererFlags : 0
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type: music. Set this parameter based on the service scenario.
+  rendererFlags: 0 // AudioRenderer flag.
 };
 
 audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (desc: audio.AudioDeviceDescriptors) => {
@@ -5177,8 +5171,8 @@ let preferOutputDeviceChangeForRendererInfoCallback = (desc: audio.AudioDeviceDe
   console.info(`device descriptor: ${desc}`);
 };
 let rendererInfo: audio.AudioRendererInfo = {
-  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
-  rendererFlags : 0
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type: music. Set this parameter based on the service scenario.
+  rendererFlags: 0 // AudioRenderer flag.
 };
 
 audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, preferOutputDeviceChangeForRendererInfoCallback);
@@ -5217,8 +5211,8 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let capturerInfo: audio.AudioCapturerInfo = {
-  source: audio.SourceType.SOURCE_TYPE_MIC,
-  capturerFlags: 0
+  source: audio.SourceType.SOURCE_TYPE_MIC, // Audio source type: microphone. Set this parameter based on the service scenario.
+  capturerFlags: 0 // AudioCapturer flag.
 };
 
 audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo, (err: BusinessError, desc: audio.AudioDeviceDescriptors) => {
@@ -5267,8 +5261,8 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let capturerInfo: audio.AudioCapturerInfo = {
-  source: audio.SourceType.SOURCE_TYPE_MIC,
-  capturerFlags: 0
+  source: audio.SourceType.SOURCE_TYPE_MIC, // Audio source type: microphone. Set this parameter based on the service scenario.
+  capturerFlags: 0 // AudioCapturer flag.
 };
 
 audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo).then((desc: audio.AudioDeviceDescriptors) => {
@@ -5314,8 +5308,8 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let capturerInfo: audio.AudioCapturerInfo = {
-  source: audio.SourceType.SOURCE_TYPE_MIC,
-  capturerFlags: 0
+  source: audio.SourceType.SOURCE_TYPE_MIC, // Audio source type: microphone. Set this parameter based on the service scenario.
+  capturerFlags: 0 // AudioCapturer flag.
 };
 
 try {
@@ -5358,8 +5352,8 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 import { audio } from '@kit.AudioKit';
 
 let capturerInfo: audio.AudioCapturerInfo = {
-  source: audio.SourceType.SOURCE_TYPE_MIC,
-  capturerFlags: 0
+  source: audio.SourceType.SOURCE_TYPE_MIC, // Audio source type: microphone. Set this parameter based on the service scenario.
+  capturerFlags: 0 // AudioCapturer flag.
 };
 
 audioRoutingManager.on('preferredInputDeviceChangeForCapturerInfo', capturerInfo, (desc: audio.AudioDeviceDescriptors) => {
@@ -5402,8 +5396,8 @@ let preferredInputDeviceChangeForCapturerInfoCallback = (desc: audio.AudioDevice
   console.info(`device descriptor: ${desc}`);
 };
 let capturerInfo: audio.AudioCapturerInfo = {
-  source: audio.SourceType.SOURCE_TYPE_MIC,
-  capturerFlags: 0
+  source: audio.SourceType.SOURCE_TYPE_MIC, // Audio source type: microphone. Set this parameter based on the service scenario.
+  capturerFlags: 0 // AudioCapturer flag.
 };
 
 audioRoutingManager.on('preferredInputDeviceChangeForCapturerInfo', capturerInfo, preferredInputDeviceChangeForCapturerInfoCallback);
@@ -5605,7 +5599,7 @@ Checks whether spatial audio rendering is enabled for the current device. This A
 
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
-| boolean | **true**: Spatial audio rendering is enabled for the device.<br>**false**: Spatial audio rendering is disabled for the device..|
+| boolean | **true**: Spatial audio rendering is enabled for the device.<br>**false**: Spatial audio rendering is disabled for the device.|
 
 **Example**
 
@@ -7752,9 +7746,13 @@ setDefaultOutputDevice(deviceType: DeviceType): Promise&lt;void&gt;
 
 Sets the default built-in audio output device. This API uses a promise to return the result.
 
-This API applies only to the scenario where [StreamUsage](#streamusage) is set to voice messages, VoIP voice calls, and VoIP video calls and the available device types are the receiver, speaker, and system default device.
-
-This API can be called at any time after an **AudioRenderer** instance is created. The system records the device set by the application. When the application is started, if an external device such as a Bluetooth or wired headset is connected, the system preferentially uses the external device to play sound. Otherwise, the system uses this default device to play sound.
+> **NOTE**
+>
+> - This API applies only to the scenario where [StreamUsage](#streamusage) is set to voice messages, VoIP voice calls, and VoIP video calls and the available device types are the receiver, speaker, and system default device.
+>
+> - This API can be called at any time after an **AudioRenderer** instance is created. The system records the device set by the application. When the application is started, if an external device such as a Bluetooth or wired headset is connected, the system preferentially uses the external device to play sound. Otherwise, the system uses this default device to play sound.
+>
+> - This API has a lower priority than [AVCastPicker](../apis-avsession-kit/ohos-multimedia-avcastpicker.md#avcastpicker). If you have already switched the audio device using **AVCastPicker**, using this API to switch devices again does not take effect.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 

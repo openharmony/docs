@@ -1,10 +1,38 @@
 {
-    "sampleCodeAccuracy": {
-      "AC": ["OpenHarmony-5.1.0-Release"],
-      "CI": ["master", "OpenHarmony-5.1.0-Release"]
-    },
-    "deprecatedInterface": {
-      "AC": ["master"],
-      "CI": ["master", "OpenHarmony-5.1.0-Release"]
-    }
+  "sampleCodeAccuracy": {
+    "AC": [
+      {
+        "branch": "OpenHarmony-5.1.0-Release",
+        "sdkVersion": "18"
+      }
+    ],
+    "CI": [
+      {
+        "branch": "master",
+        "sdkVersion": "20"
+      },
+      {
+        "branch": "OpenHarmony-5.1.0-Release",
+        "sdkVersion": "18"
+      }
+    ]
+  },
+  "deprecatedInterface": {
+    "AC": [
+      {
+      "branch": "master",
+      "sdkVersion": "20"
+      }
+    ],
+    "CI": [
+      {
+      "branch": "master",
+      "sdkVersion": "20"
+      },
+      {
+      "branch": "OpenHarmony-5.1.0-Release",
+      "sdkVersion": "18"
+      }
+    ]
   }
+}

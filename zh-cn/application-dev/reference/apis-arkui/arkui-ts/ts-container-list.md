@@ -173,7 +173,7 @@ List设置cachedCount后，显示区域外上下各会预加载并布局cachedCo
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
 | count  | number | 是   | 预加载的ListItem的数量。<br/>默认值：根据屏幕内显示的节点个数设置，最大值为16。 <br/>取值范围：[0, +∞) |
-| show  | boolean | 是   | 被预加载的ListItem是否需要显示。 <br/> 默认值：false |
+| show  | boolean | 是   | 被预加载的ListItem是否需要显示。 <br/> 默认值：false，不显示预加载的ListItem。 |
 
 ### editMode<sup>(deprecated)</sup>
 
@@ -189,7 +189,7 @@ editMode(value: boolean)
 
 | 参数名 | 类型   | 必填 | 说明                                               |
 | ------ | ------ | ---- | -------------------------------------------------- |
-| value  | boolean | 是   | 当前List组件是否处于可编辑模式。<br/>默认值：false |
+| value  | boolean | 是   | 当前List组件是否处于可编辑模式。<br/>默认值：false，当前List组件不处于可编辑模式。 |
 
 ### edgeEffect
 
@@ -284,8 +284,8 @@ lanes(value: number | LengthConstrain, gutter?: Dimension)
 
 | 参数名               | 类型                                                         | 必填 | 说明                                     |
 | -------------------- | ------------------------------------------------------------ | ---- | ---------------------------------------- |
-| value                | number&nbsp;\|&nbsp;[LengthConstrain](ts-types.md#lengthconstrain) | 是   | List组件的布局列数或行数。<br/>默认值：1 |
-| gutter<sup>10+</sup> | [Dimension](ts-types.md#dimension10)                         | 否   | 列间距。<br />默认值：0                  |
+| value                | number&nbsp;\|&nbsp;[LengthConstrain](ts-types.md#lengthconstrain) | 是   | List组件的布局列数或行数。<br/>默认值：1 <br/>取值范围：[1, +∞) |
+| gutter<sup>10+</sup> | [Dimension](ts-types.md#dimension10)                         | 否   | 列间距。<br />默认值：0 <br/>取值范围：[0, +∞) |
 
 ### alignListItem<sup>9+</sup>
 
@@ -403,6 +403,8 @@ contentStartOffset(value: number)
 
 设置内容区域起始偏移量。列表滚动到起始位置时，列表内容与列表显示区域边界保留指定距离。
 
+contentStartOffset + contentEndOffset超过List内容区长度后contentStartOffset和contentEndOffset会置0。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -411,13 +413,15 @@ contentStartOffset(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                            |
 | ------ | ------ | ---- | ----------------------------------------------- |
-| value  | number | 是   | 内容区域起始偏移量。<br/>默认值：0<br/>单位：vp |
+| value  | number | 是   | 内容区域起始偏移量。<br/>默认值：0<br/>单位：vp <br/>**说明：**<br/>设置为负数时，按默认值处理。|
 
 ### contentEndOffset<sup>11+</sup>
 
 contentEndOffset(value: number)
 
 设置内容区末尾偏移量。列表滚动到末尾位置时，列表内容与列表显示区域边界保留指定距离。
+
+contentStartOffset + contentEndOffset超过List内容区长度后contentStartOffset和contentEndOffset会置0。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -427,7 +431,7 @@ contentEndOffset(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                          |
 | ------ | ------ | ---- | --------------------------------------------- |
-| value  | number | 是   | 内容区末尾偏移量。<br/>默认值：0<br/>单位：vp |
+| value  | number | 是   | 内容区末尾偏移量。<br/>默认值：0<br/>单位：vp <br/>**说明：**<br/>设置为负数时，按默认值处理。|
 
 ### childrenMainSize<sup>12+</sup>
 
@@ -557,10 +561,10 @@ stackFromEnd(enabled: boolean)
 
 | 名称     | 类型     | 必填 | 说明                   |
 | ------- | -------- | ---- | ---------------------- |
-| strokeWidth | [Length](ts-types.md#length) | 是   | 分割线的线宽。 |
+| strokeWidth | [Length](ts-types.md#length) | 是   | 分割线的线宽。<br/>**说明：** <br/>设置为负数或者大于等于List内容区长度时，按0处理。|
 | color | [ResourceColor](ts-types.md#resourcecolor) | 否   | 分割线颜色。<br/>默认值：0x08000000 |
-| startMargin | [Length](ts-types.md#length) | 否   | 分割线与列表侧边起始端的距离。<br/>默认值：0，单位：vp<br/> |
-| endMargin | [Length](ts-types.md#length) | 否   | 分割线与列表侧边结束端的距离。<br/>默认值：0，单位：vp<br/> |
+| startMargin | [Length](ts-types.md#length) | 否   | 分割线与列表侧边起始端的距离。<br/>默认值：0 <br/>单位：vp<br/>**说明：** <br/>设置为负数时，按默认值处理。|
+| endMargin | [Length](ts-types.md#length) | 否   | 分割线与列表侧边结束端的距离。<br/>默认值：0 <br/>单位：vp<br/> **说明：** <br/>设置为负数时，按默认值处理。|
 
 ## 事件
 

@@ -135,7 +135,7 @@ Sets the maximum initial velocity at the start of the fling animation that occur
 
 | Name    | Type  | Mandatory| Description                           |
 | ---------- | ------ | ---- | ------------------------------- |
-| speedLimit | number | Yes  | Maximum initial velocity at the start of the fling animation.<br>Default value: **12000**<br>Unit: vp/s|
+| speedLimit | number | Yes  | Maximum initial velocity at the start of the fling animation.<br>Default value: **9000**<br>Unit: vp/s|
 
 ### fadingEdge<sup>14+</sup>
 
@@ -169,6 +169,25 @@ Sets the content clipping area for this scrollable component.
 | Name | Type                                             | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | clip | [ContentClipMode](#contentclipmode14) \| [RectShape](../js-apis-arkui-shape.md#rectshape)   | Yes  | Clipping to apply, which is effective only for the content (that is, child components) of the scrollable component, not the background. When a custom rectangular area is passed through **RectShape**, only width, height, and [offset](../js-apis-arkui-shape.md#offset) relative to the component's upper left corner are supported, and rounded corners are not supported.<br></div>Default value: The default value for **Grid** and **Scroll** is **ContentClipMode.BOUNDARY**, and the default value for **List** and **WaterFlow** is **ContentClipMode.CONTENT_ONLY**.|
+
+### backToTop<sup>15+</sup>
+
+backToTop(backToTop: boolean)
+
+Sets whether to enable the back-to-top feature for a scrollable component when the status bar is touched.
+
+If this feature is enabled, the scrollable component on the current page scrolls to the top when the user touches the status bar. This behavior does not affect scrollable components in background applications, which will not scroll to the top. This attribute is independent of the [enableScrollInteraction](#enablescrollinteraction11) setting.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                          |
+| ------ | ------- | ---- | ---------------------------------------------- |
+| backToTop  | boolean | Yes  | Whether to enable the back-to-top feature for a scrollable component when the status bar is touched.<br>Default value: **false**|
+
 
 
 ## Events
@@ -293,6 +312,8 @@ This API is deprecated since API version 12. For the **Scroll** component, the *
 
 ## ItemDragInfo
 
+Provides information about the drag point.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -303,6 +324,8 @@ This API is deprecated since API version 12. For the **Scroll** component, the *
 | y | number |  Y coordinate of the dragged item, in vp.   |
 
 ## NestedScrollOptions<sup>10+</sup>
+
+Implements an object used to configure the [nestedScroll](#nestedscroll11) attribute.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -315,6 +338,8 @@ This API is deprecated since API version 12. For the **Scroll** component, the *
 
 ## EdgeEffectOptions<sup>11+</sup>
 
+Implements an object used to configure the [edgeEffect](#edgeeffect11) attribute.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -322,9 +347,11 @@ This API is deprecated since API version 12. For the **Scroll** component, the *
 | Name  | Type | Mandatory| Description             |
 | ----- | ------| ------- | ----------------- |
 | alwaysEnabled | boolean | Yes| Whether to enable the scroll effect when the component content is smaller than the component itself.|
-| effectEdge<sup>16+</sup> | number | No| Edge where the edge effect is applied. With **[EffectEdge](#effectedge16).START**, the edge effect is applied to the start edge only. With **[EffectEdge](#effectedge16).END**, the edge effect is applied to the end edge only. The default value is [EffectEdge](#effectedge16).START \| [EffectEdge](#effectedge16).END, which means that the edge effect is applied to both the start and end edges. If an invalid value is set, the edge effect is applied to both the start and end edges by default.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
+| effectEdge<sup>18+</sup> | number | No| Edge where the edge effect is applied.<br>With **[EffectEdge](#effectedge18).START**, the edge effect is applied to the start edge only. With **[EffectEdge](#effectedge18).END**, the edge effect is applied to the end edge only.<br>The default value is [EffectEdge](#effectedge18).START \| [EffectEdge](#effectedge18).END, which means that the edge effect is applied to both the start and end edges. If an invalid value is set, the edge effect is applied to both the start and end edges.<br>To disable the effect on both edges, set **edgeEffect** to **EdgeEffect.None**.|
 
 ## FadingEdgeOptions<sup>14+</sup>
+
+Implements an object used to configure the [fadingEdge](#fadingedge14) attribute.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -334,11 +361,11 @@ This API is deprecated since API version 12. For the **Scroll** component, the *
 | ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | fadingEdgeLength | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No  | Length of the fading edge. If the value is smaller than 0, the default length, 32 vp, is used.<br>If the value exceeds half the height of the container, it is adjusted to exactly half the height of the container.|
 
-## EffectEdge<sup>16+</sup>
+## EffectEdge<sup>18+</sup>
 
 Enumerates the edges where the edge effect is applied.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -408,6 +435,8 @@ Callback triggered when the scrollable component scrolls.
 
 ## ScrollResult<sup>12+</sup>
 
+Implements a return value object of the [OnWillScrollCallback](#onwillscrollcallback12) callback.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -421,6 +450,8 @@ Callback triggered when the scrollable component scrolls.
 Provides the size information of the child components of the **List** or **ListItemGroup** component along the main axis. This object only supports one-to-one binding to the **List** or **ListItemGroup** component.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ### constructor<sup>12+</sup>
 

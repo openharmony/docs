@@ -319,6 +319,28 @@ backButtonIcon(value: string | PixelMap | Resource | SymbolGlyphModifier)
 | ------ | ------------------------------------------------------------ | ---- | -------------------- |
 | value  | string&nbsp;\|&nbsp;[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[Resource](ts-types.md#resource)&nbsp;\|&nbsp;[SymbolGlyphModifier<sup>12+</sup>](ts-universal-attributes-attribute-modifier.md)    | 是   | 标题栏中返回键图标。 |
 
+### backButtonIcon<sup>18+</sup>
+
+backButtonIcon(icon: ResourceStr | PixelMap | SymbolGlyphModifier, accessibilityText?: ResourceStr)
+
+> **说明：**
+>
+> 不支持通过SymbolGlyphModifier对象的fontSize属性修改图标大小、effectStrategy属性修改动效、symbolEffect属性修改动效类型。
+
+
+设置标题栏中返回键图标和无障碍播报内容。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| icon  | [ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)  | 是   | 标题栏中返回键图标。 |
+| accessibilityText | [ResourceStr](ts-types.md#resourcestr) | 否 | 返回键无障碍播报内容。</br>默认值：系统语言是中文时为“返回”，系统语言是英文时为“back”。 |
+
 ### hideNavBar<sup>9+</sup>
 
 hideNavBar(value: boolean)
@@ -920,7 +942,7 @@ removeByIndexes(indexes: Array<number\>): number
 
 | 参数名    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
-| indexes  | Array<number\>  | 是    | 待删除NavDestination页面的索引值数组。   |
+| indexes  | Array<number\>  | 是    | 待删除NavDestination页面的索引值数组。索引值从0开始。   |
 
 **返回值：**
 
@@ -1080,7 +1102,7 @@ popToIndex(index: number, animated?: boolean): void
 
 | 参数名    | 类型     | 必填   | 说明                     |
 | ----- | ------ | ---- | ---------------------- |
-| index | number | 是    | NavDestination页面的位置索引。 |
+| index | number | 是    | NavDestination页面的位置索引。索引值从0开始。 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 ### popToIndex<sup>11+</sup>
@@ -1097,7 +1119,7 @@ popToIndex(index: number, result: Object, animated?: boolean): void
 
 | 参数名    | 类型     | 必填   | 说明                     |
 | ----- | ------ | ---- | ---------------------- |
-| index | number | 是    | NavDestination页面的位置索引。 |
+| index | number | 是    | NavDestination页面的位置索引。索引值从0开始。 |
 | result | Object | 是 | 页面自定义处理结果。不支持boolean类型。 |
 | animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
@@ -1138,7 +1160,7 @@ moveIndexToTop(index: number, animated?: boolean): void
 
 | 参数名    | 类型     | 必填   | 说明                     |
 | ----- | ------ | ---- | ---------------------- |
-| index | number | 是    | NavDestination页面的位置索引。 |
+| index | number | 是    | NavDestination页面的位置索引。索引值从0开始。|
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 ### clear<sup>10+</sup>
@@ -1187,7 +1209,7 @@ getParamByIndex(index: number): unknown | undefined
 
 | 参数名    | 类型     | 必填   | 说明                     |
 | ----- | ------ | ---- | ---------------------- |
-| index | number | 是    | NavDestination页面的位置索引。 |
+| index | number | 是    | NavDestination页面的位置索引。 索引值从0开始。|
 
 **返回值：**
 
@@ -1238,7 +1260,7 @@ getIndexByName(name: string): Array<number\>
 
 | 类型             | 说明                                |
 | -------------- | --------------------------------- |
-| Array<number\> | 返回全部名为name的NavDestination页面的位置索引。 |
+| Array<number\> | 返回全部名为name的NavDestination页面的位置索引。 当页面栈中不存在此name，返回空数组。索引取值范围为[0, 页面栈大小-1] |
 
 ### size<sup>10+</sup>
 

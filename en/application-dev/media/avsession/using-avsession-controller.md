@@ -23,12 +23,12 @@ For details, see [AVSession Management](../../reference/apis-avsession-kit/js-ap
 
 ### APIs Called by the AVSessionManager Object
 
-| API| Description| 
+| API| Description|
 | -------- | -------- |
-| getAllSessionDescriptors(callback: AsyncCallback&lt;Array&lt;Readonly&lt;AVSessionDescriptor&gt;&gt;&gt;): void | Obtains the descriptors of all AVSessions in the system.| 
-| createController(sessionId: string, callback: AsyncCallback&lt;AVSessionController&gt;): void | Creates an AVSessionController.| 
-| sendSystemAVKeyEvent(event: KeyEvent, callback: AsyncCallback&lt;void&gt;): void | Sends a key event to the top session.|  
-| sendSystemControlCommand(command: AVControlCommand, callback: AsyncCallback&lt;void&gt;): void | Sends a playback control command to the top session.| 
+| getAllSessionDescriptors(callback: AsyncCallback&lt;Array&lt;Readonly&lt;AVSessionDescriptor&gt;&gt;&gt;): void | Obtains the descriptors of all AVSessions in the system.|
+| createController(sessionId: string, callback: AsyncCallback&lt;AVSessionController&gt;): void | Creates an AVSessionController.|
+| sendSystemAVKeyEvent(event: KeyEvent, callback: AsyncCallback&lt;void&gt;): void | Sends a key event to the top session.|
+| sendSystemControlCommand(command: AVControlCommand, callback: AsyncCallback&lt;void&gt;): void | Sends a playback control command to the top session.|
 | getHistoricalSessionDescriptors(maxSize: number, callback: AsyncCallback\<Array\<Readonly\<AVSessionDescriptor>>>): void<sup>10+<sup> | Obtains the descriptors of historical sessions.|
 
 ### APIs Called by the AVSessionController Object
@@ -49,11 +49,11 @@ For details, see [AVSession Management](../../reference/apis-avsession-kit/js-ap
 | getAVQueueTitle(callback: AsyncCallback&lt;string&gt;): void<sup>10+<sup> | Obtains the name of the playlist.|
 | skipToQueueItem(itemId: number, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Sends the ID of an item in the playlist to the session for processing. The session can play the song.|
 | getExtras(callback: AsyncCallback&lt;{[key: string]: Object}&gt;): void<sup>10+<sup> | Obtains the custom media packet set by the provider.|
-| getOutputDeviceSync(): OutputDeviceInfo<sup>10+<sup> | Obtains the output device information. This API is a synchronous API.|
-| getAVPlaybackStateSync(): AVPlaybackState<sup>10+<sup> | Obtains the information related to the playback state. This API is a synchronous API.|
-| getAVMetadataSync(): AVMetadata<sup>10+<sup> | Obtains the session metadata. This API is a synchronous API.|
-| getAVQueueTitleSync(): string<sup>10+<sup> | Obtains the name of the playlist. This API is a synchronous API.|
-| getAVQueueItemsSync(): Array&lt;AVQueueItem&gt;<sup>10+<sup> | Obtains the information related to the items in the playlist. This API is a synchronous API.|
+| getOutputDeviceSync(): OutputDeviceInfo<sup>10+<sup> | Obtains the output device information. This API returns the result synchronously. |
+| getAVPlaybackStateSync(): AVPlaybackState<sup>10+<sup> | Obtains the information related to the playback state. This API returns the result synchronously. |
+| getAVMetadataSync(): AVMetadata<sup>10+<sup> | Obtains the session metadata. This API returns the result synchronously. |
+| getAVQueueTitleSync(): string<sup>10+<sup> | Obtains the name of the playlist. This API returns the result synchronously. |
+| getAVQueueItemsSync(): Array&lt;AVQueueItem&gt;<sup>10+<sup> | Obtains the information related to the items in the playlist. This API returns the result synchronously. |
 | isActiveSync(): boolean<sup>10+<sup> | Checks whether the session is activated. This API returns the result synchronously.|
 | getValidCommandsSync(): Array&lt;AVControlCommandType&gt;<sup>10+<sup> | Obtains valid commands supported by the session. This API returns the result synchronously.|
 
@@ -62,6 +62,7 @@ For details, see [AVSession Management](../../reference/apis-avsession-kit/js-ap
 To enable a system application to access the AVSession service as a controller, proceed as follows:
 
 1. Obtain **AVSessionDescriptor** through AVSessionManager and create an **AVSessionController** object.
+
    The controller may obtain all **AVSessionDescriptor**s in the current system, and create an **AVSessionController** object for each session, so as to perform unified playback control on all the audio and video applications.
 
    ```ts
@@ -102,7 +103,7 @@ To enable a system application to access the AVSession service as a controller, 
    ```
 
 2. Listen for the session state and service state events.
-   
+
    The following session state events are available:
 
    - **sessionCreate**: triggered when a session is created.
@@ -283,7 +284,7 @@ To enable a system application to access the AVSession service as a controller, 
    ```
 
 5. Control the playback behavior, for example, sending a command to operate (play/pause/previous/next) the item being played in Media Controller.
-   
+
    After listening for the playback control command event, the audio and video application serving as the provider needs to implement the corresponding operation.
 
    ```ts
