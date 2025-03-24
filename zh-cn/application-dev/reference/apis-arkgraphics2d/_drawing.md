@@ -8110,6 +8110,8 @@ float OH_Drawing_FontGetMetrics (OH_Drawing_Font* , OH_Drawing_Font_Metrics*  )
 
 OH_Drawing_Font、OH_Drawing_Font_Metrics任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
+本接口返回的[OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md)结构体中仅包含top、ascent、descent、bottom、leading属性。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
