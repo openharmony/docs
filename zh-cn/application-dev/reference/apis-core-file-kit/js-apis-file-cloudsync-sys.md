@@ -50,7 +50,7 @@ on(evt: 'progress', callback: (pg: SyncProgress) => void): void
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | evt | string | 是   | 订阅的事件类型，取值为'progress'（同步过程事件）。 |
-| callback | (pg: SyncProgress) => void | 是   | 同步过程事件回调，回调入参为SyncProgress, 返回值为void。|
+| callback | (pg: SyncProgress) => void | 是   | 同步过程事件回调，回调入参为[SyncProgress](./js-apis-file-cloudsync.md#syncprogress12), 返回值为void。|
 
 **错误码：**
 
@@ -90,7 +90,7 @@ off(evt: 'progress', callback: (pg: SyncProgress) => void): void
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | evt | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）。|
-| callback | (pg: SyncProgress) => void | 是   | 同步过程事件回调，回调入参为SyncProgress, 返回值为void。|
+| callback | (pg: SyncProgress) => void | 是   | 同步过程事件回调，回调入参为[SyncProgress](./js-apis-file-cloudsync.md#syncprogress12), 返回值为void。|
 
 **错误码：**
 
