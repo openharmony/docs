@@ -201,6 +201,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+
 当应用的UIAbility实例已创建，且UIAbility配置为[singleton](uiability-launch-type.md#singleton启动模式)启动模式时，再次调用[startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动该UIAbility实例时，只会进入该UIAbility的[onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)回调，不会进入其[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)和[onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期回调。应用可以在该回调中更新要加载的资源和数据等，用于后续的UI展示。
 
 ```ts
@@ -215,134 +216,6 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### onWillForeground和onDidForeground生命周期
-从API version18开始[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例支持OnWillForeground、OnDidForeground生命周期回调。
-
-[onWillForeground()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwillforeground)在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例在系统创建完WindowStage，切至前台前触发，通常用于统计应用从进入到前台时长的开始时间打点。
-
-[onDidForeground()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityondidforeground)在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例在切至前台后触发，通常用于统计应用从进入到前台时长的结束时间打点。
-
-```ts
-import { UIAbility } from '@kit.AbilityKit';
-import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-
-  onWillForeground(): void {
-    // 进入应用事件打点
-    let eventParams: Record<string, number> = { 'xxxx': 100 };
-    let eventInfo: hiAppEvent.AppEventInfo = {
-      // 事件领域定义
-      domain: "lifecycle",
-      // 事件名称定义
-      name: "onwillforeground",
-      // 事件类型定义
-      eventType: hiAppEvent.EventType.BEHAVIOR,
-      // 事件参数定义
-      params: eventParams,
-    };
-    hiAppEvent.write(eventInfo).then(() => {
-      hilog.info(0x0000, 'testTag', `HiAppEvent success to write event`)
-    }).catch((err: BusinessError) => {
-      hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`)
-    });
-  }
-
-  onDidForeground(): void {
-    // 进入前台事件打点
-    let eventParams: Record<string, number> = { 'xxxx': 100 };
-    let eventInfo: hiAppEvent.AppEventInfo = {
-      // 事件领域定义
-      domain: "lifecycle",
-      // 事件名称定义
-      name: "ondidforeground",
-      // 事件类型定义
-      eventType: hiAppEvent.EventType.BEHAVIOR,
-      // 事件参数定义
-      params: eventParams,
-    };
-    hiAppEvent.write(eventInfo).then(() => {
-      hilog.info(0x0000, 'testTag', `HiAppEvent success to write event`)
-    }).catch((err: BusinessError) => {
-      hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`)
-    });
-  }
-}
-```
-
-### onWillBackground生命周期
-从API version18开始[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例支持OnWillForeground生命周期回调。
-
-[onWillBackground()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwillbackground)在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例从WindowStage PAUSED（前台不可交互状态）切换至后台过程中触发，通常用于打点数据采集，例如，记录应用在运行过程中发生的故障信息、统计信息、安全信息、用户行为信息等。
-
-```ts
-import { UIAbility } from '@kit.AbilityKit';
-import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-
-  onWillBackground(): void {
-    let eventParams: Record<string, number | string> = {
-      "int_data": 100,
-      "str_data": "strValue",
-    };
-    // 应用记录打点故障信息
-    hiAppEvent.write({
-      domain: "test_domain",
-      name: "test_event",
-      eventType: hiAppEvent.EventType.FAULT,
-      params: eventParams,
-    }, (err: BusinessError) => {
-      if (err) {
-        hilog.error(0x0000, 'hiAppEvent', `code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      hilog.info(0x0000, 'hiAppEvent', `success to write event`);
-    });
-  }
-}
-```
-
-### onDidBackground生命周期
-从API version18开始[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例支持onDidBackground生命周期回调。
-
-[onDidBackground()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityondidbackground)在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例后台后触发，通常用于释放应用申请的资源。
-
-```ts
-import { audio } from '@kit.AudioKit';
-import { UIAbility } from '@kit.AbilityKit';
-import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  static audioRenderer: audio.AudioRenderer;
-  // ...
-  onForeground(): void {
-    // ...
-    audio.createAudioRenderer(audioRendererOptions).then((data) => {
-      EntryAbility.audioRenderer = data;
-      console.info('AudioRenderer Created : Success : Stream Type: SUCCESS');
-    }).catch((err: BusinessError) => {
-      console.error(`AudioRenderer Created : ERROR : ${err}`);
-    });
-  }
-
-  onDidBackground() {
-    // 释放audioRenderer
-    audioRenderer.release((err: BusinessError) => {
-      if (err) {
-        console.error('AudioRenderer release failed');
-      } else {
-        console.info('AudioRenderer released.');
-      }
-    });
-  }
-}
-```
 
 ### Destroy状态
 

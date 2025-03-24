@@ -214,11 +214,17 @@ class MyUIAbility extends UIAbility {
 }
 ```
 
+
 ## UIAbility.onWillForeground<sup>18+</sup>
 
 onWillForeground(): void
 
-UIAbility生命周期回调，应用转到前台前触发，在[onForeground](#uiabilityonforeground)前被调用。[onForeground](#uiabilityonforeground)和ArkUI页面[OnPageShow](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)无法保证时序，如果应用认为在[onForeground](#uiabilityonforeground)时进入应用，[OnPageShow](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)时进入页面，可能存在进入页面时长超过进入应用时长问题，影响计时统计相关业务，该回调提供确定地进入应用在进入页面之前时序，通常用于统计应用从进入到前台时长的开始时间打点，典型使用场景如广告计费。
+UIAbility生命周期回调，应用转到前台前触发，在[onForeground](#uiabilityonforeground)前被调用。相对于[onForeground](#uiabilityonforeground)，该回调提供确定地进入应用在进入页面[OnPageShow](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)之前时序，[onForeground](#uiabilityonforeground)和ArkUI页面[OnPageShow](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)无法保证先后时序，影响计时统计相关业务。
+
+例如，计时长场景下，统计广告时长t3，在[onForeground](#uiabilityonforeground)实现应用进入时间打点t1，[onDidForeground](#uiabilityondidforeground18)实现应用前台时间打点t2，t3 = t2 - t1，[OnPageShow](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)中页面广告时序在进入应用之前，可能存在实际广告时长超出统计广告时长t3问题。
+
+该回调与[onDidForeground](#uiabilityondidforeground18)配合使用，统计从应用开始进入到前台状态时长，进行相关业务计时统计。
+
 同步接口，不支持异步回调。
 
 **原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
@@ -228,12 +234,35 @@ UIAbility生命周期回调，应用转到前台前触发，在[onForeground](#u
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
 import { UIAbility } from '@kit.AbilityKit';
+import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-class MyUIAbility extends UIAbility {
-  onWillForeground() {
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWillForeground(): void {
+    // 进入应用事件打点
+    let eventParams: Record<string, number> = { 'xxxx': 100 };
+    let eventInfo: hiAppEvent.AppEventInfo = {
+      // 事件领域定义
+      domain: "lifecycle",
+      // 事件名称定义
+      name: "onwillforeground",
+      // 事件类型定义
+      eventType: hiAppEvent.EventType.BEHAVIOR,
+      // 事件参数定义
+      params: eventParams,
+    };
+    hiAppEvent.write(eventInfo).then(() => {
+      hilog.info(0x0000, 'testTag', `HiAppEvent success to write event`)
+    }).catch((err: BusinessError) => {
+      hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`)
+    });
+  }
+  // ...
+
+  onDidForeground(): void {
     // 进入前台事件打点
     let eventParams: Record<string, number> = { 'xxxx': 100 };
     let eventInfo: hiAppEvent.AppEventInfo = {
@@ -255,11 +284,13 @@ class MyUIAbility extends UIAbility {
 }
 ```
 
+
 ## UIAbility.onForeground
 
 onForeground(): void
 
-UIAbility生命周期回调，应用从后台转到前台时触发，在[onWillForeground](#uiabilityonwillbackground18)与[onDidForeground](#uiabilityondidforeground18)之间被调用，通常用于申请系统需要的资源。
+UIAbility生命周期回调，应用从后台转到前台时触发，在[onWillForeground](#uiabilityonwillbackground18)与[onDidForeground](#uiabilityondidforeground18)之间被调用，通常用于申请系统需要的资源，如应用转到前台时申请音频播放、开启定位等。
+
 同步接口，不支持异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
@@ -278,11 +309,13 @@ class MyUIAbility extends UIAbility {
 }
 ```
 
+
 ## UIAbility.onDidForeground<sup>18+</sup>
 
 onDidForeground(): void
 
-UIAbility生命周期回调，应用转到前台后触发，在[onForeground](#uiabilityonforeground)后被调用，通常用于统计应用从进入到前台过程时长的结束时间打点，配合[onWillForeground](#uiabilityonwillforeground18)进行计时统计相关业务。
+UIAbility生命周期回调，应用转到前台后触发，在[onForeground](#uiabilityonforeground)后被调用，用于统计从应用开始进入到应用前台过程时长的结束时间打点，配合[onWillForeground](#uiabilityonwillforeground18)进行计时统计相关业务。
+
 同步接口，不支持异步回调。
 
 **原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
@@ -291,39 +324,15 @@ UIAbility生命周期回调，应用转到前台后触发，在[onForeground](#u
 
 **示例：**
 
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
-import { UIAbility } from '@kit.AbilityKit';
+参考[onWillForeground](#uiabilityonwillforeground18)。
 
-class MyUIAbility extends UIAbility {
-  onDidForeground() {
-    // 进入前台事件打点
-    let eventParams: Record<string, number> = { 'xxxx': 100 };
-    let eventInfo: hiAppEvent.AppEventInfo = {
-      // 事件领域定义
-      domain: "lifecycle",
-      // 事件名称定义
-      name: "ondidforeground",
-      // 事件类型定义
-      eventType: hiAppEvent.EventType.BEHAVIOR,
-      // 事件参数定义
-      params: eventParams,
-    };
-    hiAppEvent.write(eventInfo).then(() => {
-      hilog.info(0x0000, 'testTag', `HiAppEvent success to write event`)
-    }).catch((err: BusinessError) => {
-      hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`)
-    });
-  }
-}
-```
 
 ## UIAbility.onWillBackground<sup>18+</sup>
 
 onWillBackground(): void
 
 UIAbility生命周期回调，当应用从前台转到后台前触发，在[onBackground](#uiabilityonbackground)前被调用，通常用于打点采集数据，例如，采集在运行过程中发生的故障信息、统计信息、安全信息、用户行为信息等。
+
 同步接口，不支持异步回调。
 
 **原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
@@ -360,11 +369,13 @@ class MyUIAbility extends UIAbility {
 }
 ```
 
+
 ## UIAbility.onBackground
 
 onBackground(): void
 
-UIAbility生命周期回调，当应用从前台转到后台时触发，在[onWillBackground](#uiabilityonwillbackground18)与[onDidBackground](#uiabilityondidbackground18)之间被调用，通常用于实现UI不可见时的资源释放操作。
+UIAbility生命周期回调，当应用从前台转到后台时触发，在[onWillBackground](#uiabilityonwillbackground18)与[onDidBackground](#uiabilityondidbackground18)之间被调用，通常用于实现UI不可见时的资源释放操作，如停止定位功能等。
+
 同步接口，不支持异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
@@ -388,7 +399,8 @@ class MyUIAbility extends UIAbility {
 
 onDidBackground(): void
 
-UIAbility生命周期回调，当应用从前台转到后台后触发，在[onBackground](#uiabilityonbackground)之后被调用，通常用于释放应用进入后台后资源。
+UIAbility生命周期回调，当应用从前台转到后台后触发，在[onBackground](#uiabilityonbackground)之后被调用，通常用于释放应用进入后台之后的资源，如进入后台后停止音频播放等。
+
 同步接口，不支持异步回调。
 
 **原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
@@ -406,7 +418,7 @@ class MyUIAbility extends UIAbility {
   static audioRenderer: audio.AudioRenderer;
   // ...
   onForeground(): void {
-    // ...
+    // 在前台时申请audioRenderer，用于播放PCM（Pulse Code Modulation）音频数据
     audio.createAudioRenderer(audioRendererOptions).then((data) => {
       EntryAbility.audioRenderer = data;
       console.info('AudioRenderer Created : Success : Stream Type: SUCCESS');
@@ -416,7 +428,7 @@ class MyUIAbility extends UIAbility {
   }
 
   onDidBackground() {
-    // 释放audioRenderer
+    // 转到后台后，释放audioRenderer资源
     audioRenderer.release((err: BusinessError) => {
       if (err) {
         console.error('AudioRenderer release failed');
