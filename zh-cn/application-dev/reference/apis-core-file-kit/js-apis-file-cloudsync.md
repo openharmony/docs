@@ -21,7 +21,6 @@ import { cloudSync } from '@kit.CoreFileKit';
 
 **系统能力**： SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口**：该接口为系统接口。
 
 | 名称 |  值|  说明 |
 | ----- |  ---- |  ---- |
@@ -41,9 +40,7 @@ import { cloudSync } from '@kit.CoreFileKit';
 - 触发同步时，非充电场景下，若电量低于10%，则不允许同步，start接口返回对应错误。
 - 上行时，若云端空间不足，则文件上行失败，云端无该文件记录。
 
-**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口**：该接口为系统接口。
+**系统能力**： SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 | 名称 |  值|  说明 |
 | ----- |  ---- |  ---- |
@@ -61,8 +58,6 @@ import { cloudSync } from '@kit.CoreFileKit';
 端云同步过程。
 
 **系统能力**： SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口**：该接口为系统接口。
 
 | 名称     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
@@ -108,8 +103,6 @@ constructor()
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口**：该接口为系统接口。
-
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
@@ -132,8 +125,6 @@ on(event: 'progress', callback: Callback\<SyncProgress>): void
 添加同步过程事件监听。
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口**：该接口为系统接口。
 
 **参数：**
 
@@ -171,9 +162,6 @@ off(event: 'progress', callback?: Callback\<SyncProgress>): void
 移除同步过程事件监听。
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口**：该接口为系统接口。
-
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
@@ -213,8 +201,6 @@ start(): Promise&lt;void&gt;
 异步方法启动云盘端云同步, 以Promise形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口**：该接口为系统接口。
 
 **返回值：**
 
@@ -259,11 +245,9 @@ start(): Promise&lt;void&gt;
 
 start(callback: AsyncCallback&lt;void&gt;): void
 
-异步方法启动云盘端云同步, 以callback形式返回结果。
+异步方法启动云盘端云同步，以callback形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口**：该接口为系统接口。
 
 **参数：**
 
@@ -304,13 +288,11 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 stop(): Promise&lt;void&gt;
 
-异步方法停止云盘端云同步, 以Promise形式返回结果。
+异步方法停止云盘端云同步，以Promise形式返回结果。
 
 调用stop接口，同步流程会停止。再次调用[start](#start)接口会继续同步。
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口**：该接口为系统接口。
 
 **返回值：**
 
@@ -346,13 +328,11 @@ stop(): Promise&lt;void&gt;
 
 stop(callback: AsyncCallback&lt;void&gt;): void
 
-异步方法停止云盘端云同步, 以callback形式返回结果。
+异步方法停止云盘端云同步，以callback形式返回结果。
 
 调用stop接口，同步流程会停止。再次调用[start](#start)接口会继续同步。
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口**：该接口为系统接口。
 
 **参数：**
 
@@ -390,11 +370,9 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
 getLastSyncTime(): Promise&lt;number&gt;
 
-异步方法获取上次同步时间, 以promise形式返回结果。
+异步方法获取上次同步时间，以promise形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口**：该接口为系统接口。
 
 **返回值：**
 
@@ -432,11 +410,9 @@ getLastSyncTime(): Promise&lt;number&gt;
 
 getLastSyncTime(callback: AsyncCallback&lt;number&gt;): void
 
-异步方法获取上次同步时间, 以callback形式返回结果。
+异步方法获取上次同步时间，以callback形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口**：该接口为系统接口。
 
 **参数：**
 
@@ -803,8 +779,6 @@ registerChange(uri: string, recursion: boolean, callback: Callback&lt;ChangeData
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口**：该接口为系统接口。
-
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
@@ -852,8 +826,6 @@ unregisterChange(uri: string): void
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口**：该接口为系统接口。
-
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
@@ -895,9 +867,7 @@ unregisterChange(uri: string): void
 
 数据变更通知类型。
 
-**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口**：该接口为系统接口。
+**系统能力**： SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 | 名称 |  值|  说明 |
 | ----- |  ---- |  ---- |
@@ -910,9 +880,7 @@ unregisterChange(uri: string): void
 
 定义变更数据。
 
-**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口**：该接口为系统接口。
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 | 名称     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
