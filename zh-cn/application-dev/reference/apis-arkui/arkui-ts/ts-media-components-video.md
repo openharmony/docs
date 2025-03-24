@@ -359,9 +359,9 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名       | 类型    | 必填 | 说明                         |
-| ----------- | ------- | ---- | ---------------------------- |
-| fullscreen  | boolean | 是   | 当前视频是否进入全屏播放状态。<br/>默认值：false  |
+| 名称       | 类型    | 只读 | 可选 | 说明                         |
+| ----------- | ------- | ---- | ----  | ---------------------------- |
+| fullscreen<sup>10+</sup>  | boolean | 否 | 否  | 当前视频是否进入全屏播放状态。<br/>默认值：false<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 
 ### PreparedInfo<sup>18+</sup>对象说明
 
@@ -371,9 +371,9 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名       | 类型    | 必填 | 说明                         |
-| ----------- | ------- | ---- | ---------------------------- |
-| duration    | number  | 是   | 当前视频的时长。<br/>单位：秒。<br/>取值范围：[0,+∞)         |
+| 参数名       | 类型    | 只读 | 可选 | 说明                         |
+| ----------- | ------- | ---- | ----  | ---------------------------- |
+| duration<sup>10+</sup> | number  | 否 | 否  | 当前视频的时长。<br/>单位：秒<br/>取值范围：[0,+∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ### PlaybackInfo<sup>18+</sup>对象说明
 
@@ -383,9 +383,9 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名       | 类型    | 必填 | 说明                         |
-| ----------- | ------- | ---- | ---------------------------- |
-| time        | number  | 是   | 当前视频播放的进度。<br/>单位：秒。<br/>取值范围：[0,+∞)      |
+| 参数名       | 类型    | 只读 | 可选 | 说明                         |
+| ----------- | ------- | ---- | ---- | ---------------------------- |
+| time<sup>10+</sup> | number  | 否 | 否  | 当前视频播放的进度。<br/>单位：秒<br/>取值范围：[0,+∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ### PosterOptions<sup>18+</sup>对象说明
 
@@ -395,9 +395,9 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名       | 类型    | 必填 | 说明                         |
-| ----------- | ------- | ---- | ---------------------------- |
-| showFirstFrame   | boolean  | 否   | 当前视频是否配置首帧送显。<br/>默认值：false      |
+| 参数名       | 类型    | 只读 | 可选 | 说明                         |
+| ----------- | ------- | ---- | ---- | ---------------------------- |
+| showFirstFrame   | boolean | 否 | 是 | 当前视频是否配置首帧送显。<br/>默认值：false      |
 
 ## VideoController
 
