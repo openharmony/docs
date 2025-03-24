@@ -24,8 +24,8 @@ FFRT串行队列基于协程调度模型实现，提供高效的消息队列功�
 #include <fstream>
 #include <string>
 #include <memory>
-
-#include "ffrt.h"
+#include <thread>
+#include "ffrt/cpp/queue.h"
 
 class Logger {
 public:
