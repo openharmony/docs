@@ -181,7 +181,7 @@ struct Parent {
 
 ## 限制条件
 
-1. \@Provider/\@Consumer的参数key必须为string类型，否则编译期会报错。
+1. \@Provide/\@Consume的参数key必须为string类型，否则编译期会报错。
 
   ```ts
   // 错误写法，编译报错
