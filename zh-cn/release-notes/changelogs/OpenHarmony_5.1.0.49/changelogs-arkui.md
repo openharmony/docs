@@ -88,41 +88,7 @@ struct styled_string_demo1 {
 }
 ```
 
-## cl.arkui.2 轴事件和鼠标事件交叉输入时，系统补充发送Cancel事件变更
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-在轴事件和鼠标事件交叉输入的情况下，缺少Cancel事件会导致事件不匹配，从而引发应用状态无法恢复的异常。
-
-**变更影响**
-
-此变更不涉及应用适配。
-
-变更前：在使用双指在触控板上滑动触发滑动手势、捏合手势的过程中，同时点击鼠标左键，应用将接收到的事件回调序列是onActionStart—>onActionUpdate—>onActionStart—>onActionUpdate—>onActionEnd。
-
-变更后：在使用双指在触控板上滑动触发滑动手势、捏合手势的过程中，同时点击鼠标左键，应用将接收到的事件回调序列是onActionStart—>onActionUpdate—>onActionCancel。
-
-**起始API Level**
-
-接口起始版本为API version 7。
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.1.0.49开始。
-
-**变更的接口/组件**
-
-PanGestureInterface、PinchGestureInterface、PanGestureHandler、PinchGestureHandler的onActionCancel接口。
-
-**适配指导**
-
-默认行为变更，无需适配。
-
-## cl.arkui.3 CanvasRenderer的measureText方法传undefined参数时返回值变更
+## cl.arkui.2 CanvasRenderer的measureText方法传undefined参数时返回值变更
 
 **访问级别**
 

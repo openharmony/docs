@@ -5510,14 +5510,14 @@ migrateData(sourcePaths: Array&lt;string&gt;, destinationPath: string): Promise&
 **示例：**
 
 ```ts
-import { bundleManager, common } from '@kit.AbilityKit';
+import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 开发者需将source1、source2、dest内容更新为实际文件路径或目录路径。
-  let source1: string = this.context.tempDir;
-  let source2: string = "/xxxx/xxxx/xxxx/xxxx/log.txt";
-  let dest: string = this.context.cacheDir;
+  let source1: string = "/data/app/el2/100/base/com.example.myapplication/";
+  let source2: string = "/data/app/el2/101/base/com.example.myapplication/log.txt";
+  let dest: string = "/data/local/tmp";
   let sourcePaths: Array<string> = [source1, source2];
 
   bundleManager.migrateData(sourcePaths, dest)

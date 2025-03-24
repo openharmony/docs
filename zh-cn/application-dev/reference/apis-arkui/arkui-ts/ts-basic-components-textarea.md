@@ -817,7 +817,7 @@ stopBackPress(isStopped: Optional\<boolean>)
 
 ### halfLeading<sup>18+</sup>
 
-halfLeading(halfLeading: boolean)
+halfLeading(halfLeading: Optional\<boolean>)
 
 设置文本是否将行间距平分至行的顶部与底部。
 
@@ -829,7 +829,7 @@ halfLeading(halfLeading: boolean)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| halfLeading | boolean | 是  | 文本是否将行间距平分至行的顶部与底部。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false |
+| halfLeading | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是  | 文本是否将行间距平分至行的顶部与底部。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false |
 
 ### minFontScale<sup>18+</sup>
 
@@ -865,7 +865,7 @@ maxFontScale(scale: Optional\<number | Resource>)
 
 ### ellipsisMode<sup>18+</sup>
 
-ellipsisMode(value: EllipsisMode)
+ellipsisMode(mode: Optional\<EllipsisMode>)
 
 设置省略位置。ellipsisMode属性需要配合overflow设置为TextOverflow.Ellipsis以及maxLines使用，单独设置ellipsisMode属性不生效。
 
@@ -879,7 +879,7 @@ EllipsisMode.START和EllipsisMode.CENTER仅在maxLines设置为1生效。
 
 | 参数名 | 类型                                                | 必填 | 说明                                      |
 | ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
-| value  | [EllipsisMode](ts-appendix-enums.md#ellipsismode11) | 是   | 省略位置。 <br />默认值：EllipsisMode.END |
+| mode  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[EllipsisMode](ts-appendix-enums.md#ellipsismode11)> | 是   | 省略位置。 <br />默认值：EllipsisMode.END |
 
 ## 事件
 

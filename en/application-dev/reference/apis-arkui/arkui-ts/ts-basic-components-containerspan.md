@@ -56,11 +56,12 @@ Creates an attribute modifier.
 
 ## Events
 
-The [universal events](ts-universal-events-click.md) are not supported.
+The [universal events](ts-component-general-events.md) are not supported.
 
 ## Example
+### Example 1: Setting the Background Style
 
-This example demonstrates the effect of setting a background style for text using the **textBackgroundStyle** attribute.
+This example demonstrates how to set the background style for text using **textBackgroundStyle**.
 
 ```ts
 // xxx.ets
@@ -76,7 +77,7 @@ struct Index {
             .height('40vp')
             .verticalAlign(ImageSpanAlignment.CENTER)
           Span('   Hello World !   ').fontSize('16fp').fontColor(Color.White)
-        }.textBackgroundStyle({color: "#7F007DFF", radius: "12vp"})
+        }.textBackgroundStyle({ color: "#7F007DFF", radius: "12vp" })
       }
     }.width('100%').alignItems(HorizontalAlign.Center)
   }
@@ -84,3 +85,41 @@ struct Index {
 ```
 
 ![imagespan](figures/container_span.png)
+
+### Example 2: Setting the Background Style Using attributeModifier
+
+This example demonstrates how to set the background style for text using **attributeModifier**.
+
+```ts
+// xxx.ets
+import { ContainerSpanModifier } from '@ohos.arkui.modifier'
+
+class MyContainerSpanModifier extends ContainerSpanModifier {
+  applyNormalAttribute(instance: ContainerSpanAttribute): void {
+    super.applyNormalAttribute?.(instance);
+    this.textBackgroundStyle({ color: "#7F007DFF", radius: "12vp" })
+  }
+}
+
+@Entry
+@Component
+struct ContainerSpanModifierExample {
+  @State containerSpanModifier: ContainerSpanModifier = new MyContainerSpanModifier()
+
+  build() {
+    Column() {
+      Text() {
+        ContainerSpan() {
+          ImageSpan($r('app.media.app_icon'))
+            .width('40vp')
+            .height('40vp')
+            .verticalAlign(ImageSpanAlignment.CENTER)
+          Span(' I\'m ContainerSpan attributeModifier ').fontSize('16fp').fontColor(Color.White)
+        }.attributeModifier(this.containerSpanModifier as MyContainerSpanModifier)
+      }
+    }.width('100%').alignItems(HorizontalAlign.Center)
+  }
+}
+```
+
+![imagespan](figures/container_attributeModifier.png)

@@ -352,6 +352,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | DISPLAY_PORT<sup>12+</sup>        | 23     | DisplayPort（显示接口，简称DP），用于外接扩展设备。           |
 | REMOTE_CAST<sup>12+</sup>        | 24     | 音频被系统应用投送到其他远程的设备。           |
 | USB_DEVICE<sup>18+</sup>        | 25 | USB设备（不包含USB耳机）。           |
+| HDMI<sup>18+</sup>        | 27 | HDMI设备（例如HDMI、ARC、eARC等）。           |
+| LINE_DIGITAL<sup>18+</sup>        | 28 | 有线数字设备（例如S/PDIF等）。           |
 | DEFAULT<sup>9+</sup> | 1000   | 默认设备类型。                                            |
 
 ## CommunicationDeviceType<sup>9+</sup>

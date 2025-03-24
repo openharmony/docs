@@ -3836,6 +3836,7 @@ let spatialDeviceState: audio.AudioSpatialDeviceState = {
 | TONE_TYPE_COMMON_SUPERVISORY_RADIO_NOT_AVAILABLE  | 104    | 呼叫监管音调，无线电不可用。     |
 | TONE_TYPE_COMMON_SUPERVISORY_CALL_WAITING         | 106    | 呼叫监管音调，呼叫等待。        |
 | TONE_TYPE_COMMON_SUPERVISORY_RINGTONE             | 107    | 呼叫监管音调，铃声。            |
+| TONE_TYPE_COMMON_SUPERVISORY_CALL_HOLDING<sup>18+</sup>  | 108  | 呼叫保持音调。            |
 | TONE_TYPE_COMMON_PROPRIETARY_BEEP                 | 200    | 专有声调，一般蜂鸣声。          |
 | TONE_TYPE_COMMON_PROPRIETARY_ACK                  | 201    | 专有声调，ACK。                |
 | TONE_TYPE_COMMON_PROPRIETARY_PROMPT               | 203    | 专有声调，PROMPT。             |

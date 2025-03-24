@@ -466,6 +466,8 @@
 | int32_t [OH_ArkUI_CustomDialog_RegisterOnDidAppearCallback](#oh_arkui_customdialog_registerondidappearcallback) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, void\* userData, void (\*callback)(void\* userData)) | 注册自定义弹窗弹出时的监听事件。  |
 | int32_t [OH_ArkUI_CustomDialog_RegisterOnWillDisappearCallback](#oh_arkui_customdialog_registeronwilldisappearcallback) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, void\* userData, void (\*callback)(void\* userData)) | 注册自定义弹窗退出动效前的监听事件。  |
 | int32_t [OH_ArkUI_CustomDialog_RegisterOnDidDisappearCallback](#oh_arkui_customdialog_registerondiddisappearcallback) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, void\* userData, void (\*callback)(void\* userData)) | 注册自定义弹窗消失时的监听事件。  |
+| int32_t [OH_ArkUI_CustomDialog_SetBackgroundBlurStyleOptions](#oh_arkui_customdialog_setbackgroundblurstyleoptions) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, const [ArkUI_AttributeItem](_ark_u_i___attribute_item.md#arkui_attributeitem) \*backgroundBlurStyleOptions) | 设置弹窗的背景模糊效果。  |
+| int32_t [OH_ArkUI_CustomDialog_SetBackgroundEffect](#oh_arkui_customdialog_setbackgroundeffect) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, const [ArkUI_AttributeItem](_ark_u_i___attribute_item.md#arkui_attributeitem) \*backgroundEffect) | 设置弹窗的背景效果参数。  |
 | bool [OH_ArkUI_GestureInterruptInfo_GetSystemFlag](#oh_arkui_gestureinterruptinfo_getsystemflag) (const ArkUI_GestureInterruptInfo \*event) | 判断是否组件内置手势。  | 
 | ArkUI_GestureRecognizer \* [OH_ArkUI_GestureInterruptInfo_GetRecognizer](#oh_arkui_gestureinterruptinfo_getrecognizer) (const ArkUI_GestureInterruptInfo \*event) | 返回被打断的手势指针。  | 
 | ArkUI_GestureEvent \* [OH_ArkUI_GestureInterruptInfo_GetGestureEvent](#oh_arkui_gestureinterruptinfo_getgestureevent) (const ArkUI_GestureInterruptInfo \*event) | 返回打断的手势事件数据。  | 
@@ -9029,6 +9031,52 @@ int32_t OH_ArkUI_CustomDialog_RegisterOnDidDisappearCallback(
 **返回：**
 
 [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_SetBackgroundBlurStyleOptions()
+
+```
+int32_t OH_ArkUI_CustomDialog_SetBackgroundBlurStyleOptions(ArkUI_CustomDialogOptions* options, const ArkUI_AttributeItem* backgroundBlurStyleOptions)
+```
+**描述：**
+
+设置弹窗的背景模糊效果。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 弹窗参数。 | 
+| backgroundBlurStyleOptions | 弹窗的背景模糊效果。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_SetBackgroundEffect()
+
+```
+int32_t OH_ArkUI_CustomDialog_SetBackgroundEffect(ArkUI_CustomDialogOptions* options, const ArkUI_AttributeItem* backgroundEffect)
+```
+**描述：**
+
+设置弹窗的背景效果参数。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 弹窗参数。 | 
+| backgroundEffect | 弹窗的背景效果参数。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
 ### OH_ArkUI_DialogDismissEvent_GetUserData()
 

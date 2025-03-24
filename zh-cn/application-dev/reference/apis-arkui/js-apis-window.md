@@ -362,7 +362,7 @@ import { window } from '@kit.ArkUI';
 
 | 名称   | 类型   | 必填 | 说明                                       |
 | ------ | ------ | ---- | ------------------------------------------ |
-| displayId | number | 否 | 目标屏幕ID，该参数应该为整数，非整数输入将向下取整。此参数不填或者传入目标屏幕ID不存在，将默认保持为当前屏幕。 |
+| displayId | number | 否 | 目标屏幕ID，该参数应为整数，输入非整数时将向下取整。填入该参数时，将移动到相对于目标屏幕左上角的指定位置。此参数不填或传入目标屏幕ID不存在时，将移动到相对于当前屏幕左上角的指定位置。 |
 
 ## WindowDensityInfo<sup>15+</sup>
 
@@ -1758,7 +1758,7 @@ try {
 
 moveWindowToAsync(x: number, y: number, moveConfiguration?: MoveConfiguration): Promise&lt;void&gt;
 
-移动窗口位置，当moveConfiguration中displayId设置为存在的屏幕ID时，将移动到此屏幕，使用Promise异步回调。调用生效后返回，回调中可使用getWindowProperties（见示例）立即获取最终生效结果。
+移动窗口位置，使用Promise异步回调。调用生效后返回，回调中可使用getWindowProperties（见示例）立即获取最终生效结果。
 
 仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效。
 在2in1设备上窗口相对于屏幕移动，其他设备上窗口相对于父窗口移动。
@@ -1876,7 +1876,7 @@ try {
 
 moveWindowToGlobal(x: number, y: number, moveConfiguration?: MoveConfiguration): Promise&lt;void&gt;
 
-基于屏幕坐标移动窗口位置，当moveConfiguration中displayId设置为存在的屏幕ID时，将移动到此屏幕，使用Promise异步回调。调用生效后返回。
+基于屏幕坐标移动窗口位置，使用Promise异步回调。调用生效后返回。
 
 全屏模式窗口不支持该操作。
 

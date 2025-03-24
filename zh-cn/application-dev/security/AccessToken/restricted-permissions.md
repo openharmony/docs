@@ -518,3 +518,17 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 **授权方式**：系统授权（system_grant）
 
 **起始版本**：16
+
+### ohos.permission.kernel.MANAGE_APN_SETTING
+
+允许应用读取或设置APN信息。
+
+当应用需要使用专网APN信息时可申请此权限。
+
+<!--RP38--><!--RP38End-->
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**起始版本**：16

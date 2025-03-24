@@ -17,11 +17,11 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| double [width](#width) | 占位符宽度 |
-| double [height](#height) | 占位符高度 |
-| [OH_Drawing_PlaceholderVerticalAlignment](_drawing.md#oh_drawing_placeholderverticalalignment) [alignment](#alignment) | 占位符对齐方式 |
-| [OH_Drawing_TextBaseline](_drawing.md#oh_drawing_textbaseline) [baseline](#baseline) | 占位符基线 |
-| double [baselineOffset](#baselineoffset) | 占位符基线偏移 |
+| double [width](#width) | 占位符宽度。 |
+| double [height](#height) | 占位符高度。 |
+| [OH_Drawing_PlaceholderVerticalAlignment](_drawing.md#oh_drawing_placeholderverticalalignment) [alignment](#alignment) | 占位符对齐方式。 |
+| [OH_Drawing_TextBaseline](_drawing.md#oh_drawing_textbaseline) [baseline](#baseline) | 占位符基线。 |
+| double [baselineOffset](#baselineoffset) | 占位符基线偏移。 |
 
 
 ## 结构体成员变量说明

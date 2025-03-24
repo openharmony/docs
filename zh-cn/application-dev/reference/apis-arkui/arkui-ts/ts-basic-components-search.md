@@ -32,12 +32,12 @@ Search初始化参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名      | 类型         | 必填 | 说明        |
+| 名称      | 类型         | 必填 | 说明        |
 | ----------- | ------------- | ---- | ------------- |
-| value       | string                                               | 否   | 设置当前显示的搜索文本内容。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../quick-start/arkts-new-binding.md#内置组件参数双向绑定)双向绑定变量。 |
-| placeholder | [ResourceStr](ts-types.md#resourcestr) | 否   | 设置无输入时的提示文本。                                     |
-| icon        | string                                               | 否   | 设置搜索图标路径，默认使用系统搜索图标。<br/>**说明：** <br/>icon的数据源支持本地图片和网络图片。<br/>-&nbsp;支持的图片格式包括png、jpg、bmp、svg、gif、pixelmap和heif。<br/>-&nbsp;支持Base64字符串。格式data:image/[png\|jpeg\|bmp\|webp\|heif];base64,[base64 data], 其中[base64 data]为Base64字符串数据。<br/>如果与属性searchIcon同时设置，则searchIcon优先。 |
-| controller  | [SearchController](#searchcontroller) | 否   | 设置Search组件控制器。                                       |
+| value<sup>8+</sup>       | string                                               | 否   | 设置当前显示的搜索文本内容。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../quick-start/arkts-new-binding.md#内置组件参数双向绑定)双向绑定变量。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| placeholder<sup>8+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 设置无输入时的提示文本。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| icon<sup>8+</sup>        | string                                               | 否   | 设置搜索图标路径，默认使用系统搜索图标。<br/>**说明：** <br/>icon的数据源支持本地图片和网络图片。<br/>-&nbsp;支持的图片格式包括png、jpg、bmp、svg、gif、pixelmap和heif。<br/>-&nbsp;支持Base64字符串。格式data:image/[png\|jpeg\|bmp\|webp\|heif];base64,[base64 data], 其中[base64 data]为Base64字符串数据。<br/>如果与属性searchIcon同时设置，则searchIcon优先。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| controller<sup>8+</sup>  | [SearchController](#searchcontroller) | 否   | 设置Search组件控制器。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
 
 ## 属性
 
@@ -507,7 +507,7 @@ maxFontSize(value: number | string | Resource)
 
 ### halfLeading<sup>18+</sup>
 
-halfLeading(halfLeading: boolean)
+halfLeading(halfLeading: Optional\<boolean>)
 
 设置文本是否将行间距平分至行的顶部与底部。
 
@@ -519,7 +519,7 @@ halfLeading(halfLeading: boolean)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| halfLeading | boolean | 是  | 文本是否将行间距平分至行的顶部与底部。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false |
+| halfLeading | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是  | 文本是否将行间距平分至行的顶部与底部。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false |
 
 ### minFontScale<sup>18+</sup>
 
@@ -660,15 +660,13 @@ stopBackPress(isStopped: Optional\<boolean>)
 
 ## SearchButtonOptions<sup>10+</sup>对象说明
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称    | 类型                                   | 必填 | 说明         |
 | --------- | ------------------------------------------ | ---- | ---------------- |
-| fontSize  | [Length](ts-types.md#length)               | 否   | 文本按钮字体大小，不支持百分比。 |
-| fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 文本按钮字体颜色。 |
-| autoDisable<sup>18+</sup>  | boolean                   | 否  | Search无文本内容时按钮置灰且不可点击。|
+| fontSize  | [Length](ts-types.md#length)               | 否   | 文本按钮字体大小，不支持百分比。**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 文本按钮字体颜色。**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| autoDisable<sup>18+</sup>  | Boolean                   | 否   | Search无文本内容时按钮置灰且不可点击。<br/>默认值：false <br>true表示开启按钮置灰功能，false表示不开启。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 ## CancelButtonStyle<sup>10+</sup>枚举说明
 

@@ -20,8 +20,10 @@ FFRT并发队列提供了设置任务优先级（Priority）和队列并发度�
 
 ```c
 #include <stdio.h>
-#include <string.h>
-#include <ffrt.h>
+#include <unistd.h>
+
+#include "ffrt/queue.h"
+#include "ffrt/task.h"
 
 ffrt_queue_t create_bank_system(const char *name, int concurrency)
 {
@@ -43,10 +45,10 @@ ffrt_queue_t create_bank_system(const char *name, int concurrency)
     return queue;
 }
 
-void destory_bank_system(ffrt_queue_t queue_handle)
+void destroy_bank_system(ffrt_queue_t queue_handle)
 {
     ffrt_queue_destroy(queue_handle);
-    printf("destory bank system successful\n");
+    printf("destroy bank system successful\n");
 }
 
 void bank_business(void *arg)
@@ -110,7 +112,7 @@ int main()
 
     // 等待所有的客户服务完成
     wait_for_request(task_last);
-    destory_bank_system(bank);
+    destroy_bank_system(bank);
 
     return 0;
 }
