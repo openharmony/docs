@@ -13,7 +13,6 @@
 import { cloudSync } from '@kit.CoreFileKit';
 ```
 
-
 ## GallerySync
 
 云图同步对象，用来支撑图库应用媒体资源端云同步流程。在使用前，需要先创建GallerySync实例。
@@ -211,7 +210,7 @@ start(): Promise&lt;void&gt;
 
 start(callback: AsyncCallback&lt;void&gt;): void
 
-异步方法启动端云同步，以callback形式返回结果。
+异步方法启动端云同步, 以callback形式返回结果。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
@@ -422,7 +421,7 @@ off(evt: 'progress', callback: (pg: DownloadProgress) => void): void
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | evt | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）。|
-| callback | (pg: DownloadProgress) => void | 是   | 云文件下载过程事件回调，回调入参为[DownloadProgress](js-apis-file-cloudsync.md#downloadprogress11)，返回值为void。|
+| callback | (pg: DownloadProgress) => void | 是   | 云文件下载过程事件回调，回调入参为[DownloadProgress](js-apis-file-cloudsync.md#downloadprogress11), 返回值为void。|
 
 **错误码：**
 
@@ -726,7 +725,6 @@ constructor(bundleName: string)
   ```ts
   let fileSync = new cloudSync.FileSync("com.ohos.demo")
   ```
-
 
 ## CloudFileCache<sup>11+</sup>
 
