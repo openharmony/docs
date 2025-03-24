@@ -1195,10 +1195,6 @@
               - [USB中断传输](basic-services/usb/usbManager/usbHost/interruptTransfer.md)
               - [USB批量传输](basic-services/usb/usbManager/usbHost/bulkTransfer.md)
               - [USB同步传输](basic-services/usb/usbManager/usbHost/isochronousTransfer.md)
-          - 开发USB串口通信服务<!--usb-serial-dev-->
-            - [USB串口通信服务开发概述](basic-services/usb/usbSerial/usbSerial-overview.md)
-            - [USB串口配置管理](basic-services/usb/usbSerial/usbSerial-configuration.md)
-            - [USB串口通信管理](basic-services/usb/usbSerial/usbSerial-communication.md)
           - [常见问题](basic-services/usb/faqs-usb.md)
           - [术语](basic-services/usb/usb-glossary.md)
         <!--Del-->
@@ -3574,7 +3570,6 @@
             - [@ohos.runningLock (Runninglock锁)](reference/apis-basic-services-kit/js-apis-runninglock.md)
             - [@ohos.thermal (热管理)](reference/apis-basic-services-kit/js-apis-thermal.md)
             - [@ohos.usbManager (USB管理)](reference/apis-basic-services-kit/js-apis-usbManager.md)
-            - [@ohos.usbManager.serial (串口管理)](reference/apis-basic-services-kit/js-apis-serialManager.md)
             <!--Del-->
             - [@ohos.batteryInfo (电量信息)(系统接口)](reference/apis-basic-services-kit/js-apis-battery-info-sys.md)
             - [@ohos.batteryStatistics (耗电统计)(系统接口)](reference/apis-basic-services-kit/js-apis-batteryStatistics-sys.md)
@@ -3586,7 +3581,6 @@
             - [@ohos.systemParameterEnhance (系统参数)(系统接口)](reference/apis-basic-services-kit/js-apis-system-parameterEnhance-sys.md)
             - [@ohos.screenLock (锁屏管理)(系统接口)](reference/apis-basic-services-kit/js-apis-screen-lock-sys.md)
             - [@ohos.usbManager (USB管理)(系统接口)](reference/apis-basic-services-kit/js-apis-usbManager-sys.md)
-            - [@ohos.usbManager.serial (串口管理)(系统接口)](reference/apis-basic-services-kit/js-apis-serialManager-sys.md)
             - [@ohos.update (升级)(系统接口)](reference/apis-basic-services-kit/js-apis-update-sys.md)
             <!--DelEnd-->
           - 数据文件处理<!--data-file-processing-arkts-->
