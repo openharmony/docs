@@ -27,9 +27,11 @@
 - C API<!--background-tasks-c-->
   - 模块<!--background-tasks-module-->
     - [TransientTask](_transient_task.md)
+    - [BackgroundProcessManager](_background_process_manager.md)
   - 头文件<!--background-tasks-headerfile-->
     - [transient_task_api.h](transient__task__api_8h.md)
     - [transient_task_type.h](transient__task__type_8h.md)
+    - [background_process_manager.h](background__process__manager_8h.md)
   - 结构体<!--background-tasks-struct-->
     - [TransientTask_DelaySuspendInfo](_transient_task___delay_suspend_info.md)
 - 错误码<!--background-tasks-arkts-errcode-->
