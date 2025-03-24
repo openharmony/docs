@@ -1073,7 +1073,7 @@ convertToPhotoAlbum(): photoAccessHelper.Album
 
 | 类型                    | 说明                                                      |
 | ----------------------- | --------------------------------------------------------- |
-| photoAccessHelper.Album | 非Sendable类型[Album](js-apis-photoAccessHelper.md#album)。 |
+| [photoAccessHelper.Album](js-apis-photoAccessHelper.md#album) | 非Sendable类型Album。 |
 
 **错误码：**
 
