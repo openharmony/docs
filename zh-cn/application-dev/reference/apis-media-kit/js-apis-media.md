@@ -7912,8 +7912,8 @@ setMimeType(mimeType: AVMimeTypes): void
 
 | 名称                              | 值   | 说明                                         |
 | --------------------------------- | ---- | -------------------------------------------- |
-| PRESERVE_ASPECT_RATIO | 0    | 保持与原始图像相同的比例。 |
-| SCALE_TO_FILL | 1    | 适配设置的宽度和高度。 |
+| PRESERVE_ASPECT_RATIO | 0    | 保持与原始图像相同的宽高比例，即与物理屏幕宽高比例一致。 |
+| SCALE_TO_FILL | 1    | 进行图像拉伸填充，适配设置的宽度和高度。 |
 
 ## AVScreenCaptureRecordConfig<sup>12+</sup>
 
