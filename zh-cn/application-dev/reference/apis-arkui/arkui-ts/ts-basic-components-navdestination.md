@@ -359,6 +359,84 @@ customTransition(delegate: NavDestinationTransitionDelegate)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | delegate  | [NavDestinationTransitionDelegate](#navdestinationtransitiondelegate15) | 是   | NavDestination自定义动画的代理函数。 |
 
+### preferredOrientation<sup>18+</sup>
+
+preferredOrientation(orientation: Optional&lt;Orientation&gt;)
+
+设置NavDestination对应的显示方向。转场到该NavDestination后，系统也会将应用主窗口切到该显示方向。
+
+> **说明：**
+>
+> 该属性满足如下全部条件时才有效：
+> 1. NavDestination属于应用主窗口页面，并且主窗口为全屏窗口；
+> 2. NavDestination所属的Navigation的大小占满整个应用页面；
+> 3. NavDestination类型为[STANDARD](#navdestinationmode枚举说明-11)。
+>
+> 设置显示方向的实际效果依赖于具体的设备支持情况，具体参考窗口的[setPreferredOrientation](../js-apis-window.md#setpreferredorientation9-1)接口。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| orientation  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;[Orientation](../js-apis-window.md#orientation9)&gt; | 是   | NavDestination页面对应的Orientation。 |
+
+### enableStatusBar<sup>18+</sup>
+
+enableStatusBar(enabled: Optional&lt;boolean&gt;, animated?: boolean)
+
+设置进入该NavDestination后，显示或者隐藏系统的状态栏。
+
+> **说明：**
+>
+> 该属性满足如下全部条件时才生效：
+> 1. NavDestination属于应用主窗口页面，并且主窗口为全屏窗口；
+> 2. NavDestination所属的Navigation的大小占满整个页面；
+> 3. NavDestination的大小占满整个Navigation组件；
+> 4. NavDestination类型为[STANDARD](#navdestinationmode枚举说明-11)。
+>
+> 设置系统状态栏的实际效果依赖于具体的设备支持情况，具体参考窗口的[setSpecificSystemBarEnabled](../js-apis-window.md#setspecificsystembarenabled11)接口。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| enabled  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;boolean&gt; | 是   | 进入该NavDestination后，系统状态栏的显示/隐藏状态。 |
+| animated  | boolean | 否   | 是否使用动画的方式显示/隐藏系统状态栏，默认值为：false。 |
+
+### enableNavigationIndicator<sup>18+</sup>
+
+enableNavigationIndicator(enabled: Optional&lt;boolean&gt;)
+
+设置进入该NavDestination后，显示或者隐藏系统的导航条。
+
+> **说明：**
+>
+> 该属性满足如下全部条件时才生效：
+> 1. NavDestination属于应用主窗口页面，并且主窗口为全屏窗口；
+> 2. NavDestination所属的Navigation的大小占满整个页面；
+> 3. NavDestination的大小占满整个Navigation组件；
+> 4. NavDestination类型为[STANDARD](#navdestinationmode枚举说明-11)。
+>
+> 设置系统导航条的实际效果依赖于具体的设备支持情况，具体参考窗口的[setSpecificSystemBarEnabled](../js-apis-window.md#setspecificsystembarenabled11)接口。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| enabled  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;boolean&gt; | 是   | 进入该NavDestination后，系统导航条的显示/隐藏状态。 |
+
 ## NavDestinationMode枚举说明 <sup>11+</sup>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -1200,5 +1278,89 @@ struct HomeBody {
 ![navdestination_explode](figures/navdestination_explode_transition.gif)
 ![navdestination_slide_bottom](figures/navdestination_slide_bottom_transition.gif)
 ![navdestination_slide_right](figures/navdestination_slide_right_transition.gif)
+
+### 示例4（NavDestination配置页面方向和对应状态栏、导航条显隐）
+
+以下示例主要演示每个NavDestination可以配置指定的页面方向和状态栏，导航栏显隐状态
+
+```ts
+import { window } from '@kit.ArkUI';
+
+@Component
+struct PortraitPage {
+  private stack: NavPathStack | undefined = undefined;
+  build() {
+    NavDestination() {
+      Stack({alignContent: Alignment.Center}) {
+        Button('push LANDSCAPE page').onClick(() => {
+          this.stack?.pushPath({name: 'landscape'})
+        })
+      }.width('100%').height('100%')
+    }
+    .width('100%').height('100%')
+    .title('PortraitPage')
+    .preferredOrientation(window.Orientation.PORTRAIT) // 竖屏方向
+    .enableStatusBar(true) // 显示状态栏
+    .enableNavigationIndicator(true) // 显示导航条
+    .backgroundColor('#ffbaece9')
+    .onReady((ctx: NavDestinationContext) => {
+      this.stack = ctx.pathStack;
+    })
+  }
+}
+
+@Component
+struct LandscapePage {
+  private stack: NavPathStack | undefined = undefined;
+  build() {
+    NavDestination() {
+      Stack({alignContent: Alignment.Center}) {
+        Button('push PORTRAIT page').onClick(() => {
+          this.stack?.pushPath({name: 'portrait'})
+        })
+      }.width('100%').height('100%')
+    }
+    .width('100%').height('100%')
+    .title('LandscapePage')
+    .preferredOrientation(window.Orientation.LANDSCAPE) // 横屏方向
+    .enableStatusBar(false) // 隐藏状态栏
+    .enableNavigationIndicator(false) // 隐藏导航条
+    .backgroundColor('#ffecb8b8')
+    .ignoreLayoutSafeArea([LayoutSafeAreaType.SYSTEM], [LayoutSafeAreaEdge.TOP, LayoutSafeAreaEdge.BOTTOM])
+    .onReady((ctx: NavDestinationContext) => {
+      this.stack = ctx.pathStack;
+    })
+  }
+}
+
+@Entry
+@Component
+struct ExamplePage {
+  private stack: NavPathStack = new NavPathStack();
+
+  aboutToAppear(): void {
+    this.stack.pushPath({name: "portrait"})
+  }
+
+  @Builder
+  MyPageMap(name: string) {
+    if (name === 'portrait') {
+      PortraitPage()
+    } else {
+      LandscapePage()
+    }
+  }
+
+  build() {
+    Navigation(this.stack) {
+    }
+    .width('100%')
+    .height('100%')
+    .hideNavBar(true)
+    .navDestination(this.MyPageMap)
+  }
+}
+```
+![navdestination_orientation](figures/navdestination_orientation.gif)
 
 NavDestination其他用法可参考[Navigation示例](ts-basic-components-navigation.md#示例1)。
