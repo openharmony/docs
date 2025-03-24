@@ -102,7 +102,7 @@ FFRT_C_API void ffrt_task_attr_destroy(ffrt_task_attr_t* attr);
 
 描述
 
-- 去初始化一个`ffrt_task_attr_t`对象。
+- 销毁一个`ffrt_task_attr_t`对象。
 
 ##### ffrt_task_attr_set_name
 
@@ -450,6 +450,8 @@ FFRT_C_API void ffrt_submit_base(ffrt_function_header_t* f, const ffrt_deps_t* i
         ffrt_task_attr_set_name(&attr, "sample_task");
         ffrt_task_attr_set_qos(&attr, ffrt_qos_background);
         ffrt_submit_base(func, NULL, NULL, &attr);
+
+        return 0;
     }
     ```
 
@@ -957,18 +959,15 @@ int ffrt_queue_attr_get_max_concurrency(const ffrt_queue_attr_t* attr)
 #### 样例
 
 ```cpp
-#include "ffrt/cpp/task.h"
-#include "ffrt/queue.h"
 #include <functional>
+#include "ffrt/queue.h"
+#include "ffrt/cpp/task.h"
 
-using namespace ffrt;
-using namespace std;
-
-int main(int narg, char** argv)
+int main()
 {
     ffrt_queue_attr_t queue_attr;
     // 初始化队列属性，必需
-    int result = ffrt_queue_attr_init(&queue_attr);
+    ffrt_queue_attr_init(&queue_attr);
 
     ffrt_queue_attr_set_qos(&queue_attr, static_cast<int>(ffrt_qos_utility));
 
@@ -982,6 +981,7 @@ int main(int narg, char** argv)
     ffrt_queue_attr_set_callback(&queue_attr, ffrt::create_function_wrapper(basicFunc, ffrt_function_kind_queue));
     // 销毁队列属性，必需
     ffrt_queue_attr_destroy(&queue_attr);
+    return 0;
 }
 ```
 
@@ -1132,11 +1132,8 @@ ffrt_queue_t ffrt_get_current_queue();
 #### 样例
 
 ```cpp
-#include <ffrt/queue.h>
+#include "ffrt/queue.h"
 #include "ffrt/cpp/task.h"
-
-using namespace ffrt;
-using namespace std;
 
 int main()
 {
@@ -1144,23 +1141,23 @@ int main()
     // 1、初始化队列属性，必需
     (void)ffrt_queue_attr_init(&queue_attr);
 
-    // 2、创建串行队列，并返回队列句柄 queue_handle
+    // 2、创建串行队列，并返回队列句柄queue_handle
     ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_serial, "test_queue", &queue_attr);
 
     int result = 0;
     std::function<void()>&& basicFunc = [&result]() { result += 1; };
 
     // 3、提交串行任务
-    ffrt_queue_submit(queue_handle, create_function_wrapper(basicFunc, ffrt_function_kind_queue), nullptr);
+    ffrt_queue_submit(queue_handle, ffrt::create_function_wrapper(basicFunc, ffrt_function_kind_queue), nullptr);
 
     // 4、提交串行任务，并返回任务句柄
-    ffrt_task_handle_t t1 = ffrt_queue_submit_h(queue_handle, create_function_wrapper(basicFunc, ffrt_function_kind_queue), nullptr);
+    ffrt_task_handle_t t1 = ffrt_queue_submit_h(queue_handle, ffrt::create_function_wrapper(basicFunc, ffrt_function_kind_queue), nullptr);
     // 5、等待指定任务执行完成
     ffrt_queue_wait(t1);
 
-    ffrt_task_handle_t t2 = ffrt_queue_submit_h(queue_handle, create_function_wrapper(basicFunc, ffrt_function_kind_queue), nullptr);
+    ffrt_task_handle_t t2 = ffrt_queue_submit_h(queue_handle, ffrt::create_function_wrapper(basicFunc, ffrt_function_kind_queue), nullptr);
     // 6、取消句柄为 t2 的任务
-    int ret = ffrt_queue_cancel(t2);
+    ffrt_queue_cancel(t2);
 
     // 7、销毁提交给串行队列任务的句柄 t1 和 t2，必需
     ffrt_task_handle_destroy(t1);
@@ -1169,6 +1166,7 @@ int main()
     ffrt_queue_attr_destroy(&queue_attr);
     // 9、销毁队列句柄，必需
     ffrt_queue_destroy(queue_handle);
+    return 0;
 }
 ```
 
@@ -1285,39 +1283,28 @@ FFRT_C_API int ffrt_mutexattr_gettype(ffrt_mutexattr_t* attr, int* type);
 #### 样例
 
 ```c
-#include <stdio.h>
-#include "ffrt/mutex.h"
-#include <gtest/gtest.h>
-
-void ffrt_c_mutexattr_test()
-{
-    ffrt_mutexattr_t attr;
-    ffrt_mutex_t recursive_mtx;
-    EXPECT_EQ(ffrt_mutexattr_init(NULL), ffrt_error_inval);
-    EXPECT_EQ(ffrt_mutexattr_settype(NULL, -1), ffrt_error_inval);
-    EXPECT_EQ(ffrt_mutexattr_gettype(NULL, NULL), ffrt_error_inval);
-    EXPECT_EQ(ffrt_mutexattr_destroy(NULL), ffrt_error_inval);
-}
+ffrt_mutexattr_t attr;
+// 初始化锁属性
+ffrt_mutexattr_init(&attr);
+// 设置为互斥锁
+ffrt_mutexattr_settype(&attr, ffrt_mutex_normal);
+// 设置为递归锁
+ffrt_mutexattr_settype(&attr, ffrt_mutex_recursive);
+// 获取锁类型
+int type = ffrt_mutex_default;
+ffrt_mutexattr_gettype(&attr, &type);
+// 销毁锁属性
+ffrt_mutexattr_destroy(&attr);
 ```
 
 ### ffrt_mutex_t
 
-- FFRT 提供的类似pthread mutex的性能实现，但不支持类似`PTHREAD_MUTEX_INITIALIZER`的初始化。
+- FFRT提供的类似`pthread_mutex_t`的性能实现，但不支持类似`PTHREAD_MUTEX_INITIALIZER`的初始化。
 
 #### 声明
 
 ```c
-typedef enum {
-    ffrt_error = -1,
-    ffrt_success = 0,
-    ffrt_error_nomem = ENOMEM,
-    ffrt_error_timedout = ETIMEDOUT,
-    ffrt_error_busy = EBUSY,
-    ffrt_error_inval = EINVAL
-} ffrt_error_t;
-
 struct ffrt_mutex_t;
-
 struct ffrt_mutexattr_t;
 
 int ffrt_mutex_init(ffrt_mutex_t* mutex, const ffrt_mutexattr_t* attr);
@@ -1331,10 +1318,10 @@ int ffrt_mutex_destroy(ffrt_mutex_t* mutex);
 
 - 该接口支持在FFRT任务内部调用，也支持在FFRT任务外部调用。
 - 该接口能够避免pthread传统的`pthread_mutex_t`在抢不到锁时陷入内核态的问题，在使用得当的条件下将会有更好的性能。
-- C API 中的`ffrt_mutexattr_t`需要用户调用`ffrt_mutexattr_init`和`ffrt_mutexattr_destroy`显示创建和销毁，否则其行为是未定义的。
-- C API 中的`ffrt_mutex_t`需要用户调用`ffrt_mutex_init`和`ffrt_mutex_destroy`显式创建和销毁，否则其行为是未定义的。
-- C API 中的`ffrt_mutex_t`对象的置空和销毁由用户完成，对同一个`ffrt_mutex_t`仅能调用一次`ffrt_mutex_destroy`，重复对同一个 ffrt_mutex_t 调用`ffrt_mutex_destroy`，其行为是未定义的。
-- C API 中的同一个`ffrt_mutexattr_t`只能调用一次`ffrt_mutexattr_init`和`ffrt_mutexattr_destroy`，重复调用其行为是未定义的。
+- C API中的`ffrt_mutexattr_t`需要用户调用`ffrt_mutexattr_init`和`ffrt_mutexattr_destroy`显示创建和销毁，否则其行为是未定义的。
+- C API中的`ffrt_mutex_t`需要用户调用`ffrt_mutex_init`和`ffrt_mutex_destroy`显式创建和销毁，否则其行为是未定义的。
+- C API中的`ffrt_mutex_t`对象的置空和销毁由用户完成，对同一个`ffrt_mutex_t`仅能调用一次`ffrt_mutex_destroy`，重复对同一个`ffrt_mutex_t`调用`ffrt_mutex_destroy`，其行为是未定义的。
+- C API中的同一个`ffrt_mutexattr_t`只能调用一次`ffrt_mutexattr_init`和`ffrt_mutexattr_destroy`，重复调用其行为是未定义的。
 - 用户需要在调用`ffrt_mutex_init`之后和调用`ffrt_mutex_destroy`之前显示调用`ffrt_mutexattr_destroy`。
 - 在`ffrt_mutex_destroy`之后再对`ffrt_mutex_t`进行访问，其行为是未定义的。
 
@@ -1434,32 +1421,25 @@ FFRT_C_API int ffrt_mutex_trylock(ffrt_mutex_t* mutex);
 #### 样例
 
 ```cpp
+#include "ffrt/mutex.h"
 #include "ffrt/cpp/task.h"
-#include <ffrt/mutex.h>
-#include <ffrt/type_def.h>
-#include <gtest/gtest.h>
 
-void ffrt_c_mutex_test()
+int main()
 {
     ffrt_mutexattr_t attr;
     ffrt_mutex_t lock;
-    int ret = 0;
     int sum = 0;
     int type = ffrt_mutex_default;
-    ret = ffrt_mutexattr_init(&attr);
-    EXPECT_EQ(ret, ffrt_success);
-    ret = ffrt_mutexattr_settype(&attr, ffrt_mutex_recursive);
-    EXPECT_EQ(ret, ffrt_success);
-    ret = ffrt_mutexattr_gettype(&attr, &type);
-    EXPECT_EQ(ret, ffrt_success);
-    ret = ffrt_mutex_init(&lock, &attr);
-    EXPECT_EQ(type, ffrt_mutex_recursive);
+    ffrt_mutexattr_init(&attr);
+    ffrt_mutexattr_settype(&attr, ffrt_mutex_recursive);
+    ffrt_mutexattr_gettype(&attr, &type);
+    ffrt_mutex_init(&lock, &attr);
     ffrt::submit([&]() {
         ffrt_mutex_lock(&lock);
-        EXPECT_EQ(ffrt_mutex_trylock(&lock), ffrt_success);
+        ffrt_mutex_trylock(&lock);
         sum++;
         ffrt_mutex_lock(&lock);
-        EXPECT_EQ(ffrt_mutex_trylock(&lock), ffrt_success);
+        ffrt_mutex_trylock(&lock);
         sum++;
         ffrt_mutex_unlock(&lock);
         ffrt_mutex_unlock(&lock);
@@ -1471,6 +1451,7 @@ void ffrt_c_mutex_test()
 
     ffrt_mutexattr_destroy(&attr);
     ffrt_mutex_destroy(&lock);
+    return 0;
 }
 ```
 
@@ -1629,13 +1610,11 @@ FFRT_C_API int ffrt_cond_timedwait(ffrt_cond_t* cond, ffrt_mutex_t* mutex, const
 #### 样例
 
 ```cpp
-#include <ffrt/condition_variable.h>
-#include <ffrt/mutex.h>
-#include <ffrt/sleep.h>
-#include <ffrt/type_def.h>
-#include <ffrt/cpp/task.h>
 #include <iostream>
-#include <gtest/gtest.h>
+#include "ffrt/condition_variable.h"
+#include "ffrt/mutex.h"
+#include "ffrt/sleep.h"
+#include "ffrt/cpp/task.h"
 
 struct timespec timeoutms_to_tm(int timeout_ms) {
     struct timespec ts;
@@ -1649,7 +1628,7 @@ struct timespec timeoutms_to_tm(int timeout_ms) {
     return ts;
 }
 
-void ffrt_c_cond_test()
+int main()
 {
     int a = 0;
     ffrt_cond_t cond;
@@ -1663,14 +1642,13 @@ void ffrt_c_cond_test()
             struct timespec tm = timeoutms_to_tm(timeout);
             ffrt_mutex_lock(&lock_);
             auto start = std::chrono::high_resolution_clock::now();
-            int ret = ffrt_cond_timedwait(&cond, &lock_, &tm);
+            ffrt_cond_timedwait(&cond, &lock_, &tm);
             auto end = std::chrono::high_resolution_clock::now();
             a = 123;
             ffrt_mutex_unlock(&lock_);
-            std::chrono::duration<double, std::milli> elapsed = end-start;
+            std::chrono::duration<double, std::milli> elapsed = end - start;
             double t = elapsed.count();
-            std::cout << "ffrt_cond_timedwait " << t << " ms\n";
-            EXPECT_EQ(ret, ffrt_success);
+            std::cout << "ffrt_cond_timedwait " << t << " ms" << std::endl;
             }, {}, {});
     }
 
@@ -1684,7 +1662,7 @@ void ffrt_c_cond_test()
     ffrt::wait();
     ffrt_cond_destroy(&cond);
     ffrt_mutex_destroy(&lock_);
-    EXPECT_EQ(a, 123);
+    return 0;
 }
 ```
 
@@ -1712,12 +1690,14 @@ FFRT_C_API int ffrt_usleep(uint64_t usec);
 #### 样例
 
 ```cpp
+#include "ffrt/sleep.h"
 #include "ffrt/cpp/task.h"
-#include <ffrt/sleep.h>
-void ffrt_c_usleep_test()
+
+int main()
 {
     ffrt::submit([=]() { ffrt_usleep(10); }, {}, {});
     ffrt::wait();
+    return 0;
 }
 ```
 
@@ -1740,22 +1720,22 @@ FFRT_C_API void ffrt_yield();
 #### 样例
 
 ```cpp
+#include <iostream>
+#include "ffrt/sleep.h"
 #include "ffrt/cpp/task.h"
-#include <ffrt/sleep.h>
-#include <stdio.h>
-void ffrt_c_yield_test()
+
+int main()
 {
     int count = 12;
     for (int i = 0; i < count; i++) {
-        ffrt::submit(
-            [&]() {
+        ffrt::submit([&]() {
             ffrt_usleep(100);
-            printf("test");
+            std::cout << "test" << std::endl;
             ffrt_yield();
-        },
-            {}, {});
+        }, {}, {});
     }
     ffrt::wait();
+    return 0;
 }
 ```
 
@@ -1837,7 +1817,7 @@ FFRT_C_API int ffrt_timer_stop(ffrt_qos_t qos, ffrt_timer_t handle);
 
     void (*cb)(void *) = test_fun;
 
-    int main(int narg, char** argv)
+    int main()
     {
         static int x = 0;
         void *data = &x;
@@ -1866,7 +1846,7 @@ FFRT_C_API int ffrt_timer_stop(ffrt_qos_t qos, ffrt_timer_t handle);
 
     void (*cb)(void *) = test_fun;
 
-    int main(int narg, char** argv)
+    int main()
     {
         static int x = 0;
         void *data = &x;
@@ -2049,7 +2029,6 @@ FFRT_C_API int ffrt_loop_timer_stop(ffrt_loop_t loop, ffrt_timer_t handle);
 
     ```c
     #include <pthread.h>
-    #include <unistd.h>
     #include <stdio.h>
     #include "ffrt/loop.h"
 
@@ -2062,7 +2041,8 @@ FFRT_C_API int ffrt_loop_timer_stop(ffrt_loop_t loop, ffrt_timer_t handle);
         return NULL;
     }
 
-    int main(int argc, char** argv) {
+    int main()
+    {
         // 创建并发队列
         ffrt_queue_attr_t queue_attr;
         (void)ffrt_queue_attr_init(&queue_attr);
@@ -2077,7 +2057,7 @@ FFRT_C_API int ffrt_loop_timer_stop(ffrt_loop_t loop, ffrt_timer_t handle);
 
         // 终止并销毁loop
         ffrt_loop_stop(loop);
-        int ret = ffrt_loop_destroy(loop);
+        ffrt_loop_destroy(loop);
 
         // 销毁并发队列
         ffrt_queue_attr_destroy(&queue_attr);
@@ -2095,13 +2075,12 @@ FFRT_C_API int ffrt_loop_timer_stop(ffrt_loop_t loop, ffrt_timer_t handle);
     #include <functional>
     #include <sys/epoll.h>
     #include <sys/eventfd.h>
-    #include "ffrt/cpp/task.h"
     #include "ffrt/loop.h"
-    #include "ffrt/task.h"
+    #include "ffrt/cpp/task.h"
 
     void* ThreadFunc(void* p)
     {
-        int ret = ffrt_loop_run(p);
+        ffrt_loop_run(p);
         return nullptr;
     }
 
@@ -2119,7 +2098,7 @@ FFRT_C_API int ffrt_loop_timer_stop(ffrt_loop_t loop, ffrt_timer_t handle);
         uint64_t expected;
     };
 
-    int main(int narg, char** argv)
+    int main()
     {
         // 创建并发队列
         ffrt_queue_attr_t queue_attr;
@@ -2131,8 +2110,8 @@ FFRT_C_API int ffrt_loop_timer_stop(ffrt_loop_t loop, ffrt_timer_t handle);
         int result1 = 0;
 
         // 向loop队列提交一个任务
-        std::function<void()> &&basicFunc1 = [&result1]() {result1 += 10;};
-        ffrt_task_handle_t task1 = ffrt_queue_submit_h(queue_handle, ffrt::create_function_wrapper(basicFunc1, ffrt_function_kind_queue), nullptr);
+        std::function<void()> &&basicFunc1 = [&result1]() { result1 += 10; };
+        ffrt_task_handle_t task = ffrt_queue_submit_h(queue_handle, ffrt::create_function_wrapper(basicFunc1, ffrt_function_kind_queue), nullptr);
 
         // 启动独立线程来执行loop
         pthread_t thread;
