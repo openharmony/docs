@@ -28,14 +28,14 @@ import { inputConsumer } from '@kit.InputKit';
 
 ## KeyPressedConfig<sup>16+</sup>
 
-按键消费设置。响应处理按键事件。
+按键事件消费设置。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
 | 名称        | 类型   | 可读   | 可写   | 说明      |
 | --------- | ------ | ------- | ------- | ------- |
 | key       | number  | 是      | 否      | 按键键值。<br>当前仅支持[KEYCODE_VOLUME_UP](./js-apis-keycode.md#KEYCODE_VOLUME_UP)键和[KEYCODE_VOLUME_DOWN](./js-apis-keycode.md#KEYCODE_VOLUME_DOWN)键。 |  
-| action    | number  | 是      | 否      | 按键事件类型。取值：<br>- 1：按键按下。<br>- 2：按键抬起。当前仅支持注册按键按下。 |  
+| action    | number  | 是      | 否      | 按键事件类型。取值如下，当前仅支持取值为1。：<br>- 1：按键按下。<br>- 2：按键抬起。 |  
 | isRepeat  | boolean  | 是      | 否      | 是否上报重复的按键事件。 |
 
 ## inputConsumer.getAllSystemHotkeys<sup>14+</sup>
@@ -180,7 +180,7 @@ try {
 
 on(type: 'keyPressed', options: KeyPressedConfig, callback: Callback&lt;KeyEvent&gt;): void
 
-当前应用进程为焦点窗口所在进程时，如果用户操作了指定按键，则会触发回调。
+订阅按键按下事件。若当前应用处于前台焦点窗口，用户按下指定按键，会触发回调。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -189,7 +189,7 @@ on(type: 'keyPressed', options: KeyPressedConfig, callback: Callback&lt;KeyEvent
 | 参数名         | 类型                                | 必填  | 说明                              |
 | ---------- | --------------------------             | ----  | ---------- |
 | type       | string                                 | 是     | 事件类型，固定取值为'keyPressed'。        |
-| options    | [KeyPressedConfig](#keypressedconfig16)| 是     | 按键消费设置。             |
+| options    | [KeyPressedConfig](#keypressedconfig16)| 是     | 按键事件消费设置。           |
 | callback   | Callback&lt;[KeyEvent](./js-apis-keyevent.md#keyevent)&gt; | 是    | 用于返回按键事件的回调函数。 |
 
 **错误码**：
@@ -222,7 +222,7 @@ try {
 
 off(type: 'keyPressed', callback?: Callback&lt;KeyEvent&gt;): void
 
-取消消费按键事件。
+取消按键按下事件订阅。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -246,9 +246,11 @@ off(type: 'keyPressed', callback?: Callback&lt;KeyEvent&gt;): void
 
 ```js
 try {
+  // 取消指定回调函数
   inputConsumer.off('keyPressed', (event: KeyEvent) => {
     console.log(`Unsubscribe success ${JSON.stringify(event)}`);
   });
+  // 取消当前已订阅的所有回调函数
   inputConsumer.off("keyPressed");
 } catch (error) {
   console.log(`Unsubscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
