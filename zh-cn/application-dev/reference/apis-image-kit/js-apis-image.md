@@ -2527,7 +2527,7 @@ scaleSync(x: number, y: number, level: AntiAliasingLevel): void
 | ------ | ------ | ---- | ------------------------------- |
 | x      | number | 是   | 宽度的缩放倍数。|
 | y      | number | 是   | 高度的缩放倍数。|
-| level  | [AntiAliasingLevel](#antialiasinglevel12) | 是   | 采用的缩放算法。|
+| level  | [AntiAliasingLevel](#antialiasinglevel12) | 否   | 采用的缩放算法。|
 
 **错误码：**
 
@@ -5142,7 +5142,7 @@ imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList:
 ```
 ### createPixelMapUsingAllocator<sup>15+</sup>
 
-createPixelMapUsingAllocator(option?: DecodingOptions, allocatorType?: AllocatorType): Promise\<PixelMap\>
+createPixelMapUsingAllocator(options?: DecodingOptions, allocatorType?: AllocatorType): Promise\<PixelMap\>
 
 使用指定的分配器根据图像解码参数异步创建PixelMap对象。使用Promise返回对象。
 
@@ -5152,7 +5152,7 @@ createPixelMapUsingAllocator(option?: DecodingOptions, allocatorType?: Allocator
 
 | 参数名        | 类型                                 | 必填 | 说明                     |
 | ------------- | ------------------------------------ | ---- | ------------------------ |
-| option        | [DecodingOptions](#decodingoptions7) | 否   | 解码参数。               |
+| options        | [DecodingOptions](#decodingoptions7) | 否   | 解码参数。               |
 | allocatorType | [AllocatorType](#allocatortype15)   | 否   | 用于图像解码的内存类型。默认值为AllocatorType.AUTO。 |
 
 **返回值：**
@@ -5203,7 +5203,7 @@ if (pixelmap != undefined) {
 
 ### createPixelMapUsingAllocatorSync<sup>15+</sup>
 
-createPixelMapUsingAllocatorSync(option?: DecodingOptions, allocatorType?: AllocatorType): PixelMap
+createPixelMapUsingAllocatorSync(options?: DecodingOptions, allocatorType?: AllocatorType): PixelMap
 
 根据指定的分配器同步创建一个基于图像解码参数的PixelMap对象。
 
@@ -5213,7 +5213,7 @@ createPixelMapUsingAllocatorSync(option?: DecodingOptions, allocatorType?: Alloc
 
 | 参数名        | 类型                                 | 必填 | 说明                     |
 | ------------- | ------------------------------------ | ---- | ------------------------ |
-| option        | [DecodingOptions](#decodingoptions7) | 否   | 解码参数。               |
+| options        | [DecodingOptions](#decodingoptions7) | 否   | 解码参数。               |
 | allocatorType | [AllocatorType](#allocatortype15)   | 否   | 用于图像解码的内存类型。默认值为AllocatorType.AUTO。 |
 
 **返回值：**
