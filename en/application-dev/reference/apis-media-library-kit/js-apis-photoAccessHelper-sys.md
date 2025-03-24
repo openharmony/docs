@@ -6105,19 +6105,6 @@ Enumerates the [PhotoAsset](#photoasset) types.
 | ----- |  ---- |  ---- |
 | SCREENSHOT |  1 |  Screenshot and screen recording file.<br>**System API**: This is a system API.|
 
-## PositionType
-
-Enumerates the file locations.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-| Name |  Value|  Description|
-| ----- |  ---- |  ---- |
-| LOCAL |  1 << 0 |  Stored only on a local device.|
-| CLOUD |  1 << 1 |  Stored only on the cloud.|
-
 ## AlbumType
 
 Enumerates the album types.
@@ -6173,7 +6160,6 @@ Defines the key information about an image or video file.
 
 | Name         | Value             | Description                                                      |
 | ------------- | ------------------- | ---------------------------------------------------------- |
-| POSITION  | 'position'            | File location type. <br>**System API**: This is a system API.                              |
 | DATE_TRASHED  | 'date_trashed'  | Date when the file was deleted. The value is the number of seconds elapsed since the Epoch time. <br>**System API**: This is a system API.                |
 | HIDDEN  | 'hidden'            | Whether the file is hidden. <br>**System API**: This is a system API.                              |
 | CAMERA_SHOT_KEY  | 'camera_shot_key'  | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.) <br>**System API**: This is a system API.           |
