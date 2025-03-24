@@ -530,3 +530,17 @@ You can request this permission when the application needs to use the APN inform
 **Authorization mode**: system_grant
 
 **Valid since**: 16
+
+### ohos.permission.CUSTOM_SANDBOX
+
+Allows an application to set the sandbox type to dynamic sandbox.
+
+This permission is available only to Huawei internal development tool applications, and only the applications in the allowlist can request it. To add your application to the allowlist, contact enterprise technical support.
+
+<!--RP39--><!--RP39End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 16

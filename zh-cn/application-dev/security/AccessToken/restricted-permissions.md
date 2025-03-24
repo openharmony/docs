@@ -532,3 +532,17 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 **授权方式**：系统授权（system_grant）
 
 **起始版本**：16
+
+### ohos.permission.CUSTOM_SANDBOX
+
+允许应用将沙箱类型改为动态沙箱。
+
+该权限面向华为内部开发工具应用开放，仅在允许名单内的固定应用可申请该权限，如需进入允许名单，请联系企业技术支持。
+
+<!--RP39--><!--RP39End-->
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**起始版本**：16
