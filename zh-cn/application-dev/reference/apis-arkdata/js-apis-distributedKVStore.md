@@ -948,9 +948,9 @@ try {
 
 在调用KVStoreResultSet的方法前，需要先通过[getKVStore](#getkvstore)构建一个SingleKVStore或者DeviceKVStore实例。
 
-**说明**：
-
-KVStoreResultSet的游标起始位置为-1。
+> **说明：**
+>
+> KVStoreResultSet的游标起始位置为-1。
 
 ### getCount
 
@@ -4865,9 +4865,9 @@ setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback&lt;void&gt;)
 
 设置数据库端端同步允许的默认延时，使用callback异步回调。
 
-**说明：**
-
-设置默认延时后，在调用[sync](#sync)接口之后不会立刻触发端端同步，等待相应的延时时间后执行端端同步。
+> **说明：**
+>
+> 设置默认延时后，调用[sync](#sync)接口不会立即触发端端同步，而是等待指定的延时时间后再执行。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4912,9 +4912,9 @@ setSyncParam(defaultAllowedDelayMs: number): Promise&lt;void&gt;
 
 设置数据库端端同步允许的默认延时，使用Promise异步回调。
 
-**说明：**
-
-设置默认延时后，在调用[sync](#sync)接口之后不会立刻触发端端同步，等待相应的延时时间后执行端端同步。
+> **说明：**
+>
+> 设置默认延时后，调用[sync](#sync)接口不会立即触发端端同步，而是等待指定的延时时间后再执行。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4975,11 +4975,7 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 | --------- | --------------------- | ---- | ---------------------------------------------- |
 | deviceIds | string[]              | 是   | 同一组网环境下，需要同步的设备的networkId列表。 |
 | mode      | [SyncMode](#syncmode) | 是   | 同步模式。                                     |
-| delayMs   | number                | 否   | 可选参数，允许延时时间，单位：ms（毫秒），默认为0。     |
-
-**说明：**
-
-delayMs参数设置后调用sync接口时延时时间以delayMs的时长为准，未设置时以[setSyncParam](#setsyncparam)设置的时长为准。
+| delayMs   | number                | 否   | 可选参数，允许延时时间，单位：ms（毫秒），默认为0。设置delayMs后，调用sync接口时延时时间为delayMs。未设置时以[setSyncParam](#setsyncparam)设置的时长为准。|
 
 **错误码：**
 
@@ -5050,7 +5046,7 @@ export default class EntryAbility extends UIAbility {
 
 sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 
-在手动同步方式下，触发数据库端端同步，此方法为端端同步方法。关于键值型数据库的端端同步方式说明，请见[键值型数据库跨设备数据同步](../../database/data-sync-of-kv-store.md)。
+在手动同步方式下，触发数据库端端同步，此方法为同步方法。关于键值型数据库的端端同步方式说明，请见[键值型数据库跨设备数据同步](../../database/data-sync-of-kv-store.md)。
 > **说明：** 
 >
 > 其中deviceIds为[DeviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo)中的networkId, 通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
@@ -5066,11 +5062,7 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 | deviceIds | string[]              | 是   | 同一组网环境下，需要同步的设备的networkId列表。 |
 | mode      | [SyncMode](#syncmode) | 是   | 同步模式。                                     |
 | query     | [Query](#query)        | 是   | 表示数据库的查询谓词条件                       |
-| delayMs   | number                | 否   | 可选参数，允许延时时间，单位：ms（毫秒），默认为0。     |
-
-**说明：**
-
-delayMs参数设置后调用sync接口时延时时间以delayMs的时长为准，未设置时以[setSyncParam](#setsyncparam)设置的时长为准。
+| delayMs   | number                | 否   | 可选参数，允许延时时间，单位：ms（毫秒），默认为0。设置delayMs后，调用sync接口时延时时间为delayMs。未设置时以[setSyncParam](#setsyncparam)设置的时长为准。|
 
 **错误码：**
 
