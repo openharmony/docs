@@ -196,7 +196,7 @@ removeByIndexes(indexes: Array<number\>): number
 
 |  参数名   |             类型                | 必填 | 说明           |
 |:--------:|:---------------:|:------:| --------------------- |
-| indexes  | Array<number\>  |   是    | 待删除NavDestination页面的索引值数组。   |
+| indexes  | Array<number\>  |   是    | 待删除NavDestination页面的索引值数组。<br/>number类型的取值范围：[0, +∞)。 |
 
 **返回值：**
 
@@ -300,7 +300,7 @@ popToName(name: string, animated?: boolean): number
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 如果栈中存在名为name的NavDestination页面，则返回由栈底开始第一个名为name的NavDestination页面的索引，否则返回-1。 |
+| number | 如果栈中存在名为name的NavDestination页面，则返回由栈底开始第一个名为name的NavDestination页面的索引，否则返回-1。<br/>取值范围：[-1, +∞)。 |
 
 ### popToName
 
@@ -340,7 +340,7 @@ popToIndex(index: number, animated?: boolean): void
 
 |  参数名   |             类型                | 必填 | 说明           |
 |:------------:|:--------:|:------:| ---------------------- |
-|    index     |  number  |   是    | NavDestination页面的位置索引。 |
+|    index     |  number  |   是    | NavDestination页面的位置索引。<br/>取值范围：[0, +∞)。 |
 |   animated   | boolean  |   否    | 是否支持转场动画，默认值：true。 |
 
 ### popToIndex
@@ -426,7 +426,7 @@ moveIndexToTop(index: number, animated?: boolean): void
 
 |  参数名   |             类型                | 必填 | 说明           |
 |:---------:|:-------:|:------:| ------------------- |
-|   index    | number  |   是    | NavDestination页面的位置索引。 |
+|   index    | number  |   是    | NavDestination页面的位置索引。<br/>取值范围：[0, +∞)。 |
 | animated  | boolean |   否    | 是否支持转场动画，默认值：true。 |
 
 ### clear
@@ -479,7 +479,7 @@ getParamByIndex(index: number): Object | undefined
 
 |  参数名   |             类型                | 必填 | 说明           |
 |:-------:|:--------:|:------:| ---------------------- |
-|  index  |  number  |   是    | NavDestination页面的位置索引。 |
+|  index  |  number  |   是    | NavDestination页面的位置索引。<br/>取值范围：[0, +∞)。 |
 
 **返回值：**
 
@@ -530,7 +530,7 @@ getIndexByName(name: string): Array<number\>
 
 | 类型             | 说明                                |
 | -------------- | --------------------------------- |
-| Array<number\> | 返回全部名为name的NavDestination页面的位置索引。 |
+| Array<number\> | 返回全部名为name的NavDestination页面的位置索引。<br/>number类型的取值范围：[0, +∞)。 |
 
 ### size
 
@@ -546,7 +546,7 @@ size(): number
 
 | 类型     | 说明     |
 | ------ | ------ |
-| number | 返回栈大小。 |
+| number | 返回栈大小。<br/>取值范围：[0, +∞)。 |
 
 ### disableAnimation
 
