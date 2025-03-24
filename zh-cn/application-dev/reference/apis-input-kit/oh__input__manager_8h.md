@@ -69,7 +69,7 @@
 | [Input_TouchEventAction](input.md#input_toucheventaction) { [TOUCH_ACTION_CANCEL](input.md) = 0, [TOUCH_ACTION_DOWN](input.md) = 1, [TOUCH_ACTION_MOVE](input.md) = 2, [TOUCH_ACTION_UP](input.md) = 3 } | 触摸动作的枚举值。  | 
 | [InputEvent_SourceType](input.md#inputevent_sourcetype) { [SOURCE_TYPE_MOUSE](input.md) = 1, [SOURCE_TYPE_TOUCHSCREEN](input.md) = 2, [SOURCE_TYPE_TOUCHPAD](input.md) = 3 } | 输入事件源类型。  | 
 | [Input_KeyboardType](input.md#input_keyboardtype) {<br/>[KEYBOARD_TYPE_NONE](input.md) = 0, [KEYBOARD_TYPE_UNKNOWN](input.md) = 1, [KEYBOARD_TYPE_ALPHABETIC](input.md) = 2, [KEYBOARD_TYPE_DIGITAL](input.md) = 3,<br/>[KEYBOARD_TYPE_STYLUS](input.md) = 4, [KEYBOARD_TYPE_REMOTE_CONTROL](input.md) = 5<br/>} | 输入设备的键盘类型。  | 
-| [Input_Result](input.md#input_result) {<br/>[INPUT_SUCCESS](input.md) = 0, [INPUT_PERMISSION_DENIED](input.md) = 201, [INPUT_NOT_SYSTEM_APPLICATION](input.md) = 202, [INPUT_PARAMETER_ERROR](input.md) = 401, [INPUT_DEVICE_NOT_SUPPORTED](input.md) = 801, [INPUT_SERVICE_EXCEPTION](input.md) = 3800001, [INPUT_REPEAT_INTERCEPTOR](input.md) = 4200001, [INPUT_OCCUPIED_BY_SYSTEM](input.md) = 4200002, [INPUT_OCCUPIED_BY_OTHER](input.md) = 4200003<br/>} | 错误码枚举值。  | 
+| [Input_Result](input.md#input_result) {<br/>[INPUT_SUCCESS](input.md) = 0, [INPUT_PERMISSION_DENIED](input.md) = 201, [INPUT_NOT_SYSTEM_APPLICATION](input.md) = 202, [INPUT_PARAMETER_ERROR](input.md) = 401, [INPUT_DEVICE_NOT_SUPPORTED](input.md) = 801, [INPUT_SERVICE_EXCEPTION](input.md) = 3800001, [INPUT_KEYBOARD_DEVICE_NOT_EXIST](input.md) = 3900002, [INPUT_REPEAT_INTERCEPTOR](input.md) = 4200001, [INPUT_OCCUPIED_BY_SYSTEM](input.md) = 4200002, [INPUT_OCCUPIED_BY_OTHER](input.md) = 4200003<br/>} | 错误码枚举值。  | 
 
 
 ### 函数
@@ -169,10 +169,10 @@
 | [Input_Result](input.md#input_result) [OH_Input_RemoveAxisEventMonitor](input.md#oh_input_removeaxiseventmonitor) ([InputEvent_AxisEventType](input.md#inputevent_axiseventtype) axisEventType, [Input_AxisEventCallback](input.md#input_axiseventcallback) callback) | 移除指定类型轴事件监听，轴事件类型定义在[InputEvent_AxisEventType](input.md#inputevent_axiseventtype)中。  | 
 | [Input_Result](input.md#input_result) [OH_Input_AddKeyEventInterceptor](input.md#oh_input_addkeyeventinterceptor) ([Input_KeyEventCallback](input.md#input_keyeventcallback) callback, [Input_InterceptorOptions](input.md#input_interceptoroptions) \*option) | 添加按键事件的拦截,重复添加只有第一次生效。  | 
 | [Input_Result](input.md#input_result) [OH_Input_AddInputEventInterceptor](input.md#oh_input_addinputeventinterceptor) ([Input_InterceptorEventCallback](_input___interceptor_event_callback.md) \*callback [Input_InterceptorOptions](input.md#input_interceptoroptions) \*option) | 添加输入事件拦截，包括鼠标、触摸和轴事件，重复添加只有第一次生效。  | 
-| [Input_Result](input.md#input_result) [OH_Input_RemoveKeyEventInterceptor](input.md#oh_input_removekeyeventinterceptor) () | 移除按键事件拦截。  | 
-| [Input_Result](input.md#input_result) [OH_Input_RemoveInputEventInterceptor](input.md#oh_input_removeinputeventinterceptor) () | 移除输入事件拦截，包括鼠标、触摸和轴事件。  | 
-| int32_t [OH_Input_GetIntervalSinceLastInput](input.md#oh_input_getintervalsincelastinput) (int64_t \*timeInterval) | 获取距离上次系统输入事件的时间间隔。  | 
-| [Input_Hotkey](input.md#input_hotkey) \* [OH_Input_CreateHotkey](input.md#oh_input_createhotkey) () | 创建快捷键对象的实例。  | 
+| [Input_Result](input.md#input_result) [OH_Input_RemoveKeyEventInterceptor](input.md#oh_input_removekeyeventinterceptor) (void) | 移除按键事件拦截。  | 
+| [Input_Result](input.md#input_result) [OH_Input_RemoveInputEventInterceptor](input.md#oh_input_removeinputeventinterceptor) (void) | 移除输入事件拦截，包括鼠标、触摸和轴事件。  | 
+| [Input_Result](input.md#input_result)  [OH_Input_GetIntervalSinceLastInput](input.md#oh_input_getintervalsincelastinput) (int64_t \*timeInterval) | 获取距离上次系统输入事件的时间间隔。  | 
+| [Input_Hotkey](input.md#input_hotkey) \* [OH_Input_CreateHotkey](input.md#oh_input_createhotkey) (void) | 创建快捷键对象的实例。  | 
 | void [OH_Input_DestroyHotkey](input.md#oh_input_destroyhotkey) ([Input_Hotkey](input.md#input_hotkey) \*\*hotkey) | 销毁快捷键对象的实例。  | 
 | void [OH_Input_SetPreKeys](input.md#oh_input_setprekeys) ([Input_Hotkey](input.md#input_hotkey) \*hotkey, int32_t \*preKeys, int32_t size) | 设置修饰键。  | 
 | [Input_Result](input.md#input_result) [OH_Input_GetPreKeys](input.md#oh_input_getprekeys) (const [Input_Hotkey](input.md#input_hotkey) \*hotkey, int32_t \*\*preKeys, int32_t \*preKeyCount) | 获取修饰键。  | 
