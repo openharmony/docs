@@ -5476,9 +5476,9 @@ try {
 
 on(type: 'rotationChange', callback: RotationChangeCallback&lt;info: RotationChangeInfo, RotationChangeResult | void&gt;): void
 
-开启窗口旋转变化的监听。旋转前回调必须返回[RotationChangeResult](#rotationchangeresult18)，旋转后回调返回空，返回[RotationChangeResult](#rotationchangeresult18)不生效。同一个窗口多次注册同类型回调函数，只生效最新注册的同类型回调函数。系统提供了超时保护机制，若20ms内未返回值，系统将自动返回。全屏模式窗口不支持该操作。
+开启窗口旋转变化的监听。旋转前回调必须返回[RotationChangeResult](#rotationchangeresult18)，旋转后回调返回空，返回[RotationChangeResult](#rotationchangeresult18)不生效。主窗口返回值不生效。同一个窗口多次注册同类型回调函数，只生效最新注册的同类型回调函数返回值。系统提供了超时保护机制，若20ms内窗口未返回[RotationChangeResult](#rotationchangeresult18)，系统不处理该返回值。
 
-不支持2in1设备。
+<!--RP9-->2in1设备上调用不生效。<!--RP9End-->
 
 系统窗口存在大小限制，宽度范围：(0, 1920]，高度范围：(0, 1920]，单位为vp。
 
@@ -5516,15 +5516,15 @@ function calculateRect(info: RotationChangeInfo) : Rect {
     return rect;
 }
 
-const callback：RotationChangeCallback = (info: RotationChangeInfo, result?: RotationChangeResult) =>  void {
+const callback：RotationChangeCallback = (info: RotationChangeInfo) =>  RotationChangeResult | void {
     if (info.type === RotationChangeType.WINDOW_WILL_ROTATE) {
-        if (!result) {
-            return;
-        }
+        RotationChangeResult result;
         result.rectType = RectType.RELATIVE_TO_SCREEN;
         result.windowRect = calculateRect(info);
+        return result;
     } else {
         // do something after rotate
+        return;
     }
 }
 
