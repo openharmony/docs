@@ -109,6 +109,9 @@ async function setListener() {
     // The LRC contains two types of elements: time tag + lyrics, and ID tag.
     // Example: [00:25.44]xxx\r\n[00:26.44]xxx\r\n
     lyric: "Lyrics in LRC format",
+    // The singleLyricText field stores a single line of lyric text without timestamps.
+    // Example: "Content of a single lyric line"
+    singleLyricText: "Content of a single lyric line",
   };
   session.setAVMetadata(metadata).then(() => {
     console.info(`SetAVMetadata successfully`);
@@ -543,14 +546,14 @@ Currently, the system does not provide APIs for listening for multimodal key eve
   Register the [HandleMediaKeyEvent](../../reference/apis-avsession-kit/js-apis-avsession.md#onhandlekeyevent10) callback through AVSession. The callback directly forwards the [KeyEvent](../../reference/apis-input-kit/js-apis-keyevent.md). The application is required to identify the type of the key event and implement the corresponding functionalities. Currently, the following key events can be forwarded:
   | Key Type ([KeyCode](../../reference/apis-input-kit/js-apis-keycode.md#keycode))| Description  |
   | ------  | -------------------------|
-  | KEYCODE_MEDIA_PLAY_PAUSE    | Play/Pause key. |
-  | KEYCODE_MEDIA_STOP    | Stop key. |
-  | KEYCODE_MEDIA_NEXT    | Next key. |
-  | KEYCODE_MEDIA_PREVIOUS    | Previous key. |
-  | KEYCODE_MEDIA_REWIND    | Rewind key. |
-  | KEYCODE_MEDIA_FAST_FORWARD    | Fast forward key. |
-  | KEYCODE_MEDIA_PLAY    | Play key. |
-  | KEYCODE_MEDIA_PAUSE   | Pause key. |
+  | KEYCODE_MEDIA_PLAY_PAUSE    | Play/Pause key.|
+  | KEYCODE_MEDIA_STOP    | Stop key.|
+  | KEYCODE_MEDIA_NEXT    | Next key.|
+  | KEYCODE_MEDIA_PREVIOUS    | Previous key.|
+  | KEYCODE_MEDIA_REWIND    | Rewind key.|
+  | KEYCODE_MEDIA_FAST_FORWARD    | 	Fast forward key.|
+  | KEYCODE_MEDIA_PLAY    | Play key.|
+  | KEYCODE_MEDIA_PAUSE   | Pause key.|
 
   ```ts
   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
