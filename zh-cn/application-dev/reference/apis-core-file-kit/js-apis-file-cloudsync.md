@@ -19,8 +19,6 @@ import { cloudSync } from '@kit.CoreFileKit';
 >
 > 以下同步状态发生变更时，如果应用注册了同步过程事件监听，则通过回调通知应用。
 
-### 属性
-
 **系统能力**： SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 | 名称 |  值|  说明 |
@@ -40,8 +38,6 @@ import { cloudSync } from '@kit.CoreFileKit';
 - 同步过程中，非充电场景下，电量低于10%，完成当前批上行同步后停止同步，返回低电量；
 - 触发同步时，非充电场景下，若电量低于10%，则不允许同步，start接口返回对应错误。
 - 上行时，若云端空间不足，则文件上行失败，云端无该文件记录。
-
-### 属性
 
 **系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -66,14 +62,12 @@ import { cloudSync } from '@kit.CoreFileKit';
 
 | 名称     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| state | [SyncState12](#syncstate12) | 是   | 枚举值，端云同步状态。|
-| error | [ErrorType12](#errortype12) | 是   | 枚举值，同步失败错误类型。|
+| state | [SyncState](#syncstate12) | 是   | 枚举值，端云同步状态。|
+| error | [ErrorType](#errortype12) | 是   | 枚举值，同步失败错误类型。|
 
 ## State<sup>11+</sup>
 
 云文件下载状态，为枚举类型。
-
-### 属性
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -104,13 +98,13 @@ import { cloudSync } from '@kit.CoreFileKit';
 
 云盘同步对象，用于支撑文件管理器应用完成云盘文件的端云同步流程。在使用前，需要先创建FileSync实例。
 
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
 ### constructor<sup>12+</sup>
 
 constructor()
 
 端云同步流程的构造函数，用于获取FileSync类的实例。
-
-#### 属性
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -134,8 +128,6 @@ constructor()
 on(event: 'progress', callback: Callback\<SyncProgress>): void
 
 添加同步过程事件监听。
-
-#### 属性
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -173,8 +165,6 @@ on(event: 'progress', callback: Callback\<SyncProgress>): void
 off(event: 'progress', callback?: Callback\<SyncProgress>): void
 
 移除同步过程事件监听。
-
-#### 属性
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -215,8 +205,6 @@ off(event: 'progress', callback?: Callback\<SyncProgress>): void
 start(): Promise&lt;void&gt;
 
 异步方法启动云盘端云同步,以Promise形式返回结果。
-
-#### 属性
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -265,8 +253,6 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 异步方法启动云盘端云同步,以callback形式返回结果。
 
-#### 属性
-
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 **参数：**
@@ -312,8 +298,6 @@ stop(): Promise&lt;void&gt;
 
 调用stop接口，同步流程会停止。再次调用[start](#start12)接口会继续同步。
 
-#### 属性
-
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 **返回值：**
@@ -353,8 +337,6 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 异步方法停止云盘端云同步,以callback形式返回结果。
 
 调用stop接口，同步流程会停止。再次调用[start](#start12)接口会继续同步。
-
-#### 属性
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -396,8 +378,6 @@ getLastSyncTime(): Promise&lt;number&gt;
 
 异步方法获取上次同步时间, 以promise形式返回结果。
 
-#### 属性
-
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 **返回值：**
@@ -438,8 +418,6 @@ getLastSyncTime(callback: AsyncCallback&lt;number&gt;): void
 
 异步方法获取上次同步时间, 以callback形式返回结果。
 
-#### 属性
-
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 **参数：**
@@ -479,8 +457,6 @@ getLastSyncTime(callback: AsyncCallback&lt;number&gt;): void
 
 云盘文件缓存对象，用来支撑文件管理应用原文件下载流程。
 
-#### 属性
-
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 ### construct<sup>11+</sup>
@@ -488,8 +464,6 @@ getLastSyncTime(callback: AsyncCallback&lt;number&gt;): void
 constructor()
 
 云盘文件缓存流程的构造函数，用于获取CloudFileCache类的实例。
-
-#### 属性
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -510,8 +484,6 @@ constructor()
 on(event: 'progress', callback: Callback\<DownloadProgress>): void
 
 添加云盘文件缓存过程事件监听。
-
-#### 属性
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -553,8 +525,6 @@ on(event: 'progress', callback: Callback\<DownloadProgress>): void
 off(event: 'progress', callback?: Callback\<DownloadProgress>): void
 
 移除云盘文件缓存过程事件监听。
-
-#### 属性
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -598,8 +568,6 @@ off(event: 'progress', callback?: Callback\<DownloadProgress>): void
 start(uri: string): Promise&lt;void&gt;
 
 异步方法启动云盘文件缓存，以Promise形式返回结果。
-
-#### 属性
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -658,8 +626,6 @@ start(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 异步方法启动云盘文件缓存，以callback形式返回结果。
 
-#### 属性
-
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 **参数：**
@@ -706,8 +672,6 @@ stop(uri: string, needClean?: boolean): Promise&lt;void&gt;
 异步方法停止云盘文件缓存，以Promise形式返回结果。
 
 调用stop接口，当前文件下载流程会终止，缓存文件会被删除，再次调用start接口会重新开始下载。
-
-#### 属性
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -759,8 +723,6 @@ stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 调用stop接口，当前文件下载流程会终止，缓存文件会被删除，再次调用start接口会重新开始下载。
 
-#### 属性
-
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 **参数：**
@@ -803,8 +765,6 @@ stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 端云下载错误类型，为枚举类型。
 
-### 属性
-
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 | 名称 |  值|  说明 |
@@ -821,8 +781,6 @@ stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
 registerChange(uri: string, recursion: boolean, callback: Callback&lt;ChangeData&gt;): void
 
 订阅监听指定文件的变化通知。
-
-### 属性
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -871,8 +829,6 @@ unregisterChange(uri: string): void
 
 取消订阅监听指定文件的变化通知。
 
-### 属性
-
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 **参数：**
@@ -916,8 +872,6 @@ unregisterChange(uri: string): void
 
 数据变更通知类型。
 
-### 属性
-
 **系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 | 名称 |  值|  说明 |
@@ -930,8 +884,6 @@ unregisterChange(uri: string): void
 ## ChangeData<sup>12+</sup>
 
 定义变更数据。
-
-### 属性
 
 **系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
