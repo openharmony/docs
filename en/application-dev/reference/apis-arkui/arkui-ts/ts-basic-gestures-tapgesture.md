@@ -44,9 +44,11 @@ TapGesture(value?: TapGestureParameters)
 | Name| Type   |Description                                       |
 | ----  | ------  | ---------------------------------------- |
 | tag<sup>11+</sup>   | string  | Tag for the tap gesture. It is used to distinguish the gesture during custom gesture judgment.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| allowedTypes<sup>14+</sup> | Array\<[SourceTool](ts-gesture-settings.md#sourcetool)> | Allowed event input types for the tap gesture.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| allowedTypes<sup>14+</sup> | Array\<[SourceTool](ts-gesture-settings.md#sourcetool9)> | Allowed event input types for the tap gesture.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 
 ## Example
+
+This example demonstrates the recognition of a double-tap gesture using **TapGesture**.
 
 ```ts
 // xxx.ets

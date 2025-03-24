@@ -24,7 +24,7 @@ The following lifecycle callbacks are provided for a custom component decorated 
 
 - [aboutToAppear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear): Invoked when the custom component is about to appear. Specifically, it is invoked after a new instance of the custom component is created and before its **build** function is executed.
 
-- [onDidBuild](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#ondidbuild12): Invoked after the **build()** function of the custom component is executed. Do not change state variables or use functions (such as **animateTo**) in **onDidBuild**. Otherwise, unstable UI performance may result.
+- [onDidBuild](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#ondidbuild12): This API is called back after **build()** of the component is executed. In this phase, you can report tracking data without affecting the actual UI functions. Do not change state variables or use functions (such as **animateTo**) in **onDidBuild**. Otherwise, unstable UI performance may result.
 
 - [aboutToDisappear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear): Invoked when the custom component is about to be destroyed. Do not change state variables in the **aboutToDisappear** function as doing this can cause unexpected errors. For example, the modification of the **@Link** decorated variable may cause unstable application running.
 
@@ -66,13 +66,7 @@ Re-rending of a custom component is triggered when its state variable is changed
 A custom component is deleted when the branch of the **if** statement or the number of arrays in **ForEach** changes.
 
 
-1. Before the component is deleted, the **aboutToDisappear** callback is invoked to mark the component for deletion. The component deletion mechanism of ArkUI is as follows:
-
-   (1) The backend component is directly removed from the component tree and destroyed.
-
-   (2) The reference to the destroyed component is released from the frontend components.
-
-   (3) The JS Engine garbage collects the destroyed component.
+1. Before the component is deleted, the **aboutToDisappear** callback is invoked to mark the component for deletion. The component deletion mechanism of ArkUI is as follows:<br>(1) The backend component is directly removed from the component tree and destroyed.<br>(2) The reference to the destroyed component is released from the frontend components.<br>(3) The JS Engine garbage collects the destroyed component.
 
 2. The custom component and all its variables are deleted. Any variables linked to this component, such as [@Link](arkts-link.md), [@Prop](arkts-prop.md), or [@StorageLink](arkts-appstorage.md#storagelink) decorated variables, are unregistered from their [synchronization sources](arkts-state-management-overview.md#basic-concepts).
 
@@ -82,6 +76,8 @@ Use of **async await** is not recommended inside the **aboutToDisappear** callba
 
 The following example shows when the lifecycle callbacks are invoked:
 
+
+
 ```ts
 // Index.ets
 import { router } from '@kit.ArkUI';
@@ -90,12 +86,13 @@ import { router } from '@kit.ArkUI';
 @Component
 struct MyComponent {
   @State showChild: boolean = true;
-  @State btnColor:string = "#FF007DFF";
+  @State btnColor: string = "#FF007DFF";
 
   // Only components decorated by @Entry can call the lifecycle callbacks of a page.
   onPageShow() {
     console.info('Index onPageShow');
   }
+
   // Only components decorated by @Entry can call the lifecycle callbacks of a page.
   onPageHide() {
     console.info('Index onPageHide');
@@ -104,8 +101,8 @@ struct MyComponent {
   // Only components decorated by @Entry can call the lifecycle callbacks of a page.
   onBackPress() {
     console.info('Index onBackPress');
-    this.btnColor ="#FFEE0606";
-    return true // The value true means that the page executes its own return logic instead of the , and false (default) means that the default return logic is used.
+    this.btnColor = "#FFEE0606";
+    return true // The value true means that the page executes its own return logic, and false means that the default return logic is used.
   }
 
   // Component lifecycle
@@ -129,17 +126,17 @@ struct MyComponent {
       if (this.showChild) {
         Child()
       }
-      // When this.showChild is false, delete the Child child component and invoke Child aboutToDisappear.
       Button('delete Child')
         .margin(20)
         .backgroundColor(this.btnColor)
         .onClick(() => {
+        // When this.showChild is false, delete the Child child component and invoke Child aboutToDisappear.
         this.showChild = false;
       })
-      // Push to the page and execute onPageHide.
+      // Push to Page and execute onPageHide.
       Button('push to next page')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/page' });
+          router.pushUrl({ url: 'pages/Page' });
         })
     }
   }
@@ -174,26 +171,30 @@ struct Child {
 }
 ```
 ```ts
-// page.ets
+// Page.ets
 @Entry
 @Component
-struct page {
+struct Page {
   @State textColor: Color = Color.Black;
   @State num: number = 0;
 
+  // Only components decorated by @Entry can call the lifecycle callbacks of a page.
   onPageShow() {
     this.num = 5;
   }
 
+  // Only components decorated by @Entry can call the lifecycle callbacks of a page.
   onPageHide() {
-    console.log("page onPageHide");
+    console.log("Page onPageHide");
   }
 
+  // Only components decorated by @Entry can call the lifecycle callbacks of a page.
   onBackPress() { // If the value is not set, false is used.
     this.textColor = Color.Grey;
     this.num = 0;
   }
 
+  // Component lifecycle
   aboutToAppear() {
     this.textColor = Color.Blue;
   }
@@ -217,21 +218,21 @@ struct page {
 In the preceding example, the **Index** page contains two custom components. One is **MyComponent** decorated with \@Entry, which is also the entry component (root node) of the page. The other is **Child**, which is a child component of **MyComponent**. Only components decorated by \@Entry can call the page lifecycle callbacks. Therefore, the lifecycle callbacks of the **Index** page – **onPageShow**, **onPageHide**, and **onBackPress**, are declared in **MyComponent**. In **MyComponent** and its child components, component lifecycle callbacks – **aboutToAppear**, **onDidBuild**, and **aboutToDisappear** – are also declared.
 
 
-- The initialization process of application cold start is as follows: MyComponent aboutToAppear -> MyComponent build -> MyComponent onDidBuild -> Child aboutToAppear -> Child build -> Child onDidBuild -> Index onPageShow
+- The initialization process of application cold start is as follows: **MyComponent aboutToAppear** -> **MyComponent build** -> **MyComponent onDidBuild** -> **Child aboutToAppear** -> **Child build** -> **Child onDidBuild** -> **Index onPageShow**
 
 - When **delete Child** is clicked, the value of **this.showChild** linked to **if** changes to **false**. As a result, the **Child** component is deleted, and the **Child aboutToDisappear** callback is invoked.
 
 
 - When **push to next page** is clicked, the **router.pushUrl** API is called to jump to the next page. As a result, the **Index** page is hidden, and the **Index onPageHide** callback is invoked. As the called API is **router.pushUrl**, which results in the Index page being hidden, but not destroyed, only the **onPageHide** callback is invoked. After a new page is displayed, the process of initializing the lifecycle of the new page is executed.
 
-- If **router.replaceUrl** is called, the **Index** page is destroyed. In this case, the execution of lifecycle callbacks changes to: Index onPageHide -> MyComponent aboutToDisappear -> Child aboutToDisappear. As aforementioned, a component is destroyed by directly removing it from the component tree. Therefore, **aboutToDisappear** of the parent component is called first, followed by **aboutToDisappear** of the child component, and then the process of initializing the lifecycle of the new page is executed.
+- If **router.replaceUrl** is called, the current index page is destroyed. As mentioned above, the component destruction is to detach the subtree from the component tree. Therefore, the executed lifecycle process is changed to the initialization lifecycle process of the new page and then execute **Index onPageHide** -> **MyComponent aboutToDisappear** -> **Child aboutToDisappear**.
 
 - When the **Back** button is clicked, the **Index onBackPress** callback is invoked, and the current **Index** page is destroyed.
 
 - When the application is minimized or switched to the background, the **Index onPageHide** callback is invoked. As the current **Index** page is not destroyed, **aboutToDisappear** of the component is not executed. When the application returns to the foreground, the **Index onPageShow** callback is invoked.
 
 
-- When the application exits, the following callbacks are executed in order: Index onPageHide -> MyComponent aboutToDisappear -> Child aboutToDisappear.
+- When the application exits, the following callbacks are executed in order: **Index onPageHide** -> **MyComponent aboutToDisappear** -> **Child aboutToDisappear**.
 
 ## Custom Component's Listening for Page Changes
 

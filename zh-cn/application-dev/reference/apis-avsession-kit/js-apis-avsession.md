@@ -5116,7 +5116,7 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 | lyricUri     | string                  | 否   | 播放列表媒体歌词URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
 | artist     | string                  | 否   | 播放列表媒体专辑作者。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
 | fdSrc     | media.AVFileDescriptor        | 否   | 播放列表媒体本地文件的句柄。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| dataSrc<sup>12+</sup>     | media.AVDataSrcDescriptor        | 否   | 播放列表数据源描述。         |
+| dataSrc<sup>12+</sup>     | media.AVDataSrcDescriptor        | 否   | 播放列表数据源描述。当前版本暂不可用。        |
 | drmScheme<sup>12+</sup>     | string        | 否   | 播放列表媒体支持的DRM方案，由uuid表示。       |
 | duration     | number                  | 否   | 播放列表媒体播放时长。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
 | startPosition     | number                  | 否   | 播放列表媒体起始播放位置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
@@ -8069,6 +8069,7 @@ select(options?: AVCastPickerOptions): Promise\<void>
 **示例：**
 
 ```ts
+import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function avCastPicker(context: common.Context) {
@@ -8112,11 +8113,15 @@ on(type: 'pickerStateChange', callback: Callback<AVCastPickerState\>) : void
 **示例：**
 
 ```ts
+import { common } from '@kit.AbilityKit';
 import { AVCastPickerState } from '@kit.AVSessionKit';
 
-avCastPicker.on('pickerStateChange', (state: AVCastPickerState) => {
-  console.info(`picker state change : ${state}`);
-});
+async function onPickerStateChange(context: common.Context) {
+  let avCastPicker = new avSession.AVCastPickerHelper(context);
+  avCastPicker.on('pickerStateChange', (state: AVCastPickerState) => {
+    console.info(`picker state change : ${state}`);
+  });
+}
 ```
 
 ### off('pickerStateChange')<sup>14+</sup>
@@ -8148,7 +8153,12 @@ off(type: 'pickerStateChange', callback?: Callback<AVCastPickerState\>) : void
 **示例：**
 
 ```ts
-avCastPicker.off('pickerStateChange');
+import { common } from '@kit.AbilityKit';
+
+async function onPickerStateChange(context: common.Context) {
+  let avCastPicker = new avSession.AVCastPickerHelper(context);
+  avCastPicker.off('pickerStateChange');
+}
 ```
 
 ## AVSessionErrorCode<sup>10+</sup>

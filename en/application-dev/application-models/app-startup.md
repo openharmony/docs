@@ -3,11 +3,11 @@
 
 ## Overview
 
-During application initialization, a series of startup tasks are triggered. If these tasks are concentratedly placed within the [onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) lifecycle of the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) of the application's main module ([module](../quick-start/application-package-overview.md#module-types) of the entry type), they must be executed sequentially on the main thread, which significantly affects the application launch speed. In addition, when there are too many tasks, complex dependencies between them make the code difficult to maintain.
+During application launch, a series of startup tasks are often required. If all these tasks are placed within the [onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) lifecycle of the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) in the application's main module ([module](../quick-start/application-package-overview.md#module-types) of the entry type), they can only be executed sequentially on the main thread, which significantly affects the application launch speed. In addition, when there are too many tasks, complex dependencies between them make the code difficult to maintain.
 
-AppStartup offers an efficient approach to application initialization. By enabling the asynchronous initiation of startup tasks, it ensures a smoother startup process. The centralized configuration of task execution order and interdependencies in a single file simplifies and clarifies the startup codebase, enhancing maintainability.
+AppStartup offers an efficient approach to application launch. By supporting asynchronous initiation of startup tasks, it ensures a smoother startup process. The centralized configuration of execution order and dependencies of multiple startup tasks in a single file simplifies and clarifies the startup codebase, enhancing maintainability.
 
-AppStartup supports startup tasks in automatic or manual mode. By default, the automatic mode is used. During the creation of an [AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md), the configured startup tasks are loaded and executed in automatic mode. You can also call [startupManager.run](../reference/apis-ability-kit/js-apis-app-appstartup-startupManager.md#startupmanagerrun) to execute the startup tasks in manual mode after a UIAbility is created.
+AppStartup supports startup tasks in automatic or manual mode. By default, automatic mode is used. During the creation of an [AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md), the configured startup tasks are loaded and executed in automatic mode. You can also call [startupManager.run](../reference/apis-ability-kit/js-apis-app-appstartup-startupManager.md#startupmanagerrun) to execute the startup tasks in manual mode after a UIAbility is created.
 
 **Figure 1** Startup procedure
 
@@ -21,7 +21,7 @@ AppStartup supports startup tasks in automatic or manual mode. By default, the a
 
 ## Development Process
 
-1. [Defining an AppStartup Configuration File](#defining-an-appstartup-configuration-file): Create an AppStartup configuration file in the resource file directory, add the configuration about startup tasks, and reference the configuration file in [module.json5](../quick-start/module-configuration-file.md).
+1. [Defining an AppStartup Configuration File](#defining-an-appstartup-configuration-file): Create an AppStartup configuration file in the resource file directory, add the configuration about startup tasks, and reference this configuration file in [module.json5](../quick-start/module-configuration-file.md).
 2. [Setting Startup Parameters](#setting-startup-parameters): In the startup parameter file, set parameters such as the timeout interval and startup task listener.
 3. [Adding a Startup Task for Each Component to Be Initialized](#adding-a-startup-task-for-each-component-to-be-initialized): Implement the [StartupTask](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md) interface.
 
@@ -29,7 +29,7 @@ AppStartup supports startup tasks in automatic or manual mode. By default, the a
 
 ### Defining an AppStartup Configuration File
 
-1. Create a AppStartup configuration file in the **resources/base/profile** directory of the application's main module ([module](../quick-start/application-package-overview.md#module-types) of the entry type). The file name can be customized. The following uses **startup_config.json** as an example.
+1. Create an AppStartup configuration file in the **resources/base/profile** directory of the application's main module ([module](../quick-start/application-package-overview.md#module-types) of the entry type). The file name can be customized. The following uses **startup_config.json** as an example.
 
 2. In the **startup_config.json** file, add the configuration for each startup task in sequence.
 
@@ -109,22 +109,22 @@ AppStartup supports startup tasks in automatic or manual mode. By default, the a
     
         **Table 1** Fields in the startup_config.json file
 
-        | Field| Description| Data Type| Default Value Allowed|
+        | Field| Description| Data Type| Optional|
         | -------- | -------- | -------- | -------- |
-        | startupTasks | Configuration about the startup tasks. For details, see the following table.| Object array| No|
-        | configEntry | Path of the startup parameter file.| String| No|
+        | startupTasks | Configuration about the startup tasks. For details, see the following table.| Object array| Mandatory|
+        | configEntry | Path of the startup parameter file.| String| Mandatory|
         
         
         **Table 2** Description of startupTasks
 
-        | Field| Description| Data Type| Default Value Allowed|
+        | Field| Description| Data Type| Optional|
         | -------- | -------- | -------- | -------- |
-        | name | Class name of the startup task.| String| No|
-        | srcEntry | Path of the file corresponding to the startup task.| String| No|
-        | dependencies | Array holding the class names of other startup tasks on which the startup task depends.| Object array| Yes (initial value: left empty)|
-        | excludeFromAutoStart | Whether to exclude the automatic mode. For details, see [Changing the Startup Mode](#optional-changing-the-startup-mode).<br>- **true**: manual mode.<br>- **false**: automatic mode.| Boolean| Yes (initial value: **false**)|
-        | runOnThread | Thread where the startup task is executed.<br>- **mainThread**: executed in the main thread.<br>- **taskPool**: executed in an asynchronous thread.| String| Yes (initial value: **mainThread**)|
-        | waitOnMainThread | Whether the main thread needs to wait until the startup task finishes execution. This parameter is valid only when **runOnThread** is set to **taskPool**.<br>- **true**: The main thread loads the application home page only the startup task finishes execution.<br>- **false**: The main thread does not wait for the startup task to finish execution.| Boolean| Yes (initial value: **true**)|
+        | name | Class name of the startup task.| String| Mandatory|
+        | srcEntry | Path of the file corresponding to the startup task.| String| Mandatory|
+        | dependencies | Array holding the class names of other startup tasks on which this task depends.| Object array| Optional, defaults to an empty array|
+        | excludeFromAutoStart | Whether to exclude automatic mode. For details, see [Changing the Startup Mode](#optional-changing-the-startup-mode).<br>- **true**: manual mode.<br>- **false**: automatic mode.| Boolean| Optional, defaults to **false**|
+        | runOnThread | Thread where the startup task is executed.<br>- **mainThread**: executed in the main thread.<br>- **taskPool**: executed in an asynchronous thread.| String| Optional, defaults to **mainThread**|
+        | waitOnMainThread | Whether the main thread needs to wait until the startup task finishes execution. This parameter is valid only when **runOnThread** is set to **taskPool**.<br>- **true**: The main thread loads the application home page only the startup task finishes execution.<br>- **false**: The main thread does not wait for the startup task to finish execution.| Boolean| Optional, defaults to **true**|
         
 
 3. Add the index of the AppStartup configuration file to the **appStartup** tag in the [module.json5 file](../quick-start/module-configuration-file.md).
@@ -218,8 +218,8 @@ export default class StartupTask_001 extends StartupTask {
 
 AppStartup provides automatic and manual mode. By default, the automatic mode is used. However, you can change the mode to manual as required.
 
-- Automatic mode: After an AbilityStage is created, the startup task is automatically executed.
-- Manual mode: After a UIAbility is created, you need to manually call the API to execute the startup task. Modules that are infrequently used do not need to be initialized when the application is started. You can change the startup mode of these modules to manual. After the application is started, you can call [startupManager.run](../reference/apis-ability-kit/js-apis-app-appstartup-startupManager.md#startupmanagerrun) to execute the startup task.
+- Automatic mode: After an AbilityStage is created, startup tasks are automatically executed.
+- Manual mode: After a UIAbility is created, you need to manually call the API to execute the startup task. Modules that are infrequently used do not need to be initialized when the application is launched. You can change the startup mode of these modules to manual. After the application is started, you can call [startupManager.run](../reference/apis-ability-kit/js-apis-app-appstartup-startupManager.md#startupmanagerrun) to execute the startup task.
 
 The following uses the **onCreate** lifecycle of the UIAbility as an example to describe how to manually trigger a startup task. The sample code is as follows:
 
@@ -231,13 +231,13 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    let startParams = ['StartupTask_005', 'StartupTask_006'];
+    let startParams = ["StartupTask_005", "StartupTask_006"];
     try {
       startupManager.run(startParams).then(() => {
         console.log('StartupTest startupManager run then, startParams = ');
       }).catch((error: BusinessError) => {
-        console.info("StartupTest promise catch error, error = " + JSON.stringify(error));
-        console.info("StartupTest promise catch error, startParams = "
+        console.info('StartupTest promise catch error, error = ' + JSON.stringify(error));
+        console.info('StartupTest promise catch error, startParams = '
           + JSON.stringify(startParams));
       })
     } catch (error) {
@@ -261,7 +261,7 @@ import { startupManager } from '@kit.AbilityKit';
 @Component
 struct Index {
   @State message: string = 'Manual Mode'
-  @State startParams: Array<string> = ['StartupTask_006'];
+  @State startParams: Array<string> = ["StartupTask_006"];
 
   build() {
     RelativeContainer() {
@@ -284,4 +284,4 @@ struct Index {
   }
 }
 ```
-
+   

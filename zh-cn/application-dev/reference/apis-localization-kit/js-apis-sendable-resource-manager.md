@@ -40,7 +40,7 @@ resourceToSendableResource(resource: Resource): SendableResource
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: <br>1.Incorrect parameter types; <br>2.Parameter verification failed.                 |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.                 |
 
 **示例：** 
   ```js
@@ -82,7 +82,7 @@ sendableResourceToResource(sendableResource: SendableResource): Resource
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: <br>1.Incorrect parameter types; <br>2.Parameter verification failed.                 |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.                 |
 
 **示例：** 
   ```js
@@ -102,7 +102,7 @@ try {
 
 表示的Resource资源信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
 
@@ -122,4 +122,4 @@ type SendableResource = _SendableResource
 
 | 类型         | 说明     |
 | ---------- | ------ | 
-| [_SendableResource](sendableResource.md#sendableresource-1)|表示的SendableResource资源信息。|
+| [_SendableResource](js-apis-sendableResource.md#sendableresource-1)|表示的SendableResource资源信息。|

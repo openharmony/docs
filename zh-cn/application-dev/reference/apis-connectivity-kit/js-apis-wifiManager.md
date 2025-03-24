@@ -612,7 +612,7 @@ addCandidateConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&g
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | config | [WifiDeviceConfig](#wifideviceconfig9) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
-| callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。当操作成功时，err为0，data为添加的网络配置ID，如果data值为-1，表示添加失败。如果操作出现错误，err为非0值。 |
+| callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。err为0时：操作成功，data为添加的网络配置ID，如果data值为-1，表示添加失败。<br /> err为非0值时：操作出现错误。 |
 
 **错误码：**
 
@@ -828,7 +828,7 @@ connectToCandidateConfig(networkId: number): void
 	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
-		let networkId = 0; // 实际的候选网络ID，在添加候选网络时生成，取自WifiDeviceConfig.netId
+		let networkId = 0; // 实际的候选网络ID，在添加候选网络时生成
 		wifiManager.connectToCandidateConfig(networkId);
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
@@ -984,8 +984,8 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 | maxSupportedTxLinkSpeed<sup>10+</sup> | number | 是 | 否 | 当前支持的最大上行速率，单位Mbps/s。 |
 | maxSupportedRxLinkSpeed<sup>10+</sup> | number | 是 | 否 | 当前支持的最大下行速率，单位Mbps/s。 |
 | frequency | number | 是 | 否 | WLAN接入点的频率。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| isHidden | boolean | 是 | 否 | WLAN接入点是否是隐藏网络。 |
-| isRestricted | boolean | 是 | 否 | WLAN接入点是否限制数据量。 |
+| isHidden | boolean | 是 | 否 | WLAN接入点是否是隐藏网络, true:是隐藏网络，false:不是隐藏网络。 |
+| isRestricted | boolean | 是 | 否 | WLAN接入点是否限制数据量，true: 限制，false:不限制。 |
 | macType | number | 是 | 否 | MAC地址类型。0 - 随机MAC地址，1 - 设备MAC地址。 |
 | macAddress | string | 是 | 否 | 设备的MAC地址。 |
 | ipAddress | number | 是 | 否 | WLAN连接的IP地址(wifi连接信息和关于本机里的状态信息可以查看)。|
@@ -1298,7 +1298,6 @@ isBandTypeSupported(bandType: WifiBandType): boolean
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 | 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -1413,7 +1412,7 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed. |
+| 2801000  | P2P module error. |
 | 2801001  | Wi-Fi STA disabled. |
 
 **示例：**
@@ -1443,7 +1442,7 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | connectState | [P2pConnectState](#p2pconnectstate9) | 是 | 否 | P2P连接状态。 |
-| isGroupOwner | boolean | 是 | 否 | 是否为GO。 |
+| isGroupOwner | boolean | 是 | 否 | true:是GO，false:不是GO。|
 | groupOwnerAddr | string | 是 | 否 | 群组IP地址。| 
 
 
@@ -1512,7 +1511,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed. |
+| 2801000  | P2P module error. |
 
 **示例：**
 ```ts
@@ -1585,14 +1584,14 @@ API 10起：ohos.permission.GET_WIFI_INFO
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed. |
+| 2801000  | P2P module error. |
 | 2801001  | Wi-Fi STA disabled. |
 
 **示例：**
 ```ts
 	import { wifiManager } from '@kit.ConnectivityKit';
 	// p2p发现阶段完成，才能正常获取到对端设备列表信息
-	wifiManager.getP2pPeerDevices((err, data:wifiManager.WifiP2pDevice) => {
+	wifiManager.getP2pPeerDevices((err, data:wifiManager.WifiP2pDevice[]) => {
     if (err) {
         console.error("get P2P peer devices error");
         return;
@@ -1688,7 +1687,7 @@ API 11起：ohos.permission.GET_WIFI_INFO
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed. |
+| 2801000  | P2P module error. |
 | 2801001  | Wi-Fi STA disabled. |
 
 **示例：**
@@ -1869,7 +1868,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
   
   let recvP2pPeerDeviceChangeFunc = (result:wifiManager.WifiP2pDevice[]) => {
       console.info("p2p peer device change receive event: " + JSON.stringify(result));
-      wifiManager.getP2pPeerDevices((err, data:wifiManager.WifiP2pDevice) => {
+      wifiManager.getP2pPeerDevices((err, data:wifiManager.WifiP2pDevice[]) => {
           if (err) {
               console.error('failed to get peer devices: ' + JSON.stringify(err));
               return;
@@ -2386,6 +2385,7 @@ on(type: 'hotspotStateChange', callback: Callback&lt;number&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 | 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
 | 2601000  | Operation failed. |
@@ -2414,6 +2414,7 @@ off(type: 'hotspotStateChange', callback?: Callback&lt;number&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 | 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
 | 2601000  | Operation failed. |

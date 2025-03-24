@@ -38,13 +38,15 @@ If the minimum duration of the long press gesture is greater than or equal to 50
 
 ## Attributes
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 | Name| Type   |Description                                       |
 | ----  | ------  | ---------------------------------------- |
-| tag<sup>11+</sup>   | string  | Tag for the long press gesture. It is used to distinguish the gesture during custom gesture judgment.|
+| tag<sup>11+</sup>   | string  | Tag for the long press gesture. It is used to distinguish the gesture during custom gesture judgment.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| allowedTypes<sup>14+</sup> | Array\<[SourceTool](ts-gesture-settings.md#sourcetool9)> | Allowed event input types for the long press gesture.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+
 
 ## Example
+
+This example demonstrates the recognition of a long press gesture using **TapGesture**.
 
 ```ts
 // xxx.ets
@@ -80,4 +82,4 @@ struct LongPressGestureExample {
 }
 ```
 
-![en-us_image_0000001257058425](figures/en-us_image_0000001257058425.gif)
+![en-us_image_0000001174264380](figures/en-us_image_0000001174264380.gif)

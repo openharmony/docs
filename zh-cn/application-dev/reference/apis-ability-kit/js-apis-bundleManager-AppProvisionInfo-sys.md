@@ -1,6 +1,6 @@
 # AppProvisionInfo (系统接口)
 
-应用[HarmonyAppProvision配置文件](../../security/app-provision-structure.md)中的信息，可以通过[getAppProvisionInfo](js-apis-bundleManager.md#bundlemanagergetappprovisioninfo10)获取。
+应用[HarmonyAppProvision配置文件](../../security/app-provision-structure.md)中的信息，可以通过[getAppProvisionInfo](./js-apis-bundleManager-sys.md#bundlemanagergetappprovisioninfo10)获取。
 
 > **说明：**
 >
@@ -10,9 +10,9 @@
 
 ## AppProvisionInfo
 
-**系统能力:** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
-**系统接口：**  此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称                      | 类型   | 只读 | 可选 | 说明                 |
 | ------------------------- | ------ | ---- | ---- | -------------------- |
@@ -26,14 +26,14 @@
 | certificate              | string | 是   | 否   | 配置文件中的证书公钥。 |
 | apl                      | string | 是   | 否   | 配置文件中的apl字段，为normal、system_basic和system_core其中之一。 |
 | issuer                      | string | 是   | 否   | 配置文件中的发行者名称。 |
-|appIdentifier<sup>11+</sup>| string         | 是   | 否   | 应用的唯一标识，由云端统一分配。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。            |
+|appIdentifier<sup>11+</sup>| string         | 是   | 否   | 应用的唯一标识，是AppGallery Connect创建应用时分配的APP ID，为云端统一分配的随机字符串。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。            |
 | organization<sup>12+</sup> | string | 是   | 否   | 应用的组织信息。 |
 
 ## Validity
 
-**系统能力:** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
-**系统接口：**  此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称                      | 类型   | 只读 | 可选 | 说明                 |
 | ------------------------- | ------ | ---- | ---- | -------------------- |

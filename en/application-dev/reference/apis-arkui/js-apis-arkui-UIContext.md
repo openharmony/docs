@@ -277,7 +277,7 @@ struct AnimateToExample {
         })
         .onClick(() => {
           this.uiContext?.animateTo({ duration: 0 }, () => {
-            // The value of this.rotateAngle is 90 before the animation. In an animation with a duration of 0, changing the property stops any previous animations for that property and applies the new value immediately.
+            // Modify the property in the animation closure where duration is set to 0. This stops the previous animation and applies the new value.
             this.rotateAngle = 0
           })
         })
@@ -386,7 +386,7 @@ Obtains the context of this ability.
 
 | Type| Description                            |
 | ------ | ------------------------------- |
-| [Context](../../application-models/application-context-stage.md) \| undefined | Context of the ability. The context type depends on the ability type. For example, if this API is called on a page of the UIAbility, the return value type is UIAbilityContext; if this API is called on a page of the ExtensionAbility, the return value type is ExtensionContext. If the ability context does not exist, **undefined** is returned.|
+| [Context](#context12) \| undefined | Context of the ability. The context type depends on the ability type. For example, if this API is called on a page of the UIAbility, the return value type is UIAbilityContext; if this API is called on a page of the ExtensionAbility, the return value type is ExtensionContext. If the ability context does not exist, **undefined** is returned.|
 
 **Example**
 
@@ -477,10 +477,10 @@ uiContext.getAttachedFrameNodeById("TestNode")
 
 getFrameNodeByUniqueId(id: number): FrameNode | null
 
-Obtains a FrameNode on the component tree based on the unique component ID.
-1. If the unique component ID corresponds to a built-in component, the FrameNode corresponding to the component is returned.
-2. If the unique component ID corresponds to a custom component: if the component has rendered content, the FrameNode of the component is returned. The type is __Common__. If the component does not have rendered content, the FrameNode of the first child component is returned.
-3. If the unique component ID does not have a corresponding component, **null** is returned.
+Obtains the entity node, FrameNode, of a component on the component tree using its **uniqueId**. The return value depends on the type of component associated with the **uniqueId**.
+1. If the **uniqueId** corresponds to a built-in component, the associated FrameNode is returned.
+2. If the **uniqueId** corresponds to a custom component: If the component has rendered content, its root node is returned, with the type __Common__; if the component has no rendered content, the FrameNode of its first child component is returned.
+3. If the **uniqueId** does not correspond to any component, **null** is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -496,7 +496,7 @@ Obtains a FrameNode on the component tree based on the unique component ID.
 
 | Type                                      | Description           |
 | ---------------------------------------- | ------------- |
-| [FrameNode](js-apis-arkui-frameNode.md)  \| null | FrameNode (if available) or null node.|
+| [FrameNode](js-apis-arkui-frameNode.md)  \| null | Entity node of the component or **null** if no matching component is found.|
 
 **Example**
 
@@ -1164,14 +1164,13 @@ Obtains the component tree and component attributes.
 
 | Name | Type           | Mandatory| Description                                                        |
 | ------- | --------------- | ---- | ------------------------------------------------------------ |
-| filters | Array\<string\> | No  | List of component attributes used for filtering. Currently, only the following attributes are supported: "id", "src", "content", "editable", "scrollable", "selectable", "focusable", "focused".|
+| filters | Array\<string\> | No  | List of component attributes used for filtering. Currently, only the following values are supported:<br>**"id"**: unique ID of the component.<br>**"src"**: source of the resource.<br>**"content"**: information or data contained in the element, component, or object.<br>**"editable"**: whether the component is editable.<br>**"scrollable"**: whether the component is scrollable.<br>**"selectable"**: whether the component is selectable.<br>**"focusable"**: whether the component is focusable.<br>**"focused"**: whether the component is currently focused.<br>Other values are used only in test scenarios.|
 
 **Return value**
 
 | Type  | Description                              |
 | ------ | ---------------------------------- |
 | string | JSON string of the component tree and component attributes.|
-
 
 **Error codes**
 
@@ -1203,7 +1202,7 @@ Obtains the attributes of the specified component and its child components.
 | ------- | --------------- | ---- | ------------------------------------------------------------ |
 | id      | string          | Yes  | [ID](arkui-ts/ts-universal-attributes-component-id.md) of the target component.|
 | depth   | number          | Yes  | Number of layers of child components. If the value is **0**, the attributes of the specified component and all its child components are obtained. If the value is **1**, only the attributes of the specified component are obtained. If the value is **2**, the attributes of the specified component and its level-1 child components are obtained. The rest can be deduced by analogy.|
-| filters | Array\<string\> | No  | List of component attributes used for filtering. Currently, only the following attributes are supported: "id", "src", "content", "editable", "scrollable", "selectable", "focusable", "focused".|
+| filters | Array\<string\> | No  | List of component attributes used for filtering. Currently, only the following values are supported:<br>**"id"**: unique ID of the component.<br>**"src"**: source of the resource.<br>**"content"**: information or data contained in the element, component, or object.<br>**"editable"**: whether the component is editable.<br>**"scrollable"**: whether the component is scrollable.<br>**"selectable"**: whether the component is selectable.<br>**"focusable"**: whether the component is focusable.<br>**"focused"**: whether the component is currently focused.<br>Other values are used only in test scenarios.|
 
 **Return value**
 
@@ -1741,7 +1740,7 @@ Requests the dynamic sync scene of a component for customizing related frame rat
 
 | Name| Type  | Mandatory| Description                                   |
 | ------ | ------ | ---- | --------------------------------------- |
-| id | string | Yes   | [Component ID](arkui-ts/ts-universal-attributes-component-id.md) of the target node. |
+| id | string | Yes   | [Component ID](arkui-ts/ts-universal-attributes-component-id.md) of the target node.|
 
 **Return value**
 
@@ -1893,7 +1892,7 @@ struct UIContextBindSheet {
 
 updateBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>, sheetOptions: SheetOptions, partialUpdate?: boolean ): Promise&lt;void&gt;
 
-Updates the sheet corresponding to **bindSheetContent**. This API uses a promise to return the result.
+Updates the style of the sheet corresponding to the provided **bindSheetContent**. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -1908,9 +1907,9 @@ Updates the sheet corresponding to **bindSheetContent**. This API uses a promise
 
 | Name    | Type                                      | Mandatory  | Description     |
 | ------- | ---------------------------------------- | ---- | ------- |
-| bindSheetContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | Yes| Content to display on the sheet.|
+| bindSheetContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | Yes| Content displayed on the sheet.|
 | sheetOptions | [SheetOptions](arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions) | Yes   |   Style of the sheet.<br>**NOTE**<br>**SheetOptions.UIContext** and **SheetOptions.mode** cannot be updated.|
-| partialUpdate | boolean | No   |   Whether to update the sheet in incremental mode.<br>Default value: **false**<br>**NOTE**<br>1. **true**: incremental update, where the specified attributes in **SheetOptions** are updated, and other attributes stay at their current value.<br>2. **false**: full update, where all attributes except those specified in **SheetOptions** are restored to default values.|
+| partialUpdate | boolean | No   |   Whether to update the sheet in incremental mode.<br>Default value: **false**<br>**NOTE**<br>1. **true**: incremental update, where the specified properties in **SheetOptions** are updated, and other properties stay at their current value.<br>2. **false**: full update, where all properties except those specified in **SheetOptions** are restored to default values.|
 
 **Return value**
 
@@ -2189,7 +2188,11 @@ uiContext.getMaxFontScale()
 
 bindTabsToScrollable(tabsController: TabsController, scroller: Scroller): void;
 
-Binds a **Tabs** component with a scrollable container, which can be a [List](./arkui-ts/ts-container-list.md), [Scroll](./arkui-ts/ts-container-scroll.md), [Grid](./arkui-ts/ts-container-grid.md), or [WaterFlow](./arkui-ts/ts-container-waterflow.md) component. This way, scrolling the scrollable container triggers the display and hide animations of the tab bar for all **Tabs** components that are bound to it. A **TabsController** instance can be bound with multiple **Scroller** instances, and conversely, a **Scroller** instance can be bound with multiple **TabsController** instances.
+Binds a **Tabs** component with a scrollable container, which can be a [List](./arkui-ts/ts-container-list.md), [Scroll](./arkui-ts/ts-container-scroll.md), [Grid](./arkui-ts/ts-container-grid.md), or [WaterFlow](./arkui-ts/ts-container-waterflow.md) component. This way, scrolling the scrollable container triggers the appearance and disappearance animations of the tab bar for all **Tabs** components that are bound to it. Specifically, the tab bar appears when scrolling up and disappears when scrolling down. A **TabsController** instance can be bound with multiple **Scroller** instances, and conversely, a **Scroller** instance can be bound with multiple **TabsController** instances.
+
+>  **NOTE**
+>
+>  When multiple scrollable containers are bound to the same **Tabs** component, scrolling any of the bound containers will trigger the appearance and disappearance animations of the tab bar. In addition, when any scrollable container reaches the bottom, the tab bar immediately triggers the appearance animation. Therefore, avoid scrolling multiple scrollable containers simultaneously whenever possible.
 
 **Atomic service API**: This API can be used in atomic services since API version 13.
 
@@ -2261,7 +2264,7 @@ struct TabsExample {
         .height('100%')
         .barOverlap (true) // Make the tab bar overlap the TabContent component. This means that when the tab bar is hidden upwards or downwards, the area it occupies will not appear empty.
         .clip (true) // Clip any child components that extend beyond the Tabs component's boundaries, preventing accidental touches on the tab bar when it is hidden.
-      }.tabBar(BottomTabBarStyle.of($r('app.media.startIcon'), 'Scroller linked with TabsControllers'))
+      }.tabBar(BottomTabBarStyle.of($r('app.media.startIcon'), 'Scroller'))
 
       TabContent() {
         Scroll(this.parentScroller) {
@@ -2289,7 +2292,7 @@ struct TabsExample {
         .scrollBar(BarState.Off)
         .scrollable(ScrollDirection.Vertical)
         .edgeEffect(EdgeEffect.Spring)
-      }.tabBar(BottomTabBarStyle.of($r('app.media.startIcon'), 'Nested Scroller linked with TabsController'))
+      }.tabBar(BottomTabBarStyle.of($r('app.media.startIcon'), 'Nested Scroller'))
     }
     .width('100%')
     .height('100%')
@@ -2299,7 +2302,7 @@ struct TabsExample {
 }
 ```
 
-
+![bindTabsToScrollable](figures/bindTabsToScrollable.gif)
 
 ### unbindTabsFromScrollable<sup>13+</sup>
 
@@ -2326,7 +2329,7 @@ See the example for [bindTabsToScrollable](#bindtabstoscrollable13).
 
 bindTabsToNestedScrollable(tabsController: TabsController, parentScroller: Scroller, childScroller: Scroller): void;
 
-Binds a **Tabs** component with a nested scrollable container, which can be a [List](./arkui-ts/ts-container-list.md), [Scroll](./arkui-ts/ts-container-scroll.md), [Grid](./arkui-ts/ts-container-grid.md), or [WaterFlow](./arkui-ts/ts-container-waterflow.md) component. This way, scrolling the parent or child component triggers the display and hide animations of the tab bar for all **Tabs** components that are bound to it. A **TabsController** instance can be bound with multiple nested **Scroller** instances, and conversely, a nested **Scroller** instance can be bound with multiple **TabsController** instances.
+Binds a **Tabs** component with a nested scrollable container, which can be a [List](./arkui-ts/ts-container-list.md), [Scroll](./arkui-ts/ts-container-scroll.md), [Grid](./arkui-ts/ts-container-grid.md), or [WaterFlow](./arkui-ts/ts-container-waterflow.md) component. This way, scrolling the parent or child component triggers the appearance and disappearance animations of the tab bar for all **Tabs** components that are bound to it. Specifically, the tab bar appears when scrolling up and disappears when scrolling down. A **TabsController** instance can be bound with multiple nested **Scroller** instances, and conversely, a nested **Scroller** instance can be bound with multiple **TabsController** instances.
 
 **Atomic service API**: This API can be used in atomic services since API version 13.
 
@@ -2461,6 +2464,20 @@ if(font){
 }
 ```
 
+## Context<sup>12+</sup>
+
+type Context = common.Context
+
+Defines the context of the current ability.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Type|Description  |
+| ------ | ------------------- |
+| [common.Context](../apis-ability-kit/js-apis-app-ability-common.md#context) |Context object associated with the current ability.|
+
 ## ComponentUtils
 
 In the following API examples, you must first use [getComponentUtils()](#getcomponentutils) in **UIContext** to obtain a **ComponentUtils** instance, and then call the APIs using the obtained instance.
@@ -2589,7 +2606,7 @@ observer.on('navDestinationUpdate', (info) => {
 
 off(type: 'navDestinationUpdate', callback?: Callback\<observer.NavDestinationInfo\>): void
 
-Unsubscribes from status changes of this **NavDestination** component.
+Unsubscribes from state changes of this **NavDestination** component.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2644,7 +2661,7 @@ observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
 
 off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback?: Callback\<observer.NavDestinationInfo\>): void
 
-Unsubscribes from state changes of this **NavDestination** component.
+Unsubscribes from state changes of the **NavDestination** component.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2906,7 +2923,7 @@ struct Index {
       Text(this.message)
         .fontSize(24)
         .fontWeight(FontWeight.Bold)
-      Button ('Subscribe to Screen Pixel Density Changes')
+      Button('Subscribe to Screen Pixel Density Changes')
         .onClick(() => {
           this.message = 'Listener registered'
           this.getUIContext().getUIObserver().on('densityUpdate', this.densityUpdateCallback);
@@ -2952,12 +2969,13 @@ struct Index {
       Text(this.message)
         .fontSize(24)
         .fontWeight(FontWeight.Bold)
-      Button ('Subscribe to Screen Pixel Density Changes')
+      Button('Subscribe to Screen Pixel Density Changes')
+        .margin({ bottom: 10 })
         .onClick(() => {
           this.message = 'Listener registered'
           this.getUIContext().getUIObserver().on('densityUpdate', this.densityUpdateCallback);
         })
-      Button ('Unsubscribe from Screen Pixel Density Changes')
+      Button('Unsubscribe from Screen Pixel Density Changes')
         .onClick(() => {
           this.message = 'Listener not registered'
           this.getUIContext().getUIObserver().off('densityUpdate', this.densityUpdateCallback);
@@ -3034,6 +3052,7 @@ struct Index {
   build() {
     Column() {
       Button('Subscribe to Drawing Instruction Dispatch')
+        .margin({ bottom: 10 })
         .onClick(() => {
           this.getUIContext().getUIObserver().on('willDraw', this.willDrawCallback);
         })
@@ -3113,6 +3132,7 @@ struct Index {
   build() {
     Column() {
       Button('Subscribe to Layout Completion')
+        .margin({ bottom: 10 })
         .onClick(() => {
           this.getUIContext().getUIObserver().on('didLayout', this.didLayoutCallback);
         })
@@ -3318,7 +3338,7 @@ For the sample code, see the sample code of the **UIObserver.on('navDestinationS
 
 on(type: 'willClick', callback: GestureEventListenerCallback): void
 
-Subscribes to the dispatch of click event instructions.
+Subscribes to the dispatch of click event instructions. Currently, the screen reader touch exploration mode is not supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3347,7 +3367,7 @@ observer.on('willClick', callback);
 
 off(type: 'willClick', callback?: GestureEventListenerCallback): void
 
-Unsubscribes from the dispatch of click event instructions.
+Unsubscribes from the dispatch of click event instructions. Currently, the screen reader touch exploration mode is not supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3376,7 +3396,7 @@ observer.off('willClick', callback);
 
 on(type: 'didClick', callback: GestureEventListenerCallback): void
 
-Subscribes to the dispatch of click event instructions.
+Subscribes to the dispatch of click event instructions. Currently, the screen reader touch exploration mode is not supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3405,7 +3425,7 @@ observer.on('didClick', callback);
 
 off(type: 'didClick', callback?: GestureEventListenerCallback): void
 
-Unsubscribes from the dispatch of click event instructions.
+Unsubscribes from the dispatch of click event instructions. Currently, the screen reader touch exploration mode is not supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3434,7 +3454,7 @@ observer.off('didClick', callback);
 
 on(type: 'willClick', callback: ClickEventListenerCallback): void
 
-Subscribes to the dispatch of click event instructions.
+Subscribes to the dispatch of click event instructions. Currently, the screen reader touch exploration mode is not supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3463,7 +3483,7 @@ observer.on('willClick', callback);
 
 off(type: 'willClick', callback?: ClickEventListenerCallback): void
 
-Unsubscribes from the dispatch of click event instructions.
+Unsubscribes from the dispatch of click event instructions. Currently, the screen reader touch exploration mode is not supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3492,7 +3512,7 @@ observer.off('willClick', callback);
 
 on(type: 'didClick', callback: ClickEventListenerCallback): void
 
-Subscribes to the dispatch of click event instructions.
+Subscribes to the dispatch of click event instructions. Currently, the screen reader touch exploration mode is not supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3521,7 +3541,7 @@ observer.on('didClick', callback);
 
 off(type: 'didClick', callback?: ClickEventListenerCallback): void
 
-Unsubscribes from the dispatch of click event instructions.
+Unsubscribes from the dispatch of click event instructions. Currently, the screen reader touch exploration mode is not supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3833,24 +3853,45 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { Router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit'
 
-let router:Router = uiContext.getRouter();
-try {
-  router.pushUrl({
-    url: 'pages/routerpage2',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().pushUrl({
+        url: 'pages/routerpage2',
+        params: {
+          data1: 'message',
+          data2: {
+            data3: [123, 456, 789]
+          }
+        }
+      })
+      .then(() => {
+        console.info('succeeded')
+      })
+      .catch((error: BusinessError) => {
+        console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+      })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
-  })
-} catch (err) {
-  let message = (err as BusinessError).message;
-  let code = (err as BusinessError).code;
-  console.error(`pushUrl failed, code is ${code}, message is ${message}`);
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -3885,27 +3926,48 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { Router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit'
 
-let router:Router = uiContext.getRouter();
-router.pushUrl({
-  url: 'pages/routerpage2',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().pushUrl({
+      url: 'pages/routerpage2',
+      params: {
+        data1: 'message',
+        data2: {
+          data3: [123, 456, 789]
+        }
+      }
+    }, (err: Error) => {
+      if (err) {
+        let message = (err as BusinessError).message;
+        let code = (err as BusinessError).code;
+        console.error(`pushUrl failed, code is ${code}, message is ${message}`);
+        return;
+      }
+      console.info('pushUrl success');
+    })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
+    .width('100%')
+    .height('100%')
   }
-}, (err: Error) => {
-  if (err) {
-    let message = (err as BusinessError).message;
-    let code = (err as BusinessError).code;
-    console.error(`pushUrl failed, code is ${code}, message is ${message}`);
-    return;
-  }
-  console.info('pushUrl success');
-})
+}
 ```
 
 ### pushUrl
@@ -3945,28 +4007,52 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { Router, router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { router } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit'
 
-let routerF:Router = uiContext.getRouter();
-class RouterTmp{
-  Standard:router.RouterMode = router.RouterMode.Standard
+class RouterTmp {
+  Standard: router.RouterMode = router.RouterMode.Standard
 }
-let rtm:RouterTmp = new RouterTmp()
-try {
-  routerF.pushUrl({
-    url: 'pages/routerpage2',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+
+let rtm: RouterTmp = new RouterTmp()
+
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().pushUrl({
+        url: 'pages/routerpage2',
+        params: {
+          data1: 'message',
+          data2: {
+            data3: [123, 456, 789]
+          }
+        }
+      }, rtm.Standard)
+      .then(() => {
+        console.info('succeeded')
+      })
+      .catch((error: BusinessError) => {
+        console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+      })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
-  }, rtm.Standard)
-} catch (err) {
-  let message = (err as BusinessError).message;
-  let code = (err as BusinessError).code;
-  console.error(`pushUrl failed, code is ${code}, message is ${message}`);
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -4002,31 +4088,55 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { Router, router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { router } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit'
 
-let routerF:Router = uiContext.getRouter();
-class RouterTmp{
-  Standard:router.RouterMode = router.RouterMode.Standard
+class RouterTmp {
+  Standard: router.RouterMode = router.RouterMode.Standard
 }
-let rtm:RouterTmp = new RouterTmp()
-routerF.pushUrl({
-  url: 'pages/routerpage2',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
+
+let rtm: RouterTmp = new RouterTmp()
+
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().pushUrl({
+      url: 'pages/routerpage2',
+      params: {
+        data1: 'message',
+        data2: {
+          data3: [123, 456, 789]
+        }
+      }
+    }, rtm.Standard, (err) => {
+      if (err) {
+        let message = (err as BusinessError).message;
+        let code = (err as BusinessError).code;
+        console.error(`pushUrl failed, code is ${code}, message is ${message}`);
+        return;
+      }
+      console.info('pushUrl success');
+    })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
+    .width('100%')
+    .height('100%')
   }
-}, rtm.Standard, (err) => {
-  if (err) {
-    let message = (err as BusinessError).message;
-    let code = (err as BusinessError).code;
-    console.error(`pushUrl failed, code is ${code}, message is ${message}`);
-    return;
-  }
-  console.info('pushUrl success');
-})
+}
 ```
 
 ### replaceUrl
@@ -4064,21 +4174,42 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { Router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit'
 
-let router:Router = uiContext.getRouter();
-try {
-  router.replaceUrl({
-    url: 'pages/detail',
-    params: {
-      data1: 'message'
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().replaceUrl({
+        url: 'pages/detail',
+        params: {
+          data1: 'message'
+        }
+      })
+      .then(() => {
+        console.info('succeeded')
+      })
+      .catch((error: BusinessError) => {
+        console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+      })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
-  })
-} catch (err) {
-  let message = (err as BusinessError).message;
-  let code = (err as BusinessError).code;
-  console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -4112,24 +4243,45 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { Router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit'
 
-let router:Router = uiContext.getRouter();
-router.replaceUrl({
-  url: 'pages/detail',
-  params: {
-    data1: 'message'
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().replaceUrl({
+      url: 'pages/detail',
+      params: {
+        data1: 'message'
+      }
+    }, (err: Error) => {
+      if (err) {
+        let message = (err as BusinessError).message;
+        let code = (err as BusinessError).code;
+        console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
+        return;
+      }
+      console.info('replaceUrl success');
+    })
   }
-}, (err: Error) => {
-  if (err) {
-    let message = (err as BusinessError).message;
-    let code = (err as BusinessError).code;
-    console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
-    return;
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
+    }
+    .width('100%')
+    .height('100%')
   }
-  console.info('replaceUrl success');
-})
+}
 ```
 
 ### replaceUrl
@@ -4168,25 +4320,49 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { Router, router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { router } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit'
 
-let routerF:Router = uiContext.getRouter();
-class RouterTmp{
-  Standard:router.RouterMode = router.RouterMode.Standard
+class RouterTmp {
+  Standard: router.RouterMode = router.RouterMode.Standard
 }
-let rtm:RouterTmp = new RouterTmp()
-try {
-  routerF.replaceUrl({
-    url: 'pages/detail',
-    params: {
-      data1: 'message'
+
+let rtm: RouterTmp = new RouterTmp()
+
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().replaceUrl({
+        url: 'pages/detail',
+        params: {
+          data1: 'message'
+        }
+      }, rtm.Standard)
+      .then(() => {
+        console.info('succeeded')
+      })
+      .catch((error: BusinessError) => {
+        console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+      })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
-  }, rtm.Standard)
-} catch (err) {
-  let message = (err as BusinessError).message;
-  let code = (err as BusinessError).code;
-  console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -4221,28 +4397,52 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { Router, router } from '@kit.ArkUI';
+import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let routerF:Router = uiContext.getRouter();
-class RouterTmp{
-  Standard:router.RouterMode = router.RouterMode.Standard
+class RouterTmp {
+  Standard: router.RouterMode = router.RouterMode.Standard
 }
-let rtm:RouterTmp = new RouterTmp()
-routerF.replaceUrl({
-  url: 'pages/detail',
-  params: {
-    data1: 'message'
+
+let rtm: RouterTmp = new RouterTmp()
+
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().replaceUrl({
+      url: 'pages/detail',
+      params: {
+        data1: 'message'
+      }
+    }, rtm.Standard, (err: Error) => {
+      if (err) {
+        let message = (err as BusinessError).message;
+        let code = (err as BusinessError).code;
+        console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
+        return;
+      }
+      console.info('replaceUrl success');
+    });
   }
-}, rtm.Standard, (err: Error) => {
-  if (err) {
-    let message = (err as BusinessError).message;
-    let code = (err as BusinessError).code;
-    console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
-    return;
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
+    }
+    .width('100%')
+    .height('100%')
   }
-  console.info('replaceUrl success');
-});
+}
 ```
 
 ### pushNamedRoute
@@ -4281,24 +4481,45 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { Router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit'
 
-let router:Router = uiContext.getRouter();
-try {
-  router.pushNamedRoute({
-    name: 'myPage',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().pushNamedRoute({
+        name: 'myPage',
+        params: {
+          data1: 'message',
+          data2: {
+            data3: [123, 456, 789]
+          }
+        }
+      })
+      .then(() => {
+        console.info('succeeded')
+      })
+      .catch((error: BusinessError) => {
+        console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+      })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
-  })
-} catch (err) {
-  let message = (err as BusinessError).message;
-  let code = (err as BusinessError).code;
-  console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -4333,27 +4554,48 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let router:Router = uiContext.getRouter();
-router.pushNamedRoute({
-  name: 'myPage',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().pushNamedRoute({
+      name: 'myPage',
+      params: {
+        data1: 'message',
+        data2: {
+          data3: [123, 456, 789]
+        }
+      }
+    }, (err: Error) => {
+      if (err) {
+        let message = (err as BusinessError).message;
+        let code = (err as BusinessError).code;
+        console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
+        return;
+      }
+      console.info('pushNamedRoute success');
+    })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
+    .width('100%')
+    .height('100%')
   }
-}, (err: Error) => {
-  if (err) {
-    let message = (err as BusinessError).message;
-    let code = (err as BusinessError).code;
-    console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
-    return;
-  }
-  console.info('pushNamedRoute success');
-})
+}
 ```
 ### pushNamedRoute
 
@@ -4392,28 +4634,51 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { Router, router } from '@kit.ArkUI';
+import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
 let rtm:RouterTmp = new RouterTmp()
-try {
-  routerF.pushNamedRoute({
-    name: 'myPage',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().pushNamedRoute({
+        name: 'myPage',
+        params: {
+          data1: 'message',
+          data2: {
+            data3: [123, 456, 789]
+          }
+        }
+      }, rtm.Standard)
+      .then(() => {
+        console.info('succeeded')
+      })
+      .catch((error: BusinessError) => {
+        console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+      })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
-  }, rtm.Standard)
-} catch (err) {
-  let message = (err as BusinessError).message;
-  let code = (err as BusinessError).code;
-  console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -4449,31 +4714,55 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { Router, router } from '@kit.ArkUI';
+import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let routerF:Router = uiContext.getRouter();
-class RouterTmp{
-  Standard:router.RouterMode = router.RouterMode.Standard
+class RouterTmp {
+  Standard: router.RouterMode = router.RouterMode.Standard
 }
-let rtm:RouterTmp = new RouterTmp()
-routerF.pushNamedRoute({
-  name: 'myPage',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
+
+let rtm: RouterTmp = new RouterTmp()
+
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().pushNamedRoute({
+      name: 'myPage',
+      params: {
+        data1: 'message',
+        data2: {
+          data3: [123, 456, 789]
+        }
+      }
+    }, rtm.Standard, (err: Error) => {
+      if (err) {
+        let message = (err as BusinessError).message;
+        let code = (err as BusinessError).code;
+        console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
+        return;
+      }
+      console.info('pushNamedRoute success');
+    })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
+    .width('100%')
+    .height('100%')
   }
-}, rtm.Standard, (err: Error) => {
-  if (err) {
-    let message = (err as BusinessError).message;
-    let code = (err as BusinessError).code;
-    console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
-    return;
-  }
-  console.info('pushNamedRoute success');
-})
+}
 ```
 
 ### replaceNamedRoute
@@ -4511,21 +4800,42 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let router:Router = uiContext.getRouter();
-try {
-  router.replaceNamedRoute({
-    name: 'myPage',
-    params: {
-      data1: 'message'
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().replaceNamedRoute({
+        name: 'myPage',
+        params: {
+          data1: 'message'
+        }
+      })
+      .then(() => {
+        console.info('succeeded')
+      })
+      .catch((error: BusinessError) => {
+        console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+      })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
-  })
-} catch (err) {
-  let message = (err as BusinessError).message;
-  let code = (err as BusinessError).code;
-  console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -4559,24 +4869,45 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let router:Router = uiContext.getRouter();
-router.replaceNamedRoute({
-  name: 'myPage',
-  params: {
-    data1: 'message'
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().replaceNamedRoute({
+      name: 'myPage',
+      params: {
+        data1: 'message'
+      }
+    }, (err: Error) => {
+      if (err) {
+        let message = (err as BusinessError).message;
+        let code = (err as BusinessError).code;
+        console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
+        return;
+      }
+      console.info('replaceNamedRoute success');
+    })
   }
-}, (err: Error) => {
-  if (err) {
-    let message = (err as BusinessError).message;
-    let code = (err as BusinessError).code;
-    console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
-    return;
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
+    }
+    .width('100%')
+    .height('100%')
   }
-  console.info('replaceNamedRoute success');
-})
+}
 ```
 
 ### replaceNamedRoute
@@ -4616,25 +4947,49 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { Router, router } from '@kit.ArkUI';
+import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let routerF:Router = uiContext.getRouter();
-class RouterTmp{
-  Standard:router.RouterMode = router.RouterMode.Standard
+class RouterTmp {
+  Standard: router.RouterMode = router.RouterMode.Standard
 }
-let rtm:RouterTmp = new RouterTmp()
-try {
-  routerF.replaceNamedRoute({
-    name: 'myPage',
-    params: {
-      data1: 'message'
+
+let rtm: RouterTmp = new RouterTmp()
+
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().replaceNamedRoute({
+        name: 'myPage',
+        params: {
+          data1: 'message'
+        }
+      }, rtm.Standard)
+      .then(() => {
+        console.info('succeeded')
+      })
+      .catch((error: BusinessError) => {
+        console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+      })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
-  }, rtm.Standard)
-} catch (err) {
-  let message = (err as BusinessError).message;
-  let code = (err as BusinessError).code;
-  console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -4669,28 +5024,52 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { Router, router } from '@kit.ArkUI';
+import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let routerF:Router = uiContext.getRouter();
-class RouterTmp{
-  Standard:router.RouterMode = router.RouterMode.Standard
+class RouterTmp {
+  Standard: router.RouterMode = router.RouterMode.Standard
 }
-let rtm:RouterTmp = new RouterTmp()
-routerF.replaceNamedRoute({
-  name: 'myPage',
-  params: {
-    data1: 'message'
+
+let rtm: RouterTmp = new RouterTmp()
+
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().replaceNamedRoute({
+      name: 'myPage',
+      params: {
+        data1: 'message'
+      }
+    }, rtm.Standard, (err: Error) => {
+      if (err) {
+        let message = (err as BusinessError).message;
+        let code = (err as BusinessError).code;
+        console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
+        return;
+      }
+      console.info('replaceNamedRoute success');
+    })
   }
-}, rtm.Standard, (err: Error) => {
-  if (err) {
-    let message = (err as BusinessError).message;
-    let code = (err as BusinessError).code;
-    console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
-    return;
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
+    }
+    .width('100%')
+    .height('100%')
   }
-  console.info('replaceNamedRoute success');
-});
+}
 ```
 
 ### back
@@ -5030,107 +5409,6 @@ try {
 };
 ```
 
-### openToast<sup>13+</sup>
-
-openToast(options: ShowToastOptions): Promise&lt;number&gt;
-
-**Atomic service API**: This API can be used in atomic services since API version 13.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name | Type                                                        | Mandatory| Description          |
-| ------- | ------------------------------------------------------------ | ---- | -------------- |
-| options | [promptAction.ShowToastOptions](js-apis-promptAction.md#showtoastoptions) | Yes  | Toast options.|
-
-**Return value**
-
-| Type            | Description                                |
-| ---------------- | ------------------------------------ |
-| Promise&lt;number&gt; | ID of the toast, which is required in **closeToast**.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
-
-| ID| Error Message                                                    |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
-| 100001   | Internal error.                                              |
-
-**Example**
-
-```ts
-import { PromptAction } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
-@Entry
-@Component
-struct toastExample {
-  @State toastId: number = 0;
-  promptAction: PromptAction = this.getUIContext().getPromptAction()
-  build() {
-    Column() {
-      Button('Open Toast')
-        .height(100)
-        .onClick(() => {
-          try {
-            this.promptAction.openToast({
-              message: 'Toast Massage',
-              duration: 10000,
-            }).then((toastId: number) => {
-              this.toastId = toastId;
-            });
-          } catch (error) {
-            let message = (error as BusinessError).message;
-            let code = (error as BusinessError).code;
-            console.error(`OpenToast error code is ${code}, message is ${message}`);
-          };
-        })
-      Blank().height(50);
-      Button('Close Toast')
-        .height(100)
-        .onClick(() => {
-          try {
-            this.promptAction.closeToast(this.toastId);
-          } catch (error) {
-            let message = (error as BusinessError).message;
-            let code = (error as BusinessError).code;
-            console.error(`CloseToast error code is ${code}, message is ${message}`);
-          };
-        })
-    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
-  }
-}
-```
-
-### closeToast<sup>13+</sup>
-
-closeToast(toastId: number): void
-
-**Atomic service API**: This API can be used in atomic services since API version 13.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name | Type  | Mandatory| Description                         |
-| ------- | ------ | ---- | ----------------------------- |
-| toastId | number | Yes  | ID of the toast to close, which is returned by **openToast**.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
-
-| ID| Error Message                                                    |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
-| 100001   | Internal error.                                              |
-
-**Example**
-
-See the example for [openToaset13](#opentoast13).
-
 ### showDialog
 
 showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;promptAction.ShowDialogSuccessResponse&gt;): void
@@ -5163,10 +5441,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { PromptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-class ButtonsModel {
-  text: string = ""
-  color: string = ""
-}
 let promptAction: PromptAction = uiContext.getPromptAction();
 try {
   promptAction.showDialog({
@@ -5176,11 +5450,11 @@ try {
       {
         text: 'button1',
         color: '#000000'
-      } as ButtonsModel,
+      },
       {
         text: 'button2',
         color: '#000000'
-      } as ButtonsModel
+      }
     ]
   }, (err, data) => {
     if (err) {
@@ -5231,35 +5505,28 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { PromptAction } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 let promptAction: PromptAction = uiContext.getPromptAction();
-try {
-  promptAction.showDialog({
-    title: 'Title Info',
-    message: 'Message Info',
-    buttons: [
-      {
-        text: 'button1',
-        color: '#000000'
-      },
-      {
-        text: 'button2',
-        color: '#000000'
-      }
-    ],
+promptAction.showDialog({
+  title: 'Title Info',
+  message: 'Message Info',
+  buttons: [
+    {
+      text: 'button1',
+      color: '#000000'
+    },
+    {
+      text: 'button2',
+      color: '#000000'
+    }
+  ],
+})
+  .then(data => {
+    console.info('showDialog success, click button: ' + data.index);
   })
-    .then(data => {
-      console.info('showDialog success, click button: ' + data.index);
-    })
-    .catch((err:Error) => {
-      console.error('showDialog error: ' + err);
-    })
-} catch (error) {
-  let message = (error as BusinessError).message;
-  let code = (error as BusinessError).code;
-  console.error(`showDialog args error code is ${code}, message is ${message}`);
-};
+  .catch((err: Error) => {
+    console.error('showDialog error: ' + err);
+  })
 ```
 
 ### showActionMenu<sup>11+</sup>
@@ -5410,35 +5677,28 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { PromptAction,promptAction  } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { PromptAction } from '@kit.ArkUI';
 
 let promptAction: PromptAction = uiContext.getPromptAction();
-try {
-  promptAction.showActionMenu({
-    title: 'showActionMenu Title Info',
-    buttons: [
-      {
-        text: 'item1',
-        color: '#666666'
-      },
-      {
-        text: 'item2',
-        color: '#000000'
-      },
-    ]
+promptAction.showActionMenu({
+  title: 'showActionMenu Title Info',
+  buttons: [
+    {
+      text: 'item1',
+      color: '#666666'
+    },
+    {
+      text: 'item2',
+      color: '#000000'
+    },
+  ]
+})
+  .then(data => {
+    console.info('showActionMenu success, click button: ' + data.index);
   })
-    .then(data => {
-      console.info('showActionMenu success, click button: ' + data.index);
-    })
-    .catch((err:Error) => {
-      console.error('showActionMenu error: ' + err);
-    })
-} catch (error) {
-  let message = (error as BusinessError).message;
-  let code = (error as BusinessError).code;
-  console.error(`showActionMenu args error code is ${code}, message is ${message}`);
-};
+  .catch((err: Error) => {
+    console.error('showActionMenu error: ' + err);
+  })
 ```
 
 ### openCustomDialog<sup>12+</sup>
@@ -5482,6 +5742,7 @@ import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
   text: string = ""
+
   constructor(text: string) {
     this.text = text;
   }
@@ -5493,7 +5754,7 @@ function buildText(params: Params) {
     Text(params.text)
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
-      .margin({bottom: 36})
+      .margin({ bottom: 36 })
   }.backgroundColor('#FFF0F0F0')
 }
 
@@ -5506,18 +5767,18 @@ struct Index {
     Row() {
       Column() {
         Button("click me")
-            .onClick(() => {
-                let uiContext = this.getUIContext();
-                let promptAction = uiContext.getPromptAction();
-                let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
-                try {
-                  promptAction.openCustomDialog(contentNode);
-                } catch (error) {
-                  let message = (error as BusinessError).message;
-                  let code = (error as BusinessError).code;
-                  console.error(`OpenCustomDialog args error code is ${code}, message is ${message}`);
-                };
-            })
+          .onClick(() => {
+            let uiContext = this.getUIContext();
+            let promptAction = uiContext.getPromptAction();
+            let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
+            promptAction.openCustomDialog(contentNode)
+              .then(() => {
+                console.info('succeeded')
+              })
+              .catch((error: BusinessError) => {
+                console.error(`OpenCustomDialog args error code is ${error.code}, message is ${error.message}`);
+              })
+          })
       }
       .width('100%')
       .height('100%')
@@ -5567,6 +5828,7 @@ import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
   text: string = ""
+
   constructor(text: string) {
     this.text = text;
   }
@@ -5578,7 +5840,7 @@ function buildText(params: Params) {
     Text(params.text)
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
-      .margin({bottom: 36})
+      .margin({ bottom: 36 })
   }.backgroundColor('#FFF0F0F0')
 }
 
@@ -5591,28 +5853,27 @@ struct Index {
     Row() {
       Column() {
         Button("click me")
-            .onClick(() => {
-                let uiContext = this.getUIContext();
-                let promptAction = uiContext.getPromptAction();
-                let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
-                try {
-                  promptAction.openCustomDialog(contentNode);
-                } catch (error) {
-                  let message = (error as BusinessError).message;
-                  let code = (error as BusinessError).code;
-                  console.error(`OpenCustomDialog args error code is ${code}, message is ${message}`);
-                };
-
-                setTimeout(() => {
-                  try {
-                    promptAction.closeCustomDialog(contentNode);
-                  } catch (error) {
-                    let message = (error as BusinessError).message;
-                    let code = (error as BusinessError).code;
-                    console.error(`closeCustomDialog args error code is ${code}, message is ${message}`);
-                  };
-                }, 2000);     // The dialog box is closed automatically after 2 seconds.
-            })
+          .onClick(() => {
+            let uiContext = this.getUIContext();
+            let promptAction = uiContext.getPromptAction();
+            let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
+            promptAction.openCustomDialog(contentNode)
+              .then(() => {
+                console.info('succeeded')
+              })
+              .catch((error: BusinessError) => {
+                console.error(`OpenCustomDialog args error code is ${error.code}, message is ${error.message}`);
+              })
+            setTimeout(() => {
+              promptAction.closeCustomDialog(contentNode)
+                .then(() => {
+                  console.info('succeeded')
+                })
+                .catch((error: BusinessError) => {
+                  console.error(`OpenCustomDialog args error code is ${error.code}, message is ${error.message}`);
+                })
+            }, 2000); // Automatically close the dialog box after 2 seconds.
+          })
       }
       .width('100%')
       .height('100%')
@@ -5663,6 +5924,7 @@ import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
   text: string = ""
+
   constructor(text: string) {
     this.text = text;
   }
@@ -5674,7 +5936,7 @@ function buildText(params: Params) {
     Text(params.text)
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
-      .margin({bottom: 36})
+      .margin({ bottom: 36 })
   }.backgroundColor('#FFF0F0F0')
 }
 
@@ -5687,28 +5949,28 @@ struct Index {
     Row() {
       Column() {
         Button("click me")
-            .onClick(() => {
-                let uiContext = this.getUIContext();
-                let promptAction = uiContext.getPromptAction();
-                let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
-                try {
-                  promptAction.openCustomDialog(contentNode);
-                } catch (error) {
-                  let message = (error as BusinessError).message;
-                  let code = (error as BusinessError).code;
-                  console.error(`OpenCustomDialog args error code is ${code}, message is ${message}`);
-                };
+          .onClick(() => {
+            let uiContext = this.getUIContext();
+            let promptAction = uiContext.getPromptAction();
+            let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message))
+            promptAction.openCustomDialog(contentNode)
+              .then(() => {
+                console.info('succeeded')
+              })
+              .catch((error: BusinessError) => {
+                console.error(`updateCustomDialog args error code is ${error.code}, message is ${error.message}`)
+              })
 
-                setTimeout(() => {
-                  try {
-                    promptAction.updateCustomDialog(contentNode, { alignment: DialogAlignment.CenterEnd });
-                  } catch (error) {
-                    let message = (error as BusinessError).message;
-                    let code = (error as BusinessError).code;
-                    console.error(`updateCustomDialog args error code is ${code}, message is ${message}`);
-                  };
-                }, 2000);   // The dialog box is relocated automatically after 2 seconds.
-            })
+            setTimeout(() => {
+              promptAction.updateCustomDialog(contentNode, { alignment: DialogAlignment.CenterEnd })
+                .then(() => {
+                  console.info('succeeded')
+                })
+                .catch((error: BusinessError) => {
+                  console.error(`updateCustomDialog args error code is ${error.code}, message is ${error.message}`)
+                })
+            }, 2000); // Automatically update the dialog box position after 2 seconds.
+          })
       }
       .width('100%')
       .height('100%')
@@ -5732,13 +5994,13 @@ Creates and displays a custom dialog box. This API uses a promise to return the 
 
 | Name | Type                                                        | Mandatory| Description              |
 | ------- | ------------------------------------------------------------ | ---- | ------------------ |
-| options | [promptAction.CustomDialogOptions](js-apis-promptAction.md#customdialogoptions11) | Yes  | Content of the custom dialog box.|
+| options | [promptAction.DialogOptions](js-apis-promptAction.md#dialogoptions11) | No| Style of the custom dialog box.|
 
 **Return value**
 
 | Type               | Description                                   |
 | ------------------- | --------------------------------------- |
-| Promise&lt;void&gt; | ID of the custom dialog box, which can be used with **closeCustomDialog**.|
+| Promise&lt;void&gt; | Promise used to return the custom dialog box ID.|
 
 **Error codes**
 
@@ -6146,7 +6408,7 @@ struct DragControllerPage {
     Column() {
 
       Column() {
-        Text ("Test")
+        Text("Test")
       }
       .width(100)
       .height(100)
@@ -6267,11 +6529,11 @@ import { window, UIContext } from '@kit.ArkUI';
 In the following API examples, you must first use [getOverlayManager()](#getoverlaymanager12) in **UIContext** to obtain an **OverlayManager** instance, and then call the APIs using the obtained instance.
 > **NOTE**
 >
-> Nodes on the **OverlayManager** are above the **Page** level but below elements such as **Dialog**, **Popup**, **Menu**, **BindSheet**, **BindContentCover**, and **Toast**.
+> The nodes on **OverlayManager** are above the page level, but below such components as created through **Dialog**, **Popup**, **Menu**, **BindSheet**, **BindContentCover**, and **Toast**.
 >
-> The drawing method inside and outside the safe area of nodes on the **OverlayManager** is consistent with that of the **Page**, and the keyboard avoidance method is also the same as that of the **Page**.
+> The drawing method inside and outside the safe area of nodes on **OverlayManager** is consistent with that of the page, and the keyboard avoidance method is also the same as that of the page.
 >
-> For properties related to the **OverlayManager**, you are advised to use AppStorage for global storage across the application to prevent changes in property values when switching pages, which could lead to service errors.
+> For properties related to **OverlayManager**, you are advised to use AppStorage for global storage across the application to prevent changes in property values when switching pages, which could lead to service errors.
 
 ### addComponentContent<sup>12+</sup>
 
@@ -6287,7 +6549,7 @@ Adds a specified **ComponentContent** node to the **OverlayManager**.
 
 | Name    | Type                                      | Mandatory  | Description         |
 | ------- | ---------------------------------------- | ---- | ----------- |
-| content | [ComponentContent](js-apis-arkui-ComponentContent.md) | Yes   | Content to add to the new node on the **OverlayManager**.<br>**NOTE**<br> By default, new nodes are centered page and stacked according to their stacking level.|
+| content | [ComponentContent](js-apis-arkui-ComponentContent.md) | Yes   | Content to add to the new node on the **OverlayManager**.<br>**NOTE**<br> By default, the new node is centered on the page and stacked according to its stacking level.|
 | index | number | No   | Stacking level of the new node on the **OverlayManager**.<br>**NOTE**<br> If the value is greater than or equal to 0, a larger value indicates a higher stacking level; for those that have the same index, the one that is added at a later time has a higher stacking level.<br> If the value is less than 0 or is **null** or **undefined**, the **ComponentContent** node is added at the highest level by default.<br>If the same **ComponentContent** node is added multiple times, only the last added one is retained.<br>
 
 **Example**
@@ -6345,7 +6607,7 @@ struct OverlayExample {
       Button("--arrayIndex: " + this.arrayIndex).onClick(()=>{
         --this.arrayIndex
       })
-      Button ("Delete ComponentContent" + this.arrayIndex).onClick () = >{
+      Button("Delete ComponentContent" + this.arrayIndex).onClick(()=>{
         if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
           let componentContent = this.contentArray.splice(this.arrayIndex, 1)
           this.overlayNode.removeComponentContent(componentContent.pop())
@@ -6692,16 +6954,15 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 
 Enumerates the modes in which the layout responds when the keyboard is displayed.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name  | Value  | Description      |
 | ------ | ---- | ---------- |
-| OFFSET | 0    | The layout moves up.|
-| RESIZE | 1    | The layout is resized.|
-| OFFSET_WITH_CARET<sup>14+</sup>  | 2 | The layout moves up, and this adjustment also occurs if the caret position in the text box changes.|
-| RESIZE_WITH_CARET<sup>14+</sup>  | 3 | The layout is resized, and this adjustment also occurs if the caret position in the text box changes.|
+| OFFSET | 0    | The layout moves up.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| RESIZE | 1    | The layout is resized.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| OFFSET_WITH_CARET<sup>14+</sup>  | 2 | The layout moves up, and this adjustment also occurs if the caret position in the text box changes.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| RESIZE_WITH_CARET<sup>14+</sup>  | 3 | The layout is resized, and this adjustment also occurs if the caret position in the text box changes.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| NONE<sup>14+</sup>  | 4 | The layout is not adjusted to avoid the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 
 
 ## FocusController<sup>12+</sup>
@@ -6846,6 +7107,135 @@ struct RequestExample {
 }
 ```
 
+### activate<sup>14+</sup>
+
+activate(isActive: boolean, autoInactive?: boolean): void
+
+Sets the [focus activation state](../../ui/arkts-common-events-focus-event.md) of this page.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------- | ------- | ------- | ------- |
+| isActive| boolean| Yes| Whether to enter or exit the focus activation state.|
+| autoInactive | boolean | No| Logic for exiting the focus activation state. The value **true** means the focus activation state will be exited automatically when touch or mouse events are triggered, and **false** means the state is controlled solely by API calls.|
+
+```ts
+// This example demonstrates how to enter the focus activation state when the page loading is completed. In this state, arrow keys can be used for focus navigation.
+@Entry
+@Component
+struct ActivateExample {
+  aboutToAppear() {
+    this.getUIContext().getFocusController().activate(true, false)
+  }
+
+  aboutToDisappear() {
+    this.getUIContext().getFocusController().activate(false)
+  }
+
+  build() {
+    Row() {
+      Button('Button1')
+        .width(200)
+        .height(70)
+        .defaultFocus(true)
+
+      Button('Button2')
+        .width(200)
+        .height(70)
+
+      Button('Button3')
+        .width(200)
+        .height(70)
+    }
+    .padding(10)
+    .justifyContent(FlexAlign.SpaceBetween)
+    .width(800)
+  }
+}
+```
+
+### setAutoFocusTransfer<sup>14+</sup>
+
+setAutoFocusTransfer(isAutoFocusTransfer: boolean): void;
+
+Sets whether the new page should automatically acquire focus during page switching.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------- | ------- | ------- | ------- |
+| isAutoFocusTransfer | boolean| Yes| Whether the new page should automatically acquire focus during page switching using navigation components, such as [Router](js-apis-router.md#routerpushurl9), [Navigation](arkui-ts/ts-basic-components-navigation.md#navigation), [Menu](arkui-ts/ts-basic-components-menu.md#menu), [Dialog](arkui-ts/ohos-arkui-advanced-Dialog.md), and [Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup).<br> Default value: **true**|
+
+```ts
+@CustomDialog
+struct CustomDialogExample {
+  controller?: CustomDialogController
+  build() {
+    Column() {
+      Text('This is a custom dialog box')
+        .fontSize(30)
+        .height(100)
+      Text('The dialog box should not automatically acquire focus')
+        .fontSize(20)
+        .height(100)
+      Button('Close Dialog Box')
+        .onClick(() => {
+          if (this.controller != undefined) {
+            this.getUIContext().getFocusController().setAutoFocusTransfer(true)
+            this.controller.close()
+          }
+        })
+        .margin(20)
+    }
+  }
+}
+@Entry
+@Component
+struct CustomDialogUser {
+  dialogController: CustomDialogController | null = new CustomDialogController({
+    builder: CustomDialogExample({
+    }),
+  })
+  aboutToDisappear() {
+    this.dialogController = null
+  }
+
+  build() {
+    Column() {
+      Button('click me')
+        .onClick(() => {
+          if (this.dialogController != null) {
+            this.getUIContext().getFocusController().setAutoFocusTransfer(false)
+            this.dialogController.open()
+          }
+        }).backgroundColor(0x317aff)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+## PointerStyle<sup>12+</sup>
+
+type PointerStyle = pointer.PointerStyle
+
+Defines the pointer style.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+|Type|Description|
+| -- | -- |
+|[pointer.PointerStyle](../apis-input-kit/js-apis-pointer.md#pointerstyle) |Pointer style.|
+
 ## CursorController<sup>12+</sup>
 In the following API examples, you must first use [getCursorController()](js-apis-arkui-UIContext.md#getcursorcontroller12) in **UIContext** to obtain a **CursorController** instance, and then call the APIs using the obtained instance.
 
@@ -6903,7 +7293,7 @@ Sets the cursor style.
 
 | Name    | Type                                      | Mandatory  | Description     |
 | ------- | ---------------------------------------- | ---- | ------- |
-| value | [PointerStyle](../apis-input-kit/js-apis-pointer.md#pointerstyle) | Yes   | Cursor style.|
+| value | [PointerStyle](#pointerstyle12) | Yes   | Cursor style.|
 
 **Example**
 In this example, the **setCursor** API of **CursorController** is used to set the cursor style to **PointerStyle.WEST** when the cursor moves into the blue frame.
@@ -7036,7 +7426,7 @@ struct Index {
   @State uiContext: UIContext = this.getUIContext();
   @State uiContextMeasure: MeasureUtils = this.uiContext.getMeasureUtils();
   @State textWidth: number = this.uiContextMeasure.measureText({
-    textContent: "Hello word",
+    textContent: "Hello World",
     fontSize: '50px'
   })
 
@@ -7087,7 +7477,7 @@ struct Index {
   @State uiContext: UIContext = this.getUIContext();
   @State uiContextMeasure: MeasureUtils = this.uiContext.getMeasureUtils();
   textSize : SizeOptions = this.uiContextMeasure.measureTextSize({
-    textContent: "Hello word",
+    textContent: "Hello World",
     fontSize: '50px'
   })
   build() {
@@ -7759,7 +8149,7 @@ struct Frame {
 ```
 ## SwiperDynamicSyncScene<sup>12+</sup>
 
-Inherits [DynamicSyncScene](#dynamicsyncscene12) and represents the dynamic sync scene of the **Swiper** component.
+Inherits from [DynamicSyncScene](#dynamicsyncscene12) and represents the dynamic sync scene of the **Swiper** component.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -7782,23 +8172,23 @@ Enumerates the dynamic sync scene types.
 | GESTURE | 0   | Gesture operation.|
 | ANIMATION | 1   | Animation transition.|
 
-## MarqueeDynamicSyncScene<sup>13+</sup>
+## MarqueeDynamicSyncScene<sup>14+</sup>
 
-Inherits [DynamicSyncScene](#dynamicsyncscene12) and represents the dynamic sync scene of the **Marquee** component.
+Inherits from [DynamicSyncScene](#dynamicsyncscene12) and represents the dynamic sync scene of the [Marquee](arkui-ts/ts-basic-components-marquee.md) component.
 
-**Atomic service API**: This API can be used in atomic services since API version 13.
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name      | Type                                                     | Read Only| Optional| Description                               |
 | --------- | --------------------------------------------------------- | ---- | ---- | ---------------------------------- |
-| type      | [MarqueeDynamicSyncSceneType](#marqueedynamicsyncscenetype13) | Yes  | No  | Dynamic sync scene of the **Marquee** component.            |
+| type      | [MarqueeDynamicSyncSceneType](#marqueedynamicsyncscenetype14) | Yes  | No  | Dynamic sync scene of the **Marquee** component.            |
 
-## MarqueeDynamicSyncSceneType<sup>13+</sup>
+## MarqueeDynamicSyncSceneType<sup>14+</sup>
 
 Enumerates the dynamic sync scene types for the **Marquee** component.
 
-**Atomic service API**: This API can be used in atomic services since API version 13.
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

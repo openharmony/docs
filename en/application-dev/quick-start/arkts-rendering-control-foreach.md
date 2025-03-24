@@ -1,8 +1,8 @@
 # ForEach: Rendering Repeated Content
 
-For details about API parameters, see [ForEach](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md) APIs.
-
 **ForEach** enables rendering of repeated content based on array type data. It must be used in a container component, and the component it returns must be one allowed inside the container component. For example, for rendering of list items, **ForEach** must be used in the [List](../reference/apis-arkui/arkui-ts/ts-container-list.md) component.
+
+For details about API parameters, see [ForEach](../reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md).
 
 > **NOTE**
 >
@@ -307,6 +307,7 @@ struct ArticleCard {
 
   build() {
     Row() {
+      // 'app.media.icon' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
       Image($r('app.media.icon'))
         .width(80)
         .height(80)
@@ -407,6 +408,7 @@ struct ArticleCard {
 
   build() {
     Row() {
+      // 'app.media.icon' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
       Image($r('app.media.icon'))
         .width(80)
         .height(80)
@@ -422,6 +424,7 @@ struct ArticleCard {
           .margin({ bottom: 8 })
 
         Row() {
+          // 'app.media.iconLiked' and 'app.media.iconUnLiked' are only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
           Image(this.article.isLiked ? $r('app.media.iconLiked') : $r('app.media.iconUnLiked'))
             .width(24)
             .height(24)
@@ -454,10 +457,7 @@ The following figure shows the initial screen (on the left) and the screen after
 In this example, the **Article** class is decorated by the @Observed decorator. The parent component **ArticleListView** passes an **Article** object instance to the child component **ArticleCard**, and the child component uses the @ObjectLink decorator to receive the instance.
 
 1. When the Like icon of Article 1 is clicked, the **handleLiked** function of the **ArticleCard** component is triggered. This function changes the values of the **isLiked** and **likesCount** properties of the **article** instance in the component pertaining to Article 1.
-2. Because **article** in the child component **ArticleCard** uses the @ObjectLink decorator, the parent and child components share the same article data. As such, the values of **isLiked** and **likedCounts** of the first array item of **articleList** in the parent component are changed synchronously.
-3. When the parent component detects property changes of the data source array items, **ForEach** is triggered for re-rendering.
-4. Here, the **ForEach** key generation rule is the **id** property value of the array item. If **ForEach** traverses the new data source and finds no changes in the **id** values, no component is created.
-5. When the **ArticleCard** component corresponding to the first array item is rendered, the obtained values of **isLiked** and **likesCount** are the new values.
+2. The **article** instance is a state variable decorated by @ObjectLink. When its property value changes, the corresponding **ArticleCard** component is rendered. The changed values of **isLiked** and **likesCount** are read.
 
 ### Enabling Drag and Sort
 If **ForEach** is used in a list, and the **onMove** event is set, you can enable drag and sort for the list items. If an item changes the position after you drag and sort the data, the **onMove** event is triggered to report the original index and target index of the item. The data source needs to be modified in the **onMove** event based on the reported start index and target index. Before and after the data source is modified, the value of each item must remain unchanged to ensure that the drop animation can be executed properly.
@@ -505,9 +505,10 @@ struct ForEachSort {
 
 - To ensure unique keys for array items of the Object type, you are advised to use the unique IDs of objects as keys.
 - Avoid including the data item **index** in the final key generation rule to prevent [unexpected rendering results](#rendering-result-not-as-expected) and [deteriorated rendering performance](#deteriorated-rendering-performance). If including **index** is required, for example, when the list needs to be rendered based on the index, prepare for the performance loss resulting from component creation by **ForEach** to account for data source changes.
-- Data items of primitive data types do not have a unique ID. If you use the primitive data type itself as the key, you must ensure that the array items are not duplicate. In scenarios where the data source changes, you are advised to convert the array of a primitive data type into an array of the Object type with the **id** property, and then use the **id** property as the key generation rule.
+- Data items of primitive data types do not have a unique ID. If you use the primitive data type itself as the key, you must ensure that the array items are not duplicate. In scenarios where the data source changes, you are advised to convert the array of a primitive data type into an array of the Object type with the **id** property, and then use the unique ID as the key.
 - For the preceding restriction rules, the **index** parameter is the final method for you to ensure the uniqueness of the keys. When modifying a data item, you need to use the index value to modify the data source because the **item** parameter in **itemGenerator** cannot be modified. In this way, the UI re-rendering is triggered.
 - Do not use **ForEach** together with [LazyForEach](./arkts-rendering-control-lazyforeach.md) in [List](../reference/apis-arkui/arkui-ts/ts-container-list.md), [Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md), [Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md), and [WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md).  
+- If an array item is of the object data type, you are not advised to replace the old array item with an array item with the same content. If the array item is changed but the key remains unchanged, [data changes fail to trigger renderings](#data-changes-fail-to-trigger-renderings).
 
 ## Common Pitfalls
 
@@ -515,7 +516,7 @@ Correct use of **ForEach** requires a clear understanding of the key generation 
 
 ### Rendering Result Not as Expected
 
-In this example, the **KeyGenerator** function – the third parameter of **ForEach** – is set to use the string-type **index** property of the data source as the key generation rule. When **Insert an Item after the First Item** in the parent component **Parent** is clicked, an unexpected result is displayed.
+In this example, the **KeyGenerator** function – the third parameter of **ForEach** – is set to use the string-type **index** property of the data source as the key generation rule. When **Insert Item After First Item** in the parent component **Parent** is clicked, an unexpected result is displayed.
 
 ```ts
 @Entry
@@ -526,7 +527,7 @@ struct Parent {
   build() {
     Column() {
       Button() {
-        Text('Insert an Item after the First Item').fontSize(30)
+        Text('Insert Item After First Item').fontSize(30)
       }
       .onClick(() => {
         this.simpleList.splice(1, 0, 'new item');
@@ -554,7 +555,7 @@ struct ChildItem {
 }
 ```
 
-The following figure shows the initial screen and the screen after **Insert an Item after the First Item** is clicked.
+The following figure shows the initial screen and the screen after **Insert Item After First Item** is clicked.
 
 **Figure 9** Rendering result not as expected  
 ![ForEach-UnexpectedRenderingResult](figures/ForEach-UnexpectedRenderingResult.gif)
@@ -569,7 +570,7 @@ In the preceding example, the final key generation rule includes **index**. Whil
 
 ### Deteriorated Rendering Performance
 
-In this example, the **KeyGenerator** function – the third parameter of **ForEach** – is left empty. According to the description in [Key Generation Rules](#key-generation-rules), the default key generation rule of the ArkUI framework is used. That is, the final key is the string **index + '__' + JSON.stringify(item)**. After **Insert an Item after the First Item** is clicked, **ForEach** recreates components for the second array item and all items after it.
+In this example, the **KeyGenerator** function – the third parameter of **ForEach** – is left empty. According to the description in [Key Generation Rules](#key-generation-rules), the default key generation rule of the ArkUI framework is used. That is, the final key is the string **index + '__' + JSON.stringify(item)**. After **Insert Item After First Item** is clicked, **ForEach** recreates components for the second array item and all items after it.
 
 ```ts
 @Entry
@@ -580,7 +581,7 @@ struct Parent {
   build() {
     Column() {
       Button() {
-        Text('Insert an Item after the First Item').fontSize(30)
+        Text('Insert Item After First Item').fontSize(30)
       }
       .onClick(() => {
         this.simpleList.splice(1, 0, 'new item');
@@ -613,12 +614,12 @@ struct ChildItem {
 }
 ```
 
-The following figure shows the initial screen and the screen after **Insert an Item after the First Item** is clicked.
+The following figure shows the initial screen and the screen after **Insert Item After First Item** is clicked.
 
 **Figure 10** Deteriorated rendering performance 
 ![ForEach-RenderPerformanceDecrease](figures/ForEach-RenderPerformanceDecrease.gif)
 
-After **Insert an Item after the First Item** is clicked, DevEco Studio displays logs as shown in the figure below.
+After **Insert Item After First Item** is clicked, DevEco Studio displays logs as shown in the figure below.
 
 **Figure 11** Logs indicating deteriorated rendering performance 
 ![ForEach-RenderPerformanceDecreaseLogs](figures/ForEach-RenderPerformanceDecreaseLogs.png)
@@ -629,4 +630,132 @@ After a new item is inserted, **ForEach** creates the corresponding child items 
 2. After a new item is inserted, the data source **simpleList** changes to ['one','new item', 'two', 'three']. The ArkUI framework detects changes in the length of the @State decorated data source and triggers **ForEach** for re-rendering.
 3. **ForEach** traverses items in the new data source. When it reaches array item **one**, it generates key **0__one** for the item, and because the same key already exists, no new component is created. When **ForEach** reaches array item **new item**, it generates key **1__new item** for the item, and because no same key exists, a new component **new item** is created. When **ForEach** reaches array item **two**, it generates key **2__two** for the item, and because no same key exists, a new component **two** is created. When **ForEach** reaches array item **three**, it generates key **3__three** for the item, and because no same key exists, a new component **three** is created.
 
-Although the rendering result in this example is as expected, each time a new array item is inserted, **ForEach** recreates components for all array items following that array item. Because components are not reused, the performance experience can be poor when the data source contains a large volume of data or the component structure is complex. To sum up, whenever possible, do not leave the third parameter (the **KeyGenerator** function) of **ForEach** empty, or include **index** in the key generation rule.
+Although the rendering result in this example is as expected, each time a new array item is inserted, **ForEach** recreates components for all array items following that array item. Because components are not reused, the performance experience can be poor when the data source contains a large volume of data or the component structure is complex. To sum up, whenever possible, do not leave the third parameter (the **KeyGenerator** function) of **ForEach** empty, or include **index** in the key generation rule. 
+The following format of **ForEach** is used to correctly render and ensure efficiency:
+```ts
+ForEach(this.simpleList, (item: string) => {
+  ChildItem({ item: item })
+}, (item: string) => item)  // Ensure that the key is unique.
+```
+The third parameter **KeyGenerator** is provided. In the preceding example, different keys are generated for different data items of the data source, and the same key is generated for the same data item each time.
+
+### Data Changes Fail to Trigger Renderings
+When the **Like/UnLike first article** button is clicked, the like gesture is triggered and the number of likes changes in the first component. However, after the **Replace first article** button is clicked, the **Like/UnLike first article** button does not take effect. After the **articleList[0]** is replaced, the state variable **articleList** changes, triggering **ForEach** to re-render. However, the key generated by the new **articleList[0]** does not change, and **ForEach** does not synchronize the updated data to the child component. Therefore, the first component is still bound to the old **articleList[0]**. When the property of the new **articleList[0]** is changed, the first component cannot detect the change and fails to trigger a re-render. Touching the like icon can trigger rendering. This is because the property of the array item bound to the component is changed, the component detects the change and renders it again.
+```ts
+@Observed
+class Article {
+  id: string;
+  title: string;
+  brief: string;
+  isLiked: boolean;
+  likesCount: number;
+
+  constructor(id: string, title: string, brief: string, isLiked: boolean, likesCount: number) {
+    this.id = id;
+    this.title = title;
+    this.brief = brief;
+    this.isLiked = isLiked;
+    this.likesCount = likesCount;
+  }
+}
+
+@Entry
+@Component
+struct ArticleListView {
+  @State articleList: Array<Article> = [
+    new Article('001','Article 0','Abstract', false, 100),
+    new Article('002','Article 1','Abstract', false, 100),
+    new Article('003','Article 2','Abstract', false, 100),
+    new Article('004','Article 4','Abstract', false, 100),
+    new Article('005','Article 5','Abstract', false, 100),
+    new Article('006','Article 6','Abstract', false, 100),
+  ];
+
+  build() {
+    Column() {
+      Button('Replace first article')
+        .onClick(() => {
+          this.articleList[0] = new Article ('001','Article 0','Abstract', false, 100);
+        })
+        .width(300)
+        .margin(10)
+
+      Button('Like/Unlike first article')
+        .onClick(() => {
+          this.articleList[0].isLiked = !this.articleList[0].isLiked;
+          this.articleList[0].likesCount =
+            this.articleList[0].isLiked ? this.articleList[0].likesCount + 1 : this.articleList[0].likesCount - 1;
+        })
+        .width(300)
+        .margin(10)
+
+      List() {
+        ForEach(this.articleList, (item: Article) => {
+          ListItem() {
+            ArticleCard({
+              article: item
+            })
+              .margin({ top: 20 })
+          }
+        }, (item: Article) => item.id)
+      }
+      .padding(20)
+      .scrollBar(BarState.Off)
+      .backgroundColor(0xF1F3F5)
+    }
+  }
+}
+
+@Component
+struct ArticleCard {
+  @ObjectLink article: Article;
+
+  handleLiked() {
+    this.article.isLiked = !this.article.isLiked;
+    this.article.likesCount = this.article.isLiked ? this.article.likesCount + 1 : this.article.likesCount - 1;
+  }
+
+  build() {
+    Row() {
+      // 'app.media.icon' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+      Image($r('app.media.icon'))
+        .width(80)
+        .height(80)
+        .margin({ right: 20 })
+
+      Column() {
+        Text(this.article.title)
+          .fontSize(20)
+          .margin({ bottom: 8 })
+        Text(this.article.brief)
+          .fontSize(16)
+          .fontColor(Color.Gray)
+          .margin({ bottom: 8 })
+
+        Row() {
+          // 'app.media.iconLiked' and 'app.media.iconUnLiked' are only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+          Image(this.article.isLiked ? $r('app.media.iconLiked') : $r('app.media.iconUnLiked'))
+            .width(24)
+            .height(24)
+            .margin({ right: 8 })
+          Text(this.article.likesCount.toString())
+            .fontSize(16)
+        }
+        .onClick(() => this.handleLiked())
+        .justifyContent(FlexAlign.Center)
+      }
+      .alignItems(HorizontalAlign.Start)
+      .width('80%')
+      .height('100%')
+    }
+    .padding(20)
+    .borderRadius(12)
+    .backgroundColor('#FFECECEC')
+    .height(120)
+    .width('100%')
+    .justifyContent(FlexAlign.SpaceBetween)
+  }
+}
+```
+**Figure 12** Data changes fail to trigger renderings 
+![ForEach-StateVarNoRender](figures/ForEach-StateVarNoRender.PNG)

@@ -1,6 +1,6 @@
-# 进程线程通信
+# 进程线程通信<!--app-events-->
 
-- 使用公共事件进行进程间通信
+- 使用公共事件进行进程间通信<!--common-event-communication-->
     - [公共事件简介](common-event-overview.md)
     - [动态订阅公共事件](common-event-subscription.md)
     <!--Del-->

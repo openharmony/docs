@@ -182,7 +182,7 @@ Currently, this permission is available only to 2-in-1 device applications.
 
 <!--RP2--><!--RP2End-->
 
-**Permission level**: system_basic for API version 11 and normal for API versions 12 and later.
+**Permission level**: system_basic for API version 11; normal for API version 12 and later
 
 **Authorization mode**: user_grant
 
@@ -196,7 +196,7 @@ Currently, this permission is available only to 2-in-1 device applications.
 
 <!--RP2--><!--RP2End-->
 
-**Permission level**: system_basic for API version 11 and normal for API versions 12 and later.
+**Permission level**: system_basic for API version 11; normal for API version 12 and later
 
 **Authorization mode**: user_grant
 

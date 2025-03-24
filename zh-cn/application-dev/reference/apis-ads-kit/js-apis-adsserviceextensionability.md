@@ -14,7 +14,7 @@
 import { RespCallback } from '@kit.AdsKit';
 ```
 
-## AdsServiceExtensionAbility.RespCallback
+## RespCallback
 
 (respData: Map&lt;string, Array&lt;advertising.Advertisement&gt;&gt;): void;
 

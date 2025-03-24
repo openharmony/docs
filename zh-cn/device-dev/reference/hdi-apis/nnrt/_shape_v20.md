@@ -1,6 +1,5 @@
 # Shape
 
-
 ## 概述
 
 输出输入tensor的形状。
@@ -9,7 +8,7 @@
 
 输入：
 
-- x，n维tensor
+- x，n维tensor。
 
 输出：
 

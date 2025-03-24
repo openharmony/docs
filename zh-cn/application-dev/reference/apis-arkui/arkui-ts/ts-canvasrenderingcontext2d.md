@@ -5,6 +5,10 @@
 > **说明：**
 >
 > 从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> 本文绘制接口在调用时会存入被关联的Canvas组件的指令队列中。仅当当前帧进入渲染阶段且关联的Canvas组件处于可见状态时，这些指令才会从队列中被提取并执行。因此，在Canvas组件不可见的情况下，应尽量避免频繁调用绘制接口，以防止指令在队列中堆积，从而避免内存占用过大的问题。
+>
+> Canvas组件的宽或高超过8000px时使用CPU渲染，会导致性能明显下降。
 
 
 
@@ -99,28 +103,28 @@ struct LengthMetricsUnitDemo {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | --------- | ------------------------------- | ------------------ | ---------------------- | ---------------------------------------- |
-| [fillStyle](#fillstyle) | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | 否 | 否 | 指定绘制的填充色。<br/>-&nbsp;类型为string时，表示设置填充区域的颜色。<br/>默认值：'#000000'<br/>- 类型为number时，表示设置填充区域的颜色，不支持设置全透明色。<br/>默认值：0x000000<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。 |
+| [fillStyle](#fillstyle) | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | 否 | 否 | 指定绘制的填充色。<br/>-&nbsp;类型为string时，表示设置填充区域的颜色，颜色格式参考[ResourceColor](ts-types.md#resourcecolor)中string类型说明。<br/>默认值：'#000000'<br/>- 类型为number时，表示设置填充区域的颜色，不支持设置全透明色，颜色格式参考[ResourceColor](ts-types.md#resourcecolor)中number类型说明。<br/>默认值：0x000000<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。 |
 | [lineWidth](#linewidth) | number | 否 | 否 | 设置绘制线条的宽度。<br/>默认值：1(px)<br/>默认单位：vp <br/> linewidth取值不支持0和负数，0和负数按异常值处理，异常值按默认值处理。               |
-| [strokeStyle](#strokestyle)              | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern)  | 否 | 否 | 设置线条的颜色。<br/>-&nbsp;类型为string时，表示设置线条使用的颜色。<br/>默认值：'#000000'<br/>- 类型为number时，表示设置线条使用的颜色，不支持设置全透明色。<br/>默认值：0x000000<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。 |
-| [lineCap](#linecap)                      | [CanvasLineCap](#canvaslinecap) | 否 | 否 | 指定线端点的样式，可选值为：<br/>-&nbsp;'butt'：线端点以方形结束。<br/>-&nbsp;'round'：线端点以圆形结束。<br/>-&nbsp;'square'：线端点以方形结束，该样式下会增加一个长度和线段厚度相同，宽度是线段厚度一半的矩形。<br/>默认值：'butt'。 |
-| [lineJoin](#linejoin)                    | [CanvasLineJoin](#canvaslinejoin) | 否 | 否 | 指定线段间相交的交点样式，可选值为：<br/>-&nbsp;'round'：在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。<br/>-&nbsp;'bevel'：在线段相连处使用三角形为底填充，&nbsp;每个部分矩形拐角独立。<br/>-&nbsp;'miter'：在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。<br/>默认值：'miter'。 |
+| [strokeStyle](#strokestyle)              | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern)  | 否 | 否 | 设置线条的颜色。<br/>-&nbsp;类型为string时，表示设置线条使用的颜色，颜色格式参考[ResourceColor](ts-types.md#resourcecolor)中string类型说明。<br/>默认值：'#000000'<br/>- 类型为number时，表示设置线条使用的颜色，不支持设置全透明色，颜色格式参考[ResourceColor](ts-types.md#resourcecolor)中number类型说明。<br/>默认值：0x000000<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。 |
+| [lineCap](#linecap)                      | [CanvasLineCap](#canvaslinecap类型说明) | 否 | 否 | 指定线端点的样式，可选值为：<br/>-&nbsp;'butt'：线端点以方形结束。<br/>-&nbsp;'round'：线端点以圆形结束。<br/>-&nbsp;'square'：线端点以方形结束，该样式下会增加一个长度和线段厚度相同，宽度是线段厚度一半的矩形。<br/>默认值：'butt'。 |
+| [lineJoin](#linejoin)                    | [CanvasLineJoin](#canvaslinejoin类型说明) | 否 | 否 | 指定线段间相交的交点样式，可选值为：<br/>-&nbsp;'round'：在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。<br/>-&nbsp;'bevel'：在线段相连处使用三角形为底填充，&nbsp;每个部分矩形拐角独立。<br/>-&nbsp;'miter'：在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。<br/>默认值：'miter'。 |
 | [miterLimit](#miterlimit)                | number | 否 | 否 | 设置斜接面限制值，该值指定了线条相交处内角和外角的距离。  <br/>默认值：10px<br/>单位：px<br/>miterLimit取值不支持0和负数，0和负数按异常值处理，异常值按默认值处理。 |
-| [font](#font)                            | string | 否 | 否 | 设置文本绘制中的字体样式。<br/>语法：ctx.font='font-size&nbsp;font-family'<br/>-&nbsp;font-size(可选)，指定字号和行高，单位支持px和vp。在不同设备上呈现的字体大小可能不同。<br/>-&nbsp;font-family(可选)，指定字体系列。<br/>语法：ctx.font='font-style&nbsp;font-weight&nbsp;font-size&nbsp;font-family'<br/>-&nbsp;font-style(可选)，用于指定字体样式，支持如下几种样式：'normal','italic'。<br/>-&nbsp;font-weight(可选)，用于指定字体的粗细，支持如下几种类型：'normal',&nbsp;'bold',&nbsp;'bolder',&nbsp;'lighter',&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400,&nbsp;500,&nbsp;600,&nbsp;700,&nbsp;800,&nbsp;900。<br/>-&nbsp;font-size(可选)，指定字号和行高，单位支持px、vp。使用时需要添加单位。<br/>-&nbsp;font-family(可选)，指定字体系列，支持如下几种类型：'sans-serif',&nbsp;'serif',&nbsp;'monospace'。<br/>默认值：'normal normal 14px sans-serif'。|
-| [textAlign](#textalign)                  | [CanvasTextAlign](#canvastextalign) | 否 | 否 | 设置文本绘制中的文本对齐方式，可选值为：<br/>-&nbsp;'left'：文本左对齐。<br/>-&nbsp;'right'：文本右对齐。<br/>-&nbsp;'center'：文本居中对齐。<br/>-&nbsp;'start'：文本对齐界线开始的地方。<br/>-&nbsp;'end'：文本对齐界线结束的地方。<br/>ltr布局模式下'start'和'left'一致，rtl布局模式下'start'和'right'一致·。<br/>默认值：'start'。 |
-| [textBaseline](#textbaseline)            | [CanvasTextBaseline](#canvastextbaseline) | 否 | 否 | 设置文本绘制中的水平对齐方式，可选值为：<br/>-&nbsp;'alphabetic'：文本基线是标准的字母基线。<br/>-&nbsp;'top'：文本基线在文本块的顶部。<br/>-&nbsp;'hanging'：文本基线是悬挂基线。<br/>-&nbsp;'middle'：文本基线在文本块的中间。<br/>-&nbsp;'ideographic'：文字基线是表意字基线；如果字符本身超出了alphabetic基线，那么ideograhpic基线位置在字符本身的底部。<br/>-&nbsp;'bottom'：文本基线在文本块的底部。&nbsp;与ideographic基线的区别在于ideographic基线不需要考虑下行字母。<br/>默认值：'alphabetic'。 |
-| [globalAlpha](#globalalpha)              | number | 否 | 否 | 设置透明度，0.0为完全透明，1.0为完全不透明。<br/>默认值：1.0。 |
+| [font](#font) | string | 否 | 否 | 设置文本绘制中的字体样式。<br/>语法：ctx.font='font-style&nbsp;font-weight&nbsp;font-size&nbsp;font-family'<br/>-&nbsp;font-style(可选)，用于指定字体样式，支持如下几种样式：'normal','italic'。<br/>-&nbsp;font-weight(可选)，用于指定字体的粗细，支持如下几种类型：'normal',&nbsp;'bold',&nbsp;'bolder',&nbsp;'lighter',&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400,&nbsp;500,&nbsp;600,&nbsp;700,&nbsp;800,&nbsp;900。<br/>-&nbsp;font-size(可选)，指定字号和行高，单位支持px、vp。使用时需要添加单位。<br/>-&nbsp;font-family(可选)，指定字体系列，支持如下几种类型：'sans-serif',&nbsp;'serif',&nbsp;'monospace'。<br/>默认值：'normal normal 14px sans-serif'。 |
+| [textAlign](#textalign)                  | [CanvasTextAlign](#canvastextalign类型说明) | 否 | 否 | 设置文本绘制中的文本对齐方式，可选值为：<br/>-&nbsp;'left'：文本左对齐。<br/>-&nbsp;'right'：文本右对齐。<br/>-&nbsp;'center'：文本居中对齐。<br/>-&nbsp;'start'：文本对齐界线开始的地方。<br/>-&nbsp;'end'：文本对齐界线结束的地方。<br/>ltr布局模式下'start'和'left'一致，rtl布局模式下'start'和'right'一致·。<br/>默认值：'start'。 |
+| [textBaseline](#textbaseline)            | [CanvasTextBaseline](#canvastextbaseline类型说明) | 否 | 否 | 设置文本绘制中的水平对齐方式，可选值为：<br/>-&nbsp;'alphabetic'：文本基线是标准的字母基线。<br/>-&nbsp;'top'：文本基线在文本块的顶部。<br/>-&nbsp;'hanging'：文本基线是悬挂基线。<br/>-&nbsp;'middle'：文本基线在文本块的中间。<br/>-&nbsp;'ideographic'：文字基线是表意字基线；如果字符本身超出了alphabetic基线，那么ideograhpic基线位置在字符本身的底部。<br/>-&nbsp;'bottom'：文本基线在文本块的底部。&nbsp;与ideographic基线的区别在于ideographic基线不需要考虑下行字母。<br/>默认值：'alphabetic'。 |
+| [globalAlpha](#globalalpha)              | number | 否 | 否 | 设置透明度，范围为[0.0, 1.0]，0.0为完全透明，1.0为完全不透明。若给定值小于0.0，则取值0.0；若给定值大于1.0，则取值1.0.<br/>默认值：1.0。 |
 | [lineDashOffset](#linedashoffset)        | number | 否 | 否 | 设置画布的虚线偏移量，精度为float。    <br/>默认值：0.0<br/>默认单位：vp。 |
 | [globalCompositeOperation](#globalcompositeoperation) | string | 否 | 否 | 设置合成操作的方式。类型字段可选值有'source-over'，'source-atop'，'source-in'，'source-out'，'destination-over'，'destination-atop'，'destination-in'，'destination-out'，'lighter'，'copy'，'xor'。<br/>默认值：'source-over'。 |
-| [shadowBlur](#shadowblur)                | number | 否 | 否 | 设置绘制阴影时的模糊级别，值越大越模糊，精度为float。   <br/>默认值：0.0<br/>单位：px。<br/>shadowBlur取值不支持负数，负数按异常值处理，异常值按默认值处理。 |
-| [shadowColor](#shadowcolor)              | string | 否 | 否 | 设置绘制阴影时的阴影颜色。<br/>默认值：透明黑色。 |
+| [shadowBlur](#shadowblur)                | number | 否 | 否 | 设置绘制阴影时的模糊级别，值越大越模糊，精度为float，取值范围≥0。   <br/>默认值：0.0<br/>单位：px。<br/>shadowBlur取值不支持负数，负数按异常值处理，异常值按默认值处理。 |
+| [shadowColor](#shadowcolor)              | string | 否 | 否 | 设置绘制阴影时的阴影颜色，颜色格式参考[ResourceColor](ts-types.md#resourcecolor)中string类型说明。<br/>默认值：透明黑色。 |
 | [shadowOffsetX](#shadowoffsetx)          | number | 否 | 否 | 设置绘制阴影时和原有对象的水平偏移值。<br/>默认值：0.0<br/>默认单位：vp。 |
 | [shadowOffsetY](#shadowoffsety)          | number | 否 | 否 | 设置绘制阴影时和原有对象的垂直偏移值。<br/>默认值：0.0<br/>默认单位：vp。 |
 | [imageSmoothingEnabled](#imagesmoothingenabled) | boolean | 否 | 否 | 用于设置绘制图片时是否进行图像平滑度调整，true为启用，false为不启用。 <br/>默认值：true。 |
 | [height](#height)                        | number | 是 | 否 | 组件高度。 <br/>默认单位：vp。 |
 | [width](#width)                          | number | 是 | 否 | 组件宽度。 <br/>默认单位：vp。 |
-| [imageSmoothingQuality](#imagesmoothingquality) | [ImageSmoothingQuality](#imagesmoothingquality-1) | 否 | 否 | imageSmoothingEnabled为true时，用于设置图像平滑度。<br/>默认值："low"。 |
-| [direction](#direction)                  | [CanvasDirection](#canvasdirection) | 否 | 否 | 用于设置绘制文字时使用的文字方向。<br/>默认值："inherit"。 |
-| [filter](#filter)                        | string | 否 | 否 | 用于设置图像的滤镜，可以组合任意数量的滤镜。<br/>支持的滤镜效果如下：<br/>- 'none': 无滤镜效果<br/>- 'blur'：给图像设置高斯模糊<br/>- 'brightness'：给图片应用一种线性乘法，使其看起来更亮或更暗<br/>- 'contrast'：调整图像的对比度<br/>- 'grayscale'：将图像转换为灰度图像<br/>- 'hue-rotate'：给图像应用色相旋转<br/>- 'invert'：反转输入图像<br/>- 'opacity'：转化图像的透明程度<br/>- 'saturate'：转换图像饱和度<br/>- 'sepia'：将图像转换为深褐色<br/>默认值：'none'。 |
+| [imageSmoothingQuality](#imagesmoothingquality) | [ImageSmoothingQuality](#imagesmoothingquality类型说明) | 否 | 否 | imageSmoothingEnabled为true时，用于设置图像平滑度。<br/>默认值："low"。 |
+| [direction](#direction)                  | [CanvasDirection](#canvasdirection类型说明) | 否 | 否 | 用于设置绘制文字时使用的文字方向。<br/>默认值："inherit"。 |
+|  [filter](#filter)                        | string | 否 | 否 | 用于设置图像的滤镜，可以组合任意数量的滤镜。<br/>支持的滤镜效果如下：<br/>- 'none': 无滤镜效果。<br/>- 'blur(\<length>)'：给图像设置高斯模糊，取值范围≥0，支持单位px、vp、rem，默认单位：vp，默认值：blur(0px)。<br/>- 'brightness([\<number>\|\<percentage>])'：给图片应用一种线性乘法，使其看起来更亮或更暗，支持数字和百分比参数，取值范围≥0，默认值：brightness(1)。<br/>- 'contrast([\<number>\|\<percentage>])'：调整图像的对比度，支持数字和百分比参数，取值范围≥0，默认值：contrast(1)。<br/>- 'grayscale([\<number>\|\<percentage>])'：将图像转换为灰度图像，支持数字和百分比参数，取值范围[0, 1]，默认值：grayscale(0)。<br/>- 'hue-rotate(\<angle>)'：给图像应用色相旋转，取值范围0deg-360deg，默认值：hue-rotate(0deg)<br/>- 'invert([\<number>\|\<percentage>])'：反转输入图像，支持数字和百分比参数，取值范围[0, 1]，默认值：invert(0)。<br/>- 'opacity([\<number>\|\<percentage>])'：转化图像的透明程度，支持数字和百分比参数，取值范围[0, 1]，默认值：opacity(1)。<br/>- 'saturate([\<number>\|\<percentage>])'：转换图像饱和度，支持数字和百分比参数，取值范围≥0，默认值：saturate(1)。<br/>- 'sepia([\<number>\|\<percentage>])'：将图像转换为深褐色，支持数字和百分比参数，取值范围[0, 1]，默认值：sepia(0)。 |
 | [canvas<sup>13+</sup>](#canvas13)                        | [FrameNode](../../apis-arkui/js-apis-arkui-frameNode.md) | 是 | 否 | 获取和CanvasRenderingContext2D关联的Canvas组件的FrameNode实例。<br/>可用于监听关联的Canvas组件的可见状态。<br/>默认值：null。 |
 
 > **说明：**
@@ -414,9 +418,9 @@ struct TextBaseline {
       Canvas(this.context)
         .width('100%')
         .height('100%')
-        .backgroundColor('#ffff00')
-        .onReady(() =>{
-          this.context.strokeStyle = '#0000ff'
+        .backgroundColor('rgb(213,213,213)')
+        .onReady(() => {
+          this.context.strokeStyle = 'rgb(213,213,213)'
           this.context.moveTo(0, 120)
           this.context.lineTo(400, 120)
           this.context.stroke()
@@ -439,7 +443,7 @@ struct TextBaseline {
 }
 ```
 
-![zh-cn_image_0000001238712413](figures/zh-cn_image_0000001238712413.png)
+![textBaseline](figures/textBaseline.jpg)
 
 
 ### globalAlpha
@@ -901,15 +905,14 @@ struct CanvasExample {
   struct FilterDemo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true);
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
-    private img:ImageBitmap = new ImageBitmap("common/images/example.jpg");
+    private img: ImageBitmap = new ImageBitmap("common/images/example.jpg");
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
+          .onReady(() => {
             let ctx = this.context
             let img = this.img
 
@@ -942,8 +945,9 @@ struct CanvasExample {
             ctx.filter = 'blur(5px)';
             ctx.drawImage(img, 0, 300, 100, 100);
 
-            let result = ctx.toDataURL()
-            console.info(result)
+            // Applying multiple filters
+            ctx.filter = 'opacity(50%) contrast(200%) grayscale(50%)';
+            ctx.drawImage(img, 100, 300, 100, 100);
           })
       }
       .width('100%')
@@ -994,9 +998,9 @@ fillRect(x: number, y: number, w: number, h: number): void
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
-            this.context.fillRect(30,30,100,100)
+          .backgroundColor('rgb(213,213,213)')
+          .onReady(() => {
+            this.context.fillRect(30, 30, 100, 100)
          })
         }
       .width('100%')
@@ -1005,7 +1009,7 @@ fillRect(x: number, y: number, w: number, h: number): void
   }
   ```
 
-  ![zh-cn_image_0000001194192436](figures/zh-cn_image_0000001194192436.png)
+  ![fillRect](figures/fillRect.jpg)
 
 
 ### strokeRect
@@ -1197,9 +1201,9 @@ strokeText(text: string, x: number, y: number, maxWidth?: number): void
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
-            this.context.font = '55px sans-serif'
+          .backgroundColor('rgb(213,213,213)')
+          .onReady(() => {
+            this.context.font = '50vp sans-serif'
             this.context.strokeText("Hello World!", 20, 60)
         })
       }
@@ -1209,7 +1213,7 @@ strokeText(text: string, x: number, y: number, maxWidth?: number): void
   }
   ```
 
-  ![zh-cn_image_0000001239032413](figures/zh-cn_image_0000001239032413.png)
+  ![strokeText](figures/strokeText.jpg)
 
 
 ### measureText
@@ -1251,8 +1255,8 @@ measureText(text: string): TextMetrics
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
+          .backgroundColor('rgb(213,213,213)')
+          .onReady(() => {
             this.context.font = '50px sans-serif'
             this.context.fillText("Hello World!", 20, 100)
             this.context.fillText("width:" + this.context.measureText("Hello World!").width, 20, 200)
@@ -1264,7 +1268,7 @@ measureText(text: string): TextMetrics
   }
   ```
 
-  ![zh-cn_image_0000001193872492](figures/zh-cn_image_0000001193872492.png)
+  ![measureText](figures/measureText.jpg)
 
 
 ### stroke
@@ -1988,7 +1992,7 @@ fill(fillRule?: CanvasFillRule): void
 
 | 参数名 | 类型             | 必填   | 说明    |
 | -------- | -------------- | ---- | ---------------------------------------- |
-| fillRule | [CanvasFillRule](ts-canvasrenderingcontext2d.md#canvasfillrule) | 否    | 指定要填充对象的规则。<br/>可选参数为："nonzero", "evenodd"。<br>默认值："nonzero"。 |
+| fillRule | [CanvasFillRule](#canvasfillrule类型说明) | 否    | 指定要填充对象的规则。<br/>可选参数为："nonzero", "evenodd"。<br>默认值："nonzero"。 |
 
 
 **示例:**   
@@ -2036,7 +2040,7 @@ fill(path: Path2D, fillRule?: CanvasFillRule): void
 | 参数名    | 类型             | 必填   | 说明  |
 | -------- | -------------- | ---- | ---------------------------------------- |
 | path     | [Path2D](ts-components-canvas-path2d.md)         | 是  | Path2D填充路径。                              |
-| fillRule | [CanvasFillRule](ts-canvasrenderingcontext2d.md#canvasfillrule) | 否    | 指定要填充对象的规则。<br/>可选参数为："nonzero", "evenodd"。<br>默认值："nonzero"。 |
+| fillRule | [CanvasFillRule](#canvasfillrule类型说明) | 否    | 指定要填充对象的规则。<br/>可选参数为："nonzero", "evenodd"。<br>默认值："nonzero"。 |
 
 
 **示例:**   
@@ -2094,7 +2098,7 @@ clip(fillRule?: CanvasFillRule): void
 
 | 参数名       | 类型             | 必填   | 说明                            |
 | -------- | -------------- | ---- | ---------------------------------------- |
-| fillRule | [CanvasFillRule](#canvasfillrule) | 否 | 指定要剪切对象的规则。<br/>可选参数为："nonzero", "evenodd"。 <br>默认值："nonzero"。 |
+| fillRule | [CanvasFillRule](#canvasfillrule类型说明) | 否 | 指定要剪切对象的规则。<br/>可选参数为："nonzero", "evenodd"。 <br>默认值："nonzero"。 |
 
 **示例:** 
 
@@ -2131,7 +2135,7 @@ clip(fillRule?: CanvasFillRule): void
 
 clip(path: Path2D, fillRule?: CanvasFillRule): void
 
-设置当前路径为剪切路径
+设置当前路径为剪切路径。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -2144,7 +2148,7 @@ clip(path: Path2D, fillRule?: CanvasFillRule): void
 | 参数名      | 类型             | 必填   | 说明          |
 | -------- | -------------- | ---- | ---------------------------------------- |
 | path     | [Path2D](ts-components-canvas-path2d.md)         | 是    | Path2D剪切路径。                              |
-| fillRule | [CanvasFillRule](#canvasfillrule) | 否  | 指定要剪切对象的规则。<br/>可选参数为："nonzero", "evenodd"。 <br>默认值："nonzero"。 |
+| fillRule | [CanvasFillRule](#canvasfillrule类型说明) | 否  | 指定要剪切对象的规则。<br/>可选参数为："nonzero", "evenodd"。 <br>默认值："nonzero"。 |
 
 
 **示例:** 
@@ -2191,8 +2195,6 @@ reset(): void
 
 将CanvasRenderingContext2D重置为其默认状态，清除后台缓冲区、绘制状态栈、绘制路径和样式。
 
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
@@ -2232,8 +2234,6 @@ reset(): void
 saveLayer(): void
 
 创建一个图层。
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2281,8 +2281,6 @@ saveLayer(): void
 restoreLayer(): void
 
 恢复图像变换和裁剪状态至saveLayer前的状态，并将图层绘制在canvas上。restoreLayer示例代码同saveLayer。
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2476,7 +2474,7 @@ transform方法对应一个变换矩阵，想对一个图形进行变化的时�
           .width('100%')
           .height('100%')
           .backgroundColor('#ffff00')
-          .onReady(() =>{
+          .onReady(() => {
             this.context.fillStyle = 'rgb(0,0,0)'
             this.context.fillRect(0, 0, 100, 100)
             this.context.transform(1, 0.5, -0.5, 1, 10, 10)
@@ -2493,7 +2491,7 @@ transform方法对应一个变换矩阵，想对一个图形进行变化的时�
   }
   ```
 
-  ![zh-cn_image_0000001238832395](figures/zh-cn_image_0000001238832395.png)
+  ![transform](figures/transform.jpg)
 
 
 ### setTransform
@@ -2550,8 +2548,6 @@ setTransform方法使用的参数和transform()方法相同，但setTransform()�
   ```
 
   ![zh-cn_image_0000001238712421](figures/zh-cn_image_0000001238712421.png)
-
-### setTransform
 
 setTransform(transform?: Matrix2D): void
 
@@ -2781,10 +2777,10 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
 | 参数名  | 类型  | 必填  | 说明 |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
 | image | [ImageBitmap](ts-components-canvas-imagebitmap.md)或[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 图片资源，请参考ImageBitmap或PixelMap。            |
-| sx    | number                                   | 是  | 裁切源图像时距离源图像左上角的x坐标值。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，API Version 14前，默认单位：px；API Version 14及以后，默认单位：vp。 |
-| sy    | number                                   | 是  | 裁切源图像时距离源图像左上角的y坐标值。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，API Version 14前，默认单位：px；API Version 14及以后，默认单位：vp。  |
-| sw    | number                                   | 是  | 裁切源图像时需要裁切的宽度。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，API Version 14前，默认单位：px；API Version 14及以后，默认单位：vp。  |
-| sh    | number                                   | 是  | 裁切源图像时需要裁切的高度。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，API Version 14前，默认单位：px；API Version 14及以后，默认单位：vp。  |
+| sx    | number                                   | 是  | 裁切源图像时距离源图像左上角的x坐标值。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，默认单位：px。 |
+| sy    | number                                   | 是  | 裁切源图像时距离源图像左上角的y坐标值。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，默认单位：px。  |
+| sw    | number                                   | 是  | 裁切源图像时需要裁切的宽度。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，默认单位：px。  |
+| sh    | number                                   | 是  | 裁切源图像时需要裁切的高度。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，默认单位：px。  |
 | dx    | number                                   | 是  | 绘制区域左上角在x轴的位置。<br>默认单位：vp。|
 | dy    | number                                   | 是  | 绘制区域左上角在y轴的位置。<br>默认单位：vp。|
 | dw    | number                                   | 是  | 绘制区域的宽度。当绘制区域的宽度和裁剪图像的宽度不一致时，将图像宽度拉伸或压缩为绘制区域的宽度。<br>默认单位：vp。 |
@@ -2966,6 +2962,10 @@ getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
 
 
 **示例：**
+
+> **说明：**
+>
+> DevEco Studio的预览器不支持显示使用setPixelMap绘制的内容。
 
   ```ts
   // xxx.ets
@@ -3220,14 +3220,14 @@ transferFromImageBitmap(bitmap: ImageBitmap): void
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
+          .backgroundColor('rgb(213,213,213)')
           .onReady(() =>{
             let imageData = this.offContext.createImageData(100, 100)
             for (let i = 0; i < imageData.data.length; i += 4) {
               imageData.data[i + 0] = 255
               imageData.data[i + 1] = 0
-              imageData.data[i + 2] = 255
-              imageData.data[i + 3] = 255
+              imageData.data[i + 2] = 60
+              imageData.data[i + 3] = 80
             }
             this.offContext.putImageData(imageData, 10, 10)
             let image = this.offContext.transferToImageBitmap()
@@ -3239,7 +3239,7 @@ transferFromImageBitmap(bitmap: ImageBitmap): void
     }
   }
   ```
-  ![zh-cn_image_0000001238952387](figures/zh-cn_image_0000001238952387.png)  
+  ![transferFromImageBitmap](figures/transferFromImageBitmap.jpg)  
 
 
 ### toDataURL
@@ -3258,7 +3258,7 @@ toDataURL(type?: string, quality?: any): string
 
 | 参数名     | 类型   | 必填  | 说明  |
 | ------- | ------ | ---- | ---------------------------------------- |
-| type    | string | 否  | 用于指定图像格式。<br/>可选参数为："image/png", "image/jpeg", "image/webp"。。<br>默认值：image/png。            |
+| type    | string | 否  | 用于指定图像格式。<br/>可选参数为："image/png", "image/jpeg", "image/webp"。<br>默认值：image/png。            |
 | quality | any | 否  | 在指定图片格式为image/jpeg或image/webp的情况下，可以从0到1的区间内选择图片的质量。如果超出取值范围，将会使用默认值0.92。<br>默认值：0.92。 |
 
 **返回值：** 
@@ -3638,7 +3638,7 @@ off(type: 'onAttach', callback?: () => void): void
 
 | 参数名 | 类型      | 必填 | 说明                                                                   |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
-| type   | string | 是   | 取消订阅CanvasRenderingContext2D与Canvas组件发生绑定的回调 |
+| type   | string | 是   | 取消订阅CanvasRenderingContext2D与Canvas组件发生绑定的回调。 |
 | callback   | () => void | 否   | 为空代表取消所有订阅CanvasRenderingContext2D与Canvas组件发生绑定后触发的回调。<br>非空代表取消订阅发生绑定对应的回调。 |
 
 ### off('onDetach')<sup>13+</sup>
@@ -3655,7 +3655,7 @@ off(type: 'onDetach', callback?: () => void): void
 
 | 参数名 | 类型      | 必填 | 说明                                                                   |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
-| type   | string | 是   | 取消订阅CanvasRenderingContext2D与Canvas组件解除绑定的回调 |
+| type   | string | 是   | 取消订阅CanvasRenderingContext2D与Canvas组件解除绑定的回调。 |
 | callback   | () => void | 否   | 为空代表取消所有订阅CanvasRenderingContext2D与Canvas组件解除绑定后触发的回调。<br>非空代表取消订阅接触绑定对应的回调。 |
 
 **示例：**
@@ -3699,7 +3699,7 @@ struct AttachDetachExample {
                 Canvas(this.context)
                   .width('100%')
                   .height(150)
-                  .backgroundColor('#ffff00')
+                  .backgroundColor('rgb(213,213,213)')
                   .onReady(() => {
                     this.context.font = '30vp sans-serif'
                     this.node?.commonEvent.setOnVisibleAreaApproximateChange(
@@ -3718,7 +3718,7 @@ struct AttachDetachExample {
                 Text(item.toString())
                   .width('100%')
                   .height(150)
-                  .backgroundColor(Color.Blue)
+                  .backgroundColor('rgb(39,135,217)')
                   .borderRadius(15)
                   .fontSize(16)
                   .textAlign(TextAlign.Center)
@@ -3738,11 +3738,13 @@ struct AttachDetachExample {
 }
 ```
 
+![on_off_1](figures/on_off_cut.gif)
+
 ### startImageAnalyzer<sup>12+</sup>
 
 startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 
-配置AI分析并启动AI分析功能，使用前需先[使能](ts-components-canvas-canvas.md#enableanalyzer12)图像AI分析能力。<br>该方法调用时，将截取调用时刻的画面帧进行分析，使用时需注意启动分析的时机，避免出现画面和分析内容不一致的情况。<br>未执行完重复调用该方法会触发错误回调。示例代码同stopImageAnalyzer。
+配置AI分析并启动AI分析功能，使用前需先[启用图像AI分析能力](ts-components-canvas-canvas.md#enableanalyzer12)。<br>该方法调用时，将截取调用时刻的画面帧进行分析，使用时需注意启动分析的时机，避免出现画面和分析内容不一致的情况。<br>未执行完重复调用该方法会触发错误回调。示例代码同stopImageAnalyzer。
 
 > **说明：**
 > 
@@ -3851,7 +3853,7 @@ struct ImageAnalyzerExample {
 }
 ```
 
-## CanvasDirection
+## CanvasDirection类型说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -3865,7 +3867,7 @@ struct ImageAnalyzerExample {
 | ltr     | 从左往右。               |
 | rtl     | 从右往左。               |
 
-## CanvasFillRule
+## CanvasFillRule类型说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -3878,7 +3880,7 @@ struct ImageAnalyzerExample {
 | evenodd | 奇偶规则。 |
 | nonzero | 非零规则。 |
 
-## CanvasLineCap
+## CanvasLineCap类型说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -3892,7 +3894,7 @@ struct ImageAnalyzerExample {
 | round  | 在线条两端延伸半个圆，直径等于线宽。            |
 | square | 在线条两端延伸一个矩形，宽度等于线宽的一半，高度等于线宽。 |
 
-## CanvasLineJoin
+## CanvasLineJoin类型说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -3906,7 +3908,7 @@ struct ImageAnalyzerExample {
 | miter | 在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。 |
 | round | 在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。              |
 
-## CanvasTextAlign
+## CanvasTextAlign类型说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -3922,7 +3924,7 @@ struct ImageAnalyzerExample {
 | left   | 文本左对齐。       |
 | right  | 文本右对齐。       |
 
-## CanvasTextBaseline
+## CanvasTextBaseline类型说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -3939,7 +3941,7 @@ struct ImageAnalyzerExample {
 | middle      | 文本基线在文本块的中间。                             |
 | top         | 文本基线在文本块的顶部。                             |
 
-## ImageSmoothingQuality
+## ImageSmoothingQuality类型说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -3965,14 +3967,14 @@ struct ImageAnalyzerExample {
 | ---------- | -------------- | ------ | ---------------- | ------------------------ |
 | width                    | number | 是 | 否 | 只读属性，文本方块的宽度。 |
 | height                   | number | 是 | 否 | 只读属性，文本方块的高度。 |
-| actualBoundingBoxAscent  | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到渲染文本的矩形边界顶部的距离。 |
-| actualBoundingBoxDescent | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到渲染文本的矩形边界底部的距离。 |
-| actualBoundingBoxLeft    | number | 是 | 否 | 只读属性，平行于基线，从[CanvasRenderingContext2D.textAlign](#canvastextalign)属性确定的对齐点到文本矩形边界左侧的距离。 |
-| actualBoundingBoxRight   | number | 是 | 否 | 只读属性，平行于基线，从[CanvasRenderingContext2D.textAlign](#canvastextalign)属性确定的对齐点到文本矩形边界右侧的距离。 |
-| alphabeticBaseline       | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到线框的 alphabetic 基线的距离。 |
-| emHeightAscent           | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到线框中 em 方块顶部的距离。 |
-| emHeightDescent          | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到线框中 em 方块底部的距离。 |
-| fontBoundingBoxAscent    | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到渲染文本的所有字体的矩形最高边界顶部的距离。 |
-| fontBoundingBoxDescent   | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到渲染文本的所有字体的矩形边界最底部的距离。 |
-| hangingBaseline          | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到线框的 hanging 基线的距离。 |
-| ideographicBaseline      | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到线框的 ideographic 基线的距离。 |
+| actualBoundingBoxAscent  | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline类型说明)属性标明的水平线到渲染文本的矩形边界顶部的距离。 |
+| actualBoundingBoxDescent | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline类型说明)属性标明的水平线到渲染文本的矩形边界底部的距离。 |
+| actualBoundingBoxLeft    | number | 是 | 否 | 只读属性，平行于基线，从[CanvasRenderingContext2D.textAlign](#canvastextalign类型说明)属性确定的对齐点到文本矩形边界左侧的距离。 |
+| actualBoundingBoxRight   | number | 是 | 否 | 只读属性，平行于基线，从[CanvasRenderingContext2D.textAlign](#canvastextalign类型说明)属性确定的对齐点到文本矩形边界右侧的距离。 |
+| alphabeticBaseline       | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline类型说明)属性标明的水平线到线框的 alphabetic 基线的距离。 |
+| emHeightAscent           | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline类型说明)属性标明的水平线到线框中 em 方块顶部的距离。 |
+| emHeightDescent          | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline类型说明)属性标明的水平线到线框中 em 方块底部的距离。 |
+| fontBoundingBoxAscent    | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline类型说明)属性标明的水平线到渲染文本的所有字体的矩形最高边界顶部的距离。 |
+| fontBoundingBoxDescent   | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline类型说明)属性标明的水平线到渲染文本的所有字体的矩形边界最底部的距离。 |
+| hangingBaseline          | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline类型说明)属性标明的水平线到线框的 hanging 基线的距离。 |
+| ideographicBaseline      | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline类型说明)属性标明的水平线到线框的 ideographic 基线的距离。 |

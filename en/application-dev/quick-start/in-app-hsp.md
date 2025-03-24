@@ -5,7 +5,7 @@ A Harmony Shared Package (HSP) is a dynamic shared package that can contain code
 > 
 > In-app HSP: a type of HSP that is closely coupled with an application bundle name (**bundleName**) during compilation and can be used only by the specified application.
 > 
-> [Integrated HSP](integrated-hsp.md): a type of HSP that is not coupled with any specific application bundle name during the build and release processes and whose bundle name can be automatically replaced by the toolchain with the host application bundle name.
+> [Integrated HSP](integrated-hsp.md): a type of HSP that is not coupled with specific application bundle names during building and publishing. The toolchain can automatically replace the bundle name of the integrated HSP with that of the host application and generate a new HSP as the installation package of the host application. The new HSP package also belongs to the in-app HSP.
 
 ## Use Scenarios
 - By storing code and resource files shared by multiple HAPs/HSPs in one place, the HSP significantly improves the reusability and maintainability of the code and resource files. Better yet, because only one copy of the HSP code and resource files is retained during building and packaging, the size of the application package is effectively controlled.
@@ -16,13 +16,19 @@ A Harmony Shared Package (HSP) is a dynamic shared package that can contain code
 
 ## Constraints
 
-- An HSP must be installed and run with the HAP that depends on it. It cannot be installed or run independently on a device. The version of an HSP must be the same as that of the HAP.
-- An HSP does not support the declaration of the [ExtensionAbility](../application-models/extensionability-overview.md) component in the configuration file, but supports the [UIAbility](../application-models/uiability-overview.md) component.
+- An HSP must be installed and run with the HAP that depends on it. It cannot be installed or run independently on a device. The HSP version must be consistent with the HAP version.
+- HSP does not support the declaration of the [ExtensionAbility](../application-models/extensionability-overview.md) component in the configuration file, but supports the [UIAbility](../application-models/uiability-overview.md#declaration-configuration) component (except for the entry ability). 
 - An HSP can depend on other HARs or HSPs, but does not support cyclic dependency or dependency transfer.
+
+> **NOTE**
+> 
+> Cyclic dependency: For example, there are three HSPs. HSP-A depends on HSP-B, HSP-B depends on HSP-C, and HSP-C depends on HSP-A.
+>
+> Dependency transfer: For example, there are three HSPs. HSP-A depends on HSP-B, and HSP-B depends on HSP-C. Dependency transfer is not supported indicating that HSP-A can use the methods and components of HSP-B, but cannot directly use that of HSP-C.
 
 
 ## Creating an HSP
-Create an HSP module in DevEco Studio. For details, see <!--RP1-->[Creating an HSP Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hsp-V5#section7717162312546)<!--RP1End-->. The following describes how to create an HSP module named **library**. The basic project directory structure is as follows:
+Create an HSP module in DevEco Studio. For details, see [Creating an HSP Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-hsp-V13#section7717162312546). The following describes how to create an HSP module named **library**. The basic project directory structure is as follows:
 ```
 MyApplication
 ├── library
@@ -30,13 +36,13 @@ MyApplication
 │   │   └── main
 │   │       ├── ets
 │   │       │   └── pages
-│   │       │       └── index.ets
-│   │       ├── resources
-│   │       └── module.json5
-│   ├── oh-package.json5
-│   ├── index.ets
-│   └── build-profile.json5 // Module-level configuration file
-└── build-profile.json5     // Project-level configuration file
+│   │       │       └── index.ets     // Page file of the library module
+│   │       ├── resources             // Resources of the library module
+│   │       └── module.json5          // Configuration file of the library module
+│   ├── oh-package.json5              // Module-level configuration file
+│   ├── index.ets                     // Entry file
+│   └── build-profile.json5           // Module-level configuration file
+└── build-profile.json5               // Project-level configuration file
 ```
 
 ## Developing an HSP
@@ -157,14 +163,12 @@ In the entry point file **index.ets**, declare the APIs to be exposed.
 export { ResManager } from './src/main/ets/ResManager';
 ```
 
-
-
 ## Using an HSP
 
 You can reference APIs in an HSP and implement page redirection in the HSP through page routing.
 
 ### Referencing APIs
-To use HSP APIs, you need to configure the dependency on HSP APIs in **oh-package.json5**. For details, see <!--RP2-->[Referencing a Shared Package](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-har-import-V5)<!--RP2End-->.
+To use HSP APIs, you need to configure the dependency on them in the **oh-package.json5** file. For details, see [Referencing a Shared Package](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-har-import-V13).
 You can then call the external APIs of the HSP in the same way as calling the APIs in the HAR. In this example, the external APIs are the following ones exported from **library**:
 
 ```ts

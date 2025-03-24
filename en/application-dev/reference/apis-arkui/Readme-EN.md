@@ -1,7 +1,7 @@
 # ArkUI
 
-- ArkTS APIs
-  - UI
+- ArkTS APIs<!--arkui-arkts-->
+  - UI<!--ui-->
     - [@ohos.animator (Animator)](js-apis-animator.md)
     - [@ohos.arkui.componentSnapshot (Component Snapshot)](js-apis-arkui-componentSnapshot.md)
     - [@ohos.arkui.componentUtils (componentUtils)](js-apis-arkui-componentUtils.md)
@@ -37,7 +37,7 @@
     - [@ohos.arkui.UIContext (UIContext) (System API)](js-apis-arkui-UIContext-sys.md)
     - [@ohos.promptAction (Prompt) (System API)](js-apis-promptAction-sys.md)
     <!--DelEnd-->
-    - arkui
+    - ArkUI<!--ui-interface-arkui-->
       - [BuilderNode](js-apis-arkui-builderNode.md)
       - [ComponentContent](js-apis-arkui-ComponentContent.md)
       - [FrameNode](js-apis-arkui-frameNode.md)
@@ -47,7 +47,7 @@
       - [AttributeUpdater](js-apis-arkui-AttributeUpdater.md)
       - [Content](js-apis-arkui-Content.md)
       - [NodeContent](js-apis-arkui-NodeContent.md)
-  - Graphics
+  - Graphics<!--graphics-api-->
     - [@ohos.display (Display)](js-apis-display.md)
     - [@ohos.PiPWindow (PiP Window)](js-apis-pipWindow.md)
     - [@ohos.window (Window)](js-apis-window.md)
@@ -61,7 +61,7 @@
     - [@ohos.window (Window) (System API)](js-apis-window-sys.md)
     - [WindowExtensionContext (System API)](js-apis-inner-application-windowExtensionContext-sys.md)
     <!--DelEnd-->
-  - APIs No Longer Maintained
+  - APIs No Longer Maintained<!--arkui-arkts-dep-->
     - [@ohos.prompt (Prompt)](js-apis-prompt.md)
     - [@system.app (Application Context)](js-apis-system-app.md)
     - [@system.configuration (Application Configuration)](js-apis-system-configuration.md)
@@ -69,7 +69,7 @@
     - [@system.prompt (Prompt)](js-apis-system-prompt.md)
     - [@system.router (Page Routing)](js-apis-system-router.md)
     - [XComponentNode](js-apis-arkui-xcomponentNode.md)
-- ArkTS Components
+- ArkTS Components<!--arkui-declarative-comp-->
   - Universal Component Information
     - Universal Events
       - [Click Event](arkui-ts/ts-universal-events-click.md)
@@ -87,7 +87,7 @@
       - [Custom Keyboard Shortcuts](arkui-ts/ts-universal-events-keyboardshortcut.md)
       - [Custom Event Dispatch](arkui-ts/ts-universal-attributes-on-child-touch-test.md)
       - [Custom Event Interception](arkui-ts/ts-universal-attributes-on-touch-intercept.md)
-    - Universal attributes
+    - Universal Attributes<!--universal-attributes-->
       - [Size](arkui-ts/ts-universal-attributes-size.md)
       - [Location](arkui-ts/ts-universal-attributes-location.md)
       - [Layout Constraints](arkui-ts/ts-universal-attributes-layout-constraints.md)
@@ -102,7 +102,7 @@
       - [Overlay](arkui-ts/ts-universal-attributes-overlay.md)
       - [Z-order Control](arkui-ts/ts-universal-attributes-z-order.md)
       - [Transformation](arkui-ts/ts-universal-attributes-transformation.md)
-      - [Image Effects](arkui-ts/ts-universal-attributes-image-effect.md)
+      - [Image Effect](arkui-ts/ts-universal-attributes-image-effect.md)
       - [Shape Clipping](arkui-ts/ts-universal-attributes-sharp-clipping.md)
       - [Gradient Color](arkui-ts/ts-universal-attributes-gradient-color.md)
       - [Popup Control](arkui-ts/ts-universal-attributes-popup.md)
@@ -114,7 +114,7 @@
       - [Polymorphic Style](arkui-ts/ts-universal-attributes-polymorphic-style.md)
       - [restoreId](arkui-ts/ts-universal-attributes-restoreId.md)
       - [Foreground Color](arkui-ts/ts-universal-attributes-foreground-color.md)
-      - Foreground Effect](arkui-ts/ts-universal-attributes-foreground-effect.md)
+      - [Foreground Effect](arkui-ts/ts-universal-attributes-foreground-effect.md)
       - [Foreground Blur](arkui-ts/ts-universal-attributes-foreground-blur-style.md)
       - [Motion Blur](arkui-ts/ts-universal-attributes-motionBlur.md)
       - [Click Effect](arkui-ts/ts-universal-attributes-click-effect.md)
@@ -126,10 +126,10 @@
       - [Drawing Modifier](arkui-ts/ts-universal-attributes-draw-modifier.md)
       - [Content Modifier](arkui-ts/ts-universal-attributes-content-modifier.md)
       - [Custom Property](arkui-ts/ts-universal-attributes-custom-property.md)
-      - Touch Interactions
+      - Touch Interactions<!--touch-interactions-->
         - [Touch Target](arkui-ts/ts-universal-attributes-touch-target.md)
         - [Hit Test Control](arkui-ts/ts-universal-attributes-hit-test-behavior.md)
-      - Transition
+      - Transition<!--transition-->
         - [Modal Transition](arkui-ts/ts-universal-attributes-modal-transition.md)
         - [Sheet Transition](arkui-ts/ts-universal-attributes-sheet-transition.md)
       - [Obscuring](arkui-ts/ts-universal-attributes-obscured.md)
@@ -142,9 +142,9 @@
       - [Special Effect Drawing Combination](arkui-ts/ts-universal-attributes-use-effect.md)
       <!--Del-->
       - [Point Light Style (System API)](arkui-ts/ts-universal-attributes-point-light-style-sys.md)
-      - [Image Effects (System API)](arkui-ts/ts-universal-attributes-image-effect-sys.md)
+      - [Image Effect (System API)](arkui-ts/ts-universal-attributes-image-effect-sys.md)
       <!--DelEnd-->
-    - Gesture Handling
+    - Gesture Handling<!--gesture-handling-->
       - [Gesture Binding Methods](arkui-ts/ts-gesture-settings.md)
       - [TapGesture](arkui-ts/ts-basic-gestures-tapgesture.md)
       - [LongPressGesture](arkui-ts/ts-basic-gestures-longpressgesture.md)
@@ -156,7 +156,7 @@
       - [Custom Gesture Judgment](arkui-ts/ts-gesture-customize-judge.md)
       - [Bound Gesture Configuration](arkui-ts/ts-uigestureevent.md)
       - [Gesture Blocking Enhancement](arkui-ts/ts-gesture-blocking-enhancement.md)
-  - Rows, Columns, and Stacking
+  - Rows, Columns, and Stacking<!--rows-columns-and-stacking-->
     - [Flex](arkui-ts/ts-container-flex.md)
     - [Column](arkui-ts/ts-container-column.md)
     - [Row](arkui-ts/ts-container-row.md)
@@ -169,7 +169,7 @@
     - [Row (System API)](arkui-ts/ts-container-row-sys.md)
     - [Stack (System API)](arkui-ts/ts-container-stack-sys.md)
     <!--DelEnd-->
-  - Grid and Column Layout
+  - Grid and Column Layout<!--grid-and-column-layout-->
     - [GridRow](arkui-ts/ts-container-gridrow.md)
     - [GridCol](arkui-ts/ts-container-gridcol.md)
     - [ColumnSplit](arkui-ts/ts-container-columnsplit.md)
@@ -177,7 +177,7 @@
     - [SplitLayout](arkui-ts/ohos-arkui-advanced-SplitLayout.md)
     - [FoldSplitContainer](arkui-ts/ohos-arkui-advanced-FoldSplitContainer.md)
     - [SideBarContainer](arkui-ts/ts-container-sidebarcontainer.md)
-  - Scroll and Swipe
+  - Scroll and Swipe<!--scroll-and-swipe-->
     - [List](arkui-ts/ts-container-list.md)
     - [ListItem](arkui-ts/ts-container-listitem.md)
     - [ListItemGroup](arkui-ts/ts-container-listitemgroup.md)
@@ -196,14 +196,15 @@
     <!--Del-->
     - [List (System API)](arkui-ts/ts-container-list-sys.md)
     <!--DelEnd-->
-  - Navigation and Switching
+  - Navigation and Switching<!--navigation-and-switching-->
     - [Navigation](arkui-ts/ts-basic-components-navigation.md)
     - [NavDestination](arkui-ts/ts-basic-components-navdestination.md)
+    - [MultiNavigation](arkui-ts/ohos-arkui-advanced-MultiNavigation.md)
     - [Stepper](arkui-ts/ts-basic-components-stepper.md)
     - [StepperItem](arkui-ts/ts-basic-components-stepperitem.md)
     - [Tabs](arkui-ts/ts-container-tabs.md)
     - [TabContent](arkui-ts/ts-container-tabcontent.md)
-  - Buttons and Selections
+  - Buttons and Selections<!--buttons-and-selections-->
     - [Button](arkui-ts/ts-basic-components-button.md)
     - [Toggle](arkui-ts/ts-basic-components-toggle.md)
     - [Checkbox](arkui-ts/ts-basic-components-checkbox.md)
@@ -220,7 +221,7 @@
     - [ProgressButton](arkui-ts/ohos-arkui-advanced-ProgressButton.md)
     - [SegmentButton](arkui-ts/ohos-arkui-advanced-SegmentButton.md)
     - [Filter](arkui-ts/ohos-arkui-advanced-Filter.md)
-  - Text and Input
+  - Text and Input<!--text-and-input-->
     - [Text](arkui-ts/ts-basic-components-text.md)
     - [TextArea](arkui-ts/ts-basic-components-textarea.md)
     - [TextInput](arkui-ts/ts-basic-components-textinput.md)
@@ -240,7 +241,7 @@
     - [TextInput (System API)](arkui-ts/ts-basic-components-textinput-sys.md)
     - [Styled String (System API)](arkui-ts/ts-universal-styled-string-sys.md)
     <!--DelEnd-->
-  - Images and Videos
+  - Images and Videos<!--images-and-videos-->
     - [Image](arkui-ts/ts-basic-components-image.md)
     - [ImageAnimator](arkui-ts/ts-basic-components-imageanimator.md)
     - [Video](arkui-ts/ts-media-components-video.md)
@@ -249,7 +250,7 @@
     - [Image (System API)](arkui-ts/ts-basic-components-image-sys.md)
     - [MediaCachedImage (System API)](arkui-ts/ts-basic-components-mediacachedimage-sys.md)
     <!--DelEnd-->
-  - Information Display
+  - Information Display<!--information-display-->
     - [AlphabetIndexer](arkui-ts/ts-container-alphabet-indexer.md)
     - [Badge](arkui-ts/ts-container-badge.md)
     - [Chip](arkui-ts/ohos-arkui-advanced-Chip.md)
@@ -268,10 +269,10 @@
     - [TextClock](arkui-ts/ts-basic-components-textclock.md)
     - [TextTimer](arkui-ts/ts-basic-components-texttimer.md)
     - [TreeView](arkui-ts/ohos-arkui-advanced-TreeView.md)
-  - Blank and Divider
+  - Blank and Divider<!--blank-and-divider-->
     - [Blank](arkui-ts/ts-basic-components-blank.md)
     - [Divider](arkui-ts/ts-basic-components-divider.md)
-  - Canvas Drawing
+  - Canvas Drawing<!--canvas-drawing-->
     - [Canvas](arkui-ts/ts-components-canvas-canvas.md)
     - [CanvasGradient](arkui-ts/ts-components-canvas-canvasgradient.md)
     - [CanvasPattern](arkui-ts/ts-components-canvas-canvaspattern.md)
@@ -283,7 +284,7 @@
     - [OffscreenCanvas](arkui-ts/ts-components-offscreencanvas.md)
     - [OffscreenCanvasRenderingContext2D](arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
     - [Path2D](arkui-ts/ts-components-canvas-path2d.md)
-  - Graphic Drawing
+  - Graphic Drawing<!--graphic-drawing-->
     - [Circle](arkui-ts/ts-drawing-components-circle.md)
     - [Ellipse](arkui-ts/ts-drawing-components-ellipse.md)
     - [Line](arkui-ts/ts-drawing-components-line.md)
@@ -292,23 +293,23 @@
     - [Path](arkui-ts/ts-drawing-components-path.md)
     - [Rect](arkui-ts/ts-drawing-components-rect.md)
     - [Shape](arkui-ts/ts-drawing-components-shape.md)
-  - Rendering Drawing
+  - Rendering Drawin<!--rendering-drawing-->
     - [XComponent](arkui-ts/ts-basic-components-xcomponent.md)
     - [Component3D](arkui-ts/ts-basic-components-component3d.md)
     - [EmbeddedComponent](arkui-ts/ts-container-embedded-component.md) 
-  - Title Bars and Toolbars
+  - Title Bars and Toolbars<!--bars-and-toolbars-->
     - [ComposeTitleBar](arkui-ts/ohos-arkui-advanced-ComposeTitleBar.md)
     - [EditableTitleBar](arkui-ts/ohos-arkui-advanced-EditableTitleBar.md)
     - [SelectTitleBar](arkui-ts/ohos-arkui-advanced-SelectTitleBar.md)
     - [TabTitleBar](arkui-ts/ohos-arkui-advanced-TabTitleBar.md)
     - [ToolBar](arkui-ts/ohos-arkui-advanced-ToolBar.md)
     - [SubHeader](arkui-ts/ohos-arkui-advanced-SubHeader.md)
-  - Menus
+  - Menus<!--menus-->
     - [Menu](arkui-ts/ts-basic-components-menu.md)
     - [MenuItem](arkui-ts/ts-basic-components-menuitem.md)
     - [MenuItemGroup](arkui-ts/ts-basic-components-menuitemgroup.md)
     - [ContextMenu](arkui-ts/ts-methods-menu.md)
-  - Animation
+  - Animation<!--animation-->
     - [Property Animation (animation)](arkui-ts/ts-animatorproperty.md)
     - [Explicit Animation (animateTo)](arkui-ts/ts-explicit-animation.md)
     - [Keyframe Animation (keyframeAnimateTo)](arkui-ts/ts-keyframeAnimateTo.md)
@@ -322,7 +323,7 @@
     <!--Del-->
     - [Implicit Shared Element Transition (geometryTransition) (System API)](arkui-ts/ts-transition-animation-geometrytransition-sys.md)
     <!--DelEnd-->  
-  - Dialog Boxes
+  - Dialog Boxes<!--dialog-boxes-->
     - [Alert Dialog Box (AlertDialog)](arkui-ts/ts-methods-alert-dialog-box.md)
     - [Action Sheet (ActionSheet)](arkui-ts/ts-methods-action-sheet.md)
     - [Custom Dialog Box (CustomDialog)](arkui-ts/ts-methods-custom-dialog-box.md)
@@ -331,13 +332,13 @@
     - [Time Picker Dialog Box (TimePickerDialog)](arkui-ts/ts-methods-timepicker-dialog.md)
     - [Text Picker Dialog Box (TextPickerDialog)](arkui-ts/ts-methods-textpicker-dialog.md)
     - [Dialog Box (Dialog)](arkui-ts/ohos-arkui-advanced-Dialog.md)
-  - Service Widgets
+  - Service Widgets<!--service-widgets-->
     - [FormLink](arkui-ts/ts-container-formlink.md)
     - [FormMenu](arkui-ts/ohos-arkui-advanced-formmenu.md)
     <!--Del-->
     - [FormComponent (System API)](arkui-ts/ts-basic-components-formcomponent-sys.md)
     <!--DelEnd-->
-  - Security
+  - Security<!--arkui-security-->
     - [Security Component Universal Attributes](arkui-ts/ts-securitycomponent-attributes.md)
     - [LocationButton](arkui-ts/ts-security-components-locationbutton.md)
     - [PasteButton](arkui-ts/ts-security-components-pastebutton.md)
@@ -345,9 +346,9 @@
     <!--Del-->
     - [SaveButton (System API)](arkui-ts/ts-security-components-savebutton-sys.md)
     <!--DelEnd-->
-  - Themes
+  - Themes<!--themes-->
     - [WithTheme](arkui-ts/ts-container-with-theme.md) 
-  - Atomic Services
+  - Atomic Services<!--atomic-services-->
     - [AtomicServiceNavigation](arkui-ts/ohos-atomicservice-AtomicServiceNavigation.md)
     - [AtomicServiceTabs](arkui-ts/ohos-atomicservice-AtomicServiceTabs.md)
     - [AtomicServiceWeb](arkui-ts/ohos-atomicservice-AtomicServiceWeb.md)
@@ -357,19 +358,22 @@
     - [InnerFullScreenLaunchComponent (System API)](arkui-ts/ohos-arkui-advanced-InnerFullScreenLaunchComponent-sys.md)
     <!--DelEnd-->
     - [NavPushPathHelper](arkui-ts/ohos-atomicservice-NavPushPathHelper.md)
-  - Custom Placeholder Components
+  - Custom Placeholder Components<!--custom-placeholder-comp-->
     - [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)
     - [ContentSlot](arkui-ts/ts-components-contentSlot.md)
-  - Custom Components
+  - Custom Components<!--custom-comp-->
     - [Custom Component Lifecycle](arkui-ts/ts-custom-component-lifecycle.md)
     - [Custom Component Layout](arkui-ts/ts-custom-component-layout.md)
     - [Custom Component Built-in APIs](arkui-ts/ts-custom-component-api.md)
-  - State Management and Rendering Control
+  - State Management and Rendering Control<!--state-management-and-rendering-control-->
     - [State Management with Application-level Variables](arkui-ts/ts-state-management.md)
     - [ForEach](arkui-ts/ts-rendering-control-foreach.md)
     - [LazyForEach](arkui-ts/ts-rendering-control-lazyforeach.md)
     - [Repeat](arkui-ts/ts-rendering-control-repeat.md)
-  - Common Definitions
+    <!--Del-->
+    - [State Management with Application-level Variables (System API)](arkui-ts/ts-state-management-sys.md)
+    <!--DelEnd-->
+  - Common Definitions<!--common-definitions-->
     - [Basic Types](arkui-ts/ts-types.md)
     - [Pixel Units](arkui-ts/ts-pixel-units.md)
     - [Enums](arkui-ts/ts-appendix-enums.md)
@@ -379,14 +383,14 @@
     - [Enums (System API)](arkui-ts/ts-appendix-enums-sys.md)
     <!--DelEnd-->
   <!--Del-->
-  - Other
+  - Other<!--other-->
     - [EffectComponent (System API)](arkui-ts/ts-container-effectcomponent-sys.md)
     - [IsolatedComponent (System API)](arkui-ts/ts-container-isolated-component-sys.md)
     - [RemoteWindow (System API)](arkui-ts/ts-basic-components-remotewindow-sys.md)
     - [PluginComponent (System API)](arkui-ts/ts-basic-components-plugincomponent-sys.md)
     - [UIExtensionComponent (System API)](arkui-ts/ts-container-ui-extension-component-sys.md)
   <!--DelEnd-->
-  - Components and APIs No Longer Maintained
+  - Components and APIs No Longer Maintained<!--arkui-declarative-comp-dep-->
     <!--Del-->
     - [AbilityComponent](arkui-ts/ts-container-ability-component-sys.md)
     <!--DelEnd-->
@@ -396,19 +400,19 @@
     - [Navigator](arkui-ts/ts-container-navigator.md)
     - [Click Control](arkui-ts/ts-universal-attributes-click.md)
     - [Grid](arkui-ts/ts-universal-attributes-grid.md)
-- JavaScript Components
+- JavaScript Components<!--arkui-js-comp--> 
   - [JavaScript-compatible Web-like Development Paradigm (ArkUI.Full)](arkui-js/Readme-EN.md)   
   - [JavaScript-compatible Web-like Development Paradigm (ArkUI.Lite)](arkui-js-lite/Readme-EN.md)
   - [JavaScript Service Widget UI Components](js-service-widget-ui/Readme-EN.md)
-- C APIs
-  - Modules
+- C APIs<!--arkui-c-->
+  - Modules<!--arkui-module-->
     - [ArkUI_NativeModule](_ark_u_i___native_module.md)
     - [Native Accessibility](arkui_native_interface_accessibility.md)
     - [Native XComponent](_o_h___native_x_component.md)
     - [ArkUI_EventModule](_ark_u_i___event_module.md)
     - [WindowManager_NativeModule](_window_manager___native_module.md)
     - [OH_DisplayManager](_o_h___display_manager.md)
-  - Header Files
+  - Header Files<!--arkui-headerfile-->
     - [drag_and_drop.h](drag__and__drop_8h.md)
     - [drawable_descriptor.h](drawable__descriptor_8h.md)
     - [native_animate.h](native__animate_8h.md)
@@ -429,7 +433,7 @@
     - [oh_display_capture.h](oh__display__capture_8h.md)
     - [oh_display_info.h](oh__display__info_8h.md)
     - [oh_display_manager.h](oh__display__manager_8h.md)
-  - Structs
+  - Structs<!--arkui-struct-->
     - [ArkUI_AnimateCompleteCallback](_ark_u_i___animate_complete_callback.md)
     - [ArkUI_AttributeItem](_ark_u_i___attribute_item.md)
     - [ArkUI_ColorStop](_ark_u_i___color_stop.md)
@@ -464,8 +468,8 @@
     - [NativeDisplayManager_DisplaysInfo](_native_display_manager___displays_info.md)
     - [NativeDisplayManager_Rect](_native_display_manager___rect.md)
     - [NativeDisplayManager_WaterfallDisplayAreaRects](ive_display_manager___waterfall_display_area_rects.md)
-- Error Codes
-  - UI
+- Error Codes<!--arkui-arkts-errcode-->
+  - UI<!--arkui-ui-arkts-errcode-->
     - [Animator Error Codes](errorcode-animator.md)
     - [promptAction Error Codes](errorcode-promptAction.md)
     - [Router Error Codes](errorcode-router.md)
@@ -475,6 +479,6 @@
     - [Focus Error Codes](errorcode-focus.md)
     - [System Resource Error Codes](errorcode-system-resource.md)
     - [Sheet Error Codes](errorcode-bindSheet.md)
-  - Graphics
+  - Graphics<!--arkui-graphics-images-arkts-errcode-->
     - [Display Error Codes](errorcode-display.md)
     - [Window Error Codes](errorcode-window.md)

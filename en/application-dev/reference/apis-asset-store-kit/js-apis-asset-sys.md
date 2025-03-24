@@ -25,6 +25,8 @@ To set [IS_PERSISTENT](js-apis-asset.md#tag), the application must have the ohos
 
 **System capability**: SystemCapability.Security.Asset
 
+**Parameters**
+
 | Name    | Type    | Mandatory| Description                                                        |
 | ---------- | -------- | ---- | ------------------------------------------------------------ |
 | userId     | number                                | Yes  | User ID.                                                          |
@@ -99,6 +101,8 @@ Removes one or more assets from the specified user space. This API uses a promis
 
 **System capability**: SystemCapability.Security.Asset
 
+**Parameters**
+
 | Name| Type    | Mandatory| Description                                                  |
 | ------ | -------- | ---- | ------------------------------------------------------ |
 | userId | number                                | Yes  | User ID.                                                 |
@@ -167,6 +171,8 @@ Updates an asset in the specified user space. This API uses a promise to return 
 
 **System capability**: SystemCapability.Security.Asset
 
+**Parameters**
+
 | Name            | Type    | Mandatory| Description                                                        |
 | ------------------ | -------- | ---- | ------------------------------------------------------------ |
 | userId             | number                                | Yes  | User ID.                                                        |
@@ -234,16 +240,18 @@ try {
 
 preQueryAsUser(userId: number, query: AssetMap): Promise\<Uint8Array>
 
-Performs preprocessing for the asset query in the specified user space. This API is used when user authentication is required for the access to the asset. After the user authentication is successful, call [asset.queryAsUser](#assetqueryasuser) and [asset.postQueryAsUser](#assetpostqueryasuser). This API uses a promise to return the result.
+Performs preprocessing for the asset query in the specified user space. This API is used when user authentication is required for the access to an asset. After the user authentication is successful, call [asset.queryAsUser](#assetqueryasuser) and [asset.postQueryAsUser](#assetpostqueryasuser). This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **System capability**: SystemCapability.Security.Asset
 
+**Parameters**
+
 | Name| Type    | Mandatory| Description                                                  |
 | ------ | -------- | ---- | ------------------------------------------------------ |
 | userId | number                                | Yes  | User ID.                                           |
-| query  | [AssetMap](js-apis-asset.md#assetmap) | Yes  | Attributes of the asset, such as the asset aliases, access control attributes, and custom data.|
+| query  | [AssetMap](js-apis-asset.md#assetmap) | Yes  | Conditions for querying the asset, such as the asset aliases, access control attributes, and custom data.|
 
 **Return value**
 
@@ -311,10 +319,12 @@ Queries one or more assets in the specified user space. If user authentication i
 
 **System capability**: SystemCapability.Security.Asset
 
+**Parameters**
+
 | Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | userId   | number                                          | Yes  | User ID.                                                 |
-| query    | [AssetMap](js-apis-asset.md#assetmap)           | Yes  | Attributes of the asset, such as the asset aliases, access control attributes, and custom data.      |
+| query    | [AssetMap](js-apis-asset.md#assetmap)           | Yes  | Conditions for querying the asset, such as the asset aliases, access control attributes, and custom data.      |
 
 **Return value**
 
@@ -386,10 +396,12 @@ Performs postprocessing for the asset query in the specified user space. This AP
 
 **System capability**: SystemCapability.Security.Asset
 
+**Parameters**
+
 | Name| Type    | Mandatory| Description                                                        |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
 | userId | number                                | Yes  | User ID.                                                                    |
-| handle | [AssetMap](js-apis-asset.md#assetmap) | Yes  | Handle of the query operation, including the challenge value returned by [asset.preQueryAsUser](#assetprequeryasuser). |
+| handle | [AssetMap](js-apis-asset.md#assetmap) | Yes  | Handle of the query operation, including the challenge value returned by [asset.preQueryAsUser](#assetprequeryasuser).|
 
 **Return value**
 

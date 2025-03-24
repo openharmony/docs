@@ -422,7 +422,7 @@ Sets the access to the data of an account for an application. This API uses an a
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or bundleName. |
 | 12300003 | Account not found. |
-| 12400001 | Application not found. |
+| 12400005 | The size of authorization list reaches the upper limit. |
 
 **Example**
 
@@ -472,7 +472,7 @@ Sets the access to the data of an account for an application. This API uses a pr
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or bundleName. |
 | 12300003 | Account not found. |
-| 12400001 | Application not found. |
+| 12400005 | The size of authorization list reaches the upper limit. |
 
 **Example**
 
@@ -1269,7 +1269,6 @@ Obtains the application accounts that can be accessed by the invoker based on th
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid owner. |
-| 12400001 | Application not found. |
 
 **Example**
 
@@ -1317,7 +1316,6 @@ Obtains the application accounts that can be accessed by the invoker based on th
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid owner. |
-| 12400001 | Application not found. |
 
 **Example**
 
@@ -1359,7 +1357,6 @@ Subscribes to account information changes of apps.
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid type or owners. |
-| 12400001 | Application not found. |
 
 **Example**
 
@@ -1431,7 +1428,7 @@ Authenticates an application account. This API uses an asynchronous callback to 
 | name     | string                | Yes   | Name of the target application account.    |
 | owner    | string                | Yes   | Owner of the application account. The value is the bundle name of the application. |
 | authType | string                | Yes   | Authentication type.          |
-| callback | [AuthCallback](#authcallback9) | Yes   | Callback used to return the authentication result.|
+| callback | [AuthCallback](#authcallback9) | Yes   | Authenticator callback used to return the result.|
 
 **Error codes**
 
@@ -1498,7 +1495,7 @@ Authenticates an application account. This API uses an asynchronous callback to 
 | owner    | string                | Yes   | Owner of the application account. The value is the bundle name of the application. |
 | authType | string                | Yes   | Authentication type.          |
 | options  | Record<string, Object>  | Yes   | Options for the authentication.      |
-| callback | [AuthCallback](#authcallback9) | Yes   | Callback used to return the authentication result.|
+| callback | [AuthCallback](#authcallback9) | Yes   | Authenticator callback used to return the result.|
 
 **Error codes**
 
@@ -1862,7 +1859,6 @@ Sets the visibility of an authorization token to an application. This API uses a
 | 12300002 | Invalid name, authType or bundleName. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
-| 12400001 | Application not found. |
 | 12400005 | The size of authorization list reaches the upper limit. |
 
 **Example**
@@ -1916,7 +1912,6 @@ Sets the visibility of an authorization token to an application. This API uses a
 | 12300002 | Invalid name, authType or bundleName. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
-| 12400001 | Application not found. |
 | 12400005 | The size of authorization list reaches the upper limit. |
 
 **Example**
@@ -2860,7 +2855,7 @@ Sets the authenticator attributes of an application. This API uses an asynchrono
 
 setAuthenticatorProperties(owner: string, options: SetPropertiesOptions, callback: AuthCallback): void
 
-Set authenticator properties. This API uses an asynchronous callback to return the result.
+Sets the authenticator properties. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4031,7 +4026,7 @@ Authenticates an application account. This API uses an asynchronous callback to 
 | owner    | string                | Yes   | Owner of the application account. The value is the bundle name of the application. |
 | authType | string                | Yes   | Authentication type.          |
 | options  | {[key: string]: any}  | Yes   | Options for the authentication.      |
-| callback | [AuthenticatorCallback](#authenticatorcallbackdeprecated) | Yes   | Callback used to return the result.|
+| callback | [AuthenticatorCallback](#authenticatorcallbackdeprecated) | Yes   | Authenticator callback used to return the result.|
 
 **Example**
 
@@ -5129,7 +5124,7 @@ Adds an application account implicitly based on the specified authentication typ
 | authType         | string                | Yes   | Authentication type.     |
 | callerBundleName | string                | Yes   | Bundle name of the authentication requester.      |
 | options          | {[key: string]: any}  | Yes   | Options for the authentication.     |
-| callback         | [AuthenticatorCallback](#authenticatorcallbackdeprecated) | Yes   | Authenticator callback used to return the authentication result.|
+| callback         | [AuthenticatorCallback](#authenticatorcallbackdeprecated) | Yes   | Authenticator callback used to return the result.|
 
 ### auth<sup>9+</sup>
 
@@ -5168,7 +5163,7 @@ Authenticates an application account to obtain the authorization token. This API
 | authType         | string                | Yes   | Authentication type.     |
 | callerBundleName | string                | Yes   | Bundle name of the authentication requester.      |
 | options          | {[key: string]: any}  | Yes   | Options for the authentication.     |
-| callback         | [AuthenticatorCallback](#authenticatorcallbackdeprecated) | Yes   | Authenticator callback used to return the authentication result.|
+| callback         | [AuthenticatorCallback](#authenticatorcallbackdeprecated) | Yes   | Authenticator callback used to return the result.|
 
 ### verifyCredential<sup>9+</sup>
 
@@ -5184,7 +5179,7 @@ Verifies the credential of an application account. This API uses an asynchronous
 | ---------------- | --------------------- | ---- | --------------- |
 | name      | string                   | Yes   | Name of the target application account.             |
 | options   | [VerifyCredentialOptions](#verifycredentialoptions9)  | Yes   | Options for credential verification.           |
-| callback  | [AuthCallback](#authcallback9)    | Yes   | Authenticator callback used to return the verification result.|
+| callback  | [AuthCallback](#authcallback9)    | Yes   | Authenticator callback used to return the result.|
 
 ### setProperties<sup>9+</sup>
 
@@ -5215,7 +5210,7 @@ Checks the account labels. This API uses an asynchronous callback to return the 
 | ---------------- | --------------------- | ---- | --------------- |
 | name      | string                | Yes   | Name of the target application account.             |
 | labels    | Array&lt;string&gt;          | Yes   | Labels to check.                  |
-| callback  | [AuthCallback](#authcallback9) | Yes   | Authenticator callback used to return the check result.|
+| callback  | [AuthCallback](#authcallback9) | Yes   | Authenticator callback used to return the result.|
 
 ### checkAccountRemovable<sup>9+</sup>
 

@@ -76,8 +76,8 @@ Creates an **AudioRenderer** instance. This API uses an asynchronous callback to
 import { audio } from '@kit.AudioKit';
 
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-  channels: audio.AudioChannel.CHANNEL_1,
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
+  channels: audio.AudioChannel.CHANNEL_2,
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
 };
@@ -129,8 +129,8 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-  channels: audio.AudioChannel.CHANNEL_1,
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
+  channels: audio.AudioChannel.CHANNEL_2,
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
 };
@@ -180,7 +180,7 @@ This permission is required when [SourceType](#sourcetype8) is set to **SOURCE_T
 import { audio } from '@kit.AudioKit';
 
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
   channels: audio.AudioChannel.CHANNEL_2,
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
@@ -237,7 +237,7 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
   channels: audio.AudioChannel.CHANNEL_2,
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
@@ -415,8 +415,8 @@ Enumerates the audio channels.
 
 | Name     |  Value      | Description  |
 | --------- | -------- |------|
-| CHANNEL_1 | 0x1 << 0 | One audio channel (mono).|
-| CHANNEL_2 | 0x1 << 1 | Two audio channels (stereo).|
+| CHANNEL_1 | 1 | One audio channel (mono).|
+| CHANNEL_2 | 2 | Two audio channels (stereo).|
 | CHANNEL_3<sup>11+</sup> | 3 | Three audio channels.|
 | CHANNEL_4<sup>11+</sup> | 4 | Four audio channels.|
 | CHANNEL_5<sup>11+</sup> | 5 | Five audio channels.|
@@ -680,8 +680,8 @@ Describes audio renderer information.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
-| Name         | Type                       | Mandatory | Description            |
-| ------------- | --------------------------- | ---- | ---------------- |
+| Name         | Type                       | Mandatory | Description           |
+| ------------- | --------------------------- | ---- | --------------- |
 | content       | [ContentType](#contenttypedeprecated) | No  | Audio content type.<br>This parameter is mandatory in API versions 8 and 9 and optional since API version 10. The default value is **CONTENT_TYPE_UNKNOWN**. [ContentType](#contenttypedeprecated) is deprecated. You are advised to use [StreamUsage](#streamusage) to declare the audio stream type.|
 | usage         | [StreamUsage](#streamusage) | Yes  | Audio stream usage.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | rendererFlags | number                      | Yes  | Audio renderer flags.<br>The value **0** means an audio renderer.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -763,7 +763,7 @@ Describes the audio device blocked status and device information.
 | Name             | Type                                             | Mandatory| Description              |
 | :---------------- | :------------------------------------------------ | :--- | :----------------- |
 | blockStatus       | [DeviceBlockStatus](#deviceblockstatus13)           | Yes  | Blocked status of the audio device.|
-| deviceDescriptors | [AudioDeviceDescriptors](#audiodevicedescriptors) | Yes  | Device information.        |
+| devices | [AudioDeviceDescriptors](#audiodevicedescriptors) | Yes  | Device information.        |
 
 ## ChannelBlendMode<sup>11+</sup>
 
@@ -862,6 +862,7 @@ Enumerates the audio source types.
 | SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | Voice communication source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core|
 | SOURCE_TYPE_VOICE_MESSAGE<sup>12+</sup>      | 10     | Voice message source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core|
 | SOURCE_TYPE_CAMCORDER<sup>13+</sup>          | 13     | Video recording source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core|
+| SOURCE_TYPE_UNPROCESSED<sup>14+</sup>     | 14 |  Audio source for raw microphone recording, where the system does not perform any algorithm processing.<br>**System capability**: SystemCapability.Multimedia.Audio.Core|
 
 ## AudioPlaybackCaptureConfig<sup>(deprecated)</sup>
 
@@ -887,9 +888,10 @@ Defines the options for filtering the played audio streams to be recorded.
 
 **Required permissions**: ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
 
-- In API version 10, **CaptureFilterOptions** supports **StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION**, and therefore the **ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO** permission is required. Only system applications can request this permission.
+- In API version 10, **CaptureFilterOptions** supports **StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION**, and therefore the ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO permission is required. Only system applications can request this permission.
 
 - Since API version 11, **CaptureFilterOptions** does not support **StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION**. Therefore, no permission is required for calling this API.
+
 
 **System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture
 
@@ -1279,8 +1281,10 @@ setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&l
 Sets the volume for a stream. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setVolume](#setvolume9) in **AudioVolumeGroupManager**. The substitute API is available only for system applications.
+> 
+> This API is supported since API version 7 and deprecated since API version 9. The substitute API is available only for system applications.
+> 
+> Applications cannot directly adjust the system volume. It is recommended that they invoke the system volume panel for users to adjust the volume. When the user adjusts the volume, a volume prompt UI is displayed to explicitly notify the user that the system volume changes. For details about the samples and introduction, see [AVVolumePanel Reference](ohos-multimedia-avvolumepanel.md).
 
 **Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1318,7 +1322,9 @@ Sets the volume for a stream. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setVolume](#setvolume9) in **AudioVolumeGroupManager**. The substitute API is available only for system applications.
+> This API is supported since API version 7 and deprecated since API version 9. The substitute API is available only for system applications.
+>
+> Applications cannot directly adjust the system volume. It is recommended that they invoke the system volume panel for users to adjust the volume. When the user adjusts the volume, a volume prompt UI is displayed to explicitly notify the user that the system volume changes. For details about the samples and introduction, see [AVVolumePanel Reference](ohos-multimedia-avvolumepanel.md).
 
 **Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -3252,6 +3258,46 @@ audioVolumeGroupManager.on('micStateChange', (micStateChange: audio.MicStateChan
 });
 ```
 
+### off('micStateChange')<sup>12+</sup>
+
+off(type: 'micStateChange', callback?: Callback&lt;MicStateChangeEvent&gt;): void
+
+Unsubscribes from system microphone state change event. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name  | Type                                  | Mandatory| Description                                                        |
+| -------- | -------------------------------------- |----| ------------------------------------------------------------ |
+| type     | string                                 | Yes | Event type. The value is fixed at **'micStateChange'**.|
+| callback | Callback<[MicStateChangeEvent](#micstatechangeevent9)> | No | Callback used to return the changed microphone state.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters missing; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**Example**
+
+```ts
+// Cancel all subscriptions to the event.
+audioVolumeGroupManager.off('micStateChange');
+
+// For the same event, if the callback parameter passed to the off API is the same as that passed to the on API, the off API cancels the subscription registered with the specified callback parameter.
+let micStateChangeCallback = (micStateChange: audio.MicStateChangeEvent) => {
+  console.info(`Current microphone status is: ${micStateChange.mute} `);
+};
+
+audioVolumeGroupManager.on('micStateChange', micStateChangeCallback);
+
+audioVolumeGroupManager.off('micStateChange', micStateChangeCallback);
+```
+
 ### isVolumeUnadjustable<sup>10+</sup>
 
 isVolumeUnadjustable(): boolean
@@ -4318,15 +4364,15 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 **Example**
 
 ```ts
-let blockMic: boolean = audioRoutingManager.isMicBlockDetectionSupported();
-if (blockMic == true) {
-  audioRoutingManager.on('micBlockStatusChanged', (micBlockStatusChanged: audio.DeviceBlockStatusInfo) => {
-    if (micBlockStatusChanged.blockStatus == audio.DeviceBlockStatus.BLOCKED ||
-      micBlockStatusChanged.blockStatus == audio.DeviceBlockStatus.UNBLOCKED) {
-      console.info(`${Tag}: on_micBlockStatusChanged: SUCCESS`);
-    }
-  });
-}
+// Before the subscription, check whether the current device supports detection.
+audioRoutingManager.isMicBlockDetectionSupported().then((value: boolean) => {
+  console.info(`Query whether microphone block detection is supported on current device result is ${value}.`);
+  if (value) {
+    audioRoutingManager.on('micBlockStatusChanged', (micBlockStatusChanged: audio.DeviceBlockStatusInfo) => {
+      console.info(`block status : ${micBlockStatusChanged.blockStatus} `);
+    });
+  }
+});
 ```
 
 ### off('micBlockStatusChanged')<sup>13+</sup>
@@ -4361,7 +4407,6 @@ audioRoutingManager.off('micBlockStatusChanged');
 
 // For the same event, if the callback parameter passed to the off API is the same as that passed to the on API, the off API cancels the subscription registered with the specified callback parameter.
 let micBlockStatusCallback = (micBlockStatusChanged: audio.DeviceBlockStatusInfo) => {
-  console.info(`device descriptor size : ${micBlockStatusChanged.deviceDescriptors.length} `);
   console.info(`block status : ${micBlockStatusChanged.blockStatus} `);
 };
 
@@ -5368,9 +5413,15 @@ audioSessionManager.off('audioSessionDeactivated', audioSessionDeactivatedCallba
 
 ## AudioRendererChangeInfoArray<sup>9+</sup>
 
+type AudioRendererChangeInfoArray = Array&lt;Readonly&lt;AudioRendererChangeInfo&gt;&gt;
+
 Defines an **AudioRenderChangeInfo** array, which is read-only.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
+
+| Type     | Description                                                           |
+|---------|---------------------------------------------------------------|
+| Array&lt;Readonly&lt;AudioRendererChangeInfo&gt;&gt; | Defines an [AudioRenderChangeInfo](#audiorendererchangeinfo9) array, which is read-only.|
 
 ## AudioRendererChangeInfo<sup>9+</sup>
 
@@ -5417,9 +5468,15 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => 
 
 ## AudioCapturerChangeInfoArray<sup>9+</sup>
 
+type AudioCapturerChangeInfoArray = Array&lt;Readonly&lt;AudioCapturerChangeInfo&gt;&gt;
+
 Defines an **AudioCapturerChangeInfo** array, which is read-only.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+| Type     | Description                                                             |
+|---------|-----------------------------------------------------------------|
+| Array&lt;Readonly&lt;AudioCapturerChangeInfo&gt;&gt; | An [AudioCapturerChangeInfo](#audiocapturerchangeinfo9) array, which is read-only.|
 
 ## AudioCapturerChangeInfo<sup>9+</sup>
 
@@ -5465,13 +5522,29 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 
 ## AudioEffectInfoArray<sup>10+</sup>
 
+type AudioEffectInfoArray = Array&lt;Readonly&lt;AudioEffectMode&gt;&gt;
+
 Defines an array that contains the audio effect mode corresponding to a specific audio content type (specified by **ContentType**) and audio stream usage (specified by **StreamUsage**). The [AudioEffectMode](#audioeffectmode10) array is read-only.
 
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
+
+| Type     | Description                                                           |
+|---------|---------------------------------------------------------------|
+| Array&lt;Readonly&lt;AudioEffectMode&gt;&gt; | Defines an array that contains the audio effect mode corresponding to a specific audio content type (specified by **ContentType**) and audio stream usage (specified by **StreamUsage**). The [AudioEffectMode](#audioeffectmode10) array is read-only.|
+
 ## AudioDeviceDescriptors
+
+type AudioDeviceDescriptors = Array&lt;Readonly&lt;AudioDeviceDescriptor&gt;&gt;
 
 Defines an [AudioDeviceDescriptor](#audiodevicedescriptor) array, which is read-only.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+| Type     | Description                                                           |
+|---------|---------------------------------------------------------------|
+| Array&lt;Readonly&lt;AudioDeviceDescriptor&gt;&gt; | Defines an [AudioDeviceDescriptor](#audiodevicedescriptor) array, which is read-only.|
 
 ## AudioDeviceDescriptor
 
@@ -5541,9 +5614,9 @@ Defines the callback function used to write data to the audio renderer. Once the
 
 **Return value**
 
-| Type                                                          | Description|
-|--------------------------------------------------------------| ------- |
-| [AudioDataCallbackResult](#audiodatacallbackresult12) \| void | If **void** or **AudioDataCallbackResult.VALID** is returned, the data is valid and will be played. If **AudioDataCallbackResult.INVALID** is returned, the data is invalid and will not be played.|
+| Type                                                          | Description                                                                                                         |
+|--------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| [AudioDataCallbackResult](#audiodatacallbackresult12) \| void | If **void** or **AudioDataCallbackResult.VALID** is returned, the data is valid and the audio data is played. If **AudioDataCallbackResult.INVALID** is returned, the data is invalid and the audio data is not played.|
 
 ## AudioRenderer<sup>8+</sup>
 
@@ -7824,6 +7897,8 @@ on(type: 'writeData', callback: AudioRendererWriteDataCallback): void
 
 Subscribes to the audio data write event, which is triggered when audio data needs to be written. This API uses an asynchronous callback to return the result.
 
+The callback function is used only to write audio data. Do not call AudioRenderer APIs in it.
+
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
 **Parameters**
@@ -7867,11 +7942,11 @@ let writeDataCallback = (buffer: ArrayBuffer) => {
   try {
     fs.readSync(file.fd, buffer, options);
     bufferSize += buffer.byteLength;
-    // API version 11 does not support the return of the callback result. API version 12 and later support the return of the callback result.
+    // This API does not return a callback result in API version 11, but does so in API version 12 and later versions.
     return audio.AudioDataCallbackResult.VALID;
   } catch (error) {
     console.error('Error reading file:', error);
-    // API version 11 does not support the return of the callback result. API version 12 and later support the return of the callback result.
+    // This API does not return a callback result in API version 11, but does so in API version 12 and later versions.
     return audio.AudioDataCallbackResult.INVALID;
   }
 };
@@ -9092,6 +9167,8 @@ audioCapturer.on('stateChange', (state: audio.AudioState) => {
 on(type: 'readData', callback: Callback\<ArrayBuffer>): void
 
 Subscribes to the audio data read event, which is triggered when audio stream data needs to be read. This API uses an asynchronous callback to return the result.
+
+The callback function is used only to read audio data. Do not call AudioCapturer APIs in it.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 

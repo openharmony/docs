@@ -3,7 +3,7 @@
 
 ## Overview
 
-Defines a native API struct of the post message data. Before calling an API, you are advised to use **ARKWEB_MEMBER_MISSING** to check whether the function struct has the corresponding pointer to avoid crash caused by mismatch between the SDK and the device ROM.
+Defines a native API struct of the post message data. Before calling the API, you are advised to use **ARKWEB_MEMBER_MISSING** to check whether the function struct has the corresponding pointer to avoid crash caused by mismatch between the SDK and the device ROM.
 
 **Since**: 12
 
@@ -18,12 +18,12 @@ Defines a native API struct of the post message data. Before calling an API, you
 | Name| Description| 
 | -------- | -------- |
 | size_t [size](#size) | Size of the struct. | 
-| [ArkWeb_WebMessagePtr](_web.md#arkweb_webmessageptr)(\* [createWebMessage](#createwebmessage) )() | Pointer to the message to create. |
-| void(\* [destroyWebMessage](#destroywebmessage) )([ArkWeb_WebMessagePtr](_web.md#arkweb_webmessageptr) \*webMessage) | Pointer to the message to destroy. |
-| void(\* [setType](#settype) )([ArkWeb_WebMessagePtr](_web.md#arkweb_webmessageptr) webMessage, [ArkWeb_WebMessageType](_web.md#arkweb_webmessagetype) type) | Pointer to the message type to set. |
-| [ArkWeb_WebMessageType](_web.md#arkweb_webmessagetype)(\* [getType](#gettype) )([ArkWeb_WebMessagePtr](_web.md#arkweb_webmessageptr) webMessage) | Pointer to the message type to obtain. |
-| void(\* [setData](#setdata) )([ArkWeb_WebMessagePtr](_web.md#arkweb_webmessageptr) webMessage, void \*data, size_t dataLength) | Pointer to the data to set. |
-| void \*(\* [getData](#getdata) )([ArkWeb_WebMessagePtr](_web.md#arkweb_webmessageptr) webMessage, size_t \*dataLength) | Pointer to the data to obtain. |
+| [ArkWeb_WebMessagePtr](_web.md#arkweb_webmessageptr)(\* [createWebMessage](#createwebmessage) )() | Pointer to the message to create. | 
+| void(\* [destroyWebMessage](#destroywebmessage) )([ArkWeb_WebMessagePtr](_web.md#arkweb_webmessageptr) \*webMessage) | Pointer to the message to destroy. | 
+| void(\* [setType](#settype) )([ArkWeb_WebMessagePtr](_web.md#arkweb_webmessageptr) webMessage, [ArkWeb_WebMessageType](_web.md#arkweb_webmessagetype) type) | Pointer to the message type to set. | 
+| [ArkWeb_WebMessageType](_web.md#arkweb_webmessagetype)(\* [getType](#gettype) )([ArkWeb_WebMessagePtr](_web.md#arkweb_webmessageptr) webMessage) | Pointer to the message type to obtain. | 
+| void(\* [setData](#setdata) )([ArkWeb_WebMessagePtr](_web.md#arkweb_webmessageptr) webMessage, void \*data, size_t dataLength) | Pointer to the data to set. | 
+| void \*(\* [getData](#getdata) )([ArkWeb_WebMessagePtr](_web.md#arkweb_webmessageptr) webMessage, size_t \*dataLength) | Pointer to the data to obtain. | 
 
 
 ## Member Variable Description
@@ -56,7 +56,7 @@ Pointer to the message to destroy.
 
 | Name| Description| 
 | -------- | -------- |
-| webMessage | Message to be destroyed. | 
+| webMessage | Message to destroy. | 
 
 
 ### getData
@@ -125,7 +125,7 @@ void(* ArkWeb_WebMessageAPI::setType) (ArkWeb_WebMessagePtr webMessage, ArkWeb_W
 ```
 **Description**
 
-Pointer to the message type to obtain.
+Pointer to the message type to set.
 
 **Parameters**
 

@@ -14,7 +14,7 @@ Not supported
 
 ## APIs
 
-Polygon(value?: {width?: string | number, height?: string | number})
+Polygon(options?: PolygonOptions)
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -26,8 +26,21 @@ Polygon(value?: {width?: string | number, height?: string | number})
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| width | string \| number | No| Width.<br>Default value: **0**<br>An invalid value is handled as the default value.|
-| height | string \| number | No| Height.<br>Default value: **0**<br>An invalid value is handled as the default value.|
+| options | [PolygonOptions](ts-drawing-components-polygon.md#polygonoptions14) | No| Options for drawing a polygon.|
+
+## PolygonOptions<sup>14+</sup>
+Describes the options for drawing a polygon.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 14.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| width | string \| number | No| Width.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
+| height | string \| number | No| Height.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
 
 ## Attributes
 
@@ -49,13 +62,13 @@ Sets the vertex coordinates of the polygon. An invalid value is handled as the d
 
 | Name| Type                                                        | Mandatory| Description                                 |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------- |
-| value  | Array&lt;[Point](ts-drawing-components-polyline.md#point)&gt; | Yes  | Vertex coordinates of the polygon.<br>Default value: **[]**|
+| value  | Array&lt;[Point](ts-drawing-components-polyline.md#point)&gt; | Yes  | Vertex coordinates of the polygon.<br>Default value: **[]**<br>Default unit: vp|
 
 ### fill
 
 fill(value: ResourceColor)
 
-Sets the color of the fill area. An invalid value is handled as the default value.
+Sets the color of the fill area. An invalid value is handled as the default value. If this attribute and the universal attribute **foregroundColor** are both set, whichever is set later takes effect.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -121,7 +134,7 @@ Sets the stroke dashes. An invalid value is handled as the default value.
 
 | Name| Type            | Mandatory| Description                     |
 | ------ | ---------------- | ---- | ------------------------- |
-| value  | Array&lt;any&gt; | Yes  | Stroke dashes.<br>Default value: **[]**|
+| value  | Array&lt;any&gt; | Yes  | Stroke dashes.<br>Default value: **[]**<br>Default unit: vp|
 
 ### strokeDashOffset
 
@@ -139,7 +152,7 @@ Sets the offset of the start point for drawing the stroke. An invalid value is h
 
 | Name| Type                      | Mandatory| Description                                |
 | ------ | -------------------------- | ---- | ------------------------------------ |
-| value  | number \| string | Yes  | Offset of the start point for drawing the stroke.<br>Default value: **0**|
+| value  | number \| string | Yes  | Offset of the start point for drawing the stroke.<br>Default value: **0**<br>Default unit: vp|
 
 ### strokeLineCap
 
@@ -231,7 +244,7 @@ Sets the stroke width. If of the string type, this attribute cannot be set in pe
 
 | Name| Type                        | Mandatory| Description                    |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| value  | [Length](ts-types.md#length) | Yes  | Stroke width.<br>Default value: **1**|
+| value  | [Length](ts-types.md#length) | Yes  | Stroke width.<br>Default value: **1**<br>Default unit: vp|
 
 ### antiAlias
 
@@ -263,6 +276,8 @@ Describes the coordinates of a point.
 
 
 ## Example
+
+This example demonstrates how to use **points**, **fill**, **fillOpacity**, and **stroke** to draw polygons with specific coordinates, fill colors, opacity, and stroke colors.
 
 ```ts
 // xxx.ets

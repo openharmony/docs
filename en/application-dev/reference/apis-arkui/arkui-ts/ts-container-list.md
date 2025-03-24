@@ -50,7 +50,7 @@ Only the [ListItem](ts-container-listitem.md) and [ListItemGroup](ts-container-l
 
 ## APIs
 
-List(value?: [ListOptions](#listoptions14))
+List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?: Scroller})
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -62,20 +62,6 @@ List(value?: [ListOptions](#listoptions14))
 
 | Name | Type| Mandatory| Description|
 | ------ | ---- | ---- | ---- |
-| value    | [ListOptions](#listoptions14)  | No  | Options of the **List** component.|
-
-## ListOptions<sup>14+</sup>
-
-Defines the options of the **List** component.
-
-**Widget capability**: This API can be used in ArkTS widgets since API version 14.
-
-**Atomic service API**: This API can be used in atomic services since API version 14.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-| Name      | Type                                   | Mandatory| Description                                                    |
-| ------------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | space        | number \| string                  | No  | Spacing between list items along the main axis.<br>Default value: **0**<br>If the parameter type is number, the unit is vp.<br>**NOTE**<br>If this parameter is set to a negative number or a value greater than or equal to the length of the list content area, the default value is used.<br>If this parameter is set to a value less than the width of the list divider, the width of the list divider is used as the spacing.|
 | initialIndex | number                                      | No  | Index of the item to be displayed at the start when the list is initially loaded.<br>Default value: **0**<br>**NOTE**<br>If the set value is a negative number or is greater than the index of the last item in the list, the value is invalid. In this case, the default value will be used.|
 | scroller     | [Scroller](ts-container-scroll.md#scroller) | No  | Scroller, which can be bound to scrollable components.<br>**NOTE**<br>The scroller cannot be bound to other scrollable components.|
@@ -104,7 +90,7 @@ Sets the direction in which the list items are arranged.
 
 ### divider
 
-divider(value: [ListDividerOptions](#listdivideroptions14) | null)
+divider(value: {strokeWidth: Length; color?: ResourceColor; startMargin?: Length; endMargin?: Length;} | null,)
 
 Sets the style of the divider for the list items. By default, there is no divider.
 
@@ -128,7 +114,7 @@ When a list item has [polymorphic styles](ts-universal-attributes-polymorphic-st
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ListDividerOptions](#listdivideroptions14) \| null | Yes  | Style of the divider for the list items.<br>Default value: **null**|
+| value  | {<br>strokeWidth: [Length](ts-types.md#length),<br>color?:[ResourceColor](ts-types.md#resourcecolor),<br>startMargin?: [Length](ts-types.md#length),<br>endMargin?: [Length](ts-types.md#length)<br>} \| null | Yes  | Style of the divider for the list items.<br>- **strokeWidth**: stroke width of the divider.<br>- **color**: color of the divider.<br>Default value: **0x08000000**<br>- **startMargin**: distance between the divider and the start edge of the list.<br>Default value: **0**, in vp<br>- **endMargin**: distance between the divider and the end edge of the list.<br>Default value: **0**, in vp|
 
 ### scrollBar
 
@@ -533,23 +519,6 @@ Implements the callbacks and events for the [ListItem](ts-container-listitem.md)
 | Name    | Type    | Mandatory| Description                  |
 | ------- | -------- | ---- | ---------------------- |
 | onFinish | ()=>void | No  | Triggered after the collapse animation is complete.|
-
-## ListDividerOptions<sup>14+</sup>
-
-Defines the divider style of the list or list item group.
-
-**Widget capability**: This API can be used in ArkTS widgets since API version 14.
-
-**Atomic service API**: This API can be used in atomic services since API version 14.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-| Name    | Type    | Mandatory| Description                  |
-| ------- | -------- | ---- | ---------------------- |
-| strokeWidth | [Length](ts-types.md#length) | Yes  | Width of the divider.|
-| color | [ResourceColor](ts-types.md#resourcecolor) | No  | Color of the divider.<br>Default value: **0x08000000**|
-| startMargin | [Length](ts-types.md#length) | No  | Distance between the divider and the start edge of the list.<br>Default value: **0**, in vp<br>|
-| endMargin | [Length](ts-types.md#length) | No  | Distance between the divider and the end edge of the list.<br>Default value: **0**, in vp<br>|
 
 ## Events
 

@@ -11,7 +11,7 @@ When creating an ArkTS widget, you need to implement the [FormExtensionAbility](
     import { hilog } from '@kit.PerformanceAnalysisKit';
     ```
 
-2. In **EntryFormAbility.ets**, implement the [FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md) lifecycle APIs, including **onAddForm**, whose **want** parameter can be used to obtain the widget information through [FormParam](../reference/apis-form-kit/js-apis-app-form-formInfo.md#formparam).
+2. In **EntryFormAbility.ets**, implement the [FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md) lifecycle API, including **onAddForm**, in which [want](../reference/apis-ability-kit/js-apis-app-ability-want.md) can be used to obtain the widget information through [FormParam](../reference/apis-form-kit/js-apis-app-form-formInfo.md#formparam).
    
       ```ts
       const TAG: string = 'EntryFormAbility';
@@ -20,9 +20,10 @@ When creating an ArkTS widget, you need to implement the [FormExtensionAbility](
       export default class EntryFormAbility extends FormExtensionAbility {
         onAddForm(want: Want): formBindingData.FormBindingData {
           hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onAddForm');
+          hilog.info(DOMAIN_NUMBER, TAG, want.parameters?.[formInfo.FormParam.NAME_KEY] as string);
     
           // ...
-          // Called when the widget is created. The widget provider should return the widget data binding class.
+          // Called when the widget host creates a widget. The widget provider should return the widget data binding class.
           let obj: Record<string, string> = {
             'title': 'titleOnAddForm',
             'detail': 'detailOnAddForm'
@@ -32,7 +33,10 @@ When creating an ArkTS widget, you need to implement the [FormExtensionAbility](
         }
     
         onCastToNormalForm(formId: string): void {
-          // The widget provider should do something to respond to the conversion.
+          // Called when the widget host converts a temporary widget into a normal one. The widget provider should respond to the conversion.
+          // 1. Temporary widgets and normal widgets are defined from the viewpoint of the widget host.
+          // 2. Temporary widgets have a brief existence, appearing following particular events or user interactions and vanishing automatically upon task completion.
+          // 3. Normal widgets maintain a lasting presence, continuing to exist unless explicitly removed or altered by the user. Function widgets developed in normal cases are normal widgets.
           hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onCastToNormalForm');
         }
     

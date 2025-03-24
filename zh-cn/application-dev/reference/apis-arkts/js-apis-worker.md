@@ -6,7 +6,7 @@ Worker主要作用是为应用程序提供一个多线程的运行环境，可�
 
 Worker的上下文对象和UI主线程的上下文对象是不同的，Worker线程不支持UI操作。
 
-Worker使用过程中的相关注意点请查[Worker注意事项](../../arkts-utils/worker-introduction.md#worker注意事项)
+Worker使用过程中的相关注意点请查[Worker注意事项](../../arkts-utils/worker-introduction.md#worker注意事项)。
 
 > **说明：**<br/>
 > 本模块首批接口从API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -83,8 +83,8 @@ import { worker } from '@kit.ArkTS';
 // 场景1： worker文件所在路径："entry/src/main/ets/workers/worker.ets"
 const workerStageModel01 = new worker.ThreadWorker('entry/ets/workers/worker.ets', {name:"first worker in Stage model"});
 
-// 场景2： worker文件所在路径："phone/src/main/ets/ThreadFile/workers/worker.ets"
-const workerStageModel02 = new worker.ThreadWorker('phone/ets/ThreadFile/workers/worker.ets');
+// 场景2： worker文件所在路径："testworkers/src/main/ets/ThreadFile/workers/worker.ets"
+const workerStageModel02 = new worker.ThreadWorker('testworkers/ets/ThreadFile/workers/worker.ets');
 ```
 
 
@@ -430,6 +430,7 @@ registerGlobalCallObject(instanceName: string, globalCallObject: Object): void
 
 **示例：**
 ```ts
+//Index.ets
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 class TestObj {
   private message : string = "this is a message from TestObj"
@@ -444,6 +445,31 @@ let registerObj = new TestObj();
 // 在ThreadWorker实例上注册registerObj
 workerInstance.registerGlobalCallObject("myObj", registerObj);
 workerInstance.postMessage("start worker")
+```
+
+```ts
+// worker.ets
+import { worker, MessageEvents } from '@kit.ArkTS';
+
+const workerPort = worker.workerPort;
+workerPort.onmessage = (e: MessageEvents): void => {
+  try {
+    // 调用方法无入参
+    let res : string = workerPort.callGlobalCallObjectMethod("myObj", "getMessage", 0) as string;
+    console.info("worker:", res) // worker: this is a message from TestObj
+  } catch (error) {
+    // 异常处理
+    console.error("worker: error code is " + error.code + " error message is " + error.message);
+  }
+  try {
+    // 调用方法有入参
+    let res : string = workerPort.callGlobalCallObjectMethod("myObj", "getMessageWithInput", 0, "hello there!") as string;
+    console.info("worker:", res) //worker: this is a message from TestObj with input: hello there!
+  } catch (error) {
+    // 异常处理
+    console.error("worker: error code is " + error.code + " error message is " + error.message);
+  }
+}
 ```
 
 ### unregisterGlobalCallObject<sup>11+</sup>
@@ -1247,6 +1273,24 @@ Worker线程调用注册在宿主线程上某个对象的指定方法，调用�
 
 **示例：**
 ```ts
+//Index.ets
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
+class TestObj {
+  private message : string = "this is a message from TestObj"
+  public getMessage() : string {
+    return this.message;
+  }
+  public getMessageWithInput(str : string) : string {
+    return this.message + " with input: " + str;
+  }
+}
+let registerObj = new TestObj();
+// 在ThreadWorker实例上注册registerObj
+workerInstance.registerGlobalCallObject("myObj", registerObj);
+workerInstance.postMessage("start worker")
+```
+
+```ts
 // worker.ets
 import { worker, MessageEvents } from '@kit.ArkTS';
 
@@ -1544,8 +1588,8 @@ import { worker } from '@kit.ArkTS';
 // 场景1： worker文件所在路径："entry/src/main/ets/workers/worker.ets"
 const workerStageModel01 = new worker.ThreadWorker('entry/ets/workers/worker.ets', {name:"first worker in Stage model"});
 
-// 场景2： worker文件所在路径："phone/src/main/ets/ThreadFile/workers/worker.ets"
-const workerStageModel02 = new worker.ThreadWorker('phone/ets/ThreadFile/workers/worker.ets');
+// 场景2： worker文件所在路径："testworkers/src/main/ets/ThreadFile/workers/worker.ets"
+const workerStageModel02 = new worker.ThreadWorker('testworkers/ets/ThreadFile/workers/worker.ets');
 ```
 
 ### postMessage<sup>(deprecated)</sup>
@@ -1829,9 +1873,13 @@ addEventListener(type: string, listener: EventListener): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ets");
-workerInstance.addEventListener("alert", ()=>{
-    console.log("alert listener callback");
+// worker.ets
+import { DedicatedWorkerGlobalScope, ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
+
+const workerPort: DedicatedWorkerGlobalScope = worker.parentPort;
+
+workerPort.addEventListener("alert", () => {
+  console.info("alert listener callback");
 })
 ```
 
@@ -1857,11 +1905,16 @@ removeEventListener(type: string, callback?: EventListener): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ets");
-workerInstance.addEventListener("alert", ()=>{
-    console.log("alert listener callback");
+// worker.ets
+import { DedicatedWorkerGlobalScope, ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
+
+const workerPort: DedicatedWorkerGlobalScope = worker.parentPort;
+
+workerPort.addEventListener("alert", () => {
+  console.info("alert listener callback");
 })
-workerInstance.removeEventListener("alert");
+
+workerPort.removeEventListener('alert');
 ```
 
 
@@ -1891,52 +1944,46 @@ dispatchEvent(event: Event): boolean
 **示例：**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ets");
+// worker.ets
+import { DedicatedWorkerGlobalScope, ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
 
-workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); //timeStamp暂未支持。
+const workerPort: DedicatedWorkerGlobalScope = worker.parentPort;
+
+workerPort.addEventListener("alert_add", ()=>{
+  console.info("alert listener callback");
+})
+
+workerPort.dispatchEvent({type: 'alert_add', timeStamp: 0}); //timeStamp暂未支持。
 ```
 
-分发事件（dispatchEvent）可与监听接口（on、once、addEventListener）搭配使用，示例如下：
+分发事件（dispatchEvent）可与监听接口（addEventListener）搭配使用，示例如下：
 
 ```ts
+// main thread
+import { worker } from '@kit.ArkTS';
+
 const workerInstance = new worker.Worker("workers/worker.ets");
-
-//用法一:
-workerInstance.on("alert_on", ()=>{
-    console.log("alert listener callback");
-})
-workerInstance.once("alert_once", ()=>{
-    console.log("alert listener callback");
-})
-workerInstance.addEventListener("alert_add", ()=>{
-    console.log("alert listener callback");
-})
-
-//once接口创建的事件执行一次便会删除。
-workerInstance.dispatchEvent({type:"alert_once", timeStamp:0});//timeStamp暂未支持。
-//on接口创建的事件可以一直被分发，不能主动删除。
-workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
-workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
-//addEventListener接口创建的事件可以一直被分发，不能主动删除。
-workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
-workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
-
-//用法二:
-//event类型的type支持自定义，同时存在"message"/"messageerror"/"error"特殊类型，如下所示
-//当type = "message"，onmessage接口定义的方法同时会执行。
-//当type = "messageerror"，onmessageerror接口定义的方法同时会执行。
-//当type = "error"，onerror接口定义的方法同时会执行。
-//若调用removeEventListener接口或者off接口取消事件时，能且只能取消使用addEventListener/on/once创建的事件。
-
-workerInstance.addEventListener("message", ()=>{
-    console.log("message listener callback");
-})
-workerInstance.onmessage = function() {
-    console.log("onmessage : message listener callback");
+workerInstance.postMessage("hello world");
+workerInstance.onmessage = (): void => {
+    console.info("receive data from worker.ets");
 }
-//调用dispatchEvent分发“message”事件，addEventListener和onmessage中定义的方法都会被执行。
-workerInstance.dispatchEvent({type:"message", timeStamp:0});
 ```
+
+```ts
+// worker.ets
+import { DedicatedWorkerGlobalScope, ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
+
+const workerPort: DedicatedWorkerGlobalScope = worker.parentPort;
+
+workerPort.addEventListener("alert", ()=>{
+  console.info("alert listener callback");
+})
+
+workerPort.onmessage = (event: MessageEvents) => {
+  workerPort.dispatchEvent({type:"alert", timeStamp:0}); //timeStamp暂未支持。
+}
+```
+
 ### removeAllListener<sup>(deprecated)</sup>
 
 removeAllListener(): void
@@ -1951,11 +1998,16 @@ removeAllListener(): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ets");
-workerInstance.addEventListener("alert", ()=>{
-    console.log("alert listener callback");
+// worker.ets
+import { DedicatedWorkerGlobalScope, ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
+
+const workerPort: DedicatedWorkerGlobalScope = worker.parentPort;
+
+workerPort.addEventListener("alert_add", ()=>{
+  console.info("alert listener callback");
 })
-workerInstance.removeAllListener();
+
+workerPort.removeAllListener();
 ```
 
 

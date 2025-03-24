@@ -1,8 +1,8 @@
 # Continuous Task Development (TaskPool)
 
-This section describes how to use TaskPool to develop a continuous task. The following uses periodic sensor data collection as an example.
+This section provides a development guide for continuous tasks using TaskPool, with the example of periodically collecting sensor data.
 
-## Using TaskPool to Listen to Sensor Data
+## Using TaskPool to Listen for Sensor Data
 
 1. Import the required modules.
 
@@ -13,7 +13,7 @@ This section describes how to use TaskPool to develop a continuous task. The fol
    import { BusinessError, emitter } from '@kit.BasicServicesKit';
    ```
 
-2. Defines a long-term task, listens to sensor data internally, and registers a destruction notification through the emitter.
+2. Define a continuous task to listen for sensor data internally and register a destruction notification via emitter.
 
    ```ts
    // Index.ets
@@ -30,9 +30,9 @@ This section describes how to use TaskPool to develop a continuous task. The fol
    }
    ```
 
-3. The host thread defines the registration and destruction behavior.
-   - Registration: Initiate a long-term task and receive listening data through the emitter.
-   - Destroy: Sends the event for canceling the sensor listening and ends the continuous task.
+3. Define the registration and destruction behavior in the host thread.
+   - Registration: Initiate the continuous task and receive listening data via emitter.
+   - Destruction: Send an event to cancel sensor listening and terminate the continuous task.
 
    ```ts
    // Index.ets

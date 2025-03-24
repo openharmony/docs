@@ -83,7 +83,7 @@ Version:1.0.0
 Pid:1561
 Uid:20010039
 Reason:LIFECYCLE_TIMEOUT
-sysfreeze: LIFECYCLE_TIMEOUT LIFECYCLE_TIMEOUT at 20230317170653
+sysfreeze:LIFECYCLE_TIMEOUT LIFECYCLE_TIMEOUT at 20230317170653
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 DOMAIN:AAFWK
 STRINGID:LIFECYCLE_TIMEOUT
@@ -102,14 +102,14 @@ MSG:ablity:EntryAbility background timeout
 | 主要信息字段 | 说明 |
 | -------- | -------- |
 | EVENTNAME | 应用无响应原因，或者组成卡死检测的不同事件 |
-| TIMESTAMP | 发生故障时上报时刻的事件，可以根据[应用无响应检测能力点](#应用无响应检测能力点)中说明的超时时间，在相应流水日志中缩小查看日志的时间范围 |
+| TIMESTAMP | 发生故障时上报事件的时刻，可以根据[应用无响应检测能力点](#应用无响应检测能力点)中说明的超时时间，在相应流水日志中缩小查看日志的时间范围 |
 | PID | 发生故障时候的pid，可以与发生时间和超时时间配合用于在流水日志中搜索相关进程信息 |
 | PACKAGE_NAME | 应用进程包名 |
 | MSG | 发生故障时dump信息或者说明信息，后面具体说明 |
 | BinderCatcher | 进程与其他系统进程间通信的调用信息，显示调用等待时间长的情况 |
-| PeerBinder Stacktrace | 跟当前进程相关的对端进程有卡死，会抓取对端的进程堆栈 |
-| cpuusage | 跟当前时间段整机CPU使用情况 |
-| memory | 跟当前时间当前进程的内存使用情况 |
+| PeerBinder Stacktrace | 当前进程相关的对端进程有卡死，会抓取对端的进程堆栈 |
+| cpuusage | 当前时间段整机CPU使用情况 |
+| memory | 当前时间当前进程的内存使用情况 |
 
 > **说明：**
 >
@@ -130,12 +130,12 @@ MSG字段信息主要包括卡死上报的原因，以及当前应用主线程�
 通过搜索pid对应的数字找到应用栈信息。以下堆栈示例表明窗口通过IPC向系统发送事件时，停留在IPC通信阶段。
 
 ```
-OpenStacktraceCatcher -pid==1561 packageName is com.ohos.huawei.myapplication
+OpenStacktraceCatcher -pid==1561 packageName is com.example.myapplication
 Result: 0 ( no error )
 Timestamp:2017-08-0817:06:53.000
 Pid:1561
 Uid:20010039
-Process name:com.ohos.huawei.myapplication
+Process name:com.example.myapplication
 Tid:1561,Name:i.myapplication
 #00 pc 0017888c /system/lib/libark_jsruntime.so
 #01 pc 00025779 /system/lib/platformsdk/libipc_core.z.so(OHOS:BinderConnector:WriteBinder(unsigned Long,void*)+56)
@@ -155,7 +155,7 @@ Tid:1561,Name:i.myapplication
 #15 pc 0045dd4b /system/lib/libace.z.so
 #16 pc 00d24fef /system/lib/libace.z.so
 #17 pc 0041e6e9 /system/lib/libace.z.so
-#18 pc 0000b4d9 /system/lib/platformsdk/libeventhandler.z.so(OHOS:AppExecFwk:EventHandler:DistributeEvent(std::__h:unique_ptr<0 #19 pc 00012829 /system/lib/platformsdk/libeventhandler.z.so
+#18 pc 0000b4d9 /system/lib/platformsdk/libeventhandler.z.so(OHOS:AppExecFwk:EventHandler:DistributeEvent(std::__h:unique_ptr<0 #19 pc 00012829 /system/lib/platformsdk/libeventhandler.z.so))
 #20 pc 00011841 /system/lib/platformsdk/libeventhandler.z.so(OHOS:AppExecFwk:EventRunner:Run()+64)
 #21 pc 00054a8b /system/lib/libappkit_native.z.so(OHOS:AppExecFwk:MainThread:Start()+278)
 #22 pc 00011503 /system/bin/appspawn
@@ -174,7 +174,8 @@ PeerBinderCatcher -pid==1561 Layer_==0
 
 
 BinderCatcher --
-    1561::1561t0685:0c0de0Wait:10.366245919s 1329::1376t0487:794c0de0Wait:0.12070041s
+    1561:1561 to 685:0 code 0 wait:10.366245919 s
+    1329:1376 to 487:794 code 0 wait:0.12070041 s
 
 pid   context  request  started  max  ready free_async_space
 1561   binder    0       3       16     4       520192
@@ -209,7 +210,7 @@ Tid:658,Name:wifi_manager_service
 #08 pc 0002666f /system/lib/platformsdk/libipc_core.z.so(OHOS:BinderInvoker:StartWorkLoop()+18)
 #09 pc 000270a9 /system/lib/platformsdk/libipc_core.z.so(OHOS:BinderInvoker:JoinThread(bool)+32)
 #10 pc 00023783 /system/lib/platformsdk/libipc_core.z.so(OHOS:IPCWorkThread:ThreadHandler(void*)+290)
-#11 pc 0007b4d9 /system/lib/platformsdk/libeventhandler.z.so(OHOS:AppExecFwk:EventHandler:DistributeEvent(std::__h:unique_ptr<OHOS:Ap
+#11 pc 0007b4d9 /system/lib/platformsdk/libeventhandler.z.so
 #12 pc 00072829 /system/lib/platformsdk/libeventhandler.z.so
 #13 pc 00071841 /system/lib/platformsdk/libeventhandler.z.so(OHOS:AppExecFwk:EventRunner:Run()+64)
 #14 pc 00094a8b /system/lib/libappkit_native.z.so(OHOS:AppExecFwk:MainThread:Start()+278)
@@ -224,9 +225,9 @@ Tid:1563,Name:IPC_0_1563
 整机CPU信息。
 
 ```
-Load average:2.87 /1.45 /0.58;the cpu load average in 1 min,5 min and 15 min
-CPU usage fr0m2023-03-1017:06:53t02023-03-1017:06:53
-Total:29%;User Space:28%;Kernel Space:1%;iowait:6%;irq:0%;idle:62%
+Load average: 2.87 / 1.45 / 0.58; the cpu load average in 1 min,5 min and 15 min
+CPU usage from 2023-03-10 17:06:53 to 2023-03-10 17:06:53
+Total: 29%; User Space: 28%; Kernel Space: 1%; iowait: 6%; irq: 0%; idle: 62%
 Details of Processes:
     PID     Total Usage     User Space     Kernel Space     Page Fault Minor     Page Fault Major      Name
     1561       23%            23%              0%               9985                  26            i.myapplication
@@ -277,8 +278,8 @@ TIMESTAMP = 2017/08/08-17:06:24:363
 PID = 1561
 UID = 20010039
 TID = 1566
-PACKAGE_NAME com.ohos.huawei.myapplication
-PROCESS_NAME com.ohos.huawei.myapplication
+PACKAGE_NAME com.example.myapplication
+PROCESS_NAME com.example.myapplication
 eventLog_action pb:1 eventLog_interval 10
 MSG = App main thread is not response!EventHandler dump begin curTime:2017-08-08 05:06:24.362
   Event runner (Thread name =Thread ID 1561)is running
@@ -286,7 +287,7 @@ MSG = App main thread is not response!EventHandler dump begin curTime:2017-08-08
   Immediate priority event queue information:
   Total size of Immediate events 0
   High priority event queue information:
-  No.1 Event send thread 1561,send time 2017-08-08 05:06:18.039,handle time 2017-08-08 05:06:21.539,task name [anr_handler.cpp(Send Total size of High events 1
+  No.1 Event send thread 1561,send time 2017-08-08 05:06:18.039,handle time 2017-08-08 05:06:21.539,task name [anr_handler.cpp(Send Total size of High events 1)]
   Low priority event queue information:
   No.1:Event{send thread=1566,send time=2017-08-0805:06:21.062,handle time=2017-08-0805:06:21.062,id=1}
   Total size of Low events 1
@@ -297,12 +298,12 @@ MSG = App main thread is not response!EventHandler dump begin curTime:2017-08-08
  Timestamp: 2017-08-0817:06:24.4142447784
  Pid: 1561
  Uid: 20010039
- Process name: com.ohos.huawei.myapplication
+ Process name: com.example.myapplication
  Tid:1561 Name:i.myapplication
-   at anonymous (D:/project/OpenHarmonyOS/MyApplication_test/entry/build/default/intermediates/loader_out/default/ets,pages/Index_.js:0:1)
+   at anonymous entry (D:/project/MyApplication_test/entry/build/default/intermediates/loader_out/default/ets,pages/Index_.js:0:1)
    #00 pc 0017909c /system/lib/libark_jsruntime.so
    #01 pc 00177ebb /system/lib/libark_jsruntime.so
-   #02 pc 0024b4bb /system/lib/libark_jsruntime.so(panda:FunctionRef:Call(panda:ecmascript:EcmaVM const*,panda:Local<panda:JSValueRef>,panda
+   #02 pc 0024b4bb /system/lib/libark_jsruntime.so
    #03 pc 00fbed23 /system/lib/libace.z.so
    #04 pc 00d8208f /system/lib/libace.z.so
    ...
@@ -317,8 +318,8 @@ TIMESTAMP = 2017/08/08-17:06:27:292
 PID = 1561
 UID = 20010039
 TID = 1566
-PACKAGE_NAME com.ohos.huawei.myapplication
-PROCESS NAME com.ohos.huawei.myapplication eventLog_action cmd:c,cmd:m,tr,k:SysRqFile
+PACKAGE_NAME com.example.myapplication
+PROCESS NAME com.example.myapplication eventLog_action cmd:c,cmd:m,tr,k:SysRqFile
 eventLog_interval 10
 MSG = App main thread is not response!EventHandler dump begin curTime:2017-08-08 05:06:27.291
   Event runner (Thread name =Thread ID =1561)is running
@@ -338,9 +339,9 @@ MSG = App main thread is not response!EventHandler dump begin curTime:2017-08-08
 Timestamp:2017-08-0817:0k:27,4142447784
 Pid:1561
 Uid:20010039
-Process name:com.ohos.huawei.myapplication
+Process name:com.example.myapplication
 Tid:1561 Name:i.myapplication
-  at anonymous (D:/project/OpenHarmony0S/MyApplication_test/entry/build/default/intermediates/loader_out/default/ets/pages/Index_.js:0:1)
+  at anonymous entry (D:/project/MyApplication_test/entry/build/default/intermediates/loader_out/default/ets/pages/Index_.js:0:1)
   #00 pc 00178dcc /system/lib/libark_jsruntime.so
   #01 pc 00177ebb /system/lib/libark_jsruntime.so
   #02 pc 0024b4bb /system/lib/libark_jsruntime.so(panda:FunctionRef:Call(panda:ecmascript:EcmaVM const*,panda:Local<panda:JSValueRef>,par
@@ -363,7 +364,7 @@ APP_INPUT_BLOCK的日志信息可以参考[通用日志信息](#日志主干通�
 
 ### 日志主干特异性信息(生命周期切换超时)
 
-Reason是LIFECYCLE_TIMEOUT的日志与上文THREAD_BLOCK_6S和THREAD_BLOCK_3S一样都是有两个事件。分别是LIFECYCLE_HALF_TIMEOUT和LIFECYCLE_TIMEOUT
+Reason是LIFECYCLE_TIMEOUT的日志与上文THREAD_BLOCK_6S和THREAD_BLOCK_3S一样都是有两个事件。分别是LIFECYCLE_HALF_TIMEOUT和LIFECYCLE_TIMEOUT。
 
 MSG说明当前是什么生命周期的超时。
 
@@ -377,8 +378,8 @@ STRINGID:LIFECYCLE
 TIMEOUT TIMESTAMP:2023/03/10-17:06:53:65
 PID:1561
 UID:20010039
-PACKAGE_NAME:com.ohos.huawei.myapplication
-PROCESS_NAME:com.ohos.huawei.myapplication
+PACKAGE_NAME:com.example.myapplication
+PROCESS_NAME:com.example.myapplication
 MSG:ability:EntryAbility background timeout
 ```
 
@@ -427,10 +428,10 @@ Generated by HiviewDFX@OpenHarmony
 ============================================================
 Device info:HUANEI Mate 60 Pro
 Build info:ALN-AL00 x.x.x.xx(XXXXXXX)
-Fingerprint: ef8bd28f8b57b54656d743b546efa73764c77866a65934bd96f2678f886813b7
+Fingerprint:ef8bd28f8b57b54656d743b546efa73764c77866a65934bd96f2678f886813b7
 Module name:com.xxx.xxx
 Version:1.2.2.202
-VersionCode: 1002002202
+VersionCode:1002002202
 PreInstalled:Yes
 Foreground:No   --> 是否处于前台
 Pid:15440
@@ -443,7 +444,7 @@ DisplayPowerInfo:powerState: AWAKE
 
 #### 获取故障发生时间点
 
-故障上报时间点
+故障上报时间点。
 
 ```
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -457,22 +458,25 @@ PROCESS NAME:com.xxx.xxx
 ****************************************
 ```
 
-不同故障类型的不同场景下的检测时长汇总表格
+不同故障类型的不同场景下的检测时长汇总表格。
 
 | THREAD_BLOCK_6S |APP_INPUT_BLOCK|LIFECYCLE_TIMEOUT|
 | -------- |--------|--------|
 |前台应用：6s <br> 后台应用 ：3s * 5 + 6s = 21s | 5s | Load：10s <br> Active：5s <br> Inactive：0.5s <br> Terminate：10s <br> Connect：3s <br> Disconnect：0.5s <br> Restart：5s <br> Foreground：5s <br> Background：3s |
 
 **说明：**
-1、THREAD_BLOCK_3S / LIFECYCLE_HALF_TIMEOUT 的检测时长是相应THREAD_BLOCK_6S / LIFECYCLE_TIMEOUT的一半，warning 级别，不会单独上报日志；THREAD_BLOCK_6S / LIFECYCLE_TIMEOUT 是 error 级别，整合了本身和其一半检测时长故障的日志一同上报。
-2、前台应用发生THREAD_BLOCK_3S后即可触发后续THREAD_BLOCK_6S事件
-3、后台应用存在计数器 backgroundReportCount_ = 0，发生THREAD_BLOCK_3S后 +1 累计到 5 次后才会上报 （即连续发生5次 THREAD_BLOCK_3S 事件，计数不清零，才会上报THREAD_BLOCK_6S 事件，可知后台应用THREAD_BLOCK_3S 与THREAD_BLOCK_6S 检测时长依次为 18s 与 21s</samll>
+
+1、THREAD_BLOCK_3S / LIFECYCLE_HALF_TIMEOUT 的检测时长是相应THREAD_BLOCK_6S / LIFECYCLE_TIMEOUT的一半，warning 级别，不会单独上报日志；THREAD_BLOCK_6S / LIFECYCLE_TIMEOUT 是 error 级别，整合了本身和其一半检测时长故障的日志一同上报；
+
+2、前台应用发生THREAD_BLOCK_3S后即可触发后续THREAD_BLOCK_6S事件；
+
+3、后台应用存在计数器 backgroundReportCount_ = 0，发生THREAD_BLOCK_3S后 +1 累计到 5 次后才会上报 （即连续发生5次 THREAD_BLOCK_3S 事件，计数不清零，才会上报THREAD_BLOCK_6S 事件，可知后台应用THREAD_BLOCK_3S 与THREAD_BLOCK_6S 检测时长依次为 18s 与 21s</samll>。
 
 通过故障上报时间点往前推检测时长可得到故障发生的具体时间。
 
 ### 查看 eventHandler 信息
 
-开发者可以通过 “mainHandler dump is” 关键字搜索日志中的 eventHandler dump 信息
+开发者可以通过 “mainHandler dump is” 关键字搜索日志中的 eventHandler dump 信息。
 
 1、dump begin curTime & Current Running
 
@@ -485,7 +489,9 @@ mainHandler dump is:
 ```
 
 当前任务运行时长 = dump begin curTime - trigger time, 如示例中当前任务运行达到27s。
+
 若任务运行时长 > 故障检测时长，表示当前正在运行的任务是导致应用卡死的任务，需对该任务进行排查。
+
 若任务运行时长较小，表示当前任务仅是检测时间区间内主线程运行的任务之一，主要耗时不一定是该任务，建议优先查看近期耗时最长任务（History event queue information中）。该情形多为线程繁忙导致的watchdog无法调度执行。
 
 2、 History event queue information
@@ -540,6 +546,7 @@ mainHandler dump is:
 watchdog 任务位于此优先级队列中，观察 watchdog 任务队列发现其是每隔 3s 发送一次。
 
 对比 warning/block 事件，观察 watchdog 任务在队列中的移动情况。
+
 warning:
 ```
  High priority event queue information:
@@ -562,7 +569,7 @@ block:
 ```
 
 以上示例中可发现 block 队列相比于 warning 队列更长了，而对应的第一个任务没有发生变化，可能存在两种情况：
-- 当前正在运行的任务卡死阻塞，导致其他任务一直未被调度执行。
+- 当前正在运行的任务卡死阻塞，导致其他任务一直未被调度执行；
 - 更高优先级队列中任务堆积，导致位于较低优先级队列中的 watchdog 任务未被调度执行。
 
 ### 查看 stack 信息
@@ -627,7 +634,7 @@ Tid:14727, Name:xxx
 # 10 pc 00000000000b4214 /system/lib64/platformsdk/libnative_rdb.z.so(OHOS::NativeRdb::SqliteSharedResultSet::ExecuteForSharedBlock(OHOS::AppDataFwk::SharedBlock*, int, int, bool)+236)(5e8443def4695e8c791e5f847035ad9f)
 ```
 
-结合 trace 进一步确认，排查调用的单一栈顶函数逻辑是否执行超时
+结合 [trace](#结合-trace)进一步确认，排查调用的单一栈顶函数逻辑是否执行超时。
 
 4、 瞬时栈，warning/error 栈不一致
 
@@ -665,11 +672,11 @@ Tid:3108, xxx
 # 10 pc 00000000002d6e14 /system/lib64/module/arkcompiler/stub.an(RTStub_AsmInterpreterEntry+208)
 ```
 
-此时栈是在线程的运行过程中抓的，没有规律，说明线程未卡死；线程繁忙场景，需结合 trace 和 hilog 判断应用具体运行场景，针对场景进行优化
+此时栈是在线程的运行过程中抓的，没有规律，说明线程未卡死；线程繁忙场景，需结合 [trace](#结合-trace) 和 hilog 判断应用具体运行场景，针对场景进行优化。
 
 ### 查看 binder 信息
 
-binder信息抓取时机：存在半周期检测的故障类型实在warning事件产生后获取；其他则在block事件后获取。
+binder信息抓取时机：存在半周期检测的故障类型是在warning事件产生后获取；其他则在block事件后获取。
 
 1、获取binder调用链
 
@@ -719,10 +726,10 @@ waitTime 表示的是本次ipc通信时长，如果该值远小于故障检测�
 
 4、无调用关系，栈为ipc栈
 
-确定是否为瞬时栈，即waring/block栈是否一致，可能场景是：warning为ipc栈，block栈为其他瞬时栈，表明抓取binder时ipc请求已经结束，本次ipc请求耗时并不长。
+确定是否为瞬时栈，即warning/block栈是否一致，可能场景是：warning为ipc栈，block栈为其他瞬时栈，表明抓取binder时ipc请求已经结束，本次ipc请求耗时并不长。
 需要提到的是：binder信息并不是在发生故障时刻实时获取的，有一定的延迟性；对于存在半周期检测的故障类型来说，binder抓取比较准确，绝大多数都可以在故障时间段内完成采集；而其他故障类型在上报存在延迟的情况下可能抓取到非现场binder。
 
-当然，结合 trace 分析更能直观查看binder的耗时情况。
+当然，结合 [trace](#结合-trace) 分析更能直观查看binder的耗时情况。
 
 ### 结合 hilog
 
@@ -750,7 +757,7 @@ waitTime 表示的是本次ipc通信时长，如果该值远小于故障检测�
 
 #### 一般分析步骤
 
-根据故障日志确定上报[时间点](#获取故障发生时间点)，再根据具体场景下的故障类型前推断卡死开始发生的时间点，查看对应时间段的hilog日志，分析日志得出应用对应线程运行状态：
+根据故障日志确定上报[时间点](#获取故障发生时间点)，再根据具体场景下的故障类型推断卡死开始发生的时间点，查看对应时间段的hilog日志，分析日志得出应用对应线程运行状态：
 
 - 应用日志完全无打应输出：卡死在最后日志打印的接口调用处
 
@@ -762,13 +769,13 @@ waitTime 表示的是本次ipc通信时长，如果该值远小于故障检测�
 
    例如上图案例：APP_INPUT_BLOCK 类型在 07:24:08.167 上报，应用主线程在 07:24:01.581 后就没有打印了，可排查是否为 FormManagerService:
 
-   [form_mgr_proxy.cpp(GetFormsInfoByApp:1128)] 中的逻辑超时
+   [form_mgr_proxy.cpp(GetFormsInfoByApp:1128)] 中的逻辑超时。
 
 - 应用频繁打印输出日志：分析对应输出表示的场景及其合理性
 
    ![appfreeze_2024061408](figures/appfreeze_2024061408.png)
 
-   例如上图案例：进程在被 APP_FREEZE 杀死前在大量输出，对应的 ImageEffect 领域需排查此日志是否正常
+   例如上图案例：进程在被 APP_FREEZE 杀死前在大量输出，对应的 ImageEffect 领域需排查此日志是否正常。
 
 ### 结合 trace
 
@@ -780,19 +787,19 @@ waitTime 表示的是本次ipc通信时长，如果该值远小于故障检测�
 
 ![appfreeze_2024061410](figures/appfreeze_2024061410.png)
 
-上图案例为：PriviewArea::updateShotComponent（更新组件） -> ohos.animator （执行动画）-> 密集的动画执行过程达 9.2s；
+上图案例为：PriviewArea::updateShotComponent（更新组件） -> animator （执行动画）-> 密集的动画执行过程达 9.2s；
 
 线程繁忙地循环执行某业务，分析每一小段业务：
 
 - 不符合业务场景（此处不应该频繁调用），分析业务代码，为何会循环执行；
 
-- 符合业务场景，分析每一小段业务是否耗时超过预期，性能为何不满足设计规格；
+- 符合业务场景，分析每一小段业务是否耗时超过预期，性能为何不满足设计规格。
 
 2、进程执行某一函数接口超时
 
 ![appfreeze_2024061411](figures/appfreeze_2024061411.png)
 
-上图案例为：OHOS::AppExecFwk::FormMgrAdapter::GetFormsInfoByApp 接口执行时长达到 8s
+上图案例为：OHOS::AppExecFwk::FormMgrAdapter::GetFormsInfoByApp 接口执行时长达到 8s。
 
 ## 分析案例
 
@@ -800,11 +807,11 @@ waitTime 表示的是本次ipc通信时长，如果该值远小于故障检测�
 
 #### 背景/原理
 
-xxxservice 上报 THREAD_BLOCK_6S 的 appfreeze 问题
+xxxservice 上报 THREAD_BLOCK_6S 的 appfreeze 问题。
 
 #### 错误代码案例
 
-第4行加锁，第6行函数返回失败后，第6行直接返回未解锁，导致其他线程一直等锁
+第4行加锁，第6行函数返回失败后，第6行直接返回未解锁，导致其他线程一直等锁。
 
 ```cpp
 int xxx()
@@ -821,18 +828,18 @@ int xxx()
 
 #### 影响/报错
 
-后台应用卡死，用户无感知，但是相关功能不可用
+后台应用卡死，用户无感知，但是相关功能不可用。
 
 #### 定位思路
 
-提取故障日志关键类别信息
+提取故障日志关键类别信息。
 
 ```
-appfreeze: com.huawei.hmsapp.xxx THREAD_BLOCK_6S at 20240408082432
+appfreeze: com.example.hmsapp.xxx THREAD_BLOCK_6S at 20240408082432
 DisplayPowerInfo:powerState:AWAKE
 ```
 
-从 Foreground 值可看出 hiai 为后台应用，可推断出当真正的 3s 事件上报上来时，后台应用已卡 **18s** 前
+从 Foreground 值可看出该应用此时处于后台，可推断出当真正的 3s 事件上报上来时，后台应用已卡 **18s** 前。
 
 ```
 Module name:com.xxx.xxx.xxx
@@ -846,7 +853,7 @@ Reason:THREAD_BLOCK_6S
 ```
 
 THREAD_BLOCK_3S 上报的时间为 08:24:29:612；
-THREAD_BLOCK_6S 上报的时间为 08:24:32:638；相隔 3s 符合预期
+THREAD_BLOCK_6S 上报的时间为 08:24:32:638；相隔 3s 符合预期。
 
 ```
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -868,7 +875,7 @@ PACKAGE_NAME = com.xxx.xxx.xxx
 PROCESS_NAME = com.xxx.xxx.xxx
 ```
 
-3s 上报时会去抓取此时的 EventHandler 信息，时间为 08:24:29.413，符合预期上报的原因为：App main thread is not response! 主线程无响应，当前正在运行的任务开始时间为 08:24:01.514
+3s 上报时会去抓取此时的 EventHandler 信息，时间为 08:24:29.413，符合预期上报的原因为：App main thread is not response! 主线程无响应，当前正在运行的任务开始时间为 08:24:01.514。
 
 ```
 MSG = 
@@ -880,11 +887,11 @@ mainHandler dump is:
  Current Running: start at 2024-04-08 08:24:01.514, Event { send thread = 43675, send time = 2024-04-08 08:24:01.514, handle time = 2024-04-08 08:24:01.514, task name = uvLoopTask }
 ```
 
-watchdog 任务位于高优先级队列（High priority event queue），如下图可发现：每隔 3s 就会抛一个任务到主线程去，符合预期；
+watchdog 任务位于高优先级队列（High priority event queue），如下图可发现：每隔 3s 就会抛一个任务到主线程去，符合预期。
 
-THREAD_BLOCK_3S、THREAD_BLOCK_6S 的队列一致，6s 较 3s 多了一个 event
+THREAD_BLOCK_3S、THREAD_BLOCK_6S 的队列一致，6s 较 3s 多了一个 event。
 
-最早的一个 event send time 为 **08:24:11.388**，与 3s 上报上来的时间 08:24:29:612 刚好差 18s，符合预期；
+最早的一个 event send time 为 **08:24:11.388**，与 3s 上报上来的时间 08:24:29:612 刚好差 18s，符合预期。
 
 ```
  High priority event queue information:
@@ -897,7 +904,7 @@ THREAD_BLOCK_3S、THREAD_BLOCK_6S 的队列一致，6s 较 3s 多了一个 event
  No.7 : Event { send thread = 43679, send time = 2024-04-08 08:24:29.412, handle time = 2024-04-08 08:24:29.412, id = 1, caller = [watchdog.cpp(Timer:139)] }
 ```
 
-以上可总结：应用**主线程从 08:24:01.514 开始运行本次任务，第一次 3s 检测开始时间为 08:24:11.388，真正开始卡住的时间在 08:24:11 左右；**
+以上可总结：应用**主线程从 08:24:01.514 开始运行本次任务，第一次 3s 检测开始时间为 08:24:11.388，真正开始卡住的时间在 08:24:11 左右。**
 
 查看主线程栈：从 xxx_request_client.so -> libsamgr_proxy.z.so -> libipc_core.z.so(OHOS::BinderConnector::WriteBinder)
 
@@ -927,7 +934,7 @@ Tid:43675, Name:xxx
 # 19 pc 0000000000002944 xxx_rpc_client.so(xxx::xxx::RpcRequestClient::RpcRequestClient()+224)(02343ed2fff69759d408b23eaf69fcde)
 ```
 
-查看 binderCatcher：**此时 43675 的主线程正在与 979 进程通信，抓 binder 时已经卡了 27s**
+查看 binderCatcher：**此时 43675 的主线程正在与 979 进程通信，抓 binder 时已经卡了 27s。**
 
 ```
 PeerBinderCatcher -- pid==43675 layer_ == 1
@@ -973,7 +980,7 @@ Tid:979, Name:xxxserver
 # 13 pc 00000000000a3b58 /system/lib/ld-musl-aarch64.so.1(libc_start_main_stage2+64)(91b804d2409a13f27463debe9e19fb5d)
 ```
 
-反编译即可确定对应卡锁代码行，结合上下文检测锁的使用
+反编译即可确定对应卡锁代码行，结合上下文检测锁的使用。
 
 #### 修改方法
 
@@ -1005,19 +1012,19 @@ int xxx()
 }
 ```
 
-结合上下文，合理调整锁的使用
+结合上下文，合理调整锁的使用。
 
 #### 推荐建议（问题总结）
 
-1、多线程交互时需要格外注意时序、死锁问题
+1、多线程交互时需要格外注意时序、死锁问题。
 
 ### APP_INPUT_BLOCK 类典型案例——组件全量刷新
 
 #### 背景
 
-用户在切换主题时突然卡死，有 sceneboard 的 appfreeze 问题上报
+用户在切换主题时突然卡死，有 sceneboard 的 appfreeze 问题上报。
 
-该问题为线程繁忙导致卡死
+该问题为线程繁忙导致卡死。
 
 #### 错误代码实例
 
@@ -1043,7 +1050,7 @@ private getForeachKey(item: xxx): string {
 提取故障关键信息。
 
 ```
-appfreeze: com.ohos.sceneboard APP_INPUT_BLOCK at 20240319022527
+appfreeze: com.example.sceneboard APP_INPUT_BLOCK at 20240319022527
 DisplayPowerInfo:powerState:AWAKE
 ```
 
@@ -1055,12 +1062,12 @@ STRINGID:APP_INPUT_BLOCK
 TIMESTAMP:2024/03/14-14:40:59:440 --> 故障上报时间
 PID:2918
 UID:20020017
-PACKAGE_NAME:com.ohos.sceneboard
-PROCESS_NAME:com.ohos.sceneboard
+PACKAGE_NAME:com.example.sceneboard
+PROCESS_NAME:com.example.sceneboard
 ```
 
 上报的原因是：User input does not respond! 用户输入事件没有响应
-可以看到当前是在主线程上(Thread ID == Pid)，正在运行的任务从 **14:40:53.499** 开始运行，直到 Fault time **14:40:58** 都还没有运行完
+可以看到当前是在主线程上(Thread ID == Pid)，正在运行的任务从 **14:40:53.499** 开始运行，直到 Fault time **14:40:58** 都还没有运行完。
 
 ```
 MSG = 
@@ -1072,9 +1079,9 @@ mainHandler dump is:
  Current Running: start at 2024-03-14 02:40:53.499, Event { send thread = 2918, send time = 2024-03-14 02:40:53.499, handle time = 2024-03-14 02:40:53.499, task name =  }
 ```
 
-用户输入事件需要第一时间响应，所以同 watchdog 一样都在 High priority event queue；
+用户输入事件需要第一时间响应，所以同 watchdog 一样都在 High priority event queue。
 
-可以看到此时已经有 200+ 的 input event 在队列中阻塞住没有处理了；
+可以看到此时已经有 200+ 的 input event 在队列中阻塞住没有处理了。
 
 ```
  High priority event queue information:
@@ -1108,10 +1115,10 @@ mainHandler dump is:
 从逻辑来看，input event 触发应用主线程任务开始执行，但是 6s 还没有执行完，没有反馈，导致 ANR 超时；
 因此我们只需要关心 input 触发了应用执行什么任务，该任务为什么会执行超时即可。
 
-主线程栈：此时运行时状态，栈顶的 ark_jsruntime GetCurrentThreadId 也不是持锁阻塞或耗时很长函数，抓到的栈为瞬时栈，没有参考意义；
+主线程栈：此时运行时状态，栈顶的 ark_jsruntime GetCurrentThreadId 也不是持锁阻塞或耗时很长函数，抓到的栈为瞬时栈，没有参考意义。
 
 ```
-Tid:2918, Name:ohos.sceneboard
+Tid:2918, Name:example.sceneboard
 # 00 pc 000000000009f73c /system/lib/ld-musl-aarch64.so.1(8fa55898166cd804dad43d909b5319cc)
 # 01 pc 000000000054b7b4 /system/lib64/platformsdk/libark_jsruntime.so(panda::os::thread::GetCurrentThreadId()+12)(7715646e48f750f3dc31e660b056eb43)
 # 02 pc 00000000002107a4 /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::EcmaVM::CheckThread() const+200)(7715646e48f750f3dc31e660b056eb43)
@@ -1140,7 +1147,7 @@ Tid:2918, Name:ohos.sceneboard
 
 ![appfreeze_2024061413](figures/appfreeze_2024061413.png)
 
-在这之间的 6s 存在大量的 scb 日志，判断是在做更新渲染
+在这之间的 6s 存在大量的 scb 日志，判断是在做更新渲染。
 
 ![appfreeze_2024061414](figures/appfreeze_2024061414.png)
 
@@ -1168,17 +1175,17 @@ Tid:2918, Name:ohos.sceneboard
 
 #### 推荐建议（问题总结）
 
-1、用户点击触发页面更新时，需要合理控制页面刷新的范围，考虑大量组件、频繁刷新等场景
+1、用户点击触发页面更新时，需要合理控制页面刷新的范围，考虑大量组件、频繁刷新等场景。
 
 ### LIFECYCLE_TIMEOUT 类典型案例——加载云图
 
 #### 背景/原理
 
-用户在打开云笔记时应用卡死后闪退
+用户在打开云笔记时应用卡死后闪退。
 
 #### 错误代码实例
 
-循环中同步获取云图
+循环中同步获取云图。
 
 ```ts
 public static xxxFunction(fileUris: string[]): void {
@@ -1193,7 +1200,7 @@ public static xxxFunction(fileUris: string[]): void {
 
 #### 影响/报错
 
-应用拉起、切前台等过程中卡死并闪退
+应用拉起、切前台等过程中卡死并闪退。
 
 #### 定位思路
 
@@ -1203,7 +1210,7 @@ public static xxxFunction(fileUris: string[]): void {
  sysfreeze: LIFECYCLE_TIMEOUT LIFECYCLE_TIMEOUT at 20240201100459
 ```
 
-查看 MSG 信息：**foreground timeout，对应时长为 5s**
+查看 MSG 信息：**foreground timeout，对应时长为 5s**。
 
 ```
 MSG = 
@@ -1216,7 +1223,7 @@ client:
 ```
 
 LIFECYCLE_HALF_TIMEOUT 上报时间为 **10:04:57:538**；
-LIFECYCLE_TIMEOUT 上报时间为 **10:04:59:965**；相隔 2.5s 左右，符合预期；
+LIFECYCLE_TIMEOUT 上报时间为 **10:04:59:965**；相隔 2.5s 左右，符合预期。
 
 ```
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -1225,8 +1232,8 @@ STRINGID:LIFECYCLE_TIMEOUT
 TIMESTAMP:2024/02/01-10:04:59:965
 PID:18083
 UID:20020041
-PACKAGE_NAME:com.huawei.hmos.notepad
-PROCESS_NAME:com.huawei.hmos.notepad
+PACKAGE_NAME:com.example.notepad
+PROCESS_NAME:com.example.notepad
 *******************************************
 start time: 2024/02/01-10:04:57:555
 DOMAIN = AAFWK
@@ -1235,11 +1242,11 @@ TIMESTAMP = 2024/02/01-10:04:57:538
 PID = 18083
 UID = 20020041
 TID = 17286
-PACKAGE_NAME = com.huawei.hmos.notepad
-PROCESS_NAME = com.huawei.hmos.notepad
+PACKAGE_NAME = com.example.notepad
+PROCESS_NAME = com.example.notepad
 ```
 
-任务开始的时间为 **10:04:54.798**，离 LIFECYCLE_HALF_TIMEOUT 相隔 2.5s 左右，符合预期；
+任务开始的时间为 **10:04:54.798**，离 LIFECYCLE_HALF_TIMEOUT 相隔 2.5s 左右，符合预期。
 
 ```
 mainHandler dump is:
@@ -1259,7 +1266,7 @@ mainHandler dump is:
 看对应的堆栈信息：libfs.z.so -> libdatashare_consumer.z.so -> libipc_core.z.so
 
 ```
-Tid:18083, Name:ei.hmos.notepad
+Tid:18083, Name:ei.example.notepad
 # 00 pc 00000000001617a4 /system/lib/ld-musl-aarch64.so.1(ioctl+180)(4ca73cff61bea7c4a687eb0f71c9df69)
 # 01 pc 000000000003e8a0 /system/lib64/platformsdk/libipc_core.z.so(OHOS::BinderConnector::WriteBinder(unsigned long, void*)+72)(3248fceb1fa676994734e0437430ce37)
 # 02 pc 0000000000049f38 /system/lib64/platformsdk/libipc_core.z.so(OHOS::BinderInvoker::TransactWithDriver(bool)+296)(3248fceb1fa676994734e0437430ce37)
@@ -1287,7 +1294,7 @@ BinderCatcher --
     3462:3621 to 4956:4981 code 8 wait:273.550283291 s
 ```
 
-5235 为媒体库进程，该堆栈无有效信息
+5235 为媒体库进程，该堆栈无有效信息。
 
 ```
 PeerBinder Stacktrace --
@@ -1296,7 +1303,7 @@ Result: 0 ( no error )
 Timestamp:2024-02-01 10:04:57.000
 Pid:5235
 Uid:20020079
-Process name:com.ohos.medialibrary.medialibrarydata
+Process name:com.medialibrary.medialibrarydata
 Tid:5235, Name:edialibrarydata
 # 00 pc 0000000000142d1c /system/lib/ld-musl-aarch64.so.1(epoll_wait+84)(4ca73cff61bea7c4a687eb0f71c9df69)
 # 01 pc 000000000000fb74 /system/lib64/chipset-pub-sdk/libeventhandler.z.so(OHOS::AppExecFwk::EpollIoWaiter::WaitFor(std::__h::unique_lock<std::__h::mutex>&, long)+224)(a4d21072c08fd3ac639d5cf5b8fb8b51)
@@ -1319,9 +1326,9 @@ Tid:5235, Name:edialibrarydata
 # 18 pc 000000000001106c /system/bin/appspawn(_start_c+76)(7b715884c45cfe57b22df46fdaeeca88)
 ```
 
-以上可以得到信息：应用通过文件系统 Open::Sync 同步通过 uri 加载文件，调用到 datashare 请求媒体库文件数据
+以上可以得到信息：应用通过文件系统 Open::Sync 同步通过 uri 加载文件，调用到 datashare 请求媒体库文件数据。
 
-查看对应时间点的流水信息：进程调用 datashare 加载云图后卡死，与堆栈信息吻合；
+查看对应时间点的流水信息：进程调用 datashare 加载云图后卡死，与堆栈信息吻合。
 
 ![appfreeze_2024061416](figures/appfreeze_2024061416.png)
 
@@ -1360,6 +1367,6 @@ public static async xxxFunction(fileUris: string[]): void {
 
 #### 推荐建议（问题总结）
 
-1、请求云侧数据需要验证充分，有网、弱网、无网场景下
+1、请求云侧数据需要验证充分，有网、弱网、无网场景下；
 
-2、不要在应用生命周期函数中做耗时操作
+2、不要在应用生命周期函数中做耗时操作。

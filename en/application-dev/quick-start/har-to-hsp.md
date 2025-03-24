@@ -2,16 +2,15 @@
 Currently, the HAR has a problem with duplicate packaging, leading an oversize application package. To fix this problem, you can convert the HAR to the HSP through by the configuration items.
 ## How to Convert
 
-1. Change the value of **type** to **shared** and add the **deliveryWithInstall** field in the **module.json5** file of the HAR module.
+1. Change the value of **type** to **shared** and add the **deliveryWithInstall** and **pages** field in the **module.json5** file of the HAR module.
     ```json
     // MyApplication\library\src\main\module.json5
     {
       "module": {
-        "name": "library",
         "type": "shared",
-        "description": "$string:shared_desc",
         "deliveryWithInstall": true,
         "pages": "$profile:main_pages"
+        // ...
       }
     }
     ```
@@ -82,7 +81,21 @@ Currently, the HAR has a problem with duplicate packaging, leading an oversize a
     }
     ```
 
-8. Modify the **build-profile.json5** configuration file in the project root directory.
-![har-to-hsp-8-1.png](figures/har-to-hsp-8-1.png)
-After modification
-![har-to-hsp-8-2.png](figures/har-to-hsp-8-2.png)
+8. Add the **targets** tag to **build-profile.json5** > **modules** > **library** in the root directory of the project.
+
+    ```json
+    // MyApplication\build-profile.json5
+    "modules": [
+      {
+        "name": "library",
+        "srcPath": "./library",
+        "targets": [
+          {
+            "name": "default",
+            "applyToProducts": [
+              "default"
+            ]
+          }
+        ]
+      }
+    ]

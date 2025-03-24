@@ -28,7 +28,7 @@ initCurve(curve?: Curve): ICurve
 
 | 参数名 | 类型            | 必填 | 说明                                |
 | ------ | --------------- | ---- | ----------------------------------- |
-| curve  | [Curve](#curve枚举说明) | 否   | 曲线类型。<br/>默认值：Curve.Linear |
+| curve  | [Curve](#curve) | 否   | 曲线类型。<br/>默认值：Curve.Linear |
 
 **返回值：**
 
@@ -36,7 +36,7 @@ initCurve(curve?: Curve): ICurve
 | ---------------------------------- | ---------------- |
 | [ICurve](#icurve9) | 曲线的插值对象。 |
 
-## Curve枚举说明
+## Curve
 
 插值曲线，动效请参考<!--RP1-->[贝塞尔曲线](../../../design/ux-design/animation-attributes.md)<!--RP1End-->。
 
@@ -347,7 +347,7 @@ init(curve?: Curve): string
 
 | 参数名 | 类型            | 必填 | 说明                                |
 | ------ | --------------- | ---- | ----------------------------------- |
-| curve  | [Curve](#curve枚举说明) | 否   | 曲线类型。<br/>默认值：Curve.Linear |
+| curve  | [Curve](#curve) | 否   | 曲线类型。<br/>默认值：Curve.Linear |
 
 
 ## Curves.steps<sup>(deprecated)</sup>

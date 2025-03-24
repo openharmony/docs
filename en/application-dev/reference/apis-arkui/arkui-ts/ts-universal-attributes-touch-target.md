@@ -15,6 +15,8 @@ Sets one or more touch targets.
 
 **Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -28,6 +30,8 @@ Sets one or more touch targets.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name       | Type                      | Mandatory  | Description                            |
 | ------ | ----------------------------- | -----| -------------------------------- |
 | x      | [Length](ts-types.md#length)  | No  | X coordinate of the touch point relative to the upper left corner of the component.<br>Default value: **0vp**|
@@ -35,7 +39,7 @@ Sets one or more touch targets.
 | width  | [Length](ts-types.md#length)  | No  | Width of the touch target.<br>Default value: **'100%'**|
 | height | [Length](ts-types.md#length) | No  | Height of the touch target.<br>Default value: **'100%'**|
 
-  >  **NOTE**<br>
+  >  **NOTE**
   >
   >  **x** and **y** can be set to a positive or negative percentage value. For example, when **x** is set to **'100%'**, the touch target is the offset from the right edge of the component by the component's width. When **x** is set to **'-100%'**, the touch target is the offset from the left edge of the component by the component's width. When **y** is set to **'100%'**, the touch target is the offset from the bottom edge of the component by the component's height. When **y** is set to **'-100%'**, the touch target is the offset from the top edge of the component by the component's height.
   >
@@ -45,6 +49,8 @@ Sets one or more touch targets.
 
 
 ## Example
+
+This example demonstrates how to set a touch target for a button using **responseRegion** to respond to click events.
 
 ```ts
 // xxx.ets

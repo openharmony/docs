@@ -1,8 +1,9 @@
 # @ohos.net.statistics (流量管理)
 
-流量管理模块，支持基于网卡/UID 的实时流量统计和历史流量统计查询能力。
+流量管理模块提供获取指定网卡实时上行、下行流量等能力。
 
 > **说明：**
+>
 > 本模块首批接口从 API version 10 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -802,4 +803,4 @@ type NetBearType = connection.NetBearType
 
 |       类型       |            说明             |
 | ---------------- | --------------------------- |
-| connection.NetBearType | 枚举网络类型。    |
+| [connection.NetBearType](js-apis-net-connection.md#netbeartype) | 枚举网络类型。    |

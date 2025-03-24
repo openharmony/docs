@@ -11,12 +11,13 @@ Applications can directly use the uniform data structs in certain scenarios. For
 
 The following table lists the uniform data structs provided by the UDMF.
 
-| Data Struct               |       Data Type       | Description      |
-| ----------------------- | :-------------------: | ---------- |
-| [PlainText](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#plaintext)    |      'general.plain-text'        | Plain text    |
-| [Hyperlink](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#hyperlink)     |       'general.hyperlink'       | Hyperlink    |
-| [HTML](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#html)          |         'general.html'          | HyperText Markup Language (HTML)    |
-| [OpenHarmonyAppItem](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#openharmonyappitem)  | 'openharmony.app-item'    | Icon      |
+| Data Struct                                                                                               |       Data Type       | Description  |
+|-----------------------------------------------------------------------------------------------------| :-------------------: |------|
+| [PlainText](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#plaintext)                  |      'general.plain-text'        | Plain text |
+| [Hyperlink](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#hyperlink)                  |       'general.hyperlink'       | Hyperlink |
+| [HTML](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#html)                            |         'general.html'          | HyperText Markup Language (HTML) |
+| [OpenHarmonyAppItem](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#openharmonyappitem) | 'openharmony.app-item'    | Icon  |
+| [ContentForm](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#contentform14)            | 'general.content-form'    | Content widget|
 
 ## How to Develop
 

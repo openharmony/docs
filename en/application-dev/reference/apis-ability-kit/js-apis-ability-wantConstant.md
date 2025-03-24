@@ -21,7 +21,7 @@ Enumerates the action constants of the **Want** object. **action** specifies the
 | Name     | Value         | Description    |
 | ------------ | ------------------ | ---------------------- |
 | ACTION_HOME                                 | ohos.want.action.home                    | Action of returning to the home page.                                       |
-| ACTION_DIAL                                 | ohos.want.action.dial                    | Action of launching the numeric keypad.                          |
+| ACTION_DIAL                                 | ohos.want.action.dial                    | Action of launching the numeric keypad.                         |
 | ACTION_SEARCH                               | ohos.want.action.search                  | Action of launching the search function.                                |
 | ACTION_WIRELESS_SETTINGS                    | ohos.settings.wireless                   | Action of launching the UI that provides wireless network settings, for example, Wi-Fi options.   |
 | ACTION_MANAGE_APPLICATIONS_SETTINGS         | ohos.settings.manage.applications        | Action of launching the UI for managing installed applications.                 |

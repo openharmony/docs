@@ -25,6 +25,10 @@
 
 ## 自定义弹出框的打开与关闭
 
+> **说明：**
+> 
+> 详细变量定义请参考[完整示例](#完整示例)。
+
 1. 创建ComponentContent。
    
    ComponentContent用于定义自定义弹出框的内容。其中，wrapBuilder(buildText)封装自定义组件，new Params(this.message)是自定义组件的入参，可以缺省，也可以传入基础数据类型。
@@ -37,7 +41,7 @@
    通过调用openCustomDialog接口打开的弹出框默认为customStyle为true的弹出框，即弹出框的内容样式完全按照contentNode自定义样式显示。
    
    ```ts
-   this.ctx.getPromptAction().openCustomDialog(this.contentNode, this.options)
+   PromptActionClass.ctx.getPromptAction().openCustomDialog(PromptActionClass.contentNode, PromptActionClass.options)
      .then(() => {
        console.info('OpenCustomDialog complete.')
      })
@@ -51,12 +55,16 @@
    
    由于closeCustomDialog接口需要传入待关闭弹出框对应的ComponentContent。因此，如果需要在弹出框中设置关闭方法，则可参考完整示例封装静态方法来实现。
    
-   关闭弹出框之后若需要释放对应的ComponentContent，则需要调用ComponentContent的dispose方法。
+   关闭弹出框之后若需要释放对应的ComponentContent，则需要调用ComponentContent的[dispose](../reference/apis-arkui/js-apis-arkui-ComponentContent.md#dispose)方法。
    
    ```ts
-   this.ctx.getPromptAction().closeCustomDialog(this.contentNode)
+
+   PromptActionClass.ctx.getPromptAction().closeCustomDialog(PromptActionClass.contentNode)
      .then(() => {
        console.info('CloseCustomDialog complete.')
+       if (this.contentNode !== null) {
+            this.contentNode.dispose();   // 释放contentNode
+        }
      })
      .catch((error: BusinessError) => {
        let message = (error as BusinessError).message;
@@ -79,7 +87,7 @@ this.contentNode.update(new Params('update'))
 需要注意的是，更新属性时，未设置的属性会恢复为默认值。例如，初始设置{ alignment: DialogAlignment.Top, offset: { dx: 0, dy: 50 } }，更新时设置{ alignment: DialogAlignment.Bottom }，则初始设置的offset: { dx: 0, dy: 50 }不会保留，会恢复为默认值。
 
 ```ts
-this.ctx.getPromptAction().updateCustomDialog(this.contentNode, options)
+PromptActionClass.ctx.getPromptAction().updateCustomDialog(PromptActionClass.contentNode, options)
   .then(() => {
     console.info('UpdateCustomDialog complete.')
   })
@@ -93,31 +101,31 @@ this.ctx.getPromptAction().updateCustomDialog(this.contentNode, options)
 ## 完整示例
 
 ```ts
-// PromptActionClass.ts
+// PromptActionClass.ets
 import { BusinessError } from '@kit.BasicServicesKit';
-import { ComponentContent, window } from '@kit.ArkUI';
+import { ComponentContent, promptAction } from '@kit.ArkUI';
 import { UIContext } from '@ohos.arkui.UIContext';
 
 export class PromptActionClass {
   static ctx: UIContext;
   static contentNode: ComponentContent<Object>;
-  static options: Object;
+  static options: promptAction.BaseDialogOptions;
 
   static setContext(context: UIContext) {
-    this.ctx = context;
+    PromptActionClass.ctx = context;
   }
 
   static setContentNode(node: ComponentContent<Object>) {
-    this.contentNode = node;
+    PromptActionClass.contentNode = node;
   }
 
-  static setOptions(options: Object) {
-    this.options = options;
+  static setOptions(options: promptAction.BaseDialogOptions) {
+    PromptActionClass.options = options;
   }
 
   static openDialog() {
-    if (this.contentNode !== null) {
-      this.ctx.getPromptAction().openCustomDialog(this.contentNode, this.options)
+    if (PromptActionClass.contentNode !== null) {
+      PromptActionClass.ctx.getPromptAction().openCustomDialog(PromptActionClass.contentNode, PromptActionClass.options)
         .then(() => {
           console.info('OpenCustomDialog complete.')
         })
@@ -130,8 +138,8 @@ export class PromptActionClass {
   }
 
   static closeDialog() {
-    if (this.contentNode !== null) {
-      this.ctx.getPromptAction().closeCustomDialog(this.contentNode)
+    if (PromptActionClass.contentNode !== null) {
+      PromptActionClass.ctx.getPromptAction().closeCustomDialog(PromptActionClass.contentNode)
         .then(() => {
           console.info('CloseCustomDialog complete.')
         })
@@ -143,9 +151,9 @@ export class PromptActionClass {
     }
   }
 
-  static updateDialog(options: Object) {
-    if (this.contentNode !== null) {
-      this.ctx.getPromptAction().updateCustomDialog(this.contentNode, options)
+  static updateDialog(options: promptAction.BaseDialogOptions) {
+    if (PromptActionClass.contentNode !== null) {
+      PromptActionClass.ctx.getPromptAction().updateCustomDialog(PromptActionClass.contentNode, options)
         .then(() => {
           console.info('UpdateCustomDialog complete.')
         })
@@ -232,5 +240,7 @@ struct Index {
   }
 }
 ```
+
+ ![UIContextPromptAction](figures/UIContextPromptAction.gif)
 
 

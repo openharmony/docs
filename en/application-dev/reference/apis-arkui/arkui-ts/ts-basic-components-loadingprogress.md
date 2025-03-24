@@ -1,8 +1,8 @@
 # LoadingProgress
 
-The **LoadingProgress** component is used to create a loading animation.
+The **LoadingProgress** component is used to create a loading progress animation.
 
-The loading animation stops when the component is invisible. The component's visibility is determined by the value of **ratios** in the [onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange) event callback: If the value is greater than 0, the component is visible.
+The loading progress animation stops when the component is invisible. The component's visibility is determined by the value of **ratios** in the [onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange) event callback: If the value is greater than 0, the component is visible.
 
 >  **NOTE**
 >
@@ -97,9 +97,27 @@ You need a custom class to implement the **ContentModifier** API.
 | ------ | ------ | ------ |-------------------------------- |-------------------------------- |
 | enableLoading | boolean | No| No|Whether to show the loading animation.<br>Default value: **true**|
 
+## LoadingProgressStyle<sup>(deprecated)</sup>
+
+This API is deprecated since API version 8.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name                    | Description                                    |
+| ---------------------- | ---------------------------------------- |
+| Default       | Default loading style. Setting this value is not supported since API version 8.           |
+| Circular      | Circular loading style. Setting this value is not supported since API version 8.           |
+| Orbital       | Comet-shaped loading style. This is the default style since API version 8.        |
+
 ## Example
 
-### Example 1
+### Example 1 : Setting the Color of the Loading Progress Animation
+
+This example demonstrates how to set the color of the loading progress animation using the **color** attribute.
 
 ```ts
 // xxx.ets
@@ -119,12 +137,12 @@ struct LoadingProgressExample {
 
 ![LoadingProgress](figures/LoadingProgress.gif)
 
-### Example 2
+### Example 2: Setting the Custom Content Area
+
+This example demonstrates how to customize the content area using the **contentModifier** API and how to toggle the display of the **LoadingProgress** component using the **enableLoading** API.
 
 ```ts
-// This example implements a custom <LoadingProgress> component, enabling the component's visibility to be switched through a button. When the button is clicked, config.enableLoading is switched to false, and the component is not displayed.
 // xxx.ets
-import { hilog } from '@kit.PerformanceAnalysisKit'
 import { promptAction } from '@kit.ArkUI'
 
 class MyLoadingProgressStyle implements ContentModifier<LoadingProgressConfiguration> {
@@ -139,7 +157,8 @@ class MyLoadingProgressStyle implements ContentModifier<LoadingProgressConfigura
   }
 }
 
-let arr1: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"]
+let arr1: string[] =
+  ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"]
 let arr2: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 @Builder
@@ -170,7 +189,7 @@ function buildLoadingProgress(config: LoadingProgressConfiguration) {
     Row() {
       Column() {
         Gauge({
-          value: (config.contentModifier as MyLoadingProgressStyle).enableLoading?50:30, min: 11, max: 100
+          value: (config.contentModifier as MyLoadingProgressStyle).enableLoading ? 50 : 30, min: 11, max: 100
         }) {
           Column() {
             Text('60')
@@ -186,7 +205,6 @@ function buildLoadingProgress(config: LoadingProgressConfiguration) {
               .maxLines(1)
           }.width('100%').height('100%')
         }
-
         .colors(((config.contentModifier as MyLoadingProgressStyle).enableLoading) ? Color.Grey : 0x2577e3)
         .width(200)
         .strokeWidth(18)
@@ -220,7 +238,10 @@ function buildLoadingProgress(config: LoadingProgressConfiguration) {
       .width('100%')
       .friction(0.6)
 
-      .lanes({ minLength: (config.contentModifier as MyLoadingProgressStyle).enableLoading?40:80, maxLength: (config.contentModifier as MyLoadingProgressStyle).enableLoading?40:80 })
+      .lanes({
+        minLength: (config.contentModifier as MyLoadingProgressStyle).enableLoading ? 40 : 80,
+        maxLength: (config.contentModifier as MyLoadingProgressStyle).enableLoading ? 40 : 80
+      })
       .scrollBar(BarState.Off)
     }
 
@@ -250,7 +271,7 @@ struct LoadingProgressDemoExample {
         }.width('100%').margin({ top: 5 })
       }.height('85%')
 
-      Button ('Switch config.enableloading').onClick () => {
+      Button('Switch config.enableloading').onClick(() => {
         this.clickFlag++
         this.loadingProgressIndex = (this.loadingProgressIndex + 1) % this.loadingProgressList.length
         console.log('enableLoading:' + this.loadingProgressList[this.loadingProgressIndex])

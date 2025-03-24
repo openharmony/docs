@@ -30,10 +30,10 @@ Describes the normal text notification.
 
 | Name          | Type   | Read Only| Optional| Description                              |
 | -------------- | ------ | ---- |-----| ---------------------------------- |
-| title          | string |  No |  No | Notification title. It cannot be empty or exceed 200 bytes. Excess content will be truncated.        |
-| text           | string |  No |  No | Notification content. It cannot be empty or exceed 200 bytes. Excess content will be truncated.        |
-| additionalText | string |  No |  Yes | Additional information of the notification. It cannot exceed 200 bytes. Excess content will be truncated.  |
-| lockscreenPicture<sup>12+</sup> | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  No |  Yes | Picture of a notification displayed on the lock screen. Currently, only the live view notification is supported. The total number of the icon pixel bytes cannot exceed 192 KB (which is obtained through [getPixelBytesNumber](../apis-image-kit/js-apis-image.md#getpixelbytesnumber7). The recommended icon size is 128 × 128 pixels. The display effect depends on the device capability and notification center UI style. |
+| title          | string |  No |  No | Notification title. It cannot be empty or exceed 1024 bytes. Excess content will be truncated.        |
+| text           | string |  No |  No | Notification content. It cannot be empty or exceed 3072 bytes. Excess content will be truncated.        |
+| additionalText | string |  No |  Yes | Additional information of the notification. It cannot exceed 3072 bytes. Excess content will be truncated.  |
+| lockscreenPicture<sup>12+</sup> | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  No |  Yes | Picture of a notification displayed on the lock screen. Currently, only the live view notification is supported. The total number of the icon pixel bytes cannot exceed 192 KB (which is obtained through [getPixelBytesNumber](../apis-image-kit/js-apis-image.md#getpixelbytesnumber7). The recommended icon size is 128 × 128 pixels. The display effect depends on the device capability and notification center UI style.  |
 
 ## NotificationLongTextContent
 
@@ -47,9 +47,9 @@ Describes the long text notification. This API is inherited from [NotificationBa
 
 | Name          | Type   | Read Only| Optional| Description                            |
 | -------------- | ------ | ---- | --- | -------------------------------- |
-| longText       | string |  No | No | Long text of the notification. It cannot be an empty string and exceed 1024 bytes. Excess content will be truncated.                    |
-| briefText      | string |  No | No | Brief text of the notification. It cannot be empty or exceed 200 bytes. Excess content will be truncated.  |
-| expandedTitle  | string |  No | No | Title of the notification in the expanded state. It cannot be empty or exceed 200 bytes. Excess content will be truncated.                |
+| longText       | string |  No | No | Long text of the notification. It cannot be an empty string and exceed 3072 bytes. Excess content will be truncated.                    |
+| briefText      | string |  No | No | Brief text of the notification. It cannot be empty or exceed 1024 bytes. Excess content will be truncated.  |
+| expandedTitle  | string |  No | No | Title of the notification in the expanded state. It cannot be empty or exceed 1024 bytes. Excess content will be truncated.                |
 
 
 ## NotificationMultiLineContent
@@ -64,9 +64,9 @@ Describes the multi-line text notification. This API is inherited from [Notifica
 
 | Name          | Type           | Read Only| Optional| Description                            |
 | -------------- | --------------- | --- | --- | -------------------------------- |
-| briefText      | string          | No | No | Brief text of the notification. It cannot be empty or exceed 200 bytes. Excess content will be truncated.|
-| longTitle      | string          | No | No | Title of the notification in the expanded state. It cannot be empty or exceed 200 bytes. Excess content will be truncated.|
-| lines          | Array\<string\> | No | No | Multi-line text of the notification. It cannot exceed 200 bytes. Excess content will be truncated.                 |
+| briefText      | string          | No | No | Brief text of the notification. It cannot be empty or exceed 1024 bytes. Excess content will be truncated.|
+| longTitle      | string          | No | No | Title of the notification in the expanded state. It cannot be empty or exceed 1024 bytes. Excess content will be truncated.|
+| lines          | Array\<string\> | No | No | Multi-line text of the notification. It cannot exceed 1024 bytes. Excess content will be truncated.                 |
 
 
 ## NotificationPictureContent
@@ -81,8 +81,8 @@ Describes the picture-attached notification. This API is inherited from [Notific
 
 | Name          | Type                                         | Read Only| Optional| Description                              |
 | -------------- | -------------------------------------------- | ---- | --- |------------------------------------|
-| briefText      | string                                       |  No | No | Brief text of the notification. It cannot be empty or exceed 200 bytes. Excess content will be truncated.|
-| expandedTitle  | string                                       |  No | No | Title of the notification in the expanded state. It cannot be empty or exceed 200 bytes. Excess content will be truncated.   |
+| briefText      | string                                       |  No | No | Brief text of the notification. It cannot be empty or exceed 1024 bytes. Excess content will be truncated.|
+| expandedTitle  | string                                       |  No | No | Title of the notification in the expanded state. It cannot be empty or exceed 1024 bytes. Excess content will be truncated.   |
 | picture        | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  No | No | Picture content of the notification. (The total number of bytes of image pixels cannot exceed 2 MB.)|
 
 

@@ -67,7 +67,7 @@ ChipGroupItemOptions定义每个chip的非共通属性。
 | prefixIcon   | [IconOptions](#iconoptions)   | 否   | 前缀Image图标属性。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
 | prefixSymbol | [ChipSymbolGlyphOptions](ohos-arkui-advanced-Chip.md#chipsymbolglyphoptions12) | 否   | 前缀SymbolGlyph图标属性。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。             |
 | label        | [LabelOptions](#labeloptions) | 是   | 文本属性。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                            |
-| suffixIcon<sup>(deprecated)</sup>   | [IconOptions](#iconoptions) | 否   | 后缀Image图标属性。<br/>**说明：** 从API version 12开始支持，从API version 14开始废弃，建议使用suffixImageIcon替代。|
+| suffixIcon<sup>(deprecated)</sup>   | [IconOptions](#iconoptions) | 否   | 后缀Image图标属性。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 **说明：** 从API version 12开始支持，从API version 14开始废弃，建议使用suffixImageIcon替代。|
 | suffixSymbol | [ChipSymbolGlyphOptions](ohos-arkui-advanced-Chip.md#chipsymbolglyphoptions12) | 否   | 后缀SymbolGlyph图标属性。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。             |
 | allowClose   | boolean                       | 否   | 删除图标是否显示。<br/>默认值：false。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 | suffixImageIcon<sup>14+</sup> | [SuffixImageIconOptions](#suffiximageiconoptions14) | 否 | 后缀Image图标属性。<br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
@@ -140,7 +140,7 @@ ChipGroupPaddingOptions 定义了chipGroup上下内边距，以便控制chipGrou
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 描述 |
+| 名称 | 类型 | 必填 | 说明 |
 | ---- | ---- | --- | ---- |
 | action | [VoidCallback](ts-types.md#voidcallback12) | 否 | 后缀图标响应事件。|
 | accessibilityText | [ResourceStr](ts-types.md#resourcestr) | 否 | 后缀图标无障碍文本属性。用于为用户进一步说明后缀图标，开发人员可为后缀图标的该属性设置相对较详细的解释文本，帮助用户理解将要执行的操作。如帮助用户理解将要执行的操作可能导致什么后果，尤其是当这些后果无法从后缀图标本身属性与无障碍文本中了解到时。若后缀图标既拥有文本属性又拥有无障碍说明属性，则后缀图标被选中时，先播报后缀图标的文本属性，再播报无障碍说明属性的内容。|
@@ -155,10 +155,10 @@ ChipGroup尾部图标选项类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 描述 |
+| 名称 | 类型 | 必填 | 说明 |
 | ---- | ---- | --- | ---- |
-| symbol | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | 尾部图标属性。|
-| action | [VoidCallback](ts-types.md#voidcallback12) | 否 | 尾部图标响应事件。|
+| symbol | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 是 | 尾部图标属性。|
+| action | [VoidCallback](ts-types.md#voidcallback12) | 是 | 尾部图标响应事件。|
 | accessibilityText | [ResourceStr](ts-types.md#resourcestr) | 否 | 尾部图标无障碍文本属性。用于为用户进一步说明尾部图标，开发人员可为尾部图标的该属性设置相对较详细的解释文本，帮助用户理解将要执行的操作。如帮助用户理解将要执行的操作可能导致什么后果，尤其是当这些后果无法从尾部图标本身属性与无障碍文本中了解到时。若尾部图标既拥有文本属性又拥有无障碍说明属性，则尾部图标被选中时，先播报尾部图标的文本属性，再播报无障碍说明属性的内容。|
 | accessibilityDescription | [ResourceStr](ts-types.md#resourcestr) | 否 | 尾部图标的无障碍描述。此描述用于向用户详细解释尾部图标，开发人员应为尾部图标的这一属性提供较为详尽的文本说明，以协助用户理解即将执行的操作及其可能产生的后果。特别是当这些后果无法仅从尾部图标的属性和无障碍文本中直接获知时。如果尾部图标同时具备文本属性和无障碍说明属性，当尾部图标被选中时，系统将首先播报尾部图标的文本属性，随后播报无障碍说明属性的内容。|
 | accessibilityLevel | string | 否 | 尾部图标无障碍重要性。用于控制尾部图标是否可被无障碍辅助服务所识别。<br>支持的值为:<br>"auto"：尾部图标转化为“yes”。<br>"yes"：尾部图标可被无障碍辅助服务所识别。<br>"no"：尾部图标不可被无障碍辅助服务所识别。<br>"no-hide-descendants"：尾部图标及其所有子组件不可被无障碍辅助服务所识别。<br>默认值："auto"。|
@@ -173,7 +173,7 @@ ChipGroup尾部图标选项类型。
 
 | 名称     | 类型                    | 必填 | 装饰器类型 | 说明                                                              |
 | -------- | ---------------------- | ---- | ----------------------------------------------| ----------------------------------------------|
-| items    | Array<[IconItemOptions](#iconitemoptions) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) \| [ SymbolItemOptions](#symbolItemoptions14)> | 是   | @Require &nbsp;@Prop | 自定义builder items。|
+| items    | Array<[IconItemOptions](#iconitemoptions) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) \| [ SymbolItemOptions](#symbolitemoptions14)> | 是   | @Require &nbsp;@Prop | 自定义builder items。|
 
 > **说明：**
 >

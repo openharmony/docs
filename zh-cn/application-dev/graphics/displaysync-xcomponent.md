@@ -14,7 +14,7 @@
 
    > **说明：**
    >
-   > 本范例是通过Drawing在Native侧实现图形的绘制，并将其呈现在NativeWindow上，具体可参考[使用Drawing实现图形绘制与显示](drawing-guidelines.md)。
+   > 本范例是通过Drawing在Native侧实现图形的绘制，并将其呈现在NativeWindow上，具体可参考[使用Drawing实现图形绘制与显示](graphic-drawing-overview.md)。
 
 1. 定义ArkTS接口文件XComponentContext.ts，用来对接Native层。
    ```ts
@@ -149,4 +149,4 @@
 
 针对可变帧率的开发，有以下相关实例可供参考：
 
-- [DisplaySync分级管控(ArkTS)(API11)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Graphics/DisplaySync)
+- [DisplaySync分级管控(ArkTS)(API11)](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.2-Release/code/BasicFeature/Graphics/DisplaySync)

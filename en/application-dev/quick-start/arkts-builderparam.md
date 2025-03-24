@@ -4,6 +4,8 @@
 In certain circumstances, you may need to add a specific feature, such as a click-to-jump action, to a custom component. However, embedding an event method directly in a component will add the feature to all places where the component is imported. To solve this problem, ArkUI uses the \@BuilderParam decorator to decorate variables pointing to the [\@Builder](./arkts-builder.md) method (that is, @BuilderParam is used to decorate the @Builder function). When initializing a custom component, you can use different methods (such as modifying parameters, trailing closure, or using arrow function) to change values of the custom builder functions decorated by \@BuilderParam and call the \@BuilderParam in a custom component to add specific features. This decorator can be used to declare an element of any UI description, similar to a slot placeholder.
 
 
+Before reading this topic, you are advised to read [\@Builder](./arkts-builder.md).
+
 > **NOTE**
 >
 > This decorator can be used in ArkTS widgets since API version 9.
@@ -167,7 +169,7 @@ struct Parent {
 
 ### Component Initialization Through Parameters
 
-An \@BuilderParam decorated method can be a method with or without parameters. Whether it contains parameters should match that of the assigned \@Builder method. The type of the \@BuilderParam decorated method must also match that of the assigned \@Builder method.
+An \@BuilderParam decorated method can be a method with or without parameters. Whether it contains parameters should match that of the assigned \@Builder method.
 
 ```ts
 class Tmp{
@@ -185,7 +187,7 @@ class Tmp{
 struct Child {
   label: string = 'Child';
   @Builder customBuilder() {};
-  // Without parameters. The pointed componentBuilder does not carry parameters either.
+  // Without parameters. The pointed customBuilder does not carry parameters either.
   @BuilderParam customBuilderParam: () => void = this.customBuilder;
   // With parameters. The pointed overBuilder also carries parameters.
   @BuilderParam customOverBuilderParam: ($$: Tmp) => void = overBuilder;

@@ -1,18 +1,18 @@
 # Asynchronous Lock
 
-To solve the data contention problem between multi-thread concurrent tasks, ArkTS introduces the asynchronous lock capability. An asynchronous lock may be held by a class object. Therefore, to facilitate obtaining of the same asynchronous lock object between concurrent instances, the [AsyncLock object](../reference/apis-arkts/js-apis-arkts-utils.md#asynclock) supports cross-thread reference transfer.
+To address data race issues in concurrent multithreading tasks, ArkTS introduces asynchronous locks. These locks can be held by class objects. To simplify access across concurrent instances, the [AsyncLock object](../reference/apis-arkts/js-apis-arkts-utils.md#asynclock) supports pass-by-reference across threads.
 
-ArkTS supports asynchronous operations, and blocking locks are prone to deadlocks. Therefore, only asynchronous locks (non-blocking locks) are used in ArkTS. In addition, the asynchronous lock may be further used to ensure time sequence consistency of asynchronous tasks in a single thread, to prevent a synchronization problem caused by an uncertain time sequence of the asynchronous tasks.
+Given that ArkTS supports asynchronous operations, blocking locks are prone to deadlocks. Therefore, ArkTS only supports asynchronous locks (non-blocking locks). In addition, asynchronous locks can ensure the temporal consistency of asynchronous tasks within a single thread, preventing synchronization issues caused by uncertain task timing.
 
-For more APIs related to asynchronous locks, see [ArkTSUtils.locks](../reference/apis-arkts/js-apis-arkts-utils.md#arktsutilslocks).
+For more details about asynchronous lock APIs, see [ArkTSUtils.locks](../reference/apis-arkts/js-apis-arkts-utils.md#arktsutilslocks).
 
-> **Note**
+> **NOTE**
 >
-> The method that uses an asynchronous lock must be marked as **async**, and the caller must use **await** in the call to ensure the correct call sequence.
+> Methods using asynchronous locks must be marked as **async**, and the caller must use the **await** keyword to ensure correct timing.
 
-## Example
+## Usage Example
 
-To solve the contention problem caused by the modification of shared variables in different threads of the [@Sendable object](arkts-sendable.md), asynchronous locks can be used for data protection. Example:
+To prevent data races when modifying shared variables across threads with [@Sendable objects](arkts-sendable.md), asynchronous locks can be used for data protection. The sample code is as follows:
 
 ```ts
 import { ArkTSUtils, taskpool } from '@kit.ArkTS';
@@ -23,14 +23,14 @@ export class A {
   lock_: ArkTSUtils.locks.AsyncLock = new ArkTSUtils.locks.AsyncLock();
 
   public async getCount(): Promise<number> {
-    // Add an asynchronous lock to the data to be protected.
+    // Add an asynchronous lock to protect the data.
     return this.lock_.lockAsync(() => {
       return this.count_;
     })
   }
 
   public async increaseCount() {
-    // Add an asynchronous lock to the data to be protected.
+    // Add an asynchronous lock to protect the data.
     await this.lock_.lockAsync(() => {
       this.count_++;
     })
@@ -58,9 +58,9 @@ struct Index {
           middle: { anchor: '__container__', align: HorizontalAlign.Center }
         })
         .onClick(async () => {
-          // Create the sendable object a.
+          // Create the Sendable object a.
           let a: A = new A();
-          // Transfer instance a to the subthread.
+          // Pass object a to a child thread.
           await taskpool.execute(printCount, a);
         })
     }

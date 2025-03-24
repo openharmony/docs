@@ -29,7 +29,7 @@
    }
    ```
 
-3. 使能。通过depthDataOutput类的[start](../../reference/apis-camera-kit/js-apis-camera-sys.md#start)方法输出深度流。接口调用失败会返回相应错误码，错误码类型参见[Camera错误码](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode)。
+3. 使能。通过depthDataOutput类的[start](../../reference/apis-camera-kit/js-apis-camera-sys.md#start12)方法输出深度流。接口调用失败会返回相应错误码，错误码类型参见[Camera错误码](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode)。
      
    ```ts
    async function startDepthDataOutput(depthDataOutput: camera.DepthDataOutput): Promise<void> {

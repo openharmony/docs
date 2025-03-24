@@ -148,7 +148,7 @@ hasKey(key: K): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | K | 是 | 指定key |
+| key | K | 是 | 指定key。 |
 
 **返回值：**
 
@@ -381,7 +381,7 @@ set(key: K, value: V): Object
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Object | 返回添加后的treeMap |
+| Object | 返回添加后的treeMap。 |
 
 **错误码：**
 

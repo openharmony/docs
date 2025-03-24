@@ -15,6 +15,19 @@ import { map } from '@kit.ConnectivityKit';
 ```
 
 
+## BaseProfile
+
+type BaseProfile = baseProfile.BaseProfile
+
+基础Profile接口定义
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 类型                            | 说明         |
+| ----------------------------- | ---------- |
+| [baseProfile.BaseProfile](js-apis-bluetooth-baseProfile.md#baseprofile) | 基础Profile接口定义。 |
+
+
 ## map.createMapMseProfile
 
 createMapMseProfile(): MapMseProfile

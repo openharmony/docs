@@ -21,7 +21,7 @@ want操作的常数。用于表示要执行的通用操作。
 | 名称      | 值          | 说明     |
 | ------------ | ------------------ | ---------------------- |
 | ACTION_HOME                                 | ohos.want.action.home                    | 指示返回原点的操作。                                        |
-| ACTION_DIAL                                 | ohos.want.action.dial                    | 指示启动显示小键盘的页面功能的操作                           |
+| ACTION_DIAL                                 | ohos.want.action.dial                    | 指示启动显示小键盘的页面功能的操作。                          |
 | ACTION_SEARCH                               | ohos.want.action.search                  | 指示启动页面搜索功能的操作。                                 |
 | ACTION_WIRELESS_SETTINGS                    | ohos.settings.wireless                   | 指示启动提供无线网络设置的页面功能的操作，例如，Wi-Fi选项。    |
 | ACTION_MANAGE_APPLICATIONS_SETTINGS         | ohos.settings.manage.applications        | 指示启动管理已安装应用程序的页面功能的操作。                  |

@@ -5,7 +5,7 @@ UIServiceExtensionConnectCallback是UIServiceExtension连接回调接口类，�
 
 > **说明：**
 >
->  - 本模块首批接口从API version 13开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>  - 本模块首批接口从API version 14开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >  - 本模块接口仅可在Stage模型下使用。
 >  - 本模块接口需要在主线程中使用，不要在Worker、TaskPool等子线程中使用。
 
@@ -26,20 +26,20 @@ import { common } from '@kit.AbilityKit';
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 >
 
+**原子化服务API**：从 API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
-| 参数名 | 类型                   | 只读 | 可选 | 说明         |
-| ------ | ---------------------- | ---- | ------------ | ------------ |
-| data   | Record&lt;string, Object&gt; | 是 | 否  | 接收UIServiceExtension连接回调数据。 |
-
+| 参数名 | 类型                   | 必填 | 说明         |
+| ------ | ---------------------- | ---- | ------------ |
+| data   | Record&lt;string, Object&gt; | 是 | 接收UIServiceExtension连接回调数据。 |
 
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
+import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG: string = '[Extension] ';
@@ -133,12 +133,9 @@ onDisconnect(): void
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 >
 
+**原子化服务API**：从 API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**参数：**
-
-无。
 
 **示例：**
 ```ts

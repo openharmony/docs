@@ -129,6 +129,10 @@ test(a2);
 * `obfuscation.txt`  
 不同于以上两种开发者可自行修改的配置文件，`obfuscation.txt`是在编译构建HAR时根据`consumer-rules.txt`和依赖模块的混淆规则文件自动生成的文件，它作为一种编译产物存在于发布的HAR包中，用于在其他应用使用该发布包时应用相应的混淆规则。obfuscation.txt内容的生成逻辑请参考[混淆规则合并策略](#混淆规则合并策略)。
 
+  > **说明**：
+  >
+  > 针对三方库中`obfuscation.txt`文件，只有在模块的`oh-package.json5`文件中依赖三方库时，三方库中的`obfuscation.txt`文件才会生效；如果在工程的`oh-package.json5`文件中进行依赖，则三方库的`obfuscation.txt`文件不会生效。
+
 下表简要总结了三种配置文件的差异：
 
 | 配置文件（示例） | 配置类型 |  是否可修改配置  |  是否影响本模块的混淆  |  是否影响其他模块的混淆  |
@@ -153,7 +157,7 @@ test(a2);
 
 #### -enable-property-obfuscation
 
-开启属性混淆。 如果使用这个选项，那么所有的属性名都会被混淆，除了下面场景:
+开启属性混淆。 如果使用这个选项，那么所有的属性名都会被混淆，除了下面场景：
 
 * 被`import/export`直接导入或导出的类、对象的属性名不会被混淆。例如下面例子中的属性名`data`不会被混淆。
 
@@ -169,12 +173,12 @@ test(a2);
     @Component struct MyExample {
         @State message: string = "hello";
         data: number[] = [];
-        ...
+        // ...
     }
     ```
 
 * 被[保留选项](#保留选项)指定的属性名不会被混淆。
-* SDK API列表中的属性名不会被混淆。SDK API列表是构建时从SDK中自动提取出来的一个名称列表，其缓存文件为systemApiCache.json，路径为工程目录下build/default/cache/{...}/release/obfuscation中
+* SDK API列表中的属性名不会被混淆。SDK API列表是构建时从SDK中自动提取出来的一个名称列表，其缓存文件为systemApiCache.json，路径为工程目录下build/default/cache/{...}/release/obfuscation中。
 * 字符串字面量属性名不会被混淆。例如下面例子中的`"name"`和`"age"`不会被混淆。
 
     ```
@@ -182,7 +186,7 @@ test(a2);
     person["age"] = 22;
     ```
 
-    如果想混淆字符串字面量属性名，需要在该选项的基础上再使用`-enable-string-property-obfuscation`选项。例如
+    如果想混淆字符串字面量属性名，需要在该选项的基础上再使用`-enable-string-property-obfuscation`选项。例如：
 
     ```
     -enable-property-obfuscation
@@ -191,8 +195,8 @@ test(a2);
 
     **注意**：  
 
-    **1.** 如果代码里面有字符串属性名包含特殊字符(除了`a-z, A-Z, 0-9, _`之外的字符)，例如`let obj = {"\n": 123, "": 4, " ": 5}`，建议不要开启`-enable-string-property-obfuscation`选项，因为可能无法通过[保留选项](#保留选项)来指定保留这些名字。  
-    **2.** SDK API的属性白名单中不包含声明文件中使用的字符串常量值，例如示例中的字符串'ohos.want.action.home'未包含在属性白名单中
+    **1.** 如果代码里面有字符串属性名包含特殊字符(除了`a-z，A-Z，0-9，_`之外的字符)，例如`let obj = {"\n": 123, "": 4, " ": 5}`，建议不要开启`-enable-string-property-obfuscation`选项，因为可能无法通过[保留选项](#保留选项)来指定保留这些名字。  
+    **2.** SDK API的属性白名单中不包含声明文件中使用的字符串常量值，例如示例中的字符串'ohos.want.action.home'未包含在属性白名单中。
 
     ```
     // SDK API文件@ohos.app.ability.wantConstant片段：
@@ -203,11 +207,11 @@ test(a2);
     let params = obj['ohos.want.action.home'];
     ```
 
-    因此在开启了`-enable-string-property-obfuscation`选项时，如果想保留代码中使用的SDK API字符串常量的属性不被混淆，例如obj['ohos.want.action.home'], 那么需要使用keep选项保留。
+    因此在开启了`-enable-string-property-obfuscation`选项时，如果想保留代码中使用的SDK API字符串常量的属性不被混淆，例如obj['ohos.want.action.home']，那么需要使用keep选项保留。
 
 #### -enable-toplevel-obfuscation
 
-开启顶层作用域名称混淆。如果使用这个选项，那么所有的顶层作用域的名称都会被混淆，除了下面场景:
+开启顶层作用域名称混淆。如果使用这个选项，那么所有的顶层作用域的名称都会被混淆，除了下面场景：
 
 * 被`import/export`的名称不会被混淆。
 * 当前文件找不到声明的名称不会被混淆。
@@ -225,7 +229,7 @@ import { foo } from '../directory/filename';
 const module = import('../directory/filename');
 ```
 
-除了下面场景:
+除了下面场景：
 
 * oh-package.json5文件中'main'、'types'字段配置的文件/文件夹名称不会被混淆。
 * 模块内module.json5文件中'srcEntry'字段配置的文件/文件夹名称不会被混淆。
@@ -241,7 +245,7 @@ const module = import('../directory/filename');
 
 #### -enable-export-obfuscation
 
-开启直接导入或导出的类或对象的名称和属性名混淆。如果使用这个选项，那么模块中的直接导入或导出的名称都会被混淆，除了下面场景:
+开启直接导入或导出的类或对象的名称和属性名混淆。如果使用这个选项，那么模块中的直接导入或导出的名称都会被混淆，除了下面场景：
 
 * 远程HAR(真实路径在oh_modules中的包)中导出的类或对象的名称和属性名不会被混淆。
 * 被[保留选项](#保留选项)指定的名称与属性名不会被混淆。
@@ -307,7 +311,7 @@ release模式构建的应用栈信息仅包含代码行号，不包含列号，�
 该选项应该在增量编译场景中被使用。
 
 默认情况下，DevEco Studio会在临时的缓存目录中保存缓存文件，并且在增量编译场景中自动应用该缓存文件。  
-缓存目录：build/default/cache/{...}/release/obfuscation
+缓存目录：build/default/cache/{...}/release/obfuscation。
 
 #### -remove-comments
 
@@ -318,66 +322,11 @@ release模式构建的应用栈信息仅包含代码行号，不包含列号，�
 编译生成的源码文件中的注释默认会被全部删除，不支持配置保留。  
 可通过`keep-comments`配置来保留编译生成的声明文件中的JsDoc注释。
 
-#### -print-kept-names *filepath*
-
-该选项支持输出未混淆名单和全量白名单。其中，*filepath*为可选参数。
-
-当*filepath*参数缺省时，未混淆名单（keptNames.json）和全量白名单（whitelist.json）默认输出到缓存路径`build/default/cache/{...}/release/obfuscation`中。
-
-当*filepath*配置参数时，未混淆名单还会输出到该参数指定的路径中。其中，*filepath*仅支持相对路径，相对路径的起始位置为混淆配置文件的当前目录。*filepath*参数中的文件名请以`.json`为后缀。
-
-全量白名单（whitelist.json）包含本次模块编译流程中收集到的全部白名单，分为以下七种：
-
-(1)'sdk'：表示系统api。
-
-(2)'lang'：表示语言中的关键字。
-
-(3)'conf'：表示用户配置的保留选项中的白名单。
-
-(4)'struct'：表示ArkUI的struct中的属性。
-
-(5)'exported'：表示被导出的名称及其属性。
-
-(6)'strProp': 表示字符串属性。
-
-(7)'enum'：表示enum中的成员。
-
-未混淆名单（keptNames.json）中包含未混淆的名称及未混淆的原因。其中，未混淆原因有以下七种：与sdk白名单重名、与语言白名单重名、与用户配置白名单重名、与struct白名单重名、与导出白名单重名、与字符串属性白名单重名（未开启字符串属性混淆的情况下）以及与enum白名单重名。
-
-**注意**：
-
-1.在编译har模块且开启属性混淆的情况下，'enum'白名单将收集enum中的成员名称。
-
-例如：
-
-```
-enum Test {
-  member1,
-  member2
-}
-```
-
-enum白名单内容为['member1', 'member2']。这是由于历史版本的har模块的编译中间产物为js文件，在js文件中enum类型会转换为一个立即执行函数，而enum成员会被转化为一个字符串属性和一个字符串常量。因此，为了保证开启属性混淆的情况下功能正常，需要将enum成员名称收集为白名单。在编译新版字节码har模块时，此特性仍然被保留。
-
-2.在编译hap/hsp/字节码har模块且开启属性混淆的情况下，当enum的成员被初始化时，'enum'白名单收集初始化表达式中包含的变量名称。
-
-例如：
-
-```
-let outdoor = 1;
-enum Test {
-  member1,
-  member2 = outdoor + member1 + 2
-}
-```
-
-其中，编译hap/hsp模块的情况下，enum白名单内容为['outdoor', 'member1']；编译字节码har模块的情况下，enum白名单内容为['outdoor', 'member1', 'member2']。
-
 ### 保留选项
 
 #### -keep-property-name *[,identifiers,...]*
 
-指定想保留的属性名，支持使用名称类通配符。例如下面的例子:
+指定想保留的属性名，支持使用名称类通配符。例如下面的例子：
 
 ```
 -keep-property-name
@@ -388,7 +337,7 @@ lastName
 
 > **注意**：
 >
-> - 该选项在开启`-enable-property-obfuscation`时生效
+> - 该选项在开启`-enable-property-obfuscation`时生效。
 >
 > - 属性白名单作用于全局。即代码中出现多个重名属性，只要与`-keep-property-name`配置白名单名称相同，均不会被混淆。
 
@@ -428,7 +377,7 @@ obj.['v'] = 0;
 console.info(obj['v']); // 此时，'v'会被正确混淆，v可以选择性保留
 ```
 
-2.对于间接导出的场景，例如`export MyClass`和`let a = MyClass; export {a};`，如果不想混淆它们的属性名，那么需要使用[保留选项](#保留选项)来保留这些属性名。另外，对于直接导出的类或对象的属性的属性名，例如下面例子中的`name`和`age`, 如果不想混淆它们，那么也需要使用[保留选项](#保留选项)来保留这些属性名。
+2.对于间接导出的场景，例如`export MyClass`和`let a = MyClass; export {a};`，如果不想混淆它们的属性名，那么需要使用[保留选项](#保留选项)来保留这些属性名。另外，对于直接导出的类或对象的属性的属性名，例如下面例子中的`name`和`age`，如果不想混淆它们，那么也需要使用[保留选项](#保留选项)来保留这些属性名。
 
 ```
 export class MyClass {
@@ -486,7 +435,7 @@ const valueBucket: ValuesBucket = {
 class A {
   // 1.成员变量装饰器
   @CustomDecoarter
-  propetyName: string = ""   // propetyName 需要被保留
+  propertyName: string = ""   // propertyName 需要被保留
   // 2.成员方法装饰器
   @MethodDecoarter
   methodName1(){} // methodName1 需要被保留
@@ -498,7 +447,7 @@ class A {
 
 #### -keep-global-name *[,identifiers,...]*
 
-指定要保留的顶层作用域或导入和导出元素的名称，支持使用名称类通配符。例如，
+指定要保留的顶层作用域或导入和导出元素的名称，支持使用名称类通配符。例如：
 
 ```
 -keep-global-name
@@ -523,7 +472,7 @@ export namespace Ns {
 
 在JavaScript中全局变量是`globalThis`的属性。如果在代码中使用`globalThis`去访问全局变量，那么该变量名应该被保留。
 
-示例:
+示例：
 
 ```
 var a = 0;
@@ -550,7 +499,7 @@ import { testNapi, testNapi1 as myNapi } from 'library.so' // testNapi 和 testN
 
 #### -keep-file-name *[,identifiers,...]*
 
-指定要保留的文件/文件夹的名称(不需要写文件后缀)，支持使用名称类通配符。例如，
+指定要保留的文件/文件夹的名称(不需要写文件后缀)，支持使用名称类通配符。例如：
 
 ```
 -keep-file-name
@@ -592,7 +541,7 @@ const module2 = import(moduleName)
 
 #### -keep-comments *[,identifiers,...]*
 
-保留编译生成的声明文件中class, function, namespace, enum, struct, interface, module, type及属性上方的JsDoc注释，支持使用名称类通配符。例如想保留声明文件中Human类上方的JsDoc注释，可进行以下配置：
+保留编译生成的声明文件中class，function，namespace，enum，struct，interface，module，type及属性上方的JsDoc注释，支持使用名称类通配符。例如想保留声明文件中Human类上方的JsDoc注释，可进行以下配置：
 
 ```
 -keep-comments
@@ -601,8 +550,8 @@ Human
 
 **注意**：
 
-1. 该选项在开启`-remove-comments`时生效
-2. 当编译生成的声明文件中class, function, namespace, enum, struct, interface, module, type及属性的名称被混淆时，该元素上方的JsDoc注释无法通过`-keep-comments`保留。例如当在`-keep-comments`中配置了exportClass时，如果exportClass类名被混淆，其JsDoc注释无法被保留：
+1. 该选项在开启`-remove-comments`时生效。
+2. 当编译生成的声明文件中class，function，namespace，enum，struct，interface，module，type及属性的名称被混淆时，该元素上方的JsDoc注释无法通过`-keep-comments`保留。例如当在`-keep-comments`中配置了exportClass时，如果exportClass类名被混淆，其JsDoc注释无法被保留：
 
 ```
 /*
@@ -770,7 +719,7 @@ class A {
 
 ### 注释
 
-可以使用`#`在混淆规则文件中进行注释。每行以`#`开头的文本会被当做是注释，例如下面的例子:
+可以使用`#`在混淆规则文件中进行注释。每行以`#`开头的文本会被当做是注释，例如下面的例子：
 
 ```
 # white list for MainAbility.ets
@@ -889,7 +838,7 @@ end-for
     2. 待上述选项应用适配成功后，开启`-enable-property-obfuscation`选项。此选项开启后以下场景需要适配：
         1. 若代码中存在静态定义，动态访问的情况或者动态定义，静态访问的情况，需要使用`-keep-property-name`保留属性名称。示例：
             ```
-            // 静态定义，动态访问: 属性名在对象定义时是静态的，但访问时通过动态构建属性名（通常使用字符串拼接）来访问
+            // 静态定义，动态访问：属性名在对象定义时是静态的，但访问时通过动态构建属性名（通常使用字符串拼接）来访问
             const obj = {
               staticName: value  // 静态定义属性
             };
@@ -897,7 +846,7 @@ end-for
             console.log(obj[fieldName]);  // 使用方括号语法动态访问属性
             ```
             ```
-            // 动态定义，静态访问: 属性名通过动态表达式在对象定义时确定，但访问时直接使用点语法（假设你知道属性名的结果）
+            // 动态定义，静态访问：属性名通过动态表达式在对象定义时确定，但访问时直接使用点语法（假设你知道属性名的结果）
             const obj = {
               [dynamicExpression]: value  // 动态定义属性
             };
@@ -948,7 +897,7 @@ end-for
 | -keep-global-name            | 保留顶层作用域的名称 | 4.0.9.2 |
 | -keep-file-name              | 保留HAR包的文件/文件夹的名称 <br> 保留HAP/HSP包的文件/文件夹的名称 | 4.1.5.3 <br> 5.0.0.19 |
 | -keep-dts                    | 保留指定路径的.d.ts文件中的名称 | 4.0.9.2 |
-| -keep-comments               | 保留编译生成的声明文件中class, function, namespace, enum, struct, interface, module, type及属性上方的JsDoc注释 | 4.1.5.3 |
+| -keep-comments               | 保留编译生成的声明文件中class，function，namespace，enum，struct，interface，module，type及属性上方的JsDoc注释 | 4.1.5.3 |
 | -keep                        | 保留指定路径中的所有名称 | 5.0.0.18 |
 | 通配符                       | 名称类和路径类的保留选项支持通配符 | 5.0.0.24 |
 
@@ -1037,6 +986,47 @@ let jsonObj = jsonStr.i
 
 **解决方案：** 使用`-keep-property-name`选项将使用到的数据库字段配置到白名单。
 
+**案例三：使用Record<string, Object>作为对象的类型时，该对象里的属性被混淆，导致功能异常**
+
+**问题现象：**
+
+`parameters`的类型为`Record<string, Object>`，在开启属性混淆后，`parameters`对象中的属性`linkSource`被混淆，进而导致功能异常。示例如下：
+
+```
+// 混淆前
+import { Want } from '@kit.AbilityKit';
+let petalMapWant: Want = {
+  bundleName: 'com.example.myapplication',
+  uri: 'maps://',
+  parameters: {
+    linkSource: 'com.other.app'
+  }
+}
+
+// 混淆后
+import type Want from "@ohos:app.ability.Want";
+let petalMapWant: Want = {
+    bundleName: 'com.example.myapplication',
+    uri: 'maps://',
+    parameters: {
+        i: 'com.other.app'
+    }
+};
+```
+
+**问题原因：**
+
+在这个示例中，所创建的对象的内容需要传递给系统来加载某个页面，因此对象中的属性名称不能被混淆，否则会造成功能异常。示例中`parameters`的类型为`Record<string, Object>`，这只是一个表示以字符串为键的对象的泛型定义，并没有详细描述其内部结构和属性类型。因此，混淆工具无法识别该对象内部哪些属性不应被混淆，从而可能导致内部属性名`linkSource`被混淆。
+
+**解决方案：**
+
+将混淆后会出现问题的属性名配置到属性白名单中，示例如下：
+
+```
+-keep-property-name
+linkSource
+```
+
 #### 同时开启-enable-export-obfuscation和-enable-toplevel-obfuscation选项可能出现的问题
 
 **当开启这两个选项时，主模块调用其他模块方法时涉及的方法名称混淆情况如下：**
@@ -1110,7 +1100,7 @@ declare a2 {
 }
 ```
 
-报错内容为 `SyntaxError: Unexpected token`
+报错内容为 `SyntaxError: Unexpected token`。
 
 **解决方案：** 使用`-keep-global-name`选项将`__global`配置到白名单中。
 
@@ -1155,7 +1145,7 @@ AppAbility
 
 #### 使用-keep-global-name选项配置白名单时，可能会出现的问题
 
-报错内容为 `Cannot read properties of undefined (reading 'has')`
+报错内容为 `Cannot read properties of undefined (reading 'has')`。
 
 **解决方案：** 将SDK更新至最低4.1.6.3版本。
 

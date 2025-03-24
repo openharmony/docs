@@ -74,13 +74,13 @@ on(activity: ActivityType, event: ActivityEvent, reportLatencyNs: number, callba
 | -------------------- | -------------------------------------------------- | ---- | ---------------------------- |
 | activity  | [ActivityType](#activitytype)  | 是   | 设备状态能力类型。              |
 | event  | [ActivityEvent](#activityevent)  | 是   | 事件类型。              |
-| reportLatencyNs  | number  | 是   | 报告延时。              |
+| reportLatencyNs  | number  | 是   | 报告延时(取值范围1000000000-3000000000)。              |
 | callback             | Callback<[ActivityResponse](#activityresponse)\>  | 是   | 回调函数，接收上报状态变化事件。    |
 
 **示例：**
 
 ```ts
-let reportLatencyNs = 100;
+let reportLatencyNs = 1000000000;
 stationary.on('still', stationary.ActivityEvent.ENTER, reportLatencyNs, (data) => {
     console.log('data='+ JSON.stringify(data));
 })

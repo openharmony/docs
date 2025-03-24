@@ -13,6 +13,19 @@ a2dp模块提供了访问蓝牙音频接口的方法。
 import { a2dp } from '@kit.ConnectivityKit';
 ```
 
+## BaseProfile
+
+type BaseProfile = baseProfile.BaseProfile
+
+基础Profile接口定义。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 类型                            | 说明         |
+| ----------------------------- | ---------- |
+| [baseProfile.BaseProfile](js-apis-bluetooth-baseProfile.md#baseprofile) | 基础Profile接口定义。 |
+
+
 ## a2dp.createA2dpSrcProfile
 
 createA2dpSrcProfile(): A2dpSourceProfile

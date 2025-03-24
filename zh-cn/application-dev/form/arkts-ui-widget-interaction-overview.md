@@ -37,7 +37,8 @@ ArkTS卡片框架为提供方提供了[updateForm](../reference/apis-form-kit/js
 
 下面介绍卡片页面刷新的典型场景。
 
-- [卡片定时刷新和定点刷新](arkts-ui-widget-update-by-time.md)
+- [卡片定时刷新](arkts-ui-widget-update-by-time.md)
+- [卡片定点刷新](arkts-ui-widget-update-by-time-point.md)
 - [刷新本地图片和网络图片](arkts-ui-widget-image-update.md)
 - [根据卡片状态刷新不同内容](arkts-ui-widget-update-by-status.md)
 

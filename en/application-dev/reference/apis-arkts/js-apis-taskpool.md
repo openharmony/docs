@@ -133,7 +133,7 @@ taskpool.execute<[[number, string]], string>(testWithArray, [100, "test"]).then(
 
 execute(task: Task, priority?: Priority): Promise\<Object>
 
-Places a task in the internal queue of the task pool. The task is not executed immediately. It waits to be distributed to the worker thread for execution. In this mode, you can set the task priority and call **cancel()** to cancel the task. The task cannot be a task in a task group or queue. This API can be called only once for a continuous task, but multiple times for a non-continuous task.
+Places a task in the internal queue of the task pool. The task is not executed immediately. It waits to be distributed to the worker thread for execution. In this mode, you can set the task priority and call **cancel()** to cancel the task. The task cannot be a task in a task group or serial queue. This API can be called only once for a continuous task, but multiple times for a non-continuous task.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -310,7 +310,7 @@ taskpool.execute(taskGroup2).then((res: Array<Object>) => {
 
 executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Object>
 
-Executes a task after a given delay. In this mode, you can set the task priority and call **cancel()** to cancel the task. The task cannot be a task in a task group or queue, or a periodic task. This API can be called only once for a continuous task, but multiple times for a non-continuous task.
+Executes a task after a given delay. In this mode, you can set the task priority and call **cancel()** to cancel the task. The task cannot be a task in a task group or serial queue, or a periodic task. This API can be called only once for a continuous task, but multiple times for a non-continuous task.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -427,7 +427,7 @@ Executes a task periodically.
 
 In this execution mode, you can set the task priority and call **cancel()** to cancel the execution.
 
-A periodic task cannot be a task in a task group or queue. It cannot call **execute()** again or have a dependency relationship.
+A periodic task cannot be a task in a task group or serial queue. It cannot call **execute()** again or have a dependency relationship.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -872,7 +872,7 @@ for (let i: number = 0; i < taskArray.length; i+=4) { // 4: Four tasks are execu
 
 ## Task
 
-Implements a task. Before calling any APIs in **Task**, you must use [constructor](#constructor) to create a **Task** instance. A task can be executed for multiple times, placed in a task group or queue for execution, or added with dependencies for execution.
+Implements a task. Before calling any APIs in **Task**, you must use [constructor](#constructor) to create a **Task** instance. A task can be executed for multiple times, placed in a task group or serial queue for execution, or added with dependencies for execution.
 
 ### Attributes
 
@@ -883,11 +883,11 @@ Implements a task. Before calling any APIs in **Task**, you must use [constructo
 | Name                | Type      | Readable| Writable| Description                                                        |
 | -------------------- | --------- | ---- | ---- | ------------------------------------------------------------ |
 | function             | Function  | Yes  | Yes  | Function to be passed in during task creation. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).|
-| arguments            | Object[]  | Yes  | Yes  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
-| name<sup>11+</sup>   | string    | Yes  | No  | Name of the task specified when the task is created.                                   |
-| totalDuration<sup>11+</sup>  | number    | Yes  | No  | Total execution time of the task.                                   |
-| ioDuration<sup>11+</sup>     | number    | Yes  | No  | Asynchronous I/O time of the task.                                   |
-| cpuDuration<sup>11+</sup>    | number    | Yes  | No  | CPU time of the task.                                   |
+| arguments            | Object[]  | Yes  | Yes  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). |
+| name<sup>11+</sup>   | string    | Yes  | No  | Name of the task specified when the task is created. |
+| totalDuration<sup>11+</sup>  | number    | Yes  | No  | Total execution time of the task. |
+| ioDuration<sup>11+</sup>     | number    | Yes  | No  | Asynchronous I/O time of the task. |
+| cpuDuration<sup>11+</sup>    | number    | Yes  | No  | CPU time of the task. |
 
 ### constructor
 
@@ -1382,7 +1382,7 @@ testFunc();
 
 addDependency(...tasks: Task[]): void
 
-Adds dependent tasks for this task. Before using this API, you must create a **Task** instance. The task and its dependent tasks cannot be a task in a task group or queue, a task that has been executed, or a periodic task. A task with a dependency relationship (a task that depends on another task or a task that is depended on) cannot be executed multiple times.
+Adds dependent tasks for this task. Before using this API, you must create a **Task** instance. The task and its dependent tasks cannot be a task in a task group or serial queue, a task that has been executed, or a periodic task. A task with a dependency relationship (a task that depends on another task or a task that is depended on) cannot be executed multiple times.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1991,7 +1991,7 @@ taskGroup.addTask(printArgs, 100); // 100: test number
 
 addTask(task: Task): void
 
-Adds a created task to this task group. Before using this API, you must create a **TaskGroup** instance. Tasks in another task group or queue, dependent tasks, continuous tasks, tasks that have been executed, and periodic tasks cannot be added to the task group.
+Adds a created task to this task group. Before using this API, you must create a **TaskGroup** instance. Tasks in another task group or serial queue, dependent tasks, continuous tasks, tasks that have been executed, and periodic tasks cannot be added to the task group.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2039,7 +2039,7 @@ taskGroup.addTask(task);
 
 ## SequenceRunner <sup>11+</sup>
 
-Implements a queue, in which all tasks are executed in sequence. Before calling any APIs in **SequenceRunner**, you must use [constructor](#constructor11-3) to create a **SequenceRunner** instance.
+Implements a serial queue, in which all tasks are executed in sequence. Before calling any APIs in **SequenceRunner**, you must use [constructor](#constructor11-3) to create a **SequenceRunner** instance.
 
 ### constructor<sup>11+</sup>
 
@@ -2080,7 +2080,7 @@ A constructor used to create a **SequenceRunner** instance. This instance repres
 > **NOTE**
 >
 > - The bottom layer uses the singleton mode to ensure that the same instance is obtained when a serial queue with the same name is created.
-> - The priority of a queue cannot be modified.
+> - The priority of a serial queue cannot be modified.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2090,7 +2090,7 @@ A constructor used to create a **SequenceRunner** instance. This instance repres
 
 | Name  | Type                 | Mandatory| Description                                                      |
 | -------- | --------------------- | ---- | ---------------------------------------------------------- |
-| name     | string                | Yes  | Name of a queue.|
+| name     | string                | Yes  | Name of a serial queue.|
 | priority | [Priority](#priority) | No  | Priority of the task. The default value is **taskpool.Priority.MEDIUM**.|
 
 **Error codes**
@@ -2111,12 +2111,12 @@ let runner:taskpool.SequenceRunner = new taskpool.SequenceRunner("runner1", task
 
 execute(task: Task): Promise\<Object>
 
-Adds a task to the queue for execution. Before using this API, you must create a **SequenceRunner** instance. Tasks in another task group or queue, dependent tasks, and tasks that have been executed cannot be added to the queue.
+Adds a task to the serial queue for execution. Before using this API, you must create a **SequenceRunner** instance. Tasks in another task group or serial queue, dependent tasks, and tasks that have been executed cannot be added to the serial queue.
 
 > **NOTE**
 >
-> - Tasks that depend others cannot be added to the queue.
-> - The failure or cancellation of a task does not affect the execution of subsequent tasks in the queue.
+> - Tasks that depend others cannot be added to the serial queue.
+> - The failure or cancellation of a task does not affect the execution of subsequent tasks in the serial queue.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2126,7 +2126,7 @@ Adds a task to the queue for execution. Before using this API, you must create a
 
 | Name| Type         | Mandatory| Description                            |
 | ------ | ------------- | ---- | -------------------------------- |
-| task   | [Task](#task) | Yes  | Task to be added to the queue.|
+| task   | [Task](#task) | Yes  | Task to be added to the serial queue.|
 
 **Return value**
 

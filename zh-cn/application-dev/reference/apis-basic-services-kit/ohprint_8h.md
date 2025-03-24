@@ -21,7 +21,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct  [Print_Margin](_print___margin.md) | 打印边距  | 
+| struct  [Print_Margin](_print___margin.md) | 打印边距.  | 
 | struct  [Print_PageSize](_print___page_size.md) | 纸张大小信息.  | 
 | struct  [Print_Range](_print___range.md) | 打印范围.  | 
 | struct  [Print_PrintAttributes](_print___print_attributes.md) | 打印属性结构体.  | 

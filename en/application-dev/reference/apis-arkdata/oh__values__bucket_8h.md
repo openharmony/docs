@@ -28,7 +28,7 @@ Defines the types of the key and value in a key-value (KV) pair.
 
 | Name| Description|
 | -------- | -------- |
-| [OH_VBucket](_r_d_b.md#oh_vbucket) | Indicates the types of the key and value in a KV pair. |
+| [OH_VBucket](_r_d_b.md#oh_vbucket) | Defines the types of the key and value in a KV pair.|
 ### Functions
 
 | Name| Description| 

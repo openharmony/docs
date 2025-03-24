@@ -17,9 +17,9 @@ import { InputMethodExtensionAbility } from '@kit.IMEKit';
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name | Type | Read-Only | Optional | Description |
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| context | [InputMethodExtensionContext](js-apis-inputmethod-extension-context.md) | Yes | No | Context of the **InputMethodExtension**, which is inherited from **ExtensionContext**. |
+| context | [InputMethodExtensionContext](js-apis-inputmethod-extension-context.md) | No| No| Context of the **InputMethodExtension**, which is inherited from **ExtensionContext**.|
 
 ## InputMethodExtensionAbility.onCreate
 
@@ -31,9 +31,9 @@ Called when the **InputMethodExtension** ability is started to implement initial
 
 **Parameters**
 
-| Name | Type         | Mandatory | Description                            |
+| Name| Type         | Mandatory| Description                            |
 | ------ | ----------- | ---- | ------------------------------- |
-| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Information related to the **InputMethodExtension** ability, including the ability name and bundle name. |
+| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Information related to the **InputMethodExtension** ability, including the ability name and bundle name.|
 
 **Example**
 

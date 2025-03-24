@@ -19,9 +19,9 @@ RawFileDescriptor是[OH_ResourceManager_GetRawFileDescriptor](rawfile.md#oh_reso
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| int [fd](#fd) | rawfile文件描述符，单位为int  | 
-| long [start](#start) | rawfile在HAP包中的起始位置，单位为long  | 
-| long [length](#length) | rawfile在HAP包中的长度，单位为long  | 
+| int [fd](#fd) | rawfile文件描述符，单位为int。  | 
+| long [start](#start) | rawfile在HAP包中的起始位置，单位为long。  | 
+| long [length](#length) | rawfile在HAP包中的长度，单位为long。  | 
 
 
 ## 结构体成员变量说明
@@ -32,8 +32,9 @@ RawFileDescriptor是[OH_ResourceManager_GetRawFileDescriptor](rawfile.md#oh_reso
 ```
 int RawFileDescriptor::fd
 ```
-**描述**
-rawfile文件描述符，单位为int
+**描述** 
+
+rawfile文件描述符，单位为int。
 
 
 ### length
@@ -42,7 +43,8 @@ rawfile文件描述符，单位为int
 long RawFileDescriptor::length
 ```
 **描述**
-rawfile在HAP包中的长度，单位为long
+
+rawfile在HAP包中的长度，单位为long。
 
 
 ### start
@@ -51,4 +53,5 @@ rawfile在HAP包中的长度，单位为long
 long RawFileDescriptor::start
 ```
 **描述**
-rawfile在HAP包中的起始位置，单位为long
+
+rawfile在HAP包中的起始位置，单位为long。

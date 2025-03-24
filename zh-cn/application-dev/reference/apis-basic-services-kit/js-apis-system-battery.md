@@ -15,7 +15,7 @@ import {Battery, BatteryResponse } from '@kit.BasicServicesKit';
 ```
 
 
-## Battery.getStatus
+## Battery.getStatus<sup>(deprecated)</sup>
 
 getStatus(options?: GetStatusOptions): void;
 
@@ -27,7 +27,7 @@ getStatus(options?: GetStatusOptions): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [GetStatusOptions](#getstatusoptions) | 否 | 包含接口调用结果的对象。可选，默认为空。 |
+| options | [GetStatusOptions](#getstatusoptionsdeprecated) | 否 | 包含接口调用结果的对象。可选，默认为空。 |
 
 **示例：**
 
@@ -42,7 +42,7 @@ Battery.getStatus({
 });
 ```
 
-## GetStatusOptions
+## GetStatusOptions<sup>(deprecated)</sup>
 
 包含接口调用结果的对象。
 
@@ -50,11 +50,11 @@ Battery.getStatus({
 
 | 参数名   | 类型                                                | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| success  | (data: [BatteryResponse](#batteryresponse)) => void | 否   | 接口调用成功的回调函数，data为[BatteryResponse](#batteryresponse)类型的返回值。 |
+| success  | (data: [BatteryResponse](#batteryresponsedeprecated)) => void | 否   | 接口调用成功的回调函数，data为[BatteryResponse](#batteryresponsedeprecated)类型的返回值。 |
 | fail     | (data: string, code: number) => void                | 否   | 接口调用失败的回调函数。data为错误信息，code为错误码。       |
 | complete | () => void                                          | 否   | 接口调用结束的回调函数。                                     |
 
-## BatteryResponse
+## BatteryResponse<sup>(deprecated)</sup>
 
 包含充电状态及剩余电量的对象。
 

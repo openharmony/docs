@@ -5,6 +5,11 @@
 
 The AVScreenCapture module provides APIs for screen capture.
 
+You can refer to the corresponding development guide and samples based on your development requirements.
+
+- [Using AVScreenCapture to Capture Screens and Obtain Streams](../../media/media/using-avscreencapture-for-buffer.md)
+- [Using AVScreenCapture to Capture Screens and Write Them to Files](../../media/media/using-avscreencapture-for-file.md)
+
 **System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
 
 **Since**: 10
@@ -51,7 +56,7 @@ The AVScreenCapture module provides APIs for screen capture.
 | typedef enum [OH_AudioCodecFormat](#oh_audiocodecformat-1) [OH_AudioCodecFormat](#oh_audiocodecformat) | Defines an enum for the audio encoding formats.| 
 | typedef enum [OH_VideoCodecFormat](#oh_videocodecformat-1) [OH_VideoCodecFormat](#oh_videocodecformat) | Defines an enum for the video encoding formats.| 
 | typedef enum [OH_DataType](#oh_datatype-1) [OH_DataType](#oh_datatype) | Defines an enum for the data types of screen capture streams.| 
-| typedef enum [OH_VideoSourceType](#oh_videosourcetype-1) [OH_VideoSourceType](#oh_videosourcetype) | Defines an enum for the video source formats.| 
+| typedef enum [OH_VideoSourceType](#oh_videosourcetype-1) [OH_VideoSourceType](#oh_videosourcetype) | Defines an enum for the video source formats. Currently, only the RGBA format is supported.| 
 | typedef enum [OH_ContainerFormatType](#oh_containerformattype-1) [OH_ContainerFormatType](#oh_containerformattype) | Defines an enum for the types of files generated during screen capture.| 
 | typedef struct [OH_AudioCaptureInfo](_o_h___audio_capture_info.md) [OH_AudioCaptureInfo](#oh_audiocaptureinfo) | Defines a struct for the audio capture information.| 
 | typedef struct [OH_AudioEncInfo](_o_h___audio_enc_info.md) [OH_AudioEncInfo](#oh_audioencinfo) | Defines a struct for the audio encoding information.| 
@@ -85,7 +90,7 @@ The AVScreenCapture module provides APIs for screen capture.
 | [OH_AudioCodecFormat](#oh_audiocodecformat-1) {<br>OH_AUDIO_DEFAULT = 0,<br>OH_AAC_LC = 3,<br>OH_AUDIO_CODEC_FORMAT_BUTT<br>} | Enumerates the audio encoding formats.| 
 | [OH_VideoCodecFormat](#oh_videocodecformat-1) {<br>OH_VIDEO_DEFAULT = 0,<br>OH_H264 = 2,<br>OH_H265 = 4,<br>OH_MPEG4 = 6,<br>OH_VP8 = 8,<br>OH_VP9 = 10,<br>OH_VIDEO_CODEC_FORMAT_BUTT<br>} | Enumerates the video encoding formats.| 
 | [OH_DataType](#oh_datatype-1) {<br>OH_ORIGINAL_STREAM = 0,<br>OH_ENCODED_STREAM = 1,<br>OH_CAPTURE_FILE = 2,<br>OH_INVAILD = -1<br>} | Enumerates the data types of screen capture streams.| 
-| [OH_VideoSourceType](#oh_videosourcetype-1) {<br>OH_VIDEO_SOURCE_SURFACE_YUV = 0,<br>OH_VIDEO_SOURCE_SURFACE_ES,<br>OH_VIDEO_SOURCE_SURFACE_RGBA,<br>OH_VIDEO_SOURCE_BUTT<br>} | Enumerates the video source formats.| 
+| [OH_VideoSourceType](#oh_videosourcetype-1) {<br>OH_VIDEO_SOURCE_SURFACE_YUV = 0,<br>OH_VIDEO_SOURCE_SURFACE_ES,<br>OH_VIDEO_SOURCE_SURFACE_RGBA,<br>OH_VIDEO_SOURCE_BUTT<br>} | Enumerates the video source formats. Currently, only the RGBA format is supported.| 
 | [OH_ContainerFormatType](#oh_containerformattype) {<br>CFT_MPEG_4A = 0,<br>CFT_MPEG_4 = 1<br>} | Enumerates the types of files generated during screen capture.| 
 | [OH_AVScreenCaptureStateCode](#oh_avscreencapturestatecode-1) {<br>OH_SCREEN_CAPTURE_STATE_STARTED = 0,<br>OH_SCREEN_CAPTURE_STATE_CANCELED = 1,<br>OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER = 2,<br>OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER = 3,<br>OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL = 4,<br>OH_SCREEN_CAPTURE_STATE_MIC_UNAVAILABLE = 5,<br>OH_SCREEN_CAPTURE_STATE_MIC_MUTED_BY_USER = 6,<br>OH_SCREEN_CAPTURE_STATE_MIC_UNMUTED_BY_USER = 7,<br>OH_SCREEN_CAPTURE_STATE_ENTER_PRIVATE_SCENE = 8,<br>OH_SCREEN_CAPTURE_STATE_EXIT_PRIVATE_SCENE = 9<br>OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER_SWITCHES = 10<br>} | Enumerates the screen capture states.| 
 | [OH_AVScreenCaptureBufferType](#oh_avscreencapturebuffertype-1) {<br>OH_SCREEN_CAPTURE_BUFFERTYPE_VIDEO = 0,<br>OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_INNER = 1,<br>OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_MIC = 2<br>} | Enumerates the buffer types.| 
@@ -666,7 +671,7 @@ typedef enum OH_VideoSourceType OH_VideoSourceType
 
 **Description**
 
-Defines an enum for the video source formats.
+Defines an enum for the video source formats. Currently, only the RGBA format is supported.
 
 **System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -917,7 +922,7 @@ enum OH_VideoSourceType
 
 **Description**
 
-Enumerates the video source formats.
+Enumerates the video source formats. Currently, only the RGBA format is supported.
 
 **System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -925,8 +930,8 @@ Enumerates the video source formats.
 
 | Value| Description| 
 | -------- | -------- |
-| OH_VIDEO_SOURCE_SURFACE_YUV  | YUV format.  | 
-| OH_VIDEO_SOURCE_SURFACE_ES  | Raw format.  | 
+| OH_VIDEO_SOURCE_SURFACE_YUV  | YUV format. This value is not supported yet.  | 
+| OH_VIDEO_SOURCE_SURFACE_ES  | Raw format. This value is not supported yet. | 
 | OH_VIDEO_SOURCE_SURFACE_RGBA  | RGBA format.  | 
 | OH_VIDEO_SOURCE_BUTT  | Invalid format.  | 
 
@@ -1511,7 +1516,7 @@ The callback is triggered when the state changes during the running of an **OH_A
 
 A privacy dialog box is displayed to ask for user consent before screen capture starts. After a successful call to this function, the following scenarios are possible:
 
-- If the user agrees, the screen capture startup process starts. 
+- If the user agrees, the screen capture startup process starts.
 
   - If screen capture starts successfully, the state change callback is triggered to report the [OH_SCREEN_CAPTURE_STATE_STARTED](#oh_avscreencapturestatecode-1) status to notify the application of the startup success, with a screen capture notification displayed.
 
@@ -1783,6 +1788,8 @@ Sets the maximum frame rate for screen capture.
 
 The maximum frame rate that can be configured is subject to the device's limitations and is ultimately governed by the capabilities of the underlying system.
 
+Although there is no limit on the maximum value of the input parameter, the maximum frame rate supported is 60 FPS. If the input parameter value exceeds 60 FPS, 60 FPS is used. If the value does not exceed the upper limit, the passed value is used.
+
 **System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
 
 **Since**: 14
@@ -1802,4 +1809,4 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 
 **AV_SCREEN_CAPTURE_ERR_INVALID_VAL**: The input parameter **capture** is a null pointer, or the input parameter **frameRate** is not supported.
 
-**AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT**: The operation is not allowed.
+**AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT**: The operation is restricted. You are advised to try again.

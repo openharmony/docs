@@ -38,7 +38,7 @@ Shows an alert dialog box.
 | subtitle<sup>10+</sup>            | [ResourceStr](ts-types.md#resourcestr)                       | No  | Subtitle of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                |
 | message                           | [ResourceStr](ts-types.md#resourcestr)                       | Yes  | Content of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                |
 | autoCancel                        | boolean                                                      | No  | Whether to close the dialog box when the overlay is clicked. The value **true** means to close the dialog box when the overlay is clicked, and **false** means the opposite.<br>Default value: **true**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| cancel                            | [VoidCallback](ts-types.md#voidcallback12) | No  | Callback invoked when the dialog box is closed after the overlay is clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                              |
+| cancel                            | () =&gt; void | No  | Callback invoked when the dialog box is closed after the overlay is clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                              |
 | alignment                         | [DialogAlignment](#dialogalignment)                  | No  | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default**<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**NOTE**<br>If **showInSubWindow** is set to **true** in **UIExtension**, the dialog box is aligned with the host window based on **UIExtension**.|
 | offset                            | [Offset](ts-types.md#offset)                                 | No  | Offset of the dialog box relative to the alignment position.<br>Default value: **{ dx: 0 , dy: 0 }**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | gridCount                         | number                                                       | No  | Number of grid columns occupied by the width of the dialog box.<br>Default value: **4**<br>**Atomic service API**: This API can be used in atomic services since API version 11.                   |
@@ -57,8 +57,8 @@ Shows an alert dialog box.
 | borderStyle<sup>12+</sup>         | [BorderStyle](ts-appendix-enums.md#borderstyle) \| [EdgeStyles](ts-types.md#edgestyles9) | No  | Border style of the dialog box.<br>Default value: **BorderStyle.Solid**<br>**borderStyle** must be used with **borderWidth** in pairs.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | shadow<sup>12+</sup>              | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| [ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10) | No  | Shadow of the dialog box.<br> Default value on 2-in-1 devices: **ShadowStyle.OUTER_FLOATING_MD** when the dialog box is focused and **ShadowStyle.OUTER_FLOATING_SM** otherwise<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | textStyle<sup>12+</sup>              | [TextStyle](#textstyle12) | No  | Text style of the message in the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| enableHoverMode<sup>13+</sup>              | boolean | No  | Whether to enable the hover state.<br>Default value: **false**, meaning not to enable the hover state.|
-| hoverModeArea<sup>13+</sup>              | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype13) | No  | Display area of the dialog box in the hover state.<br>Default value: **HoverModeAreaType.BOTTOM_SCREEN**|
+| enableHoverMode<sup>14+</sup>     | boolean | No  | Whether to enable the hover state.<br>Default value: **false**, meaning not to enable the hover state.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| hoverModeArea<sup>14+</sup>       | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype14) | No  | Display area of the dialog box in the hover state.<br>Default value: **HoverModeAreaType.BOTTOM_SCREEN**<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 
 ## AlertDialogParamWithConfirm
 
@@ -70,7 +70,7 @@ Inherits [AlertDialogParam](#alertdialogparam).
 
 | Name      | Type    | Mandatory    | Description        |
 | ---------- | ---------------- | ---------- | ------------------------------- |
-| confirm    | [AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions13) | No  | Information about the confirm button. When the dialog box has focus and focus has not been shifted using the **Tab** key, the button responds to the **Enter** key by default, and multiple dialog boxes can gain focus consecutively to respond automatically. The default response to the **Enter** key does not work when **defaultFocus** is set to **true**.|
+| confirm    | {<br>enabled<sup>10+</sup>?: boolean,<br>defaultFocus<sup>10+</sup>?: boolean,<br>style<sup>10+</sup>?: [DialogButtonStyle](ts-appendix-enums.md#dialogbuttonstyle10),<br>value: [ResourceStr](ts-types.md#resourcestr),<br>fontColor?: [ResourceColor](ts-types.md#resourcecolor),<br>backgroundColor?:  [ResourceColor](ts-types.md#resourcecolor),<br>action: () =&gt; void<br>} | No  | Information about the confirm button. When the dialog box has focus and the **Tab** key is not pressed for sequential focus navigation, the button responds to the **Enter** key by default.<br>**enabled**: whether to respond when the button is clicked. The value **true** means to respond when the button is clicked, and **false** means the opposite.<br>Default value: **true**<br>**defaultFocus**: whether the button is the default focus. The value **true** means that the button is the default focus, and **false** means the opposite.<br>Default value: **false**<br>**style**: button style.<br>Default value: **DialogButtonStyle.DEFAULT**<br>**value**: button text.<br>**fontColor**: font color of the button.<br>**backgroundColor**: background color of the button.<br>**action**: callback upon button clicking.|
 
 Priorities of the **confirm** parameters: **fontColor** and **backgroundColor** > **style** > **defaultFocus**
 
@@ -100,8 +100,8 @@ Inherits [AlertDialogParam](#alertdialogparam).
 
 | Name            | Type               | Mandatory    | Description                    |
 | --------------- | ---------------------- | ------------ | --------------------- |
-| primaryButton   | [AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions13) | Yes| Information about the confirm button. When the dialog box has focus and focus has not been shifted using the **Tab** key, the button responds to the **Enter** key by default, and multiple dialog boxes can gain focus consecutively to respond automatically. The default response to the **Enter** key does not work when **defaultFocus** is set to **true**.|
-| secondaryButton | [AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions13) | Yes| Information about the confirm button.|
+| primaryButton   | {<br>enabled<sup>10+</sup>?: boolean,<br>defaultFocus<sup>10+</sup>?: boolean,<br>style<sup>10+</sup>?: [DialogButtonStyle](ts-appendix-enums.md#dialogbuttonstyle10),<br>value: [ResourceStr](ts-types.md#resourcestr),<br>fontColor?: [ResourceColor](ts-types.md#resourcecolor),<br>backgroundColor?: [ResourceColor](ts-types.md#resourcecolor),<br>action: () =&gt; void;<br>} | No| Information about the confirm button. When the dialog box has focus and the **Tab** key is not pressed for sequential focus navigation, the button responds to the **Enter** key by default.<br>**enabled**: whether to respond when the button is clicked.<br>Default value: **true**<br>**defaultFocus**: whether the button is the default focus.<br>Default value: **false**<br>**style**: button style.<br>Default value: **DialogButtonStyle.DEFAULT**<br>**value**: button text.<br>**fontColor**: font color of the button.<br>**backgroundColor**: background color of the button.<br>**action**: callback upon button clicking.|
+| secondaryButton | {<br>enabled<sup>10+</sup>?: boolean,<br>defaultFocus<sup>10+</sup>?: boolean,<br>style<sup>10+</sup>?: [DialogButtonStyle](ts-appendix-enums.md#dialogbuttonstyle10),<br>value: [ResourceStr](ts-types.md#resourcestr),<br>fontColor?: [ResourceColor](ts-types.md#resourcecolor),<br>backgroundColor?: [ResourceColor](ts-types.md#resourcecolor),<br>action: () =&gt; void;<br>} | No | Information about the confirm button.<br>**enabled**: whether to respond when the button is clicked.<br>Default value: **true**<br>**defaultFocus**: whether the button is the default focus.<br>Default value: **false**<br>**style**: button style.<br>Default value: **DialogButtonStyle.DEFAULT**<br>**value**: button text.<br>**fontColor**: font color of the button.<br>**backgroundColor**: background color of the button.<br>**action**: callback upon button clicking.|
 
 ## AlertDialogParamWithOptions<sup>10+</sup>
 
@@ -118,29 +118,18 @@ Inherits [AlertDialogParam](#alertdialogparam).
 
 ## AlertDialogButtonOptions<sup>10+</sup>
 
-Inherits [AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions13).
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name                 | Type   | Mandatory| Description                                                        |
 | --------------------- | ------- | ---- | ------------------------------------------------------------ |
+| enabled           | boolean | No    | Whether to respond when the button is clicked.<br>Default value: **true**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| defaultFocus           | boolean | No    | Whether the button is the default focus.<br>Default value: **false**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| style           | [DialogButtonStyle](ts-appendix-enums.md#dialogbuttonstyle10) | No    | Style of the button.<br>Default value: **DialogButtonStyle.DEFAULT**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| value           | [ResourceStr](ts-types.md#resourcestr) | Yes    | Text of the button. If the value is null, the button is not displayed.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| fontColor           | [ResourceColor](ts-types.md#resourcecolor) | No    | Font color of the button.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| backgroundColor           | [ResourceColor](ts-types.md#resourcecolor) | No    | Background color of the button.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| action           | () => void | Yes    | Callback upon button clicking.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | primary<sup>12+</sup> | boolean | No  | Whether the button responds to the **Enter** key by default when the dialog box has focus and the **Tab** key is not pressed for sequential focus navigation. If there are multiple buttons, set this parameter to **true** for only one button. Otherwise, no button will respond. Multiple dialog boxes can automatically gain focus and respond to user interactions in a sequential manner. This parameter does not take effect when **defaultFocus** is set to **true**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-
-## AlertDialogButtonBaseOptions<sup>13+</sup>
-
-**Atomic service API**: This API can be used in atomic services since API version 13.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-| Name            | Type               | Mandatory    | Description                   |
-| ------------------| ---------------------- | ------------ | --------------------- |
-| enabled           | boolean | No    | Whether to respond when the button is clicked.<br>Default value: **true**|
-| defaultFocus           | boolean | No    | Whether the button is the default focus.<br>Default value: **false**|
-| style           | [DialogButtonStyle](ts-appendix-enums.md#dialogbuttonstyle10) | No    | Style of the button.<br>Default value: **DialogButtonStyle.DEFAULT**|
-| value           | [ResourceStr](ts-types.md#resourcestr) | Yes    | Text of the button. If the value is null, the button is not displayed. |
-| fontColor           | [ResourceColor](ts-types.md#resourcecolor) | No    | Font color of the button.|
-| backgroundColor           | [ResourceColor](ts-types.md#resourcecolor) | No    | Background color of the button.|
-| action           | [VoidCallback](ts-types.md#voidcallback12) | Yes    | Callback upon button clicking.|
 
 ## DialogButtonDirection<sup>10+</sup>
 
@@ -225,13 +214,13 @@ Provides information about the action to dismiss the dialog box.
 
 ## Example
 
-### Example 1
+### Example 1: Displaying Dialog Boxes with Different Numbers of Buttons
 
 > **NOTE**
 > 
 > To avoid confusion with **AlertDialog** instances, it is recommended that you obtain a **UIContext** instance using the [getUIContext](../js-apis-arkui-UIContext.md#uicontext) API, and then use the [showAlertDialog](../js-apis-arkui-UIContext.md#showalertdialog) API to invoke the instance's **AlertDialog.show()** method.
 
-This example shows three alert dialog boxes, with one, two, and three buttons, respectively.
+This example demonstrates how to display dialog boxes with one, two, and three buttons.
 
 ```ts
 // xxx.ets
@@ -376,9 +365,9 @@ struct AlertDialogExample {
 
 ![en-us_image_alert](figures/en-us_image_alert.gif)
 
-### Example 2
+### Example 2: Opening a Dialog Box Outside the Main Window
 
-This example shows an alert dialog box that can be displayed outside the main window.
+This example demonstrates how to configure a dialog box to display outside the main window by setting **showInSubWindow** to **true**.
 
 > **NOTE**
 > 
@@ -451,8 +440,8 @@ struct AlertDialogExample {
 
 ![en-us_image_alert_showinsubwindow](figures/en-us_image_alert_showinsubwindow.jpg)
 
-### Example 3
-This example sets a 3s entrance animation and a 100 ms exit animation for the alert dialog.
+### Example 3: Setting the Dialog Box Animation
+This example illustrates how to use the **transition** API to create custom animation effects for the dialog box's appearance and disappearance.
 
 > **NOTE**
 > 
@@ -500,7 +489,7 @@ struct AlertDialogExample {
 
 ![en-us_image_alert_animation](figures/en-us_image_alert_animation.gif)
 
-### Example 4
+### Example 4: Setting the Dialog Box Style
 This example demonstrates how to set styles of an alert dialog box, including the width, height, background color, and shadow.
 
 > **NOTE**
@@ -564,7 +553,7 @@ struct AlertDialogExample {
 
 ![en-us_image_alert_style](figures/en-us_image_alert_style.gif)
 
-### Example 5
+### Example 5: Configuring a Dialog Box in the Hover State
 
 This example demonstrates how to set the layout area of a dialog box in hover mode on a foldable device.
 

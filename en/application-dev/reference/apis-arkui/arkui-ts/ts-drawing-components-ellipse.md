@@ -14,7 +14,7 @@ Not supported
 
 ## APIs
 
-Ellipse(options?: {width?: string | number, height?: string | number})
+Ellipse(options?: EllipseOptions)
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -26,8 +26,21 @@ Ellipse(options?: {width?: string | number, height?: string | number})
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| width | string \| number | No| Width.<br>Default value: **0**<br>An invalid value is handled as the default value.|
-| height | string \| number | No| Height.<br>Default value: **0**<br>An invalid value is handled as the default value.|
+| options | [EllipseOptions](ts-drawing-components-ellipse.md#ellipseoptions14) | No| Dimensions for drawing an ellipse.|
+
+## EllipseOptions<sup>14+</sup>
+Describes the dimensions for drawing an ellipse.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 14.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| width | string \| number | No| Width.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
+| height | string \| number | No| Height.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
 
 ## Attributes
 
@@ -37,7 +50,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 fill(value: ResourceColor)
 
-Sets the color of the fill area. An invalid value is handled as the default value.
+Sets the color of the fill area. An invalid value is handled as the default value. If this attribute and the universal attribute **foregroundColor** are both set, whichever is set later takes effect.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -67,7 +80,7 @@ Sets the opacity of the fill area. The value range is [0.0, 1.0]. A value less t
 
 | Name| Type                                                        | Mandatory| Description                          |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------ |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | Yes  | Opacity of the fill area.<br>Default value: **1**|
+| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Opacity of the fill area.<br>Default value: **1**|
 
 ### stroke
 
@@ -103,7 +116,7 @@ Sets stroke dashes. An invalid value is handled as the default value.
 
 | Name| Type            | Mandatory| Description                     |
 | ------ | ---------------- | ---- | ------------------------- |
-| value  | Array&lt;any&gt; | Yes  | Stroke dashes.<br>Default value: **[]**|
+| value  | Array&lt;any&gt; | Yes  | Stroke dashes.<br>Default value: **[]**<br>Default unit: vp|
 
 ### strokeDashOffset
 
@@ -121,7 +134,7 @@ Sets the offset of the start point for drawing the stroke. An invalid value is h
 
 | Name| Type                      | Mandatory| Description                                |
 | ------ | -------------------------- | ---- | ------------------------------------ |
-| value  | number&nbsp;\|&nbsp;string | Yes  | Offset of the start point for drawing the stroke.<br>Default value: **0**|
+| value  | number \| string | Yes  | Offset of the start point for drawing the stroke.<br>Default value: **0**<br>Default unit: vp|
 
 ### strokeLineCap
 
@@ -175,7 +188,7 @@ Sets the limit on the ratio of the miter length to the value of **strokeWidth** 
 
 | Name| Type                      | Mandatory| Description                                          |
 | ------ | -------------------------- | ---- | ---------------------------------------------- |
-| value  | number&nbsp;\|&nbsp;string | Yes  | Limit on the ratio of the miter length to the value of **strokeWidth** used to draw a miter join.<br>Default value: **4**|
+| value  | number \| string | Yes  | Limit on the ratio of the miter length to the value of **strokeWidth** used to draw a miter join.<br>Default value: **4**|
 
 ### strokeOpacity
 
@@ -193,7 +206,7 @@ Sets the stroke opacity. The value range is [0.0, 1.0]. A value less than 0.0 ev
 
 | Name| Type                                                        | Mandatory| Description                      |
 | ------ | ------------------------------------------------------------ | ---- | -------------------------- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | Yes  | Stroke opacity.<br>Default value: **1**|
+| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Stroke opacity.<br>Default value: **1**|
 
 ### strokeWidth
 
@@ -211,7 +224,7 @@ Sets the stroke width. If of the string type, this attribute cannot be set in pe
 
 | Name| Type                        | Mandatory| Description                    |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| value  | [Length](ts-types.md#length) | Yes  | Stroke width.<br>Default value: **1**|
+| value  | [Length](ts-types.md#length) | Yes  | Stroke width.<br>Default value: **1**<br>Default unit: vp|
 
 ### antiAlias
 
@@ -232,6 +245,8 @@ Specifies whether anti-aliasing is enabled.
 | value  | boolean | Yes  | Whether anti-aliasing is enabled.<br>Default value: **true**|
 
 ## Example
+
+This example demonstrates how to use **fillOpacity** and **stroke** to set the opacity and stroke color of an ellipse.
 
 ```ts
 // xxx.ets

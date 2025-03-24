@@ -6,6 +6,7 @@
 
 在参考以下示例前，建议开发者查看[相机开发指导(ArkTS)](camera-preparation.md)的具体章节，了解[设备输入](camera-device-input.md)、[会话管理](camera-session-management.md)、[录像](camera-recording.md)等单个流程。
 
+如需要将视频保存到媒体库中可参考[保存媒体库资源](../medialibrary/photoAccessHelper-savebutton.md#保存媒体库资源)。
 ## 开发流程
 
 在获取到相机支持的输出流能力后，开始创建录像流，开发流程如下。
@@ -21,7 +22,6 @@ import { camera } from '@kit.CameraKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 import { common } from '@kit.AbilityKit';
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function videoRecording(context: common.Context, surfaceId: string): Promise<void> {
@@ -83,21 +83,14 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
   }
 
   let videoProfilesArray: Array<camera.VideoProfile> = cameraOutputCap.videoProfiles;
-  if (!videoProfilesArray) {
+  if (!videoProfilesArray || videoProfilesArray.length === 0) {
     console.error("createOutput videoProfilesArray == null || undefined");
   }
-  // videoProfile的宽高需要与AVRecorderProfile的宽高保持一致，并且需要使用AVRecorderProfile锁支持的宽高
-  let videoSize: camera.Size = {
-    width: 640,
-    height: 480
-  }
-  let videoProfile: undefined | camera.VideoProfile = videoProfilesArray.find((profile: camera.VideoProfile) => {
-    return profile.size.width === videoSize.width && profile.size.height === videoSize.height;
-  });
-  if (!videoProfile) {
-    console.error('videoProfile is not found');
-    return;
-  }
+
+  // videoProfile的宽高需要与AVRecorderProfile的宽高保持一致，并且需要使用AVRecorderProfile所支持的宽高
+  // 示例代码默认选择第一个videoProfile，实际开发需根据所需筛选videoProfile
+  let videoProfile: camera.VideoProfile = videoProfilesArray[0];
+  let isHdr = videoProfile.format === camera.CameraFormat.CAMERA_FORMAT_YCBCR_P010 || videoProfile.format === camera.CameraFormat.CAMERA_FORMAT_YCRCB_P010;
   // 配置参数以实际硬件设备支持的范围为准
   let aVRecorderProfile: media.AVRecorderProfile = {
     audioBitrate: 48000,
@@ -106,16 +99,13 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     audioSampleRate: 48000,
     fileFormat: media.ContainerFormatType.CFT_MPEG_4,
     videoBitrate: 2000000,
-    videoCodec: media.CodecMimeType.VIDEO_AVC,
-    videoFrameWidth: videoSize.width,
-    videoFrameHeight: videoSize.height,
-    videoFrameRate: 30
+    videoCodec: isHdr ? media.CodecMimeType.VIDEO_HEVC : media.CodecMimeType.VIDEO_AVC,
+    videoFrameWidth: videoProfile.size.width,
+    videoFrameHeight: videoProfile.size.height,
+    videoFrameRate: 30,
+    isHdr: isHdr
   };
-  let options: photoAccessHelper.CreateOptions = {
-    title: Date.now().toString()
-  };
-  let accessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-  let videoUri: string = await accessHelper.createAsset(photoAccessHelper.PhotoType.VIDEO, 'mp4', options);
+  let videoUri: string = `file://${context.filesDir}/${Date.now()}.mp4`; // 本地沙箱路径
   let file: fs.File = fs.openSync(videoUri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   let aVRecorderConfig: media.AVRecorderConfig = {
     audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
@@ -230,16 +220,22 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
 
   // 创建预览输出流，其中参数 surfaceId 参考下面 XComponent 组件，预览流为XComponent组件提供的surface
   let previewOutput: camera.PreviewOutput | undefined = undefined;
+  let previewProfile = previewProfilesArray.find((previewProfile: camera.Profile) => {
+    return Math.abs((previewProfile.size.width / previewProfile.size.height) - (videoProfile.size.width / videoProfile.size.height)) < Number.EPSILON;
+  }); // 筛选与录像分辨率宽高比一致的预览分辨率
+  if (previewProfile === undefined) {
+    return;
+  }
   try {
-    previewOutput = cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId);
+    previewOutput = cameraManager.createPreviewOutput(previewProfile, surfaceId);
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to create the PreviewOutput instance. error: ${JSON.stringify(err)}`);
   }
-
   if (previewOutput === undefined) {
     return;
   }
+
   // 向会话中添加预览输出流
   try {
     videoSession.addOutput(previewOutput);

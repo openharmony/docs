@@ -321,7 +321,7 @@ createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptio
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
 | name   | string | 是   | 子窗口的名字。 |
-| subWindowOptions | [window.SubWindowOptions](js-apis-window.md#subwindowoptions12) | 是 | 子窗口参数。 |
+| subWindowOptions | [window.SubWindowOptions](js-apis-window.md#subwindowoptions) | 是 | 子窗口参数。 |
 
 **返回值：**
 
@@ -518,7 +518,7 @@ export default class EntryAbility extends UIExtensionAbility {
 
 ## 完整示例
 
-本示例展示文档中所有API在UIExtensionAbility中的基础使用方式，示例应用需采用系统签名，且`bundleName`为"com.example.uiextensiondemo", 被拉起的`UIExtensionAbility`为"ExampleUIExtensionAbility".
+本示例展示文档中所有API在UIExtensionAbility中的基础使用方式，示例应用需采用系统签名，且`bundleName`为"com.example.uiextensiondemo", 被拉起的`UIExtensionAbility`为"ExampleUIExtensionAbility"。
 
 - 示例应用中的EntryAbility(UIAbility)加载首页文件：`pages/Index.ets`，其中内容如下：
 

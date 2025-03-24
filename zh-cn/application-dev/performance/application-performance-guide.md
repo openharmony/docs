@@ -12,7 +12,9 @@
 开发者可以通过HiTrace命令工具抓取应用刷新时的Trace信息，并通过SmartPerf Host集成性能工具分析。例如，抓取某应用发生丢帧处的Trace信息如图1，则平均帧率计算过程如下：
 
 **图1 应用丢帧处的Trace数据**
+
  ![alt text](figures/application-performance-guide-1.png)
+
 其中，帧率 = Occurrences / Selected range。
 
 | 计算帧率时，可参考的Trace标签	| 含义| 	帧数| 	平均帧率 |
@@ -36,6 +38,7 @@
 进而通过，平均帧率 = 帧数 / 时间，计算平均帧率。
 
 **图2 SmartPerf Host平均帧率自动计算**
+
  ![alt text](figures/application-performance-guide-2.png)
 
 ### 完成时延
@@ -44,11 +47,13 @@
 在了解如何通过Trace分析应用的完成时延之前，开发者需要简单了解OpenHarmony中图形渲染的流程。在整个渲染流程中，首先由App侧响应用户的屏幕输入事件，由App侧处理完成后再提交给RS侧，由RS侧协调GPU等资源处理后，再将最终的图像送到屏幕上进行显示。图3即该过程中，几个常见的进程/标签名，及其在system侧、App侧、RS侧的时序分布。后文将结合Trace图示例，与标签含义说明，简要描述system侧、App侧、RS侧在图形渲染流程中的行为。
 
 **图3 页面跳转完成时延**
+
  ![alt text](figures/application-performance-guide-3.png)
 
 在系统侧，如图4所示，用户点击屏幕后，CPU会收到硬件中断；aptouch进程会响应中断，判断哪些像素被点击、是否是手势；如果是手势，多模会收到手势信号，形成点击事件，执行应用注册的事件回调。
 
 **图4 system侧Trace**
+
  ![alt text](figures/application-performance-guide-4.png)
  | 系统侧进程标签 | 	含义 | 
  | --- | 	--- | 
@@ -59,6 +64,7 @@
 在app侧，如图5所示，应用收到点击，运行onClick中的回调，UI后端引擎会在测量、布局做完后，将组件树信息序列化后传给RS侧。
 
 **图5 app侧Trace**
+
  ![alt text](figures/application-performance-guide-5.png)
  |APP侧trace标签示例 |	含义 |
  | --- |	--- |
@@ -68,7 +74,9 @@
 图形图像子系统中的Render Service，是负责界面内容绘制的部件，如图6所示，它收到App侧序列化的组件树信息后，将其反序列化，更新统一渲染树后，翻译为GPU绘制指令，最后将GPU绘制好的图层，放到硬件合成器上做合成，层层堆叠，最终显示到屏幕上。
 
 **图6 RS侧Trace**
+
  ![alt text](figures/application-performance-guide-6.png)
+
 RS侧trace标签示例	含义
 RSMainThread::ProcessCommandUni [7291，51]	反序列化组件树信息
 RenderFrame	将渲染树翻译为GPU绘制指令
@@ -79,7 +87,9 @@ App侧序列化与RS侧反序列化的Trace示例标签中都有 [7291，51]，�
 不同开发者分析问题的目的不同，所关注的问题层级和入口也会不同，因此对响应时间的起点与终点的界定也有可能不同。这里以系统行为的硬件中断为起点，RS侧硬件合成器合成绘制、提交上屏为终点，测量响应时间。
 
 **图7 测量完成时延**
+
  ![alt text](figures/application-performance-guide-7.png)
+
 如图7所示，该点击事件完成时延约为138.4ms。
 
 ## 应用性能分析
@@ -110,6 +120,7 @@ HiTrace、HiPerf、cpuProfiler、常规log等各类可观测性数据。
     从图8可以看到，应用线程大部分时间处于Running状态，无特殊异常。
     
     **图8 丢帧处应用主线程状态**
+
     ![alt text](figures/application-performance-guide-8.png)
     
     **看运行频率**
@@ -117,21 +128,27 @@ HiTrace、HiPerf、cpuProfiler、常规log等各类可观测性数据。
     查看关键任务是否跑在了小核，以低频运行。从Thread Usage信息栏，如图9所示，可以看到丢帧处应用线程和前面正常帧类似，都主要运行在大核上。其运行频点，可以参考Freq Usage信息栏，如图10所示。
     
     **图9 丢帧处应用主线程运行核**
+
     ![alt text](figures/application-performance-guide-9.png)
+
     **图10 Freq Usage频点信息**
+
     ![alt text](figures/application-performance-guide-10.png)
+
     出于兼顾高性能、低功耗的需求，多核工程机常采用异构架构设计，根据CPU频率，区分大中小核等。
     
 2.	找到 Trace中每一帧耗时的部分，大致定位是App侧问题还是RS侧问题，并结合Trace标签，初步定位原因。  
     从图11中橙色丢帧的位置，可以看到耗时主要在App侧，是BuildLazyItem方法耗时较长导致，可以大致推测，是列表懒加载时，Item里的自定义组件绘制时间较长导致的。
 
     **图11 应用主线程与RenderService线程的TimeLine**
+
      ![alt text](figures/application-performance-guide-11.png)
 
 3.	结合cpuProfiler查看ArkTS函数调用栈信息，或其他日志信息，排查应用代码。  
     例如，可以结合DevEco Studio中Frame工具，方便地跳回源码，定位具体是哪一个自定义组件绘制时间较长。
 
     **图12 Frame工具抓取应用信息图**
+
      ![alt text](figures/application-performance-guide-12.png)
 
 ### 解决方案
@@ -164,7 +181,9 @@ HiTrace、HiPerf、cpuProfiler、常规log等各类可观测性数据。
 
 分析应用冷启动场景，首先开发者需要简单了解OpenHarmony应用启动流程，如图13所示，大致分为五个阶段：  
 **图13 OpenHarmony应用启动流程**
+
  ![alt text](figures/application-performance-guide-13.png)
+
 1.	AbilityManageService请求AppSpawn创建应用进程。
 2.	AppManageService触发应用启动流程、应用进程加载应用包。
 3.	AppManageService触发Ability启动流程、应用进程加载Ability资源、根据应用生命周期定义，触发生命周期回调。
@@ -186,6 +205,7 @@ HiTrace、HiPerf、cpuProfiler、常规log等各类可观测性数据。
 **图14 AppStartup泳道图展示**
 
  ![alt text](figures/application-performance-guide-14.png)
+
 之后，开发者可以结合应用启动各阶段Trace信息，对比应用前一个版本或竞品表现，找出差异点，大致分析是哪阶段时间增加了。
 
 **分析系统耗时点**

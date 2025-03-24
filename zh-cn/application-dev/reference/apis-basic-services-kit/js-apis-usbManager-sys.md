@@ -178,7 +178,7 @@ setCurrentFunctions(funcs: FunctionType): Promise\<void\>
 
 | 类型                | 说明          |
 | ------------------- | ------------- |
-| Promise\<**void**\> | Promise对象。 |
+| Promise\<void\> | Promise对象。 |
 
 **示例：**
 
@@ -196,7 +196,7 @@ usbManager.setCurrentFunctions(funcs).then(() => {
 
 getCurrentFunctions(): FunctionType
 
-在设备模式下，获取当前的USB功能列表的数字组合掩码。
+在设备模式下，获取当前的USB功能列表的数字组合掩码。开发者模式关闭时，如果没有设备接入，接口可能返回`undefined`，注意需要对接口返回值做判空处理。
 
 **说明：**
 
@@ -231,7 +231,7 @@ let ret: number = usbManager.getCurrentFunctions();
 
 getPorts(): Array\<USBPort\>
 
-获取所有物理USB端口描述信息。
+获取所有物理USB端口描述信息。开发者模式关闭时，如果没有设备接入，接口可能返回`undefined`，注意需要对接口返回值做判空处理。
 
 **说明：**
 
@@ -270,7 +270,7 @@ getSupportedModes(portId: number): PortModeType
 
 **说明：**
 
-> 从 API version 9开始支持，从API version 12开始废弃。建议使用 [getPortSupportModes](#getportlist12) 替代。
+> 从 API version 9开始支持，从API version 12开始废弃。建议使用 [getPortSupportModes](#getportsupportmodes12) 替代。
 
 **系统接口：** 此接口为系统接口。
 
@@ -337,7 +337,7 @@ setPortRoles(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): 
 
 | 类型                | 说明          |
 | ------------------- | ------------- |
-| Promise\<**void**\> | Promise对象。 |
+| Promise\<void\> | Promise对象。 |
 
 **示例：**
 
@@ -541,7 +541,7 @@ setDeviceFunctions(funcs: FunctionType): Promise\<void\>
 
 | 类型                | 说明          |
 | ------------------- | ------------- |
-| Promise\<**void**\> | Promise对象。 |
+| Promise\<void\> | Promise对象。 |
 
 **示例：**
 
@@ -559,7 +559,7 @@ usbManager.setDeviceFunctions(funcs).then(() => {
 
 getDeviceFunctions(): FunctionType
 
-在设备模式下，获取当前的USB功能列表的数字组合掩码。
+在设备模式下，获取当前的USB功能列表的数字组合掩码。开发者模式关闭时，如果没有设备接入，接口可能返回`undefined`，注意需要对接口返回值做判空处理。
 
 **说明：**
 
@@ -596,7 +596,7 @@ let ret: number = usbManager.getDeviceFunctions();
 
 getPortList(): Array\<USBPort\>
 
-获取所有物理USB端口描述信息。
+获取所有物理USB端口描述信息。开发者模式关闭时，如果没有设备接入，接口可能返回`undefined`，注意需要对接口返回值做判空处理。
 
 **说明：**
 
@@ -664,7 +664,7 @@ getPortSupportModes(portId: number): PortModeType
 **示例：**
 
 ```ts
-let ret: number = usbManager.getSupportedModes(0);
+let ret: number = usbManager.getPortSupportModes(0);
 ```
 
 ## setPortRoleTypes<sup>12+</sup>
@@ -705,7 +705,7 @@ setPortRoleTypes(portId: number, powerRole: PowerRoleType, dataRole: DataRoleTyp
 
 | 类型                | 说明          |
 | ------------------- | ------------- |
-| Promise\<**void**\> | Promise对象。 |
+| Promise\<void\> | Promise对象。 |
 
 **示例：**
 
@@ -721,13 +721,13 @@ usbManager.setPortRoleTypes(portId, usbManager.PowerRoleType.SOURCE, usbManager.
 
 ## addAccessoryRight<sup>14+<sup>
 
-addAccessoryRight(tokenId: number, accessory: USBAccessory): void;
+addAccessoryRight(tokenId: number, accessory: USBAccessory): void
 
 为应用程序添加访问USB配件权限。
 
 usbManager.requestAccessoryRight会触发弹窗请求用户授权；addAccessoryRight不会触发弹窗，而是直接添加应用程序访问设备的权限。
 
-**系统接口：** 此接口为系统接口
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.MANAGE_USB_CONFIG
 

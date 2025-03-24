@@ -12,7 +12,7 @@
 
 ## 接口
 
-Select(options: Array\<[SelectOption](#selectoption对象说明)\>)
+Select(options: Array\<SelectOption>)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -54,7 +54,7 @@ selected(value: number | Resource)
 
 | 参数名 | 类型                                                         | 必填 | 说明                     |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------ |
-| value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource)<sup>11+</sup> | 是   | 下拉菜单初始选项的索引。 |
+| value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource)<sup>11+</sup> | 是   | 下拉菜单初始选项的索引，索引值从0开始。 |
 
 ### value
 
@@ -72,7 +72,7 @@ value(value: ResourceStr)
 
 | 参数名 | 类型                                                 | 必填 | 说明                     |
 | ------ | ---------------------------------------------------- | ---- | ------------------------ |
-| value  | [ResourceStr](ts-types.md#resourcestr)<sup>11+</sup> | 是   | 下拉按钮本身的文本内容。 |
+| value  | [ResourceStr](ts-types.md#resourcestr)<sup>11+</sup> | 是   | 下拉按钮本身的文本内容。<br/>**说明**：文本长度大于列宽时，文本被截断。 |
 
 ### controlSize<sup>12+</sup>
 
@@ -271,7 +271,7 @@ space(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                                             |
 | ------ | ---------------------------- | ---- | ------------------------------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 下拉菜单项的文本与箭头之间的间距。<br/>默认值：8 |
+| value  | [Length](ts-types.md#length) | 是   | 下拉菜单项的文本与箭头之间的间距。<br/>默认值：8<br/>**说明**：设置string类型时，不支持百分比。 |
 
 ### arrowPosition<sup>10+</sup>
 
@@ -382,10 +382,10 @@ menuBackgroundBlurStyle(value: BlurStyle)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                | 说明             |
-| ------------------- | ------------------ |
-| END<sup>10+</sup>   | 文字在前，箭头在后。 |
-| START<sup>10+</sup> | 箭头在前，文字在后。 |
+| 名称                | 值               | 说明             |
+| ------------------- | ------------------ | ------------------ |
+| END | 0 | 文字在前，箭头在后。 |
+| START | 1 | 箭头在前，文字在后。 |
 
 ## MenuAlignType<sup>10+</sup>枚举说明
 
@@ -393,11 +393,11 @@ menuBackgroundBlurStyle(value: BlurStyle)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                | 说明             |
-| ------------------- | ------------------ |
-| START               | 按照语言方向起始端对齐。 |
-| CENTER              | 居中对齐。 |
-| END                 | 按照语言方向末端对齐。 |
+| 名称                | 值 | 说明             |
+| ------------------- | --- | ------------------ |
+| START               | 0 |按照语言方向起始端对齐。 |
+| CENTER              | 1 |居中对齐。 |
+| END                 | 2 |按照语言方向末端对齐。 |
 
 ## MenuItemConfiguration<sup>12+</sup>对象说明
 
@@ -407,11 +407,11 @@ menuBackgroundBlurStyle(value: BlurStyle)
 
 | 名称 | 类型                                         | 必填 | 说明                                                         |
 | ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 下拉菜单项的文本内容。 |
-| icon  | [ResourceStr](ts-types.md#resourcestr) | 否   | 下拉菜单项的图片内容。 |
+| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 下拉菜单项的文本内容。<br/>**说明**：当文本字符的长度超过菜单项文本区域的宽度时，文本将会被截断。 |
+| icon  | [ResourceStr](ts-types.md#resourcestr) | 否   | 下拉菜单项的图片内容。<br/>**说明**：string格式可用于加载网络图片和本地图片。 |
 | symbolIcon<sup>12+</sup>  | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 下拉选项Symbol图片内容。|
 | selected  | boolean | 是   | 下拉菜单项是否被选中。<br/>默认值：false |
-| index  | number | 是   | 下拉菜单项的索引。 |
+| index  | number | 是   | 下拉菜单项的索引，索引值从0开始。 |
 | triggerSelect  | (index: number, value: string) :void | 是   | 下拉菜单选中某一项的回调函数。<br/>index: 选中菜单项的索引。<br/>value: 选中菜单项的文本。<br/>说明: index会赋值给事件[onSelect](#onselect)回调中的索引参数； value会返回给Select组件显示，同时会赋值给事件[onSelect](#onselect)回调中的文本参数。 |
 
 ## 事件
@@ -446,6 +446,7 @@ struct SelectExample {
   @State index: number = 2
   @State space: number = 8
   @State arrowPosition: ArrowPosition = ArrowPosition.END
+
   build() {
     Column() {
       Select([{ value: 'aaa', icon: $r("app.media.selection") },
@@ -460,13 +461,13 @@ struct SelectExample {
         .optionFont({ size: 16, weight: 400 })
         .space(this.space)
         .arrowPosition(this.arrowPosition)
-        .menuAlign(MenuAlignType.START, {dx:0, dy:0})
+        .menuAlign(MenuAlignType.START, { dx: 0, dy: 0 })
         .optionWidth(200)
         .optionHeight(300)
-        .onSelect((index:number, text?: string | undefined)=>{
+        .onSelect((index: number, text?: string | undefined) => {
           console.info('Select:' + index)
           this.index = index;
-          if(text){
+          if (text) {
             this.text = text;
           }
         })
@@ -493,10 +494,15 @@ struct SelectExample {
   @State index: number = 2
   @State space: number = 8
   @State arrowPosition: ArrowPosition = ArrowPosition.END
-  @State symbolModifier1: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')).fontColor([Color.Green]);
-  @State symbolModifier2: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontColor([Color.Red]);
-  @State symbolModifier3: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_trash')).fontColor([Color.Gray]);
-  @State symbolModifier4: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.exposure')).fontColor([Color.Gray]);
+  @State symbolModifier1: SymbolGlyphModifier =
+    new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')).fontColor([Color.Green]);
+  @State symbolModifier2: SymbolGlyphModifier =
+    new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontColor([Color.Red]);
+  @State symbolModifier3: SymbolGlyphModifier =
+    new SymbolGlyphModifier($r('sys.symbol.ohos_trash')).fontColor([Color.Gray]);
+  @State symbolModifier4: SymbolGlyphModifier =
+    new SymbolGlyphModifier($r('sys.symbol.exposure')).fontColor([Color.Gray]);
+
   build() {
     Column() {
       Select([{ value: 'aaa', symbolIcon: this.symbolModifier1 },
@@ -511,11 +517,11 @@ struct SelectExample {
         .optionFont({ size: 16, weight: 400 })
         .space(this.space)
         .arrowPosition(this.arrowPosition)
-        .menuAlign(MenuAlignType.START, {dx:0, dy:0})
-        .onSelect((index:number, text?: string | undefined)=>{
+        .menuAlign(MenuAlignType.START, { dx: 0, dy: 0 })
+        .onSelect((index: number, text?: string | undefined) => {
           console.info('Select:' + index)
           this.index = index;
-          if(text){
+          if (text) {
             this.text = text;
           }
         })
@@ -530,13 +536,15 @@ struct SelectExample {
 该示例实现了一个自定义下拉菜选项的Select组件。自定义下拉菜单选项样式为“文本 + Symbol图片 + 空白间隔 + 文本 + 绘制三角形”，点击菜单选项后Select组件显示菜单选项的文本内容。
 
 ```ts
-import { MenuItemModifier, SymbolGlyphModifier } from '@kit.ArkUI'
+import { SymbolGlyphModifier } from '@kit.ArkUI'
 
 class MyMenuItemContentModifier implements ContentModifier<MenuItemConfiguration> {
   modifierText: string = ""
+
   constructor(text: string) {
     this.modifierText = text;
   }
+
   applyContent(): WrappedBuilder<[MenuItemConfiguration]> {
     return wrapBuilder(MenuItemBuilder)
   }
@@ -572,15 +580,18 @@ function MenuItemBuilder(configuration: MenuItemConfiguration) {
 @Component
 struct SelectExample {
   @State text: string = "Content Modifier Select"
-  @State symbolModifier1: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_trash')).fontColor([Color.Gray]);
-  @State symbolModifier2: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.exposure')).fontColor([Color.Gray]);
+  @State symbolModifier1: SymbolGlyphModifier =
+    new SymbolGlyphModifier($r('sys.symbol.ohos_trash')).fontColor([Color.Gray]);
+  @State symbolModifier2: SymbolGlyphModifier =
+    new SymbolGlyphModifier($r('sys.symbol.exposure')).fontColor([Color.Gray]);
+
   build() {
     Column() {
       Row() {
         Select([{ value: 'item1', icon: $r('app.media.icon'), symbolIcon: this.symbolModifier1 },
           { value: 'item1', icon: $r('app.media.icon'), symbolIcon: this.symbolModifier2 }])
           .value(this.text)
-          .onSelect((index:number, text?: string)=>{
+          .onSelect((index: number, text?: string) => {
             console.info('Select index:' + index)
             console.info('Select text:' + text)
           })
@@ -604,6 +615,7 @@ struct SelectExample {
   @State text: string = "TTTTT"
   @State index: number = -1
   @State arrowPosition: ArrowPosition = ArrowPosition.END
+
   build() {
     Column() {
       Select([{ value: 'aaa', icon: $r("app.media.icon") },
@@ -617,14 +629,19 @@ struct SelectExample {
         .selectedOptionFont({ size: 16, weight: 400 })
         .optionFont({ size: 16, weight: 400 })
         .arrowPosition(this.arrowPosition)
-        .menuAlign(MenuAlignType.START, {dx:0, dy:0})
+        .menuAlign(MenuAlignType.START, { dx: 0, dy: 0 })
         .optionWidth(200)
         .optionHeight(300)
-        .divider( { strokeWidth: 5, color: Color.Blue, startMargin: 10, endMargin: 10 })
-        .onSelect((index:number, text?: string | undefined)=>{
+        .divider({
+          strokeWidth: 5,
+          color: Color.Blue,
+          startMargin: 10,
+          endMargin: 10
+        })
+        .onSelect((index: number, text?: string | undefined) => {
           console.info('Select:' + index)
           this.index = index;
-          if(text){
+          if (text) {
             this.text = text;
           }
         })
@@ -645,6 +662,7 @@ struct SelectExample {
   @State text: string = "TTTTT"
   @State index: number = -1
   @State arrowPosition: ArrowPosition = ArrowPosition.END
+
   build() {
     Column() {
       Select([{ value: 'aaa', icon: $r("app.media.icon") },
@@ -658,14 +676,14 @@ struct SelectExample {
         .selectedOptionFont({ size: 16, weight: 400 })
         .optionFont({ size: 16, weight: 400 })
         .arrowPosition(this.arrowPosition)
-        .menuAlign(MenuAlignType.START, {dx:0, dy:0})
+        .menuAlign(MenuAlignType.START, { dx: 0, dy: 0 })
         .optionWidth(200)
         .optionHeight(300)
-        .divider( null )
-        .onSelect((index:number, text?: string | undefined)=>{
+        .divider(null)
+        .onSelect((index: number, text?: string | undefined) => {
           console.info('Select:' + index)
           this.index = index;
-          if(text){
+          if (text) {
             this.text = text;
           }
         })

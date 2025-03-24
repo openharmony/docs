@@ -2,6 +2,9 @@
 
 To allow the state management framework to observe properties in class objects, you can use the \@ObservedV2 decorator and \@Trace decorator to decorate classes and properties in classes.
 
+
+\@ObservedV2 and \@Trace provide the capability of directly observing the property changes of nested objects. They are one of the core capabilities of state management V2. Before reading this topic, you are advised to read [State Management Overview](./arkts-state-management-overview.md) to have a basic understanding of the overall capability architecture of state management V2.
+
 >**NOTE**
 >
 >The \@ObservedV2 and \@Trace decorators are supported since API version 12.
@@ -13,7 +16,7 @@ The \@ObservedV2 and \@Trace decorators are used to decorate classes and propert
 
 - \@ObservedV2 and \@Trace must come in pairs. Using either of them alone does not work.
 - If a property decorated by \@Trace changes, only the component bound to the property is instructed to re-render.
-- In a nested class, changes to its property trigger UI re-renders only when the property is decorated by \@Trace and the class is decorated by \@ObservedV2.
+- In a nested class, changes to its property trigger UI re-render only when the property is decorated by \@Trace and the class is decorated by \@ObservedV2.
 - In an inherited class, changes to a property of the parent or child class trigger UI re-renders only when the property is decorated by \@Trace and the owning class is decorated by \@ObservedV2.
 - Attributes that are not decorated by \@Trace cannot detect changes nor trigger UI re-renders.
 - Instances of \@ObservedV2 decorated classes cannot be serialized using **JSON.stringify**.
@@ -123,7 +126,7 @@ Yet, this approach has its drawbacks: If the nesting level is deep, the code bec
 | \@ObservedV2 Decorator| Description                                                 |
 | ------------------ | ----------------------------------------------------- |
 | Decorator parameters        | None.                                                   |
-| Class decorator          | Decorates a class. You must use **new** to create a class object before defining the class.||
+| Class decorator          | Decorates a class. You must use **new** to create a class object before defining the class.|
 
 | \@Trace member property decorator| Description                                                        |
 | --------------------- | ------------------------------------------------------------ |

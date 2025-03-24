@@ -5,13 +5,13 @@
 
 声明应用级别的上下文能力。
 
-**库：** libability_runtime.so
+**库**：libability_runtime.so
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**起始版本：** 13
+**起始版本**：13
 
-**相关模块：**[AbilityRuntime](_ability_runtime.md)
+**相关模块**：[AbilityRuntime](_ability_runtime.md)
 
 
 ## 汇总

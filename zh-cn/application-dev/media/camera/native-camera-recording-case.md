@@ -17,16 +17,27 @@
         target_link_libraries(entry PUBLIC libohcamera.so libhilog_ndk.z.so)
     ```
 
-2. cpp侧导入NDK接口，并根据传入的SurfaceId进行录像。
+2. 创建头文件ndk_camera.h。
+   ```c++
+   #include "ohcamera/camera.h"
+   #include "ohcamera/camera_input.h"
+   #include "ohcamera/capture_session.h"
+   #include "ohcamera/photo_output.h"
+   #include "ohcamera/preview_output.h"
+   #include "ohcamera/video_output.h"
+   #include "ohcamera/camera_manager.h"
+   
+   class NDKCamera {
+   public:
+       ~NDKCamera();
+       NDKCamera(char *previewId, char *videoId);
+   };
+   ```
+
+3. cpp侧导入NDK接口，并根据传入的SurfaceId进行录像。
     ```c++
     #include "hilog/log.h"
-    #include "ohcamera/camera.h"
-    #include "ohcamera/camera_input.h"
-    #include "ohcamera/capture_session.h"
-    #include "ohcamera/photo_output.h"
-    #include "ohcamera/preview_output.h"
-    #include "ohcamera/video_output.h"
-    #include "ohcamera/camera_manager.h"
+    #include "ndk_camera.h"
 
     void OnCameraInputError(const Camera_Input* cameraInput, Camera_ErrorCode errorCode)
     {
@@ -215,7 +226,7 @@
         }
 
         // 创建预览输出流,其中参数 surfaceId 参考下面 XComponent 组件，预览流为XComponent组件提供的surface
-        ret = OH_CameraManager_CreatePreviewOutput(cameraManager, previewProfile, 0, &previewOutput);
+        ret = OH_CameraManager_CreatePreviewOutput(cameraManager, previewProfile, previewSurfaceId, &previewOutput);
         if (previewProfile == nullptr || previewOutput == nullptr || ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreatePreviewOutput failed.");
         }

@@ -20,7 +20,7 @@ Applies a foreground blur style to the component.
 
 | Name | Type                                                        | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | Yes  | Settings of the foreground blur style,|
+| value   | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | Yes  | Settings of the foreground blur style.|
 | options | [ForegroundBlurStyleOptions](#foregroundblurstyleoptions) | No  | Foreground blur options.                                    |
 
 ## ForegroundBlurStyleOptions
@@ -34,7 +34,7 @@ Inherited from [BlurStyleOptions](#blurstyleoptions).
 | --------------------------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | colorMode     | [ThemeColorMode](ts-container-with-theme.md#themecolormode10) | No  | Color mode used for the foreground blur.<br>Default value: **ThemeColorMode.SYSTEM**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | adaptiveColor | [AdaptiveColor](#adaptivecolor10)   | No  | Adaptive color mode.<br>Default value: **AdaptiveColor.DEFAULT**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| blurOptions<sup>11+</sup> | [BlurOptions](#bluroptions11)         | No   | Grayscale blur parameters.<br>Default value: **grayScale: [0,0]**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| blurOptions<sup>11+</sup> | [BlurOptions](#bluroptions11)         | No   | Grayscale blur parameters.<br>Default value: **grayscale: [0,0]**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | scale<sup>12+</sup> | number   | No  | Foreground blur scale.<br>Default value: **1.0**<br>Value range: [0.0, 1.0]<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## AdaptiveColor<sup>10+</sup>

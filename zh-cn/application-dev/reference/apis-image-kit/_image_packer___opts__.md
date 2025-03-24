@@ -19,8 +19,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| const char \* [format](#format) | 编码格式  | 
-| int [quality](#quality) | 编码质量  | 
+| const char \* [format](#format) | 编码格式。 |
+| int [quality](#quality) | 编码质量。 |
 
 
 ## 结构体成员变量说明
@@ -32,7 +32,7 @@
 const char* ImagePacker_Opts::format
 ```
 **描述**
-编码格式
+编码格式。
 
 
 ### quality
@@ -41,4 +41,4 @@ const char* ImagePacker_Opts::format
 int ImagePacker_Opts::quality
 ```
 **描述**
-编码质量
+编码质量。

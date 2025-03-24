@@ -19,6 +19,8 @@
 
 2. 指定认证类型（[UserAuthType](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthtype8)）和认证等级（[AuthTrustLevel](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#authtrustlevel8)），调用[getAvailableStatus](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthgetavailablestatus9)接口查询当前的设备是否支持相应的认证能力。
 
+   认证可信等级的详细介绍请参见[认证可信等级划分原则](../../security/UserAuthenticationKit/user-authentication-overview.md)。
+
 以查询设备是否支持认证可信等级≥ATL1的人脸认证功能为例：
 
 ```ts

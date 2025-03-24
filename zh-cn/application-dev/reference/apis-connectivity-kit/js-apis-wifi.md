@@ -1135,7 +1135,7 @@ stopDiscoverDevices(): boolean
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | true:操作执行成功，操作执行失败。 |
+  | boolean | true:操作执行成功 flase:操作执行失败。 |
 
 **示例：**
 ```ts

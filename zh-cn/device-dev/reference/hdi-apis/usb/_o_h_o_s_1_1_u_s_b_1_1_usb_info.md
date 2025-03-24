@@ -29,7 +29,7 @@ USB设备信息类。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [devInfo](#devinfo) |  | 
+| [devInfo](#devinfo) | USB设备信息。 | 
 
 
 ## 成员函数说明
@@ -153,4 +153,4 @@ USBDeviceInfo UsbInfo::devInfo
 ```
 **描述**
 
-USB设备信息
+USB设备信息。

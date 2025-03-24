@@ -878,10 +878,10 @@ Failed to uninstall the HAP because uninstalling the native package failed.
 The app does not support the creation of an appClone instance.
 
 **错误描述**<br/>
-多开模式非分身的应用，不能创建分身实例
+多开模式非分身的应用，不能创建分身实例。
 
 **可能原因**<br/>
-没有配置分身模式，或者多开模式配置为其他模式
+没有配置分身模式，或者多开模式配置为其他模式。
 
 **处理步骤**<br/>
 1. 检查更新应用是否支持分身。
@@ -925,7 +925,7 @@ Launch Want不存在。
 **处理步骤**<br/>
 应用需要有entities配置为entity.system.home并且actions配置为action.system.home的Ability。
 
-## 17700073 由于设备上存在具有相同包名称但不同签名信息的应用程序，导致安装失败。
+## 17700073 由于设备上存在具有相同包名称但不同签名信息的应用程序，导致安装失败
 **错误信息**<br/>
 Failed to install the HAP because an application with the same bundle name but different signature information exists on the device.
 
@@ -933,12 +933,39 @@ Failed to install the HAP because an application with the same bundle name but d
 由于设备上存在具有相同包名称但不同签名信息的应用程序，导致安装失败。
 
 **可能原因**<br/>
-1、由于设备上存在具有相同包名称但不同签名信息的已安装应用程序，导致安装失败。
-2、设备上存在相同包名但签名信息不一致的应用被保留数据地卸载，导致安装失败。
+
+1. 由于设备上存在具有相同包名称但不同签名信息的已安装应用程序，导致安装失败。
+2. 设备上存在相同包名但签名信息不一致的应用被保留数据地卸载，导致安装失败。
 
 **处理步骤**<br/>
-1、卸载设备上相同包名的应用。
-2、若设备上存在相同包名但签名信息不一致的应用被保留数据地卸载，导致安装失败，则先安装已卸载的应用之后不保留数据地卸载掉。
+
+1. 卸载设备上相同包名的应用。
+2. 若设备上存在相同包名但签名信息不一致的应用被保留数据地卸载，导致安装失败，则先安装已卸载的应用之后不保留数据地卸载掉。
+
+## 17700101 包管理服务异常
+**错误信息**<br/>
+Bundle manager service is excepted.
+
+**错误描述**<br/>
+包管理服务异常。
+
+**可能原因**<br/>
+系统出现未知的异常，导致包管理服务已停止或者异常退出。
+
+**处理步骤**<br/>
+1. 重启手机后再次尝试请求接口。
+
+2. 重复上述步骤3到5次后依旧请求失败，请查询设备的/data/log/faultlog/faultlogger/目录下是否存在包含foundation字样的crash文件。
+```
+hdc shell
+cd /data/log/faultlog/faultlogger/
+ls -ls
+```
+3. 导出crash文件和日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
+```
+hdc file recv /data/log/faultlog/faultlogger/
+hdc file recv /data/log/hilog/
+```
 
 ## 17700201 abc文件校验失败
 **错误信息**<br/>

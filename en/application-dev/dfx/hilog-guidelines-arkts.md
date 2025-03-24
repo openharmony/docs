@@ -15,7 +15,7 @@ HiLog defines five log levels (DEBUG, INFO, WARN, ERROR, and FATAL) and provides
 | -------- | -------- |
 | isLoggable(domain: number, tag: string, level: LogLevel) | Checks whether logs of the specified domain, tag, and level can be printed.|
 | debug(domain: number, tag: string, format: string, ...args: any[]) | Outputs DEBUG logs, which are used only for debugging applications and services.<br>To set the log level to **DEBUG**, run the **hdc shell hilogcat** command in the **Terminal** window of DevEco Studio or in the **cmd** window.|
-| info(domain: number, tag: string, format: string, ...args: any[]) | Outputs INFO logs, which provide prevalent, highlighting events related to key service processes..|
+| info(domain: number, tag: string, format: string, ...args: any[]) | Outputs INFO logs, which provide prevalent, highlighting events related to key service processes.|
 | warn(domain: number, tag: string, format: string, ...args: any[]) | Outputs WARN logs, which indicate issues that have little impact on the system.|
 | error(domain: number, tag: string, format: string, ...args: any[]) | Outputs ERROR logs, which indicate program or functional errors.|
 | fatal(domain: number, tag: string, format: string, ...args: any[]) | Outputs FATAL logs, which indicate program or functionality crashes that cannot be rectified.|
@@ -94,7 +94,7 @@ Add a click event in a button, which prints a log when the button is clicked.
            .height('5%')
            // Add a onClick event with the button to print a log when the button is clicked.
            .onClick(() => {
-             hilog.isLoggable(0xFF00, "testTag", hilog.LogLevel.INFO);    
+             hilog.isLoggable(0xFF00, "testTag", hilog.LogLevel.INFO);
              hilog.info(0xFF00, "testTag", "%{public}s World %{public}d", "hello", 3);
            })
          }
@@ -108,9 +108,9 @@ Add a click event in a button, which prints a log when the button is clicked.
    For example, output an INFO log in the following format: 
 
    ```txt
-   "%{public}s World %{public}d"
+   ¡±%{public}s World %{public}d¡±
    ```
-
+   
    *%{public}s* indicates a string, and *%{public}d* indicates an integer. Both of them are displayed in plaintext. 
 
 4. Run the project on a real device, and click the **Next** button on the app/service.
@@ -118,7 +118,7 @@ Add a click event in a button, which prints a log when the button is clicked.
 5. At the bottom of DevEco Studio, switch to the **Log** tab and set the filter criteria.
    Specifically, select the current device and process, set the log level to **Verbose**, and enter **testTag** in the search box. Then, only the logs that meet the filter criteria are displayed.
 
-   In this example, the printed log is "hello World 3".
+   In this example, the printed log is "hello World 3."
 
 <!--RP1-->
 <!--RP1End-->

@@ -19,9 +19,9 @@ RawFileDescriptor64是[OH_ResourceManager_GetRawFileDescriptor64](rawfile.md#oh_
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| int [fd](#fd) | rawfile文件描述符，单位为int  | 
-| int64_t [start](#start) | rawfile在HAP包中的起始位置，单位为int64_t  | 
-| int64_t [length](#length) | rawfile在HAP包中的长度，单位为int64_t  | 
+| int [fd](#fd) | rawfile文件描述符，单位为int。  | 
+| int64_t [start](#start) | rawfile在HAP包中的起始位置，单位为int64_t。  | 
+| int64_t [length](#length) | rawfile在HAP包中的长度，单位为int64_t。  | 
 
 
 ## 结构体成员变量说明
@@ -33,7 +33,8 @@ RawFileDescriptor64是[OH_ResourceManager_GetRawFileDescriptor64](rawfile.md#oh_
 int RawFileDescriptor64::fd
 ```
 **描述**
-rawfile文件描述符，单位为int
+
+rawfile文件描述符，单位为int。
 
 
 ### length
@@ -42,7 +43,8 @@ rawfile文件描述符，单位为int
 int64_t RawFileDescriptor64::length
 ```
 **描述**
-rawfile在HAP包中的长度，单位为int64_t
+
+rawfile在HAP包中的长度，单位为int64_t。
 
 
 ### start
@@ -51,4 +53,5 @@ rawfile在HAP包中的长度，单位为int64_t
 int64_t RawFileDescriptor64::start
 ```
 **描述**
-rawfile在HAP包中的起始位置，单位为int64_t
+
+rawfile在HAP包中的起始位置，单位为int64_t。

@@ -102,8 +102,6 @@ If **copyOptions** is not set to **CopyOptions.None**, long-pressing the text co
 
 If **copyOptions** is set to **CopyOptions.None**, the copy, cut, and AI-powered writing features are not available.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 10.
-
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -112,7 +110,7 @@ If **copyOptions** is set to **CopyOptions.None**, the copy, cut, and AI-powered
 
 | Name| Type                                            | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Yes  | Whether copy and paste is allowed for text content.<br>Default value: **CopyOptions.LocalDevice**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.|
+| value  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Yes  | Whether copy and paste is allowed for text content.<br>Default value: **CopyOptions.LocalDevice**|
 
 ### enableDataDetector<sup>11+</sup>
 
@@ -266,7 +264,7 @@ Sets the extended options of the custom context menu on selection, including the
 
 | Name| Type                                         | Mandatory| Description                                         |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions)| Yes  | Extended options of the custom context menu on selection.|
+| editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions) | Yes  | Extended options of the custom context menu on selection.|
 
 ### enterKeyType<sup>12+</sup>
 
@@ -282,7 +280,7 @@ Sets the Enter key type of the soft keyboard.
 
 | Name| Type  | Mandatory| Description                               |
 | ------ | ------ | ---- | ----------------------------------- |
-| value  | [EnterKeyType](ts-types.md#enterkeytype)| Yes  | Type of the Enter key.<br>Default value: **EnterKeyType.NEW_LINE**|
+| value  | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype) | Yes  | Type of the Enter key.<br>Default value: **EnterKeyType.NEW_LINE**|
 
 ### enableKeyboardOnFocus<sup>12+</sup>
 
@@ -1076,7 +1074,7 @@ Adds a custom builder span.
 > - This API adds a builder span to take up space in the layout. It calls the system **measure** method to calculate the actual length, width, and position.
 > - You can use [RichEditorBuilderSpanOptions](#richeditorbuilderspanoptions11) to set the index of the builder in the **RichEditor** component (with one character as the unit).
 > - This builder span is unfocusable, draggable, and equipped with certain universal attributes. It behaves similarly to an image span in terms of placeholder and deletion functionality, and it is treated as a single character in length.
-> - Custom menus set using [bindSelectionMenu](#bindselectionmenu) are not supported.
+> - Custom menus can be set using [bindSelectionMenu](#bindselectionmenu).
 > - The information about the builder span cannot be obtained through [getSpans](#getspans), [getSelection](#getselection11), [onSelect](#onselect), or [aboutToDelete](#abouttodelete).
 > - The builder span cannot be updated using [updateSpanStyle](#updatespanstyle) or [updateParagraphStyle](#updateparagraphstyle11).
 > - Copying or pasting the builder span does not take effect.
@@ -1573,7 +1571,7 @@ Defines the options for adding an image span.
 | offset                | number                                   | No   | Position of the image span to be added. If this parameter is omitted, the paragraph is added to the end of all content.<br>If the value specified is less than 0, the paragraph is placed at the beginning of all content. If the value is greater than the length of all content, the paragraph is placed at the end of all content.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | imageStyle            | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | No   | Image style. If this parameter is left empty, the default image style will be used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | gesture<sup>11+</sup> | [RichEditorGesture](#richeditorgesture11) | No   | Behavior-triggered callback. If this parameter is left empty, only the default system behavior is supported.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| onHover<sup>14+</sup> | [onHoverCallback](#onhovercallback14) | No   | Callback triggered on mouse hover. If this parameter is not specified, no corresponding action is taken.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| onHover<sup>14+</sup> | [OnHoverCallback](#onhovercallback14) | No   | Callback triggered on mouse hover. If this parameter is not specified, no corresponding action is taken.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 
 ## RichEditorImageSpanStyle
 
@@ -1652,9 +1650,9 @@ Provides the options of the custom context menu on selection.
 
 | Name         | Type        | Mandatory  | Description           |
 | ----------- | ---------- | ---- | ------------- |
-| onAppear    | [MenuOnAppearCallback](#menuonappearcallback12) | No   | Callback invoked when the custom context menu on selection is displayed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| onDisappear | Callback\<void\>  | No   | Callback invoked when the custom context menu on selection is closed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| menuType<sup>13+</sup> | [MenuType](ts-text-common.md#menutype13) | No| Type of the custom context menu on selection.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| onAppear    | [MenuOnAppearCallback](#menuonappearcallback12) | No   | Callback invoked when the custom context menu on selection appears.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| onDisappear | Callback\<void\>  | No   | Callback invoked when the custom context menu on selection disappears.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| menuType<sup>13+</sup> | [MenuType](ts-text-common.md#menutype13) | No| Type of the custom context menu on selection.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>Default value: **MenuType.SELECTION_MENU**|
 
 ## PasteEvent<sup>11+</sup>
 
@@ -1703,7 +1701,6 @@ Defines the behavior-triggered callbacks.
 | Name         | Type        | Mandatory  | Description           |
 | ----------- | ---------- | ---- | ------------- |
 | onClick    | Callback\<[ClickEvent](ts-universal-events-click.md#clickevent)\>| No   | Triggered when the user performs a click.<br>It is executed on completion of a single click.<br>On a double-click, the first click triggers the callback event.|
-| onDoubleClick<sup>14+</sup>    | Callback\<[GestureEvent](ts-universal-events-click.md#clickevent)\> | No   | Triggered when the user performs a double-click.<br>It is executed on completion of a double-click.<br>On a double-click, the second click triggers the callback event.|
 | onLongPress | Callback\<[GestureEvent](ts-gesture-settings.md#gestureevent)\>  | No   | Triggered when the user performs a long press.<br>It is executed on completion of a long press.|
 
 ## KeyboardOptions<sup>12+</sup>
@@ -1732,14 +1729,14 @@ Represents the callback invoked when the Enter key on the soft keyboard is press
 
 | Name  | Type                                                        | Mandatory| Description                                                    |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
-| enterKey | [EnterKeyType](ts-types.md#enterkeytype)            | Yes  | Type of the Enter key. For details, see **EnterKeyType**.|
-| event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11) | Yes  | Submit event, which provides a method to keep the text box in editing state.        |
+| enterKey | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype)             | Yes  | Type of the Enter key. For details, see **EnterKeyType**.|
+| event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11) | Yes  | Submit event, which provides a method to keep the text box in editing state. When **EnterKeyType** is set to **NEW_LINE**, the editing state is retained by default.        |
 
 ## MenuOnAppearCallback<sup>12+</sup>
 
 type MenuOnAppearCallback = (start: number, end: number) => void
 
-Represents the callback invoked when the custom context menu on selection is displayed.
+Represents the callback invoked when the custom context menu on selection appears.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1756,7 +1753,7 @@ Represents the callback invoked when the custom context menu on selection is dis
 
 type PasteEventCallback = (event?: PasteEvent) => void
 
-Triggered when the paste is about to be completed.
+Represents the callback invoked when the paste is about to be completed.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1766,13 +1763,13 @@ Triggered when the paste is about to be completed.
 
 | Name    | Type                                            | Mandatory| Description                                                    |
 | -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
-| event  | [PasteEvent](#pasteevent11) | No  | Custom paste event.|
+| event  | [PasteEvent](#pasteevent11) | No  | User paste event.|
 
 ## OnHoverCallback<sup>14+</sup>
 
 type OnHoverCallback = (status: boolean, event: HoverEvent) => void
 
-Defines the callback triggered on mouse hover.
+Represents the callback invoked on mouse hover.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -1785,9 +1782,38 @@ Defines the callback triggered on mouse hover.
 | status  | boolean                            | Yes  | Whether the mouse pointer is hovering over the component. The value **true** means that the mouse pointer enters the component, and **false** means that the mouse pointer leaves the component.|
 | event   | [HoverEvent](ts-universal-events-hover.md#hoverevent11) | Yes  | Event bubbling.|
 
+## RichEditorTextSpan
+
+Provides the text span information.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name                           | Type                                      | Mandatory  | Description                    |
+| ----------------------------- | ---------------------------------------- | ---- | ---------------------- |
+| spanPosition                  | [RichEditorSpanPosition](#richeditorspanposition) | Yes   | Span position.|
+| value                         | string                                   | Yes   | Text span content.|
+| textStyle                     | [RichEditorTextStyle](#richeditortextstyle) | Yes   | Text span style.|
+
+## RichEditorImageSpan
+
+Image span information.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name              | Type                                                               | Mandatory | Description              |
+|------------------|-------------------------------------------------------------------|-----|------------------|
+| spanPosition     | [RichEditorSpanPosition](#richeditorspanposition)                 | Yes  | Span position.|
+| valuePixelMap    | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)\|[ResourceStr](ts-types.md#resourcestr)  | Yes  | Image content.|
+| imageStyle       | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | No| Image style.|
+
 ## Example
 
-### Example 1
+### Example 1: Updating the Text Style
+This example demonstrates how to update the text style using the [updateSpanStyle](#updatespanstyle) API. After modifying the style, you can use [getSpans](#getspans) to obtain the updated style information of the text.
 
 ```ts
 // xxx.ets
@@ -1961,7 +1987,8 @@ struct Index {
 ```
 ![richeditor](figures/richeditor.gif)
 
-### Example 2
+### Example 2: Binding a Custom Keyboard
+This example shows how to bind a custom keyboard to the component using [customKeyboard](#customkeyboard).
 
 ```ts
 // xxx.ets
@@ -2010,7 +2037,8 @@ struct RichEditorExample {
 
 ![customKeyboard](figures/richEditorCustomKeyboard.gif)
 
-### Example 3
+### Example 3: Binding a Custom Menu
+This example illustrates how to bind a custom menu to the component using [bindSelectionMenu](#bindselectionmenu).
 
 ```ts
 // xxx.ets
@@ -2525,7 +2553,8 @@ struct SelectionMenu {
 
 ![selectionMenu](figures/richEditorSelectionMenu.png)
 
-### Example 4
+### Example 4: Updating the Image Style
+This example demonstrates how to update the image style using the [updateSpanStyle](#updatespanstyle) API.
 
 ```ts
 // xxx.ets
@@ -2759,7 +2788,8 @@ struct Index {
 ```
 ![ImageSpanStyle](figures/richEditorImageSpanStyle.gif)
 
-### Example 5
+### Example 5: Binding a Gesture Event to a Span
+This example shows how to bind a [gesture](#richeditorgesture11) callback to a span.
 
 ```ts
 // xxx.ets
@@ -2776,6 +2806,7 @@ struct Index {
         Text(this.textFlag)
           .copyOption(CopyOptions.InApp)
           .fontSize(50)
+          .height(150)
       }
       Divider()
       Column() {
@@ -2833,6 +2864,9 @@ struct Index {
                   onLongPress: () => {
                     this.textFlag = "ImageSpan is onLongPress."
                   }
+                },
+                onHover : (status) => {
+                  this.textFlag = "ImageSpan is onHover :" + status
                 }
               })
           })
@@ -2847,7 +2881,8 @@ struct Index {
 ```
 ![OnClickAndLongPress](figures/richEditorGestureAndHover.gif)
 
-### Example 6
+### Example 6: Updating and Obtaining Paragraph Styles
+This example demonstrates how to update paragraph styles using the [updateParagraphStyle](#updateparagraphstyle11) API and obtain paragraph information within a specified range using the [getParagraphs](#getparagraphs11) API.
 
 ```ts
 // xxx.ets
@@ -2932,7 +2967,8 @@ struct Index {
 ```
 ![TextAlignAndGetParagraphInfo](figures/richEditorTextAlignAndGetParagraphInfo.gif)
 
-### Example 7
+### Example 7: Updating the Preset Style and Indent
+This example shows how to update the preset text style using the [setTypingStyle](#settypingstyle11) API and set different paragraph indents using the [updateParagraphStyle](#updateparagraphstyle11) API.
 
 ```ts
 // xxx.ets
@@ -3199,7 +3235,9 @@ struct Index {
 ```
 ![UpdateParagraphAndTypingStyle](figures/richEditorUpdateParagraphAndTypingStyle.gif)
 
-### Example 8
+### Example 8: Setting Text Weight and Shadow
+This example demonstrates how to set text weight and shadow using the [updateParagraphStyle](#updateparagraphstyle11) API.
+
 ``` ts
 @Entry
 @Component
@@ -3280,7 +3318,9 @@ struct Index {
 
 ![TextshadowExample](figures/rich_editor_textshadow.gif)
 
-### Example 9
+### Example 9: Adding Custom Layout Spans
+This example shows how to add custom layout spans using the [addBuilderSpan](#addbuilderspan11) API.
+
 ``` ts
 @Builder
 function placeholderBuilder2() {
@@ -3575,8 +3615,8 @@ struct Index {
 ```
 ![AddBuilderSpanExample](figures/rich_editor_addBuilderSpan.gif)
 
-### Example 10
-Example of using **enableDataDetector** and **dataDetectorConfig**
+### Example 10: Configuring Text Recognition
+This example demonstrates how to enable text recognition by setting [enableDataDetector](#enabledatadetector11) to **true** and configuring text recognition settings using the [dataDetectorConfig](#datadetectorconfig11) API.
 
 ```ts
 @Entry
@@ -3639,8 +3679,9 @@ struct TextExample7 {
   }
 }
 ```
-### Example 11
-This example shows how to use **caretColor** and **selectedBackgroundColor**.
+### Example 11: Setting Caret, Selection Handle, and Background Colors
+This example shows how to set the caret and selection handle color using the [caretColor](#caretcolor12) attribute and the text selection background color using the [selectedBackgroundColor](#selectedbackgroundcolor12) attribute.
+
 ``` ts
 @Entry
 @Component
@@ -3671,8 +3712,9 @@ struct RichEditorDemo {
 ```
 ![SetCaretAndSelectedBackgroundColorExample](figures/rich_editor_caret_color.gif)
 
-### Example 12
-This example shows the usage of **lineHeight** and **letterSpacing**.
+### Example 12: Setting the Line Height and Letter Spacing
+This example demonstrates how to configure text line height ([lineHeight](#richeditortextstyle)) and letter spacing ([letterSpacing](#richeditortextstyle)) using the [updateSpanStyle](#updatespanstyle) API.
+
 ```ts
 @Entry
 @Component
@@ -3792,8 +3834,9 @@ struct RichEditorDemo03 {
 ```
 ![AddBuilderSpanExample](figures/richEditorLineHeightAndLetterSpacing.png)
 
-### Example 13
-This example shows the usage of **preventDefault**.
+### Example 13: Adding a Custom Paste Event
+This example shows how to add a custom paste event to the component using the [onPaste](#onpaste11) event and customize user paste behavior using the [PasteEvent](#pasteevent11) API.
+
 ```ts
 @Entry
 @Component
@@ -3822,9 +3865,8 @@ struct RichEditorDemo {
 ```
 ![PreventDefaultExample](figures/richEditorPreventDefault.gif)
 
-### Example 14
-
-This example sets the **FontFeature** attribute to **ss01**, which changes the digit "0" from its original oval shape to a shape with rounded corners.
+### Example 14: Setting Text Feature Effects
+This example demonstrates how to set text feature effects using the [addTextSpan](#addtextspan) API and the [fontFeature](#richeditortextstyle) attribute. This example sets the **FontFeature** attribute to **ss01**, which changes the digit "0" from its original oval shape to a shape with rounded corners.
 
 ```ts
 @Entry
@@ -3870,9 +3912,8 @@ struct RichEditorExample {
 ```
 ![FontFeatureExample](figures/richEditorFontFeature.png)
 
-### Example 15
-
-This example shows how to support custom keyboard avoidance.
+### Example 15: Setting Custom Keyboard Avoidance
+This example shows how to bind a custom keyboard using the [customKeyboard](#customkeyboard) attribute and configure whether the custom keyboard supports keyboard avoidance using the [KeyboardOptions](#keyboardoptions12) parameter.
 
 ```ts
 @Entry
@@ -3950,9 +3991,8 @@ struct RichEditorExample {
 ```
 ![CustomRichEditorType](figures/Custom_Rich_Editor.gif)
 
-### Example 16
-
-This example shows the usage of **onEditingChange** and **isEditing**.
+### Example 16: Viewing the Editing State
+This example demonstrates how to obtain the current editing state of the rich text using the [isEditing](#isediting12) API. The [onEditingChange](#oneditingchange12) event can be added to the component to log whether the component is currently in editing mode.
 
 ```ts
 @Entry
@@ -3990,9 +4030,8 @@ struct RichEditor_onEditingChange {
 
 ![RichEditorOnEditingChange](figures/richEditorOnEditingChange.gif)
 
-### Example 17
-
-This example shows the usage of **onWillChange**, **onDidChange**, **onCut**, and **onCopy**.
+### Example 17: Configuring Text Change Callback
+This example shows how to add the [onWillChange](#onwillchange12) event to the component, which triggers a callback before the component performs any insert or delete operations.
 
 ```ts
 @Entry
@@ -4076,9 +4115,8 @@ struct RichEditorExample {
   }
 }
 ```
-### Example 18
-
-This example shows the usage of **enterKeyType**, **onSubmit**, and **stopEditing**.
+### Example 18: Configuring the Enter Key Type
+This example demonstrates how to set the Enter key type of the soft keyboard using the [enterKeyType](#enterkeytype12) attribute.
 
 ```ts
 @Entry
@@ -4111,8 +4149,8 @@ struct SoftKeyboardEnterTypeExample {
 
 ![SoftKeyboardEnterType](figures/richeditorentertype.gif)
 
-### Example 19
-This example demonstrates how to set, update, and query the value of **lineBreakStrategy**.
+### Example 19: Setting the Paragraph Line Break Rule
+This example shows how to set the line break rule ([lineBreakStrategy](#richeditorparagraphstyle11)) using the [updateParagraphStyle](#updateparagraphstyle11) API and obtain the current line break rule using the [getParagraphs](#getparagraphs11) API.
 
 ```ts
 @Entry
@@ -4189,8 +4227,8 @@ struct LineBreakStrategyExample {
 
 ![LineBreakStrategy](figures/richEditorLineBreak.gif)
 
-### Example 20
-This example shows the usage of a styled string.
+### Example 20: Using Basic Functionality of Styled Strings
+This example demonstrates how to bind a [styled string](./ts-universal-styled-string.md) to a **RichEditor** component using the [setStyledString](#setstyledstring12) API in [RichEditorStyledStringController](#richeditorstyledstringcontroller12). The [getStyledString](#getstyledstring12) API can be used to obtain the styled string displayed by the **RichEditor** component.
 
 ```ts
 // xxx.ets
@@ -4402,10 +4440,10 @@ struct Index {
 }
 ```
 
-![StyledString](figures/StyledString(example20).gif)
 
-### Example 21
-This example shows the usage of **LayoutManager**.
+
+### Example 21: Obtaining Layout Information
+This example shows how to obtain layout information using the [getLayoutManager](#getlayoutmanager12) API. It includes obtaining the total number of lines using [getLineCount](ts-text-common.md#getlinecount), the glyph position closest to a given coordinate using [getGlyphPositionAtCoordinate](ts-text-common.md#getglyphpositionatcoordinate), and line metrics, text style information, and font properties using [getLineMetrics](ts-text-common.md#getlinemetrics).
 
 ```ts
 @Entry
@@ -4474,9 +4512,8 @@ export struct Index {
 
 ![LayoutManager](figures/getLayoutManager.gif)
 
-### Example: 22
-
-This example shows how to set **editMenuOptions**.
+### Example 22: Setting Custom Menu Extensions
+This example demonstrates how to set custom menu extensions using the [editMenuOptions](#editmenuoptions12) property. This allows you to customize the text content, icons, and callback methods for the menu extensions.
 
 ```ts
 // xxx.ets
@@ -4539,9 +4576,8 @@ struct RichEditorExample {
 
 ![RichEditorSelectionMenuOptions](figures/richEditorSelectionMenuOptions.png)
 
-### Example 23
-
-This example shows the usage of **barState**, **enableKeyboardOnFocus**, and **getPreviewText**.
+### Example 23: Setting Common Component Attributes
+This example shows how to set common attributes for the component, including:<br>Setting the scrollbar display mode during editing using [barState](#barstate13)<br> Configuring whether the soft keyboard is automatically displayed when the component gains focus through means other than clicking, using [enableKeyboardOnFocus](#enablekeyboardonfocus12)<br> Enabling or disabling haptic feedback for the component using [enableHapticFeedback](#enablehapticfeedback13)<br> ObtainIng preview text information using [getPreviewText](#getpreviewtext12)
 
 ```ts
 // xxx.ets
@@ -4626,5 +4662,3 @@ struct RichEditor_example {
 
 ```
 
-![StyledString](figures/example23.gif)
-<!--no_check-->

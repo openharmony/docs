@@ -4,7 +4,7 @@ Before requesting permissions for your application, read and understand the [Wor
 
 > **NOTE**
 >
-> - The permissions listed in this topic are available to the applications whose Ability Privilege Level (APL) is system_basic or system_core, but not to the applications of the normal APL.
+> - The permissions listed in this topic are available to system_basic or system_core applications, but not to normal applications.
 > - However, some of the permissions can be granted to an application of the normal APL via the [Access Control List (ACL)](app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
 
 ## system_grant Permissions (Requestable via ACL)
@@ -189,7 +189,7 @@ Allows a system application to enable or disable the VPN function.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: false for API versions 10 to 11; true for API version 12 and later
+**Enable via ACL**: false in API versions 10 to 11; true in API version 12 and later
 
 **Valid since**: 10
 
@@ -264,18 +264,6 @@ Allows an application to publish unremovable notifications.
 **Enable via ACL**: true
 
 **Valid since**: 11
-
-### ohos.permission.GET_DOMAIN_ACCOUNTS
-
-Allows an application to obtain domain account information.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 10
 
 ### ohos.permission.UNINSTALL_BUNDLE
 
@@ -397,18 +385,6 @@ Allows an application to intercept the startup of the Ability component. This pe
 
 **Valid since**: 9
 
-### ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
-
-Allows an application to interact across local accounts.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 7
-
 ### ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
 Allows an application to interact across local accounts.
@@ -424,18 +400,6 @@ Allows an application to interact across local accounts.
 ### ohos.permission.CLEAN_APPLICATION_DATA
 
 Allows an application to clear application data.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 7
-
-### ohos.permission.GET_RUNNING_INFO
-
-Allows an application to obtain running status information.
 
 **Permission level**: system_basic
 
@@ -468,18 +432,6 @@ Allows an application to manage missions in the system.
 **Enable via ACL**: true
 
 **Valid since**: 9
-
-### ohos.permission.RUNNING_STATE_OBSERVER
-
-Allows an application to listen for its status.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 7
 
 ### ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -744,18 +696,6 @@ Allows an application to install, uninstall, and authorize users' public certifi
 **Enable via ACL**: true
 
 **Valid since**: 9
-
-### ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
-
-Allows an application to obtain basic information and sensitive information about another application.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 7
 
 ### ohos.permission.CLOUDFILE_SYNC
 
@@ -3301,18 +3241,6 @@ Allows an application to write the ring tone library.
 
 **Valid since**: 12
 
-### ohos.permission.KILL_APP_PROCESSES
-
-Allows a system application to kill other applications.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 12
-
 ### ohos.permission.GET_ACCOUNT_MINORS_INFO
 
 Allows a system application to obtain information about the minor users (users not of the legal age) of a user account.
@@ -3911,7 +3839,7 @@ Allows a system application to obtain eSIM profile information and data written 
 
 **Enable via ACL**: true
 
-**Valid since**: 13
+**Valid since**: 14
 
 ### ohos.permission.SET_TELEPHONY_ESIM_STATE
 
@@ -3923,7 +3851,7 @@ Allows a system application to modify the eSIM profile and upgrade the eSIM.
 
 **Enable via ACL**: true
 
-**Valid since**: 13
+**Valid since**: 14
 
 ### ohos.permission.CAMERA_BACKGROUND
 
@@ -4225,6 +4153,18 @@ Allows a system application to access the application installation directory.
 
 **Valid since**: 14
 
+## ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY
+
+Allows an application to have its system JS engine to apply for anonymous executable memory with the MAP_FORT identifier.
+
+After the application has this permission, the system JS engine can request anonymous executable memory with MAP_FORT for just-in-time (JIT) compilation, which increase the runtime execution efficiency.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 14
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.
@@ -4371,7 +4311,7 @@ Allows a system application to obtain historical network traffic.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: false for API versions 10 to 11; true for API version 12 and later
+**Enable via ACL**: false in API versions 10 to 11; true in API version 12 and later
 
 **Valid since**: 10
 
@@ -4479,7 +4419,7 @@ For details about the process for requesting permissions, see [Workflow for Requ
 
 ### ohos.permission.READ_AUDIO
 
-Allows access to the audio files in a user directory.
+Allows an application to access the audio files in a user directory.
 
 **Permission level**: system_basic
 
@@ -4491,7 +4431,7 @@ Allows access to the audio files in a user directory.
 
 ### ohos.permission.READ_DOCUMENT
 
-Allows access to the files in a user directory.
+Allows an application to access the documents in a user directory.
 
 **Permission level**: system_basic
 
@@ -4503,13 +4443,13 @@ Allows access to the files in a user directory.
 
 **Deprecated from**: 12
 
-**Substitute**:
+**Alternative solution**:
 
 See the [alternative solution of the **Files** permission group](app-permission-group-list.md#filesdeprecated).
 
 ### ohos.permission.READ_IMAGEVIDEO
 
-Allows access to the images or video files in a user's directory.
+Allows an application to access the images/videos in a user directory.
 
 **Permission level**: system_basic
 
@@ -4521,7 +4461,7 @@ Allows access to the images or video files in a user's directory.
 
 ### ohos.permission.WRITE_AUDIO
 
-Allows modification to the audio files in a user directory.
+Allows an application to modify the audio files in a user directory.
 
 **Permission level**: system_basic
 
@@ -4533,7 +4473,7 @@ Allows modification to the audio files in a user directory.
 
 ### ohos.permission.WRITE_DOCUMENT
 
-Allows modification to the files in a user's directory.
+Allows an application to modify the documents in a user directory.
 
 **Permission level**: system_basic
 
@@ -4545,13 +4485,13 @@ Allows modification to the files in a user's directory.
 
 **Deprecated from**: 12
 
-**Substitute**:
+**Alternative solution**:
 
 See the [alternative solution of the **Files** permission group](app-permission-group-list.md#filesdeprecated).
 
 ### ohos.permission.WRITE_IMAGEVIDEO
 
-Allows modification to the images or video files in a user's directory.
+Allows an application to modify the images/videos in a user directory.
 
 **Permission level**: system_basic
 
@@ -4563,7 +4503,7 @@ Allows modification to the images or video files in a user's directory.
 
 ### ohos.permission.READ_CONTACTS
 
-Allows an application to read the Contacts.
+Allows an application to read **Contacts**.
 
 **Permission level**: system_basic
 
@@ -4575,7 +4515,7 @@ Allows an application to read the Contacts.
 
 ### ohos.permission.WRITE_CONTACTS
 
-Allows an application to add, remove, and modify the Contacts.
+Allows an application to add, remove, and modify **Contacts**.
 
 **Permission level**: system_basic
 
@@ -4587,7 +4527,7 @@ Allows an application to add, remove, and modify the Contacts.
 
 ### ohos.permission.READ_WHOLE_CALENDAR
 
-Allows an application to read all Calendar information.
+Allows an application to read all calendar information.
 
 **Permission level**: system_basic
 
@@ -4599,7 +4539,7 @@ Allows an application to read all Calendar information.
 
 ### ohos.permission.WRITE_WHOLE_CALENDAR
 
-Allows an application to add, remove, or change all Calendar events.
+Allows an application to add, remove, or edit calendar events.
 
 **Permission level**: system_basic
 
@@ -4635,7 +4575,7 @@ Allows an application to answer incoming calls.
 
 ### ohos.permission.MANAGE_VOICEMAIL
 
-Allows an application to leave messages in the voice mailbox.
+Allows an application to access messages in the voice mailbox.
 
 **Permission level**: system_basic
 
@@ -4731,7 +4671,7 @@ Allows an application to send messages.
 
 ### ohos.permission.WRITE_CALL_LOG
 
-Allows an application to add, remove, and modify call logs.
+Allows an application to add, remove, and edit call logs.
 
 **Permission level**: system_basic
 
@@ -4743,7 +4683,7 @@ Allows an application to add, remove, and modify call logs.
 
 ### ohos.permission.READ_PASTEBOARD
 
-Allows an application to read the pasteboard.
+Allows an application to read **Pasteboard** data.
 
 **Permission level**: system_basic
 

@@ -54,6 +54,8 @@ Flex布局容器。
 
 ## FlexSpaceOptions<sup>12+</sup>
 
+所有子组件在Flex容器主轴或交叉轴的间距。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full

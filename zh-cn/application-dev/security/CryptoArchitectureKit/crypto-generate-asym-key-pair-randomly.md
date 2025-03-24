@@ -50,7 +50,7 @@
     // 使用密钥生成器随机生成非对称密钥对
     try {
       let keyPair = rsaGenerator.generateKeyPairSync();
-      if (keyPair != null) {
+      if (keyPair !== null) {
         let pubKey = keyPair.pubKey;
         let priKey = keyPair.priKey;
         // 获取非对称密钥对的二进制数据
@@ -111,7 +111,7 @@
     // 使用密钥生成器随机生成非对称密钥对
     try {
       let keyPair = rsaGenerator.generateKeyPairSync();
-      if (keyPair != null) {
+      if (keyPair !== null) {
         let pubKey = keyPair.pubKey;
         let priKey = keyPair.priKey;
         // 获取非对称密钥对的二进制数据

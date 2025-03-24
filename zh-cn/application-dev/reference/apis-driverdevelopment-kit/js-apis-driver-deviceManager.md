@@ -303,6 +303,7 @@ unbindDevice(deviceId: number, callback: AsyncCallback&lt;number&gt;): void
 
 ```ts
 import { deviceManager } from '@kit.DriverDevelopmentKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参

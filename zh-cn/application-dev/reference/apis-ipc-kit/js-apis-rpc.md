@@ -6663,7 +6663,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 > **说明：**
 >
-> 从API version 8开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9)替代。
+> 从API version 9开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6812,7 +6812,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
   | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The callback used to receive remote object death notifications is empty. |
   | 1900008  | The proxy or remote object is invalid. |
 
-### addDeathrecipient<sup>(deprecated)</sup>
+### addDeathRecipient<sup>(deprecated)</sup>
 
 addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
@@ -6944,17 +6944,18 @@ isObjectDead(): boolean
 
 实现IRemoteObject代理对象。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
-
 ### 属性
 
-| 名称                  | 值                      | 说明                              |
-| --------------------- | ----------------------- | --------------------------------- |
-| PING_TRANSACTION      | 1599098439 (0x5f504e47) | 内部指令码，用于测试IPC服务正常。 |
-| DUMP_TRANSACTION      | 1598311760 (0x5f444d50) | 内部指令码，获取Binder内部状态。  |
-| INTERFACE_TRANSACTION | 1598968902 (0x5f4e5446) | 内部指令码，获取对端接口描述符。  |
-| MIN_TRANSACTION_ID    | 1 (0x00000001)          | 最小有效指令码。                  |
-| MAX_TRANSACTION_ID    | 16777215 (0x00FFFFFF)   | 最大有效指令码。                  |
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
+
+  | 名称                  | 类型   | 可读  | 可写 | 说明                                     |
+  | --------------------- | -------| ------|----- | ---------------------------------------- |
+  | PING_TRANSACTION      | number | 是    | 否   | 内部指令码，用于测试IPC服务是否正常。     |
+  | DUMP_TRANSACTION      | number | 是    | 否   | 内部指令码，获取IPC服务相关的状态信息。   |
+  | INTERFACE_TRANSACTION | number | 是    | 否   | 内部指令码，获取对端接口描述符。          |
+  | MIN_TRANSACTION_ID    | number | 是    | 否   | 最小有效指令码。                          |
+  | MAX_TRANSACTION_ID    | number | 是    | 否   | 最大有效指令码。                          |
+
 
 ### sendRequest<sup>(deprecated)</sup>
 
@@ -8098,12 +8099,12 @@ isObjectDead(): boolean
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-  | 名称          | 值        | 说明                                                        |
-  | ------------- | --------- | ----------------------------------------------------------- |
-  | TF_SYNC       | 0 (0x00)  | 同步调用标识。                                              |
-  | TF_ASYNC      | 1 (0x01)  | 异步调用标识。                                              |
-  | TF_ACCEPT_FDS | 16 (0x10) | 指示sendMessageRequest<sup>9+</sup>接口可以返回文件描述符。 |
-  | TF_WAIT_TIME  | 8 (0x8)   | RPC等待时间(单位/秒)，不用于IPC的情况。                                     |
+  | 名称          | 类型   | 可读  | 可写  | 说明                                                                      |
+  | ------------- | -------| ----- | ----- | ------------------------------------------------------------------------ |
+  | TF_SYNC       | number | 是    | 否    | 同步调用标识。                                                            |
+  | TF_ASYNC      | number | 是    | 否    | 异步调用标识。                                                            |
+  | TF_ACCEPT_FDS | number | 是    | 否    | 指示sendMessageRequest<sup>9+</sup>接口可以传递文件描述符。               |
+  | TF_WAIT_TIME  | number | 是    | 是    | RPC等待时间(单位/秒)，IPC场景下无效。默认等待为8秒（不建议修改等待时间）。 |
 
 ### constructor<sup>9+</sup>
 
@@ -8735,6 +8736,15 @@ RemoteObject构造函数。
   | ---------- | ------ | ---- | ------------ |
   | descriptor | string | 是   | 接口描述符。 |
 
+**示例：**
+
+  ```ts
+  class TestRemoteObject extends rpc.RemoteObject {
+    constructor(descriptor: string) {
+      super(descriptor);
+    }
+  }
+  ```
 ### sendRequest<sup>(deprecated)</sup>
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
@@ -9359,7 +9369,7 @@ getLocalInterface(descriptor: string): IRemoteBroker
 
   | 类型          | 说明                                          |
   | ------------- | --------------------------------------------- |
-  | IRemoteBroker | 返回绑定到指定接口描述符的IRemoteBroker对象。 |
+  | [IRemoteBroker](#iremotebroker) | 返回绑定到指定接口描述符的IRemoteBroker对象。 |
 
 **错误码：**
 
@@ -9430,7 +9440,7 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 
   | 类型          | 说明                                                               |
   | ------------- | ------------------------------------------------------------------ |
-  | IRemoteBroker | 如果接口描述符对应的远端对象存在，则返回该远端对象，否则返回Null。 |
+  | [IRemoteBroker](#iremotebroker) | 如果接口描述符对应的远端对象存在，则返回该远端对象，否则返回Null。 |
 
 **示例：**
 
@@ -9685,18 +9695,16 @@ attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 提供与匿名共享内存对象相关的方法，包括创建、关闭、映射和取消映射Ashmem、从Ashmem读取数据和写入数据、获取Ashmem大小、设置Ashmem保护。
 共享内存只适用与本设备内跨进程通信。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
-
 ### 属性
 
-映射内存保护类型：
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-  | 名称       | 值  | 说明               |
-  | ---------- | --- | ------------------ |
-  | PROT_EXEC  | 4   | 映射的内存可执行。   |
-  | PROT_NONE  | 0   | 映射的内存不可访问。 |
-  | PROT_READ  | 1   | 映射的内存可读。     |
-  | PROT_WRITE | 2   | 映射的内存可写。     |
+  | 名称       | 类型   | 可读  | 可写  | 说明                                     |
+  | ---------- | -------| ----- | ----- |----------------------------------------- |
+  | PROT_EXEC  | number | 是    | 否    | 映射内存保护类型，代表映射的内存可执行。  |
+  | PROT_NONE  | number | 是    | 否    | 映射内存保护类型，代表映射的内存不可访问。|
+  | PROT_READ  | number | 是    | 否    | 映射内存保护类型，代表映射的内存可读。    |
+  | PROT_WRITE | number | 是    | 否    | 映射内存保护类型，代表映射的内存可写。    |
 
 ### create<sup>9+</sup>
 

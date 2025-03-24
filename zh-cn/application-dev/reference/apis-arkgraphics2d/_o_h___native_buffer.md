@@ -16,7 +16,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [native_buffer.h](native__buffer_8h.md) | 定义获取和使用NativeBuffer的相关函数。 | 
+| [buffer_common.h](buffer__common_8h.md) | 提供NativeBuffer模块的公共类型定义。<br/>部分类型定义从native_buffer.h移动至此头文件统一呈现，对于此类类型，API version 12版本之前即支持使用，各版本均可正常使用。 |
+| [native_buffer.h](native__buffer_8h.md) | 定义获取和使用NativeBuffer的相关函数。  |
 
 
 ### 结构体
@@ -446,14 +447,14 @@ OH_NativeBuffer的格式。
 | NATIVEBUFFER_PIXEL_FMT_BGRX_8888 | BGRX8888格式 | 
 | NATIVEBUFFER_PIXEL_FMT_BGRA_8888 | BGRA8888格式 | 
 | NATIVEBUFFER_PIXEL_FMT_YUV_422_I<sup>12+</sup> | YUV422 interleaved 格式 | 
-| NATIVEBUFFER_PIXEL_FMT_YCBCR_422_SP<sup>12+</sup> | YCBCR422 semi-plannar 格式 | 
-| NATIVEBUFFER_PIXEL_FMT_YCRCB_422_SP<sup>12+</sup> | YCRCB422 semi-plannar 格式 | 
-| NATIVEBUFFER_PIXEL_FMT_YCBCR_420_SP<sup>12+</sup> | YCBCR420 semi-plannar 格式 | 
-| NATIVEBUFFER_PIXEL_FMT_YCRCB_420_SP<sup>12+</sup> | YCRCB420 semi-plannar 格式 | 
-| NATIVEBUFFER_PIXEL_FMT_YCBCR_422_P<sup>12+</sup> | YCBCR422 plannar 格式 | 
-| NATIVEBUFFER_PIXEL_FMT_YCRCB_422_P<sup>12+</sup> | YCRCB422 plannar 格式 | 
-| NATIVEBUFFER_PIXEL_FMT_YCBCR_420_P<sup>12+</sup> | YCBCR420 plannar 格式 | 
-| NATIVEBUFFER_PIXEL_FMT_YCRCB_420_P<sup>12+</sup> | YCRCB420 plannar 格式 | 
+| NATIVEBUFFER_PIXEL_FMT_YCBCR_422_SP<sup>12+</sup> | YCBCR422 semi-planar 格式 | 
+| NATIVEBUFFER_PIXEL_FMT_YCRCB_422_SP<sup>12+</sup> | YCRCB422 semi-planar 格式 | 
+| NATIVEBUFFER_PIXEL_FMT_YCBCR_420_SP<sup>12+</sup> | YCBCR420 semi-planar 格式 | 
+| NATIVEBUFFER_PIXEL_FMT_YCRCB_420_SP<sup>12+</sup> | YCRCB420 semi-planar 格式 | 
+| NATIVEBUFFER_PIXEL_FMT_YCBCR_422_P<sup>12+</sup> | YCBCR422 planar 格式 | 
+| NATIVEBUFFER_PIXEL_FMT_YCRCB_422_P<sup>12+</sup> | YCRCB422 planar 格式 | 
+| NATIVEBUFFER_PIXEL_FMT_YCBCR_420_P<sup>12+</sup> | YCBCR420 planar 格式 | 
+| NATIVEBUFFER_PIXEL_FMT_YCRCB_420_P<sup>12+</sup> | YCRCB420 planar 格式 | 
 | NATIVEBUFFER_PIXEL_FMT_YUYV_422_PKG<sup>12+</sup> | YUYV422 packed 格式 | 
 | NATIVEBUFFER_PIXEL_FMT_UYVY_422_PKG<sup>12+</sup> | UYVY422 packed 格式 | 
 | NATIVEBUFFER_PIXEL_FMT_YVYU_422_PKG<sup>12+</sup> | YVYU422 packed 格式 | 
@@ -462,7 +463,7 @@ OH_NativeBuffer的格式。
 | NATIVEBUFFER_PIXEL_FMT_YCBCR_P010<sup>12+</sup> | YCBCR420 semi-planar 10bit packed 格式 | 
 | NATIVEBUFFER_PIXEL_FMT_YCRCB_P010<sup>12+</sup> | YCRCB420 semi-planar 10bit packed 格式 | 
 | NATIVEBUFFER_PIXEL_FMT_RAW10<sup>12+</sup> | Raw 10bit packed 格式 | 
-| NATIVEBUFFER_PIXEL_FMT_VENDER_MASK<sup>12+</sup> | vender mask 格式 | 
+| NATIVEBUFFER_PIXEL_FMT_VENDER_MASK<sup>12+</sup> | vendor mask 格式 | 
 | NATIVEBUFFER_PIXEL_FMT_BUTT | 无效格式 | 
 
 
@@ -578,25 +579,25 @@ enum OHNativeErrorCode
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| NATIVE_ERROR_OK | 成功 | 
-| NATIVE_ERROR_INVALID_ARGUMENTS | 入参无效 | 
-| NATIVE_ERROR_NO_PERMISSION | 无权限操作 | 
-| NATIVE_ERROR_NO_BUFFER | 无空闲可用的buffer | 
-| NATIVE_ERROR_NO_CONSUMER | 消费端不存在 | 
-| NATIVE_ERROR_NOT_INIT | 未初始化 | 
-| NATIVE_ERROR_CONSUMER_CONNECTED | 消费端已经被连接 | 
-| NATIVE_ERROR_BUFFER_STATE_INVALID | buffer状态不符合预期 | 
-| NATIVE_ERROR_BUFFER_IN_CACHE | buffer已在缓存队列中 | 
-| NATIVE_ERROR_BUFFER_QUEUE_FULL | 队列已满 | 
-| NATIVE_ERROR_BUFFER_NOT_IN_CACHE | buffer不在缓存队列中 |
-| NATIVE_ERROR_CONSUMER_DISCONNECTED | 消费端已经被断开连接 |
-| NATIVE_ERROR_CONSUMER_NO_LISTENER_REGISTERED | 消费端未注册listener回调函数 |
-| NATIVE_ERROR_UNSUPPORTED | 当前设备或平台不支持 | 
-| NATIVE_ERROR_UNKNOWN | 未知错误，请查看日志 | 
-| NATIVE_ERROR_HDI_ERROR  | HDI接口调用失败   | 
-| NATIVE_ERROR_BINDER_ERROR  | 跨进程通信失败   | 
-| NATIVE_ERROR_EGL_STATE_UNKNOWN | egl环境状态异常 | 
-| NATIVE_ERROR_EGL_API_FAILED | egl接口调用失败 | 
+| NATIVE_ERROR_OK | 成功。 | 
+| NATIVE_ERROR_INVALID_ARGUMENTS | 入参无效。 | 
+| NATIVE_ERROR_NO_PERMISSION | 无权限操作。 | 
+| NATIVE_ERROR_NO_BUFFER | 无空闲可用的buffer。 | 
+| NATIVE_ERROR_NO_CONSUMER | 消费端不存在。 | 
+| NATIVE_ERROR_NOT_INIT | 未初始化。 | 
+| NATIVE_ERROR_CONSUMER_CONNECTED | 消费端已经被连接。 | 
+| NATIVE_ERROR_BUFFER_STATE_INVALID | buffer状态不符合预期。 | 
+| NATIVE_ERROR_BUFFER_IN_CACHE | buffer已在缓存队列中。 | 
+| NATIVE_ERROR_BUFFER_QUEUE_FULL | 队列已满。 | 
+| NATIVE_ERROR_BUFFER_NOT_IN_CACHE | buffer不在缓存队列中。 |
+| NATIVE_ERROR_CONSUMER_DISCONNECTED | 消费端已经被断开连接。 |
+| NATIVE_ERROR_CONSUMER_NO_LISTENER_REGISTERED | 消费端未注册listener回调函数。 |
+| NATIVE_ERROR_UNSUPPORTED | 当前设备或平台不支持。 | 
+| NATIVE_ERROR_UNKNOWN | 未知错误，请查看日志。 | 
+| NATIVE_ERROR_HDI_ERROR  | HDI接口调用失败。   | 
+| NATIVE_ERROR_BINDER_ERROR  | 跨进程通信失败。   | 
+| NATIVE_ERROR_EGL_STATE_UNKNOWN | egl环境状态异常。 | 
+| NATIVE_ERROR_EGL_API_FAILED | egl接口调用失败。 | 
 
 
 ## 函数说明
@@ -891,8 +892,8 @@ int32_t OH_NativeBuffer_SetMetadataValue (OH_NativeBuffer *buffer, OH_NativeBuff
 | 名称 | 描述 | 
 | -------- | -------- |
 | buffer | 一个指向OH_NativeBuffer实例的指针。 | 
-| metadataKey | OH_NativeBuffer的元数据类型，其值从[OH_NativeBuffer_MetadataKey](#oh_nativebuffer_metadatakey)获取。 | 
-| size | uint8_t向量的大小，其取值范围见[OH_NativeBuffer_MetadataKey](#oh_nativebuffer_metadatakey)。 | 
+| metadataKey | OH_NativeBuffer的元数据类型，其值从[OH_NativeBuffer_MetadataKey](#oh_nativebuffer_metadatakey-1)获取。 | 
+| size | uint8_t向量的大小，其取值范围见[OH_NativeBuffer_MetadataKey](#oh_nativebuffer_metadatakey-1)。 | 
 | metaDate | 指向uint8_t向量的指针。 | 
 
 **返回：**

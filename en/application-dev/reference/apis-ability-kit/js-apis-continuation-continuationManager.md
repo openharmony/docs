@@ -1272,3 +1272,31 @@ Enumerates the continuation modes provided by the device selection module.
 | -------- | -------- | -------- |
 | COLLABORATION_SINGLE | 0 | Single-choice mode.|
 | COLLABORATION_MULTIPLE | 1 | Multi-choice mode.|
+
+## ContinuationResult<sup>10+</sup>
+
+type ContinuationResult = _ContinuationResult
+
+Defines the device information returned by the continuation management entry.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Ability.DistributedAbilityManager
+
+| Type| Description|
+| --- | --- |
+| [_ContinuationResult](js-apis-continuation-continuationResult.md) | Device information returned by the continuation management entry.|
+
+## ContinuationExtraParams<sup>10+</sup>
+
+type ContinuationExtraParams = _ContinuationExtraParams
+
+Defines the extra parameters required by the device selection module in the continuation management entry.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Ability.DistributedAbilityManager
+
+| Type| Description|
+| --- | --- |
+| [_ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | Extra parameters required by the device selection module in the continuation management entry.|

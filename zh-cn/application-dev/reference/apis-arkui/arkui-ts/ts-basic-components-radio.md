@@ -51,11 +51,11 @@ Radio(options: RadioOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            | 说明                           |
-| --------------- | -------------------------------- |
-| TICK            | 选中样式为系统默认TICK图标。  |
-| DOT             | 选中样式为系统默认DOT图标。   |
-| CUSTOM          | 选中样式为indicatorBuilder中的内容。|
+| 名称            | 值           | 说明                           |
+| --------------- | -------------------------------- | -------------------------------- |
+| TICK            | 0           | 选中样式为系统默认TICK图标。  |
+| DOT             | 1            | 选中样式为系统默认DOT图标。   |
+| CUSTOM          | 2         | 选中样式为indicatorBuilder中的内容。|
 
 ## 属性
 
@@ -99,7 +99,7 @@ radioStyle(value?: RadioStyle)
 | ------ | ----------------------------------- | ---- | ---------------------------------- |
 | value  | [RadioStyle](#radiostyle10对象说明) | 否   | 单选框选中状态和非选中状态的样式。 |
 
-## contentModifier<sup>12+</sup>
+### contentModifier<sup>12+</sup>
 
 contentModifier(modifier: ContentModifier\<RadioConfiguration>)
 
@@ -145,9 +145,9 @@ onChange(callback: (isChecked: boolean) => void)
 
 | 名称                   | 类型                                       | 必填 | 说明                                                         |
 | ---------------------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| checkedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 开启状态底板颜色。<br/>默认值：#007DFF                       |
-| uncheckedBorderColor   | [ResourceColor](ts-types.md#resourcecolor) | 否   | 关闭状态描边颜色。<br/>默认值：#182431                       |
-| indicatorColor         | [ResourceColor](ts-types.md#resourcecolor) | 否   | 开启状态内部圆饼颜色。从API version 12开始，indicatorType设置为RadioIndicatorType.TICK和RadioIndicatorType.DOT时，支持修改内部颜色。indicatorType设置为RadioIndicatorType.CUSTOM时，不支持修改内部颜色。<br/>默认值：#FFFFFF |
+| checkedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 开启状态底板颜色。<br/>默认值：`$r('sys.color.ohos_id_color_text_primary_activated')`                      |
+| uncheckedBorderColor   | [ResourceColor](ts-types.md#resourcecolor) | 否   | 关闭状态描边颜色。<br/>默认值：`$r('sys.color.ohos_id_color_switch_outline_off')`                       |
+| indicatorColor         | [ResourceColor](ts-types.md#resourcecolor) | 否   | 开启状态内部圆饼颜色。从API version 12开始，indicatorType设置为RadioIndicatorType.TICK和RadioIndicatorType.DOT时，支持修改内部颜色。indicatorType设置为RadioIndicatorType.CUSTOM时，不支持修改内部颜色。<br/>默认值：`$r('sys.color.ohos_id_color_foreground_contrary')` |
 
 ## RadioConfiguration<sup>12+</sup>对象说明
 

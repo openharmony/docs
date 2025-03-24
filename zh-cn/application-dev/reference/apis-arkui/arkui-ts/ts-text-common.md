@@ -61,8 +61,8 @@ getGlyphPositionAtCoordinate(x: number, y: number): PositionWithAffinity
 
 | 参数名    | 类型   | 必填   | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| x | number | 是    | 相对于组件的横坐标，单位px |
-| y | number | 是    | 相对于组件的纵坐标，单位px |
+| x | number | 是    | 相对于组件的横坐标。<br/>单位：px |
+| y | number | 是    | 相对于组件的纵坐标。<br/>单位：px |
 
 **返回值：**
 
@@ -94,7 +94,7 @@ getLineMetrics(lineNumber: number): LineMetrics
 
 ### getRectsForRange<sup>14+</sup>
 
-getRectsForRange(range: Range, widthStyle: RectWidthStyle, heightStyle: RectHeightStyle): Array\<TextBox>
+getRectsForRange(range: TextRange, widthStyle: RectWidthStyle, heightStyle: RectHeightStyle): Array\<TextBox>
 
 获取给定的矩形区域宽度以及矩形区域高度的规格下，文本中任意区间范围内的字符或占位符所占的绘制区域信息。
 
@@ -106,7 +106,7 @@ getRectsForRange(range: Range, widthStyle: RectWidthStyle, heightStyle: RectHeig
 
 | 参数名      | 类型                                 | 必填 | 说明                     |
 | ----------- | ----------------------------------- | ---- | ------------------------ |
-| range       | [Range](../../apis-arkgraphics2d/js-apis-graphics-text.md#range)                     | 是   | 需要获取的区域的文本区间。  |
+| range       | [TextRange](#textrange12)| 是   | 需要获取的区域的文本区间。  |
 | widthStyle  | [RectWidthStyle](#rectwidthstyle14)   | 是   | 返回的矩形区域的宽度的规格。|
 | heightStyle | [RectHeightStyle](#rectheightstyle14) | 是   | 返回的矩形区域的高度的规格。|
 
@@ -207,7 +207,7 @@ equals(id: TextMenuItemId): boolean
 | icon | [ResourceStr](ts-types.md#resourcestr) | 否   | 菜单图标。<br/>不支持网络图片。 |
 | id | [TextMenuItemId](#textmenuitemid12) | 是   | 菜单id。 |
 
-## EditMenuOptions对象说明
+## EditMenuOptions
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -266,8 +266,6 @@ onMenuItemClick(menuItem: TextMenuItem, range: TextRange): boolean
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-### 属性
-
 | 名称 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
 | start | number | 否 | 起始索引。 |
@@ -296,13 +294,13 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) =
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称  | 说明                               |
-| ----- | -------------------------------------- |
-| PHONE_NUMBER  | 电话号码 |
-| URL | 链接 |
-| EMAIL | 邮箱 |
-| ADDRESS | 地址 |
-| DATE_TIME<sup>12+</sup> | 时间 |
+| 名称  | 值   | 说明                               |
+| ----- | ----- | --------------------------------- |
+| PHONE_NUMBER  | 0 | 电话号码 |
+| URL | 1 | 链接 |
+| EMAIL | 2 | 邮箱 |
+| ADDRESS | 3 | 地址 |
+| DATE_TIME<sup>12+</sup> | 4 | 时间 |
 
 ## TextDeleteDirection<sup>12+</sup>枚举说明
 
@@ -365,6 +363,7 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) =
 | onDetectResultUpdate   | (result: string) => void | 否   | 文本识别成功后，触发onDetectResultUpdate回调。<br/>-&nbsp;result：文本识别的结果，Json格式。 |
 | color<sup>12+</sup>   | [ResourceColor](ts-types.md#resourcecolor) | 否   | 设置文本识别成功后的实体颜色。<br/>默认值：'#ff0a59f7' |
 | decoration<sup>12+</sup>  | [DecorationStyleInterface](ts-universal-styled-string.md#decorationstyleinterface对象说明)| 否   | 设置文本识别成功后的实体装饰线样式。<br/>默认值：<br/>{<br/>&nbsp;type:&nbsp;TextDecorationType.Underline,<br/>&nbsp;color:&nbsp;与实体颜色一致,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
+
 ## PreviewText<sup>12+</sup>
 
 预上屏信息。
@@ -419,7 +418,7 @@ type OnDidChangeCallback = (rangeBefore: TextRange, rangeAfter: TextRange) => vo
 
 | 名称 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
-| onWillChange | Callback<[StyledStringChangeValue](ts-basic-components-richeditor.md#styledstringchangevalue12), boolean> | 否 | 文本内容将要变化回调函数。 |
+| onWillChange | Callback<[StyledStringChangeValue](#styledstringchangevalue12), boolean> | 否 | 文本内容将要变化回调函数。 |
 | onDidChange | [OnDidChangeCallback](#ondidchangecallback12) | 否 | 文本内容完成变化回调函数。 |
 
 ## StyledStringChangeValue<sup>12+</sup>
@@ -474,7 +473,7 @@ selectionStart和selectionEnd均为-1时表示全选。
 | -------------- | ------ | ---- | ------- |
 | selectionStart | number | 是    | 选中开始位置。 |
 | selectionEnd   | number | 是    | 选中结束位置。 |
-| options<sup>12+</sup>   | [SelectionOptions](ts-types.md#selectionoptions12对象说明) | 否    | 选择项配置。 |
+| options   | [SelectionOptions](ts-types.md#selectionoptions12对象说明) | 否    | 选择项配置。 |
 
 ### closeSelectionMenu<sup>12+</sup>
 
@@ -500,7 +499,7 @@ getLayoutManager(): LayoutManager
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| [LayoutManager](ts-text-common.md#LayoutManager) | 布局管理器对象。 |
+| [LayoutManager](ts-text-common.md#layoutmanager12) | 布局管理器对象。 |
 
 ## TextEditControllerEx<sup>12+</sup>
 
@@ -618,7 +617,7 @@ setStyledString(styledString: StyledString): void
 
 ### getStyledString<sup>12+</sup>
 
-getStyledString(): MutableStyledString;
+getStyledString(): MutableStyledString
 
 获取富文本组件显示的属性字符串。
 
@@ -630,7 +629,7 @@ getStyledString(): MutableStyledString;
 
 | 类型    | 说明                          |
 | ------- | ----------------------------- |
-| [MutableStyledString](ts-universal-styled-string.md#mutablestyledstring) | 富文本组件显示的属性字符串 |
+| [MutableStyledString](ts-universal-styled-string.md#mutablestyledstring) | 富文本组件显示的属性字符串。 |
 
 ## DecorationStyleResult<sup>12+</sup>
 

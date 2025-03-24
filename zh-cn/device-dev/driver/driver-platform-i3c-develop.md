@@ -95,7 +95,7 @@ struct I3cMethod {
 |i2cTransfer | **cntlr**：结构体指针，核心层I3C控制器<br />**msgs**：结构体指针，用户消息<br />**count**：int16_t，消息数量 | **msgs**：结构体指针，用户消息 | HDF_STATUS相关状态 | 使用I2C模式传递用户消息 |
 | setConfig | **cntlr**：结构体指针，核心层I3C控制器<br />**config**：控制器配置参数| 无 | HDF_STATUS相关状态 | 设置I3C控制器配置参数 |
 | getConfig | **cntlr**：结构体指针，核心层I3C控制器 | **config**：控制器配置参数 | HDF_STATUS相关状态 | 获取I3C控制器配置参数 |
-| requestIbi | **device**：结构体指针，核心层I3C设备 | 无 | HDF_STATUS相关状态 | 为I3C设备请求IBI（In-Bind Interrupt，即带内中断） |
+| requestIbi | **device**：结构体指针，核心层I3C设备 | 无 | HDF_STATUS相关状态 | 为I3C设备请求IBI（In-Band Interrupt，即带内中断） |
 | freeIbi | **device**：结构体指针，核心层I3C设备 | 无 | HDF_STATUS相关状态 | 释放IBI |
 
 ### 开发步骤 <a name="9"></a>

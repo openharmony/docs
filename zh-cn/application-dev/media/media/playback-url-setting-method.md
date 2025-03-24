@@ -1,7 +1,7 @@
 # 使用AVPlayer设置播放URL(ArkTS)
 本开发指导将介绍如何使用AVPlayer开发播放功能，在不同的场景下如何设置URL。
 
-当前指导仅介绍播放URL设置方法，其他场景及完整是示例代码，请参考[视频播放](video-playback.md)。
+当前指导仅介绍播放URL设置方法，其他场景及完整示例代码，请参考[视频播放](video-playback.md)。
 
 当前开发指导将提供以下设置播放URL的方法：
 - [流媒体播放场景下设置URL](#流媒体播放场景下设置url)
@@ -26,7 +26,7 @@
 
 **情况三：设置HTTP请求头信息播放**
 
-当服务器需要校验HTTP请求头信息时，可通过[createMediaSourceWithUrl](../../reference/apis-media-kit/js-apis-media.md#createmediasourcewithurl12)设置HTTP请求头信息。
+当服务器需要校验HTTP请求头信息时，可通过[createMediaSourceWithUrl](../../reference/apis-media-kit/js-apis-media.md#mediacreatemediasourcewithurl12)设置HTTP请求头信息。
 ```ts
   // 创建avPlayer实例对象
   let avPlayer: media.AVPlayer = await media.createAVPlayer();

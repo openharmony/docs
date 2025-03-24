@@ -21,7 +21,7 @@ Worker主要作用是为应用程序提供一个多线程的运行环境，可�
 - 序列化传输的数据量大小限制为16MB。
 - 使用Worker模块时，需要在宿主线程中注册onerror接口，否则当Worker线程出现异常时会发生jscrash问题。
 - 不支持跨HAP使用Worker线程文件。
-- 引用HAR/HSP前，需要先配置对HAR/HSP的依赖，详见[引用共享包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-har-import-V5)。
+- 引用HAR/HSP前，需要先配置对HAR/HSP的依赖，详见[引用共享包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V14/ide-har-import-V14)。
 - 不支持在Worker工作线程中使用[AppStorage](../quick-start/arkts-appstorage.md)。
 
 
@@ -90,8 +90,8 @@ import { worker } from '@kit.ArkTS';
 // worker线程文件所在路径："entry/src/main/ets/workers/worker.ets"
 const workerStage1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ets');
 
-// worker线程文件所在路径："phone/src/main/ets/ThreadFile/workers/worker.ets"
-const workerStage2: worker.ThreadWorker = new worker.ThreadWorker('phone/ets/ThreadFile/workers/worker.ets');
+// worker线程文件所在路径："testworkers/src/main/ets/ThreadFile/workers/worker.ets"
+const workerStage2: worker.ThreadWorker = new worker.ThreadWorker('testworkers/ets/ThreadFile/workers/worker.ets');
 ```
 
 2） 加载[HSP](../quick-start/in-app-hsp.md)中Worker线程文件场景

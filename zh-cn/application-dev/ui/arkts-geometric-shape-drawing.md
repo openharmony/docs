@@ -26,7 +26,7 @@
 - 绘制组件单独使用，用于在页面上绘制指定的图形。有7种绘制类型，分别为[Circle](../reference/apis-arkui/arkui-ts/ts-drawing-components-circle.md)（圆形）、[Ellipse](../reference/apis-arkui/arkui-ts/ts-drawing-components-ellipse.md)（椭圆形）、[Line](../reference/apis-arkui/arkui-ts/ts-drawing-components-line.md)（直线）、[Polyline](../reference/apis-arkui/arkui-ts/ts-drawing-components-polyline.md)（折线）、[Polygon](../reference/apis-arkui/arkui-ts/ts-drawing-components-polygon.md)（多边形）、[Path](../reference/apis-arkui/arkui-ts/ts-drawing-components-path.md)（路径）、[Rect](../reference/apis-arkui/arkui-ts/ts-drawing-components-rect.md)（矩形）。以Circle的接口调用为例：
 
   ```ts
-  Circle(options?: {width?: string | number, height?: string | number}
+  Circle(value?: { width?: string | number, height?: string | number })
   ```
 
     该接口用于在页面绘制圆形，其中width用于设置圆形的宽度，height用于设置圆形的高度，圆形直径由宽高最小值确定。
@@ -42,7 +42,7 @@
 
 
 ```ts
-viewPort{ x?: number | string, y?: number | string, width?: number | string, height?: number | string }
+viewPort(value: { x?: number | string, y?: number | string, width?: number | string, height?: number | string })
 ```
 
 形状视口viewport指定用户空间中的一个矩形，该矩形映射到为关联的SVG元素建立的视区边界。viewport属性的值包含x、y、width和height四个可选参数，x和y表示视区的左上角坐标，width和height表示其尺寸。
@@ -59,6 +59,7 @@ viewPort{ x?: number | string, y?: number | string, width?: number | string, hei
     height:number = 75
   }
   let viep:tmp = new tmp()
+
   class tmp1{
     x:number = 0
     y:number = 0
@@ -66,6 +67,7 @@ viewPort{ x?: number | string, y?: number | string, width?: number | string, hei
     height:number = 300
   }
   let viep1:tmp1 = new tmp1()
+
   // 画一个宽高都为75的圆
   Text('原始尺寸Circle组件')
   Circle({width: 75, height: 75}).fill('#E87361')
@@ -112,13 +114,7 @@ viewPort{ x?: number | string, y?: number | string, width?: number | string, hei
     height:number = 300
   }
   let viep:tmp = new tmp()
-  class tmp1{
-    x:number = -150
-    y:number = -150
-    width:number = 300
-    height:number = 300
-  }
-  let viep1:tmp1 = new tmp1()
+
   Shape() {
     Rect().width("100%").height("100%").fill("#0097D4")
     Circle({ width: 150, height: 150 }).fill("#E87361")
@@ -134,15 +130,22 @@ viewPort{ x?: number | string, y?: number | string, width?: number | string, hei
 - 创建一个宽高都为300的shape组件，背景色为黄色，创建一个宽高都为300的viewport。用一个蓝色的矩形来填充viewport，在viewport中绘制一个半径为75的圆，将viewport向右方和下方各平移150。
 
   ```ts
+  class tmp{
+    x:number = -150
+    y:number = -150
+    width:number = 300
+    height:number = 300
+  }
+  let viep:tmp = new tmp()
+
   Shape() {
     Rect().width("100%").height("100%").fill("#0097D4")
     Circle({ width: 150, height: 150 }).fill("#E87361")
   }
-    .viewPort(viep1)
+    .viewPort(viep)
     .width(300)
     .height(300)
     .backgroundColor("#F5DC62")
-
   ```
 
   ![viewport（3）](figures/viewport（3）.jpg)
@@ -160,6 +163,7 @@ viewPort{ x?: number | string, y?: number | string, width?: number | string, hei
     .height(100)
     .commands('M150 0 L300 300 L0 300 Z')
     .fill("#E87361")
+    .strokeWidth(0)
   ```
 
   ![2023022792216(1)](figures/2023022792216(1).jpg)
@@ -266,7 +270,9 @@ viewPort{ x?: number | string, y?: number | string, width?: number | string, hei
 
 ## 场景示例
 
-- 在Shape的(-80, -5)点绘制一个封闭路径，填充颜色0x317AF7，线条宽度3，边框颜色红色，拐角样式锐角（默认值）。
+### 绘制封闭路径
+
+  在Shape的(-80, -5)点绘制一个封闭路径，填充颜色0x317AF7，线条宽度3，边框颜色红色，拐角样式锐角（默认值）。
 
   ```ts
   @Entry
@@ -290,7 +296,9 @@ viewPort{ x?: number | string, y?: number | string, width?: number | string, hei
 
   ![场景1](figures/场景1.jpg)
 
-- 绘制一个直径为150的圆，和一个直径为150、线条为红色虚线的圆环（宽高设置不一致时以短边为直径）。
+### 绘制圆和圆环
+
+  绘制一个直径为150的圆，和一个直径为150、线条为红色虚线的圆环（宽高设置不一致时以短边为直径）。
 
   ```ts
   @Entry

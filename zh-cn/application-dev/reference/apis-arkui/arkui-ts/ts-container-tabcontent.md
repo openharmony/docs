@@ -20,6 +20,8 @@
 
 TabContent()
 
+创建TabContent页签和内容。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -62,7 +64,7 @@ tabBar(value: SubTabBarStyle | BottomTabBarStyle)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [SubTabBarStyle](#subtabbarstyle9对象说明) \| [BottomTabBarStyle](#bottomtabbarstyle9对象说明) | 是   | TabBar上显示内容。<br/>SubTabBarStyle:&nbsp;子页签样式。<br/>BottomTabBarStyle:&nbsp;底部页签和侧边页签样式。 |
+| value  | [SubTabBarStyle](#subtabbarstyle9) \| [BottomTabBarStyle](#bottomtabbarstyle9) | 是   | TabBar上显示内容。<br/>SubTabBarStyle:&nbsp;子页签样式。<br/>BottomTabBarStyle:&nbsp;底部页签和侧边页签样式。 |
 
 >  **说明：**
 >
@@ -73,7 +75,7 @@ tabBar(value: SubTabBarStyle | BottomTabBarStyle)
 >  - 建议对Tabs组件的所有TabContent子组件的tabBar属性，采用统一的参数类型。
 >  - 若TabContent内部有可获焦组件，Tabs组件内TabContent组件和TabBar组件之间的走焦，仅支持使用键盘上下左右控制。
 
-## SubTabBarStyle<sup>9+</sup>对象说明
+## SubTabBarStyle<sup>9+</sup>
 
 子页签样式。打开后在切换页签时会播放跳转动画。
 
@@ -129,13 +131,13 @@ SubTabBarStyle的静态构造函数。
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| [SubTabBarStyle](#subtabbarstyle9对象说明) | 返回创建的SubTabBarStyle对象。 |
+| [SubTabBarStyle](#subtabbarstyle9) | 返回创建的SubTabBarStyle对象。 |
 
 ### of<sup>12+</sup>
 
 static of(content: ResourceStr | ComponentContent): SubTabBarStyle
 
-SubTabBarStyle的静态构造函数。
+SubTabBarStyle的静态构造函数。支持ComponentContent设置自定义内容。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -151,7 +153,7 @@ SubTabBarStyle的静态构造函数。
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| [SubTabBarStyle](#subtabbarstyle9对象说明) | 返回创建的SubTabBarStyle对象。 |
+| [SubTabBarStyle](#subtabbarstyle9) | 返回创建的SubTabBarStyle对象。 |
 
 ### indicator<sup>10+</sup>
 
@@ -173,7 +175,7 @@ indicator(value: IndicatorStyle): SubTabBarStyle
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| [SubTabBarStyle](#subtabbarstyle9对象说明) | 返回SubTabBarStyle对象本身。 |
+| [SubTabBarStyle](#subtabbarstyle9) | 返回SubTabBarStyle对象本身。 |
 
 ### selectedMode<sup>10+</sup>
 
@@ -195,7 +197,7 @@ selectedMode(value: SelectedMode): SubTabBarStyle
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| [SubTabBarStyle](#subtabbarstyle9对象说明) | 返回SubTabBarStyle对象本身。 |
+| [SubTabBarStyle](#subtabbarstyle9) | 返回SubTabBarStyle对象本身。 |
 
 ### board<sup>10+</sup>
 
@@ -217,7 +219,7 @@ board(value: BoardStyle): SubTabBarStyle
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| [SubTabBarStyle](#subtabbarstyle9对象说明) | 返回SubTabBarStyle对象本身。 |
+| [SubTabBarStyle](#subtabbarstyle9) | 返回SubTabBarStyle对象本身。 |
 
 ### labelStyle<sup>10+</sup>
 
@@ -239,7 +241,7 @@ labelStyle(value: LabelStyle): SubTabBarStyle
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| [SubTabBarStyle](#subtabbarstyle9对象说明) | 返回SubTabBarStyle对象本身。 |
+| [SubTabBarStyle](#subtabbarstyle9) | 返回SubTabBarStyle对象本身。 |
 
 ### padding<sup>10+</sup>
 
@@ -261,7 +263,7 @@ padding(value: Padding | Dimension): SubTabBarStyle
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| [SubTabBarStyle](#subtabbarstyle9对象说明) | 返回SubTabBarStyle对象本身。 |
+| [SubTabBarStyle](#subtabbarstyle9) | 返回SubTabBarStyle对象本身。 |
 
 ### padding<sup>12+</sup>
 
@@ -283,7 +285,7 @@ padding(padding: LocalizedPadding): SubTabBarStyle
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| [SubTabBarStyle](#subtabbarstyle9对象说明) | 返回SubTabBarStyle对象本身。 |
+| [SubTabBarStyle](#subtabbarstyle9) | 返回SubTabBarStyle对象本身。 |
 
 ### id<sup>11+</sup>
 
@@ -305,9 +307,11 @@ id(value: string): SubTabBarStyle
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| [SubTabBarStyle](#subtabbarstyle9对象说明) | 返回SubTabBarStyle对象本身。 |
+| [SubTabBarStyle](#subtabbarstyle9) | 返回SubTabBarStyle对象本身。 |
 
 ## IndicatorStyle<sup>10+</sup>对象说明
+
+下划线风格对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -323,6 +327,8 @@ id(value: string): SubTabBarStyle
 
 ## SelectedMode<sup>10+</sup>枚举说明
 
+选中子页签的显示模式枚举。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -334,6 +340,8 @@ id(value: string): SubTabBarStyle
 
 ## BoardStyle<sup>10+</sup>对象说明
 
+背板风格对象。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -343,6 +351,8 @@ id(value: string): SubTabBarStyle
 | borderRadius | [Length](ts-types.md#length) | 否 | 背板的圆角半径（不支持百分比设置）。<br/>默认值：8.0<br/>单位：vp |
 
 ## LabelStyle<sup>10+</sup>对象说明
+
+label文本和字体的样式对象。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -357,7 +367,7 @@ id(value: string): SubTabBarStyle
 | unselectedColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置Label文本字体未选中时的颜色。<br/>默认值:#99182431 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | selectedColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置Label文本字体选中时的颜色。<br/>默认值:#FF007DFF <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
-## BottomTabBarStyle<sup>9+</sup>对象说明
+## BottomTabBarStyle<sup>9+</sup>
 
 底部页签和侧边页签样式。
 
@@ -399,7 +409,7 @@ BottomTabBarStyle的静态构造函数。
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| [BottomTabBarStyle](#bottomtabbarstyle9对象说明) | 返回创建的BottomTabBarStyle对象。 |
+| [BottomTabBarStyle](#bottomtabbarstyle9) | 返回创建的BottomTabBarStyle对象。 |
 
 ### padding<sup>10+</sup>
 
@@ -421,7 +431,7 @@ padding(value: Padding | Dimension | LocalizedPadding): BottomTabBarStyle
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| [BottomTabBarStyle](#bottomtabbarstyle9对象说明) | 返回BottomTabBarStyle对象本身。 |
+| [BottomTabBarStyle](#bottomtabbarstyle9) | 返回BottomTabBarStyle对象本身。 |
 
 ### verticalAlign<sup>10+</sup>
 
@@ -443,7 +453,7 @@ verticalAlign(value: VerticalAlign): BottomTabBarStyle
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| [BottomTabBarStyle](#bottomtabbarstyle9对象说明) | 返回BottomTabBarStyle对象本身。 |
+| [BottomTabBarStyle](#bottomtabbarstyle9) | 返回BottomTabBarStyle对象本身。 |
 
 ### layoutMode<sup>10+</sup>
 
@@ -465,7 +475,7 @@ layoutMode(value: LayoutMode): BottomTabBarStyle
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| [BottomTabBarStyle](#bottomtabbarstyle9对象说明) | 返回BottomTabBarStyle对象本身。 |
+| [BottomTabBarStyle](#bottomtabbarstyle9) | 返回BottomTabBarStyle对象本身。 |
 
 ### symmetricExtensible<sup>10+</sup>
 
@@ -487,7 +497,7 @@ symmetricExtensible(value: boolean): BottomTabBarStyle
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| [BottomTabBarStyle](#bottomtabbarstyle9对象说明) | 返回BottomTabBarStyle对象本身。 |
+| [BottomTabBarStyle](#bottomtabbarstyle9) | 返回BottomTabBarStyle对象本身。 |
 
 ### labelStyle<sup>10+</sup>
 
@@ -509,7 +519,7 @@ labelStyle(value: LabelStyle): BottomTabBarStyle
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| [BottomTabBarStyle](#bottomtabbarstyle9对象说明) | 返回BottomTabBarStyle对象本身。 |
+| [BottomTabBarStyle](#bottomtabbarstyle9) | 返回BottomTabBarStyle对象本身。 |
 
 ### id<sup>11+</sup>
 
@@ -531,13 +541,13 @@ id(value: string): BottomTabBarStyle
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| [BottomTabBarStyle](#bottomtabbarstyle9对象说明) | 返回BottomTabBarStyle对象本身。 |
+| [BottomTabBarStyle](#bottomtabbarstyle9) | 返回BottomTabBarStyle对象本身。 |
 
 ### iconStyle<sup>12+</sup>
 
 iconStyle(style: TabBarIconStyle): BottomTabBarStyle
 
-置底部页签的label图标的样式。
+设置底部页签的label图标的样式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -553,9 +563,11 @@ iconStyle(style: TabBarIconStyle): BottomTabBarStyle
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| [BottomTabBarStyle](#bottomtabbarstyle9对象说明) | 返回BottomTabBarStyle对象本身。 |
+| [BottomTabBarStyle](#bottomtabbarstyle9) | 返回BottomTabBarStyle对象本身。 |
 
 ## TabBarSymbol<sup>12+</sup>对象说明
+
+页签内symbol图标样式对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -563,10 +575,12 @@ iconStyle(style: TabBarIconStyle): BottomTabBarStyle
 
 | 名称 | 类型         | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| normal | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 是 | 页签内symbol图标普通态样式。<br/>默认值：fontColor：#66182431，renderingStrategy：SymbolRenderingStrategy.MULTIPLE_OPACITY，fontSize：24vp |
-| selected | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | 页签内symbol图标选中态样式。<br/>默认值：fontColor：#ff007dff，renderingStrategy：SymbolRenderingStrategy.MULTIPLE_OPACITY，fontSize：24vp |
+| normal | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 是 | 页签内symbol图标普通态样式。<br/>默认值：<br/>fontColor：#66182431 <br/>renderingStrategy：SymbolRenderingStrategy.MULTIPLE_OPACITY <br/>fontSize：24vp |
+| selected | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | 页签内symbol图标选中态样式。<br/>默认值：<br/>fontColor：#ff007dff <br/>renderingStrategy：SymbolRenderingStrategy.MULTIPLE_OPACITY <br/>fontSize：24vp |
 
 ## LayoutMode<sup>10+</sup>枚举说明
+
+页签内容排布方式枚举。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -579,6 +593,8 @@ iconStyle(style: TabBarIconStyle): BottomTabBarStyle
 | HORIZONTAL | 页签内容左右排布。 |
 
 ## TabBarIconStyle<sup>12+</sup>对象说明
+
+Label图标样式对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

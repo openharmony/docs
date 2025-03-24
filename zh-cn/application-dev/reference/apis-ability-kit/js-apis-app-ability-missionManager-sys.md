@@ -28,7 +28,7 @@ on(type:'mission', listener: MissionListener): number
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -130,7 +130,7 @@ off(type: 'mission', listenerId: number, callback: AsyncCallback&lt;void&gt;): v
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -228,7 +228,7 @@ off(type: 'mission', listenerId: number): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -330,7 +330,7 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -396,7 +396,7 @@ getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -451,7 +451,7 @@ getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Arr
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -504,7 +504,7 @@ getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionIn
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -557,7 +557,7 @@ getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -608,7 +608,7 @@ getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnaps
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -662,7 +662,7 @@ getLowResolutionMissionSnapShot(deviceId: string, missionId: number, callback: A
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -713,7 +713,7 @@ getLowResolutionMissionSnapShot(deviceId: string, missionId: number): Promise\<M
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -769,7 +769,7 @@ lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -821,7 +821,7 @@ lockMission(missionId: number): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -875,7 +875,7 @@ unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -926,7 +926,7 @@ unlockMission(missionId: number): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -981,7 +981,7 @@ clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1033,7 +1033,7 @@ clearMission(missionId: number): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1087,7 +1087,7 @@ clearAllMissions(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1135,7 +1135,7 @@ clearAllMissions(): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **返回值：**
 
@@ -1180,7 +1180,7 @@ moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1232,7 +1232,7 @@ moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCall
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1285,7 +1285,7 @@ moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&g
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1341,7 +1341,7 @@ moveMissionsToForeground(missionIds: Array&lt;number&gt;, callback: AsyncCallbac
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1408,7 +1408,7 @@ moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission: number, ca
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1476,7 +1476,7 @@ moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission?: number): 
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1545,7 +1545,7 @@ moveMissionsToBackground(missionIds: Array&lt;number&gt;, callback: AsyncCallbac
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1609,7 +1609,7 @@ moveMissionsToBackground(missionIds : Array&lt;number&gt;): Promise&lt;Array&lt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 

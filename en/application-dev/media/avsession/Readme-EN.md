@@ -1,7 +1,7 @@
 # AVSession Kit
 
 - [Introduction to AVSession Kit](avsession-overview.md)
-- Local AVSession
+- Local AVSession<!--local-avsession-->
   - [Local AVSession Overview](local-avsession-overview.md)
   - [AVSession Provider](using-avsession-developer.md)
   - [AVSession Provider (C/C++)](using-ohavsession-developer.md)
@@ -9,7 +9,7 @@
   <!--Del-->
   - [AVSession Controller (for System Applications Only)](using-avsession-controller.md)
   <!--DelEnd-->
-- Distributed AVSession
+- Distributed AVSession<!--distributed-avsession-->
   <!--Del-->
   - [Distributed AVSession Overview (for System Applications Only)](distributed-avsession-overview.md)
   - [Using Distributed AVSession (for System Applications Only)](using-distributed-avsession.md)

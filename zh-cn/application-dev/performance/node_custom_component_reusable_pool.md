@@ -173,7 +173,7 @@ NodeItem继承NodeController，并实现makeNode方法，创建组件。NodePool
    }
    ```
 
-3. 使用单例模式实现复用池，应用内统一管理组件复用
+3. 使用单例模式实现复用池，应用内统一管理组件复用。
 
     ```ts
     export class NodePool {
@@ -195,7 +195,7 @@ NodeItem继承NodeController，并实现makeNode方法，创建组件。NodePool
     }
     ```
 
-4. 添加getNode方法，根据传入的type参数，获取对应的Node组件，如果未找到，则重新创建
+4. 添加getNode方法，根据传入的type参数，获取对应的Node组件，如果未找到，则重新创建。
 
     ```ts
       // 获取Node组件，如果存在type类型的Node组件，则直接使用，否则重新创建
@@ -216,7 +216,7 @@ NodeItem继承NodeController，并实现makeNode方法，创建组件。NodePool
       }
     ```
 
-5. 实现recycleNode方法，回收Node组件
+5. 实现recycleNode方法，回收Node组件。
 
     ```ts
       // 回收Node组件，提供给下次复用

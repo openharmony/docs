@@ -367,8 +367,6 @@ Third-party applications can connect to hotspots through network management.
 
 - You can rotate and drag and drop a window as it rotates.
 
-- You can drag and drop a window between three devices.
-
 - Applications can configure whether to hide the badge during the drag process.
 
 - The data receiver can customize the cut and copy behavior.
@@ -530,12 +528,12 @@ The version of CMake version used for building is upgraded from 3.16.5 to 3.28.2
 
 **Table 1** Version mapping of software and tools
 
-| Software/Tool| Version| Remarks|
+| Software/Tool| Version| Remarks| 
 | -------- | -------- | -------- |
-| OpenHarmony | 5.0.0 Release | NA |
-| Public SDK | Ohos_sdk_public 5.0.0.71 (API Version 12 Release) | This toolkit is intended for application developers and does not contain system APIs that require system permissions.|
-| (Optional) HUAWEI DevEco Studio| 5.0.0 Release | Recommended for developing OpenHarmony applications<br>[Click here](https://developer.huawei.com/consumer/cn/download/).|
-| (Optional) HUAWEI DevEco Device Tool| 4.0 Release | Recommended for developing OpenHarmony smart devices<br>[Click here](https://device.harmonyos.com/cn/develop/ide#download). |
+| OpenHarmony | 5.0.0 Release | NA | 
+| Public SDK | Ohos_sdk_public 5.0.0.71 (API Version 12 Release) | This toolkit is intended for application developers and does not contain system APIs that require system permissions.| 
+| (Optional) HUAWEI DevEco Studio| 5.0.0 Release | Recommended for developing OpenHarmony applications<br>[Click here](https://developer.huawei.com/consumer/cn/download/).| 
+| (Optional) HUAWEI DevEco Device Tool| 4.0 Release | Recommended for developing OpenHarmony smart devices<br>[Click here](https://device.harmonyos.com/cn/develop/ide#download). | 
 
 
 ## Source Code Acquisition
@@ -607,10 +605,11 @@ Use the **repo** tool to download the source code over HTTPS.
 
 | Source Code                               | Version| Mirror                                                | SHA-256 Checksum                                            | Software Package Size|
 | --------------------------------------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- |
+| Full code base (for mini, small, and standard systems)       | 5.0.0 Release    | [Download](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/code-v5.0.0-Release.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/code-v5.0.0-Release.tar.gz.sha256)| 41.8 GB |
 | Hi3861 solution (binary)       | 5.0.0 Release    | [Download](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/hispark_pegasus.tar.gz) | [Download](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/hispark_pegasus.tar.gz.sha256) | 27.1 MB |
 | Hi3516 solution-LiteOS (binary)| 5.0.0 Release    | [Download](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/hispark_taurus_LiteOS.tar.gz) | [Download](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/hispark_taurus_LiteOS.tar.gz.sha256) | 328.3 MB |
 | Hi3516 solution-Linux (binary) | 5.0.0 Release    | [Download](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/hispark_taurus_Linux.tar.gz) | [Download](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/hispark_taurus_Linux.tar.gz.sha256) | 220.4 MB |
-| RK3568 standard system solution (binary)       | 5.0.0 Release    | [Download](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/dayu200_standard_arm32.tar.gz) | [Download](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/dayu200_standard_arm32.tar.gz.sha256) | 519.7 MB |
+| RK3568 standard system solution (binary)       | 5.0.0 Release    | [Download](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/dayu200_standard_arm32_20240929.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/dayu200_standard_arm32_20240929.tar.gz.sha256)| 11.7 GB |
 | Public SDK package for the standard system (macOS)            | 5.0.0.71 | [Download](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/ohos-sdk-mac-public.tar.gz) | [Download](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/ohos-sdk-mac-public.tar.gz.sha256) | 1.3 GB |
 | Public SDK package for the standard system (macOS-M1)            | 5.0.0.71  | [Download](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [Download](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) | 1.2 GB |
 | Public SDK package for the standard system (Windows/Linux)  | 5.0.0.71   | [Download](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/ohos-sdk-windows_linux-public.tar.gz) | [Download](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/ohos-sdk-windows_linux-public.tar.gz.sha256) | 2.5 GB |
@@ -620,7 +619,7 @@ Use the **repo** tool to download the source code over HTTPS.
 
 **Table 3** Resolved issues
 
-| Issue No.| Description|
+| Issue No.| Description| 
 | -------- | -------- |
 | IA686U | There is a high probability that a C++ crash occurs in libace_napi.z.so of the OS_FFRT_2_0 thread in the com.ohos.photos process.|
 | I9YC9X | There is a high probability that system freezing occurs in libark_jsruntime.so due to LIFECYCLE_TIMEOUT in the com.ohos.camera process.|
@@ -638,22 +637,20 @@ Use the **repo** tool to download the source code over HTTPS.
 
 **Table 4** Known issues
 
-| Issue No.| Description| Impact| To Be Resolved By|
+| Issue No.| Description| Impact| To Be Resolved By| 
 | -------- | -------- | -------- | -------- |
-| I9S5ZN | There is a low probability that app freezing occurs in libunwind.z.so due to THREAD_BLOCK_6S in the com.ohos.settings process.| The Settings page freezes.<br>Workaround: Restart the Settings application.| 2024-10-15|
-| I9S600 | There is a low probability that app freezing occurs in libark_jsruntime.so due to THREAD_BLOCK_6S in the com.ohos.settings process.| The Settings page freezes.<br>Workaround: Restart the Settings application.| 2024-10-15|
-| IAB2U3<br>IAK2J2 | There is a low probability that a C++ crash occurs in libaudio_client.z.so of the OS_APAsyncRunne thread of the audio_server process.| This issue does not affect user services. No workaround is required.| 2024-10-15|
-| IAIRFB | There is a low probability that a C++ crash occurs in libweb_engine.so of the com.ohos.note thread of the com.ohos.note process.| The application will exit unexpectedly. This issue can be resolved by restarting the application.| 2024-10-15|
-| I9SXZ8 | There is a low probability that app freezing occurs in libark_jsruntime.so due to THREAD_BLOCK_6S in the com.ohos.contacts process.| The application freezes when you open the Contacts application to query call records. This issue can be resolved by restarting the Contacts application.| 2024-10-15|
-| IAKLLD | There is a low probability that a C++ crash occurs in libaudio_policy_service.z.so of the SaInit2 thread of the audio_server process.| The process restarts. This issue does not affect user services. No workaround is required.| 2024-10-15|
-| IA56CU | There is a low probability that a C++ crash occurs in libweb_engine.so of the com.ohos.note thread of the com.ohos.note process.| The application will exit unexpectedly. This issue can be resolved by restarting the application.| 2024-09-30|
-| IA5AMJ | There is a low probability that app freezing occurs in libark_jsruntime.so due to THREAD_BLOCK_6S in the com.ohos.launcher process.| The screen freezes for about 3 seconds when you access the multi-task screen. After the loading is complete, the screen recovers.| 2024-09-30|
-| IA5AIT | There is a low probability that system freezing occurs in render_service due to SERVICE_BLOCK.| The application screen freezes and does not respond. This issue can be resolved by restarting the device.| 2024-10-15|
-| IA6RH6 | There is a high probability that app freezing occurs in libbtframework.z.so due to THREAD_BLOCK_6S in the com.ohos.settings process.| The Settings application might not respond. This issue can be resolved by restarting the Settings application.| 2024-10-15|
-| IA6RFX | There is a high probability that a C++ crash occurs in libbtservice.z.so of the OSaInit0 thread in the bluetooth_service process.| Bluetooth-related application might crash. This issue can be resolved by restarting the application.| 2024-10-15|
-| IA8KGR | There is a low probability that a C++ crash occurs in libbluetooth_server.z.so of the OS_IPC_12_22172 thread of the bluetooth_service process.| Bluetooth-related application might crash. This issue can be resolved by restarting the application.| 2024-10-15|
-| IAQC64 | Randomly open several applications and then open the Settings application. When you return to the home screen and repeatedly access the background interface, the Settings application may encounter a memory leakage of 32 KB for each operation.| The Settings application may exit unexpectedly. This issue can be resolved by restarting the application.| 2024-10-15|
-| IASE04 | In the memory test of OpenHarmony on the RK3568 development board, the resident memory of the render_service process exceeds the baseline (31 MB).| The memory usage of the entire system is higher than expected.| 2024-10-15|
-| IASDWO | The sliding frame rate for accessing the Weibo home page through a browser is lower than the specification baseline.| Browsing experience is affected.| 2024-10-15|
-
- <!--no_check--> 
+| I9S5ZN | There is a low probability that app freezing occurs in libunwind.z.so due to THREAD_BLOCK_6S in the com.ohos.settings process.| The Settings page freezes.<br>Workaround: Restart the Settings application.| 2024-10-15| 
+| I9S600 | There is a low probability that app freezing occurs in libark_jsruntime.so due to THREAD_BLOCK_6S in the com.ohos.settings process.| The Settings page freezes.<br>Workaround: Restart the Settings application.| 2024-10-15| 
+| IAB2U3<br>IAK2J2 | There is a low probability that a C++ crash occurs in libaudio_client.z.so of the OS_APAsyncRunne thread of the audio_server process.| This issue does not affect user services. No workaround is required.| 2024-10-15| 
+| IAIRFB | There is a low probability that a C++ crash occurs in libweb_engine.so of the com.ohos.note thread of the com.ohos.note process.| The application will exit unexpectedly. This issue can be resolved by restarting the application.| 2024-10-15| 
+| I9SXZ8 | There is a low probability that app freezing occurs in libark_jsruntime.so due to THREAD_BLOCK_6S in the com.ohos.contacts process.| The application freezes when you open the Contacts application to query call records. This issue can be resolved by restarting the Contacts application.| 2024-10-15| 
+| IAKLLD | There is a low probability that a C++ crash occurs in libaudio_policy_service.z.so of the SaInit2 thread of the audio_server process.| The process restarts. This issue does not affect user services. No workaround is required.| 2024-10-15| 
+| IA56CU | There is a low probability that a C++ crash occurs in libweb_engine.so of the com.ohos.note thread of the com.ohos.note process.| The application will exit unexpectedly. This issue can be resolved by restarting the application.| 2024-09-30| 
+| IA5AMJ | There is a low probability that app freezing occurs in libark_jsruntime.so due to THREAD_BLOCK_6S in the com.ohos.launcher process.| The screen freezes for about 3 seconds when you access the multi-task screen. After the loading is complete, the screen recovers.| 2024-09-30| 
+| IA5AIT | There is a low probability that system freezing occurs in render_service due to SERVICE_BLOCK.| The application screen freezes and does not respond. This issue can be resolved by restarting the device.| 2024-10-15| 
+| IA6RH6 | There is a high probability that app freezing occurs in libbtframework.z.so due to THREAD_BLOCK_6S in the com.ohos.settings process.| The Settings application might not respond. This issue can be resolved by restarting the Settings application.| 2024-10-15| 
+| IA6RFX | There is a high probability that a C++ crash occurs in libbtservice.z.so of the OSaInit0 thread in the bluetooth_service process.| Bluetooth-related application might crash. This issue can be resolved by restarting the application.| 2024-10-15| 
+| IA8KGR | There is a low probability that a C++ crash occurs in libbluetooth_server.z.so of the OS_IPC_12_22172 thread of the bluetooth_service process.| Bluetooth-related application might crash. This issue can be resolved by restarting the application.| 2024-10-15| 
+| IAQC64 | Randomly open several applications and then open the Settings application. When you return to the home screen and repeatedly access the background interface, the Settings application may encounter a memory leakage of 32 KB for each operation.| The Settings application may exit unexpectedly. This issue can be resolved by restarting the application.| 2024-10-15| 
+| IASE04 | In the memory test of OpenHarmony on the RK3568 development board, the resident memory of the render_service process exceeds the baseline (31 MB).| The memory usage of the entire system is higher than expected.| 2024-10-15| 
+| IASDWO | The sliding frame rate for accessing the Weibo home page through a browser is lower than the specification baseline.| Browsing experience is affected.| 2024-10-15| 

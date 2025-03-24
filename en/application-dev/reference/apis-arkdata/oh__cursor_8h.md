@@ -30,12 +30,12 @@ A result set is a set of results returned by **query()**.
 
 | Name| Description|
 | -------- | -------- |
-| [OH_ColumnType](_r_d_b.md#oh_columntype) | Defines an enum for the types of fields in an RDB store. |
-| [OH_Cursor](_r_d_b.md#oh_cursor) | Defines a struct for a result set. |
+| [OH_ColumnType](_r_d_b.md#oh_columntype) | Defines the field type in the database.  |
+| [OH_Cursor](_r_d_b.md#oh_cursor) | Defines a result set.  |
 
 
 ### Enums
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| [OH_ColumnType](_r_d_b.md#oh_columntype-1) {<br>TYPE_NULL = 0, TYPE_INT64, TYPE_REAL, TYPE_TEXT,<br>TYPE_BLOB, TYPE_ASSET, TYPE_ASSETS<br>} | Enumerates the types of fields in an RDB store. |
+| [OH_ColumnType](_r_d_b.md#oh_columntype-1) {<br/>TYPE_NULL = 0, TYPE_INT64, TYPE_REAL, TYPE_TEXT,<br/>TYPE_BLOB, TYPE_ASSET, TYPE_ASSETS<br/>} | Enumerates the types of the fields in the database.  |

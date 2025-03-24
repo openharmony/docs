@@ -17,7 +17,7 @@ You can use [transition](../reference/apis-arkui/arkui-ts/ts-transition-animatio
 | move | Applies a transition effect by specifying which edge the component slides in and out of through [TransitionEdge](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md#transitionedge10).| The component enters by sliding in from the edge specified by **TransitionEdge** and exits by sliding out of the same edge.|
 | asymmetric | Applies an asymmetric transition effect.<br>- **appear**: enter transition effect.<br>- **disappear**: exit transition effect.| The component enters by applying the transition effect specified by **appear** and exits by applying the transition effect specified by **disappear**.|
 | combine | Combines with other transition effects.| The component enters and exits by combing with other transition effects.|
-| animation | Defines the animation settings for the transition effect.<br>- If animation settings are not specified here, the animation settings of **animateTo** will be used.<br>- Animation settings cannot be configured through the **animation** API of the component.<br>- The **onFinish** callback of the **animation** parameter in **TransitionEffect** does not take effect.| The API call sequence is from top to bottom. This means that the **animation** settings of **TransitionEffect** at the upper level also take effect on **TransitionEffect** at the lower level .|
+| animation | Defines the animation settings for the transition effect.<br>- If animation settings are not specified here, the animation settings of **animateTo** will be used.<br>- Animation settings cannot be configured through the **animation** API of the component.<br>- The **onFinish** callback of the **animation** parameter in **TransitionEffect** does not take effect.| The API call sequence is from top to bottom. This means that the **animation** settings of **TransitionEffect** at the upper level also take effect on **TransitionEffect** at the lower level.|
 
 
 1. Create a **TransitionEffect** object.
@@ -50,15 +50,15 @@ You can use [transition](../reference/apis-arkui/arkui-ts/ts-transition-animatio
   
    ```ts
    @State isPresent: boolean = true;
-   ...
+   // ...
    if (this.isPresent) {
      Text('test')
        .transition(this.effect)
    }
-   ...
+   // ...
    // Control the addition or deletion of the component.
    // Method 1: Place the control variable in the animateTo closure. In this case, the transition effect for which the animation API is not call will follow the animation settings of animateTo.
-   animateTo({ curve: curves.springMotion() }, () => {
+   this.getUIContext()?.animateTo({ curve: curves.springMotion() }, () => {
      this.isPresent = false;
    })
    
@@ -76,19 +76,20 @@ import { curves } from '@kit.ArkUI';
 @Component
 struct TransitionEffectDemo {
   @State isPresent: boolean = false;
-
   // Step 1: Create a TransitionEffect object.
   private effect: TransitionEffect =
     // Apply the default opacity transition effect and specify springMotion (0.6, 0.8) as the curve.
-  TransitionEffect.OPACITY.animation({ curve: curves.springMotion(0.6, 0.8) })
-    // Combine with a scale transition effect, whose animation settings follow TransitionEffect above, that is, springMotion(0.6, 0.8).
-    .combine(TransitionEffect.scale({ x: 0, y: 0 }))
-      // Apply a rotation transition effect, whose animation settings follow TransitionEffect above, that is, springMotion(0.6, 0.8).
-    .combine(TransitionEffect.rotate({ angle: 90 }))
-      // Apply a translation transition effect, whose animation settings are specified by animation, which is springMotion().
-    .combine(TransitionEffect.translate({ y: 150 }).animation({ curve: curves.springMotion() }))
-      // Apply a movement transition effect, whose animation settings follow TransitionEffect above, that is, springMotion().
-    .combine(TransitionEffect.move(TransitionEdge.END))
+    TransitionEffect.OPACITY.animation({
+      curve: curves.springMotion(0.6, 0.8)
+    })// Combine with a scale transition effect, whose animation settings follow TransitionEffect above, that is, springMotion(0.6, 0.8).
+      .combine(TransitionEffect.scale({
+        x: 0,
+        y: 0
+      }))// Apply a rotation transition effect, whose animation settings follow TransitionEffect above, that is, springMotion(0.6, 0.8).
+      .combine(TransitionEffect.rotate({ angle: 90 }))// Apply a translation transition effect, whose animation settings are specified by animation, which is springMotion().
+      .combine(TransitionEffect.translate({ y: 150 })
+        .animation({ curve: curves.springMotion() }))// Apply a movement transition effect, whose animation settings follow TransitionEffect above, that is, springMotion().
+      .combine(TransitionEffect.move(TransitionEdge.END))
 
   build() {
     Stack() {
@@ -148,7 +149,6 @@ const DURATION = 300;
 @Component
 struct Index1 {
   @State isGridShow: boolean = false;
-
   private dataArray: number[] = new Array(ITEM_COUNTS);
 
   aboutToAppear(): void {
@@ -169,8 +169,7 @@ struct Index1 {
               .size({ width: 50, height: 50 })
               .backgroundColor(ITEM_COLOR)
               .transition(TransitionEffect.OPACITY
-                .combine(TransitionEffect.scale({ x: 0.5, y: 0.5 }))
-                // Add delay to the transition of each grid cell so that the grid cells exit one by one.
+                .combine(TransitionEffect.scale({ x: 0.5, y: 0.5 }))// Add delay to the transition of each grid cell so that the grid cells exit one by one.
                 .animation({ duration: DURATION, curve: Curve.Friction, delay: INTERVAL * index }))
               .borderRadius(10)
             }
@@ -190,7 +189,7 @@ struct Index1 {
     }
     .size({ width: '100%', height: '100%' })
     .onClick(() => {
-      animateTo({
+      this.getUIContext()?.animateTo({
         duration: DURATION + INTERVAL * (ITEM_COUNTS - 1),
         curve: Curve.Friction
       }, () => {

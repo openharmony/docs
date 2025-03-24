@@ -89,6 +89,8 @@ Triggered when the component is hidden.
 
 ## Example
 
+This example demonstrates how to control the mounting and unmounting of a component using a button, triggering **onAttach** and **onDetach** events.
+
 ```ts
 // xxx.ets
 import { promptAction } from '@kit.ArkUI'

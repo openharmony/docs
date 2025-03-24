@@ -6,21 +6,20 @@ For details about the algorithm specifications, see [SM2](crypto-sign-sig-verify
 
 ## Adding the Dynamic Library in the CMake Script
 ```txt
-   target_link_libraries(entry PUBLIC libohcrypto.so)
+target_link_libraries(entry PUBLIC libohcrypto.so)
 ```
 
 ## How to Develop
 
 
-1. Use [OH_CryptoVerify_Create](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_create) with the string parameter **'SM2_256|SM3'** to create a **Verify** instance. The key type is **SM2_256**, and MD algorithm is **SM3**.
+1. Call [OH_CryptoVerify_Create](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_create) with the string parameter **'SM2_256|SM3'** to create a **Verify** instance. The key type is **SM2_256**, and MD algorithm is **SM3**.
 
-2. Use [OH_CryptoVerify_Init](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_init) to initialize the **Verify** instance by using the public key (**OH_CryptoPubKey**).
+2. Call [OH_CryptoVerify_Init](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_init) to initialize the **Verify** instance by using the public key (**OH_CryptoPubKey**).
 
-3. Use [OH_CryptoVerify_Update](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_update) to pass in the data to be verified.
-   
+3. Call [OH_CryptoVerify_Update](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_update) to pass in the data to be verified.<br>
    Currently, the amount of data to be passed in by a single **OH_CryptoVerify_Update** is not limited. You can determine how to pass in data based on the data volume. If a small amount of data is to be verified, you can call **OH_CryptoVerify_Final** immediately after **OH_CryptoVerify_Init()**.
-   
-4. Use [OH_CryptoVerify_Final](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_final) to verify the signature.
+
+4. Call [OH_CryptoVerify_Final](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_final) to verify the signature.
 
 **Example**
 
@@ -38,7 +37,7 @@ static bool doTestSm2Signature()
    uint8_t plainText[] = {
       0x96, 0x46, 0x2e, 0xde, 0x3f, 0x47, 0xbf, 0xd6, 0x87, 0x48, 0x36, 0x1d, 0x75, 0x35, 0xbd, 0xbc,
       0x6b, 0x06, 0xe8, 0xb3, 0x68, 0x91, 0x53, 0xce, 0x76, 0x5d, 0x24, 0xda, 0xdc, 0xc4, 0x9f, 0x94,
-   };
+   }; // Data to be verified, for reference only.
    Crypto_DataBlob msgBlob = {
       .data = reinterpret_cast<uint8_t *>(plainText),
       .len = sizeof(plainText)
@@ -51,7 +50,7 @@ static bool doTestSm2Signature()
       0x4f, 0x44, 0x0e, 0xb2, 0xba, 0x3a, 0xb3, 0x10, 0xf1, 0xc9, 0xd0, 0x84, 0xe2, 0xa4, 0x47, 0xbe,
       0x72, 0xae, 0xf8, 0x6a, 0xeb, 0x6e, 0x10, 0xab, 0x52, 0x6b, 0x6a, 0x58, 0xc6, 0xb5, 0x78, 0xaa,
       0x70, 0xe5, 0x58, 0x20, 0x4e, 0x34, 0x42, 0x77, 0x08, 0x27, 0x11,
-   };
+   }; // Public key in DER format, for reference only.
 
    Crypto_DataBlob keyBlob = {
       .data = reinterpret_cast<uint8_t *>(pubKeyText),
@@ -64,7 +63,7 @@ static bool doTestSm2Signature()
       0x8b, 0xbe, 0xbf, 0x5f, 0x90, 0x02, 0x20, 0x53, 0xb4, 0x23, 0xb1, 0xe2, 0x8f, 0x2f, 0xe9, 0xc8,
       0x22, 0xef, 0xab, 0x9b, 0x13, 0x08, 0x75, 0x8e, 0xb1, 0x9c, 0x59, 0xe5, 0xd6, 0x64, 0x35, 0xf5,
       0xd1, 0xde, 0xfa, 0xfe, 0x80, 0x37, 0x1a,
-   };
+   }; // Signature data, for reference only.
 
    Crypto_DataBlob signBlob = {
       .data = reinterpret_cast<uint8_t *>(signText),
@@ -73,30 +72,30 @@ static bool doTestSm2Signature()
    
    // keypair
    OH_Crypto_ErrCode ret = CRYPTO_SUCCESS;
-   ret = OH_CryptoAsymKeyGenerator_Create((const char *)"SM2_256", &keyCtx);
+   ret = OH_CryptoAsymKeyGenerator_Create((const char *)"SM2_256", &keyCtx); // Create an asymmetric key generator.
    if (ret != CRYPTO_SUCCESS) {
       return false;
    }
-   ret = OH_CryptoAsymKeyGenerator_Convert(keyCtx, CRYPTO_DER, &keyBlob, nullptr, &keyPair);
+   ret = OH_CryptoAsymKeyGenerator_Convert(keyCtx, CRYPTO_DER, &keyBlob, nullptr, &keyPair); // Convert the public key in DER format to OH_CryptoKeyPair.
    if (ret != CRYPTO_SUCCESS) {
       OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
       return false;
    }
    OH_CryptoPubKey *pubKey = OH_CryptoKeyPair_GetPubKey(keyPair);
    // verify
-   ret = OH_CryptoVerify_Create((const char *)"SM2_256|SM3", &verify);
+   ret = OH_CryptoVerify_Create((const char *)"SM2_256|SM3", &verify); // Create a Verify instance.
    if (ret != CRYPTO_SUCCESS) {
       OH_CryptoVerify_Destroy(verify);
       OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
       return false;
    }
-   ret = OH_CryptoVerify_Init(verify, pubKey);
+   ret = OH_CryptoVerify_Init(verify, pubKey); // Use the public key to initialize the Verify instance.
    if (ret != CRYPTO_SUCCESS) {
       OH_CryptoVerify_Destroy(verify);
       OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
       return false;
    }
-   bool res = OH_CryptoVerify_Final(verify, &msgBlob, &signBlob);
+   bool res = OH_CryptoVerify_Final(verify, &msgBlob, &signBlob); // Verify the signature of the data.
    if (res != true) {
       OH_CryptoVerify_Destroy(verify);
       OH_CryptoAsymKeyGenerator_Destroy(keyCtx);

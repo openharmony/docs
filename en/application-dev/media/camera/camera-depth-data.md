@@ -29,7 +29,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    }
    ```
 
-3. Call [start](../../reference/apis-camera-kit/js-apis-camera-sys.md#start) in the **depthDataOutput** class to start outputting the depth data stream.   If the call fails, an error code is returned. For details about the error code types, see [CameraErrorCode](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode).
+3. Call [start](../../reference/apis-camera-kit/js-apis-camera-sys.md#start12) in the **depthDataOutput** class to start outputting the depth data stream. If the call fails, an error code is returned. For details about the error code types, see [CameraErrorCode](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode).
      
    ```ts
    async function startDepthDataOutput(depthDataOutput: camera.DepthDataOutput): Promise<void> {

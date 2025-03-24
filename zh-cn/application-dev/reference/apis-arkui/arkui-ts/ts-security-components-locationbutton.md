@@ -122,7 +122,7 @@ LocationButton(options:LocationButtonOptions)
 
 onClick(event: (event: ClickEvent, result: LocationButtonOnClickResult) =&gt; void)
 
-点击动作触发该回调
+点击动作触发该回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

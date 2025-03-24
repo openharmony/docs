@@ -28,7 +28,7 @@ napi_status napi_load_module_with_info(napi_env env,
 
 | Scenario           | Description          | Description                        |
 | :------------- | :----------------------------- | :--------------------------- |
-| Local project module  | Load the module file. | The file path must start with **moduleName**.            |
+| Local project module  | Load the module file.      | The file path must start with **moduleName**.            |
 | Local project module  | Load the HAR module name.          | -                            |
 | Remote package        | Load the remote HAR module name.       | -                            |
 | Remote package        | Load the ohpm package name.           | -                            |
@@ -40,6 +40,11 @@ napi_status napi_load_module_with_info(napi_env env,
 > - The module name to be loaded is the entry file, generally **index.ets/ts**, of the module.
 > - To load a HAR to another HAR, ensure that **module_info** is correct. The value of **moduleName** must be that of the HAP.
 > - If a third-party package is directly or indirectly used in a HAP/HSP and the third-party package has loaded another module, for example, module A, using **napi_load_module_with_info**, you must add module A in the dependencies of the HAP/HSP.
+
+## Exception Scenarios
+1. The HSP fails to be loaded, and the error code "napi_generic_failure" is returned.
+2. A link error occurs or a file cannot be found in the package during module loading process, and the API throws **referenceError** and returns "napi_pending_exception".
+3. The loading fails due to unexpected behavior on the system side, and **cppcrash** is thrown.
 
 ## How to Use
 
@@ -83,6 +88,9 @@ export {value, test};
         napi_value result;
         // 1. Call napi_load_module_with_info to load the module from the Test.ets file.
         napi_status status = napi_load_module_with_info(env, "entry/src/main/ets/Test", "com.example.application/entry", &result);
+        if (status != napi_ok) {
+           return nullptr;
+        }
 
         napi_value testFn;
         // 2. Call napi_get_named_property to obtain the test function.
@@ -146,6 +154,9 @@ export {value, test};
         napi_value result;
         // 1. Call napi_load_module_with_info to load library.
         napi_status status = napi_load_module_with_info(env, "library", "com.example.application/entry", &result);
+        if (status != napi_ok) {
+           return nullptr;
+        }
 
         napi_value testFn;
         // 2. Call napi_get_named_property to obtain the test function.
@@ -198,6 +209,9 @@ export {value, test};
         napi_value result;
         // 1. Call napi_load_module_with_info to load @ohos/hypium.
         napi_status status = napi_load_module_with_info(env, "@ohos/hypium", "com.example.application/entry", &result);
+        if (status != napi_ok) {
+           return nullptr;
+        }
 
         napi_value key;
         std::string keyStr = "DEFAULT";
@@ -244,6 +258,9 @@ export {value, test};
         napi_value result;
         // 1. Call napi_load_module_with_info to load json5.
         napi_status status = napi_load_module_with_info(env, "json5", "com.example.application/entry", &result);
+        if (status != napi_ok) {
+           return nullptr;
+        }
 
         napi_value key;
         std::string keyStr = "default";
@@ -274,7 +291,10 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
     // 1. Call napi_load_module_with_info to load the @ohos.hilog module.
     napi_value result;
     napi_status status = napi_load_module_with_info(env, "@ohos.hilog", nullptr, &result);
-    
+    if (status != napi_ok) {
+        return nullptr;
+    }
+
     // 2. Call napi_get_named_property to obtain the info function.
     napi_value infoFn;
     napi_get_named_property(env, result, "info", &infoFn);
@@ -339,6 +359,9 @@ export const add: (a: number, b: number) => number;
         napi_value result;
         // 1. Call napi_load_module_with_info to load libentry.so.
         napi_status status = napi_load_module_with_info(env, "libentry.so", "com.example.application/entry", &result);
+        if (status != napi_ok) {
+            return nullptr;
+        }
 
         napi_value addFn;
         // 2. Call napi_get_named_property to obtain the add function.
@@ -402,6 +425,9 @@ export {value, test};
         napi_value result;
         // 1. Call napi_load_module_with_info to load har2. Note that moduleName is that of the HAP where the module is located.
         napi_status status = napi_load_module_with_info(env, "har2", "com.example.application/entry", &result);
+        if (status != napi_ok) {
+            return nullptr;
+        }
 
         napi_value testFn;
         // 2. Call napi_get_named_property to obtain the test function.

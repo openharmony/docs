@@ -22,11 +22,11 @@ Slider(options?: SliderOptions)
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                   | Mandatory | Description              |
+| Name | Type                                   | Mandatory| Description              |
 | ------- | --------------------------------------- | ---- | ------------------ |
-| options | [SliderOptions](#slideroptions)  | No  | Parameters of the slider. |
+| options | [SliderOptions](#slideroptions) | No  | Parameters of the slider.|
 
 ## SliderOptions
 
@@ -34,25 +34,27 @@ Slider(options?: SliderOptions)
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name | Type | Mandatory | Description |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | number | No | Current progress.<br>Default value: same as the value of **min**<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md). |
-| min | number | No | Minimum value.<br>Default value: **0** |
-| max | number | No | Maximum value.<br>Default value: **100**<br>**NOTE**<br>If the value of **min** is greater than or equal to the value of **max**, the **min** value defaults to **0**, and the **max** value defaults to **100**.<br>If the value is not within the [min, max] range, the value of **min** or **max** is used, whichever is closer. |
-| step | number | No | Step of the slider.<br>Default value: **1**<br>Value range: [0.01, max]<br>**NOTE**<br>If this parameter is set to a value less than 0 or greater than the value of **max**, the default value is used. |
-| style | [SliderStyle](#sliderstyle)  | No | Style of the slider thumb and track.<br>Default value: **SliderStyle.OutSet** |
-| direction<sup>8+</sup> | [Axis](ts-appendix-enums.md#axis) | No | Whether the slider moves horizontally or vertically.<br>Default value: **Axis.Horizontal** |
-| reverse<sup>8+</sup> | boolean | No | Whether the slider values are reversed. By default, the values increase from left to right for a horizontal slider and from top to bottom for a vertical slider.<br>Default value: **false** |
+| value | number | No| Current progress.<br>Default value: same as the value of **min**<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
+| min | number | No| Minimum value.<br>Default value: **0**|
+| max | number | No| Maximum value.<br>Default value: **100**<br>**NOTE**<br>If the value of **min** is greater than or equal to the value of **max**, the **min** value defaults to **0**, and the **max** value defaults to **100**.<br>If the value is not within the [min, max] range, the value of **min** or **max** is used, whichever is closer.|
+| step | number | No| Step of the slider.<br>Default value: **1**<br>Value range: [0.01, max - min]<br>**NOTE**<br>If this parameter is set to a value less than 0 or greater than the value of **max**, the default value is used.|
+| style | [SliderStyle](#sliderstyle) | No| Style of the slider thumb and track.<br>Default value: **SliderStyle.OutSet**|
+| direction<sup>8+</sup> | [Axis](ts-appendix-enums.md#axis) | No| Whether the slider moves horizontally or vertically.<br>Default value: **Axis.Horizontal**|
+| reverse<sup>8+</sup> | boolean | No| Whether the slider values are reversed. By default, the values increase from left to right for a horizontal slider and from top to bottom for a vertical slider.<br>Default value: **false**|
 
 ## SliderStyle
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| OutSet | The thumb is on the track.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| InSet | The thumb is in the track.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| NONE<sup>12+</sup> | There is no thumb.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| OutSet | The thumb is on the track.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| InSet | The thumb is in the track.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| NONE<sup>12+</sup> | There is no thumb.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## Attributes
 
@@ -62,7 +64,7 @@ All the [universal attributes](ts-universal-attributes-size.md) except **respons
 
 blockColor(value: ResourceColor)
 
-Color of the thumb.
+Sets the color of the thumb.
 
 When **SliderBlockType.DEFAULT** is used, **blockColor** sets the color of the round thumb.
 
@@ -76,11 +78,11 @@ When **SliderBlockType.SHAPE** is used, **blockColor** sets the color of the thu
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                      | Mandatory | Description                               |
+| Name| Type                                      | Mandatory| Description                               |
 | ------ | ------------------------------------------ | ---- | ----------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the thumb.<br>Default value: **'#ffffff'** |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the thumb.<br>Default value: **$r('sys.color.ohos_id_color_foreground_contrary')**|
 
 ### trackColor
 
@@ -96,11 +98,11 @@ Sets the background color of the track.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                                        | Mandatory | Description                                                        |
+| Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient<sup>12+</sup>](ts-basic-components-datapanel.md#lineargradient10)  | Yes  | Background color of the track.<br>**NOTE**<br>With gradient color settings, if the color stop values are invalid or if the color stops are empty, the gradient effect will not be applied.<br>Default value: **'#19182431'**<br>The LinearGradient type cannot be used in atomic services. |
+| value  | [ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient<sup>12+</sup>](ts-basic-components-datapanel.md#lineargradient10) | Yes  | Background color of the track.<br>**NOTE**<br>With gradient color settings, if the color stop values are invalid or if the color stops are empty, the gradient effect will not be applied.<br>Default value: **$r('sys.color.ohos_id_color_component_normal')**<br>The LinearGradient type cannot be used in atomic services.|
 
 ### selectedColor
 
@@ -114,11 +116,11 @@ Sets the color of the portion of the track between the minimum value and the thu
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                      | Mandatory | Description                                         |
+| Name| Type                                      | Mandatory| Description                                         |
 | ------ | ------------------------------------------ | ---- | --------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the portion of the track between the minimum value and the thumb.<br>Default value: **'#007dff'** |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the portion of the track between the minimum value and the thumb.<br>Default value: **$r('sys.color.ohos_id_color_emphasize')**|
 
 ### showSteps
 
@@ -132,11 +134,11 @@ Sets whether to display the current step.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type   | Mandatory | Description                                      |
+| Name| Type   | Mandatory| Description                                      |
 | ------ | ------- | ---- | ------------------------------------------ |
-| value  | boolean | Yes  | Whether to display the current step.<br>Default value: **false** |
+| value  | boolean | Yes  | Whether to display the current step.<br>Default value: **false**|
 
 ### showTips
 
@@ -144,7 +146,7 @@ showTips(value: boolean, content?: ResourceStr)
 
 Sets whether to display a tooltip when the user drags the slider.
 
-When **direction** is set to **Axis.Horizontal**, the tooltip is displayed right above the slider; if there is insufficient space above, it will be displayed below. When **direction** is set to **Axis.Vertical**, the tooltip is displayed on the left of the slider; if there is insufficient space on the left, it will be displayed on the right. If the margins are not set or are set to small values, the tooltip may be truncated.
+When **direction** is set to **Axis.Horizontal**, the tooltip is displayed right above the slider; if there is insufficient space above, it will be displayed below. When **direction** is set to **Axis.Vertical**, the tooltip is displayed on the left of the slider; if there is insufficient space on the left, it will be displayed on the right. If the margins are not set or are set to small values, the tooltip may be clipped.
 
 The drawing area of the tooltip is the overlay of the slider.
 
@@ -154,11 +156,11 @@ The drawing area of the tooltip is the overlay of the slider.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name               | Type                                  | Mandatory | Description                                      |
+| Name               | Type                                  | Mandatory| Description                                      |
 | --------------------- | -------------------------------------- | ---- | ------------------------------------------ |
-| value                 | boolean                                | Yes  | Whether to display a tooltip when the user drags the slider.<br>Default value: **false** |
+| value                 | boolean                                | Yes  | Whether to display a tooltip when the user drags the slider.<br>Default value: **false**|
 | content<sup>10+</sup> | [ResourceStr](ts-types.md#resourcestr) | No  | Content of the tooltip. By default, the tooltip shows the current percentage value.  |
 
 ### trackThickness<sup>8+</sup>
@@ -179,17 +181,17 @@ In changing the value of **trackThickness**, if it or the value of [blockSize](#
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                        | Mandatory | Description                                                        |
+| Name| Type                        | Mandatory| Description                                                        |
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length) | Yes  | Thickness of the track.<br>Default value: 4.0vp when **style** is set to **[SliderStyle](#sliderstyle).OutSet**; 20.0vp when **style** is set to **[SliderStyle](#sliderstyle).InSet** |
+| value  | [Length](ts-types.md#length) | Yes  | Thickness of the track.<br>Default value: 4.0vp when **style** is set to **[SliderStyle](#sliderstyle).OutSet**; 20.0vp when **style** is set to **[SliderStyle](#sliderstyle).InSet**|
 
 ### blockBorderColor<sup>10+</sup>
 
 blockBorderColor(value: ResourceColor)
 
-Border color of the slider in the block direction.
+Sets the border color of the slider in the block direction.
 
 When **SliderBlockType.DEFAULT** is used, **blockBorderColor** sets the border color of the round slider.
 
@@ -201,17 +203,17 @@ When **SliderBlockType.SHAPE** is used, **blockBorderColor** sets the border col
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                      | Mandatory | Description                                  |
+| Name| Type                                      | Mandatory| Description                                  |
 | ------ | ------------------------------------------ | ---- | -------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Border color of the slider in the block direction.<br>Default value: **'#00000000'** |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Border color of the slider in the block direction.<br>Default value: **'#00000000'**|
 
 ### blockBorderWidth<sup>10+</sup>
 
 blockBorderWidth(value: Length)
 
-Border width of the slider in the block direction.
+Sets the border width of the slider in the block direction.
 
 When **SliderBlockType.DEFAULT** is used, **blockBorderWidth** sets the border width of the round slider.
 
@@ -223,27 +225,27 @@ WWhen **SliderBlockType.SHAPE** is used, **blockBorderWidth** sets the border wi
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                        | Mandatory | Description          |
+| Name| Type                        | Mandatory| Description          |
 | ------ | ---------------------------- | ---- | -------------- |
-| value  | [Length](ts-types.md#length) | Yes  | Border width of the slider in the block direction. |
+| value  | [Length](ts-types.md#length) | Yes  | Border width of the slider in the block direction.|
 
 ### stepColor<sup>10+</sup>
 
 stepColor(value: ResourceColor)
 
-Step color.
+Sets the step color.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                      | Mandatory | Description                              |
+| Name| Type                                      | Mandatory| Description                              |
 | ------ | ------------------------------------------ | ---- | ---------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Step color.<br>Default value: **'#19182431'** |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Step color.<br>Default value:<br>**$r('sys.color.ohos_id_color_foreground')** mixed with<br>**$r('sys.color.ohos_id_alpha_normal_bg')** transparency|
 
 ### trackBorderRadius<sup>10+</sup>
 
@@ -255,11 +257,11 @@ Sets the radius of the rounded corner of the track.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                        | Mandatory | Description                            |
+| Name| Type                        | Mandatory| Description                            |
 | ------ | ---------------------------- | ---- | -------------------------------- |
-| value  | [Length](ts-types.md#length) | Yes  | Radius of the rounded corner of the track.<br>Default value: **'2vp'** |
+| value  | [Length](ts-types.md#length) | Yes  | Radius of the rounded corner of the track.<br>Default value:<br>**'2vp'** when **style** is **SliderStyle.OutSet**<br>**'10vp'** when **style** is **SliderStyle.InSet**|
 
 ### selectedBorderRadius<sup>12+</sup>
 
@@ -271,43 +273,49 @@ Set the corner radius of the selected (highlighted) part of the slider.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                        | Mandatory | Description                            |
+| Name| Type                        | Mandatory| Description                            |
 | ------ | ---------------------------- | ---- | -------------------------------- |
-| value  | [Dimension](ts-types.md#dimension10)| Yes  | Corner radius of the selected part of the slider.<br>Default value: same as the corner radius of the background when **style** is set to **SliderStyle.InSet** or **SliderStyle.OutSet**; 0 when **style** is set to **SliderStyle.NONE**|
+| value  | [Dimension](ts-types.md#dimension10)| Yes  | Corner radius of the selected part of the slider.<br>Default value:<br>- For **SliderStyle.InSet** or **SliderStyle.OutSet**: same as the corner radius of the background<br>- **SliderStyle.NONE**: **0**|
 
 ### blockSize<sup>10+</sup>
 
 blockSize(value: SizeOptions)
 
-Size of the slider in the block direction.
+Sets the size of the slider in the block direction.
+
+When the slider type is set to **SliderBlockType.DEFAULT**, the smaller of the width and height values is used as the radius of the circle.
+
+When the slider type is set to **SliderBlockType.IMAGE**, this API sets the size of the image, which is scaled using the **ObjectFit.Cover** strategy.
+
+When the slider type is set to **SliderBlockType.SHAPE**, this API sets the size of the custom shape, which is also scaled using the **ObjectFit.Cover** strategy.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                  | Mandatory | Description                                                        |
+| Name| Type                                  | Mandatory| Description                                                        |
 | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [SizeOptions](ts-types.md#sizeoptions) | Yes  | Size of the slider in the block direction.<br>Default value: {width: 16, height: 16} when **style** is set to **[SliderStyle](#sliderstyle).OutSet**; {width: 12, height: 12} when **style** is set to **[SliderStyle](#sliderstyle).InSet**<br>If the set **blockSize** has different width and height values, the smaller value is taken. If one or both of the width and height values are less than or equal to 0, the default value is used instead. |
+| value  | [SizeOptions](ts-types.md#sizeoptions) | Yes  | Size of the slider in the block direction.<br>Default value:<br>For [SliderStyle](#sliderstyle).OutSet: **{width: 16, height: 16}**<br/>- For [SliderStyle](#sliderstyle).InSet: **{width: 12, height: 12}**<br/>- For [SliderStyle](#sliderstyle).NONE: This parameter is not effective.<br>If the set **blockSize** has different width and height values, the smaller value is taken. If one or both of the width and height values are less than or equal to 0, the default value is used instead.|
 
 ### blockStyle<sup>10+</sup>
 
 blockStyle(value: SliderBlockStyle)
 
-Style of the slider in the block direction.
+Sets the style of the slider in the block direction.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                           | Mandatory | Description                                                        |
+| Name| Type                                           | Mandatory| Description                                                        |
 | ------ | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [SliderBlockStyle](#sliderblockstyle10)  | Yes  | Style of the slider in the block direction.<br>Default value: **SliderBlockType.DEFAULT**, indicating the round slider. |
+| value  | [SliderBlockStyle](#sliderblockstyle10) | Yes  | Style of the slider in the block direction.<br>Default value: **SliderBlockType.DEFAULT**, indicating the round slider.|
 
 ### stepSize<sup>10+</sup>
 
@@ -319,11 +327,11 @@ Sets the step size (diameter). If the value is 0, the step size is not displayed
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                        | Mandatory | Description                                 |
+| Name| Type                        | Mandatory| Description                                 |
 | ------ | ---------------------------- | ---- | ------------------------------------- |
-| value  | [Length](ts-types.md#length) | Yes  | Step size (diameter).<br>Default value: **'4vp'** |
+| value  | [Length](ts-types.md#length) | Yes  | Step size (diameter).<br>Default value: **'4vp'**<br>Value range: [0, trackThickness)|
 
 ### minLabel<sup>(deprecated)</sup>
 
@@ -335,11 +343,11 @@ This API is deprecated since API version 9. You are advised to use **min** inste
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type  | Mandatory | Description    |
+| Name| Type  | Mandatory| Description    |
 | ------ | ------ | ---- | -------- |
-| value  | string | Yes  | Minimum value. |
+| value  | string | Yes  | Minimum value.|
 
 ### maxLabel<sup>(deprecated)</sup>
 
@@ -351,13 +359,13 @@ This API is deprecated since API version 9. You are advised to use **max** inste
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type  | Mandatory | Description    |
+| Name| Type  | Mandatory| Description    |
 | ------ | ------ | ---- | -------- |
-| value  | string | Yes  | Maximum value. |
+| value  | string | Yes  | Maximum value.|
 
->  **NOTE** 
+>  **NOTE**
 >
 >  - By default, the slider has no padding.
 >  - A horizontal slider is displayed in the center with the following default settings: 40 vp height, width equal with that of the parent container, 10 vp left and right margins not covered by any padding (if set).
@@ -375,9 +383,9 @@ Sets the interaction mode between the user and the slider.
 
 **Parameters**
 
-| Name | Type                                             | Mandatory | Description                                                        |
+| Name| Type                                             | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [SliderInteraction](#sliderinteraction12) | Yes  | Interaction mode between the user and the slider.<br> Default value: **SliderInteraction.SLIDE_AND_CLICK** |
+| value  | [SliderInteraction](#sliderinteraction12)| Yes  | Interaction mode between the user and the slider.<br> Default value: **SliderInteraction.SLIDE_AND_CLICK**|
 
 ### minResponsiveDistance<sup>12+</sup>
 
@@ -391,9 +399,9 @@ Sets the minimum distance required for the slider to respond.
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                                      |
+| Name| Type   | Mandatory| Description                                      |
 | ------ | ------- | ---- | ------------------------------------------ |
-| value  | number | Yes  | Minimum distance required for the slider to respond. The slider will only respond and move when the sliding distance exceeds this threshold.<br>**NOTE**<br>The unit is the same as that of **min** and **max**.<br>If the value is less than 0, greater than the result of (max - min), or invalid, the default value is used.<br>Default value: **0** |
+| value  | number | Yes  | Minimum distance required for the slider to respond. The slider will only respond and move when the sliding distance exceeds this threshold.<br>**NOTE**<br>The unit is the same as that of **min** and **max**.<br>If the value is less than 0, greater than the result of (max - min), or invalid, the default value is used.<br>Default value: **0**|
 
 ### contentModifier<sup>12+</sup>
 
@@ -407,9 +415,9 @@ Creates a content modifier.
 
 **Parameters**
 
-| Name | Type                                         | Mandatory | Description                                            |
+| Name| Type                                         | Mandatory| Description                                            |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| modifier  | [ContentModifier\<SliderConfiguration>](#sliderconfiguration12) | Yes  | Content modifier to apply to the slider.<br>**modifier**: content modifier. You need a custom class to implement the **ContentModifier** API. |
+| modifier  | [ContentModifier\<SliderConfiguration>](#sliderconfiguration12)| Yes  | Content modifier to apply to the slider.<br>**modifier**: content modifier. You need a custom class to implement the **ContentModifier** API.|
 
 >  **NOTE**
 >
@@ -428,9 +436,9 @@ Sets the slide range.
 
 **Parameters**
 
-| Name | Type                                       | Mandatory | Description         |
-| ------ |-------------------------------------------| ---- |-------------|
-| value  | SlideRange                                | Yes  | Slide range.   |
+| Name| Type                               | Mandatory| Description            |
+| ------ | ----------------------------------- | ---- | ---------------- |
+| value  | [SlideRange](#sliderange12) | Yes  | Slide range.|
 
 ## SliderBlockStyle<sup>10+</sup>
 
@@ -438,10 +446,12 @@ Describes the style of the slider in the block direction.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name | Type                                                        | Mandatory | Description                                                        |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name | Type                                                        | Mandatory| Description                                                        |
 | ----- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type  | [SliderBlockType](#sliderblocktype10)                | Yes  | Type of the slider in the block direction.<br>Default value: **SliderBlockType.DEFAULT**, indicating the round slider. |
-| image | [ResourceStr](ts-types.md#resourcestr)                       | No  | Image resource of the slider.<br>The area size for displaying the image is subject to the **blockSize** attribute. Be mindful of the image size when selecting an image. |
+| type  | [SliderBlockType](#sliderblocktype10)                | Yes  | Type of the slider in the block direction.<br>Default value: **SliderBlockType.DEFAULT**, indicating the round slider.|
+| image | [ResourceStr](ts-types.md#resourcestr)                       | No  | Image resource of the slider.<br>The area size for displaying the image is subject to the **blockSize** attribute. Be mindful of the image size when selecting an image.|
 | shape | [Circle](ts-drawing-components-circle.md) \| [Ellipse](ts-drawing-components-ellipse.md) \| [Path](ts-drawing-components-path.md) \| [Rect](ts-drawing-components-rect.md)  | No  | Custom shape of the slider.                                  |
 
 ## SliderBlockType<sup>10+</sup>
@@ -450,11 +460,13 @@ Enumerates the types of the slider in the block direction.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name   | Description                  |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Description                |
 | ------- | ---------------------- |
 | DEFAULT | Round slider.  |
 | IMAGE   | Slider with an image background.  |
-| SHAPE   | Slider in a custom shape. |
+| SHAPE   | Slider in a custom shape.|
 
 ## SliderInteraction<sup>12+</sup>
 
@@ -462,7 +474,9 @@ Enumerates the interaction modes between the user and the slider.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name    | Description                           |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Description                         |
 | ------ | ----------------------------- |
 | SLIDE_AND_CLICK | Users can drag the slider or touch the track to move the slider. The slider moves as soon as the mouse or finger is pressed.|
 | SLIDE_ONLY | Users are not allowed to move the slider by touching the slider.|
@@ -474,10 +488,12 @@ Defines the callback type used in **SlideRange**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name | Type    | Mandatory | Description          |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type    | Mandatory| Description          |
 |----|--------| ---- |--------------|
-| from | number | Yes | Start of the slide range. |
-| to | number | Yes | End of the slide range. |
+| from | number | No| Start of the slide range.|
+| to | number | No| End of the slide range.|
 
 >  **NOTE**
 >
@@ -495,7 +511,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 onChange(callback: (value: number, mode: SliderChangeMode) =&gt; void)
 
-Invoked when the slider is dragged or clicked.
+Triggered when the slider is dragged or clicked.
 
 The **Begin** and **End** states are triggered when the slider is clicked with a gesture. The **Moving** and **Click** states are triggered when the value of **value** changes.
 
@@ -507,12 +523,12 @@ If the coherent action is a drag action, the **Click** state will not be trigger
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                         | Mandatory | Description                                                        |
+| Name| Type                                         | Mandatory| Description                                                        |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | number                                        | Yes  | Current sliding progress. Its range of changes corresponds to the array of step sizes. If the return value contains decimals, you can use the **number.toFixed()** API to process the data to the expected precision. |
-| mode   | [SliderChangeMode](#sliderchangemode) | Yes  | State triggered by the event.                                      |
+| value  | number                                        | Yes  | Current sliding progress. Its range of changes corresponds to the array of step sizes. If the return value contains decimals, you can use the **number.toFixed()** API to process the data to the expected precision.|
+| mode   | [SliderChangeMode](#sliderchangemode)| Yes  | State triggered by the event.                                      |
 
 ## SliderChangeMode
 
@@ -520,12 +536,14 @@ If the coherent action is a drag action, the **Click** state will not be trigger
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name | Value | Description |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Value| Description|
 | -------- | -------- | -------- |
-| Begin | 0 | The user touches or clicks the thumb. |
-| Moving | 1 | The user is dragging the slider. |
-| End | 2 | The user stops dragging the slider by lifting their finger or releasing the mouse device.<br>**NOTE**<br>The trigger occurs when an invalid value is restored to the default value, that is, when the value is set to less than **min** or greater than **max**. |
-| Click    | 3    | The user moves the thumb by touching or clicking the track. |
+| Begin | 0 | The user touches or clicks the thumb.|
+| Moving | 1 | The user is dragging the slider.|
+| End | 2 | The user stops dragging the slider by lifting their finger or releasing the mouse device.<br>**NOTE**<br>The trigger occurs when an invalid value is restored to the default value, that is, when the value is set to less than **min** or greater than **max**.|
+| Click<sup>8+</sup> | 3    | The user moves the thumb by touching or clicking the track.|
 
 ## SliderConfiguration<sup>12+</sup>
 
@@ -533,28 +551,38 @@ You need a custom class to implement the **ContentModifier** API.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name | Type   | Description             |
-| ------ | ------ | ---------------- |
-| value | number | Current progress. |
-| min | number | Minimum value. |
-| max | number | Maximum value. |
-| step | number | Step of the slider. |
-| triggerChange | [SliderTriggerChangeCallback](#slidertriggerchangecallback12) | Triggers slider changes. |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name | Type   | Read Only | Optional | Description             |
+| ------ | ------ | ---------------- | ---------------- | ---------------- |
+| value | number | No| No| Current progress.|
+| min | number | No| No| Minimum value.|
+| max | number | No| No| Maximum value.|
+| step | number | No| No| Step of the slider.|
+| triggerChange | [SliderTriggerChangeCallback](#slidertriggerchangecallback12) | No| No| Triggers slider changes.|
 
 ## SliderTriggerChangeCallback<sup>12+</sup>
+
+type SliderTriggerChangeCallback = (value: number, mode: SliderChangeMode) => void
 
 Defines the callback type used in **SliderConfiguration**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name | Type   | Mandatory | Description             |
-| ------ | ------ | ---- | ---------------- |
-| value | number | Yes | Current progress. |
-| mode | [SliderChangeMode](#sliderchangemode) | Yes | State triggered by the event. |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Read Only| Optional| Description             |
+| ------ | ------ | ---- | ---------------- | ---------------- |
+| value | number | No| No| Current progress.|
+| mode | [SliderChangeMode](#sliderchangemode)| No| No| State triggered by the event.|
 
 ## Example
 
-### Example 1
+### Example 1: Using Basic Slider Styles
+
+This example demonstrates how to control the display of the tooltip, current step, and slider thumb and track by configuring **style**, **showTips**, and **showSteps**.
 
 ```ts
 // xxx.ets
@@ -733,7 +761,9 @@ struct SliderExample {
 
 ![slider](figures/slider.gif)
 
-### Example 2
+### Example 2: Using Custom Slider Styles
+
+This example demonstrates how to customize the slider styles by setting **blockBorderColor**, **blockSize**, **blockBorderWidth**, and **blockStyle** for the slider block, **stepSize** and **stepColor** for the step, **trackBorderRadius** for the track's corner radius, and **selectedBorderRadius** for the selected part's corner radius.
 
 ```ts
 @Entry
@@ -788,18 +818,20 @@ struct SliderExample {
 
 
 
-### Example 3
+### Example 3: Customizing the Slider
+
+This example demonstrates how to customize the **Slider** component using a style builder to define the content area. Clicking the increase button will increment the progress bar by the step size set in the original **Slider** component, and clicking the decrease button will decrement the progress bar, triggering the **onChange** event of the original component.
 
 ```ts
 // xxx.ets
-// This example implements a slider with a customcontent area through a style builder. When the Increase button is clicked, the progress bar increases based on the step size set by the original slider. When the Decrease button is clicked, the progress bar decreases, and the original slider's onChange event is triggered.
+
 @Builder function buildSlider(config: SliderConfiguration) {
   Row() {
     Column({space: 30}) {
       Progress({value: config.value, total: config.max, type:ProgressType.Ring})
         .margin({ top:20 })
 
-      Button ('Increase').onClick () => {
+      Button('Increase').onClick(() => {
         config.value = config.value + config.step
         config.triggerChange(config.value, SliderChangeMode.Click)
       })
@@ -808,7 +840,7 @@ struct SliderExample {
         .fontSize(10)
         .enabled(config.value<config.max)
 
-      Button ('Decrease').onClick () => {
+      Button('Decrease').onClick(() => {
         config.value=config.value-config.step
         config.triggerChange(config.value, SliderChangeMode.Click)
       })
@@ -840,7 +872,7 @@ struct SliderExample {
         .fontSize(10)
       Text('Max: ' + config.max)
         .fontSize(10)
-      Text ('Step: ' + config.step)
+      Text('Step: ' + config.step)
         .fontSize(10)
     }
     .width('80%')

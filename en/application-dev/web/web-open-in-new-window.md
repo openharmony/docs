@@ -8,7 +8,7 @@ The **Web** component provides the capability of opening pages in a new window. 
 >
 > - If [allowWindowOpenMethod()](../reference/apis-arkweb/ts-basic-components-web.md#allowwindowopenmethod10) is set to **true**, you can open a new window in the frontend page by invoking its JavaScript functions.
 >
-> - If you do not want to open a new window in [onWindowNew()](../reference/apis-arkweb/ts-basic-components-web.md#onwindownew9), set the parameter of [ControllerHandler.setWebController()](../reference/apis-arkweb/ts-basic-components-web.md#setwebcontroller9) to **null**.
+> - If you do not create a new window in [onWindowNew()](../reference/apis-arkweb/ts-basic-components-web.md#onwindownew9), set the parameter of [ControllerHandler.setWebController()](../reference/apis-arkweb/ts-basic-components-web.md#setwebcontroller9) to **null**.
 
 
 In the following example, when a user clicks the **Open Page in New Window** button, the application receives a window opening event in the [onWindowNew()](../reference/apis-arkweb/ts-basic-components-web.md#onwindownew9) callback.
@@ -64,8 +64,8 @@ In the following example, when a user clicks the **Open Page in New Window** but
             })
             this.dialogController.open();
             // Return the WebviewController object corresponding to the new window to the Web kernel.
-            // If opening a new window is not needed, set the parameter to null when calling the event.handler.setWebController API.
             // If the event.handler.setWebController API is not called, the render process will be blocked.
+            // If no new window is created, set the value of event.handler.setWebController to null to notify the Web component that no new window is created.
             event.handler.setWebController(popController);
           })
       }
@@ -102,3 +102,9 @@ In the following example, when a user clicks the **Open Page in New Window** but
 
 ![web-open-in-new-window](figures/web-open-in-new-window.png)
 
+  
+## Samples
+
+The following samples are provided to help you better understand how to create a window:
+
+- [Browser (ArkTS) (Full SDK) (API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Web/Browser)

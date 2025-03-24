@@ -1,10 +1,12 @@
 # Component ID
 
-**id** identifies a component uniquely within an application. This module provides APIs for obtaining the attributes of or sending events to the component with the specified ID.
+**id** identifies a component uniquely within an application. With the provided APIs, you can obtain the attributes of or sending events to the component with the specified ID.
 
 >  **NOTE**
 >
-> The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+> - The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> - If a component is assigned multiple **id** or **key** values, the last one set takes effect.
 
 ## Attributes
 
@@ -32,7 +34,7 @@ key(value: string): T
 
 Sets a unique identifier for this component, with uniqueness guaranteed by the user.
 
-This API is used only for test purposes. When this attribute is used in conjunction with **id**, the value assigned later will override the one assigned earlier. You are advised to set only **id**.
+This API is used only for test purposes. When this attribute is used in conjunction with **id**, the last assigned value takes effect. You are advised to set only **id**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -176,6 +178,8 @@ This API is used only for test purposes. It is time consuming and not recommende
 
 ## Example
 
+This example demonstrates how to use the **id** APIs to obtain attributes of a component with the specified by ID and trigger events on that component.
+
 ```ts
 // xxx.ets
 import { IntentionCode } from '@kit.InputKit'
@@ -194,10 +198,10 @@ class Utils {
     console.info("[getInspectorByKey] current component obj is: " + JSON.stringify(obj))
     let rectInfo:string[] = JSON.parse('[' + obj.$rect + ']')
     console.info("[getInspectorByKey] rectInfo is: " + rectInfo)
-    Utils.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0]
-    Utils.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1]
-    Utils.rect_right = JSON.parse('[' + rectInfo[1] + ']')[0]
-    Utils.rect_bottom = JSON.parse('[' + rectInfo[1] + ']')[1]
+    Utils.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0]     // Horizontal coordinate relative to the upper left corner of the component.
+    Utils.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1]      // Vertical coordinate relative to the upper left corner of the component.
+    Utils.rect_right = JSON.parse('[' + rectInfo[1] + ']')[0]    // Horizontal coordinate relative to the lower right corner of the component.
+    Utils.rect_bottom = JSON.parse('[' + rectInfo[1] + ']')[1]   // Vertical coordinate relative to the lower right corner of the component.
     return Utils.rect_value = {
       "left": Utils.rect_left, "top": Utils.rect_top, "right": Utils.rect_right, "bottom": Utils.rect_bottom
     }

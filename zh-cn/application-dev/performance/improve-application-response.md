@@ -528,11 +528,11 @@ class AVPlayerManager {
 
 应用启动时有广告页的场景下。如果先渲染广告页而后再渲染首页，很可能造成首页响应时延较长，影响用户体验。针对此类问题可以使用NodeContainer在广告页渲染时同步渲染首页，等到跳转到首页时直接送显，提高响应速度。
 
-反例：按次序依次渲染送显
+反例：按次序依次渲染送显。
 
 主要代码逻辑如下：
 
-1、模拟广告页，通过点击不同按钮分别进入普通页面和预加载页面
+1、模拟广告页，通过点击不同按钮分别进入普通页面和预加载页面。
 ```typescript
 // Index.ets
 
@@ -562,7 +562,7 @@ struct Index {
 }
 ```
 
-2、普通首页，也即按顺序普通渲染的页面
+2、普通首页，也即按顺序普通渲染的页面。
 ```typescript
 // CommonPage.ets
 
@@ -578,7 +578,7 @@ struct CommonPage {
   }
 }
 ```
-3、自定义builder，用来定制页面结构
+3、自定义builder，用来定制页面结构。
 ```typescript
 // CustomerBuilder.ets
 
@@ -621,11 +621,11 @@ export const getNumbers = (): string[] => {
 }
 ```
 
-正例：在启动时预加载首页
+正例：在启动时预加载首页。
 
 主要代码逻辑如下：
 
-1、应用启动时提前创建首页
+1、应用启动时提前创建首页。
 ```typescript
 // EntryAbility.ets  
 
@@ -663,7 +663,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-2、预加载的首页，使用NodeContainer进行占位，当跳转到本页时直接将提前创建完成的首页填充
+2、预加载的首页，使用NodeContainer进行占位，当跳转到本页时直接将提前创建完成的首页填充。
 ```typescript
 // PreloadedPage.ets
 
@@ -680,7 +680,7 @@ struct PreloadedPage {
 }
 ```
 
-3、自定义NodeController，并提供提前创建首页的能力
+3、自定义NodeController，并提供提前创建首页的能力。
 ```typescript
 // CustomerController.ets
 
@@ -760,11 +760,11 @@ export class ControllerManager {
 
 通过SmartPerf-Host工具抓取相关trace进行分析首页响应时延，其中主要关注两个trace tag分别是DispatchTouchEvent代表点击事件和MarshRSTransactionData代表响应,如下图所示：
 
-反例响应时延：18.1ms
+反例响应时延：18.1ms。
 
 ![反例响应时延](./figures/preload_counter_example_delay.png)
 
-正例响应时延：9.4ms
+正例响应时延：9.4ms。
 
 ![正例响应时延](./figures/preload_positive_example_delay.png)
 
@@ -852,7 +852,7 @@ struct ArticleSkeletonView { // 自定义骨架图
 
 将使用和未使用骨架图的组件通过SmartPerf-Host工具抓取trace后对比可得：
 
-未使用骨架图时，响应时间约为321.5ms。(其中包含setTimeout的300ms)
+未使用骨架图时，响应时间约为321.5ms。(其中包含setTimeout的300ms)。
 
 ![骨架图占位](./figures/improve-application-response-no-skeleton-duration.png)
 
@@ -959,10 +959,10 @@ public async release() {
 
 （注：不同设备特性和具体应用场景的多样性，所获得的性能数据存在差异，提供的数值仅供参考。）
 
-| 操作类型        | 执行时间    | 备注                                            |
-| ----------- | ------- | --------------------------------------------- |
-| 直接关闭与释放（反例） | 457.5ms | 在`onPageHide`中直接执行相机关闭与释放操作                   |
-| 延时关闭与释放（正例） | 85.6ms  | 在`onPageHide`中使用`setTimeout`延迟200ms后执行关闭与释放操作 |
+| 操作类型        | 执行时间    | 备注                                             |
+| ----------- | ------- |------------------------------------------------|
+| 直接关闭与释放（反例） | 457.5ms | 在`onPageHide`中直接执行相机关闭与释放操作。                   |
+| 延时关闭与释放（正例） | 85.6ms  | 在`onPageHide`中使用`setTimeout`延迟200ms后执行关闭与释放操作。 |
 
 正反例数据表明，合理运用延时策略能显著提升函数执行效率，是优化相机资源管理与关闭操作性能的有效手段，对提升整体用户体验具有重要价值。
 
@@ -972,7 +972,7 @@ public async release() {
 
 ### 反例
 
-指定触发拖动手势事件的最小拖动距离为100vp
+指定触发拖动手势事件的最小拖动距离为100vp。
 
 ```ts
 import { hiTraceMeter } from '@kit.PerformanceAnalysisKit'
@@ -1041,7 +1041,7 @@ struct PanGestureExample {
 
 ### 正例
 
-指定触发拖动手势事件的最小拖动距离为4vp
+指定触发拖动手势事件的最小拖动距离为4vp。
 
 ```ts
 import { hiTraceMeter } from '@kit.PerformanceAnalysisKit'
@@ -1111,9 +1111,9 @@ struct PanGestureExample {
 ### 性能比对 
 （注：不同设备特性和具体应用场景的多样性，所获得的性能数据存在差异，提供的数值仅供参考，该表格仅分析trace图。）
 
-| 拖动距离设置              | 执行时间 | 备注                                                         |
-| ------------------------- | -------- | ------------------------------------------------------------ |
-| 最小拖动距离100vp（反例） | 145.1ms  | 最小拖动距离过大会导致滑动脱手、响应时延慢等问题导致性能劣化 |
-| 最小拖动距离4vp（正例）   | 38.4ms   | 设置合理的拖动距离优化性能                                     |
+| 拖动距离设置              | 执行时间 | 备注                              |
+| ------------------------- | -------- |---------------------------------|
+| 最小拖动距离100vp（反例） | 145.1ms  | 最小拖动距离过大会导致滑动脱手、响应时延慢等问题导致性能劣化。 |
+| 最小拖动距离4vp（正例）   | 38.4ms   | 设置合理的拖动距离优化性能。                  |
 
 正反例数据表明，合理减小拖动距离能显著提升执行效率，是优化响应时延的有效手段，对提升整体用户体验具有重要价值。（注：本案例通过设置较大和较小拖动距离进行数据对比得出相关结论。distance的默认值为5vp，设置过小的distance容易出现误触等问题，开发者可根据具体应用场景进行设置。）

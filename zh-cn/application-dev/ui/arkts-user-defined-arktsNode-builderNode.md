@@ -300,6 +300,8 @@ struct Index {
 > **说明：**
 >
 > 当BuilderNode对象调用dispose之后，不仅BuilderNode对象与后端实体节点解除引用关系，BuilderNode中的FrameNode与RenderNode也会同步和实体节点解除引用关系。
+>
+> 若前端对象BuilderNode无法释放，容易导致内存泄漏。建议在不再需要对该BuilderNode对象进行操作时，开发者应主动调用dispose释放后端节点，以减少引用关系的复杂性，降低内存泄漏的风险。
 
 ## 注入触摸事件
 
@@ -381,10 +383,16 @@ struct MyComponent {
 
 ## 节点复用能力
 
-将[reuse](../reference/apis-arkui/js-apis-arkui-builderNode.md#reuse12)事件和[recycle](../reference/apis-arkui/js-apis-arkui-builderNode.md#recycle12)事件传递至BuilderNode中的自定义组件，以实现BuilderNode节点的复用。
+调用[reuse](../reference/apis-arkui/js-apis-arkui-builderNode.md#reuse12)接口和[recycle](../reference/apis-arkui/js-apis-arkui-builderNode.md#recycle12)接口，将复用和回收事件传递至BuilderNode中的自定义组件，以实现BuilderNode节点内部的自定义组件的复用。
+
+以下面的Demo为例，被复用的自定义组件ReusableChildComponent可以传递复用和回收事件到其下的自定义组件ReusableChildComponent3，但无法传递给自定义组件ReusableChildComponent2，因为被BuilderNode所隔断。因此需要主动调用BuilderNode的reuse和recycle接口，将复用和回收事件传递给自定义组件ReusableChildComponent2，以达成复用效果。
+![zh-cn_image_reuse-recycle](figures/reuse-recycle.png)
+
 
 ```ts
-import { FrameNode,NodeController,BuilderNode,UIContext } from "@kit.ArkUI";
+import { FrameNode, NodeController, BuilderNode, UIContext } from "@kit.ArkUI";
+
+const TEST_TAG: string = "Reuse+Recycle";
 
 class MyDataSource {
   private dataArray: string[] = [];
@@ -425,7 +433,10 @@ class Params {
 
 @Builder
 function buildNode(param: Params = new Params("hello")) {
-  ReusableChildComponent2({ item: param.item });
+  Row() {
+    Text(`C${param.item} -- `)
+    ReusableChildComponent2({ item: param.item }) //该自定义组件在BuilderNode中无法被正确复用
+  }
 }
 
 class MyNodeController extends NodeController {
@@ -441,10 +452,12 @@ class MyNodeController extends NodeController {
   }
 }
 
+// 被回收复用的自定义组件，其状态变量会更新，而子自定义组件ReusableChildComponent3中的状态变量也会更新，但BuilderNode会阻断这一传递过程
 @Reusable
 @Component
 struct ReusableChildComponent {
-  @State item: string = '';
+  @Prop item: string = '';
+  @Prop switch: string = '';
   private controller: MyNodeController = new MyNodeController();
 
   aboutToAppear() {
@@ -452,17 +465,29 @@ struct ReusableChildComponent {
   }
 
   aboutToRecycle(): void {
-    console.log("ReusableChildComponent aboutToRecycle " + this.item);
-    this.controller?.builderNode?.recycle();
+    console.log(`${TEST_TAG} ReusableChildComponent aboutToRecycle ${this.item}`);
+
+    // 当开关为open，通过BuilderNode的reuse接口和recycle接口传递给其下的自定义组件，例如ReusableChildComponent2，完成复用
+    if (this.switch === 'open') {
+      this.controller?.builderNode?.recycle();
+    }
   }
 
   aboutToReuse(params: object): void {
-    console.log("ReusableChildComponent aboutToReuse " + JSON.stringify(params));
-    this.controller?.builderNode?.reuse(params);
+    console.log(`${TEST_TAG} ReusableChildComponent aboutToReuse ${JSON.stringify(params)}`);
+
+    // 当开关为open，通过BuilderNode的reuse接口和recycle接口传递给其下的自定义组件，例如ReusableChildComponent2，完成复用
+    if (this.switch === 'open') {
+      this.controller?.builderNode?.reuse(params);
+    }
   }
 
   build() {
-    NodeContainer(this.controller);
+    Row() {
+      Text(`A${this.item}--`)
+      ReusableChildComponent3({ item: this.item })
+      NodeContainer(this.controller);
+    }
   }
 }
 
@@ -471,16 +496,38 @@ struct ReusableChildComponent2 {
   @Prop item: string = "false";
 
   aboutToReuse(params: Record<string, object>) {
-    console.log("ReusableChildComponent2 Reusable 2 " + JSON.stringify(params));
+    console.log(`${TEST_TAG} ReusableChildComponent2 aboutToReuse ${JSON.stringify(params)}`);
   }
 
   aboutToRecycle(): void {
-    console.log("ReusableChildComponent2 aboutToRecycle 2 " + this.item);
+    console.log(`${TEST_TAG} ReusableChildComponent2 aboutToRecycle ${this.item}`);
   }
 
   build() {
     Row() {
-      Text(this.item)
+      Text(`D${this.item}`)
+        .fontSize(20)
+        .backgroundColor(Color.Yellow)
+        .margin({ left: 10 })
+    }.margin({ left: 10, right: 10 })
+  }
+}
+
+@Component
+struct ReusableChildComponent3 {
+  @Prop item: string = "false";
+
+  aboutToReuse(params: Record<string, object>) {
+    console.log(`${TEST_TAG} ReusableChildComponent3 aboutToReuse ${JSON.stringify(params)}`);
+  }
+
+  aboutToRecycle(): void {
+    console.log(`${TEST_TAG} ReusableChildComponent3 aboutToRecycle ${this.item}`);
+  }
+
+  build() {
+    Row() {
+      Text(`B${this.item}`)
         .fontSize(20)
         .backgroundColor(Color.Yellow)
         .margin({ left: 10 })
@@ -495,7 +542,7 @@ struct Index {
   @State data: MyDataSource = new MyDataSource();
 
   aboutToAppear() {
-    for (let i = 0;i < 100; i++) {
+    for (let i = 0; i < 100; i++) {
       this.data.pushData(i.toString());
     }
   }
@@ -505,7 +552,10 @@ struct Index {
       List({ space: 3 }) {
         LazyForEach(this.data, (item: string) => {
           ListItem() {
-            ReusableChildComponent({ item: item })
+            ReusableChildComponent({
+              item: item,
+              switch: 'open' // 将open改为close可观察到，BuilderNode不通过reuse和recycle接口传递复用时，BuilderNode内部的自定义组件的行为表现
+            })
           }
         }, (item: string) => item)
       }
@@ -516,9 +566,10 @@ struct Index {
 }
 ```
 
+
 ## 通过系统环境变化更新节点
 
-使用[updateConfiguration](../reference/apis-arkui/js-apis-arkui-builderNode.md#reuse12)来监听[系统环境变化](../reference/apis-ability-kit/js-apis-app-ability-configuration.md)事件，以触发节点的全量更新。
+使用[updateConfiguration](../reference/apis-arkui/js-apis-arkui-builderNode.md#updateconfiguration12)来监听[系统环境变化](../reference/apis-ability-kit/js-apis-app-ability-configuration.md)事件，以触发节点的全量更新。
 
 > **说明：**
 >
@@ -660,3 +711,292 @@ struct Index {
 }
 ```
 
+## 跨页面复用注意事项
+
+在使用[路由](../reference/apis-arkui/js-apis-router.md)接口[router.replaceUrl](../reference/apis-arkui/js-apis-router.md#routerreplaceurl9)、[router.back](../reference/apis-arkui/js-apis-router.md#routerback)、[router.clear](../reference/apis-arkui/js-apis-router.md#routerclear)、[router.replaceNamedRoute](../reference/apis-arkui/js-apis-router.md#routerreplacenamedroute10)操作页面时，若某个被缓存的BuilderNode位于即将销毁的页面内，那么在新页面中复用该BuilderNode时，可能会存在数据无法更新或新创建节点无法显示的问题。以[router.replaceNamedRoute](../reference/apis-arkui/js-apis-router.md#routerreplacenamedroute10)为例，在以下示例代码中，当点击“router replace”按钮后，页面将切换至PageTwo，同时标志位isShowText会被设定为false。
+
+```ts
+// ets/pages/Index.ets
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
+import "ets/pages/PageTwo"
+
+@Builder
+function buildText() {
+  // @Builder中使用语法节点生成BuilderProxyNode
+  if (true) {
+    MyComponent()
+  }
+}
+
+@Component
+struct MyComponent {
+  @StorageLink("isShowText") isShowText: boolean = true;
+
+  build() {
+    if (this.isShowText) {
+      Column() {
+        Text("BuilderNode Reuse")
+          .fontSize(36)
+          .fontWeight(FontWeight.Bold)
+          .padding(16)
+      }
+    }
+  }
+}
+
+class TextNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+  private textNode: BuilderNode<[]> | null = null;
+
+  makeNode(context: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(context);
+
+    if (AppStorage.has("textNode")) {
+      // 复用AppStorage中的BuilderNode
+      this.textNode = AppStorage.get<BuilderNode<[]>>("textNode") as BuilderNode<[]>;
+      const parent = this.textNode.getFrameNode()?.getParent();
+      if (parent) {
+        parent.removeChild(this.textNode.getFrameNode());
+      }
+    } else {
+      this.textNode = new BuilderNode(context);
+      this.textNode.build(wrapBuilder<[]>(buildText));
+      // 将创建的BuilderNode存入AppStorage
+      AppStorage.setOrCreate<BuilderNode<[]>>("textNode", this.textNode);
+    }
+    this.rootNode.appendChild(this.textNode.getFrameNode());
+
+    return this.rootNode;
+  }
+}
+
+@Entry({ routeName: "myIndex" })
+@Component
+struct Index {
+  aboutToAppear(): void {
+    AppStorage.setOrCreate<boolean>("isShowText", true);
+  }
+
+  build() {
+    Row() {
+      Column() {
+        NodeContainer(new TextNodeController())
+          .width('100%')
+          .backgroundColor('#FFF0F0F0')
+        Button('Router pageTwo')
+          .onClick(() => {
+            // 改变AppStorage中的状态变量触发Text节点的重新创建
+            AppStorage.setOrCreate<boolean>("isShowText", false);
+
+            this.getUIContext().getRouter().replaceNamedRoute({ name: "pageTwo" });
+          })
+          .margin({ top: 16 })
+      }
+      .width('100%')
+      .height('100%')
+      .padding(16)
+    }
+    .height('100%')
+  }
+}
+```
+
+PageTwo的实现如下：
+
+```ts
+// ets/pages/PageTwo.ets
+// 该页面中存在一个按钮，可跳转回主页面，回到主页面后，原有的文字消失
+import "ets/pages/Index"
+
+@Entry({ routeName: "pageTwo" })
+@Component
+struct PageTwo {
+  build() {
+    Column() {
+      Button('Router replace to index')
+        .onClick(() => {
+          this.getUIContext().getRouter().replaceNamedRoute({ name: "myIndex" });
+        })
+    }
+    .height('100%')
+    .width('100%')
+    .alignItems(HorizontalAlign.Center)
+    .padding(16)
+  }
+}
+```
+
+![BuilderNode Reuse Example](./figures/builder_node_reuse.gif)
+
+在API version 16之前，解决该问题的方法是在页面销毁时，将页面上的BuilderNode从缓存中移除。以上述例子为例，可以在页面跳转前，通过点击事件将BuilderNode从AppStorage中移除，以此达到预期效果。
+
+API version 16及之后版本，BuilderNode在新页面被复用时，会自动刷新自身内容，无需在页面销毁时将BuilderNode从缓存中移除。
+
+```ts
+// ets/pages/Index.ets
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
+import "ets/pages/PageTwo"
+
+@Builder
+function buildText() {
+  // @Builder中使用语法节点生成BuilderProxyNode
+  if (true) {
+    MyComponent()
+  }
+}
+
+@Component
+struct MyComponent {
+  @StorageLink("isShowText") isShowText: boolean = true;
+
+  build() {
+    if (this.isShowText) {
+      Column() {
+        Text("BuilderNode Reuse")
+          .fontSize(36)
+          .fontWeight(FontWeight.Bold)
+          .padding(16)
+      }
+    }
+  }
+}
+
+class TextNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+  private textNode: BuilderNode<[]> | null = null;
+
+  makeNode(context: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(context);
+
+    if (AppStorage.has("textNode")) {
+      // 复用AppStorage中的BuilderNode
+      this.textNode = AppStorage.get<BuilderNode<[]>>("textNode") as BuilderNode<[]>;
+      const parent = this.textNode.getFrameNode()?.getParent();
+      if (parent) {
+        parent.removeChild(this.textNode.getFrameNode());
+      }
+    } else {
+      this.textNode = new BuilderNode(context);
+      this.textNode.build(wrapBuilder<[]>(buildText));
+      // 将创建的BuilderNode存入AppStorage
+      AppStorage.setOrCreate<BuilderNode<[]>>("textNode", this.textNode);
+    }
+    this.rootNode.appendChild(this.textNode.getFrameNode());
+
+    return this.rootNode;
+  }
+}
+
+@Entry({ routeName: "myIndex" })
+@Component
+struct Index {
+  aboutToAppear(): void {
+    AppStorage.setOrCreate<boolean>("isShowText", true);
+  }
+
+  build() {
+    Row() {
+      Column() {
+        NodeContainer(new TextNodeController())
+          .width('100%')
+          .backgroundColor('#FFF0F0F0')
+        Button('Router pageTwo')
+          .onClick(() => {
+            // 改变AppStorage中的状态变量触发Text节点的重新创建
+            AppStorage.setOrCreate<boolean>("isShowText", false);
+            // 将BuilderNode从AppStorage中移除
+            AppStorage.delete("textNode");
+
+            this.getUIContext().getRouter().replaceNamedRoute({ name: "pageTwo" });
+          })
+          .margin({ top: 16 })
+      }
+      .width('100%')
+      .height('100%')
+      .padding(16)
+    }
+    .height('100%')
+  }
+}
+```
+
+
+## BuilderNode中使用LocalStorage
+
+从API version 12开始，自定义组件支持接收[LocalStorage](../quick-start/arkts-localstorage.md)实例。可以通过[传递LocalStorage实例](../quick-start/arkts-localstorage.md#自定义组件接收localstorage实例)来使用LocalStorage相关的装饰器[@LocalStorageProp](../quick-start/arkts-localstorage.md#localstorageprop)、[@LocalStorageLink](../quick-start/arkts-localstorage.md#localstoragelink)。
+
+```ts
+import { BuilderNode, NodeController, UIContext } from '@kit.ArkUI';
+
+let localStorage1: LocalStorage = new LocalStorage();
+localStorage1.setOrCreate('PropA', 'PropA');
+
+let localStorage2: LocalStorage = new LocalStorage();
+localStorage2.setOrCreate('PropB', 'PropB');
+
+@Entry(localStorage1)
+@Component
+struct Index {
+  // 'PropA'，和localStorage1中'PropA'的双向同步
+  @LocalStorageLink('PropA') PropA: string = 'Hello World';
+  @State count: number = 0;
+  private controller: NodeController = new MyNodeController(this.count, localStorage2);
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.PropA)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        // 使用LocalStorage 实例localStorage2
+        Child({ count: this.count }, localStorage2)
+        NodeContainer(this.controller)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+interface Params {
+  count: number;
+  localStorage: LocalStorage;
+}
+
+@Builder
+function CreateChild(params: Params) {
+  //构造过程中传递localStorage
+  Child({ count: params.count }, params.localStorage)
+}
+
+class MyNodeController extends NodeController {
+  private count?: number;
+  private localStorage ?: LocalStorage;
+
+  constructor(count: number, localStorage: LocalStorage) {
+    super();
+    this.count = count;
+    this.localStorage = localStorage;
+  }
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let builderNode = new BuilderNode<[Params]>(uiContext);
+    //构造过程中传递localStorage
+    builderNode.build(wrapBuilder(CreateChild), { count: this.count, localStorage: this.localStorage });
+    return builderNode.getFrameNode();
+  }
+}
+
+@Component
+struct Child {
+  @Prop count: number;
+  //  'Hello World'，和localStorage2中'PropB'的双向同步，如果localStorage2中没有'PropB'，则使用默认值'Hello World'
+  @LocalStorageLink('PropB') PropB: string = 'Hello World';
+
+  build() {
+    Text(this.PropB)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+  }
+}
+```

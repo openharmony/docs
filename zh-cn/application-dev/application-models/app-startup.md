@@ -117,7 +117,7 @@ AppStartup提供了一种简单高效的应用启动方式，可以支持任务�
 
         | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
         | -------- | -------- | -------- | -------- |
-        | name | 启动任务对应的类名。 | 字符串 | 该标签不可缺省。 |
+        | name | 启动任务名称，可自定义，推荐与类名保持一致。 | 字符串 | 该标签不可缺省。 |
         | srcEntry | 启动任务对应的文件路径。 | 字符串 | 该标签不可缺省。 |
         | dependencies | 启动任务依赖的其他启动任务的类名数组。 | 对象数组 | 该标签可缺省，缺省值为空。 |
         | excludeFromAutoStart | 是否排除自动模式，详细介绍可以查看[修改启动模式](#可选修改启动模式)。 <br/>-&nbsp;true：手动模式。 <br/>-&nbsp;false：自动模式。 | 布尔值 | 该标签可缺省，缺省值为false。 |
@@ -231,13 +231,13 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    let startParams = ['StartupTask_005', 'StartupTask_006'];
+    let startParams = ["StartupTask_005", "StartupTask_006"];
     try {
       startupManager.run(startParams).then(() => {
         console.log('StartupTest startupManager run then, startParams = ');
       }).catch((error: BusinessError) => {
-        console.info("StartupTest promise catch error, error = " + JSON.stringify(error));
-        console.info("StartupTest promise catch error, startParams = "
+        console.info('StartupTest promise catch error, error = ' + JSON.stringify(error));
+        console.info('StartupTest promise catch error, startParams = '
           + JSON.stringify(startParams));
       })
     } catch (error) {
@@ -261,7 +261,7 @@ import { startupManager } from '@kit.AbilityKit';
 @Component
 struct Index {
   @State message: string = '手动模式';
-  @State startParams: Array<string> = ['StartupTask_006'];
+  @State startParams: Array<string> = ["StartupTask_006"];
 
   build() {
     RelativeContainer() {

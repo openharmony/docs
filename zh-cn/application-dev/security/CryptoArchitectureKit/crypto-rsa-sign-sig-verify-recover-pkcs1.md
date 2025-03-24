@@ -54,7 +54,7 @@
     let keyPair = await generator.generateKeyPair();
     let signData = await signMessagePromise(keyPair.priKey);
     let rawSignData = await verifyMessagePromise(signData, keyPair.pubKey);
-    if (rawSignData != null) {
+    if (rawSignData !== null) {
       console.info('recover result: ' + rawSignData.data);
     } else {
       console.error("get verify recover result fail!");
@@ -89,7 +89,7 @@
     let keyPair = generator.generateKeyPairSync();
     let signData = signMessagePromise(keyPair.priKey);
     let rawSignData = verifyMessagePromise(signData, keyPair.pubKey);
-    if (rawSignData != null) {
+    if (rawSignData !== null) {
       console.info('recover result: ' + rawSignData.data);
     } else {
       console.error("get verify recover result fail!");

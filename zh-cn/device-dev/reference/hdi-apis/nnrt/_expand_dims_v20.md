@@ -1,6 +1,5 @@
 # ExpandDims
 
-
 ## 概述
 
 在给定轴上为tensor添加一个额外的维度。
@@ -9,7 +8,7 @@
 
 输入：
 
-- x，n维tensor
+- x，n维tensor。
 
 - axis，需要添加的维度的index，int32_t类型，值必须在[-dim-1，dim]，且只允许常量值。
 

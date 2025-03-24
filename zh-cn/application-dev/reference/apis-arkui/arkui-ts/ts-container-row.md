@@ -14,7 +14,7 @@
 
 ## 接口
 
-Row(options?: RowOptions)
+Row(value?:{space?:  string&nbsp;|&nbsp;number })
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -26,19 +26,7 @@ Row(options?: RowOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [RowOptions](#rowoptions14对象说明) | 否 | 横向布局元素间距。 |
-
-## RowOptions<sup>14+</sup>对象说明
-
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| space | number&nbsp;\|&nbsp;string | 否 | 横向布局元素间距。<br/>从API version 9开始，space为负数或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。<br/>默认值：0，单位vp<br/>**说明：** <br/>可选值为大于等于0的数字，或者可以转换为数字的字符串。 |
+| value | {space?:  string&nbsp;\|&nbsp;number } | 否 | 横向布局元素间距。<br/>从API version 9开始，space为负数或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。<br/>默认值：0，单位vp<br/>**说明：** <br/>可选值为大于等于0的数字，或者可以转换为数字的字符串。 |
 
 
 ## 属性
@@ -114,6 +102,18 @@ reverse(isReversed: Optional\<boolean\>)
 ## 示例
 
 设置水平方向的布局属性，如间距、对齐方式等。
+
+```json
+// resources/base/element/string.json
+{
+  "string": [
+    {
+      "name": "stringSpace",
+      "value": "5"
+    }
+  ]
+}
+```
 
 ```ts
 // xxx.ets

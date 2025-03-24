@@ -1,5 +1,5 @@
 # @ohos.app.ability.PhotoEditorExtensionAbility (Image Editing)
-The PhotoEditorExtensionAbility, which inherits from the ExtensionAbility, enables your application to provide an image editing page for applications that do not have the image editing capability. After an application uses **startAbilityByType** to start a vertical domain panel with available image editing applications that have implemented the PhotoEditorExtensionAbility, the user can select one of the applications on the panel to display an image editing page.
+The PhotoEditorExtensionAbility, which inherits from the [ExtensionAbility](js-apis-app-ability-extensionAbility.md), enables your application to provide an image editing page for applications that do not have the image editing capability. After an application uses [startAbilityByType](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to start a vertical domain panel with available image editing applications that have implemented the PhotoEditorExtensionAbility, the user can select one of the applications on the panel to display an image editing page.
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.

@@ -8,11 +8,11 @@ startAbilityByType接口中type字段为finance，对应的wantParam参数：
 
 | 参数名            | 类型                                                         | 必填 | 说明 |
 | -------------------- | ------------------------------------------------------------ | -------- | -------- |
-| sceneType            | number                          | 否 | 意图取值 ：1：转账汇款 2：信用卡还款。默认为1 |
+| sceneType            | number                          | 否 | 意图场景，表明本次请求对应的操作意图。1：转账汇款 2：信用卡还款。默认为1 |
 | bankCardNo      | string                                               | 否  | 银行卡卡号 |
 
 ## 拉起方开发步骤
-1. 导入ohos.app.ability.common模块。 
+1. 导入相关模块。 
     ```ts
     import { common } from '@kit.AbilityKit';
     ```
@@ -87,7 +87,7 @@ startAbilityByType接口中type字段为finance，对应的wantParam参数：
 2. 解析面板传过来的参数并做对应处理。
 
     ```ts
-    UIAbility::onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
+    UIAbility.onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
     ```
 
     在参数**want.uri**中会携带目标方配置的linkFeature对应的uri;

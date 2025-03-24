@@ -228,7 +228,7 @@ Array.prototype.includes = function (value) {
 // main.ets
 import { data } from "./modifyPrototype" // 此时修改了Array的原型链
 let arr = [1, 2, 3, 4];
-console.log(arr.includes(1)); // 此时调用的是modifyPrototype.ts中的Array.prototype.includes方法
+console.log("arr.includes(1) = " + arr.includes(1)); // 此时调用的是modifyPrototype.ts中的Array.prototype.includes方法
 function maybeNotCalledAtAll() {
     console.log(data);
 }

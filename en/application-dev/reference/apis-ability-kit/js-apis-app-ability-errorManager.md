@@ -382,6 +382,34 @@ let promise1 = new Promise<void>(() => {}).then(() => {
 errorManager.off("unhandledRejection", observer);
 ```
 
+## ErrorObserver
+
+type ErrorObserver = _ErrorObserver.default
+
+Defines the ErrorObserver module.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Type| Description|
+| --- | --- |
+| [_ErrorObserver.default](js-apis-inner-application-errorObserver.md) | ErrorObserver module.|
+
+## LoopObserver<sup>12+</sup>
+
+type LoopObserver = _LoopObserver
+
+Defines the LoopObserver module.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Type| Description|
+| --- | --- |
+| [_LoopObserver](js-apis-inner-application-loopObserver.md) | LoopObserver module.|
+
 ## UnhandledRejectionObserver<sup>12+</sup>
 
 type UnhandledRejectionObserver = (reason: Error | any, promise: Promise\<any>) => void

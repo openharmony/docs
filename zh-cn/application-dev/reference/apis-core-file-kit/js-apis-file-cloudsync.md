@@ -16,28 +16,28 @@ import { cloudSync } from '@kit.CoreFileKit';
 
 云文件下载状态，为枚举类型。
 
-**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 | 名称 |  值|  说明 |
 | ----- |  ---- |  ---- |
-| RUNNING |  0 | 云文件正在下载中 |
-| COMPLETED |  1 | 云文件下载完成 |
-| FAILED |  2 | 云文件下载失败 |
-| STOPPED |  3 | 云文件下载已停止 |
+| RUNNING |  0 | 云文件正在下载中。 |
+| COMPLETED |  1 | 云文件下载完成。 |
+| FAILED |  2 | 云文件下载失败。 |
+| STOPPED |  3 | 云文件下载已停止。 |
 
 ## DownloadProgress<sup>11+</sup>
 
 云文件下载过程。
 
-**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 | 名称     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| state | [State](#state11) | 是   | 枚举值，云文件下载状态|
-| processed | number | 是   | 已下载数据大小|
-| size | number | 是   | 当前云文件大小|
-| uri | string | 是   | 当前云文件uri|
-| error | [DownloadErrorType](#downloaderrortype11) | 是   | 下载的错误类型|
+| state | [State](#state11) | 是   | 枚举值，云文件下载状态。|
+| processed | number | 是   | 已下载数据大小。|
+| size | number | 是   | 当前云文件大小。|
+| uri | string | 是   | 当前云文件uri。|
+| error | [DownloadErrorType](#downloaderrortype11) | 是   | 下载的错误类型。|
 
 ## CloudFileCache<sup>11+</sup>
 
@@ -77,7 +77,7 @@ on(event: 'progress', callback: Callback\<DownloadProgress>): void
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| event | string | 是   | 订阅的事件类型，取值为'progress'（下载过程事件）|
+| event | string | 是   | 订阅的事件类型，取值为'progress'（下载过程事件）。|
 | callback | Callback\<[DownloadProgress](#downloadprogress11)> | 是   | 云文件下载过程事件回调。 |
 
 **错误码：**
@@ -118,8 +118,8 @@ off(event: 'progress', callback?: Callback\<DownloadProgress>): void
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| event | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）|
-| callback | Callback\<[DownloadProgress](#downloadprogress11)> | 否   | 云文件下载过程事件回调，若填写，将视为取消指定的回调函数，否则为取消当前订阅的所有回调函数。 |
+| event | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）。|
+| callback | Callback\<[DownloadProgress](#downloadprogress11)> | 否   | 云文件下载过程事件回调。若填写，将视为取消指定的回调函数；否则为取消当前订阅的所有回调函数。 |
 
 **错误码：**
 
@@ -153,7 +153,7 @@ off(event: 'progress', callback?: Callback\<DownloadProgress>): void
 
 start(uri: string): Promise&lt;void&gt;
 
-异步方法启动云盘文件缓存, 以Promise形式返回结果。
+异步方法启动云盘文件缓存，以Promise形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -210,7 +210,7 @@ start(uri: string): Promise&lt;void&gt;
 
 start(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
-异步方法启动云盘文件缓存, 以callback形式返回结果。
+异步方法启动云盘文件缓存，以callback形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -255,9 +255,9 @@ start(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 stop(uri: string, needClean?: boolean): Promise&lt;void&gt;
 
-异步方法停止云盘文件缓存, 以Promise形式返回结果。
+异步方法停止云盘文件缓存，以Promise形式返回结果。
 
-调用stop接口, 当前文件下载流程会终止, 缓存文件会被删除, 再次调用start接口会重新开始下载。
+调用stop接口，当前文件下载流程会终止，缓存文件会被删除，再次调用start接口会重新开始下载。
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -266,7 +266,7 @@ stop(uri: string, needClean?: boolean): Promise&lt;void&gt;
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | uri | string | 是   | 待下载文件uri。 |
-| needClean<sup>12+</sup> | boolean | 否   | 是否删除已下载的文件，默认删除。<br>从API version12开始支持该参数。 |
+| needClean<sup>12+</sup> | boolean | 否   | 是否删除已下载的文件。默认值为false表示删除；true表示不删除。<br>从API version12开始支持该参数。 |
 
 **返回值：**
 
@@ -305,9 +305,9 @@ stop(uri: string, needClean?: boolean): Promise&lt;void&gt;
 
 stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
-异步方法停止云盘文件缓存, 以callback形式返回结果。
+异步方法停止云盘文件缓存，以callback形式返回结果。
 
-调用stop接口, 当前文件下载流程会终止, 缓存文件会被删除, 再次调用start接口会重新开始下载。
+调用stop接口，当前文件下载流程会终止，缓存文件会被删除，再次调用start接口会重新开始下载。
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -351,13 +351,13 @@ stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 端云下载错误类型，为枚举类型。
 
-**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 | 名称 |  值|  说明 |
 | ----- |  ---- |  ---- |
-| NO_ERROR |  0 | 没有错误 |
-| UNKNOWN_ERROR |  1 | 未知错误 |
-| NETWORK_UNAVAILABLE |  2 | 网络不可用 |
-| LOCAL_STORAGE_FULL |  3 | 本地空间不足 |
-| CONTENT_NOT_FOUND |  4 | 云端空间未找到对应文件 |
-| FREQUENT_USER_REQUESTS |  5 | 用户请求过于频繁 |
+| NO_ERROR |  0 | 没有错误。 |
+| UNKNOWN_ERROR |  1 | 未知错误。 |
+| NETWORK_UNAVAILABLE |  2 | 网络不可用。 |
+| LOCAL_STORAGE_FULL |  3 | 本地空间不足。 |
+| CONTENT_NOT_FOUND |  4 | 云端空间未找到对应文件。 |
+| FREQUENT_USER_REQUESTS |  5 | 用户请求过于频繁。 |

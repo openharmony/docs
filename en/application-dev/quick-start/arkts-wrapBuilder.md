@@ -2,6 +2,7 @@
 
 When you use multiple global @Builder functions in a struct to implement different UI effects, the code maintenance becomes difficult and the page is not neat. In this case, you can use **wrapBuilder** to encapsulate the global @Builder.
 
+  Before reading this topic, you are advised to read [\@Builder](./arkts-builder.md).
 
 > **NOTE**
 >
@@ -53,11 +54,15 @@ let builderVar: WrappedBuilder<[string, number]> = wrapBuilder(MyBuilder)
 let builderArr: WrappedBuilder<[string, number]>[] = [wrapBuilder(MyBuilder)] // An array is acceptable.
 ```
 
+
+
 ## Constraints
 
 **wrapBuilder** only accepts a [global \@Builder decorated function](arkts-builder.md#global-custom-builder-function) as its argument.
 
 Of the **WrappedBuilder** object it returns, the **builder** attribute method can be used only inside the struct.
+
+
 
 ## Assigning a Value to a Variable Using the @Builder Method
 
@@ -165,40 +170,11 @@ struct Parent{
 }
 ```
 
-## Incorrect Usage
-
-### wrapBuilder Accepts Only a Global Function Decorated by @Builder
-
-```ts
-function MyBuilder() {
-
-}
-
-const globalBuilder: WrappedBuilder<[string, number]> = wrapBuilder(MyBuilder);
-
-@Entry
-@Component
-struct Index {
-  @State message: string = 'Hello World';
-
-  build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-        globalBuilder.builder(this.message, 30)
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
+## FAQs
 
 ### wrapBuilder Redefinition Failure
 
-After **builderObj** is initialized and defined through **wrapBuilder(MyBuilderFirst)**, if you assign a new value to **builderObj**, **wrapBuilder(MyBuilderSecond)** does not take effect. Only the first defined **wrapBuilder(MyBuilderFirst)** takes effect.
+In the same custom component, the same **wrapBuilder** can be initialized only once. In the example, after **builderObj** is initialized through **wrapBuilder(MyBuilderFirst)**, **wrapBuilder(MyBuilderSecond)** does not take effect when a value is assigned to **builderObj** again.
 
 ```ts
 @Builder
@@ -225,6 +201,7 @@ struct Index {
 
   aboutToAppear(): void {
     setTimeout(() => {
+      // wrapBuilder (MyBuilderSecond) does not take effect.
       this.builderObj.globalBuilder = wrapBuilder(MyBuilderSecond);
     },1000)
   }

@@ -8,7 +8,7 @@
 >
 > 当前界面仅包含本模块的系统接口，其他公开接口参见[NotificationFlags](./js-apis-inner-notification-notificationFlags.md)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 ## 属性
 

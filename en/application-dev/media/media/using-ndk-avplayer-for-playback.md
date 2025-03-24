@@ -1,6 +1,6 @@
 # Using AVPlayer to Play Audio (C/C++)
 
-The [AVPlayer](../../reference/apis-media-kit/_a_v_player.md#avplayer) is used to play raw media assets in an end-to-end manner. In this topic, you will learn how to use the AVPlayer to play a complete piece of music.
+The [AVPlayer](media-kit-intro.md#avplayer) is used to play raw media assets in an end-to-end manner. In this topic, you will learn how to use the AVPlayer to play a complete piece of music.
 
 
 The full playback process includes creating an AVPlayer instance, setting callback functions, setting the media asset to play, setting playback parameters (volume, speed, and focus mode), controlling playback (play, pause, seek, and stop), resetting the playback configuration, and releasing the AVPlayer instance.
@@ -14,7 +14,7 @@ During application development, you can obtain the playback process information 
 
 For details about the states, see [AVPlayerState](../../reference/apis-media-kit/_a_v_player.md#avplayerstate-1). When the AVPlayer is in the **prepared**, **playing**, **paused**, or **completed** state, the playback engine is working and a large amount of RAM is occupied. If your application does not need to use the AVPlayer, call **OH_AVPlayer_Reset()** or **OH_AVPlayer_Release()** to release the instance.
 
-## Developer's Tips
+## Development Tips
 
 This topic describes only how to implement the playback of a media asset. In practice, background playback and playback conflicts may be involved. You can refer to the following description to handle the situation based on your service requirements.
 
@@ -362,7 +362,7 @@ static napi_value Play(napi_env env, napi_callback_info info)
     if (ret != AV_ERR_OK) {
     // Exception processing.
     }
-    ret = OH_AVPlayer_SetURLSource (player, url); // Set the URL.
+    ret = OH_AVPlayer_SetURLSource(player, url); // Set the URL.
     if (ret != AV_ERR_OK) {
     // Exception processing.
     }

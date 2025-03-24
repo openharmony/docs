@@ -90,7 +90,7 @@ export {value, test};
     }
     ```
 
-2. 使用napi_load_module加载Test文件，调用函数test以及获取变量value。
+2. 使用napi_load_module加载Test文件，调用函数test以及获取变量value：
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {

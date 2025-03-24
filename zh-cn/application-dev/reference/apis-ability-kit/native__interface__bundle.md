@@ -22,7 +22,7 @@
 | 结构体名称 | 描述 |
 | -------- | -------- |
 | [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md) | 提供应用相关信息。 |
-| [OH_NativeBundle_ElementName](_o_h___native_bundle_element_name.md) | 提供应用入口的信息 |
+| [OH_NativeBundle_ElementName](_o_h___native_bundle_element_name.md) | 提供应用入口的信息。 |
 
 
 ### 函数

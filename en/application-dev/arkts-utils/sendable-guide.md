@@ -1,13 +1,13 @@
-# Sendable Use Scenarios
-Sendable objects can be passed by reference between concurrent instances. Compared with the serialization mode, the reference transfer mode is more efficient and does not lose the member methods carried in the class. Therefore, Sendable can solve the following problems:
+# Use Scenarios of Sendable
+Sendable objects can be passed by reference between concurrent instances. This approach is more efficient than serialization and preserves methods carried in class instances. As a result, Sendable is particularly useful in two scenarios:
 
-- Transferring a large amount of data (for example, more than 100 KB) across concurrent instances
+- Transmitting a large amount of data (for example, data exceeding 100 KB) across concurrent instances
 
-- Passing a class instance object carrying methods across concurrent instances
+- Passing class instances carrying methods across concurrent instances
 
-## Big data transmission across concurrent instances
+## Transmitting Large Data Across Concurrent Instances
 
-The overhead of serialization across concurrent instances increases linearly with the data volume. When a large amount of data is transmitted (100 KB data takes about 1 ms to transmit), the overhead of data copy across concurrent instances is high, adversely affecting the parallelization performance. On the contrary, passing objects by reference improves performance.
+Serialization overhead increases linearly with the amount of data. When transmitting large data volumes (100 KB taking approximately 1 ms), the copying overhead can significantly impact application performance. On the contrary, passing objects by reference can greatly enhance performance.
 
 **Example**
 
@@ -24,7 +24,7 @@ async function taskFunc(obj: Test) {
 }
  
 async function test() {
-  // Use TaskPool for data transfer.
+  // Use TaskPool to pass data.
   let a: testTypeA = new testTypeA("testTypeA");
   let b: testTypeB = new testTypeB("testTypeB");
   let obj: Test = new Test(a, b);
@@ -75,7 +75,7 @@ struct Index {
 
 ```ts
 // sendable.ets
-// Assemble the data of a large size in a sendable class.
+// Assemble large data in a Sendable class.
 @Sendable
 export class testTypeA {
   name: string = "A";
@@ -104,9 +104,9 @@ export class Test {
 ```
 
 
-## Passing a class instance object carrying methods across concurrent instances
+## Passing Class Instances Carrying Methods Across Concurrent Instances
 
-Methods will be lost during serialization of instance objects. In scenarios where instance methods must be called, use pass-by-reference. If data needs to be parsed during data processing, you can use the [ASON tool](ason-parsing-generation.md) to parse the data.
+Methods are lost during serialization of instance objects. Therefore, in scenarios where instance methods must be called, passing objects by reference is essential. If data parsing is required during processing, the [ASON utility](ason-parsing-generation.md) can be used for data parsing.
 
 
 **Example**
@@ -131,12 +131,12 @@ async function taskFunc(sendableObj: SendableTestClass) {
   let jsonStr = '{"name": "Alexa", "age": 23, "sex": "female"}';
   let obj = ArkTSUtils.ASON.parse(jsonStr) as ISendable;
   console.info("SendableTestClass: type is: " + typeof obj);
-  console.info("SendableTestClass: name is: " + (obj as object)?.["name"]); // output: 'Alexa'
-  console.info("SendableTestClass: age is: " + (obj as object)?.["age"]); // output: 23
-  console.info("SendableTestClass: sex is: " + (obj as object)?.["sex"]); // output: 'female'
+  console.info("SendableTestClass: name is: " + (obj as object)?.["name"]); // Output: 'Alexa'
+  console.info("SendableTestClass: age is: " + (obj as object)?.["age"]); // Output: 23
+  console.info("SendableTestClass: sex is: " + (obj as object)?.["sex"]); // Output: 'female'
 }
 async function test() {
-  // Use TaskPool for data transfer.
+  // Use TaskPool to pass data.
   let obj: SendableTestClass = new SendableTestClass();
   let task: taskpool.Task = new taskpool.Task(taskFunc, obj);
   await taskpool.execute(task);
@@ -169,7 +169,7 @@ struct Index {
 
 ```ts
 // sendable.ets
-// Define a Test class to simulate the transfer of a class carrying methods.
+// Define a Test class to simulate the operation of passing a class instance carrying methods.
 import { lang, collections } from '@kit.ArkTS'
 
 export type ISendable = lang.ISendable;

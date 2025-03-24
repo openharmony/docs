@@ -33,15 +33,3 @@
 ## 开发步骤
 
 接口具体使用方法请参考[getPluralStringValueSync](../reference/apis-localization-kit/js-apis-resource-manager.md#getpluralstringvaluesync10)的API接口文档。
-
-```ts
-import { BusinessError } from '@ohos.base'; 
-
-try {  
-  this.context.resourceManager.getPluralStringByNameSync("test", 1);} 
-catch (error) {  
-  let code = (error as BusinessError).code;  
-  let message = (error as BusinessError).message;  
-  console.error(`getPluralStringByNameSync failed, error code: ${code}, message: ${message}.`);
-}
-```

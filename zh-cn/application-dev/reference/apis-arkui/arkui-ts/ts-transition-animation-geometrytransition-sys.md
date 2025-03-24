@@ -54,7 +54,7 @@ struct Index {
           .width(300)
           .height(400)
           .offset({ y: 100 })
-          .geometryTransition("picture", {hierarchyStrategy: TransitionHierarchyStrategy.ADAPTIVE})
+          .geometryTransition("picture", { hierarchyStrategy: TransitionHierarchyStrategy.ADAPTIVE })
           .transition(TransitionEffect.OPACITY)
       } else {
         // geometryTransition此处绑定的是容器，那么容器内的子组件需设为相对布局跟随父容器变化，
@@ -71,7 +71,7 @@ struct Index {
         // 则对容器本身有圆角同步而不会操作容器内部子组件的borderRadius
         .borderRadius(20)
         .clip(true)
-        .geometryTransition("picture", {hierarchyStrategy: TransitionHierarchyStrategy.ADAPTIVE})
+        .geometryTransition("picture", { hierarchyStrategy: TransitionHierarchyStrategy.ADAPTIVE })
         // transition保证组件离场不被立即析构，可设置其他转场效果
         .transition(TransitionEffect.OPACITY)
       }

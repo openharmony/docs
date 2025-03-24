@@ -16,6 +16,16 @@
 import { AbilityStage } from '@kit.AbilityKit';
 ```
 
+## Properties
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Name| Type| Read-Only| Optional| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| context  | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md) | No| No| Context of an AbilityStage.|
+
 ## AbilityStage.onCreate
 
 onCreate(): void

@@ -1,9 +1,9 @@
 # Application Access Control
 
 - [Access Control Overview](access-token-overview.md)
-- Application Permission Management
+- Application Permission Management<!--app-permission-mgmt-->
   - [Application Permission Management Overview](app-permission-mgmt-overview.md)
-  - Requesting Application Permissions
+  - Requesting Application Permissions<!--request-app-permissions-->
     - [Workflow for Requesting Permissions](determine-application-mode.md)
     - [Declaring Permissions](declare-permissions.md)
     - [Requesting User Authorization](request-user-authorization.md)
@@ -21,7 +21,7 @@
     - [Permissions for Enterprise Applications](permissions-for-enterprise-apps.md)
     - [Permissions for MDM Applications](permissions-for-mdm-apps.md)
   - [Application Permission Groups](app-permission-group-list.md)
-- Using Security Components
+- Using Security Components<!--security-components-->
   - [Security Component Overview](security-component-overview.md)
   - [Using PasteButton](pastebutton.md)
   - [Using SaveButton](savebutton.md)

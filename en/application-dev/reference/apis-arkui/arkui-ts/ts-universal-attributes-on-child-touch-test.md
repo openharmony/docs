@@ -68,7 +68,7 @@ Defines the custom event dispatch result. You can influence event dispatch by re
 
 ## TouchTestStrategy
 
-Describes the event dispatch strategy.
+Enumerates the event dispatch strategies.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 11.
 
@@ -84,7 +84,9 @@ Describes the event dispatch strategy.
 
 ## Example
 
-### Example 1
+### Example 1: Setting the Event Dispatch Strategy to FORWARD_COMPETITION
+
+In this example, dragging the blank area below the list allows the list to scroll, and clicking the button will trigger its **onClick** event.
 
 ```ts
 // xxx.ets
@@ -153,11 +155,12 @@ struct ListExample {
   }
 }
 ```
-After you touch the blank area in the lower part of the list and start dragging, the list scrolls. After you touch the button, the **onClick** event is triggered.
 
 ![onchildtouchtest](figures/on-child-touch-test-competition.gif)
 
-### Example 2
+### Example 2: Setting the Event Dispatch Strategy to FORWARD
+
+In this example, dragging the blank area below the list allows the list to scroll, but clicking the button will not trigger its **onClick** event.
 
 ```ts
 // xxx.ets
@@ -226,11 +229,12 @@ struct ListExample {
   }
 }
 ```
-After you touch the blank area in the lower part of the list and start dragging, the list scrolls. After you touch the button, the **onClick** event is not triggered.
 
 ![onchildtouchtest](figures/on-child-touch-test-forward.gif)
 
-### Example 3
+### Example 3: Setting the Event Dispatch Strategy to DEFAULT
+
+In this example, dragging the blank area below the list will not scroll the list, and clicking the button will trigger its **onClick** event.
 
 ```ts
 // xxx.ets
@@ -294,6 +298,5 @@ struct ListExample {
   }
 }
 ```
-After you touch the blank area in the lower part of the list and start dragging, the list does not scroll. After you touch the button, the **onClick** event is triggered.
 
 ![onchildtouchtest](figures/on-child-touch-test-default.gif)

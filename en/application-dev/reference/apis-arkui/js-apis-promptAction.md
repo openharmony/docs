@@ -79,112 +79,6 @@ Below is a toast in API version 12 and later versions.
 
 ![en-us_image_0001](figures/toast-api12.gif)
 
-## promptAction.openToast<sup>13+</sup>
-
-openToast(options: ShowToastOptions): Promise&lt;number&gt;
-
-Opens a toast. This API returns the toast ID.
-
-**Atomic service API**: This API can be used in atomic services since API version 13.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name | Type                                                        | Mandatory| Description          |
-| ------- | ------------------------------------------------------------ | ---- | -------------- |
-| options | [ShowToastOptions](#showtoastoptions) | Yes  | Toast options.|
-
-**Return value**
-
-| Type            | Description                                |
-| ---------------- | ------------------------------------ |
-| Promise&lt;number&gt; | ID of the toast, which is required in **closeToast**.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
-
-| ID| Error Message                                                    |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
-| 100001   | Internal error.                                              |
-
-**Example**
-
-```ts
-import { promptAction } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
-@Entry
-@Component
-struct toastExample {
-  @State toastId: number = 0;
-  build() {
-    Column() {
-      Button('Open Toast')
-        .height(100)
-        .onClick(() => {
-          try {
-            promptAction.openToast({
-              message: 'Toast Massage',
-              duration: 10000,
-            }).then((toastId: number) => {
-              this.toastId = toastId;
-            });
-          } catch (error) {
-            let message = (error as BusinessError).message;
-            let code = (error as BusinessError).code;
-            console.error(`OpenToast error code is ${code}, message is ${message}`);
-          };
-        })
-      Blank().height(50);
-      Button('Close Toast')
-        .height(100)
-        .onClick(() => {
-          try {
-            promptAction.closeToast(this.toastId);
-          } catch (error) {
-            let message = (error as BusinessError).message;
-            let code = (error as BusinessError).code;
-            console.error(`CloseToast error code is ${code}, message is ${message}`);
-          };
-        })
-    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
-  }
-}
-```
-
-![toast-openclose](figures/toast-openclose.gif)
-
-## promptAction.closeToast<sup>13+</sup>
-
-closeToast(toastId: number): void
-
-Closes a toast.
-
-**Atomic service API**: This API can be used in atomic services since API version 13.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name | Type  | Mandatory| Description                         |
-| ------- | ------ | ---- | ----------------------------- |
-| toastId | number | Yes  | ID of the toast to close, which is returned by **openToast**.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
-
-| ID| Error Message                                                    |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
-| 100001   | Internal error.                                              |
-
-**Example**
-
-For details, see [promptAction.openToaset13](#promptactionopentoast13).
-
 ## promptAction.showDialog
 
 showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
@@ -522,21 +416,35 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { promptAction } from '@kit.ArkUI'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 @Entry
 @Component
 struct Index {
   private customDialogComponentId: number = 0
 
-  @Builder customDialogComponent() {
+  @Builder
+  customDialogComponent() {
     Column() {
       Text('Toast').fontSize(30)
       Row({ space: 50 }) {
         Button("OK").onClick(() => {
-          promptAction.closeCustomDialog(this.customDialogComponentId)
+          try {
+            promptAction.closeCustomDialog(this.customDialogComponentId)
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`closeCustomDialog error code is ${code}, message is ${message}`);
+          }
         })
         Button("Cancel").onClick(() => {
-          promptAction.closeCustomDialog(this.customDialogComponentId)
+          try {
+            promptAction.closeCustomDialog(this.customDialogComponentId)
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`closeCustomDialog error code is ${code}, message is ${message}`);
+          }
         })
       }
     }.height(200).padding(5).justifyContent(FlexAlign.SpaceBetween)
@@ -565,6 +473,9 @@ struct Index {
             }).then((dialogId: number) => {
               this.customDialogComponentId = dialogId
             })
+              .catch((error: BusinessError) => {
+                console.error(`openCustomDialog error code is ${error.code}, message is ${error.message}`)
+              })
           })
       }
       .width('100%')
@@ -693,12 +604,14 @@ Describes the options for showing the toast.
 | textColor<sup>12+</sup>    | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | Font color of the toast.<br>Default value: **Color.Black**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | backgroundBlurStyle<sup>12+</sup>    | [BlurStyle](arkui-ts/ts-universal-attributes-background.md#blurstyle9) | No  | Background blur style of the toast.<br>Default value: **BlurStyle.COMPONENT_ULTRA_THICK**<br>**NOTE**<br>Setting this parameter to **BlurStyle.NONE** disables the background blur. When **backgroundBlurStyle** is set to a value other than **NONE**, do not set **backgroundColor**. If you do, the color display may not produce the expected visual effect.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | shadow<sup>12+</sup>    | [ShadowOptions](arkui-ts/ts-universal-attributes-image-effect.md#shadowoptions) \| [ShadowStyle](arkui-ts/ts-universal-attributes-image-effect.md#shadowstyle10) | No  | Background shadow of the toast.<br>Default value: **ShadowStyle.OuterDefaultMD**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| enableHoverMode<sup>13+</sup>    | boolean                       | No  | Whether to enable the hover state.<br>Default value: **False**, meaning not to enable the hover state.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
-| hoverModeArea<sup>13+</sup> | [HoverModeAreaType](arkui-ts/ts-appendix-enums.md#hovermodeareatype13)         | No  | Display area of the toast in the hover state.<br>Default value: **HoverModeAreaType.BOTTOM_SCREEN**, indicating that the toast is displayed in the lower half screen<br>**Atomic service API**: This API can be used in atomic services since API version 13.        |
+| enableHoverMode<sup>14+</sup>    | boolean                       | No  | Whether to enable the hover state.<br>Default value: **False**, meaning not to enable the hover state.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| hoverModeArea<sup>14+</sup> | [HoverModeAreaType](arkui-ts/ts-appendix-enums.md#hovermodeareatype14)         | No  | Display area of the toast in the hover state.<br>Default value: **HoverModeAreaType.BOTTOM_SCREEN**, indicating that the toast is displayed in the lower half screen<br>**Atomic service API**: This API can be used in atomic services since API version 13.        |
 
 ## ToastShowMode<sup>11+</sup>
 
 Describes the mode in which the toast is shown.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -726,8 +639,8 @@ Describes the options for showing the dialog box.
 | backgroundColor<sup>12+</sup>     | [ResourceColor](arkui-ts/ts-types.md#resourcecolor)          | No  | Background color of the dialog box.<br>Default value: **Color.Transparent**<br>**NOTE**<br>When **backgroundColor** is set to a non-transparent color, **backgroundBlurStyle** must be set to **BlurStyle.NONE**; otherwise, the color display may not meet the expected effect.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | backgroundBlurStyle<sup>12+</sup> | [BlurStyle](arkui-ts/ts-universal-attributes-background.md#blurstyle9) | No  | Background blur style of the dialog box.<br>Default value: **BlurStyle.COMPONENT_ULTRA_THICK**<br>**NOTE**<br>Setting this parameter to **BlurStyle.NONE** disables the background blur. When **backgroundBlurStyle** is set to a value other than **NONE**, do not set **backgroundColor**. If you do, the color display may not produce the expected visual effect.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | shadow<sup>12+</sup>              | [ShadowOptions](arkui-ts/ts-universal-attributes-image-effect.md#shadowoptions) \| [ShadowStyle](arkui-ts/ts-universal-attributes-image-effect.md#shadowstyle10) | No  | Shadow of the dialog box.<br> Default value on 2-in-1 devices: **ShadowStyle.OUTER_FLOATING_MD** when the dialog box is focused and **ShadowStyle.OUTER_FLOATING_SM** otherwise<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| enableHoverMode<sup>13+</sup>     | boolean                                                      | No  | Whether to enable the hover state.<br>Default value: **false**, meaning not to enable the hover state.           |
-| hoverModeArea<sup>13+</sup>       | [HoverModeAreaType](arkui-ts/ts-appendix-enums.md#hovermodeareatype13) | No  | Display area of the dialog box in the hover state.<br>Default value: **HoverModeAreaType.BOTTOM_SCREEN**|
+| enableHoverMode<sup>14+</sup>     | boolean                                                      | No  | Whether to enable the hover state.<br>Default value: **false**, meaning not to enable the hover state.           |
+| hoverModeArea<sup>14+</sup>       | [HoverModeAreaType](arkui-ts/ts-appendix-enums.md#hovermodeareatype14) | No  | Display area of the dialog box in the hover state.<br>Default value: **HoverModeAreaType.BOTTOM_SCREEN**|
 
 ## ShowDialogSuccessResponse
 
@@ -811,8 +724,8 @@ Defines the options of the dialog box.
 | onWillAppear<sup>12+</sup> | () => void | No| Event callback when the dialog box is about to appear.<br>**NOTE**<br>1. The normal timing sequence is as follows: onWillAppear > onDidAppear > (onDateAccept/onCancel/onDateChange) > onWillDisappear > onDidDisappear.<br>2. You can set the callback event for changing the dialog box display effect in **onWillAppear**. The settings take effect next time the dialog box appears.|
 | onWillDisappear<sup>12+</sup> | () => void | No| Event callback when the dialog box is about to disappear.<br>**NOTE**<br>1. The normal timing sequence is as follows: onWillAppear > onDidAppear > (onDateAccept/onCancel/onDateChange) > onWillDisappear > onDidDisappear.<br>2. If the user dismisses the dialog box immediately after it appears, **onWillDisappear** is invoked before **onDidAppear**.|
 | keyboardAvoidMode<sup>12+</sup> | [KeyboardAvoidMode](#keyboardavoidmode12) | No| How the dialog box avoids the soft keyboard when it is brought up.<br>Default value: **KeyboardAvoidMode.DEFAULT**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| enableHoverMode<sup>13+</sup>              | boolean | No  | Whether to enable the hover state.<br>Default value: **false**, meaning not to enable the hover state.|
-| hoverModeArea<sup>13+</sup>              | [HoverModeAreaType](arkui-ts/ts-appendix-enums.md#hovermodeareatype13) | No  | Display area of the dialog box in the hover state.<br>Default value: **HoverModeAreaType.BOTTOM_SCREEN**|
+| enableHoverMode<sup>14+</sup>              | boolean | No  | Whether to enable the hover state.<br>Default value: **false**, meaning not to enable the hover state.|
+| hoverModeArea<sup>14+</sup>              | [HoverModeAreaType](arkui-ts/ts-appendix-enums.md#hovermodeareatype14) | No  | Display area of the dialog box in the hover state.<br>Default value: **HoverModeAreaType.BOTTOM_SCREEN**|
 
 ## DismissDialogAction<sup>12+</sup>
 

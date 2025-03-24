@@ -6,7 +6,7 @@ appManager模块提供App管理的能力，包括查询当前是否处于稳定�
 > 
 > 本模块首批接口从API version 8 开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.appManager](js-apis-app-ability-appManager.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.application.appManager (appManager)](js-apis-app-ability-wantConstant.md)。
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.application.appManager (appManager)](js-apis-application-appManager.md)。
 
 ## 导入模块
 
@@ -73,7 +73,7 @@ unregisterApplicationStateObserver(observerId: number,  callback: AsyncCallback\
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -108,7 +108,7 @@ unregisterApplicationStateObserver(observerId: number): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -120,7 +120,7 @@ unregisterApplicationStateObserver(observerId: number): Promise\<void>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
     
@@ -149,7 +149,7 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -181,7 +181,7 @@ getForegroundApplications(): Promise\<Array\<AppStateData>>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **返回值：**
 
@@ -218,7 +218,7 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -263,7 +263,7 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS, ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
@@ -303,7 +303,7 @@ killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -339,7 +339,7 @@ killProcessesByBundleName(bundleName: string): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -379,7 +379,7 @@ clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -415,7 +415,7 @@ clearUpApplicationData(bundleName: string): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 

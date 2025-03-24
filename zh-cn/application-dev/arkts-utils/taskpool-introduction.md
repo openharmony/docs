@@ -32,6 +32,8 @@ TaskPool支持开发者在宿主线程封装任务抛给任务队列，系统选
 
 - 不支持在TaskPool工作线程中使用[AppStorage](../quick-start/arkts-appstorage.md)。
 
+- TaskPool支持开发者在宿主线程封装任务抛给任务队列，理论上可以支持任意多的任务，但任务的执行受限于任务的优先级以及系统资源的影响，在工作线程扩容到最大后，可能会导致任务的执行效率下降。
+
 ## \@Concurrent装饰器
 
 在使用[TaskPool](../reference/apis-arkts/js-apis-taskpool.md)时，执行的并发函数需要使用该装饰器修饰，否则无法通过相关校验。
@@ -113,7 +115,7 @@ struct Index {
 
 #### 并发函数返回Promise
 
-并发函数中返回Promise的表现需关注，其中并发同步函数会处理返回该Promise并返回结果，如下例所示。
+并发函数中返回Promise的表现需关注，如下例所示，其中testPromise、testPromise1等并发同步函数会处理该Promise并返回结果。
 
 示例：
 
@@ -323,7 +325,7 @@ export class MyTestB {
 
 #### 并发异步函数中使用Promise
 
-并发异步函数中如果使用Promise，建议搭配await使用捕获Promise中可能发生的异常。推荐使用示例如下。
+并发异步函数中如果使用Promise，建议搭配await使用。这样TaskPool会捕获Promise中可能发生的异常。推荐使用示例如下。
 
 示例：
 

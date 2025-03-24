@@ -1,6 +1,6 @@
 # @ohos.WorkSchedulerExtensionAbility (Deferred Task Scheduling Callbacks)
 
-The **WorkSchedulerExtensionAbility** module provides callbacks for deferred task scheduling. You can override the APIs provided by this module. When a deferred task is triggered, the system calls back the application through the APIs and processes the task logic in the callback.
+The WorkSchedulerExtensionAbility module provides callbacks for deferred task scheduling. You can override the APIs provided by this module. When a deferred task is triggered, the system calls back the application through the APIs and processes the task logic in the callback.
 
 >  **NOTE**
 >
@@ -14,15 +14,27 @@ The **WorkSchedulerExtensionAbility** module provides callbacks for deferred tas
 import { WorkSchedulerExtensionAbility } from '@kit.BackgroundTasksKit';
 ```
 
-## Attributes
+## WorkSchedulerExtensionContext<sup>10+</sup>
+
+type WorkSchedulerExtensionContext = _WorkSchedulerExtensionContext
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
-| Name | Type | Readable | Writable | Description |
-| -------- | -------- | -------- | -------- | -------- |
-| context<sup>10+</sup> | [WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)  | Yes | No | Context of the **WorkSchedulerExtension**. This context is inherited from **ExtensionContext**. |
+| Type| Description|
+| -------- |  -------- |
+| [_WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)|  Context of the WorkSchedulerExtensionAbility.|
 
-## WorkSchedulerExtensionAbility.onWorkStart
+## WorkSchedulerExtensionAbility
+
+### Properties
+
+**System capability**: SystemCapability.ResourceSchedule.WorkScheduler
+
+| Name| Type| Readable| Writable| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| context<sup>10+</sup> | [WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)  | Yes| No| Context of the WorkSchedulerExtensionAbility. This context inherits from **ExtensionContext**.|
+
+### onWorkStart
 
 onWorkStart(work: workScheduler.WorkInfo): void
 
@@ -34,7 +46,7 @@ Called when the system starts scheduling the deferred task.
 
 | Name | Type                                      | Mandatory  | Description            |
 | ---- | ---------------------------------------- | ---- | -------------- |
-| work | [workScheduler.WorkInfo](js-apis-resourceschedule-workScheduler.md#workinfo) | Yes   | Deferred task that starts. |
+| work | [workScheduler.WorkInfo](js-apis-resourceschedule-workScheduler.md#workinfo) | Yes   | Deferred task that starts.|
 
 **Example**
 
@@ -48,7 +60,7 @@ Called when the system starts scheduling the deferred task.
   }
   ```
 
-## WorkSchedulerExtensionAbility.onWorkStop
+### onWorkStop
 
 onWorkStop(work: workScheduler.WorkInfo): void
 
@@ -60,7 +72,7 @@ Called when the system stops scheduling the deferred task.
 
 | Name | Type                                      | Mandatory  | Description            |
 | ---- | ---------------------------------------- | ---- | -------------- |
-| work | [workScheduler.WorkInfo](js-apis-resourceschedule-workScheduler.md#workinfo) | Yes   | Deferred task that stops. |
+| work | [workScheduler.WorkInfo](js-apis-resourceschedule-workScheduler.md#workinfo) | Yes   | Deferred task that stops.|
 
 
 **Example**

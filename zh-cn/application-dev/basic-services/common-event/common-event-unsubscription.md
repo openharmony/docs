@@ -34,9 +34,9 @@
    if (subscriber !== null) {
      commonEventManager.unsubscribe(subscriber, (err: BusinessError) => {
        if (err) {
-         hilog.error(DOMAIN_NUMBER, TAG, `UnsubscribeCallBack err = ${JSON.stringify(err)}`);
+         hilog.error(DOMAIN_NUMBER, TAG, `Failed to unsubscribe. code is ${err.code}, message is ${err.message}`);
        } else {
-         hilog.info(DOMAIN_NUMBER, TAG, `Unsubscribe success`);
+         hilog.info(DOMAIN_NUMBER, TAG, `Succeeded in unsubscribing.`);
          subscriber = null;
        }
      })

@@ -8,7 +8,7 @@
 
 **错误信息**
 
-System resources do not exist
+System resources do not exist.
 
 **错误描述**
 

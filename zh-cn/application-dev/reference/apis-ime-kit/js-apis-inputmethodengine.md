@@ -1134,7 +1134,7 @@ off(type: 'cursorContextChange', callback?: (x: number, y: number, height: numbe
 
 | 参数名    | 类型  | 必填  | 说明   |
 | -------- | ---- | ---- | ------ |
-| type     | string  | 是   | 光标变化事件，固定取值为'cursorContextChange' |
+| type     | string  | 是   | 光标变化事件，固定取值为'cursorContextChange'。 |
 | callback | (x: number, y:number, height:number) => void | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
 
@@ -1793,7 +1793,7 @@ adjustPanelRect(flag: PanelFlag, rect: PanelRect): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| flag | [PanelFlag](#panelflag10) | 是 | 目标面板状态类型。类型为FLG_FIXED或FLG_FLOATING |
+| flag | [PanelFlag](#panelflag10) | 是 | 目标面板状态类型。类型为FLG_FIXED或FLG_FLOATING。 |
 | rect | [PanelRect](#panelrect12) | 是   | 目标面板横屏状态及竖屏状态的横坐标，纵坐标，宽度以及高度。固定态：高度不能超过屏幕高度的70%，宽度不能超过屏幕宽度；悬浮态：高度不能超过屏幕高度，宽度不能超过屏幕宽度。|
 
 **错误码：**

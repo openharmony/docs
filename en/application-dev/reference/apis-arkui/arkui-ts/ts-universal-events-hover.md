@@ -1,17 +1,17 @@
 # Hover Event
 
-A hover event is triggered when the mouse slides or a stylus moves over the component on the screen.
+A hover event is triggered when the cursor slides over a component or when a stylus hovers and moves over the screen.
 
 >  **NOTE**
 >
 >  - The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
->  - Currently, only an external mouse device or stylus can be used to trigger a hover event.
+>  - Currently, only an external mouse device, stylus, or touchpad can be used to trigger a hover event.
 
 ## onHover
 
 onHover(event: (isHover: boolean, event: HoverEvent) => void): T
 
-Triggered when the mouse or stylus enters or leaves the component.
+Triggered when the mouse pointer or stylus enters or leaves the component.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -22,7 +22,7 @@ Triggered when the mouse or stylus enters or leaves the component.
 | Name             | Type                               | Mandatory| Description                                                        |
 | ------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
 | isHover             | boolean                             | Yes  | Whether the mouse pointer or stylus is hovering over the component. The value **true** means that the mouse pointer or stylus enters the component, and **false** means that the mouse pointer or stylus leaves the component.|
-| event<sup>11+</sup> | [HoverEvent](#hoverevent11) | Yes  | Bubbling of the blocking event.                                      |
+| event<sup>11+</sup> | [HoverEvent](#hoverevent11) | Yes  | Event bubbling.                                      |
 
 **Return value**
 
@@ -43,6 +43,8 @@ Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent).
 | stopPropagation | () => void | Stops the event from bubbling upwards or downwards.|
 
 ## Example
+
+This example demonstrates how to set a hover event on a button. When the mouse or stylus hovers over the button, the **onHover** event is triggered to dynamically change the text content and background color of the button.
 
 ```ts
 // xxx.ets

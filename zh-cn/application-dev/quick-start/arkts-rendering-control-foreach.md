@@ -2,7 +2,7 @@
 
 ForEach接口基于数组类型数据来进行循环渲染，需要与容器组件配合使用，且接口返回的组件应当是允许包含在ForEach父容器组件中的子组件。例如，ListItem组件要求ForEach的父容器组件必须为[List组件](../reference/apis-arkui/arkui-ts/ts-container-list.md)。
 
-API参数说明见：[ForEach API参数说明](../reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md)
+API参数说明见：[ForEach API参数说明](../reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md)。
 
 > **说明：**
 >
@@ -457,10 +457,7 @@ struct ArticleCard {
 在本示例中，`Article`类被`@Observed`装饰器修饰。父组件`ArticleListView`传入`Article`对象实例给子组件`ArticleCard`，子组件使用`@ObjectLink`装饰器接收该实例。
 
 1. 当点击第1个文章卡片上的点赞图标时，会触发`ArticleCard`组件的`handleLiked`函数。该函数修改第1个卡片对应组件里`article`实例的`isLiked`和`likesCount`属性值。
-2. 由于子组件`ArticleCard`中的`article`使用了`@ObjectLink`装饰器，父子组件共享同一份`article`数据。因此，父组件中`articleList`的第1个数组项的`isLiked`和`likedCounts`数值也会同步修改。
-3. 当父组件监听到数据源数组项属性值变化时，会触发`ForEach`重新渲染。
-4. 在此处，`ForEach`键值生成规则为数组项的`id`属性值。当`ForEach`遍历新数据源时，数组项的`id`均没有变化，不会新建组件。
-5. 渲染第1个数组项对应的`ArticleCard`组件时，读取到的`isLiked`和`likesCount`为修改后的新值。
+2. `article`实例是`@ObjectLink`装饰的状态变量，它的属性值变化，触发对应的`ArticleCard`组件渲染，读取到的`isLiked`和`likesCount`为修改后的新值。
 
 ### 拖拽排序
 当ForEach在List组件下使用，并且设置了onMove事件，ForEach每次迭代都生成一个ListItem时，可以使能拖拽排序。拖拽排序离手后，如果数据位置发生变化，则会触发onMove事件，上报数据移动原始索引号和目标索引号。在onMove事件中，需要根据上报的起始索引号和目标索引号修改数据源。数据源修改前后，要保持每个数据的键值不变，只是顺序发生变化，才能保证落位动画正常执行。
@@ -508,9 +505,10 @@ struct ForEachSort {
 
 - 为满足键值的唯一性，对于对象数据类型，建议使用对象数据中的唯一`id`作为键值。
 - 尽量避免在最终的键值生成规则中包含数据项索引`index`，以防止出现[渲染结果非预期](#渲染结果非预期)和[渲染性能降低](#渲染性能降低)。如果业务确实需要使用`index`，例如列表需要通过`index`进行条件渲染，开发者需要接受`ForEach`在改变数据源后重新创建组件所带来的性能损耗。
-- 基本数据类型的数据项没有唯一`ID`属性。如果使用基本数据类型本身作为键值，必须确保数组项无重复。因此，对于数据源会发生变化的场景，建议将基本数据类型数组转化为具备唯一`ID`属性的对象数据类型数组，再使用`ID`属性作为键值生成规则。
+- 基本数据类型的数据项没有唯一`ID`属性。如果使用基本数据类型本身作为键值，必须确保数组项无重复。因此，对于数据源会发生变化的场景，建议将基本数据类型数组转化为具备唯一`ID`属性的对象数据类型数组，再使用唯一`ID`属性作为键值。
 - 对于以上限制规则，`index`参数存在的意义为：index是开发者保证键值唯一性的最终手段；对数据项进行修改时，由于`itemGenerator`中的`item`参数是不可修改的，所以须用index索引值对数据源进行修改，进而触发UI重新渲染。
 - ForEach在下列容器组件 [List](../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md)以及[WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md) 内使用的时候，不要与[LazyForEach](./arkts-rendering-control-lazyforeach.md) 混用。 以List为例，同时包含ForEach、LazyForEach的情形是不推荐的。
+- 数组项是对象数据类型的情况下，不建议用内容相同的数组项替换旧的数组项。如果数组项变更，但是变更前后的键值不变，会出现[数据变化不渲染](#数据变化不渲染)。
 
 ## 不推荐案例
 
@@ -640,3 +638,124 @@ ForEach(this.simpleList, (item: string) => {
 }, (item: string) => item)  // 需要保证key唯一
 ```
 提供了第三个参数`KeyGenerator`，在这个例子中，对数据源的不同数据项生成不同的key，并且对同一个数据项每次生成相同的key。
+
+### 数据变化不渲染
+点击按钮`Like/UnLike first article`，第一个组件会切换点赞手势和后面的点赞数量，但是点击按钮`Replace first article`之后再点击按钮`Like/UnLike first article`就不生效了。这是因为，替换`articleList[0]`之后，`articleList`这个状态变量发生变化，触发ForEach重新渲染，但是新的`articleList[0]`生成的key没有变，ForEach不会将数据更新同步给子组件，因此第一个组件仍然绑定旧的`articleList[0]`。新`articleList[0]`的属性发生变更，第一个组件感知不到，不会重新渲染。点击点赞手势，会触发渲染。因为变更的是跟组件绑定的数组项的属性，组件会感知并重新渲染。
+```ts
+@Observed
+class Article {
+  id: string;
+  title: string;
+  brief: string;
+  isLiked: boolean;
+  likesCount: number;
+
+  constructor(id: string, title: string, brief: string, isLiked: boolean, likesCount: number) {
+    this.id = id;
+    this.title = title;
+    this.brief = brief;
+    this.isLiked = isLiked;
+    this.likesCount = likesCount;
+  }
+}
+
+@Entry
+@Component
+struct ArticleListView {
+  @State articleList: Array<Article> = [
+    new Article('001', '第0篇文章', '文章简介内容', false, 100),
+    new Article('002', '第1篇文章', '文章简介内容', false, 100),
+    new Article('003', '第2篇文章', '文章简介内容', false, 100),
+    new Article('004', '第4篇文章', '文章简介内容', false, 100),
+    new Article('005', '第5篇文章', '文章简介内容', false, 100),
+    new Article('006', '第6篇文章', '文章简介内容', false, 100),
+  ];
+
+  build() {
+    Column() {
+      Button('Replace first article')
+        .onClick(() => {
+          this.articleList[0] = new Article('001', '第0篇文章', '文章简介内容', false, 100);
+        })
+        .width(300)
+        .margin(10)
+
+      Button('Like/Unlike first article')
+        .onClick(() => {
+          this.articleList[0].isLiked = !this.articleList[0].isLiked;
+          this.articleList[0].likesCount =
+            this.articleList[0].isLiked ? this.articleList[0].likesCount + 1 : this.articleList[0].likesCount - 1;
+        })
+        .width(300)
+        .margin(10)
+
+      List() {
+        ForEach(this.articleList, (item: Article) => {
+          ListItem() {
+            ArticleCard({
+              article: item
+            })
+              .margin({ top: 20 })
+          }
+        }, (item: Article) => item.id)
+      }
+      .padding(20)
+      .scrollBar(BarState.Off)
+      .backgroundColor(0xF1F3F5)
+    }
+  }
+}
+
+@Component
+struct ArticleCard {
+  @ObjectLink article: Article;
+
+  handleLiked() {
+    this.article.isLiked = !this.article.isLiked;
+    this.article.likesCount = this.article.isLiked ? this.article.likesCount + 1 : this.article.likesCount - 1;
+  }
+
+  build() {
+    Row() {
+      // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+      Image($r('app.media.icon'))
+        .width(80)
+        .height(80)
+        .margin({ right: 20 })
+
+      Column() {
+        Text(this.article.title)
+          .fontSize(20)
+          .margin({ bottom: 8 })
+        Text(this.article.brief)
+          .fontSize(16)
+          .fontColor(Color.Gray)
+          .margin({ bottom: 8 })
+
+        Row() {
+          // 此处app.media.iconLiked'，'app.media.iconUnLiked'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+          Image(this.article.isLiked ? $r('app.media.iconLiked') : $r('app.media.iconUnLiked'))
+            .width(24)
+            .height(24)
+            .margin({ right: 8 })
+          Text(this.article.likesCount.toString())
+            .fontSize(16)
+        }
+        .onClick(() => this.handleLiked())
+        .justifyContent(FlexAlign.Center)
+      }
+      .alignItems(HorizontalAlign.Start)
+      .width('80%')
+      .height('100%')
+    }
+    .padding(20)
+    .borderRadius(12)
+    .backgroundColor('#FFECECEC')
+    .height(120)
+    .width('100%')
+    .justifyContent(FlexAlign.SpaceBetween)
+  }
+}
+```
+**图12** 数据变化不渲染  
+![ForEach-StateVarNoRender](figures/ForEach-StateVarNoRender.PNG)

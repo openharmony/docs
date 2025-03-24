@@ -34,7 +34,7 @@ OpenHarmony中动态库加载namespace配置的情况
 
 - app ns: 应用启动时创建的ns，它的搜索路径一般是应用的安装路径(可能为沙箱路径)，即可加载应用的so。
 
-当前这一套命名空间机制主要限制了应用native库和系统native库之间的调用，如图所示，具体规则为
+当前这一套命名空间机制主要限制了应用native库和系统native库之间的调用，如图所示，具体规则为：
 
 1. default ns和ndk ns可以互相访问全部so，不能访问app ns的so。
 2. app ns能访问ndk ns的全部so，不能访问default ns的so。
@@ -57,7 +57,7 @@ SET(CMAKE_INSTALL_RPATH "\${ORIGIN}/module")
 支持使用dlclose真实卸载动态库的能力。
 
 ### 支持symbol-version机制
-symbol-version是libc在**动态链接-符号重定位**阶段的符号检索机制，支持不同版本的符号重定位，也可以帮助解决重复符号的问题。可参考<a href="https://www.gnu.org/software/gnulib/manual/html_node/LD-Version-Scripts.html">LD Version Scripts (GNU Gnulib)</a>
+symbol-version是libc在**动态链接-符号重定位**阶段的符号检索机制，支持不同版本的符号重定位，也可以帮助解决重复符号的问题。可参考<a href="https://www.gnu.org/software/gnulib/manual/html_node/LD-Version-Scripts.html">LD Version Scripts (GNU Gnulib)</a>。
 
 ### 网络接口select支持fd fortify检测
 宏定义FD_SET/FD_CLR新增fd有效值检查，当传入的fd不在区间`[0, 1024)`中会触发abort crash。

@@ -623,13 +623,17 @@ uiObserver.on('routerPageUpdate', this.getUIContext(), callBackFunc);
 Navigation同样可以通过在observer中实现注册监听。
 
 ```ts
+// EntryAbility.ets
+import { BusinessError } from '@kit.BasicServicesKit';
+import { UIObserver } from '@kit.ArkUI';
+
 export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // ...
     windowStage.getMainWindow((err: BusinessError, data) => {
       // ...
-      windowClass = data;
+      let windowClass = data;
       // 获取UIContext实例。
       let uiContext: UIContext = windowClass.getUIContext();
       // 获取UIObserver实例。

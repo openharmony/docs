@@ -1088,3 +1088,212 @@ async function DeleteKey() {
     })
 }
 ```
+
+<!--Del-->
+### DES/CBC/NoPadding
+
+```ts
+/*
+ * The following uses DES/CBC/NoPadding with promise-based APIs as an example.
+ */
+import { huks } from '@kit.UniversalKeystoreKit';
+
+let desKeyAlias = 'test_desKeyAlias';
+let handle: number;
+let plainText = '12345678';
+let IV = '12345678';
+let cipherData: Uint8Array;
+
+function StringToUint8Array(str: String) {
+  let arr: number[] = new Array();
+  for (let i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+function Uint8ArrayToString(fileData: Uint8Array) {
+  let dataString = '';
+  for (let i = 0; i < fileData.length; i++) {
+    dataString += String.fromCharCode(fileData[i]);
+  }
+  return dataString;
+}
+
+function GetDesGenerateProperties() {
+  let properties: Array<huks.HuksParam> = [{
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_DES
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_DES_KEY_SIZE_64
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
+    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+  }];
+  return properties;
+}
+
+function GetDesEncryptProperties() {
+  let properties: Array<huks.HuksParam> = [{
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_DES
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_DES_KEY_SIZE_64
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_PADDING,
+    value: huks.HuksKeyPadding.HUKS_PADDING_NONE
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+    value: huks.HuksCipherMode.HUKS_MODE_CBC
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_IV,
+    value: StringToUint8Array(IV)
+  }];
+  return properties;
+}
+
+function GetDesDecryptProperties() {
+  let properties: Array<huks.HuksParam> = [{
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_DES
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_DES_KEY_SIZE_64
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_PADDING,
+    value: huks.HuksKeyPadding.HUKS_PADDING_NONE
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+    value: huks.HuksCipherMode.HUKS_MODE_CBC
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_IV,
+    value: StringToUint8Array(IV)
+  }];
+  return properties;
+}
+
+async function GenerateDesKey() {
+  /*
+  * Simulate the key generation scenario.
+  * 1. Set the key alias.
+  */
+  /*
+  * 2. Obtain the parameters for key generation.
+  */
+  let genProperties = GetDesGenerateProperties();
+  let options: huks.HuksOptions = {
+    properties: genProperties
+  }
+  /*
+  * 3. Call generateKeyItem.
+  */
+  await huks.generateKeyItem(desKeyAlias, options)
+    .then((data) => {
+      console.info(`promise: generate DES Key success, data = ${JSON.stringify(data)}`);
+    }).catch((error: Error) => {
+      console.error(`promise: generate DES Key failed, ${JSON.stringify(error)}`);
+    })
+}
+
+async function EncryptData() {
+  /*
+  * Simulate the encryption scenario.
+  * 1. Obtain the key alias.
+  */
+  /*
+  * 2. Obtain the data to be encrypted.
+  */
+  /*
+  * 3. Obtain the algorithm parameters for encryption.
+  */
+  let encryptProperties = GetDesEncryptProperties();
+  let options: huks.HuksOptions = {
+    properties: encryptProperties,
+    inData: StringToUint8Array(plainText)
+  }
+  /*
+  * 4. Call initSession to obtain a session handle.
+  */
+  await huks.initSession(desKeyAlias, options)
+    .then((data) => {
+      handle = data.handle;
+    }).catch((error: Error) => {
+      console.error(`promise: init EncryptData failed, ${JSON.stringify(error)}`);
+    })
+  /*
+  * 5. Call finishSession to obtain the ciphertext.
+  */
+  await huks.finishSession(handle, options)
+    .then((data) => {
+      console.info(`promise: encrypt data success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
+      cipherData = data.outData as Uint8Array;
+    }).catch((error: Error) => {
+      console.error(`promise: encrypt data failed, ${JSON.stringify(error)}`);
+    })
+}
+
+async function DecryptData() {
+  /*
+  * Simulate the decryption scenario.
+  * 1. Obtain the key alias.
+  */
+  /*
+  * 2. Obtain the ciphertext to be decrypted.
+  */
+  /*
+  * 3. Obtain the algorithm parameters for decryption.
+  */
+  let decryptOptions = GetDesDecryptProperties()
+  let options: huks.HuksOptions = {
+    properties: decryptOptions,
+    inData: cipherData
+  }
+  /*
+  * 4. Call initSession to obtain a session handle.
+  */
+  await huks.initSession(desKeyAlias, options)
+    .then((data) => {
+      handle = data.handle;
+    }).catch((error: Error) => {
+      console.error(`promise: init DecryptData failed, ${JSON.stringify(error)}`);
+    })
+  /*
+  * 5. Call finishSession to obtain the decrypted data.
+  */
+  await huks.finishSession(handle, options)
+    .then((data) => {
+      console.info(`promise: decrypt data success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
+    }).catch((error: Error) => {
+      console.error(`promise: decrypt data failed, ${JSON.stringify(error)}`);
+    })
+}
+
+async function DeleteKey() {
+  /*
+  * Simulate the key deletion scenario.
+  * 1. Obtain the key alias.
+  */
+  let emptyOptions: huks.HuksOptions = {
+    properties: []
+  }
+  /*
+  * 2. Call deleteKeyItem to delete the key.
+  */
+  await huks.deleteKeyItem(desKeyAlias, emptyOptions)
+    .then((data) => {
+      console.info(`promise: delete data success`);
+    }).catch((error: Error) => {
+      console.error(`promise: delete data failed, ${JSON.stringify(error)}`);
+    })
+}
+```
+<!--DelEnd-->

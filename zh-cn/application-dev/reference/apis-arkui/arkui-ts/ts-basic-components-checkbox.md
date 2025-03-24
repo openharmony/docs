@@ -130,7 +130,7 @@ shape(value: CheckBoxShape)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CheckBoxShape](ts-appendix-enums.md#checkboxshape11)> | 是   | CheckBox组件形状, 包括圆形和圆角方形。<br/>默认值：CheckBoxShape.CIRCLE |
+| value  |[CheckBoxShape](ts-appendix-enums.md#checkboxshape11) | 是   | CheckBox组件形状, 包括圆形和圆角方形。<br/>默认值：CheckBoxShape.CIRCLE |
 
 ### contentModifier<sup>12+</sup>
 
@@ -196,7 +196,7 @@ onChange(callback: (value: boolean) => void)
 @Component
 struct CheckboxExample {
   build() {
-    Flex({ justifyContent: FlexAlign.SpaceAround }) {
+    Flex({ justifyContent: FlexAlign.SpaceEvenly }) {
       Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })
         .select(true)
         .selectedColor(0xed6f21)

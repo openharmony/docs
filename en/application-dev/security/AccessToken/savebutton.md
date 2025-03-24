@@ -49,7 +49,7 @@ For example, to save the image in the dialog box shown above, the application on
    async function savePhotoToGallery(context: common.UIAbilityContext) {
      let helper = photoAccessHelper.getPhotoAccessHelper(context);
      try {
-       // After onClick is triggered, call createAsset API within 5 seconds to create an image. After 5 seconds have elapsed, the permission to call createAsset is revoked.
+       // Call createAsset() within 10 seconds after onClick is triggered to create an image file. After 10 seconds have elapsed, the permission for calling createAsset is revoked.
        let uri = await helper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'jpg');
        // Open the file based on its URI. The write process is not time bound.
        let file = await fileIo.open(uri, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
@@ -85,7 +85,7 @@ For example, to save the image in the dialog box shown above, the application on
              .onClick(async (event: ClickEvent, result: SaveButtonOnClickResult) => {
                if (result === SaveButtonOnClickResult.SUCCESS) {
                  const context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
-                 // Obtain temporary authorization to save the image without requesting the related permission for the application.
+                 // Obtain temporary permission to save the image without requesting the related permission for the application.
                  savePhotoToGallery(context);
                } else {
                  promptAction.showToast ({ message: 'Failed to set the permission.' })

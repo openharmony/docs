@@ -1,4 +1,4 @@
-# Test Kit（应用测试服务）
+# Test Kit（应用测试服务）<!--test-api-->
 
 - [自动化测试框架使用指导](arkxtest-guidelines.md)
 - [SmartPerf性能工具使用指导](smartperf-guidelines.md)

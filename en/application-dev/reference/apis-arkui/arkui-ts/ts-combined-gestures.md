@@ -39,6 +39,8 @@ GestureGroup(mode: GestureMode, ...gesture: GestureType[])
 
 ## Example
 
+This example demonstrates the sequential recognition of combined gestures, specifically long press and pan gestures, using **GestureGroup**.
+
 ```ts
 // xxx.ets
 @Entry

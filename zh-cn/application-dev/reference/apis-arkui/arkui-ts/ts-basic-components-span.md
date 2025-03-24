@@ -123,7 +123,7 @@ fontSize(value: number | string | Resource)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | number&nbsp;\|&nbsp;&nbsp;string\|&nbsp;[Resource](ts-types.md#resource) | 是   | 字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp。不支持设置百分比字符串。 |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp。不支持设置百分比字符串。 |
 
 ### fontStyle
 
@@ -301,7 +301,7 @@ baselineOffset(value: LengthMetrics): T
 ## 示例
 ### 示例1（设置文本样式）
 
-该示例通过decoration、letterSpacing、textCase属性展示了不同样式的文本效果。
+该示例展示了设置不同样式的文本效果以及span配置点击事件。
 
 ```ts
 // xxx.ets
@@ -309,7 +309,7 @@ baselineOffset(value: LengthMetrics): T
 @Component
 struct SpanExample {
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
       Text('Basic Usage').fontSize(9).fontColor(0xCCCCCC)
       Text() {
         Span('In Line')
@@ -320,12 +320,15 @@ struct SpanExample {
       Text() {
         Span('This is the Span component').fontSize(12).textCase(TextCase.Normal)
           .decoration({ type: TextDecorationType.None, color: Color.Red })
-      }
+          .fontFamily('HarmonyOS Sans')
+      }.margin({ top: 12 })
 
       // 文本横线添加
-      Text('Text Decoration').fontSize(9).fontColor(0xCCCCCC)
+      Text('Text Decoration').fontSize(9).fontColor(0xCCCCCC).margin({ top: 12 })
       Text() {
-        Span('I am Underline-WAVY-span').decoration({ type: TextDecorationType.Underline, color: Color.Red, style: TextDecorationStyle.WAVY }).fontSize(12)
+        Span('I am Underline-WAVY-span')
+          .decoration({ type: TextDecorationType.Underline, color: Color.Red, style: TextDecorationStyle.WAVY })
+          .fontSize(12)
       }
 
       Text() {
@@ -335,11 +338,13 @@ struct SpanExample {
       }
 
       Text() {
-        Span('I am Overline-DASHED-span').decoration({ type: TextDecorationType.Overline, color: Color.Red, style: TextDecorationStyle.DASHED }).fontSize(12)
+        Span('I am Overline-DASHED-span')
+          .decoration({ type: TextDecorationType.Overline, color: Color.Red, style: TextDecorationStyle.DASHED })
+          .fontSize(12)
       }
 
       // 文本字符间距
-      Text('LetterSpacing').fontSize(9).fontColor(0xCCCCCC)
+      Text('LetterSpacing').fontSize(9).fontColor(0xCCCCCC).margin({ top: 12 })
       Text() {
         Span('span letter spacing')
           .letterSpacing(0)
@@ -358,9 +363,8 @@ struct SpanExample {
           .fontSize(12)
       }
 
-
       // 文本大小写展示设置
-      Text('Text Case').fontSize(9).fontColor(0xCCCCCC)
+      Text('Text Case').fontSize(9).fontColor(0xCCCCCC).margin({ top: 12 })
       Text() {
         Span('I am Lower-span').fontSize(12)
           .textCase(TextCase.LowerCase)
@@ -372,7 +376,63 @@ struct SpanExample {
           .textCase(TextCase.UpperCase)
           .decoration({ type: TextDecorationType.None })
       }
-    }.width('100%').height(250).padding({ left: 35, right: 35, top: 35 })
+
+      // 文本字体样式设置
+      Text('FontStyle').fontSize(9).fontColor(0xCCCCCC).margin({ top: 12 })
+      Text() {
+        Span('I am FontStyle-Normal').fontSize(12)
+          .fontStyle(FontStyle.Normal)
+      }
+
+      Text() {
+        Span('I am FontStyle-Italic').fontSize(12)
+          .fontStyle(FontStyle.Italic)
+      }
+
+      // 文本字体粗细设置
+      Text('FontWeight').fontSize(9).fontColor(0xCCCCCC).margin({ top: 12 })
+      Text() {
+        Span('I am FontWeight-Lighter').fontSize(12)
+          .fontWeight(FontWeight.Lighter)
+      }
+
+      Text() {
+        Span('I am FontWeight-Bold').fontSize(12)
+          .fontWeight(FontWeight.Bold)
+      }
+
+      // 文本行高设置
+      Text('LineHeight').fontSize(9).fontColor(0xCCCCCC).margin({ top: 12 })
+      Text() {
+        Span('I am lineHeight default\n').fontSize(12)
+          .fontWeight(FontWeight.Lighter)
+        Span('I am lineHeight 30').fontSize(12)
+          .lineHeight(30)
+      }
+      .backgroundColor(Color.Gray)
+
+      // 文本样式设置
+      Text('Font').fontSize(9).fontColor(0xCCCCCC).margin({ top: 12 })
+      Text() {
+        Span('span font 12 Bolder Italic')
+          .font({
+            size: 12,
+            weight: FontWeight.Bolder,
+            style: FontStyle.Italic,
+            family: "HarmonyOS Sans"
+          })
+      }
+
+      // span点击事件设置
+      Text('span click event').fontSize(9).fontColor(0xCCCCCC).margin({ top: 12 })
+      Text() {
+        Span('Span default ').fontSize(12)
+        Span('Span click')
+          .onClick((event) => {
+            console.log("span onClick")
+          })
+      }
+    }.width('100%').padding({ left: 35, right: 35, top: 35 })
   }
 }
 ```
@@ -388,18 +448,44 @@ struct SpanExample {
 @Entry
 @Component
 struct SpanExample {
-  @State textShadows : ShadowOptions | Array<ShadowOptions> = [{ radius: 10, color: Color.Red, offsetX: 10, offsetY: 0 },{ radius: 10, color: Color.Black, offsetX: 20, offsetY: 0 },
-      { radius: 10, color: Color.Brown, offsetX: 30, offsetY: 0 },{ radius: 10, color: Color.Green, offsetX: 40, offsetY: 0 },
-      { radius: 10, color: Color.Yellow, offsetX: 100, offsetY: 0 }]
+  @State textShadows: ShadowOptions | Array<ShadowOptions> = [{
+    radius: 10,
+    color: Color.Red,
+    offsetX: 10,
+    offsetY: 0
+  }, {
+    radius: 10,
+    color: Color.Orange,
+    offsetX: 20,
+    offsetY: 0
+  },
+    {
+      radius: 10,
+      color: Color.Yellow,
+      offsetX: 30,
+      offsetY: 0
+    }, {
+      radius: 10,
+      color: Color.Green,
+      offsetX: 40,
+      offsetY: 0
+    },
+    {
+      radius: 10,
+      color: Color.Blue,
+      offsetX: 100,
+      offsetY: 0
+    }]
 
   build() {
     Column({ space: 8 }) {
       Text() {
-        Span('123456789').fontSize(50).textShadow(this.textShadows)
+        Span('123456789').fontSize(50).textShadow(this.textShadows).fontColor(Color.Pink)
       }
+
       Text() {
         Span('123456789') // span can inherit text shadow & font size from outer text
-      }.fontSize(50).textShadow(this.textShadows)
+      }.fontSize(50).textShadow(this.textShadows).fontColor(Color.Pink)
     }
   }
 }
@@ -420,10 +506,10 @@ struct SpanExample {
       Text() {
         Span('   Hello World !   ')
           .fontSize('20fp')
-          .textBackgroundStyle({color: "#7F007DFF", radius: "5vp"})
+          .textBackgroundStyle({ color: "#7F007DFF", radius: "5vp" })
           .fontColor(Color.White)
       }
-    }.width('100%').margin({bottom: '5vp'}).alignItems(HorizontalAlign.Center)
+    }.width('100%').margin({ bottom: '5vp' }).alignItems(HorizontalAlign.Center)
   }
 }
 ```
@@ -434,6 +520,7 @@ struct SpanExample {
 该示例通过baselineOffset属性展示了文本设置不同基线偏移量的效果。
 
 ```ts
+// xxx.ets
 import { LengthUnit, LengthMetrics } from '@kit.ArkUI';
 
 @Entry
@@ -442,16 +529,18 @@ struct SpanExample {
   build() {
     Row() {
       Column() {
-        Text(){
-          Span('word1')
-            .baselineOffset(new LengthMetrics(20,LengthUnit.VP))
-          Span('word2')
-            .baselineOffset(new LengthMetrics(0,LengthUnit.VP))
-          ImageSpan($r("app.media.icon"))
-            .width('45px')
-            .baselineOffset(new LengthMetrics(-20,LengthUnit.VP))
+        Text() {
+          Span('SpanOne')
+            .fontSize(10)
+            .baselineOffset(new LengthMetrics(20, LengthUnit.VP))
+          Span('SpanTwo')
+            .fontSize(10)
+            .baselineOffset(new LengthMetrics(0, LengthUnit.VP))
+          ImageSpan($r("app.media.sky"))//建议使用自定义的本地图片
+            .width('80px')
+            .baselineOffset(new LengthMetrics(-20, LengthUnit.VP))
         }
-        .backgroundColor(Color.Gray)
+        .backgroundColor('#7F007DFF')
       }
       .width('100%')
     }

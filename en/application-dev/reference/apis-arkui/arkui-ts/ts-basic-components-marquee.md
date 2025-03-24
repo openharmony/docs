@@ -54,7 +54,7 @@ Sets the font color.
 
 ### fontSize
 
-fontSize(value: number | string | Resource)
+fontSize(value: Length)
 
 Sets the text size.
 
@@ -66,9 +66,9 @@ Sets the text size.
 
 **Parameters**
 
-| Name| Type                                                        | Mandatory| Description                                                        |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Resource](ts-types.md#resource) \| number \| string | Yes  | Font size. If **fontSize** is of the number type, the unit fp is used. The default font size is 16 fp. This parameter cannot be set in percentage.|
+| Name| Type                        | Mandatory| Description                                                        |
+| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | Yes  | Font size. If **fontSize** is of the number type, the unit fp is used. The default font size is 16 fp. This parameter cannot be set in percentage.|
 
 ### fontWeight
 
@@ -86,7 +86,7 @@ Sets the font weight. If the value is too large, the text may be clipped dependi
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | Yes  | Font weight. For the number type, the value range is [100, 900], at an interval of 100. The default value is **400**. A larger value indicates a heavier font weight. For the string type, only strings that represent a number, for example, **"400"**, and the following enumerated values of **FontWeight** are supported: **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**.<br>Default value: **FontWeight.Normal**|
+| value  | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | Yes  | Font weight. For the number type, the value range is [100, 900], at an interval of 100. The default value is **400**. A larger value indicates a heavier font weight. For the string type, only strings that represent a number, for example, **"400"**, and the following enumerated values of **FontWeight** are supported: **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**.<br>Default value: **FontWeight.Normal**|
 
 ### fontFamily
 
@@ -104,7 +104,7 @@ Sets the font family.
 
 | Name| Type                                                | Mandatory| Description                                                        |
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Resource](ts-types.md#resource) \| string | Yes  | Font family. Default font: **'HarmonyOS Sans'**<br>The 'HarmonyOS Sans' font and [registered custom fonts](../js-apis-font.md) are supported for applications.<br>Only the 'HarmonyOS Sans' font is supported for widgets.|
+| value  | string \| [Resource](ts-types.md#resource) | Yes  | Font family. Default font: **'HarmonyOS Sans'**<br>The 'HarmonyOS Sans' font and [registered custom fonts](../js-apis-font.md) are supported for applications.<br>Only the 'HarmonyOS Sans' font is supported for widgets.|
 
 ### allowScale
 
@@ -138,7 +138,7 @@ Sets the scrolling strategy for the marquee after its attributes are updated. (T
 
 | Name| Type   | Mandatory| Description                                |
 | ------ | ------- | ---- | ------------------------------------ |
-| value |[MarqueeUpdateStrategy](ts-appendix-enums.md#marqueeupdatestrategy12)| Yes| Scrolling strategy of the marquee after its attributes are updated.<br>Default value: **MarqueeUpdateStrategy.DEFAULT**|
+| value |[MarqueeUpdateStrategy](ts-appendix-enums.md#marqueeupdatestrategy12) | Yes| Scrolling strategy of the marquee after its attributes are updated.<br>Default value: **MarqueeUpdateStrategy.DEFAULT**|
 
 ## Events
 
@@ -180,6 +180,7 @@ Triggered when the marquee has finished the number of scrolling times set by the
 
 ## Example
 
+This example demonstrates the dynamic updating of a marquee's content by setting properties such as **start**, **step**, **loop**, **fromStart**, **src**, and **marqueeUpdateStrategy**. 
 
 ```ts
 // xxx.ets
@@ -211,21 +212,21 @@ struct MarqueeExample {
         src: this.marqueeText + this.src
       })
         .marqueeUpdateStrategy(MarqueeUpdateStrategy.PRESERVE_POSITION)
-        .width(300)
-        .height(80)
+        .width('300vp')
+        .height('80vp')
         .fontColor('#FFFFFF')
-        .fontSize(48)
+        .fontSize('48fp')
         .fontWeight(700)
         .backgroundColor('#182431')
-        .margin({ bottom: 40 })
+        .margin({ bottom: '40vp' })
         .onStart(() => {
-          console.info('Marquee animation complete onStart')
+          console.info('Succeeded in completing the onStart callback of marquee animation')
         })
         .onBounce(() => {
-          console.info('Marquee animation complete onBounce')
+          console.info('Succeeded in completing the onBounce callback of marquee animation')
         })
         .onFinish(() => {
-          console.info('Marquee animation complete onFinish')
+          console.info('Succeeded in completing the onFinish callback of marquee animation')
         })
       Button('Start')
         .onClick(() => {
@@ -233,9 +234,9 @@ struct MarqueeExample {
           // Start the text clock.
           this.controller.start()
         })
-        .width(120)
-        .height(40)
-        .fontSize(16)
+        .width('120vp')
+        .height('40vp')
+        .fontSize('16fp')
         .fontWeight(500)
         .backgroundColor('#007DFF')
       TextClock({ timeZoneOffset: -8, controller: this.controller })
@@ -243,8 +244,8 @@ struct MarqueeExample {
         .onDateChange((value: number) => {
           this.src = this.convert2time(value);
         })
-        .margin(20)
-        .fontSize(30)
+        .margin('20vp')
+        .fontSize('30fp')
     }
     .width('100%')
     .height('100%')

@@ -1,7 +1,8 @@
-# \@LocalBuilder decorator: Maintaining the Parent-Child Relationship Between Component and State Management
+# \@LocalBuilder Decorator: Maintaining the Parent-Child Relationship Between Component and State Management
 
 When use @Builder to pass data, the parent-child relationship of components is considered. After **bind(this)** is used, the parent-child relationship of components is inconsistent with that of state management. As a result, the @LocalBuilder decorator is used to fix the inconsistency. @LocalBuilder has the same features as local @Builder and provides a better determination of the parent-child relationship of components and state management.
 
+Before reading this topic, you are advised to read [\@Builder](./arkts-builder.md).
 
 > **NOTE**
 >
@@ -60,6 +61,8 @@ For @LocalBuilder functions, parameters can be passed [by value](#by-value-param
 
 In by-reference parameter passing, state variables can be passed, and the change of these state variables causes the UI re-rendering in the \@LocalBuilder decorated method.
 
+Note that if the \@LocalBuilder function is used together with the **$$** parameter, the passed parameters change when the child component calls the @LocalBuilder function of the parent component and the UI in \@LocalBuilder is not re-rendered.
+
 Use scenario:
 
 The @LocalBuilder method in the **Parent** component is called in the **build** function to pass the parameters by keys. When you click **Click me**, the **Text** content in the @LocalBuilder changes with the state variable.
@@ -77,13 +80,13 @@ struct Parent {
   @LocalBuilder
   citeLocalBuilder(params: ReferenceType) {
     Row() {
-      Text(`UseStateVarByReference: ${params.paramString} `)
+      Text(`UseStateVarByReference: ${params.paramString}`)
     }
   };
 
   build() {
     Column() {
-      this.citeLocalBuilder({ paramString: this.variableValue });
+      this.citeLocalBuilder({ paramString: this.variableValue })
       Button('Click me').onClick(() => {
         this.variableValue = 'Hi World';
       })
@@ -109,7 +112,7 @@ struct HelloComponent {
 
   build() {
     Row() {
-      Text(`HelloComponent===${this.message}`);
+      Text(`HelloComponent===${this.message}`)
     }
   }
 }
@@ -123,15 +126,15 @@ struct Parent {
   citeLocalBuilder($$: ReferenceType) {
     Row() {
       Column() {
-        Text(`citeLocalBuilder===${$$.paramString}`);
-        HelloComponent({ message: $$.paramString });
+        Text(`citeLocalBuilder===${$$.paramString}`)
+        HelloComponent({ message: $$.paramString })
       }
     }
   }
 
   build() {
     Column() {
-      this.citeLocalBuilder({ paramString: this.variableValue });
+      this.citeLocalBuilder({ paramString: this.variableValue })
       Button('Click me').onClick(() => {
         this.variableValue = 'Hi World';
       })
@@ -140,6 +143,81 @@ struct Parent {
 }
 ```
 
+The child component references the @LocalBuilder function of the parent component with a state variable as the parameter. The change of the state variable does not trigger the UI re-render in the @LocalBuilder method because the function decorated by @Localbuilder is bound to the parent component and only the current component and its child components are re-rendered. Therefore, the re-render of the parent component cannot be triggered. If @Builder is used, the UI can be re-rendered. The reason is that @Builder has the pointer of the **this** keyword changed. In this case, the function is bound to the child component, and the UI can be re-rendered.
+
+
+Use scenario:
+
+The **Child** component passes the state variable to the @Builder and @LocalBuilder functions of the **Parent** component. In the @Builder function, **this** points to the **Child** component and parameter changes can trigger a UI re-rendering. In the @LocalBuilder function, **this** points to the **Parent** component and parameter changes cannot trigger the UI re-rendering. If the state variable of **Parent** referenced in the @LocalBuilder function changes, the UI can be re-rendered properly.
+
+```ts
+class Data {
+  size: number = 0;
+}
+
+@Entry
+@Component
+struct Parent {
+  label: string = 'parent';
+  @State data: Data = new Data();
+
+  @Builder
+  componentBuilder($$: Data) {
+    Text(`builder + $$`)
+    Text(`${'this -> ' + this.label}`)
+    Text(`${'size : ' + $$.size}`)
+    Text(`------------------------`)
+  }
+
+  @LocalBuilder
+  componentLocalBuilder($$: Data) {
+    Text(`LocalBuilder + $$ data`)
+    Text(`${'this -> ' + this.label}`)
+    Text(`${'size : ' + $$.size}`)
+    Text(`------------------------`)
+  }
+
+  @LocalBuilder
+  contentLocalBuilderNoArgument() {
+    Text(`LocalBuilder + local data`)
+    Text(`${'this -> ' + this.label}`)
+    Text(`${'size : ' + this.data.size}`)
+    Text(`------------------------`)
+  }
+
+  build() {
+    Column() {
+      Child({
+        contentBuilder: this.componentBuilder,
+        contentLocalBuilder: this.componentLocalBuilder,
+        contentLocalBuilderNoArgument: this.contentLocalBuilderNoArgument,
+        data: this.data
+      })
+    }
+  }
+}
+
+@Component
+struct Child {
+  label: string = 'child';
+  @Builder customBuilder() {};
+  @BuilderParam contentBuilder: ((data: Data) => void) = this.customBuilder;
+  @BuilderParam contentLocalBuilder: ((data: Data) => void) = this.customBuilder;
+  @BuilderParam contentLocalBuilderNoArgument: (() => void) = this.customBuilder;
+  @Link data: Data;
+
+  build() {
+    Column() {
+      this.contentBuilder({ size: this.data.size })
+      this.contentLocalBuilder({ size: this.data.size })
+      this.contentLocalBuilderNoArgument()
+      Button("add child size").onClick(() => {
+        this.data.size += 1;
+      })
+    }
+  }
+}
+```
 
 ### By-Value Parameter Passing
 
@@ -159,13 +237,13 @@ struct Parent {
   @LocalBuilder
   citeLocalBuilder(paramA1: string) {
     Row() {
-      Text(`UseStateVarByValue: ${paramA1} `)
+      Text(`UseStateVarByValue: ${paramA1}`)
     }
   }
 
   build() {
     Column() {
-      this.citeLocalBuilder(this.label);
+      this.citeLocalBuilder(this.label)
     }
   }
 }
@@ -173,7 +251,7 @@ struct Parent {
 
 ## Differences Between @LocalBuilder and @Builder
 
-When the **componentBuilder** function is decorated by @Builder, the **Child** component is displayed. When the **componentBuilder** function is decorated by @LocalBuilder, **Parent** component is displayed.
+When the **componentBuilder** function is decorated by @Builder, the **Child** component is displayed. When the **componentBuilder** function is decorated by @LocalBuilder, the **Parent** component is displayed.
 
 **NOTE**
 

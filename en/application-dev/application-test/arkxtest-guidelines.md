@@ -38,7 +38,7 @@ arkXtest is divided into two parts: unit test framework and UI test framework.<b
 <!--RP2-->
 1. Open DevEco Studio and create a project, in which the **ohos** directory is where the test script is located.
 
-2. Open the **.ets** file of the module to be tested in the project directory. Move the cursor to any position in the code, and then right-click and choose **Show Context Actions** > **Create Ohos Test** or press **Alt+Enter** and choose **Create Ohos Test** to create a test class. For more details, see [DevEco Studio User Guide](https://developer.harmonyos.com/en/docs/documentation/doc-guides-V3/harmonyos_jnit_jsunit-0000001092459608-V3?catalogVersion=V3#section13366184061415).
+2. Open the .ets file of the module to be tested in the project directory. Move the cursor to any position in the code, and then right-click and choose **Show Context Actions** > **Create Ohos Test** or press **Alt+Enter** and choose **Create Ohos Test** to create a test class. For more details, see [DevEco Studio User Guide](https://developer.harmonyos.com/en/docs/documentation/doc-guides-V3/harmonyos_jnit_jsunit-0000001092459608-V3?catalogVersion=V3#section13366184061415).
 
 <!--RP2End-->
 
@@ -121,7 +121,7 @@ export default function abilityTest() {
   }
   ```
 
-2. Write test code in the **.test.ets** file under **ohosTest** > **ets** > **test**.
+2. Write test code in the .test.ets file under **ohosTest** > **ets** > **test**.
 
   ```ts
   import { describe, it, expect } from '@ohos/hypium';
@@ -203,7 +203,7 @@ The table below lists the keywords in **aa** test commands.
 
 | Keyword | Abbreviation| Description                          | Example                      |
 | ------------- | ------------ | -------------------------------------- | ---------------------------------- |
-| --bundleName  | -b           | Application bundle name.                        | - b com.test.example               |
+| --bundleName  | -b           | Application bundle name.                      | - b com.test.example               |
 | --packageName | -p           | Application module name, which is applicable to applications developed in the FA model.          | - p com.test.example.entry         |
 | --moduleName  | -m           | Application module name, which is applicable to applications developed in the stage model.       | -m entry                           |
 | NA            | -s           | \<key, value> pair.| - s unittest /ets/testrunner/OpenHarmonyTestRunner |
@@ -213,7 +213,7 @@ The framework supports multiple test case execution modes, which are triggered b
 | Name    | Description                                                | Value                                              | Example                             |
 | ------------ | -----------------------------------------------------------------------------    | ------------------------------------------------------------ | ----------------------------------------- |
 | unittest     | **OpenHarmonyTestRunner** object used for test case execution. | **OpenHarmonyTestRunner** or custom runner name.                 | - s unittest OpenHarmonyTestRunner        |
-| class        | Test suite or test case to be executed.                                  | {describeName}#{itName}, {describeName}                     | -s class attributeTest#testAttributeIt    |
+| class        | Test suite or test case to be executed.                                 | {describeName}#{itName}, {describeName}                     | -s class attributeTest#testAttributeIt    |
 | notClass     | Test suite or test case that does not need to be executed.                              | {describeName}#{itName}, {describeName}                     | -s notClass attributeTest#testAttributeIt |
 | itName       | Test case to be executed.                                        | {itName}                                                     | -s itName testAttributeIt                 |
 | timeout      | Timeout interval for executing a test case.                                       | Positive integer (unit: ms). If no value is set, the default value **5000** is used.                       | -s timeout 15000                          |
@@ -421,7 +421,7 @@ The following describes the fields in the recording data:
 		 "MAX_VEL": "40000", // Maximum velocity.
 		 "VELO": "0.000000", // Hands-off velocity.
 		 "W1_BOUNDS": "{"bottom":361,"left":37,"right":118,"top":280}", // Starting component bounds.
-		 "W1_HIER": "ROOT,3,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0,0", // Starting component hierarchy.
+		 "W1_HIER": "ROOT,3,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0", // Starting component hierarchy.
 		 "W1_ID": "", // ID of the starting component.
 		 "W1_Text": "", // Text of the starting component.
 		 "W1_Type": "Image", // Type of the starting component.
@@ -443,18 +443,18 @@ The following describes the fields in the recording data:
 
 ### Injecting Simulated UI Operations
 
-| Command  | Mandatory| Description             | 
+| Command  | Mandatory| Description             |
 |------|------|-----------------|
 | help   | Yes   | Displays help information about the uiInput commands.|
-| click   | Yes   | Simulates a click event.     | 
-| doubleClick   | Yes   | Simulates a double-click event.     | 
-| longClick   | Yes   | Simulates a long-click event.    | 
-| fling   | Yes   | Simulates a fling event.  | 
-| swipe   | Yes   | Simulates a swipe event.    | 
-| drag   | Yes   | Simulates a drag event.    | 
+| click   | Yes   | Simulates a click event.     |
+| doubleClick   | Yes   | Simulates a double-click event.     |
+| longClick   | Yes   | Simulates a long-click event.    |
+| fling   | Yes   | Simulates a fling event.  |
+| swipe   | Yes   | Simulates a swipe event.    |
+| drag   | Yes   | Simulates a drag event.    |
 | dircFling   | Yes   | Simulates a directional fling event.    |
-| inputText   | Yes   | Simulates a text input event.    |
-| keyEvent   | Yes   | Simulates a physical key event (such as pressing a keyboard key, pressing the power key, returning to the previous page, or returning to the home screen) or a key combination.    | 
+| inputText   | Yes   | Simulates text input in a text box.                  |
+| keyEvent   | Yes   | Simulates a physical key event (such as pressing a keyboard key, pressing the power key, returning to the previous page, or returning to the home screen) or a key combination.    |
 
 
 #### Example of Running the click/doubleClick/longClick Commands
@@ -477,30 +477,30 @@ hdc shell uitest uiInput longClick 100 100
 
 #### Example of Running the uiInput fling Command
 
-| Parameter | Mandatory            | Description              |      
+| Parameter | Mandatory            | Description              |
 |------|------------------|-----------------|
-| from_x   | Yes               | The x-coordinate of the start point.| 
-| from_y   | Yes               | The y-coordinate of the start point.| 
+| from_x   | Yes               | The x-coordinate of the start point.|
+| from_y   | Yes               | The y-coordinate of the start point.|
 | to_x   | Yes               | The x-coordinate of the stop point.|
 | to_y   | Yes               | The y-coordinate of the stop point.|
-| swipeVelocityPps_   | No     | Fling speed, in px/s. Value range: 200 to 40000.<br> The default value is 600.| 
-| stepLength_   | No| The step length. The default value is the sliding distance divided by 50.<br>  To achieve better simulation effect, you are advised to use the default values. | 
+| swipeVelocityPps_   | No     | Swipe speed, in px/s. The value ranges from 200 to 40000.<br> The default value is **600**.|
+| stepLength_   | No| Step length. The default value is the swipe distance divided by 50.<br>  To achieve better simulation effect, you are advised to use the default value. |
 
 
 ```shell  
 # Execute the fling event. The default value of stepLength_ is used.
 hdc shell uitest uiInput fling 10 10 200 200 500 
-``` 
+```
 
 #### Example of Running the uiInput swipe/drag Command
 
-| Parameter | Mandatory            | Description              |      
+| Parameter | Mandatory            | Description              |
 |------|------------------|-----------------|
-| from_x   | Yes               | The x-coordinate of the start point.| 
-| from_y   | Yes               | The y-coordinate of the start point.| 
+| from_x   | Yes               | The x-coordinate of the start point.|
+| from_y   | Yes               | The y-coordinate of the start point.|
 | to_x   | Yes               | The x-coordinate of the stop point.|
 | to_y   | Yes               | The y-coordinate of the stop point.|
-| swipeVelocityPps_   | No     | Swipe speed, in px/s. Value range: 200 to 40000.<br> The default value is 600.| 
+| swipeVelocityPps_   | No     | Swipe speed, in px/s. Value range: 200 to 40000.<br> The default value is 600.|
 
 ```shell  
 # Execute the swipe event.
@@ -514,9 +514,9 @@ hdc shell uitest uiInput drag 10 10 100 100 500
 
 | Parameter            | Mandatory      | Description|
 |-------------------|-------------|----------|
-| direction         | No| Fling direction, which can be **0**, **1**, **2**, or **3**. The default value is **0**.<br> The value **0** indicates leftward fling, **1** indicates rightward fling, **2** indicates upward fling, and **3** indicates downward fling.   | 
-| swipeVelocityPps_ | No| Fling speed, in px/s. Value range: 200 to 40000.<br> The default value is 600.   | 
-| stepLength        | No       | The step length.<br> The default value is the sliding distance divided by 50. To achieve better simulation effect, you are advised to use the default values.|
+| direction         | No| Fling direction, which can be **0**, **1**, **2**, or **3**. The default value is **0**.<br> The value **0** indicates leftward fling, **1** indicates rightward fling, **2** indicates upward fling, and **3** indicates downward fling.   |
+| swipeVelocityPps_ | No| Swipe speed, in px/s. Value range: 200 to 40000.<br> The default value is 600.   |
+| stepLength        | No       | Step length.<br> The default value is the swipe distance divided by 50. To achieve better simulation effect, you are advised to use the default value.|
 
 ```shell  
 # Execute the leftward fling event.
@@ -531,9 +531,9 @@ hdc shell uitest uiInput dircFling 3
 
 #### Example of Running the uiInput inputText Command
 
-| Parameter            | Mandatory      | Description|       
+| Parameter            | Mandatory      | Description|
 |------|------------------|----------|
-| point_x   | Yes               | The x-coordinate of the input box.| 
+| point_x   | Yes               | The x-coordinate of the input box.|
 | point_y   | Yes               | The y-coordinate of the input box.|
 | text   | Yes               | Text in the input box. |
 
@@ -544,9 +544,9 @@ hdc shell uitest uiInput inputText 100 100 hello
 
 #### Example of Running the uiInput keyEvent Command
 
-| Parameter            | Mandatory      | Description|                
+| Parameter            | Mandatory      | Description|
 |------|------|----------|
-| keyID1   | Yes   | ID of a physical key, which can be **KeyCode**, **Back**, **Home**, or **Power**.<br>When the value is set to **Back**, **Home**, or **Power**, the combination keys are not supported.| 
+| keyID1   | Yes   | ID of a physical key, which can be **KeyCode**, **Back**, **Home**, or **Power**.<br>When the value is set to **Back**, **Home**, or **Power**, the combination keys are not supported.|
 | keyID2    | No   | ID of a physical key.|
 | keyID3    | No   | ID of a physical key.|
 
@@ -555,9 +555,9 @@ hdc shell uitest uiInput inputText 100 100 hello
 > A maximum of three key values can be passed. <!--RP3-->For details about the key values, see [KeyCode](../reference/apis-input-kit/js-apis-keycode.md)<!--RP3End-->.
 
 ```shell  
-# Return to the home page.
+# Back to home page.
 hdc shell uitest uiInput keyEvent Home
-# Return to the last page.
+# Back to the last page.
 hdc shell uitest uiInput keyEvent Back
 # Perform a key combination to copy and paste text.
 hdc shell uitest uiInput keyEvent 2072 2038
@@ -577,8 +577,10 @@ hdc shell uitest start-daemon
 >**NOTE**
 >
 > You need to enable the developer mode for the device.
+>
 > Only the test HAP started by the **aa test** ability can call the ability of the UiTest.
-> <!--RP4-->The <!--RP4End-->[Ability Privilege Level (APL)](../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism) of the <!--RP4End-->test HAP must be **system_basic** or **normal**.
+>
+> The <!--RP4End-->[Ability Privilege Level (APL)](../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism) of the <!--RP4End-->test HAP must be **system_basic** or **normal**.
 
 <!--Del-->
 ## Examples
@@ -643,7 +645,7 @@ For details about how to simulate a window size adjustment and direction specifi
 
 ### FAQs About Unit Test Cases
 
-1. The logs in the test case are printed after the test case result
+**1. What should I do if logs in the test case are printed after the test case result?**
 
 **Problem**
 
@@ -657,7 +659,7 @@ More than one asynchronous API is called in the test case.<br>In principle, logs
 
 If more than one asynchronous API is called, you are advised to encapsulate the API invoking into the promise mode.
 
-**Error "fail to start ability" is reported during test case execution**
+**2. What should I do if the message "error: fail to start ability" is reported during test case execution?**
 
 **Problem**
 
@@ -671,7 +673,7 @@ An error occurs during the packaging of the test package, and the test framework
 
 Check whether the test package contains the **OpenHarmonyTestRunner.abc** file. If the file does not exist, rebuild and pack the file and perform the test again.
 
-Test case execution timeout
+**3. What should I do if a timeout error is reported during case execution?**
 
 **Problem**
 
@@ -679,7 +681,7 @@ After the test case execution is complete, the console displays the error messag
 
 **Possible Causes**
 
-1. The test case is executed through an asynchronous interface, but the **done** function is not executed during the execution. As a result, the test case execution does not end until it times out.
+1. The test case is executed through an asynchronous API, but the **done** function is not executed during the execution. As a result, the test case execution does not end until it times out.
 
 2. The time taken for API invocation is longer than the timeout interval set for test case execution.
 
@@ -694,7 +696,7 @@ After the test case execution is complete, the console displays the error messag
 3. Check the code logic and assertion result of the test case and make sure that the assertion is passed.
 ### FAQs About UI Test Cases
 
-**The failure log contains "Get windows failed/GetRootByWindow failed"**
+**1. What should I do if the failure log contains "Get windows failed/GetRootByWindow failed"?**
 
 **Problem**
 
@@ -712,7 +714,7 @@ Run the following command, restart the device, and execute the test case again:
 hdc shell param set persist.ace.testmode.enabled 1
 ```
 
-**The failure log contains "uitest-api does not allow calling concurrently"**
+**2. What should I do if the failure log contains "uitest-api does not allow calling concurrently"?**
 
 **Problem**
 
@@ -730,7 +732,7 @@ The UI test case fails to be executed. The HiLog file contains the error message
 
 2. Do not execute UI test cases in multiple processes.
 
-**The failure log contains "does not exist on current UI! Check if the UI has changed after you got the widget object"**
+**3. What should I do if the failure log contains "does not exist on current UI! Check if the UI has changed after you got the widget object"?**
 
 **Problem**
 

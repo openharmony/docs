@@ -22,6 +22,14 @@ Sets how the final state of the component's content is rendered during its width
 | ------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | fitMode | [RenderFit](#renderfit) | Yes  | How the final state of the component's content is rendered during its width and height animation process.<br>If **renderFit** is not set, the default value **RenderFit.TOP_LEFT** is used.|
 
+>  **NOTE**
+>
+>  For the [XComponent](./ts-basic-components-xcomponent.md) component of the TEXTURE or SURFACE type, if the **renderFit** attribute is not set, it defaults to **RenderFit.RESIZE_FILL**.
+>
+>  For the [XComponent](./ts-basic-components-xcomponent.md) component of the SURFACE type with an opaque black background, the **renderFit** attribute can only be set to **RenderFit.RESIZE_FILL**. Other **RenderFit** enum values are not recommended.
+>
+>  For the **XComponent** component created using the [ArkUI NDK API](../../../ui/ndk-access-the-arkts-page.md), the [getAttribute](../_ark_u_i___native_node_a_p_i__1.md#getattribute) function is not supported for obtaining the **renderFit** attribute value.
+
 ## RenderFit
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -51,6 +59,8 @@ Sets how the final state of the component's content is rendered during its width
 > - Different render fit modes create different effects during the width and height animation process. Choose the one that best fits your need.
 
 ## Example
+
+This example demonstrates how to set different content fill modes for a component during width and height animations through the **renderFit** attribute.
 
 ```ts
 // xxx.ets

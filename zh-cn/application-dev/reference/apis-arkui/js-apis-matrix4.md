@@ -61,11 +61,14 @@ Matrix的构造函数，可以通过传入的参数创建一个四阶矩阵，�
 
 ```ts
 import { matrix4 } from '@kit.ArkUI';
+
 // 创建一个四阶矩阵
-let matrix = matrix4.init([1.0, 0.0, 0.0, 0.0,
-                          0.0, 1.0, 0.0, 0.0,
-                          0.0, 0.0, 1.0, 0.0,
-                          0.0, 0.0, 0.0, 1.0])
+let matrix = matrix4.init(
+  [1.0, 0.0, 0.0, 0.0,
+    0.0, 1.0, 0.0, 0.0,
+    0.0, 0.0, 1.0, 0.0,
+    0.0, 0.0, 0.0, 1.0])
+
 @Entry
 @Component
 struct Tests {
@@ -102,11 +105,14 @@ Matrix的初始化函数，可以返回一个单位矩阵对象。
 ```ts
 // matrix1 和 matrix2 效果一致
 import { matrix4 } from '@kit.ArkUI';
-let matrix1 = matrix4.init([1.0, 0.0, 0.0, 0.0,
-                          0.0, 1.0, 0.0, 0.0,
-                          0.0, 0.0, 1.0, 0.0,
-                          0.0, 0.0, 0.0, 1.0])
+
+let matrix1 = matrix4.init(
+  [1.0, 0.0, 0.0, 0.0,
+    0.0, 1.0, 0.0, 0.0,
+    0.0, 0.0, 1.0, 0.0,
+    0.0, 0.0, 0.0, 1.0])
 let matrix2 = matrix4.identity()
+
 @Entry
 @Component
 struct Tests {
@@ -162,9 +168,10 @@ import { matrix4 } from '@kit.ArkUI';
 struct Test {
   private matrix1 = matrix4.identity().scale({ x: 1.5 })
   private matrix2 = this.matrix1.copy().translate({ x: 200 })
-  imageSize:Length = '300px'
+  imageSize: Length = '300px'
+
   build() {
-    Column({space:"50px"}) {
+    Column({ space: "50px" }) {
       Image($r("app.media.testImage"))
         .width(this.imageSize)
         .height(this.imageSize)
@@ -181,7 +188,6 @@ struct Test {
     .justifyContent(FlexAlign.Center)
   }
 }
-
 ```
 
 ![zh-cn_image_0000001219744181](figures/h-cn_image_0000001219744185.png)
@@ -260,6 +266,7 @@ Matrix的逆函数，可以返回一个当前矩阵对象的逆矩阵，即效�
 
 ```ts
 import { matrix4 } from '@kit.ArkUI';
+
 // matrix1(宽放大2倍) 和 matrix2(宽缩小2倍) 效果相反
 let matrix1 = matrix4.identity().scale({ x: 2 })
 let matrix2 = matrix1.copy().invert()
@@ -363,7 +370,13 @@ import { matrix4 } from '@kit.ArkUI';
 @Component
 struct Test {
   private matrix1 = matrix4.identity()
-    .scale({ x: 2, y: 3, z: 4, centerX: 50, centerY: 50 })
+    .scale({
+      x: 2,
+      y: 3,
+      z: 4,
+      centerX: 50,
+      centerY: 50
+    })
 
   build() {
     Column() {
@@ -406,13 +419,14 @@ Matrix的倾斜函数，可以为当前矩阵增加x轴/y轴倾斜效果。会�
 ```ts
 // xxx.ets
 import { matrix4 } from '@kit.ArkUI';
+
 @Entry
 @Component
 struct Test {
   private matrix1 = matrix4.identity().skew(2, 3)
 
   build() {
-    Column() { 
+    Column() {
       Image($r("app.media.bg1")).transform(this.matrix1)
         .height(100)
         .margin({
@@ -459,7 +473,13 @@ import { matrix4 } from '@kit.ArkUI';
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().rotate({ x: 1, y: 1, z: 2, angle: 30 })
+  private matrix1 = matrix4.identity()
+    .rotate({
+      x: 1,
+      y: 1,
+      z: 2,
+      angle: 30
+    })
 
   build() {
     Column() {
@@ -566,8 +586,10 @@ import { matrix4 } from '@kit.ArkUI'
 @Entry
 @Component
 struct Index {
-  private matrix1 = matrix4.identity().setPolyToPoly({ src: [{x:0, y:0}, {x:500, y:0}, {x:0, y:500}, {x:500, y:500} ],
-    dst:[{x:0, y:0}, {x:500, y:0}, {x:0, y:500}, {x:750, y:1000} ], pointCount:4})
+  private matrix1 = matrix4.identity().setPolyToPoly({
+    src: [{ x: 0, y: 0 }, { x: 500, y: 0 }, { x: 0, y: 500 }, { x: 500, y: 500 }],
+    dst: [{ x: 0, y: 0 }, { x: 500, y: 0 }, { x: 0, y: 500 }, { x: 750, y: 1000 }], pointCount: 4
+  })
 
   build() {
     Stack() {
@@ -575,7 +597,7 @@ struct Index {
         .width('500px')
         .height('500px')
       Image($r('app.media.transition_image1'))
-        .scale({centerX:0,centerY:0,x:1})
+        .scale({ centerX: 0, centerY: 0, x: 1 })
         .transform(this.matrix1)
         .width('500px')
         .height('500px')

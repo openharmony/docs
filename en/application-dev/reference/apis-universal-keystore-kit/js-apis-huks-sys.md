@@ -24,17 +24,17 @@ Generates a key for the specified user. This API uses a promise to return the re
 
 **Parameters**
 
-| Name  | Type                       | Mandatory | Description                    |
+| Name  | Type                       | Mandatory| Description                    |
 | -------- | --------------------------- | ---- | ------------------------ |
 | userId   | number                      | Yes  | User ID.                |
 | keyAlias | string                      | Yes  | Alias of the key to generate.              |
-| options  | [HuksOptions](js-apis-huks.md#huksoptions) | Yes  | Tags required for generating the key. The algorithm, key purpose, and key length are mandatory. |
+| options  | [HuksOptions](js-apis-huks.md#huksoptions) | Yes  | [Property tags](native__huks__type_8h.md#enums) of the key to generate. The algorithm, key purpose, and key length are mandatory.|
 
 **Error codes**
 
 For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
@@ -117,17 +117,17 @@ Deletes a key for the specified user. This API uses a promise to return the resu
 
 **Parameters**
 
-| Name  | Type                       | Mandatory | Description                               |
+| Name  | Type                       | Mandatory| Description                               |
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | userId   | number                      | Yes  | User ID.                |
-| keyAlias | string                      | Yes  | Alias of the key to delete. It must be the key alias passed in when the key was generated. |
+| keyAlias | string                      | Yes  | Alias of the key to delete. It must be the key alias passed in when the key was generated.|
 | options  | [HuksOptions](js-apis-huks.md#huksoptions) | Yes  | Options for deleting the key. For example, you can pass in [HuksAuthStorageLevel](js-apis-huks.md#huksauthstoragelevel11) to specify the storage security level of the key to delete. If **HuksAuthStorageLevel** is left empty, **HUKS_AUTH_STORAGE_LEVEL_DE** is used by default.           |
 
 **Error codes**
 
 For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
@@ -221,17 +221,17 @@ Imports a plaintext key for the specified user. This API uses a promise to retur
 
 **Parameters**
 
-| Name  | Type                       | Mandatory | Description                               |
+| Name  | Type                       | Mandatory| Description                               |
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | userId   | number                      | Yes  | User ID.                |
 | keyAlias | string                      | Yes  | Alias of the key to import.                         |
-| options  | [HuksOptions](js-apis-huks.md#huksoptions) | Yes  | Options for importing the key. The algorithm, key purpose, and key length are mandatory. |
+| options  | [HuksOptions](js-apis-huks.md#huksoptions) | Yes  | Options for importing the key. The algorithm, key purpose, and key length are mandatory.|
 
 **Error codes**
 
 For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
@@ -318,23 +318,23 @@ Attests a key for the specified user. This API uses a promise to return the resu
 
 **Parameters**
 
-| Name  | Type                       | Mandatory | Description                                |
+| Name  | Type                       | Mandatory| Description                                |
 | -------- | --------------------------- | ---- | ------------------------------------ |
 | userId   | number                      | Yes  | User ID.                |
-| keyAlias | string                      | Yes  | Alias of the key. The certificate to be obtained stores the key. |
+| keyAlias | string                      | Yes  | Alias of the key. The certificate to be obtained stores the key.|
 | options  | [HuksOptions](js-apis-huks.md#huksoptions) | Yes  | Options for attesting the key.  |
 
 **Return value**
 
 | Type                                          | Description                                         |
 | ---------------------------------------------- | --------------------------------------------- |
-| Promise<[HuksReturnResult](js-apis-huks.md#huksreturnresult9)> | Promise used to return the result. If the operation is successful, **certChains** in **HuksReturnResult** is the certificate chain obtained. |
+| Promise<[HuksReturnResult](js-apis-huks.md#huksreturnresult9)> | Promise used to return the result. If the operation is successful, **certChains** in **HuksReturnResult** is the certificate chain obtained.|
 
 **Error codes**
 
 For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
@@ -472,23 +472,23 @@ This operation requires Internet access and takes time.
 
 **Parameters**
 
-| Name  | Type                       | Mandatory | Description                                |
+| Name  | Type                       | Mandatory| Description                                |
 | -------- | --------------------------- | ---- | ------------------------------------ |
 | userId   | number                      | Yes  | User ID.                |
-| keyAlias | string                      | Yes  | Alias of the key. The certificate to be obtained stores the key. |
+| keyAlias | string                      | Yes  | Alias of the key. The certificate to be obtained stores the key.|
 | options  | [HuksOptions](js-apis-huks.md#huksoptions) | Yes  | Options for attesting the key.  |
 
 **Return value**
 
 | Type                                          | Description                                         |
 | ---------------------------------------------- | --------------------------------------------- |
-| Promise<[HuksReturnResult](js-apis-huks.md#huksreturnresult9)> | Promise used to return the result. If the operation is successful, **certChains** in **HuksReturnResult** is the certificate chain obtained. |
+| Promise<[HuksReturnResult](js-apis-huks.md#huksreturnresult9)> | Promise used to return the result. If the operation is successful, **certChains** in **HuksReturnResult** is the certificate chain obtained.|
 
 **Error codes**
 
 For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
@@ -625,18 +625,18 @@ Imports a wrapped (encrypted) key for the specified user. This API uses a promis
 
 **Parameters**
 
-| Name          | Type                       | Mandatory | Description                                         |
+| Name          | Type                       | Mandatory| Description                                         |
 | ---------------- | --------------------------- | ---- | --------------------------------------------- |
 | userId   | number                      | Yes  | User ID.                |
 | keyAlias         | string                      | Yes  | Alias of the wrapped key to import.             |
 | wrappingKeyAlias | string                      | Yes  | Alias of the key used to decrypt the wrapped key.   |
-| options          | [HuksOptions](js-apis-huks.md#huksoptions) | Yes  | Options for importing the wrapped key. The algorithm, key purpose, and key length are mandatory. |
+| options          | [HuksOptions](js-apis-huks.md#huksoptions) | Yes  | Options for importing the wrapped key. The algorithm, key purpose, and key length are mandatory.|
 
 **Error codes**
 
 For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
@@ -1281,23 +1281,23 @@ Exports the public key for the specified user. This API uses a promise to return
 
 **Parameters**
 
-| Name  | Type                       | Mandatory | Description                                        |
+| Name  | Type                       | Mandatory| Description                                        |
 | -------- | --------------------------- | ---- | -------------------------------------------- |
 | userId   | number                      | Yes  | User ID.                |
-| keyAlias | string                      | Yes  | Key alias, which must be the same as the alias used when the key was generated. |
+| keyAlias | string                      | Yes  | Key alias, which must be the same as the alias used when the key was generated.|
 | options  | [HuksOptions](js-apis-huks.md#huksoptions) | Yes  | Empty object (leave this parameter empty).                    |
 
 **Return value**
 
 | Type                                          | Description                                                        |
 | ---------------------------------------------- | ------------------------------------------------------------ |
-| Promise<[HuksReturnResult](js-apis-huks.md#huksreturnresult9)> | Promise used to return the result. If the operation is successful, **outData** in **HuksReturnResult** is the public key exported. |
+| Promise<[HuksReturnResult](js-apis-huks.md#huksreturnresult9)> | Promise used to return the result. If the operation is successful, **outData** in **HuksReturnResult** is the public key exported.|
 
 **Error codes**
 
 For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
@@ -1399,10 +1399,10 @@ Obtains key properties for the specified user. This API uses a promise to return
 
 **Parameters**
 
-| Name  | Type                       | Mandatory | Description                                        |
+| Name  | Type                       | Mandatory| Description                                        |
 | -------- | --------------------------- | ---- | -------------------------------------------- |
 | userId   | number                      | Yes  | User ID.                |
-| keyAlias | string                      | Yes  | Key alias, which must be the same as the alias used when the key was generated. |
+| keyAlias | string                      | Yes  | Key alias, which must be the same as the alias used when the key was generated.|
 | options  | [HuksOptions](js-apis-huks.md#huksoptions) | Yes  | Empty object (leave this parameter empty).                    |
 
 **Return value**
@@ -1415,7 +1415,7 @@ Obtains key properties for the specified user. This API uses a promise to return
 
 For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
@@ -1514,7 +1514,7 @@ Checks whether a key exists for the specified user. This API uses a promise to r
 
 **Parameters**
 
-| Name  | Type                       | Mandatory | Description                    |
+| Name  | Type                       | Mandatory| Description                    |
 | -------- | --------------------------- | ---- | ------------------------ |
 | userId   | number                      | Yes  | User ID.                |
 | keyAlias | string                      | Yes  | Alias of the key to check.  |
@@ -1524,13 +1524,13 @@ Checks whether a key exists for the specified user. This API uses a promise to r
 
 | Type             | Description                                   |
 | ----------------- | --------------------------------------- |
-| Promise\<boolean> | Promise used to return the result. If the key exists, **true** is returned. Otherwise, **false** is returned. |
+| Promise\<boolean> | Promise used to return the result. If the key exists, **true** is returned. Otherwise, **false** is returned.|
 
 **Error codes**
 
 For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
@@ -1626,7 +1626,7 @@ Initialize a key session for the specified user. This API uses a promise to retu
 
 **Parameters**
 
-| Name  | Type                                             | Mandatory | Description                                            |
+| Name  | Type                                             | Mandatory| Description                                            |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------ |
 | userId   | number                                            | Yes  | User ID.                |
 | keyAlias | string                                            | Yes  | Alias of the key for the **initSessionAsUser** operation.                            |
@@ -1636,13 +1636,13 @@ Initialize a key session for the specified user. This API uses a promise to retu
 
 | Type                               | Description                                              |
 | ----------------------------------- | -------------------------------------------------- |
-| Promise\<[HuksSessionHandle](js-apis-huks.md#hukssessionhandle9)> | Promise used to return a session handle for subsequent operations. |
+| Promise\<[HuksSessionHandle](js-apis-huks.md#hukssessionhandle9)> | Promise used to return a session handle for subsequent operations.|
 
 **Error codes**
 
 For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |

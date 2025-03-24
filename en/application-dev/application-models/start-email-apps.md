@@ -15,7 +15,7 @@ If the **type** field in **startAbilityByType** is set to **mail**, **wantParam*
 | body                                  | string                                                       | No  | Email body.                                                    |
 | ability.params.stream                 | string[ ]                                                    | No  | Email attachments (URI list of the attachments).                               |
 | ability.want.params.uriPermissionFlag | [wantConstant.Flags](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#flags) | No  | At least the read permission must be granted on the email attachments. This parameter is mandatory when **ability.params.stream** is specified.|
-| sceneType                             | number                                                       | No  | 1: Send an email. The default value is **1**.                             |
+| sceneType                             | number                                                       | No  | Intent scene, which indicates the purpose of the current request. 1: Send an email. The default value is **1**.                             |
 
 > **NOTE**
 >
@@ -24,7 +24,7 @@ If the **type** field in **startAbilityByType** is set to **mail**, **wantParam*
 > * For parameters of the string[] type displayed in the vertical domain panel of email applications, all elements in the array must be encoded using **encodeURI**.
 
 ## Developing a Caller Application
-1. Import the **ohos.app.ability.common** module.
+1. Import the module.
     ```ts
     import { common, wantConstant } from '@kit.AbilityKit';
     ```
@@ -96,7 +96,7 @@ If the **type** field in **startAbilityByType** is set to **mail**, **wantParam*
 2. Parse and process the parameters transferred from the panel.
 
     ```ts
-    UIAbility::onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
+    UIAbility.onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
     ```
 
     The **want.parameters** parameter contains the following parameters, which may be slightly different from the ones passed in by the caller.

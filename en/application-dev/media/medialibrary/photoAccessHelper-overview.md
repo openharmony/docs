@@ -8,8 +8,13 @@ With Media Library Kit, you can manage albums and media files, including creatin
 
 The following capabilities are opened to all applications:
 
-- [Selecting Media Assets Using Picker](photoAccessHelper-photoviewpicker.md)
-- [Saving Media Assets](photoAccessHelper-savebutton.md)
+- Selecting or saving media assets
+  - [Selecting Media Assets Using Picker](photoAccessHelper-photoviewpicker.md)
+  - [Saving Media Assets](photoAccessHelper-savebutton.md)
+- Managing moving photos
+  - [Accessing and Managing Moving Photos](photoAccessHelper-movingphoto.md)
+  - [Playing Moving Photos with MovingPhotoView](movingphotoview-guidelines.md)
+<!--RP2--><!--RP2End-->
 
 The following capabilities are restrictedly opened to third-party applications:
 
@@ -53,7 +58,7 @@ The following capabilities are opened to system applications:
 
 - Simple and efficient development thanks to object-based API design.
 - Integrated device-cloud access management.
-- Precise security control and automatic authorization with Pickers and security component \<**SaveButton**>.
+- Precise security control and automatic authorization with Pickers and security component **SaveButton**.
 - Intelligent format conversion completed at the framework layer in a unified manner.
 
 ## Working Principles

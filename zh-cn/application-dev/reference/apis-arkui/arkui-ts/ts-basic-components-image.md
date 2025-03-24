@@ -8,11 +8,9 @@ Image为图片组件，常用于在应用中显示图片。Image支持加载[Pix
 >
 > 使用快捷组合键对Image组件复制时，Image组件必须处于[获焦状态](../../../ui/arkts-common-events-focus-event.md#设置组件是否可获焦)。Image组件默认不获焦，需将[focusable](ts-universal-attributes-focus.md#focusable)属性设置为true，即可使用TAB键将焦点切换到组件上，再将[focusOnTouch](ts-universal-attributes-focus.md#focusontouch9)属性设置为true，即可实现点击获焦。
 >
-> 图片格式支持SVG图源，SVG标签文档请参考[SVG标签说明](./ts-basic-svg.md)
+> 图片格式支持SVG图源，SVG标签文档请参考[SVG标签说明](./ts-basic-svg.md)。
 >
 > 动图的播放依赖于Image节点的可见性变化，其默认行为是不播放的。当节点可见时，通过回调启动动画，当节点不可见时，停止动画。可见性状态的判断是通过[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)事件触发的，当可见阈值ratios大于0时，表明Image处于可见状态。
->
-> API version 14及之后，Image组件在显示网络图片时，网络图片下载与缓存能力将不再内嵌于Image组件中，而是剥离至上传下载模块进行统一管理。上传下载模块提供独立的预下载接口，允许应用开发者在创建Image组件前预下载所需图片。组件创建后，通过向上传下载模块请求数据，从而优化了Image组件的显示流程。关于网络缓存的位置，对于API version 14之前的版本，Image组件的缓存位于应用的本地沙箱路径下，而对于API version 14及之后的版本，缓存则移至应用根目录下的cache目录中。
 
 ## 需要权限
 
@@ -195,7 +193,7 @@ renderMode(value: ImageRenderMode)
 
 ### sourceSize
 
-sourceSize(value: ImageSourceSize)
+sourceSize(value: { width:&nbsp;number;&nbsp;height:&nbsp;number&nbsp;})
 
 设置图片解码尺寸。仅在目标尺寸小于图源尺寸时生效。svg类型图源和PixelMap资源不支持该属性。
 
@@ -209,9 +207,10 @@ sourceSize(value: ImageSourceSize)
 
 **参数：**
 
-| 参数名 | 类型                                                    | 必填 | 说明                                                         |
+| 参数名 | 类型                                                    | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ImageSourceSize](#imagesourcesize14对象说明) | 是   | 图片解码尺寸参数，降低图片的分辨率，常用于需要让图片显示尺寸比组件尺寸更小的场景。和ImageFit.None配合使用时可在组件内显示小图。 |
+| value  | {<br/>width:&nbsp;number,<br/>height:&nbsp;number<br/>} | 是   | 图片解码尺寸，降低图片的分辨率，常用于需要让图片显示尺寸比组件尺寸更小的场景。和ImageFit.None配合使用时可在组件内显示小图。<br/>单位：vp |
+
 
 ### matchTextDirection
 
@@ -251,7 +250,7 @@ fitOriginalSize(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                             |
 | ------ | ------- | ---- | ------------------------------------------------ |
-| value  | boolean | 是   | 图片的显示尺寸是否跟随图源尺寸<br/>默认值：false <br/>**说明：**<br/>当不设置fitOriginalSize或者设置fitOriginalSize为false时，组件显示大小不跟随图源大小。<br/> 当设置fitOriginalSize为true时，组件显示大小跟随图源大小。 |
+| value  | boolean | 是   | 图片的显示尺寸是否跟随图源尺寸。<br/>默认值：false <br/>**说明：**<br/>当不设置fitOriginalSize或者设置fitOriginalSize为false时，组件显示大小不跟随图源大小。<br/> 当设置fitOriginalSize为true时，组件显示大小跟随图源大小。 |
 
 ### fillColor
 
@@ -271,7 +270,7 @@ fillColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明           |
 | ------ | ------------------------------------------ | ---- | -------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置填充颜色。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置填充颜色。 <br/>**说明：**<br/> 默认不对组件进行填充。当传入异常值时，系统将使用默认的主题色：浅色模式下为黑色，深色模式下为白色。 |
 
 ### autoResize
 
@@ -285,7 +284,7 @@ autoResize(value: boolean)
 
 图片放大显示时：.interpolation(.High)
 
-当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
+当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)和svg时设置该属性不生效。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -383,7 +382,7 @@ enableAnalyzer(enable:&nbsp;boolean)
 
 不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。该特性依赖设备能力。
 
-分析图像要求是静态非矢量图，即svg、gif等图像类型不支持分析，支持传入[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)进行分析，目前仅支持[RGBA_8888](../../apis-image-kit/js-apis-image.md#pixelmapformat7)类型，使用方式见[示例4](#示例4)。
+分析图像要求是静态非矢量图，即svg、gif等图像类型不支持分析，支持传入[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)进行分析，目前仅支持[RGBA_8888](../../apis-image-kit/js-apis-image.md#pixelmapformat7)类型，使用方式见[示例4](#示例4开启图像ai分析)。
 
 alt占位图不支持分析，objectRepeat属性仅在ImageRepeat.NoRepeat下支持分析，隐私遮罩属性[obscured](ts-universal-attributes-obscured.md)打开时不支持分析。
 
@@ -415,7 +414,7 @@ resizable(value: ResizableOptions)
 
 当设置 top +bottom 大于原图的高或者 left + right 大于原图的宽时 [ResizableOptions](#resizableoptions11) 属性设置不生效。
 
-当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
+当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)和svg时设置该属性不生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -449,7 +448,7 @@ privacySensitive(supported: boolean)
 
 dynamicRangeMode(value: DynamicRangeMode)
 
-设置期望展示的图像动态范围。
+设置期望展示的图像动态范围。svg类型图源不支持该属性。
 
 <!--RP1--><!--RP1End-->
 
@@ -461,7 +460,7 @@ dynamicRangeMode(value: DynamicRangeMode)
 
 | 参数名 | 类型                                    | 必填 | 说明                             |
 | ------ | --------------------------------------- | ---- | -------------------------------- |
-| value  | [DynamicRangeMode](#dynamicrangemode12-1) | 是   | 图像显示的动态范围。<br/>默认值：dynamicRangeMode.Standard |
+| value  | [DynamicRangeMode](#dynamicrangemode12枚举说明) | 是   | 图像显示的动态范围。<br/>默认值：dynamicRangeMode.Standard |
 
 ### orientation<sup>14+</sup>
 
@@ -549,7 +548,7 @@ orientation(orientation: ImageRotateOrientation)
 
 ![edgewidths](figures/edgewidths.png)
 
-## DynamicRangeMode<sup>12+</sup>
+## DynamicRangeMode<sup>12+</sup>枚举说明
 
 期望展示的图像动态范围。
 
@@ -578,19 +577,6 @@ orientation(orientation: ImageRotateOrientation)
 | RIGHT | 2 | 将当前图片向右旋转90度后显示。         |
 | DOWN | 3| 将当前图片旋转180度后显示。         |
 | LEFT | 4 | 将当前图片向左旋转90度后显示。         |
-
-## ImageSourceSize<sup>14+</sup>对象说明
-
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 参数名 | 类型       | 必填 | 说明           |
-| ------ | --------- | ---- | ------------- |
-| width  | number | 是   | 图片解码尺寸宽度。<br/>单位：vp |
-| height  | number | 是   | 图片解码尺寸高度。<br/>单位：vp |
 
 ## DrawableDescriptor<sup>10+<sup>
 
@@ -684,7 +670,7 @@ onError(callback: ImageErrorCallback)
 
 | 参数名   | 类型                                       | 必填 | 说明                       |
 | -------- | ------------------------------------------ | ---- | -------------------------- |
-| callback | [ImageErrorCallback](#imageerrorcallback9) | 是   | 图片加载异常时触发的回调。<br>**说明：**<br/> - 建议开发者使用此回调，可快速确认图片加载失败时的具体原因 |
+| callback | [ImageErrorCallback](#imageerrorcallback9) | 是   | 图片加载异常时触发的回调。<br>**说明：**<br/>建议开发者使用此回调，可快速确认图片加载失败时的具体原因。 |
 
 ### onFinish
 
@@ -936,21 +922,21 @@ struct ImageExample4 {
 @Entry
 @Component
 struct Index {
-  @State top: number = 40
-  @State bottom: number = 5
-  @State left: number = 40
+  @State top: number = 10
+  @State bottom: number = 10
+  @State left: number = 10
   @State right: number = 10
 
   build() {
     Column({ space: 5 }) {
       // 原图效果
-      Image($r("app.media.sky"))
+      Image($r("app.media.landscape"))
         .width(200).height(200)
         .border({ width: 2, color: Color.Pink })
         .objectFit(ImageFit.Contain)
 
       // 图像拉伸效果，设置resizable属性，对图片不同方向进行拉伸
-      Image($r("app.media.sky"))
+      Image($r("app.media.landscape"))
         .resizable({
           slice: {
             left: this.left,
@@ -967,22 +953,22 @@ struct Index {
       Row() {
         Button("add top to " + this.top).fontSize(10)
           .onClick(() => {
-            this.top += 2
+            this.top += 10
           })
         Button("add bottom to " + this.bottom).fontSize(10)
           .onClick(() => {
-            this.bottom += 2
+            this.bottom += 10
           })
       }
 
       Row() {
         Button("add left to " + this.left).fontSize(10)
           .onClick(() => {
-            this.left += 2
+            this.left += 10
           })
         Button("add right to " + this.right).fontSize(10)
           .onClick(() => {
-            this.right += 2
+            this.right += 10
           })
       }
 
@@ -1312,3 +1298,87 @@ struct ImageExample11 {
 ```
 
 ![imageContent](figures/imageScanEffect.gif)
+
+### 示例12（通过sourceSize设置图片解码尺寸）
+
+该示例通过[sourceSize](ts-basic-components-image.md#sourcesize)接口自定义图片的解码尺寸。
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State borderRadiusValue: number = 10;
+  build() {
+    Column() {
+      Image($r("app.media.sky"))
+        .sourceSize({width:1393, height:1080})
+        .height(300)
+        .width(300)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+      Image($r("app.media.sky"))
+        .sourceSize({width:13, height:10})
+        .height(300)
+        .width(300)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![sourceSizeExample](figures/sourceSizeExample.png)
+
+### 示例13（通过renderMode设置图片的渲染模式）
+
+该示例通过[renderMode](ts-basic-components-image.md#rendermode)接口设置图片渲染模式为黑白模式。
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State borderRadiusValue: number = 10;
+  build() {
+    Column() {
+      Image($r("app.media.sky"))
+        .renderMode(ImageRenderMode.Template)
+        .height(300)
+        .width(300)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![renderModeExample](figures/renderModeExample.png)
+
+### 示例14（通过objectRepeat设置图片的重复样式）
+
+该示例通过[objectRepeat](ts-basic-components-image.md#objectrepeat)接口在竖直轴上重复绘制图片。
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State borderRadiusValue: number = 10;
+  build() {
+    Column() {
+      Image($r("app.media.sky"))
+        .objectRepeat(ImageRepeat.Y)
+        .height(300)
+        .width(300)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![objectRepeatExample](figures/objectRepeatExample.png)

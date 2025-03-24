@@ -29,8 +29,8 @@ Read [CameraPicker](../../reference/apis-camera-kit/js-apis-cameraPicker.md) for
    > The **saveUri** parameter of **PickerProfile** is optional. If this parameter is not set, photos and videos are stored in the media library by default.
    >
    > If you do not want to save photos and videos to the media library, configure a file path in the application sandbox. Ensure that this file is already present and writable. By passing the file's URI into the **picker** API, you are effectively giving the camera picker permission to read from and write to this file. Upon completion of a photo or video capture, the camera picker will replace the contents of this file.
-   
-```ts
+
+   ```ts
    let pathDir = getContext().filesDir;
    let fileName = `${new Date().getTime()}`
    let filePath = pathDir + `/${fileName}.tmp`
@@ -42,7 +42,7 @@ Read [CameraPicker](../../reference/apis-camera-kit/js-apis-cameraPicker.md) for
      saveUri: uri
    };
    ```
-   
+
 3. Call the **picker** API to obtain the photo or video capture result.
    ```ts
    let result: picker.PickerResult =
@@ -103,4 +103,3 @@ Read [CameraPicker](../../reference/apis-camera-kit/js-apis-cameraPicker.md) for
      }
    }
    ```
-

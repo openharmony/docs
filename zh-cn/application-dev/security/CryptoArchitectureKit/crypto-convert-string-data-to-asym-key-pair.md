@@ -96,7 +96,7 @@
     let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
     try {
       let keyPairData = asyKeyGenerator.convertPemKeySync(publicPkcs1Str1024, priKeyPkcs1Str1024);
-      if (keyPairData != null) {
+      if (keyPairData !== null) {
         console.info('[Sync]: convert pem key pair success');
       } else {
         console.error("[Sync]: convert pem key pair result fail!");

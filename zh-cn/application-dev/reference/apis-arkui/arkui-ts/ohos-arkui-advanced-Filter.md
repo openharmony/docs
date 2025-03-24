@@ -21,11 +21,11 @@ import { Filter } from '@kit.ArkUI'
 无
 
 ## 属性
-支持[通用属性](ts-universal-attributes-size.md)
+不支持[通用属性](ts-universal-attributes-size.md)。
 
 ## Filter
 
-Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams, filterType: FilterType, onFilterChanged: (Array&lt;FilterResult&gt;) =&gt; void, container: ()=&gt; void })
+Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters?: FilterParams, filterType?: FilterType, onFilterChanged: (Array&lt;FilterResult&gt;) =&gt; void, container: ()=&gt; void })
 
 **装饰器类型：**\@Component
 
@@ -52,8 +52,8 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| name | [ResourceStr](ts-types.md#resourcestr) | 是 | 筛选项维度名称。 |
-| options | Array&lt;[ResourceStr](ts-types.md#resourcestr)&gt; | 是 | 筛选项维度可选项列表。 |
+| name | [ResourceStr](ts-types.md#resourcestr) | 是 | 筛选项维度名称。<br/>默认值：空字符串。<br/>**说明**：如果文本大于列宽时，文本被截断。 |
+| options | Array&lt;[ResourceStr](ts-types.md#resourcestr)&gt; | 是 | 筛选项维度可选项列表。<br/>默认值：空字符串。<br/>**说明**：文本超长显示省略号。 |
 
 ## FilterType
 
@@ -74,28 +74,42 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| name | [ResourceStr](ts-types.md#resourcestr) | 是 | 筛选项维度名称。 |
-| index | number | 是 | 该维度筛选项选中项目的索引值。 |
-| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 该维度筛选项选中项目的值。 |
+| name | [ResourceStr](ts-types.md#resourcestr) | 是 | 筛选项维度名称。<br/>默认值：空字符串。<br/>**说明**：如果文本大于列宽时，文本被截断。                       |
+| index | number | 是 | 该维度筛选项选中项目的索引值。<br/>取值范围：大于等于-1的整数。<br/>默认值：-1，没有选中项。若设置数值小于-1，按没有选中项处理。 |
+| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 该维度筛选项选中项目的值。<br/>默认值：空字符串。<br/>**说明**：如果文本大于列宽时，文本被截断。                  |
 
 ## 事件
-不支持[通用事件](ts-universal-events-click.md)
+不支持[通用事件](ts-universal-events-click.md)。
 
 ## 示例
 
 该示例设置FilterType属性为MULTI_LINE_FILTER，实现多行可折叠类型筛选器。
 
 ```ts
-import { Filter, FilterParams, FilterResult, FilterType } from '@kit.ArkUI'
+import { Filter, FilterParams, FilterResult, FilterType } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
-  private filterParam: Array<FilterParams> = [{name: '月份', options: ['全部','1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']},
-    {name: '年份', options: ['全部','2023','2022','2021','2020','2019','2018','2017','2016','2015','2014','2013','2012','2011','2010','2009','2008']},
-    {name: '节气', options: ['全部','立春','雨水','惊蛰','春分','清明','谷雨','立夏','小满','芒种','夏至','小暑','大暑','立秋','处暑','白露','秋分','寒露','霜降','立冬','小雪','大雪','冬至','小寒','大寒']}]
-  private additionParam: FilterParams = { name: '您还可以搜', options: ['运营栏目1','运营栏目2','运营栏目3','运营栏目4','运营栏目5','运营栏目6']}
-  private arr: number[] = [1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6,7,8,9,10];
+  private filterParam: Array<FilterParams> = [{
+    name: '月份',
+    options: ['全部', '1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+  },
+    {
+      name: '年份',
+      options: ['全部', '2023', '2022', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012',
+        '2011', '2010', '2009', '2008'],
+    },
+    {
+      name: '节气',
+      options: ['全部', '立春', '雨水', '惊蛰', '春分', '清明', '谷雨', '立夏', '小满', '芒种', '夏至', '小暑', '大暑',
+        '立秋', '处暑', '白露', '秋分', '寒露', '霜降', '立冬', '小雪', '大雪', '冬至', '小寒', '大寒'],
+    }];
+  // additionFilters筛选行name必传，不可为空，否则整行不显示
+  private additionParam: FilterParams =
+    { name: '您还可以搜', options: ['运营栏目1', '运营栏目2', '运营栏目3', '运营栏目4', '运营栏目5', '运营栏目6'] };
+  private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
   build() {
     Column() {
       Filter({
@@ -103,23 +117,23 @@ struct Index {
         additionFilters: this.additionParam,
         filterType: FilterType.MULTI_LINE_FILTER,
         onFilterChanged: (select: Array<FilterResult>) => {
-          console.log('rec filter change')
+          console.log('rec filter change');
           for (let filter of select) {
-            console.log('name:' + filter.name + ',index:' + filter.index + ',value:' + filter.value)
+            console.log('name:' + filter.name + ',index:' + filter.index + ',value:' + filter.value);
           }
         }
-      }){
+      }) {
         List({ initialIndex: 0 }) {
-          ForEach(this.arr, (item:string, index: number) => {
+          ForEach(this.arr, (item: string, index: number) => {
             ListItem() {
               Text(item.toString())
-                .width("100%")
+                .width('100%')
                 .height(100)
                 .fontSize(16)
                 .textAlign(TextAlign.Center)
                 .borderRadius(10)
                 .backgroundColor(Color.White)
-                .margin({ top:10, bottom: 10 })
+                .margin({ top: 10, bottom: 10 })
             }
           })
         }.backgroundColor(Color.Gray)

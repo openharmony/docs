@@ -3,8 +3,10 @@
 
 You can use the **Web** component to register application code with frontend pages. After the registration is done, frontend pages can use the registered object names to call application functions.
 
+Two methods are available for registering the application code:<br>
 
-Two methods are available for registering the application code:<br>Call [javaScriptProxy()](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy) during **Web** component initialization. Call [registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy) after **Web** component initialization.
+- Call [javaScriptProxy()](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy) during **Web** component initialization.
+- Call [registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy) after **Web** component initialization. This API must be used together with [deleteJavaScriptRegister](../reference/apis-arkweb/js-apis-webview.md#deletejavascriptregister) to prevent memory leak.
 
 
 The following example registers the **test()** function with the frontend page. This way, the **test()** function can be triggered and run on the frontend page.
@@ -15,6 +17,7 @@ The following example registers the **test()** function with the frontend page. 
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class testClass {
     constructor() {
@@ -34,6 +37,14 @@ The following example registers the **test()** function with the frontend page. 
 
     build() {
       Column() {
+        Button('deleteJavaScriptRegister')
+          .onClick(() => {
+            try {
+              this.webviewController.deleteJavaScriptRegister("testObjName");
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
         // Load the local index.html page.
         Web({ src: $rawfile('index.html'), controller: this.webviewController})
           // Inject the object to the web client.
@@ -105,6 +116,14 @@ The following example registers the **test()** function with the frontend page. 
                       '{"methodName":"test11","urlPermissionList":[{"scheme":"q","host":"r","port":"","path":"t"},' +
                       '{"scheme":"u","host":"v","port":"","path":""}]}]}}'
               );
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
+        Button('deleteJavaScriptRegister')
+          .onClick(() => {
+            try {
+              this.webviewController.deleteJavaScriptRegister("testObjName");
             } catch (error) {
               console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
@@ -240,6 +259,14 @@ The following example registers the **test()** function with the frontend page. 
               console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
+        Button('deleteJavaScriptRegister')
+          .onClick(() => {
+            try {
+              this.webviewController.deleteJavaScriptRegister("testObjName");
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
         Web({ src: $rawfile('index.html'), controller: this.webviewController })
       }
     }
@@ -311,6 +338,14 @@ The following example registers the **test()** function with the frontend page. 
               console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
+        Button('deleteJavaScriptRegister')
+          .onClick(() => {
+            try {
+              this.webviewController.deleteJavaScriptRegister("testObjName");
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
         Web({ src: $rawfile('index.html'), controller: this.webviewController })
       }
     }
@@ -376,6 +411,14 @@ The following example registers the **test()** function with the frontend page. 
               console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
+        Button('deleteJavaScriptRegister')
+          .onClick(() => {
+            try {
+              this.webviewController.deleteJavaScriptRegister("testObjName");
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
         Web({ src: $rawfile('index.html'), controller: this.webviewController })
       }
     }
@@ -437,6 +480,14 @@ The following example registers the **test()** function with the frontend page. 
           .onClick(() => {
             try {
               this.webviewController.registerJavaScriptProxy(this.testObj, "testObjName", ["test", "toString"]);
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
+        Button('deleteJavaScriptRegister')
+          .onClick(() => {
+            try {
+              this.webviewController.deleteJavaScriptRegister("testObjName");
             } catch (error) {
               console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
@@ -545,6 +596,14 @@ The following example registers the **test()** function with the frontend page. 
               console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
+        Button('deleteJavaScriptRegister')
+          .onClick(() => {
+            try {
+              this.webviewController.deleteJavaScriptRegister("testObjName");
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
         Web({ src: $rawfile('index.html'), controller: this.webviewController })
       }
     }
@@ -617,6 +676,14 @@ The following example registers the **test()** function with the frontend page. 
               console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
+        Button('deleteJavaScriptRegister')
+          .onClick(() => {
+            try {
+              this.webviewController.deleteJavaScriptRegister("testObjName");
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
         Web({ src: $rawfile('index.html'), controller: this.webviewController })
       }
     }
@@ -677,6 +744,14 @@ The following example registers the **test()** function with the frontend page. 
           .onClick(() => {
             try {
               this.webviewController.registerJavaScriptProxy(this.testObj, "testObjName", ["test", "toString"]);
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
+        Button('deleteJavaScriptRegister')
+          .onClick(() => {
+            try {
+              this.webviewController.deleteJavaScriptRegister("testObjName");
             } catch (error) {
               console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }

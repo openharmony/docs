@@ -16,7 +16,7 @@ import { sendablePhotoAccessHelper } from '@kit.MediaLibraryKit';
 
 getPhotoAccessHelper(context: Context): PhotoAccessHelper
 
-Obtains a **PhotoAccessHelper** instance, which can be used for accessing and modifying the media files in an album.
+Obtains a **PhotoAccessHelper** instance, which can be used for accessing and modifying media files in an album.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -274,7 +274,7 @@ Before the operation, ensure that the albums to obtain exist.
 
 | Type                                                        | Description                               |
 | ------------------------------------------------------------ | ----------------------------------- |
-| Promise&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise used to return the albums obtained.|
+| Promise&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -339,7 +339,7 @@ Before the operation, ensure that the albums to obtain exist.
 
 | Type                                                        | Description                               |
 | ------------------------------------------------------------ | ----------------------------------- |
-| Promise&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise used to return the albums obtained.|
+| Promise&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -501,7 +501,7 @@ Obtains a **PhotoAsset** member parameter.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| member | string | Yes  | Name of the member parameter to obtain. <br/>Except **'uri'**, **'media_type'**, **'subtype'**, and **'display_name'**, you must pass in [PhotoKeys](js-apis-photoAccessHelper.md#photokeys) in **fetchColumns**. For example, to obtain the title, pass in **fetchColumns: ['title']**.|
+| member | string | Yes  | Name of the member parameter to obtain. <br>Except **'uri'**, **'media_type'**, **'subtype'**, and **'display_name'**, you must pass in [PhotoKeys](js-apis-photoAccessHelper.md#photokeys) in **fetchColumns**. For example, to obtain the title, pass in **fetchColumns: ['title']**.|
 
 **Return value**
 
@@ -1098,6 +1098,7 @@ Converts this sendable album to a non-sendable album.
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
 **Return value**
 
 | Type                   | Description                                                     |

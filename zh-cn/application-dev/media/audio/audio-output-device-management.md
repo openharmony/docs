@@ -44,6 +44,9 @@ audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data:
 
 可以设置监听事件来监听设备连接状态的变化，当有设备连接或断开时触发回调：
 
+> **说明：**
+> 监听设备连接状态变化可以监听到全部的设备连接状态变化，不建议作为应用处理自动暂停的依据。应用如需处理自动暂停相关业务，可参考[音频流输出设备变更原因](audio-output-device-change.md)。
+
 ```ts
 import { audio } from '@kit.AudioKit';
 

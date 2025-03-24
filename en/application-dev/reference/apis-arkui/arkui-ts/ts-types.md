@@ -221,18 +221,6 @@ The **ResourceColor** type is used to describe the color types of resources.
 | string                              | Color in RGB or ARGB notation. Example: **'#ffffff', '#ff000000', 'rgb(255, 100, 255)', 'rgba(255, 100, 255, 0.5)'**|
 | [Resource](#resource)               | Color referenced from system or application resources.      |
 
-## ColoringStrategy<sup>10+</sup>
-
-The **ColoringStrategy** type is used to describe the foreground and shadow colors.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-| Name    | Description             |
-| ------ | --------------- |
-| INVERT | The foreground colors are the inverse of the component background colors.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| AVERAGE<sup>11+</sup> | The shadow colors of the component are the average color obtained from the component background shadow area.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| PRIMARY<sup>11+</sup> | The shadow colors of the component are the primary color obtained from the component background shadow area.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-
 ## LengthConstrain
 
 The **LengthConstrain** type is used to describe the maximum and minimum lengths of a component.
@@ -551,7 +539,7 @@ The **TouchPoint** type is used to define the coordinates of the touch point.
 
 ## PixelRoundPolicy<sup>11+</sup>
 
-The **PixelRoundPolicy** type is used to describe the rounding strategy for component pixel-level alignment.
+The **PixelRoundPolicy** type is used to describe the direction of pixel rounding at the component level.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -610,38 +598,6 @@ type VisibleAreaChangeCallback = (isExpanding: boolean, currentRatio: number) =>
 | Name           | Type                  | Description                                      |
 | ------------- | ---------------------- | ---------------------------------------- |
 | VisibleAreaChangeCallback | (isExpanding: boolean, currentRatio: number) => void | Callback for visible area changes of the component.<br>- **isExpanding**: whether the ratio of the component's visible area to its total area is greater than the previous one. The value **true** means that the ratio is greater than the previous one, and **false** means the opposite.<br>- **currentRatio**: ratio of the component's visible area to its total area when this callback is invoked.|
-
-## StyledStringValue<sup>12+</sup>
-
-The **StyledStringValue** type is used to set the style for an attribute string.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-| Name  | Description      |
-| ------ | ---------- |
-| TextStyle | Text style.|
-| DecorationStyle | Text decorative line style.|
-| BaselineOffsetStyle | Text baseline offset style.|
-| LetterSpacingStyle | Text letter spacing style.|
-| LineHeightStyle | Text line height style.|
-| TextShadowStyle | Text shadow style.|
-| GestureStyle | Gesture style.|
-| ParagraphStyle | Text paragraph style.|
-| ImageAttachment | Image style.|
-| CustomSpan | Custom span style.|
-| UserDataSpan | User data span style.|
-
-## EnterKeyType
-
-| Name                  | Description              |
-| ---------------------- | ------------------ |
-| Go                     | The Enter key is labeled "Go."<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
-| Search                 | The Enter key is labeled "Search."<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| Send                   | The Enter key is labeled "Send."<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| Next                   | The Enter key is labeled "Next."<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| Done                   | The Enter key is labeled "Done."<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| PREVIOUS<sup>11+</sup> | The Enter key is labeled "Previous."<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| NEW_LINE<sup>11+</sup> | The Enter key is labeled "Return."<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
 
 ## DividerStyleOptions<sup>12+</sup>
 
@@ -784,3 +740,31 @@ The **MenuPolicy** type is used to describe the menu display policy.
 | ------------------- | ------- | ------------------------------------------------------------ |
 | thresholdPercentage | number  | Threshold percentage for displaying the character counter. The character counter is displayed when the number of characters that have been entered is greater than the maximum number of characters multiplied by the threshold percentage value. When displayed, the character counter is in the following format: Number of characters that have been entered/Maximum number of characters allowed. It is visible when the number of characters entered is greater than the character limit multiplied by the threshold percentage value. Value range: [1, 100]<br>If the value is not an integer, it is rounded down to the nearest integer. If the value exceeds the valid value range, the character counter is not displayed. If the value is **undefined**, the character counter is displayed, but this parameter has no effect.|
 | highlightBorder     | boolean | Whether to highlight the text box border and character counter subscript in red. If **options** is not set, the text box border and character counter subscript turn red when the number of characters entered reaches the limit. If the character counter is displayed and **thresholdPercentage** is set to a valid value, the text box border and character counter subscript turn red when the number of entered characters exceeds the limit. The value **true** (default) means to highlight the text box border and character counter subscript in red.|
+
+## ChainWeightOptions<sup>14+</sup>
+
+The **ChainWeightOptions** type is used to describe the layout weight of a component within a chain.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name  | Type    | Description            |
+| ----- | ------ | -------------- |
+| horizontal | number | Layout weight of the component in the horizontal direction. It is effective when set to a value greater than 0.<br> Default value: **0**<br> Invalid values are treated as **0**. |
+| vertical     | number | Layout weight of the component in the vertical direction. It is effective when set to a value greater than 0.<br> Default value: **0**<br> Invalid values are treated as **0**.|
+
+## Configuration
+
+The **Configuration** type is used to describe the color mode and font scale.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name     | Type  | Read Only| Optional| Description      |
+| --------- | ------ | ---- | ---- | ---------- |
+| colorMode | string | Yes  | No  | Color mode.|
+| fontScale | number | Yes  | No  | Font scale.|

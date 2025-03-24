@@ -26,6 +26,8 @@ Custom components have variables. A variable must be decorated by a decorator wh
 - State: data that drives the UI to re-render. State data is changed by invoking the event method of the component. The change of the state data triggers the re-rendering of the UI.
 
 
+Before reading this topic, you are advised to read [Basic Syntax Overview](./arkts-basic-syntax-overview.md), [Declarative UI Description](./arkts-declarative-ui-description.md), and [Creating a Custom Component](./arkts-create-custom-components.md) to have a understanding of the basic syntax of UI paradigms.
+
 ## Basic Concepts
 
 - State variable: a variable decorated by a state decorator. Its value change will trigger UI re-renders. Example: @State num: number = 1, where @State is a state decorator and **num** is a state variable.
@@ -78,9 +80,9 @@ You can develop applications in the state management of V1.
 ArkUI state management V1 provides a diverse array of decorators. You can use these decorators to observe state variables changes within a component or globally and pass the changes between different component levels (for example, between parent and child components or grandparent and grandchild components). According to the scope of the state variable, decorators can be roughly classified into the following types:
 
 
-- Decorators for managing the state of a component: implement state management at the component level by allowing for observation of state changes within a component and changes at different component levels. The observation is limited to state changes in the same component tree, that is, on the same page.
+- Decorator for managing the component states: used to observe the variable changes in components on the same component tree (that is, on the same page) or at different component levels.
 
-- Decorators for managing the state of an application: implement global state management of an application by allowing for observation of state changes on different pages or even different UIAbility components.
+- Decorators for managing the application states: used to observe state changes on different pages or even different UIAbilities.
 
 
 According to the data transfer mode and synchronization type, decorators can also be classified into the following types:
@@ -125,7 +127,7 @@ Decorators for [application state management](arkts-application-state-management
 
 - [AppStorage](arkts-appstorage.md): a special [LocalStorage](arkts-localstorage.md) singleton instance. It is an application-wide database bound to the application process and can be linked to components through the [@StorageProp](arkts-appstorage.md#storageprop) and [@StorageLink](arkts-appstorage.md#storagelink) decorators.
 
-- AppStorage is the hub for application state. Data that needs to interact with components (UI) is stored in AppStorage, including [PersistentStorage](arkts-persiststorage.md) and [Environment](arkts-environment.md) data. The UI accesses the data through the decorators or APIs provided by AppStorage.
+- AppStorage is the hub for application state. Data that needs to interact with components (UI) is stored in AppStorage, including [PersistentStorage](arkts-persiststorage.md) and [environment](arkts-environment.md) variables. The UI accesses the data through the decorators or APIs provided by AppStorage.
 
 - LocalStorage: an in-memory "database" for the application state declared by the application and typically used to share state across pages. It can be linked to the UI through the [@LocalStorageProp](arkts-localstorage.md#localstorageprop) and [@LocalStorageLink](arkts-localstorage.md#localstoragelink) decorators.
 
@@ -137,17 +139,13 @@ Decorators for [application state management](arkts-application-state-management
 
 [$$operator](arkts-two-way-sync.md): provides a TS variable by-reference to a built-in component so that the variable value and the internal state of that component are kept in sync.
 
-###  
-
- 
-
--  
-
--  
-
 ## State Management (V2)
 
 State management V2 adds new features, such as in-depth observation and property-level update, to state management V1.
+
+> **NOTE**
+>
+> Currently, the capabilities of state management V2 are still under optimization. You are advised to use them properly.
 
 ### How State Management V2 Stacks Against State Management V1
 
@@ -156,7 +154,9 @@ State management V1 uses a proxy to observe data. When a state variable is creat
 - State variables cannot exist independently of the UI. When the same data is proxied by multiple views, the change in one view cannot be synchronized to other views.
 - Only the changes at the first layer of object attributes can be sensed, and in-depth observation and listening are not available.
 - Redundant re-renders exist in scenarios where attributes in an object are changed or elements in an array are changed.
-- There are many restrictions on the use of decorators. The input and output of state variables are not specified in components, which is inconvenient for componentization.![arkts-old-state-management](figures/arkts-old-state-management.png)
+- There are many restrictions on the use of decorators. The input and output of state variables are not specified in components, which is inconvenient for componentization.
+
+![arkts-old-state-management](figures/arkts-old-state-management.png)
 
 State management V2 enhances the observation on the data itself. The data itself is observable. This means that changing the data triggers the update of the corresponding view. Compared with state management V1, state management V2 has the following advantages:
 
@@ -198,7 +198,7 @@ State management of V2 provides a new set of decorators.
 
 ### Capability Comparison Between State Management V1 and V2
 
-| Decorator of V1  | Decorator of V2                                            | Description                                                        |
+| V1 Capability  | V2 Capability                                            | Description                                                        |
 | ------------ | ------------------------------------------------------ | ------------------------------------------------------------ |
 | \@Observed   | \@ObservedV2                                           | Indicates that this object is an observable object. However, each of them have different capabilities.<br>\@Observed is used to observe the top-level properties and it takes effect only when it is used together with \@ObjectLink.<br>\@ObservedV2 does not have the observation capability. It only indicates that this class is observable. To observe the class properties, use together with \@Trace.|
 | \@Track      | \@Trace                                                | \@Track is used for accurate observation. If it is not used, class properties cannot be accurately observed.<br>\@Trace decorated properties can be accurately traced and observed.|
@@ -214,5 +214,12 @@ State management of V2 provides a new set of decorators.
 | AppStorage               | AppStorageV2   | Compatible.|
 | Environment       | Calls the ability APIs to obtain system environment variables.  | This capability is coupled with the AppStorage. In V2, you can directly call the ability APIs to obtain system environment variables.|
 | PersistentStorage     | PersistenceV2   | The persistence capability of PersistentStorage is coupled with the AppStorage, while that of PersistenceV2 can be used independently.|
+| Custom component lifecycle    | Custom component lifecycle  | Both supported. Example: [aboutToAppear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear), [onDidBuild](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#ondidbuild12), and [aboutToDisappear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear)|
+| Page lifecycle    | Page lifecycle  | Both supported. Example: [onPageShow](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow), [onPageHide](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpagehide), and [onBackPress](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onbackpress) |
+| @Reusable     |  Not available yet | Component reuse. Example: [aboutToReuse](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoreuse10) and [aboutToRecycle](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttorecycle10)|
+| $$            | !!         | Two-way binding. For V2, you are advised to use **!!** to implement a two-way binding.|
+| @CustomDialog | The [openCustomDialog](../../application-dev/reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialog12) API  | Custom dialog box. For V2, you are advised to use **openCustomDialog** to implement a custom dialog box.|
+| withTheme     | Not available yet  | Theme. Used to set a custom theme style for specific application pages. Example: [onWillApplyTheme](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onwillapplytheme12)|
+| Advanced components    | Not available yet  | Advanced components. Example: [DownloadFileButton](../../application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-DownloadFileButton.md), [ProgressButton](../../application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ProgressButton.md), and [SegmentButton](../../application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SegmentButton.md)|
 
 For details about how to migrate applications from V1 to V2, see [Migrating Applications from V1 to V2](./arkts-v1-v2-migration.md).<br>For details about how to use decorators of V1 and V2 together, see [Mixing Use of Custom Components](./arkts-custom-component-mixed-scenarios.md).

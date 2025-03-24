@@ -37,7 +37,7 @@ TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Tex
 
 
   ```ts
-  TextArea({text:"我是TextArea我是TextArea我是TextArea我是TextArea"}).width(300)
+  TextArea({ text: "我是TextArea我是TextArea我是TextArea我是TextArea" }).width(300)
   ```
 
   ![zh-cn_image_0000001511580836](figures/zh-cn_image_0000001511580836.png)
@@ -45,7 +45,7 @@ TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Tex
 
 ## 设置输入框类型
 
-TextInput有9种可选类型，分别为Normal基本输入模式、Password密码输入模式、Email邮箱地址输入模式、Number纯数字输入模式、PhoneNumber电话号码输入模式、USER_NAME用户名输入模式、NEW_PASSWORD新密码输入模式、NUMBER_PASSWORD纯数字密码输入模式、<!--Del-->SCREEN_LOCK_PASSWORD锁屏应用密码输入模式、<!--DelEnd-->NUMBER_DECIMAL带小数点的数字输入模式。通过type属性进行设置：
+TextInput有以下类型可选择：Normal基本输入模式、Password密码输入模式、Email邮箱地址输入模式、Number纯数字输入模式、PhoneNumber电话号码输入模式、USER_NAME用户名输入模式、NEW_PASSWORD新密码输入模式、NUMBER_PASSWORD纯数字密码输入模式、<!--Del-->SCREEN_LOCK_PASSWORD锁屏应用密码输入模式、<!--DelEnd-->NUMBER_DECIMAL带小数点的数字输入模式、带URL的输入模式。通过type属性进行设置：
 
 
 - 基本输入模式（默认类型）
@@ -66,6 +66,50 @@ TextInput有9种可选类型，分别为Normal基本输入模式、Password密�
 
   ![zh-cn_image_0000001511580840](figures/zh-cn_image_0000001511580840.png)
 
+- 邮箱地址输入模式
+
+  ```ts
+  TextInput()
+    .type(InputType.Email)
+  ```
+
+  ![text_input_type_email](figures/text_input_type_email.PNG)
+
+- 纯数字输入模式
+
+  ```ts
+  TextInput()
+    .type(InputType.Number)
+  ```
+
+  ![text_input_type_number](figures/text_input_type_number.PNG)
+
+- 电话号码输入模式
+
+  ```ts
+  TextInput()
+    .type(InputType.PhoneNumber)
+  ```
+
+  ![text_input_type_phone_number](figures/text_input_type_phone_number.PNG)
+
+- 带小数点的数字输入模式
+
+  ```ts
+  TextInput()
+    .type(InputType.NUMBER_DECIMAL)
+  ```
+
+  ![text_input_type_number_decimal](figures/text_input_type_number_decimal.PNG)
+
+- 带URL的输入模式
+
+  ```ts
+  TextInput()
+    .type(InputType.URL)
+  ```
+
+  ![text_input_type_url](figures/text_input_type_url.PNG)
 
 ## 自定义样式
 
@@ -73,7 +117,7 @@ TextInput有9种可选类型，分别为Normal基本输入模式、Password密�
 
 
   ```ts
-  TextInput({placeholder:'我是提示文本'})
+  TextInput({ placeholder: '我是提示文本' })
   ```
 
   ![zh-cn_image_0000001511900400](figures/zh-cn_image_0000001511900400.png)
@@ -82,7 +126,7 @@ TextInput有9种可选类型，分别为Normal基本输入模式、Password密�
 - 设置输入框当前的文本内容。
 
   ```ts
-  TextInput({placeholder:'我是提示文本',text:'我是当前文本内容'})
+  TextInput({ placeholder: '我是提示文本', text: '我是当前文本内容' })
   ```
 
   ![zh-cn_image_0000001562820761](figures/zh-cn_image_0000001562820761.png)
@@ -90,7 +134,7 @@ TextInput有9种可选类型，分别为Normal基本输入模式、Password密�
 - 添加backgroundColor改变输入框的背景颜色。
 
   ```ts
-  TextInput({placeholder:'我是提示文本',text:'我是当前文本内容'})
+  TextInput({ placeholder: '我是提示文本', text: '我是当前文本内容' })
     .backgroundColor(Color.Pink)
   ```
 
@@ -124,12 +168,12 @@ struct TextInputSample {
   build() {
     Column() {
       TextInput({ placeholder: 'input your username' }).margin({ top: 20 })
-        .onSubmit((EnterKeyType)=>{
-          console.info(EnterKeyType+'输入法回车键的类型值')
+        .onSubmit((EnterKeyType) => {
+          console.info(EnterKeyType + '输入法回车键的类型值');
         })
       TextInput({ placeholder: 'input your password' }).type(InputType.Password).margin({ top: 20 })
-        .onSubmit((EnterKeyType)=>{
-          console.info(EnterKeyType+'输入法回车键的类型值')
+        .onSubmit((EnterKeyType) => {
+          console.info(EnterKeyType + '输入法回车键的类型值');
         })
       Button('Sign in').width(150).margin({ top: 20 })
     }.padding(20)
@@ -148,7 +192,7 @@ struct TextInputSample {
 @Entry
 @Component
 struct Index {
-  placeHolderArr: string[] = ['1', '2', '3', '4', '5', '6', '7']
+  placeHolderArr: string[] = ['1', '2', '3', '4', '5', '6', '7'];
 
   build() {
     Scroll() {
@@ -169,13 +213,14 @@ struct Index {
 
 ## 光标避让
 
-[keyBoardAvoidMode](../../application-dev/reference/apis-arkui/arkui-ts/ts-types.md#keyboardavoidmode11)默认的OFFSET和RESIZE在键盘抬起后，不支持二次避让，如果想要支持光标位置在点击或者通过接口设置变化后发生二次避让，可以考虑使用OFFSET_WITH_CARET和RESIZE_CARET替换原有的OFFSET和RESIZE模式。<br>
+[keyBoardAvoidMode](../reference/apis-arkui/js-apis-arkui-UIContext.md#keyboardavoidmode11)枚举中的OFFSET和RESIZE在键盘抬起后，不支持二次避让。如果想要支持光标位置在点击或者通过接口设置变化后发生二次避让，可以考虑使用OFFSET_WITH_CARET和RESIZE_CARET替换原有的OFFSET和RESIZE模式。<br>
 对于滚动容器更推荐使用RESIZE_WITH_CARET，非滚动容器应该使用OFFSET_WITH_CARET。
 
 ```ts
 // EntryAbility.ets
 import { KeyboardAvoidMode } from '@kit.ArkUI';
 
+// Used in UIAbility
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
   hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
@@ -197,9 +242,8 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 @Entry
 @Component
 struct Index {
-  @State caretPosition: number = 600
-  areaController: TextAreaController = new TextAreaController()
-
+  @State caretPosition: number = 600;
+  areaController: TextAreaController = new TextAreaController();
   text = "Most of us compare ourselves with anyone we think is happier — a relative, someone we know a lot, or someone we hardly know. As a result, what we do remember is anything that makes others happy, anything that makes ourselves unhappy, totally forgetting that there is something happy in our own life.\
   So the best way to destroy happiness is to look at something and focus on even the smallest flaw. It is the smallest flaw that would make us complain. And it is the complaint that leads to us becoming unhappy.\
   If one chooses to be happy, he will be blessed; if he chooses to be unhappy, he will be cursed. Happiness is just what you think will make you happy.Most of us compare ourselves with anyone we think is happier — a relative, someone we know a lot, or someone we hardly know. As a result, what we do remember is anything that makes others happy, anything that makes ourselves unhappy, totally forgetting that there is something happy in our own life.\
@@ -216,13 +260,13 @@ struct Index {
       Column() {
         Row() {
           Button('CaretPostiion++: ' + this.caretPosition).onClick(() => {
-            this.caretPosition += 1
+            this.caretPosition += 1;
           }).fontSize(10)
           Button('CaretPostiion--: ' + this.caretPosition).onClick(() => {
-            this.caretPosition -= 1
+            this.caretPosition -= 1;
           }).fontSize(10)
-          Button('SetCaretPostion:').onClick(() => {
-            this.areaController.caretPosition(this.caretPosition)
+          Button('SetCaretPostion: ').onClick(() => {
+            this.areaController.caretPosition(this.caretPosition);
           }).fontSize(10)
         }
 

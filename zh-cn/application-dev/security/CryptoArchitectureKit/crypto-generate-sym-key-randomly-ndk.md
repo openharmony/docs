@@ -7,7 +7,7 @@
 
 ## 在CMake脚本中链接相关动态库
 ```txt
-   target_link_libraries(entry PUBLIC libohcrypto.so)
+target_link_libraries(entry PUBLIC libohcrypto.so)
 ```
 
 ## 随机生成AES密钥
@@ -69,17 +69,17 @@ static OH_Crypto_ErrCode testGenerateSM4Key()
 {
     OH_CryptoSymKeyGenerator *ctx = nullptr;
     OH_CryptoSymKey *keyCtx = nullptr;
-    Crypto_DataBlob out = {.data = nullptr, .len = 0};
-    OH_Crypto_ErrCode ret = OH_CryptoSymKeyGenerator_Create("SM4_128", &ctx);
+    Crypto_DataBlob out = {.data = nullptr, .len = 0}; // 对称密钥二进制数据
+    OH_Crypto_ErrCode ret = OH_CryptoSymKeyGenerator_Create("SM4_128", &ctx); // 创建对称密钥生成器
     if (ret != CRYPTO_SUCCESS) {
         return ret;
     }
-    ret = OH_CryptoSymKeyGenerator_Generate(ctx, &keyCtx);
+    ret = OH_CryptoSymKeyGenerator_Generate(ctx, &keyCtx); // 随机生成对称密钥对象
     if (ret != CRYPTO_SUCCESS) {
         OH_CryptoSymKeyGenerator_Destroy(ctx);
         return ret;
     }
-    ret = OH_CryptoSymKey_GetKeyData(keyCtx, &out);
+    ret = OH_CryptoSymKey_GetKeyData(keyCtx, &out); // 获取对称密钥对象的二进制数据
     OH_CryptoSymKeyGenerator_Destroy(ctx);
     OH_CryptoSymKey_Destroy(keyCtx);
     if (ret != CRYPTO_SUCCESS) {

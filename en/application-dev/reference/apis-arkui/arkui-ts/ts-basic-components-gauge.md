@@ -1,6 +1,6 @@
 # Gauge
 
-The **Gauge** component is used to display data in a ring chart.
+The **Gauge** component represents a gauge that displays data in a circular format.
 
 
 >  **NOTE**
@@ -21,9 +21,9 @@ This component can contain only one child component.
 
 ## APIs
 
-Gauge(options: GaugeOptions)
+Gauge(options:{value: number, min?: number, max?: number})
 
-Creates a **Gauge** component.
+Creates a gauge.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -32,18 +32,6 @@ Creates a **Gauge** component.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| options |  [GaugeOptions](#gaugeoptions14)| Yes| Settings of the **Gauge** component.|
-
-## GaugeOptions<sup>14+</sup>
-
-**Widget capability**: This API can be used in ArkTS widgets since API version 14.
-
-**Atomic service API**: This API can be used in atomic services since API version 14.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -135,7 +123,7 @@ A ring of the gradient type contains a maximum of nine color segments. If there 
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| colors | [ResourceColor<sup>11+</sup>](ts-types.md#resourcecolor) \| [LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10) \| Array&lt;[[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10) \, number]&gt; | Yes  | Colors of the gauge. You can set colors for individual segments.<br>Default value in API version 9: **Color.Black**<br>Default value in API version 11:<br>If no color is passed or the passed array is empty, the ring will be a gradient consisting of the following colors: 0xFF64BB5C, 0xFFF7CE00, and 0xFFE84026.<br>If a color is passed but the color value is invalid, the ring will be in the color of 0xFFE84026.|
+| colors | [ResourceColor<sup>11+</sup>](ts-types.md#resourcecolor) \| [LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10) \| Array&lt;[[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10) \, number]&gt; | Yes  | Colors of the gauge. You can set colors for individual segments.<br>Default value in API version 9: **Color.Black**<br>Default value in API version 11:<br>If no color is provided or the array is empty, the ring color will be a gradient consisting of the following colors: 0xFF64BB5C, 0xFFF7CE00, and 0xFFE84026.<br>If a color value is provided but invalid, the ring will be in the color of 0xFFE84026.<br>Colors with a weight of 0 are not displayed in the ring. If all weights are 0, the ring is not displayed.|
 
 ### strokeWidth
 
@@ -270,13 +258,16 @@ You need a custom class to implement the **ContentModifier** API.
 
 
 ## Example
-### Example 1
-This example sets the current value, description, and auxiliary text.
+### Example 1: Implementing a Multi-color Gauge
+
+This example demonstrates how to implement a multi-color gauge using the **colors** attribute.
+
 ```ts
 @Entry
 @Component
 struct Gauge1 {
-  @Builder descriptionBuilder() {
+  @Builder
+  descriptionBuilder() {
     Text('Description')
       .maxFontSize('30sp')
       .minFontSize("10.0vp")
@@ -336,13 +327,16 @@ struct Gauge1 {
 ```
 ![gauge](figures/gauge-image1.png)
 
-### Example 2
-This example sets the current value and icon.
+### Example 1: Implementing a Single-color Gauge
+
+This example demonstrates how to implement a single-color gauge using the **colors** attribute.
+
 ```ts
 @Entry
 @Component
 struct Gauge2 {
-  @Builder descriptionBuilderImage() {
+  @Builder
+  descriptionBuilderImage() {
     Image($r('sys.media.ohos_ic_public_clock')).width(72).height(72)
   }
 
@@ -376,13 +370,16 @@ struct Gauge2 {
 ```
 ![gauge](figures/gauge-image2.png)
 
-### Example 3
-This example sets the current value and description.
+### Example 3: Configuring a Custom Description Area
+
+This example illustrates how to configure a custom description area using the **description** attribute.
+
 ```ts
 @Entry
 @Component
 struct Gauge3 {
-  @Builder descriptionBuilder() {
+  @Builder
+  descriptionBuilder() {
     Text('Description')
       .maxFontSize('30sp')
       .minFontSize("10.0vp")
@@ -434,8 +431,10 @@ struct Gauge3 {
 ```
 ![gauge](figures/gauge-image3.png)
 
-### Example 4
-This example sets the current value and auxiliary text.
+### Example 4: Configuring the Auxiliary Area
+
+This example demonstrates how to configure the auxiliary area by setting child components.
+
 ```ts
 @Entry
 @Component
@@ -486,8 +485,10 @@ struct Gauge4 {
 ```
 ![gauge](figures/gauge-image4.png)
 
-### Example 5
-This example sets the current value, maximum value, and minimum value.
+### Example 5: Setting the Minimum and Maximum Values
+
+This example shows how to set the minimum and maximum values of the gauge by configuring **min** and **max**.
+
 ```ts
 @Entry
 @Component
@@ -525,8 +526,10 @@ struct Gauge5 {
 ```
 ![gauge](figures/gauge-image5.png)
 
-### Example 6
-This example sets the current value, maximum and minimum values, and auxiliary text.
+### Example 6: Setting the Indicator
+
+This example illustrates how to set the indicator of the gauge using the **indicator** attribute.
+
 ```ts
 @Entry
 @Component
@@ -570,8 +573,10 @@ struct Gauge6 {
 ```
 ![gauge](figures/gauge-image6.png)
 
-### Example 7
-This example sets the current value, maximum value, and minimum value.
+### Example 7: Setting the Start and End Angles
+
+This example demonstrates how to set the start and end angles of the gauge using the **startAngle** and **endAngle** attributes.
+
 ```ts
 @Entry
 @Component
@@ -609,7 +614,9 @@ struct Gauge7 {
 
 
 
-### Example 8
+### Example 8: Setting the Custom Content Area
+
+This example shows how to customize the content area of the gauge using the **contentModifier** attribute.
 
 ```ts
 // xxx.ets
@@ -690,9 +697,9 @@ struct refreshExample {
 ![gauge](figures/gauge_builder.gif)
 
 
-### Example 9
+### Example 9: Securing Sensitive Information
 
-This example shows how to enable privacy mode, which requires widget framework support.
+This example illustrates how to secure sensitive information using the **privacySensitive** attribute. Note that the display requires widget framework support.
 
 ```ts
 @Entry

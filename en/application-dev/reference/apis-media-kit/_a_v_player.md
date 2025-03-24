@@ -5,6 +5,11 @@
 
 The AVPlayer module provides APIs related to media playback.
 
+You can refer to the corresponding development guide and samples based on your development requirements.
+
+- [Using AVPlayer to Play Audio](../../media/media/using-ndk-avplayer-for-playback.md)
+- [Using AVPlayer to Play Video](../../media/media/using-ndk-avplayer-for-video-playback.md)
+
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
 **Since**: 11
@@ -53,7 +58,7 @@ The AVPlayer module provides APIs related to media playback.
 | -------- | -------- |
 | [AVPlayerState](#avplayerstate-1) {<br>AV_IDLE = 0, <br>AV_INITIALIZED = 1, <br>AV_PREPARED = 2, <br>AV_PLAYING = 3,<br>AV_PAUSED = 4, <br>AV_STOPPED = 5, <br>AV_COMPLETED = 6, <br>AV_RELEASED = 7,<br>AV_ERROR = 8<br>} | Enumerates the AVPlayer states.| 
 | [AVPlayerSeekMode](#avplayerseekmode) { <br>AV_SEEK_NEXT_SYNC = 0, <br>AV_SEEK_PREVIOUS_SYNC, <br>AV_SEEK_CLOSEST = 2<br>} | Enumerates the seek modes of the AVPlayer.| 
-| [AVPlaybackSpeed](#avplaybackspeed-1) {<br>AV_SPEED_FORWARD_0_75_X, <br>AV_SPEED_FORWARD_1_00_X, <br>AV_SPEED_FORWARD_1_25_X, <br> AV_SPEED_FORWARD_1_75_X,<br>AV_SPEED_FORWARD_2_00_X, <br>AV_SPEED_FORWARD_0_50_X, <br>AV_SPEED_FORWARD_1_50_X<br>} | Enumerates the playback speeds of the AVPlayer. | 
+| [AVPlaybackSpeed](#avplaybackspeed-1) {<br>AV_SPEED_FORWARD_0_75_X, <br>AV_SPEED_FORWARD_1_00_X, <br>AV_SPEED_FORWARD_1_25_X, <br> AV_SPEED_FORWARD_1_75_X,<br>AV_SPEED_FORWARD_2_00_X, <br>AV_SPEED_FORWARD_0_50_X, <br>AV_SPEED_FORWARD_1_50_X<br>, <br>AV_SPEED_FORWARD_3_00_X, <br>AV_SPEED_FORWARD_0_25_X, <br>AV_SPEED_FORWARD_0_125_X} | Enumerates the playback speeds of the AVPlayer. | 
 | [AVPlayerOnInfoType](#avplayeroninfotype-1) {<br>AV_INFO_TYPE_SEEKDONE = 0, <br>AV_INFO_TYPE_SPEEDDONE = 1, <br>AV_INFO_TYPE_BITRATEDONE = 2, <br>AV_INFO_TYPE_EOS = 3,<br>AV_INFO_TYPE_STATE_CHANGE = 4, <br>AV_INFO_TYPE_POSITION_UPDATE = 5, <br>AV_INFO_TYPE_MESSAGE = 6, <br>AV_INFO_TYPE_VOLUME_CHANGE = 7,<br>AV_INFO_TYPE_RESOLUTION_CHANGE = 8, <br>AV_INFO_TYPE_BUFFERING_UPDATE = 9, <br>AV_INFO_TYPE_BITRATE_COLLECT = 10, <br>AV_INFO_TYPE_INTERRUPT_EVENT = 11,<br>AV_INFO_TYPE_DURATION_UPDATE = 12, <br>AV_INFO_TYPE_IS_LIVE_STREAM = 13, <br>AV_INFO_TYPE_TRACKCHANGE = 14, <br>AV_INFO_TYPE_TRACK_INFO_UPDATE = 15,<br>AV_INFO_TYPE_SUBTITLE_UPDATE = 16, AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE = 17<br>} | Enumerates the types of messages received by the AVPlayer.| 
 | [AVPlayerBufferingType](#avplayerbufferingtype-1) { <br>AVPLAYER_BUFFERING_START = 1, <br>AVPLAYER_BUFFERING_END, <br>AVPLAYER_BUFFERING_PERCENT, <br>AVPLAYER_BUFFERING_CACHED_DURATION <br>} | Enumerates the types of buffer messages of the AVPlayer. | 
 
@@ -429,6 +434,9 @@ Enumerates the playback speeds of the AVPlayer.
 | AV_SPEED_FORWARD_2_00_X | Plays the video at 2.0 times the normal speed.| 
 | AV_SPEED_FORWARD_0_50_X | Plays the video at 0.5 times the normal speed.<br>**Since**: 12| 
 | AV_SPEED_FORWARD_1_50_X | Plays the video at 1.5 times the normal speed.<br>**Since**: 12| 
+| AV_SPEED_FORWARD_3_00_X | Plays the video at 3.0 times the normal speed.<br>**Since**: 13|
+| AV_SPEED_FORWARD_0_25_X | Plays the video at 0.25 times the normal speed.<br>**Since**: 13|
+| AV_SPEED_FORWARD_0_125_X | Plays the video at 0.125 times the normal speed.<br>**Since**: 13|
 
 
 ### AVPlayerBufferingType
@@ -558,8 +566,8 @@ Creates an **OH_AVPlayer** instance.
 
 > **NOTE**
 >
-> You are advised to create a maximum of 16 **AVPlayer** instances for an application in both audio and video playback scenarios.<!--Del-->
-> The actual number of instances that can be created may be different. It depends on the specifications of the device chip in use. For example, in the case of RK3568, you are advised to create a maximum of 6 **AVPlayer** instances for an application in audio and video playback scenarios.<!--DelEnd-->
+> - You are advised to create a maximum of 16 **AVPlayer** instances for an application in both audio and video playback scenarios.<!--Del-->
+> - The actual number of instances that can be created may be different. It depends on the specifications of the device chip in use. For example, in the case of RK3568, you are advised to create a maximum of 6 **AVPlayer** instances for an application in audio and video playback scenarios.<!--DelEnd-->
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1723,7 +1731,7 @@ const char* OH_PLAYER_BITRATE_ARRAY
 
 Pointer to the key for obtaining the bit rate array. The value is of the uint8_t byte array type. When this key is used to obtain information, you need to:
 - Use a pointer variable of the uint8_t type to store the bit rate list and use a variable of the size_t type to store the byte array length.
-- Allocate several storage spaces of the uint32_t type to receive the bit rate integer of the uint32_t type, which is converted from the uint8_t byte array. For details, see the **OHAVPlayerOnInfoCallback** function in [Sample Code](../../media/media/using-ndk-avplayer-for-playerback.md#sample-code).
+- Allocate several storage spaces of the uint32_t type to receive the bit rate integer of the uint32_t type, which is converted from the uint8_t byte array. For details, see the **OHAVPlayerOnInfoCallback** function in [Sample Code](../../media/media/using-ndk-avplayer-for-playback.md#sample-code).
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 

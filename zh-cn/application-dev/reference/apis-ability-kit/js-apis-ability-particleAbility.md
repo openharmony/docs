@@ -214,7 +214,7 @@ startBackgroundRunning(id: number, request: NotificationRequest, callback: Async
 
 向系统申请长时任务。使用callback异步回调。
 
-**需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
+**需要权限**：ohos.permission.KEEP_BACKGROUND_RUNNING
 
 **系统能力**：SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -281,7 +281,7 @@ startBackgroundRunning(id: number, request: NotificationRequest): Promise&lt;voi
 
 向系统申请长时任务。使用Promise异步回调。
 
-**需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
+**需要权限**：ohos.permission.KEEP_BACKGROUND_RUNNING
 
 **系统能力**：SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 

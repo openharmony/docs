@@ -1,6 +1,8 @@
 # getTarget API: Obtaining Original Objects
 
-To obtain the original object before adding a proxy in the state management, you can use the [getTarget](../reference/apis-arkui/js-apis-StateManagement.md#gettarget12) API.
+To obtain the original object before adding a proxy in the state management, you can use the [getTarget](../reference/apis-arkui/js-apis-StateManagement.md#gettarget) API.
+
+Before reading this topic, you are advised to read [\@Observed](./arkts-observed-and-objectlink.md) and [\@ObservedV2](./arkts-new-observedV2-and-trace.md).
 
 >**NOTE**
 >
@@ -8,7 +10,7 @@ To obtain the original object before adding a proxy in the state management, you
 
 ## Overview
 
-The state management framework adds proxies to original objects of the Class, Date, Map, Set, and Array types to observe attribute changes and API invoking. Proxies will change the variable types. In scenarios such as type determination and Node-API invoking, unexpected results may be generated because the variable type is not the type of the original object.
+The state management framework adds proxies to original objects of the class, Date, Map, Set, and Array types to observe attribute changes and API invoking. Proxies will change the variable types. In scenarios such as type determination and Node-API invoking, unexpected results may be generated because the variable type is not the type of the original object.
 
 - Import the UIUtils to use the **getTarget** API.
 
@@ -16,7 +18,7 @@ The state management framework adds proxies to original objects of the Class, Da
   import { UIUtils } from '@kit.ArkUI';
   ```
 
-- In state management V1, a proxy is added to the class objects decorated by @Observed and the Class, Date, Map, Set, and Array decorated by @State or other state variable decorators to observe the changes of top-level attributes or changes invoked by APIs.
+- In state management V1, a proxy is added to the class objects decorated by @Observed and the class, Date, Map, Set, and Array decorated by @State or other state variable decorators to observe the changes of top-level attributes or changes invoked by APIs.
 - In state management V2, a proxy is added to Date, Map, Set, and Array decorated by \@Trace, \@Local or other state variable decorators to observe changes invoked by APIs.
 
 Use **getTarget** to obtain the original objects of these proxy objects.
@@ -27,7 +29,7 @@ Use **getTarget** to obtain the original objects of these proxy objects.
 
   ```ts
   import { UIUtils } from '@kit.ArkUI';
-  let res = UIUtils.getTarget(2); //  Incorrect usage. The input parameter is of the non-object type.
+  let res = UIUtils.getTarget(2); // Incorrect usage. The input parameter is of the non-object type.
   @Observed
   class Info {
     name: string = "Tom";
@@ -56,7 +58,7 @@ Use **getTarget** to obtain the original objects of these proxy objects.
           .onClick(() => {
             this.info.name = "Alice"; // Text component can be re-rendered.
           })
-        Button (`Change the attributes of the original object`)
+        Button(`Change the attributes of the original object`)
           .onClick(() => {
             let rawInfo: Info = UIUtils.getTarget(this.info);
             The rawInfo.name = "Bob"; // Text component cannot be re-rendered.
@@ -68,7 +70,7 @@ Use **getTarget** to obtain the original objects of these proxy objects.
 
 ## Use Scenarios
 
-### Obtains the original object before adding a proxy in the state management V1.
+### Obtaining the Original Object Before Adding a Proxy in the State Management V1
 
 State management V1 adds proxies to objects in the following scenarios:
 
@@ -163,7 +165,7 @@ struct Index {
 }
 ```
 
-### Obtains the original object before adding a proxy in the state management V2.
+### Obtaining the Original Object Before Adding a Proxy in the State Management V2
 
 A proxy is added to the Map, Set, Date, and Array decorated by \@Trace, \@Local, or other state variable decorators in state management V2. Different from state management V1, the class object instances are not proxied in state management V2.
 
@@ -173,7 +175,7 @@ class ObservedClass {
   @Trace name: string = "Tom";
 }
 let globalObservedObject: ObservedClass = new ObservedClass(); // Not proxied.
-let globalNumberList: number[] = [1, 2, 3]; // Not proxied
+let globalNumberList: number[] = [1, 2, 3]; // Not proxied.
 let globalSampleMap: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]); // Not proxied.
 let globalSampleSet: Set<number> = new Set([0, 1, 2, 3, 4]); // Not proxied.
 let globalSampleDate:Date = new Date (); // Not proxied.
@@ -204,7 +206,7 @@ class ObservedClass {
   @Trace name: string = "Tom";
 }
 let globalObservedObject: ObservedClass = new ObservedClass(); // Not proxied.
-let globalNumberList: number[] = [1, 2, 3]; // Not proxied
+let globalNumberList: number[] = [1, 2, 3]; // Not proxied.
 let globalSampleMap: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]); // Not proxied.
 let globalSampleSet: Set<number> = new Set([0, 1, 2, 3, 4]); // Not proxied.
 let globalSampleDate:Date = new Date (); // Not proxied.
@@ -236,7 +238,7 @@ struct Index {
 
 Decorators in state management V2 generate the **getter** and **setter** methods for the decorated variables and add prefix **\_\_ob\_** in the original variable names. To ensure performance, the **getTarget** API does not process the prefix generated by the decorators in V2. Therefore, when the \@ObservedV2 decorated class object instance is passed in through **getTarget** API, the returned object is still the object itself and the attribute name decorated by \@Trace still has the prefix **\_\_ob\_**.
 
-Some Node-APIs fail to process object attributes as expected due to this prefix.<br>Example:
+Some Node-APIs fail to process object attributes as expected due to this prefix.<br>Example:<br>Affected Node-APIs are as below.
 
 ```ts
 // Class decorated by @ObservedV2.
@@ -247,7 +249,6 @@ class Info {
 }
 let info: Info = new Info(); // info instance passed in through Node-APIs.
 ```
-Affected Node-APIs are as below.
 
 | Name             | Result                                      |
 | ----------------------- | ---------------------------------------------- |
@@ -255,10 +256,8 @@ Affected Node-APIs are as below.
 | napi_set_property       | Changes values successfully using **name** or **\_\_ob\_name**.      |
 | napi_get_property       | Obtains values using **name** or **\_\_ob\_name**.      |
 | napi_has_property       | Returns **true** using **name** or **\_\_ob\_name**.        |
-| napi_delete_property    | Deletes an attribute successfully adding the prefix **\_\_ob\_**. |
+| napi_delete_property    | Deletes an attribute successfully adding the prefix **\_\_ob\_**.|
 | napi_has_own_property   | Returns **true** using **name** or **\_\_ob\_name**.        |
 | napi_set_named_property | Changes values successfully using **name** or **\_\_ob\_name**.      |
 | napi_get_named_property | Obtains values using **name** or **\_\_ob\_name**.      |
 | napi_has_named_property | Returns **true** using **name** or **\_\_ob\_name**.        |
-
-<!--no_check-->

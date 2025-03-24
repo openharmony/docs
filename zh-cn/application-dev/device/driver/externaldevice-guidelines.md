@@ -200,7 +200,7 @@ HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命
 <!--Del-->
 系统应用可通过查询外设详细信息和驱动详细信息，从而管理外设和驱动。开发示例如下：
 
-1. 导入相关Kit
+1. 导入相关Kit。
 
     ```ts
      import { deviceManager } from '@kit.DriverDevelopmentKit';

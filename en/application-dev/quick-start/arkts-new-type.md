@@ -2,6 +2,9 @@
 
 To avoid losing complex types of the properties when serializing classes, you can use the \@Type Decorator to decorate class.
 
+
+\@Type is used to mark class properties. Used together with **PersistenceV2**, \@Type can prevent class loss during serialization. Before reading this topic, you are advised to read [PersistenceV2](./arkts-new-persistencev2.md).
+
 >**NOTE**
 >
 >\@Type is supported since API version 12.

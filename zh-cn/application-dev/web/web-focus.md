@@ -10,7 +10,7 @@
 - Web组件内H5元素焦点控制的常用接口及其使用场景：
 
   1. 通过tabindex属性管理元素焦点：定义Web组件内元素的焦点顺序。可以通过将元素的tabindex设置为"-1"，使其能够通过脚本进行聚焦，同时在CSS中对元素的可见性进行控制。
-  2. 键盘事件更新焦点位置：监听键盘事件，例如Tab键和方向键，依据用户的操作更新Web内元素焦点位置。
+  2. 键盘事件更新焦点位置：监听键盘事件，例如Tab键，依据用户的操作更新Web内元素焦点位置。
   3. 根据焦点情况更改Web组件内元素样式：为焦点元素添加样式，例如边框、背景色等，以提供视觉和交互反馈。
 
 ## 基础概念
@@ -28,7 +28,7 @@ Web组件焦点、焦点链和走焦的详情说明请参考[ArkUI焦点基础�
 根据走焦的触发方式，可以分为主动走焦和被动走焦，Web组件走焦规范详情参考[ArkUI走焦规范](../ui/arkts-common-events-focus-event.md#走焦规范)。
 
 ### 主动走焦
-指开发者或用户主观行为导致的焦点移动。包括：使用requestFocus申请焦点、外接键盘的按键走焦（TAB键/Shift+TAB键/方向键）、点击申请焦点（手势/鼠标/触摸板）等导致的焦点转移。
+指开发者或用户主观行为导致的焦点移动。包括：使用requestFocus申请焦点、外接键盘的按键走焦（TAB键/Shift+TAB键）、点击申请焦点（手势/鼠标/触摸板）等导致的焦点转移。
 
 - requestFocus
 
@@ -36,8 +36,8 @@ Web组件焦点、焦点链和走焦的详情说明请参考[ArkUI焦点基础�
 
 - 按键走焦
 
-  - 支持ArkWeb与其他组件通过TAB键、Shift+TAB键或方向键走焦。
-  - 支持ArkWeb内部网页元素通过TAB键、Shift+TAB键或方向键走焦，网页元素走焦完成后，抛回ArkUI继续框架侧走焦。
+  - 支持ArkWeb与其他组件通过TAB键、Shift+TAB键走焦。
+  - 支持ArkWeb内部网页元素通过TAB键、Shift+TAB键走焦，网页元素走焦完成后，抛回ArkUI继续框架侧走焦。
 
 - 点击申请获焦
 
@@ -54,7 +54,7 @@ Web组件焦点、焦点链和走焦的详情说明请参考[ArkUI焦点基础�
 
 - Web组件不可见：ArkWeb获焦后，应用前后台切换、页面切换、Navigation导航等场景，ArkWeb会失焦再获焦。
 
-- Web组件加载网页：ArkWeb通过src、loadUrl、loadData加载网页，默认会获取焦点，此时应用侧onFocus、w3c focus事件均会上报。
+- Web组件加载网页：ArkWeb通过src、loadUrl、loadData加载网页，默认会获取焦点，但如果此时web组件为不可获焦状态则会获焦失败（常见的不可获焦状态原因有：过场动画过程中父组件不可获焦、应用侧设置了web组件或其父组件不可获焦属性等），应用侧可以调用主动请求焦点接口[requestFocus](../reference/apis-arkweb/js-apis-webview.md#requestfocus)再次尝试使web组件获焦。当获焦成功后，应用侧onFocus、w3c focus事件均会上报。
 
 - autofocus样式：设置了autofocus样式的元素网页完成加载时默认获焦。若该元素支持文字输入，则输入框会有光标闪烁，但不拉起软键盘。
 

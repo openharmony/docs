@@ -1,6 +1,6 @@
 # @ohos.app.ability.AbilityConstant (AbilityConstant) (System API)
 
-The **AbilityConstant** module defines the enums of the window types in the UIAbility.
+The AbilityConstant module defines the enums of the window types in the UIAbility.
 
 > **NOTE**
 > 

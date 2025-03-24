@@ -55,11 +55,11 @@ Database corrupted.
 
 **Description**
 
-The RDB store is corrupted when an API for adding, deleting, querying, or synchronizing data is invoked.
+The database is abnormal.
 
 **Possible Causes**
 
-The RDB store file has been corrupted.
+The database file is damaged and incomplete, the database FD is incorrectly operated, or the database memory is illegally accessed.
 
 **Solution**
 
@@ -95,10 +95,10 @@ The column value is null, or the column data type is incompatible with the API c
 
 **Possible Causes**
 
-- The result set is empty.
-- The current row number in the result set is out of range [0, m - 1]. **m** is **resultsetV9.rowCount**.
-- The column number is out of the range [0, n - 1]. **n** is **resultsetV9.columnCount**.
-- The API called does not support the type of the column data.
+1. The result set is empty.
+2. The current row number in the result set is out of range [0, m - 1]. **m** is **resultsetV9.rowCount**.
+3. The column number is out of the range [0, n - 1]. **n** is **resultsetV9.columnCount**.
+4. The API called does not support the type of the column data.
 
 **Solution**
 
@@ -147,7 +147,7 @@ A read, write, attach, or detach operation is being performed, and cannot be com
 
 **Error Message**
 
-The database is already attached.
+The database alias already exists.
 
 **Description**
 
@@ -214,6 +214,25 @@ The SQL statement used for query does not meet specifications.
 **Solution**
 
 Use SQL statements that comply with specifications.
+
+## 14800020 Key Damaged or Lost
+
+**Error Message**
+
+The secret key is corrupted or lost.
+
+**Description**
+
+The operation for obtaining the secret key fails.
+
+**Possible Causes**
+
+The root key is lost, the application does not have the permission to read the key file, or the key file is damaged.
+
+**Solution**
+
+1. Check the permission for accessing the key file and the content of the key file.
+2. Rebuild or restore the database.
 
 ## 14800021 SQLite: Generic Error
 
@@ -516,7 +535,7 @@ The WAL file size exceeds the default limit.
 
 **Description**
 
-The WAL file exceeds 200 MB, which is the default limit.
+The WAL file exceeds 512 MB, which is the default limit.
 
 **Possible Causes**
 
@@ -532,7 +551,7 @@ Data is added, deleted, and modified continuously without closing the read trans
 
 **Error Message**
 
-Failed to obtain subscription service.
+Failed to obtain the subscription service.
 
 **Description**
 
@@ -550,7 +569,7 @@ Deploy the subscription service on the platform.
 
 **Error Message**
 
- Only supported in stage mode.
+The operation is supported in the stage model only.
 
 **Description**
 
@@ -568,7 +587,7 @@ Perform the operation on the stage model.
 
 **Error Message**
 
-The data group id is not valid.
+Invalid data group ID.
 
 **Description**
 

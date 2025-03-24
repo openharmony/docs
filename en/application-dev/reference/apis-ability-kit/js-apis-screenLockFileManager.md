@@ -1,6 +1,6 @@
 # @ohos.ability.screenLockFileManager (Sensitive Data Access Management Under Lock Screen)
 
-Once the screen is locked, the keys for sensitive data are destroyed, preventing any read or write operations on that data. These keys can be restored only after the screen is unlocked. To facilitate data access on the lock screen, the screenLockFileManager module has been introduced. This module provides APIs to request and revoke the permission to access sensitive data on the lock screen, thereby managing sensitive data access securely.
+Once the screen is locked, the keys for sensitive data are destroyed, preventing any read or write operations on that data. These keys can be restored only after the screen is unlocked. To facilitate data access on the lock screen, the screenLockFileManager module has been introduced. This module provides APIs to request and release the permission to access sensitive data on the lock screen, thereby managing sensitive data access securely.
 
 > **NOTE**
 >
@@ -14,26 +14,26 @@ import { screenLockFileManager } from '@kit.AbilityKit';
 
 ## AccessStatus
 
-Enumerates the statuses available for access to sensitive data on the lock screen.
+Enumerates the statuses for requesting access to sensitive data on the lock screen.
 
  **System capability**: SystemCapability.Security.ScreenLockFileManager
 
 | Name          | Value  | Description                    |
 | -------------- | ---- | ------------------------ |
-| ACCESS_DENIED  | -1   | Denies access to sensitive data on the lock screen.|
-| ACCESS_GRANTED | 0    | Allows access to sensitive data on the lock screen.    |
+| ACCESS_DENIED  | -1   | Access to sensitive data on the lock screen is denied.|
+| ACCESS_GRANTED | 0    | Access to sensitive data on the lock screen is granted.    |
 
 
 ## ReleaseStatus
 
-Enumerates the types of operations used to revoke the permission to access sensitive data on the lock screen.
+Enumerates the statuses for releasing access permissions to sensitive data on the lock screen.
 
  **System capability**: SystemCapability.Security.ScreenLockFileManager
 
 | Name| Value| Description|
 |-----------------|----|----|
-| RELEASE_DENIED |  -1 | Revokes the permission that denies access to sensitive data on the lock screen.|
-| RELEASE_GRANTED |  0  |  Revokes the permission that allows access to sensitive data on the lock screen. |
+| RELEASE_DENIED |  -1 | Release of access to sensitive data on the lock screen is denied.|
+| RELEASE_GRANTED |  0  |  Release of access to sensitive data on the lock screen is granted. |
 
 ## screenLockFileManager.acquireAccess
 
@@ -47,7 +47,7 @@ Requests the permission to access sensitive data on the lock screen. This API re
 
 | Type                                                       | Description                                 |
 | ----------------------------------------------------------- | ------------------------------------- |
-| [AccessStatus](#accessstatus) | Sensitive data access status.|
+| [AccessStatus](#accessstatus) | State for requesting access to sensitive data on the lock screen.|
 
 **Error codes**
 
@@ -83,7 +83,7 @@ try {
 
 releaseAccess(): ReleaseStatus
 
-Revokes the permission to access sensitive data on the lock screen. This API returns the result synchronously.
+Releases the permission to access sensitive data on the lock screen. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Security.ScreenLockFileManager
 
@@ -91,7 +91,7 @@ Revokes the permission to access sensitive data on the lock screen. This API ret
 
 | Type                           | Description                          |
 | ------------------------------- | ------------------------------ |
-| [ReleaseStatus](#releasestatus) | Type of the operation used to revoke the permission to access sensitive data on the lock screen.|
+| [ReleaseStatus](#releasestatus) | State for releasing access permissions to sensitive data on the lock screen.|
 
 **Error codes**
 
@@ -107,7 +107,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// Revoke the permission to access sensitive data on the lock screen.
+// Release the permission to access sensitive data on the lock screen.
 import { screenLockFileManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';

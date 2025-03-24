@@ -28,7 +28,7 @@ Environment提供了读取系统某些环境变量的能力，具体见[Environm
 
 ### 从UI中访问Environment参数
 
-- 使用Environment.envProp将设备运行的环境变量存入AppStorage中：
+- 使用Environment.envProp将设备运行的环境变量存入AppStorage中。
 
   ```ts
   // 将设备的语言code存入AppStorage，默认值为en

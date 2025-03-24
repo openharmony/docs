@@ -87,7 +87,7 @@ on(type: 'change', callback: Callback&lt;MediaQueryResult&gt;): void
 | 参数名   | 类型                                                  | 必填 | 说明                     |
 | -------- | ----------------------------------------------------- | ---- | ------------------------ |
 | type     | string                                                | 是   | 必须填写字符串'change'。 |
-| callback | Callback&lt;[MediaQueryResult](#mediaqueryresult)&gt; | 是   | 向媒体查询注册的回调     |
+| callback | Callback&lt;[MediaQueryResult](#mediaqueryresult)&gt; | 是   | 向媒体查询注册的回调。     |
 
 **示例：** 
 

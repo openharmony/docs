@@ -33,9 +33,9 @@ Triggered when a key event occurs.
 
 onKeyPreIme(event: Callback<KeyEvent, boolean>): T
 
-Triggered before other callbacks when a key event occurs.
+Triggered before other callbacks when a key operation is performed on the bound component after it obtains focus.
 
-If the return value of this callback is **true**, it is considered that the key event has been consumed, and subsequent event callbacks (**keyboardShortcut**, input method events, **onKeyEvent**) will be intercepted and no longer triggered.
+If the return value of this callback is **true**, the key event is considered consumed, and subsequent event callbacks (**keyboardShortcut**, input method events, **onKeyEvent**) will be intercepted and no longer triggered.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -45,7 +45,7 @@ If the return value of this callback is **true**, it is considered that the key 
 
 | Name| Type                         | Mandatory| Description              |
 | ------ | ----------------------------- | ---- | ------------------ |
-| event  | [Callback](./ts-types.md#callback12)<[KeyEvent](#keyevent), boolean>| Yes  | Callback for processing the key event.|
+| event  | [Callback](./ts-types.md#callback12)<[KeyEvent](#keyevent), boolean>| Yes  | Callback for handling the key event.|
 
 **Return value**
 
@@ -66,7 +66,7 @@ If the return value of this callback is **true**, it is considered that the key 
 | keyText                               | string                                   | Key value.                    |
 | keySource                             | [KeySource](ts-appendix-enums.md#keysource) | Type of the input device that triggers the key event.            |
 | deviceId                              | number                                   | ID of the input device that triggers the key event.            |
-| metaKey                               | number                                   | State of the meta key (that is, the **WIN** key on the Windows keyboard or the **Command** key on the Mac keyboard) when the key event occurs. The value **1** indicates that the key is pressed, and **0** indicates that the key is not pressed.|
+| metaKey                               | number                                   | State of the metakey when the key is pressed. The value **1** means the pressed state, and **0** means the unpressed state.|
 | timestamp                             | number                                   | Timestamp of the event. It is the interval between the time when the event is triggered and the time when the system starts, in nanoseconds.|
 | stopPropagation                       | () => void                               | Stops the event from bubbling upwards or downwards.                 |
 | intentionCode<sup>10+</sup>           | [IntentionCode](../../apis-input-kit/js-apis-intentioncode.md) | Intention corresponding to the key.      |
@@ -81,7 +81,9 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
 
-## Example 1
+## Example 1: Triggering the onKeyEvent Callback
+
+This example demonstrates how to set a key event on a button. When the button gains focus, the **onKeyEvent** callback is triggered.
 
 ```ts
 // xxx.ets
@@ -113,8 +115,9 @@ struct KeyEventExample {
 
  ![keyEvent](figures/keyEvent.gif) 
 
-## Example 2
-This example shows how to obtain the Unicode value of the pressed key from a key event.
+## Example 2: Obtaining Unicode Values
+
+This example demonstrates how to obtain the Unicode value of the pressed key using the key event.
 
 ```ts
 // xxx.ets

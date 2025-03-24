@@ -21,7 +21,7 @@ import { ComposeTitleBar } from '@kit.ArkUI'
 无
 
 ## 属性
-不支持[通用属性](ts-universal-attributes-size.md)
+不支持[通用属性](ts-universal-attributes-size.md)。
 
 ## ComposeTitleBar
 
@@ -56,7 +56,7 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 | action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包，item属性不支持触发action事件。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## 事件
-不支持[通用事件](ts-universal-events-click.md)
+不支持[通用事件](ts-universal-events-click.md)。
 
 ## 示例
 
@@ -71,24 +71,24 @@ struct Index {
   private menuItems: Array<ComposeTitleBarMenuItem> = [
     {
       //菜单图片资源
-      value: $r('app.media.ic_public_save'),
+      value: $r('sys.media.ohos_save_button_filled'),
       //启用图标
       isEnabled: true,
       //点击菜单时触发事件
       action: () => promptAction.showToast({ message: "show toast index 1" })
     },
     {
-      value: $r('app.media.ic_public_reduce'),
+      value: $r('sys.media.ohos_ic_public_copy'),
       isEnabled: true,
       action: () => promptAction.showToast({ message: "show toast index 1" })
     },
     {
-      value: $r('app.media.ic_public_edit'),
+      value: $r('sys.media.ohos_ic_public_edit'),
       isEnabled: true,
       action: () => promptAction.showToast({ message: "show toast index 1" })
     },
     {
-      value: $r('app.media.ic_public_remove'),
+      value: $r('sys.media.ohos_ic_public_remove'),
       isEnabled: true,
       action: () => promptAction.showToast({ message: "show toast index 1" })
     },
@@ -119,12 +119,12 @@ struct Index {
         Divider().height(2).color(0xCCCCCC)
         //定义带头像的标题栏
         ComposeTitleBar({
-          menuItems: [{ isEnabled: true, value: $r('app.media.ic_public_save'),
+          menuItems: [{ isEnabled: true, value: $r('sys.media.ohos_save_button_filled'),
             action: () => promptAction.showToast({ message: "show toast index 1" })
           }],
           title: "标题",
           subtitle: "副标题",
-          item: { isEnabled: true, value: $r('app.media.app_icon') }
+          item: { isEnabled: true, value: $r('sys.media.ohos_app_icon') }
         })
         Divider().height(2).color(0xCCCCCC)
       }
@@ -133,4 +133,4 @@ struct Index {
 }
 ```
 
-![zh-cn_image_0000001616913438](figures/zh-cn_image_0000001616913438.jpg)
+![zh-cn_image_composetitlebar_example01](figures/zh-cn_image_composetitlebar_example01.png)

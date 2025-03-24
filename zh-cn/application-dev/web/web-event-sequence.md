@@ -84,7 +84,7 @@ Web组件的状态主要包括：Controller绑定到Web组件、网页加载开�
               console.log('isRequestGesture:' + event.data.isRequestGesture())
             }
             // 返回true表示阻止此次加载，否则允许此次加载
-            return true
+            return false;
           })
           .onOverrideUrlLoading((webResourceRequest: WebResourceRequest) => {
             if (webResourceRequest && webResourceRequest.getRequestUrl() == "about:blank") {

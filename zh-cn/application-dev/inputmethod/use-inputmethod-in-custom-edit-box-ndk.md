@@ -1,9 +1,9 @@
-# 自绘编辑框开发指导 (C/C++)
+# 在自绘编辑框中使用输入法开发指导 (C/C++)
 
 
 ## 场景介绍
 
-IME Kit支持开发者使用自绘组件开发自定义编辑框，与输入法应用交互，包括显示、隐藏输入法，接收来自输入法应用的文本编辑操作通知等，本文档介绍开发者如何使用C/C++完成此功能开发。
+IME Kit支持开发者在自绘编辑框中使用输入法，与输入法应用交互，包括显示、隐藏输入法，接收来自输入法应用的文本编辑操作通知等，本文档介绍开发者如何使用C/C++完成此功能开发。
 
 ## 接口说明
 
@@ -93,7 +93,7 @@ if (OH_InputMethodProxy_NotifyConfigurationChange(inputMethodProxy, InputMethod_
    // ......
    ```
 
-2. 将实现后的响应函数，设置到[InputMethod_TextEditorProxy](../reference/apis-ime-kit/_input_method.md#inputmethod_texteditorproxy)中，再通过绑定输入法时调用的[OH_InputMethodController_Attach](../reference/apis-ime-kit/_input_method.md#oh_inputmethodcontroller_attach)将其设置到输入法框架中，完成监听注册。示例代码如下所示
+2. 将实现后的响应函数，设置到[InputMethod_TextEditorProxy](../reference/apis-ime-kit/_input_method.md#inputmethod_texteditorproxy)中，再通过绑定输入法时调用的[OH_InputMethodController_Attach](../reference/apis-ime-kit/_input_method.md#oh_inputmethodcontroller_attach)将其设置到输入法框架中，完成监听注册。示例代码如下所示：
 
    ```c
    // 将实现好的响应处理函数设置到InputMethod_TextEditorProxy中

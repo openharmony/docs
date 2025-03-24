@@ -26,7 +26,7 @@ Stack(value?: { alignContent?: Alignment })
 
 | Name      | Type                                   | Mandatory| Description                                                   |
 | ------------ | ------------------------------------------- | ---- | ----------------------------------------------------------- |
-| alignContent | [Alignment](ts-appendix-enums.md#alignment) | No  | Alignment of child components in the container.<br>Default value: **Alignment.Center**|
+| value | { alignContent?: [Alignment](ts-appendix-enums.md#alignment) } | No  | Alignment of child components in the container.<br>Default value: **Alignment.Center**|
 
 ## Attributes
 
@@ -48,10 +48,12 @@ Sets the alignment of all child components in the container. When both this attr
 
 | Name| Type                                       | Mandatory| Description                                                       |
 | ------ | ------------------------------------------- | ---- | ----------------------------------------------------------- |
-| value  | [Alignment](ts-appendix-enums.md#alignment) | Yes  | Alignment of all child components in the container.<br>Default value: **Alignment.Center**|
+| value  | [Alignment](ts-appendix-enums.md#alignment) | Yes  | Alignment of child components in the container.<br>Default value: **Alignment.Center**|
 
 
 ## Example
+
+This example demonstrates the display effect of child components when the **alignContent** attribute of the **Stack** component is set to **Alignment.Bottom**.
 
 ```ts
 // xxx.ets

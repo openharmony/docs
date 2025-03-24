@@ -22,7 +22,7 @@ onConsume?: (data: SubscribeCallbackData) => void
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -64,7 +64,7 @@ onCancel?: (data: SubscribeCallbackData) => void
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -102,11 +102,11 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 onUpdate?: (data: NotificationSortingMap) => void
 
-更新通知排序的回调函数。
+更新通知排序的回调函数。预留能力，暂未支持。
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -144,7 +144,7 @@ onConnect?: () => void
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -184,7 +184,7 @@ onDisconnect?: () => void
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -238,7 +238,7 @@ onDestroy?: () => void
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -282,7 +282,7 @@ onDoNotDisturbDateChange?: (mode: notification.DoNotDisturbDate) => void
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -321,7 +321,7 @@ onDoNotDisturbChanged?: (mode: notificationManager.DoNotDisturbDate) => void
 
 免打扰时间选项发生变更时的回调函数。
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -364,7 +364,7 @@ onEnabledNotificationChanged?: (callbackData: EnabledNotificationCallbackData) =
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -406,7 +406,7 @@ onBadgeChanged?: (data: BadgeNumberCallbackData) => void
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -446,7 +446,7 @@ onBadgeEnabledChanged?: BadgeEnabledChangedCallback
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -486,7 +486,7 @@ onBatchCancel?: (data: Array<SubscribeCallbackData\>) => void
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -521,7 +521,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 ## SubscribeCallbackData
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 **系统接口**：此接口为系统接口。
 
@@ -536,7 +536,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ## EnabledNotificationCallbackData<sup>8+</sup>
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 **系统接口**：此接口为系统接口。
 
@@ -549,7 +549,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ## BadgeNumberCallbackData<sup>10+</sup>
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 **系统接口**：此接口为系统接口。
 
@@ -563,7 +563,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ## BadgeEnabledChangedCallback<sup>12+</sup>
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 **系统接口**：此接口为系统接口。
 

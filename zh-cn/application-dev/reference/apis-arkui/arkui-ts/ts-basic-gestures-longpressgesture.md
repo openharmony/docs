@@ -24,8 +24,8 @@ LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number
 | 参数名称 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
 | fingers | number | 否 | 触发长按的最少手指数，最小为1指，&nbsp;最大取值为10指。<br/>默认值：1 <br/> **说明：** <br/>手指按下后若发生超过15px的移动，则判定当前长按手势识别失败。|
-| repeat | boolean | 否 | 是否连续触发事件回调。<br/>默认值：false |
-| duration | number | 否 | 触发长按的最短时间，单位为毫秒（ms）。<br/>默认值：500 <br/>**说明：** <br/>设置小于等于0时，按照默认值500处理。|
+| repeat | boolean | 否 | 是否连续触发事件回调。true表示连续触发事件回调，false表示不连续触发事件回调。<br/>默认值：false |
+| duration | number | 否 | 触发长按的最短时间，单位为毫秒（ms）。<br/>默认值：500 <br/>**说明：** <br/>取值范围：[0, +∞)，设置小于等于0时，按照默认值500处理。|
 
 
 ## 事件
@@ -46,7 +46,7 @@ LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number
 
 ## 示例
 
-该示例通过TapGesture实现了长按手势的识别。
+该示例通过LongPressGesture实现了长按手势的识别。
 
 ```ts
 // xxx.ets

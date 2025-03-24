@@ -234,7 +234,7 @@ Checks whether this data type belongs to the specified uniform data type.
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if the data type belongs to or is the same as the specified uniform data type; returns **false** if they are not related. |
+| boolean | Returns **true** if the data type belongs to or is the same as the specified uniform data type; returns **false** if they are not related.|
 
 **Error codes**
 
@@ -280,7 +280,7 @@ Checks whether this data type is a lower-level type of the specified uniform dat
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if the data type is a lower-level type of the specified uniform data type; returns **false** otherwise. |
+| boolean | Returns **true** if the data type is a lower-level type of the specified uniform data type; returns **false** otherwise.|
 
 **Error codes**
 
@@ -326,7 +326,7 @@ Checks whether this data type is a higher-level type of the specified uniform da
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if this data type is a higher-level type of the specified uniform data type; returns **false** otherwise.|
+| boolean | Returns **true** if the data type is a higher-level type of the specified uniform data type; returns **false** otherwise.|
 
 **Error codes**
 

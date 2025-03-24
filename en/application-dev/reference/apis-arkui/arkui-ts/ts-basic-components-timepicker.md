@@ -194,8 +194,9 @@ Describes a time in 24-hour format.
 | minute               | number | No  | No  | Minute portion of the selected time.<br>Value range: [0-59]|
 | second<sup>11+</sup> | number | No  | No  | Second portion of the selected time.<br>Value range: [0-59]|
 
-
 ## Example
+
+This example implements a time picker that allows users to switch between 12-hour and 24-hour formats by clicking a button.
 
 ```ts
 // xxx.ets
@@ -207,7 +208,7 @@ struct TimePickerExample {
 
   build() {
     Column() {
-      Button ('Switch Time Format')
+      Button('Switch Time Format')
         .margin(30)
         .onClick(() => {
           this.isMilitaryTime = !this.isMilitaryTime

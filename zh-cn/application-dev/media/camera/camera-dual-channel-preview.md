@@ -33,12 +33,12 @@
 
     ```ts
     import { image } from '@kit.ImageKit';
-    imageWidth: number = 1920; // 请使用设备支持profile的size的宽
-    imageHeight: number = 1080; // 请使用设备支持profile的size的高
+    let imageWidth: number = 1920; // 请使用设备支持profile的size的宽。
+    let imageHeight: number = 1080; // 请使用设备支持profile的size的高。
 
     async function initImageReceiver():Promise<void>{
       // 创建ImageReceiver对象
-      let size: image.Size = { width: this.imageWidth, height: this.imageHeight };
+      let size: image.Size = { width: imageWidth, height: imageHeight };
       let imageReceiver = image.createImageReceiver(size, image.ImageFormat.JPEG, 8);
       // 获取取第一路流SurfaceId
       let imageReceiverSurfaceId = await imageReceiver.getReceivingSurfaceId();
@@ -162,6 +162,7 @@ struct example {
         this.surfaceId = this.xComponentCtl.getXComponentSurfaceId(); // 获取组件surfaceId
         // 使用surfaceId创建预览流，开启相机，组件实时渲染每帧预览流数据
       })
+      // surface的宽、高设置与XComponent组件的宽、高设置相反，或使用.renderFit(RenderFit.RESIZE_CONTAIN)自动填充显示无需设置宽、高。
       .width(px2vp(this.imageHeight))
       .height(px2vp(this.imageWidth))
   }

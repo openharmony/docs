@@ -3,7 +3,7 @@
 
 ## 概述
 
-声明用于音频编解码的Native API。
+音频编解码Native API的声明。
 
 **库：** libnative_media_acodec.so
 
@@ -28,10 +28,10 @@
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_Start](_audio_codec.md#oh_audiocodec_start) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 调用此接口启动编解码器，在Prepare成功后执行。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_Stop](_audio_codec.md#oh_audiocodec_stop) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 停止编解码器。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_Flush](_audio_codec.md#oh_audiocodec_flush) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 清除编解码器中缓存的输入和输出数据。  | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_Reset](_audio_codec.md#oh_audiocodec_reset) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 重置编解码器。如果要继续编解码，需要再次调用Configure接口配置编解码器实例。  | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_Reset](_audio_codec.md#oh_audiocodec_reset) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 重置编解码器。此时会清空已配置的参数和输入输出数据。<br>如果要继续编解码，需要再次调用Configure接口配置编解码器实例。  | 
 | OH_AVFormat \* [OH_AudioCodec_GetOutputDescription](_audio_codec.md#oh_audiocodec_getoutputdescription) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 获取编解码器输出数据的描述信息。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_SetParameter](_audio_codec.md#oh_audiocodec_setparameter) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, const OH_AVFormat \*format) | 配置编解码器的动态参数。  | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_PushInputBuffer](_audio_codec.md#oh_audiocodec_pushinputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 将填充有数据的输入缓冲区提交给音频编解码器。  | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_PushInputBuffer](_audio_codec.md#oh_audiocodec_pushinputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 通知音频编解码器已完成对index所对应缓冲区进行输入数据的填充。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_FreeOutputBuffer](_audio_codec.md#oh_audiocodec_freeoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 将处理后的输出缓冲区返回给编解码器。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_IsValid](_audio_codec.md#oh_audiocodec_isvalid) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, bool \*isValid) | 检查当前编解码器实例是否有效。<br>可用于后台故障恢复或应用程序从后台恢复时检测编解码器有效状态。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_SetDecryptionConfig](_audio_codec.md#oh_audiocodec_setdecryptionconfig) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, MediaKeySession \*mediaKeySession, bool secureAudio) | 设置解密信息。  | 

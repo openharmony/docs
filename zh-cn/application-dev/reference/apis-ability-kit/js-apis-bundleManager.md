@@ -11,13 +11,19 @@
 import { bundleManager } from '@kit.AbilityKit';
 ```
 
-## 枚举
+## 权限列表
 
-### BundleFlag
+| 权限                                       | 权限等级     | 描述            |
+| ------------------------------------------ | ------------ | ------------------|
+| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 允许查询应用的基本信息和其他敏感信息。 |
+
+权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
+
+## BundleFlag
 
 包信息标志，指示需要获取的包信息的内容。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称                                          | 值         | 说明                                                         |
 | --------------------------------------------- | ---------- | ------------------------------------------------------------ |
@@ -34,59 +40,59 @@ import { bundleManager } from '@kit.AbilityKit';
 | GET_BUNDLE_INFO_WITH_ROUTER_MAP<sup>12+</sup> | 0x00000200 | 用于获取包含routerMap的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | GET_BUNDLE_INFO_WITH_SKILL<sup>12+</sup>      | 0x00000800 | 用于获取包含skills的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE、GET_BUNDLE_INFO_WITH_ABILITY、GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY一起使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
-### ExtensionAbilityType
+## ExtensionAbilityType
 
 指示扩展组件的类型。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称 | 值 | 说明 |
 |:----------------:|:---:|-----|
 | FORM             | 0   | [FormExtensionAbility](../apis-form-kit/js-apis-app-form-formExtensionAbility.md)：卡片扩展能力，提供卡片开发能力。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md)：延时任务扩展能力，允许应用在系统闲时执行实时性不高的任务。 |
 | INPUT_METHOD     | 2   | [InputMethodExtensionAbility](../apis-ime-kit/js-apis-inputmethod-extension-ability.md)：输入法扩展能力，用于开发输入法应用。 |
-| SERVICE          | 3   | <!--Del-->[<!--DelEnd-->ServiceExtensionAbility<!--Del-->](js-apis-app-ability-serviceExtensionAbility-sys.md)<!--DelEnd-->：后台服务扩展能力，提供后台运行并对外提供相应能力。 |
+|<!--DelRow--> SERVICE          | 3   | [ServiceExtensionAbility](js-apis-app-ability-serviceExtensionAbility-sys.md)：后台服务扩展能力，提供后台运行并对外提供相应能力。 |
 | ACCESSIBILITY    | 4   | <!--RP1-->[AccessibilityExtensionAbility](../apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md)<!--RP1End-->：无障碍服务扩展能力，支持访问与操作前台界面。 |
-| DATA_SHARE       | 5   | <!--Del-->[<!--DelEnd-->DataShareExtensionAbility <!--Del-->](../apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)<!--DelEnd-->：数据共享扩展能力，用于对外提供数据读写服务。 |
-| FILE_SHARE       | 6   | FileShareExtensionAbility：文件共享扩展能力，用于应用间的文件分享。预留能力，仅系统应用支持。 |
-| STATIC_SUBSCRIBER| 7   | <!--Del-->[<!--DelEnd-->StaticSubscriberExtensionAbility <!--Del-->](../apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md)<!--DelEnd-->：静态广播扩展能力，用于处理静态事件，比如开机事件。 |
-| WALLPAPER        | 8   | WallpaperExtensionAbility：壁纸扩展能力，用于实现桌面壁纸。预留能力，仅系统应用支持。 |
+|<!--DelRow--> DATA_SHARE       | 5   | [DataShareExtensionAbility](../apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)：数据共享扩展能力，用于对外提供数据读写服务。 |
+|<!--DelRow--> FILE_SHARE       | 6   | FileShareExtensionAbility：文件共享扩展能力，用于应用间的文件分享。预留能力，仅系统应用支持。 |
+|<!--DelRow--> STATIC_SUBSCRIBER| 7   | [StaticSubscriberExtensionAbility](../apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md)：静态广播扩展能力，用于处理静态事件，比如开机事件。 |
+|<!--DelRow--> WALLPAPER        | 8   | WallpaperExtensionAbility：壁纸扩展能力，用于实现桌面壁纸。预留能力，仅系统应用支持。 |
 | BACKUP           |  9  | [BackupExtensionAbility](../apis-core-file-kit/js-apis-application-backupExtensionAbility.md)：数据备份扩展能力，提供应用数据的备份恢复能力。 |
-| WINDOW           |  10 | <!--Del-->[<!--DelEnd-->WindowExtensionAbility<!--Del-->](../apis-arkui/js-apis-application-windowExtensionAbility-sys.md)<!--DelEnd-->：界面组合扩展能力，允许系统应用进行跨应用的界面拉起和嵌入。 |
+|<!--DelRow--> WINDOW           |  10 | [WindowExtensionAbility](../apis-arkui/js-apis-application-windowExtensionAbility-sys.md)：界面组合扩展能力，允许系统应用进行跨应用的界面拉起和嵌入。 |
 | ENTERPRISE_ADMIN |  11 | [EnterpriseAdminExtensionAbility](../apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility.md)：企业设备管理扩展能力，提供企业管理时处理管理事件的能力，比如设备上应用安装事件、锁屏密码输入错误次数过多事件等。 |
-| THUMBNAIL        | 13  | ThumbnailExtensionAbility：文件缩略图扩展能力，用于为文件提供图标缩略图的能力。预留能力，仅系统应用支持。 |
-| PREVIEW          | 14  | PreviewExtensionAbility：文件预览扩展能力，提供文件预览的能力，其他应用可以直接在应用中嵌入显示。预留能力，仅系统应用支持。 |
-| PRINT<sup>10+</sup> | 15 | PrintExtensionAbility：文件打印扩展能力，提供应用打印照片、文档等办公场景。仅系统应用支持。 |
+|<!--DelRow--> THUMBNAIL        | 13  | ThumbnailExtensionAbility：文件缩略图扩展能力，用于为文件提供图标缩略图的能力。预留能力，仅系统应用支持。 |
+|<!--DelRow--> PREVIEW          | 14  | PreviewExtensionAbility：文件预览扩展能力，提供文件预览的能力，其他应用可以直接在应用中嵌入显示。预留能力，仅系统应用支持。 |
+|<!--DelRow--> PRINT<sup>10+</sup> | 15 | PrintExtensionAbility：文件打印扩展能力，提供应用打印照片、文档等办公场景。仅系统应用支持。 |
 | SHARE<sup>10+</sup> | 16 | [ShareExtensionAbility](js-apis-app-ability-shareExtensionAbility.md)：提供分享业务能力，为开发者提供基于UIExtension的分享业务模板。 |
-| PUSH<sup>10+</sup> | 17 | PushExtensionAbility：推送扩展能力，提供推送场景化消息能力。预留能力，仅系统应用支持。 |
-| DRIVER<sup>10+</sup> | 18 | [DriverExtensionAbility](../apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)：驱动扩展能力，提供外设驱动扩展能力，仅系统应用支持。 |
+|<!--DelRow--> PUSH<sup>10+</sup> | 17 | PushExtensionAbility：推送扩展能力，提供推送场景化消息能力。预留能力，仅系统应用支持。 |
+|<!--DelRow--> DRIVER<sup>10+</sup> | 18 | [DriverExtensionAbility](../apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)：驱动扩展能力，提供外设驱动扩展能力，仅系统应用支持。 |
 | ACTION<sup>10+</sup> | 19 | [ActionExtensionAbility](js-apis-app-ability-actionExtensionAbility.md)：自定义服务扩展能力，为开发者提供基于UIExtension的自定义操作业务模板。 |
-| ADS_SERVICE<sup>11+</sup> | 20 | AdsServiceExtensionAbility：广告服务扩展能力，对外提供后台自定义广告业务服务，仅系统应用支持。 |
+|<!--DelRow--> ADS_SERVICE<sup>11+</sup> | 20 | AdsServiceExtensionAbility：广告服务扩展能力，对外提供后台自定义广告业务服务，仅系统应用支持。 |
 | EMBEDDED_UI<sup>12+</sup> | 21 | [EmbeddedUIExtensionAbility](js-apis-app-ability-embeddedUIExtensionAbility.md)：嵌入式UI扩展能力，提供跨进程界面嵌入的能力。 |
 | INSIGHT_INTENT_UI<sup>12+</sup> | 22 | InsightIntentUIExtensionAbility：为开发者提供能被小艺意图调用，以窗口形态呈现内容的扩展能力。 |
 | UNSPECIFIED      | 255 | 不指定类型，配合queryExtensionAbilityInfo接口可以查询所有类型的ExtensionAbility。 |
 
 
-### PermissionGrantState
+## PermissionGrantState
 
 指示权限授予状态。
 
  **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称 | 值 | 说明 |
 |:----------------:|:---:|:---:|
 | PERMISSION_DENIED|  -1 | 拒绝授予权限。 |
 | PERMISSION_GRANTED |  0  |  授予权限。  |
 
-### SupportWindowMode
+## SupportWindowMode
 
 标识该组件所支持的窗口模式。
 
  **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称 | 值 | 说明 |
 |:----------------:|:---:|:---:|
@@ -94,13 +100,13 @@ import { bundleManager } from '@kit.AbilityKit';
 | SPLIT            | 1   | 窗口支持分屏显示。 |
 | FLOATING         | 2   | 支持窗口化显示。   |
 
-### LaunchType
+## LaunchType
 
 指示组件的启动方式。
 
  **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称 | 值 | 说明 |
 |:----------------:|:---:|:---:|
@@ -108,13 +114,13 @@ import { bundleManager } from '@kit.AbilityKit';
 | MULTITON         | 1   | ability的启动模式，表示普通多实例。 |
 | SPECIFIED        | 2   | ability的启动模式，表示该ability内部根据业务自己指定多实例。 |
 
-### AbilityType
+## AbilityType
 
 指示Ability组件的类型。
 
- **模型约束：** 仅可在FA模型下使用
+ **模型约束：** 仅可在FA模型下使用。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 |  名称   | 值   |                            说明                            |
 | :-----: | ---- | :--------------------------------------------------------: |
@@ -122,11 +128,11 @@ import { bundleManager } from '@kit.AbilityKit';
 | SERVICE | 2    | 后台服务类型的Ability，无UI界面。表示基于Service模板开发的PA，用于提供后台运行任务的能力。  |
 |  DATA   | 3    | 表示基于Data模板开发的PA，用于对外部提供统一的数据访问对象。 |
 
-### DisplayOrientation
+## DisplayOrientation
 
 标识该Ability的显示模式。该标签仅适用于page类型的Ability。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称                               |值 |说明 |
 |:----------------------------------|---|---|
@@ -146,7 +152,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | AUTO_ROTATION_UNSPECIFIED<sup>12+</sup> |13|受开关控制和由系统判定的自动旋转模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | FOLLOW_DESKTOP<sup>12+</sup> |14|跟随桌面的旋转模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
-### CompatiblePolicy<sup>10+</sup>
+## CompatiblePolicy<sup>10+</sup>
 
 标识共享库的版本兼容类型。
 
@@ -158,7 +164,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | ---------------------- | ---- | -------------------------------- |
 | BACKWARD_COMPATIBILITY | 1    | 该字段表明共享库是向后兼容类型。 |
 
-### ModuleType
+## ModuleType
 
 标识模块类型。
 
@@ -172,7 +178,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | FEATURE | 2    | 应用的动态特性模块。 |
 | SHARED  | 3    | 应用的动态共享库模块。  |
 
-### BundleType
+## BundleType
 
 标识应用的类型。
 
@@ -185,10 +191,10 @@ import { bundleManager } from '@kit.AbilityKit';
 | APP            | 0    | 该Bundle是应用。    |
 | ATOMIC_SERVICE | 1    | 该Bundle是原子化服务。 |
 
-### MultiAppModeType<sup>12+</sup>
+## MultiAppModeType<sup>12+</sup>
 标识应用多开的模式类型。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称 | 值 | 说明 |
 |:----------------:|:---:|:---:|
@@ -196,13 +202,11 @@ import { bundleManager } from '@kit.AbilityKit';
 | MULTI_INSTANCE |  1  | 多实例模式。常驻进程不支持该字段。  |
 | APP_CLONE |  2  |  分身模式。  |
 
-## 接口
-
-### bundleManager.getBundleInfoForSelf
+## bundleManager.getBundleInfoForSelf
 
 getBundleInfoForSelf(bundleFlags: number): Promise\<BundleInfo>
 
-以异步方法根据给定的bundleFlags获取当前应用的BundleInfo，使用Promise形式返回结果。
+根据给定的bundleFlags获取当前应用的BundleInfo，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -250,11 +254,11 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfoForSelf
+## bundleManager.getBundleInfoForSelf
 
 getBundleInfoForSelf(bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
-以异步方法根据给定的bundleFlags获取当前应用的BundleInfo，使用callback形式返回结果。
+根据给定的bundleFlags获取当前应用的BundleInfo，使用callback异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -299,11 +303,11 @@ try {
 }
 ```
 
-### bundleManager.getProfileByAbility
+## bundleManager.getProfileByAbility
 
 getProfileByAbility(moduleName: string, abilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string\>\>): void
 
-以异步方法根据给定的moduleName、abilityName和metadataName（module.json中[metadata标签](../../quick-start/module-configuration-file.md#metadata标签)下的name）获取相应配置文件的json格式字符串，使用callback形式返回结果。
+根据给定的moduleName、abilityName和metadataName（module.json中[metadata标签](../../quick-start/module-configuration-file.md#metadata标签)下的name）获取相应配置文件的json格式字符串，使用callback异步回调。
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
@@ -358,11 +362,11 @@ try {
 }
 ```
 
-### bundleManager.getProfileByAbility
+## bundleManager.getProfileByAbility
 
 getProfileByAbility(moduleName: string, abilityName: string, metadataName?: string): Promise\<Array\<string\>\>
 
-以异步方法根据给定的moduleName、abilityName和metadataName（module.json中[metadata标签](../../quick-start/module-configuration-file.md#metadata标签)下的name）获取相应配置文件的json格式字符串，使用Promise形式返回结果。
+根据给定的moduleName、abilityName和metadataName（module.json中[metadata标签](../../quick-start/module-configuration-file.md#metadata标签)下的name）获取相应配置文件的json格式字符串，使用Promise异步回调。
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
@@ -408,6 +412,7 @@ let moduleName = 'entry';
 let abilityName = 'EntryAbility';
 
 try {
+  // 通过模块名称和ability名称获取相应配置文件的json格式字符串信息
   bundleManager.getProfileByAbility(moduleName, abilityName).then((data) => {
     hilog.info(0x0000, 'testTag', 'getProfileByAbility successfully. Data: %{public}s', JSON.stringify(data));
   }).catch((err: BusinessError) => {
@@ -429,6 +434,7 @@ let abilityName = 'EntryAbility';
 let metadataName = 'ability_metadata';
 
 try {
+  // 通过模块名称，ability名称和UIAbility组件的元信息名称获取相应配置文件的json格式字符串信息
   bundleManager.getProfileByAbility(moduleName, abilityName, metadataName).then((data) => {
     hilog.info(0x0000, 'testTag', 'getProfileByAbility successfully. Data: %{public}s', JSON.stringify(data));
   }).catch((err: BusinessError) => {
@@ -440,7 +446,7 @@ try {
 }
 ```
 
-### bundleManager.getProfileByAbilitySync<sup>10+</sup>
+## bundleManager.getProfileByAbilitySync<sup>10+</sup>
 
 getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: string): Array\<string\>
 
@@ -490,6 +496,7 @@ let moduleName = 'entry';
 let abilityName = 'EntryAbility';
 
 try {
+  // 通过模块名称和ability名称获取相应配置文件的json格式字符串信息
   let data = bundleManager.getProfileByAbilitySync(moduleName, abilityName);
   hilog.info(0x0000, 'testTag', 'getProfileByAbilitySync successfully. Data: %{public}s', JSON.stringify(data));
 } catch (err) {
@@ -508,6 +515,7 @@ let abilityName: string = 'EntryAbility';
 let metadataName: string = 'ability_metadata';
 
 try {
+  // 通过模块名称，ability名称和UIAbility组件的元信息名称获取相应配置文件的json格式字符串信息
   let data = bundleManager.getProfileByAbilitySync(moduleName, abilityName, metadataName);
   hilog.info(0x0000, 'testTag', 'getProfileByAbilitySync successfully. Data: %{public}s', JSON.stringify(data));
 } catch (err) {
@@ -516,11 +524,11 @@ try {
 }
 ```
 
-### bundleManager.getProfileByExtensionAbility
+## bundleManager.getProfileByExtensionAbility
 
 getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string\>\>): void
 
-以异步方法根据给定的moduleName、extensionAbilityName和metadataName（module.json中[metadata标签](../../quick-start/module-configuration-file.md#metadata标签)下的name）获取相应配置文件的json格式字符串，使用callback形式返回结果。
+根据给定的moduleName、extensionAbilityName和metadataName（module.json中[metadata标签](../../quick-start/module-configuration-file.md#metadata标签)下的name）获取相应配置文件的json格式字符串，使用callback异步回调。
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
@@ -574,11 +582,11 @@ try {
 }
 ```
 
-### bundleManager.getProfileByExtensionAbility
+## bundleManager.getProfileByExtensionAbility
 
 getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName?: string): Promise\<Array\<string\>\>
 
-以异步方法根据给定的moduleName、extensionAbilityName和metadataName（module.json中[metadata标签](../../quick-start/module-configuration-file.md#metadata标签)下的name）获取相应配置文件的json格式字符串，使用Promise形式返回结果。
+根据给定的moduleName、extensionAbilityName和metadataName（module.json中[metadata标签](../../quick-start/module-configuration-file.md#metadata标签)下的name）获取相应配置文件的json格式字符串，使用Promise异步回调。
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
@@ -646,7 +654,7 @@ try {
 }
 ```
 
-### bundleManager.getProfileByExtensionAbilitySync<sup>10+</sup>
+## bundleManager.getProfileByExtensionAbilitySync<sup>10+</sup>
 
 getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: string, metadataName?: string): Array\<string\>
 
@@ -712,7 +720,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfoForSelfSync<sup>10+</sup>
+## bundleManager.getBundleInfoForSelfSync<sup>10+</sup>
 
 getBundleInfoForSelfSync(bundleFlags: number): BundleInfo
 
@@ -760,7 +768,7 @@ try {
 }
 ```
 
-### bundleManager.canOpenLink<sup>12+</sup>
+## bundleManager.canOpenLink<sup>12+</sup>
 
 canOpenLink(link: string): boolean
 
@@ -854,7 +862,7 @@ try {
 
 getBundleInfo(bundleName: string, bundleFlags: number, userId: number, callback: AsyncCallback\<BundleInfo>): void
 
-以异步方法根据给定的bundleName、bundleFlags和userId获取BundleInfo，使用callback形式返回结果。
+根据给定的bundleName、bundleFlags和userId获取BundleInfo，使用callback异步回调。
 
 获取调用方自己的信息时不需要权限。
 
@@ -935,7 +943,7 @@ try {
 
 getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
-以异步方法根据给定的bundleName和bundleFlags获取BundleInfo，使用callback形式返回结果。
+根据给定的bundleName和bundleFlags获取BundleInfo，使用callback异步回调。
 
 获取调用方自己的信息时不需要权限。
 
@@ -990,7 +998,7 @@ try {
 
 getBundleInfo(bundleName: string, bundleFlags: number, userId?: number): Promise\<BundleInfo>
 
-以异步方法根据给定的bundleName、bundleFlags和userId获取BundleInfo，使用Promise形式返回结果。
+根据给定的bundleName、bundleFlags和userId获取BundleInfo，使用Promise异步回调。
 
 获取调用方自己的信息时不需要权限。
 
@@ -1181,7 +1189,7 @@ try {
 
 getBundleNameByUid(uid: number, callback: AsyncCallback\<string>): void
 
-以异步方法根据给定的uid获取对应的bundleName，使用callback形式返回结果。
+根据给定的uid获取对应的bundleName，使用callback异步回调。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -1229,7 +1237,7 @@ try {
 
 getBundleNameByUid(uid: number): Promise\<string>
 
-以异步方法根据给定的uid获取对应的bundleName，使用Promise形式返回结果。
+根据给定的uid获取对应的bundleName，使用Promise异步回调。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -1344,7 +1352,7 @@ getAppCloneIdentity(uid: number): Promise\<AppCloneIdentity>;
 
 | 类型                                                        | 说明                        |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<AppCloneIdentity> | 以Promise方式返回\<AppCloneIdentity>。 |
+| Promise\<[AppCloneIdentity](js-apis-bundleManager-bundleInfo.md#appcloneidentity14)> | 以Promise方式返回\<AppCloneIdentity>。 |
 
 **错误码：**
 
@@ -1365,7 +1373,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 let uid = 20010005;
 
 try {
-    bundleManager.getAppCloneIdentity(uid).then((res: bundleManager.AppCloneIdentity) => {
+    bundleManager.getAppCloneIdentity(uid).then((res) => {
         hilog.info(0x0000, 'testTag', 'getAppCloneIdentity res = %{public}s', JSON.stringify(res));
     }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'getAppCloneIdentity failed. Cause: %{public}s', err.message);
@@ -1618,7 +1626,7 @@ skill信息。
 
 ### SkillUri<sup>12+</sup>
 
-type SkillUrl = _Skill.SkillUri
+type SkillUri = _Skill.SkillUri
 
 SkillUri信息。
 

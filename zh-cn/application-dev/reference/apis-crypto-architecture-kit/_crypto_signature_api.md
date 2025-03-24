@@ -230,7 +230,7 @@ OH_Crypto_ErrCode OH_CryptoVerify_GetParam (OH_CryptoVerify *ctx, CryptoSignatur
 
 17620001 - 内存错误。
 
-17630001 - 调用三方算法库API出错。。
+17630001 - 调用三方算法库API出错。
 
 
 ### OH_CryptoVerify_Init()

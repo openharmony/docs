@@ -82,7 +82,7 @@ JSVM OH_JSVM_GetPropertyNames success
 
 ### OH_JSVM_SetProperty
 
-将给定的属性与值设置入给定的Object
+将给定的属性与值设置入给定的Object。
 
 cpp部分代码
 
@@ -133,7 +133,7 @@ JSVM OH_JSVM_SetProperty success
 
 ### OH_JSVM_GetProperty
 
-获取给定Object的给定属性对应的值
+获取给定Object的给定属性对应的值。
 
 cpp部分代码
 
@@ -180,7 +180,7 @@ JSVM OH_JSVM_GetProperty success
 
 ### OH_JSVM_HasProperty
 
-检查对象中是否存在指定的属性，可以避免访问不存在属性导致的异常或错误
+检查对象中是否存在指定的属性，可以避免访问不存在属性导致的异常或错误。
 
 cpp部分代码
 

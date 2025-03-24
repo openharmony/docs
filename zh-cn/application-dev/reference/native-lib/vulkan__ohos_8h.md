@@ -3,7 +3,9 @@
 
 ## 概述
 
-定义了OpenHarmony平台扩展的Vulkan接口。引用文件：&lt;vulkan/vulkan.h&gt;。
+定义了OpenHarmony平台扩展的Vulkan接口。
+
+**引用文件：** &lt;vulkan/vulkan.h&gt;。
 
 **起始版本：**
 
@@ -46,7 +48,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OHNativeWindow](_vulkan.md#ohnativewindow) | OH本地窗口。 |
+| [OHNativeWindow](_vulkan.md#ohnativewindow) | 本地窗口。 |
 | [VkSurfaceCreateFlagsOHOS](_vulkan.md#vksurfacecreateflagsohos) | 用于Vulkan Surface创建时使用到的VkFlags类型位掩码，预留的标志类型。 |
 | [VkSurfaceCreateInfoOHOS](_vulkan.md#vksurfacecreateinfoohos) | 包含创建Vulkan Surface时必要的参数。 |
 | VkResult ([VKAPI_PTR *PFN_vkCreateSurfaceOHOS](_vulkan.md#pfn_vkcreatesurfaceohos)) (VkInstance instance, const [VkSurfaceCreateInfoOHOS](_vk_surface_create_info_o_h_o_s.md) \*pCreateInfo, const VkAllocationCallbacks \*pAllocator, VkSurfaceKHR \*pSurface) | 创建Vulkan Surface的函数指针定义。 |

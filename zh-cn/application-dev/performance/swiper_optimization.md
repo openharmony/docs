@@ -2,7 +2,7 @@
 
 ## 背景
 
-在应用开发中，Swiper 组件常用于翻页场景，比如：桌面、图库等应用。Swiper 组件滑动切换页面时，基于按需加载原则通常会在下一个页面将要显示时才对该页面进行加载和布局绘制，这个过程包括：
+在应用开发中，[Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md) 组件常用于翻页场景，比如：桌面、图库等应用。Swiper 组件滑动切换页面时，基于按需加载原则通常会在下一个页面将要显示时才对该页面进行加载和布局绘制，这个过程包括：
 
 - 如果该页面使用了@Component 装饰的自定义组件，那么自定义组件的 build 函数会被执行并创建内部的 UI 组件；
 
@@ -32,7 +32,7 @@
 
 ## 使用指导
 
-- 预加载子组件的个数在[cachedCount](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#属性)属性中配置。
+- 预加载子组件的个数在[cachedCount](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#cachedcount8)属性中配置。
 
 Swiper 共 5 页，当开发者设置了 cachedCount 属性为 1 且 loop 属性为 false 时，预加载的结果如下：\
  ![loop=false](figures/swiper_loop_false.png)
@@ -159,7 +159,7 @@ struct SwiperExample {
 
 由于组件构建和布局计算需要一定时间，cachedCount 的数量也不是设置得越大越好，过大的 cachedCount 可能会导致应用性能降低。当前 Swiper 组件滑动离手后的动效时间大约是 400ms，如果应用加载一个子组件的时间在 100ms\~200ms 之间，为了在离手动效时间内完成组件的预加载，cachedCount 属性建议设置为 1 或 2，设置过大会导致主线程阻塞而产生卡顿。
 
-那么方案可以继续优化，在抛滑场景时，Swiper 组件有一个[OnAnimationStart](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#事件)回调接口，切换动画开始时触发该回调。此时，主线程空闲，应用可以充分利用这段时间进行图片等资源的预加载，减少后续 cachedCount 范围内的节点预加载耗时;
+那么方案可以继续优化，在抛滑场景时，Swiper 组件有一个[OnAnimationStart](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#事件)回调接口，切换动画开始时触发该回调。此时，主线程空闲，应用可以充分利用这段时间进行图片等资源的预加载，减少后续 cachedCount 范围内的节点预加载耗时；
 跟手滑动阶段不会触发[OnAnimationStart](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#事件)回调，只有在离手后做切换动画(也就是抛滑阶段)才会触发。
 
 **示例**

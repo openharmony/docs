@@ -1,8 +1,10 @@
 # Playing Moving Photos with MovingPhotoView 
 
-The **MovingPhotoView** component is used to play moving photos and control the playback status.
+The system provides the **MovingPhotoView** component, which can be used to play moving photos in social networking and gallery applications.
 
 ## Constraints
+
+The restrictions on using the **MovingPhotoView** component are as follows:
 
 - Currently, live properties cannot be set.
 - Currently, the ArkUI [expandSafeArea](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-expand-safe-area.md#expandsafearea) cannot be set.
@@ -17,26 +19,26 @@ The **MovingPhotoView** component is used to play moving photos and control the 
    import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit';
    ```
 
-2. Obtain a moving photo object.
+2. Obtain a [MovingPhoto](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#movingphoto12) object.
 
    Use the **photoAccessHelper** APIs to create or obtain a moving photo object. The **MovingPhotoView** receives only the constructed moving photo object.
-     
+
    For details about how to create and obtain a moving photo object, see [Accessing and Managing Moving Photo Assets](photoAccessHelper-movingphoto.md).
 
    ```ts
    src: photoAccessHelper.MovingPhoto | undefined = undefined;
    ```
 
-3. Create a **MovingPhotoViewController** instance, which is used to control the playback status of moving photos.
-   
+3. Create a [MovingPhotoViewController](../../reference/apis-media-library-kit/ohos-multimedia-movingphotoview.md#movingphotoviewcontroller) to control the playback status (such as playing or stopping) of the moving photo.
+
    ```ts
    controller: MovingPhotoViewController = new MovingPhotoViewController();
-   ```   
+   ```
 
 4. Create a **MovingPhotoView** instance.
 
    The values in the following sample code are only examples. For details about the value range of each parameter, see [@ohos.multimedia.movingphotoview](../../reference/apis-media-library-kit/ohos-multimedia-movingphotoview.md).
-   
+
    ```ts
     import { photoAccessHelper, MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit';
 

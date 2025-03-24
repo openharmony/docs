@@ -588,7 +588,7 @@ struct Index {
       Text(this.message)
         .fontSize(24)
         .fontWeight(FontWeight.Bold)
-      Button ('Subscribe to Screen Pixel Density Changes')
+      Button('Subscribe to Screen Pixel Density Changes')
         .onClick(() => {
           this.message = 'Listener registered'
           observer.on('densityUpdate', this.getUIContext(), this.densityUpdateCallback);
@@ -635,12 +635,12 @@ struct Index {
       Text(this.message)
         .fontSize(24)
         .fontWeight(FontWeight.Bold)
-      Button ('Subscribe to Screen Pixel Density Changes')
+      Button('Subscribe to Screen Pixel Density Changes')
         .onClick(() => {
           this.message = 'Listener registered'
           observer.on('densityUpdate', this.getUIContext(), this.densityUpdateCallback);
         })
-      Button ('Unsubscribe from Screen Pixel Density Changes')
+      Button('Unsubscribe from Screen Pixel Density Changes')
         .onClick(() => {
           this.message = 'Listener not registered'
           observer.off('densityUpdate', this.getUIContext(), this.densityUpdateCallback);
@@ -807,7 +807,7 @@ struct Index {
         .onClick(() => {
           observer.on('didLayout', this.getUIContext(), this.didLayoutCallback);
         })
-      Button ('Unsubscribe from Layout Completion')
+      Button('Unsubscribe from Layout Completion')
         .onClick(() => {
           observer.off('didLayout', this.getUIContext(), this.didLayoutCallback);
         })

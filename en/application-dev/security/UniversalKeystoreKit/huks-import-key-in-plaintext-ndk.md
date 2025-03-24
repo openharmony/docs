@@ -42,43 +42,28 @@ OH_Huks_Result InitParamSet(struct OH_Huks_ParamSet **paramSet, const struct OH_
     }
     return ret;
 }
-struct OH_Huks_Param g_testGenerateKeyParam[] = {{.tag = OH_HUKS_TAG_ALGORITHM, .uint32Param = OH_HUKS_ALG_ECC},
+struct OH_Huks_Param g_testImportKeyParam[] = {{.tag = OH_HUKS_TAG_ALGORITHM, .uint32Param = OH_HUKS_ALG_ECC},
                                                  {.tag = OH_HUKS_TAG_PURPOSE, .uint32Param = OH_HUKS_KEY_PURPOSE_AGREE},
                                                  {.tag = OH_HUKS_TAG_KEY_SIZE, .uint32Param = OH_HUKS_ECC_KEY_SIZE_256},
                                                  {.tag = OH_HUKS_TAG_DIGEST, .uint32Param = OH_HUKS_DIGEST_NONE}};
-static napi_value GenerateKey(napi_env env, napi_callback_info info) {
-    const char *alias = "test_generate";
-    struct OH_Huks_Blob aliasBlob = {.size = (uint32_t)strlen(alias), .data = (uint8_t *)alias};
-    struct OH_Huks_ParamSet *testGenerateKeyParamSet = nullptr;
-    struct OH_Huks_Result ohResult;
-    do {
-        ohResult = InitParamSet(&testGenerateKeyParamSet, g_testGenerateKeyParam,
-                                sizeof(g_testGenerateKeyParam) / sizeof(OH_Huks_Param));
-        if (ohResult.errorCode != OH_HUKS_SUCCESS) {
-            break;
-        }
-        ohResult = OH_Huks_GenerateKeyItem(&aliasBlob, testGenerateKeyParamSet, nullptr);
-    } while (0);
-    OH_Huks_FreeParamSet(&testGenerateKeyParamSet);
-    napi_value ret;
-    napi_create_int32(env, ohResult.errorCode, &ret);
-    return ret;
-}
+
 static napi_value ImportKey(napi_env env, napi_callback_info info) {
-    (void)GenerateKey(env, info);
-    const char *alias = "test_generate";
+    const char *alias = "test_import";
     struct OH_Huks_Blob aliasBlob = {.size = (uint32_t)strlen(alias), .data = (uint8_t *)alias};
-    uint8_t pubKey[OH_HUKS_ECC_KEY_SIZE_256] = {0};
+    /* Public key in DER format, which is used to import the key. */
+    uint8_t pubKey[OH_HUKS_ECC_KEY_SIZE_256] = {
+        0x30, 0x2A, 0x30, 0x05, 0x06, 0x03, 0x2B, 0x65, 0x6E, 0x03, 0x21, 0x00, 0xD2, 0x36, 0x9E, 0xCF,
+        0xF0, 0x61, 0x5B, 0x73, 0xCE, 0x4F, 0xF0, 0x40, 0x2B, 0x89, 0x18, 0x3E, 0x06, 0x33, 0x60, 0xC6
+    };
     struct OH_Huks_Blob publicKey = {OH_HUKS_ECC_KEY_SIZE_256, pubKey};
     struct OH_Huks_ParamSet *testImportKeyParamSet = nullptr;
     struct OH_Huks_Result ohResult;
     do {
-        ohResult = InitParamSet(&testImportKeyParamSet, g_testGenerateKeyParam,
-                                sizeof(g_testGenerateKeyParam) / sizeof(OH_Huks_Param));
+        ohResult = InitParamSet(&testImportKeyParamSet, g_testImportKeyParam,
+                                sizeof(g_testImportKeyParam) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
-        ohResult = OH_Huks_ExportPublicKeyItem(&aliasBlob, testImportKeyParamSet, &publicKey);
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }

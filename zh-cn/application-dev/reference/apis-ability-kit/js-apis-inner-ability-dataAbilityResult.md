@@ -5,7 +5,8 @@
 > **说明：**
 > 
 > 本接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 此接口仅可在FA模型下使用
+> 
+> 此接口仅可在FA模型下使用。
 
 ## 导入模块
 
@@ -15,7 +16,7 @@ import ability from '@ohos.ability.ability';
 
 ## 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 | 名称      | 类型  | 只读  | 可选    |       说明   |
 | -------- | -------- | -------- | -------- | -------- |

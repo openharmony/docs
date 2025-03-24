@@ -15,10 +15,8 @@ In state management V2, the **!!** syntactic sugar is used to implement two-way 
 - If the parent component uses **!!**, the change of the parent component will be synchronized to the child component, and vice versa.
 - If the parent component does not use **!!**, the change of the parent component is unidirectional.
 
-
 ## Constraints
-**!!** does not support multi-layer parent-child component transfer.
-
+- **!!** does not support multi-layer parent-child component transfer.
 
 ## Use Scenarios
 
@@ -65,7 +63,6 @@ struct Star {
   }
 }
 ```
-
 
 ### Two-Way Binding Between Built-in Component Parameters
 

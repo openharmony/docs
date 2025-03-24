@@ -391,7 +391,7 @@ on(type: "notify", callback: Callback&lt;number&gt;): void
 
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 固定填"notify"字符串 |
+| type | string | 是 | 固定填"notify"字符串。 |
 | callback | Callback&lt;number&gt; | 是 | 状态改变回调函数，返回值参见[NfcRfType](#nfcrftype)。 |
 
 ## connectedTag.off('notify')
@@ -408,7 +408,7 @@ off(type: "notify", callback?: Callback&lt;number&gt;): void
 
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 固定填"notify"字符串 |
+| type | string | 是 | 固定填"notify"字符串。 |
 | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将“去注册”该事件关联的所有回调函数。|
 
 **示例：**

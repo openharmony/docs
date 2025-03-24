@@ -49,6 +49,10 @@ WaterFlow(options?:  WaterFlowOptions)
 
 Describes the water flow item sections.
 
+> **NOTE**
+>
+> After the section information is modified using **splice**, **push**, and **update**, ensure that the total number of child nodes in all sections matches the actual total number of child nodes in the **WaterFlow** component. Any failure to do so may result in layout issues that prevent the **WaterFlow** component from scrolling properly.
+
 ### constructor
 
 constructor()
@@ -788,8 +792,8 @@ struct WaterFlowDemo {
 ![waterflow_auto-fill.png](figures/waterflow_auto-fill.png)
 
 
-### Example 3: Grouping
-This example illustrates the initialization of grouping and the different effects of various APIs such as **splice**, **push**, **update**, **values**, and **length**.
+### Example 3: Using WaterFlowSections
+This example illustrates the initialization of **WaterFlowSections** and the different effects of various APIs such as **splice**, **push**, **update**, **values**, and **length**.
 For details about how to use these features in conjunction with state management V2, see [WaterFlow](../../../quick-start/arkts-v1-v2-migration.md#waterflow).
 ```ts
 // Index.ets
@@ -1123,7 +1127,7 @@ struct WaterFlowDemo {
 ![pinch](figures/waterflow-pinch.gif)
 
 ### Example 5: Setting the Edge Fading Effect
-This example demonstrates how to enable the edge fading effect for the **WaterFlow** component using the [fadingEdge](ts-container-scrollable-common.md#fadingedge13) API and set the length of the fading edge using the **fadingEdgeLength** parameter.
+This example demonstrates how to enable the edge fading effect for the **WaterFlow** component using the [fadingEdge](ts-container-scrollable-common.md#fadingedge14) API and set the length of the fading edge using the **fadingEdgeLength** parameter.
 ```ts
 // Index.ets
 import { LengthMetrics } from '@kit.ArkUI'

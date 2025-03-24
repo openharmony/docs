@@ -1291,7 +1291,7 @@ struct GridExample {
     Scroll() {
       Column({ space: 5 }) {
         Blank()
-        Text ('The layoutDirection, maxcount, minCount, and cellLength parameters take effect only when neither rowsTemplate nor columnsTemplate is set.')
+        Text('The layoutDirection, maxcount, minCount, and cellLength parameters take effect only when neither rowsTemplate nor columnsTemplate is set.')
           .fontSize(15).fontColor(0xCCCCCC).width('90%')
         Grid() {
           ForEach(this.numbers, (day: string) => {

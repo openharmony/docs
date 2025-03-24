@@ -338,6 +338,7 @@
 | [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_SetFrameRate](#oh_videooutput_setframerate) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, int32_t minFps, int32_t maxFps) | 设置视频输出帧率。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_GetActiveFrameRate](#oh_videooutput_getactiveframerate) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, [Camera_FrameRateRange](_camera___frame_rate_range.md) \*frameRateRange) | 获取当前视频输出帧率。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_SetQualityPrioritization](#oh_capturesession_setqualityprioritization) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_QualityPrioritization](#camera_qualityprioritization) qualityPrioritization) | 设置当前录像质量优先级。 | 
+| [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_GetVideoRotation](#oh_videooutput_getvideorotation) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, int deviceDegree, [Camera_ImageRotation](#camera_imagerotation) \*imageRotation) | 获取当前视频输出应当设置的旋转角度。 | 
 
 ## 类型定义说明
 
@@ -908,7 +909,7 @@ typedef struct Camera_VideoOutput Camera_VideoOutput
 
 **描述**
 
-录像输出对象
+录像输出对象。
 
 可以使用[OH_CameraManager_CreateVideoOutput](#oh_cameramanager_createvideooutput)方法创建指针。
 
@@ -1651,7 +1652,7 @@ enum Camera_ErrorCode
 | CAMERA_DEVICE_DISABLED | 由于安全原因，相机已禁用。 | 
 | CAMERA_DEVICE_PREEMPTED | 因被抢占而无法使用相机。 | 
 | CAMERA_UNRESOLVED_CONFLICTS_WITH_CURRENT_CONFIGURATIONS | 与当前配置存在冲突。<br/>**起始版本：** 12 | 
-| CAMERA_SERVICE_FATAL_ERROR | 相机服务致命错误。 | 
+| CAMERA_SERVICE_FATAL_ERROR | 相机服务致命错误。比如没有相机权限、相机服务重启、跨进程调用异常等。| 
 
 
 ### Camera_ExposureMode
@@ -1836,7 +1837,7 @@ enum Camera_PreconfigType
 
 **描述**
 
-预配置照片分辨率的枚举
+预配置照片分辨率的枚举。
 
 **起始版本：** 12
 
@@ -2315,7 +2316,7 @@ Camera_ErrorCode OH_CameraManager_CreateCameraInput_WithPositionAndType(Camera_M
 
 **描述**
 
-创建具有位置和类型的相机输入实例
+创建具有位置和类型的相机输入实例。
 
 **起始版本：** 11
 
@@ -6252,6 +6253,35 @@ Camera_ErrorCode OH_VideoOutput_GetSupportedFrameRates(Camera_VideoOutput* video
 
 - CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。
 
+- CAMERA_SERVICE_FATAL_ERROR：相机服务出现致命错误。
+
+
+### OH_VideoOutput_GetVideoRotation()
+
+```
+Camera_ErrorCode  OH_VideoOutput_GetVideoRotation(Camera_VideoOutput* videoOutput, int deviceDegree, Camera_ImageRotation* imageRotation)
+```
+
+**描述**
+
+获取当前视频输出应当设置的旋转角度。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| videoOutput | 传递当前视频输出的[Camera_VideoOutput](#camera_videooutput)实例。 | 
+| deviceDegree | 设备目前相对于自然方向（充电口朝下）顺时针的旋转角度。 | 
+| imageRotation | 当前视频输出应当设置的旋转角度。 | 
+
+**返回：**
+
+错误码[Camera_ErrorCode](#camera_errorcode-1)：
+
+- CAMERA_OK：方法调用成功。 
+- CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。
 - CAMERA_SERVICE_FATAL_ERROR：相机服务出现致命错误。
 
 

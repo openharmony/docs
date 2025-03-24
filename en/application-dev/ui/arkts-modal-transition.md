@@ -72,9 +72,9 @@ interface PersonList {
 struct BindContentCoverDemo {
   private personList: Array<PersonList> = [
     { name: 'Wang **', cardnum: '1234***********789' },
-    { name: 'Song*', cardnum: '2345***********789' },
+    { name: 'Song *', cardnum: '2345***********789' },
     { name: 'Xu **', cardnum: '3456***********789' },
-    { name: 'Tang*', cardnum: '4567***********789' }
+    { name: 'Tang *', cardnum: '4567***********789' }
   ];
   // Step 1: Define bindContentCover.
   // Define the state variable to control the visibility of the modal.
@@ -394,7 +394,7 @@ struct BindMenuDemo {
 
 ## Creating a Context Menu with bindContextMenu
 
-You can bind a menu to component through the [bindContextMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8) attribute. The menu can then be triggered by long-pressing or right-clicking.  
+You can bind a menu to component through the [bindContextMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8) attribute. The menu can then be triggered by long-pressing or right-clicking.
 
 Below is the complete sample code and effect.
 

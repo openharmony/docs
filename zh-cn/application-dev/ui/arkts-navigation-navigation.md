@@ -56,7 +56,10 @@ Navigation组件通过mode属性设置页面的显示模式。
   @Entry
   @Component
   struct NavigationExample {
-    @State TooTmp: ToolbarItem = {'value': "func", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
+    @State TooTmp: ToolbarItem = {
+      'value': "func", 'icon': "./image/ic_public_highlights.svg", 'action': () => {
+      }
+    }
     @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack()
     private arr: number[] = [1, 2, 3];
 
@@ -70,7 +73,7 @@ Navigation组件通过mode属性设置页面的显示模式。
         pageThreeTmp()
       }
     }
-  
+
     build() {
       Column() {
         Navigation(this.pageInfos) {
@@ -78,9 +81,9 @@ Navigation组件通过mode属性设置页面的显示模式。
             .width("90%")
             .height(40)
             .backgroundColor('#FFFFFF')
-  
+
           List({ space: 12 }) {
-            ForEach(this.arr, (item:number) => {
+            ForEach(this.arr, (item: number) => {
               ListItem() {
                 Text("Page" + item)
                   .width("100%")
@@ -90,11 +93,11 @@ Navigation组件通过mode属性设置页面的显示模式。
                   .fontSize(16)
                   .fontWeight(500)
                   .textAlign(TextAlign.Center)
-                  .onClick(()=>{
-                    this.pageInfos.pushPath({ name: "NavDestinationTitle" + item})
+                  .onClick(() => {
+                    this.pageInfos.pushPath({ name: "NavDestinationTitle" + item })
                   })
               }
-            }, (item:number) => item.toString())
+            }, (item: number) => item.toString())
           }
           .width("90%")
           .margin({ top: 12 })
@@ -103,11 +106,26 @@ Navigation组件通过mode属性设置页面的显示模式。
         .mode(NavigationMode.Split)
         .navDestination(this.PageMap)
         .menus([
-          {value: "", icon: "./image/ic_public_search.svg", action: ()=> {}},
-          {value: "", icon: "./image/ic_public_add.svg", action: ()=> {}},
-          {value: "", icon: "./image/ic_public_add.svg", action: ()=> {}},
-          {value: "", icon: "./image/ic_public_add.svg", action: ()=> {}},
-          {value: "", icon: "./image/ic_public_add.svg", action: ()=> {}}
+          {
+            value: "", icon: "./image/ic_public_search.svg", action: () => {
+            }
+          },
+          {
+            value: "", icon: "./image/ic_public_add.svg", action: () => {
+            }
+          },
+          {
+            value: "", icon: "./image/ic_public_add.svg", action: () => {
+            }
+          },
+          {
+            value: "", icon: "./image/ic_public_add.svg", action: () => {
+            }
+          },
+          {
+            value: "", icon: "./image/ic_public_add.svg", action: () => {
+            }
+          }
         ])
         .toolbarConfiguration([this.TooTmp, this.TooTmp, this.TooTmp])
       }
@@ -121,6 +139,7 @@ Navigation组件通过mode属性设置页面的显示模式。
   @Component
   export struct pageOneTmp {
     @Consume('pageInfos') pageInfos: NavPathStack;
+
     build() {
       NavDestination() {
         Column() {
@@ -139,6 +158,7 @@ Navigation组件通过mode属性设置页面的显示模式。
   @Component
   export struct pageTwoTmp {
     @Consume('pageInfos') pageInfos: NavPathStack;
+
     build() {
       NavDestination() {
         Column() {
@@ -157,6 +177,7 @@ Navigation组件通过mode属性设置页面的显示模式。
   @Component
   export struct pageThreeTmp {
     @Consume('pageInfos') pageInfos: NavPathStack;
+
     build() {
       NavDestination() {
         Column() {

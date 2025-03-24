@@ -72,13 +72,14 @@ Enumerates the display modes of a foldable device.
 | -------- | -------- | -------- |
 | FOLD_DISPLAY_MODE_UNKNOWN | 0 | The display mode of the device is unknown.|
 | FOLD_DISPLAY_MODE_FULL | 1 | The device is displayed in full screen.|
-| FOLD_DISPLAY_MODE_MAIN | 2 | The main screen of the device is displayed.|
-| FOLD_DISPLAY_MODE_SUB | 3 | The subscreen of the device is displayed.|
+| FOLD_DISPLAY_MODE_MAIN | 2 | The primary screen of the device is displayed.|
+| FOLD_DISPLAY_MODE_SUB | 3 | The secondary screen of the device is displayed.|
 | FOLD_DISPLAY_MODE_COORDINATION | 4 | Both screens of the device are displayed in collaborative mode.|
 
->**NOTE**<br>
->&bullet; For large-screen inward-foldable devices, the inner screen is the **FOLD_DISPLAY_MODE_FULL** state, and the outer screen is in the **FOLD_DISPLAY_MODE_MAIN** state.<br>
->&bullet; For small-screen inward-foldable devices, the inner screen is the **FOLD_DISPLAY_MODE_FULL** state, and the outer screen is in the **FOLD_DISPLAY_MODE_SUB** state.
+>**NOTE**
+>For foldable devices where both the inner and outer screens can serve as the primary screen, the inner screen's display mode is **FOLD_DISPLAY_MODE_FULL**, and the outer screen's display mode is **FOLD_DISPLAY_MODE_MAIN**.<br>
+>
+>For foldable devices where the outer screen serves only as an auxiliary display, the inner screen's display mode is **FOLD_DISPLAY_MODE_MAIN**, and the outer screen's display mode is **FOLD_DISPLAY_MODE_SUB**.
 
 ## FoldCreaseRegion<sup>10+</sup>
 
@@ -133,7 +134,7 @@ Describes the unusable area of a display, including punch hole, notch, and curve
 
 | Name                       | Type     | Readable| Writable| Description              |
 | --------------------------- | ------------- | ---- | ---- | ------------------ |
-| boundingRects                | Array\<[Rect](#rect9)> | Yes  | No  | Unusable areas (bounding rectangles) designed for punch holes and notches.|
+| boundingRects                | Array\<[Rect](#rect9)> | Yes  | No  | Unusable areas (bounding rectangles) designed for punch holes and notches. If there are no punch holes or notches, an empty array is returned.|
 | waterfallDisplayAreaRects   | [WaterfallDisplayAreaRects](#waterfalldisplayarearects9) | Yes| No| Curved area on a waterfall display.|
 
 ## DisplayPhysicalResolution<sup>12+</sup>
@@ -155,9 +156,9 @@ getDisplayByIdSync(displayId: number): Display
 
 Obtains a **Display** object based on the display ID.
 
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
 
@@ -441,7 +442,7 @@ Unsubscribes from display changes.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type.<br>- **add**, indicating the display addition event. Example: event that a display is connected.<br>- **remove**, indicating the display removal event. Example: event that a display is disconnected.<br>- **change**, indicating the display change event. Example: event that the display orientation is changed.|
-| callback | Callback&lt;number&gt; | No| Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified type will be unregistered.|
+| callback | Callback&lt;number&gt; | No| Callback used for unsubscription. If this parameter is not specified, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
@@ -655,7 +656,7 @@ Unsubscribes from fold status change events of the foldable device.
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | Yes  | Event type. The event **'foldStatusChange'** is triggered when the fold status of the device changes.|
-| callback | Callback&lt;[FoldStatus](#foldstatus10)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified type will be unregistered.|
+| callback | Callback&lt;[FoldStatus](#foldstatus10)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
@@ -732,7 +733,7 @@ Unsubscribes from folding angle change events of the foldable device.
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |-------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                    | Yes | Event type. The event **'foldAngleChange'** is triggered when the folding angle of the device changes.|
-| callback | Callback&lt;Array&lt;number&gt;&gt; | No | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified type will be unregistered.|
+| callback | Callback&lt;Array&lt;number&gt;&gt; | No | Callback used for unsubscription. If this parameter is not specified, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
@@ -801,7 +802,7 @@ Unsubscribes from screen capture, casting, or recording status changes.
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |-------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | Yes| Event type. The event **'captureStatusChange'** is triggered when the screen capture, casting, or recording status changes.|
-| callback | Callback&lt;boolean&gt; | No| Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified type will be unregistered.|
+| callback | Callback&lt;boolean&gt; | No| Callback used for unsubscription. If this parameter is not specified, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
@@ -910,7 +911,7 @@ Unsubscribes from display mode change events of the foldable device.
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | Yes  | Event type. The event **'foldDisplayModeChange'** is triggered when the display mode of the device changes.|
-| callback | Callback&lt;[FoldDisplayMode](#folddisplaymode10)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified type will be unregistered.|
+| callback | Callback&lt;[FoldDisplayMode](#folddisplaymode10)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
@@ -1073,7 +1074,7 @@ Implements a **Display** instance, with properties and APIs defined.
 
 Before calling any API in **Display**, you must use [getAllDisplays()](#displaygetalldisplays9) or [getDefaultDisplaySync()](#displaygetdefaultdisplaysync9) to obtain a **Display** instance.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 

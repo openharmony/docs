@@ -225,68 +225,173 @@ recycle(): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ```ts
-import { ComponentContent } from '@kit.ArkUI';
+import { NodeContent, typeNode, ComponentContent } from "@kit.ArkUI";
+
+const TEST_TAG: string = "Reuse+Recycle";
+
+class MyDataSource {
+  private dataArray: string[] = [];
+  private listener: DataChangeListener | null = null
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number) {
+    return this.dataArray[index];
+  }
+
+  public pushData(data: string) {
+    this.dataArray.push(data);
+  }
+
+  public reloadListener(): void {
+    this.listener?.onDataReloaded();
+  }
+
+  public registerDataChangeListener(listener: DataChangeListener): void {
+    this.listener = listener;
+  }
+
+  public unregisterDataChangeListener(): void {
+    this.listener = null;
+  }
+}
 
 class Params {
-  text: string = ""
+  item: string = '';
 
-  constructor(text: string) {
-    this.text = text;
+  constructor(item: string) {
+    this.item = item;
   }
 }
 
 @Builder
-function buildText(params: Params) {
-  ReusableChildComponent2({ text: params.text });
+function buildNode(param: Params = new Params("hello")) {
+  Row() {
+    Text(`C${param.item} -- `)
+    ReusableChildComponent2({ item: param.item }) //该自定义组件在ComponentContent中无法被正确复用
+  }
+}
+
+// 被回收复用的自定义组件，其状态变量会更新，而子自定义组件ReusableChildComponent3中的状态变量也会更新，但ComponentContent会阻断这一传递过程
+@Reusable
+@Component
+struct ReusableChildComponent {
+  @Prop item: string = '';
+  @Prop switch: string = '';
+  private content: NodeContent = new NodeContent();
+  private componentContent: ComponentContent<Params> = new ComponentContent<Params>(
+    this.getUIContext(),
+    wrapBuilder<[Params]>(buildNode),
+    new Params(this.item),
+    { nestingBuilderSupported: true });
+
+  aboutToAppear() {
+    let column = typeNode.createNode(this.getUIContext(), "Column");
+    column.initialize();
+    column.addComponentContent(this.componentContent);
+    this.content.addFrameNode(column);
+  }
+
+  aboutToRecycle(): void {
+    console.log(`${TEST_TAG} ReusableChildComponent aboutToRecycle ${this.item}`);
+
+    // 当开关为open，通过ComponentContent的reuse接口和recycle接口传递给其下的自定义组件，例如ReusableChildComponent2，完成复用
+    if (this.switch === 'open') {
+      this.componentContent.recycle();
+    }
+  }
+
+  aboutToReuse(params: object): void {
+    console.log(`${TEST_TAG} ReusableChildComponent aboutToReuse ${JSON.stringify(params)}`);
+
+    // 当开关为open，通过ComponentContent的reuse接口和recycle接口传递给其下的自定义组件，例如ReusableChildComponent2，完成复用
+    if (this.switch === 'open') {
+      this.componentContent.reuse(params);
+    }
+  }
+
+  build() {
+    Row() {
+      Text(`A${this.item}--`)
+      ReusableChildComponent3({ item: this.item })
+      ContentSlot(this.content)
+    }
+  }
 }
 
 @Component
 struct ReusableChildComponent2 {
-  @Prop text: string = "false";
+  @Prop item: string = "false";
 
   aboutToReuse(params: Record<string, object>) {
-    console.log("ReusableChildComponent2 Reusable " + JSON.stringify(params));
+    console.log(`${TEST_TAG} ReusableChildComponent2 aboutToReuse ${JSON.stringify(params)}`);
   }
 
   aboutToRecycle(): void {
-    console.log("ReusableChildComponent2 aboutToRecycle " + this.text);
+    console.log(`${TEST_TAG} ReusableChildComponent2 aboutToRecycle ${this.item}`);
   }
 
   build() {
-    Column() {
-      Text(this.text)
-        .fontSize(50)
-        .fontWeight(FontWeight.Bold)
-        .margin({ bottom: 36 })
-    }.backgroundColor('#FFF0F0F0')
+    Row() {
+      Text(`D${this.item}`)
+        .fontSize(20)
+        .backgroundColor(Color.Yellow)
+        .margin({ left: 10 })
+    }.margin({ left: 10, right: 10 })
   }
 }
+
+@Component
+struct ReusableChildComponent3 {
+  @Prop item: string = "false";
+
+  aboutToReuse(params: Record<string, object>) {
+    console.log(`${TEST_TAG} ReusableChildComponent3 aboutToReuse ${JSON.stringify(params)}`);
+  }
+
+  aboutToRecycle(): void {
+    console.log(`${TEST_TAG} ReusableChildComponent3 aboutToRecycle ${this.item}`);
+  }
+
+  build() {
+    Row() {
+      Text(`B${this.item}`)
+        .fontSize(20)
+        .backgroundColor(Color.Yellow)
+        .margin({ left: 10 })
+    }.margin({ left: 10, right: 10 })
+  }
+}
+
 
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State data: MyDataSource = new MyDataSource();
+
+  aboutToAppear() {
+    for (let i = 0; i < 100; i++) {
+      this.data.pushData(i.toString());
+    }
+  }
 
   build() {
-    Row() {
-      Column() {
-        Button("click me")
-          .onClick(() => {
-            let uiContext = this.getUIContext();
-            let promptAction = uiContext.getPromptAction();
-            let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
-            promptAction.openCustomDialog(contentNode);
-
-            setTimeout(() => {
-              contentNode.reuse(new Params("new message"));
-              contentNode.recycle();
-            }, 2000); //2秒后自动更新弹窗内容文本
-          })
+    Column() {
+      List({ space: 3 }) {
+        LazyForEach(this.data, (item: string) => {
+          ListItem() {
+            ReusableChildComponent({
+              item: item,
+              switch: 'open' // 将open改为close可观察到，ComponentContent不通过reuse和recycle接口传递复用时，ComponentContent内部的自定义组件的行为表现
+            })
+          }
+        }, (item: string) => item)
       }
       .width('100%')
       .height('100%')
     }
-    .height('100%')
   }
 }
 ```
@@ -379,17 +484,20 @@ updateConfiguration(): void
 
 **示例：**
 ```ts
-import { NodeController, FrameNode, ComponentContent, typeNode } from '@kit.ArkUI';
-import { AbilityConstant, Configuration, EnvironmentCallback } from '@kit.AbilityKit';
+import { NodeController, FrameNode, ComponentContent } from '@kit.ArkUI';
+import { AbilityConstant, Configuration, EnvironmentCallback, ConfigurationConstant } from '@kit.AbilityKit';
 
 @Builder
 function buildText() {
   Column() {
-    Text('hello')
-      .width(50)
-      .height(50)
-      .fontColor($r(`app.color.text_color`))
-  }.backgroundColor($r(`app.color.start_window_background`))
+    Text('Hello')
+      .fontSize(36)
+      .fontWeight(FontWeight.Bold)
+  }
+  .backgroundColor($r('sys.color.ohos_id_color_background'))
+  .width('100%')
+  .alignItems(HorizontalAlign.Center)
+  .padding(16)
 }
 
 const componentContentMap: Array<ComponentContent<[Object]>> = new Array();
@@ -438,6 +546,9 @@ struct FrameNodeTypeTest {
     }
     // 注册监听回调
     this.getUIContext().getHostContext()?.getApplicationContext().on('environment', environmentCallback);
+    // 设置应用深浅色跟随系统
+    this.getUIContext()
+      .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
     this.myNodeController.createNode(this.getUIContext());
   }
 
@@ -447,8 +558,18 @@ struct FrameNodeTypeTest {
   }
 
   build() {
-    Row() {
+    Column({ space: 16 }) {
       NodeContainer(this.myNodeController);
+      Button('切换深色')
+        .onClick(() => {
+          this.getUIContext()
+            .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_DARK);
+        })
+      Button('设置浅色')
+        .onClick(() => {
+          this.getUIContext()
+            .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT);
+        })
     }
   }
 }

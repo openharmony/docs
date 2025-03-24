@@ -24,7 +24,7 @@ GridContainer(value?: GridContainerOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | GridContainerOptions | 否 | GridContainer参数 |
+| value | GridContainerOptions | 否 | GridContainer参数。 |
 
 ## GridContainerOptions对象说明
 
@@ -52,12 +52,12 @@ GridContainer(value?: GridContainerOptions)
 
 ## 属性
 
-支持通用属性和Column组件的[属性方法](ts-container-column.md#属性)。
+支持[通用属性](ts-universal-attributes-size.md)和Column组件的[属性方法](ts-container-column.md#属性)。
 
 
 ## 事件
 
-支持通用事件。
+支持[通用事件](ts-universal-events-click.md)。
 
 ## 示例
 

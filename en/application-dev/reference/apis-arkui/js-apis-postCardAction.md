@@ -46,7 +46,7 @@ Performs internal interactions within a function and processes operations relate
 <!--code_no_check-->
 
 ```ts
-Button ('Redirect')
+Button('Redirect')
   .width('40%')
   .height('20%')
   .onClick(() => {
@@ -60,7 +60,7 @@ Button ('Redirect')
     });
   })
 
-Button ('Start in Background')
+Button('Start in Background')
   .width('40%')
   .height('20%')
   .onClick(() => {
@@ -75,7 +75,7 @@ Button ('Start in Background')
     });
   })
 
-Button ('Redirect URI')
+Button('Redirect URI')
   .width('40%')
   .height('20%')
   .onClick(() => {

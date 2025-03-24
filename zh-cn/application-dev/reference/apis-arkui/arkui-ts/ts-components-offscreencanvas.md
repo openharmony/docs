@@ -261,6 +261,8 @@ struct OffscreenCanvasExamplePage {
 > 已经通过postMessage传OffscreenCanvas对象到某一线程，声明该对象的线程不允许该对象使用getContext和transferToImageBitmap方法，否则抛出异常。
 >
 > 已经通过postMessage传OffscreenCanvas对象到某一线程，不允许再将该对象通过postMessage传给其他线程，否则抛出异常。
+>
+> DevEco Studio的预览器不支持显示在worker线程中绘制的内容。
 
 **示例：**
 

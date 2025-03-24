@@ -6,7 +6,7 @@
 
 SysCap，全称SystemCapability，即系统能力，指操作系统中每一个相对独立的特性，如蓝牙，WIFI，NFC，摄像头等，都是系统能力之一。每个系统能力对应多个API，随着目标设备是否支持该系统能力共同存在或消失，也会随着DevEco Studio一起提供给开发者做联想。
 
-![image-20220326064841782](figures/image-20220326064841782.png)
+![image-SysCap.png](figures/image-SysCap.png)
 
 开发者可以在[SysCap列表](syscap-list.md)中查询OpenHarmony的能力集。
 

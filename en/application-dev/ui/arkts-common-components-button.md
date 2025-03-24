@@ -97,7 +97,7 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
 
 ## Setting Styles
 
-- Set the border radius.
+- Setting the border radius
 
   You can use universal attributes to define the button styles. For example, you can use the **borderRadius** attribute to set the border radius.
 
@@ -110,7 +110,7 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
   ![en-us_image_0000001511900392](figures/en-us_image_0000001511900392.png)
 
 
-- Set the text style.
+- Setting the text style
 
   Add text style attributes for the button.
 
@@ -124,7 +124,7 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
   ![en-us_image_0000001511580828](figures/en-us_image_0000001511580828.png)
 
 
-- Set the background color.
+- Setting the background color
 
   Add the **backgroundColor** attribute for the button.
 
@@ -135,7 +135,7 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
   ![en-us_image_0000001562940477](figures/en-us_image_0000001562940477.png)
 
 
-- Assign a function to the button.
+- Assigning a function to the button
 
   In this example, the delete function is assigned to the button.
 
@@ -284,7 +284,7 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
   }
   ```
 
-  ![en-us_image_0000001562700393](figures/en-us_image_0000001562700393.png)
+  ![en-us_image_0000001562700393](figures/en-us_image_0000001562940814.gif)
 
 
 - Using the button for submitting forms

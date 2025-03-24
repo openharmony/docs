@@ -189,7 +189,7 @@
 | static const char \*[OHOS_IMAGE_PROPERTY_SCENE_VERSION](_image___native_module.md#ohos_image_property_scene_version) = "HwMnoteSceneVersion" | 场景算法版本信息。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_GIF_LOOP_COUNT](_image___native_module.md#ohos_image_property_gif_loop_count) = "GIFLoopCount" | GIF图片循环次数。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_X_IN_ORIGINAL](_image___native_module.md#ohos_image_property_x_in_original) = "XInOriginal" | 水印裁剪图左上角在原始图中的X坐标。  | 
-| static const char \*[OHOS_IMAGE_PROPERTY_Y_IN_ORIGINAL](_image___native_module.md#ohos_image_property_y_in_original) = "XInOriginal" | 水印裁剪图左上角在原始图中的Y坐标。  | 
+| static const char \*[OHOS_IMAGE_PROPERTY_Y_IN_ORIGINAL](_image___native_module.md#ohos_image_property_y_in_original) = "YInOriginal" | 水印裁剪图左上角在原始图中的Y坐标。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_FRAGMENT_WIDTH](_image___native_module.md#ohos_image_property_fragment_width) = "FragmentImageWidth"| 水印裁剪图的宽。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_FRAGMENT_HEIGHT](_image___native_module.md#ohos_image_property_fragment_height) = "FragmentImageHeight" | 水印裁剪图的高。  | 
 

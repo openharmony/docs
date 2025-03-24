@@ -4,6 +4,10 @@
 \@Watch is used to listen for state variables. If your application needs watch for value changes of a state variable, you can decorate the variable with \@Watch.
 
 
+In addition, \@Watch can only listen for changes that can be observed.
+
+Before reading this topic, you are advised to read [\@State](./arkts-state.md) to have a understanding of the basic observation capabilities of state management.
+
 > **NOTE**
 >
 > Since API version 9, this decorator is supported in ArkTS widgets.
@@ -21,7 +25,7 @@ An application can request to be notified whenever the value of the \@Watch deco
 | -------------- | ---------------------------------------- |
 | Decorator parameters         | Mandatory. Constant string, which is quoted. Reference to a (string) => void custom component member function.|
 | Custom component variables that can be decorated   | All decorated state variables. Regular variables cannot be watched.              |
-| Order of decorators        | Place the [\@State](./arkts-state.md), [\@Prop](./arkts-prop.md), or [\@Link](./arkts-link.md) decorator in front of the \@Watch decorator.|
+| Order of decorators        | The order of decorators does not affect the actual functions. You can determine it as required. It is recommended that the [\@State](./arkts-state.md), [\@Prop](./arkts-prop.md), and [\@Link](./arkts-link.md) decorators be placed before the \@Watch decorator, to keep the overall style consistent.|
 | Called when| The variable changes and is assigned a value. For details, see [Time for \@Watch to be Called](#time-for-watch-to-be-called).|
 
 ## Syntax
@@ -97,7 +101,7 @@ change() {
 ```
 
 
-## Application Scenarios
+## Use Scenarios
 
 ### \@Watch and Custom Component Update
 

@@ -1,4 +1,4 @@
-# Obtaining the JSVM API Version Using JSVM-API
+# Obtaining the JSVM-API Version Using JSVM-API
 
 ## Introduction
 

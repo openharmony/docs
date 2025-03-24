@@ -73,8 +73,8 @@
     const TAG: string = 'GattClientManager';
 
     export class GattClientManager {
-      device: string = undefined;
-      gattClient: ble.GattClientDevice = undefined;
+      device: string | undefined = undefined;
+      gattClient: ble.GattClientDevice | undefined = undefined;
       connectState: ble.ProfileConnectionState = constant.ProfileConnectionState.STATE_DISCONNECTED;
       myServiceUuid: string = '00001810-0000-1000-8000-00805F9B34FB';
       myCharacteristicUuid: string = '00001820-0000-1000-8000-00805F9B34FB';
@@ -371,7 +371,7 @@
     const TAG: string = 'GattServerManager';
 
     export class GattServerManager {
-      gattServer: ble.GattServer = undefined;
+      gattServer: ble.GattServer | undefined = undefined;
       connectState: ble.ProfileConnectionState = constant.ProfileConnectionState.STATE_DISCONNECTED;
       myServiceUuid: string = '00001810-0000-1000-8000-00805F9B34FB';
       myCharacteristicUuid: string = '00001820-0000-1000-8000-00805F9B34FB';

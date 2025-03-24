@@ -8,8 +8,9 @@
 >
 > Validation for \@Prop and \@BuilderParam decorated variables is supported since API version 11.
 >
-> Validation for regular variables and \@State or \@Provide decorated variables is supported since API version 12.
 > This decorator can be used in atomic services since API version 11.
+>
+> Validation for regular variables and \@State or \@Provide decorated variables is supported since API version 12.
 
 
 ## Overview

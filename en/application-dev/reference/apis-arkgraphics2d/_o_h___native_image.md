@@ -35,7 +35,7 @@ The **OH_NativeImage** module provides the capabilities of **NativeImage**. Func
 | typedef struct NativeWindow [OHNativeWindow](#ohnativewindow) | Provides the capability of accessing the **NativeWindow**. | 
 | typedef struct NativeWindowBuffer [OHNativeWindowBuffer](#ohnativewindowbuffer) | Provides the declaration of a **NativeWindowBuffer** struct.| 
 | typedef void(\* [OH_OnFrameAvailable](#oh_onframeavailable)) (void \*context) | Defines the callback function triggered when a frame is available. | 
-| typedef struct [OH_OnFrameAvailableListener](_o_h___on_frame_available_listener.md)  [OH_OnFrameAvailableListener](#oh_onframeavailablelistener) | Defines an **OH_NativeImage** listener, which is registered through  **OH_NativeImage_SetOnFrameAvailableListener**. The listener triggers a callback when a frame is available. | 
+| typedef struct [OH_OnFrameAvailableListener](_o_h___on_frame_available_listener.md)  [OH_OnFrameAvailableListener](#oh_onframeavailablelistener) | Defines an **OH_NativeImage** listener, which is registered through **OH_NativeImage_SetOnFrameAvailableListener**. The listener triggers a callback when a frame is available. | 
 | typedef enum [OHNativeErrorCode](#ohnativeerrorcode)  [OHNativeErrorCode](#ohnativeerrorcode) | Defines an enum for the error codes. | 
 
 ### Enums
@@ -191,7 +191,6 @@ Enumerates the error codes.
 
 
 ## Function Description
-
 
 ### OH_ConsumerSurface_SetDefaultUsage()
 

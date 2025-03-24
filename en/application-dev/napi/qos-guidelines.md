@@ -13,7 +13,7 @@ You can customize the attributes for priority-based task scheduling based on the
 In OpenHarmony, the QoS feature allows critical tasks to receive necessary resources to meet performance requirements. You can prioritize tasks with different QoS levels based on their importance. The system then arranges the running time and sequence of each task based on their QoS level. For example, when multiple tasks need to be executed in the system, the tasks with less interaction with users, such as the background download tasks, can be executed later than the tasks perceived by users, such as animation drawing.
 
 ### QoS Level
-Currently, OpenHarmony provides six QoS levels in ascending order based on the degree of system-user interaction.
+The system provides six QoS levels in ascending order based on the degree of system-user interaction.
 
 | QoS Level                                                      | Application Scenario                                                        | Load                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -24,7 +24,7 @@ Currently, OpenHarmony provides six QoS levels in ascending order based on the d
 | QOS_DEADLINE_REQUEST | Tasks that require an immediate response, such as page loading.| The task is done immediately.|
 | QOS_USER_INTERACTIVE	 | User interaction tasks (UI thread, interface refreshing, and animation).| The task is instant.|
 
-The QoS level is specified by **QoS_level**, which is an enum defined as follows:
+The QoS level is specified by **QoS_Level**, which is an enum defined as follows:
 ### QoS_Level Declaration
 ```{.c}
 typedef enum QoS_Level {
@@ -65,6 +65,7 @@ The following shows how proper QoS accelerates application execution.
 
 #### Before Using QoS
 ![qosfigure1.png](./figures/qosfigure1.png)
+
 Thread 1 and thread 2 are two key threads of an application. During the running of thread 1, thread 2 is triggered. Then, thread 1 will be blocked until thread 2 is executed. Before the QoS levels of the two threads are marked, thread 3 and thread 4 take precedence over these two threads. The figure above illustrates the execution of thread 1 and thread 2 before QoS is used.
 
 1. Thread 1 waits to be woken up by thread 2. However, thread 2 has a low priority and is always preempted for a long time. As a result, thread 1 sleeps for a long time.
@@ -73,7 +74,7 @@ Thread 1 and thread 2 are two key threads of an application. During the running 
 
 3. Thread 1 has a low priority and is always preempted by other threads for a long period of time during running.
 
-#### After using QoS
+#### After Using QoS
 ![qosfigure2.png](./figures/qosfigure2.png)
 
 The figure above illustrates the thread execution after QoS levels are set for thread 1 and thread 2.
@@ -87,17 +88,17 @@ The figure above illustrates the thread execution after QoS levels are set for t
 ### Optimization of the RN Framework by QoS
 As indicated by the following table, the performance of the open-source benchmark test is improved by about 13% after the QoS levels are set for key threads in the RN framework.
 
-| Scenario     | Test Environment| Hermes Engine Time| RN Common Time| Common Instruction Execution Time for RN Framework + ArkUI Native Rendering| Native Rendering Period| Total|
-| ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
-| benchmark<br>1500view      | Without QoS      | 173.1 ms       | 24.3 ms       | 33.1 ms       | 4.03 ms       | 270.8 ms       |
-| benchmark<br>1500view   | With QoS       | 144.8 ms        | 23.4 ms        | 33.7 ms        | 34.8 ms       | 236.6 ms       |
+| Scenario     | Test Environment| Total Rendering Time|
+| ----------- | ----------- | ----------- |
+| benchmark<br>1500view      | Without QoS      | 270.8 ms       |
+| benchmark<br>1500view   | With QoS       | 236.6 ms       |
 
 ## Available APIs
 
 | API                                                      | Description                                                        | Parameter                                                        | Return Value                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | OH_QoS_SetThreadQoS(QoS_Level level) | Sets the QoS level for this task.| QoS_Level level | **0** or **–1**|
-| OH_QoS_ResetThreadQoS() | Removes the QoS level for this task.| N/A| **0** or **–1**|
+| OH_QoS_ResetThreadQoS() | Removes the QoS level of this task.| N/A| **0** or **–1**|
 | OH_QoS_GetThreadQoS(QoS_Level *level) | Obtains the QoS level of this task.| QoS_Level *level | **0** or **–1**|
 
 ### Constraints
@@ -127,7 +128,7 @@ Sets the QoS level for this task.
 #include <stdio.h>
 #include "qos/qos.h"
 
-int main()
+int func()
 {
     // Set the QoS level of this task to QOS_USER_INITIATED.
     int ret = OH_QoS_SetThreadQoS(QoS_Level::QOS_USER_INITIATED);
@@ -163,7 +164,7 @@ Removes the QoS level of this task.
 #include <stdio.h>
 #include "qos/qos.h"
 
-int main()
+int func()
 {
     // Removes the QoS level of this task.
     int ret = OH_QoS_ResetThreadQoS();
@@ -187,7 +188,7 @@ int OH_QoS_GetThreadQoS(QoS_Level *level);
 
 #### Parameters
 QoS_Level *level
-* QoS level set for a task.
+* Pointer to the QoS level of the task.
 
 #### Return Value
 * Returns **0** if the operation is successful; returns **-1** otherwise.
@@ -200,7 +201,7 @@ Obtains the latest QoS level of this task. If no QoS level is set, **-1** is ret
 #include <stdio.h>
 #include "qos/qos.h"
 
-int main()
+int func()
 {
     // Obtain the QoS level of this task.
     QoS_Level level = QoS_Level::QOS_DEFAULT;
@@ -219,32 +220,38 @@ int main()
 ## How to Develop
 The following walks you through on how to query and modify the QoS level of a task using Node-API interfaces.
 
-**Adding the Dynamic Link Library**
+1. Add the dynamic link library.
 
-Add the following library to **CMakeLists.txt**.
-```txt
-libqos.so
-```
+  The QoS feature depends on the **libqos.so** library, which needs to be added to the compilation environment of the target application.
 
-#### Example
-```txt
-# the minimum version of CMake.
-cmake_minimum_required(VERSION 3.4.1)
-project(qos)
+  **Example**
 
-set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
+  If you use DevEco Studio to create a template NDK project, the **CMakeLists.txt** script is generated by default. Add the dependent dynamic link library to the script. The following is an example:
 
-include_directories(${NATIVERENDER_ROOT_PATH}
-                    ${NATIVERENDER_ROOT_PATH}/include)
+  ```txt
+  # Minimum version of CMake.
+  cmake_minimum_required(VERSION 3.4.1)
+  project(qos)
+  
+  set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
+  
+  include_directories(${NATIVERENDER_ROOT_PATH}
+                      ${NATIVERENDER_ROOT_PATH}/include)
+  
+  add_library(entry SHARED hello.cpp)
+  
+  # You can directly reference libqos.so because it is in the NDK of the link addressing path.
+  target_link_libraries(entry PUBLIC libqos.so)
+  ```
 
-add_library(entry SHARED hello.cpp)
-target_link_libraries(entry PUBLIC libqos.so)
-```
+2. Include the header file.
 
-**Including the Header File**
-```c
-#include "qos/qos.h"
-```
-**Calling QoS APIs**
+   In the source code that uses the QoS feature, include the related header file.
 
-Use **OHQoSSetThreadQoS()** to set the QoS level for a task, use **OHQoSGetThreadQoS()** to obtain the QoS level set, and use **OHQoSResetThreadQoS()** to reset the QoS level to default.	
+   ```c
+   #include "qos/qos.h"
+   ```
+
+3. Call QoS APIs.
+
+   Use **OHQoSSetThreadQoS()** to set the QoS level for a task, use **OHQoSGetThreadQoS()** to obtain the QoS level set, and use **OHQoSResetThreadQoS()** to reset the QoS level to default.	

@@ -20,7 +20,7 @@ loadContent(path: string, storage?: LocalStorage): void
 
 为当前UIExtensionComponent控件对应的窗口加载与LocalStorage相关联的具体页面内容。
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -309,9 +309,9 @@ setWindowPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
 设置窗口是否为隐私模式。设置为隐私模式的窗口，窗口内容将无法被截屏或录屏。使用Promise异步回调。
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**需要权限：** ohos.permission.PRIVACY_WINDOW
+**需要权限**：ohos.permission.PRIVACY_WINDOW
 
 **参数：**
 
@@ -370,9 +370,9 @@ setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;
 
 设置窗口是否为隐私模式。设置为隐私模式的窗口，窗口内容将无法被截屏或录屏。使用callback异步回调。
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**需要权限：** ohos.permission.PRIVACY_WINDOW
+**需要权限**：ohos.permission.PRIVACY_WINDOW
 
 **参数：**
 

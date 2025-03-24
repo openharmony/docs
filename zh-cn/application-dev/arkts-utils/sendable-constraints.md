@@ -41,6 +41,7 @@ class B extends A {
 ## 非Sendable class只能继承自非Sendable class
 
 Sendable对象布局及原型链不可变，由于非Sendable对象可以通过特殊方式修改布局，因此不允许互相继承。
+
 **正例：**
 
 ```ts
@@ -127,7 +128,7 @@ class A {
 
 ## Sendable class/interface的成员变量不支持使用!断言
 
-Sendable对象的成员属性必须赋初值，!修饰的变量可以不赋初值，因此不支持使用!。
+Sendable对象的成员属性必须赋初值，“!”修饰的变量可以不赋初值，因此不支持使用“!” 。
 
 **正例：**
 

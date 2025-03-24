@@ -26,7 +26,7 @@
 
 ## 使用限制
 
-1、只能用在\@ObservedV2装饰的类中，不能用在自定义组件中；
+1、只能用在\@ObservedV2装饰的类中，不能用在自定义组件中。
 
 ```ts
 class Sample {
@@ -51,9 +51,9 @@ struct Index {
 }
 ```
 
-2、不支持collections.Set、collections.Map等类型；
+2、不支持collections.Set、collections.Map等类型。
 
-3、不支持非buildin类型，如PixelMap、NativePointer、ArrayList等Native类型；
+3、不支持非buildin类型，如PixelMap、NativePointer、ArrayList等Native类型。
 
 4、不支持简单类型，如string、number、boolean等。
 

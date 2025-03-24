@@ -32,7 +32,7 @@ setDefaultCellularDataSlotId(slotId: number, callback: AsyncCallback\<void\>): v
 
 | 参数名   | 类型                  | 必填 | 说明                                                         |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| slotId   | number                | 是   | SIM卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId   | number                | 是   | SIM卡槽ID。<br/>- 0：卡槽1 <br/>- 1：卡槽2 |
 | callback | AsyncCallback\<void\> | 是   | 以callback形式异步返回结果。                                                   |
 
 **错误码：**
@@ -82,7 +82,7 @@ setDefaultCellularDataSlotId(slotId: number): Promise\<void\>
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| slotId | number | 是   | SIM卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId | number | 是   | SIM卡槽ID。<br/>- 0：卡槽1 <br/>- 1：卡槽2 |
 
 **返回值：**
 
@@ -316,7 +316,7 @@ enableCellularDataRoaming(slotId: number, callback: AsyncCallback\<void\>): void
 
 | 参数名   | 类型                  | 必填 | 说明                                     |
 | -------- | --------------------- | ---- | ---------------------------------------- |
-| slotId   | number                | 是   | 卡槽ID。<br />0：卡槽1。<br />1：卡槽2。 |
+| slotId   | number                | 是   | 卡槽ID。<br />0：卡槽1 <br />1：卡槽2 |
 | callback | AsyncCallback\<void\> | 是   | 以callback形式异步返回结果。                               |
 
 **错误码：**
@@ -364,7 +364,7 @@ enableCellularDataRoaming(slotId: number): Promise\<void\>
 
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
-| slotId | number | 是   | 卡槽ID。<br />0：卡槽1。<br />1：卡槽2。 |
+| slotId | number | 是   | 卡槽ID。<br />0：卡槽1 <br />1：卡槽2 |
 
 **返回值：**
 
@@ -415,7 +415,7 @@ disableCellularDataRoaming(slotId: number, callback: AsyncCallback\<void\>): voi
 
 | 参数名   | 类型                  | 必填 | 说明                                     |
 | -------- | --------------------- | ---- | ---------------------------------------- |
-| slotId   | number                | 是   | 卡槽ID。<br />0：卡槽1。<br />1：卡槽2。 |
+| slotId   | number                | 是   | 卡槽ID。<br />0：卡槽1 <br />1：卡槽2 |
 | callback | AsyncCallback\<void\> | 是   | 以callback形式异步返回结果。                               |
 
 **错误码：**
@@ -463,7 +463,7 @@ disableCellularDataRoaming(slotId: number): Promise\<void\>
 
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
-| slotId | number | 是   | 卡槽ID。<br />0：卡槽1。<br />1：卡槽2。 |
+| slotId | number | 是   | 卡槽ID。<br />0：卡槽1 <br />1：卡槽2 |
 
 **返回值：**
 

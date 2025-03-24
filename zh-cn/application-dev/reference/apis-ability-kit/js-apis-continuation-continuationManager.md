@@ -99,9 +99,9 @@ register(options?: ContinuationExtraParams): Promise\<number>
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | 否 | 过滤可选择设备列表的额外参数，该参数可缺省|
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | 否 | 过滤可选择设备列表的额外参数，该参数可缺省。 |
 
 **返回值：**
 
@@ -242,9 +242,9 @@ registerContinuation(options?: ContinuationExtraParams): Promise\<number>
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | 否 | 过滤可选择设备列表的额外参数，该参数可缺省|
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | 否 | 过滤可选择设备列表的额外参数，该参数可缺省。 |
 
 **返回值：**
 
@@ -687,10 +687,10 @@ startDeviceManager(token: number, options?: ContinuationExtraParams): Promise\<v
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | token | number | 是 | 注册后的token。 |
-  | options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | 否 | 过滤可选择设备列表的额外参数，该参数可缺省|
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| token | number | 是 | 注册后的token。 |
+| options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | 否 | 过滤可选择设备列表的额外参数，该参数可缺省。 |
 
 **返回值：**
 
@@ -834,10 +834,10 @@ startContinuationDeviceManager(token: number, options?: ContinuationExtraParams)
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | token | number | 是 | 注册后的token。 |
-  | options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | 否 | 过滤可选择设备列表的额外参数，该参数可缺省|
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| token | number | 是 | 注册后的token。 |
+| options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | 否 | 过滤可选择设备列表的额外参数，该参数可缺省。 |
 
 **返回值：**
 
@@ -1272,3 +1272,31 @@ unregisterContinuation(token: number): Promise\<void>
 | -------- | -------- | -------- |
 | COLLABORATION_SINGLE | 0 | 设备选择模块单选模式。 |
 | COLLABORATION_MULTIPLE | 1 | 设备选择模块多选模式。 |
+
+## ContinuationResult<sup>10+</sup>
+
+type ContinuationResult = _ContinuationResult
+
+流转管理入口返回的设备信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.DistributedAbilityManager
+
+| 类型 | 说明 |
+| --- | --- |
+| [_ContinuationResult](js-apis-continuation-continuationResult.md) | 表示流转管理入口返回的设备信息。 |
+
+## ContinuationExtraParams<sup>10+</sup>
+
+type ContinuationExtraParams = _ContinuationExtraParams
+
+流转管理入口中设备选择模块所需的过滤参数。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.DistributedAbilityManager
+
+| 类型 | 说明 |
+| --- | --- |
+| [_ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | 表示流转管理入口中设备选择模块所需的过滤参数。 |

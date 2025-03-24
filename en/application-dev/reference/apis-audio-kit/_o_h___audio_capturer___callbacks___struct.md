@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **OH_AudioCapturer_Callbacks_Struct** struct defines a pointer to the callback functions related to an audio capturer.
+The OH_AudioCapturer_Callbacks_Struct struct defines a pointer to the callback functions related to an audio capturer.
 
 To avoid unexpected behavior, ensure that every member variable of the struct is initialized by a custom callback method or a null pointer when setting the audio callback functions. For details, see [Using OHAudio for Audio Recording](../../media/audio/using-ohaudio-for-recording.md).
 
@@ -43,6 +43,7 @@ int32_t (*OH_AudioCapturer_Callbacks_Struct::OH_AudioCapturer_OnError)(OH_AudioC
 **Description**
 
 Defines a function pointer to the callback function used to process audio recording errors.
+
 **Parameters**
 
 | Name| Description| 
@@ -82,13 +83,15 @@ int32_t (*OH_AudioCapturer_Callbacks_Struct::OH_AudioCapturer_OnReadData)(OH_Aud
 
 Defines a function pointer to the callback function used to read audio data.
 
+The callback function is used only to read audio data. Do not call AudioCapturer APIs in it.
+
 **Parameters**
 
 | Name| Description| 
 | -------- | -------- |
 | capturer | Pointer to an audio capturer instance, which is created by calling [OH_AudioStreamBuilder_GenerateCapturer](_o_h_audio.md#oh_audiostreambuilder_generatecapturer).|
 | userData | Pointer to the data storage area customized by the application.|
-| buffer | Pointer to the playback data storage area, which is used by the application to fill in playback data.|
+| buffer | Pointer to the captured data storage area, which is used by the application to fill in captured data.|
 | length | Length of the buffer.|
 
 

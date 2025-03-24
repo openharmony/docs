@@ -11,6 +11,9 @@ HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资�
 
 - HAR不支持在设备上单独安装/运行，只能作为应用模块的依赖项被引用。
 - HAR不支持在配置文件中声明[ExtensionAbility](../application-models/extensionability-overview.md)组件，但支持[UIAbility](../application-models/uiability-overview.md)组件。
+> **说明：**
+>
+> 如果使用[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口拉起HAR中的UIAbility，接口参数中的moduleName取值需要为依赖该HAR的[HAP](hap-package.md)/[HSP](in-app-hsp.md)的moduleName。
 - HAR不支持在配置文件中声明[pages](./module-configuration-file.md#pages标签)页面，但是可以包含pages页面，并通过[命名路由](../ui/arkts-routing.md#命名路由)的方式进行跳转。
 - HAR不支持引用AppScope目录中的资源。在编译构建时，AppScope中的内容不会打包到HAR中，因此会导致HAR资源引用失败。
 - HAR可以依赖其他HAR，但不支持循环依赖，也不支持依赖传递。
@@ -114,7 +117,7 @@ export { nativeAdd } from './src/main/ets/utils/nativeTest';
 
 ### 导出资源
 在编译构建HAP时，DevEco Studio会从HAP模块及依赖的模块中收集资源文件，如果不同模块下的资源文件出现重名冲突时，DevEco Studio会按照以下优先级进行覆盖（优先级由高到低）：
-- AppScope（仅API9的Stage模型支持）。
+- AppScope（仅Stage模型支持）。
 - HAP包自身模块。
 - 依赖的HAR模块，如果依赖的多个HAR之间有资源冲突，会按照工程oh-package.json5中dependencies下的依赖顺序进行覆盖，依赖顺序在前的优先级较高。例如下方示例中dayjs和lottie中包含同名文件时，会优先使用dayjs中的资源。
 > **说明：**

@@ -12,6 +12,8 @@ ArkGraphics 3D provides basic 3D scene rendering capabilities based on the light
 
 To sum up, ArkGraphics 3D provides basic 3D scene rendering capabilities to help you carry out 3D scene rendering and logic control development.
 
+For details about the API usage and parameters, see [@ohos.graphics.scene (ArkGraphics 3D)](../reference/apis-arkgraphics3d/js-apis-scene.md).
+
 ## Working Principles
 ![ArkGraphics 3D service architecture](./figures/graphics-3d-architecture.png)
 

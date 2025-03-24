@@ -90,12 +90,14 @@ try {
 
 ### napi_set_property
 
-将给定的属性与值设置入给定的Object
+将给定的属性与值设置入给定的Object。
 
 cpp部分代码
 
 ```cpp
 #include "napi/native_api.h"
+
+static constexpr int INT_ARG_2 = 2; // 入参索引
 
 static napi_value SetProperty(napi_env env, napi_callback_info info)
 {
@@ -107,7 +109,7 @@ static napi_value SetProperty(napi_env env, napi_callback_info info)
         napi_throw_error(env, nullptr, "Node-API napi_get_cb_info fail");
     }
     // 通过调用napi_set_property接口将属性与值设置入object，如果失败，直接抛出错误
-    status = napi_set_property(env, args[0], args[1], args[2]);
+    status = napi_set_property(env, args[0], args[1], args[INT_ARG_2]);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "Node-API napi_set_property fail");
         return nullptr;
@@ -144,7 +146,7 @@ try {
 
 ### napi_get_property
 
-获取object指定的属性的值
+获取object指定的属性的值。
 
 cpp部分代码
 
@@ -194,7 +196,7 @@ try {
 
 ### napi_has_property
 
-检查对象中是否存在指定的属性，可以避免访问不存在属性导致的异常或错误
+检查对象中是否存在指定的属性，可以避免访问不存在属性导致的异常或错误。
 
 cpp部分代码
 

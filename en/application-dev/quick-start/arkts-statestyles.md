@@ -5,7 +5,7 @@ Unlike \@Styles, which are used to reuse styles only on static pages, stateStyle
 
 > **NOTE**
 >
-> Polymorphic style supports only universal attributes.
+> Polymorphic style supports only universal attributes. If the polymorphic style does not take effect, the attribute may be a private attribute of the component, for example, [fontColor](../reference/apis-arkui/arkui-ts/ts-universal-attributes-text-style.md) or [backgroundColor](../reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md) of the [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md) component. In this case, you can use [attributeModifier](../reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md#attributemodifier) to dynamically set component attributes to enable the polymorphic style.
 
 ## Overview
 
@@ -21,8 +21,11 @@ stateStyles is an attribute method that sets the style based on the internal sta
 
 - selected<sup>10+</sup>
 
+> **NOTE**
+>
+> Currently, only the **Tab** button and arrow buttons on the external keyboard can be used to trigger the focused state. Sequential keyboard navigation is not supported for nested scrollable components.
 
-## Application Scenarios
+## Use Scenarios
 
 
 ### Common Scenarios
@@ -144,4 +147,3 @@ By default, the button is displayed in green in the normal state. When you press
   **Figure 3** Change of the styles in focused state by a click 
 
 ![Video_2023-03-17_144605](figures/Video_2023-03-17_144605.gif)
-

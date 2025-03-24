@@ -16,8 +16,7 @@ There are two roles in **DataShare**:
 
 - Data consumer: accesses the data provided by the provider using [createDataShareHelper()](../reference/apis-arkdata/js-apis-data-dataShare-sys.md#datasharecreatedatasharehelper).
 
-**Figure 1** Data sharing mechanism
-
+**Figure 1** Data sharing mechanism 
 ![dataShare](figures/dataShare.jpg)
 
 - The **DataShareExtensionAbility** module, as the data provider, implements services related to data sharing between applications.
@@ -144,11 +143,11 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    | Field| Description| Mandatory|
    | -------- | -------- | -------- |
    | name | Ability name, corresponding to the **ExtensionAbility** class name derived from **Ability**.| Yes|
-   | type | Ability type. The value **dataShare** indicates the development is based on the **datashare** template.| Yes|
+   | type | Ability type. The value **dataShare** indicates that the development is based on the **datashare** template.| Yes|
    | uri | Unique identifier for the data consumer to access the data provider.| Yes|
    | exported | Whether it is visible to other applications. Data sharing is allowed only when the value is **true**.| Yes|
-   | readPermission | Permission required for data access. If this parameter is not set, read permission verification is not performed by default.| No|
-   | writePermission | Permission required for data modification. If this parameter is not set, write permission verification is not performed by default.| No|
+   | readPermission | Permission required for accessing data. If this parameter is not set, read permission verification is not performed by default.| No|
+   | writePermission | Permission required for modifying data. If this parameter is not set, write permission verification is not performed by default.| No|
    | metadata   | Silent access configuration, which includes the following:<br>- **name**: identifies the configuration, which has a fixed value of **ohos.extension.dataShare**.<br>- **resource**: has a fixed value of **$profile:data_share_config**, which indicates that the profile name is **data_share_config.json**.| **metadata** is mandatory when the ability launch type is **singleton**. For details about the ability launch type, see **launchType** in the [Internal Structure of the abilities Attribute](../quick-start/module-structure.md#internal-structure-of-the-abilities-attribute).|
 
    **module.json5 example**
@@ -309,6 +308,3 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
      (dsHelper as dataShare.DataShareHelper).close();
    }
    ```
-
-
-

@@ -14,7 +14,7 @@ Not supported
 
 ## APIs
 
-Polyline(value?: {width?: string | number, height?: string | number})
+Polyline(options?: PolylineOptions)
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -24,7 +24,21 @@ Polyline(value?: {width?: string | number, height?: string | number})
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | {width?: string \| number, height?: string \| number} | No| **width**: width<br>Default value: **0**<br>An invalid value is handled as the default value.<br>**height**: height<br>Default value: **0**<br>An invalid value is handled as the default value.|
+| options | [PolylineOptions](ts-drawing-components-polyline.md#polylineoptions14) | No| Options for drawing a polyline.|
+
+## PolylineOptions<sup>14+</sup>
+Describes the options for drawing a polyline.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 14.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| width | string \| number | No| Width.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
+| height | string \| number | No| Height.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
 
 ## Attributes
 
@@ -46,13 +60,13 @@ Sets the list of coordinates that the polyline passes through. An invalid value 
 
 | Name| Type                                                        | Mandatory| Description                               |
 | ------ | ------------------------------------------------------------ | ---- | ----------------------------------- |
-| value  | Array&lt;[Point](ts-drawing-components-polyline.md#point)&gt; | Yes  | List of coordinates that the polyline passes through.<br>Default value: **[]**|
+| value  | Array&lt;[Point](ts-drawing-components-polyline.md#point)&gt; | Yes  | List of coordinates that the polyline passes through.<br>Default value: **[]**<br>Default unit: vp|
 
 ### fill
 
 fill(value: ResourceColor)
 
-Sets the color of the fill area. An invalid value is handled as the default value.
+Sets the color of the fill area. An invalid value is handled as the default value. If this attribute and the universal attribute **foregroundColor** are both set, whichever is set later takes effect.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -88,7 +102,7 @@ Sets the opacity of the fill area. The value range is [0.0, 1.0]. A value less t
 
 stroke(value: ResourceColor)
 
-Sets the stroke color. If this attribute is not set, the component does not have any stroke. If the value is invalid, no stroke will be drawn.
+Stroke color. If this attribute is not set, the component does not have any stroke. If the value is invalid, no stroke will be drawn.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -118,7 +132,7 @@ Sets the stroke dashes. Line segments may overlap when they intersect. An invali
 
 | Name| Type            | Mandatory| Description                     |
 | ------ | ---------------- | ---- | ------------------------- |
-| value  | Array&lt;any&gt; | Yes  | Stroke dashes.<br>Default value: **[]**|
+| value  | Array&lt;any&gt; | Yes  | Stroke dashes.<br>Default value: **[]**<br>Default unit: vp|
 
 ### strokeDashOffset
 
@@ -136,7 +150,7 @@ Sets the offset of the line drawing start point. An invalid value is handled as 
 
 | Name| Type                      | Mandatory| Description                                |
 | ------ | -------------------------- | ---- | ------------------------------------ |
-| value  | number \| string | Yes  | Offset of the start point for drawing the stroke.<br>Default value: **0**|
+| value  | number \| string | Yes  | Offset of the start point for drawing the stroke.<br>Default value: **0**<br>Default unit: vp|
 
 ### strokeLineCap
 
@@ -228,7 +242,7 @@ Sets the stroke width. If of the string type, this attribute cannot be set in pe
 
 | Name| Type                        | Mandatory| Description                    |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| value  | [Length](ts-types.md#length) | Yes  | Stroke width.<br>Default value: **1**|
+| value  | [Length](ts-types.md#length) | Yes  | Stroke width.<br>Default value: **1**<br>Default unit: vp|
 
 ### antiAlias
 
@@ -259,6 +273,8 @@ Describes the coordinates of a point.
 | Point | [number, number] | Coordinates of a point. The first parameter is the x-coordinate, and the second parameter is the y-coordinate (relative coordinate).|
 
 ## Example
+
+This example demonstrates how to use **points**, **fillOpacity**, **stroke**, **strokeLineJoin**, and **strokeLineCap** to draw a polyline with specific coordinates, opacity, stroke colors, corner styles, and endpoint styles.
 
 ```ts
 // xxx.ets

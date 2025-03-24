@@ -67,6 +67,7 @@
 媒体库支持Picker选择[媒体文件](../../file-management/user-file-uri-intro.md#媒体文件uri)URI后，根据指定URI获取图片或视频资源，下面以查询指定URI为'file://media/Photo/1/IMG_datetime_0001/displayName.jpg'为例。
 
 ```ts
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { dataSharePredicates } from '@kit.ArkData';
 
 const context = getContext(this);

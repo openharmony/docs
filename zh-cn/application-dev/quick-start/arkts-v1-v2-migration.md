@@ -1259,7 +1259,7 @@ V2:
 - 声明被\@Trace的属性作为页面间共享的可观察的数据。
 
 ```
-// storage.ets
+// Storage.ets
 @ObservedV2
 export class MyStorage {
   static singleton_: MyStorage;
@@ -1654,7 +1654,7 @@ V2：
 
 声明\@ObservedV2装饰的class代替LocalStorage。其中LocalStorage的key可以用\@Trace装饰的属性代替。
 ```ts
-// storage.ets
+// Storage.ets
 @ObservedV2
 export class MyStorageA {
   @Trace propA: string = 'Hello';

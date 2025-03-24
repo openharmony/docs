@@ -1,7 +1,7 @@
 # AVCodec Kit（音视频编解码服务）
 
-- C API
-  - 模块
+- C API<!--avcodec-c-->
+  - 模块<!--avcodec-module-->
     - [AudioCodec](_audio_codec.md)
     - [AVCapability](_a_v_capability.md)
     - [AVDemuxer](_a_v_demuxer.md)
@@ -12,7 +12,7 @@
     - [VideoDecoder](_video_decoder.md)
     - [VideoEncoder](_video_encoder.md)
     - [Multimedia_Drm](_multimedia___drm.md)
-  - 头文件
+  - 头文件<!--avcodec-headerfile-->
     - [native_audio_channel_layout.h](native__audio__channel__layout_8h.md)
     - [native_avbuffer.h](native__avbuffer_8h.md)
     - [native_avbuffer_info.h](native__avbuffer__info_8h.md)
@@ -28,18 +28,18 @@
     - [native_avmuxer.h](native__avmuxer_8h.md)
     - [native_avsource.h](native__avsource_8h.md)
     - [native_cencinfo.h](native__cencinfo_8h.md)
-  - 结构体
+  - 结构体<!--avcodec-struct-->
     - [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md)
     - [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md)
     - [OH_AVCodecCallback](_o_h___a_v_codec_callback.md)
     - [OH_AVDataSource](_o_h___a_v_data_source.md)
     - [OH_AVRange](_o_h___a_v_range.md)
     - [DrmSubsample](_drm_subsample.md)
-  - 已停止维护的接口
-    - 模块
+  - 已停止维护的接口<!--avcodec-arkts-dep-->
+    - 模块<!--avcodec-module-arkts-dep-->
       - [AudioDecoder](_audio_decoder.md)
       - [AudioEncoder](_audio_encoder.md)
-    - 头文件
+    - 头文件<!--avcodec-headerfile-arkts-dep-->
       - [avcodec_audio_channel_layout.h](avcodec__audio__channel__layout_8h.md)
       - [native_avcodec_audiodecoder.h](native__avcodec__audiodecoder_8h.md)
       - [native_avcodec_audioencoder.h](native__avcodec__audioencoder_8h.md)

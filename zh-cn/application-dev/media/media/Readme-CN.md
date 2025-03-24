@@ -6,7 +6,7 @@
   - 播放<!--media-playback-arkts-->
     - [使用AVPlayer播放音频(ArkTS)](using-avplayer-for-playback.md)
     - [使用AVPlayer播放视频(ArkTS)](video-playback.md)
-    - [使用AVPlayer设置播放URL](playback-url-setting-method.md)
+    - [使用AVPlayer设置播放URL(ArkTS)](playback-url-setting-method.md)
     - [使用AVPlayer播放流媒体(ArkTS)](streaming-media-playback-development-guide.md)
     - [使用AVPlayer添加视频外挂字幕(ArkTS)](video-subtitle.md)
     - [使用SoundPool播放短音频(ArkTS)](using-soundpool-for-playback.md)

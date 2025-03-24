@@ -8,9 +8,11 @@ The **measure** module provides APIs for measuring text metrics, such as text he
 > 
 > This module cannot be used in the file declaration of the [UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md). In other words, the APIs of this module can be used only after a component instance is created; they cannot be called in the lifecycle of the UIAbility.
 >
-> Since API version 12, you can use the **getMeasureUtils** API in **UIContext** to obtain the [MeasureUtils](js-apis-arkui-UIContext.md#measureutils12)r object associated with the current UI context.
+> Since API version 12, you can use the **getMeasureUtils** API in **UIContext** to obtain the [MeasureUtils](js-apis-arkui-UIContext.md#measureutils12) object associated with the current UI context.
 >
 > To perform more complex text measurements, you are advised to call the corresponding graphics measurement API, specifically [Paragraph](../apis-arkgraphics2d/js-apis-graphics-text.md#paragraph).
+>
+> To ensure the correct sequence of events and the accuracy of the measurement results, listen for changes in font scaling whenever possible.
 
 ## Modules to Import
 
@@ -20,7 +22,7 @@ import { MeasureText } from '@kit.ArkUI'
 
 ## MeasureText.measureText
 
-measureText(options: MeasureOptions): number
+static measureText(options: MeasureOptions): number
 
 Measures the width of the given text.
 
@@ -53,8 +55,9 @@ import { MeasureText } from '@kit.ArkUI'
 @Entry
 @Component
 struct Index {
-  @State textWidth: number = MeasureText.measureText({ // You are advised to use this.getUIContext().getMeasureUtils().measureText().
-    textContent: "Hello word",
+  @State textWidth: number = MeasureText.measureText({
+    // You are advised to this.getUIContext().getMeasureUtils().measureText().
+    textContent: "Hello World",
     fontSize: '50px'
   })
 
@@ -72,7 +75,7 @@ struct Index {
 
 ## MeasureText.measureTextSize<sup>10+</sup>
 
-measureTextSize(options: MeasureOptions): SizeOptions
+static measureTextSize(options: MeasureOptions): SizeOptions
 
 Measures the width and height of the given text.
 
@@ -105,10 +108,12 @@ import { MeasureText } from '@kit.ArkUI'
 @Entry
 @Component
 struct Index {
-  textSize : SizeOptions = MeasureText.measureTextSize({ // You are advised to use this.getUIContext().getMeasureUtils().measureText().
-    textContent: "Hello word",
+  textSize: SizeOptions = MeasureText.measureTextSize({
+    // You are advised to this.getUIContext().getMeasureUtils().measureText().
+    textContent: "Hello World",
     fontSize: '50px'
   })
+
   build() {
     Row() {
       Column() {

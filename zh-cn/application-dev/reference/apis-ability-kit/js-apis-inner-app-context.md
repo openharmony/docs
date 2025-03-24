@@ -1490,7 +1490,7 @@ context.printDrawnCompleted().then((data) => {
 
 ## PermissionOptions<sup>7+</sup>
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称   | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
@@ -1499,7 +1499,7 @@ context.printDrawnCompleted().then((data) => {
 
 ## PermissionRequestResult<sup>7+</sup>
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称         | 类型             | 必填   | 说明         |
 | ----------- |-------------- | ---- | ---------- |

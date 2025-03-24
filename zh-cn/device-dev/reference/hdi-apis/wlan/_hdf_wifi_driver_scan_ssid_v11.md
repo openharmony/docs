@@ -3,7 +3,7 @@
 
 ## 概述
 
-定义Wi-Fi扫描的服务集标识符（SSID）信息
+定义Wi-Fi扫描的服务集标识符（SSID）信息。
 
 **起始版本：** 3.2
 
@@ -17,8 +17,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| String [ssid](#ssid) | WiFi扫描的SSID | 
-| int [ssidLen](#ssidlen) | SSID长度 | 
+| String [ssid](#ssid) | WiFi扫描的SSID。 | 
+| int [ssidLen](#ssidlen) | SSID长度。 | 
 
 
 ## 类成员变量说明
@@ -45,4 +45,4 @@ int HdfWifiDriverScanSsid::ssidLen
 **描述**
 
 
-SSID长度
+SSID长度。

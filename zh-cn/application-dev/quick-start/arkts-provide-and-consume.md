@@ -164,12 +164,12 @@ struct Parent {
 ### 框架行为
 
 1. 初始渲染：
-   1. \@Provide装饰的变量会以map的形式，传递给当前\@Provide所属组件的所有子组件；
-   2. 子组件中如果使用\@Consume变量，则会在map中查找是否有该变量名/alias（别名）对应的\@Provide的变量，如果查找不到，框架会抛出JS ERROR；
+   1. \@Provide装饰的变量会以map的形式，传递给当前\@Provide所属组件的所有子组件。
+   2. 子组件中如果使用\@Consume变量，则会在map中查找是否有该变量名/alias（别名）对应的\@Provide的变量，如果查找不到，框架会抛出JS ERROR。
    3. 在初始化\@Consume变量时，和\@State/\@Link的流程类似，\@Consume变量会在map中查找到对应的\@Provide变量进行保存，并把自己注册给\@Provide。
 
 2. 当\@Provide装饰的数据变化时：
-   1. 通过初始渲染的步骤可知，子组件\@Consume已把自己注册给父组件。父组件\@Provide变量变更后，会遍历更新所有依赖它的系统组件（elementid）和状态变量（\@Consume）；
+   1. 通过初始渲染的步骤可知，子组件\@Consume已把自己注册给父组件。父组件\@Provide变量变更后，会遍历更新所有依赖它的系统组件（elementid）和状态变量（\@Consume）。
    2. 通知\@Consume更新后，子组件所有依赖\@Consume的系统组件（elementId）都会被通知更新。以此实现\@Provide对\@Consume状态数据同步。
 
 3. 当\@Consume装饰的数据变化时：
@@ -183,145 +183,145 @@ struct Parent {
 
 1. \@Provider/\@Consumer的参数key必须为string类型，否则编译期会报错。
 
-```ts
-// 错误写法，编译报错
-let change: number = 10;
-@Provide(change) message: string = 'Hello';
+  ```ts
+  // 错误写法，编译报错
+  let change: number = 10;
+  @Provide(change) message: string = 'Hello';
 
-// 正确写法
-let change: string = 'change';
-@Provide(change) message: string = 'Hello';
-```
+  // 正确写法
+  let change: string = 'change';
+  @Provide(change) message: string = 'Hello';
+  ```
 
 2. \@Consume装饰的变量不能本地初始化，也不能在构造参数中传入初始化，否则编译期会报错。\@Consume仅能通过key来匹配对应的\@Provide变量进行初始化。
 
-【反例】
+  【反例】
 
-```ts
-@Component
-struct Child {
-  @Consume msg: string;
-  // 错误写法，不允许本地初始化
-  @Consume msg1: string = 'Hello';
+  ```ts
+  @Component
+  struct Child {
+    @Consume msg: string;
+    // 错误写法，不允许本地初始化
+    @Consume msg1: string = 'Hello';
 
-  build() {
-    Text(this.msg)
-  }
-}
-
-@Entry
-@Component
-struct Parent {
-  @Provide message: string = 'Hello';
-
-  build() {
-    Column() {
-      // 错误写法，不允许外部传入初始化
-      Child({msg: 'Hello'})
+    build() {
+      Text(this.msg)
     }
   }
-}
-```
 
-【正例】
+  @Entry
+  @Component
+  struct Parent {
+    @Provide message: string = 'Hello';
 
-```ts
-@Component
-struct Child {
-  @Consume num: number;
-
-  build() {
-    Column() {
-      Text(`num的值: ${this.num}`)
+    build() {
+      Column() {
+        // 错误写法，不允许外部传入初始化
+        Child({msg: 'Hello'})
+      }
     }
   }
-}
+  ```
 
-@Entry
-@Component
-struct Parent {
-  @Provide num: number = 10;
+  【正例】
 
-  build() {
-    Column() {
-      Text(`num的值: ${this.num}`)
-      Child()
+  ```ts
+  @Component
+  struct Child {
+    @Consume num: number;
+
+    build() {
+      Column() {
+        Text(`num的值: ${this.num}`)
+      }
     }
   }
-}
-```
+
+  @Entry
+  @Component
+  struct Parent {
+    @Provide num: number = 10;
+
+    build() {
+      Column() {
+        Text(`num的值: ${this.num}`)
+        Child()
+      }
+    }
+  }
+  ```
 
 3. \@Provide的key重复定义时，框架会抛出运行时错误，提醒开发者重复定义key，如果开发者需要重复key，可以使用[allowoverride](#provide支持allowoverride参数)。
 
-```ts
-// 错误写法，a重复定义
-@Provide('a') count: number = 10;
-@Provide('a') num: number = 10;
+  ```ts
+  // 错误写法，a重复定义
+  @Provide('a') count: number = 10;
+  @Provide('a') num: number = 10;
 
-// 正确写法
-@Provide('a') count: number = 10;
-@Provide('b') num: number = 10;
-```
+  // 正确写法
+  @Provide('a') count: number = 10;
+  @Provide('b') num: number = 10;
+  ```
 
 4. 在初始化\@Consume变量时，如果开发者没有定义对应key的\@Provide变量，框架会抛出运行时错误，提示开发者初始化\@Consume变量失败，原因是无法找到其对应key的\@Provide变量。
 
-【反例】
+  【反例】
 
-```ts
-@Component
-struct Child {
-  @Consume num: number;
+  ```ts
+  @Component
+  struct Child {
+    @Consume num: number;
 
-  build() {
-    Column() {
-      Text(`num的值: ${this.num}`)
+    build() {
+      Column() {
+        Text(`num的值: ${this.num}`)
+      }
     }
   }
-}
 
-@Entry
-@Component
-struct Parent {
-  // 错误写法，缺少@Provide
-  num: number = 10;
+  @Entry
+  @Component
+  struct Parent {
+    // 错误写法，缺少@Provide
+    num: number = 10;
 
-  build() {
-    Column() {
-      Text(`num的值: ${this.num}`)
-      Child()
+    build() {
+      Column() {
+        Text(`num的值: ${this.num}`)
+        Child()
+      }
     }
   }
-}
-```
+  ```
 
-【正例】
+  【正例】
 
-```ts
-@Component
-struct Child {
-  @Consume num: number;
+  ```ts
+  @Component
+  struct Child {
+    @Consume num: number;
 
-  build() {
-    Column() {
-      Text(`num的值: ${this.num}`)
+    build() {
+      Column() {
+        Text(`num的值: ${this.num}`)
+      }
     }
   }
-}
 
-@Entry
-@Component
-struct Parent {
-  // 正确写法
-  @Provide num: number = 10;
+  @Entry
+  @Component
+  struct Parent {
+    // 正确写法
+    @Provide num: number = 10;
 
-  build() {
-    Column() {
-      Text(`num的值: ${this.num}`)
-      Child()
+    build() {
+      Column() {
+        Text(`num的值: ${this.num}`)
+        Child()
+      }
     }
   }
-}
-```
+  ```
 
 5. \@Provide与\@Consume不支持装饰Function类型的变量，框架会抛出运行时错误。
 
@@ -616,7 +616,7 @@ struct GrandParent {
 ```
 
 在上面的示例中：
-- GrandParent声明了@Provide("reviewVotes") reviewVotes: number = 40
+- GrandParent声明了@Provide("reviewVotes") reviewVotes: number = 40。
 - Parent是GrandParent的子组件，声明@Provide为allowOverride，重写父组件GrandParent的@Provide("reviewVotes") reviewVotes: number = 40。如果不设置allowOverride，则会抛出运行时报错，提示@Provide重复定义。Child同理。
 - GrandSon在初始化@Consume的时候，@Consume装饰的变量通过相同的属性名绑定其最近的祖先的@Provide装饰的变量。
 - GrandSon查找到相同属性名的@Provide在祖先Child中，所以@Consume("reviewVotes") reviewVotes: number初始化数值为10。如果Child中没有定义与@Consume同名的@Provide，则继续向上寻找Parent中的同名@Provide值为20，以此类推。

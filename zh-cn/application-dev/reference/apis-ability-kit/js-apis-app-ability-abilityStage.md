@@ -16,13 +16,23 @@ AbilityStage类提供在HAP加载的时候，通知开发者，可以在此进�
 import { AbilityStage } from '@kit.AbilityKit';
 ```
 
+## 属性
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| context  | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md) | 否 | 否 | AbilityStage上下文。 |
+
 ## AbilityStage.onCreate
 
 onCreate(): void
 
-当应用创建时调用。
+当应用创建时调用。同步接口，不支持异步回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -43,9 +53,9 @@ class MyAbilityStage extends AbilityStage {
 
 onAcceptWant(want: Want): string
 
-启动一个specified ability时触发的事件。
+启动一个specified ability时触发的事件。同步接口，不支持异步回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -78,7 +88,7 @@ class MyAbilityStage extends AbilityStage {
 
 onNewProcessRequest(want: Want): string
 
-在指定进程中启动UIAbility时回调。
+在指定进程中启动UIAbility时回调。同步接口，不支持异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -112,9 +122,9 @@ class MyAbilityStage extends AbilityStage {
 
 onConfigurationUpdate(newConfig: Configuration): void
 
-环境变化通知接口，发生全局配置变更时回调。
+环境变化通知接口，发生全局配置变更时回调。同步接口，不支持异步回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -140,9 +150,9 @@ class MyAbilityStage extends AbilityStage {
 
 onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
-当系统已决定调整内存时调用。例如，当该功能在后台运行时，没有足够的内存来运行尽可能多的后台进程时可以使用。
+当系统已决定调整内存时调用。例如，当该功能在后台运行时，没有足够的内存来运行尽可能多的后台进程时可以使用。同步接口，不支持异步回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -170,7 +180,7 @@ context: AbilityStageContext
 
 指示AbilityStage的上下文。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -194,9 +204,9 @@ export default class MyAbilityStage extends AbilityStage {
 
 onDestroy(): void
 
-当应用销毁时调用, 此方法将在正常的调度生命周期中调用, 当应用程序异常退出或被终止时，将不会调用此方法。
+当应用销毁时调用，此方法将在正常的调度生命周期中调用，当应用程序异常退出或被终止时，将不会调用此方法。同步接口，不支持异步回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

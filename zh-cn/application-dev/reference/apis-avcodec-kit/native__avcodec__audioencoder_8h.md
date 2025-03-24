@@ -3,7 +3,7 @@
 
 ## 概述
 
-声明用于音频编码的Native API。
+音频编码Native API的声明。
 
 **库：** libnative_media_aenc.so
 
@@ -31,6 +31,6 @@
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioEncoder_Reset](_audio_encoder.md#oh_audioencoder_reset) (OH_AVCodec \*codec) | 重置编码器。 | 
 | OH_AVFormat \* [OH_AudioEncoder_GetOutputDescription](_audio_encoder.md#oh_audioencoder_getoutputdescription) (OH_AVCodec \*codec) | 获取编码器输出数据的描述信息。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioEncoder_SetParameter](_audio_encoder.md#oh_audioencoder_setparameter) (OH_AVCodec \*codec, OH_AVFormat \*format) | 配置编码器的动态参数。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioEncoder_PushInputData](_audio_encoder.md#oh_audioencoder_pushinputdata) (OH_AVCodec \*codec, uint32_t index, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) attr) | 将填充有数据的输入缓冲区提交给音频编码器。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioEncoder_PushInputData](_audio_encoder.md#oh_audioencoder_pushinputdata) (OH_AVCodec \*codec, uint32_t index, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) attr) | 通知音频编码器已完成对index所对应缓冲区进行输入数据的填充。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioEncoder_FreeOutputData](_audio_encoder.md#oh_audioencoder_freeoutputdata) (OH_AVCodec \*codec, uint32_t index) | 将处理后的输出缓冲区返回给编码器。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioEncoder_IsValid](_audio_encoder.md#oh_audioencoder_isvalid) (OH_AVCodec \*codec, bool \*isValid) | 检查当前编码器实例是否有效，可用于后台故障恢复或应用程序从后台恢复时检测编码器有效状态。 | 

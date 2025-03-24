@@ -99,7 +99,7 @@ radius(value: Dimension | BorderRadiuses)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9) | 是   | Menu边框圆角半径。<br/>默认值：2in1设备上默认值为8vp，其他设备上默认值为20vp。<br/> <br/> 从API version 12开始，当水平方向两个圆角半径之和的最大值大于菜单宽度，或垂直方向两个圆角半径之和的最大值大于菜单高度时，菜单四个圆角均采用菜单默认圆角半径值。 |
+| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9) | 是   | Menu边框圆角半径。<br/>默认值：2in1设备上默认值为8vp，其他设备上默认值为20vp。<br/> 从API version 12开始，当水平方向两个圆角半径之和的最大值大于菜单宽度，或垂直方向两个圆角半径之和的最大值大于菜单高度时，菜单四个圆角均采用菜单默认圆角半径值。 |
 
 ### menuItemDivider<sup>12+</sup>
 
@@ -117,7 +117,7 @@ startMargin + endMargin 超过组件宽度后startMargin和endMargin会被置0�
 
 | 参数名     | 类型                                                     | 必填         | 说明           |
 |---------|--------------------------------------------------------|------------| -------------- |
-| options | [DividerStyleOptions](ts-types.md#DividerStyleOptions)&nbsp;\| &nbsp;undefined | 是   | 设置menuItem分割线样式。<br />-strokeWidth:分割线的线宽。<br />-color：分割线的颜色。<br />-startMargin：分割线与menuItem侧边起端的距离。<br />-endMargin：分割线与menuItem侧边结束端的距离。 |
+| options | [DividerStyleOptions](ts-types.md#dividerstyleoptions12)&nbsp;\| &nbsp;undefined | 是   | 设置menuItem分割线样式。<br />-strokeWidth:分割线的线宽。<br />-color：分割线的颜色。<br />-startMargin：分割线与menuItem侧边起端的距离。<br />-endMargin：分割线与menuItem侧边结束端的距离。 |
 
 ### menuItemGroupDivider<sup>12+</sup>
 
@@ -133,7 +133,7 @@ menuItemGroupDivider(options: DividerStyleOptions | undefined)
 
 | 参数名     | 类型                                                     | 必填         | 说明           |
 |---------|--------------------------------------------------------|------------| -------------- |
-| options | [DividerStyleOptions](ts-types.md#DividerStyleOptions)&nbsp;\| &nbsp;undefined | 是   | 设置menuItemGroup顶部和底部分割线样式。<br />-strokeWidth:分割线的线宽, 默认值是1px。<br />-color：分割线的颜色, 默认值是 #33000000。<br />-startMargin：分割线与menuItemGroup侧边起端的距离, 默认值是16。<br />-endMargin：分割线与menuItemGroup侧边结束端的距离, 默认值是16。 |
+| options | [DividerStyleOptions](ts-types.md#dividerstyleoptions12)&nbsp;\| &nbsp;undefined | 是   | 设置menuItemGroup顶部和底部分割线样式。<br />-strokeWidth:分割线的线宽, 默认值是1px。<br />-color：分割线的颜色, 默认值是 #33000000。<br />-startMargin：分割线与menuItemGroup侧边起端的距离, 默认值是16。<br />-endMargin：分割线与menuItemGroup侧边结束端的距离, 默认值是16。 |
 
 ### subMenuExpandingMode<sup>12+</sup>
 
@@ -159,11 +159,11 @@ Menu子菜单展开样式枚举。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            | 说明                                       |
-| --------------- | ------------------------------------------ |
-| SIDE_EXPAND     | 默认展开样式, 子菜单位于同一平面侧边展开。 |
-| EMBEDDED_EXPAND | 直接展开样式, 子菜单嵌于主菜单内展开。     |
-| STACK_EXPAND    | 堆叠样式, 子菜单浮于主菜单上方展开。       |
+| 名称            | 值 | 说明                                       |
+| --------------- | - | ------------------------------------------ |
+| SIDE_EXPAND     | 0 | 默认展开样式, 子菜单位于同一平面侧边展开。 |
+| EMBEDDED_EXPAND | 1 | 直接展开样式, 子菜单嵌于主菜单内展开。     |
+| STACK_EXPAND    | 2 | 堆叠样式, 子菜单浮于主菜单上方展开。       |
 
 ## 示例
 
@@ -309,4 +309,4 @@ struct Index {
 }
 ```
 
-![zh-cn_image_0000001174582862](figures/normal-symbol.jpg)
+![zh-cn_image_0000001174582862](figures/normal-symbol.png)

@@ -409,6 +409,20 @@ HiDumper is a command-line tool used to export essential system information for 
     hidumper -p
     ```
 
+    > **Note**
+    >
+    > In the Release version, this command can be used to export the process information of the debugging applications.
+    >
+    > How to distinguish the Debug and Release versions:
+    >
+    > 1. Run the **hdc shell "param get|grep const.debuggable"** command to check whether the output is **0** or **1**.
+    >
+    > 2. Run the **hdc shell "param get|grep const.product.software.version"** command to check whether the current version contains the **log** string.
+    >
+    > The Release version outputs **0** and does not contain the **log** string.
+    >
+    > The Debug version outputs **1** and contain the **log** string.
+
     **Example**
 
     ```
@@ -644,15 +658,7 @@ HiDumper is a command-line tool used to export essential system information for 
     >
     > This command is available only in the Debug version and is unavailable in the Release version.
     >
-    > How to distinguish the Debug and Release versions:
-    >
-    > 1. Run the **hdc shell "param get|grep const.debuggable"** command to check whether the output is **0** or **1**.
-    >
-    > 2. Run the **hdc shell "param get|grep const.product.software.version"** command to check whether the current version contains the **log** string.
-    >
-    > The Release version outputs **0** and does not contain the **log** string.
-    >
-    > The Debug version outputs **1** and contain the **log** string.
+    > For details about how to distinguish the debug and release versions, see **hidumper -p**.
 
     **Example**
 
@@ -714,7 +720,7 @@ HiDumper is a command-line tool used to export essential system information for 
     >
     > In the Release version, this command can be used to export the snapshot information of the debugging applications.
     >
-    > For details about how to distinguish the Debug and Release versions, see the last example.
+    > For details about how to distinguish the debug and release versions, see **hidumper -p**.
     >
     > The path of the jsheap file: **/data/log/faultlog/temp or /data/log/reliability/resource_leak/memory_leak**.
 

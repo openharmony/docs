@@ -34,7 +34,7 @@
    | apl          | 可选 | 标准系统 | 服务能力特权级别。 | 类型：字符串， 如 "apl" : "system_core"。<br> 目前支持"system_core"（默认值）, "normal", "system_basic"。 |
    | start-mode   | 可选 | 标准系统 | 服务的启动模式。 | 类型：字符串， 如 "start-mode" : "condition"。<br>目前支持"boot", "normal", "condition"。具体说明参考：init服务启动控制。 |
    | ondemand     | 可选 | 小型系统和标准系统 | 按需启动服务的标志。 | 类型：bool，如"ondemand" : true，小型系统只在Linux内核上支持。<br>具体说明参考：[init服务按需启动](#section56901555920)。|
-   | disable | 可选 | 小型系统和标准系统 | 预留字段，无实际意义。 | 无。 |
+   | disabled | 可选 | 小型系统和标准系统 | 预留字段，无实际意义。 | 无。 |
    | sandbox | 可选 | 标准系统 | 沙盒功能是否打开。 | 1：打开服务的沙盒功能 （默认值）。<br>0：关闭服务的沙盒功能。 |
    | socket | 可选 | 标准系统 | 配置socket属性相关设置 | 由socket创建流程的服务需配置此项 |
    | env | 可选 | 标准系统 | 配置服务的环境变量 | 类型：键值对型数组 <br>支持同时配置多个环境变量，如：<br>"env" : [{<br> "name" : "SERVICE_NALE", <br>"value" : "ueventd"},{<br> "name" : "TEST",<br> "value" : "test_value" <br>}]|

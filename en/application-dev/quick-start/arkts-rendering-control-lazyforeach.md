@@ -1,12 +1,13 @@
 # LazyForEach: Lazy Data Loading
 
-For details about API parameters, see [LazyForEach](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md) APIs.
+For details about API parameters, see [LazyForEach](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md).
 
 **LazyForEach** iterates over provided data sources and creates corresponding components during each iteration. When **LazyForEach** is used in a scrolling container, the framework creates components as required within the visible area of the scrolling container. When a component is out of the visible area, the framework destroys and reclaims the component to reduce memory usage.
 
 ## Constraints
 
 - **LazyForEach** must be used in a container component. Only the [List](../reference/apis-arkui/arkui-ts/ts-container-list.md), [Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md), [Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md), and [WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md) components support lazy loading (the **cachedCount** property can be configured, that is, only the visible part and a small amount of data before and after the visible part are loaded for caching). For other components, all data is loaded at once.
+- **LazyForEach** depends on the generated key to determine whether to re-render the child component. If the key does not change, **LazyForEach** cannot trigger a re-render for the corresponding child component.
 - Only one **LazyForEach** can be used in a container component. Take **List** as an example. Containing **ListItem**, **ForEach**, and **LazyForEach** together in this component, or containing multiple **LazyForEach** at the same time is not recommended.
 - In each iteration, only one child component must be created for **LazyForEach**. That is, the child component generation function of **LazyForEach** has only one root component.
 - The generated child components must be allowed in the parent container component of **LazyForEach**.
@@ -14,7 +15,7 @@ For details about API parameters, see [LazyForEach](https://gitee.com/openharmon
 - The ID generation function must generate a unique value for each piece of data. Rendering issues will arise with components assigned duplicate IDs.
 - **LazyForEach** must use the **DataChangeListener** object to re-render UI. If the first parameter **dataSource** is re-assigned a value, an exception occurs. When **dataSource** uses a state variable, the change of the state variable does not trigger the UI re-renders performed by **LazyForEach**.
 - For better rendering performance, when the **onDataChange** API of the **DataChangeListener** object is used to update the UI, an ID different from the original one needs to be generated to trigger component re-rendering.
-- **LazyForEach** must be used with the [@Reusable](https://developer.huawei.com/consumer/en/doc/best-practices-V5/bpta-component-reuse-V5#section5601835174020) decorator to trigger node reuse. Use @Reusable to decorate the components on the **LazyForEach** list. For details, see [Reuse Rules](https://developer.huawei.com/consumer/en/doc/best-practices-V5/bpta-component-reuse-V5#section5923195311402).
+- Using [\@Reusable](./arkts-reusable.md) to decorate components on the LazyForEach list can trigger node reuse. For details, see [List Scrolling Used with LazyForEach](./arkts-reusable.md#list-scrolling-used-with-lazyforeach).
 
 ## Key Generation Rules
 
@@ -24,7 +25,7 @@ During **LazyForEach** rendering, the system generates a unique, persistent key 
 
 ## Component Creation Rules
 
-After the key generation rules are determined, the **itemGenerator** function – the second parameter in **LazyForEach** – creates a component for each array item of the data source based on the rules. There are two cases for creating a component: [initial render](#initial-render) and [non initial render](#non-initial-render).
+After the key generation rules are determined, the **itemGenerator** function – the second parameter in **LazyForEach** – creates a component for each array item of the data source based on the rules. There are two cases for creating a component: [initial render](#initial-render) and [non-initial render](#non-initial-render).
 
 ### Initial Render
 
@@ -33,7 +34,7 @@ After the key generation rules are determined, the **itemGenerator** function �
 When used for initial render, **LazyForEach** generates a unique key for each array item of the data source based on the key generation rules, and creates a component.
 
 ```ts
-/** For details about the BasicDataSource code, see the end of the document. **/
+/** For details about the BasicDataSource code of the string array, see the attachment at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -44,11 +45,6 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): string {
     return this.dataArray[index];
-  }
-
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: string): void {
@@ -97,7 +93,7 @@ The figure below shows the effect.
 When the keys generated for different data items are the same, the behavior of the framework is unpredictable. For example, in the following code, the keys of the data items rendered by **LazyForEach** are the same. During the swipe process, **LazyForEach** preloads child components for the current page. Because the new child component and the destroyed component have the same key, the framework may incorrectly obtain the cache. As a result, the child component rendering is abnormal.
 
 ```ts
-/** For details about the BasicDataSource code, see the end of the document. **/
+/** For details about the BasicDataSource code of the string array, see the attachment at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -108,11 +104,6 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): string {
     return this.dataArray[index];
-  }
-
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: string): void {
@@ -161,7 +152,7 @@ When the **LazyForEach** data source is changed and a re-render is required, cal
 #### Adding Data
 
 ```ts
-/** For details about the BasicDataSource code, see the end of the document. **/
+/** For details about the BasicDataSource code of the string array, see the attachment at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -172,11 +163,6 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): string {
     return this.dataArray[index];
-  }
-
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: string): void {
@@ -227,10 +213,10 @@ The figure below shows the effect.
 #### Deleting Data
 
 ```ts
-/** For details about the BasicDataSource code, see the end of the document. **/
+/** For details about the BasicDataSource code of the string array, see the attachment at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
-  dataArray: string[] = [];
+  private dataArray: string[] = [];
 
   public totalCount(): number {
     return this.dataArray.length;
@@ -240,9 +226,8 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
+  public getAllData(): string[] {
+    return this.dataArray;
   }
 
   public pushData(data: string): void {
@@ -279,7 +264,7 @@ struct MyComponent {
         }
         .onClick(() => {
           // Click to delete a child component.
-          this.data.deleteData(this.data.dataArray.indexOf(item));
+          this.data.deleteData(this.data.getAllData().indexOf(item));
         })
       }, (item: string) => item)
     }.cachedCount(5)
@@ -297,10 +282,10 @@ The figure below shows the effect.
 #### Swapping Data
 
 ```ts
-/** For details about the BasicDataSource code, see the end of the document. **/
+/** For details about the BasicDataSource code of the string array, see the attachment at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
-  dataArray: string[] = [];
+  private dataArray: string[] = [];
 
   public totalCount(): number {
     return this.dataArray.length;
@@ -310,18 +295,12 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
+  public getAllData(): string[] {
+    return this.dataArray;
   }
 
   public pushData(data: string): void {
     this.dataArray.push(data);
-  }
-  
-  public deleteData(index: number): void {
-    this.dataArray.splice(index, 1);
-    this.notifyDataDelete(index);
   }
   
   public moveData(from: number, to: number): void {
@@ -356,7 +335,7 @@ struct MyComponent {
           }.margin({ left: 10, right: 10 })
         }
         .onClick(() => {
-          this.moved.push(this.data.dataArray.indexOf(item));
+          this.moved.push(this.data.getAllData().indexOf(item));
           if (this.moved.length === 2) {
           	// Click to exchange child components.
           	this.data.moveData(this.moved[0], this.moved[1]);
@@ -379,7 +358,7 @@ The figure below shows the effect.
 #### Changing a Data Item
 
 ```ts
-/** For details about the BasicDataSource code, see the end of the document. **/
+/** For details about the BasicDataSource code of the string array, see the attachment at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -392,18 +371,8 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
-  }
-
   public pushData(data: string): void {
     this.dataArray.push(data);
-  }
-  
-  public deleteData(index: number): void {
-    this.dataArray.splice(index, 1);
-    this.notifyDataDelete(index);
   }
   
   public changeData(index: number, data: string): void {
@@ -455,7 +424,7 @@ The figure below shows the effect.
 #### Changing Multiple Data Items
 
 ```ts
-/** For details about the BasicDataSource code, see the end of the document. **/
+/** For details about the BasicDataSource code of the string array, see the attachment at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -468,22 +437,8 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
-  }
-
   public pushData(data: string): void {
     this.dataArray.push(data);
-  }
-  
-  public deleteData(index: number): void {
-    this.dataArray.splice(index, 1);
-    this.notifyDataDelete(index);
-  }
-  
-  public changeData(index: number): void {
-    this.notifyDataChange(index);
   }
     
   public reloadData(): void {
@@ -537,10 +492,10 @@ The figure below shows the effect.
 **Figure 7** Changing multiple data items in LazyForEach 
 ![LazyForEach-Reload-Data](./figures/LazyForEach-Reload-Data.gif)
 
-#### Changing Data in Batches Precisely 
+#### Changing Data in Batches Precisely
 
 ```ts
-/** For details about the BasicDataSource code, see the end of the document. **/
+/** For details about the BasicDataSource code of the string array, see the attachment at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -587,7 +542,7 @@ struct MyComponent {
 
   build() {
     Column() {
-      Text('Move the second item to where the fourth item is located, exchange the fifth and seventh data items, add "Hello 1" "Hello 2" to the ninth item, and delete two items starting from the eleventh item')
+      Text('change data')
         .fontSize(10)
         .backgroundColor(Color.Blue)
         .fontColor(Color.White)
@@ -614,7 +569,7 @@ struct MyComponent {
 }
 ```
 
-The **onDatasetChange** API notifies **LazyForEach** of the operations to be performed at once. In the preceding example, **LazyForEach** adds, deletes, moves, and exchanges data at the same time. 
+The **onDatasetChange** API allows you to notify **LazyForEach** at a time to add, delete, move, and exchange data. In the preceding example, after the text **change data** is clicked, the second data item is moved to the fourth, the fifth data item exchanges locations with the seventh one, data **Hello 1** and **Hello 2** are added from the ninth, and two data items are deleted from the eleventh. 
 
 **Figure 8** Changing multiple data items in LazyForEach 
 
@@ -623,39 +578,7 @@ The **onDatasetChange** API notifies **LazyForEach** of the operations to be per
 In the second example, values are directly changed in the array without using **splice()**. Result of **operations** is directly obtained by comparing the original array with the new array.
 
 ```ts
-class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = [];
-  private originDataArray: string[] = [];
-
-  public totalCount(): number {
-    return 0;
-  }
-
-  public getData(index: number): string {
-    return this.originDataArray[index];
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      console.info('add listener');
-      this.listeners.push(listener);
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      console.info('remove listener');
-      this.listeners.splice(pos, 1);
-    }
-  }
-
-  notifyDatasetChange(operations: DataOperation[]): void {
-    this.listeners.forEach(listener => {
-      listener.onDatasetChange(operations);
-    })
-  }
-}
+/** For details about the BasicDataSource code of the string array, see the attachment at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -737,77 +660,21 @@ which is shown in the following example:
 //Array after modification.
 ["Hello a","Hello c","Hello d","Hello b","Hello g","Hello f","Hello e","Hello h","Hello 1","Hello 2","Hello i","Hello j","Hello m","Hello n","Hello o","Hello p","Hello q","Hello r"]
 ```
-**Hello b** is changed from item 2 to item 4. Therefore, the first **operation** is written in **{ type: DataOperationType.MOVE, index: { from: 1, to: 3 } }**. 
-**Hello e** whose index is 4 and **Hello g** whose index is 6 are exchanged in the original array. Therefore, the second **operation** is written in **{ type: DataOperationType.EXCHANGE, index: { start: 4, end: 6 } }**. 
-**Hello 1** and **Hello 2** are inserted after **Hello h** whose index is 7 in the original array. Therefore, the third **operation** is written in **{ type: DataOperationType.ADD, index: 8, count: 2 }**. 
-**Hello k** whose index is 10 and **Hello l** whose index is 11 are deleted in the original array. Therefore, the fourth **operation** is written in **{ type: DataOperationType.DELETE, index: 10, count: 2 }**. 
+**Hello b** is changed from item 2 to item 4. Therefore, the first **operation** is written in **{ type: DataOperationType.MOVE, index: { from: 1, to: 3 } }**.
+**Hello e** whose index is 4 and **Hello g** whose index is 6 are exchanged in the original array. Therefore, the second **operation** is written in **{ type: DataOperationType.EXCHANGE, index: { start: 4, end: 6 } }**.
+**Hello 1** and **Hello 2** are inserted after **Hello h** whose index is 7 in the original array. Therefore, the third **operation** is written in **{ type: DataOperationType.ADD, index: 8, count: 2 }**.
+**Hello k** whose index is 10 and **Hello l** whose index is 11 are deleted in the original array. Therefore, the fourth **operation** is written in **{ type: DataOperationType.DELETE, index: 10, count: 2 }**.
 
 3. When **onDatasetChange** is called, the data can be operated only once for each index. If the data is operated multiple times, **LazyForEach** enables only the first operation to take effect.
 4. In operations where you can specify keys on your own, **LazyForEach** does not call the key generator to obtain keys. As such, make sure the specified keys are correct.
 5. If the API contains the **RELOAD** operation, other operations do not take effect.
 
-#### Changing Data Subproperties
+### Changing Data Subproperties
 
 When **LazyForEach** is used for UI re-renders, a child component needs to be destroyed and rebuilt when the data item changes. This may result in low re-render performance when the child component structure is complex. This is where @Observed and @ObjectLink come into picture. By providing in-depth observation, @Observed and @ObjectLink enable precise re-renders of only components that use the changed properties. You can select a re-render mode that better suits your needs.
 
 ```ts
-class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = [];
-  private originDataArray: StringData[] = [];
-
-  public totalCount(): number {
-    return 0;
-  }
-
-  public getData(index: number): StringData {
-    return this.originDataArray[index];
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      console.info('add listener');
-      this.listeners.push(listener);
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      console.info('remove listener');
-      this.listeners.splice(pos, 1);
-    }
-  }
-
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded();
-    })
-  }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdd(index);
-    })
-  }
-
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChange(index);
-    })
-  }
-
-  notifyDataDelete(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataDelete(index);
-    })
-  }
-
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
-    })
-  }
-}
+/** For details about the BasicDataSource code of the StringData array, see the attachment at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -818,11 +685,6 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): StringData {
     return this.dataArray[index];
-  }
-
-  public addData(index: number, data: StringData): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: StringData): void {
@@ -891,63 +753,7 @@ State management V2 provides the @ObservedV2 and @Trace decorators to implement 
 #### Observing Nested Class Property Changes
 
 ```ts
-class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = [];
-  private originDataArray: StringData[] = [];
-
-  public totalCount(): number {
-    return 0;
-  }
-
-  public getData(index: number): StringData {
-    return this.originDataArray[index];
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      console.info('add listener');
-      this.listeners.push(listener);
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      console.info('remove listener');
-      this.listeners.splice(pos, 1);
-    }
-  }
-
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded();
-    })
-  }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdd(index);
-    })
-  }
-
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChange(index);
-    })
-  }
-
-  notifyDataDelete(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataDelete(index);
-    })
-  }
-
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
-    })
-  }
-}
+/** For details about the BasicDataSource code of the StringData array, see the attachment at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -958,11 +764,6 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): StringData {
     return this.dataArray[index];
-  }
-
-  public addData(index: number, data: StringData): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: StringData): void {
@@ -1035,63 +836,7 @@ struct MyComponent {
 #### Observing Component Internal State
 
 ```ts
-class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = [];
-  private originDataArray: StringData[] = [];
-
-  public totalCount(): number {
-    return 0;
-  }
-
-  public getData(index: number): StringData {
-    return this.originDataArray[index];
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      console.info('add listener');
-      this.listeners.push(listener);
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      console.info('remove listener');
-      this.listeners.splice(pos, 1);
-    }
-  }
-
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded();
-    })
-  }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdd(index);
-    })
-  }
-
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChange(index);
-    })
-  }
-
-  notifyDataDelete(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataDelete(index);
-    })
-  }
-
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
-    })
-  }
-}
+/** For details about the BasicDataSource code of the StringData array, see the attachment at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -1102,11 +847,6 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): StringData {
     return this.dataArray[index];
-  }
-
-  public addData(index: number, data: StringData): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: StringData): void {
@@ -1175,63 +915,7 @@ struct ChildComponent {
 #### Receiving External Input
 
 ```ts
-class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = [];
-  private originDataArray: StringData[] = [];
-
-  public totalCount(): number {
-    return 0;
-  }
-
-  public getData(index: number): StringData {
-    return this.originDataArray[index];
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      console.info('add listener');
-      this.listeners.push(listener);
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      console.info('remove listener');
-      this.listeners.splice(pos, 1);
-    }
-  }
-
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded();
-    })
-  }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdd(index);
-    })
-  }
-
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChange(index);
-    })
-  }
-
-  notifyDataDelete(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataDelete(index);
-    })
-  }
-
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
-    })
-  }
-}
+/** For details about the BasicDataSource code of the StringData array, see the attachment at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -1242,11 +926,6 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): StringData {
     return this.dataArray[index];
-  }
-
-  public addData(index: number, data: StringData): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: StringData): void {
@@ -1307,7 +986,7 @@ The @Param decorator enables the child component to receive external input param
 If **LazyForEach** is used in a list, and the **onMove** event is set, you can enable drag and sort for the list items. If an item changes the position after you drag and sort the data, the **onMove** event is triggered to report the original index and target index of the item. The data source needs to be modified in the **onMove** event based on the reported start index and target index. The **DataChangeListener** API does not need to be called to notify the data source change.
 
 ```ts
-/** For details about the BasicDataSource code, see the end of the document. **/
+/** For details about the BasicDataSource code of the string array, see the attachment at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -1320,11 +999,6 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
-  }
-
   public moveDataWithoutNotify(from: number, to: number): void {
     let tmp = this.dataArray.splice(from, 1);
     this.dataArray.splice(to, 0, tmp[0])
@@ -1334,17 +1008,18 @@ class MyDataSource extends BasicDataSource {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
   }
-
-  public deleteData(index: number): void {
-    this.dataArray.splice(index, 1);
-    this.notifyDataDelete(index);
-  }
 }
 
 @Entry
 @Component
 struct Parent {
   private data: MyDataSource = new MyDataSource();
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 100; i++) {
+      this.data.pushData(i.toString())
+    }
+  }
 
   build() {
     Row() {
@@ -1368,23 +1043,18 @@ struct Parent {
       .backgroundColor("#FFDCDCDC")
     }
   }
-  aboutToAppear(): void {
-    for (let i = 0; i < 100; i++) {
-      this.data.pushData(i.toString())
-    }
-  }
 }
 ```
 
 **Figure 11** Drag and sort in LazyForEach 
-![LazyForEach-Drag-Sort](figures/ForEach-Drag-Sort.gif)
+![LazyForEach-Drag-Sort](./figures/ForEach-Drag-Sort.gif)
 
 ## FAQs
 
 ### Unexpected Rendering Result
 
 ```ts
-/** For details about the BasicDataSource code, see the end of the document. **/
+/** For details about the BasicDataSource code of the string array, see the attachment at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -1395,11 +1065,6 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): string {
     return this.dataArray[index];
-  }
-
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: string): void {
@@ -1453,7 +1118,7 @@ When child components are clicked to be deleted, there may be cases where the de
 The following shows the code snippet after optimization:
 
 ```ts
-/** For details about the BasicDataSource code, see the end of the document. **/
+/** For details about the BasicDataSource code of the string array, see the attachment at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -1464,11 +1129,6 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): string {
     return this.dataArray[index];
-  }
-
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: string): void {
@@ -1528,63 +1188,7 @@ After a data item is deleted, the **reloadData** method is called to rebuild the
 ### Image Flickering During Re-renders
 
 ```ts
-class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = [];
-  private originDataArray: StringData[] = [];
-
-  public totalCount(): number {
-    return 0;
-  }
-
-  public getData(index: number): StringData {
-    return this.originDataArray[index];
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      console.info('add listener');
-      this.listeners.push(listener);
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      console.info('remove listener');
-      this.listeners.splice(pos, 1);
-    }
-  }
-
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded();
-    })
-  }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdd(index);
-    })
-  }
-
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChange(index);
-    })
-  }
-
-  notifyDataDelete(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataDelete(index);
-    })
-  }
-
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
-    })
-  }
-}
+/** For details about the BasicDataSource code of the StringData array, see the attachment at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -1595,11 +1199,6 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): StringData {
     return this.dataArray[index];
-  }
-
-  public addData(index: number, data: StringData): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: StringData): void {
@@ -1629,6 +1228,7 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
+      // 'app.media.img' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
       this.data.pushData(new StringData(`Hello ${i}`, $r('app.media.img')));
     }
   }
@@ -1665,63 +1265,7 @@ In the example, when a list item is clicked, only the **message** property of th
 The following shows the code snippet after optimization:
 
 ```ts
-class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = [];
-  private originDataArray: StringData[] = [];
-
-  public totalCount(): number {
-    return 0;
-  }
-
-  public getData(index: number): StringData {
-    return this.originDataArray[index];
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      console.info('add listener');
-      this.listeners.push(listener);
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      console.info('remove listener');
-      this.listeners.splice(pos, 1);
-    }
-  }
-
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded();
-    })
-  }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdd(index);
-    })
-  }
-
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChange(index);
-    })
-  }
-
-  notifyDataDelete(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataDelete(index);
-    })
-  }
-
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
-    })
-  }
-}
+/** For details about the BasicDataSource code of the StringData array, see the attachment at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -1732,11 +1276,6 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): StringData {
     return this.dataArray[index];
-  }
-
-  public addData(index: number, data: StringData): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: StringData): void {
@@ -1759,7 +1298,6 @@ class StringData {
 @Entry
 @Component
 struct MyComponent {
-  // Use state variables instead of LazyForEach APIs to drive UI re-render.
   private data: MyDataSource = new MyDataSource();
 
   aboutToAppear() {
@@ -1784,6 +1322,7 @@ struct MyComponent {
 
 @Component
 struct ChildComponent {
+  // Use state variables instead of LazyForEach APIs to drive UI re-render.
   @ObjectLink data: StringData
   build() {
     Column() {
@@ -1805,63 +1344,7 @@ struct ChildComponent {
 ### UI Not Re-rendered When @ObjectLink Property Is Changed
 
 ```ts
-class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = [];
-  private originDataArray: StringData[] = [];
-
-  public totalCount(): number {
-    return 0;
-  }
-
-  public getData(index: number): StringData {
-    return this.originDataArray[index];
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      console.info('add listener');
-      this.listeners.push(listener);
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      console.info('remove listener');
-      this.listeners.splice(pos, 1);
-    }
-  }
-
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded();
-    })
-  }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdd(index);
-    })
-  }
-
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChange(index);
-    })
-  }
-
-  notifyDataDelete(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataDelete(index);
-    })
-  }
-
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
-    })
-  }
-}
+/** For details about the BasicDataSource code of the StringData array, see the attachment at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -1872,11 +1355,6 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): StringData {
     return this.dataArray[index];
-  }
-
-  public addData(index: number, data: StringData): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: StringData): void {
@@ -1949,63 +1427,7 @@ The member variable decorated by @ObjectLink can observe only changes of its sub
 The following shows the code snippet after optimization:
 
 ```ts
-class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = [];
-  private originDataArray: StringData[] = [];
-
-  public totalCount(): number {
-    return 0;
-  }
-
-  public getData(index: number): StringData {
-    return this.originDataArray[index];
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      console.info('add listener');
-      this.listeners.push(listener);
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      console.info('remove listener');
-      this.listeners.splice(pos, 1);
-    }
-  }
-
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded();
-    })
-  }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdd(index);
-    })
-  }
-
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChange(index);
-    })
-  }
-
-  notifyDataDelete(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataDelete(index);
-    })
-  }
-
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
-    })
-  }
-}
+/** For details about the BasicDataSource code of the StringData array, see the attachment at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -2016,11 +1438,6 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): StringData {
     return this.dataArray[index];
-  }
-
-  public addData(index: number, data: StringData): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: StringData): void {
@@ -2093,7 +1510,7 @@ struct ChildComponent {
 List has an **onScrollIndex** callback function. When **onDataReloaded** is called in **onScrollIndex**, there is a risk of screen flickering.
 
 ```ts
-/** For details about the BasicDataSource code, see the end of the document. **/
+/** For details about the BasicDataSource code of the string array, see the attachment at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -2106,23 +1523,9 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
-  }
-
   public pushData(data: string): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
-  }
-
-  public deleteData(index: number): void {
-    this.dataArray.splice(index, 1);
-    this.notifyDataDelete(index);
-  }
-
-  public changeData(index: number): void {
-    this.notifyDataChange(index);
   }
 
   operateData():void {
@@ -2174,12 +1577,12 @@ struct MyComponent {
 ```
 
 When **List** is scrolled to the bottom, screen flicks like the following. 
-![LazyForEach-Screen-Flicker](figures/LazyForEach-Screen-Flicker.gif)
+![LazyForEach-Screen-Flicker](./figures/LazyForEach-Screen-Flicker.gif)
 
 Replacing **onDataReloaded** by **onDatasetChange** cannot only fix this issue but also improves load performance.
 
 ```ts
-/** For details about the BasicDataSource code, see the end of the document. **/
+/** For details about the BasicDataSource code of the string array, see the attachment at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -2192,23 +1595,9 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
-  }
-
   public pushData(data: string): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
-  }
-
-  public deleteData(index: number): void {
-    this.dataArray.splice(index, 1);
-    this.notifyDataDelete(index);
-  }
-
-  public changeData(index: number): void {
-    this.notifyDataChange(index);
   }
 
   operateData():void {
@@ -2261,70 +1650,14 @@ struct MyComponent {
 ```
 
 Fixed result 
-![LazyForEach-Screen-Flicker-Repair](figures/LazyForEach-Screen-Flicker-Repair.gif)
+![LazyForEach-Screen-Flicker-Repair](./figures/LazyForEach-Screen-Flicker-Repair.gif)
 
 ### Component Reuse Rendering Exception
 
 If @Reusable and @ComponentV2 are used together, the component rendering is abnormal.
 
 ```ts
-class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = [];
-  private originDataArray: StringData[] = [];
-
-  public totalCount(): number {
-    return 0;
-  }
-
-  public getData(index: number): StringData {
-    return this.originDataArray[index];
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      console.info('add listener');
-      this.listeners.push(listener);
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      console.info('remove listener');
-      this.listeners.splice(pos, 1);
-    }
-  }
-
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded();
-    })
-  }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdd(index);
-    })
-  }
-
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChange(index);
-    })
-  }
-
-  notifyDataDelete(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataDelete(index);
-    })
-  }
-
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
-    })
-  }
-}
+/** For details about the BasicDataSource code of the StringData array, see the attachment at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -2335,11 +1668,6 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): StringData {
     return this.dataArray[index];
-  }
-
-  public addData(index: number, data: StringData): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: StringData): void {
@@ -2413,12 +1741,86 @@ The negative example shows that in @ComponentV2 decorated **MyComponent**, the *
 
 Change @ComponentV2 to @Component to rectify the rendering exception. After that, when the swipe event triggers the detach of a component node, the corresponding reusable component **ChildComponent** is added from the component tree to the reuse cache instead of being destroyed, the **aboutToRecycle** event is triggered, and log is recorded. When a new node needs to be displayed, the reusable component attaches to the node tree from the reuse cache, triggers **aboutToReuse** to update the component data, and output logs.
 
-## Attachments
+### Component Re-Rendering Failure
 
-BasicDataSource code of an array of the string type:
+You need to define a proper function for key generation and return a key associated with the target data. When the target data changes, **LazyForEach** re-renders the corresponding component only after identifying the key change.
 
 ```ts
-// Basic implementation of IDataSource to handle data listener
+/** For details about the BasicDataSource code of the string array, see the attachment at the end of this topic. **/
+
+class MyDataSource extends BasicDataSource {
+  private dataArray: string[] = [];
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number): string {
+    return this.dataArray[index];
+  }
+
+  public pushData(data: string): void {
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
+  }
+
+  public updateAllData(): void {
+    this.dataArray = this.dataArray.map((item: string) => item + `!`);
+    this.notifyDataReload();
+  }
+}
+
+@Entry
+@Component
+struct MyComponent {
+  private data: MyDataSource = new MyDataSource();
+
+  aboutToAppear() {
+    for (let i = 0; i <= 20; i++) {
+      this.data.pushData(`Hello ${i}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Button(`update all`)
+        .onClick(() => {
+          this.data.updateAllData();
+        })
+      List({ space: 3 }) {
+        LazyForEach(this.data, (item: string) => {
+          ListItem() {
+            Text(item).fontSize(50)
+          }
+        })
+      }.cachedCount(5)
+    }
+  }
+}
+```
+
+Click **update all** but the components are not re-rendered. 
+![LazyForEach-Refresh-Not-Expected](./figures/LazyForEach-Refresh-Not-Expected.gif)
+
+**LazyForEach** depends on the generated key to determine whether to re-render the child component. If the key is not changed during data update, **LazyForEach** does not re-render the corresponding component. For example, if the key generation function is not defined, the key is related only to the component index and the key remains unchanged during data update.
+
+```ts
+LazyForEach(this.data, (item: string) => {
+  ListItem() {
+    Text(item).fontSize(50)
+  }
+}, (item: string) => item) // Define a function for key generation.
+```
+
+After the function is defined, click **update all** to re-render the components. 
+![LazyForEach-Refresh-Not-Expected-Repair](./figures/LazyForEach-Refresh-Not-Expected-Repair.gif)
+
+## Attachments
+
+### BasicDataSource Code of the String Array
+
+```ts
+// BasicDataSource implements the IDataSource API to manage listeners and notify LazyForEach of data updates.
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = [];
   private originDataArray: string[] = [];
@@ -2485,6 +1887,74 @@ class BasicDataSource implements IDataSource {
       listener.onDataMove(from, to);
       // Method 2: listener.onDatasetChange ()
       //         [{type: DataOperationType.EXCHANGE, index: {start: from, end: to}}]);
+    })
+  }
+
+  notifyDatasetChange(operations: DataOperation[]): void {
+    this.listeners.forEach(listener => {
+      listener.onDatasetChange(operations);
+    })
+  }
+}
+```
+
+### BasicDataSource Code of the StringData Array
+
+```ts
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = [];
+  private originDataArray: StringData[] = [];
+
+  public totalCount(): number {
+    return 0;
+  }
+
+  public getData(index: number): StringData {
+    return this.originDataArray[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      console.info('add listener');
+      this.listeners.push(listener);
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      console.info('remove listener');
+      this.listeners.splice(pos, 1);
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded();
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index);
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChange(index);
+    })
+  }
+
+  notifyDataDelete(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index);
+    })
+  }
+
+  notifyDataMove(from: number, to: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataMove(from, to);
     })
   }
 

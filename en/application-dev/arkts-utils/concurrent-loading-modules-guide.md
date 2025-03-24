@@ -1,12 +1,13 @@
 # Concurrent Loading of Service Modules
 
-During app startup, multiple service modules need to be loaded. For example, if different modules of a map app, such as positioning, taxi hailing, and navigation, are all initialized in the UI main thread, the cold start time will be greatly affected. In this case, the functions of these modules need to be loaded in different sub-threads in parallel to reduce the startup time.
+During application launch, multiple service modules need to be loaded. For example, in a mapping application, different modules such as positioning, ride-hailing, and navigation are required. Initializing all these modules in the UI main thread can significantly increase the cold start time. To address this, these modules should be loaded concurrently in separate background threads to reduce launch latency.
 
-The TaskPool capability provided by ArkTS can be used to move different service initialization tasks to subthreads. Service modules can be implemented as [NativeBinding object](transferabled-object.md) by sinking C++, or [Sendable object](arkts-sendable.md) can be defined at the ArkTS layer. The initialized module can be returned to the UI main thread for calling. The implementation is as follows:
+By leveraging the TaskPool capabilities provided by ArkTS, different service initialization tasks can be offloaded to background threads. Service modules can be implemented in C++ as [NativeBinding objects](transferabled-object.md) or defined in ArkTS as [Sendable objects](arkts-sendable.md). The initialized modules can then be returned to the UI main thread for use. The implementation involves the following steps:
 
-1. Definition of each service function (SDK) module (The Sendable object is used as an example.)
-   The calculator service module is defined as follows:
-
+1. Define each service module (SDK) (using Sendable objects as an example).
+   
+Define the calculator service module as follows:
+   
    ```ts
    // sdk/Calculator.ets
    import { collections } from '@kit.ArkTS'
@@ -62,10 +63,10 @@ The TaskPool capability provided by ArkTS can be used to move different service 
        this.totalCount = this.history!.unshift(newRecord)
      }
    }
-   ```
-
-   The timer service module is defined as follows:
-
+```
+   
+Define the timer service module as follows:
+   
    ```ts
    // sdk/TimerSdk.ets
    @Sendable
@@ -83,9 +84,9 @@ The TaskPool capability provided by ArkTS can be used to move different service 
        })
      }
    }
-   ```
-
-2. The UI main thread triggers the distribution of each service module to the sub-thread. After the loading is complete, the UI main thread uses the service module.
+```
+   
+2. In the UI main thread, trigger the distribution of service modules to child threads, and use them in the UI main thread after loading is complete.
 
    ```ts
    // Index.ets

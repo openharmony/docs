@@ -1,8 +1,10 @@
 # Component Navigation (Navigation) (Recommended)
 
-[Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md) component serves as the root view container for route navigation and is commonly used as the root container for pages decorated with @Entry. It supports three display modes: Stack, Split, and Auto. This component is designed for both intra-module and cross-module routing, leveraging component-level routing to provide a more natural and seamless transition between pages. It also offers multiple title bar styles to enhance the cascading between titles and content. In one-time development for multi-device deployment scenarios, the **Navigation** component can automatically adapt to the window size. When the window is large enough, it automatically displays content in columns.
+Component navigation, implemented using the [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md) component, is instrumental for managing transitions between pages and within components. It allows for the passing of redirection parameters across various components and offers various stack operations to simplify access to and reuse of diverse pages. This documentation delves into the display modes, routing operations, subpage management, cross-package navigation, and the effects of navigation transitions.
 
-The **Navigation** component consists of a navigation page (**NavBar**) and subpages (**NavDestination**). The navigation page consists of the title bar (with the menu bar), content area, and toolbar, and can be hidden through the [hideNavBar](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#hidenavbar9) attribute. Unlike other pages, the navigation page does not reside in the page stack. Routing is used to manage transitions between the navigation page and its subpages, as well as between subpages themselves.
+The [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md) component serves as the root view container for route navigation and is commonly used as the root container for pages decorated with @Entry. It supports three display modes: Stack, Split, and Auto. This component is designed for both intra-module and cross-module routing, leveraging component-level routing to provide a more natural and seamless transition between pages. It also offers multiple title bar styles to enhance the cascading between titles and content. In one-time development for multi-device deployment scenarios, the **Navigation** component can automatically adapt to the window size. When the window is large enough, it automatically displays content in columns.
+
+The **Navigation** component consists of a navigation page and subpages. The navigation page consists of the title bar (with the menu bar), content area, and toolbar, and can be hidden through the [hideNavBar](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#hidenavbar9) attribute. Unlike other pages, the navigation page does not reside in the page stack. Routing is used to manage transitions between the navigation page and its subpages, as well as between subpages themselves.
 
 In API version 9, the **Navigation** component must be used together with the [NavRouter](../reference/apis-arkui/arkui-ts/ts-basic-components-navrouter.md) component for page routing. Since API version 10, whenever possible, use [NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10) instead to implement page routing.
 
@@ -39,7 +41,7 @@ The **Navigation** component uses the **mode** attribute to set the page display
   .mode(NavigationMode.Stack)
   ```
 
-  ![single-page-1](figures/single-page-1.jpg)
+  ![Navigation in stack mode](figures/navigation-mode-stack.jpg)
 
 - Column mode
 
@@ -54,7 +56,10 @@ The **Navigation** component uses the **mode** attribute to set the page display
   @Entry
   @Component
   struct NavigationExample {
-    @State TooTmp: ToolbarItem = {'value': "func", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
+    @State TooTmp: ToolbarItem = {
+      'value': "func", 'icon': "./image/ic_public_highlights.svg", 'action': () => {
+      }
+    }
     @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack()
     private arr: number[] = [1, 2, 3];
 
@@ -68,19 +73,19 @@ The **Navigation** component uses the **mode** attribute to set the page display
         pageThreeTmp()
       }
     }
-  
+
     build() {
       Column() {
         Navigation(this.pageInfos) {
-          TextInput({ placeholder: 'search...' })
+          TextInput({ placeholder: 'Search...' })
             .width("90%")
             .height(40)
             .backgroundColor('#FFFFFF')
-  
+
           List({ space: 12 }) {
-            ForEach(this.arr, (item:number) => {
+            ForEach(this.arr, (item: number) => {
               ListItem() {
-                Text("NavRouter" + item)
+                Text("Page" + item)
                   .width("100%")
                   .height(72)
                   .backgroundColor('#FFFFFF')
@@ -88,24 +93,39 @@ The **Navigation** component uses the **mode** attribute to set the page display
                   .fontSize(16)
                   .fontWeight(500)
                   .textAlign(TextAlign.Center)
-                  .onClick(()=>{
-                    this.pageInfos.pushPath({ name: "NavDestinationTitle" + item})
+                  .onClick(() => {
+                    this.pageInfos.pushPath({ name: "NavDestinationTitle" + item })
                   })
               }
-            }, (item:number) => item.toString())
+            }, (item: number) => item.toString())
           }
           .width("90%")
           .margin({ top: 12 })
         }
-        .title ("Main Title")
+        .title("Main Title")
         .mode(NavigationMode.Split)
         .navDestination(this.PageMap)
         .menus([
-          {value: "", icon: "./image/ic_public_search.svg", action: ()=> {}},
-          {value: "", icon: "./image/ic_public_add.svg", action: ()=> {}},
-          {value: "", icon: "./image/ic_public_add.svg", action: ()=> {}},
-          {value: "", icon: "./image/ic_public_add.svg", action: ()=> {}},
-          {value: "", icon: "./image/ic_public_add.svg", action: ()=> {}}
+          {
+            value: "", icon: "./image/ic_public_search.svg", action: () => {
+            }
+          },
+          {
+            value: "", icon: "./image/ic_public_add.svg", action: () => {
+            }
+          },
+          {
+            value: "", icon: "./image/ic_public_add.svg", action: () => {
+            }
+          },
+          {
+            value: "", icon: "./image/ic_public_add.svg", action: () => {
+            }
+          },
+          {
+            value: "", icon: "./image/ic_public_add.svg", action: () => {
+            }
+          }
         ])
         .toolbarConfiguration([this.TooTmp, this.TooTmp, this.TooTmp])
       }
@@ -119,6 +139,7 @@ The **Navigation** component uses the **mode** attribute to set the page display
   @Component
   export struct pageOneTmp {
     @Consume('pageInfos') pageInfos: NavPathStack;
+
     build() {
       NavDestination() {
         Column() {
@@ -137,6 +158,7 @@ The **Navigation** component uses the **mode** attribute to set the page display
   @Component
   export struct pageTwoTmp {
     @Consume('pageInfos') pageInfos: NavPathStack;
+
     build() {
       NavDestination() {
         Column() {
@@ -155,6 +177,7 @@ The **Navigation** component uses the **mode** attribute to set the page display
   @Component
   export struct pageThreeTmp {
     @Consume('pageInfos') pageInfos: NavPathStack;
+
     build() {
       NavDestination() {
         Column() {
@@ -170,12 +193,16 @@ The **Navigation** component uses the **mode** attribute to set the page display
   }
   ```
 
-  ![column](figures/column.jpg)
+  ![Navigation in split mode](figures/navigation-mode-split.jpg)
 
 
 ## Setting the Title Bar Mode
 
 The title bar is on the top of the page and is used to display the page name and operation entry. The **Navigation** component uses the **titleMode** attribute to set the title bar mode.
+
+> **NOTE**
+>
+> If no main title or subtitle is set for **Navigation** or **NavDestination** and there is no back button, the title bar is not displayed.
 
 - Mini mode
 
@@ -250,6 +277,7 @@ let TooTmp: NavigationMenuItem = {'value': "", 'icon': "./image/ic_public_highli
 Navigation() {
   // ...
 }
+// In portrait mode, the toolbar shows a maximum of five icons, with any additional icons placed under an automatically generated More icon.
 .menus([TooTmp,
   TooTmp,
   TooTmp,
@@ -275,11 +303,15 @@ Navigation() {
 .toolbarConfiguration(TooBar)
 ```
 
-## Route Operations
+## Routing Operations
 
 Navigation-related routing operations are all based on the APIs provided by [NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10). For each **Navigation** component, a **NavPathStack** object must be created and passed in to manage pages. The router operations mainly involve page navigation, page return, page replacement, page deletion, parameter acquisition, and route interception.
 
-**NavPathStack** can be inherited since API version 12. You can customize attributes and methods in derived classes or override methods of the parent class. Derived class objects can be used in place of the base class **NavPathStack** objects. For details about the sample code, see [Example 10](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#example-10).
+**NavPathStack** can be inherited since API version 12. You can customize attributes and methods in derived classes or override methods of the parent class. Derived class objects can be used in place of the base class **NavPathStack** objects. For details about the sample code, see [Example 10: Defining a Derived Class of NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#example-10-defining-a-derived-class-of-navpathstack).
+
+> **NOTE**
+>
+> Avoid relying on lifecycle event listeners as a means to manage the navigation stack.
 
 ```ts
 @Entry
@@ -315,15 +347,21 @@ struct Index {
     });
     ```
 
-3. Navigation with an error code: An asynchronous callback is triggered at the end of navigation, returning error code information.
+3. Navigation with an error code: Upon failure, an asynchronous callback is triggered to provide the error code information.
 
     ```ts
-    this.pageStack.pushDestinationByName('PageOne', "PageOne Param")
-    .catch((error: BusinessError) => {
-      console.error(`Push destination failed, error code = ${error.code}, error.message = ${error.message}.`);
-    }).then(() => {
-      console.info('Push destination succeed.');
-    });
+    this.pageStack.pushDestination({name: "PageOne", param: "PageOne Param"})
+      .catch((error: BusinessError) => {
+        console.error(`Push destination failed, error code = ${error.code}, error.message = ${error.message}.`);
+      }).then(() => {
+        console.info('Push destination succeed.');
+      });
+    this.pageStack.pushDestinationByName("PageOne", "PageOne Param")
+      .catch((error: BusinessError) => {
+        console.error(`Push destination failed, error code = ${error.code}, error.message = ${error.message}.`);
+      }).then(() => {
+        console.info('Push destination succeed.');
+      });
     ```
 
 ### Page Return
@@ -343,12 +381,19 @@ this.pageStack.clear()
 
 ### Page Replacement
 
-NavPathStack implements the page replacement feature through **Replace** related APIs.
+**NavPathStack** implements the page replacement feature through **Replace** related APIs.
 
 ```ts
 // Replace the top page of the stack with PageOne.
 this.pageStack.replacePath({ name: "PageOne", param: "PageOne Param" })
 this.pageStack.replacePathByName("PageOne", "PageOne Param")
+// Replacement with an error code: Upon failure, an asynchronous callback is triggered to provide the error code information.
+this.pageStack.replaceDestination({name: "PageOne", param: "PageOne Param"})
+  .catch((error: BusinessError) => {
+    console.error(`Replace destination failed, error code = ${error.code}, error.message = ${error.message}.`);
+  }).then(() => {
+    console.info('Replace destination succeed.');
+  })
 ```
 
 ### Page Deletion
@@ -360,6 +405,19 @@ this.pageStack.replacePathByName("PageOne", "PageOne Param")
 this.pageStack.removeByName("PageOne")
 // Remove the page with the specified index.
 this.pageStack.removeByIndexes([1,3,5])
+// Remove the page with the specified ID.
+this.pageStack.removeByNavDestinationId("1");
+```
+
+### Page Moving
+
+**NavPathStack** implements the page moving feature through **Move** related APIs.
+
+```ts
+// Move the page named PageOne to the top of the stack.
+this.pageStack.moveToTop("PageOne");
+// Move the page at index 1 to the top of the stack.
+this.pageStack.moveIndexToTop(1);
 ```
 
 ### Parameter Acquisition
@@ -591,7 +649,7 @@ You can customize transition animations through the [customNavContentTransition]
 2. Implement a transition protocol object [NavigationAnimatedTransition](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navigationanimatedtransition11). The **timeout** property indicates the transition timeout duration, with a default value of 1000 ms. The **transition** property is where you implement your custom transition animation logic; it is the method that the system calls when the transition starts. The **onTransitionEnd** is the callback for when the transition ends.
 3. Call the **customNavContentTransition** API to return the **NavigationAnimatedTransition** object. If **undefined** is returned, the system default transition is used.
 
-For details about the sample code, see [Example 3](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#example-3).
+For details about the sample code, see [Example 3: Setting an Interactive Transition Animation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#example-3-setting-an-interactive-transition-animation).
 
 ### Defining a Shared Element Transition
 
@@ -601,25 +659,25 @@ You can implement shared element transitions between navigation destination page
     ```ts
     // Set id of the source page.
     NavDestination() {
-    Column() {
+      Column() {
         // ...
         Image($r('app.media.startIcon'))
         .geometryTransition('sharedId')
         .width(100)
         .height(100)
-    }
+      }
     }
     .title('FromPage')
 
     // Set id of the destination page.
     NavDestination() {
-    Column() {
+      Column() {
         // ...
         Image($r('app.media.startIcon'))
         .geometryTransition('sharedId')
         .width(200)
         .height(200)
-    }
+      }
     }
     .title('ToPage')
     ```
@@ -628,7 +686,7 @@ You can implement shared element transitions between navigation destination page
 
     ```ts
     NavDestination() {
-    Column() {
+      Column() {
         Button('Go to Destination Page')
         .width('80%')
         .height(40)
@@ -638,7 +696,7 @@ You can implement shared element transitions between navigation destination page
               this.pageStack.pushPath({ name: 'ToPage' }, false)
             })
         })
-    }
+      }
     }
     .title('FromPage')
     ```
@@ -665,7 +723,7 @@ The custom route table and system route table can be used together.
 
 ### System Routing Table
 
-**Navigation** supports the system routing table for dynamic routing since API version 12. Each service module (HSP/HAR) requires an individual **route_map.json** file. When routing is triggered, the application only needs to pass the name of the page that needs to be routed through the routing API provided by **NavPathStack**. The system then automatically completes the dynamic loading of the target module, page component construction, and route redirection. This way, module decoupling is achieved at the development level. The main steps are as follows:
+**Navigation** supports the system routing table for dynamic routing since API version 12. Each service module ([HSP](../quick-start/in-app-hsp.md) or [HAR](../quick-start/har-package.md)) requires an individual **route_map.json** file. When routing is triggered, the application only needs to pass the name of the page that needs to be routed through the routing API provided by **NavPathStack**. The system then automatically completes the dynamic loading of the target module, page component construction, and route redirection. This way, module decoupling is achieved at the development level. Note that the system routing table does not work with DevEco Studio Previewer, cross-platform functionality, or emulators. The main steps are as follows:
 
 1. Add the route table configuration to the **module.json5** file of the redirection target module.
    
@@ -755,4 +813,3 @@ You can implement cross-package dynamic routing through a custom routing table.
 2. Use [dynamic import](../arkts-utils/arkts-dynamic-import.md) to load the module containing the target page at runtime. Once the module is loaded, call a method within the module that uses **import** to load and display the target page, then return the **Builder** function defined after the page has finished loading.
 3. Execute the **Builder** function loaded in step 2 on the [navDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navdestination10) attribute of the **Navigation** component to navigate to the target page.
 <!--RP2--><!--RP2End-->
-<!--no_check-->

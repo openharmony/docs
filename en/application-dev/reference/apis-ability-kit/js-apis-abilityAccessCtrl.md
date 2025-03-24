@@ -2,7 +2,8 @@
 
 The **abilityAccessCtrl** module provides APIs for application permission management, including authentication and authorization.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -53,7 +54,7 @@ Checks whether a permission is granted to an application. This API uses a promis
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | Yes  | Application token ID, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
-| permissionName | Permissions | Yes  | Permission to check. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
+| permissionName | Permissions | Yes  | Permission to check. For details about the permissions, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
 
 **Return value**
 
@@ -85,11 +86,13 @@ atManager.checkAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS
 });
 ```
 
-### verifyAccessTokenSync<sup>9+</sup>
+### checkAccessTokenSync<sup>10+</sup>
 
-verifyAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
+checkAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 
-Verifies whether a permission is granted to an application. This API returns the result synchronously.
+Checks whether a permission is granted to an application. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Security.AccessToken
 
@@ -98,7 +101,7 @@ Verifies whether a permission is granted to an application. This API returns the
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | Yes  | Application token ID, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
-| permissionName | Permissions | Yes  | Permission to verify. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
+| permissionName | Permissions | Yes  | Permission to check. For details about the permissions, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
 
 **Return value**
 
@@ -118,57 +121,13 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 **Example**
 
 ```ts
-import { abilityAccessCtrl } from '@kit.AbilityKit';
-
-let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let tokenID: number = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a third-party application.
-try {
-  let data: abilityAccessCtrl.GrantStatus = atManager.verifyAccessTokenSync(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS');
-  console.log(`data->${JSON.stringify(data)}`);
-} catch(err) {
-  console.error(`catch err->${JSON.stringify(err)}`);
-}
-```
-
-### verifyAccessToken<sup>9+</sup>
-
-verifyAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;GrantStatus&gt;
-
-Verifies whether a permission is granted to an application. This API uses a promise to return the result.
-
-> **NOTE**
->
-> You are advised to use [checkAccessToken](#checkaccesstoken9).
-
-**System capability**: SystemCapability.Security.AccessToken
-
-**Parameters**
-
-| Name  | Type                | Mandatory| Description                                      |
-| -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | Yes  | Application token ID, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
-| permissionName | Permissions | Yes  | Permission to verify. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
-
-**Return value**
-
-| Type         | Description                               |
-| :------------ | :---------------------------------- |
-| Promise&lt;[GrantStatus](#grantstatus)&gt; | Promise used to return the permission grant state.|
-
-**Example**
-
-```ts
 import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a third-party application.
 let permissionName: Permissions = 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS';
-atManager.verifyAccessToken(tokenID, permissionName).then((data: abilityAccessCtrl.GrantStatus) => {
-  console.log(`promise: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-  console.error(`verifyAccessToken fail, err->${JSON.stringify(err)}`);
-});
+let data: abilityAccessCtrl.GrantStatus = atManager.checkAccessTokenSync(tokenID, permissionName);
+console.log(`data->${JSON.stringify(data)}`);
 ```
 
 ### requestPermissionsFromUser<sup>9+</sup>
@@ -194,7 +153,7 @@ If the user rejects to grant the permission, the authorization dialog box cannot
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | context | [Context](js-apis-inner-application-context.md) | Yes| Context of the <!--RP1-->UIAbility<!--RP1End--> that requests the permission.|
-| permissionList | Array&lt;Permissions&gt; | Yes| Permissions to request. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
+| permissionList | Array&lt;Permissions&gt; | Yes| Permissions to request. For details about the permissions, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
 | requestCallback | AsyncCallback&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -252,7 +211,7 @@ If the user rejects to grant the permission, the authorization dialog box cannot
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | context | [Context](js-apis-inner-application-context.md) | Yes| Context of the <!--RP1-->UIAbility<!--RP1End--> that requests the permission.|
-| permissionList | Array&lt;Permissions&gt; | Yes| Permissions to request. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
+| permissionList | Array&lt;Permissions&gt; | Yes| Permissions to request. For details about the permissions, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
 
 **Return value**
 
@@ -289,103 +248,6 @@ atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA']).then((
   console.error('data:' + JSON.stringify(err));
 });
 ```
-
-### verifyAccessToken<sup>(deprecated)</sup>
-
-verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStatus&gt;
-
-Verifies whether a permission is granted to an application. This API uses a promise to return the result.
-
-> **NOTE**
->
-> This API is no longer maintained since API version 9. Use [checkAccessToken](#checkaccesstoken9) instead.
-
-**System capability**: SystemCapability.Security.AccessToken
-
-**Parameters**
-
-| Name  | Type                | Mandatory| Description                                      |
-| -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | Yes  | Application token ID, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
-| permissionName | string | Yes  | Permission to verify. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
-
-**Return value**
-
-| Type         | Description                               |
-| :------------ | :---------------------------------- |
-| Promise&lt;[GrantStatus](#grantstatus)&gt; | Promise used to return the permission grant state.|
-
-**Example**
-
-```ts
-import { abilityAccessCtrl } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let tokenID: number = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a third-party application.
-atManager.verifyAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: abilityAccessCtrl.GrantStatus) => {
-  console.log(`promise: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-  console.error(`verifyAccessToken fail, err->${JSON.stringify(err)}`);
-});
-```
-
-### checkAccessTokenSync<sup>10+</sup>
-
-checkAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
-
-Checks whether a permission is granted to an application. This API returns the result synchronously.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.Security.AccessToken
-
-**Parameters**
-
-| Name  | Type                | Mandatory| Description                                      |
-| -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | Yes  | Application token ID, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
-| permissionName | Permissions | Yes  | Permission to check. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
-
-**Return value**
-
-| Type         | Description                               |
-| :------------ | :---------------------------------- |
-| [GrantStatus](#grantstatus) | Permission grant state.|
-
-**Error codes**
-
-For details about the error codes, see [Access Control Error Codes](errorcode-access-token.md).
-
-| ID| Error Message|
-| -------- | -------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid parameter. The tokenID is 0, or the permissionName exceeds 256 characters. |
-
-**Example**
-
-```ts
-import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
-
-let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let tokenID: number = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a third-party application.
-let permissionName: Permissions = 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS';
-let data: abilityAccessCtrl.GrantStatus = atManager.checkAccessTokenSync(tokenID, permissionName);
-console.log(`data->${JSON.stringify(data)}`);
-```
-
-### GrantStatus
-
-Enumerates the permission grant states.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.Security.AccessToken
-
-| Name              |    Value| Description       |
-| ------------------ | ----- | ----------- |
-| PERMISSION_DENIED  | -1    | The permission is not granted.|
-| PERMISSION_GRANTED | 0     | The permission is granted.|
 
 ### requestPermissionOnSetting<sup>12+</sup>
 
@@ -504,7 +366,146 @@ atManager.requestGlobalSwitch(context, abilityAccessCtrl.SwitchType.CAMERA).then
 });
 ```
 
-### SwitchType<sup>12+</sup>
+### verifyAccessTokenSync<sup>9+</sup>
+
+verifyAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
+
+Verifies whether a permission is granted to an application. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Security.AccessToken
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                                      |
+| -------- | -------------------  | ---- | ------------------------------------------ |
+| tokenID   |  number   | Yes  | Application token ID, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
+| permissionName | Permissions | Yes  | Permission to verify. For details about the permissions, see [Application Permissions](../../security/AccessToken/app-permissions.md). |
+
+**Return value**
+
+| Type         | Description                               |
+| :------------ | :---------------------------------- |
+| [GrantStatus](#grantstatus) | Permission grant state.|
+
+**Error codes**
+
+For details about the error codes, see [Access Control Error Codes](errorcode-access-token.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12100001 | Invalid parameter. The tokenID is 0, or the permissionName exceeds 256 characters. |
+
+**Example**
+
+```ts
+import { abilityAccessCtrl } from '@kit.AbilityKit';
+
+let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+let tokenID: number = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a third-party application.
+try {
+  let data: abilityAccessCtrl.GrantStatus = atManager.verifyAccessTokenSync(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS');
+  console.log(`data->${JSON.stringify(data)}`);
+} catch(err) {
+  console.error(`catch err->${JSON.stringify(err)}`);
+}
+```
+
+### verifyAccessToken<sup>9+</sup>
+
+verifyAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;GrantStatus&gt;
+
+Verifies whether a permission is granted to an application. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> You are advised to use [checkAccessToken](#checkaccesstoken9).
+
+**System capability**: SystemCapability.Security.AccessToken
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                                      |
+| -------- | -------------------  | ---- | ------------------------------------------ |
+| tokenID   |  number   | Yes  | Application token ID, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
+| permissionName | Permissions | Yes  | Permission to verify. For details about the permissions, see [Application Permissions](../../security/AccessToken/app-permissions.md). |
+
+**Return value**
+
+| Type         | Description                               |
+| :------------ | :---------------------------------- |
+| Promise&lt;[GrantStatus](#grantstatus)&gt; | Promise used to return the permission grant state.|
+
+**Example**
+
+```ts
+import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+let tokenID: number = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a third-party application.
+let permissionName: Permissions = 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS';
+atManager.verifyAccessToken(tokenID, permissionName).then((data: abilityAccessCtrl.GrantStatus) => {
+  console.log(`promise: data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`verifyAccessToken fail, err->${JSON.stringify(err)}`);
+});
+```
+
+### verifyAccessToken<sup>(deprecated)</sup>
+
+verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStatus&gt;
+
+Verifies whether a permission is granted to an application. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is no longer maintained since API version 9. Use [checkAccessToken](#checkaccesstoken9) instead.
+
+**System capability**: SystemCapability.Security.AccessToken
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                                      |
+| -------- | -------------------  | ---- | ------------------------------------------ |
+| tokenID   |  number   | Yes  | Application token ID, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
+| permissionName | string | Yes  | Permission to verify. For details about the permissions, see [Application Permissions](../../security/AccessToken/app-permissions.md). |
+
+**Return value**
+
+| Type         | Description                               |
+| :------------ | :---------------------------------- |
+| Promise&lt;[GrantStatus](#grantstatus)&gt; | Promise used to return the permission grant state.|
+
+**Example**
+
+```ts
+import { abilityAccessCtrl } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+let tokenID: number = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a third-party application.
+atManager.verifyAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: abilityAccessCtrl.GrantStatus) => {
+  console.log(`promise: data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`verifyAccessToken fail, err->${JSON.stringify(err)}`);
+});
+```
+
+## GrantStatus
+
+Enumerates the permission grant states.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Security.AccessToken
+
+| Name              |    Value| Description       |
+| ------------------ | ----- | ----------- |
+| PERMISSION_DENIED  | -1    | The permission is not granted.|
+| PERMISSION_GRANTED | 0     | The permission is granted.|
+
+## SwitchType<sup>12+</sup>
 
 Enumerates the global switch types.
 
@@ -517,3 +518,35 @@ Enumerates the global switch types.
 | CAMERA  | 0    | Global switch of the camera.|
 | MICROPHONE | 1     | Global switch of the microphone.|
 | LOCATION | 2     | Global switch of the location service.|
+
+## PermissionRequestResult<sup>10+</sup>
+
+type PermissionRequestResult = _PermissionRequestResult
+
+Represents the permission request result object.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Security.AccessToken
+
+| Type| Description|
+| -------- | -------- |
+| [PermissionRequestResult](js-apis-permissionrequestresult.md) | Permission request result object.|
+
+## Context<sup>10+</sup>
+
+type Context = _Context
+
+Provides context for abilities or applications to access application-specific resources.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Security.AccessToken
+
+| Type| Description|
+| -------- | -------- |
+| [Context](js-apis-inner-application-context.md) | Context for abilities or applications to access application-specific resources. |

@@ -32,7 +32,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | OHIPCParcel \* [OH_IPCParcel_Create](#oh_ipcparcel_create) (void) | 创建OHIPCParcel对象，对象可序列化大小不能超过204800字节。 | 
-| void [OH_IPCParcel_Destroy](#oh_ipcparcel_destroy) (OHIPCParcel \*parcel) | 销毁OHIPCParcel对象. | 
+| void [OH_IPCParcel_Destroy](#oh_ipcparcel_destroy) (OHIPCParcel \*parcel) | 销毁OHIPCParcel对象。 | 
 | int [OH_IPCParcel_GetDataSize](#oh_ipcparcel_getdatasize) (const OHIPCParcel \*parcel) | 获取OHIPCParcel对象包含的数据的大小。 | 
 | int [OH_IPCParcel_GetWritableBytes](#oh_ipcparcel_getwritablebytes) (const OHIPCParcel \*parcel) | 获取OHIPCParcel对象可以写入的字节数。 | 
 | int [OH_IPCParcel_GetReadableBytes](#oh_ipcparcel_getreadablebytes) (const OHIPCParcel \*parcel) | 获取OHIPCParcel对象还可以读取的字节数。 | 
@@ -101,7 +101,7 @@ typedef void*(* OH_IPC_MemAllocator) (int32_t len)
 ### OH_IPCParcel_Append()
 
 ```
-int OH_IPCParcel_Append (OHIPCParcel * parcel, const OHIPCParcel * data )
+int OH_IPCParcel_Append (OHIPCParcel * parcel, const OHIPCParcel * data)
 ```
 
 **描述**
@@ -131,7 +131,7 @@ OHIPCParcel对象数据拼接。
 ### OH_IPCParcel_Create()
 
 ```
-OHIPCParcel* OH_IPCParcel_Create (void )
+OHIPCParcel* OH_IPCParcel_Create (void)
 ```
 
 **描述**
@@ -155,7 +155,7 @@ void OH_IPCParcel_Destroy (OHIPCParcel * parcel)
 
 **描述**
 
-销毁OHIPCParcel对象.
+销毁OHIPCParcel对象。
 
 **系统能力：** SystemCapability.Communication.IPC.Core
 
@@ -240,7 +240,7 @@ int OH_IPCParcel_GetReadPosition (const OHIPCParcel * parcel)
 
 **返回：**
 
-返回当前读位置，参数不合法时返回-1
+返回当前读位置，参数不合法时返回-1。
 
 
 ### OH_IPCParcel_GetWritableBytes()
@@ -296,7 +296,7 @@ int OH_IPCParcel_GetWritePosition (const OHIPCParcel * parcel)
 ### OH_IPCParcel_ReadBuffer()
 
 ```
-const uint8_t* OH_IPCParcel_ReadBuffer (const OHIPCParcel * parcel, int32_t len )
+const uint8_t* OH_IPCParcel_ReadBuffer (const OHIPCParcel * parcel, int32_t len)
 ```
 
 **描述**
@@ -322,7 +322,7 @@ const uint8_t* OH_IPCParcel_ReadBuffer (const OHIPCParcel * parcel, int32_t len 
 ### OH_IPCParcel_ReadDouble()
 
 ```
-int OH_IPCParcel_ReadDouble (const OHIPCParcel * parcel, double * value )
+int OH_IPCParcel_ReadDouble (const OHIPCParcel * parcel, double * value)
 ```
 
 **描述**
@@ -352,7 +352,7 @@ int OH_IPCParcel_ReadDouble (const OHIPCParcel * parcel, double * value )
 ### OH_IPCParcel_ReadFileDescriptor()
 
 ```
-int OH_IPCParcel_ReadFileDescriptor (const OHIPCParcel * parcel, int32_t * fd )
+int OH_IPCParcel_ReadFileDescriptor (const OHIPCParcel * parcel, int32_t * fd)
 ```
 
 **描述**
@@ -382,7 +382,7 @@ int OH_IPCParcel_ReadFileDescriptor (const OHIPCParcel * parcel, int32_t * fd )
 ### OH_IPCParcel_ReadFloat()
 
 ```
-int OH_IPCParcel_ReadFloat (const OHIPCParcel * parcel, float * value )
+int OH_IPCParcel_ReadFloat (const OHIPCParcel * parcel, float * value)
 ```
 
 **描述**
@@ -412,7 +412,7 @@ int OH_IPCParcel_ReadFloat (const OHIPCParcel * parcel, float * value )
 ### OH_IPCParcel_ReadInt16()
 
 ```
-int OH_IPCParcel_ReadInt16 (const OHIPCParcel * parcel, int16_t * value )
+int OH_IPCParcel_ReadInt16 (const OHIPCParcel * parcel, int16_t * value)
 ```
 
 **描述**
@@ -442,7 +442,7 @@ int OH_IPCParcel_ReadInt16 (const OHIPCParcel * parcel, int16_t * value )
 ### OH_IPCParcel_ReadInt32()
 
 ```
-int OH_IPCParcel_ReadInt32 (const OHIPCParcel * parcel, int32_t * value )
+int OH_IPCParcel_ReadInt32 (const OHIPCParcel * parcel, int32_t * value)
 ```
 
 **描述**
@@ -472,7 +472,7 @@ int OH_IPCParcel_ReadInt32 (const OHIPCParcel * parcel, int32_t * value )
 ### OH_IPCParcel_ReadInt64()
 
 ```
-int OH_IPCParcel_ReadInt64 (const OHIPCParcel * parcel, int64_t * value )
+int OH_IPCParcel_ReadInt64 (const OHIPCParcel * parcel, int64_t * value)
 ```
 
 **描述**
@@ -502,7 +502,7 @@ int OH_IPCParcel_ReadInt64 (const OHIPCParcel * parcel, int64_t * value )
 ### OH_IPCParcel_ReadInt8()
 
 ```
-int OH_IPCParcel_ReadInt8 (const OHIPCParcel * parcel, int8_t * value )
+int OH_IPCParcel_ReadInt8 (const OHIPCParcel * parcel, int8_t * value)
 ```
 
 **描述**
@@ -532,7 +532,7 @@ int OH_IPCParcel_ReadInt8 (const OHIPCParcel * parcel, int8_t * value )
 ### OH_IPCParcel_ReadInterfaceToken()
 
 ```
-int OH_IPCParcel_ReadInterfaceToken (const OHIPCParcel * parcel, char ** token, int32_t * len, OH_IPC_MemAllocator allocator )
+int OH_IPCParcel_ReadInterfaceToken (const OHIPCParcel * parcel, char ** token, int32_t * len, OH_IPC_MemAllocator allocator)
 ```
 
 **描述**
@@ -639,7 +639,7 @@ const char* OH_IPCParcel_ReadString (const OHIPCParcel * parcel)
 ### OH_IPCParcel_RewindReadPosition()
 
 ```
-int OH_IPCParcel_RewindReadPosition (OHIPCParcel * parcel, uint32_t newReadPos )
+int OH_IPCParcel_RewindReadPosition (OHIPCParcel * parcel, uint32_t newReadPos)
 ```
 
 **描述**
@@ -667,7 +667,7 @@ int OH_IPCParcel_RewindReadPosition (OHIPCParcel * parcel, uint32_t newReadPos )
 ### OH_IPCParcel_RewindWritePosition()
 
 ```
-int OH_IPCParcel_RewindWritePosition (OHIPCParcel * parcel, uint32_t newWritePos )
+int OH_IPCParcel_RewindWritePosition (OHIPCParcel * parcel, uint32_t newWritePos)
 ```
 
 **描述**
@@ -695,7 +695,7 @@ int OH_IPCParcel_RewindWritePosition (OHIPCParcel * parcel, uint32_t newWritePos
 ### OH_IPCParcel_WriteBuffer()
 
 ```
-int OH_IPCParcel_WriteBuffer (OHIPCParcel * parcel, const uint8_t * buffer, int32_t len )
+int OH_IPCParcel_WriteBuffer (OHIPCParcel * parcel, const uint8_t * buffer, int32_t len)
 ```
 
 **描述**
@@ -726,7 +726,7 @@ int OH_IPCParcel_WriteBuffer (OHIPCParcel * parcel, const uint8_t * buffer, int3
 ### OH_IPCParcel_WriteDouble()
 
 ```
-int OH_IPCParcel_WriteDouble (OHIPCParcel * parcel, double value )
+int OH_IPCParcel_WriteDouble (OHIPCParcel * parcel, double value)
 ```
 
 **描述**
@@ -756,7 +756,7 @@ int OH_IPCParcel_WriteDouble (OHIPCParcel * parcel, double value )
 ### OH_IPCParcel_WriteFileDescriptor()
 
 ```
-int OH_IPCParcel_WriteFileDescriptor (OHIPCParcel * parcel, int32_t fd )
+int OH_IPCParcel_WriteFileDescriptor (OHIPCParcel * parcel, int32_t fd)
 ```
 
 **描述**
@@ -786,7 +786,7 @@ int OH_IPCParcel_WriteFileDescriptor (OHIPCParcel * parcel, int32_t fd )
 ### OH_IPCParcel_WriteFloat()
 
 ```
-int OH_IPCParcel_WriteFloat (OHIPCParcel * parcel, float value )
+int OH_IPCParcel_WriteFloat (OHIPCParcel * parcel, float value)
 ```
 
 **描述**
@@ -816,7 +816,7 @@ int OH_IPCParcel_WriteFloat (OHIPCParcel * parcel, float value )
 ### OH_IPCParcel_WriteInt16()
 
 ```
-int OH_IPCParcel_WriteInt16 (OHIPCParcel * parcel, int16_t value )
+int OH_IPCParcel_WriteInt16 (OHIPCParcel * parcel, int16_t value)
 ```
 
 **描述**
@@ -846,7 +846,7 @@ int OH_IPCParcel_WriteInt16 (OHIPCParcel * parcel, int16_t value )
 ### OH_IPCParcel_WriteInt32()
 
 ```
-int OH_IPCParcel_WriteInt32 (OHIPCParcel * parcel, int32_t value )
+int OH_IPCParcel_WriteInt32 (OHIPCParcel * parcel, int32_t value)
 ```
 
 **描述**
@@ -876,7 +876,7 @@ int OH_IPCParcel_WriteInt32 (OHIPCParcel * parcel, int32_t value )
 ### OH_IPCParcel_WriteInt64()
 
 ```
-int OH_IPCParcel_WriteInt64 (OHIPCParcel * parcel, int64_t value )
+int OH_IPCParcel_WriteInt64 (OHIPCParcel * parcel, int64_t value)
 ```
 
 **描述**
@@ -906,7 +906,7 @@ int OH_IPCParcel_WriteInt64 (OHIPCParcel * parcel, int64_t value )
 ### OH_IPCParcel_WriteInt8()
 
 ```
-int OH_IPCParcel_WriteInt8 (OHIPCParcel * parcel, int8_t value )
+int OH_IPCParcel_WriteInt8 (OHIPCParcel * parcel, int8_t value)
 ```
 
 **描述**
@@ -936,7 +936,7 @@ int OH_IPCParcel_WriteInt8 (OHIPCParcel * parcel, int8_t value )
 ### OH_IPCParcel_WriteInterfaceToken()
 
 ```
-int OH_IPCParcel_WriteInterfaceToken (OHIPCParcel * parcel, const char * token )
+int OH_IPCParcel_WriteInterfaceToken (OHIPCParcel * parcel, const char * token)
 ```
 
 **描述**
@@ -966,7 +966,7 @@ int OH_IPCParcel_WriteInterfaceToken (OHIPCParcel * parcel, const char * token )
 ### OH_IPCParcel_WriteRemoteProxy()
 
 ```
-int OH_IPCParcel_WriteRemoteProxy (OHIPCParcel * parcel, const OHIPCRemoteProxy * proxy )
+int OH_IPCParcel_WriteRemoteProxy (OHIPCParcel * parcel, const OHIPCRemoteProxy * proxy)
 ```
 
 **描述**
@@ -996,7 +996,7 @@ int OH_IPCParcel_WriteRemoteProxy (OHIPCParcel * parcel, const OHIPCRemoteProxy 
 ### OH_IPCParcel_WriteRemoteStub()
 
 ```
-int OH_IPCParcel_WriteRemoteStub (OHIPCParcel * parcel, const OHIPCRemoteStub * stub )
+int OH_IPCParcel_WriteRemoteStub (OHIPCParcel * parcel, const OHIPCRemoteStub * stub)
 ```
 
 **描述**
@@ -1026,7 +1026,7 @@ int OH_IPCParcel_WriteRemoteStub (OHIPCParcel * parcel, const OHIPCRemoteStub * 
 ### OH_IPCParcel_WriteString()
 
 ```
-int OH_IPCParcel_WriteString (OHIPCParcel * parcel, const char * str )
+int OH_IPCParcel_WriteString (OHIPCParcel * parcel, const char * str)
 ```
 
 **描述**

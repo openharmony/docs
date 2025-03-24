@@ -12,7 +12,7 @@ Memory operation failed.
 
 **Description**
 
-Creating an instance fails.
+This error code is reported when a memory operation fails.
 
 **Possible Causes**
 

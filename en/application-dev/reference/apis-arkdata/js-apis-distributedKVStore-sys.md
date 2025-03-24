@@ -68,18 +68,14 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { ValuesBucket } from '@kit.ArkData';
 
 try {
-  let v8Arr: distributedKVStore.Entry[] = [];
-  let arr = new Uint8Array([4, 5, 6, 7]);
-  let vb1: distributedKVStore.Entry = { key: "name_1", value: {type: distributedKVStore.ValueType.INTEGER, value: 32} }
-  let vb2: distributedKVStore.Entry = { key: "name_2", value: {type: distributedKVStore.ValueType.BYTE_ARRAY, value: arr} };
-  let vb3: distributedKVStore.Entry = { key: "name_3", value: {type: distributedKVStore.ValueType.STRING, value: "lisi"} };
-
-  v8Arr.push(vb1);
-  v8Arr.push(vb2);
-  v8Arr.push(vb3);
-  kvStore.putBatch(v8Arr, async (err: BusinessError) => {
+  let bucket1: ValuesBucket = {key:"name", value: "LiSi"};
+  let bucket2: ValuesBucket = {key:"age", value: 20};
+  let bucket3: ValuesBucket = {key:"deposits", value: 12.34};
+  let people: Array<ValuesBucket> = new Array(bucket1, bucket2, bucket3)
+  kvStore.putBatch(people, (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
       return;
@@ -88,7 +84,7 @@ try {
   })
 } catch (e) {
   let error = e as BusinessError;
-  console.error(`Failed to put batch.code is ${error.code},message is ${error.message}`);
+  console.error(`Failed to do putBatch error.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -137,25 +133,21 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { ValuesBucket } from '@kit.ArkData';
 
 try {
-  let v8Arr: distributedKVStore.Entry[] = [];
-  let arr = new Uint8Array([4, 5, 6, 7]);
-  let vb1: distributedKVStore.Entry = { key: "name_1", value: {type: distributedKVStore.ValueType.INTEGER, value: 32} }
-  let vb2: distributedKVStore.Entry = { key: "name_2", value: {type: distributedKVStore.ValueType.BYTE_ARRAY, value: arr} };
-  let vb3: distributedKVStore.Entry = { key: "name_3", value: {type: distributedKVStore.ValueType.STRING, value: "lisi"} };
-
-  v8Arr.push(vb1);
-  v8Arr.push(vb2);
-  v8Arr.push(vb3);
-  kvStore.putBatch(v8Arr).then(async () => {
+  let bucket1: ValuesBucket = {key:"name", value: "LiSi"};
+  let bucket2: ValuesBucket = {key:"age", value: 20};
+  let bucket3: ValuesBucket = {key:"deposits", value: 12.34};
+  let people: Array<ValuesBucket> = new Array(bucket1, bucket2, bucket3)
+  kvStore.putBatch(people).then(() => {
     console.info(`Succeeded in putting patch`);
   }).catch((err: BusinessError) => {
-    console.error(`putBatch fail.code is ${err.code},message is ${err.message}`);
+    console.error(`Failed to do putBatch error.code is ${err.code},message is ${err.message}`);
   });
 } catch (e) {
   let error = e as BusinessError;
-  console.error(`putBatch fail.code is ${error.code},message is ${error.message}`);
+  console.error(`Failed to do putBatch error.code is ${error.code},message is ${error.message}`);
 }
 ```
 

@@ -11,7 +11,7 @@
 
 输入：
 
-- x，n维tensor
+- x，n维tensor。
 
 - paddings，一个2维tensor，指定每一维度增补的长度，shape为[n，2]。paddings[i][0]表示第i维上，需要在输入张量前增补的数量； paddings[i][1]表示第i维上，需要在输入张量x后增补的数量。
 

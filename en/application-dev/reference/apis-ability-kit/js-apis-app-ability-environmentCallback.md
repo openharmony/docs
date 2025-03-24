@@ -1,6 +1,6 @@
 # @ohos.app.ability.EnvironmentCallback (EnvironmentCallback)
 
-The **EnvironmentCallback** module provides APIs for the application context to listen for system environment changes.
+The EnvironmentCallback module provides APIs for the application context to listen for system environment changes.
 
 > **NOTE**
 > 

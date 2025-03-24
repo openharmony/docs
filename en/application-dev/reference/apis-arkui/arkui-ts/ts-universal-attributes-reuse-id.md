@@ -25,6 +25,8 @@ Sets the ID that identifies the reuse group of the component.
 
 ## Example
 
+This example demonstrates how to use **reused** to identify the reuse group of a custom component.
+
 ```ts
 // xxx.ets
 @Entry

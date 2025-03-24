@@ -24,8 +24,8 @@ Sets a keyboard shortcut for the component.
 
 | Name  | Type                                 | Mandatory  | Description                                    |
 | ----- | ------------------------------------- | ---- | ---------------------------------------- |
-| value | string \| [FunctionKey](#functionkey) | Yes| Character key (which can be entered through the keyboard) or [function key](#functionkey).<br>An empty string means to disable the keyboard shortcut.<br>|
-| keys  | Array\<[ModifierKey](#modifierkey)> | Yes| Modifier keys.<br>This parameter can be left empty only when **value** is set to a [function key](#functionkey).<br>|
+| value | string \| [FunctionKey](ts-appendix-enums.md#functionkey10) | Yes| Character key (which can be entered through the keyboard) or [function key](ts-appendix-enums.md#functionkey10).<br>An empty string means to disable the keyboard shortcut.<br>|
+| keys  | Array\<[ModifierKey](ts-appendix-enums.md#modifierkey10)> | Yes| Modifier keys.<br>This parameter can be left empty only when **value** is set to a [function key](ts-appendix-enums.md#functionkey10).<br>|
 | action  | () => void    | No   | Callback for a custom event after the keyboard shortcut is triggered.<br>                              |
 
 **Return value**
@@ -33,43 +33,6 @@ Sets a keyboard shortcut for the component.
 | Type| Description|
 | -------- | -------- |
 | T | Current component.|
-
-## ModifierKey
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-| Name   | Description          |
-| ----- | ------------ |
-| CTRL  | Ctrl key on the keyboard. |
-| SHIFT | Shift key on the keyboard.|
-| ALT   | Alt key on the keyboard.  |
-
-## FunctionKey
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-| Name  | Description          |
-| ---- | ------------ |
-| ESC  | Esc key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| F1   | F1 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| F2   | F2 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| F3   | F3 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| F4   | F4 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| F5   | F5 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| F6   | F6 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| F7   | F7 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| F8   | F8 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| F9   | F9 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| F10  | F10 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| F11  | F11 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| F12  | F12 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| TAB<sup>12+</sup>  | Tab key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| DPAD_UP<sup>12+</sup>   | Up arrow key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| DPAD_DOWN<sup>12+</sup> | Down arrow key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| DPAD_LEFT<sup>12+</sup> | Left arrow key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| DPAD_RIGHT<sup>12+</sup> | Right arrow key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## Precautions for Using Keyboard Shortcuts
 
@@ -115,9 +78,9 @@ The predefined key events and custom key events have priorities. Events with hig
 
 ## Example
 
-### Example 1
+### Example 1: Setting Component Keyboard Shortcuts
 
-This example sets a keyboard shortcut. You can press the modifier key and accompanying key at the same time to trigger the component to respond to the shortcut and trigger the **onClick** event or other custom event.
+This example demonstrates how to set up keyboard shortcuts for components. This allows users to press the modifier key and accompanying key at the same time to trigger the component to respond to the shortcut and trigger the **onClick** event or a custom event.
 
 ```ts
 @Entry
@@ -161,9 +124,9 @@ struct Index {
 
  ![keyEvent](figures/keyboard-shortcut.gif)
 
-### Example 2
+### Example 2: Registering and Unregistering Keyboard Shortcuts
 
-This example registers and deregisters a keyboard shortcut through clicks.
+This example demonstrates how to register and unregister keyboard shortcuts dynamically.
 
 ```ts
 @Entry

@@ -3,7 +3,7 @@
 
 ## 概述
 
-定义异步 API 的回调，该回调可用于向 SA 发送命令。详细说明请参考[IExecutor](interface_i_executor_faceauth_v11.md).
+定义异步 API 的回调，该回调可用于向 SA 发送命令。详细说明请参考[IExecutor](interface_i_executor_faceauth_v11.md)。
 
 **起始版本：** 4.0
 

@@ -5,7 +5,7 @@ HUKS提供了接口供应用查询指定密钥是否存在。
 
 ## 在CMake脚本中链接相关动态库
 ```txt
-   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 ```
 
 ## 开发步骤
@@ -19,6 +19,7 @@ HUKS提供了接口供应用查询指定密钥是否存在。
 ```c++
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
+#include "napi/native_api.h"
 #include <string.h>
 static napi_value IsKeyExist(napi_env env, napi_callback_info info)
 {

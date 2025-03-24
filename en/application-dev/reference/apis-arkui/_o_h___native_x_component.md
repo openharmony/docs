@@ -16,8 +16,8 @@ Describes the surface and touch event held by the ArkUI XComponent, which can be
 
 | Name                                      | Description                                      |
 | ---------------------------------------- | ---------------------------------------- |
-| [native_interface_xcomponent.h](native__interface__xcomponent_8h.md) | Declares the APIs for accessing **NativeXComponent**.<br>**File to include**: &lt;ace/xcomponent/native_interface_xcomponent.h&gt;<br>**Library**: libace_ndk.z.so|
-| [native_xcomponent_key_event.h](native__xcomponent__key__event_8h.md) | Declares the enums used to access **NativeXComponent** key events.<br>**File to include**: &lt;ace/xcomponent/native_xcomponent_key_event.h&gt;<br>**Library**: libace_ndk.z.so|
+| [native_interface_xcomponent.h](native__interface__xcomponent_8h.md) | Declares the APIs for accessing **NativeXComponent**.|
+| [native_xcomponent_key_event.h](native__xcomponent__key__event_8h.md) | Declares the enums used to access **NativeXComponent** key events.|
 
 
 ### Structs
@@ -72,6 +72,7 @@ Describes the surface and touch event held by the ArkUI XComponent, which can be
 | [OH_NativeXComponent_RegisterMouseEventCallback](#oh_nativexcomponent_registermouseeventcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [OH_NativeXComponent_MouseEvent_Callback](_o_h___native_x_component___mouse_event___callback.md) \*callback) | Registers the mouse event callback for this **OH_NativeXComponent** instance.      |
 | [OH_NativeXComponent_RegisterFocusEventCallback](#oh_nativexcomponent_registerfocuseventcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, void \*window)) | Registers the focus obtaining event callback for this **OH_NativeXComponent** instance.      |
 | [OH_NativeXComponent_RegisterKeyEventCallback](#oh_nativexcomponent_registerkeyeventcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, void \*window)) | Registers the key event callback for this **OH_NativeXComponent** instance.      |
+| [OH_NativeXComponent_RegisterKeyEventCallbackWithResult](#oh_nativexcomponent_registerkeyeventcallbackwithresult) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, bool(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, void \*window)) | Registers a key event callback with a return value for this **OH_NativeXComponent** instance.      |
 | [OH_NativeXComponent_RegisterBlurEventCallback](#oh_nativexcomponent_registerblureventcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, void \*window)) | Registers the focus loss event callback for this **OH_NativeXComponent** instance.      |
 | [OH_NativeXComponent_GetKeyEvent](#oh_nativexcomponent_getkeyevent) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent) \*\*keyEvent) | Obtains the key event scheduled by the ArkUI XComponent.       |
 | [OH_NativeXComponent_GetKeyEventAction](#oh_nativexcomponent_getkeyeventaction) ([OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent) \*keyEvent, [OH_NativeXComponent_KeyAction](#oh_nativexcomponent_keyaction) \*action) | Obtains the action of the specified key event.                          |
@@ -87,11 +88,12 @@ Describes the surface and touch event held by the ArkUI XComponent, which can be
 | int32_t [OH_NativeXComponent_RegisterUIInputEventCallback](#oh_nativexcomponent_registeruiinputeventcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, [ArkUI_UIInputEvent_Type](_ark_u_i___event_module.md#arkui_uiinputevent_type) type), [ArkUI_UIInputEvent_Type](_ark_u_i___event_module.md#arkui_uiinputevent_type) type) | Registers a UI input event callback for an **OH_NativeXComponent** instance and enables the callback to be invoked when a UI input event is received. |
 | int32_t [OH_NativeXComponent_RegisterOnTouchInterceptCallback](#oh_nativexcomponent_registerontouchinterceptcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [HitTestMode](_ark_u_i___native_module.md#arkui_hittestmode)(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event)) | Registers a custom event intercept callback for an **OH_NativeXComponent** and enables the callback during the hit test. |
 | int32_t [OH_NativeXComponent_SetNeedSoftKeyboard](#oh_nativexcomponent_setneedsoftkeyboard) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, bool isNeedSoftKeyboard) | Sets whether the soft keyboard is required for an **OH_NativeXComponent** instance. |
-| int32_t [OH_NativeXComponent_RegisterSurfaceShowCallback](#oh_nativexcomponent_registersurfaceshowcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, void \*window)) | Registers a surface display callback for an **OH_NativeXComponent** instance. The callback is invoked whenever the application is switched to the foreground.|
-| int32_t [OH_NativeXComponent_RegisterSurfaceHideCallback](#oh_nativexcomponent_registersurfacehidecallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, void \*window)) | Registers a surface hiding callback for an **OH_NativeXComponent** instance. The callback is invoked whenever the application is switched to the background.|
+| int32_t [OH_NativeXComponent_RegisterSurfaceShowCallback](#oh_nativexcomponent_registersurfaceshowcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, void \*window)) | Registers a surface display callback for an **OH_NativeXComponent** instance. The callback is invoked after the application is switched to the foreground.|
+| int32_t [OH_NativeXComponent_RegisterSurfaceHideCallback](#oh_nativexcomponent_registersurfacehidecallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, void \*window)) | Registers a surface hiding callback for an **OH_NativeXComponent** instance. The callback is invoked after the application is switched to the background.|
 | int32_t [OH_NativeXComponent_GetTouchEventSourceType](#oh_nativexcomponent_gettoucheventsourcetype) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, int32_t pointId, [OH_NativeXComponent_EventSourceType](#oh_nativexcomponent_eventsourcetype) \*sourceType) | Obtains the touch event source type of an **OH_NativeXComponent** instance. |
 | [OH_NativeXComponent](#oh_nativexcomponent) \* [OH_NativeXComponent_GetNativeXComponent](#oh_nativexcomponent_getnativexcomponent) ([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | Obtains the pointer to an **OH_NativeXComponent** instance based on the specified component instance created by the native API. |
 | int32_t OH_NativeXComponent_GetNativeAccessibilityProvider(OH_NativeXComponent* component, ArkUI_AccessibilityProvider** handle); |  |
+| int32_t [OH_NativeXComponent_RegisterKeyEventCallbackWithResult](#oh_nativexcomponent_registerkeyeventcallbackwithresult) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, bool(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, void \*window)) | Registers a key event callback with a return value for this **OH_NativeXComponent** instance. | 
 
 ### Variables
 
@@ -736,7 +738,7 @@ Attaches the UI component created through the native API of ArkUI to this **OH_N
 
 **0**: success
 
-**401**: parameter error
+-**2**: parameter error
 
 
 ### OH_NativeXComponent_DetachNativeRootNode()
@@ -761,7 +763,7 @@ Detaches the native component of ArkUI from this **OH_NativeXComponent** instanc
 
 **0**: success
 
-**401**: parameter error
+-**2**: parameter error
 
 
 
@@ -1372,6 +1374,32 @@ Returns the status code of the execution.
 10
 
 
+### OH_NativeXComponent_RegisterKeyEventCallbackWithResult()
+
+```
+int32_t OH_NativeXComponent_RegisterKeyEventCallbackWithResult (OH_NativeXComponent * component, bool(*callback)(OH_NativeXComponent *component, void *window))
+```
+
+**Description**
+
+Registers a key event callback with a return value for this **OH_NativeXComponent** instance. The callback must return a result (**true** or **false**). If the callback returns **true**, the event will not be further propagated. If it returns **false**, the event will continue to be processed according to the normal event handling flow.
+
+**Parameters**
+
+| Name       | Description                           |
+| --------- | ----------------------------- |
+| component | Pointer to the **OH_NativeXComponent** instance.|
+| callback  | Pointer to the key event callback.               |
+
+**Returns**
+
+Returns the status code of the execution.
+
+**Since**
+
+14
+
+
 ### OH_NativeXComponent_RegisterMouseEventCallback()
 
 ```
@@ -1412,6 +1440,8 @@ Registers the display update callback for this **OH_NativeXComponent** instance 
 | -------- | -------- |
 | component | Pointer to the **OH_NativeXComponent** instance. |
 | callback | Pointer to the display update callback. |
+| timestamp | Time when the current frame arrives, in nanoseconds.|
+| targetTimestamp | Expected arrival time of the next frame, in nanoseconds.|
 
 **Returns**
 
@@ -1547,7 +1577,7 @@ int32_t OH_NativeXComponent_RegisterSurfaceShowCallback (OH_NativeXComponent * c
 
 **Description**
 
-Registers a surface display callback for an **OH_NativeXComponent** instance. The callback is invoked whenever the application is switched to the foreground.
+Registers a surface display callback for an **OH_NativeXComponent** instance. The callback is invoked after the application is switched to the foreground.
 
 **Parameters**
 
@@ -1572,7 +1602,7 @@ int32_t OH_NativeXComponent_RegisterSurfaceHideCallback (OH_NativeXComponent * c
 
 **Description**
 
-Registers a surface hiding callback for an **OH_NativeXComponent** instance. The callback is invoked whenever the application is switched to the background.
+Registers a surface hiding callback for an **OH_NativeXComponent** instance. The callback is invoked after the application is switched to the background.
 
 **Parameters**
 
@@ -1760,6 +1790,13 @@ void(* OH_NativeXComponent_MouseEvent_Callback::DispatchMouseEvent) (OH_NativeXC
 
 Invoked when a mouse event is triggered.
 
+**Parameters**
+
+| Name       | Description                           |
+| --------- | ----------------------------- |
+| component | Pointer to the **OH_NativeXComponent** instance.|
+| window  | Handle to the **NativeWindow** instance.             |
+
 **Since**
 
 8
@@ -1880,6 +1917,13 @@ void(* OH_NativeXComponent_Callback::OnSurfaceChanged) (OH_NativeXComponent *com
 
 Invoked when the surface changes.
 
+**Parameters**
+
+| Name       | Description                           |
+| --------- | ----------------------------- |
+| component | Pointer to the **OH_NativeXComponent** instance.|
+| window  | Handle to the **NativeWindow** instance.             |
+
 **Since**
 
 8
@@ -1895,6 +1939,13 @@ void(* OH_NativeXComponent_Callback::OnSurfaceCreated) (OH_NativeXComponent *com
 
 Invoked when a surface is created.
 
+**Parameters**
+
+| Name       | Description                           |
+| --------- | ----------------------------- |
+| component | Pointer to the **OH_NativeXComponent** instance.|
+| window  | Handle to the **NativeWindow** instance.             |
+
 **Since**
 
 8
@@ -1909,6 +1960,13 @@ void(* OH_NativeXComponent_Callback::OnSurfaceDestroyed) (OH_NativeXComponent *c
 **Description**
 
 Invoked when the surface is destroyed.
+
+**Parameters**
+
+| Name       | Description                           |
+| --------- | ----------------------------- |
+| component | Pointer to the **OH_NativeXComponent** instance.|
+| window  | Handle to the **NativeWindow** instance.             |
 
 **Since**
 

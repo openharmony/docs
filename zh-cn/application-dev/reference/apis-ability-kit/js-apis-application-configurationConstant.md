@@ -16,7 +16,7 @@ import ConfigurationConstant from '@ohos.application.ConfigurationConstant';
 
 表示颜色模式的枚举。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
+**系统能力**：SystemCapability.Ability.AbilityBase
 
 | 名称 | 值 | 说明 | 
 | -------- | -------- | -------- |

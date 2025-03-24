@@ -20,7 +20,7 @@
 
 | \@Link变量装饰器                                             | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 装饰器参数                                                   | 无                                                           |
+| 装饰器参数                                                   | 无。                                                           |
 | 同步类型                                                     | 双向同步。<br/>父组件中的状态变量可以与子组件\@Link建立双向同步，当其中一方改变时，另外一方能够感知到变化。 |
 | 允许装饰的变量类型                                           | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>API11及以上支持Map、Set类型。<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>类型必须被指定，且和双向绑定状态变量的类型相同。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[Link支持联合类型实例](#link支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@Link a : string \| undefined`。 |
 | 被装饰变量的初始值                                           | 无，禁止本地初始化。                                         |
@@ -59,13 +59,14 @@ struct DateComponent {
 
   build() {
     Column() {
-      Button(`child increase the year by 1`).onClick(() => {
-        this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1)
+      Button(`child increase the year by 1`)
+      .onClick(() => {
+        this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1);
       })
       Button('child update the new date')
         .margin(10)
         .onClick(() => {
-          this.selectedDate = new Date('2023-09-09')
+          this.selectedDate = new Date('2023-09-09');
         })
       DatePicker({
         start: new Date('1970-1-1'),
@@ -87,12 +88,12 @@ struct ParentComponent {
       Button('parent increase the month by 1')
         .margin(10)
         .onClick(() => {
-          this.parentSelectedDate.setMonth(this.parentSelectedDate.getMonth() + 1)
+          this.parentSelectedDate.setMonth(this.parentSelectedDate.getMonth() + 1);
         })
       Button('parent update the new date')
         .margin(10)
         .onClick(() => {
-          this.parentSelectedDate = new Date('2023-07-07')
+          this.parentSelectedDate = new Date('2023-07-07');
         })
       DatePicker({
         start: new Date('1970-1-1'),
@@ -135,147 +136,147 @@ struct ParentComponent {
 
 2. \@Link装饰的变量禁止本地初始化，否则编译期会报错。
 
-```ts
-// 错误写法，编译报错
-@Link count: number = 10;
+  ```ts
+  // 错误写法，编译报错
+  @Link count: number = 10;
 
-// 正确写法
-@Link count: number;
-```
+  // 正确写法
+  @Link count: number;
+  ```
 
 3. \@Link装饰的变量的类型要和数据源类型保持一致，否则框架会抛出运行时错误。
 
-【反例】
+  【反例】
 
-```ts
-class Info {
-  info: string = 'Hello';
-}
-
-class Cousin {
-  name: string = 'Hello';
-}
-
-@Component
-struct Child {
-  // 错误写法，@Link与@State数据源类型不一致
-  @Link test: Cousin;
-
-  build() {
-    Text(this.test.name)
+  ```ts
+  class Info {
+    info: string = 'Hello';
   }
-}
 
-@Entry
-@Component
-struct LinkExample {
-  @State info: Info = new Info();
+  class Cousin {
+    name: string = 'Hello';
+  }
 
-  build() {
-    Column() {
-      // 错误写法，@Link与@State数据源类型不一致
-      Child({test: new Cousin()})
+  @Component
+  struct Child {
+    // 错误写法，@Link与@State数据源类型不一致
+    @Link test: Cousin;
+
+    build() {
+      Text(this.test.name)
     }
   }
-}
-```
 
-【正例】
+  @Entry
+  @Component
+  struct LinkExample {
+    @State info: Info = new Info();
 
-```ts
-class Info {
-  info: string = 'Hello';
-}
-
-@Component
-struct Child {
-  // 正确写法
-  @Link test: Info;
-
-  build() {
-    Text(this.test.info)
-  }
-}
-
-@Entry
-@Component
-struct LinkExample {
-  @State info: Info = new Info();
-
-  build() {
-    Column() {
-      // 正确写法
-      Child({test: this.info})
+    build() {
+      Column() {
+        // 错误写法，@Link与@State数据源类型不一致
+        Child({test: new Cousin()})
+      }
     }
   }
-}
-```
+  ```
+
+  【正例】
+
+  ```ts
+  class Info {
+    info: string = 'Hello';
+  }
+
+  @Component
+  struct Child {
+    // 正确写法
+    @Link test: Info;
+
+    build() {
+      Text(this.test.info)
+    }
+  }
+
+  @Entry
+  @Component
+  struct LinkExample {
+    @State info: Info = new Info();
+
+    build() {
+      Column() {
+        // 正确写法
+        Child({test: this.info})
+      }
+    }
+  }
+  ```
 
 4. \@Link装饰的变量仅能被状态变量初始化，不能用常量初始化，编译期会有warn告警，运行时会抛出is not callable运行时错误。
 
-【反例】
+  【反例】
 
-```ts
-class Info {
-  info: string = 'Hello';
-}
-
-@Component
-struct Child {
-  @Link msg: string;
-  @Link info: string;
-
-  build() {
-    Text(this.msg + this.info)
+  ```ts
+  class Info {
+    info: string = 'Hello';
   }
-}
 
-@Entry
-@Component
-struct LinkExample {
-  @State message: string = 'Hello';
-  @State info: Info = new Info();
+  @Component
+  struct Child {
+    @Link msg: string;
+    @Link info: string;
 
-  build() {
-    Column() {
-      // 错误写法，常规变量不能初始化@Link
-      Child({msg: 'World', info: this.info.info})
+    build() {
+      Text(this.msg + this.info)
     }
   }
-}
-```
 
-【正例】
+  @Entry
+  @Component
+  struct LinkExample {
+    @State message: string = 'Hello';
+    @State info: Info = new Info();
 
-```ts
-class Info {
-  info: string = 'Hello';
-}
-
-@Component
-struct Child {
-  @Link msg: string;
-  @Link info: Info;
-
-  build() {
-    Text(this.msg + this.info.info)
-  }
-}
-
-@Entry
-@Component
-struct LinkExample {
-  @State message: string = 'Hello';
-  @State info: Info = new Info();
-
-  build() {
-    Column() {
-      // 正确写法
-      Child({msg: this.message, info: this.info})
+    build() {
+      Column() {
+        // 错误写法，常规变量不能初始化@Link
+        Child({msg: 'World', info: this.info.info})
+      }
     }
   }
-}
-```
+  ```
+
+  【正例】
+
+  ```ts
+  class Info {
+    info: string = 'Hello';
+  }
+
+  @Component
+  struct Child {
+    @Link msg: string;
+    @Link info: Info;
+
+    build() {
+      Text(this.msg + this.info.info)
+    }
+  }
+
+  @Entry
+  @Component
+  struct LinkExample {
+    @State message: string = 'Hello';
+    @State info: Info = new Info();
+
+    build() {
+      Column() {
+        // 正确写法
+        Child({msg: this.message, info: this.info})
+      }
+    }
+  }
+  ```
 
 5. \@Link不支持装饰Function类型的变量，框架会抛出运行时错误。
 
@@ -448,7 +449,7 @@ struct Parent {
 ```ts
 @Component
 struct Child {
-  @Link value: Map<number, string>
+  @Link value: Map<number, string>;
 
   build() {
     Column() {
@@ -458,19 +459,19 @@ struct Child {
         Divider()
       })
       Button('child init map').onClick(() => {
-        this.value = new Map([[0, "a"], [1, "b"], [3, "c"]])
+        this.value = new Map([[0, "a"], [1, "b"], [3, "c"]]);
       })
       Button('child set new one').onClick(() => {
-        this.value.set(4, "d")
+        this.value.set(4, "d");
       })
       Button('child clear').onClick(() => {
-        this.value.clear()
+        this.value.clear();
       })
       Button('child replace the first one').onClick(() => {
-        this.value.set(0, "aa")
+        this.value.set(0, "aa");
       })
       Button('child delete the first one').onClick(() => {
-        this.value.delete(0)
+        this.value.delete(0);
       })
     }
   }
@@ -480,7 +481,7 @@ struct Child {
 @Entry
 @Component
 struct MapSample {
-  @State message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]])
+  @State message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]);
 
   build() {
     Row() {
@@ -505,7 +506,7 @@ struct MapSample {
 ```ts
 @Component
 struct Child {
-  @Link message: Set<number>
+  @Link message: Set<number>;
 
   build() {
     Column() {
@@ -514,16 +515,16 @@ struct Child {
         Divider()
       })
       Button('init set').onClick(() => {
-        this.message = new Set([0, 1, 2, 3, 4])
+        this.message = new Set([0, 1, 2, 3, 4]);
       })
       Button('set new one').onClick(() => {
-        this.message.add(5)
+        this.message.add(5);
       })
       Button('clear').onClick(() => {
-        this.message.clear()
+        this.message.clear();
       })
       Button('delete the first one').onClick(() => {
-        this.message.delete(0)
+        this.message.delete(0);
       })
     }
     .width('100%')
@@ -534,7 +535,7 @@ struct Child {
 @Entry
 @Component
 struct SetSample {
-  @State message: Set<number> = new Set([0, 1, 2, 3, 4])
+  @State message: Set<number> = new Set([0, 1, 2, 3, 4]);
 
   build() {
     Row() {
@@ -552,7 +553,7 @@ struct SetSample {
 
 使用[\@Watch](./arkts-watch.md)可以在双向同步时，更改本地变量。
 
-下面的示例中，在\@Link的\@Watch里面修改了一个\@State装饰的变量sourceNumber，实现了父子组件间的变量同步。但是\@State装饰的变量memberMessage在本地修改又不会影响到父组件中的变量改变。
+下面的示例中，在\@Link的\@Watch里面修改了一个\@State装饰的变量memberMessage，实现了父子组件间的变量同步。但是\@State装饰的变量memberMessage在本地修改又不会影响到父组件中的变量改变。
 
 ```ts
 @Entry
@@ -603,19 +604,19 @@ struct Child {
 ```ts
 @Component
 struct Child {
-  @Link name: string | undefined
+  @Link name: string | undefined;
 
   build() {
     Column() {
 
       Button('Child change name to Bob')
         .onClick(() => {
-          this.name = "Bob"
+          this.name = "Bob";
         })
 
       Button('Child change name to undefined')
         .onClick(() => {
-          this.name = undefined
+          this.name = undefined;
         })
 
     }.width('100%')
@@ -625,7 +626,7 @@ struct Child {
 @Entry
 @Component
 struct Index {
-  @State name: string | undefined = "mary"
+  @State name: string | undefined = "mary";
 
   build() {
     Column() {
@@ -635,12 +636,12 @@ struct Index {
 
       Button('Parents change name to Peter')
         .onClick(() => {
-          this.name = "Peter"
+          this.name = "Peter";
         })
 
       Button('Parents change name to undefined')
         .onClick(() => {
-          this.name = undefined
+          this.name = undefined;
         })
     }
   }
@@ -692,7 +693,7 @@ struct Parent {
 }
 ```
 
-\@Link testNum: number从父组件的LinkChild({testNum:this.info.age})初始化。\@Link的数据源必须是装饰器装饰的状态变量，简而言之，\@Link装饰的数据必须和数据源类型相同，比如\@Link: T和\@State : T。所以，这里应该改为\@Link testNum: Info，从父组件初始化的方式为LinkChild({testNum: this.info})
+\@Link testNum: number从父组件的LinkChild({testNum:this.info.age})初始化。\@Link的数据源必须是装饰器装饰的状态变量，简而言之，\@Link装饰的数据必须和数据源类型相同，比如\@Link: T和\@State : T。所以，这里应该改为\@Link testNum: Info，从父组件初始化的方式为LinkChild({testNum: this.info})。
 
 【正例】
 

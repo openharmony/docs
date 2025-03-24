@@ -79,7 +79,7 @@ Swiper() {
 
 ## Navigation Point Indicator
 
-The **Swiper** component comes with default navigation point and arrow styles, with navigation dots centered at the bottom and arrows hidden.
+The **Swiper** component comes with default navigation point and arrow styles, with navigation points centered at the bottom and arrows hidden.
 
 With the **indicator** attribute, you can set the position of the navigation point indicator relative to the edges of the **Swiper** component, in addition to the size, color, and mask of each navigation point as well as the color of the selected navigation point.
 
@@ -112,7 +112,7 @@ Swiper() {
 
 ![indicator](figures/indicator.PNG)
 
-- Example of customizing the style of the navigation dots indicator, with the diameter of 30 vp, left margin of 0, and color of red:
+- Example of customizing the style of the navigation point indicator, with the dot diameter of 30 vp, left margin of 0, and color of red:
 
  
 
@@ -147,9 +147,9 @@ Swiper() {
 
 ![arrow1](figures/arrow1.gif)
 
-- Example of customizing the style of navigation point arrows as follows:
+- Example of customizing the style of navigation point arrows:
 
-18 vp size, blue color, on both sides of the component
+In this example, the arrows are displayed on both sides of the component, with a size of 18 vp and a color of blue.
 
 ```ts
 Swiper() {
@@ -169,7 +169,7 @@ Swiper() {
 
 ## Page Switching Mode
 
-The **Swiper** component supports three page switching modes: using the swipe gesture, using the navigation dots indicator, and using the controller. The following example shows how to switch pages using the controller.
+The **Swiper** component supports three page switching modes: swiping with fingers, touching navigation points, and using a controller. The following example shows how to switch between pages using a controller.
 
 ```ts
 @Entry
@@ -204,11 +204,11 @@ struct SwiperDemo {
       Row({ space: 12 }) {
         Button('showNext')
           .onClick(() => {
-            this.swiperController.showNext(); // Switch to the next page through the controller.
+            this.swiperController.showNext(); // Switch to the next page using the controller.
           })
         Button('showPrevious')
           .onClick(() => {
-            this.swiperController.showPrevious(); // Switch to the previous page through the controller.
+            this.swiperController.showPrevious(); // Switch to the previous page using the controller.
           })
       }.margin(5)
     }.width('100%')
@@ -257,7 +257,7 @@ Swiper() {
 
 ## Child Components Per Page
 
-You can set the number of child components per page for the **Swiper** component through its [displayCount](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#attributes) attribute.
+You can set the number of child components per page for the **Swiper** component through its [displayCount](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#displaycount8) attribute.
 
 ```ts
 Swiper() {

@@ -172,7 +172,7 @@ function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObjec
     }
   });
 }
-
+/* Initialize the session in the HUKS and obtain the challenge value. */
 async function publicInitFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter promise doInit`);
   let throwObject: throwObject = { isThrow: false };
@@ -194,7 +194,7 @@ async function publicInitFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
     console.error(`promise: doInit input arg invalid, ` + JSON.stringify(error));
   }
 }
-
+/* Call UserIAM to start fingerprint authentication and trigger the access control process in HUKS. */
 function userIAMAuthFinger(huksChallenge: Uint8Array) {
   // Obtain an authentication object.
   let authTypeList: userAuth.UserAuthType[] = [authType];

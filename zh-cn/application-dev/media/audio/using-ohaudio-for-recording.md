@@ -32,14 +32,14 @@ OHAudio提供OH_AudioStreamBuilder接口，遵循构造器设计模式，用于�
 
 使用[OH_AudioStreamBuilder_Create](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_create)创建构造器示例：
 
-```
+```cpp
 OH_AudioStreamBuilder* builder;
 OH_AudioStreamBuilder_Create(&builder, streamType);
 ```
 
 在音频业务结束之后，开发者应该执行[OH_AudioStreamBuilder_Destroy](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_destroy)接口来销毁构造器。
 
-```
+```cpp
 OH_AudioStreamBuilder_Destroy(builder);
 ```
 
@@ -52,7 +52,7 @@ OH_AudioStreamBuilder_Destroy(builder);
 
 1. 创建构造器
 
-    ```c++
+    ```cpp
     OH_AudioStreamBuilder* builder;
     OH_AudioStreamBuilder_Create(&builder, AUDIOSTREAM_TYPE_CAPTURER);
     ```
@@ -61,7 +61,7 @@ OH_AudioStreamBuilder_Destroy(builder);
 
     创建音频录制构造器后，可以设置音频流所需要的参数，可以参考下面的案例。
 
-    ```c++
+    ```cpp
     // 设置音频采样率
     OH_AudioStreamBuilder_SetSamplingRate(builder, 48000);
     // 设置音频声道
@@ -80,7 +80,7 @@ OH_AudioStreamBuilder_Destroy(builder);
 
     多音频并发处理可参考文档[处理音频焦点事件](audio-playback-concurrency.md)，仅接口语言差异。
 
-    ```c++
+    ```cpp
     // 自定义读入数据函数
     int32_t MyOnReadData(
         OH_AudioCapturer* capturer,
@@ -136,7 +136,7 @@ OH_AudioStreamBuilder_Destroy(builder);
 
     - 请确保[OH_AudioCapturer_Callbacks](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiocapturer_callbacks)的每一个回调都被**自定义的回调方法**或**空指针**初始化。
 
-      ```c++
+      ```cpp
       // 自定义读入数据函数
       int32_t MyOnReadData(
           OH_AudioCapturer* capturer,
@@ -170,7 +170,7 @@ OH_AudioStreamBuilder_Destroy(builder);
 
     - 使用前，初始化并清零结构体。
 
-      ```c++
+      ```cpp
       // 自定义读入数据函数
       int32_t MyOnReadData(
           OH_AudioCapturer* capturer,
@@ -203,7 +203,7 @@ OH_AudioStreamBuilder_Destroy(builder);
 
 4. 构造录制音频流
 
-    ```c++
+    ```cpp
     OH_AudioCapturer* audioCapturer;
     OH_AudioStreamBuilder_GenerateCapturer(builder, &audioCapturer);
     ```
@@ -224,7 +224,7 @@ OH_AudioStreamBuilder_Destroy(builder);
 
     构造器不再使用时，需要释放相关资源。
 
-    ```c++
+    ```cpp
     OH_AudioStreamBuilder_Destroy(builder);
     ```
 
@@ -239,7 +239,7 @@ OH_AudioStreamBuilder_Destroy(builder);
 
 开发示例
 
-```C
+```cpp
 OH_AudioStream_LatencyMode latencyMode = AUDIOSTREAM_LATENCY_MODE_FAST;
 OH_AudioStreamBuilder_SetLatencyMode(builder, latencyMode);
 ```

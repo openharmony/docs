@@ -6,23 +6,23 @@ For details about the algorithm specifications, see [ECDSA](crypto-sign-sig-veri
 
 ## Adding the Dynamic Library in the CMake Script
 ```txt
-   target_link_libraries(entry PUBLIC libohcrypto.so)
+target_link_libraries(entry PUBLIC libohcrypto.so)
 ```
 
 ## How to Develop
 
 
 
-1. Use [OH_CryptoVerify_Create](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_create) with the string parameter **'ECC256|SHA256'** to create a **Verify** instance. The key type is **ECC256**, and MD algorithm is **SHA256**.
+1. Call [OH_CryptoVerify_Create](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_create) with the string parameter **'ECC256|SHA256'** to create a **Verify** instance. The key type is **ECC256**, and MD algorithm is **SHA256**.
 
-2. Use [OH_CryptoVerify_Init](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_init) to initialize the **Verify** instance by using the public key (**OH_CryptoPubKey**).
+2. Call [OH_CryptoVerify_Init](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_init) to initialize the **Verify** instance by using the public key (**OH_CryptoPubKey**).
 
-3. Use [OH_CryptoVerify_Update](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_update) to pass in the data to be verified.
+3. Call [OH_CryptoVerify_Update](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_update) to pass in the data to be verified.
    Currently, the amount of data to be passed in by a single **OH_CryptoVerify_Update** is not limited. You can determine how to pass in data based on the data volume. If a small amount of data is to be verified, you can call **OH_CryptoVerify_Final** immediately after **OH_CryptoVerify_Init()**.
 
-4. Use [OH_CryptoVerify_Final](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_final) to verify the signature.
+4. Call [OH_CryptoVerify_Final](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_final) to verify the signature.
 
-**Example**
+Example:
 
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
@@ -37,7 +37,7 @@ static bool doTestEcdsaSignature()
 
    uint8_t plainText[] = {
       0xe4, 0x2b, 0xcc, 0x08, 0x11, 0x79, 0x16, 0x1b, 0x35, 0x7f, 0xb3, 0xaf, 0x40, 0x3b, 0x3f, 0x7c
-   };
+   }; // Data to be verified, for reference only.
    Crypto_DataBlob msgBlob = {
       .data = reinterpret_cast<uint8_t *>(plainText),
       .len = sizeof(plainText)
@@ -48,7 +48,7 @@ static bool doTestEcdsaSignature()
       0x86, 0x48, 0xce, 0x3d, 0x03, 0x01, 0x07, 0x03, 0x22, 0x00, 0x03, 0x4d, 0xe4, 0xbb, 0x11, 0x10,
       0x1a, 0xd2, 0x05, 0x74, 0xf1, 0x0b, 0xb4, 0x75, 0x57, 0xf4, 0x3e, 0x55, 0x14, 0x17, 0x05, 0x4a,
       0xb2, 0xfb, 0x8c, 0x84, 0x64, 0x38, 0x02, 0xa0, 0x2a, 0xa6, 0xf0
-   };
+   }; // Public key in DER format, for reference only.
 
    Crypto_DataBlob keyBlob = {
       .data = reinterpret_cast<uint8_t *>(pubKeyText),
@@ -61,7 +61,7 @@ static bool doTestEcdsaSignature()
       0x8c, 0xcf, 0x76, 0x83, 0x02, 0x20, 0x13, 0x54, 0x84, 0x9d, 0x73, 0x40, 0xc3, 0x92, 0x66, 0xdc,
       0x3e, 0xc9, 0xf1, 0x4c, 0x33, 0x84, 0x2a, 0x76, 0xaf, 0xc6, 0x61, 0x84, 0x5c, 0xae, 0x4b, 0x0d,
       0x3c, 0xb0, 0xc8, 0x04, 0x89, 0x71
-   };
+   }; // Signature data, for reference only.
 
    Crypto_DataBlob signBlob = {
       .data = reinterpret_cast<uint8_t *>(signText),
@@ -69,19 +69,19 @@ static bool doTestEcdsaSignature()
    };
    
    OH_Crypto_ErrCode ret = CRYPTO_SUCCESS;
-   // keypair
+
    ret = OH_CryptoAsymKeyGenerator_Create((const char *)"ECC256", &keyCtx);
    if (ret != CRYPTO_SUCCESS) {
       return false;
    }
-   ret = OH_CryptoAsymKeyGenerator_Convert(keyCtx, CRYPTO_DER, &keyBlob, nullptr, &keyPair);
+   ret = OH_CryptoAsymKeyGenerator_Convert(keyCtx, CRYPTO_DER, &keyBlob, nullptr, &keyPair); // Convert the public key in DER format to OH_CryptoKeyPair.
    if (ret != CRYPTO_SUCCESS) {
       OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
       return false;
    }
-   OH_CryptoPubKey *pubKey = OH_CryptoKeyPair_GetPubKey(keyPair);
+   OH_CryptoPubKey *pubKey = OH_CryptoKeyPair_GetPubKey(keyPair); // Obtain the public key object.
    // verify
-   ret = OH_CryptoVerify_Create((const char *)"ECC256|SHA256", &verify);
+   ret = OH_CryptoVerify_Create((const char *)"ECC256|SHA256", &verify); // Create a Verify instance.
    if (ret != CRYPTO_SUCCESS) {
       OH_CryptoVerify_Destroy(verify);
       OH_CryptoAsymKeyGenerator_Destroy(keyCtx);

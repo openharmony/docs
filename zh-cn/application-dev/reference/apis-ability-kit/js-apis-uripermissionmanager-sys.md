@@ -1,6 +1,6 @@
 # @ohos.application.uriPermissionManager(URI权限管理)(系统接口)
 
-URI权限管理模块。用于应用A授权/撤销授权URI给应用B
+URI权限管理模块。用于应用A授权/撤销授权URI给应用B。
 
 > **说明：**
 > 
@@ -26,11 +26,11 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 >
 > 当应用拥有ohos.permission.PROXY_AUTHORIZATION_URI权限时, 可以授权不属于自身但具有访问权限的URI。如果不具备该权限，则仅支持授权属于自身的URI。
 
-**系统接口：** 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**需要权限：** ohos.permission.PROXY_AUTHORIZATION_URI
+**需要权限**：ohos.permission.PROXY_AUTHORIZATION_URI
 
 **参数：**
 
@@ -88,11 +88,11 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 >
 > 当应用拥有ohos.permission.PROXY_AUTHORIZATION_URI权限时, 可以授权不属于自身但具有访问权限的URI。如果不具备该权限，则仅支持授权属于自身的URI。
 
-**系统接口：** 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**需要权限：** ohos.permission.PROXY_AUTHORIZATION_URI
+**需要权限**：ohos.permission.PROXY_AUTHORIZATION_URI
 
 **参数：**
 
@@ -159,11 +159,11 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 >- 当应用拥有ohos.permission.PROXY_AUTHORIZATION_URI权限时, 可以授权不属于自身但具有访问权限的URI。如果不具备该权限，则仅支持授权属于自身的URI。
 >- 该接口支持给分身应用授权，需要指定目标应用的应用包名和分身索引。
 
-**系统接口：** 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**需要权限：** ohos.permission.PROXY_AUTHORIZATION_URI
+**需要权限**：ohos.permission.PROXY_AUTHORIZATION_URI
 
 **参数：**
 
@@ -252,9 +252,9 @@ revokeUriPermission(uri: string, targetBundleName: string, callback: AsyncCallba
 > 
 > 允许应用撤销自身获得的其他应用URI权限，或授权给其他应用的URI权限。
 
-**系统接口：** 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -299,9 +299,9 @@ revokeUriPermission(uri: string, targetBundleName: string): Promise&lt;number&gt
 > 
 > 允许应用撤销自身获得的其他应用URI权限，或授权给其他应用的URI权限。
 
-**系统接口：** 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -355,9 +355,9 @@ revokeUriPermission(uri: string, targetBundleName: string, appCloneIndex: number
 >- 允许应用撤销自身获得的其他应用URI权限，或授权给其他应用的URI权限。
 >- 该接口支持撤销授权给分身应用的URI权限，需要指定目标应用的应用包名和分身索引。
 
-**系统接口：** 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 

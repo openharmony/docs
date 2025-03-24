@@ -2,7 +2,7 @@
 
 Screen capture is mainly used to record the main screen.
 
-You can call the C APIs of the AVScreenCapture module to record the screen and collect audio and video source data output by the device and microphone. When developing a live streaming or an office application, you can call the APIs to obtain original audio and video streams and transfer the streams to other modules for processing. In this way, the home screen can be shared during live streaming.
+You can call the C APIs of the [AVScreenCapture](media-kit-intro.md#avscreencapture) module to record the screen and collect audio and video source data output by the device and microphone. When developing a live streaming or an office application, you can call the APIs to obtain original audio and video streams and transfer the streams to other modules for processing. In this way, the home screen can be shared during live streaming.
 
 The AVScreenCapture, Window, and Graphics modules together implement the entire video capture process.
 

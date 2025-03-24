@@ -1,4 +1,4 @@
-# @ohos.atomicservice.AtomicServiceWeb (Advanced Web Component)
+# AtomicServiceWeb
 
 **AtomicServiceWeb** is an advanced web component offering customization to meet specific demands. It shields irrelevant APIs from the native **Web** component and extends functionality through JavaScript capabilities.
 
@@ -27,6 +27,7 @@ The [universal attributes](ts-universal-attributes-size.md) are not supported.
 
 ## AtomicServiceWeb
 
+```
 AtomicServiceWeb({
   src: ResourceStr,
   controller: AtomicServiceWebController,
@@ -34,15 +35,16 @@ AtomicServiceWeb({
   mixedMode?: MixedMode,
   darkMode?: WebDarkMode,
   forceDarkAccess?: boolean,
-  onMessage?: Callback\<OnMessageEvent\>,
-  onErrorReceive?: Callback\<OnErrorReceiveEvent\>,
-  onHttpErrorReceive?: Callback\<OnHttpErrorReceiveEvent\>,
-  onPageBegin?: Callback\<OnPageBeginEvent\>,
-  onPageEnd?: Callback\<OnPageEndEvent\>,
-  onControllerAttached?: Callback\<void\>,
-  onLoadIntercept?: Callback\<OnLoadInterceptEvent, boolean\>,
-  onProgressChange?: Callback\<OnProgressChangeEvent\>
+  onMessage?: Callback<OnMessageEvent>,
+  onErrorReceive?: Callback<OnErrorReceiveEvent>,
+  onHttpErrorReceive?: Callback<OnHttpErrorReceiveEvent>,
+  onPageBegin?: Callback<OnPageBeginEvent>,
+  onPageEnd?: Callback<OnPageEndEvent>,
+  onControllerAttached?: Callback<void>,
+  onLoadIntercept?: Callback<OnLoadInterceptEvent, boolean>,
+  onProgressChange?: Callback<OnProgressChangeEvent>
 })
+```
 
 **Decorator**: @Component
 
@@ -52,7 +54,7 @@ AtomicServiceWeb({
 
 **Parameters**
 
-| Name                  | Type                                                                                                              | Mandatory| Decorator      | Description                                                                                                                  |
+| Name                  | Type                                                                                                              | Mandatory| Decorator      | Description                                                                                                                 |
 |----------------------|------------------------------------------------------------------------------------------------------------------|----|-------------|----------------------------------------------------------------------------------------------------------------------|
 | src                  | [ResourceStr](ts-types.md#resourcestr)                                                                           | Yes | -           | Web page resource address. Accessing network resources requires configuring service domain names in AppGallery Connect, and accessing local resources only supports files within the package (**$rawfile**). Dynamic updating of the address through state variables (for example, @State) is not supported. The loaded web page supports calling system capabilities through the APIs provided by the JS SDK, with the specifics governed by the JS SDK.|
 | controller           | [AtomicServiceWebController](#atomicservicewebcontroller)                                                        | Yes | @ObjectLink | Controller for controlling the behavior of the **AtomicServiceWeb** component.                                                             |
@@ -66,22 +68,14 @@ AtomicServiceWeb({
 | onPageBegin          | Callback\<[OnPageBeginEvent](#onpagebeginevent)\>                                                                | No | -           | Callback invoked when the web page starts to be loaded. It is invoked only for the main frame content, and not for the iframe or frameset content.                                                             |
 | onPageEnd            | Callback\<[OnPageEndEvent](#onpageendevent)\>                                                                    | No | -           | Callback invoked when the web page loading is complete. It is invoked only for the main frame content.                                                                                           |
 | onControllerAttached | Callback\<void\>                                                                                                 | No | -           | Callback invoked when a controller is attached to the **AtomicServiceWeb** component.                                                                                        |
-| onLoadIntercept      | Callback\<[OnLoadInterceptEvent](../../apis-arkweb/ts-basic-components-web.md#onloadinterceptevent12), boolean\> | No | -           | Callback invoked when the **AtomicServiceWeb** component is about to load the URL. It is used to determine whether to block the loading. By default, the loading is allowed.                                                                             |
+| onLoadIntercept      | [OnLoadInterceptCallback](#onloadinterceptcallback) | No | -  | Callback invoked when the **AtomicServiceWeb** component is about to load the URL. It is used to determine whether to block the loading. By default, the loading is allowed.                                                                             |
 | onProgressChange     | Callback\<[OnProgressChangeEvent](../../apis-arkweb/ts-basic-components-web.md#onprogresschangeevent12)\>        | No | -           | Callback invoked when the web page loading progress changes.                                                                                                     |
 
 ## AtomicServiceWebController
 
-Implements a **AtomicServiceWebController** object for controlling the behavior of the **AtomicServiceWeb** component. A **AtomicServiceWebController** can control only one **AtomicServiceWeb** component, and the APIs on the **AtomicServiceWebController** can be called only after it has been bound to the target **AtomicServiceWeb** component.
+Implements an **AtomicServiceWebController** object for controlling the behavior of the **AtomicServiceWeb** component. An **AtomicServiceWebController** can control only one **AtomicServiceWeb** component, and the APIs on the **AtomicServiceWebController** can be called only after it has been bound to the target **AtomicServiceWeb** component.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-### constructor
-
-constructor()
-
-A constructor used to create an **AtomicServiceWebController** object.
+**Decorator Type**: @Observed
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -163,6 +157,7 @@ For details about the error codes, see [Webview Error Codes](../../apis-arkweb/e
 
 | ID   | Error Message                                                                                            |
 |----------|--------------------------------------------------------------------------------------------------|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 17100001 | Init error. The AtomicServiceWebController must be associated with a AtomicServiceWeb component. |
 
 ### refresh
@@ -295,6 +290,7 @@ For details about the error codes, see [Webview Error Codes](../../apis-arkweb/e
 
 | ID   | Error Message                                                                                            |
 |----------|--------------------------------------------------------------------------------------------------|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17100001 | Init error. The AtomicServiceWebController must be associated with a AtomicServiceWeb component. |
 
 ### loadUrl
@@ -320,6 +316,7 @@ For details about the error codes, see [Webview Error Codes](../../apis-arkweb/e
 
 | ID   | Error Message                                                                                            |
 |----------|--------------------------------------------------------------------------------------------------|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17100001 | Init error. The AtomicServiceWebController must be associated with a AtomicServiceWeb component. |
 | 17100002 | Invalid url.                                                                                     |
 | 17100003 | Invalid resource path or file type.                                                              |
@@ -327,6 +324,10 @@ For details about the error codes, see [Webview Error Codes](../../apis-arkweb/e
 ## WebHeader
 
 Describes the request/response header returned by the **AtomicServiceWeb** component.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name         | Type    | Readable| Writable| Description           |
 |-------------|--------|----|----|---------------|
@@ -343,7 +344,7 @@ Represents the callback invoked when the page is navigated back or destroyed.
 
 | Name  | Type      | Mandatory| Description   |
 |------|----------|----|-------|
-| data | Object[] | Yes | Message list.|
+| data | object[] | Yes | Message list.|
 
 ## OnErrorReceiveEvent
 
@@ -394,6 +395,52 @@ Represents the callback invoked when the web page loading ends.
 | Name | Type    | Mandatory| Description       |
 |-----|--------|----|-----------|
 | url | string | Yes | URL of the page.|
+
+## OnLoadInterceptEvent
+
+Represents the event triggered when resource loading is intercepted.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name            | Type     | Mandatory  | Description                                      |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| data | [WebResourceRequest](../../apis-arkweb/ts-basic-components-web.md#webresourcerequest) | Yes| Encapsulation of a web page request.|
+
+## OnProgressChangeEvent
+
+Represents the callback invoked when the web page loading progress changes.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name            | Type     | Mandatory  | Description                                      |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| newProgress | number | Yes| New loading progress. The value is an integer ranging from 0 to 100.                      |
+
+## OnLoadInterceptCallback
+
+type OnLoadInterceptCallback = (event: OnLoadInterceptEvent) => boolean
+
+Represents the callback invoked when resource loading is intercepted.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type    | Mandatory| Description                   |
+|------|--------|----|-----------------------|
+| event | OnLoadInterceptEvent | Yes | Event triggered when resource loading is intercepted.|
+
+**Return value**
+
+| Type     | Description       |
+|---------|-----------|
+| boolean | Whether the resource is intercepted.|
 
 ## Events
 
@@ -492,7 +539,7 @@ struct WebComponent {
         controller: this.controller,
         // Called when the user clicks Send Message and then Back on an HTML5 page.
         onMessage: (event: OnMessageEvent) => {
-          console.log(`[AtomicServiceWebLog] onMessage data=${JSON.stringify(event.data)}`);
+          console.info(`[AtomicServiceWebLog] onMessage data = ${JSON.stringify(event.data)}`);
         }
       })
     }
@@ -521,9 +568,9 @@ struct WebComponent {
             data: data,
             callback: (err, res) => {
                 if (err) {
-                    console.error('[AtomicServiceWebLog H5] postMessage error err=' + JSON.stringify(err));
+                    console.error(`[AtomicServiceWebLog H5] postMessage error err. Code: ${err.code}, message: ${err.message}`);
                 } else {
-                    console.log('[AtomicServiceWebLog H5] postMessage success res=' + JSON.stringify(res));
+                    console.info(`[AtomicServiceWebLog H5] postMessage success res = ${JSON.stringify(res)}`);
                 }
             }
         });
@@ -566,7 +613,7 @@ struct WebComponent {
         controller: this.controller,
         // Invoked when an error occurs during web page loading.
         onErrorReceive: (event: OnErrorReceiveEvent) => {
-          console.log(`AtomicServiceWebLog onErrorReceive event=${JSON.stringify({
+          console.info(`AtomicServiceWebLog onErrorReceive event = ${JSON.stringify({
             requestUrl: event.request?.getRequestUrl(),
             requestMethod: event.request?.getRequestMethod(),
             errorCode: event.error?.getErrorCode(),
@@ -575,7 +622,7 @@ struct WebComponent {
         },
         // Invoked when an HTTP error occurs during web page resource loading.
         onHttpErrorReceive: (event: OnHttpErrorReceiveEvent) => {
-          console.log(`AtomicServiceWebLog onHttpErrorReceive event=${JSON.stringify({
+          console.info(`AtomicServiceWebLog onHttpErrorReceive event = ${JSON.stringify({
             requestUrl: event.request?.getRequestUrl(),
             requestMethod: event.request?.getRequestMethod(),
             responseCode: event.response?.getResponseCode(),
@@ -584,13 +631,13 @@ struct WebComponent {
         },
         // Invoked when the web page starts to be loaded.
         onPageBegin: (event: OnPageBeginEvent) => {
-          console.log(`AtomicServiceWebLog onPageBegin event=${JSON.stringify({
+          console.info(`AtomicServiceWebLog onPageBegin event = ${JSON.stringify({
             url: event.url
           })}`);
         },
         // Invoked when loading of the web page is complete.
         onPageEnd: (event: OnPageEndEvent) => {
-          console.log(`AtomicServiceWebLog onPageEnd event=${JSON.stringify({
+          console.info(`AtomicServiceWebLog onPageEnd event = ${JSON.stringify({
             url: event.url
           })}`);
         }
@@ -630,25 +677,25 @@ struct WebComponent {
   build() {
     Column() {
       Button('accessForward').onClick(() => {
-        console.log(`AtomicServiceWebLog accessForward = ${this.controller.accessForward()}`);
+        console.info(`AtomicServiceWebLog accessForward = ${this.controller.accessForward()}`);
       })
       Button('accessBackward').onClick(() => {
-        console.log(`AtomicServiceWebLog accessBackward = ${this.controller.accessBackward()}`);
+        console.info(`AtomicServiceWebLog accessBackward = ${this.controller.accessBackward()}`);
       })
       Button('accessStep').onClick(() => {
-        console.log(`AtomicServiceWebLog accessStep = ${this.controller.accessStep(1)}`);
+        console.info(`AtomicServiceWebLog accessStep = ${this.controller.accessStep(1)}`);
       })
       Button('forward').onClick(() => {
-        console.log(`AtomicServiceWebLog forward = ${this.controller.forward()}`);
+        console.info(`AtomicServiceWebLog forward = ${this.controller.forward()}`);
       })
       Button('backward').onClick(() => {
-        console.log(`AtomicServiceWebLog backward = ${this.controller.backward()}`);
+        console.info(`AtomicServiceWebLog backward = ${this.controller.backward()}`);
       })
       Button('refresh').onClick(() => {
-        console.log(`AtomicServiceWebLog refresh = ${this.controller.refresh()}`);
+        console.info(`AtomicServiceWebLog refresh = ${this.controller.refresh()}`);
       })
       Button('loadUrl').onClick(() => {
-        console.log(`AtomicServiceWebLog loadUrl = ${this.controller.loadUrl('https://www.baidu.com/')}`);
+        console.info(`AtomicServiceWebLog loadUrl = ${this.controller.loadUrl('https://www.baidu.com/')}`);
       })
       Button('Dark Mode').onClick(() => {
         this.forceDarkAccess = !this.forceDarkAccess;
@@ -657,12 +704,12 @@ struct WebComponent {
         this.mixedMode = this.mixedMode == MixedMode.None ? MixedMode.All : MixedMode.None;
       })
       Button('Click').onClick(() => {
-        console.log(`AtomicServiceWebLog getUserAgent = ${this.controller.getUserAgent()}`);
-        console.log(`AtomicServiceWebLog getCustomUserAgent = ${this.controller.getCustomUserAgent()}`);
+        console.info(`AtomicServiceWebLog getUserAgent = ${this.controller.getUserAgent()}`);
+        console.info(`AtomicServiceWebLog getCustomUserAgent = ${this.controller.getCustomUserAgent()}`);
         this.controller.setCustomUserAgent('test' + this.num++);
 
-        console.log(`AtomicServiceWebLog getUserAgent after set = ${this.controller.getUserAgent()}`);
-        console.log(`AtomicServiceWebLog getCustomUserAgent after set = ${this.controller.getCustomUserAgent()}`);
+        console.info(`AtomicServiceWebLog getUserAgent after set = ${this.controller.getUserAgent()}`);
+        console.info(`AtomicServiceWebLog getCustomUserAgent after set = ${this.controller.getCustomUserAgent()}`);
       })
       AtomicServiceWeb({
         src: 'https://www.example.com',
@@ -671,10 +718,10 @@ struct WebComponent {
         forceDarkAccess: this.forceDarkAccess,
         controller: this.controller,
         onControllerAttached: () => {
-          console.log("AtomicServiceWebLog onControllerAttached call back success");
+          console.info("AtomicServiceWebLog onControllerAttached call back success");
         },
         onLoadIntercept: (event: OnLoadInterceptEvent) => {
-          console.log("AtomicServiceWebLog onLoadIntercept call back success " + JSON.stringify({
+          console.info("AtomicServiceWebLog onLoadIntercept call back success " + JSON.stringify({
             getRequestUrl: event.data.getRequestUrl(),
             getRequestMethod: event.data.getRequestMethod(),
             getRequestHeader: event.data.getRequestHeader(),
@@ -685,22 +732,22 @@ struct WebComponent {
           return false;
         },
         onProgressChange: (event: OnProgressChangeEvent) => {
-          console.log("AtomicServiceWebLog onProgressChange call back success " + JSON.stringify(event));
+          console.info("AtomicServiceWebLog onProgressChange call back success " + JSON.stringify(event));
         },
         onMessage: (event: OnMessageEvent) => {
-          console.log("onMessage call back success " + JSON.stringify(event));
+          console.info("onMessage call back success " + JSON.stringify(event));
         },
         onPageBegin: (event: OnPageBeginEvent) => {
-          console.log("onPageBegin call back success " + JSON.stringify(event));
+          console.info("onPageBegin call back success " + JSON.stringify(event));
         },
         onPageEnd: (event: OnPageEndEvent) => {
-          console.log("onPageEnd call back success " + JSON.stringify(event));
+          console.info("onPageEnd call back success " + JSON.stringify(event));
         },
         onHttpErrorReceive: (event: OnHttpErrorReceiveEvent) => {
-          console.log("onHttpErrorReceive call back success " + JSON.stringify(event));
+          console.info("onHttpErrorReceive call back success " + JSON.stringify(event));
         },
         onErrorReceive: (event: OnErrorReceiveEvent) => {
-          console.log("onErrorReceive call back success " + JSON.stringify(event));
+          console.info("onErrorReceive call back success " + JSON.stringify(event));
         }
       })
     }

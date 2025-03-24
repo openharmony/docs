@@ -1,4 +1,4 @@
-# Working with Classes Using Node-API
+# Working with Class Using Node-API
 
 ## Introduction
 
@@ -29,7 +29,7 @@ If you are just starting out with Node-API, see [Node-API Development Process](u
 
 ### napi_new_instance
 
-Use **napi_new_instance** to create an ArkTS instance with the given constructor. This API returns an instance that can be called from ArkTS.
+Call **napi_new_instance** to create an ArkTS instance with the given constructor. This API returns an instance that can be called from ArkTS.
 
 > **NOTE**
 >
@@ -77,19 +77,19 @@ hilog.info(0x0000, 'Node-API', 'napi_new_instance %{public}s', JSON.stringify(ob
 
 ### napi_get_new_target
 
-Use **napi_get_new_target** to obtain **new.target** of a constructor. In ArkTS, **new.target** is a meta property used to determine whether a constructor was called using the **new** operator.
+Call **napi_get_new_target** to obtain **new.target** of a constructor. In ArkTS, **new.target** is a meta property used to determine whether a constructor was called using the **new** operator.
 
 For more information, see [Wrapping a Native Object in an ArkTS Object](use-napi-object-wrap.md).
 
 ### napi_define_class
 
-Use **napi_define_class** to define an ArkTS class. This API creates an ArkTS class and associates the methods and properties of the ArkTS class with those of a C/C++ class.
+Call **napi_define_class** to define an ArkTS class. This API creates an ArkTS class and associates the methods and properties of the ArkTS class with those of a C/C++ class.
 
 For more information, see [Wrapping a Native Object in an ArkTS Object](use-napi-object-wrap.md).
 
 ### napi_wrap
 
-Use **napi_wrap** to wrap a native instance in an ArkTS object.
+Call **napi_wrap** to wrap a native instance in an ArkTS object.
 
 > **NOTE**
 >
@@ -97,7 +97,7 @@ Use **napi_wrap** to wrap a native instance in an ArkTS object.
 
 ### napi_unwrap
 
-Use **napi_unwrap** to unwrap a native instance from an ArkTS object and obtain the pointer to the data.
+Call **napi_unwrap** to unwrap a native instance from an ArkTS object and obtain the pointer to the data.
 
 > **NOTE**
 >
@@ -105,7 +105,7 @@ Use **napi_unwrap** to unwrap a native instance from an ArkTS object and obtain 
 
 ### napi_remove_wrap
 
-Use **napi_remove_wrap** to remove the wrapping after a native instance is unwrapped from an ArkTS object.
+Call **napi_remove_wrap** to remove the wrapping after a native instance is unwrapped from an ArkTS object.
 
 > **NOTE**
 >
@@ -134,13 +134,17 @@ static napi_value Wrap(napi_env env, napi_callback_info info)
     OH_LOG_INFO(LOG_APP, "Node-API wrap");
     // Initialize the native object.
     struct Object *obj = new struct Object();
-    obj->name = "lilei";
+    obj->name = "liLei";
     obj->age = 18;
     size_t argc = 1;
     napi_value toWrap;
     // Call napi_wrap to wrap the native object in an ArkTS object.
     napi_get_cb_info(env, info, &argc, &toWrap, NULL, NULL);
-    napi_wrap(env, toWrap, reinterpret_cast<void *>(obj), DerefItem, NULL, NULL);
+    napi_status status = napi_wrap(env, toWrap, reinterpret_cast<void *>(obj), DerefItem, NULL, NULL);
+    if (status != napi_ok) {
+        // Proactively release the memory.
+        delete obj;
+    }
 
     return toWrap;
 }

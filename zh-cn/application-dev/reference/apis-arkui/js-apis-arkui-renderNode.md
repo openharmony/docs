@@ -261,13 +261,14 @@ clearChildren(): void
 **示例：**
 
 ```ts
-import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
+import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
+renderNode.size = { width: 200, height: 300 };
 for (let i = 0; i < 10; i++) {
   let childNode = new RenderNode();
-  childNode.size = {width: i*10 ,height : i*10};
-  childNode.position = {x: i*10 ,y : i*10};
+  childNode.size = { width: i * 10, height: i * 10 };
+  childNode.position = { x: i * 10, y: i * 10 };
   childNode.backgroundColor = 0xFF0000FF - 0X11 * i;
   renderNode.appendChild(childNode);
 }
@@ -291,6 +292,7 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Column() {
       NodeContainer(this.myNodeController)
@@ -298,7 +300,7 @@ struct Index {
         .width(200)
         .height(300)
       Button("clearChildren")
-        .onClick(()=>{
+        .onClick(() => {
           renderNode.clearChildren();
         })
     }.width("100%")
@@ -331,13 +333,14 @@ getChild(index: number): RenderNode | null
 **示例：**
 
 ```ts
-import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
+import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
+renderNode.size = { width: 200, height: 300 };
 for (let i = 0; i < 10; i++) {
   let childNode = new RenderNode();
-  childNode.size = {width: i*10 ,height : i*10};
-  childNode.position = {x: i*10 ,y : i*10};
+  childNode.size = { width: i * 10, height: i * 10 };
+  childNode.position = { x: i * 10, y: i * 10 };
   childNode.backgroundColor = 0xFF0000FF - 0X11 * i;
   renderNode.appendChild(childNode);
 }
@@ -361,6 +364,7 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Column() {
       NodeContainer(this.myNodeController)
@@ -368,10 +372,10 @@ struct Index {
         .width(200)
         .height(300)
       Button("getChild")
-        .onClick(()=>{
+        .onClick(() => {
           for (let i = 0; i < 11; i++) {
-            let childNode : RenderNode | null = renderNode.getChild(i);
-            if(childNode == null){
+            let childNode: RenderNode | null = renderNode.getChild(i);
+            if (childNode == null) {
               console.log(`the ${i} of renderNode's childNode is null`);
             } else {
               console.log(`the ${i} of renderNode's childNode has a size of {${childNode.size.width},${childNode.size.height}}`);
@@ -610,7 +614,7 @@ set backgroundColor(color: number)
 
 | 参数名 | 类型   | 必填 | 说明                   |
 | ------ | ------ | ---- | ---------------------- |
-| color  | number | 是   | 背景颜色值，ARGB格式。 |
+| color  | number | 是   | 背景颜色值，ARGB格式，示例：0xE5E5E5。 |
 
 get backgroundColor(): number
 
@@ -749,7 +753,7 @@ set opacity(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| value  | number | 是   | 将要设置的不透明度，数据范围为[0, 1]。 |
+| value  | number | 是   | 将要设置的不透明度，数据范围为[0, 1]，值越大透明度越低。 |
 
 get opacity(): number
 
@@ -763,7 +767,7 @@ get opacity(): number
 
 | 类型   | 说明                                      |
 | ------ | ----------------------------------------- |
-| number | 获取当前RenderNode的不透明度，默认值为1。 |
+| number | 获取当前RenderNode的不透明度，默认值为1，不透明。 |
 
 **示例：**
 ```ts
@@ -952,7 +956,7 @@ set frame(frame: Frame)
 
 | 参数名 | 类型                                       | 必填 | 说明                             |
 | ------ | ------------------------------------------ | ---- | -------------------------------- |
-| frame  | [Frame](./js-apis-arkui-graphics.md#frame) | 是   | 将要设置的RenderNode的大小和位置 |
+| frame  | [Frame](./js-apis-arkui-graphics.md#frame) | 是   | 将要设置的RenderNode的大小和位置。 |
 
 get frame(): Frame
 
@@ -1747,15 +1751,21 @@ get shadowRadius(): number
 **示例：**
 
 ```ts
-import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
+import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
-renderNode.backgroundColor = 0xff00ff00;
-renderNode.frame = { x: 0, y: 0, width: 100, height: 100 };
+renderNode.backgroundColor = 0xff0000ff;
+renderNode.frame = {
+  x: 100,
+  y: 100,
+  width: 100,
+  height: 100
+};
 renderNode.shadowOffset = { x: 10, y: 10 };
 renderNode.shadowAlpha = 0.7
 renderNode.shadowRadius = 30;
 const shadowRadius = renderNode.shadowRadius;
+console.log(`FrameNode ${shadowRadius}`);
 
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;

@@ -1052,7 +1052,7 @@ mindSporeLite.loadTrainModelFromFile(modelFile).then((mindSporeLiteModel: mindSp
 
 ### exportWeightsCollaborateWithMicro<sup>12+</sup>
 
-exportWeightsCollaborateWithMicro(weightFile: string, isInference?: boolean, enableFp16?: boolean, changeableWeightsName?: string[]): boolean;
+exportWeightsCollaborateWithMicro(weightFile: string, isInference?: boolean, enableFp16?: boolean, changeableWeightsName?: string[]): boolean
 
 导出供**micro推理**使用的模型权重，仅用于端侧训练。
 
@@ -1065,7 +1065,7 @@ exportWeightsCollaborateWithMicro(weightFile: string, isInference?: boolean, ena
 | 参数名                | 类型     | 必填 | 说明                                                         |
 | --------------------- | -------- | ---- | ------------------------------------------------------------ |
 | weightFile            | string   | 是   | 权重文件路径。                                               |
-| isInference           | boolean  | 否   | 是否从推理模型中导出权重。true表示从推理模型中导出权重，目前只支持`true`，默认为true。 |
+| isInference           | boolean  | 否   | 是否从推理模型中导出权重。true表示从推理模型中导出权重，目前只支持true，默认为true。 |
 | enableFp16            | boolean  | 否   | 浮点权重是否以float16格式保存。true表示以float16格式保存，false表示不以float16格式保存。默认为false。 |
 | changeableWeightsName | string[] | 否   | 设置可变权重的名称。默认为空字符串数组。                     |
 

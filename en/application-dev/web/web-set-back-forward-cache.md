@@ -1,12 +1,12 @@
-# Setting Back-forward Cache
+# Setting Backward-Forward Cache
 
-By enabling the back-forward cache for **Web** components, you can navigate through the visited pages smoother and faster. 
+The **Web** component provides the function of enabling and configuring the back-forward cache (BFCache), which can significantly improve the speed of returning to the previous web page, especially for users with poor network conditions.
 
-## Enabling Back-forward Cache
+After BFCache is enabled, the **Web** component saves the snapshot of the current page in the memory when the user leaves the current page. When the user accesses the same page again within a short period of time, the page can be quickly restored to avoid repeated HTTP requests.
 
-You can use [enableBackForwardCache()](../reference/apis-arkweb/js-apis-webview.md#enablebackforwardcache12) to enable the back-forward cache for the **Web** component.
+## Enabling BFCache
 
-This API must be called before calling [initializeWebEngine()](../reference/apis-arkweb/js-apis-webview.md#initializewebengine) to initialize the kernel.
+You need to call [enableBackForwardCache()](../reference/apis-arkweb/js-apis-webview.md#enablebackforwardcache12) to enable BFCache before calling [initializeWebEngine()](../reference/apis-arkweb/js-apis-webview.md#initializewebengine) to initialize the ArkWeb kernel. The **enableBackForwardCache** function receives the [BackForwardCacheSupportedFeatures](../reference/apis-arkweb/js-apis-webview.md#backforwardcachesupportedfeatures12) parameter, which is used to control whether to allow pages with the same-layer rendering feature and video takeover feature to enter the BFCache.
 
 ```ts
 // EntryAbility.ets
@@ -29,12 +29,12 @@ export default class EntryAbility extends UIAbility {
 
 ## Setting the Size and Live Time of Cached pages
 
-You can use [setBackForwardCacheOptions()](../reference/apis-arkweb/js-apis-webview.md#setbackforwardcacheoptions12) to set the back-forward cache options for each **Web** component.
+By default, BFCache can store only one page, and the page can be stored for 600 seconds. You can call [setBackForwardCacheOptions()](../reference/apis-arkweb/js-apis-webview.md#setbackforwardcacheoptions12) to set the BFCache policies for each **Web** instance. The maximum number of pages in the BFCache can be adjusted so that it can hold more pages. In this way, BFCache can provide faster loading speed when users perform forward and backward operations continuously. In addition, you can prolong the duration of each page in the BFCache to improve user experience.
 
 In the following example, the maximum number of pages that can be cached in the **Web** component is set to **10**, and each page is cached for 300s.
   
 ```ts
-// xxx.ts
+// Index.ets
 import { webview } from '@kit.ArkWeb';
 
 @Entry

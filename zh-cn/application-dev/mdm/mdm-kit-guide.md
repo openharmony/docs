@@ -12,11 +12,11 @@
 
 <!--RP1-->
 
-1. 创建EnterpriseAdminExtensionAbility；
+1. 创建EnterpriseAdminExtensionAbility。
 
-2. 声明接口所需权限；
+2. 声明接口所需权限。
 
-3. MDM功能开发与调试；
+3. MDM功能开发与调试。
 
 <!--RP1End-->
 

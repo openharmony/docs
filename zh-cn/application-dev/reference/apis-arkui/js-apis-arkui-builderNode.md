@@ -6,6 +6,8 @@
 >
 > 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 
+> 如果在跨页面复用BuilderNode时显示异常，可参考[跨页面复用注意事项](../../ui/arkts-user-defined-arktsNode-builderNode.md#跨页面复用注意事项)。
+> 
 > 当前不支持在预览器中使用BuilderNode。
 
 ## 导入模块
@@ -85,6 +87,7 @@ build(builder: WrappedBuilder\<Args>, arg?: Object): void
 
 依照传入的对象创建组件树，并持有组件树的根节点。无状态的UI方法[@Builder](../../quick-start/arkts-builder.md)最多拥有一个根节点。
 支持自定义组件。不支持自定义组件使用[@Reusable](../../quick-start/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../quick-start/arkts-link.md)、[@Provide](../../quick-start/arkts-provide-and-consume.md)、[@Consume](../../quick-start/arkts-provide-and-consume.md)等装饰器，来同步BuilderNode挂载的页面与BuilderNode中自定义组件的状态。
+从API version 12开始，自定义组件支持接收[LocalStorage](../../quick-start/arkts-localstorage.md)实例。可以通过[传递LocalStorage实例](../../quick-start/arkts-localstorage.md#自定义组件接收localstorage实例)来使用LocalStorage相关的装饰器[@LocalStorageProp](../../quick-start/arkts-localstorage.md#localstorageprop)、[@LocalStorageLink](../../quick-start/arkts-localstorage.md#localstoragelink)。
 
 > **说明**
 > 
@@ -124,6 +127,7 @@ build(builder: WrappedBuilder\<Args>, arg: Object, options: [BuildOptions](#buil
 
 依照传入的对象创建组件树，并持有组件树的根节点。无状态的UI方法[@Builder](../../quick-start/arkts-builder.md)最多拥有一个根节点。
 支持自定义组件。不支持使用自定义组件使用[@Reusable](../../quick-start/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../quick-start/arkts-link.md)、[@Provide](../../quick-start/arkts-provide-and-consume.md)、[@Consume](../../quick-start/arkts-provide-and-consume.md)等装饰器用于当前页面与自定义组件的状态同步。
+从API version 12开始，自定义组件支持接收[LocalStorage](../../quick-start/arkts-localstorage.md)实例。可以通过[传递LocalStorage实例](../../quick-start/arkts-localstorage.md#自定义组件接收localstorage实例)来使用LocalStorage相关的装饰器[@LocalStorageProp](../../quick-start/arkts-localstorage.md#localstorageprop)、[@LocalStorageLink](../../quick-start/arkts-localstorage.md#localstoragelink)。
 
 > **说明**
 > 
@@ -618,7 +622,7 @@ class MyNodeController extends NodeController {
     let node: FrameNode | null = this.rootNode.getFrameNode();
     let offsetX: number | null | undefined = node?.getPositionToParent().x;
     let offsetY: number | null | undefined = node?.getPositionToParent().y;
-    ;
+    
     let changedTouchLen = event.changedTouches.length;
     for (let i = 0; i < changedTouchLen; i++) {
       if (offsetX != null && offsetY != null && offsetX != undefined && offsetY != undefined) {
@@ -662,6 +666,12 @@ struct MyComponent {
 dispose(): void
 
 立即释放当前BuilderNode。当BuilderNode对象调用dispose接口之后，不仅BuilderNode对象与后端实体节点解除引用关系，BuilderNode中的FrameNode与RenderNode也会同步和实体节点解除引用关系。
+
+> **说明：**
+>
+> 当BuilderNode对象调用dispose之后，不仅BuilderNode对象与后端实体节点解除引用关系，BuilderNode中的FrameNode与RenderNode也会同步和实体节点解除引用关系。
+>
+> 若前端对象BuilderNode无法释放，容易导致内存泄漏。建议在不再需要对该BuilderNode对象进行操作时，开发者应主动调用dispose释放后端节点，以减少引用关系的复杂性，降低内存泄漏的风险。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -775,7 +785,9 @@ recycle(): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ```ts
-import { FrameNode,NodeController,BuilderNode,UIContext } from "@kit.ArkUI";
+import { FrameNode, NodeController, BuilderNode, UIContext } from "@kit.ArkUI";
+
+const TEST_TAG: string = "Reuse+Recycle";
 
 class MyDataSource {
   private dataArray: string[] = [];
@@ -816,7 +828,10 @@ class Params {
 
 @Builder
 function buildNode(param: Params = new Params("hello")) {
-  ReusableChildComponent2({ item: param.item });
+  Row() {
+    Text(`C${param.item} -- `)
+    ReusableChildComponent2({ item: param.item }) //该自定义组件在BuilderNode中无法被正确复用
+  }
 }
 
 class MyNodeController extends NodeController {
@@ -832,10 +847,12 @@ class MyNodeController extends NodeController {
   }
 }
 
+// 被回收复用的自定义组件，其状态变量会更新，而子自定义组件ReusableChildComponent3中的状态变量也会更新，但BuilderNode会阻断这一传递过程
 @Reusable
 @Component
 struct ReusableChildComponent {
-  @State item: string = '';
+  @Prop item: string = '';
+  @Prop switch: string = '';
   private controller: MyNodeController = new MyNodeController();
 
   aboutToAppear() {
@@ -843,17 +860,29 @@ struct ReusableChildComponent {
   }
 
   aboutToRecycle(): void {
-    console.log("ReusableChildComponent aboutToRecycle " + this.item);
-    this.controller?.builderNode?.recycle();
+    console.log(`${TEST_TAG} ReusableChildComponent aboutToRecycle ${this.item}`);
+
+    // 当开关为open，通过BuilderNode的reuse接口和recycle接口传递给其下的自定义组件，例如ReusableChildComponent2，完成复用
+    if (this.switch === 'open') {
+      this.controller?.builderNode?.recycle();
+    }
   }
 
   aboutToReuse(params: object): void {
-    console.log("ReusableChildComponent aboutToReuse " + JSON.stringify(params));
-    this.controller?.builderNode?.reuse(params);
+    console.log(`${TEST_TAG} ReusableChildComponent aboutToReuse ${JSON.stringify(params)}`);
+
+    // 当开关为open，通过BuilderNode的reuse接口和recycle接口传递给其下的自定义组件，例如ReusableChildComponent2，完成复用
+    if (this.switch === 'open') {
+      this.controller?.builderNode?.reuse(params);
+    }
   }
 
   build() {
-    NodeContainer(this.controller);
+    Row() {
+      Text(`A${this.item}--`)
+      ReusableChildComponent3({ item: this.item })
+      NodeContainer(this.controller);
+    }
   }
 }
 
@@ -862,16 +891,38 @@ struct ReusableChildComponent2 {
   @Prop item: string = "false";
 
   aboutToReuse(params: Record<string, object>) {
-    console.log("ReusableChildComponent2 Reusable 2 " + JSON.stringify(params));
+    console.log(`${TEST_TAG} ReusableChildComponent2 aboutToReuse ${JSON.stringify(params)}`);
   }
 
   aboutToRecycle(): void {
-    console.log("ReusableChildComponent2 aboutToRecycle 2 " + this.item);
+    console.log(`${TEST_TAG} ReusableChildComponent2 aboutToRecycle ${this.item}`);
   }
 
   build() {
     Row() {
-      Text(this.item)
+      Text(`D${this.item}`)
+        .fontSize(20)
+        .backgroundColor(Color.Yellow)
+        .margin({ left: 10 })
+    }.margin({ left: 10, right: 10 })
+  }
+}
+
+@Component
+struct ReusableChildComponent3 {
+  @Prop item: string = "false";
+
+  aboutToReuse(params: Record<string, object>) {
+    console.log(`${TEST_TAG} ReusableChildComponent3 aboutToReuse ${JSON.stringify(params)}`);
+  }
+
+  aboutToRecycle(): void {
+    console.log(`${TEST_TAG} ReusableChildComponent3 aboutToRecycle ${this.item}`);
+  }
+
+  build() {
+    Row() {
+      Text(`B${this.item}`)
         .fontSize(20)
         .backgroundColor(Color.Yellow)
         .margin({ left: 10 })
@@ -886,7 +937,7 @@ struct Index {
   @State data: MyDataSource = new MyDataSource();
 
   aboutToAppear() {
-    for (let i = 0;i < 100; i++) {
+    for (let i = 0; i < 100; i++) {
       this.data.pushData(i.toString());
     }
   }
@@ -896,7 +947,10 @@ struct Index {
       List({ space: 3 }) {
         LazyForEach(this.data, (item: string) => {
           ListItem() {
-            ReusableChildComponent({ item: item })
+            ReusableChildComponent({
+              item: item,
+              switch: 'open' // 将open改为close可观察到，BuilderNode不通过reuse和recycle接口传递复用时，BuilderNode内部的自定义组件的行为表现
+            })
           }
         }, (item: string) => item)
       }
@@ -924,7 +978,7 @@ updateConfiguration(): void
 **示例：**
 ```ts
 import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
-import { AbilityConstant, Configuration, EnvironmentCallback } from '@kit.AbilityKit';
+import { AbilityConstant, Configuration, ConfigurationConstant, EnvironmentCallback } from '@kit.AbilityKit';
 
 class Params {
   text: string = ""
@@ -947,8 +1001,6 @@ struct TextBuilder {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .margin({ bottom: 36 })
-          .fontColor($r(`app.color.text_color`))
-          .backgroundColor($r(`app.color.start_window_background`))
       }
     }
   }
@@ -961,9 +1013,8 @@ function buildText(params: Params) {
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
       .margin({ bottom: 36 })
-      .fontColor($r(`app.color.text_color`))
     TextBuilder({ message: params.text }) // 自定义组件
-  }.backgroundColor($r(`app.color.start_window_background`))
+  }.backgroundColor($r('sys.color.ohos_id_color_background'))
 }
 
 class TextNodeController extends NodeController {
@@ -1027,6 +1078,9 @@ struct Index {
     }
     // 注册监听回调
     this.getUIContext().getHostContext()?.getApplicationContext().on('environment', environmentCallback);
+    // 设置应用深浅色跟随系统
+    this.getUIContext()
+      .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
     //创建自定义节点并添加至map
     this.textNodeController.createNode(this.getUIContext());
   }
@@ -1048,6 +1102,16 @@ struct Index {
             this.count += 1;
             const message = "Update " + this.count.toString();
             this.textNodeController.update(message);
+          })
+        Button('切换深色')
+          .onClick(() => {
+            this.getUIContext()
+              .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_DARK);
+          })
+        Button('设置浅色')
+          .onClick(() => {
+            this.getUIContext()
+              .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT);
           })
       }
       .width('100%')

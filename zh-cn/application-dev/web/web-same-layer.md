@@ -67,8 +67,12 @@ ArkWeb同层渲染特性主要提供两种能力：同层标签生命周期和�
 
 - 标签类型只支持英文字符，不区分大小写。
 
-**同层标签的属性支持范围：** 
-支持满足W3C标准的CSS样式属性。
+**同层标签支持的css属性：** 
+
+display，position，z-index，visibility，opacity， 
+background-color，background-image，width，height，padding，padding-left，padding-top，padding-right，padding-bottom，margin，margin-left，margin-top，margin-right，margin-bottom，border-width，border-style，border-color，border-left-width，border-left-style，border-left-color，border-top-width，border-top-style，border-top-color，border-right-width，border-right-style，border-right-color，border-bottom-width，border-bottom-style，border-bottom-color，border-left，border-right，border-top，border-bottom，border，border-top-left-radius，border-top-right-radius，border-bottom-left-radius，border-bottom-right-radius，border-radius，transition，transform（仅支持translate/scale，scale对应参数只支持大于等于0的值）
+
+ 除上面支持的css属性范围，其他的css属性均不保证符合预期，比如transform属性中的rotate，shew等。
 
 **同层标签的生命周期管理：** 
 当Embed标签生命周期变化时触发[onNativeEmbedLifecycleChange()](../reference/apis-arkweb/ts-basic-components-web.md#onnativeembedlifecyclechange11)回调。
@@ -80,7 +84,7 @@ ArkWeb同层渲染特性主要提供两种能力：同层标签生命周期和�
 **同层标签的输入事件分发处理：**
 - 支持触摸事件TouchEvent的DOWN/UP/MOVE/CANCEL。支持[配置触摸事件消费结果](../reference/apis-arkweb/ts-basic-components-web.md#onnativeembedgestureevent11)，默认为应用侧消费。
 
-- 不支持同层标签所在的应用页面缩放和[initialScale](../reference/apis-arkweb/ts-basic-components-web.md#initialscale)、[zoom](../reference/apis-arkweb/js-apis-webview.md#zoom)、[zoomIn](../reference/apis-arkweb/js-apis-webview.md#zoomin)、[zoomOut](../reference/apis-arkweb/js-apis-webview.md#zoomout)等缩放接口。
+- 不支持同层标签所在的应用页面缩放和[initialScale](../reference/apis-arkweb/ts-basic-components-web.md#initialscale9)、[zoom](../reference/apis-arkweb/js-apis-webview.md#zoom)、[zoomIn](../reference/apis-arkweb/js-apis-webview.md#zoomin)、[zoomOut](../reference/apis-arkweb/js-apis-webview.md#zoomout)等缩放接口。
 
 - 暂不支持鼠标、键盘、触摸板事件。
 
