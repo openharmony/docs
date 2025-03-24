@@ -21,7 +21,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[ScsiPeripheral_DeviceMemMap](_scsi_peripheral___device_mem_map.md) | 通过调用OH_ScsiPeripheral_CreateDeviceMemMap创建的设备内存映射。 使用该设备内存映射的缓冲区可以提供更好的性能。 | 
+| struct&nbsp;&nbsp;[ScsiPeripheral_DeviceMemMap](_scsi_peripheral___device_mem_map.md) | 通过调用[OH_ScsiPeripheral_CreateDeviceMemMap](_s_c_s_i.md#oh_scsiperipheral_createdevicememmap)创建的设备内存映射。 使用该设备内存映射的缓冲区可以提供更好的性能。 | 
 | struct&nbsp;&nbsp;[ScsiPeripheral_IORequest](_scsi_peripheral___i_o_request.md) | 读/写操作的请求参数。 | 
 | struct&nbsp;&nbsp;[ScsiPeripheral_Request](_scsi_peripheral___request.md) | 请求参数结构体。 | 
 | struct&nbsp;&nbsp;[ScsiPeripheral_Response](_scsi_peripheral___response.md) | 响应参数结构体。 | 
@@ -53,7 +53,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | typedef struct [ScsiPeripheral_Device](_s_c_s_i.md#scsiperipheral_device) [ScsiPeripheral_Device](_s_c_s_i.md#scsiperipheral_device) | 不透明的SCSI设备结构体。 | 
-| typedef struct [ScsiPeripheral_DeviceMemMap](_scsi_peripheral___device_mem_map.md) [ScsiPeripheral_DeviceMemMap](_s_c_s_i.md#scsiperipheral_devicememmap) | 通过调用OH_ScsiPeripheral_CreateDeviceMemMap创建的设备内存映射。 使用该设备内存映射的缓冲区可以提供更好的性能。 | 
+| typedef struct [ScsiPeripheral_DeviceMemMap](_scsi_peripheral___device_mem_map.md) [ScsiPeripheral_DeviceMemMap](_s_c_s_i.md#scsiperipheral_devicememmap) | 通过调用[OH_ScsiPeripheral_CreateDeviceMemMap](_s_c_s_i.md#oh_scsiperipheral_createdevicememmap)创建的设备内存映射。 使用该设备内存映射的缓冲区可以提供更好的性能。 | 
 | typedef struct [ScsiPeripheral_IORequest](_scsi_peripheral___i_o_request.md) [ScsiPeripheral_IORequest](_s_c_s_i.md#scsiperipheral_iorequest) | 读/写操作的请求参数。 | 
 | typedef struct [ScsiPeripheral_Request](_scsi_peripheral___request.md) [ScsiPeripheral_Request](_s_c_s_i.md#scsiperipheral_request) | 请求参数结构体。 | 
 | typedef struct [ScsiPeripheral_Response](_scsi_peripheral___response.md) [ScsiPeripheral_Response](_s_c_s_i.md#scsiperipheral_response) | 响应参数结构体。 | 

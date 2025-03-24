@@ -2515,7 +2515,7 @@ metaViewport(enabled: boolean)
 > - 如果设置为异常值将无效。
 > - 如果设备为2in1，不支持viewport属性。设置为true或者false均不会解析viewport属性，进行默认布局。
 > - 如果设备为Tablet，设置为true或false均会解析meta标签viewport-fit属性。当viewport-fit=cover时，可通过CSS属性获取安全区域大小。
-> - 当前通过UserAgent中是否含有"Mobile"字段来判断是否开启前端HTML页面中meta标签的viewport属性。当UserAgent中不含有"Mobile"字段时，meta标签中viewport属性默认关闭，此时可通过显性设置metaViewport属性为true来覆盖关闭状态。
+> - 当前通过User-Agent中是否含有"Mobile"字段来判断是否开启前端HTML页面中meta标签的viewport属性。当User-Agent中不含有"Mobile"字段时，meta标签中viewport属性默认关闭，此时可通过显性设置metaViewport属性为true来覆盖关闭状态。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -8185,7 +8185,7 @@ setGestureEventResult(result: boolean): void
 
 ### setGestureEventResult<sup>14+</sup>
 
-setGestureEventResult(result: boolean, stopPropagation?: boolean): void
+setGestureEventResult(result: boolean, stopPropagation: boolean): void
 
 设置手势事件消费结果。
 
@@ -8196,7 +8196,7 @@ setGestureEventResult(result: boolean, stopPropagation?: boolean): void
 | 参数名          | 类型 | 必填  | 说明             |
 | --------------- | -------- | ----  |------- |
 | result          | boolean  | 是    | 是否消费该手势事件。默认值为true。 |
-| stopPropagation | boolean  | 否   | 是否阻止冒泡，在result为true时生效。默认值为true。 |
+| stopPropagation | boolean  | 是   | 是否阻止冒泡，在result为true时生效。默认值为true。 |
 
 **示例：**
 
@@ -8243,10 +8243,10 @@ setGestureEventResult(result: boolean, stopPropagation?: boolean): void
 | 名称            | 值 | 说明     |
 | -------------- | -- | -------- |
 | NONE           | 0 | 不可编辑。 |
-| CAN_CUT        | 1 | 支持剪切。 |
-| CAN_COPY       | 2 | 支持拷贝。 |
-| CAN_PASTE      | 4 | 支持粘贴。 |
-| CAN_SELECT_ALL | 8 | 支持全选。 |
+| CAN_CUT        | 1 << 0 | 支持剪切。 |
+| CAN_COPY       | 1 << 1 | 支持拷贝。 |
+| CAN_PASTE      | 1 << 2 | 支持粘贴。 |
+| CAN_SELECT_ALL | 1 << 3 | 支持全选。 |
 
 ## WebContextMenuParam<sup>9+</sup>
 

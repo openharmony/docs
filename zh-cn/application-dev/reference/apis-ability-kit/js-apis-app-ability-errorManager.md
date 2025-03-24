@@ -108,7 +108,7 @@ on(type: 'globalErrorOccurred', observer: GlobalObserver): void
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 16000003 | The specified ID does not exist. |
+| 16200001 | If the caller is invalid. |
 
 **示例：**
     
@@ -148,7 +148,7 @@ off(type: 'globalErrorOccurred', observer?: GlobalObserver): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 填写'globalErrorOccurred'，表示错误观察器。 |
-| observer | [GlobalObserver](js-apis-inner-application-GlobalObserver.md) | 是 | 由on方法注册的callback。 |
+| observer | [GlobalObserver](js-apis-inner-application-GlobalObserver.md) | 否 | 由on方法注册的callback。 |
 
 **返回值：**
 
@@ -163,7 +163,8 @@ off(type: 'globalErrorOccurred', observer?: GlobalObserver): void
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 16000003 | The specified ID does not exist. |
+| 16200001 | If the caller is invalid. |
+| 16300004 | If the observer does not exist |
 
 **示例：**
     
@@ -437,6 +438,11 @@ on(type: 'freeze', observer: FreezeObserver): void
 
 注册应用主线程freeze监听。只能在主线程调用，多次注册后，后一次的注册会覆盖前一次的。
 
+> **注意：**
+>
+> 如果该回调函数执行时间超过1s，可能导致[AppRecovery](./js-apis-app-ability-appRecovery.md)功能不可用。通过解析hilog日志中的begin与Freeze callback execution completed两者的时间差可以计算回调函数执行时长，如果超过1秒，可以尝试采用异步处理、减少阻塞操作、优化数据结构等方法优化回调逻辑，降低执行时长。
+> 
+
 **原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -515,7 +521,7 @@ off(type: 'globalUnhandledRejectionDetected', observer?: GlobalObserver): void
 | 参数名                   | 类型                              | 必填 | 说明                                           |
 |-----------------------|---------------------------------|----|----------------------------------------------|
 | type                  | string                          | 是  | 填写'globalUnhandledRejectionDetected'，表示注册被拒绝promise监听器。 |
-| observer              | [GlobalObserver](js-apis-inner-application-GlobalObserver.md) | 是  | 由on接口注册的被拒绝promise的callback。                        |
+| observer              | [GlobalObserver](js-apis-inner-application-GlobalObserver.md) | 否  | 由on接口注册的被拒绝promise的callback。                        |
 
 **错误码**：
 

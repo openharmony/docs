@@ -23,8 +23,8 @@ AudioHaptic<sup>11+</sup>提供音频与振动协同播放及管理的方法，�
 
    let audioHapticManagerInstance: audioHaptic.AudioHapticManager = audioHaptic.getAudioHapticManager();
 
-   let audioUri = 'data/audioTest.wav'; // 需更改为目标音频资源的Uri
-   let hapticUri = 'data/hapticTest.json'; // 需更改为目标振动资源的Uri
+   let audioUri = 'data/audioTest.wav'; // 需更改为目标音频资源的Uri。
+   let hapticUri = 'data/hapticTest.json'; // 需更改为目标振动资源的Uri。
    let id = 0;
 
    audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: number) => {

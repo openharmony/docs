@@ -2680,18 +2680,6 @@ Allows a system application to start HiViewCare.
 
 **Valid since**: 11
 
-## ohos.permission.CONNECT_UI_EXTENSION_ABILITY
-
-Allows a system service to connect to UIExtensionAbility.
-
-**Permission level**: system_core
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 11
-
 ## ohos.permission.SET_SANDBOX_POLICY
 
 Allows a system application to set dynamic sandbox policies.
@@ -4279,18 +4267,6 @@ Allows a system application to obtain fusion awareness data.
 ## ohos.permission.ACCESS_ACCOUNT_RECOMMENDATION_DATA
 
 Allows an application to read the data of Account Suggestions and start the UIExtensionAbility of the account suggestion list.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 18
-
-## ohos.permission.ACCESS_VIRTUAL_SCREEN
-
-Allows an application to manage virtual screens.
 
 **Permission level**: system_basic
 

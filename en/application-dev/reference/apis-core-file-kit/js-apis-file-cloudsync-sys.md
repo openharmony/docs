@@ -10,7 +10,7 @@ The **cloudSync** module provides the device-cloud sync capabilities for applica
 ## Modules to Import
 
 ```ts
-import cloudSync from '@ohos.file.cloudSync';
+import { cloudSync } from '@kit.CoreFileKit';
 ```
 
 ## SyncState
@@ -27,9 +27,9 @@ Enumerates the device-cloud sync states.
 
 | Name|  Value|  Description|
 | ----- |  ---- |  ---- |
-| UPLOADING |  0 | Uploading.|
+| UPLOADING |  0 | The file is being uploaded.|
 | UPLOAD_FAILED |  1 | Upload failed.|
-| DOWNLOADING |  2 | Downloading.|
+| DOWNLOADING |  2 | The file is being downloaded.|
 | DOWNLOAD_FAILED |  3 | Download failed.|
 | COMPLETED |  4 | Sync completed.|
 | STOPPED |  5 | Sync stopped.|
@@ -38,11 +38,10 @@ Enumerates the device-cloud sync states.
 
 Enumerates the device-cloud sync errors.
 
-- Currently, **NETWORK_UNAVAILABLE** is returned only when both the mobile network and Wi-Fi are unavailable during sync. If either network is available, sync can be performed normally.
-- During the sync process, if the battery level is lower than 15% in non-charging scenarios, **BATTERY_LEVEL_LOW** will be return when the current upload is complete; if the battery level is lower than 10% in non-charging scenarios, **BATTERY_LEVEL_WARNING** will be returned when the current upload is complete.
-- When sync is being triggered, if the battery level is lower than 15% in non-charging scenarios, sync is not allowed and an error code will be returned by **start()**.
+- In the current phase, NETWORK_UNAVAILABLE is returned only when the mobile data network and Wi-Fi are unavailable. If the mobile data network is available, the synchronization can be performed normally.
+- During the sync process, if the battery level is lower than 10% in non-charging scenarios, **BATTERY_LEVEL_LOW** will be return when the current upload is complete.
+- When sync is being triggered, if the battery level is lower than 10% in non-charging scenarios, sync is not allowed and an error code will be returned by **start()**.
 - If the cloud space is insufficient when a file is uploaded, the upload will fail and there is no such a file in the cloud. 
-- If the local space is insufficient when a file is downloaded, the download will fail. After the local space is released, the file will be downloaded again when sync starts.
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -50,11 +49,11 @@ Enumerates the device-cloud sync errors.
 
 | Name|  Value|  Description|
 | ----- |  ---- |  ---- |
-| NO_ERROR |  0 | No error.|
+| NO_ERROR |  0 | No error occurs.|
 | NETWORK_UNAVAILABLE |  1 | No network is available.|
 | WIFI_UNAVAILABLE |  2 | Wi-Fi is unavailable.|
-| BATTERY_LEVEL_LOW |  3 | The battery level is lower than 15%.|
-| BATTERY_LEVEL_WARNING |  4 | The battery level is lower than 10%.|
+| BATTERY_LEVEL_LOW |  3 | The battery level is lower than 10%.|
+| BATTERY_LEVEL_WARNING |  4 | The battery level is lower than 15%.|
 | CLOUD_STORAGE_FULL |  5 | The cloud space is insufficient.|
 | LOCAL_STORAGE_FULL |  6 | The local space is insufficient.|
 | DEVICE_TEMPERATURE_TOO_HIGH<sup>12+</sup> |  7 | The device temperature is too high.|
@@ -149,7 +148,7 @@ Unregisters a listener for the device-cloud sync progress.
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | evt | string | Yes  | Event type. The value is **progress**, which indicates the sync progress event.|
-| callback | (pg: SyncProgress) => void | Yes  | Callback to unregister. The input parameter is [SyncProgress](#syncprogress), and the return value is **void**.|
+| callback | (pg: SyncProgress) => void | Yes  | Callback used to return the sync progress event. The input parameter is [SyncProgress](#syncprogress), and the return value is **void**.|
 
 **Error codes**
 
@@ -246,12 +245,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | 401 | The input parameter is invalid. Possible causes:Incorrect parameter types. |
 | 22400001 | Cloud status not ready. |
 | 22400002 | Network unavailable. |
-| 22400003  | Battery level warning. |
+| 22400003  | Low battery level. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let gallerySync = new cloudSync.GallerySync();
 
   gallerySync.on('progress', (pg: cloudSync.SyncProgress) => {
@@ -294,12 +293,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 22400001 | Cloud status not ready. |
 | 22400002 | Network unavailable. |
-| 22400003  | Battery level warning. |
+| 22400003  | Low battery level. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let gallerySync = new cloudSync.GallerySync();
 
   gallerySync.start((err: BusinessError) => {
@@ -346,7 +345,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let gallerySync = new cloudSync.GallerySync();
 
   gallerySync.stop().then(() => {
@@ -391,7 +390,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let gallerySync = new cloudSync.GallerySync();
 
   gallerySync.stop((err: BusinessError) => {
@@ -564,7 +563,7 @@ Starts to download a cloud file. This API uses a promise to return the result.
 
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
-| uri | string | Yes  | URI of the file to download.|
+| uri | string | Yes  | URI of the target file.|
 
 **Return value**
 
@@ -575,7 +574,7 @@ Starts to download a cloud file. This API uses a promise to return the result.
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let download = new cloudSync.Download();
   let uri: string = "file:///media/Photo/1";
 
@@ -618,7 +617,7 @@ Starts to download a cloud file. This API uses an asynchronous callback to retur
 
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
-| uri | string | Yes  | URI of the file to download.|
+| uri | string | Yes  | URI of the target file.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -636,7 +635,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let download = new cloudSync.Download();
   let uri: string = "file:///media/Photo/1";
 
@@ -669,7 +668,7 @@ Stops downloading a cloud file. This API uses a promise to return the result.
 
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
-| uri | string | Yes  | URI of the file to download.|
+| uri | string | Yes  | URI of the target file.|
 
 **Return value**
 
@@ -690,7 +689,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let download = new cloudSync.Download();
   let uri: string = "file:///media/Photo/1";
 
@@ -721,7 +720,7 @@ Stops downloading a cloud file. This API uses an asynchronous callback to return
 
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
-| uri | string | Yes  | URI of the file to download.|
+| uri | string | Yes  | URI of the target file.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -737,7 +736,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let download = new cloudSync.Download();
   let uri: string = "file:///media/Photo/1";
 
@@ -793,7 +792,7 @@ A constructor used to create a **FileSync** instance.
 
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
-| bundleName | string | Yes  | Application bundle name.|
+| bundleName | string | Yes  | Bundle name.|
 
 **Error codes**
 
@@ -925,12 +924,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | 13600001  | IPC error. |
 | 22400001  | Cloud status not ready. |
 | 22400002  | Network unavailable. |
-| 22400003  | Battery level warning. |
+| 22400003  | Low battery level. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let fileSync = new cloudSync.FileSync();
 
   let callback = (pg: cloudSync.SyncProgress) => {
@@ -976,12 +975,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | 13600001  | IPC error. |
 | 22400001  | Cloud status not ready. |
 | 22400002  | Network unavailable. |
-| 22400003  | Battery level warning. |
+| 22400003  | Low battery level. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let fileSync = new cloudSync.FileSync();
 
   fileSync.start((err: BusinessError) => {
@@ -1027,7 +1026,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let fileSync = new cloudSync.FileSync();
 
   fileSync.stop().then(() => {
@@ -1071,7 +1070,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let fileSync = new cloudSync.FileSync();
 
   fileSync.stop((err: BusinessError) => {
@@ -1115,7 +1114,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let fileSync = new cloudSync.FileSync();
 
   fileSync.getLastSyncTime().then((timeStamp: number) => {
@@ -1129,7 +1128,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 ### getLastSyncTime<sup>11+</sup>
 
-getLastSyncTime(callback: AsyncCallback&lt;number&gt;): void;
+getLastSyncTime(callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the last sync time. This API uses an asynchronous callback to return the result.
 
@@ -1159,7 +1158,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let fileSync = new cloudSync.FileSync();
 
   fileSync.getLastSyncTime((err: BusinessError, timeStamp: number) => {
@@ -1180,7 +1179,7 @@ Provides APIs for the file manager application to download files from the Drive 
 
 ### cleanCache<sup>11+</sup>
 
-cleanCache(uri: string): void;
+cleanCache(uri: string): void
 
 Deletes a cache file. This API returns the result synchronously.
 
@@ -1207,13 +1206,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 13900002  | No such file or directory. |
-| 14000002  | Invalid uri. |
+| 14000002  | Invalid URI. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fileUri from '@ohos.file.fileuri';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileUri } from '@kit.CoreFileKit';
   let fileCache = new cloudSync.CloudFileCache();
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
@@ -1262,15 +1261,15 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 13900002  | No such file or directory. |
-| 14000002  | Invalid uri. |
+| 14000002  | Invalid URI. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let uris: Array<string> = ["file://uri"];
-  cloudSync.getFileSyncState(uris).then(function(syncStates: Array<cloudSync.FileSyncState>) {
+  cloudSync.getFileSyncState(uris).then((syncStates: Array<cloudSync.FileSyncState>) => {
     for(let i = 0, len = syncStates.length; i < len; i++){
         console.info("get file sync state successfully" + syncStates[i]);
     }
@@ -1310,12 +1309,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 13900002  | No such file or directory. |
-| 14000002  | Invalid uri. |
+| 14000002  | Invalid URI. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let uris: Array<string> = ["file://uri"];
   cloudSync.getFileSyncState(uris, (err: BusinessError, syncStates: Array<cloudSync.FileSyncState>) => {
@@ -1365,13 +1364,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | 13900012  | Permission denied by the file system. |
 | 13900031  | Function not implemented. |
 | 13900042  | Unknown error. |
-| 14000002  | Invalid uri. |
+| 14000002  | Invalid URI. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fileUri from '@ohos.file.fileuri';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileUri } from '@kit.CoreFileKit';
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
   try {
@@ -1411,12 +1410,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | 13900001  | Operation not permitted. |
 | 13900002  | No such file or directory. |
 | 13900012  | Permission denied. |
-| 14000002  | Invalid uri. |
+| 14000002  | Invalid URI. |
 
 **Example**
 
   ```ts
-  import fileUri from '@ohos.file.fileuri';
+  import { fileUri } from '@kit.CoreFileKit';
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
   let onCallback1 = (changeData: ChangeData) => {
@@ -1458,12 +1457,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | 13900001  | Operation not permitted. |
 | 13900002  | No such file or directory. |
 | 13900012  | Permission denied. |
-| 14000002  | Invalid uri. |
+| 14000002  | Invalid URI. |
 
 **Example**
 
   ```ts
-  import fileUri from '@ohos.file.fileuri';
+  import { fileUri } from '@kit.CoreFileKit';
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
   let onCallback1 = (changeData: ChangeData) => {
@@ -1519,8 +1518,8 @@ Enumerates the device-cloud file sync states.
 | ----- |  ---- |  ---- |
 | UPLOADING |  0 | The file is being uploaded.|
 | DOWNLOADING |  1 | The file is being downloaded.|
-| COMPLETED |  2 | The file sync is complete.|
-| STOPPED |  3 | The file sync is stopped.|
-| TO_BE_UPLOADED<sup>12+</sup> |  4 | The file is to be uploaded.|
-| UPLOAD_SUCCESS<sup>12+</sup> |  5 | The file is uploaded successfully.|
-| UPLOAD_FAILURE<sup>12+</sup> |  6 | The upload fails.|
+| COMPLETED |  2 | Sync completed.|
+| STOPPED |  3 | Sync stopped.|
+| TO_BE_UPLOADED<sup>12+</sup> |  4 | The file is going to be uploaded.|
+| UPLOAD_SUCCESS<sup>12+</sup> |  5 | The file has been successfully uploaded.|
+| UPLOAD_FAILURE<sup>12+</sup> |  6 | The file fails to be uploaded.|

@@ -43,8 +43,9 @@ DatePicker(options?: DatePickerOptions)
 
 >  **说明：**
 >
->  Date的使用请参考[TimePickerOptions](ts-basic-components-timepicker.md)。
->
+>  Date的使用请参考[TimePickerOptions](ts-basic-components-timepicker.md)。  
+>  在DatePicker组件滑动过程中修改DatePickerOptions中的属性（start、end、selected）,会导致这些属性无法生效。
+
 
 ## DatePickerMode<sup>18+</sup>枚举说明
 
@@ -250,11 +251,11 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 | 参数名   | 参数类型                                     | 必填   | 参数描述                      |
 | ----- | ---------------------------------------- | ---- | ------------------------- |
-| sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | 是    | 表冠灵敏度。                     |
+| sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | 是    | 表冠响应灵敏度。<br/>默认值：CrownSensitivity.MEDIUM，响应速度适中。                    |
 
 >  **说明：**
 >
->  用于穿戴设备圆形屏幕使用。
+>  用于穿戴设备圆形屏幕使用。组件响应[表冠事件](ts-universal-events-crown.md)，需要先获取焦点。
 
 ## PickerTextStyle<sup>10+</sup>类型说明
 

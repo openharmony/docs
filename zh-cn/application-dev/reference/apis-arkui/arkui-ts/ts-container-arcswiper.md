@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 该组件从API Version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 导入模块
 
@@ -15,7 +15,7 @@ import {
   ArcDotIndicator,
   ArcDirection,
   ArcSwiperController
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 ```
 
 ## 子组件
@@ -78,7 +78,7 @@ indicator(value: ArcDotIndicator | boolean)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ArcDotIndicator](#arcdotindicator)&nbsp;&nbsp;\|&nbsp;boolean | 是   | 弧形圆点指示器样式。<br/> \- ArcDotIndicator：弧形圆点指示器属性及功能。<br/> \- boolean：是否启用弧形圆点指示器。<br/>&nbsp;&nbsp;默认值：true<br/>&nbsp;&nbsp;默认类型：ArcDotIndicator |
+| value  | [ArcDotIndicator](#arcdotindicator)&nbsp;&nbsp;\|&nbsp;boolean | 是   | 弧形圆点指示器样式。<br/> \- ArcDotIndicator：弧形圆点指示器属性及功能。<br/> \- boolean：是否启用弧形圆点指示器。设置为true启用，false不启用。<br/> 默认值：true<br/> 默认类型：ArcDotIndicator |
 
 ### duration
 
@@ -110,7 +110,7 @@ vertical(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| value  | boolean | 是   | 是否为纵向滑动。<br/>默认值：false |
+| value  | boolean | 是   | 是否为纵向滑动。true为纵向滑动，false为横向滑动。<br/>默认值：false |
 
 ### disableSwipe
 
@@ -126,7 +126,7 @@ disableSwipe(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                     |
 | ------ | ------- | ---- | ---------------------------------------- |
-| value  | boolean | 是   | 禁用组件滑动切换功能。<br/>默认值：false |
+| value  | boolean | 是   | 禁用组件滑动切换功能。设置为true禁用，false不禁用。<br/>默认值：false |
 
 ### digitalCrownSensitivity
 
@@ -192,7 +192,7 @@ disableTransitionAnimation(disabled: Optional\<boolean>)
 
 | 参数名   | 类型               | 必填 | 说明                                    |
 | -------- | ------------------ | ---- | --------------------------------------- |
-| disabled | Optional\<boolean> | 是   | 是否关闭特殊动效效果。<br>默认值：false |
+| disabled | Optional\<boolean> | 是   | 是否关闭特殊动效效果。<br>默认值：false，不关闭特殊动效效果。 |
 
 ## ArcSwiperController
 
@@ -280,7 +280,7 @@ arcDirection(direction: Optional\<ArcDirection>): ArcDotIndicator
 
 | 参数名    | 类型                                     | 必填 | 说明                                                         |
 | --------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| direction | [Optional\<ArcDirection>](#arcdirection) | 否   | 设置弧形指示器的方向。<br/>默认值：ArcDirection.SIX_CLOCK_DIRECTION，6点钟方向 |
+| direction | [Optional\<ArcDirection>](#arcdirection) | 否   | 设置弧形指示器的方向。<br/>默认值：ArcDirection.SIX_CLOCK_DIRECTION，6点钟方向。 |
 
 **返回值：** 
 

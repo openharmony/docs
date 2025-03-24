@@ -17,6 +17,7 @@ The Core module provides the basic backbone capabilities for the media framework
 
 | Name| Description| 
 | -------- | -------- |
+| [media_types.h](media__types_8h.md) | Declares the common media types.| 
 | [native_audio_channel_layout.h](native__audio__channel__layout_8h.md) | Declares the functions related to the speaker layout during recording and playback.| 
 | [native_avbuffer.h](native__avbuffer_8h.md) | Declares the functions of the media struct **AVBuffer**.| 
 | [native_avbuffer_info.h](native__avbuffer__info_8h.md) | Declares the attribute definition of the media struct **AVBuffer**.| 
@@ -36,6 +37,7 @@ The Core module provides the basic backbone capabilities for the media framework
 
 | Name| Description| 
 | -------- | -------- |
+| typedef enum [OH_Core_HdrType](#oh_core_hdrtype) [OH_Core_HdrType](#oh_core_hdrtype) | Defines an enum for the HDR types.| 
 | typedef enum [OH_AudioChannelSet](#oh_audiochannelset-1) [OH_AudioChannelSet](#oh_audiochannelset) | Defines an enum for the audio channel sets.| 
 | typedef enum [OH_AmbAttributeSet](#oh_ambattributeset-1) [OH_AmbAttributeSet](#oh_ambattributeset) | Defines an enum for the Hi-Fi stereo reverberation settings.| 
 | typedef enum [OH_AudioChannelLayout](#oh_audiochannellayout-1) [OH_AudioChannelLayout](#oh_audiochannellayout) | Defines an enum for the audio channel layouts.| 
@@ -53,11 +55,12 @@ The Core module provides the basic backbone capabilities for the media framework
 
 | Name| Description| 
 | -------- | -------- |
+| [OH_Core_HdrType](#oh_core_hdrtype-1) {<br> OH_CORE_HDR_TYPE_NONE = 0, <br>OH_CORE_HDR_TYPE_VIVID = 1 } | Enumerates the HDR types.| 
 | [OH_AudioChannelSet](#oh_audiochannelset-1) {<br>CH_SET_FRONT_LEFT = 1ULL &lt;&lt; 0U,<br>CH_SET_FRONT_RIGHT = 1ULL &lt;&lt; 1U,<br>CH_SET_FRONT_CENTER = 1ULL &lt;&lt; 2U,<br>CH_SET_LOW_FREQUENCY = 1ULL &lt;&lt; 3U,<br>CH_SET_BACK_LEFT = 1ULL &lt;&lt; 4U,<br>CH_SET_BACK_RIGHT = 1ULL &lt;&lt; 5U,<br>CH_SET_FRONT_LEFT_OF_CENTER = 1ULL &lt;&lt; 6U,<br>CH_SET_FRONT_RIGHT_OF_CENTER = 1ULL &lt;&lt; 7U,<br>CH_SET_BACK_CENTER = 1ULL &lt;&lt; 8U,<br>CH_SET_SIDE_LEFT = 1ULL &lt;&lt; 9U,<br>CH_SET_SIDE_RIGHT = 1ULL &lt;&lt; 10U,<br>CH_SET_TOP_CENTER = 1ULL &lt;&lt; 11U,<br>CH_SET_TOP_FRONT_LEFT = 1ULL &lt;&lt; 12U,<br>CH_SET_TOP_FRONT_CENTER = 1ULL &lt;&lt; 13U,<br>CH_SET_TOP_FRONT_RIGHT = 1ULL &lt;&lt; 14U,<br>CH_SET_TOP_BACK_LEFT = 1ULL &lt;&lt; 15U,<br>CH_SET_TOP_BACK_CENTER = 1ULL &lt;&lt; 16U,<br>CH_SET_TOP_BACK_RIGHT = 1ULL &lt;&lt; 17U,<br>CH_SET_STEREO_LEFT = 1ULL &lt;&lt; 29U,<br>CH_SET_STEREO_RIGHT = 1ULL &lt;&lt; 30U,<br>CH_SET_WIDE_LEFT = 1ULL &lt;&lt; 31U,<br>CH_SET_WIDE_RIGHT = 1ULL &lt;&lt; 32U,<br>CH_SET_SURROUND_DIRECT_LEFT = 1ULL &lt;&lt; 33U,<br>CH_SET_SURROUND_DIRECT_RIGHT = 1ULL &lt;&lt; 34U,<br>CH_SET_LOW_FREQUENCY_2 = 1ULL &lt;&lt; 35U,<br>CH_SET_TOP_SIDE_LEFT = 1ULL &lt;&lt; 36U,<br>CH_SET_TOP_SIDE_RIGHT = 1ULL &lt;&lt; 37U,<br>CH_SET_BOTTOM_FRONT_CENTER = 1ULL &lt;&lt; 38U,<br>CH_SET_BOTTOM_FRONT_LEFT = 1ULL &lt;&lt; 39U,<br>CH_SET_BOTTOM_FRONT_RIGHT = 1ULL &lt;&lt; 40U<br>} | Enumerates the audio channel sets.| 
 | [OH_AmbAttributeSet](#oh_ambattributeset-1) {<br>AMB_ORD_1 = 1ULL &lt;&lt; 0U,<br>AMB_ORD_2 = 2ULL &lt;&lt; 0U,<br>AMB_ORD_3 = 3ULL &lt;&lt; 0U,<br>AMB_COM_ACN = 0ULL &lt;&lt; 8U,<br>AMB_COM_FUMA = 1ULL &lt;&lt; 8U,<br>AMB_NOR_N3D = 0ULL &lt;&lt; 12U,<br>AMB_NOR_SN3D = 1ULL &lt;&lt; 12U,<br>AMB_MODE = 1ULL &lt;&lt; 44U<br>} | Enumerates the Hi-Fi stereo reverberation settings.| 
 | [OH_AudioChannelLayout](#oh_audiochannellayout-1) {<br>CH_LAYOUT_UNKNOWN = 0ULL,<br>CH_LAYOUT_MONO = CH_SET_FRONT_CENTER,<br>CH_LAYOUT_STEREO = CH_SET_FRONT_LEFT \| CH_SET_FRONT_RIGHT,<br>CH_LAYOUT_STEREO_DOWNMIX = CH_SET_STEREO_LEFT \| CH_SET_STEREO_RIGHT,<br>CH_LAYOUT_2POINT1 = CH_LAYOUT_STEREO \| CH_SET_LOW_FREQUENCY,<br>CH_LAYOUT_3POINT0 = CH_LAYOUT_STEREO \| CH_SET_BACK_CENTER,<br>CH_LAYOUT_SURROUND = CH_LAYOUT_STEREO \| CH_SET_FRONT_CENTER,<br>CH_LAYOUT_3POINT1 = CH_LAYOUT_SURROUND \| CH_SET_LOW_FREQUENCY,<br>CH_LAYOUT_4POINT0 = CH_LAYOUT_SURROUND \| CH_SET_BACK_CENTER,<br>CH_LAYOUT_QUAD_SIDE = CH_LAYOUT_STEREO \| CH_SET_SIDE_LEFT \| CH_SET_SIDE_RIGHT,<br>CH_LAYOUT_QUAD = CH_LAYOUT_STEREO \| CH_SET_BACK_LEFT \| CH_SET_BACK_RIGHT,<br>CH_LAYOUT_2POINT0POINT2 = CH_LAYOUT_STEREO \| CH_SET_TOP_SIDE_LEFT \| CH_SET_TOP_SIDE_RIGHT,<br>CH_LAYOUT_AMB_ORDER1_ACN_N3D = AMB_MODE \| AMB_ORD_1 \| AMB_COM_ACN \| AMB_NOR_N3D, CH_LAYOUT_AMB_ORDER1_ACN_SN3D = AMB_MODE \| AMB_ORD_1 \| AMB_COM_ACN \| AMB_NOR_SN3D,<br>CH_LAYOUT_AMB_ORDER1_FUMA = AMB_MODE \| AMB_ORD_1 \| AMB_COM_FUMA,<br>CH_LAYOUT_4POINT1 = CH_LAYOUT_4POINT0 \| CH_SET_LOW_FREQUENCY,<br>CH_LAYOUT_5POINT0 = CH_LAYOUT_SURROUND \| CH_SET_SIDE_LEFT \| CH_SET_SIDE_RIGHT,<br>CH_LAYOUT_5POINT0_BACK = CH_LAYOUT_SURROUND \| CH_SET_BACK_LEFT \| CH_SET_BACK_RIGHT,<br>CH_LAYOUT_2POINT1POINT2 = CH_LAYOUT_2POINT0POINT2 \| CH_SET_LOW_FREQUENCY,<br>CH_LAYOUT_3POINT0POINT2 = CH_LAYOUT_2POINT0POINT2 \| CH_SET_FRONT_CENTER,<br>CH_LAYOUT_5POINT1 = CH_LAYOUT_5POINT0 \| CH_SET_LOW_FREQUENCY,<br>CH_LAYOUT_5POINT1_BACK = CH_LAYOUT_5POINT0_BACK \| CH_SET_LOW_FREQUENCY,<br>CH_LAYOUT_6POINT0 = CH_LAYOUT_5POINT0 \| CH_SET_BACK_CENTER,<br>CH_LAYOUT_3POINT1POINT2 = CH_LAYOUT_3POINT1 \| CH_SET_TOP_FRONT_LEFT \| CH_SET_TOP_FRONT_RIGHT,<br>CH_LAYOUT_6POINT0_FRONT = CH_LAYOUT_QUAD_SIDE \| CH_SET_FRONT_LEFT_OF_CENTER \| CH_SET_FRONT_RIGHT_OF_CENTER,<br>CH_LAYOUT_HEXAGONAL = CH_LAYOUT_5POINT0_BACK \| CH_SET_BACK_CENTER,<br>CH_LAYOUT_6POINT1 = CH_LAYOUT_5POINT1 \| CH_SET_BACK_CENTER,<br>CH_LAYOUT_6POINT1_BACK = CH_LAYOUT_5POINT1_BACK \| CH_SET_BACK_CENTER,<br>CH_LAYOUT_6POINT1_FRONT = CH_LAYOUT_6POINT0_FRONT \| CH_SET_LOW_FREQUENCY,<br>CH_LAYOUT_7POINT0 = CH_LAYOUT_5POINT0 \| CH_SET_BACK_LEFT \| CH_SET_BACK_RIGHT,<br>CH_LAYOUT_7POINT0_FRONT = CH_LAYOUT_5POINT0 \| CH_SET_FRONT_LEFT_OF_CENTER \| CH_SET_FRONT_RIGHT_OF_CENTER,<br>CH_LAYOUT_7POINT1 = CH_LAYOUT_5POINT1 \| CH_SET_BACK_LEFT \| CH_SET_BACK_RIGHT,<br>CH_LAYOUT_OCTAGONAL = CH_LAYOUT_5POINT0 \| CH_SET_BACK_LEFT \| CH_SET_BACK_CENTER \| CH_SET_BACK_RIGHT,<br>CH_LAYOUT_5POINT1POINT2 = CH_LAYOUT_5POINT1 \| CH_SET_TOP_SIDE_LEFT \| CH_SET_TOP_SIDE_RIGHT,<br>CH_LAYOUT_7POINT1_WIDE = CH_LAYOUT_5POINT1 \| CH_SET_FRONT_LEFT_OF_CENTER \| CH_SET_FRONT_RIGHT_OF_CENTER,<br>CH_LAYOUT_7POINT1_WIDE_BACK = CH_LAYOUT_5POINT1_BACK \| CH_SET_FRONT_LEFT_OF_CENTER \| CH_SET_FRONT_RIGHT_OF_CENTER,<br>CH_LAYOUT_AMB_ORDER2_ACN_N3D = AMB_MODE \| AMB_ORD_2 \| AMB_COM_ACN \| AMB_NOR_N3D,<br>CH_LAYOUT_AMB_ORDER2_ACN_SN3D = AMB_MODE \| AMB_ORD_2 \| AMB_COM_ACN \| AMB_NOR_SN3D,<br>CH_LAYOUT_AMB_ORDER2_FUMA = AMB_MODE \| AMB_ORD_2 \| AMB_COM_FUMA,<br>CH_LAYOUT_5POINT1POINT4,<br>CH_LAYOUT_7POINT1POINT2 = CH_LAYOUT_7POINT1 \| CH_SET_TOP_SIDE_LEFT \| CH_SET_TOP_SIDE_RIGHT,<br>CH_LAYOUT_7POINT1POINT4,<br>CH_LAYOUT_10POINT2,<br>CH_LAYOUT_9POINT1POINT4 = CH_LAYOUT_7POINT1POINT4 \| CH_SET_WIDE_LEFT \| CH_SET_WIDE_RIGHT,<br>CH_LAYOUT_9POINT1POINT6 = CH_LAYOUT_9POINT1POINT4 \| CH_SET_TOP_SIDE_LEFT \| CH_SET_TOP_SIDE_RIGHT,<br>CH_LAYOUT_HEXADECAGONAL,<br>CH_LAYOUT_AMB_ORDER3_ACN_N3D = AMB_MODE \| AMB_ORD_3 \| AMB_COM_ACN \| AMB_NOR_N3D,<br>CH_LAYOUT_AMB_ORDER3_ACN_SN3D = AMB_MODE \| AMB_ORD_3 \| AMB_COM_ACN \| AMB_NOR_SN3D,<br>CH_LAYOUT_AMB_ORDER3_FUMA = AMB_MODE \| AMB_ORD_3 \| AMB_COM_FUMA,<br>CH_LAYOUT_22POINT2<br>} | Enumerates the audio channel layouts.| 
 | [OH_AVCodecBufferFlags](#oh_avcodecbufferflags-1) {<br>AVCODEC_BUFFER_FLAGS_NONE = 0,<br>AVCODEC_BUFFER_FLAGS_EOS = 1 &lt;&lt; 0, AVCODEC_BUFFER_FLAGS_SYNC_FRAME = 1 &lt;&lt; 1, AVCODEC_BUFFER_FLAGS_INCOMPLETE_FRAME = 1 &lt;&lt; 2,<br>AVCODEC_BUFFER_FLAGS_CODEC_DATA = 1 &lt;&lt; 3, <br>AVCODEC_BUFFER_FLAGS_DISCARD = 1 &lt;&lt; 4, <br>AVCODEC_BUFFER_FLAGS_DISPOSABLE = 1 &lt;&lt; 5<br>} | Enumerates the flags for the buffer of an **OH_AVCodec** instance. | 
-| [OH_AVErrCode](#oh_averrcode-1)  {<br>AV_ERR_OK = 0,<br>AV_ERR_NO_MEMORY = 1,<br>AV_ERR_OPERATE_NOT_PERMIT = 2,<br>AV_ERR_INVALID_VAL = 3,<br>AV_ERR_IO = 4,<br>AV_ERR_TIMEOUT = 5,<br>AV_ERR_UNKNOWN = 6,<br>AV_ERR_SERVICE_DIED = 7,<br>AV_ERR_INVALID_STATE = 8,<br>AV_ERR_UNSUPPORT = 9,<br>AV_ERR_EXTEND_START = 100,<br>AV_ERR_DRM_BASE = 200,<br>AV_ERR_DRM_DECRYPT_FAILED = 201,<br>AV_ERR_VIDEO_BASE = 300,<br>AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION = 301<br>} | Enumerates the error codes used by the media framework. |
+| [OH_AVErrCode](#oh_averrcode-1)  {<br>AV_ERR_OK = 0,<br>AV_ERR_NO_MEMORY = 1,<br>AV_ERR_OPERATE_NOT_PERMIT = 2,<br>AV_ERR_INVALID_VAL = 3,<br>AV_ERR_IO = 4,<br>AV_ERR_TIMEOUT = 5,<br>AV_ERR_UNKNOWN = 6,<br>AV_ERR_SERVICE_DIED = 7,<br>AV_ERR_INVALID_STATE = 8,<br>AV_ERR_UNSUPPORT = 9, <br>AV_ERR_UNSUPPORTED_FORMAT = 11,<br>AV_ERR_EXTEND_START = 100,<br>AV_ERR_DRM_BASE = 200,<br>AV_ERR_DRM_DECRYPT_FAILED = 201,<br>AV_ERR_VIDEO_BASE = 300,<br>AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION = 301<br>} | Enumerates the error codes used by the media framework. |
 | [OH_AVPixelFormat](#oh_avpixelformat-1) {<br>AV_PIXEL_FORMAT_YUVI420 = 1,<br>AV_PIXEL_FORMAT_NV12 = 2,<br>AV_PIXEL_FORMAT_NV21 = 3,<br>AV_PIXEL_FORMAT_SURFACE_FORMAT = 4,<br>AV_PIXEL_FORMAT_RGBA = 5<br>} | Enumerates the video pixel formats.| 
 
 
@@ -65,7 +68,7 @@ The Core module provides the basic backbone capabilities for the media framework
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_AVBuffer](#oh_avbuffer) \* [OH_AVBuffer_Create](#oh_avbuffer_create) (int32_t capacity) | Creates an **OH_AVBuffer** instance. The caller must call [OH_AVBuffer_Destroy](#oh_avbuffer_destroy) to manually release the **OH_AVBuffer** instance returned.| 
+| [OH_AVBuffer](#oh_avbuffer) \* [OH_AVBuffer_Create](#oh_avbuffer_create) (int32_t capacity) | Creates an **OH_AVBuffer** instance. You must call [OH_AVBuffer_Destroy](#oh_avbuffer_destroy) to manually release the **OH_AVBuffer** instance returned.| 
 | [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_Destroy](#oh_avbuffer_destroy) ([OH_AVBuffer](#oh_avbuffer) \*buffer) | Releases an **OH_AVBuffer** instance.| 
 | [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_GetBufferAttr](#oh_avbuffer_getbufferattr) ([OH_AVBuffer](#oh_avbuffer) \*buffer, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr) | Obtains the basic attributes, including **pts**, **size**, **offset**, and **flags**, of a buffer.| 
 | [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_SetBufferAttr](#oh_avbuffer_setbufferattr) ([OH_AVBuffer](#oh_avbuffer) \*buffer, const [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr) | Sets the basic attributes, including **pts**, **size**, **offset**, and **flags**, of a buffer.| 
@@ -79,17 +82,17 @@ The Core module provides the basic backbone capabilities for the media framework
 | struct [OH_AVFormat](#oh_avformat) \* [OH_AVFormat_CreateVideoFormat](#oh_avformat_createvideoformat) (const char \*mimeType, int32_t width, int32_t height) | Creates a video **OH_AVFormat** instance with specified parameters for reading and writing data.| 
 | void [OH_AVFormat_Destroy](#oh_avformat_destroy) (struct [OH_AVFormat](#oh_avformat) \*format) | Destroys an **OH_AVFormat** instance.| 
 | bool [OH_AVFormat_Copy](#oh_avformat_copy) (struct [OH_AVFormat](#oh_avformat) \*to, struct [OH_AVFormat](#oh_avformat) \*from) | Copies an **OH_AVFormat** instance.| 
-| bool [OH_AVFormat_SetIntValue](#oh_avformat_setintvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int32_t value) | Assigns a value of the int type to a [key](_codec_base#media-data-key-value-pairs) in an **OH_AVFormat** instance.|
-| bool [OH_AVFormat_SetLongValue](#oh_avformat_setlongvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int64_t value) | Assigns a value of the long type to a [key](_codec_base#media-data-key-value-pairs) in an **OH_AVFormat** instance.|
-| bool [OH_AVFormat_SetFloatValue](#oh_avformat_setfloatvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, float value) | Assigns a value of the float type to a [key](_codec_base#media-data-key-value-pairs) in an **OH_AVFormat** instance.|
-| bool [OH_AVFormat_SetDoubleValue](#oh_avformat_setdoublevalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, double value) | Assigns a value of the double type to a [key](_codec_base#media-data-key-value-pairs) in an **OH_AVFormat** instance.|
-| bool [OH_AVFormat_SetStringValue](#oh_avformat_setstringvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, const char \*value) | Assigns a value of the string type to a [key](_codec_base#media-data-key-value-pairs) in an **OH_AVFormat** instance.|
+| bool [OH_AVFormat_SetIntValue](#oh_avformat_setintvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int32_t value) | Assigns a value of the int type to a key in an **OH_AVFormat** instance.|
+| bool [OH_AVFormat_SetLongValue](#oh_avformat_setlongvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int64_t value) | Assigns a value of the long type to a key in an **OH_AVFormat** instance.|
+| bool [OH_AVFormat_SetFloatValue](#oh_avformat_setfloatvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, float value) | Assigns a value of the float type to a key in an **OH_AVFormat** instance.|
+| bool [OH_AVFormat_SetDoubleValue](#oh_avformat_setdoublevalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, double value) | Assigns a value of the double type to a key in an **OH_AVFormat** instance.|
+| bool [OH_AVFormat_SetStringValue](#oh_avformat_setstringvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, const char \*value) | Assigns a value of the string type to a key in an **OH_AVFormat** instance.|
 | bool [OH_AVFormat_SetBuffer](#oh_avformat_setbuffer) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, const uint8_t \*addr, size_t size) | Writes data blocks of a specified length to an **OH_AVFormat** instance.| 
-| bool [OH_AVFormat_GetIntValue](#oh_avformat_getintvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int32_t \*out) | Obtains the value of the int type of a key contained in an **OH_AVFormat**.| 
-| bool [OH_AVFormat_GetLongValue](#oh_avformat_getlongvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int64_t \*out) | Obtains the value of the long type of a key contained in an **OH_AVFormat**.| 
-| bool [OH_AVFormat_GetFloatValue](#oh_avformat_getfloatvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, float \*out) | Obtains the value of the float type of a key contained in an **OH_AVFormat**.| 
-| bool [OH_AVFormat_GetDoubleValue](#oh_avformat_getdoublevalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, double \*out) | Obtains the value of the double type of a key contained in an **OH_AVFormat**.| 
-| bool [OH_AVFormat_GetStringValue](#oh_avformat_getstringvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, const char \*\*out) | Obtains the value of the string type of a key contained in an **OH_AVFormat**.| 
+| bool [OH_AVFormat_GetIntValue](#oh_avformat_getintvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int32_t \*out) | Obtains the value of the int type of a key in an **OH_AVFormat** instance.| 
+| bool [OH_AVFormat_GetLongValue](#oh_avformat_getlongvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int64_t \*out) | Obtains the value of the long type of a key in an **OH_AVFormat** instance.| 
+| bool [OH_AVFormat_GetFloatValue](#oh_avformat_getfloatvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, float \*out) | Obtains the value of the float type of a key in an **OH_AVFormat** instance.| 
+| bool [OH_AVFormat_GetDoubleValue](#oh_avformat_getdoublevalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, double \*out) | Obtains the value of the double type of a key in an **OH_AVFormat** instance.| 
+| bool [OH_AVFormat_GetStringValue](#oh_avformat_getstringvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, const char \*\*out) | Obtains the value of the string type of a key in an **OH_AVFormat** instance.| 
 | bool [OH_AVFormat_GetBuffer](#oh_avformat_getbuffer) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, uint8_t \*\*addr, size_t \*size) | Reads data blocks of a specified length from an **OH_AVFormat** instance.| 
 | const char \* [OH_AVFormat_DumpInfo](#oh_avformat_dumpinfo) (struct [OH_AVFormat](#oh_avformat) \*format) | Returns a string consisting of key-value pairs contained in an **OH_AVFormat**.| 
 | [OH_AVMemory](#oh_avmemory) \* [OH_AVMemory_Create](#oh_avmemory_create) (int32_t size) | Creates an **OH_AVMemory** instance. (This function is deprecated in API version 11.)| 
@@ -111,7 +114,7 @@ typedef enum OH_AmbAttributeSet OH_AmbAttributeSet
 
 Defines an enum for the Hi-Fi stereo reverberation settings.
 
-Int64 integers are used to indicate the Hi-Fi stereo reverberation attributes.
+int64_t integers are used to indicate the Hi-Fi stereo reverberation attributes.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -128,7 +131,7 @@ typedef enum OH_AudioChannelLayout OH_AudioChannelLayout
 
 Defines an enum for the audio channel layouts.
 
-Int64 integers are used to indicate the appearance and sequence of speakers during recording or playback.
+int64_t integers are used to indicate the appearance and sequence of speakers during recording or playback.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -145,7 +148,7 @@ typedef enum OH_AudioChannelSet OH_AudioChannelSet
 
 Defines an enum for the audio channel sets.
 
-Each audio channel is mapped to an int64 variable.
+Each audio channel is mapped to an int64_t variable.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -260,6 +263,21 @@ Defines a struct that describes a native object for the graphics memory interfac
 **Since**: 11
 
 
+### OH_Core_HdrType
+
+```
+typedef enum OH_Core_HdrType OH_Core_HdrType
+```
+
+**Description**
+
+Defines an enum for the HDR types.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+**Since**: 18
+
+
 ## Enum Description
 
 
@@ -273,7 +291,7 @@ enum OH_AmbAttributeSet
 
 Enumerates the Hi-Fi stereo reverberation settings.
 
-Int64 integers are used to indicate the Hi-Fi stereo reverberation attributes.
+int64_t integers are used to indicate the Hi-Fi stereo reverberation attributes.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -301,7 +319,7 @@ enum OH_AudioChannelLayout
 
 Enumerates the audio channel layouts.
 
-Int64 integers are used to indicate the appearance and sequence of speakers during recording or playback.
+int64_t integers are used to indicate the appearance and sequence of speakers during recording or playback.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -371,7 +389,7 @@ enum OH_AudioChannelSet
 
 Enumerates the audio channel sets.
 
-Each audio channel is mapped to an int64 variable.
+Each audio channel is mapped to an int64_t variable.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -462,6 +480,7 @@ Enumerates the error codes used by the media framework.
 | AV_ERR_SERVICE_DIED  | Unavailable service.  | 
 | AV_ERR_INVALID_STATE  | Unsupported operation in this state.  | 
 | AV_ERR_UNSUPPORT  | Unsupported feature.  | 
+| AV_ERR_UNSUPPORTED_FORMAT | Coding format not supported.<br>**Since**: 18| 
 | AV_ERR_EXTEND_START  | Initial value for extended error codes.  | 
 | AV_ERR_DRM_BASE  | DRM start error code.<br>**Since**: 12| 
 | AV_ERR_DRM_DECRYPT_FAILED  | DRM decryption failed.<br>**Since**: 12| 
@@ -486,9 +505,29 @@ Enumerates the video pixel formats.
 | -------- | -------- |
 | AV_PIXEL_FORMAT_YUVI420 | YUV 420 Planar.| 
 | AV_PIXEL_FORMAT_NV12 | NV12. YUV 420 semi-planar.| 
-| AV_PIXEL_FORMAT_NV21 | NV21. YUV 420 semi-planar.| 
+| AV_PIXEL_FORMAT_NV21 | NV21. YVU 420 semi-planar.| 
 | AV_PIXEL_FORMAT_SURFACE_FORMAT | Pixel format obtained from the surface.| 
 | AV_PIXEL_FORMAT_RGBA | RGBA8888.| 
+
+
+### OH_Core_HdrType
+
+```
+enum OH_Core_HdrType
+```
+
+**Description**
+
+Enumerates the HDR types.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+**Since**: 18
+
+| Value| Description| 
+| -------- | -------- |
+| OH_CORE_HDR_TYPE_NONE | Non-HDR type.| 
+| OH_CORE_HDR_TYPE_VIVID | HDR Vivid type.| 
 
 
 ## Function Description
@@ -502,7 +541,7 @@ OH_AVBuffer* OH_AVBuffer_Create (int32_t capacity)
 
 **Description**
 
-Creates an **OH_AVBuffer** instance. The caller must call [OH_AVBuffer_Destroy](#oh_avbuffer_destroy) to manually release the **OH_AVBuffer** instance returned.
+Creates an **OH_AVBuffer** instance. You must call [OH_AVBuffer_Destroy](#oh_avbuffer_destroy) to manually release the **OH_AVBuffer** instance returned.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -677,7 +716,7 @@ OH_NativeBuffer* OH_AVBuffer_GetNativeBuffer (OH_AVBuffer *buffer)
 
 **Description**
 
-Obtains the pointer to an **OH_NativeBuffer** instance. The caller must call [OH_NativeBuffer_Unreference](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_unreference) to manually release the **OH_NativeBuffer** instance returned.
+Obtains the pointer to an **OH_NativeBuffer** instance. You must call [OH_NativeBuffer_Unreference](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_unreference) to manually release the **OH_NativeBuffer** instance returned.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -708,7 +747,7 @@ OH_AVFormat* OH_AVBuffer_GetParameter (OH_AVBuffer *buffer)
 
 **Description**
 
-Obtains parameters except basic attributes of a buffer. The information is carried in an **OH_AVFormat** instance. The caller must call [OH_AVFormat_Destroy](#oh_avformat_destroy) to manually release the **OH_AVFormat** instance returned.
+Obtains parameters except basic attributes of a buffer. The information is carried in an **OH_AVFormat** instance. You must call [OH_AVFormat_Destroy](#oh_avformat_destroy) to manually release the **OH_AVFormat** instance returned.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1002,7 +1041,7 @@ bool OH_AVFormat_GetDoubleValue (struct OH_AVFormat *format, const char *key, do
 
 **Description**
 
-Obtains the value of the double type of a key contained in an **OH_AVFormat**.
+Obtains the value of the double type of a [key](_codec_base.md#media-data-key-value-pairs) in an **OH_AVFormat** instance.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1037,7 +1076,7 @@ bool OH_AVFormat_GetFloatValue (struct OH_AVFormat *format, const char *key, flo
 
 **Description**
 
-Obtains the value of the float type of a key contained in an **OH_AVFormat**.
+Obtains the value of the float type of a [key](_codec_base.md#media-data-key-value-pairs) in an **OH_AVFormat** instance.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1072,7 +1111,7 @@ bool OH_AVFormat_GetIntValue (struct OH_AVFormat *format, const char *key, int32
 
 **Description**
 
-Obtains the value of the int type of a key contained in an **OH_AVFormat**.
+Obtains the value of the int type of a [key](_codec_base.md#media-data-key-value-pairs) in an **OH_AVFormat** instance.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1107,7 +1146,7 @@ bool OH_AVFormat_GetLongValue (struct OH_AVFormat *format, const char *key, int6
 
 **Description**
 
-Obtains the value of the long type of a key contained in an **OH_AVFormat**.
+Obtains the value of the long type of a [key](_codec_base.md#media-data-key-value-pairs) in an **OH_AVFormat** instance.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1142,7 +1181,7 @@ bool OH_AVFormat_GetStringValue (struct OH_AVFormat *format, const char *key, co
 
 **Description**
 
-Obtains the value of the string type of a key contained in an **OH_AVFormat**.
+Obtains the value of the string type of a [key](_codec_base.md#media-data-key-value-pairs) in an **OH_AVFormat** instance.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1154,7 +1193,7 @@ Obtains the value of the string type of a key contained in an **OH_AVFormat**.
 | -------- | -------- |
 | format | Pointer to an **OH_AVFormat** instance.| 
 | key | Pointer to the key of the data to read.| 
-| out | Double-pointer to the string obtained. The lifecycle of the data of **out** corresponds to that of the string in the **OH_AVFormat** instance. The maximum length of the output string is 256 bytes. To hold the data for an extended period of time, copy it to the memory.| 
+| out | Double pointer to the string read. The lifecycle of the **out** data matches the string in **format**. To keep the **out** data for an extended period of time, you must copy it to the memory. The maximum length of the output string is 256 bytes. If the length exceeds 256 bytes, **false** is returned.| 
 
 **Returns**
 
@@ -1168,6 +1207,7 @@ The possible causes of an operation failure are as follows:
 4. The passed-in value of **out** is a null pointer.
 5. The system resources are insufficient.
 6. The obtained key does not exist or is not set.
+7. The length of the **out** data exceeds 256 bytes.
 
 
 ### OH_AVFormat_SetBuffer()
@@ -1191,7 +1231,7 @@ Writes data blocks of a specified length to an **OH_AVFormat** instance. This fu
 | format | Pointer to an **OH_AVFormat** instance.| 
 | key | Pointer to the key of the data to write.| 
 | addr | Double-pointer to the address to which data is written. The lifecycle is managed by the developer.| 
-| size | Length of the data written, in MB. The value range is (0, 1).| 
+| size | Length of the data written, in MB. The value range is (0, 1].| 
 
 **Returns**
 
@@ -1215,7 +1255,7 @@ bool OH_AVFormat_SetDoubleValue (struct OH_AVFormat *format, const char *key, do
 
 **Description**
 
-Assigns a value of the double type to a [key](_codec_base#media-data-key-value-pairs) in an **OH_AVFormat** instance. This function can be used to set only parameters of the double type. For details, see [CodecBase](_codec_base.md).
+Assigns a value of the double type to a [key](_codec_base.md#media-data-key-value-pairs) in an **OH_AVFormat** instance. This function can be used to set only parameters of the double type. For details, see [CodecBase](_codec_base.md).
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1249,7 +1289,7 @@ bool OH_AVFormat_SetFloatValue (struct OH_AVFormat *format, const char *key, flo
 
 **Description**
 
-Assigns a value of the float type to a [key](_codec_base#media-data-key-value-pairs) in an **OH_AVFormat** instance. This function can be used to set only parameters of the float type. For details, see [CodecBase](_codec_base.md).
+Assigns a value of the float type to a [key](_codec_base.md#media-data-key-value-pairs) in an **OH_AVFormat** instance. This function can be used to set only parameters of the float type. For details, see [CodecBase](_codec_base.md).
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1282,7 +1322,7 @@ bool OH_AVFormat_SetIntValue (struct OH_AVFormat *format, const char *key, int32
 
 **Description**
 
-Assigns a value of the int type to a [key](_codec_base#media-data-key-value-pairs) in an **OH_AVFormat** instance. This function can be used to set only parameters of the int type. For details, see [CodecBase](_codec_base.md).
+Assigns a value of the int type to a [key](_codec_base.md#media-data-key-value-pairs) in an **OH_AVFormat** instance. This function can be used to set only parameters of the int type. For details, see [CodecBase](_codec_base.md).
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1316,7 +1356,7 @@ bool OH_AVFormat_SetLongValue (struct OH_AVFormat *format, const char *key, int6
 
 **Description**
 
-Assigns a value of the long type to a [key](_codec_base#media-data-key-value-pairs) in an **OH_AVFormat** instance. This function can be used to set only parameters of the long type. For details, see [CodecBase](_codec_base.md).
+Assigns a value of the long type to a [key](_codec_base.md#media-data-key-value-pairs) in an **OH_AVFormat** instance. This function can be used to set only parameters of the long type. For details, see [CodecBase](_codec_base.md).
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1350,7 +1390,7 @@ bool OH_AVFormat_SetStringValue (struct OH_AVFormat *format, const char *key, co
 
 **Description**
 
-Assigns a value of the string type to a [key](_codec_base#media-data-key-value-pairs) in an **OH_AVFormat** instance. This function can be used to set only parameters of the string type. For details, see [CodecBase](_codec_base.md).
+Assigns a value of the string type to a [key](_codec_base.md#media-data-key-value-pairs) in an **OH_AVFormat** instance. This function can be used to set only parameters of the string type. For details, see [CodecBase](_codec_base.md).
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1362,7 +1402,7 @@ Assigns a value of the string type to a [key](_codec_base#media-data-key-value-p
 | -------- | -------- |
 | format | Pointer to an **OH_AVFormat** instance.| 
 | key | Pointer to the key of the data to write.| 
-| value | Pointer to the string to write. If the length exceeds 256 bytes, the system truncates the data.| 
+| value | Pointer to the data to be written to the string. The length should not exceed 256 bytes.| 
 
 **Returns**
 

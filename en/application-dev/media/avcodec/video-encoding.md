@@ -1,6 +1,6 @@
 # Video Encoding
 
-You can call the native APIs provided by the VideoEncoder module to encode a video, that is, to compress video data into video streams.
+You can call the native APIs provided by the VideoEncoder module to encode a video, that is, to compress video data into a video stream.
 
 <!--RP3--><!--RP3End-->
 
@@ -14,16 +14,18 @@ The following table lists the video encoding capabilities supported:
 |          Capability                      |                              How to Use                                           |
 | --------------------------------------- | ---------------------------------------------------------------------------------- |
 | Layered encoding<br> Setting the LTR frame and reference frame                     | For details, see [Temporally Scalable Video Coding](video-encoding-temporal-scalability.md).       |
+| Repeat encoding of historical frames                   | For details, see [OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER](../../reference/apis-avcodec-kit/_codec_base.md#oh_md_key_video_encoder_repeat_previous_frame_after) and<br> [OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT](../../reference/apis-avcodec-kit/_codec_base.md#oh_md_key_video_encoder_repeat_previous_max_count).   |
 <!--RP4End-->
 
-## Restrictions
+## Constraints
 
 - The buffer mode does not support 10-bit image data.
 - Due to limited hardware encoder resources, you must call **OH_VideoEncoder_Destroy** to destroy every encoder instance when it is no longer needed.
 - If **flush()**, **reset()**, **stop()**, or **destroy()** is executed in a non-callback thread, the execution result is returned after all callbacks are executed.
 - Once **Flush**, **Reset**, or **Stop** is called, the system reclaims the OH_AVBuffer. Therefore, do not continue to operate the OH_AVBuffer obtained through the previous callback function.
 - The buffer mode and surface mode use the same APIs. Therefore, the surface mode is described as an example.
-- In buffer mode, after obtaining the pointer to an OH_AVBuffer object through the callback function **OH_AVCodecOnNeedInputBuffer**, call **OH_VideoEncoder_PushInputBuffer** to notify the system that the buffer has been fully utilized. In this way, the system will proceed with encoding the data contained in the buffer. If the OH_NativeBuffer object is obtained through **OH_AVBuffer_GetNativeBuffer** and its lifecycle extends beyond that of the OH_AVBuffer pointer object, you mut perform data duplication. In this case, you should manage the lifecycle of the newly generated OH_NativeBuffer object to ensure that the object can be correctly used and released.
+- In buffer mode, after obtaining the pointer to an OH_AVBuffer instance through the callback function **OH_AVCodecOnNeedInputBuffer**, call **OH_VideoEncoder_PushInputBuffer** to notify the system that the buffer has been fully utilized. In this way, the system will proceed with encoding the data contained in the buffer. If the OH_NativeBuffer instance is obtained through **OH_AVBuffer_GetNativeBuffer** and its lifecycle extends beyond that of the OH_AVBuffer pointer instance, you mut perform data duplication. In this case, you should manage the lifecycle of the newly generated OH_NativeBuffer object to ensure that the object can be correctly used and released.
+<!--RP14--><!--RP14End-->
 
 ## Surface Input and Buffer Input
 
@@ -35,7 +37,7 @@ The following table lists the video encoding capabilities supported:
 
 - The two also differ slightly in the API calling modes:
   - In buffer mode, the caller calls **OH_VideoEncoder_PushInputBuffer** to input data. In surface mode, the caller, before the encoder is ready, calls **OH_VideoEncoder_GetSurface** to obtain the OHNativeWindow for video data transmission.
-  - In buffer mode, the caller uses **attr** in **OH_AVBuffer** to pass in the End of Stream (EOS) flag, and the encoder stops when it reads the last frame. In surface mode, the caller calls **OH_VideoEncoder_NotifyEndOfStream** to notify the encoder of EOS.
+  - In buffer mode, you can use **attr** in **OH_AVBuffer** to pass in the End of Stream (EOS) flag, and the encoder stops when it reads the last frame. In surface mode, the caller calls **OH_VideoEncoder_NotifyEndOfStream** to notify the encoder of EOS.
 
 For details about the development procedure, see [Surface Input](#surface-input) and [Buffer Input](#buffer-input).
 
@@ -62,7 +64,7 @@ The following figure shows the interaction between states.
    - When the encoder is in the Executing state, you can call **OH_VideoEncoder_Flush** to switch it to the Flushed substate.
    - After all data to be processed is transferred to the encoder, the [AVCODEC_BUFFER_FLAGS_EOS](../../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags-1) flag is added to the last input buffer in the input buffers queue. Once this flag is detected, the encoder transits to the End-of-Stream substate. In this state, the encoder does not accept new inputs, but continues to generate outputs until it reaches the tail frame.
 
-7. When the encoder is no longer needed, you must call **OH_VideoEncoder_Destroy** to destroy the encoder instance. Then the encoder enters the Released state.
+7. When the encoder is no longer needed, you must call **OH_VideoEncoder_Destroy** to destroy the encoder instance, which then transitions to the Released state.
 
 ## How to Develop
 
@@ -86,7 +88,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 > **NOTE**
 >
-> The word 'sample' in the preceding code snippet is only an example. Use the actual project directory name.
+> The word **sample** in the preceding code snippet is only an example. Use the actual project directory name.
 >
 
 ### Defining the Basic Structure
@@ -221,7 +223,7 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     // Create an encoder by name. If your application has special requirements, for example, expecting an encoder that supports a certain resolution, you can call OH_AVCodec_GetCapability to query the capability first.
     OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
     // Create a hardware encoder instance.
-    OH_AVCapability *capability= OH_AVCodec_GetCapabilityByCategory(OH_AVCODEC_MIMETYPE_VIDEO_AVC, false, HARDWARE);
+    OH_AVCapability *capability= OH_AVCodec_GetCapabilityByCategory(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true, HARDWARE);
     const char *codecName = OH_AVCapability_GetName(capability);
     OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByName(codecName);
     ```
@@ -299,9 +301,9 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     ```c++
     // Call OH_VideoEncoder_RegisterCallback() to register the callback functions.
     OH_AVCodecCallback cb = {&OnError, &OnStreamChanged, &OnNeedInputBuffer, &OnNewOutputBuffer};
-    int32_t ret = OH_VideoEncoder_RegisterCallback(videoEnc, cb, NULL); // NULL: userData is null.
+    int32_t ret = OH_VideoEncoder_RegisterCallback(videoEnc, cb, nullptr); // nullptr: userData is null.
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     ```
 
@@ -324,7 +326,7 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
 
     // 4.2 Register the frame-specific parameter callback function.
     OH_VideoEncoder_OnNeedInputParameter inParaCb = OnNeedInputParameter;
-    OH_VideoEncoder_RegisterParameterCallback(videoEnc, inParaCb, NULL); // NULL: userData is null.
+    OH_VideoEncoder_RegisterParameterCallback(videoEnc, inParaCb, nullptr); // nullptr: userData is null.
     ```
     <!--RP7End-->
 
@@ -356,18 +358,18 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     // Configure the encoding profile.
     int32_t profile = static_cast<int32_t>(OH_AVCProfile::AVC_PROFILE_HIGH);
     // Configure the encoding bit rate mode.
-    int32_t rateMode = static_cast<int32_t>(OH_VideoEncodeBitrateMode::VBR);
+    int32_t rateMode = static_cast<int32_t>(OH_BitrateMode::BITRATE_MODE_VBR);
     // Configure the key frame interval, in milliseconds.
     int32_t iFrameInterval = 1000;
-    // Configure the bit rate.
+    // Configure the bit rate, in bit/s.
     int64_t bitRate = 5000000;
     // Set the encoding quality.
     int64_t quality = 90;
 
     OH_AVFormat *format = OH_AVFormat_Create();
-    OH_AVFormat_SetIntValue (format, OH_MD_KEY_WIDTH, width); // Mandatory
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, height); // Mandatory
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, pixelFormat); // Mandatory
+    OH_AVFormat_SetIntValue (format, OH_MD_KEY_WIDTH, width); // Mandatory.
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, height); // Mandatory.
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, pixelFormat); // Mandatory.
 
     OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_RANGE_FLAG, rangeFlag);
@@ -376,17 +378,17 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_MATRIX_COEFFICIENTS, matrix);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_I_FRAME_INTERVAL, iFrameInterval);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_PROFILE, profile);
-    // Configure OH_MD_KEY_QUALITY only when OH_MD_KEY_BITRATE = CQ is used.
-    if (rateMode == static_cast<int32_t>(OH_VideoEncodeBitrateMode::CQ)) {
+    // Configure OH_MD_KEY_QUALITY only when OH_BitrateMode = BITRATE_MODE_CQ is used.
+    if (rateMode == static_cast<int32_t>(OH_BitrateMode::BITRATE_MODE_CQ)) {
         OH_AVFormat_SetIntValue(format, OH_MD_KEY_QUALITY, quality);
-    } else if (rateMode == static_cast<int32_t>(OH_VideoEncodeBitrateMode::CBR) ||
-               rateMode == static_cast<int32_t>(OH_VideoEncodeBitrateMode::VBR)){
+    } else if (rateMode == static_cast<int32_t>(OH_BitrateMode::BITRATE_MODE_CBR) ||
+               rateMode == static_cast<int32_t>(OH_BitrateMode::BITRATE_MODE_VBR)){
         OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, bitRate);
     }
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, rateMode);
     int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     OH_AVFormat_Destroy(format);
     ```
@@ -397,14 +399,14 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
 
 6. Obtain a surface.
 
-    Obtain the OHNativeWindow in surface mode. The surface must be obtained before the encoder is prepared.
+    Obtain the OHNativeWindow in surface mode. The surface must be obtained before **OH_VideoEncoder_Prepare** is called.
 
     ```c++
     // Obtain the surface used for data input.
     OHNativeWindow *nativeWindow;
     int32_t ret = OH_VideoEncoder_GetSurface(videoEnc, &nativeWindow);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     // Use the OHNativeWindow* variable to obtain the address of the data to be filled through the producer interface.
     ```
@@ -416,7 +418,7 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     ```c++
     int32_t ret = OH_VideoEncoder_Prepare(videoEnc);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     ```
 
@@ -430,13 +432,11 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     // Start the encoder.
     int32_t ret = OH_VideoEncoder_Start(videoEnc);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     ```
 
 9. (Optional) Call **OH_VideoEncoder_SetParameter()** to dynamically configure encoder parameters during running.
-    
-    For details about the configurable options, see [Video Dedicated Key-Value Paris](../../reference/apis-avcodec-kit/_codec_base.md#media-data-key-value-pairs).
 
     <!--RP8-->
     ```c++
@@ -445,7 +445,7 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_REQUEST_I_FRAME, true);
     int32_t ret = OH_VideoEncoder_SetParameter(videoEnc, format);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     OH_AVFormat_Destroy(format);
     ```
@@ -468,14 +468,14 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     std::shared_ptr<CodecBufferInfo> bufferInfo = inQueue.Dequeue();
     std::shared_lock<std::shared_mutex> lock(codecMutex);
     if (bufferInfo == nullptr || !bufferInfo->isValid) {
-        // Exception handling.
+        // Handle exceptions.
     }
-    // The value is determined by the caller.
+    // You can determine the value.
     int32_t isIFrame;
     OH_AVFormat_SetIntValue(bufferInfo->parameter, OH_MD_KEY_REQUEST_I_FRAME, isIFrame);
     int32_t ret = OH_VideoEncoder_PushInputParameter(videoEnc, bufferInfo->index);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     ```
 
@@ -486,7 +486,7 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     // In buffer mode, you need to set the AVCODEC_BUFFER_FLAGS_EOS flag and then call OH_VideoEncoder_PushInputBuffer to notify the encoder of EOS.
     int32_t ret = OH_VideoEncoder_NotifyEndOfStream(videoEnc);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     ```
 
@@ -501,20 +501,20 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     std::shared_ptr<CodecBufferInfo> bufferInfo = outQueue.Dequeue();
     std::shared_lock<std::shared_mutex> lock(codecMutex);
     if (bufferInfo == nullptr || !bufferInfo->isValid) {
-        // Exception handling.
+        // Handle exceptions.
     }
     // Obtain the encoded information.
     OH_AVCodecBufferAttr info;
     int32_t ret = OH_AVBuffer_GetBufferAttr(bufferInfo->buffer, &info);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     // Write the encoded frame data (specified by buffer) to the output file.
     outputFile->write(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(bufferInfo->buffer)), info.size);
     // Free the output buffer. index is the index of the buffer.
     ret = OH_VideoEncoder_FreeOutputBuffer(videoEnc, bufferInfo->index);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     ```
 
@@ -529,14 +529,14 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     // Refresh the encoder.
     int32_t ret = OH_VideoEncoder_Flush(videoEnc);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     inQueue.Flush();
     outQueue.Flush();
     // Start encoding again.
     ret = OH_VideoEncoder_Start(videoEnc);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     ```
 
@@ -549,19 +549,21 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     // Reset the encoder.
     int32_t ret = OH_VideoEncoder_Reset(videoEnc);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     inQueue.Flush();
     outQueue.Flush();
     // Reconfigure the encoder.
+    OH_AVFormat *format = OH_AVFormat_Create();
     ret = OH_VideoEncoder_Configure(videoEnc, format);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
+    OH_AVFormat_Destroy(format);
     // The encoder is ready again.
     ret = OH_VideoEncoder_Prepare(videoEnc);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     ```
 
@@ -576,7 +578,7 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     // Stop the encoder.
     int32_t ret = OH_VideoEncoder_Stop(videoEnc);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     inQueue.Flush();
     outQueue.Flush();
@@ -587,23 +589,24 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     > **NOTE**
     >
     > This API cannot be called in the callback function.
-    > After the call, you must set the encoder to NULL to prevent program errors caused by wild pointers.
+    >
+    > After the call, you must set a null pointer to the encoder to prevent program errors caused by wild pointers.
 
     ```c++
     std::unique_lock<std::shared_mutex> lock(codecMutex);
     // Release the nativeWindow instance.
-    if(nativeWindow != NULL){
+    if(nativeWindow != nullptr){
         OH_NativeWindow_DestroyNativeWindow(nativeWindow);
-        nativeWindow = NULL;
+        nativeWindow = nullptr;
     }
     // Call OH_VideoEncoder_Destroy to destroy the encoder.
     int32_t ret = AV_ERR_OK;
-    if (videoEnc != NULL) {
+    if (videoEnc != nullptr) {
         ret = OH_VideoEncoder_Destroy(videoEnc);
-        videoEnc = NULL;
+        videoEnc = nullptr;
     }
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     inQueue.Flush();
     outQueue.Flush();
@@ -716,9 +719,9 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     ```c++
     // Call OH_VideoEncoder_RegisterCallback() to register the callback functions.
     OH_AVCodecCallback cb = {&OnError, &OnStreamChanged, &OnNeedInputBuffer, &OnNewOutputBuffer};
-    int32_t ret = OH_VideoEncoder_RegisterCallback(videoEnc, cb, NULL);
+    int32_t ret = OH_VideoEncoder_RegisterCallback(videoEnc, cb, nullptr);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     ```
 
@@ -734,13 +737,13 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     ```c++
     OH_AVFormat *format = OH_AVFormat_Create();
     // Set the format.
-    OH_AVFormat_SetIntValue (format, OH_MD_KEY_WIDTH, width); // Mandatory
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, height); // Mandatory
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, pixelFormat); // Mandatory
+    OH_AVFormat_SetIntValue (format, OH_MD_KEY_WIDTH, width); // Mandatory.
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, height); // Mandatory.
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, pixelFormat); // Mandatory.
     // Configure the encoder.
     int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     OH_AVFormat_Destroy(format);
     ```
@@ -752,7 +755,7 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     ```c++
     ret = OH_VideoEncoder_Prepare(videoEnc);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     ```
 
@@ -771,7 +774,7 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     // Start the encoder.
     int32_t ret = OH_VideoEncoder_Start(videoEnc);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     ```
 
@@ -784,7 +787,7 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_REQUEST_I_FRAME, true);
     int32_t ret = OH_VideoEncoder_SetParameter(videoEnc, format);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     OH_AVFormat_Destroy(format);
     ```
@@ -803,7 +806,7 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     std::shared_ptr<CodecBufferInfo> bufferInfo = inQueue.Dequeue();
     std::shared_lock<std::shared_mutex> lock(codecMutex);
     if (bufferInfo == nullptr || !bufferInfo->isValid) {
-        // Exception handling.
+        // Handle exceptions.
     }
     // Write image data.
     if (widthStride == width) {
@@ -821,22 +824,22 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     info.flags = flags;
     int32_t ret = OH_AVBuffer_SetBufferAttr(bufferInfo->buffer, &info);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     // Configure the buffer frame-specific information.
-    // The value is determined by the caller.
+    // You can determine the value.
     int32_t isIFrame;
     OH_AVFormat *parameter = OH_AVBuffer_GetParameter(bufferInfo->buffer);
     OH_AVFormat_SetIntValue(parameter, OH_MD_KEY_REQUEST_I_FRAME, isIFrame);
     ret = OH_AVBuffer_SetParameter(bufferInfo->buffer, parameter);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     OH_AVFormat_Destroy(parameter);
     // Send the data to the input buffer for encoding. index is the index of the buffer.
     ret = OH_VideoEncoder_PushInputBuffer(videoEnc, bufferInfo->index);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     ```
     Offset the stride. The following uses an NV12 image as an example, presenting the image layout of **width**, **height**, **wStride**, and **hStride**.
@@ -857,7 +860,7 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     The following is the sample code:
 
     ```c++
-    struct Rect // Width and height of the source buffer. They are set by the caller.
+    struct Rect // Width and height of the source buffer. You can set them as required.
     {
         int32_t width;
         int32_t height;
@@ -869,7 +872,7 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
         int32_t hStride;
     };
 
-    struct SrcRect // Width stride and height stride of the source buffer. They are set by the caller.
+    struct SrcRect // Width stride and height stride of the source buffer. You can set them as required.
     {
         int32_t wStride;
         int32_t hStride;
@@ -886,19 +889,19 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     // Y: Copy the source data in the Y region to the target data in another region.
     for (int32_t i = 0; i < rect.height; ++i) {
         // Copy a row of data from the source to a row of the target.
-        memcpy_s(dstTemp, srcTemp, rect.width);
+        memcpy(dstTemp, srcTemp, rect.width);
         // Update the pointers to the source data and target data to copy the next row. The pointers to the source data and target data are moved downwards by one wStride each time the source data and target data are updated.
         dstTemp += dstRect.wStride;
         srcTemp += srcRect.wStride;
     }
-    // padding
+    // Padding.
     // Update the pointers to the source data and target data. The pointers move downwards by one padding.
     dstTemp += (dstRect.hStride - rect.height) * dstRect.wStride;
     srcTemp += (srcRect.hStride - rect.height) * srcRect.wStride;
     rect.height >>= 1;
     // UV: Copy the source data in the UV region to the target data in another region.
     for (int32_t i = 0; i < rect.height; ++i) {
-        memcpy_s(dstTemp, srcTemp, rect.width);
+        memcpy(dstTemp, srcTemp, rect.width);
         dstTemp += dstRect.wStride;
         srcTemp += srcRect.wStride;
     }
@@ -923,7 +926,7 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     std::shared_ptr<CodecBufferInfo> bufferInfo = inQueue.Dequeue();
     std::shared_lock<std::shared_mutex> lock(codecMutex);
     if (bufferInfo == nullptr || !bufferInfo->isValid) {
-        // Exception handling.
+        // Handle exceptions.
     }
     OH_AVCodecBufferAttr info;
     info.size = 0;
@@ -932,11 +935,11 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     info.flags = AVCODEC_BUFFER_FLAGS_EOS;
     int32_t ret = OH_AVBuffer_SetBufferAttr(bufferInfo->buffer, &info);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     ret = OH_VideoEncoder_PushInputBuffer(videoEnc, bufferInfo->index);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     ```
 
@@ -948,20 +951,20 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     std::shared_ptr<CodecBufferInfo> bufferInfo = outQueue.Dequeue();
     std::shared_lock<std::shared_mutex> lock(codecMutex);
     if (bufferInfo == nullptr || !bufferInfo->isValid) {
-        // Exception handling.
+        // Handle exceptions.
     }
     // Obtain the encoded information.
     OH_AVCodecBufferAttr info;
     int32_t ret = OH_AVBuffer_GetBufferAttr(bufferInfo->buffer, &info);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     // Write the encoded frame data (specified by buffer) to the output file.
     outputFile->write(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(bufferInfo->buffer)), info.size);
     // Free the output buffer. index is the index of the buffer.
     ret = OH_VideoEncoder_FreeOutputBuffer(videoEnc, bufferInfo->index);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     ```
 

@@ -140,7 +140,7 @@ statSync(file: string | number): Stat
 
 access(path: string, mode?: AccessModeType): Promise&lt;boolean&gt;
 
-检查文件是否存在，使用Promise异步返回。
+检查文件或目录是否存在，或校验操作权限，使用Promise异步返回。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -188,7 +188,7 @@ access(path: string, mode?: AccessModeType): Promise&lt;boolean&gt;
 
 access(path: string, mode: AccessModeType, flag: AccessFlagType): Promise&lt;boolean&gt;
 
-检查文件是否在本地，或校验相关权限，使用Promise异步返回。如果文件在云端，或者其它分布式设备上，返回false。
+检查文件或目录是否在本地，或校验操作权限，使用Promise异步返回。如果文件在云端，或者其它分布式设备上，返回false。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -235,7 +235,7 @@ access(path: string, mode: AccessModeType, flag: AccessFlagType): Promise&lt;boo
 
 access(path: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-检查文件是否存在，使用callback异步回调。
+检查文件或目录是否存在，使用callback异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -279,7 +279,7 @@ access(path: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 accessSync(path: string, mode?: AccessModeType): boolean
 
-以同步方法检查文件是否存在。
+以同步方法检查文件或目录是否存在，或校验操作权限。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -329,7 +329,7 @@ accessSync(path: string, mode?: AccessModeType): boolean
 
 accessSync(path: string, mode: AccessModeType, flag: AccessFlagType): boolean
 
-以同步方法检查文件是否在本地，或校验相关权限。如果文件在云端，或者其它分布式设备上，返回false。
+以同步方法检查文件或目录是否在本地，或校验操作权限。如果文件在云端，或者其它分布式设备上，返回false。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -4690,10 +4690,10 @@ copySignal.onCancel().then(() => {
 | uid    | number | 是    | 否    | 文件所有者的ID。|
 | gid    | number | 是    | 否    | 文件所有组的ID。|
 | size   | number | 是    | 否    | 文件的大小，以字节为单位。仅对普通文件有效。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| atime  | number | 是    | 否    | 上次访问该文件的时间，表示距1970年1月1日0时0分0秒的秒数。  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
+| atime  | number | 是    | 否    | 上次访问该文件的时间，表示距1970年1月1日0时0分0秒的秒数。<br>**注意：** 目前用户数据分区默认以“noatime”方式挂载，atime更新被禁用。  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
 | mtime  | number | 是    | 否    | 上次修改该文件的时间，表示距1970年1月1日0时0分0秒的秒数。  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
 | ctime  | number | 是    | 否    | 最近改变文件状态的时间，表示距1970年1月1日0时0分0秒的秒数。      |
-| atimeNs<sup>15+</sup>  | bigint | 是    | 是    | 上次访问该文件的时间，表示距1970年1月1日0时0分0秒的纳秒数。      |
+| atimeNs<sup>15+</sup>  | bigint | 是    | 是    | 上次访问该文件的时间，表示距1970年1月1日0时0分0秒的纳秒数。<br>**注意：** 目前用户数据分区默认以“noatime”方式挂载，atime更新被禁用。      |
 | mtimeNs<sup>15+</sup>  | bigint | 是    | 是    | 上次修改该文件的时间，表示距1970年1月1日0时0分0秒的纳秒数。      |
 | ctimeNs<sup>15+</sup>  | bigint | 是    | 是    | 最近改变文件状态的时间，表示距1970年1月1日0时0分0秒的纳秒数。      |
 | location<sup>11+</sup> | [LocaltionType](#locationtype11)| 是 |否| 文件的位置，表示该文件是本地文件或者云端文件。

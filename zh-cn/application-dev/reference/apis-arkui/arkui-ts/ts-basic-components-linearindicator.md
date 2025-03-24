@@ -167,7 +167,7 @@ stop(): void
 | strokeWidth | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 进度条的高度。<br>不支持百分比的值。<br>大于进度条长度时取值为进度条长度。<br>当设置为undefined或null时，使用默认值。<br>默认值：2vp。|
 | strokeRadius | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 进度条的圆角半径。<br>不支持百分比的值。<br>大于"strokeWidth/2"时，按"strokeWidth/2"处理。小于0时按默认值处理。<br>取值范围：[0, strokeWidth/2]<br>当设置为undefined或null时，使用默认值。<br>默认值：1vp。|
 | trackBackgroundColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)| 否 | 进度条未播放时的颜色。<br>当设置为undefined或null时，使用默认值。<br>默认值：comp_background_tertiary。|
-| trackColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否 | 进度条播放时的颜色。<br>当设置为undefined或null时，使用默认值<br>默认值：comp_background_emphasize。|
+| trackColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否 | 进度条播放时的颜色。<br>当设置为undefined或null时，使用默认值。<br>默认值：comp_background_emphasize |
 
 ## LinearIndicatorStartOptions
 

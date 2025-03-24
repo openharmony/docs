@@ -19,11 +19,13 @@
 
 开发者在实现一个驱动时，需要在DevEco Studio工程中手动新建一个DriverExtensionAbility，具体步骤如下：
 
-1. 在工程Module对应的ets目录下，右键选择“New &gt; Directory”，新建一个目录并命名为driverextability。
+1. 创建新工程，请参考[创建一个新的工程](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-create-new-project)，创建一个OpenHarmony工程。（如果在[开发带UI界面基础驱动](externaldevice-guidelines.md)已经创建，则此处不需要创建。）
 
-2. 在driverextability目录，右键选择“New &gt; ArkTS File”，新建一个文件并命名为DriverExtAbility.ets。
+2. 在新创建的工程对应的ets目录下，右键选择“New &gt; Directory”，新建一个目录并命名为driverextability。
 
-3. 在文件中导入相关Kit，并定义请求Code。
+3. 在driverextability目录，右键选择“New &gt; ArkTS File”，新建一个文件并命名为DriverExtAbility.ets。
+
+4. 在文件中导入相关Kit，并定义请求Code。
 
     ```ts
     import { DriverExtensionAbility } from '@kit.DriverDevelopmentKit';
@@ -33,7 +35,7 @@
     const REQUEST_CODE = 99; // 与扩展外设客户端约定请求码。
     ```
 
-4. 打开DriverExtAbility.ets文件，导入[RPC通信模块](../../reference/apis-ipc-kit/js-apis-rpc.md)，重载onRemoteMessageRequest()方法，接收应用传递过来的消息，并将处理的结果返回给应用。REQUEST_VALUE用于校验应用发送的服务请求码。
+5. 打开DriverExtAbility.ets文件，导入[RPC通信模块](../../reference/apis-ipc-kit/js-apis-rpc.md)，重载onRemoteMessageRequest()方法，接收应用传递过来的消息，并将处理的结果返回给应用。REQUEST_VALUE用于校验应用发送的服务请求码。
 
     ```ts
     class StubTest extends rpc.RemoteObject {
@@ -53,7 +55,7 @@
     }
     ```
 
-5. 在DriverExtAbility.ets文件中，增加导入[DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)的依赖包，该包提供了onInit()、onRelease()、onConnect()和onDisconnect()生命周期回调，自定义类继承[DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)并根据需要重写需要的生命周期回调。
+6. 在DriverExtAbility.ets文件中，增加导入[DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)的依赖包，该包提供了onInit()、onRelease()、onConnect()和onDisconnect()生命周期回调，自定义类继承[DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)并根据需要重写需要的生命周期回调。
 
     ```ts
     export default class DriverExtAbility extends DriverExtensionAbility {
@@ -81,7 +83,7 @@
     }
     ```
 
-6. 在工程Module对应的[module.json5配置文件](../../quick-start/module-configuration-file.md)中注册DriverExtensionAbility，type标签需要设置为“driver”，srcEntry标签表示当前ExtensionAbility组件所对应的代码路径。
+7. 在工程Module对应的[module.json5配置文件](../../quick-start/module-configuration-file.md)中注册DriverExtensionAbility，type标签需要设置为“driver”，srcEntry标签表示当前ExtensionAbility组件所对应的代码路径。
 
     ```json
     {
@@ -171,7 +173,7 @@
     }
     ```
 
-7. 完成客户端和驱动示例代码开发后，请参考[使用本地真机运行应用/元服务](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-run-device-V13)，将Hap导入设备中，并点击hap中的Hello，查看是否会转变为Hello world，即实现ipc通信功能。
+8. 完成客户端和驱动示例代码开发后，请参考[使用本地真机运行应用/元服务](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-run-device-V13)，将Hap导入设备中，并点击hap中的Hello，查看是否会转变为Hello world，即实现ipc通信功能。
 
 ## 扩展设备能力
 

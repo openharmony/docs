@@ -614,7 +614,7 @@ set backgroundColor(color: number)
 
 | 参数名 | 类型   | 必填 | 说明                   |
 | ------ | ------ | ---- | ---------------------- |
-| color  | number | 是   | 背景颜色值，ARGB格式。 |
+| color  | number | 是   | 背景颜色值，ARGB格式，示例：0xE5E5E5。 |
 
 get backgroundColor(): number
 
@@ -753,7 +753,7 @@ set opacity(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| value  | number | 是   | 将要设置的不透明度，数据范围为[0, 1]。 |
+| value  | number | 是   | 将要设置的不透明度，数据范围为[0, 1]，值越大透明度越低。 |
 
 get opacity(): number
 
@@ -767,7 +767,7 @@ get opacity(): number
 
 | 类型   | 说明                                      |
 | ------ | ----------------------------------------- |
-| number | 获取当前RenderNode的不透明度，默认值为1。 |
+| number | 获取当前RenderNode的不透明度，默认值为1，不透明。 |
 
 **示例：**
 ```ts

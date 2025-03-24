@@ -358,6 +358,7 @@
             - [TaskPool任务与宿主线程通信](arkts-utils/taskpool-communicates-with-mainthread.md)
             - [Worker和宿主线程的即时消息通信](arkts-utils/worker-communicates-with-mainthread.md)
             - [Worker同步调用宿主线程的接口](arkts-utils/worker-invoke-mainthread-interface.md)
+            - [多级Worker间高性能消息通信](arkts-utils/worker-postMessage-sendable.md)
         - 应用多线程开发<!--multithread-develop-guide-->
           - [应用多线程开发概述](arkts-utils/multithread-develop-overview.md)
           - 耗时任务并发场景<!--time-consuming-task-->
@@ -642,7 +643,7 @@
       - [ArkWeb进程](web/web_component_process.md)
       - [Web组件的生命周期](web/web-event-sequence.md)
       - 设置基本属性和事件<!--web-set-attributes-events-->
-        - [UserAgent开发指导](web/web-default-userAgent.md)
+        - [User-Agent开发指导](web/web-default-userAgent.md)
         - [管理Cookie及数据存储](web/web-cookie-and-data-storage-mgmt.md)
         - [设置深色模式](web/web-set-dark-mode.md)
         - [在新窗口中打开页面](web/web-open-in-new-window.md)
@@ -1931,6 +1932,7 @@
           - [@ohos.app.ability.AbilityConstant (AbilityConstant)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-abilityConstant-sys.md)
           - [@ohos.app.ability.application (Application)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-application-sys.md)
           - [@ohos.app.ability.AutoFillExtensionAbility (AutoFillExtensionAbility)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)
+          - [@ohos.app.ability.autoFillManager (autoFillManager)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-autoFillManager-sys.md)
           - [@ohos.app.ability.autoStartupManager(autoStartupManager)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-autoStartupManager-sys.md)
           - [@ohos.app.ability.common (应用上下文Context)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-common-sys.md)
           - [@ohos.app.ability.dialogSession (dialogSession)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-dialogSession-sys.md)
@@ -2162,6 +2164,7 @@
           - [context_constant.h](reference/apis-ability-kit/context__constant_8h.md)
           - [native_interface_bundle.h](reference/apis-ability-kit/native__interface__bundle.md)
           - [native_child_process.h](reference/apis-ability-kit/native__child__process_8h.md)
+          - [start_options.h](reference/apis-ability-kit/start__options_8h.md)
           - [want.h](reference/apis-ability-kit/want__8h.md)
         - 结构体<!--ability-struct-->
           - [AbilityBase_Element](reference/apis-ability-kit/_ability_base_element.md)
@@ -2239,6 +2242,7 @@
           - [oh_data_values_buckets.h](reference/apis-arkdata/oh__data__values__buckets_8h.md)
           - [oh_predicates.h](reference/apis-arkdata/oh__predicates_8h.md)
           - [oh_rdb_transaction.h](reference/apis-arkdata/oh__rdb__transaction_8h.md)
+          - [oh_rdb_types.h](reference/apis-arkdata/oh__rdb__types_8h.md)
           - [oh_value_object.h](reference/apis-arkdata/oh__value__object_8h.md)
           - [oh_values_bucket.h](reference/apis-arkdata/oh__values__bucket_8h.md)
           - [relational_store_error_code.h](reference/apis-arkdata/relational__store__error__code_8h.md)
@@ -3053,6 +3057,7 @@
         - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md)
         - [@ohos.resourceschedule.workScheduler (延迟任务调度)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md)
         - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md)
+        - [@ohos.resourceschedule.backgroundProcessManager (后台子进程管控)](reference/apis-backgroundtasks-kit/js-apis-backgroundProcessManager.md)
         <!--Del-->
         - [@ohos.reminderAgentManager (后台代理提醒)(系统接口)](reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager-sys.md)
         - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)(系统接口)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager-sys.md)
@@ -3085,6 +3090,7 @@
         - [DeviceUsageStatistics错误码](reference/apis-backgroundtasks-kit/errorcode-DeviceUsageStatistics.md)
         - [reminderAgentManager错误码](reference/apis-backgroundtasks-kit/errorcode-reminderAgentManager.md)
         - [workScheduler错误码](reference/apis-backgroundtasks-kit/errorcode-workScheduler.md)
+        - [backgroundProcessManager错误码](reference/apis-backgroundtasks-kit/errorcode-backgroundProcessManager.md)
     - Core File Kit（文件基础服务）<!--core-file-api-->
       - ArkTS API<!--core-file-arkts-->
         - [@ohos.application.BackupExtensionAbility (备份恢复扩展能力)](reference/apis-core-file-kit/js-apis-application-backupExtensionAbility.md)
@@ -3430,6 +3436,7 @@
         - ArkTS API<!--distributed-service-arkts-->
           - [@ohos.distributedDeviceManager (设备管理)](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md)
           - [@ohos.abilityConnectionManager (应用多端协同管理)](reference/apis-distributedservice-kit/js-apis-distributed-abilityConnectionManager.md)
+          - [@ohos.application.DistributedExtensionAbility (协同Extension)](reference/apis-distributedservice-kit/js-apis-distributedExtensionAbility.md)
           <!--Del-->
           - [@ohos.distributedHardware.hardwareManager (分布式硬件管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributedHardwareManager-sys.md)
           - [@ohos.distributedDeviceManager (设备管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager-sys.md)

@@ -114,7 +114,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
 ## AppDistributionType<sup>12+</sup>
 
-标识应用分发类型。
+标识应用[分发类型](../../security/app-provision-structure.md)。
 
  **系统能力:** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -4338,7 +4338,7 @@ try {
 ## bundleManager.getSpecifiedDistributionType<sup>10+</sup>
 getSpecifiedDistributionType(bundleName: string): string
 
-以同步的方法查询指定bundleName的分发类型，该返回值是在调用install接口时传入的[InstallParam](./js-apis-installer-sys.md#installparam)中的specifiedDistributionType字段。
+以同步的方法查询指定bundleName的[分发类型](../../security/app-provision-structure.md)，该返回值是在调用install接口时传入的[InstallParam](./js-apis-installer-sys.md#installparam)中的specifiedDistributionType字段。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4356,7 +4356,7 @@ getSpecifiedDistributionType(bundleName: string): string
 
 | 类型          | 说明                                   |
 | ------------- | -------------------------------------- |
-| string | 返回指定bundleName的分发类型。 |
+| string | 返回指定bundleName的[分发类型](../../security/app-provision-structure.md)。 |
 
 **错误码：**
 
@@ -4566,7 +4566,7 @@ getJsonProfile(profileType: ProfileType, bundleName: string, moduleName?: string
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found.       |
 | 17700002 | The specified moduleName is not found.       |
-| 17700004<sup>12+</sup> | The specified user ID is not found.      |
+| 17700004 | The specified user ID is not found.      |
 | 17700024 | Failed to get the profile because the specified profile is not found in the HAP. |
 | 17700026 | The specified bundle is disabled.            |
 
@@ -4911,7 +4911,7 @@ try {
 
 getDeveloperIds(appDistributionType?: number): Array\<String>
 
-根据给定的应用分发类型获取当前用户下的所有的开发者ID列表。
+根据给定的应用[分发类型](#appdistributiontype12)获取当前用户下的所有的开发者ID列表。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4923,7 +4923,7 @@ getDeveloperIds(appDistributionType?: number): Array\<String>
 
 | 参数名                | 类型      | 必填 | 说明                     |
 | --------------------- | ---------| ---- | --------------------- |
-| appDistributionType  | [number](#appdistributiontype12)   | 否   | 表示应用的分发类型，当该参数缺省时，会返回所有应用的开发者ID列表。       |
+| [appDistributionType](#appdistributiontype12)  | number   | 否   | 表示应用的分发类型，当该参数缺省时，会返回所有应用的开发者ID列表。       |
 
 **返回值：**
 
@@ -5510,14 +5510,14 @@ migrateData(sourcePaths: Array&lt;string&gt;, destinationPath: string): Promise&
 **示例：**
 
 ```ts
-import { bundleManager, common } from '@kit.AbilityKit';
+import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 开发者需将source1、source2、dest内容更新为实际文件路径或目录路径。
-  let source1: string = this.context.tempDir;
-  let source2: string = "/xxxx/xxxx/xxxx/xxxx/log.txt";
-  let dest: string = this.context.cacheDir;
+  let source1: string = "/data/app/el2/100/base/com.example.myapplication/";
+  let source2: string = "/data/app/el2/101/base/com.example.myapplication/log.txt";
+  let dest: string = "/data/local/tmp";
   let sourcePaths: Array<string> = [source1, source2];
 
   bundleManager.migrateData(sourcePaths, dest)

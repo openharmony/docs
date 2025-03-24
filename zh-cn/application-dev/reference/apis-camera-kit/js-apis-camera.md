@@ -6,7 +6,7 @@
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-## 导入模块
+## 导入模块set
 
 ```ts
 import { camera } from '@kit.CameraKit';
@@ -5276,6 +5276,46 @@ function setMeteringPoint(photoSession: camera.PhotoSession): void {
 }
 ```
 
+### getExposureBiasRange<sup>11+</sup>
+
+getExposureBiasRange(): Array\<number\>
+
+查询曝光补偿范围。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+| Array\<number\>   | 获取补偿范围的数组。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config, only throw in session usage.               |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getExposureBiasRange(photoSession: camera.PhotoSession): Array<number> {
+  let biasRangeArray: Array<number> = [];
+  try {
+    biasRangeArray = photoSession.getExposureBiasRange();
+  } catch (error) {
+    // 失败返回错误码error.code并处理。
+    let err = error as BusinessError;
+    console.error(`The getExposureBiasRange call failed. error code: ${err.code}`);
+  }
+  return biasRangeArray;
+}
+```
+
 ### setExposureBias<sup>11+</sup>
 
 setExposureBias(exposureBias: number): void
@@ -7820,7 +7860,7 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpace): void
 **P3广色域与HDR高动态范围成像**   
 
 应用可以下发不同的色彩空间(ColorSpace)参数来支持P3广色域以及HDR的功能。  
-当应用不主动设置色彩空间时，拍照以及录像模式默认为HDR拍摄效果。  
+当应用不主动设置色彩空间时，拍照模式默认为SDR拍摄效果。  
 在拍照模式下设置HDR高显效果可直接支持P3色域。  
 应用针对不同模式使能HDR效果以及设置的色彩空间可参考下表。  
 
@@ -7829,14 +7869,14 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpace): void
 | SDR/HRD拍摄         | CameraFormat             | ColorSpace       |
 |--------------------|--------------------------|------------------|
 | SDR                | CAMERA_FORMAT_YUV_420_SP | BT709_LIMIT      |
-| HDR_VIVID(Default) | CAMERA_FORMAT_YCRCB_P010 | BT2020_HLG_LIMIT |
+| HDR_VIVID          | CAMERA_FORMAT_YCRCB_P010 | BT2020_HLG_LIMIT |
 
 **拍照模式：**
 
-| SDR/HRD拍摄    | ColorSpace |
-|--------------|------------|
-| SDR          | SRGB       |
-| HDR(Default) | DISPLAY_P3 |
+| SDR/HRD拍摄        | ColorSpace |
+|--------------------|------------|
+| SDR(Default)       | SRGB       |
+| HDR                | DISPLAY_P3 |
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -8729,7 +8769,7 @@ setQualityPrioritization(quality : QualityPrioritization) : void;
 | 错误码ID | 错误信息                                                                                                                                        |
 | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 7400103  | Session not config.                                                                                                                             |
+| 7400103  | Session not config. The session has not been committed or configured.                                                                           |
 
 **示例：**
 

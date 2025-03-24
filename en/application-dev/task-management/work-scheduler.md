@@ -8,8 +8,7 @@ If an application needs to execute a non-real-time task after switching to the b
 
 ### Working Principle
 
-**Figure 1** Working principle of deferred task scheduling
-
+**Figure 1** Working principle of deferred task scheduling 
 ![WorkScheduler](figures/WorkScheduler.png)
 
 An application calls the **WorkScheduler** APIs to add, delete, and query deferred tasks. Based on the task-specific conditions (specified by **WorkInfo**, including the network type, charging type, and storage status) and system status (including the memory, power consumption, device temperature, and user habits), the WorkSchedulerService determines the time to schedule the tasks.
@@ -53,10 +52,9 @@ When the scheduling conditions are met or the task scheduling ends, the system c
 
 ## Available APIs
 
-The table below lists the APIs used for developing deferred tasks. For details about more APIs and their usage, see [@ohos.resourceschedule.workScheduler (Deferred Task Scheduling)](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md).
-
 **Table 2** Main APIs for deferred tasks
 
+The table below lists the APIs used for developing deferred tasks. For details about more APIs and their usage, see [@ohos.resourceschedule.workScheduler (Deferred Task Scheduling)](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md).
 | API| Description|
 | -------- | -------- |
 | startWork(work: WorkInfo): void; | Starts a deferred task.|
@@ -76,16 +74,16 @@ The table below lists the APIs used for developing deferred tasks. For details a
 | bundleName      | string                            | Yes   | Bundle name of the application where the deferred task is located.          |
 | abilityName     | string                            | Yes   | Ability name in the bundle.|
 | networkType     | [NetworkType](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#networktype)       | No   | Network type.            |
-| isCharging      | boolean                           | No   | Whether the device needs to enter the charging state to trigger deferred task scheduling.<br>The value **true** means that the device needs to enter the charging state to trigger deferred task scheduling, and **false** means the opposite.|
+| isCharging      | boolean                           | No   | Whether the device needs to enter the charging state to trigger deferred task scheduling.<br>- **true**: The device needs to enter the charging state to trigger deferred task scheduling.<br>- **false**: The device does not need to enter the charging state to trigger deferred task scheduling.|
 | chargerType     | [ChargingType](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#chargingtype)     | No   | Charging type.            |
 | batteryLevel    | number                            | No   | Battery level.             |
 | batteryStatus   | [BatteryStatus](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#batterystatus)   | No   | Battery status.            |
 | storageRequest  | [StorageRequest](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#storagerequest) | No   | Storage status.            |
-| isRepeat        | boolean                           | No   | Whether the deferred task is repeated.<br>The value **true** means that the task is repeated, and **false** means the opposite.|
+| isRepeat        | boolean                           | No   | Whether the deferred task is repeated.<br>- **true**: The deferred task is repeated.<br>- **false**: The deferred task is not repeated.|
 | repeatCycleTime | number                            | No   | Repeat interval, in milliseconds.            |
 | repeatCount     | number                            | No   | Number of repeat times.            |
-| isPersisted     | boolean                           | No   | Whether the registered deferred task can be saved in the system.<br>The value **true** means that the task can be saved. That is, the task can be restored after the system restarts. The value **false** means the opposite.|
-| isDeepIdle      | boolean                           | No   | Whether the device needs to enter the idle state to trigger deferred task scheduling.<br>The value **true** means that the device needs to enter the idle state to trigger deferred task scheduling, and **false** means the opposite.  |
+| isPersisted     | boolean                           | No   | Whether the registered deferred task can be saved in the system.<br>- **true**: The task can be saved. That is, the task can be restored after the system restarts.<br>- **false**: The task cannot be saved.|
+| isDeepIdle      | boolean                           | No   | Whether the device needs to enter the idle state to trigger deferred task scheduling.<br>- **true**: The device needs to enter the idle state to trigger deferred task scheduling.<br>- **false**: The device does not need to enter the idle state to trigger deferred task scheduling.  |
 | idleWaitTime    | number                            | No   | Time to wait in the idle state before triggering deferred task scheduling, in milliseconds.          |
 | parameters      | [key: string]: number \| string \| boolean  | No   | Carried parameters.|
 
@@ -99,10 +97,9 @@ The **WorkInfo** parameter is used to set conditions for triggering task schedul
 
 - For repeated tasks, **repeatCycleTime** must be at least 2 hours. When **isRepeat** is set, you must set **repeatCycleTime** or **repeatCount**.
 
-The table below lists the APIs used for developing deferred task scheduling callbacks. For details about more APIs and their usage, see [@ohos.WorkSchedulerExtensionAbility (Deferred Task Scheduling Callbacks)](../reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md).
-
 **Table 4** Deferred task scheduling callbacks
 
+The table below lists the APIs used for developing deferred task scheduling callbacks. For details about more APIs and their usage, see [@ohos.WorkSchedulerExtensionAbility (Deferred Task Scheduling Callbacks)](../reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md).
 | API| Description|
 | -------- | -------- |
 | onWorkStart(work: workScheduler.WorkInfo): void | Called when the system starts scheduling the deferred task.|

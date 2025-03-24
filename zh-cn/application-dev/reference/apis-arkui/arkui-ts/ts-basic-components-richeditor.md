@@ -747,16 +747,16 @@ Span类型信息。
 
 菜单的响应类型。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 说明          |
-| ---------- | ------------- |
-| LONG_PRESS  | 通过长按触发菜单弹出。   |
-| RIGHT_CLICK | 通过鼠标右键触发菜单弹出。 |
-| SELECT | 通过鼠标选中触发菜单弹出。 |
-| DEFAULT<sup>15+</sup> | 默认类型，不指定响应类型时生效。|
+| 名称    | 值     | 说明         |
+| ----- | ---- | ------------ |
+| RIGHT_CLICK  | 0 | 通过鼠标右键触发菜单弹出。  |
+| LONG_PRESS | 1 | 通过长按触发菜单弹出。   |
+| SELECT | 2 | 通过鼠标选中触发菜单弹出。  |
+| DEFAULT<sup>15+</sup> | 3 | 默认类型，不指定响应类型时生效。  |
 
 ## RichEditorTextStyleResult
 
@@ -1561,16 +1561,14 @@ SymbolSpan样式选项。
 
 段落样式。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称            | 类型                                       | 必填   | 说明                 |
 | ------------- | ---------------------------------------- | ---- | ------------------ |
 | textAlign     | [TextAlign](ts-appendix-enums.md#textalign) | 否    | 设置文本段落在水平方向的对齐方式。默认值：TextAlign.START  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | leadingMargin | [Dimension](ts-types.md#dimension10) \| [LeadingMarginPlaceholder](#leadingmarginplaceholder11) | 否    | 设置文本段落缩进，当段落仅存在ImageSpan或BuilderSpan时，此属性值不生效。参数为Dimension类型时，不支持以Percentage形式设置。默认值：{"size":["0.00px","0.00px"]} <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| wordBreak<sup>12+</sup> |  [WordBreak](ts-appendix-enums.md#wordbreak11) | 否    | 设置断行规则。 <br />默认值：WordBreak.BREAK_WORD  |
-| lineBreakStrategy<sup>12+</sup> | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | 否 | 设置折行规则。 <br />默认值：LineBreakStrategy.GREEDY<br />在wordBreak不等于breakAll的时候生效，不支持连字符。 |
+| wordBreak<sup>12+</sup> |  [WordBreak](ts-appendix-enums.md#wordbreak11) | 否    | 设置断行规则。 <br />默认值：WordBreak.BREAK_WORD <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| lineBreakStrategy<sup>12+</sup> | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | 否 | 设置折行规则。 <br />默认值：LineBreakStrategy.GREEDY<br />在wordBreak不等于breakAll的时候生效，不支持连字符。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | paragraphSpacing<sup>18+</sup> | number | 否    | 设置段落间距大小。<br/>单位：fp<br/>段落间距默认大小为0。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 ## LeadingMarginPlaceholder<sup>11+</sup>
@@ -1740,8 +1738,8 @@ RichEditor span信息。
 | onAppear    | [MenuOnAppearCallback](#menuonappearcallback12) | 否    | 自定义选择菜单弹出时回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onDisappear | Callback\<void\>  | 否    | 自定义选择菜单关闭时回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | menuType<sup>13+</sup> | [MenuType](ts-text-common.md#menutype13枚举说明) | 否 | 自定义选择菜单类型。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br/>默认值：MenuType.SELECTION_MENU。 |
-| onMenuShow<sup>15+</sup> | [MenuCallBack](#menucallback15) | 否 |  自定义选择菜单显示时回调。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
-| onMenuHide<sup>15+</sup> | [MenuCallBack](#menucallback15) | 否 |  自定义选择菜单隐藏时回调。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| onMenuShow<sup>15+</sup> | [MenuCallback](#menucallback15) | 否 |  自定义选择菜单显示时回调。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| onMenuHide<sup>15+</sup> | [MenuCallback](#menucallback15) | 否 |  自定义选择菜单隐藏时回调。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 | previewMenuOptions<sup>18+</sup> | [PreviewMenuOptions](#previewmenuoptions18) | 否 |  预览菜单的选项。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## PreviewMenuOptions<sup>18+</sup>
@@ -5020,3 +5018,50 @@ struct richEditorNew03 {
 }
 ```
 ![StyledString](figures/builderspan_drag_config.gif)
+
+### 示例27（文本设置Url样式）
+通过在addTextSpan、UpdateSpanStyle接口中添加UrlStyle，可以实现文本点击跳转链接的功能。
+
+```ts
+// xxx.ets
+
+@Entry
+@Component
+struct RichEditorExample {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller };
+  styledStringController: RichEditorStyledStringController = new RichEditorStyledStringController();
+  styledStringOptions: RichEditorStyledStringOptions = { controller: this.styledStringController };
+
+  build() {
+    Column() {
+      Row() {
+        Button("Add Example Url").onClick(() => {
+          this.controller.addTextSpan("示例网址", {
+            urlStyle: { url: "https://www.example.com" }
+          })
+        })
+        Button("Clear Url").onClick(() => {
+          this.controller.updateSpanStyle({
+            start: 0,
+            textStyle: {},
+            urlStyle: { url: "" }
+          })
+        })
+      }
+
+      Row() {
+        RichEditor(this.options)
+          .height('35%')
+          .border({ width: 1, color: Color.Blue })
+      }
+
+      Row() {
+        RichEditor(this.styledStringOptions)
+          .height('35%')
+          .border({ width: 1, color: Color.Red })
+      }
+    }
+  }
+}
+```

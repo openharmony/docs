@@ -859,17 +859,27 @@ struct Index {
           .borderRadius(20)
           .fontWeight(100)
           .iconColor(Color.White)
-          .padding({left:50, top:50, bottom:50, right:50})
+          .padding({
+            left: 50,
+            top: 50,
+            bottom: 50,
+            right: 50
+          })
           .textIconSpace(20)
           .backgroundColor(0x3282f6)
-        SaveButton().size({width:200, height:100})
+        SaveButton().size({ width: 200, height: 100 })
         SaveButton()
-          .size({width:200, height:100})
+          .size({ width: 200, height: 100 })
           .align(Alignment.Start)
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
           .size({ width: 150, height: 80 })
-          .borderRadius({ topLeft: 20, topRight: 25, bottomRight: 30, bottomLeft: 35 })
-        SaveButton().constraintSize({maxWidth:60})
+          .borderRadius({
+            topLeft: 20,
+            topRight: 25,
+            bottomRight: 30,
+            bottomLeft: 35
+          })
+        SaveButton().constraintSize({ maxWidth: 60 })
       }.width('100%')
     }.height('100%')
   }
@@ -890,20 +900,22 @@ struct Index {
     Row() {
       RelativeContainer() {
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
-          .width(100).height(100)
+          .width(100)
+          .height(100)
           .backgroundColor("#A3CF62")
           .alignRules({
-             top: {anchor: "__container__", align: VerticalAlign.Top},
-            left: {anchor: "__container__", align: HorizontalAlign.Start}
+            top: { anchor: "__container__", align: VerticalAlign.Top },
+            left: { anchor: "__container__", align: HorizontalAlign.Start }
           })
           .id("row1")
 
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
-          .width(100).height(100)
+          .width(100)
+          .height(100)
           .backgroundColor("#00AE9D")
           .alignRules({
-            top: {anchor: "__container__", align: VerticalAlign.Top},
-            right: {anchor: "__container__", align: HorizontalAlign.End}
+            top: { anchor: "__container__", align: VerticalAlign.Top },
+            right: { anchor: "__container__", align: HorizontalAlign.End }
           })
           .id("row2")
 
@@ -911,35 +923,35 @@ struct Index {
           .height(100)
           .backgroundColor("#0A59F7")
           .alignRules({
-            top: {anchor: "row1", align: VerticalAlign.Bottom},
-            left: {anchor: "row1", align: HorizontalAlign.End},
-            right: {anchor: "row2", align: HorizontalAlign.Start}
+            top: { anchor: "row1", align: VerticalAlign.Bottom },
+            left: { anchor: "row1", align: HorizontalAlign.End },
+            right: { anchor: "row2", align: HorizontalAlign.Start }
           })
           .id("row3")
 
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
           .backgroundColor("#2CA9E0")
           .alignRules({
-            top: {anchor: "row3", align: VerticalAlign.Bottom},
-            bottom: {anchor: "__container__", align: VerticalAlign.Bottom},
-            left: {anchor: "__container__", align: HorizontalAlign.Start},
-            right: {anchor: "row1", align: HorizontalAlign.End}
+            top: { anchor: "row3", align: VerticalAlign.Bottom },
+            bottom: { anchor: "__container__", align: VerticalAlign.Bottom },
+            left: { anchor: "__container__", align: HorizontalAlign.Start },
+            right: { anchor: "row1", align: HorizontalAlign.End }
           })
           .id("row4")
 
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
           .backgroundColor("#30C9F7")
           .alignRules({
-            top: {anchor: "row3", align: VerticalAlign.Bottom},
-            bottom: {anchor: "__container__", align: VerticalAlign.Bottom},
-            left: {anchor: "row2", align: HorizontalAlign.Start},
-            right: {anchor: "__container__", align: HorizontalAlign.End}
+            top: { anchor: "row3", align: VerticalAlign.Bottom },
+            bottom: { anchor: "__container__", align: VerticalAlign.Bottom },
+            left: { anchor: "row2", align: HorizontalAlign.Start },
+            right: { anchor: "__container__", align: HorizontalAlign.End }
           })
           .id("row5")
       }
       .width(300).height(300)
       .margin({ left: 50 })
-      .border({ width:2, color: "#6699FF" })
+      .border({ width: 2, color: "#6699FF" })
     }
     .height('100%')
   }

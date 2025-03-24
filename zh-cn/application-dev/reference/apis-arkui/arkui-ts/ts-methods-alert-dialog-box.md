@@ -41,7 +41,7 @@ static show(value: AlertDialogParamWithConfirm | AlertDialogParamWithButtons | A
 | cancel                            | [VoidCallback](ts-types.md#voidcallback12) | 否   | 点击遮障层关闭dialog时的回调。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                               |
 | alignment                         | [DialogAlignment](#dialogalignment枚举说明)                  | 否   | 弹窗在竖直方向上的对齐方式。<br/>默认值：DialogAlignment.Default <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**说明**：<br/>若在UIExtension中设置showInSubWindow为true, 弹窗将基于UIExtension的宿主窗口对齐。|
 | offset                            | [Offset](ts-types.md#offset)                                 | 否   | 弹窗相对alignment所在位置的偏移量。<br/>默认值：{&nbsp;dx:&nbsp;0&nbsp;,&nbsp;dy:&nbsp;0&nbsp;}<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| gridCount                         | number                                                       | 否   | 弹窗容器宽度所占用栅格数。<br/>默认值：4 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                    |
+| gridCount                         | number                                                       | 否   | 弹窗容器宽度所占用栅格数。<br/>默认值：4 <br>取值范围：大于等于0的整数。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                    |
 | maskRect<sup>10+</sup>            | [Rectangle](#rectangle8类型说明)                             | 否   | 弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。<br/>默认值：{ x: 0, y: 0, width: '100%', height: '100%' } <br/>**说明：**<br/>showInSubWindow为true时，maskRect不生效。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | showInSubWindow<sup>11+</sup>     | boolean                                                      | 否   | 某弹框需要显示在主窗口之外时，是否在子窗口显示此弹窗。<br/>默认值：false，弹窗显示在应用内，而非独立子窗口。<br/>**说明**：showInSubWindow为true的弹窗无法触发显示另一个showInSubWindow为true的弹窗。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | isModal<sup>11+</sup>             | boolean                                                      | 否   | 弹窗是否为模态窗口，模态窗口有蒙层，非模态窗口无蒙层。<br/>默认值：true，此时弹窗有蒙层。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -68,7 +68,21 @@ static show(value: AlertDialogParamWithConfirm | AlertDialogParamWithButtons | A
 | levelMode<sup>15+</sup>       | [LevelMode](../js-apis-promptAction.md#levelmode15枚举说明) | 否   | 设置弹窗显示层级。<br />**说明：**<br />- 默认值：LevelMode.OVERLAY。<br />- 当且仅当showInSubWindow属性设置为false时生效。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 | levelUniqueId<sup>15+</sup>       | number | 否   | 设置页面级弹窗需要显示的层级下的[节点 uniqueId](../js-apis-arkui-frameNode.md#getuniqueid12)。<br />**说明：**<br />- 当且仅当levelMode属性设置为LevelMode.EMBEDDED时生效。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 | immersiveMode<sup>15+</sup>       | [ImmersiveMode](../js-apis-promptAction.md#immersivemode15枚举说明) | 否   | 设置页面内弹窗蒙层效果。<br />**说明：**<br />- 默认值：ImmersiveMode.DEFAULT <br />- 当且仅当levelMode属性设置为LevelMode.EMBEDDED时生效。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
-| levelOrder<sup>18+</sup>       | [LevelOrder](../js-apis-promptAction.md#levelorder18) | 否   | 设置弹窗显示的顺序。<br />**说明：**<br />- 默认值：LevelOrder.clamp(0) <br />- 不支持动态刷新顺序。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| levelOrder<sup>18+</sup>       | [LevelOrder](#levelorder18) | 否   | 设置弹窗显示的顺序。<br />**说明：**<br />- 默认值：LevelOrder.clamp(0) <br />- 不支持动态刷新顺序。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+
+## LevelOrder<sup>18+</sup>
+
+type LevelOrder = LevelOrder
+
+弹窗的显示顺序。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                                                  | 说明                 |
+| ----------------------------------------------------- | -------------------- |
+| [LevelOrder](../js-apis-promptAction.md#levelorder18) | 设置弹窗的显示顺序。 |
 
 ## AlertDialogParamWithConfirm对象说明
 
@@ -138,19 +152,19 @@ confirm参数优先级：fontColor、backgroundColor  > style > defaultFocus
 
 ## AlertDialogButtonBaseOptions<sup>18+</sup>对象说明
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称             | 类型                | 必填     | 说明                    |
 | ------------------| ---------------------- | ------------ | --------------------- |
-| enabled           | boolean | 否     | 点击Button是否响应，默认值true。 |
-| defaultFocus           | boolean | 否     | 设置Button是否是默认焦点，默认值false。 |
-| style           | [DialogButtonStyle](ts-appendix-enums.md#dialogbuttonstyle10) | 否     | 设置Button的风格样式，默认值DialogButtonStyle.DEFAULT。 |
-| value           | [ResourceStr](ts-types.md#resourcestr) | 是     | Button的文本内容，若值为null，则该按钮不显示。 |
-| fontColor           | [ResourceColor](ts-types.md#resourcecolor) | 否     | Button的文本颜色。 |
-| backgroundColor           | [ResourceColor](ts-types.md#resourcecolor) | 否     | Button背景颜色。 |
-| action           | [VoidCallback](ts-types.md#voidcallback12) | 是     | Button选中时的回调。 |
+| enabled<sup>10+</sup> | boolean | 否     | 点击Button是否响应，默认值true。<br/>值为true时，Button可以响应。值为false时，Button不可以响应。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| defaultFocus<sup>10+</sup> | boolean | 否     | 设置Button是否是默认焦点，默认值false。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| style<sup>10+</sup> | [DialogButtonStyle](ts-appendix-enums.md#dialogbuttonstyle10) | 否     | 设置Button的风格样式，默认值DialogButtonStyle.DEFAULT。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| value<sup>10+</sup> | [ResourceStr](ts-types.md#resourcestr) | 是     | Button的文本内容，若值为null，则该按钮不显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| fontColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否     | Button的文本颜色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| backgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否     | Button背景颜色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| action<sup>10+</sup> | [VoidCallback](ts-types.md#voidcallback12) | 是     | Button选中时的回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## DialogButtonDirection<sup>10+</sup>枚举说明
 
@@ -158,11 +172,11 @@ confirm参数优先级：fontColor、backgroundColor  > style > defaultFocus
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                       | 说明    |
-| -------------------------- | --------- |
-| AUTO                      | 两个及以下按钮水平排布，两个以上为竖直排布。 |
-| HORIZONTAL                      | 按钮水平布局。 |
-| VERTICAL                      | 按钮竖直布局。 |
+| 名称                       | 值                      | 说明    |
+| -------------------------- | --------- | --------- |
+| AUTO                      | 0                     | 两个及以下按钮水平排布，两个以上为竖直排布。 |
+| HORIZONTAL                      | 1                     | 按钮水平布局。 |
+| VERTICAL                      | 2                     | 按钮竖直布局。 |
 
 ## DialogAlignment枚举说明
 

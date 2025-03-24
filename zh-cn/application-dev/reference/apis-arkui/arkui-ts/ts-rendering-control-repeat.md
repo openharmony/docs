@@ -7,6 +7,10 @@
 Repeat基于数组类型数据来进行循环渲染，一般与容器组件配合使用。
 本文档仅为API参数说明。开发者指南见：[Repeat开发者指南](../../../quick-start/arkts-new-rendering-control-repeat.md)。
 
+## 属性
+
+继承自[DynamicNode](./ts-rendering-control-foreach.md#dynamicnode12)。
+
 ## 接口
 
 ### Repeat: \<T\>(arr: Array\<T\>)

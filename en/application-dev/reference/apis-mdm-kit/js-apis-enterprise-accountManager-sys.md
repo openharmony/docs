@@ -22,7 +22,7 @@ import { accountManager } from '@kit.MDMKit';
 
 disallowAddLocalAccount(admin: Want, disallow: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Disallows a device administrator application to create local user accounts. This API uses an asynchronous callback to return the result.
+Disallows a device to create local user accounts. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
@@ -34,9 +34,9 @@ Disallows a device administrator application to create local user accounts. This
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| disallow    | boolean     | Yes   | Whether to forbid the creation of local user accounts. The value **true** means to forbid the creation of local user accounts, and the value **false** means the opposite.                 |
-| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | EnterpriseAdminExtensionAbility.     |
+| disallow    | boolean     | Yes   | Whether to forbid the creation of local user accounts. The value **true** means the creation of local user accounts is forbidden, and the value **false** means the opposite.                 |
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
 
@@ -72,7 +72,7 @@ accountManager.disallowAddLocalAccount(wantTemp, true, (err) => {
 
 disallowAddLocalAccount(admin: Want, disallow: boolean): Promise&lt;void&gt;
 
-Disallows a device administrator application to create local user accounts. This API uses a promise to return the result.
+Disallows a device to create local user accounts. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
@@ -84,8 +84,8 @@ Disallows a device administrator application to create local user accounts. This
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| disallow    | boolean     | Yes   | Whether to forbid the creation of local user accounts. The value **true** means to forbid the creation of local user accounts, and the value **false** means the opposite.                 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
+| disallow    | boolean     | Yes   | Whether to forbid the creation of local user accounts. The value **true** means the creation of local user accounts is forbidden, and the value **false** means the opposite.                 |
 
 **Return value**
 
@@ -126,7 +126,7 @@ accountManager.disallowAddLocalAccount(wantTemp, true).then(() => {
 
 disallowAddOsAccountByUser(admin: Want, userId: number, disallow: boolean): void
 
-Disallows a user to add system accounts through the specified device administrator application.
+Disallows a user to add accounts.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
@@ -136,11 +136,11 @@ Disallows a user to add system accounts through the specified device administrat
 
 **Parameters**
 
-| Name  | Type                               | Mandatory| Description                                                       |
-| -------- | ----------------------------------- | ---- | ----------------------------------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                             |
-| userId   | number                              | Yes  | User ID, which must be greater than or equal to 0.                |
-| disallow | boolean                             | Yes  | Whether to disallow the user to add system accounts. The value **true** means to disallow the user to add system accounts; the value **false** means the opposite.|
+| Name  | Type                                                   | Mandatory| Description                                                       |
+| -------- | ------------------------------------------------------- | ---- | ----------------------------------------------------------- |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                     |
+| userId   | number                                                  | Yes  | User ID, which must be greater than or equal to 0.                |
+| disallow | boolean                                                 | Yes  | Whether to disallow the user to add system accounts. The value **true** means to disallow the user to add system accounts; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -175,7 +175,7 @@ try {
 
 isAddOsAccountByUserDisallowed(admin: Want, userId: number): boolean
 
-Checks whether a user is not allowed to add system accounts through the specified device administrator application.
+Queries whether to disallow a user to add accounts.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
@@ -185,10 +185,10 @@ Checks whether a user is not allowed to add system accounts through the specifie
 
 **Parameters**
 
-| Name| Type                               | Mandatory| Description                                       |
-| ------ | ----------------------------------- | ---- | ------------------------------------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                             |
-| userId | number                              | Yes  | User ID, which must be greater than or equal to 0.|
+| Name| Type                                                   | Mandatory| Description                                       |
+| ------ | ------------------------------------------------------- | ---- | ------------------------------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.     |
+| userId | number                                                  | Yes  | User ID, which must be greater than or equal to 0.|
 
 **Return value**
 
@@ -229,7 +229,7 @@ try {
 
 addOsAccount(admin: Want, name: string, type: osAccount.OsAccountType): osAccount.OsAccountInfo
 
-Adds a system account in the background through the specified device administrator application.
+Adds an account in the background.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
@@ -241,7 +241,7 @@ Adds a system account in the background through the specified device administrat
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md)                          | Yes  | Device administrator application.                                              |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | Yes  | EnterpriseAdminExtensionAbility.                      |
 | name   | string                                                       | Yes  | User ID, which must be greater than or equal to 0.                 |
 | type   | [osAccount.OsAccountType](../apis-basic-services-kit/js-apis-osAccount.md#osaccounttype) | Yes  | Type of the account to add.<br>The value can be any of the following:<br>· **ADMIN**: administrator account.<br>· **NORMAL**: normal account.<br>· **GUEST**: guest account.|
 

@@ -466,6 +466,8 @@
 | int32_t [OH_ArkUI_CustomDialog_RegisterOnDidAppearCallback](#oh_arkui_customdialog_registerondidappearcallback) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, void\* userData, void (\*callback)(void\* userData)) | 注册自定义弹窗弹出时的监听事件。  |
 | int32_t [OH_ArkUI_CustomDialog_RegisterOnWillDisappearCallback](#oh_arkui_customdialog_registeronwilldisappearcallback) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, void\* userData, void (\*callback)(void\* userData)) | 注册自定义弹窗退出动效前的监听事件。  |
 | int32_t [OH_ArkUI_CustomDialog_RegisterOnDidDisappearCallback](#oh_arkui_customdialog_registerondiddisappearcallback) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, void\* userData, void (\*callback)(void\* userData)) | 注册自定义弹窗消失时的监听事件。  |
+| int32_t [OH_ArkUI_CustomDialog_SetBackgroundBlurStyleOptions](#oh_arkui_customdialog_setbackgroundblurstyleoptions) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, const [ArkUI_AttributeItem](_ark_u_i___attribute_item.md#arkui_attributeitem) \*backgroundBlurStyleOptions) | 设置弹窗的背景模糊效果。  |
+| int32_t [OH_ArkUI_CustomDialog_SetBackgroundEffect](#oh_arkui_customdialog_setbackgroundeffect) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, const [ArkUI_AttributeItem](_ark_u_i___attribute_item.md#arkui_attributeitem) \*backgroundEffect) | 设置弹窗的背景效果参数。  |
 | bool [OH_ArkUI_GestureInterruptInfo_GetSystemFlag](#oh_arkui_gestureinterruptinfo_getsystemflag) (const ArkUI_GestureInterruptInfo \*event) | 判断是否组件内置手势。  | 
 | ArkUI_GestureRecognizer \* [OH_ArkUI_GestureInterruptInfo_GetRecognizer](#oh_arkui_gestureinterruptinfo_getrecognizer) (const ArkUI_GestureInterruptInfo \*event) | 返回被打断的手势指针。  | 
 | ArkUI_GestureEvent \* [OH_ArkUI_GestureInterruptInfo_GetGestureEvent](#oh_arkui_gestureinterruptinfo_getgestureevent) (const ArkUI_GestureInterruptInfo \*event) | 返回打断的手势事件数据。  | 
@@ -706,6 +708,10 @@
 | uint32_t [OH_ArkUI_SwiperIndicator_GetSelectedColor](#oh_arkui_swiperindicator_getselectedcolor) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | 获取被选中 Swiper 组件圆点导航指示器的颜色。  | 
 | int32_t [OH_ArkUI_SwiperIndicator_SetMaxDisplayCount](#oh_arkui_swiperindicator_setmaxdisplaycount) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, int32_t maxDisplayCount) | 设置圆点导航点指示器样式下，导航点显示个数的最大值。  | 
 | int32_t [OH_ArkUI_SwiperIndicator_GetMaxDisplayCount](#oh_arkui_swiperindicator_getmaxdisplaycount) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | 获取圆点导航点指示器样式下，导航点显示个数的最大值。  | 
+| void [OH_ArkUI_SwiperIndicator_SetSpace](#oh_arkui_swiperindicator_setspace) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, float space) | 设置导航点间距。 | 
+| float [OH_ArkUI_SwiperIndicator_GetSpace](#oh_arkui_swiperindicator_getspace) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | 获取导航点间距。|
+| void [OH_ArkUI_SwiperIndicator_SetIgnoreSizeOfBottom](#oh_arkui_swiperindicator_setignoresizeofbottom) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, int32_t ignoreSize) | 设置OH_ArkUI_SwiperIndicator_SetBottomPosition是否忽略导航点大小。 | 
+| int32_t [OH_ArkUI_SwiperIndicator_GetIgnoreSizeOfBottom](#oh_arkui_swiperindicator_getignoresizeofbottom) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | 获取OH_ArkUI_SwiperDigitIndicator_SetBottomPosition是否忽略导航点大小。|
 | [ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* [OH_ArkUI_SwiperDigitIndicator_Create](#oh_arkui_swiperdigitindicator_create)() | 创建 Swiper 组件的数字导航指示器。  | 
 | void [OH_ArkUI_SwiperDigitIndicator_SetStartPosition](#oh_arkui_swiperdigitindicator_setstartposition)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator, float value) | 设置数字导航指示器距离 Swiper 组件左边的距离，在从右至左显示的语言模式下，设置其距离 Swiper 组件右边的距离。  | 
 | float [OH_ArkUI_SwiperDigitIndicator_GetStartPosition](#oh_arkui_swiperdigitindicator_getstartposition)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator) | 获取数字导航指示器距离 Swiper 组件左边的距离，在从右至左显示的语言模式下，获取其距离 Swiper 组件右边的距离。  | 
@@ -728,6 +734,8 @@
 | void [OH_ArkUI_SwiperDigitIndicator_SetSelectedFontWeight](#oh_arkui_swiperdigitindicator_setselectedfontweight)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator, [ArkUI_FontWeight](#arkui_fontweight) selectedFontWeight) | 设置被选中 Swiper 组件数字导航指示器字体粗细属性。 | 
 | [ArkUI_FontWeight](#arkui_fontweight) [OH_ArkUI_SwiperDigitIndicator_GetSelectedFontWeight](#oh_arkui_swiperdigitindicator_getselectedfontweight)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator) | 获取被选中 Swiper 组件数字导航指示器字体粗细属性。  | 
 |void [OH_ArkUI_SwiperDigitIndicator_Dispose](#oh_arkui_swiperdigitindicator_dispose)() | 销毁Swiper组件的数字导航指示器指针。  | 
+| void [OH_ArkUI_SwiperDigitIndicator_SetIgnoreSizeOfBottom](#oh_arkui_swiperdigitindicator_setignoresizeofbottom)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator, int32_t ignoreSize) | 设置OH_ArkUI_SwiperDigitIndicator_SetBottomPosition是否忽略导航点大小。 | 
+| int32_t [OH_ArkUI_SwiperDigitIndicator_GetIgnoreSizeOfBottom](#oh_arkui_swiperdigitindicator_getignoresizeofbottom)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator) | 获取OH_ArkUI_SwiperDigitIndicator_SetBottomPosition是否忽略导航点大小。| 
 | [ArkUI_SwiperArrowStyle](#arkui_swiperarrowstyle)* [OH_ArkUI_SwiperArrowStyle_Create](#oh_arkui_swiperarrowstyle_create)() | 创建 Swiper 组件的导航箭头。  | 
 | void [OH_ArkUI_SwiperArrowStyle_SetShowBackground](#oh_arkui_swiperarrowstyle_setshowbackground)([ArkUI_SwiperArrowStyle](#arkui_swiperarrowstyle)* indicator, int32_t showBackground) | 设置 Swiper 组件导航箭头底板是否显示。 | 
 | int32_t [OH_ArkUI_SwiperArrowStyle_GetShowBackground](#oh_arkui_swiperarrowstyle_getshowbackground)([ArkUI_SwiperArrowStyle](#arkui_swiperarrowstyle)* indicator) | 获取 Swiper 组件导航箭头底板是否显示。  | 
@@ -9023,6 +9031,52 @@ int32_t OH_ArkUI_CustomDialog_RegisterOnDidDisappearCallback(
 
 [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
+### OH_ArkUI_CustomDialog_SetBackgroundBlurStyleOptions()
+
+```
+int32_t OH_ArkUI_CustomDialog_SetBackgroundBlurStyleOptions(ArkUI_CustomDialogOptions* options, const ArkUI_AttributeItem* backgroundBlurStyleOptions)
+```
+**描述：**
+
+设置弹窗的背景模糊效果。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 弹窗参数。 | 
+| backgroundBlurStyleOptions | 弹窗的背景模糊效果。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_SetBackgroundEffect()
+
+```
+int32_t OH_ArkUI_CustomDialog_SetBackgroundEffect(ArkUI_CustomDialogOptions* options, const ArkUI_AttributeItem* backgroundEffect)
+```
+**描述：**
+
+设置弹窗的背景效果参数。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 弹窗参数。 | 
+| backgroundEffect | 弹窗的背景效果参数。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
 ### OH_ArkUI_DialogDismissEvent_GetUserData()
 
 ```
@@ -15566,6 +15620,83 @@ int32_t OH_ArkUI_SwiperIndicator_GetMaxDisplayCount (ArkUI_SwiperIndicator * ind
 
 导航点显示个数最大值，有效取值范围6-9。
 
+### OH_ArkUI_SwiperIndicator_SetSpace()
+
+```
+void OH_ArkUI_SwiperIndicator_SetSpace (ArkUI_SwiperIndicator * indicator， float space)
+```
+**描述：**
+
+设置导航点间距。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| indicator | 导航指示器对象指针。  | 
+| space | 导航点间距。  | 
+
+### OH_ArkUI_SwiperIndicator_GetSpace()
+
+```
+float OH_ArkUI_SwiperIndicator_GetSpace (ArkUI_SwiperIndicator * indicator)
+```
+**描述：**
+
+获取导航点间距。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| indicator | 导航指示器对象指针。  | 
+
+**返回：**
+
+导航点间距，默认值为8.0。
+
+### OH_ArkUI_SwiperIndicator_SetIgnoreSizeOfBottom()
+
+```
+void OH_ArkUI_SwiperIndicator_SetIgnoreSizeOfBottom (ArkUI_SwiperIndicator * indicator，int32_t ignoreSize)
+```
+**描述：**
+
+设置OH_ArkUI_SwiperIndicator_SetBottomPosition是否忽略导航点大小。 
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| indicator | 导航指示器对象指针。  | 
+| ignoreSize | 是否忽略导航点大小。1表示忽略导航点大小，0表示不忽略，默认值0。 | 
+
+### OH_ArkUI_SwiperIndicator_GetIgnoreSizeOfBottom()
+
+```
+int32_t OH_ArkUI_SwiperIndicator_GetIgnoreSizeOfBottom (ArkUI_SwiperIndicator * indicator)
+```
+**描述：**
+
+获取OH_ArkUI_SwiperIndicator_SetBottomPosition是否忽略导航点大小。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| indicator | 导航指示器对象指针。  | 
+
+**返回：**
+
+是否忽略导航点大小。
 
 ### OH_ArkUI_SwiperDigitIndicator_Create()
 
@@ -15988,6 +16119,45 @@ void OH_ArkUI_SwiperDigitIndicator_Dispose(ArkUI_SwiperDigitIndicator* indicator
 | 名称 | 描述 | 
 | -------- | -------- |
 | indicator | 数字导航指示器对象指针。  | 
+
+### OH_ArkUI_SwiperDigitIndicator_SetIgnoreSizeOfBottom
+
+```
+void OH_ArkUI_SwiperDigitIndicator_SetIgnoreSizeOfBottom(ArkUI_SwiperDigitIndicator* indicator, int32_t ignoreSize)
+```
+**描述：**
+
+设置OH_ArkUI_SwiperDigitIndicator_SetBottomPosition是否忽略导航点大小。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| indicator | 数字导航指示器对象指针。  | 
+| ignoreSize | 是否忽略导航点大小。1表示忽略导航点大小，0表示不忽略，默认值0。| 
+
+### OH_ArkUI_SwiperDigitIndicator_GetIgnoreSizeOfBottom()
+
+```
+int32_t OH_ArkUI_SwiperDigitIndicator_GetIgnoreSizeOfBottom(ArkUI_SwiperDigitIndicator* indicator)
+```
+**描述：**
+
+获取OH_ArkUI_SwiperDigitIndicator_SetBottomPosition是否忽略导航点大小。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| indicator | 数字导航指示器对象指针。 | 
+
+**返回：**
+
+是否忽略导航点大小。
 
 ### OH_ArkUI_SwiperArrowStyle_Create()
 

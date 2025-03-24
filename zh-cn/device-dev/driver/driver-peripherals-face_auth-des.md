@@ -90,7 +90,7 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
 
 ### 接口说明
 
-注：以下接口列举的为IDL接口描述生成的对应C++语言函数接口，接口声明见idl文件（/drivers/interface/face_auth）。
+注：以下接口列举的为IDL接口描述生成的对应C++语言函数接口，接口声明见[idl文件](https://gitee.com/fang-jinxu/interface_native_header/tree/master/zh-cn/device_api/hdi/face_auth)。
 
 在本文中，人脸凭据的录入、认证、识别和删除相关的HDI接口如表1所示，表2中的回调函数分别用于人脸执行器返回操作结果给框架和返回操作过程中的提示信息给上层应用。
 

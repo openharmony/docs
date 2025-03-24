@@ -19,6 +19,12 @@ onClick(event: Callback\<ClickEvent>, distanceThreshold: number): T
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
+>  **说明：**
+>
+>  从API version 12开始，在使用卡片能力时，存在以下限制：
+>  1. 手指按下超过800ms后，不能触发点击事件。
+>  2. 手指按下之后移动位移超过20px，不能触发点击事件。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -39,6 +45,12 @@ onClick(event: (event: ClickEvent) => void): T
 触发点击事件的设备类型为键盘或手柄时，事件的SourceTool值为Unknown。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+>  **说明：**
+>
+>  从API version 9开始，在使用卡片能力时，存在以下限制：
+>  1. 手指按下超过800ms后，不能触发点击事件。
+>  2. 手指按下之后移动位移超过20px，不能触发点击事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
