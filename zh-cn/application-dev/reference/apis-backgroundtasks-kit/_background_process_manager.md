@@ -22,8 +22,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef enum [BackgroundProcessManager_ProcessPriority](#backgroundprocessmanager_processpriority)[BackgroundProcessManager_ProcessPriority](#backgroundprocessmanager_processpriority) | 子进程压制档位。  | 
-| typedef enum [BackgroundProcessManager_ErrorCode](#backgroundprocessmanager_errorcode)[BackgroundProcessManager_ErrorCode](#backgroundprocessmanager_errorcode) | 定义后台子进程管控错误码。  | 
+| typedef enum [BackgroundProcessManager_ProcessPriority](#backgroundprocessmanager_processpriority) [BackgroundProcessManager_ProcessPriority](#backgroundprocessmanager_processpriority) | 子进程压制档位。  | 
+| typedef enum [BackgroundProcessManager_ErrorCode](#backgroundprocessmanager_errorcode) [BackgroundProcessManager_ErrorCode](#backgroundprocessmanager_errorcode) | 定义后台子进程管控错误码。  | 
 
 
 ### 枚举
