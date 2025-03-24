@@ -143,7 +143,7 @@ metadataBinding.submitMetadata(metadata).catch((error:BusinessError)=>{
 metadataBinding.on(type: 'operationSubmitMetadata', bundleName: string, callback: Callback\<number\>): void;  
 
 订阅系统要求获取编码内容的事件，应用注册回调，当事件发生时回传编码内容。  
-系统能力：SystemCapability.MultimodalAwarness.metadataBinding  
+**系统能力**：SystemCapability.MultimodalAwarness.metadataBinding  
 **参数**： 
 
 | 参数名   | 类型                             | 必填 | 说明                                                         |
