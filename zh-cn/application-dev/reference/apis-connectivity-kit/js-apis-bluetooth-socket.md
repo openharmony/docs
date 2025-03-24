@@ -376,7 +376,7 @@ try {
 ```
 
 
-## socket.sppWriteAsync<sup>16+</sup>
+## socket.sppWriteAsync<sup>18+</sup>
 
 sppWriteAsync(clientSocket: number, data: ArrayBuffer): Promise&lt;void&gt;
 
@@ -418,7 +418,7 @@ try {
 ```
 
 
-## socket.sppReadAsync<sup>16+</sup>
+## socket.sppReadAsync<sup>18+</sup>
 
 sppReadAsync(clientSocket: number): Promise&lt;void&gt;
 
