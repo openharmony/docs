@@ -21,4 +21,4 @@ import { appManager } from '@kit.AbilityKit';
 
 | Name                    | Type                | Read Only| Mandatory| Description                                                        |
 | ------------------------ | -------------------- | ---- | ---- | ------------------------------------------------------------ |
-| onAbilityFirstFrameDrawn | AsyncCallback\<void> | Yes  | No  | Callback invoked when the first frame of an ability is rendered. The parameter type passed in is [AbilityFirstFrameStateData](js-apis-inner-application-abilityFirstFrameStateData-sys).|
+| onAbilityFirstFrameDrawn | AsyncCallback\<void> | Yes  | No  | Callback invoked when the first frame of an ability is rendered. The parameter type passed in is [AbilityFirstFrameStateData](js-apis-inner-application-abilityFirstFrameStateData-sys.md).|

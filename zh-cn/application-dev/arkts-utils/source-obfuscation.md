@@ -117,6 +117,7 @@ test(a2);
 | 缩减系统预置白名单 | [`-extra-options strip-system-api-args`](#-extra-options-strip-system-api-args) |
 | 保留声明文件参数 | [`-keep-parameter-names`](#-keep-parameter-names) |
 | 合并依赖模块选项 | [`-enable-lib-obfuscation-options`](#-enable-lib-obfuscation-options) |
+| 通过注释在源码中标记白名单 | [`-use-keep-in-source`](#-use-keep-in-source) |
 
 ### -disable-obfuscation
 
@@ -521,7 +522,196 @@ strip-language-default
 - **启用该开关后**，生效的混淆配置为当前编译模块的混淆配置与依赖模块的混淆配置的合并结果。
 
 混淆规则合并逻辑参考[混淆规则合并策略](#混淆规则合并策略)。
- 
+
+### -use-keep-in-source
+
+支持在`.ts`/`.ets`源码中通过以下两种注释标记白名单（不支持声明文件）：
+
+`// @KeepSymbol`：用来标记需要保留的名称，通常写在代码上一行，表示该名称在编译时不会被混淆。
+
+`// @KeepAsConsumer`：用来标记需要保留的名称，通常写在代码上一行，表示该名称在编译时不会被混淆。在HAR/HSP模块中，被@KeepAsConsumer标记的名称还会生成在obfuscation.txt中；在HAP模块中，@KeepAsConsumer和@KeepSymbol的效果相同。
+
+**当前支持这两种标记的语法如下：**
+
+注：以下均以`// @KeepSymbol`为例，`// @KeepAsConsumer`支持的场景和`// @KeepSymbol`相同。
+
+#### 类
+
+当前支持对类中的以下语法进行标记：
+
+- 类声明
+- 构造函数
+- 字段和方法
+
+**示例**
+
+```typescript
+// 保留类名和所有成员名。
+// @KeepSymbol
+class MyClass01 {
+  prop01: string = "prop"; // MyClass01和prop01不会被混淆。
+}
+
+// 通过构造函数保留类名。
+class MyClass02 {
+  prop02: string = "prop";
+  // @KeepSymbol
+  constructor() {}; // MyClass02不会被混淆。
+}
+
+// 保留类名和指定的字段名和方法，类中MyClass03，prop03_1，method03_2不会被混淆。
+class MyClass03 {
+  // @KeepSymbol
+  prop03_1: string = "prop";
+  prop03_2: number = 1;
+  constructor() {};
+
+  method03_1(): void {};
+  // @KeepSymbol
+  method03_2(): void {};
+}
+```
+
+#### 接口
+
+当前支持对接口中的以下语法进行标记：
+
+- 接口声明
+- 字段和方法
+
+**示例**
+
+```typescript
+// 保留接口名和所有成员名，MyInterface01，name01，foo01不会被混淆。
+// @KeepSymbol
+interface MyInterface01 {
+  name01: string;
+  foo01(): void;
+}
+
+// 保留接口名和指定的字段和方法名，MyInterface02，name02不会被混淆。
+interface MyInterface02 {
+  // @KeepSymbol
+  name02: string;
+  foo02(): void;
+}
+```
+
+#### 枚举
+
+当前支持对枚举中的以下语法进行标记：
+
+- 枚举声明
+- 枚举成员
+
+**示例**
+
+```typescript
+// 保留枚举名和所有成员名，Color01，RED01，BLUE01不会被混淆。
+// @KeepSymbol
+enum Color01 {
+  RED01,
+  BLUE01
+}
+
+// 保留枚举名指定的枚举成员名。
+enum Color02 {
+  RED02,
+  // @KeepSymbol
+  BLUE02 // Color02，BLUE02不会被混淆。
+}
+```
+
+#### 函数
+
+当前支持对函数名进行标记。
+
+**示例**
+
+```typescript
+// 保留函数名，MyAdd不会被混淆。
+// @KeepSymbol
+function MyAdd(a: number, b:number): number {
+  return a + b;
+}
+```
+
+#### 命名空间
+
+当前支持对命名空间名称进行标记。
+
+**示例**
+
+```typescript
+// 保留命名空间名以及内部直接导出的成员名称，MyNameSpace以及foo不会被混淆。
+// @KeepSymbol
+namespace MyNameSpace {
+  export function foo(){};
+  function bar(){};
+}
+```
+
+#### 全局变量
+
+当前仅支持全局变量的标记，不支持局部变量。
+
+**示例**
+
+```typescript
+// 保留被标记的变量名，myVal不会被混淆。
+// @KeepSymbol
+const myVal = 1;
+```
+
+#### 白名单添加规则
+
+被标记的名称，根据以下规则添加到混淆白名单，被KeepAsConsumer保留的名称，还会额外生成到`obfuscation.txt`文件中：
+
+* 如果该名称在top-level或者被直接export，则会被添加到-keep-global-name中。
+
+* 如果该名称被直接export，还会被添加到-keep-property-name中。
+
+* 如果该名称是属性，则会被添加到-keep-property-name中。
+
+* 局部变量名不会被添加到白名单（不会被保留）。
+
+**示例**
+
+```typescript
+// @KeepAsConsumer
+export class MyClass {
+  prop01: string = "prop";
+}
+```
+此时`MyClass`会被添加到-keep-global-name以及-keep-property-name中，`prop01`则会被添加到-keep-property-name中，同时，该规则还会被写入`obfuscation.txt`文件中。
+
+#### -use-keep-in-source不支持的场景
+
+暂不支持字符串属性，数字属性，以及计算属性。
+
+**示例**
+
+```typescript
+const myMethodName = "myMethod";
+
+// 11，aa，myMethod不会被收集到白名单中
+class MyClass01 {
+  // @KeepSymbol
+  11:11;
+  // @KeepSymbol
+  'aa':'aa';
+  // @KeepSymbol
+  [myMethodName](){}
+}
+
+// RED不会被收集到白名单中
+enum MyEnum {
+  // @KeepSymbol
+  'RED',
+  BLUE
+}
+```
+
 ## 保留选项
 
 ### 已有保留选项汇总
@@ -1012,3 +1202,4 @@ class A {
 | -keep-comments               | 保留编译生成的声明文件中class、function、namespace、enum、struct、interface、module、type及属性上方的JsDoc注释 | 4.1.5.3 |
 | -keep                        | 保留指定路径中的所有名称 | 5.0.0.18 |
 | 通配符                       | 名称类和路径类的保留选项支持通配符 | 5.0.0.24 |
+| -use-keep-in-source          | 通过注释在源码中标记白名单 | 5.1.0.57 |

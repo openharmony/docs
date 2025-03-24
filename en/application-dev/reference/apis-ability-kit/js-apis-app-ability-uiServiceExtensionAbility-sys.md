@@ -65,7 +65,7 @@ class UIServiceExt extends UIServiceExtensionAbility {
 
 onRequest(want: Want, startId: number): void
 
-Called to request to start a [UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionAbility-sys.md). If the UIServiceExtensionAbility is started by calling [startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) or [startUIServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartuiserviceextensionability13), this callback will be invoked after [onCreate](#uiserviceextensionabilityoncreate). The value of **startId** is incremented for each UIServiceExtensionAbility that is started.
+Called to request to start a [UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionAbility-sys.md). If the UIServiceExtensionAbility is started by calling [startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) or [startUIServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartuiserviceextensionability14), this callback will be invoked after [onCreate](#uiserviceextensionabilityoncreate). The value of **startId** is incremented for each UIServiceExtensionAbility that is started.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -76,7 +76,7 @@ Called to request to start a [UIServiceExtensionAbility](js-apis-app-ability-uiS
 | Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | want |  [Want](js-apis-app-ability-want.md) | Yes| No|  [Want](js-apis-app-ability-want.md) information about the [UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionAbility-sys.md), including the ability name and bundle name.|
-| startId | number | Yes|  |Number of UIServiceExtensionAbility start times. The initial value is **1**, and the value is automatically incremented for each UIServiceExtensionAbility started.|
+| startId | number | Yes| Number of UIServiceExtensionAbility start times. The initial value is **1**, and the value is automatically incremented for each UIServiceExtensionAbility started.|
 
 **Example**
 
@@ -166,7 +166,7 @@ Called when a window will be created for the [UIServiceExtensionAbility](js-apis
 
 | Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| config |[window.ExtensionWindowConfig](../apis-arkui/js-apis-window-sys.md#extensionwindowconfig12)| Yes| No| Window configuration information.|
+| config |[window.ExtensionWindowConfig](../apis-arkui/js-apis-window-sys.md#extensionwindowconfig14)| Yes| No| Window configuration information.|
 
 **Example**
 

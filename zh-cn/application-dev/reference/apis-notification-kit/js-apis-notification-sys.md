@@ -2283,7 +2283,7 @@ Notification.getDeviceRemindType().then((data: Notification.DeviceRemindType) =>
 
 ## DoNotDisturbDate<sup>8+</sup> <sup>deprecated</sup>
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 > **说明：**
 > 从 API version 8开始支持，从API version 9开始废弃。建议使用[notificationManager.DoNotDisturbDate](js-apis-notificationManager-sys.md#donotdisturbdate)替代
@@ -2298,7 +2298,7 @@ Notification.getDeviceRemindType().then((data: Notification.DeviceRemindType) =>
 
 ## DoNotDisturbType<sup>8+</sup> <sup>deprecated</sup>
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 > **说明：**
 > 从 API version 8开始支持，从API version 9开始废弃。建议使用[notificationManager.DoNotDisturbType](js-apis-notificationManager-sys.md#donotdisturbtype)替代

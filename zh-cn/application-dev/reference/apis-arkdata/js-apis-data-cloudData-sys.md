@@ -88,17 +88,29 @@ interface ExtraData {
 | updated   | number | 是   | 云端同步之后本地或云端修改还未同步的条数，如返回值为2，表示本地或云端修改还有2条数据未同步。     |
 | normal | number | 是   | 端云一致的数据。如返回值为2，表示本地与云端一致的数据为2条。                     |
 
+## SyncStatus<sup>18+</sup>
+
+端云同步任务的状态。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
+
+| 名称      | 值   | 说明              |
+| -------- |-----|-----------------|
+| RUNNING | 0  | 表示端云同步任务处于运行状态。 |
+| FINISHED | 1   | 表示端云同步任务处于完成状态。 |
+
 ## SyncInfo<sup>12+</sup>
 
-返回数据，上一次端云同步所需要的信息。
+返回数据，最近一次端云同步所需要的信息。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
 
 | 名称       | 类型                                                         | 必填 | 说明                       |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| startTime  | Date                                                         | 是   | 上一次端云同步的开始时间。 |
-| finishTime | Date                                                         | 是   | 上一次端云同步的结束时间。 |
-| code       | [relationalStore.ProgressCode](js-apis-data-relationalStore.md#progresscode10) | 是   | 上一次端云同步过程的状态。 |
+| startTime  | Date                                                         | 是   | 最近一次端云同步的开始时间。 |
+| finishTime | Date                                                         | 是   | 最近一次端云同步的结束时间。 |
+| code       | [relationalStore.ProgressCode](js-apis-data-relationalStore.md#progresscode10) | 是   | 最近一次端云同步的结果。 |
+| syncStatus<sup>18+</sup> | [SyncStatus](#syncstatus18) | 否 | 最近一次端云同步的状态，默认值cloudData.SyncStatus.RUNNING。 |
 
 ## Config
 
@@ -516,7 +528,7 @@ try {
 
 ### notifyDataChange<sup>11+</sup>
 
- **static** notifyDataChange(extInfo: ExtraData, callback: AsyncCallback&lt;void&gt;):void
+ static notifyDataChange(extInfo: ExtraData, callback: AsyncCallback&lt;void&gt;):void
 
 通知云端的数据变更，可以通过extInfo中的extraData字段指定变更的数据库名和表名，使用callback异步回调。
 
@@ -620,7 +632,7 @@ try {
 
 ### notifyDataChange<sup>11+</sup>
 
-**static** notifyDataChange(extInfo: ExtraData, userId?: number): Promise&lt;void&gt;
+static notifyDataChange(extInfo: ExtraData, userId?: number): Promise&lt;void&gt;
 
 通知云端的数据变更，可以通过extInfo中的extraData字段指定变更的数据库名和表名，可通过userId指定用户ID，使用Promise异步回调。
 

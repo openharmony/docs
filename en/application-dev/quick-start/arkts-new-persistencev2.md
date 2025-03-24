@@ -12,7 +12,7 @@ Before reading this topic, you are advised to read [\@ComponentV2](./arkts-new-c
 >
 >**PersistenceV2** is supported since API version 12.
 >
->**globalConnect** is supported since API version 16. The behavior of **globalConnect** is the same as that of **connect**. The only difference is that the underlying storage path of **connect** is a module-level path, while that of **globalConnect** is an application-level path. For details, see the section [Using connect and globalConnect in Different Modules](#using-connect-and-globalconnect-in-different-modules).
+>**globalConnect** is supported since API version 18. The behavior of **globalConnect** is the same as that of **connect**. The only difference is that the underlying storage path of **connect** is a module-level path, while that of **globalConnect** is an application-level path. For details, see the section [Using connect and globalConnect in Different Modules](#using-connect-and-globalconnect-in-different-modules).
 
 
 ## Overview

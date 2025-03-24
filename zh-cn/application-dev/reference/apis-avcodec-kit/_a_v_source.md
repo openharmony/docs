@@ -37,6 +37,7 @@ AVSource模块提供用于构造媒体资源对象功能的函数。
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVSource_Destroy](#oh_avsource_destroy) ([OH_AVSource](#oh_avsource) \*source) | 销毁OH_AVSource实例并清理内部资源。  | 
 | [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVSource_GetSourceFormat](#oh_avsource_getsourceformat) ([OH_AVSource](#oh_avsource) \*source) | 获取媒体资源文件的基础信息。  | 
 | [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVSource_GetTrackFormat](#oh_avsource_gettrackformat) ([OH_AVSource](#oh_avsource) \*source, uint32_t trackIndex) | 获取轨道的基础信息。  | 
+| [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVSource_GetCustomMetadataFormat](#oh_avsource_getcustommetadataformat) ([OH_AVSource](#oh_avsource) \*source) | 获取自定义元数据的基础信息。 | 
 
 
 ## 类型定义说明
@@ -178,6 +179,39 @@ AV_ERR_INVALID_VAL：
     
     1. source指针无效；
     2. 空指针或非OH_AVSource实例。
+
+
+### OH_AVSource_GetCustomMetadataFormat()
+
+```
+OH_AVFormat *OH_AVSource_GetCustomMetadataFormat(OH_AVSource *source)
+```
+
+**描述**
+
+获取自定义元数据的基础信息。
+
+需要注意的是，指向的OH_AVFormat实例在生命周期结束时需调用者通过调用接口[OH_AVFormat_Destroy](_core.md#oh_avformat_destroy)释放。
+
+**系统能力：** SystemCapability.Multimedia.Media.Spliter
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| source | 指向OH_AVSource实例的指针。 | 
+
+**返回：**
+
+执行成功返回元数据的基础信息，否则返回NULL。
+
+可能的故障原因：
+
+1. source指针无效；
+2. 空指针或非OH_AVSource实例；
+3. source没有初始化。
 
 
 ### OH_AVSource_GetSourceFormat()

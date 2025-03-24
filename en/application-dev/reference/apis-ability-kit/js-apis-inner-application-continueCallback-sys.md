@@ -19,9 +19,9 @@ Called when the mission continuation is complete.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| result |  number | Yes | Mission continuation result. |
+| result |  number | Yes| Mission continuation result.|
 
 **Example**
 

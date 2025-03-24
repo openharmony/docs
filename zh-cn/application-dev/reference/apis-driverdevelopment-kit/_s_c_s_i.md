@@ -7,7 +7,7 @@ SCSI Peripheral DDK是为开发者提供专门用于开发SCSI设备驱动程序
 
 **系统能力**：SystemCapability.Driver.SCSI.Extension
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ## 汇总
@@ -56,19 +56,19 @@ SCSI Peripheral DDK是为开发者提供专门用于开发SCSI设备驱动程序
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef struct [ScsiPeripheral_Device](#scsiperipheral_device)[ScsiPeripheral_Device](#scsiperipheral_device) | 不透明的SCSI设备结构体。 | 
-| typedef struct [ScsiPeripheral_DeviceMemMap](_scsi_peripheral___device_mem_map.md)[ScsiPeripheral_DeviceMemMap](#scsiperipheral_devicememmap) | 通过调用OH_ScsiPeripheral_CreateDeviceMemMap创建的设备内存映射。 使用该设备内存映射的缓冲区可以提供更好的性能。 | 
-| typedef struct [ScsiPeripheral_IORequest](_scsi_peripheral___i_o_request.md)[ScsiPeripheral_IORequest](#scsiperipheral_iorequest) | 读/写操作的请求参数。 | 
-| typedef struct [ScsiPeripheral_Request](_scsi_peripheral___request.md)[ScsiPeripheral_Request](#scsiperipheral_request) | 请求参数结构体。 | 
-| typedef struct [ScsiPeripheral_Response](_scsi_peripheral___response.md)[ScsiPeripheral_Response](#scsiperipheral_response) | 响应参数结构体。 | 
-| typedef struct [ScsiPeripheral_TestUnitReadyRequest](_scsi_peripheral___test_unit_ready_request.md)[ScsiPeripheral_TestUnitReadyRequest](#scsiperipheral_testunitreadyrequest) | 命令（test unit ready）的请求结构体。 | 
-| typedef struct [ScsiPeripheral_InquiryRequest](_scsi_peripheral___inquiry_request.md)[ScsiPeripheral_InquiryRequest](#scsiperipheral_inquiryrequest) | SCSI命令（inquiry）的请求结构体。 | 
-| typedef struct [ScsiPeripheral_InquiryInfo](_scsi_peripheral___inquiry_info.md)[ScsiPeripheral_InquiryInfo](#scsiperipheral_inquiryinfo) | SCSI inquiry 数据。 | 
-| typedef struct [ScsiPeripheral_ReadCapacityRequest](_scsi_peripheral___read_capacity_request.md)[ScsiPeripheral_ReadCapacityRequest](#scsiperipheral_readcapacityrequest) | SCSI命令（read capacity）的请求结构体。 | 
-| typedef struct [ScsiPeripheral_CapacityInfo](_scsi_peripheral___capacity_info.md)[ScsiPeripheral_CapacityInfo](#scsiperipheral_capacityinfo) | SCSI read capacity 数据。 | 
-| typedef struct [ScsiPeripheral_RequestSenseRequest](_scsi_peripheral___request_sense_request.md)[ScsiPeripheral_RequestSenseRequest](#scsiperipheral_requestsenserequest) | SCSI命令（request sense）的请求结构体。 | 
-| typedef struct [ScsiPeripheral_BasicSenseInfo](_scsi_peripheral___basic_sense_info.md)[ScsiPeripheral_BasicSenseInfo](#scsiperipheral_basicsenseinfo) | sense data的基本信息。 | 
-| typedef struct [ScsiPeripheral_VerifyRequest](_scsi_peripheral___verify_request.md)[ScsiPeripheral_VerifyRequest](#scsiperipheral_verifyrequest) | SCSI命令（verify）的请求结构体。 | 
+| typedef struct [ScsiPeripheral_Device](#scsiperipheral_device) [ScsiPeripheral_Device](#scsiperipheral_device) | 不透明的SCSI设备结构体。 | 
+| typedef struct [ScsiPeripheral_DeviceMemMap](_scsi_peripheral___device_mem_map.md) [ScsiPeripheral_DeviceMemMap](#scsiperipheral_devicememmap) | 通过调用OH_ScsiPeripheral_CreateDeviceMemMap创建的设备内存映射。 使用该设备内存映射的缓冲区可以提供更好的性能。 | 
+| typedef struct [ScsiPeripheral_IORequest](_scsi_peripheral___i_o_request.md) [ScsiPeripheral_IORequest](#scsiperipheral_iorequest) | 读/写操作的请求参数。 | 
+| typedef struct [ScsiPeripheral_Request](_scsi_peripheral___request.md) [ScsiPeripheral_Request](#scsiperipheral_request) | 请求参数结构体。 | 
+| typedef struct [ScsiPeripheral_Response](_scsi_peripheral___response.md) [ScsiPeripheral_Response](#scsiperipheral_response) | 响应参数结构体。 | 
+| typedef struct [ScsiPeripheral_TestUnitReadyRequest](_scsi_peripheral___test_unit_ready_request.md) [ScsiPeripheral_TestUnitReadyRequest](#scsiperipheral_testunitreadyrequest) | 命令（test unit ready）的请求结构体。 | 
+| typedef struct [ScsiPeripheral_InquiryRequest](_scsi_peripheral___inquiry_request.md) [ScsiPeripheral_InquiryRequest](#scsiperipheral_inquiryrequest) | SCSI命令（inquiry）的请求结构体。 | 
+| typedef struct [ScsiPeripheral_InquiryInfo](_scsi_peripheral___inquiry_info.md) [ScsiPeripheral_InquiryInfo](#scsiperipheral_inquiryinfo) | SCSI inquiry 数据。 | 
+| typedef struct [ScsiPeripheral_ReadCapacityRequest](_scsi_peripheral___read_capacity_request.md) [ScsiPeripheral_ReadCapacityRequest](#scsiperipheral_readcapacityrequest) | SCSI命令（read capacity）的请求结构体。 | 
+| typedef struct [ScsiPeripheral_CapacityInfo](_scsi_peripheral___capacity_info.md) [ScsiPeripheral_CapacityInfo](#scsiperipheral_capacityinfo) | SCSI read capacity 数据。 | 
+| typedef struct [ScsiPeripheral_RequestSenseRequest](_scsi_peripheral___request_sense_request.md) [ScsiPeripheral_RequestSenseRequest](#scsiperipheral_requestsenserequest) | SCSI命令（request sense）的请求结构体。 | 
+| typedef struct [ScsiPeripheral_BasicSenseInfo](_scsi_peripheral___basic_sense_info.md) [ScsiPeripheral_BasicSenseInfo](#scsiperipheral_basicsenseinfo) | sense data的基本信息。 | 
+| typedef struct [ScsiPeripheral_VerifyRequest](_scsi_peripheral___verify_request.md) [ScsiPeripheral_VerifyRequest](#scsiperipheral_verifyrequest) | SCSI命令（verify）的请求结构体。 | 
 
 
 ### 枚举
@@ -113,7 +113,7 @@ SCSI Peripheral DDK是为开发者提供专门用于开发SCSI设备驱动程序
 
 命令描述符块的最大长度。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### SCSIPERIPHERAL_MAX_SENSE_DATA_LEN
@@ -126,7 +126,7 @@ SCSI Peripheral DDK是为开发者提供专门用于开发SCSI设备驱动程序
 
 在SCSI协议中，Sense Data（感应数据）的最大长度通常为252字节。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### SCSIPERIPHERAL_MIN_DESCRIPTOR_FORMAT_SENSE
@@ -139,7 +139,7 @@ SCSI Peripheral DDK是为开发者提供专门用于开发SCSI设备驱动程序
 
 sense data描述符格式长度最小值。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### SCSIPERIPHERAL_MIN_FIXED_FORMAT_SENSE
@@ -152,7 +152,7 @@ sense data描述符格式长度最小值。
 
 sense data固定格式长度最小值。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### SCSIPERIPHERAL_PRODUCT_ID_LEN
@@ -165,7 +165,7 @@ sense data固定格式长度最小值。
 
 product id的最大长度。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### SCSIPERIPHERAL_PRODUCT_REV_LEN
@@ -178,7 +178,7 @@ product id的最大长度。
 
 产品版本的最大长度。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### SCSIPERIPHERAL_VENDOR_ID_LEN
@@ -191,7 +191,7 @@ product id的最大长度。
 
 vendor id的最大长度。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ## 类型定义说明
@@ -200,170 +200,170 @@ vendor id的最大长度。
 ### ScsiPeripheral_BasicSenseInfo
 
 ```
-typedef struct ScsiPeripheral_BasicSenseInfoScsiPeripheral_BasicSenseInfo
+typedef struct ScsiPeripheral_BasicSenseInfo ScsiPeripheral_BasicSenseInfo
 ```
 
 **描述**
 
 sense data的基本信息。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### ScsiPeripheral_CapacityInfo
 
 ```
-typedef struct ScsiPeripheral_CapacityInfoScsiPeripheral_CapacityInfo
+typedef struct ScsiPeripheral_CapacityInfo ScsiPeripheral_CapacityInfo
 ```
 
 **描述**
 
 SCSI read capacity 数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### ScsiPeripheral_Device
 
 ```
-typedef struct ScsiPeripheral_DeviceScsiPeripheral_Device
+typedef struct ScsiPeripheral_Device ScsiPeripheral_Device
 ```
 
 **描述**
 
 不透明的SCSI设备结构体。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### ScsiPeripheral_DeviceMemMap
 
 ```
-typedef struct ScsiPeripheral_DeviceMemMapScsiPeripheral_DeviceMemMap
+typedef struct ScsiPeripheral_DeviceMemMap ScsiPeripheral_DeviceMemMap
 ```
 
 **描述**
 
 通过调用OH_ScsiPeripheral_CreateDeviceMemMap创建的设备内存映射。 使用该设备内存映射的缓冲区可以提供更好的性能。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### ScsiPeripheral_InquiryInfo
 
 ```
-typedef struct ScsiPeripheral_InquiryInfoScsiPeripheral_InquiryInfo
+typedef struct ScsiPeripheral_InquiryInfo ScsiPeripheral_InquiryInfo
 ```
 
 **描述**
 
 SCSI inquiry 数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### ScsiPeripheral_InquiryRequest
 
 ```
-typedef struct ScsiPeripheral_InquiryRequestScsiPeripheral_InquiryRequest
+typedef struct ScsiPeripheral_InquiryRequest ScsiPeripheral_InquiryRequest
 ```
 
 **描述**
 
 SCSI命令（inquiry）的请求结构体。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### ScsiPeripheral_IORequest
 
 ```
-typedef struct ScsiPeripheral_IORequestScsiPeripheral_IORequest
+typedef struct ScsiPeripheral_IORequest ScsiPeripheral_IORequest
 ```
 
 **描述**
 
 读/写操作的请求参数。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### ScsiPeripheral_ReadCapacityRequest
 
 ```
-typedef struct ScsiPeripheral_ReadCapacityRequestScsiPeripheral_ReadCapacityRequest
+typedef struct ScsiPeripheral_ReadCapacityRequest ScsiPeripheral_ReadCapacityRequest
 ```
 
 **描述**
 
 SCSI命令（read capacity）的请求结构体。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### ScsiPeripheral_Request
 
 ```
-typedef struct ScsiPeripheral_RequestScsiPeripheral_Request
+typedef struct ScsiPeripheral_Request ScsiPeripheral_Request
 ```
 
 **描述**
 
 请求参数结构体。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### ScsiPeripheral_RequestSenseRequest
 
 ```
-typedef struct ScsiPeripheral_RequestSenseRequestScsiPeripheral_RequestSenseRequest
+typedef struct ScsiPeripheral_RequestSenseRequest ScsiPeripheral_RequestSenseRequest
 ```
 
 **描述**
 
 SCSI命令（request sense）的请求结构体。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### ScsiPeripheral_Response
 
 ```
-typedef struct ScsiPeripheral_ResponseScsiPeripheral_Response
+typedef struct ScsiPeripheral_Response ScsiPeripheral_Response
 ```
 
 **描述**
 
 响应参数结构体。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### ScsiPeripheral_TestUnitReadyRequest
 
 ```
-typedef struct ScsiPeripheral_TestUnitReadyRequestScsiPeripheral_TestUnitReadyRequest
+typedef struct ScsiPeripheral_TestUnitReadyRequest ScsiPeripheral_TestUnitReadyRequest
 ```
 
 **描述**
 
 命令（test unit ready）的请求结构体。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### ScsiPeripheral_VerifyRequest
 
 ```
-typedef struct ScsiPeripheral_VerifyRequestScsiPeripheral_VerifyRequest
+typedef struct ScsiPeripheral_VerifyRequest ScsiPeripheral_VerifyRequest
 ```
 
 **描述**
 
 SCSI命令（verify）的请求结构体。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ## 枚举类型说明
@@ -379,7 +379,7 @@ enum ScsiPeripheral_DdkErrCode
 
 SCSI Peripheral DDK错误码。
 
-**起始版本：** 16
+**起始版本：** 18
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -405,7 +405,7 @@ enum ScsiPeripheral_Status
 
 定义用于响应的SCSI状态。
 
-**起始版本：** 16
+**起始版本：** 18
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -432,7 +432,7 @@ int32_t OH_ScsiPeripheral_Close (ScsiPeripheral_Device ** dev)
 
 关闭SCSI设备。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -469,7 +469,7 @@ int32_t OH_ScsiPeripheral_CreateDeviceMemMap (ScsiPeripheral_Device * dev, size_
 
 创建缓冲区。请在缓冲区使用完后，调用[OH_ScsiPeripheral_DestroyDeviceMemMap](#oh_scsiperipheral_destroydevicememmap)销毁缓冲区，否则会造成资源泄露。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -502,7 +502,7 @@ int32_t OH_ScsiPeripheral_DestroyDeviceMemMap (ScsiPeripheral_DeviceMemMap * dev
 
 销毁缓冲区。请在缓冲区使用完后及时销毁缓冲区，否则会造成资源泄露。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -533,7 +533,7 @@ int32_t OH_ScsiPeripheral_Init (void )
 
 初始化SCSI Peripheral DDK。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **Permission：**
 
@@ -560,7 +560,7 @@ int32_t OH_ScsiPeripheral_Inquiry (ScsiPeripheral_Device * dev, ScsiPeripheral_I
 
 查询SCSI设备的基本信息。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -606,7 +606,7 @@ int32_t OH_ScsiPeripheral_Open (uint64_t deviceId, uint8_t interfaceIndex, ScsiP
 
 打开deviceId和interfaceIndex指定的SCSI设备。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -651,7 +651,7 @@ int32_t OH_ScsiPeripheral_ParseBasicSenseInfo (uint8_t * senseData, uint8_t sens
 
 解析基本的sense data，包括Information、Command specific information、Sense key specific字段。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -682,7 +682,7 @@ int32_t OH_ScsiPeripheral_Read10 (ScsiPeripheral_Device * dev, ScsiPeripheral_IO
 
 从指定逻辑块读取数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -727,7 +727,7 @@ int32_t OH_ScsiPeripheral_ReadCapacity10 (ScsiPeripheral_Device * dev, ScsiPerip
 
 获取SCSI设备的容量信息。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -773,7 +773,7 @@ int32_t OH_ScsiPeripheral_Release (void )
 
 释放SCSI Peripheral DDK。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **Permission：**
 
@@ -800,7 +800,7 @@ int32_t OH_ScsiPeripheral_RequestSense (ScsiPeripheral_Device * dev, ScsiPeriphe
 
 获取sense data（SCSI设备返回给主机的信息，用于报告设备的状态、错误信息以及诊断信息）。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -845,7 +845,7 @@ int32_t OH_ScsiPeripheral_SendRequestByCdb (ScsiPeripheral_Device * dev, ScsiPer
 
 以CDB（Command Descriptor Block）方式发送SCSI命令。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -890,7 +890,7 @@ int32_t OH_ScsiPeripheral_TestUnitReady (ScsiPeripheral_Device * dev, ScsiPeriph
 
 检查逻辑单元是否已经准备好。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -935,7 +935,7 @@ int32_t OH_ScsiPeripheral_Verify10 (ScsiPeripheral_Device * dev, ScsiPeripheral_
 
 校验指定逻辑块。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -980,7 +980,7 @@ int32_t OH_ScsiPeripheral_Write10 (ScsiPeripheral_Device * dev, ScsiPeripheral_I
 
 写数据到设备的指定逻辑块。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 

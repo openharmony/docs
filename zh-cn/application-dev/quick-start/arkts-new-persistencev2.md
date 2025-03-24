@@ -12,7 +12,7 @@ PersistenceV2提供状态变量持久化能力，开发者可以通过connect或
 >
 >PersistenceV2从API version 12开始支持。
 >
->globalConnect从API version 16开始支持，行为和connect保持一致，唯一的区别为connect的底层存储路径为module级别的路径，而globalConnect的底层存储路径为应用级别，详细区别见使用场景[在不同的module中使用connect和globalConnect](#在不同的module中使用connect和globalconnect)。
+>globalConnect从API version 18开始支持，行为和connect保持一致，唯一的区别为connect的底层存储路径为module级别的路径，而globalConnect的底层存储路径为应用级别，详细区别见使用场景[在不同的module中使用connect和globalConnect](#在不同的module中使用connect和globalconnect)。
 
 
 ## 概述
@@ -39,7 +39,7 @@ static connect<T extends object>(
 
 | connect      | 说明                                                  |
 | ------------ | ----------------------------------------------------- |
-| 参数         | type：指定的类型，若未指定key，则使用type的name作为key；</br > keyOrDefaultCreater：指定的key，或者是默认数据的构造器；</br > defaultCreator：默认数据的构造器。                                          |
+| 参数         | type：指定的类型，若未指定key，则使用type的name作为key；</br > keyOrDefaultCreator：指定的key，或者是默认数据的构造器；</br > defaultCreator：默认数据的构造器。                                          |
 | 返回值       | 创建或获取数据成功时，返回数据；否则返回undefined。 |
 
 >**说明：**
@@ -87,7 +87,7 @@ class ConnectOptions<T extends object> {
 |        type        | TypeConstructorWithArgs\<T\>，必选参数，指定的类型。         |
 |        key         | string，传入的key，不传则使用type的名字作为key。             |
 |   defaultCreator   | StorageDefaultCreator\<T\>，默认数据的构造器，建议传递，如果globalConnect是第一次连接key，不传会报错。 |
-|      areaMode      | contextConstant.AreaMode，加密级别：EL1-EL5，详见[加密级别](../application-models/application-context-stage.md)，对应数值：0-4，不传时默认为EL2，不同加密级别对应不同的加密分区，即不同的存储路径，传入的加密等级数值不在0-4会直接运行crash。 |
+|      areaMode      | contextConstant.AreaMode，加密级别：EL1-EL5，详见[加密级别](../application-models/application-context-stage.md#获取和修改加密分区)，对应数值：0-4，不传时默认为EL2，不同加密级别对应不同的加密分区，即不同的存储路径，传入的加密等级数值不在0-4会直接运行crash。 |
 
 > **说明：**
 >
@@ -346,7 +346,7 @@ struct Page2 {
       "pageSourceFile": "src/main/ets/pages/Page2.ets",
       "buildFunction": "Page2Builder",
       "data": {
-        "description" : "AppStorageV2 example"
+        "description" : "PersistenceV2 example"
       }
     }
   ]

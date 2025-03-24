@@ -25,13 +25,12 @@ keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState
 
 ## KeyframeAnimateParam对象说明
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 | 名称       | 参数类型    | 是否必填 | 描述                                    |
 | ---------- | ---------- | ------- | ------------------------------------- |
-| delay      | number     | 否      | 动画的整体延时时间，单位为ms(毫秒)，默认不延时播放。<br/>默认值：0<br/>**说明：** <br/>&nbsp;delay>=0为延迟播放，delay<0表示提前播放。对于delay<0的情况：当delay的绝对值小于实际动画时长，动画将在开始后第一帧直接运动到delay绝对值的时刻的状态；当delay的绝对值大于等于实际动画时长，动画将在开始后第一帧直接运动到终点状态。其中实际动画时长等于单次动画时长乘以动画播放次数。 |
-| iterations | number     | 否      | 动画播放次数。默认播放一次，设置为-1时表示无限次播放。设置为0时表示无动画效果。<br/>默认值：1 <br/>取值范围：[-1, +∞) |
-| onFinish   | () => void | 否      | 动画播放完成回调。当keyframe动画所有次数播放完成后调用。UIAbility从前台切换至后台时会立即结束仍在步进中的有限循环keyframe动画，触发播放完成回调。 |
+| delay      | number     | 否      | 动画的整体延时时间，单位为ms(毫秒)，默认不延时播放。<br/>默认值：0。<br/>**说明：** <br/>&nbsp;delay>=0为延迟播放，delay<0表示提前播放。对于delay<0的情况：当delay的绝对值小于实际动画时长，动画将在开始后第一帧直接运动到delay绝对值的时刻的状态；当delay的绝对值大于等于实际动画时长，动画将在开始后第一帧直接运动到终点状态。其中实际动画时长等于单次动画时长乘以动画播放次数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| iterations | number     | 否      | 动画播放次数。默认播放一次，设置为-1时表示无限次播放。设置为0时表示无动画效果。<br/>默认值：1。 <br/>**取值范围：**[-1, +∞)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| onFinish   | () => void | 否      | 动画播放完成回调。当keyframe动画所有次数播放完成后调用。UIAbility从前台切换至后台时会立即结束仍在步进中的有限循环keyframe动画，触发播放完成回调。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| expectedFrameRateRange<sup>18+</sup>   | [ExpectedFrameRateRange](../arkui-ts/ts-explicit-animation.md#expectedframeraterange11) | 否 | 设置动画的期望帧率。<br/>**默认值：**{min:-1, max:-1, expected:-1}，即跟随应用帧率。<br/>**说明：** <br/>开发者通过设置有效的期望帧率后，系统会收集设置的请求帧率，进行决策和分发，在渲染管线上进行分频，尽量能够满足开发者的期望帧率。开发者设置的期望帧率值不能代表最终实际效果，会受限于系统能力和屏幕刷新率。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 ## KeyframeState对象说明
 
@@ -76,7 +75,14 @@ struct KeyframeDemo {
           }
           this.myScale = 1;
           // 设置关键帧动画整体播放3次
-          this.uiContext.keyframeAnimateTo({ iterations: 3 }, [
+          this.uiContext.keyframeAnimateTo({
+              iterations: 3,
+              expectedFrameRateRange: {
+                min: 10,
+                max: 120,
+                expected: 60,
+              }
+            }, [
             {
               // 第一段关键帧动画时长为800ms，scale属性做从1到1.5的动画
               duration: 800,

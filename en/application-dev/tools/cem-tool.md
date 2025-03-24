@@ -2,79 +2,66 @@
 
 The Common Event Manager enables you to print common event information and publish common events. It provides the common event debugging and testing capabilities, for example, printing all public event subscribers, sent public events, and recipients, and simulating public event release.
 
-> **NOTE**
->
-> Before using this tool, you must obtain the <!--Del-->[<!--DelEnd-->hdc tool<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd--> and run the hdc shell command.
+## Environment Requirements
 
-## Commands
+Before using this tool, you must obtain the <!--Del-->[<!--DelEnd-->hdc tool<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd--> and run the hdc shell command.
 
-### help
+## cem Commands
 
-* Function
+| Command| Description|
+| ---- | --- |
+| help | Displays the cem help information.|
+| publish | Publishes a common event.|
+| dump | Dumps information about common events.|
 
-  Prints help information.
+## help
 
-* Method
-
-  ```
+  ```bash
+  # Display the cem help information.
   cem help
   ```
 
-### publish
+## publish
 
-* Function
-
-  Publishes a common event.
-
-* Method
-
-  ```
+  ```bash
+  # Publish a common event.
   cem publish [<options>]
   ```
 
-  The table below describes the available options.
+  **Parameters**
 
-  | Name        | Description                                  |
+  | Name        | Description                                   |
   | ------------ | ------------------------------------------ |
-  | -e/--event   | Name of the common event to publish. Mandatory.                    |
-  | -o/--ordered | Indicates that the common event to publish is ordered. Optional. By default, non-ordered events are published.  |
-  | -c/--code    | Result code of the common event. Optional.                  |
-  | -d/--data    | Data carried in the common event. Optional.                |
-  | -h/--help    | Help information.                                  |
+  | -e/--event   | Name of the common event to publish. This parameter is mandatory.                    |
+  | -o/--ordered | Indicates that the common event to publish is ordered. By default, non-ordered events are published. This parameter is optional.    |
+  | -c/--code    | Result code of the common event. This parameter is optional.                  |
+  | -d/--data    | Data carried in the common event. This parameter is optional.                |
+  | -h/--help    | Help information.                                |
 
-* Example
+  **Example**
 
   ```bash
   # Publish a common event named testevent.
   cem publish --event "testevent"
   ```
   
-  ![cem-publish-event](figures/cem-publish-event.png)
-  
   ```bash
   # Publish an ordered common event named testevent. The result code of the event is 100 and the data carried is "this is data".
   cem publish -e "testevent" -o -c 100 -d "this is data"
   ```
-  
-  ![cem-publish-all](figures/cem-publish-all.png)
 
-### dump
+## dump
 
 > **NOTE**
 > 
 > The Common Event Manager has two editions: **eng** and **user**. The **dump** command can be used only in the **eng** edition. If it is used in the **user** edition, the message **error: user version cannot use dump** is reported.
 
-* Function
-
-  Displays information about common events.
-
-* Method
-
-  ```
+  ```bash
+  # Dumps information about common events.
   cem dump [<options>]
   ```
 
-  The table below describes the available options.
+  **Parameters**
 
   | Name      | Description                                    |
   | ---------- | -------------------------------------------- |
@@ -82,11 +69,9 @@ The Common Event Manager enables you to print common event information and publi
   | -e/--event | Information about a specific event.                  |
   | -h/--help  | Help information.                                    |
 
-* Example
+  **Example**
 
   ```bash
   # Display details of a common event named testevent.
   cem dump -e "testevent"
   ```
-
-  ![cem-dump-e](figures/cem-dump-e.png)

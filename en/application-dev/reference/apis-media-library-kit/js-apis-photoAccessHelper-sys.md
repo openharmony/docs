@@ -1,6 +1,6 @@
 # @ohos.file.photoAccessHelper (Album Management) (System API)
 
-The **photoAccessHelper** module provides APIs for album management, including creating an album and accessing and modifying media data in an album.
+The photoAccessHelper module provides APIs for album management, including creating an album and accessing and modifying media data in an album.
 
 > **NOTE**
 >
@@ -24,7 +24,7 @@ Creates an image or video asset with the specified file name. This API uses an a
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br>API version 18 and later:  \ / : * ? " < > | <br>API versions 10 to 17: . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -78,7 +78,7 @@ Creates an image or video asset with the specified file name. This API uses a pr
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br>API version 18 and later:  \ / : * ? " < > | <br>API versions 10 to 17: . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -136,7 +136,7 @@ Creates an image or video asset with the specified file name and options. This A
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br>API version 18 and later:  \ / : * ? " < > | <br>API versions 10 to 17: . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -194,7 +194,7 @@ Creates an image or video asset with the specified file name and options. This A
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br>API version 18 and later:  \ / : * ? " < > | <br>API versions 10 to 17: . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -255,7 +255,7 @@ Creates an album. This API uses an asynchronous callback to return the result.
 
 The album name must meet the following requirements:
 - The album name cannot exceed 255 characters.
-- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+- The album name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -313,7 +313,7 @@ Creates an album. This API uses a promise to return the result.
 
 The album name must meet the following requirements:
 - The album name cannot exceed 255 characters.
-- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+- The album name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -516,8 +516,8 @@ Obtains hidden albums based on the specified display mode and retrieval options.
 
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | Yes  | Display mode of hidden files. |
-| options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)         | Yes  |  Options for retrieving the hidden files. |
+| mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | Yes  | Display mode of hidden albums. |
+| options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)         | Yes  |  Options for retrieving the hidden albums. |
 | callback |  AsyncCallback&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -574,7 +574,7 @@ Obtains hidden albums based on the specified display mode. This API uses an asyn
 
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | Yes  | Display mode of hidden files. |
+| mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | Yes  | Display mode of hidden albums. |
 | callback |  AsyncCallback&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -650,7 +650,7 @@ Obtains hidden albums based on the specified display mode and retrieval options.
 
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | Yes  | Display mode of hidden files. |
+| mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | Yes  | Display mode of hidden albums. |
 | options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)         | No  |  Options for retrieving the files. If this parameter is not specified, the files are retrieved based on the display mode of hidden files.     |
 
 **Return value**
@@ -906,7 +906,7 @@ async function example() {
       fetchColumns: [],
       predicates: predicatesForGetAsset
     };
-    // Obtain the uri of the album
+    // Obtain the uri of the album.
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE, fetchOp);
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -917,7 +917,7 @@ async function example() {
     };
     let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
     let expectIndex = 1;
-    // Obtain the uri of the second file
+    // Obtain the uri of the second file.
     let photoAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getObjectByPosition(expectIndex);
 
     phAccessHelper.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions, (err, index) => {
@@ -985,7 +985,7 @@ async function example() {
       fetchColumns: [],
       predicates: predicatesForGetAsset
     };
-    // Obtain the uri of the album
+    // Obtain the uri of the album.
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE, fetchOp);
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -996,7 +996,7 @@ async function example() {
     };
     let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
     let expectIndex = 1;
-    // Obtain the uri of the second file
+    // Obtain the uri of the second file.
     let photoAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getObjectByPosition(expectIndex);
     phAccessHelper.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions).then((index) => {
       console.info(`getPhotoIndex successfully and index is : ${index}`);
@@ -1271,7 +1271,7 @@ Creates media assets for an application. The returned URIs has been granted with
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the URIs of the media asset files in the media library. The target application (identified by **appid**) can write the media assets based on the URIs without requesting the write permission.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the URIs of the media asset files in the media library. The target application (identified by **appid**) can write the media assets based on the URIs without requesting the write permission. If the URIs fail to be generated, a batch creation error code will be returned.<br>The error code **-3006** means that there are invalid characters; **-2004** means that the image type does not match the file name extension; **-203** means that the file operation is abnormal.|
 
 **Error codes**
 
@@ -1310,9 +1310,9 @@ async function example() {
 }
 ```
 
-### grantPhotoUriPermission<sup>12+</sup>
+### grantPhotoUriPermission<sup>15+</sup>
 
-grantPhotoUriPermission(appid: string, uri: string, photoPermissionType: PhotoPermissionType, hideSensitiveType: HideSensitiveType): Promise&lt;number&gt;
+grantPhotoUriPermission(tokenId: number, uri: string, photoPermissionType: PhotoPermissionType, hideSensitiveType: HideSensitiveType): Promise&lt;number&gt;
 
 Grants an application the permission to access a URI. This API uses a promise to return the result.
 
@@ -1326,7 +1326,7 @@ Grants an application the permission to access a URI. This API uses a promise to
 
 | Name  | Type                                                                  | Mandatory| Description                     |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
-| appid | string | Yes| ID of the target application.|
+| tokenId | number | Yes| ID of the target application.|
 | uri | string | Yes| URI of the media asset.|
 | photoPermissionType | [PhotoPermissionType](#photopermissiontype12) | Yes| Type of the permission to be granted. For details, see the enum.|
 | hideSensitiveType | [HideSensitiveType](#hidesensitivetype12) | Yes| Type of the information to hide. This parameter is reserved. Currently, any enumerated value of **HideSensitiveType** can be passed in.|
@@ -1355,7 +1355,8 @@ async function example() {
   console.info('grantPhotoUriPermissionDemo');
 
   try {
-    let result = await phAccessHelper.grantPhotoUriPermission('com.example.myapplication01',
+    let tokenId = 502334412;
+    let result = await phAccessHelper.grantPhotoUriPermission(tokenId,
         'file://media/Photo/1/IMG_datetime_0001/displayName.jpg',
         photoAccessHelper.PhotoPermissionType.TEMPORARY_READ_IMAGEVIDEO,
         photoAccessHelper.HideSensitiveType.HIDE_LOCATION_AND_SHOTING_PARM);
@@ -1367,9 +1368,9 @@ async function example() {
 }
 ```
 
-### grantPhotoUrisPermission<sup>12+</sup>
+### grantPhotoUrisPermission<sup>15+</sup>
 
-grantPhotoUrisPermission(appid: string, uriList: Array&lt;string&gt;, photoPermissionType: PhotoPermissionType, hideSensitiveType: HideSensitiveType): Promise&lt;number&gt;
+grantPhotoUrisPermission(tokenId: number, uriList: Array&lt;string&gt;, photoPermissionType: PhotoPermissionType, hideSensitiveType: HideSensitiveType): Promise&lt;number&gt;
 
 Grants an application the permission to access multiple URIs. This API uses a promise to return the result.
 
@@ -1383,7 +1384,7 @@ Grants an application the permission to access multiple URIs. This API uses a pr
 
 | Name  | Type                                                                  | Mandatory| Description                     |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
-| appid | string | Yes| ID of the target application.|
+| tokenId | number | Yes| ID of the target application.|
 | uriList | Array&lt;string&gt; | Yes| A list of URIs, which cannot exceed 1000.|
 | photoPermissionType | [PhotoPermissionType](#photopermissiontype12) | Yes| Type of the permission to be granted. For details, see the enum.|
 | hideSensitiveType | [HideSensitiveType](#hidesensitivetype12) | Yes| Type of the information to hide. This parameter is reserved. Currently, any enumerated value of **HideSensitiveType** can be passed in.|
@@ -1416,7 +1417,8 @@ async function example() {
     let uris: Array<string> = [
       'file://media/Photo/11/IMG_datetime_0001/displayName1.jpg',
       'file://media/Photo/22/IMG_datetime_0002/displayName2.jpg'];
-    let result = await phAccessHelper.grantPhotoUrisPermission('com.example.myapplication01', uris,
+    let tokenId = 502334412;
+    let result = await phAccessHelper.grantPhotoUrisPermission(tokenId, uris,
         photoAccessHelper.PhotoPermissionType.TEMPORARY_READ_IMAGEVIDEO,
         photoAccessHelper.HideSensitiveType.HIDE_LOCATION_AND_SHOTING_PARM);
 
@@ -1427,9 +1429,9 @@ async function example() {
 }
 ```
 
-### cancelPhotoUriPermission<sup>12+</sup>
+### cancelPhotoUriPermission<sup>15+</sup>
 
-cancelPhotoUriPermission(appid: string, uri: string, photoPermissionType: PhotoPermissionType): Promise&lt;number&gt;
+cancelPhotoUriPermission(tokenId: number, uri: string, photoPermissionType: PhotoPermissionType): Promise&lt;number&gt;
 
 Cancels the permission for accessing an URI from an application. This API uses a promise to return the result.
 
@@ -1443,7 +1445,7 @@ Cancels the permission for accessing an URI from an application. This API uses a
 
 | Name  | Type                                                                  | Mandatory| Description                     |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
-| appid | string | Yes| ID of the target application.|
+| tokenId | number | Yes| ID of the target application.|
 | uri | string | Yes| URI of the media asset.|
 | photoPermissionType | [PhotoPermissionType](#photopermissiontype12) | Yes| Permission type.|
 
@@ -1471,13 +1473,68 @@ async function example() {
   console.info('cancelPhotoUriPermissionDemo');
 
   try {
-    let result = await phAccessHelper.cancelPhotoUriPermission('com.example.myapplication01',
+    let tokenId = 502334412;
+    let result = await phAccessHelper.cancelPhotoUriPermission(tokenId,
         'file://media/Photo/11/IMG_datetime_0001/displayName.jpg',
         photoAccessHelper.PhotoPermissionType.TEMPORARY_READ_IMAGEVIDEO);
 
     console.info('cancelPhotoUriPermission success, result=' + result);
   } catch (err) {
     console.error('cancelPhotoUriPermission failed, error=' + err);
+  }
+}
+```
+
+### startAssetAnalysis<sup>18+</sup>
+
+startAssetAnalysis(type: AnalysisType, assetUris?: Array&lt;string&gt;): Promise&lt;number&gt;
+
+Starts asset analysis.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**Parameters**
+
+| Name   | Type               | Mandatory| Description                                                        |
+| --------- | ------------------- | ---- | ------------------------------------------------------------ |
+| type      | number              | Yes  | Smart analysis type.                                    |
+| assetUris | Array&lt;string&gt; | No  | Array of asset URIs.<br>- If this parameter is specified, only the given assets are analyzed.<br>- If this parameter is left blank, full analysis is performed.|
+
+**Return value**
+
+| Type                 | Description                       |
+| --------------------- | --------------------------- |
+| Promise&lt;number&gt; | Promise used to return the task ID of the service.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 202      | Called by non-system application.                            |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+
+**Example**
+
+```ts
+async function example() {
+  console.info('startAssetAnalysisDemo');
+
+  try {
+    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
+    let uris = ["file://media/Photo/14/IMG_1729066473_013/IMG_20241016_122253.jpg",
+                "file://media/Photo/68/IMG_1729033213_018/IMG_20241016_100082.jpg"];
+    let taskId = await phAccessHelper.startAssetAnalysis(photoAccessHelper.AnalysisType.ANALYSIS_SEARCH_INDEX,
+        uris);
+    console.info('startAssetAnalysis success, taskId=' + taskId);
+  } catch (err) {
+    console.error('startAssetAnalysis failed, error=' + err);
   }
 }
 ```
@@ -1509,7 +1566,7 @@ Creates assets with a temporary permission. This API uses a promise to return th
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise\<Array\<string>> | Promise used to return the URIs of the media asset files in the media library. The target application (identified by **appid**) can write the assets based on the URIs without has been authorized to the application specified by appId to allow the application to write data.|
+| Promise\<Array\<string>> | Promise used to return the URIs of the media asset files in the media library. The target application (identified by **appid**) can write the assets based on the URIs without has been authorized to the application specified by appId to allow the application to write data. If the URIs fail to be generated, a batch creation error code will be returned.<br>The error code **-3006** means that there are invalid characters; **-2004** means that the image type does not match the file name extension; **-203** means that the file operation is abnormal.|
 
 **Error codes**
 
@@ -1550,9 +1607,10 @@ async function example() {
   }
 }
 ```
-### getKeyFrameThumbnail<sup>14+</sup>
 
-getKeyFrameThumbnail(beginFrameTimeMs: number, type: ThumbnailType): Promise<image.PixelMap>;
+### getKeyFrameThumbnail<sup>18+</sup>
+
+getKeyFrameThumbnail(beginFrameTimeMs: number, type: ThumbnailType): Promise<image.PixelMap>
 
 Obtains the thumbnail of the specified type for the key frame. This API uses a promise to return the result.
 
@@ -1612,6 +1670,206 @@ async function example() {
   } catch (error) {
     console.error('getKeyFrameThumbnail failed, error: ' + JSON.stringify(error));
   }
+}
+```
+
+### saveGalleryFormInfo<sup>18+</sup>
+
+saveGalleryFormInfo(info:GalleryFormInfo):Promise&lt;void&gt;
+
+Saves a Gallery widget. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                     |
+| -------- | ------------------------ | ---- | ------------------------- |
+| info  | [GalleryFormInfo](#galleryforminfo18)        | Yes  | Information about the Gallery widget, which includes the ID of the widget and the URIs of the image or album bound to the widget.             |
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission verification failed, usually the result returned by VerifyAccessToken.         |
+| 202   | Permission verification failed, application which is not a system application uses system API.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011       | System inner fail.         |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+import {photoAccessHelper} from '@kit.MediaLibraryKit';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+
+async function example() {
+  console.info('saveGalleryFormInfoDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+  let uriList: Array<string> = [
+    photoAsset.uri,
+  ];
+  let info: photoAccessHelper.GalleryFormInfo = {
+    // formId is a string consisting of only digits. assetUris indicates the URIs of the images or albums in Gallery.
+    formId: "20230116123",
+    assetUris: uriList,
+  }
+
+  phAccessHelper.saveGalleryFormInfo(info).then(() => {
+    console.info('saveGalleryFormInfo successfully');
+  }).catch((err: BusinessError) => {
+    console.error(`saveGalleryFormInfo failed with error: ${err.code}, ${err.message}`);
+  });
+}
+```
+
+### updateGalleryFormInfo<sup>18+</sup>
+
+updateGalleryFormInfo(info:GalleryFormInfo):Promise&lt;void&gt;
+
+Updates the information about a Gallery widget and saves the information to the database. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                     |
+| -------- | ------------------------ | ---- | ------------------------- |
+| info  | [GalleryFormInfo](#galleryforminfo18)        | Yes  | Information about the Gallery widget, which includes the ID of the widget and the URIs of the image or album bound to the widget.             |
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission verification failed, usually the result returned by VerifyAccessToken.         |
+| 202   | Permission verification failed, application which is not a system application uses system API.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011       | System inner fail.         |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+import {photoAccessHelper} from '@kit.MediaLibraryKit';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+
+async function example() {
+  console.info('updateGalleryFormInfoDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+  let photoAssetLast: photoAccessHelper.PhotoAsset = await fetchResult.getLastObject();
+  let uriList: Array<string> = [
+    photoAsset.uri,
+    photoAssetLast.uri
+  ];
+  let info: photoAccessHelper.GalleryFormInfo = {
+    // formId is a string consisting of only digits. assetUris indicates the URIs of the images or albums in Gallery.
+    formId: "20230116123",
+    assetUris: uriList,
+  }
+
+  phAccessHelper.updateGalleryFormInfo(info).then(() => {
+    console.info('updateGalleryFormInfo successfully');
+  }).catch((err: BusinessError) => {
+    console.error(`updateGalleryFormInfo failed with error: ${err.code}, ${err.message}`);
+  });
+}
+```
+
+### removeGalleryFormInfo<sup>18+</sup>
+
+removeGalleryFormInfo(info:GalleryFormInfo):Promise&lt;void&gt;
+
+Removes a Gallery widget. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                     |
+| -------- | ------------------------ | ---- | ------------------------- |
+| info  | [GalleryFormInfo](#galleryforminfo18)        | Yes  | Information about the Gallery widget, which includes the ID of the widget and the URIs of the image or album bound to the widget.             |
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission verification failed, usually the result returned by VerifyAccessToken.         |
+| 202   | Permission verification failed, application which is not a system application uses system API.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011       | System inner fail.         |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import {photoAccessHelper} from '@kit.MediaLibraryKit';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+
+async function example() {
+  console.info('removeGalleryFormInfoDemo');
+  let info: photoAccessHelper.GalleryFormInfo = {
+    // formId is a string consisting of only digits. When removing a widget, leave assertUris empty.
+    formId: "20230116123"
+  }
+
+  phAccessHelper.removeGalleryFormInfo(info).then(() => {
+    console.info('removeGalleryFormInfo successfully');
+  }).catch((err: BusinessError) => {
+    console.error(`removeGalleryFormInfo failed with error: ${err.code}, ${err.message}`);
+  });
 }
 ```
 ## PhotoAsset
@@ -2293,7 +2551,7 @@ async function example() {
         console.error(`setPending(true) failed with error: ${err.code}, ${err.message}`);
         return;
       }
-      // write photo buffer in fd
+      // write photo buffer in fd.
       photoAsset.setPending(false, async (err) => {
         if (err !== undefined) {
           console.error(`setPending(false) failed with error: ${err.code}, ${err.message}`);
@@ -2357,7 +2615,7 @@ async function example() {
     let photoAsset = await phAccessHelper.createAsset(testFileName);
     let fd = await photoAsset.open('rw');
     await photoAsset.setPending(true);
-    // write photo buffer in fd
+    // write photo buffer in fd.
     photoAsset.setPending(false);
     await photoAsset.close(fd);
   } catch (err) {
@@ -3263,9 +3521,77 @@ async function example() {
 }
 ```
 
+### getThumbnailData<sup>18+</sup>
+
+getThumbnailData(type: ThumbnailType): Promise&lt;ArrayBuffer&gt;
+
+Obtains the ArrayBuffer of a file thumbnail by specifying its type. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name | Type            | Mandatory  | Description   |
+| ---- | -------------- | ---- | ----- |
+| type | [ThumbnailType](#thumbnailtype13) | Yes   | Type of the thumbnail.|
+
+**Return value**
+
+| Type                           | Description                   |
+| ----------------------------- | --------------------- |
+| Promise\<ArrayBuffer> | Promise used to return the ArrayBuffer of the thumbnail.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+import {photoAccessHelper} from '@kit.MediaLibraryKit';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+
+async function example() {
+  console.info('getThumbnailDataDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let asset = await fetchResult.getFirstObject();
+  console.info('asset displayName = ', asset.displayName);
+  asset.getThumbnailData(photoAccessHelper.ThumbnailType.LCD).then((buffer: ArrayBuffer) => {
+    console.info('getThumbnailData successful, buffer byteLength = ${buffer.byteLength}');
+  }).catch((err: BusinessError) => {
+    console.error(`getThumbnailData fail with error: ${err.code}, ${err.message}`);
+  });
+}
+```
+
 ## Album
 
 Provides APIs to manage albums.
+
+### Properties
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name          | Type   | Read-Only  | Optional | Description  |
+| ------------ | ------ | ---- | ---- | ------- |
+| lpath<sup>18+</sup>    | string | Yes   | Yes  | Virtual path of the album.<br>**System API**: This is a system API.|
 
 ### recoverAssets<sup>(deprecated)</sup>
 
@@ -3688,9 +4014,9 @@ Represents the edited media asset data.
 
 | Name          | Type   | Readable  | Writable | Description  |
 | ------------ | ------ | ---- | ---- | ------- |
-| compatibleFormat | string | Yes   | Yes   | Format of the edited data. <br>**System API**: This is a system API.   |
-| formatVersion | string | Yes   | Yes  | Version of the data format. <br>**System API**: This is a system API.   |
-| data | string | Yes   | Yes  | Content edited. <br>**System API**: This is a system API.   |
+| compatibleFormat | string | Yes   | Yes   | Format of the edited data.<br>**System API**: This is a system API.   |
+| formatVersion | string | Yes   | Yes  | Version of the data format.<br>**System API**: This is a system API.   |
+| data | string | Yes   | Yes  | Content edited.<br>**System API**: This is a system API.   |
 
 ### constructor<sup>11+</sup>
 
@@ -3740,7 +4066,7 @@ Creates an asset change request with the specified file name.
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br>API version 18 and later:  \ / : * ? " < > | <br>API versions 10 to 17: . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -4251,6 +4577,130 @@ async function example() {
 }
 ```
 
+### deleteLocalAssetsPermanently<sup>18+</sup>
+
+static deleteLocalAssetsPermanently(context: Context, assets: Array\<PhotoAsset>): Promise&lt;void&gt;
+
+Permanently deletes photos or videos in batches. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This operation is irreversible. The file assets deleted cannot be restored. Exercise caution when performing this operation.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**Parameters**
+
+| Name | Type            | Mandatory  | Description   |
+| ---- | -------------- | ---- | ----- |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes   | Context of the ability instance.|
+| assets | Array\<[PhotoAsset](#photoasset)>| Yes   | Array of images or videos to be permanently deleted.|
+
+**Return value**
+
+| Type                 | Description        |
+| ------------------- | ---------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.       |
+| 202   | Called by non-system application.       |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011   | Internal system error.       
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+struct Index {
+  public context = getContext(this);
+  public phAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
+
+  async function example() {
+    console.info('deleteAssetsPermanentlyDemo');
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    try {
+      let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await this.phAccessHelper.getAssets(fetchOptions);
+      let photoAssetList: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
+      await photoAccessHelper.MediaAssetChangeRequest.deleteLocalAssetsPermanently(this.context, photoAssetList);
+    } catch (err) {
+      console.error(`deleteAssetsPermanentlyDemo failed with error: ${err.code}, ${err.message}`);
+    }
+  }
+}
+```
+
+### setDisplayName<sup>18+</sup>
+
+setDisplayName(displayName: string): void
+
+Sets the file name (including the file name extension) of a media asset.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| displayName | string | Yes  | File name of the media asset (including the file name extension).<br>The name must meet the following requirements:<br>- The file name extension must be included.<br>- The file name (excluding the file name extension) cannot exceed 255 characters.<br>- The file name cannot contain invalid characters, such as \ / : * ?" < > \| |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011       | Internal system error.         |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+
+async function example() {
+  console.info('setDisplayNameDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+    let asset = await fetchResult.getFirstObject();
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+    let newDisplayName: string = 'newDisplayName.jpg';
+    assetChangeRequest.setDisplayName(newDisplayName);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('apply setDisplayName successfully');
+  } catch (err) {
+    console.error(`apply setDisplayName failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
 ## MediaAssetsChangeRequest<sup>11+</sup>
 
 Represents a request for changing multiple assets.
@@ -4470,7 +4920,7 @@ Creates a **MediaAlbumChangeRequest** instance.
 
 The album name must comply with the following specifications:
 - The album name cannot exceed 255 characters.
-- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+- The album name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -5335,6 +5785,394 @@ async function example() {
 }
 ```
 
+### setSubTitle<sup>18+</sup> 
+
+setSubTitle(title: string): void
+
+Sets the subtitle for this **Highlights** album instance.
+
+The subtitle must meet the following requirements:
+
+- The subtitle cannot exceed 255 characters.
+- The subtitle cannot contain any of the following characters:<br> . \ / : * ? " ' ` < > | { } [ ]
+- The subtitle is case-insensitive.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE\_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| title       | string | Yes   | Subtitle to set.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID   | Error Message                             |
+| :------- | :-------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out.            |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  try {
+    console.info('setSubTitle');
+    let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
+    let albumFetchOption: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: new dataSharePredicates.DataSharePredicates()
+    };
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> =
+      await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, albumFetchOption);
+    if (albumFetchResult.getCount() === 0) {
+      console.error('No album');
+      return;
+    }
+    let highlightAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    albumFetchResult.close();
+    let changeHighlightAlbumRequest: photoAccessHelper.HighlightAlbum = new photoAccessHelper.HighlightAlbum(highlightAlbum);
+    changeHighlightAlbumRequest.setSubTitle("testName");
+    console.info('setSubTitle success');
+  } catch (err) {
+    console.error(`setSubTitle with error: ${err}`);
+  }
+}
+```
+
+### deleteHighlightAlbums<sup>18+</sup>
+
+static deleteHighlightAlbums(context: Context, albums: Array&lt;Album&gt;): Promise&lt;number&gt;
+
+Deletes highlight albums.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE\_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
+| albums       | Array&lt;[Album](#album)&gt;   | Yes   | Array of highlight albums to delete.|
+
+**Return value**
+
+| Type               | Description                               |
+| :------------------ | :---------------------------------- |
+| Promise&lt;number&gt; | Promise used to return the operation result. The value **0** means that the operation is successful, and **-1** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID   | Error Message                             |
+| :------- | :-------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out.            |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  try {
+    console.info('deleteHighlightAlbums');
+    let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
+    let albumFetchOption: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: new dataSharePredicates.DataSharePredicates()
+    };
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> =
+      await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, albumFetchOption);
+    if (albumFetchResult.getCount() === 0) {
+      console.error('No album');
+      return;
+    }
+    let highlightAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    albumFetchResult.close();
+    let result = await photoAccessHelper.HighlightAlbum.deleteHighlightAlbums(getContext(this), [highlightAlbum]);
+    console.info('deleteHighlightAlbums success');
+  } catch (err) {
+    console.error(`deleteHighlightAlbums with error: ${err}`);
+  }
+}
+```
+
+## MediaAnalysisAlbumChangeRequest<sup>18+</sup> 
+
+Provides APIs for managing the analysis album change request.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### constructor<sup>18+</sup> 
+
+constructor(album: Album)
+
+A constructor used to create an **Analysis** album instance.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| album | [Album](#album) | Yes  | **Analysis** album to create.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202      |  Called by non-system application.   |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  console.info('MediaAnalysisAlbumChangeRequest constructorDemo');
+  let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
+  let albumFetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: new dataSharePredicates.DataSharePredicates()
+  };
+  let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> =
+    await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, albumFetchOption);
+  if (albumFetchResult.getCount() === 0) {
+    console.error('No album');
+    return;
+  }
+  let highlightAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+  albumFetchResult.close();
+  let changeRequest: photoAccessHelper.MediaAnalysisAlbumChangeRequest =
+    new photoAccessHelper.MediaAnalysisAlbumChangeRequest(highlightAlbum);
+}
+```
+
+### setOrderPosition<sup>18+</sup> 
+
+setOrderPosition(assets: Array&lt;PhotoAsset&gt;, position: Array&lt;number&gt;): void
+
+Sets the sequence of assets in the **Analysis** album.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE\_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Assets in the album for which the sequence needs to be set.|
+| position       | Array&lt;number&gt;   | Yes   | Sequence of assets in the album.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID   | Error Message                             |
+| :------- | :-------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out.            |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  try {
+    console.info('setOrderPosition');
+    let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
+    let albumFetchOption: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: new dataSharePredicates.DataSharePredicates()
+    };
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = 
+      await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, albumFetchOption);
+    if (albumFetchResult.getCount() === 0) {
+      console.error('No album');
+      return;
+    }
+    let highlightAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    albumFetchResult.close();
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    const fetchOption: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> =
+      await highlightAlbum.getAssets(fetchOption);
+    let assets: photoAccessHelper.PhotoAsset[] = await fetchResult.getAllObjects();
+    let indexes: number[] = [];
+    for (let i = 0; i < assets.length; i++) {
+      indexes.push(i);
+    }
+    let changeRequest: photoAccessHelper.MediaAnalysisAlbumChangeRequest =
+      new photoAccessHelper.MediaAnalysisAlbumChangeRequest(highlightAlbum);
+    changeRequest.setOrderPosition(assets, indexes);
+    await helper.applyChanges(changeRequest);
+    console.info(`setOrderPosition ${indexes}`);
+  } catch (err) {
+    console.error(`setOrderPosition error: ${err}`);
+  }
+}
+```
+
+## AnalysisAlbum<sup>18+</sup> 
+
+**Analysis** album to create.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### constructor<sup>18+</sup> 
+
+constructor(album: Album)
+
+A constructor used to create an **Analysis** album instance.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| album | [Album](#album) | Yes  | **Analysis** album to create.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202      |  Called by non-system application.   |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  console.info('AnalysisAlbum constructorDemo');
+  let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
+  let albumFetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: new dataSharePredicates.DataSharePredicates()
+  };
+  let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = 
+    await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, albumFetchOption);
+  if (albumFetchResult.getCount() === 0) {
+    console.error('No album');
+    return;
+  }
+  let highlightAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+  albumFetchResult.close();
+  let analysisAlbum: photoAccessHelper.AnalysisAlbum = new photoAccessHelper.AnalysisAlbum(highlightAlbum);
+}
+```
+
+### getOrderPosition<sup>18+</sup> 
+
+getOrderPosition(assets: Array&lt;PhotoAsset&gt;): Promise&lt;Array&lt;number&gt;&gt;
+
+Obtains the sequence of assets in the **Analysis** album.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ\_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Assets in the album whose sequence needs to be obtained.|
+
+**Return value**
+
+| Type               | Description                               |
+| :------------------ | :---------------------------------- |
+| Promise&lt;Array&lt;number&gt;&gt; | Sequence number of an asset in the album.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID   | Error Message                             |
+| :------- | :-------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out.            |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  try {
+    console.info('getOrderPosition');
+    let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
+    let albumFetchOption: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: new dataSharePredicates.DataSharePredicates()
+    };
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = 
+      await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, albumFetchOption);
+    if (albumFetchResult.getCount() === 0) {
+      console.error('No album');
+      return;
+    }
+    let highlightAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    albumFetchResult.close();
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let analysisAlbum: photoAccessHelper.AnalysisAlbum = new photoAccessHelper.AnalysisAlbum(highlightAlbum);
+    const fetchOption: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = 
+      await highlightAlbum.getAssets(fetchOption);
+    let assets: photoAccessHelper.PhotoAsset[] = await fetchResult.getAllObjects();
+    let positions: number[] = await analysisAlbum.getOrderPosition(assets);
+    console.info(`getOrderPosition ${positions}`);
+  } catch (err) {
+    console.error(`getOrderPosition error: ${err}`);
+  }
+}
+```
+
 ## CloudEnhancement<sup>13+</sup>
 
 Provides APIs for cloud enhancement management, including managing the tasks of generating AI-powered cloud enhancement photos and obtaining the association between the original photos and AI cloud enhancement photos.
@@ -5405,6 +6243,8 @@ Submits cloud enhancement tasks.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
 **Parameters**
 
 | Name  | Type                     | Mandatory| Description      |
@@ -5449,6 +6289,64 @@ async function example() {
 }
 ```
 
+### submitCloudEnhancementTasks<sup>18+</sup>
+
+submitCloudEnhancementTasks(photoAssets: Array&lt;PhotoAsset&gt;, hasCloudWatermark: boolean, triggerMode?: number): Promise&lt;void&gt;
+
+Submits cloud enhancement tasks.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| photoAssets | Array<[PhotoAsset](#photoasset)> | Yes  | [PhotoAsset](#photoasset) to enhance.|
+| hasCloudWatermark | boolean | Yes  | Whether to add a cloud watermark to the enhanced image. The value **true** means to add the watermark, and **false** means the opposite.|
+| triggerMode | number | No  | Trigger mode of the cloud enhancement task.<br>**- 0**: manually triggered.<br>**- 1**: automatically triggered.<br>The default value is **0**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error.            |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  console.info('submitCloudEnhancementTasksDemo');
+  let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let photoFetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: photoPredicates
+  };
+  let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+  try {
+    let fetchResult = await phAccessHelper.getAssets(photoFetchOptions);
+    let asset = await fetchResult.getLastObject();
+    let cloudEnhancementInstance: photoAccessHelper.CloudEnhancement
+      = photoAccessHelper.CloudEnhancement.getCloudEnhancementInstance(context);
+    let hasCloudWatermark = true;
+    let triggerAuto = 1;
+    await cloudEnhancementInstance.submitCloudEnhancementTasks([asset], hasCloudWatermark, triggerAuto);
+  } catch (err) {
+    console.error(`submitCloudEnhancementTasksDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
 ### prioritizeCloudEnhancementTask<sup>13+</sup>
 
 prioritizeCloudEnhancementTask(photoAsset: PhotoAsset): Promise&lt;void&gt;
@@ -5458,6 +6356,8 @@ Prioritizes a cloud enhancement task.
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
 **Parameters**
 
@@ -5514,6 +6414,8 @@ Cancels cloud enhancement tasks.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
 **Parameters**
 
 | Name  | Type                     | Mandatory| Description      |
@@ -5568,6 +6470,8 @@ Cancels all cloud enhancement tasks.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
@@ -5604,6 +6508,8 @@ Queries information about a cloud enhancement task.
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
 **Parameters**
 
@@ -5686,6 +6592,8 @@ Synchronizes the cloud enhancement task status.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
@@ -5722,6 +6630,8 @@ Obtains the photo after cloud enhancement.
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
 **Parameters**
 
@@ -6167,20 +7077,7 @@ Enumerates the [PhotoAsset](#photoasset) types.
 
 | Name |  Value|  Description|
 | ----- |  ---- |  ---- |
-| SCREENSHOT |  1 |  Screenshot and screen recording file. <br>**System API**: This is a system API.|
-
-## PositionType
-
-Enumerates the file locations.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-| Name |  Value|  Description|
-| ----- |  ---- |  ---- |
-| LOCAL |  1 << 0 |  Stored only on a local device.|
-| CLOUD |  1 << 1 |  Stored only on the cloud.|
+| SCREENSHOT |  1 |  Screenshot and screen recording file.<br>**System API**: This is a system API.|
 
 ## AlbumType
 
@@ -6190,7 +7087,7 @@ Enumerates the album types.
 
 | Name                 | Value   | Description                       |
 | ------------------- | ---- | ------------------------- |
-| SMART<sup>11+</sup> | 4096 | Smart analysis album. <br>**System API**: This is a system API.|
+| SMART<sup>11+</sup> | 4096 | Smart analysis album.<br>**System API**: This is a system API.|
 
 ## AlbumSubtype
 
@@ -6237,7 +7134,6 @@ Defines the key information about an image or video file.
 
 | Name         | Value             | Description                                                      |
 | ------------- | ------------------- | ---------------------------------------------------------- |
-| POSITION  | 'position'            | File location type. <br>**System API**: This is a system API.                              |
 | DATE_TRASHED  | 'date_trashed'  | Date when the file was deleted. The value is the number of seconds elapsed since the Epoch time. <br>**System API**: This is a system API.                |
 | HIDDEN  | 'hidden'            | Whether the file is hidden. <br>**System API**: This is a system API.                              |
 | CAMERA_SHOT_KEY  | 'camera_shot_key'  | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.) <br>**System API**: This is a system API.           |
@@ -6250,6 +7146,17 @@ Defines the key information about an image or video file.
 | MOVING_PHOTO_EFFECT_MODE<sup>12+</sup>  | 'moving_photo_effect_mode' | Effect of the moving photo. <br>**System API**: This is a system API.|
 | CE_AVAILABLE<sup>13+</sup>  | 'ce_available' | Cloud enhancement identifier. <br>**System API**: This is a system API.|
 | SUPPORTED_WATERMARK_TYPE<sup>14+</sup>  | 'supported_watermark_type' | Editable watermark identifier. <br>**System API**: This is a system API.|
+| IS_CE_AUTO<sup>18+</sup>  | 'is_auto' | Specifies whether automatic cloud enhancement is supported.<br>**System API**: This is a system API.|
+
+## AlbumKeys
+
+Enumerates the album keys.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name                             | Value                   | Description                                                      |
+| --------------------------------- | -------------------- | ----------------------------------------------------- |
+| ALBUM_LPATH<sup>18+</sup>          | 'lpath'                 | Virtual path of the album.<br>**System API**: This is a system API.           |
 
 ## HiddenPhotosDisplayMode<sup>11+</sup>
 
@@ -6328,6 +7235,19 @@ Defines the Gallery widget information.
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 |formId       |string  |Yes| Widget ID, which is provided when a widget is created in Gallery.|
 |uri          |string  |Yes| URI of the image bound to the widget. When a widget is created, **uri** can be empty or the URI of an image. When a widget is removed, **uri** is not verified and can be empty. |
+
+## GalleryFormInfo<sup>18+</sup>
+
+Defines the Gallery widget information.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name                  | Type               | Mandatory| Description                                             |
+| ---------------------- | ------------------- | ---- | ------------------------------------------------ |
+|formId             |string               |Yes| Widget ID, which is provided when a widget is created in Gallery.|
+|assetUris          |Array&lt;string&gt;  |Yes| URIs of the images or albums bound to the widget. This parameter is mandatory when a widget is created or updated and is optional when a widget is removed. |
 
 ## ResourceType<sup>11+</sup>
 

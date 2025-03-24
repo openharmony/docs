@@ -73,8 +73,8 @@ HILOG_WARN(LOG_APP, "Failed to visit %{private}s, reason:%{public}d.", url, errn
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [LogType](_hi_log.md#logtype) { [LOG_APP](_hi_log.md) = 0 } | 日志类型。  | 
-| [LogLevel](_hi_log.md#loglevel) {<br/>[LOG_DEBUG](_hi_log.md) = 3, [LOG_INFO](_hi_log.md) = 4, [LOG_WARN](_hi_log.md) = 5, [LOG_ERROR](_hi_log.md) = 6,<br/>[LOG_FATAL](_hi_log.md) = 7<br/>} | 日志级别。  | 
+| [LogType](_hi_log.md#logtype) { LOG_APP = 0 } | 日志类型。  | 
+| [LogLevel](_hi_log.md#loglevel) {<br/>LOG_DEBUG = 3,<br/>LOG_INFO = 4,<br/>LOG_WARN = 5,<br/>LOG_ERROR = 6,<br/>LOG_FATAL = 7<br/>} | 日志级别。  | 
 
 
 ### 函数
@@ -87,3 +87,4 @@ HILOG_WARN(LOG_APP, "Failed to visit %{private}s, reason:%{public}d.", url, errn
 | void [OH_LOG_SetMinLogLevel](_hi_log.md#oh_log_setminloglevel) ([LogLevel](_hi_log.md#loglevel) level) | 设置应用日志打印的最低日志级别。 进程在打印日志时，需要同时校验该日志级别和全局日志级别，<br/>所以设置的日志级别不能低于全局日志级别，[全局日志级别](../../dfx/hilog.md#查看和设置日志级别)默认为Info。 | 
 | int [OH_LOG_PrintMsg](_hi_log.md#oh_log_printmsg) ([LogType](_hi_log.md#logtype) type, [LogLevel](_hi_log.md#loglevel) level, unsigned int domain, const char \*tag, const char \*message) | 写日志接口。输出指定type、level、domain、tag的常量日志字符串。  | 
 | int [OH_LOG_PrintMsgByLen](_hi_log.md#oh_log_printmsgbylen) ([LogType](_hi_log.md#logtype) type, [LogLevel](_hi_log.md#loglevel) level, unsigned int domain, const char \*tag, size_t tagLen, const char \*message, size_t messageLen) | 写日志接口。输出指定domain、tag和日志级别的常量日志字符串，需要指定tag及字符串长度，和OH_LOG_PrintMsg区别是可以接受不带结束符的字符串。  | 
+| int [OH_LOG_VPrint](_hi_log.md#oh_log_vprint)(LogType type, LogLevel level, unsigned int domain, const char *tag, const char *fmt, va_list ap) | - | 写日志接口。指定日志类型、日志级别、业务领域、TAG，按照类printf格式类型和隐私指示确定需要输出的变参，变参为va_list类型。 |

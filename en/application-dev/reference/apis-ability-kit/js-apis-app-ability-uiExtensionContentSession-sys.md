@@ -64,7 +64,11 @@ struct Index {
             'message': 'test'
           };
 
-          this.session?.sendData(data);
+          try {
+            this.session?.sendData(data);
+          } catch (err) {
+            console.log('sendData err:' + JSON.stringify(err));
+          }
         })
     }
     .height('100%')
@@ -688,9 +692,18 @@ export default class UIExtAbility extends UIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession): void {
     let storage: LocalStorage = new LocalStorage();
     storage.setOrCreate('session', session);
-    session.loadContent('pages/Extension', storage);
 
-    session.setWindowBackgroundColor('#00FF00');
+    try {
+      session.loadContent('pages/Extension', storage);
+    } catch (err) {
+      console.log('loadContent err:' + JSON.stringify(err));
+    }
+
+    try {
+      session.setWindowBackgroundColor('#00FF00');
+    } catch (err) {
+      console.log('setWindowBackgroundColor err:' + JSON.stringify(err));
+    }
   }
 
   // ...
@@ -981,7 +994,11 @@ export default class UIExtAbility extends UIExtensionAbility {
     };
     let storage: LocalStorage = new LocalStorage(data);
 
-    session.loadContent('pages/extension', storage);
+    try {
+      session.loadContent('pages/Extension', storage);
+    } catch (err) {
+      console.log('loadContent err:' + JSON.stringify(err));
+    }
   }
 
   onSessionDestroy(session: UIExtensionContentSession) {

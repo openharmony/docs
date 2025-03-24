@@ -307,9 +307,9 @@ struct Index {
 }
 ```
 
-正例:
+正例：
 
-方式1:给数据继续加判空的保护，即在使用data时再加一层判空，即"Text(this.data1?.str)"。
+方式1：给数据继续加判空的保护，即在使用data时再加一层判空，即"Text(this.data1?.str)"。
 
 
 ```ts
@@ -359,7 +359,7 @@ struct Index {
 }
 ```
 
-方式2:给IfElse下直接要被删除的组件显示的添加transition(TransitionEffect.IDENTITY)属性，避免系统添加默认转场。
+方式2：给IfElse下直接要被删除的组件显示的添加transition(TransitionEffect.IDENTITY)属性，避免系统添加默认转场。
 
 
 ```ts

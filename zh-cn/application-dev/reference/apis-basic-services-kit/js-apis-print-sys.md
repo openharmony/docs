@@ -13,7 +13,7 @@ import { print } from '@kit.BasicServicesKit';
 ```
 
 
-## PrintMargin
+## print.PrintMargin
 
 定义打印页边距的接口。
 
@@ -29,7 +29,7 @@ import { print } from '@kit.BasicServicesKit';
 | left | number | 否 | 表示页面左边距。 |
 | right | number | 否 | 表示页面右边距。 |
 
-## PrinterRange
+## print.PrinterRange
 
 定义打印范围的接口。
 
@@ -44,7 +44,7 @@ import { print } from '@kit.BasicServicesKit';
 | endPage | number | 否 | 表示结束页。 |
 | pages | Array&lt;number&gt; | 否 | 表示离散页面。 |
 
-## PreviewAttribute
+## print.PreviewAttribute
 
 定义打印预览属性的接口。
 
@@ -55,10 +55,10 @@ import { print } from '@kit.BasicServicesKit';
 **属性：**
 | **名称** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| previewRange | PrinterRange | 是 | 表示预览页面范围。 |
+| previewRange | [PrinterRange](#printprinterrange) | 是 | 表示预览页面范围。 |
 | result | number | 否 | 表示预览文件结果。 |
 
-## PrintResolution
+## print.PrintResolution
 
 定义打印分辨率的接口。
 
@@ -75,7 +75,7 @@ import { print } from '@kit.BasicServicesKit';
 
 
 
-## PrinterCapability
+## print.PrinterCapability
 
 定义打印能力的接口。
 
@@ -88,12 +88,12 @@ import { print } from '@kit.BasicServicesKit';
 | -------- | -------- | -------- | -------- |
 | colorMode | number | 是 | 表示色彩模式。 |
 | duplexMode | number | 是 | 表示单双面打印模式。 |
-| pageSize | Array&lt;PrintPageSize&gt; | 是 | 表示打印机支持的页面尺寸列表。 |
-| resolution | Array&lt;PrintResolution&gt; | 否 | 表示打印机支持的分辨率列表。 |
-| minMargin | PrintMargin | 否 | 表示打印机最小边距。 |
+| pageSize | Array&lt;[PrintPageSize](./js-apis-print.md#printprintpagesize11)&gt; | 是 | 表示打印机支持的页面尺寸列表。 |
+| resolution | Array&lt;[PrintResolution](#printprintresolution)&gt; | 否 | 表示打印机支持的分辨率列表。 |
+| minMargin | [PrintMargin](#printprintmargin) | 否 | 表示打印机最小边距。 |
 | options<sup>11+</sup> | Object | 否 | 表示JSON对象字符串。 |
 
-## PrinterInfo
+## print.PrinterInfo
 
 定义打印信息的接口。
 
@@ -106,13 +106,13 @@ import { print } from '@kit.BasicServicesKit';
 | -------- | -------- | -------- | -------- |
 | printerId | string | 是 | 表示打印机ID。 |
 | printerName | string | 是 | 表示打印机名称。 |
-| printerState | PrinterState | 是 | 表示当前打印机状态。 |
+| printerState | [PrinterState](./js-apis-print.md#printprinterstate14) | 是 | 表示当前打印机状态。 |
 | printerIcon | number | 否 | 表示打印机图标的资源ID。 |
 | description | string | 否 | 表示打印机说明。 |
-| capability | PrinterCapability | 否 | 表示打印机功能。 |
+| capability | [PrinterCapability](#printprintercapability) | 否 | 表示打印机功能。 |
 | options | Object | 否 | 表示JSON对象字符串。 |
 
-## PrintJob
+## print.PrintJob
 
 定义打印任务的接口。
 
@@ -126,20 +126,20 @@ import { print } from '@kit.BasicServicesKit';
 | fdList | Array&lt;number&gt; | 是 | 表示待打印文件fd列表。 |
 | jobId | string | 是 | 表示打印任务ID。 |
 | printerId | string | 是 | 表示负责打印的打印机ID。 |
-| jobState | PrintJobState | 是 | 表示当前打印任务状态。 |
-| jobSubstate<sup>11+</sup> | PrintJobSubState | 是 | 表示当前打印任务子状态。 |
+| jobState | [PrintJobState](./js-apis-print.md#printprintjobstate14) | 是 | 表示当前打印任务状态。 |
+| jobSubstate<sup>11+</sup> | [PrintJobSubState](./js-apis-print.md#printprintjobsubstate14) | 是 | 表示当前打印任务子状态。 |
 | copyNumber | number | 是 | 表示文件列表副本。 |
-| pageRange | PrinterRange | 是 | 表示打印范围大小。 |
-| isSequential | boolean | 是 | 表示连续打印。 |
-| pageSize | PrintPageSize | 是 | 表示选定的页面尺寸。 |
-| isLandscape | boolean | 是 | 表示垂直打印。 |
+| pageRange | [PrinterRange](#printprinterrange) | 是 | 表示打印范围大小。 |
+| isSequential | boolean | 是 | 表示是否连续打印。true表示连续打印，false表示不连续打印。默认值为false。 |
+| pageSize | [PrintPageSize](./js-apis-print.md#printprintpagesize11) | 是 | 表示选定的页面尺寸。 |
+| isLandscape | boolean | 是 | 表示是否横向打印。true表示横向打印，false表示纵向打印。默认值为false。 |
 | colorMode | number | 是 | 表示色彩模式。 |
 | duplexMode | number | 是 | 表示单双面打印模式。 |
-| margin | PrintMargin | 否 | 表示当前页边距设置。 |
-| preview | PreviewAttribute | 否 | 表示预览设置。 |
+| margin | [PrintMargin](#printprintmargin) | 否 | 表示当前页边距设置。 |
+| preview | [PreviewAttribute](#printpreviewattribute) | 否 | 表示预览设置。 |
 | options | Object | 否 | 表示JSON对象字符串。 |
 
-## PrinterExtensionInfo
+## print.PrinterExtensionInfo
 
 定义打印扩展信息的接口。
 
@@ -156,7 +156,7 @@ import { print } from '@kit.BasicServicesKit';
 | vendorIcon | number | 是 | 表示供应商图标。 |
 | version | string | 是 | 表示当前打印机扩展的版本。 |
 
-## queryAllPrinterExtensionInfos
+## print.queryAllPrinterExtensionInfos
 
 queryAllPrinterExtensionInfos(callback: AsyncCallback&lt;Array&lt;PrinterExtensionInfo&gt;&gt;): void
 
@@ -171,7 +171,7 @@ queryAllPrinterExtensionInfos(callback: AsyncCallback&lt;Array&lt;PrinterExtensi
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;PrinterExtensionInfo&gt;&gt; | 是 | 异步查询所有已安装的打印机扩展服务之后的回调。 |
+| callback | AsyncCallback&lt;Array&lt;[PrinterExtensionInfo](#printprinterextensioninfo)&gt;&gt; | 是 | 异步查询所有已安装的打印机扩展服务之后的回调。 |
 
 **错误码：**
 
@@ -197,7 +197,7 @@ print.queryAllPrinterExtensionInfos((err: BusinessError, extensionInfos: print.P
 })
 ```
 
-## queryAllPrinterExtensionInfos
+## print.queryAllPrinterExtensionInfos
 
 queryAllPrinterExtensionInfos(): Promise&lt;Array&lt;PrinterExtensionInfo&gt;&gt;
 
@@ -212,7 +212,7 @@ queryAllPrinterExtensionInfos(): Promise&lt;Array&lt;PrinterExtensionInfo&gt;&gt
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;Array&lt;PrinterExtensionInfo&gt;&gt; | 查询所有已安装的打印机扩展服务完成结果。 |
+| Promise&lt;Array&lt;[PrinterExtensionInfo](#printprinterextensioninfo)&gt;&gt; | 查询所有已安装的打印机扩展服务完成结果。 |
 
 **错误码：**
 
@@ -237,7 +237,7 @@ print.queryAllPrinterExtensionInfos().then((extensionInfos: print.PrinterExtensi
 })
 ```
 
-## startDiscoverPrinter
+## print.startDiscoverPrinter
 
 startDiscoverPrinter(extensionList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
@@ -282,7 +282,7 @@ print.startDiscoverPrinter(extensionList, (err: BusinessError, data : void) => {
 })
 ```
 
-## startDiscoverPrinter
+## print.startDiscoverPrinter
 
 startDiscoverPrinter(extensionList: Array&lt;string&gt;): Promise&lt;void&gt;
 
@@ -329,7 +329,7 @@ print.startDiscoverPrinter(extensionList).then((data : void) => {
 })
 ```
 
-## stopDiscoverPrinter
+## print.stopDiscoverPrinter
 
 stopDiscoverPrinter(callback: AsyncCallback&lt;void&gt;): void
 
@@ -370,7 +370,7 @@ print.stopDiscoverPrinter((err: BusinessError, data : void) => {
 })
 ```
 
-## stopDiscoverPrinter
+## print.stopDiscoverPrinter
 
 stopDiscoverPrinter(): Promise&lt;void&gt;
 
@@ -409,7 +409,7 @@ print.stopDiscoverPrinter().then((data : void) => {
 })
 ```
 
-## connectPrinter
+## print.connectPrinter
 
 connectPrinter(printerId: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -453,7 +453,7 @@ print.connectPrinter(printerId, (err: BusinessError, data : void) => {
 })
 ```
 
-## connectPrinter
+## print.connectPrinter
 
 connectPrinter(printerId: string): Promise&lt;void&gt;
 
@@ -499,7 +499,7 @@ print.connectPrinter(printerId).then((data : void) => {
 })
 ```
 
-## disconnectPrinter
+## print.disconnectPrinter
 
 disconnectPrinter(printerId: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -543,7 +543,7 @@ print.disconnectPrinter(printerId, (err: BusinessError, data : void) => {
 })
 ```
 
-## disconnectPrinter
+## print.disconnectPrinter
 
 disconnectPrinter(printerId: string): Promise&lt;void&gt;
 
@@ -589,7 +589,7 @@ print.disconnectPrinter(printerId).then((data : void) => {
 })
 ```
 
-## queryPrinterCapability
+## print.queryPrinterCapability
 
 queryPrinterCapability(printerId: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -633,7 +633,7 @@ print.queryPrinterCapability(printerId, (err: BusinessError, data : void) => {
 })
 ```
 
-## queryPrinterCapability
+## print.queryPrinterCapability
 
 queryPrinterCapability(printerId: string): Promise&lt;void&gt;
 
@@ -679,7 +679,7 @@ print.queryPrinterCapability(printerId).then((data : void) => {
 })
 ```
 
-## startPrintJob
+## print.startPrintJob
 
 startPrintJob(jobInfo: PrintJob, callback: AsyncCallback&lt;void&gt;): void
 
@@ -694,7 +694,7 @@ startPrintJob(jobInfo: PrintJob, callback: AsyncCallback&lt;void&gt;): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| jobInfo | PrintJob | 是 | 打印任务信息。 |
+| jobInfo | [PrintJob](#printprintjob) | 是 | 打印任务信息。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步开始打印任务之后的回调。 |
 
 **错误码：**
@@ -739,7 +739,7 @@ print.startPrintJob(jobInfo, (err: BusinessError, data : void) => {
 })
 ```
 
-## startPrintJob
+## print.startPrintJob
 
 startPrintJob(jobInfo: PrintJob): Promise&lt;void&gt;
 
@@ -754,7 +754,7 @@ startPrintJob(jobInfo: PrintJob): Promise&lt;void&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| jobInfo | PrintJob | 是 | 打印任务信息。 |
+| jobInfo | [PrintJob](#printprintjob) | 是 | 打印任务信息。 |
 
 **返回值：**
 | **类型** | **说明** |
@@ -801,7 +801,7 @@ print.startPrintJob(jobInfo).then((data : void) => {
 })
 ```
 
-## cancelPrintJob
+## print.cancelPrintJob
 
 cancelPrintJob(jobId: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -845,7 +845,7 @@ print.cancelPrintJob(jobId, (err: BusinessError, data : void) => {
 })
 ```
 
-## cancelPrintJob
+## print.cancelPrintJob
 
 cancelPrintJob(jobId: string): Promise&lt;void&gt;
 
@@ -891,7 +891,7 @@ print.cancelPrintJob(jobId).then((data : void) => {
 })
 ```
 
-## requestPrintPreview
+## print.requestPrintPreview
 
 requestPrintPreview(jobInfo: PrintJob, callback: Callback&lt;number&gt;): void
 
@@ -906,7 +906,7 @@ requestPrintPreview(jobInfo: PrintJob, callback: Callback&lt;number&gt;): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| jobInfo | PrintJob | 是 | 打印任务信息。 |
+| jobInfo | [PrintJob](#printprintjob) | 是 | 打印任务信息。 |
 | callback | Callback&lt;number&gt; | 是 | 请求预览打印数据之后的回调。 |
 
 **错误码：**
@@ -947,7 +947,7 @@ print.requestPrintPreview(jobInfo, (num : number) => {
 })
 ```
 
-## requestPrintPreview
+## print.requestPrintPreview
 
 requestPrintPreview(jobInfo: PrintJob): Promise&lt;number&gt;
 
@@ -962,7 +962,7 @@ requestPrintPreview(jobInfo: PrintJob): Promise&lt;number&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| jobInfo | PrintJob | 是 | 打印任务信息。 |
+| jobInfo | [PrintJob](#printprintjob) | 是 | 打印任务信息。 |
 
 **返回值：**
 | **类型** | **说明** |
@@ -1009,7 +1009,7 @@ print.requestPrintPreview(jobInfo).then((num: number) => {
 })
 ```
 
-## on
+## print.on
 
 on(type: 'printerStateChange', callback: (state: PrinterState, info: PrinterInfo) => void): void
 
@@ -1025,7 +1025,7 @@ on(type: 'printerStateChange', callback: (state: PrinterState, info: PrinterInfo
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | type | 'printerStateChange' | 是 | 表示打印机状态改变。 |
-| callback | (state: PrinterState, info: PrinterInfo) => void | 是 | 打印机状态改变之后的回调。 |
+| callback | (state: [PrinterState](./js-apis-print.md#printprinterstate14), info: [PrinterInfo](#printprinterinfo)) => void | 是 | 打印机状态改变之后的回调。 |
 
 **错误码：**
 
@@ -1053,7 +1053,7 @@ print.on('printerStateChange', (state: print.PrinterState, info: print.PrinterIn
 })
 ```
 
-## off
+## print.off
 
 off(type: 'printerStateChange', callback?: Callback&lt;boolean&gt;): void
 
@@ -1069,7 +1069,7 @@ off(type: 'printerStateChange', callback?: Callback&lt;boolean&gt;): void
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | type | 'printerStateChange' | 是 | 表示打印机状态改变。 |
-| callback | Callback&lt;boolean&gt; | 否 | 打印机状态改变之后的回调。 |
+| callback | Callback&lt;boolean&gt; | 否 | 表示取消注册打印机状态变化事件是否成功。true表示成功，false表示失败。 |
 
 **错误码：**
 
@@ -1091,7 +1091,7 @@ print.off('printerStateChange', (data: boolean) => {
 })
 ```
 
-## on
+## print.on
 
 on(type: 'jobStateChange', callback: (state: PrintJobState, job: PrintJob) => void): void
 
@@ -1107,7 +1107,7 @@ on(type: 'jobStateChange', callback: (state: PrintJobState, job: PrintJob) => vo
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | type | 'jobStateChange' | 是 | 表示打印任务状态改变。 |
-| callback | (state: PrintJobState, job: PrintJob) => void | 是 | 打印任务状态改变之后的回调。 |
+| callback | (state: [PrintJobState](./js-apis-print.md#printprintjobstate14), job: [PrintJob](#printprintjob)) => void | 是 | 打印任务状态改变之后的回调。 |
 
 **错误码：**
 
@@ -1129,7 +1129,7 @@ print.on('jobStateChange', (state: print.PrintJobState, job: print.PrintJob) => 
 })
 ```
 
-## off
+## print.off
 
 off(type: 'jobStateChange', callback?: Callback&lt;boolean&gt;): void
 
@@ -1145,7 +1145,7 @@ off(type: 'jobStateChange', callback?: Callback&lt;boolean&gt;): void
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | type | 'jobStateChange' | 是 | 表示打印任务状态改变。 |
-| callback | Callback&lt;boolean&gt; | 否 | 打印任务状态改变之后的回调。 |
+| callback | Callback&lt;boolean&gt; | 否 | 表示取消注册打印任务状态变化事件是否成功。true表示成功，false表示失败。 |
 
 **错误码：**
 
@@ -1167,7 +1167,7 @@ print.off('jobStateChange', (data: boolean) => {
 })
 ```
 
-## on
+## print.on
 
 on(type: 'extInfoChange', callback: (extensionId: string, info: string) => void): void
 
@@ -1205,7 +1205,7 @@ print.on('extInfoChange', (extensionId: string, info: string) => {
 })
 ```
 
-## off
+## print.off
 
 off(type: 'extInfoChange', callback?: Callback&lt;boolean&gt;): void
 
@@ -1221,7 +1221,7 @@ off(type: 'extInfoChange', callback?: Callback&lt;boolean&gt;): void
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | type | 'extInfoChange' | 是 | 表示打印扩展信息改变。 |
-| callback | Callback&lt;boolean&gt; | 否 | 打印任务扩展信息改变之后的回调。 |
+| callback | Callback&lt;boolean&gt; | 否 | 表示取消注册打印扩展信息变化事件是否成功。true表示成功，false表示失败。 |
 
 **错误码：**
 
@@ -1243,7 +1243,7 @@ print.off('extInfoChange', (data: boolean) => {
 })
 ```
 
-## addPrinters
+## print.addPrinters
 
 addPrinters(printers: Array&lt;PrinterInfo&gt;, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1258,7 +1258,7 @@ addPrinters(printers: Array&lt;PrinterInfo&gt;, callback: AsyncCallback&lt;void&
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printers | Array&lt;PrinterInfo&gt; | 是 | 表示新到达的打印机列表。 |
+| printers | Array&lt;[PrinterInfo](#printprinterinfo)&gt; | 是 | 表示新到达的打印机列表。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步添加打印机之后的回调。 |
 
 **错误码：**
@@ -1295,7 +1295,7 @@ print.addPrinters([printerInfo], (err: BusinessError, data : void) => {
 })
 ```
 
-## addPrinters
+## print.addPrinters
 
 addPrinters(printers: Array&lt;PrinterInfo&gt;): Promise&lt;void&gt;
 
@@ -1310,7 +1310,7 @@ addPrinters(printers: Array&lt;PrinterInfo&gt;): Promise&lt;void&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printers | Array&lt;PrinterInfo&gt; | 是 | 表示新到达的打印机列表。 |
+| printers | Array&lt;[PrinterInfo](#printprinterinfo)&gt; | 是 | 表示新到达的打印机列表。 |
 
 **返回值：**
 | **类型** | **说明** |
@@ -1349,7 +1349,7 @@ print.addPrinters([printerInfo]).then((data : void) => {
 })
 ```
 
-## removePrinters
+## print.removePrinters
 
 removePrinters(printerIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1393,7 +1393,7 @@ print.removePrinters([printerId], (err: BusinessError, data : void) => {
 })
 ```
 
-## removePrinters
+## print.removePrinters
 
 removePrinters(printerIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
@@ -1439,7 +1439,7 @@ print.removePrinters([printerId]).then((data : void) => {
 })
 ```
 
-## updatePrinters
+## print.updatePrinters
 
 updatePrinters(printers: Array&lt;PrinterInfo&gt;, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1454,7 +1454,7 @@ updatePrinters(printers: Array&lt;PrinterInfo&gt;, callback: AsyncCallback&lt;vo
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printers | Array&lt;PrinterInfo&gt; | 是 | 表示待更新的打印机列表。 |
+| printers | Array&lt;[PrinterInfo](#printprinterinfo)&gt; | 是 | 表示待更新的打印机列表。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步更新打印机信息之后的回调。 |
 
 **错误码：**
@@ -1491,7 +1491,7 @@ print.updatePrinters([printerInfo], (err: BusinessError, data : void) => {
 })
 ```
 
-## updatePrinters
+## print.updatePrinters
 
 updatePrinters(printers: Array&lt;PrinterInfo&gt;): Promise&lt;void&gt;
 
@@ -1506,7 +1506,7 @@ updatePrinters(printers: Array&lt;PrinterInfo&gt;): Promise&lt;void&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printers | Array&lt;PrinterInfo&gt; | 是 | 表示待更新的打印机列表。 |
+| printers | Array&lt;[PrinterInfo](#printprinterinfo)&gt; | 是 | 表示待更新的打印机列表。 |
 
 **返回值：**
 | **类型** | **说明** |
@@ -1545,7 +1545,7 @@ print.updatePrinters([printerInfo]).then((data : void) => {
 })
 ```
 
-## updatePrinterState
+## print.updatePrinterState
 
 updatePrinterState(printerId: string, state: PrinterState, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1561,7 +1561,7 @@ updatePrinterState(printerId: string, state: PrinterState, callback: AsyncCallba
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | printerId | string | 是 | 表示打印机ID。 |
-| state | PrinterState | 是 | 表示打印机状态。 |
+| state | [PrinterState](./js-apis-print.md#printprinterstate14) | 是 | 表示打印机状态。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步更新打印机状态之后的回调。 |
 
 **错误码：**
@@ -1591,7 +1591,7 @@ print.updatePrinterState(printerId, state, (err: BusinessError, data : void) => 
 })
 ```
 
-## updatePrinterState
+## print.updatePrinterState
 
 updatePrinterState(printerId: string, state: PrinterState): Promise&lt;void&gt;
 
@@ -1607,7 +1607,7 @@ updatePrinterState(printerId: string, state: PrinterState): Promise&lt;void&gt;
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | printerId | string | 是 | 表示打印机ID。 |
-| state | PrinterState | 是 | 表示打印机状态。 |
+| state | [PrinterState](./js-apis-print.md#printprinterstate14) | 是 | 表示打印机状态。 |
 
 **返回值：**
 | **类型** | **说明** |
@@ -1639,7 +1639,7 @@ print.updatePrinterState(printerId, state).then((data : void) => {
 })
 ```
 
-## updatePrintJobState
+## print.updatePrintJobState
 
 updatePrintJobState(jobId: string, state: PrintJobState, subState: PrintJobSubState, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1655,8 +1655,8 @@ updatePrintJobState(jobId: string, state: PrintJobState, subState: PrintJobSubSt
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | jobId | string | 是 | 表示打印任务ID。 |
-| state | PrintJobState | 是 | 表示打印任务状态。 |
-| subState | PrintJobSubState | 是 | 表示打印任务子状态。 |
+| state | [PrintJobState](./js-apis-print.md#printprintjobstate14) | 是 | 表示打印任务状态。 |
+| subState | [PrintJobSubState](./js-apis-print.md#printprintjobsubstate14) | 是 | 表示打印任务子状态。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步更新打印任务状态之后的回调。 |
 
 **错误码：**
@@ -1687,7 +1687,7 @@ print.updatePrintJobState(jobId, state, subState, (err: BusinessError, data : vo
 })
 ```
 
-## updatePrintJobState
+## print.updatePrintJobState
 
 updatePrintJobState(jobId: string, state: PrintJobState, subState: PrintJobSubState): Promise&lt;void&gt;
 
@@ -1703,8 +1703,8 @@ updatePrintJobState(jobId: string, state: PrintJobState, subState: PrintJobSubSt
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | jobId | string | 是 | 表示打印任务ID。 |
-| state | PrintJobState | 是 | 表示打印任务状态。 |
-| subState | PrintJobSubState | 是 | 表示打印任务子状态。 |
+| state | [PrintJobState](./js-apis-print.md#printprintjobstate14) | 是 | 表示打印任务状态。 |
+| subState | [PrintJobSubState](./js-apis-print.md#printprintjobsubstate14) | 是 | 表示打印任务子状态。 |
 
 **返回值：**
 | **类型** | **说明** |
@@ -1737,7 +1737,7 @@ print.updatePrintJobState(jobId, state, subState).then((data : void) => {
 })
 ```
 
-## updateExtensionInfo
+## print.updateExtensionInfo
 
 updateExtensionInfo(info: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1781,7 +1781,7 @@ print.updateExtensionInfo(info, (err: BusinessError, data : void) => {
 })
 ```
 
-## updateExtensionInfo
+## print.updateExtensionInfo
 
 updateExtensionInfo(info: string): Promise&lt;void&gt;
 
@@ -1827,10 +1827,10 @@ print.updateExtensionInfo(info).then((data : void) => {
 })
 ```
 
-## queryAllPrintJobs<sup>(deprecated)</sup>
+## print.queryAllPrintJobs<sup>(deprecated)</sup>
 
 > 从API version 10开始支持，从API version 11开始废弃。
-> 建议使用[queryPrintJobList](#queryprintjoblist11)替代。
+> 建议使用[queryPrintJobList](#printqueryprintjoblist11)替代。
 
 queryAllPrintJobs(callback: AsyncCallback&lt;void&gt;): void
 
@@ -1871,10 +1871,10 @@ print.queryAllPrintJobs((err: BusinessError, data : void) => {
 })
 ```
 
-## queryAllPrintJobs<sup>(deprecated)</sup>
+## print.queryAllPrintJobs<sup>(deprecated)</sup>
 
 > 从API version 10开始支持，从API version 11开始废弃。
-> 建议使用[queryPrintJobList](#queryprintjoblist11-1)替代。
+> 建议使用[queryPrintJobList](#printqueryprintjoblist11-1)替代。
 
 queryAllPrintJobs(): Promise&lt;void&gt;
 
@@ -1913,7 +1913,7 @@ print.queryAllPrintJobs().then((data : void) => {
 })
 ```
 
-## queryPrintJobList<sup>11+</sup>
+## print.queryPrintJobList<sup>11+</sup>
 
 queryPrintJobList(callback: AsyncCallback&lt;Array&lt;PrintJob&gt;&gt;): void
 
@@ -1928,7 +1928,7 @@ queryPrintJobList(callback: AsyncCallback&lt;Array&lt;PrintJob&gt;&gt;): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;PrintJob&gt;&gt; | 是 | 异步查询所有打印任务之后的回调。 |
+| callback | AsyncCallback&lt;Array&lt;[PrintJob](#printprintjob)&gt;&gt; | 是 | 异步查询所有打印任务之后的回调。 |
 
 **错误码：**
 
@@ -1954,7 +1954,7 @@ print.queryPrintJobList((err: BusinessError, printJobs : print.PrintJob[]) => {
 })
 ```
 
-## queryPrintJobList<sup>11+</sup>
+## print.queryPrintJobList<sup>11+</sup>
 
 queryPrintJobList(): Promise&lt;Array&lt;PrintJob&gt;&gt;
 
@@ -1969,7 +1969,7 @@ queryPrintJobList(): Promise&lt;Array&lt;PrintJob&gt;&gt;
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;Array&lt;PrintJob&gt;&gt; | 查询所有打印任务完成结果。 |
+| Promise&lt;Array&lt;[PrintJob](#printprintjob)&gt;&gt; | 查询所有打印任务完成结果。 |
 
 **错误码：**
 
@@ -1993,7 +1993,7 @@ print.queryPrintJobList().then((printJobs : print.PrintJob[]) => {
 })
 ```
 
-## queryPrintJobById<sup>11+</sup>
+## print.queryPrintJobById<sup>11+</sup>
 
 queryPrintJobById(jobId: string, callback: AsyncCallback&lt;PrintJob&gt;): void
 
@@ -2009,7 +2009,7 @@ queryPrintJobById(jobId: string, callback: AsyncCallback&lt;PrintJob&gt;): void
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | jobId | string | 是 | 表示打印任务ID。 |
-| callback | AsyncCallback&lt;PrintJob&gt; | 是 | 异步按打印任务ID查询打印任务之后的回调。 |
+| callback | AsyncCallback&lt;[PrintJob](#printprintjob)&gt; | 是 | 异步按打印任务ID查询打印任务之后的回调。 |
 
 **错误码：**
 
@@ -2037,7 +2037,7 @@ print.queryPrintJobById(jobId, (err: BusinessError, printJob : print.PrintJob) =
 })
 ```
 
-## queryPrintJobById<sup>11+</sup>
+## print.queryPrintJobById<sup>11+</sup>
 
 queryPrintJobById(jobId: string): Promise&lt;PrintJob&gt;
 
@@ -2057,7 +2057,7 @@ queryPrintJobById(jobId: string): Promise&lt;PrintJob&gt;
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;PrintJob&gt; | 按打印任务ID查询打印任务完成结果。 |
+| Promise&lt;[PrintJob](#printprintjob)&gt; | 按打印任务ID查询打印任务完成结果。 |
 
 **错误码：**
 
@@ -2083,7 +2083,7 @@ print.queryPrintJobById(jobId).then((printJob : print.PrintJob) => {
 })
 ```
 
-## startGettingPrintFile<sup>11+</sup>
+## print.startGettingPrintFile<sup>11+</sup>
 
 startGettingPrintFile(jobId: string, printAttributes: PrintAttributes, fd: number, onFileStateChanged: Callback&lt;PrintFileCreationState&gt;): void
 
@@ -2099,9 +2099,9 @@ startGettingPrintFile(jobId: string, printAttributes: PrintAttributes, fd: numbe
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | jobId | string | 是 | 表示打印任务ID。 |
-| printAttributes | PrintAttributes | 是 | 表示打印参数。 |
+| printAttributes | [PrintAttributes](./js-apis-print.md#printprintattributes11) | 是 | 表示打印参数。 |
 | fd | number | 是 | 表示打印文件描述符。 |
-| onFileStateChanged | Callback&lt;PrintFileCreationState&gt; | 是 | 表示更新文件状态的回调。 |
+| onFileStateChanged | Callback&lt;[PrintFileCreationState](./js-apis-print.md#printprintfilecreationstate11)&gt; | 是 | 表示更新文件状态的回调。 |
 
 **错误码：**
 
@@ -2159,7 +2159,7 @@ print.startGettingPrintFile(jobId, printAttributes, fd, (state: print.PrintFileC
 })
 ```
 
-## notifyPrintService<sup>11+</sup>
+## print.notifyPrintService<sup>11+</sup>
 
 notifyPrintService(jobId: string, type: 'spooler_closed_for_cancelled' | 'spooler_closed_for_started', callback: AsyncCallback&lt;void&gt;): void
 
@@ -2204,7 +2204,7 @@ print.notifyPrintService(jobId, 'spooler_closed_for_started', (err: BusinessErro
 })
 ```
 
-## notifyPrintService<sup>11+</sup>
+## print.notifyPrintService<sup>11+</sup>
 
 notifyPrintService(jobId: string, type: 'spooler_closed_for_cancelled' | 'spooler_closed_for_started'): Promise&lt;void&gt;
 
@@ -2251,7 +2251,7 @@ print.notifyPrintService(jobId, 'spooler_closed_for_started').then((data : void)
 })
 ```
 
-## getAddedPrinters<sup>12+</sup>
+## print.getAddedPrinters<sup>12+</sup>
 
 getAddedPrinters(): Promise&lt;Array&lt;string&gt;&gt;
 
@@ -2291,7 +2291,7 @@ print.getAddedPrinters().then((printers: string[]) => {
 })
 ```
 
-## getPrinterInfoById<sup>12+</sup>
+## print.getPrinterInfoById<sup>12+</sup>
 
 getPrinterInfoById(printerId: string): Promise&lt;PrinterInfo&gt;
 
@@ -2311,7 +2311,7 @@ getPrinterInfoById(printerId: string): Promise&lt;PrinterInfo&gt;
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;PrinterInfo&gt; | 根据打印机id获取打印机信息后的完成结果回调。 |
+| Promise&lt;[PrinterInfo](#printprinterinfo)&gt; | 根据打印机id获取打印机信息后的完成结果回调。 |
 
 **错误码：**
 
@@ -2337,7 +2337,7 @@ print.getPrinterInfoById(printerId).then((printerInfo : print.PrinterInfo) => {
 })
 ```
 
-## notifyPrintServiceEvent<sup>12+</sup>
+## print.notifyPrintServiceEvent<sup>12+</sup>
 
 notifyPrintServiceEvent(event: ApplicationEvent): Promise&lt;void&gt;
 
@@ -2352,7 +2352,7 @@ notifyPrintServiceEvent(event: ApplicationEvent): Promise&lt;void&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| event | ApplicationEvent | 是 | 表示打印应用事件。 |
+| event | [ApplicationEvent](./js-apis-print.md#printapplicationevent14) | 是 | 表示打印应用事件。 |
 
 **返回值：**
 | **类型** | **说明** |

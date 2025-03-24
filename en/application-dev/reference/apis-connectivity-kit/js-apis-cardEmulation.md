@@ -345,6 +345,16 @@ Subscribes to events indicating receiving of APDUs from the peer card reader. Th
 | type     | string                  | Yes  | Event type. It has a fixed value of **hceCmd**.                        |
 | callback | AsyncCallback\<number[]> | Yes  | Event callback, which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 
+**Error codes**
+
+For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
+
+| ID| Error Message |
+| ------- | -------|
+|201 | Permission denied.                 |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
+
 **Example**
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';

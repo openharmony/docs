@@ -11,7 +11,7 @@ The ContinueDeviceInfo module defines the parameters required for initiating mis
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 | Name      | Type  | Readable  | Writable  | Description     |
 | -------- | ------ | ---- | ---- | ------- |

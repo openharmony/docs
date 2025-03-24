@@ -15,7 +15,7 @@ napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function
 | func           | 线程安全方法                   |
 | data           | 异步线程期望传递给主线程的数据  |
 | priority       | 指定任务的优先级[napi_task_priority](napi-data-types-interfaces.md#线程安全任务优先级) |
-| isTail         | 指定任务的入队方式, true代表任务从队列的尾部入队，false代表任务从队列的头部入队。 |
+| isTail         | 指定任务的入队方式，true代表任务从队列的尾部入队，false代表任务从队列的头部入队。 |
 
 ## 场景介绍
 异步线程向ArkTS主线程投递的任务需要根据任务指定的优先级和入队方式进行处理。
@@ -32,6 +32,10 @@ napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function
     #include <string.h>
     #include <stdlib.h>
 
+    static constexpr int INT_NUM_2 = 2;     // int类型数值2
+    static constexpr int INT_NUM_12 = 12;   // int类型数值12
+    static constexpr int INT_NUM_15 = 15;   // int类型数值15
+
     struct CallbackData {
         napi_threadsafe_function tsfn;
         napi_async_work work;
@@ -45,11 +49,11 @@ napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function
         napi_value undefined = nullptr;
         napi_get_undefined(env, &undefined);
         napi_value number1 = nullptr;
-        napi_create_int32(env, 12, &number1);
+        napi_create_int32(env, INT_NUM_12, &number1);
         napi_value number2 = nullptr;
-        napi_create_int32(env, 15, &number2);
+        napi_create_int32(env, INT_NUM_15, &number2);
         napi_value argv[2] = {number1, number2};
-        napi_call_function(env, undefined, jsCb, 2, argv, &resultNumber);
+        napi_call_function(env, undefined, jsCb, INT_NUM_2, argv, &resultNumber);
         int32_t res = 0;
         napi_get_value_int32(env, resultNumber, &res);
     }

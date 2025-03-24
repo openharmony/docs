@@ -44,6 +44,7 @@
             - [TaskPool任务与宿主线程通信](taskpool-communicates-with-mainthread.md)
             - [Worker和宿主线程的即时消息通信](worker-communicates-with-mainthread.md)
             - [Worker同步调用宿主线程的接口](worker-invoke-mainthread-interface.md)
+            - [多级Worker间高性能消息通信](worker-postMessage-sendable.md)
     - 应用多线程开发<!--multithread-develop-guide-->
         - [应用多线程开发概述](multithread-develop-overview.md)
         - 耗时任务并发场景<!--time-consuming-task-->
@@ -65,6 +66,8 @@
             - [C++线程间数据共享场景](native-interthread-shared.md)
             - [TaskPool指定任务并发度场景](taskpool-async-task-guide.md)
             - [ArkUI瀑布流渲染场景](taskpool-waterflow.md)
+            - [获取最近访问列表场景](sendablelrucache-recent-list.md)
+            - [多线程取消TaskPool任务场景](multi-thread-cancel-task.md)
 - [ArkTS跨语言交互](arkts-cross-language-interaction.md)
 - ArkTS运行时<!--arkts-runtime-->
     - [ArkTS运行时概述](arkts-runtime-overview.md)

@@ -13,7 +13,7 @@ Declares the USB Serial DDK APIs used by the host to access the serial port devi
 
 **Since**: 16
 
-**Related module**: [Serial DDK](_serial_ddk.md)
+**Related module**: [USB Serial DDK](_serial_ddk.md)
 
 
 ## Summary

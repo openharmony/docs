@@ -57,7 +57,7 @@ PIN模块仅是一个软件层面的概念，主要工作是管脚资源管理�
 
 ### 接口说明<a name="section8"></a>
 
-PIN模块提供的主要接口如表1所示，具体API详见//drivers/hdf_core/framework/include/platform/pin_if.h。
+PIN模块提供的主要接口如表1所示，具体API[详见](https://gitee.com/openharmony/drivers_hdf_core/blob/master/framework/include/platform/pin_if.h)。
 
 **表 1**  PIN驱动API接口功能介绍
 <a name="table1"></a>

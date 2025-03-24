@@ -2863,7 +2863,7 @@ getOsAccountDomainInfo(localId: number): Promise&lt;DomainAccountInfo&gt;;
   })
   ```
 
-### updateAccountInfo<sup>16+</sup>
+### updateAccountInfo<sup>18+</sup>
 
 updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccountInfo): Promise&lt;void&gt;
 
@@ -2928,15 +2928,15 @@ updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccou
 | localName                      | string                                                       | 是   | 系统账号名称。                    |
 | type                           | [OsAccountType](#osaccounttype)                              | 是   | 系统账号类型。                      |
 | constraints                    | Array&lt;string&gt;                                          | 是   | 系统账号[约束](#系统账号约束列表)，默认为空。|
-| isVerified<sup>(deprecated)</sup> | boolean                                                   | 是   | 账号是否验证。<br>**说明**: 从API version 7开始支持，从API version 11开始废弃。                     |
-| isUnlocked<sup>11+</sup>      | boolean                                                       | 是   | 账号是否已解锁（EL2级别目录是否解密）。                      |
+| isVerified<sup>(deprecated)</sup> | boolean                                                   | 是   | 账号是否验证。true表示指定账号已验证；false表示指定账号未验证。<br>**说明**：从API version 7开始支持，从API version 11开始废弃。           |
+| isUnlocked<sup>11+</sup>      | boolean                                                       | 是   | 账号是否已解锁（EL2级别目录是否解密）。true表示指定账号已解锁；false表示指定账号未解锁。                      |
 | photo<sup>8+</sup>             | string                                                       | 是   | 系统账号头像，默认为空。                      |
 | createTime<sup>8+</sup>        | number                                                       | 是   | 系统账号创建时间。                  |
 | lastLoginTime<sup>8+</sup>     | number                                                       | 是   | 系统账号最后一次登录时间，默认为空。          |
 | serialNumber<sup>8+</sup>      | number                                                       | 是   | 系统账号SN码。                      |
-| isActived<sup>(deprecated)</sup>         | boolean                                            | 是   | 系统账号激活状态。<br>**说明**: 从API version 7开始支持，从API version 11开始废弃。                  |
-| isActivated<sup>11+</sup>         | boolean                                                   | 是   | 系统账号激是否激活。                  |
-| isCreateCompleted<sup>8+</sup> | boolean                                                      | 是   | 系统账号创建是否完整。              |
+| isActived<sup>(deprecated)</sup>         | boolean                                            | 是   | 系统账号激活状态。true表示指定账号处于激活状态；false表示指定账号处于未激活状态。<br>**说明**：从API version 7开始支持，从API version 11开始废弃。                  |
+| isActivated<sup>11+</sup>         | boolean                                                   | 是   | 系统账号激是否激活。true表示指定账号已激活；false表示指定账号未激活。                  |
+| isCreateCompleted<sup>8+</sup> | boolean                                                      | 是   | 系统账号创建是否完整。true表示指定账号已创建完整；false表示指定账号未创建完整。              |
 | distributedInfo                | [distributedAccount.DistributedInfo](js-apis-distributed-account.md#distributedinfo) | 是   | 分布式账号信息，默认为空。                    |
 | domainInfo<sup>8+</sup>        | [DomainAccountInfo](#domainaccountinfo8)                      | 是   | 域账号信息，默认为空。                        |
 
@@ -2950,9 +2950,9 @@ updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccou
 | ----------- | ------ | ---- | ---------- |
 | domain      | string | 是   | 域名。     |
 | accountName | string | 是   | 域账号名。 |
-| serverConfigId | string | 是   | 域账号配置ID。 |
+| serverConfigId<sup>18+</sup> | string | 否   | 域账号配置ID。 |
 
-## DomainServerConfig<sup>16+</sup>
+## DomainServerConfig<sup>18+</sup>
 
 域服务器配置。
 
@@ -2964,11 +2964,11 @@ updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccou
 | id | string | 是   | 服务器配置标识。|
 | domain | string | 是 | 服务器所属的域。 |
 
-## DomainServerConfigManager<sup>16+</sup>
+## DomainServerConfigManager<sup>18+</sup>
 
 域服务器配置管理类。
 
-### addServerConfig<sup>16+</sup>
+### addServerConfig<sup>18+</sup>
 
 static addServerConfig(parameters: Record&lt;string, Object&gt;): Promise&lt;DomainServerConfig&gt;
 
@@ -2988,7 +2988,7 @@ static addServerConfig(parameters: Record&lt;string, Object&gt;): Promise&lt;Dom
 
 | 类型                      | 说明                     |
 | :------------------------ | ----------------------- |
-| Promise&lt;[DomainServerConfig](#domainserverconfig16)&gt; | Promise对象，返回新添加的域服务器配置。 |
+| Promise&lt;[DomainServerConfig](#domainserverconfig18)&gt; | Promise对象，返回新添加的域服务器配置。 |
 
 **错误码：**
 
@@ -3018,7 +3018,7 @@ static addServerConfig(parameters: Record&lt;string, Object&gt;): Promise&lt;Dom
   });
   ```
 
-### removeServerConfig<sup>16+</sup>
+### removeServerConfig<sup>18+</sup>
 
 static removeServerConfig(configId: string): Promise&lt;void&gt;
 
@@ -3068,7 +3068,7 @@ static removeServerConfig(configId: string): Promise&lt;void&gt;
   });
   ```
 
-### updateServerConfig<sup>16+</sup>
+### updateServerConfig<sup>18+</sup>
 
 static updateServerConfig(configId: string, parameters: Record&lt;string, Object&gt;): Promise&lt;DomainServerConfig&gt;
 
@@ -3089,7 +3089,7 @@ static updateServerConfig(configId: string, parameters: Record&lt;string, Object
 
 | 类型                      | 说明                     |
 | :------------------------ | ----------------------- |
-| Promise&lt;[DomainServerConfig](#domainserverconfig16)&gt; | Promise对象，返回更新后的域服务器配置。 |
+| Promise&lt;[DomainServerConfig](#domainserverconfig18)&gt; | Promise对象，返回更新后的域服务器配置。 |
 
 **错误码：**
 
@@ -3125,7 +3125,7 @@ static updateServerConfig(configId: string, parameters: Record&lt;string, Object
   });
   ```
 
-### getServerConfig<sup>16+</sup>
+### getServerConfig<sup>18+</sup>
 
 static getServerConfig(configId: string): Promise&lt;DomainServerConfig&gt;
 
@@ -3145,7 +3145,7 @@ static getServerConfig(configId: string): Promise&lt;DomainServerConfig&gt;
 
 | 类型                      | 说明                     |
 | :------------------------ | ----------------------- |
-| Promise&lt;[DomainServerConfig](#domainserverconfig16)&gt; | Promise对象，返回获取的域服务器配置。 |
+| Promise&lt;[DomainServerConfig](#domainserverconfig18)&gt; | Promise对象，返回获取的域服务器配置。 |
 
 **错误码：**
 
@@ -3177,7 +3177,7 @@ static getServerConfig(configId: string): Promise&lt;DomainServerConfig&gt;
   });
   ```
 
-### getAllServerConfigs<sup>16+</sup>
+### getAllServerConfigs<sup>18+</sup>
 
 static getAllServerConfigs(): Promise&lt;Array&lt;DomainServerConfig&gt;&gt;
 
@@ -3191,7 +3191,7 @@ static getAllServerConfigs(): Promise&lt;Array&lt;DomainServerConfig&gt;&gt;
 
 | 类型                      | 说明                     |
 | :------------------------ | ----------------------- |
-| Promise&lt;Array&lt;[DomainServerConfig](#domainserverconfig16)&gt;&gt; | Promise对象，返回获取的所有域服务器配置。 |
+| Promise&lt;Array&lt;[DomainServerConfig](#domainserverconfig18)&gt;&gt; | Promise对象，返回获取的所有域服务器配置。 |
 
 **错误码：**
 
@@ -3221,7 +3221,7 @@ static getAllServerConfigs(): Promise&lt;Array&lt;DomainServerConfig&gt;&gt;
   });
   ```
 
-### getAccountServerConfig<sup>16+</sup>
+### getAccountServerConfig<sup>18+</sup>
 
 static getAccountServerConfig(domainAccountInfo: DomainAccountInfo): Promise&lt;DomainServerConfig&gt;
 
@@ -3241,7 +3241,7 @@ static getAccountServerConfig(domainAccountInfo: DomainAccountInfo): Promise&lt;
 
 | 类型                      | 说明                     |
 | :------------------------ | ----------------------- |
-| Promise&lt;[DomainServerConfig](#domainserverconfig16)&gt; | Promise对象，返回目标账号的域服务器配置。 |
+| Promise&lt;[DomainServerConfig](#domainserverconfig18)&gt; | Promise对象，返回目标账号的域服务器配置。 |
 
 **错误码：**
 

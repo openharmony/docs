@@ -84,4 +84,3 @@ Flags说明。用于表示处理Want的方式。
 | FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | 指示清除其他任务的操作。可以为传递给 **FeatureAbility** 中[startAbility](js-apis-ability-featureAbility.md#startability)方法的**Want**设置此标志，并且必须与**FLAG_ABILITY_NEW_MISSION**一起使用。 |
 | FLAG_ABILITY_NEW_MISSION             | 0x10000000 | 指示在历史任务堆栈上创建任务的操作。                               |
 | FLAG_ABILITY_MISSION_TOP             | 0x20000000 | 指示如果启动能力的现有实例已位于任务堆栈的顶部，则将重用该实例。否则，将创建一个新的能力实例。 |
-| FLAG_ABILITY_ON_COLLABORATE<sup>16+</sup> | 0x00002000 | 在多设备协同场景下，调用方应用通过DMS系统发起请求并且通过Flags字段携带此标志，协同方应用才会触发生命周期回调方法[onCollaborate(wantParam)](js-apis-app-ability-uiAbility.md#uiabilityoncollaborate16)。 |

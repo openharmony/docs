@@ -1,6 +1,6 @@
 # @ohos.file.photoAccessHelper (Album Management)
 
-The **photoAccessHelper** module provides APIs for album management, including creating an album and accessing and modifying media data in an album.
+The photoAccessHelper module provides APIs for album management, including creating an album and accessing and modifying media data in an album.
 
 > **NOTE**
 >
@@ -64,7 +64,7 @@ Obtains image and video assets. This API uses an asynchronous callback to return
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
-If the caller does not have the ohos.permission.READ_IMAGEVIDEO permission, use Picker to access the file and then call this API based on the URI obtained by Picker. For details, see [Obtaining an Image or Video by URI](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#obtaining-an-image-or-video-by-uri).
+When you call this API in Picker mode, you do not need to request the ohos.permission.READ_IMAGEVIDEO permission. For details, see [Obtaining an Image or Video by URI](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#obtaining-an-image-or-video-by-uri).
 
 **Parameters**
 
@@ -121,7 +121,7 @@ Obtains image and video assets. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
-If the caller does not have the ohos.permission.READ_IMAGEVIDEO permission, use Picker to access the file and then call this API based on the URI obtained by Picker. For details, see [Obtaining an Image or Video by URI](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#obtaining-an-image-or-video-by-uri).
+When you call this API in Picker mode, you do not need to request the ohos.permission.READ_IMAGEVIDEO permission. For details, see [Obtaining an Image or Video by URI](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#obtaining-an-image-or-video-by-uri).
 
 **Parameters**
 
@@ -209,7 +209,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { photoAccessHelper } form '@kit.MediaLibraryKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
@@ -258,7 +258,7 @@ If the caller does not have the ohos.permission.WRITE_IMAGEVIDEO permission, you
 | photoType  | [PhotoType](#phototype)        | Yes  | Type of the file to create, which can be **IMAGE** or **VIDEO**.             |
 | extension  | string        | Yes  | File name extension, for example, **'jpg'**.             |
 | options  | [CreateOptions](#createoptions)        | Yes  | Options for creating the image or video asset, for example, **{title: 'testPhoto'}**.             |
-| callback |  AsyncCallback&lt;string&gt; | Yes  | Callback used to return the URI of the created image or video.|
+| callback |  AsyncCallback&lt;string&gt; | Yes  | Callback used to return the URI of the created image or video asset.|
 
 **Error codes**
 
@@ -312,7 +312,7 @@ If the caller does not have the ohos.permission.WRITE_IMAGEVIDEO permission, you
 | -------- | ------------------------ | ---- | ------------------------- |
 | photoType  | [PhotoType](#phototype)        | Yes  | Type of the file to create, which can be **IMAGE** or **VIDEO**.             |
 | extension  | string        | Yes  | File name extension, for example, **'jpg'**.             |
-| callback |  AsyncCallback&lt;string&gt; | Yes  | Callback used to return the URI of the created image or video.|
+| callback |  AsyncCallback&lt;string&gt; | Yes  | Callback used to return the URI of the created image or video asset.|
 
 **Error codes**
 
@@ -418,7 +418,7 @@ Before the operation, ensure that the albums to obtain exist.
 
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| type  | [AlbumType](#albumtype)         | Yes  | Type of the albums to obtain.             |
+| type  | [AlbumType](#albumtype)         | Yes  | Type of the album.             |
 | subtype  | [AlbumSubtype](#albumsubtype)         | Yes  | Subtype of the album.             |
 | options  | [FetchOptions](#fetchoptions)         | Yes  |  Options for fetching the albums.             |
 | callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback used to return the result.|
@@ -480,7 +480,7 @@ Before the operation, ensure that the albums to obtain exist.
 
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| type  | [AlbumType](#albumtype)         | Yes  | Type of the albums to obtain.             |
+| type  | [AlbumType](#albumtype)         | Yes  | Type of the album.             |
 | subtype  | [AlbumSubtype](#albumsubtype)         | Yes  | Subtype of the album.             |
 | callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback used to return the result.|
 
@@ -533,7 +533,7 @@ Before the operation, ensure that the albums to obtain exist.
 
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| type  | [AlbumType](#albumtype)         | Yes  | Type of the albums to obtain.             |
+| type  | [AlbumType](#albumtype)         | Yes  | Type of the album.             |
 | subtype  | [AlbumSubtype](#albumsubtype)         | Yes  | Subtype of the album.             |
 | options  | [FetchOptions](#fetchoptions)         | No  |  Options for fetching the albums. If this parameter is not specified, the albums are obtained based on the album type by default.             |
 
@@ -596,7 +596,7 @@ Registers listening for the specified URI. This API uses a callback to return th
 | Name   | Type                                       | Mandatory| Description                                                        |
 | --------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | uri       | string                                      | Yes  | URI of the photo asset, URI of the album, or [DefaultChangeUri](#defaultchangeuri).|
-| forChildUris | boolean                                     | Yes  | Whether to perform fuzzy listening.<br>If **uri** is the URI of an album, the value **true** means to listen for the changes of the files in the album; the value **false** means to listen for the changes of the album only. <br>If **uri** is the URI of a **photoAsset**, there is no difference between **true** and **false** for **forChildUris**.<br>If **uri** is **DefaultChangeUri**, **forChildUris** must be set to **true**. If **forChildUris** is **false**, the URI cannot be found and no message can be received.|
+| forChildUris | boolean                                     | Yes  | Whether to perform fuzzy listening.<br>If **uri** is the URI of an album, the value **true** means to listen for the changes of the files in the album; the value **false** means to listen for the changes of the album only.<br>If **uri** is the URI of a photoAsset, there is no difference between **true** and false for **forChildUris**.<br>If **uri** is **DefaultChangeUri**, **forChildUris** must be set to **true**. If **forChildUris** is false, the URI cannot be found and no message can be received.|
 | callback  | Callback&lt;[ChangeData](#changedata)&gt; | Yes  | Callback used to return the [ChangeData](#changedata). <br>**NOTE**<br>Multiple callback listeners can be registered for a URI. You can use [unRegisterChange](#unregisterchange) to unregister all listeners for the URI or a specified callback listener.|
 
 **Error codes**
@@ -628,11 +628,11 @@ async function example() {
   }
   let onCallback1 = (changeData: photoAccessHelper.ChangeData) => {
       console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
-    //file had changed, do something
+    //file had changed, do something.
   }
   let onCallback2 = (changeData: photoAccessHelper.ChangeData) => {
       console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
-    //file had changed, do something
+    //file had changed, do something.
   }
   // Register onCallback1.
   phAccessHelper.registerChange(photoAsset.uri, false, onCallback1);
@@ -837,7 +837,7 @@ Applies media changes. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-If the caller does not have the ohos.permission.WRITE_IMAGEVIDEO permission, you can create a media asset by using a security component. For details, see [Creating a Media Asset Using a Security Component](../../media/medialibrary/photoAccessHelper-savebutton.md).
+When you create a media asset by using a security component, you do not need to request the ohos.permission.WRITE_IMAGEVIDEO permission to call this API. For details, see [Creating a Media Asset Using a Security Component](../../media/medialibrary/photoAccessHelper-savebutton.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -952,7 +952,11 @@ async function example() {
 
 showAssetsCreationDialog(srcFileUris: Array&lt;string&gt;, photoCreationConfigs: Array&lt;PhotoCreationConfig&gt;): Promise&lt;Array&lt;string&gt;&gt;
 
-Shows the dialog box for the user to confirm whether to save the photos or videos. If the user agrees to save the images or videos, a list of URIs granted with the save permission is returned. The list takes effect permanently, and the application can write the images or videos based on the URIs. If the user refuses to save the images or videos, an empty list is returned.
+Shows the dialog box for the user to confirm whether to save the photos or videos. If the user agrees to save the images or videos, a list of URIs granted with the save permission is returned. The list takes effect permanently, and the application can write the images or videos based on the URIs. If the user refuses to save the images or videos, an empty list is returned. To display the application name in the dialog box, the API relies on the configuration of **label** and **icon** under **abilities** in the **module.json5** file. If they are not configured, no application name is displayed in the dialog box.
+
+> **NOTE**
+>
+> If the passed URI is a sandbox path, photos or videos can be saved but cannot be previewed.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -962,14 +966,14 @@ Shows the dialog box for the user to confirm whether to save the photos or video
 
 | Name  | Type                                                                  | Mandatory| Description                     |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
-| srcFileUris | Array&lt;string&gt; | Yes| [URIs](../../file-management/user-file-uri-intro.md#media-file-uri) of the images or videos to be saved to the media library.<br>**NOTE**: Only image and video URIs are supported.|
+| srcFileUris | Array&lt;string&gt; | Yes| [URIs](../../file-management/user-file-uri-intro.md#media-file-uri) of the images or videos to be saved to the media library.<br>**NOTE**<br>- Only image and video URIs are supported.<br>- URIs cannot be manually constructed. You must call APIs to obtain them. For details, see [Obtaining a Media File URI](../../file-management/user-file-uri-intro.md#obtaining-a-media-file-uri). |
 | photoCreationConfigs | Array&lt;[PhotoCreationConfig](#photocreationconfig12)&gt; | Yes| Configuration for saving the images or videos, including the names of the files to be saved. The value must be consistent with that of **srcFileUris**.|
 
 **Return value**
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return a URI list. The URIs are granted with the permission for the application to write data.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return a URI list. The URIs are granted with the permission for the application to write data. If the URIs fail to be generated, a batch creation error code will be returned.<br>The error code **-3006** means that there are invalid characters; **-2004** means that the image type does not match the file name extension; **-203** means that the file operation is abnormal.|
 
 **Error codes**
 
@@ -978,7 +982,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 14000011 |  Internal system error |
+| 14000011 |  Internal system error. |
 
 **Example**
 
@@ -999,7 +1003,7 @@ async function example() {
         title: 'test2', // Optional.
         fileNameExtension: 'jpg',
         photoType: photoAccessHelper.PhotoType.IMAGE,
-        subtype: photoAccessHelper.PhotoSubtype.DEFAULT, // Optional.
+        subtype: photoAccessHelper.PhotoSubtype.DEFAULT, // This parameter is optional.
       }
     ];
     let desFileUris: Array<string> = await phAccessHelper.showAssetsCreationDialog(srcFileUris, photoCreationConfigs);
@@ -1031,7 +1035,7 @@ within 5 minutes after the user agrees to save the asset. If the same applicatio
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;string&gt; | Promise used to return the URI of the asset saved. The URIs are granted with the permission for the application to write data.|
+| Promise&lt;string&gt; | Promise used to return the URI of the asset saved. The URIs are granted with the permission for the application to write data. If the URIs fail to be generated, a batch creation error code will be returned.<br>The error code **-3006** means that there are invalid characters; **-2004** means that the image type does not match the file name extension; **-203** means that the file operation is abnormal.|
 
 **Error codes**
 
@@ -1124,7 +1128,7 @@ async function example() {
   console.info('requestPhotoUrisReadPermissionDemo.');
 
   try {
-    let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
+    let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
     // Obtain the URIs of the images or videos to be granted with the permission.
     let srcFileUris: Array<string> = [
       'file://fileUriDemo1' // The URI here is an example only.
@@ -1133,6 +1137,67 @@ async function example() {
     console.info('requestPhotoUrisReadPermission success, data is ' + desFileUris);
   } catch (err) {
     console.error('requestPhotoUrisReadPermission failed, errCode is ' + err.code + ', errMsg is ' + err.message);
+  }
+}
+```
+
+### getSupportedPhotoFormats<sup>18+</sup> 
+
+getSupportedPhotoFormats(photoType: PhotoType): Promise&lt;Array&lt;string&gt;&gt;
+
+Obtains the list of image or video file name extensions supported by the media library.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description     |
+|-----------|-------------------------|-----------|-----------------|
+| photoType | [PhotoType](#phototype) | Yes  | Type of the file.|
+
+**Return value**
+
+| Type                                    | Description             |
+|------------------------------------------|-------------------------|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return an array of the supported image or video file name extensions.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; |
+| 14000011 | Internal system error. It is recommended to retry and check the logs. |
+
+**Example**
+
+```ts
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+
+async function example(photoTypeNumber: number){
+  console.info('getSupportedPhotoFormatsDemo.');
+
+  try {
+    if (photoTypeNumber !== 1 && photoTypeNumber !== 2) {
+      outputText = 'Does not support querying formats other than images or videos';
+      return;
+    }
+    outputText = 'The supported types are:\n';
+    let imageFormat  = await phAccessHelper.getSupportedPhotoFormats(photoTypeNumber);
+    let result = "";
+    for (let i = 0; i < imageFormat.length; i++) {
+      result += imageFormat[i];
+      if (i !== imageFormat.length - 1) {
+        result += ', ';
+      }
+    }
+    outputText += result;
+    console.info('getSupportedPhotoFormats success, data is ' + outputText);
+  } catch (error) {
+    console.error('getSupportedPhotoFormats failed, errCode is', error);
   }
 }
 ```
@@ -1379,7 +1444,7 @@ Opens this file in read-only mode. This API uses an asynchronous callback to ret
 > **NOTE**
 >
 > - This API is supported since API version 10 and deprecated since API version 11. For security purposes, the API for obtaining the media file handle is no longer provided.
-
+>
 > - The returned FD must be closed when it is not required.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
@@ -1436,7 +1501,7 @@ Opens this file in read-only mode. This API uses a promise to return the result.
 > **NOTE**
 >
 > - This API is supported since API version 10 and deprecated since API version 11. For security purposes, the API for obtaining the media file handle is no longer provided.
-
+>
 > - The returned FD must be closed when it is not required.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
@@ -1495,8 +1560,7 @@ Closes a file. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> - This API is supported since API version 10 and deprecated since API version 11. 
-> - For security purposes, the API for obtaining the media file handle is no longer provided, and the corresponding **close** API is also deprecated.
+> This API is supported since API version 10 and deprecated since API version 11. For security purposes, the API for obtaining the media file handle is no longer provided, and the corresponding **close** API is also deprecated.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -1786,7 +1850,7 @@ Clones a media asset. The file name can be set, but the file type cannot be chan
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| title| string | Yes   | Title of the cloned asset. The title must meet the following requirements:<br>-  It does not contain a file name extension.<br>- The file name, which is in the format of title+file name extension, does not exceed 255 characters.<br>- The title does not contain any of the following characters:\ / : * ? " ' ` < > \| { } [ ] |
+| title| string | Yes   | Title of the cloned asset. The title must meet the following requirements:<br>- It does not contain a file name extension.<br>- The file name, which is in the format of title+file name extension, does not exceed 255 characters.<br>- The title does not contain any of the following characters:\ / : * ? " ' ` < > \| { } [ ] |
 
 **Return value**
 
@@ -1848,7 +1912,7 @@ select(option?: PhotoSelectOptions) : Promise&lt;PhotoSelectResult&gt;
 
 Starts a **photoPicker** page for the user to select one or more images or videos. This API uses a promise to return the result. You can pass in **PhotoSelectOptions** to specify the media file type and the maximum number of files to select.
 
-**NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by calling [photoAccessHelper.getAssets()](#getassets) with temporary authorization. For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
+**NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API has permanent authorization and can be used only by calling [photoAccessHelper.getAssets()](#getassets). For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1903,7 +1967,7 @@ select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&
 
 Starts a **photoPicker** page for the user to select one or more images or videos. This API uses an asynchronous callback to return the result. You can pass in **PhotoSelectOptions** to specify the media file type and the maximum number of files to select.
 
-**NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by calling [photoAccessHelper.getAssets()](#getassets) with temporary authorization. For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
+**NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API has permanent authorization and can be used only by calling [photoAccessHelper.getAssets()](#getassets). For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1955,7 +2019,7 @@ select(callback: AsyncCallback&lt;PhotoSelectResult&gt;) : void
 
 Starts a **photoPicker** page for the user to select one or more images or videos. This API uses an asynchronous callback to return the result.
 
-**NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by calling [photoAccessHelper.getAssets()](#getassets) with temporary authorization. For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
+**NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API has permanent authorization and can be used only by calling [photoAccessHelper.getAssets()](#getassets). For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3150,7 +3214,7 @@ Use **fileUri** to specify the data source of the asset to be created. For detai
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
-| fileUri | string | Yes  | Data source of the image asset, which is specified by a URI in the application sandbox directory.|
+| fileUri | string | Yes  | Data source of the image asset, which is specified by a URI in the application sandbox directory. Example: **'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg'**.|
 
 **Return value**
 
@@ -3200,7 +3264,7 @@ Use **fileUri** to specify the data source of the asset to be created. For detai
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
-| fileUri | string | Yes  | Data source of the video asset, which is specified by a URI in the application sandbox directory.|
+| fileUri | string | Yes  | Data source of the video asset, which is specified by a URI in the application sandbox directory. Example: **'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.mp4'**.|
 
 **Return value**
 
@@ -3307,7 +3371,7 @@ Deletes media assets. This API uses a promise to return the result. The deleted 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
-| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Media assets to delete.|
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Array of assets to delete. The maximum number is 300.|
 
 **Return value**
 
@@ -3363,7 +3427,7 @@ Deletes media assets. This API uses a promise to return the result. The deleted 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
-| uriList | Array&lt;string&gt; | Yes  | URIs of the media files to delete.|
+| uriList | Array&lt;string&gt; | Yes  | URIs of the media files to delete. A maximum of 300 media files can be deleted.|
 
 **Return value**
 
@@ -3548,7 +3612,7 @@ async function example() {
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, photoType, extension);
     let fd: number = await assetChangeRequest.getWriteCacheHandler();
     console.info('getWriteCacheHandler successfully');
-    // write date into fd
+    // write date into fd..
     await fileIo.close(fd);
     await phAccessHelper.applyChanges(assetChangeRequest);
   } catch (err) {
@@ -3574,7 +3638,7 @@ Adds a resource using **fileUri**.
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
 | type | [ResourceType](#resourcetype11) | Yes  | Type of the resource to add.|
-| fileUri | string | Yes  | Data source of the resource to be added, which is specified by a URI in the application sandbox directory.|
+| fileUri | string | Yes  | Data source of the resource to be added, which is specified by a URI in the application sandbox directory. Example: **'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg'**.|
 
 **Error codes**
 
@@ -3771,8 +3835,6 @@ setOrientation(orientation: number): void
 
 Sets the orientation of this image.
 
-**Atomic service API**: This API can be used in atomic services since API version 15.
-
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Parameters**
@@ -3781,11 +3843,14 @@ Sets the orientation of this image.
 | ---------- | ------- | ---- | ---------------------------------- |
 | orientation | number | Yes  | Rotation angle of the image to set. The value can only be **0**, **90**, **180**, or **270**.|
 
+**Error codes**
+
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 |  Internal system error.         |
 
 **Example**
 
@@ -3962,7 +4027,7 @@ Add assets to the album.
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Assets to add.|
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Array of assets to add. The maximum number is 300.|
 
 **Error codes**
 
@@ -4014,7 +4079,7 @@ Removes assets from the album.
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Assets to remove.|
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Array of assets to remove. The maximum number is 300.|
 
 **Error codes**
 
@@ -4070,7 +4135,7 @@ Requests an image.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
-- If the caller does not have the ohos.permission.READ_IMAGEVIDEO permission, use Picker to access the file and then call this API based on the URI obtained by Picker. For details, see [Obtaining an Image or Video by URI](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#obtaining-an-image-or-video-by-uri).
+- When you call this API in Picker mode, you do not need to request the ohos.permission.READ_IMAGEVIDEO permission. For details, see [Obtaining an Image or Video by URI](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#obtaining-an-image-or-video-by-uri).
 - For the media assets saved to the media library by this application, the application can access them without the ohos.permission.READ_IMAGEVIDEO permission.
 
 **Parameters**
@@ -4139,13 +4204,13 @@ async function example() {
 
 static requestImageData(context: Context, asset: PhotoAsset, requestOptions: RequestOptions, dataHandler: MediaAssetDataHandler&lt;ArrayBuffer&gt;): Promise&lt;string&gt;
 
-Requests an image.
+Requests image data.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
-- If the caller does not have the ohos.permission.READ_IMAGEVIDEO permission, use Picker to access the file and then call this API based on the URI obtained by Picker. For details, see [Obtaining an Image or Video by URI](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#obtaining-an-image-or-video-by-uri).
+- When you call this API in Picker mode, you do not need to request the ohos.permission.READ_IMAGEVIDEO permission. For details, see [Obtaining an Image or Video by URI](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#obtaining-an-image-or-video-by-uri).
 - For the media assets saved to the media library by this application, the application can access them without the ohos.permission.READ_IMAGEVIDEO permission.
 
 **Parameters**
@@ -4218,7 +4283,7 @@ Requests a moving photo object, which can be used to request the asset data of t
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
-- If the caller does not have the ohos.permission.READ_IMAGEVIDEO permission, use Picker to access the file and then call this API based on the URI obtained by Picker. For details, see [Obtaining an Image or Video by URI](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#obtaining-an-image-or-video-by-uri).
+- When you call this API in Picker mode, you do not need to request the ohos.permission.READ_IMAGEVIDEO permission. For details, see [Obtaining an Image or Video by URI](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#obtaining-an-image-or-video-by-uri).
 - For the moving photos saved to the media library by this application, the application can access them without the ohos.permission.READ_IMAGEVIDEO permission.
 
 **Parameters**
@@ -4295,7 +4360,7 @@ Requests a video and saves it to the specified sandbox directory.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
-- If the caller does not have the ohos.permission.READ_IMAGEVIDEO permission, use Picker to access the file and then call this API based on the URI obtained by Picker. For details, see [Obtaining an Image or Video by URI](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#obtaining-an-image-or-video-by-uri).
+- When you call this API in Picker mode, you do not need to request the ohos.permission.READ_IMAGEVIDEO permission. For details, see [Obtaining an Image or Video by URI](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#obtaining-an-image-or-video-by-uri).
 - For the videos saved to the media library by this application, the application can access them without the ohos.permission.READ_IMAGEVIDEO permission.
 
 **Parameters**
@@ -4305,7 +4370,7 @@ Requests a video and saves it to the specified sandbox directory.
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                      | Yes  | Context of the ability instance.|
 | asset | [PhotoAsset](#photoasset)                                            | Yes  | Image to request.|
 | requestOptions  | [RequestOptions](#requestoptions11)                                  | Yes  | Options for requesting the video asset.|
-| fileUri| string                                                              | Yes| URI of the sandbox directory, to which the requested video asset is to be saved.|
+| fileUri| string                                                              | Yes| URI of the sandbox directory, to which the requested video asset is to be saved. Example: **'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.mp4'**.|
 | dataHandler  | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;boolean&gt; | Yes  | Media asset handler. When the requested video is written to the specified directory, a callback is triggered.|
 
 **Return value**
@@ -4322,6 +4387,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ---------------------------------------- |
 | 201      |  Permission denied         |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 801<sup>15+</sup>   | Capability not supported.       |
 | 14000011       | System inner fail.         |
 
 **Example**
@@ -4370,7 +4436,7 @@ Cancels a request for the asset, the callback of which has not been triggered ye
 | Name  | Type                                                                  | Mandatory| Description                     |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                      | Yes  | Context of the ability instance.|
-| requestId | string     | Yes  | ID of the request to cancel.|
+| requestId | string     | Yes  | ID of the request to cancel. It is a valid request ID returned by **requestImage**.|
 
 **Return value**
 
@@ -4463,7 +4529,7 @@ Requests an image quickly.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
-If the caller does not have the ohos.permission.READ_IMAGEVIDEO permission, use Picker to access the file and then call this API based on the URI obtained by Picker. For details, see [Obtaining an Image or Video by URI](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#obtaining-an-image-or-video-by-uri).
+- When you call this API in Picker mode, you do not need to request the ohos.permission.READ_IMAGEVIDEO permission. For details, see [Obtaining an Image or Video by URI](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#obtaining-an-image-or-video-by-uri).
 
 **Parameters**
 
@@ -4556,7 +4622,7 @@ Information returned by **map**:
 import { image } from '@kit.ImageKit';
 
 class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.ImageSource> {
-  onDataPrepared(data: image.ImageSource, map: Map<string, string>) {
+  onDataPrepared = (data: image.ImageSource, map: Map<string, string>) => {
     if (data === undefined) {
       console.error('Error occurred when preparing data');
       return;
@@ -4567,7 +4633,7 @@ class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.Imag
 }
 
 class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
-  onDataPrepared(data: ArrayBuffer, map: Map<string, string>) {
+  onDataPrepared = (data: ArrayBuffer, map: Map<string, string>) => {
     if (data === undefined) {
       console.error('Error occurred when preparing data');
       return;
@@ -4578,7 +4644,7 @@ class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayB
 }
 
 class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<photoAccessHelper.MovingPhoto> {
-  onDataPrepared(data: photoAccessHelper.MovingPhoto, map: Map<string, string>) {
+  onDataPrepared = (data: photoAccessHelper.MovingPhoto, map: Map<string, string>) => {
     if (data === undefined) {
       console.error('Error occurred when preparing data');
       return;
@@ -4615,7 +4681,7 @@ Information returned by **map**:
 |------|---| ---- |-------------------------------------------------------------------------------|
 | data | T | Yes  | Data of the image asset that is ready. It is of the T type, which supports the [Picture](../apis-image-kit/js-apis-image.md#picture13) type.|
 | imageSource | image.ImageSource | Yes  | Data of the image asset that is ready.|
-| map<sup>13+</sup> | Map<string, string> | Yes  | Additional information about the image asset, such as the image quality.|
+| map<sup>13+</sup> | Map<string, string> | Yes  | Additional information about the image asset, such as the image quality. Currently, only **quality** is supported.|
 
 **Example**
 ```ts
@@ -4711,15 +4777,15 @@ Requests the image data and video data of this moving photo and writes them to t
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
-- If the application does not have the ohos.permission.READ_IMAGEVIDEO permission, use Picker to call this API to request a moving photo object and read the content. For details, see [Accessing and Managing Moving Photos](../../media/medialibrary/photoAccessHelper-movingphoto.md).
+- When you call this API in Picker mode, you do not need to request the ohos.permission.READ_IMAGEVIDEO permission. For details, see [Accessing and Managing Moving Photos](../../media/medialibrary/photoAccessHelper-movingphoto.md).
 - For the moving photos saved to the media library by this application, the application can access them without the ohos.permission.READ_IMAGEVIDEO permission.
 
 **Parameters**
 
 | Name  | Type                                                                  | Mandatory| Description                     |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
-| imageFileUri | string                      | Yes  | URI to which the image data of the moving photo is to be written.|
-| videoFileUri | string                                            | Yes  | URI to which the video data of the moving photo is to be written.|
+| imageFileUri | string                      | Yes  | URI to which the image data of the moving photo is to be written. Example: **"file://com.example.temptest/data/storage/el2/base/haps/ImageFile.jpg"**.|
+| videoFileUri | string                                            | Yes  | URI to which the video data of the moving photo is to be written. Example: **"file://com.example.temptest/data/storage/el2/base/haps/VideoFile.mp4"**.|
 
 **Return value**
 
@@ -4795,7 +4861,7 @@ Requests the moving photo content of the specified resource type and writes it t
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
-- If the application does not have the ohos.permission.READ_IMAGEVIDEO permission, use Picker to call this API to request a moving photo object and read the content. For details, see [Accessing and Managing Moving Photos](../../media/medialibrary/photoAccessHelper-movingphoto.md).
+- When you call this API in Picker mode, you do not need to request the ohos.permission.READ_IMAGEVIDEO permission. For details, see [Accessing and Managing Moving Photos](../../media/medialibrary/photoAccessHelper-movingphoto.md).
 - For the moving photos saved to the media library by this application, the application can access them without the ohos.permission.READ_IMAGEVIDEO permission.
 
 **Parameters**
@@ -4878,7 +4944,7 @@ Requests the moving photo content of the specified resource type and returns it 
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
-- If the application does not have the ohos.permission.READ_IMAGEVIDEO permission, use Picker to call this API to request a moving photo object and read the content. For details, see [Accessing and Managing Moving Photos](../../media/medialibrary/photoAccessHelper-movingphoto.md).
+- When you call this API in Picker mode, you do not need to request the ohos.permission.READ_IMAGEVIDEO permission. For details, see [Accessing and Managing Moving Photos](../../media/medialibrary/photoAccessHelper-movingphoto.md).
 - For the moving photos saved to the media library by this application, the application can access them without the ohos.permission.READ_IMAGEVIDEO permission.
 
 **Parameters**
@@ -5025,6 +5091,18 @@ Enumerate the album subtypes.
 | IMAGE<sup>12+</sup>               | 1031       | Photo album.                          |
 | ANY                               | 2147483647 | Any album.                          |
 
+## PositionType<sup>16+</sup>
+
+Enumerates the file locations.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name |  Value|  Description|
+| ----- |  ---- |  ---- |
+| LOCAL |  1  |  Stored only on a local device.|
+| CLOUD |  2  |  Stored only on the cloud.|
+| LOCAL_AND_CLOUD |  3  |  Stored both on a local device and cloud.|
+
 ## PhotoKeys
 
 Defines the key information about an image or video file.
@@ -5037,17 +5115,17 @@ Defines the key information about an image or video file.
 | PHOTO_TYPE    | 'media_type'           | Type of the file.                                             |
 | DISPLAY_NAME  | 'display_name'        | File name displayed.                                                  |
 | SIZE          | 'size'                | File size, in bytes.                                                  |
-| DATE_ADDED    | 'date_added'          | Date when the file was added. The value is the number of seconds elapsed since the Epoch time (00:00:00 UTC on January 1, 1970).            |
-| DATE_MODIFIED | 'date_modified'       | Date when the file content (not the file name) was last modified. The value is the number of seconds elapsed since the Epoch time.|
+| DATE_ADDED    | 'date_added'          | Unix timestamp when the file was created, in seconds.            |
+| DATE_MODIFIED | 'date_modified'       | Unix timestamp when the file was modified, in seconds. This value is updated when the file content is modified, but not when the file name is modified.|
 | DURATION      | 'duration'            | Duration, in ms.                                   |
 | WIDTH         | 'width'               | Image width, in pixels.                                   |
 | HEIGHT        | 'height'              | Image height, in pixels.                                     |
-| DATE_TAKEN    | 'date_taken'          | Date when the file (photo) was taken. The value is the number of seconds elapsed since the Epoch time.               |
+| DATE_TAKEN    | 'date_taken'          | Unix timestamp when the image was captured, in seconds.               |
 | ORIENTATION   | 'orientation'         | Orientation of the file, in degrees.                                            |
 | FAVORITE      | 'is_favorite'            | Whether the file is added to favorites.                                                   |
 | TITLE         | 'title'               | Title in the file.                                                  |
-| DATE_ADDED_MS<sup>12+</sup>  | 'date_added_ms'          | Date when the file was added. The value is the number of milliseconds elapsed since the Epoch time (00:00:00 UTC on January 1, 1970).<br>**NOTE**: The photos queried cannot be sorted based on this field. |
-| DATE_MODIFIED_MS<sup>12+</sup>  | 'date_modified_ms'    | Date when the album file content (not the album name) was last modified. The value is the number of milliseconds elapsed since the Epoch time.<br>**NOTE**: The photos queried cannot be sorted based on this field.|
+| DATE_ADDED_MS<sup>12+</sup>  | 'date_added_ms'          | Unix timestamp when the file was created, in milliseconds.<br>**NOTE**: The photos queried cannot be sorted based on this field. |
+| DATE_MODIFIED_MS<sup>12+</sup>  | 'date_modified_ms'    | Unix timestamp when the file was modified, in milliseconds. This value is updated when the file content is modified, but not when the file name is modified.<br>**NOTE**: The photos queried cannot be sorted based on this field.|
 | PHOTO_SUBTYPE<sup>12+</sup>   | 'subtype'               | Subtype of the media file.                                                  |
 | DYNAMIC_RANGE_TYPE<sup>12+</sup>   | 'dynamic_range_type'               | Dynamic range type of the media asset.                                                 |
 | COVER_POSITION<sup>12+</sup>   | 'cover_position'               | Position of the moving photo cover, which is the video timestamp (in μs) corresponding to the cover frame.|
@@ -5055,7 +5133,8 @@ Defines the key information about an image or video file.
 | LCD_SIZE<sup>12+</sup>  | 'lcd_size'  | Width and height of an LCD image, in the format of a **width:height** string.|
 | THM_SIZE<sup>12+</sup>  | 'thm_size'  | Width and height of a thumbnail image, in the format of a **width:height** string.|
 | DETAIL_TIME<sup>13+</sup>  | 'detail_time'  | Detailed time. The value is a string of time when the image or video was taken in the time zone and does not change with the time zone.|
-| DATE_TAKEN_MS<sup>13+</sup>  | 'date_taken_ms'  | Date when the image or video was taken. The value is the number of milliseconds elapsed since the Epoch time.|
+| DATE_TAKEN_MS<sup>13+</sup>  | 'date_taken_ms'  | Unix timestamp when the image was captured, in milliseconds.|
+| POSITION<sup>16+</sup>  | 'position'            | File location type.                              |
 
 ## AlbumKeys
 
@@ -5095,7 +5174,7 @@ Defines the options for fetching media files.
 
 | Name                  | Type               | Readable| Writable| Description                                             |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Names of the columns specified for query.<br>If this parameter is left blank for photos, photos are fetched by **'uri'**, **'media_type'**, **'subtype'**, and **'display_name'** by default. An error will be thrown if [get](#get) is used to obtain other attributes of this object. <br>Example: **fetchColumns: ['uri', 'title']**.<br>If this parameter is left blank for albums, albums are fetched by **'uri'** and **'album_name'** by default.|
+| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Names of the columns specified for query.<br>If this parameter is left blank for photos, photos are fetched by **'uri'**, **'media_type'**, **'subtype'**, and **'display_name'** by default. An error will be thrown if [get](#get) is used to obtain other attributes of this object. <br>Example: **fetchColumns: ['uri', 'title']**.<br>If this parameter is left blank for albums, albums are fetched by **'uri'** and **'album_name'** by default. The value contains 1 to 255 characters.|
 | predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Yes  | Predicates that specify the fetch criteria.|
 
 ## RequestOptions<sup>11+</sup>
@@ -5252,7 +5331,7 @@ Represents the text information about the recommended images.
 
 | Name                   | Type               | Mandatory| Description                         |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
-| text | string   | No  | Text based on which images are recommended. The text cannot exceed 250 characters.|
+| text | string   | No  | Text based on which images are recommended. The text cannot exceed 250 characters. The default value is an empty string.|
 
 **Example**
 
@@ -5326,7 +5405,7 @@ Defines additional options for selecting media assets from Gallery. It inherits 
 | isEditSupported<sup>11+</sup>       | boolean | No  | Whether the image can be edited.<br>The value **true** means the image can be edited; the value **false** means the opposite.    |
 | isOriginalSupported<sup>12+</sup>       | boolean | No  | Whether to display the button for selecting the original image. <br>The value **true** means to display the button; the value **false** means the opposite.<br>Default value: **false**<br>**Atomic service API**: This API can be used in atomic services since API version 12.    |
 | subWindowName<sup>12+</sup>       | string | No  | Name of the sub-window.<br>**Atomic service API**: This API can be used in atomic services since API version 12.    |
-| complteButtonText<sup>14+</sup>       | [CompleteButtonText](#completebuttontext14) | No  | Text displayed on the complete button.<br>The complete button is located in the lower right corner of the page. It is used by users to signify that they have finished selecting images.<br>**Atomic service API**: This API can be used in atomic services since API version 14.    |
+| completeButtonText<sup>14+</sup>       | [CompleteButtonText](#completebuttontext14) | No  | Text displayed on the complete button.<br>The complete button is located in the lower right corner of the page. It is used by users to signify that they have finished selecting images.<br>**Atomic service API**: This API can be used in atomic services since API version 14.    |
 
 ## PhotoSelectResult
 
@@ -5364,10 +5443,10 @@ Represents the configuration for saving a media asset (image or video) to the me
 
 | Name                  | Type               | Mandatory| Description                                             |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
-| title | string | No | Title of the image or video.|
+| title | string | No | Title of the image or video. The title must meet the following requirements:<br>- It does not contain a file name extension.<br>- The file name, which is in the format of title+file name extension, does not exceed 255 characters.<br>- The title does not contain any of the following characters:\ / : * ? " ' ` < > \| { } [ ]|
 | fileNameExtension | string | Yes | File name extension, for example, **'jpg'**.|
-| photoType | [PhotoType](#phototype) | Yes | Type of the file to create, which can be **IMAGE** or **VIDEO**.|
-| subtype | [PhotoSubtype](#photosubtype12) | No | Subtype of the image or video file, which can be **DEFAULT** or **MOVING_PHOTO**.|
+| photoType | [PhotoType](#phototype) | Yes | Type of the file to create, which can be **IMAGE** or **VIDEO**. See [PhotoType](#phototype).|
+| subtype | [PhotoSubtype](#photosubtype12) | No | Image or video file subtype. Currently, only **DEFAULT** is supported. See [PhotoSubtype](#photosubtype12).|
 
 ## CompatibleMode<sup>15+</sup>
 
@@ -5388,9 +5467,9 @@ Enumerates the text displayed on the complete button.
 
 | Name |  Value|  Description|
 | ----- | ---- | ---- |
-| TEXT_DONE<sup>14+</sup> |  0 |  The text "Done" is displayed. |
-| TEXT_SEND<sup>14+</sup>    |  1 |  The text "Send" is displayed.   |
-| TEXT_ADD<sup>14+</sup> |  2 |  The text "Add" is displayed. |
+| TEXT_DONE<sup>14+</sup> |  0 |  The text "Done" is displayed.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| TEXT_SEND<sup>14+</sup>    |  1 |  The text "Send" is displayed.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| TEXT_ADD<sup>14+</sup> |  2 |  The text "Add" is displayed.<br>**Atomic service API**: This API can be used in atomic services since API version 14. |
 
 ## MediaAssetProgressHandler<sup>15+</sup>
 

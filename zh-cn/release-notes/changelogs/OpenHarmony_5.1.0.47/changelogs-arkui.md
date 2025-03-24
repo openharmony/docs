@@ -77,7 +77,7 @@ struct Index {
 
 **变更原因**
 
-2in1悬浮窗口经过UX变更，现已取消窗口两侧边缘的边框与边距。然而，媒体查询依然沿用早期的实现方式，减去了边框和边距数值总和8vp，导致页面宽度的监测不准确，不符合开发者的预期，故需进行相应调整。
+2in1悬浮窗口下，计算页面宽度在窗口宽度基础上额外减去了8vp，导致页面宽度监听不准确，不符合开发者的预期，故需进行相应调整。
 
 **变更影响**
 
@@ -86,11 +86,6 @@ struct Index {
 变更前：2in1悬浮窗口下，使用mediaQuery监听页面宽度，页面宽度 = 窗口宽度 - 8vp。
 
 变更后：2in1悬浮窗口下，使用mediaQuery监听页面宽度，页面宽度 = 窗口宽度。
-
-相关场景变更前后效果对比：
-|               变更前                |              变更后               |
-| :---------------------------------: | :-------------------------------: |
-|![](figures/mediaquery_before.png)|![](figures/mediaquery_after.png)|
 
 **起始API Level**
 
@@ -108,7 +103,7 @@ API 10
 
 默认行为变更，无需适配。
 
-## cl.arkui.3 当Image组件的draggable接口接收到异常值时，其默认值将由false更改为true
+## cl.arkui.3 CanvasRenderer的shadowColor属性传非法字符串时设置不生效
 
 **访问级别**
 
@@ -116,19 +111,18 @@ API 10
 
 **变更原因**
 
-当Image组件的draggable接口接收到异常参数，如undefined或null时，其默认值将从false更改为true，从而默认启用拖拽功能。
+shadowColor属性在传入某些非法字符串时，仍能产生阴影效果，与W3C标准不一致。
 
 **变更影响**
 
-此变更涉及应用适配。
+| 变更前                                   | 变更后                                   |
+| ---------------------------------------- | ---------------------------------------- |
+| CanvasRenderer的shadowColor属性传某些不符合W3C标准的颜色字符串时仍设置生效。<br>![shadowColor_before](figures/Canvas_shadowColor_before.png) | CanvasRenderer的shadowColor属性传某些不符合W3C标准的颜色字符串时设置不生效。<br>![globalCompositeOperation_after](figures/Canvas_shadowColor_after.png) |
 
-变更前：Image组件的draggable接口默认值为true，当传入异常值时，draggable为false，Image组件不可拖拽。
-
-变更后：Image组件的draggable接口默认值为true，当传入异常值时，draggable为true，Image组件可拖拽。
 
 **起始API Level**
 
-API 9
+API 8
 
 **变更发生版本**
 
@@ -136,25 +130,43 @@ API 9
 
 **变更的接口/组件**
 
-Image组件draggable接口。
+CanvasRenderingContext2D和OffscreenCanvasRenderingContext2D的shadowColor接口。
 
 **适配指导**
 
-如果为Image组件设置了可拖拽（draggable）接口并传入了异常值，想要保持该组件不可拖拽，应将draggable设置为false。
+传异常参数行为变更，无需适配。
+设置阴影颜色需要按照规范传入字符串参数：
+1、使用rgb()或rgba()。例：context.shadowColor = 'rgba(255, 0, 0, 255)'
+2、使用十六进制颜色值。例：context.shadowColor = '#FF0000'
 
-示例：
+**示例**
 
 ```ts
 @Entry
 @Component
-struct Index {
+struct Demo {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+
   build() {
-    Column() {
-      Image($r("app.media.startIcon"))
-        .draggable(undefined)
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .onReady(() => {
+          this.context.shadowBlur = 10
+          this.context.shadowOffsetX = 10
+          this.context.shadowOffsetY = 10
+          /**
+           * 变更前：设置生效为蓝色。
+           * 变更后：设置不生效，没有阴影效果。
+           */
+          this.context.shadowColor = "2024-11-28T07:27:10.607Z"
+          this.context.fillRect(10, 10, 100, 100)
+        })
     }
-    .height('100%')
     .width('100%')
+    .height('100%')
   }
 }
 ```

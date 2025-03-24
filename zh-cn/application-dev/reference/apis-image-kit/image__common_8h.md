@@ -49,7 +49,7 @@
 | -------- | -------- |
 | static const char \*[MIME_TYPE_BMP](_image___native_module.md#mime_type_bmp) = "image/bmp" | bmp图片格式。  | 
 | static const char \*[MIME_TYPE_JPEG](_image___native_module.md#mime_type_jpeg) = "image/jpeg" | jpeg图片格式。  | 
-| static const char \*[MIME_TYPE_HEIC](_image___native_module.md#mime_type_heic) = "image/heic" | heif图片格式。  | 
+| static const char \*[MIME_TYPE_HEIC](_image___native_module.md#mime_type_heic) = "image/heic" | heic图片格式。  | 
 | static const char \*[MIME_TYPE_PNG](_image___native_module.md#mime_type_png) = "image/png" | png图片格式。  | 
 | static const char \*[MIME_TYPE_WEBP](_image___native_module.md#mime_type_webp) = "image/webp" | webp图片格式。  | 
 | static const char \*[MIME_TYPE_GIF](_image___native_module.md#mime_type_gif) = "image/gif" | gif图片格式。  | 
@@ -71,7 +71,7 @@
 | static const char \*[OHOS_IMAGE_PROPERTY_COMPRESSION](_image___native_module.md#ohos_image_property_compression) = "Compression" | 图像压缩方案。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_PHOTOMETRIC_INTERPRETATION](_image___native_module.md#ohos_image_property_photometric_interpretation) = "PhotometricInterpretation" | 像素构成，例如RGB或YCbCr。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_STRIP_OFFSETS](_image___native_module.md#ohos_image_property_strip_offsets) = "StripOffsets" | 每个strip的字节偏移量。  | 
-| static const char \*[OHOS_IMAGE_PROPERTY_SAMPLES_PER_PIXEL](_image___native_module.md#ohos_image_property_samples_per_pixel) = "SamplesPerPixel" | 每个像素的分量数。由于该标准适用于 RGB 和 YCbCr 图像，因此该标签的值设置为 3。 在JPEG压缩数据中，使用JPEG标记代替该标签。  | 
+| static const char \*[OHOS_IMAGE_PROPERTY_SAMPLES_PER_PIXEL](_image___native_module.md#ohos_image_property_samples_per_pixel) = "SamplesPerPixel" | 每个像素的分量数。由于该标准适用于 RGB 和 YCbCr 图像，因此该标签的值设置为 3。在JPEG压缩数据中，使用JPEG标记代替该标签。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_ROWS_PER_STRIP](_image___native_module.md#ohos_image_property_rows_per_strip) = "RowsPerStrip" | 每个strip的图像数据行数。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_STRIP_BYTE_COUNTS](_image___native_module.md#ohos_image_property_strip_byte_counts) = "StripByteCounts" | 每个图像数据带的总字节数。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_X_RESOLUTION](_image___native_module.md#ohos_image_property_x_resolution) = "XResolution" | 图像宽度方向的分辨率。  | 
@@ -166,7 +166,7 @@
 | static const char \*[OHOS_IMAGE_PROPERTY_LENS_MODEL](_image___native_module.md#ohos_image_property_lens_model) = "LensModel" | 镜头的型号名称。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_LENS_SERIAL_NUMBER](_image___native_module.md#ohos_image_property_lens_serial_number) = "LensSerialNumber" | 镜头的序列号。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_LENS_SPECIFICATION](_image___native_module.md#ohos_image_property_lens_specification) = "LensSpecification" | 使用的镜头规格。  | 
-| static const char \*[OHOS_IMAGE_PROPERTY_NEW_SUBFILE_TYPE](_image___native_module.md#ohos_image_property_new_subfile_type) = "NewSubfileType" | 在Exif中，"NewSubfileType"字段用于标识子文件的数据类型，如全分辨率图像、缩略图或多帧图像的一部分。 其值是位掩码，0代表全分辨率图像，1代表缩略图，2代表多帧图像的一部分。  | 
+| static const char \*[OHOS_IMAGE_PROPERTY_NEW_SUBFILE_TYPE](_image___native_module.md#ohos_image_property_new_subfile_type) = "NewSubfileType" | 在Exif中，"NewSubfileType"字段用于标识子文件的数据类型，如全分辨率图像、缩略图或多帧图像的一部分。其值是位掩码，0代表全分辨率图像，1代表缩略图，2代表多帧图像的一部分。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME](_image___native_module.md#ohos_image_property_offset_time) = "OffsetTime" | 在Exif中，OffsetTime字段表示与UTC（协调世界时）的时间偏移，格式为±HH:MM，用于确定照片拍摄的本地时间。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME_DIGITIZED](_image___native_module.md#ohos_image_property_offset_time_digitized) = "OffsetTimeDigitized" | 此标签记录图像数字化时的UTC偏移量，有助于准确调整时间戳。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME_ORIGINAL](_image___native_module.md#ohos_image_property_offset_time_original) = "OffsetTimeOriginal" | 此标签记录原始图像创建时的UTC偏移量，对于时间敏感的应用至关重要。  | 

@@ -9,6 +9,7 @@
   - [使用ImagePacker完成图片编码](image-encoding.md)
   - [使用ImagePacker完成多图对象编码](image-picture-encoding.md)
   - [编辑图片EXIF信息](image-tool.md)
+  - [申请图片解码内存](image-allocator-type.md)
 - 图片开发指导(C/C++)<!--image-native-->
   - [介绍Image_NativeModule结构体信息](image-structure-c.md)
   - [使用Image_NativeModule完成图片解码](image-source-c.md)
@@ -19,6 +20,7 @@
   - [使用Image_NativeModule完成图片编码](image-packer-c.md)
   - [使用Image_NativeModule完成多图对象编码](image-packer-picture-c.md)
   - [使用ImageEffect编辑图片](image-effect-guidelines.md)
+  - [申请图片解码内存](image-allocator-type-c.md)
 - 图片开发指导(依赖JS对象)(C/C++)<!--image-native-js-objects-->
   - [使用Image完成图片解码](image-decoding-native.md)
   - [使用Image完成图片接收器](image-receiver-native.md)

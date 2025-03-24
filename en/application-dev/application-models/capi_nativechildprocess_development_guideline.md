@@ -19,7 +19,9 @@ This topic describes how to create a native child process in the main process an
 
 > **NOTE**
 >
-> Currently, only 2-in-1 devices are supported, and only one native child process can be started for a process.
+> This function is valid only for 2-in-1 devices.
+>
+> Since API version 15, a single process supports a maximum of 50 native child processes. In API version 14 and earlier versions, a single process supports only one native child process.
 
 ### How to Develop
 

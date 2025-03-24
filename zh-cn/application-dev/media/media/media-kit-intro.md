@@ -221,13 +221,13 @@ AVRecorder主要工作是捕获音频信号，接收视频信号，完成音视�
 
 | 音视频编码格式 | 说明 | 
 | -------- | -------- |
-| audio/mp4a-latm | 音频/mp4a-latm类型 |
-| video/hevc | 视频/hevc类型 | 
-| video/avc | 视频/avc类型 | 
-| audio/mpeg | 音频/mpeg类型 | 
-| audio/g711mu | 音频/g711-mulaw类型 | 
-| audio/3gpp | 音频/amr-nb类型 | 
-| audio/amr-wb | 音频/amr-wb类型 | 
+| audio/mp4a-latm | 音频/mp4a-latm类型。 |
+| video/hevc | 视频/hevc类型。 | 
+| video/avc | 视频/avc类型。 | 
+| audio/mpeg | 音频/mpeg类型。 | 
+| audio/g711mu | 音频/g711-mulaw类型。 | 
+| audio/3gpp | 音频/amr-nb类型。 | 
+| audio/amr-wb | 音频/amr-wb类型。 | 
 
 支持的输出文件格式如下：
 
@@ -263,19 +263,19 @@ AVScreenCapture主要工作是捕获音频信号、视频信号，并通过音�
 
 | 视频源类型 | 说明 | 
 | -------- | -------- |
-| SURFACE_RGBA | 输出Buffer是rgba&nbsp;data | 
+| SURFACE_RGBA | 输出Buffer是rgba&nbsp;data。 | 
 
 支持的音频编码格式如下：
 
 | 音频编码格式 | 说明 | 
 | -------- | -------- |
-| AAC_LC | AAC_LC类型 |
+| AAC_LC | AAC_LC类型。 |
 
 支持的视频编码格式如下：
 
 | 视频编码格式 | 说明 | 
 | -------- | -------- |
-| H264 | H264类型 |
+| H264 | H264类型。 |
 
 支持的输出文件格式如下：
 
@@ -312,23 +312,31 @@ AVTranscoder主要用于将已压缩编码的视频文件按照指定参数转�
 
 支持修改源视频文件的编码参数（格式、码率）和封装格式。源视频的音视频编码和封装格式为系统AVCodec支持的解码和解封装格式，目标视频的音视频编码和封装格式为系统AVCodec支持的编码和封装格式。
 
+<!--RP1--><!--RP1End-->
 - 支持的源视频格式：
-  - [解封装格式](../avcodec/audio-video-demuxer.md)
-  - [音频解码格式](../avcodec/audio-decoding.md)
-  - [视频解码格式](../avcodec/video-decoding.md)
+  - [解封装格式](../avcodec/avcodec-support-formats.md#媒体数据解析)
+  - [音频解码格式](../avcodec/avcodec-support-formats.md#音频解码)
+  - [视频解码格式](../avcodec/avcodec-support-formats.md#视频解码)
     <!--Del-->
     > **说明：**
     > 当前不支持H.265。
 
     <!--DelEnd-->
 - 支持的目标视频格式：
-  - [封装格式](../avcodec/audio-video-muxer.md)
-  - [音频编码格式](../avcodec/audio-encoding.md)
-  - [视频编码格式](../avcodec/video-encoding.md)
+  - [封装格式](../avcodec/avcodec-support-formats.md#媒体数据封装)
+  - [音频编码格式](../avcodec/avcodec-support-formats.md#音频编码)
+  - [视频编码格式](../avcodec/avcodec-support-formats.md#视频编码)
     <!--Del-->
     > **说明：**
     > 当前不支持H.265。
    
     <!--DelEnd-->
+- 支持的轨道数：
+  - 不支持字幕轨，存在字幕轨时将直接丢弃，不起效。
+  - 存在多条视频轨时，只会输出一条。
+  - 存在多条音频轨时，只会输出一条。
 
-<!--RP1--><!--RP1End-->
+> **说明：**
+>
+> - 转码输出视频只支持mp4封装格式。
+> - 转码需要同时满足源视频和目标视频的格式。

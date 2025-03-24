@@ -1,6 +1,6 @@
 # @ohos.file.RecentPhotoComponent (RecentPhotoComponent)
 
-The **RecentPhotoComponent** component embedded in the UI of an application allows the application to access the latest image or video in the user directory without the required permission. This component grants the application only the read permission.
+The RecentPhotoComponent embedded in the UI of an application allows the application to access the latest image or video in the user directory without the required permission. This component grants the application only the read permission.
 
 > **NOTE**
 >
@@ -17,7 +17,7 @@ import {
 
 ## Properties
 
-The [universal properties](../apis-arkui/arkui-ts/ts-universal-attributes-size.md) are supported.
+The [universal properties](../apis-arkui/arkui-ts/ts-component-general-attributes.md) are supported.
 
 ## RecentPhotoComponent
 
@@ -41,7 +41,7 @@ Allows the application  to access the latest image or video in the user director
 | recentPhotoOptions       | [RecentPhotoOptions](#recentphotooptions)                         | No | Configuration of the latest image or video.<br>**Atomic service API**: This API can be used in atomic services since API version 12.               |
 | onRecentPhotoCheckResult | [RecentPhotoCheckResultCallback](#recentphotocheckresultcallback) | No | Callback used to return the query result of the latest image or video.<br>**Atomic service API**: This API can be used in atomic services since API version 12.             |
 | onRecentPhotoClick       | [RecentPhotoClickCallback](#recentphotoclickcallback)             | Yes | Callback to be invoked when the latest image or video is selected.<br>**Atomic service API**: This API can be used in atomic services since API version 12.               |
-| onRecentPhotoCheckInfo<sup>13+</sup>   | [RecentPhotoCheckInfoCallback](#recentphotocheckinfocallback13)   | No | Callback used to return information about the latest image or video obtained.<br>**Atomic service API**: This API can be used in atomic services since API version 13. |
+| onRecentPhotoCheckInfo<sup>13+</sup>   | [RecentPhotoCheckInfoCallback](#recentphotocheckinfocallback13)   | No | Callback used to return information about the latest image or video obtained.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 
 ## RecentPhotoOptions
 
@@ -199,3 +199,5 @@ struct PickerDemo {
   }
 }
 ```
+
+ <!--no_check--> 

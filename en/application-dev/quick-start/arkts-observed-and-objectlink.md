@@ -32,7 +32,7 @@ The decorators including [\@State](./arkts-state.md), [\@Prop](./arkts-prop.md),
 | \@ObjectLink Decorator| Description                                      |
 | ----------------- | ---------------------------------------- |
 | Decorator parameters            | None.                                      |
-| Allowed variable types        | Objects of \@Observed decorated classes. The type must be specified.<br>\@ObjectLink does not support simple types. To use simple types, you can use [\@Prop](arkts-prop.md).<br>Objects of classes that extend Date, [Array](#two-dimensional-array), [Map](#extended-map-class), and [Set](#extended-set-class) (the latter two are supported since API version 11). For an example, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 or later) Union type of @Observed decorated classes and **undefined** or **null**, for example, **ClassA \| ClassB**, **ClassA \| undefined**, or **ClassA \| null**. For details, see [Union Type @ObjectLink](#union-type-objectlink).<br>An \@ObjectLink decorated variable accepts changes to its properties, but assignment is not allowed. In other words, an \@ObjectLink decorated variable is read-only and cannot be changed.|
+| Allowed variable types        | (Application to API version 18 or earlier) \@Observed decorated class instance.<br>(Application to API version 18 or later) \@ObjectLink can also be initialized by the return value of [makeV1Observed](../reference/apis-arkui/js-apis-StateManagement.md#makev1observed18).<br>\@ObjectLink does not support simple types. To use simple types, you can use [\@Prop](arkts-prop.md).<br>Objects of classes that extend Date, [Array](#two-dimensional-array), [Map](#extended-map-class), and [Set](#extended-set-class) (the latter two are supported since API version 11). For an example, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 or later) Union type of @Observed decorated classes and **undefined** or **null**, for example, **ClassA \**| **ClassB, ClassA \**| **undefined** or **ClassA \**| **null**. For details, see [Union Type @ObjectLink](#union-type-objectlink).<br>An @ObjectLink decorated variable accepts changes to its properties, but assignment is not allowed. In other words, an @ObjectLink decorated variable is read-only and cannot be changed.|
 | Initial value for the decorated variable        | Not allowed.                                    |
 
 Example of a read-only \@ObjectLink decorated variable:
@@ -192,7 +192,7 @@ For a class that extends **Set**, the value changes of the **Set** instance can 
 
    b. The \@ObjectLink decorated variable in the child component is initialized from the parent component and accepts the instance of the \@Observed decorated class. The \@ObjectLink decorated wrapped object registers itself with the \@Observed decorated class.
 
-2. Property update: When the property of the \@Observed decorated class is updated, the framework executes the **setter** and **getter** methods of the proxy, traverses the \@ObjectLink decorated wrapped objects that depend on it, and notifies the data update.
+2. Property update: When the property of the \@Observed decorated class is updated, the framework executes **setter** and **getter** methods of the proxy, traverses the \@ObjectLink decorated wrapped objects that depend on it, and notifies the data update.
 
 
 ## Constraints
@@ -201,7 +201,10 @@ For a class that extends **Set**, the value changes of the **Set** instance can 
 
 2. The \@ObjectLink decorator cannot be used in custom components decorated by \@Entry.
 
-3. The variable type decorated by \@ObjectLink must be an explicit class decorated by @Observed. If the type is not specified or the class is not decorated by \@Observed, an error is reported during compilation.
+3. \@ObjectLink decorated type must be the complex type. Otherwise, an error is reported during compilation.
+
+4. For API version 18 or earlier, the variable type decorated by \@ObjectLink must be the class explicitly decorated by @Observed. If no type is specified or the class is not decorated by \@Observed, an error is reported during compilation.
+For API version 18 and later, \@ObjectLink can also be initialized by the return value of [makeV1Observed](../reference/apis-arkui/js-apis-StateManagement.md#makev1observed18). Otherwise, an error is reported during runtime.
 
   ```ts
   @Observed
@@ -230,7 +233,7 @@ For a class that extends **Set**, the value changes of the **Set** instance can 
   @ObjectLink count: Info;
   ```
 
-4. Variables decorated by \@ObjectLink cannot be initialized locally. You can only pass in the initial value from the parent component through construction parameters. Otherwise, an error is reported during compilation.
+5. Variables decorated by \@ObjectLink cannot be initialized locally. You can only pass in the initial value from the parent component through construction parameters. Otherwise, an error is reported during compilation.
 
   ```ts
   @Observed
@@ -249,7 +252,7 @@ For a class that extends **Set**, the value changes of the **Set** instance can 
   @ObjectLink count: Info;
   ```
 
-5. The variables decorated by \@ObjectLink are read-only and cannot be assigned values. Otherwise, an error "Cannot set property when setter is undefined" is reported during runtime. If you need to replace all variables decorated by \@ObjectLink, you can replace them in the parent component.
+6. The variables decorated by \@ObjectLink are read-only and cannot be assigned values. Otherwise, an error "Cannot set property when setter is undefined" is reported during runtime. If you need to replace all variables decorated by \@ObjectLink, you can replace them in the parent component.
 
   [Incorrect Usage]
 
@@ -341,148 +344,156 @@ For a class that extends **Set**, the value changes of the **Set** instance can 
 
 ## Use Scenarios
 
-
-### Nested Object
-
-> **NOTE**
->
-> **NextID** is used to generate a unique, persistent key for each array item during [ForEach rendering](./arkts-rendering-control-foreach.md) to identify the corresponding component.
-
+### Inheritance Object
 
 ```ts
-// objectLinkNestedObjects.ets
-let NextID: number = 1;
-
 @Observed
-class Bag {
-  public id: number;
-  public size: number;
+class Animal {
+  name: string;
+  age: number;
 
-  constructor(size: number) {
-    this.id = NextID++;
-    this.size = size;
+  constructor(name: string, age: number) {
+    this.name = name;
+    this.age = age;
   }
 }
 
 @Observed
-class User {
-  public bag: Bag;
+class Dog extends Animal {
+  kinds: string;
 
-  constructor(bag: Bag) {
-    this.bag = bag;
+  constructor(name: string, age: number, kinds: string) {
+    super(name, age);
+    this.kinds = kinds;
   }
 }
 
-@Observed
-class Book {
-  public bookName: BookName;
-
-  constructor(bookName: BookName) {
-    this.bookName = bookName;
-  }
-}
-
-@Observed
-class BookName extends Bag {
-  public nameSize: number;
-
-  constructor(nameSize: number) {
-    // Invoke the parent class method to process nameSize.
-    super(nameSize);
-    this.nameSize = nameSize;
-  }
-}
-
+@Entry
 @Component
-struct Son {
-  label: string = 'Son';
-  @ObjectLink bag: Bag;
+struct Index {
+  @State dog: Dog = new Dog('Molly', 2, 'Husky');
+
+  @Styles
+  pressedStyles() {
+    .backgroundColor('#ffd5d5d5')
+  }
+
+  @Styles
+  normalStyles() {
+    .backgroundColor('#ffffff')
+  }
 
   build() {
     Column() {
-      Text(`Son [${this.label}] this.bag.size = ${this.bag.size}`)
-        .fontColor('#ffffffff')
-        .backgroundColor('#ff3d9dba')
+      Text(`${this.dog.name}`)
         .width(320)
-        .height(50)
-        .borderRadius(25)
         .margin(10)
+        .fontSize(30)
         .textAlign(TextAlign.Center)
-      Button(`Son: this.bag.size add 1`)
-        .width(320)
-        .backgroundColor('#ff17a98d')
-        .margin(10)
+        .stateStyles({
+          pressed: this.pressedStyles,
+          normal: this.normalStyles
+        })
         .onClick(() => {
-          this.bag.size += 1;
+          this.dog.name = 'DouDou';
+        })
+
+      Text(`${this.dog.age}`)
+        .width(320)
+        .margin(10)
+        .fontSize(30)
+        .textAlign(TextAlign.Center)
+        .stateStyles({
+          pressed: this.pressedStyles,
+          normal: this.normalStyles
+        })
+        .onClick(() => {
+          this.dog.age = 3;
+        })
+
+      Text(`${this.dog.kinds}`)
+        .width(320)
+        .margin(10)
+        .fontSize(30)
+        .textAlign(TextAlign.Center)
+        .stateStyles({
+          pressed: this.pressedStyles,
+          normal: this.normalStyles
+        })
+        .onClick(() => {
+          this.dog.kinds = 'Samoyed';
         })
     }
   }
 }
+```
+
+![Observed_ObjectLink_inheritance_object](figures/Observed_ObjectLink_inheritance_object.gif)
+
+In the preceding example, some properties (**name** and **age**) in the **Dog** class are inherited from the **Animal** class. You can directly change **name** and **age** in the **dog** variable decorated by \@State to trigger UI re-rendering.
+
+### Nested Object
+
+```ts
+@Observed
+class Book {
+  name: string;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+@Observed
+class Bag {
+  book: Book;
+
+  constructor(book: Book) {
+    this.book = book;
+  }
+}
 
 @Component
-struct Father {
-  label: string = 'Father';
-  @ObjectLink bookName: BookName;
+struct BookCard {
+  @ObjectLink book: Book;
 
   build() {
-    Row() {
-      Column() {
-        Text(`Father [${this.label}] this.bookName.size = ${this.bookName.size}`)
-          .fontColor('#ffffffff')
-          .backgroundColor('#ff3d9dba')
-          .width(320)
-          .height(50)
-          .borderRadius(25)
-          .margin(10)
-          .textAlign(TextAlign.Center)
-        Button(`Father: this.bookName.size add 1`)
-          .width(320)
-          .backgroundColor('#ff17a98d')
-          .margin(10)
-          .onClick(() => {
-            this.bookName.size += 1;
-            console.log('this.bookName.size:' + this.bookName.size);
-          })
-      }
-      .width(320)
+    Column() {
+      Text(`BookCard: ${this.book.name}`) // The name change can be observed.
+        .width(320)
+        .margin(10)
+        .textAlign(TextAlign.Center)
+
+      Button('change book.name')
+        .width(320)
+        .margin(10)
+        .onClick(() => {
+          this.book.name = 'C++';
+        })
     }
   }
 }
 
 @Entry
 @Component
-struct GrandFather {
-  @State user: User = new User(new Bag(0));
-  @State child: Book = new Book(new BookName(0));
+struct Index {
+  @State bag: Bag = new Bag(new Book('JS'));
 
   build() {
     Column() {
-      Son({ label: 'Son #1', bag: this.user.bag })
+      Text(`Index: ${this.bag.book.name}`) // The name change cannot be observed.
         .width(320)
-      Father({ label: 'Father #3', bookName: this.child.bookName })
+        .margin(10)
+        .textAlign(TextAlign.Center)
+
+      Button('change bag.book.name')
         .width(320)
-      Button(`GrandFather: this.child.bookName.size add 10`)
-        .width(320)
-        .backgroundColor('#ff17a98d')
         .margin(10)
         .onClick(() => {
-          this.child.bookName.size += 10;
-          console.log('this.child.bookName.size:' + this.child.bookName.size);
+          this.bag.book.name = 'TS';
         })
-      Button(`GrandFather: this.user.bag = new Bag(10)`)
-        .width(320)
-        .backgroundColor('#ff17a98d')
-        .margin(10)
-        .onClick(() => {
-          this.user.bag = new Bag(10);
-        })
-      Button(`GrandFather: this.user = new User(new Bag(20))`)
-        .width(320)
-        .backgroundColor('#ff17a98d')
-        .margin(10)
-        .onClick(() => {
-          this.user = new User(new Bag(20));
-        })
+
+      BookCard({ book: this.bag.book })
     }
   }
 }
@@ -490,29 +501,15 @@ struct GrandFather {
 
 ![Observed_ObjectLink_nested_object](figures/Observed_ObjectLink_nested_object.gif)
 
-The @Observed decorated **BookName** class can observe changes in the properties inherited from the base class.
-
-
-Event handles in **GrandFather**:
-
-
-- **this.user.bag = new Bag(10)** and **this.user = new User(new Bag(20))**: Change to the \@State decorated variable **user** and its properties.
-
-- **this.child.bookName.size += ...**: Change at the second layer. Though \@State cannot observe changes at the second layer, the change of a property of \@Observed decorated **Bag**, which is property **size** in this example, can be observed by \@ObjectLink.
-
-
-Event handles in **Father**:
-
-
-- **this.bookName.size += 1**: A change to the \@ObjectLink decorated variable **size** causes the **Text** component to be updated. Unlike \@Prop, \@ObjectLink does not have a copy of its source. Instead, \@ObjectLink creates a reference to its source.
-
-- The \@ObjectLink decorated variable is read-only. Assigning **this.bookName = new bookName(...)** is not allowed. Once value assignment occurs, the reference to the data source is reset and the synchronization is interrupted.
-
+In the preceding example, the **Text** component in the **Index** component is not re-rendered because the change belongs to the second layer and \@State cannot observe the change at the second layer. However, **Bag** is decorated by \@Observed, and the **name** property of **Bag** can be observed by \@ObjectLink. Therefore, no matter which button is clicked, the **Text** component in the **BookCard** component is re-rendered.
 
 ### Object Array
 
 An object array is a frequently used data structure. The following example shows the usage of array objects.
 
+> **NOTE**
+>
+> **NextID** is used to generate a unique, persistent key for each array item during [ForEach rendering](./arkts-rendering-control-foreach.md) to identify the corresponding component.
 
 ```ts
 let NextID: number = 1;
@@ -1958,7 +1955,7 @@ struct Child {
 }
 ```
 
-The data source update of \@ObjectLink depends on its parent component. When the data source of the parent component changes trigger a re-rendering on the parent component, the data source of the child component \@ObjectLink is reset. This process does not occur immediately after the data source of the parent component changes. Instead, it occurs when the parent component is re-rendered. In the preceding example, **Parent** contains **Child** and passes the arrow function to **Child**. When the child component is clicked, the log printing sequence is from 1 to 5. When the log is printed to log 4, the click event process ends. In this case, only **Child** is marked as the node that needs to be updated by the parent component, therefore, the value of **this.per.name** in log 4 is still **Bob**. The data source of **Child** is updated only when the parent component is re-rendered.
+The data source update of \@ObjectLink depends on its parent component. When the data source changes of the parent component trigger a re-rendering on the parent component, the data source of the child component \@ObjectLink is reset. This process does not occur immediately after the data source of the parent component changes. Instead, it occurs when the parent component is re-rendered. In the preceding example, **Parent** contains **Child** and passes the arrow function to **Child**. When the child component is clicked, the log printing sequence is from 1 to 5. When the log is printed to log 4, the click event process ends. In this case, only **Child** is marked as the node that needs to be updated by the parent component, therefore, the value of **this.per.name** in log 4 is still **Bob**. The data source of **Child** is updated only when the parent component is re-rendered.
 
 When the \@Watch function of **@ObjectLink @Watch('onChange02') per: Person** is executed, the data source of \@ObjectLink has been updated by the parent component. In this case, the value printed in log 5 is **Jack**.
 
@@ -2132,3 +2129,5 @@ struct Child {
   }
 }
 ```
+
+<!--no_check-->

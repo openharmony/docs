@@ -19,6 +19,7 @@ init(): boolean
 Initializes the active tag chip.
 
 > **NOTE**
+>
 > This API is supported since API version 8 and deprecated since API version 9. Use [initialize](#connectedtaginitialize9) instead.
 
 **Required permissions**: ohos.permission.NFC_TAG
@@ -29,7 +30,7 @@ Initializes the active tag chip.
 
 | **Type**| **Description**|
 | -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| boolean | **true**: The initialization is successful.&nbsp;<br>**false**: The initialization fails.|
 
 ## connectedTag.initialize<sup>9+</sup>
 
@@ -42,13 +43,14 @@ Initializes the active tag chip.
 **System capability**: SystemCapability.Communication.ConnectedTag
 
 **Error codes**
-For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NFC Error Codes](errorcode-nfc.md).
 
 | ID| Error Message|
 | -------- | -------- |
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
-| 3200101 | Connected NFC tag running state is abnormal in service. |
+|3200101 | Connected NFC tag running state is abnormal in service. |
 
 ## connectedTag.uninit
 
@@ -64,7 +66,7 @@ Uninitializes the active tag resources.
 
 | **Type**| **Description**|
 | -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| boolean | **true**: The uninstallation is successful.&nbsp;<br>**false**: The uninstallation fails.|
 
 ## connectedTag.uninitialize<sup>9+</sup>
 
@@ -77,13 +79,14 @@ Uninitializes the active tag resources.
 **System capability**: SystemCapability.Communication.ConnectedTag
 
 **Error codes**
-For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NFC Error Codes](errorcode-nfc.md).
 
 | ID| Error Message|
 | -------- | -------- |
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
-| 3200101 | Connected NFC tag running state is abnormal in service. |
+|3200101 | Connected NFC tag running state is abnormal in service. |
 
 ## connectedTag.readNdefTag
 
@@ -131,13 +134,14 @@ Reads the content of this active tag. This API uses a promise to return the resu
 | Promise&lt;number[]&gt; | Promise used to return the content of the active tag.|
 
 **Error codes**
-For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NFC Error Codes](errorcode-nfc.md).
 
 | ID| Error Message|
 | -------- | -------- |
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
-| 3200101 | Connected NFC tag running state is abnormal in service. |
+|3200101 | Connected NFC tag running state is abnormal in service. |
 
 **Example**
 
@@ -199,13 +203,14 @@ Reads the content of this active tag. This API uses an asynchronous callback to 
 | callback | AsyncCallback&lt;number[]&gt; | Yes| Callback used to return the active tag content obtained.|
 
 **Error codes**
-For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NFC Error Codes](errorcode-nfc.md).
 
 | ID| Error Message|
 | -------- | -------- |
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
-| 3200101 | Connected NFC tag running state is abnormal in service. |
+|3200101 | Connected NFC tag running state is abnormal in service. |
 
 **Example**
 
@@ -235,7 +240,7 @@ Writes data to this active tag. This API uses a promise to return the result.
 
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| data | string | Yes| Data to write. The maximum length is 1024 bytes.|
+| data | string | Yes| Data to be written to the active tag. The maximum length is 1024 bytes.|
 
 **Return value**
 
@@ -280,14 +285,15 @@ Writes data to this active tag. This API uses a promise to return the result.
 | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
-For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NFC Error Codes](errorcode-nfc.md).
 
 | ID| Error Message|
 | -------- | -------- |
 |201 | Permission denied.                 |
 |401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 |801 | Capability not supported.          |
-| 3200101 | Connected NFC tag running state is abnormal in service. |
+|3200101 | Connected NFC tag running state is abnormal in service. |
 
 **Example**
 
@@ -317,7 +323,7 @@ Writes data to this active tag. This API uses an asynchronous callback to return
 
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| data | string | Yes| Data to write. The maximum length is 1024 bytes.|
+| data | string | Yes| Content of the active tag. The maximum length is 1024 bytes.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the active tag content obtained.|
 
 **Example**
@@ -353,14 +359,15 @@ Writes data to this active tag. This API uses an asynchronous callback to return
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the active tag content obtained.|
 
 **Error codes**
-For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NFC Error Codes](errorcode-nfc.md).
 
 | ID| Error Message|
 | -------- | -------- |
 |201 | Permission denied.                 |
 |401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 |801 | Capability not supported.          |
-| 3200101 | Connected NFC tag running state is abnormal in service. |
+|3200101 | Connected NFC tag running state is abnormal in service. |
 
 **Example**
 
@@ -445,5 +452,5 @@ Enumerates the NFC field strength states.
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| NFC_RF_LEAVE | 0 | Field off.|
-| NFC_RF_ENTER | 1 | Field on.|
+| NFC_RF_LEAVE | 0 | NFC exit.|
+| NFC_RF_ENTER | 1 | NFC entry.|

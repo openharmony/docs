@@ -108,8 +108,8 @@
 |:----------------------------------------------|:---------------|:-----------|:------------|:-----------|
 | import lazy { x } from "mod";                 | "mod"          | "x"        | "x"         | API12      |
 | import lazy { x as v } from "mod";            | "mod"          | "x"        | "v"         | API12      |
-| import lazy x from "mod";                     | "mod"          | "default"  | "x"         | API16      |
-| import lazy { KitClass } from "@kit.SomeKit"; | "@kit.SomeKit" | "KitClass" | "KitClass"  | API16      |
+| import lazy x from "mod";                     | "mod"          | "default"  | "x"         | API18      |
+| import lazy { KitClass } from "@kit.SomeKit"; | "@kit.SomeKit" | "KitClass" | "KitClass"  | API18      |
 
 - 延迟加载共享模块或依赖路径内包含共享模块。
     延迟加载对于共享模块依旧生效，使用限制参考[共享模块开发指导](../arkts-utils/arkts-sendable-module.md)。

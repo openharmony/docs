@@ -29,7 +29,7 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
 
 | 参数名    | 类型                                   | 必填 | 说明                                                         |
 | --------- | -------------------------------------- | ---- | :----------------------------------------------------------- |
-| effect    | [VibrateEffect](#vibrateeffect9)       | 是   | 马达振动效果，支持四种：<br>1、[VibrateTime](#vibratetime9)：按照指定持续时间触发马达振动；<br>2、[VibratePreset](#vibratepreset9)：按照预置振动效果触发马达振动；<br>3、[VibrateFromFile](#vibratefromfile10)：按照自定义振动配置文件触发马达振动；<br/>4、[VibrateFromPattern<sup>16+</sup>](#vibratefrompattern16)：按照自定义振动效果触发马达振动。 |
+| effect    | [VibrateEffect](#vibrateeffect9)       | 是   | 马达振动效果，支持四种：<br>1、[VibrateTime](#vibratetime9)：按照指定持续时间触发马达振动；<br>2、[VibratePreset](#vibratepreset9)：按照预置振动效果触发马达振动；<br>3、[VibrateFromFile](#vibratefromfile10)：按照自定义振动配置文件触发马达振动；<br/>4、[VibrateFromPattern<sup>18+</sup>](#vibratefrompattern18)：按照自定义振动效果触发马达振动。 |
 | attribute | [VibrateAttribute](#vibrateattribute9) | 是   | 马达振动属性。                                               |
 | callback  | AsyncCallback&lt;void&gt;              | 是   | 回调函数，当马达振动成功，err为undefined，否则为错误对象。   |
 
@@ -148,7 +148,7 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
 
 | 参数名    | 类型                                   | 必填 | 说明                                                         |
 | --------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| effect    | [VibrateEffect](#vibrateeffect9)       | 是   | 马达振动效果，支持四种：<br>1、[VibrateTime](#vibratetime9)：按照指定持续时间触发马达振动；<br>2、[VibratePreset](#vibratepreset9)：按照预置振动效果触发马达振动；<br>3、[VibrateFromFile](#vibratefromfile10)：按照自定义振动配置文件触发马达振动；<br/>4、[VibrateFromPattern<sup>16+</sup>](#vibratefrompattern16)：按照自定义振动效果触发马达振动。 |
+| effect    | [VibrateEffect](#vibrateeffect9)       | 是   | 马达振动效果，支持四种：<br>1、[VibrateTime](#vibratetime9)：按照指定持续时间触发马达振动；<br>2、[VibratePreset](#vibratepreset9)：按照预置振动效果触发马达振动；<br>3、[VibrateFromFile](#vibratefromfile10)：按照自定义振动配置文件触发马达振动；<br/>4、[VibrateFromPattern<sup>18+</sup>](#vibratefrompattern18)：按照自定义振动效果触发马达振动。 |
 | attribute | [VibrateAttribute](#vibrateattribute9) | 是   | 马达振动属性。                                               |
 
 **返回值**：
@@ -785,9 +785,9 @@ isHdHapticSupported(): boolean
 
 **返回值**：
 
-| 类型    | 说明       |
-| ------- | ---------- |
-| boolean | 返回对象。 |
+| 类型    | 说明                                               |
+| ------- | -------------------------------------------------- |
+| boolean | 返回对象，当返回true表示支持高清振动，否则不支持。 |
 
 **错误码**：
 
@@ -813,7 +813,7 @@ try {
 }
 ```
 
-## vibrator.VibratorPatternBuilder<sup>16+</sup>
+## vibrator.VibratorPatternBuilder<sup>18+</sup>
 
 addContinuousEvent(time: number, duration: number, options?: ContinuousParam): VibratorPatternBuilder;
 
@@ -829,7 +829,7 @@ addContinuousEvent(time: number, duration: number, options?: ContinuousParam): V
 | -------- | ------------------------------------- | ---- | ------------------------ |
 | time     | number                                | 是   | 长期振动的起始时间。     |
 | duration | number                                | 是   | 长期振动的持续时间。     |
-| options  | [ContinuousParam](#continuousparam16) | 否   | 可选参数，可选参数对象。 |
+| options  | [ContinuousParam](#continuousparam18) | 否   | 可选参数，可选参数对象。 |
 
 **错误码**：
 
@@ -874,7 +874,7 @@ try {
 }
 ```
 
-## vibrator.addTransientEvent<sup>16+</sup>
+## vibrator.addTransientEvent<sup>18+</sup>
 
 addTransientEvent(time: number, options?: TransientParam): VibratorPatternBuilder;
 
@@ -889,7 +889,7 @@ addTransientEvent(time: number, options?: TransientParam): VibratorPatternBuilde
 | 参数名  | 类型                                | 必填 | 说明                     |
 | ------- | ----------------------------------- | ---- | ------------------------ |
 | time    | number                              | 是   | 长期振动的起始时间。     |
-| options | [TransientParam](#transientparam16) | 否   | 可选参数，可选参数对象。 |
+| options | [TransientParam](#transientparam18) | 否   | 可选参数，可选参数对象。 |
 
 **错误码**：
 
@@ -920,7 +920,7 @@ try {
 }
 ```
 
-## vibrator.build<sup>16+</sup>
+## vibrator.build<sup>18+</sup>
 
 build(): VibratorPattern;
 
@@ -934,7 +934,7 @@ build(): VibratorPattern;
 
 | 类型                                  | 说明                               |
 | ------------------------------------- | ---------------------------------- |
-| [VibratorPattern](#vibratorpattern16) | 构造组合短振或长振的振动序列方法。 |
+| [VibratorPattern](#vibratorpattern18) | 构造组合短振或长振的振动序列方法。 |
 
 **示例**：
 
@@ -996,9 +996,9 @@ try {
 | EFFECT_SOFT                         | 'haptic.effect.soft'    | 较松散的振动效果，频率偏低。 |
 | EFFECT_HARD                         | 'haptic.effect.hard'    | 较沉重的振动效果，频率居中。 |
 | EFFECT_SHARP                        | 'haptic.effect.sharp'   | 较尖锐的振动效果，频率偏高。 |
-| EFFECT_NOTICE_SUCCESS<sup>16+</sup> | 'haptic.notice.success' | 描述成功通知的振动效果。     |
-| EFFECT_NOTICE_FAILURE<sup>16+</sup> | 'haptic.notice.fail'    | 描述失败通知的振动效果。     |
-| EFFECT_NOTICE_WARNING<sup>16+</sup> | 'haptic.notice.warning' | 描述警告通知的振动效果。     |
+| EFFECT_NOTICE_SUCCESS<sup>18+</sup> | 'haptic.notice.success' | 描述成功通知的振动效果。     |
+| EFFECT_NOTICE_FAILURE<sup>18+</sup> | 'haptic.notice.fail'    | 描述失败通知的振动效果。     |
+| EFFECT_NOTICE_WARNING<sup>18+</sup> | 'haptic.notice.warning' | 描述警告通知的振动效果。     |
 
 ## VibratorStopMode
 
@@ -1022,7 +1022,7 @@ try {
 | [VibrateTime](#vibratetime9) | 按照指定持续时间触发马达振动。<br/>**原子化服务API：** 从API Version 11开始，该接口支持在原子化服务中使用。 |
 | [VibratePreset](#vibratepreset9) | 按照预置振动类型触发马达振动。 |
 | [VibrateFromFile](#vibratefromfile10) | 按照自定义振动配置文件触发马达振动。 |
-| VibrateFromPattern<sup>16+</sup> | 按照自定义振动效果触发马达振动。 |
+| VibrateFromPattern<sup>18+</sup> | 按照自定义振动效果触发马达振动。 |
 
 ## VibrateTime<sup>9+</sup>
 
@@ -1073,7 +1073,7 @@ try {
 | offset   | number   |  否    | 距文件起始位置的偏移量，单位为字节，默认为文件起始位置，不可超出文件有效范围。|
 | length   | number   |  否    | 资源长度，单位为字节，默认值为从偏移位置至文件结尾的长度，不可超出文件有效范围。|
 
-## VibratorEventType<sup>16+</sup>
+## VibratorEventType<sup>18+</sup>
 
 振动事件类型。
 
@@ -1084,7 +1084,7 @@ try {
 | CONTINUOUS | number | 是   | 值为0，表示长振。 |
 | TRANSIENT  | number | 是   | 值为1，表示短振。 |
 
-## VibratorCurvePoint<sup>16+</sup>
+## VibratorCurvePoint<sup>18+</sup>
 
 相对事件振动强度的增益。
 
@@ -1096,7 +1096,7 @@ try {
 | intensity | number | 否   | 可选参数，相对事件振动强度增益，取值范围为0-1，省略时默认值为1。 |
 | frequency | number | 否   | 可选参数，相对事件振动频率变化，取值范围为-100-100，省略时默认值为0。 |
 
-## VibratorEvent<sup>16+</sup>
+## VibratorEvent<sup>18+</sup>
 
 振动事件。
 
@@ -1112,7 +1112,7 @@ try {
 | index     | number                          | 否   | 可选参数，表示通道编号，省略时默认值为0。                    |
 | points    | Array&lt;VibratorCurvePoint&gt; | 否   | 可选参数，表示振动调节曲线数组。                             |
 
-## VibratorPattern<sup>16+</sup>
+## VibratorPattern<sup>18+</sup>
 
 马达振动序列，每个events代表一个振动事件。
 
@@ -1123,7 +1123,7 @@ try {
 | time   | time                       | 是   | 振动绝对起始时间。                                   |
 | events | Array&lt;VibratorEvent&gt; | 是   | 振动事件数组，build()方法返回的VibratorPattern对象。 |
 
-## ContinuousParam<sup>16+</sup>
+## ContinuousParam<sup>18+</sup>
 
 连续振动参数。
 
@@ -1136,7 +1136,7 @@ try {
 | points    | VibratorCurvePoint[] | 否   | 可选参数，表示振动调节曲线数组。                             |
 | index     | number               | 否   | 可选参数，表示通道编号，省略时默认值为0。                    |
 
-## TransientParam<sup>16+</sup>
+## TransientParam<sup>18+</sup>
 
 瞬态振动参数。
 
@@ -1148,7 +1148,7 @@ try {
 | frequency | number | 否   | 可选参数，表示振动频率，省略时默认值为50。  |
 | index     | number | 否   | 可选参数，表示通道编号，省略时默认值为0。   |
 
-## VibrateFromPattern<sup>16+</sup>
+## VibrateFromPattern<sup>18+</sup>
 
 自定义振动效果触发马达振动。
 

@@ -86,8 +86,8 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
                           auto bundleName = params["bundle_name"].asString();
                           auto bundleVersion = params["bundle_version"].asString();
                           auto memory = writer.write(params["memory"]);
-                          auto externalLog = writer.write(eventInfo["external_log"]);
-                          std::string logOverLimit = eventInfo["log_over_limit"].asBool() ? "true":"false";
+                          auto externalLog = writer.write(params["external_log"]);
+                          std::string logOverLimit = params["log_over_limit"].asBool() ? "true":"false";
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.pid=%{public}d", pid);
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.uid=%{public}d", uid);
@@ -221,7 +221,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    ```
 
 7. 编辑工程中的“entry > src > main > ets  > pages > Index.ets”文件，添加按钮并在其onClick函数构造资源泄漏场景，以触发资源泄漏事件。
-   此处需要使用[hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12)设置内存限制，造成内存内存泄漏，需要同步在“开发者选项”中打开“系统资源泄漏日志”(打开或关闭开关均需重启设备)。接口示例代码如下：
+   此处需要使用[hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12)设置内存限制，造成内存泄漏，同步在“开发者选项”中打开“系统资源泄漏日志”(打开或关闭开关均需重启设备)。接口示例代码如下：
 
    ```ts
     import hidebug from "@ohos.hidebug";

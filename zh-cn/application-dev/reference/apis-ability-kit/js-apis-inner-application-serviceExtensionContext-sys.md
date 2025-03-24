@@ -2634,16 +2634,14 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
 }
 ```
 
-## ServiceExtensionContext.startUIServiceExtensionAbility<sup>13+<sup>
+## ServiceExtensionContext.startUIServiceExtensionAbility<sup>14+<sup>
 startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
 
 启动一个新的[UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionAbility-sys.md)（Promise形式）。
 
-
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
->
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2704,7 +2702,7 @@ export default class MyServiceExtensionAbility extends ServiceExtensionAbility {
 }
 ```
 
-## ServiceExtensionContext.openAtomicService<sup>16+<sup>
+## ServiceExtensionContext.openAtomicService<sup>18+<sup>
 openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;void&gt;
 
 通过应用ID，拉起原子化服务。使用Promise异步回调。

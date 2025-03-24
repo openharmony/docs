@@ -1,6 +1,6 @@
 # AbilityForegroundStateObserver (System API)
 
-The **AbilityForegroundStateObserver** module defines the listener used to listen for ability foreground and background state changes.
+The AbilityForegroundStateObserver module defines the listener used to listen for ability foreground and background state changes.
 
 > **NOTE**
 >

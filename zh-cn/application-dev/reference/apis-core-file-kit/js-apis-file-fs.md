@@ -140,7 +140,7 @@ statSync(file: string | number): Stat
 
 access(path: string, mode?: AccessModeType): Promise&lt;boolean&gt;
 
-检查文件是否存在，使用Promise异步返回。
+检查文件或目录是否存在，或校验操作权限，使用Promise异步返回。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -188,7 +188,7 @@ access(path: string, mode?: AccessModeType): Promise&lt;boolean&gt;
 
 access(path: string, mode: AccessModeType, flag: AccessFlagType): Promise&lt;boolean&gt;
 
-检查文件是否在本地，或校验相关权限，使用Promise异步返回。如果文件在云端，或者其它分布式设备上，返回false。
+检查文件或目录是否在本地，或校验操作权限，使用Promise异步返回。如果文件在云端，或者其它分布式设备上，返回false。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -220,7 +220,7 @@ access(path: string, mode: AccessModeType, flag: AccessFlagType): Promise&lt;boo
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
-  fs.access(filePath, fs.AccessModeFlag.EXIST, fs.AccessFlagType.LOCAL).then((res: boolean) => {
+  fs.access(filePath, fs.AccessModeType.EXIST, fs.AccessFlagType.LOCAL).then((res: boolean) => {
     if (res) {
       console.info("file exists");
     } else {
@@ -235,7 +235,7 @@ access(path: string, mode: AccessModeType, flag: AccessFlagType): Promise&lt;boo
 
 access(path: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-检查文件是否存在，使用callback异步回调。
+检查文件或目录是否存在，使用callback异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -279,7 +279,7 @@ access(path: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 accessSync(path: string, mode?: AccessModeType): boolean
 
-以同步方法检查文件是否存在。
+以同步方法检查文件或目录是否存在，或校验操作权限。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -329,7 +329,7 @@ accessSync(path: string, mode?: AccessModeType): boolean
 
 accessSync(path: string, mode: AccessModeType, flag: AccessFlagType): boolean
 
-以同步方法检查文件是否在本地，或校验相关权限。如果文件在云端，或者其它分布式设备上，返回false。
+以同步方法检查文件或目录是否在本地，或校验操作权限。如果文件在云端，或者其它分布式设备上，返回false。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -362,7 +362,7 @@ accessSync(path: string, mode: AccessModeType, flag: AccessFlagType): boolean
   import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   try {
-    let res = fs.accessSync(filePath, fs.AccessModeFlag.EXIST, fs.AccessFlagType.LOCAL);
+    let res = fs.accessSync(filePath, fs.AccessModeType.EXIST, fs.AccessFlagType.LOCAL);
     if (res) {
       console.info("file exists");
     } else {
@@ -1087,7 +1087,7 @@ setxattr(path: string, key: string, value: string): Promise&lt;void&gt;
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | 是   | 目录的应用沙箱路径。                                   |
-| key   | string | 是   | 扩展属性的key。                                   |
+| key   | string | 是   | 扩展属性的key，仅支持前缀为“user.”的字符串，且长度需小于256字节。  |
 | value   | string | 是   | 扩展属性的value。                                   |
 
 **返回值：**
@@ -1129,7 +1129,7 @@ setxattrSync(path: string, key: string, value: string): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | 是   | 目录的应用沙箱路径。                                   |
-| key   | string | 是   | 扩展属性的key。                                   |
+| key   | string | 是   | 扩展属性的key，仅支持前缀为“user.”的字符串，且长度需小于256字节。   |
 | value   | string | 是   | 扩展属性的value。                                   |
 
 **错误码：**
@@ -4161,7 +4161,11 @@ createWriteStream(path: string, options?: WriteStreamOptions): WriteStream;
   ```
 
 ## AtomicFile<sup>15+</sup>
-用于保证文件操作的原子性。
+AtomicFile是一个用于对文件进行原子读写操作的类。
+
+在写操作时，通过写入临时文件，并在写入成功后将其重命名到原始文件位置来确保写入文件的完整性；而在写入失败时删除临时文件，不修改原始文件内容。
+
+使用者可以自行调用finishWrite或failWrite来完成文件内容的写入或回滚。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -4169,7 +4173,7 @@ createWriteStream(path: string, options?: WriteStreamOptions): WriteStream;
 
 constructor(path: string)
 
-AtomicFile的构造函数。
+对于给定路径的文件创建一个AtomicFile类。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -4318,7 +4322,7 @@ try {
 
 startWrite(): WriteStream
 
-创建一个写文件流。
+对文件开始新的写入操作。将返回一个WriteStream，用于在其中写入新的文件数据。
 
 当文件不存在时新建文件。
 
@@ -4362,7 +4366,7 @@ try {
 
 finishWrite(): void
 
-文件写入成功后关闭文件。
+在完成对startWrite返回流的写入操作时调用，表示文件写入成功。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -4395,7 +4399,7 @@ try {
 
 failWrite(): void
 
-文件写入失败后执行文件回滚操作。
+文件写入失败后调用，将执行文件回滚操作。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -4431,7 +4435,7 @@ try {
 
 delete(): void
 
-删除文件。
+删除AtomicFile类，会删除原始文件和临时文件。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -4679,7 +4683,7 @@ copySignal.onCancel().then(() => {
 
 ### 属性
 
-| 名称     | 类型   | 只读   | 可写   | 说明                                       |
+| 名称     | 类型   | 只读   | 可选   | 说明                                       |
 | ------ | ------ | ---- | ---- | ---------------------------------------- |
 | ino    | bigint | 是    | 否    | 标识该文件。通常同设备上的不同文件的INO不同。|                 |
 | mode   | number | 是    | 否    | 表示文件权限，各特征位的含义如下：<br/>**说明：** 以下值为八进制，取得的返回值为十进制，请换算后查看。<br/>-&nbsp;0o400：用户读，对于普通文件，所有者可读取文件；对于目录，所有者可读取目录项。<br/>-&nbsp;0o200：用户写，对于普通文件，所有者可写入文件；对于目录，所有者可创建/删除目录项。<br/>-&nbsp;0o100：用户执行，对于普通文件，所有者可执行文件；对于目录，所有者可在目录中搜索给定路径名。<br/>-&nbsp;0o040：用户组读，对于普通文件，所有用户组可读取文件；对于目录，所有用户组可读取目录项。<br/>-&nbsp;0o020：用户组写，对于普通文件，所有用户组可写入文件；对于目录，所有用户组可创建/删除目录项。<br/>-&nbsp;0o010：用户组执行，对于普通文件，所有用户组可执行文件；对于目录，所有用户组是否可在目录中搜索给定路径名。<br/>-&nbsp;0o004：其他读，对于普通文件，其余用户可读取文件；对于目录，其他用户组可读取目录项。<br/>-&nbsp;0o002：其他写，对于普通文件，其余用户可写入文件；对于目录，其他用户组可创建/删除目录项。<br/>-&nbsp;0o001：其他执行，对于普通文件，其余用户可执行文件；对于目录，其他用户组可在目录中搜索给定路径名。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -4689,9 +4693,9 @@ copySignal.onCancel().then(() => {
 | atime  | number | 是    | 否    | 上次访问该文件的时间，表示距1970年1月1日0时0分0秒的秒数。  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
 | mtime  | number | 是    | 否    | 上次修改该文件的时间，表示距1970年1月1日0时0分0秒的秒数。  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
 | ctime  | number | 是    | 否    | 最近改变文件状态的时间，表示距1970年1月1日0时0分0秒的秒数。      |
-| atimeNs<sup>15+</sup>  | bigint | 是    | 否    | 上次访问该文件的时间，表示距1970年1月1日0时0分0秒的纳秒数。      |
-| mtimeNs<sup>15+</sup>  | bigint | 是    | 否    | 上次修改该文件的时间，表示距1970年1月1日0时0分0秒的纳秒数。      |
-| ctimeNs<sup>15+</sup>  | bigint | 是    | 否    | 最近改变文件状态的时间，表示距1970年1月1日0时0分0秒的纳秒数。      |
+| atimeNs<sup>15+</sup>  | bigint | 是    | 是    | 上次访问该文件的时间，表示距1970年1月1日0时0分0秒的纳秒数。      |
+| mtimeNs<sup>15+</sup>  | bigint | 是    | 是    | 上次修改该文件的时间，表示距1970年1月1日0时0分0秒的纳秒数。      |
+| ctimeNs<sup>15+</sup>  | bigint | 是    | 是    | 最近改变文件状态的时间，表示距1970年1月1日0时0分0秒的纳秒数。      |
 | location<sup>11+</sup> | [LocaltionType](#locationtype11)| 是 |否| 文件的位置，表示该文件是本地文件或者云端文件。
 
 ### isBlockDevice
@@ -5517,11 +5521,17 @@ onStatus(networkId: string, status: number): void;
 
 ### setFilePointer<sup>10+</sup>
 
-setFilePointer(): void
+setFilePointer(filePointer:number): void
 
 设置文件偏置指针。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+  | 参数名     | 类型      | 必填   | 说明         |
+  | ------- | ----------- | ---- | ----------------------------- |
+  | filePointer  | number | 是   | RandomAccessFile对象的偏置指针。  |
 
 **错误码：**
 
@@ -5908,7 +5918,7 @@ start(): void
 
 stop(): void
 
-停止监听。
+停止监听，移除Watcher对象。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 

@@ -33,7 +33,7 @@ The following table describes the attributes of **AssetMap** for adding an asset
 | DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> | Type: Uint8Array<br>Length: 1-2048 bytes| No| Local attribute information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
 | CONFLICT_RESOLUTION   | Type: number<br>Value range: see [ConflictResolution](../../reference/apis-asset-store-kit/js-apis-asset.md#conflictresolution)| No    | Policy for resolving the conflict (for example, duplicate alias). |
 | REQUIRE_ATTR_ENCRYPTED<sup>14+</sup> | Type: bool| No| Whether to encrypt the customized asset attribute information. By default, the information does not need to be encrypted.|
-| GROUP_ID<sup>16+</sup> | Type: Uint8Array<br>Length: 7-127 bytes| No| Group to which the asset to be added belongs. By default, this parameter is not specified.|
+| GROUP_ID<sup>18+</sup> | Type: Uint8Array<br>Length: 7-127 bytes| No| Group to which the asset to be added belongs. By default, this parameter is not specified.|
 
 ## Constraints
 

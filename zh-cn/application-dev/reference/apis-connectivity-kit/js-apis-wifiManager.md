@@ -1223,7 +1223,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
   });
 ```
 
-## wifiManager.getLinkedInfoSync<sup>16+</sup>
+## wifiManager.getLinkedInfoSync<sup>18+</sup>
 
 getLinkedInfoSync(): WifiLinkedInfo;
 
@@ -1416,7 +1416,7 @@ isFeatureSupported(featureId: number): boolean
 | 0x0040 | Wi-Fi&nbsp;AWare组网特性。 |
 | 0x8000 | AP&nbsp;STA共存特性。 |
 | 0x8000000 | WPA3-Personal&nbsp;SAE特性。 |
-| 0x10000000 | WPA3-Enterprise&nbsp;Suite-B |
+| 0x10000000 | WPA3-Enterprise&nbsp;Suite-B。 |
 | 0x20000000 | 增强开放特性。 | 
 
 **返回值：**

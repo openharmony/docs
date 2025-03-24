@@ -12,7 +12,7 @@ The specified device does not exist.
 
 **Description**
 
-This error code is generated if the specified device ID cannot be found in the multimodal device list.
+This error code is reported if the specified device cannot be found in the multimodal device list.
 
 **Possible Causes**
 
@@ -21,7 +21,8 @@ This error code is generated if the specified device ID cannot be found in the m
 
 **Procedure**
 
-1. Call the [inputDevice.getDeviceList](js-apis-inputdevice.md) API to query the device ID and use the correct device ID to perform operations.
+1. Use [inputDevice.getDeviceList](js-apis-inputdevice.md#inputdevicegetdevicelist9) to query the device ID, and then pass in the correct device ID.
+2. Check whether the keyboard cable is disconnected.
 
 ## 3900002 Keyboard Not Connected
 
@@ -53,8 +54,26 @@ Non-input applications are not allowed to call this API.
 
 **Possible Causes**
 
-This API is called by a third-party application or a non-input system application.
+This API is not supported for a third-party application or a non-input system application.
 
 **Procedure**
 
 Use an input application to call this API.
+
+## 26500001 Invalid Window ID
+
+**Error Message**
+
+windowId is invalid.
+
+**Description**
+
+This error code is reported if the window ID is invalid.
+
+**Possible Causes**
+
+The window ID does not belong to the current application.
+
+**Procedure**
+
+Pass in the window ID of the current application. You can obtain the attributes of the current window by calling [getWindowProperties()](../apis-arkui/js-apis-window.md#getwindowproperties9). The window attributes contain the window ID.

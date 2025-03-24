@@ -221,15 +221,10 @@ Right-click a directory under **resources** and choose **New** > **XXX Resource 
 
 ### Function Description
 
-You can use the **attr** attribute to specify whether a string should be translated and the translation status. The **attr** attribute is not involved in resource compilation.
+If the string resource referenced by an application needs to support multi-language adaptation, the **attr** attribute can be used to mark the translation scope and status of the string. The **attr** attribute is not involved in resource compilation.
 
 If the **attr** attribute is not configured, a string is translated by default.
-```
-"attr": {
-  "translatable": false|true
-  "priority": "code|translate|LT|customer"
-}
-```
+
 **Parameters of attr**
 
 | Name       | Type                   |  Description  |
@@ -248,7 +243,7 @@ resources
 |   |   |---plural.json
 ```
 ### Example
-This example sets the **attr** attribute for strings.
+The following shows the **attr** attribute configured in **string**. The **string1** string is marked as not to be translated, and the **string2** string is marked as to be translated and the translation has been verified.
 
 ```json
 {
@@ -282,7 +277,7 @@ This example sets the **attr** attribute for strings.
    >
    > For details about how to use native APIs to access raw files, see [Raw File Development](../napi/rawfile-guidelines.md).
 
-As described in [Resource Group Directories](#resource-group-directories), you can reference .json resource files, including **color.json**, **string.json**, and **plural.json**.<br>The usage is as follows:
+  As described in [Resource Group Directories](#resource-group-directories), you can reference .json resource files, including **color.json**, **string.json**, and **plural.json**.<br>The usage is as follows:
 
   ```ts
     // Access through $r('app.type.name').

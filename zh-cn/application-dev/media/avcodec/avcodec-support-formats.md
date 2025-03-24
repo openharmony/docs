@@ -33,36 +33,18 @@
 
 ### 音频解码
 
-当前支持的解码能力如下:
+当前支持的解码能力：
 
-| 容器规格 | 音频解码类型                 |
-| -------- | :--------------------------- |
-| mp4      | AAC、MPEG(MP3)、Flac、Vorbis<!--RP1--><!--RP1End--> |
-| m4a      | AAC                          |
-| flac     | Flac                         |
-| ogg      | Vorbis<!--RP2--><!--RP2End-->    |
-| aac      | AAC                          |
-| mp3      | MPEG(MP3)                    |
-| amr      | AMR(amrnb、amrwb)            |
-| raw      | G711mu                       |
-| ape      | APE                          |
+AAC、MPEG(MP3)、Flac、Vorbis、AMR(amrnb、amrwb)、G711mu、APE<!--RP1--><!--RP1End-->。
 
 具体开发指导请参考[音频解码](audio-decoding.md)。
 
 
 ### 音频编码
 
-当前支持的编码能力如下：
+当前支持的编码能力：
 
-| 容器规格 | 音频编码类型       |
-| -------- | :--------------- |
-| mp4      | AAC、Flac        |
-| m4a      | AAC              |
-| flac     | Flac             |
-| aac      | AAC              |
-| mp3      | MP3              |
-| raw      | G711mu           |
-<!--RP3--><!--RP3End-->
+AAC、Flac、MP3、G711mu<!--RP3--><!--RP3End-->。
 
 具体开发指导请参考[音频编码](audio-encoding.md)。
 
@@ -109,6 +91,7 @@ DRM解密能力支持的解封装格式：<!--RP10-->mp4(H.264，AAC)、mpeg-ts(
 | mp3      | -                     | MPEG（MP3）      | -              |
 | amr      | -                     | AMR(amrnb、amrwb) | -             |
 | wav      | -                     | G711mu(pcm-mulaw) | -             |
+| aac      | -                     | AAC               | -             |
 
 > **说明：**
 >
@@ -177,5 +160,16 @@ wav封装格式：
    | OH_MD_KEY_AUDIO_SAMPLE_FORMAT      | 输出音频流格式         |  可选  |
    | OH_MD_KEY_CHANNEL_LAYOUT           | 通道布局              |  可选  |
    | OH_MD_KEY_BITRATE                  | 码率                  |  必须  |
+
+aac封装格式：
+   |                key                 |         描述         |  aac   |
+   | ---------------------------------- | :------------------: | :----: |
+   | OH_MD_KEY_AUD_SAMPLE_RATE          | 采样率                |  必须  |
+   | OH_MD_KEY_AUD_CHANNEL_COUNT        | 声道数                |  必须  |
+   | OH_MD_KEY_AUDIO_SAMPLE_FORMAT      | 输出音频流格式         |  可选  |
+   | OH_MD_KEY_CHANNEL_LAYOUT           | 通道布局              |  可选  |
+   | OH_MD_KEY_BITRATE                  | 码率                  |  可选  |
+   | OH_MD_KEY_PROFILE                  | 编码档次              |  必须  |
+   | OH_MD_KEY_AAC_IS_ADTS              | 是否为ADTS格式        |  必须  |
    
 具体开发指导请参考[媒体数据封装](audio-video-muxer.md)。

@@ -121,7 +121,7 @@ function test() {
 export {value, test};
 ```
 
-1. 在oh-package.json5文件中配置dependencies项。
+1. 在oh-package.json5文件中配置dependencies项：
 
     ```json
     {
@@ -147,7 +147,7 @@ export {value, test};
     }
     ```
 
-3. 用napi_load_module_with_info加载library，调用函数test以及获取变量value。
+3. 用napi_load_module_with_info加载library，调用函数test以及获取变量value：
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -176,7 +176,7 @@ export {value, test};
 
 - **加载远程HAR模块名**
 
-1. 在oh-package.json5文件中配置dependencies项。
+1. 在oh-package.json5文件中配置dependencies项：
 
     ```json
     {
@@ -202,7 +202,7 @@ export {value, test};
     }
     ```
 
-3. 用napi_load_module_with_info加载@ohos/hypium，获取DEFAULT变量。
+3. 用napi_load_module_with_info加载@ohos/hypium，获取DEFAULT变量：
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -225,7 +225,7 @@ export {value, test};
 
 - **加载ohpm包名**
 
-1. 在oh-package.json5文件中配置dependencies项。
+1. 在oh-package.json5文件中配置dependencies项：
 
     ```json
     {
@@ -251,7 +251,7 @@ export {value, test};
     }
     ```
 
-3. 用napi_load_module_with_info加载json5，调用函数stringify。
+3. 用napi_load_module_with_info加载json5，调用函数stringify：
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -298,15 +298,15 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
     // 2. 使用napi_get_named_property获取info函数
     napi_value infoFn;
     napi_get_named_property(env, result, "info", &infoFn);
-    
+
     napi_value tag;
     std::string formatStr = "test";
     napi_create_string_utf8(env, formatStr.c_str(), formatStr.size(), &tag);
-    
+
     napi_value outputString;
     std::string str = "Hello OpenHarmony";
     napi_create_string_utf8(env, str.c_str(), str.size(), &outputString);
-    
+
     napi_value flag;
     napi_create_int32(env, 0, &flag);
 
@@ -319,14 +319,14 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
 
 - **加载Native库**
 
-libentry.so的index.d.ts文件如下
+libentry.so的index.d.ts文件如下：
 
 ```javascript
 //index.d.ts
 export const add: (a: number, b: number) => number;
 ```
 
-1. 在oh-package.json5文件中配置dependencies项。
+1. 在oh-package.json5文件中配置dependencies项：
 
     ```json
     {
@@ -352,9 +352,12 @@ export const add: (a: number, b: number) => number;
     }
     ```
 
-3. 用napi_load_module_with_info加载libentry.so，调用函数add。
+3. 用napi_load_module_with_info加载libentry.so，调用函数add：
 
     ```cpp
+    static constexpr int INT_NUM_2 = 2; // int类型数值2
+    static constexpr int INT_NUM_3 = 3; // int类型数值3
+
     static napi_value loadModule(napi_env env, napi_callback_info info) {
         napi_value result;
         // 1. 使用napi_load_module_with_info加载libentry.so
@@ -366,22 +369,22 @@ export const add: (a: number, b: number) => number;
         napi_value addFn;
         // 2. 使用napi_get_named_property获取add函数
         napi_get_named_property(env, result, "add", &addFn);
-        
+
         napi_value a;
         napi_value b;
-        napi_create_int32(env, 2, &a);
-        napi_create_int32(env, 3, &b);
+        napi_create_int32(env, INT_NUM_2, &a);
+        napi_create_int32(env, INT_NUM_3, &b);
         napi_value args[2] = {a, b};
         // 3. 使用napi_call_function调用函数add
         napi_value returnValue;
-        napi_call_function(env, result, addFn, 2, args, &returnValue);
+        napi_call_function(env, result, addFn, INT_NUM_2, args, &returnValue);
         return result;
     }
     ```
 
 - **HAR加载HAR模块名**
 
-场景为har1加载har2，har2中的Index.ets文件如下
+场景为har1加载har2，har2中的Index.ets文件如下：
 
 ```javascript
 //har2 Index.ets
@@ -392,7 +395,7 @@ function test() {
 export {value, test};
 ```
 
-1. 在har1中的oh-package.json5文件中配置dependencies项。
+1. 在har1中的oh-package.json5文件中配置dependencies项：
 
     ```json
     {
@@ -418,7 +421,7 @@ export {value, test};
     }
     ```
 
-3. 在har1中用napi_load_module_with_info加载har2，调用函数test以及获取变量value。
+3. 在har1中用napi_load_module_with_info加载har2，调用函数test以及获取变量value：
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {

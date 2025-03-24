@@ -5,7 +5,7 @@
 
 手势模块接口集合。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **相关模块：**[ArkUI_NativeModule](_ark_u_i___native_module.md)
 
@@ -33,7 +33,7 @@ int32_t(* ArkUI_NativeGestureAPI_1::setGestureInterrupterToNode) (ArkUI_NodeHand
 
 设置手势中断事件的回调函数。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -41,7 +41,7 @@ int32_t(* ArkUI_NativeGestureAPI_1::setGestureInterrupterToNode) (ArkUI_NodeHand
 | -------- | -------- |
 | node | 需要被设置手势打断回调的ArkUI节点。 |
 | userData | 用户自定义数据。 |
-| interrupter | 打断回调, info 返回手势打断数据。<br />interrupter 返回 GESTURE_INTERRUPT_RESULT_CONTINUE, 手势正常进行。<br />返回 GESTURE_INTERRUPT_RESULT_REJECT 手势打断。 |
+| interrupter | 打断回调。<br />返回GESTURE_INTERRUPT_RESULT_CONTINUE时，手势正常进行。<br />返回GESTURE_INTERRUPT_RESULT_REJECT时，手势被打断。 |
 
 **返回：**
 
@@ -56,4 +56,4 @@ ArkUI_NativeGestureAPI_1* gestureApi1
 
 指向 [ArkUI_NativeGestureAPI_1](_ark_u_i___native_gesture_a_p_i__1.md) 结构体的指针。
 
-**起始版本：** 16
+**起始版本：** 18

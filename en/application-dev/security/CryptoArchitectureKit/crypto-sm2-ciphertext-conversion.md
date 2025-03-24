@@ -11,7 +11,7 @@ You can convert the SM2 ciphertext into ASN.1 format based on the SM2 parameters
 
 1. Create an [SM2CipherTextSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#sm2ciphertextspec12) instance to specify SM2 ciphertext parameters. If the ciphertext is not in ASN.1 format, you need to obtain the required parameters.
 
-2. Use [genCipherTextBySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#genciphertextbyspec12) with the **SM2CipherTextSpec** instance to generate the SM2 ciphertext in ASN.1 format.
+2. Call [genCipherTextBySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#genciphertextbyspec12) with the **SM2CipherTextSpec** instance to generate the SM2 ciphertext in ASN.1 format.
 
 3. Decrypt the SM2 ciphertext using the **cryptoFramework** APIs.
 
@@ -38,7 +38,7 @@ function testGenCipherTextBySpec() {
 
 1. Check that the SM2 ciphertext is in ASN.1 format.
 
-2. Use [getCipherTextSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#genciphertextbyspec12) to obtain SM2 parameters from the ciphertext.
+2. Call [getCipherTextSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#genciphertextbyspec12) to obtain SM2 parameters from the ciphertext.
 
 3. You can combine SM2 parameters based on service requirements to generate SM2 ciphertext in other formats.
 

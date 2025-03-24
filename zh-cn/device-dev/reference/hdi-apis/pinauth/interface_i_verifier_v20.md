@@ -175,7 +175,7 @@ IVerifier::SendMessage ([in] unsigned long scheduleId, [in] int srcRole, [in] un
 | 名称 | 描述 | 
 | -------- | -------- |
 | scheduleId | 标识消息的调度ID。 | 
-| srcRole | 源执行器角色[ExecutorRole](_hdf_pin_auth_v20.md#executorrole). | 
+| srcRole | 源执行器角色[ExecutorRole](_hdf_pin_auth_v20.md#executorrole)。 | 
 | msg | 消息。 | 
 
 **返回：**

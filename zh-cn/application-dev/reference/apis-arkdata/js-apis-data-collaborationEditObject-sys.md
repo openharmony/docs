@@ -12,7 +12,7 @@
 
 > **说明：**
 >
-> - 本模块首批接口从API version 16开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 18开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 当前页面仅包含本模块的系统接口。
 
 ## 导入模块
@@ -29,7 +29,7 @@ getCollaborationEditObject(context: Context, config: CollaborationConfig): Colla
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
-**参数：**
+**参数**：
 
 | 参数名  | 类型                                        | 必填 | 说明                                                         |
 | ------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -110,7 +110,7 @@ deleteCollaborationEditObject(context: Context, config: CollaborationConfig): vo
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
-**参数：**
+**参数**：
 
 | 参数名  | 类型                                        | 必填 | 说 明                                                        |
 | ------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -196,7 +196,7 @@ class EntryAbility extends UIAbility {
 
 提供管理协作数据模型的相关方法。
 
-下列API示例中都需先使用getCollaborationEditObject方法获取到CollaborationEditObject实例，再通过此实例调用对应方法。
+下列API示例中都需先使用[getCollaborationEditObject](#collaborationeditobjectgetcollaborationeditobject)方法获取到CollaborationEditObject实例，再通过此实例调用对应方法。
 
 ### getEditUnit
 
@@ -206,7 +206,7 @@ getEditUnit(editUnitName: string): EditUnit
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
-**参数：**
+**参数**：
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
@@ -232,7 +232,6 @@ getEditUnit(editUnitName: string): EditUnit
 **示例：**
 
 ```ts
-let editObject: collaborationEditObject.CollaborationEditObject | undefined = undefined;
 let editUnit: collaborationEditObject.EditUnit | undefined = undefined;
 
 if (editObject != undefined) {
@@ -254,7 +253,7 @@ getUndoRedoManager(editUnitName: string, config: UndoRedoConfig): UndoRedoManage
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
-**参数**
+**参数**：
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
@@ -281,7 +280,6 @@ getUndoRedoManager(editUnitName: string, config: UndoRedoConfig): UndoRedoManage
 **示例：**
 
 ```ts
-let editObject: collaborationEditObject.CollaborationEditObject | undefined = undefined;
 let editUnit: collaborationEditObject.EditUnit | undefined = undefined;
 let undoRedoManager: collaborationEditObject.UndoRedoManager | undefined = undefined;
 
@@ -306,7 +304,7 @@ deleteUndoRedoManager(editUnitName: string): void
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
-**参数：**
+**参数**：
 
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
@@ -326,7 +324,6 @@ deleteUndoRedoManager(editUnitName: string): void
 **示例：**
 
 ```ts
-let editObject: collaborationEditObject.CollaborationEditObject | undefined = undefined;
 let editUnit: collaborationEditObject.EditUnit | undefined = undefined;
 let undoRedoManager: collaborationEditObject.UndoRedoManager | undefined = undefined;
 
@@ -341,6 +338,412 @@ if (editObject != undefined) {
 }
 ```
 
+### getLocalId
+
+getLocalId(): string
+
+获取当前协作数据模型本设备的唯一性标识。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**返回值**：
+
+| 类型   | 说明                                                        |
+| ------ | ----------------------------------------------------------- |
+| string | 当前协作数据模型本设备的唯一性标识。<br/>由本模型内部生成。 |
+
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[协作数据模型错误码](errorcode-collaboration-edit-object.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 202          | Not system application.                                      |
+| 15410000     | Internal Error.                                              |
+| 15410003     | Database Error.                                              |
+
+**示例：**
+
+```ts
+if (editObject != undefined) {
+  try {
+    let id: string = editObject.getLocalId();
+  } catch (err) {
+    console.error(`Get local id failed, code is ${err.code}, message is ${err.message}`);
+  }
+}
+```
+
+### applyUpdate
+
+applyUpdate(): Array\<UpdatedNode>
+
+将本端的操作日志应用到协作数据模型中。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**返回值**：
+
+| 类型                               | 说明                                               |
+| ---------------------------------- | -------------------------------------------------- |
+| Array<[UpdatedNode](#updatednode)> | 将操作日志应用到协作数据模型中后，发生变化的结点。 |
+
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[协作数据模型错误码](errorcode-collaboration-edit-object.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 202          | Not system application.                                      |
+| 15410000     | Internal Error.                                              |
+| 15410003     | Database Error.                                              |
+
+**示例：**
+
+```ts
+function syncCallback(progress: collaborationEditObject.ProgressDetail) {
+  if (progress.code !== collaborationEditObject.ProgressCode.CLOUD_SYNC_SUCCESS) {
+    return;
+  }
+  if (editObject != undefined) {
+    try {
+      let updatedNode: Array<collaborationEditObject.UpdatedNode> = editObject.applyUpdate();
+    } catch (err) {
+      console.error(`Apply update failed, code is ${err.code}, message is ${err.message}`);
+    }
+  }
+}
+
+if (editObject != undefined) {
+  try {
+    editObject.cloudSync(collaborationEditObject.SyncMode.SYNC_MODE_PUSH, syncCallback);
+  } catch (err) {
+    console.error(`Cloud sync failed, code is ${err.code}, message is ${err.message}`);
+  }
+}
+```
+
+### writeUpdate
+
+writeUpdate(update: EditObjectRecord): void
+
+将云侧操作日志数据推送到端侧。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**参数**： 
+
+| 参数名 | 类型                                  | 必填 | 说明                   |
+| ------ | ------------------------------------- | ---- | ---------------------- |
+| update | [EditObjectRecord](#editobjectrecord) | 是   | 待推送的操作日志数据。 |
+
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[协作数据模型错误码](errorcode-collaboration-edit-object.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 202          | Not system application.                                      |
+| 15410000     | Internal Error.                                              |
+| 15410003     | Database Error.                                              |
+
+**示例：**
+
+```ts
+if (editObject != undefined) {
+  try {
+    let updatedRecords: Array<collaborationEditObject.EditObjectRecord> = new Array();
+    for (let updatedRecord of updatedRecords) {
+      editObject.writeUpdate(updatedRecord);
+    }
+  } catch (err) {
+    console.error(`Write update failed, code is ${err.code}, message is ${err.message}`);
+  }
+}
+```
+
+### setCloudDB
+
+setCloudDB(cloudDB: CloudDB): void
+
+设置端云同步所需要的相关回调函数。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**参数**： 
+
+| 参数名  | 类型                | 必填 | 说明                   |
+| ------- | ------------------- | ---- | ---------------------- |
+| cloudDB | [CloudDB](#clouddb) | 是   | 端云同步时的相关回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[协作数据模型错误码](errorcode-collaboration-edit-object.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 202          | Not system application.                                      |
+| 15410000     | Internal Error.                                              |
+| 15410003     | Database Error.                                              |
+
+**示例：**
+
+```ts
+function uploadAssetHandler(config: collaborationEditObject.AssetOperationConfig): Promise<void> {
+  return new Promise((resolve, reject) => {
+    resolve();
+  });
+}
+
+function downloadAssetHandler(config: collaborationEditObject.AssetOperationConfig): Promise<void> {
+  return new Promise((resolve, reject) => {
+    resolve();
+  });
+}
+
+function deleteAssetHandler(config: collaborationEditObject.AssetOperationConfig): Promise<void> {
+  return new Promise((resolve, reject) => {
+    resolve();
+  });
+}
+
+function deleteLocalAssetHandler(config: collaborationEditObject.AssetOperationConfig): Promise<void> {
+  return new Promise((resolve, reject) => {
+    resolve();
+  });
+}
+
+function batchInsertHandler(updates: Array<collaborationEditObject.EditObjectRecord>): Promise<number> {
+  return new Promise((resolve, reject) => {
+    resolve(0);    
+  });
+}
+
+function queryHandler(queryConditions: Array<collaborationEditObject.QueryCondition>): Promise<Array<collaborationEditObject.EditObjectRecord>> {
+  return new Promise((resolve, reject) => {
+    let res: Array<collaborationEditObject.EditObjectRecord> = new Array();
+    resolve(res);
+  });
+}
+
+const CLOUD_DB_FUNC: collaborationEditObject.CloudDB = {
+  batchInsert: batchInsertHandler,
+  query: queryHandler,
+  downloadAsset: downloadAssetHandler,
+  uploadAsset: uploadAssetHandler,
+  deleteAsset: deleteAssetHandler,
+  deleteLocalAsset: deleteLocalAssetHandler,
+};
+
+if (editObject != undefined) {
+  try {
+    editObject.setCloudDB(CLOUD_DB_FUNC);
+  } catch (err) {
+    console.error(`Set cloud db failed, code is ${err.code}, message is ${err.message}`);
+  }
+}
+```
+
+### cloudSync
+
+cloudSync(syncMode: SyncMode, progress: Callback\<ProgressDetail>): void
+
+同步本端协作数据模型的数据到云侧。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**参数**： 
+
+| 参数名   | 类型                                        | 必填 | 说明           |
+| -------- | ------------------------------------------- | ---- | -------------- |
+| syncMode | [SyncMode](#syncmode)                       | 是   | 同步模式。     |
+| progress | Callback<[ProgressDetail](#progressdetail)> | 是   | 同步结果回调函数，返回端云同步进度标识对象。 |
+
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[协作数据模型错误码](errorcode-collaboration-edit-object.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 202          | Not system application.                                      |
+| 15410000     | Internal Error.                                              |
+| 15410003     | Database Error.                                              |
+
+**示例：**
+
+```ts
+function cloudSyncCallback(progress: collaborationEditObject.ProgressDetail) {
+  console.log(`Cloud sync progress code is ${progress.code}`);
+}
+
+if (editObject != undefined) {
+  try {
+    editObject.cloudSync(collaborationEditObject.SyncMode.SYNC_MODE_PUSH, cloudSyncCallback);
+  } catch (err) {
+    console.error(`Cloud sync failed, code is ${err.code}, message is ${err.message}`);
+  }
+}
+```
+
+## BatchInsertHandler
+
+type BatchInsertHandler = (records: Array\<EditObjectRecord>) => Promise\<number>
+
+提供数据上行同步回调函数的定义。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**参数**： 
+
+| 参数名   | 类型                                        | 必填 | 说明           |
+| -------- | ------------------------------------------- | ---- | -------------- |
+| records | Array<[EditObjectRecord](#editobjectrecord)>  | 是   |   本端需要上行的数据。     |
+
+**返回值**：
+| 类型                               | 说明                                               |
+| ---------------------------------- | -------------------------------------------------- |
+| Promise\<number> | Promise对象，返回成功上传的数据条数。 |
+
+## QueryHandler
+
+type QueryHandler = (queryConditions: Array\<QueryCondition>) => Promise\<Array\<EditObjectRecord>>
+
+提供数据下行同步回调函数的定义。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**参数**： 
+
+| 参数名   | 类型                                        | 必填 | 说明           |
+| -------- | ------------------------------------------- | ---- | -------------- |
+| queryConditions | Array<[QueryCondition](#querycondition)>  | 是   |   查询条件数组，云侧返回的数据需要满足所有列出的条件。     |
+
+**返回值**：
+| 类型                               | 说明                                               |
+| ---------------------------------- | -------------------------------------------------- |
+| Promise\<Array<[EditObjectRecord](#editobjectrecord)>> | Promise对象，返回查询到的云侧数据。 |
+
+## AssetHandler
+
+type AssetHandler = (config: AssetOperationConfig) => Promise\<void>
+
+提供资产上行同步、下行同步和删除的回调函数的定义。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**参数**： 
+
+| 参数名   | 类型                                        | 必填 | 说明           |
+| -------- | ------------------------------------------- | ---- | -------------- |
+| config | [AssetOperationConfig](#assetoperationconfig)  | 是   |   需要操作的资产配置项。     |
+
+**返回值**：
+| 类型                               | 说明                                               |
+| ---------------------------------- | -------------------------------------------------- |
+| Promise\<void> | Promise对象，无返回结果的Promise对象。 |
+
+## CloudDB
+
+端云同步时所需要的相关回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+| 名称  | 类型   | 只读 | 可选 | 说明   |
+| ------- | ------ | ---- | ---- | ------ |
+| batchInsert | [BatchInsertHandler](#batchinserthandler) | 是 | 否 |  数据上行同步的回调函数，需要业务提供。|
+| query | [QueryHandler](#queryhandler) | 是 | 否 |  数据下行同步的回调函数，需要业务提供。|
+| downloadAsset | [AssetHandler](#assethandler) | 是 | 否 |  资产下行同步的回调函数，需要业务提供。|
+| uploadAsset | [AssetHandler](#assethandler) | 是 | 否 |  资产上行同步的回调函数，需要业务提供。|
+| deleteAsset | [AssetHandler](#assethandler) | 是 | 否 |  删除云侧资产的回调函数，需要业务提供。|
+| deleteLocalAsset | [AssetHandler](#assethandler) | 是 | 否 |  删除本端资产的回调函数，需要业务提供。|
+
+## SyncMode
+端云同步操作的同步模式枚举。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+| 名称 | 值   | 说明 |
+| ---- | ---- | ---- |
+| SYNC_MODE_PUSH | 0 |  表示上行同步，本端数据将上传至云侧。  |
+| SYNC_MODE_PULL |  1    | 表示下行同步，云侧数据将下载至本端。 |
+| SYNC_MODE_PULL_PUSH |  2  | 表示将依次进行下行和上行同步，先下载云侧数据，再上传本端数据。 |
+
+## ProgressCode
+端云同步操作的结果标识枚举。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+| 名称 | 值   | 说明 |
+| ---- | ---- | ---- |
+| CLOUD_SYNC_SUCCESS | 0 |  表示端云同步的结果为成功。  |
+| CLOUD_NOT_SET |  1    | 表示未设置端云同步所需要的相关回调。 |
+| INTERNAL_ERROR |  2  | 表示同步过程中发生了内部错误。 |
+| EXTERNAL_ERROR |  3  | 表示同步过程中在调用同步相关回调时发生了错误。 |
+
+## ProgressDetail
+端云同步结束后的进度标识。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+| 名称  | 类型   | 只读 | 可选 | 说明   |
+| ------- | ------ | ---- | ---- | ------ |
+| code | [ProgressCode](#progresscode) | 是 | 否 | 端云同步结果标识。 |
+
+## Predicate
+
+下行同步查询条件的谓语枚举类型。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+| 名称 | 值   | 说明 |
+| ---- | ---- | ---- |
+| EQUAL_TO | 0 |  表示希望从云侧查询字段值等于给定值的数据。  |
+| NOT_EQUAL_TO |  1    | 表示希望从云侧查询字段值不等于给定值的数据。 |
+| GREATER_THAN |  2  | 表示希望从云侧查询字段值大于给定值的数据。 |
+| LESS_THAN |  3  | 表示希望从云侧查询字段值小于给定值的数据。 |
+| GREATER_THAN_OR_EQUAL_TO |  4    | 表示希望从云侧查询字段值大于或等于给定值的数据。 |
+| LESS_THAN_OR_EQUAL_TO |  5  | 表示希望从云侧查询字段值小于或等于给定值的数据。 |
+
+## QueryCondition
+
+端云下行同步时对云侧数据的查询条件。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+| 名称  | 类型   | 只读 | 可选 | 说明   |
+| ------- | ------ | ---- | ---- | ------ |
+| condition | [Predicate](#predicate) | 是 | 否 | 条件谓语。 |
+| fieldName | string | 是 | 否 | 查询条件对应的字段，由模型内部生成。 |
+| fieldValue | string \| number | 是 | 否 | 查询条件对应字段的值，模型内部生成。 |
+
+
+## AssetOperationConfig
+
+端云资产同步相关配置项。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+| 名称  | 类型   | 只读 | 可选 | 说明   |
+| ------- | ------ | ---- | ---- | ------ |
+| path | string | 是 | 否 | 资产文件对应的路径。任意非空字符串。 |
+
+
+## RelativePos
+
+光标在编辑单元中的相对位置。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+
+| 名称          | 类型                | 只读               | 可选                    | 说明                      |
+| ------------------- | ------------------------- | ------------------- | ------------------- | ------------------- |
+| parentId | [UniqueId](#uniqueid) \| null | 是 | 否 | 相对位置的父结点，若父结点是编辑单元,则为null。 |
+| parentName | string \| null | 是 | 否 | 相对位置的父结点的结点名，若父结点是编辑单元，则该字段为编辑单元名，否则为null。<br/> **使用约束：** 具体见[getEditUnit](#geteditunit)方法editUnitName参数约束。 |
+| id | [UniqueId](#uniqueid) \| null | 是 | 否 | 相对位置的左或者右结点，若左或者右没有结点，则为null。<br/> **使用约束：** parentId，parentName和id三个参数不能同时为null。 |
+| pos | number | 是 | 否 | 字符绑定到结点的偏移量，等于0则为此结点，小于0则为此结点左侧的字符，大于0则为此结点的右侧字符。必须为整数。 |
 
 
 ## UndoRedoConfig
@@ -353,7 +756,28 @@ if (editObject != undefined) {
 | -------------- | ------ | ---- | ------------------------------------------------------------ |
 | captureTimeout | number | 是   | 操作捕获时间。<br/>任意多个操作之间的时间间隔小于该值，则触发撤销重做时，视为一个操作。<br/>**使用约束：** 必须为正整型，传小数时向下取整。 |
 
+## UpdatedNode
 
+将操作日志应用到协作数据模型后，发生变化的结点。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+| 名称         | 类型                           | 只读 | 可选 | 说明                                                         |
+| ------------ | ------------------------------ | ---- | ---- | ------------------------------------------------------------ |
+| editUnitName | string                         | 是   | 否   | 将操作日志应用到协作数据模型后，发生变化的结点所在的编辑单元名称，由模型返回。<br/> **使用约束：** 具体见[getEditUnit](#geteditunit)方法editUnitName参数约束。 |
+| node         | [Node](#node) \| [Text](#text) | 是   | 否   | 将操作日志应用到协作数据模型后，发生变化的结点。               |
+
+## EditObjectRecord
+
+同步上行或下行时传输的数据。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+| 名称   | 类型       | 只读 | 可选 | 说明                                                         |
+| ------ | ---------- | ---- | ---- | ------------------------------------------------------------ |
+| cursor | number     | 是   | 否   | 数据上行或下行时的水位信息。<br/>非负整数，自增，本模型内部生成。 |
+| id     | string     | 是   | 否   | 本设备的唯一性标识符。具体见[UniqueId](#uniqueid)中的id字段。 |
+| data   | Uint8Array | 是   | 否   | 上行或下行的同步数据内容。                                   |
 
 ## EditUnit
 
@@ -386,7 +810,6 @@ getName(): string
 **示例：**
 
 ```ts
-let editObject: collaborationEditObject.CollaborationEditObject | undefined = undefined;
 let editUnit: collaborationEditObject.EditUnit | undefined = undefined;
 
 if (editObject != undefined) {
@@ -409,7 +832,7 @@ insertNodes(index: number, nodes: Node[]): void
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
-**参数**
+**参数**：
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
@@ -432,7 +855,6 @@ insertNodes(index: number, nodes: Node[]): void
 **示例：** 
 
 ```ts
-let editObject: collaborationEditObject.CollaborationEditObject | undefined = undefined;
 let editUnit: collaborationEditObject.EditUnit | undefined = undefined;
 
 if (editObject != undefined) {
@@ -454,7 +876,7 @@ delete(index: number, length: number): void
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
-**参数**
+**参数**：
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
@@ -477,7 +899,6 @@ delete(index: number, length: number): void
 **示例：**
 
 ```ts
-let editObject: collaborationEditObject.CollaborationEditObject | undefined = undefined;
 let editUnit: collaborationEditObject.EditUnit | undefined = undefined;
 
 if (editObject != undefined) {
@@ -503,7 +924,7 @@ getChildren(start: number, end: number): Array<Node | Text>
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
-**参数**
+**参数**：
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
@@ -532,7 +953,6 @@ getChildren(start: number, end: number): Array<Node | Text>
 **示例：** 
 
 ```ts
-let editObject: collaborationEditObject.CollaborationEditObject | undefined = undefined;
 let editUnit: collaborationEditObject.EditUnit | undefined = undefined;
 
 if (editObject != undefined) {
@@ -579,7 +999,6 @@ getJsonResult(): string
 **示例：** 
 
 ```ts
-let editObject: collaborationEditObject.CollaborationEditObject | undefined = undefined;
 let editUnit: collaborationEditObject.EditUnit | undefined = undefined;
 
 if (editObject != undefined) {
@@ -589,6 +1008,110 @@ if (editObject != undefined) {
     let node02: collaborationEditObject.Node = new collaborationEditObject.Node("p2");
     editUnit.insertNodes(0, [node01, node02]);
     let json: string | undefined = editUnit.getJsonResult();
+  } catch (err) {
+    console.error(`Catch an error, code is ${err.code}, message is ${err.message}`);
+  }
+}
+```
+
+
+### getRelativePos
+
+getRelativePos(absolutePos: number): RelativePos
+
+获取光标在编辑单元中的相对位置。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**参数**：
+| 参数名  | 类型    | 必填 | 说明                                                         |
+| ------- | ------- | ---- | ------------------------------------------------------------ |
+| absolutePos | number | 是 | 光标在编辑单元中的绝对位置，非负整数。 |
+
+**返回值**：
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| [RelativePos](#relativepos) | 光标在编辑单元中的相对位置。 |
+
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[协作数据模型错误码](errorcode-collaboration-edit-object.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 202          | Not system application. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 15410000     | Internal error.         |
+| 15410003     | Database error.         |
+
+**示例：**
+
+```ts
+let editUnit: collaborationEditObject.EditUnit | undefined = undefined;
+
+if (editObject != undefined) {
+  try {
+    editUnit = editObject.getEditUnit("editUnit01");
+    let node01: collaborationEditObject.Node = new collaborationEditObject.Node("p1");
+    editUnit.insertNodes(0, [node01]);
+    let text01: collaborationEditObject.Text = new collaborationEditObject.Text();
+    node01.insertTexts(0, [text01]);
+    text01.insert(0, "你好");
+    let relPos = editUnit.getRelativePos(2); // 其中2是光标在编辑器中的绝对位置.
+  } catch (err) {
+    console.error(`Catch an error, code is ${err.code}, message is ${err.message}`);
+  }
+}
+```
+
+### getAbsolutePos
+
+getAbsolutePos(relativePos: RelativePos): number
+
+获取光标在编辑单元中的绝对位置。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**参数**：
+| 参数名  | 类型    | 必填 | 说明                                                         |
+| ------- | ------- | ---- | ------------------------------------------------------------ |
+| relativePos | [RelativePos](#relativepos) | 是 | 光标在编辑单元中的相对位置。 |
+
+**返回值**：
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| number | 光标在编辑器中的绝对位置，非负整数。 |
+
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[协作数据模型错误码](errorcode-collaboration-edit-object.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 202          | Not system application. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 15410000     | Internal error.         |
+| 15410003     | Database error.         |
+
+**示例：**
+
+```ts
+let editUnit: collaborationEditObject.EditUnit | undefined = undefined;
+
+if (editObject != undefined) {
+  try {
+    editUnit = editObject.getEditUnit("editUnit01");
+    let node01: collaborationEditObject.Node = new collaborationEditObject.Node("p1");
+    editUnit.insertNodes(0, [node01]);
+    let text01: collaborationEditObject.Text = new collaborationEditObject.Text();
+    node01.insertTexts(0, [text01]);
+    text01.insert(0, "followRedone");
+
+    let node02: collaborationEditObject.Node = new collaborationEditObject.Node("p2");
+    editUnit.insertNodes(1, [node02]);
+    let pos = editUnit.getAbsolutePos({parentId: null, parentName: "top", id: null, pos: 0}); // 此处找的node2在编辑器中的绝对位置
   } catch (err) {
     console.error(`Catch an error, code is ${err.code}, message is ${err.message}`);
   }
@@ -630,7 +1153,7 @@ constructor(name: string)
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
-**参数**
+**参数**：
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
@@ -671,7 +1194,6 @@ getId(): UniqueId
 **示例：**
 
 ```ts
-let editObject: collaborationEditObject.CollaborationEditObject | undefined = undefined;
 let editUnit: collaborationEditObject.EditUnit | undefined = undefined;
 
 if (editObject != undefined) {
@@ -696,7 +1218,7 @@ insertTexts(index: number, texts: Text[]): void
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
-**参数**
+**参数**：
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
 | index | number | 是   | 插入的位置。<br/>非负整数，传小数时向下取整。<br/>不能超出当前对象的实际索引范围。 |
@@ -718,7 +1240,6 @@ insertTexts(index: number, texts: Text[]): void
 **示例**
 
 ```ts
-let editObject: collaborationEditObject.CollaborationEditObject | undefined = undefined;
 let editUnit: collaborationEditObject.EditUnit | undefined = undefined;
 
 if (editObject != undefined) {
@@ -744,7 +1265,7 @@ setAttributes(attributes: AttributesRecord): void
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
-**参数**
+**参数**：
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
 | attributes | [AttributesRecord](#attributesrecord) | 是   | 需要设置的属性名和属性值。              |
@@ -765,7 +1286,6 @@ setAttributes(attributes: AttributesRecord): void
 **示例：**
 
 ```ts
-let editObject: collaborationEditObject.CollaborationEditObject | undefined = undefined;
 let editUnit: collaborationEditObject.EditUnit | undefined = undefined;
 
 if (editObject != undefined) {
@@ -790,7 +1310,7 @@ removeAttributes(attributeNames: string[]): void
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
-**参数**
+**参数**：
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
 | attributeNames | string[] | 是   | 需要删除的属性名。              |
@@ -811,7 +1331,6 @@ removeAttributes(attributeNames: string[]): void
 **示例：**
 
 ```ts
-let editObject: collaborationEditObject.CollaborationEditObject | undefined = undefined;
 let editUnit: collaborationEditObject.EditUnit | undefined = undefined;
 
 if (editObject != undefined) {
@@ -857,7 +1376,6 @@ getAttributes(): AttributesRecord
 **示例：**
 
 ```ts
-let editObject: collaborationEditObject.CollaborationEditObject | undefined = undefined;
 let editUnit: collaborationEditObject.EditUnit | undefined = undefined;
 
 if (editObject != undefined) {
@@ -873,6 +1391,49 @@ if (editObject != undefined) {
 }
 ```
 
+### setAsset
+
+setAsset(assetKey: string, assetValue: string): void
+
+设置或更新当前结点的资产属性。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**参数**：
+| 参数名  | 类型    | 必填 | 说明                                                         |
+| ------- | ------- | ---- | ------------------------------------------------------------ |
+| assetKey | string | 是   | 资产标签，设置成功后该标签被视为资产。任意非空字符串。              |
+| assetValue | string | 是   | 需要设置的资产属性值。任意非空字符串。              |
+
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[协作数据模型错误码](errorcode-collaboration-edit-object.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 202          | Not system application.                                      |
+| 15410000     | Internal error.                                              |
+| 15410001     | Unsupported operation.                                       |
+| 15410002     | Index out of range.                                          |
+| 15410003     | Database error.                                              |
+
+
+**示例：**
+```ts
+let editUnit: collaborationEditObject.EditUnit | undefined = undefined;
+
+if (editObject != undefined) {
+  try {
+    editUnit = editObject.getEditUnit("editUnit01");
+    let node01: collaborationEditObject.Node = new collaborationEditObject.Node("p1");
+    editUnit.insertNodes(0, [node01]);
+    node01.setAsset("src", "/path/to/asset/asset.jpg");
+  } catch (err) {
+    console.error(`Catch an error, code is ${err.code}, message is ${err.message}`);
+  }
+}
+```
 
 
 ## FormatValueType
@@ -947,7 +1508,6 @@ getId(): UniqueId
 **示例：**
 
 ```ts
-let editObject: collaborationEditObject.CollaborationEditObject | undefined = undefined;
 let editUnit: collaborationEditObject.EditUnit | undefined = undefined;
 
 if (editObject != undefined) {
@@ -972,7 +1532,7 @@ insert(index: number, text: string, format?: TextFormat): void
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
-**参数**
+**参数**：
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
 | index | number | 是   | 插入的位置。<br/>非负整数，传小数时向下取整。<br/>不能大于当前文本对象的实际长度。 |
@@ -995,7 +1555,6 @@ insert(index: number, text: string, format?: TextFormat): void
 **示例：**
 
 ```ts
-let editObject: collaborationEditObject.CollaborationEditObject | undefined = undefined;
 let editUnit: collaborationEditObject.EditUnit | undefined = undefined;
 
 if (editObject != undefined) {
@@ -1023,7 +1582,7 @@ delete(index: number, length: number): void
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
-**参数**
+**参数**：
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
 | index | number | 是   | 删除的起始位置。<br/>非负整数，传小数时向下取整。<br/>不能超出实际索引范围，否则抛出15410002错误码。 |
@@ -1045,7 +1604,6 @@ delete(index: number, length: number): void
 **示例：**
 
 ```ts
-let editObject: collaborationEditObject.CollaborationEditObject | undefined = undefined;
 let editUnit: collaborationEditObject.EditUnit | undefined = undefined;
 
 if (editObject != undefined) {
@@ -1074,7 +1632,7 @@ format(index: number, length: number, format: TextFormat): void
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
-**参数**
+**参数**：
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
 | index | number | 是 | 要格式化的起始位置。<br/>非负整数，传小数时向下取整。<br/>不能超出实际索引范围，否则抛出15410002错误码。 |
@@ -1097,7 +1655,6 @@ format(index: number, length: number, format: TextFormat): void
 **示例：**
 
 ```ts
-let editObject: collaborationEditObject.CollaborationEditObject | undefined = undefined;
 let editUnit: collaborationEditObject.EditUnit | undefined = undefined;
 
 if (editObject != undefined) {
@@ -1147,7 +1704,6 @@ getPlainText(): string
 **示例：**
 
 ```ts
-let editObject: collaborationEditObject.CollaborationEditObject | undefined = undefined;
 let editUnit: collaborationEditObject.EditUnit | undefined = undefined;
 
 if (editObject != undefined) {
@@ -1197,7 +1753,6 @@ getJsonResult(): string
 **示例：**
 
 ```ts
-let editObject: collaborationEditObject.CollaborationEditObject | undefined = undefined;
 let editUnit: collaborationEditObject.EditUnit | undefined = undefined;
 
 if (editObject != undefined) {
@@ -1246,7 +1801,6 @@ undo(): void
 **示例：**
 
 ```ts
-let editObject: collaborationEditObject.CollaborationEditObject | undefined = undefined;
 let editUnit: collaborationEditObject.EditUnit | undefined = undefined;
 let undoRedoManager: collaborationEditObject.UndoRedoManager | undefined = undefined;
 
@@ -1297,7 +1851,6 @@ redo(): void
 **示例：**
 
 ```ts
-let editObject: collaborationEditObject.CollaborationEditObject | undefined = undefined;
 let editUnit: collaborationEditObject.EditUnit | undefined = undefined;
 let undoRedoManager: collaborationEditObject.UndoRedoManager | undefined = undefined;
 

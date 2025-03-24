@@ -1,6 +1,6 @@
 # 异步等待
 
-为了解决多线程任务时序控制问题，ArkTS引入了异步等待通知能力。异步等待通知[ConditionVariable](../reference/apis-arkts/js-apis-arkts-utils.md#conditionvariable16)对象支持跨线程引用传递。
+为了解决多线程任务时序控制问题，ArkTS引入了异步等待通知能力。异步等待通知[ConditionVariable](../reference/apis-arkts/js-apis-arkts-utils.md#conditionvariable18)对象支持跨线程引用传递。
 
 由于ArkTS语言支持异步操作，现在增加异步任务支持等待和被唤醒能力。当收到唤醒通知或者等待超时时继续异步执行。
 

@@ -22,7 +22,7 @@ import { accountManager } from '@kit.MDMKit';
 
 disallowAddLocalAccount(admin: Want, disallow: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-指定设备管理应用禁止设备创建本地用户。使用callback异步回调。
+禁止设备创建本地用户。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
@@ -34,7 +34,7 @@ disallowAddLocalAccount(admin: Want, disallow: boolean, callback: AsyncCallback&
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。      |
 | disallow    | boolean     | 是    | 是否禁止创建本地用户，true表示禁止创建，false表示允许创建。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。       |
 
@@ -72,7 +72,7 @@ accountManager.disallowAddLocalAccount(wantTemp, true, (err) => {
 
 disallowAddLocalAccount(admin: Want, disallow: boolean): Promise&lt;void&gt;
 
-指定设备管理应用禁止设备创建本地用户。使用promise异步回调。
+禁止设备创建本地用户。使用promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
@@ -84,7 +84,7 @@ disallowAddLocalAccount(admin: Want, disallow: boolean): Promise&lt;void&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | disallow    | boolean     | 是    | 是否禁止创建本地用户，true表示禁止创建，false表示允许创建。                  |
 
 **返回值：**
@@ -126,7 +126,7 @@ accountManager.disallowAddLocalAccount(wantTemp, true).then(() => {
 
 disallowAddOsAccountByUser(admin: Want, userId: number, disallow: boolean): void
 
-指定设备管理应用禁止用户添加账号。
+禁止用户添加账号。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
@@ -136,11 +136,11 @@ disallowAddOsAccountByUser(admin: Want, userId: number, disallow: boolean): void
 
 **参数：**
 
-| 参数名   | 类型                                | 必填 | 说明                                                        |
-| -------- | ----------------------------------- | ---- | ----------------------------------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                              |
-| userId   | number                              | 是   | 用户ID，指定具体用户，取值范围：大于等于0。                 |
-| disallow | boolean                             | 是   | 是否禁止用户添加账号，true表示禁止添加，false表示允许添加。 |
+| 参数名   | 类型                                                    | 必填 | 说明                                                        |
+| -------- | ------------------------------------------------------- | ---- | ----------------------------------------------------------- |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                      |
+| userId   | number                                                  | 是   | 用户ID，指定具体用户，取值范围：大于等于0。                 |
+| disallow | boolean                                                 | 是   | 是否禁止用户添加账号，true表示禁止添加，false表示允许添加。 |
 
 **错误码**：
 
@@ -175,7 +175,7 @@ try {
 
 isAddOsAccountByUserDisallowed(admin: Want, userId: number): boolean
 
-指定设备管理应用查询是否禁止某用户添加账号。
+查询是否禁止某用户添加账号。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
@@ -185,16 +185,16 @@ isAddOsAccountByUserDisallowed(admin: Want, userId: number): boolean
 
 **参数：**
 
-| 参数名 | 类型                                | 必填 | 说明                                        |
-| ------ | ----------------------------------- | ---- | ------------------------------------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                              |
-| userId | number                              | 是   | 用户ID，指定具体用户，取值范围：大于等于0。 |
+| 参数名 | 类型                                                    | 必填 | 说明                                        |
+| ------ | ------------------------------------------------------- | ---- | ------------------------------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。      |
+| userId | number                                                  | 是   | 用户ID，指定具体用户，取值范围：大于等于0。 |
 
 **返回值：**
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| boolean | 返回true表示该用户禁止添加账号，<br/>返回false表示该用户允许添加账号。 |
+| boolean | 返回true表示该用户禁止添加账号。<br/>返回false表示该用户允许添加账号。 |
 
 **错误码**：
 
@@ -229,7 +229,7 @@ try {
 
 addOsAccount(admin: Want, name: string, type: osAccount.OsAccountType): osAccount.OsAccountInfo
 
-指定设备管理应用后台添加账号。
+后台添加账号。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
@@ -241,7 +241,7 @@ addOsAccount(admin: Want, name: string, type: osAccount.OsAccountType): osAccoun
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md)                          | 是   | 设备管理应用。                                               |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 企业设备管理扩展组件。                       |
 | name   | string                                                       | 是   | 用户ID，指定具体用户，取值范围：大于等于0。                  |
 | type   | [osAccount.OsAccountType](../apis-basic-services-kit/js-apis-osAccount.md#osaccounttype) | 是   | 要添加的账号的类型。<br/>取值范围：ADMIN、NORMAL、GUEST。<br/>· ADMIN：管理员帐号。<br/>· NORMAL：普通账号。<br/>· GUEST：访客账号。 |
 

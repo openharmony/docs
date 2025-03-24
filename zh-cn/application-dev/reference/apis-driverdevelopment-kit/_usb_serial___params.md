@@ -5,7 +5,7 @@
 
 定义USB Serial DDK使用的USB串口参数。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **相关模块：**[USB Serial DDK](_serial_ddk.md)
 

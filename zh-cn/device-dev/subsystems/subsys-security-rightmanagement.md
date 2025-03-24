@@ -18,7 +18,7 @@
   | ohos.permission.MICROPHONE | user_grant（动态权限） | 此应用可随时使用麦克风进行录音。 | 
   | ohos.permission.WRITE_MEDIA | user_grant（动态权限） | 允许该应用写入您的音乐收藏。 | 
   | ohos.permission.DISTRIBUTED_DATASYNC | user_grant（动态权限） | 管控分布式数据传输能力。 | 
-  | ohos.permission.DISTRIBUTED_VIRTUALDEVICE | user_grant（动态权限） | 允许应用使用分布式虚拟能力 | 
+  | ohos.permission.DISTRIBUTED_VIRTUALDEVICE | user_grant（动态权限） | 允许应用使用分布式虚拟能力。 | 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 
@@ -54,7 +54,7 @@
 
 本部分以包管理器的应用权限开发为例进行讲解。开发过程中，首先需要明确涉及的敏感权限，并在config.json中声明该权限，在安装应用程序时，包管理器会调用应用权限管理组件的接口检查该权限是否被授予，若授予，安装流程正常进行，否则安装失败。
 
-1. 在开发过程中，包管理器明确需要安装应用的权限（ohos.permission.INSTALL_BUNDLE），并在config.json中声明该权限；
+1. 在开发过程中，包管理器明确需要安装应用的权限（ohos.permission.INSTALL_BUNDLE），并在config.json中声明该权限。
   FA模型：需要在config.json中声明权限，示例：
   ```json
   {
@@ -135,7 +135,7 @@
   }
   ```
 
-2. 当包管理器开发应用安装功能接口时，会调用权限管理相关接口检查自身是否具有安装应用程序的权限，例如：以安装应用的权限名"ohos.permission.INSTALL_BUNDLE"作为入参，调用CheckPermission接口检查包管理器是否具有安装应用的权限，如果有权限，安装流程继续执行，否则返回安装失败；
+2. 当包管理器开发应用安装功能接口时，会调用权限管理相关接口检查自身是否具有安装应用程序的权限，例如：以安装应用的权限名"ohos.permission.INSTALL_BUNDLE"作为入参，调用CheckPermission接口检查包管理器是否具有安装应用的权限，如果有权限，安装流程继续执行，否则返回安装失败。
      
    ```c++
    constexpr static char PERMISSION_INSTALL_BUNDLE[] = "ohos.permission.INSTALL_BUNDLE";

@@ -78,7 +78,7 @@
 | [OH_AudioScene](#oh_audioscene) { <br/>AUDIO_SCENE_DEFAULT = 0, <br/>AUDIO_SCENE_RINGING = 1, <br/>AUDIO_SCENE_PHONE_CALL = 2, <br/>AUDIO_SCENE_VOICE_CHAT = 3 } | 定义音频场景。  | 
 | [OH_AudioDevice_ChangeType](#oh_audiodevice_changetype) {<br/>AUDIO_DEVICE_CHANGE_TYPE_CONNECT = 0,<br/>AUDIO_DEVICE_CHANGE_TYPE_DISCONNECT = 1<br/>} | 定义音频设备更改类型。 | 
 | [OH_AudioDevice_Role](#oh_audiodevice_role) {<br/>AUDIO_DEVICE_ROLE_INPUT = 1,<br/>AUDIO_DEVICE_ROLE_OUTPUT = 2<br/>} | 定义音频设备角色。 | 
-| [OH_AudioDevice_Type](#oh_audiodevice_type) {<br/>AUDIO_DEVICE_TYPE_INVALID = 0,<br/>AUDIO_DEVICE_TYPE_EARPIECE = 1,<br/>AUDIO_DEVICE_TYPE_SPEAKER = 2,<br/>AUDIO_DEVICE_TYPE_WIRED_HEADSET = 3,<br/>AUDIO_DEVICE_TYPE_WIRED_HEADPHONES = 4,<br/>AUDIO_DEVICE_TYPE_BLUETOOTH_SCO = 7,<br/>AUDIO_DEVICE_TYPE_BLUETOOTH_A2DP = 8,<br/>AUDIO_DEVICE_TYPE_MIC = 15,<br/>AUDIO_DEVICE_TYPE_USB_HEADSET = 22,<br/>AUDIO_DEVICE_TYPE_DISPLAY_PORT = 23,<br/>AUDIO_DEVICE_TYPE_REMOTE_CAST = 24,<br/>AUDIO_DEVICE_TYPE_DEFAULT = 1000<br/>} | 定义音频设备类型。 | 
+| [OH_AudioDevice_Type](#oh_audiodevice_type) {<br/>AUDIO_DEVICE_TYPE_INVALID = 0,<br/>AUDIO_DEVICE_TYPE_EARPIECE = 1,<br/>AUDIO_DEVICE_TYPE_SPEAKER = 2,<br/>AUDIO_DEVICE_TYPE_WIRED_HEADSET = 3,<br/>AUDIO_DEVICE_TYPE_WIRED_HEADPHONES = 4,<br/>AUDIO_DEVICE_TYPE_BLUETOOTH_SCO = 7,<br/>AUDIO_DEVICE_TYPE_BLUETOOTH_A2DP = 8,<br/>AUDIO_DEVICE_TYPE_MIC = 15,<br/>AUDIO_DEVICE_TYPE_USB_HEADSET = 22,<br/>AUDIO_DEVICE_TYPE_DISPLAY_PORT = 23,<br/>AUDIO_DEVICE_TYPE_REMOTE_CAST = 24,<br/>AUDIO_DEVICE_TYPE_HDMI = 27,<br/>AUDIO_DEVICE_TYPE_LINE_DIGITAL = 28,<br/>AUDIO_DEVICE_TYPE_DEFAULT = 1000<br/>} | 定义音频设备类型。 | 
 | [OH_AudioDevice_Flag](#oh_audiodevice_flag) {<br/>AUDIO_DEVICE_FLAG_NONE = 0,<br/>AUDIO_DEVICE_FLAG_OUTPUT = 1,<br/>AUDIO_DEVICE_FLAG_INPUT = 2,<br/>AUDIO_DEVICE_FLAG_ALL = 3<br/>} | 定义音频设备标志。 | 
 | [OH_AudioDevice_Usage](#oh_audiodevice_usage) {<br/>AUDIO_DEVICE_USAGE_MEDIA_OUTPUT = 1, <br/>AUDIO_DEVICE_USAGE_MEDIA_INPUT = 2, <br/>AUDIO_DEVICE_USAGE_MEDIA_ALL = 3, <br/>AUDIO_DEVICE_USAGE_CALL_OUTPUT = 4,<br/>AUDIO_DEVICE_USAGE_CALL_INPUT = 8, <br/>AUDIO_DEVICE_USAGE_CALL_ALL = 12<br/>} | 定义可获取的设备种类。  | 
 | [OH_AudioDevice_BlockStatus](#oh_audiodevice_blockstatus) { <br/>AUDIO_DEVICE_UNBLOCKED = 0, <br/>AUDIO_DEVICE_BLOCKED = 1 } | 声明音频设备的堵塞状态。默认情况下，音频设备被视为未堵塞。 | 
@@ -86,10 +86,11 @@
 | [OH_AudioSession_DeactivatedReason](#oh_audiosession_deactivatedreason) { <br/>DEACTIVATED_LOWER_PRIORITY = 0, <br/>DEACTIVATED_TIMEOUT = 1 } | 音频会话停用原因。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) {<br/>AUDIOSTREAM_SUCCESS = 0,<br/>AUDIOSTREAM_ERROR_INVALID_PARAM = 1,<br/>AUDIOSTREAM_ERROR_ILLEGAL_STATE = 2,<br/>AUDIOSTREAM_ERROR_SYSTEM = 3<br/>} | 音频错误码。 | 
 | [OH_AudioStream_Type](#oh_audiostream_type) {<br/>AUDIOSTREAM_TYPE_RENDERER = 1,<br/>AUDIOSTREAM_TYPE_CAPTURER = 2<br/>} | 音频流类型。 | 
-| [OH_AudioStream_SampleFormat](#oh_audiostream_sampleformat) {<br/>AUDIOSTREAM_SAMPLE_U8 = 0,<br/>AUDIOSTREAM_SAMPLE_S16LE = 1,<br/>AUDIOSTREAM_SAMPLE_S24LE = 2,<br/>AUDIOSTREAM_SAMPLE_S32LE = 3<br/>} | 定义音频流采样格式。 | 
+| [OH_AudioStream_SampleFormat](#oh_audiostream_sampleformat) {<br/>AUDIOSTREAM_SAMPLE_U8 = 0,<br/>AUDIOSTREAM_SAMPLE_S16LE = 1,<br/>AUDIOSTREAM_SAMPLE_S24LE = 2,<br/>AUDIOSTREAM_SAMPLE_S32LE = 3,<br/>AUDIOSTREAM_SAMPLE_F32LE = 4<br/>} | 定义音频流采样格式。 | 
 | [OH_AudioStream_EncodingType](#oh_audiostream_encodingtype) { <br/>AUDIOSTREAM_ENCODING_TYPE_RAW = 0, <br/>AUDIOSTREAM_ENCODING_TYPE_AUDIOVIVID = 1 <br/>} | 定义音频流编码类型。  | 
 | [OH_AudioStream_Usage](#oh_audiostream_usage) {<br/>AUDIOSTREAM_USAGE_UNKNOWN = 0,<br/>AUDIOSTREAM_USAGE_MUSIC = 1,<br/>AUDIOSTREAM_USAGE_VOICE_COMMUNICATION = 2,<br/>AUDIOSTREAM_USAGE_VOICE_ASSISTANT = 3,<br/>AUDIOSTREAM_USAGE_ALARM = 4,<br/>AUDIOSTREAM_USAGE_VOICE_MESSAGE = 5,<br/>AUDIOSTREAM_USAGE_RINGTONE = 6,<br/>AUDIOSTREAM_USAGE_NOTIFICATION = 7,<br/>AUDIOSTREAM_USAGE_ACCESSIBILITY = 8,<br/>AUDIOSTREAM_USAGE_MOVIE = 10,<br/>AUDIOSTREAM_USAGE_GAME = 11,<br/>AUDIOSTREAM_USAGE_AUDIOBOOK = 12,<br/>AUDIOSTREAM_USAGE_NAVIGATION = 13,<br/>AUDIOSTREAM_USAGE_VIDEO_COMMUNICATION = 17<br/>} | 定义音频流使用场景。 | 
 | [OH_AudioStream_LatencyMode](#oh_audiostream_latencymode) {<br/>AUDIOSTREAM_LATENCY_MODE_NORMAL = 0,<br/>AUDIOSTREAM_LATENCY_MODE_FAST = 1<br/>} | 定义音频时延模式。 | 
+| [OH_AudioStream_VolumeMode](#oh_audiostream_volumemode) {<br/>AUDIOSTREAM_VOLUMEMODE_SYSTEM_GLOBAL = 0,<br/>AUDIOSTREAM_VOLUMEMODE_APP_INDIVIDUAL = 1 } | 定义音频流音量模式。 | 
 | [OH_AudioStream_State](#oh_audiostream_state) {<br/>AUDIOSTREAM_STATE_INVALID = -1,<br/>AUDIOSTREAM_STATE_NEW = 0,<br/>AUDIOSTREAM_STATE_PREPARED = 1,<br/>AUDIOSTREAM_STATE_RUNNING = 2,<br/>AUDIOSTREAM_STATE_STOPPED = 3,<br/>AUDIOSTREAM_STATE_RELEASED = 4,<br/>AUDIOSTREAM_STATE_PAUSED = 5<br/>} | 定义音频流的状态。 | 
 | [OH_AudioStream_SourceType](#oh_audiostream_sourcetype) {<br/>AUDIOSTREAM_SOURCE_TYPE_INVALID = -1,<br/>AUDIOSTREAM_SOURCE_TYPE_MIC = 0,<br/>AUDIOSTREAM_SOURCE_TYPE_VOICE_RECOGNITION = 1,<br/>AUDIOSTREAM_SOURCE_TYPE_PLAYBACK_CAPTURE = 2,<br/>AUDIOSTREAM_SOURCE_TYPE_VOICE_COMMUNICATION = 7,<br/>AUDIOSTREAM_SOURCE_TYPE_CAMCORDER = 13<br/>} | 定义音频流使用场景。 | 
 | [OH_AudioStream_Event](#oh_audiostream_event) {<br/>AUDIOSTREAM_EVENT_ROUTING_CHANGED = 0<br/>} | 定义音频事件。 | 
@@ -192,6 +193,7 @@
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetLatencyMode](#oh_audiostreambuilder_setlatencymode)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioStream_LatencyMode](#oh_audiostream_latencymode) latencyMode) | 设置音频流的时延模式。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetChannelLayout](#oh_audiostreambuilder_setchannellayout)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioChannelLayout](../apis-avcodec-kit/_core.md#oh_audiochannellayout-1) channelLayout) | 设置音频流的声道布局。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetRendererInfo](#oh_audiostreambuilder_setrendererinfo)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioStream_Usage](#oh_audiostream_usage) usage) | 设置输出音频流的工作场景。  | 
+| [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetVolumeMode](#oh_audiostreambuilder_setvolumemode) ([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioStream_VolumeMode](#oh_audiostream_volumemode) volumeMode) | 设置音频流音量模式。 | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetCapturerInfo](#oh_audiostreambuilder_setcapturerinfo)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioStream_SourceType](#oh_audiostream_sourcetype) sourceType) | 设置输入音频流的工作场景。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetRendererCallback](#oh_audiostreambuilder_setrenderercallback)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioRenderer_Callbacks](#oh_audiorenderer_callbacks) callbacks, void \*userData) | 设置输出音频流的回调。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetRendererOutputDeviceChangeCallback](#oh_audiostreambuilder_setrendereroutputdevicechangecallback)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioRenderer_OutputDeviceChangeCallback](#oh_audiorenderer_outputdevicechangecallback) callback, void \*userData) | 设置输出音频流设备变更的回调。  | 
@@ -655,6 +657,8 @@ enum OH_AudioDevice_Type
 | AUDIO_DEVICE_TYPE_USB_HEADSET | USB音频耳机。 | 
 | AUDIO_DEVICE_TYPE_DISPLAY_PORT | 显示端口（DisplayPort）设备。 | 
 | AUDIO_DEVICE_TYPE_REMOTE_CAST | 音频被系统应用投送到其他远程的设备。 | 
+| AUDIO_DEVICE_TYPE_HDMI | HDMI设备（例如HDMI、ARC、eARC等）。 | 
+| AUDIO_DEVICE_TYPE_LINE_DIGITAL | 有线数字设备（例如S/PDIF等）。 | 
 | AUDIO_DEVICE_TYPE_DEFAULT | 默认设备类型。 | 
 
 
@@ -947,6 +951,7 @@ enum OH_AudioStream_SampleFormat
 | AUDIOSTREAM_SAMPLE_S16LE  | Short 16位小端。   | 
 | AUDIOSTREAM_SAMPLE_S24LE  | Short 24位小端。   | 
 | AUDIOSTREAM_SAMPLE_S32LE  | Short 32位小端。   | 
+| AUDIOSTREAM_SAMPLE_F32LE  | Float 32位小端。<br>**起始版本：** 18   | 
 
 
 ### OH_AudioStream_SourceType
@@ -1044,6 +1049,24 @@ enum OH_AudioStream_Usage
 | AUDIOSTREAM_USAGE_AUDIOBOOK  | 有声读物（包括听书、相声、评书）、听新闻、播客等。   | 
 | AUDIOSTREAM_USAGE_NAVIGATION  | 导航。   | 
 | AUDIOSTREAM_USAGE_VIDEO_COMMUNICATION | VoIP视频通话。<br>**起始版本：** 12 | 
+
+
+### OH_AudioStream_VolumeMode
+
+```
+enum OH_AudioStream_VolumeMode
+```
+
+**描述**
+
+定义音频流音量模式。
+
+**起始版本：** 18
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| AUDIOSTREAM_VOLUMEMODE_SYSTEM_GLOBAL | 系统级音量（默认模式）。 | 
+| AUDIOSTREAM_VOLUMEMODE_APP_INDIVIDUAL | 应用级音量（设置为该模式后可以通过提供的接口设置、查询应用音量）。 | 
 
 
 ## 函数说明
@@ -3776,8 +3799,41 @@ AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
 AUDIOSTREAM_ERROR_INVALID_PARAM：
 
-  1. 参数builder为nullptr；
+  1. 参数builder为nullptr。
   2. 参数rate无效。
+
+
+### OH_AudioStreamBuilder_SetVolumeMode()
+
+```
+OH_AudioStream_Result OH_AudioStreamBuilder_SetVolumeMode(OH_AudioStreamBuilder* builder, OH_AudioStream_VolumeMode volumeMode);
+```
+
+**描述**
+
+设置音频流音量模式。
+
+**起始版本：** 18
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| builder | 指向OH_AudioStreamBuilder_Create()创建的构造器实例。 | 
+| volumeMode | 要设置的音频流音量模式。 | 
+
+**返回：**
+
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
+
+AUDIOSTREAM_SUCCESS：函数执行成功。 
+
+AUDIOSTREAM_ERROR_INVALID_PARAM：
+
+1. 参数builder为nullptr。
+2. 参数volumeMode无效。
 
 
 ### OH_AudioStreamBuilder_SetWriteDataWithMetadataCallback()

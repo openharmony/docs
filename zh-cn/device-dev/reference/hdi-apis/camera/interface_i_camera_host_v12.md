@@ -1,6 +1,5 @@
 # ICameraHost
 
-
 ## 概述
 
 定义Camera设备功能操作。
@@ -11,9 +10,7 @@
 
 **相关模块：**[Camera](_camera_v12.md)
 
-
 ## 汇总
-
 
 ### Public 成员函数
 
@@ -26,14 +23,12 @@
 | [PreCameraSwitch](#precameraswitch) ([in] String cameraId) | 切换镜头时预热相机设备。 | 
 | [PrelaunchWithOpMode](#prelaunchwithopmode) ([in] struct PrelaunchConfig config, [in] int operationMode) | 预启动Camera设备。 | 
 
-
 ## 成员函数说明
-
 
 ### NotifyDeviceStateChangeInfo()
 
 ```
-ICameraHost::NotifyDeviceStateChangeInfo ([in] int notifyType, [in] int deviceState )
+ICameraHost::NotifyDeviceStateChangeInfo ([in] int notifyType, [in] int deviceState)
 ```
 
 **描述**
@@ -57,11 +52,10 @@ NO_ERROR 表示执行成功。
 
 其他值表示执行失败，具体错误码查看[CamRetCode](_camera_v12.md#camretcode)。
 
-
 ### OpenCameraV1_2()
 
 ```
-ICameraHost::OpenCameraV1_2 ([in] String cameraId, [in] ICameraDeviceCallback callbackObj, [out] ICameraDevice device )
+ICameraHost::OpenCameraV1_2 ([in] String cameraId, [in] ICameraDeviceCallback callbackObj, [out] ICameraDevice device)
 ```
 
 **描述**
@@ -113,11 +107,10 @@ NO_ERROR 表示执行成功。
 
 其他值表示执行失败，具体错误码查看[CamRetCode](_camera_v12.md#camretcode)。
 
-
 ### PrelaunchWithOpMode()
 
 ```
-ICameraHost::PrelaunchWithOpMode ([in] struct PrelaunchConfig config, [in] int operationMode )
+ICameraHost::PrelaunchWithOpMode ([in] struct PrelaunchConfig config, [in] int operationMode)
 ```
 
 **描述**
@@ -132,8 +125,8 @@ ICameraHost::PrelaunchWithOpMode ([in] struct PrelaunchConfig config, [in] int o
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| config | 预启动配置. 详细可查看[PrelaunchConfig](_prelaunch_config_v11.md)。 | 
-| operationMode | 流操作模式. 详细可查看[OperationMode_V1_2](_camera_v12.md#operationmode_v1_2). | 
+| config | 预启动配置。 详细可查看[PrelaunchConfig](_prelaunch_config_v11.md)。 | 
+| operationMode | 流操作模式。 详细可查看[OperationMode_V1_2](_camera_v12.md#operationmode_v1_2)。 | 
 
 **返回：**
 

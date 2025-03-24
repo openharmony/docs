@@ -226,8 +226,8 @@ Enumerates the sensor types.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-| Name               | Value  | Description                                         |
-| ------------------- | ---- | --------------------------------------------- |
+| Name               | Value  | Description                                           |
+| ------------------- | ---- | ----------------------------------------------- |
 | COLOR<sup>10+</sup> | 14   | Color sensor.<br>System API: This is a system API.    |
 | SAR<sup>10+</sup>   | 15   | Sodium Adsorption Ratio (SAR) sensor.<br>System API: This is a system API.|
 

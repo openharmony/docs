@@ -7,11 +7,11 @@
 
 引用：
 
-- [input_controller.h](input__controller_8h.md)
+- input_controller.h
 
-- [input_reporter.h](input__reporter_8h.md)
+- input_reporter.h
 
-- [input_type.h](input__type_8h.md)
+- input_type.h
 
 **起始版本：** 1.0
 

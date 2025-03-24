@@ -52,7 +52,7 @@ Describe the notification capsule.
 
 Enumerates the statuses of the common live view.
 
-**System capability**: SystemCapability.Notification.Notification
+**System capability**: SystemCapability.Security.AccessToken
 
 **System API**: This is a system API.
 

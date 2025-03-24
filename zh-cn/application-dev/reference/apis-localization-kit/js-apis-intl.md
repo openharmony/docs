@@ -370,20 +370,20 @@ resolvedOptions(): DateTimeOptions
 | locale          | string  | 否    |区域参数，&nbsp;如：zh-Hans-CN。           |
 | dateStyle       | string  | 否     |日期显示格式，取值包括：<br>"long",&nbsp;"short",&nbsp;"medium",&nbsp;"full",&nbsp;"auto"。<br>不同取值的显示效果请参考[时间日期国际化表1](../../internationalization/i18n-time-date.md)。 |
 | timeStyle       | string  | 否     |时间显示格式，取值包括：<br>"long",&nbsp;"short",&nbsp;"medium",&nbsp;"full",&nbsp;"auto"。<br>不同取值的显示效果请参考[时间日期国际化表2](../../internationalization/i18n-time-date.md)。 |
-| hourCycle       | string  | 否     |时制格式，取值包括：<br>"h11",&nbsp;"h12",&nbsp;"h23",&nbsp;"h24"。<br>不同取值的显示效果请参考[时间日期国际化表5](../../internationalization/i18n-time-date.md)。 |
+| hourCycle       | string  | 否     |时制格式，取值包括：<br>"h11",&nbsp;"h12",&nbsp;"h23",&nbsp;"h24"。<br>不设置dateStyle或timeStyle参数时的显示效果请参考[时间日期国际化表5](../../internationalization/i18n-time-date.md)。<br>设置dateStyle或timeStyle参数时的显示效果请参考[时间日期国际化表6](../../internationalization/i18n-time-date.md)。 |
 | timeZone        | string  | 否     |使用的时区，取值为合法的IANA时区ID。                      |
 | numberingSystem | string  | 否     |数字系统，取值包括：<br>"adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。 |
 | hour12          | boolean | 否     | 是否使用12小时制，<br>同时设置hour12和hourCycle时，hourCycle不生效。<br>若hour12和hourCycle未设置且系统24小时开关打开时，hour12属性的默认值为false。|
-| weekday         | string  | 否     | 工作日的显示格式，取值包括：<br>"long",&nbsp;"short",&nbsp;"narrow",&nbsp;"auto"。<br>不同取值的显示效果请参考[时间日期国际化表4](../../internationalization/i18n-time-date.md)。 |
-| era             | string  | 否     | 时代的显示格式，取值包括：<br>"long",&nbsp;"short",&nbsp;"narrow",&nbsp;"auto"。<br>不同取值的显示效果请参考[时间日期国际化表9](../../internationalization/i18n-time-date.md)。 |
+| weekday         | string  | 否     | 星期的显示格式，取值包括：<br>"long",&nbsp;"short",&nbsp;"narrow",&nbsp;"auto"。<br>不同取值的显示效果请参考[时间日期国际化表4](../../internationalization/i18n-time-date.md)。 |
+| era             | string  | 否     | 纪元的显示格式，取值包括：<br>"long",&nbsp;"short",&nbsp;"narrow",&nbsp;"auto"。<br>不同取值的显示效果请参考[时间日期国际化表9](../../internationalization/i18n-time-date.md)。 |
 | year            | string  | 否     | 年份的显示格式，取值包括：<br>"numeric",&nbsp;"2-digit"。<br>不同取值的显示效果请参考[时间日期国际化表3](../../internationalization/i18n-time-date.md)。  |
 | month           | string  | 否    | 月份的显示格式，取值包括：<br>"numeric",&nbsp;"2-digit",&nbsp;"long",&nbsp;"short",&nbsp;"narrow",&nbsp;"auto"。<br>不同取值的显示效果请参考[时间日期国际化表6](../../internationalization/i18n-time-date.md)。 |
 | day             | string  | 否     | 日期的显示格式，取值包括：<br>"numeric",&nbsp;"2-digit"。  |
 | hour            | string  | 否     | 小时的显示格式，取值包括：<br>"numeric",&nbsp;"2-digit"。  |
 | minute          | string  | 否     | 分钟的显示格式，取值包括：<br>"numeric",&nbsp;"2-digit"。  |
 | second          | string  | 否     | 秒钟的显示格式，取值包括：<br>"numeric",&nbsp;"2-digit"。  |
-| timeZoneName    | string  | 否     | 时区名称的本地化表示，取值包括：<br>"long",&nbsp;"short",&nbsp;"auto"。<br>不同取值的显示效果请参考[时间日期国际化表7](../../internationalization/i18n-time-date.md)。   |
-| dayPeriod       | string  | 否     | 时段的显示格式，取值包括：<br>"long",&nbsp;"short",&nbsp;"narrow",&nbsp;"auto"。<br>不同取值的显示效果请参考[时间日期国际化表8](../../internationalization/i18n-time-date.md)。 |
+| timeZoneName    | string  | 否     | 时区名称的本地化表示，取值包括：<br>"long",&nbsp;"short",&nbsp;"auto"。<br>不同取值的显示效果请参考[时间日期国际化表8](../../internationalization/i18n-time-date.md)。   |
+| dayPeriod       | string  | 否     | 时段的显示格式，取值包括：<br>"long",&nbsp;"short",&nbsp;"narrow",&nbsp;"auto"。<br>不同取值的显示效果请参考[时间日期国际化表10](../../internationalization/i18n-time-date.md)。 |
 | localeMatcher   | string  | 否     | 要使用的区域匹配算法，取值包括：<br>"lookup"：精确匹配；<br>"best&nbsp;fit"：最佳匹配。 |
 | formatMatcher   | string  | 否     | 要使用的格式匹配算法，取值包括：<br>"basic"：精确匹配；<br>"best&nbsp;fit"：最佳匹配。 |
 

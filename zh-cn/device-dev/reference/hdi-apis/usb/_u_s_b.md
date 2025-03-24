@@ -40,14 +40,14 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [USB_MAX_INTERFACES](#usb_max_interfaces)&nbsp;&nbsp;&nbsp;32 | USB设备最大接口数量 | 
+| [USB_MAX_INTERFACES](#usb_max_interfaces)&nbsp;&nbsp;&nbsp;32 | USB设备最大接口数量。 | 
 
 
 ### 类型定义
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef void(\* [UsbdRequestCallback](#usbdrequestcallback)) (uint8_t \*requestArg) | 请求回调函数 | 
+| typedef void(\* [UsbdRequestCallback](#usbdrequestcallback)) (uint8_t \*requestArg) | 请求回调函数。 | 
 
 
 ### 枚举
@@ -62,9 +62,9 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| static const int32_t [USB_ENDPOINT_DIR_MASK](#usb_endpoint_dir_mask) = 0x80 | 从地址中提取USB Endpoint方向的位掩码 | 
-| static const int32_t [USB_ENDPOINT_DIR_IN](#usb_endpoint_dir_in) = 0x80 | USB Endpoint从设备到主机的数据方向 | 
-| static const int32_t [USB_ENDPOINT_DIR_OUT](#usb_endpoint_dir_out) = 0 | USB Endpoint从主机到设备的数据方向 | 
+| static const int32_t [USB_ENDPOINT_DIR_MASK](#usb_endpoint_dir_mask) = 0x80 | 从地址中提取USB Endpoint方向的位掩码。 | 
+| static const int32_t [USB_ENDPOINT_DIR_IN](#usb_endpoint_dir_in) = 0x80 | USB Endpoint从设备到主机的数据方向。 | 
+| static const int32_t [USB_ENDPOINT_DIR_OUT](#usb_endpoint_dir_out) = 0 | USB Endpoint从主机到设备的数据方向。 | 
 
 
 ## 宏定义说明
@@ -79,7 +79,7 @@
 **描述**
 
 
-USB设备最大接口数量
+USB设备最大接口数量。
 
 
 ## 类型定义说明
@@ -94,7 +94,7 @@ typedef void(* UsbdRequestCallback) (uint8_t *requestArg)
 **描述**
 
 
-请求回调函数
+请求回调函数。
 
 
 ## 枚举类型说明
@@ -115,8 +115,8 @@ enum UsbdBulkCbCmd
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| CMD_USBD_BULK_CALLBACK_READ | 批量回调读取 | 
-| CMD_USBD_BULK_CALLBACK_WRITE | 批量回调写入 | 
+| CMD_USBD_BULK_CALLBACK_READ | 批量回调读取。 | 
+| CMD_USBD_BULK_CALLBACK_WRITE | 批量回调写入。 | 
 
 
 ### UsbdDeviceAction
@@ -134,10 +134,10 @@ enum UsbdDeviceAction
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ACT_DEVUP | 主机端接入设备 | 
-| ACT_DEVDOWN | 主机端拔出设备 | 
-| ACT_UPDEVICE | 设备连接 | 
-| ACT_DOWNDEVICE | 设备断开 | 
+| ACT_DEVUP | 主机端接入设备。 | 
+| ACT_DEVDOWN | 主机端拔出设备。 | 
+| ACT_UPDEVICE | 设备连接。 | 
+| ACT_DOWNDEVICE | 设备断开。 | 
 
 
 ## 变量说明
@@ -152,7 +152,7 @@ const int32_t USB_ENDPOINT_DIR_IN = 0x80
 **描述**
 
 
-USB Endpoint从设备到主机的数据方向
+USB Endpoint从设备到主机的数据方向。
 
 
 ### USB_ENDPOINT_DIR_MASK
@@ -164,7 +164,7 @@ const int32_t USB_ENDPOINT_DIR_MASK = 0x80
 **描述**
 
 
-从地址中提取USB Endpoint方向的位掩码
+从地址中提取USB Endpoint方向的位掩码。
 
 
 ### USB_ENDPOINT_DIR_OUT
@@ -176,4 +176,4 @@ const int32_t USB_ENDPOINT_DIR_OUT = 0
 **描述**
 
 
-USB Endpoint从主机到设备的数据方向
+USB Endpoint从主机到设备的数据方向。

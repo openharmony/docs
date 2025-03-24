@@ -20,7 +20,7 @@
 以下Node-API接口主要用于与ArkTS交互时处理错误和异常情况。他们的使用场景如下：
 | 接口 | 描述 |
 | -------- | -------- |
-| napi_create_error、napi_create_type_error、napi_create_range_error | 在C/C++中需要创建一个错误对象时，可以使用这些函数。创建的错误对象可以使用napi_throw抛出到ArkTS |
+| napi_create_error、napi_create_type_error、napi_create_range_error | 在C/C++中需要创建一个错误对象时，可以使用这些函数。创建的错误对象可以使用napi_throw抛出到ArkTS。 |
 | napi_throw | 当在C/C++中出现了错误或异常情况时，通过使用napi_create_error或napi_get_last_error_info方法创建或获取ArkTS Error对象，使用该方法抛出已有的ArkTS Error对象。 |
 | napi_throw_error、napi_throw_type_error、napi_throw_range_error | 当在C/C++中出现了错误或异常情况时，可以使用这些函数来抛出ArkTS中的异常。 |
 | napi_is_error | 检查一个napi_value是否代表一个错误对象时，可以使用这个函数。 |
@@ -41,7 +41,6 @@ cpp部分代码
 
 ```cpp
 #include "napi/native_api.h"
-#include <assert.h>
 static napi_value GetLastErrorInfo(napi_env env, napi_callback_info info)
 {
     // 获取输入参数（这里以字符串message作为参数传入）
@@ -52,12 +51,18 @@ static napi_value GetLastErrorInfo(napi_env env, napi_callback_info info)
     int32_t value = 0;
     napi_status status = napi_get_value_int32(env, args[0], &value);
     // 接口使用错误，故返回值不为napi_ok
-    assert(status != napi_ok);
+    if (status != napi_ok) {
+        OH_LOG_INFO(LOG_APP, "Test Node-API napi_get_value_int32 return status, status is not equal to napi_ok.");
+    }
+
     // 调用接口napi_get_last_error_info获取最后一次错误信息
     const napi_extended_error_info *errorInfo;
     napi_get_last_error_info(env, &errorInfo);
     // 取出错误码与接口调用错误后其返回值作比较
-    assert(errorInfo->error_code == status);
+    if (errorInfo->error_code == status) {
+        OH_LOG_INFO(LOG_APP, "Test Node-API napi_get_last_error_info return errorInfo, error_code equal to status.");
+    }
+
     // 取出错误消息作为返回值带出去打印
     napi_value result = nullptr;
     napi_create_string_utf8(env, errorInfo->error_message, NAPI_AUTO_LENGTH, &result);

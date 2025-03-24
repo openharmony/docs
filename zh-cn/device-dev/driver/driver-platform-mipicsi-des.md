@@ -63,7 +63,7 @@ MIPI CSI主要用于连接摄像头组件。
 
 ### 接口说明
 
-MIPI CSI模块提供的主要接口如表1所示，具体API详见//drivers/hdf_core/framework/include/platform/mipi_csi_if.h。
+MIPI CSI模块提供的主要接口如表1所示，具体API[详见](https://gitee.com/openharmony/drivers_hdf_core/blob/master/framework/include/platform/mipi_csi_if.h)。
 
 **表 1** ComboDevAttr结构体介绍
 

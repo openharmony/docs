@@ -52,7 +52,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Print_ErrorCode](#print_errorcode)[OH_Print_StartPrintByNative](#oh_print_startprintbynative) (const char \*printJobName, [Print_PrintDocCallback](_print___print_doc_callback.md) printDocCallback, void \*context) | 拉起打印预览界面接口。  | 
+| [Print_ErrorCode](#print_errorcode) [OH_Print_StartPrintByNative](#oh_print_startprintbynative) (const char \*printJobName, [Print_PrintDocCallback](_print___print_doc_callback.md) printDocCallback, void \*context) | 拉起打印预览界面接口。  | 
 
 
 ## 类型定义说明

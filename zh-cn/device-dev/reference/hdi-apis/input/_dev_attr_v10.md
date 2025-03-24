@@ -18,7 +18,7 @@ Input设备属性。
 | 名称 | 描述 | 
 | -------- | -------- |
 | String [devName](#devname) | 设备名  | 
-| struct [DevIdentify](_dev_identify_v10.md)[id](#id) | 设备识别信息  | 
+| struct [DevIdentify](_dev_identify_v10.md) [id](#id) | 设备识别信息  | 
 | struct [DimensionInfo](_dimension_info_v10.md)[] [axisInfo](#axisinfo) | 设备维度信息  | 
 
 

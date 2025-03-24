@@ -14,7 +14,6 @@ The **BundlePackInfo** module provides information in the **pack.info** file. Th
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.FreeInstall
 
-
 | Name    | Type                                   | Read-Only| Optional| Description                     |
 | -------- | --------------------------------------- | ---- | ---- | ------------------------- |
 | packages | Array\<[PackageConfig](#packageconfig)> | Yes  | No  | Package configuration information in the **pack.info** file.      |
@@ -31,7 +30,7 @@ The **BundlePackInfo** module provides information in the **pack.info** file. Th
 | deviceTypes          | Array\<string> | Yes  | No  | Device types supported by the bundle.                                      |
 | name                | string         | Yes  | No  | Bundle name.                                                  |
 | moduleType          | string         | Yes  | No  | Module type of the bundle.                                            |
-| deliveryWithInstall | boolean        | Yes  | No  | Whether the HAP file will be installed when the user installs the bundle. The value **true** means that the HAP file will be automatically installed when the user installs the bundle, and **false** means the opposite.|
+| deliveryWithInstall | boolean        | Yes  | No  | Whether the installation should occur during user-initiated installation. The value **true** means that the installation should occur during user-initiated installation, and **false** means the opposite.|
 
 ## PackageSummary
 
@@ -78,7 +77,7 @@ The **BundlePackInfo** module provides information in the **pack.info** file. Th
 
 | Name               | Type   | Read-Only| Optional| Description                                                        |
 | ------------------- | ------- | ---- | ---- | ------------------------------------------------------------ |
-| deliveryWithInstall | boolean | Yes  | No  | Whether the HAP file will be installed when the user installs the bundle. The value **true** means that the HAP file will be automatically installed when the user installs the bundle, and **false** means the opposite.|
+| deliveryWithInstall | boolean | Yes  | No  | Whether the installation should occur during user-initiated installation. The value **true** means that the installation should occur during user-initiated installation, and **false** means the opposite.|
 | installationFree    | boolean | Yes  | No  | Whether the HAP file supports the installation-free feature. The value **true** means that the HAP file supports the installation-free feature and meets installation-free constraints, and **false** means the opposite.|
 | moduleName          | string  | Yes  | No  | Module name.                                                |
 | moduleType          | string  | Yes  | No  | Module type.                                                |
@@ -93,7 +92,7 @@ The **BundlePackInfo** module provides information in the **pack.info** file. Th
 | ------- | ------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | name    | string                                      | Yes  | No  | Name of the ability. The name must be unique in the bundle.           |
 | label   | string                                      | Yes  | No  | Name of the ability displayed to users. The value is a resource index to names in multiple languages.|
-| exported | boolean                                     | Yes  | No  | Whether the ability can be called by other bundles. The value **true** means that the ability can be called by other bundles, and **false** means the opposite.|
+| exported | boolean                                     | Yes  | No  | Whether the ability can be invoked by other applications. The value **true** means that it can be invoked by other applications, and the value **false** means the opposite.|
 | forms   | Array\<[AbilityFormInfo](#abilityforminfo)> | Yes  | No  | Widget information.                                                  |
 
 ## ExtensionAbility

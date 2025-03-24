@@ -9,7 +9,7 @@
 
 > **说明：**
 >
-> - 该组件从API Version 16开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 导入模块
@@ -27,7 +27,7 @@ import { SubHeader } from '@kit.ArkUI'
 
 不支持[通用属性](ts-component-general-attributes.md)。
 
-## SubHeader
+## SubHeaderV2
 
 SubHeaderV2({
 icon?: SubHeaderV2IconType,
@@ -41,7 +41,7 @@ operationItems?: SubHeaderV2OperationItem
 
 **装饰器类型：** @ComponentV2
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -60,7 +60,7 @@ type SubHeaderV2IconType = ResourceStr | SymbolGlyphModifier
 
 图标内容的联合类型。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -76,7 +76,7 @@ type SubHeaderV2IconType = ResourceStr | SymbolGlyphModifier
 
 ### 属性
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -93,11 +93,13 @@ constructor(options: SubHeaderV2TitleOptions)
 
 标题内容信息SubHeaderV2Title构造函数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 名称    | 类型                                                  | 必填 | 说明             |
+| 参数名    | 类型                                                  | 必填 | 说明             |
 | --------- |-----------------------------------------------------| ------ | ------------------ |
 | options | [SubHeaderV2TitleOptions](#subheaderv2titleoptions) | 是   | 标题内容信息。 |
 
@@ -105,11 +107,11 @@ constructor(options: SubHeaderV2TitleOptions)
 
 用于构建SubHeaderV2Title对象。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 属性 | 类型 | 必填  | 说明                          |
+| 名称 | 类型 | 必填  | 说明                          |
 | -------- | -------- | -------- |-----------------------------|
 | primaryTitle|  [ResourceStr](ts-types.md#resourcestr)  | 否 | 标题内容。<br />默认值：undefined                       |
 | secondaryTitle|  [ResourceStr](ts-types.md#resourcestr)  | 否 | 副标题内容。<br />默认值：undefined                      |
@@ -124,16 +126,17 @@ select内容以及事件。
 
 ### 属性
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 属性 | 类型                                                               | 必填 | 装饰器类型| 说明                                                                        |
+| 名称 | 类型                                                               | 必填 | 装饰器类型| 说明                                                                        |
 | -------- |------------------------------------------------------------------| -------- | -------- |---------------------------------------------------------------------------|
 | options | [SelectOption](ts-basic-components-select.md#selectoption对象说明)[] | 是 | @Trace | 下拉选项内容。                                                                   |
 | selectedIndex | number                                                           | 否 |@Trace | 设置下拉菜单初始选项的索引。<br />第一项的索引为0。<br />当不设置selected属性时，<br />默认选择值为-1，菜单项不选中。 |
 | selectedContent | string                                                           | 否 | @Trace | 设置下拉按钮本身的文本内容。默认值''                                                       |
 | onSelect | [SubHeaderV2SelectOnSelect](#subheaderv2selectonselect)                                   | 否 | @Trace | 下拉菜单选中某一项的回调。 <br />默认值：undefined                                               |
+| defaultFocus | boolean | 否 | 下拉按钮是否为默认焦点。<br/>true：下拉按钮是默认焦点。<br/>false：下拉按钮不是默认焦点。<br />默认值：false                                  |
 
 ### constructor
 
@@ -141,11 +144,13 @@ constructor(options: SubHeaderV2SelectOptions)
 
 select内容以及事件构造函数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 名称    | 类型                            | 必填 | 说明             |
+| 参数名    | 类型                            | 必填 | 说明             |
 | --------- |-------------------------------| ------ | ------------------ |
 | options | [SubHeaderV2SelectOptions](#subheaderv2selectoptions) | 是   | 下拉选项信息。 |
 
@@ -153,7 +158,7 @@ select内容以及事件构造函数。
 
 用于构建SubHeaderV2Select对象。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -163,29 +168,30 @@ select内容以及事件构造函数。
 | selectedIndex | number                                                           | 否 | 设置下拉菜单初始选项的索引。<br />第一项的索引为0。<br />当不设置selected属性时，<br />默认选择值为-1，菜单项不选中。 |
 | selectedContent | string                                                           | 否 | 设置下拉按钮本身的文本内容。默认值''。                                                      |
 | onSelect | [SubHeaderV2SelectOnSelect](#subheaderv2selectonselect)          | 否 | 下拉菜单选中某一项的回调。<br />默认值：undefined                                                |
+| defaultFocus | boolean | 否 | 下拉按钮是否为默认焦点。<br/>true：下拉按钮是默认焦点。<br/>false：下拉按钮不是默认焦点。<br />默认值：false                                  |
 
 ## SubHeaderV2SelectOnSelect
 
-type SubHeaderV2SelectOnSelect = (selectIndex: number, selectContent?: string) => void
+type SubHeaderV2SelectOnSelect = (selectedIndex: number, selectedContent?: string) => void
 
 下拉菜单选中某一项的回调类型。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-|参数名 | 类型      |必填                                             | 说明                  |
-| ------------------------------- |---------|-------------|---------------------|
-| selectIndex | number  |否 | 下拉菜单选中某一项的回调类型。表示选中项的索引。<br />默认值：undefined           |
-| selectContent | number  |否 | 下拉菜单选中某一项的回调类型。表示选中项的值。<br />默认值：undefined |
+| 类型            | 说明                                          |
+|:--------------|:--------------------------------------------|
+| selectIndex   | 下拉菜单选中某一项的回调类型。表示选中项的索引。 |
+| selectContent | 下拉菜单选中某一项的回调类型。表示选中项的值。|
 
 ## SubHeaderV2OperationType
 
 操作区元素样式。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -202,7 +208,7 @@ type SubHeaderV2OperationItemType = ResourceStr | SymbolGlyphModifier
 
 操作区元素内容的联合类型。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -215,11 +221,11 @@ type SubHeaderV2OperationItemType = ResourceStr | SymbolGlyphModifier
 
 操作区的设置项。
 
-### 属性
-
 **装饰器类型：** @ObservedV2
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+### 属性
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -230,6 +236,7 @@ type SubHeaderV2OperationItemType = ResourceStr | SymbolGlyphModifier
 | accessibilityText |[ResourceStr](ts-types.md#resourcestr) | 否 |@Trace | 子标题右侧icon图标无障碍描述。 <br />默认值：undefined                     |
 | accessibilityLevel |[string](ts-types.md#resourcestr) | 否 |@Trace | 子标题右侧icon图标无障碍重要性。<br>默认值: “yes”。                   | 
 | accessibilityDescription|[ResourceStr](ts-types.md#resourcestr) | 否 |@Trace | 子标题右侧icon图标无障碍说明，用于为用户进一步说明当前组件。<br>默认值：“单指双击即可执行”。 |
+| defaultFocus | boolean | 否 | 子标题右侧按钮是否为默认焦点。<br/>true：子标题右侧按钮是默认焦点。<br/>false：子标题右侧按钮不是默认焦点。<br />默认值：false                                                                                                                                            |
 
 ### constructor
 
@@ -237,11 +244,13 @@ constructor(options: SubHeaderV2OperationItemOptions)
 
 下拉选项信息SubHeaderV2OperationItem的构造函数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 名称    | 类型             | 必填 | 说明             |
+| 参数名    | 类型             | 必填 | 说明             |
 | --------- | -------------------- | ------ | ------------------ |
 | options | SubHeaderV2OperationItemOptions| 是   | 下拉选项信息。 |
 
@@ -251,7 +260,7 @@ type SubHeaderV2OperationItemAction = () => void
 
 操作区的设置项的回调事件类型。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -259,17 +268,18 @@ type SubHeaderV2OperationItemAction = () => void
 
 用于构建SubHeaderV2OperationItem对象。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                       | 类型                                          | 必填  | 说明                                                  |
 |--------------------------|---------------------------------------------| -------- |-----------------------------------------------------|
-| value                    | [SubHeaderV2IconType](#subheaderv2icontype) | 是 | 文本内容。                                               |
+| content                  | [SubHeaderV2OperationItemType](#subheaderv2operationitemtype) | 是 | 文本内容。                                               |
 | action                   | [SubHeaderV2OperationItemAction](#subheaderv2operationitemaction)         | 否 | 选项操作事件。默认值() => void。                               |
 | accessibilityText        | [ResourceStr](ts-types.md#resourcestr)      | 否 | 子标题右侧icon图标无障碍描述。<br />默认值：undefined                      |
 | accessibilityLevel       | [string](ts-types.md#resourcestr)           | 否 | 子标题右侧icon图标无障碍重要性。<br>默认值: “yes”。                   | 
 | accessibilityDescription | [ResourceStr](ts-types.md#resourcestr)      | 否 | 子标题右侧icon图标无障碍说明，用于为用户进一步说明当前组件。<br>默认值：“单指双击即可执行”。 |
+| defaultFocus | boolean | 否 | 子标题右侧按钮是否为默认焦点。<br/>true：子标题右侧按钮是默认焦点。<br/>false：子标题右侧按钮不是默认焦点。<br />默认值：false                                                                                                                                            |
 
 ## SubHeaderV2TitleBuilder
 
@@ -277,12 +287,12 @@ type SubHeaderV2TitleBuilder= () => void
 
 自定义标题区内容的回调事件类型。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## 事件
-支持[通用事件](ts-component-general-events.md)
+不支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 ### 示例1（效率型子标题）

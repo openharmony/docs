@@ -9,7 +9,7 @@ Worker的上下文对象和UI主线程的上下文对象是不同的，Worker线
 Worker使用过程中的相关注意点请查[Worker注意事项](../../arkts-utils/worker-introduction.md#worker注意事项)。
 
 > **说明：**<br/>
-> 本模块首批接口从API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -24,8 +24,8 @@ import { worker } from '@kit.ArkTS';
 
 | 名称                              | 类型                                                         | 可读 | 可写 | 说明                                                         |
 | --------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| workerPort<sup>9+</sup>           | [ThreadWorkerGlobalScope](#threadworkerglobalscope9)         | 是   | 是   | worker线程用于与宿主线程通信的对象。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。                         |
-| parentPort<sup>(deprecated)</sup> | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | 是   | 是   | worker线程用于与宿主线程通信的对象。<br/>此属性从API version 7开始支持,从API version 9 开始被废弃。<br/>建议使用workerPort<sup>9+</sup>替代。 |
+| workerPort<sup>9+</sup>           | [ThreadWorkerGlobalScope](#threadworkerglobalscope9)         | 是   | 是   | worker线程用于与宿主线程通信的对象。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。                         |
+| parentPort<sup>(deprecated)</sup> | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | 是   | 是   | worker线程用于与宿主线程通信的对象。<br/>此属性从API version 7开始支持,从API version 9开始被废弃。<br/>建议使用workerPort<sup>9+</sup>替代。 |
 
 
 ## WorkerOptions
@@ -36,26 +36,26 @@ Worker构造函数的选项信息，用于为Worker添加其他信息。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | -------- | ---- | ---- | -------------- |
-| type | 'classic' \| 'module' | 是   | 是 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。<br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。 |
-| name | string   | 是   | 是 | Worker的名称，默认值为 undefined 。<br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。|
+| type | 'classic' \| 'module' | 是   | 是 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| name | string   | 是   | 是 | Worker的名称，默认值为 undefined 。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | shared | boolean | 是   | 是 | 表示Worker共享功能，此接口暂不支持。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| priority<sup>16+</sup> | [ThreadWorkerPriority](#threadworkerpriority16) | 是   | 是 | 表示Worker线程优先级。 <br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
+| priority<sup>18+</sup> | [ThreadWorkerPriority](#threadworkerpriority18) | 是   | 是 | 表示Worker线程优先级。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 
-## ThreadWorkerPriority<sup>16+</sup>
+## ThreadWorkerPriority<sup>18+</sup>
 
 Worker线程的优先级枚举，各优先级对应关系请参考[QoS等级](../../napi/qos-guidelines.md#qos等级定义)。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| HIGH   | 0    | 高优先级，对应 QOS_USER_INITIATED。 |
-| MEDIUM | 1 | 中优先级，对应 QOS_DEFAULT。 |
-| LOW | 2 | 低优先级，对应 QOS_UTILITY。 |
-| IDLE | 3 | 后台优先级，对应 QOS_BACKGROUND。 |
+| HIGH   | 0    | 高优先级，对应QOS_USER_INITIATED。 |
+| MEDIUM | 1 | 中优先级，对应QOS_DEFAULT。 |
+| LOW | 2 | 低优先级，对应QOS_UTILITY。 |
+| IDLE | 3 | 后台优先级，对应QOS_BACKGROUND。 |
 
 
 ## ThreadWorker<sup>9+</sup>
@@ -68,7 +68,7 @@ constructor(scriptURL: string, options?: WorkerOptions)
 
 ThreadWorker构造函数。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -114,7 +114,7 @@ postMessage(message: Object, transfer: ArrayBuffer[]): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -209,7 +209,7 @@ postMessage(message: Object, options?: PostMessageOptions): void
 
 宿主线程通过转移对象所有权或者拷贝数据的方式向Worker线程发送消息。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -248,7 +248,7 @@ postMessageWithSharedSendable(message: Object, transfer?: ArrayBuffer[]): void
 
 宿主线程向Worker线程发送消息，消息中的Sendable对象通过引用传递，消息中的非Sendable对象通过序列化传递。
 
-**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -542,7 +542,7 @@ terminate(): void
 
 销毁Worker线程，终止Worker接收消息。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -568,7 +568,7 @@ onexit?: (code: number) =&gt; void
 
 回调函数。表示Worker销毁时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中code类型为number，异常退出为1，正常退出为0。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -605,7 +605,7 @@ onerror?: (err: ErrorEvent) =&gt; void
 
 回调函数。表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中err类型为[ErrorEvent](#errorevent)，表示收到的异常数据。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -630,7 +630,7 @@ workerInstance.onerror = (err: ErrorEvent) => {
 }
 ```
 
-### onAllErrors<sup>16+</sup>
+### onAllErrors<sup>18+</sup>
 
 onAllErrors?: ErrorCallback
 
@@ -638,7 +638,7 @@ onAllErrors?: ErrorCallback
 [onerror](#onerror9)仅捕获[onmessage](#onmessage9)回调中同步方法产生的异常，无法捕获多线程回调产生的异常和模块化相关异常，且onerror捕获异常后Worker线程进入销毁流程，不可以继续使用。<br/>
 onAllErrors可以捕获Worker线程的onmessage回调、timer回调以及文件执行等流程产生的全局异常，且onAllErrors捕获异常后Worker线程仍存活可以继续使用。推荐使用onAllErrors代替onerror。
 
-**原子化服务API**：从API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -668,7 +668,7 @@ onmessage?: (event: MessageEvents) =&gt; void
 
 回调函数。表示宿主线程接收到来自其创建的Worker通过workerPort.postMessage接口发送的消息时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中event类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -702,7 +702,7 @@ onmessageerror?: (event: MessageEvents) =&gt; void
 
 回调函数。表示当Worker对象接收到一条无法被序列化的消息时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中event类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -821,7 +821,7 @@ dispatchEvent(event: Event): boolean
 
 | 类型    | 说明                            |
 | ------- | ------------------------------- |
-| boolean | 分发的结果，true表示分发成功，false表示分发失败。 |
+| boolean | 分发的结果。true表示分发成功，false表示分发失败。 |
 
 **错误码：**
 
@@ -1011,7 +1011,7 @@ dispatchEvent(event: Event): boolean
 
 | 类型    | 说明                            |
 | ------- | ------------------------------- |
-| boolean | 分发的结果，false表示分发失败。 |
+| boolean | 分发的结果。true表示分发成功，false表示分发失败。。 |
 
 **错误码：**
 
@@ -1114,7 +1114,7 @@ postMessage(messageObject: Object, transfer: ArrayBuffer[]): void;
 
 Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1165,7 +1165,7 @@ postMessage(messageObject: Object, options?: PostMessageOptions): void
 
 Worker线程通过转移对象所有权或者拷贝数据的方式向宿主线程发送消息。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1216,7 +1216,7 @@ postMessageWithSharedSendable(message: Object, transfer?: ArrayBuffer[]): void
 
 Worker线程向宿主线程发送消息，消息中的Sendable对象通过引用传递，消息中的非Sendable对象通过序列化传递。
 
-**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1370,7 +1370,7 @@ close(): void
 
 销毁Worker线程，终止Worker接收消息。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1408,7 +1408,7 @@ onmessage?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
 
 回调函数。ThreadWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[ThreadWorkerGlobalScope](#threadworkerglobalscope9)，ev类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1449,7 +1449,7 @@ onmessageerror?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
 
 回调函数。ThreadWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[ThreadWorkerGlobalScope](#threadworkerglobalscope9)，ev类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1533,7 +1533,7 @@ Worker线程自身的运行环境，GlobalScope类继承[WorkerEventTarget](#wor
 
 ### 属性
 
-**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1549,7 +1549,7 @@ onerror?: (ev: ErrorEvent) =&gt; void
 
 回调函数。GlobalScope的onerror属性表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在Worker线程中执行。其中回调函数中ev类型为[ErrorEvent](#errorevent)，表示收到的异常数据。
 
-**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1576,7 +1576,7 @@ workerPort.onerror = (err: ErrorEvent) => {
 
 消息类，持有Worker线程间传递的数据。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1590,7 +1590,7 @@ type MessageType = 'message' | 'messageerror';
 
 表示消息类型。
 
-**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1599,13 +1599,13 @@ type MessageType = 'message' | 'messageerror';
 | 'message'  | 表示消息类型为message，值固定为'message'字符串。 |
 | 'messageerror'  | 表示消息类型为messageerror，值固定为'messageerror'字符串。 |
 
-## ErrorCallback<sup>16+</sup>
+## ErrorCallback<sup>18+</sup>
 
 type ErrorCallback = (err: ErrorEvent) => void
 
 表示异常回调类型。
 
-**原子化服务API：** 从API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1620,7 +1620,7 @@ type ErrorCallback = (err: ErrorEvent) => void
 使用以下方法前，均需先构造Worker实例，Worker类继承[EventTarget](#eventtargetdeprecated)。
 
 > **说明：**<br/>
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker<sup>9+</sup>](#threadworker9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorker<sup>9+</sup>](#threadworker9)替代。
 
 ### constructor<sup>(deprecated)</sup>
 
@@ -1629,7 +1629,7 @@ constructor(scriptURL: string, options?: WorkerOptions)
 Worker构造函数。
 
 > **说明：**<br/>
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.constructor<sup>9+</sup>](#constructor9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorker.constructor<sup>9+</sup>](#constructor9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1664,7 +1664,7 @@ postMessage(message: Object, transfer: ArrayBuffer[]): void
 宿主线程通过转移对象所有权的方式向Worker线程发送消息。
 
 > **说明：**<br/>
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.postMessage<sup>9+</sup>](#postmessage9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorker.postMessage<sup>9+</sup>](#postmessage9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1691,7 +1691,7 @@ postMessage(message: Object, options?: PostMessageOptions): void
 宿主线程通过转移对象所有权或者拷贝数据的方式向Worker线程发送消息。
 
 > **说明：**<br/>
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.postMessage<sup>9+</sup>](#postmessage9-1)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorker.postMessage<sup>9+</sup>](#postmessage9-1)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1721,7 +1721,7 @@ on(type: string, listener: EventListener): void
 向Worker添加一个事件监听，该接口与[addEventListener<sup>(deprecated)</sup>](#addeventlistenerdeprecated)接口功能一致。
 
 > **说明：**<br/>
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.on<sup>9+</sup>](#on9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorker.on<sup>9+</sup>](#on9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1749,7 +1749,7 @@ once(type: string, listener: EventListener): void
 向Worker添加一个事件监听，事件监听只执行一次便自动删除。
 
 > **说明：**<br/>
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.once<sup>9+</sup>](#once9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorker.once<sup>9+</sup>](#once9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1777,7 +1777,7 @@ off(type: string, listener?: EventListener): void
 删除类型为type的事件监听，该接口与[removeEventListener<sup>(deprecated)</sup>](#removeeventlistenerdeprecated)接口功能一致。
 
 > **说明：**<br/>
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.off<sup>9+</sup>](#off9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorker.off<sup>9+</sup>](#off9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1804,7 +1804,7 @@ terminate(): void
 销毁Worker线程，终止Worker接收消息。
 
 > **说明：**<br/>
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.terminate<sup>9+</sup>](#terminate9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorker.terminate<sup>9+</sup>](#terminate9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1823,7 +1823,7 @@ onexit?: (code: number) =&gt; void
 回调函数。表示Worker销毁时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中code类型为number，异常退出为1，正常退出为0。
 
 > **说明：**<br/>
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.onexit<sup>9+</sup>](#onexit9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorker.onexit<sup>9+</sup>](#onexit9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1851,7 +1851,7 @@ onerror?: (err: ErrorEvent) =&gt; void
 回调函数。表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中err类型为[ErrorEvent](#errorevent)，表示收到的异常数据。
 
 > **说明：**<br/>
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.onerror<sup>9+</sup>](#onerror9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorker.onerror<sup>9+</sup>](#onerror9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1874,7 +1874,7 @@ onmessage?: (event: MessageEvent) =&gt; void
 回调函数。表示宿主线程接收到来自其创建的Worker通过workerPort.postMessage接口发送的消息时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中event类型为[MessageEvent](#messageeventt)，表示收到的Worker消息数据。
 
 > **说明：**<br/>
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.onmessage<sup>9+</sup>](#onmessage9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorker.onmessage<sup>9+</sup>](#onmessage9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1897,7 +1897,7 @@ onmessageerror?: (event: MessageEvent) =&gt; void
 回调函数。表示当Worker对象接收到一条无法被序列化的消息时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中event类型为[MessageEvent](#messageeventt)，表示收到的Worker消息数据。
 
 > **说明：**<br/>
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.onmessageerror<sup>9+</sup>](#onmessageerror9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorker.onmessageerror<sup>9+</sup>](#onmessageerror9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1915,7 +1915,7 @@ workerInstance.onmessageerror = (err) => {
 
 ## EventTarget<sup>(deprecated)</sup>
 > **说明：**<br/>
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[WorkerEventTarget<sup>9+</sup>](#workereventtarget9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[WorkerEventTarget<sup>9+</sup>](#workereventtarget9)替代。
 
 ### addEventListener<sup>(deprecated)</sup>
 
@@ -1924,7 +1924,7 @@ addEventListener(type: string, listener: EventListener): void
 向Worker添加一个事件监听，该接口与[on<sup>(deprecated)</sup>](#ondeprecated)接口功能一致。
 
 > **说明：**<br/>
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[addEventListener<sup>9+</sup>](#addeventlistener9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[addEventListener<sup>9+</sup>](#addeventlistener9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1938,9 +1938,13 @@ addEventListener(type: string, listener: EventListener): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ets");
-workerInstance.addEventListener("alert", ()=>{
-    console.log("alert listener callback");
+// worker.ets
+import { DedicatedWorkerGlobalScope, ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
+
+const workerPort: DedicatedWorkerGlobalScope = worker.parentPort;
+
+workerPort.addEventListener("alert", () => {
+  console.info("alert listener callback");
 })
 ```
 
@@ -1952,7 +1956,7 @@ removeEventListener(type: string, callback?: EventListener): void
 删除Worker的事件监听，该接口与[off<sup>(deprecated)</sup>](#offdeprecated)接口功能一致。
 
 > **说明：**<br/>
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[removeEventListener<sup>9+</sup>](#removeeventlistener9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[removeEventListener<sup>9+</sup>](#removeeventlistener9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1966,11 +1970,16 @@ removeEventListener(type: string, callback?: EventListener): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ets");
-workerInstance.addEventListener("alert", ()=>{
-    console.log("alert listener callback");
+// worker.ets
+import { DedicatedWorkerGlobalScope, ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
+
+const workerPort: DedicatedWorkerGlobalScope = worker.parentPort;
+
+workerPort.addEventListener("alert", () => {
+  console.info("alert listener callback");
 })
-workerInstance.removeEventListener("alert");
+
+workerPort.removeEventListener('alert');
 ```
 
 
@@ -1981,7 +1990,7 @@ dispatchEvent(event: Event): boolean
 分发定义在Worker的事件。
 
 > **说明：**<br/>
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[dispatchEvent<sup>9+</sup>](#dispatchevent9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[dispatchEvent<sup>9+</sup>](#dispatchevent9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1995,57 +2004,51 @@ dispatchEvent(event: Event): boolean
 
 | 类型    | 说明                            |
 | ------- | ------------------------------- |
-| boolean | 分发的结果，false表示分发失败。 |
+| boolean | 分发的结果。true表示分发成功，false表示分发失败。 |
 
 **示例：**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ets");
+// worker.ets
+import { DedicatedWorkerGlobalScope, ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
 
-workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); //timeStamp暂未支持。
+const workerPort: DedicatedWorkerGlobalScope = worker.parentPort;
+
+workerPort.addEventListener("alert_add", ()=>{
+  console.info("alert listener callback");
+})
+
+workerPort.dispatchEvent({type: 'alert_add', timeStamp: 0}); //timeStamp暂未支持。
 ```
 
-分发事件（dispatchEvent）可与监听接口（on、once、addEventListener）搭配使用，示例如下：
+分发事件（dispatchEvent）可与监听接口（addEventListener）搭配使用，示例如下：
 
 ```ts
+// main thread
+import { worker } from '@kit.ArkTS';
+
 const workerInstance = new worker.Worker("workers/worker.ets");
-
-//用法一:
-workerInstance.on("alert_on", ()=>{
-    console.log("alert listener callback");
-})
-workerInstance.once("alert_once", ()=>{
-    console.log("alert listener callback");
-})
-workerInstance.addEventListener("alert_add", ()=>{
-    console.log("alert listener callback");
-})
-
-//once接口创建的事件执行一次便会删除。
-workerInstance.dispatchEvent({type:"alert_once", timeStamp:0});//timeStamp暂未支持。
-//on接口创建的事件可以一直被分发，不能主动删除。
-workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
-workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
-//addEventListener接口创建的事件可以一直被分发，不能主动删除。
-workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
-workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
-
-//用法二:
-//event类型的type支持自定义，同时存在"message"/"messageerror"/"error"特殊类型，如下所示
-//当type = "message"，onmessage接口定义的方法同时会执行。
-//当type = "messageerror"，onmessageerror接口定义的方法同时会执行。
-//当type = "error"，onerror接口定义的方法同时会执行。
-//若调用removeEventListener接口或者off接口取消事件时，能且只能取消使用addEventListener/on/once创建的事件。
-
-workerInstance.addEventListener("message", ()=>{
-    console.log("message listener callback");
-})
-workerInstance.onmessage = function() {
-    console.log("onmessage : message listener callback");
+workerInstance.postMessage("hello world");
+workerInstance.onmessage = (): void => {
+    console.info("receive data from worker.ets");
 }
-//调用dispatchEvent分发“message”事件，addEventListener和onmessage中定义的方法都会被执行。
-workerInstance.dispatchEvent({type:"message", timeStamp:0});
 ```
+
+```ts
+// worker.ets
+import { DedicatedWorkerGlobalScope, ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
+
+const workerPort: DedicatedWorkerGlobalScope = worker.parentPort;
+
+workerPort.addEventListener("alert", ()=>{
+  console.info("alert listener callback");
+})
+
+workerPort.onmessage = (event: MessageEvents) => {
+  workerPort.dispatchEvent({type:"alert", timeStamp:0}); //timeStamp暂未支持。
+}
+```
+
 ### removeAllListener<sup>(deprecated)</sup>
 
 removeAllListener(): void
@@ -2053,18 +2056,23 @@ removeAllListener(): void
 删除Worker所有的事件监听。
 
 > **说明：**<br/>
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[removeAllListener<sup>9+</sup>](#removealllistener9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[removeAllListener<sup>9+</sup>](#removealllistener9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
 **示例：**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ets");
-workerInstance.addEventListener("alert", ()=>{
-    console.log("alert listener callback");
+// worker.ets
+import { DedicatedWorkerGlobalScope, ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
+
+const workerPort: DedicatedWorkerGlobalScope = worker.parentPort;
+
+workerPort.addEventListener("alert_add", ()=>{
+  console.info("alert listener callback");
 })
-workerInstance.removeAllListener();
+
+workerPort.removeAllListener();
 ```
 
 
@@ -2073,7 +2081,7 @@ workerInstance.removeAllListener();
 Worker线程用于与宿主线程通信的类，通过postMessage接口发送消息给宿主线程、close接口销毁Worker线程。DedicatedWorkerGlobalScope类继承[WorkerGlobalScope](#workerglobalscopedeprecated)。
 
 > **说明：**<br/>
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9)替代。
 
 ### postMessage<sup>(deprecated)</sup>
 
@@ -2082,7 +2090,7 @@ postMessage(messageObject: Object, transfer: Transferable[]): void
 Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
 > **说明：**<br/>
-> 此接口暂不支持使用，从API version 9 开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>.postMessage<sup>9+</sup>](#postmessage9-2)替代。
+> 此接口暂不支持使用，从API version 9开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>.postMessage<sup>9+</sup>](#postmessage9-2)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2100,7 +2108,7 @@ postMessage(messageObject: Object, transfer: ArrayBuffer[]): void
 Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
 > **说明：**<br/>
-> DedicatedWorkerGlobalScope类自API version 9 开始废弃，本接口建议使用[ThreadWorkerGlobalScope<sup>9+</sup>.postMessage<sup>9+</sup>](#postmessage9-2)替代。
+> DedicatedWorkerGlobalScope类自API version 9开始废弃，本接口建议使用[ThreadWorkerGlobalScope<sup>9+</sup>.postMessage<sup>9+</sup>](#postmessage9-2)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2143,7 +2151,7 @@ postMessage(messageObject: Object, options?: PostMessageOptions): void
 Worker线程通过转移对象所有权或者拷贝数据的方式向宿主线程发送消息。
 
 > **说明：**<br/>
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>.postMessage<sup>9+</sup>](#postmessage9-3)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>.postMessage<sup>9+</sup>](#postmessage9-3)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2184,7 +2192,7 @@ close(): void
 销毁Worker线程，终止Worker接收消息。
 
 > **说明：**<br/>
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>.close<sup>9+</sup>](#close9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>.close<sup>9+</sup>](#close9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2214,7 +2222,7 @@ onmessage?: (this: DedicatedWorkerGlobalScope, ev: MessageEvent) =&gt; void
 回调函数，DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated)，ev类型为[MessageEvent](#messageeventt)，表示收到的Worker消息数据。
 
 > **说明：**<br/>
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>.onmessage<sup>9+</sup>](#onmessage9-1)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>.onmessage<sup>9+</sup>](#onmessage9-1)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2245,7 +2253,7 @@ onmessageerror?: (this: DedicatedWorkerGlobalScope, ev: MessageEvent) =&gt; void
 DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[DedicatedWorkerGlobalScope](#threadworkerglobalscope9)，ev类型为[MessageEvent](#dedicatedworkerglobalscopedeprecated)，表示收到的Worker消息数据。
 
 > **说明：**<br/>
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>.onmessageerror<sup>9+</sup>](#onmessageerror9-1)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>.onmessageerror<sup>9+</sup>](#onmessageerror9-1)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2272,7 +2280,7 @@ parentPort.onmessageerror = () => {
 
 明确数据传递过程中需要转移所有权对象的类，传递所有权的对象必须是ArrayBuffer，发送它的上下文中将会变为不可用，仅在接收方可用。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2285,7 +2293,7 @@ parentPort.onmessageerror = () => {
 
 事件类。
 
-**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2301,7 +2309,7 @@ parentPort.onmessageerror = () => {
 
 > **说明：**
 >
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[WorkerEventListener<sup>9+</sup>](#workereventlistener9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[WorkerEventListener<sup>9+</sup>](#workereventlistener9)替代。
 
 ### (evt: Event)<sup>(deprecated)</sup>
 
@@ -2309,7 +2317,7 @@ parentPort.onmessageerror = () => {
 
 > **说明：**
 >
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[(event:Event)<sup>9+</sup>](#event-event9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[(event:Event)<sup>9+</sup>](#event-event9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2339,7 +2347,7 @@ workerInstance.addEventListener("alert", ()=>{
 
 错误事件类，用于表示Worker执行过程中出现异常的详细信息，ErrorEvent类继承[Event](#event)。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2370,7 +2378,7 @@ workerInstance.addEventListener("alert", ()=>{
 Worker线程自身的运行环境，WorkerGlobalScope类继承[EventTarget](#eventtargetdeprecated)。
 
 > **说明：**<br/>
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[GlobalScope<sup>9+</sup>](#globalscope9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[GlobalScope<sup>9+</sup>](#globalscope9)替代。
 
 ### 属性
 
@@ -2389,7 +2397,7 @@ onerror?: (ev: ErrorEvent) =&gt; void
 WorkerGlobalScope的onerror属性表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在Worker线程中执行。其中回调函数中ev类型为[ErrorEvent](#errorevent)，表示收到的异常数据。
 
 > **说明：**<br/>
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[GlobalScope<sup>9+</sup>.onerror<sup>9+</sup>](#onerror9-1)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[GlobalScope<sup>9+</sup>.onerror<sup>9+</sup>](#onerror9-1)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2537,7 +2545,7 @@ workerPort.onerror = (err: ErrorEvent) => {
   }
 ```
 ### Stage模型
-> 此处以API version 16的工程为例。
+> 此处以API version 18的工程为例。
 ```ts
 // Index.ets
 import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';

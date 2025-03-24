@@ -952,7 +952,10 @@ async function example() {
 
 showAssetsCreationDialog(srcFileUris: Array&lt;string&gt;, photoCreationConfigs: Array&lt;PhotoCreationConfig&gt;): Promise&lt;Array&lt;string&gt;&gt;
 
-调用接口拉起保存确认弹窗。用户同意保存后，返回已创建并授予保存权限的uri列表，该列表永久生效，应用可使用该uri写入图片/视频。如果用户拒绝保存，将返回空列表。
+调用接口拉起保存确认弹窗。用户同意保存后，返回已创建并授予保存权限的uri列表，该列表永久生效，应用可使用该uri写入图片/视频。如果用户拒绝保存，将返回空列表。弹框需要显示应用名称，无法直接获取应用名称，依赖于配置项的label和icon，因此调用此接口时请确保module.json5文件中的abilities标签中配置了label和icon项。
+
+> **说明：**
+> 当传入uri为沙箱路径时，可正常保存图片/视频，但无界面预览。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -969,7 +972,7 @@ showAssetsCreationDialog(srcFileUris: Array&lt;string&gt;, photoCreationConfigs:
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回给应用的媒体库文件uri列表。Uri已对应用授权，支持应用写入数据。如果生成uri异常，则返回批量创建错误码。<br>返回-3006表不允许出现非法字符；返回-2004表示图片类型和后缀不符；返回-203表示文件操作异常。 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回给应用的媒体库文件uri列表。Uri已对应用授权，支持应用写入数据。如果生成uri异常，则返回批量创建错误码。<br>返回-3006表示不允许出现非法字符；返回-2004表示图片类型和后缀不符；返回-203表示文件操作异常。 |
 
 **错误码：**
 
@@ -1137,13 +1140,13 @@ async function example() {
 }
 ```
 
-### getSupportedPhotoFormats<sup>16+</sup>
+### getSupportedPhotoFormats<sup>18+</sup> 
 
 getSupportedPhotoFormats(photoType: PhotoType): Promise&lt;Array&lt;string&gt;&gt;
 
 接口提供给应用调用，获取媒体库支持的图片或者视频后缀列表。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -1885,63 +1888,6 @@ async function example() {
   } catch (error) {
     console.error(`failed to get new asset. message =  ${error.code}, ${error.message}`);
   }
-}
-```
-
-### getThumbnailData<sup>18+</sup>
-
-getThumbnailData(type: photoAccessHelper.ThumbnailType): Promise&lt;ArrayBuffer&gt;
-
-获取文件缩略图的ArrayBuffer，传入缩略图的类型，使用promise异步回调。
-
-**需要权限**：ohos.permission.READ_IMAGEVIDEO
-
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-**参数：**
-
-| 参数名  | 类型             | 必填   | 说明    |
-| ---- | -------------- | ---- | ----- |
-| type | [photoAccessHelper.ThumbnailType](./js-apis-photoAccessHelper-sys.md#thumbnailtype13) | 是    | 缩略图类型。 |
-
-**返回值：**
-
-| 类型                            | 说明                    |
-| ----------------------------- | --------------------- |
-| Promise\<ArrayBuffer> | Promise对象，返回缩略图的ArrayBuffer。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 13900012     | Permission denied.         |
-| 13900020     | Invalid argument.         |
-| 14000011       | System inner fail.         |
-
-**示例：**
-
-```ts
-import { dataSharePredicates } from '@kit.ArkData';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-async function example() {
-  console.info('getThumbnailDataDemo');
-  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption: photoAccessHelper.FetchOptions = {
-    fetchColumns: [],
-    predicates: predicates
-  };
-  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  let asset = await fetchResult.getFirstObject();
-  console.info('asset displayName = ', asset.displayName);
-  asset.getThumbnailData(photoAccessHelper.ThumbnailType.LCD).then((buffer: ArrayBuffer) => {
-    console.info('getThumbnailData successful, buffer byteLength = ${buffer.byteLength}');
-  }).catch((err: BusinessError) => {
-    console.error(`getThumbnailData fail with error: ${err.code}, ${err.message}`);
-  });
 }
 ```
 
@@ -3267,7 +3213,7 @@ static createImageAssetRequest(context: Context, fileUri: string): MediaAssetCha
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
-| fileUri | string | 是   | 图片资产的数据来源，在应用沙箱下的uri。 |
+| fileUri | string | 是   | 图片资产的数据来源，在应用沙箱下的uri。示例fileUri为：'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg'。 |
 
 **返回值：**
 
@@ -3317,7 +3263,7 @@ static createVideoAssetRequest(context: Context, fileUri: string): MediaAssetCha
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
-| fileUri | string | 是   | 视频资产的数据来源，在应用沙箱下的uri。 |
+| fileUri | string | 是   | 视频资产的数据来源，在应用沙箱下的uri。示例fileUri为：'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.mp4'。 |
 
 **返回值：**
 
@@ -3424,7 +3370,7 @@ static deleteAssets(context: Context, assets: Array&lt;PhotoAsset&gt;): Promise&
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
-| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 待删除的媒体文件数组。 |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 待删除的媒体文件数组，最大删除数量300。 |
 
 **返回值：**
 
@@ -3480,7 +3426,7 @@ static deleteAssets(context: Context, uriList: Array&lt;string&gt;): Promise&lt;
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
-| uriList | Array&lt;string&gt; | 是   | 待删除的媒体文件uri数组。 |
+| uriList | Array&lt;string&gt; | 是   | 待删除的媒体文件uri数组，最大删除数量300。 |
 
 **返回值：**
 
@@ -3691,7 +3637,7 @@ addResource(type: ResourceType, fileUri: string): void
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
 | type | [ResourceType](#resourcetype11) | 是   | 待添加资源的类型。 |
-| fileUri | string | 是   | 待添加资源的数据来源，在应用沙箱下的uri。 |
+| fileUri | string | 是   | 待添加资源的数据来源，在应用沙箱下的uri。示例fileUri为：'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg'。 |
 
 **错误码：**
 
@@ -4080,7 +4026,7 @@ addAssets(assets: Array&lt;PhotoAsset&gt;): void
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 待添加到相册中的资产数组。 |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 待添加到相册中的资产数组，最大数量300。 |
 
 **错误码：**
 
@@ -4132,7 +4078,7 @@ removeAssets(assets: Array&lt;PhotoAsset&gt;): void
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 待从相册中移除的资产数组。 |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 待从相册中移除的资产数组，最大数量300。 |
 
 **错误码：**
 
@@ -4423,7 +4369,7 @@ static requestVideoFile(context: Context, asset: PhotoAsset, requestOptions: Req
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                      | 是   | 传入Ability实例的Context。|
 | asset | [PhotoAsset](#photoasset)                                            | 是   | 待请求的的媒体文件对象。 |
 | requestOptions  | [RequestOptions](#requestoptions11)                                  | 是   | 视频请求策略模式配置项。|
-| fileUri| string                                                              | 是 | 目标写入沙箱路径Uri。 |
+| fileUri| string                                                              | 是 | 目标写入沙箱路径Uri。示例fileUri为：'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.mp4'。 |
 | dataHandler  | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;boolean&gt; | 是   | 媒体资源处理器，当所请求的视频资源写入完成时会触发回调。|
 
 **返回值：**
@@ -4489,7 +4435,7 @@ static cancelRequest(context: Context, requestId: string): Promise\<void>
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                      | 是   | 传入Ability实例的Context。 |
-| requestId | string     | 是   | 需要取消的请求id。 |
+| requestId | string     | 是   | 需要取消的请求id，requestImage等接口返回的有效requestId。 |
 
 **返回值：**
 
@@ -4734,7 +4680,7 @@ map支持返回的信息：
 |------|---| ---- |-------------------------------------------------------------------------------|
 | data | T | 是   | 已就绪的图片资源数据。泛型，支持[Picture](../apis-image-kit/js-apis-image.md#picture13)数据类型。 |
 | imageSource | image.ImageSource | 是   | 已就绪的图片资源数据。 |
-| map<sup>13+</sup> | Map<string, string> | 是   | 用于获取图片资源的额外信息，如图片质量。 |
+| map<sup>13+</sup> | Map<string, string> | 是   | 用于获取图片资源的额外信息，如图片质量。当前仅支持'quality'。 |
 
 **示例**
 ```ts
@@ -4837,8 +4783,8 @@ requestContent(imageFileUri: string, videoFileUri: string): Promise\<void>
 
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
-| imageFileUri | string                      | 是   | 待写入动态照片图片内容的uri。 |
-| videoFileUri | string                                            | 是   | 待写入动态照片视频内容的uri。 |
+| imageFileUri | string                      | 是   | 待写入动态照片图片内容的uri。示例imageFileUri为："file://com.example.temptest/data/storage/el2/base/haps/ImageFile.jpg"。 |
+| videoFileUri | string                                            | 是   | 待写入动态照片视频内容的uri。示例videoFileUri为："file://com.example.temptest/data/storage/el2/base/haps/VideoFile.mp4"。 |
 
 **返回值：**
 
@@ -5144,6 +5090,18 @@ PhotoAsset的成员类型。
 | IMAGE<sup>12+</sup>               | 1031       | 图片相册。                           |
 | ANY                               | 2147483647 | 任意相册。                           |
 
+## PositionType<sup>16+</sup>
+
+枚举，文件位置，表示文件在本地或云端。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| LOCAL |  1  |  文件只存在于本端设备。 |
+| CLOUD |  2  |  文件只存在于云端。 |
+| LOCAL_AND_CLOUD |  3  |  文件存在于本端设备和云端。 |
+
 ## PhotoKeys
 
 枚举，图片和视频文件关键信息。
@@ -5175,6 +5133,7 @@ PhotoAsset的成员类型。
 | THM_SIZE<sup>12+</sup>  | 'thm_size'  | THUMB图片的宽高，值为width:height拼接而成的字符串。|
 | DETAIL_TIME<sup>13+</sup>  | 'detail_time'  | 大图浏览时间，值为拍摄时对应时区的时间的字符串，不会跟随时区变化。|
 | DATE_TAKEN_MS<sup>13+</sup>  | 'date_taken_ms'  | 拍摄时的Unix时间戳（单位：毫秒）。 |
+| POSITION<sup>16+</sup>  | 'position'            | 文件位置类型。                               |
 
 ## AlbumKeys
 
@@ -5214,7 +5173,7 @@ title参数规格为：
 
 | 名称                   | 类型                | 可读 | 可写 | 说明                                              |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询。<br>对于照片，如果该参数为空，默认查询'uri'、'media_type'、'subtype'和'display_name'，使用[get](#get)接口获取当前对象的其他属性时将会报错。示例：fetchColumns: ['uri', 'title']。<br>对于相册，如果该参数为空，默认查询'uri'和'album_name'。 |
+| fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询。<br>对于照片，如果该参数为空，默认查询'uri'、'media_type'、'subtype'和'display_name'，使用[get](#get)接口获取当前对象的其他属性时将会报错。示例：fetchColumns: ['uri', 'title']。<br>对于相册，如果该参数为空，默认查询'uri'和'album_name'。字符串长度为1~255。 |
 | predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 是   | 谓词查询，显示过滤条件。 |
 
 ## RequestOptions<sup>11+</sup>
@@ -5371,7 +5330,7 @@ async function example() {
 
 | 名称                    | 类型                | 必填 | 说明                          |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
-| text | string   | 否   | 如果需要根据文本(支持250字以内的简体中文)推荐相应的图片，则配置此参数。 |
+| text | string   | 否   | 如果需要根据文本(支持250字以内的简体中文)推荐相应的图片，则配置此参数。text默认是空字符串。 |
 
 **示例：**
 
@@ -5483,10 +5442,10 @@ async function example() {
 
 | 名称                   | 类型                | 必填 | 说明                                              |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
-| title | string | 否  | 图片或者视频的标题。|
+| title | string | 否  | 图片或者视频的标题。参数规格为：<br>- 不应包含扩展名。<br>- 文件名字符串长度为1~255（资产文件名为标题+扩展名）。<br>- 不允许出现非法字符，包括：. \ / : * ? " ' ` < > \| { } [ ]|
 | fileNameExtension | string | 是  | 文件扩展名，例如'jpg'。|
-| photoType | [PhotoType](#phototype) | 是  | 创建的文件类型，IMAGE或者VIDEO。|
-| subtype | [PhotoSubtype](#photosubtype12) | 否  | 图片或者视频的文件子类型，当前仅支持DEFAULT。|
+| photoType | [PhotoType](#phototype) | 是  | 创建的文件类型[PhotoType](#phototype)，IMAGE或者VIDEO。|
+| subtype | [PhotoSubtype](#photosubtype12) | 否  | 图片或者视频的文件子类型[PhotoSubtype](#photosubtype12)，当前仅支持DEFAULT。|
 
 ## CompatibleMode<sup>15+</sup>
 
