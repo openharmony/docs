@@ -11,7 +11,6 @@
 ```ts
 import { cloudSync } from '@kit.CoreFileKit';
 ```
-
 ## SyncState<sup>12+</sup>
 
 端云同步状态，为枚举类型。
@@ -38,9 +37,9 @@ import { cloudSync } from '@kit.CoreFileKit';
 - 当前阶段，同步过程中，当开启无限量使用移动数据网络，移动数据网络和WIFI均不可用时，才会返回NETWORK_UNAVAILABLE；开启无限量使用移动数据网络，若有一种类型网络可用，则能正常同步。
 - 同步过程中，非充电场景下，电量低于10%，完成当前批上行同步后停止同步，返回低电量；
 - 触发同步时，非充电场景下，若电量低于10%，则不允许同步，start接口返回对应错误。
-- 上行时，若云端空间不足，则文件上行失败，云端无该文件记录
+- 上行时，若云端空间不足，则文件上行失败，云端无该文件记录。
 
-**系统能力**： SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 | 名称 |  值|  说明 |
 | ----- |  ---- |  ---- |
@@ -199,7 +198,7 @@ off(event: 'progress', callback?: Callback\<SyncProgress>): void
 
 start(): Promise&lt;void&gt;
 
-异步方法启动云盘端云同步, 以Promise形式返回结果。
+异步方法启动云盘端云同步,以Promise形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -236,9 +235,9 @@ start(): Promise&lt;void&gt;
   fileSync.on('progress', callback);
 
   fileSync.start().then(() => {
-	  console.info("start sync successfully");
+    console.info("start sync successfully");
   }).catch((err: BusinessError) => {
-	  console.error("start sync failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("start sync failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -246,7 +245,7 @@ start(): Promise&lt;void&gt;
 
 start(callback: AsyncCallback&lt;void&gt;): void
 
-异步方法启动云盘端云同步, 以callback形式返回结果。
+异步方法启动云盘端云同步,以callback形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -289,7 +288,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 stop(): Promise&lt;void&gt;
 
-异步方法停止云盘端云同步, 以Promise形式返回结果。
+异步方法停止云盘端云同步,以Promise形式返回结果。
 
 调用stop接口，同步流程会停止。再次调用[start](#start12)接口会继续同步。
 
@@ -319,9 +318,9 @@ stop(): Promise&lt;void&gt;
   let fileSync = new cloudSync.FileSync();
 
   fileSync.stop().then(() => {
-	  console.info("stop sync successfully");
+    console.info("stop sync successfully");
   }).catch((err: BusinessError) => {
-	  console.error("stop sync failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("stop sync failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -329,7 +328,7 @@ stop(): Promise&lt;void&gt;
 
 stop(callback: AsyncCallback&lt;void&gt;): void
 
-异步方法停止云盘端云同步, 以callback形式返回结果。
+异步方法停止云盘端云同步,以callback形式返回结果。
 
 调用stop接口，同步流程会停止。再次调用[start](#start12)接口会继续同步。
 
@@ -402,7 +401,7 @@ getLastSyncTime(): Promise&lt;number&gt;
     let date = new Date(timeStamp);
     console.info("get last sync time successfully:"+ date);
   }).catch((err: BusinessError) => {
-	  console.error("get last sync time failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("get last sync time failed with error message: " + err.message + ", error code: " + err.code);
   });
 
   ```
@@ -447,7 +446,6 @@ getLastSyncTime(callback: AsyncCallback&lt;number&gt;): void
     }
   });
   ```
-
 
 ## CloudFileCache<sup>11+</sup>
 
@@ -813,7 +811,7 @@ registerChange(uri: string, recursion: boolean, callback: Callback&lt;ChangeData
     } else if (changeData.type== cloudSync.NotifyType.NOTIFY_DELETED) {
       //file had removed, do something
     }
-	}
+  }
   cloudSync.registerChange(uri, false, onCallback1);
   // 取消注册监听
   cloudSync.unRegisterChange(uri);
@@ -858,7 +856,7 @@ unregisterChange(uri: string): void
     } else if (changeData.type== cloudSync.NotifyType.NOTIFY_DELETED) {
       //file had removed, do something
     }
-	}
+  }
   cloudSync.registerChange(uri, false, onCallback1);
   // 取消注册监听
   cloudSync.unRegisterChange(uri);
@@ -868,8 +866,7 @@ unregisterChange(uri: string): void
 
 数据变更通知类型。
 
-**系统能力**： SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
+**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 | 名称 |  值|  说明 |
 | ----- |  ---- |  ---- |
@@ -882,8 +879,7 @@ unregisterChange(uri: string): void
 
 定义变更数据。
 
-**系统能力**： SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
+**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 | 名称     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
