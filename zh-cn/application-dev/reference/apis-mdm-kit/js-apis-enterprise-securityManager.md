@@ -490,7 +490,7 @@ try {
 
 setWatermarkImage(admin: Want, bundleName: string, source: string | image.PixelMap, accountId: number): void
 
-设置水印策略，当前仅支持2in1使用。
+设置水印策略，当前仅支持2in1设备使用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -539,7 +539,7 @@ try {
 
 cancelWatermarkImage(admin: Want, bundleName: string, accountId: number): void
 
-取消水印策略，当前仅支持2in1使用。
+取消水印策略，当前仅支持2in1设备使用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 

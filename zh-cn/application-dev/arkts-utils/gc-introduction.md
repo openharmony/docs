@@ -31,7 +31,7 @@ function main() {
   let parent: Parent = new Parent();
   let child: Child = new Child();
   parent.child = child;
-
+  child.parent = parent;
 }
 ```
 比如以上代码中，对象parent被另一个对象child持有，对象parent引用计数加1，同时child也被parent持有，对象child引用计数也加1，这就是循环引用。一直到main函数结束后，对象parent和child依然无法释放，导致内存泄漏。
@@ -227,7 +227,7 @@ heap中会生成两个Semi Space供copying使用。
 
 #### Full GC
 
-- **触发机制：** 不会由内存阈值触发。应用切换后台之后，如果预测能回收的对象尺寸大于2M会触发一次Full GC。DumpHeapSnapshot 和 AllocationTracker 工具默认会触发Full GC。Native 接口和JS/TS 也有接口可以触发。
+- **触发机制：** 不会由内存阈值触发。应用切换后台之后，如果预测能回收的对象尺寸大于2M会触发一次Full GC。DumpHeapSnapshot 和 AllocationTracker 工具默认会触发Full GC。Native 接口和ArkTS 也有接口可以触发。
 - **说明：** 会对年轻代和老年代做全量压缩，主要用于性能不敏感场景，最大限度回收内存空间。
 - **场景：** 后台场景
 - **日志关键词：**[ CompressGC ]
@@ -309,7 +309,7 @@ heap中会生成两个Semi Space供copying使用。
 
 #### 特性介绍
 
-在应用性能敏感场景，通过将js线程(SmartGC对worker线程和taskpool线程不生效)GC触发水线临时调整到js堆最大值（js线程默认448MB），尽量避免触发GC导致应用掉帧。如果敏感场景持续时间过久，对象分配已经达到了堆最大值，则还是会触发GC，且这次GC由于积累的对象太多，GC时间会相对较久。
+在应用性能敏感场景，通过将JS线程(SmartGC对worker线程和taskpool线程不生效)GC触发水线临时调整到JS堆最大值（JS线程默认448MB），尽量避免触发GC导致应用掉帧。如果敏感场景持续时间过久，对象分配已经达到了堆最大值，则还是会触发GC，且这次GC由于积累的对象太多，GC时间会相对较久。
 
 #### 支持敏感场景
 
@@ -411,7 +411,7 @@ C03F00/ArkCompiler: Heap average alive rate: 0.635325
 ### ArkTools.hintGC()
 
 - 调用方式：`ArkTools.hintGC()`
-- 接口类型：js接口
+- 接口类型：ArkTS接口
 - 作用：调用后由VM主动触发判断当前是否适合进行一次full GC。后台场景、内存预期存活率低于设定值，则会触发，判断为敏感状态则不会触发。
 - 使用场景：开发者提示系统进行GC
 - 典型日志：无直接日志，仅可区分外部触发（`GCReason::TRIGGER_BY_JS`）

@@ -43,9 +43,9 @@ Defines the widget information.
 | isDynamic<sup>10+</sup>      | boolean               | Yes   | No    | Whether the widget is a dynamic widget.<br>ArkTS widgets are classified into dynamic and static widgets. JS widgets are all dynamic widgets.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | transparencyEnabled<sup>11+</sup>      | boolean               | Yes   | No    | Whether the widget supports the setting of the background transparency.<br>For ArkTS widgets, the support for the background transparency setting depends on user configurations. For JS widgets, the background transparency setting is not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | supportedShapes<sup>12+</sup>    | Array&lt;number&gt;      | Yes   | No    | Shapes supported by the widget. For details about the available shapes, see [FormShape<sup>12+</sup>](#formshape12).<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
-| previewImages<sup>16+</sup> | Array&lt;number&gt; | Yes| No| Resource IDs of the preview images of the widget.<br>**Atomic service API**: This API can be used in atomic services since API version 16.
-| enableBlurBackground<sup>16+</sup>  | boolean               | Yes   | No    | Whether the widget uses a blur background.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
-|renderingMode<sup>16+</sup>|[RenderingMode](#renderingmode16)|Yes|No|Widget rendering mode.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
+| previewImages<sup>18+</sup> | Array&lt;number&gt; | Yes| No| Resource IDs of the preview images of the widget.<br>**Atomic service API**: This API can be used in atomic services since API version 18.
+| enableBlurBackground<sup>18+</sup>  | boolean               | Yes   | No    | Whether the widget uses a blur background.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+|renderingMode<sup>18+</sup>|[RenderingMode](#renderingmode18)|Yes|No|Widget rendering mode.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 ## FormType
 
@@ -141,8 +141,8 @@ Enumerates the widget dimensions.
 | Dimension_2_1      | 5   | 2 x 1.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | DIMENSION_1_1<sup>11+<sup>      | 6   | 1 x 1.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | DIMENSION_6_4<sup>12+<sup>      | 7   | 6 x 4.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| DIMENSION_2_3<sup>14+<sup>      | 8   | 2 x 3.<br>**Atomic service API**: This API can be used for wearable devices in atomic services since API version 14.|
-| DIMENSION_3_3<sup>14+<sup>      | 9   | 3 x 3.<br>**Atomic service API**: This API can be used for wearable devices in atomic services since API version 14.|
+| DIMENSION_2_3<sup>18+<sup>      | 8   | 2 x 3.<br>**Atomic service API**: This API can be used for wearable devices in atomic services since API version 18.|
+| DIMENSION_3_3<sup>18+<sup>      | 9   | 3 x 3.<br>**Atomic service API**: This API can be used for wearable devices in atomic services since API version 18.|
 
 ##  FormShape<sup>12+</sup> 
 
@@ -196,11 +196,11 @@ Enumerates the reasons for creating a widget.
 | ----------- | ---- | ------------ |
 | FORM_DEFAULT | 1   | The widget is created by default.|
 | FORM_SHARE   | 2   | The widget is created for sharing.|
-## RenderingMode<sup>16+</sup>
+## RenderingMode<sup>18+</sup>
 
 Enumerates the rendering modes supported by the widget.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Ability.Form
 

@@ -20,7 +20,7 @@
 
 \@State装饰的变量拥有以下特点：
 
-- \@State装饰的变量与子组件中的\@Prop装饰变量之间建立单向数据同步,与\@Link、\@ObjectLink装饰变量之间建立双向数据同步。
+- \@State装饰的变量与子组件中的\@Prop装饰变量之间建立单向数据同步，与\@Link、\@ObjectLink装饰变量之间建立双向数据同步。
 
 - \@State装饰的变量生命周期与其所属自定义组件的生命周期相同。
 
@@ -31,7 +31,7 @@
 | ------------------ | ------------------------------------------------------------ |
 | 装饰器参数         | 无                                                           |
 | 同步类型           | 不与父组件中任何类型的变量同步。                             |
-| 允许装饰的变量类型 | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>API11及以上支持[Map](#装饰map类型变量)、[Set](#装饰set类型变量)类型。<br/>支持undefined和null类型。<br/>支持ArkUI框架定义的联合类型[Length](../reference/apis-arkui/arkui-ts/ts-types.md#length)、[ResourceStr](../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr)、[ResourceColor](../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor)类型。 <br/>类型必须被指定。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@State支持联合类型实例](#state支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@State a : string \| undefined = undefined`是推荐的，不推荐`@State a: string = undefined`。|
+| 允许装饰的变量类型 | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>API11及以上支持[Map](#装饰map类型变量)、[Set](#装饰set类型变量)类型。<br/>支持undefined和null类型。<br/>支持ArkUI框架定义的联合类型[Length](../reference/apis-arkui/arkui-ts/ts-types.md#length)、[ResourceStr](../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr)、[ResourceColor](../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor)类型。 <br/>类型必须被指定。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@State支持联合类型实例](#state支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@State a : string \| undefined = undefined`是支持的，不支持`@State a: string = undefined`。|
 | 被装饰变量的初始值 | 必须本地初始化。                                               |
 
 
@@ -65,54 +65,55 @@
   ```
 
 - 当装饰的数据类型为class或者Object时，可以观察到自身的赋值的变化，和其属性赋值的变化，即Object.keys(observedObject)返回的所有属性。例子如下。
-    声明Person和Model类。
+  
+  声明Person和Model类。
 
-    ```ts
-      class Person {
-        public value: string;
-      
-        constructor(value: string) {
-          this.value = value;
-        }
-      }
-      
-      class Model {
-        public value: string;
-        public name: Person;
-        constructor(value: string, person: Person) {
-          this.value = value;
-          this.name = person;
-        }
-      }
-    ```
+  ```ts
+  class Person {
+    public value: string;
+  
+    constructor(value: string) {
+      this.value = value;
+    }
+  }
+  
+  class Model {
+    public value: string;
+    public name: Person;
+    constructor(value: string, person: Person) {
+      this.value = value;
+      this.name = person;
+    }
+  }
+  ```
 
-    \@State装饰的类型是Model
+  \@State装饰的类型是Model
 
-    ```ts
-    // class类型
-    @State title: Model = new Model('Hello', new Person('World'));
-    ```
+  ```ts
+  // class类型
+  @State title: Model = new Model('Hello', new Person('World'));
+  ```
 
-    对\@State装饰变量的赋值。
+  对\@State装饰变量的赋值。
 
-    ```ts
-    // class类型赋值
-    this.title = new Model('Hi', new Person('ArkUI'));
-    ```
+  ```ts
+  // class类型赋值
+  this.title = new Model('Hi', new Person('ArkUI'));
+  ```
 
-    对\@State装饰变量的属性赋值。
+  对\@State装饰变量的属性赋值。
 
-    ```ts
-    // class属性的赋值
-    this.title.value = 'Hi';
-    ```
+  ```ts
+  // class属性的赋值
+  this.title.value = 'Hi';
+  ```
 
-    嵌套属性的赋值观察不到。
+  嵌套属性的赋值观察不到。
 
-    ```ts
-    // 嵌套的属性赋值观察不到
-    this.title.name.value = 'ArkUI';
-    ```
+  ```ts
+  // 嵌套的属性赋值观察不到
+  this.title.name.value = 'ArkUI';
+  ```
 - 当装饰的对象是array时，可以观察到数组本身的赋值和添加、删除、更新数组的变化。例子如下。
   声明Model类。
 
@@ -224,13 +225,13 @@
 
 1. \@State装饰的变量必须初始化，否则编译期会报错。
 
-```ts
-// 错误写法，编译报错
-@State count: number;
+  ```ts
+  // 错误写法，编译报错
+  @State count: number;
 
-// 正确写法
-@State count: number = 10;
-```
+  // 正确写法
+  @State count: number = 10;
+  ```
 
 2. \@State不支持装饰Function类型的变量，框架会抛出运行时错误。
 
@@ -268,8 +269,6 @@ struct MyComponent {
 - 自定义组件MyComponent定义了被\@State装饰的状态变量count和title，其中title的类型为自定义类Model。如果count或title的值发生变化，则查询MyComponent中使用该状态变量的UI组件，并进行重新渲染。
 
 - EntryComponent中有多个MyComponent组件实例，第一个MyComponent内部状态的更改不会影响第二个MyComponent。
-
-
 
 ```ts
 class Model {
@@ -668,115 +667,115 @@ export class Model {
 【示例1】
 
 ```ts
-class Parent {
-  son: string = '000';
+class Info {
+  address: string = '杭州';
 }
 
 @Entry
 @Component
 struct Test {
-  @State son: string = '111';
-  @State parent: Parent = new Parent();
+  @State message: string = '上海';
+  @State info: Info = new Info();
 
   aboutToAppear(): void {
-    this.parent.son = this.son;
+    this.info.address = this.message;
   }
 
   build() {
     Column() {
-      Text(`${this.son}`);
-      Text(`${this.parent.son}`);
+      Text(`${this.message}`);
+      Text(`${this.info.address}`);
       Button('change')
         .onClick(() => {
-          this.parent.son = '222';
+          this.info.address = '北京';
         })
     }
   }
 }
 ```
 
-以上示例点击Button('change')，此时第一行文本'111'不会更新，第二行文本'111'更新为'222'，因为son是简单类型String，简单类型是值拷贝，所以点击按钮改变的是parent中的son值，不会影响this.son的值。
+以上示例点击Button('change')，只会触发第二个Text组件的刷新，因为message是简单类型string，简单类型是值拷贝，所以点击按钮改变的是info中的address值，不会影响this.message的值。
 
 【示例2】
 
 ```ts
-class Son {
-  son: string = '000';
+class Info {
+  address: string = '杭州';
 
-  constructor(son: string) {
-    this.son = son;
+  constructor(address: string) {
+    this.address = address;
   }
 }
 
-class Parent {
-  son: Son = new Son('111');
+class User {
+  info: Info = new Info('天津');
 }
 
 @Entry
 @Component
 struct Test {
-  @State son: Son = new Son('222');
-  @State parent: Parent = new Parent();
+  @State info: Info = new Info('上海');
+  @State user: User = new User();
 
   aboutToAppear(): void {
-    this.parent.son = this.son;
+    this.user.info = this.info;
   }
 
   build() {
     Column() {
-      Text(`${this.son.son}`);
-      Text(`${this.parent.son.son}`);
+      Text(`${this.info.address}`);
+      Text(`${this.user.info.address}`);
       Button('change')
         .onClick(() => {
-          this.parent.son.son = '333';
+          this.user.info.address = '北京';
         })
     }
   }
 }
 ```
 
-以上示例，因为在aboutToAppear中将son的引用赋值给了parent的成员属性son，因此点击按钮改变son中的属性时，会触发第一个Text组件的刷新，而第二个Text组件因为观测能力仅有一层，无法观测到二层属性的变化。
+在上述示例中，由于在aboutToAppear中将info的引用赋值给了user的成员属性info，因此点击按钮改变info中的属性时，会触发第一个Text组件的刷新。而第二个Text组件因为观测能力仅有一层，无法观测到二层属性的变化，所以不会刷新。
 
 【示例3】
 
 ```ts
-class Son {
-  son: string = '000';
+class Info {
+  address: string = '杭州';
 
-  constructor(son: string) {
-    this.son = son;
+  constructor(address: string) {
+    this.address = address;
   }
 }
 
-class Parent {
-  son: Son = new Son('111');
+class User {
+  info: Info = new Info('天津');
 }
 
 @Entry
 @Component
 struct Test {
-  @State son: Son = new Son('222');
-  @State parent: Parent = new Parent();
+  @State info: Info = new Info('上海');
+  @State user: User = new User();
 
   aboutToAppear(): void {
-    this.parent.son = this.son;
+    this.user.info = this.info;
   }
 
   build() {
     Column() {
-      Text(`${this.son.son}`);
-      Text(`${this.parent.son.son}`);
+      Text(`${this.info.address}`);
+      Text(`${this.user.info.address}`);
       Button('change')
         .onClick(() => {
-          this.parent.son = new Son('444');
-          this.parent.son.son = '333';
+          this.user.info = new Info('广州');
+          this.user.info.address = '北京';
         })
     }
   }
 }
 ```
 
-以上示例点击Button('change')，此时第一行文本'222'不会更新，第二行文本'222'更新为'333'，因为在点击按钮后先执行'this.parent.son = new Son('444')'，此时会新创建出来一个Son对象，再执行'this.parent.son.son = '333''，改变的是新new出来的Son里面的son的值，原来对象Son中的son值并不会受到影响。
+上述示例中，点击Button('change')，只会触发第二个Text组件的刷新。这是因为点击按钮后，首先执行`this.user.info = new Info('广州')`，会创建一个新的Info对象。再执行`this.user.info.address = '北京'`，改变的是这个新创建的Info对象中的address值，而原始的Info对象中的address值不会受到影响。
 
 ### 复杂类型常量重复赋值给状态变量触发刷新
 
@@ -813,15 +812,20 @@ struct ConsumerChild {
     console.log("dataObj changed");
   }
 
+  getContent() {
+    console.log(`this.dataObj.name change: ${this.dataObj.name}`);
+    return this.dataObj.name;
+  }
+
   build() {
     Column() {
-      Text(this.dataObj.name).fontSize(30)
+      Text(this.getContent()).fontSize(30)
     }
   }
 }
 ```
 
-以上示例每次点击Button('change to self')，把相同的类常量赋值给一个Class类型的状态变量，会触发刷新。原因是在状态管理V1中，会给被\@Observed装饰的类对象以及使用状态变量装饰器如@State装饰的Class、Date、Map、Set、Array类型的对象添加一层代理用于观测一层属性或API调用产生的变化。  
+以上示例每次点击Button('change to self')，把相同的类常量赋值给一个Class类型的状态变量，会触发刷新并输出`this.dataObj.name change: a`日志。原因是在状态管理V1中，会给被\@Observed装饰的类对象以及使用状态变量装饰器如@State装饰的Class、Date、Map、Set、Array类型的对象添加一层代理用于观测一层属性或API调用产生的变化。  
 当再次赋值list[0]时，dataObjFromList已经是一个Proxy类型，而list[0]是Object类型，判断是不相等的，因此会触发赋值和刷新。  
 为了避免这种不必要的赋值和刷新，可以通过用\@Observed装饰类，或者使用[UIUtils.getTarget()](./arkts-new-getTarget.md)获取原始对象提前进行新旧值的判断，如果相同则不执行赋值。  
 方法一：增加\@Observed
@@ -1094,13 +1098,13 @@ struct Index {
 }
 ```
 
-### 自定义组件外改变状态变量
+### 用注册回调的方式更改状态变量需要执行解注册
 
 开发者可以在aboutToAppear中注册箭头函数，并以此来改变组件中的状态变量。但需要注意的是在aboutToDisappear中将之前注册的函数置空，否则会因为箭头函数捕获了自定义组件的this实例，导致自定义组件无法被释放，从而造成内存泄漏。
 
 ```ts
 class Model {
-  private callback: Function | undefined = () => {}
+  private callback: (() => void) | undefined = () => {};
 
   add(callback: () => void): void {
     this.callback = callback;

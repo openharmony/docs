@@ -48,7 +48,7 @@
 | BOTTOM_START<sup>12+</sup> | The image is displayed at the bottom start corner of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>![ImageFit-Examples13](figures/image_fit_bottom_start.png) |
 | BOTTOM<sup>12+</sup>    | The image is displayed horizontally centered at the bottom of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>![ImageFit-Examples14](figures/image_fit_bottom.png) |
 | BOTTOM_END<sup>12+</sup>| The image is displayed at the bottom end corner of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>![ImageFit-Examples15](figures/image_fit_bottom_end.png) |
-| MATRIX<sup>15+</sup>| The image, with the use of [imageMatrix](ts-basic-components-image.md#imagematrix15), is displayed in the specified position of the **Image component**, keeping its original size. SVG images are not supported.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 15.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+| MATRIX<sup>15+</sup>| The image, with the use of [imageMatrix](ts-basic-components-image.md#imagematrix15), is displayed in the specified position of the **Image component**, keeping its original size. SVG images are not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 
 ## BorderStyle
 
@@ -118,7 +118,7 @@
 | Release | The mouse button is released.|
 | Move    | The mouse cursor moves.  |
 | Hover   | The mouse pointer is hovered on an element.<br>**NOTE**<br>This value has no effect.  |
-| Cancel<sup>16+</sup>  | The mouse button action is canceled.|
+| Cancel<sup>18+</sup>  | The mouse button action is canceled.|
 
 ## ModifierKey<sup>10+</sup>
 
@@ -253,7 +253,7 @@ Enumerates the interpolation curves. For details about the animation, see <!--RP
 | -------- | ---------- |
 | Unknown  | Unknown input device. |
 | Keyboard | The input device is a keyboard.|
-| JOYSTICK<sup>15+</sup> | The input device is a joystick.|
+| JOYSTICK<sup>15+</sup> | The input device is a joystick.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 
 ## Edge
 
@@ -864,8 +864,8 @@ The object of this type can be of a custom type or **undefined**.
 | ----- | -------------------------------------- |
 | NORMAL  | Word breaks can occur between any two characters for Chinese, Japanese, and Korean (CJK) text, but can occur only at a space character for non-CJK text (such as English).|
 | BREAK_ALL | Line breaks can occur between any two characters for non-CJK text. CJK text behavior is the same as for **NORMAL**.|
-| BREAK_WORD | This option has the same effect as **BREAK_ALL** for non-CJK text, except that if it preferentially wraps lines at appropriate characters (for example, spaces) whenever possible. CJK text behavior is the same as for **NORMAL**.|
-| HYPHENATION<sup>16+</sup> | Line breaks can occur between any two syllabic units for non-CJK text. CJK text behavior is the same as for **NORMAL**.|
+| BREAK_WORD | This option has the same effect as **BREAK_ALL** for non-CJK text, except that it preferentially wraps lines at appropriate characters (for example, spaces) whenever possible. CJK text behavior is the same as for **NORMAL**.|
+| HYPHENATION<sup>18+</sup> | Line breaks can occur between any two syllabic units for non-CJK text. CJK text behavior is the same as for **NORMAL**.|
 
 ## LineBreakStrategy<sup>12+</sup>
 
@@ -1091,6 +1091,25 @@ Enumerates the height breakpoint values corresponding to different window aspect
 | HEIGHT_MD | 1   | The window aspect ratio is greater than or equal to 0.8 and less than 1.2.|
 | HEIGHT_LG | 2   | The window aspect ratio is greater than or equal to 1.2.|
 
+## AxisModel<sup>15+</sup>
+
+Enumerates the axis types for focus axis events.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Value  | Description                              |
+| ------- | ---- | ---------------------------------- |
+| ABS_X  | 0    | Game controller x-axis.|
+| ABS_Y  | 1    | Game controller y-axis.|
+| ABS_Z  | 2    | Game controller z-axis.|
+| ABS_RZ | 3    | Game controller rz-axis.|
+| ABS_GAS | 4    | Game controller GAS-axis.|
+| ABS_BRAKE | 5    | Game controller BRAKE-axis.|
+| ABS_HAT0X | 6    | Game controller HAT0X-axis.|
+| ABS_HAT0Y | 7    | Game controller HAT0Y-axis.|
+
 ## PageFlipMode<sup>15+</sup>
 
 Enumerates the modes for flipping pages using the mouse wheel.
@@ -1165,11 +1184,11 @@ Enumerates the sensitivity levels for crown rotation.
 | MEDIUM         | 1   | Medium sensitivity.                                |
 | HIGH 	         | 2   | High sensitivity.                                |
 
-## AxisAction<sup>16+</sup>
+## AxisAction<sup>18+</sup>
 
 Enumerates the types of axis actions for axis events.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1180,4 +1199,17 @@ Enumerates the types of axis actions for axis events.
 | UPDATE | 2    | The axis event is in progress.|
 | END    | 3    | The axis event ends.|
 | CANCEL | 4    | The axis event is canceled.|
-<!--no_check-->
+
+## InteractionHand<sup>15+</sup>
+
+Defines whether an event is triggered by a left-hand or right-hand tap.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Value  | Description                  |
+| -------- | ---- | ---------------------- |
+| NONE     | 0   | Unknown.|
+| LEFT     | 1   | Left hand.|
+| RIGHT    | 2   | Right hand.|

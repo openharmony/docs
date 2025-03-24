@@ -1,23 +1,19 @@
-# Peripheral Driver Development
+# UI-free Driver Development
 
 ## When to Use
 
-[DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md) is an **ExtensionAbility** of the driver type that provides the driver-related extension framework. If the capabilities of a device can be expanded by inserting an external hardware module, you can install the driver of the hardware module through an application. **DriverExtensionAbility** can be used to develop such applications.
+Basic UI-free drivers are applicable to simple devices that do not require setting of driver capabilities via a UI, such as mice and keyboards. These drivers are designed to ensure that these devices can be used immediately upon connection, enabling seamless plug-and-play functionality. You can use **DriverExtensionAbility** to develop such applications.
 
+## Basic Concepts
 
-You can bind a [DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md) object to an application through **DriverExtensionManager** so that related transactions can be processed in the background based on the application request information.
-Each type of **ExtensionAbility** has its own context. The **DriverExtensionAbility** provides related capabilities through the [DriverExtensionContext](../../reference/apis-driverdevelopment-kit/js-apis-inner-application-driverExtensionContext.md).
+ - DriverExtensionAbility
+
+    [DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md) is an **ExtensionAbility** of the driver type that provides the driver-related extension framework. If the capabilities of a device can be expanded by inserting an external hardware module, you can install the driver of the hardware module through an application. You can bind a [DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md) object to an application through **DriverExtensionManager** so that related transactions can be processed in the background based on the application request information.
+    Each type of **ExtensionAbility** has its own context. The **DriverExtensionAbility** provides related capabilities through the [DriverExtensionContext](../../reference/apis-driverdevelopment-kit/js-apis-inner-application-driverExtensionContext.md).
 
 ## Environment Setup
 
-Set up the environment following the instructions in [Peripheral Driver Client Development](externaldevice-guidelines.md).
-
-The following table lists the SDK version requirements.
-
-| NDK API| SDK Version|
-|---------|--------|
-| USB DDK | API version 10 or later|
-| HID DDK | API version 11 or later|
+Before you get started, make necessary preparations by following instructions in [Environment Preparation](environmental-preparation.md).
 
 ## How to Develop
 
@@ -168,12 +164,12 @@ To implement a driver, create a DriverExtensionAbility in the DevEco Studio proj
 
 ## Driver Development
 
-**DriverExtensionAbility** provides two development modes, namely, HID DDK and USB DDK, for driver development.
+Currently, **DriverExtensionAbility** provides four capabilities: HID DDK, USB DDK, USB serial DDK, and SCSI peripheral DDK, which are used to develop dedicated drivers for extended peripherals. Choose either mode depending on your need:
 
-Choose either mode depending on your need:
-
-* [HID DDK Development](https://gitee.com/openharmony/docs/blob/master/en/application-dev/napi/hid-ddk-guidelines.md)
-* [USB DDK Development](https://gitee.com/openharmony/docs/blob/master/en/application-dev/napi/usb-ddk-guidelines.md)
+* [HID DDK Development](hid-ddk-guidelines.md)
+* [USB DDK Development](usb-ddk-guidelines.md)
+* [USB Serial DDK Development](usb-serial-ddk-guidelines.md)
+* [SCSI Peripheral DDK Development](scsi-peripheral-ddk-guidelines.md)
 
 ## Application Signing
 

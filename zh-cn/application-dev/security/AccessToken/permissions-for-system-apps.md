@@ -68,7 +68,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.SUBSCRIBE_SWING_ABILITY
 
@@ -120,18 +120,6 @@
 
 ## ohos.permission.WRITE_PROTECTION_ADVICE_POLICY
 
-允许系统应用读取“安全建议”的数据库。
-
-**权限级别**：system_basic
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
-
-**起始版本**：16
-
-## ohos.permission.READ_PROTECTION_ADVICE_POLICY
-
 允许系统应用修改“安全建议”的数据库。
 
 **权限级别**：system_basic
@@ -140,7 +128,19 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
+
+## ohos.permission.READ_PROTECTION_ADVICE_POLICY
+
+允许系统应用读取“安全建议”的数据库。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
 
 ## ohos.permission.PROXY_MESSAGE_AUTH
 
@@ -286,6 +286,18 @@
 
 **起始版本**：11
 
+## ohos.permission.QUERY_ACCESSIBILITY_ELEMENT
+
+允许批量查询无障碍节点。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：11
+
 ## ohos.permission.SET_UNREMOVABLE_NOTIFICATION
 
 允许应用发布不可被移除通知。
@@ -368,7 +380,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.RECEIVE_UPDATE_MESSAGE
 
@@ -728,7 +740,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.CAPTURE_SCREEN
 
@@ -1066,7 +1078,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.MICROPHONE_BACKGROUND
 
@@ -1078,7 +1090,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.START_DLP_CRED
 
@@ -1680,7 +1692,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
 
@@ -2680,18 +2692,6 @@
 
 **起始版本**：11
 
-## ohos.permission.CONNECT_UI_EXTENSION_ABILITY
-
-允许系统服务连接UIExtensionAbility。
-
-**权限级别**：system_core
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
-
-**起始版本**：11
-
 ## ohos.permission.SET_SANDBOX_POLICY
 
 允许系统应用设置动态沙箱策略。
@@ -3558,7 +3558,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACTIVATE_DEVICE_PSI
 
@@ -4016,7 +4016,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.SYNC_ASSET_BETWEEN_TRUSTED_ACCOUNT
 
@@ -4028,7 +4028,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.GET_RECOVERY_KEY_BRIEF_INFORMATION
 
@@ -4138,7 +4138,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.EXEMPT_CAPTURE_SCREEN_AUTHORIZE
 
@@ -4174,7 +4174,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.WATCH_WRITE_EMERGENCY_INFO
 
@@ -4186,7 +4186,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.WATCH_START_SOS_SERVICE
 
@@ -4198,7 +4198,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 **变更信息**：API 12-14，该权限仅向系统服务开放；从API 15开始，开放范围变更为系统应用。
 
@@ -4212,7 +4212,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.DLP_GET_HIDE_STATUS
 
@@ -4224,7 +4224,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.GET_ANIM_POLICY
 
@@ -4236,7 +4236,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.VIRTUAL_KEYBOARD_WINDOW
 
@@ -4262,7 +4262,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_FUSION_AWARENESS_DATA
 
@@ -4274,7 +4274,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_ACCOUNT_RECOMMENDATION_DATA
 
@@ -4286,19 +4286,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
-
-## ohos.permission.ACCESS_VIRTUAL_SCREEN
-
-允许应用管控虚拟屏。
-
-**权限级别**：system_basic
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
-
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.GET_PAGE_INFO
 
@@ -4310,7 +4298,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_DDK_DRIVERS
 
@@ -4327,7 +4315,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
 
@@ -4345,7 +4333,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_DDK_USB_SERIAL
 
@@ -4363,7 +4351,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_CUSTOM_RINGTONE
 
@@ -4375,7 +4363,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_STARTUPGUIDE
 
@@ -4389,7 +4377,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_DEVAUTH_CRED_MGR
 
@@ -4401,7 +4389,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_DEVAUTH_CRED_PRIVILEGE
 
@@ -4413,7 +4401,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_DEVAUTH_CRED_AUTH
 
@@ -4425,7 +4413,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ANTIFRAUD_DETECT
 
@@ -4501,5 +4489,64 @@
 
 **变更信息**：API 10-11，ACL使能为false；从API 12开始，变更为true。
 
-## system_grant，不允许ACL跨级申请
+## ohos.permission.READ_DLP_HIDE_SWITCH
 
+允许系统应用从窥屏提示数据库读取数据。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+## ohos.permission.WRITE_DLP_HIDE_SWITCH
+
+允许系统应用向窥屏提示数据库写入数据。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+## ohos.permission.INSTALL_PLUGIN_BUNDLE
+
+允许应用调用安装插件的接口。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+## ohos.permission.UNINSTALL_PLUGIN_BUNDLE
+
+允许应用调用卸载插件的接口。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+## ohos.permission.GET_EDM_CONFIG
+
+允许系统应用查看行业定制配置文件。
+
+用于保护行业定制配置文件的可见性，例如开机动画、开机logo、桌面布局、壁纸等。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18

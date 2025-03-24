@@ -80,7 +80,7 @@ textOverflow(options: TextOverflowOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| options | [TextOverflowOptions](#textoverflowoptions16对象说明) | 是   | 文本超长显示方式对象 |
+| options | [TextOverflowOptions](#textoverflowoptions18对象说明) | 是   | 文本超长显示方式对象 |
 
 ### maxLines
 
@@ -104,7 +104,7 @@ maxLines(value: number)
 
 lineHeight(value: number | string | Resource)
 
-设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，number类型时单位为fp。
+设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，number类型时单位为fp。string类型支持number类型取值的字符串形式，可以附带单位，例如"10"、"10fp"。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -160,7 +160,7 @@ baselineOffset(value: number | string)
 
 letterSpacing(value: number | string)
 
-设置文本字符间距。设置该值为百分比时，按默认值显示。设置该值为0时，按默认值显示。
+设置文本字符间距。设置该值为百分比时，按默认值显示。设置该值为0时，按默认值显示。string类型支持number类型取值的字符串形式，可以附带单位，例如"10"、"10fp"。
 
 当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。
 
@@ -174,13 +174,13 @@ letterSpacing(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明           |
 | ------ | -------------------------- | ---- | -------------- |
-| value  | number&nbsp;\|&nbsp;string | 是   | 文本字符间距。 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 文本字符间距。<br/>单位：fp |
 
 ### minFontSize
 
 minFontSize(value: number | string | Resource)
 
-设置文本最小显示字号。
+设置文本最小显示字号。string类型支持number类型取值的字符串形式，可以附带单位，例如"10"、"10fp"。
 
 需配合[maxFontSize](#maxfontsize)以及[maxLines](#maxlines)或布局大小限制使用，单独设置不生效。
 
@@ -188,7 +188,7 @@ minFontSize(value: number | string | Resource)
 
 minFontSize小于或等于0时，自适应字号不生效，此时按照[fontSize](#fontsize)属性的值生效，未设置时按照其默认值生效。
 
-从API Version 16开始支持在子组件和属性字符串上生效，未设置字号的部分自适应字号。
+从API Version 18开始支持在子组件和属性字符串上生效，未设置字号的部分自适应字号。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -200,13 +200,13 @@ minFontSize小于或等于0时，自适应字号不生效，此时按照[fontSiz
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。 |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。<br/>单位：fp |
 
 ### maxFontSize
 
 maxFontSize(value: number | string | Resource)
 
-设置文本最大显示字号。
+设置文本最大显示字号。string类型支持number类型取值的字符串形式，可以附带单位，例如"10"、"10fp"。
 
 需配合[minFontSize](#minfontsize)以及[maxLines](#maxlines)或布局大小限制使用，单独设置不生效。
 
@@ -214,7 +214,7 @@ maxFontSize(value: number | string | Resource)
 
 maxFontSize小于或等于0时，自适应字号不生效，此时按照[fontSize](#fontsize)属性的值生效，未设置时按照其默认值生效。
 
-从API Version 16开始支持在子组件和属性字符串上生效，未设置字号的部分自适应字号。
+从API Version 18开始支持在子组件和属性字符串上生效，未设置字号的部分自适应字号。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -226,7 +226,7 @@ maxFontSize小于或等于0时，自适应字号不生效，此时按照[fontSiz
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。 |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。<br/>单位：fp |
 
 ### textCase
 
@@ -805,7 +805,7 @@ fontWeight(weight: number | FontWeight | string, options?: FontSettingOptions)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| weight | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 是  | 设置文本字重。 |
+| weight | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 是  | 设置文本字重。number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。 |
 | options | [FontSettingOptions](ts-text-common.md#fontsettingoptions12对象说明) | 否  | 设置字体配置项。 |
 
 ### enableHapticFeedback<sup>13+</sup>
@@ -867,6 +867,24 @@ selectedBackgroundColor(color: ResourceColor)
 | ------ | ------------------------------------------ | ---- | ------------------------------------------ |
 | color  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本选中底板颜色。<br/>默认为20%不透明度。<br/>默认值：'#007DFF' |
 
+### marqueeOptions<sup>18+</sup>
+
+marqueeOptions(options: Optional\<TextMarqueeOptions>)
+
+设置文本跑马灯模式的配置项。
+
+当textOverflow设置为TextOverflow.MARQUEE时，marqueeOptions的设置方能生效。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 说明                                       |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------ |
+| options | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextMarqueeOptions](#textmarqueeoptions18对象说明)> | 是 | 当text组件的textOverflow属性设置为MARQUEE时，可通过marqueeOptions设置跑马灯动效具体的属性，如开关、步长、循环次数、方向等。 |
+
 ## TextSpanType<sup>11+</sup>枚举说明
 
 [Span](ts-basic-components-span.md)类型信息。
@@ -907,21 +925,21 @@ selectedBackgroundColor(color: ResourceColor)
 >  3. 查找是否注册了TextSpanType.DEFAULT、TextResponseType.LONG_PRESS菜单
 >  4. 查找是否注册了TextSpanType.DEFAULT、TextResponseType.DEFAULT菜单
 
-## TextOverflowOptions<sup>16+</sup>对象说明
+## TextOverflowOptions<sup>18+</sup>对象说明
 
 文本超长显示方式对象。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| 名称 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| overflow  | [TextOverflow](ts-appendix-enums.md#textoverflow) | 是   | 文本超长时的显示方式。<br/>默认值：TextOverflow.Clip |
+| overflow<sup>7+</sup>  | [TextOverflow](ts-appendix-enums.md#textoverflow) | 是   | 文本超长时的显示方式。<br/>默认值：TextOverflow.Clip <br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## 事件
 
@@ -960,13 +978,13 @@ onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) =
 | selectionStart | number | 是   | 所选文本的起始位置。 |
 | selectionEnd   | number | 是   | 所选文本的结束位置。 |
 
-### onMarqueeStateChange<sup>16+</sup>
+### onMarqueeStateChange<sup>18+</sup>
 
 onMarqueeStateChange(callback: Callback\<MarqueeState\>)
 
 跑马灯动画进行到一些特定的阶段时，触发该回调。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -974,7 +992,7 @@ onMarqueeStateChange(callback: Callback\<MarqueeState\>)
 
 | 参数名    | 类型                                             | 必填  | 说明                       |
 |--------|---------------------------------------------------|-----|--------------------------|
-| state  | [Callback\<MarqueeState\>](#marqueestate16枚举说明) | 是   | 通过state参数指定触发回调的状态，状态由MarqueeState枚举定义，例如开始滚动、滚动一次、滚动完成。 |
+| callback  | Callback\<[MarqueeState](#marqueestate18枚举说明)\> | 是   | 通过callback参数指定触发回调的状态，状态由MarqueeState枚举定义，例如开始滚动、滚动一次、滚动完成。 |
 
 ## TextOptions<sup>11+</sup>
 
@@ -1044,23 +1062,17 @@ getLayoutManager(): LayoutManager
 | ---------------------------------------- | ------- |
 | [LayoutManager](ts-text-common.md#LayoutManager) | 布局管理器对象。 |
 
-## marqueeOptions<sup>16+</sup>
-
-当textOverflow设置为TextOverflow.MARQUEE时，marqueeOptions的设置方能生效。
-
-| 名称             | 类型                                             | 必填 | 说明            |
-|----------------|------------------------------------------------| -------- |---------------|
-| marqueeOptions | [TextMarqueeOptions](#marqueeoptions16) | 是 | 当text组件的textOverflow属性设置为MARQUEE时，可通过marqueeOptions设置跑马灯动效具体的属性，如开关、步长、循环次数、方向等。 |
-
-## TextMarqueeOptions<sup>16+</sup>
+## TextMarqueeOptions<sup>18+</sup>对象说明
 
 Marquee初始化参数。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 参数名                | 类型                                              | 必填 | 说明                                                                                  |
+| 名称                | 类型                                              | 必填 | 说明                                                                                  |
 |--------------------|-------------------------------------------------|----|-------------------------------------------------------------------------------------|
 | start              | boolean                                         | 是  | 控制跑马灯进入播放状态。                                                                        |
 | step               | number                                          | 否  | 滚动动画文本滚动步长。<br/>默认值：4.0vp                                                           |
@@ -1068,26 +1080,34 @@ Marquee初始化参数。
 | fromStart          | boolean                                         | 否  | 设置文本从头开始滚动或反向滚动。<br/>默认值：true                                                       |
 | delay              | number                                          | 否  | 设置每次滚动的时间间隔。<br/>默认值：0                                                              |
 | fadeout            | boolean                                         | 否  | 设置文字超长时的渐隐效果。当Text内容超出显示范围时，未完全展现的文字边缘将应用渐隐效果。若两端均有文字未完全显示，则两端同时应用渐隐效果。在渐隐效果开启状态下，clip属性将自动锁定为true，不允许设置为false。<br/>默认值：false  |
-| marqueeStartPolicy | [MarqueeStartPolicy](#marqueestartpolicy16枚举说明) | 否  | 设置跑马灯启动策略。<br/>默认值：MarqueeStartPolicy.DEFAULT                                       |
+| marqueeStartPolicy | [MarqueeStartPolicy](#marqueestartpolicy18枚举说明) | 否  | 设置跑马灯启动策略。<br/>默认值：MarqueeStartPolicy.DEFAULT                                       |
 
-## MarqueeStartPolicy<sup>16+</sup>枚举说明
+## MarqueeStartPolicy<sup>18+</sup>枚举说明
 
 Marquee的滚动方式，可选择默认持续滚动或条件触发滚动。
 
-| 名称        | 值 | 描述            |
-|----------|----|---------------|
-| DEFAULT  | 0  |默认持续滚动。       |
-| ON_FOCUS | 1  |获焦以及鼠标悬浮时开始滚动。 |
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
-## MarqueeState<sup>16+</sup>枚举说明
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称        | 值 | 说明            |
+|----------|----|---------------|
+| DEFAULT  | 0  | 默认持续滚动。       |
+| ON_FOCUS | 1  | 获焦以及鼠标悬浮时开始滚动。 |
+
+## MarqueeState<sup>18+</sup>枚举说明
 
 Marquee状态回调的返回值。
 
-| 名称     | 值 |描述                            |
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 值 | 说明                            |
 |--------|----|-------------------------------|
-| START  |0  |跑马灯滚动开始。                     |
-| BOUNCE |1  |完成一次跑马灯滚动，如果循环次数不是1，将会多次返回。 |
-| FINISH |2  |跑马灯全部循环次数完成。              |
+| START  | 0  | 跑马灯滚动开始。                     |
+| BOUNCE | 1  | 完成一次跑马灯滚动，如果循环次数不是1，将会多次返回。 |
+| FINISH | 2  | 跑马灯全部循环次数完成。              |
 
 ## 示例
 

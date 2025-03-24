@@ -22,10 +22,10 @@ import certificateManagerDialog from '@ohos.security.certManagerDialog';
 
 | 名称       | 值 |  说明      |
 | ---------- | ------ | --------- |
-| PAGE_MAIN | 1      | 证书管理应用主页面 |
-| PAGE_CA_CERTIFICATE | 2      | CA证书列表页面 |
-| PAGE_CREDENTIAL | 3      | 凭据列表页面 |
-| PAGE_INSTALL_CERTIFICATE | 4      | 安装证书页面 |
+| PAGE_MAIN | 1      | 证书管理应用主页面。 |
+| PAGE_CA_CERTIFICATE | 2      | CA证书列表页面。 |
+| PAGE_CREDENTIAL | 3      | 凭据列表页面。 |
+| PAGE_INSTALL_CERTIFICATE | 4      | 安装证书页面。 |
 
 ## CertificateType<sup>14+</sup>
 
@@ -37,7 +37,7 @@ import certificateManagerDialog from '@ohos.security.certManagerDialog';
 
 | 名称       | 值 |  说明      |
 | ---------- | ------ | --------- |
-| CA_CERT | 1      | CA证书 |
+| CA_CERT | 1      | CA证书。 |
 
 ## CertificateScope<sup>14+</sup>
 
@@ -49,9 +49,9 @@ import certificateManagerDialog from '@ohos.security.certManagerDialog';
 
 | 名称       | 值 |  说明      |
 | ---------- | ------ | --------- |
-| NOT_SPECIFIED<sup>18+</sup>  | 0      | 未指定用户 |
-| CURRENT_USER | 1      | 当前用户 |
-| GLOBAL_USER<sup>18+</sup> | 2      | 公共目录 |
+| NOT_SPECIFIED<sup>18+</sup>  | 0      | 未指定用户。 |
+| CURRENT_USER | 1      | 当前用户。 |
+| GLOBAL_USER<sup>18+</sup> | 2      | 公共目录。 |
 
 
 ## CertificateDialogErrorCode
@@ -79,7 +79,7 @@ import certificateManagerDialog from '@ohos.security.certManagerDialog';
 
 | 名称              | 类型    | 只读 | 可选 | 说明                         |
 | ----------------- | ------- | ---- | ---- | ---------------------------- |
-| showInstallButton | boolean | 否   | 否   | 表示是否显示安装证书的按钮。 |
+| showInstallButton | boolean | 否   | 否   | 表示是否显示安装证书的按钮，true为显示，false为不显示。 |
 
 ## certificateManagerDialog.openCertificateManagerDialog
 
@@ -163,7 +163,7 @@ openInstallCertificateDialog(context: common.Context, certType: CertificateType,
 
 | 类型                                        | 说明                 |
 | ------------------------------------------- | -------------------- |
-| Promise\<string> | Promise对象。表示返回证书uri的结果。 |
+| Promise\<string> | Promise对象。表示返回证书uri的结果，最大长度为256字节。 |
 
 **错误码：**
 
@@ -226,7 +226,7 @@ openUninstallCertificateDialog(context: common.Context, certType: CertificateTyp
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
 | context | [common.Context](../apis-ability-kit/js-apis-app-ability-common.md)                   | 是   | 表示应用的上下文信息。 |
 | certType | [CertificateType](#certificatetype14)                   | 是   | 表示删除证书类型。 |
-| certUri | string                  | 是   | 表示待删除证书的唯一标识符。 |
+| certUri | string                  | 是   | 表示待删除证书的唯一标识符，最大长度为256字节。 |
 
 **返回值**：
 

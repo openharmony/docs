@@ -10,7 +10,7 @@ The **Web** component provides the focus management functionality for you to eff
 - Application scenarios of common APIs for controlling the focus of the HTML5 element in the **Web** component:
 
   1. Use the **tabindex** attribute to manage the element focus: You can define the focus sequence of elements in the **Web** component through the **tabindex** attribute. For example, by setting it to **-1**, you can focus the element through the script and control the visibility of the element in CSS.
-  2. Update the focus position based on keyboard events: Listen for keyboard events, such as the **Tab** key and arrow keys, so that the focus position can be updated based on user operations.
+  2. Update the focus position based on keyboard events: Listen for keyboard events, such as the **Tab** key, so that the focus position can be updated based on user operations.
   3. Change the element style in the Web component based on the focus state: Add styles, such as the border and background color, to the focus element to provide visual and interaction feedback.
 
 ## Basic Concepts
@@ -28,7 +28,7 @@ For details about the focus, focus chain, and focus navigation of the **Web** co
 Focus traversal can be divided into active and passive based on how it is triggered. For details, see [Focus Traversal Guidelines](../ui/arkts-common-events-focus-event.md#focus-traversal-guidelines).
 
 ### Active Focus Traversal
-Refers to focus movement initiated by deliberate actions, such as keyboard shortcuts (Tab, Shift+Tab, arrow keys) and clicks/touches (gesture, mouse, or touchpad).
+Refers to focus movement initiated by deliberate actions, such as keyboard shortcuts (**Tab**, **Shift+Tab**) and clicks/touches (gesture, mouse, or touchpad).
 
 - requestFocus
 
@@ -36,8 +36,8 @@ Refers to focus movement initiated by deliberate actions, such as keyboard short
 
 - Keyboard traversal
 
-  - Supports focus traversal between **Web** and other components through the TAB, Shift+TAB, or arrow keys.
-  - Supports focus traversal among ArkWeb page elements through the TAB, Shift+TAB, or arrow keys. After the focus traversal of page elements, ArkUI continues the focus traversal in the framework.
+  - Supports focus traversal between the **Web** component and other components through the **TAB** and **Shift+TAB** keys.
+  - Supports focus traversal among ArkWeb page elements through the **TAB** and **Shift+TAB** keys. After the focus traversal of page elements, ArkUI continues the focus traversal in the framework.
 
 - Click/Touch for focus
 

@@ -348,7 +348,7 @@ To enable an audio and video application to access the AVSession service as a pr
      // Alternatively, listen for state changes.
      controller.on('playbackStateChange', 'all', (state) => {
 
-       // do some things
+       // Do some things.
      });
 
      // The AVSessionController object can perform many operations. For details, see the description of the controller.

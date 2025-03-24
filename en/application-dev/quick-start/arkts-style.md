@@ -14,7 +14,7 @@ If the style of each component needs to be set separately, this will result in a
 
 ## Rules of Use
 
-- \@Styles supports only [universal attributes](../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md) and [universal events](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md).
+- Currently, \@Styles supports only [general attributes](../reference/apis-arkui/arkui-ts/ts-component-general-attributes.md) and [general events](../reference/apis-arkui/arkui-ts/ts-component-general-events.md).
 
 - \@Styles can be defined inside or outside a component declaration. When it is defined outside a component declaration, the method name must be preceded by the keyword **function**.
 
@@ -171,3 +171,5 @@ struct FancyUse {
   }
 }
 ```
+
+<!--no_check-->

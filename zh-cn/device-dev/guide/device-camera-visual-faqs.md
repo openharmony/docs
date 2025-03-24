@@ -46,7 +46,7 @@ export default {
         ]
     },
     handleClick(){
-        //通过$refs属性获取对应的组件，在hml中，组件的ref属性要设置为animator
+        //通过$refs属性获取对应的组件，在hml中，组件的ref属性要设置为animator。
         const animator = this.$refs.animator;
         const state = animator.getState();
         if(state == "paused"){
@@ -68,8 +68,8 @@ export default {
 
 ```
 router.replace({
-    uri:'pages/detail/detail',  //要跳转的页面uri
-    params:{transferData:this.data}  //传递的数据，数据个数和名称开发者自己定义，
+    uri:'pages/detail/detail',  //要跳转的页面uri。
+    params:{transferData:this.data}  //传递的数据，数据个数和名称开发者自己定义。
 });
 ```
 
@@ -77,7 +77,7 @@ router.replace({
 
 ```
 onInit(){
-    const data = this.transferData;  //在onInit函数中接受传递的数据
+    const data = this.transferData;  //在onInit函数中接受传递的数据。
 }  
 ```
 
@@ -93,7 +93,7 @@ text支持多行。通过回车键换行或者是不设置text的高度属性，
 
 **现象描述**
 
-开发者在hml文件中添加的控件无法显示
+开发者在hml文件中添加的控件无法显示。
 
 **可能原因**
 
@@ -116,7 +116,7 @@ text支持多行。通过回车键换行或者是不设置text的高度属性，
 
 ### 动态绑定为什么不生效？<a name="section1758881511313"></a>
 
-在进行绑定时，必须先将要绑定的对象或者对象的属性进行定义，不能先绑定后定义
+在进行绑定时，必须先将要绑定的对象或者对象的属性进行定义，不能先绑定后定义。
 
 ### 如何实现相对定位和绝对定位？<a name="section1378730235"></a>
 

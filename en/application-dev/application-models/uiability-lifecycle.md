@@ -146,7 +146,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageWillDestroy(windowStage: window.WindowStage) {
     // Release the resources obtained through the windowStage object.
-    // Unsubscribe from the WindowStage events (having or losing focus, switching to the foreground or background, or becoming interactive or non-interactive in the foreground) in the onWindowStageDestroy() callback.
+    // Unsubscribe from the WindowStage events (having or losing focus, switching to the foreground or background, or becoming interactive or non-interactive in the foreground) in the onWindowStageWillDestroy() callback.
     try {
       if (this.windowStage) {
         this.windowStage.off('windowStageEvent');

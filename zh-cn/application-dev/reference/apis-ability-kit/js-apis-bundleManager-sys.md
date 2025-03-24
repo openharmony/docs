@@ -4526,7 +4526,7 @@ try {
 }
 ```
 
-## bundleManager.getJsonProfile<sup>12+</sup>
+## bundleManager.getJsonProfile<sup>11+</sup>
 
 getJsonProfile(profileType: ProfileType, bundleName: string, moduleName?: string, userId?: number): string
 
@@ -4547,7 +4547,7 @@ getJsonProfile(profileType: ProfileType, bundleName: string, moduleName?: string
 | profileType           | [ProfileType](#profiletype11)     | 是   | 表示要查询的配置文件类型。                                   |
 | bundleName            | string                          | 是   | 表示要查询应用程序的bundleName。                                  |
 | moduleName            | string                          | 否   | 表示要查询应用程序的module的名称，缺省时在入口模块中查找。            |
-| userId                | number                          | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。  |
+| userId<sup>12+</sup>  | number                          | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。  |
 
 **返回值：**
 
@@ -5510,14 +5510,14 @@ migrateData(sourcePaths: Array&lt;string&gt;, destinationPath: string): Promise&
 **示例：**
 
 ```ts
-import { bundleManager, common } from '@kit.AbilityKit';
+import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 开发者需将source1、source2、dest内容更新为实际文件路径或目录路径。
-  let source1: string = this.context.tempDir;
-  let source2: string = "/xxxx/xxxx/xxxx/xxxx/log.txt";
-  let dest: string = this.context.cacheDir;
+  let source1: string = "/data/app/el2/100/base/com.example.myapplication/";
+  let source2: string = "/data/app/el2/101/base/com.example.myapplication/log.txt";
+  let dest: string = "/data/local/tmp";
   let sourcePaths: Array<string> = [source1, source2];
 
   bundleManager.migrateData(sourcePaths, dest)

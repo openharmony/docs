@@ -1,6 +1,5 @@
 # Display (V1_1)
 
-
 ## 概述
 
 显示模块驱动接口定义。
@@ -9,9 +8,7 @@
 
 **起始版本：** 4.1
 
-
 ## 汇总
-
 
 ### 文件
 
@@ -23,7 +20,6 @@
 | [IModeCallback.idl](_i_mode_callback_8idl_v11.md) | 显示合成接口声明。 | 
 | [ISeamlessChangeCallback.idl](_i_seamless_change_callback_8idl_v11.md) | 显示合成接口声明。 | 
 
-
 ### 类
 
 | 名称 | 描述 | 
@@ -34,7 +30,6 @@
 | interface&nbsp;&nbsp;[IModeCallback](interface_i_mode_callback_v11.md) | Display模块接口的包路径。 | 
 | interface&nbsp;&nbsp;[ISeamlessChangeCallback](interface_i_seamless_change_callback_v11.md) | 更改帧速率需要使用的接口。 | 
 
-
 ### 枚举
 
 | 名称 | 描述 | 
@@ -43,9 +38,7 @@
 | [DispPowerStatus](#disppowerstatus) : ohos.hdi.display.composer.v1_0.DispPowerStatus { POWER_STATUS_OFF_FAKE = 4 , POWER_STATUS_BUTT_V1_1 } | 枚举显示状态。 | 
 | [CompositionType](#compositiontype) : ohos.hdi.display.composer.v1_0.CompositionType { COMPOSITION_SOLID_COLOR = 7 , COMPOSITION_BUTT_V1_1 } | 枚举特殊层的组合类型。 | 
 
-
 ## 枚举类型说明
-
 
 ### CompositionType
 
@@ -54,7 +47,6 @@ enum CompositionType : ohos.hdi.display.composer.v1_0.CompositionType
 ```
 
 **描述**
-
 
 枚举特殊层的组合类型。
 
@@ -65,7 +57,6 @@ enum CompositionType : ohos.hdi.display.composer.v1_0.CompositionType
 | COMPOSITION_SOLID_COLOR | Tunnel 组合类型，用于 tunnel。 | 
 | COMPOSITION_BUTT_V1_1 | 无效的合成类型。 | 
 
-
 ### DispPowerStatus
 
 ```
@@ -73,7 +64,6 @@ enum DispPowerStatus : ohos.hdi.display.composer.v1_0.DispPowerStatus
 ```
 
 **描述**
-
 
 枚举显示状态。
 
@@ -84,7 +74,6 @@ enum DispPowerStatus : ohos.hdi.display.composer.v1_0.DispPowerStatus
 | POWER_STATUS_OFF_FAKE | 当 hwc 关闭时，电源状态为 ON。 | 
 | POWER_STATUS_BUTT_V1_1 | 电源状态无效。 | 
 
-
 ### PixelFormat
 
 ```
@@ -92,7 +81,6 @@ enum PixelFormat : ohos.hdi.display.composer.v1_0.PixelFormat
 ```
 
 **描述**
-
 
 像素格式类型定义。
 

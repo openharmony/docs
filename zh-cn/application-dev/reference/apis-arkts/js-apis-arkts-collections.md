@@ -1828,7 +1828,7 @@ splice(start: number): Array\<T>
 
 | 错误码ID | 错误信息                            |
 | -------- | ---------------------------------- |
-| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified；<br/>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200011 | The splice method cannot be bound. |
 | 10200201 | Concurrent modification error.     |
 
@@ -1943,7 +1943,7 @@ splice(start: number, deleteCount: number, ...items: T[]): Array\<T>
 
 | 错误码ID | 错误信息                            |
 | -------- | ---------------------------------- |
-| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified；<br/>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200011 | The splice method cannot be bound. |
 | 10200201 | Concurrent modification error.     |
 
@@ -3488,7 +3488,7 @@ static of(...items: number[]): TypedArray
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 401 | Parameter error: Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error: Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
 
 **示例：**
 
@@ -4741,7 +4741,7 @@ push(element:number): boolean
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified；<br/>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200011 | The push method cannot be bound.                             |
 | 10200201 | Concurrent modification error.                               |
 
@@ -4810,7 +4810,7 @@ has(element: number, fromIndex: number, toIndex: number): boolean
 | --------- | ------ | ---- | ------------------------------------ |
 | element   | number | 是   | 待判断的bit值，0表示0，其余值表示1。 |
 | fromIndex | number | 是   | 范围起始索引，包含本索引值。         |
-| toIndex   | number | 是   | 范围终止索引，包含本索引值。当toIndex等于容器的长度时，在API version 18前后接口会有不同的表现，具体可见示例2。       |
+| toIndex   | number | 是   | 范围终止索引，包含本索引值。       |
 
 **返回值：**
 
@@ -4824,12 +4824,12 @@ has(element: number, fromIndex: number, toIndex: number): boolean
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified；<br/>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range.           |
 | 10200011 | The has method cannot be bound.                              |
 | 10200201 | Concurrent modification error.                               |
 
-**示例1：**
+**示例：**
 
 ```ts
 let bitVector: collections.BitVector = new collections.BitVector(0);
@@ -4840,30 +4840,6 @@ bitVector.push(1);
 bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
 let res0: boolean = bitVector.has(0, 1, 4);
 console.info("bitVector has 0:", res0); // true
-```
-
-**示例2：**
-
-API version 18之前，针对开发者调用push接口初始化BitVector容器值皆为1的情况，再调用has接口查询容器是否含有0时，若传入的toIndex等于容器的长度时会返回错误的结果。
-
-从API version 18开始，调用collections模块has接口时，当传入的toIndex等于容器的长度时，会触发jscrash从而报错返回异常信息。
-```ts
-let bitVector: collections.BitVector = new collections.BitVector(0);
-
-bitVector.push(1);
-bitVector.push(1);
-bitVector.push(1);
-bitVector.push(1);
-bitVector.push(1); // bitVector: [1, 1, 1, 1, 1]
-
-try {
-  let res: boolean = bitVector.has(0, 0, 5);
-  console.info("res: " + res);
-  // API version 18之前，输出结果为res: true
-} catch (err) {
-  console.error("error message: " + err.message);
-  // API version 18，因为越界发生jscrash，输出结果为error message: The value of "toIndex" is out of range. It must be >= 0 && < 5. Received value is: 5
-}
 ```
 
 ### setBitsByRange
@@ -4890,7 +4866,7 @@ setBitsByRange(element: number, fromIndex: number, toIndex: number): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified；<br/>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range.           |
 | 10200011 | The setBitsByRange method cannot be bound.                   |
 | 10200201 | Concurrent modification error.                               |
@@ -4929,7 +4905,7 @@ setAllBits(element: number): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified；<br/>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200011 | The setAllBits method cannot be bound.                       |
 | 10200201 | Concurrent modification error.                               |
 
@@ -4974,7 +4950,7 @@ getBitsByRange(fromIndex: number, toIndex: number): BitVector
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified；<br/>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range.           |
 | 10200011 | The getBitsByRange method cannot be bound.                   |
 | 10200201 | Concurrent modification error.                               |
@@ -5018,7 +4994,7 @@ resize(size: number): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified；<br/>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200011 | The resize method cannot be bound.                           |
 | 10200201 | Concurrent modification error.                               |
 
@@ -5067,7 +5043,7 @@ getBitCountByRange(element: number, fromIndex: number, toIndex: number): number
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified；<br/>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range.           |
 | 10200011 | The getBitCountByRange method cannot be bound.               |
 | 10200201 | Concurrent modification error.                               |
@@ -5115,7 +5091,7 @@ getIndexOf(element: number, fromIndex: number, toIndex: number): number
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified；<br/>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range.           |
 | 10200011 | The getIndexOf method cannot be bound.                       |
 | 10200201 | Concurrent modification error.                               |
@@ -5163,7 +5139,7 @@ getLastIndexOf(element: number, fromIndex: number, toIndex: number): number
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified；<br/>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range.           |
 | 10200011 | The getLastIndexOf method cannot be bound.                   |
 | 10200201 | Concurrent modification error.                               |
@@ -5203,7 +5179,7 @@ flipBitByIndex(index: number): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified；<br/>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200001 | The value of index is out of range.                          |
 | 10200011 | The flipBitByIndex method cannot be bound.                   |
 | 10200201 | Concurrent modification error.                               |
@@ -5243,7 +5219,7 @@ flipBitsByRange(fromIndex: number, toIndex: number): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified；<br/>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range.           |
 | 10200011 | The flipBitsByRange method cannot be bound.                  |
 | 10200201 | Concurrent modification error.                               |

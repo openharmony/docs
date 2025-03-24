@@ -116,7 +116,7 @@ try {
             console.error('userAuthInstance callback result.token is null');
             return;
         }
-        // 发起 AuthToken 验证请求
+        // 发起 AuthToken 验证请求。
         userAccessCtrl.verifyAuthToken(result.token, allowableDuration)
             .then((retAuthToken: userAccessCtrl.AuthToken) => {
                 Object.keys(retAuthToken).forEach((key) => {
@@ -128,7 +128,7 @@ try {
     }
   });
   console.info('auth on success');
-  // 启动认证
+  // 启动认证。
   userAuthInstance.start();
   console.info('auth start success');
 } catch (error) {

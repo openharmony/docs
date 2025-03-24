@@ -75,7 +75,7 @@ sendNotice(noticeType: NoticeType, eventData: string): void
 | 参数名     | 类型                        | 必填 | 说明       |
 | ---------- | --------------------------- | ---- | ---------- |
 | noticeType | [NoticeType](#noticetype10) | 是   | 通知类型。 |
-| eventData  | string                      | 是   | 事件数据。 |
+| eventData  | string                | 是   | 事件数据。数据长度限制为0-65536。    |
 
 **错误码：**
 

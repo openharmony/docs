@@ -1,6 +1,6 @@
 # GlobalObserver
 
-定义异常监听，可以作为[ErrorManager.on('globalErrorOccurred')](./js-apis-app-ability-errorManager.md#errormanageronglobalerroroccurred16) 和 [ErrorManager.on('globalUnhandledRejectionDetected')](./js-apis-app-ability-errorManager.md#errormanageronglobalunhandledrejectiondetected16)的入参监听当前应用主线程事件处理事件。
+定义异常监听，可以作为[ErrorManager.on('globalErrorOccurred')](./js-apis-app-ability-errorManager.md#errormanageronglobalerroroccurred18) 和 [ErrorManager.on('globalUnhandledRejectionDetected')](./js-apis-app-ability-errorManager.md#errormanageronglobalunhandledrejectiondetected18)的入参监听当前应用主线程事件处理事件。
 
 > **说明：**
 > 

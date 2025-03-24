@@ -32,7 +32,7 @@ uint32_t* OH_NN_UInt32Array::data
 
 **描述**
 
-无符号整型数组的指针
+无符号整型数组的指针。
 
 
 ### size
@@ -43,4 +43,4 @@ uint32_t OH_NN_UInt32Array::size
 
 **描述**
 
-数组长度
+数组长度。

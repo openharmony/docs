@@ -8,7 +8,7 @@
 
 **开发步骤**
 
-调用[phAccessHelper.getSupportedPhotoFormats](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getsupportedphotoformats16)接口获取支持保存的图片类型资源格式。
+调用[phAccessHelper.getSupportedPhotoFormats](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getsupportedphotoformats18)接口获取支持保存的图片类型资源格式。
 
 ```ts
 import photoAccessHelper from '@ohos.file.photoAccessHelper';

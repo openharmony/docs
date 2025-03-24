@@ -1,6 +1,6 @@
-# IME Kit (Input Method Development Service)
+# IME Kit<!--ime-api-->
 
-- ArkTS APIs
+- ArkTS API<!--ime-arkts-->
   - [@ohos.InputMethodExtensionAbility (InputMethodExtensionAbility)](js-apis-inputmethod-extension-ability.md)
   - [@ohos.InputMethodExtensionContext (InputMethodExtensionContext)](js-apis-inputmethod-extension-context.md)
   - [@ohos.inputMethod.Panel (Input Method Panel)](js-apis-inputmethod-panel.md)
@@ -9,10 +9,10 @@
   - [@ohos.inputMethod (Input Method Framework)](js-apis-inputmethod.md)
   - [@ohos.inputMethodEngine (Input Method Service)](js-apis-inputmethodengine.md)
   - [@ohos.inputMethodList (Input Method List)](js-apis-inputmethodlist.md)
-- C APIs
-  - Modules
+- C API<!--ime-c-->
+  - Modules<!--ime-module-->
     - [InputMethod](_input_method.md)
-  - Header Files
+  - Header Files<!--ime-headerfile-->
     - [inputmethod_attach_options_capi.h](inputmethod__attach__options__capi_8h.md)
     - [inputmethod_controller_capi.h](inputmethod__controller__capi_8h.md)
     - [inputmethod_cursor_info_capi.h](inputmethod__cursor__info__capi_8h.md)
@@ -22,6 +22,6 @@
     - [inputmethod_text_config_capi.h](inputmethod__text__config__capi_8h.md)
     - [inputmethod_text_editor_proxy_capi.h](inputmethod__text__editor__proxy__capi_8h.md)
     - [inputmethod_types_capi.h](inputmethod__types__capi_8h.md)
-- Error Codes
+- Error Codes<!--ime-arkts-errcode-->
   - [Input Method Framework Error Codes](errorcode-inputmethod-framework.md)
   

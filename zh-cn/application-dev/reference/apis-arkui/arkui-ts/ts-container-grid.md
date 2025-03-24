@@ -35,6 +35,8 @@
 
 Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 
+创建网格容器。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -48,11 +50,9 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 
 ## GridLayoutOptions<sup>10+</sup>对象说明
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+Grid布局选项。其中，irregularIndexes和onGetIrregularSizeByIndex可对仅设置rowsTemplate或columnsTemplate的Grid使用，可以指定一个index数组，并为其中的index对应的GridItem设置其占据的行数与列数，使用方法参见[示例3](#示例3可滚动grid设置跨行跨列节点)；onGetRectByIndex可对同时设置rowsTemplate和columnsTemplate的Grid使用，为指定的index对应的GridItem设置位置和大小，使用方法参见[示例1](#示例1固定行列grid)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-布局选项。其中，irregularIndexes和onGetIrregularSizeByIndex可对仅设置rowsTemplate或columnsTemplate的Grid使用，可以指定一个index数组，并为其中的index对应的GridItem设置其占据的行数与列数，使用方法参见[示例3](#示例3可滚动grid设置跨行跨列节点)；onGetRectByIndex可对同时设置rowsTemplate和columnsTemplate的Grid使用，为指定的index对应的GridItem设置位置和大小，使用方法参见[示例1](#示例1固定行列grid)。
 
 | 名称    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
@@ -170,7 +170,7 @@ columnsGap(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                         |
 | ------ | ---------------------------- | ---- | ---------------------------- |
-| value  | [Length](ts-types.md#length) | 是   | 列与列的间距。<br/>默认值：0 |
+| value  | [Length](ts-types.md#length) | 是   | 列与列的间距。<br/>默认值：0 <br/>取值范围：[0, +∞) |
 
 ### rowsGap
 
@@ -186,7 +186,7 @@ rowsGap(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                         |
 | ------ | ---------------------------- | ---- | ---------------------------- |
-| value  | [Length](ts-types.md#length) | 是   | 行与行的间距。<br/>默认值：0 |
+| value  | [Length](ts-types.md#length) | 是   | 行与行的间距。<br/>默认值：0 <br/>取值范围：[0, +∞) |
 
 ### scrollBar
 
@@ -218,7 +218,7 @@ scrollBarColor(value: Color | number | string)
 
 | 参数名 | 类型                                                         | 必填 | 说明           |
 | ------ | ------------------------------------------------------------ | ---- | -------------- |
-| value  | [Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string | 是   | 滚动条的颜色。<br/>默认值：'\#182431'（40%不透明度） |
+| value  | [Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string | 是   | 滚动条的颜色。<br/>默认值：'\#182431'（40%不透明度）<br/>number为HEX格式颜色，支持rgb或者argb，示例：0xffffff。string为rgb或者argb格式颜色，示例：'#ffffff'。 |
 
 ### scrollBarWidth
 
@@ -234,13 +234,13 @@ scrollBarWidth(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                                      |
 | ------ | -------------------------- | ---- | ----------------------------------------- |
-| value  | number&nbsp;\|&nbsp;string | 是   | 滚动条的宽度。<br/>默认值：4<br/>单位：vp |
+| value  | number&nbsp;\|&nbsp;string | 是   | 滚动条的宽度。<br/>默认值：4<br/>单位：vp<br/>取值范围：设置为小于0的值时，按默认值处理。设置为0时，不显示滚动条。 |
 
 ### cachedCount
 
 cachedCount(value: number)
 
-设置预加载的GridItem的数量，只在[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)和开启了virtualScroll开关的[Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md)中生效。设置为小于0的值时，按默认值显示。<!--Del-->具体使用可参考[减少应用白块说明](../../../performance/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。<!--DelEnd-->
+设置预加载的GridItem的数量，只在[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)和开启了virtualScroll开关的[Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md)中生效。<!--Del-->具体使用可参考[减少应用白块说明](../../../performance/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。<!--DelEnd-->
 
 设置缓存后会在Grid显示区域上下各缓存cachedCount*列数个GridItem。
 
@@ -254,7 +254,7 @@ cachedCount(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 预加载的GridItem的数量。<br/>默认值：垂直滚动时为一个屏幕内可显示的行数，水平滚动时为一个屏幕内可显示的列数，最大值为16。 |
+| value  | number | 是   | 预加载的GridItem的数量。<br/>默认值：垂直滚动时为一个屏幕内可显示的行数，水平滚动时为一个屏幕内可显示的列数，最大值为16。<br/>取值范围：[0, +∞)，设置为小于0的值时，按1处理。 |
 
 ### cachedCount<sup>14+</sup>
 
@@ -272,8 +272,8 @@ cachedCount(count: number, show: boolean)
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| count  | number | 是   | 预加载的GridItem的数量。<br/>默认值：垂直滚动时为一个屏幕内可显示的行数，水平滚动时为一个屏幕内可显示的列数，最大值为16。 |
-| show  | boolean | 是   | 被预加载的GridItem是否需要显示。 <br/> 默认值：false |
+| count  | number | 是   | 预加载的GridItem的数量。<br/>默认值：垂直滚动时为一个屏幕内可显示的行数，水平滚动时为一个屏幕内可显示的列数，最大值为16。<br/>取值范围：[0, +∞)，设置为小于0的值时，按1处理。 |
+| show  | boolean | 是   | 被预加载的GridItem是否需要显示。 <br/> 默认值：false，不显示预加载的GridItem。 |
 
 ### editMode<sup>8+</sup>
 
@@ -289,7 +289,7 @@ editMode(value: boolean)
 
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
-| value  | boolean | 是   | Grid是否进入编辑模式。<br/>默认值：false |
+| value  | boolean | 是   | Grid是否进入编辑模式。<br/>默认值：false，当前Grid组件不处于可编辑模式。 |
 
 ### layoutDirection<sup>8+</sup>
 
@@ -339,6 +339,8 @@ minCount(value: number)
 
 当layoutDirection是Column/ColumnReverse时，表示可显示的最小行数。
 
+当minCount大于maxCount时，minCount和maxCount都按默认值处理。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -367,7 +369,7 @@ cellLength(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                    |
 | ------ | ------ | ---- | ------------------------------------------------------- |
-| value  | number | 是   | 一行的高度或者一列的宽度。<br/>默认值：第一个元素的大小 <br/>单位：vp|
+| value  | number | 是   | 一行的高度或者一列的宽度。<br/>默认值：第一个元素的大小 <br/>单位：vp <br/>取值范围：[0, +∞)，设置为小于0的值时，按默认值显示。 |
 
 ### multiSelectable<sup>8+</sup>
 
@@ -399,7 +401,7 @@ supportAnimation(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                             |
 | ------ | ------- | ---- | -------------------------------- |
-| value  | boolean | 是   | 是否支持动画。<br/>默认值：false |
+| value  | boolean | 是   | 是否支持动画。<br/>默认值：false，不支持动画。 |
 
 ### edgeEffect<sup>10+</sup>
 
@@ -454,7 +456,7 @@ nestedScroll(value: NestedScrollOptions)
 
 friction(value: number | Resource)
 
-设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。设置为小于等于0的值时，按默认值处理。
+设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -464,7 +466,7 @@ friction(value: number | Resource)
 
 | 参数名 | 类型                                                 | 必填 | 说明                                                        |
 | ------ | ---------------------------------------------------- | ---- | ----------------------------------------------------------- |
-| value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 摩擦系数。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9。<br/>从API version 11开始，非可穿戴设备默认值为0.7。<br/>从API version 12开始，非可穿戴设备默认值为0.75。 |
+| value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 摩擦系数。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9。<br/>从API version 11开始，非可穿戴设备默认值为0.7。<br/>从API version 12开始，非可穿戴设备默认值为0.75。<br/>取值范围：(0, +∞)，设置为小于等于0的值时，按默认值处理。 |
 
 ### alignItems<sup>12+</sup>
 
@@ -484,6 +486,8 @@ alignItems(alignment: Optional\<GridItemAlignment\>)
 
 ## GridItemAlignment<sup>12+</sup>枚举说明
 
+GridItem的对齐方式枚举。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -502,6 +506,8 @@ alignItems(alignment: Optional\<GridItemAlignment\>)
 > 4、设置STRETCH后，Grid布局时会有额外的布局流程，可能会带来额外的性能开销。
 
 ## GridDirection<sup>8+</sup>枚举说明
+
+主轴布局方向枚举。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -745,6 +751,8 @@ onScroll(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-l
 | scrollState | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是 | 当前滑动状态。 |
 
 ## ComputedBarAttribute<sup>10+</sup>对象说明
+
+滚动条位置和长度对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

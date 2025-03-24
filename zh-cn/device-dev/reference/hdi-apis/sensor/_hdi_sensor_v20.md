@@ -1,6 +1,5 @@
 # HdiSensor (V2_0)
 
-
 ## 概述
 
 传感器设备驱动对传感器服务提供通用的接口能力。
@@ -9,18 +8,15 @@
 
 **起始版本：** 4.1
 
-
 ## 汇总
-
 
 ### 文件
 
 | 名称 | 描述 | 
 | -------- | -------- |
 | [ISensorCallback.idl](_i_sensor_callback_8idl_v20.md) | Sensor模块为Sensor服务提供数据上报的回调函数。 | 
-| [ISensorInterface.idl](_i_sensor_interface_8idl_v20.md) | Sensor模块对外通用的接口声明文件，提供获取传感器设备信息、订阅/取消订阅传感器数据、 使能/去使能传感器、设置传感器模式、设置传感器精度，量程等可选配置接口定义。 | 
+| [ISensorInterface.idl](_i_sensor_interface_8idl_v20.md) | Sensor模块对外通用的接口声明文件，提供获取传感器设备信息、订阅/取消订阅传感器数据、使能/去使能传感器、设置传感器模式、设置传感器精度，量程等可选配置接口定义。 | 
 | [SensorTypes.idl](_sensor_types_8idl_v20.md) | 定义传感器模块所使用的传感器类型，传感器信息，传感器数据结构等数据类型。 | 
-
 
 ### 类
 
@@ -31,7 +27,6 @@
 | struct&nbsp;&nbsp;[HdfSensorInformation](_hdf_sensor_information_v20.md) | 定义传感器的基本信息。 | 
 | struct&nbsp;&nbsp;[HdfSensorEvents](_hdf_sensor_events_v20.md) | 定义传感器上报的数据。 | 
 
-
 ### 枚举
 
 | 名称 | 描述 | 
@@ -39,9 +34,7 @@
 | [HdfSensorTypeTag](#hdfsensortypetag) {<br/>HDF_SENSOR_TYPE_NONE = 0, HDF_SENSOR_TYPE_ACCELEROMETER = 1, HDF_SENSOR_TYPE_GYROSCOPE = 2, HDF_SENSOR_TYPE_PHOTOPLETHYSMOGRAPH = 3,&nbsp;&nbsp;&nbsp;HDF_SENSOR_TYPE_ELECTROCARDIOGRAPH = 4, HDF_SENSOR_TYPE_AMBIENT_LIGHT = 5, HDF_SENSOR_TYPE_MAGNETIC_FIELD = 6, HDF_SENSOR_TYPE_CAPACITIVE = 7,&nbsp;&nbsp;&nbsp;HDF_SENSOR_TYPE_BAROMETER = 8, HDF_SENSOR_TYPE_TEMPERATURE = 9, HDF_SENSOR_TYPE_HALL = 10, HDF_SENSOR_TYPE_GESTURE = 11,&nbsp;&nbsp;&nbsp;HDF_SENSOR_TYPE_PROXIMITY = 12,&nbsp;&nbsp;HDF_SENSOR_TYPE_HUMIDITY = 13, HDF_SENSOR_TYPE_COLOR = 14 , HDF_SENSOR_TYPE_SAR = 15 , HDF_SENSOR_TYPE_AMBIENT_LIGHT1 = 16 , HDF_SENSOR_TYPE_MEDICAL_BEGIN = 128, HDF_SENSOR_TYPE_MEDICAL_END = 160,&nbsp;&nbsp;&nbsp;HDF_SENSOR_TYPE_PHYSICAL_MAX = 255, HDF_SENSOR_TYPE_ORIENTATION = 256, HDF_SENSOR_TYPE_GRAVITY = 257, HDF_SENSOR_TYPE_LINEAR_ACCELERATION = 258,&nbsp;&nbsp;&nbsp;HDF_SENSOR_TYPE_ROTATION_VECTOR = 259, HDF_SENSOR_TYPE_AMBIENT_TEMPERATURE = 260, HDF_SENSOR_TYPE_MAGNETIC_FIELD_UNCALIBRATED = 261, HDF_SENSOR_TYPE_GAME_ROTATION_VECTOR = 262,&nbsp;&nbsp;&nbsp;HDF_SENSOR_TYPE_GYROSCOPE_UNCALIBRATED = 263, HDF_SENSOR_TYPE_SIGNIFICANT_MOTION = 264, HDF_SENSOR_TYPE_PEDOMETER_DETECTION = 265, HDF_SENSOR_TYPE_PEDOMETER = 266,&nbsp;&nbsp;HDF_SENSOR_TYPE_POSTURE = 267 , HDF_SENSOR_TYPE_HEADPOSTURE = 268 , HDF_SENSOR_TYPE_DROP_DETECT = 269 , HDF_SENSOR_TYPE_GEOMAGNETIC_ROTATION_VECTOR = 277, HDF_SENSOR_TYPE_HEART_RATE = 278, HDF_SENSOR_TYPE_DEVICE_ORIENTATION = 279, HDF_SENSOR_TYPE_WEAR_DETECTION = 280,&nbsp;&nbsp;&nbsp;HDF_SENSOR_TYPE_ACCELEROMETER_UNCALIBRATED = 281, HDF_SENSOR_TYPE_MAX<br/>} | 枚举传感器类型。 | 
 | [HdfSensorGroupType](#hdfsensorgrouptype) { HDF_TRADITIONAL_SENSOR_TYPE = 0, HDF_MEDICAL_SENSOR_TYPE = 1, HDF_SENSOR_GROUP_TYPE_MAX } | 枚举传感器的硬件服务组。 | 
 
-
 ## 枚举类型说明
-
 
 ### HdfSensorGroupType
 
@@ -50,7 +43,6 @@ enum HdfSensorGroupType
 ```
 
 **描述**
-
 
 枚举传感器的硬件服务组。
 
@@ -62,7 +54,6 @@ enum HdfSensorGroupType
 | HDF_MEDICAL_SENSOR_TYPE | 医疗传感器类型，传感器ID枚举值范围在128-160之间。 | 
 | HDF_SENSOR_GROUP_TYPE_MAX | 最大传感器类型。 | 
 
-
 ### HdfSensorTypeTag
 
 ```
@@ -70,7 +61,6 @@ enum HdfSensorTypeTag
 ```
 
 **描述**
-
 
 枚举传感器类型。
 

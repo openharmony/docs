@@ -100,7 +100,7 @@ isBuiltIn(): boolean
 
 | 类型     | 说明        |
 | ------ | --------- |
-| boolean | 当前手势识别器是否为系统内置手势。 |
+| boolean | 当前手势识别器是否为系统内置手势。true表示手势识别器为系统内置手势，false表示非系统内置手势。 |
 
 ### setEnabled
 
@@ -237,7 +237,7 @@ isBegin(): boolean
 
 | 类型     | 说明        |
 | ------ | --------- |
-| boolean | 当前滚动类容器组件是否在顶部。 |
+| boolean | 当前滚动类容器组件是否在顶部。true表示组件在顶部，false表示组件不在顶部。 |
 
 ### isEnd
 
@@ -255,13 +255,13 @@ isEnd(): boolean
 | ------ | --------- |
 | boolean | 当前滚动类容器组件是否在底部。 |
 
-### getFingerCount<sup>16+</sup>
+### getFingerCount<sup>18+</sup>
 
 getFingerCount(): number
 
 返回预设手指识别数阈值。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -271,13 +271,13 @@ getFingerCount(): number
 | ------ | --------- |
 | number | 预设手指识别数阈值。 |
 
-### isFingerCountLimit<sup>16+</sup>
+### isFingerCountLimit<sup>18+</sup>
 
 isFingerCountLimit(): boolean
 
 返回预设手势是否会检测触摸屏幕上手指识别数量。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -307,17 +307,17 @@ getPanGestureOptions(): PanGestureOptions
 | ------ | --------- |
 | [PanGestureOptions](./ts-basic-gestures-pangesture.md#pangestureoptions) | 当前拖动手势识别器的属性。 |
 
-## TapRecognizer<sup>16+</sup>
+## TapRecognizer<sup>18+</sup>
 
 点击手势识别器对象，继承于[GestureRecognizer](#gesturerecognizer)。
 
-### getTapCount<sup>16+</sup>
+### getTapCount<sup>18+</sup>
 
 getTapCount(): number
 
 返回预设点击手势识别器连续点击次数阈值。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -327,17 +327,17 @@ getTapCount(): number
 | ------ | --------- |
 | number | 预设点击手势识别器连续点击次数阈值。 |
 
-## LongPressRecognizer<sup>16+</sup>
+## LongPressRecognizer<sup>18+</sup>
 
 长按手势识别器对象，继承于[GestureRecognizer](#gesturerecognizer)。
 
-### isRepeat<sup>16+</sup>
+### isRepeat<sup>18+</sup>
 
 isRepeat(): boolean
 
 返回预设长按手势识别器是否连续触发事件回调。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -347,13 +347,13 @@ isRepeat(): boolean
 | ------ | --------- |
 | boolean | 预设长按手势识别器是否连续触发事件回调。当绑定长按手势且不会连续触发回调时，返回false。当绑定长按手势且会连续触发回调时，返回true。 |
 
-### getDuration<sup>16+</sup>
+### getDuration<sup>18+</sup>
 
 getDuration(): number
 
 返回预设长按手势识别器触发长按最短时间阈值。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -363,17 +363,17 @@ getDuration(): number
 | ------ | --------- |
 | number | 预设长按手势识别器触发长按最短时间阈值。 |
 
-## SwipeRecognizer<sup>16+</sup>
+## SwipeRecognizer<sup>18+</sup>
 
 滑动手势识别器对象，继承于[GestureRecognizer](#gesturerecognizer)。
 
-### getVelocityThreshold<sup>16+</sup>
+### getVelocityThreshold<sup>18+</sup>
 
 getVelocityThreshold(): number
 
 返回预设滑动手势识别器识别滑动最小速度阈值。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -383,13 +383,13 @@ getVelocityThreshold(): number
 | ------ | --------- |
 | number | 预设滑动手势识别器识别滑动最小速度阈值 |
 
-### getDirection<sup>16+</sup>
+### getDirection<sup>18+</sup>
 
 getDirection(): SwipeDirection
 
 返回预设滑动手势识别器触发滑动手势滑动方向阈值。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -399,17 +399,17 @@ getDirection(): SwipeDirection
 | ------ | --------- |
 | [SwipeDirection](./ts-basic-gestures-swipegesture.md#swipedirection枚举说明) | 预设滑动手势识别器触发滑动手势滑动方向阈值。 |
 
-## PinchRecognizer<sup>16+</sup>
+## PinchRecognizer<sup>18+</sup>
 
 捏合手势识别器对象，继承于[GestureRecognizer](#gesturerecognizer)。
 
-### getDistance<sup>16+</sup>
+### getDistance<sup>18+</sup>
 
 getDistance(): number
 
 返回预设捏合手势识别器最小识别距离阈值。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -419,17 +419,17 @@ getDistance(): number
 | ------ | --------- |
 | number | 预设捏合手势识别器最小识别距离阈值。 |
 
-## RotationRecognizer<sup>16+</sup>
+## RotationRecognizer<sup>18+</sup>
 
 旋转手势识别器对象，继承于[GestureRecognizer](#gesturerecognizer)。
 
-### getAngle<sup>16+</sup>
+### getAngle<sup>18+</sup>
 
 getAngle(): number
 
 返回预设旋转手势识别器触发旋转手势最小改变度数阈值。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

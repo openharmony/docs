@@ -35,7 +35,7 @@ Adds the applications that can be installed by the current user through the spec
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to add.                 |
-| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -57,7 +57,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.addAllowedInstallBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -86,7 +86,7 @@ Adds the applications that can be installed by the specified user through the sp
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to add.                 |
 | userId     | number                             | Yes   | User ID, which must be greater than or equal to 0.|
-| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -108,7 +108,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.addAllowedInstallBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -136,7 +136,7 @@ Adds the applications that can be installed by the current or specified user thr
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to add.                 |
-| userId     | number                             | No   |User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, this API applies to the specified user.<br>- If **userId** is not passed in, this API applies to the current user.|
+| userId     | number                             | No   |User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, this API applies to the specified user.<br> - If **userId** is not passed in, this API applies to the current user.|
 
 **Return value**
 
@@ -165,7 +165,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.addAllowedInstallBundles(wantTemp, appIds, 100).then(() => {
   console.info('Succeeded in adding allowed install bundles');
@@ -190,8 +190,8 @@ Removes the applications that can be installed by the current user through the s
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to remove.                 |
-| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to add.                 |
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -213,7 +213,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.removeAllowedInstallBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -240,9 +240,9 @@ Removes the applications that can be installed by the specified user through the
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to remove.                 |
+| appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to add.                 |
 | userId     | number                             | Yes   | User ID, which must be greater than or equal to 0.|
-| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -264,7 +264,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.removeAllowedInstallBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -291,8 +291,8 @@ Removes the applications that can be installed by the current or specified user 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| appIds    | Array&lt;string&gt;         | Yes   | IDs of the applications to remove.                 |
-| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, this API applies to the specified user.<br>- If **userId** is not passed in, this API applies to the current user.|
+| appIds    | Array&lt;string&gt;         | Yes   | IDs of the applications to add.                 |
+| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, this API applies to the specified user.<br> - If **userId** is not passed in, this API applies to the current user.|
 
 **Return value**
 
@@ -321,7 +321,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.removeAllowedInstallBundles(wantTemp, appIds, 100).then(() => {
   console.info('Succeeded in removing allowed install bundles');
@@ -346,7 +346,7 @@ Obtains the applications that can be installed by the current user through the s
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
 
@@ -395,7 +395,7 @@ Obtains the applications that can be installed by the specified user through the
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | userId     | number                             | Yes   | User ID, which must be greater than or equal to 0.|
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
 
@@ -443,7 +443,7 @@ Obtains the applications that can be installed by the current or specified user 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, this API applies to the specified user.<br>- If **userId** is not passed in, this API applies to the current user.|
+| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, this API applies to the specified user.<br> - If **userId** is not passed in, this API applies to the current user.|
 
 **Return value**
 
@@ -497,7 +497,7 @@ Adds the applications that cannot be installed by the current user through the s
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to add.                 |
-| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -519,7 +519,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.addDisallowedInstallBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -548,7 +548,7 @@ Adds the applications that cannot be installed by the specified user through the
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to add.                 |
 | userId     | number                             | Yes   | User ID, which must be greater than or equal to 0.|
-| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -570,7 +570,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.addDisallowedInstallBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -598,7 +598,7 @@ Adds the applications that cannot be installed by the current or specified user 
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to add.                 |
-| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, this API applies to the specified user.<br>- If **userId** is not passed in, this API applies to the current user.|
+| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, this API applies to the specified user.<br> - If **userId** is not passed in, this API applies to the current user.|
 
 **Return value**
 
@@ -627,7 +627,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.addDisallowedInstallBundles(wantTemp, appIds, 100).then(() => {
   console.info('Succeeded in adding disallowed install bundles');
@@ -652,8 +652,8 @@ Removes the applications that cannot be installed by the current user through th
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to remove.                 |
-| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to add.                 |
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -675,7 +675,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -702,9 +702,9 @@ Removes the applications that cannot be installed by the specified user through 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to remove.                 |
+| appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to add.                 |
 | userId     | number                             | Yes   | User ID, which must be greater than or equal to 0.|
-| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -726,7 +726,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -753,8 +753,8 @@ Removes the applications that cannot be installed by the current or specified us
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| appIds    | Array&lt;string&gt;        | Yes   | IDs of the applications to remove.                 |
-| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, this API applies to the specified user.<br>- If **userId** is not passed in, this API applies to the current user.|
+| appIds    | Array&lt;string&gt;        | Yes   | IDs of the applications to add.                 |
+| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, this API applies to the specified user.<br> - If **userId** is not passed in, this API applies to the current user.|
 
 **Return value**
 
@@ -783,7 +783,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, 100).then(() => {
   console.info('Succeeded in removing disallowed install bundles');
@@ -808,7 +808,7 @@ Obtains the applications that cannot be installed by the current user through th
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
 
@@ -857,7 +857,7 @@ Obtains the applications that cannot be installed by the specified user through 
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | userId     | number                             | Yes   | User ID, which must be greater than or equal to 0.|
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
 
@@ -905,7 +905,7 @@ Obtains the applications that cannot be installed by the current or specified us
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, this API applies to the specified user.<br>- If **userId** is not passed in, this API applies to the current user.|
+| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, this API applies to the specified user.<br> - If **userId** is not passed in, this API applies to the current user.|
 
 **Return value**
 
@@ -959,7 +959,7 @@ Adds the applications that cannot be uninstalled by the current user through the
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to add.                 |
-| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -981,7 +981,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.addDisallowedUninstallBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -1010,7 +1010,7 @@ Adds the applications that cannot be uninstalled by the specified user through t
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to add.                 |
 | userId     | number                             | Yes   | User ID, which must be greater than or equal to 0.|
-| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1032,7 +1032,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.addDisallowedUninstallBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -1060,7 +1060,7 @@ Adds the applications that cannot be uninstalled by the current or specified use
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to add.                 |
-| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, this API applies to the specified user.<br>- If **userId** is not passed in, this API applies to the current user.|
+| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, this API applies to the specified user.<br> - If **userId** is not passed in, this API applies to the current user.|
 
 **Return value**
 
@@ -1089,7 +1089,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.addDisallowedUninstallBundles(wantTemp, appIds, 100).then(() => {
   console.info('Succeeded in adding disallowed uninstall bundles');
@@ -1114,8 +1114,8 @@ Removes the applications that cannot be uninstalled by the current user through 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to remove.                 |
-| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to add.                 |
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1137,7 +1137,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.removeDisallowedUninstallBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -1164,9 +1164,9 @@ Removes the applications that cannot be uninstalled by the specified user throug
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to remove.                 |
+| appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to add.                 |
 | userId     | number                             | Yes   | User ID, which must be greater than or equal to 0.|
-| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1188,7 +1188,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.removeDisallowedUninstallBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -1215,8 +1215,8 @@ Removes the applications that cannot be uninstalled by the current or specified 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| appIds    | Array&lt;string&gt;        | Yes   | IDs of the applications to remove.                 |
-| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, this API applies to the specified user.<br>- If **userId** is not passed in, this API applies to the current user.|
+| appIds    | Array&lt;string&gt;        | Yes   | IDs of the applications to add.                 |
+| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, this API applies to the specified user.<br> - If **userId** is not passed in, this API applies to the current user.|
 
 **Return value**
 
@@ -1245,7 +1245,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 bundleManager.removeDisallowedUninstallBundles(wantTemp, appIds, 100).then(() => {
   console.info('Succeeded in removing disallowed uninstall bundles');
@@ -1270,7 +1270,7 @@ Obtains the applications that cannot be uninstalled by the current user through 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
 
@@ -1319,7 +1319,7 @@ Obtains the applications that cannot be uninstalled by the specified user throug
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | userId     | number                             | Yes   | User ID, which must be greater than or equal to 0.|
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
 
@@ -1367,7 +1367,7 @@ Obtains the applications that cannot be uninstalled by the current or specified 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, this API applies to the specified user.<br>- If **userId** is not passed in, this API applies to the current user.|
+| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, this API applies to the specified user.<br> - If **userId** is not passed in, this API applies to the current user.|
 
 **Return value**
 
@@ -1421,7 +1421,7 @@ Uninstalls an application of the current user without retaining the bundle data 
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | bundleName     | string                             | Yes   | Name of the bundle to uninstall.|
-| callback | AsyncCallback&lt;void&gt;       | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+| callback | AsyncCallback&lt;void&gt;       | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
 
@@ -1471,7 +1471,7 @@ Uninstalls an application of the specified user without retaining the bundle dat
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | bundleName     | string                             | Yes   | Name of the bundle to uninstall.|
 | userId     | number                             | Yes   | User ID, which must be greater than or equal to 0.|
-| callback | AsyncCallback&lt;void&gt;       | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+| callback | AsyncCallback&lt;void&gt;       | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
 
@@ -1521,7 +1521,7 @@ Uninstalls an application of the current user through the specified device admin
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | bundleName     | string                             | Yes   | Name of the bundle to uninstall.|
 | isKeepData     | boolean                             | Yes   | Whether to retain the bundle data. The value **true** means to retain the bundle data; the value **false** means the opposite.|
-| callback | AsyncCallback&lt;void&gt;       | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+| callback | AsyncCallback&lt;void&gt;       | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
 
@@ -1572,7 +1572,7 @@ Uninstalls an application of the specified user through the specified device adm
 | bundleName     | string                             | Yes   | Name of the bundle to uninstall.|
 | userId     | number                             | Yes   | User ID, which must be greater than or equal to 0.|
 | isKeepData     | boolean                             | Yes   | Whether to retain the bundle data. The value **true** means to retain the bundle data; the value **false** means the opposite.|
-| callback | AsyncCallback&lt;void&gt;       | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+| callback | AsyncCallback&lt;void&gt;       | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
 
@@ -1621,7 +1621,7 @@ Installs applications through the specified device administrator application. Th
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | hapFilePaths     | Array\<string>                           | Yes   | Applications to install.|
-| callback | AsyncCallback&lt;void&gt;       | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+| callback | AsyncCallback&lt;void&gt;       | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
 
@@ -1673,7 +1673,7 @@ Installs applications with specified parameters through the specified device adm
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | hapFilePaths     | Array\<string>                       | Yes   | Applications to install.|
 | installParam     | [InstallParam](js-apis-enterprise-bundleManager.md#installparam) | Yes   | Application installation parameters.|
-| callback | AsyncCallback&lt;void&gt;       | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+| callback | AsyncCallback&lt;void&gt;       | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
 

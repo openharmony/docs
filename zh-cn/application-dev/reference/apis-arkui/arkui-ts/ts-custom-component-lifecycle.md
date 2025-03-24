@@ -106,13 +106,13 @@ struct IndexComponent {
 ```
 ![zh-cn_image_lifecycle](figures/zh-cn_image_lifecycle.gif)
 
-## onNewParam<sup>16+</sup>
+## onNewParam<sup>18+</sup>
 
 onNewParam?(param: ESObject): void
 
 该回调仅生效于由\@Entry装饰的、作为[router路由](../js-apis-router.md)页面存在的自定义组件。当之前存在于路由栈中的页面，通过[单实例模式](../js-apis-router.md#routermode9)移动到栈顶时触发该回调。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -279,7 +279,7 @@ struct Child {
 }
 ```
 
-## aboutToReuse<sup>16+</sup>
+## aboutToReuse<sup>18+</sup>
 
 aboutToReuse?(): void
 
@@ -287,7 +287,7 @@ aboutToReuse?(): void
 
 详细内容请参考[\@ReusableV2](../../../quick-start/arkts-new-reusableV2.md)。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

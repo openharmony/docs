@@ -38,7 +38,7 @@ const TAG = 'MetadataDemo';
 struct Index {
   @State message: string = 'Hello World';
 
-  // pixelMap对象声明，用于图片显示
+  // pixelMap对象声明，用于图片显示。
   @State pixelMap: image.PixelMap | undefined = undefined;
 
   build() {
@@ -58,7 +58,7 @@ struct Index {
         .width('60%')
         .height('5%')
         .onClick(() => {
-          // 设置fdSrc, 获取视频的缩略图
+          // 设置fdSrc, 获取视频的缩略图。
           this.testFetchFrameByTime();
         })
         Image(this.pixelMap).width(300).height(300)
@@ -71,15 +71,15 @@ struct Index {
     .height('100%')
   }
 
-  // 在以下demo中，使用资源管理接口获取打包在HAP内的视频文件，通过设置fdSrc属性，
+  // 在以下demo中，使用资源管理接口获取打包在HAP内的视频文件，通过设置fdSrc属性。
   // 获取视频指定时间的缩略图，并通过Image控件显示在屏幕上。
   async testFetchFrameByTime() {
-    // 创建AVImageGenerator对象
+    // 创建AVImageGenerator对象。
     let avImageGenerator: media.AVImageGenerator = await media.createAVImageGenerator();
-    // 设置fdSrc
+    // 设置fdSrc。
     avImageGenerator.fdSrc = await getContext(this).resourceManager.getRawFd('demo.mp4');
 
-    // 初始化入参
+    // 初始化入参。
     let timeUs = 0;
     let queryOption = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC;
     let param: media.PixelMapParams = {
@@ -87,10 +87,10 @@ struct Index {
       height : 300
     };
 
-    // 获取缩略图（promise模式）
+    // 获取缩略图（promise模式）。
     this.pixelMap = await avImageGenerator.fetchFrameByTime(timeUs, queryOption, param);
 
-    // 释放资源（promise模式）
+    // 释放资源（promise模式）。
     avImageGenerator.release();
     console.info(TAG, `release success.`);
   }

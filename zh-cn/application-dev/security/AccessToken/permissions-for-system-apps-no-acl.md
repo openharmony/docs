@@ -34,18 +34,6 @@
 
 **起始版本**：11
 
-## ohos.permission.QUERY_ACCESSIBILITY_ELEMENT
-
-允许批量查询无障碍节点。
-
-**权限级别**：system_basic
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：false
-
-**起始版本**：11
-
 ## ohos.permission.GET_ALL_APP_ACCOUNTS
 
 允许应用查询所有的应用账号信息。
@@ -248,7 +236,7 @@
 
 **ACL使能**：false
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.SET_LAUNCH_REASON_MESSAGE
 
@@ -260,7 +248,7 @@
 
 **ACL使能**：false
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_USER_ACCOUNT_INFO
 
@@ -272,4 +260,4 @@
 
 **ACL使能**：false
 
-**起始版本**：16
+**起始版本**：18

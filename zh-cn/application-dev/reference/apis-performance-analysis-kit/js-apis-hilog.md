@@ -227,7 +227,7 @@ hilog.fatal(0x0001, "testTag", "%{public}s World %{private}d", "hello", 3);
 
 ## hilog.setMinLogLevel<sup>15+</sup>
 
-setMinLogLevel(level: LogLevel): void;
+setMinLogLevel(level: LogLevel): void
 
 设置应用日志打印的最低日志级别，进程在打印日志时，需要同时校验该日志级别和全局日志级别，所以设置的日志级别不能低于全局日志级别，[全局日志级别](../../dfx/hilog.md#查看和设置日志级别)默认为Info。
 
@@ -296,7 +296,7 @@ hilog.info(0x0001, "jsHilogTest", "print bigNum: %{public}d %{public}i", bigNum,
 hilog.info(0x0001, "jsHilogTest", "print boolean: %{public}s", isBol);
 ```
 
-打印结果
+**打印结果：**
 ```
 08-09 13:26:29.094  2266  2266 I A00001/jsHilogTest: print object: {"name":"Jack","age":22}
 08-09 13:26:29.094  2266  2266 I A00001/jsHilogTest: private flag: <private> <private>, print null: null

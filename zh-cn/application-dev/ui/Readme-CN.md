@@ -46,10 +46,16 @@
        - [不依赖UI组件的全局自定义弹出框 (openCustomDialog) (推荐)](arkts-uicontext-custom-dialog.md)
        - [基础自定义弹出框 (CustomDialog) (不推荐)](arkts-common-components-custom-dialog.md)
        - [固定样式弹出框](arkts-fixes-style-dialog.md)
-     - [菜单控制 (Menu)](arkts-popup-and-menu-components-menu.md)
-     - [不依赖UI组件的全局菜单控制 (openMenu)](arkts-popup-and-menu-components-uicontext-menu.md)
-     - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
-     - [不依赖UI组件的全局气泡提示 (openPopup)](arkts-popup-and-menu-components-uicontext-popup.md)
+       - [页面级弹出框](arkts-embedded-dialog.md)
+       - [弹出框层级管理](arkts-dialog-levelorder.md)
+     - 菜单<!--arkts-use-menu-->
+       - [菜单概述](arkts-menu-overview.md)
+       - [菜单控制 (Menu)](arkts-popup-and-menu-components-menu.md)
+       - [不依赖UI组件的全局菜单 (openMenu)](arkts-popup-and-menu-components-uicontext-menu.md)
+     - 气泡提示<!--arkts-use-popup-->
+       - [气泡提示概述](arkts-popup-overview.md)
+       - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
+       - [不依赖UI组件的全局气泡提示 (openPopup)](arkts-popup-and-menu-components-uicontext-popup.md)
      - 绑定模态页面<!--arkts-bind-modal-->
         - [绑定模态页面概述](arkts-modal-overview.md)
         - [绑定半模态页面 (bindSheet)](arkts-sheet-page.md)
@@ -92,6 +98,7 @@
       - [键鼠事件](arkts-common-events-device-input-event.md)
       - [焦点事件](arkts-common-events-focus-event.md)
       - [拖拽事件](arkts-common-events-drag-event.md)
+      - [表冠事件](arkts-common-events-crown-event.md)（圆形屏幕推荐使用）
     - 使用手势事件<!--arkts-gesture-events-->
       - [绑定手势方法](arkts-gesture-events-binding.md)
       - [单一手势](arkts-gesture-events-single-gesture.md)
@@ -113,6 +120,7 @@
   - [使用镜像能力](arkts-mirroring-display.md)
   - [支持适老化](arkui-support-for-aging-adaptation.md)
   - 主题设置<!--arkts-theme-->
+    - [应用深浅色适配](ui-dark-light-color-adaptation.md)
     - [设置应用内主题换肤](theme_skinning.md)
   - [使用UI上下文接口操作界面（UIContext）](arkts-global-interface.md)
   - 跨进程拉起页面<!--arkts-ui-cross-process-->
@@ -126,6 +134,7 @@
     - 添加交互事件<!--arkts-add-event-->
       - [监听组件事件](ndk-listen-to-component-events.md)
       - [绑定手势事件](ndk-bind-gesture-events.md)
+      - [拖拽事件](ndk-drag-event.md)
     - [使用动画](ndk-use-animation.md)
     - [使用懒加载开发长列表界面](ndk-loading-long-list.md)
     - [构建弹窗](ndk-build-pop-up-window.md)

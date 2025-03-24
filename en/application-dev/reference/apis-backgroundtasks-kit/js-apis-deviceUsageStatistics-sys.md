@@ -288,7 +288,7 @@ bundleState.queryAppUsagePriorityGroup().then((res: number) => {
 
 queryAppUsagePriorityGroup(callback: AsyncCallback&lt;number&gt;): void
 
-Queries the group of this application. This API uses an asynchronous callback to return the result.
+Queries the priority group of this application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
@@ -330,7 +330,7 @@ Queries events of this application based on the specified start time and end tim
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
 | begin    | number                                   | Yes   | Start time, in milliseconds.                                  |
 | end      | number                                   | Yes   | End time, in milliseconds.                                  |
-| callback | AsyncCallback&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | Yes   | Callback used to return the events obtained.|
+| callback | AsyncCallback&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | Yes   | Callback used to return the events.|
 
 **Example**
 
@@ -371,7 +371,7 @@ Queries events of this application based on the specified start time and end tim
 
 | Type                                      | Description                                    |
 | ---------------------------------------- | -------------------------------------- |
-| Promise&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | Promise used to return the events obtained.|
+| Promise&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | Promise used to return the events.|
 
 **Example**
 
@@ -427,8 +427,6 @@ Merges the device usage statistics of applications with the same bundle name.
 ## BundleActiveState
 
 Provides information about an application event.
-
-Provides the usage duration information of an application.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 

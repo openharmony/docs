@@ -341,7 +341,7 @@ try {
 }
 ```
 
-## inputDevice.setInputDeviceEnabled<sup>16+</sup>
+## inputDevice.setInputDeviceEnabled<sup>18+</sup>
 
 setInputDeviceEnabled(deviceId: number, enabled: boolean): Promise&lt;void&gt;
 

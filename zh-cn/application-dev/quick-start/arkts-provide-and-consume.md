@@ -183,145 +183,145 @@ struct Parent {
 
 1. \@Provider/\@Consumer的参数key必须为string类型，否则编译期会报错。
 
-```ts
-// 错误写法，编译报错
-let change: number = 10;
-@Provide(change) message: string = 'Hello';
+  ```ts
+  // 错误写法，编译报错
+  let change: number = 10;
+  @Provide(change) message: string = 'Hello';
 
-// 正确写法
-let change: string = 'change';
-@Provide(change) message: string = 'Hello';
-```
+  // 正确写法
+  let change: string = 'change';
+  @Provide(change) message: string = 'Hello';
+  ```
 
 2. \@Consume装饰的变量不能本地初始化，也不能在构造参数中传入初始化，否则编译期会报错。\@Consume仅能通过key来匹配对应的\@Provide变量进行初始化。
 
-【反例】
+  【反例】
 
-```ts
-@Component
-struct Child {
-  @Consume msg: string;
-  // 错误写法，不允许本地初始化
-  @Consume msg1: string = 'Hello';
+  ```ts
+  @Component
+  struct Child {
+    @Consume msg: string;
+    // 错误写法，不允许本地初始化
+    @Consume msg1: string = 'Hello';
 
-  build() {
-    Text(this.msg)
-  }
-}
-
-@Entry
-@Component
-struct Parent {
-  @Provide message: string = 'Hello';
-
-  build() {
-    Column() {
-      // 错误写法，不允许外部传入初始化
-      Child({msg: 'Hello'})
+    build() {
+      Text(this.msg)
     }
   }
-}
-```
 
-【正例】
+  @Entry
+  @Component
+  struct Parent {
+    @Provide message: string = 'Hello';
 
-```ts
-@Component
-struct Child {
-  @Consume num: number;
-
-  build() {
-    Column() {
-      Text(`num的值: ${this.num}`)
+    build() {
+      Column() {
+        // 错误写法，不允许外部传入初始化
+        Child({msg: 'Hello'})
+      }
     }
   }
-}
+  ```
 
-@Entry
-@Component
-struct Parent {
-  @Provide num: number = 10;
+  【正例】
 
-  build() {
-    Column() {
-      Text(`num的值: ${this.num}`)
-      Child()
+  ```ts
+  @Component
+  struct Child {
+    @Consume num: number;
+
+    build() {
+      Column() {
+        Text(`num的值: ${this.num}`)
+      }
     }
   }
-}
-```
+
+  @Entry
+  @Component
+  struct Parent {
+    @Provide num: number = 10;
+
+    build() {
+      Column() {
+        Text(`num的值: ${this.num}`)
+        Child()
+      }
+    }
+  }
+  ```
 
 3. \@Provide的key重复定义时，框架会抛出运行时错误，提醒开发者重复定义key，如果开发者需要重复key，可以使用[allowoverride](#provide支持allowoverride参数)。
 
-```ts
-// 错误写法，a重复定义
-@Provide('a') count: number = 10;
-@Provide('a') num: number = 10;
+  ```ts
+  // 错误写法，a重复定义
+  @Provide('a') count: number = 10;
+  @Provide('a') num: number = 10;
 
-// 正确写法
-@Provide('a') count: number = 10;
-@Provide('b') num: number = 10;
-```
+  // 正确写法
+  @Provide('a') count: number = 10;
+  @Provide('b') num: number = 10;
+  ```
 
 4. 在初始化\@Consume变量时，如果开发者没有定义对应key的\@Provide变量，框架会抛出运行时错误，提示开发者初始化\@Consume变量失败，原因是无法找到其对应key的\@Provide变量。
 
-【反例】
+  【反例】
 
-```ts
-@Component
-struct Child {
-  @Consume num: number;
+  ```ts
+  @Component
+  struct Child {
+    @Consume num: number;
 
-  build() {
-    Column() {
-      Text(`num的值: ${this.num}`)
+    build() {
+      Column() {
+        Text(`num的值: ${this.num}`)
+      }
     }
   }
-}
 
-@Entry
-@Component
-struct Parent {
-  // 错误写法，缺少@Provide
-  num: number = 10;
+  @Entry
+  @Component
+  struct Parent {
+    // 错误写法，缺少@Provide
+    num: number = 10;
 
-  build() {
-    Column() {
-      Text(`num的值: ${this.num}`)
-      Child()
+    build() {
+      Column() {
+        Text(`num的值: ${this.num}`)
+        Child()
+      }
     }
   }
-}
-```
+  ```
 
-【正例】
+  【正例】
 
-```ts
-@Component
-struct Child {
-  @Consume num: number;
+  ```ts
+  @Component
+  struct Child {
+    @Consume num: number;
 
-  build() {
-    Column() {
-      Text(`num的值: ${this.num}`)
+    build() {
+      Column() {
+        Text(`num的值: ${this.num}`)
+      }
     }
   }
-}
 
-@Entry
-@Component
-struct Parent {
-  // 正确写法
-  @Provide num: number = 10;
+  @Entry
+  @Component
+  struct Parent {
+    // 正确写法
+    @Provide num: number = 10;
 
-  build() {
-    Column() {
-      Text(`num的值: ${this.num}`)
-      Child()
+    build() {
+      Column() {
+        Text(`num的值: ${this.num}`)
+        Child()
+      }
     }
   }
-}
-```
+  ```
 
 5. \@Provide与\@Consume不支持装饰Function类型的变量，框架会抛出运行时错误。
 

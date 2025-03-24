@@ -310,7 +310,7 @@ lockAsync\<T, U>(callback: AsyncLockCallback\<T>, mode: AsyncLockMode, options: 
 
 | 类型             | 说明                                               |
 | ---------------- | -------------------------------------------------- |
-| Promise\<T \| U> | 回调执行后解决的 Promise，或者在超时情况下被拒绝。 |
+| Promise\<T \| U> | 回调执行后解决的Promise，或者在超时情况下被拒绝。 |
 
 **错误码：**
 

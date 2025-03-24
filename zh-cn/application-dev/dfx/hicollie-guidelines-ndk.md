@@ -23,7 +23,7 @@ HiCollie的具体用法说明：
 
 下文将展示如何在应用内增加一个按钮，并单击该按钮以调用HiCollie Ndk接口。
 
-1.新建Native C++工程，目录结构如下：
+1. 新建Native C++工程，目录结构如下：
 
    ```yml
    entry:
@@ -42,14 +42,14 @@ HiCollie的具体用法说明：
                - Index.ets
    ```
 
-2.编辑"CMakeLists.txt"文件，添加源文件及动态库：
+2. 编辑"CMakeLists.txt"文件，添加源文件及动态库：
 
    ```cmake
    # 新增动态库依赖libhilog_ndk.z.so(日志输出)
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libohhicollie.so)
    ```
 
-3.编辑"napi_init.cpp"文件，导入依赖的文件，定义LOG_TAG，下述代码步骤用于模拟卡死卡顿场景，具体使用请结合业务需要。示例代码如下：
+3. 编辑"napi_init.cpp"文件，导入依赖的文件，定义LOG_TAG，下述代码步骤用于模拟卡死卡顿场景，具体使用请结合业务需要。示例代码如下：
 
   （1）**应用线程卡顿检测：** OH_HiCollie_Init_JankDetection，示例代码如下：
 
@@ -359,7 +359,7 @@ HiCollie的具体用法说明：
   }
   ```
 
-4.将TestHiCollieNdk注册为ArkTS接口：
+4. 将TestHiCollieNdk注册为ArkTS接口：
 
   （1）OH_HiCollie_Init_JankDetection示例，编辑"index.d.ts"文件，定义ArkTS接口：
 
@@ -379,7 +379,7 @@ HiCollie的具体用法说明：
   export const testHiCollieStuckWithTimeoutNdk: () => void;
   ```
 
-5.编辑"Index.ets"文件：
+5. 编辑"Index.ets"文件：
 
   ```ts
   import testNapi from 'libentry.so'
@@ -436,9 +436,9 @@ HiCollie的具体用法说明：
     .onClick(testNapi.testHiCollieStuckWithTimeoutNdk);
   ```
 
-6.点击DevEco Studio界面中的运行按钮，运行应用工程。
+6. 点击DevEco Studio界面中的运行按钮，运行应用工程。
 
-7.在DevEco Studio的底部，切换到“Log”窗口，过滤自定义的LOG_TAG。
+7. 在DevEco Studio的底部，切换到“Log”窗口，过滤自定义的LOG_TAG。
 
   （1）等待10s，再点击"testHiCollieJankNdk"按钮（线程启动10s内，不进行卡顿检测）。
     此时窗口将显示通过OH_HiCollie_Init_JankDetection接口获取的应用业务线程采样栈的超时信息。可以通过订阅hiappevent获取对应的事件：[订阅主线程超时事件](./hiappevent-watcher-mainthreadjank-events-arkts.md)。

@@ -6,7 +6,6 @@
 
 证书管理对话框，可用于拉起证书管理页面并管理证书，如安装、存储、使用、销毁证书。
 
-
 ## 接口说明
 
 详细接口说明可参考[API参考](../../reference/apis-device-certificate-kit/js-apis-certManagerDialog.md)。
@@ -69,7 +68,7 @@
      let cert = new Uint8Array([
        0x30, 0x82, 0x01, 0x2E, 0x30, 0x81, 0xD5, 0x02, 0x14, 0x28, 0x75, 0x71, 0x22, 0xDF, 0xDC, 0xCB,
      ]);
-   
+
      try {
        /* 安装证书。 */
        let certScope = certificateManagerDialog.CertificateScope.CURRENT_USER; /* 安装在当前用户下。 */
@@ -82,7 +81,7 @@
      } catch (error) {
        console.error(`Failed to open install ca dialog. Code: ${error.code}, message: ${error.message}`);
      }
-   
+
      try {
        /* 删除证书。 */
        certificateManagerDialog.openUninstallCertificateDialog(context, certType, certUri).then(() => {
@@ -93,7 +92,7 @@
      } catch (error) {
        console.error(`Failed to open uninstall ca dialog. Code: ${error.code}, message: ${error.message}`);
      }
-   
+
      try {
        let property: certificateManagerDialog.CertificateDialogProperty = {
          showInstallButton: false    /* 不显示安装按钮。 */

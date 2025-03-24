@@ -24,15 +24,17 @@ Sets the next refresh time for a widget. This API uses an asynchronous callback 
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                                  |
+| Name| Type   | Mandatory| Description                                  |
 | ------ | ------ | ---- | ------------------------------------- |
 | formId | string | Yes  | Widget ID.                              |
-| minute | number | Yes  | Time for the next refresh. The value must be greater than or equal to 5, in minutes.    |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. |
+| minute | number | Yes  | Time after which a widget is updated. The value is greater than or equal to 5, in minutes.    |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16500050 | IPC connection error. |
@@ -42,8 +44,6 @@ Sets the next refresh time for a widget. This API uses an asynchronous callback 
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501002 | The number of forms exceeds the maximum allowed. |
 | 16501003 | The form cannot be operated by the current application. |
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -77,10 +77,10 @@ Sets the next refresh time for a widget. This API uses a promise to return the r
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                                  |
+| Name| Type   | Mandatory| Description                                  |
 | ------ | ------ | ---- | ------------------------------------- |
 | formId | string | Yes  | Widget ID.                              |
-| minute | number | Yes  | Time for the next refresh. The value must be greater than or equal to 5, in minutes.    |
+| minute | number | Yes  | Time after which a widget is updated. The value is greater than or equal to 5, in minutes.    |
 
 **Return value**
 
@@ -90,7 +90,9 @@ Sets the next refresh time for a widget. This API uses a promise to return the r
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16500050 | IPC connection error. |
@@ -100,8 +102,6 @@ Sets the next refresh time for a widget. This API uses a promise to return the r
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501002 | The number of forms exceeds the maximum allowed. |
 | 16501003 | The form cannot be operated by the current application. |
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -133,15 +133,17 @@ Updates a widget. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name | Type                                                                   | Mandatory | Description            |
+| Name| Type                                                                   | Mandatory| Description            |
 | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
-| formId | string                                                                 | Yes  | ID of the widget to update. |
+| formId | string                                                                 | Yes  | ID of the widget to update.|
 | formBindingData | [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | Yes  | Data to be used for the update.   |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16500050 | IPC connection error. |
@@ -150,8 +152,6 @@ Updates a widget. This API uses an asynchronous callback to return the result.
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form cannot be operated by the current application. |
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -190,20 +190,22 @@ Updates a widget. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type                                                                   | Mandatory | Description            |
+| Name| Type                                                                   | Mandatory| Description            |
 | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
-| formId | string                                                                 | Yes  | ID of the widget to update. |
+| formId | string                                                                 | Yes  | ID of the widget to update.|
 | formBindingData | [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | Yes  | Data to be used for the update.   |
 
 **Return value**
 
 | Type          | Description                               |
 | -------------- | ----------------------------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16500050 | IPC connection error. |
@@ -212,8 +214,6 @@ Updates a widget. This API uses a promise to return the result.
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form cannot be operated by the current application. |
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -250,20 +250,20 @@ Obtains the application's widget information on the device. This API uses an asy
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes | Callback used to return the information obtained. |
+| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes| Callback used to return the information obtained.|
 
 **Error codes**
-| Error Code ID | Error Message |
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
-
 
 **Example**
 
@@ -295,21 +295,21 @@ Obtains the application's widget information that meets a filter criterion on th
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| filter | [formInfo.FormInfoFilter](js-apis-app-form-formInfo.md#forminfofilter) | Yes | Filter criterion. |
-| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes | Callback used to return the information obtained. |
+| filter | [formInfo.FormInfoFilter](js-apis-app-form-formInfo.md#forminfofilter) | Yes| Filter criterion.|
+| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes| Callback used to return the information obtained.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -346,26 +346,26 @@ Obtains the application's widget information on the device. This API uses a prom
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description   |
+| Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| filter | [formInfo.FormInfoFilter](js-apis-app-form-formInfo.md#forminfofilter) | No | Filter criterion. By default, no value is passed, indicating that no filtering is performed. |
+| filter | [formInfo.FormInfoFilter](js-apis-app-form-formInfo.md#forminfofilter) | No| Filter criterion. By default, no value is passed, indicating that no filtering is performed.|
 
 **Return value**
 
 | Type         | Description                               |
 | :------------ | :---------------------------------- |
-| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise used to return the information obtained. |
+| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise used to return the information obtained.|
 
 **Error codes**
 
-| Error Code ID | Error Message |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
 
 **Example**
 

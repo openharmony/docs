@@ -20,8 +20,10 @@ FFRT并发队列提供了设置任务优先级（Priority）和队列并发度�
 
 ```cpp
 #include <iostream>
-#include <string>
-#include <ffrt.h>
+#include <unistd.h>
+#include "ffrt/cpp/queue.h"
+#include "ffrt/cpp/task.h"
+using namespace ffrt;
 
 class BankQueueSystem {
 private:
@@ -37,7 +39,7 @@ public:
     ~BankQueueSystem()
     {
         queue_ = nullptr;
-        std::cout << "bank system has been destoryed" << std::endl;
+        std::cout << "bank system has been destroyed" << std::endl;
     }
 
     // 开始排队，即提交队列任务
@@ -103,7 +105,7 @@ int main() {
 
 ## 接口说明
 
-上述样例中涉及到的FFRT的接口包括：
+上述样例中涉及到主要的FFRT的接口包括：
 
 | 名称                                                                                                                          | 描述         |
 | ----------------------------------------------------------------------------------------------------------------------------- | ------------ |

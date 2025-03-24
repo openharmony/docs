@@ -99,7 +99,7 @@ NewInstance:{"name":"apple"}
 
 ### OH_JSVM_DefineClass
 
-用于在JavaScript中定义一个类，并与对应的C类进行封装和交互。它提供了创建类的构造函数、定义属性和方法的能力，以及在C和JavaScript之间进行数据交互的支持
+用于在JavaScript中定义一个类，并与对应的C类进行封装和交互。它提供了创建类的构造函数、定义属性和方法的能力，以及在C和JavaScript之间进行数据交互的支持。
 
 cpp部分代码
 

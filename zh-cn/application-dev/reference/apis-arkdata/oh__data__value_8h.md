@@ -5,13 +5,15 @@
 
 提供与单条数据值相关的函数和枚举。
 
+从API version 18开始，OH_ColumnType从oh_cursor.h移动至此头文件呈现，对于此类型，API version 18之前即支持使用，各版本均可正常使用。
+
 **引用文件：** &lt;database/data/oh_data_value.h&gt;
 
 **库：** libnative_rdb_ndk.z.so
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
-**起始版本：** 16
+**起始版本：** 18
 
 **相关模块：**[RDB](_r_d_b.md)
 

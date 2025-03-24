@@ -12,10 +12,18 @@ onClick(event: Callback\<ClickEvent>, distanceThreshold: number): T
 
 点击动作触发该回调。
 
+触发点击事件的设备类型为键盘或手柄时，事件的SourceTool值为Unknown。
+
 相较于原有onClick接口，新增distanceThreshold参数作为点击事件移动阈值，当手指的移动距离超出所设置的点击手势移动阈值时，点击手势识别失败。
 对于点击时手指移动距离没有限制的场景，建议采用原有接口。若要求点击时手指在一定区域范围内，建议使用该接口。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+>  **说明：**
+>
+>  从API version 12开始，在使用卡片能力时，存在以下限制：
+>  1. 手指按下超过800ms后，不能触发点击事件。
+>  2. 手指按下之后移动位移超过20px，不能触发点击事件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -34,7 +42,15 @@ onClick(event: (event: ClickEvent) => void): T
 
 点击动作触发该回调。
 
+触发点击事件的设备类型为键盘或手柄时，事件的SourceTool值为Unknown。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+>  **说明：**
+>
+>  从API version 9开始，在使用卡片能力时，存在以下限制：
+>  1. 手指按下超过800ms后，不能触发点击事件。
+>  2. 手指按下之后移动位移超过20px，不能触发点击事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

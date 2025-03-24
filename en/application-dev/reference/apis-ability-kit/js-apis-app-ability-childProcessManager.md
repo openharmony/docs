@@ -1,6 +1,6 @@
 # @ohos.app.ability.childProcessManager (childProcessManager)
 
-The childProcessManager module provides the child process management capability. Currently, it provides APIs to start a child process and is valid only for 2-in-1 devices and tables.
+The childProcessManager module provides the child process management capability. Currently, it provides APIs to start a child process and is valid only for 2-in-1 devices and tablets.
 
 The created child process does not support the UI or the calling of context-related APIs.
 

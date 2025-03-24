@@ -1,6 +1,6 @@
 # @ohos.security.certManager (证书管理模块)
 
-证书管理主要提供系统级的证书管理能力，实现证书全生命周期（安装，存储，使用，销毁）的管理和安全使用 。
+证书管理主要提供系统级的证书管理能力，实现证书全生命周期（安装，存储，使用，销毁）的管理和安全使用。
 
 > **说明：**
 >
@@ -20,8 +20,8 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 
 | 名称       | 值 |  说明      |
 | ---------- | ------ | --------- |
-| CM_KEY_PURPOSE_SIGN | 4      | 签名 |
-| CM_KEY_PURPOSE_VERIFY | 8      | 验签 |
+| CM_KEY_PURPOSE_SIGN | 4      | 签名。 |
+| CM_KEY_PURPOSE_VERIFY | 8      | 验签。 |
 
 ## CmKeyDigest
 
@@ -73,15 +73,15 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 
 | 名称           | 类型                              | 只读 | 可选 | 说明                                                         |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| uri          | string         | 否   | 否  | 表示证书的唯一标识符。 |
-| certAlias          | string   | 否  | 否  | 表示证书的别名。 |
+| uri          | string         | 否   | 否  | 表示证书的唯一标识符，最大长度为256字节。 |
+| certAlias          | string   | 否  | 否  | 表示证书的别名，最大长度为128字节。 |
 | state          | boolean     | 否  | 否  | 表示证书的状态，true为启用状态、false为禁用状态。 |
-| issuerName          | string         | 否  | 否  | 表示证书的颁发者名称。 |
-| subjectName          | string   | 否  | 否  | 表示证书的使用者名称。 |
-| serial          | string     | 否  | 否  | 表示证书的序列号。 |
-| notBefore          | string         | 否  | 否  | 表示证书有效期起始日期。 |
-| notAfter          | string   | 否  | 否  | 表示证书有效期截止日期。 |
-| fingerprintSha256     | string     | 否  | 否  | 表示证书的指纹值。 |
+| issuerName          | string         | 否  | 否  | 表示证书的颁发者名称，最大长度为256字节。 |
+| subjectName          | string   | 否  | 否  | 表示证书的使用者名称，最大长度为1024字节。 |
+| serial          | string     | 否  | 否  | 表示证书的序列号，最大长度为64字节。 |
+| notBefore          | string         | 否  | 否  | 表示证书有效期起始日期，最大长度为32字节。 |
+| notAfter          | string   | 否  | 否  | 表示证书有效期截止日期，最大长度为32字节。 |
+| fingerprintSha256     | string     | 否  | 否  | 表示证书的指纹值，最大长度为128字节。 |
 | cert          | Uint8Array         | 否  | 否  | 表示证书二进制数据。 |
 
 ## CertAbstract
@@ -92,10 +92,10 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 
 | 名称           | 类型                              | 只读 | 可选 | 说明                                                         |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| uri          | string         | 否  | 否  | 表示证书的唯一标识符。 |
-| certAlias          | string   | 否  | 否  | 表示证书的别名。 |
+| uri          | string         | 否  | 否  | 表示证书的唯一标识符，最大长度为256字节。 |
+| certAlias          | string   | 否  | 否  | 表示证书的别名，最大长度为128字节。 |
 | state          | boolean     | 否  | 否  | 表示证书的状态，true为启用状态、false为禁用状态。 |
-| subjectName          | string   | 否  | 否  | 表示证书的使用者名称。 |
+| subjectName          | string   | 否  | 否  | 表示证书的使用者名称，最大长度为1024字节。 |
 
 ## Credential
 
@@ -105,9 +105,9 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 
 | 名称           | 类型                              | 只读 | 可选 | 说明                                                         |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type          | string         | 否  | 否  | 表示凭据的类型。 |
-| alias          | string   | 否  | 否  | 表示凭据的别名。 |
-| keyUri          | string     | 否  | 否  | 表示凭据的唯一标识符。 |
+| type          | string         | 否  | 否  | 表示凭据的类型，最大长度为8字节。 |
+| alias          | string   | 否  | 否  | 表示凭据的别名，最大长度为128字节。 |
+| keyUri          | string     | 否  | 否  | 表示凭据的唯一标识符，最大长度为256字节。 |
 | certNum          | number         | 否  | 否  | 表示凭据中包含的证书个数。 |
 | keyNum          | number   | 否  | 否  | 表示凭据中包含的密钥个数。 |
 | credentialData          | Uint8Array   | 否  | 否  | 表示凭据二进制数据。 |
@@ -120,9 +120,9 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 
 | 名称           | 类型                              | 只读 | 可选 | 说明                                                         |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type          | string         | 否 | 否  | 表示凭据的类型。 |
-| alias          | string   | 否  | 否  | 表示凭据的别名。 |
-| keyUri          | string     | 否  | 否  | 表示凭据的唯一标识符。 |
+| type          | string         | 否 | 否  | 表示凭据的类型，最大长度为8字节。 |
+| alias          | string   | 否  | 否  | 表示凭据的别名，最大长度为128字节。 |
+| keyUri          | string     | 否  | 否  | 表示凭据的唯一标识符，最大长度为256字节。 |
 
 ## CMResult
 
@@ -137,7 +137,7 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 | credentialList          | Array<[CredentialAbstract](#credentialabstract)> | 否  | 是   | 表示凭据简要信息的列表。 |
 | credential         | [Credential](#credential) | 否  | 是   | 表示凭据详情。 |
 | appUidList        | Array\<string>     | 否  | 是   | 表示授权应用列表。 |
-| uri         | string    | 否  | 是   | 表示证书或凭据的唯一标识符。 |
+| uri         | string    | 否  | 是   | 表示证书或凭据的唯一标识符，最大长度为256字节。 |
 | outData         | Uint8Array    | 否  | 是   | 表示签名结果。 |
 
 ## CMHandle
@@ -401,7 +401,7 @@ getPrivateCertificate(keyUri: string, callback: AsyncCallback\<CMResult>): void
 
 | 参数名   | 类型                                              | 必填 | 说明                       |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| keyUri | string                   | 是   | 表示待获取凭据的唯一标识符。 |
+| keyUri | string                   | 是   | 表示待获取凭据的唯一标识符，长度限制256字节以内。 |
 | callback | AsyncCallback\<[CMResult](#cmresult)> | 是   | 回调函数。当获取私有凭据的详细信息成功时，err为null，data为[CMResult](#cmresult)对象中的credential属性；否则为错误对象。 |
 
 **错误码：**
@@ -452,7 +452,7 @@ getPrivateCertificate(keyUri: string): Promise\<CMResult>
 
 | 参数名   | 类型                                              | 必填 | 说明                       |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| keyUri | string                   | 是   | 表示待获取凭据的唯一标识符。 |
+| keyUri | string                   | 是   | 表示待获取凭据的唯一标识符，长度限制256字节以内。 |
 
 **返回值**：
 
@@ -507,7 +507,7 @@ uninstallPrivateCertificate(keyUri: string, callback: AsyncCallback\<void>): voi
 
 | 参数名   | 类型                                              | 必填 | 说明                       |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| keyUri | string                   | 是   | 表示待卸载凭据的唯一标识符。 |
+| keyUri | string                   | 是   | 表示待卸载凭据的唯一标识符，长度限制256字节以内。 |
 | callback | AsyncCallback\<void> | 是   | 回调函数。当卸载私有凭据成功时，err为null，否则为错误对象。 |
 
 **错误码：**
@@ -553,7 +553,7 @@ uninstallPrivateCertificate(keyUri: string): Promise\<void>
 
 | 参数名   | 类型                                              | 必填 | 说明                       |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| keyUri | string                   | 是   | 表示待卸载凭据的唯一标识符。 |
+| keyUri | string                   | 是   | 表示待卸载凭据的唯一标识符，长度限制256字节以内。 |
 
 **返回值**：
 
@@ -661,7 +661,7 @@ uninstallUserTrustedCertificateSync(certUri: string) : void
 
 | 参数名       | 类型                         | 必填 | 说明           |
 |-----------|----------------------------|----|--------------|
-| certUri     | string                 | 是  | 表示待卸删除证书的唯一标识符。    |
+| certUri     | string                 | 是  | 表示待卸删除证书的唯一标识符，长度限制256字节以内。    |
 
 **错误码：**
 
@@ -701,7 +701,7 @@ init(authUri: string, spec: CMSignatureSpec, callback: AsyncCallback\<CMHandle>)
 
 | 参数名   | 类型                                              | 必填 | 说明                       |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| authUri | string                   | 是   | 表示使用凭据的唯一标识符。 |
+| authUri | string                   | 是   | 表示使用凭据的唯一标识符，长度限制256字节以内。 |
 | spec | [CMSignatureSpec](#cmsignaturespec) | 是   | 表示签名、验签的属性。 |
 | callback | AsyncCallback\<[CMHandle](#cmhandle)> | 是   | 回调函数。当签名、验签的初始化操作成功时，err为null，data为获取到的CMHandle；否则为错误对象。 |
 
@@ -754,7 +754,7 @@ init(authUri: string, spec: CMSignatureSpec): Promise\<CMHandle>
 
 | 参数名   | 类型                                              | 必填 | 说明                       |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| authUri | string                   | 是   | 表示使用凭据的唯一标识符。 |
+| authUri | string                   | 是   | 表示使用凭据的唯一标识符，长度限制256字节以内。 |
 | spec | [CMSignatureSpec](#cmsignaturespec) | 是   | 表示签名、验签的属性。 |
 
 **返回值**：
@@ -1194,7 +1194,7 @@ getPublicCertificate(keyUri: string): Promise\<CMResult>
 
 | 参数名   | 类型                                              | 必填 | 说明                       |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| keyUri | string                   | 是   | 表示用户公共凭据的唯一标识符。 |
+| keyUri | string                   | 是   | 表示用户公共凭据的唯一标识符，长度限制256字节以内。 |
 
 **返回值**：
 
@@ -1250,13 +1250,13 @@ isAuthorizedApp(keyUri: string): Promise\<boolean>
 
 | 参数名   | 类型                                              | 必填 | 说明                       |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| keyUri | string                   | 是   | 表示用户授权给应用使用的凭据的唯一标识符。 |
+| keyUri | string                   | 是   | 表示用户授权给应用使用的凭据的唯一标识符，长度限制256字节以内。 |
 
 **返回值**：
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | Promise对象。表示查询应用是否被授权的结果，返回boolean对象。 |
+| Promise\<boolean> | Promise对象。表示查询应用是否被授权的结果，true为已授权，false为未授权。 |
 
 **错误码：**
 
@@ -1321,7 +1321,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   certificateManager.getAllUserTrustedCertificates().then((cmResult) => {
-    if (cmResult == undefined) { // 用户根CA证书个数为0时，返回cmResult为undefined
+    if (cmResult == undefined) { // 用户根CA证书个数为0时，返回cmResult为undefined。
       console.info('the count of the user trusted certificates is 0');
     } else if (cmResult.certList == undefined) {
       console.info('The result of getting all user trusted certificates is undefined.');
@@ -1379,7 +1379,7 @@ try {
   /* 获取当前用户下的用户根CA证书列表; 如果需要获取设备公共位置的用户根CA列表，则传入GLOBAL_USER */
   let scope: certificateManager.CertScope = certificateManager.CertScope.CURRENT_USER;
   certificateManager.getAllUserTrustedCertificates(scope).then((cmResult) => {
-    if (cmResult == undefined) { // 用户根CA证书个数为0时，返回cmResult为undefined
+    if (cmResult == undefined) { // 用户根CA证书个数为0时，返回cmResult为undefined。
       console.info('the count of the user trusted certificates is 0');
     } else if (cmResult.certList == undefined) {
       console.info('The result of getting current user trusted certificates is undefined.');
@@ -1409,7 +1409,7 @@ getUserTrustedCertificate(certUri: string): Promise\<CMResult>
 
 | 参数名   | 类型                                              | 必填 | 说明                       |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| certUri | string                   | 是   | 表示用户用户根CA证书的唯一标识符。 |
+| certUri | string                   | 是   | 表示用户用户根CA证书的唯一标识符，长度限制256字节以内。 |
 
 **返回值**：
 
@@ -1481,7 +1481,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   certificateManager.getPrivateCertificates().then((cmResult) => {
-    if (cmResult == undefined) { // 应用安装的凭据个数为0时，返回cmResult为undefined
+    if (cmResult == undefined) { // 应用安装的凭据个数为0时，返回cmResult为undefined。
       console.info('the count of the private certificates is 0');
     } else if (cmResult.credentialList == undefined) {
       console.info('The result of getting all private certificates installed by the application is undefined.');

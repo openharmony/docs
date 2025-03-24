@@ -53,14 +53,14 @@ viewPort(value: ViewportRect)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | [ViewportRect](ts-drawing-components-shape.md#viewportrect16对象说明) | 是 | Viewport绘制属性。 |
+| value | [ViewportRect](ts-drawing-components-shape.md#viewportrect18对象说明) | 是 | Viewport绘制属性。 |
 
-## ViewportRect<sup>16+</sup>对象说明
+## ViewportRect<sup>18+</sup>对象说明
 用于描述Viewport绘制属性。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -68,8 +68,8 @@ viewPort(value: ViewportRect)
 | -------- | -------- | -------- | -------- |
 | x | string \| number | 否 | 形状视口起始点的水平坐标。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
 | y | string \| number | 否 | 形状视口起始点的垂直坐标。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
-| width | string \| number | 否 | 形状视口的宽度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
-| height | string \| number | 否 | 形状视口的高度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| width | string \| number | 否 | 形状视口的宽度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| height | string \| number | 否 | 形状视口的高度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
 
 ### fill
 
@@ -129,7 +129,7 @@ stroke(value: ResourceColor)
 
 strokeDashArray(value: Array&lt;any&gt;)
 
-设置边框间隙。异常值按照默认值处理。
+设置边框间隙。取值范围≥0，异常值按照默认值处理。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -251,7 +251,7 @@ strokeWidth(value: number | string)
 
 | 参数名 | 类型                         | 必填 | 说明                     |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| value  | number&nbsp;\|&nbsp;string | 是   | 边框宽度。<br/>默认值：1<br/>默认单位：vp |
+| value  | number&nbsp;\|&nbsp;string | 是   | 边框宽度，取值范围≥0。<br/>默认值：1<br/>默认单位：vp<br/>异常值按照默认值处理。 |
 
 ### antiAlias
 

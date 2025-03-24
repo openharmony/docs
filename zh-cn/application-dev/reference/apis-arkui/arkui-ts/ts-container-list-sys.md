@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> - 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > - 当前页面仅包含本模块的系统接口，其他公开接口参见[List](ts-container-list.md)。
 
@@ -16,7 +16,7 @@ chainAnimationOptions(value: ChainAnimationOptions)
 
 设置链式联动动效。
 
-**系统接口：** 此接口为系统接口
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -30,7 +30,7 @@ chainAnimationOptions(value: ChainAnimationOptions)
 
 设置链式动效边缘效果。
 
-**系统接口：** 此接口为系统接口
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -43,7 +43,7 @@ chainAnimationOptions(value: ChainAnimationOptions)
 
 链式联动动效属性集合，用于设置List最大间距、最小间距、动效强度、传导系数和边缘效果。
 
-**系统接口：** 此接口为系统接口
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

@@ -176,9 +176,31 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    ```
    在获取、解析DRM信息后，需创建对应DRM解决方案的[MediaKeySystem、MediaKeySession](../drm/drm-c-dev-guide.md)，获取DRM许可证等。并根据需要设置音频解密配置(详见[音频解码开发指南开发步骤](audio-decoding.md#开发步骤)第4步)、设置视频解密配置（详见[视频解码开发指南开发步骤Surface模式](video-decoding.md#surface模式)第5步或[Buffer模式](video-decoding.md#buffer模式)第4步），实现DRM内容解密。
 
-5. 获取文件轨道数（可选，若用户已知轨道信息，可跳过此步）。
+5. 获取文件信息。
 
    ```c++
+   // 获取文件用户自定义属性（可选，若用户无需获取自定义属性，可跳过此步）。
+   // 从文件 source 获取用户自定义属性信息。
+   OH_AVFormat *customMetadataFormat = OH_AVSource_GetCustomMetadataFormat(source);
+   if (customMetadataFormat == nullptr) {
+      printf("get custom metadata format failed");
+      return;
+   }
+   // 注意事项：
+   // 1. customKey需与封装时写入的key完全一致（含完整命名层级），
+   //    示例key仅为演示，实际应替换为用户自定义的字符串。
+   //    例：封装时写入key为"com.openharmony.custom.meta.abc.efg"，
+   //       获取时必须使用完整key，截断使用"com.openharmony.custom.meta.abc"会失败。
+   // 2. value类型需与封装时数据类型匹配（示例为string类型，int/float类型需调用对应接口）。
+   const char *customKey = "com.openharmony.custom.meta.string"; // 替换为实际封装时使用的完整key。
+   const char *customValue;
+   if (!OH_AVFormat_GetStringValue(customMetadataFormat, customKey, &customValue)) {
+      printf("get custom metadata from custom metadata format failed");
+      return;
+   }
+   OH_AVFormat_Destroy(customMetadataFormat);
+
+   // 获取文件轨道数（可选，若用户已知轨道信息，可跳过此步）。
    // 从文件 source 信息获取文件轨道数，用户可通过该接口获取文件级别属性，具体支持信息参考附表 1。
    OH_AVFormat *sourceFormat = OH_AVSource_GetSourceFormat(source);
    if (sourceFormat == nullptr) {

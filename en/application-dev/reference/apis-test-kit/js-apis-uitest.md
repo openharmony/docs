@@ -16,6 +16,7 @@ This module provides the following functions:
 > - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The APIs of this module can be used only in <!--RP1-->[arkxtest](../../application-test/arkxtest-guidelines.md)<!--RP1End-->.
 > - The APIs of this module do not support concurrent calls.
+> - The APIs of this module can be used on mobile phones, tablets, 2-in-1 devices, and smart wearable devices.
 
 
 ## Modules to Import
@@ -28,17 +29,16 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 
 Enumerates the match patterns supported for component attributes.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 **System capability**: SystemCapability.Test.UiTest
 
-| Name       | Value  | Description          |
-| ----------- | ---- | -------------- |
-| EQUALS      | 0    | Equals the given value.  |
-| CONTAINS    | 1    | Contains the given value.  |
-| STARTS_WITH | 2    | Starts with the given value.|
-| ENDS_WITH   | 3    | Ends with the given value.|
-
+| Name                   | Value| Description                                                                 |
+|-----------------------|---|---------------------------------------------------------------------|
+| EQUALS                | 0 | Equals the given value.<br>**Atomic service API**: This API can be used in atomic services since API version 11.        |
+| CONTAINS              | 1 | Contains the given value.<br>**Atomic service API**: This API can be used in atomic services since API version 11.        |
+| STARTS_WITH           | 2 | Starts with the given value.<br>**Atomic service API**: This API can be used in atomic services since API version 11.       |
+| ENDS_WITH             | 3 | Ends with the given value.<br>**Atomic service API**: This API can be used in atomic services since API version 11.      |
+| REG_EXP<sup>18+</sup> | 4 | Uses regular expression matching.<br>**Atomic service API**: This API can be used in atomic services since API version 18.      |
+| REG_EXP_ICASE<sup>18+</sup>          | 5 | Uses case-insensitive regular expression matching.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 ## ResizeDirection<sup>9+</sup>
 
 Enumerates the directions in which a window can be resized.
@@ -173,6 +173,20 @@ Provides information about the UI event.
 | type       | string | Yes  | No  | Component or window type.      |
 | text       | string | Yes  | No  | Text information of the component or window.|
 
+
+## TouchPadSwipeOptions<sup>18+</sup>
+
+Describes information about the touchpad swipe gesture option.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Test.UiTest
+
+| Name      | Type  | Readable| Writable| Description                                                      |
+| ---------- | ------ |----|----|----------------------------------------------------------|
+| stay | boolean | No | Yes | Whether to hold fingers on the touchpad for 1s after swiping. The default value is **false**.                    |
+| speed       | number | No | Yes | Swipe speed, in px/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value **2000** is used.|
+
 ## On<sup>9+</sup>
 
 Since API version 9, the UiTest framework provides a wide range of UI component feature description APIs in the **On** class to filter and match components.<br>
@@ -223,7 +237,7 @@ let on:On = ON.text('123'); // Use the static constructor ON to create an On obj
 
 ### id<sup>9+</sup>
 
-id(id: string): On
+id(id: string, pattern?: MatchPattern): On
 
 Specifies the ID attribute of the target component.
 
@@ -233,9 +247,10 @@ Specifies the ID attribute of the target component.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
-| ------ | ------ | ---- | ---------------- |
-| id     | string | Yes  | Component ID.|
+| Name                  | Type  | Mandatory| Description                                   |
+|-----------------------| ------ |----|---------------------------------------|
+| id                    | string | Yes | Component ID.                            |
+| pattern<sup>18+</sup> | [MatchPattern](#matchpattern) | No | Match pattern. The default value is [EQUALS](#matchpattern).|
 
 **Return value**
 
@@ -254,14 +269,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { On, ON } from '@kit.TestKit';
-let on:On = ON.id('123'); // Use the static constructor ON to create an On object and specify the id attribute of the target component.
+import { MatchPattern, On, ON } from '@kit.TestKit';
+let on:On = ON.id('id', MatchPattern.REG_EXP_ICASE) // Use case-insensitive regular expression to match the ID attribute value of the component.
 ```
-
 
 ### type<sup>9+</sup>
 
-type(tp: string): On
+type(tp: string, pattern?: MatchPattern): On
 
 Specifies the type attribute of the target component.
 
@@ -275,9 +289,10 @@ Specifies the type attribute of the target component.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description          |
-| ------ | ------ | ---- | -------------- |
-| tp     | string | Yes  | Component type.|
+| Name                  | Type  | Mandatory| Description                                   |
+|-----------------------| ------ | ---- |---------------------------------------|
+| tp                    | string | Yes  | Component type.                              |
+| pattern<sup>18+</sup> | [MatchPattern](#matchpattern) | No | Match pattern. The default value is [EQUALS](#matchpattern).|
 
 **Return value**
 
@@ -299,7 +314,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { On, ON } from '@kit.TestKit';
 let on:On = ON.type('Button'); // Use the static constructor ON to create an On object and specify the type attribute of the target component.
 ```
-
 
 ### clickable<sup>9+</sup>
 
@@ -787,6 +801,44 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { On, ON } from '@kit.TestKit';
 let on:On = ON.description('123'); // Use the static constructor ON to create an On object and specify the description attribute of the target component.
+```
+
+### hint<sup>18+</sup>
+
+hint(val: string, pattern?: MatchPattern): On
+
+Obtains the component object of the specified hint text and returns the **On** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                   |
+| ------ | ------ |----|---------------------------------------|
+| val     | string | Yes | The specified hint text of the component.                             |
+| pattern | [MatchPattern](#matchpattern) | No | Match pattern. The default value is [EQUALS](#matchpattern).|
+
+**Return value**
+
+| Type      | Description                                    |
+| ---------- | ---------------------------------------- |
+| [On](#on9) | The **On** object of the specified hint text component.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**Example**
+
+```ts
+ import { MatchPattern, On, ON } from '@kit.TestKit';
+ let on:On = ON.hint('welcome', MatchPattern.EQUALS); // Use the static constructor ON to create an On object with the hint text attribute of the target component specified.
 ```
 
 ## Component<sup>9+</sup>
@@ -1389,7 +1441,7 @@ async function demo() {
 
 inputText(text: string): Promise\<void>
 
-Enters text into this component (available for text boxes).
+Inputs text into the component. This API is applicable to text box components.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1399,7 +1451,7 @@ Enters text into this component (available for text boxes).
 
 | Name| Type  | Mandatory| Description                                    |
 | ------ | ------ | ---- | ---------------------------------------- |
-| text   | string | Yes  | Text to enter, which can contain English and special characters.|
+| text   | string | Yes  | Input text. Currently, English, Chinese, and special characters are supported.<br> **Note**: For wearables, this API does not support Chinese characters.|
 
 **Error codes**
 
@@ -1453,7 +1505,7 @@ async function demo() {
 
 ### scrollSearch<sup>9+</sup>
 
-scrollSearch(on: On): Promise\<Component>
+scrollSearch(on: On, vertical?: boolean, offset?: number): Promise\<Component>
 
 Scrolls on this component to search for the target component. This API is applicable to components that support scrolling.
 
@@ -1463,9 +1515,11 @@ Scrolls on this component to search for the target component. This API is applic
 
 **Parameters**
 
-| Name| Type      | Mandatory| Description                |
-| ------ | ---------- | ---- | -------------------- |
-| on     | [On](#on9) | Yes  | Attributes of the target component.|
+| Name                   | Type      | Mandatory| Description                               |
+|------------------------| ---------- | ---- |-----------------------------------|
+| on                     | [On](#on9) | Yes  | Attributes of the target component.                       |
+| vertical<sup>18+</sup> |    boolean | No| Whether the search direction is vertical. The default value **true** indicates that the search direction is vertical. **false** indicates that the search direction is horizontal.|
+| offset<sup>18+</sup>   | number| No| Offset from the scrolling start point or end point to the component border, in pixels. The default value is **80**.   |
 
 **Return value**
 
@@ -1475,7 +1529,7 @@ Scrolls on this component to search for the target component. This API is applic
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Uitest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -1506,9 +1560,9 @@ Scrolls to the top of this component. This API is applicable to components that 
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                                        |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| speed  | number | No  | Scroll speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
+| Name| Type  | Mandatory| Description                                                    |
+| ------ | ------ | ---- |--------------------------------------------------------|
+| speed  | number | No  | Scroll speed, in px/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value **600** is used.|
 
 **Error codes**
 
@@ -1543,9 +1597,9 @@ Scrolls to the bottom of this component. This API is applicable to components th
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                                        |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| speed  | number | No  | Scroll speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
+| Name| Type  | Mandatory| Description                                                    |
+| ------ | ------ | ---- |--------------------------------------------------------|
+| speed  | number | No  | Scroll speed, in px/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value **600** is used.|
 
 **Error codes**
 
@@ -1573,6 +1627,10 @@ async function demo() {
 dragTo(target: Component): Promise\<void>
 
 Drags this component to the target component.
+
+> **NOTE**
+>
+> This API takes effect only on phones, tablets, and 2-in-1 devices.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1713,6 +1771,41 @@ async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('Button'));
   let description = await button.getDescription();
+}
+```
+### getHint<sup>18+</sup>
+
+getHint(): Promise\<string>
+
+Obtains the hint text of a component object. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Return value**
+
+| Type            | Description                  |
+| ---------------- |----------------------|
+| Promise\<string> | Promise used to return the hint text of the component.|
+
+**Error codes**
+
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+
+**Example**
+
+```ts
+import { Component, Driver, ON } from '@kit.TestKit';
+async function demo() {
+  let driver: Driver = Driver.create();
+  let button: Component = await driver.findComponent(ON.type('TextInput'));
+  let hints = await button.getHint();
 }
 ```
 
@@ -2211,13 +2304,13 @@ Swipes on this **Driver** object from the given start point to the given end poi
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                                        |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| startx | number | Yes  | X coordinate of the start point. The value must be greater than or equal to 0.             |
-| starty | number | Yes  | Y coordinate of the start point. The value must be greater than or equal to 0.             |
-| endx   | number | Yes  | X coordinate of the end point. The value must be greater than or equal to 0.             |
-| endy   | number | Yes  | Y coordinate of the end point. The value must be greater than or equal to 0.             |
-| speed  | number | No  | Swipe speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
+| Name| Type  | Mandatory| Description                                                  |
+| ------ | ------ | ---- |------------------------------------------------------|
+| startx | number | Yes  | X coordinate of the start point. The value must be greater than or equal to 0.                      |
+| starty | number | Yes  | Y coordinate of the start point. The value must be greater than or equal to 0.                      |
+| endx   | number | Yes  | X coordinate of the end point. The value must be greater than or equal to 0.                      |
+| endy   | number | Yes  | Y coordinate of the end point. The value must be greater than or equal to 0.                      |
+| speed  | number | No  | Swipe speed, in px/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value **600** is used.|
 
 **Error codes**
 
@@ -2244,19 +2337,23 @@ drag(startx: number, starty: number, endx: number, endy: number, speed?: number)
 
 Drags this **Driver** object from the given start point to the given end point.
 
+> **NOTE**
+>
+> This API takes effect only on phones, tablets, and 2-in-1 devices.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                                        |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| startx | number | Yes  | X coordinate of the start point. The value must be greater than or equal to 0.             |
-| starty | number | Yes  | Y coordinate of the start point. The value must be greater than or equal to 0.             |
-| endx   | number | Yes  | X coordinate of the end point. The value must be greater than or equal to 0.             |
-| endy   | number | Yes  | Y coordinate of the end point. The value must be greater than or equal to 0.             |
-| speed  | number | No  | Drag speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
+| Name| Type  | Mandatory| Description                                                    |
+| ------ | ------ | ---- |--------------------------------------------------------|
+| startx | number | Yes  | X coordinate of the start point. The value must be greater than or equal to 0.                        |
+| starty | number | Yes  | Y coordinate of the start point. The value must be greater than or equal to 0.                        |
+| endx   | number | Yes  | X coordinate of the end point. The value must be greater than or equal to 0.                        |
+| endy   | number | Yes  | Y coordinate of the end point. The value must be greater than or equal to 0.                        |
+| speed  | number | No  | Drag speed, in px/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value **600** is used.|
 
 **Error codes**
 
@@ -2281,7 +2378,7 @@ async function demo() {
 
 screenCap(savePath: string): Promise\<boolean>
 
-Captures the current screen of this **Driver** object and saves it as a PNG image to the given save path.
+Captures the current screen of this **Driver** object and saves it as a PNG image to the given save path. This API can be used in scenarios where screenshots are supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2323,6 +2420,10 @@ async function demo() {
 setDisplayRotation(rotation: DisplayRotation): Promise\<void>
 
 Sets the display rotation of the current scene. It applies to rotatable scenarios.
+
+> **NOTE**
+>
+> This API takes effect only on phones, tablets, and 2-in-1 devices.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2392,6 +2493,10 @@ async function demo() {
 setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 
 Enables or disables display rotation.
+
+> **NOTE**
+>
+> This API takes effect only on phones, tablets, and 2-in-1 devices.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2525,6 +2630,10 @@ pressHome(): Promise\<void>
 
 Returns to the home screen.
 
+> **NOTE**
+>
+> This API takes effect only on phones, tablets, and 2-in-1 devices.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
@@ -2601,12 +2710,12 @@ Simulates a fling operation on the screen.
 
 **Parameters**
 
-| Name | Type            | Mandatory| Description                                                        |
-| ------- | ---------------- | ---- | ------------------------------------------------------------ |
-| from    | [Point](#point9) | Yes  | Coordinates of the point where the finger touches the screen.                                  |
-| to      | [Point](#point9) | Yes  | Coordinates of the point where the finger leaves the screen.                                    |
-| stepLen | number           | Yes  | Fling step length, in pixels.                                    |
-| speed   | number           | Yes  | Fling speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
+| Name | Type            | Mandatory| Description                                                  |
+| ------- | ---------------- | ---- |------------------------------------------------------|
+| from    | [Point](#point9) | Yes  | Coordinates of the point where the finger touches the screen.                                       |
+| to      | [Point](#point9) | Yes  | Coordinates of the point where the finger leaves the screen.                                        |
+| stepLen | number           | Yes  | Step length, in pixels.                                        |
+| speed   | number           | Yes  | Fling speed, in px/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value **600** is used.|
 
 **Error codes**
 
@@ -2639,10 +2748,10 @@ Injects a multi-touch operation to the device.
 
 **Parameters**
 
-| Name  | Type                            | Mandatory| Description                                                        |
-| -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| pointers | [PointerMatrix](#pointermatrix9) | Yes  | Scroll trajectory, including the number of fingers and an array of coordinates along the trajectory.                  |
-| speed    | number                           | No  | Scroll speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
+| Name  | Type                            | Mandatory| Description                                                    |
+| -------- | -------------------------------- | ---- |--------------------------------------------------------|
+| pointers | [PointerMatrix](#pointermatrix9) | Yes  | Scroll trajectory, including the number of fingers and an array of coordinates along the trajectory.                                 |
+| speed    | number                           | No  | Inject speed, in px/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value **600** is used.|
 
 **Return value**
 
@@ -2692,10 +2801,10 @@ Simulates a fling operation on the screen, in the specified direction and speed.
 
 **Parameters**
 
-| Name   | Type                         | Mandatory| Description                                                        |
-| --------- | ----------------------------- | ---- | ------------------------------------------------------------ |
-| direction | [UiDirection](#uidirection10) | Yes  | Direction of the fling operation.                                            |
-| speed     | number                        | Yes  | Fling speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
+| Name   | Type                         | Mandatory| Description                                                    |
+| --------- | ----------------------------- | ---- |--------------------------------------------------------|
+| direction | [UiDirection](#uidirection10) | Yes  | Direction of the fling operation.                                              |
+| speed     | number                        | Yes  | Fling speed, in px/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value **600** is used.|
 
 **Error codes**
 
@@ -2720,7 +2829,7 @@ async function demo() {
 
 screenCapture(savePath: string, rect?: Rect): Promise\<boolean>;
 
-Captures the specified area of the current screen and saves the captured screenshot as a PNG image to the specified path.
+Captures the specified area of the current screen and saves the captured screenshot as a PNG image to the specified path. This API can be used in scenarios where screenshots are supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2812,7 +2921,7 @@ Injects a mouse scroll action at the specified coordinates, with the optional ke
 | ------ | ---------------- | ---- | ----------------------------------------------------------- |
 | p      | [Point](#point9) | Yes  | Coordinates of the mouse click.                                           |
 | down   | boolean          | Yes  | Whether the mouse wheel scrolls downward.<br>**true**: The mouse wheel scrolls downward.<br>**false**: The mouse wheel scrolls upward.|
-| d      | number           | Yes  | Number of cells by which the mouse wheel scrolls. Scrolling by one cell means a 120-pixel offset of the end point.        |
+| d      | number           | Yes  | Number of notches by which the mouse wheel scrolls. Scrolling by one notch means a 120-pixel offset of the target point.        |
 | key1   | number           | No  | The first key value. The default value is **0**.                             |
 | key2   | number           | No  | The second key value. The default value is **0**.                             |
 
@@ -2920,7 +3029,7 @@ Injects a mouse scroll action at the specified coordinates. You can specify the 
 | ------ | ---------------- | ---- | ------------------------------------------------------------ |
 | p      | [Point](#point9) | Yes  | Coordinates of the mouse click.                                            |
 | down   | boolean          | Yes  | Whether the mouse wheel scrolls downward.<br>**true**: The mouse wheel scrolls downward.<br>**false**: The mouse wheel scrolls upward. |
-| d      | number           | Yes  | Number of cells by which the mouse wheel scrolls. Scrolling by one cell means a 120-pixel offset of the end point.         |
+| d      | number           | Yes  | Number of notches by which the mouse wheel scrolls. Scrolling by one notch means a 120-pixel offset of the target point.         |
 | key1   | number           | No  | The first key value. The default value is **0**.                              |
 | key2   | number           | No  | The second key value. The default value is **0**.                              |
 | speed  | number           | No  | Scroll speed of the mouse wheel, in cells/second.<br>Value range: 1 to 500<br>If the value is not within the range, the default value **20** will be used.|
@@ -3032,11 +3141,11 @@ Moves the mouse pointer from the start point to the end point.
 
 **Parameters**
 
-| Name| Type            | Mandatory| Description                                                        |
-| ------ | ---------------- | ---- | ------------------------------------------------------------ |
+| Name| Type            | Mandatory| Description                                                    |
+| ------ | ---------------- | ---- |--------------------------------------------------------|
 | from   | [Point](#point9) | Yes  | Coordinates of the start point.                                                |
-| to     | [Point](#point9) | Yes  | Coordinates of the end point.                                                  |
-| speed  | number           | No  | Scroll speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
+| to     | [Point](#point9) | Yes  | Coordinates of the end point.                                                 |
+| speed  | number           | No  | Moving speed, in px/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value **600** is used.|
 
 **Error codes**
 
@@ -3063,17 +3172,21 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 
 Drags the mouse pointer from the start point to the end point.
 
+> **NOTE**
+>
+> This API takes effect only on phones, tablets, and 2-in-1 devices.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Test.UiTest
 
 **Parameters**
 
-| Name| Type            | Mandatory| Description                                                        |
-| ------ | ---------------- | ---- | ------------------------------------------------------------ |
+| Name| Type            | Mandatory| Description                                                    |
+| ------ | ---------------- | ---- |--------------------------------------------------------|
 | from   | [Point](#point9) | Yes  | Coordinates of the start point.                                                |
-| to     | [Point](#point9) | Yes  | Coordinates of the end point.                                                  |
-| speed  | number           | No  | Drag speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
+| to     | [Point](#point9) | Yes  | Coordinates of the end point.                                                 |
+| speed  | number           | No  | Drag speed, in px/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value **600** is used.|
 
 **Error codes**
 
@@ -3109,7 +3222,7 @@ Enters text at the specified point.
 | Name| Type            | Mandatory| Description              |
 | ------ | ---------------- | ---- | ------------------ |
 | p      | [Point](#point9) | Yes  | Coordinates of the end point.|
-| text   | string           | Yes  | Text to enter.  |
+| text   | string           | Yes  |Input text. Currently, English, Chinese, and special characters are supported.<br> **Note**: For wearables, this API does not support Chinese characters.|
 
 **Error codes**
 
@@ -3129,6 +3242,271 @@ async function demo() {
   let text: Component = await driver.findComponent(ON.type('TextInput'));
   let point = await text.getBoundsCenter();
   await driver.inputText(point, '123');
+}
+```
+
+### touchPadMultiFingerSwipe<sup>18+</sup>
+
+touchPadMultiFingerSwipe(fingers: number, direction: UiDirection, options?: TouchPadSwipeOptions): Promise\<void>
+
+Simulates a multi-finger swipe gesture on the touchpad. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API takes effect only on 2-in-1 devices.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name| Type                                           | Mandatory| Description                   |
+| ------ |-----------------------------------------------|----|-----------------------|
+| fingers      | number                                        | Yes | Number of fingers. The value ranges from 3 to 4.|
+| direction | [UiDirection](#uidirection10)                 | Yes | Swipe direction.          |
+| options      | [TouchPadSwipeOptions](#touchpadswipeoptions18) | No | Additional options.       |
+
+**Return value**
+
+| Type            | Description             |
+|----------------|-----------------|
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Uitest Error Codes](errorcode-uitest.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 17000005 | This operation is not supported.         |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**Example**
+
+```ts
+import { Driver, UiDirection } from '@kit.TestKit';
+async function demo() {
+  let driver:Driver = Driver.create();
+  await driver.touchPadMultiFingerSwipe(3, UiDirection.UP);
+}
+```
+
+### penClick<sup>18+</sup>
+
+penClick(point: Point): Promise\<void>
+
+Simulates a pen click. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name| Type                                           | Mandatory| Description     |
+| ------ |-----------------------------------------------|----|---------|
+| point      | [Point](#point9) | Yes  | Coordinates of the clicked point.|
+
+**Return value**
+
+| Type            | Description             |
+|----------------|-----------------|
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Uitest Error Codes](errorcode-uitest.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**Example**
+
+```ts
+import { Driver } from '@kit.TestKit';
+async function demo() {
+  let driver: Driver = Driver.create();
+  await driver.penClick({x: 100, y: 100});
+}
+```
+
+### penLongClick<sup>18+</sup>
+
+penLongClick(point: Point, pressure?: number): Promise\<void>
+
+Simulates a pen long-click. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name| Type                                           | Mandatory| Description                           |
+| ------ |-----------------------------------------------|----|-------------------------------|
+| point      | [Point](#point9) | Yes | Coordinates of the long-clicked point.                      |
+| pressure      | number | No | Swipe pressure of the pen. The value ranges from 0.0 to 1.0. The default value is **1.0**.|
+
+**Return value**
+
+| Type            | Description             |
+|----------------|-----------------|
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Uitest Error Codes](errorcode-uitest.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**Example**
+
+```ts
+import { Driver } from '@kit.TestKit';
+async function demo() {
+  let driver: Driver = Driver.create();
+  await driver.penLongClick({x: 100, y: 100}, 0.5);
+}
+```
+
+### penDoubleClick<sup>18+</sup>
+
+penDoubleClick(point: Point): Promise\<void>
+
+Simulates a pen double-click. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name| Type                                           | Mandatory| Description     |
+| ------ |-----------------------------------------------|----|---------|
+| point      | [Point](#point9) | Yes | Coordinates of the double-clicked point.|
+
+
+**Return value**
+
+| Type            | Description             |
+|----------------|-----------------|
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Uitest Error Codes](errorcode-uitest.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**Example**
+
+```ts
+import { Driver } from '@kit.TestKit';
+async function demo() {
+  let driver: Driver = Driver.create();
+  await driver.penDoubleClick({x: 100, y: 100});
+}
+```
+
+### penSwipe<sup>18+</sup>
+
+penSwipe(startPoint: Point, endPoint: Point, speed?: number, pressure?: number): Promise\<void>
+
+Simulates a pen swipe. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name| Type                                           | Mandatory| Description                                                    |
+| ------ |-----------------------------------------------|----|--------------------------------------------------------|
+| startPoint      | [Point](#point9) | Yes | Coordinates of the start point.                                             |
+| endPoint      | [Point](#point9) | Yes | Coordinates of the end point.                                             |
+| speed      | number | No | Swipe speed, in px/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value **600** is used.|
+| pressure      | number | No | Swipe pressure of the pen. The value ranges from 0.0 to 1.0. The default value is **1.0**.                       |
+
+**Return value**
+
+| Type            | Description             |
+|----------------|-----------------|
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Uitest Error Codes](errorcode-uitest.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**Example**
+
+```ts
+ import { Driver } from '@kit.TestKit';
+async function demo() {
+  let driver: Driver = Driver.create();
+  await driver.penSwipe({x: 100, y: 100}, {x: 100, y: 500}, 600, 0.5);
+}
+```
+
+### injectPenPointerAction<sup>18+</sup>
+
+injectPenPointerAction(pointers: PointerMatrix, speed?: number, pressure?: number): Promise\<void>
+
+Simulates a continuous multi-point pen injection. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name| Type                                           | Mandatory| Description                                                               |
+| ------ |-----------------------------------------------|----|-------------------------------------------------------------------|
+| pointers | [PointerMatrix](#pointermatrix9) | Yes |Scroll trajectory, including the number of fingers and an array of coordinates along the trajectory. Currently, only the single-finger operation is supported. The value of **fingers** in **PointerMatrix** must be set to 1.|
+| speed      | number| No | Swipe speed, in px/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value **600** is used.           |
+| pressure      | number | No | Injection pressure. The value ranges from 0.0 to 1.0. The default value is **1.0**.                                |
+
+
+**Return value**
+
+| Type            | Description             |
+|----------------|-----------------|
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Uitest Error Codes](errorcode-uitest.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**Example**
+
+```ts
+import { Driver, PointerMatrix } from '@kit.TestKit';
+async function demo() {
+  let driver: Driver = Driver.create();
+  let pointer = PointerMatrix.create(1,8);
+  for (let step = 0; step < 8; step++) {
+    pointer.setPoint(0, step, {x: 500, y: 1100 - 100 *step});
+  }
+  await driver.injectPenPointerAction(pointer, 600, 0.5);
 }
 ```
 
@@ -3192,7 +3570,7 @@ Sets the coordinates for the action corresponding to the specified finger and st
 | ------ | ---------------- | ---- | ---------------------------------------------------------- |
 | finger | number           | Yes  | Sequence number of the finger.                                              |
 | step   | number           | Yes  | Sequence number of the step.                                              |
-| point  | [Point](#point9) | Yes  | Coordinates of the action. It is recommended that the distance between adjacent coordinate points is within the range of 10 to 80 pixels.|
+| point  | [Point](#point9) | Yes  | Coordinates of the action. It is recommended that the distance between adjacent coordinates be within the range of 10 px to 80 px.|
 
 **Error codes**
 
