@@ -128,7 +128,7 @@
 
 **ACL使能**：true
 
-**起始版本**：18
+**起始版本**：17
 
 ## ohos.permission.READ_PROTECTION_ADVICE_POLICY
 
@@ -140,7 +140,7 @@
 
 **ACL使能**：true
 
-**起始版本**：18
+**起始版本**：17
 
 ## ohos.permission.PROXY_MESSAGE_AUTH
 

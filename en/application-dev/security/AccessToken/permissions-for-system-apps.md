@@ -128,7 +128,7 @@ Allows a system application to write the protection advice database.
 
 **Enable via ACL**: true
 
-**Valid since**: 18
+**Valid since**: 17
 
 ## ohos.permission.READ_PROTECTION_ADVICE_POLICY
 
@@ -140,7 +140,7 @@ Allows a system application to read the protection advice database
 
 **Enable via ACL**: true
 
-**Valid since**: 18
+**Valid since**: 17
 
 ## ohos.permission.PROXY_MESSAGE_AUTH
 
