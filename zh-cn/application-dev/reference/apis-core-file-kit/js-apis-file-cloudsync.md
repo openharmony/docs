@@ -198,7 +198,7 @@ off(event: 'progress', callback?: Callback\<SyncProgress>): void
 
 start(): Promise&lt;void&gt;
 
-异步方法启动云盘端云同步, 以Promise形式返回结果。
+异步方法启动云盘端云同步,以Promise形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -245,7 +245,7 @@ start(): Promise&lt;void&gt;
 
 start(callback: AsyncCallback&lt;void&gt;): void
 
-异步方法启动云盘端云同步, 以callback形式返回结果。
+异步方法启动云盘端云同步,以callback形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -288,7 +288,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 stop(): Promise&lt;void&gt;
 
-异步方法停止云盘端云同步, 以Promise形式返回结果。
+异步方法停止云盘端云同步,以Promise形式返回结果。
 
 调用stop接口，同步流程会停止。再次调用[start](#start12)接口会继续同步。
 
@@ -328,7 +328,7 @@ stop(): Promise&lt;void&gt;
 
 stop(callback: AsyncCallback&lt;void&gt;): void
 
-异步方法停止云盘端云同步, 以callback形式返回结果。
+异步方法停止云盘端云同步,以callback形式返回结果。
 
 调用stop接口，同步流程会停止。再次调用[start](#start12)接口会继续同步。
 
@@ -769,7 +769,6 @@ stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
 | LOCAL_STORAGE_FULL |  3 | 本地空间不足。 |
 | CONTENT_NOT_FOUND |  4 | 云端空间未找到对应文件。 |
 | FREQUENT_USER_REQUESTS |  5 | 用户请求过于频繁。 |
-
 
 ## cloudSync.registerChange<sup>12+</sup>
 
