@@ -30,7 +30,7 @@ Enumerates the ringtone parameters.
 
 ## RingtonePlayer
 
-Provides APIs for setting and obtaining system ringtone parameters as well as playing and stopping system ringtones. Before calling any API in **RingtonePlayer**, you must use [getSystemRingtonePlayer](js-apis-systemSoundManager-sys.md#getsystemringtoneplayer) to create a **RingtonePlayer** instance.
+Provides APIs for setting and obtaining system ringtone parameters as well as playing and stopping system ringtones. Before calling any API in **RingtonePlayer**, you must use [getRingtonePlayer](./js-apis-systemSoundManager-sys.md#getringtoneplayer11) to create a **RingtonePlayer** instance.
 
 ### Attributes
 

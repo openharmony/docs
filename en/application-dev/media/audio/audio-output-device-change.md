@@ -44,7 +44,6 @@ The system sends [AudioStreamDeviceChangeReason](../../reference/apis-audio-kit/
 ## Example
 
   ```ts
-  import router from '@ohos.router';
   import { audio } from '@kit.AudioKit';
   import { BusinessError } from '@kit.BasicServicesKit';
   
