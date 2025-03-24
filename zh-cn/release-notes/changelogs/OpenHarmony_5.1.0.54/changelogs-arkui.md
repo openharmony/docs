@@ -1170,3 +1170,37 @@ struct Index {
 | BlendMode.NONE  | ![demoBlendModeNone](figures/demoBlendModeNone.png) | ![demoBlendModeNone](figures/demoBlendModeNone.png) |
 
 应用若需保持变更前行为，XComponent组件上的blendMode接口使用BlendMode.None入参即可。
+
+## cl.arkui.20 在XComponent实例从组件树中移除时，停止响应设置期望帧率时注册的每帧回调函数。
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+应用在使用OH_NativeXComponent_RegisterOnFrameCallback接口注册回调后，若在从组件树中移除时未能及时取消回调请求，可能会导致性能和功耗问题。应变更为在XComponent实例从组件树中移除时停止响应注册的每帧回调函数。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+变更前：应用调用OH_NativeXComponent_RegisterOnFrameCallback接口设置期望回调，如果没有取消注册，在XComponent实例存在期间，能一直收到期望回调。
+
+变更后：应用调用OH_NativeXComponent_RegisterOnFrameCallback接口设置期望回调，如果没有取消注册，只在XComponent上树期间，能收到期望回调。
+
+**起始API Level**
+
+API 11
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.54开始。
+
+**变更的接口/组件**
+
+OH_NativeXComponent_RegisterOnFrameCallback 接口
+
+**适配指导**
+
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
