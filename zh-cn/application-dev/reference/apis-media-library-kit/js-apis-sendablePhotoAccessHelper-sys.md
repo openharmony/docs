@@ -303,7 +303,7 @@ getAnalysisData(analysisType: AnalysisType): Promise\<string>
 
 | 类型                | 说明                                |
 | :------------------ | :---------------------------------- |
-| Promise&lt;void&gt; | Promise对象，返回指定分析数据结果。 |
+| Promise&lt;string&gt; | Promise对象，返回指定分析数据结果。 |
 
 **错误码：**
 
