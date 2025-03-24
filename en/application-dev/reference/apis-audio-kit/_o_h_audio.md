@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **OHAudio** module provides C APIs of the audio module.
+The OHAudio module provides C APIs of the audio module.
 
 You can refer to the corresponding development guide and samples based on your development requirements.
 
@@ -343,9 +343,10 @@ typedef OH_AudioData_Callback_Result(* OH_AudioRenderer_OnWriteDataCallback)(OH_
 **Description**
 
 Defines a function pointer to the callback function used to write audio data.
+
 The callback function is used only to write audio data. Do not call AudioRenderer APIs in it.
 
-This function is similar to the function pointer [OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnWriteData](_o_h___audio_renderer___callbacks___struct.md#oh_audiorenderer_onwritedata). However, this function has a return value to identify the audio data callback result. The return result indicates whether the data filled in the buffer is valid. If the data is invalid, the data entered by the user will not be played. Once the callback function finishes its execution, the audio service queues the data pointed to by **audioData** for playback. Therefore, do not change the data outside the callback. It is crucial to fill **audioData** with the exact length (specified by **audioDataSize**) of data designated for playback; otherwise, noises may occur during playback. The **audioDataSize** parameter can be set by using [OH_AudioStreamBuilder_SetFrameSizeInCallBack()](#OH_AudioStreamBuilder_SetFrameSizeInCallback).
+This function is similar to the function pointer [OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnWriteData](_o_h___audio_renderer___callbacks___struct.md#oh_audiorenderer_onwritedata). However, this function has a return value to identify the audio data callback result. The return result indicates whether the data filled in the buffer is valid. If the data is invalid, the data entered by the user will not be played. Once the callback function finishes its execution, the audio service queues the data pointed to by **audioData** for playback. Therefore, do not change the data outside the callback. It is crucial to fill **audioData** with the exact length (specified by **audioDataSize**) of data designated for playback; otherwise, noises may occur during playback. The **audioDataSize** parameter can be set by using [OH_AudioStreamBuilder_SetFrameSizeInCallBack()](#oh_audiostreambuilder_setframesizeincallback).
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
@@ -1997,8 +1998,6 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 **AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM**: The **renderer** parameter is set to a null pointer.
 
 **AUDIOSTREAM_ERROR_ILLEGAL_STATE**: The execution status is abnormal.
-
-
 ### OH_AudioRenderer_GetChannelCount()
 
 ```
@@ -2461,6 +2460,8 @@ OH_AudioStream_Result OH_AudioRenderer_GetTimestamp(OH_AudioRenderer *renderer, 
 Obtains the timestamp and position information of an audio output stream.
 
 This function obtains the actual playback position (specified by **framePosition**) of the audio channel and the timestamp when playing to that position (specified by **timestamp**, in nanoseconds).
+
+When you switch devices or resume playback after a pause, the playback position and timestamp retrieved via this function will temporarily stay in the state they were in before the switch or pause, since the playback channel requires a moment to stabilize.
 
 This function is used to implement audio and video synchronization. It is recommended that the function be called once every minute (at least every 200 ms). Frequent calls may increase power consumption. Therefore, do not frequently query the timestamp when the audio-visual synchronization effect can be ensured.
 
@@ -3092,7 +3093,7 @@ Returns a result code defined in [OH_AudioCommon_Result](#oh_audiocommon_result)
 **AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM**:
 
 1. The **audioRoutingManager** parameter is set to a null pointer.
-2. **supported** is a null pointer.
+2. The **supported** parameter is set to a null pointer.
 
 
 ### OH_AudioRoutingManager_RegisterDeviceChangeCallback()
@@ -3990,6 +3991,7 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 
   1. The **builder** parameter is set to a null pointer.
   2. The **rate** parameter is set to an invalid value.
+
 
 
 ### OH_AudioStreamBuilder_SetWriteDataWithMetadataCallback()
