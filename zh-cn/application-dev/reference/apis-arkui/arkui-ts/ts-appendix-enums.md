@@ -845,7 +845,7 @@ type Nullable\<T> = T | undefined;
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 说明                       |
+| 类型 | 说明                       |
 | ---- | -------------------------- |
 | T \| undefined | 该类型申明的对象可以是自定义类型，也可以是undefined。 |
 
