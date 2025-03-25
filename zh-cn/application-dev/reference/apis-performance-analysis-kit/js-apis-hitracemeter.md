@@ -1,6 +1,6 @@
 # @ohos.hiTraceMeter (性能打点)
 
-本模块提供了跟踪进程轨迹，度量程序执行性能的打点能力。本模块打点的数据供hiTraceMeter工具分析使用。
+本模块提供了跟踪进程轨迹，度量程序执行性能的打点能力。本模块打点的数据供hiTraceMeter工具分析使用。  
 详细开发流程请参考：[性能打点跟踪开发指导](../../dfx/hitracemeter-guidelines-arkts.md)。
 
 > **说明：**
@@ -25,7 +25,7 @@ startTrace(name: string, taskId: number): void
 
 如果具有相同name的任务是串行执行的，则taskId可以相同。具体示例可参考[hiTraceMeter.finishTrace](#hitracemeterfinishtrace)中的示例。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 
@@ -49,7 +49,7 @@ finishTrace(name: string, taskId: number): void
 
 finishTrace的name和taskId必须与流程开始的[startTrace](#hitracemeterstarttrace)对应参数值一致。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 
@@ -93,7 +93,7 @@ traceByValue(name: string, count: number): void
 
 用来标记一个预跟踪的数值变量，该变量的数值会不断变化。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 
