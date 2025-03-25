@@ -95,12 +95,6 @@ on(type: 'globalErrorOccurred', observer: GlobalObserver): void
 | type | string | 是 | 填写'globalErrorOccurred'，表示错误观察器。 |
 | observer | [GlobalObserver](#globalobserver18) | 是 | 自定义异常处理回调函数。 |
 
-**返回值：**
-
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | void | 返回值为空。 |
-
 **错误码**：
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
@@ -149,12 +143,6 @@ off(type: 'globalErrorOccurred', observer?: GlobalObserver): void
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 填写'globalErrorOccurred'，表示错误观察器。 |
 | observer | [GlobalObserver](#globalobserver18) | 否 | 由on方法注册的callback。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| void | 无返回结果。 |
 
 **错误码**：
 
