@@ -1,10 +1,10 @@
 # @ohos.hidebug (Debug调试)
 
+使用hidebug，可以获取应用内存的使用情况，包括应用进程的静态堆内存（native heap）信息、应用进程内存占用PSS（Proportional Set Size）信息等；可以完成虚拟机内存切片导出，虚拟机CPU Profiling采集等操作。
+
 > **说明：**
 >
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
-使用hidebug，可以获取应用内存的使用情况，包括应用进程的静态堆内存（native heap）信息、应用进程内存占用PSS（Proportional Set Size）信息等；可以完成虚拟机内存切片导出，虚拟机CPU Profiling采集等操作。
 
 ## 导入模块
 
@@ -18,7 +18,7 @@ getNativeHeapSize(): bigint
 
 获取内存分配器统计的进程持有的堆内存大小（含分配器元数据）。
 
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **返回值：**
 
@@ -40,7 +40,7 @@ getNativeHeapAllocatedSize(): bigint
 
 获取内存分配器统计的进程业务分配的堆内存大小。
 
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **返回值：**
 
@@ -62,7 +62,7 @@ getNativeHeapFreeSize(): bigint
 
 获取内存分配器持有的缓存内存大小。
 
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **返回值：**
 
@@ -83,7 +83,7 @@ getPss(): bigint
 
 获取应用进程实际使用的物理内存大小。
 
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **返回值：**
 
@@ -104,7 +104,7 @@ getVss(): bigint
 
 获取应用进程虚拟耗用内存大小。
 
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **返回值：**
 
@@ -126,7 +126,7 @@ getSharedDirty(): bigint
 
 获取进程的共享脏内存大小。
 
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **返回值：**
 
@@ -148,7 +148,7 @@ getPrivateDirty(): bigint
 
 获取进程的私有脏内存大小。
 
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **返回值：**
 
@@ -171,7 +171,7 @@ getCpuUsage(): number
 
 如占用率为50%，则返回0.5。
 
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **返回值：**
 
@@ -193,9 +193,9 @@ getServiceDump(serviceid : number, fd : number, args : Array\<string>) : void
 
 获取系统服务信息。
 
-**需要权限**: ohos.permission.DUMP，仅系统应用可申请。
+**需要权限**：ohos.permission.DUMP，仅系统应用可申请。
 
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **参数：**
 
@@ -251,7 +251,7 @@ startJsCpuProfiling(filename : string) : void
 
 启动虚拟机Profiling方法跟踪，`startJsCpuProfiling()`方法的调用需要与`stopJsCpuProfiling()`方法的调用一一对应，先开启后关闭，严禁使用`start->start->stop`，`start->stop->stop`，`start->start->stop->stop`等类似的顺序调用。
 
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **参数：**
 
@@ -288,7 +288,7 @@ stopJsCpuProfiling() : void
 
 停止虚拟机Profiling方法跟踪，`startJsCpuProfiling()`方法的调用需要与`stopJsCpuProfiling()`方法的调用一一对应，先开启后关闭，严禁使用`start->start->stop`，`start->stop->stop`，`start->start->stop->stop`等类似的顺序调用。
 
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **示例：**
 
@@ -311,7 +311,7 @@ dumpJsHeapData(filename : string) : void
 
 虚拟机堆导出。
 
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **参数：**
 
@@ -349,7 +349,7 @@ startProfiling(filename : string) : void
 
 启动虚拟机Profiling方法跟踪，`startProfiling()`方法的调用需要与`stopProfiling()`方法的调用一一对应，先开启后关闭，严禁使用`start->start->stop`，`start->stop->stop`，`start->start->stop->stop`等类似的顺序调用。
 
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **参数：**
 
@@ -378,7 +378,7 @@ stopProfiling() : void
 
 停止虚拟机Profiling方法跟踪，`stopProfiling()`方法的调用需要与`startProfiling()`方法的调用一一对应，先开启后关闭，严禁使用`start->start->stop`，`start->stop->stop`，`start->start->stop->stop`等类似的顺序调用。
 
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **示例：**
 
@@ -401,7 +401,7 @@ dumpHeapData(filename : string) : void
 
 虚拟机堆导出。
 
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **参数：**
 
@@ -423,7 +423,7 @@ getAppVMMemoryInfo(): VMMemoryInfo
 
 获取VM内存相关信息。
 
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **返回值：**
 
@@ -447,7 +447,7 @@ getAppThreadCpuUsage(): ThreadCpuUsage[]
 
 获取应用线程CPU使用情况。
 
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **返回值：**
 
@@ -487,7 +487,7 @@ trace单位流量：应用每秒产生的trace大小，系统推荐值为300Kb/s
 
 trace单位流量实测方法：limitSize设置为最大值500M，调用startAppTraceCapture接口，在应用上操作N秒后，调用stopAppTraceCapture停止采集，然后查看trace大小S Kb。那么trace单位流量 = S/N。
 
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **参数：**
 
@@ -543,7 +543,7 @@ stopAppTraceCapture() : void
 
 调用startAppTraceCapture接口，如果没有合理传入limitSize参数，生成trace的大小大于传入的limitSize大小，系统内部会自动调用stopAppTraceCapture，再次手动调用stopAppTraceCapture就会抛出错误码11400105。
 
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **错误码：**
 
@@ -602,7 +602,7 @@ getSystemCpuUsage() : number
 
 获取系统的CPU资源占用情况。
 
-例如，当系统资源CPU占用为 **50%**，将返回**0.5**。
+例如，当系统资源CPU占用为**50%**，将返回**0.5**。
 
 **系统能力**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -636,20 +636,20 @@ try {
 
 setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
 
-设置应用的fd数量、线程数量、js内存或者native内存资源限制。
-**注意：** 当设置的开发者选项开关打开并重启设备后,此功能有效。
+设置应用的fd数量、线程数量、js内存或者native内存资源限制。  
+**注意**：当设置的开发者选项开关打开并重启设备后,此功能有效。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **参数：**
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type | string |  是  | 泄漏资源类型，共四种类型:pss_memory(native内存)、js_heap(js堆内存)、fd(文件描述符)或thread(线程)。                                                                         |
-| value | number |  是  | 对应泄漏资源类型的最大值。范围：pss_memory类型`[1024, 4 * 1024 * 1024](单位：KB)`, js_heap类型`[85, 95](分配给JS堆内存上限的85%~95%)`, fd类型`[10, 10000]`, thread类型`[1, 1000]`。 |
-| enableDebugLog | boolean |  是  | 是否启用外部调试日志，默认值为false，请仅在灰度版本中设置为true，因为收集调试日志会花费太多的cpu或内存。                                                                                     |
+| type | string |  是  | 泄漏资源类型，共四种类型：</br>pss_memory(native内存)；</br>js_heap(js堆内存)；</br>fd(文件描述符)；</br>thread(线程)。                                                                         |
+| value | number |  是  | 对应泄漏资源类型的最大值，范围：pss_memory类型`[1024, 4 * 1024 * 1024](单位：KB)`；</br>js_heap类型`[85, 95](分配给JS堆内存上限的85%~95%)`；</br>fd类型`[10, 10000]`；</br>thread类型`[1, 1000]`。 |
+| enableDebugLog | boolean |  是  | 是否启用外部调试日志，默认值为false。请仅在灰度版本中设置为true，因为收集调试日志会花费太多的cpu或内存。                                                                                     |
 
 **错误码：**
 
@@ -682,7 +682,7 @@ getAppNativeMemInfo(): NativeMemInfo
 
 获取应用进程内存信息。
 
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **返回值：**
 
@@ -707,7 +707,7 @@ getSystemMemInfo(): SystemMemInfo
 
 获取系统内存信息。
 
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **返回值：**
 
@@ -732,7 +732,7 @@ getVMRuntimeStats(): GcStats
 
 获取系统gc全部统计信息。
 
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **返回值：**
 
@@ -759,7 +759,7 @@ getVMRuntimeStat(item : string): number
 
 根据参数获取指定的系统gc统计信息。
 
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **参数：**
 
@@ -836,9 +836,9 @@ try {
 
 ## hidebug.tags<sup>12+</sup>
 
-描述支持trace使用场景的标签, 用户可通过[hitrace](../../dfx/hitrace.md)中的命令行工具，抓取指定标签的trace内容以进行预览。
+描述支持trace使用场景的标签，用户可通过[hitrace](../../dfx/hitrace.md)中的命令行工具，抓取指定标签的trace内容以进行预览。
 
-注意：以下标签实际值由系统定义，可能随版本升级而发生改变，为避免升级后出现兼容性问题，在生产中应直接使用标签名称而非标签数值。
+**注意**：以下标签实际值由系统定义，可能随版本升级而发生改变，为避免升级后出现兼容性问题，在生产中应直接使用标签名称而非标签数值。
 
 **系统能力:** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -881,7 +881,7 @@ try {
 
 描述应用进程内存信息。
 
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 | 名称      | 类型   | 必填 | 说明         |
 | --------- | ------ | ---- | ------------ |
@@ -897,7 +897,7 @@ try {
 
 描述系统内存信息。
 
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 | 名称      | 类型   | 必填 | 说明         |
 | --------- | ------ | ---- | ------------ |
@@ -922,7 +922,7 @@ type GcStats = Record&lt;string, number&gt;
 
 用于存储GC统计信息的键值对。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
 
-**系统能力：**  SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**： SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 | 类型      | 说明                          |
 | -----------| ---------------------------- |
@@ -944,7 +944,7 @@ isDebugState(): boolean
 
 获取应用进程被调试状态，如果应用进程的ark层或者native层处于被调试状态，则返回true，否则返回false。
 
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **返回值：**
 
@@ -966,9 +966,9 @@ getGraphicsMemory(): Promise&lt;number&gt;
 
 使用异步方式，获取应用显存大小。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 14开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **返回值：**
 
@@ -1001,11 +1001,11 @@ getGraphicsMemorySync(): number
 
 使用同步方式，获取应用显存大小。
 
-**注意：** 该接口涉及多次跨进程通信，可能存在性能问题，推荐使用异步接口getGraphicsMemory。
+**注意**：该接口涉及多次跨进程通信，可能存在性能问题，推荐使用异步接口getGraphicsMemory。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 14开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **返回值：**
 
@@ -1043,9 +1043,9 @@ dumpJsRawHeapData(needGC?: boolean): Promise&lt;string&gt;
 > 系统通过该接口转存快照时，会消耗大量系统资源，因此系统对该接口的调用频率和次数做了严格的管控。该接口生成的文件通常较大，建议在处理完该文件后立即将其删除。
 > 建议开发者仅在应用的灰度测试版本中使用。在应用正式版本中要避免使用，以免影响应用的流畅性。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 | 参数名                     | 类型      | 必填 | 说明                                       |
 |-------------------------|---------|----|------------------------------------------|
