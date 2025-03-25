@@ -103,9 +103,9 @@ transform(value: object)
 
 | 名称 | 类型                       | 必填 | 说明            |
 | ---- | -------------------------- | ---- | --------------- |
-| x    | number&nbsp;\|&nbsp;string | 否   | x轴的平移距离。 |
-| y    | number&nbsp;\|&nbsp;string | 否   | y轴的平移距离。 |
-| z    | number&nbsp;\|&nbsp;string | 否   | z轴的平移距离。 |
+| x    | number&nbsp;\|&nbsp;string | 否   | x轴的平移距离。<br/>类型为number时，单位为VP，取值范围为(-∞, +∞)。<br/>类型为string时，形式参考[Length](ts-types.md#length)的string类型。 |
+| y    | number&nbsp;\|&nbsp;string | 否   | y轴的平移距离。<br/>类型为number时，单位为VP，取值范围为(-∞, +∞)。<br/>类型为string时，形式参考[Length](ts-types.md#length)的string类型。 |
+| z    | number&nbsp;\|&nbsp;string | 否   | z轴的平移距离。<br/>类型为number时，单位为VP，取值范围为(-∞, +∞)。<br/>类型为string时，形式参考[Length](ts-types.md#length)的string类型。 |
 
 ## ScaleOptions对象说明
 
