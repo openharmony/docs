@@ -615,7 +615,9 @@ onItemDrop(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, 
 
 onScrollBarUpdate(event: (index: number, offset: number) => ComputedBarAttribute)
 
-当前网格显示的起始位置item发生变化时触发，可通过该回调设置滚动条的位置及长度。
+在Grid每帧布局结束时触发，可通过该回调设置滚动条的位置及长度。
+
+该接口只用作设置Grid的滚动条位置，不建议开发者在此接口中做业务逻辑处理。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
