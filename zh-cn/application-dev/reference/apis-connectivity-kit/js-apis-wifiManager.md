@@ -2398,7 +2398,7 @@ stopDiscoverDevices(): void
 
 getMultiLinkedInfo(): &nbsp;Array&lt;WifiLinkedInfo&gt;
 
-停止发现设备。
+获取MLO Wi-Fi连接信息。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
