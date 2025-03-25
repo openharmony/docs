@@ -989,43 +989,8 @@ common.d.ts文件的sharedTransition接口
 
 开发者如果希望同一组件的sharedTransition的id维持有效值不变，且开发者已经主动设置id为空字符串或undefined时，需要适配。适配方式为不更改sharedTransition的id，维持之前的有效值不变。其余情况无需适配。
 
-## cl.arkui.7 半模态弹簧曲线时长设置默认值
 
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-开发者拉起用SheetSize.FIT_CONTENT声明的半模态的同时，立刻变更了半模态面板高度，造成半模态连续做了两个弹簧曲线动效。
-
-半模态高度动效是没有设置时长的弹簧曲线，如果对高度值连续做两次动效，那么后一个动效会停止前面所有动效，只执行第二个动效，效果上为跳变现象，体验不佳。
-
-**变更影响**
-
-此变更不涉及应用适配，API18之前不变，API18及以后，发生变更。
-
-变更前：在拉起半模态的过程中同时更改半模态高度，半模态会做两次弹簧曲线动效，第一次动效直接到达终点，第二次动效从起点执行到终点，半模态onAppear和高度回调立即执行。
-
-变更后：在拉起半模态的过程中同时更改半模态高度，半模态会做两次弹簧曲线动效，第一次动效和第二次动效都从起点执行到终点，半模态onAppear和高度回调在第一次动效结束后执行。
-
-**起始API Level**
-
-API 11
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.1.0.54版本开始。
-
-**变更的接口/组件**
-
-bindSheet的SheetSize.FIT_CONTENT属性。
-
-**适配指导**
-
-UX效果调优，应用无需适配。
-
-## cl.arkui.8 bindSheet在2in1设备中默认避让窗口安全区
+## cl.arkui.7 bindSheet在2in1设备中默认避让窗口安全区
 
 **访问级别**
 
@@ -1079,7 +1044,7 @@ bindSheet的preferType属性
 
 若按变更前的最大高度规格限制的builder内容，需要变更为新规格计算。
 
-## cl.arkui.9 XComponent设置为Texture模式使用blendMode接口的行为由不生效变更为正常生效
+## cl.arkui.8 XComponent设置为Texture模式使用blendMode接口的行为由不生效变更为正常生效
 **访问级别**
 
 公开接口
@@ -1171,7 +1136,7 @@ struct Index {
 
 应用若需保持变更前行为，XComponent组件上的blendMode接口使用BlendMode.None入参即可。
 
-## cl.arkui.20 在XComponent实例从组件树中移除时，停止响应设置期望帧率时注册的每帧回调函数。
+## cl.arkui.9 在XComponent实例从组件树中移除时，停止响应设置期望帧率时注册的每帧回调函数。
 
 **访问级别**
 
@@ -1207,7 +1172,7 @@ OH_NativeXComponent_RegisterOnFrameCallback 接口
 
 默认UX变更无需适配。
 
-## cl.arkui.11 半模态跟手样式弹窗显示位置避让规则变更
+## cl.arkui.10 半模态跟手样式弹窗显示位置避让规则变更
 **访问级别**
 
 公开接口
