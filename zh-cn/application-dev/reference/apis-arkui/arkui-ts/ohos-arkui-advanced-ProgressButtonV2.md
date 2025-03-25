@@ -32,7 +32,7 @@ isEnabled: boolean, colorOptions?: ProgressButtonColorOptions, progressButtonRad
 
 | 名称                                | 类型                                                            | 必填 | 装饰器类型                  | 说明                                                                                 |
 |-----------------------------------|---------------------------------------------------------------|----|------------------------|------------------------------------------------------------------------------------|
-| progress                          | number                                                        | 是  | \@Require <br/>\@Param | 下载按钮的当前进度值。                                                                        |
+| progress                          | number                                                        | 是  | \@Require <br/>\@Param | 下载按钮的当前进度值。<br/>取值范围：[0,100]。设置小于0的数值时置为0，设置大于100的数值置为100。<br/>默认值：0。                                                                        |
 | content                           | [ResourceStr](ts-types.md#resourcestr)                        | 是  | \@Require <br/>\@Param | 下载按钮的文本。                                                                           |
 | progressButtonWidth               | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否  | \@Param <br/>\@Once  | 下载按钮的宽度。<br/>默认值：44vp                                                             |
 | onClicked                         | [ClickCallback](#clickcallback)                               | 是  | \@Param                | 下载按钮的点击回调。<br/>默认值：() => {}。                                                       |
@@ -66,10 +66,10 @@ type ClickCallback = () => void
 
 | 名称              | 类型           | 必填 | 装饰器类型   | 说明                         |
 |-----------------|--------------|----|---------|----------------------------|
-| progressColor   | ColorMetrics | 否  | \@Trace | 进度条颜色。<br/>默认值：undefined。  |
-| borderColor     | ColorMetrics | 否  | \@Trace | 按钮描边颜色。<br/>默认值：undefined。 |
-| textColor       | ColorMetrics | 否  | \@Trace | 按钮文本颜色。<br/>默认值：undefined。 |
-| backgroundColor | ColorMetrics | 否  | \@Trace | 按钮背景颜色。<br/>默认值：undefined。 |
+| progressColor   | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | \@Trace | 进度条颜色。<br/>默认值：undefined。  |
+| borderColor     | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | \@Trace | 按钮描边颜色。<br/>默认值：undefined。 |
+| textColor       | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | \@Trace | 按钮文本颜色。<br/>默认值：undefined。 |
+| backgroundColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | \@Trace | 按钮背景颜色。<br/>默认值：undefined。 |
 
 ### constructor
 constructor(options: ProgressButtonV2ColorOptions);
