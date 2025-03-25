@@ -2639,7 +2639,7 @@ searchNext(forward: boolean): void
 
 | 参数名  | 类型 | 必填 | 说明               |
 | ------- | -------- | ---- | ---------------------- |
-| forward | boolean  | 是   | 从前向后或者逆向查找。 |
+| forward | boolean  | 是   | true表示从前向后，false表示逆向查找。 |
 
 **错误码：**
 
