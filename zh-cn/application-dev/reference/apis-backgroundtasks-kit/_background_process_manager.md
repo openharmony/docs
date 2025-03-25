@@ -85,9 +85,9 @@ enum BackgroundProcessManager_ErrorCode
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ERR_BACKGROUND_PROCESS_MANAGER_SUCCESS  | **Error:**<br/>压制参数发送成功。 | 
-| ERR_BACKGROUND_PROCESS_MANAGER_INVALID_PARAM  | **Error:**<br/>参数检查失败。 | 
-| ERR_BACKGROUND_PROCESS_MANAGER_REMOTE_ERROR  | **Error:**<br/>客户端进程请求系统服务进程，获取系统服务操作失败。 | 
+| ERR_BACKGROUND_PROCESS_MANAGER_SUCCESS  | 压制参数发送成功。 | 
+| ERR_BACKGROUND_PROCESS_MANAGER_INVALID_PARAM  | 参数检查失败。 | 
+| ERR_BACKGROUND_PROCESS_MANAGER_REMOTE_ERROR  | 客户端进程请求系统服务进程，获取系统服务操作失败。 | 
 
 
 ### BackgroundProcessManager_ProcessPriority
