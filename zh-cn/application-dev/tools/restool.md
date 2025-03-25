@@ -48,7 +48,7 @@ Locale匹配规则：Locale匹配需满足以下三条规则。
 
 ## 使用实例
 
-例如：entry目录结构如下
+例如，entry目录结构如下：
 ```
 entry/src/main
 |    |----resource

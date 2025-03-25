@@ -187,7 +187,7 @@ getBurstAssets(burstKey: string, options: FetchOptions): Promise&lt;FetchResult&
 
 | 参数名  | 类型                | 必填 | 说明             |
 | ------- | ------------------- | ---- | ---------------- |
-| burstKey | string   | 是   | 一组连拍照片的唯一标识：uuid(可传入[PhotoKeys](#photokeys)的BURST_KEY)     |
+| burstKey | string   | 是   | 一组连拍照片的唯一标识：uuid(可传入[PhotoKeys](#photokeys)的BURST_KEY)。字符串长度为36。 |
 | options | [FetchOptions](#fetchoptions)   | 是   | 连拍照片检索选项。     |
 
 **返回值：**
@@ -220,7 +220,7 @@ async function example() {
     predicates: predicates
   };
   // burstKey为36位的uuid，可以根据photoAccessHelper.PhotoKeys获取。
-  let burstKey: string = "e719d696-09fa-44f8-ec3f215aa62a";
+  let burstKey: string = "e719d696-09fa-44f8-8e9e-ec3f215aa62a";
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await 
       phAccessHelper.getBurstAssets(burstKey, fetchOptions);
@@ -1152,7 +1152,7 @@ async function example() {
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
 | uri                       | string                   | 是   | 否   | 媒体文件资源uri（如：file://media/Photo/1/IMG_datetime_0001/displayName.jpg），详情参见用户文件uri介绍中的[媒体文件uri](../../file-management/user-file-uri-intro.md#媒体文件uri)<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
 | photoType   | [PhotoType](#phototype) | 是   | 否   | 媒体文件类型。                                               |
-| displayName               | string                   | 是   | 否   | 显示文件名，包含后缀名。                                 |
+| displayName               | string                   | 是   | 否   | 显示文件名，包含后缀名。字符串长度为1~255。                                 |
 
 ### get
 
@@ -1220,8 +1220,8 @@ set(member: string, value: string): void
 
 | 参数名      | 类型                        | 必填   | 说明    |
 | -------- | ------------------------- | ---- | ----- |
-| member | string | 是    | 成员参数名称例如：[PhotoKeys](#photokeys).TITLE。 |
-| value | string | 是    | 设置成员参数名称，只能修改[PhotoKeys](#photokeys).TITLE的值。 |
+| member | string | 是    | 成员参数名称例如：[PhotoKeys](#photokeys).TITLE。字符串长度为1~255。 |
+| value | string | 是    | 设置成员参数名称，只能修改[PhotoKeys](#photokeys).TITLE的值。title的参数规格为：<br>- 不应包含扩展名。<br>- 文件名字符串长度为1~255（资产文件名为标题+扩展名）。<br>- 不允许出现非法字符，包括：. \ / : * ? " ' ` < > \| { } [ ]  |
 
 **错误码：**
 
