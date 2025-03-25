@@ -219,11 +219,9 @@ class MyUIAbility extends UIAbility {
 
 onWillForeground(): void
 
-UIAbility生命周期回调，应用转到前台前触发，在[onForeground](#uiabilityonforeground)前被调用。相对于[onForeground](#uiabilityonforeground)，该回调提供确定地进入应用在进入页面[OnPageShow](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)之前时序，[onForeground](#uiabilityonforeground)与ArkUI页面[OnPageShow](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)触发先后时序无法保证，从而影响计时统计相关业务。
+UIAbility生命周期回调，应用转到前台前触发，在[onForeground](#uiabilityonforeground)前被调用。该回调可用于采集应用开始进入前台的时间，如果与[onDidForeground](#uiabilityondidforeground18)配合使用，还可以统计出从应用开始进入前台到切换至前台状态的耗时。
 
-例如，计时长场景下，统计广告时长t3，在[onForeground](#uiabilityonforeground)实现应用进入时间打点t1，[onDidForeground](#uiabilityondidforeground18)实现应用前台时间打点t2，t3 = t2 - t1，[OnPageShow](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)中页面广告时序在进入应用时间t1之前，可能存在实际广告时长超出统计广告时长t3问题。
-
-该回调与[onDidForeground](#uiabilityondidforeground18)配合使用，统计从应用开始进入到前台状态时长，进行相关业务计时统计。
+例如，页面广告时长统计场景下，在该回调中实现应用进入时间打点，在[onDidForeground](#uiabilityondidforeground18)实现应用进入前台后时间打点，[OnPageShow](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)中实现进入页面广告，可以计算应用播放完广告进入前台后的时长。
 
 同步接口，不支持异步回调。
 
