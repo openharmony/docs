@@ -36,7 +36,7 @@
 OH_NativeBuffer_ColorXY OH_NativeBuffer_Smpte2086::displayPrimaryBlue
 ```
 
-**描述**
+**描述：**
 
 蓝基色。
 
@@ -47,7 +47,7 @@ OH_NativeBuffer_ColorXY OH_NativeBuffer_Smpte2086::displayPrimaryBlue
 OH_NativeBuffer_ColorXY OH_NativeBuffer_Smpte2086::displayPrimaryGreen
 ```
 
-**描述**
+**描述：**
 
 绿基色。
 
@@ -58,7 +58,7 @@ OH_NativeBuffer_ColorXY OH_NativeBuffer_Smpte2086::displayPrimaryGreen
 OH_NativeBuffer_ColorXY OH_NativeBuffer_Smpte2086::displayPrimaryRed
 ```
 
-**描述**
+**描述：**
 
 红基色。
 
@@ -69,7 +69,7 @@ OH_NativeBuffer_ColorXY OH_NativeBuffer_Smpte2086::displayPrimaryRed
 float OH_NativeBuffer_Smpte2086::maxLuminance
 ```
 
-**描述**
+**描述：**
 
 最大的光亮度。
 
@@ -80,7 +80,7 @@ float OH_NativeBuffer_Smpte2086::maxLuminance
 float OH_NativeBuffer_Smpte2086::minLuminance
 ```
 
-**描述**
+**描述：**
 
 最小的光亮度。
 
@@ -91,6 +91,6 @@ float OH_NativeBuffer_Smpte2086::minLuminance
 OH_NativeBuffer_ColorXY OH_NativeBuffer_Smpte2086::whitePoint
 ```
 
-**描述**
+**描述：**
 
 白点。
