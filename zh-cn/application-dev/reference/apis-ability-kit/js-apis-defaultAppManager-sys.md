@@ -38,7 +38,7 @@ getDefaultApplication(type: string, userId?: number): Promise\<BundleInfo>
 
 | 参数名         | 类型     | 必填   | 说明                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要查询的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmanagerapplicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。       |
+| type  | string | 是    | 要查询的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#applicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。       |
 | userId  | number | 否    | 用户ID。默认值：调用方所在用户。                        |
 
 **返回值：**
@@ -109,7 +109,7 @@ getDefaultApplication(type: string, userId: number, callback: AsyncCallback\<Bun
 
 | 参数名         | 类型     | 必填   | 说明                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要查询的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmanagerapplicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。       |
+| type  | string | 是    | 要查询的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#applicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。       |
 | userId  | number | 是    | 用户ID。                           |
 | callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | 是    | 程序启动作为入参的回调函数，返回包信息。                    |
 
@@ -176,7 +176,7 @@ getDefaultApplication(type: string, callback: AsyncCallback\<BundleInfo>) : void
 
 | 参数名         | 类型     | 必填   | 说明                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要查询的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmanagerapplicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。       |
+| type  | string | 是    | 要查询的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#applicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。       |
 | callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | 是    | 程序启动作为入参的回调函数，返回包信息。                    |
 
 **错误码：**
@@ -240,7 +240,7 @@ getDefaultApplicationSync(type: string, userId?: number): BundleInfo
 
 | 参数名 | 类型   | 必填 | 说明                                    |
 | -------| ------ | ---- | --------------------------------------- |
-| type   | string | 是   | 要查询的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmanagerapplicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。|
+| type   | string | 是   | 要查询的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#applicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。|
 | userId | number | 否   | 用户ID。默认值：调用方所在用户。         |
 
 **返回值：**
@@ -307,7 +307,7 @@ setDefaultApplication(type: string, elementName: ElementName, userId?: number): 
 
 | 参数名         | 类型     | 必填   | 说明                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要设置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmanagerapplicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。       |
+| type  | string | 是    | 要设置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#applicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。       |
 | elementName  | [ElementName](js-apis-bundle-ElementName.md) | 是    | 要设置为默认应用的组件信息。                           |
 | userId  | number | 否    | 用户ID。默认值：调用方所在用户。                           |
 
@@ -396,7 +396,7 @@ setDefaultApplication(type: string, elementName: ElementName, userId: number, ca
 
 | 参数名         | 类型     | 必填   | 说明                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要设置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmanagerapplicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。       |
+| type  | string | 是    | 要设置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#applicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。       |
 | elementName  | [ElementName](js-apis-bundle-ElementName.md) | 是    | 要设置为默认应用的组件信息。                           |
 | userId  | number | 是    | 用户ID。                           |
 | callback    | AsyncCallback\<void> | 是    | 程序启动作为入参的回调函数。                    |
@@ -476,7 +476,7 @@ setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCal
 
 | 参数名         | 类型     | 必填   | 说明                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要设置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmanagerapplicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。       |
+| type  | string | 是    | 要设置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#applicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。       |
 | elementName  | [ElementName](js-apis-bundle-ElementName.md) | 是    | 要设置为默认应用的组件信息。                           |
 | callback    | AsyncCallback\<void> | 是    | 程序启动作为入参的回调函数。                    |
 
@@ -553,7 +553,7 @@ setDefaultApplicationSync(type: string, elementName: ElementName, userId?: numbe
 
 | 参数名      | 类型   | 必填 | 说明                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type        | string | 是   | 要设置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmanagerapplicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。|
+| type        | string | 是   | 要设置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#applicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。|
 | elementName | [ElementName](js-apis-bundle-ElementName.md) | 是 | 要设置为默认应用的组件信息。                           |
 | userId      | number | 否   | 用户ID。默认值：调用方所在用户。                           |
 
@@ -639,7 +639,7 @@ resetDefaultApplication(type: string, userId?: number): Promise\<void>
 
 | 参数名         | 类型     | 必填   | 说明                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要重置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmanagerapplicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。       |
+| type  | string | 是    | 要重置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#applicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。       |
 | userId  | number | 否    | 用户ID。默认值：调用方所在用户。                           |
 
 **错误码：**
@@ -704,7 +704,7 @@ resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<v
 
 | 参数名         | 类型     | 必填   | 说明                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要重置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmanagerapplicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。       |
+| type  | string | 是    | 要重置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#applicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。       |
 | userId  | number | 是    | 用户ID。                          |
 | callback    | AsyncCallback\<void> | 是    | 程序启动作为入参的回调函数。                    |
 
@@ -770,7 +770,7 @@ resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void
 
 | 参数名         | 类型     | 必填   | 说明                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要重置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmanagerapplicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。       |
+| type  | string | 是    | 要重置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#applicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。       |
 | callback    | AsyncCallback\<void> | 是    | 程序启动作为入参的回调函数。                    |
 
 **错误码：**
@@ -833,7 +833,7 @@ resetDefaultApplicationSync(type: string, userId?: number): void
 
 | 参数名 | 类型   | 必填 | 说明                                    |
 | ------ | ------ | ---- | --------------------------------------- |
-| type   | string | 是   | 要重置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmanagerapplicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。|
+| type   | string | 是   | 要重置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#applicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。|
 | userId | number | 否   | 用户ID。默认值：调用方所在用户。                           |
 
 **错误码：**
