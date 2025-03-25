@@ -572,8 +572,8 @@ WAPI认证方式的枚举。
 | DEFAULT | 1 | Default。Wifi6以下的wifi类别。 |
 | WIFI6 | 2 | Wifi6。 |
 | WIFI6_PLUS | 3 | Wifi6+。 |
-| WIFI7<sup>15+</sup> | 4 | Wifi7。 |
-| WIFI7_PLUS<sup>15+</sup> | 5 | Wifi7+。 |
+| WIFI7<sup>18+</sup> | 4 | Wifi7。 |
+| WIFI7_PLUS<sup>18+</sup> | 5 | Wifi7+。 |
 
 ## wifiManager.addCandidateConfig<sup>9+</sup>
 
@@ -1233,8 +1233,6 @@ getLinkedInfoSync(): WifiLinkedInfo;
 
 当macType是1 - 设备MAC地址时，获取 macAddress 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限（该权限仅系统应用可申请），无该权限时，macAddress 返回随机MAC地址。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **返回值：**
@@ -1292,6 +1290,22 @@ getLinkedInfoSync(): WifiLinkedInfo;
 | wifiStandard<sup>10+</sup> | [WifiStandard](#wifistandard10) | 是 | 否 | 当前连接热点的Wi-Fi标准。 |
 | supportedWifiCategory<sup>12+</sup> | [WifiCategory](#wificategory12) | 是 | 否 | 热点支持的最高Wi-Fi级别。 |
 | isHiLinkNetwork<sup>12+</sup> | boolean | 是 | 否| 热点是否支持hilink，true:支持，&nbsp;false:不支持。 |
+| wifiLinkType<sup>18+</sup> | [WifiLinkType](#wifilinktype18) | 是 | 否|    |
+
+
+## WifiLinkType<sup>18+</sup>
+
+表示WLAN连接状态的枚举。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| DEFAULT_LINK | 0 | 设备正在搜索可用的AP。 |
+| WIFI7_SINGLE_LINK | 1 | 正在建立WLAN连接。 |
+| WIFI7_MLSR | 2 | WLAN连接正在认证中。 |
+| WIFI7_EMLSR | 3 | 正在获取WLAN连接的IP地址。 |
+| WIFI7_STR | 4 | WLAN连接已建立。 |
 
 ## ConnState<sup>9+</sup>
 
@@ -1631,7 +1645,6 @@ isBandTypeSupported(bandType: WifiBandType): boolean
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 | 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -1690,7 +1703,7 @@ isMeteredHotspot(): boolean
 ```
 
 
-## wifiManager.isHotspotActive<sup>15+</sup>
+## wifiManager.isHotspotActive<sup>18+</sup>
 
 isHotspotActive(): boolean
 
@@ -2381,9 +2394,38 @@ stopDiscoverDevices(): void
 		console.error("failed:" + JSON.stringify(error));
 	}
 ```
+## wifiManager.getMultiLinkedInfo<sup>18+</sup>
 
+getMultiLinkedInfo(): &nbsp;Array&lt;WifiLinkedInfo&gt;
 
+停止发现设备。
 
+**需要权限：** ohos.permission.GET_WIFI_INFO
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+| -------- | -------- |
+| 201 | Permission denied. |
+| 801 | Capability not supported. |
+| 2501000  | Operation failed. |
+| 2501001  | Wi-Fi STA disabled. |
+
+**示例：**
+```ts
+import { wifiManager } from '@kit.ConnectivityKit';
+
+  try {
+    let configs = wifiManager.getMultiLinkedInfo();
+    console.info("configs:" + JSON.stringify(configs));
+  }catch(error){
+    console.error("failed:" + JSON.stringify(error));
+  }
+```
 ## WifiP2pGroupInfo<sup>9+</sup>
 
 表示P2P群组相关信息。
@@ -2757,6 +2799,7 @@ on(type: 'hotspotStateChange', callback: Callback&lt;number&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 | 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
 | 2601000  | Operation failed. |
@@ -2785,6 +2828,7 @@ off(type: 'hotspotStateChange', callback?: Callback&lt;number&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 | 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
 | 2601000  | Operation failed. |
