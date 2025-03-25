@@ -884,7 +884,7 @@ export default class EntryAbility extends UIAbility {
 
 | 名称                     | 值  | 说明                    |
 | ----------------------- | ---- | --------------------- |
-| CAR_KEY           | 1    | 车钥匙。<br/>**说明：**  只有申请BLUETOOTH_INTERACTION类型的长时任务，车钥匙子类型才能生效。                  |
+| CAR_KEY           | 1    | 车钥匙。<br/>**说明：** 只有申请BLUETOOTH_INTERACTION类型的长时任务，车钥匙子类型才能生效。                  |
 
 ## BackgroundModeType<sup>16+</sup>
 
