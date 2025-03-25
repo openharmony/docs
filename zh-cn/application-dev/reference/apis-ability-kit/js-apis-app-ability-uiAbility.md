@@ -285,7 +285,7 @@ export default class EntryAbility extends UIAbility {
 
 onForeground(): void
 
-UIAbility生命周期回调，应用从后台转到前台时触发，在[onWillForeground](#uiabilityonwillbackground18)与[onDidForeground](#uiabilityondidforeground18)之间被调用。通常用于申请系统需要的资源，如应用转到前台时申请定位服务等。
+UIAbility生命周期回调，应用从后台转到前台时触发，在[onWillForeground](#uiabilityonwillbackground18)与[onDidForeground](#uiabilityondidforeground18)之间被调用。可在该回调中实现申请系统需要的资源，如应用转到前台时申请定位服务等。
 
 同步接口，不支持异步回调。
 
@@ -310,7 +310,7 @@ class MyUIAbility extends UIAbility {
 
 onDidForeground(): void
 
-UIAbility生命周期回调，应用转到前台后触发，在[onForeground](#uiabilityonforeground)后被调用，该回调可用于采集应用切换到前台后的时间。如果与[onWillForeground](#uiabilityonwillforeground18)配合使用，还可以统计出从应用开始进入前台到切换至前台状态的耗时。
+UIAbility生命周期回调，应用转到前台后触发，在[onForeground](#uiabilityonforeground)后被调用，可在该回调中实现采集应用切换到前台后的时间。如果与[onWillForeground](#uiabilityonwillforeground18)配合使用，还可以统计出从应用开始进入前台到切换至前台状态的耗时。
 
 同步接口，不支持异步回调。
 
@@ -327,7 +327,7 @@ UIAbility生命周期回调，应用转到前台后触发，在[onForeground](#u
 
 onWillBackground(): void
 
-UIAbility生命周期回调，当应用从前台转到后台前触发，在[onBackground](#uiabilityonbackground)前被调用。该回调通常用于数据采集，例如采集在运行过程中发生的故障信息、统计信息、安全信息、用户行为信息等。
+UIAbility生命周期回调，当应用从前台转到后台前触发，在[onBackground](#uiabilityonbackground)前被调用。可在该回调中实现数据采集，例如，采集在运行过程中发生的故障信息、统计信息、安全信息、用户行为信息等。
 
 同步接口，不支持异步回调。
 
@@ -370,7 +370,7 @@ class MyUIAbility extends UIAbility {
 
 onBackground(): void
 
-UIAbility生命周期回调，当应用从前台转到后台时触发，在[onWillBackground](#uiabilityonwillbackground18)与[onDidBackground](#uiabilityondidbackground18)之间被调用。该回调通常用于实现UI不可见时的资源释放操作，如停止定位功能等。
+UIAbility生命周期回调，当应用从前台转到后台时触发，在[onWillBackground](#uiabilityonwillbackground18)与[onDidBackground](#uiabilityondidbackground18)之间被调用。可在该回调中实现UI不可见时的资源释放操作，如停止定位功能等。
 
 同步接口，不支持异步回调。
 
@@ -395,7 +395,7 @@ class MyUIAbility extends UIAbility {
 
 onDidBackground(): void
 
-UIAbility生命周期回调，当应用从前台转到后台后触发，在[onBackground](#uiabilityonbackground)之后被调用。该回调通常用于释放应用进入后台之后的资源，如进入后台后停止音频播放等。
+UIAbility生命周期回调，当应用从前台转到后台后触发，在[onBackground](#uiabilityonbackground)之后被调用。可在该回调中实现释放应用进入后台之后的资源，如进入后台后停止音频播放等。
 
 同步接口，不支持异步回调。
 
