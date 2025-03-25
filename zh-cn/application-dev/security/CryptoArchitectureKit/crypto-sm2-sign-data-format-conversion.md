@@ -1,7 +1,7 @@
 # SM2签名数据格式转换(ArkTS)
 
 当前支持DER格式与（r、s）格式互转的能力。
-开发者可指定SM2密文的参数，将其转换成DER格式密文。反之，也可以从DER格式密文中取出具体的SM2密文参数。
+开发者可指定SM2签名数据，将其转换成DER格式密文。反之，也可以从DER格式密文中取出具体的SM2签名数据。
 
 **指定密文参数，转换为DER格式**
 1. 构造[EccSignatureSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#eccsignaturespec20)对象，用于指定SM2密文参数。
