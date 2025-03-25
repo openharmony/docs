@@ -51,7 +51,7 @@ import { motion } from '@kit.MultimodalAwarenessKit';
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denied. An attempt was made to subscribe operatingHandChanged event forbidden by permission: ohos.permission。ACTIVITY_MOTION. |
+| 201      | Permission denied. An attempt was made to subscribe operatingHandChanged event forbidden by permission: ohos.permission.ACTIVITY_MOTION. |
 | 401      | Parameter error. Parameter verification failed. |
 | 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
 | 31500001 | Service exception. |
