@@ -228,7 +228,7 @@ static isSuggested(language: string, region?: string): boolean
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let res: boolean = i18n.System.isSuggested('zh', 'CN'); // res = true
+    let isSuggestedCountry: boolean = i18n.System.isSuggested('zh', 'CN'); // isSuggestedCountry = true
   } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.isSuggested failed, error code: ${err.code}, message: ${err.message}.`);
@@ -622,12 +622,12 @@ findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
 
   try {
     let entityRecognizer: i18n.EntityRecognizer = new i18n.EntityRecognizer('zh-CN');
-    let text1: string = '如有疑问，请联系158****2312';
-    let result1: Array<i18n.EntityInfoItem> =
-      entityRecognizer.findEntityInfo(text1); // result1[0].type = 'phone_number', result1[0].begin = 8, result1[0].end = 19
-    let text2: string = '我们2023年12月1日一起吃饭吧。';
-    let result2: Array<i18n.EntityInfoItem> =
-      entityRecognizer.findEntityInfo(text2); // result2[0].type = 'date', result2[0].begin = 2, result2[0].end = 12
+    let phoneNumberText: string = '如有疑问，请联系158****2312';
+    let phoneNumberEntity: Array<i18n.EntityInfoItem> =
+      entityRecognizer.findEntityInfo(phoneNumberText); // phoneNumberEntity[0].type = 'phone_number', phoneNumberEntity[0].begin = 8, phoneNumberEntity[0].end = 19
+    let dateText: string = '我们2023年12月1日一起吃饭吧。';
+    let dateEntity: Array<i18n.EntityInfoItem> =
+      entityRecognizer.findEntityInfo(dateText); // dateEntity[0].type = 'date', dateEntity[0].begin = 2, dateEntity[0].end = 12
   } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call EntityRecognizer.findEntityInfo failed, error code: ${err.code}, message: ${err.message}.`);
@@ -1993,17 +1993,18 @@ transform(text: string): string
   let transliterator: i18n.Transliterator = i18n.Transliterator.getInstance('Any-Latn');
   let wordArray = ['中国', '德国', '美国', '法国']
   for (let i = 0; i < wordArray.length; i++) {
-    let res = transliterator.transform(wordArray[i]); // res: zhōng guó, dé guó, měi guó, fǎ guó
+    let transliterLatn =
+      transliterator.transform(wordArray[i]); // transliterLatn: zhōng guó, dé guó, měi guó, fǎ guó
   }
 
   // 汉语音译去声调
   let transliter = i18n.Transliterator.getInstance('Any-Latn;Latin-Ascii');
-  let result = transliter.transform('中国'); // result: zhong guo
+  let transliterAscii = transliter.transform('中国'); // transliterAscii: zhong guo
 
   // 汉语姓氏读音
   let nameTransliter = i18n.Transliterator.getInstance('Han-Latin/Names');
-  let result1 = nameTransliter.transform('单老师'); // result1: shàn lǎo shī
-  let result2 = nameTransliter.transform('长孙无忌'); // result2: zhǎng sūn wú jì
+  let transliterNames = nameTransliter.transform('单老师'); // transliterNames: shàn lǎo shī
+  transliterNames = nameTransliter.transform('长孙无忌'); // transliterNames: zhǎng sūn wú jì
   ```
 
 
@@ -2295,7 +2296,7 @@ static getType(char: string): string
 
 **示例：**
   ```ts
-  let type: string = i18n.Unicode.getType('a'); // type = 'U_LOWERCASE_LETTER'
+  let unicodeType: string = i18n.Unicode.getType('a'); // type = 'U_LOWERCASE_LETTER'
   ```
 
 ## I18NUtil<sup>9+</sup>
@@ -2331,7 +2332,7 @@ static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: 
   ```ts
   let fromUnit: i18n.UnitInfo = { unit: 'cup', measureSystem: 'US' };
   let toUnit: i18n.UnitInfo = { unit: 'liter', measureSystem: 'SI' };
-  let res: string = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US', 'long'); // res = '236.588 liters'
+  let convertResult: string = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US', 'long'); // convertResult = '236.588 liters'
   ```
 
 ### getDateOrder<sup>9+</sup>
