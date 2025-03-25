@@ -456,7 +456,7 @@ HAP包没有签名。
 ### 9568347 解析本地so文件失败
 **错误信息**
 
-Error: install parse native so failed.
+error: install parse native so failed.
 
 **错误描述**
 
@@ -500,7 +500,7 @@ Error: install parse native so failed.
 ### 9568344 解析配置文件失败
 **错误信息**
 
-Error: install parse profile prop check error.
+error: install parse profile prop check error.
 
 ![示例图](figures/zh-cn_image_0000001585361412.png)
 
@@ -510,68 +510,73 @@ Error: install parse profile prop check error.
 
 **可能原因**
 
-应用使用了应用特权，但应用的签名文件发生变化后未将新的签名指纹重新配置到设备的特权管控白名单文件install_list_capability.json中。
+1. [app.json5配置文件](../quick-start/app-configuration-file.md#配置文件标签)中的bundleName、[module.json5配置文件](../quick-start/module-configuration-file.md#配置文件标签)中name不符合命名规则。
+
+<!--Del-->
+2. [extensionAbilities](../quick-start/module-configuration-file.md#extensionabilities标签)中type字段配置为service或dataShare。
+<!--DelEnd-->
+
 
 **处理步骤**
+1. 根据命名规则调整app.json5配置文件中bundleName、module.json5文件中的name字段。
+<!--Del-->
+2. 若extensionAbilities中type字段配置为service或dataShare，应用需要配置[allowAppUsePrivilegeExtension特权](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)，配置方式如下。
 
-1. 获取新的签名指纹。
+    1. 获取新的签名指纹。
 
-    a. 在[项目级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-hvigor-compilation-options-customizing-sample-V13#section1448071082016)文件中，signingConfigs字段内的profile的值即为签名文件的存储路径。
+        a. 在工程级build-profile.json5(工程根目录下)文件中，signingConfigs字段内的profile的值即为签名文件的存储路径。
 
-    b. 打开该签名文件（后缀为.p7b），打开后在文件内搜索“development-certificate”，将“-----BEGIN CERTIFICATE-----”和“-----END CERTIFICATE-----”以及中间的信息拷贝到新的文本中，注意换行并去掉换行符，保存为一个新的.cer文件，如命名为xxx.cer。
+        b. 打开该签名文件（后缀为.p7b），打开后在文件内搜索“development-certificate”，将“-----BEGIN CERTIFICATE-----”和“-----END CERTIFICATE-----”以及中间的信息拷贝到新的文本中，注意换行并去掉换行符，保存为一个新的.cer文件，如命名为xxx.cer。
 
-    新的.cer文件格式如下图（仅作为格式示意，内容以实际为准）：
+        新的.cer文件格式如下图（仅作为格式示意，内容以实际为准）：
 
-    ![示例图](figures/zh-cn_image_0000001585521364.png)
+        ![示例图](figures/zh-cn_image_0000001585521364.png)
 
+        c. 使用keytool工具（在DevEco Studio安装目录下的jbr/bin文件夹内），执行如下命令，通过.cer文件获取证书指纹的SHA256值。
+          ```
+          keytool -printcert -file xxx.cer
+          ```
+        d. 将证书指纹中SHA256的内容去掉冒号，即为最终要获得的签名指纹。
 
+        如下图（仅作为格式示意，内容以实际为准）：
+        ![示例图](figures/zh-cn_image_0000001635921233.png)
 
-    c. 使用keytool工具（在DevEco Studio安装目录下的jbr/bin文件夹内），执行如下命令通过.cer文件获取证书指纹的SHA256值。
-      ```
-      keytool -printcert -file xxx.cer
-      ```
-    d. 将证书指纹中SHA256的内容去掉冒号，即为最终要获得的签名指纹。
+        去掉冒号后的签名指纹为：5753DDBC1A8EF88A62058A9FC4B6AFAFC1C5D8D1A1B86FB3532739B625F8F3DB。
 
-    如SHA256值为下图（仅作为格式示意，内容以实际为准）：
-    ![示例图](figures/zh-cn_image_0000001635921233.png)
+    2. 获取设备的特权管控白名单文件install_list_capability.json。
 
-    去掉冒号后的签名指纹为：5753DDBC1A8EF88A62058A9FC4B6AFAFC1C5D8D1A1B86FB3532739B625F8F3DB
+        a. 连接设备，进入shell。
+        ```
+        hdc shell
+        ```
+        b. 执行如下命令查看设备的特权管控白名单文件install_list_capability.json。
+        ```
+        // 设备中查询白名单文件的位置
+        find /system -name install_list_capability.json
+        ```
+        c. 执行如下命令拉取install_list_capability.json。
+        ```
+        hdc target mount
+        hdc file recv /system/etc/app/install_list_capability.json
+        ```
 
-2. 获取设备的特权管控白名单文件install_list_capability.json。
+    3. 将步骤1获取到的签名指纹配置到install_list_capability.json文件的app_signature中，注意要配置到对应的bundleName下。
+    ![示例图](figures/zh-cn_image_0000001635641893.png)
+    4. 将修改后的install_list_capability.json文件重新推到设备上，并重启设备。
 
-    a. 连接设备。
-
-    b. 执行如下命令查看设备的特权管控白名单文件install_list_capability.json。
-    ```
-    find /system -name install_list_capability.json
-    ```
-    设备上install_list_capability.json的位置通常为以下目录地址，通过bundleName找到对应的配置文件：
-    ```
-    /system/etc/app/install_list_capability.json
-    ```
-    c. 执行如下命令拉取install_list_capability.json。
-    ```
-    hdc shell mount -o rw,remount /
-    hdc file recv /system/etc/app/install_list_capability.json
-    ```
-
-3. 将步骤1获取到的签名指纹配置到install_list_capability.json文件的app_signature中，注意要配置到对应的bundleName下。
-![示例图](figures/zh-cn_image_0000001635641893.png)
-4. 将修改后的install_list_capability.json文件重新推到设备上，并重启设备。
-
-    ```
-    hdc shell mount -o rw,remount /
-    hdc file send install_list_capability.json /system/etc/app/install_list_capability.json
-    hdc shell chmod 644 /system/etc/app/install_list_capability.json
-    hdc shell reboot
-    ```
-5. 设备重启后，重新安装新的应用即可。
+        ```
+        hdc target mount
+        hdc file send install_list_capability.json /system/etc/app/install_list_capability.json
+        hdc shell chmod 644 /system/etc/app/install_list_capability.json
+        hdc shell reboot
+        ```
+    5. 设备重启后，重新安装新的应用即可。<!--DelEnd-->
 
 
 ### 9568305 依赖的模块不存在
 **错误信息**
 
-Error: dependent module does not exist.
+error: dependent module does not exist.
 
 ![示例图](figures/zh-cn_image_0000001560338986.png)
 
@@ -595,7 +600,7 @@ Error: dependent module does not exist.
 ### 9568259 安装解析配置文件缺少字段
 **错误信息**
 
-Error: install parse profile missing prop.
+error: install parse profile missing prop.
 
 ![示例图](figures/zh-cn_image_0000001559130596.png)
 
@@ -625,7 +630,7 @@ Error: install parse profile missing prop.
 ### 9568258 安装应用的releaseType与已安装应用的releaseType不相同
 **错误信息**
 
-Error: install releaseType target not same.
+error: install releaseType target not same.
 
 ![示例图](figures/zh-cn_image_0000001609976041.png)
 
@@ -647,7 +652,7 @@ Error: install releaseType target not same.
 ### 9568322 由于应用来源不可信，签名验证失败
 **错误信息**
 
-Error: signature verification failed due to not trusted app source.
+error: signature verification failed due to not trusted app source.
 
 ![示例图](figures/zh-cn_image_0000001585042216.png)
 
@@ -666,18 +671,50 @@ Error: signature verification failed due to not trusted app source.
 * 场景一：
 	1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13#section18815157237)。在连接设备后，重新为应用进行签名。
 	2. 如果使用的是手动签名，对于OpenHarmony应用，请参考<!--RP2-->[OpenHarmony应用手动签名](../security/hapsigntool-guidelines.md)<!--RP2End-->，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**。
-		```
-		//UDID获取命令
-		hdc shell bm get -u
-		```
+
+        1. 获取当前设备的UDID。
+
+        ```
+          //UDID获取命令
+          hdc shell bm get -u
+        ```
+
+        2. 打开IDE安装路径，在sdk目录下找到UnsgnedDebugProfileTemplate.json配置文件。
+
+        ```
+          IDE安装路径\sdk\版本号或者default\openharmony\toolchains\lib\
+
+          例如：xxxx\Huawei\DevEco Studio\sdk\HarmonyOS-NEXT-DB1\openharmony\toolchains\lib\
+          例如：xxxx\Huawei\DevEco Studio\sdk\default\openharmony\toolchains\lib\
+        ```
+
+        3. 在UnsgnedDebugProfileTemplate.json文件的device-ids字段中，添加当前设备的UDID。
+
   3. 查看签名中是否包含调试设备的UDID，可以使用文本编辑器打开已签名的HAP搜索device-ids。
 * 场景二：使用[调试证书和调试profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-debug-app-0000001914423098)重新签名应用。
 
+### 9568286 安装应用的签名证书profile文件中的类型与已安装应用的不相同
+**错误信息**
+
+error: install provision type not same.
+
+**错误描述**
+
+在启动调试或运行应用/服务时，由于安装应用的[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的类型与已安装应用的不相同，导致安装HAP出现错误。
+
+**可能原因**
+
+设备上已安装应用的签名证书profile文件中的类型与待安装应用不一致。
+
+**处理步骤**
+
+1. 确保设备上已安装应用签名证书profile文件中的类型与待安装应用的类型一致，使用相同类型的profile文件签名，再安装新的HAP。
+2. 卸载设备上已安装的应用，再安装新的HAP。
 
 ### 9568289 权限请求失败导致安装失败
 **错误信息**
 
-Error: install failed due to grant request permissions failed.
+error: install failed due to grant request permissions failed.
 
 ![示例图](figures/zh-cn_image_0000001585201996.png)
 
@@ -691,13 +728,20 @@ Error: install failed due to grant request permissions failed.
 
 **处理步骤**
 
-1. 在UnsgnedDebugProfileTemplate.json文件中修改APL等级，调整成system_basic或system_core等级，重新签名打包即可。
+1. 打开IDE安装路径，在sdk目录下找到UnsgnedDebugProfileTemplate.json配置文件。
+```
+IDE安装路径\sdk\版本号或者default\openharmony\toolchains\lib\
+
+例如：xxxx\Huawei\DevEco Studio\sdk\HarmonyOS-NEXT-DB1\openharmony\toolchains\lib\
+例如：xxxx\Huawei\DevEco Studio\sdk\default\openharmony\toolchains\lib\
+```
+2. 在UnsgnedDebugProfileTemplate.json文件中修改APL等级，修改APL等级为system_core等级，重新签名打包即可。
 
 
 ### 9568297 由于设备sdk版本较低导致安装失败
 **错误信息**
 
-Error: install failed due to older sdk version in the device.
+error: install failed due to older sdk version in the device.
 
 ![示例图](figures/zh-cn_image_0000001635521909.png)
 
@@ -722,7 +766,7 @@ Error: install failed due to older sdk version in the device.
 ### 9568332 签名不一致导致安装失败
 **错误信息**
 
-Error: install sign info inconsistent.
+error: install sign info inconsistent.
 
 ![示例图](figures/zh-cn_image_0000001635761329.png)
 
@@ -745,7 +789,7 @@ Error: install sign info inconsistent.
 ### 9568329 签名信息验证失败
 **错误信息**
 
-Error: verify signature failed.
+error: verify signature failed.
 
 ![示例图](figures/zh-cn_image_155401.png)
 
@@ -770,7 +814,7 @@ Error: verify signature failed.
 ### 9568266 安装权限拒绝
 **错误信息**
 
-Error: install permission denied.
+error: install permission denied.
 
 ![示例图](figures/zh-cn_image_9568266.png)
 
@@ -790,7 +834,7 @@ hdc install不能安装release签名的企业应用。
 ### 9568337 安装解析失败
 **错误信息**
 
-Error: install parse unexpected.
+error: install parse unexpected.
 
 **错误描述**
 
@@ -815,7 +859,7 @@ Error: install parse unexpected.
 ### 9568316 数据代理中APL权限字段描述权限低
 **错误信息**
 
-Error: apl of required permission in proxy data is too low.
+error: apl of required permission in proxy data is too low.
 
 **错误描述**
 
@@ -833,7 +877,7 @@ proxyData标签requiredReadPermission和requiredWritePermission属性验证失�
 ### 9568315 数据代理URI错误
 **错误信息**
 
-Error: uri in proxy data is wrong.
+error: uri in proxy data is wrong.
 
 **错误描述**
 
@@ -851,7 +895,7 @@ proxyData标签uri属性验证失败。
 ### 9568336 应用调试类型与已安装应用不一致
 **错误信息**
 
-Error: install debug type not same.
+error: install debug type not same.
 
 **错误描述**
 
@@ -869,7 +913,7 @@ Error: install debug type not same.
 ### 9568296 包类型错误
 **错误信息**
 
-Error: install failed due to error bundle type.
+error: install failed due to error bundle type.
 
 **错误描述**
 
@@ -889,7 +933,7 @@ bundleType错误导致应用安装失败。
 ### 9568292 UserID为0的用户只能安装singleton应用
 **错误信息**
 
-Error: install failed due to zero user can only install singleton app.
+error: install failed due to zero user can only install singleton app.
 
 **错误描述**
 
@@ -911,7 +955,7 @@ singleton权限应用安装未指定UserID 0。
 ### 9568263 无法降级安装
 **错误信息**
 
-Error: install version downgrade.
+error: install version downgrade.
 
 **错误描述**
 
@@ -929,7 +973,7 @@ Error: install version downgrade.
 ### 9568304 应用不支持当前设备类型
 **错误信息**
 
-Error: device type is not supported.
+error: device type is not supported.
 
 **错误描述**
 
@@ -947,7 +991,7 @@ Error: device type is not supported.
 ### 9568317 应用的多进程配置与系统配置不匹配
 **错误信息**
 
-Error: isolationMode does not match the system.
+error: isolationMode does not match the system.
 
 **错误描述**
 
@@ -975,7 +1019,7 @@ Error: isolationMode does not match the system.
 ### 9568315 数据代理的uri属性错误
 **错误信息**
 
-Error: uri in proxy data is wrong.
+error: uri in proxy data is wrong.
 
 **错误描述**
 
@@ -997,7 +1041,7 @@ uri不满足格式规范。
 ### 9568310 兼容策略不同
 **错误信息**
 
-Error: compatible policy not same.
+error: compatible policy not same.
 
 **错误描述**
 
@@ -1016,7 +1060,7 @@ Error: compatible policy not same.
 ### 9568391 包管理服务已停止
 **错误信息**
 
-Error: bundle manager service is died.
+error: bundle manager service is died.
 
 **错误描述**
 
@@ -1045,7 +1089,7 @@ hdc file recv /data/log/hilog/
 ### 9568393 验证代码签名失败
 **错误信息**
 
-Error: verify code signature failed.
+error: verify code signature failed.
 
 **错误描述**
 
@@ -1064,7 +1108,7 @@ Error: verify code signature failed.
 ### 9568401 调试包仅支持运行在开发者模式设备
 **错误信息**
 
-Error: debug bundle can only be installed in developer mode.
+error: debug bundle can only be installed in developer mode.
 
 **错误描述**
 
@@ -1083,7 +1127,7 @@ Error: debug bundle can only be installed in developer mode.
 ### 9568386 卸载的应用不存在
 **错误信息**
 
-Error: uninstall missing installed bundle.
+error: uninstall missing installed bundle.
 
 **错误描述**
 
@@ -1100,7 +1144,7 @@ Error: uninstall missing installed bundle.
 ### 9568388 企业设备管理不允许卸载该应用
 **错误信息**
 
-Error: Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management.
+error: Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management.
 
 **错误描述**
 
@@ -1117,7 +1161,7 @@ Error: Failed to uninstall the HAP because the uninstall is forbidden by enterpr
 ### 9568284 安装版本不匹配
 **错误信息**
 
-Error: install version not compatible.
+error: install version not compatible.
 
 **错误描述**
 
@@ -1139,7 +1183,7 @@ Error: install version not compatible.
 ### 9568287 安装包entry模块数量不合规
 **错误信息**
 
-Error: install invalid number of entry HAP.
+error: install invalid number of entry HAP.
 
 **错误描述**
 
@@ -1157,7 +1201,7 @@ Error: install invalid number of entry HAP.
 ### 9568281 安装包vendor不一致
 **错误信息**
 
-Error: install vendor not same.
+error: install vendor not same.
 
 **错误描述**
 
@@ -1176,7 +1220,7 @@ app.json5文件中app的vendor字段配置不一致。
 ### 9568274 安装服务错误
 **错误信息**
 
-Error: install installd service error.
+error: install installd service error.
 
 **错误描述**
 
@@ -1194,7 +1238,7 @@ Error: install installd service error.
 ### 9568314 安装应用间共享库失败
 **错误信息**
 
-Error: Failed to install the HSP because installing a shared bundle specified by hapFilePaths is not allowed.
+error: Failed to install the HSP because installing a shared bundle specified by hapFilePaths is not allowed.
 
 **错误描述**
 
@@ -1212,7 +1256,7 @@ Error: Failed to install the HSP because installing a shared bundle specified by
 ### 9568359 安装设置selinux失败
 **错误信息**
 
-Error: installd set selinux label failed.
+error: installd set selinux label failed.
 
 **错误描述**
 
@@ -1235,7 +1279,7 @@ Error: installd set selinux label failed.
 ### 9568398 非企业设备禁止安装企业应用
 **错误信息**
 
-Error: Failed to install the HAP because an enterprise normal/MDM bundle can not be installed on non-enterprise device.
+error: Failed to install the HAP because an enterprise normal/MDM bundle can not be installed on non-enterprise device.
 
 **错误描述**
 
@@ -1252,7 +1296,7 @@ Error: Failed to install the HAP because an enterprise normal/MDM bundle can not
 ### 9568402 禁止安装分发类型为app_gallery的release应用
 **错误信息**
 
-Error: Release bundle can not be installed.
+error: Release bundle can not be installed.
 
 **错误描述**
 
@@ -1270,7 +1314,7 @@ Error: Release bundle can not be installed.
 ### 9568403 安装加密校验失败
 **错误信息**
 
-Error: check encryption failed.
+error: check encryption failed.
 
 **错误描述**
 
@@ -1288,7 +1332,7 @@ Error: check encryption failed.
 ### 9568407 安装失败，native软件包安装失败
 **错误信息**
 
-Error: Failed to install the HAP because installing the native package failed.
+error: Failed to install the HAP because installing the native package failed.
 
 **错误描述**
 
@@ -1305,7 +1349,7 @@ HAP包中需要安装的native软件包损坏。
 ### 9568408 卸载应用失败，native软件包卸载失败
 **错误信息**
 
-Error: Failed to uninstall the HAP because uninstalling the native package failed.
+error: Failed to uninstall the HAP because uninstalling the native package failed.
 
 **错误描述**
 
@@ -1322,7 +1366,7 @@ Error: Failed to uninstall the HAP because uninstalling the native package faile
 ### 9568409 安装失败，native软件包提取失败
 **错误信息**
 
-Error: Failed to install the HAP because the extract of the native package failed.
+error: Failed to install the HAP because the extract of the native package failed.
 
 **错误描述**
 
@@ -1339,7 +1383,7 @@ HAP包中native软件包目录下不存在module.json5中配置的native软件�
 ### 9568410 安装失败，设备受管控
 **错误信息**
 
-Error: Failed to install the HAP because the device has been controlled.
+error: Failed to install the HAP because the device has been controlled.
 
 **错误描述**
 
@@ -1357,7 +1401,7 @@ Error: Failed to install the HAP because the device has been controlled.
 ### 9568415 禁止安装签名证书为debug或者配置文件debug为true的加密应用
 **错误信息**
 
-Error: Debug encrypted bundle is not allowed to install.
+error: Debug encrypted bundle is not allowed to install.
 
 **错误描述**
 
@@ -1375,7 +1419,7 @@ Error: Debug encrypted bundle is not allowed to install.
 ### 9568416 加密应用不允许安装
 **错误信息**
 
-Error: Encrypted bundle can not be installed.
+error: Encrypted bundle can not be installed.
 
 **错误描述**
 
@@ -1392,7 +1436,7 @@ Error: Encrypted bundle can not be installed.
 ### 9568417 签名校验失败
 **错误信息**
 
-Error: bundle cannot be installed because the appId is not same with preinstalled bundle.
+error: bundle cannot be installed because the appId is not same with preinstalled bundle.
 
 **错误描述**
 
@@ -1409,7 +1453,7 @@ Error: bundle cannot be installed because the appId is not same with preinstalle
 ### 9568418 应用设置了卸载处置规则，不允许直接卸载
 **错误信息**
 
-Error: Failed to uninstall the app because the app is locked.
+error: Failed to uninstall the app because the app is locked.
 
 **错误描述**
 
@@ -1453,13 +1497,15 @@ error: install version code not same.
 1. 调整安装包的版本和设备中已存在的应用包的版本号（versionCode）一致，或者卸载设备中的应用，再去安装新的应用包。
 2. 调整安装的多个包的版本号（versionCode），所有的包都需要保持版本号（versionCode）一致。
 
-### 9568421 签名文件中的分发类型被限制，不允许安装到当前设备中，导致安装失败
+### 9568421 签名证书profile文件中的类型被限制，不允许安装到当前设备中，导致安装失败
 **错误信息**
 
 error: the app distribution type is not allowed install.
 
 **可能原因**
-该签名的分发类型被限制，禁止安装到当前设备中。
+
+该[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的类型被限制，禁止安装到当前设备中。
 
 **处理步骤**
-更换签名文件的分发类型。
+
+更换签名证书profile文件中的类型。

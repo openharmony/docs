@@ -203,6 +203,27 @@ A conflict policy has been configured.
 
 先取消与当前策略互斥的策略，然后再下发策略。
 
+<!--Del-->
+## 9200011 设备管理应用替换失败
+
+**错误信息**
+
+Failed to replace the administrator application of the device.
+
+**错误描述**
+
+设备管理应用替换失败。
+
+**可能原因**
+
+指定应用为被委托、被授权的设备管理应用或普通设备管理应用，无法成为超级设备管理应用。
+
+**处理步骤**
+
+1. 采用[disableSuperAdmin](js-apis-enterprise-adminManager-sys.md#adminmanagerdisablesuperadmin)接口取消超级设备管理权限，即可取消指定应用的被委托、被授权的设备管理权限。
+2. 采用[disableAdmin](js-apis-enterprise-adminManager.md#adminmanagerdisableadmin)接口取消指定应用的普通设备管理权限。
+<!--DelEnd-->
+
 ## 9201001 管理证书失败
 
 **错误信息**

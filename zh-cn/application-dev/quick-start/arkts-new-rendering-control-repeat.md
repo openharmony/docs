@@ -10,11 +10,16 @@
 
 Repeat基于数组类型数据来进行循环渲染，一般与容器组件配合使用。Repeat组件包含两种模式：**non-virtualScroll模式**和**virtualScroll模式**。
 
-- **non-virtualScroll模式**：Repeat在初始化页面时加载列表中的所有子组件。
-相较于[ForEach](arkts-rendering-control-foreach.md)组件，non-virtualScroll模式在以下两个维度实现了优化升级：首先，针对特定数组更新场景的渲染性能进行了优化；其次，将组件生成函数中的索引管理职责转移至框架层面。
-<br/>non-virtualScroll模式适合**渲染短数据列表、组件全部加载**的场景下使用。详细描述见[non-virtualScroll模式](#non-virtualscroll模式)。
-- **virtualScroll模式（开启[virtualScroll](../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#virtualscroll)开关）**：Repeat根据容器组件的**有效加载范围（可视区域+预加载区域）** 加载子组件。当容器滑动/数组改变时，Repeat会根据父容器组件传递的参数重新计算有效加载范围，实时管理列表节点的创建与销毁。
-<br/>virtualScroll模式适合**渲染需要懒加载的长数据列表、通过组件复用优化性能表现**的场景下使用。详细描述见[virtualScroll模式](#virtualscroll模式)。
+- **non-virtualScroll模式**：Repeat在初始化页面时加载列表中的所有子组件，适合**短数据列表/组件全部加载**的场景。详细描述见[non-virtualScroll模式](#non-virtualscroll模式)。
+- **virtualScroll模式**（开启[virtualScroll](../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#virtualscroll)开关）：Repeat根据容器组件的**有效加载范围（可视区域+预加载区域）** 加载子组件。当容器滑动/数组改变时，Repeat会根据父容器组件传递的参数重新计算有效加载范围，实时管理列表节点的创建与销毁。
+<br/>该模式适合**需要懒加载的长数据列表/通过组件复用优化性能表现**的场景。详细描述见[virtualScroll模式](#virtualscroll模式)。
+
+> **说明：**
+> 
+> Repeat与ForEach、LazyForEach的区别：
+> 
+> - 相较于[ForEach](arkts-rendering-control-foreach.md)组件，non-virtualScroll模式在以下两个维度实现了优化升级：首先，针对特定数组更新场景的渲染性能进行了优化；其次，将子组件的内容/索引管理职责转移至框架层面。
+> - 相较于[LazyForEach](arkts-rendering-control-lazyforeach.md)组件，virtualScroll模式直接监听状态变量的变化，而LazyForEach需要开发者实现[IDataSource](../reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md#idatasource10)接口，手动管理子组件内容/索引的修改。除此之外，Repeat还增强了节点复用能力，提高了长列表滑动和数据更新的渲染性能。Repeat增加了模板（template）的能力，在同一个数组中，根据开发者自定义的模板类型（template type）渲染不同的子组件。
 
 下面的示例代码使用Repeat组件的virtualScroll模式进行循环渲染。
 
@@ -88,6 +93,8 @@ Repeat通过键值识别数组如何改变：增加了哪些数据、删除了�
 - 允许在`.key()`中使用index，但不建议开发者这样做。因为在数据项移动时索引index发生变化，key值因此改变，导致Repeat认为数据发生了变化，从而触发子组件重新渲染，降低性能表现。
 - 推荐将简单类型数组转换为类对象数组，并添加一个`readonly id`属性，在构造函数中给它赋一个唯一的值。
 
+从API version 18开始，不建议开发者使用`.key()`函数。如果开发者按照上面的建议使用`.key()`，那么Repeat仍能保持兼容性，不会有性能影响。
+
 > **说明：**
 > 
 > Repeat子组件节点的操作分为四种：节点创建、节点更新、节点复用、节点销毁。其中，节点更新和节点复用的区别为：
@@ -131,51 +138,51 @@ Repeat通过键值识别数组如何改变：增加了哪些数据、删除了�
 
 ### 键值生成规则
 
-和non-virtualScroll模式的逻辑基本一致，如下图所示。
+API version 18之前：
 
-当`.key()`缺省时，Repeat会生成新的随机键值。当存在重复key时，Repeat会重新生成随机key作为当前数据项的键值并且放进该列表。列表中已有的键值不受影响。随机key的构成：`___${index}_+_${key}_+_${Math.random()}`，其中的变量依次为：索引、旧键值、随机数。
+当开发者未定义`.key()`时，Repeat会为每个子节点生成新的随机键值。当存在重复key时，Repeat会重新生成随机key作为当前子节点的键值。需要注意，当每次页面刷新后，`.key()`会被重新计算（即再次出现重复key），进而生成新的随机key。随机key的构成：`___${index}_+_${key}_+_${Math.random()}`，其中的变量依次为：索引、旧键值、随机数。
 
 ![Repeat-VS-KeyGen](./figures/Repeat-VS-KeyGen.png)
+
+从API version 18开始：
+
+当开发者未定义`.key()`时，Repeat会直接对比数组数据的变化来判断Repeat子节点是否改变（节点发生改变会触发页面刷新逻辑）。当存在重复key时，Repeat会重新生成随机key作为当前数据项的键值。需要注意，当每次刷新页面后，`.key()`会被重新计算（即再次出现重复key），进而生成新的随机key。随机key的构成：`___${index}_+_${key}_+_${Math.random()}`，其中的变量依次为：索引、旧键值、随机数。
 
 ### 子组件渲染逻辑
 
 在Repeat首次渲染时，根据容器组件的有效加载范围（可视区域+预加载区域）创建当前需要的子组件。
 
-在容器滑动/数组改变时，将失效的子组件节点（离开有效加载范围）加入空闲节点缓存列表中（断开与组件树的关系，但不销毁），在需要生成新的组件时，对缓存里的组件进行复用（更新被复用子组件的变量值，重新上树）。
+在容器滑动/数组改变时，将失效的子组件节点（离开有效加载范围）加入空闲节点缓存列表中（断开与组件树的关系，但不销毁），在需要生成新的组件时，对缓存里的组件进行复用（更新被复用子组件的变量值，重新上树）。从API version 18开始，Repeat支持[VirtualScroll模式缓存池自定义组件冻结](./arkts-custom-components-freezeV2.md#repeat-virtualscroll)。
 
-Repeat组件在virtualScroll模式下默认启用复用功能。从API version 16开始，可以通过配置`reusable`字段选择是否启用复用功能。为提高渲染性能，建议启用复用功能。代码示例见[VirtualScrollOptions对象说明](../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#virtualscrolloptions对象说明)。
+Repeat组件在virtualScroll模式下默认启用复用功能。从API version 18开始，可以通过配置`reusable`字段选择是否启用复用功能。为提高渲染性能，建议启用复用功能。代码示例见[VirtualScrollOptions对象说明](../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#virtualscrolloptions对象说明)。
+
+通过典型的[滑动场景](#滑动场景)和[数据更新场景](#数据更新场景)示例来展示virtualScroll模式下子组件的渲染逻辑。定义长度为20的数组，数组前5项的template type为`aa`，其余项为`bb`。`aa`缓存池容量为3，`bb`缓存池容量为4。容器组件的预加载区域大小为2。为了便于理解，在`aa`和`bb`缓存池中分别加入一个和两个空闲节点。
+
+首次渲染，列表的节点状态如下图所示。
+
+![Repeat-Start](./figures/Repeat-Start.PNG)
 
 #### 滑动场景
 
-滑动前节点现状如下图所示
+将屏幕向右滑动（屏幕内容右移）一个节点的距离，Repeat将开始复用缓存池中的节点。index=10的节点进入有效加载范围，计算出其template type为`bb`。由于`bb`缓存池非空，Repeat会从`bb`缓存池中取出一个空闲节点进行复用，更新其节点属性，该子组件中涉及数据item和索引index的其他孙子组件会根据V2状态管理的规则做同步更新。其他节点仍在有效加载范围，均只更新索引index。
 
-![Repeat-Start](./figures/Repeat-Start.PNG)
+index=0的节点滑出了有效加载范围。当UI主线程空闲时，会检查`aa`缓存池是否已满，此时`aa`缓存池未满，将该节点加入到对应的缓存池中。
 
-当前Repeat组件template type有a和b两种，template type等于a对应的缓存池，其最大缓存值为3，template type等于b对应的缓存池，其最大缓存值为4，其父组件默认预加载节点1个。这时，向右滑动屏幕（屏幕内容右移），Repeat开始复用缓存池中的节点。
+如果此时对应template type的缓存池已满，Repeat会销毁掉多余的节点。
 
 ![Repeat-Slide](./figures/Repeat-Slide.PNG)
 
-index=18的数据进入屏幕及父组件预加载的范围内，此时计算出其template type等于b，这时Repeat会从template type等于b的缓存池中取出一个节点进行复用，更新它的key&index&data，该子节点内部使用了该项数据及索引的其他孙子节点会根据V2状态管理的规则做同步更新。
-
-index=10的节点划出了屏幕及父组件预加载的范围。当UI主线程空闲时，会去检测template type等于a的缓存池是否还有空间，此时缓存池中有四个节点，超过了额定的3个，Repeat会释放掉最后一个节点。
-
-![Repeat-Slide-Done](./figures/Repeat-Slide-Done.PNG)
-
 #### 数据更新场景
 
-![Repeat-Start](./figures/Repeat-Start.PNG)
+在上一小节的基础上做如下的数组更新操作，删除index=4的节点，修改节点数据`item_7`为`new_7`。
 
-此时我们做如下更新操作，删除index=12节点，更新index=13节点的数据，更新index=14节点的template type为a，更新index=15节点的key。
+首先，删除index=4的节点后，失效节点加入`aa`缓存池。后面的列表节点前移，新进入有效加载区域的节点`item_11`会复用`bb`缓存池中的空闲节点，其他节点均只更新索引index。如下图所示。
 
 ![Repeat-Update1](./figures/Repeat-Update1.PNG)
 
-此时Repeat会通知父组件重新布局，逐一对比template type值，若和原节点template type值相同，则复用该节点，更新key、index和data，若template type值发生变化，则复用相应template type的缓存池中的节点，并更新key、index和data。
+其次，节点`item_5`前移，索引index更新为4。根据template type的计算规则，节点`item_5`的template type变为`aa`，需要从`aa`缓存池中复用空闲节点，并且将旧节点加入`bb`缓存池。如下图所示。
 
 ![Repeat-Update2](./figures/Repeat-Update2.PNG)
-
-上图显示node13节点更新了数据data和index；node14更新了template type和index，于是从缓存池中取走一个复用；node15由于key值发生变化并且template type不变，复用自身节点并同步更新key、index、data；node16和node17均只更新index。index=17的节点是新的，从缓存池中复用。
-
-![Repeat-Update-Done](./figures/Repeat-Update-Done.PNG)
 
 ### template：子组件渲染模板
 
@@ -185,25 +192,13 @@ template模板目前只支持在virtualScroll模式下使用。
 - 当多个template type相同时，Repeat会覆盖先定义的`.template()`函数，仅生效最后定义的`.template()`。
 - 如果找不到对应的template type，Repeat会优先渲染type为空的`.template()`中的子组件，如果没有，则渲染`.each()`中的子组件。
 
-### totalCount：期望加载的数据长度
-
-totalCount表示期望加载的数据长度，默认为原数组长度，可以大于已加载数据项的数量。令arr.length表示数据源长度，以下为totalCount的处理规则：
-
-- totalCount缺省/非自然数时，totalCount默认为arr.length，列表正常滚动。
-- 0 <= totalCount < arr.length时，界面中只渲染“totalCount”个数据。
-- totalCount > arr.length时，代表Repeat将渲染totalCount个数据，滚动条样式根据totalCount值变化。
-
-> **注意：** 
->
-> 当totalCount > arr.length时，在父组件容器滚动过程中，应用需要保证列表即将滑动到数据源末尾时请求后续数据，开发者需要对数据请求的错误场景（如网络延迟）进行保护操作，直到数据源全部加载完成，否则列表滑动的过程中会出现滚动效果异常。
-
 ### cachedCount：空闲节点缓存列表大小
 
 cachedCount是相应的template type的缓存池中可缓存子组件节点的最大数量，仅在virtualScroll模式下生效。
 
 > **说明：**
 > 
-> 滚动容器组件属性`.cachedCount()`和`.template()`的参数`cachedCount`都是为了平衡性能和内存，但是含义是不同的。
+> 滚动容器组件属性`.cachedCount()`和Repeat组件属性`.template()`的参数`cachedCount`都是为了平衡性能和内存，但是含义是不同的。
 > - 滚动类容器组件`.cachedCount()`：是指在可见范围外预加载的节点，这些节点会位于组件树上，但不是可见范围内，List/Grid等容器组件会额外渲染这些可见范围外的节点，从而达到其性能收益。Repeat会将这些节点视为“可见”的。
 > - `.template()`中的`cachedCount`: 是指Repeat视为“不可见”的节点，这些节点是空闲的，框架会暂时保存，在需要使用的时候更新这些节点，从而实现复用。
 
@@ -211,6 +206,52 @@ cachedCount是相应的template type的缓存池中可缓存子组件节点的�
 
 - cachedCount缺省时，框架会分别对不同template，根据屏上节点+预加载的节点个数来计算cachedCount。当屏上节点+预加载的节点个数变多时，cachedCount也会对应增长。需要注意cachedCount数量不会减少。
 - 显式指定cachedCount，推荐设置成和屏幕上节点个数一致。需要注意，不推荐设置cachedCount小于2，因为这会导致在快速滑动场景下创建新的节点，从而导致性能劣化。
+
+### totalCount：期望加载的数据长度
+
+totalCount表示期望加载的数据长度，默认为原数组长度，可以大于已加载数据项的数量。令arr.length表示数据源长度，以下为totalCount的处理规则：
+
+- totalCount缺省/非自然数时，totalCount默认为arr.length，列表正常滚动。
+- 0 <= totalCount < arr.length时，界面中只渲染区间[0, totalCount - 1]范围内的数据。
+- totalCount > arr.length时，代表Repeat将渲染区间[0, totalCount - 1]范围内的数据，滚动条样式根据totalCount值变化。
+
+> **注意：** 
+>
+> 当totalCount > arr.length时，在父组件容器滚动过程中，应用需要保证列表即将滑动到数据源末尾时请求后续数据，开发者需要对数据请求的错误场景（如网络延迟）进行保护操作，直到数据源全部加载完成，否则列表滑动的过程中会出现滚动效果异常。
+
+### onTotalCount：计算期望的数据长度
+
+onTotalCount?(): number;
+
+onTotalCount从API version 18开始支持，需在virtualScroll模式下使用。开发者可设置自定义方法，用于计算期望的数组长度。其返回值应当为自然数，可以不等于实际数据源长度arr.length。以下为onTotalCount的处理规则：
+
+- onTotalCount返回值为非自然数时，使用arr.length代替返回值，列表正常滚动。
+- 0 <= onTotalCount返回值 < arr.length时，界面中只渲染区间[0, onTotalCount返回值 - 1]范围内的数据。
+- onTotalCount返回值 > arr.length时，代表Repeat将渲染区间[0, onTotalCount返回值 - 1]范围内的数据，滚动条样式根据onTotalCount返回值变化。
+
+> **注意：** 
+>
+> - 相较于totalCount，Repeat可在需要时主动调用onTotalCount方法，更新期望数据长度。
+> - totalCount与onTotalCount至多设置一个。均未设置，则采用默认值arr.length；同时设置，则忽略totalCount。
+> - 当onTotalCount返回值 > arr.length时，建议配合使用onLazyLoading实现数据懒加载。
+
+### onLazyLoading：数据精准懒加载
+
+onLazyLoading?(index: number): void;
+
+onLazyLoading从API version 18开始支持，需在virtualScroll模式下使用。开发者可设置自定义方法，用于向指定的数据源index中写入数据。以下为onLazyLoading的处理规则：
+
+- Repeat读取数据源中某一index处对应数据前，会先检查此index处是否存在数据。
+- 若不存在数据，且开发者提供了onLazyLoading方法，则Repeat将调用此方法。
+- 在onLazyLoading方法中，开发者需要向Repeat指定的index中写入数据，方式如下：`arr[index] = ...`。在onLazyLoading方法中，不允许使用除`[]`以外的数组操作，且不允许写入指定index以外的元素，否则系统将抛出异常。
+- onLazyLoading方法执行完成后，若指定index中仍无数据，将导致渲染异常。
+
+> **注意：** 
+>
+> - 当使用onLazyLoading时，建议与onTotalCount配合使用，而非totalCount。
+> - 若期望数据源长度大于实际数据源长度，推荐使用onLazyLoading。
+> - onLazyLoading方法中应避免高耗时操作。若数据加载耗时较长，可在onLazyLoading方法中先为此数据创建占位符，再创建异步任务加载数据。
+> - 当使用onLazyLoading，并设置onTotalCount为`arr.length + 1`时，可实现数据的无限加载。需要注意，在此场景下，开发者需要提供首屏显示所需的初始数据，并建议设置父容器组件`cachedCount > 0`，否则将会导致渲染异常。若与Swiper-Loop模式同时使用，停留在`index = 0`处时将导致onLazyLoading方法被持续触发，建议避免与Swiper-Loop模式同时使用。此外，开发者需要关注内存消耗情况，避免因数据持续加载而导致内存过量消耗。
 
 ## 使用场景
 
@@ -598,6 +639,150 @@ struct RepeatVirtualScroll2T {
 ```
 
 ![Repeat-VirtualScroll-2T-Demo](./figures/Repeat-VirtualScroll-2T-Demo.gif)
+
+#### 数据精准懒加载
+
+当数据源总长度较长，或数据项加载耗时较长时，可使用数据懒加载功能，避免在初始化时加载所有数据。
+
+**示例一**
+
+数据源总长度较长，在首次渲染、滑动屏幕、跳转显示区域时，动态加载对应区域内的数据。
+
+```ts
+@Entry
+@ComponentV2
+struct RepeatLazyLoading {
+  // 假设数据源总长度较长，为1000。初始数组未提供数据。
+  @Local arr: Array<string> = [];
+  scroller: Scroller = new Scroller();
+  build() {
+    Column({ space: 5 }) {
+      // 初始显示位置为index = 100, 数据可通过懒加载自动获取。
+      List({ scroller: this.scroller, space: 5, initialIndex: 100 }) {
+        Repeat(this.arr)
+          .virtualScroll({
+            // 期望的数据源总长度为1000。
+            onTotalCount: () => { return 1000; },
+            // 实现数据懒加载。
+            onLazyLoading: (index: number) => { this.arr[index] = index.toString(); }
+          })
+          .each((obj: RepeatItem<string>) => {
+            ListItem() {
+              Row({ space: 5 }) {
+                Text(`${obj.index}: Item_${obj.item}`)
+              }
+            }
+            .height(50)
+          })
+      }
+      .height('80%')
+      .border({ width: 1})
+      // 显示位置跳转至index = 500, 数据可通过懒加载自动获取。
+      Button('ScrollToIndex 500')
+        .onClick(() => { this.scroller.scrollToIndex(500); })
+    }
+  }
+}
+```
+
+运行效果：
+
+![Repeat-Lazyloading-1](./figures/repeat-lazyloading-demo1.gif)
+
+**示例二**
+
+数据加载耗时长，在onLazyLoading方法中，首先为数据项创建占位符，再通过异步任务加载数据。
+
+```ts
+@Entry
+@ComponentV2
+struct RepeatLazyLoading {
+  @Local arr: Array<string> = [];
+  build() {
+    Column({ space: 5 }) {
+      List({ space: 5 }) {
+        Repeat(this.arr)
+          .virtualScroll({
+            onTotalCount: () => { return 100; },
+            // 实现数据懒加载。
+            onLazyLoading: (index: number) => {
+              // 创建占位符。
+              this.arr[index] = '';
+              // 模拟高耗时加载过程，通过异步任务加载数据。
+              setTimeout(() => { this.arr[index] = index.toString(); }, 1000);
+            }
+          })
+          .each((obj: RepeatItem<string>) => {
+            ListItem() {
+              Row({ space: 5 }) {
+                Text(`${obj.index}: Item_${obj.item}`)
+              }
+            }
+            .height(50)
+          })
+      }
+      .height('100%')
+      .border({ width: 1})
+    }
+  }
+}
+```
+
+运行效果：
+
+![Repeat-Lazyloading-2](./figures/repeat-lazyloading-demo2.gif)
+
+**示例三**
+
+使用数据懒加载，并配合设置`onTotalCount: () => { return this.arr.length + 1; }`，可实现数据无限懒加载。
+
+> **注意：** 
+>
+> - 此场景下，开发者需要提供首屏显示所需的初始数据，并建议设置父容器组件`cachedCount > 0`，否则将会导致渲染异常。
+> - 若与Swiper-Loop模式同时使用，停留在`index = 0`处时将导致onLazyLoading方法被持续触发，建议避免与Swiper-Loop模式同时使用。
+> - 开发者需要关注内存消耗情况，避免因数据持续加载而导致内存过量消耗。
+
+```ts
+@Entry
+@ComponentV2
+struct RepeatLazyLoading {
+  @Local arr: Array<string> = [];
+  // 提供首屏显示所需的初始数据。
+  aboutToAppear(): void {
+    for (let i = 0; i < 15; i++) {
+      this.arr.push(i.toString());
+    }
+  }
+  build() {
+    Column({ space: 5 }) {
+      List({ space: 5 }) {
+        Repeat(this.arr)
+          .virtualScroll({
+            // 数据无限懒加载。
+            onTotalCount: () => { return this.arr.length + 1; },
+            onLazyLoading: (index: number) => { this.arr[index] = index.toString(); }
+          })
+          .each((obj: RepeatItem<string>) => {
+            ListItem() {
+              Row({ space: 5 }) {
+                Text(`${obj.index}: Item_${obj.item}`)
+              }
+            }
+            .height(50)
+          })
+      }
+      .height('100%')
+      .border({ width: 1})
+      // 建议设置cachedCount > 0
+      .cachedCount(1)
+    }
+  }
+}
+```
+
+运行效果：
+
+![Repeat-Lazyloading-3](./figures/repeat-lazyloading-demo3.gif)
 
 ### Repeat嵌套
 
@@ -988,6 +1173,187 @@ struct DemoSwiper {
 
 ![Repeat-Demo-Swiper](./figures/Repeat-Demo-Swiper.gif)
 
+### 拖拽排序
+
+当Repeat在List组件下使用，并且设置了onMove事件，Repeat每次迭代都生成一个ListItem时，可以使能拖拽排序。non-virtualScroll模式和virtualScroll模式都支持设置拖拽排序。
+
+#### 使用限制
+- 拖拽排序离手后，如果数据位置发生变化，则会触发onMove事件，上报数据移动原始索引号和目标索引号。在onMove事件中，需要根据上报的起始索引号和目标索引号修改数据源。数据源修改前后，要保持每个数据的键值不变，只是顺序发生变化，才能保证落位动画正常执行。
+- 拖拽排序过程中，在离手之前，不允许修改数据源。
+
+#### 示例代码
+```ts
+@Entry
+@ComponentV2
+struct RepeatVirtualScrollOnMove {
+  @Local simpleList: Array<string> = [];
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 100; i++) {
+      this.simpleList.push(`${i}`);
+    }
+  }
+
+  build() {
+    Column() {
+      List() {
+        Repeat<string>(this.simpleList)
+          // 通过设置onMove，使能拖拽排序。
+          .onMove((from: number, to: number) => {
+            let temp = this.simpleList.splice(from, 1);
+            this.simpleList.splice(to, 0, temp[0]);
+          })
+          .each((obj: RepeatItem<string>) => {
+            ListItem() {
+              Text(obj.item)
+                .fontSize(16)
+                .textAlign(TextAlign.Center)
+                .size({height: 100, width: "100%"})
+            }.margin(10)
+            .borderRadius(10)
+            .backgroundColor("#FFFFFFFF")
+          })
+          .key((item: string, index: number) => {
+            return item;
+          })
+          .virtualScroll({ totalCount: this.simpleList.length })
+      }
+      .border({ width: 1 })
+      .backgroundColor("#FFDCDCDC")
+      .width('100%')
+      .height('100%')
+    }
+  }
+}
+```
+
+运行效果：
+
+![Repeat-Drag-Sort](figures/ForEach-Drag-Sort.gif)
+
+### 通过`.key()`函数控制列表节点刷新范围
+
+从API version 18开始，开发者自定义`.key()`函数时，Repeat子节点会根据key的变化来判断节点是否需要更新。修改数组后，1）如果key发生改变，则页面立即刷新，数据更新为修改后的值；2）key没有改变，页面不会立即刷新。
+
+前置条件：使用Repeat virtualScroll模式渲染数组，数据项为被`@ObservedV2`装饰的类，两个类属性均被`@Trace`装饰。其中`msg`属性值作为列表渲染的节点内容，点击“click”按钮修改列表第一个节点的内容。
+
+第一种预期场景：当列表节点数据的属性值发生改变时，触发页面刷新，第一个列表节点数据更新为修改后的值。
+
+这种场景有两种实现方式：1）定义`.key()`函数，并且对应节点的键值发生变化；2）不定义`.key()`函数，Repeat会直接对比数据对象是否改变。代码示例如下：
+
+```ts
+@ObservedV2
+class RepeatData {
+  @Trace id: string;
+  @Trace msg: string;
+
+  constructor(id: string, msg: string) {
+    this.id = id;
+    this.msg = msg;
+  }
+}
+
+@Entry
+@ComponentV2
+struct RepeatRerender {
+  @Local dataArr: Array<RepeatData> = [];
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 10; i++) {
+      this.dataArr.push(new RepeatData(`key${i}`, `data${i}`));
+    }
+  }
+
+  build() {
+    Column({ space: 20 }) {
+      List() {
+        Repeat<RepeatData>(this.dataArr)
+          .each((ri: RepeatItem<RepeatData>) => {
+            ListItem() {
+              Text(ri.item.msg).fontSize(30)
+            }
+          })
+          .key((item: RepeatData, index: number) => item.msg) // 第一种方式：将.key()函数返回值设为与节点数据的改变保持一致的值，如msg属性值
+          // 第二种方式：删除.key()函数
+          .virtualScroll()
+      }
+      .cachedCount(2)
+      .width('100%')
+      .height('40%')
+      .border({ width: 1 })
+      .backgroundColor(0xFAEEE0)
+
+      Button('click').onClick(() => {
+        this.dataArr.splice(0, 1, new RepeatData('key0', 'new msg')); // 改变列表第一个节点数据的msg属性值
+      })
+    }
+  }
+}
+```
+
+运行效果如下，点击按钮后数据发生改变。
+
+![Repeat-Rerender-Wrong](./figures/Repeat-Rerender-Wrong.gif)
+
+第二种预期场景：当列表节点数据的属性值发生改变但是key不变时，不会立即触发页面刷新，从而控制节点的刷新频率，提高页面整体的渲染性能。
+
+实现方式：定义`.key()`函数，返回值为节点数据对象的`id`属性。点击按钮后，保持`id`属性值不变（即key不变），修改`msg`属性值，页面不会刷新。代码示例如下：
+
+需要注意的是，直接修改`msg`属性（即`this.dataArr[0].msg = 'new msg'`），页面仍然会触发刷新。原因是`msg`属性值被`@Trace`装饰，如果被直接修改，会触发状态变量变化逻辑，页面立即刷新。
+
+```ts
+@ObservedV2
+class RepeatData {
+  @Trace id: string;
+  @Trace msg: string;
+
+  constructor(id: string, msg: string) {
+    this.id = id;
+    this.msg = msg;
+  }
+}
+
+@Entry
+@ComponentV2
+struct RepeatRerender {
+  @Local dataArr: Array<RepeatData> = [];
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 10; i++) {
+      this.dataArr.push(new RepeatData(`key${i}`, `data${i}`));
+    }
+  }
+
+  build() {
+    Column({ space: 20 }) {
+      List() {
+        Repeat<RepeatData>(this.dataArr)
+          .each((ri: RepeatItem<RepeatData>) => {
+            ListItem() {
+              Text(ri.item.msg).fontSize(30)
+            }
+          })
+          .key((item: RepeatData, index: number) => item.id) // 将.key()函数返回值设为不受子节点数据改变影响的值，如id属性值
+          .virtualScroll()
+      }
+      .cachedCount(2)
+      .width('100%')
+      .height('40%')
+      .border({ width: 1 })
+      .backgroundColor(0xFAEEE0)
+
+      Button('click').onClick(() => {
+        this.dataArr.splice(0, 1, new RepeatData('key0', 'new msg')); // 改变列表第一个节点数据的msg属性值，保持id属性值不变
+      })
+    }
+  }
+}
+```
+
+运行效果如下，点击按钮后数据不发生改变。
+
+![Repeat-Rerender-Correct](./figures/Repeat-Rerender-Correct.gif)
+
 ## 常见问题
 
 ### 屏幕外的列表数据发生变化时，保证滚动条位置不变
@@ -1143,7 +1509,7 @@ class VehicleDB {
   public vehicleItems: VehicleData[] = [];
 
   constructor() {
-    // init data size 20
+    // 数组初始化大小 20
     for (let i = 1; i <= 20; i++) {
       this.vehicleItems.push(new VehicleData(`Vehicle${i}`, i));
     }
@@ -1162,7 +1528,7 @@ struct entryCompSucc {
     Column({ space: 3 }) {
       List({ scroller: this.scroller }) {
         Repeat(this.vehicleItems)
-          .virtualScroll({ totalCount: 50 }) // total data size 50
+          .virtualScroll({ totalCount: 50 }) // 数组预期长度 50
           .templateId(() => 'default')
           .template('default', (ri) => {
             ListItem() {
@@ -1196,7 +1562,7 @@ struct entryCompSucc {
       .alignListItem(ListItemAlign.Center)
       .onScrollIndex((start, end) => {
         console.log('onScrollIndex', start, end);
-        // lazy data loading
+        // 数据懒加载
         if (this.vehicleItems.length < 50) {
           for (let i = 0; i < 10; i++) {
             if (this.vehicleItems.length < 50) {

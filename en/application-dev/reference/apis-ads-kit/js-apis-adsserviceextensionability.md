@@ -15,7 +15,7 @@ The AdsServiceExtensionAbility module provides ExtensionAbilities for the ads se
 import { RespCallback } from '@kit.AdsKit';
 ```
 
-## AdsServiceExtensionAbility.RespCallback
+## RespCallback
 
 (respData: Map&lt;string, Array&lt;advertising.Advertisement&gt;&gt;): void;
 

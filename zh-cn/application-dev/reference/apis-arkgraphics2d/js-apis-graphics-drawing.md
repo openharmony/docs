@@ -114,7 +114,7 @@ r : 如果4个通道（透明度、红、绿、蓝）的计算方式相同，用
 | XOR     | 3    | 异或操作。 |
 | REVERSE_DIFFERENCE     | 4    | 反向差集操作。 |
 
-## PathIteratorVerb<sup>16+</sup>
+## PathIteratorVerb<sup>18+</sup>
 
 迭代器包含的路径操作类型枚举。
 
@@ -130,11 +130,11 @@ r : 如果4个通道（透明度、红、绿、蓝）的计算方式相同，用
 | CLOSE | 5    | 路径闭合操作。 |
 | DONE  | CLOSE + 1   | 路径设置完成操作。 |
 
-## PathIterator<sup>16+</sup>
+## PathIterator<sup>18+</sup>
 
 表示路径操作迭代器。
 
-### constructor<sup>16+</sup>
+### constructor<sup>18+</sup>
 
 constructor(path: Path)
 
@@ -156,7 +156,7 @@ let path: drawing.Path = new drawing.Path();
 let iter: drawing.PathIterator = new drawing.PathIterator(path);
 ```
 
-### next<sup>16+</sup>
+### next<sup>18+</sup>
 
 next(points: Array<common2D.Point>, offset?: number): PathIteratorVerb
 
@@ -175,7 +175,7 @@ next(points: Array<common2D.Point>, offset?: number): PathIteratorVerb
 
 | 类型                  | 说明           |
 | --------------------- | -------------- |
-| [PathIteratorVerb](#pathiteratorverb16) | 迭代器包含的路径操作类型。 |
+| [PathIteratorVerb](#pathiteratorverb18) | 迭代器包含的路径操作类型。 |
 
 **错误码：**
 
@@ -205,7 +205,7 @@ for (let j = 0; j < pointCount[verb] + offset; j++) {
 console.info(outputMessage);
 ```
 
-### peek<sup>16+</sup>
+### peek<sup>18+</sup>
 
 peek(): PathIteratorVerb
 
@@ -217,7 +217,7 @@ peek(): PathIteratorVerb
 
 | 类型                  | 说明           |
 | --------------------- | -------------- |
-| [PathIteratorVerb](#pathiteratorverb16) | 迭代器包含的路径操作类型。 |
+| [PathIteratorVerb](#pathiteratorverb18) | 迭代器包含的路径操作类型。 |
 
 **示例：**
 
@@ -228,7 +228,7 @@ let iter: drawing.PathIterator = new drawing.PathIterator(path);
 let res = iter.peek();
 ```
 
-### hasNext<sup>16+</sup>
+### hasNext<sup>18+</sup>
 
 hasNext(): boolean
 
@@ -1366,7 +1366,7 @@ if(path.buildFromSvgString(svgStr)) {
 }
 ```
 
-### getPathIterator<sup>16+</sup>
+### getPathIterator<sup>18+</sup>
 
 getPathIterator(): PathIterator
 
@@ -1378,7 +1378,7 @@ getPathIterator(): PathIterator
 
 | 类型                  | 说明           |
 | --------------------- | -------------- |
-| [PathIterator](#pathiterator16) | 该路径的迭代器对象。 |
+| [PathIterator](#pathiterator18) | 该路径的迭代器对象。 |
 
 **示例：**
 
@@ -1695,9 +1695,9 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### drawShadow<sup>16+</sup>
+### drawShadow<sup>18+</sup>
 
-drawShadow(path: Path, planeParams: common2D.Point3d, devLightPos: common2D.Point3d, lightRadius: number, ambientColor: number, spotColor: number, flag: ShadowFlag) : void
+drawShadow(path: Path, planeParams: common2D.Point3d, devLightPos: common2D.Point3d, lightRadius: number, ambientColor: common2D.Color | number, spotColor: common2D.Color | number, flag: ShadowFlag) : void
 
 绘制射灯类型阴影，使用路径描述环境光阴影的轮廓。
 
@@ -1711,8 +1711,8 @@ drawShadow(path: Path, planeParams: common2D.Point3d, devLightPos: common2D.Poin
 | planeParams  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | 是    | 表示一个三维向量，用于计算z轴方向的偏移量。 |
 | devLightPos  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | 是    | 光线相对于画布的位置。 |
 | lightRadius   | number           | 是    | 圆形灯半径，该参数为浮点数。      |
-| ambientColor  |number | 是    | 环境阴影颜色，用16进制ARGB格式的32位无符号整数表示。 |
-| spotColor  |number | 是    | 点阴影颜色，用16进制ARGB格式的32位无符号整数表示。 |
+| ambientColor  |[common2D.Color](js-apis-graphics-common2D.md#color) \| number | 是    | 环境阴影颜色，可以用16进制ARGB格式的32位无符号整数表示。 |
+| spotColor  |[common2D.Color](js-apis-graphics-common2D.md#color) \| number | 是    | 点阴影颜色，可以用16进制ARGB格式的32位无符号整数表示。 |
 | flag         | [ShadowFlag](#shadowflag12)                  | 是    | 阴影标志枚举。    |
 
 **错误码：**
@@ -2062,7 +2062,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### drawColor<sup>16+</sup>
+### drawColor<sup>18+</sup>
 
 drawColor(color: number, blendMode?: BlendMode): void
 
@@ -2184,9 +2184,9 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### clear<sup>16+</sup>
+### clear<sup>18+</sup>
 
-clear(color: number): void
+clear(color: common2D.Color | number): void
 
 使用指定颜色填充画布上的裁剪区域。
 
@@ -2196,7 +2196,7 @@ clear(color: number): void
 
 | 参数名    | 类型                                                 | 必填 | 说明                             |
 | --------- | ---------------------------------------------------- | ---- | -------------------------------- |
-| color     | number| 是   | 16进制ARGB格式的颜色。  |
+| color     | [common2D.Color](js-apis-graphics-common2D.md#color) \| number| 是   | 颜色，可以用16进制ARGB格式的无符号整数表示。  |
 
 **错误码：**
 
@@ -3462,7 +3462,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### quickRejectPath<sup>16+</sup>
+### quickRejectPath<sup>18+</sup>
 
 quickRejectPath(path: Path): boolean
 
@@ -3512,7 +3512,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### quickRejectRect<sup>16+</sup>
+### quickRejectRect<sup>18+</sup>
 
 quickRejectRect(rect: common2D.Rect): boolean
 
@@ -3559,7 +3559,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### drawArcWithCenter<sup>16+</sup>
+### drawArcWithCenter<sup>18+</sup>
 
 drawArcWithCenter(arc: common2D.Rect, startAngle: number, sweepAngle: number, useCenter: boolean): void
 
@@ -3605,7 +3605,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### drawImageNine<sup>16+</sup>
+### drawImageNine<sup>18+</sup>
 
 drawImageNine(pixelmap: image.PixelMap, center: common2D.Rect, dstRect: common2D.Rect, filterMode: FilterMode): void
 
@@ -3653,7 +3653,7 @@ class DrawingRenderNode extends RenderNode {
 ```
 ![zh-ch_image_Nine.png](figures/zh-ch_image_Nine.png)
 
-### drawImageLattice<sup>16+</sup>
+### drawImageLattice<sup>18+</sup>
 
 drawImageLattice(pixelmap: image.PixelMap, lattice: Lattice, dstRect: common2D.Rect, filterMode: FilterMode): void
 
@@ -4188,7 +4188,7 @@ class TextRenderNode extends RenderNode {
 }
 ```
 
-### makeFromRawFile<sup>16+</sup>
+### makeFromRawFile<sup>18+</sup>
 
 static makeFromRawFile(rawfile: Resource): Typeface
 
@@ -5139,7 +5139,7 @@ let glyphs : number[] = font.textToGlyphs(text);
 console.info("drawing text toglyphs OnTestFunction num =  " + glyphs.length );
 ```
 
-### getBounds<sup>16+</sup>
+### getBounds<sup>18+</sup>
 
 getBounds(glyphs: Array\<number>): Array\<common2D.Rect>
 
@@ -5201,7 +5201,7 @@ struct Index {
 }
 ```
 
-### getTextPath<sup>16+</sup>
+### getTextPath<sup>18+</sup>
 
 getTextPath(text: string, byteLength: number, x: number, y: number): Path;
 
@@ -5252,7 +5252,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### createPathForGlyph<sup>16+</sup>
+### createPathForGlyph<sup>18+</sup>
 
 createPathForGlyph(index: number): Path
 
@@ -5437,9 +5437,9 @@ const color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
 let colorFilter = drawing.ColorFilter.createBlendModeColorFilter(color, drawing.BlendMode.SRC);
 ```
 
-### createBlendModeColorFilter<sup>16+</sup>
+### createBlendModeColorFilter<sup>18+</sup>
 
-static createBlendModeColorFilter(color: number, mode: BlendMode) : ColorFilter
+static createBlendModeColorFilter(color: common2D.Color | number, mode: BlendMode) : ColorFilter
 
 使用指定的颜色和混合模式创建颜色滤波器。
 
@@ -5449,7 +5449,7 @@ static createBlendModeColorFilter(color: number, mode: BlendMode) : ColorFilter
 
 | 参数名 | 类型                                                 | 必填 | 说明             |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
-| color  | number | 是   | 16进制ARGB格式的颜色。 |
+| color  | [common2D.Color](js-apis-graphics-common2D.md#color) \| number | 是   | 颜色，可以用16进制ARGB格式的无符号整数表示。 |
 | mode   | [BlendMode](#blendmode)                              | 是   | 颜色的混合模式。 |
 
 **返回值：**
@@ -5767,7 +5767,7 @@ class DrawingRenderNode extends RenderNode {
 ```
 ![zh-ch_Lattice.png](figures/zh-ch_Lattice.png)
 
-### createImageLattice<sup>16+</sup>
+### createImageLattice<sup>18+</sup>
 
 static createImageLattice(xDivs: Array\<number>, yDivs: Array\<number>, fXCount: number, fYCount: number, fBounds?: common2D.Rect | null, fRectTypes?: Array\<RectType> | null, fColors?: Array\<number> | null): Lattice
 
@@ -5874,7 +5874,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-## PathDashStyle<sup>16+</sup>
+## PathDashStyle<sup>18+</sup>
 
 路径效果的绘制样式枚举。
 
@@ -5933,7 +5933,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### createPathDashEffect<sup>16+</sup>
+### createPathDashEffect<sup>18+</sup>
 
 static createPathDashEffect(path: Path, advance: number, phase: number, style: PathDashStyle): PathEffect
 
@@ -5948,7 +5948,7 @@ static createPathDashEffect(path: Path, advance: number, phase: number, style: P
 | path  | [Path](#path) | 是 | 通过该路径生成一个图形，用来填充每个虚线段。|
 | advance | number | 是 | 虚线段的步长，该参数为大于0的浮点数，否则会抛错误码。 |
 | phase | number | 是 | 表示虚线段内图形在虚线步长范围内的偏移量，该参数为浮点数，效果为先对偏移量取绝对值，然后对步长取模。 |
-| style | [PathDashStyle](#pathdashstyle16) | 是 | 指定虚线效果的样式。 |
+| style | [PathDashStyle](#pathdashstyle18) | 是 | 指定虚线效果的样式。 |
 
 **返回值：**
 
@@ -6001,7 +6001,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### createSumPathEffect<sup>16+</sup>
+### createSumPathEffect<sup>18+</sup>
 
 static createSumPathEffect(pathEffectOne: PathEffect, pathEffectTwo: PathEffect): PathEffect
 
@@ -6087,7 +6087,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### createDiscretePathEffect<sup>16+</sup>
+### createDiscretePathEffect<sup>18+</sup>
 
 static createDiscretePathEffect(segLength: number, dev: number, seedAssist?: number): PathEffect
 
@@ -6130,7 +6130,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### createComposePathEffect<sup>16+</sup>
+### createComposePathEffect<sup>18+</sup>
 
 static createComposePathEffect(outer: PathEffect, inner: PathEffect): PathEffect
 
@@ -6223,9 +6223,9 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### create<sup>16+</sup>
+### create<sup>18+</sup>
 
-static create(blurRadius: number, x: number, y: number, color: number): ShadowLayer
+static create(blurRadius: number, x: number, y: number, color: common2D.Color | number): ShadowLayer
 
 用于创建一个阴影层对象。
 
@@ -6238,7 +6238,7 @@ static create(blurRadius: number, x: number, y: number, color: number): ShadowLa
 | blurRadius  | number   | 是   | 阴影的半径，必须为大于零的浮点数。     |
 | x           | number   | 是   | x轴上的偏移点，该参数为浮点数。        |
 | y           | number   | 是   | Y轴上的偏移点，该参数为浮点数。        |
-| color       | number   | 是   | 16进制ARGB格式的颜色。 |
+| color       | [common2D.Color](js-apis-graphics-common2D.md#color) \| number   | 是   | 颜色，可以用16进制ARGB格式的无符号整数表示。  |
 
 **返回值：**
 
@@ -6496,7 +6496,7 @@ const pen = new drawing.Pen();
 pen.setColor(255, 255, 0, 0);
 ```
 
-### setColor<sup>16+</sup>
+### setColor<sup>18+</sup>
 
 setColor(color: number) : void
 
@@ -6551,7 +6551,7 @@ pen.setColor(color);
 let colorGet = pen.getColor();
 ```
 
-### getHexColor<sup>16+</sup>
+### getHexColor<sup>18+</sup>
 
 getHexColor(): number
 
@@ -7300,7 +7300,7 @@ const brush = new drawing.Brush();
 brush.setColor(255, 255, 0, 0);
 ```
 
-### setColor<sup>16+</sup>
+### setColor<sup>18+</sup>
 
 setColor(color: number) : void
 
@@ -7355,7 +7355,7 @@ brush.setColor(color);
 let colorGet = brush.getColor();
 ```
 
-### getHexColor<sup>16+</sup>
+### getHexColor<sup>18+</sup>
 
 getHexColor(): number
 

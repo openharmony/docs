@@ -1204,7 +1204,7 @@ struct TodoList {
 }
 ```
 
-- SettingPage：设置页面，负责管理是否显示已完成任务的设置。通过\@AppStorageV2应用全局存储用户的设置，用户通过Toggle开关切换showCompletedTask状态。
+- SettingPage：设置页面，负责管理是否显示已完成任务的设置。通过AppStorageV2应用全局存储用户的设置，用户通过Toggle开关切换showCompletedTask状态。
 
 ```ts
 // src/main/ets/pages/SettingPage.ets

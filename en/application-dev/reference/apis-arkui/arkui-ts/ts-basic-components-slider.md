@@ -914,7 +914,7 @@ This example demonstrates how to customize the **Slider** component using a styl
         .fontSize(10)
       Text('Max: ' + config.max)
         .fontSize(10)
-      Text ('Step: ' + config.step)
+      Text('Step: ' + config.step)
         .fontSize(10)
     }
     .width('80%')

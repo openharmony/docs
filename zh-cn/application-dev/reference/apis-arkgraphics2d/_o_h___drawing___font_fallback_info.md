@@ -17,8 +17,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| char \* [language](#language) | 字体集所支持的语言类型，语言格式为bcp47  | 
-| char \* [familyName](#familyname) | 字体家族名  | 
+| char \* [language](#language) | 字体集所支持的语言类型，语言格式为bcp47。  | 
+| char \* [familyName](#familyname) | 字体家族名。  | 
 
 
 ## 结构体成员变量说明
@@ -31,7 +31,7 @@ char* OH_Drawing_FontFallbackInfo::familyName
 ```
 **描述**
 
-字体家族名
+字体家族名。
 
 
 ### language
@@ -41,4 +41,4 @@ char* OH_Drawing_FontFallbackInfo::language
 ```
 **描述**
 
-字体集所支持的语言类型，语言格式为bcp47
+字体集所支持的语言类型，语言格式为bcp47。

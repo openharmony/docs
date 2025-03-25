@@ -53,6 +53,8 @@ Output:
 <...>-2638 (----—) [002] .... 458.904382: tracing_mark_write: C|2638|H:hitraceTest 500
 ```
 
+**Library**: libhitrace_ndk.z.so
+
 **File to include**:
 
 &lt;hitrace/trace.h&gt;
@@ -68,6 +70,7 @@ Output:
 
 ## Summary
 
+
 ### Structs
 
 | Name| Description| 
@@ -79,11 +82,11 @@ Output:
 
 | Name| Description| 
 | -------- | -------- |
-| typedef enum [HiTraceId_Valid](_hitrace.md#hitraceid_valid)[HiTraceId_Valid](_hitrace.md#hitraceid_valid) | Defines an enum for whether a **HiTraceId** instance is valid. | 
-| typedef enum [HiTrace_Version](_hitrace.md#hitrace_version)[HiTrace_Version](_hitrace.md#hitrace_version) | Defines an enum for the HiTrace versions. | 
-| typedef enum [HiTrace_Flag](_hitrace.md#hitrace_flag)[HiTrace_Flag](_hitrace.md#hitrace_flag) | Defines an enum for the HiTrace flags. | 
-| typedef enum [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type)[HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) | Defines an enum for the HiTrace tracepoint types. | 
-| typedef enum [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode)[HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) | Defines an enum for the HiTrace communication modes. | 
+| typedef enum [HiTraceId_Valid](_hitrace.md#hitraceid_valid) [HiTraceId_Valid](_hitrace.md#hitraceid_valid) | Defines an enum for whether a **HiTraceId** instance is valid. | 
+| typedef enum [HiTrace_Version](_hitrace.md#hitrace_version) [HiTrace_Version](_hitrace.md#hitrace_version) | Defines an enum for the HiTrace versions. | 
+| typedef enum [HiTrace_Flag](_hitrace.md#hitrace_flag) [HiTrace_Flag](_hitrace.md#hitrace_flag) | Defines an enum for the HiTrace flags. | 
+| typedef enum [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) | Defines an enum for the HiTrace tracepoint types. | 
+| typedef enum [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) | Defines an enum for the HiTrace communication modes. | 
 |  typedef struct [HiTraceId](_hi_trace_id.md)**HiTraceId** |  | 
 
 

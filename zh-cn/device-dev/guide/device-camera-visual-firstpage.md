@@ -116,14 +116,14 @@
     -   onchange="swiperChange" 设置了swiper组件的change事件和函数swiperChange绑定，对应的js代码如下：
 
         ```
-        //引入router模块，用户页面跳转
+        //引入router模块，用户页面跳转。
         import router from'@system.router'
         import app from '@system.app'
         
         export default {
-            //定义参数
+            //定义参数。
             data: {
-              //默认是第一页
+              //默认是第一页。
               swiperPage: 0 
             },
             onInit () {
@@ -133,7 +133,7 @@
                 app.terminate();  
                 console.log('end exit');
             },
-            //swiper滑动回调事件，保存当前swiper的index值，每次滑动都会将index值保存在swiperPage变量中
+            //swiper滑动回调事件，保存当前swiper的index值，每次滑动都会将index值保存在swiperPage变量中。
             swiperChange (e) {
                 this.swiperPage = e.index;
             }
@@ -489,13 +489,13 @@
     js文件主要用于实现App应用的逻辑交互。在本页面js文件中，需要实现如下功能：根据数值动态改变文字、进度条颜色、页面跳转。
 
     ```
-    //导入router和app模块
+    //导入router和app模块。
     import router from '@system.router'
     import app from '@system.app'
     
     export default {
         data: {
-          //页面绑定数据
+          //页面绑定数据。
           textColor1: '#00ff00',
           textColor2: '#00ff00',
           bgColor1: '#669966',
@@ -519,7 +519,7 @@
           }]
         },
         onInit () {
-          //根据数值的不同，设置不同的字体、背景颜色和图片
+          //根据数值的不同，设置不同的字体、背景颜色和图片。
           if(this.airData[0].detailData > 100){
             this.src1 = 'common/cloud_red.png';
             this.textColor1 = '#ff0000';
@@ -549,20 +549,20 @@
             }
           }
         },
-        //跳转到详情页面
+        //跳转到详情页面。
         openDetail () {
           router.replace({
             uri: 'pages/detail/detail',
             params: {selectedCityIndex:this.swiperPage}
           });
         },
-        //退出应用
+        //退出应用。
         exitApp(){
           console.log('start exit');
           app.terminate();
           console.log('end exit');
         },
-        //页面滑动事件，滑动时改变最新的标识
+        //页面滑动事件，滑动时改变最新的标识。
         swiperChange (e) {
           this.swiperPage = e.index;
           if(e.index == 0){

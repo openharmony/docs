@@ -34,6 +34,6 @@ OH_HiAppEvent_DestroyParamList(list);
 
 | Name| Description| 
 | -------- | -------- |
-| [PARAM_USER_ID](_hi_app_event.md#param_user_id)   "user_id" | User ID.| 
-| [PARAM_DISTRIBUTED_SERVICE_NAME](_hi_app_event.md#param_distributed_service_name)   "ds_name" | Distributed service name.| 
-| [PARAM_DISTRIBUTED_SERVICE_INSTANCE_ID](_hi_app_event.md#param_distributed_service_instance_id)   "ds_instance_id" | Distributed service instance ID.| 
+| [PARAM_USER_ID](_hi_app_event.md#param_user_id)&nbsp;&nbsp;&nbsp;"user_id" | User ID. | 
+| [PARAM_DISTRIBUTED_SERVICE_NAME](_hi_app_event.md#param_distributed_service_name)&nbsp;&nbsp;&nbsp;"ds_name" | Distributed service name. | 
+| [PARAM_DISTRIBUTED_SERVICE_INSTANCE_ID](_hi_app_event.md#param_distributed_service_instance_id)&nbsp;&nbsp;&nbsp;"ds_instance_id" | Distributed service instance ID. | 

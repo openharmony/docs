@@ -73,7 +73,7 @@ To access a local session with the NDK, perform the following steps:
    OH_AVMetadataBuilder_GenerateAVMetadata(builder, &ohMetadata);
    ```
    
-   When the OH_AVMetadataBuilder is no longer needed, call **OH_AVMetadataBuilder_Destroy** to destroy it and do not use it any more.
+   When the OH_AVMetadataBuilder is no longer needed, call **OH_AVMetadataBuilder_Destroy** to destroy it and do not use it anymore.
    
    ```c++
    OH_AVMetadata_Destroy(ohMetadata);
@@ -117,11 +117,11 @@ To access a local session with the NDK, perform the following steps:
    
    ```c++
    // Register the callbacks for the commands of play, pause, stop, play previous, and play next.
-   // CONTROL_CMD_PLAY = 0; play
-   // CONTROL_CMD_PAUSE = 1; pause
-   // CONTROL_CMD_STOP = 2; stop
-   // CONTROL_CMD_PLAY_NEXT = 3; play previous
-   // CONTROL_CMD_PLAY_PREVIOUS = 4; play next
+   // CONTROL_CMD_PLAY = 0; play.
+   // CONTROL_CMD_PAUSE = 1; pause.
+   // CONTROL_CMD_STOP = 2; stop.
+   // CONTROL_CMD_PLAY_NEXT = 3; play previous.
+   // CONTROL_CMD_PLAY_PREVIOUS = 4; play next.
    AVSession_ControlCommand command = CONTROL_CMD_PLAY;
    OH_AVSessionCallback_OnCommand commandCallback = [](OH_AVSession* session, AVSession_ControlCommand command,
        void* userData) -> AVSessionCallback_Result
@@ -148,7 +148,7 @@ To access a local session with the NDK, perform the following steps:
    |OH_AVSession_RegisterSeekCallback(OH_AVSession* avsession, OH_AVSessionCallback_OnSeek   callback, void* userData); | Registers a callback for the seek operation. |
    |OH_AVSession_RegisterToggleFavoriteCallback(OH_AVSession* avsession,   OH_AVSessionCallback_OnToggleFavorite callback, void* userData)| Registers a callback for the favorite operation. |
 5. When the audio and video application exits and does not need to continue playback, cancel the listener and destroy the **AVSession** object. The sample code is as follows:
-
+ 
    ```c++
    OH_AVSession_Destroy(avsession);
    ```

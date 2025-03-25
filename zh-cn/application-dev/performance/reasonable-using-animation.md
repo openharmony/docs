@@ -281,11 +281,11 @@ struct ListExample {
 
 ### 优化效果
 
-*100vp/s：*
+100vp/s：
 
 ![img](./figures/reasonable-using-animation-8.PNG)
 
-*10000vp/s：*
+10000vp/s：
 
 ![img](./figures/reasonable-using-animation-9.PNG)
 

@@ -59,10 +59,8 @@ Called when data is being backed up. You need to implement extended data backup 
 
 onBackupEx(backupInfo: string): string | Promise&lt;string&gt;
 
-Called to pass parameters to the application during the application backup or restore process.
-
-**onBackupEx()** and **onBackup()** are mutually exclusive. If **onBackupEx()** needs to be overridden, call **onBackupEx()** preferentially.
-
+Called to pass parameters to the application during the application backup or restore process.<br>
+**onBackupEx()** and **onBackup()** are mutually exclusive. If **onBackupEx()** needs to be overridden, call **onBackupEx()** preferentially.<br>
 The return value of **onBackupEx()** cannot be an empty string. If an empty string is returned, **onRestore** will be called.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
@@ -134,7 +132,7 @@ The return value of **onBackupEx()** cannot be an empty string. If an empty stri
 
 onRestore(bundleVersion: BundleVersion): void;
 
-Called when data is being restored. You need to implement extended data restore operations.
+Called when data is being restored. You need to implement the extended data restore operation.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
@@ -160,11 +158,9 @@ Called when data is being restored. You need to implement extended data restore 
 
 onRestoreEx(bundleVersion: BundleVersion, restoreInfo: string): string | Promise&lt;string&gt;
 
-Called when data is being restored. You need to implement the extended data restore operation. Asynchronous implementation is supported.
-
-**onRestoreEx** and **onRestore** are mutually exclusive. Call **onRestoreEx** preferentially if it is overridden.
-The return value of **onRestoreEx** cannot be an empty string. If an empty string is returned, the system will attempt to call **onRestore**.
-
+Called when data is being restored. You need to implement the extended data restore operation. Asynchronous implementation is supported.<br>
+**onRestoreEx** and **onRestore** are mutually exclusive. Call **onRestoreEx** preferentially if it is overridden.<br>
+The return value of **onRestoreEx** cannot be an empty string. If an empty string is returned, the system will attempt to call **onRestore**.<br>
 The return value of **onRestoreEx()** is in JSON format. For details, see the sample code.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
@@ -230,22 +226,19 @@ The return value of **onRestoreEx()** is in JSON format. For details, see the sa
       return JSON.stringify(errorInfo);
     }
   }
-```
+  ```
 
 ### onProcess<sup>12+</sup>
 
 onProcess(): string;
 
-Called to report the progress information. This callback is executed synchronously and implemented during the execution of **onBackup/onBackupEx** or **onRestore/onRestoreEx**.
-This callback returns the service processing progress of the application. The return value is in JSON format. For details, see the sample code.
+Called to return the progress information. This callback is executed synchronously and implemented during the execution of **onBackup/onBackupEx** or **onRestore/onRestoreEx**. This callback returns the service processing progress of the application. The return value is in JSON format. For details, see the sample code.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
 > **NOTE**
-> 
 > - The system provides the default processing mechanism if **onProcess** is not implemented. If **onProcess** is used, the return value must strictly comply with that in the sample code.
 > - If **onProcess** is used, **onBackup/onBackupEx** and **onRestore/onRestoreEx** must be asynchronously executed in a dedicated thread. Otherwise, **onProcess** cannot run properly. For details, see the sample code.
->
 > - The following example shows the recommended use of **onProcess**.
 
 **Example**

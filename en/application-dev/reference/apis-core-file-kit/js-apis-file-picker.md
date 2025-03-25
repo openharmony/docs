@@ -132,7 +132,7 @@ select(option?: DocumentSelectOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 Starts a **documentPicker** page for the user to select one or more documents. This API uses a promise to return the result. You can pass in **DocumentSelectOptions**.
 
-> **NOTE**<br>For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
+**NOTE**<br>For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -178,7 +178,7 @@ select(option: DocumentSelectOptions, callback: AsyncCallback&lt;Array&lt;string
 
 Starts a **documentPicker** page for the user to select one or more documents. This API uses an asynchronous callback to return the result. You can pass in **DocumentSelectOptions**.
 
-> **NOTE**<br>For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
+**NOTE**<br>For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -221,7 +221,7 @@ select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 Starts a **documentPicker** page for the user to select one or more documents. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
+**NOTE**<br>For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -262,7 +262,7 @@ save(option?: DocumentSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 Starts a **documentPicker** page for the user to save one or more documents. This API uses a promise to return the result. You can pass in **DocumentSaveOptions** to specify the file names to save.
 
-> **NOTE**<br>For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
+**NOTE**<br>For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -309,7 +309,7 @@ save(option: DocumentSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;
 
 Starts a **documentPicker** page for the user to save one or more documents. This API uses an asynchronous callback to return the result. You can pass in **DocumentSaveOptions** to specify the file names to save.
 
-> **NOTE**<br>For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
+**NOTE**<br>For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -353,7 +353,7 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 Starts a **documentPicker** page for the user to save one or more documents. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
+**NOTE**<br>For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -388,20 +388,23 @@ async function example12(context: common.Context) {// Ensure that context is con
 }
 ```
 
-### getSelectedIndex<sup>13+</sup>;
+### getSelectedIndex<sup>14+</sup>;
 
 getSelectedIndex(): number
 
-**Atomic service API**: This API can be used in atomic services since API version 13.
-
-**System capability**: SystemCapability.FileManagement.UserFileService
-
 Obtains the subscript of the file name extension type of the file saved.
-  > **NOTE**
-  >
-  > - The **getSelectedIndex()** method takes effect only when used with [save()](#save).
-  > - **getSelectedIndex()** can be used only after [DocumentSaveOptions.fileSuffixChoices](#documentsaveoptions) is configured.
-  > - The subscript (number) returned by **getSelectedIndex()** indicates the location of the filename extension specified in [DocumentSaveOptions.fileSuffixChoices](#documentsaveoptions). If no filename extension is specified, **getSelectedIndex()** returns **-1**.
+
+This API is available only for 2-in-1 devices.
+
+This method takes effect only when used with [save()](#save).
+
+**getSelectedIndex()** can be used only after [DocumentSaveOptions.fileSuffixChoices](#documentsaveoptions) is configured.
+
+The subscript (number) returned by this method indicates the location of the filename extension specified in [DocumentSaveOptions.fileSuffixChoices](#documentsaveoptions). If no filename extension is specified, **getSelectedIndex()** returns **-1**.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.FileManagement.UserFileService.FolderSelection
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -412,7 +415,7 @@ async function exampleIndex(context: common.Context) { // Ensure that context is
     let documentSaveOptions = new picker.DocumentSaveOptions();
     // Name of the file to save.
     documentSaveOptions.newFileNames = ['DocumentViewPicker01'];
-    // File name extensions for the file to save.
+    // File name extensions of the file to save.
     documentSaveOptions.fileSuffixChoices = ['txt', 'mp4', 'pdf'];
     let documentPicker = new picker.DocumentViewPicker(context);
     documentPicker.save(documentSaveOptions).then((documentSaveResult: Array<string>) => {
@@ -503,7 +506,7 @@ select(option?: AudioSelectOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 Starts an **audioPicker** page for the user to select one or more audio clips. This API uses a promise to return the result. You can pass in **AudioSelectOptions**.
 
-> **NOTE**<br>For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
+**NOTE**<br>For details about how to use the URIs returned by this API, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -513,7 +516,7 @@ Starts an **audioPicker** page for the user to select one or more audio clips. T
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| option | [AudioSelectOptions](#audioselectoptions) | No  | Options for selecting the audio clips. If this parameter is not specified, the **audioPicker** page is displayed by default. |
+| option | [AudioSelectOptions](#audioselectoptions) | No  | Options for selecting audio clips. If this parameter is not specified, the **audioPicker** page is displayed by default. |
 
 **Return value**
 
@@ -549,7 +552,7 @@ select(option: AudioSelectOptions, callback: AsyncCallback&lt;Array&lt;string&gt
 
 Starts an **audioPicker** page for the user to select one or more audio clips. This API uses an asynchronous callback to return the result. You can pass in **AudioSelectOptions**.
 
-> **NOTE**<br>For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
+**NOTE**<br>For details about how to use the URIs returned by this API, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -566,7 +569,7 @@ Starts an **audioPicker** page for the user to select one or more audio clips. T
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import  { picker } from '@kit.CoreFileKit';
-async function example14(context: common.Context) {// Ensure that context is converted from UIAbilityContext.
+async function example14(context: common.Context) { // Ensure that context is converted from UIAbilityContext.
   try {
     let audioSelectOptions = new picker.AudioSelectOptions();
     let audioPicker = new picker.AudioViewPicker(context);
@@ -590,7 +593,7 @@ select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 Starts an **audioPicker** page for the user to select one or more audio clips. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
+**NOTE**<br>For details about how to use the URIs returned by this API, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -629,7 +632,7 @@ save(option?: AudioSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 Starts an **audioPicker** page (currently, a **documentPicker** page is displayed) for the user to save one or more audio clips. This API uses a promise to return the result. You can pass in **AudioSaveOptions** to specify the file names of the audio clips to save.
 
-> **NOTE**<br>For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
+**NOTE**<br>For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -676,7 +679,7 @@ save(option: AudioSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt
 
 Starts an **audioPicker** page (currently, a **documentPicker** page is displayed) for the user to save one or more audio clips. This API uses an asynchronous callback to return the result. You can pass in **AudioSaveOptions** to specify the file names of the audio clips to save.
 
-> **NOTE**<br>For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
+**NOTE**<br>For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -718,7 +721,7 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 Starts an **audioPicker** page (currently, a **documentPicker** page is displayed) for the user to save one or more audio clips. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
+**NOTE**<br>For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -755,15 +758,17 @@ async function example18(context: common.Context) {// Ensure that context is con
 
 Enumerates the types of files that can be selected by Picker.
 
+Only 2-in-1 devices are supported.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.FileManagement.UserFileService.FolderSelection
 
 | Name |  Value|  Description|
 | ----- |  ---- | ---- |
-| FILE  | 0  | File. |
+| FILE  | 0  | File type. |
 | FOLDER | 1  | Folder. |
-| MIXED | 2  | File and folder. |
+| MIXED | 2  | Mixed type of files and folders. |
 
 ## DocumentSelectOptions
 
@@ -775,15 +780,18 @@ Defines the options for selecting documents.
 
 | Name                   | Type                                         | Mandatory| Description                                      |
 | :---------------------- |---------------------------------------------| ---- |------------------------------------------|
-| maxSelectNumber<sup>10+</sup>       | number                                      | No  | Maximum number of documents that can be selected.<br>Value range: 1 to 500.<br>Only the devices that have the required system capability can select folders, and only one folder can be selected at a time. <br>Default value: **1**.<br/>**System capability**: SystemCapability.FileManagement.UserFileService |
+| maxSelectNumber<sup>10+</sup>       | number                                      | No  | Maximum number of documents that can be selected.<br>Value range: 1 to 500.<br>Only the devices that have the required system capability can select folders, and only one folder can be selected at a time. <br>Default value: **1**.<br>**System capability**: SystemCapability.FileManagement.UserFileService |
 | defaultFilePathUri<sup>10+</sup>    | string                                      | No  | Path of the documents or folder to select.                           |
-| fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt;                         | No  | File name extension types of the documents to select. <br/>The value is a string array. Each element specifies an option, which includes at most two parts with a vertical bar (\|) in between. The first part is the description (optional), and the second part is the file name extension information. If there is no "\|", the option does not have the description. Multiple file name extensions separated by a comma (,) are allowed in an option. The number of elements in a string array cannot exceed 100. <br/>This parameter is available only to the devices that have the required system capability. By default, all documents are selected. <br/>**System capability**: SystemCapability.FileManagement.UserFileService  |
-| selectMode<sup>11+</sup>         | [DocumentSelectMode](#documentselectmode11) | No  | Resource types that can be selected, for example, file, folder, or both. <br/>This parameter is available only to the devices that have the required system capability. <br/>The default value is **File**.<br/>**System capability**: SystemCapability.FileManagement.UserFileService.FolderSelection |
-| authMode<sup>12+</sup>    | boolean                              | No  | Whether to start Picker.<br>Default value: **false**. <br/>If **authMode** is **true**, **defaultFilePathUri** is mandatory, which specifies the URI of the file allowed to access. <br/>This parameter is available only to the devices that have the required system capability.<br>**System capability**: SystemCapability.FileManagement.UserFileService.FolderSelection |
-
+| fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt;                         | No  | File name extensions of the documents to select. The value is a string array. Each element specifies an option, which includes at most two parts with a vertical bar (|) in between.|The first part is the description (optional), and the second part is the file name extension information. If there is no "|",|the option does not have the description. Multiple file name extensions separated by a comma (,) are allowed in an option. The number of elements in a string array cannot exceed 100. This parameter is available only to the devices that have the required system capability. By default, no filtering is performed, that is, all files are displayed.<br>**System capability**: SystemCapability.FileManagement.UserFileService  |
+| selectMode<sup>11+</sup>         | [DocumentSelectMode](#documentselectmode11) | No  | Only 2in1 devices are supported. The default value is **File**.<br>**System capability**: SystemCapability.FileManagement.UserFileService.FolderSelection |
+| authMode<sup>12+</sup>    | boolean                              | No  | Whether to start Picker.<br>Default value: **false**. If **authMode** is **true**, **defaultFilePathUri** is mandatory, which specifies the URI of the file allowed to access. Only 2in1 devices are supported.<br>**System capability**: SystemCapability.FileManagement.UserFileService.FolderSelection | 
+|multiAuthMode<sup>15+</sup>  | boolean                             |No   | The batch authorization mode is supported. The default value **false** indicates the non-batch authorization mode. When **multAuthMode** is set to **true**, the batch authorization mode is used. And only the **multiUriArray** parameter takes effect. Only mobile phones are supported.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+|multiUriArray<sup>15+</sup>  | Array&lt;string&gt;                             |No   | URI array for batch authorization. (Only files are supported. Folders are not supported.) This parameter is used together with **multAuthMode**. This parameter does not take effect when **multAuthMode** is set to **false**. Only mobile phones are supported.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+|mergeMode<sup>15+</sup>  | [MergeTypeMode](#mergetypemode15)                             |No   | Enables the aggregation view mode. The aggregation view of the file management application can be started. The default value is **DEFAULT**, indicating that this parameter does not take effect and the view is not an aggregation view. If this parameter is set to a value other than **DEFAULT**, other parameters do not take effect. Only mobile phones are supported.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|    
+|isEncryptionSupported<sup>18+</sup>    | boolean |No   | Whether to support encryption (only files are supported, and folders are not supported). The default value is **false**. If this parameter is set to **true**, files can be encrypted on the picker page.<br>**Atomic service API**: This API can be used in atomic services since API version 18. |    
 ## DocumentPickerMode<sup>12+</sup>
 
-Enumerates the types of files that can be selected by Picker.
+Enumerates the modes for saving documents.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -793,6 +801,22 @@ Enumerates the types of files that can be selected by Picker.
 | ----- |  ---- | ---- |
 | DEFAULT  | 0  | Standard mode.|
 | DOWNLOAD | 1  | Download mode.|
+
+## MergeTypeMode<sup>15+</sup>
+
+Enumerates file aggregation types. Only mobile phones are supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.FileManagement.UserFileService
+
+| Name |  Value|  Description|
+| ----- | ---- | ---- |
+| DEFAULT  | 0  | Default mode, indicating that this parameter does not take effect.|
+| AUDIO | 1  | Audio mode.|
+| VIDEO  | 2  | Video mode.|
+| DOCUMENT | 3  | Document mode.|
+| PICTURE  | 4  | Image mode.|
 
 ## DocumentSaveOptions
 
@@ -804,10 +828,10 @@ Defines the options for saving documents.
 
 | Name                   | Type               | Mandatory|  Description                          |
 | ----------------------- | ------------------- | ---- | ---------------------------- |
-| newFileNames            | Array&lt;string&gt;    | No  | Names of the documents to save. If this parameter is not specified, the user needs to enter the document names.  |
+| newFileNames            | Array&lt;string&gt;    | No  | File names of the documents to save. If this parameter is not specified, the user needs to enter the document names. |
 | defaultFilePathUri<sup>10+</sup>    | string  | No  | Path of the documents or folder to save. |
-| fileSuffixChoices<sup>10+</sup>     | Array&lt;string&gt; | No  | File name extensions of the documents to save.<br/>The value is a string array. Each element specifies an option, which includes at most two parts with a vertical bar (\|) in between. The first part is the description, and the second part is the file name extension information. If there is no "\|", the option does not have the description. By default, all documents are saved.|
-| pickerMode<sup>12+</sup>     | [DocumentPickerMode](#documentpickermode12) | No  | Mode for starting Picker.<br>Default value: **DEFAULT**<br/>If **pickerMode** is **DOWNLOAD**, the settings of **newFileNames**, **defaultFilePathUri**, and **fileSuffixChoices** do not take effect. |
+| fileSuffixChoices<sup>10+</sup>     | Array&lt;string&gt; | No  | File name extensions of the documents to save. The value is a string array. Each element specifies an option, which includes at most two parts with a vertical bar (|) in between.|The first part is the description, and the second part is the file name extension information. If there is no "|",|the option does not have the description. By default, all documents are saved.|
+| pickerMode<sup>12+</sup>     | [DocumentPickerMode](#documentpickermode12) | No  | Mode for starting Picker.<br>Default value: **DEFAULT**. If **pickerMode** is **DOWNLOAD**, the settings of **newFileNames**, **defaultFilePathUri**, and **fileSuffixChoices** do not take effect.|
 
 ## AudioSelectOptions
 
@@ -830,7 +854,7 @@ Defines the options for saving audio clips.
 
 | Name                   | Type               | Mandatory|  Description                          |
 | ----------------------- | ------------------- | ---- | ---------------------------- |
-| newFileNames              | Array&lt;string&gt;    | No | Names of the audio clips to save. If this parameter is not specified, the user needs to enter the file names.|
+| newFileNames              | Array&lt;string&gt;    | No | File names of the audio clips to save. If this parameter is not specified, the user needs to enter the document names.|
 
 ## PhotoViewPicker<sup>(deprecated)</sup>
 
@@ -894,7 +918,7 @@ A constructor used to create a **PhotoViewPicker** instance. This constructor is
 let photoPicker = new picker.PhotoViewPicker(); // Construction without parameter is not recommended. There is a possibility that the PhotoViewPicker instance fails to start.
 ```
 
-### select<sup>(deprecated)</sup>
+### select
 
 select(option?: PhotoSelectOptions): Promise&lt;PhotoSelectResult&gt;
 
@@ -904,7 +928,7 @@ Starts a **photoPicker** page for the user to select one or more images/videos. 
 >
 > This API is supported since API version 9 and deprecated since API version 12. Use [photoAccessHelper.PhotoViewPicker#select](../apis-media-library-kit/js-apis-photoAccessHelper.md#select) instead.
 
-> **NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by [photoAccessHelper.getAssets](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets). For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
+**NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by [photoAccessHelper.getAssets](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets). For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -914,7 +938,7 @@ Starts a **photoPicker** page for the user to select one or more images/videos. 
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| option | [PhotoSelectOptions](#photoselectoptionsdeprecated) | No  | Options for selecting images/videos. By default, images and videos are selected, and the maximum number of files that can be selected is 50.|
+| option | [PhotoSelectOptions](#photoselectoptionsdeprecated) | No  | Options for selecting images/videos. If this parameter is not specified, images and videos are selected by default. A maximum of 50 files can be selected.|
 
 **Return value**
 
@@ -946,7 +970,7 @@ async function example01(context: common.Context) {// Ensure that context is con
 }
 ```
 
-### select<sup>(deprecated)</sup>
+### select
 
 select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&gt;): void
 
@@ -956,7 +980,7 @@ Starts a **photoPicker** page for the user to select one or more images/videos. 
 >
 > This API is supported since API version 9 and deprecated since API version 12. Use [photoAccessHelper.PhotoViewPicker#select](../apis-media-library-kit/js-apis-photoAccessHelper.md#select-1) instead.
 
-> **NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by [photoAccessHelper.getAssets](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets). For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
+**NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by [photoAccessHelper.getAssets](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets). For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -967,7 +991,7 @@ Starts a **photoPicker** page for the user to select one or more images/videos. 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
 | option | [PhotoSelectOptions](#photoselectoptionsdeprecated) | Yes  | Options for selecting images/videos.|
-| callback | AsyncCallback&lt;[PhotoSelectResult](#photoselectresultdeprecated)&gt;      | Yes  | Callback invoked to return a **PhotoSelectResult** object.|
+| callback | AsyncCallback&lt;[PhotoSelectResult](#photoselectresultdeprecated)&gt;      | Yes  | Callback used to return information about the images or videos selected.|
 
 **Example**
 
@@ -995,7 +1019,7 @@ async function example02(context: common.Context) {// Ensure that context is con
 }
 ```
 
-### select<sup>(deprecated)</sup>
+### select
 
 select(callback: AsyncCallback&lt;PhotoSelectResult&gt;): void
 
@@ -1005,7 +1029,7 @@ Starts a **photoPicker** page for the user to select one or more images/videos. 
 >
 > This API is supported since API version 9 and deprecated since API version 12. Use [photoAccessHelper.PhotoViewPicker#select](../apis-media-library-kit/js-apis-photoAccessHelper.md#select-2) instead.
 
-> **NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by [photoAccessHelper.getAssets](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets). For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
+**NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by [photoAccessHelper.getAssets](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets). For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1015,7 +1039,7 @@ Starts a **photoPicker** page for the user to select one or more images/videos. 
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| callback | AsyncCallback&lt;[PhotoSelectResult](#photoselectresultdeprecated)&gt;      | Yes  | Callback invoked to return a **PhotoSelectResult** object.|
+| callback | AsyncCallback&lt;[PhotoSelectResult](#photoselectresultdeprecated)&gt;      | Yes  | Callback used to return information about the images or videos selected.|
 
 **Example**
 
@@ -1040,7 +1064,7 @@ async function example03(context: common.Context) {// Ensure that context is con
 }
 ```
 
-### save<sup>(deprecated)</sup>
+### save
 
 save(option?: PhotoSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 
@@ -1050,7 +1074,7 @@ Starts a **photoPicker** page for the user to save one or more images/videos. Th
 >
 > This API is supported since API version 9 and deprecated since API version 12. Use [SaveButton](../apis-arkui/arkui-ts/ts-security-components-savebutton.md#savebutton) instead.
 
-> **NOTE**<br>This API saves files in **Files**, not in **Gallery**. For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
+**NOTE**<br>This API saves files in **Files**, not in **Gallery**. For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -1058,7 +1082,7 @@ Starts a **photoPicker** page for the user to save one or more images/videos. Th
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| option | [PhotoSaveOptions](#photosaveoptionsdeprecated) | No  | Options for saving files. If this parameter is not specified, a **photoPicker** page will be displayed for the user to enter the names of the files to save.|
+| option | [PhotoSaveOptions](#photosaveoptionsdeprecated) | No  | Options for saving images/videos. If this parameter is not specified, a **photoPicker** page will be displayed for the user to enter the names of the files to save.|
 
 **Return value**
 
@@ -1089,7 +1113,7 @@ async function example04(context: common.Context) {// Ensure that context is con
 }
 ```
 
-### save<sup>(deprecated)</sup>
+### save
 
 save(option: PhotoSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
@@ -1099,7 +1123,7 @@ Starts a **photoPicker** page for the user to save one or more images/videos. Th
 >
 > This API is supported since API version 9 and deprecated since API version 12. Use [SaveButton](../apis-arkui/arkui-ts/ts-security-components-savebutton.md#savebutton) instead.
 
-> **NOTE**<br>This API saves files in **Files**, not in **Gallery**. For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
+**NOTE**<br>This API saves files in **Files**, not in **Gallery**. For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -1135,7 +1159,7 @@ async function example05(context: common.Context) {// Ensure that context is con
 }
 ```
 
-### save<sup>(deprecated)</sup>
+### save
 
 save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
@@ -1145,7 +1169,7 @@ Starts a **photoPicker** page for the user to save one or more images/videos. Th
 >
 > This API is supported since API version 9 and deprecated since API version 12. Use [SaveButton](../apis-arkui/arkui-ts/ts-security-components-savebutton.md#savebutton) instead.
 
-> **NOTE**<br>This API saves files in **Files**, not in **Gallery**. For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
+**NOTE**<br>This API saves files in **Files**, not in **Gallery**. For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -1210,8 +1234,8 @@ Defines the options for selecting images/videos.
 
 | Name                   | Type               | Mandatory| Description                         |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
-| MIMEType              | [PhotoViewMIMETypes](#photoviewmimetypesdeprecated)   | No  | Types of the media files to select. **IMAGE_VIDEO_TYPE** is used by default. |
-| maxSelectNumber       | number | No  | Maximum number of media files to select. The default value is **50**, and the maximum value is **500**.     |
+| MIMEType              | [PhotoViewMIMETypes](#photoviewmimetypesdeprecated)   | No  | Media file types to select. **IMAGE_VIDEO_TYPE** is used by default. |
+| maxSelectNumber       | number | No  | Maximum number of media files that can be selected. The default value is **50**, and the maximum value is **500**.     |
 
 ## PhotoSelectResult<sup>(deprecated)</sup>
 
@@ -1227,7 +1251,7 @@ Defines information about the images/videos selected.
 
 | Name                   | Type               | Mandatory| Description                          |
 | ----------------------- | ------------------- | ----| ------------------------------ |
-| photoUris        | Array&lt;string&gt;    | Yes  | Array of the URIs of the images/videos selected. This URI array can be used only by [photoAccessHelper.getAssets](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets). For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri). |
+| photoUris        | Array&lt;string&gt;    | Yes  | URIs of the media files selected. This URI array can be used only by [photoAccessHelper.getAssets](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets). For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri). |
 | isOriginalPhoto        | boolean    | Yes  | Whether the selected image is the original one. The value **true** means the selected image is the original one, and **false** means the opposite. |
 
 ## PhotoSaveOptions<sup>(deprecated)</sup>
@@ -1242,4 +1266,4 @@ Defines the options for saving images or videos.
 
 | Name                   | Type               | Mandatory|  Description                          |
 | ----------------------- | ------------------- | ---- | ---------------------------- |
-| newFileNames              | Array&lt;string&gt;    | No | Names of the files to save. If this parameter is not specified, the user needs to enter the file names.|
+| newFileNames              | Array&lt;string&gt;    | No | Files names of the images or videos to save. If this parameter is not specified, the user needs to enter the file names.|

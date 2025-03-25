@@ -10,7 +10,7 @@
 
 通知内容。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 | 名称           | 类型                                                                        | 只读 | 可选 | 说明               |
 | -----------   | --------------------------------------------------------------------------- | ---- | --- | ------------------ |
@@ -26,7 +26,7 @@
 
 描述普通文本通知。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 | 名称           | 类型    | 只读 | 可选 | 说明                               |
 | -------------- | ------ | ---- |-----| ---------------------------------- |
@@ -43,7 +43,7 @@
 >
 > 实际显示效果依赖于设备能力和通知中心UI样式。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 | 名称           | 类型    | 只读 | 可选 | 说明                             |
 | -------------- | ------ | ---- | --- | -------------------------------- |
@@ -60,7 +60,7 @@
 >
 > 实际显示效果依赖于设备能力和通知中心UI样式。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 | 名称           | 类型            | 只读 | 可选 | 说明                             |
 | -------------- | --------------- | --- | --- | -------------------------------- |
@@ -77,7 +77,7 @@
 >
 > 实际显示效果依赖于设备能力和通知中心UI样式。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 | 名称           | 类型                                          | 只读 | 可选 | 说明                               |
 | -------------- | -------------------------------------------- | ---- | --- |------------------------------------|
@@ -90,7 +90,7 @@
 
 描述系统实况窗通知内容。不支持三方应用直接创建该类型通知，可以由系统代理创建系统实况窗类型通知后，三方应用发布同ID的通知来更新指定内容。继承自[NotificationBasicContent](#notificationbasiccontent)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 | 名称                         | 类型                                             | 只读| 可选 | 说明                               |
 | ---------------------------- | ----------------------------------------------- | --- | --- | -----------------------------------|
@@ -105,7 +105,7 @@
 
 描述通知胶囊。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 | 名称            | 类型                                          | 只读 | 可选 | 说明                            |
 | --------------- | -------------------------------------------- | --- | --- | -------------------------------- |
@@ -118,7 +118,7 @@
 
 描述通知按钮。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 | 名称  | 类型                                                   | 只读 | 可选 | 说明             |
 | ----- | ----------------------------------------------------- | --- | --- | ----------------- |
@@ -130,7 +130,7 @@
 
 描述通知计时信息。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 | 名称           | 类型              | 只读 | 可选 | 说明                             |
 | -------------- | ---------------- | --- | --- | -------------------------------- |
@@ -156,7 +156,7 @@ time: {
 
 描述通知进度。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 | 名称           | 类型            | 只读 | 可选 | 说明                             |
 | -------------- | --------------- | --- | --- | -------------------------------- |

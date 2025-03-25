@@ -630,7 +630,7 @@ Registers an observer to listen for ability start or exit events.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. It is fixed at **'abilityForegroundState'**.|
-| observer | [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver-sys) | Yes| Observer used to listen for ability start or exit events.|
+| observer | [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver-sys.md) | Yes| Observer used to listen for ability start or exit events.|
 
 **Error codes**
 
@@ -680,7 +680,7 @@ Unregisters the observer used to listen for ability start or exit events.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. It is fixed at **'abilityForegroundState'**.|
-| observer | [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver-sys) | No| Observer used to listen for ability start or exit events. If this parameter is not set, all observers associated with the specified event are deregistered. If this parameter is set, only the specified observer is deregistered.|
+| observer | [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver-sys.md) | No| Observer used to listen for ability start or exit events. If this parameter is not set, all observers associated with the specified event are deregistered. If this parameter is set, only the specified observer is deregistered.|
 
 **Error codes**
 
@@ -977,5 +977,74 @@ try {
   let code = (err as BusinessError).code;
   let message = (err as BusinessError).message;
   console.error(`setResidentProcessEnabled failed, code is ${code}, message is ${message}`);
+}
+```
+
+## AtomicServiceStartupRule<sup>16+</sup>
+
+Describes the rule for launching an embedded atomic service.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Name| Type| Read-Only| Optional| Description|
+| -------- | ---------| ---- | ---- | --------- |
+| isOpenAllowed | boolean   | Yes  | No  | Whether launching the atomic service is allowed.|
+| isEmbeddedAllowed | boolean   | Yes  | No | Whether launching the embedded atomic service is allowed.         |
+
+## abilityManager.queryAtomicServiceStartupRule<sup>16+</sup>
+
+queryAtomicServiceStartupRule(context: Context, appId: string): Promise\<AtomicServiceStartupRule>
+
+Obtains the rule for launching an [EmbeddableUIAbility](js-apis-app-ability-embeddableUIAbility.md) in embedded mode. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------- | -------- | -------- | -------- |
+| context | [Context](js-apis-inner-application-context.md) | Yes| Context of the caller.<br>**Note**: Currently, only [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) is supported.|
+| appId | string | Yes| Unique ID of the application, which is allocated by the cloud.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<[AtomicServiceStartupRule](#atomicservicestartuprule16)> | Promise used to return the rule for launching the embedded atomic service.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801 | Capability not support. |
+| 16000050 | Internal error. |
+
+**Example**
+
+```ts
+import { abilityManager, UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onForeground() {
+    let appId: string = '6918661953712445909';
+    try {
+      abilityManager.queryAtomicServiceStartupRule(this.context, appId).then((data: abilityManager.AtomicServiceStartupRule) => {
+        console.info(`queryAtomicServiceStartupRule data: ${JSON.stringify(data)}`);
+      }).catch((err: BusinessError) => {
+        console.error(`queryAtomicServiceStartupRule failed, code is ${err.code}, message is ${err.message}`);
+      });
+    } catch (err) {
+      // Process input parameter errors.
+      console.error(`param is invalid, code is ${err.code}, message is ${err.message}`);
+    }
+  }
 }
 ```

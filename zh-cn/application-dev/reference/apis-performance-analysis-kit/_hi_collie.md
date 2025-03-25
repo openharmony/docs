@@ -51,8 +51,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [HiCollie_ErrorCode](#hicollie_errorcode) {<br/>HICOLLIE_SUCCESS = 0, HICOLLIE_INVALID_ARGUMENT = 401, HICOLLIE_WRONG_THREAD_CONTEXT = 29800001, HICOLLIE_REMOTE_FAILED = 29800002,<br/>HICOLLIE_INVALID_TIMER_NAME = 29800003, HICOLLIE_INVALID_TIMEOUT_VALUE = 29800004, HICOLLIE_WRONG_PROCESS_CONTEXT = 29800005, HICOLLIE_WRONG_TIMER_ID_OUTPUT_PARAM = 29800006<br/>} | 错误码定义。  | 
-| [HiCollie_Flag](#hicollie_flag) { HICOLLIE_FLAG_DEFAULT = (~0), HICOLLIE_FLAG_NOOP = (0), HICOLLIE_FLAG_LOG = (1 &lt;&lt; 0), HICOLLIE_FLAG_RECOVERY = (1 &lt;&lt; 1) } | 定义函数执行超时时发生的动作。  | 
+| [HiCollie_ErrorCode](#hicollie_errorcode) {<br/>HICOLLIE_SUCCESS = 0, <br/>HICOLLIE_INVALID_ARGUMENT = 401, <br/>HICOLLIE_WRONG_THREAD_CONTEXT = 29800001, <br/>HICOLLIE_REMOTE_FAILED = 29800002, <br/>HICOLLIE_INVALID_TIMER_NAME = 29800003, <br/>HICOLLIE_INVALID_TIMEOUT_VALUE = 29800004, <br/>HICOLLIE_WRONG_PROCESS_CONTEXT = 29800005, <br/>HICOLLIE_WRONG_TIMER_ID_OUTPUT_PARAM = 29800006<br/>} | 错误码定义。  | 
+| [HiCollie_Flag](#hicollie_flag) {<br/>HICOLLIE_FLAG_DEFAULT = (~0), <br/>HICOLLIE_FLAG_NOOP = (0), <br/>HICOLLIE_FLAG_LOG = (1 &lt;&lt; 0), <br/>HICOLLIE_FLAG_RECOVERY = (1 &lt;&lt; 1)<br/>} | 定义函数执行超时时发生的动作。  | 
 
 
 ### 函数
@@ -100,7 +100,7 @@ typedef enum HiCollie_Flag HiCollie_Flag
 **描述**
 定义函数执行超时时发生的动作。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### HiCollie_SetTimerParam
@@ -111,7 +111,7 @@ typedef struct HiCollie_SetTimerParamHiCollie_SetTimerParam
 **描述**
 定义OH_HiCollie_SetTimer函数的输入参数。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_HiCollie_BeginFunc
@@ -139,7 +139,7 @@ typedef void(* OH_HiCollie_Callback) (void *)
 **描述**
 超时发生时执行的回调函数。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_HiCollie_EndFunc
@@ -195,10 +195,10 @@ enum HiCollie_ErrorCode
 | HICOLLIE_INVALID_ARGUMENT  | 无效参数。可能的原因：1. 参数传值问题；2. 参数类型问题。|
 | HICOLLIE_WRONG_THREAD_CONTEXT  | 检测的线程错误：在业务线程中调用。|
 | HICOLLIE_REMOTE_FAILED  | 远程调用错误。 |
-| HICOLLIE_INVALID_TIMER_NAME  | 无效的函数执行超时检测器名称。<br/>**起始版本：** 16 |
-| HICOLLIE_INVALID_TIMEOUT_VALUE  | 无效的函数执行超时时间阈值。<br/>**起始版本：** 16 |
-| HICOLLIE_WRONG_PROCESS_CONTEXT  | 函数执行超时检测接入进程错误。<br/>**起始版本：** 16 |
-| HICOLLIE_WRONG_TIMER_ID_OUTPUT_PARAM  | 错误的函数执行超时检测id参数。<br/>**起始版本：** 16 |
+| HICOLLIE_INVALID_TIMER_NAME  | 无效的函数执行超时检测器名称。<br/>**起始版本：** 18 |
+| HICOLLIE_INVALID_TIMEOUT_VALUE  | 无效的函数执行超时时间阈值。<br/>**起始版本：** 18 |
+| HICOLLIE_WRONG_PROCESS_CONTEXT  | 函数执行超时检测接入进程错误。<br/>**起始版本：** 18 |
+| HICOLLIE_WRONG_TIMER_ID_OUTPUT_PARAM  | 错误的函数执行超时检测id参数。<br/>**起始版本：** 18 |
 
 ### HiCollie_Flag
 
@@ -208,7 +208,7 @@ enum HiCollie_Flag
 **描述**
 定义函数执行超时时发生的动作。
 
-**起始版本：** 16
+**起始版本：** 18
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -233,7 +233,7 @@ void OH_HiCollie_CancelTimer (int id)
 
 若取消不及时，即超时发生可执行回调函数，特定行为信号下生成超时故障日志，调用耗时函数后立即取消计时器。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -302,7 +302,7 @@ HiCollie_ErrorCode OH_HiCollie_Init_StuckDetectionWithTimeout (OH_HiCollie_Task 
 **描述**
 注册应用业务线程卡死的周期性检测任务。用户实现回调函数, 用于定时检测业务线程卡死情况。开发者可以设置卡死检测时间。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -357,7 +357,7 @@ HiCollie_ErrorCode OH_HiCollie_SetTimer (HiCollie_SetTimerParam param, int * id 
 **描述**
 注册函数执行时长检测定时器。结合OH_HiCollie_CancelTimer接口配套使用，应在调用耗时的函数之前使用。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 

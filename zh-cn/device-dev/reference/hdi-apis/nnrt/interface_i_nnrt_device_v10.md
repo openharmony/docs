@@ -19,17 +19,17 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [GetDeviceName](#getdevicename) ([out] String name) | 获取设备名称  | 
-| [GetVendorName](#getvendorname) ([out] String name) | 获取设备商名称  | 
-| [GetDeviceType](#getdevicetype) ([out] enum [DeviceType](_n_n_rt_v10.md#devicetype) deviceType) | 获取设备类型  | 
-| [GetDeviceStatus](#getdevicestatus) ([out] enum [DeviceStatus](_n_n_rt_v10.md#devicestatus) status) | 获取设备当前状态  | 
-| [GetSupportedOperation](#getsupportedoperation) ([in] struct [Model](_model_v10.md) model, [out] boolean[] ops) | 查询设备对指定模型的算子支持程度  | 
+| [GetDeviceName](#getdevicename) ([out] String name) | 获取设备名称。  | 
+| [GetVendorName](#getvendorname) ([out] String name) | 获取设备商名称。  | 
+| [GetDeviceType](#getdevicetype) ([out] enum [DeviceType](_n_n_rt_v10.md#devicetype) deviceType) | 获取设备类型。  | 
+| [GetDeviceStatus](#getdevicestatus) ([out] enum [DeviceStatus](_n_n_rt_v10.md#devicestatus) status) | 获取设备当前状态。  | 
+| [GetSupportedOperation](#getsupportedoperation) ([in] struct [Model](_model_v10.md) model, [out] boolean[] ops) | 查询设备对指定模型的算子支持程度。  | 
 | [IsFloat16PrecisionSupported](#isfloat16precisionsupported) ([out] boolean isSupported) | 查询设备是否支持以Float16精度运算Float32的模型。  | 
 | [IsPerformanceModeSupported](#isperformancemodesupported) ([out] boolean isSupported) | 查询设备是否支持性能偏好设置，性能偏好的定义可以参考[PerformanceMode](_n_n_rt_v10.md#performancemode)。  | 
 | [IsPrioritySupported](#isprioritysupported) ([out] boolean isSupported) | 查询设备是否支持任务优先级设置，优先级的定义可以参考[Priority](_n_n_rt_v10.md#priority)。  | 
 | [IsDynamicInputSupported](#isdynamicinputsupported) ([out] boolean isSupported) | 查询设备是否支持变尺寸输入，变尺寸输入意味着同一个模型的不同次运算输入的形状可以不一样。  | 
-| [PrepareModel](#preparemodel) ([in] struct [Model](_model_v10.md) model, [in] struct [ModelConfig](_model_config_v10.md) config, [out] [IPreparedModel](interface_i_prepared_model_v10.md) preparedModel) | 编译模型  | 
-| [IsModelCacheSupported](#ismodelcachesupported) ([out] boolean isSupported) | 查询是否支持模型缓存功能  | 
+| [PrepareModel](#preparemodel) ([in] struct [Model](_model_v10.md) model, [in] struct [ModelConfig](_model_config_v10.md) config, [out] [IPreparedModel](interface_i_prepared_model_v10.md) preparedModel) | 编译模型。  | 
+| [IsModelCacheSupported](#ismodelcachesupported) ([out] boolean isSupported) | 查询是否支持模型缓存功能。  | 
 | [PrepareModelFromModelCache](#preparemodelfrommodelcache) ([in] struct [SharedBuffer](_shared_buffer_v10.md)[] modelCache, [in] struct [ModelConfig](_model_config_v10.md) config, [out] [IPreparedModel](interface_i_prepared_model_v10.md) preparedModel) | 加载模型缓存，该模型缓存是通过ExportModelCache接口导出的。  | 
 | [AllocateBuffer](#allocatebuffer) ([in] unsigned int length, [out] struct [SharedBuffer](_shared_buffer_v10.md) buffer) | 申请设备共享内存，以文件描述符的形式返回，共享内存主要用于推理输入输出数据的快速传递。  | 
 | [ReleaseBuffer](#releasebuffer) ([in] struct [SharedBuffer](_shared_buffer_v10.md) buffer) | 释放共享内存。  | 
@@ -58,9 +58,9 @@ INnrtDevice::AllocateBuffer ([in] unsigned int length, [out] struct SharedBuffer
 
 **返回：**
 
-返回0表示成功
+返回0表示成功。
 
-返回负数表示失败
+返回负数表示失败。
 
 
 ### GetDeviceName()
@@ -70,7 +70,7 @@ INnrtDevice::GetDeviceName ([out] String name)
 ```
 **描述**
 
-获取设备名称
+获取设备名称。
 
 **起始版本：** 3.2
 
@@ -78,13 +78,13 @@ INnrtDevice::GetDeviceName ([out] String name)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| name | 设备名称 | 
+| name | 设备名称。 | 
 
 **返回：**
 
-返回0表示成功
+返回0表示成功。
 
-返回负数表示失败
+返回负数表示失败。
 
 
 ### GetDeviceStatus()
@@ -94,7 +94,7 @@ INnrtDevice::GetDeviceStatus ([out] enum DeviceStatus status)
 ```
 **描述**
 
-获取设备当前状态
+获取设备当前状态。
 
 **起始版本：** 3.2
 
@@ -106,9 +106,9 @@ INnrtDevice::GetDeviceStatus ([out] enum DeviceStatus status)
 
 **返回：**
 
-返回0表示成功
+返回0表示成功。
 
-返回负数表示失败
+返回负数表示失败。
 
 
 ### GetDeviceType()
@@ -118,7 +118,7 @@ INnrtDevice::GetDeviceType ([out] enum DeviceType deviceType)
 ```
 **描述**
 
-获取设备类型
+获取设备类型。
 
 **起始版本：** 3.2
 
@@ -130,9 +130,9 @@ INnrtDevice::GetDeviceType ([out] enum DeviceType deviceType)
 
 **返回：**
 
-返回0表示成功
+返回0表示成功。
 
-返回负数表示失败
+返回负数表示失败。
 
 
 ### GetSupportedOperation()
@@ -142,7 +142,7 @@ INnrtDevice::GetSupportedOperation ([in] struct Model model, [out] boolean[] ops
 ```
 **描述**
 
-查询设备对指定模型的算子支持程度
+查询设备对指定模型的算子支持程度。
 
 **起始版本：** 3.2
 
@@ -155,9 +155,9 @@ INnrtDevice::GetSupportedOperation ([in] struct Model model, [out] boolean[] ops
 
 **返回：**
 
-返回0表示成功
+返回0表示成功。
 
-返回负数表示失败
+返回负数表示失败。
 
 
 ### GetVendorName()
@@ -167,7 +167,7 @@ INnrtDevice::GetVendorName ([out] String name)
 ```
 **描述**
 
-获取设备商名称
+获取设备商名称。
 
 **起始版本：** 3.2
 
@@ -175,13 +175,13 @@ INnrtDevice::GetVendorName ([out] String name)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| name | 设备商名称 | 
+| name | 设备商名称。 | 
 
 **返回：**
 
-返回0表示成功
+返回0表示成功。
 
-返回负数表示失败
+返回负数表示失败。
 
 
 ### IsDynamicInputSupported()
@@ -205,9 +205,9 @@ INnrtDevice::IsDynamicInputSupported ([out] boolean isSupported)
 
 **返回：**
 
-返回0表示成功
+返回0表示成功。
 
-返回负数表示失败
+返回负数表示失败。
 
 
 ### IsFloat16PrecisionSupported()
@@ -229,9 +229,9 @@ INnrtDevice::IsFloat16PrecisionSupported ([out] boolean isSupported)
 
 **返回：**
 
-返回0表示成功
+返回0表示成功。
 
-返回负数表示失败
+返回负数表示失败。
 
 
 ### IsModelCacheSupported()
@@ -241,7 +241,7 @@ INnrtDevice::IsModelCacheSupported ([out] boolean isSupported)
 ```
 **描述**
 
-查询是否支持模型缓存功能
+查询是否支持模型缓存功能。
 
 若支持，则需要实现PrepareModelFromModelCache和ExportModelCache两个接口。
 
@@ -255,9 +255,9 @@ INnrtDevice::IsModelCacheSupported ([out] boolean isSupported)
 
 **返回：**
 
-返回0表示成功
+返回0表示成功。
 
-返回负数表示失败
+返回负数表示失败。
 
 
 ### IsPerformanceModeSupported()
@@ -279,9 +279,9 @@ INnrtDevice::IsPerformanceModeSupported ([out] boolean isSupported)
 
 **返回：**
 
-返回0表示成功
+返回0表示成功。
 
-返回负数表示失败
+返回负数表示失败。
 
 
 ### IsPrioritySupported()
@@ -303,9 +303,9 @@ INnrtDevice::IsPrioritySupported ([out] boolean isSupported)
 
 **返回：**
 
-返回0表示成功
+返回0表示成功。
 
-返回负数表示失败
+返回负数表示失败。
 
 
 ### PrepareModel()
@@ -357,9 +357,9 @@ INnrtDevice::PrepareModelFromModelCache ([in] struct SharedBuffer[] modelCache, 
 
 **返回：**
 
-返回0表示成功
+返回0表示成功。
 
-返回负数表示失败
+返回负数表示失败。
 
 
 ### ReleaseBuffer()
@@ -381,6 +381,6 @@ INnrtDevice::ReleaseBuffer ([in] struct SharedBuffer buffer)
 
 **返回：**
 
-返回0表示成功
+返回0表示成功。
 
-返回负数表示失败
+返回负数表示失败。

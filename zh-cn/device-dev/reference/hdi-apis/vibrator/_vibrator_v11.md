@@ -60,9 +60,9 @@ enum HdfEffectType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| HDF_EFFECT_TYPE_TIME | 表示给定时间序列的时间效果类型 | 
-| HDF_EFFECT_TYPE_PRIMITIVE | 表示给定基本振动序列的基本振动效果类型 | 
-| HDF_EFFECT_TYPE_BUTT | 表示效果类型无效 | 
+| HDF_EFFECT_TYPE_TIME | 表示给定时间序列的时间效果类型。 | 
+| HDF_EFFECT_TYPE_PRIMITIVE | 表示给定基本振动序列的基本振动效果类型。 | 
+| HDF_EFFECT_TYPE_BUTT | 表示效果类型无效。 | 
 
 
 ### HdfVibratorMode

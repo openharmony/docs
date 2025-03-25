@@ -21,7 +21,7 @@ Enumerates the action constants of the **Want** object. **action** specifies the
 | Name     | Value         | Description    |
 | ------------ | ------------------ | ---------------------- |
 | ACTION_HOME                                 | ohos.want.action.home                    | Action of returning to the home page.                                       |
-| ACTION_DIAL                                 | ohos.want.action.dial                    | Action of launching the numeric keypad.                          |
+| ACTION_DIAL                                 | ohos.want.action.dial                    | Action of launching the numeric keypad.                         |
 | ACTION_SEARCH                               | ohos.want.action.search                  | Action of launching the search function.                                |
 | ACTION_WIRELESS_SETTINGS                    | ohos.settings.wireless                   | Action of launching the UI that provides wireless network settings, for example, Wi-Fi options.   |
 | ACTION_MANAGE_APPLICATIONS_SETTINGS         | ohos.settings.manage.applications        | Action of launching the UI for managing installed applications.                 |
@@ -84,4 +84,4 @@ Enumerates the entity constants of the **Want** object. **entity** specifies add
 | FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | Clears other operation missions. This flag can be set for **Want** passed in [startAbility](js-apis-ability-featureAbility.md#startability). It must be used together with **FLAG_ABILITY_NEW_MISSION**.|
 | FLAG_ABILITY_NEW_MISSION             | 0x10000000 | Creates a mission on the history mission stack.                              |
 | FLAG_ABILITY_MISSION_TOP             | 0x20000000 | Reuses an ability instance if it is on the top of an existing mission stack; creates an ability instance otherwise.|
-| FLAG_ABILITY_ON_COLLABORATE<sup>16+</sup> | 0x00002000 | In multi-device collaboration scenario, the caller application must initiate a request through the DMS, with this flag included in the **Flags** field, in order to invoke the lifecycle callback [onCollaborate(wantParam)](js-apis-app-ability-uiAbility.md#uiabilityoncollaborate) of the target application.|
+| FLAG_ABILITY_ON_COLLABORATE<sup>16+</sup> | 0x00002000 | In multi-device collaboration scenario, the caller application must initiate a request through the DMS, with this flag included in the **Flags** field, in order to invoke the lifecycle callback [onCollaborate(wantParam)](js-apis-app-ability-uiAbility.md#uiabilityoncollaborate16) of the target application.|

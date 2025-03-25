@@ -51,10 +51,10 @@ import { hiTraceChain } from '@kit.PerformanceAnalysisKit';
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| DEFAULT  | 0 | 缺省通信类型    |
-| THREAD   | 1 | 线程间通信类型  |
-| PROCESS  | 2 | 进程间通信类型  |
-| DEVICE   | 3 | 设备间通信类型  |
+| DEFAULT  | 0 | 缺省通信类型。    |
+| THREAD   | 1 | 线程间通信类型。  |
+| PROCESS  | 2 | 进程间通信类型。  |
+| DEVICE   | 3 | 设备间通信类型。  |
 
 ## HiTraceId
 

@@ -2,7 +2,6 @@
 
 对应的算法规格请查看[对称密钥加解密算法规格：3DES](crypto-sym-encrypt-decrypt-spec.md#3des)。
 
-
 ## 在CMake脚本中链接相关动态库
 ```txt
 target_link_libraries(entry PUBLIC libohcrypto.so)
@@ -16,10 +15,7 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
    
    如何生成3DES对称密钥，开发者可参考下文示例，并结合[对称密钥生成和转换规格：3DES](crypto-sym-key-generation-conversion-spec.md#3des)和[指定二进制数据转换对称密钥](crypto-convert-binary-data-to-sym-key-ndk.md)理解，参考文档与当前示例可能存在入参差异，请在阅读时注意区分。
 
-
 **加密**
-
-
 
 1. 调用[OH_CryptoSymCipher_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_create)，指定字符串参数'3DES192|ECB|PKCS7'，创建对称密钥类型为3DES192、分组模式为ECB、填充模式为PKCS7的Cipher实例，用于完成加密操作。
 
@@ -36,7 +32,6 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
    
    - 如果使用update接口传入数据，此处data传入null。如果使用final接口传入数据，此处data传入明文数据。
    - final输出结果可能为null，在访问具体数据前，需要先判断结果是否为null，避免产生异常。
-
 
 **解密**
 
@@ -59,7 +54,6 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 
 调用[OH_CryptoSymKeyGenerator_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_destroy)、[OH_CryptoSymCipher_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_destroy)、[OH_CryptoSymKey_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkey_destroy)、[OH_Crypto_FreeDataBlob](../../reference/apis-crypto-architecture-kit/_crypto_common_api.md#oh_crypto_freedatablob)释放申请的内存，销毁对象。
 
-
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_sym_cipher.h"
@@ -76,7 +70,7 @@ static OH_Crypto_ErrCode doTest3DesEcb()
     Crypto_DataBlob encData = {.data = nullptr, .len = 0};
     Crypto_DataBlob decData = {.data = nullptr, .len = 0};
 
-    // 随机生成对称密钥
+    // 随机生成对称密钥。
     OH_Crypto_ErrCode ret;
     ret = OH_CryptoSymKeyGenerator_Create("3DES192", &genCtx);
     if (ret != CRYPTO_SUCCESS) {
@@ -87,7 +81,7 @@ static OH_Crypto_ErrCode doTest3DesEcb()
         goto end;
     }
 
-    // 加密操作
+    // 加密操作。
     ret = OH_CryptoSymCipher_Create("3DES192|ECB|PKCS7", &encCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
@@ -101,7 +95,7 @@ static OH_Crypto_ErrCode doTest3DesEcb()
         goto end;
     }
 
-    // 解密操作
+    // 解密操作。
     ret = OH_CryptoSymCipher_Create("3DES192|ECB|PKCS7", &decCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;

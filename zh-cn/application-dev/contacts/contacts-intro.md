@@ -44,10 +44,10 @@ Contacts Kit可以帮助开发者轻松实现联系人的增删改查等功能�
      isMultiSelect:false
    },(err: BusinessError, data) => {
        if (err) {
-         console.error(`selectContact callback: err->${JSON.stringify(err)}`);
+         console.error('selectContact callback, errCode:' + err.code + ', errMessage:' + err.message);
            return;
        }
-       console.log(`selectContact callback: success data->${JSON.stringify(data)}`);
+       console.info(`selectContact callback: success data->${JSON.stringify(data)}`);
    });
 
    ```
@@ -118,10 +118,10 @@ Contacts Kit可以帮助开发者轻松实现联系人的增删改查等功能�
         try {
           contact.addContact(context, contactInfo, (err, data) => {
             if (err) {
-              console.log('addContact callback: err->' + JSON.stringify(err));
+              console.error('addContact callback, errCode:' + err.code + ', errMessage:' + err.message);
               return;
             }
-            console.log('addContact callback: data->' + JSON.stringify(data));
+            console.info('addContact callback: data->' + JSON.stringify(data));
           })
         } catch (err) {
           console.error('errCode: ' + err.code + ', errMessage: ' + err.message);

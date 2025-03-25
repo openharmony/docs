@@ -61,7 +61,7 @@ export default class MyUiServiceExtensionAbility extends UIServiceExtensionAbili
       'proxyData': 'proxyData'
     };
     try {
-      // Send data to the UIServiceExtensionAbility client.
+      // Send data to the UIServiceExtensionAbility server.
       proxy.sendData(formData);
     } catch (err) {
       console.log(TAG + `sendData failed ${JSON.stringify(err.message)}`);

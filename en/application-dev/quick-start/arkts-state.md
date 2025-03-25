@@ -65,54 +65,55 @@ Not all changes to state variables cause UI updates. Only changes that can be ob
   ```
 
 - When the decorated variable is of the class or Object type, its value change and value changes of all its properties, that is, the properties that **Object.keys(observedObject)** returns, can be observed. Below are some examples:
-    Declare the **Person** and **Model** classes.
+  
+  Declare the **Person** and **Model** classes.
 
-    ```ts
-      class Person {
-        public value: string;
-      
-        constructor(value: string) {
-          this.value = value;
-        }
-      }
-      
-      class Model {
-        public value: string;
-        public name: Person;
-        constructor(value: string, person: Person) {
-          this.value = value;
-          this.name = person;
-        }
-      }
-    ```
+  ```ts
+  class Person {
+    public value: string;
+  
+    constructor(value: string) {
+      this.value = value;
+    }
+  }
+  
+  class Model {
+    public value: string;
+    public name: Person;
+    constructor(value: string, person: Person) {
+      this.value = value;
+      this.name = person;
+    }
+  }
+  ```
 
-    Use \@State to decorate a variable of the Model class object type.
+  Use \@State to decorate a variable of the Model class object type.
 
-    ```ts
-    // Class type
-    @State title: Model = new Model('Hello', new Person('World'));
-    ```
+  ```ts
+  // Class type
+  @State title: Model = new Model('Hello', new Person('World'));
+  ```
 
-    Assign a value to the \@State decorated variable.
+  Assign a value to the \@State decorated variable.
 
-    ```ts
-    // Assign a value to the class object.
-    this.title = new Model('Hi', new Person('ArkUI'));
-    ```
+  ```ts
+  // Assign a value to the class object.
+  this.title = new Model('Hi', new Person('ArkUI'));
+  ```
 
-    Assign a value to a property of the \@State decorated variable.
+  Assign a value to a property of the \@State decorated variable.
 
-    ```ts
-    // Assign a value to a property of the class object.
-    this.title.value = 'Hi';
-    ```
+  ```ts
+  // Assign a value to a property of the class object.
+  this.title.value = 'Hi';
+  ```
 
-    The value assignment of the nested property cannot be observed.
+  The value assignment of the nested property cannot be observed.
 
-    ```ts
-    // The value assignment of the nested property cannot be observed.
-    this.title.name.value = 'ArkUI';
-    ```
+  ```ts
+  // The value assignment of the nested property cannot be observed.
+  this.title.name.value = 'ArkUI';
+  ```
 - When the decorated variable is of the array type, the addition, deletion, and updates of array items can be observed. Below are some examples:
   Declare the **Model** class.
 
@@ -224,13 +225,13 @@ Not all changes to state variables cause UI updates. Only changes that can be ob
 
 1. Variables decorated by \@State must be initialized. Otherwise, an error is reported during compilation.
 
-```ts
-// Incorrect format. An error is reported during compilation.
-@State count: number;
+  ```ts
+  // Incorrect format. An error is reported during compilation.
+  @State count: number;
 
-// Correct format.
-@State count: number = 10;
-```
+  // Correct format.
+  @State count: number = 10;
+  ```
 
 2. \@State cannot decorate variables of the function type. Otherwise, the framework throws a runtime error.
 
@@ -433,7 +434,7 @@ struct SetSample {
 
 ## Union Type
 
-\@State supports **undefined**, **null**, and union types. In the following example, the type of **count** is number | undefined. If the property or type of **count** is changed when the button is clicked, the change will be synced to the view.
+\@State supports **undefined**, **null**, and union types. In the following example, the type of **count** is **number | undefined**. If the property or type of **count** is changed when the button is clicked, the change will be synced to the view.
 
 ```ts
 @Entry
@@ -474,7 +475,7 @@ Incorrect usage:
 ```ts
 
 export default class PlayDetailViewModel {
-  coverUrl: string = '#00ff00'
+  coverUrl: string = '#00ff00';
 
   changeCoverUrl= ()=> {
     this.coverUrl = '#00F5FF';
@@ -484,7 +485,7 @@ export default class PlayDetailViewModel {
 ```
 
 ```ts
-import PlayDetailViewModel from './PlayDetailViewModel'
+import PlayDetailViewModel from './PlayDetailViewModel';
 
 @Entry
 @Component
@@ -515,17 +516,17 @@ Example:
 ```ts
 
 export default class PlayDetailViewModel {
-  coverUrl: string = '#00ff00'
+  coverUrl: string = '#00ff00';
 
   changeCoverUrl= (model:PlayDetailViewModel)=> {
-    model.coverUrl = '#00F5FF'
+    model.coverUrl = '#00F5FF';
   }
 
 }
 ```
 
 ```ts
-import PlayDetailViewModel from './PlayDetailViewModel'
+import PlayDetailViewModel from './PlayDetailViewModel';
 
 @Entry
 @Component
@@ -550,13 +551,13 @@ struct PlayDetailPage {
 }
 ```
 
-### State Variable Changes in the Constructor Not Taking Effect
+### Capturing this in constructor() Fails to Observe Variable Changes
 
 In state management, classes are wrapped with a proxy. When a member variable of a class is changed in a component, the proxy intercepts the change. When the value in the data source is changed, the proxy notifies the bound component of the change. In this way, the change can be observed and trigger UI re-rendering.
 
-If you initialize the arrow function for modifying **success** in the constructor, **this** points to the original **TestModel** class, which has not been wrapped with a proxy. As a result, the change can be observed through query event triggering.
+When an arrow function for changing **success** is initialized in the **constructor** function, the **TestModel** instance is not encapsulated by the proxy and is pointed by **this**. Therefore, the change of the query event triggered later cannot be observed by the state management.
 
-To enable the change to be observable, place the arrow function for modifying **success** in **query**. As **query** is wrapped with a proxy and has an object initialized, **this** points to the proxy object.
+When the arrow function for changing **success** in **query**, the **TestModel** object has been initialized and encapsulated by the proxy. Call **this.viewModel.query()** and **this** in the function points to the **viewModel** object. In this case, the change of **isSuccess** is observable, so that the change of the query event can be observed by the state management.
 
 [Incorrect Usage]
 
@@ -666,115 +667,115 @@ In the preceding example, the state variable is changed through a method of the 
 Example 1
 
 ```ts
-class Parent {
-  son: string = '000';
+class Info {
+  address: string = 'Hangzhou'
 }
 
 @Entry
 @Component
 struct Test {
-  @State son: string = '111';
-  @State parent: Parent = new Parent();
+  @State message: string =' Shanghai'
+  @State info: Info = new Info();
 
   aboutToAppear(): void {
-    this.parent.son = this.son;
+    this.info.address = this.message;
   }
 
   build() {
     Column() {
-      Text(`${this.son}`);
-      Text(`${this.parent.son}`);
+      Text(`${this.message}`);
+      Text(`${this.info.address}`);
       Button('change')
         .onClick(() => {
-          this.parent.son = '222';
+          this.info.address = 'Beijing'
         })
     }
   }
 }
 ```
 
-In the preceding example, clicking **Button('change')** changes the second-line text from **'111'** to **'222'**, but does not change the first-line text. This is because **son** is of the primitive string type, for which a shallow copy is performed. In shallow copy, clicking the button changes the value of **son** in **parent**, but the value of **this.son** remains unchanged.
+In the preceding example, when **Button('change')** is clicked, only the second **Text** component is re-rendered. Because **message** is of the simple type string, the value of this.message is not changed while the value of **address** in **info** is changed when the button is clicked.
 
 Example 2
 
 ```ts
-class Son {
-  son: string = '000';
+class Info {
+  address: string = 'Hangzhou'
 
-  constructor(son: string) {
-    this.son = son;
+  constructor(address: string) {
+    this.address = address;
   }
 }
 
-class Parent {
-  son: Son = new Son('111');
+class User {
+  info: Info = new Info('Tianjin');
 }
 
 @Entry
 @Component
 struct Test {
-  @State son: Son = new Son('222');
-  @State parent: Parent = new Parent();
+  @State info: Info = new Info('Shanghai');
+  @State user: User = new User();
 
   aboutToAppear(): void {
-    this.parent.son = this.son;
+    this.user.info = this.info;
   }
 
   build() {
     Column() {
-      Text(`${this.son.son}`);
-      Text(`${this.parent.son.son}`);
+      Text(`${this.info.address}`);
+      Text(`${this.user.info.address}`);
       Button('change')
         .onClick(() => {
-          this.parent.son.son = '333';
+          this.user.info.address = 'Beijing'
         })
     }
   }
 }
 ```
 
-In the preceding example, a reference of **son** is assigned to the **son** property of **parent** in **aboutToAppear**. In this case, if you click the button to change the property in **son**, the first **Text** component is re-rendered, but not the second **Text** component, which is unable to observe changes at the second layer.
+In the preceding example, the reference of **info** is assigned to member property **info** of **user** in **aboutToAppear**. Therefore, when the button is clicked to change the property in **info**, the first **Text** component is re-rendered. However, only the first layer of the second **Text** component is observable, so the second **Text** component is not re-rendered.
 
 Example 3
 
 ```ts
-class Son {
-  son: string = '000';
+class Info {
+  address: string = 'Hangzhou'
 
-  constructor(son: string) {
-    this.son = son;
+  constructor(address: string) {
+    this.address = address;
   }
 }
 
-class Parent {
-  son: Son = new Son('111');
+class User {
+  info: Info = new Info('Tianjin');
 }
 
 @Entry
 @Component
 struct Test {
-  @State son: Son = new Son('222');
-  @State parent: Parent = new Parent();
+  @State info: Info = new Info('Shanghai');
+  @State user: User = new User();
 
   aboutToAppear(): void {
-    this.parent.son = this.son;
+    this.user.info = this.info;
   }
 
   build() {
     Column() {
-      Text(`${this.son.son}`);
-      Text(`${this.parent.son.son}`);
+      Text(`${this.info.address}`);
+      Text(`${this.user.info.address}`);
       Button('change')
         .onClick(() => {
-          this.parent.son = new Son('444');
-          this.parent.son.son = '333';
+          this.user.info = new Info('Guangzhou');
+          this.user.info.address = 'Beijing'
         })
     }
   }
 }
 ```
 
-In the preceding example, clicking **Button('change')** changes the second-line text from **'222'** to **'333'**, but does not change the first-line text. This is because **this.parent.son = new Son('444')'** is executed after the button is clicked, which means that a **Son** object is created, and then **this.parent.son.son = '333'** is executed. As a result, clicking the button changes the value of **son** in the new **Son** object, and the one in the original Son object is not affected.
+In the preceding example, if you click **Button('change')**, only the second **Text** component is re-rendered. This is because after the button is clicked, **this.user.info = new Info('Guangzhou')** creates a new **Info** object, and then **this.user.info.address = 'Beijing'** changes the value of **address** in the newly created **Info** object. However, the value of **address** in the original **Info** object is not changed.
 
 ### Repeated Value Changes to State Variables by Complex Constants Trigger Re-rendering
 

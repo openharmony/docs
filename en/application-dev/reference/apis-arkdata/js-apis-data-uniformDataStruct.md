@@ -178,3 +178,107 @@ let contentForm : uniformDataStruct.ContentForm = {
 }
 console.info('contentForm.uniformDataType: ' + contentForm.uniformDataType);
 ```
+
+## Form<sup>15+</sup>
+
+Represents data of the widget type defined by the system.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+| Name        | Type  | Read-Only| Optional| Description                                                                                                                            |
+|------------| ------ | ---- |----|--------------------------------------------------------------------------------------------------------------------------------|
+| uniformDataType | 'openharmony.form'| Yes  | No | Uniform data type, which has a fixed value of **openharmony.form**. For details, see [UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype).
+| formId     | number | No  | No | Widget ID.|
+| formName   | string | No  | No | Widget name.|
+| bundleName | string | No  | No | Bundle to which the widget belongs.|
+| abilityName| string | No  | No | Ability name corresponding to the widget.|
+| module     | string | No  | No | Module to which the widget belongs.|
+| details | Record<string, number \| string \| Uint8Array> | No  | Yes  | Object of the dictionary type used to describe the icon. The key is of the string type, and the value can be a number, a string, or a Uint8Array. By default, it is an empty dictionary object.|
+
+
+**Example**
+
+```ts
+let u8Array = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+let formDetails : Record<string, number | string | Uint8Array> = {
+  'formKey1': 123,
+  'formKey2': 'formValue',
+  'formKey3': u8Array,
+}
+let form : uniformDataStruct.Form = {
+  uniformDataType : 'openharmony.form',
+  formId : 1,
+  formName : 'formName',
+  bundleName : 'com.xx.app',
+  abilityName : 'abilityName',
+  module : 'module',
+  details : formDetails
+}
+console.info('form.uniformDataType: ' + form.uniformDataType);
+```
+
+## FileUri<sup>15+</sup>
+
+Represents data of the file URI type.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+| Name        | Type  | Read-Only| Optional| Description                                                                                                                            |
+|------------| ------ | ---- |----|--------------------------------------------------------------------------------------------------------------------------------|
+| uniformDataType | 'general.file-uri'| Yes  | No | Uniform data type, which has a fixed value of **general.file-uri**. For details, see [UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype).
+| oriUri     | string | No  | No | File URI.|
+| fileType   | string | No  | No | File type.|
+| details | Record<string, number \| string \| Uint8Array> | No  | Yes  | Object of the dictionary type used to describe the icon. The key is of the string type, and the value can be a number, a string, or a Uint8Array. By default, it is an empty dictionary object.|
+
+
+**Example**
+
+```ts
+let u8Array = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+let fileUriDetails : Record<string, number | string | Uint8Array> = {
+  'fileUriKey1': 123,
+  'fileUriKey2': 'fileUriValue',
+  'fileUriKey3': u8Array,
+}
+let fileUri : uniformDataStruct.FileUri = {
+  uniformDataType : 'general.file-uri',
+  oriUri : 'www.xx.com',
+  fileType : 'general.image',
+  details : fileUriDetails
+}
+console.info('fileUri.uniformDataType: ' + fileUri.uniformDataType);
+```
+
+## PixelMap<sup>15+</sup>
+
+Represents data of the pixel map type defined by the system.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+| Name        | Type  | Read-Only| Optional| Description                                                                                                                            |
+|------------| ------ | ---- |----|--------------------------------------------------------------------------------------------------------------------------------|
+| uniformDataType | 'openharmony.pixel-map'| Yes  | No | Uniform data type, which has a fixed value of **openharmony.pixel-map**. For details, see [UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype).
+| pixelMap     | image.PixelMap | No  | No | Binary data of the pixel map.|
+| details | Record<string, number \| string \| Uint8Array> | No  | Yes  | Object of the dictionary type used to describe the icon. The key is of the string type, and the value can be a number, a string, or a Uint8Array. By default, it is an empty dictionary object.|
+
+
+**Example**
+
+```ts
+import image from '@ohos.multimedia.image';
+
+let u8Array = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+let arrayBuffer = new ArrayBuffer(4*200*200);
+let opt : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 }, alphaType: 3 };
+let pixelMapDetails : Record<string, number | string | Uint8Array> = {
+  'pixelMapKey1': 123,
+  'pixelMapKey2': 'pixelMapValue',
+  'pixelMapKey3': u8Array,
+}
+let pixelMap : uniformDataStruct.PixelMap = {
+  uniformDataType : 'openharmony.pixel-map',
+  pixelMap : image.createPixelMapSync(arrayBuffer, opt),
+  details : pixelMapDetails
+}
+console.info('pixelMap.uniformDataType: ' + pixelMap.uniformDataType);
+```

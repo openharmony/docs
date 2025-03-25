@@ -16,7 +16,7 @@
 
 ## 概述
 
-\@Watch用于监听状态变量的变化，当状态变量变化时，\@Watch的回调方法将被调用。\@Watch在ArkUI框架内部判断数值有无更新使用的是严格相等（===），遵循严格相等规范。当在严格相等为false的情况下，就会触发\@Watch的回调。
+\@Watch用于监听状态变量的变化，当状态变量变化时，\@Watch的回调方法将被调用。\@Watch在ArkUI框架内部判断数值有无更新使用的是严格相等（===），遵循严格相等规范。当严格相等判断的结果是false（即不相等）的情况下，就会触发\@Watch的回调。
 
 
 ## 装饰器说明
@@ -345,12 +345,12 @@ struct UsePropertyName {
 
 1. 点击Button('Add apples')时，apple的值发生变化。
 
-2. 状态管理框架调用\@Watch函数countUpdated，发生变化的状态变量名为apple，满足if逻辑条件，fruit的值被改变；
+2. 状态管理框架调用\@Watch函数countUpdated，发生变化的状态变量名为apple，满足if逻辑条件，fruit的值被改变。
 
 3. 绑定了apple，fruit状态变量的Text重新渲染。
 
 4. 点击Button('Add cabbages')时，cabbage的值发生变化。
 
-5. 状态管理框架调用\@Watch函数countUpdated，发生变化的状态变量名为cabbage，不满足if逻辑条件，fruit的值不发生变化；
+5. 状态管理框架调用\@Watch函数countUpdated，发生变化的状态变量名为cabbage，不满足if逻辑条件，fruit的值不发生变化。
 
 6. 绑定了cabbage状态变量的Text重新渲染。

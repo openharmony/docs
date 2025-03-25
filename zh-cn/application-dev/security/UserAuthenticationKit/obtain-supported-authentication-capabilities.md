@@ -1,8 +1,6 @@
 # 查询支持的认证能力
 
-
 不同的设备对于认证能力（人脸、指纹、口令）的支持性各有差异，开发者在发起认证前应当先查询当前设备支持的用户认证能力。
-
 
 ## 接口说明
 
@@ -11,7 +9,6 @@
 | 接口名称 | 功能描述 | 
 | -------- | -------- |
 | getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): void | 根据指定的认证类型、认证等级，检测当前设备是否支持相应的认证能力。 | 
-
 
 ## 开发步骤
 
@@ -27,7 +24,7 @@
 import { BusinessError } from  '@kit.BasicServicesKit';
 import { userAuth } from '@kit.UserAuthenticationKit';
 
-// 查询认证能力是否支持
+// 查询认证能力是否支持。
 try {    
     userAuth.getAvailableStatus(userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1);    
     console.info('current auth trust level is supported');

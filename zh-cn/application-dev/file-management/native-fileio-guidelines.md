@@ -20,7 +20,7 @@ FileIO模块提供了部分文件基础操作能力，其他能力请参考[libc
 | -------- | -------- |
 | FileManagement_ErrCode OH_FileIO_GetFileLocation(char *uri, int uriLength, FileIO_FileLocation *location)| 获取文件存储位置。|
 | enum FileIO_FileLocation FileIO_FileLocation| 文件存储位置枚举值。 |
-| enum enum FileManagement_ErrCode FileManagement_ErrCode| 文件管理模块错误码。|
+| enum FileManagement_ErrCode FileManagement_ErrCode| 文件管理模块错误码。|
 
 ## 开发步骤
 

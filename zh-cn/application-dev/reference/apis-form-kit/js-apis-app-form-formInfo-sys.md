@@ -89,8 +89,8 @@ import { formInfo } from '@kit.FormKit';
 | 名称        | 类型   | 必填         |说明         |
 | ----------- | ---- | ------------ |------------ |
 | bundleName    | string    |否    | 选填，仅保留含bundleName与提供值相符的卡片信息，未填写时则不通过bundleName进行过滤。<br>**系统接口：** 此接口为系统接口。  |
-| supportedDimensions | Array<number> |否    | 选填，仅保留含supportedDimensions提供值相符的卡片信息，未填写时则不通过supportedDimensions进行过滤。<br>**系统接口：** 此接口为系统接口。  |
-| supportedShapes<sup>12+</sup>  | Array\<number> |否    | 选填，仅保留含supportedShapes提供值相符的卡片信息，未填写时则不通过supportedShapes进行过滤。<br>**系统接口：** 此接口为系统接口。   |
+| supportedDimensions | Array\<number\> |否    | 选填，仅保留含supportedDimensions提供值相符的卡片信息，未填写时则不通过supportedDimensions进行过滤。<br>**系统接口：** 此接口为系统接口。  |
+| supportedShapes<sup>12+</sup>  | Array\<number\> |否    | 选填，仅保留含supportedShapes提供值相符的卡片信息，未填写时则不通过supportedShapes进行过滤。<br>**系统接口：** 此接口为系统接口。   |
 
 ## FormLocation<sup>12+</sup>
 
@@ -110,7 +110,7 @@ import { formInfo } from '@kit.FormKit';
 | SCREEN_LOCK                  | 6    | 表示卡片位于锁屏。               |
 | AI_SUGGESTION                | 7    | 表示卡片位于小艺建议推荐区。     |
 
-## PublishFormResult
+## PublishFormResult<sup>12+</sup>
 
 发布卡片加桌结果。
 
@@ -118,10 +118,10 @@ import { formInfo } from '@kit.FormKit';
 
 | 名称    | 类型                                          | 可读 | 可写 | 说明                       |
 | ------- | --------------------------------------------- | ---- | ---- | -------------------------- |
-| code    | [PublishFormErrorCode](#publishformerrorcode) | 是   | 否   | 发布卡片加桌错误码。       |
+| code    | [PublishFormErrorCode](#publishformerrorcode12) | 是   | 否   | 发布卡片加桌错误码。       |
 | message | string                                        | 是   | 否   | 设置卡片加桌结果返回信息。 |
 
-## PublishFormErrorCode
+## PublishFormErrorCode<sup>12+</sup>
 
 发布卡片加桌错误码枚举。
 

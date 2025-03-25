@@ -19,7 +19,7 @@ import { calendarManager } from '@kit.CalendarKit'
 
 ## calendarManager.getCalendarManager
 
-getCalendarManager(context : Context): CalendarManager
+getCalendarManager(context: Context): CalendarManager
 
 根据上下文获取CalendarManager对象，用于管理日历。
 
@@ -80,7 +80,7 @@ export default class EntryAbility extends UIAbility {
     const permissions: Permissions[] = ['ohos.permission.READ_CALENDAR', 'ohos.permission.WRITE_CALENDAR'];
     let atManager = abilityAccessCtrl.createAtManager();
     atManager.requestPermissionsFromUser(mContext, permissions).then((result: PermissionRequestResult) => {
-      console.log(`get Permission success, result: ${JSON.stringify(result)}`);
+      console.info(`get Permission success, result: ${JSON.stringify(result)}`);
       calendarMgr = calendarManager.getCalendarManager(mContext);
     }).catch((error: BusinessError) => {
       console.error(`get Permission error, error. Code: ${error.code}, message: ${error.message}`);
@@ -1281,6 +1281,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 getEvents(eventFilter?: EventFilter, eventKey?: (keyof Event)[]): Promise\<Event[]>
 
 获取Calendar下符合查询条件的Event，使用Promise异步回调。
+只有一个入参时，参数必须为查询条件，对应参数类型为EventFilter。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -1488,6 +1489,64 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 });
 ```
 
+### queryEventInstances<sup>18+</sup>
+
+queryEventInstances(start: number, end: number, ids?: number[], eventKey?: (keyof Event)[]): Promise\<Event[]>
+
+获取Calendar下符合查询条件的日程实例，使用Promise异步回调。
+
+**系统能力**： SystemCapability.Applications.CalendarData
+
+**参数**：
+
+| 参数名      | 类型                        | 必填   | 说明         |
+| ----------- | --------------------------- |------|------------|
+| start  | number | 是    | 日程开始时间。    |
+| end    | number | 是    | 日程结束时间。    |
+| ids    | number[] | 否    | 日程id数组。    |
+| eventKey    | (keyof [Event](#event))[]   | 否    | 所有查询日程的字段。 |
+
+**返回值**：
+
+| 类型                       | 说明                                |
+| -------------------------- | ----------------------------------- |
+| Promise<[Event](#event)[]> | Promise对象，返回的是Event对象数组。 |
+
+**示例**：
+
+```typescript
+import { BusinessError } from '@kit.BasicServicesKit';
+import { calendarMgr } from '../entryability/EntryAbility';
+
+let calendar : calendarManager.Calendar | undefined = undefined;
+const date = new Date();
+const event: calendarManager.Event = {
+  title: 'MyEvent',
+  type: calendarManager.EventType.IMPORTANT,
+  startTime: date.getTime(),
+  endTime: date.getTime() + 60 * 60 * 1000
+};
+calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calendar) => {
+  if (err) {
+    console.error(`Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
+    calendar = data;
+    await calendar.addEvent(event).then((data: number) => {
+      console.info(`Succeeded in adding event, id -> ${data}`);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to add event. Code: ${err.code}, message: ${err.message}`);
+    });
+    calendar?.queryEventInstances(date.getTime(), date.getTime() + 60 * 60 * 1000, undefined, 
+      ["title", "startTime", "endTime", "instanceStartTime", "instanceEndTime",]).then((data: calendarManager.Event[]) => {
+      console.info(`Succeeded in getting event instances, data -> ${JSON.stringify(data)}`);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to get event instances. Code: ${err.code}, message: ${err.message}`);
+    });
+  }
+});
+```
+
 ## CalendarAccount
 
 日历账户信息。
@@ -1536,6 +1595,8 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 | service        | [EventService](#eventservice)     | 否   | 是  | 日程服务。不填时，默认没有一键服务。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                               |
 | identifier<sup>12+</sup>     | string                            | 否   | 是  | 写入方可指定日程唯一标识。不填时，默认为null。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                         |
 | isLunar<sup>12+</sup>     | boolean                            | 否   | 是  | 是否为农历日程。当取值为true时，说明为农历日程；当取值为false时，说明不是农历日程，默认为非农历日程。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                           |
+| instanceStartTime<sup>18+</sup> | number                            | 否   | 是  | 日程实例开始时间，需要13位时间戳。当调用[addEvent()](#addevent)、[addEvents()](#addevents)创建日程时，不填写此参数。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                                                                                 |
+| instanceEndTime<sup>18+</sup>   | number                            | 否   | 是  | 日程实例结束时间，需要13位时间戳。当调用[addEvent()](#addevent)、[addEvents()](#addevents)创建日程时，不填写此参数。  <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                                                                                |
 
 ## CalendarType
 
@@ -1817,6 +1878,8 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 | name  | string | 否   | 否  | 会议日程参与者的姓名。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | email | string | 否   | 否  | 会议日程参与者的邮箱。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | role<sup>12+</sup>  | [AttendeeRole](#attendeerole12) | 否   | 是  | 会议日程参与者的角色。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| status<sup>18+</sup> | [AttendeeStatus](#attendeestatus18) | 否   | 是 | 会议日程参与者的状态，不填时默认为空。   <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| type<sup>18+</sup>   | [AttendeeType](#attendeetype18)     | 否   | 是 | 会议日程参与者的类型，不填时默认为空。   <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## EventService
 
@@ -1862,5 +1925,35 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 
 | 名称           | 值             | 说明     |
 |--------------|---------------|--------|
-| ORGANIZER<sup>12+</sup>    | 'organizer'   | 会议组织者。 |
-| PARTICIPANT<sup>12+</sup>  | 'participant' | 会议参与者。 |
+| ORGANIZER   | 'organizer'   | 会议组织者。 |
+| PARTICIPANT | 'participant' | 会议参与者。 |
+
+## AttendeeStatus<sup>18+</sup>
+
+会议日程参与者状态类型枚举。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Applications.CalendarData
+
+| 名称                         | 值   | 说明       |
+|----------------------------|-----|----------|
+| UNKNOWN      | 0   | 参与者状态未知。 |
+| TENTATIVE    | 1   | 参与者状态暂定。 |
+| ACCEPTED     | 2   | 参与者已接受。  |
+| DECLINED     | 3   | 参与者已拒绝。  |
+| UNRESPONSIVE | 4   | 参与者未响应。  |
+
+## AttendeeType<sup>18+</sup>
+
+会议日程参与者受邀类型枚举。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Applications.CalendarData
+
+| 名称                     | 值   | 说明                 |
+|------------------------|-----|--------------------|
+| REQUIRED | 1   | 会议日程主送者。           |
+| OPTIONAL | 2   | 会议日程抄送者。           |
+| RESOURCE | 3   | 会议中使用的资源（电视或投影仪等）。 |

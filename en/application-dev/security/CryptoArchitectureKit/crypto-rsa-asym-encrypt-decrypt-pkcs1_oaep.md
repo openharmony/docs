@@ -7,31 +7,31 @@ For details about the algorithm specifications, see [RSA](crypto-asym-encrypt-de
 **Encryption**
 
 
-1. Use [cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10) and [AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-3) to generate an RSA asymmetric key pair (**KeyPair**) based on the specified key parameters.
+1. Call [cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10) and [AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-3) to generate an RSA asymmetric key pair (**KeyPair**) based on the specified key parameters.
    
    In addition to the example in this topic, [RSA](crypto-asym-key-generation-conversion-spec.md#rsa) and [Generating an Asymmetric Key Pair Based on Key Parameters](crypto-generate-asym-key-pair-from-key-spec.md) may help you better understand how to generate an RSA asymmetric key pair. Note that the input parameters in the reference documents may be different from those in the example below.
 
-2. Use [cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher) with the string parameter **'RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA1'** to create a **Cipher** instance. The key type is **RSA2048**, padding mode is **PKCS1_OAEP**, MD algorithm is **SHA256**, and mask digest algorithm is **MGF1_SHA1**.
+2. Call [cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher) with the string parameter **'RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA1'** to create a **Cipher** instance. The key type is **RSA2048**, padding mode is **PKCS1_OAEP**, MD algorithm is **SHA256**, and mask digest algorithm is **MGF1_SHA1**.
 
-3. Use [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) to initialize the **Cipher** instance. In **Cipher.init**, set **opMode** to **CryptoMode.ENCRYPT_MODE** (encryption) and **key** to **KeyPair.PubKey** (the key used for encryption).
+3. Call [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) to initialize the **Cipher** instance. In **Cipher.init**, set **opMode** to **CryptoMode.ENCRYPT_MODE** (encryption) and **key** to **KeyPair.PubKey** (the key used for encryption).
    
    No encryption parameter is required for asymmetric key pairs. Therefore, pass in **null** in **params**.
 
-4. Use [Cipher.setCipherSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#setcipherspec10) to set the parameter **pSource** for **PKCS1_OAEP** before **Cipher.doFinal** is called. You can use [Cipher.getCipherSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getcipherspec10) to obtain OAEP-related parameters.
+4. Call [Cipher.setCipherSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#setcipherspec10) to set the parameter **pSource** for **PKCS1_OAEP** before **Cipher.doFinal** is called. You can use [Cipher.getCipherSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getcipherspec10) to obtain OAEP-related parameters.
 
-5. Use [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) to pass in the plaintext and encrypt it.
+5. Call [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) to pass in the plaintext and encrypt it.
 
 
 **Decryption**
 
 
-1. If RSA is used, the **Cipher** instance cannot be initialized repeatedly. Use [cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher) to create a new **Cipher** instance.
+1. If RSA is used, the **Cipher** instance cannot be initialized repeatedly. Call [cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher) to create a new **Cipher** instance.
 
-2. Use [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) to initialize the **Cipher** instance. In **Cipher.init**, set **opMode** to **CryptoMode.DECRYPT_MODE** (decryption) and **key** to **KeyPair.PriKey** (the key used for decryption). When PKCS1 mode is used, pass in **null** in **params**.
+2. Call [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) to initialize the **Cipher** instance. In **Cipher.init**, set **opMode** to **CryptoMode.DECRYPT_MODE** (decryption) and **key** to **KeyPair.PriKey** (the key used for decryption). If PKCS1 is used, set **params** to **null**.
 
-3. Use [Cipher.setCipherSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#setcipherspec10) to set the parameter **pSource** for **PKCS1_OAEP** before **Cipher.doFinal** is called. The value of **pSource** must be the same as that set in encryption. You can use [Cipher.getCipherSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getcipherspec10) to obtain OAEP-related parameters.
+3. Call [Cipher.setCipherSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#setcipherspec10) to set the parameter **pSource** for **PKCS1_OAEP** before **Cipher.doFinal** is called. The value of **pSource** must be the same as that set in encryption. You can use [Cipher.getCipherSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getcipherspec10) to obtain OAEP-related parameters.
 
-4. Use [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) to pass in the ciphertext and decrypt it.
+4. Call [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) to pass in the ciphertext and decrypt it.
 
 
 - Example (using asynchronous APIs):
@@ -71,7 +71,7 @@ For details about the algorithm specifications, see [RSA](crypto-asym-encrypt-de
     let cipher = cryptoFramework.createCipher("RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA1");
     let decoder = cryptoFramework.createCipher("RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA1");
     // Set pSource, which defines the encoding input P filled by OAEP.
-    let pSource = new Uint8Array([1, 2, 3, 4]);
+    let pSource = new Uint8Array([1, 2, 3, 4]); // The value here is for reference only. You can set it to any value.
     let input: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(plan, 'utf-8').buffer) };
     // Generate a key pair.
     let keyPair = await rsaGeneratorSpec.generateKeyPair();
@@ -81,7 +81,7 @@ For details about the algorithm specifications, see [RSA](crypto-asym-encrypt-de
     cipher.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
     let retP = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
     // Check whether the obtained PSource is the same as the PSource set.
-    if (retP.toString() != pSource.toString()) {
+    if (retP.toString() !== pSource.toString()) {
       console.error("error init pSource" + retP);
     } else {
       console.info("pSource changed ==" + retP);
@@ -98,7 +98,7 @@ For details about the algorithm specifications, see [RSA](crypto-asym-encrypt-de
     decoder.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
     retP = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
     // Check whether the obtained PSource is the same as the PSource set.
-    if (retP.toString() != pSource.toString()) {
+    if (retP.toString() !== pSource.toString()) {
       console.error("error init pSource" + retP);
     } else {
       console.info("pSource changed ==" + retP);
@@ -159,7 +159,7 @@ For details about the algorithm specifications, see [RSA](crypto-asym-encrypt-de
     let cipher = cryptoFramework.createCipher("RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA1");
     let decoder = cryptoFramework.createCipher("RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA1");
     // Set pSource, which defines the encoding input P filled by OAEP.
-    let pSource = new Uint8Array([1, 2, 3, 4]);
+    let pSource = new Uint8Array([1, 2, 3, 4]); // The value here is for reference only. You can set it to any value.
     let input: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(plan, 'utf-8').buffer) };
     // Generate a key pair.
     let keyPair = rsaGeneratorSpec.generateKeyPairSync();
@@ -169,7 +169,7 @@ For details about the algorithm specifications, see [RSA](crypto-asym-encrypt-de
     cipher.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
     let retP = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
     // Check whether the obtained PSource is the same as the PSource set.
-    if (retP.toString() != pSource.toString()) {
+    if (retP.toString() !== pSource.toString()) {
       console.error("error init pSource" + retP);
     } else {
       console.info("pSource changed ==" + retP);
@@ -186,7 +186,7 @@ For details about the algorithm specifications, see [RSA](crypto-asym-encrypt-de
     decoder.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
     retP = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
     // Check whether the obtained PSource is the same as the PSource set.
-    if (retP.toString() != pSource.toString()) {
+    if (retP.toString() !== pSource.toString()) {
       console.error("error init pSource" + retP);
     } else {
       console.info("pSource changed ==" + retP);

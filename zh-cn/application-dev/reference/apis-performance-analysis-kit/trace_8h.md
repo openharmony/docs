@@ -5,7 +5,7 @@
 
 HiTraceMeter模块打点接口定义，通过这些接口实现性能打点相关功能。
 
-使用示例:
+使用示例：
 
 同步时间片跟踪事件：
 
@@ -63,7 +63,7 @@ OH_HiTrace_CountTrace("hitraceTest", 500);
 
 10
 
-**相关模块:**
+**相关模块：**
 
 [Hitrace](_hitrace.md)
 
@@ -87,18 +87,18 @@ OH_HiTrace_CountTrace("hitraceTest", 500);
 | typedef enum [HiTrace_Flag](_hitrace.md#hitrace_flag) [HiTrace_Flag](_hitrace.md#hitrace_flag) | HiTrace标志位。  | 
 | typedef enum [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) | HiTrace打点类型。  | 
 | typedef enum [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) | HiTrace通信模式枚举。  | 
-|  typedef struct [HiTraceId](_hi_trace_id.md)**HiTraceId** |  | 
+| typedef struct [HiTraceId](_hi_trace_id.md) [HiTraceId](_hi_trace_id.md) | 系统跟踪Id。 | 
 
 
 ### 枚举
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [HiTraceId_Valid](_hitrace.md#hitraceid_valid) { [HITRACE_ID_INVALID](_hitrace.md) = 0, [HITRACE_ID_VALID](_hitrace.md) = 1 } | HiTraceId是否有效标志。  | 
-| [HiTrace_Version](_hitrace.md#hitrace_version) { [HITRACE_VER_1](_hitrace.md) = 0 } | HiTrace版本号。  | 
-| [HiTrace_Flag](_hitrace.md#hitrace_flag) {<br/>[HITRACE_FLAG_DEFAULT](_hitrace.md) = 0, [HITRACE_FLAG_INCLUDE_ASYNC](_hitrace.md) = 1 &lt;&lt; 0, [HITRACE_FLAG_DONOT_CREATE_SPAN](_hitrace.md) = 1 &lt;&lt; 1, [HITRACE_FLAG_TP_INFO](_hitrace.md) = 1 &lt;&lt; 2,<br/>[HITRACE_FLAG_NO_BE_INFO](_hitrace.md) = 1 &lt;&lt; 3, [HITRACE_FLAG_DONOT_ENABLE_LOG](_hitrace.md) = 1 &lt;&lt; 4, [HITRACE_FLAG_FAULT_TRIGGER](_hitrace.md) = 1 &lt;&lt; 5, [HITRACE_FLAG_D2D_TP_INFO](_hitrace.md) = 1 &lt;&lt; 6<br/>} | HiTrace标志位。  | 
-| [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) {<br/>[HITRACE_TP_CS](_hitrace.md) = 0, [HITRACE_TP_CR](_hitrace.md) = 1, [HITRACE_TP_SS](_hitrace.md) = 2, [HITRACE_TP_SR](_hitrace.md) = 3,<br/>[HITRACE_TP_GENERAL](_hitrace.md) = 4<br/>} | HiTrace打点类型。  | 
-| [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) { [HITRACE_CM_DEFAULT](_hitrace.md) = 0, [HITRACE_CM_THREAD](_hitrace.md) = 1, [HITRACE_CM_PROCESS](_hitrace.md) = 2, [HITRACE_CM_DEVICE](_hitrace.md) = 3 } | HiTrace通信模式枚举。  | 
+| [HiTraceId_Valid](_hitrace.md#hitraceid_valid) { HITRACE_ID_INVALID = 0, HITRACE_ID_VALID = 1 } | HiTraceId是否有效标志。  | 
+| [HiTrace_Version](_hitrace.md#hitrace_version) { HITRACE_VER_1 = 0 } | HiTrace版本号。  | 
+| [HiTrace_Flag](_hitrace.md#hitrace_flag) {<br/>HITRACE_FLAG_DEFAULT = 0, HITRACE_FLAG_INCLUDE_ASYNC = 1 &lt;&lt; 0, HITRACE_FLAG_DONOT_CREATE_SPAN = 1 &lt;&lt; 1, HITRACE_FLAG_TP_INFO = 1 &lt;&lt; 2,<br/>HITRACE_FLAG_NO_BE_INFO = 1 &lt;&lt; 3, HITRACE_FLAG_DONOT_ENABLE_LOG = 1 &lt;&lt; 4, HITRACE_FLAG_FAULT_TRIGGER = 1 &lt;&lt; 5, HITRACE_FLAG_D2D_TP_INFO = 1 &lt;&lt; 6<br/>} | HiTrace标志位。  | 
+| [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) {<br/>HITRACE_TP_CS = 0, HITRACE_TP_CR = 1, HITRACE_TP_SS = 2, HITRACE_TP_SR = 3,<br/>HITRACE_TP_GENERAL = 4<br/>} | HiTrace打点类型。  | 
+| [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) { HITRACE_CM_DEFAULT = 0, HITRACE_CM_THREAD = 1, HITRACE_CM_PROCESS = 2, HITRACE_CM_DEVICE = 3 } | HiTrace通信模式枚举。  | 
 
 
 ### 函数

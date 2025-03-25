@@ -32,7 +32,7 @@
 | \@ObjectLink变量装饰器 | 说明                                       |
 | ----------------- | ---------------------------------------- |
 | 装饰器参数             | 无。                                       |
-| 允许装饰的变量类型         | 必须为被\@Observed装饰的class实例，必须指定类型。<br/>\@ObjectLink不支持简单类型，如果开发者需要使用简单类型，可以使用[\@Prop](arkts-prop.md)。<br/>支持继承Date、[Array](#二维数组)的class实例，API11及以上支持继承[Map](#继承map类)、[Set](#继承set类)的class实例。示例见[观察变化](#观察变化)。<br/>API11及以上支持\@Observed装饰类和undefined或null组成的联合类型，比如ClassA \| ClassB, ClassA \| undefined 或者 ClassA \| null, 示例见[@ObjectLink支持联合类型](#objectlink支持联合类型)。<br/>\@ObjectLink的属性是可以改变的，但是变量的分配是不允许的，也就是说这个装饰器装饰变量是只读的，不能被改变。 |
+| 允许装饰的变量类型         | API version 18之前，必须为被\@Observed装饰的class实例。<br/>API version 18及以后，\@ObjectLink也可以被[makeV1Observed](../reference/apis-arkui/js-apis-StateManagement.md#makev1observed18)的返回值初始化。<br/>\@ObjectLink不支持简单类型，如果开发者需要使用简单类型，可以使用[\@Prop](arkts-prop.md)。<br/>支持继承Date、[Array](#二维数组)的class实例，API11及以上支持继承[Map](#继承map类)、[Set](#继承set类)的class实例。示例见[观察变化](#观察变化)。<br/>API11及以上支持\@Observed装饰类和undefined或null组成的联合类型，比如ClassA \| ClassB, ClassA \| undefined 或者 ClassA \| null, 示例见[@ObjectLink支持联合类型](#objectlink支持联合类型)。<br/>\@ObjectLink的属性可以被改变的，但不允许整体赋值，即\@ObjectLink装饰的变量是只读的。 |
 | 被装饰变量的初始值         | 不允许。                                     |
 
 \@ObjectLink装饰的数据为可读示例。
@@ -201,7 +201,10 @@ struct Parent {
 
 2. \@ObjectLink装饰器不能在\@Entry装饰的自定义组件中使用。
 
-3. \@ObjectLink装饰的变量类型需要为显式的被@Observed装饰的类，如果未指定类型，或其不是\@Observed装饰的class，编译期会报错。
+3. \@ObjectLink装饰的类型必须是复杂类型，否则会有编译期报错。
+
+4. API version 18前，\@ObjectLink装饰的变量类型必须是显式地由@Observed装饰的类。如果未指定类型，或不是\@Observed装饰的class，编译期会报错。
+API version 18及以后，\@ObjectLink也可以被[makeV1Observed](../reference/apis-arkui/js-apis-StateManagement.md#makev1observed18)的返回值初始化，否则会有运行时告警日志。
 
   ```ts
   @Observed
@@ -230,7 +233,7 @@ struct Parent {
   @ObjectLink count: Info;
   ```
 
-4. \@ObjectLink装饰的变量不能本地初始化，仅能通过构造参数从父组件传入初始值，否则编译期会报错。
+5. \@ObjectLink装饰的变量不能本地初始化，仅能通过构造参数从父组件传入初始值，否则编译期会报错。
 
   ```ts
   @Observed
@@ -249,7 +252,7 @@ struct Parent {
   @ObjectLink count: Info;
   ```
 
-5. \@ObjectLink装饰的变量是只读的，不能被赋值，否则会有运行时报错提示Cannot set property when setter is undefined。如果需要对\@ObjectLink装饰的变量进行整体替换，可以在父组件对其进行整体替换。
+6. \@ObjectLink装饰的变量是只读的，不能被赋值，否则会有运行时报错提示Cannot set property when setter is undefined。如果需要对\@ObjectLink装饰的变量进行整体替换，可以在父组件对其进行整体替换。
 
   【反例】
 
@@ -498,7 +501,7 @@ struct Index {
 
 ![Observed_ObjectLink_nested_object](figures/Observed_ObjectLink_nested_object.gif)
 
-上述示例中，Index组件中的Text组件不刷新，因为该变化属于第二层的变化，\@State无法观察到第二层的变化。但是Bag被\@Observed装饰，Bag的属性name可以被\@ObjectLink观察到，所以无论点击哪个Button，BookCard组件中的Text组件都会刷新。
+上述示例中，Index组件中的Text组件不刷新，因为该变化属于第二层的变化，\@State无法观察到第二层的变化。但是Book被\@Observed装饰，Book的属性name可以被\@ObjectLink观察到，所以无论点击哪个Button，BookCard组件中的Text组件都会刷新。
 
 ### 对象数组
 
@@ -618,9 +621,6 @@ struct Parent {
 ```ts
 @Observed
 class ObservedArray<T> extends Array<T> {
-  constructor(args: T[]) {
-    super(...args);
-  }
 }
 ```
 
@@ -631,9 +631,6 @@ class ObservedArray<T> extends Array<T> {
 ```ts
 @Observed
 class ObservedArray<T> extends Array<T> {
-  constructor(args: T[]) {
-    super(...args);
-  }
 }
 
 @Component
@@ -654,7 +651,7 @@ struct Item {
 @Entry
 @Component
 struct IndexPage {
-  @State arr: Array<ObservedArray<string>> = [new ObservedArray<string>(['apple']), new ObservedArray<string>(['banana']), new ObservedArray<string>(['orange'])];
+  @State arr: Array<ObservedArray<string>> = [new ObservedArray<string>('apple'), new ObservedArray<string>('banana'), new ObservedArray<string>('orange')];
 
   build() {
     Column() {
@@ -673,7 +670,7 @@ struct IndexPage {
       Button('push array item')
         .margin(10)
         .onClick(() => {
-          this.arr.push(new ObservedArray<string>(['pear']));
+          this.arr.push(new ObservedArray<string>('pear'));
         })
 
       Button('change two-dimensional array first item')
@@ -685,7 +682,71 @@ struct IndexPage {
       Button('change array first item')
         .margin(10)
         .onClick(() => {
-          this.arr[0] = new ObservedArray<string>(['watermelon']);
+          this.arr[0] = new ObservedArray<string>('watermelon');
+        })
+    }
+  }
+}
+```
+
+API version 18及以后，\@ObjectLink也可以被[makeV1Observed](../reference/apis-arkui/js-apis-StateManagement.md#makev1observed18)的返回值初始化。所以开发者如果不想额外声明继承Array的类，也可以使用makeV1Observed来达到同样的效果。
+
+完整例子如下。
+
+```ts
+import { UIUtils } from '@kit.ArkUI';
+
+@Component
+struct Item {
+  @ObjectLink itemArr: Array<string>;
+
+  build() {
+    Row() {
+      ForEach(this.itemArr, (item: string, index: number) => {
+        Text(`${index}: ${item}`)
+          .width(100)
+          .height(100)
+      }, (item: string) => item)
+    }
+  }
+}
+
+@Entry
+@Component
+struct IndexPage {
+  @State arr: Array<Array<string>> =
+    [UIUtils.makeV1Observed(['apple']), UIUtils.makeV1Observed(['banana']), UIUtils.makeV1Observed(['orange'])];
+
+  build() {
+    Column() {
+      ForEach(this.arr, (itemArr: Array<string>) => {
+        Item({ itemArr: itemArr })
+      })
+
+      Divider()
+
+      Button('push two-dimensional array item')
+        .margin(10)
+        .onClick(() => {
+          this.arr[0].push('strawberry');
+        })
+
+      Button('push array item')
+        .margin(10)
+        .onClick(() => {
+          this.arr.push(UIUtils.makeV1Observed(['pear']));
+        })
+
+      Button('change two-dimensional array first item')
+        .margin(10)
+        .onClick(() => {
+          this.arr[0][0] = 'APPLE';
+        })
+
+      Button('change array first item')
+        .margin(10)
+        .onClick(() => {
+          this.arr[0] = UIUtils.makeV1Observed(['watermelon']);
         })
     }
   }
@@ -1985,7 +2046,7 @@ Child({
 
 ### 使用a.b(this.object)形式调用，不会触发UI刷新
 
-在build方法内，当@Observed与@ObjectLink联合装饰的变量是Object类型、且通过a.b(this.object)形式调用时，b方法内传入的是this.object的原生对象，修改其属性，无法触发UI刷新。如下例中，通过静态方法或者使用this调用组件内部方法，修改组件中的this.weather.temperature时，UI不会刷新。
+在build方法内，当@Observed与@ObjectLink联合装饰的变量是Object类型、且通过a.b(this.object)形式调用时，b方法内传入的是this.object的原始对象，修改其属性，无法触发UI刷新。如下例中，通过静态方法或者使用this调用组件内部方法，修改组件中的this.weather.temperature时，UI不会刷新。
 
 【反例】
 

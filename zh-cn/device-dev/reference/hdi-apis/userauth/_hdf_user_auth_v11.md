@@ -5,7 +5,7 @@
 
 提供用户认证驱动的标准API接口。
 
-用户认证驱动为用户认证服务提供统一的访问接口。获取用户认证驱动代理后，用户认证服务可以调用相关接口注册执行器，管理用户认证凭据， 完成PIN码和生物特征认证。
+用户认证驱动为用户认证服务提供统一的访问接口。获取用户认证驱动代理后，用户认证服务可以调用相关接口注册执行器，管理用户认证凭据，完成PIN码和生物特征认证。
 
 **起始版本：** 4.0
 
@@ -27,4 +27,4 @@
 | -------- | -------- |
 | interface&nbsp;&nbsp;[IUserAuthInterface](interface_i_user_auth_interface_v11.md) | 声明用户认证驱动的API接口。 | 
 | struct&nbsp;&nbsp;[ScheduleInfoV1_1](_schedule_info_v1__1_v11.md) | 调度信息。 | 
-| struct&nbsp;&nbsp;[UserInfo](_user_info_v11.md) | 用户信息 | 
+| struct&nbsp;&nbsp;[UserInfo](_user_info_v11.md) | 用户信息。 | 

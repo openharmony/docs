@@ -687,12 +687,12 @@ let status: PiPWindow.PiPControlStatus = PiPWindow.PiPControlStatus.PLAY; // 视
 pipController.updatePiPControlStatus(controlType, status);
 ```
 
-### updateContentNode<sup>16+</sup>
+### updateContentNode<sup>18+</sup>
 updateContentNode(contentNode: typeNode.XComponent): Promise&lt;void&gt;
 
 更新画中画节点内容。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 

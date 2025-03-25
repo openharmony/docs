@@ -9,7 +9,7 @@
 
 **系统能力：** SystemCapability.Driver.SCSI.Extension
 
-**起始版本：** 16
+**起始版本：** 18
 
 **相关模块：**[SCSI Peripheral DDK](_s_c_s_i.md)
 

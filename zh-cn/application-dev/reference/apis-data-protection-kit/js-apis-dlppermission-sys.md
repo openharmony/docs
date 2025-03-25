@@ -49,10 +49,10 @@ import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let res: Promise<dlpPermission.GatheringPolicyType> = dlpPermission.getDLPGatheringPolicy(); // 获取沙箱聚合策略
+  let res: Promise<dlpPermission.GatheringPolicyType> = dlpPermission.getDLPGatheringPolicy(); // 获取沙箱聚合策略。
   console.info('res', JSON.stringify(res));
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -99,7 +99,7 @@ try {
     } else {
       console.info('res', JSON.stringify(res));
     }
-  }); // 获取沙箱聚合策略
+  }); // 获取沙箱聚合策略。
 } catch (err) {
   console.error('getDLPGatheringPolicy error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -152,10 +152,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
-  let res: Promise<dlpPermission.DLPSandboxInfo> = dlpPermission.installDLPSandbox('com.ohos.note', dlpPermission.DLPFileAccess.READ_ONLY, 100, uri); // 安装DLP沙箱
+  let res: Promise<dlpPermission.DLPSandboxInfo> = dlpPermission.installDLPSandbox('com.ohos.note', dlpPermission.DLPFileAccess.READ_ONLY, 100, uri); // 安装DLP沙箱。
   console.info('res', JSON.stringify(res));
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -207,7 +207,7 @@ try {
     } else {
       console.info('res', JSON.stringify(res));
     }
-  }); // 安装DLP沙箱
+  }); // 安装DLP沙箱。
 } catch (err) {
   console.error('installDLPSandbox error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -261,10 +261,10 @@ let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
   dlpPermission.installDLPSandbox('com.ohos.note', dlpPermission.DLPFileAccess.READ_ONLY, 100, uri).then((res)=>{
     console.info('res', JSON.stringify(res));
-    dlpPermission.uninstallDLPSandbox('com.ohos.note', 100, res.appIndex); // 卸载DLP沙箱
-  }); // 安装DLP沙箱
+    dlpPermission.uninstallDLPSandbox('com.ohos.note', 100, res.appIndex); // 卸载DLP沙箱。
+  }); // 安装DLP沙箱。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -318,7 +318,7 @@ try {
         console.info('res', JSON.stringify(res));
       }
     });
-  }); // 安装DLP沙箱
+  }); // 安装DLP沙箱。
 } catch (err) {
   console.error('uninstallDLPSandbox error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -363,7 +363,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   dlpPermission.on('uninstallDLPSandbox', (info: dlpPermission.DLPSandboxState) => {
     console.info('uninstallDLPSandbox event', info.appIndex, info.bundleName)
-  }); // 订阅
+  }); // 订阅。
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
 }
@@ -408,9 +408,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   dlpPermission.off('uninstallDLPSandbox', (info: dlpPermission.DLPSandboxState) => {
     console.info('uninstallDLPSandbox event', info.appIndex, info.bundleName)
-  }); // 取消订阅
+  }); // 取消订阅。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -494,11 +494,11 @@ try{
 
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
-    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
-    dlpFile.closeDLPFile(); //关闭DLP对象
-  }); // 打开DLP文件
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
+    dlpFile.closeDLPFile(); //关闭DLP对象。
+  }); // 打开DLP文件。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 fileIo.closeSync(file);
 ```
@@ -567,12 +567,12 @@ try {
     dlpFile.addDLPLinkFile('test.txt.dlp.link', async (err, res) => {
       if (err != undefined) {
         console.error('addDLPLinkFile error,', err.code, err.message);
-        await dlpFile.closeDLPFile(); //关闭DLP对象
+        await dlpFile.closeDLPFile(); //关闭DLP对象。
       } else {
         console.info('res', JSON.stringify(res));
       }
     });
-  }); // 打开DLP文件
+  }); // 打开DLP文件。
 } catch (err) {
   console.error('addDLPLinkFile error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -637,12 +637,12 @@ try{
 
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
-    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
-    dlpFile.stopFuseLink(); // 暂停link读写
-    dlpFile.closeDLPFile(); //关闭DLP对象
-  }); // 打开DLP文件
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
+    dlpFile.stopFuseLink(); // 暂停link读写。
+    dlpFile.closeDLPFile(); //关闭DLP对象。
+  }); // 打开DLP文件。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 fileIo.closeSync(file);
 ```
@@ -707,16 +707,16 @@ try{
 
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
-    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
     dlpFile.stopFuseLink(async (err, res) => {
       if (err != undefined) {
         console.error('stopFuseLink error,', err.code, err.message);
-        await dlpFile.closeDLPFile(); //关闭DLP对象
+        await dlpFile.closeDLPFile(); //关闭DLP对象。
       } else {
         console.info('res', JSON.stringify(res));
       }
     });
-  }); // 打开DLP文件
+  }); // 打开DLP文件。
 } catch (err) {
   console.error('stopFuseLink error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -781,13 +781,13 @@ try{
 
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
-    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
-    dlpFile.stopFuseLink(); // 暂停link读写
-    dlpFile.resumeFuseLink(); // 恢复link读写
-    dlpFile.closeDLPFile(); //关闭DLP对象
-  }); // 打开DLP文件
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
+    dlpFile.stopFuseLink(); // 暂停link读写。
+    dlpFile.resumeFuseLink(); // 恢复link读写。
+    dlpFile.closeDLPFile(); //关闭DLP对象。
+  }); // 打开DLP文件。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 fileIo.closeSync(file);
 ```
@@ -852,17 +852,17 @@ try{
 
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
-    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
-    dlpFile.stopFuseLink(); // 暂停link读写
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
+    dlpFile.stopFuseLink(); // 暂停link读写。
     dlpFile.resumeFuseLink(async (err, res) => {
       if (err != undefined) {
         console.error('resumeFuseLink error,', err.code, err.message);
-        await dlpFile.closeDLPFile(); //关闭DLP对象
+        await dlpFile.closeDLPFile(); //关闭DLP对象。
       } else {
         console.info('res', JSON.stringify(res));
       }
     });
-  }); // 打开DLP文件
+  }); // 打开DLP文件。
 } catch (err) {
   console.error('resumeFuseLink error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -934,14 +934,14 @@ try{
 
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
-    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
-    dlpFile.stopFuseLink(); // 暂停link读写
-    dlpFile.replaceDLPLinkFile('test_new.txt.dlp.link'); // 替换link文件
-    dlpFile.resumeFuseLink(); // 恢复link读写
-    dlpFile.closeDLPFile(); //关闭DLP对象
-  }); // 打开DLP文件
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
+    dlpFile.stopFuseLink(); // 暂停link读写。
+    dlpFile.replaceDLPLinkFile('test_new.txt.dlp.link'); // 替换link文件。
+    dlpFile.resumeFuseLink(); // 恢复link读写。
+    dlpFile.closeDLPFile(); //关闭DLP对象。
+  }); // 打开DLP文件。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 fileIo.closeSync(file);
 ```
@@ -1007,18 +1007,18 @@ try{
 
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
-    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
-    dlpFile.stopFuseLink(); // 暂停link读写
-    dlpFile.replaceDLPLinkFile('test_new.txt.dlp.link', async (err, res) => { // 替换link文件
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
+    dlpFile.stopFuseLink(); // 暂停link读写。
+    dlpFile.replaceDLPLinkFile('test_new.txt.dlp.link', async (err, res) => { // 替换link文件。
       if (err != undefined) {
         console.error('replaceDLPLinkFile error,', err.code, err.message);
-        await dlpFile.closeDLPFile(); //关闭DLP对象
+        await dlpFile.closeDLPFile(); //关闭DLP对象。
       } else {
         console.info('res', JSON.stringify(res));
-        await dlpFile.resumeFuseLink(); // 恢复link读写
+        await dlpFile.resumeFuseLink(); // 恢复link读写。
       }
     });
-  }); // 打开DLP文件
+  }); // 打开DLP文件。
 } catch (err) {
   console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -1090,12 +1090,12 @@ try{
 
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
-    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
-    dlpFile.deleteDLPLinkFile('test.txt.dlp.link'); // 删除link文件
-    dlpFile.closeDLPFile(); //关闭DLP对象
-  }); // 打开DLP文件
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
+    dlpFile.deleteDLPLinkFile('test.txt.dlp.link'); // 删除link文件。
+    dlpFile.closeDLPFile(); //关闭DLP对象。
+  }); // 打开DLP文件。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 fileIo.closeSync(file);
 ```
@@ -1161,16 +1161,16 @@ try{
 
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
-    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
-    dlpFile.deleteDLPLinkFile('test.txt.dlp.link', async (err, res) => { // 删除link文件
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
+    dlpFile.deleteDLPLinkFile('test.txt.dlp.link', async (err, res) => { // 删除link文件。
       if (err != undefined) {
         console.error('deleteDLPLinkFile error,', err.code, err.message);
-        await dlpFile.closeDLPFile(); //关闭DLP对象
+        await dlpFile.closeDLPFile(); //关闭DLP对象。
       } else {
         console.info('res', JSON.stringify(res));
       }
     });
-  }); // 打开DLP文件
+  }); // 打开DLP文件。
 } catch (err) {
   console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -1249,11 +1249,11 @@ try{
 let destFile = fileIo.openSync("destUri");
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
-    dlpFile.recoverDLPFile(destFile.fd); // 还原DLP文件
-    dlpFile.closeDLPFile(); //关闭DLP对象
-  }); // 打开DLP文件
+    dlpFile.recoverDLPFile(destFile.fd); // 还原DLP文件。
+    dlpFile.closeDLPFile(); //关闭DLP对象。
+  }); // 打开DLP文件。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 fileIo.closeSync(file);
 fileIo.closeSync(destFile);
@@ -1327,15 +1327,15 @@ try{
 let destFile = fileIo.openSync("destUri");
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
-    dlpFile.recoverDLPFile(destFile.fd, async (err, res) => { // 还原DLP文件
+    dlpFile.recoverDLPFile(destFile.fd, async (err, res) => { // 还原DLP文件。
       if (err != undefined) {
         console.error('recoverDLPFile error,', err.code, err.message);
-        await dlpFile.closeDLPFile(); //关闭DLP对象
+        await dlpFile.closeDLPFile(); //关闭DLP对象。
       } else {
         console.info('res', JSON.stringify(res));
       }
     });
-  }); // 打开DLP文件
+  }); // 打开DLP文件。
 } catch (err) {
   console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -1404,10 +1404,10 @@ try{
 
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
-    dlpFile.closeDLPFile(); //关闭DLP对象
-  }); // 打开DLP文件
+    dlpFile.closeDLPFile(); //关闭DLP对象。
+  }); // 打开DLP文件。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 fileIo.closeSync(file);
 ```
@@ -1476,7 +1476,7 @@ try{
 
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
-    dlpFile.closeDLPFile((err, res) => { // 关闭DLP文件
+    dlpFile.closeDLPFile((err, res) => { // 关闭DLP文件。
       if (err != undefined) {
         console.error('closeDLPFile error,', err.code, err.message);
       } else {
@@ -1484,7 +1484,7 @@ try {
       }
       fileIo.closeSync(file);
     });
-  }); // 打开DLP文件
+  }); // 打开DLP文件。
 } catch (err) {
   console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
   fileIo.closeSync(file);
@@ -1556,10 +1556,10 @@ try {
     everyoneAccessList: []
   };
   dlpPermission.generateDLPFile(file.fd, dlp.fd, dlpProperty).then((dlpFile)=>{
-    dlpFile.closeDLPFile(); //关闭DLP对象
-  }); // 生成DLP文件
+    dlpFile.closeDLPFile(); //关闭DLP对象。
+  }); // 生成DLP文件。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 fileIo.closeSync(file);
 fileIo.closeSync(dlp);
@@ -1624,7 +1624,7 @@ try {
     ownerAccountID: 'xxxxxxx',
     everyoneAccessList: []
   };
-  dlpPermission.generateDLPFile(file.fd, dlp.fd, dlpProperty, (err, res) => { // 生成DLP文件
+  dlpPermission.generateDLPFile(file.fd, dlp.fd, dlpProperty, (err, res) => { // 生成DLP文件。
     if (err != undefined) {
       console.error('generateDLPFile error,', err.code, err.message);
     } else {
@@ -1712,10 +1712,10 @@ try{
 
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
-    dlpFile.closeDLPFile(); //关闭DLP对象
-  }); // 打开DLP文件
+    dlpFile.closeDLPFile(); //关闭DLP对象。
+  }); // 打开DLP文件。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 fileIo.closeSync(file);
 ```
@@ -1789,7 +1789,7 @@ try{
 }
 
 try {
-  dlpPermission.openDLPFile(file.fd, appId, (err, res) => { // 打开DLP文件
+  dlpPermission.openDLPFile(file.fd, appId, (err, res) => { // 打开DLP文件。
     if (err != undefined) {
       console.error('openDLPFile error,', err.code, err.message);
     } else {

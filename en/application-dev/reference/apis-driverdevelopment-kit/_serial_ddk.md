@@ -1,4 +1,4 @@
-# Serial DDK
+# USB Serial DDK
 
 ## Overview
 

@@ -29,7 +29,7 @@
 ### GetStatus()
 
 ```
-ICameraDevice::GetStatus ([in] unsigned char[] metaIn, [out] unsigned char[] metaOut )
+ICameraDevice::GetStatus ([in] unsigned char[] metaIn, [out] unsigned char[] metaOut)
 ```
 
 **描述**
@@ -55,7 +55,7 @@ NO_ERROR 表示执行成功。
 ### GetStreamOperator_V1_2()
 
 ```
-ICameraDevice::GetStreamOperator_V1_2 ([in] IStreamOperatorCallback callbackObj, [out] IStreamOperator streamOperator )
+ICameraDevice::GetStreamOperator_V1_2 ([in] IStreamOperatorCallback callbackObj, [out] IStreamOperator streamOperator)
 ```
 
 **描述**

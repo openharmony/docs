@@ -26,7 +26,7 @@ SaveButton()
 
 ### SaveButton
 
-SaveButton(options:SaveButtonOptions)
+SaveButton(options: SaveButtonOptions)
 
 创建包含指定元素的保存按钮。
 
@@ -64,9 +64,9 @@ SaveButton(options:SaveButtonOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| icon | [SaveIconStyle](#saveiconstyle枚举说明) | 否 | 设置保存按钮的图标风格<br/>不传入该参数表示没有图标。 |
-| text | [SaveDescription](#savedescription枚举说明) | 否 | 设置保存按钮的文本描述<br/>不传入该参数表示没有文字描述。 |
-| buttonType | [ButtonType](ts-securitycomponent-attributes.md#buttontype枚举说明) | 否 | 设置保存按钮的背景样式<br/>不传入该参数，系统默认提供Capsule类型按钮。 |
+| icon | [SaveIconStyle](#saveiconstyle枚举说明) | 否 | 设置保存按钮的图标风格。<br/>不传入该参数表示没有图标。 |
+| text | [SaveDescription](#savedescription枚举说明) | 否 | 设置保存按钮的文本描述。<br/>不传入该参数表示没有文字描述。 |
+| buttonType | [ButtonType](ts-securitycomponent-attributes.md#buttontype枚举说明) | 否 | 设置保存按钮的背景样式。<br/>不传入该参数，系统默认提供Capsule类型按钮。 |
 
 ## SaveIconStyle枚举说明
 
@@ -97,7 +97,7 @@ SaveButton(options:SaveButtonOptions)
 | EXPORT_TO_GALLERY<sup>12+</sup> | 9 | 保存按钮的文字描述为“导出”。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | QUICK_SAVE_TO_GALLERY<sup>12+</sup> | 10 | 保存按钮的文字描述为“快速保存图片”。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | RESAVE_TO_GALLERY<sup>12+</sup> | 11 | 保存按钮的文字描述为“重新保存”。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| SAVE_ALL<sup>16+</sup> | 12 | 保存按钮的文字描述为“全部保存”。 <br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
+| SAVE_ALL<sup>18+</sup> | 12 | 保存按钮的文字描述为“全部保存”。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## SaveButtonOnClickResult枚举说明
 
@@ -110,13 +110,13 @@ SaveButton(options:SaveButtonOptions)
 | SUCCESS | 0 | 保存按钮点击成功。 |
 | TEMPORARY_AUTHORIZATION_FAILED | 1 | 保存按钮点击后权限授权失败。 |
 
-## SaveButtonCallback
+## SaveButtonCallback<sup>18+</sup>
 
-SaveButtonCallback = (event: ClickEvent, result: SaveButtonOnClickResult, error?: BusinessError&lt;void&gt;) =&gt; void
+type SaveButtonCallback = (event: ClickEvent, result: SaveButtonOnClickResult, error?: BusinessError&lt;void&gt;) =&gt; void
 
 点击保存按钮触发该回调。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -138,7 +138,7 @@ SaveButtonCallback = (event: ClickEvent, result: SaveButtonOnClickResult, error?
 
 onClick(event: SaveButtonCallback)
 
-点击动作触发该回调
+点击动作触发该回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -148,7 +148,7 @@ onClick(event: SaveButtonCallback)
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| event | [SaveButtonCallback](#savebuttoncallback) |是 |见SaveButtonCallback。|
+| event | [SaveButtonCallback](#savebuttoncallback18) |是 |见SaveButtonCallback。<br>在API10-17时，参数类型为：(event: [ClickEvent](ts-universal-events-click.md#clickevent对象说明), result: [SaveButtonOnClickResult](#savebuttononclickresult枚举说明)) => void。<br>从API18开始，变更为SaveButtonCallback。|
 
 ## 示例
 
@@ -161,39 +161,40 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct Index {
-  handleSaveButtonClick: SaveButtonCallback = async (event: ClickEvent, result: SaveButtonOnClickResult, error: BusinessError<void>) => {
-    if (result == SaveButtonOnClickResult.SUCCESS) {
-      try {
-        const context = getContext(this);
-        let helper = photoAccessHelper.getPhotoAccessHelper(context);
-        // onClick触发后10秒内通过createAsset接口创建图片文件，10秒后createAsset权限收回。
-        let uri = await helper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'png');
-        // 使用uri打开文件，可以持续写入内容，写入过程不受时间限制
-        let file = await fileIo.open(uri, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-        // 写入文件
-        await fileIo.write(file.fd, "context");
-        // 关闭文件
-        await fileIo.close(file.fd);
-      } catch (error) {
-        console.error("error is "+ JSON.stringify(error));
+  handleSaveButtonClick: SaveButtonCallback =
+    async (event: ClickEvent, result: SaveButtonOnClickResult, error: BusinessError<void>) => {
+      if (result == SaveButtonOnClickResult.SUCCESS) {
+        try {
+          const context = getContext(this);
+          let helper = photoAccessHelper.getPhotoAccessHelper(context);
+          // onClick触发后10秒内通过createAsset接口创建图片文件，10秒后createAsset权限收回。
+          let uri = await helper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'png');
+          // 使用uri打开文件，可以持续写入内容，写入过程不受时间限制。
+          let file = await fileIo.open(uri, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
+          // 写入文件
+          await fileIo.write(file.fd, "context");
+          // 关闭文件
+          await fileIo.close(file.fd);
+        } catch (error) {
+          console.error("error is " + JSON.stringify(error));
+        }
+      } else {
+        console.info("errCode: " + error.code);
+        console.info("errMessage: " + error.message);
       }
-    } else {
-      console.info("errCode: " + error.code);
-      console.info("errMessage: " + error.message);
-    }
-  };
+    };
 
   build() {
     Row() {
       Column({ space: 10 }) {
-        // 默认参数下，图标、文字、背景都存在
+        // 默认参数下，图标、文字、背景都存在。
         SaveButton().onClick((this.handleSaveButtonClick))
         // 传入参数即表示元素存在，不传入的参数表示元素不存在，如果不传入buttonType，会默认添加ButtonType.Capsule配置，显示图标+背景。
         SaveButton({ icon: SaveIconStyle.FULL_FILLED })
-        // 只显示图标+背景，如果设置背景色高八位的α值低于0x1A，则会被系统强制调整为0xFF
+        // 只显示图标+背景，如果设置背景色高八位的α值低于0x1A，则会被系统强制调整为0xFF。
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, buttonType: ButtonType.Capsule })
           .backgroundColor(0x10007dff)
-        // 图标、文字、背景都存在，如果设置背景色高八位的α值低于0x1A，则会被系统强制调整为0xFF
+        // 图标、文字、背景都存在，如果设置背景色高八位的α值低于0x1A，则会被系统强制调整为0xFF。
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Capsule })
         // 图标、文字、背景都存在，如果设置宽度小于当前属性组合下允许的最小宽度时，宽度仍为设置值，此时按钮文本信息会自动换行，以保证安全控件显示的完整性。
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Capsule })
@@ -206,7 +207,12 @@ struct Index {
         // 图标、文字、背景都存在，如果设置宽度小于当前属性组合下允许的最小宽度时，宽度仍为设置值，此时按钮文本信息会自动换行，以保证安全控件显示的完整性。
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Capsule })
           .fontSize(16)
-          .constraintSize({ minWidth: 0, maxWidth: 30, minHeight: 0, maxHeight: 30 })
+          .constraintSize({
+            minWidth: 0,
+            maxWidth: 30,
+            minHeight: 0,
+            maxHeight: 30
+          })
       }.width('100%')
     }.height('100%')
   }

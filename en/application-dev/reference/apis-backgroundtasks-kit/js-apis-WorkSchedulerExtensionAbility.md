@@ -14,7 +14,7 @@ The WorkSchedulerExtensionAbility module provides callbacks for deferred task sc
 import { WorkSchedulerExtensionAbility } from '@kit.BackgroundTasksKit';
 ```
 
-## WorkSchedulerExtensionContext
+## WorkSchedulerExtensionContext<sup>10+</sup>
 
 type WorkSchedulerExtensionContext = _WorkSchedulerExtensionContext
 

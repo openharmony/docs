@@ -16,7 +16,7 @@
 3. LazyForEach：仅当前显示的LazyForEach中的自定义组件为active状态，而缓存节点的组件则为inactive状态。
 4. Navigation：当前显示的NavDestination中的自定义组件为active状态，而其他未显示的NavDestination组件则为inactive状态。 
 5. 组件复用：进入复用池的组件为inactive状态，从复用池上树的节点为active状态。
-6. 混用场景：对于以上场景的组合使用，例如TabContent下面使用LazyForEach，切换Tab时，API version15及以下，LazyForEach中的所有节点都会被设置为active状态，而从API version16开始，只有LazyForEach的屏上节点会被设置为active状态，其余则为inactive状态。
+6. 混用场景：对于以上场景的组合使用，例如TabContent下面使用LazyForEach，切换Tab时，API version 17及以下，LazyForEach中的所有节点都会被设置为active状态，而从API version 18开始，只有LazyForEach的屏上节点会被设置为active状态，其余则为inactive状态。
 
 在阅读本文档前，开发者需要了解自定义组件基本语法。建议提前阅读：[自定义组件](./arkts-create-custom-components.md)。
 
@@ -24,7 +24,7 @@
 >
 > 从API version 11开始，支持自定义组件冻结功能。
 >
-> 从API version 16开始，支持自定义组件冻结功能的混用场景冻结。
+> 从API version 18开始，支持自定义组件冻结功能的混用场景冻结。
 
 ## 当前支持的场景
 
@@ -550,7 +550,7 @@ struct NavigationContentMsgStack {
 
 ### 组件复用
 
-<!--RP1-->[组件复用](../performance/component-recycle.md)<!--RP1End-->通过重利用缓存池中已存在的节点，而非创建新节点，来优化UI性能并提升应用流畅度。复用池中的节点尽管未在UI组件树上展示，但是状态变量的更改仍会触发UI刷新。为了解决复用池中组件异常刷新问题，可以使用组件冻结避免复用池中的组件刷新。
+[组件复用](./arkts-reusable.md)通过重利用缓存池中已存在的节点，而非创建新节点，来优化UI性能并提升应用流畅度。复用池中的节点尽管未在UI组件树上展示，但是状态变量的更改仍会触发UI刷新。为了解决复用池中组件异常刷新问题，可以使用组件冻结避免复用池中的组件刷新。
 
 #### 组件复用、if和组件冻结混用场景
 下面是组件复用、if组件和组件冻结混合使用场景的例子，if组件绑定的状态变量变化成false时，触发子组件`ChildComponent`的下树，由于`ChildComponent`被标记了组件复用，所以不会被销毁，而是进入复用池，这个时候如果同时开启了组件冻结，则可以使在复用池里不再刷新。
@@ -625,7 +625,7 @@ struct Page {
 如下面例子：
 1. 滑动到index为14的位置，当前屏幕上可见区域内有15个`ChildComponent`。
 2. 在滑动过程中：
-    - 列表上端的`ChildComponent`滑出可视区域外，此时先进入LazyForEach的缓存区域内，被设置inactive。在滑出LazyForEach区域外后，因为标记了组件复用，所以并不会被析构，会进入复用池，此时再次被设置inactive。
+    - 列表上端的`ChildComponent`滑出可视区域外，此时先进入LazyForEach的缓存区域内，被设置inactive。在滑出LazyForEach缓存区域外后，因为标记了组件复用，所以并不会被析构，而是会进入复用池，此时再次被设置inactive。
     - 列表下端LazyForEach的缓存节点会进入List范围内，此时会试图请求创建新的节点进入LazyForEach的缓存，发现有可复用的节点时，从复用池中拿出已有节点，触发aboutToReuse生命周期回调，此时因为节点进入的是LazyForEach的缓存区域，所以其状态依旧是inactive。
 3. 点击`change desc`，触发`Page`的成员变量`desc`的变化：
     - `desc`是\@State装饰的，其变化会通知给其子组件`ChildComponent`\@Link装饰的`desc`。
@@ -975,7 +975,7 @@ struct Page {
 
 ### 组件混用
 
-组件冻结混用场景即当支持组件冻结的场景彼此之间组合使用，对于不同的API version版本，冻结行为会有不同。给父组件设置组件冻结标志，在API version 15及以下，当父组件解冻时，会解冻自己子组件所有的节点；从API version 16开始，父组件解冻时，只会解冻子组件的屏上节点。
+组件冻结混用场景即当支持组件冻结的场景彼此之间组合使用，对于不同的API version版本，冻结行为会有不同。给父组件设置组件冻结标志，在API version 17及以下，当父组件解冻时，会解冻自己子组件所有的节点；从API version 18开始，父组件解冻时，只会解冻子组件的屏上节点。
 
 #### Navigation和TabContent的混用
 
@@ -1153,9 +1153,9 @@ struct pageTwoStack {
 
 代码运行结果图如下：
 
-![freeze](figures/freeze_tabcontent.png)
+![freeze](figures/freeze_tabcontent.gif)
 
-页面中存在两个tab标签，默认在Update标签，开启组件冻结功能，Tabcontent的标签如果未被选中，状态变量不会刷新，如以下操作。
+点击Button：Next Page，进入pageOne页面，页面中存在两个tab标签，默认在Update标签，开启组件冻结功能，Tabcontent的标签如果未被选中，状态变量不会刷新，如以下操作。
 
 点击Button：Incr state，日志中查询Appmonitor，存在3个打印。
 
@@ -1165,13 +1165,13 @@ struct pageTwoStack {
 
 ![freeze](figures/freeze_tabcontent_delayupdate.png)
 
-在API version 15及以下：
+在API version 17及以下：
 
 点击Next page进入下一个页面并返回，标签默认在DelayUpdate，再次点击Button：Incr state，日志中查询Appmonitor，存在4个打印，页面路由返回时，会解冻Tabcontent所有的标签。
 
 ![freeze](figures/freeze_tabcontent_back_api15.png)
 
-在API Version 16及以上：
+在API version 18及以上：
 
 点击Next page进入下一个页面并返回，标签默认在DelayUpdate，再次点击Button：Incr state，日志中查询Appmonitor，存在2个打印，页面路由返回时，只会解冻对应标签的节点。
 
@@ -1347,13 +1347,13 @@ struct Page {
 
 ![freeze](figures/freeze_lazyforeach_add.png)
 
-在API version 15及以下：
+在API version 17及以下：
 
 灭屏之后亮屏，触发OnPageShow，点击Button：add sum，打印数量 = 屏上节点 + cachedCount的数量。
 
 ![freeze](figures/freeze_lazyforeach_api15.png)
 
-从API version 16开始：
+从API version 18开始：
 
 灭屏之后亮屏，触发OnPageShow，点击Button：add sum，只会打印屏上节点数量，不再会解冻cachedCount中的节点。
 

@@ -8,7 +8,7 @@
 >
 > 从API version 12开始，支持@ComponentV2装饰的自定义组件冻结功能。
 >
-> 从API version 16开始，支持自定义组件冻结功能的混用场景冻结。
+> 从API version 18开始，支持自定义组件冻结功能的混用场景冻结。
 >
 > 和@Component的组件冻结不同， @ComponentV2装饰的自定义组件不支持LazyForEach场景下的缓存节点组件冻结。
 
@@ -350,6 +350,10 @@ struct NavigationContentMsgStack {
 
 ### Repeat virtualScroll
 
+> **说明：**
+>
+> Repeat virtualScroll从API version 18开始支持自定义组件冻结。
+
 对Repeat virtualScroll缓存池中的自定义组件进行冻结，避免不必要的组件刷新。建议提前阅读[Repeat组件生成及复用virtualScroll规则](./arkts-new-rendering-control-repeat.md#子组件渲染逻辑-1)。
 
 ```ts
@@ -452,7 +456,7 @@ struct ChildComponent {
 
 ### 混用场景
 
-组件冻结混用场景即当支持组件冻结的场景彼此之间组合使用，对于不同的API version版本，冻结行为会有不同。给父组件设置组件冻结标志，在API version 15及以下，当父组件解冻时，会解冻自己子组件所有的节点；从API version 16开始，父组件解冻时，只会解冻子组件的屏上节点，详细说明见[\@Compone的自定义组件冻结的混用场景](./arkts-custom-components-freeze.md#组件混用)。
+组件冻结混用场景即当支持组件冻结的场景彼此之间组合使用，对于不同的API version版本，冻结行为会有不同。给父组件设置组件冻结标志，在API version 17及以下，当父组件解冻时，会解冻自己子组件所有的节点；从API version 18开始，父组件解冻时，只会解冻子组件的屏上节点，详细说明见[\@Compone的自定义组件冻结的混用场景](./arkts-custom-components-freeze.md#组件混用)。
 
 #### Navigation和TabContent的混用
 
@@ -622,11 +626,11 @@ struct pageTwoStack {
 }
 ```
 
-在API version 15及以下：
+在API version 17及以下：
 
 点击Next page进入下一个页面并返回，会解冻Tabcontent所有的标签。
 
-在API Version 16及以上：
+在API version 18及以上：
 
 点击Next page进入下一个页面并返回，只会解冻对应标签的节点。
 

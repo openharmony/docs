@@ -295,10 +295,10 @@ setChallengeResult(result: PatternLockChallengeResult): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 说明           |
-| ------- | -------------- |
-| CORRECT | 图案密码正确。 |
-| WRONG   | 图案密码错误。 |
+| 名称    | 值    | 说明           |
+| ------- | ----- | -------------- |
+| CORRECT | 1  | 图案密码正确。 |
+| WRONG   | 2  | 图案密码错误。 |
 
 ##  示例
 

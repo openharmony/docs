@@ -29,7 +29,7 @@ Starts vibration with the specified effect and attribute. This API uses an async
 
 | Name   | Type                                  | Mandatory| Description                                                        |
 | --------- | -------------------------------------- | ---- | :----------------------------------------------------------- |
-| effect    | [VibrateEffect](#vibrateeffect9)       | Yes  | Vibration effect. The following options are supported:<br>- [VibrateTime](#vibratetime9): vibration with the specified duration.<br>- [VibratePreset](#vibratepreset9): vibration with a preset effect.<br>- [VibrateFromFile](#vibratefromfile10): vibration according to a custom vibration configuration file.<br>4. [VibrateFromPattern<sup>16+</sup>](#vibratefrompattern16): Vibration according to a custom vibration configuration.|
+| effect    | [VibrateEffect](#vibrateeffect9)       | Yes  | Vibration effect. The following options are supported:<br>- [VibrateTime](#vibratetime9): vibration with the specified duration.<br>- [VibratePreset](#vibratepreset9): vibration with a preset effect.<br>- [VibrateFromFile](#vibratefromfile10): vibration according to a custom vibration configuration file.<br>- [VibrateFromPattern<sup>16+</sup>](#vibratefrompattern16): vibration according to a custom vibration pattern.|
 | attribute | [VibrateAttribute](#vibrateattribute9) | Yes  | Vibration attribute.                                              |
 | callback  | AsyncCallback&lt;void&gt;              | Yes  | Callback used to return the result. If the vibration starts, **err** is **undefined**; otherwise, **err** is an error object.  |
 
@@ -148,7 +148,7 @@ Starts vibration with the specified effect and attribute. This API uses a promis
 
 | Name   | Type                                  | Mandatory| Description                                                        |
 | --------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| effect    | [VibrateEffect](#vibrateeffect9)       | Yes  | Vibration effect. The following options are supported:<br>- [VibrateTime](#vibratetime9): vibration with the specified duration.<br>- [VibratePreset](#vibratepreset9): vibration with a preset effect.<br>- [VibrateFromFile](#vibratefromfile10): vibration according to a custom vibration configuration file.<br>4. [VibrateFromPattern<sup>16+</sup>](#vibratefrompattern16): Vibration according to a custom vibration configuration.|
+| effect    | [VibrateEffect](#vibrateeffect9)       | Yes  | Vibration effect. The following options are supported:<br>- [VibrateTime](#vibratetime9): vibration with the specified duration.<br>- [VibratePreset](#vibratepreset9): vibration with a preset effect.<br>- [VibrateFromFile](#vibratefromfile10): vibration according to a custom vibration configuration file.<br>- [VibrateFromPattern<sup>16+</sup>](#vibratefrompattern16): vibration according to a custom vibration pattern.|
 | attribute | [VibrateAttribute](#vibrateattribute9) | Yes  | Vibration attribute.                                              |
 
 **Return value**
@@ -264,7 +264,7 @@ Stops vibration in the specified mode. This API uses an asynchronous callback to
 
 | Name  | Type                                 | Mandatory| Description                                                        |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| stopMode | [VibratorStopMode](#vibratorstopmode) | Yes  | Mode to stop the vibration. The options are as follows:<br>- **VIBRATOR_STOP_MODE_TIME**: used to stop fixed-duration vibration.<br>- **VIBRATOR_STOP_MODE_PRESET**: used to stop preset vibration.<br>To stop custom vibration, use [vibrator.stopVibration<sup>10+</sup>](#vibratorstopvibration10).                                 |
+| stopMode | [VibratorStopMode](#vibratorstopmode) | Yes  | Mode to stop the vibration. The options are as follows:<br>- **VIBRATOR_STOP_MODE_TIME**: used to stop fixed-duration vibration.<br>- **VIBRATOR_STOP_MODE_PRESET**: used to stop preset vibration.<br>To stop custom vibration, use [vibrator.stopVibration<sup>10+</sup>](#vibratorstopvibration10).|
 | callback | AsyncCallback&lt;void&gt;             | Yes  | Callback used to return the result. If the vibration stops, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -817,7 +817,7 @@ try {
 
 addContinuousEvent(time: number, duration: number, options?: ContinuousParam): VibratorPatternBuilder;
 
-Adds a long or short vibration event as a **VibratorPattern** object.
+Adds a long vibration event as a **VibratorPattern** object.
 
 **Required permissions**: ohos.permission.VIBRATE
 
@@ -825,11 +825,11 @@ Adds a long or short vibration event as a **VibratorPattern** object.
 
 **Parameters**
 
-| Name  | Type           | Mandatory| Description                    |
-| -------- | --------------- | ---- | ------------------------ |
-| time     | number          | Yes  | Start time of the long vibration.    |
-| duration | number          | Yes  | Duration of the long vibration.    |
-| options  | ContinuousParam | No  | Optional parameters.|
+| Name  | Type                                 | Mandatory| Description                    |
+| -------- | ------------------------------------- | ---- | ------------------------ |
+| time     | number                                | Yes  | Start time of the long vibration.    |
+| duration | number                                | Yes  | Duration of the long vibration.    |
+| options  | [ContinuousParam](#continuousparam16) | No  | Optional parameters.|
 
 **Error codes**
 
@@ -878,7 +878,7 @@ try {
 
 addTransientEvent(time: number, options?: TransientParam): VibratorPatternBuilder;
 
-Adds a long or short vibration event as a **VibratorPattern** object.
+Adds a short vibration event as a **VibratorPattern** object.
 
 **Required permissions**: ohos.permission.VIBRATE
 
@@ -886,10 +886,10 @@ Adds a long or short vibration event as a **VibratorPattern** object.
 
 **Parameters**
 
-| Name | Type           | Mandatory| Description                    |
-| ------- | --------------- | ---- | ------------------------ |
-| time    | number          | Yes  | Start time of long vibration.    |
-| options | ContinuousParam | No  | Optional parameters.|
+| Name | Type                               | Mandatory| Description                    |
+| ------- | ----------------------------------- | ---- | ------------------------ |
+| time    | number                              | Yes  | Start time of long vibration.    |
+| options | [TransientParam](#transientparam16) | No  | Optional parameters.|
 
 **Error codes**
 
@@ -1106,7 +1106,7 @@ Vibration event.
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | eventType | VibratorEventType               | Yes  | Vibration event type.                                              |
 | time      | number                          | Yes  | Vibration start time.                                              |
-| duration  | number                          | No  | Vibration duration. This parameter is optional. The value range is [0, 5000]. The default value is 35 for short vibration and 1000 for long vibration.|
+| duration  | number                          | No  | Vibration duration. This parameter is optional. The value range is [0, 5000]. The default value is **48** for short vibration and **1000** for long vibration.|
 | intensity | number                          | No  | Vibration intensity. This parameter is optional. The value range is [0, 100]. If this parameter is left empty, the default value is **100**.|
 | frequency | number                          | No  | Vibration frequency. This parameter is optional.The value range is [0, 100]. If this parameter is left empty, the default value is **50**. |
 | index     | number                          | No  | Channel number. This parameter is optional. If this parameter is left empty, the default value is **0**.                   |

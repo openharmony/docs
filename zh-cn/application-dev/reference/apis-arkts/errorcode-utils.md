@@ -741,7 +741,7 @@ The asyncRunner task discarded.
 
 **可能原因**
 
-调用[asyncRunner.execute](../apis-arkts/js-apis-taskpool.md#execute16)执行task任务的数量超过等待任务列表容量时，最早入队的task任务就会被丢弃。
+调用[asyncRunner.execute](../apis-arkts/js-apis-taskpool.md#execute18)执行task任务的数量超过等待任务列表容量时，最早入队的task任务就会被丢弃。
 
 **处理步骤**
 
@@ -792,17 +792,17 @@ The task cannot be executed by two APIs.
 
 **错误描述**
 
-异步队列任务只能被[asyncRunner.execute](../apis-arkts/js-apis-taskpool.md#execute16)接口执行，不能被其他API执行；非异步队列任务，不能被[asyncRunner.execute](../apis-arkts/js-apis-taskpool.md#execute16)接口执行。
+异步队列任务只能被[asyncRunner.execute](../apis-arkts/js-apis-taskpool.md#execute18)接口执行，不能被其他API执行；非异步队列任务，不能被[asyncRunner.execute](../apis-arkts/js-apis-taskpool.md#execute18)接口执行。
 
 **可能原因**
 
-1. 异步任务再次调用[sequenceRunner.execute](../apis-arkts/js-apis-taskpool.md#execute11)、[executeDelayed](../apis-arkts/js-apis-taskpool.md#taskpoolexecutedelayed11)、[addTask](../apis-arkts/js-apis-taskpool.md#addtask10-1)、[taskpool.execute](../apis-arkts/js-apis-taskpool.md#taskpoolexecute-1)、[asyncRunner.execute](../apis-arkts/js-apis-taskpool.md#execute16)、[executePeriodically](../apis-arkts/js-apis-taskpool.md#taskpoolexecuteperiodically12)或[addDependency](js-apis-taskpool.md#adddependency11)执行。
-2. 已经被执行过的任务再次调用异步队列的[execute](../apis-arkts/js-apis-taskpool.md#execute16)执行。
+1. 异步任务再次调用[sequenceRunner.execute](../apis-arkts/js-apis-taskpool.md#execute11)、[executeDelayed](../apis-arkts/js-apis-taskpool.md#taskpoolexecutedelayed11)、[addTask](../apis-arkts/js-apis-taskpool.md#addtask10-1)、[taskpool.execute](../apis-arkts/js-apis-taskpool.md#taskpoolexecute-1)、[asyncRunner.execute](../apis-arkts/js-apis-taskpool.md#execute18)、[executePeriodically](../apis-arkts/js-apis-taskpool.md#taskpoolexecuteperiodically12)或[addDependency](js-apis-taskpool.md#adddependency11)执行。
+2. 已经被执行过的任务再次调用异步队列的[execute](../apis-arkts/js-apis-taskpool.md#execute18)执行。
 
 **处理步骤**
 
 1. 调用上述接口时，确保异步任务不再被执行。无法保证时，需要捕获异常。
-2. 调用上述接口时，确保已经被执行过的任务不再调用异步队列的[execute](../apis-arkts/js-apis-taskpool.md#execute16)执行。无法保证时，需要捕获异常。
+2. 调用上述接口时，确保已经被执行过的任务不再调用异步队列的[execute](../apis-arkts/js-apis-taskpool.md#execute18)执行。无法保证时，需要捕获异常。
 
 ## 10200060 超出精度限制
 

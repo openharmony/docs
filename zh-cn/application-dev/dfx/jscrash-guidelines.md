@@ -45,13 +45,13 @@ JS Crash异常根据不同的异常场景，在 Reason 字段进行了分类，�
  - SyntaxError（语法错误）类：语法错误也称为解析错误。语法错误在任何编程语言中都是最常见的错误类型，表示不符合编程语言的语法规范。
 
  - RangeError（边界错误）类：表示超出有效范围时发生的异常，主要的有以下几种情况：
-    - 数组长度为负数或超长
-    - 数字类型的方法参数超出预定义范围
-    - 函数堆栈调用超过最大值
+    - 数组长度为负数或超长。
+    - 数字类型的方法参数超出预定义范围。
+    - 函数堆栈调用超过最大值。
 
- - ReferenceError —— 引用错误：引用一个不存在的变量时发生的错误，每当我们创建一个变量时，变量名称都会写入一个变量存储中心中，这个变量存储中心就像键值存储一样，每当我们引用变量时，它都去存储中找到 key并提取并返回 value，如果我们要找的变量不在存储中，就会抛出 ReferenceError。
+ - ReferenceError - 引用错误：引用一个不存在的变量时发生的错误。每当我们创建一个变量时，变量名称都会写入一个变量存储中心中。这个变量存储中心就像键值存储一样，每当我们引用变量时，它都去存储中找到 key并提取并返回 value。如果我们要找的变量不在存储中，就会抛出 ReferenceError。
 
- - URI Error —— URL错误：在调用 URI 相关的方法中 URL 无效时抛出的异常，主要包括 `encodeURI()`、`decodeURI()`、`encodeURIComponent()`、`decodeURIComponent()`、`escape()` 和 `unescape()` 几个函数 。
+ - URI Error - URL错误：在调用 URI 相关的方法中 URL 无效时抛出的异常，主要包括 `encodeURI()`、`decodeURI()`、`encodeURIComponent()`、`decodeURIComponent()`、`escape()` 和 `unescape()` 几个函数 。
 
 ## 问题定位思路
 
@@ -245,7 +245,7 @@ Error message:Cannot read property xxx of undefined
 
 2. 提取日志关键信息
 
-    通过日志信息可以确定为Type Error类问题，由异常信息得知是在读取needRenderTranslate对象时报错，该对象为undefined。最后可以通过异常代码调用栈，获取错误产生位置。
+    通过日志信息可以确定为TypeError类问题，由异常信息得知是在读取needRenderTranslate对象时报错，该对象为undefined。最后可以通过异常代码调用栈，获取错误产生位置。
 Cannot get SourceMap info, dump raw stack 信息表示该应用为release包安装，JS栈转换eTS行列号失败，可考虑使用[应用堆栈解析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-release-app-stack-analysis-V5)来解析行号。
 
 3. 定位到具体代码

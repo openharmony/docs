@@ -46,7 +46,7 @@ Defines **Params** (specifying the action that can be performed) in the Want.
 | ------------------------------------ | ---------- | ------------------------------------------------------------ |
 | FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | Grant the permission to read the URI.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                 |
 | FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | Grant the permission to write data to the URI.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                 |
-| FLAG_AUTH_PERSISTABLE_URI_PERMISSION<sup>12+</sup> | 0x00000040 | Make the URI persistent. It takes effect only on tablets.|
+| FLAG_AUTH_PERSISTABLE_URI_PERMISSION<sup>12+</sup> | 0x00000040 | Make the URI persistent. It takes effect only on 2-in-1 devices and tablets.|
 | FLAG_INSTALL_ON_DEMAND               | 0x00000800 | Install the ability if it has not been installed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                             |
 | FLAG_START_WITHOUT_TIPS<sup>11+</sup>              | 0x40000000 | Do not display any tips if the ability implicitly started does not match any application.      |
 ## ShowMode<sup>12+</sup>

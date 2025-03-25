@@ -67,7 +67,7 @@ The column or key names are returned as a string array, in which the strings are
 | columnNames | Array&lt;string&gt; | Yes  | Names of all columns in the result set.  |
 | columnCount | number        | Yes  | Number of columns in the result set.        |
 | rowCount    | number        | Yes  | Number of rows in the result set.        |
-| isClosed    | boolean       | Yes  | Whether the result set is closed.|
+| isClosed    | boolean       | Yes  | Whether the result set is closed. The value **true** means the result set is closed; the value **false** means the opposite.|
 
 ### goToFirstRow
 

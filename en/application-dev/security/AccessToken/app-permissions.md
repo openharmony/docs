@@ -1,16 +1,16 @@
 # Application Permissions
 
-The way to request permissions varies, depending on the scope of the permissions and the authorization mode.
+The way to request permissions varies, depending on its applicable scope and authorization mode. Determine the appropriate way to request permissions based on actual situation.
 
-The system provides the following permissions. You can determine the appropriate way to apply for the permissions based on actual situation.
+The system provides the following permissions:
 
 - [Open system_grant permissions](permissions-for-all.md)
   
-   The permissions are available to all applications and granted by the system. After an application requests this type of permissions, the system automatically grants the permissions to the application when the application is installed.
+   The permissions are available to all applications and granted by the system. The permissions requested by an application are automatically granted when the application is installed.
 
 - [Open user_grant permissions](permissions-for-all-user.md)
 
-   The permissions are available to all applications and granted by the user. After an application requests this type of permissions, the permissions must be authorized by the user in a dialog box during the running of the application.
+   The permissions are available to all applications and granted by the user. The permissions requested by an application must be authorized by the user in a dialog box during the running of the application.
 
 - [Permissions for enterprise applications](permissions-for-enterprise-apps.md)
 
@@ -25,15 +25,15 @@ The system provides the following permissions. You can determine the appropriate
 
    The permissions are available only to system applications and system services. The permissions can be classified into the following types:
 
-   1. system_grant permissions that can be requested via the Access Control List (ACL):
+   1. [system_grant permissions available to system applications via ACL](permissions-for-system-apps.md):
 
-       The permissions can be requested via the [ACL](declare-permissions-in-acl.md) and are authorized by the system. The ACL allows a system application or system service to have permissions beyond its Ability Privilege Level (APL). When the application is installed, the system automatically grants the requested permissions to the application.
-   2. system_grant permissions that cannot be requested via the ACL:
+       The permissions are authorized by the system and can be requested via [ACL](declare-permissions-in-acl.md). The ACL allows a system application or system service to have permissions beyond its Ability Privilege Level (APL). The requested permissions will be automatically granted when the application is installed.
+   2. [system_grant non-ACL permissions for system applications](permissions-for-system-apps-no-acl.md):
 
-       You need to quey the application's APL and determine whether the application can request the permissions. When the application is installed, the system automatically grants the requested permissions to the application.
+       The permissions cannot be requsted via ACL. You need to quey the application's APL and determine whether the application can request the permissions. The requested permissions will be automatically granted when the application is installed..
 
-   3. user_grant permissions that can be requested via the ACL:
+   3. [user_grant permissions available to system applications via ACL](permissions-for-system-apps-user.md):
 
-       The permissions can be requested via the [ACL](declare-permissions-in-acl.md) and must be authorized by the user. After an application requests this type of permissions via the ACL, the permissions must be authorized by the user in a dialog box during the running of the application.
+       The permissions can be requested via [ACL](declare-permissions-in-acl.md) and must be authorized by the user. After an application requests this type of permissions via ACL, the permissions must be authorized by the user in a dialog box during the running of the application.
 
 <!--DelEnd-->

@@ -12,19 +12,115 @@ The ApplicationStateObserver module defines an observer to listen for applicatio
 import { appManager } from '@kit.AbilityKit';
 ```
 
-## Properties
+## ApplicationStateObserver.onForegroundApplicationChanged
+
+onForegroundApplicationChanged(appStateData: AppStateData): void
+
+Called when the foreground or background state of an application changes.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name                            | Type                   | Readable| Writable| Description  |
-| -------------------------------- | ---------------------- | ---- | ---- | ------------------ |
-| onForegroundApplicationChanged   | AsyncCallback\<void>   | Yes  | No  | Callback invoked when the foreground or background state of an application changes. The parameter type passed in is [AppStateData](js-apis-inner-application-appStateData.md).|
-| onAbilityStateChanged            | AsyncCallback\<void>   | Yes  | No | Callback invoked when the ability state changes. The parameter type passed in is [AbilityStateData](js-apis-inner-application-abilityStateData.md).  |
-| onProcessCreated                 | AsyncCallback\<void>   | Yes  | No  | Callback invoked when a process is created. The parameter type passed in is [ProcessData](js-apis-inner-application-processData.md).         |
-| onProcessDied                     | AsyncCallback\<void>   | Yes  | No  | Callback invoked when a process is destroyed. The parameter type passed in is [ProcessData](js-apis-inner-application-processData.md).         |
-| onProcessStateChanged | AsyncCallback\<void>   | Yes  | No  | Callback invoked when the process state is changed. The parameter type passed in is [ProcessData](js-apis-inner-application-processData.md).       |
-| onAppStarted      | AsyncCallback\<void>   | Yes  | No  | Callback invoked when the first process of the application is created. The parameter type passed in is [AppStateData](js-apis-inner-application-appStateData.md).    |
-| onAppStopped       | AsyncCallback\<void>   | Yes  | No  | Callback invoked when the last process of the application is destroyed. The parameter type passed in is [AppStateData](js-apis-inner-application-appStateData.md).    |
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| appStateData | [AppStateData](js-apis-inner-application-appStateData.md) | Yes| Application state data.|
+
+## ApplicationStateObserver.onAbilityStateChanged
+
+onAbilityStateChanged(abilityStateData: AbilityStateData): void
+
+Called when the ability state changes.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| abilityStateData | [AbilityStateData](js-apis-inner-application-abilityStateData.md) | Yes| Ability state data.|
+
+## ApplicationStateObserver.onProcessCreated
+
+onProcessCreated(processData: ProcessData): void
+
+Called when a process is created.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| processData | [ProcessData](js-apis-inner-application-processData.md) | Yes| Process data.|
+
+## ApplicationStateObserver.onProcessDied
+
+onProcessDied(processData: ProcessData): void
+
+Called when a process is destroyed.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| processData | [ProcessData](js-apis-inner-application-processData.md) | Yes| Process data.|
+
+## ApplicationStateObserver.onProcessStateChanged
+
+onProcessStateChanged(processData: ProcessData): void
+
+Called when the process state is changed.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| processData | [ProcessData](js-apis-inner-application-processData.md) | Yes| Process data.|
+
+## ApplicationStateObserver.onAppStarted
+
+onAppStarted(appStateData: AppStateData): void
+
+Called when the first process of the application is created.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| appStateData | [AppStateData](js-apis-inner-application-appStateData.md) | Yes| Application state data.|
+
+## ApplicationStateObserver.onAppStopped
+
+onAppStopped(appStateData: AppStateData): void
+
+Called when the last process of the application is destroyed.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| appStateData | [AppStateData](js-apis-inner-application-appStateData.md) | Yes| Application state data.|
+
+## ProcessData
+
+type ProcessData = _ProcessData.default
+
+Defines the process data.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Type| Description|
+| --- | --- |
+| [_ProcessData.default](js-apis-inner-application-processData.md) | Process data.|
 
 **Example**
 ```ts

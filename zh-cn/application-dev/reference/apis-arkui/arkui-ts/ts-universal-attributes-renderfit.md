@@ -22,13 +22,13 @@ renderFit(fitMode: RenderFit)
 | ------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | fitMode | [RenderFit](#renderfit枚举说明) | 是   | 设置宽高动画过程中的组件内容填充方式。<br/>当不设置renderFit属性时，取默认值RenderFit.TOP_LEFT。 |
 
-## renderFit<sup>16+</sup>
+## renderFit<sup>18+</sup>
 
 renderFit(fitMode: Optional\<RenderFit>)
 
 设置宽高动画过程中的组件内容填充方式。与[renderFit](#renderfit)相比，fitMode参数新增了对undefined类型的支持。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
