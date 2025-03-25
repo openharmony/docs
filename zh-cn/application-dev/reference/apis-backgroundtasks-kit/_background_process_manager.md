@@ -15,7 +15,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [background_process_manager.h](background__process__manager_8h.md) | 本模块提供了后台子进程管控接口。开发者可以通过本模块接口对子进程进行压制、解压制，避免子进程过多占用系统资源，导致系统使用卡顿。 本模块接口仅对通过[OH_Ability_StartNativeChildProcess](../../apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess)接口创建的子进程生效。  | 
+| [background_process_manager.h](background__process__manager_8h.md) | 本模块提供了后台子进程管控接口。开发者可以通过本模块接口对子进程进行压制、解压制，避免子进程过多占用系统资源，导致系统使用卡顿。 本模块接口仅对通过[OH_Ability_StartNativeChildProcess](../apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess)接口创建的子进程生效。  | 
 
 
 ### 类型定义
@@ -125,7 +125,7 @@ int OH_BackgroundProcessManager_ResetProcessPriority (int pid)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| pid | 子进程的进程号，[OH_Ability_StartNativeChildProcess](../../apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess)接口创建子进程后的pid参数，即为子进程进程号。  | 
+| pid | 子进程的进程号，[OH_Ability_StartNativeChildProcess](../apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess)接口创建子进程后的pid参数，即为子进程进程号。  | 
 
 **返回：**
 
@@ -147,7 +147,7 @@ int OH_BackgroundProcessManager_SetProcessPriority (int pid, BackgroundProcessMa
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| pid | 需要被压制子进程的进程号，[OH_Ability_StartNativeChildProcess](../../apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess)接口创建子进程后的pid参数，即为子进程进程号。  | 
+| pid | 需要被压制子进程的进程号，[OH_Ability_StartNativeChildProcess](../apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess)接口创建子进程后的pid参数，即为子进程进程号。  | 
 | priority | 压制档位。 | 
 
 **返回：**
