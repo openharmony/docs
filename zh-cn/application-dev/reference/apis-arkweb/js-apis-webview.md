@@ -4145,7 +4145,7 @@ setNetworkAvailable(enable: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | --------------------------------- |
-| enable | boolean | 是   | 是否使能window.navigator.onLine。 |
+| enable | boolean | 是   | 是否使能window.navigator.onLine，默认为true，表示使能。 |
 
 **错误码：**
 
@@ -5621,7 +5621,7 @@ static setConnectionTimeout(timeout: number): void
 
 | 参数名          | 类型    |  必填  | 说明                                            |
 | ---------------| ------- | ---- | ------------- |
-| timeout        | number  | 是   | socket连接超时时间，以秒为单位，socket必须为大于0的整数。 |
+| timeout        | number  | 是   | socket连接超时时间，以秒为单位，必须为大于0的整数。 |
 
 **错误码：**
 
@@ -5772,7 +5772,7 @@ isSafeBrowsingEnabled(): boolean
 
 | 类型    | 说明                                     |
 | ------- | --------------------------------------- |
-| boolean | 当前网页是否启用了检查网站安全风险的功能，默认为false。|
+| boolean | 当前网页是否启用了检查网站安全风险的功能，默认为false，表示启用。|
 
 **示例：**
 
@@ -5862,7 +5862,7 @@ isIntelligentTrackingPreventionEnabled(): boolean
 
 | 类型    | 说明                                     |
 | ------- | --------------------------------------- |
-| boolean | 当前Web是否启用了智能防跟踪功能，默认为false。|
+| boolean | 当前Web是否启用了智能防跟踪功能，默认为false，表示未启用。|
 
 **错误码：**
 
@@ -6075,7 +6075,7 @@ enableAdsBlock(enable: boolean): void
 
 | 参数名   | 类型    |  必填  | 说明                       |
 | --------| ------- | ---- | ---------------------------|
-|  enable | boolean | 是   | 是否启用广告过滤功能。 |
+|  enable | boolean | 是   | 是否启用广告过滤功能，默认为false，表示未启用。 |
 
 **错误码：**
 
@@ -6478,7 +6478,7 @@ isIncognitoMode(): boolean
 
 | 类型                 | 说明                      |
 | -------------------- | ------------------------- |
-| boolean              | 返回是否是隐私模式的Webview。 |
+| boolean              | 返回是否是隐私模式的Webview，默认为false，表示当前webview非隐私模式。 |
 
 **错误码：**
 
@@ -10089,7 +10089,7 @@ static putAcceptCookieEnabled(accept: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                                 |
 | ------ | ------- | ---- | :----------------------------------- |
-| accept | boolean | 是   | 设置是否拥有发送和接收cookie的权限，默认为true。 |
+| accept | boolean | 是   | 设置是否拥有发送和接收cookie的权限，默认为true，表示拥有。 |
 
 **错误码：**
 
@@ -10139,7 +10139,7 @@ static isCookieAllowed(): boolean
 
 | 类型    | 说明                             |
 | ------- | -------------------------------- |
-| boolean | 是否拥有发送和接收cookie的权限，默认为true。 |
+| boolean | 是否拥有发送和接收cookie的权限，默认为true，表示拥有。 |
 
 **示例：**
 
@@ -10227,7 +10227,7 @@ static isThirdPartyCookieAllowed(): boolean
 
 | 类型    | 说明                                   |
 | ------- | -------------------------------------- |
-| boolean | 是否拥有发送和接收第三方cookie的权限，默认为false。 |
+| boolean | 是否拥有发送和接收第三方cookie的权限，默认为false，表示未拥有。 |
 
 **示例：**
 
