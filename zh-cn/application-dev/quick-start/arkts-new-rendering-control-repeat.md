@@ -148,39 +148,33 @@ Repeat通过键值识别数组如何改变：增加了哪些数据、删除了�
 
 在容器滑动/数组改变时，将失效的子组件节点（离开有效加载范围）加入空闲节点缓存列表中（断开与组件树的关系，但不销毁），在需要生成新的组件时，对缓存里的组件进行复用（更新被复用子组件的变量值，重新上树）。
 
-Repeat组件在virtualScroll模式下默认启用复用功能。从API version 16开始，可以通过配置`reusable`字段选择是否启用复用功能。为提高渲染性能，建议启用复用功能。代码示例见[VirtualScrollOptions对象说明](../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#virtualscrolloptions对象说明)。
+通过典型的[滑动场景](#滑动场景)和[数据更新场景](#数据更新场景)示例来展示virtualScroll模式下子组件的渲染逻辑。定义长度为20的数组，数组前5项的template type为`aa`，其余项为`bb`。`aa`缓存池容量为3，`bb`缓存池容量为4。容器组件的预加载区域大小为2。为了便于理解，在`aa`和`bb`缓存池中分别加入一个和两个空闲节点。
+
+首次渲染，列表的节点状态如下图所示。
+
+![Repeat-Start](./figures/Repeat-Start.PNG)
 
 #### 滑动场景
 
-滑动前节点现状如下图所示
+将屏幕向右滑动（屏幕内容右移）一个节点的距离，Repeat将开始复用缓存池中的节点。index=10的节点进入有效加载范围，计算出其template type为`bb`。由于`bb`缓存池非空，Repeat会从`bb`缓存池中取出一个空闲节点进行复用，更新其节点属性，该子组件中涉及数据item和索引index的其他孙子组件会根据V2状态管理的规则做同步更新。其他节点仍在有效加载范围，均只更新索引index。
 
-![Repeat-Start](./figures/Repeat-Start.PNG)
+index=0的节点滑出了有效加载范围。当UI主线程空闲时，会检查`aa`缓存池是否已满，此时`aa`缓存池未满，将该节点加入到对应的缓存池中。
 
-当前Repeat组件template type有a和b两种，template type等于a对应的缓存池，其最大缓存值为3，template type等于b对应的缓存池，其最大缓存值为4，其父组件默认预加载节点1个。这时，向右滑动屏幕（屏幕内容右移），Repeat开始复用缓存池中的节点。
+如果此时对应template type的缓存池已满，Repeat会销毁掉多余的节点。
 
 ![Repeat-Slide](./figures/Repeat-Slide.PNG)
 
-index=18的数据进入屏幕及父组件预加载的范围内，此时计算出其template type等于b，这时Repeat会从template type等于b的缓存池中取出一个节点进行复用，更新它的key&index&data，该子节点内部使用了该项数据及索引的其他孙子节点会根据V2状态管理的规则做同步更新。
-
-index=10的节点划出了屏幕及父组件预加载的范围。当UI主线程空闲时，会去检测template type等于a的缓存池是否还有空间，此时缓存池中有四个节点，超过了额定的3个，Repeat会释放掉最后一个节点。
-
-![Repeat-Slide-Done](./figures/Repeat-Slide-Done.PNG)
-
 #### 数据更新场景
 
-![Repeat-Start](./figures/Repeat-Start.PNG)
+在上一小节的基础上做如下的数组更新操作，删除index=4的节点，修改节点数据`item_7`为`new_7`。
 
-此时我们做如下更新操作，删除index=12节点，更新index=13节点的数据，更新index=14节点的template type为a，更新index=15节点的key。
+首先，删除index=4的节点后，失效节点加入`aa`缓存池。后面的列表节点前移，新进入有效加载区域的节点`item_11`会复用`bb`缓存池中的空闲节点，其他节点均只更新索引index。如下图所示。
 
 ![Repeat-Update1](./figures/Repeat-Update1.PNG)
 
-此时Repeat会通知父组件重新布局，逐一对比template type值，若和原节点template type值相同，则复用该节点，更新key、index和data，若template type值发生变化，则复用相应template type的缓存池中的节点，并更新key、index和data。
+其次，节点`item_5`前移，索引index更新为4。根据template type的计算规则，节点`item_5`的template type变为`aa`，需要从`aa`缓存池中复用空闲节点，并且将旧节点加入`bb`缓存池。如下图所示。
 
 ![Repeat-Update2](./figures/Repeat-Update2.PNG)
-
-上图显示node13节点更新了数据data和index；node14更新了template type和index，于是从缓存池中取走一个复用；node15由于key值发生变化并且template type不变，复用自身节点并同步更新key、index、data；node16和node17均只更新index。index=17的节点是新的，从缓存池中复用。
-
-![Repeat-Update-Done](./figures/Repeat-Update-Done.PNG)
 
 ### template：子组件渲染模板
 
@@ -208,7 +202,7 @@ cachedCount是相应的template type的缓存池中可缓存子组件节点的�
 
 > **说明：**
 > 
-> 滚动容器组件属性`.cachedCount()`和`.template()`的参数`cachedCount`都是为了平衡性能和内存，但是含义是不同的。
+> 滚动容器组件属性`.cachedCount()`和Repeat组件属性`.template()`的参数`cachedCount`都是为了平衡性能和内存，但是含义是不同的。
 > - 滚动类容器组件`.cachedCount()`：是指在可见范围外预加载的节点，这些节点会位于组件树上，但不是可见范围内，List/Grid等容器组件会额外渲染这些可见范围外的节点，从而达到其性能收益。Repeat会将这些节点视为“可见”的。
 > - `.template()`中的`cachedCount`: 是指Repeat视为“不可见”的节点，这些节点是空闲的，框架会暂时保存，在需要使用的时候更新这些节点，从而实现复用。
 
