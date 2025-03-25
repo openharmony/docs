@@ -4910,6 +4910,38 @@ enum ArkUI_KeyboardAppearance
 | ARKUI_KEYBOARD_APPEARANCE_LIGHT_IMMERSIVE   | 浅色沉浸式样式。  |
 | ARKUI_KEYBOARD_APPEARANCE_DARK_IMMERSIVE   | 深色沉浸式样式。  |
 
+### ArkUI_KeyboardAvoidMode
+
+```
+enum ArkUI_KeyboardAvoidMode
+```
+**描述：**
+
+设置弹窗避让键盘模式。
+
+**起始版本：** 15
+
+| 枚举值 | 描述 |
+| -------- | -------- |
+| ARKUI_KEYBOARD_AVOID_MODE_DEFAULT   | 默认避让软键盘并在到达极限高度之后进行高度压缩。  |
+| ARKUI_KEYBOARD_AVOID_MODE_NONE   | 不避让软键盘。  |
+
+### ArkUI_HoverModeAreaType
+
+```
+enum ArkUI_HoverModeAreaType
+```
+**描述：**
+
+设置悬停态下弹窗默认展示区域。
+
+**起始版本：** 15
+
+| 枚举值 | 描述 |
+| -------- | -------- |
+| ARKUI_HOVER_MODE_AREA_TYPE_TOP   | 上半屏。  |
+| ARKUI_HOVER_MODE_AREA_TYPE_BOTTOM   | 下半屏。  |
+
 ## 函数说明
 
 
