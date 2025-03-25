@@ -2656,6 +2656,18 @@
 
 **起始版本**：11
 
+## ohos.permission.MANAGE_APP_UNINSTALL
+
+允许系统应用卸载其它应用。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
 ## ohos.permission.ACCESS_ADVANCED_SECURITY_MODE
 
 允许系统应用打开坚盾守护模式配置界面。

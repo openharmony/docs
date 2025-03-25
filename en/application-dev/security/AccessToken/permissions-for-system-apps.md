@@ -2644,6 +2644,18 @@ Allows an application to create and manage application installation tasks.
 
 **Valid since**: 11
 
+## ohos.permission.MANAGE_APP_UNINSTALL
+
+Allows a system application to uninstall other applications.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
 ## ohos.permission.ACCESS_ADVANCED_SECURITY_MODE
 
 Allows a system application to access the advanced security mode configuration page.
