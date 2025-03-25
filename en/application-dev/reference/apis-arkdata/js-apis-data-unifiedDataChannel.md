@@ -1715,7 +1715,7 @@ Sets [ShareOptions](#shareoptions12) for the application data. Currently, only t
 | Name     | Type                        | Mandatory| Description                          |
 |----------|----------------------------|----|------------------------------|
 | intention | [Intention](#intention) | Yes | Type of the data channel. Currently, only the data channel of the **DRAG** type is supported.|
-| shareOptions | [ShareOptions](#shareoptions12) | Yes | Usage scope of the [UnifiedData] (#unifieddata).|
+| shareOptions | [ShareOptions](#shareoptions12) | Yes | Usage scope of the [UnifiedData](#unifieddata).|
 
 **Error codes**
 

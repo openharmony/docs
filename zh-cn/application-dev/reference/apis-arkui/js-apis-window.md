@@ -362,7 +362,7 @@ import { window } from '@kit.ArkUI';
 
 | 名称   | 类型   | 必填 | 说明                                       |
 | ------ | ------ | ---- | ------------------------------------------ |
-| displayId | number | 否 | 目标屏幕ID，该参数应该为整数，非整数输入将向下取整。此参数不填或者传入目标屏幕ID不存在，将默认保持为当前屏幕。 |
+| displayId | number | 否 | 目标屏幕ID，该参数应为整数，输入非整数时将向下取整。填入该参数时，将移动到相对于目标屏幕左上角的指定位置。此参数不填或传入目标屏幕ID不存在时，将移动到相对于当前屏幕左上角的指定位置。 |
 
 ## WindowDensityInfo<sup>15+</sup>
 
@@ -1758,7 +1758,7 @@ try {
 
 moveWindowToAsync(x: number, y: number, moveConfiguration?: MoveConfiguration): Promise&lt;void&gt;
 
-移动窗口位置，当moveConfiguration中displayId设置为存在的屏幕ID时，将移动到此屏幕，使用Promise异步回调。调用生效后返回，回调中可使用getWindowProperties（见示例）立即获取最终生效结果。
+移动窗口位置，使用Promise异步回调。调用生效后返回，回调中可使用getWindowProperties（见示例）立即获取最终生效结果。
 
 仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效。
 在2in1设备上窗口相对于屏幕移动，其他设备上窗口相对于父窗口移动。
@@ -1876,7 +1876,7 @@ try {
 
 moveWindowToGlobal(x: number, y: number, moveConfiguration?: MoveConfiguration): Promise&lt;void&gt;
 
-基于屏幕坐标移动窗口位置，当moveConfiguration中displayId设置为存在的屏幕ID时，将移动到此屏幕，使用Promise异步回调。调用生效后返回。
+基于屏幕坐标移动窗口位置，使用Promise异步回调。调用生效后返回。
 
 全屏模式窗口不支持该操作。
 
@@ -8162,6 +8162,8 @@ raiseToAppTop(): Promise&lt;void&gt;
 
 应用子窗口调用，提升应用子窗口到顶层，只在当前应用同一个父窗口下的相同类型子窗范围内生效。使用Promise异步回调。
 
+使用该接口需要先创建子窗口，并确保该子窗口调用[showWindow()](#showwindow9)并执行完毕。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **返回值：**
@@ -8184,14 +8186,38 @@ raiseToAppTop(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { window } from '@kit.ArkUI';
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let promise = windowClass.raiseToAppTop();
-promise.then(() => {
-  console.info('Succeeded in raising the window to app top.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to raise the window to app top. Cause code: ${err.code}, message: ${err.message}`);
-});
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    // 创建子窗
+    try {
+      let subWindowPromise = windowStage.createSubWindow("testSubWindow");
+      subWindowPromise.then((data) => {
+        if (data == null) {
+          console.error("Failed to create the subWindow. Cause: The data is empty");
+          return;
+        }
+        let showWindowPromise = data.showWindow();
+        showWindowPromise.then(() => {
+          let raiseToTopPromise = data.raiseToAppTop();
+          raiseToTopPromise.then(() => {
+            console.info('Succeeded in raising window to app top.');
+          }).catch((err: BusinessError)=>{
+            console.error(`Failed to raise window to app top. Cause code: ${err.code}, message: ${err.message}`);
+          });
+        });
+      });
+    } catch (exception) {
+      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+}
 ```
 
 ### setRaiseByClickEnabled<sup>14+</sup>
@@ -8201,6 +8227,8 @@ setRaiseByClickEnabled(enable: boolean): Promise&lt;void&gt;
 禁止/使能子窗点击抬升功能。使用Promise异步回调。
 
 通常来说，点击一个子窗口，会将该子窗口显示抬升到应用内同一个父窗口下同类型子窗口的最上方，如果设置为false，那么点击子窗口的时候，不会将该子窗口进行抬升，而是保持不变。
+
+使用该接口需要先创建子窗口，并确保该子窗口调用[showWindow()](#showwindow9)并执行完毕。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -8233,6 +8261,7 @@ setRaiseByClickEnabled(enable: boolean): Promise&lt;void&gt;
 
 ```ts
 // EntryAbility.ets
+import { window } from '@kit.ArkUI';
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -8240,22 +8269,23 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
     // 创建子窗
     try {
-      let subWindow = windowStage.createSubWindow("testSubWindow");
-      subWindow.then((data) => {
+      let subWindowPromise = windowStage.createSubWindow("testSubWindow");
+      subWindowPromise.then((data) => {
         if (data == null) {
           console.error("Failed to create the subWindow. Cause: The data is empty");
           return;
         }
-        windowClass = data;
-        let enabled = false;
-        let promise = windowClass.setRaiseByClickEnabled(enabled);
-        promise.then(()=> {
-          console.info('Succeeded in disabling the raise-by-click function.');
-        }).catch((err: BusinessError)=>{
-          console.error(`Failed to disable the raise-by-click function. Cause code: ${err.code}, message: ${err.message}`);
+        let showWindowPromise = data.showWindow();
+        showWindowPromise.then(() => {
+          let enabled = false;
+          let setRaisePromise = data.setRaiseByClickEnabled(enabled);
+          setRaisePromise.then(() => {
+            console.info('Succeeded in disabling the raise-by-click function.');
+          }).catch((err: BusinessError)=>{
+            console.error(`Failed to disable the raise-by-click function. Cause code: ${err.code}, message: ${err.message}`);
+          });
         });
       });
     } catch (exception) {
@@ -9056,6 +9086,83 @@ try {
   });
 } catch (exception) {
   console.error(`Failed to set the sub window supports multi-screen simultaneous display. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### setFollowParentWindowLayoutEnabled<sup>17+</sup>
+
+setFollowParentWindowLayoutEnabled(enabled: boolean): Promise&lt;void&gt;
+
+设置子窗或模态窗口（即WindowType为TYPE_DIALOG的窗口）的布局信息（position和size）是否跟随主窗，使用Promise异步回调。
+
+1、只支持主窗的一级子窗或模态窗口使用该接口。
+
+2、当子窗或模态窗口调用该接口后，立即使其布局信息与主窗完全一致并保持，除非传入false再次调用该接口，否则效果将持续。
+
+3、当子窗或模态窗口调用该接口后，再调用moveTo、resize等修改布局信息的接口将不生效。
+
+4、当子窗或模态窗口不再使用该功能后，不保证子窗或模态窗口的布局信息（position和size）为确定的值，需要应用重新进行设置。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名 | 类型  | 必填  | 说明  |
+| --- | --- | --- | --- |
+| enabled | boolean | 是   | 设置是否启用跟随主窗布局。true表示启用，false表示不启用。|
+
+**返回值：**
+
+| 类型  | 说明  |
+| --- | --- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| --- | --- |
+| 401 | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+
+**示例：**
+```ts
+// EntryAbility.ets
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { UIAbility } from '@kit.AbilityKit';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    windowStage.loadContent('pages/Index', (loadError) => {
+      if (loadError.code) {
+        console.error(`Failed to load the content. Cause code: ${loadError.code}, message: ${loadError.message}`);
+        return;
+      }
+      console.info("Succeeded in loading the content.");
+      windowStage.createSubWindow("subWindow").then((subWindow: window.Window) => {
+        if (subWindow == null) {
+          console.error("Failed to create the subWindow. Cause: The data is empty");
+          return;
+        }
+        subWindow.setFollowParentWindowLayoutEnabled(true).then(() => {
+          console.info("after set follow parent window layout")
+        }).catch((error: BusinessError) => {
+          console.error(`setFollowParentWindowLayoutEnabled failed. ${error.code} ${error.message}`);
+        })
+      }).catch((error: BusinessError) => {
+        console.error(`createSubWindow failed. ${error.code} ${error.message}`);
+      })
+    });
+  }
 }
 ```
 

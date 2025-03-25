@@ -108,17 +108,15 @@
 
 ## MouseAction<sup>8+</sup>
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 说明      |
 | ------- | ------- |
-| Press   | 鼠标按键按下。 |
-| Release | 鼠标按键松开。 |
-| Move    | 鼠标移动。   |
-| Hover   | 鼠标悬浮。<br/>**说明：** 该枚举值无效。   |
-| Cancel<sup>18+</sup>  | 鼠标按键被取消。 |
+| Press   | 鼠标按键按下。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Release | 鼠标按键松开。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Move    | 鼠标移动。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
+| Hover   | 鼠标悬浮。<br/>**说明：** 该枚举值无效。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
+| CANCEL<sup>18+</sup>  | 鼠标按键被取消。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## ModifierKey<sup>10+</sup>
 
@@ -846,7 +844,7 @@ type Nullable\<T> = T | undefined;
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 说明                       |
+| 类型 | 说明                       |
 | ---- | -------------------------- |
 | T \| undefined | 该类型申明的对象可以是自定义类型，也可以是undefined。 |
 
@@ -1108,6 +1106,8 @@ type Nullable\<T> = T | undefined;
 
 表示鼠标滚轮翻页模式。
 
+**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
@@ -1158,7 +1158,7 @@ type Nullable\<T> = T | undefined;
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-|名称	            | 值 | 描述                                   |
+|名称	            | 值 | 说明                                   |
 |-------------------| -- | ------------------------------------- |
 | BEGIN             | 0  | 表冠开始转动。                          |
 | UPDATE	        | 1  | 表冠转动中。                            |
@@ -1172,7 +1172,7 @@ type Nullable\<T> = T | undefined;
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称           | 值  | 描述                                      |
+| 名称           | 值  | 说明                                      |
 | -------------- | -- | ---------------------------------------- |
 | LOW 	         | 0   | 低灵敏度。                                 |
 | MEDIUM         | 1   | 中灵敏度。                                 |

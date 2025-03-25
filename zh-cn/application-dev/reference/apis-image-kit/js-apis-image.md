@@ -1265,8 +1265,8 @@ async function Release() {
 
 | 名称              | 类型    | 可读 | 可写 | 说明                       |
 | -----------------| ------- | ---- | ---- | -------------------------- |
-| isEditable        | boolean | 是   | 否   | 设定是否图像像素可被编辑。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
-| isStrideAlignment<sup>11+</sup> | boolean | 是   | 否   | 设定图像内存是否为DMA内存。 |
+| isEditable        | boolean | 是   | 否   | true表示图像像素可被编辑，false表示不可被编辑。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| isStrideAlignment<sup>11+</sup> | boolean | 是   | 否   | true表示图像内存为DMA内存，false表示非DMA内存。 |
 
 ### readPixelsToBuffer<sup>7+</sup>
 
@@ -2320,7 +2320,7 @@ scale(x: number, y: number, callback: AsyncCallback\<void>): void
 
 > **说明：**
 > 1. 建议宽高的缩放倍数取非负数，否则会产生翻转效果。
-> 2. 宽高的缩放倍数 = 缩放后的图片宽高 / 缩放前的图片宽高
+> 2. 宽高的缩放倍数 = 缩放后的图片宽高 / 缩放前的图片宽高。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -2365,7 +2365,7 @@ scale(x: number, y: number): Promise\<void>
 
 > **说明：**
 > 1. 建议宽高的缩放倍数取非负数，否则会产生翻转效果。
-> 2. 宽高的缩放倍数 = 缩放后的图片宽高 / 缩放前的图片宽高
+> 2. 宽高的缩放倍数 = 缩放后的图片宽高 / 缩放前的图片宽高。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -2413,7 +2413,7 @@ scaleSync(x: number, y: number): void
 
 > **说明：**
 > 1. 建议宽高的缩放倍数取非负数，否则会产生翻转效果。
-> 2. 宽高的缩放倍数 = 缩放后的图片宽高 / 缩放前的图片宽高
+> 2. 宽高的缩放倍数 = 缩放后的图片宽高 / 缩放前的图片宽高。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2457,7 +2457,7 @@ scale(x: number, y: number, level: AntiAliasingLevel): Promise\<void>
 
 > **说明：**
 > 1. 建议宽高的缩放倍数取非负数，否则会产生翻转效果。
-> 2. 宽高的缩放倍数 = 缩放后的图片宽高 / 缩放前的图片宽高
+> 2. 宽高的缩放倍数 = 缩放后的图片宽高 / 缩放前的图片宽高。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -2515,7 +2515,7 @@ scaleSync(x: number, y: number, level: AntiAliasingLevel): void
 
 > **说明：**
 > 1. 建议宽高的缩放倍数取非负数，否则会产生翻转效果。
-> 2. 宽高的缩放倍数 = 缩放后的图片宽高 / 缩放前的图片宽高
+> 2. 宽高的缩放倍数 = 缩放后的图片宽高 / 缩放前的图片宽高。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2615,7 +2615,7 @@ createScaledPixelMapSync(x: number, y: number, level?: AntiAliasingLevel): Pixel
 | ------ | ------ | ---- | ------------------------------- |
 | x      | number | 是   | 宽度的缩放倍数。|
 | y      | number | 是   | 高度的缩放倍数。|
-| level  | [AntiAliasingLevel](#antialiasinglevel12) | 是   | 采用的缩放算法。|
+| level  | [AntiAliasingLevel](#antialiasinglevel12) | 否   | 采用的缩放算法。|
 
 **返回值：**
 
@@ -2648,7 +2648,7 @@ async function CreateScaledPixelMapSync() {
 
 ### clone<sup>18+</sup>
 
-clone(): Promise</PixelMap>
+clone(): Promise\<PixelMap>
 
 拷贝一份当前Pixelmap对象，使用Promise形式返回。
 
@@ -3048,8 +3048,8 @@ flip(horizontal: boolean, vertical: boolean): Promise\<void>
 
 | 参数名     | 类型    | 必填 | 说明      |
 | ---------- | ------- | ---- | --------- |
-| horizontal | boolean | 是   | 水平翻转。|
-| vertical   | boolean | 是   | 垂直翻转。|
+| horizontal | boolean | 是   | true表示进行水平翻转。|
+| vertical   | boolean | 是   | true表示进行垂直翻转。|
 
 **返回值：**
 
@@ -3955,7 +3955,6 @@ setMemoryNameSync(name: string): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401 | Parameter error. Possible causes: 1.The length of the input parameter is too long. 2.Parameter verification failed. |
-| 501 | Resource unavailable. |
 | 62980286 | Memory format not supported. |
 
 **示例：**
@@ -4274,7 +4273,7 @@ CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 
 通过缓冲区以增量的方式创建图片源实例，IncrementalSource不支持读写Exif信息。
 
-此接口支持的功能与[CreateIncrementalSource(buf: ArrayBuffer): ImageSource](#imagecreateincrementalsource9)所生成的实例支持的功能相同
+此接口支持的功能与[CreateIncrementalSource(buf: ArrayBuffer): ImageSource](#imagecreateincrementalsource9)所生成的实例支持的功能相同。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -4918,7 +4917,7 @@ updateData(buf: ArrayBuffer, isFinished: boolean, offset: number, length: number
 | buf        | ArrayBuffer         | 是   | 增量数据。           |
 | isFinished | boolean             | 是   | 是否更新完。         |
 | offset      | number              | 是   | 偏移量。             |
-| length     | number              | 是   | 数组长。             |
+| length     | number              | 是   | 数组长度。             |
 | callback   | AsyncCallback\<void> | 是   |  回调函数，当更新增量数据成功，err为undefined，否则为错误对象。 |
 
 **示例：**
@@ -5327,7 +5326,7 @@ imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList:
 
 ### createPixelMapUsingAllocator<sup>15+</sup>
 
-createPixelMapUsingAllocator(option?: DecodingOptions, allocatorType?: AllocatorType): Promise\<PixelMap\>
+createPixelMapUsingAllocator(options?: DecodingOptions, allocatorType?: AllocatorType): Promise\<PixelMap>
 
 使用指定的分配器根据图像解码参数异步创建PixelMap对象。使用Promise返回对象。
 
@@ -5337,7 +5336,7 @@ createPixelMapUsingAllocator(option?: DecodingOptions, allocatorType?: Allocator
 
 | 参数名        | 类型                                 | 必填 | 说明                     |
 | ------------- | ------------------------------------ | ---- | ------------------------ |
-| option        | [DecodingOptions](#decodingoptions7) | 否   | 解码参数。               |
+| options        | [DecodingOptions](#decodingoptions7) | 否   | 解码参数。               |
 | allocatorType | [AllocatorType](#allocatortype15)   | 否   | 用于图像解码的内存类型。默认值为AllocatorType.AUTO。 |
 
 **返回值：**
@@ -5388,7 +5387,7 @@ if (pixelmap != undefined) {
 
 ### createPixelMapUsingAllocatorSync<sup>15+</sup>
 
-createPixelMapUsingAllocatorSync(option?: DecodingOptions, allocatorType?: AllocatorType): PixelMap
+createPixelMapUsingAllocatorSync(options?: DecodingOptions, allocatorType?: AllocatorType): PixelMap
 
 根据指定的分配器同步创建一个基于图像解码参数的PixelMap对象。
 
@@ -5398,7 +5397,7 @@ createPixelMapUsingAllocatorSync(option?: DecodingOptions, allocatorType?: Alloc
 
 | 参数名        | 类型                                 | 必填 | 说明                     |
 | ------------- | ------------------------------------ | ---- | ------------------------ |
-| option        | [DecodingOptions](#decodingoptions7) | 否   | 解码参数。               |
+| options        | [DecodingOptions](#decodingoptions7) | 否   | 解码参数。               |
 | allocatorType | [AllocatorType](#allocatortype15)   | 否   | 用于图像解码的内存类型。默认值为AllocatorType.AUTO。 |
 
 **返回值：**
@@ -6301,7 +6300,7 @@ imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts).then(() => {
 
 ### packToFile<sup>11+</sup>
 
-packToFile (source: PixelMap, fd: number, options: PackingOption,  callback: AsyncCallback\<void>): void;
+packToFile (source: PixelMap, fd: number, options: PackingOption,  callback: AsyncCallback\<void>): void
 
 指定打包参数，将PixelMap图片源编码后直接打包进文件。使用callback形式返回结果。
 

@@ -276,7 +276,7 @@ let on:On = ON.id('123'); // 使用静态构造器ON创建On对象，指定目�
 
 ### id<sup>18+</sup>
 
-id(id: string, pattern?: MatchPattern): On
+id(id: string, pattern: MatchPattern): On
 
 指定目标控件id属性，返回On对象自身。
 
@@ -289,7 +289,7 @@ id(id: string, pattern?: MatchPattern): On
 | 参数名                   | 类型   | 必填 | 说明                                    |
 |-----------------------| ------ |----|---------------------------------------|
 | id                    | string | 是  | 指定控件的id值。                             |
-| pattern | [MatchPattern](#matchpattern) | 否  | 指定的文本匹配模式，默认为[EQUALS](#matchpattern)。 |
+| pattern | [MatchPattern](#matchpattern) | 是  | 指定的文本匹配模式。 |
 
 **返回值：**
 
@@ -355,7 +355,7 @@ let on:On = ON.type('Button'); // 使用静态构造器ON创建On对象，指定
 
 ### type<sup>18+</sup>
 
-type(tp: string, pattern?: MatchPattern): On
+type(tp: string, pattern: MatchPattern): On
 
 指定目标控件的控件类型属性，返回On对象自身。
 
@@ -370,9 +370,9 @@ type(tp: string, pattern?: MatchPattern): On
 **参数：**
 
 | 参数名                   | 类型   | 必填 | 说明                                    |
-|-----------------------| ------ | ---- |---------------------------------------|
-| tp                    | string | 是   | 指定控件类型。                               |
-| pattern | [MatchPattern](#matchpattern) | 否  | 指定的文本匹配模式，默认为[EQUALS](#matchpattern)。 |
+|-----------------------| ------ |----|---------------------------------------|
+| tp                    | string | 是  | 指定控件类型。                               |
+| pattern | [MatchPattern](#matchpattern) | 是  | 指定的文本匹配模式。 |
 
 **返回值：**
 
@@ -3405,7 +3405,7 @@ touchPadMultiFingerSwipe(fingers: number, direction: UiDirection, options?: Touc
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17000002 | The async function is not called with await.             |
-| 17000005 | This operation is not supported.         |
+| 17000005 | This device can not support this action.        |
 | 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**

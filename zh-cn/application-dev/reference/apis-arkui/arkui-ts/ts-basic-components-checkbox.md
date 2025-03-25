@@ -51,6 +51,7 @@ select(value: boolean)
 设置多选框是否选中。
 
 从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+从API version 18开始，该属性支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -70,7 +71,7 @@ select(isSelected: Optional\<boolean>)
 
 设置多选框是否选中。与[select](#select)相比，isSelected参数新增了对undefined类型的支持。
 
-该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。该属性支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -258,7 +259,7 @@ contentModifier(modifier: Optional<ContentModifier\<CheckBoxConfiguration>>)
 
 ### onChange
 
-onChange(callback: Optional\<OnCheckboxChangeCallback>)
+onChange(callback: OnCheckboxChangeCallback)
 
 当选中状态发生变化时，触发该回调。
 

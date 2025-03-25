@@ -19,7 +19,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| int32_t [fd](#fd) | 句柄 Fd， -1代表不支持。 | 
+| int32_t [fd](#fd) | 句柄Fd，-1代表不支持。 | 
 | uint32_t [reserveInts](#reserveints) | Reserve数组的个数。 | 
 | int32_t [reserve](#reserve) [0] | Reserve数组。 | 
 

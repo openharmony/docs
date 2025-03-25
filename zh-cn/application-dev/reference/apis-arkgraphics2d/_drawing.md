@@ -17670,7 +17670,7 @@ void OH_Drawing_TypographyHandlerAddSymbol (OH_Drawing_TypographyCreate* , uint3
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_TypographyCreate | 指向[OH_Drawing_TypographyCreate](#oh_drawing_typographycreate)对象的指针，由[OH_Drawing_CreateTypographyHandler](#oh_drawing_createtypographyhandler)获取。 | 
-| uint32_t | 要设置的符号，可支持设置的符号参见下面链接json文件中的value值。 [https://gitee.com/openharmony/global_system_resources/blob/master/systemres/main/resources/base/element/symbol.json](https://gitee.com/openharmony/global_system_resources/blob/master/systemres/main/resources/base/element/symbol.json) | 
+| uint32_t | 要设置的符号，可支持设置的符号参见下面链接json文件中的value值。可设置的符号（即列表视图下的unicode值）请见[主题图标库](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/)。 | 
 
 
 ### OH_Drawing_TypographyHandlerAddText()

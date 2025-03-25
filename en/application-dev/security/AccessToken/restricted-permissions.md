@@ -516,3 +516,17 @@ With this permission, the application can call APIs to perform virtual screen ma
 **Authorization mode**: system_grant
 
 **Valid since**: 16
+
+### ohos.permission.MANAGE_APN_SETTING
+
+Allows an application to read and set APN information.
+
+You can request this permission when the application needs to use the APN information.
+
+<!--RP38--><!--RP38End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 16
