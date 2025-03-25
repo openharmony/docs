@@ -779,7 +779,7 @@ static setWebDebuggingAccess(webDebuggingAccess: boolean): void
 
 | 参数名              | 类型    | 必填   |  说明 |
 | ------------------ | ------- | ---- | ------------- |
-| webDebuggingAccess | boolean | 是   | 设置是否启用网页调试功能，如果为true，表示启用网页调试功能|
+| webDebuggingAccess | boolean | 是   | 设置是否启用网页调试功能。设置为true，表示启用网页调试功能。 |
 
 **错误码：**
 
@@ -2640,7 +2640,7 @@ searchNext(forward: boolean): void
 
 | 参数名  | 类型 | 必填 | 说明               |
 | ------- | -------- | ---- | ---------------------- |
-| forward | boolean  | 是   | true表示从前向后，false表示逆向查找。 |
+| forward | boolean  | 是   | 查找方式。true表示从前向后，false表示逆向查找。 |
 
 **错误码：**
 
@@ -13511,7 +13511,7 @@ start(downloadPath: string): void
 
 | 参数名 | 类型                   | 必填 | 说明                             |
 | ------ | ---------------------- | ---- | ------------------------------|
-| downloadPath   | string     | 是  | 下载文件的路径(包含文件名)，路径长度与文件管理中长度一致，最长255字符 |
+| downloadPath   | string     | 是  | 下载文件的路径(包含文件名)，路径长度与文件管理中长度一致，最长255字符。 |
 
 **错误码：**
 
