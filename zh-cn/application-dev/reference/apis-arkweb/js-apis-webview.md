@@ -779,7 +779,7 @@ static setWebDebuggingAccess(webDebuggingAccess: boolean): void
 
 | 参数名              | 类型    | 必填   |  说明 |
 | ------------------ | ------- | ---- | ------------- |
-| webDebuggingAccess | boolean | 是   | 设置是否启用网页调试功能。设置为true，表示启用网页调试功能。 |
+| webDebuggingAccess | boolean | 是   | 设置是否启用网页调试功能。设置为true，表示启用网页调试功能。设置为false，表示不启用网页调试功能。 |
 
 **错误码：**
 
@@ -1449,13 +1449,13 @@ accessStep(step: number): boolean
 
 | 参数名 | 类型 | 必填 | 说明                                   |
 | ------ | -------- | ---- | ------------------------------------------ |
-| step   | number   | 是   | 要跳转的步数，正数代表前进，负数代表后退，true表示可以，false表示不行。 |
+| step   | number   | 是   | 要跳转的步数，正数代表前进，负数代表后退。 |
 
 **返回值：**
 
 | 类型    | 说明               |
 | ------- | ------------------ |
-| boolean | 页面是否前进或后退 |
+| boolean | 页面是否前进或后退，返回true表示可以，返回false表示不行。 |
 
 **错误码：**
 
