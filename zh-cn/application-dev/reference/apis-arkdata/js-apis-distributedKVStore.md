@@ -2233,7 +2233,7 @@ limit(total: number, offset: number): Query
 | 参数名 | 类型 | 必填 | 说明               |
 | ------ | -------- | ---- | ------------------ |
 | total  | number   | 是   | 表示指定的结果数。 |
-| offset | number   | 是   | 表示起始位置。     |
+| offset | number   | 是   | 指定查询结果的起始位置。offset为负数时，起始位置为结果集的最前端。offset超出结果集最后位置时，查询结果为空。|
 
 **返回值：**
 
