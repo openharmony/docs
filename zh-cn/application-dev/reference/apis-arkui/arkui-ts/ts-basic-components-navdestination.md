@@ -286,7 +286,7 @@ recoverable(recoverable: Optional&lt;boolean&gt;)
 ### bindToScrollable<sup>14+</sup>
 bindToScrollable(scrollers: Array&lt;Scroller&gt;)
 
-绑定NavDestination组件和可滚动容器组件（支持[List](./ts-container-list.md)、[Scroll](./ts-container-scroll.md)、[Grid](./ts-container-grid.md)、[WaterFlow](./ts-container-waterflow.md)），当滑动可滚动容器组件时，会触发所有与其绑定的NavDestination组件的标题栏和工具栏的显示和隐藏动效，上滑隐藏，下滑显示。一个NavDestination可与多个可滚动容器组件绑定，一个可滚动容器组件也可与多个NavDestination绑定。使用示例参见[示例1](#示例1)。
+绑定NavDestination组件和可滚动容器组件（支持[List](./ts-container-list.md)、[Scroll](./ts-container-scroll.md)、[Grid](./ts-container-grid.md)、[WaterFlow](./ts-container-waterflow.md)），当滑动可滚动容器组件时，会触发所有与其绑定的NavDestination组件的标题栏和工具栏的显示和隐藏动效，上滑隐藏，下滑显示。一个NavDestination可与多个可滚动容器组件绑定，一个可滚动容器组件也可与多个NavDestination绑定。使用示例参见[示例1](#示例1标题栏工具栏与可滚动类组件联动)。
 
 > **说明：**
 >
@@ -306,7 +306,7 @@ bindToScrollable(scrollers: Array&lt;Scroller&gt;)
 ### bindToNestedScrollable<sup>14+</sup>
 bindToNestedScrollable(scrollInfos: Array&lt;NestedScrollInfo&gt;)
 
-绑定NavDestination组件和嵌套的可滚动容器组件（支持[List](./ts-container-list.md)、[Scroll](./ts-container-scroll.md)、[Grid](./ts-container-grid.md)、[WaterFlow](./ts-container-waterflow.md)），当滑动父组件或子组件时，会触发所有与其绑定的NavDestination组件的标题栏和工具栏的显示和隐藏动效，上滑隐藏，下滑显示。一个NavDestination可与多个嵌套的可滚动容器组件绑定，嵌套的可滚动容器组件也可与多个NavDestination绑定。使用示例参见[示例1](#示例1)。
+绑定NavDestination组件和嵌套的可滚动容器组件（支持[List](./ts-container-list.md)、[Scroll](./ts-container-scroll.md)、[Grid](./ts-container-grid.md)、[WaterFlow](./ts-container-waterflow.md)），当滑动父组件或子组件时，会触发所有与其绑定的NavDestination组件的标题栏和工具栏的显示和隐藏动效，上滑隐藏，下滑显示。一个NavDestination可与多个嵌套的可滚动容器组件绑定，嵌套的可滚动容器组件也可与多个NavDestination绑定。使用示例参见[示例1](#示例1标题栏工具栏与可滚动类组件联动)。
 
 > **说明：**
 >
@@ -643,7 +643,7 @@ onNewParam(callback: &nbsp;Optional\<Callback\<ESObject\>\>)
 | 名称      | 类型                                       | 必填   | 说明       |
 | ------- | ---------------------------------------- | ---- | -------- |
 | builder | [CustomBuilder](ts-types.md#custombuilder8) | 是    | 设置标题栏内容。 |
-| height  | [TitleHeight](ts-appendix-enums.md#titleheight9) \| [Length](ts-types.md#length) | 是    | 设置标题栏高度。 |
+| height  | [TitleHeight](ts-appendix-enums.md#titleheight9) \| [Length](ts-types.md#length) | 是    | 设置标题栏高度。<br/>取值范围：[0, +∞)。 |
 
 ## NavDestinationContext<sup>11+</sup>
 
@@ -703,14 +703,14 @@ NavDestination激活态或者非激活态变化的原因。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 说明                                     |
-| ---- | ---------------------------------------- |
-| TRANSITION | 通过页面跳转的方式使NavDestination激活态发生变化。                       |
-| CONTENT_COVER | 通过全模态的开启和关闭使NavDestination激活态发生变化。  |
-| SHEET | 通过半模态的开启或关闭使NavDestination激活态发生变化。 |
-| DIALOG | 通过自定义Dialog开启或关闭使NavDestination激活态发生变化。 |
-| OVERLAY | 通过OverlayManager开启或者关闭Overlay使NavDestination激活态发生变化。|
-| APP_STATE | 通过前后台切换使NavDestination激活态发生变化。 |
+| 名称   | 值 | 说明                                     |
+| ---- | -- | ---------------------------------------- |
+| TRANSITION | 0   | 通过页面跳转的方式使NavDestination激活态发生变化。                       |
+| CONTENT_COVER | 1   | 通过全模态的开启和关闭使NavDestination激活态发生变化。  |
+| SHEET | 2   | 通过半模态的开启或关闭使NavDestination激活态发生变化。 |
+| DIALOG | 3   | 通过自定义Dialog开启或关闭使NavDestination激活态发生变化。 |
+| OVERLAY | 4   | 通过OverlayManager开启或者关闭Overlay使NavDestination激活态发生变化。|
+| APP_STATE | 5   | 通过前后台切换使NavDestination激活态发生变化。 |
 
 ## NavDestinationTransition<sup>15+</sup>
 
@@ -725,7 +725,7 @@ NavDestination自定义动画接口。
 | onTransitionEnd | Callback\<void> | 否 | 转场动画结束时的回调函数。 |
 | duration | number | 否 | 转场动画的持续时间，默认值为1000（毫秒）。 |
 | curve | [Curve](ts-appendix-enums.md#curve) | 否 | 动画的曲线类型，默认值为[Curve.EaseInOut](ts-appendix-enums.md#curve)。 |
-| delay | number | 否 | 转场动画的延迟。默认值为0。 |
+| delay | number | 否 | 转场动画的延迟。默认值为0（毫秒）。 |
 | event | Callback\<void> | 是 | 指定转场动效的闭包函数，系统会根据闭包中对组件UI状态的修改，生成对应的过渡动画。参见[animateTo](../js-apis-arkui-UIContext.md#animateto)中的event。 |
 
 ## NavDestinationTransitionDelegate<sup>15+</sup>
@@ -743,7 +743,7 @@ NavDestination自定义转场动画的代理函数。
 | 参数名  | 类型     | 必填 | 说明                    |
 |------|--------|----|-----------------------|
 | operation | [NavigationOperation](ts-basic-components-navigation.md#navigationoperation11枚举说明) | 是  | 当前页面转场的操作类型。 |
-| isEnter | boolean | 是  | 当前页面是否为入场页面。 |
+| isEnter | boolean | 是  | 当前页面是否为入场页面。<br/>true:&nbsp;当前页面是入场页面。<br/>false:&nbsp;当前页面不是入场页面。 |
 
 **返回值：**
 
@@ -1363,4 +1363,4 @@ struct ExamplePage {
 ```
 ![navdestination_orientation](figures/navdestination_orientation.gif)
 
-NavDestination其他用法可参考[Navigation示例](ts-basic-components-navigation.md#示例1)。
+NavDestination其他用法可参考[Navigation示例](ts-basic-components-navigation.md#示例)。

@@ -54,7 +54,7 @@ uint32_t WindowManager_WindowProperties::displayId
 
 **描述**
 
-窗口所在屏幕的id，默认返回主屏幕id，该参数为整数
+窗口所在屏幕的id，默认返回主屏幕id，该参数为整数。
 
 
 ### drawableRect
