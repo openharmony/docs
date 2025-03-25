@@ -3910,7 +3910,7 @@ onProgressChange(callback: Callback\<OnProgressChangeEvent\>)
 
 | 参数名         | 类型   | 必填   | 说明                  |
 | ----------- | ------ | ---- | --------------------- |
-| callback | Callback\<[OnProgressChangeEvent](#onprogresschangeevent12)\> | 是    | 页面加载进度时触发的功能。 |
+| callback | Callback\<[OnProgressChangeEvent](#onprogresschangeevent12)\> | 是    | 页面加载进度变化时触发的功能。 |
 
 **示例：**
 
