@@ -1455,7 +1455,7 @@ accessStep(step: number): boolean
 
 | 类型    | 说明               |
 | ------- | ------------------ |
-| boolean | 页面是否前进或后退，返回true表示可以，返回false表示不行。 |
+| boolean | 页面是否前进或后退，返回true表示可以前进或者后退，返回false表示不可以前进或后退。 |
 
 **错误码：**
 
@@ -1609,7 +1609,7 @@ registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的
 > - 在注册registerJavaScriptProxy后，应用会将JavaScript对象暴露给所有的页面frames。
 > - 同一方法在同步与异步列表中重复注册，将默认异步调用。
 > - 同步函数列表和异步函数列表不可同时为空，否则此次调用接口注册失败。
-> - 异步的作用在于：H5线程将异步JavaScript任务抛给ETS主线程后，不需要等待主线程执行结束并且返回值，H5线程可以继续往下执行。在执行耗时较长的JavaScript任务，或者ETS线程较为拥堵的情况下，可以有效减少H5线程被JavaScript任务阻塞的情况。但异步JavaScript任务无法返回值，且任务执行的时序无法保证，需要根据情况判断使用同步或异步。
+> - 异步的作用在于：H5线程将异步JavaScript任务提交给ETS主线程后，无需等待任务执行完成并返回结果，H5线程即可继续执行后续任务。这在执行耗时较长的JavaScript任务或ETS线程较为拥堵的情况下，可以有效减少H5线程因JavaScript任务而被阻塞的情况。然而，异步JavaScript任务无法返回值，且任务执行的顺序无法保证，因此需要根据具体情境判断是否使用同步或异步方式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2640,7 +2640,7 @@ searchNext(forward: boolean): void
 
 | 参数名  | 类型 | 必填 | 说明               |
 | ------- | -------- | ---- | ---------------------- |
-| forward | boolean  | 是   | 查找方式。true表示从前向后，false表示逆向查找。 |
+| forward | boolean  | 是   | 从前向后或者逆向查找方式。true表示从前向后查找，false表示从后向前查找。 |
 
 **错误码：**
 
@@ -4146,7 +4146,7 @@ setNetworkAvailable(enable: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | --------------------------------- |
-| enable | boolean | 是   | 是否使能window.navigator.onLine，默认为true，表示使能。 |
+| enable | boolean | 是   | 是否使能window.navigator.onLine，默认为true，表示开启JavaScript中的window.navigator.onLine属性。 |
 
 **错误码：**
 
@@ -10090,7 +10090,7 @@ static putAcceptCookieEnabled(accept: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                                 |
 | ------ | ------- | ---- | :----------------------------------- |
-| accept | boolean | 是   | 设置是否拥有发送和接收cookie的权限，默认为true，表示拥有。 |
+| accept | boolean | 是   | 设置是否拥有发送和接收cookie的权限，默认为true，表示拥有发送和接收cookie的权限。 |
 
 **错误码：**
 
@@ -10140,7 +10140,7 @@ static isCookieAllowed(): boolean
 
 | 类型    | 说明                             |
 | ------- | -------------------------------- |
-| boolean | 是否拥有发送和接收cookie的权限，默认为true，表示拥有。 |
+| boolean | 是否拥有发送和接收cookie的权限，默认为true，表示拥有发送和接收cookie的权限。 |
 
 **示例：**
 
@@ -10228,7 +10228,7 @@ static isThirdPartyCookieAllowed(): boolean
 
 | 类型    | 说明                                   |
 | ------- | -------------------------------------- |
-| boolean | 是否拥有发送和接收第三方cookie的权限，默认为false，表示未拥有。 |
+| boolean | 是否拥有发送和接收第三方cookie的权限，默认为false，表示未拥有发送和接收第三方cookie的权限。 |
 
 **示例：**
 
