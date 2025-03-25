@@ -28,7 +28,7 @@ import { screenshot } from '@kit.ArkUI';
 | rotation               | number        | 否   | 表示截取图像的旋转角度，当前仅支持输入值为0，默认值为0，该参数应为整数。     |
 | displayId<sup>8+</sup> | number        | 否   | 表示截取图像的显示设备[Display](js-apis-display.md#display)的ID号，该参数应为整数。 |
 | isNotificationNeeded<sup>14+</sup>| boolean        | 否   | 表示截取图像之后是否发送截屏通知，true表示发送截屏通知，false表示不发送截屏通知，默认值为true。截屏通知可以通过[captureStatusChange](js-apis-display.md#displayoncapturestatuschange12)接口监听。   |
-| isPointerNeeded<sup>14+</sup>| boolean        | 否   | 表示截取图像是否保留光标，true表示保留光标，false表示不保留光标，默认值为true。当前该参数不支持使用。   |
+| isPointerNeeded<sup>14+</sup>| boolean       | 否   | 表示截取图像是否保留光标，true表示保留光标，false表示不保留光标，默认值为true。当前该参数不支持使用。   |
 
 ## Size
 
