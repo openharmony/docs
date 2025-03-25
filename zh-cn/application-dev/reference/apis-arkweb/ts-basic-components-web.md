@@ -8002,8 +8002,8 @@ confirm(priKeyFile : string, certChainFile : string): void
 
 | 参数名           | 类型   | 必填   | 说明               |
 | ------------- | ------ | ---- | ------------------ |
-| priKeyFile    | string | 是    | 存放私钥的文件，包含路径和文件名。  |
-| certChainFile | string | 是    | 存放证书链的文件，包含路径和文件名。 |
+| priKeyFile    | string | 是    | 存放私钥文件的完整路径。  |
+| certChainFile | string | 是    | 存放证书链文件的完整路径。 |
 
 ### confirm<sup>10+</sup>
 
