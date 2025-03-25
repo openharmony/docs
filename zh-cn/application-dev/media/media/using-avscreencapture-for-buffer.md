@@ -234,8 +234,8 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
         (void)userData;
     }
 
-    // 状态变更事件处理函数OnStageChange()。
-    void OnStageChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
+    // 状态变更事件处理函数OnStateChange()。
+    void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
         (void)capture;
         if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
             // 处理录屏开始状态变更。
@@ -388,8 +388,8 @@ void OnError(OH_AVScreenCapture *capture, int32_t errorCode, void *userData) {
     (void)userData;
 }
 
-// 状态变更事件处理函数OnStageChange()。
-void OnStageChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
+// 状态变更事件处理函数OnStateChange()。
+void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
     (void)capture;
     if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
         // 处理录屏开始状态变更。
@@ -425,6 +425,7 @@ void OnStageChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCo
 }
 
 // 获取并处理音视频原始码流数据回调函数OnBufferAvailable()。
+bool IsCaptureStreamRunning = true;
 void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVScreenCaptureBufferType bufferType, int64_t timestamp, void *userData) {
     // 处于录屏取码流状态。
     if (IsCaptureStreamRunning) {
