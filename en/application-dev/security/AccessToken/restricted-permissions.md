@@ -543,4 +543,4 @@ This permission is available only to Huawei internal development tool applicatio
 
 **Authorization mode**: system_grant
 
-**Valid since**: 16
+**Valid since**: 18
