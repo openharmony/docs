@@ -54,6 +54,8 @@ enableTransparentLayer(enabled: boolean)
 
 ![透明图层正确示例](figures/Transparent_Layer_Correct_Example.png)
 
+3.在布局静态的场景下对带透明背景XComponent设置独立图层，布局静态场景例如：非页面跳转场景、视频弹幕静置播放场景。
+
 **系统API：** 从API version 18开始，该接口支持在系统中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
