@@ -228,7 +228,7 @@ static isSuggested(language: string, region?: string): boolean
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let res: boolean = i18n.System.isSuggested('zh', 'CN'); // res = true
+    let isSuggestedCountry: boolean = i18n.System.isSuggested('zh', 'CN'); // isSuggestedCountry = true
   } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.isSuggested failed, error code: ${err.code}, message: ${err.message}.`);
@@ -509,7 +509,7 @@ static getTemperatureType(): TemperatureType
 
 **示例：**
   ```ts
-  let type: i18n.TemperatureType = i18n.System.getTemperatureType();
+  let temperatureType: i18n.TemperatureType = i18n.System.getTemperatureType();
   ```
 
 ### getTemperatureName<sup>18+</sup>
@@ -553,7 +553,7 @@ static getTemperatureName(type: TemperatureType): string
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let res: string = i18n.System.getTemperatureName(i18n.TemperatureType.CELSIUS); // res = 'celsius'
+    let temperatureName: string = i18n.System.getTemperatureName(i18n.TemperatureType.CELSIUS); // temperatureName = 'temperatureName'
   } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getTemperatureName failed, error code: ${err.code}, message: ${err.message}.`);
@@ -578,7 +578,7 @@ static getFirstDayOfWeek(): WeekDay
 
 **示例：**
   ```ts
-  let type: i18n.WeekDay = i18n.System.getFirstDayOfWeek();
+  let firstDayOfWeek: i18n.WeekDay = i18n.System.getFirstDayOfWeek();
   ```
 
 ## TemperatureType<sup>18+</sup>
@@ -745,12 +745,12 @@ findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
 
   try {
     let entityRecognizer: i18n.EntityRecognizer = new i18n.EntityRecognizer('zh-CN');
-    let text1: string = '如有疑问，请联系158****2312';
-    let result1: Array<i18n.EntityInfoItem> =
-      entityRecognizer.findEntityInfo(text1); // result1[0].type = 'phone_number', result1[0].begin = 8, result1[0].end = 19
-    let text2: string = '我们2023年12月1日一起吃饭吧。';
-    let result2: Array<i18n.EntityInfoItem> =
-      entityRecognizer.findEntityInfo(text2); // result2[0].type = 'date', result2[0].begin = 2, result2[0].end = 12
+    let phoneNumberText: string = '如有疑问，请联系158****2312';
+    let phoneNumberEntity: Array<i18n.EntityInfoItem> =
+      entityRecognizer.findEntityInfo(phoneNumberText); // phoneNumberEntity[0].type = 'phone_number', phoneNumberEntity[0].begin = 8, phoneNumberEntity[0].end = 19
+    let dateText: string = '我们2023年12月1日一起吃饭吧。';
+    let dateEntity: Array<i18n.EntityInfoItem> =
+      entityRecognizer.findEntityInfo(dateText); // dateEntity[0].type = 'date', dateEntity[0].begin = 2, dateEntity[0].end = 12
   } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call EntityRecognizer.findEntityInfo failed, error code: ${err.code}, message: ${err.message}.`);
@@ -2116,17 +2116,18 @@ transform(text: string): string
   let transliterator: i18n.Transliterator = i18n.Transliterator.getInstance('Any-Latn');
   let wordArray = ['中国', '德国', '美国', '法国']
   for (let i = 0; i < wordArray.length; i++) {
-    let res = transliterator.transform(wordArray[i]); // res: zhōng guó, dé guó, měi guó, fǎ guó
+    let transliterLatn =
+      transliterator.transform(wordArray[i]); // transliterLatn: zhōng guó, dé guó, měi guó, fǎ guó
   }
 
   // 汉语音译去声调
   let transliter = i18n.Transliterator.getInstance('Any-Latn;Latin-Ascii');
-  let result = transliter.transform('中国'); // result: zhong guo
+  let transliterAscii = transliter.transform('中国'); // transliterAscii: zhong guo
 
   // 汉语姓氏读音
   let nameTransliter = i18n.Transliterator.getInstance('Han-Latin/Names');
-  let result1 = nameTransliter.transform('单老师'); // result1: shàn lǎo shī
-  let result2 = nameTransliter.transform('长孙无忌'); // result2: zhǎng sūn wú jì
+  let transliterNames = nameTransliter.transform('单老师'); // transliterNames: shàn lǎo shī
+  transliterNames = nameTransliter.transform('长孙无忌'); // transliterNames: zhǎng sūn wú jì
   ```
 
 
@@ -2418,7 +2419,7 @@ static getType(char: string): string
 
 **示例：**
   ```ts
-  let type: string = i18n.Unicode.getType('a'); // type = 'U_LOWERCASE_LETTER'
+  let unicodeType: string = i18n.Unicode.getType('a'); // type = 'U_LOWERCASE_LETTER'
   ```
 
 ## I18NUtil<sup>9+</sup>
@@ -2454,7 +2455,7 @@ static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: 
   ```ts
   let fromUnit: i18n.UnitInfo = { unit: 'cup', measureSystem: 'US' };
   let toUnit: i18n.UnitInfo = { unit: 'liter', measureSystem: 'SI' };
-  let res: string = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US', 'long'); // res = '236.588 liters'
+  let convertResult: string = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US', 'long'); // convertResult = '236.588 liters'
   ```
 
 ### getDateOrder<sup>9+</sup>
@@ -3095,13 +3096,13 @@ format(date: Date): string
 
     let formatterWithText: i18n.SimpleDateTimeFormat =
       i18n.getSimpleDateTimeFormatByPattern("'month('M')'", locale);
-    let result: string = formatterWithText.format(date); // result = 'month(12)'
+    let formattedDate: string = formatterWithText.format(date); // formattedDate = 'month(12)'
 
     let patternFormatter: i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatByPattern('yMd', locale);
-    result = patternFormatter.format(date); // result = '20241213'
+    formattedDate = patternFormatter.format(date); // formattedDate = '20241213'
 
     let skeletonFormatter: i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatBySkeleton('yMd', locale);
-    result = skeletonFormatter.format(date); // result = '2024/12/13'
+    formattedDate = skeletonFormatter.format(date); // formattedDate = '2024/12/13'
   } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call SimpleDateTimeFormat.format failed, error code: ${err.code}, message: ${err.message}.`);
@@ -3195,7 +3196,7 @@ format(value: number): string
   try {
     let locale: intl.Locale = new intl.Locale('zh-Hans-CN');
     let formatter: i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton('%', locale);
-    let result: string = formatter.format(10); // result = '10%'
+    let formattedNumber: string = formatter.format(10); // formattedNumber = '10%'
   } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call SimpleNumberFormat.format failed, error code: ${err.code}, message: ${err.message}.`);
@@ -3308,26 +3309,26 @@ format(value: number): StyledString
 
     // 通过intl.NumberFormat创建StyledNumberFormat对象
     let numFmt: intl.NumberFormat = new intl.NumberFormat('zh', { style: 'unit', unit: 'percent' });
-    let styledNumFmt_1: i18n.StyledNumberFormat = new i18n.StyledNumberFormat(numFmt, {
+    let styledNumFmt: i18n.StyledNumberFormat = new i18n.StyledNumberFormat(numFmt, {
       integer: integer_textStyle,
       decimal: decimal_textStyle,
       fraction: fraction_textStyle,
       unit: unit_textStyle
     });
-    let result_1: StyledString =
-      styledNumFmt_1.format(1234.5678); // result_1.getString() 为 '1,234.568%'。显示result_1时'1,234'是红色，'.'是棕色，'568'是蓝色，'%'是绿色。
+    let formattedNumber: StyledString =
+      styledNumFmt.format(1234.5678); // formattedNumber.getString() 为 '1,234.568%'。显示formattedNumber时'1,234'是红色，'.'是棕色，'568'是蓝色，'%'是绿色。
 
     // 通过SimpleNumberFormat创建StyledNumberFormat对象
     let locale: intl.Locale = new intl.Locale('zh');
     let simpleNumFmt: i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton('percent', locale);
-    let styledNumFmt_2: i18n.StyledNumberFormat = new i18n.StyledNumberFormat(simpleNumFmt, {
+    let styledSimpleNumFmt: i18n.StyledNumberFormat = new i18n.StyledNumberFormat(simpleNumFmt, {
       integer: integer_textStyle,
       decimal: decimal_textStyle,
       fraction: fraction_textStyle,
       unit: unit_textStyle
     });
-    let result_2: StyledString =
-      styledNumFmt_2.format(1234.5678); // result_2.getString() 为 '1,234.5678%'。显示result_2时'1,234'是红色，'.'是棕色，'5678'是蓝色，'%'是绿色。
+    let formattedSimpleNumber: StyledString =
+      styledSimpleNumFmt.format(1234.5678); // formattedSimpleNumber.getString() 为 '1,234.5678%'。显示formattedSimpleNumber时'1,234'是红色，'.'是棕色，'5678'是蓝色，'%'是绿色。
   } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call StyledNumberFormat.format failed, error code: ${err.code}, message: ${err.message}.`);
