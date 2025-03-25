@@ -58,7 +58,7 @@ addProfile\(profile: DownloadableProfile\): Promise\<boolean\>
 
 通过该接口拉起下载界面，允许用户添加单个配置文件。使用Promise异步回调。
 
-**需要权限**：ohos.permission.SET_TELEPHONE_ESIM_STATE_OPEN
+**需要权限**：ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
