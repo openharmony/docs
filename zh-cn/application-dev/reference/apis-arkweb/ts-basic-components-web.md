@@ -514,7 +514,7 @@ mixedMode(mixedMode: MixedMode)
 
 | 参数名       | 类型                        | 必填   | 说明      |
 | --------- | --------------------------- | ---- | --------- |
-| mixedMode | [MixedMode](#mixedmode枚举说明) | 是    | 要设置的混合内容。默认值：MixedMode.None。 |
+| mixedMode | [MixedMode](#mixedmode枚举说明) | 是    | 要设置的混合内容。默认值：MixedMode.None，表示不允许加载HTTP和HTTPS混合内容。 |
 
 **示例：**
 
