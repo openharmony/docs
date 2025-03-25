@@ -1609,6 +1609,7 @@ registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的
 > - 在注册registerJavaScriptProxy后，应用会将JavaScript对象暴露给所有的页面frames。
 > - 同一方法在同步与异步列表中重复注册，将默认异步调用。
 > - 同步函数列表和异步函数列表不可同时为空，否则此次调用接口注册失败。
+> - 异步的作用在于：H5线程将异步JavaScript任务抛给ETS主线程后，不需要等待主线程执行结束并且返回值，H5线程可以继续往下执行。在执行耗时较长的JavaScript任务，或者ETS线程较为拥堵的情况下，可以有效减少H5线程被JavaScript任务阻塞的情况。但异步JavaScript任务无法返回值，且任务执行的时序无法保证，需要根据情况判断使用同步或异步。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
