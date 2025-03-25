@@ -24,7 +24,7 @@ LinearIndicator(count?: number, controller?: LinearIndicatorController)
 
 **参数：**
 
-|名称|类型|必填|说明|
+|参数名|类型|必填|说明|
 | ----- | ----- | -- |  --- |
 | count | number | 否 |  指定进度条个数。<br/>改变进度条个数时，从尾部开始增加或删除指定个数的进度条。 <br>默认值为5，最小值为2，小于2时按2处理。<br/>指定值有小数时，向下取整。|
 | controller |  [LinearIndicatorController](#linearindicatorcontroller) | 否 | 设置控制器，可通过该参数控制进度条播放、暂停、停止、设置进度条的当前索引以及在该索引下进度条的进度。 |
@@ -45,7 +45,7 @@ indicatorStyle(style: Optional\<LinearIndicatorStyle\>)
 
 **参数：** 
 
-|名称|类型|必填|说明|
+|参数名|类型|必填|说明|
 | ----- | ----- | -- |  --- |
 | style | Optional\<[LinearIndicatorStyle](#linearindicatorstyle)\> | 是 | 导航条样式。<br/>可通过该参数控制进度条之间的间隔、高度、圆角半径以及已完成播放的进度条颜色与剩余未播放的进度条颜色。 |
 
@@ -61,7 +61,7 @@ indicatorLoop(loop: Optional\<boolean\>)
 
 **参数：** 
 
-|名称|类型|必填|说明|
+|参数名|类型|必填|说明|
 | ----- | ----- | -- |  --- |
 | loop | Optional\<boolean\> | 是 | 是否支持循环播放。<br>true：支持循环播放。false：不支持循环播放。<br>默认值：true。 |
 
@@ -81,7 +81,7 @@ onChange(callback: Optional\<OnLinearIndicatorChangeCallback\>)
 
 **参数：** 
 
-|名称|类型|必填|说明|
+|参数名|类型|必填|说明|
 | ----- | ----- | -- |  --- |
 | callback | Optional\<[OnLinearIndicatorChangeCallback](#onlinearindicatorchangecallback)\> | 是 | 回调函数。<br>通过该回调函数可获取当前进度条的索引值与进度值。 |
 
@@ -102,7 +102,7 @@ LinearIndicatorController的构造函数。
 
 ### setProgress
 
-setProgress(index: number, progress: number): void
+setProgress(index: number, progress: number)
 
 为与index相对应的进度条设定进度值。所有小于index的进度条进度将统一调整至100%。而所有大于index的进度条进度则统一调整为0%。
 
@@ -112,14 +112,14 @@ setProgress(index: number, progress: number): void
 
 **参数：**
 
-|名称|类型|必填|说明|
+|参数名|类型|必填|说明|
 | ----- | ----- | -- |  --- |
 | index | number | 是 | 进度条序号。<br>取值范围：[0, 进度条数量-1]。<br>默认值：0。<br>设置取值范围外的数值时，直接返回不做任何处理。指定值有小数时，向下取整。<br>当设置为undefined或null时，使用默认值。 |
 | progress | number | 是 | 播放进度。<br>取值范围：[0, 100]。<br>默认值：0。<br>设置范围外的数值时直接返回不做任何处理。<br>当设置为undefined或null时，使用默认值。|
 
 ### start
 
-start(options?: LinearIndicatorStartOptions): void
+start(options?: LinearIndicatorStartOptions)
 
 开始自动播放，可以指定自动播放参数，每一个进度条的自动播放参数相同。
 
@@ -129,13 +129,13 @@ start(options?: LinearIndicatorStartOptions): void
 
 **参数：**
 
-|名称|类型|必填|说明|
+|参数名|类型|必填|说明|
 | ----- | ----- | -- |  --- |
 | options | [LinearIndicatorStartOptions](#linearindicatorstartoptions) | 否 | 开始播放，指定自动播放参数。 |
 
 ### pause
 
-pause(): void
+pause()
 
 暂停播放。如果当前为自动播放状态，将切换至暂停播放状态。若已处于暂停播放状态，则维持现状。
 
@@ -145,7 +145,7 @@ pause(): void
 
 ### stop
 
-stop(): void
+stop()
 
 停止播放。调用后将恢复成初始状态（当前索引值为0，进度值为0）。
 
@@ -187,10 +187,9 @@ stop(): void
 
 ## OnLinearIndicatorChangeCallback
 
-进度条变化时的回调函数。
-
 type OnLinearIndicatorChangeCallback = (index: number, progress: number) => void
 
+进度条变化时的回调函数。
 
 **原子化服务API：** 从API Version 18开始，该接口支持在原子化服务中使用。
 
@@ -198,7 +197,7 @@ type OnLinearIndicatorChangeCallback = (index: number, progress: number) => void
 
 **参数：**
 
-|名称|类型|必填|说明|
+|参数名|类型|必填|说明|
 | ----- | ----- | -- |  --- |
 | index | number | 是 | 进度条的当前序号。 |
 | progress | number | 是 | 进度条的当前进度。 |

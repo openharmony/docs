@@ -31,9 +31,9 @@ ArcAlphabetIndexer(info: ArcAlphabetIndexerInitInfo)
 
 **参数：**  参数内容为设置弧形索引条索引项字符串数组、初始选中项索引位置。
 
-| 名称     | 类型     | 必填     | 说明     |
+| 参数名     | 类型     | 必填     | 说明     |
 | -------- | -------- | -------- | -------- |
-| info     | [ArcAlphabetIndexerInitInfo](#arcalphabetindexerinitinfo) | 是 | 定义弧形字母索引条的初始化参数。 |
+| info     | [ArcAlphabetIndexerInitInfo](#arcalphabetindexerinitinfo对象说明) | 是 | 定义弧形字母索引条的初始化参数。 |
 
 
 ## 属性
@@ -158,7 +158,7 @@ selectedFont(font: Optional&lt;Font&gt;)
 
 ### popupFont
 
-popupFont(value: Optional&lt;Font&gt;)
+popupFont(font: Optional&lt;Font&gt;)
 
 设置提示弹窗字体样式。
 
@@ -170,7 +170,7 @@ popupFont(value: Optional&lt;Font&gt;)
 
 | 参数名 | 类型                     | 必填 | 说明                                                         |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Optional&lt;Font&gt;](ts-types.md#font) | 是   | 提示弹窗字体样式。<br/>默认值：<br/>{<br/>size:'19.0fp',<br/> style:FontStyle.Normal,<br/> weight:500,<br/> family:'HarmonyOS Sans'<br/>} |
+| font  | [Optional&lt;Font&gt;](ts-types.md#font) | 是   | 提示弹窗字体样式。<br/>默认值：<br/>{<br/>size:'19.0fp',<br/> style:FontStyle.Normal,<br/> weight:500,<br/> family:'HarmonyOS Sans'<br/>} |
 
 ### font
 
@@ -277,7 +277,7 @@ onSelect(handler: Optional&lt;OnSelectCallback&gt;)
 | handler  | Optional&lt;[OnSelectCallback](#onselectcallback)&gt; | 是   | 回调函数类型。 |
 
 
-## ArcAlphabetIndexerInitInfo
+## ArcAlphabetIndexerInitInfo对象说明
 
 定义弧形字母索引条的初始化参数。
 
