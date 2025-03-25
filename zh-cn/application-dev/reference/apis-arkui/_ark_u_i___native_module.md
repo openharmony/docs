@@ -2029,6 +2029,7 @@ enum ArkUI_ButtonType
 | ARKUI_BUTTON_TYPE_NORMAL  | 普通按钮，默认不带圆角。  | 
 | ARKUI_BUTTON_TYPE_CAPSULE  | 胶囊型按钮，圆角默认为高度的一半。  | 
 | ARKUI_BUTTON_TYPE_CIRCLE  | 圆形按钮。  | 
+| ARKUI_BUTTON_ROUNDED_RECTANGLE<sup>18+<sup> | 圆角矩形按钮。  | 
 
 
 ### ArkUI_CalendarAlignment
@@ -3472,7 +3473,7 @@ enum ArkUI_NodeAttributeType
 | NODE_TEXT_AREA_ENABLE_PREVIEW_TEXT  | 设置输入框开启字符预上屏，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 是否开启字符预上屏。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 是否开启字符预上屏。 | 
 | NODE_TEXT_AREA_KEYBOARD_APPEARANCE  | 设置输入框拉起的键盘样式。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 设置对应的键盘样式，类型为[ArkUI_KeyboardAppearance](#arkui_keyboardappearance)。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 对应的键盘样式，类型为[ArkUI_KeyboardAppearance](#arkui_keyboardappearance)。<br/>起始版本：<br/>15 |
 | NODE_BUTTON_LABEL  | button按钮的文本内容属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：默认文本的内容。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：默认文本的内容。 | 
-| NODE_BUTTON_TYPE  | Button按钮的样式属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置Button按钮的样式，参数类型[ArkUI_ButtonType](#arkui_buttontype)，默认值为ARKUI_BUTTON_TYPE_CAPSULE。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：获取Button按钮的样式，参数类型[ArkUI_ButtonType](#arkui_buttontype)，默认值为ARKUI_BUTTON_TYPE_CAPSULE。 | 
+| NODE_BUTTON_TYPE  | Button按钮的样式属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置Button按钮的样式，参数类型[ArkUI_ButtonType](#arkui_buttontype)，默认值为ARKUI_BUTTON_ROUNDED_RECTANGLE。从API version 18及之后，默认值修改为ARKUI_BUTTON_ROUNDED_RECTANGLE。API version 18之前的版本，默认值为ARKUI_BUTTON_TYPE_CAPSULE。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：获取Button按钮的样式，参数类型[ArkUI_ButtonType](#arkui_buttontype)，默认值为ARKUI_BUTTON_TYPE_CAPSULE。 | 
 | NODE_BUTTON_MIN_FONT_SCALE<sup>18+</sup>  | 设置文本最小的字体缩放倍数，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32: 设置Button按钮的最小字体缩放倍数，默认单位fp。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32: 获取Button按钮的最小字体缩放倍数，默认单位fp。 | 
 | NODE_BUTTON_MAX_FONT_SCALE<sup>18+</sup>  | 设置文本最大的字体缩放倍数，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32: 设置Button按钮的最大字体缩放倍数，默认单位fp。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32: 获取Button按钮的最大字体缩放倍数，默认单位fp。 |
 | NODE_PROGRESS_VALUE  | 进度条的当前进度值属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：进度条当前值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：进度条当前值。 | 
@@ -11247,7 +11248,7 @@ ArkUI_ExpectedFrameRateRange* OH_ArkUI_KeyframeAnimateOption_GetExpectedFrameRat
 
 获取关键帧动画参数的期望帧率。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -11403,6 +11404,8 @@ int32_t OH_ArkUI_KeyframeAnimateOption_SetExpectedFrameRate(
 **描述：**
 
 设置关键帧动画期望帧率。
+
+**起始版本：** 18
 
 **参数:**
 
