@@ -1290,22 +1290,22 @@ getLinkedInfoSync(): WifiLinkedInfo;
 | wifiStandard<sup>10+</sup> | [WifiStandard](#wifistandard10) | 是 | 否 | 当前连接热点的Wi-Fi标准。 |
 | supportedWifiCategory<sup>12+</sup> | [WifiCategory](#wificategory12) | 是 | 否 | 热点支持的最高Wi-Fi级别。 |
 | isHiLinkNetwork<sup>12+</sup> | boolean | 是 | 否| 热点是否支持hilink，true:支持，&nbsp;false:不支持。 |
-| wifiLinkType<sup>18+</sup> | [WifiLinkType](#wifilinktype18) | 是 | 否|    |
+| wifiLinkType<sup>18+</sup> | [WifiLinkType](#wifilinktype18) | 是 | 否|  Wi-Fi7连接类型。  |
 
 
 ## WifiLinkType<sup>18+</sup>
 
-表示WLAN连接状态的枚举。
+Wi-Fi7连接类型枚举。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| DEFAULT_LINK | 0 | 设备正在搜索可用的AP。 |
-| WIFI7_SINGLE_LINK | 1 | 正在建立WLAN连接。 |
-| WIFI7_MLSR | 2 | WLAN连接正在认证中。 |
-| WIFI7_EMLSR | 3 | 正在获取WLAN连接的IP地址。 |
-| WIFI7_STR | 4 | WLAN连接已建立。 |
+| DEFAULT_LINK | 0 | 默认连接类型。 |
+| WIFI7_SINGLE_LINK | 1 | Wi-Fi7单链连接。 |
+| WIFI7_MLSR | 2 | Wi-Fi7 MLSR连接。 |
+| WIFI7_EMLSR | 3 | Wi-Fi7EMLSR连接。 |
+| WIFI7_STR | 4 | Wi-Fi7STR连接。 |
 
 ## ConnState<sup>9+</sup>
 
@@ -2420,8 +2420,8 @@ getMultiLinkedInfo(): &nbsp;Array&lt;WifiLinkedInfo&gt;
 import { wifiManager } from '@kit.ConnectivityKit';
 
   try {
-    let configs = wifiManager.getMultiLinkedInfo();
-    console.info("configs:" + JSON.stringify(configs));
+    let linkedInfo = wifiManager.getMultiLinkedInfo();
+    console.info("linkedInfo:" + JSON.stringify(linkedInfo));
   }catch(error){
     console.error("failed:" + JSON.stringify(error));
   }
