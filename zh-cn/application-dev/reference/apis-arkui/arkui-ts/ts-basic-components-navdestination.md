@@ -523,7 +523,7 @@ NavDestination处于非激活态（处于非栈顶不可操作，或处于栈顶
 | 名称      | 类型                                       | 必填   | 说明       |
 | ------- | ---------------------------------------- | ---- | -------- |
 | builder | [CustomBuilder](ts-types.md#custombuilder8) | 是    | 设置标题栏内容。 |
-| height  | [TitleHeight](ts-appendix-enums.md#titleheight9) \| [Length](ts-types.md#length) | 是    | 设置标题栏高度。 |
+| height  | [TitleHeight](ts-appendix-enums.md#titleheight9) \| [Length](ts-types.md#length) | 是    | 设置标题栏高度。<br/>取值范围：[0, +∞)。 |
 
 ## NavDestinationContext<sup>11+</sup>
 
