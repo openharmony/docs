@@ -1114,8 +1114,6 @@
         - [分布式设备管理](distributedservice/devicemanager-guidelines.md)
         - 应用跨设备连接管理<!--abilityconnect-distributed-->
           - [UIAbility与UIAbility连接开发指南](distributedservice/abilityconnectmanager-guidelines.md)
-          <!--Del-->
-          - [UIAbility与Extension连接开发指南](distributedservice/distributedextension-duidelines.md)
           <!--DelEnd-->
         - 硬件跨设备连接管理<!--devconnect-distributed-->
           - [分布式相机开发指南](distributedservice/camera-distributed.md)
@@ -3433,7 +3431,6 @@
         - ArkTS API<!--distributed-service-arkts-->
           - [@ohos.distributedDeviceManager (设备管理)](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md)
           - [@ohos.abilityConnectionManager (应用多端协同管理)](reference/apis-distributedservice-kit/js-apis-distributed-abilityConnectionManager.md)
-          - [@ohos.application.DistributedExtensionAbility (协同Extension)](reference/apis-distributedservice-kit/js-apis-distributedExtensionAbility.md)
           <!--Del-->
           - [@ohos.distributedHardware.hardwareManager (分布式硬件管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributedHardwareManager-sys.md)
           - [@ohos.distributedDeviceManager (设备管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager-sys.md)
