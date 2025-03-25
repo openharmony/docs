@@ -50,4 +50,4 @@
 
 ## 示例
 
-参考 [list示例](js-lite-components-container-list.md)
+参考 [list示例](js-lite-components-container-list.md#示例)。

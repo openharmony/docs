@@ -4,8 +4,6 @@
 
 ## 使用约束
 
-- 弹出框的弹出依赖UI的执行上下文，不可在UI上下文不明确的地方使用，具体约束参见[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)说明。
-
 - 可以通过调用UIContext或getUIContext，在非UI页面或某些异步回调中使用本文中的接口。CalendarPickerDialog当前不支持此操作。
 
 - 操作菜单 (showActionMenu)、对话框 (showDialog)需先使用UIContext中的[getPromptAction()](../reference/apis-arkui/js-apis-arkui-UIContext.md#getpromptaction)方法获取到PromptAction对象，再通过该对象调用对应方法。
@@ -109,6 +107,8 @@ try {
 ### 日历选择器弹窗 (CalendarPickerDialog)
 
 日历选择器弹窗提供日历视图，包含年、月和星期信息，通过[CalendarPickerDialog](../reference/apis-arkui/arkui-ts/ts-methods-calendarpicker-dialog.md)接口实现。开发者可调用show函数，定义并弹出日历选择器弹窗。
+
+日历选择器弹窗的弹出依赖UI的执行上下文，不可在UI上下文不明确的地方使用，具体约束参见[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)说明。
 
 通过配置 acceptButtonStyle、cancelButtonStyle可以实现自定义按钮样式。
 

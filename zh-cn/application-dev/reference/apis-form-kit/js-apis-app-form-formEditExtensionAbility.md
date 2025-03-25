@@ -22,7 +22,7 @@ import { FormEditExtensionAbility } from '@kit.FormKit';
   | ------ | ------ | ---- | ---- | ---- |
   | context |  [FormEditExtensionContext](./js-apis-inner-application-formEditExtensionContext.md) | 否   | 否 |FormEditExtensionAbility的上下文环境，默认值是继承自UIExtensionContext的对象。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
-## onCreate
+## FormEditExtensionAbility.onCreate
 
 onCreate(launchParam: AbilityConstant.LaunchParam): void
 
@@ -56,7 +56,7 @@ export default class ExampleFomrEditAbility extends FormEditExtensionAbility {
 }
 ```
 
-## onSessionCreate
+## FormEditExtensionAbility.onSessionCreate
 
 onSessionCreate(want: Want, session: UIExtensionContentSession): void
 
@@ -90,7 +90,7 @@ export default class ExampleFormEditAbility extends FormEditExtensionAbility {
 }
 ```
 
-## onSessionDestroy
+## FormEditExtensionAbility.onSessionDestroy
 
 onSessionDestroy(session: UIExtensionContentSession): void
 
@@ -122,7 +122,7 @@ export default class ExampleFormEditAbility extends FormEditExtensionAbility{
   }
 }
 ```
-## onForeground
+## FormEditExtensionAbility.onForeground
 
 onForeground(): void
 
@@ -146,7 +146,7 @@ export default class ExampleFormEditAbility extends FormEditExtensionAbility{
   }
 }
 ```
-## onBackground
+## FormEditExtensionAbility.onBackground
 
 onBackground(): void
 
@@ -171,7 +171,7 @@ export default class ExampleFormEditAbility extends FormEditExtensionAbility{
 }
 ```
 
-## onDestroy
+## FormEditExtensionAbility.onDestroy
 
 onDestroy(): void | Promise&lt;void&gt;
 

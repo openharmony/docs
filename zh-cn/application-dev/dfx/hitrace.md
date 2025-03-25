@@ -25,11 +25,10 @@ HiTrace为开发者提供业务流程调用链跟踪的维测接口。通过使�
 | --start_bgsrv         | 开启快照模式trace采集服务。                                  |
 | --dump_bgsrv          | 触发快照模式trace输出到文件。                                |
 | --stop_bgsrv          | 关闭快照模式trace采集服务。                                  |
-| --trace_level         | 设置trace打点级别阈值，低于该级别的打点将不会生效，级别可以是Debug、Info、Critical、Commercial或其对应缩写D、I、C、M。打点级别优先级D<I<C<M，开发者可使用带trace级别的打点接口（使用参考[js-apis-hitracemeter](../reference/apis-performance-analysis-kit/js-apis-hitracemeter.md)和[_hitrace](../reference/apis-performance-analysis-kit/_hitrace.md)中的API version 18的trace打点接口），测试不同阈值下的trace输出情况是否符合预期。 |
 
 > **说明**
 >
-> 快照模式定义为固定trace标签的trace采集服务，默认情况不落盘，开发者可通过 `--dump_bgsrv` 命令触发当前时刻的trace转储，trace为二进制格式，文件默认生成在 `/data/log/hitrace` 目录下，文件命名格式为`trace-YYMMDDHHmmSS@[BOOT_TIME].sys`。可通过[smartperf在线工具](https://www.smartperf.host)进行查看。
+> 快照模式定义为固定trace标签的trace采集服务，默认情况不落盘，开发者可通过 `--dump_bgsrv` 命令触发当前时刻的trace转储，trace为二进制格式，文件默认生成在 `/data/log/hitrace` 目录下，文件命名格式为`trace-YYMMDDHHmmSS@[BOOT_TIME].sys`。可通过[HiSmartPerf](https://gitee.com/openharmony/developtools_smartperf_host)工具进行可视化trace分析，工具下载链接[developtools_smartperf_host 发行版](https://gitee.com/openharmony/developtools_smartperf_host/releases)。
 
 ## 常用命令
 
@@ -122,6 +121,7 @@ HiTrace为开发者提供业务流程调用链跟踪的维测接口。通过使�
              zimage - OpenHarmony Image Module
              zmedia - OpenHarmony Media Module
    ```
+   
 2. 开始抓指定tag的trace。
 
    ```shell
@@ -135,6 +135,7 @@ HiTrace为开发者提供业务流程调用链跟踪的维测接口。通过使�
    2024/11/14 11:48:45 args: tags:app bufferSize:18432 overwrite:1
    2024/11/14 11:48:45 OpenRecording done.
    ```
+   
 3. 结束抓trace。
 
    默认将trace信息打印在命令行窗口。
@@ -162,6 +163,7 @@ HiTrace为开发者提供业务流程调用链跟踪的维测接口。通过使�
    2024/11/14 11:50:33 start to read trace.
    2024/11/14 11:50:33 trace read done, output: /data/local/tmp/test.ftrace
    ```
+   
 4. 设置抓trace的一些信息。
 
    ```shell
@@ -179,6 +181,7 @@ HiTrace为开发者提供业务流程调用链跟踪的维测接口。通过使�
    - 设置抓trace时间为10s。
    - 设置抓取的trace信息存储在文件/data/local/tmp/test2.ftrace中。
    - 抓取app、ability两个tag的trace。
+   
 5. 导出trace信息。
 
    默认将信息显示在命令行窗口。
@@ -219,6 +222,7 @@ HiTrace为开发者提供业务流程调用链跟踪的维测接口。通过使�
    2024/11/14 11:54:23 trace read done, output: /data/local/tmp/test3.ftrace
    ```
    也可根据关键词打印trace信息，使用命令`hitrace --trace_dump | grep xxx`即可。
+   
 6. 开启快照模式trace采集服务。
 
    ```shell
@@ -231,9 +235,10 @@ HiTrace为开发者提供业务流程调用链跟踪的维测接口。通过使�
    2024/11/14 11:55:53 hitrace enter, running_state is SNAPSHOT_START
    2024/11/14 11:55:54 OpenSnapshot done.
    ```
+   
 7. 快照模式导出trace。
 
-   默认将trace信息保存至/data/log/hitrace/文件夹下，文件命名格式为`trace-YYMMDDHHmmSS@[BOOT_TIME].sys`，抓到的是二进制trace。可通过[smpartperf在线工具](https://www.smartperf.host)进行查看。
+   默认将trace信息保存至/data/log/hitrace/文件夹下，文件命名格式为`trace-YYMMDDHHmmSS@[BOOT_TIME].sys`，抓到的是二进制trace。可通过[HiSmartPerf](https://gitee.com/openharmony/developtools_smartperf_host)工具进行可视化trace分析，工具下载链接[developtools_smartperf_host 发行版](https://gitee.com/openharmony/developtools_smartperf_host/releases)。
 
    ```shell
    hitrace --dump_bgsrv
@@ -246,6 +251,7 @@ HiTrace为开发者提供业务流程调用链跟踪的维测接口。通过使�
    2024/11/14 12:12:57 DumpSnapshot done, output:
        /data/log/hitrace/record_trace_20241114121257@2566589-103807063.sys
    ```
+   
 8. 关闭快照模式trace采集服务。
 
    ```shell
@@ -258,6 +264,7 @@ HiTrace为开发者提供业务流程调用链跟踪的维测接口。通过使�
    2024/11/14 11:59:43 hitrace enter, running_state is SNAPSHOT_STOP
    2024/11/14 11:59:43 CloseSnapshot done.
    ```
+   
 9. 抓取trace后进行压缩。
 
    ```shell
@@ -271,6 +278,7 @@ HiTrace为开发者提供业务流程调用链跟踪的维测接口。通过使�
    2024/11/14 12:00:28 capture done, start to read trace.
    2024/11/14 12:00:29 trace read done, output: /data/local/tmp/test.ftrace
    ```
+   
 10. 设置trace的输出时钟为boot(设备系统时间)。
 
     ```shell
@@ -284,6 +292,7 @@ HiTrace为开发者提供业务流程调用链跟踪的维测接口。通过使�
     2024/11/14 12:01:52 capture done, start to read trace.
     2024/11/14 12:01:52 trace read done, output: /data/local/tmp/test.ftrace
     ```
+    
 11. 结束抓trace，取消trace信息打印在命令行窗口。
 
     默认将trace信息保存至/data/log/hitrace/文件夹下。
@@ -298,15 +307,5 @@ HiTrace为开发者提供业务流程调用链跟踪的维测接口。通过使�
     2024/11/14 12:03:07 hitrace enter, running_state is RECORDING_LONG_FINISH_NODUMP
     2024/11/14 12:03:07 end capture trace.
     ```
-12. 设置trace级别阈值为Info。
-
-    ```shell
-    hitrace --trace_level Info
-    ```
-    **使用样例：**
-
-    ```shell
-    $ hitrace --trace_level Info
-    2024/11/14 12:05:07 hitrace enter, running_state is SET_TRACE_LEVEL
-    2024/11/14 12:05:07 success to set trace level.
-    ```
+    
+    

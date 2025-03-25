@@ -45,6 +45,7 @@ selected(value: number | Resource)
 设置下拉菜单初始选项的索引，第一项的索引为0。当不设置selected属性或设置异常值时，默认选择值为-1，菜单项不选中；当设置为undefined、null时，选中第一项。
 
 从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+从API version 18开始，该参数支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -63,6 +64,7 @@ selected(numCount: Optional<number | Resource>)
 设置下拉菜单初始选项的索引，第一项的索引为0。当不设置selected属性或设置异常值时，默认选择值为-1，菜单项不选中；当设置为undefined、null时，选中第一项。
 
 该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+该属性支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -81,6 +83,7 @@ value(value: ResourceStr)
 设置下拉按钮本身的文本内容。当菜单选中时默认会替换为菜单项文本内容。
 
 从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+从API version 18开始，该参数支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -99,6 +102,7 @@ value(resStr: Optional\<ResourceStr>)
 设置下拉按钮本身的文本内容。当菜单选中时默认会替换为菜单项文本内容。与[value](#value)相比，resStr参数新增了对undefined类型的支持。
 
 该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+该参数支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -205,20 +209,6 @@ divider(options: Optional\<DividerOptions> | null)
 | ------ | ------- | ---- | --------------------------------------------------------------------- |
 | options  | Optional\<[DividerOptions](ts-basic-components-textpicker.md#divideroptions12对象说明)> \| null | 是   | 1.设置DividerOptions，则按设置的样式显示分割线。<br/>默认值：<br/>{<br/>strokeWidth: '1px' , <br/>color: '#33182431'<br/>}<br/>2.设置为null时，不显示分割线。<br/>3.strokeWidth设置过宽时，会覆盖文字。分割线会从每一个Item底部开始，同时向上向下画分割线。<br/>4.startMargin和endMargin的默认值与不设置divider属性时的分割线样式保持一致。startMargin和endMargin的和与optionWidth的值相等时，不显示分割线。 startMargin和endMargin的和超过optionWidth的值时，按照默认样式显示分割线。|
 
-### dividerStyle<sup>18+</sup>
-
-设置分割线样式，不设置该属性则按“默认值”展示分割线。该属性与divider互斥，按调用顺序生效。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型    | 必填 | 说明                                                                  |
-| ------ | ------- | ---- | --------------------------------------------------------------------- |
-| options  | Optional\<[DividerStyleOptions](ts-types.md#dividerstyleoptions12)> \| null | 是   | 1.设置DividerStyleOptions，则按设置的样式显示分割线。<br/>默认值：<br/>{<br/>strokeWidth: LengthMetrics.px(1) , <br/>color: '#33182431'<br/>}<br/>2.设置为null或undifined时，展示默认分割线。<br/>3.当mode为FLOAT_ABOVE_MENU时，strokeWidth设置过宽时，会覆盖文字。分割线会从每一个Item底部开始，同时向上向下画分割线。当mode为EMBEDDED_IN_MENU时，分割线在Menu中展开，独立占用高度。<br/>4.startMargin和endMargin的默认值与不设置divider属性时的分割线样式保持一致。startMargin和endMargin的和与optionWidth的值相等时，不显示分割线。 startMargin和endMargin的和超过optionWidth的值时，按照默认样式显示分割线。|
-
 ### font
 
 font(value: Font)
@@ -285,7 +275,7 @@ fontColor(resColor: Optional\<ResourceColor>)
 
 ### selectedOptionBgColor
 
-selectedOptionBgColor(value: Optional\<ResourceColor>)
+selectedOptionBgColor(value: ResourceColor)
 
 设置下拉菜单选中项的背景色。
 
@@ -297,7 +287,7 @@ selectedOptionBgColor(value: Optional\<ResourceColor>)
 
 | 参数名 | 类型                                       | 必填 | 说明                                                         |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 下拉菜单选中项的背景色。<br/>默认值：`$r('sys.color.ohos_id_color_component_activated')`混合`$r('sys.color.ohos_id_alpha_highlight_bg')`的透明度。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 下拉菜单选中项的背景色。<br/>默认值：`$r('sys.color.ohos_id_color_component_activated')`混合`$r('sys.color.ohos_id_alpha_highlight_bg')`的透明度。 |
 
 ### selectedOptionBgColor<sup>18+</sup>
 
@@ -413,7 +403,7 @@ optionBgColor(resColor: Optional\<ResourceColor>)
 
 ### optionFont
 
-optionFont(value: Optional\<Font>)
+optionFont(value: Font)
 
 设置下拉菜单项的文本样式。当size为0的时候，文本不显示，当size为负值的时候，文本的size按照默认值显示。
 
@@ -425,7 +415,7 @@ optionFont(value: Optional\<Font>)
 
 | 参数名 | 类型                     | 必填 | 说明                                                         |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Font](ts-types.md#font)> | 是   | 下拉菜单项的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;$r('sys.float.ohos_id_text_size_body1'),<br/>weight:&nbsp;FontWeight.Regular<br/>} |
+| value  | [Font](ts-types.md#font) | 是   | 下拉菜单项的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;$r('sys.float.ohos_id_text_size_body1'),<br/>weight:&nbsp;FontWeight.Regular<br/>} |
 
 ### optionFont<sup>18+</sup>
 
@@ -715,24 +705,6 @@ menuBackgroundBlurStyle(style: Optional\<BlurStyle>)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[BlurStyle](ts-universal-attributes-background.md#blurstyle9)> | 是   | 下拉菜单的背景模糊材质。<br/>当style的值为undefined时，默认值：BlurStyle.COMPONENT_ULTRA_THICK |
 
-### avoidance<sup>18+</sup>
-
-avoidance(mode: AvoidanceMode)
-
-设置下拉菜单的避让模式。
-
-**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名    | 类型                                      | 必填 | 说明                                                         |
-| --------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| mode      | [AvoidanceMode](#avoidancemode18枚举说明)  | 是   | 设置下拉菜单的避让模式。<br/>默认值：AvoidanceMode.COVER_TARGET |
-
 ## ArrowPosition<sup>10+</sup>枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -756,21 +728,6 @@ avoidance(mode: AvoidanceMode)
 | CENTER              | 1 |居中对齐。 |
 | END                 | 2 |按照语言方向末端对齐。 |
 
-## AvoidanceMode<sup>18+</sup>枚举说明
-
-下拉菜单避让模式的枚举选项。
-
-**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称                | 说明             |
-| ------------------- | ------------------ |
-| COVER_TARGET        | 当四周都无足够空间显示时，覆盖目标组件。 |
-| AVOID_AROUND_TARGET | 目标组件四周无足够空间时，在最大空间处压缩显示（可滚动）。 |
-
 ## MenuItemConfiguration<sup>12+</sup>对象说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -790,7 +747,7 @@ avoidance(mode: AvoidanceMode)
 
 ### onSelect
 
-onSelect(callback: OnSelectCallback )
+onSelect(callback: (index: number, value: string) => void)
 
 下拉菜单选中某一项的回调。
 
@@ -800,9 +757,10 @@ onSelect(callback: OnSelectCallback )
 
 **参数：** 
 
-| 参数名   | 类型                                    | 必填 | 说明                       |
-| -------- | --------------------------------------- | ---- | -------------------------- |
-| callback | [OnSelectCallback](#onselectcallback18) | 是   | 下拉菜单选中某一项的回调。 |
+| 参数名 | 类型   | 必填 | 说明                          |
+| ------ | ------ | ---- | ----------------------------- |
+| index  | number | 是   | 选中项的索引，索引值从0开始。 |
+| value  | string | 是   | 选中项的值。                  |
 
 ### onSelect<sup>18+</sup>
 
@@ -822,11 +780,9 @@ onSelect(callback: Optional\<OnSelectCallback> )
 
 ## OnSelectCallback<sup>18+</sup>
 
-type OnSelectCallback = (index: number, value: string) => void
+type OnSelectCallback = (index: number, selectStr: string) => void
 
 下拉菜单选中某一项的回调。
-
-**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -837,7 +793,7 @@ type OnSelectCallback = (index: number, value: string) => void
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
 | index  | number | 是   | 选中项的索引，索引值从0开始。 |
-| value  | string | 是   | 选中项的值。   |
+| selectStr | string | 是   | 选中项的值。   |
 
 ##  示例1（设置下拉菜单）
 
@@ -877,7 +833,6 @@ struct SelectExample {
             this.text = text;
           }
         })
-        .avoidance(AvoidanceMode.COVER_TARGET);
     }.width('100%')
   }
 }
@@ -932,7 +887,6 @@ struct SelectExample {
             this.text = text;
           }
         })
-        .avoidance(AvoidanceMode.COVER_TARGET);
     }.width('100%')
   }
 }
@@ -1053,7 +1007,6 @@ struct SelectExample {
             this.text = text;
           }
         })
-        .avoidance(AvoidanceMode.COVER_TARGET);
     }.width('100%')
   }
 }
@@ -1096,7 +1049,6 @@ struct SelectExample {
             this.text = text;
           }
         })
-        .avoidance(AvoidanceMode.COVER_TARGET);
     }.width('100%')
   }
 }

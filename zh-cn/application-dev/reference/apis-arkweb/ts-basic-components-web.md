@@ -1066,7 +1066,7 @@ textZoomRatio(textZoomRatio: number)
 
 | 参数名           | 类型   | 必填   | 说明                             |
 | ------------- | ------ | ---- | -------------------------------- |
-| textZoomRatio | number | 是    | 要设置的页面的文本缩放百分比。取值为整数，范围为(0, +∞)。默认值：100。 |
+| textZoomRatio | number | 是    | 要设置的页面的文本缩放百分比。取值为整数，范围为(0, 2147483647]。默认值：100。 |
 
 **示例：**
 
@@ -1101,7 +1101,7 @@ initialScale(percent: number)
 
 | 参数名     | 类型   | 必填   | 说明                          |
 | ------- | ------ | ---- | ----------------------------- |
-| percent | number | 是    | 要设置的整体页面的缩放百分比。默认值：100。 |
+| percent | number | 是    | 要设置的整体页面的缩放百分比。默认值：100。取值范围：(0, 1000]。 |
 
 **示例：**
 
@@ -2515,7 +2515,7 @@ metaViewport(enabled: boolean)
 > - 如果设置为异常值将无效。
 > - 如果设备为2in1，不支持viewport属性。设置为true或者false均不会解析viewport属性，进行默认布局。
 > - 如果设备为Tablet，设置为true或false均会解析meta标签viewport-fit属性。当viewport-fit=cover时，可通过CSS属性获取安全区域大小。
-> - 当前通过UserAgent中是否含有"Mobile"字段来判断是否开启前端HTML页面中meta标签的viewport属性。当UserAgent中不含有"Mobile"字段时，meta标签中viewport属性默认关闭，此时可通过显性设置metaViewport属性为true来覆盖关闭状态。
+> - 当前通过User-Agent中是否含有"Mobile"字段来判断是否开启前端HTML页面中meta标签的viewport属性。当User-Agent中不含有"Mobile"字段时，meta标签中viewport属性默认关闭，此时可通过显性设置metaViewport属性为true来覆盖关闭状态。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -8272,7 +8272,7 @@ x(): number
 
 | 类型     | 说明                 |
 | ------ | ------------------ |
-| number | 显示正常返回非负整数，否则返回-1。 |
+| number | 显示正常返回非负整数，否则返回-1。单位：vp。 |
 
 ### y<sup>9+</sup>
 
@@ -8286,7 +8286,7 @@ y(): number
 
 | 类型     | 说明                 |
 | ------ | ------------------ |
-| number | 显示正常返回非负整数，否则返回-1。 |
+| number | 显示正常返回非负整数，否则返回-1。单位：vp。 |
 
 ### getLinkUrl<sup>9+</sup>
 
@@ -8440,7 +8440,7 @@ getPreviewWidth(): number
 
 | 类型     | 说明       |
 | ------ | ----------- |
-| number | 预览图的宽。 |
+| number | 预览图的宽。单位：vp。 |
 
 ### getPreviewHeight<sup>13+</sup>
 
@@ -8454,7 +8454,7 @@ getPreviewHeight(): number
 
 | 类型     | 说明       |
 | ------ | ----------  |
-| number | 预览图的高。 |
+| number | 预览图的高。单位：vp。 |
 
 ## WebContextMenuResult<sup>9+</sup>
 
@@ -10291,8 +10291,8 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| xOffset | number | 是 | 以网页最左端为基准，水平滚动条滚动所在位置。 |
-| yOffset | number | 是 | 以网页最上端为基准，竖直滚动条滚动所在位置。 |
+| xOffset | number | 是 | 以网页最左端为基准，水平滚动条滚动所在位置。单位：vp。 |
+| yOffset | number | 是 | 以网页最上端为基准，竖直滚动条滚动所在位置。单位：vp。 |
 
 ## OnSslErrorEventReceiveEvent<sup>12+</sup>
 
@@ -10413,8 +10413,8 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| xOffset | number | 是 | 以网页最左端为基准，水平过度滚动的偏移量。 |
-| yOffset | number | 是 | 以网页最上端为基准，竖直过度滚动的偏移量。 |
+| xOffset | number | 是 | 以网页最左端为基准，水平过度滚动的偏移量。单位：vp。 |
+| yOffset | number | 是 | 以网页最上端为基准，竖直过度滚动的偏移量。单位：vp。 |
 
 ## JavaScriptProxy<sup>12+</sup>
 

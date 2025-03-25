@@ -226,7 +226,7 @@ DML（Data Manipulation Language）语句: 数据操纵语言，主要是对数�
    }
    ```
 
-2. 获取到GraphStore后，调用write()接口创建图。
+2. 获取到GraphStore后，调用write()接口创建图。示例代码如下所示：
 
    ```ts
    const CREATE_GRAPH = "CREATE GRAPH test " +
@@ -241,13 +241,11 @@ DML（Data Manipulation Language）语句: 数据操纵语言，主要是对数�
    }
    ```
 
-3. 成功创建图后，调用write()接口插入、更新顶点及边。
+3. 成功创建图后，调用write()接口插入、更新顶点及边。示例代码如下所示：
 
    > **说明：**
    >
    > 图数据库没有显式的flush操作实现持久化，数据插入即保存在持久化文件。
-
-   示例代码如下所示：
 
    ```ts
    const INSERT_VERTEX_1 = "INSERT (:Person {name: 'name_1', age: 11});";
@@ -427,7 +425,7 @@ DML（Data Manipulation Language）语句: 数据操纵语言，主要是对数�
    }
    ```
 
-7. 删除数据库。调用deleteStore()方法，删除数据库及数据库相关文件。示例代码如下：
+7. 删除数据库。调用deleteStore()方法，删除数据库及数据库相关文件。示例代码如下所示：
 
    ```ts
    const DROP_GRAPH_GQL = "DROP GRAPH test;"

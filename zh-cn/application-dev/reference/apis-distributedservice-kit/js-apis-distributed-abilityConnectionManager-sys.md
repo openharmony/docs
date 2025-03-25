@@ -96,7 +96,7 @@ off(type:&nbsp;'collaborateEvent'&nbsp;|&nbsp;'receiveImage',&nbsp;sessionId:&nb
 
 ## abilityConnectionManager.sendImage
 
-sendImage(sessionId:&nbsp;number,&nbsp;image:&nbsp;image.PixelMap,&nbsp;quality?:&nbsp;number):&nbsp;Promise&lt;void&gt;;
+sendImage(sessionId:&nbsp;number,&nbsp;image:&nbsp;image.PixelMap,&nbsp;quality?:&nbsp;number):&nbsp;Promise&lt;void&gt;
 
 应用连接成功并创建传输流后，设备A或设备B可向对端设备发送图片。
 
@@ -168,7 +168,7 @@ sendImage(sessionId:&nbsp;number,&nbsp;image:&nbsp;image.PixelMap,&nbsp;quality?
 
 ## abilityConnectionManager.createStream
 
-createStream(sessionId:&nbsp;number,&nbsp;param:&nbsp;StreamParam):&nbsp;Promise&lt;number&gt;;
+createStream(sessionId:&nbsp;number,&nbsp;param:&nbsp;StreamParam):&nbsp;Promise&lt;number&gt;
 
 应用连接成功后，设备A或设备B可创建传输流，发送图片和视频流。
 
@@ -225,7 +225,7 @@ createStream(sessionId:&nbsp;number,&nbsp;param:&nbsp;StreamParam):&nbsp;Promise
 
 ## abilityConnectionManager.setSurfaceId
 
-setSurfaceId(sessionId:&nbsp;number,&nbsp;surfaceId:&nbsp;string,&nbsp;param:&nbsp;SurfaceParam):&nbsp;void;
+setSurfaceId(sessionId:&nbsp;number,&nbsp;surfaceId:&nbsp;string,&nbsp;param:&nbsp;SurfaceParam):&nbsp;void
 
 设置传输流与Surface的绑定关系。
 
@@ -270,7 +270,7 @@ setSurfaceId(sessionId:&nbsp;number,&nbsp;surfaceId:&nbsp;string,&nbsp;param:&nb
 
 ## abilityConnectionManager.getSurfaceId
 
-getSurfaceId(sessionId:&nbsp;number,&nbsp;param:&nbsp;SurfaceParam):&nbsp;string;
+getSurfaceId(sessionId:&nbsp;number,&nbsp;param:&nbsp;SurfaceParam):&nbsp;string
 
 获取指定传输流绑定的Surface的唯一标识符。
 
@@ -319,7 +319,7 @@ getSurfaceId(sessionId:&nbsp;number,&nbsp;param:&nbsp;SurfaceParam):&nbsp;string
 
 ## abilityConnectionManager.updateSurfaceParam
 
-updateSurfaceParam(sessionId:&nbsp;number,&nbsp;param:&nbsp;SurfaceParam):&nbsp;void;
+updateSurfaceParam(sessionId:&nbsp;number,&nbsp;param:&nbsp;SurfaceParam):&nbsp;void
 
 更新与传输流绑定的Surface的配置信息。
 
