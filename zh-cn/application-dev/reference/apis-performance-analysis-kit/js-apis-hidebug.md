@@ -189,7 +189,7 @@ let cpuUsage: number = hidebug.getCpuUsage();
 
 ## hidebug.getServiceDump<sup>9+<sup>
 
-getServiceDump(serviceid : number, fd : number, args : Array\<string>) : void
+getServiceDump(serviceid : number, fd : number, args : Array&lt;string&gt;) : void
 
 获取系统服务信息。
 
@@ -203,7 +203,7 @@ getServiceDump(serviceid : number, fd : number, args : Array\<string>) : void
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | serviceid | number | 是   | 基于该用户输入的service id获取系统服务信息。|
 | fd | number | 是   | 文件描述符，该接口会往该fd中写入数据。|
-| args | Array\<string> | 是   | 系统服务的Dump接口所对应的参数列表。|
+| args | Array&lt;string&gt; | 是   | 系统服务的Dump接口所对应的参数列表。|
 
 **错误码：**
 
@@ -345,6 +345,7 @@ try {
 startProfiling(filename : string) : void
 
 > **说明：**
+> 
 > 从 API Version 9 开始废弃，建议使用[hidebug.startJsCpuProfiling](#hidebugstartjscpuprofiling9)替代。
 
 启动虚拟机Profiling方法跟踪，`startProfiling()`方法的调用需要与`stopProfiling()`方法的调用一一对应，先开启后关闭，严禁使用`start->start->stop`，`start->stop->stop`，`start->start->stop->stop`等类似的顺序调用。
@@ -374,6 +375,7 @@ hidebug.stopProfiling();
 stopProfiling() : void
 
 > **说明：**
+> 
 > 从 API Version 9 开始废弃，建议使用[hidebug.stopJsCpuProfiling](#hidebugstopjscpuprofiling9)替代。
 
 停止虚拟机Profiling方法跟踪，`stopProfiling()`方法的调用需要与`startProfiling()`方法的调用一一对应，先开启后关闭，严禁使用`start->start->stop`，`start->stop->stop`，`start->start->stop->stop`等类似的顺序调用。
@@ -397,6 +399,7 @@ hidebug.stopProfiling();
 dumpHeapData(filename : string) : void
 
 > **说明：**
+> 
 > 从 API Version 9 开始废弃，建议使用[hidebug.dumpJsHeapData](#hidebugdumpjsheapdata9)替代。
 
 虚拟机堆导出。
@@ -647,8 +650,8 @@ setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type | string |  是  | 泄漏资源类型，共四种类型：</br>pss_memory(native内存)；</br>js_heap(js堆内存)；</br>fd(文件描述符)；</br>thread(线程)。                                                                         |
-| value | number |  是  | 对应泄漏资源类型的最大值，范围：pss_memory类型`[1024, 4 * 1024 * 1024](单位：KB)`；</br>js_heap类型`[85, 95](分配给JS堆内存上限的85%~95%)`；</br>fd类型`[10, 10000]`；</br>thread类型`[1, 1000]`。 |
+| type | string |  是  | 泄漏资源类型，共四种类型：<br/>pss_memory（native内存）；<br/>js_heap（js堆内存）；<br/>fd（文件描述符）；<br/>thread（线程）。                                                                         |
+| value | number |  是  | 对应泄漏资源类型的最大值，范围：<br/>pss_memory类型`[1024, 4 * 1024 * 1024]（单位：KB）`；<br/>js_heap类型`[85, 95]（分配给JS堆内存上限的85%~95%）`；<br/>fd类型`[10, 10000]`；<br/>thread类型`[1, 1000]`。 |
 | enableDebugLog | boolean |  是  | 是否启用外部调试日志，默认值为false。请仅在灰度版本中设置为true，因为收集调试日志会花费太多的cpu或内存。                                                                                     |
 
 **错误码：**
@@ -885,9 +888,9 @@ try {
 
 | 名称      | 类型   | 必填 | 说明         |
 | --------- | ------ | ---- | ------------ |
-| pss  | bigint |  是  | 实际占用的物理内存的大小(比例分配共享库占用的内存)，以KB为单位。 |
-| vss  | bigint |  是  | 占用虚拟内存大小(包括共享库所占用的内存)，以KB为单位。      |
-| rss  | bigint |  是  | 实际占用的物理内存的大小(包括共享库占用)，以KB为单位。      |
+| pss  | bigint |  是  | 实际占用的物理内存的大小（比例分配共享库占用的内存），以KB为单位。 |
+| vss  | bigint |  是  | 占用虚拟内存大小（包括共享库所占用的内存），以KB为单位。      |
+| rss  | bigint |  是  | 实际占用的物理内存的大小（包括共享库占用），以KB为单位。      |
 | sharedDirty  | bigint |  是  | 共享脏内存的大小，以KB为单位。                   |
 | privateDirty  | bigint |  是  | 专用脏内存的大小，以KB为单位。                   |
 | sharedClean  | bigint |  是  | 共享干净内存的大小，以KB为单位。                  |
@@ -1055,7 +1058,7 @@ dumpJsRawHeapData(needGC?: boolean): Promise&lt;string&gt;
 
 | 类型  | 说明                                                                                                   |
 | ------ |------------------------------------------------------------------------------------------------------|
-| Promise&lt;number&gt; | Promise对象，返回生成的快照文件路径([应用沙箱内路径](../../file-management/app-sandbox-directory.md#应用沙箱路径和真实物理路径的对应关系)。) |
+| Promise&lt;number&gt; | Promise对象，返回生成的快照文件路径（[应用沙箱内路径](../../file-management/app-sandbox-directory.md#应用沙箱路径和真实物理路径的对应关系)）。 |
 
 **错误码：**
 
