@@ -347,7 +347,7 @@ getAppClipboardPolicy(admin: Want, tokenId?: number): string
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| [ClipboardPolicy](#clipboardpolicy) | 设备剪贴板策略。|
+| string | 返回JSON字符串形式的设备剪贴板策略。|
 
 **错误码**：
 
