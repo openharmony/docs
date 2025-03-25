@@ -973,7 +973,6 @@ int main()
 
     ffrt_queue_attr_set_timeout(&queue_attr, 10000);
 
-
     int x = 0;
     std::function<void()>&& basicFunc = [&x]() { x += 1; };
     ffrt_function_header_t* func = ffrt_queue_attr_get_callback(&queue_attr);
