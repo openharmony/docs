@@ -69,6 +69,7 @@
     - [使用ECDSA密钥对验签(C/C++)](crypto-ecdsa-sign-sig-verify-ndk.md)
     - [使用SM2密钥对签名验签(ArkTS)](crypto-sm2-sign-sig-verify-pkcs1.md)
     - [使用SM2密钥对验签(C/C++)](crypto-sm2-sign-sig-verify-pkcs1-ndk.md)
+    - [SM2签名数据格式转换(ArkTS)](crypto-sm2-sign-data-format-conversion.md)
 - 密钥协商<!--crypto-key-agreement-->
   - [密钥协商介绍及算法规格](crypto-key-agreement-overview.md)
   - 密钥协商开发指导<!--crypto-key-agreement-dev-->
