@@ -572,8 +572,8 @@ WAPI认证方式的枚举。
 | DEFAULT | 1 | Default。Wifi6以下的wifi类别。 |
 | WIFI6 | 2 | Wifi6。 |
 | WIFI6_PLUS | 3 | Wifi6+。 |
-| WIFI7<sup>18+</sup> | 4 | Wifi7。 |
-| WIFI7_PLUS<sup>18+</sup> | 5 | Wifi7+。 |
+| WIFI7<sup>15+</sup> | 4 | Wifi7。 |
+| WIFI7_PLUS<sup>15+</sup> | 5 | Wifi7+。 |
 
 ## wifiManager.addCandidateConfig<sup>9+</sup>
 
@@ -1304,8 +1304,8 @@ Wi-Fi7连接类型枚举。
 | DEFAULT_LINK | 0 | 默认连接类型。 |
 | WIFI7_SINGLE_LINK | 1 | Wi-Fi7单链连接。 |
 | WIFI7_MLSR | 2 | Wi-Fi7 MLSR连接。 |
-| WIFI7_EMLSR | 3 | Wi-Fi7EMLSR连接。 |
-| WIFI7_STR | 4 | Wi-Fi7STR连接。 |
+| WIFI7_EMLSR | 3 | Wi-Fi7 EMLSR连接。 |
+| WIFI7_STR | 4 | Wi-Fi7 STR连接。 |
 
 ## ConnState<sup>9+</sup>
 
@@ -1703,7 +1703,7 @@ isMeteredHotspot(): boolean
 ```
 
 
-## wifiManager.isHotspotActive<sup>18+</sup>
+## wifiManager.isHotspotActive<sup>15+</sup>
 
 isHotspotActive(): boolean
 
@@ -2398,7 +2398,7 @@ stopDiscoverDevices(): void
 
 getMultiLinkedInfo(): &nbsp;Array&lt;WifiLinkedInfo&gt;
 
-获取MLO Wi-Fi连接信息。
+获取MLO(Multi-Link Operation，多链路操作) Wi-Fi连接信息。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -2406,7 +2406,7 @@ getMultiLinkedInfo(): &nbsp;Array&lt;WifiLinkedInfo&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
