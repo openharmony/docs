@@ -3503,7 +3503,8 @@ static registerPlugin(plugin: DomainPlugin): void
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
-| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
 | 12300201 | The domain plugin has been registered. |
 
 **示例：**
@@ -3553,6 +3554,7 @@ static unregisterPlugin(): void
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
+| 801 | Capability not supported.|
 
 **示例：**
   ```ts
