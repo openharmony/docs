@@ -35,7 +35,7 @@
 
 **数字格式化选项**
 
-对于数字，通过[NumberOptions](../reference/apis-localization-kit/js-apis-intl.md#numberoptions)参数可以设置最小整数位数、最小小数位数、最大小数位数、最低有效位数、最大有效位数、是否分组显示、数字的格式化规格、紧凑型的显示格式，以及数字的显示格式和数字系统。其中，数字的显示格式包括decimal(十进制)、percent(百分数)、currency(货币)、unit(单位)。
+对于数字，通过[NumberOptions](../reference/apis-localization-kit/js-apis-intl.md#numberoptions)参数可以设置最小整数位数、最小小数位数、最大小数位数、最低有效位数、最大有效位数、是否分组显示、数字的格式化规格、紧凑型的显示格式、舍入模式、舍入优先级、舍入增量，以及数字的显示格式和数字系统。其中，数字的显示格式包括decimal(十进制)、percent(百分数)、currency(货币)、unit(单位)。
 
 以123000.123为例，各属性参数取值和显示效果如下表所示。
 
@@ -105,20 +105,28 @@
 import { intl } from '@kit.LocalizationKit';
 
 // 用科学计数法显示数字
-let numberFormat1 = new intl.NumberFormat('zh-CN', {notation: 'scientific', maximumSignificantDigits: 3});
-let formattedNumber1 = numberFormat1.format(123400); // formattedNumber1: 1.23E5
+let scientificFormat: intl.NumberFormat = new intl.NumberFormat('zh-CN',
+  {
+    notation: 'scientific',
+    maximumSignificantDigits: 3
+  });
+let formattedNumber: string = scientificFormat.format(123400); // formattedNumber = '1.23E5'
 
 // 用紧凑的格式显示数字
-let numberFormat2 = new intl.NumberFormat('zh-CN', {notation: 'compact', compactDisplay: 'short'});
-let formattedNumber2 = numberFormat2.format(123400); // formattedNumber2: 12万
+let compactFormat: intl.NumberFormat = new intl.NumberFormat('zh-CN',
+  {
+    notation: 'compact',
+    compactDisplay: 'short'
+  });
+formattedNumber = compactFormat.format(123400); // formattedNumber = '12万'
 
 // 显示数字的符号
-let numberFormat3 = new intl.NumberFormat('zh-CN', {signDisplay: 'always'});
-let formattedNumber3 = numberFormat3.format(123400); // formattedNumber3: +123,400
+let signFormat: intl.NumberFormat = new intl.NumberFormat('zh-CN', { signDisplay: 'always' });
+formattedNumber = signFormat.format(123400); // formattedNumber = '+123,400'
 
 // 显示百分数
-let numberFormat4 = new intl.NumberFormat('zh-CN', {style: 'percent'});
-let formattedNumber4 = numberFormat4.format(0.25); // formattedNumber4: 25%
+let percentFormat: intl.NumberFormat = new intl.NumberFormat('zh-CN', { style: 'percent' });
+formattedNumber = percentFormat.format(0.25); // formattedNumber = '25%'
 ```
 
 
@@ -173,20 +181,30 @@ let formattedNumber4 = numberFormat4.format(0.25); // formattedNumber4: 25%
 import { intl } from '@kit.LocalizationKit';
 
 // 格式化货币
-let numberFormat5 = new intl.NumberFormat('zh-CN', {style: 'currency', currency: 'USD'});
-let formattedNumber5 = numberFormat5.format(123400); // formattedNumber5: US$123,400.00
+let currencyFormat: intl.NumberFormat = new intl.NumberFormat('zh-CN', { style: 'currency', currency: 'USD' });
+let formattedNumber: string = currencyFormat.format(123400); // formattedNumber = 'US$123,400.00'
 
 // 用名称表示货币
-let numberFormat6 = new intl.NumberFormat('zh-CN', {style: 'currency', currency: 'USD', currencyDisplay: 'name'});
-let formattedNumber6 = numberFormat6.format(123400); // formattedNumber6: 123,400.00美元
+let currencyNameFormat: intl.NumberFormat = new intl.NumberFormat('zh-CN',
+  {
+    style: 'currency',
+    currency: 'USD',
+    currencyDisplay: 'name'
+  });
+formattedNumber = currencyNameFormat.format(123400); // formattedNumber = '123,400.00美元'
 
 // 格式化度量衡
-let numberFormat7 = new intl.NumberFormat('en-GB', {style: 'unit', unit: 'hectare'});
-let formattedNumber7 = numberFormat7.format(123400); // formattedNumber7: 123,400 ha
+let unitFormat: intl.NumberFormat = new intl.NumberFormat('en-GB', { style: 'unit', unit: 'hectare' });
+formattedNumber = unitFormat.format(123400); // formattedNumber = '123,400 ha'
 
 // 格式化特定场景下度量衡，如面积-土地-农业
-let numberFormat8 = new intl.NumberFormat('en-GB', {style: 'unit', unit: 'hectare', unitUsage: 'area-land-agricult'});
-let formattedNumber8 = numberFormat8.format(123400); // formattedNumber8: 304,928.041 ac
+let unitUsageFormat: intl.NumberFormat = new intl.NumberFormat('en-GB',
+  {
+    style: 'unit',
+    unit: 'hectare',
+    unitUsage: 'area-land-agricult'
+  });
+formattedNumber = unitUsageFormat.format(123400); // formattedNumber = '304,928.041 ac'
 ```
 
 
@@ -229,8 +247,8 @@ let fromUnit: i18n.UnitInfo = {unit: 'cup', measureSystem: 'US'};
 let toUnit: i18n.UnitInfo = {unit: 'liter', measureSystem: 'SI'};
 
 // 以en-US区域参数转换度量衡
-let convertedUnit1 = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US'); // convertedUnit1: 236.588 L
+let convertedUnit: string = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US'); // convertedUnit = '236.588 L'
 
 // 显示完整的度量衡
-let convertedUnit2 = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US', 'long'); // convertedUnit2: 236.588 liters
+convertedUnit = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US', 'long'); // convertedUnit = '236.588 liters'
 ```
