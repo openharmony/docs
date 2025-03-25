@@ -369,6 +369,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, height); // 必须配置。
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, pixelFormat);
     // 可选，配置低时延解码。
+    // 若平台支持，当使能OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY接口时，视频解码器将按照解码序输出帧。
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY, 1);
     // 配置解码器。
     int32_t ret = OH_VideoDecoder_Configure(videoDec, format);
