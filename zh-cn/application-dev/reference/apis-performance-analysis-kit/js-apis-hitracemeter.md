@@ -7,9 +7,11 @@
 >
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 建议使用API version 18的跟踪打点接口，后续跟踪打点接口[startTrace](#hitracemeterstarttrace)、[finishTrace](#hitracemeterfinishtrace)、[traceByValue](#hitracemetertracebyvalue)将逐步废弃。
+> 建议使用API version 18的性能打点接口，后续性能打点接口[startTrace](#hitracemeterstarttrace)、[finishTrace](#hitracemeterfinishtrace)、[traceByValue](#hitracemetertracebyvalue)将逐步废弃。
 >
-> 打点接口[startTrace](#hitracemeterstarttrace)、[finishTrace](#hitracemeterfinishtrace)、[traceByValue](#hitracemetertracebyvalue)无法指定跟踪输出级别，默认均为COMMERCIAL级别跟踪打点。
+> 性能打点接口[startTrace](#hitracemeterstarttrace)、[finishTrace](#hitracemeterfinishtrace)、[traceByValue](#hitracemetertracebyvalue)无法指定跟踪输出级别，默认均为COMMERCIAL级别性能打点。
+>
+> [用户态tarce格式](../../dfx/hitracemeter-view.md#用户态trace格式说明)使用竖线 `|` 作为分隔符，所以通过性能打点接口传递的字符串类型参数应避免包含该字符，防止trace解析异常。
 
 ## 导入模块
 
