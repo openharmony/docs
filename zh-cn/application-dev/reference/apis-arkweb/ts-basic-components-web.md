@@ -514,7 +514,7 @@ mixedMode(mixedMode: MixedMode)
 
 | 参数名       | 类型                        | 必填   | 说明      |
 | --------- | --------------------------- | ---- | --------- |
-| mixedMode | [MixedMode](#mixedmode枚举说明) | 是    | 要设置的混合内容。默认值：MixedMode.None。 |
+| mixedMode | [MixedMode](#mixedmode枚举说明) | 是    | 要设置的混合内容。默认值：MixedMode.None，表示不允许安全来源（secure origin）加载不安全来源（insecure origin）的内容。 |
 
 **示例：**
 
@@ -3910,7 +3910,7 @@ onProgressChange(callback: Callback\<OnProgressChangeEvent\>)
 
 | 参数名         | 类型   | 必填   | 说明                  |
 | ----------- | ------ | ---- | --------------------- |
-| callback | Callback\<[OnProgressChangeEvent](#onprogresschangeevent12)\> | 是    | 页面加载进度时触发的功能。 |
+| callback | Callback\<[OnProgressChangeEvent](#onprogresschangeevent12)\> | 是    | 页面加载进度变化时触发的功能。 |
 
 **示例：**
 
@@ -4437,7 +4437,7 @@ onInterceptRequest(callback: Callback<OnInterceptRequestEvent, WebResourceRespon
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnInterceptRequestEvent](#oninterceptrequestevent12)\> | 是 | 当Web组件加载url之前触发。<br>返回值[WebResourceResponse](#webresourceresponse)。返回响应数据则按照响应数据加载，无响应数据则返回null表示按照原来的方式加载。 |
+| callback | Callback\<[OnInterceptRequestEvent](#oninterceptrequestevent12), [WebResourceResponse](#webresourceresponse)\> | 是 | 当Web组件加载url之前触发。<br>返回值[WebResourceResponse](#webresourceresponse)。返回响应数据则按照响应数据加载，无响应数据则返回null表示按照原来的方式加载。 |
 
 **示例：**
 
@@ -8002,8 +8002,8 @@ confirm(priKeyFile : string, certChainFile : string): void
 
 | 参数名           | 类型   | 必填   | 说明               |
 | ------------- | ------ | ---- | ------------------ |
-| priKeyFile    | string | 是    | 存放私钥的文件，包含路径和文件名。  |
-| certChainFile | string | 是    | 存放证书链的文件，包含路径和文件名。 |
+| priKeyFile    | string | 是    | 存放私钥文件的完整路径。  |
+| certChainFile | string | 是    | 存放证书链文件的完整路径。 |
 
 ### confirm<sup>10+</sup>
 
