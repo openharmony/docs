@@ -2,7 +2,7 @@
 
 本模块提供广告操作能力，包括请求广告、展示广告。
 
-> **说明：**
+> **说明：**<br/>
 > 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -229,10 +229,10 @@ registerWebAdInterface(controller: web_webview.WebviewController, context: commo
 
 以下错误码的详细介绍请参见[广告服务框架错误码参考](errorcode-ads.md)。
 
-| 错误码ID    | 错误信息                                                                                  | 
-|----------|---------------------------------------------------------------------------------------|
-| 401      | Invalid input parameter. Possible causes: 1.Mandatory parameters are left unspecified | 
-| 21800001 | System internal error.                                                                | 
+| 错误码ID    | 错误信息                                                                                    | 
+|----------|-----------------------------------------------------------------------------------------|
+| 401      | Invalid input parameter. Possible causes: 1. Mandatory parameters are left unspecified. | 
+| 21800001 | System internal error.                                                                  | 
 
 **示例：**
 
@@ -265,6 +265,129 @@ struct Index {
       })
         .width("100%")
         .height("100%")
+    }
+  }
+}
+```
+
+## advertising.registerWebAdInterface<sup>16+</sup>
+
+registerWebAdInterface(controller: web_webview.WebviewController, context: common.UIAbilityContext, needRefresh: boolean): void
+
+注入广告JavaScript对象到Web组件中（该接口仅对部分系统预置应用开放）。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Advertising.Ads
+
+**参数：**
+
+| 参数名         | 类型                                                                                           | 必填 | 说明                             | 
+|-------------|----------------------------------------------------------------------------------------------|----|--------------------------------|
+| controller  | web_webview.[WebviewController](../apis-arkweb/js-apis-webview.md#webviewcontroller)         | 是  | Web组件控制器。                      | 
+| context     | common.[UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | 是  | UIAbility的上下文环境。               | 
+| needRefresh | boolean                                                                                      | 是  | 是否需要刷新页面（true: 需要；false: 不需要）。 | 
+
+**错误码：**
+
+以下错误码的详细介绍请参见[广告服务框架错误码参考](errorcode-ads.md)。
+
+| 错误码ID    | 错误信息                                                                                 | 
+|----------|--------------------------------------------------------------------------------------|
+| 401      | Invalid input parameter. Possible causes: Mandatory parameters are left unspecified. | 
+| 21800001 | operation javascriptRegister error.                                                  |                                                       
+
+**示例：**
+
+```ts
+import { common } from '@kit.AbilityKit';
+import { advertising } from '@kit.AdsKit';
+import { webview } from '@kit.ArkWeb';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+@Entry
+@Component
+struct Index {
+  private webController: webview.WebviewController = new webview.WebviewController();
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
+  build() {
+    Column() {
+      Button('registerWebAdInterface')
+        .onClick(() => {
+          try {
+            advertising.registerWebAdInterface(this.webController, this.context, true);
+          } catch (err) {
+            hilog.error(0x0000, 'testTag', `Fail to register web ad interface. Code is ${err.code}, message is ${err.message}`);
+          }
+        })
+
+      Web({
+        src: 'www.example.com',
+        controller: this.webController
+      })
+        .width("100%")
+        .height("100%")
+    }
+  }
+}
+```
+
+## advertising.deleteWebAdInterface<sup>16+</sup>
+
+deleteWebAdInterface(controller: web_webview.WebviewController, needRefresh: boolean): void
+
+删除通过registerWebAdInterface注入的广告JavaScript对象（该接口仅对部分系统预置应用开放）。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Advertising.Ads
+
+**参数：**
+
+| 参数名         | 类型                                                                                   | 必填 | 说明                             | 
+|-------------|--------------------------------------------------------------------------------------|----|--------------------------------|
+| controller  | web_webview.[WebviewController](../apis-arkweb/js-apis-webview.md#webviewcontroller) | 是  | Web组件控制器。                      |
+| needRefresh | boolean                                                                              | 是  | 是否需要刷新页面（true: 需要；false: 不需要）。 | 
+
+**错误码：**
+
+以下错误码的详细介绍请参见[广告服务框架错误码参考](errorcode-ads.md)。
+
+| 错误码ID    | 错误信息                                                                                 | 
+|----------|--------------------------------------------------------------------------------------|
+| 401      | Invalid input parameter. Possible causes: Mandatory parameters are left unspecified. | 
+| 21800001 | operation javascriptRegister error.                                                  |     
+
+**示例：**
+
+```ts
+import { advertising } from '@kit.AdsKit';
+import { webview } from '@kit.ArkWeb';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+@Entry
+@Component
+struct Index {
+  private webController: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('deleteWebAdInterface')
+        .onClick(() => {
+          try {
+            advertising.deleteWebAdInterface(this.webController, true);
+          } catch (err) {
+            hilog.error(0x0000, 'testTag', `Fail to delete web ad interface. Code is ${err.code}, message is ${err.message}`);
+          }
+        })
+
+      Web({
+        src: 'www.example.com',
+        controller: this.webController,
+      })
+        .width('100%')
+        .height('100%')
     }
   }
 }
@@ -622,12 +745,12 @@ const adInteractionListener: advertising.AdInteractionListener = {
 
 **系统能力：** SystemCapability.Advertising.Ads
 
-| 名称                      | 类型                                       | 只读 | 可选 | 说明                                                                                                                                                                                                                                                                                                                                                                                                       | 
-|-------------------------|------------------------------------------|----|----|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| tagForChildProtection   | number                                   | 否  | 是  | 设置儿童保护标签，否希望根据 COPPA 的规定将您的内容视为面向儿童的内容。<br/>- -1：默认值，不确定。<br/>- 0：不希望。<br/>- 1：希望。<br/>默认为-1。                                                                                                                                                                                                                                                                                                            | 
-| adContentClassification | string                                   | 否  | 是  | 设置广告内容分级上限。<br/>- W：3+,所有受众。<br/>- PI：7+，家长指导。<br/>- J：12+，青少年。<br/>- A：16+/18+,成人受众。<br/>不填以业务逻辑为准。                                                                                                                                                                                                                                                                                                     | 
-| nonPersonalizedAd       | number                                   | 否  | 是  | 设置是否只请求非个性化广告。<br/>- 0：请求个性化广告与非个性化广告。<br/>- 1：只请求非个性化广告。<br/>不填以业务逻辑为准。                                                                                                                                                                                                                                                                                                                                 | 
-| [key: string]           | number \| boolean \| string \| undefined | 否  | 是  | 自定义参数。<br/> - totalDuration：类型number，单位：s。贴片广告必填自定义参数，用于设置贴片广告展示时长。<br/> - placementAdCountDownDesc：类型string。贴片广告可选自定义参数，用于设置贴片广告倒计时文案，该参数需要使用encodeURI()方法编码。填写了该参数，则展示倒计时文案，否则只展示倒计时。<br/> - allowMobileTraffic：类型number。可选自定义参数，设置是否允许使用流量下载广告素材。0：不允许，1：允许，不设置以广告主设置为准。 <br/> - tagForUnderAgeOfPromise：类型number。非必填参数，用于设置未成年保护标签，表示是否希望按适合未达到法定承诺年龄的欧洲经济区 (EEA) 用户的方式处理该广告请求。-1：默认值，不确定 0：不希望 1：希望 |
+| 名称                      | 类型                                       | 只读 | 可选 | 说明                                                                                                                                                                                                                                                                                                                                                                                                        | 
+|-------------------------|------------------------------------------|----|----|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| tagForChildProtection   | number                                   | 否  | 是  | 设置儿童保护标签，否希望根据 COPPA 的规定将您的内容视为面向儿童的内容。<br/>- -1：默认值，不确定。<br/>- 0：不希望。<br/>- 1：希望。<br/>默认为-1。                                                                                                                                                                                                                                                                                                             | 
+| adContentClassification | string                                   | 否  | 是  | 设置广告内容分级上限。<br/>- W：3+,所有受众。<br/>- PI：7+，家长指导。<br/>- J：12+，青少年。<br/>- A：16+/18+,成人受众。<br/>不填以业务逻辑为准。                                                                                                                                                                                                                                                                                                      | 
+| nonPersonalizedAd       | number                                   | 否  | 是  | 设置是否只请求非个性化广告。<br/>- 0：请求个性化广告与非个性化广告。<br/>- 1：只请求非个性化广告。<br/>不填以业务逻辑为准。                                                                                                                                                                                                                                                                                                                                  | 
+| [key: string]           | number \| boolean \| string \| undefined | 否  | 是  | 自定义参数。<br/> - totalDuration：类型number，单位：s。贴片广告必填自定义参数，用于设置贴片广告展示时长。<br/> - placementAdCountDownDesc：类型string。贴片广告可选自定义参数，用于设置贴片广告倒计时文案，该参数需要使用encodeURI()方法编码。填写了该参数，则展示倒计时文案，否则只展示倒计时。<br/> - allowMobileTraffic：类型number。可选自定义参数，设置是否允许使用流量下载广告素材。0：不允许，1：允许，不设置以广告主设置为准。 <br/> - tagForUnderAgeOfPromise：类型number。非必填参数，用于设置未成年保护标签，表示是否希望按适合未达到法定承诺年龄的欧洲经济区 (EEA) 用户的方式处理该广告请求。-1：默认值，不确定 0：不希望 1：希望。 |
 
 ## AdRequestParams
 
@@ -674,6 +797,6 @@ type Advertisement = _Advertisement
 
 **系统能力：** SystemCapability.Advertising.Ads
 
-| 类型                                                           | 说明                |
-|--------------------------------------------------------------|-------------------|
-| [_Advertisement](js-apis-inner-advertising-advertisement.md) | 表示Advertisement对象 |
+| 类型                                                           | 说明                 |
+|--------------------------------------------------------------|--------------------|
+| [_Advertisement](js-apis-inner-advertising-advertisement.md) | 表示Advertisement对象。 |
