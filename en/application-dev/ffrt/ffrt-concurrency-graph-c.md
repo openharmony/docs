@@ -77,6 +77,9 @@ A user uploads a video to the platform. The processing steps include: parsing, t
 The FFRT provides task graph that can describe the task dependency and parallelize the preceding video processing process. The code is as follows:
 
 ```c
+#include <stdio.h>
+#include "ffrt/task.h"
+
 static inline void ffrt_submit_c(ffrt_function_t func, const ffrt_function_t after_func,
     void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)
 {
@@ -91,48 +94,51 @@ static inline ffrt_task_handle_t ffrt_submit_h_c(ffrt_function_t func, const ffr
 
 void func_TaskA(void* arg)
 {
-    printf("Video parsing\n");
+    printf("Parse\n");
 }
 
 void func_TaskB(void* arg)
 {
-    printf("Video transcoding\n");
+    printf("Transcode\n");
 }
 
 void func_TaskC(void* arg)
 {
-    printf("Thumbnail generation\n");
+    printf("Generate a thumbnail\n");
 }
 
 void func_TaskD(void* arg)
 {
-    printf("Watermark adding\n");
+    printf("Add watermark\n");
 }
 
 void func_TaskE(void* arg)
 {
-    printf("Video release\n");
+    printf("Release\n");
 }
 
 int main()
 {
+    // Submit task A.
     ffrt_task_handle_t hTaskA = ffrt_submit_h_c(func_TaskA, NULL, NULL, NULL, NULL, NULL);
-    const std::vector<ffrt_dependence_t> taskA_deps = {{ffrt_dependence_task, hTaskA}};
-    ffrt_deps_t dTaskA{static_cast<uint32_t>(taskA_deps.size()), taskA_deps.data()};
 
+    // Submit tasks B and C.
+    ffrt_dependence_t taskA_deps[] = {{ffrt_dependence_task, hTaskA}};
+    ffrt_deps_t dTaskA = {1, taskA_deps};
     ffrt_task_handle_t hTaskB = ffrt_submit_h_c(func_TaskB, NULL, NULL, &dTaskA, NULL, NULL);
     ffrt_task_handle_t hTaskC = ffrt_submit_h_c(func_TaskC, NULL, NULL, &dTaskA, NULL, NULL);
 
-    const std::vector<ffrt_dependence_t> taskBC_deps = {{ffrt_dependence_task, hTaskB}, {ffrt_dependence_task, hTaskC}};
-    ffrt_deps_t dTaskBC{static_cast<uint32_t>(taskBC_deps.size()), taskBC_deps.data()};
-
+    // Submit task D.
+    ffrt_dependence_t taskBC_deps[] = {{ffrt_dependence_task, hTaskB}, {ffrt_dependence_task, hTaskC}};
+    ffrt_deps_t dTaskBC = {2, taskBC_deps};
     ffrt_task_handle_t hTaskD = ffrt_submit_h_c(func_TaskD, NULL, NULL, &dTaskBC, NULL, NULL);
 
-    const std::vector<ffrt_dependence_t> taskD_deps = {{ffrt_dependence_task, hTaskD}};
-    ffrt_deps_t dTaskD{static_cast<uint32_t>(taskD_deps.size()), taskD_deps.data()};
-
+    // Submit task E.
+    ffrt_dependence_t taskD_deps[] = {{ffrt_dependence_task, hTaskD}};
+    ffrt_deps_t dTaskD = {1, taskD_deps};
     ffrt_submit_c(func_TaskE, NULL, NULL, &dTaskD, NULL, NULL);
 
+    // Wait until all tasks are complete.
     ffrt_wait();
     return 0;
 }
@@ -197,7 +203,7 @@ Each number in the Fibonacci sequence is the sum of the first two numbers. The p
 
 ```c
 #include <stdio.h>
-#include "ffrt.h"
+#include "ffrt/task.h"
 
 typedef struct {
     int x;
@@ -222,28 +228,36 @@ void fib_ffrt(void* arg)
         int y1, y2;
         fib_ffrt_s s1 = {x - 1, &y1};
         fib_ffrt_s s2 = {x - 2, &y2};
-        const std::vector<ffrt_dependence_t> dx_deps = {{ffrt_dependence_data, &x}};
-        ffrt_deps_t dx{static_cast<uint32_t>(dx_deps.size()), dx_deps.data()};
-        const std::vector<ffrt_dependence_t> dy1_deps = {{ffrt_dependence_data, &y1}};
-        ffrt_deps_t dy1{static_cast<uint32_t>(dy1_deps.size()), dy1_deps.data()};
-        const std::vector<ffrt_dependence_t> dy2_deps = {{ffrt_dependence_data, &y2}};
-        ffrt_deps_t dy2{static_cast<uint32_t>(dy2_deps.size()), dy2_deps.data()};
-        const std::vector<ffrt_dependence_t> dy12_deps = {{ffrt_dependence_data, &y1}, {ffrt_dependence_data, &y2}};
-        ffrt_deps_t dy12{static_cast<uint32_t>(dy12_deps.size()), dy12_deps.data()};
+
+        // Build data dependencies.
+        ffrt_dependence_t dx_deps[] = {{ffrt_dependence_data, &x}};
+        ffrt_deps_t dx = {1, dx_deps};
+        ffrt_dependence_t dy1_deps[] = {{ffrt_dependence_data, &y1}};
+        ffrt_deps_t dy1 = {1, dy1_deps};
+        ffrt_dependence_t dy2_deps[] = {{ffrt_dependence_data, &y2}};
+        ffrt_deps_t dy2 = {1, dy2_deps};
+        ffrt_dependence_t dy12_deps[] = {{ffrt_dependence_data, &y1}, {ffrt_dependence_data, &y2}};
+        ffrt_deps_t dy12 = {2, dy12_deps};
+
+        // Submit tasks separately.
         ffrt_submit_c(fib_ffrt, NULL, &s1, &dx, &dy1, NULL);
         ffrt_submit_c(fib_ffrt, NULL, &s2, &dx, &dy2, NULL);
+
+        // Wait until the task is complete.
         ffrt_wait_deps(&dy12);
         *y = y1 + y2;
     }
 }
 
-int main(int narg, char** argv)
+int main()
 {
     int r;
     fib_ffrt_s s = {5, &r};
-    const std::vector<ffrt_dependence_t> dr_deps = {{ffrt_dependence_data, &r}};
-    ffrt_deps_t dr{static_cast<uint32_t>(dr_deps.size()), dr_deps.data()};
+    ffrt_dependence_t dr_deps[] = {{ffrt_dependence_data, &r}};
+    ffrt_deps_t dr = {1, dr_deps};
     ffrt_submit_c(fib_ffrt, NULL, &s, NULL, &dr, NULL);
+
+    // Wait until the task is complete.
     ffrt_wait_deps(&dr);
     printf("Fibonacci(5) is %d\n", r);
     return 0;
