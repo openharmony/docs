@@ -203,7 +203,7 @@ export default function abilityTest() {
 
 | 执行参数全写  | 执行参数缩写 | 执行参数含义                           | 执行参数示例                       |
 | ------------- | ------------ | -------------------------------------- | ---------------------------------- |
-| --bundleName  | -b           | 应用Bundle名称。                       | - b com.test.example               |
+| --bundleName  | -b           | 应用Bundle名称。                         | - b com.test.example               |
 | --packageName | -p           | 应用模块名，适用于FA模型应用。           | - p com.test.example.entry         |
 | --moduleName  | -m           | 应用模块名，适用于STAGE模型应用。        | -m entry                           |
 | NA            | -s           | 特定参数，以<key, value>键值对方式传入。 | - s unittest /ets/testrunner/OpenHarmonyTestRunner |
@@ -213,12 +213,12 @@ export default function abilityTest() {
 | 配置参数名     | 配置参数含义                                                 | 配置参数取值                                               | 配置参数示例                              |
 | ------------ | -----------------------------------------------------------------------------    | ------------------------------------------------------------ | ----------------------------------------- |
 | unittest     | 用例执行所使用OpenHarmonyTestRunner对象。  | OpenHarmonyTestRunner或用户自定义runner名称                  | - s unittest OpenHarmonyTestRunner        |
-| class        | 指定要执行的测试套或测试用例。                                  | {describeName}#{itName}，{describeName}                      | -s class attributeTest#testAttributeIt    |
+| class        | 指定要执行的测试套或测试用例。                                   | {describeName}#{itName}，{describeName}                      | -s class attributeTest#testAttributeIt    |
 | notClass     | 指定不需要执行的测试套或测试用例。                               | {describeName}#{itName}，{describeName}                      | -s notClass attributeTest#testAttributeIt |
 | itName       | 指定要执行的测试用例。                                         | {itName}                                                     | -s itName testAttributeIt                 |
-| timeout      | 测试用例执行的超时时间。                                        | 正整数（单位ms），如不设置默认为 5000                        | -s timeout 15000                          |
+| timeout      | 测试用例执行的超时时间。                                       | 正整数（单位ms），如不设置默认为 5000                        | -s timeout 15000                          |
 | breakOnError | 遇错即停模式，当执行用例断言失败或者发生错误时，退出测试执行流程。 | true/false(默认值)                                           | -s breakOnError true                      |
-| random | 测试用例随机顺序执行 | true/false(默认值)。                                           | -s random true                      |
+| random | 测试用例随机顺序执行。 | true/false(默认值)                                           | -s random true                      |
 | testType     | 指定要执行用例的用例类型。                                      | function，performance，power，reliability， security，global，compatibility，user，standard，safety，resilience' | -s testType function                      |
 | level        | 指定要执行用例的用例级别。                                      | 0,1,2,3,4                                                    | -s level 0                                |
 | size         | 指定要执行用例的用例规模。                                    | small，medium，large                                         | -s size small        
@@ -368,7 +368,7 @@ export default function abilityTest() {
 |---------------|---------------------------------|---------------------------------|
 | help          | help|  显示uitest工具能够支持的命令信息。            |
 | screenCap       |[-p] | 截屏。非必填。<br>指定存储路径和文件名，只支持存放在/data/local/tmp/下。<br>默认存储路径：/data/local/tmp，文件名：时间戳 + .png。 |
-| dumpLayout      |[-p] \<-i \| -a>|支持在daemon运行时执行获取控件树。<br> **-p** ：指定存储路径和文件名，只支持存放在/data/local/tmp/下。默认存储路径：/data/local/tmp，文件名：时间戳 + .json。<br> **-i** ：不过滤不可见控件，也不做窗口合并。<br> **-a** ：保存 BackgroundColor、 Content、FontColor、FontSize、extraAttrs 属性数据。<br> **默认** ：不保存上述属性数据。<br> **-a和-i** 不可同时使用。 |
+| dumpLayout      |[-p] \<-i \| -a>|支持在daemon运行时执行获取控件树。<br> **-p** ：指定存储路径和文件名，只支持存放在/data/local/tmp/下。默认存储路径：/data/local/tmp，文件名：时间戳 + .json。<br> **-i** ：不过滤不可见控件,也不做窗口合并。<br> **-a** ：保存 BackgroundColor、 Content、FontColor、FontSize、extraAttrs 属性数据。<br> **默认** ：不保存上述属性数据。<br> **-a和-i** 不可同时使用。 |
 | uiRecord        | uiRecord \<record \| read>|录制Ui操作。  <br> **record** ：开始录制，将当前界面操作记录到/data/local/tmp/record.csv，结束录制操作使用Ctrl+C结束录制。  <br> **read** ：读取并且打印录制数据。<br>各参数代表的含义请参考[用户录制操作](#用户录制操作)。|
 | uiInput       | \<help \| click \| doubleClick \| longClick \| fling \| swipe \| drag \| dircFling \| inputText \| keyEvent>| 注入UI模拟操作。<br>各参数代表的含义请参考[注入ui模拟操作](#注入ui模拟操作)。                       |
 | --version | --version|获取当前工具版本信息。                     |
@@ -453,8 +453,7 @@ hdc shell uitest uiRecord read
 | swipe   | 是    | 模拟慢滑操作。     | 
 | drag   | 是    | 模拟拖拽操作。     | 
 | dircFling   | 是    | 模拟指定方向滑动操作。     |
-| inputText   | 是    | 指定坐标点，模拟输入框输入文本操作。                   |
-| text   | 是    | 无需指定坐标点，在当前获焦处，模拟输入框输入文本操作。                           |
+| inputText   | 是    | 模拟输入框输入文本操作。     |
 | keyEvent   | 是    | 模拟实体按键事件（如：键盘，电源键，返回上一级，返回桌面等），以及组合按键操作。     | 
 
 
@@ -541,17 +540,6 @@ hdc shell uitest uiInput dircFling 3
 ```shell  
 # 执行输入框输入操作。
 hdc shell uitest uiInput inputText 100 100 hello 
-```
-
-#### uiInput text使用示例
-
-| 配置参数             | 必填       | 描述 |       
-|------|------------------|----------|
-| text   | 是                | 输入文本内容。  |
-
-```shell  
-# 无需输入坐标点，在当前获焦处，执行输入框输入操作。若当前获焦处不支持文本输入，则无实际效果。
-hdc shell uitest uiInput text hello
 ```
 
 #### uiInput keyEvent使用示例
