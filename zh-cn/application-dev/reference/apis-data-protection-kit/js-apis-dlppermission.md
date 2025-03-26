@@ -993,7 +993,7 @@ setSandboxAppConfig(configInfo: string): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| configInfo | string | 是 | 沙箱应用配置信息。长度无限制。 |
+| configInfo | string | 是 | 沙箱应用配置信息。长度小于4MB。 |
 
 **返回值：**
 
