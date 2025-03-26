@@ -360,3 +360,39 @@ seek continuous is unsupported.
 **处理步骤**
 
 1. 提示性错误码，用于客户端感知不支持SEEK_CONTINUOUS模式进行seek时的表现，客户端无需处理。
+
+## 5410003 不支持超分
+
+**错误信息**
+
+super resolution not supported.
+
+**错误描述**
+
+该媒体源或者当前设备不支持超分。
+
+**可能原因**
+
+该媒体源或者当前设备不支持超分。
+
+**处理步骤**
+
+1. 提示性错误码，用于客户端感知不支持超分时的表现，客户端无需处理。
+
+## 5410004 不支持超分
+
+**错误信息**
+
+super resolution not enabled.
+
+**错误描述**
+
+调用超分相关接口前没有通过[PlaybackStrategy](./js-apis-media.md#playbackstrategy12)使能超分。
+
+**可能原因**
+
+调用超分相关接口前没有通过[PlaybackStrategy](./js-apis-media.md#playbackstrategy12)使能超分。
+
+**处理步骤**
+
+1. 确认调用超分相关接口前正确使能了超分。
