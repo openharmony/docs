@@ -22,7 +22,7 @@
 struct enableAnalyzer {
   build() {
     Canvas()
-      .enableAnalyzer((true))
+      .enableAnalyzer(true)
   }
 }
 ```
@@ -61,7 +61,7 @@ ArkUI 内置组件属性API。
 struct enableAnalyzer {
   build() {
     Canvas()
-      .enableAnalyzer()
+      .enableAnalyzer(true)
   }
 }
 ```
@@ -76,7 +76,7 @@ struct enableAnalyzer {
 struct EnableAnalyzerComp {
   build() {
     Canvas()
-      .enableAnalyzer()
+      .enableAnalyzer(true)
   }
 }
 ```
