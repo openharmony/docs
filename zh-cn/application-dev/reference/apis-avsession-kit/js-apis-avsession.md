@@ -2090,6 +2090,41 @@ currentAVSession.on('setLoopMode', (mode: avSession.LoopMode) => {
 });
 ```
 
+### on('setTargetLoopMode')<sup>18+</sup>
+
+on(type: 'setTargetLoopMode', callback: (mode: LoopMode) => void): void
+
+设置目标循环模式的监听事件。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**参数：**
+
+| 参数名    | 类型                                   | 必填 | 说明  |
+| -------- | ------------------------------------- | ---- | ---- |
+| type     | string                                | 是   | 事件回调类型，支持事件`'setTargetLoopMode'`。<br>- `'setTargetLoopMode'`：当设置目标循环模式的命令被发送到会话时，触发该事件。 |
+| callback | Callback<[LoopMode](#loopmode10)> | 是   | 回调函数。参数表示目标循环模式。                               |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```ts
+currentAVSession.on('setTargetLoopMode', (mode: avSession.LoopMode) => {
+  console.info(`on setTargetLoopMode mode : ${mode}`);
+});
+```
+
 ### on('toggleFavorite')<sup>10+</sup>
 
 on(type: 'toggleFavorite', callback: (assetId: string) => void): void
@@ -2607,7 +2642,7 @@ off(type: 'setLoopMode', callback?: (mode: LoopMode) => void): void
 | 参数名   | 类型                                  | 必填 | 说明     |
 | -------- | ------------------------------------- | ---- | ----- |
 | type     | string | 是   | 关闭对应的监听事件，支持关闭事件`'setLoopMode'`。|
-| callback | (mode: [LoopMode](#loopmode10)) => void | 否   | 回调函数，参数mode是循环模式。<br>当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
+| callback | (mode: [LoopMode](#loopmode10)) => void | 否   | 回调函数，参数mode是循环模式。<br>- 当监听事件取消成功，err为undefined，否则返回错误对象。<br>- 该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
 
 **错误码：**
 
@@ -2623,6 +2658,39 @@ off(type: 'setLoopMode', callback?: (mode: LoopMode) => void): void
 
 ```ts
 currentAVSession.off('setLoopMode');
+```
+
+### off('setTargetLoopMode')<sup>18+</sup>
+
+off(type: 'setTargetLoopMode', callback?: (mode: LoopMode) => void): void
+
+取消监听目标循环模式变化事件。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填 | 说明     |
+| -------- | ------------------------------------- | ---- | ----- |
+| type     | string | 是   | 关闭对应的监听事件，支持关闭事件`'setTargetLoopMode'`。|
+| callback | Callback<[LoopMode](#loopmode10)> | 否   | 回调函数，参数表示目标循环模式。<br>- 当监听事件取消成功，err为undefined，否则返回错误对象。<br>- 该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```ts
+currentAVSession.off('setTargetLoopMode');
 ```
 
 ### off('toggleFavorite')<sup>10+</sup>
@@ -8227,7 +8295,7 @@ try {
 ## AVControlCommandType<sup>10+</sup>
 
 type AVControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevious' | 'fastForward' | 'rewind' |
-  'seek' | 'setSpeed' | 'setLoopMode' | 'toggleFavorite' | 'playFromAssetId' | 'answer' | 'hangUp' | 'toggleCallMute'
+  'seek' | 'setSpeed' | 'setLoopMode' | 'toggleFavorite' | 'playFromAssetId' | 'answer' | 'hangUp' | 'toggleCallMute' | 'setTargetLoopMode'
 
 会话可传递的命令。
 
@@ -8254,6 +8322,7 @@ type AVControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevio
 |'answer'          | 接听。        |
 | 'hangUp'         | 挂断。        |
 |'toggleCallMute'  | 设置通话静音状态。 |
+| 'setTargetLoopMode'    | 设置目标循环模式。 |
 
 ## AVControlCommand<sup>10+</sup>
 
