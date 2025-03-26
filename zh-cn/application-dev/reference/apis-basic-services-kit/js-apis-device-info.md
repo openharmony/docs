@@ -221,7 +221,7 @@ import { deviceInfo } from '@kit.BasicServicesKit';
 
 ```
 
-## PerformanceClassLevel
+## PerformanceClassLevel<sup>18+</sup>
 
 表示设备能力定级的枚举。
 
