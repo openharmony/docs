@@ -106,8 +106,8 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let displayLanguage: string =
-      i18n.System.getDisplayLanguage('zh', 'en-GB'); // 用英文形式显示中文，displayLanguage = 'Chinese'
+    // 用英文形式显示中文，displayLanguage = 'Chinese'
+    let displayLanguage: string = i18n.System.getDisplayLanguage('zh', 'en-GB');
   } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getDisplayLanguage failed, error code: ${err.code}, message: ${err.message}.`);
@@ -134,8 +134,8 @@ static getSystemLanguages(): Array&lt;string&gt;
 
 **示例：**
   ```ts
-  let systemLanguages: Array<string> =
-    i18n.System.getSystemLanguages(); // systemLanguages = [ 'ug', 'bo', 'zh-Hant', 'en-Latn-US', 'zh-Hans' ]
+  // systemLanguages = [ 'ug', 'bo', 'zh-Hant', 'en-Latn-US', 'zh-Hans' ]
+  let systemLanguages: Array<string> = i18n.System.getSystemLanguages();
   ```
 
 ### getSystemCountries<sup>9+</sup>
@@ -178,8 +178,8 @@ static getSystemCountries(language: string): Array&lt;string&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let systemCountries: Array<string> =
-      i18n.System.getSystemCountries('zh'); // systemCountries = [ 'ZW', 'YT', 'YE', ..., 'ER', 'CN', 'DE' ]
+    // systemCountries = [ 'ZW', 'YT', 'YE', ..., 'ER', 'CN', 'DE' ]
+    let systemCountries: Array<string> = i18n.System.getSystemCountries('zh');
   } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getSystemCountries failed, error code: ${err.code}, message: ${err.message}.`);
@@ -482,9 +482,10 @@ static getSimplifiedLanguage(language?: string): string
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let simplifiedLanguage: string = i18n.System.getSimplifiedLanguage('zh-Hans-CN'); // simplifiedLanguage = 'zh'
-    let simplifiedSystemLanguage: string =
-      i18n.System.getSimplifiedLanguage(); // simplifiedSystemLanguage = 'zh-Hans', 如果当前系统语言为简体中文
+    // simplifiedLanguage = 'zh'
+    let simplifiedLanguage: string = i18n.System.getSimplifiedLanguage('zh-Hans-CN');
+    // simplifiedSystemLanguage = 'zh-Hans', 如果当前系统语言为简体中文
+    let simplifiedSystemLanguage: string = i18n.System.getSimplifiedLanguage();
   } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getSimplifiedLanguage failed, error code: ${err.code}, message: ${err.message}.`);
@@ -553,7 +554,8 @@ static getTemperatureName(type: TemperatureType): string
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let temperatureName: string = i18n.System.getTemperatureName(i18n.TemperatureType.CELSIUS); // temperatureName = 'temperatureName'
+    // temperatureName = 'celsius'
+    let temperatureName: string = i18n.System.getTemperatureName(i18n.TemperatureType.CELSIUS);
   } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getTemperatureName failed, error code: ${err.code}, message: ${err.message}.`);
@@ -746,11 +748,11 @@ findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
   try {
     let entityRecognizer: i18n.EntityRecognizer = new i18n.EntityRecognizer('zh-CN');
     let phoneNumberText: string = '如有疑问，请联系158****2312';
-    let phoneNumberEntity: Array<i18n.EntityInfoItem> =
-      entityRecognizer.findEntityInfo(phoneNumberText); // phoneNumberEntity[0].type = 'phone_number', phoneNumberEntity[0].begin = 8, phoneNumberEntity[0].end = 19
+    // phoneNumberEntity[0].type = 'phone_number', phoneNumberEntity[0].begin = 8, phoneNumberEntity[0].end = 19
+    let phoneNumberEntity: Array<i18n.EntityInfoItem> = entityRecognizer.findEntityInfo(phoneNumberText);
     let dateText: string = '我们2023年12月1日一起吃饭吧。';
-    let dateEntity: Array<i18n.EntityInfoItem> =
-      entityRecognizer.findEntityInfo(dateText); // dateEntity[0].type = 'date', dateEntity[0].begin = 2, dateEntity[0].end = 12
+    // dateEntity[0].type = 'date', dateEntity[0].begin = 2, dateEntity[0].end = 12
+    let dateEntity: Array<i18n.EntityInfoItem> = entityRecognizer.findEntityInfo(dateText);
   } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call EntityRecognizer.findEntityInfo failed, error code: ${err.code}, message: ${err.message}.`);
@@ -1297,8 +1299,8 @@ format(number: string): string
 **示例：**
   ```ts
   let phonenumberfmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN');
-  let formattedPhoneNumber: string =
-    phonenumberfmt.format('158****2312'); // formattedPhoneNumber = '158 **** 2312'
+  // formattedPhoneNumber = '158 **** 2312'
+  let formattedPhoneNumber: string = phonenumberfmt.format('158****2312');
 
   // 拨号中的号码格式化
   let option: i18n.PhoneNumberFormatOptions = { type: 'TYPING' };
@@ -1307,7 +1309,7 @@ format(number: string): string
   let formatResult: string = '';
   for (let i = 0; i < phoneNumber.length; i++) {
     formatResult += phoneNumber.charAt(i);
-    formatResult = phoneNumberFmt.format(formatResult); // formatResult: '130 493'
+    formatResult = phoneNumberFmt.format(formatResult); // formatResult = '130 493'
   }
   ```
 
@@ -2877,9 +2879,10 @@ isHoliday(date?: Date): boolean
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let holidayManager = new i18n.HolidayManager('/system/lib/US.ics'); // 需要将'/system/lib/US.ics'替换为实际ics文件路径
-    let isHoliday = holidayManager.isHoliday();
-    let isHoliday2 = holidayManager.isHoliday(new Date(2023, 5, 25)); // 时间日期为2023.06.25
+    // 需要将'/system/lib/US.ics'替换为实际ics文件路径
+    let holidayManager: i18n.HolidayManager = new i18n.HolidayManager('/system/lib/US.ics');
+    let isHoliday: boolean = holidayManager.isHoliday();
+    isHoliday = holidayManager.isHoliday(new Date(2023, 5, 25)); // 时间日期为2023.06.25
   } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call holidayManager.isHoliday failed, error code: ${err.code}, message: ${err.message}.`);
@@ -2923,8 +2926,9 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let holidayManager = new i18n.HolidayManager('/system/lib/US.ics'); // 需要将'/system/lib/US.ics'替换为实际ics文件路径
-    let holidayInfoItemArray = holidayManager.getHolidayInfoItemArray(2023);
+    // 需要将'/system/lib/US.ics'替换为实际ics文件路径
+    let holidayManager: i18n.HolidayManager = new i18n.HolidayManager('/system/lib/US.ics');
+    let holidayInfoItemArray: Array<i18n.HolidayInfoItem> = holidayManager.getHolidayInfoItemArray(2023);
   } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call holidayManager.getHolidayInfoItemArray failed, error code: ${err.code}, message: ${err.message}.`);
@@ -3236,28 +3240,28 @@ constructor(numberFormat: intl.NumberFormat | SimpleNumberFormat, options?: Styl
   import { intl } from '@kit.LocalizationKit';
 
   try {
-    let integer_textStyle: TextStyle = new TextStyle({ fontColor: Color.Red });
-    let decimal_textStyle: TextStyle = new TextStyle({ fontColor: Color.Brown });
-    let fraction_textStyle: TextStyle = new TextStyle({ fontColor: Color.Blue });
-    let unit_textStyle: TextStyle = new TextStyle({ fontColor: Color.Green });
+    let integerTextStyle: TextStyle = new TextStyle({ fontColor: Color.Red });
+    let decimalTextStyle: TextStyle = new TextStyle({ fontColor: Color.Brown });
+    let fractionTextStyle: TextStyle = new TextStyle({ fontColor: Color.Blue });
+    let unitTextStyle: TextStyle = new TextStyle({ fontColor: Color.Green });
 
     // 通过intl.NumberFormat创建StyledNumberFormat对象
     let numFmt: intl.NumberFormat = new intl.NumberFormat('zh', { style: 'unit', unit: 'percent' });
-    let styledNumFmt_1: i18n.StyledNumberFormat = new i18n.StyledNumberFormat(numFmt, {
-      integer: integer_textStyle,
-      decimal: decimal_textStyle,
-      fraction: fraction_textStyle,
-      unit: unit_textStyle
+    let styledNumFmt: i18n.StyledNumberFormat = new i18n.StyledNumberFormat(numFmt, {
+      integer: integerTextStyle,
+      decimal: decimalTextStyle,
+      fraction: fractionTextStyle,
+      unit: unitTextStyle
     });
 
     // 通过SimpleNumberFormat创建StyledNumberFormat对象
     let locale: intl.Locale = new intl.Locale('zh');
     let simpleNumFmt: i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton('percent', locale);
-    let styledNumFmt_2: i18n.StyledNumberFormat = new i18n.StyledNumberFormat(simpleNumFmt, {
-      integer: integer_textStyle,
-      decimal: decimal_textStyle,
-      fraction: fraction_textStyle,
-      unit: unit_textStyle
+    let styledSimpleNumFmt: i18n.StyledNumberFormat = new i18n.StyledNumberFormat(simpleNumFmt, {
+      integer: integerTextStyle,
+      decimal: decimalTextStyle,
+      fraction: fractionTextStyle,
+      unit: unitTextStyle
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
@@ -3302,33 +3306,33 @@ format(value: number): StyledString
   import { intl } from '@kit.LocalizationKit';
 
   try {
-    let integer_textStyle: TextStyle = new TextStyle({ fontColor: Color.Red });
-    let decimal_textStyle: TextStyle = new TextStyle({ fontColor: Color.Brown });
-    let fraction_textStyle: TextStyle = new TextStyle({ fontColor: Color.Blue });
-    let unit_textStyle: TextStyle = new TextStyle({ fontColor: Color.Green });
+    let integerTextStyle: TextStyle = new TextStyle({ fontColor: Color.Red });
+    let decimalTextStyle: TextStyle = new TextStyle({ fontColor: Color.Brown });
+    let fractionTextStyle: TextStyle = new TextStyle({ fontColor: Color.Blue });
+    let unitTextStyle: TextStyle = new TextStyle({ fontColor: Color.Green });
 
     // 通过intl.NumberFormat创建StyledNumberFormat对象
     let numFmt: intl.NumberFormat = new intl.NumberFormat('zh', { style: 'unit', unit: 'percent' });
     let styledNumFmt: i18n.StyledNumberFormat = new i18n.StyledNumberFormat(numFmt, {
-      integer: integer_textStyle,
-      decimal: decimal_textStyle,
-      fraction: fraction_textStyle,
-      unit: unit_textStyle
+      integer: integerTextStyle,
+      decimal: decimalTextStyle,
+      fraction: fractionTextStyle,
+      unit: unitTextStyle
     });
-    let formattedNumber: StyledString =
-      styledNumFmt.format(1234.5678); // formattedNumber.getString() 为 '1,234.568%'。显示formattedNumber时'1,234'是红色，'.'是棕色，'568'是蓝色，'%'是绿色。
+    // formattedNumber.getString() 为 '1,234.568%'。显示formattedNumber时'1,234'是红色，'.'是棕色，'568'是蓝色，'%'是绿色。
+    let formattedNumber: StyledString = styledNumFmt.format(1234.5678);
 
     // 通过SimpleNumberFormat创建StyledNumberFormat对象
     let locale: intl.Locale = new intl.Locale('zh');
     let simpleNumFmt: i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton('percent', locale);
     let styledSimpleNumFmt: i18n.StyledNumberFormat = new i18n.StyledNumberFormat(simpleNumFmt, {
-      integer: integer_textStyle,
-      decimal: decimal_textStyle,
-      fraction: fraction_textStyle,
-      unit: unit_textStyle
+      integer: integerTextStyle,
+      decimal: decimalTextStyle,
+      fraction: fractionTextStyle,
+      unit: unitTextStyle
     });
-    let formattedSimpleNumber: StyledString =
-      styledSimpleNumFmt.format(1234.5678); // formattedSimpleNumber.getString() 为 '1,234.5678%'。显示formattedSimpleNumber时'1,234'是红色，'.'是棕色，'5678'是蓝色，'%'是绿色。
+    // formattedSimpleNumber.getString() 为 '1,234.5678%'。显示formattedSimpleNumber时'1,234'是红色，'.'是棕色，'5678'是蓝色，'%'是绿色。
+    let formattedSimpleNumber: StyledString = styledSimpleNumFmt.format(1234.5678);
   } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call StyledNumberFormat.format failed, error code: ${err.code}, message: ${err.message}.`);
