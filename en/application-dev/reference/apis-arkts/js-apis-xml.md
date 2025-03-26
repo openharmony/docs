@@ -1,6 +1,6 @@
 # @ohos.xml (XML Parsing and Generation)
 
-The **XML** module provides a series of APIs for converting XML text into JavaScript objects and generating and parsing XML files.
+The XML module provides a series of APIs for converting XML text into JavaScript objects and generating and parsing XML files.
 
 > **NOTE**
 >
