@@ -779,7 +779,7 @@ static setWebDebuggingAccess(webDebuggingAccess: boolean): void
 
 | 参数名              | 类型    | 必填   |  说明 |
 | ------------------ | ------- | ---- | ------------- |
-| webDebuggingAccess | boolean | 是   | 设置是否启用网页调试功能。|
+| webDebuggingAccess | boolean | 是   | 设置是否启用网页调试功能。设置为true，表示启用网页调试功能。设置为false，表示不启用网页调试功能。 |
 
 **错误码：**
 
@@ -1455,7 +1455,7 @@ accessStep(step: number): boolean
 
 | 类型    | 说明               |
 | ------- | ------------------ |
-| boolean | 页面是否前进或后退 |
+| boolean | 页面是否前进或后退，返回true表示可以前进或者后退，返回false表示不可以前进或后退。 |
 
 **错误码：**
 
@@ -1605,6 +1605,7 @@ registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的
 > - 在注册registerJavaScriptProxy后，应用会将JavaScript对象暴露给所有的页面frames。
 > - 同一方法在同步与异步列表中重复注册，将默认异步调用。
 > - 同步函数列表和异步函数列表不可同时为空，否则此次调用接口注册失败。
+> - 异步的作用在于：H5线程将异步JavaScript任务提交给ETS主线程后，无需等待任务执行完成并返回结果，H5线程即可继续执行后续任务。这在执行耗时较长的JavaScript任务或ETS线程较为拥堵的情况下，可以有效减少H5线程因JavaScript任务而被阻塞的情况。然而，异步JavaScript任务无法返回值，且任务执行的顺序无法保证，因此需要根据具体情境判断是否使用同步或异步方式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2635,7 +2636,7 @@ searchNext(forward: boolean): void
 
 | 参数名  | 类型 | 必填 | 说明               |
 | ------- | -------- | ---- | ---------------------- |
-| forward | boolean  | 是   | 从前向后或者逆向查找。 |
+| forward | boolean  | 是   | 从前向后或者逆向查找方式。true表示从前向后查找，false表示从后向前查找。 |
 
 **错误码：**
 
@@ -4137,7 +4138,7 @@ setNetworkAvailable(enable: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | --------------------------------- |
-| enable | boolean | 是   | 是否使能window.navigator.onLine。 |
+| enable | boolean | 是   | 是否使能window.navigator.onLine，默认为true，表示开启JavaScript中的window.navigator.onLine属性。 |
 
 **错误码：**
 
@@ -5559,7 +5560,7 @@ static setConnectionTimeout(timeout: number): void
 
 | 参数名          | 类型    |  必填  | 说明                                            |
 | ---------------| ------- | ---- | ------------- |
-| timeout        | number  | 是   | socket连接超时时间，以秒为单位，socket必须为大于0的整数。 |
+| timeout        | number  | 是   | socket连接超时时间，以秒为单位，必须为大于0的整数。 |
 
 **错误码：**
 
@@ -5710,7 +5711,7 @@ isSafeBrowsingEnabled(): boolean
 
 | 类型    | 说明                                     |
 | ------- | --------------------------------------- |
-| boolean | 当前网页是否启用了检查网站安全风险的功能，默认为false。|
+| boolean | 当前网页是否启用了检查网站安全风险的功能，默认为false，表示未启用。|
 
 **示例：**
 
@@ -5800,7 +5801,7 @@ isIntelligentTrackingPreventionEnabled(): boolean
 
 | 类型    | 说明                                     |
 | ------- | --------------------------------------- |
-| boolean | 当前Web是否启用了智能防跟踪功能，默认为false。|
+| boolean | 当前Web是否启用了智能防跟踪功能，默认为false，表示未启用。|
 
 **错误码：**
 
@@ -6013,7 +6014,7 @@ enableAdsBlock(enable: boolean): void
 
 | 参数名   | 类型    |  必填  | 说明                       |
 | --------| ------- | ---- | ---------------------------|
-|  enable | boolean | 是   | 是否启用广告过滤功能。 |
+|  enable | boolean | 是   | 是否启用广告过滤功能，默认为false，表示未启用。 |
 
 **错误码：**
 
@@ -6416,7 +6417,7 @@ isIncognitoMode(): boolean
 
 | 类型                 | 说明                      |
 | -------------------- | ------------------------- |
-| boolean              | 返回是否是隐私模式的Webview。 |
+| boolean              | 返回是否是隐私模式的Webview，默认为false，表示未开启隐私模式。 |
 
 **错误码：**
 
@@ -9975,7 +9976,7 @@ static putAcceptCookieEnabled(accept: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                                 |
 | ------ | ------- | ---- | :----------------------------------- |
-| accept | boolean | 是   | 设置是否拥有发送和接收cookie的权限，默认为true。 |
+| accept | boolean | 是   | 设置是否拥有发送和接收cookie的权限，默认为true，表示拥有发送和接收cookie的权限。 |
 
 **错误码：**
 
@@ -10025,7 +10026,7 @@ static isCookieAllowed(): boolean
 
 | 类型    | 说明                             |
 | ------- | -------------------------------- |
-| boolean | 是否拥有发送和接收cookie的权限，默认为true。 |
+| boolean | 是否拥有发送和接收cookie的权限，默认为true，表示拥有发送和接收cookie的权限。 |
 
 **示例：**
 
@@ -10113,7 +10114,7 @@ static isThirdPartyCookieAllowed(): boolean
 
 | 类型    | 说明                                   |
 | ------- | -------------------------------------- |
-| boolean | 是否拥有发送和接收第三方cookie的权限，默认为false。 |
+| boolean | 是否拥有发送和接收第三方cookie的权限，默认为false，表示未拥有发送和接收第三方cookie的权限。 |
 
 **示例：**
 
@@ -13396,7 +13397,7 @@ start(downloadPath: string): void
 
 | 参数名 | 类型                   | 必填 | 说明                             |
 | ------ | ---------------------- | ---- | ------------------------------|
-| downloadPath   | string     | 是  | 下载文件的路径(包含文件名)。|
+| downloadPath   | string     | 是  | 下载文件的路径(包含文件名)，路径长度与文件管理中长度一致，最长255字符。|
 
 **错误码：**
 
