@@ -4448,6 +4448,8 @@ delete(): void
 ```ts
 import { common } from '@kit.AbilityKit';
 import { fileIo as fs} from '@kit.CoreFileKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { util } from '@kit.ArkTS';
 
 let context = getContext(this) as common.UIAbilityContext;
 let pathDir = context.filesDir;
