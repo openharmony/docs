@@ -1,6 +1,6 @@
 # 媒体子系统变更说明
 
-## c1.multimedia.1 ohos.multimedia.audio USB音频设备类型识别行为变更
+## c1.multimedia.1 音频框架识别USB音频设备类型行为变更
 **访问级别**
 
 公开接口
@@ -43,9 +43,9 @@ if (devicetype == AUDIO_DEVICE_USB_HEADSET || devicetype == AUDIO_DEVICE_USB_DEV
 
 **变更的接口/组件**
 
-@ohos.multimedia.audio.d.ts中DeviceType的USB_HEADSET接口。
+TS：@ohos.multimedia.audio.d.ts中DeviceType的USB_HEADSET接口。
 
-native_audio_device_base.h中OH_AudioDevice_Type的AUDIO_DEVICE_USB_HEADSET接口。
+NDK: native_audio_device_base.h中OH_AudioDevice_Type的AUDIO_DEVICE_USB_HEADSET接口。
 
 **适配指导**
 
