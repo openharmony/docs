@@ -107,7 +107,7 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 
   try {
     let displayLanguage: string =
-      i18n.System.getDisplayLanguage('zh', 'en-GB'); // 用英文形式显示中文，displayLanguage = Chinese
+      i18n.System.getDisplayLanguage('zh', 'en-GB'); // 用英文形式显示中文，displayLanguage = 'Chinese'
   } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getDisplayLanguage failed, error code: ${err.code}, message: ${err.message}.`);
@@ -443,7 +443,7 @@ static getUsingLocalDigit(): boolean
 
 **示例：**
   ```ts
-  let status: boolean = i18n.System.getUsingLocalDigit();
+  let usingLocalDigit: boolean = i18n.System.getUsingLocalDigit();
   ```
 
 ### getSimplifiedLanguage<sup>15+</sup>
@@ -1097,9 +1097,9 @@ isWeekend(date?: Date): boolean
   ```ts
   let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans');
   calendar.set(2021, 11, 11, 8, 0, 0); // 设置时间为2021.12.11 08:00:00
-  let isWeekend_1: boolean = calendar.isWeekend(); // isWeekend_1 = true
+  let isWeekend: boolean = calendar.isWeekend(); // isWeekend = true
   let date: Date = new Date(2011, 11, 6, 9, 0, 0); // 时间日期为2011.12.06 09:00:00
-  let isWeekend_2: boolean = calendar.isWeekend(date); // isWeekend_2 = false
+  isWeekend = calendar.isWeekend(date); // isWeekend = false
   ```
 
 
@@ -1307,9 +1307,8 @@ format(number: string): string
   let formatResult: string = '';
   for (let i = 0; i < phoneNumber.length; i++) {
     formatResult += phoneNumber.charAt(i);
-    formatResult = phoneNumberFmt.format(formatResult);
+    formatResult = phoneNumberFmt.format(formatResult); // formatResult: '130 493'
   }
-  console.info(`formatResult: ${formatResult}`); // formatResult: '130 493'
   ```
 
 ### getLocationName<sup>9+</sup>
@@ -2117,17 +2116,17 @@ transform(text: string): string
   let wordArray = ['中国', '德国', '美国', '法国']
   for (let i = 0; i < wordArray.length; i++) {
     let transliterLatn =
-      transliterator.transform(wordArray[i]); // transliterLatn: zhōng guó, dé guó, měi guó, fǎ guó
+      transliterator.transform(wordArray[i]); // transliterLatn依次为：'zhōng guó', 'dé guó', 'měi guó', 'fǎ guó'
   }
 
   // 汉语音译去声调
   let transliter = i18n.Transliterator.getInstance('Any-Latn;Latin-Ascii');
-  let transliterAscii = transliter.transform('中国'); // transliterAscii: zhong guo
+  let transliterAscii = transliter.transform('中国'); // transliterAscii = 'zhong guo'
 
   // 汉语姓氏读音
   let nameTransliter = i18n.Transliterator.getInstance('Han-Latin/Names');
-  let transliterNames = nameTransliter.transform('单老师'); // transliterNames: shàn lǎo shī
-  transliterNames = nameTransliter.transform('长孙无忌'); // transliterNames: zhǎng sūn wú jì
+  let transliterNames = nameTransliter.transform('单老师'); // transliterNames = 'shàn lǎo shī'
+  transliterNames = nameTransliter.transform('长孙无忌'); // transliterNames = 'zhǎng sūn wú jì'
   ```
 
 
@@ -2159,7 +2158,7 @@ static isDigit(char: string): boolean
 
 **示例：**
   ```ts
-  let isdigit: boolean = i18n.Unicode.isDigit('1'); // isdigit = true
+  let isDigit: boolean = i18n.Unicode.isDigit('1'); // isDigit = true
   ```
 
 
@@ -2187,7 +2186,7 @@ static isSpaceChar(char: string): boolean
 
 **示例：**
   ```ts
-  let isspacechar: boolean = i18n.Unicode.isSpaceChar('a'); // isspacechar = false
+  let isSpacechar: boolean = i18n.Unicode.isSpaceChar('a'); // isSpacechar = false
   ```
 
 
@@ -2215,7 +2214,7 @@ static isWhitespace(char: string): boolean
 
 **示例：**
   ```ts
-  let iswhitespace: boolean = i18n.Unicode.isWhitespace('a'); // iswhitespace = false
+  let isWhitespace: boolean = i18n.Unicode.isWhitespace('a'); // isWhitespace = false
   ```
 
 
@@ -2243,7 +2242,7 @@ static isRTL(char: string): boolean
 
 **示例：**
   ```ts
-  let isrtl: boolean = i18n.Unicode.isRTL('a'); // isrtl = false
+  let isRtl: boolean = i18n.Unicode.isRTL('a'); // isRtl = false
   ```
 
 
@@ -2271,7 +2270,7 @@ static isIdeograph(char: string): boolean
 
 **示例：**
   ```ts
-  let isideograph: boolean = i18n.Unicode.isIdeograph('a'); // isideograph = false
+  let isIdeograph: boolean = i18n.Unicode.isIdeograph('a'); // isIdeograph = false
   ```
 
 
@@ -2299,7 +2298,7 @@ static isLetter(char: string): boolean
 
 **示例：**
   ```ts
-  let isletter: boolean = i18n.Unicode.isLetter('a'); // isletter = true
+  let isLetter: boolean = i18n.Unicode.isLetter('a'); // isLetter = true
   ```
 
 
@@ -2327,7 +2326,7 @@ static isLowerCase(char: string): boolean
 
 **示例：**
   ```ts
-  let islowercase: boolean = i18n.Unicode.isLowerCase('a'); // islowercase = true
+  let isLowercase: boolean = i18n.Unicode.isLowerCase('a'); // isLowercase = true
   ```
 
 
@@ -2355,7 +2354,7 @@ static isUpperCase(char: string): boolean
 
 **示例：**
   ```ts
-  let isuppercase: boolean = i18n.Unicode.isUpperCase('a'); // isuppercase = false
+  let isUppercase: boolean = i18n.Unicode.isUpperCase('a'); // isUppercase = false
   ```
 
 
@@ -2419,7 +2418,7 @@ static getType(char: string): string
 
 **示例：**
   ```ts
-  let unicodeType: string = i18n.Unicode.getType('a'); // type = 'U_LOWERCASE_LETTER'
+  let unicodeType: string = i18n.Unicode.getType('a'); // unicodeType = 'U_LOWERCASE_LETTER'
   ```
 
 ## I18NUtil<sup>9+</sup>
@@ -2455,7 +2454,8 @@ static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: 
   ```ts
   let fromUnit: i18n.UnitInfo = { unit: 'cup', measureSystem: 'US' };
   let toUnit: i18n.UnitInfo = { unit: 'liter', measureSystem: 'SI' };
-  let convertResult: string = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US', 'long'); // convertResult = '236.588 liters'
+  let convertResult: string =
+    i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US', 'long'); // convertResult = '236.588 liters'
   ```
 
 ### getDateOrder<sup>9+</sup>
@@ -2607,7 +2607,7 @@ static getThreeLetterLanguage(locale: string): string
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let language: string = i18n.I18NUtil.getThreeLetterLanguage('zh') // 'zho'
+    let language: string = i18n.I18NUtil.getThreeLetterLanguage('zh') // language = 'zho'
   } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call I18NUtil.getThreeLetterLanguage failed, error code: ${err.code}, message: ${err.message}.`);
@@ -2645,7 +2645,7 @@ static getThreeLetterRegion(locale: string): string
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let region: string = i18n.I18NUtil.getThreeLetterRegion('CN') // 'CHN'
+    let region: string = i18n.I18NUtil.getThreeLetterRegion('CN') // region = 'CHN'
   } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call I18NUtil.getThreeLetterRegion failed, error code: ${err.code}, message: ${err.message}.`);
@@ -2690,7 +2690,7 @@ static getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: intl
     let delimiter: string = '/';
     let locale: intl.Locale = new intl.Locale('ar');
     let mirrorPath: string =
-      i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, locale); // mirrorPath: 'tmp/out/data/'
+      i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, locale); // mirrorPath显示为: 'tmp/out/data/'
   } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call I18NUtil.getUnicodeWrappedFilePath failed, error code: ${err.code}, message: ${err.message}.`);
@@ -3460,7 +3460,7 @@ getSystemLanguage(): string
 
 **示例：**
   ```ts
-  let systemLanguage: string = i18n.getSystemLanguage(); // 返回当前系统语言
+  let systemLanguage: string = i18n.getSystemLanguage();
   ```
 
 
@@ -3482,7 +3482,7 @@ getSystemRegion(): string
 
 **示例：**
   ```ts
-  let region: string = i18n.getSystemRegion(); // 返回当前系统地区
+  let region: string = i18n.getSystemRegion();
   ```
 
 
@@ -3504,7 +3504,7 @@ getSystemLocale(): string
 
 **示例：**
   ```ts
-  let locale: string = i18n.getSystemLocale(); // 返回系统Locale
+  let locale: string = i18n.getSystemLocale();
   ```
 
 
@@ -3645,7 +3645,7 @@ getPreferredLanguageList(): Array&lt;string&gt;
 
 **示例：**
   ```ts
-  let preferredLanguageList: Array<string> = i18n.getPreferredLanguageList(); // 获取系统偏好语言列表
+  let preferredLanguageList: Array<string> = i18n.getPreferredLanguageList();
   ```
 
 
