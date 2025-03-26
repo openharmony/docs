@@ -39,6 +39,12 @@ type DataLevel = 's0' | 's1' | 's2' | 's3' | 's4'
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
+**参数：**
+
+| 参数名    | 类型       |  说明                                         |
+| --------- | ------    | ---- | ---------------------------------------|
+| type      | DataLevel |  文件等级属性，只支持"s0","s1","s2","s3","s4"。 |
+
 ## securityLabel.setSecurityLabel
 
 setSecurityLabel(path:string, type:DataLevel):Promise&lt;void&gt;
