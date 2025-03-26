@@ -102,7 +102,7 @@
 
          // 当数据库创建时，数据库默认版本为0
          if (store.version === 0) {
-           store.executeSql(SQL_CREATE_TABLE); // 创建数据表
+           store.executeSql(SQL_CREATE_TABLE); // 创建数据表，以便后续调用insert接口插入数据
            // 设置数据库的版本，入参为大于0的整数
            store.version = 3;
          }
@@ -121,9 +121,8 @@
            (store as relationalStore.RdbStore).executeSql('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS TEXT');
            store.version = 3;
          }
+         // 请确保获取到RdbStore实例，完成数据表创建后，再进行数据库的增、删、改、查等操作
        });
-
-       // 请确保获取到RdbStore实例后，再进行数据库的增、删、改、查等操作
      }
    }
    ```
@@ -154,7 +153,7 @@
 
      // 当数据库创建时，数据库默认版本为0
      if (store.version === 0) {
-       store.executeSql(SQL_CREATE_TABLE); // 创建数据表
+       store.executeSql(SQL_CREATE_TABLE); // 创建数据表，以便后续调用insert接口插入数据
        // 设置数据库的版本，入参为大于0的整数
        store.version = 3;
      }
@@ -173,9 +172,9 @@
        store.executeSql('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS TEXT');
        store.version = 3;
      }
+     // 请确保获取到RdbStore实例，完成数据表创建后，再进行数据库的增、删、改、查等操作
    });
 
-   // 请确保获取到RdbStore实例后，再进行数据库的增、删、改、查等操作
    ```
 
    > **说明：**
@@ -186,7 +185,7 @@
    > 
    > - 错误码的详细介绍请参见[通用错误码](../reference/errorcode-universal.md)和[关系型数据库错误码](../reference/apis-arkdata/errorcode-data-rdb.md)。
 
-2. 获取到RdbStore后，调用insert()接口插入数据。示例代码如下所示：
+2. 获取到RdbStore，完成数据表创建后，调用insert()接口插入数据。示例代码如下所示：
      
    ```ts
    let store: relationalStore.RdbStore | undefined = undefined;
