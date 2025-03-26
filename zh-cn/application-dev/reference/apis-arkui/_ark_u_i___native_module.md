@@ -1535,6 +1535,18 @@ typedef struct OH_UdmfGetDataParams OH_UdmfGetDataParams
 **起始版本：** 15
 
 
+### ArkUI_SnapshotOptions
+
+```
+typedef struct ArkUI_SnapshotOptions ArkUI_SnapshotOptions
+```
+
+**描述**
+
+定义截图的可选项。
+
+**起始版本：** 15
+
 ## 枚举类型说明
 
 
@@ -15828,3 +15840,101 @@ int32_t OH_ArkUI_NodeUtils_GetPositionToParent (ArkUI_NodeHandle node, ArkUI_Int
 
 ARKUI_ERROR_CODE_NO_ERROR 成功。
 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+### OH_ArkUI_GetNodeSnapshot()
+
+```
+int32_t OH_ArkUI_GetNodeSnapshot(ArkUI_NodeHandle node, ArkUI_SnapshotOptions* snapshotOptions,
+    OH_PixelmapNative** pixelMap)
+```
+
+**描述**
+
+获取指定组件节点的截图，执行过程为同步，调用时应确保对应节点已被渲染(避免在把节点挂树时就立即执行截图，因为图形的渲染一般需要一帧时间生效)。
+
+**注意：**
+
+当返回的Pixelmap不再使用时，应通过 [OH_PixelmapNative_Release](../apis-image-kit/_image___native_module.md#oh_pixelmapnative_release) 释放它。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称          |  参数                                                     |
+| --------------- | ------------------------------------------------------------ |
+| node            | 截图的目标节点。                                             |
+| snapshotOptions | 给定的截图配置，为空时表示默认配置。              |
+| pixelmap        | 通过系统创建的pixelmap指针。 |
+
+**返回：**
+
+| 返回值                                        | 描述           |
+| --------------------------------------------- | -------------- |
+| `ARKUI_ERROR_CODE_NO_ERROR`                   | 成功。     |
+| `ARKUI_ERROR_CODE_PARAM_INVALID`              | 函数参数异常。<br>异常原因：传入参数验证失败，参数不能为空。    |
+| `ARKUI_ERROR_CODE_INTERNAL_ERROR`             | 截图失败，将返回空指针。     |
+| `ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT` | 截图超时。 |
+
+
+### OH_ArkUI_CreateSnapshotOptions()
+
+```
+ArkUI_SnapshotOptions* OH_ArkUI_CreateSnapshotOptions()
+```
+
+**描述**
+
+创建一个截图选项，当返回值不再使用时必须通过`OH_ArkUI_SnapshotOptions_Dispose`释放。
+
+**起始版本：** 15
+
+**返回：**
+
+| 返回值                   | 描述                                                         |
+| ------------------------ | ------------------------------------------------------------ |
+| `ArkUI_SnapshotOptions*` | 返回指向创建的截图选项对象的指针。如果对象返回空指针，则表示创建失败，失败的原因可能是地址空间已满。 |
+
+
+### OH_ArkUI_DestroySnapshotOptions()
+
+```
+void OH_ArkUI_DestroySnapshotOptions(ArkUI_SnapshotOptions* snapshotOptions)
+```
+
+**描述**
+
+销毁截图选项指针。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称         | 描述         |
+| --------------- | ---- |
+| snapshotOptions | 截图选项。 |
+
+### OH_ArkUI_SnapshotOptions_SetScale()
+
+```
+int32_t OH_ArkUI_SnapshotOptions_SetScale(ArkUI_SnapshotOptions* snapshotOptions, float scale)
+```
+
+**描述**
+
+配置截图选项中的缩放属性。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| snapshotOptions | 截图选项。 |
+| scale           | 缩放值。<br>取值范围：(0,+∞) |
+
+**返回：**
+
+| 返回值                           | 描述       |
+| -------------------------------- | ---------- |
+| `ARKUI_ERROR_CODE_NO_ERROR`      | 成功。 |
+| `ARKUI_ERROR_CODE_PARAM_INVALID` | 函数参数异常。<br> 异常原因：传入参数验证失败，参数不能为空。 |
