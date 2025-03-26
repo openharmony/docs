@@ -2,10 +2,10 @@
 
 本模块提供开放匿名设备标识符（Open Anonymous Device Identifier, OAID，以下简称OAID）的获取和重置能力。
 
-> **说明：**
-> 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 使用获取开放匿名设备标识符接口，需[向用户申请授权](../../security/AccessToken/request-user-authorization.md)：ohos.permission.APP_TRACKING_CONSENT
-> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.identifier.oaid (广告标识服务)](js-apis-oaid.md)
+> **说明：**<br/>
+> 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。<br/>
+> 使用获取开放匿名设备标识符接口，需[向用户申请授权](../../security/AccessToken/request-user-authorization.md)：ohos.permission.APP_TRACKING_CONSENT。<br/>
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.identifier.oaid (广告标识服务)](js-apis-oaid.md)。
 
 ## 导入模块
 
