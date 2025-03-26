@@ -289,7 +289,7 @@ showPasswordIcon(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                        |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| value  | boolean | 是   | 密码输入模式时，输入框末尾的图标是否显示。<br/>默认值：true |
+| value  | boolean | 是   | 密码输入模式时，输入框末尾的图标是否显示。<br/>true表示显示，false表示不显示。<br/>默认值：true |
 
 ### style<sup>9+</sup>
 
@@ -425,7 +425,7 @@ showUnderline(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| value  | boolean | 是   | 是否开启下划线。<br/>默认值：false |
+| value  | boolean | 是   | 是否开启下划线。<br/>true表示开启，false表示不开启。<br/>默认值：false |
 
 ### passwordIcon<sup>10+</sup>
 

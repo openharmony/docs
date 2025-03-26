@@ -1501,7 +1501,7 @@ void OH_Input_DestroyKeyEvent (struct Input_KeyEvent ** keyEvent)
 ```
 **描述**
 
-销毁按键事件对象
+销毁按键事件对象。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1561,7 +1561,7 @@ void OH_Input_DestroyTouchEvent (struct Input_TouchEvent ** touchEvent)
 ```
 **描述**
 
-销毁触屏事件对象
+销毁触屏事件对象。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
