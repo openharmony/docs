@@ -2098,7 +2098,7 @@ currentAVSession.on('setLoopMode', (mode: avSession.LoopMode) => {
 
 ### on('setTargetLoopMode')<sup>18+</sup>
 
-on(type: 'setTargetLoopMode', callback: (mode: LoopMode) => void): void
+on(type: 'setTargetLoopMode', callback: Callback<LoopMode>): void;
 
 设置目标循环模式的监听事件。
 
@@ -2668,7 +2668,7 @@ currentAVSession.off('setLoopMode');
 
 ### off('setTargetLoopMode')<sup>18+</sup>
 
-off(type: 'setTargetLoopMode', callback?: (mode: LoopMode) => void): void
+off(type: 'setTargetLoopMode', callback?: Callback<LoopMode>): void;
 
 取消监听目标循环模式变化事件。
 
