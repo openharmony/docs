@@ -13,10 +13,6 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 - [UiDriver<sup>(deprecated)</sup>](#uidriverdeprecated)：入口类，提供控件匹配/查找，按键注入，坐标点击/滑动，截图等能力。从API version 9开始不再维护，建议使用[Driver<sup>9+</sup>](#driver9)。
 
 > **说明：**
-> 
-> 
-> 
-> 
 > - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本模块接口在<!--RP1-->[自动化测试脚本](../../application-test/arkxtest-guidelines.md)<!--RP1End-->中使用。
 > - 本模块接口不支持并发调用。
