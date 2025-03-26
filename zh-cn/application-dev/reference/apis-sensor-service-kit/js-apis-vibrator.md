@@ -819,8 +819,6 @@ addContinuousEvent(time: number, duration: number, options?: ContinuousParam): V
 
 添加长振事件的方法成VibratorPattern对象。
 
-**需要权限**：ohos.permission.VIBRATE
-
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
 **参数**：
@@ -880,8 +878,6 @@ addTransientEvent(time: number, options?: TransientParam): VibratorPatternBuilde
 
 添加短振事件的方法成VibratorPattern对象。
 
-**需要权限**：ohos.permission.VIBRATE
-
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
 **参数**：
@@ -925,8 +921,6 @@ try {
 build(): VibratorPattern;
 
 构造组合短事件或长事件的振动序列的方法。
-
-**需要权限**：ohos.permission.VIBRATE
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
