@@ -1127,16 +1127,16 @@ type Nullable\<T> = T | undefined;
 
 | 名称                          | 值                          | 说明                                                                              |
 | --------------------------- | -- | ---------------------------------------------------------------------------------- |
-| CENTER                      | 0                           | 保持动画终态的内容大小，并且内容始终与组件保持中心对齐。<br/>**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。               ![renderfit_center](figures/renderfit_center.png) |
-| TOP                         | 1                           | 保持动画终态的内容大小，并且内容始终与组件保持顶部中心对齐。<br/>**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。             ![renderfit_top](figures/renderfit_top.png) |
-| BOTTOM                      | 2                           | 保持动画终态的内容大小，并且内容始终与组件保持底部中心对齐。<br/>**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。             ![renderfit_bottom](figures/renderfit_bottom.png) |
-| LEFT                        | 3                           | 保持动画终态的内容大小，并且内容始终与组件保持左侧对齐。<br/>**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。               ![renderfit_left](figures/renderfit_left.png) |
-| RIGHT                       | 4                           | 保持动画终态的内容大小，并且内容始终与组件保持右侧对齐。<br/>**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。              ![renderfit_right](figures/renderfit_right.png) |
-| TOP_LEFT                    | 5                           | 保持动画终态的内容大小，并且内容始终与组件保持左上角对齐。<br/>**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。              ![renderfit_top_left](figures/renderfit_top_left.png) |
-| TOP_RIGHT                   | 6                           | 保持动画终态的内容大小，并且内容始终与组件保持右上角对齐。<br/>**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。             ![renderfit_top_right](figures/renderfit_top_right.png) |
-| BOTTOM_LEFT                 | 7                           | 保持动画终态的内容大小，并且内容始终与组件保持左下角对齐。<br/>**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。              ![renderfit_bottom_left](figures/renderfit_bottom_left.png) |
-| BOTTOM_RIGHT                | 8                           | 保持动画终态的内容大小，并且内容始终与组件保持右下角对齐。<br/>**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。              ![renderfit_bottom_right](figures/renderfit_bottom_right.png) |
-| RESIZE_FILL                 | 9                           | 不考虑动画终态内容的宽高比，并且内容始终缩放到组件的大小。<br/>**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。              ![renderfit_resize_fill](figures/renderfit_resize_fill.png) |
+| CENTER                      | 0                           | 保持动画终态的内容大小，并且内容始终与组件保持中心对齐。<br/>**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。<br/>               ![renderfit_center](figures/renderfit_center.png) |
+| TOP                         | 1                           | 保持动画终态的内容大小，并且内容始终与组件保持顶部中心对齐。<br/>**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。<br/>             ![renderfit_top](figures/renderfit_top.png) |
+| BOTTOM                      | 2                           | 保持动画终态的内容大小，并且内容始终与组件保持底部中心对齐。<br/>**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。<br/>             ![renderfit_bottom](figures/renderfit_bottom.png) |
+| LEFT                        | 3                           | 保持动画终态的内容大小，并且内容始终与组件保持左侧对齐。<br/>**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。<br/>               ![renderfit_left](figures/renderfit_left.png) |
+| RIGHT                       | 4                           | 保持动画终态的内容大小，并且内容始终与组件保持右侧对齐。<br/>**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。<br/>              ![renderfit_right](figures/renderfit_right.png) |
+| TOP_LEFT                    | 5                           | 保持动画终态的内容大小，并且内容始终与组件保持左上角对齐。<br/>**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。<br/>              ![renderfit_top_left](figures/renderfit_top_left.png) |
+| TOP_RIGHT                   | 6                           | 保持动画终态的内容大小，并且内容始终与组件保持右上角对齐。<br/>**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。<br/>             ![renderfit_top_right](figures/renderfit_top_right.png) |
+| BOTTOM_LEFT                 | 7                           | 保持动画终态的内容大小，并且内容始终与组件保持左下角对齐。<br/>**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。<br/>              ![renderfit_bottom_left](figures/renderfit_bottom_left.png) |
+| BOTTOM_RIGHT                | 8                           | 保持动画终态的内容大小，并且内容始终与组件保持右下角对齐。<br/>**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。<br/>              ![renderfit_bottom_right](figures/renderfit_bottom_right.png) |
+| RESIZE_FILL                 | 9                           | 不考虑动画终态内容的宽高比，并且内容始终缩放到组件的大小。<br/>**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。<br/>              ![renderfit_resize_fill](figures/renderfit_resize_fill.png) |
 | RESIZE_CONTAIN              | 10                          | 保持动画终态内容的宽高比进行缩小或放大，使内容完整显示在组件内，且与组件保持中心对齐。<br/>**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。   ![renderfit_resize_contain](figures/renderfit_resize_contain.png) |
 | RESIZE_CONTAIN_TOP_LEFT     | 11                          | 保持动画终态内容的宽高比进行缩小或放大，使内容完整显示在组件内。当组件宽方向有剩余时，内容与组件保持左侧对齐，当组件高方向有剩余时，内容与组件保持顶部对齐。<br/>**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。   ![renderfit_resize_contain_top_left](figures/renderfit_resize_contain_top_left.png) |
 | RESIZE_CONTAIN_BOTTOM_RIGHT | 12                          | 保持动画终态内容的宽高比进行缩小或放大，使内容完整显示在组件内。当组件宽方向有剩余时，内容与组件保持右侧对齐，当组件高方向有剩余时，内容与组件保持底部对齐。<br/>**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。   ![renderfit_resize_contain_bottom_right](figures/renderfit_resize_contain_bottom_right.png) |
