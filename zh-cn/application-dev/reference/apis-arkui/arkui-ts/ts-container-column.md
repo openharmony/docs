@@ -78,7 +78,7 @@ Column(options?: ColumnOptions | ColumnOptionsV2)
 
 ## SpaceType<sup>18+</sup>
 
-type SpaceType = number | string | Resource
+type SpaceType = string | number | Resource
 
 描述Row、Column组件构造函数中space支持的数据类型，取值类型为下表类型中的并集。
 
