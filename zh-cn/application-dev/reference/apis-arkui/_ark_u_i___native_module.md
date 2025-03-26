@@ -1801,14 +1801,14 @@ enum ArkUI_BlendApplyType
 ```
 **描述：**
 
-指定的混合模式应用于视图的内容选项.
+指定的混合模式应用于视图的内容选项。
 
 **起始版本：** 12
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| BLEND_APPLY_TYPE_FAST  | 在目标图像上按顺序混合视图的内容.  | 
-| BLEND_APPLY_TYPE_OFFSCREEN  | 将此组件和子组件内容绘制到离屏画布上，然后整体进行混合.  | 
+| BLEND_APPLY_TYPE_FAST  | 在目标图像上按顺序混合视图的内容。  | 
+| BLEND_APPLY_TYPE_OFFSCREEN  | 将此组件和子组件内容绘制到离屏画布上，然后整体进行混合。  | 
 
 
 ### ArkUI_BlendMode
