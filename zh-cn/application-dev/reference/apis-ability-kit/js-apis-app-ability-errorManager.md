@@ -93,13 +93,7 @@ on(type: 'globalErrorOccurred', observer: GlobalObserver): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 填写'globalErrorOccurred'，表示错误观察器。 |
-| observer | [GlobalObserver](js-apis-inner-application-GlobalObserver.md) | 是 | 自定义异常处理回调函数。 |
-
-**返回值：**
-
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | void | 返回值为空。 |
+| observer | [GlobalObserver](#globalobserver18) | 是 | 自定义异常处理回调函数。 |
 
 **错误码**：
 
@@ -148,13 +142,7 @@ off(type: 'globalErrorOccurred', observer?: GlobalObserver): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 填写'globalErrorOccurred'，表示错误观察器。 |
-| observer | [GlobalObserver](js-apis-inner-application-GlobalObserver.md) | 否 | 由on方法注册的callback。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| void | 无返回结果。 |
+| observer | [GlobalObserver](#globalobserver18) | 否 | 由on方法注册的callback。 |
 
 **错误码**：
 
@@ -349,7 +337,7 @@ on(type: 'globalUnhandledRejectionDetected', observer: GlobalObserver): void
 | 参数名                   | 类型                                                          | 必填 | 说明                                       |
 |-----------------------|-------------------------------------------------------------| -------- |------------------------------------------|
 | type                  | string                                                      | 是 | 填写'globalUnhandledRejectionDetected'，表示注册被拒绝promise监听器。 |
-| observer              | [GlobalObserver](js-apis-inner-application-GlobalObserver.md) | 是 | 注册被拒绝promise的callback。                          |
+| observer              | [GlobalObserver](#globalobserver18) | 是 | 注册被拒绝promise的callback。                          |
 
 **错误码**：
 
@@ -516,7 +504,7 @@ off(type: 'globalUnhandledRejectionDetected', observer?: GlobalObserver): void
 | 参数名                   | 类型                              | 必填 | 说明                                           |
 |-----------------------|---------------------------------|----|----------------------------------------------|
 | type                  | string                          | 是  | 填写'globalUnhandledRejectionDetected'，表示注册被拒绝promise监听器。 |
-| observer              | [GlobalObserver](js-apis-inner-application-GlobalObserver.md) | 否  | 由on接口注册的被拒绝promise的callback。                        |
+| observer              | [GlobalObserver](#globalobserver18) | 否  | 由on接口注册的被拒绝promise的callback。                        |
 
 **错误码**：
 
@@ -527,8 +515,6 @@ off(type: 'globalUnhandledRejectionDetected', observer?: GlobalObserver): void
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 16200001 | If the caller is invalid. |
 | 16300004 | If the observer does not exist. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
     
@@ -582,8 +568,6 @@ off(type: 'unhandledRejection', observer?: UnhandledRejectionObserver): void
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 16200001 | If the caller is invalid. |
 | 16300004 | If the observer does not exist. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
     
@@ -725,3 +709,47 @@ type FreezeObserver = () => void
 **原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+## GlobalObserver<sup>18+</sup>
+
+type GlobalObserver = (reason: GlobalError) => void
+
+定义异常监听，可以作为[errorManager.on('globalErrorOccurred')](#errormanageronglobalerroroccurred18)和[errorManager.on('globalUnhandledRejectionDetected')](#errormanageronglobalunhandledrejectiondetected18)的入参监听当前应用主线程事件处理事件。
+
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名  | 类型          | 必填 | 说明 |
+|--------| ------------- | ---- | --- |
+| reason | [GlobalError](#globalerror18)   | 是   | 有关异常事件名字、消息、错误堆栈信息、异常线程名称和类型的对象。 |
+
+## GlobalError<sup>18+</sup>
+
+有关异常事件名字、消息、错误堆栈信息、异常线程名称和类型的对象。
+
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称  | 类型  | 只读  | 可选  | 说明  |
+| ---- | ----- | ---- | ----- | ------ |
+| instanceName | string | 否 | 否 | 表示虚拟机实例名称。 |
+| instanceType | [InstanceType](#instancetype18) | 否 | 否 | 表示虚拟机的实例类型。 |
+
+## InstanceType<sup>18+</sup>
+
+虚拟机的实例类型。
+
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称  | 值  | 说明   |
+| ---- | --- | ------ |
+| MAIN     | 0   | 表示主虚拟机实例。 |
+| WORKER   | 1   | 表示工作虚拟机实例。 |
+| TASKPOOL | 2   | 表示任务池虚拟机实例。 |
+| CUSTOM   | 3   | 表示用户通过[napi_create_ark_runtime](../native-lib/napi.md#napi_create_ark_runtime)从本机代码创建的虚拟机实例。 |
