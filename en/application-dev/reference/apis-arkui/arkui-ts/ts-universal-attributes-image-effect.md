@@ -1,4 +1,4 @@
-# Image Effects
+# Image Effect
 
 Image effects include blur, shadow, spherical effect, and much more.
 
@@ -450,8 +450,8 @@ Defines how the component's content (including the content of it child component
 
 | Name| Type                               | Mandatory| Description                                                        |
 | ------ | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BlendMode](#blendmode11)   | Yes  | Blend mode.<br>Default value: **BlendMode.NONE**                       |
-| type   | [BlendApplyType](#blendapplytype11) | No  | Whether the blend mode is implemented offscreen.<br>Default value: **BlendApplyType.FAST**<br>**NOTE**<br>1. Available options:<br>**BlendApplyType.FAST**: The blend mode is not implemented offscreen.<br>2. When **BlendApplyType.OFFSCREEN** is set, an offscreen canvas the size of the current component is created. The content of the current component (including child components) is then drawn onto the offscreen canvas, and blended with the existing content on the canvas below using the specified blend mode.|
+| value  | [BlendMode](#blendmode11)   | Yes  | Blend mode.<br>Default value: **BlendMode.NONE**<br>**NOTE**<br>When **BlendMode.NONE** is used, the blend effect is **BlendMode.SRC_OVER** by default, and **BlendApplyType** does not take effect.|
+| type   | [BlendApplyType](#blendapplytype11) | No  | Whether the blend mode is implemented offscreen.<br>Default value: **BlendApplyType.FAST**<br>**NOTE**<br>1. **BlendApplyType.FAST**: The blend mode is not implemented offscreen.<br>2. **BlendApplyType.OFFSCREEN**: An offscreen canvas of the size of the current component is created. The content of the current component (including child components) is then drawn onto the offscreen canvas, and blended with the existing content on the canvas below using the specified blend mode. This approach may cause issues with screen capture for APIs such as [linearGradientBlur<sup>12+</sup>](#lineargradientblur12), [backgroundEffect](ts-universal-attributes-background.md#backgroundeffect11), and [brightness](#brightness).|
 
 ## blendMode<sup>16+</sup> 
 
@@ -469,8 +469,8 @@ Defines how the component's content (including the content of it child component
 
 | Name| Type                           | Mandatory| Description                                                        |
 | ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
-| mode | Optional\<[BlendMode](#blendmode11)> | Yes  | Blend mode.<br>Default value: **BlendMode.NONE**<br>If **mode** is **undefined**, the component reverts to its original effect of not enabling offscreen rendering as a whole before blending with the parent component.|
-| type   | [BlendApplyType](#blendapplytype11)  |    No   | Whether the blend mode is implemented offscreen.<br>Default value: **BlendApplyType.FAST**<br>**NOTE**<br>1. Available options:<br>**BlendApplyType.FAST**: The blend mode is not implemented offscreen.<br>2. When **BlendApplyType.OFFSCREEN** is set, an offscreen canvas the size of the current component is created. The content of the current component (including child components) is then drawn onto the offscreen canvas, and blended with the existing content on the canvas below using the specified blend mode.    |
+| mode | Optional\<[BlendMode](#blendmode11)> | Yes  | Blend mode.<br>Default value: **BlendMode.NONE**<br>If **mode** is **undefined**, the component reverts to its original effect of not enabling offscreen rendering as a whole before blending with the parent component.<br>**NOTE**<br>When **BlendMode.NONE** is used, the blend effect is **BlendMode.SRC_OVER** by default, and **BlendApplyType** does not take effect.|
+| type   | [BlendApplyType](#blendapplytype11)  |    No   | Whether the blend mode is implemented offscreen.<br>Default value: **BlendApplyType.FAST**<br>**NOTE**<br>1. **BlendApplyType.FAST**: The blend mode is not implemented offscreen.<br>2. **BlendApplyType.OFFSCREEN**: An offscreen canvas of the size of the current component is created. The content of the current component (including child components) is then drawn onto the offscreen canvas, and blended with the existing content on the canvas below using the specified blend mode. This approach may cause issues with screen capture for APIs such as [linearGradientBlur<sup>12+</sup>](#lineargradientblur12), [backgroundEffect](ts-universal-attributes-background.md#backgroundeffect11), and [brightness](#brightness).|
 
 ## BlendApplyType<sup>11+</sup>
 
@@ -646,6 +646,8 @@ Applies a system bar effect to the component, which means to invert colors based
 
 ## ShadowType<sup>10+<sup>
 
+Enumerates the shadow types.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -767,11 +769,11 @@ Describes the options for inverting the foreground color.
 | threshold      | number | Yes   | Grayscale threshold.                                 |
 | thresholdRange | number | Yes   | Threshold value range.<br>**NOTE**<br>This range defines the upper and lower bounds of the grayscale threshold. The grayscale value changes linearly from high to low within the range.|
 
-## BackgroundImageOptions<sup>16+</sup>
+## BackgroundImageOptions<sup>18+</sup>
 
 Defines the background image options.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -828,14 +830,25 @@ struct ImageEffectsExample {
       Image($r('app.media.image'))
         .width('90%')
         .height(30)
-        .shadow({ radius: 10, color: Color.Green, offsetX: 20, offsetY: 20 })
+        .shadow({
+          radius: 10,
+          color: Color.Green,
+          offsetX: 20,
+          offsetY: 20
+        })
 
       // Add the internal shadow effect.
       Text('shadow').fontSize(15).fontColor(0xCCCCCC).width('90%')
       Image($r('app.media.image'))
         .width('90%')
         .height(30)
-        .shadow({ radius: 5, color: Color.Green, offsetX: 20, offsetY: 20,fill:true }).opacity(0.5)
+        .shadow({
+          radius: 5,
+          color: Color.Green,
+          offsetX: 20,
+          offsetY: 20,
+          fill: true
+        }).opacity(0.5)
 
       // Apply the grayscale effect. The grayscale value ranges from 0 to 1. The closer the grayscale value is to 1, the more obvious the grayscale effect is.
       Text('grayscale').fontSize(15).fontColor(0xCCCCCC).width('90%')
@@ -890,20 +903,21 @@ This example demonstrates how to apply a linear gradient blur effect on a compon
 @Entry
 @Component
 struct ImageExample1 {
-  private_resource1:Resource = $r('app.media.testlinearGradientBlurOrigin')
+  private_resource1: Resource = $r('app.media.testlinearGradientBlurOrigin')
   @State image_src: Resource = this.private_resource1
+
   build() {
     Column() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
         Row({ space: 5 }) {
           Image(this.image_src)
-            .linearGradientBlur(60, { fractionStops: [[0,0],[0,0.33],[1,0.66],[1,1]], direction: GradientDirection.Bottom })
+            .linearGradientBlur(60,
+              { fractionStops: [[0, 0], [0, 0.33], [1, 0.66], [1, 1]], direction: GradientDirection.Bottom })
         }
       }
     }
   }
 }
-
 ```
 
 ![testlinearGradientBlur](figures/testlinearGradientBlur.png)
@@ -917,6 +931,7 @@ This example demonstrates how to use **renderGroup** to set whether to render a 
 @Component
 struct Component1 {
   @Prop renderGroupValue: boolean;
+
   build() {
     Row() {
       Row() {
@@ -940,14 +955,15 @@ struct Component1 {
     .opacity(1)
   }
 }
+
 @Entry
 @Component
 struct RenderGroupExample {
   build() {
     Column() {
-      Component1({renderGroupValue: true})
+      Component1({ renderGroupValue: true })
         .margin(20)
-      Component1({renderGroupValue: false})
+      Component1({ renderGroupValue: false })
         .margin(20)
     }
     .width("100%")
@@ -986,7 +1002,7 @@ struct Index {
           .fill(Color.Blue)
           .position({ x: 150, y: 50 })
       }
-      .blendMode(BlendMode.OVERLAY,BlendApplyType.OFFSCREEN)
+      .blendMode(BlendMode.OVERLAY, BlendApplyType.OFFSCREEN)
       .alignItems(VerticalAlign.Center)
       .height(300)
       .width('100%')
@@ -1009,35 +1025,34 @@ This example demonstrates how to invert the foreground color using **InvertOptio
 
 ```ts
 // xxx.ets
- @Entry
- @Component
- struct Index {
-   build() {
+@Entry
+@Component
+struct Index {
+  build() {
     Stack() {
       Column()
-        Stack(){
-          Image($r('app.media.r')).width('100%')
-         Column(){
-           Column().width("100%").height(30).invert({
-             low:0,
-             high:1,
-             threshold:0.5,
-             thresholdRange:0.2
-           })
-           Column().width("100%").height(30).invert({
-             low:0.2,
-             high:0.5,
-             threshold:0.3,
-             thresholdRange:0.2
-           })
-         }
+      Stack() {
+        Image($r('app.media.r')).width('100%')
+        Column() {
+          Column().width("100%").height(30).invert({
+            low: 0,
+            high: 1,
+            threshold: 0.5,
+            thresholdRange: 0.2
+          })
+          Column().width("100%").height(30).invert({
+            low: 0.2,
+            high: 0.5,
+            threshold: 0.3,
+            thresholdRange: 0.2
+          })
         }
-        .width('100%')
-        .height('100%')
+      }
+      .width('100%')
+      .height('100%')
     }
   }
- }
-
+}
 ```
 
 ![testDestinationIn_lockDemo](figures/testInvertOptions.png)
@@ -1056,14 +1071,39 @@ struct UseShadowBatchingExample {
       Column({ space: 10 }) {
         Stack() {
 
-        }.width('90%').height(50).margin({ top: 5 }).backgroundColor(0xFFE4C4)
-        .shadow({ radius: 120, color: Color.Green, offsetX: 0, offsetY: 0 })
-        .align(Alignment.TopStart).shadow({ radius: 120, color: Color.Green, offsetX: 0, offsetY: 0 })
+        }
+        .width('90%')
+        .height(50)
+        .margin({ top: 5 })
+        .backgroundColor(0xFFE4C4)
+        .shadow({
+          radius: 120,
+          color: Color.Green,
+          offsetX: 0,
+          offsetY: 0
+        })
+        .align(Alignment.TopStart)
+        .shadow({
+          radius: 120,
+          color: Color.Green,
+          offsetX: 0,
+          offsetY: 0
+        })
 
         Stack() {
 
-        }.width('90%').height(50).margin({ top: 5 }).backgroundColor(0xFFE4C4)
-        .align(Alignment.TopStart).shadow({ radius: 120, color: Color.Red, offsetX: 0, offsetY: 0 })
+        }
+        .width('90%')
+        .height(50)
+        .margin({ top: 5 })
+        .backgroundColor(0xFFE4C4)
+        .align(Alignment.TopStart)
+        .shadow({
+          radius: 120,
+          color: Color.Red,
+          offsetX: 0,
+          offsetY: 0
+        })
         .width('90%')
         .backgroundColor(Color.White)
 
@@ -1078,7 +1118,12 @@ struct UseShadowBatchingExample {
         .height(150)
         .borderRadius(10)
         .backgroundColor(0xf56c6c)
-        .shadow({ radius: 300, color: Color.Yellow, offsetX: 0, offsetY: 0 })
+        .shadow({
+          radius: 300,
+          color: Color.Yellow,
+          offsetX: 0,
+          offsetY: 0
+        })
 
         Column() {
           Text()
@@ -1091,8 +1136,13 @@ struct UseShadowBatchingExample {
         .height(150)
         .backgroundColor(0x67C23A)
         .borderRadius(10)
-        .translate({ y: -50})
-        .shadow({ radius: 220, color: Color.Blue, offsetX: 0, offsetY: 0 })
+        .translate({ y: -50 })
+        .shadow({
+          radius: 220,
+          color: Color.Blue,
+          offsetX: 0,
+          offsetY: 0
+        })
       }
       .useShadowBatching(true)
     }
@@ -1114,7 +1164,7 @@ This example demonstrates how to apply a spherical effect to a component using *
 struct SphericalEffectExample {
   build() {
     Stack() {
-      TextInput({placeholder: "Enter a percentage."})
+      TextInput({ placeholder: "Enter a percentage." })
         .width('50%')
         .height(35)
         .type(InputType.Number)
@@ -1130,7 +1180,6 @@ struct SphericalEffectExample {
     }.alignContent(Alignment.Center).width("100%").height("100%")
   }
 }
-
 ```
 
 Below is how the component looks with the spherical effect applied.
@@ -1195,11 +1244,15 @@ struct PixelStretchExample {
         .padding(10)
         .clip(false)
         .width('50%')
-        .pixelStretchEffect({top:10,left:10,right:10,bottom:10 })
+        .pixelStretchEffect({
+          top: 10,
+          left: 10,
+          right: 10,
+          bottom: 10
+        })
     }.alignContent(Alignment.Center).width("100%").height("100%")
   }
 }
-
 ```
 
 Below is how the component looks with the pixel stretch effect applied.
@@ -1222,17 +1275,18 @@ This example demonstrates how to apply a system bar effect to a component using 
 struct Index {
   build() {
     Column() {
-      Stack(){
+      Stack() {
         Image($r('app.media.testImage')).width('100%').height('100%')
-         Column().width(150).height(10)
+        Column()
+          .width(150)
+          .height(10)
           .systemBarEffect()
-           .border({radius:5})
-           .margin({bottom:80})
+          .border({ radius: 5 })
+          .margin({ bottom: 80 })
       }.alignContent(Alignment.Center)
     }
   }
 }
-
 ```
 
 Below is how the component looks with the system bar effect applied.

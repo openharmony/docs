@@ -162,7 +162,7 @@ const keys: Array<string> = AppStorageV2.keys();
 
 ### globalConnect<sup>18+</sup>
 
-static globalConnect<T extends object>(type: ConnectOptions\<T\>): T | undefined
+static globalConnect\<T extends object\>(type: ConnectOptions\<T\>): T | undefined
 
 将键值对数据储存在应用磁盘中。如果给定的key已经存在于[PersistenceV2](../../quick-start/arkts-new-persistencev2.md)中，返回对应的值；否则，会通过获取默认值的构造器构造默认值，并返回。如果globalConnect的是\@ObservedV2对象，该对象\@Trace属性的变化，会触发整个关联对象的自动刷新；非\@Trace属性变化则不会，如有必要，可调用PersistenceV2.save接口手动存储。
 
@@ -307,7 +307,7 @@ PersistenceV2.notifyOnError((key: string, reason: string, msg: string) => {
 |type        | TypeConstructorWithArgs\<T\>   |否   |否   |指定的类型。         |
 |key         | string   |否   |是   |传入的key，不传则使用type的名字作为key。             |
 |defaultCreator   | StorageDefaultCreator\<T\>   |否   |是   |默认数据的构造器，建议传递，如果globalConnect是第一次连接key，不传会报错。 |
-|areaMode      | contextConstant.AreaMode   |否   |是    |加密级别：EL1-EL5，详见[加密级别](../../application-models/application-context-stage.md)，对应数值：0-4，不传时默认为EL2，不同加密级别对应不同的加密分区，即不同的存储路径，传入的加密等级数值不在0-4会直接运行crash。 |
+|areaMode      | contextConstant.AreaMode   |否   |是    |加密级别：EL1-EL5，详见[加密级别](../../application-models/application-context-stage.md#获取和修改加密分区)，对应数值：0-4，不传时默认为EL2，不同加密级别对应不同的加密分区，即不同的存储路径，传入的加密等级数值不在0-4会直接运行crash。 |
 
 ## UIUtils
 

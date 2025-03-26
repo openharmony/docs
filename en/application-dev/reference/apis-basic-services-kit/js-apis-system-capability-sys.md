@@ -16,7 +16,7 @@ import systemcapability from '@ohos.systemCapability';
 
 ## systemcapability.querySystemCapabilities
 
-querySystemCapabilities(callback: AsyncCallback&lt;string&gt;): void;
+querySystemCapabilities(callback: AsyncCallback&lt;string&gt;): void
 
 Queries system capabilities. This API uses an asynchronous callback to return the result.
 

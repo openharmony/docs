@@ -44,7 +44,7 @@ Sets the system time. This API uses an asynchronous callback to return the resul
 
 **Error codes**
 
-For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                                                       |
 | -------- |-------------------------------------------------------------------------------------------------------------|
@@ -99,7 +99,7 @@ Sets the system time. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                                                       |
 | -------- |-------------------------------------------------------------------------------------------------------------|
@@ -151,7 +151,7 @@ Sets the system date. This API uses an asynchronous callback to return the resul
 
 **Error codes**
 
-For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                                                                                        |
 | -------- |----------------------------------------------------------------------------------------------------------------------------------------------|
@@ -199,7 +199,7 @@ Sets the system date. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description      |
 | ------ | ---- | ---- | ---------- |
-| date   | Date | Yes  | Target date, which is mandatory.|
+| date   | Date | Yes  | Target date. The value must be greater than 0.|
 
 **Return value**
 
@@ -209,7 +209,7 @@ Sets the system date. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                                                                                        |
 | -------- |----------------------------------------------------------------------------------------------------------------------------------------------|
@@ -256,7 +256,7 @@ Sets the system time zone. This API uses an asynchronous callback to return the 
 
 **Error codes**
 
-For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                                                       |
 | -------- |-------------------------------------------------------------------------------------------------------------|
@@ -309,7 +309,7 @@ Sets the system time zone. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                                                       |
 | -------- |-------------------------------------------------------------------------------------------------------------|
@@ -352,7 +352,7 @@ Updates the NTP time from the NTP server This API returns the result asynchronou
 
 **Error codes**
 
-For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                                                   |
 |-------|-------------------------------------------------------------------------------------------------------------|
@@ -394,7 +394,7 @@ Obtains the actual time calculated based on the last updated NTP time. This API 
 
 **Error codes**
 
-For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                                                   |
 |-------|-------------------------------------------------------------------------------------------------------------|

@@ -813,13 +813,13 @@ try {
 }
 ```
 
-## vibrator.VibratorPatternBuilder<sup>18+</sup>
+## VibratorPatternBuilder<sup>18+</sup>
+
+### vibrator('addContinuousEvent')<sup>18+</sup>
 
 addContinuousEvent(time: number, duration: number, options?: ContinuousParam): VibratorPatternBuilder;
 
 添加长振事件的方法成VibratorPattern对象。
-
-**需要权限**：ohos.permission.VIBRATE
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -874,13 +874,11 @@ try {
 }
 ```
 
-## vibrator.addTransientEvent<sup>18+</sup>
+### vibrator('addTransientEvent')<sup>18+</sup>
 
 addTransientEvent(time: number, options?: TransientParam): VibratorPatternBuilder;
 
 添加短振事件的方法成VibratorPattern对象。
-
-**需要权限**：ohos.permission.VIBRATE
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -920,13 +918,11 @@ try {
 }
 ```
 
-## vibrator.build<sup>18+</sup>
+### vibrator('build')<sup>18+</sup>
 
 build(): VibratorPattern;
 
 构造组合短事件或长事件的振动序列的方法。
-
-**需要权限**：ohos.permission.VIBRATE
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -1120,7 +1116,7 @@ try {
 
 | 名称   | 类型                       | 必填 | 说明                                                 |
 | ------ | -------------------------- | ---- | ---------------------------------------------------- |
-| time   | time                       | 是   | 振动绝对起始时间。                                   |
+| time   | number                     | 是   | 振动绝对起始时间。                                   |
 | events | Array&lt;VibratorEvent&gt; | 是   | 振动事件数组，build()方法返回的VibratorPattern对象。 |
 
 ## ContinuousParam<sup>18+</sup>

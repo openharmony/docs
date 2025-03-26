@@ -105,7 +105,7 @@ try {
   let localUpdater = update.getLocalUpdater();
 } catch(error) {
   console.error(`Fail to get localUpdater error: ${error}`);
-};
+}
 ```
 
 ## Updater
@@ -183,7 +183,7 @@ updater.checkNewVersion()
       })
       .catch((err: BusinessError)=>{
         console.log(`checkNewVersion promise error ${JSON.stringify(err)}`);
-      })
+      });
 ```
 
 ###  getNewVersionInfo
@@ -313,7 +313,7 @@ updater.getNewVersionDescription(versionDigestInfo, descriptionOptions).then((in
 
 ### getNewVersionDescription
 
-getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOptions: DescriptionOptions): Promise\<Array\<ComponentDescription>>;
+getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOptions: DescriptionOptions): Promise\<Array\<ComponentDescription>>
 
 Obtains the description file of the new version. This API uses a promise to return the result.
 
@@ -621,7 +621,7 @@ Downloads the new version. This API uses an asynchronous callback to return the 
 | ----------------- | --------------------------------------- | ---- | ---------------------------------- |
 | versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.                            |
 | downloadOptions   | [DownloadOptions](#downloadoptions)     | Yes   | Download options.                              |
-| callback          | AsyncCallback\<void>                    | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback          | AsyncCallback\<void>                    | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an **Error** object.|
 
 **Error codes**
 
@@ -724,7 +724,7 @@ Resumes download of the new version. This API uses an asynchronous callback to r
 | --------------------- | ---------------------------------------- | ---- | ------------------------------------ |
 | versionDigestInfo     | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.                              |
 | resumeDownloadOptions | [ResumeDownloadOptions](#resumedownloadoptions) | Yes   | Options for resuming download.                              |
-| callback              | AsyncCallback\<void>                     | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback              | AsyncCallback\<void>                     | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an **Error** object.|
 
 **Error codes**
 
@@ -825,7 +825,7 @@ Pauses download of the new version. This API uses an asynchronous callback to re
 | -------------------- | ---------------------------------------- | ---- | ------------------------------------ |
 | versionDigestInfo    | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.                              |
 | pauseDownloadOptions | [PauseDownloadOptions](#pausedownloadoptions) | Yes   | Options for pausing download.                              |
-| callback             | AsyncCallback\<void>                     | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback             | AsyncCallback\<void>                     | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an **Error** object.|
 
 **Error codes**
 
@@ -926,7 +926,7 @@ Updates the version. This API uses an asynchronous callback to return the result
 | ----------------- | --------------------------------------- | ---- | ------------------------------------ |
 | versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.                              |
 | upgradeOptions    | [UpgradeOptions](#upgradeoptions)       | Yes   | Update options.                                |
-| callback          | AsyncCallback\<void>                    | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback          | AsyncCallback\<void>                    | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an **Error** object.|
 
 **Error codes**
 
@@ -1027,7 +1027,7 @@ Clears errors. This API uses an asynchronous callback to return the result.
 | ----------------- | --------------------------------------- | ---- | ------------------------------------ |
 | versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.                              |
 | clearOptions      | [ClearOptions](#clearoptions)           | Yes   | Clear options.                                |
-| callback          | AsyncCallback\<void>                    | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback          | AsyncCallback\<void>                    | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an **Error** object.|
 
 **Error codes**
 
@@ -1289,7 +1289,7 @@ Terminates the update. This API uses an asynchronous callback to return the resu
 
 | Name     | Type                  | Mandatory  | Description                                    |
 | -------- | -------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an **Error** object.|
 
 **Error codes**
 
@@ -1420,7 +1420,7 @@ Restores the scale to its factory settings. This API uses an asynchronous callba
 
 | Name     | Type                  | Mandatory  | Description                                    |
 | -------- | -------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation fails, **err** is an error object and a callback is returned. If the the operation is successful, **err** is undefined and no callback is returned.|
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation fails, **err** is an error object and a callback is returned. If the operation is successful, **err** is undefined and no callback is returned.|
 
 **Error codes**
 
@@ -1453,7 +1453,7 @@ Restores the scale to its factory settings. This API uses a promise to return th
 
 | Type            | Description                        |
 | -------------- | -------------------------- |
-| Promise\<void> | Promise that returns no value. If the operation fails, a callback is returned. If the the operation is successful, no callback is returned.|
+| Promise\<void> | Promise that returns no value. If the operation fails, a callback is returned. If the operation is successful, no callback is returned.|
 
 **Error codes**
 
@@ -1582,7 +1582,7 @@ Installs the update package. This API uses an asynchronous callback to return th
 | Name        | Type                                | Mandatory  | Description                                     |
 | ----------- | ---------------------------------- | ---- | --------------------------------------- |
 | upgradeFile | Array<[UpgradeFile](#upgradefile)> | Yes   | Update file.                                   |
-| callback    | AsyncCallback\<void>               | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback    | AsyncCallback\<void>               | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an **Error** object.|
 
 **Error codes**
 

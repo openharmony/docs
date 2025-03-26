@@ -2470,7 +2470,7 @@ zoom(factor: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| factor | number   | 是   | 基于当前网页所需调整的相对缩放比例，入参要求大于0，当入参为1时为默认加载网页的缩放比例，入参小于1为缩小，入参大于1为放大。 |
+| factor | number   | 是   | 基于当前网页所需调整的相对缩放比例，入参要求大于0，当入参为1时为默认加载网页的缩放比例，入参小于1为缩小，入参大于1为放大。<br>取值范围：(0，100]。 |
 
 **错误码：**
 
@@ -3037,7 +3037,7 @@ struct WebComponent {
 
 zoomIn(): void
 
-调用此接口将当前网页进行放大，比例为20%。
+调用此接口将当前网页进行放大，比例为25%。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3236,7 +3236,7 @@ getUserAgent(): string
 
 获取当前默认用户代理。
 
-默认UserAgent定义与使用场景请参考[UserAgent详情参考](../../web/web-default-userAgent.md)
+默认User-Agent定义与使用场景请参考[User-Agent开发指导](../../web/web-default-userAgent.md)
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3283,7 +3283,7 @@ struct WebComponent {
 }
 ```
 
-支持开发者基于默认的UserAgent去定制UserAgent。
+支持开发者基于默认的User-Agent去定制User-Agent。
 ```ts
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
@@ -3298,7 +3298,7 @@ struct WebComponent {
   aboutToAppear(): void {
     webview.once('webInited', () => {
       try {
-        // 应用侧用法示例，定制UserAgent。
+        // 应用侧用法示例，定制User-Agent。
         this.ua = this.controller.getUserAgent() + 'xxx';
         this.controller.setCustomUserAgent(this.ua);
       } catch (error) {
@@ -4218,7 +4218,7 @@ hasImage(callback: AsyncCallback\<boolean>): void
 
 | 参数名   | 类型                    | 必填 | 说明                       |
 | -------- | ----------------------- | ---- | -------------------------- |
-| callback | AsyncCallback\<boolean> | 是   | 返回查找页面是否存在图像。 |
+| callback | AsyncCallback\<boolean> | 是   | 返回查找页面是否存在图像。<br> true:存在图像；false:不存在图像。 |
 
 **错误码：**
 
@@ -4275,7 +4275,7 @@ hasImage(): Promise\<boolean>
 
 | 类型              | 说明                                    |
 | ----------------- | --------------------------------------- |
-| Promise\<boolean> | Promise实例，返回查找页面是否存在图像。 |
+| Promise\<boolean> | Promise实例，返回查找页面是否存在图像。 <br>true:存在图像；false:不存在图像。 |
 
 **错误码：**
 
@@ -5387,15 +5387,15 @@ setCustomUserAgent(userAgent: string): void
 
 设置自定义用户代理，会覆盖系统的用户代理。
 
-当Web组件src设置了url时，建议在onControllerAttached回调事件中设置UserAgent，设置方式请参考示例。不建议将UserAgent设置在onLoadIntercept回调事件中，会概率性出现设置失败。
+当Web组件src设置了url时，建议在onControllerAttached回调事件中设置User-Agent，设置方式请参考示例。不建议将User-Agent设置在onLoadIntercept回调事件中，会概率性出现设置失败。
 
-当Web组件src设置为空字符串时，建议先调用setCustomUserAgent方法设置UserAgent，再通过loadUrl加载具体页面。
+当Web组件src设置为空字符串时，建议先调用setCustomUserAgent方法设置User-Agent，再通过loadUrl加载具体页面。
 
-默认UserAgent定义与使用场景请参考[UserAgent详情参考](../../web/web-default-userAgent.md)
+默认User-Agent定义与使用场景请参考[User-Agent开发指导](../../web/web-default-userAgent.md)
 
 > **说明：**
 >
->当Web组件src设置了url，且未在onControllerAttached回调事件中设置UserAgent。再调用setCustomUserAgent方法时，可能会出现加载的页面与实际设置UserAgent不符的异常现象。
+>当Web组件src设置了url，且未在onControllerAttached回调事件中设置User-Agent。再调用setCustomUserAgent方法时，可能会出现加载的页面与实际设置User-Agent不符的异常现象。
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
@@ -5561,7 +5561,7 @@ getCustomUserAgent(): string
 
 获取自定义用户代理。
 
-默认UserAgent定义与使用场景请参考[UserAgent详情参考](../../web/web-default-userAgent.md)
+默认User-Agent定义与使用场景请参考[User-Agent开发指导](../../web/web-default-userAgent.md)
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
@@ -6041,6 +6041,8 @@ static getDefaultUserAgent(): string
 获取默认用户代理。
 
 此接口只允许在UI线程调用。
+
+默认User-Agent定义与使用场景请参考[User-Agent开发指导](../../web/web-default-userAgent.md)
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6726,7 +6728,7 @@ getPrintBackground(): boolean
 
 | 类型                 | 说明                      |
 | -------------------- | ------------------------- |
-| boolean              | 返回Webview是否打印网页背景。 |
+| boolean              | 返回Webview是否打印网页背景。true:打印网页背景；false:不打印网页背景。 |
 
 **错误码：**
 
@@ -10901,8 +10903,8 @@ static getOriginQuota(origin: string, callback: AsyncCallback\<number>): void
 
 | 参数名   | 类型                  | 必填 | 说明               |
 | -------- | --------------------- | ---- | ------------------ |
-| origin   | string                | 是   | 指定源的字符串索引 |
-| callback | AsyncCallback\<number> | 是   | 指定源的存储配额   |
+| origin   | string                | 是   | 指定源的字符串索引。 |
+| callback | AsyncCallback\<number> | 是   | 指定源的存储配额。<br>number是long型整数，范围为(-2,147,483,648)~(2,147,483,647)。   |
 
 **错误码：**
 

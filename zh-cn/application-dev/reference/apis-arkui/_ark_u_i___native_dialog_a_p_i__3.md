@@ -32,6 +32,8 @@ ArkUI提供的Native侧自定义弹窗接口集合。
 | int32_t(\* [enableHoverMode](#enablehovermode) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, bool enableHoverMode) | 设置自定义弹窗是否相应悬停态。  | 
 | int32_t(\* [setHoverModeArea](#sethovermodearea) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, [ArkUI_HoverModeAreaType](_ark_u_i___native_module.md#arkui_hovermodeareatype) hoverModeAreaType) | 设置悬停态下自定义弹窗默认展示区域。  | 
 | int32_t(\* [setFocusable](#setfocusable) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, bool focusable) | 设置自定义弹窗是否获取焦点。  | 
+| int32_t(\* [setBackgroundBlurStyleOptions](#setbackgroundblurstyleoptions) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, const [ArkUI_AttributeItem](_ark_u_i___attribute_item.md#arkui_attributeitem)\* backgroundBlurStyleOptions) | 设置自定义弹窗的背景模糊效果。  | 
+| int32_t(\* [setBackgroundEffect](#setbackgroundeffect) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, const [ArkUI_AttributeItem](_ark_u_i___attribute_item.md#arkui_attributeitem)\* backgroundEffect) | 设置自定义弹窗的背景效果参数。  | 
 
 ## 结构体成员变量说明
 
@@ -405,6 +407,60 @@ int32_t (*setFocusable)(ArkUI_NativeDialogHandle handle, bool focusable)
 **注解：**
 
 setFocusable方法需要在调用show方法之前调用。
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 函数参数异常。
+
+### setBackgroundBlurStyleOptions
+
+```
+int32_t (*setBackgroundBlurStyleOptions)(ArkUI_NativeDialogHandle handle, const ArkUI_AttributeItem* backgroundBlurStyleOptions)
+```
+**描述：**
+
+设置自定义弹窗的背景模糊效果。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+| backgroundBlurStyleOptions | 背景模糊效果。  | 
+
+**注解：**
+
+setBackgroundBlurStyleOptions方法需要在调用show方法之前调用。
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 函数参数异常。
+
+### setBackgroundEffect
+
+```
+int32_t (*setBackgroundEffect)(ArkUI_NativeDialogHandle handle, const ArkUI_AttributeItem* backgroundEffect);
+```
+**描述：**
+
+设置自定义弹窗的背景效果参数。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+| backgroundEffect | 背景效果参数。  | 
+
+**注解：**
+
+setBackgroundEffect方法需要在调用show方法之前调用。
 
 **返回：**
 

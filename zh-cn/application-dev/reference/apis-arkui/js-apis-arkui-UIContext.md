@@ -1435,13 +1435,13 @@ vp2px(value : number) : number
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| value | number | 是   | 将vp单位的数值转换为以px为单位的数值。 |
+| value | number | 是   | 将vp单位的数值转换为以px为单位的数值。<br/>取值范围：(-∞, +∞) |
 
 **返回值：**
 
 | 类型   | 说明           |
 | ------ | -------------- |
-| number | 转换后的数值。 |
+| number | 转换后的数值。<br/>取值范围：(-∞, +∞) |
 
 **示例：**
 
@@ -1464,13 +1464,13 @@ px2vp(value : number) : number
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| value | number | 是   | 将px单位的数值转换为以vp为单位的数值。 |
+| value | number | 是   | 将px单位的数值转换为以vp为单位的数值。<br/>取值范围：(-∞, +∞) |
 
 **返回值：**
 
 | 类型   | 说明           |
 | ------ | -------------- |
-| number | 转换后的数值。 |
+| number | 转换后的数值。<br/>取值范围：(-∞, +∞) |
 
 **示例：**
 
@@ -1493,13 +1493,13 @@ fp2px(value : number) : number
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| value | number | 是   | 将fp单位的数值转换为以px为单位的数值。 |
+| value | number | 是   | 将fp单位的数值转换为以px为单位的数值。<br/>取值范围：(-∞, +∞) |
 
 **返回值：**
 
 | 类型   | 说明           |
 | ------ | -------------- |
-| number | 转换后的数值。 |
+| number | 转换后的数值。<br/>取值范围：(-∞, +∞) |
 
 **示例：**
 
@@ -1522,13 +1522,13 @@ px2fp(value : number) : number
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| value | number | 是   | 将px单位的数值转换为以fp为单位的数值。 |
+| value | number | 是   | 将px单位的数值转换为以fp为单位的数值。<br/>取值范围：(-∞, +∞) |
 
 **返回值：**
 
 | 类型   | 说明           |
 | ------ | -------------- |
-| number | 转换后的数值。 |
+| number | 转换后的数值。<br/>取值范围：(-∞, +∞) |
 
 **示例：**
 
@@ -1551,13 +1551,13 @@ lpx2px(value : number) : number
 
 | 参数名 | 类型   | 必填 | 说明                                    |
 | ------ | ------ | ---- | --------------------------------------- |
-| value | number | 是   | 将lpx单位的数值转换为以px为单位的数值。 |
+| value | number | 是   | 将lpx单位的数值转换为以px为单位的数值。<br/>取值范围：(-∞, +∞) |
 
 **返回值：**
 
 | 类型   | 说明           |
 | ------ | -------------- |
-| number | 转换后的数值。 |
+| number | 转换后的数值。<br/>取值范围：(-∞, +∞) |
 
 **示例：**
 
@@ -1580,13 +1580,13 @@ px2lpx(value : number) : number
 
 | 参数名 | 类型   | 必填 | 说明                                    |
 | ------ | ------ | ---- | --------------------------------------- |
-| value | number | 是   | 将px单位的数值转换为以lpx为单位的数值。 |
+| value | number | 是   | 将px单位的数值转换为以lpx为单位的数值。<br/>取值范围：(-∞, +∞) |
 
 **返回值：**
 
 | 类型   | 说明           |
 | ------ | -------------- |
-| number | 转换后的数值。 |
+| number | 转换后的数值。<br/>取值范围：(-∞, +∞) |
 
 **示例：**
 
@@ -2611,91 +2611,6 @@ static destroyUIContextWithoutWindow(): void
 UIContext.destroyUIContextWithoutWindow();
 ```
 
-### notifyDragStartRequest<sup>18+</sup>
-
-notifyDragStartRequest(requestStatus: draController.DragStartRequestStatus): void
-
-控制应用是否可以发起拖拽。
-
-**原子化服务API**: 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力**: SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型   | 必填| 说明                                                        |
-| ------ | ------- | ---- | ------------------------------------------------------------ |
-| requestStatus  | [draController.DragStartRequestStatus](js-apis-arkui-dragController.md#dragstartrequeststatus18)    | 是  |定义应用是否可以发起拖拽。|
-
-**示例：**
-
-```ts
-import { unifiedDataChannel } from '@kit.ArkData';
-import { image } from '@kit.ImageKit';
-import { dragController } from "@kit.ArkUI";
-
-// xxx.ets
-@Entry
-@Component
-struct NormalEts {
-  @State finished: boolean = false
-  @State timeout1: number = 1
-  @State pixmap: image.PixelMap | undefined = undefined
-  @State unifiedData1: unifiedDataChannel.UnifiedData | undefined = undefined
-  @State previewData: DragItemInfo | undefined = undefined
-
-  loadData() {
-    let timeout = setTimeout(() => {
-      this.getUIContext().getComponentSnapshot().get("image1", (error: Error, pixmap: image.PixelMap) => {
-        this.pixmap = pixmap
-        this.previewData = {
-          pixelMap: this.pixmap
-        }
-      })
-
-      let data: unifiedDataChannel.Image = new unifiedDataChannel.Image();
-      data.imageUri = "app.media.startIcon";
-      let unifiedData = new unifiedDataChannel.UnifiedData(data);
-      this.unifiedData1 = unifiedData
-
-      this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.READY)
-    }, 4000);
-    this.timeout1 = timeout
-  }
-
-
-    build() {
-      Column({space: 20}) {
-        Image($r("app.media.startIcon"))
-          .width(300)
-          .height(200)
-          .id("image1")
-          .draggable(true)
-          .dragPreview(this.previewData)
-          .onPreDrag((status: PreDragStatus) => {
-            if (status == PreDragStatus.PREPARING_FOR_DRAG_DETECTION) {
-              this.loadData()
-            } else {
-              clearTimeout(this.timeout1);
-            }
-          })
-          .onDragStart((event: DragEvent) => {
-            if (this.finished == false) {
-              this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.WAITING)
-            } else {
-              event.setData(this.unifiedData1);
-            }
-          })
-          .onDragEnd(()=>{
-            this.finished = false
-          })
-      }
-      .height(400)
-      .backgroundColor(Color.Pink)
-    }
-}
-```
-
 ### dispatchKeyEvent<sup>15+</sup>
 
 dispatchKeyEvent(node: number | string, event: KeyEvent): boolean
@@ -2985,12 +2900,53 @@ on(type: 'navDestinationUpdate', callback: Callback\<observer.NavDestinationInfo
 
 <!--code_no_check-->
 ```ts
-import { UIObserver } from '@kit.ArkUI';
+// Index.ets
+// 演示 uiObserver.on('navDestinationUpdate', callback)
+// uiObserver.off('navDestinationUpdate', callback)
 
-let observer:UIObserver = uiContext.getUIObserver();
-observer.on('navDestinationUpdate', (info) => {
-    console.info('NavDestination state update', JSON.stringify(info));
-});
+@Component
+struct PageOne {
+  build() {
+    NavDestination() {
+      Text("pageOne")
+    }.title("pageOne")
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  aboutToAppear() {
+    this.getUIContext().getUIObserver().on('navDestinationUpdate', (info) => {
+      console.info('NavDestination state update', JSON.stringify(info));
+    });
+  }
+
+  aboutToDisappear() {
+    this.getUIContext().getUIObserver().off('navDestinationUpdate');
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({ name: "pageOne" });
+        })
+      }
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ### off('navDestinationUpdate')<sup>11+</sup>
@@ -3012,13 +2968,7 @@ off(type: 'navDestinationUpdate', callback?: Callback\<observer.NavDestinationIn
 
 **示例：** 
 
-<!--code_no_check-->
-```ts
-import { UIObserver } from '@kit.ArkUI';
-
-let observer:UIObserver = uiContext.getUIObserver();
-observer.off('navDestinationUpdate');
-```
+参考[uiObserver.on('navDestinationUpdate')](#onnavdestinationupdate11)示例。
 
 ### on('navDestinationUpdate')<sup>11+</sup>
 
@@ -3042,12 +2992,53 @@ on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callbac
 
 <!--code_no_check-->
 ```ts
-import { UIObserver } from '@kit.ArkUI';
+// Index.ets
+// 演示 uiObserver.on('navDestinationUpdate', navigationId, callback)
+// uiObserver.off('navDestinationUpdate', navigationId, callback)
+@Component
+struct PageOne {
+  build() {
+    NavDestination() {
+      Text("pageOne")
+    }.title("pageOne")
+  }
+}
 
-let observer:UIObserver = uiContext.getUIObserver();
-observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
-    console.info('NavDestination state update', JSON.stringify(info));
-});
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  aboutToAppear() {
+    this.getUIContext().getUIObserver().on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
+      console.info('NavDestination state update', JSON.stringify(info));
+    });
+  }
+
+  aboutToDisappear() {
+    this.getUIContext().getUIObserver().off('navDestinationUpdate', { navigationId: "testId" });
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({ name: "pageOne" });
+        })
+      }
+      .id("testId")
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ### off('navDestinationUpdate')<sup>11+</sup>
@@ -3070,13 +3061,7 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 
 **示例：**
 
-<!--code_no_check-->
-```ts
-import { UIObserver } from '@kit.ArkUI';
-
-let observer:UIObserver = uiContext.getUIObserver();
-observer.off('navDestinationUpdate', { navigationId: "testId" });
-```
+参考[uiObserver.on('navDestinationUpdate')](#onnavdestinationupdate11-1)示例。
 
 ### on('scrollEvent')<sup>12+</sup>
 
@@ -6079,7 +6064,7 @@ type CustomBuilderWithId = (id: number)&nbsp;=&gt;&nbsp;void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | id | string&nbsp;\|&nbsp;number | 是 | 指定popup或menu绑定的目标节点。<br/>**说明：** <br/>1. 当id是number时，对应组件实例的UniquelD，此id由系统保证唯一性。<br/>2. 当id是string时，对应[通用属性id](arkui-ts/ts-universal-attributes-component-id.md#id)所指定的组件，此id的唯一性需由开发者确保，但实际可能会有多个。 |
 | componentId | number | 否 | 目标节点所在的自定义组件的UniquelD。当上述id指定为string类型时，可通过此属性圈定范围。方便开发者在一定范围内保证id: string的唯一性。 |
@@ -6561,7 +6546,7 @@ openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | the ComponentContent is incorrect. |
+| 103301 | The ComponentContent is incorrect. |
 | 103302 | Dialog content already exists.|
 
 **示例：**
@@ -6653,7 +6638,7 @@ openCustomDialogWithController\<T extends Object>(dialogContent: ComponentConten
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | the ComponentContent is incorrect. |
+| 103301 | The ComponentContent is incorrect. |
 | 103302 | Dialog content already exists.|
 
 **示例：**
@@ -6749,8 +6734,8 @@ closeCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>): Promi
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | the ComponentContent is incorrect. |
-| 103303 | the ComponentContent cannot be found. |
+| 103301 | The ComponentContent is incorrect. |
+| 103303 | The ComponentContent cannot be found. |
 
 **示例：**
 
@@ -6845,8 +6830,8 @@ updateCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, optio
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | the ComponentContent is incorrect. |
-| 103303 | the ComponentContent cannot be found. |
+| 103301 | The ComponentContent is incorrect. |
+| 103303 | The ComponentContent cannot be found. |
 
 **示例：**
 
@@ -7464,8 +7449,8 @@ updatePopup\<T extends Object>(content: ComponentContent\<T>, options: PopupComm
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | the ComponentContent is incorrect. |
-| 103303 | the ComponentContent cannot be found. |
+| 103301 | The ComponentContent is incorrect. |
+| 103303 | The ComponentContent cannot be found. |
 
 **示例：**
 
@@ -7500,8 +7485,8 @@ closePopup\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | the ComponentContent is incorrect. |
-| 103303 | the ComponentContent cannot be found. |
+| 103301 | The ComponentContent is incorrect. |
+| 103303 | The ComponentContent cannot be found. |
 
 **示例：**
 
@@ -8249,6 +8234,91 @@ cancelDataLoading(key: string): void
 | 401      | Parameter error. |
 | 190004      | Operation failed. |
 
+### notifyDragStartRequest<sup>18+</sup>
+
+notifyDragStartRequest(requestStatus: dragController.DragStartRequestStatus): void
+
+控制应用是否可以发起拖拽。
+
+**原子化服务API**: 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**: SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填| 说明                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| requestStatus  | [dragController.DragStartRequestStatus](js-apis-arkui-dragController.md#dragstartrequeststatus18)    | 是  |定义应用是否可以发起拖拽。|
+
+**示例：**
+
+```ts
+import { unifiedDataChannel } from '@kit.ArkData';
+import { image } from '@kit.ImageKit';
+import { dragController } from "@kit.ArkUI";
+
+// xxx.ets
+@Entry
+@Component
+struct NormalEts {
+  @State finished: boolean = false
+  @State timeout1: number = 1
+  @State pixmap: image.PixelMap | undefined = undefined
+  @State unifiedData1: unifiedDataChannel.UnifiedData | undefined = undefined
+  @State previewData: DragItemInfo | undefined = undefined
+
+  loadData() {
+    let timeout = setTimeout(() => {
+      this.getUIContext().getComponentSnapshot().get("image1", (error: Error, pixmap: image.PixelMap) => {
+        this.pixmap = pixmap
+        this.previewData = {
+          pixelMap: this.pixmap
+        }
+      })
+
+      let data: unifiedDataChannel.Image = new unifiedDataChannel.Image();
+      data.imageUri = "app.media.startIcon";
+      let unifiedData = new unifiedDataChannel.UnifiedData(data);
+      this.unifiedData1 = unifiedData
+
+      this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.READY)
+    }, 4000);
+    this.timeout1 = timeout
+  }
+
+
+    build() {
+      Column({space: 20}) {
+        Image($r("app.media.startIcon"))
+          .width(300)
+          .height(200)
+          .id("image1")
+          .draggable(true)
+          .dragPreview(this.previewData)
+          .onPreDrag((status: PreDragStatus) => {
+            if (status == PreDragStatus.PREPARING_FOR_DRAG_DETECTION) {
+              this.loadData()
+            } else {
+              clearTimeout(this.timeout1);
+            }
+          })
+          .onDragStart((event: DragEvent) => {
+            if (this.finished == false) {
+              this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.WAITING)
+            } else {
+              event.setData(this.unifiedData1);
+            }
+          })
+          .onDragEnd(()=>{
+            this.finished = false
+          })
+      }
+      .height(400)
+      .backgroundColor(Color.Pink)
+    }
+}
+```
+
 ## OverlayManager<sup>12+</sup>
 
 以下API需先使用UIContext中的[getOverlayManager()](#getoverlaymanager12)方法获取到OverlayManager对象，再通过该对象调用对应方法。
@@ -8600,7 +8670,7 @@ setVisible(visible: boolean): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | ------- | ------- | ------- |
-| visible | boolean | 是 | 原子化服务menuBar是否可见。|
+| visible | boolean | 是 | 原子化服务menuBar是否可见。true表示设置menuBar可见，false表示设置menuBar不可见。|
 
 
 **示例：**
@@ -8764,7 +8834,7 @@ setIconColor(color:Nullable<Color | number | string>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | ------- | ------- | ------- |
-| color | Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | 是 | 原子化服务图标的颜色，undefined代表使用默认颜色。 |
+| color | Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | 是 | 原子化服务图标的颜色，undefined代表使用默认颜色。number为HEX格式颜色，支持rgb或者argb，示例：0xffffff。string为rgb或者argb格式颜色，示例：'#ffffff'。 |
 
 
 **示例：**
@@ -9004,8 +9074,8 @@ activate(isActive: boolean, autoInactive?: boolean): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | ------- | ------- | ------- |
-| isActive| boolean| 是 | 设置是否进入/退出焦点激活态。 |
-| autoInactive | boolean | 否 | 设置焦点激活态退出逻辑。为true时，会自动在触摸事件、鼠标事件触发时退出，为false时，仅受开发者API控制。|
+| isActive| boolean| 是 | 设置是否进入/退出焦点激活态。<br/>true表示设置进入焦点激活态，false表示设置退出焦点激活态。 |
+| autoInactive | boolean | 否 | 设置焦点激活态退出逻辑。<br/>为true时，会自动在触摸事件、鼠标事件触发时退出，为false时，仅受开发者API控制。<br/>默认值：true |
 
 ```ts
 // 该示例表示在页面加载完成时进入焦点激活态，可按方向键在button间走焦
@@ -9603,7 +9673,7 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | builder  | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8)         | 是   | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。      |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是   | 截图返回结果的回调。支持在回调中获取离屏组件绘制区域坐标和大小。 |
-| delay<sup>12+</sup>   | number | 否    | 指定触发截图指令的延迟时间。当布局中使用了图片组件时，需要指定延迟时间，以便系统解码图片资源。资源越大，解码需要的时间越长，建议尽量使用不需要解码的PixelMap资源。<br/> 当使用PixelMap资源或对Image组件设置syncload为true时，可以配置delay为0，强制不等待触发截图。该延迟时间并非指接口从调用到返回的时间，由于系统需要对传入的builder进行临时离屏构建，因此返回的时间通常要比该延迟时间长。<br/>**说明：** 截图接口传入的builder中，不应使用状态变量控制子组件的构建，如果必须要使用，在调用截图接口时，也不应再有变化，以避免出现截图不符合预期的情况。<br/> 默认值：300 <br/> 单位：毫秒|
+| delay<sup>12+</sup>   | number | 否    | 指定触发截图指令的延迟时间。当布局中使用了图片组件时，需要指定延迟时间，以便系统解码图片资源。资源越大，解码需要的时间越长，建议尽量使用不需要解码的PixelMap资源。<br/> 当使用PixelMap资源或对Image组件设置syncload为true时，可以配置delay为0，强制不等待触发截图。该延迟时间并非指接口从调用到返回的时间，由于系统需要对传入的builder进行临时离屏构建，因此返回的时间通常要比该延迟时间长。<br/>**说明：** 截图接口传入的builder中，不应使用状态变量控制子组件的构建，如果必须要使用，在调用截图接口时，也不应再有变化，以避免出现截图不符合预期的情况。<br/> 默认值：300 <br/> 单位：毫秒 <br/> 取值范围：[0, +∞)，小于0时按默认值处理。 |
 | checkImageStatus<sup>12+</sup>  | boolean | 否    | 指定是否允许在截图之前，校验图片解码状态。如果为true，则会在截图之前检查所有Image组件是否已经解码完成，如果没有完成检查，则会放弃截图并返回异常。<br/>默认值：false|
 | options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12) | 否    | 截图相关的自定义参数。 |
 
@@ -9693,15 +9763,15 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 | 参数名  | 类型                                                 | 必填 | 说明                                                    |
 | ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------- |
 | builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | 是   | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。 |
+| delay<sup>12+</sup>   | number | 否    | 指定触发截图指令的延迟时间。当布局中使用了图片组件时，需要指定延迟时间，以便系统解码图片资源。资源越大，解码需要的时间越长，建议尽量使用不需要解码的PixelMap资源。<br/> 当使用PixelMap资源或对Image组件设置syncload为true时，可以配置delay为0，强制不等待触发截图。该延迟时间并非指接口从调用到返回的时间，由于系统需要对传入的builder进行临时离屏构建，因此返回的时间通常要比该延迟时间长。<br/>**说明：** 截图接口传入的builder中，不应使用状态变量控制子组件的构建，如果必须要使用，在调用截图接口时，也不应再有变化，以避免出现截图不符合预期的情况。<br/> 默认值：300 <br/> 单位：毫秒|
+| checkImageStatus<sup>12+</sup>  | boolean | 否    | 指定是否允许在截图之前，校验图片解码状态。如果为true，则会在截图之前检查所有Image组件是否已经解码完成，如果没有完成检查，则会放弃截图并返回异常。<br/>默认值：false|
+| options<sup>12+</sup>       | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)           | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
 
 | 类型                                                         | 说明             |
 | ------------------------------------------------------------ | ---------------- |
 | Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
-| delay<sup>12+</sup>   | number | 否    | 指定触发截图指令的延迟时间。当布局中使用了图片组件时，需要指定延迟时间，以便系统解码图片资源。资源越大，解码需要的时间越长，建议尽量使用不需要解码的PixelMap资源。<br/> 当使用PixelMap资源或对Image组件设置syncload为true时，可以配置delay为0，强制不等待触发截图。该延迟时间并非指接口从调用到返回的时间，由于系统需要对传入的builder进行临时离屏构建，因此返回的时间通常要比该延迟时间长。<br/>**说明：** 截图接口传入的builder中，不应使用状态变量控制子组件的构建，如果必须要使用，在调用截图接口时，也不应再有变化，以避免出现截图不符合预期的情况。<br/> 默认值：300 <br/> 单位：毫秒|
-| checkImageStatus<sup>12+</sup>  | boolean | 否    | 指定是否允许在截图之前，校验图片解码状态。如果为true，则会在截图之前检查所有Image组件是否已经解码完成，如果没有完成检查，则会放弃截图并返回异常。<br/>默认值：false|
-| options<sup>12+</sup>       | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)           | 否    | 截图相关的自定义参数。 |
 
 **错误码：** 
 
@@ -10156,7 +10226,7 @@ onFrame(frameTimeInNano: number): void
 
 | 参数名  | 类型                                                 | 必填 | 说明                                                    |
 | ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------- |
-| frameTimeInNano | number | 是   | 下一帧渲染开始执行的时间，以纳秒为单位。 |
+| frameTimeInNano | number | 是   | 下一帧渲染开始执行的时间，以纳秒为单位。<br/>取值范围：[0, +∞) |
 
 **示例：**
 
@@ -10212,7 +10282,7 @@ onIdle(timeLeftInNano: number): void
 
 | 参数名  | 类型                                                 | 必填 | 说明                                                    |
 | ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------- |
-| timeLeftInNano | number | 是   | 这一帧剩余的空闲时间。 |
+| timeLeftInNano | number | 是   | 这一帧剩余的空闲时间，以纳秒为单位。<br/>取值范围：[0, +∞) |
 
 **示例：**
 

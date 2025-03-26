@@ -414,7 +414,7 @@ getTypeDescriptor(typeId: string): TypeDescriptor
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| typeId    | string  | 是    |标准化数据类型ID。   |
+| typeId    | string  | 是    |[标准化数据类型ID](../../database/uniform-data-type-list.md#基础类型)。   |
 
 **返回值：**
 
@@ -469,7 +469,7 @@ getUniformDataTypeByFilenameExtension(filenameExtension: string, belongsTo?: str
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | filenameExtension    | string  | 是    |文件后缀名称。   |
-| belongsTo    | string  | 否    |要查询的标准化数据类型所归属类型ID，无默认值，若不传入此参数则只按照文件后缀名称查询标准化数据类型ID。   |
+| belongsTo    | string  | 否    |要查询的标准化数据类型所归属类型ID，无默认值，若不传入此参数则只按照文件后缀名称查询[标准化数据类型ID](../../database/uniform-data-type-list.md#基础类型)。   |
 
 **返回值：**
 
@@ -526,7 +526,7 @@ getUniformDataTypeByMIMEType(mimeType: string, belongsTo?: string): string
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | mimeType    | string  | 是    |MIME类型名称。   |
-| belongsTo    | string  | 否    |要查询的标准化数据类型所归属类型ID。无默认值，若不传入此参数则只按照MIME类型名称查询标准化数据类型ID。   |
+| belongsTo    | string  | 否    |要查询的标准化数据类型所归属类型ID。无默认值，若不传入此参数则只按照MIME类型名称查询[标准化数据类型ID](../../database/uniform-data-type-list.md#基础类型)。   |
 
 **返回值：**
 
@@ -583,7 +583,7 @@ getUniformDataTypesByFilenameExtension(filenameExtension: string, belongsTo?: st
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | filenameExtension    | string  | 是    |文件后缀名称。   |
-| belongsTo    | string  | 否    |要查询的标准化数据类型所归属类型ID，无默认值，若不传入此参数则只按照文件后缀名称查询标准化数据类型ID。   |
+| belongsTo    | string  | 否    |要查询的标准化数据类型所归属类型ID，无默认值，若不传入此参数则只按照文件后缀名称查询[标准化数据类型ID](../../database/uniform-data-type-list.md#基础类型)。   |
 
 **返回值：**
 
@@ -640,7 +640,7 @@ getUniformDataTypesByMIMEType(mimeType: string, belongsTo?: string): Array\<stri
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | mimeType    | string  | 是    |MIME类型名称。   |
-| belongsTo    | string  | 否    |要查询的标准化数据类型所归属类型ID。无默认值，若不传入此参数则只按照MIME类型名称查询标准化数据类型ID。   |
+| belongsTo    | string  | 否    |要查询的标准化数据类型所归属类型ID。无默认值，若不传入此参数则只按照MIME类型名称查询[标准化数据类型ID](../../database/uniform-data-type-list.md#基础类型)。   |
 
 **返回值：**
 
