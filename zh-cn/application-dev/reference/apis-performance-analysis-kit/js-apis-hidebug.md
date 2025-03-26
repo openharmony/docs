@@ -640,7 +640,10 @@ try {
 setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
 
 设置应用的fd数量、线程数量、js内存或者native内存资源限制。  
-**注意**：当设置的开发者选项开关打开并重启设备后,此功能有效。
+
+> **注意：**
+>
+> 当设置的开发者选项开关打开并重启设备后,此功能有效。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -841,7 +844,9 @@ try {
 
 描述支持trace使用场景的标签，用户可通过[hitrace](../../dfx/hitrace.md)中的命令行工具，抓取指定标签的trace内容以进行预览。
 
-**注意**：以下标签实际值由系统定义，可能随版本升级而发生改变，为避免升级后出现兼容性问题，在生产中应直接使用标签名称而非标签数值。
+> **注意：**
+>
+> 以下标签实际值由系统定义，可能随版本升级而发生改变，为避免升级后出现兼容性问题，在生产中应直接使用标签名称而非标签数值。
 
 **系统能力:** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -1004,7 +1009,9 @@ getGraphicsMemorySync(): number
 
 使用同步方式，获取应用显存大小。
 
-**注意**：该接口涉及多次跨进程通信，可能存在性能问题，推荐使用异步接口getGraphicsMemory。
+> **注意：**
+>
+> 该接口涉及多次跨进程通信，可能存在性能问题，推荐使用异步接口getGraphicsMemory。
 
 **原子化服务API**：从API version 14开始，该接口支持在原子化服务中使用。
 
