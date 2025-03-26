@@ -48,10 +48,10 @@ boolean, colorOptions?: ProgressButtonColorOptions, progressButtonRadius?: Lengt
 
 | 名称              | 类型                                     | 必填 | 说明                                                                |
 |-----------------|----------------------------------------|----|-------------------------------------------------------------------|
-| progressColor   | [ResourceColor](ts-types.md#ResourceColor) | 否  | 进度条颜色。<br/>默认值：#330A59F7                                          |
-| borderColor     | [ResourceColor](ts-types.md#ResourceColor) | 否  | 按钮描边颜色。<br/>默认值：#330A59F7                                         |
-| textColor       | [ResourceColor](ts-types.md#ResourceColor) | 否  | 按钮文本颜色。<br/>默认值：系统默认值                                             |
-| backgroundColor | [ResourceColor](ts-types.md#ResourceColor) | 否  | 按钮背景色。<br/>默认值：\$r('sys.color.ohos_id_color_foreground_contrary') |
+| progressColor   | [ResourceColor](ts-types.md#resourcecolor) | 否  | 进度条颜色。<br/>默认值：#330A59F7                                          |
+| borderColor     | [ResourceColor](ts-types.md#resourcecolor) | 否  | 按钮描边颜色。<br/>默认值：#330A59F7                                         |
+| textColor       | [ResourceColor](ts-types.md#resourcecolor) | 否  | 按钮文本颜色。<br/>默认值：系统默认值                                             |
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否  | 按钮背景色。<br/>默认值：\$r('sys.color.ohos_id_color_foreground_contrary') |
 
 ## 事件
 不支持[通用事件](ts-component-general-events.md)。
