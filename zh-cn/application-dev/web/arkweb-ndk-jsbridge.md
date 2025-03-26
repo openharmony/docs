@@ -66,7 +66,7 @@ ArkWeb Native侧得先获取API结构体，才能调用结构体里的Native API
   ```c++
   static ArkWeb_ControllerAPI *controller = nullptr;
   static ArkWeb_ComponentAPI *component = nullptr;
-  ...
+  // ...
   controller = reinterpret_cast<ArkWeb_ControllerAPI *>(OH_ArkWeb_GetNativeAPI(ARKWEB_NATIVE_CONTROLLER));
   component = reinterpret_cast<ArkWeb_ComponentAPI *>(OH_ArkWeb_GetNativeAPI(ARKWEB_NATIVE_COMPONENT));
   ```
