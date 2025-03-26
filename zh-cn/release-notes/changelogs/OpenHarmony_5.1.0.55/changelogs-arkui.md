@@ -268,7 +268,7 @@ blendMode 接口
 
 **适配指导**
 
-如果开发者希望在同时使用blendMode离屏模式和opacity接口时保持组件的不透明度不变，则需要手动调整原本设定的不透明度。例如，在下方示例代码中，在 Stack()上额外设置.opacity(0.5)，以确保实际的透明度为 0.5 * 0.5。
+如果开发者希望在同时使用blendMode离屏模式和opacity接口时保持组件的不透明度不变，则需要手动调整原本设定的不透明度。例如，在下方示例代码中，在 Stack()上额外设置.opacity(0.5)，以确保实际的不透明度为 0.5 * 0.5。
 
 ```ts
 @Entry
@@ -282,7 +282,7 @@ struct Index {
        .width('50%')
        .backgroundColor(0x0A59F7)
        .blendMode(BlendMode.SRC_OVER, BlendApplyType.OFFSCREEN)
-       .opacity(0.5)  // 变更后需要额外设置0.5的不透明度保证实际透明度为 0.5*0.5
+       .opacity(0.5)  // 变更后需要额外设置0.5的不透明度保证实际不透明度为 0.5*0.5
     }
     .height('100%')
     .width('100%')
