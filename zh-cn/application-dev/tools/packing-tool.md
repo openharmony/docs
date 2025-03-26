@@ -607,18 +607,18 @@ File available not found exception.
 2. 检查是否有程序（如压缩软件、文件管理器）占用文件，关闭相关进程后重试。
 3. 检查并调整文件的访问权限，例如当前用户可以读取、修改、删除文件。
 
-### 10016003 检查分发策略交集错误
+### 10016003 分发策略相交校验失败
 **错误信息**
 
 Check two distroFilter policy disjoint invalid.
 
 **错误描述**
 
-构建App包时，如果工程中存在多个Entry类型模块，并且这些模块`module.json5`中配置的`deviceTypes`存在交集时，检查其分发策略错误。
+[HAP唯一性校验](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-verification-rule)需要判断分发策略是否相交，由于分发策略配置错误，导致无法判断分发策略是否相交。
 
 **可能原因**
 
-分发策略`policy`和`value`标签为空，或无效值。
+分发策略`policy`、`value`标签为空或为无效值。
 
 **处理步骤**
 
