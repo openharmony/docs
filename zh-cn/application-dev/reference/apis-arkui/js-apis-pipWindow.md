@@ -124,6 +124,7 @@ let nodeController: TextNodeController = new TextNodeController('this is custom 
 let navId: string = "page_1"; // 假设当前页面的导航id为page_1，详见PiPConfiguration定义，具体导航名称由开发者自行定义。
 let contentWidth: number = 800; // 假设当前内容宽度800px。
 let contentHeight: number = 600; // 假设当前内容高度600px。
+let localStorage: LocalStorage = new LocalStorage();
 let config: PiPWindow.PiPConfiguration = {
   context: getContext(this),
   componentController: mXComponentController,
@@ -133,6 +134,7 @@ let config: PiPWindow.PiPConfiguration = {
   contentHeight: contentHeight,
   controlGroups: [PiPWindow.VideoPlayControlGroup.VIDEO_PREVIOUS_NEXT],
   customUIController: nodeController, // 可选，如果需要在画中画显示内容上方展示自定义UI，可设置该参数。
+  localStorage: localStorage, // 可选，如果需要跟踪主窗实例，可设置此参数。
 };
 
 let promise : Promise<PiPWindow.PiPController> = PiPWindow.create(config);
@@ -229,6 +231,7 @@ promise.then((data : PiPWindow.PiPController) => {
 | contentHeight       | number                                                                     | 否   | 原始内容高度，单位为px。用于确定画中画窗口比例。用于确定画中画窗口比例。当[使用typeNode的方式](#pipwindowcreate12)创建PiPController时，不传值则默认为1080。当[不使用typeNode的方式](#pipwindowcreate)创建PiPController时，不传值则默认为[XComponent](arkui-ts/ts-basic-components-xcomponent.md)组件的高度。                                                                 |
 | controlGroups<sup>12+</sup>       | Array<[PiPControlGroup](#pipcontrolgroup12)>                               | 否   | 画中画控制面板的可选控件组列表，应用可以对此进行配置以决定是否显示。如果应用没有配置，面板将显示基础控件（如视频播放控件组的播放/暂停控件）；如果应用选择配置，则最多可以选择三个控件。从API version 12开始支持此参数。                                                                                                                                                                                                                                                 |
 | customUIController<sup>12+</sup>      | [NodeController](js-apis-arkui-nodeController.md)           | 否   | 用于实现在画中画界面内容上方展示自定义UI功能。从API version 12开始支持此参数。                                                                                                                                                                                                                                                                                           |
+| localStorage<sup>17+</sup>      | [LocalStorage](../../quick-start/arkts-localstorage.md)           | 否   | 页面级别的UI状态存储单元，多实例下可用来跟踪主窗实例。从API version 17开始支持此参数。                                                                                                                                                                                                                                                                                           |
 
 ## PiPWindowSize<sup>15+</sup>
 
