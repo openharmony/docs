@@ -365,7 +365,7 @@ try {
     console.info('uninstallDLPSandbox event', info.appIndex, info.bundleName)
   }); // 订阅。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
