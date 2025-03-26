@@ -792,7 +792,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
 
   | 参数名            | 类型                       | 必填   | 说明    |
   | ------------- | ------------------------------- | ---- | -----  |
-  | subscribeInfo | [SubscribeInfo](#subscribeinfo) | 是   | 发现信息。|
+  | subscribeInfo | [SubscribeInfo](#subscribeinfo) | 是   | 发现信息。 |
   | filterOptions | string                          | 否   | 发现设备过滤信息。可选，默认为undefined，发现未上线设备。最大长度256字符。|
 
 **错误码：**
@@ -1372,7 +1372,7 @@ importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: st
 
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
-  | credentialInfo| string          | 是    | 导入凭据信息。字符串长度最大64000。       |
+  | credentialInfo| string          | 是    | 导入凭据信息。最大长度64000字符。       |
   | callback      | AsyncCallback<{resultInfo: string}>           | 是    | 导入凭据结果回调。 |
 
 **错误码：**
