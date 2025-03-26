@@ -9,7 +9,7 @@
 
 ## 前置条件
 
-业务应用在app.json5配置了一个群组ID：demo_group_id。
+在应用配置文件app.json5中，配置群组ID：demo_group_id。
 
 ```json
 {
