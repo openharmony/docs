@@ -1,6 +1,6 @@
 # 广告服务框架错误码
 
-> **说明：**
+> **说明：**<br/>
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
 
 ## 21800001 系统内部错误
@@ -85,7 +85,7 @@ Failed to parse the ad response.
 
 **错误信息**
 
-Invalid input parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed
+Invalid input parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.
 
 **错误描述**
 
