@@ -52,7 +52,7 @@ Provides the C APIs definition of the print module.
 
 | Name| Description|
 | -------- | -------- |
-| [Print_ErrorCode](#print_errorcode)[OH_Print_StartPrintByNative](#oh_print_startprintbynative) (const char \*printJobName, [Print_PrintDocCallback](_print___print_doc_callback.md) printDocCallback, void \*context) | Calls the API for opening the print preview page. |
+| [Print_ErrorCode](#print_errorcode) [OH_Print_StartPrintByNative](#oh_print_startprintbynative) (const char \*printJobName, [Print_PrintDocCallback](_print___print_doc_callback.md) printDocCallback, void \*context) | Calls the API for opening the print preview page. |
 
 
 ## Type Description
@@ -158,7 +158,7 @@ Enumerates the print job states.
 | PRINT_DOC_ADAPTER_PREVIEW_ABILITY_DESTROY  | Print preview page destroyed.  |
 | PRINT_DOC_ADAPTER_PRINT_TASK_SUCCEED  | Print job succeeded.  |
 | PRINT_DOC_ADAPTER_PRINT_TASK_FAIL  | Print job failed.  |
-| PRINT_DOC_ADAPTER_PRINT_TASK_CANCEL  | Print job canceled. |
+| PRINT_DOC_ADAPTER_PRINT_TASK_CANCEL  | Print job canceled.  |
 | PRINT_DOC_ADAPTER_PRINT_TASK_BLOCK  | Print job blocked.  |
 | PRINT_DOC_ADAPTER_PREVIEW_ABILITY_DESTROY_FOR_CANCELED  | Print preview page destroyed by clicking the cancel button.  |
 | PRINT_DOC_ADAPTER_PREVIEW_ABILITY_DESTROY_FOR_STARTED  | Print preview page destroyed by clicking the print button.  |
@@ -195,6 +195,6 @@ ohos.permission.PRINT
 
 **Print_ErrorCode#PRINT_ERROR_NONE**: The operation is successful.
 
-**PRINT_ERROR_NO_PERMISSION**: The **ohos.permission.PRINT** permission must be declared.
+**PRINT_ERROR_NO_PERMISSION**: The ohos.permission.PRINT permission must be declared.
 
 **PRINT_ERROR_RPC_FAILURE**: Failed to connect to the print service.
