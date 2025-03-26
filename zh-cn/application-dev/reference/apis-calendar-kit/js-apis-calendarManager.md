@@ -5,7 +5,7 @@
 - 日历管理器[CalendarManager](#calendarmanager)用于管理日历[Calendar](#calendar)。
 
 - 日历[Calendar](#calendar)主要包含账户信息[CalendarAccount](#calendaraccount)和配置信息[CalendarConfig](#calendarconfig)。日历Calendar与日程Event属于从属关系，需要先创建日历Calendar对象，然后再通过日历Calendar创建日程Event对象，一个Calendar可以有多个Event，一个Event只属于一个Calendar。日历管理器是对日历的管理，日程过滤器是对日程的管理。
-x
+
 > **说明：**
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -587,7 +587,7 @@ editEvent(event: Event): Promise\<number>
 
 | 类型           | 说明                                                                          |
 | -------------- |-----------------------------------------------------------------------------|
-| Promise&lt;number&gt; | Promise对象，返回日程的id，日程id是日程的唯一标识符，是数据库的自增主键，0于0代表日程创建失败，大于0代表日程创建成功，没有等于0的情况。 |
+| Promise&lt;number&gt; | Promise对象，返回日程的id，日程id是日程的唯一标识符，是数据库的自增主键，小于0代表日程创建失败，大于0代表日程创建成功，没有等于0的情况。 |
 
 **示例**：
 
