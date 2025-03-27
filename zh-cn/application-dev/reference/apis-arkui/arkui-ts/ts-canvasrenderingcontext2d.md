@@ -1750,7 +1750,7 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
 | radius           | number  | 是  | 弧线的圆半径。<br>默认单位：vp。 |
 | startAngle       | number  | 是  | 弧线的起始弧度。<br>单位：弧度 |
 | endAngle         | number  | 是  | 弧线的终止弧度。<br>单位：弧度 |
-| counterclockwise | boolean | 否  | 是否逆时针绘制圆弧。<br>true:逆时针方向绘制椭圆。<br>false:顺时针方向绘制椭圆。<br>默认值：false。 |
+| counterclockwise | boolean | 否  | 是否逆时针绘制圆弧。<br>true:逆时针方向绘制圆弧。<br>false:顺时针方向绘制圆弧。<br>默认值：false。 |
 
 **示例：**
 
