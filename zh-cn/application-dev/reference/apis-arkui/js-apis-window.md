@@ -6019,7 +6019,7 @@ windowClass.snapshot((err: BusinessError, pixelMap: image.PixelMap) => {
 
 snapshot(): Promise&lt;image.PixelMap&gt;
 
-获取窗口截图，使用Promise异步回调。
+获取当前窗口截图。若当前窗口设置为隐私模式（可通过[setWindowPrivacyMode](#setwindowprivacymode9)接口设置），截图结果为白屏。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -6046,6 +6046,46 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
 let promise = windowClass.snapshot();
+promise.then((pixelMap: image.PixelMap) => {
+  console.info('Succeeded in snapshotting window. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+  pixelMap.release(); // PixelMap使用完后及时释放内存
+}).catch((err: BusinessError) => {
+  console.error(`Failed to snapshot window. Cause code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### snapshotIgnorePrivacy<sup>18+</sup>
+
+snapshotIgnorePrivacy(): Promise&lt;image.PixelMap&gt;
+
+获取当前窗口截图。即使当前窗口设置为隐私模式（可通过[setWindowPrivacyMode](#setwindowprivacymode9)接口设置），仍可调用本接口返回当前窗口截图。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise对象。返回当前窗口截图。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 801     | Capability not supported on this device. |
+| 1300002 | This window state is abnormal. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
+
+let promise = windowClass.snapshotIgnorePrivacy();
 promise.then((pixelMap: image.PixelMap) => {
   console.info('Succeeded in snapshotting window. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
   pixelMap.release(); // PixelMap使用完后及时释放内存
