@@ -2371,19 +2371,22 @@
             - [AttributeUpdater](reference/apis-arkui/js-apis-arkui-AttributeUpdater.md)
             - [Content](reference/apis-arkui/js-apis-arkui-Content.md)
             - [NodeContent](reference/apis-arkui/js-apis-arkui-NodeContent.md)
-        - 图形图像<!--arkui-graphics-images-->
-          - [@ohos.display (屏幕属性)](reference/apis-arkui/js-apis-display.md)
+        - 窗口管理<!--window-manager-api-->
           - [@ohos.PiPWindow (画中画窗口)](reference/apis-arkui/js-apis-pipWindow.md)
           - [@ohos.window (窗口)](reference/apis-arkui/js-apis-window.md)
-          - [@ohos.screenshot (屏幕截图)](reference/apis-arkui/js-apis-screenshot.md)
           <!--Del-->
           - [@ohos.animation.windowAnimationManager (窗口动画管理)(系统接口)](reference/apis-arkui/js-apis-windowAnimationManager-sys.md)
           - [@ohos.application.WindowExtensionAbility (窗口扩展能力)(系统接口)](reference/apis-arkui/js-apis-application-windowExtensionAbility-sys.md)
+          - [@ohos.window (窗口)(系统接口)](reference/apis-arkui/js-apis-window-sys.md)
+          - [WindowExtensionContext (系统接口)](reference/apis-arkui/js-apis-inner-application-windowExtensionContext-sys.md)
+          <!--DelEnd-->
+        - 屏幕管理<!--display-manager-api-->
+          - [@ohos.display (屏幕属性)](reference/apis-arkui/js-apis-display.md)
+          - [@ohos.screenshot (屏幕截图)](reference/apis-arkui/js-apis-screenshot.md)
+          <!--Del-->
           - [@ohos.display (屏幕属性)(系统接口)](reference/apis-arkui/js-apis-display-sys.md)
           - [@ohos.screen (屏幕)(系统接口)](reference/apis-arkui/js-apis-screen-sys.md)
           - [@ohos.screenshot (屏幕截图)(系统接口)](reference/apis-arkui/js-apis-screenshot-sys.md)
-          - [@ohos.window (窗口)(系统接口)](reference/apis-arkui/js-apis-window-sys.md)
-          - [WindowExtensionContext (系统接口)](reference/apis-arkui/js-apis-inner-application-windowExtensionContext-sys.md)
           <!--DelEnd-->
         - 已停止维护的接口<!--arkui-arkts-dep-->
           - [@ohos.prompt (弹窗)](reference/apis-arkui/js-apis-prompt.md)
