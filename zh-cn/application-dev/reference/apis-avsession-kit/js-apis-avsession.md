@@ -2098,7 +2098,7 @@ currentAVSession.on('setLoopMode', (mode: avSession.LoopMode) => {
 
 ### on('setTargetLoopMode')<sup>18+</sup>
 
-on(type: 'setTargetLoopMode', callback: Callback\<LoopMode>): void;
+on(type: 'setTargetLoopMode', callback: Callback\<LoopMode>): void
 
 设置目标循环模式的监听事件。
 
@@ -2668,7 +2668,7 @@ currentAVSession.off('setLoopMode');
 
 ### off('setTargetLoopMode')<sup>18+</sup>
 
-off(type: 'setTargetLoopMode', callback?: Callback\<LoopMode>): void;
+off(type: 'setTargetLoopMode', callback?: Callback\<LoopMode>): void
 
 取消监听目标循环模式变化事件。
 
@@ -8328,7 +8328,7 @@ type AVControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevio
 |'answer'          | 接听。        |
 | 'hangUp'         | 挂断。        |
 |'toggleCallMute'  | 设置通话静音状态。 |
-| 'setTargetLoopMode'    | 设置目标循环模式。 |
+| 'setTargetLoopMode' <sup>18+</sup>   | 设置目标循环模式。 |
 
 ## AVControlCommand<sup>10+</sup>
 
