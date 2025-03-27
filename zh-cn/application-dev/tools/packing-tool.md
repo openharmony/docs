@@ -4,6 +4,11 @@
 
 打包工具支持生成：Ability类型的模块包（HAP）、动态共享包（HSP）、应用程序包（App）、快速修复模块包（HQF）、快速修复包（APPQF）。
 
+打包指令中的文件来源于[DevEco Studio编译构建产物](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-compile-build)，文件路径查看操作如下。<br/>
+1. 在DevEco Studio工程根目录下的/hvigor/hvigor-config.json5文件中，修改"logging"下的"level"字段为"debug"。<br/>
+2. 在DevEco Studio菜单栏，依次选择"构建 -> 清理项目"。<br/>
+3. 在DevEco Studio菜单栏，依次选择"构建 -> 构建APP(s)"。<br/>
+4. 在DevEco Studio底部"构建"窗口，搜索"app_packing_tool.jar"，确认打包参数中文件的路径。<br/>
 
 ## 约束与限制
 
@@ -47,8 +52,8 @@
 | --ets-path       | 否         | NA            | 存放ets文件目录路径。                                        | 仅stage模型生效 |
 | --out-path       | 是         | NA            | 目标文件路径，文件名必须以.hap为后缀。                       | NA              |
 | --force          | 否         | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。  | NA              |
-| --an-path        | 否         | NA            | 存放an文件的路径。                                           | 仅stage模型生效 |
-| --ap-path        | 否         | NA            | 存放ap文件的路径。                                           | 仅stage模型生效 |
+| --an-path        | 否         | NA            | 存放[an文件](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs-V5/faqs-arkts-52-V5)的路径。| 仅stage模型生效 |
+| --ap-path        | 否         | NA            | 存放[ap文件](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs-V5/faqs-arkts-52-V5)的路径。| 仅stage模型生效 |
 | --dir-list       | 否         | NA            | 可指定目标文件夹列表，将其打入HAP包内。                      | NA              |
 | --compress-level | 否         | number        | 压缩等级，默认值1，可选等级1-9。在应用配置compressNativeLibs参数为true的情况下生效，数值越大压缩率越高、压缩速度越慢。 | NA  |
 | --pkg-context-path      | 否         | NA            | 可指定语境信息表文件路径，文件名必须为pkgContextInfo.json。 | 仅stage模型生效              |
@@ -184,7 +189,7 @@ java -jar app_packing_tool.jar --mode appqf --hqf-list <path> --out-path <path> 
 | 指令         | 是否必选项 | 选项          | 描述                                 |
 |------------|-------|-------------|------------------------------------|
 | --mode     | 是     | appqf       | 打包类型。                              |
-| --hqf-list | 是     | NA          | HQF文件路径，多个HQF以英文逗号隔开。              |
+| --hqf-list | 是     | NA          | [HQF文件](packing-tool.md#hqf打包指令)路径，多个HQF以英文逗号隔开。              |
 | --out-path | 是     | NA          | 目标文件路径，文件名必须以.appqf为后缀。            |
 | --force    | 否     | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。 |
 
