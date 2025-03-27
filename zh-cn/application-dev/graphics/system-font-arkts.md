@@ -81,10 +81,9 @@
      }
    }
    ```
+  以下打印的示例为应用设备系统对应的部分系统字体配置信息情况，不同设备系统配置信息可能不同，此处仅示意。
 
-## 效果展示
-
-![zh-cn_image_0000002211603664](figures/zh-cn_image_0000002211603664.png)
+  ![zh-cn_image_0000002211603664](figures/zh-cn_image_0000002211603664.png)
 
 ## 使用或切换系统字体
 
@@ -145,6 +144,6 @@
    let paragraph = ParagraphGraphBuilder.build()
    ```
 
-## 效果展示
+效果展示如下：
 
 ![zh-cn_image_0000002246563829](figures/zh-cn_image_0000002246563829.png)
