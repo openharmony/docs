@@ -8513,7 +8513,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setWindowShadowRadius<sup>18+</sup>
+### setWindowShadowRadius<sup>17+</sup>
 
 setWindowShadowRadius(radius: number): void
 
@@ -8521,7 +8521,7 @@ setWindowShadowRadius(radius: number): void
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -8550,7 +8550,7 @@ try {
 }
 ```
 
-### setWindowCornerRadius<sup>18+</sup>
+### setWindowCornerRadius<sup>17+</sup>
 
 setWindowCornerRadius(cornerRadius: number): Promise&lt;void&gt;
 
@@ -8564,7 +8564,7 @@ setWindowCornerRadius(cornerRadius: number): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.Window.SessionManager
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -8608,7 +8608,7 @@ try{
 
 ```
 
-### getWindowCornerRadius<sup>18+</sup>
+### getWindowCornerRadius<sup>17+</sup>
 
 getWindowCornerRadius(): number
 
@@ -8618,7 +8618,7 @@ getWindowCornerRadius(): number
 
 **系统能力**：SystemCapability.Window.SessionManager
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -12191,6 +12191,8 @@ setWindowRectAutoSave(enabled: boolean): Promise&lt;void&gt;
 
 设置主窗的尺寸记忆是否启用，使用Promise异步回调，仅对2in1设备生效。
 
+调用此接口默认[specified启动模式](../../../application-dev/application-models/uiability-launch-type.md#specified启动模式)下不会单独对窗口进行单独记忆。
+
 主窗口调用该接口时，设置主窗口的尺寸记忆是否启用。启用主窗口尺寸记忆功能后，在同一个UIAbility下，记忆最后关闭的窗口的尺寸和模式。
 
 窗口再次启动时，以记忆的尺寸和模式按照规则进行打开。
@@ -12251,6 +12253,81 @@ export default class EntryAbility extends UIAbility {
     console.info('onWindowStageCreate');
     try {
       let promise = windowStage.setWindowRectAutoSave(true);
+      promise.then(() => {
+        console.info('Succeeded in setting window rect auto-save');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to set window rect auto-save. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    } catch (exception) {
+      console.error(`Failed to set window rect auto-save. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+}
+```
+
+### setWindowRectAutoSave<sup>17+</sup>
+
+setWindowRectAutoSave(enabled: boolean, isSaveBySpecifiedFlag: boolean): Promise&lt;void&gt;
+
+设置主窗的尺寸记忆是否启用，使用Promise异步回调，仅对2in1设备生效。
+
+主窗口调用该接口时，通过enabled来设置主窗口的尺寸记忆是否启用，同时通过isSaveBySpecifiedFlag设置来使能/去使能在specified模式下对窗口进行单独记忆。
+
+启用主窗口尺寸和specified记忆功能后，记忆窗口关闭时的尺寸和模式；窗口再次启动时，以记忆的尺寸和模式按照规则进行打开。
+
+记忆规则：
+|上一次窗口状态|记忆规则|
+|-------------|-------|
+|自由窗口|保留自由窗口的大小/位置，超出工作区回弹。|
+|二分屏窗口|保留二分屏之前自由窗口的大小/位置。|
+|最大化窗口|保留最大化。|
+|沉浸式窗口|保留沉浸式之前自由窗口的大小/位置。|
+|最小化窗口|保留最小化之前自由窗口的大小/位置。|
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                                          |
+| --------- | ------- | ---- | --------------------------------------------- |
+| enabled | boolean | 是   | 设置主窗口的尺寸记忆是否启用，true为启用，false为不启用。 |
+| isSaveBySpecifiedFlag | boolean | 是   | 设置specified模式下是否启用对窗口进行单独记忆，true为启用，false为不启用。 |
+
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801      | Capability not supported. Function setWindowRectAutoSave can not work correctly due to limited device capabilities. |
+| 1300002  | This window state is abnormal. |
+| 1300003  | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    try {
+      let promise = windowStage.setWindowRectAutoSave(true, true);
       promise.then(() => {
         console.info('Succeeded in setting window rect auto-save');
       }).catch((err: BusinessError) => {
