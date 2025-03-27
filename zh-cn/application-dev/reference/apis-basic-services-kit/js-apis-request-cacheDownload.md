@@ -18,7 +18,7 @@ request部件主要给应用提供上传下载文件、后台传输代理的基�
 import { cacheDownload } from '@kit.BasicServicesKit';
 ```
 
-## cacheDownload.CacheDownloadOptions
+## CacheDownloadOptions
 
 缓存下载的配置选项。例如：HTTP选项、传输选项、任务选项等。
 
@@ -51,7 +51,7 @@ download(url: string, options: CacheDownloadOptions)
 | 参数名     | 类型                                                         | 必填 | 说明                             |
 |---------|------------------------------------------------------------|----|--------------------------------|
 | url     | string                                                     | 是  | 目标资源的地址。仅支持HTTP协议，长度不超过8192字节。 |
-| options | [CacheDownloadOptions](#cachedownloadcachedownloadoptions) | 是  | 目标资源的缓存下载选项。                   |
+| options | [CacheDownloadOptions](#cachedownloadoptions) | 是  | 目标资源的缓存下载选项。                   |
 
 **错误码：**
 
@@ -59,8 +59,8 @@ download(url: string, options: CacheDownloadOptions)
 
 | 错误码ID    | 错误信息                                                                                                                                      |
 |----------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| 201      | the permissions check fails.                                                                                                              |
-| 401      | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+| 201      | permission denied.                                                                                                              |
+| 401      | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -102,7 +102,7 @@ cancel(url: string)
 
 | 错误码ID    | 错误信息                                                                                                                                      |
 |----------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| 401      | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+| 401      | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -153,7 +153,7 @@ setMemoryCacheSize(bytes: number)
 
 | 错误码ID    | 错误信息                                                                                                                                      |
 |----------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| 401      | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+| 401      | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -192,7 +192,7 @@ setFileCacheSize(bytes: number)
 
 | 错误码ID    | 错误信息                                                                                                                                      |
 |----------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| 401      | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+| 401      | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 

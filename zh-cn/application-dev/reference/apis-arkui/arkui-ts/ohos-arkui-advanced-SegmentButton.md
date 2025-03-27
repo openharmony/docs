@@ -50,7 +50,7 @@ SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[], onItem
 | 名称                  | 类型                                                         | 必填                                                     | 说明                                                       |
 | ----------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | type                    | 'tab' \| 'capsule'                                       | 是                                        | 分段按钮的类型。                                             |
-| multiply                | boolean                                                      | 是                                                   | 是否可以多选。<br/>**说明：**<br/>页签类分段按钮只支持单选，设置`multiply`为`true`不生效。 |
+| multiply                | boolean                                                      | 是                                                   | 是否可以多选。<br/>**说明：**<br/>默认值：false。<br>true:可多选；false:不可多选。页签类分段按钮只支持单选，设置`multiply`为`true`不生效。 |
 | buttons                 | [SegmentButtonItemOptionsArray](#segmentbuttonitemoptionsarray) | 是 | 按钮信息，包括图标和文本信息。                               |
 | fontColor               | [ResourceColor](ts-types.md#resourcecolor)                   | 是                | 按钮未选中态的文本颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_secondary') |
 | selectedFontColor       | [ResourceColor](ts-types.md#resourcecolor)                   | 是                | 按钮选中态的文本颜色。<br/>type为"tab"时，默认值为`$r('sys.color.ohos_id_color_text_primary')`。<br/>type为"capsule"时，默认值为`$r('sys.color.ohos_id_color_foreground_contrary')`。 |

@@ -35,10 +35,10 @@ Toggle(options: ToggleOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型                              | 必填 | 说明                                                         |
-| ---- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| type | [ToggleType](#toggletype枚举说明) | 是   | 开关的样式。<br/>默认值：ToggleType.Switch                   |
-| isOn | boolean                           | 否   | 开关是否打开，true：打开，false：关闭。<br/>默认值：false<br />该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| 名称              | 类型                              | 必填 | 说明                                                         |
+| ----------------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| type<sup>8+</sup> | [ToggleType](#toggletype枚举说明) | 是   | 开关的样式。<br/>默认值：ToggleType.Switch<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| isOn<sup>8+</sup> | boolean                           | 否   | 开关是否打开，true：打开，false：关闭。<br/>默认值：false<br />该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br />该属性支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## ToggleType枚举说明
 
@@ -134,10 +134,10 @@ contentModifier(modifier: ContentModifier\<ToggleConfiguration>)
 
 | 名称              | 类型                                        | 必填 | 说明                                                         |
 | ----------------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| pointRadius       | number \|  [Resource](ts-types.md#resource) | 否   | 设置Switch类型的圆形滑块半径。<br />**说明：**<br/>不支持百分比，设定值小于0时按照默认算法设置，设定值大于等于0时按照设定值设置。<br/>未设定此属性时，圆形滑块半径根据默认算法设置。<br/>默认算法：（组件高度（单位：vp） / 2） - （2vp * 组件高度（单位：vp） / 20vp）。 |
+| pointRadius       | number \|  [Resource](ts-types.md#resource) | 否   | 设置Switch类型的圆形滑块半径，单位为vp。<br />**说明：**<br/>不支持百分比，设定值小于0时按照默认算法设置，设定值大于等于0时按照设定值设置。<br/>未设定此属性时，圆形滑块半径根据默认算法设置。<br/>默认算法：（组件高度（单位：vp） / 2） - （2vp * 组件高度（单位：vp） / 20vp）。 |
 | unselectedColor   | [ResourceColor](ts-types.md#resourcecolor)  | 否   | 设置Switch类型关闭状态的背景颜色。<br />默认值：0x337F7F7F。 |
 | pointColor        | [ResourceColor](ts-types.md#resourcecolor)  | 否   | 设置Switch类型的圆形滑块颜色。<br />默认值：$r('sys.color.ohos_id_color_foreground_contrary') |
-| trackBorderRadius | number \|  [Resource](ts-types.md#resource) | 否   | 设置Switch类型的滑轨的圆角。<br />**说明：**<br/>不支持百分比，设定值小于0时按照默认算法设置，设定值大于组件高度一半时按照组件高度一半设置，其他场合按照设定值设置。<br/>未设定此属性时，滑轨圆角根据默认算法设置。<br/>默认算法：组件高度（单位：vp） / 2。 |
+| trackBorderRadius | number \|  [Resource](ts-types.md#resource) | 否   | 设置Switch类型的滑轨的圆角，单位为vp。<br />**说明：**<br/>不支持百分比，设定值小于0时按照默认算法设置，设定值大于组件高度一半时按照组件高度一半设置，其他场合按照设定值设置。<br/>未设定此属性时，滑轨圆角根据默认算法设置。<br/>默认算法：组件高度（单位：vp） / 2。 |
 
 ## 事件
 

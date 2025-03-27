@@ -178,7 +178,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | Type               | Description         |
 | ------------------- | ------------- |
-| Promise\<**void**\> | Promise used to return the result.|
+| Promise\<void\> | Promise used to return the result.|
 
 **Example**
 
@@ -196,7 +196,7 @@ usbManager.setCurrentFunctions(funcs).then(() => {
 
 getCurrentFunctions(): FunctionType
 
-Obtains the numeric mask combination for the USB function list in Device mode.
+Obtains the numeric mask combination for the USB function list in Device mode. When the developer mode is disabled, **undefined** may be returned if no device is connected. Check whether the return value of the API is empty.
 
 **NOTE**
 
@@ -231,7 +231,7 @@ let ret: number = usbManager.getCurrentFunctions();
 
 getPorts(): Array\<USBPort\>
 
-Obtains the list of all physical USB ports.
+Obtains the list of all physical USB ports. When the developer mode is disabled, **undefined** may be returned if no device is connected. Check whether the return value of the API is empty.
 
 **NOTE**
 
@@ -270,7 +270,7 @@ Obtains the mask combination for the supported mode list of a given USB port.
 
 **NOTE**
 
-> This API is supported since API version 9 and deprecated since API version 12. You are advised to use [getPortSupportModes](#getportlist12).
+> This API is supported since API version 9 and deprecated since API version 12. You are advised to use [getPortSupportModes](#getportsupportmodes12) instead.
 
 **System API**: This is a system API.
 
@@ -337,7 +337,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | Type               | Description         |
 | ------------------- | ------------- |
-| Promise\<**void**\> | Promise used to return the result.|
+| Promise\<void\> | Promise used to return the result.|
 
 **Example**
 
@@ -385,6 +385,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
+| 801      | Capability not supported.                                    |
 
 **Return value**
 
@@ -448,6 +449,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api. |
+| 801      | Capability not supported.                                    |
 
 **Return value**
 
@@ -493,6 +495,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
+| 801      | Capability not supported.                                    |
 
 **Return value**
 
@@ -538,6 +541,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
+| 801      | Capability not supported.                                    |
 | 14400002 | Permission denied. The HDC is disabled by the system.                                                   |
 | 14400006 | Unsupported operation. The function is not supported.                                                   |
 
@@ -545,7 +549,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | Type               | Description         |
 | ------------------- | ------------- |
-| Promise\<**void**\> | Promise used to return the result.|
+| Promise\<void\> | Promise used to return the result.|
 
 **Example**
 
@@ -563,7 +567,7 @@ usbManager.setDeviceFunctions(funcs).then(() => {
 
 getDeviceFunctions(): FunctionType
 
-Obtains the numeric mask combination for the USB function list in Device mode.
+Obtains the numeric mask combination for the USB function list in Device mode. When the developer mode is disabled, **undefined** may be returned if no device is connected. Check whether the return value of the API is empty.
 
 **NOTE**
 
@@ -584,6 +588,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | 401      | Parameter error. No parameters are required.                                    |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api. |
+| 801      | Capability not supported.                                    |
 
 **Return value**
 
@@ -601,7 +606,7 @@ let ret: number = usbManager.getDeviceFunctions();
 
 getPortList(): Array\<USBPort\>
 
-Obtains the list of all physical USB ports.
+Obtains the list of all physical USB ports. When the developer mode is disabled, **undefined** may be returned if no device is connected. Check whether the return value of the API is empty.
 
 **NOTE**
 
@@ -621,6 +626,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | -------- | ------------------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
+| 801      | Capability not supported.                                    |
 
 **Return value**
 
@@ -661,6 +667,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
+| 801      | Capability not supported.                                    |
 
 **Return value**
 
@@ -671,7 +678,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 **Example**
 
 ```ts
-let ret: number = usbManager.getSupportedModes(0);
+let ret: number = usbManager.getPortSupportModes(0);
 ```
 
 ## setPortRoleTypes<sup>12+</sup>
@@ -707,13 +714,14 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
+| 801      | Capability not supported.                                    |
 | 14400003 | Unsupported operation. The current device does not support port role switching.                         |
 
 **Return value**
 
 | Type               | Description         |
 | ------------------- | ------------- |
-| Promise\<**void**\> | Promise used to return the result.|
+| Promise\<void\> | Promise used to return the result.|
 
 **Example**
 
@@ -727,9 +735,9 @@ usbManager.setPortRoleTypes(portId, usbManager.PowerRoleType.SOURCE, usbManager.
 });
 ```
 
-## addAccessoryRight<sup>14+<sup>
+## addAccessoryRight<sup>14+</sup>
 
-addAccessoryRight(tokenId: number, accessory: USBAccessory): void;
+addAccessoryRight(tokenId: number, accessory: USBAccessory): void
 
 Adds the permission to applications for accessing USB accessories.
 
@@ -757,6 +765,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | 201      | The permission check failed.                                 |
 | 202      | Permission denied. Normal application do not have permission to use system api. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801      | Capability not supported.                                    |
 | 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
 | 14400005 | Database operation exception.                                |
 

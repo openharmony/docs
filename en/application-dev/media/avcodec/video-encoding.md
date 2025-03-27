@@ -167,7 +167,7 @@ The sample code provided in this section adheres to the C++17 standard and is fo
     };
     ```
 
-4. Define global variables.
+4. Configure global variables.
 
     These global variables are for reference only. They can be encapsulated into an object based on service requirements.
 
@@ -569,9 +569,7 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
 
 16. (Optional) Call **OH_VideoEncoder_Stop()** to stop the encoder.
 
-    After **OH_VideoEncoder_Stop** is called, the encoder retains the encoding instance and releases the input and output buffers. You can directly call **OH_VideoEncoder_Start** to continue encoding.
-
-    The first **buffer** passed must carry the parameter set, starting from the IDR frame.
+    After **OH_VideoEncoder_Stop** is called, the encoder retains the encoding instance and releases the input and output buffers. You can directly call **OH_VideoEncoder_Start** to continue encoding. The first **buffer** passed must carry the parameter set, starting from the IDR frame.
 
     ```c++
     std::unique_lock<std::shared_mutex> lock(codecMutex);

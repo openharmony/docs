@@ -729,7 +729,7 @@ typedef enum {
 ```
 
 **描述：**
-表示QoS的枚举值，QoS决定了线程调度的优先级
+表示QoS的枚举值，QoS决定了线程调度的优先级。
 
 ### napi_event_mode
 

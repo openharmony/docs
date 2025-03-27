@@ -251,12 +251,13 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 | 名称 | 描述 |
 | -------- | -------- |
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_PathGetSegment](#oh_drawing_pathgetsegment) ([OH_Drawing_Path](#oh_drawing_path) \*path, bool forceClosed, float start, float stop, bool startWithMoveTo, [OH_Drawing_Path](#oh_drawing_path) \*dst, bool \*result) | 截取路径的片段并追加到目标路径上。  | 
 | [OH_Drawing_PathEffect](#oh_drawing_patheffect) \* [OH_Drawing_CreateSumPathEffect](#oh_drawing_createsumpatheffect) ([OH_Drawing_PathEffect](#oh_drawing_patheffect) \*firstPathEffect, [OH_Drawing_PathEffect](#oh_drawing_patheffect) \*secondPathEffect) | 创建一个使用两种路径效果分别生效后叠加的路径效果对象。  |
 | [OH_Drawing_PathEffect](#oh_drawing_patheffect) \* [OH_Drawing_CreatePathDashEffect](#oh_drawing_createpathdasheffect) (const [OH_Drawing_Path](#oh_drawing_path) \*path, float advance, float phase, [OH_Drawing_PathDashStyle](#oh_drawing_pathdashstyle) type) | 创建一个虚线效果的路径效果对象。  |
 | [OH_Drawing_PathEffect](#oh_drawing_patheffect) \* [OH_Drawing_CreateDiscretePathEffect](#oh_drawing_creatediscretepatheffect) (float segLength, float deviation) | 创建一种将路径打散并且在路径上产生不规则分布的路径效果对象。  | 
 | [OH_Drawing_PathEffect](#oh_drawing_patheffect) \* [OH_Drawing_CreateCornerPathEffect](#oh_drawing_createcornerpatheffect) (float radius) | 创建一个将路径的夹角变成指定半径的圆角的路径效果对象。  | 
 | [OH_Drawing_PathEffect](#oh_drawing_patheffect) \* [OH_Drawing_CreateComposePathEffect](#oh_drawing_createcomposepatheffect) ([OH_Drawing_PathEffect](#oh_drawing_patheffect) \*outer, [OH_Drawing_PathEffect](#oh_drawing_patheffect) \*inner) | 创建路径组合的路径效果对象。首先应用内部路径效果，然后应用外部路径效果。  | 
-| [OH_Drawing_GpuContext](#oh_drawing_gpucontext) \* [OH_Drawing_GpuContextCreate](#oh_drawing_gpucontextcreate) () | 用于创建一个图形处理器上下文对象, 使用的后端类型取决于运行设备。  | 
+| [OH_Drawing_GpuContext](#oh_drawing_gpucontext) \* [OH_Drawing_GpuContextCreate](#oh_drawing_gpucontextcreate) (void) | 用于创建一个图形处理器上下文对象, 使用的后端类型取决于运行设备。  | 
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_CanvasDrawArcWithCenter](#oh_drawing_canvasdrawarcwithcenter) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*canvas, const [OH_Drawing_Rect](#oh_drawing_rect) \*rect, float startAngle, float sweepAngle, bool useCenter) | 绘制一段圆弧。该方法允许指定圆弧的起始角度、扫描角度以及圆弧的起点和终点是否连接圆弧的中心点。  | 
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_CanvasDrawNestedRoundRect](#oh_drawing_canvasdrawnestedroundrect) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*canvas, const [OH_Drawing_RoundRect](#oh_drawing_roundrect) \*outer, const [OH_Drawing_RoundRect](#oh_drawing_roundrect) \*inner) | 绘制两个嵌套的圆角矩形，外部矩形边界必须包含内部矩形边界，否则无绘制效果。| 
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_CanvasQuickRejectPath](#oh_drawing_canvasquickrejectpath) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*canvas, const [OH_Drawing_Path](#oh_drawing_path) \*path, bool \*quickReject) | 判断路径与画布区域是否不相交。画布区域包含边界。  | 
@@ -655,9 +656,9 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_TextStyleGetBackgroundPen](#oh_drawing_textstylegetbackgroundpen) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, [OH_Drawing_Pen](#oh_drawing_pen) \*) | 返回设置的背景色画笔。 |
 | [OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) \* [OH_Drawing_CreateTypographyHandler](#oh_drawing_createtypographyhandler) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, [OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*) | 创建指向OH_Drawing_TypographyCreate对象的指针。不再需要[OH_Drawing_TypographyCreate](#oh_drawing_typographycreate)时，请使用[OH_Drawing_DestroyTypographyHandler](#oh_drawing_destroytypographyhandler)接口释放该对象的指针。 |
 | void [OH_Drawing_DestroyTypographyHandler](#oh_drawing_destroytypographyhandler) ([OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) \*) | 释放被OH_Drawing_TypographyCreate对象占据的内存。 |
-| void [OH_Drawing_TypographyHandlerPushTextStyle](#oh_drawing_typographyhandlerpushtextstyle) ([OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) \*, [OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 设置排版风格。 |
+| void [OH_Drawing_TypographyHandlerPushTextStyle](#oh_drawing_typographyhandlerpushtextstyle) ([OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) \*, [OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 将指定文本样式压入文本样式栈，后续添加的文本总是会使用栈顶的文本样式。 |
 | void [OH_Drawing_TypographyHandlerAddText](#oh_drawing_typographyhandleraddtext) ([OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) \*, const char \*) | 设置文本内容。 |
-| void [OH_Drawing_TypographyHandlerPopTextStyle](#oh_drawing_typographyhandlerpoptextstyle) ([OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) \*) | 排版弹出。 |
+| void [OH_Drawing_TypographyHandlerPopTextStyle](#oh_drawing_typographyhandlerpoptextstyle) ([OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) \*) | 从文本样式栈中弹出栈顶文本样式。 |
 | [OH_Drawing_Typography](#oh_drawing_typography) \* [OH_Drawing_CreateTypography](#oh_drawing_createtypography) ([OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) \*) | 创建指向OH_Drawing_Typography对象的指针。不再需要[OH_Drawing_Typography](#oh_drawing_typography)时，请使用[OH_Drawing_DestroyTypography](#oh_drawing_destroytypography)接口释放该对象的指针。 |
 | void [OH_Drawing_DestroyTypography](#oh_drawing_destroytypography) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 释放OH_Drawing_Typography对象占据的内存。 |
 | void [OH_Drawing_TypographyLayout](#oh_drawing_typographylayout) ([OH_Drawing_Typography](#oh_drawing_typography) \*, double) | 排版布局。 |
@@ -3176,6 +3177,40 @@ enum OH_Drawing_WordBreakType
 
 ## 函数说明
 
+### OH_Drawing_PathGetSegment()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_PathGetSegment (OH_Drawing_Path* path, bool forceClosed, float start, float stop, bool startWithMoveTo, OH_Drawing_Path* dst, bool* result)
+```
+
+**描述**
+
+截取路径的片段并追加到目标路径上。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| path | 指向路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。  | 
+| forceClosed | 表示是否按照闭合路径测量，true表示测量时路径会被强制视为已闭合，false表示会根据路径的实际闭合状态测量。  | 
+| start | 表示与路径起始点的距离，距离路径起始点start距离的位置即为截取路径片段的起始点，小于0时会被视作0，大于等于stop时会截取失败。  | 
+| stop | 表示与路径起始点的距离，距离路径起始点stop距离的位置即为截取路径片段的终点，小于等于start时会截取失败，大于路径长度时会被视作路径长度。  | 
+| startWithMoveTo | 表示是否在目标路径执行[OH_Drawing_PathMoveTo](#oh_drawing_pathmoveto)移动到截取路径片段的起始点位置。true表示执行，false表示不执行。  | 
+| dst | 指向目标路径对象[OH_Drawing_Path](#oh_drawing_path)的指针，截取成功时会将得到的路径片段追加到目标路径上，截取失败时不做改变。  | 
+| result | 返回是否成功截取路径片段的结果。true表示截取成功，false表示截取失败。作为出参使用。  | 
+
+**返回：**
+
+函数返回执行错误码。
+
+返回OH_DRAWING_SUCCESS，表示执行成功。
+
+返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数path、dst、result至少有一个为空指针。
+
 ### OH_Drawing_CreateSumPathEffect()
 
 ```
@@ -3316,7 +3351,7 @@ OH_Drawing_PathEffect* OH_Drawing_CreateComposePathEffect (OH_Drawing_PathEffect
 ### OH_Drawing_GpuContextCreate()
 
 ```
-OH_Drawing_GpuContext* OH_Drawing_GpuContextCreate ()
+OH_Drawing_GpuContext* OH_Drawing_GpuContextCreate (void)
 ```
 
 **描述**
@@ -17670,7 +17705,7 @@ void OH_Drawing_TypographyHandlerAddSymbol (OH_Drawing_TypographyCreate* , uint3
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_TypographyCreate | 指向[OH_Drawing_TypographyCreate](#oh_drawing_typographycreate)对象的指针，由[OH_Drawing_CreateTypographyHandler](#oh_drawing_createtypographyhandler)获取。 | 
-| uint32_t | 要设置的符号，可支持设置的符号参见下面链接json文件中的value值。 [https://gitee.com/openharmony/global_system_resources/blob/master/systemres/main/resources/base/element/symbol.json](https://gitee.com/openharmony/global_system_resources/blob/master/systemres/main/resources/base/element/symbol.json) | 
+| uint32_t | 要设置的符号，可支持设置的符号参见下面链接json文件中的value值。可设置的符号（即列表视图下的unicode值）请见[主题图标库](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/)。 | 
 
 
 ### OH_Drawing_TypographyHandlerAddText()
@@ -17703,7 +17738,7 @@ void OH_Drawing_TypographyHandlerPopTextStyle (OH_Drawing_TypographyCreate* )
 
 **描述**
 
-排版弹出。
+从文本样式栈中弹出栈顶文本样式。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -17724,7 +17759,7 @@ void OH_Drawing_TypographyHandlerPushTextStyle (OH_Drawing_TypographyCreate* , O
 
 **描述**
 
-设置排版风格。
+将指定文本样式压入文本样式栈，后续添加的文本总是会使用栈顶的文本样式。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 

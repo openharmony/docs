@@ -346,7 +346,7 @@ Check whether the peer device initiates data transfer.
 
 **Error Message**
 
-IO exception.
+I/O exception.
 
 **Description**
 

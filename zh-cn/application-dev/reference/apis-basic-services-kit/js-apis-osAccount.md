@@ -2863,6 +2863,10 @@ getOsAccountDomainInfo(localId: number): Promise&lt;DomainAccountInfo&gt;;
   })
   ```
 
+## DomainAccountManager<sup>18+</sup>
+
+域账号管理类。
+
 ### updateAccountInfo<sup>18+</sup>
 
 updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccountInfo): Promise&lt;void&gt;
@@ -2998,10 +3002,10 @@ static addServerConfig(parameters: Record&lt;string, Object&gt;): Promise&lt;Dom
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
 | 12300001 | The system service works abnormally. |
-| 12300002 | - Invalid server config parameters. |
-| 12300211 | - Server unreachable. |
-| 12300213 | - Server config already exists. |
-| 12300215 | - The number of server config reaches the upper limit. |
+| 12300002 | Invalid server config parameters. |
+| 12300211 | Server unreachable. |
+| 12300213 | Server config already exists. |
+| 12300215 | The number of server config reaches the upper limit. |
 
 **示例：**
   ```ts
@@ -3048,8 +3052,8 @@ static removeServerConfig(configId: string): Promise&lt;void&gt;
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
 | 12300001 | The system service works abnormally. |
-| 12300212 | - Server config not found. |
-| 12300214 | - Server config has been associated with an account. |
+| 12300212 | Server config not found. |
+| 12300214 | Server config has been associated with an account. |
 
 **示例：**
   ```ts
@@ -3100,10 +3104,10 @@ static updateServerConfig(configId: string, parameters: Record&lt;string, Object
 | 801 | Capability not supported.|
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid server config parameters. |
-| 12300211 | - Server unreachable. |
-| 12300212 | - Server config not found. |
-| 12300213 | - Server config already exists. |
-| 12300214 | - Server config has been associated with an account. |
+| 12300211 | Server unreachable. |
+| 12300212 | Server config not found. |
+| 12300213 | Server config already exists. |
+| 12300214 | Server config has been associated with an account. |
 
 **示例：**
   ```ts

@@ -128,7 +128,7 @@
 
 **ACL使能**：true
 
-**起始版本**：18
+**起始版本**：17
 
 ## ohos.permission.READ_PROTECTION_ADVICE_POLICY
 
@@ -140,7 +140,7 @@
 
 **ACL使能**：true
 
-**起始版本**：18
+**起始版本**：17
 
 ## ohos.permission.PROXY_MESSAGE_AUTH
 
@@ -2656,6 +2656,18 @@
 
 **起始版本**：11
 
+## ohos.permission.MANAGE_APP_UNINSTALL
+
+允许系统应用卸载其它应用。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
 ## ohos.permission.ACCESS_ADVANCED_SECURITY_MODE
 
 允许系统应用打开坚盾守护模式配置界面。
@@ -2685,18 +2697,6 @@
 允许系统应用拉起智能检测能力。
 
 **权限级别**：system_basic
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
-
-**起始版本**：11
-
-## ohos.permission.CONNECT_UI_EXTENSION_ABILITY
-
-允许系统服务连接UIExtensionAbility。
-
-**权限级别**：system_core
 
 **授权方式**：系统授权（system_grant）
 
@@ -4291,18 +4291,6 @@
 ## ohos.permission.ACCESS_ACCOUNT_RECOMMENDATION_DATA
 
 允许应用读取“账号建议”的数据，以及拉起账号建议列表UIExtensionAbility。
-
-**权限级别**：system_basic
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
-
-**起始版本**：18
-
-## ohos.permission.ACCESS_VIRTUAL_SCREEN
-
-允许应用管控虚拟屏。
 
 **权限级别**：system_basic
 

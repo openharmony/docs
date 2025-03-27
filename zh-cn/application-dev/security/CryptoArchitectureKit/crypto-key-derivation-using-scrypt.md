@@ -12,10 +12,10 @@
    - passphrase：用于生成派生密钥的原始密码。
       如果使用string类型，需要直接传入用于密钥派生的数据，而不是HexString、base64等字符串类型。同时需要确保该字符串为utf-8编码，否则派生结果会有差异。
    - salt：盐值。
-   - n: 迭代次数，需要为正整数。
-   - p: 并行化参数，需要为正整数。
-   - r: 块大小参数，需要为正整数。
-   - maxMemory ：最大内存限制参数，需要为正整数。
+   - n：迭代次数，需要为正整数。
+   - p：并行化参数，需要为正整数。
+   - r：块大小参数，需要为正整数。
+   - maxMemory：最大内存限制参数，需要为正整数。
    - keySize：目标密钥的字节长度，需要为正整数。
 
 2. 调用[cryptoFramework.createKdf](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatekdf11)，指定字符串参数'SCRYPT'，创建密钥派生算法为SCRYPT的密钥派生函数对象（Kdf）。

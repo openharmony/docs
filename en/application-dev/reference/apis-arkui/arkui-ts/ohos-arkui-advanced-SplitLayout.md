@@ -12,7 +12,7 @@
 ## Modules to Import
 
 ```
-import { SplitLayout } from '@kit.ArkUI'
+import { SplitLayout } from '@kit.ArkUI';
 ```
 
 
@@ -21,7 +21,7 @@ import { SplitLayout } from '@kit.ArkUI'
 Not supported
 
 ## Attributes
-The [universal attributes](ts-universal-attributes-size.md) are not supported.
+The [universal attributes](ts-component-general-attributes.md) are not supported.
 
 
 ## SplitLayout
@@ -36,40 +36,40 @@ SplitLayout({mainImage: Resource, primaryText: string, secondaryText?: string, t
 
 | Name| Type| Mandatory| Decorator       | Description    |
 | -------- | -------- | -------- |---------------|--------|
-| mainImage | [ResourceStr](ts-types.md#resourcestr) | Yes| -             | Image. |
+| mainImage | [ResourceStr](ts-types.md#resourcestr) | Yes| @State | Image. |
 | primaryText | [ResourceStr](ts-types.md#resourcestr) | Yes| @Prop         | Title. |
 | secondaryText | [ResourceStr](ts-types.md#resourcestr) | No| @Prop         | Subtitle.|
 | tertiaryText | [ResourceStr](ts-types.md#resourcestr) | No| @Prop         | Auxiliary text. |
 | container | () =&gt; void | Yes| @BuilderParam | Container in the component.|
 
 ## Events
-The [universal events](ts-universal-events-click.md) are not supported.
+The [universal events](ts-component-general-events.md) are not supported.
 
 ## Example
 This example demonstrates how to use **SplitLayout** to achieve a page layout that is both adaptable and responsive.
 ```ts
-import { SplitLayout } from '@kit.ArkUI'
+import { SplitLayout } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
-  @State demoImage: Resource = $r("app.media.music")
+  @State demoImage: Resource = $r("app.media.background");
 
   build() {
-      Column() {
-        SplitLayout({
-          mainImage: this.demoImage,
-          primaryText:'New music recommendation',
-          secondaryText: 'Get a playlist tailored to your taste;',
-          tertiaryText: "Updated every day",
-        }) {
-          Text('Example: Components can be added to a blank area container.')
-            .margin({top:36})
-        }
+    Column() {
+      SplitLayout({
+        mainImage: this.demoImage,
+        primaryText:'New music recommendation',
+        secondaryText: 'Get a playlist tailored to your taste;',
+        tertiaryText: 'Updated every day',
+      }) {
+        Text('Example: Components can be added to a blank area container.')
+          .margin({ top: 36 })
       }
-      .justifyContent(FlexAlign.SpaceBetween)
-      .height('100%')
-      .width('100%')
+    }
+    .justifyContent(FlexAlign.SpaceBetween)
+    .height('100%')
+    .width('100%')
   }
 }
 ```
