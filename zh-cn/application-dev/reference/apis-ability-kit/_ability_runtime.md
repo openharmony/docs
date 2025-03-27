@@ -160,14 +160,14 @@ enum AbilityRuntime_StartVisibility
 
 **描述**
 
-启动Ability时的窗口及dock栏图标显示模式。
+启动Ability时的窗口和dock栏图标的显示模式。
 
 **起始版本：** 17
 
 | 枚举值                        | 描述                                                         |
 | ----------------------------- | ------------------------------------------------------------ |
-| ABILITY_RUNTIME_HIDE_UPON_START | 显示窗口及dock栏图标。仅在2in1设备上生效。  |
-| ABILITY_RUNTIME_SHOW_UPON_START | 隐藏窗口及dock栏图标。仅在2in1设备上生效。 |
+| ABILITY_RUNTIME_HIDE_UPON_START | 隐藏窗口及dock栏图标。仅在2in1设备上生效。  |
+| ABILITY_RUNTIME_SHOW_UPON_START | 显示窗口及dock栏图标。仅在2in1设备上生效。 |
 
 ### AbilityRuntime_WindowMode
 
