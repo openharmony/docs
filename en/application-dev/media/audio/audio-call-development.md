@@ -241,7 +241,7 @@ async function start() {
 // Stop recording.
 async function stop() {
   if (audioCapturer !== undefined) {
-    // The AudioCapturer can be stopped only when it is in STATE_RUNNING or STATE_PAUSED state.
+    // The AudioCapturer can be stopped only when it is in the STATE_RUNNING or STATE_PAUSED state.
     if (audioCapturer.state.valueOf() !== audio.AudioState.STATE_RUNNING && audioCapturer.state.valueOf() !== audio.AudioState.STATE_PAUSED) {
       console.info('Capturer is not running or paused');
       return;

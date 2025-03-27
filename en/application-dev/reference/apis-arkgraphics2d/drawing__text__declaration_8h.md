@@ -21,8 +21,6 @@ The **drawing_text_declaration.h** file declares the structs related to text in 
 
 | Name| Description| 
 | -------- | -------- |
-| typedef struct [OH_Drawing_TextTab](_drawing.md#oh_drawing_texttab) [OH_Drawing_TextTab](_drawing.md#oh_drawing_texttab) | Defines a struct used to manage text tabs. | 
-| typedef struct [OH_Drawing_LineTypography](_drawing.md#oh_drawing_linetypography) [OH_Drawing_LineTypography](_drawing.md#oh_drawing_linetypography) | Defines a struct used to extract a single line of data from a piece of text for typography. |
 | typedef struct [OH_Drawing_FontCollection](_drawing.md#oh_drawing_fontcollection)  [OH_Drawing_FontCollection](_drawing.md#oh_drawing_fontcollection) | Defines a struct used to load fonts.| 
 | typedef struct [OH_Drawing_Typography](_drawing.md#oh_drawing_typography)  [OH_Drawing_Typography](_drawing.md#oh_drawing_typography) | Defines a struct used to manage the typography layout and display.| 
 | typedef struct [OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle)  [OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) | Defines a struct used to manage text colors and decorations.| 
@@ -33,5 +31,3 @@ The **drawing_text_declaration.h** file declares the structs related to text in 
 | typedef struct [OH_Drawing_Range](_drawing.md#oh_drawing_range)  [OH_Drawing_Range](_drawing.md#oh_drawing_range) | Defines a struct used to receive the start position and end position of a glyph.| 
 | typedef struct [OH_Drawing_TextShadow](_drawing.md#oh_drawing_textshadow)  [OH_Drawing_TextShadow](_drawing.md#oh_drawing_textshadow) | Defines a struct used to manage text shadows.| 
 | typedef struct [OH_Drawing_FontParser](_drawing.md#oh_drawing_fontparser)  [OH_Drawing_FontParser](_drawing.md#oh_drawing_fontparser) | Defines a struct used to parse system font files.| 
-| typedef struct [OH_Drawing_TextLine](_drawing.md#oh_drawing_textline) [OH_Drawing_TextLine](_drawing.md#oh_drawing_textline) | Defines a struct used to manage text lines.|
-| typedef struct [OH_Drawing_Run](_drawing.md#oh_drawing_run) [OH_Drawing_Run](_drawing.md#oh_drawing_run) | Defines a struct used to manage runs.|

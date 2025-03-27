@@ -43,13 +43,16 @@ libnative_window.so
 1. Obtain an **OHNativeWindow** instance.
 
     You can call the APIs provided by [OH_NativeXComponent_Callback](../reference/apis-arkui/_o_h___native_x_component___callback.md) to obtain an **OHNativeWindow** instance. An example code snippet is provided below. For details about how to use the **XComponent**, see [XComponent Development](../ui/napi-xcomponent-guidelines.md).
+
     1. Add an **XComponent** to the .ets file.
+
         ```ts
         XComponent({ id: 'xcomponentId', type: 'surface', libraryname: 'entry'})
             .width(360)
             .height(360)
         ```
     2. Obtain **NativeXComponent** at the native C++ layer.
+
         ```c++
         napi_value exportInstance = nullptr;
         // Parse the attribute of the wrapped NativeXComponent pointer.
@@ -63,6 +66,7 @@ libnative_window.so
         OH_NativeXComponent_GetXComponentId(nativeXComponent, idStr, &idSize);
         ```
     3. Define **OH_NativeXComponent_Callback**.
+
         ```c++
         // Define the callback.
         void OnSurfaceCreatedCB(OH_NativeXComponent* component, void* window)
@@ -93,6 +97,7 @@ libnative_window.so
             // ...
         }
         ```
+
         ```c++
         // Initialize OH_NativeXComponent_Callback.
         OH_NativeXComponent_Callback callback;
@@ -101,13 +106,16 @@ libnative_window.so
         callback.OnSurfaceDestroyed = OnSurfaceDestroyedCB;
         callback.DispatchTouchEvent = DispatchTouchEventCB;
         ```
+
    4. Register **OH_NativeXComponent_Callback** with **NativeXComponent**.
+
         ```c++
         // Register the callback.
         OH_NativeXComponent_RegisterCallback(nativeXComponent, &callback);
         ```
 
 2. Set the attributes of an **OHNativeWindowBuffer** by using **OH_NativeWindow_NativeWindowHandleOpt**.
+
     ```c++
     // Set the width and height of the OHNativeWindowBuffer.
     int32_t code = SET_BUFFER_GEOMETRY;
@@ -118,6 +126,7 @@ libnative_window.so
     ```
 
 3. Request an **OHNativeWindowBuffer** from the graphics queue.
+
     ```c++
     OHNativeWindowBuffer* buffer = nullptr;
     int releaseFenceFd = -1;
@@ -131,6 +140,7 @@ libnative_window.so
     ```
 
 4. Map memory.
+
     ```c++
     #include <sys/mman.h>
 
@@ -178,7 +188,9 @@ libnative_window.so
     // Flush the buffer to the consumer through OH_NativeWindow_NativeWindowFlushBuffer, for example, by displaying it on the screen.
     OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow, buffer, acquireFenceFd, region);
     ```
+
 7. Unmap memory.
+
     ```c++
     // Unmap the memory when the memory is no longer required.
     int result = munmap(mappedAddr, bufferHandle->size);

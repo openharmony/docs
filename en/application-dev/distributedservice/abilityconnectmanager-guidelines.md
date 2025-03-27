@@ -74,7 +74,7 @@ You have logged in to devices A and B with the same HUAWEI ID and the two device
 ### Setting Up the Environment
 
 1. Download and install DevEco Studio on the PC. For details, see [Downloading Software](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-software-download-V5) and [Installing DevEco Studio](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-software-install-V5). The DevEco Studio version must be 4.1 or later.
-2. Update public-SDK to API 16 or later. <!--Del-->For details, see [Switching to Full SDK](../faqs/full-sdk-switch-guide.md).<!--DelEnd-->.
+2. Update the public-SDK to API 18 or later. For details about how to update the SDK, see [OpenHarmony SDK Upgrade Assistant]( ../tools/openharmony_sdk_upgrade_assistant.md).
 3. Connect device A and device B to the PC using USB cables.
 4. Enable Bluetooth on device A and device B to implement networking.
 
@@ -134,9 +134,9 @@ The application on device A starts and connects to the application on device B t
 The application on device A needs to discover device B and use its **netWorkId** as the input parameter of the collaboration API. You can call APIs of the distributed device management module to discover and select the peer device. For details, see [Distributed Device Management Development](devicemanager-guidelines.md).
 
 
-#### Create a session between applications and set up a connection between them.
+#### Initiating a Session Between Applications
 
-During the session and connection establishment, the applications on device A and device B perform different operations. In the subsequent development procedure, the application on device A serves as the connection initiator, while the application on device B serves as the connection receiver.
+During session establishment, the applications on device A and device B perform different operations. In the subsequent development procedure, the application on device A serves as the connection initiator, while the application on device B serves as the connection receiver.
 
 ##### Device A
 

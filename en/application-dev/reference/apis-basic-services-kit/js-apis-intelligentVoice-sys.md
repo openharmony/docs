@@ -858,7 +858,7 @@ Enumerates types of intelligent voice wakeup events.
 | ------------------------- | ---- | ------------    |
 | INTELLIGENT_VOICE_EVENT_WAKEUP_NONE      | 0    | No wakeup.  |
 | INTELLIGENT_VOICE_EVENT_RECOGNIZE_COMPLETE      | 1    | Wakeup recognition completed.  |
-| INTELLIGENT_VOICE_EVENT_HEADSET_RECOGNIZE_COMPLETE      | 2    | Headset wakeup recognition completed.  |
+| INTELLIGENT_VOICE_EVENT_HEADSET_RECOGNIZE_COMPLETE<sup>12+</sup>     | 2    | Headset wakeup recognition completed.  |
 
 ## IntelligentVoiceErrorCode
 
