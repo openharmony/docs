@@ -656,10 +656,10 @@ struct Index {
 | 名称 | 类型   | 必填 | 说明                                                        |
 | ---- | ------ | ---- | ----------------------------------------------------------- |
 | src    |  Array<[Point](#point12)> | 是   | 源点坐标。 |
-| srcIndex    | number | 否   | 源点坐标起始索引。<br>默认值:0。|
+| srcIndex    | number | 否   | 源点坐标起始索引。<br>默认值:0 <br/> 取值范围：[0, +∞)|
 | dst    |  Array<[Point](#point12)>  | 是   | 目标点坐标。 |
-| dstIndex    | number | 否   |  目标坐标起始索引。<br>默认值:0。 |
-| pointCount    | number | 否   | 使用到的点数量。<br>默认值: src.length/2。|
+| dstIndex    | number | 否   |  目标坐标起始索引。<br>默认值:0 <br/> 取值范围：[0, +∞) |
+| pointCount    | number | 否   | 使用到的点数量。<br>默认值: src.length/2 <br/> 取值范围：[0, +∞)|
 
 ## Point<sup>12+</sup>
 

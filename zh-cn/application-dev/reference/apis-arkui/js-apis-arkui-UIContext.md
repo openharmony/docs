@@ -2272,7 +2272,7 @@ isFollowingSystemFontScale(): boolean
 
 | 类型      | 说明            |
 |---------|---------------|
-| boolean | 当前UI上下文是否跟随系统字体倍率。 |
+| boolean | 当前UI上下文是否跟随系统字体倍率。<br/> true表示UI上下文跟随系统倍率，false表示UI上下文不跟随系统倍率。 |
 
 **示例：**
 
@@ -5425,7 +5425,7 @@ back(index: number, params?: Object): void;
 
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
-| index | number | 是    | 跳转目标页面的索引值。  |
+| index | number | 是    | 跳转目标页面的索引值。 <br/> 取值范围：[0, +∞) |
 | params    | Object      | 否    | 页面返回时携带的参数。 |
 
 **示例：**
@@ -5532,7 +5532,7 @@ getStateByIndex(index: number): router.RouterState | undefined
 
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
-| index    | number | 是   | 表示要获取的页面索引。  |
+| index    | number | 是   | 表示要获取的页面索引。 <br/> 取值范围：[0, +∞) |
 
 **返回值：**
 
