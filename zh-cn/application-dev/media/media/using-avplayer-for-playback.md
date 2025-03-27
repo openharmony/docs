@@ -101,8 +101,8 @@ export class AVPlayerDemo {
         case 'initialized': // avplayer 设置播放源后触发该状态上报。
           console.info('AVPlayer state initialized called.');
           avPlayer.audioRendererInfo = {
-            usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
-            rendererFlags: 0
+            usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型：音乐。根据业务场景配置，参考StreamUsage。
+            rendererFlags: 0 // 音频渲染器标志。
           };
           avPlayer.prepare();
           break;

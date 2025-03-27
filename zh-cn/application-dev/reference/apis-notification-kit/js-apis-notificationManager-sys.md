@@ -4631,6 +4631,159 @@ try {
 }
 ```
 
+## notificationManager.setTargetDeviceStatus<sup>18+</sup>
+
+setTargetDeviceStatus(deviceType: string, status: number): Promise\<void\>
+
+设置设备配对成功后的状态。当发布通知时，会根据各个设备的状态来确定当前设备的通知提醒方式。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                     |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------ |
+| deviceType | string | 是   | 设备类型。当前仅支持`headset`（可穿戴式音频设备）、`liteWearable`（轻量级智能穿戴设备）、`wearable`（智能穿戴设备）、`current`（本设备）。 |
+| status | number | 是   | 设备状态。<br>- bit0：设备是否正在被使用。0表示未使用，1表示使用中。<br>- bit1：当前设备使用者是否为机主。0表示为非机主，1表示为机主。<br>- bit2：设备是否处于勿扰模式。0表示处于非勿扰模式，1表示处于勿扰模式。 |
+
+**返回值：**
+
+| 类型            | 说明                     | 
+|-----------------|-------------------------|
+| Promise\<void\> | 无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+notificationManager.setTargetDeviceStatus("current", 1).then(() => {
+  console.info(`Succeeded in setting target device status.`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to set target device status. Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+## notificationManager.setDistributedEnabledBySlot<sup>18+</sup>
+
+setDistributedEnabledBySlot(slot: SlotType, deviceType: string, enabled: boolean): Promise\<void\>
+
+设置指定渠道的通知是否支持通知跨设备协同至指定类型设备。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                     |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------ |
+| slot | [SlotType](js-apis-notificationManager.md#slottype) | 是   | 通知渠道类型。 |
+| deviceType | string | 是   | 设备类型。取值范围包括：wearable（智能穿戴设备）、litewearable（轻量级智能穿戴设备）、headset（可穿戴式音频设备）。 |
+| enabled | boolean | 是   | 是否开启通知跨设备协同开关。取值为true表示打开，取值为false表示关闭。 |
+
+**返回值：**
+
+| 类型            | 说明                     | 
+|-----------------|-------------------------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { notificationManager } from '@kit.NotificationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let slot: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
+let deviceType: string = 'wearable';
+let enabled: boolean = true;
+
+notificationManager.setDistributedEnabledBySlot(slot, deviceType, enabled).then(() => {
+    hilog.info(0x0000, 'testTag', '%{public}s', `setDistributedEnabledBySlot success.`);
+}).catch((err: BusinessError) => {
+    hilog.error(0x0000, 'testTag', '%{public}s', `setDistributedEnabledBySlot failed, code is ${err.code}, message is ${err.message}`);
+});
+```
+
+## notificationManager.isDistributedEnabledBySlot<sup>18+</sup>
+
+isDistributedEnabledBySlot(slot: SlotType, deviceType: string): Promise\<boolean\>
+
+查询指定渠道的通知是否支持通知跨设备协同至指定类型设备。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                     |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------ |
+| slot | [SlotType](js-apis-notificationManager.md#slottype) | 是   | 通知渠道类型。 |
+| deviceType | string | 是   | 设备类型。取值范围包括：wearable（智能穿戴设备）、litewearable（轻量级智能穿戴设备）、headset（可穿戴式音频设备）。 |
+
+**返回值：**
+
+| 类型            | 说明                     | 
+|-----------------|-------------------------|
+| Promise\<boolean\> | Promise对象，返回true表示指定渠道的通知支持通知跨设备协同至指定类型设备；返回false表示指定渠道的通知不支持通知跨设备协同至指定类型设备。 | 
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { notificationManager } from '@kit.NotificationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let slot: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
+let deviceType: string = 'wearable';
+
+notificationManager.isDistributedEnabledBySlot(slot, deviceType).then((data: boolean) => {
+    hilog.info(0x0000, 'testTag', '%{public}s', `isDistributedEnabledBySlot success.`);
+}).catch((err: BusinessError) => {
+    hilog.error(0x0000, 'testTag', '%{public}s', `isDistributedEnabledBySlot failed, code is ${err.code}, message is ${err.message}`);
+});
+```
+
 ## DoNotDisturbDate
 
 **系统能力**：SystemCapability.Notification.Notification

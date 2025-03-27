@@ -309,7 +309,7 @@
 | static const char \*[OHOS_IMAGE_PROPERTY_COMPRESSION](#ohos_image_property_compression) = "Compression" | 图像压缩方案。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_PHOTOMETRIC_INTERPRETATION](#ohos_image_property_photometric_interpretation) = "PhotometricInterpretation" | 像素构成，例如RGB或YCbCr。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_STRIP_OFFSETS](#ohos_image_property_strip_offsets) = "StripOffsets" | 每个strip的字节偏移量。 | 
-| static const char \*[OHOS_IMAGE_PROPERTY_SAMPLES_PER_PIXEL](#ohos_image_property_samples_per_pixel) = "SamplesPerPixel" | 每个像素的分量数。由于该标准适用于 RGB 和 YCbCr 图像，因此该标签的值设置为 3。 在JPEG压缩数据中，使用JPEG标记代替该标签。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_SAMPLES_PER_PIXEL](#ohos_image_property_samples_per_pixel) = "SamplesPerPixel" | 每个像素的分量数。由于该标准适用于 RGB 和 YCbCr 图像，因此该标签的值设置为 3。在JPEG压缩数据中，使用JPEG标记代替该标签。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_ROWS_PER_STRIP](#ohos_image_property_rows_per_strip) = "RowsPerStrip" | 每个strip的图像数据行数。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_STRIP_BYTE_COUNTS](#ohos_image_property_strip_byte_counts) = "StripByteCounts" | 每个图像数据带的总字节数。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_X_RESOLUTION](#ohos_image_property_x_resolution) = "XResolution" | 图像宽度方向的分辨率。 | 
@@ -404,7 +404,7 @@
 | static const char \*[OHOS_IMAGE_PROPERTY_LENS_MODEL](#ohos_image_property_lens_model) = "LensModel" | 镜头的型号名称。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_LENS_SERIAL_NUMBER](#ohos_image_property_lens_serial_number) = "LensSerialNumber" | 镜头的序列号。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_LENS_SPECIFICATION](#ohos_image_property_lens_specification) = "LensSpecification" | 使用的镜头规格。 | 
-| static const char \*[OHOS_IMAGE_PROPERTY_NEW_SUBFILE_TYPE](#ohos_image_property_new_subfile_type) = "NewSubfileType" | 在Exif中，"NewSubfileType"字段用于标识子文件的数据类型，如全分辨率图像、缩略图或多帧图像的一部分。 其值是位掩码，0代表全分辨率图像，1代表缩略图，2代表多帧图像的一部分。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_NEW_SUBFILE_TYPE](#ohos_image_property_new_subfile_type) = "NewSubfileType" | 在Exif中，"NewSubfileType"字段用于标识子文件的数据类型，如全分辨率图像、缩略图或多帧图像的一部分。其值是位掩码，0代表全分辨率图像，1代表缩略图，2代表多帧图像的一部分。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME](#ohos_image_property_offset_time) = "OffsetTime" | 在Exif中，OffsetTime字段表示与UTC（协调世界时）的时间偏移，格式为±HH:MM，用于确定照片拍摄的本地时间。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME_DIGITIZED](#ohos_image_property_offset_time_digitized) = "OffsetTimeDigitized" | 此标签记录图像数字化时的UTC偏移量，有助于准确调整时间戳。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME_ORIGINAL](#ohos_image_property_offset_time_original) = "OffsetTimeOriginal" | 此标签记录原始图像创建时的UTC偏移量，对于时间敏感的应用至关重要。 | 
@@ -507,7 +507,7 @@ AuxiliaryPicture结构体类型，用于执行AuxiliaryPicture相关操作。
 typedef struct OH_DecodingOptions OH_DecodingOptions
 ```
 **描述**
-解码选项参数结构体,被用于选项参数结构体,被用于[OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap)。
+解码选项参数结构体，被用于选项参数结构体，被用于[OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap)。
 
 此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_DecodingOptions结构体介绍](../../media/image/image-structure-c.md#oh_decodingoptions结构体)。
 
@@ -979,10 +979,10 @@ Pixelmap透明度类型。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| PIXELMAP_ALPHA_TYPE_UNKNOWN | 未知格式 | 
-| PIXELMAP_ALPHA_TYPE_OPAQUE | 不透明的格式 | 
-| PIXELMAP_ALPHA_TYPE_PREMULTIPLIED | 预乘透明度格式 | 
-| PIXELMAP_ALPHA_TYPE_UNPREMULTIPLIED | 非预乘透明度格式 |
+| PIXELMAP_ALPHA_TYPE_UNKNOWN | 未知格式。 | 
+| PIXELMAP_ALPHA_TYPE_OPAQUE | 不透明的格式。 | 
+| PIXELMAP_ALPHA_TYPE_PREMULTIPLIED | 预乘透明度格式。 | 
+| PIXELMAP_ALPHA_TYPE_UNPREMULTIPLIED | 非预乘透明度格式。 |
 
 
 ## 函数说明
@@ -1795,7 +1795,7 @@ Image_ErrorCode OH_DecodingOptionsForPicture_SetDesiredAuxiliaryPictures(OH_Deco
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| options | 被操作的OH_DecodingOptionsForPicture指针  | 
+| options | 被操作的OH_DecodingOptionsForPicture指针。  | 
 | desiredAuxiliaryPictures | 将要设置的期望辅助图。  | 
 | length | 期望辅助图长度。  | 
 
@@ -2824,7 +2824,7 @@ Image_ErrorCode OH_ImageSourceNative_CreatePicture(OH_ImageSourceNative *source,
 Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source, OH_DecodingOptions *options, OH_PixelmapNative **pixelmap)
 ```
 **描述**
-通过图片解码参数创建OH_PixelmapNative指针
+通过图片解码参数创建OH_PixelmapNative指针。
 
 **起始版本：** 12
 
@@ -2847,7 +2847,7 @@ Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source
 Image_ErrorCode OH_ImageSourceNative_CreatePixelmapList(OH_ImageSourceNative *source, OH_DecodingOptions *options, OH_PixelmapNative *resVecPixMap[], size_t size)
 ```
 **描述**
-通过图片解码参数创建OH_PixelmapNative数组
+通过图片解码参数创建OH_PixelmapNative数组。
 
 > **注意：**
 > 此接口会一次性解码全部帧，当帧数过多或单帧图像过大时，会占用较大内存，造成系统内存紧张，此种情况推荐使用Image组件显示动图，Image组件采用逐帧解码，占用内存比此接口少。
@@ -2922,7 +2922,7 @@ Image_ErrorCode OH_ImageSourceNative_CreatePixelmapUsingAllocator (OH_ImageSourc
 Image_ErrorCode OH_ImageSourceNative_GetDelayTimeList(OH_ImageSourceNative *source, int32_t *delayTimeList, size_t size)
 ```
 **描述**
-获取图像延迟时间数组
+获取图像延迟时间数组。
 
 **起始版本：** 12
 
@@ -6292,7 +6292,7 @@ static const char* OHOS_IMAGE_PROPERTY_NEW_SUBFILE_TYPE = "NewSubfileType"
 
 **描述**
 
-在Exif中，"NewSubfileType"字段用于标识子文件的数据类型，如全分辨率图像、缩略图或多帧图像的一部分。 其值是位掩码，0代表全分辨率图像，1代表缩略图，2代表多帧图像的一部分。
+在Exif中，"NewSubfileType"字段用于标识子文件的数据类型，如全分辨率图像、缩略图或多帧图像的一部分。其值是位掩码，0代表全分辨率图像，1代表缩略图，2代表多帧图像的一部分。
 
 **起始版本：** 12
 
@@ -6474,7 +6474,7 @@ static const char* OHOS_IMAGE_PROPERTY_SAMPLES_PER_PIXEL = "SamplesPerPixel"
 
 **描述**
 
-每个像素的分量数。由于该标准适用于 RGB 和 YCbCr 图像，因此该标签的值设置为 3。 在JPEG压缩数据中，使用JPEG标记代替该标签。
+每个像素的分量数。由于该标准适用于 RGB 和 YCbCr 图像，因此该标签的值设置为 3。在JPEG压缩数据中，使用JPEG标记代替该标签。
 
 **起始版本：** 12
 

@@ -25,6 +25,7 @@
 | -------- | -------- |
 | struct&nbsp;&nbsp;[ArkUI_NativeDialogAPI_1](_ark_u_i___native_dialog_a_p_i__1.md) | ArkUI提供的Native侧自定义弹窗接口集合，范围为ArkUI_NativeDialogAPI_1。  | 
 | struct&nbsp;&nbsp;[ArkUI_NativeDialogAPI_2](_ark_u_i___native_dialog_a_p_i__2.md) | ArkUI提供的Native侧自定义弹窗接口集合，范围为ArkUI_NativeDialogAPI_2。  |
+| struct&nbsp;&nbsp;[ArkUI_NativeDialogAPI_3](_ark_u_i___native_dialog_a_p_i__3.md) | ArkUI提供的Native侧自定义弹窗接口集合，范围为ArkUI_NativeDialogAPI_3。  |
 
 
 ### 类型定义
@@ -83,3 +84,5 @@
 | int32_t [OH_ArkUI_CustomDialog_RegisterOnDidAppearCallback](_ark_u_i___native_module.md#oh_arkui_customdialog_registerondidappearcallback) ([ArkUI_CustomDialogOptions](_ark_u_i___native_module.md#arkui_customdialogoptions) \*options, void\* userData, void (\*callback)(void\* userData)) | 注册自定义弹窗弹出时的监听事件。  |
 | int32_t [OH_ArkUI_CustomDialog_RegisterOnWillDisappearCallback](_ark_u_i___native_module.md#oh_arkui_customdialog_registeronwilldisappearcallback) ([ArkUI_CustomDialogOptions](_ark_u_i___native_module.md#arkui_customdialogoptions) \*options, void\* userData, void (\*callback)(void\* userData)) | 注册自定义弹窗退出动效前的监听事件。  |
 | int32_t [OH_ArkUI_CustomDialog_RegisterOnDidDisappearCallback](_ark_u_i___native_module.md#oh_arkui_customdialog_registerondiddisappearcallback) ([ArkUI_CustomDialogOptions](_ark_u_i___native_module.md#arkui_customdialogoptions) \*options, void\* userData, void (\*callback)(void\* userData)) | 注册自定义弹窗消失时的监听事件。  |
+| int32_t [OH_ArkUI_CustomDialog_SetBackgroundBlurStyleOptions](_ark_u_i___native_module.md#oh_arkui_customdialog_setbackgroundblurstyleoptions) ([ArkUI_CustomDialogOptions](_ark_u_i___native_module.md#arkui_customdialogoptions) \*options, const [ArkUI_AttributeItem](_ark_u_i___attribute_item.md#arkui_attributeitem) \*backgroundBlurStyleOptions) | 设置弹窗的背景模糊效果。  |
+| int32_t [OH_ArkUI_CustomDialog_SetBackgroundEffect](_ark_u_i___native_module.md#oh_arkui_customdialog_setbackgroundeffect) ([ArkUI_CustomDialogOptions](_ark_u_i___native_module.md#arkui_customdialogoptions) \*options, const [ArkUI_AttributeItem](_ark_u_i___attribute_item.md#arkui_attributeitem) \*backgroundEffect) | 设置弹窗的背景效果参数。  |

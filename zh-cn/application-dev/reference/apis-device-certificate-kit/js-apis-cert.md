@@ -34,7 +34,7 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 | ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY | 19030005 | 无法获取证书的颁发者。        |
 | ERR_KEYUSAGE_NO_CERTSIGN              | 19030006 | 证书的秘钥用途不含证书签名。   |
 | ERR_KEYUSAGE_NO_DIGITAL_SIGNATURE     | 19030007 |  证书的秘钥用途不含数字签名。  |
-| ERR_MAYBE_WRONG_PASSWORD<sup>18+</sup>              | 19030008 | 私钥密码错误。                |
+| ERR_MAYBE_WRONG_PASSWORD<sup>18+</sup>              | 19030008 | 私钥密码错误。 <br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。        |
 
 ## DataBlob
 buffer数组。
@@ -109,7 +109,7 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | subject | [X500DistinguishedName](#x500distinguishedname12) | 是   | 是   | X509定义的Name类型的对象。 |
 | mdName | string | 是   | 是   | 摘要算法名。 |
-| attributes | [CsrAttribute](#csrattribute18) | 是   | 是   | 拓展。 |
+| attributes | Array\<[CsrAttribute](#csrattribute18)> | 是   | 是   | 拓展。 |
 | outFormat | [EncodingBaseFormat](#encodingbaseformat18) | 是   | 是   | 输出类型。 |
 
 > **说明：**
@@ -256,13 +256,13 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 | x509Cert | [X509Cert](#x509cert)    | 否 |  指定具体的证书对象。  |
 | validDate | string    | 否  |  指定证书有效期。  |
 | issuer | Uint8Array | 否  | 指定证书颁发者，为DER编码格式。 |
-| keyUsage | Array\<boolean> | 否  | 指定是否需要匹配密钥用途。 |
+| keyUsage | Array\<boolean> | 否  | 指定是否需要匹配密钥用途。true为需要，false为不需要。 |
 | serialNumber | bigint    | 否  |  指定证书的序列号。  |
 | subject | Uint8Array | 否  | 指定证书主题，DER编码格式。 |
 | publicKey | [DataBlob](#datablob) | 否  | 指定证书公钥，DER编码格式。 |
 | publicKeyAlgID | string | 否  | 指定证书公钥的算法。 |
 | subjectAlternativeNames<sup>12+</sup> | Array\<[GeneralName](#generalname12)> | 否  | 指定证书主体名称。 |
-| matchAllSubjectAltNames<sup>12+</sup> | boolean | 否  | 指定是否需要匹配证书主体名称。 |
+| matchAllSubjectAltNames<sup>12+</sup> | boolean | 否  | 指定是否需要匹配证书主体名称。true为需要，false为不需要。 |
 | authorityKeyIdentifier<sup>12+</sup> | Uint8Array | 否  | 指定证书颁发机构秘钥。 |
 | minPathLenConstraint<sup>12+</sup> | number | 否  | 指定证书CA路径长度。 |
 | extendedKeyUsage<sup>12+</sup> | Array\<string> | 否  | 指定证书扩展用途。 |
@@ -360,6 +360,7 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 ## KeyUsageType<sup>12+</sup>
 
  表示证书中密钥用途的枚举。
+ 
  **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
  **系统能力：** SystemCapability.Security.Cert
@@ -463,10 +464,10 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 | 名称         | 类型                                              | 必填 | 说明                                   |
 | ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
 | password     | string                                            | 是   | 表示P12文件的密码。             |
-| needsPrivateKey  | boolean                                       | 否   | 表示是否获取私钥。默认为true。                       |
+| needsPrivateKey  | boolean                                       | 否   | 表示是否获取私钥。默认为true。true为获取，false为不获取。                       |
 | privateKeyFormat |  [EncodingBaseFormat](#encodingbaseformat18)                      | 否   | 表示获取私钥的格式。默认为PEM。 |
-| needsCert    | boolean                                           | 否   | 表示是否获取证书。默认为true。 |
-| needsOtherCerts  | boolean                                       | 否   | 表示是否获取其他证书合集。默认为false。 |
+| needsCert    | boolean                                           | 否   | 表示是否获取证书。默认为true。true为获取，false为不获取。 |
+| needsOtherCerts  | boolean                                       | 否   | 表示是否获取其他证书合集。默认为false。true为获取，false为不获取。 |
 
 ## CmsContentType<sup>18+</sup>
 
@@ -530,9 +531,9 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 | 名称         | 类型                                                  | 必填 | 说明                                   |
 | ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
 | mdName                | string              | 是   | 消息摘要算法的名称，例如 "SHA384", 当前支持"SHA1"、"SHA256"、"SHA384"、"SHA512"。                 |
-| addCert               | boolean            | 否   | 是否添加证书。默认为true。                             |
-| addAttr               | boolean            | 否   | 是否添加签名属性。默认为true。           |
-| addSmimeCapAttr       | boolean            | 否   | 是否将SMIME能力添加到Cms对象。默认为true。            |
+| addCert               | boolean            | 否   | 是否添加证书。默认为true。true为需要，false为不需要。                             |
+| addAttr               | boolean            | 否   | 是否添加签名属性。默认为true。true为需要，false为不需要。           |
+| addSmimeCapAttr       | boolean            | 否   | 是否将SMIME能力添加到Cms对象。默认为true。true为需要，false为不需要。            |
 
 ## CmsGeneratorOptions<sup>18+</sup>
 
@@ -546,7 +547,7 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 | --------------------- | ----------------------------- | ---- | ------------------------------------------------------ |
 | contentDataFormat     | [CmsContentDataFormat](#cmscontentdataformat18)               | 否   | 内容数据的格式。默认为CmsContentDataFormat.BINARY。   |
 | outFormat             | [CmsFormat](#cmsformat18)                          | 否   | Cms最终数据的输出格式。默认为DER。         |
-| isDetached     | boolean                            | 否   | Cms最终数据是否不包含原始数据。默认为false。         |
+| isDetached     | boolean                            | 否   | Cms最终数据是否不包含原始数据。默认为false。true为包含，false为不包含。         |
 
 ## cert.createX509Cert
 
@@ -9982,7 +9983,7 @@ async function buildX509CertChain() {
   try {
     const caCert = await createX509Cert(caPem);
     const x509Cert = await createX509Cert(certPem);
-    let certCrlCollection = await cert.createCertCRLCollection([x509Cert]);
+    let certCrlCollection = cert.createCertCRLCollection([x509Cert]);
     let param: cert.CertChainBuildParameters = {
       certMatchParameters: {validDate:'20240812080000Z'},
       maxLength: 3,
@@ -10969,12 +10970,7 @@ generateCsr(keyInfo: PrivateKeyInfo, config: CsrGenerationConfig): string | Uint
 | 19020001 | memory error. |
 | 19020002 | runtime error. |
 | 19030001 | crypto operation error. |
-| 19030002 | the certificate signature verification failed. |
-| 19030003 | the certificate has not taken effect. |
-| 19030004 | the certificate has expired. |
-| 19030005 | failed to obtain the certificate issuer. |
-| 19030006 | the key cannot be used for signing a certificate. |
-| 19030007 | the key cannot be used for digital signature. |
+| 19030008 | maybe wrong password. |
 
 **示例：**
 
@@ -11387,6 +11383,15 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'xG/kEOcwLtzeVHOQA+ZU5SVcc+qc0dfFiWjL2PSAG4bpqSTjujpuUk+g8ugixbG1\n' +
   'a26pkDJhNeB/E3eBIbeydSY0A/dIGb6vbGo6BSq2KvnWAA==\n' +
   '-----END CERTIFICATE-----\n';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
 
 function testcreateCmsGenerator() {
   let certEncodingBlob: cert.EncodingBlob = {

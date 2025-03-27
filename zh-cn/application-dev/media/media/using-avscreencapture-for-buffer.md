@@ -119,13 +119,13 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     OH_AVScreenCapture_Release(capture);
     ```
 
-## 2in1设备录屏窗口选择界面规格说明
-基于录屏取码流接口提供了2in1设备录屏窗口选择界面，为兼容已有的接口设计，目前支持三方应用在指定屏幕模式(OH_CAPTURE_SPECIFIED_SCREEN)、传一个窗口Id的指定窗口模式(OH_CAPTURE_SPECIFIED_WINDOW)下，2in1设备弹出Picker选择弹窗并根据传入的窗口Id选中对应窗口。最终录屏内容以Picker弹出后，用户在弹窗上的选择为准。
+## PC/2in1设备录屏窗口选择界面规格说明
+基于录屏取码流接口提供了PC/2in1设备录屏窗口选择界面，为兼容已有的接口设计，目前支持三方应用在指定屏幕模式(OH_CAPTURE_SPECIFIED_SCREEN)、传一个窗口Id的指定窗口模式(OH_CAPTURE_SPECIFIED_WINDOW)下，PC/2in1设备弹出Picker选择弹窗并根据传入的窗口Id选中对应窗口。最终录屏内容以Picker弹出后，用户在弹窗上的选择为准。
 
-2in1设备录屏窗口选择界面推荐在OH_CAPTURE_SPECIFIED_WINDOW模式下使用，需根据2in1设备分辨率配置录屏的高度和宽度值并传入屏幕Id（若有期望录制的某个窗口，可同时传入单个窗口Id）。
+PC/2in1设备录屏窗口选择界面推荐在OH_CAPTURE_SPECIFIED_WINDOW模式下使用，需根据PC/2in1设备分辨率配置录屏的高度和宽度值并传入屏幕Id（若有期望录制的某个窗口，可同时传入单个窗口Id）。
 
 ```c++
-// 根据2in1设备分辨率在config_中配置录屏的宽度、高度。
+// 根据PC/2in1设备分辨率在config_中配置录屏的宽度、高度。
 config_.videoInfo.videoCapInfo.videoFrameWidth = 2880;
 config_.videoInfo.videoCapInfo.videoFrameHeight = 1920;
 
@@ -139,14 +139,14 @@ config_.videoInfo.videoCapInfo.missionIDs = &missionIds[0];
 config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.size());
 ```
 
-另外，2in1设备录屏窗口选择界面兼容以下几种模式的录屏：
+另外，PC/2in1设备录屏窗口选择界面兼容以下几种模式的录屏：
 
 1. OH_CAPTURE_SPECIFIED_WINDOW模式，传入多个窗口Id。
 
-    2in1设备不弹Picker选择界面，弹出隐私允许/不允许弹窗，可同时录制多个窗口；
+    PC/2in1设备不弹Picker选择界面，弹出隐私允许/不允许弹窗，可同时录制多个窗口；
 
     ```c++
-    // 根据2in1设备分辨率在config_中配置录屏的宽度、高度。
+    // 根据PC/2in1设备分辨率在config_中配置录屏的宽度、高度。
     config_.videoInfo.videoCapInfo.videoFrameWidth = 2880;
     config_.videoInfo.videoCapInfo.videoFrameHeight = 1920;
 
@@ -162,10 +162,10 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
 
 2. OH_CAPTURE_SPECIFIED_SCREEN模式。
 
-    2in1设备弹出Picker选择弹窗，传入的有效屏幕Id作为Picker弹窗上被选中的默认屏幕；
+    PC/2in1设备弹出Picker选择弹窗，传入的有效屏幕Id作为Picker弹窗上被选中的默认屏幕；
 
     ```c++
-    // 根据2in1设备分辨率在config_中配置录屏的宽度、高度。
+    // 根据PC/2in1设备分辨率在config_中配置录屏的宽度、高度。
     config_.videoInfo.videoCapInfo.videoFrameWidth = 2880;
     config_.videoInfo.videoCapInfo.videoFrameHeight = 1920;
 
@@ -176,10 +176,10 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
 
 3. OH_CAPTURE_HOME_SCREEN模式。
 
-    2in1设备不弹Picker选择界面，弹出隐私允许/不允许弹窗；
+    PC/2in1设备不弹Picker选择界面，弹出隐私允许/不允许弹窗；
 
     ```c++
-    // 根据2in1设备分辨率在config_中配置录屏的宽度、高度。
+    // 根据PC/2in1设备分辨率在config_中配置录屏的宽度、高度。
     config_.videoInfo.videoCapInfo.videoFrameWidth = 2880;
     config_.videoInfo.videoCapInfo.videoFrameHeight = 1920;
 
@@ -234,8 +234,8 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
         (void)userData;
     }
 
-    // 状态变更事件处理函数OnStageChange()。
-    void OnStageChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
+    // 状态变更事件处理函数OnStateChange()。
+    void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
         (void)capture;
         if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
             // 处理录屏开始状态变更。
@@ -388,8 +388,8 @@ void OnError(OH_AVScreenCapture *capture, int32_t errorCode, void *userData) {
     (void)userData;
 }
 
-// 状态变更事件处理函数OnStageChange()。
-void OnStageChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
+// 状态变更事件处理函数OnStateChange()。
+void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
     (void)capture;
     if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
         // 处理录屏开始状态变更。
@@ -425,6 +425,7 @@ void OnStageChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCo
 }
 
 // 获取并处理音视频原始码流数据回调函数OnBufferAvailable()。
+bool IsCaptureStreamRunning = true;
 void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVScreenCaptureBufferType bufferType, int64_t timestamp, void *userData) {
     // 处于录屏取码流状态。
     if (IsCaptureStreamRunning) {

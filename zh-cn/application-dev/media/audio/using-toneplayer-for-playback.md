@@ -31,6 +31,7 @@ TonePlayer<sup>9+</sup>提供播放和管理DTMF（Dual Tone Multi Frequency，�
 | TONE_TYPE_COMMON_SUPERVISORY_RADIO_NOT_AVAILABLE | 104 | 呼叫监管音调，无线电不可用。 | 
 | TONE_TYPE_COMMON_SUPERVISORY_CALL_WAITING | 106 | 呼叫监管音调，呼叫等待。 | 
 | TONE_TYPE_COMMON_SUPERVISORY_RINGTONE | 107 | 呼叫监管音调，铃声。 | 
+| TONE_TYPE_COMMON_SUPERVISORY_CALL_HOLDING<sup>18+</sup> | 108 | 呼叫保持音调。 |
 | TONE_TYPE_COMMON_PROPRIETARY_BEEP | 200 | 专有声调，一般蜂鸣声。 | 
 | TONE_TYPE_COMMON_PROPRIETARY_ACK | 201 | 专有声调，ACK。 | 
 | TONE_TYPE_COMMON_PROPRIETARY_PROMPT | 203 | 专有声调，PROMPT。 | 
@@ -46,8 +47,8 @@ TonePlayer<sup>9+</sup>提供播放和管理DTMF（Dual Tone Multi Frequency，�
 import { audio } from '@kit.AudioKit';
 
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage : audio.StreamUsage.STREAM_USAGE_DTMF,
-  rendererFlags : 0
+  usage: audio.StreamUsage.STREAM_USAGE_DTMF, // 音频流使用类型：拨号音。根据业务场景配置，参考StreamUsage。
+  rendererFlags: 0 // 音频渲染器标志。
 };
 
 async function createTonePlayer() {
@@ -106,8 +107,8 @@ async function testTonePlayerPromise(type: audio.ToneType) {
   if (timerPro) clearTimeout(timerPro);
   let tonePlayerPromise: audio.TonePlayer;
   let audioRendererInfo: audio.AudioRendererInfo = {
-    usage : audio.StreamUsage.STREAM_USAGE_DTMF,
-    rendererFlags : 0
+    usage: audio.StreamUsage.STREAM_USAGE_DTMF, // 音频流使用类型：拨号音。根据业务场景配置，参考StreamUsage。
+    rendererFlags: 0 // 音频渲染器标志。
   };
   timerPro = setTimeout(async () => {
     try {

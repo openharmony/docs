@@ -62,31 +62,30 @@
    - 使用默认的Locale构造函数，创建区域识别对象。使用默认Locale构造函数创建的区域对象表示当前系统区域。
 
    ```ts
-   let date = new Date(2023, 9, 15);
-   
-   // 方法一：通过区域标识字符串创建区域标识对象
-   let zhLocale = new intl.Locale("zh-Hans-CN-u-nu-latn");
-   
+   let zhLocale: intl.Locale = new intl.Locale('zh-Hans-CN-u-nu-latn');
+
    // 方法二：通过区域标识字符串和LocaleOptions对象创建区域标识对象
-   let enLocale = new intl.Locale("en", {numberingSystem: "latn"});
-   
+   let enLocale: intl.Locale = new intl.Locale('en', { numberingSystem: 'latn' });
+
    // 方法三：通过默认Locale函数创建系统区域标识对象
-   let systemLocale = new intl.Locale();
+   let systemLocale: intl.Locale = new intl.Locale();
    ```
 
 3. 格式化时间日期。
    创建区域识别对象后，将其传入时间日期格式类的构造函数，创建指定区域标识的时间日期格式化类，并实现格式化。与步骤2对应，步骤3呈现了三种实现时间日期格式化的方法。
 
    ```ts
+   let date: Date = new Date(2023, 9, 15);
+
    // 方法一
-   let zhDateTimeFmt = new intl.DateTimeFormat(zhLocale.toString());
-   let result = zhDateTimeFmt.format(date); // result = "2023/10/15"
-   
+   let zhDateTimeFmt: intl.DateTimeFormat = new intl.DateTimeFormat(zhLocale.toString());
+   let formattedResult: string = zhDateTimeFmt.format(date); // formattedResult = '2023/10/15'
+
    // 方法二
-   let enDateTimeFmt = new intl.DateTimeFormat(enLocale.toString());
-   result = enDateTimeFmt.format(date); // result = "10/15/23"
-   
+   let enDateTimeFmt: intl.DateTimeFormat = new intl.DateTimeFormat(enLocale.toString());
+   formattedResult = enDateTimeFmt.format(date); // formattedResult = '10/15/23'
+
    // 方法三
-   let systemDateTimeFmt = new intl.DateTimeFormat(systemLocale.toString());
-   result = systemDateTimeFmt.format(date); // result = "2023/10/15" （具体显示效果依赖于当前系统环境）
+   let systemDateTimeFmt: intl.DateTimeFormat = new intl.DateTimeFormat(systemLocale.toString());
+   formattedResult = systemDateTimeFmt.format(date); // formattedResult = '2023/10/15' （具体显示效果依赖于当前系统环境）
    ```

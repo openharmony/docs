@@ -32,8 +32,8 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
     };
     
     let audioCapturerInfo: audio.AudioCapturerInfo = {
-      source: audio.SourceType.SOURCE_TYPE_MIC,
-      capturerFlags: 0
+      source: audio.SourceType.SOURCE_TYPE_MIC, // 音源类型：Mic音频源。根据业务场景配置，参考SourceType。
+      capturerFlags: 0 // 音频采集器标志。
     };
     
     let audioCapturerOptions: audio.AudioCapturerOptions = {
@@ -52,6 +52,9 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
    ```
 
 2. 调用on('readData')方法，订阅监听音频数据读入回调。
+    > **注意：**
+    > - **线程管理**：不建议使用多线程来处理数据读取。若需使用多线程读取数据，需要做好线程管理。
+    > - **线程耗时**：`readData` 方法所在的线程中，不建议执行耗时任务。否则可能会导致数据处理线程响应回调延迟，进而引发录音数据缺失、卡顿、杂音等音频效果问题。 
 
    ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -145,7 +148,7 @@ let audioStreamInfo: audio.AudioStreamInfo = {
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式。
 };
 let audioCapturerInfo: audio.AudioCapturerInfo = {
-  source: audio.SourceType.SOURCE_TYPE_MIC, // 音源类型。
+  source: audio.SourceType.SOURCE_TYPE_MIC, // 音源类型：Mic音频源。根据业务场景配置，参考SourceType。
   capturerFlags: 0 // 音频采集器标志。
 };
 let audioCapturerOptions: audio.AudioCapturerOptions = {

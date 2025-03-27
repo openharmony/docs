@@ -429,7 +429,7 @@ cachedCount(count: number, show: boolean)
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
 | count | number | 是   | 预加载的FlowItem的数量。 <br/>默认值：根据屏幕内显示的节点个数设置，最大值为16。<br/>取值范围：[0, +∞)，设置为小于0的值时，按1处理。 |
-| show  | boolean | 是   | 被预加载的FlowItem是否需要显示。 <br/> 默认值：false |
+| show  | boolean | 是   | 被预加载的FlowItem是否需要显示。 <br/> 默认值：false，不显示预加载的FlowItem。 |
 
 ## 事件
 
@@ -449,7 +449,7 @@ onReachStart(event: () => void)
 
 onReachEnd(event: () => void)
 
-瀑布流组件到底末尾位置时触发。
+瀑布流组件到达末尾位置时触发。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1211,6 +1211,7 @@ struct WaterFlowDemo {
 
 该示例通过edgeEffect接口，实现了WaterFlow组件设置单边边缘效果。
 
+<!--code_no_check-->
 ```ts
 // Index.ets
 import { WaterFlowDataSource } from './WaterFlowDataSource';
@@ -1275,6 +1276,7 @@ struct WaterFlowDemo {
 
 该示例通过footerContent接口，实现了WaterFlow组件设置尾部组件。通过ComponentContent的update函数更新尾部组件。
 
+<!--code_no_check-->
 ```ts
 // Index.ets
 import { ComponentContent, UIContext } from "@kit.ArkUI";

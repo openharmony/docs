@@ -376,6 +376,105 @@ try {
 ```
 
 
+## socket.sppWriteAsync<sup>18+</sup>
+
+sppWriteAsync(clientSocket: number, data: ArrayBuffer): Promise&lt;void&gt;
+
+Writes data to the remote device through the socket. This API uses a promise to return the result. It supports returning of SPP operation errors, if any, when the connection is disconnected.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name         | Type                         | Mandatory  | Description                                      |
+| ------------ | --------------------------- | ---- | ---------------------------------------- |
+| clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept** or **sppConnect**.                           |
+| data         | ArrayBuffer                 | Yes   | Data to write.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.              |
+|801 | Capability not supported.          |
+|2901054 | IO error. |
+|2900099 | Operation failed. |
+
+**Example**
+
+```js
+import { socket } from '@kit.ConnectivityKit'
+import { AsyncCallback,BusinessError } from '@kit.BasicServicesKit';
+let clientNumber = -1; // clientNumber is obtained by sppAccept or sppConnect.
+let arrayBuffer = new ArrayBuffer(8);
+let data = new Uint8Array(arrayBuffer);
+try {
+    await socket.sppWriteAsync(clientNumber, arrayBuffer);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## socket.sppReadAsync<sup>18+</sup>
+
+sppReadAsync(clientSocket: number): Promise&lt;void&gt;
+
+Reads data sent from the remote device through the socket. This API uses a promise to return the result. It supports returning of SPP operation errors, if any, when the connection is disconnected.
+
+> **NOTE**
+>
+> - This API cannot be used together with [socket.on('sppRead')](#socketonsppread). A socket can use either this API or [socket.on('sppRead')](#socketonsppread).
+>
+> - This API is used in a different way from [socket.on('sppRead')](#socketonsppread). It needs to be called cyclically to read data.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name         | Type                         | Mandatory  | Description                                      |
+| ------------ | --------------------------- | ---- | ---------------------------------------- |
+| clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept** or **sppConnect**.                           |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.              |
+|801 | Capability not supported.          |
+|2901054 | IO error. |
+|2900099 | Operation failed. |
+
+**Example**
+
+```js
+import { socket } from '@kit.ConnectivityKit'
+import { AsyncCallback,BusinessError } from '@kit.BasicServicesKit';
+let clientNumber = -1; // clientNumber is obtained by sppAccept or sppConnect.
+let buffer = new ArrayBuffer(1024);
+let data = new Uint8Array(arrayBuffer);
+let flag = 1;
+while (flag) {
+  try {
+    buffer = await socket.sppReadAsync(this.clientNumber);
+    if (buffer != null) {
+      console.info('sppRead success, data = ' + JSON.stringify(buffer));
+      printArrayBuffer(buffer);
+    } else {
+      console.error('sppRead error, data is null');
+    }
+  } catch (err) {
+    flag = 0;
+    console.error('startSppRead errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+  }
+}
+```
+
+
 ## SppOptions
 
 Defines the SPP configuration parameters.

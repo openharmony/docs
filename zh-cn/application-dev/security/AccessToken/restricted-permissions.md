@@ -490,3 +490,57 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 **授权方式**：系统授权（system_grant）
 
 **起始版本**：18
+
+### ohos.permission.PERSISTENT_BLUETOOTH_PEERS_MAC
+
+允许应用固化对端蓝牙设备MAC对应的虚拟随机地址。
+
+通过BLE扫描、BR扫描或连接监听获取到对端蓝牙设备MAC对应的虚拟随机地址，申请该权限后，可保持该虚拟随机地址长时间保持，即使是开/关/重启蓝牙也不发生变化。
+
+<!--RP36--><!--RP36End-->
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**起始版本**：16
+
+### ohos.permission.ACCESS_VIRTUAL_SCREEN
+
+允许应用管控虚拟屏。
+
+获得该权限的应用可以调用虚拟屏相关接口管理虚拟屏，包括创建虚拟屏，使虚拟屏，销毁虚拟屏等。
+
+<!--RP37--><!--RP37End-->
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**起始版本**：16
+
+### ohos.permission.kernel.MANAGE_APN_SETTING
+
+允许应用读取或设置APN信息。
+
+当应用需要使用专网APN信息时可申请此权限。
+
+<!--RP38--><!--RP38End-->
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**起始版本**：16
+
+### ohos.permission.CUSTOM_SANDBOX
+
+允许应用将沙箱类型改为动态沙箱。
+
+<!--RP39--><!--RP39End-->
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**起始版本**：18

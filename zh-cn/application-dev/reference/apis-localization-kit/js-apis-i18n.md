@@ -1350,9 +1350,9 @@ getLocationName(number: string, locale: string): string
 | measureSystem | string | 是    | 是    | 单位的度量体系，取值包括："SI",&nbsp;"US",&nbsp;"UK"。 |
 
 
-## getInstance<sup>8+</sup>
+## i18n.getInstance<sup>8+</sup>
 
-getInstance(locale?:string): IndexUtil
+getInstance(locale?: string): IndexUtil
 
 创建并返回IndexUtil对象。
 
@@ -3195,7 +3195,7 @@ format(value: number): StyledString
 
 |   参数名  |      类型      | 必填 |     说明      |
 | --------- | ------------- | ---- | ------------- |
-| value | Number | 是 | 需要格式化的数字。  |
+| value | number | 是 | 需要格式化的数字。  |
 
 **返回值：**
 

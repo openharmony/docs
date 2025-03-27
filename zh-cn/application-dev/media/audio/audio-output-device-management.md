@@ -113,8 +113,8 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
-    usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
-    rendererFlags : 0
+    usage: audio.StreamUsage.STREAM_USAGE_MUSIC,// 音频流使用类型：音乐。根据业务场景配置，参考StreamUsage。
+    rendererFlags: 0 // 音频渲染器标志。
 };
 
 async function getPreferOutputDeviceForRendererInfo() {
@@ -132,8 +132,8 @@ async function getPreferOutputDeviceForRendererInfo() {
 import { audio } from '@kit.AudioKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
-    usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
-    rendererFlags : 0
+    usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型：音乐。根据业务场景配置，参考StreamUsage。
+    rendererFlags: 0 // 音频渲染器标志。
 };
 
 // 监听最高优先级输出设备变化。

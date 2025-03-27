@@ -20,8 +20,7 @@
       const filePath : string = context.cacheDir + '/test.jpg';
       ```
 
-   - 方法二：通过沙箱路径获取图片的文件描述符。具体请参考[file.fs API参考文档](../../reference/apis-core-file-kit/js-apis-file-fs.md)。
-      该方法需要先导入\@kit.CoreFileKit模块。
+   - 方法二：通过沙箱路径获取图片的文件描述符。具体请参考[file.fs API参考文档](../../reference/apis-core-file-kit/js-apis-file-fs.md)。该方法需要先导入\@kit.CoreFileKit模块。
 
       ```ts
       import { fileIo } from '@kit.CoreFileKit';
