@@ -2793,7 +2793,7 @@ currentAVSession.off('commonCommand');
 
 ### on('answer')<sup>11+</sup>
 
-on(type: 'answer', callback: Callback\<void>): void;
+on(type: 'answer', callback: Callback\<void>): void
 
 设置通话接听的监听事件。
 
@@ -2828,7 +2828,7 @@ currentAVSession.on('answer', () => {
 
 ### off('answer')<sup>11+</sup>
 
-off(type: 'answer', callback?: Callback\<void>): void;
+off(type: 'answer', callback?: Callback\<void>): void
 
 取消通话接听事件的监听。
 
@@ -2861,7 +2861,7 @@ currentAVSession.off('answer');
 
 ### on('hangUp')<sup>11+</sup>
 
-on(type: 'hangUp', callback: Callback\<void>): void;
+on(type: 'hangUp', callback: Callback\<void>): void
 
 设置通话挂断的监听事件。
 
@@ -2896,7 +2896,7 @@ currentAVSession.on('hangUp', () => {
 
 ### off('hangUp')<sup>11+</sup>
 
-off(type: 'hangUp', callback?: Callback\<void>): void;
+off(type: 'hangUp', callback?: Callback\<void>): void
 
 取消通话挂断事件的监听。
 
@@ -2929,7 +2929,7 @@ currentAVSession.off('hangUp');
 
 ### on('toggleCallMute')<sup>11+</sup>
 
-on(type: 'toggleCallMute', callback: Callback\<void>): void;
+on(type: 'toggleCallMute', callback: Callback\<void>): void
 
 设置通话静音的监听事件。
 
@@ -2964,7 +2964,7 @@ currentAVSession.on('toggleCallMute', () => {
 
 ### off('toggleCallMute')<sup>11+</sup>
 
-off(type: 'toggleCallMute', callback?: Callback\<void>): void;
+off(type: 'toggleCallMute', callback?: Callback\<void>): void
 
 取消通话静音事件的监听。
 
@@ -7068,7 +7068,7 @@ avsessionController.off('playbackStateChange');
 
 ### on('callMetadataChange')<sup>11+</sup>
 
-on(type: 'callMetadataChange', filter: Array\<keyof CallMetadata> | 'all', callback: Callback\<CallMetadata>): void;
+on(type: 'callMetadataChange', filter: Array\<keyof CallMetadata> | 'all', callback: Callback\<CallMetadata>): void
 
 设置通话元数据变化的监听事件。
 
@@ -7108,7 +7108,7 @@ avsessionController.on('callMetadataChange', ['name'], (callmetadata: avSession.
 
 ### off('callMetadataChange')<sup>11+</sup>
 
-off(type: 'callMetadataChange', callback?: Callback\<CallMetadata>): void;
+off(type: 'callMetadataChange', callback?: Callback\<CallMetadata>): void
 
 取消设置通话元数据变化的监听事件。
 
@@ -7141,7 +7141,7 @@ avsessionController.off('callMetadataChange');
 
 ### on('callStateChange')<sup>11+</sup>
 
-on(type: 'callStateChange', filter: Array\<keyof AVCallState> | 'all', callback: Callback\<AVCallState>): void;
+on(type: 'callStateChange', filter: Array\<keyof AVCallState> | 'all', callback: Callback\<AVCallState>): void
 
 设置通话状态变化的监听事件。
 
@@ -7181,7 +7181,7 @@ avsessionController.on('callStateChange', ['state'], (callstate: avSession.AVCal
 
 ### off('callStateChange')<sup>11+</sup>
 
-off(type: 'callStateChange', callback?: Callback\<AVCallState>): void;
+off(type: 'callStateChange', callback?: Callback\<AVCallState>): void
 
 取消设置通话状态变化的监听事件。
 
