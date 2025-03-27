@@ -12,26 +12,17 @@
 **变更影响**
 
 此变更涉及应用适配。
+TS接口
 | 平台 | 变更前 | 变更后 |
 | --- | ----- | ----- |
-| 通用 | 同USB地址下只有输入设备，识别为USB_HEADSET| 同USB地址下只有输入设备，识别为USB_DEVICE|
-| PC | 同USB地址下只有输出设备，识别为USB_HEADSET| 同USB地址下只有输出设备，识别为USB_DEVICE|
+| 通用 | 同USB地址下只有输入设备，识别为USB_HEADSET。| 同USB地址下只有输入设备，识别为USB_DEVICE。|
+| PC/2in1 | 同USB地址下只有输出设备，识别为USB_HEADSET。| 同USB地址下只有输出设备，识别为USB_DEVICE。|
 
-变更前：如应用对USB音频设备有特殊处理需求，仅处理USB_HEADSET类型的音频设备即可。
-```cpp
-// 针对usb音频设备做特殊处理
-if (devicetype == AUDIO_DEVICE_USB_HEADSET) {
-  // do sth
-}
-```
-
-变更后：如应用对USB音频设备有特殊处理需求，不仅要考虑USB_HEADSET类型，也要考虑USB_DEVICE类型的音频设备。
-```cpp
-// 针对usb音频设备做特殊处理
-if (devicetype == AUDIO_DEVICE_USB_HEADSET || devicetype == AUDIO_DEVICE_USB_DEVICE) {
-  // do sth
-}
-```
+NDK接口
+| 平台 | 变更前 | 变更后 |
+| --- | ----- | ----- |
+| 通用 | 同USB地址下只有输入设备，识别为AUDIO_DEVICE_USB_HEADSET。| 同USB地址下只有输入设备，识别为AUDIO_DEVICE_USB_DEVICE。|
+| PC/2in1 | 同USB地址下只有输出设备，识别为AUDIO_DEVICE_USB_HEADSET。| 同USB地址下只有输出设备，识别为AUDIO_DEVICE_USB_DEVICE。|
 
 **起始API Level**
 
@@ -49,4 +40,40 @@ NDK: native_audio_device_base.h中OH_AudioDevice_Type的AUDIO_DEVICE_USB_HEADSET
 
 **适配指导**
 
+TS接口
+
 如应用对USB音频设备有特殊处理需求，现在不仅需要处理USB_HEADSET类型的音频设备，还需将USB_DEVICE类型也纳入到处理范围内。
+```cpp
+// 针对usb音频设备做特殊处理
+if (devicetype == DeviceType.USB_HEADSET) {
+  // do sth
+}
+```
+
+变更后：如应用对USB音频设备有特殊处理需求，不仅要考虑USB_HEADSET类型，也要考虑USB_DEVICE类型的音频设备。
+```cpp
+// 针对usb音频设备做特殊处理
+if (devicetype == DeviceType.USB_HEADSET || devicetype == DeviceType.USB_DEVICE) {
+  // do sth
+}
+```
+
+
+NDK接口
+
+如应用对USB音频设备有特殊处理需求，现在不仅需要处理AUDIO_DEVICE_USB_HEADSET类型的音频设备，还需将AUDIO_DEVICE_USB_DEVICE类型也纳入到处理范围内。
+变更前：如应用对USB音频设备有特殊处理需求，仅处理AUDIO_DEVICE_USB_HEADSET类型的音频设备即可。
+```cpp
+// 针对usb音频设备做特殊处理
+if (devicetype == OH_AudioDevice_Type.AUDIO_DEVICE_USB_HEADSET) {
+  // do sth
+}
+```
+
+变更后：如应用对USB音频设备有特殊处理需求，不仅要考虑AUDIO_DEVICE_USB_HEADSET类型，也要考虑AUDIO_DEVICE_USB_DEVICE类型的音频设备。
+```cpp
+// 针对usb音频设备做特殊处理
+if (devicetype == OH_AudioDevice_Type.AUDIO_DEVICE_USB_HEADSET || devicetype == OH_AudioDevice_Type.AUDIO_DEVICE_USB_DEVICE) {
+  // do sth
+}
+```
