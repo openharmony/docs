@@ -3212,9 +3212,9 @@ static getAllServerConfigs(): Promise&lt;Array&lt;DomainServerConfig&gt;&gt;
     serverConfig: osAccount.DomainServerConfig) => {
     console.log('add domain server configuration successfully, the added config: ' + JSON.stringify(serverConfig));
     osAccount.DomainServerConfigManager.getAllServerConfigs().then((data: Array<osaccount.DomainServerConfig>) => {
-      console.log('get all domain server configuration successfully, return config: ' + JSON.stringfy(data));
+      console.log('get all domain server configuration successfully, return config: ' + JSON.stringify(data));
     }).catch((err: BusinessError) => {
-      console.log('get all domain server configuration failed, error: ' + JSON.stringfy(err));
+      console.log('get all domain server configuration failed, error: ' + JSON.stringify(err));
     });
   }).catch((err: BusinessError) => {
     console.log('add server configuration failed, error: ' + JSON.stringify(err));
