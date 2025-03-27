@@ -344,10 +344,10 @@ PixelMap透明度类型的枚举。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| OHOS_PIXEL_MAP_ALPHA_TYPE_UNKNOWN  | 未知的格式   | 
-| OHOS_PIXEL_MAP_ALPHA_TYPE_OPAQUE  | 不透明的格式   | 
-| OHOS_PIXEL_MAP_ALPHA_TYPE_PREMUL  | 预乘的格式   | 
-| OHOS_PIXEL_MAP_ALPHA_TYPE_UNPREMUL  | 预除的格式   | 
+| OHOS_PIXEL_MAP_ALPHA_TYPE_UNKNOWN  | 未知的格式。   | 
+| OHOS_PIXEL_MAP_ALPHA_TYPE_OPAQUE  | 不透明的格式。   | 
+| OHOS_PIXEL_MAP_ALPHA_TYPE_PREMUL  | 预乘的格式。   | 
+| OHOS_PIXEL_MAP_ALPHA_TYPE_UNPREMUL  | 预除的格式。   | 
 
 
 ### 方法返回的错误码
@@ -631,7 +631,7 @@ int32_t OH_GetImageInfo (napi_env env, napi_value value, OhosPixelMapInfo * info
 | -------- | -------- |
 | env | napi的环境指针。  | 
 | value | 应用层的 **PixelMap** 对象。  | 
-| info | 用于保存信息的指针对象。 更多细节参看 [OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md)。  | 
+| info | 用于保存信息的指针对象。更多细节参看 [OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md)。  | 
 
 **返回：**
 
