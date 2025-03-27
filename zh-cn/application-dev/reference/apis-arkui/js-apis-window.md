@@ -401,7 +401,8 @@ import { window } from '@kit.ArkUI';
 
 | 名称   | 类型   | 必填 | 说明                                       |
 | ------ | ------ | ---- | ------------------------------------------ |
-| rect | [Rect](#rect7)  | 是 | 软键盘窗口的位置和大小。 |
+| beginRect | [Rect](#rect7)  | 是 | 动画开始前软键盘的位置和大小。 |
+| endRect | [Rect](#rect7)  | 是 | 动画结束后软键盘的位置和大小。 |
 
 ## Callback<sup>15+</sup>
 
