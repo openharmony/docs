@@ -4577,7 +4577,9 @@
 
 ## ohos.permission.CHANGE_DEFAULT_APPLICATION
 
-允许系统应用或系统服务订阅默认应用变更事件usual.event.DEFAULT_APP_CHANGED。
+允许应用监听“默认应用”变化事件。
+
+用户可以为系统设置“默认应用”，如设置默认使用某一应用打开指定类型文件。当“默认应用”变化时，将触发“默认应用”变化事件。
 
 **权限级别**：system_basic
 
