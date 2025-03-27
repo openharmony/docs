@@ -60,7 +60,7 @@ statistics.on('netStatsChange', (data: IFace) => {
 
 ## statistics.off('netStatsChange')<sup>10+</sup>
 
-off(type: 'netStatsChange', callback?: Callback\<NetStatsChangeInfo>): void;
+off(type: 'netStatsChange', callback?: Callback\<NetStatsChangeInfo>): void
 
 Unsubscribes from traffic change events.
 
@@ -109,7 +109,7 @@ statistics.off('netStatsChange');
 
 ## statistics.getTrafficStatsByIface<sup>10+</sup>
 
-getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsInfo>): void;
+getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsInfo>): void
 
 Obtains the historical traffic statistics of the specified NIC. This API uses an asynchronous callback to return the result.
 
@@ -172,7 +172,7 @@ if (iFaceInfo) {
 
 ## statistics.getTrafficStatsByIface<sup>10+</sup>
 
-getTrafficStatsByIface(ifaceInfo: IfaceInfo): Promise\<NetStatsInfo>;
+getTrafficStatsByIface(ifaceInfo: IfaceInfo): Promise\<NetStatsInfo>
 
 Obtains the historical traffic statistics of the specified NIC. This API uses a promise to return the result.
 
@@ -235,7 +235,7 @@ if (iFaceInfo) {
 
 ## statistics.getTrafficStatsByUid<sup>10+</sup>
 
-getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): void;
+getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): void
 
 Obtains the historical traffic statistics of the specified application. This API uses an asynchronous callback to return the result.
 
@@ -307,7 +307,7 @@ statistics.getTrafficStatsByUid(
 
 ## statistics.getTrafficStatsByUid<sup>10+</sup>
 
-getTrafficStatsByUid(uidInfo: UidInfo): Promise\<NetStatsInfo>;
+getTrafficStatsByUid(uidInfo: UidInfo): Promise\<NetStatsInfo>
 
 Obtains the historical traffic statistics of the specified application. This API uses a promise to return the result.
 
