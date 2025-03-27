@@ -29,10 +29,9 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下。
 为了方便在命令行中直接执行hdc程序，开发者也可以将hdc程序文件路径添加到操作系统命令搜索路径的环境变量中。
 例如，Windows系统可以添加到系统环境变量Path中。
 
-### （可选）server监听端口配置
+### （可选）hdc server配置
 
-hdc server启动时，默认会监听PC的8710端口，hdc client使用tcp协议通过此端口连接server。如果PC的8710端口已经被使用或者希望使用其他端口，可以通过添加环境变量OHOS_HDC_SERVER_PORT到系统环境变量中来修改server启动时监听的端口号。
-例如，添加变量名为：OHOS_HDC_SERVER_PORT，变量值可设置为任意未被占用的端口，如18710。
+通过配置对应的系统环境变量，可以修改hdc server的监听端口，日志打印级别或特性开关等，详细介绍请查看[可选配置项](#可选配置项)章节。
 
 > **说明：**
 >
@@ -1159,6 +1158,36 @@ hdc shell hilog -w start                              // 开启hilog日志落盘
 hdc shell ls /data/log/hilog                          // 查看已落盘hilog日志
 hdc file recv /data/log/hilog                         // 获取hilog已落盘日志（包含内核日志）
 ```
+
+## 可选配置项
+
+### OHOS_HDC_SERVER_PORT
+
+默认值：8710。
+
+用于设置hdc server运行时监听的端口号，该端口用于hdc client与hdc server之间的数据通讯。
+
+hdc server启动时，默认会监听电脑的8710端口，hdc client使用tcp协议通过此端口连接server。如果电脑的8710端口已经被使用或者希望使用其他端口，可以通过添加环境变量OHOS_HDC_SERVER_PORT到系统环境变量中来修改server启动时监听的端口号。可以设置的端口范围为1~65535。
+
+例如，添加变量名为：OHOS_HDC_SERVER_PORT，变量值可设置为任意未被占用的端口，如18710。
+
+### OHOS_HDC_LOG_LEVEL
+
+默认值：3。
+
+用于设置服务进程日志记录级别，日志级别详情参考：[server端日志](#server端日志)指定运行时日志等级章节。
+
+### OHOS_HDC_HEARTBEAT
+
+默认：心跳功能开启。
+
+用于设置hdc server和hdc daemon的心跳功能开关。
+
+hdc server和hdc daemon启动后，默认会互相发送心跳数据包，收到心跳数据包后会记录在hdc的日志中，方便后期查看设备的连接情况。
+
+当hdc server对应的电脑中配置环境变量OHOS_HDC_HEARTBEAT为“1”后，hdc server会关闭心跳特性；当设备连接这台电脑后，hdc server会给hdc daemon发送心跳特性关闭的信息，双方不再互相发送心跳数据包。
+
+设置为"1"表示关闭心跳功能；设置为其它数字表示开启心跳功能。
 
 ## 常见问题
 
