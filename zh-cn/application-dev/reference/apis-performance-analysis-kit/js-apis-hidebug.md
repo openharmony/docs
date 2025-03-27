@@ -714,7 +714,7 @@ console.info(`pss: ${nativeMemInfo.pss}, vss: ${nativeMemInfo.vss}, rss: ${nativ
 
 getSystemMemInfo(): SystemMemInfo
 
-获取系统内存信息。接口实现方式：读取节proc/meminfo节点的数据，详情请参考接口返回值介绍。
+获取系统内存信息。接口实现方式：读取/proc/meminfo节点的数据，详情请参考接口返回值介绍。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
