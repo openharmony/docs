@@ -99,7 +99,7 @@
 | typedef bool(\* [ArkUI_OnWillDismissEvent](#arkui_onwilldismissevent)) (int32_t reason) | 弹窗关闭的回调函数。  | 
 | typedef struct [ArkUI_DialogDismissEvent](#arkui_dialogdismissevent) [ArkUI_DialogDismissEvent](#arkui_dialogdismissevent) | 定义弹窗关闭事件对象。  | 
 | typedef struct [ArkUI_CustomDialogOptions ](#arkui_customdialogoptions) [ArkUI_CustomDialogOptions ](#arkui_customdialogoptions) | 定义自定义弹窗的内容对象。  | 
-| typedef uint32_t [ArkUI_GestureEventActionTypeMask](#arkui_gestureeventactiontypemask) | 定义手势事件类型集合  | 
+| typedef uint32_t [ArkUI_GestureEventActionTypeMask](#arkui_gestureeventactiontypemask) | 定义手势事件类型集合。  | 
 | typedef uint32_t [ArkUI_GestureDirectionMask](#arkui_gesturedirectionmask) | 定义滑动手势方向集合。  | 
 | typedef ArkUI_GestureRecognizer \* [ArkUI_GestureRecognizerHandle](#arkui_gesturerecognizerhandle) | 提供手势识别器句柄类型对象定义。  | 
 | typedef [ArkUI_GestureRecognizerHandle](#arkui_gesturerecognizerhandle) \* [ArkUI_GestureRecognizerHandleArray](#arkui_gesturerecognizerhandlearray) | 提供手势识别器句柄类型数组对象定义。  | 
@@ -1153,7 +1153,7 @@ typedef uint32_t ArkUI_GestureEventActionTypeMask
 ```
 **描述：**
 
-定义手势事件类型集合
+定义手势事件类型集合。
 
 例：ArkUI_GestureEventActionTypeMask actions = GESTURE_EVENT_ACTION_ACCEPT | GESTURE_EVENT_ACTION_UPDATE;
 
@@ -5752,7 +5752,7 @@ void OH_ArkUI_AlignmentRuleOption_SetBottom (ArkUI_AlignmentRuleOption * option,
 | -------- | -------- |
 | option | 相对容器中子组件的对齐规则信息。  | 
 | id | 锚点的组件的id值。  | 
-| value | 相对于锚点组件的对齐方式  | 
+| value | 相对于锚点组件的对齐方式。  | 
 
 
 ### OH_ArkUI_AlignmentRuleOption_SetCenterHorizontal()

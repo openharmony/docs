@@ -19,7 +19,7 @@ import { componentUtils } from '@kit.ArkUI';
 
 getRectangleById(id: string): ComponentInfo
 
-根据组件ID获取组件实例对象, 通过组件实例对象将获取的坐标位置和大小同步返回给开发者。
+根据组件ID获取组件实例对象，通过组件实例对象将获取的坐标位置和大小同步返回给开发者。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -142,7 +142,7 @@ type Matrix4Result = [number,number,number,number,number,number,number,number,nu
 
 | 类型 | 说明                               |
 | --------| -----------------------------------|
-| [number,number,number,number,<br />number,number,number,number,<br />number,number,number,number,<br />number,number,number,number] | 取值范围为长度为16（4\*4）的number数组,&nbsp;详情见四阶矩阵说明,单位: px  |
+| [number,number,number,number,<br />number,number,number,number,<br />number,number,number,number,<br />number,number,number,number] | 取值范围为长度为16（4\*4）的number数组，&nbsp;详情见四阶矩阵说明。<br/>单位: px  |
 
 **四阶矩阵说明：**
 
