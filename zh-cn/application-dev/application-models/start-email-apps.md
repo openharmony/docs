@@ -1,6 +1,8 @@
 # 拉起邮件类应用（startAbilityByType）
 
 本章节介绍如何拉起邮件类应用扩展面板。
+> **说明：**
+> 如果拉起方的参数为mailto协议字符串，可以使用使用mailto方式拉起邮件应用。邮件应用会解析收到的mailto协议字符串，并填充发件人、收件人、邮件内容等信息。
 
 ## 邮件类应用扩展面板参数说明
 
@@ -208,7 +210,3 @@ export default class EntryAbility extends UIAbility {
     }
 }
 ```
-
-## 与mailto对比
-+ 如果已经知道发件人、收件人、邮件内容...是什么，直接用startAbilityByType传对应参数就可以。
-+ mailto方式需要开发者按mailto格式封装字符串，再使用mailto方式拉起。例如拿到的是一个mailto协议字串，直接用mailto方式拉起，电子邮件会自己解析mailto协议，并填充相关字段。
