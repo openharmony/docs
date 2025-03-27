@@ -13,7 +13,7 @@ HiAppEvent提供接口用于订阅系统崩溃事件。
 | ------- | ------ | ------------------------- |
 | time     | number | 事件触发时间，单位为毫秒。 |
 | crash_type | string | 崩溃类型。支持JsError和NativeCrash两种崩溃类型。 |
-| foreground | boolean | 应用是否处于前台状态。 |
+| foreground | boolean | 应用是否处于前台状态。true表示处于前台状态；false表示处于后台状态。 |
 | bundle_version | string | 应用版本。 |
 | bundle_name | string | 应用名称。 |
 | pid | number | 应用的进程id。|

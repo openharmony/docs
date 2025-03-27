@@ -2591,7 +2591,7 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 12300002 | Invalid challenge, authType or authTrustLevel. |
 | 12300013 | Network exception. |
 | 12300101 | The credential is incorrect. |
-| 12300102 | Credential not enrolled. |
+| 12300102 | The credential does not exist. |
 | 12300105 | The trust level is not supported. |
 | 12300106 | The authentication type is not supported. |
 | 12300109 | The authentication, enrollment, or update operation is canceled. |
@@ -2661,7 +2661,7 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
 | 12300101 | The credential is incorrect. |
-| 12300102 | Credential not enrolled. |
+| 12300102 | The credential does not exist. |
 | 12300105 | The trust level is not supported. |
 | 12300106 | The authentication type is not supported. |
 | 12300109 | The authentication, enrollment, or update operation is canceled. |
@@ -2734,7 +2734,7 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
 | 12300101 | The credential is incorrect. |
-| 12300102 | Credential not enrolled. |
+| 12300102 | The credential does not exist. |
 | 12300105 | The trust level is not supported. |
 | 12300106 | The authentication type is not supported. |
 | 12300109 | The authentication, enrollment, or update operation is canceled. |
@@ -2781,7 +2781,7 @@ cancelAuth(contextID: Uint8Array): void
 
 | 参数名    | 类型       | 必填  | 说明                                        |
 | ----------| ---------- | ---- | ------------------------------------------ |
-| contextId | Uint8Array | 是   | 指示身份验证上下文ID，此ID动态生成没有具体值。 |
+| contextID | Uint8Array | 是   | 指示身份验证上下文ID，此ID动态生成没有具体值。 |
 
 **错误码：**
 
@@ -3769,7 +3769,7 @@ hasAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;bool
 | 12300002 | Invalid domainAccountInfo. |
 | 12300013 | Network exception. |
 | 12300014 | Not authenticated. |
-| 12300111 | The authentication time out. |
+| 12300111 | The operation time out. |
 | 12300114 | The authentication service works abnormally. |
 | 12300211 | Server unreachable. |
 
@@ -3829,7 +3829,7 @@ hasAccount(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;
 | 12300002 | Invalid domainAccountInfo. |
 | 12300013 | Network exception. |
 | 12300014 | Not authenticated. |
-| 12300111 | The authentication time out. |
+| 12300111 | The operation time out. |
 | 12300114 | The authentication service works abnormally. |
 | 12300211 | Server unreachable. |
 
@@ -3991,7 +3991,7 @@ getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
 | 12300014 | Not authenticated. |
-| 12300111 | The authentication time out. |
+| 12300111 | The operation time out. |
 | 12300114 | The authentication service works abnormally. |
 | 12300211 | Server unreachable. |
 
@@ -4052,7 +4052,7 @@ getAccountInfo(options: GetDomainAccountInfoOptions): Promise&lt;DomainAccountIn
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
 | 12300014 | Not authenticated. |
-| 12300111 | The authentication time out. |
+| 12300111 | The operation time out. |
 | 12300114 | The authentication service works abnormally. |
 | 12300211 | Server unreachable. |
 
@@ -4104,7 +4104,7 @@ getAccessToken(businessParams: Record<string, Object>, callback: AsyncCallback&l
 | 12300003 | Domain account not found. |
 | 12300013 | Network exception. |
 | 12300014 | The domain account is not authenticated. |
-| 12300111 | The authentication time out. |
+| 12300111 | The operation time out. |
 | 12300114 | The authentication service works abnormally. |
 | 12300211 | Server unreachable. |
 
@@ -4163,7 +4163,7 @@ getAccessToken(businessParams: Record<string, Object>): Promise&lt;Uint8Array&gt
 | 12300003 | Domain account not found. |
 | 12300013 | Network exception. |
 | 12300014 | The domain account is not authenticated. |
-| 12300111 | The authentication time out. |
+| 12300111 | The operation time out. |
 | 12300114 | The authentication service works abnormally. |
 | 12300211 | Server unreachable. |
 
@@ -4389,7 +4389,7 @@ addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void
 | 12300101 | The token is invalid. |
 | 12300106 | The authentication type is not supported. |
 | 12300109 | The authentication, enrollment, or update operation is canceled. |
-| 12300111 | The authentication time out. |
+| 12300111 | The operation time out. |
 | 12300115 | The number of credentials reaches the upper limit. |
 | 12300116 | Credential complexity verification failed. |
 
@@ -4450,13 +4450,13 @@ updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | The system service works abnormally. |
-| 12300002 | Invalid credentialInfo, i.e. authType or authSubType or token. |
+| 12300002 | Invalid credentialInfo, i.e. authType or authSubType. |
 | 12300003 | Account not found. |
 | 12300101 | The token is invalid. |
-| 12300102 | Credential not enrolled.|
+| 12300102 | The credential does not exist. |
 | 12300106 | The authentication type is not supported. |
 | 12300109 | The authentication, enrollment, or update operation is canceled. |
-| 12300111 | The authentication time out. |
+| 12300111 | The operation time out. |
 | 12300116 | Credential complexity verification failed. |
 
 **示例：**
@@ -4650,7 +4650,7 @@ delCred(credentialId: Uint8Array, token: Uint8Array, callback: IIdmCallback): vo
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid credentialId. |
 | 12300101 | The token is invalid. |
-| 12300102 | Credential not enrolled. |
+| 12300102 | The credential does not exist. |
 
 **示例：**
   ```ts
@@ -4892,7 +4892,7 @@ getEnrolledId(authType: AuthType, accountId?: number): Promise&lt;Uint8Array&gt;
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid authType. |
 | 12300003 | Account not found. |
-| 12300102 | Credential not enrolled. |
+| 12300102 | The credential does not exist. |
 | 12300106 | The authentication type is not supported. |
 
 **示例：**

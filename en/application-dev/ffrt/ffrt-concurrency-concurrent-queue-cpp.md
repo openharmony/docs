@@ -20,8 +20,9 @@ The implementation code is as follows:
 
 ```cpp
 #include <iostream>
-#include <string>
-#include <ffrt.h>
+#include <unistd.h>
+#include "ffrt/cpp/queue.h"
+#include "ffrt/cpp/task.h"
 
 class BankQueueSystem {
 private:
@@ -30,35 +31,31 @@ private:
 public:
     BankQueueSystem(const char *name, int concurrency)
     {
-        queue_ = std::make_unique<ffrt::queue>(queue_concurrent, name, queue_attr().max_concurrency(concurrency));
-        std::cout << "bank system has been initailized" << std::endl;
+        queue_ = std::make_unique<ffrt::queue>(
+            ffrt::queue_concurrent, name, ffrt::queue_attr().max_concurrency(concurrency));
+        std::cout << "bank system has been initialized" << std::endl;
     }
 
     ~BankQueueSystem()
     {
         queue_ = nullptr;
-        std::cout << "bank system has been destoryed" << std::endl;
+        std::cout << "bank system has been destroyed" << std::endl;
     }
 
     // Start to queue, that is, submit queue tasks.
-    task_handle Enter(const std::function<void()>& func, char *name, ffrt_queue_priority_t level, int delay)
+    ffrt::task_handle Enter(const std::function<void()>& func, const char *name, ffrt_queue_priority_t level, int delay)
     {
         return queue_->submit_h(func, ffrt::task_attr().name(name).priority(level).delay(delay));
     }
 
     // Exit the queue, that is, cancel queue tasks.
-    int Exit(const task_handle &t)
+    int Exit(const ffrt::task_handle &t)
     {
         return queue_->cancel(t);
     }
 
-    int GetQueueSize()
-    {
-        return queue_->get_task_cnt();
-    }
-
     // Wait for tasks in the queue.
-    void Wait(const task_handle& handle)
+    void Wait(const ffrt::task_handle& handle)
     {
         queue_->wait(handle);
     }
@@ -76,7 +73,8 @@ void BankBusinessVIP()
     std::cout << "saving or withdraw VIP" << std::endl;
 }
 
-int main() {
+int main()
+{
     BankQueueSystem bankQueue("Bank", 2);
 
     bankQueue.Enter(BankBusiness, "customer1", ffrt_queue_priority_low, 0);
@@ -87,13 +85,11 @@ int main() {
     // VIP customers have the priority to enjoy services.
     bankQueue.Enter(BankBusinessVIP, "vip", ffrt_queue_priority_high, 0);
 
-    task_handle handle = bankQueue.Enter(BankBusiness, "customer5", ffrt_queue_priority_low, 0);
-    task_handle handleLast = bankQueue.Enter(BankBusiness, "customer6", ffrt_queue_priority_low, 0);
+    ffrt::task_handle handle = bankQueue.Enter(BankBusiness, "customer5", ffrt_queue_priority_low, 0);
+    ffrt::task_handle handleLast = bankQueue.Enter(BankBusiness, "customer6", ffrt_queue_priority_low, 0);
 
     // Cancel the service for customer 5.
     bankQueue.Exit(handle);
-
-    std::cout << "bank current serving for " << bankQueue.GetQueueSize() << " customers" << std::endl;
 
     // Wait until all customer services are complete.
     bankQueue.Wait(handleLast);

@@ -102,7 +102,7 @@ Parameters
 
 Description
 
-- Deinitializes an `ffrt_task_attr_t` object.
+- Destroys an `ffrt_task_attr_t` object.
 
 ##### ffrt_task_attr_set_name
 
@@ -323,6 +323,9 @@ Allocates memory space. The header of the memory space is in the `ffrt_function_
 - Example 1: Generate a task executor without parameters and return values.
 
     ```c
+    #include <stdio.h>
+    #include "ffrt/task.h"
+
     void foo(void* data)
     {
         printf("foo\n");
@@ -350,6 +353,9 @@ Allocates memory space. The header of the memory space is in the `ffrt_function_
 - Example 2: Generate a task executor with parameters and return values.
 
     ```c
+    #include <stdio.h>
+    #include "ffrt/task.h"
+
     int foo(int x, int y)
     {
         printf("foo: x = %d, y = %d\n", x, y);
@@ -362,12 +368,12 @@ Allocates memory space. The header of the memory space is in the `ffrt_function_
     }
 
     // Custom task executor, which can carry parameters and return values.
-    struct user_defined_function {
+    typedef struct {
         ffrt_function_header_t header; // The header space is ffrt_function_header_t.
         int arg1; // Argument 1
         int arg2; // Argument 2
         int ret; // Return value
-    };
+    } user_defined_function;
 
     // Wrap foo into the exec function type of void(*)(void*).
     void exec_func_wrapper(void* header)
@@ -417,6 +423,9 @@ Submits a common task that supports attribute settings. After the input dependen
 - Example 1: Submit a task with attributes.
 
     ```c
+    #include <stdio.h>
+    #include "ffrt/task.h"
+
     void foo(void* data)
     {
         printf("foo\n");
@@ -427,42 +436,48 @@ Submits a common task that supports attribute settings. After the input dependen
         printf("after_foo\n");
     }
 
-    // Submit a task.
-    ffrt_function_header_t* func = (ffrt_function_header_t*)ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_general);
-    func->exec = foo;
-    func->destroy = after_foo;
-    ffrt_submit_base(func, NULL, NULL, NULL);
+    int main()
+    {
+        // Submit a task.
+        ffrt_function_header_t* func = (ffrt_function_header_t*)ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_general);
+        func->exec = foo;
+        func->destroy = after_foo;
+        ffrt_submit_base(func, NULL, NULL, NULL);
 
-    // Submit a task with attributes.
-    ffrt_task_attr_t attr;
-    ffrt_task_attr_init(&attr);
-    ffrt_task_attr_set_name(&attr, "sample_task");
-    ffrt_task_attr_set_qos(&attr, ffrt_qos_background);
-    ffrt_submit_base(func, NULL, NULL, &attr);
+        // Submit a task with attributes.
+        ffrt_task_attr_t attr;
+        ffrt_task_attr_init(&attr);
+        ffrt_task_attr_set_name(&attr, "sample_task");
+        ffrt_task_attr_set_qos(&attr, ffrt_qos_background);
+        ffrt_submit_base(func, NULL, NULL, &attr);
+
+        return 0;
+    }
     ```
 
 - Example 2: Submit a task with data dependency.
 
     ```c
     // Submit two tasks with data dependency. The Read-After-Write dependency exists between tasks.
-    #include "math.h"
-    #include "ffrt.h"
+    #include <math.h>
+    #include <stdio.h>
+    #include "ffrt/task.h"
 
     void cos_func(float* x, float* y)
     {
-        *y = std::cos(*x);
+        *y = cos(*x);
     }
 
     void tan_func(float* y, float* z)
     {
-        *z = std::tan(*y);
+        *z = tan(*y);
     }
 
-    struct user_defined_function {
+    typedef struct {
         ffrt_function_header_t header;
         float* arg1; // Argument 1
         float* arg2; // Argument 2
-    };
+    } user_defined_function;
 
     void cos_func_wrapper(void* header)
     {
@@ -541,7 +556,7 @@ FFRT_C_API ffrt_task_handle_t ffrt_submit_h_base(ffrt_function_header_t* f, cons
 
 #### Return Values
 
-- Handle of the `ffrt_task_handle_t` task.
+- `ffrt_task_handle_t` task handle.
 
 #### Description
 
@@ -697,9 +712,9 @@ Updates the task QoS dynamically during task execution. Note that this API is us
 ```c
 // Dynamically update the QoS during the execution of a qos_background task.
 ffrt::submit([]() {
-    ...
+    // ...
     int ret = ffrt_this_task_update_qos(ffrt_qos_user_initiated);
-    ...
+    // ...
 }, ffrt::task_attr().qos(ffrt::qos_background));
 ```
 
@@ -724,10 +739,10 @@ Obtains the QoS of the task that is being executed.
 ```c
 // Dynamically obtain the QoS during the execution of a task.
 ffrt::submit([]() {
-    ...
+    // ...
     // The obtained QoS is ffrt_qos_background.
     ffrt_qos_t qos = ffrt_this_task_get_qos();
-    ...
+    // ...
 }, ffrt::task_attr().qos(ffrt::qos_background));
 ```
 
@@ -752,10 +767,10 @@ Obtains the ID of the task that is being executed.
 ```c
 // Dynamically obtain the task ID during task execution.
 ffrt::submit([]() {
-    ...
+    // ...
     // Obtain the unique task ID.
     uint64_t task_id = ffrt_this_task_get_id();
-    ...
+    // ...
 }, ffrt::task_attr().qos(ffrt::qos_background));
 ```
 
@@ -943,31 +958,29 @@ Description
 
 #### Example
 
-```c
-#include <stdio.h>
-#include "ffrt.h"
+```cpp
+#include <functional>
+#include "ffrt/queue.h"
+#include "ffrt/cpp/task.h"
 
-using namespace ffrt;
-using namespace std;
-
-int main(int narg, char** argv)
+int main()
 {
     ffrt_queue_attr_t queue_attr;
     // (Mandatory) Initialize the queue attribute.
-    int result = ffrt_queue_attr_init(&queue_attr);
+    ffrt_queue_attr_init(&queue_attr);
 
     ffrt_queue_attr_set_qos(&queue_attr, static_cast<int>(ffrt_qos_utility));
 
     ffrt_queue_attr_set_timeout(&queue_attr, 10000);
 
-    ffrt_queue_attr_set_callback(&queue_attr, ffrt::create_function_wrapper(basicFunc, ffrt_function_kind_queue));
-
     int x = 0;
     std::function<void()>&& basicFunc = [&x]() { x += 1; };
     ffrt_function_header_t* func = ffrt_queue_attr_get_callback(&queue_attr);
 
+    ffrt_queue_attr_set_callback(&queue_attr, ffrt::create_function_wrapper(basicFunc, ffrt_function_kind_queue));
     // Destroy the queue attribute. This is mandatory.
     ffrt_queue_attr_destroy(&queue_attr);
+    return 0;
 }
 ```
 
@@ -1113,17 +1126,14 @@ Return Values
 
 Description
 
-- This API has been deprecated since API version 15. You are not advised to use it.
+- This API has been deprecated since API version 18. You are not advised to use it.
 - Obtains the ArkTS Worker thread queue for the FFRT thread to communicate with the ArkTS Worker thread.
 
 #### Example
 
-```c
-#include <stdio.h>
-#include "ffrt.h"
-
-using namespace ffrt;
-using namespace std;
+```cpp
+#include "ffrt/queue.h"
+#include "ffrt/cpp/task.h"
 
 int main()
 {
@@ -1138,16 +1148,16 @@ int main()
     std::function<void()>&& basicFunc = [&result]() { result += 1; };
 
     // 3. Submit a serial task.
-    ffrt_queue_submit(queue_handle, create_function_wrapper(basicFunc, ffrt_function_kind_queue), nullptr);
+    ffrt_queue_submit(queue_handle, ffrt::create_function_wrapper(basicFunc, ffrt_function_kind_queue), nullptr);
 
     // 4. Submit the serial task and return the task handle.
-    ffrt_task_handle_t t1 = ffrt_queue_submit_h(queue_handle, create_function_wrapper(basicFunc, ffrt_function_kind_queue), nullptr);
+    ffrt_task_handle_t t1 = ffrt_queue_submit_h(queue_handle, ffrt::create_function_wrapper(basicFunc, ffrt_function_kind_queue), nullptr);
     // 5. Wait until the specified task is complete.
     ffrt_queue_wait(t1);
 
-    ffrt_task_handle_t t2 = ffrt_queue_submit_h(queue_handle, create_function_wrapper(basicFunc, ffrt_function_kind_queue), nullptr);
+    ffrt_task_handle_t t2 = ffrt_queue_submit_h(queue_handle, ffrt::create_function_wrapper(basicFunc, ffrt_function_kind_queue), nullptr);
     // 6. Cancel the task with handle t2.
-    int ret = ffrt_queue_cancel(t2);
+    ffrt_queue_cancel(t2);
 
     // 7. Destroy the handles t1 and t2 submitted to the serial queue task. This is mandatory.
     ffrt_task_handle_destroy(t1);
@@ -1156,6 +1166,7 @@ int main()
     ffrt_queue_attr_destroy(&queue_attr);
     // 9. Destroy the queue handle. This is mandatory.
     ffrt_queue_destroy(queue_handle);
+    return 0;
 }
 ```
 
@@ -1272,37 +1283,28 @@ Description
 #### Example
 
 ```c
-#include "ffrt.h"
-
-void ffrt_c_mutexattr_test()
-{
-    ffrt_mutexattr_t attr;
-    ffrt_mutex_t recursive_mtx;
-    EXPECT_EQ(ffrt_mutexattr_init(nullptr), ffrt_error_inval);
-    EXPECT_EQ(ffrt_mutexattr_settype(nullptr, -1), ffrt_error_inval);
-    EXPECT_EQ(ffrt_mutexattr_gettype(nullptr, nullptr), ffrt_error_inval);
-    EXPECT_EQ(ffrt_mutexattr_destroy(nullptr), ffrt_error_inval);
-}
+ffrt_mutexattr_t attr;
+// Initialize the mutex attribute.
+ffrt_mutexattr_init(&attr);
+// Set a mutex.
+ffrt_mutexattr_settype(&attr, ffrt_mutex_normal);
+// Set a recursive lock.
+ffrt_mutexattr_settype(&attr, ffrt_mutex_recursive);
+// Obtain the mutex type.
+int type = ffrt_mutex_default;
+ffrt_mutexattr_gettype(&attr, &type);
+// Destroy the mutex attribute.
+ffrt_mutexattr_destroy(&attr);
 ```
 
 ### ffrt_mutex_t
 
-- Implements the pthread mutex function, but does not supports initialization of `PTHREAD_MUTEX_INITIALIZER`.
+- Implements `pthread_mutex_t`, but does not supports initialization of `PTHREAD_MUTEX_INITIALIZER`.
 
 #### Declaration
 
 ```c
-typedef enum {
-    ffrt_error = -1,
-    ffrt_success = 0,
-    ffrt_error_nomem = ENOMEM,
-    ffrt_error_timedout = ETIMEDOUT,
-    ffrt_error_busy = EBUSY,
-    ffrt_error_inval = EINVAL
-} ffrt_error_t;
-
 struct ffrt_mutex_t;
-
 struct ffrt_mutexattr_t;
 
 int ffrt_mutex_init(ffrt_mutex_t* mutex, const ffrt_mutexattr_t* attr);
@@ -1418,30 +1420,26 @@ Description
 
 #### Example
 
-```c
-#include "ffrt.h"
+```cpp
+#include "ffrt/mutex.h"
+#include "ffrt/cpp/task.h"
 
-void ffrt_c_mutex_test()
+int main()
 {
     ffrt_mutexattr_t attr;
     ffrt_mutex_t lock;
-    int ret = 0;
     int sum = 0;
     int type = ffrt_mutex_default;
-    ret = ffrt_mutexattr_init(&attr);
-    EXPECT_EQ(ret, ffrt_success);
-    ret = ffrt_mutexattr_settype(&attr, ffrt_mutex_recursive);
-    EXPECT_EQ(ret, ffrt_success);
-    ret = ffrt_mutexattr_gettype(&attr, &type);
-    EXPECT_EQ(ret, ffrt_success);
-    ret = ffrt_mutex_init(&lock, &attr);
-    EXPECT_EQ(type, ffrt_mutex_recursive);
+    ffrt_mutexattr_init(&attr);
+    ffrt_mutexattr_settype(&attr, ffrt_mutex_recursive);
+    ffrt_mutexattr_gettype(&attr, &type);
+    ffrt_mutex_init(&lock, &attr);
     ffrt::submit([&]() {
         ffrt_mutex_lock(&lock);
-        EXPECT_EQ(ffrt_mutex_trylock(&lock), ffrt_success);
+        ffrt_mutex_trylock(&lock);
         sum++;
         ffrt_mutex_lock(&lock);
-        EXPECT_EQ(ffrt_mutex_trylock(&lock), ffrt_success);
+        ffrt_mutex_trylock(&lock);
         sum++;
         ffrt_mutex_unlock(&lock);
         ffrt_mutex_unlock(&lock);
@@ -1453,6 +1451,211 @@ void ffrt_c_mutex_test()
 
     ffrt_mutexattr_destroy(&attr);
     ffrt_mutex_destroy(&lock);
+    return 0;
+}
+```
+
+### ffrt_rwlock_t
+
+- Implements `pthread_rwlock_t`.
+
+#### Declaration
+
+```c
+struct ffrt_rwlock_t;
+struct ffrt_rwlockattr_t;
+
+int ffrt_rwlock_init(ffrt_rwlock_t* rwlock, const ffrt_rwlockattr_t* attr);
+int ffrt_rwlock_wrlock(ffrt_rwlock_t* rwlock);
+int ffrt_rwlock_rdlock(ffrt_rwlock_t* rwlock);
+int ffrt_rwlock_trywrlock(ffrt_rwlock_t* rwlock);
+int ffrt_rwlock_tryrdlock(ffrt_rwlock_t* rwlock);
+int ffrt_rwlock_unlock(ffrt_rwlock_t* rwlock);
+int ffrt_rwlock_destroy(ffrt_rwlock_t* rwlock);
+```
+
+#### Description
+
+- This API can be called inside or outside an FFRT task.
+- This API can avoid the issue that `pthread_rwlock_t` sleeps without releasing threads. The performance is better when the API is properly used.
+- `ffrt_rwlock_t` in the C API needs to be explicitly created and destroyed by calling `ffrt_rwlock_init` and `ffrt_rwlock_destroy`. Otherwise, undefined behavior may occur.
+- When `ffrt_rwlockattr_t` is called, the input parameter of `ffrt_rwlockattr_t` must be a null pointer.
+- You need to set the `ffrt_rwlock_t` object in the C code to null or destroy the object. For the same `ffrt_rwlock_t` object, `ffrt_rwlock_destroy` can be called only once. Otherwise, undefined behavior may occur.
+- If `ffrt_rwlock_t` is accessed after `ffrt_rwlock_destroy` is called, undefined behavior may occur.
+
+#### Methods
+
+##### ffrt_rwlock_init
+
+```c
+FFRT_C_API int ffrt_rwlock_init(ffrt_rwlock_t* rwlock, const ffrt_rwlockattr_t* attr);
+```
+
+Parameters
+
+- `rwlock`: pointer to the operated RW lock.
+- `attr`: pointer to the RW lock attribute.
+
+Return Values
+
+- `ffrt_success` is returned if neither `rwlock` nor `attr` is empty. Otherwise, `ffrt_error_inval` is returned or the current task is blocked.
+
+Description
+
+- Initializes the RW lock.
+
+##### ffrt_rwlock_wrlock
+
+```c
+FFRT_C_API int ffrt_rwlock_wrlock(ffrt_rwlock_t* rwlock);
+```
+
+Parameters
+
+- `rwlock`: pointer to the operated RW lock.
+
+Return Values
+
+- `ffrt_success` is returned if `rwlock` is not empty. Otherwise, `ffrt_error_inval` is returned.
+
+Description
+
+- Adds a write lock to the specified RW lock.
+
+##### ffrt_rwlock_rdlock
+
+```c
+FFRT_C_API int ffrt_rwlock_rdlock(ffrt_rwlock_t* rwlock);
+```
+
+Parameters
+
+- `rwlock`: pointer to the operated RW lock.
+
+Return Values
+
+- `ffrt_success` is returned if `rwlock` is not empty. Otherwise, **ffrt_error_inval** is returned.
+
+Description
+
+- Adds a read lock to the specified RW lock.
+
+##### ffrt_rwlock_trywrlock
+
+```c
+FFRT_C_API int ffrt_rwlock_trywrlock(ffrt_rwlock_t* rwlock);
+```
+
+Parameters
+
+- `rwlock`: pointer to the operated RW lock.
+
+Return Values
+
+- `ffrt_success` is returned if `rwlock` is not empty and no other thread holds the RW lock. Otherwise, `ffrt_error_inval` is returned.
+
+Description
+
+- Adds a write lock to the specified RW lock.
+
+##### ffrt_rwlock_tryrdlock
+
+```c
+FFRT_C_API int ffrt_rwlock_tryrdlock(ffrt_rwlock_t* rwlock);
+```
+
+Parameters
+
+- `rwlock`: pointer to the operated RW lock.
+
+Return Values
+
+- `ffrt_success` is returned if `rwlock` is not empty and no other thread holds the write lock. Otherwise, `ffrt_error_inval` is returned.
+
+Description
+
+- Adds a read lock to the specified RW lock.
+
+##### ffrt_rwlock_unlock
+
+```c
+FFRT_C_API int ffrt_rwlock_unlock(ffrt_rwlock_t* rwlock);
+```
+
+Parameters
+
+- `rwlock`: pointer to the operated RW lock.
+
+Return Values
+
+- `ffrt_success` is returned if `rwlock` is not empty. Otherwise, `ffrt_error_inval` is returned.
+
+Description
+
+- Unlocks the specified RW lock.
+
+##### ffrt_rwlock_destroy
+
+```c
+FFRT_C_API int ffrt_rwlock_destroy(ffrt_rwlock_t* rwlock);
+```
+
+Parameters
+
+- `rwlock`: pointer to the operated RW lock.
+
+Return Values
+
+- `ffrt_success` is returned if `rwlock` is not empty. Otherwise, `ffrt_error_inval` is returned.
+
+Description
+
+- Destroys a specified RW lock.
+
+#### Example
+
+```cpp
+#include "ffrt/shared_mutex.h"
+#include "ffrt/sleep.h"
+#include "ffrt/cpp/task.h"
+
+int main()
+{
+    ffrt_rwlock_t rwlock;
+    int x = 0;
+    ffrt_rwlock_init(&rwlock, nullptr);
+    ffrt::submit([&]() {
+        ffrt_rwlock_wrlock(&rwlock);
+        ffrt_usleep(10);
+        x++;
+        ffrt_rwlock_unlock(&rwlock);
+    },{},{});
+
+    ffrt::submit([&]() {
+        ffrt_usleep(2);
+        ffrt_rwlock_rdlock(&rwlock);
+        ffrt_rwlock_unlock(&rwlock);
+    },{},{});
+
+    ffrt::submit([&]() {
+        ffrt_usleep(2);
+        if(ffrt_rwlock_trywrlock(&rwlock)){
+            x++;
+            ffrt_rwlock_unlock(&rwlock);
+        }
+    },{},{});
+
+    ffrt::submit([&]() {
+        ffrt_usleep(2);
+        if(ffrt_rwlock_tryrdlock(&rwlock)){
+            ffrt_rwlock_unlock(&rwlock);
+        }
+    },{},{});
+
+    ffrt::wait();
+
+    ffrt_rwlock_destroy(&rwlock);
+    return 0;
 }
 ```
 
@@ -1610,10 +1813,26 @@ Description
 
 #### Example
 
-```c
-#include "ffrt.h"
+```cpp
+#include <iostream>
+#include "ffrt/condition_variable.h"
+#include "ffrt/mutex.h"
+#include "ffrt/sleep.h"
+#include "ffrt/cpp/task.h"
 
-void ffrt_c_cond_test()
+struct timespec timeoutms_to_tm(int timeout_ms) {
+    struct timespec ts;
+    clock_gettime(CLOCK_REALTIME, &ts);
+    ts.tv_sec += timeout_ms / 1000;
+    ts.tv_nsec += (timeout_ms % 1000) * 1000000;
+    if (ts.tv_nsec >= 1000000000) {
+        ts.tv_sec += 1;
+        ts.tv_nsec -= 1000000000;
+    }
+    return ts;
+}
+
+int main()
 {
     int a = 0;
     ffrt_cond_t cond;
@@ -1627,14 +1846,13 @@ void ffrt_c_cond_test()
             struct timespec tm = timeoutms_to_tm(timeout);
             ffrt_mutex_lock(&lock_);
             auto start = std::chrono::high_resolution_clock::now();
-            int ret = ffrt_cond_timedwait(&cond, &lock_, &tm);
+            ffrt_cond_timedwait(&cond, &lock_, &tm);
             auto end = std::chrono::high_resolution_clock::now();
             a = 123;
             ffrt_mutex_unlock(&lock_);
-            std::chrono::duration<double, std::milli> elapsed = end-start;
+            std::chrono::duration<double, std::milli> elapsed = end - start;
             double t = elapsed.count();
-            std::cout << "ffrt_cond_timedwait " << t << " ms\n";
-            EXPECT_EQ(ret, ffrt_success);
+            std::cout << "ffrt_cond_timedwait " << t << " ms" << std::endl;
             }, {}, {});
     }
 
@@ -1648,7 +1866,7 @@ void ffrt_c_cond_test()
     ffrt::wait();
     ffrt_cond_destroy(&cond);
     ffrt_mutex_destroy(&lock_);
-    EXPECT_EQ(a, 123);
+    return 0;
 }
 ```
 
@@ -1675,13 +1893,15 @@ FFRT_C_API int ffrt_usleep(uint64_t usec);
 
 #### Example
 
-```c
-#include "ffrt.h"
+```cpp
+#include "ffrt/sleep.h"
+#include "ffrt/cpp/task.h"
 
-void ffrt_c_usleep_test()
+int main()
 {
     ffrt::submit([=]() { ffrt_usleep(10); }, {}, {});
     ffrt::wait();
+    return 0;
 }
 ```
 
@@ -1703,22 +1923,23 @@ FFRT_C_API void ffrt_yield();
 
 #### Example
 
-```c
-#include "ffrt.h"
+```cpp
+#include <iostream>
+#include "ffrt/sleep.h"
+#include "ffrt/cpp/task.h"
 
-void ffrt_c_yield_test()
+int main()
 {
     int count = 12;
     for (int i = 0; i < count; i++) {
-        ffrt::submit(
-            [&]() {
+        ffrt::submit([&]() {
             ffrt_usleep(100);
-            printf("test");
+            std::cout << "test" << std::endl;
             ffrt_yield();
-        },
-            {}, {});
+        }, {}, {});
     }
     ffrt::wait();
+    return 0;
 }
 ```
 
@@ -1789,9 +2010,9 @@ Description
 - Example 1: Use a one-shot timer.
 
     ```c
-    #include <stdint.h>
+    #include <stdio.h>
     #include <unistd.h>
-    #include "ffrt.h"
+    #include "ffrt/timer.h"
 
     static void test_fun(void *data)
     {
@@ -1800,7 +2021,7 @@ Description
 
     void (*cb)(void *) = test_fun;
 
-    int main(int narg, char** argv)
+    int main()
     {
         static int x = 0;
         void *data = &x;
@@ -1818,9 +2039,9 @@ Description
 - Example 2: Use a repeating timer.
 
     ```c
-    #include <stdint.h>
+    #include <stdio.h>
     #include <unistd.h>
-    #include "ffrt.h"
+    #include "ffrt/timer.h"
 
     static void test_fun(void *data)
     {
@@ -1829,7 +2050,7 @@ Description
 
     void (*cb)(void *) = test_fun;
 
-    int main(int narg, char** argv)
+    int main()
     {
         static int x = 0;
         void *data = &x;
@@ -2012,9 +2233,8 @@ Description
 
     ```c
     #include <pthread.h>
-    #include <unistd.h>
     #include <stdio.h>
-    #include "c/loop.h"
+    #include "ffrt/loop.h"
 
     void* ThreadFunc(void* p)
     {
@@ -2022,10 +2242,10 @@ Description
         if (ret == 0) {
             printf("loop normal operation.");
         }
-        return nullptr;
+        return NULL;
     }
 
-    int main(int narg, char** argv)
+    int main()
     {
         // Create a concurrent queue.
         ffrt_queue_attr_t queue_attr;
@@ -2033,7 +2253,7 @@ Description
         ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_concurrent, "test_queue", &queue_attr);
 
         // Create a loop.
-        auto loop = ffrt_loop_create(queue_handle);
+        ffrt_loop_t loop = ffrt_loop_create(queue_handle);
 
         // Create a separate thread to perform the loop.
         pthread_t thread;
@@ -2041,7 +2261,7 @@ Description
 
         // Stop and destroy the loop.
         ffrt_loop_stop(loop);
-        int ret = ffrt_loop_destroy(loop);
+        ffrt_loop_destroy(loop);
 
         // Destroy the concurrent queue.
         ffrt_queue_attr_destroy(&queue_attr);
@@ -2052,19 +2272,19 @@ Description
 
 - Example 2: loop, concurrent queue, and timer.
 
-    ```c
+    ```cpp
     #include <pthread.h>
     #include <unistd.h>
     #include <stdio.h>
     #include <functional>
     #include <sys/epoll.h>
     #include <sys/eventfd.h>
-    #include "c/loop.h"
-    #include "ffrt.h"
+    #include "ffrt/loop.h"
+    #include "ffrt/cpp/task.h"
 
     void* ThreadFunc(void* p)
     {
-        int ret = ffrt_loop_run(p);
+        ffrt_loop_run(p);
         return nullptr;
     }
 
@@ -2082,7 +2302,7 @@ Description
         uint64_t expected;
     };
 
-    int main(int narg, char** argv)
+    int main()
     {
         // Create a concurrent queue.
         ffrt_queue_attr_t queue_attr;
@@ -2094,8 +2314,8 @@ Description
         int result1 = 0;
 
         // Submit a task to the loop queue.
-        std::function<void()> &&basicFunc1 = [&result1]() {result1 += 10;};
-        ffrt_task_handle_t task1 = ffrt_queue_submit_h(queue_handle, ffrt::create_function_wrapper(basicFunc1, ffrt_function_kind_queue), nullptr);
+        std::function<void()> &&basicFunc1 = [&result1]() { result1 += 10; };
+        ffrt_task_handle_t task = ffrt_queue_submit_h(queue_handle, ffrt::create_function_wrapper(basicFunc1, ffrt_function_kind_queue), nullptr);
 
         // Create a separate thread to perform the loop.
         pthread_t thread;

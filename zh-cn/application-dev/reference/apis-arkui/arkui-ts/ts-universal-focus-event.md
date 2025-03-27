@@ -12,7 +12,7 @@
 >  
 >  - 对于有获焦能力的容器组件，例如[Stack](ts-container-stack.md)、[Row](ts-container-row.md)等，若不存在可获焦子组件，该容器组件不可获焦。为其配置onClick或是单指单击的Tap手势，该组件会隐式地成为可获焦组件。
 > 
->  - 焦点开发及组件获焦能力参考[焦点开发指南](../../../ui/arkts-common-events-focus-event.md)
+>  - 焦点开发及组件获焦能力参考[焦点开发指南](../../../ui/arkts-common-events-focus-event.md)。
 
 ## onFocus
 

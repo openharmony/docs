@@ -20,8 +20,7 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#imagesource) for AP
       const filePath : string = context.cacheDir + '/test.jpg';
       ```
 
-   - Method 2: Obtain the file descriptor of the image through the sandbox path. For details, see [file.fs API Reference](../../reference/apis-core-file-kit/js-apis-file-fs.md).
-      To use this method, you must import the \@kit.CoreFileKit module first.
+   - Method 2: Obtain the file descriptor of the image through the sandbox path. For details, see [file.fs API Reference](../../reference/apis-core-file-kit/js-apis-file-fs.md). To use this method, you must import the \@kit.CoreFileKit module first.
 
       ```ts
       import { fileIo } from '@kit.CoreFileKit';

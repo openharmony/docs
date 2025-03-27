@@ -52,8 +52,10 @@ In addition, ArkTS provides TaskPool concurrent APIs, which are similar to the t
 
 To address the problem that a large number of threads are required, you are advised to:
 
-- Convert multi-thread tasks into concurrent tasks and distribute them through the task pool.
-- Execute I/O tasks in the calling thread (which can be the **TaskPool** thread), rather than starting new threads for them.
+- Convert multithreading tasks into concurrent tasks. When it comes to I/O tasks, use TaskPool to handle them. 
+
+- Execute I/O tasks in the calling thread (which can be the TaskPool thread), rather than starting new threads for them.
+
 - Use worker threads (no more than 8) for resident CPU intensive tasks (which is of a small number).
 
 **References**
@@ -423,7 +425,7 @@ Multiple threads cannot perform operations on the same memory object simultaneou
 
 ## What is the memory sharing principle of a sendable class object of ArkTS? What are the restrictions? How do I use it? (API version 11)
 
-The sendable class is an extension of the actor model. The memory of a sendable class object is shared among threads. However, lock-free must be used for a single thread. To prevent multiple threads from simultaneously accessing a sendable class object, use the synchronization mechanism to ensure thread safe.
+The Sendable class is an extension of the actor model. The memory of a sendable class object is shared among threads. However, lock-free must be used for a single thread. To prevent multiple threads from simultaneously accessing a sendable class object, use the synchronization mechanism to ensure thread safe.
 
 A sendable object must meet the following specifications:
 1. The member property is of the sendable or basic type (string, number, or boolean, but not container class, which will be supported later).
@@ -504,7 +506,7 @@ Currently, the use of **synchronized** is not supported. In the future, the Asyn
 
 ##  Will the main thread be blocked if await is used in the main thread of ArkTS? (API version 10)
 
-**Description**
+**Question**
 
 If the following code is executed in the main thread, will the main thread be blocked?
 

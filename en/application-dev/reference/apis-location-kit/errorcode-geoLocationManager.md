@@ -143,8 +143,9 @@ This error code is reported if the query during geocoding has failed.
 
 **Possible Cause**
 
-1. A certain request parameter is incorrect, or no result can be found based on the parameter.<br>
-2. Network connection is poor, which makes the request fail to be sent from the device or the result fail to be returned from the cloud to the device.
+- A certain request parameter is incorrect, or no result can be found based on the parameter.<br>
+
+- Network connection is poor, which makes the request fail to be sent from the device or the result fail to be returned from the cloud to the device.
 
 **Procedure**
 
@@ -186,9 +187,9 @@ This error code is reported if a geofence operation, for example, adding, deleti
 
 **Procedure**
 
-- Add the SysCap verification mechanism.
+1. Add the SysCap verification mechanism.
 
-- Add a retry mechanism.
+2. Add a retry mechanism.
 
 ## 3301601 Failed to Add a Geofence Due to a Limit on the Maximum Number
 
@@ -216,7 +217,7 @@ Failed to delete a geofence due to an incorrect ID.
 
 **Description**
 
-The ID of the geofence to be deleted is incorrect.
+This error code is reported if the ID of the geofence to be deleted is incorrect.
 
 **Possible Cause**
 

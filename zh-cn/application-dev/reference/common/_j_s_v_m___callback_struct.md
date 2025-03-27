@@ -17,7 +17,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [JSVM_Value](#callback) (JSVM_CDECL \*callback)([JSVM_Env](_j_s_v_m.md#jsvm_env) env, JSVM_CallbackInfo info) | 用户提供的native回调函数的指针 | 
+| [JSVM_Value](#callback) (JSVM_CDECL \*callback)([JSVM_Env](_j_s_v_m.md#jsvm_env) env, JSVM_CallbackInfo info) | 用户提供的native回调函数的指针。 | 
 
 
 ### 成员变量

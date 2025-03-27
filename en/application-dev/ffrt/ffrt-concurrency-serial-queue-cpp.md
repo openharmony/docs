@@ -20,12 +20,11 @@ With FFRT APIs, you only need to focus on service logic implementation and do no
 The example simplifies the logic for handling exceptions and ensuring thread security. The code is as follows:
 
 ```cpp
-#include <iostream>
+#include <chrono>
 #include <fstream>
-#include <string>
-#include <memory>
-
-#include "ffrt.h"
+#include <iostream>
+#include <thread>
+#include "ffrt/cpp/queue.h"
 
 class Logger {
 public:
@@ -48,7 +47,7 @@ public:
 
         if (logFile_.is_open()) {
             logFile_.close();
-            std::cout << "Log file closed." << std::endl;
+            std::cout << "Log file closed" << std::endl;
         }
     }
 

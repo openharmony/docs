@@ -20,14 +20,15 @@ The implementation code is as follows:
 
 ```c
 #include <stdio.h>
-#include <string.h>
-#include <ffrt.h>
+#include <unistd.h>
+#include "ffrt/queue.h"
+#include "ffrt/task.h"
 
 ffrt_queue_t create_bank_system(const char *name, int concurrency)
 {
     ffrt_queue_attr_t queue_attr;
     (void)ffrt_queue_attr_init(&queue_attr);
-    ffrt_queue_attr_set_max_concurrency(&queue_attr, 4);
+    ffrt_queue_attr_set_max_concurrency(&queue_attr, concurrency);
 
     // Create a concurrent queue.
     ffrt_queue_t queue = ffrt_queue_create(ffrt_queue_concurrent, name, &queue_attr);
@@ -39,14 +40,14 @@ ffrt_queue_t create_bank_system(const char *name, int concurrency)
         return NULL;
     }
 
-    printf("create bank system successful\n");
+    printf("create bank system successfully\n");
     return queue;
 }
 
-void destory_bank_system(ffrt_queue_t queue_handle)
+void destroy_bank_system(ffrt_queue_t queue_handle)
 {
     ffrt_queue_destroy(queue_handle);
-    printf("destory bank system successful\n");
+    printf("destroy bank system successfully\n");
 }
 
 void bank_business(void *arg)
@@ -57,7 +58,8 @@ void bank_business(void *arg)
 }
 
 // Encapsulate the operation of submitting a task to a queue into a function.
-ffrt_task_handle_t commit_request(ffrt_queue_t bank, void (*func)(void *), char *name, ffrt_queue_priority_t level, int delay)
+ffrt_task_handle_t commit_request(ffrt_queue_t bank, void (*func)(void *), const char *name,
+    ffrt_queue_priority_t level, int delay)
 {
     ffrt_task_attr_t task_attr;
     (void)ffrt_task_attr_init(&task_attr);
@@ -74,11 +76,6 @@ int cancel_request(ffrt_task_handle_t request)
     return ffrt_queue_cancel(request);
 }
 
-int get_bank_queue_size(ffrt_queue_t bank)
-{
-    return ffrt_queue_get_task_cnt(bank);
-}
-
 // Encapsulate the operation of waiting for a task in a queue into a function.
 void wait_for_request(ffrt_task_handle_t task)
 {
@@ -89,7 +86,7 @@ int main()
 {
     ffrt_queue_t bank = create_bank_system("Bank", 2);
     if (!bank) {
-        printf("create bank system failed");
+        printf("create bank system failed\n");
         return -1;
     }
     commit_request(bank, bank_business, "customer1", ffrt_queue_priority_low, 0);
@@ -106,11 +103,9 @@ int main()
     // Cancel the service for customer 5.
     cancel_request(task);
 
-    printf("bank current serving for %d customers\n", get_bank_queue_size(bank));
-
     // Wait until all customer services are complete.
     wait_for_request(task_last);
-    destory_bank_system(bank);
+    destroy_bank_system(bank);
 
     return 0;
 }

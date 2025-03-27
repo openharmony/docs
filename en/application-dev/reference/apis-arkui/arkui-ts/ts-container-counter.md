@@ -40,7 +40,7 @@ Sets whether to enable the increment button.
 
 | Name| Type   | Mandatory| Description                                 |
 | ------ | ------- | ---- | ------------------------------------- |
-| value  | boolean | Yes  | Whether to enable the increment button.<br>Default value: **true**|
+| value  | boolean | Yes  | Whether to enable the increment button.<br>**true** (default): Enable the increment button.<br>**false**: Disable the increment button.|
 
 ### enableDec<sup>10+</sup>
 
@@ -56,7 +56,7 @@ Sets whether to enable the decrement button.
 
 | Name| Type   | Mandatory| Description                                 |
 | ------ | ------- | ---- | ------------------------------------- |
-| value  | boolean | Yes  | Whether to enable the decrement button.<br>Default value: **true**|
+| value  | boolean | Yes  | Whether to enable the decrement button.<br>**true** (default): Enable the decrement button.<br>**false**: Disable the decrement button.|
 
 ## Events
 
