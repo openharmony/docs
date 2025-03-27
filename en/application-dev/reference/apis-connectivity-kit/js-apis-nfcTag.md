@@ -14,16 +14,16 @@ To enable NFC tags to be read without starting an application, declare NFC-relat
 ```json
 {
     "module": {
-        // Attributes to declare.
+        // Other declared attributes
 
         "abilities": [
             {
                 "skills": [
                     {
                         "actions": [
-                            // Actions to declare.
+                            // Other declared actions
 
-                            // Add the nfc tag action.
+                            // Add the action of the NFC tag.
                             "ohos.nfc.tag.action.TAG_FOUND"
                         ],
                         "uris": [
@@ -33,8 +33,8 @@ To enable NFC tags to be read without starting an application, declare NFC-relat
                             {
                                 "type":"tag-tech/IsoDep"
                             }
-                            // Add other technology if neccessary,
-                            // such as NfcB, NfcF, NfcV, Ndef, MifareClassic, MifareUL, and NdefFormatable.
+                            // Add other technologies if necessary.
+                            // Example: NfcB, NfcF, NfcV, Ndef, MifareClassic, MifareUL, and NdefFormatable
                         ]
                     }
                 ]
@@ -71,9 +71,9 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want : Want, launchParam: AbilityConstant.LaunchParam) {
-        // add other code here...
+        // Add other function code.
 
-        // want is initialized by the NFC service and contains tagInfo.
+        // Initialize the want that contains the found tag by using the NFC service.
         let tagInfo : tag.TagInfo | null = null;
         try {
             tagInfo = tag.getTagInfo(want);
@@ -85,7 +85,7 @@ export default class EntryAbility extends UIAbility {
             return;
         }
 
-        // get the supported technologies for this found tag.
+        // Obtain the list of technologies that can be used for discovering tags.
         let isNfcATag =  false;
         let isIsoDepTag =  false;
         for (let i = 0; i < tagInfo.technology.length; i++) {
@@ -95,10 +95,10 @@ export default class EntryAbility extends UIAbility {
             if (tagInfo.technology[i] == tag.ISO_DEP) {
                 isIsoDepTag = true;
             }
-        // also check for technology: tag.NFC_B/NFC_F/NFC_V/NDEF/MIFARE_CLASSIC/MIFARE_ULTRALIGHT/NDEF_FORMATABLE
+        // Check for other technologies, for example, NFC_B, NFC_F, NFC_V, NDEF, MIFARE_CLASSIC, MIFARE_ULTRALIGHT, and NDEF_FORMATABLE.
         }
 
-        // use NfcA APIs to access the found tag.
+        // Use NFC-A APIs to access the discovered tags.
         if (isNfcATag) {
             let nfcA : tag.NfcATag | null = null;
             try {
@@ -106,10 +106,10 @@ export default class EntryAbility extends UIAbility {
             } catch (error) {
                 console.error("tag.getNfcA catch error: " + error);
             }
-            // Other code to read or write this tag.
+            // Code for reading or writing the discovered tag.
         }
 
-        // use getIsoDep APIs to access the found tag.
+        // Use IsoDep APIs to access the discovered tags.
         if (isIsoDepTag) {
             let isoDep : tag.IsoDepTag | null = null;
             try {
@@ -117,9 +117,9 @@ export default class EntryAbility extends UIAbility {
             } catch (error) {
                 console.error("tag.getIsoDep catch error: " + error);
             }
-            // Other code to read or write this tag.
+            // Code for reading or writing the discovered tag.
         }
-        // use the same code to handle for "NfcA/NfcB/NfcF/NfcV/Ndef/MifareClassic/MifareUL/NdefFormatable".
+        // Use the same code to process other NFC tags, including NfcA, NfcB, NfcF, NfcV, Ndef, MifareClassic, MifareUL, and NdefFormatable.
     }
 }
 ```
@@ -506,9 +506,9 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 801  | Capability not supported. |
 | 3100201  | The tag running state is abnormal in the service. |
 
-## tag.getBarcodeTag<sup>16+</sup>
+## tag.getBarcodeTag<sup>18+</sup>
 
-getBarcodeTag(taginfo: [TagInfo](#taginfo)): [BartcodeTag](js-apis-nfctech.md#barcodetag16)
+getBarcodeTag(taginfo: [TagInfo](#taginfo)): [BartcodeTag](js-apis-nfctech.md#barcodetag18)
 
 Obtains a **BarcodeTag** object, which allows access to the tags in the BarcodeTag format.
 
@@ -516,7 +516,7 @@ Obtains a **BarcodeTag** object, which allows access to the tags in the BarcodeT
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **Parameters**
 | Name | Type               | Mandatory| Description                                                         |
@@ -527,7 +527,7 @@ Obtains a **BarcodeTag** object, which allows access to the tags in the BarcodeT
 
 | Type                       | Description                |
 | ------------------------- | ------------------ |
-| [BartcodeTag](js-apis-nfctech.md#barcodetag16) | **BarcodeTag** object obtained.|
+| [BartcodeTag](js-apis-nfctech.md#barcodetag18) | **BarcodeTag** object obtained.|
 
 **Error codes**
 
@@ -576,7 +576,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 registerForegroundDispatch(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md), discTech: number[], callback: AsyncCallback&lt;[TagInfo](#taginfo)&gt;): void
 
-Registers a listener for the NFC tag read event so that the tag can be preferentially dispatched to a foreground application. You can set the supported NFC tag technologies in **discTech**. The callback returns [TagInfo](#taginfo) read. This API can be called only by an application running in the foreground. and must be used with [tag.unregisterForegroundDispatch](#tagunregisterforegrounddispatch10) in pairs. The registered callback must be unregistered before the tag reading page exits the foreground or is destroyed.
+Registers a listener for the NFC tag read event so that the tag can be preferentially dispatched to a foreground application. You can set the supported NFC tag technologies in **discTech**. The callback returns [TagInfo](#taginfo) read. This API can be called only by an application running in the foreground. It must be used with [tag.unregisterForegroundDispatch](#tagunregisterforegrounddispatch10) in pairs. The registered callback must be unregistered before the tag reading page exits the foreground or is destroyed.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -645,7 +645,7 @@ import { tag } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { AbilityConstant, UIAbility, Want, bundleManager } from '@kit.AbilityKit';
 
-let discTech : number[] = [tag.NFC_A, tag.NFC_B]; // replace with the tech(s) that is needed by foreground ability
+let discTech: number[] = [tag.NFC_A, tag.NFC_B]; // Specify the technology required for foreground ability.
 let elementName : bundleManager.ElementName;
 function foregroundCb(err : BusinessError, tagInfo : tag.TagInfo) {
     if (!err) {
@@ -654,7 +654,7 @@ function foregroundCb(err : BusinessError, tagInfo : tag.TagInfo) {
         console.log("foreground callback err: " + err.message);
         return;
     }
-  // other Operations of taginfo
+  // Other operations on taginfo
 }
 
 export default class MainAbility extends UIAbility {
@@ -694,7 +694,7 @@ export default class MainAbility extends UIAbility {
         }
     }
 
-  // override other lifecycle functions
+  // Other functions in the ability lifecycle
 }
 ```
 
@@ -774,7 +774,7 @@ import { tag } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { AbilityConstant, UIAbility, Want, bundleManager } from '@kit.AbilityKit';
 
-let discTech : number[] = [tag.NFC_A, tag.NFC_B]; // replace with the tech(s) that is needed by foreground ability
+let discTech: number[] = [tag.NFC_A, tag.NFC_B]; // Specify the technology required for foreground ability.
 let elementName : bundleManager.ElementName;
 
 function readerModeCb(err : BusinessError, tagInfo : tag.TagInfo) {
@@ -784,7 +784,7 @@ function readerModeCb(err : BusinessError, tagInfo : tag.TagInfo) {
         console.error("offCallback err: " + err.message);
         return;
     }
-  // other Operations of taginfo
+  // Other operations on taginfo
 }
 
 export default class MainAbility extends UIAbility {
@@ -824,7 +824,7 @@ export default class MainAbility extends UIAbility {
         }
     }
 
-  // override other lifecycle functions
+  // Other functions in the ability lifecycle
 }
 ```
 
@@ -864,7 +864,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 import { tag } from '@kit.ConnectivityKit';
 
 try {
-    let uri = "https://www.example.com"; // change it to be correct.
+    let uri = "https://www.example.com"; // Set the correct URI.
     let ndefRecord : tag.NdefRecord = tag.ndef.makeUriRecord(uri);
     if (ndefRecord != undefined) {
         console.log("ndefMessage makeUriRecord rtdType: " + ndefRecord.rtdType);
@@ -914,8 +914,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 import { tag } from '@kit.ConnectivityKit';
 
 try {
-    let text = "Hello World";   // change it to be correct.
-    let locale = "en"; // change it to be correct.
+    let text = "Hello World"; // Set the text as demanded.
+    let locale = "en"; // Set the expected encoding format.
     let ndefRecord : tag.NdefRecord = tag.ndef.makeTextRecord(text, locale);
     if (ndefRecord != undefined) {
         console.log("ndefMessage makeTextRecord rtdType: " + ndefRecord.rtdType);
@@ -928,7 +928,7 @@ try {
 }
 ```
 
-## tag.ndef.makeApplicationRecord<sup>16+</sup>
+## tag.ndef.makeApplicationRecord<sup>18+</sup>
 
 makeApplicationRecord(bundleName: string): NdefRecord
 
@@ -936,7 +936,7 @@ Creates an NDEF record based on the specified application bundle name.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **Parameters**
 
@@ -1014,8 +1014,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 import { tag } from '@kit.ConnectivityKit';
 
 try {
-    let mimeType = "text/plain";   // change it to be correct.
-    let mimeData = [0x01, 0x02, 0x03, 0x04]; // change it to be correct.
+    let mimeType = "text/plain"; // Set a correct MIME type.
+    let mimeData = [0x01, 0x02, 0x03, 0x04]; // Set the correct MIME data.
     let ndefRecord : tag.NdefRecord = tag.ndef.makeMimeRecord(mimeType, mimeData);
     if (ndefRecord != undefined) {
         console.log("ndefMessage makeMimeRecord rtdType: " + ndefRecord.rtdType);
@@ -1065,9 +1065,9 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 import { tag } from '@kit.ConnectivityKit';
 
 try {
-    let domainName = "ohos.nfc.application"; // change it to be correct.
-    let type = "test"; // change it to be correct.
-    let externalData = [0x01, 0x02, 0x03, 0x04]; // change it to be correct.
+    let domainName = "ohos.nfc.application"; // Set a correct bundle name.
+    let type = "test"; // Set a correct data type.
+    let externalData = [0x01, 0x02, 0x03, 0x04]; // Set the correct external data.
     let ndefRecord : tag.NdefRecord = tag.ndef.makeExternalRecord(domainName, type, externalData);
     if (ndefRecord != undefined) {
         console.log("ndefMessage makeExternalRecord rtdType: " + ndefRecord.rtdType);
@@ -1115,7 +1115,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 ```js
 import { tag } from '@kit.ConnectivityKit';
 
-let rawData = [0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]; // MUST can be parsed as NDEF Record.
+let rawData = [0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]; // Set the correct raw data, which is in the NDEF format.
 try {
     let ndefMessage : tag.NdefMessage = tag.ndef.createNdefMessage(rawData);
     console.log("ndef createNdefMessage, ndefMessage: " + ndefMessage);
@@ -1159,7 +1159,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 ```js
 import { tag } from '@kit.ConnectivityKit';
 
-let rawData = [0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43];  // MUST can be parsed as NDEF Record.
+let rawData = [0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]; // The NDEF data must be resolvable.
 try {
     let ndefMessage : tag.NdefMessage = tag.ndef.createNdefMessage(rawData);
     console.log("ndef createNdefMessage, ndefMessage: " + ndefMessage);
@@ -1464,18 +1464,18 @@ Obtains a **NdefFormatableTag** object.
 | ------ | ------------------------------------------------------------ |
 | [_NdefFormatableTag](./js-apis-nfctech.md#ndefformatabletag9) | Object that implements formatting of NDEF formattable tags. |
 
-## BarcodeTag<sup>16+</sup>
+## BarcodeTag<sup>18+</sup>
 
 type BarcodeTag = _BarcodeTag
 
 Obtains a **BarcodeTag** object.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
-| [_BarcodeTag](./js-apis-nfctech.md#barcodetag16) | Object that implements access to the barcode tag properties and I/O operations on a tag.|
+| [_BarcodeTag](./js-apis-nfctech.md#barcodetag18) | Object that implements access to the barcode tag properties and I/O operations on a tag.|
 
 ## NdefMessage<sup>9+</sup>
 

@@ -1,91 +1,91 @@
-# Parameter Management
-## Overview
-### Function Introduction
+# 系统参数
+## 概述
+### 功能简介
 
-The parameter management module, namely, sysparam, provides an easy-to-use key-value pair access interface for system services to configure service functions based on their own system parameters.
+OHOS系统参数为各系统服务提供简单易用的键值对访问接口，使得各个系统服务可以通过各自的系统参数来进行业务功能的配置。
 
-### System Parameter Definition
+### 系统参数定义
 
-Each subsystem defines the system parameters of its own modules, including the system parameter name, default value, and access permission information.
-#### System Parameter Definition File
+每个子系统定义各自模块的系统参数，包括系统参数名称、默认值以及系统参数的权限访问信息。
+#### 系统参数定义文件
 
-- The system parameter definition file ends with the **.para** extension. An example of the file format is as follows:
+- 系统参数定义文件后缀名为".para" ，其格式示例如下：
 
 	```
 	const.product.name=OHOS-PRODUCT
 	const.os.version.api=26
 	const.telephony.enable=false|true
 	```
-#### System Parameter Name (Key)
+#### 系统参数名(key)定义
 
-- Naming format
+- 系统参数命名格式
 
-  A system parameter name consists of multiple segments in dotted notation. Each segment can be a string that consists of letters, digits, and underscores (_). The total length cannot exceed 96 bytes. System parameter names are categorized into the following two types.
+  系统参数名称采用点分格式，由多段组成，每一段可以由字母、数字、下划线组成，总长度不超过96字节；系统参数名称分为两类：
 
-  Naming of system parameters
+  系统参数名称
 
-  | Category| Name| Example| Description|
+  | 类别 | 名称 | 示例 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | Parameter| Parameter Name | const.product.**name** | Complete system parameter name. It does not end with a period (.).|
-  | Directory| Parameter Directory | const.**. | Name of the directory storing system parameters with the same prefix. It ends with a period (.).|
+  | 参数名称 | Parameter Name | const.product.name | 完整的系统参数名称，末尾不是"."。 |
+  | 参数目录 | Parameter Directory | const.**.| 以"."结尾，标识相同前缀的所有系统参数集合。 |
 
-- Type
+- 系统参数类型
 
-  System parameters are categorized into three types.
+  系统参数一共分为三大类：
 
-  System parameter types
+  系统参数分类
 
-  | Category| Prefix| Description|
+  | 类别 | 前缀 | 说明 |
   | -------- | -------- | -------- |
-  | Constant| const. | Constant parameter, which will not be changed once a value is assigned. The value can contain a maximum of 4,096 bytes (including the terminator).|
-  | Writable| Others| Writable parameter, which will be lost after system restart. The value can contain a maximum of 96 bytes (including the terminator).|
-  | Persistent| persist. | Writable and persistent parameter, which will not be lost after system restart. The value can contain a maximum of 96 bytes (including the terminator).|
+  | 常量 | const. | 常量参数，一旦赋值后续不会再变更；值最大长度为4096字节（包括结束符）。 |
+  | 可写 | 其它 | 可写参数，重启后丢失，值最大长度96字节（包括结束符）。|
+  | 可持久化 | persist. | 可写并可持久化保存参数，重启后不会丢失，值最大长度96字节（包括结束符）。|
 
-  The general naming format is as follows:
+  每个系统参数名称总体格式如下：
 
   ```java
   [ const | persist ].$sub_system.$desc
   ```
-  **$sub_system** is the name of the subsystem or module.
+  $sub_system为子系统或模块的名称。
 
-  **$desc** indicates the description of a system parameter. The description can contain multiple segments in dotted notation.
+  $desc为子系统或模块下参数的描述字符，可以为点分格式进行分级描述。
 
-#### System Parameter Value
+#### 系统参数值(value)定义
 
-- Types
+- 系统参数的赋值分为三大类：
 
-Types of system parameter values
+系统参数赋值方式
 
-| Category| Example| Description|
+| 类别 | 示例 | 说明 |
 | -------- | -------- | -------- |
-| String  | const.product.name=OHOS-PRODUCT | A multi-line string must be enclosed in double quotation marks ("").|
-| Number    | const.os.version.api=26         | Numbers do not need to be enclosed in quotation marks.|
-| Boolean    | const.telephony.enable=false    | A Boolean value can be **0**, **1**, **false**, or **true**.|
+| 字符串   | const.product.name=OHOS-PRODUCT | 多行字符串需要通过引号扩起来。 |
+| 数字     | const.os.version.api=26         | 数字不需要。|
+| 布尔     | const.telephony.enable=false    | 布尔型的可以为0,1,false,true。|
 
-### System Parameter Permission Configuration
+### 系统参数权限设置
 
-DAC and MAC are supported.
-#### Default Permission
+系统参数支持DAC和MAC访问控制。
+#### 默认权限
 
-If no DAC or MAC permission has been defined for a system parameter, the default permission is as follows:
+系统参数没有定义任何DAC，MAC权限时，其默认权限为：
 
 | [DAC] User | [DAC] Group | [DAC] UGO | [MAC] SELinux Label |
 | ---------- | ----------- | --------- | ------------------- |
 | root       | root        | 775       | default_param       |
 
-Other processes access system parameters with the default permission as follows:
+Other进程对默认权限参数的访问行为列举如下：
 
-| Operation | System Native Process| System Application Process| Third-party Application Process|
+| 操作  | 系统Native进程 | 系统应用进程 | 三方应用进程 |
 | ----- | -------------- | ------------ | ------------ |
-| get   | Allowed          | Allowed        | Allowed        |
-| watch | Allowed          | Allowed        | Allowed        |
-| set   | Not allowed        | Not allowed      | Not allowed      |
+| get   | 允许           | 允许         | 允许         |
+| watch | 允许           | 允许         | 允许         |
+| set   | 不允许         | 不允许       | 不允许       |
 
-#### DAC Permission Configuration
+#### DAC访问控制权限设置
 
-- DAC definition file
+- 系统参数DAC访问控制定义文件
 
-  Currently, the control of system parameter access permissions is implemented in discretionary access control (DAC) mode. The access permission definition file ends with the **.para.dac** extension. It is available in the **/base/startup/init/services/etc/param/ohos.para.dac** directory of the init module. The following is an example of the file content:
+  当前系统参数的访问权限控制通过自主访问控制（Discretionary Access Control）方式管理，访问权限定义文件后缀名为".para.dac" ，init下的文件路径为/base/startup/init/services/etc/param/ohos.para.dac，具体定义内容示例如下：
 
   ```
   const.product.              = root:root:0775
@@ -94,93 +94,93 @@ Other processes access system parameters with the default permission as follows:
   startup.uevent.             = ueventd:ueventd:0775
   ```
 
-  As shown above, we can use **parameter directory** to define the same access permission for system parameters with the same prefix. The DAC information is divided into three segments, user, group, and UGO rule, which are separated using a semicolon (:).
+  如上所示，可以为相同前缀的所有系统参数定义一类访问权限信息，DAC信息通过":"分三段来描述，分别为参数的user，group以及UGO规则信息。
 
-  The following figure shows the structure of the UGO rule.
+  UGO规则信息每一位的定义如下：
 
-  **Figure 1** UGO rule structure
+  **图1** UGO规则信息
 
-  ![UGO rule](figures/dac-definition.png)
+  ![UGO规则信息](figures/系统参数DAC.png)
 
-#### MAC Permission Configuration
+#### MAC访问控制权限设置
 
- - SELinux tag
+ - 添加selinux标签：
 
-    To add a SELinux tag to system parameters, you first need to define the tag in the **/base/security/selinux_adapter/sepolicy/base/public/parameter.te** file. For example:
+    为系统参数添加selinux标签，首先需要在文件/base/security/selinux_adapter/sepolicy/base/public/parameter.te中定义标签，例如：
 
     ```java
     type servicectrl_param, parameter_attr
     ```
 
-    After the tag is defined, add the system parameter prefix associated with the tag to **/base/security/selinux_adapter/sepolicy/base/public/parameter_contexts**. The following uses the prefix **ohos.servicectrl** as an example:
+    标签定义完成后，在文件/base/security/selinux_adapter/sepolicy/base/public/parameter_contexts中添加和标签关联的系统参数前缀，这里以前缀ohos.servicectrl.为例：
 
     ```java
     ohos.servicectrl.           u:object_r:servicectrl_param:s0
     ```
 
-  - Grant operation permissions. For example, to grant operation permissions such as map for the init process, add the following content to the **/base/security/selinux/sepolicy/ohos_policy/startup/init/public/init.te** file:
+  - 给init授权，允许map等操作，在文件/base/security/selinux/sepolicy/ohos_policy/startup/init/public/init.te中补充下面内容：
 
     ```java
     allow servicectrl_param tmpfs:filesystem associate;
     allow init servicectrl_param:file { map open read relabelto relabelfrom };
     ```
 
-  - Set the write permission. For example, grant the system parameter write permission for services such as **init**, **samgr**, and **hdf_devmgr**.
+  - 设置写权限，这里允许init samgr hdf_devmgr 进行系统参数写：
 
     ```java
     allow { init samgr hdf_devmgr } servicectrl_param:parameter_service { set };
     ```
 
-  - Set the read permission. If you want to grant the permission only for certain services, replace **xxx** with the services in the following code:
+  - 设置读权限，如果只允许部分进程访问可单独对该进程授权：
 
     ```java
     allow { xxx } servicectrl_param:file { map open read };
     ```
 
-  - If you want to grant the permission for all services, use the following code:
+  - 如果全部允许，则设置为：
 
     ```java
     allow { domain -limit_domain } servicectrl_param:file { map open read };
     ```
 
-#### Basic Requirements for System Parameter Permissions
+#### 系统参数权限基本要求
 
-    The system parameters mapping to a SELinux tag take up an independent shared memory area. It is recommended that system parameters of the same type share a SELinux tag to reduce the overhead of the system shared memory.
+    每个selinux标签对应的系统参数有独立的共享内存区，同类型的系统参数建议共用selinux标签，减少系统共享内存的开销。
 
-    Take the sample component as an example. You are advised to add the following types of tags for access control:
+    以sample部件为例，建议增加以下几类标签进行访问控制：
 
-    a) For open read-only system parameters, use **default_param** instead of defining new tags. .
+    a）公开只读的系统参数，不需要定义新的标签，使用default_param
 
-    b) For writable system parameters, add the **{component}_writable_param** tag.
+    b）可写系统参数：增加标签{component}_writable_param
 
-    c) For readable system parameters (privacy data) within a component, add the **[optional]{component}_private_param** tag.
+    c）仅部件内部可读的系统参数（隐私数据）：增加标签【可选】 {component}_private_param
 
-### System Parameter Tag Configuration
+### 系统参数标签配置
 
-#### Configuring the Size of the System Parameter Tag File
+#### 系统参数标签文件大小配置
 
-By default, 1 KB memory is allocated to each tag, which can store about five system parameters. If a large number of system parameters are supported under a tag, expand the memory size for the tag in the **ohso.para.size** file.
+每个标签默认分配1K内存，能存放5个左右的系统参数。如果标签下支持的系统参数较多，需在ohso.para.size文件中按照标签扩大内存大小。
 
-This can be done through either **/system/etc/param/ohos.para.size** or **/sys_prod/etc/param/ohos.para.size**.
+支持/system/etc/param/ohos.para.size和/sys_prod/etc/param/ohos.para.size进行扩展。
 
-The configuration rule is as follows:
+配置规则：
 
-System parameter tag = Size
+系统参数标签=大小
 
-Example:
+例如：
 
 ```
 devinfo_public_param=30720
 hilog_param=40960
 ```
 
-Default shared memory size of system parameters: 80 KB
+默认系统参数的共享内存大小：80KB。
 
-#### Description of System Parameter Tags
+#### 系统参数标签说明
 
-  The init process creates the corresponding shared memory mapping file in the **/dev/__parameters__/** directory based on the system parameter tag. The shared memory is used to store the system parameters bound to the tag.
+  init 会根据系统参数标签在/dev/__parameters__/目录下创建对应的共享内存映射文件,该共享内存用来存储与该标签绑定的系统参数。
 
-  Example of a shared memory file:
+  共享内存文件示例：
 
   ```
   -rwxr-xr-- 1 root root 30720 2017-08-10 16:22 u:object_r:default_param:s0
@@ -189,9 +189,9 @@ Default shared memory size of system parameters: 80 KB
   -rwxr-xr-- 1 root root 40960 2017-08-10 16:22 u:object_r:hilog_param:s0
   ```
 
-  The system parameter tags are defined in the **/base/security/selinux_adapter/sepolicy/base/public/parameter.te** file.
+  系统参数标签会在/base/security/selinux_adapter/sepolicy/base/public/parameter.te文件中定义：
 
-  System parameter tag definition:
+  系统参数标签定义：
 
   ```
   type default_param, parameter_attr;
@@ -200,138 +200,140 @@ Default shared memory size of system parameters: 80 KB
   type hilog_param, parameter_attr;
   ```
 
-  The mappings between system parameter tags and system parameters are defined in the **/base/security/selinux_adapter/sepolicy/base/public/parameter_contexts** file.
+  系统参数标签与系统参数的关联在/base/security/selinux_adapter/sepolicy/base/public/parameter_contexts定义：
 
-  The following uses the **hilog_param** tag as an example:
+  以hilog_param标签为例：
 
   ```
-  hilog.                   u:object_r:hilog_param:s0  # System parameters with the hilog. prefix are stored in the shared memory corresponding to the hilog_param tag.
-  persist.sys.hilog.       u:object_r:hilog_param:s0  # System parameters with the persist.sys.hilog. prefix are also stored in the shared memory corresponding to the hilog_param tag.
+  hilog.                   u:object_r:hilog_param:s0  #以hilog.为前缀的系统参数存储在hilog_param标签对应的共享内存中
+  persist.sys.hilog.       u:object_r:hilog_param:s0  #以persist.sys.hilog.为前缀的系统参数也存储在hilog_param标签对应的共享内存中
   ```
-### Checking Shared Memory Usage of System Parameters
+### 查看系统参数共享内存占用情况
 
-    You can run the **param dump [verbose]** command to query the shared memory usage of system parameters.
+系统参数共享内存占用情况的查询，提供了查询命令：param dump [verbose]
 
-    The following is an example of the query result:
+查询结果的介绍说明如下：
 
     ```
       Dump all parameters begin ...
       Local security information
       pid: 1612 uid: 0 gid: 0
-      map file: u:object_r:default_param:s0            // Name of the system parameter tag (name of the shared memory mapping file)
-      total size: 10485720                             // Size of the system parameter tag file (size of the shared memory mapped to the tag)
-      first offset: 0                                  // Offset of the first parameter node
-      current offset: 15948                            // Offset of the current parameter node
-      total node: 242                                  // Total number of nodes in the tag
-      total param node: 219                            // Total number of parameter nodes
-      total security node: 0                           // Number of SELinux nodes
+      map file: u:object_r:default_param:s0            // 系统参数标签名称（共享内存映射文件名）
+      total size: 10485720                             // 系统参数标签文件大小（标签映射的共享内存大小）
+      first offset: 0                                  // 第一个参数节点的偏移量
+      current offset: 15948                            // 当前的参数节点的偏移量
+      total node: 242                                  // 该标签内节点总数
+      total param node: 219                            // 参数节点总数
+      total security node: 0                           // selinux节点数
       commitId        : 26                             //
       commitPersistId : 0                              //
-      node info:                                       // Information about all nodes under the tag
+      node info:                                       // 该标签下所有节点的信息
       ... ...
     ```
-### System Parameter Loading
 
-The following table describes the sequence of loading system parameters.
-| Category| Directory| Description|
+### 系统参数的加载顺序
+
+系统参数加载顺序
+
+| 类别 | 路径 | 说明 |
 | -------- | -------- | -------- |
-| Kernel parameters   | /proc/cmdline | Convert some values of kernel parameters into system parameters. Specifically, convert all **ohospara.xxx=valXXX** parameters to **ohos.boot.xxx=valXXX** parameters.|
-| OS system parameters| /system/etc/param/ohos_const/*.para | Load the definition file containing OS constants preferentially.                   |
-| Vendor parameters| /vendor/etc/param/*.para | Load the system parameters defined by vendors with the secondary priority.                            |
-| System parameters| /system/etc/param/*.para | Load the parameters defined by each subsystem. If a system parameter already exists, ignore it.|
-| Persistent parameters| /data/parameters/ | If persistent parameters exist, load them at last. Persistent parameters will overwrite the default system parameters that have been loaded.|
+| 内核参数    | /proc/cmdline | 将内核参数中的部分值转化成系统参数，并保存。内核参数中.xxx=valXXX类型的参数都转换成ohos.boot.xxx=valXXX系统参数。 |
+| OS系统参数 | /system/etc/param/ohos_const/*.para | OS固定系统参数值参数优先加载。                               |
+| vendor参数 | /vendor/etc/param/*.para | 厂商定义的系统参数次优先级加载。                             |
+| system参数 | /system/etc/param/*.para | 加载各子系统定义的参数参数。如果系统参数已经存在，则忽略掉。 |
+| persist参数 | /data/parameters/ | 如果持久化参数存在，则最后加载持久化系统参数。持久化系统参数会覆盖加载的默认系统参数。 |
 
-### Parameter and Tag Viewing
+### 参数和标签的展示
 
-   Currently, parameter and tag statistics are recorded in the database by subsystem and component. You can set up the [OpenHarmony real-time architecture information collection and analysis system](https://gitee.com/handyohos/ohos_archinfo/tree/master) to view the statistics.
+   目前按照子系统，部件把参数和标签统计的信息已经录入数据库，可以搭建[OpenHarmony实时架构信息收集与分析系统](https://gitee.com/handyohos/ohos_archinfo/tree/master)进行查看。
 
-   For details about how to set up the system, see the [Analyser Module](https://gitee.com/handyohos/ohos_archinfo/blob/master/analyser/README.md) for OpenHarmony real-time architecture information analysis.
+   搭建服务可参考：[OpenHarmony实时架构信息analyser模块说明](https://gitee.com/handyohos/ohos_archinfo/blob/master/analyser/README.md)
 
-   For details about how to collect database information, see the [Collector Module](https://gitee.com/handyohos/ohos_archinfo/tree/master#/handyohos/ohos_archinfo/blob/master/collector/README.md) for OpenHarmony real-time architecture information collection.
+   自行收集数据库信息可参考：[OpenHarmony实时架构信息收集与分析系统](https://gitee.com/handyohos/ohos_archinfo/tree/master#/handyohos/ohos_archinfo/blob/master/collector/README.md)
 
-   You can also obtain the database from the daily dayu200-db build.
-### Basic System Parameter Operations
+   数据库也可以取每日构建的dayu200-db
+### 系统参数的基本操作
 
-Operation primitives for system parameters
+系统参数操作原语：
 
-![System parameter operation primitives](figure/system-parameter-operation-primitives.png)
+![系统参数操作原语](figures/系统参数操作原语.png)
 
-Description of operation primitives
-| Function| Description|
+系统参数操作原语说明：
+| 功能 | 说明 |
 | -------- | -------- |
-| get      | Obtains the value of a system parameter.       |
-| set      | Sets the value of a system parameter.       |
-| wait     | Waits for value change of a system parameter synchronously.|
-| watch    | Observes value change of a system parameter asynchronously.|
+| get      | 获取系统参数的值        |
+| set      | 设置系统参数的值        |
+| wait     | 同步等待系统参数的值变更 |
+| watch    | 异步观察系统参数的值变更 |
 
-### Constraints
+### 约束与限制
 
-The service management module is available only for the mini system and standard system.
+仅限小型系统、标准系统下使用。
 
-## How to Develop
+## 开发指导
 
-### Overview
-You can set specific system parameters as needed to meet your service demand.
+### 场景介绍
+设定特定的系统参数。
 
-### APIs
+### 接口说明
 
-  - Shell commands
+  - Shell命令接口
 
-    You can manage system parameters by using shell commands. This operation mode is available only for the standard system. The following table lists the shell commands.
+    通过shell命令中可直接操作系统参数（只在标准系统提供）。系统参数shell命令如下表所示：
 
-    **Table 6** Description of shell commands
+    **表6** 系统参数shell命令说明
 
-    | Function| Description|
+    | 功能 | 说明 |
     | -------- | -------- |
-    | param get [**key**] | Obtains the system parameter value of the specified key. If no key name is specified, all system parameter values will be returned.|
-    | param set **key value** | Sets the specified value for the specified key.|
-    | param wait **key** **value** | Waits for the system parameter value of the specified key to match the specified value. Fuzzy match is supported. For example, <strong>*</strong> indicates any value, and <strong>val*</strong> indicates matching of only the first three val characters.|
+    | param get [**key**] | 获取指定key名称的系统参数值；如果不指定任何name，则返回所有系统参数值。 |
+    | param set **key value** | 设置指定key名称的参数值为value。 |
+    | param wait **key** **value** | 同步等待指定key名称的系统参数值与value匹配。value可支持模糊匹配，如"*"表示任何值，"val\*"表示只匹配前三个val字符。 |
 
-  - syspara APIs
+  - syspara系统接口
 
-    The following table lists the APIs used to obtain system parameter values. The return result is a const string and the free operation is not supported.
+    在Coding中可以调用下列函数接口，获取对应的系统参数值（系统参数接口返回的为const字符串，不支持free操作）。
 
-    **Table 7** Description of syspara APIs
-    | API| Description|
+    **表7** 系统属性接口说明
+    | 接口名 | 描述 |
     | -------- | -------- |
-    | int&nbsp;GetParameter(const&nbsp;char\*&nbsp;key,&nbsp;const&nbsp;char\*&nbsp;def,&nbsp;char\*&nbsp;value,&nbsp;unsigned&nbsp;int&nbsp;len) | Obtains system parameters.|
-    | int&nbsp;SetParameter(const&nbsp;char\*&nbsp;key,&nbsp;const&nbsp;char\*&nbsp;value) | Sets or updates system parameters.|
-    | const&nbsp;char\*&nbsp;GetDeviceType(void) | Obtains the device type.|
-    | const&nbsp;char\*&nbsp;GetManufacture(void) | Obtains the device manufacturer.|
-    | const&nbsp;char\*&nbsp;GetBrand(void) | Obtains the device brand.|
-    | const&nbsp;char\*&nbsp;GetMarketName(void) | Obtains the device marketing name.|
-    | const&nbsp;char\*&nbsp;GetProductSeries(void) | Obtains the device series name.|
-    | const&nbsp;char\*&nbsp;GetProductModel(void) | Obtains the device authentication model.|
-    | const&nbsp;char\*&nbsp;GetSoftwareModel(void) | Obtains the device software model.|
-    | const&nbsp;char\*&nbsp;GetHardwareModel(void) | Obtains the device hardware model.|
-    | const&nbsp;char\*&nbsp;GetHardwareProfile(void) | Obtains the device hardware profile.|
-    | const&nbsp;char\*&nbsp;GetSerial(void) | Obtains the device serial number (SN).|
-    | const&nbsp;char\*&nbsp;GetOSFullName(void) | Obtains the operating system name.|
-    | const&nbsp;char\*&nbsp;GetDisplayVersion(void) | Obtains the software version visible to users.|
-    | const&nbsp;char\*&nbsp;GetBootloaderVersion(void) | Obtains the bootloader version of this device.|
-    | const&nbsp;char\*&nbsp;GetSecurityPatchTag(void) | Obtains the security patch tag.|
-    | const&nbsp;char\*&nbsp;GetAbiList(void) | Obtains the list of application binary interfaces (ABIs) supported on this device.|
-    | int&nbsp;GetSdkApiVersion(void) | Obtains the SDK API level that matches the current system software.|
-    | int&nbsp;GetFirstApiVersion(void) | Obtains the first SDK API level of the system software.|
-    | const&nbsp;char\*&nbsp;GetIncrementalVersion(void) | Obtains the incremental version.|
-    | const&nbsp;char\*&nbsp;GetVersionId(void) | Obtains the version ID.|
-    | const&nbsp;char\*&nbsp;GetBuildType(void) | Obtains the build type.|
-    | const&nbsp;char\*&nbsp;GetBuildUser(void) | Obtains the build account user name.|
-    | const&nbsp;char\*&nbsp;GetBuildHost(void) | Obtains the build host name.|
-    | const&nbsp;char\*&nbsp;GetBuildTime(void) | Obtains the build time.|
-    | const&nbsp;char\*&nbsp;GetBuildRootHash(void) | Obtains the buildroot hash value of this version.|
-    | const&nbsp;char\*&nbsp;GetOsReleaseType(void) | Obtains the system release type.|
-    | int&nbsp;GetDevUdid(char&nbsp;\*udid,&nbsp;int&nbsp;size) | Obtains the device identifier (UDID).|
-    | const char *AclGetSerial(void); | Obtains the device SN (with ACL check).|
-    | int AclGetDevUdid(char *udid, int size); | Obtains the UDID (with ACL check).|
+    | int&nbsp;GetParameter(const&nbsp;char\*&nbsp;key,&nbsp;const&nbsp;char\*&nbsp;def,&nbsp;char\*&nbsp;value,&nbsp;unsigned&nbsp;int&nbsp;len) | 获取系统参数。 |
+    | int&nbsp;SetParameter(const&nbsp;char\*&nbsp;key,&nbsp;const&nbsp;char\*&nbsp;value) | 设置/更新系统参数。 |
+    | const&nbsp;char\*&nbsp;GetDeviceType(void) | 返回当前设备类型。 |
+    | const&nbsp;char\*&nbsp;GetManufacture(void) | 返回当前设备生产厂家信息。 |
+    | const&nbsp;char\*&nbsp;GetBrand(void) | 返回当前设备品牌信息。 |
+    | const&nbsp;char\*&nbsp;GetMarketName(void) | 返回当前设备传播名。 |
+    | const&nbsp;char\*&nbsp;GetProductSeries(void) | 返回当前设备产品系列名。 |
+    | const&nbsp;char\*&nbsp;GetProductModel(void) | 返回当前设备认证型号。 |
+    | const&nbsp;char\*&nbsp;GetSoftwareModel(void) | 返回当前设备内部软件子型号。 |
+    | const&nbsp;char\*&nbsp;GetHardwareModel(void) | 返回当前设备硬件版本号。 |
+    | const&nbsp;char\*&nbsp;GetHardwareProfile(void) | 返回当前设备硬件profile。 |
+    | const&nbsp;char\*&nbsp;GetSerial(void) | 返回当前设备序列号（SN号）。 |
+    | const&nbsp;char\*&nbsp;GetOSFullName(void) | 返回操作系统名。 |
+    | const&nbsp;char\*&nbsp;GetDisplayVersion(void) | 返回当前设备用户可见的软件版本号。 |
+    | const&nbsp;char\*&nbsp;GetBootloaderVersion(void) | 返回当前设备Bootloader版本号。 |
+    | const&nbsp;char\*&nbsp;GetSecurityPatchTag(void) | 返回安全补丁标签。 |
+    | const&nbsp;char\*&nbsp;GetAbiList(void) | 返回当前设备支持的指令集（Abi）列表。 |
+    | int&nbsp;GetSdkApiVersion(void) | 返回与当前系统软件匹配的SDK&nbsp;API&nbsp;版本号。 |
+    | int&nbsp;GetFirstApiVersion(void) | 返回系统软件首版本SDK&nbsp;API&nbsp;版本号。 |
+    | const&nbsp;char\*&nbsp;GetIncrementalVersion(void) | 返回差异版本号。 |
+    | const&nbsp;char\*&nbsp;GetVersionId(void) | 返回版本id。 |
+    | const&nbsp;char\*&nbsp;GetBuildType(void) | 返回构建类型。 |
+    | const&nbsp;char\*&nbsp;GetBuildUser(void) | 返回构建账户用户名。 |
+    | const&nbsp;char\*&nbsp;GetBuildHost(void) | 返回构建主机名。 |
+    | const&nbsp;char\*&nbsp;GetBuildTime(void) | 返回构建时间。 |
+    | const&nbsp;char\*&nbsp;GetBuildRootHash(void) | 返回当前版本hash。 |
+    | const&nbsp;char\*&nbsp;GetOsReleaseType(void) | 返回系统发布类型。 |
+    | int&nbsp;GetDevUdid(char&nbsp;\*udid,&nbsp;int&nbsp;size) | 获取设备udid。 |
+    | const char *AclGetSerial(void) | 返回当前设备序列号（SN号）（带访问权限检查）。 |
+    | int AclGetDevUdid(char *udid, int size) | 获取设备udid（带访问权限检查）。 |
 
-### Procedure
+### 开发步骤
 
-1. System parameter definition
+1. 系统参数定义
 
-    You can define default system parameters and implement permission control on them by configuring the subsystem or product **.para** and **.para.dac** files. 
+    通过定义子系统或者产品的.para和.para.dac文件，实现默认系统参数的定义和权限控制。
 
-    ​    	On a standard system, use the **ohos_prebuilt_para** template to install the configuration file to the **/etc/param/** directory. The following is an example of the GN script:
+    ​    	在标准系统上通过ohos_prebuilt_para模版安装配置文件到到/etc/param/目录下，GN脚本示例如下：
 
     ```go
     import("//base/startup/init/services/etc/param/param_fixer.gni")
@@ -349,7 +351,7 @@ You can set specific system parameters as needed to meet your service demand.
     }
     ```
 
-    On a small system, run the **copy** command to copy the corresponding system parameter definition file to the **system/etc/param** directory.
+    在小系统上，通过copy命令，把对应的系统参数定义文件拷贝到system/etc/param目录下
     ```go
     copy("ohos.para") {
       sources = [ "//base/startup/init/services/etc/param/ohos.para" ]
@@ -360,7 +362,7 @@ You can set specific system parameters as needed to meet your service demand.
       outputs = [ "$root_out_dir/system/etc/param/ohos.para.dac" ]
     }
     ```
-    On a mini system, convert all defined default system parameters into header files through **action** and compile them into the system.
+    在mini系统上，通过action把所有定义的默认系统参数转化成头文件，并编译到系统中
     ```go
     action("lite_const_param_to") {
       script = "//base/startup/init/scripts/param_cfg_to_code.py"
@@ -376,7 +378,7 @@ You can set specific system parameters as needed to meet your service demand.
       outputs = [ "$target_gen_dir/${target_name}_param_cfg_to_code.log" ]
     }
     ```
-2. Development example
+2. 系统参数使用实例
     ```
     // set && get
     char key1[] = "rw.sys.version";
@@ -465,36 +467,36 @@ You can set specific system parameters as needed to meet your service demand.
     GetDevUdid(value26, 65);
     printf("device udid =%s\n", value26);
     ```
-### System Parameter Error Codes
+### 系统参数错误码说明
 
-**Description of system parameter error codes**
+**错误码说明**
 
-| Enum                            | Value| Description                                     |
+| 枚举                             | 枚举值 | 说明                                      |
 | -------------------------------- | ------ | ----------------------------------------- |
-| PARAM_CODE_ERROR                 | -1     | System error.                                 |
-| PARAM_CODE_SUCCESS               | 0      | Operation success.                                     |
-| PARAM_CODE_INVALID_PARAM         | 100    | Empty input parameter of the system parameter API.                    |
-| PARAM_CODE_INVALID_NAME          | 101    | Invalid length or invalid characters in the system parameter key.     |
-| PARAM_CODE_INVALID_VALUE         | 102    | Invalid length or invalid characters in the system parameter value. |
-| PARAM_CODE_REACHED_MAX           | 103    | Number of tree nodes reaching the maximum.                         |
-| PARAM_CODE_NOT_SUPPORT           | 104    | API not supported.                             |
-| PARAM_CODE_TIMEOUT               | 105    | Server access timed out.                           |
-| PARAM_CODE_NOT_FOUND             | 106    | Parameter not found.                           |
-| PARAM_CODE_READ_ONLY             | 107    | System parameter read-only.                       |
-| PARAM_CODE_IPC_ERROR             | 108    | IPC communication error.                              |
-| PARAM_CODE_NODE_EXIST            | 109    | System parameter node already exists.                       |
-| PARAM_WATCHER_CALLBACK_EXIST     | 110    | Watcher callback repeatedly added.                |
-| PARAM_WATCHER_GET_SERVICE_FAILED | 111    | Failed to obtain the service for watcher.                      |
-| PARAM_CODE_MEMORY_MAP_FAILED     | 112    | Failed to create the shared memory mapping for a file.                 |
-| PARAM_WORKSPACE_NOT_INIT         | 113    | Workspace not initialized.                     |
-| PARAM_CODE_FAIL_CONNECT          | 114    | Failed to connect to paramServer.                     |
-| PARAM_CODE_MEMORY_NOT_ENOUGH     | 115    | Insufficient system parameter space.                         |
-| DAC_RESULT_INVALID_PARAM         | 1000   | Unused code, which defines the start value of permission errors.               |
-| DAC_RESULT_FORBIDED              | 1001   | DAC permission disabled.                            |
-| SELINUX_RESULT_FORBIDED          | 1002   | SELinux permission disabled.                        |
-| PARAM_CODE_MAX                   | 1003   | Maximum enum value.                               |
+| PARAM_CODE_ERROR                 | -1     | 系统错误                                  |
+| PARAM_CODE_SUCCESS               | 0      | 成功                                      |
+| PARAM_CODE_INVALID_PARAM         | 100    | 系统参数接口的入参为空                     |
+| PARAM_CODE_INVALID_NAME          | 101    | 系统参数key不符合规范，长度或非法字符      |
+| PARAM_CODE_INVALID_VALUE         | 102    | 系统参数value值不符合规范，长度或非法字符  |
+| PARAM_CODE_REACHED_MAX           | 103    | 树节点已达最大值                          |
+| PARAM_CODE_NOT_SUPPORT           | 104    | 不支持此接口                              |
+| PARAM_CODE_TIMEOUT               | 105    | 访问服务端超时                            |
+| PARAM_CODE_NOT_FOUND             | 106    | 没有找到该参数                            |
+| PARAM_CODE_READ_ONLY             | 107    | 系统参数为只读参数                        |
+| PARAM_CODE_IPC_ERROR             | 108    | IPC通信异常                               |
+| PARAM_CODE_NODE_EXIST            | 109    | 系统参数的节点存在                        |
+| PARAM_WATCHER_CALLBACK_EXIST     | 110    | watcher的callback重复添加                 |
+| PARAM_WATCHER_GET_SERVICE_FAILED | 111    | watcher获取服务失败                       |
+| PARAM_CODE_MEMORY_MAP_FAILED     | 112    | 建立文件共享内存映射失败                  |
+| PARAM_WORKSPACE_NOT_INIT         | 113    | workspace 没有初始化                      |
+| PARAM_CODE_FAIL_CONNECT          | 114    | 连接paramServer 失败                      |
+| PARAM_CODE_MEMORY_NOT_ENOUGH     | 115    | 系统参数空间不足                          |
+| DAC_RESULT_INVALID_PARAM         | 1000   | 无用，定义权限错误的起始值                |
+| DAC_RESULT_FORBIDED              | 1001   | DAC权限被禁止                             |
+| SELINUX_RESULT_FORBIDED          | 1002   | selinux权限被禁止                         |
+| PARAM_CODE_MAX                   | 1003   | 枚举最大值                                |
 
-**Key Logs for Locating Errors**
+**错误定位关键日志**
 
 - system parameter set:
 
@@ -519,48 +521,48 @@ You can set specific system parameters as needed to meet your service demand.
     WatchParameter failed! the errNum is xx!
 
     SystemWatchParameter is failed! keyPrefix is:xxx, errNum is:xx!
-## FAQs
+## 系统参数常见问题
 
-### How to Set a System Parameter
+### 如何设置一个系统参数
 
-  1. On the shell side, run **hdc shell** to launch the shell CLI of the device, and then run **param set param.key.***system parameter key* param.value.*system parameter value* to set the system parameter. If the operation is successful, no further processing is required.
+  1、hdc shell进入终端，执行param set param.key.xxx(系统参数名) param.value.xxx(系统参数名值), 确认参数是否可以设置成功，成功则无需其他设置
 
-  2. On the application side, call **SetParameter** to set the system parameter. For details, see [APIs](#apis).
+  2、代码侧设置系统参数，调用SetParameter接口，具体参照[接口说明](#接口说明)
   
-  3. If **param set** fails, locate the fault based on the log.
+  3、执行param set 失败，则根据失败的日志确定对应的排查操作：
 
-  If the fault is due to insufficient DAC permissions, declare the required permissions by referring to [DAC Permission Configuration](#dac-permission-configuration).
+  若dac 权限不足，参照DAC访问控制权限设置进行设置
 
-  If the fault is due to insufficient SELinux permissions, grant the required permissions by referring to the **avc:  denied** alarm information.
+  若selinux 权限不足，根据" avc:  denied" 告警信息设置对应规则
 
-  If the fault is due to insufficient memory, expand the memory by referring to [System Parameter Tag Configuration](#system-parameter-tag-configuration).
+  若内存不够，参照[系统参数标签配置](#系统参数标签配置)进行扩展
 
-### How to Read a System Parameter
+### 如何读取一个系统参数
 
-  1. On the shell side, run **hdc shell** to launch the shell CLI of the device, and then run **param get param.key.***system parameter key* to obtain the system parameter. If the operation is successful, no further processing is required.
+  1、hdc shell进入终端，执行param get param.key.xxx(系统参数名), 查看参数是否可以读取成功，读取成功则无需其他操作
 
-  2. On the application side, call **GetParameter** to obtain the system parameter. For details, see [APIs](#apis).
+  2、代码侧获取系统参数，调用GetParameter接口，具体参照[接口说明](#接口说明)
 
-  3. If **param get** fails, locate the fault based on the log.
+  3、执行param get 失败，则根据失败的日志确定对应的排查操作：
 
-  Check whether the parameter has been set. If yes, go to the next step. If no, set the system parameter.
+  首先需要确认该参数是否被设置，若没有被设置，则需要先设置该参数；若已设置，则进行下一步排查
 
-  If the fault is due to insufficient DAC permissions, declare the required permissions by referring to [DAC Permission Configuration](#dac-permission-configuration).
+  若dac 权限不足，参照DAC访问控制权限设置进行设置
 
-  If the fault is due to insufficient SELinux permissions, grant the required permissions by referring to the **avc:  denied** alarm information.
+  若selinux 权限不足，根据" avc:  denied" 告警信息设置对应规则
 
-### How to Subscribe to System Parameter Changes
+### 如何订阅一个系统参数的变化
 
-  1. On the shell side, run **hdc shell** to launch the shell CLI of the device, and then run **param shell** to switch to the parameter shell CLI. Run **watcher parameter param.key.***system parameter key* to subscribe to changes of the system parameter. If there is a change in the system parameter, a message similar to "Receive parameter commit 691 change aaa.aaa 11111" is received.
+  1、hdc shell进入终端，执行param shell，进入Parameter shell后执行 watcher parameter param.key.xxx(系统参数名)，当系统参数值发生变化时，会收到类似"Receive parameter commit 691 change aaa.aaa 11111"的消息
 
-  2. On the application side, call **WatchParameter** to subscribe to changes of the system parameter. For details, see [APIs](#apis).
+  2、代码侧监控系统参数变化，调用WatchParameter接口
 
-  3. If **watcher parameter** fails, locate the fault based on the log.
+  3、执行watcher parameter 失败，则根据失败的日志确定对应的排查操作：
 
-  If the fault is due to insufficient DAC permissions, declare the required permissions by referring to [DAC Permission Configuration](#dac-permission-configuration).
+  若dac 权限不足，参照DAC访问控制权限设置进行设置
 
-  If the fault is due to insufficient SELinux permissions, grant the required permissions by referring to the **avc:  denied** alarm information.
+  若selinux 权限不足，根据" avc:  denied" 告警信息设置对应规则
 
-### How to Enable Third-Party Applications to Access System Parameters
+### 三方应用为何无法访问系统参数
 
-The default DAC rules grant only the **get** and **watch** permissions for third-party applications. If a third-party application requires the **set** permission, you need to reset DAC rules. In addition, SELinux permissions of third-party applications are left unspecified by default. If needed, set the SELinux permissions by referring to the [MAC Permission Configuration](#mac-permission-configuration).
+默认DAC规则只允许三方应用对参数具有get, watch 的权限，因此三方应用若需要set权限需要重新设置DAC规则。 此外, 三方应用的selinux权限默认是未设置的，因此需要参照mac访问控制权限设置进行设置
