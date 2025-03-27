@@ -440,7 +440,7 @@ setTimeout(() => {
 }, 500);
 ```
 
-## CommonEventData
+## CommonEventData<sup>10+</sup>
 
 type CommonEventData = _CommonEventData
 
@@ -454,7 +454,7 @@ type CommonEventData = _CommonEventData
 | --- | --- |
 | [_CommonEventData](js-apis-inner-commonEvent-commonEventData.md) | 表示公共事件的数据。 |
 
-## CommonEventSubscriber
+## CommonEventSubscriber<sup>10+</sup>
 
 type CommonEventSubscriber = _CommonEventSubscriber
 
@@ -468,7 +468,7 @@ type CommonEventSubscriber = _CommonEventSubscriber
 | --- | --- |
 | [_CommonEventSubscriber](js-apis-inner-commonEvent-commonEventSubscriber.md) | 描述公共事件的订阅者。 |
 
-## CommonEventSubscribeInfo
+## CommonEventSubscribeInfo<sup>10+</sup>
 
 type CommonEventSubscribeInfo = _CommonEventSubscribeInfo
 
@@ -482,7 +482,7 @@ type CommonEventSubscribeInfo = _CommonEventSubscribeInfo
 | --- | --- |
 | [_CommonEventSubscribeInfo](js-apis-inner-commonEvent-commonEventSubscribeInfo.md) | 用于表示订阅者的信息。 |
 
-## CommonEventPublishData
+## CommonEventPublishData<sup>10+</sup>
 
 type CommonEventPublishData = _CommonEventPublishData
 
