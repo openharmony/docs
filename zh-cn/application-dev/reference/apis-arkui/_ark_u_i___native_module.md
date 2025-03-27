@@ -140,6 +140,9 @@
 | typedef struct [OH_UdmfGetDataParams](#oh_udmfgetdataparams) [OH_UdmfGetDataParams](#oh_udmfgetdataparams) | 从UDMF获取数据时的参数。  | 
 | typedef struct [ArkUI_ProgressLinearStyleOption](#arkui_progresslinearstyleoption) [ArkUI_ProgressLinearStyleOption](#arkui_progresslinearstyleoption) | 定义进度条线性进度条样式对象。 | 
 | typedef struct [ArkUI_VisibleAreaEventOptions](#arkui_visibleareaeventoptions) [ArkUI_VisibleAreaEventOptions](#arkui_visibleareaeventoptions) | 可见区域变化监听的参数。  | 
+| typedef struct [ArkUI_CustomProperty](#arkui_customproperty) [ArkUI_CustomProperty](#arkui_customproperty) | 定义自定义属性的CustomProperty类信息。  | 
+| typedef struct [ArkUI_HostWindowInfo](#arkui_hostwindowinfo) [ArkUI_HostWindowInfo](#arkui_hostwindowinfo) | 定义窗口属性的HostWindowInfo类信息。  | 
+| typedef struct [ArkUI_ActiveChildrenInfo](#arkui_activechildreninfo) [ArkUI_HostWindowInfo](#arkui_activechildreninfo) | 定义ActiveChildrenInfo类信息。  | 
 
 
 ### 枚举
@@ -267,7 +270,7 @@
 | [ArkUI_ListItemSwipeEdgeEffect](#arkui_listitemswipeedgeeffect) { ARKUI_LIST_ITEM_SWIPE_EDGE_EFFECT_SPRING = 0, ARKUI_LIST_ITEM_SWIPE_EDGE_EFFECT_NONE } | 定义 Listitem 组件SwipeAction方法的滚动模式。  | 
 | [ArkUI_AnimationStatus](#arkui_animationstatus) { ARKUI_ANIMATION_STATUS_INITIAL, ARKUI_ANIMATION_STATUS_RUNNING, ARKUI_ANIMATION_STATUS_PAUSED, ARKUI_ANIMATION_STATUS_STOPPED } | 定义帧动画的播放状态。  | 
 | [ArkUI_AnimationFillMode](#arkui_animationfillmode) { ARKUI_ANIMATION_FILL_MODE_NONE, ARKUI_ANIMATION_FILL_MODE_FORWARDS, ARKUI_ANIMATION_FILL_MODE_BACKWARDS, ARKUI_ANIMATION_FILL_MODE_BOTH } | 定义帧动画组件在动画开始前和结束后的状态。  | 
-| [ArkUI_ErrorCode](#arkui_errorcode) {<br/>ARKUI_ERROR_CODE_NO_ERROR = 0, ARKUI_ERROR_CODE_PARAM_INVALID = 401,<br/>ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE = 150001, ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR = 150002, ARKUI_ERROR_CODE_FOCUS_NON_EXISTENT = 150003, <br/>ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED = 106102, ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE = 106103,<br/>ARKUI_ERROR_CODE_NODE_ADAPTER_NONE_HOST = 106104, ARKUI_ERROR_CODE_NODE_ADAPTER_EXIST_IN_HOST = 106105, ARKUI_ERROR_CODE_NODE_ADAPTER_CHILD_NODE_EXIST = 106106, ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INDEX_OUT_OF_RANGE = 106107,<br/>ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID = 106108, ARKUI_ERROR_CODE_NODE_EVENT_NO_RETURN = 106109, ARKUI_ERROR_CODE_NODE_INDEX_INVALID = 106200, ARKUI_ERROR_CODE_GET_INFO_FAILED = 106201,<br/>ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR = 106202, ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE = 106203, ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER = 180001, ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH = 180002, ARKUI_ERROR_CODE_NOT_CLONED_POINTER_EVENT = 180003, ARKUI_ERROR_CODE_POST_CLONED_COMPONENT_STATUS_ABNORMAL = 180004, ARKUI_ERROR_CODE_POST_CLONED_NO_COMPONENT_HIT_TO_RESPOND_TO_THE_EVENT  = 180005, ARKUI_ERROR_CODE_INVALID_STYLED_STRING = 180101<br/>} | 定义错误码枚举值。  | 
+| [ArkUI_ErrorCode](#arkui_errorcode) {<br/>ARKUI_ERROR_CODE_NO_ERROR = 0, ARKUI_ERROR_CODE_PARAM_INVALID = 401, ARKUI_ERROR_CODE_CAPI_INIT_ERROR = 500, <br/>ARKUI_ERROR_CODE_XCOMPONENT_STATE_INVALID = 103501,<br/>ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE = 150001, ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR = 150002, ARKUI_ERROR_CODE_FOCUS_NON_EXISTENT = 150003, <br/>ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED = 106102, ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED = 106103,<br/>ARKUI_ERROR_CODE_ADAPTER_NOT_BOUND = 106104, ARKUI_ERROR_CODE_ADAPTER_EXIST = 106105, ARKUI_ERROR_CODE_CHILD_NODE_EXIST = 106106, ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INDEX_OUT_OF_RANGE = 106107,<br/>ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID = 106108, ARKUI_ERROR_CODE_NODE_EVENT_NO_RETURN = 106109, ARKUI_ERROR_CODE_NODE_INDEX_INVALID = 106200, ARKUI_ERROR_CODE_GET_INFO_FAILED = 106201,<br/>ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR = 106202, ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE = 106203, ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER = 180001, ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH = 180002, ARKUI_ERROR_CODE_NOT_CLONED_POINTER_EVENT = 180003, ARKUI_ERROR_CODE_POST_CLONED_COMPONENT_STATUS_ABNORMAL = 180004, ARKUI_ERROR_CODE_POST_CLONED_NO_COMPONENT_HIT_TO_RESPOND_TO_THE_EVENT  = 180005, ARKUI_ERROR_CODE_INVALID_STYLED_STRING = 180101<br/>} | 定义错误码枚举值。  | 
 | [ArkUI_ScrollSource](#arkui_scrollsource) {<br/>ARKUI_SCROLL_SOURCE_DRAG = 0, ARKUI_SCROLL_SOURCE_FLING, ARKUI_SCROLL_SOURCE_EDGE_EFFECT, ARKUI_SCROLL_SOURCE_OTHER_USER_INPUT,<br/>ARKUI_SCROLL_SOURCE_SCROLL_BAR, ARKUI_SCROLL_SOURCE_SCROLL_BAR_FLING, ARKUI_SCROLL_SOURCE_SCROLLER, ARKUI_SCROLL_SOURCE_ANIMATION<br/>} | 定义滚动来源枚举值。  | 
 | [ArkUI_SafeAreaType](#arkui_safeareatype) { ARKUI_SAFE_AREA_TYPE_SYSTEM = 1, ARKUI_SAFE_AREA_TYPE_CUTOUT = 1 &lt;&lt; 1, ARKUI_SAFE_AREA_TYPE_KEYBOARD = 1 &lt;&lt; 2 } | 定义扩展安全区域的枚举值。  | 
 | [ArkUI_ListItemGroupArea](#arkui_listitemgrouparea) { ARKUI_LIST_ITEM_GROUP_AREA_OUTSIDE = 0, ARKUI_LIST_ITEM_SWIPE_AREA_NONE = 1, ARKUI_LIST_ITEM_SWIPE_AREA_ITEM = 2, ARKUI_LIST_ITEM_SWIPE_AREA_HEADER = 3, ARKUI_LIST_ITEM_SWIPE_AREA_FOOTER = 4<br/>} | 定义组件区域的枚举值。 | 
@@ -276,6 +279,7 @@
 | [ArkUI_FocusMove](#arkui_focusmove) { ARKUI_FOCUS_MOVE_FORWARD = 0, ARKUI_FOCUS_MOVE_BACKWARD, ARKUI_FOCUS_MOVE_UP, ARKUI_FOCUS_MOVE_DOWN, ARKUI_FOCUS_MOVE_LEFT, ARKUI_FOCUS_MOVE_RIGHT, } | 定义自定义走焦的按键的枚举值。  |  
 | [ArkUI_RouterPageState](#arkui_routerpagestate) {<br/>ARKUI_ROUTER_PAGE_STATE_ON_WILL_APPEAR = 0, ARKUI_ROUTER_PAGE_STATE_ON_WILL_DISAPPEAR = 1, ARKUI_ROUTER_PAGE_STATE_ON_SHOW = 2, ARKUI_ROUTER_PAGE_STATE_ON_HIDE = 3,<br/>ARKUI_ROUTER_PAGE_STATE_ON_BACK_PRESS = 4<br/>} | 定义Router Page的状态。  | 
 | [ArkUI_DatePickerMode](#arkui_datepickermode) {<br/>ARKUI_DATEPICKER_MODE_DATE = 0, ARKUI_DATEPICKER_YEAR_AND_MONTH = 1, ARKUI_DATEPICKER_MONTH_AND_DAY = 2<br/> } | 定义要显示的日期选项列样式。  | 
+| [ArkUI_ExpandMode](#arkui_expandmode) { <br/>ARKUI_NOT_EXPAND = 0, ARKUI_EXPAND = 1, ARKUI_LAZY_EXPAND = 2 <br/>} | 定义子节点展开模式枚举值。 | 
 
 
 ### 函数
@@ -539,7 +543,7 @@
 | int32_t [OH_ArkUI_NodeUtils_GetPositionWithTranslateInScreen](#oh_arkui_nodeutils_getpositionwithtranslateinscreen) ([ArkUI_NodeHandle](#arkui_nodehandle) node, [ArkUI_IntOffset](_ark_u_i___int_offset.md) \*translateOffset) | 获取组件在屏幕中的位置，包含了图形平移变化属性。  | 
 | void [OH_ArkUI_NodeUtils_AddCustomProperty](#oh_arkui_nodeutils_addcustomproperty) ([ArkUI_NodeHandle](#arkui_nodehandle) node, const char \*name, const char \*value) | 设置组件的自定义属性。该接口仅在主线程生效。  | 
 | void [OH_ArkUI_NodeUtils_RemoveCustomProperty](#oh_arkui_nodeutils_removecustomproperty) ([ArkUI_NodeHandle](#arkui_nodehandle) node, const char \*name) | 移除组件已设置的自定义属性。  | 
-| int32_t [OH_ArkUI_NodeUtils_GetCustomProperty](#oh_arkui_nodeutils_getcustomproperty) ([ArkUI_NodeHandle](#arkui_nodehandle) node, const char \*name, ArkUI_CustomProperty \*\*handle) | 获取组件的自定义属性的值。  | 
+| int32_t [OH_ArkUI_NodeUtils_GetCustomProperty](#oh_arkui_nodeutils_getcustomproperty) ([ArkUI_NodeHandle](#arkui_nodehandle) node, const char \*name, [ArkUI_CustomProperty](#arkui_customproperty) \*\*handle) | 获取组件的自定义属性的值。  | 
 | [ArkUI_NodeHandle](#arkui_nodehandle) [OH_ArkUI_NodeUtils_GetParentInPageTree](#oh_arkui_nodeutils_getparentinpagetree) ([ArkUI_NodeHandle](#arkui_nodehandle) node) | 获取父节点，可获取由ArkTs创建的组件节点。  | 
 | int32_t [OH_ArkUI_NodeUtils_GetActiveChildrenInfo](#oh_arkui_nodeutils_getactivechildreninfo) ([ArkUI_NodeHandle](#arkui_nodehandle) head, ArkUI_ActiveChildrenInfo \*\*handle) | 获取某个节点所有活跃的子节点。Span将不会被计入子结点的统计中。  | 
 | [ArkUI_NodeHandle](#arkui_nodehandle) [OH_ArkUI_NodeUtils_GetCurrentPageRootNode](#oh_arkui_nodeutils_getcurrentpagerootnode) ([ArkUI_NodeHandle](#arkui_nodehandle) node) | 获取当前页面的根节点。  | 
@@ -782,8 +786,8 @@
 | float [OH_ArkUI_CustomSpanDrawInfo_GetLineTop](#oh_arkui_customspandrawinfo_getlinetop) ([ArkUI_CustomSpanDrawInfo](#arkui_customspandrawinfo) \*info) | 获取自定义段落组件相对于挂载组件的上边距。  | 
 | float [OH_ArkUI_CustomSpanDrawInfo_GetLineBottom](#oh_arkui_customspandrawinfo_getlinebottom) ([ArkUI_CustomSpanDrawInfo](#arkui_customspandrawinfo) \*info) | 获取自定义段落组件相对于挂载组件的下边距。  | 
 | float [OH_ArkUI_CustomSpanDrawInfo_GetBaseline](#oh_arkui_customspandrawinfo_getbaseline) ([ArkUI_CustomSpanDrawInfo](#arkui_customspandrawinfo) \*info) | 获取自定义段落组件相对于挂载组件的基线偏移量。  | 
-| void [OH_ArkUI_CustomProperty_Destroy](#oh_arkui_customproperty_destroy) (ArkUI_CustomProperty \*handle) | 销毁CustomProperty实例。  | 
-| const char \* [OH_ArkUI_CustomProperty_GetStringValue](#oh_arkui_customproperty_getstringvalue) (ArkUI_CustomProperty \*handle) | 获取自定义属性value信息。  | 
+| void [OH_ArkUI_CustomProperty_Destroy](#oh_arkui_customproperty_destroy) ([ArkUI_CustomProperty](#arkui_customproperty) \*handle) | 销毁CustomProperty实例。  | 
+| const char \* [OH_ArkUI_CustomProperty_GetStringValue](#oh_arkui_customproperty_getstringvalue) ([ArkUI_CustomProperty](#arkui_customproperty) \*handle) | 获取自定义属性value信息。  | 
 | void [OH_ArkUI_ActiveChildrenInfo_Destroy](#oh_arkui_activechildreninfo_destroy) (ArkUI_ActiveChildrenInfo \*handle) | 销毁ActiveChildrenInfo实例。  | 
 | [ArkUI_NodeHandle](#arkui_nodehandle) [OH_ArkUI_ActiveChildrenInfo_GetNodeByIndex](#oh_arkui_activechildreninfo_getnodebyindex) (ArkUI_ActiveChildrenInfo \*handle, int32_t index) | 获取ActiveChildrenInfo结构体的下标为index的子节点。  | 
 | int32_t [OH_ArkUI_ActiveChildrenInfo_GetCount](#oh_arkui_activechildreninfo_getcount) (ArkUI_ActiveChildrenInfo \*handle) | 获取ActiveChildrenInfo结构体内的节点数量。  | 
@@ -1610,7 +1614,7 @@ typedef struct ArkUI_ProgressLinearStyleOption ArkUI_ProgressLinearStyleOption
 
 **起始版本：** 15
 
-### OH_HostWindowInfo
+### ArkUI_HostWindowInfo
 
 ```
 typedef struct ArkUI_HostWindowInfo ArkUI_HostWindowInfo
@@ -1655,6 +1659,30 @@ typedef struct ArkUI_SnapshotOptions ArkUI_SnapshotOptions
 定义截图的可选项。
 
 **起始版本：** 15
+
+### ArkUI_CustomProperty
+
+```
+typedef struct ArkUI_CustomProperty ArkUI_CustomProperty
+```
+**描述：**
+
+定义自定义属性的CustomProperty类信息。
+
+**起始版本：** 14
+
+
+### ArkUI_ActiveChildrenInfo
+
+```
+typedef struct ArkUI_ActiveChildrenInfo ArkUI_ActiveChildrenInfo
+```
+**描述：**
+
+定义ActiveChildrenInfo类信息。
+
+**起始版本：** 14
+
 
 ## 枚举类型说明
 
@@ -2398,11 +2426,12 @@ enum ArkUI_ErrorCode
 | -------- | -------- |
 | ARKUI_ERROR_CODE_NO_ERROR  | 无错误。  | 
 | ARKUI_ERROR_CODE_PARAM_INVALID  | 参数错误。  | 
+| ARKUI_ERROR_CODE_CAPI_INIT_ERROR  | 接口初始化错误。  | 
 | ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED  | 组件不支持特定的属性或者事件。  | 
-| ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE  | 对应的操作不支持ArkTS创建的节点。  | 
-| ARKUI_ERROR_CODE_NODE_ADAPTER_NONE_HOST  | 懒加载适配器未绑定到组件上。  | 
-| ARKUI_ERROR_CODE_NODE_ADAPTER_EXIST_IN_HOST  | 适配器已存在。  | 
-| ARKUI_ERROR_CODE_NODE_ADAPTER_CHILD_NODE_EXIST  | 对应节点已存在子节点，无法添加适配器。  | 
+| ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED  | 对应的操作不支持ArkTS创建的节点。  | 
+| ARKUI_ERROR_CODE_ADAPTER_NOT_BOUND  | 懒加载适配器未绑定到组件上。  | 
+| ARKUI_ERROR_CODE_ADAPTER_EXIST  | 适配器已存在。  | 
+| ARKUI_ERROR_CODE_CHILD_NODE_EXIST  | 对应节点已存在子节点，无法添加适配器。  | 
 | ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INDEX_OUT_OF_RANGE  | 组件事件中参数长度超限。  | 
 | ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID  | 组件事件中不存在该数据。  | 
 | ARKUI_ERROR_CODE_NODE_EVENT_NO_RETURN  | 组件事件不支持返回值。  | 
@@ -4940,6 +4969,23 @@ enum ArkUI_HoverModeAreaType
 | -------- | -------- |
 | ARKUI_HOVER_MODE_AREA_TYPE_TOP   | 上半屏。  |
 | ARKUI_HOVER_MODE_AREA_TYPE_BOTTOM   | 下半屏。  |
+
+### ArkUI_ExpandMode
+
+```
+enum ArkUI_ExpandMode
+```
+**描述：**
+
+定义子节点展开模式枚举值。
+
+**起始版本：** 15
+
+| 枚举值 | 描述 |
+| -------- | -------- |
+| ARKUI_NOT_EXPAND   | 不展开。  |
+| ARKUI_EXPAND   | 展开。  |
+| ARKUI_LAZY_EXPAND   | 懒展开，按需展开当前节点的子节点。  |
 
 ## 函数说明
 
@@ -8015,7 +8061,7 @@ int32_t OH_ArkUI_NodeUtils_GetChildWithExpandMode(ArkUI_NodeHandle node, int32_t
 | node | 目标节点的指针。 |
 | position | 对应子节点的下标。 |
 | subnode | 获取子节点的指针。 |
-| expandMode | 节点遍历展开方式，详情请参考 {@link ArkUI_ExpandMode}。 |
+| expandMode | 节点遍历展开方式，详情请参考[ArkUI_ExpandMode](#arkui_expandmode)。 |
 
 **返回：**
 
@@ -16742,7 +16788,7 @@ void OH_ArkUI_CrossLanguageOption_Destroy(ArkUI_CrossLanguageOption* option)
 ### OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus()
 
 ```
-void OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus(ArkUI_CrossLanguageOption* option, bool enable)
+void OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus(ArkUI_CrossLanguageOption* option, bool enabled)
 ```
 **描述：**
 
@@ -16755,7 +16801,7 @@ void OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus(ArkUI_CrossLanguageO
 | 名称 | 描述 | 
 | -------- | -------- |
 | option | 跨语言配置项实例。  | 
-| enable | 是否允许跨语言修改属性。默认值：false。  | 
+| enabled | 是否允许跨语言修改属性。默认值：false。  | 
 
 ### OH_ArkUI_CrossLanguageOption_GetAttributeSettingStatus()
 
