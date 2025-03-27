@@ -11442,20 +11442,18 @@ setWindowRectAutoSave(enabled: boolean, isSaveBySpecifiedFlag: boolean): Promise
 
 设置主窗的尺寸记忆是否启用，使用Promise异步回调，仅对2in1设备生效。
 
-主窗口调用该接口时，通过设置enabled，主窗口的尺寸记忆是否启用，同时通过设置isSaveBySpecifiedFlag，使能/去使能在specified模式下对窗口进行单独记忆。
+主窗口调用该接口时，通过enabled来设置主窗口的尺寸记忆是否启用，同时通过isSaveBySpecifiedFlag设置来使能/去使能在specified模式下对窗口进行单独记忆。
 
-启用主窗口尺寸和specified记忆功能后，记忆窗口关闭时的尺寸和模式；
-
-窗口再次启动时，以记忆的尺寸和模式按照规则进行打开。
+启用主窗口尺寸和specified记忆功能后，记忆窗口关闭时的尺寸和模式；窗口再次启动时，以记忆的尺寸和模式按照规则进行打开。
 
 记忆规则：
 |上一次窗口状态|记忆规则|
 |-------------|-------|
-|自由窗口|保留自由窗口的大小/位置，超出工作区回弹|
-|二分屏窗口|保留二分屏之前自由窗口的大小/位置|
-|最大化窗口|保留最大化|
-|沉浸式窗口|保留沉浸式之前自由窗口的大小/位置|
-|最小化窗口|保留最小化之前自由窗口的大小/位置|
+|自由窗口|保留自由窗口的大小/位置，超出工作区回弹。|
+|二分屏窗口|保留二分屏之前自由窗口的大小/位置。|
+|最大化窗口|保留最大化。|
+|沉浸式窗口|保留沉浸式之前自由窗口的大小/位置。|
+|最小化窗口|保留最小化之前自由窗口的大小/位置。|
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -11468,7 +11466,7 @@ setWindowRectAutoSave(enabled: boolean, isSaveBySpecifiedFlag: boolean): Promise
 | 参数名    | 类型    | 必填 | 说明                                          |
 | --------- | ------- | ---- | --------------------------------------------- |
 | enabled | boolean | 是   | 设置主窗口的尺寸记忆是否启用，true为启用，false为不启用。 |
-| isSaveBySpecifiedFlag | boolean | 是   | 设置specifiedFlag是否启用，true为启用，false为不启用。 |
+| isSaveBySpecifiedFlag | boolean | 是   | 设置specified模式下是否启用对窗口进行单独记忆，true为启用，false为不启用。 |
 
 
 **返回值：**
