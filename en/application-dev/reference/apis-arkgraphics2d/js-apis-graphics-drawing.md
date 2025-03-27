@@ -18,15 +18,20 @@ import { drawing } from '@kit.ArkGraphics2D';
 
 ## BlendMode
 
-Enumerates the blend modes. In blend mode, each operation generates a new color from two colors (source color and target color). These operations are the same on the four channels (red, green, blue, and alpha). The operations for the alpha channel are used as examples.
+Enumerates the blend modes. In blend mode, each operation generates a new color from two colors (source color and destination color). These operations are the same for the red, green, and blue color channels (the alpha channel follows a different rule). For simplicity, the following description uses the alpha channel as an example rather than naming each channel individually.
 
 For brevity, the following abbreviations are used:
 
-**s**: source. **d**: destination. **sa**: source alpha. **da**: destination alpha.
+- **s**: source.
+- **d**: destination.
+- **sa**: source alpha.
+- **da**: destination alpha.
 
 The following abbreviations are used in the calculation result:
 
-**r**: The calculation methods of the four channels are the same. **ra**: Only the alpha channel is manipulated. **rc**: The other three color channels are manipulated.
+- **r**: used when the calculation method is the same for the four channels (alpha, red, green, and blue channels). 
+- **ra**: used when only the alpha channel is manipulated.
+- **rc**: used when the other three color channels are manipulated.
 
 The table below shows the effect of each blend mode, where the yellow rectangle is the source and the blue circle is the destination.
 
@@ -34,35 +39,35 @@ The table below shows the effect of each blend mode, where the yellow rectangle 
 
 | Name       | Value  | Description                                                        | Diagram  |
 | ----------- | ---- | ------------------------------------------------------------ | -------- |
-| CLEAR       | 0    | Clear mode. r = 0.                                           | ![CLEAR](./figures/image_BlendMode_Clear.png) |
-| SRC         | 1    | r = s (The four channels of **result** are equal to the four channels of **source**, that is, the result is equal to the source.)| ![SRC](./figures/image_BlendMode_Src.png) |
-| DST         | 2    | r = d (The four channels of **result** are equal to the four channels of **destination**, that is, the result is equal to the destination.)| ![DST](./figures/image_BlendMode_Dst.png) |
-| SRC_OVER    | 3    | r = s + (1 - sa) * d                                         | ![SRC_OVER](./figures/image_BlendMode_SrcOver.png) |
-| DST_OVER    | 4    | r = d + (1 - da) * s                                         | ![DST_OVER](./figures/image_BlendMode_DstOver.png) |
-| SRC_IN      | 5    | r = s * da                                                   | ![SRC_IN](./figures/image_BlendMode_SrcIn.png) |
-| DST_IN      | 6    | r = d * sa                                                   | ![DST_IN](./figures/image_BlendMode_DstIn.png) |
-| SRC_OUT     | 7    | r = s * (1 - da)                                             | ![SRC_OUT](./figures/image_BlendMode_SrcOut.png) |
-| DST_OUT     | 8    | r = d * (1 - sa)                                             | ![DST_OUT](./figures/image_BlendMode_DstOut.png) |
-| SRC_ATOP    | 9    | r = s * da + d * (1 - sa)                                    | ![SRC_ATOP](./figures/image_BlendMode_SrcATop.png) |
-| DST_ATOP    | 10   | r = d * sa + s * (1 - da)                                    | ![DST_ATOP](./figures/image_BlendMode_DstATop.png) |
-| XOR         | 11   | r = s * (1 - da) + d * (1 - sa)                              | ![XOR](./figures/image_BlendMode_Xor.png) |
-| PLUS        | 12   | r = min(s + d, 1)                                            | ![PLUS](./figures/image_BlendMode_Plus.png) |
-| MODULATE    | 13   | r = s * d                                                    | ![MODULATE](./figures/image_BlendMode_Modulate.png) |
-| SCREEN      | 14   | Screen mode. r = s + d - s * d                                  | ![SCREEN](./figures/image_BlendMode_Screen.png) |
-| OVERLAY     | 15   | Overlay mode.                                                    | ![OVERLAY](./figures/image_BlendMode_Overlay.png) |
-| DARKEN      | 16   | Darken mode. rc = s + d - max(s * da, d * sa), ra = s + (1 - sa) * d | ![DARKEN](./figures/image_BlendMode_Darken.png) |
-| LIGHTEN     | 17   | Lighten mode. rc = rc = s + d - min(s * da, d * sa), ra = s + (1 - sa) * d | ![LIGHTEN](./figures/image_BlendMode_Lighten.png) |
-| COLOR_DODGE | 18   | Color dodge mode.                                                | ![COLOR_DODGE](./figures/image_BlendMode_ColorDodge.png) |
-| COLOR_BURN  | 19   | Color burn mode.                                                | ![COLOR_BURN](./figures/image_BlendMode_ColorBurn.png) |
-| HARD_LIGHT  | 20   | Hard light mode.                                                    | ![HARD_LIGHT](./figures/image_BlendMode_HardLight.png) |
-| SOFT_LIGHT  | 21   | Soft light mode.                                                    | ![SOFT_LIGHT](./figures/image_BlendMode_SoftLight.png) |
-| DIFFERENCE  | 22   | Difference mode. rc = s + d - 2 * (min(s * da, d * sa)), ra = s + (1 - sa) * d | ![DIFFERENCE](./figures/image_BlendMode_Difference.png) |
-| EXCLUSION   | 23   | Exclusion mode. rc = s + d - two(s * d), ra = s + (1 - sa) * d     | ![EXCLUSION](./figures/image_BlendMode_Exclusion.png) |
-| MULTIPLY    | 24   | Multiply mode. r = s * (1 - da) + d * (1 - sa) + s * d            | ![MULTIPLY](./figures/image_BlendMode_Multiply.png) |
-| HUE         | 25   | Hue mode.                                                    | ![HUE](./figures/image_BlendMode_Hue.png) |
-| SATURATION  | 26   | Saturation mode.                                                  | ![SATURATION](./figures/image_BlendMode_Saturation.png) |
-| COLOR       | 27   | Color mode.                                                    | ![COLOR](./figures/image_BlendMode_Color.png) |
-| LUMINOSITY  | 28   | Luminosity mode.                                                    | ![LUMINOSITY](./figures/image_BlendMode_Luminosity.png) |
+| CLEAR       | 0    | r = 0, sets the the destination pixels to fully transparent.                               | ![CLEAR](./figures/image_BlendMode_Clear.png) |
+| SRC         | 1    | r = s (all channels of the result equal those of the source), replaces the destination pixels with the source pixels.| ![SRC](./figures/image_BlendMode_Src.png) |
+| DST         | 2    | r = d (all channels of the result equal those of the destination), keeps the destination pixels unchanged.| ![DST](./figures/image_BlendMode_Dst.png) |
+| SRC_OVER    | 3    | r = s + (1 - sa) * d, draws the source pixels over the destination pixels, considering the source's transparency.| ![SRC_OVER](./figures/image_BlendMode_SrcOver.png) |
+| DST_OVER    | 4    | r = d + (1 - da) * s, draws the destination pixels over the source pixels, considering the destination's transparency.| ![DST_OVER](./figures/image_BlendMode_DstOver.png) |
+| SRC_IN      | 5    | r = s * da, retains only the intersection of the source pixels with the opaque parts of the destination.| ![SRC_IN](./figures/image_BlendMode_SrcIn.png) |
+| DST_IN      | 6    | r = d * sa, retains only the intersection of the destination pixels with the opaque parts of the source.| ![DST_IN](./figures/image_BlendMode_DstIn.png) |
+| SRC_OUT     | 7    | r = s * (1 - da), retains the parts of the source pixels that do not overlap with the destination.| ![SRC_OUT](./figures/image_BlendMode_SrcOut.png) |
+| DST_OUT     | 8    | r = d * (1 - sa), retains the parts of the destination pixels that do not overlap with the source.| ![DST_OUT](./figures/image_BlendMode_DstOut.png) |
+| SRC_ATOP    | 9    | r = s * da + d * (1 - sa), covers the destination pixels with the source pixels, showing the source only in the opaque parts of the destination.| ![SRC_ATOP](./figures/image_BlendMode_SrcATop.png) |
+| DST_ATOP    | 10   | r = d * sa + s * (1 - da), covers the source pixels with the destination pixels, showing the destination only in the opaque parts of the source.| ![DST_ATOP](./figures/image_BlendMode_DstATop.png) |
+| XOR         | 11   | r = s * (1 - da) + d * (1 - sa), shows only the non-overlapping parts of the source and destination pixels.| ![XOR](./figures/image_BlendMode_Xor.png) |
+| PLUS        | 12   | r = min(s + d, 1), adds the color values of the source and destination pixels.                  | ![PLUS](./figures/image_BlendMode_Plus.png) |
+| MODULATE    | 13   | r = s * d, multiplies the color values of the source and destination pixels.                          | ![MODULATE](./figures/image_BlendMode_Modulate.png) |
+| SCREEN      | 14   | r = s + d - s * d, inverts the color values of the source and destination pixels, multiplies them, and then inverts the result, typically producing a brighter outcome.| ![SCREEN](./figures/image_BlendMode_Screen.png) |
+| OVERLAY     | 15   | Selectively applies **MULTIPLY** or **SCREEN** based on the brightness of the destination pixels, enhancing contrast.| ![OVERLAY](./figures/image_BlendMode_Overlay.png) |
+| DARKEN      | 16   | rc = s + d - max(s * da, d * sa), ra = s + (1 - sa) * d, takes the darker color values between the source and destination pixels.| ![DARKEN](./figures/image_BlendMode_Darken.png) |
+| LIGHTEN     | 17   | rc = s + d - min(s * da, d * sa), ra = s + (1 - sa) * d, takes the lighter color values between the source and destination pixels.| ![LIGHTEN](./figures/image_BlendMode_Lighten.png) |
+| COLOR_DODGE | 18   | Brightens the destination pixels by reducing contrast to reflect the source pixels.          | ![COLOR_DODGE](./figures/image_BlendMode_ColorDodge.png) |
+| COLOR_BURN  | 19   | Darkens the destination pixels by increasing contrast to reflect the source pixels.          | ![COLOR_BURN](./figures/image_BlendMode_ColorBurn.png) |
+| HARD_LIGHT  | 20   | Selectively applies **MULTIPLY** or **SCREEN** based on the brightness of the source pixels.   | ![HARD_LIGHT](./figures/image_BlendMode_HardLight.png) |
+| SOFT_LIGHT  | 21   | Softly brightens or darkens the destination pixels based on the brightness of the source pixels.            | ![SOFT_LIGHT](./figures/image_BlendMode_SoftLight.png) |
+| DIFFERENCE  | 22   | rc = s + d - 2 * (min(s * da, d * sa)), ra = s + (1 - sa) * d, calculates the difference between the color values of the source and destination pixels.| ![DIFFERENCE](./figures/image_BlendMode_Difference.png) |
+| EXCLUSION   | 23   | rc = s + d - two(s * d), ra = s + (1 - sa) * d, similar to **DIFFERENCE** but with lower contrast.| ![EXCLUSION](./figures/image_BlendMode_Exclusion.png) |
+| MULTIPLY    | 24   | r = s * (1 - da) + d * (1 - sa) + s * d, multiplies the color values of the source and destination pixels, typically resulting in a darker outcome.| ![MULTIPLY](./figures/image_BlendMode_Multiply.png) |
+| HUE         | 25   | Uses the hue of the source pixels and the saturation and brightness of the destination pixels.              | ![HUE](./figures/image_BlendMode_Hue.png) |
+| SATURATION  | 26   | Uses the saturation of the source pixels and the hue and brightness of the destination pixels.            | ![SATURATION](./figures/image_BlendMode_Saturation.png) |
+| COLOR       | 27   | Uses the hue and saturation of the source pixels and the brightness of the destination pixels.              | ![COLOR](./figures/image_BlendMode_Color.png) |
+| LUMINOSITY  | 28   | Uses the brightness of the source pixels and the hue and saturation of the destination pixels.              | ![LUMINOSITY](./figures/image_BlendMode_Luminosity.png) |
 
 ## PathMeasureMatrixFlags<sup>12+</sup>
 
@@ -113,143 +118,6 @@ Enumerates the operation modes available for a path.
 | UNION    | 2    | Union operation.|
 | XOR     | 3    | XOR operation.|
 | REVERSE_DIFFERENCE     | 4    | Reverse difference operation.|
-
-## PathIteratorVerb<sup>16+</sup>
-
-Enumerates the types of path operations contained in the iterator.
-
-**System capability**: SystemCapability.Graphics.Drawing
-
-| Name | Value  | Description                          |
-| ----- | ---- | ------------------------------ |
-| MOVE  | 0    | Sets the start point.|
-| LINE  | 1    | Adds a line segment.|
-| QUAD  | 2    | Adds a quadratic Bezier curve for smooth transitions.|
-| CONIC | 3    | Adds a conic curve.|
-| CUBIC | 4    | Adds a cubic Bezier curve for smooth transitions.|
-| CLOSE | 5    | Closes a path.|
-| DONE  | CLOSE + 1   | The path setting is complete.|
-
-## PathIterator<sup>16+</sup>
-
-Implements a path operation iterator.
-
-### constructor<sup>16+</sup>
-
-constructor(path: Path)
-
-Creates an iterator and binds it with a path.
-
-**System capability**: SystemCapability.Graphics.Drawing
-
-**Parameters**
-
-| Name  | Type                                        | Mandatory| Description                           |
-| -------- | -------------------------------------------- | ---- | ------------------------------- |
-| path | [Path](#path) | Yes  | **Path** object bound to the iterator.                |
-
-**Example**
-
-```ts
-import { drawing } from '@kit.ArkGraphics2D';
-let path: drawing.Path = new drawing.Path();
-let iter: drawing.PathIterator = new drawing.PathIterator(path);
-```
-
-### next<sup>16+</sup>
-
-next(points: Array<common2D.Point>, offset?: number): PathIteratorVerb
-
-Retrieves the next operation in this path and moves the iterator to that operation.
-
-**System capability**: SystemCapability.Graphics.Drawing
-
-**Parameters**
-
-| Name  | Type                                        | Mandatory| Description                           |
-| -------- | -------------------------------------------- | ---- | ------------------------------- |
-| points | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)>   | Yes  | An array of coordinate points. The array must be at least 4 elements long. After the operation, the array will be overwritten. The number of coordinate point pairs written to the array depends on the path operation type. Specifically: **MOVE** inserts 1 pair; **LINE** inserts 2 pairs; **QUAD** inserts 3 pairs; **CONIC** inserts 3.5 pairs (3 pairs plus the weight for the conic curve); **CUBIC** inserts 4 pairs; **CLOSE** and **DONE** do not insert any pairs. The array length should be at least the offset plus 4.|
-| offset | number   | No  | Offset from the start of the array where writing begins. The default value is **0**. The value range is [0, size - 4], where **size** is the length of the coordinate point array.|
-
-**Return value**
-
-| Type                 | Description          |
-| --------------------- | -------------- |
-| [PathIteratorVerb](#pathiteratorverb16) | Path operation type contained in the iterator.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
-
-**Example**
-
-```ts
-import { common2D, drawing } from '@kit.ArkGraphics2D';
-let path: drawing.Path = new drawing.Path();
-path.moveTo(10, 20);
-let iter: drawing.PathIterator = new drawing.PathIterator(path);
-let verbStr: Array<string> = ["MOVE", "LINE", "QUAD", "CONIC", "CUBIC", "CLOSE", "DONE"];
-let pointCount: Array<number> = [1,2,3,4,4,0,0]; //1,2,3,3.5,4,0,0
-let points: Array<common2D.Point> = [{x: 0, y: 0}, {x: 0, y: 0}, {x: 0, y: 0}, {x: 0, y: 0}];
-let offset = 0;
-let verb = iter.next(points, offset);
-let outputMessage: string = "pathIteratorNext: ";
-outputMessage += "verb =" + verbStr[verb] + "; has " + pointCount[verb] + " pairs: ";
-for (let j = 0; j < pointCount[verb] + offset; j++) {
-  outputMessage += "[" + points[j].x + ", " + points[j].y + "]";
-}
-console.info(outputMessage);
-```
-
-### peek<sup>16+</sup>
-
-peek(): PathIteratorVerb
-
-Retrieves the next operation in this path, without moving the iterator.
-
-**System capability**: SystemCapability.Graphics.Drawing
-
-**Return value**
-
-| Type                 | Description          |
-| --------------------- | -------------- |
-| [PathIteratorVerb](#pathiteratorverb16) | Path operation type contained in the iterator.|
-
-**Example**
-
-```ts
-import { drawing } from '@kit.ArkGraphics2D';
-let path: drawing.Path = new drawing.Path();
-let iter: drawing.PathIterator = new drawing.PathIterator(path);
-let res = iter.peek();
-```
-
-### hasNext<sup>16+</sup>
-
-hasNext(): boolean
-
-Checks whether there are other operations in the path operation iterator.
-
-**System capability**: SystemCapability.Graphics.Drawing
-
-**Return value**
-
-| Type   | Description          |
-| ------- | -------------- |
-| boolean | Check result. The value **true** means that there are other operations in the path operation iterator, and **false** means the opposite.|
-
-**Example**
-
-```ts
-import { drawing } from '@kit.ArkGraphics2D';
-let path: drawing.Path = new drawing.Path();
-let iter: drawing.PathIterator = new drawing.PathIterator(path);
-let res = iter.hasNext();
-```
 
 ## Path
 
@@ -375,8 +243,8 @@ Draws an arc to this path. This is done by using angle arc mode. In this mode, a
 | y1       | number | Yes  | Y coordinate of the upper left corner of the rectangle. The value is a floating point number.|
 | x2       | number | Yes  | X coordinate of the lower right corner of the rectangle. The value is a floating point number.|
 | y2       | number | Yes  | Y coordinate of the lower right corner of the rectangle. The value is a floating point number.|
-| startDeg | number | Yes  | Start angle, in degrees. The value is a floating point number.|
-| sweepDeg | number | Yes  | Sweep degree. The value is a floating point number.|
+| startDeg | number | Yes  | Start angle. The start direction (0°) of the angle is the positive direction of the X axis.|
+| sweepDeg | number | Yes  | Angle to sweep, in degrees. A positive number indicates a clockwise sweep, and a negative value indicates a counterclockwise swipe. The actual swipe degree is the modulo operation result of the input parameter by 360.|
 
 **Error codes**
 
@@ -497,7 +365,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { drawing } from '@kit.ArkGraphics2D';
 let path = new drawing.Path();
 path.moveTo(10,10);
-path.cubicTo(10, 10, 10, 10, 15, 15);
+path.cubicTo(100, 100, 80, 150, 300, 150);
 ```
 
 ### rMoveTo<sup>12+</sup>
@@ -935,7 +803,7 @@ Checks whether a coordinate point is included in this path. For details, see [Pa
 
 | Type   | Description          |
 | ------- | -------------- |
-| boolean | Result indicating whether the coordinate point is included in the path. The value **true** means that the coordinate point is included in the path, and **false** means the opposite.|
+| boolean | Check result. The value **true** means that the coordinate point is included in the path, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1225,7 +1093,7 @@ Obtains the coordinates and tangent at a distance from the start point of this p
 
 | Type                 | Description          |
 | --------------------- | -------------- |
-| boolean |Result indicating whether the coordinates and tangent of the point are obtained. The value **true** means that they are obtained, and **false** means the opposite. The values of **position** and **tangent** are not changed.|
+| boolean |Check result. The value **true** means that they are obtained, and **false** means the opposite. The values of **position** and **tangent** are not changed.|
 
 **Error codes**
 
@@ -1265,7 +1133,7 @@ Checks whether a path is closed.
 
 | Type                 | Description          |
 | --------------------- | -------------- |
-| boolean | Result indicating whether the path is closed. The value **true** means that the path is closed, and **false** means the opposite.|
+| boolean | Check result. The value **true** means that the path is closed, and **false** means the opposite.|
 
 **Example**
 
@@ -1302,7 +1170,7 @@ Obtains a transformation matrix at a distance from the start point of this path.
 
 | Type                 | Description          |
 | --------------------- | -------------- |
-| boolean | Result indicating whether a transformation matrix is obtained. The value **true** means that a transformation matrix is obtained, and **false** means the opposite.|
+| boolean | Check result. The value **true** means that a transformation matrix is obtained, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1343,7 +1211,7 @@ Parses the path represented by an SVG string.
 
 | Type                 | Description          |
 | --------------------- | -------------- |
-| boolean | Result indicating whether the SVG string is parsed. The value **true** means that the parsing is successful, and **false** means the opposite.|
+| boolean | Check result. The value **true** means that the parsing is successful, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1366,28 +1234,6 @@ if(path.buildFromSvgString(svgStr)) {
 }
 ```
 
-### getPathIterator<sup>16+</sup>
-
-getPathIterator(): PathIterator
-
-Obtains the operation iterator of this path.
-
-**System capability**: SystemCapability.Graphics.Drawing
-
-**Return value**
-
-| Type                 | Description          |
-| --------------------- | -------------- |
-| [PathIterator](#pathiterator16) | **Iterator** object of the path.|
-
-**Example**
-
-```ts
-import { drawing } from '@kit.ArkGraphics2D';
-let path: drawing.Path = new drawing.Path();
-let iter = path.getPathIterator();
-```
-
 ## Canvas
 
 A carrier that carries the drawn content and drawing status.
@@ -1408,7 +1254,7 @@ A constructor used to create a **Canvas** object.
 
 | Name  | Type                                        | Mandatory| Description          |
 | -------- | -------------------------------------------- | ---- | -------------- |
-| pixelmap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | Pixel map used to create the object.|
+| pixelmap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | PixelMap used to create the object.|
 
 **Error codes**
 
@@ -1650,7 +1496,7 @@ Draws a spot shadow and uses a given path to outline the ambient shadow.
 | Name         | Type                                      | Mandatory  | Description        |
 | ------------ | ---------------------------------------- | ---- | ---------- |
 | path | [Path](#path)                | Yes   | **Path** object, which is used to outline the shadow.|
-| planeParams  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | Yes   | 3D vector, which is used to calculate the offset in the Z axis.|
+| planeParams  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | Yes   | 3D vector, which is used to determine the z-axis offset of an occluder relative to the canvas, based on its x and y coordinates.|
 | devLightPos  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | Yes   | Position of the light relative to the canvas.|
 | lightRadius   | number           | Yes   | Radius of the light. The value is a floating point number.     |
 | ambientColor  | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes   | Color of the ambient shadow.|
@@ -1691,52 +1537,6 @@ class DrawingRenderNode extends RenderNode {
     let color2 : common2D.Color = {alpha: 0xFF, red:0xFF, green:0, blue:0};
     let shadowFlag : drawing.ShadowFlag = drawing.ShadowFlag.ALL;
     canvas.drawShadow(path, point1, point2, 30, color1, color2, shadowFlag);
-  }
-}
-```
-
-### drawShadow<sup>16+</sup>
-
-drawShadow(path: Path, planeParams: common2D.Point3d, devLightPos: common2D.Point3d, lightRadius: number, ambientColor: number, spotColor: number, flag: ShadowFlag) : void
-
-Draws a spot shadow and uses a given path to outline the ambient shadow.
-
-**System capability**: SystemCapability.Graphics.Drawing
-
-**Parameters**
-
-| Name         | Type                                      | Mandatory  | Description        |
-| ------------ | ---------------------------------------- | ---- | ---------- |
-| path | [Path](#path)                | Yes   | **Path** object, which is used to outline the shadow.|
-| planeParams  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | Yes   | 3D vector, which is used to calculate the offset in the Z axis.|
-| devLightPos  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | Yes   | Position of the light relative to the canvas.|
-| lightRadius   | number           | Yes   | Radius of the light. The value is a floating point number.     |
-| ambientColor  |number | Yes   | Ambient shadow color, represented by a 32-bit unsigned integer in hexadecimal ARGB format.|
-| spotColor  |number | Yes   | Spot shadow color, represented by a 32-bit unsigned integer in hexadecimal ARGB format.|
-| flag         | [ShadowFlag](#shadowflag12)                  | Yes   | Shadow flag.   |
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
-
-**Example**
-
-```ts
-import { RenderNode } from '@kit.ArkUI';
-import { common2D, drawing } from '@kit.ArkGraphics2D';
-class DrawingRenderNode extends RenderNode {
-  draw(context : DrawContext) {
-    const canvas = context.canvas;
-    const path = new drawing.Path();
-    path.addCircle(300, 600, 100, drawing.PathDirection.CLOCKWISE);
-    let point1 : common2D.Point3d = {x: 100, y: 80, z:80};
-    let point2 : common2D.Point3d = {x: 200, y: 10, z:40};
-    let shadowFlag : drawing.ShadowFlag = drawing.ShadowFlag.ALL;
-    canvas.drawShadow(path, point1, point2, 30, 0xFF0000FF, 0xFFFF0000, shadowFlag);
   }
 }
 ```
@@ -1860,7 +1660,7 @@ Draws an image. The coordinates of the upper left corner of the image are (left,
 
 | Name  | Type                                        | Mandatory| Description                           |
 | -------- | -------------------------------------------- | ---- | ------------------------------- |
-| pixelmap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | Pixel map of the image.                 |
+| pixelmap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | PixelMap.                 |
 | left     | number                                       | Yes  | X coordinate of the upper left corner of the image. The value is a floating point number.|
 | top      | number                                       | Yes  | Y coordinate of the upper left corner of the image. The value is a floating point number.|
 | samplingOptions<sup>12+</sup>  | [SamplingOptions](#samplingoptions12)  | No | Sampling options. By default, the **SamplingOptions** object created using the no-argument constructor is used.|
@@ -1904,7 +1704,7 @@ Draws an image onto a specified area of the canvas.
 
 | Name  | Type                                        | Mandatory| Description                           |
 | -------- | -------------------------------------------- | ---- | ------------------------------- |
-| pixelmap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | Pixel map of the image.                |
+| pixelmap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | PixelMap.                |
 | dstRect     | [common2D.Rect](js-apis-graphics-common2D.md#rect)                               | Yes  | **Rectangle** object, which specifies the area of the canvas onto which the image will be drawn.|
 | samplingOptions     | [SamplingOptions](#samplingoptions12)                           | No  | Sampling options. By default, the **SamplingOptions** object created using the no-argument constructor is used.|
 
@@ -1947,7 +1747,7 @@ Draws a portion of an image onto a specified area of the canvas.
 
 | Name  | Type                                        | Mandatory| Description                           |
 | -------- | -------------------------------------------- | ---- | ------------------------------- |
-| pixelmap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | Pixel map of the image.                |
+| pixelmap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | PixelMap.                |
 | srcRect     | [common2D.Rect](js-apis-graphics-common2D.md#rect)                               | Yes  | **Rectangle** object, which specifies the portion of the image to draw.|
 | dstRect     | [common2D.Rect](js-apis-graphics-common2D.md#rect)                               | Yes  | **Rectangle** object, which specifies the area of the canvas onto which the image will be drawn.|
 | samplingOptions     | [SamplingOptions](#samplingoptions12)                           | No  | Sampling options. By default, the **SamplingOptions** object created using the no-argument constructor is used.|
@@ -2062,47 +1862,11 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### drawColor<sup>16+</sup>
-
-drawColor(color: number, blendMode?: BlendMode): void
-
-Draws the background color.
-
-**System capability**: SystemCapability.Graphics.Drawing
-
-**Parameters**
-
-| Name   | Type                                                | Mandatory| Description                            |
-| --------- | ---------------------------------------------------- | ---- | -------------------------------- |
-| color     | number | Yes  | Color in hexadecimal ARGB format.                  |
-| blendMode | [BlendMode](#blendmode)                              | No  | Blend mode. The default mode is **SRC_OVER**.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
-
-**Example**
-
-```ts
-import { RenderNode } from '@kit.ArkUI';
-import { drawing } from '@kit.ArkGraphics2D';
-class DrawingRenderNode extends RenderNode {
-  draw(context : DrawContext) {
-    const canvas = context.canvas;
-    canvas.drawColor(0xff000a0a, drawing.BlendMode.CLEAR);
-  }
-}
-```
-
 ### drawPixelMapMesh<sup>12+</sup>
 
 drawPixelMapMesh(pixelmap: image.PixelMap, meshWidth: number, meshHeight: number, vertices: Array\<number>, vertOffset: number, colors: Array\<number>, colorOffset: number): void
 
-Draws a pixel map based on a mesh, where mesh vertices are evenly distributed across the pixel map.
+Draws a PixelMap based on a mesh, where mesh vertices are evenly distributed across the PixelMap.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -2110,7 +1874,7 @@ Draws a pixel map based on a mesh, where mesh vertices are evenly distributed ac
 
 | Name     | Type           | Mandatory| Description                           |
 | ----------- | -------------  | ---- | ------------------------------- |
-| pixelmap    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | Pixel map to draw.|
+| pixelmap    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | PixelMap to draw.|
 | meshWidth   | number         | Yes  | Number of columns in the mesh. The value is an integer greater than 0.|
 | meshHeight  | number         | Yes  | Number of rows in the mesh. The value is an integer greater than 0.|
 | vertices    | Array\<number> | Yes  | Array of vertices, which specify the position to draw. The value is a floating-point array and the size must be ((meshWidth+1) * (meshHeight+1) + vertOffset) * 2.|
@@ -2179,42 +1943,6 @@ class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
     let color: common2D.Color = {alpha: 255, red: 255, green: 0, blue: 0};
-    canvas.clear(color);
-  }
-}
-```
-
-### clear<sup>16+</sup>
-
-clear(color: number): void
-
-Clears the canvas with a given color.
-
-**System capability**: SystemCapability.Graphics.Drawing
-
-**Parameters**
-
-| Name   | Type                                                | Mandatory| Description                            |
-| --------- | ---------------------------------------------------- | ---- | -------------------------------- |
-| color     | number| Yes  | Color in hexadecimal ARGB format. |
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
-
-**Example**
-
-```ts
-import { RenderNode } from '@kit.ArkUI';
-import { drawing } from '@kit.ArkGraphics2D';
-class DrawingRenderNode extends RenderNode {
-  draw(context : DrawContext) {
-    const canvas = context.canvas;
-    let color: number = 0xffff0000;
     canvas.clear(color);
   }
 }
@@ -2322,7 +2050,7 @@ class DrawingRenderNode extends RenderNode {
 
 drawArc(arc: common2D.Rect, startAngle: number, sweepAngle: number): void
 
-Draws an arc on the canvas, with the start angle and sweep angle specified.
+Draws an arc on the canvas, with the start angle and sweep angle specified. If the absolute value of the sweep angle exceeds 360 degrees, an ellipse is drawn.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -2332,7 +2060,7 @@ Draws an arc on the canvas, with the start angle and sweep angle specified.
 | ------ | -------------------------------------------------- | ---- | -------------- |
 | arc   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | Yes  | Rectangular boundary that encapsulates the oval including the arc.|
 | startAngle      | number | Yes  | Start angle, in degrees. The value is a floating point number. When the degree is 0, the start point is located at the right end of the oval. A positive number indicates that the start point is placed clockwise, and a negative number indicates that the start point is placed counterclockwise.|
-| sweepAngle      | number | Yes  | Angle to sweep, in degrees. The value is a floating point number. A positive number indicates a clockwise sweep, and a negative value indicates a counterclockwise swipe.|
+| sweepAngle      | number | Yes  | Angle to sweep, in degrees. The value is a floating point number. A positive number indicates a clockwise sweep, and a negative value indicates a counterclockwise swipe. The valid range is from -360 degrees to 360 degrees. If the absolute value of the sweep angle exceeds 360 degrees, an ellipse is drawn.|
 
 **Error codes**
 
@@ -2837,16 +2565,12 @@ import { common2D, drawing } from '@kit.ArkGraphics2D';
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
-    const pen = new drawing.Pen();
-    pen.setStrokeWidth(5);
-    pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     let path = new drawing.Path();
     path.moveTo(10, 10);
-    path.cubicTo(10, 10, 10, 10, 15, 15);
+    path.cubicTo(100, 100, 80, 150, 300, 150);
     path.close();
-    canvas.attachPen(pen);
-    canvas.clipPath(path, drawing.ClipOp.DIFFERENCE, true);
-    canvas.detachPen();
+    canvas.clipPath(path, drawing.ClipOp.INTERSECT, true);
+    canvas.clear({alpha: 255, red: 255, green: 0, blue: 0});
   }
 }
 ```
@@ -2883,12 +2607,8 @@ import { common2D, drawing } from '@kit.ArkGraphics2D';
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
-    const pen = new drawing.Pen();
-    pen.setStrokeWidth(5);
-    pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
-    canvas.attachPen(pen);
     canvas.clipRect({left : 10, right : 500, top : 300, bottom : 900}, drawing.ClipOp.DIFFERENCE, true);
-    canvas.detachPen();
+    canvas.clear({alpha: 255, red: 255, green: 0, blue: 0});
   }
 }
 ```
@@ -2897,7 +2617,7 @@ class DrawingRenderNode extends RenderNode {
 
 save(): number
 
-Saves the current canvas status (canvas matrix) to the top of the stack.
+Saves the current canvas status (canvas matrix) to the top of the stack. This API must be used in pair with [restore](#restore12).
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -2926,7 +2646,7 @@ class DrawingRenderNode extends RenderNode {
 
 saveLayer(rect?: common2D.Rect | null, brush?: Brush | null): number
 
-Saves the matrix and cropping region of the canvas, and allocates a bitmap for subsequent drawing. If you call [restore](#restore12), the changes made to the matrix and clipping region are discarded, and the bitmap is drawn.
+Saves the matrix and cropping region of the canvas, and allocates a PixelMap for subsequent drawing. If you call [restore](#restore12), changes made to the matrix and clipping region are discarded, and the PixelMap is drawn.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -3037,8 +2757,8 @@ Skews the canvas in both the horizontal and vertical directions.
 
 | Name | Type    | Mandatory  | Description        |
 | ---- | ------ | ---- | ----------------- |
-| sx   | number | Yes  | Amount of tilt on the X axis. The value is a floating point number.   |
-| sy   | number | Yes  | Amount of tilt on the Y axis. The value is a floating point number.   |
+| sx   | number | Yes  | Amount of tilt on the X axis. The value is a floating point number. A positive number tilts the drawing rightwards along the positive direction of the Y axis, and a negative number tilts the drawing leftwards along the positive direction of the Y axis.   |
+| sy   | number | Yes  | Amount of tilt on the Y axis. The value is a floating point number. A positive number tilts the drawing downwards along the positive direction of the X axis, and a negative number tilts the drawing upwards along the positive direction of the X axis.   |
 
 **Error codes**
 
@@ -3293,6 +3013,7 @@ class DrawingRenderNode extends RenderNode {
     let matrix = new drawing.Matrix();
     matrix.setMatrix([5, 0, 0, 0, 1, 2, 0, 0, 1]);
     canvas.concatMatrix(matrix);
+    canvas.drawRect({left: 10, right: 200, top: 100, bottom: 500});
   }
 }
 ```
@@ -3330,6 +3051,7 @@ class DrawingRenderNode extends RenderNode {
     let matrix = new drawing.Matrix()
     matrix.setMatrix([5, 0, 0, 0, 1, 1, 0, 0, 1]);
     canvas.setMatrix(matrix);
+    canvas.drawRect({left: 10, right: 200, top: 100, bottom: 500});
   }
 }
 ```
@@ -3346,7 +3068,7 @@ Checks whether the region that can be drawn is empty after clipping.
 
 | Type                 | Description          |
 | --------------------- | -------------- |
-| boolean | Chek result. The value **true** means that the region is empty, and **false** means the opposite.|
+| boolean | Check result. The value **true** means that the region is empty, and **false** means the opposite.|
 
 **Example**
 
@@ -3399,6 +3121,8 @@ class DrawingRenderNode extends RenderNode {
     let region : drawing.Region = new drawing.Region();
     region.setRect(0, 0, 500, 500);
     canvas.clipRegion(region);
+    let color: common2D.Color = {alpha: 255, red: 255, green: 0, blue: 0};
+    canvas.clear(color);
   }
 }
 ```
@@ -3438,6 +3162,8 @@ class DrawingRenderNode extends RenderNode {
     let rect: common2D.Rect = { left: 10, top: 100, right: 200, bottom: 300 };
     let roundRect = new drawing.RoundRect(rect, 10, 10);
     canvas.clipRoundRect(roundRect);
+    let color: common2D.Color = {alpha: 255, red: 255, green: 0, blue: 0};
+    canvas.clear(color);
   }
 }
 ```
@@ -3620,6 +3346,7 @@ Enumerates the fill types of a path.
 | INVERSE_EVEN_ODD  | 3    | Same as **EVEN_ODD**, but draws outside of the path, rather than inside.|
 
 > **NOTE**
+>
 > ![WINDING&EVEN_ODD](./figures/image_PathFillType_Winding_Even_Odd.png)
 > As shown in the above figure, the path is a circle, the arrow indicates the path direction, **p** is any point "inside" the path, the blue line is the ray emitted from **p**, and the black arrow indicates the fill result using blue under the corresponding fill type. Under the **WINDING** fill rule, the number of intersection points of the ray and path is 2 (not 0), and therefore **p** is colored. Under the **EVEN_ODD** filling rule, the number of intersection points of the ray and path is 2 (an even number), and therefore **p** is not colored.
 
@@ -3942,51 +3669,6 @@ class TextRenderNode extends RenderNode {
     let font = new drawing.Font();
     let str = "/system/fonts/HarmonyOS_Sans_Italic.ttf";
     const mytypeface = drawing.Typeface.makeFromFile(str);
-    font.setTypeface(mytypeface);
-    const textBlob = drawing.TextBlob.makeFromString("Hello World", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
-    canvas.drawTextBlob(textBlob, 60, 100);
-  }
-}
-```
-
-### makeFromRawFile<sup>16+</sup>
-
-static makeFromRawFile(rawfile: Resource): Typeface
-
-Constructs a typeface from a file, which must be stored in the **resources/rawfile** directory of the application project.
-
-**System capability**: SystemCapability.Graphics.Drawing
-
-**Parameters**
-
-| Name        | Type                                      | Mandatory  | Description                 |
-| ----------- | ---------------------------------------- | ---- | ------------------- |
-| rawfile | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource)           | Yes  | Resource object corresponding to the file. Currently, only resource objects referenced in **$rawfile** format are supported. The corresponding format is **$rawfile('filePath')**, where **filePath** is the relative path of the file to the **resources/rawfile** directory in the project. If the file is stored in **resources/rawfile**, the reference format is **$rawfile('HarmonyOS_Sans_Bold.ttf')**. If the file is stored in a subdirectory, for example, in **resources/rawfile/ttf**, the reference format is **$rawfile('ttf/HarmonyOS_Sans_Bold.ttf')**.|
-
-**Return value**
-
-| Type  | Description                |
-| ------ | -------------------- |
-| [Typeface](#typeface) | **Typeface** object. In abnormal cases, a null pointer is returned.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
-
-**Example**
-
-```ts
-import { RenderNode } from '@kit.ArkUI';
-import { drawing } from '@kit.ArkGraphics2D';
-class TextRenderNode extends RenderNode {
-  async draw(context: DrawContext) {
-    const canvas = context.canvas;
-    let font = new drawing.Font();
-    const mytypeface = drawing.Typeface.makeFromRawFile($rawfile('HarmonyOS_Sans_Bold.ttf'));
     font.setTypeface(mytypeface);
     const textBlob = drawing.TextBlob.makeFromString("Hello World", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
     canvas.drawTextBlob(textBlob, 60, 100);
@@ -4689,7 +4371,7 @@ Checks whether baselines are requested to be snapped to pixels when the current 
 
 | Type  | Description            |
 | ------ | ---------------- |
-| boolean | Result indicating whether the baselines are requested to be snapped to pixels when the current canvas matrix is axis aligned. The value **true** means that the baselines are requested to be snapped to pixels, and **false** means the opposite.|
+| boolean | Check result. The value **true** means that the baselines are requested to be snapped to pixels, and **false** means the opposite.|
 
 **Example**
 
@@ -4747,7 +4429,7 @@ Checks whether bitmaps are used in this font.
 
 | Type  | Description            |
 | ------ | ---------------- |
-| boolean | Result indicating whether the bitmaps are used in the font. The value **true** means that the bitmaps are used, and **false** means the opposite.|
+| boolean | Check result. The value **true** means that the bitmaps are used, and **false** means the opposite.|
 
 **Example**
 
@@ -4805,7 +4487,7 @@ Checks whether auto hinting is forcibly used.
 
 | Type  | Description            |
 | ------ | ---------------- |
-| boolean | Result indicating whether auto hinting is forcibly used. The value **true** means that auto hinting is forcibly used, and **false** means the opposite.|
+| boolean | Check result. The value **true** means that auto hinting is forcibly used, and **false** means the opposite.|
 
 **Example**
 
@@ -4900,169 +4582,7 @@ let glyphs : number[] = font.textToGlyphs(text);
 console.info("drawing text toglyphs OnTestFunction num =  " + glyphs.length );
 ```
 
-### getBounds<sup>16+</sup>
-
-getBounds(glyphs: Array\<number>): Array\<common2D.Rect>
-
-Obtains the rectangular bounding box of each glyph in an array.
-
-**System capability**: SystemCapability.Graphics.Drawing
-
-**Parameters**
-
-| Name  | Type                 | Mandatory| Description  |
-| -------- | --------------------- | ---- | ------ |
-| glyphs | Array\<number> | Yes  | Glyph array, which can be generated by [textToGlyphs](#texttoglyphs12).|
-
-**Return value**
-
-| Type  | Description            |
-| ------ | ---------------- |
-| Array\<[common2D.Rect](js-apis-graphics-common2D.md#rect)> | Array that holds the rectangular bounding boxes.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
-
-**Example**
-
-```ts
-import { common2D, drawing } from '@kit.ArkGraphics2D';
-
-@Entry
-@Component
-struct Index {
-  @State message: string = 'Hello World';
-
-  build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-          .onClick(() => {
-            let font: drawing.Font = new drawing.Font();
-            let text: string = 'hello world';
-            let glyphs: number[] = font.textToGlyphs(text);
-            let fontBounds: Array<common2D.Rect> = font.getBounds(glyphs);
-            for (let index = 0; index < fontBounds.length; index++) {
-              console.info("get fontWidths[", index, "] left:", fontBounds[index].left, " top:", fontBounds[index].top,
-                " right:", fontBounds[index].right, " bottom:", fontBounds[index].bottom);
-            }
-          })
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-
-### getTextPath<sup>16+</sup>
-
-getTextPath(text: string, byteLength: number, x: number, y: number): Path;
-
-Obtains the outline path of a text.
-
-**System capability**: SystemCapability.Graphics.Drawing
-
-**Parameters**
-
-| Name   | Type                                              | Mandatory| Description                   |
-| ------   | ------------------------------------------------   | ---- | ---------------------- |
-|   text   |    string                                          | Yes  | UTF-8 text-encoded characters.|
-|byteLength|    number                                          | Yes  | Length of the outline path, which is obtained based on the minimum value between the passed value of **byteLength** and the actual text byte size.|
-|    x     |    number                                          | Yes  | X coordinate of the text in the drawing area, with the origin as the start point.|
-|    y     |    number                                          | Yes  | Y coordinate of the text in the drawing area, with the origin as the start point.|
-
-**Return value**
-
-| Type  | Description            |
-| ------ | ---------------- |
-| [Path](#path) | Outline path of the text.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
-
-**Example**
-
-```ts
-import { drawing } from '@kit.ArkGraphics2D';
-import { buffer } from '@kit.ArkTS';
-import { RenderNode } from '@kit.ArkUI';
-
-class DrawingRenderNode extends RenderNode {
-  draw(context : DrawContext) {
-    const canvas = context.canvas;
-    let font = new drawing.Font();
-    font.setSize(50)
-    let myString: string = "Hello, HarmonyOS";
-    let length = buffer.from(myString).length;
-    let path = font.getTextPath(myString, length, 0, 100)
-    canvas.drawPath(path)
-  }
-}
-```
-
-### createPathForGlyph<sup>16+</sup>
-
-createPathForGlyph(index: number): Path
-
-Obtains the outline path of a glyph.
-
-**System capability**: SystemCapability.Graphics.Drawing
-
-**Parameters**
-
-| Name  | Type                 | Mandatory| Description  |
-| -------- | --------------------- | ---- | ------ |
-| index | number | Yes  | Index of the glyph.|
-
-**Return value**
-
-| Type  | Description            |
-| ------ | ---------------- |
-| [Path](#path) | Outline path of the glyph.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
-
-**Example**
-
-```ts
-import { FrameNode, NodeController, RenderNode } from '@kit.ArkUI';
-import { drawing } from '@kit.ArkGraphics2D';
-
-class DrawingRenderNode extends RenderNode {
-  draw(context : DrawContext) {
-    const canvas = context.canvas;
-    let font = new drawing.Font();
-    font.setSize(50)
-    let text: string = 'Hello'
-    let glyphs: number[] = font.textToGlyphs(text);
-    for (let index = 0; index < glyphs.length; index++) {
-      let path: drawing.Path = font.createPathForGlyph(glyphs[index])
-      canvas.drawPath(path)
-    }
-  }
-}
-```
-
-### setThemeFontFollowed<sup>16+</sup>
+### setThemeFontFollowed<sup>15+</sup>
 
 setThemeFontFollowed(followed: boolean): void
 
@@ -5094,7 +4614,7 @@ font.setThemeFontFollowed(true);
 console.info("font is theme font followed: " + font.isThemeFontFollowed());
 ```
 
-### isThemeFontFollowed()<sup>16+</sup>
+### isThemeFontFollowed()<sup>15+</sup>
 
 isThemeFontFollowed(): boolean
 
@@ -5198,42 +4718,6 @@ const color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
 let colorFilter = drawing.ColorFilter.createBlendModeColorFilter(color, drawing.BlendMode.SRC);
 ```
 
-### createBlendModeColorFilter<sup>16+</sup>
-
-static createBlendModeColorFilter(color: number, mode: BlendMode) : ColorFilter
-
-Creates a **ColorFilter** object with a given color and blend mode.
-
-**System capability**: SystemCapability.Graphics.Drawing
-
-**Parameters**
-
-| Name| Type                                                | Mandatory| Description            |
-| ------ | ---------------------------------------------------- | ---- | ---------------- |
-| color  | number | Yes  | Color in hexadecimal ARGB format.|
-| mode   | [BlendMode](#blendmode)                              | Yes  | Blend mode.|
-
-**Return value**
-
-| Type                       | Description              |
-| --------------------------- | ------------------ |
-| [ColorFilter](#colorfilter) | Color filter created.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
-
-**Example**
-
-```ts
-import { drawing } from '@kit.ArkGraphics2D';
-let colorFilter = drawing.ColorFilter.createBlendModeColorFilter(0xffff0000, drawing.BlendMode.SRC);
-```
-
 ### createComposeColorFilter
 
 createComposeColorFilter(outer: ColorFilter, inner: ColorFilter) : ColorFilter
@@ -5319,7 +4803,7 @@ let colorFilter = drawing.ColorFilter.createSRGBGammaToLinear();
 
 createLumaColorFilter() : ColorFilter
 
-Creates a **ColorFilter** object that multiplies the luma into the alpha channel.
+Creates a **ColorFilter** object that multiplies the luma into the alpha channel and sets the RGB channels to zero.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -5354,7 +4838,7 @@ Creates a color filter object with a 4*5 color matrix.
 
 | Type                       | Description              |
 | --------------------------- | ------------------ |
-| [ColorFilter](#colorfilter) | Color filter created.|
+| [ColorFilter](#colorfilter) | **ColorFilter** object created.|
 
 **Error codes**
 
@@ -5528,55 +5012,6 @@ class DrawingRenderNode extends RenderNode {
 ```
 ![Lattice.png](figures/Lattice.png)
 
-### createImageLattice<sup>16+</sup>
-
-static createImageLattice(xDivs: Array\<number>, yDivs: Array\<number>, fXCount: number, fYCount: number, fBounds?: common2D.Rect | null, fRectTypes?: Array\<RectType> | null, fColors?: Array\<number> | null): Lattice
-
-Divides the image into lattices. The lattices on both even columns and even rows are fixed, and they are drawn at their original size if the target is large enough. If the target is too small to hold the fixed lattices, all the fixed lattices are scaled down to fit the target, and the lattices that are not on even columns and even rows are scaled to accommodate the remaining space.
-
-**System capability**: SystemCapability.Graphics.Drawing
-
-**Parameters**
-
-| Name      | Type                                                               | Mandatory| Description                                                                              |
-| ------------ | ------------------------------------------------------------------ | ---- | --------------------------------------------------------------------------------- |
-| xDivs        | Array\<number>                                                     | Yes  | Array of X coordinates used to divide the image. The value is an integer.                                            |
-| yDivs        | Array\<number>                                                     | Yes  | Array of Y coordinates used to divide the image. The value is an integer.                                            |
-| fXCount      | number                                                             | Yes  | Size of the array that holds the X coordinates. The value range is [0, 5].                           |
-| fYCount      | number                                                             | Yes  | Size of the array that holds the Y coordinates. The value range is [0, 5].                           |
-| fBounds      | [common2D.Rect](js-apis-graphics-common2D.md#rect)\|null           | No  | Source bounds to draw. The rectangle parameter must be an integer. The default value is the rectangle size of the original image. If the rectangle parameter is a decimal, the decimal part is discarded and converted into an integer.|
-| fRectTypes   | Array\<[RectType](#recttype12)>\|null                              | No  | Array that holds the rectangle types. The default value is null. If this parameter is specified, the array size must be (fXCount + 1) * (fYCount + 1).|
-| fColors      | Array\<number>\|null | No  | Array that holds the colors used to fill the lattices. Each color is represented by a 32-bit unsigned integer in hexadecimal ARGB format. The default value is null. If this parameter is specified, the array size must be (fXCount + 1) * (fYCount + 1).|
-
-**Return value**
-
-| Type                      | Description                               |
-| ------------------------- | ----------------------------------- |
-| [Lattice](#lattice12)     | **Lattice** object obtained.             |
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
-
-**Example**
-
-```ts
-import { RenderNode } from '@kit.ArkUI';
-import { drawing } from '@kit.ArkGraphics2D';
-class DrawingRenderNode extends RenderNode {
-  draw(context : DrawContext) {
-    let xDivs : Array<number> = [1, 2, 4];
-    let yDivs : Array<number> = [1, 2, 4];
-    let colorArray :Array<number>=[0xffffffff,0x44444444,0x99999999,0xffffffff,0x44444444,0x99999999,0xffffffff,0x44444444,0x99999999,0x44444444,0x99999999,0xffffffff,0x44444444,0x99999999,0xffffffff,0x44444444];
-    let lattice = drawing.Lattice.createImageLattice(xDivs, yDivs, 3, 3,null,null,colorArray);
-  }
-}
-```
-
 ## RectType<sup>12+</sup>
 
 Enumerates the types of rectangles used to fill the lattices. This enum is used only in [Lattice](#lattice12).
@@ -5635,18 +5070,6 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-## PathDashStyle<sup>16+</sup>
-
-Enumerates the styles of the dashed path effect.
-
-**System capability**: SystemCapability.Graphics.Drawing
-
-| Name  | Value| Description              |
-| ------ | - | ------------------ |
-| TRANSLATE | 0 | Translates only, not rotating with the path.|
-| ROTATE  | 1 | Rotates with the path.|
-| MORPH  | 2 | Rotates with the path and adjusts by stretching or compressing at angles to enhance smoothness.|
-
 ## PathEffect<sup>12+</sup>
 
 Implements a path effect.
@@ -5694,119 +5117,6 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### createPathDashEffect<sup>16+</sup>
-
-static createPathDashEffect(path: Path, advance: number, phase: number, style: PathDashStyle): PathEffect
-
-Creates a dashed path effect based on the shape described by a path.
-
-**System capability**: SystemCapability.Graphics.Drawing
-
-**Parameters**
-
-| Name    | Type          | Mandatory   | Description                                              |
-| ---------- | ------------- | ------- | -------------------------------------------------- |
-| path  | [Path](#path) | Yes| Path that defines the shape to be used for filling each dash in the pattern.|
-| advance | number | Yes| Distance between two consecutive dashes. The value is a floating point number greater than 0. Otherwise, an error code is thrown.|
-| phase | number | Yes| Starting offset of the dash pattern. The value is a floating point number. The actual offset used is the absolute value of this value modulo the value of **advance**.|
-| style | [PathDashStyle](#pathdashstyle16) | Yes| Style of the dashed path effect.|
-
-**Return value**
-
-| Type                     | Description                  |
-| ------------------------- | --------------------- |
-| [PathEffect](#patheffect12) | **PathEffect** object created.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3. Parameter verification failed. |
-
-**Example**
-
-```ts
-import { RenderNode } from '@kit.ArkUI';
-import { common2D, drawing } from '@kit.ArkGraphics2D';
-class DrawingRenderNode extends RenderNode {
-  draw(context : DrawContext) {
-    const canvas = context.canvas;
-    let pen = new drawing.Pen();
-    const penColor: common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 }
-    pen.setColor(penColor);
-    pen.setStrokeWidth(10);
-    canvas.attachPen(pen);
-    pen.setAntiAlias(true);
-
-    const path = new drawing.Path();
-    path.moveTo(100, 100);
-    path.lineTo(150, 50);
-    path.lineTo(200, 100);
-
-    const path1 = new drawing.Path();
-    path1.moveTo(0, 0);
-    path1.lineTo(10, 0);
-    path1.lineTo(20, 10);
-    path1.lineTo(0,10);
-
-    let pathEffect1: drawing.PathEffect = drawing.PathEffect.createPathDashEffect(path1, 50, -30,
-        drawing.PathDashStyle.MORPH);
-    pen.setPathEffect(pathEffect1);
-
-    canvas.attachPen(pen);
-    canvas.drawPath(path);
-    canvas.detachPen();
-  }
-}
-```
-
-### createSumPathEffect<sup>16+</sup>
-
-static createSumPathEffect(pathEffectOne: PathEffect, pathEffectTwo: PathEffect): PathEffect
-
-Creates an overlay path effect based on two distinct path effects. Different from **createComposePathEffect**, this API applies each effect separately and then displays them as a simple overlay.
-
-**System capability**: SystemCapability.Graphics.Drawing
-
-**Parameters**
-
-| Name    | Type          | Mandatory   | Description                                              |
-| ---------- | ------------- | ------- | -------------------------------------------------- |
-| pathEffectOne | [PathEffect](#patheffect12) | Yes| First path effect.|
-| pathEffectTwo | [PathEffect](#patheffect12) | Yes| Second path effect.|
-
-**Return value**
-
-| Type                     | Description                  |
-| ------------------------- | --------------------- |
-| [PathEffect](#patheffect12) | **PathEffect** object created.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
-
-**Example**
-
-```ts
-import { RenderNode } from '@kit.ArkUI';
-import { drawing } from '@kit.ArkGraphics2D';
-class DrawingRenderNode extends RenderNode {
-  draw(context : DrawContext) {
-    const canvas = context.canvas;
-    let intervals = [10, 5];
-    let pathEffectOne = drawing.PathEffect.createDashPathEffect(intervals, 5);
-    let pathEffectTwo = drawing.PathEffect.createDashPathEffect(intervals, 10);
-    let effect = drawing.PathEffect.createSumPathEffect(pathEffectOne, pathEffectTwo);
-  }
-}
-```
-
 ### createCornerPathEffect<sup>12+</sup>
 
 static createCornerPathEffect(radius: number): PathEffect
@@ -5844,93 +5154,6 @@ class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
     let effect = drawing.PathEffect.createCornerPathEffect(30);
-  }
-}
-```
-
-### createDiscretePathEffect<sup>16+</sup>
-
-static createDiscretePathEffect(segLength: number, dev: number, seedAssist?: number): PathEffect
-
-Creates an effect that segments the path and scatters the segments in an irregular pattern along the path.
-
-**System capability**: SystemCapability.Graphics.Drawing
-
-**Parameters**
-
-| Name    | Type          | Mandatory   | Description                                              |
-| ---------- | ------------- | ------- | -------------------------------------------------- |
-| segLength  | number        | Yes     | Distance along the path at which each segment is fragmented. The value is a floating point number. If a negative number or the value **0** is passed in, no effect is created.|
-| dev        | number        | Yes     | Maximum amount by which the end points of the segments can be randomly displaced during rendering. The value is a floating-point number.|
-| seedAssist | number        | No     | Optional parameter to assist in generating a pseudo-random seed for the effect. The default value is **0**, and the value is a 32-bit unsigned integer.|
-
-**Return value**
-
-| Type                     | Description                  |
-| ------------------------- | --------------------- |
-| [PathEffect](#patheffect12) | **PathEffect** object created.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
-
-**Example**
-
-```ts
-import { RenderNode } from '@kit.ArkUI';
-import { drawing } from '@kit.ArkGraphics2D';
-class DrawingRenderNode extends RenderNode {
-  draw(context : DrawContext) {
-    const canvas = context.canvas;
-    let effect = drawing.PathEffect.createDiscretePathEffect(100, -50, 0);
-  }
-}
-```
-
-### createComposePathEffect<sup>16+</sup>
-
-static createComposePathEffect(outer: PathEffect, inner: PathEffect): PathEffect
-
-Creates a path effect by sequentially applying the inner effect and then the outer effect.
-
-**System capability**: SystemCapability.Graphics.Drawing
-
-**Parameters**
-
-| Name| Type                       | Mandatory| Description                            |
-| ------ | --------------------------- | ---- | -------------------------------- |
-| outer  | [PathEffect](#patheffect12) | Yes  | Path effect that is applied second, overlaying the first effect.|
-| inner  | [PathEffect](#patheffect12) | Yes  | Inner path effect that is applied first.|
-
-**Return value**
-
-| Type                     | Description                  |
-| ------------------------- | --------------------- |
-| [PathEffect](#patheffect12) | **PathEffect** object created.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
-
-**Example**
-
-```ts
-import { RenderNode } from '@kit.ArkUI';
-import { drawing } from '@kit.ArkGraphics2D';
-class DrawingRenderNode extends RenderNode {
-  draw(context : DrawContext) {
-    const canvas = context.canvas;
-    let pathEffect1 = drawing.PathEffect.createCornerPathEffect(100);
-    let pathEffect2 = drawing.PathEffect.createCornerPathEffect(10);
-    let effect = drawing.PathEffect.createComposePathEffect(pathEffect1, pathEffect2);
   }
 }
 ```
@@ -5980,50 +5203,6 @@ class DrawingRenderNode extends RenderNode {
     const canvas = context.canvas;
     let color : common2D.Color = {alpha: 0xFF, red: 0x00, green: 0xFF, blue: 0x00};
     let shadowLayer = drawing.ShadowLayer.create(3, -3, 3, color);
-  }
-}
-```
-
-### create<sup>16+</sup>
-
-static create(blurRadius: number, x: number, y: number, color: number): ShadowLayer
-
-Creates a **ShadowLayer** object.
-
-**System capability**: SystemCapability.Graphics.Drawing
-
-**Parameters**
-
-| Name    | Type     | Mandatory| Description                                |
-| ---------- | -------- | ---- | ----------------------------------- |
-| blurRadius  | number   | Yes  | Radius of the shadow layer. The value must be a floating point number greater than 0.    |
-| x           | number   | Yes  | Offset on the X axis. The value is a floating point number.       |
-| y           | number   | Yes  | Offset on the Y axis. The value is a floating point number.       |
-| color       | number   | Yes  | Color in hexadecimal ARGB format.|
-
-**Return value**
-
-| Type                       | Description                 |
-| --------------------------- | -------------------- |
-| [ShadowLayer](#shadowlayer12) | **ShadowLayer** object created.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
-
-**Example**
-
-```ts
-import { RenderNode } from '@kit.ArkUI';
-import { drawing } from '@kit.ArkGraphics2D';
-class DrawingRenderNode extends RenderNode {
-  draw(context : DrawContext) {
-    const canvas = context.canvas;
-    let shadowLayer = drawing.ShadowLayer.create(3, -3, 3, 0xff00ff00);
   }
 }
 ```
@@ -6257,36 +5436,6 @@ const pen = new drawing.Pen();
 pen.setColor(255, 255, 0, 0);
 ```
 
-### setColor<sup>16+</sup>
-
-setColor(color: number) : void
-
-Sets a color for this pen.
-
-**System capability**: SystemCapability.Graphics.Drawing
-
-**Parameters**
-
-| Name| Type                                                | Mandatory| Description            |
-| ------ | ---------------------------------------------------- | ---- | ---------------- |
-| color  | number | Yes  | Color in hexadecimal ARGB format.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
-
-**Example**
-
-```ts
-import { drawing } from '@kit.ArkGraphics2D';
-const pen = new drawing.Pen();
-pen.setColor(0xffff0000);
-```
-
 ### getColor<sup>12+</sup>
 
 getColor(): common2D.Color
@@ -6310,32 +5459,6 @@ const color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
 const pen = new drawing.Pen();
 pen.setColor(color);
 let colorGet = pen.getColor();
-```
-
-### getHexColor<sup>16+</sup>
-
-getHexColor(): number
-
-Obtains the color of this pen.
-
-**System capability**: SystemCapability.Graphics.Drawing
-
-**Return value**
-
-| Type          | Description           |
-| -------------- | -------------- |
-| number | Color, represented as a 32-bit unsigned integer in hexadecimal ARGB format.|
-
-**Example**
-
-```ts
-import { common2D, drawing } from '@kit.ArkGraphics2D';
-
-let color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
-let pen = new drawing.Pen();
-pen.setColor(color);
-let hex_color: number = pen.getHexColor();
-console.info('getHexColor: ', hex_color.toString(16));
 ```
 
 ### setStrokeWidth
@@ -6433,7 +5556,7 @@ Checks whether anti-aliasing is enabled for this pen.
 
 | Type   | Description                      |
 | ------- | ------------------------- |
-| boolean | Result indicating whether anti-aliasing is enabled. The value **true** means that anti-aliasing is enabled, and **false** means the opposite.|
+| boolean | Check result. The value **true** means that anti-aliasing is enabled, and **false** means the opposite.|
 
 **Example**
 
@@ -6905,7 +6028,7 @@ Obtains the source path outline drawn using this pen and represents it using a d
 
 | Type                 | Description          |
 | --------------------- | -------------- |
-| boolean | Result indicating whether the source path outline is obtained. The value **true** means that the source path outline is obtained, and **false** means the opposite.|
+| boolean | Check result. The value **true** means that the source path outline is obtained, and **false** means the opposite.|
 
 **Error codes**
 
@@ -7061,36 +6184,6 @@ const brush = new drawing.Brush();
 brush.setColor(255, 255, 0, 0);
 ```
 
-### setColor<sup>16+</sup>
-
-setColor(color: number) : void
-
-Sets a color for this brush.
-
-**System capability**: SystemCapability.Graphics.Drawing
-
-**Parameters**
-
-| Name| Type                                                | Mandatory| Description            |
-| ------ | ---------------------------------------------------- | ---- | ---------------- |
-| color  | number | Yes  | Color in hexadecimal ARGB format.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
-
-**Example**
-
-```ts
-import { drawing } from '@kit.ArkGraphics2D';
-const brush = new drawing.Brush();
-brush.setColor(0xffff0000);
-```
-
 ### getColor<sup>12+</sup>
 
 getColor(): common2D.Color
@@ -7114,32 +6207,6 @@ const color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
 const brush = new drawing.Brush();
 brush.setColor(color);
 let colorGet = brush.getColor();
-```
-
-### getHexColor<sup>16+</sup>
-
-getHexColor(): number
-
-Obtains the color of this brush.
-
-**System capability**: SystemCapability.Graphics.Drawing
-
-**Return value**
-
-| Type          | Description           |
-| -------------- | -------------- |
-| number | Color, represented as a 32-bit unsigned integer in hexadecimal ARGB format.|
-
-**Example**
-
-```ts
-import { common2D, drawing } from '@kit.ArkGraphics2D';
-
-let color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
-let brush = new drawing.Brush();
-brush.setColor(color);
-let hex_color: number = brush.getHexColor();
-console.info('getHexColor: ', hex_color.toString(16));
 ```
 
 ### setAntiAlias
@@ -7184,7 +6251,7 @@ Checks whether anti-aliasing is enabled for this brush.
 
 | Type   | Description                      |
 | ------- | ------------------------- |
-| boolean | Result indicating whether anti-aliasing is enabled. The value **true** means that anti-aliasing is enabled, and **false** means the opposite.|
+| boolean | Check result. The value **true** means that anti-aliasing is enabled, and **false** means the opposite.|
 
 **Example**
 
@@ -7785,7 +6852,7 @@ Inverts this matrix and returns the result.
 
 | Type                       | Description                 |
 | --------------------------- | -------------------- |
-| Boolean | Result indicating whether the matrix is revertible. The value **true** means that the matrix is revertible and the **matrix** object is filled with the inverted matrix, and **false** means that the matrix is not revertible and the **matrix** object is filled with the current matrix (not changed).|
+| Boolean | Check result. The value **true** means that the matrix is revertible and the **matrix** object is filled with the inverted matrix, and **false** means that the matrix is not revertible and the **matrix** object is filled with the current matrix (not changed).|
 
 **Error codes**
 
@@ -7823,7 +6890,7 @@ Checks whether this matrix is an identity matrix.
 
 | Type                       | Description                 |
 | --------------------------- | -------------------- |
-| Boolean | Result indicating whether the matrix is an identity matrix. The value **true** means that the matrix is an identity matrix, and **false** means the opposite.|
+| Boolean | Check result. The value **true** means that the matrix is an identity matrix, and **false** means the opposite.|
 
 **Example**
 
@@ -8062,7 +7129,7 @@ console.info("matrix"+matrix.getAll().toString());
 
 preTranslate(dx: number, dy: number): void
 
-Premultiplies a matrix by a matrix that is derived from an identity matrix after it has been translated by a given distance (dx, dy).
+Premultiplies this matrix by a matrix that is derived from an identity matrix after it has been translated by a given distance (dx, dy).
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -8195,7 +7262,7 @@ Sets the destination rectangle to the bounding rectangle of the shape obtained a
 
 | Type                 | Description          |
 | --------------------- | -------------- |
-| boolean | Result indicating whether the shape, transformed from the source rectangle via a matrix transformation, retains a rectangular form. The value **true** means that the shape retains a rectangular form, and **false** means the opposite.|
+| boolean | Check result. The value **true** means that the shape retains a rectangular form, and **false** means the opposite.|
 
 **Error codes**
 
@@ -8237,7 +7304,7 @@ Sets this matrix to a transformation matrix that maps a source rectangle to a de
 
 | Type                 | Description          |
 | --------------------- | -------------- |
-| boolean | Result indicating whether the matrix can represent the mapping between rectangles. The value **true** means that the matrix can represent the mapping, and **false** means the opposite. In particular, if either the width or the height of the source rectangle is less than or equal to 0, the API returns **false** and sets the matrix to an identity matrix. If either the width or height of the destination rectangle is less than or equal to 0, the API returns **true** and sets the matrix to a matrix with all values 0, except for a perspective scaling coefficient of 1.|
+| boolean | Check result. The value **true** means that the matrix can represent the mapping, and **false** means the opposite. In particular, if either the width or the height of the source rectangle is less than or equal to 0, the API returns **false** and sets the matrix to an identity matrix. If either the width or height of the destination rectangle is less than or equal to 0, the API returns **true** and sets the matrix to a matrix with all values 0, except for a perspective scaling coefficient of 1.|
 
 **Error codes**
 
@@ -8264,7 +7331,7 @@ if (matrix.setRectToRect(src, dst, scaleToFit)) {
 
 setPolyToPoly(src: Array\<common2D.Point>, dst: Array\<common2D.Point>, count: number): boolean
 
-Sets this matrix to a transformation matrix that maps the source point array to the destination point array.
+Sets this matrix to a transformation matrix that maps the source point array to the destination point array. Both the number of source points and that of destination points must be in the range [0, 4].
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -8280,7 +7347,7 @@ Sets this matrix to a transformation matrix that maps the source point array to 
 
 | Type                 | Description          |
 | --------------------- | -------------- |
-| boolean | Result indicating whether the setting is successful. The value **true** means that the setting is successful, and **false** means the opposite.|
+| boolean | Check result. The value **true** means that the setting is successful, and **false** means the opposite.|
 
 **Error codes**
 
@@ -8351,8 +7418,8 @@ Sets the radii of the specified rounded corner in this rounded rectangle.
 | Name  | Type                                        | Mandatory| Description                           |
 | -------- | -------------------------------------------- | ---- | ------------------------------- |
 | pos | [CornerPos](#cornerpos12) | Yes  | Position of the rounded corner.                |
-| x     | number                 | Yes  | Radius of the rounded corner on the X axis. The value is a floating point number.|
-| y     | number      | Yes  | Radius of the rounded corner on the Y axis. The value is a floating point number.|
+| x     | number                 | Yes  | Radius of the rounded corner on the X axis. The value is a floating point number. A negative number is invalid.|
+| y     | number      | Yes  | Radius of the rounded corner on the Y axis. The value is a floating point number. A negative number is invalid.|
 
 **Error codes**
 
@@ -8462,7 +7529,7 @@ Checks whether a point is contained in this region.
 
 | Type   | Description          |
 | ------- | -------------- |
-| boolean | Result indicating whether the point is contained in the region. The value **true** means that the point is contained, and **false** means the opposite.|
+| boolean | Check result. The value **true** means that the point is contained, and **false** means the opposite.|
 
 **Error codes**
 
@@ -8513,7 +7580,7 @@ Checks whether another region is contained in this region.
 
 | Type   | Description          |
 | ------- | -------------- |
-| boolean | Result indicating whether the other region is contained in the current region. The value **true** means that the other region is contained, and **false** means the opposite.|
+| boolean | Check result. The value **true** means that the other region is contained, and **false** means the opposite.|
 
 **Error codes**
 
@@ -8567,7 +7634,7 @@ Performs an operation on this region and another region, and stores the resultin
 
 | Type   | Description          |
 | ------- | -------------- |
-| boolean | Result indicating whether the resulting region is stored in the current **Region** object. The value **true** means that the resulting region is stored in the current **Region** object, and **false** means the opposite.|
+| boolean | Check result. The value **true** means that the resulting region is stored in the current **Region** object, and **false** means the opposite.|
 
 **Error codes**
 
@@ -8857,7 +7924,7 @@ import { common2D,drawing } from '@kit.ArkGraphics2D';
 
 let startPt: common2D.Point = { x: 100, y: 100 };
 let endPt: common2D.Point = { x: 300, y: 300 };
-let shaderEffect =drawing.ShaderEffect.createLinearGradient(startPt, endPt, [0xFF00FF00, 0xFFFF0000], drawing.TileMode.REPEAT);
+let shaderEffect = drawing.ShaderEffect.createLinearGradient(startPt, endPt, [0xFF00FF00, 0xFFFF0000], drawing.TileMode.REPEAT);
 ```
 
 ### createRadialGradient<sup>12+</sup>
@@ -9005,11 +8072,11 @@ let endPt: common2D.Point = {x: 200, y: 200};
 let shaderEffect = drawing.ShaderEffect.createConicalGradient(startPt, 100, endPt, 50, [0xFF00FF00, 0xFFFF0000], drawing.TileMode.REPEAT);
 ```
 
-## Tool<sup>16+</sup>
+## Tool<sup>15+</sup>
 
 A utility class that provides only static methods to convert data structs defined in other modules and [common2D](js-apis-graphics-common2D.md).
 
-### makeColorFromResourceColor<sup>16+</sup>
+### makeColorFromResourceColor<sup>15+</sup>
 
 static makeColorFromResourceColor(resourceColor: ResourceColor): common2D.Color
 

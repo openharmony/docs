@@ -14,7 +14,7 @@ When you use native APIs to develop an application based on the [XComponent](../
 
    > **NOTE**
    >
-   > This section draws a graphic through the native Drawing module and presents it using the native Window module. For details, see [Using Drawing to Draw and Display Graphics](drawing-guidelines.md).
+   > This section draws a graphic through the native Drawing module and presents it using the native Window module. For details, see [Using Drawing to Draw and Display Graphics](graphic-drawing-overview.md).
 
 1. Define an ArkTS API file and name it **XComponentContext.ts**, which is used to connect to the native layer.
    ```ts

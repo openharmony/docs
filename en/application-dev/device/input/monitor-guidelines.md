@@ -38,7 +38,7 @@ Declare the required permission in the **module.json5** file. For details, see [
 ```json
 "requestPermissions": [
     {
-        "name": "ohos.permission.INTERCEPT_INPUT_EVENT"
+        "name": "ohos.permission.INPUT_MONITORING"
     }
 ]
 ```

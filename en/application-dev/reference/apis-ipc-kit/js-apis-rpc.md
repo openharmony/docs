@@ -20,22 +20,22 @@ The APIs of this module return exceptions since API version 9. The following tab
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-| Name                                 | Value     | Description                                         |
-| ------------------------------------- | ------- | --------------------------------------------- |
-| CHECK_PARAM_ERROR                     | 401     | Parameter check failed.                               |
-| OS_MMAP_ERROR                         | 1900001 | Failed to call mmap.                       |
-| OS_IOCTL_ERROR                        | 1900002 | Failed to call **ioctl** with the shared memory file descriptor.|
-| WRITE_TO_ASHMEM_ERROR                 | 1900003 | Failed to write data to the shared memory.                       |
-| READ_FROM_ASHMEM_ERROR                | 1900004 | Failed to read data from the shared memory.                       |
-| ONLY_PROXY_OBJECT_PERMITTED_ERROR     | 1900005 | This operation is allowed only on the proxy object.                    |
-| ONLY_REMOTE_OBJECT_PERMITTED_ERROR    | 1900006 | This operation is allowed only on the remote object.                   |
-| COMMUNICATION_ERROR                   | 1900007 | Failed to communicate with the remote object over IPC.               |
-| PROXY_OR_REMOTE_OBJECT_INVALID_ERROR  | 1900008 | Invalid proxy or remote object.                 |
-| WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR  | 1900009 | Failed to write data to MessageSequence.                |
-| READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 1900010 | Failed to read data from MessageSequence.                |
-| PARCEL_MEMORY_ALLOC_ERROR             | 1900011 | Failed to allocate memory during serialization.                   |
-| CALL_JS_METHOD_ERROR                  | 1900012 | Failed to invoke the JS callback.                         |
-| OS_DUP_ERROR                          | 1900013 | Failed to call dup.                        |
+  | Name                                 | Value     | Description                                         |
+  | ------------------------------------- | ------- | --------------------------------------------- |
+  | CHECK_PARAM_ERROR                     | 401     | Parameter check failed.                               |
+  | OS_MMAP_ERROR                         | 1900001 | Failed to call mmap.                       |
+  | OS_IOCTL_ERROR                        | 1900002 | Failed to call **ioctl** with the shared memory file descriptor.|
+  | WRITE_TO_ASHMEM_ERROR                 | 1900003 | Failed to write data to the shared memory.                       |
+  | READ_FROM_ASHMEM_ERROR                | 1900004 | Failed to read data from the shared memory.                       |
+  | ONLY_PROXY_OBJECT_PERMITTED_ERROR     | 1900005 | This operation is allowed only on the proxy object.                    |
+  | ONLY_REMOTE_OBJECT_PERMITTED_ERROR    | 1900006 | This operation is allowed only on the remote object.                   |
+  | COMMUNICATION_ERROR                   | 1900007 | Failed to communicate with the remote object over IPC.               |
+  | PROXY_OR_REMOTE_OBJECT_INVALID_ERROR  | 1900008 | Invalid proxy or remote object.                 |
+  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR  | 1900009 | Failed to write data to MessageSequence.                |
+  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 1900010 | Failed to read data from MessageSequence.                |
+  | PARCEL_MEMORY_ALLOC_ERROR             | 1900011 | Failed to allocate memory during serialization.                   |
+  | CALL_JS_METHOD_ERROR                  | 1900012 | Failed to invoke the JS callback.                         |
+  | OS_DUP_ERROR                          | 1900013 | Failed to call dup.                        |
 
 
 ## TypeCode<sup>12+</sup>
@@ -44,29 +44,29 @@ Since API version 12, [writeArrayBuffer](#writearraybuffer12) and [readArrayBuff
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-| Name                        | Value    | Description                                         |
-| ---------------------------- | ------ | --------------------------------------------  |
-| INT8_ARRAY                   | 0      | The TypedArray type is **INT8_ARRAY**.                 |
-| UINT8_ARRAY                  | 1      | The TypedArray type is **UINT8_ARRAY**.                |
-| INT16_ARRAY                  | 2      | The TypedArray type is **INT16_ARRAY**.                |
-| UINT16_ARRAY                 | 3      | The TypedArray type is **UINT16_ARRAY**.               |
-| INT32_ARRAY                  | 4      | The TypedArray type is **INT32_ARRAY**.                |
-| UINT32_ARRAY                 | 5      | The TypedArray type is **UINT32_ARRAY**.               |
-| FLOAT32_ARRAY                | 6      | The TypedArray type is **FLOAT32_ARRAY**.              |
-| FLOAT64_ARRAY                | 7      | The TypedArray type is **FLOAT64_ARRAY**.              |
-| BIGINT64_ARRAY               | 8      | The TypedArray type is **BIGINT64_ARRAY**.             |
-| BIGUINT64_ARRAY              | 9      | The TypedArray type is **BIGUINT64_ARRAY**.            |
+  | Name                        | Value    | Description                                         |
+  | ---------------------------- | ------ | --------------------------------------------  |
+  | INT8_ARRAY                   | 0      | The TypedArray type is **INT8_ARRAY**.                 |
+  | UINT8_ARRAY                  | 1      | The TypedArray type is **UINT8_ARRAY**.                |
+  | INT16_ARRAY                  | 2      | The TypedArray type is **INT16_ARRAY**.                |
+  | UINT16_ARRAY                 | 3      | The TypedArray type is **UINT16_ARRAY**.               |
+  | INT32_ARRAY                  | 4      | The TypedArray type is **INT32_ARRAY**.                |
+  | UINT32_ARRAY                 | 5      | The TypedArray type is **UINT32_ARRAY**.               |
+  | FLOAT32_ARRAY                | 6      | The TypedArray type is **FLOAT32_ARRAY**.              |
+  | FLOAT64_ARRAY                | 7      | The TypedArray type is **FLOAT64_ARRAY**.              |
+  | BIGINT64_ARRAY               | 8      | The TypedArray type is **BIGINT64_ARRAY**.             |
+  | BIGUINT64_ARRAY              | 9      | The TypedArray type is **BIGUINT64_ARRAY**.            |
 
 
 ## MessageSequence<sup>9+</sup>
 
-Provides APIs for reading and writing data in specific format. During RPC or IPC, the sender can use the **write()** method provided by **MessageSequence** to write data in specific format to a **MessageSequence** object. The receiver can use the **read()** method provided by **MessageSequence** to read data in specific format from a **MessageSequence** object. The data formats include basic data types and arrays, IPC objects, interface tokens, and custom sequenceable objects.
+  Provides APIs for reading and writing data in specific format. During RPC or IPC, the sender can use the **write()** method provided by **MessageSequence** to write data in specific format to a **MessageSequence** object. The receiver can use the **read()** method provided by **MessageSequence** to read data in specific format from a **MessageSequence** object. The data formats include basic data types and arrays, IPC objects, interface tokens, and custom sequenceable objects.
 
 ### create
 
-static create(): MessageSequence
+  static create(): MessageSequence
 
-Creates a **MessageSequence** object. This API is a static method.
+  Creates a **MessageSequence** object. This API is a static method.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -83,6 +83,9 @@ Creates a **MessageSequence** object. This API is a static method.
 
   let data = rpc.MessageSequence.create();
   hilog.info(0x0000, 'testTag', 'RpcClient: data is ' + data);
+
+  // When the MessageSequence object is no longer used, the service calls the reclaim method to release resources.
+  data.reclaim();
   ```
 
 ### reclaim
@@ -104,25 +107,25 @@ Reclaims the **MessageSequence** object that is no longer used.
 
 writeRemoteObject(object: IRemoteObject): void
 
-Serializes a remote object and writes it to this **MessageSequence** object.
+Serializes the remote object and writes it to the [MessageSequence](#messagesequence9) object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name| Type                           | Mandatory| Description                                     |
-| ------ | ------------------------------- | ---- | ----------------------------------------- |
-| object | [IRemoteObject](#iremoteobject) | Yes  | Remote object to serialize and write to the **MessageSequence** object.|
+  | Name| Type                           | Mandatory| Description                                     |
+  | ------ | ------------------------------- | ---- | ----------------------------------------- |
+  | object | [IRemoteObject](#iremoteobject) | Yes  | Remote object to serialize and write to the **MessageSequence** object.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
-| 1900008  | The proxy or remote object is invalid. |
-| 1900009  | Failed to write data to the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+  | 1900008  | The proxy or remote object is invalid. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -156,18 +159,18 @@ Reads the remote object from **MessageSequence**. You can use this API to deseri
 
 **Return value**
 
-| Type                           | Description              |
-| ------------------------------- | ------------------ |
-| [IRemoteObject](#iremoteobject) | Remote object obtained.|
+  | Type                           | Description              |
+  | ------------------------------- | ------------------ |
+  | [IRemoteObject](#iremoteobject) | Remote object obtained.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 1900008  | The proxy or remote object is invalid. |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 1900008  | The proxy or remote object is invalid. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -203,18 +206,18 @@ Writes an interface token to this **MessageSequence** object. The remote object 
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description              |
-| ------ | ------ | ---- | ------------------ |
-| token  | string | Yes  | Interface token to write.|
+  | Name| Type  | Mandatory| Description              |
+  | ------ | ------ | ---- | ------------------ |
+  | token  | string | Yes  | Interface token to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes:<br> 1.The number of parameters is incorrect;<br> 2.The parameter type does not match;<br> 3.The string length exceeds 40960 bytes;<br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
-| 1900009  | Failed to write data to the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes:<br> 1.The number of parameters is incorrect;<br> 2.The parameter type does not match;<br> 3.The string length exceeds 40960 bytes;<br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -242,17 +245,17 @@ Reads the interface token from this **MessageSequence** object. The interface to
 
 **Return value**
 
-| Type  | Description                    |
-| ------ | ------------------------ |
-| string | Interface token obtained.|
+  | Type  | Description                    |
+  | ------ | ------------------------ |
+  | string | Interface token obtained.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -285,9 +288,9 @@ Obtains the data size of this **MessageSequence** object.
 
 **Return value**
 
-| Type  | Description                                           |
-| ------ | ----------------------------------------------- |
-| number | Size of the **MessageSequence** instance obtained, in bytes.|
+  | Type  | Description                                           |
+  | ------ | ----------------------------------------------- |
+  | number | Size of the **MessageSequence** instance obtained, in bytes.|
 
 **Example**
 
@@ -309,9 +312,9 @@ Obtains the capacity of this **MessageSequence** object.
 
 **Return value**
 
-| Type  | Description |
-| ------ | ----- |
-| number | Capacity of the obtained **MessageSequence** object, in bytes.|
+  | Type  | Description |
+  | ------ | ----- |
+  | number | Capacity of the obtained **MessageSequence** object, in bytes.|
 
 **Example**
 
@@ -333,17 +336,17 @@ Sets the size of the data contained in this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description  |
-| ------ | ------ | ---- | ------ |
-| size   | number | Yes  | Data size to set, in bytes.|
+  | Name| Type  | Mandatory| Description  |
+  | ------ | ------ | ---- | ------ |
+  | size   | number | Yes  | Data size to set, in bytes.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
 
 **Example**
 
@@ -372,18 +375,18 @@ Sets the storage capacity of this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                         |
-| ------ | ------ | ---- | --------------------------------------------- |
-| size   | number | Yes  | Storage capacity of the **MessageSequence** object to set, in bytes.|
+  | Name| Type  | Mandatory| Description                                         |
+  | ------ | ------ | ---- | --------------------------------------------- |
+  | size   | number | Yes  | Storage capacity of the **MessageSequence** object to set, in bytes.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
-| 1900011  | Memory allocation failed |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+  | 1900011  | Memory allocation failed |
 
 **Example**
 
@@ -411,9 +414,9 @@ Obtains the writable capacity (in bytes) of this **MessageSequence** object.
 
 **Return value**
 
-| Type  | Description  |
-| ------ | ------ |
-| number | Writable capacity of the **MessageSequence** instance, in bytes.|
+  | Type  | Description  |
+  | ------ | ------ |
+  | number | Writable capacity of the **MessageSequence** instance, in bytes.|
 
 **Example**
 
@@ -439,9 +442,9 @@ Obtains the readable capacity of this **MessageSequence** object.
 
 **Return value**
 
-| Type  | Description   |
-| ------ | ------- |
-| number | Readable capacity of the **MessageSequence** instance, in bytes.|
+  | Type  | Description   |
+  | ------ | ------- |
+  | number | Readable capacity of the **MessageSequence** instance, in bytes.|
 
 **Example**
 
@@ -467,9 +470,9 @@ Obtains the read position of this **MessageSequence** object.
 
 **Return value**
 
-| Type  | Description  |
-| ------ | ------ |
-| number | Read position obtained.|
+  | Type  | Description  |
+  | ------ | ------ |
+  | number | Read position obtained.|
 
 **Example**
 
@@ -491,9 +494,9 @@ Obtains the write position of this **MessageSequence** object.
 
 **Return value**
 
-| Type  | Description |
-| ------ | ----- |
-| number | Write position obtained.|
+  | Type  | Description |
+  | ------ | ----- |
+  | number | Write position obtained.|
 
 **Example**
 
@@ -516,17 +519,17 @@ Moves the read pointer to the specified position.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description   |
-| ------ | ------ | ---- | ------- |
-| pos    | number | Yes  | Position from which data is to read.|
+  | Name| Type  | Mandatory| Description   |
+  | ------ | ------ | ---- | ------- |
+  | pos    | number | Yes  | Position from which data is to read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
 
 **Example**
 
@@ -560,17 +563,17 @@ Moves the write pointer to the specified position.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description |
-| ------ | ------ | ---- | ----- |
-| pos    | number | Yes  | Position from which data is to write.|
+  | Name| Type  | Mandatory| Description |
+  | ------ | ------ | ---- | ----- |
+  | pos    | number | Yes  | Position from which data is to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
 
 **Example**
 
@@ -602,18 +605,18 @@ Writes a byte value to this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description |
-| ------ | ------ | ---- | ----- |
-| val    | number | Yes  | Byte value to write.|
+  | Name| Type  | Mandatory| Description |
+  | ------ | ------ | ---- | ----- |
+  | val    | number | Yes  | Byte value to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------  |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
-| 1900009  | Failed to write data to the message sequence. |
+  | ID| Error Message|
+  | -------- | -------  |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -641,17 +644,17 @@ Reads the byte value from this **MessageSequence** object.
 
 **Return value**
 
-| Type  | Description |
-| ------ | ----- |
-| number | Byte value read.|
+  | Type  | Description |
+  | ------ | ----- |
+  | number | Byte value read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | --------  |
-| 1900010 | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | ------- | --------  |
+  | 1900010 | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -687,18 +690,18 @@ Writes a short integer to this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description|
-| ------ | ------ | ---  | ---  |
-| val    | number | Yes  | Short integer to write.|
+  | Name| Type  | Mandatory| Description|
+  | ------ | ------ | ---  | ---  |
+  | val    | number | Yes  | Short integer to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
-| 1900009  | Failed to write data to the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -726,17 +729,17 @@ Reads the short integer from this **MessageSequence** object.
 
 **Return value**
 
-| Type  | Description          |
-| ------ | -------------- |
-| number | Short integer read.|
+  | Type  | Description          |
+  | ------ | -------------- |
+  | number | Short integer read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -772,18 +775,18 @@ Writes an integer to this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
-| ------ | ------ | ---- | ---------------- |
-| val    | number | Yes  | Integer to write.|
+  | Name| Type  | Mandatory| Description            |
+  | ------ | ------ | ---- | ---------------- |
+  | val    | number | Yes  | Integer to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
-| 1900009  | Failed to write data to the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -811,17 +814,17 @@ Reads the integer from this **MessageSequence** object.
 
 **Return value**
 
-| Type  | Description        |
-| ------ | ------------ |
-| number | Integer read.|
+  | Type  | Description        |
+  | ------ | ------------ |
+  | number | Integer read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -857,18 +860,18 @@ Writes a long integer to this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
-| ------ | ------ | ---- | ---------------- |
-| val    | number | Yes  | Long integer to write.|
+  | Name| Type  | Mandatory| Description            |
+  | ------ | ------ | ---- | ---------------- |
+  | val    | number | Yes  | Long integer to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
-| 1900009  | Failed to write data to the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -896,17 +899,17 @@ Reads the long integer from this **MessageSequence** object.
 
 **Return value**
 
-| Type  | Description          |
-| ------ | -------------- |
-| number | Long integer read.|
+  | Type  | Description          |
+  | ------ | -------------- |
+  | number | Long integer read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -942,18 +945,18 @@ Writes a floating-point number to this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description |
-| ------ | ------ | ---- | ----- |
-| val    | number | Yes  | Floating-point number to write.|
+  | Name| Type  | Mandatory| Description |
+  | ------ | ------ | ---- | ----- |
+  | val    | number | Yes  | Floating-point number to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
-| 1900009  | Failed to write data to the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -981,17 +984,17 @@ Reads the floating-point number from this **MessageSequence** object.
 
 **Return value**
 
-| Type  | Description        |
-| ------ | ------------ |
-| number | Floating-point number read.|
+  | Type  | Description        |
+  | ------ | ------------ |
+  | number | Floating-point number read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -1027,18 +1030,18 @@ Writes a double-precision floating-point number to this **MessageSequence** obje
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                  |
-| ------ | ------ | ---- | ---------------------- |
-| val    | number | Yes  | Double-precision floating-point number to write.|
+  | Name| Type  | Mandatory| Description                  |
+  | ------ | ------ | ---- | ---------------------- |
+  | val    | number | Yes  | Double-precision floating-point number to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
-| 1900009  | Failed to write data to the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -1066,17 +1069,17 @@ Reads the double-precision floating-point number from this **MessageSequence** o
 
 **Return value**
 
-| Type  | Description              |
-| ------ | ------------------ |
-| number | Double-precision floating-point number read.|
+  | Type  | Description              |
+  | ------ | ------------------ |
+  | number | Double-precision floating-point number read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -1112,18 +1115,18 @@ Writes a Boolean value to this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description            |
-| ------ | ------- | ---- | ---------------- |
-| val    | boolean | Yes  | Boolean value to write.|
+  | Name| Type   | Mandatory| Description            |
+  | ------ | ------- | ---- | ---------------- |
+  | val    | boolean | Yes  | Boolean value to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
-| 1900009  | Failed to write data to the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -1151,17 +1154,17 @@ Reads the Boolean value from this **MessageSequence** object.
 
 **Return value**
 
-| Type   | Description                |
-| ------- | -------------------- |
-| boolean | Boolean value read.|
+  | Type   | Description                |
+  | ------- | -------------------- |
+  | boolean | Boolean value read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -1197,18 +1200,18 @@ Writes a character to this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                |
-| ------ | ------ | ---- | -------------------- |
-| val    | number | Yes  | Single character to write.|
+  | Name| Type  | Mandatory| Description                |
+  | ------ | ------ | ---- | -------------------- |
+  | val    | number | Yes  | Single character to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
-| 1900009  | Failed to write data to the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -1236,17 +1239,17 @@ Reads the character from this **MessageSequence** object.
 
 **Return value**
 
-| Type  | Description|
-| ------ | ---- |
-| number | Character read.|
+  | Type  | Description|
+  | ------ | ---- |
+  | number | Character read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -1282,18 +1285,18 @@ Writes a string to this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                     |
-| ------ | ------ | ---- | ----------------------------------------- |
-| val    | string | Yes  | String to write. The length of the string must be less than 40960 bytes.|
+  | Name| Type  | Mandatory| Description                                     |
+  | ------ | ------ | ---- | ----------------------------------------- |
+  | val    | string | Yes  | String to write. The length of the string must be less than 40960 bytes.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The string length exceeds 40960 bytes; <br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
-| 1900009  | Failed to write data to the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The string length exceeds 40960 bytes; <br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -1321,17 +1324,17 @@ Reads the string from this **MessageSequence** object.
 
 **Return value**
 
-| Type  | Description          |
-| ------ | -------------- |
-| string | String read.|
+  | Type  | Description          |
+  | ------ | -------------- |
+  | string | String read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -1375,10 +1378,10 @@ Writes a **Parcelable** object to this **MessageSequence** object.
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
-| 1900009  | Failed to write data to the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -1433,11 +1436,11 @@ Reads a **Parcelable** object from this **MessageSequence** object to the specif
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect. |
-| 1900010  | Failed to read data from the message sequence. |
-| 1900012  | Failed to call the JS callback function. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect. |
+  | 1900010  | Failed to read data from the message sequence. |
+  | 1900012  | Failed to call the JS callback function. |
 
 **Example**
 
@@ -1486,18 +1489,18 @@ Writes a byte array to this **MessageSequence** object.
 
 **Parameters**
 
-| Name   | Type    | Mandatory| Description              |
-| --------- | -------- | ---- | ------------------ |
-| byteArray | number[] | Yes  | Byte array to write.|
+  | Name   | Type    | Mandatory| Description              |
+  | --------- | -------- | ---- | ------------------ |
+  | byteArray | number[] | Yes  | Byte array to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array. <br> 5.The type of the element in the array is incorrect. |
-| 1900009  | Failed to write data to the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array. <br> 5.The type of the element in the array is incorrect. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -1526,18 +1529,18 @@ Reads a byte array from this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description              |
-| ------ | -------- | ---- | ------------------ |
-| dataIn | number[] | Yes  | Byte array to read.|
+  | Name| Type    | Mandatory| Description              |
+  | ------ | -------- | ---- | ------------------ |
+  | dataIn | number[] | Yes  | Byte array to read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -1574,18 +1577,18 @@ Reads the byte array from this **MessageSequence** object.
 
 **Return value**
 
-| Type    | Description          |
-| -------- | -------------- |
-| number[] | Byte array read.|
+  | Type    | Description          |
+  | -------- | -------------- |
+  | number[] | Byte array read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | check param failed |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | check param failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -1622,18 +1625,18 @@ Writes a short array to this **MessageSequence** object.
 
 **Parameters**
 
-| Name    | Type    | Mandatory| Description                |
-| ---------- | -------- | ---- | -------------------- |
-| shortArray | number[] | Yes  | Short array to write.|
+  | Name    | Type    | Mandatory| Description                |
+  | ---------- | -------- | ---- | -------------------- |
+  | shortArray | number[] | Yes  | Short array to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array; <br> 5.The type of the element in the array is incorrect. |
-| 1900009  | Failed to write data to the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array; <br> 5.The type of the element in the array is incorrect. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -1661,18 +1664,18 @@ Reads a short array from this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description                |
-| ------ | -------- | ---- | -------------------- |
-| dataIn | number[] | Yes  | Short array to read.|
+  | Name| Type    | Mandatory| Description                |
+  | ------ | -------- | ---- | -------------------- |
+  | dataIn | number[] | Yes  | Short array to read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -1708,17 +1711,17 @@ Reads the short array from this **MessageSequence** object.
 
 **Return value**
 
-| Type    | Description            |
-| -------- | ---------------- |
-| number[] | Short array read.|
+  | Type    | Description            |
+  | -------- | ---------------- |
+  | number[] | Short array read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -1754,18 +1757,18 @@ Writes an integer array to this **MessageSequence** object.
 
 **Parameters**
 
-| Name  | Type    | Mandatory| Description              |
-| -------- | -------- | ---- | ------------------ |
-| intArray | number[] | Yes  | Integer array to write.|
+  | Name  | Type    | Mandatory| Description              |
+  | -------- | -------- | ---- | ------------------ |
+  | intArray | number[] | Yes  | Integer array to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array; <br> 5.The type of the element in the array is incorrect. |
-| 1900009  | Failed to write data to the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array; <br> 5.The type of the element in the array is incorrect. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -1793,18 +1796,18 @@ Reads an integer array from this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description              |
-| ------ | -------- | ---- | ------------------ |
-| dataIn | number[] | Yes  | Integer array to read.|
+  | Name| Type    | Mandatory| Description              |
+  | ------ | -------- | ---- | ------------------ |
+  | dataIn | number[] | Yes  | Integer array to read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -1840,17 +1843,17 @@ Reads the integer array from this **MessageSequence** object.
 
 **Return value**
 
-| Type    | Description          |
-| -------- | -------------- |
-| number[] | Integer array read.|
+  | Type    | Description          |
+  | -------- | -------------- |
+  | number[] | Integer array read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -1886,18 +1889,18 @@ Writes a long array to this **MessageSequence** object.
 
 **Parameters**
 
-| Name   | Type    | Mandatory| Description                |
-| --------- | -------- | ---- | -------------------- |
-| longArray | number[] | Yes  | Long array to write.|
+  | Name   | Type    | Mandatory| Description                |
+  | --------- | -------- | ---- | -------------------- |
+  | longArray | number[] | Yes  | Long array to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array; <br> 5.The type of the element in the array is incorrect. |
-| 1900009  | Failed to write data to the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array; <br> 5.The type of the element in the array is incorrect. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -1925,18 +1928,18 @@ Reads a long array from this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description                |
-| ------ | -------- | ---- | -------------------- |
-| dataIn | number[] | Yes  | Long array to read.|
+  | Name| Type    | Mandatory| Description                |
+  | ------ | -------- | ---- | -------------------- |
+  | dataIn | number[] | Yes  | Long array to read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -1972,17 +1975,17 @@ Reads the long integer array from this **MessageSequence** object.
 
 **Return value**
 
-| Type    | Description            |
-| -------- | ---------------- |
-| number[] | Long array read.|
+  | Type    | Description            |
+  | -------- | ---------------- |
+  | number[] | Long array read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -2018,18 +2021,18 @@ Writes a floating-point array to this **MessageSequence** object.
 
 **Parameters**
 
-| Name    | Type    | Mandatory| Description                                                                                                                   |
-| ---------- | -------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
-| floatArray | number[] | Yes  | Floating-point array to write. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
+  | Name    | Type    | Mandatory| Description                                                                                                                   |
+  | ---------- | -------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
+  | floatArray | number[] | Yes  | Floating-point array to write. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array; <br> 5.The type of the element in the array is incorrect. |
-| 1900009  | Failed to write data to the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array; <br> 5.The type of the element in the array is incorrect. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -2057,18 +2060,18 @@ Reads a floating-point array from this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description                                                                                                                   |
-| ------ | -------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
-| dataIn | number[] | Yes  | Floating-point array to read. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
+  | Name| Type    | Mandatory| Description                                                                                                                   |
+  | ------ | -------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
+  | dataIn | number[] | Yes  | Floating-point array to read. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -2104,17 +2107,17 @@ Reads the floating-point array from this **MessageSequence** object.
 
 **Return value**
 
-| Type    | Description          |
-| -------- | -------------- |
-| number[] | Floating-point array read.|
+  | Type    | Description          |
+  | -------- | -------------- |
+  | number[] | Floating-point array read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -2150,18 +2153,18 @@ Writes a double-precision floating-point array to this **MessageSequence** objec
 
 **Parameters**
 
-| Name     | Type    | Mandatory| Description                    |
-| ----------- | -------- | ---- | ------------------------ |
-| doubleArray | number[] | Yes  | Double-precision floating-point array to write.|
+  | Name     | Type    | Mandatory| Description                    |
+  | ----------- | -------- | ---- | ------------------------ |
+  | doubleArray | number[] | Yes  | Double-precision floating-point array to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array; <br> 5.The type of the element in the array is incorrect. |
-| 1900009  | Failed to write data to the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array; <br> 5.The type of the element in the array is incorrect. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -2189,18 +2192,18 @@ Reads a double-precision floating-point array from this **MessageSequence** obje
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description                    |
-| ------ | -------- | ---- | ------------------------ |
-| dataIn | number[] | Yes  | Double-precision floating-point array to read.|
+  | Name| Type    | Mandatory| Description                    |
+  | ------ | -------- | ---- | ------------------------ |
+  | dataIn | number[] | Yes  | Double-precision floating-point array to read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -2236,17 +2239,17 @@ Reads the double-precision floating-point array from this **MessageSequence** ob
 
 **Return value**
 
-| Type    | Description                |
-| -------- | -------------------- |
-| number[] | Double-precision floating-point array read.|
+  | Type    | Description                |
+  | -------- | -------------------- |
+  | number[] | Double-precision floating-point array read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -2282,18 +2285,18 @@ Writes a Boolean array to this **MessageSequence** object.
 
 **Parameters**
 
-| Name      | Type     | Mandatory| Description              |
-| ------------ | --------- | ---- | ------------------ |
-| booleanArray | boolean[] | Yes  | Boolean array to write.|
+  | Name      | Type     | Mandatory| Description              |
+  | ------------ | --------- | ---- | ------------------ |
+  | booleanArray | boolean[] | Yes  | Boolean array to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array. |
-| 1900009  | Failed to write data to the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -2321,18 +2324,18 @@ Reads a Boolean array from this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type     | Mandatory| Description              |
-| ------ | --------- | ---- | ------------------ |
-| dataIn | boolean[] | Yes  | Boolean array to read.|
+  | Name| Type     | Mandatory| Description              |
+  | ------ | --------- | ---- | ------------------ |
+  | dataIn | boolean[] | Yes  | Boolean array to read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -2368,17 +2371,17 @@ Reads the Boolean array from this **MessageSequence** object.
 
 **Return value**
 
-| Type     | Description          |
-| --------- | -------------- |
-| boolean[] | Boolean array read.|
+  | Type     | Description          |
+  | --------- | -------------- |
+  | boolean[] | Boolean array read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -2414,18 +2417,18 @@ Writes a character array to this **MessageSequence** object.
 
 **Parameters**
 
-| Name   | Type    | Mandatory| Description                  |
-| --------- | -------- | ---- | ---------------------- |
-| charArray | number[] | Yes  | Character array to write.|
+  | Name   | Type    | Mandatory| Description                  |
+  | --------- | -------- | ---- | ---------------------- |
+  | charArray | number[] | Yes  | Character array to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array. |
-| 1900009  | Failed to write data to the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -2453,18 +2456,18 @@ Reads a character array from this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description                  |
-| ------ | -------- | ---- | ---------------------- |
-| dataIn | number[] | Yes  | Character array to read.|
+  | Name| Type    | Mandatory| Description                  |
+  | ------ | -------- | ---- | ---------------------- |
+  | dataIn | number[] | Yes  | Character array to read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -2500,17 +2503,17 @@ Reads the character array from this **MessageSequence** object.
 
 **Return value**
 
-| Type    | Description              |
-| -------- | ------------------ |
-| number[] | Character array read.|
+  | Type    | Description              |
+  | -------- | ------------------ |
+  | number[] | Character array read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -2546,18 +2549,18 @@ Writes a string array to this **MessageSequence** object.
 
 **Parameters**
 
-| Name     | Type    | Mandatory| Description                                                   |
-| ----------- | -------- | ---- | ------------------------------------------------------- |
-| stringArray | string[] | Yes  | String array to write. The length of a single element in the array must be less than 40960 bytes.|
+  | Name     | Type    | Mandatory| Description                                                   |
+  | ----------- | -------- | ---- | ------------------------------------------------------- |
+  | stringArray | string[] | Yes  | String array to write. The length of a single element in the array must be less than 40960 bytes.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The string length exceeds 40960 bytes; <br> 5.The number of bytes copied to the buffer is different from the length of the obtained string. |
-| 1900009  | Failed to write data to the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The string length exceeds 40960 bytes; <br> 5.The number of bytes copied to the buffer is different from the length of the obtained string. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -2585,18 +2588,18 @@ Reads a string array from this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description                |
-| ------ | -------- | ---- | -------------------- |
-| dataIn | string[] | Yes  | String array to read.|
+  | Name| Type    | Mandatory| Description                |
+  | ------ | -------- | ---- | -------------------- |
+  | dataIn | string[] | Yes  | String array to read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -2632,17 +2635,17 @@ Reads the string array from this **MessageSequence** object.
 
 **Return value**
 
-| Type    | Description            |
-| -------- | ---------------- |
-| string[] | String array read.|
+  | Type    | Description            |
+  | -------- | ---------------- |
+  | string[] | String array read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -2680,9 +2683,9 @@ Writes information to this **MessageSequence** object indicating that no excepti
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 1900009  | Failed to write data to the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -2725,9 +2728,9 @@ Reads the exception information from this **MessageSequence** object.
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -2764,7 +2767,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -2820,10 +2823,10 @@ Writes a **Parcelable** array to this **MessageSequence** object.
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array. |
-| 1900009  | Failed to write data to the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -2881,11 +2884,11 @@ Reads a **Parcelable** array from this **MessageSequence** object.
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The length of the array passed when reading is not equal to the length passed when writing to the array; <br> 5.The element does not exist in the array. |
-| 1900010  | Failed to read data from the message sequence. |
-| 1900012  | Failed to call the JS callback function. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The length of the array passed when reading is not equal to the length passed when writing to the array; <br> 5.The element does not exist in the array. |
+  | 1900010  | Failed to read data from the message sequence. |
+  | 1900012  | Failed to call the JS callback function. |
 
 **Example**
 
@@ -2945,10 +2948,10 @@ Writes an array of **IRemoteObject** objects to this **MessageSequence** object.
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array; <br> 5.The obtained remoteObject is null. |
-| 1900009  | Failed to write data to the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The element does not exist in the array; <br> 5.The obtained remoteObject is null. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -2995,10 +2998,10 @@ Reads an array of **IRemoteObject** objects from this **MessageSequence** object
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The length of the array passed when reading is not equal to the length passed when writing to the array. |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The length of the array passed when reading is not equal to the length passed when writing to the array. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -3041,15 +3044,15 @@ Reads the **IRemoteObject** object array from this **MessageSequence** object.
 
 | Type           | Description                       |
 | --------------- | --------------------------- |
-| [IRemoteObject](#iremoteobject)[] | **IRemoteObject** object array read.|
+| [IRemoteObject](#iremoteobject)[] | **IRemoteObject** object array obtained.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -3090,17 +3093,17 @@ Closes a file descriptor. This API is a static method.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                |
-| ------ | ------ | ---- | -------------------- |
-| fd     | number | Yes  | File descriptor to close.|
+  | Name| Type  | Mandatory| Description                |
+  | ------ | ------ | ---- | -------------------- |
+  | fd     | number | Yes  | File descriptor to close.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
 
 **Example**
 
@@ -3130,24 +3133,24 @@ Duplicates a file descriptor. This API is a static method.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                    |
-| ------ | ------ | ---- | ------------------------ |
-| fd     | number | Yes  | File descriptor to duplicate.|
+  | Name| Type  | Mandatory| Description                    |
+  | ------ | ------ | ---- | ------------------------ |
+  | fd     | number | Yes  | File descriptor to duplicate.|
 
 **Return value**
 
-| Type  | Description                |
-| ------ | -------------------- |
-| number | New file descriptor.|
+  | Type  | Description                |
+  | ------ | -------------------- |
+  | number | New file descriptor.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
-| 1900013  | Failed to call dup. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+  | 1900013  | Failed to call dup. |
 
 **Example**
 
@@ -3177,9 +3180,9 @@ Checks whether this **MessageSequence** object contains file descriptors.
 
 **Return value**
 
-| Type   | Description                                                                |
-| ------- | -------------------------------------------------------------------- |
-| boolean | Returns **true** if the **MessageSequence** object contains file descriptors; returns **false** otherwise.|
+  | Type   | Description                                                                |
+  | ------- | -------------------------------------------------------------------- |
+  | boolean | Returns **true** if the **MessageSequence** object contains file descriptors; returns **false** otherwise.|
 
 **Example**
 
@@ -3218,18 +3221,18 @@ Writes a file descriptor to this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description        |
-| ------ | ------ | ---- | ------------ |
-| fd     | number | Yes  | File descriptor to write.|
+  | Name| Type  | Mandatory| Description        |
+  | ------ | ------ | ---- | ------------ |
+  | fd     | number | Yes  | File descriptor to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
-| 1900009  | Failed to write data to the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -3260,17 +3263,17 @@ Reads the file descriptor from this **MessageSequence** object.
 
 **Return value**
 
-| Type  | Description            |
-| ------ | ---------------- |
-| number | File descriptor read.|
+  | Type  | Description            |
+  | ------ | ---------------- |
+  | number | File descriptor read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -3317,10 +3320,10 @@ Writes an anonymous shared object to this **MessageSequence** object.
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | ------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter is not an instance of the Ashmem object. |
-| 1900003  | Failed to write data to the shared memory. |
+  | ID| Error Message|
+  | -------- | ------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter is not an instance of the Ashmem object. |
+  | 1900003  | Failed to write data to the shared memory. |
 
 **Example**
 
@@ -3364,10 +3367,10 @@ Reads the anonymous shared object from this **MessageSequence** object.
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | check param failed |
-| 1900004  | Failed to read data from the shared memory. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | check param failed |
+  | 1900004  | Failed to read data from the shared memory. |
 
 **Example**
 
@@ -3410,9 +3413,9 @@ Obtains the maximum amount of raw data that can be held by this **MessageSequenc
 
 **Return value**
 
-| Type  | Description                                                        |
-| ------ | ------------------------------------------------------------ |
-| number | Maximum amount of raw data that **MessageSequence** can hold, that is, 128 MB.|
+  | Type  | Description                                                        |
+  | ------ | ------------------------------------------------------------ |
+  | number | Maximum amount of raw data that **MessageSequence** can hold, that is, 128 MB.|
 
 **Example**
 
@@ -3426,29 +3429,34 @@ Obtains the maximum amount of raw data that can be held by this **MessageSequenc
 
 ### writeRawData<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is deprecated since API version 11. Use [writeRawDataBuffer](#writerawdatabuffer11) instead.
-
 writeRawData(rawData: number[], size: number): void
 
 Writes raw data to this **MessageSequence** object.
+
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is deprecated since API version 11. Use [writeRawDataBuffer](#writerawdatabuffer11) instead.
+>
+> This API cannot be called for multiple times in one parcel communication.
+> When the data volume is large (greater than 32 KB), the shared memory is used to transmit data. In this case, pay attention to the SELinux configuration.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name | Type    | Mandatory| Description                              |
-| ------- | -------- | ---- | ---------------------------------- |
-| rawData | number[] | Yes  | Raw data to write.                |
-| size    | number   | Yes  | Size of the raw data, in bytes.|
+  | Name | Type    | Mandatory| Description                              |
+  | ------- | -------- | ---- | ---------------------------------- |
+  | rawData | number[] | Yes  | Raw data to write. The size cannot exceed 128 MB.|
+  | size    | number   | Yes  | Size of the raw data, in bytes.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The transferred size cannot be obtained; <br> 5.The transferred size is less than or equal to 0;<br> 6.The element does not exist in the array; <br> 7.Failed to obtain typedArray information; <br> 8.The array is not of type int32; <br> 9.The length of typedarray is smaller than the size of the original data sent. |
-| 1900009  | Failed to write data to the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The transferred size cannot be obtained; <br> 5.The transferred size is less than or equal to 0;<br> 6.The element does not exist in the array; <br> 7.Failed to obtain typedArray information; <br> 8.The array is not of type int32; <br> 9.The length of typedarray is smaller than the size of the original data sent. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -3473,23 +3481,28 @@ writeRawDataBuffer(rawData: ArrayBuffer, size: number): void
 
 Writes raw data to this **MessageSequence** object.
 
+> **NOTE**<br/>
+>
+> This API cannot be called for multiple times in one parcel communication.
+> When the data volume is large (greater than 32 KB), the shared memory is used to transmit data. In this case, pay attention to the SELinux configuration.
+
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name | Type    | Mandatory| Description                              |
-| ------- | -------- | ---- | ---------------------------------- |
-| rawData | ArrayBuffer | Yes  | Raw data to write.                |
-| size    | number   | Yes  | Size of the raw data, in bytes.|
+  | Name | Type       | Mandatory| Description                                |
+  | ------- | ----------- | ---- | ------------------------------------ |
+  | rawData | ArrayBuffer | Yes  | Raw data to write. The size cannot exceed 128 MB.|
+  | size    | number      | Yes  | Size of the raw data, in bytes.   |
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain arrayBuffer information; <br> 4.The transferred size cannot be obtained; <br> 5.The transferred size is less than or equal to 0; <br> 6.The transferred size is greater than the byte length of ArrayBuffer. |
-| 1900009  | Failed to write data to the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain arrayBuffer information; <br> 4.The transferred size cannot be obtained; <br> 5.The transferred size is less than or equal to 0; <br> 6.The transferred size is greater than the byte length of ArrayBuffer. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -3515,34 +3528,37 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### readRawData<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is deprecated since API version 11. Use [readRawDataBuffer](#readrawdatabuffer11) instead.
-
 readRawData(size: number): number[]
 
 Reads raw data from this **MessageSequence** object.
+
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is deprecated since API version 11. Use [readRawDataBuffer](#readrawdatabuffer11) instead.
+
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                    |
-| ------ | ------ | ---- | ------------------------ |
-| size   | number | Yes  | Size of the raw data to read.|
+  | Name| Type  | Mandatory| Description                    |
+  | ------ | ------ | ---- | ------------------------ |
+  | size   | number | Yes  | Size of the raw data to read.|
 
 **Return value**
 
-| Type    | Description                          |
-| -------- | ------------------------------ |
-| number[] | Raw data obtained, in bytes.|
+  | Type    | Description                          |
+  | -------- | ------------------------------ |
+  | number[] | Raw data obtained, in bytes.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -3579,24 +3595,24 @@ Reads raw data from this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                    |
-| ------ | ------ | ---- | ------------------------ |
-| size   | number | Yes  | Size of the raw data to read.|
+  | Name| Type  | Mandatory| Description                    |
+  | ------ | ------ | ---- | ------------------------ |
+  | size   | number | Yes  | Size of the raw data to read.|
 
 **Return value**
 
-| Type    | Description                          |
-| -------- | ------------------------------ |
-| ArrayBuffer | Raw data obtained, in bytes.|
+  | Type    | Description                          |
+  | -------- | ------------------------------ |
+  | ArrayBuffer | Raw data obtained, in bytes.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -3639,19 +3655,19 @@ Writes data of the ArrayBuffer type to this **MessageSequence** object.
 
 **Parameters**
 
-| Name   | Type                     | Mandatory| Description                       |
-| --------- | ------------------------- | ---- | --------------------------- |
-| buf       | ArrayBuffer               | Yes  | Data to write.  |
-| typeCode  | [TypeCode](#typecode12)   | Yes  | TypedArray type of the ArrayBuffer data.<br>The underlying write mode is determined based on the enum value of **TypeCode** passed by the service.|
+  | Name   | Type                     | Mandatory| Description                       |
+  | --------- | ------------------------- | ---- | --------------------------- |
+  | buf       | ArrayBuffer               | Yes  | Data to write.  |
+  | typeCode  | [TypeCode](#typecode12)   | Yes  | TypedArray type of the ArrayBuffer data.<br>The underlying write mode is determined based on the enum value of **TypeCode** passed by the service.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The obtained value of typeCode is incorrect; <br> 5.Failed to obtain arrayBuffer information. |
-| 1900009  | Failed to write data to the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The parameter is an empty array; <br> 2.The number of parameters is incorrect; <br> 3.The parameter type does not match; <br> 4.The obtained value of typeCode is incorrect; <br> 5.Failed to obtain arrayBuffer information. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -3687,24 +3703,24 @@ Reads data of the ArrayBuffer type from this **MessageSequence**.
 
 **Parameters**
 
-| Name  | Type                    | Mandatory| Description                  |
-| -------- | ----------------------- | ---- | ------------------------|
-| typeCode | [TypeCode](#typecode12) | Yes  | TypedArray type of the ArrayBuffer data.<br>The underlying read mode is determined based on the enum value of **TypeCode** passed by the service. |
+  | Name  | Type                    | Mandatory| Description                  |
+  | -------- | ----------------------- | ---- | ------------------------|
+  | typeCode | [TypeCode](#typecode12) | Yes  | TypedArray type of the ArrayBuffer data.<br>The underlying read mode is determined based on the enum value of **TypeCode** passed by the service. |
 
 **Return value**
 
-| Type    | Description                                        |
-| -------- | -------------------------------------------- |
-| ArrayBuffer | Data of the ArrayBuffer type read, in bytes.|
+  | Type    | Description                                        |
+  | -------- | -------------------------------------------- |
+  | ArrayBuffer | Data of the ArrayBuffer type read, in bytes.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The obtained value of typeCode is incorrect; |
-| 1900010  | Failed to read data from the message sequence. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The obtained value of typeCode is incorrect; |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -3741,9 +3757,11 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ## MessageParcel<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is deprecated since API version 9. Use [MessageSequence](#messagesequence9) instead.
-
 Provides APIs for reading and writing data in specific format. During RPC, the sender can use the **write()** method provided by **MessageParcel** to write data in specific format to a **MessageParcel** object. The receiver can use the **read()** method provided by **MessageParcel** to read data in specific format from a **MessageParcel** object. The data formats include basic data types and arrays, IPC objects, interface tokens, and custom sequenceable objects.
+
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is deprecated since API version 9. Use [MessageSequence](#messagesequence9) instead.
 
 ### create
 
@@ -3755,9 +3773,9 @@ Creates a **MessageParcel** object. This method is a static method.
 
 **Return value**
 
-| Type         | Description                         |
-| ------------- | ----------------------------- |
-| [MessageParcel](#messageparceldeprecated) | **MessageParcel** object created.|
+  | Type         | Description                         |
+  | ------------- | ----------------------------- |
+  | [MessageParcel](#messageparceldeprecated) | **MessageParcel** object created.|
 
 **Example**
 
@@ -3766,6 +3784,9 @@ Creates a **MessageParcel** object. This method is a static method.
 
   let data = rpc.MessageParcel.create();
   hilog.info(0x0000, 'testTag', 'RpcClient: data is ' + data);
+
+  // When the MessageParcel object is no longer used, the service calls the reclaim method to release resources.
+  data.reclaim();
   ```
 
 ### reclaim
@@ -3793,15 +3814,15 @@ Serializes a remote object and writes it to this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type                           | Mandatory| Description                                   |
-| ------ | ------------------------------- | ---- | --------------------------------------- |
-| object | [IRemoteObject](#iremoteobject) | Yes  | Remote object to serialize and write to the **MessageParcel** object.|
+  | Name| Type                           | Mandatory| Description                                   |
+  | ------ | ------------------------------- | ---- | --------------------------------------- |
+  | object | [IRemoteObject](#iremoteobject) | Yes  | Remote object to serialize and write to the **MessageParcel** object.|
 
 **Return value**
 
-| Type   | Description                                     |
-| ------- | ----------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type   | Description                                     |
+  | ------- | ----------------------------------------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -3842,9 +3863,9 @@ Reads the remote object from this **MessageParcel** object. You can use this met
 
 **Return value**
 
-| Type                           | Description              |
-| ------------------------------- | ------------------ |
-| [IRemoteObject](#iremoteobject) | Remote object obtained.|
+  | Type                           | Description              |
+  | ------------------------------- | ------------------ |
+  | [IRemoteObject](#iremoteobject) | Remote object obtained.|
 
 **Example**
 
@@ -3887,15 +3908,15 @@ Writes an interface token to this **MessageParcel** object. The remote object ca
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description              |
-| ------ | ------ | ---- | ------------------ |
-| token  | string | Yes  | Interface token to write.|
+  | Name| Type  | Mandatory| Description              |
+  | ------ | ------ | ---- | ------------------ |
+  | token  | string | Yes  | Interface token to write.|
 
 **Return value**
 
-| Type   | Description                                     |
-| ------- | ----------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type   | Description                                     |
+  | ------- | ----------------------------------------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -3917,9 +3938,9 @@ Reads the interface token from this **MessageParcel** object. The interface toke
 
 **Return value**
 
-| Type  | Description                    |
-| ------ | ------------------------ |
-| string | Interface token obtained.|
+  | Type  | Description                    |
+  | ------ | ------------------------ |
+  | string | Interface token obtained.|
 
 **Example**
 
@@ -3945,9 +3966,9 @@ Obtains the data size of this **MessageParcel** object.
 
 **Return value**
 
-| Type  | Description                                         |
-| ------ | --------------------------------------------- |
-| number | Size of the **MessageParcel** object obtained, in bytes.|
+  | Type  | Description                                         |
+  | ------ | --------------------------------------------- |
+  | number | Size of the **MessageParcel** object obtained, in bytes.|
 
 **Example**
 
@@ -3969,9 +3990,9 @@ Obtains the capacity of this **MessageParcel** object.
 
 **Return value**
 
-| Type  | Description                                         |
-| ------ | --------------------------------------------- |
-| number | **MessageParcel** capacity obtained, in bytes.|
+  | Type  | Description                                         |
+  | ------ | --------------------------------------------- |
+  | number | **MessageParcel** capacity obtained, in bytes.|
 
 **Example**
 
@@ -3993,15 +4014,15 @@ Sets the size of data contained in this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                       |
-| ------ | ------ | ---- | ------------------------------------------- |
-| size   | number | Yes  | Data size to set, in bytes.|
+  | Name| Type  | Mandatory| Description                                       |
+  | ------ | ------ | ---- | ------------------------------------------- |
+  | size   | number | Yes  | Data size to set, in bytes.|
 
 **Return value**
 
-| Type   | Description                             |
-| ------- | --------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type   | Description                             |
+  | ------- | --------------------------------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -4023,15 +4044,15 @@ Sets the storage capacity of this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                       |
-| ------ | ------ | ---- | ------------------------------------------- |
-| size   | number | Yes  | Storage capacity to set, in bytes.|
+  | Name| Type  | Mandatory| Description                                       |
+  | ------ | ------ | ---- | ------------------------------------------- |
+  | size   | number | Yes  | Storage capacity to set, in bytes.|
 
 **Return value**
 
-| Type   | Description                             |
-| ------- | --------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type   | Description                             |
+  | ------- | --------------------------------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -4053,9 +4074,9 @@ Obtains the writable capacity of this **MessageParcel** object.
 
 **Return value**
 
-| Type  | Description                                               |
-| ------ | --------------------------------------------------- |
-| number | **MessageParcel** writable capacity obtained, in bytes.|
+  | Type  | Description                                               |
+  | ------ | --------------------------------------------------- |
+  | number | **MessageParcel** writable capacity obtained, in bytes.|
 
 **Example**
 
@@ -4081,9 +4102,9 @@ Obtains the readable capacity of this **MessageParcel** object.
 
 **Return value**
 
-| Type  | Description                                               |
-| ------ | --------------------------------------------------- |
-| number | **MessageParcel** object readable capacity, in bytes.|
+  | Type  | Description                                               |
+  | ------ | --------------------------------------------------- |
+  | number | **MessageParcel** object readable capacity, in bytes.|
 
 **Example**
 
@@ -4109,9 +4130,9 @@ Obtains the read position of this **MessageParcel** object.
 
 **Return value**
 
-| Type  | Description                                   |
-| ------ | --------------------------------------- |
-| number | Current read position of the **MessageParcel** object.|
+  | Type  | Description                                   |
+  | ------ | --------------------------------------- |
+  | number | Current read position of the **MessageParcel** object.|
 
 **Example**
 
@@ -4133,9 +4154,9 @@ Obtains the write position of this **MessageParcel** object.
 
 **Return value**
 
-| Type  | Description                                   |
-| ------ | --------------------------------------- |
-| number | Current write position of the **MessageParcel** object.|
+  | Type  | Description                                   |
+  | ------ | --------------------------------------- |
+  | number | Current write position of the **MessageParcel** object.|
 
 **Example**
 
@@ -4158,15 +4179,15 @@ Moves the read pointer to the specified position.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                    |
-| ------ | ------ | ---- | ------------------------ |
-| pos    | number | Yes  | Position from which data is to read.|
+  | Name| Type  | Mandatory| Description                    |
+  | ------ | ------ | ---- | ------------------------ |
+  | pos    | number | Yes  | Position from which data is to read.|
 
 **Return value**
 
-| Type   | Description                                             |
-| ------- | ------------------------------------------------- |
-| boolean | Returns **true** if the read position changes; returns **false** otherwise.|
+  | Type   | Description                                             |
+  | ------- | ------------------------------------------------- |
+  | boolean | Returns **true** if the read position changes; returns **false** otherwise.|
 
 **Example**
 
@@ -4193,15 +4214,15 @@ Moves the write pointer to the specified position.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                    |
-| ------ | ------ | ---- | ------------------------ |
-| pos    | number | Yes  | Position from which data is to write.|
+  | Name| Type  | Mandatory| Description                    |
+  | ------ | ------ | ---- | ------------------------ |
+  | pos    | number | Yes  | Position from which data is to write.|
 
 **Return value**
 
-| Type   | Description                                         |
-| ------- | --------------------------------------------- |
-| boolean | Returns **true** if the write position changes; returns **false** otherwise.|
+  | Type   | Description                                         |
+  | ------- | --------------------------------------------- |
+  | boolean | Returns **true** if the write position changes; returns **false** otherwise.|
 
 **Example**
 
@@ -4226,15 +4247,15 @@ Writes a Byte value to this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
-| ------ | ------ | ---- | ---------------- |
-| val    | number | Yes  | Byte value to write.|
+  | Name| Type  | Mandatory| Description            |
+  | ------ | ------ | ---- | ---------------- |
+  | val    | number | Yes  | Byte value to write.|
 
 **Return value**
 
-| Type   | Description                         |
-| ------- | ----------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type   | Description                         |
+  | ------- | ----------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -4256,9 +4277,9 @@ Reads the Byte value from this **MessageParcel** object.
 
 **Return value**
 
-| Type  | Description        |
-| ------ | ------------ |
-| number | Byte value read.|
+  | Type  | Description        |
+  | ------ | ------------ |
+  | number | Byte value read.|
 
 **Example**
 
@@ -4282,15 +4303,15 @@ Writes a Short int value to this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description              |
-| ------ | ------ | ---- | ------------------ |
-| val    | number | Yes  | Short int value to write.|
+  | Name| Type  | Mandatory| Description              |
+  | ------ | ------ | ---- | ------------------ |
+  | val    | number | Yes  | Short int value to write.|
 
 **Return value**
 
-| Type   | Description                         |
-| ------- | ----------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                         |
+  | ------- | ----------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -4312,9 +4333,9 @@ Reads the Short int value from this **MessageParcel** object.
 
 **Return value**
 
-| Type  | Description          |
-| ------ | -------------- |
-| number | Short int value read.|
+  | Type  | Description          |
+  | ------ | -------------- |
+  | number | Short int value read.|
 
 **Example**
 
@@ -4338,15 +4359,15 @@ Writes an Int value to this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
-| ------ | ------ | ---- | ---------------- |
-| val    | number | Yes  | Int value to write.|
+  | Name| Type  | Mandatory| Description            |
+  | ------ | ------ | ---- | ---------------- |
+  | val    | number | Yes  | Int value to write.|
 
 **Return value**
 
-| Type   | Description                         |
-| ------- | ----------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type   | Description                         |
+  | ------- | ----------------------------- |   
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -4368,9 +4389,9 @@ Reads the Int value from this **MessageParcel** object.
 
 **Return value**
 
-| Type  | Description        |
-| ------ | ------------ |
-| number | Int value read.|
+  | Type  | Description        |
+  | ------ | ------------ |
+  | number | Int value read.|
 
 **Example**
 
@@ -4394,15 +4415,15 @@ Writes a Long int value to this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
-| ------ | ------ | ---- | ---------------- |
-| val    | number | Yes  | Long int value to write.|
+  | Name| Type  | Mandatory| Description            |
+  | ------ | ------ | ---- | ---------------- |
+  | val    | number | Yes  | Long int value to write.|
 
 **Return value**
 
-| Type   | Description                             |
-| ------- | --------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                             |
+  | ------- | --------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -4424,9 +4445,9 @@ Reads the Long int value from this **MessageParcel** object.
 
 **Return value**
 
-| Type  | Description          |
-| ------ | -------------- |
-| number | Long integer read.|
+  | Type  | Description          |
+  | ------ | -------------- |
+  | number | Long integer read.|
 
 **Example**
 
@@ -4450,15 +4471,15 @@ Writes a Float value to this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
-| ------ | ------ | ---- | ---------------- |
-| val    | number | Yes  | Float value to write.|
+  | Name| Type  | Mandatory| Description            |
+  | ------ | ------ | ---- | ---------------- |
+  | val    | number | Yes  | Float value to write.|
 
 **Return value**
 
-| Type   | Description                             |
-| ------- | --------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                             |
+  | ------- | --------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -4480,9 +4501,9 @@ Reads the Float value from this **MessageParcel** object.
 
 **Return value**
 
-| Type  | Description        |
-| ------ | ------------ |
-| number | Float value read.|
+  | Type  | Description        |
+  | ------ | ------------ |
+  | number | Float value read.|
 
 **Example**
 
@@ -4506,15 +4527,15 @@ Writes a Double value to this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                  |
-| ------ | ------ | ---- | ---------------------- |
-| val    | number | Yes  | Double value to write.|
+  | Name| Type  | Mandatory| Description                  |
+  | ------ | ------ | ---- | ---------------------- |
+  | val    | number | Yes  | Double value to write.|
 
 **Return value**
 
-| Type   | Description                             |
-| ------- | --------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                             |
+  | ------- | --------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -4536,9 +4557,9 @@ Reads the Double value from this **MessageParcel** object.
 
 **Return value**
 
-| Type  | Description              |
-| ------ | ------------------ |
-| number | Double value read.|
+  | Type  | Description              |
+  | ------ | ------------------ |
+  | number | Double value read.|
 
 **Example**
 
@@ -4562,15 +4583,15 @@ Writes a Boolean value to this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description            |
-| ------ | ------- | ---- | ---------------- |
-| val    | boolean | Yes  | Boolean value to write.|
+  | Name| Type   | Mandatory| Description            |
+  | ------ | ------- | ---- | ---------------- |
+  | val    | boolean | Yes  | Boolean value to write.|
 
 **Return value**
 
-| Type   | Description                             |
-| ------- | --------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                             |
+  | ------- | --------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -4592,9 +4613,9 @@ Reads the Boolean value from this **MessageParcel** object.
 
 **Return value**
 
-| Type   | Description                |
-| ------- | -------------------- |
-| boolean | Boolean value read.|
+  | Type   | Description                |
+  | ------- | -------------------- |
+  | boolean | Boolean value read.|
 
 **Example**
 
@@ -4618,15 +4639,15 @@ Writes a Char value to this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                |
-| ------ | ------ | ---- | -------------------- |
-| val    | number | Yes  | Char value to write.|
+  | Name| Type  | Mandatory| Description                |
+  | ------ | ------ | ---- | -------------------- |
+  | val    | number | Yes  | Char value to write.|
 
 **Return value**
 
-| Type   | Description                         |
-| ------- | ----------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                         |
+  | ------- | ----------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -4648,9 +4669,9 @@ Reads the single character value from this **MessageParcel** object.
 
 **Return value**
 
-| Type  | Description            |
-| ------ | ---------------- |
-| number | Single character value read.|
+  | Type  | Description            |
+  | ------ | ---------------- |
+  | number | Char value read.|
 
 **Example**
 
@@ -4674,15 +4695,15 @@ Writes a string to this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                     |
-| ------ | ------ | ---- | ----------------------------------------- |
-| val    | string | Yes  | String to write. The length of the string must be less than 40960 bytes.|
+  | Name| Type  | Mandatory| Description                                     |
+  | ------ | ------ | ---- | ----------------------------------------- |
+  | val    | string | Yes  | String to write. The length of the string must be less than 40960 bytes.|
 
 **Return value**
 
-| Type   | Description                             |
-| ------- | --------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                             |
+  | ------- | --------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -4704,9 +4725,9 @@ Reads the string from this **MessageParcel** object.
 
 **Return value**
 
-| Type  | Description          |
-| ------ | -------------- |
-| string | String read.|
+  | Type  | Description          |
+  | ------ | -------------- |
+  | string | String read.|
 
 **Example**
 
@@ -4730,15 +4751,15 @@ Writes a sequenceable object to this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type                         | Mandatory| Description                |
-| ------ | ----------------------------- | ---- | -------------------- |
-| val    | [Sequenceable](#sequenceabledeprecated) | Yes  | Sequenceable object to write.|
+  | Name| Type                         | Mandatory| Description                |
+  | ------ | ----------------------------- | ---- | -------------------- |
+  | val    | [Sequenceable](#sequenceabledeprecated) | Yes  | Sequenceable object to write.|
 
 **Return value**
 
-| Type   | Description                            |
-| ------- | -------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -4779,15 +4800,15 @@ Reads member variables from this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type                         | Mandatory   | Description                                          |
-| ------ | ----------------------------- | ------- | ---------------------------------------------- |
-| dataIn | [Sequenceable](#sequenceabledeprecated) | Yes  | Object that reads member variables from the **MessageParcel** object.|
+  | Name| Type                         | Mandatory   | Description                                          |
+  | ------ | ----------------------------- | ------- | ---------------------------------------------- |
+  | dataIn | [Sequenceable](#sequenceabledeprecated) | Yes  | Object that reads member variables from the **MessageParcel** object.|
 
 **Return value**
 
-| Type   | Description                                    |
-| ------- | ---------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type   | Description                                    |
+  | ------- | ---------------------------------------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -4831,15 +4852,15 @@ Writes a byte array to this **MessageParcel** object.
 
 **Parameters**
 
-| Name   | Type    | Mandatory| Description              |
-| --------- | -------- | ---- | ------------------ |
-| byteArray | number[] | Yes  | Byte array to write.|
+  | Name   | Type    | Mandatory| Description              |
+  | --------- | -------- | ---- | ------------------ |
+  | byteArray | number[] | Yes  | Byte array to write.|
 
 **Return value**
 
-| Type   | Description                            |
-| ------- | -------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -4862,9 +4883,9 @@ Reads a byte array from this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description              |
-| ------ | -------- | ---- | ------------------ |
-| dataIn | number[] | Yes  | Byte array to read.|
+  | Name| Type    | Mandatory| Description              |
+  | ------ | -------- | ---- | ------------------ |
+  | dataIn | number[] | Yes  | Byte array to read.|
 
 **Example**
 
@@ -4889,9 +4910,9 @@ Reads the byte array from this **MessageParcel** object.
 
 **Return value**
 
-| Type    | Description          |
-| -------- | -------------- |
-| number[] | Byte array read.|
+  | Type    | Description          |
+  | -------- | -------------- |
+  | number[] | Byte array read.|
 
 **Example**
 
@@ -4916,15 +4937,15 @@ Writes a short array to this **MessageParcel** object.
 
 **Parameters**
 
-| Name    | Type    | Mandatory| Description                |
-| ---------- | -------- | ---- | -------------------- |
-| shortArray | number[] | Yes  | Short array to write.|
+  | Name    | Type    | Mandatory| Description                |
+  | ---------- | -------- | ---- | -------------------- |
+  | shortArray | number[] | Yes  | Short array to write.|
 
 **Return value**
 
-| Type   | Description                            |
-| ------- | -------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -4946,9 +4967,9 @@ Reads a short array from this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description                |
-| ------ | -------- | ---- | -------------------- |
-| dataIn | number[] | Yes  | Short array to read.|
+  | Name| Type    | Mandatory| Description                |
+  | ------ | -------- | ---- | -------------------- |
+  | dataIn | number[] | Yes  | Short array to read.|
 
 **Example**
 
@@ -4972,9 +4993,9 @@ Reads the short array from this **MessageParcel** object.
 
 **Return value**
 
-| Type    | Description            |
-| -------- | ---------------- |
-| number[] | Short array read.|
+  | Type    | Description            |
+  | -------- | ---------------- |
+  | number[] | Short array read.|
 
 **Example**
 
@@ -4998,15 +5019,15 @@ Writes an integer array to this **MessageParcel** object.
 
 **Parameters**
 
-| Name  | Type    | Mandatory| Description              |
-| -------- | -------- | ---- | ------------------ |
-| intArray | number[] | Yes  | Integer array to write.|
+  | Name  | Type    | Mandatory| Description              |
+  | -------- | -------- | ---- | ------------------ |
+  | intArray | number[] | Yes  | Integer array to write.|
 
 **Return value**
 
-| Type   | Description                            |
-| ------- | -------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -5028,9 +5049,9 @@ Reads an integer array from this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description              |
-| ------ | -------- | ---- | ------------------ |
-| dataIn | number[] | Yes  | Integer array to read.|
+  | Name| Type    | Mandatory| Description              |
+  | ------ | -------- | ---- | ------------------ |
+  | dataIn | number[] | Yes  | Integer array to read.|
 
 **Example**
 
@@ -5054,9 +5075,9 @@ Reads the integer array from this **MessageParcel** object.
 
 **Return value**
 
-| Type    | Description          |
-| -------- | -------------- |
-| number[] | Integer array read.|
+  | Type    | Description          |
+  | -------- | -------------- |
+  | number[] | Integer array read.|
 
 **Example**
 
@@ -5080,15 +5101,15 @@ Writes a long array to this **MessageParcel** object.
 
 **Parameters**
 
-| Name   | Type    | Mandatory| Description                |
-| --------- | -------- | ---- | -------------------- |
-| longArray | number[] | Yes  | Long array to write.|
+  | Name   | Type    | Mandatory| Description                |
+  | --------- | -------- | ---- | -------------------- |
+  | longArray | number[] | Yes  | Long array to write.|
 
 **Return value**
 
-| Type   | Description                         |
-| ------- | ----------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                         |
+  | ------- | ----------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -5110,9 +5131,9 @@ Reads a long array from this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description                |
-| ------ | -------- | ---- | -------------------- |
-| dataIn | number[] | Yes  | Long array to read.|
+  | Name| Type    | Mandatory| Description                |
+  | ------ | -------- | ---- | -------------------- |
+  | dataIn | number[] | Yes  | Long array to read.|
 
 **Example**
 
@@ -5136,9 +5157,9 @@ Reads the long array from this **MessageParcel** object.
 
 **Return value**
 
-| Type    | Description            |
-| -------- | ---------------- |
-| number[] | Long array read.|
+ | Type    | Description            |
+ | -------- | ---------------- |
+ | number[] | Long array read.|
 
 **Example**
 
@@ -5162,15 +5183,15 @@ Writes a FloatArray to this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description |
-| ---------- | -------- | ---- | --- |
-| floatArray | number[] | Yes  | Floating-point array to write. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
+  | Name| Type| Mandatory| Description |
+  | ---------- | -------- | ---- | --- |
+  | floatArray | number[] | Yes  | Floating-point array to write. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
 
 **Return value**
 
-| Type   | Description                            |
-| ------- | -------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -5192,9 +5213,9 @@ Reads a FloatArray from this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description  |
-| ------ | -------- | ---- | ------ |
-| dataIn | number[] | Yes  | Floating-point array to read. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
+  | Name| Type    | Mandatory| Description  |
+  | ------ | -------- | ---- | ------ |
+  | dataIn | number[] | Yes  | Floating-point array to read. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
 
 **Example**
 
@@ -5218,9 +5239,9 @@ Reads the FloatArray from this **MessageParcel** object.
 
 **Return value**
 
-| Type    | Description          |
-| -------- | -------------- |
-| number[] | FloatArray read.|
+  | Type    | Description          |
+  | -------- | -------------- |
+  | number[] | FloatArray read.|
 
 **Example**
 
@@ -5244,15 +5265,15 @@ Writes a DoubleArray to this **MessageParcel** object.
 
 **Parameters**
 
-| Name     | Type    | Mandatory| Description                    |
-| ----------- | -------- | ---- | ------------------------ |
-| doubleArray | number[] | Yes  | DoubleArray to write.|
+  | Name     | Type    | Mandatory| Description                    |
+  | ----------- | -------- | ---- | ------------------------ |
+  | doubleArray | number[] | Yes  | DoubleArray to write.|
 
 **Return value**
 
-| Type   | Description                            |
-| ------- | -------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -5274,9 +5295,9 @@ Reads a DoubleArray from this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description                    |
-| ------ | -------- | ---- | ------------------------ |
-| dataIn | number[] | Yes  | DoubleArray to read.|
+  | Name| Type    | Mandatory| Description                    |
+  | ------ | -------- | ---- | ------------------------ |
+  | dataIn | number[] | Yes  | DoubleArray to read.|
 
 **Example**
 
@@ -5300,9 +5321,9 @@ Reads the DoubleArray from this **MessageParcel** object.
 
 **Return value**
 
-| Type    | Description                |
-| -------- | -------------------- |
-| number[] | DoubleArray read.|
+  | Type    | Description                |
+  | -------- | -------------------- |
+  | number[] | DoubleArray read.|
 
 **Example**
 
@@ -5326,15 +5347,15 @@ Writes a Boolean array to this **MessageParcel** object.
 
 **Parameters**
 
-| Name      | Type     | Mandatory| Description              |
-| ------------ | --------- | ---- | ------------------ |
-| booleanArray | boolean[] | Yes  | Boolean array to write.|
+  | Name      | Type     | Mandatory| Description              |
+  | ------------ | --------- | ---- | ------------------ |
+  | booleanArray | boolean[] | Yes  | Boolean array to write.|
 
 **Return value**
 
-| Type   | Description                            |
-| ------- | -------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -5356,9 +5377,9 @@ Reads a Boolean array from this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type     | Mandatory| Description              |
-| ------ | --------- | ---- | ------------------ |
-| dataIn | boolean[] | Yes  | Boolean array to read.|
+  | Name| Type     | Mandatory| Description              |
+  | ------ | --------- | ---- | ------------------ |
+  | dataIn | boolean[] | Yes  | Boolean array to read.|
 
 **Example**
 
@@ -5382,9 +5403,9 @@ Reads the Boolean array from this **MessageParcel** object.
 
 **Return value**
 
-| Type     | Description          |
-| --------- | -------------- |
-| boolean[] | Boolean array read.|
+  | Type     | Description          |
+  | --------- | -------------- |
+  | boolean[] | Boolean array read.|
 
 **Example**
 
@@ -5408,15 +5429,15 @@ Writes a character array to this **MessageParcel** object.
 
 **Parameters**
 
-| Name   | Type    | Mandatory| Description                  |
-| --------- | -------- | ---- | ---------------------- |
-| charArray | number[] | Yes  | Character array to write.|
+  | Name   | Type    | Mandatory| Description                  |
+  | --------- | -------- | ---- | ---------------------- |
+  | charArray | number[] | Yes  | Character array to write.|
 
 **Return value**
 
-| Type   | Description                            |
-| ------- | -------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -5438,9 +5459,9 @@ Reads a character array from this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description                  |
-| ------ | -------- | ---- | ---------------------- |
-| dataIn | number[] | Yes  | Character array to read.|
+  | Name| Type    | Mandatory| Description                  |
+  | ------ | -------- | ---- | ---------------------- |
+  | dataIn | number[] | Yes  | Character array to read.|
 
 **Example**
 
@@ -5464,9 +5485,9 @@ Reads the character array from this **MessageParcel** object.
 
 **Return value**
 
-| Type    | Description              |
-| -------- | ------------------ |
-| number[] | Character array read.|
+  | Type    | Description              |
+  | -------- | ------------------ |
+  | number[] | Character array read.|
 
 **Example**
 
@@ -5490,15 +5511,15 @@ Writes a string array to this **MessageParcel** object.
 
 **Parameters**
 
-| Name     | Type    | Mandatory| Description            |
-| ----------- | -------- | ---- | ---------------- |
-| stringArray | string[] | Yes  | String array to write. The length of a single element in the array must be less than 40960 bytes.|
+  | Name     | Type    | Mandatory| Description            |
+  | ----------- | -------- | ---- | ---------------- |
+  | stringArray | string[] | Yes  | String array to write. The length of a single element in the array must be less than 40960 bytes.|
 
 **Return value**
 
-| Type   | Description|
-| ------- | -------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description|
+  | ------- | -------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -5520,9 +5541,9 @@ Reads a string array from this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description                |
-| ------ | -------- | ---- | -------------------- |
-| dataIn | string[] | Yes  | String array to read.|
+  | Name| Type    | Mandatory| Description                |
+  | ------ | -------- | ---- | -------------------- |
+  | dataIn | string[] | Yes  | String array to read.|
 
 **Example**
 
@@ -5546,9 +5567,9 @@ Reads the string array from this **MessageParcel** object.
 
 **Return value**
 
-| Type    | Description            |
-| -------- | ---------------- |
-| string[] | String array read.|
+  | Type    | Description            |
+  | -------- | ---------------- |
+  | string[] | String array read.|
 
 **Example**
 
@@ -5649,7 +5670,7 @@ Reads the exception information from this **MessageParcel** object.
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendRequest()** of the proxy object is called to send a message.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendRequest()** of the proxy object is called to send a message.
 
   ```ts
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -5697,9 +5718,9 @@ Writes a sequenceable array to this **MessageParcel** object.
 
 **Return value**
 
-| Type   | Description                            |
-| ------- | -------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -5791,15 +5812,15 @@ Writes an array of **IRemoteObject** objects to this **MessageParcel** object.
 
 **Parameters**
 
-| Name     | Type           | Mandatory| Description |
-| ----------- | --------------- | ---- | ----- |
-| objectArray | [IRemoteObject](#iremoteobject)[] | Yes  | Array of **IRemoteObject** objects to write.|
+  | Name     | Type           | Mandatory| Description |
+  | ----------- | --------------- | ---- | ----- |
+  | objectArray | [IRemoteObject](#iremoteobject)[] | Yes  | Array of **IRemoteObject** objects to write.|
 
 **Return value**
 
-| Type   | Description                                                                                                                |
-| ------- | -------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                                                                                                                |
+  | ------- | -------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -5845,9 +5866,9 @@ Reads an **IRemoteObject** array from this **MessageParcel** object.
 
 **Parameters**
 
-| Name | Type           | Mandatory| Description     |
-| ------- | --------------- | ---- | --------- |
-| objects | [IRemoteObject](#iremoteobject)[] | Yes  | **IRemoteObject** array to read.|
+  | Name | Type           | Mandatory| Description     |
+  | ------- | --------------- | ---- | --------- |
+  | objects | [IRemoteObject](#iremoteobject)[] | Yes  | **IRemoteObject** array to read.|
 
 **Example**
 
@@ -5894,9 +5915,9 @@ Reads the **IRemoteObject** array from this **MessageParcel** object.
 
 **Return value**
 
-| Type           | Description                       |
-| --------------- | --------------------------- |
-| [IRemoteObject](#iremoteobject)[] | **IRemoteObject** object array obtained.|
+  | Type           | Description                       |
+  | --------------- | --------------------------- |
+  | [IRemoteObject](#iremoteobject)[] | **IRemoteObject** object array obtained.|
 
 **Example**
 
@@ -5944,9 +5965,9 @@ Closes a file descriptor. This API is a static method.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                |
-| ------ | ------ | ---- | -------------------- |
-| fd     | number | Yes  | File descriptor to close.|
+  | Name| Type  | Mandatory| Description                |
+  | ------ | ------ | ---- | -------------------- |
+  | fd     | number | Yes  | File descriptor to close.|
 
 **Example**
 
@@ -5968,15 +5989,15 @@ Duplicates a file descriptor. This API is a static method.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                    |
-| ------ | ------ | ---- | ------------------------ |
-| fd     | number | Yes  | File descriptor to duplicate.|
+  | Name| Type  | Mandatory| Description                    |
+  | ------ | ------ | ---- | ------------------------ |
+  | fd     | number | Yes  | File descriptor to duplicate.|
 
 **Return value**
 
-| Type  | Description                |
-| ------ | -------------------- |
-| number | New file descriptor.|
+  | Type  | Description                |
+  | ------ | -------------------- |
+  | number | New file descriptor.|
 
 **Example**
 
@@ -5998,9 +6019,9 @@ Checks whether this **MessageParcel** object contains file descriptors.
 
 **Return value**
 
-| Type   | Description                                         |
-| ------- | --------------------------------------------- |
-| boolean |Returns **true** if the **MessageParcel** object contains file descriptors; returns **false** otherwise.|
+  | Type   | Description                                         |
+  | ------- | --------------------------------------------- |
+  | boolean |Returns **true** if the **MessageParcel** object contains file descriptors; returns **false** otherwise.|
 
 **Example**
 
@@ -6027,15 +6048,15 @@ Writes a file descriptor to this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description        |
-| ------ | ------ | ---- | ------------ |
-| fd     | number | Yes  | File descriptor to write.|
+  | Name| Type  | Mandatory| Description        |
+  | ------ | ------ | ---- | ------------ |
+  | fd     | number | Yes  | File descriptor to write.|
 
 **Return value**
 
-| Type   | Description                            |
-| ------- | -------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -6060,9 +6081,9 @@ Reads the file descriptor from this **MessageParcel** object.
 
 **Return value**
 
-| Type  | Description            |
-| ------ | ---------------- |
-| number | File descriptor read.|
+  | Type  | Description            |
+  | ------ | ---------------- |
+  | number | File descriptor read.|
 
 **Example**
 
@@ -6094,9 +6115,9 @@ Writes an anonymous shared object to this **MessageParcel** object.
 
 **Return value**
 
-| Type   | Description                            |
-| ------- | -------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -6146,9 +6167,9 @@ Obtains the maximum amount of raw data that can be held by this **MessageParcel*
 
 **Return value**
 
-| Type  | Description                                                      |
-| ------ | ---------------------------------------------------------- |
-| number | Maximum amount of raw data that **MessageParcel** can hold, that is, 128 MB.|
+  | Type  | Description                                                      |
+  | ------ | ---------------------------------------------------------- |
+  | number | Maximum amount of raw data that **MessageParcel** can hold, that is, 128 MB.|
 
 **Example**
 
@@ -6170,16 +6191,16 @@ Writes raw data to this **MessageParcel** object.
 
 **Parameters**
 
-| Name | Type    | Mandatory| Description                              |
-| ------- | -------- | ---- | ---------------------------------- |
-| rawData | number[] | Yes  | Raw data to write.                |
-| size    | number   | Yes  | Size of the raw data, in bytes.|
+  | Name | Type    | Mandatory| Description                              |
+  | ------- | -------- | ---- | ---------------------------------- |
+  | rawData | number[] | Yes  | Raw data to write.                |
+  | size    | number   | Yes  | Size of the raw data, in bytes.|
 
 **Return value**
 
-| Type   | Description                            |
-| ------- | -------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -6202,15 +6223,15 @@ Reads raw data from this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                    |
-| ------ | ------ | ---- | ------------------------ |
-| size   | number | Yes  | Size of the raw data to read.|
+  | Name| Type  | Mandatory| Description                    |
+  | ------ | ------ | ---- | ------------------------ |
+  | size   | number | Yes  | Size of the raw data to read.|
 
 **Return value**
 
-| Type    | Description                          |
-| -------- | ------------------------------ |
-| number[] | Raw data obtained, in bytes.|
+  | Type    | Description                          |
+  | -------- | ------------------------------ |
+  | number[] | Raw data obtained, in bytes.|
 
 **Example**
 
@@ -6245,9 +6266,9 @@ Marshals this **Parcelable** object into a **MessageSequence** object.
 
 **Return value**
 
-| Type   | Description                            |
-| ------- | -------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -6296,9 +6317,9 @@ Unmarshals this **Parcelable** object from a **MessageSequence** object.
 
 **Return value**
 
-| Type   | Description                                    |
-| ------- | ---------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type   | Description                                    |
+  | ------- | ---------------------------------------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -6333,9 +6354,11 @@ Unmarshals this **Parcelable** object from a **MessageSequence** object.
 
 ## Sequenceable<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is deprecated since API version 9. Use [Parcelable](#parcelable9) instead.
-
 Writes objects of classes to a **MessageParcel** and reads them from the **MessageParcel** during IPC.
+
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is deprecated since API version 9. Use [Parcelable](#parcelable9) instead.
 
 ### marshalling
 
@@ -6347,15 +6370,15 @@ Marshals the sequenceable object into a **MessageParcel** object.
 
 **Parameters**
 
-| Name | Type                                     | Mandatory| Description                                     |
-| ------- | ----------------------------------------- | ---- | ----------------------------------------- |
-| dataOut | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object to which the sequenceable object is to be marshaled.|
+  | Name | Type                                     | Mandatory| Description                                     |
+  | ------- | ----------------------------------------- | ---- | ----------------------------------------- |
+  | dataOut | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object to which the sequenceable object is to be marshaled.|
 
 **Return value**
 
-| Type   | Description                             |
-| ------- | --------------------------------  |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type   | Description                             |
+  | ------- | --------------------------------  |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -6399,15 +6422,15 @@ Unmarshals this sequenceable object from a **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type                                     | Mandatory| Description                                         |
-| ------ | ----------------------------------------- | ---- | --------------------------------------------- |
-| dataIn | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object in which the sequenceable object is to be unmarshaled.|
+  | Name| Type                                     | Mandatory| Description                                         |
+  | ------ | ----------------------------------------- | ---- | --------------------------------------------- |
+  | dataIn | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object in which the sequenceable object is to be unmarshaled.|
 
 **Return value**
 
-| Type   | Description                                    |
-| ------- | ---------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type   | Description                                    |
+  | ------- | ---------------------------------------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -6443,7 +6466,7 @@ Unmarshals this sequenceable object from a **MessageParcel** object.
 
 ## IRemoteBroker
 
-Represents the holder of a remote proxy object.
+Represents the holder of a remote proxy object. It is used to obtain a proxy object.
 
 ### asObject
 
@@ -6455,9 +6478,9 @@ Obtains a proxy or remote object. This API must be implemented by its derived cl
 
 **Return value**
 
-| Type | Description |
-| ----- | ----- |
-| [IRemoteObject](#iremoteobject) | Returns the **RemoteObject** if it is the caller; returns the [IRemoteObject](#iremoteobject), the holder of this **RemoteProxy** object, if the caller is a [RemoteProxy](#remoteproxy) object.|
+  | Type | Description |
+  | ----- | ----- |
+  | [IRemoteObject](#iremoteobject) | Returns the **RemoteObject** if it is the caller; returns the [IRemoteObject](#iremoteobject), the holder of this **RemoteProxy** object, if the caller is a [RemoteProxy](#remoteproxy) object.|
 
 **Example**
 
@@ -6505,7 +6528,7 @@ Obtains a proxy or remote object. This API must be implemented by its derived cl
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **asObject()** of the proxy object is called to obtain the proxy or remote object.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **asObject()** of the proxy object is called to obtain the proxy or remote object.
 
   ```ts
   class TestProxy {
@@ -6561,18 +6584,20 @@ Defines the response to the request.
 
 ## SendRequestResult<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [RequestResult](#requestresult9) instead.
-
 Defines the response to the request.
+
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [RequestResult](#requestresult9) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-| Name   | Type         | Readable| Writable| Description                               |
-| ------- | ------------- | ---- | ---- | ----------------------------------- |
-| errCode | number        | Yes  | No  | Error code.                           |
-| code    | number        | Yes  | No  | Message code.                         |
-| data    | [MessageParcel](#messageparceldeprecated) | Yes  | No  | **MessageParcel** object sent to the remote process.|
-| reply   | [MessageParcel](#messageparceldeprecated) | Yes  | No  | **MessageParcel** object returned by the remote process.  |
+  | Name   | Type         | Readable| Writable| Description                               |
+  | ------- | ------------- | ---- | ---- | ----------------------------------- |
+  | errCode | number        | Yes  | No  | Error code.                           |
+  | code    | number        | Yes  | No  | Message code.                         |
+  | data    | [MessageParcel](#messageparceldeprecated) | Yes  | No  | **MessageParcel** object sent to the remote process.|
+  | reply   | [MessageParcel](#messageparceldeprecated) | Yes  | No  | **MessageParcel** object returned by the remote process.  |
 
 ## IRemoteObject
 
@@ -6588,9 +6613,9 @@ Obtains the string of the interface descriptor.
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description                |
-| ---------- | ------ | ---- | -------------------- |
-| descriptor | string | Yes  | Interface descriptor.|
+  | Name    | Type  | Mandatory| Description                |
+  | ---------- | ------ | ---- | -------------------- |
+  | descriptor | string | Yes  | Interface descriptor.|
 
 **Return value**
 
@@ -6602,25 +6627,27 @@ Obtains the string of the interface descriptor.
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The string length exceeds 40960 bytes; <br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The string length exceeds 40960 bytes; <br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
 
 ### queryLocalInterface<sup>(deprecated)</sup>
-
->**NOTE**<br>This API is deprecated since API version 9. Use [getLocalInterface](#getlocalinterface9) instead.
 
 queryLocalInterface(descriptor: string): IRemoteBroker
 
 Queries the string of the interface descriptor.
 
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is deprecated since API version 9. Use [getLocalInterface](#getlocalinterface9) instead.
+
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description                |
-| ---------- | ------ | ---- | -------------------- |
-| descriptor | string | Yes  | Interface descriptor.|
+  | Name    | Type  | Mandatory| Description                |
+  | ---------- | ------ | ---- | -------------------- |
+  | descriptor | string | Yes  | Interface descriptor.|
 
 **Return value**
 
@@ -6630,28 +6657,30 @@ Queries the string of the interface descriptor.
 
 ### sendRequest<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is deprecated since API version 8. Use [sendMessageRequest](#sendmessagerequest9) instead.
-
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
 Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message does not contain any content. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
+
+> **NOTE**<br/>
+>
+> This API is deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name | Type                                     | Mandatory| Description                                                                                  |
-| ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-| code    | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
-| reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
-| options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | Name | Type                                     | Mandatory| Description                                                                                  |
+  | ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
+  | reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
+  | options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
-| Type   | Description                            |
-| ------- | -------------------------------- |
-| boolean | Returns **true** if the message is sent successfully; returns **false** otherwise.|
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
+  | boolean | Returns **true** if the message is sent successfully; returns **false** otherwise.|
 
 ### sendMessageRequest<sup>9+</sup>
 
@@ -6663,45 +6692,47 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 **Parameters**
 
-| Name | Type                                | Mandatory| Description                                                                                  |
-| ------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
-| code    | number                               | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
-| reply   | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
-| options | [MessageOption](#messageoption)      | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | Name | Type                                | Mandatory| Description                                                                                  |
+  | ------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                               | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
+  | reply   | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
+  | options | [MessageOption](#messageoption)      | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
-| Type                        | Description                                     |
-| ---------------------------- | ----------------------------------------- |
-| Promise&lt;[RequestResult](#requestresult9)&gt; | Promise used to return the **requestResult** object.|
+  | Type                        | Description                                     |
+  | ---------------------------- | ----------------------------------------- |
+  | Promise&lt;[RequestResult](#requestresult9)&gt; | Promise used to return a **requestResult** instance.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain the passed object instance. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain the passed object instance. |
 
 ### sendRequest<sup>(deprecated)</sup>
-
->**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9) instead.
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
 Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
+> **NOTE**<br/>
+>
+> This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9) instead.
+
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name | Type                                     | Mandatory| Description                                                                                  |
-| ------- | ----------------------------------------  | ---- | -------------------------------------------------------------------------------------- |
-| code    | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
-| reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
-| options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | Name | Type                                     | Mandatory| Description                                                                                  |
+  | ------- | ----------------------------------------  | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
+  | reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
+  | options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
@@ -6719,29 +6750,31 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 **Parameters**
 
-| Name  | Type                                | Mandatory| Description                                                                                  |
-| -------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
-| code     | number                               | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data     | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
-| reply    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
-| options  | [MessageOption](#messageoption)      | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
-| callback | AsyncCallback&lt;[RequestResult](#requestresult9)&gt;   | Yes  | Callback for receiving the sending result.                                                                  |
+  | Name  | Type                                | Mandatory| Description                                                                                  |
+  | -------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
+  | code     | number                               | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data     | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
+  | reply    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
+  | options  | [MessageOption](#messageoption)      | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | callback | AsyncCallback&lt;[RequestResult](#requestresult9)&gt;   | Yes  | Callback for receiving the sending result.                                                                  |
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain the passed object instance. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain the passed object instance. |
 
 ### sendRequest<sup>(deprecated)</sup>
-
->**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9-1) instead.
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
 Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to **sendRequest** is returned, and the reply message contains the returned information.
+
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9-1) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6759,48 +6792,50 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
-Registers a callback for receiving death notifications of the remote object. This callback will be called if the remote object process matching the **RemoteProxy** object is killed.
+Registers a callback for receiving death notifications of the remote object. This method is called if the remote object process matching the **RemoteProxy** object is killed.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name   | Type                             | Mandatory| Description          |
-| --------- | --------------------------------- | ---- | -------------- |
-| recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to register.|
-| flags     | number                            | Yes  | Flag of the death notification.|
+  | Name   | Type                             | Mandatory| Description          |
+  | --------- | --------------------------------- | ---- | -------------- |
+  | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to register.|
+  | flags     | number                            | Yes  | Flag of the death notification.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The callback used to receive remote object death notifications is empty. |
-| 1900008  | The proxy or remote object is invalid. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The callback used to receive remote object death notifications is empty. |
+  | 1900008  | The proxy or remote object is invalid. |
 
-### addDeathrecipient<sup>(deprecated)</sup>
-
->**NOTE**<br>This API is deprecated since API version 9. Use [registerDeathRecipient](#registerdeathrecipient9) instead.
+### addDeathRecipient<sup>(deprecated)</sup>
 
 addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 Adds a callback for receiving death notifications of the remote object. This method is called if the remote object process matching the **RemoteProxy** object is killed.
 
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is deprecated since API version 9. Use [registerDeathRecipient](#registerdeathrecipient9) instead.
+
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name   | Type                             | Mandatory| Description          |
-| --------- | --------------------------------- | ---- | -------------- |
-| recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to add.|
-| flags     | number                            | Yes  | Flag of the death notification.|
+  | Name   | Type                             | Mandatory| Description          |
+  | --------- | --------------------------------- | ---- | -------------- |
+  | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to register.|
+  | flags     | number                            | Yes  | Flag of the death notification.|
 
 **Return value**
 
-| Type   | Description                                    |
-| ------- | ---------------------------------------- |
-| boolean | Returns **true** if the callback is added successfully; returns **false** otherwise.|
+  | Type   | Description                                    |
+  | ------- | ---------------------------------------- |
+  | boolean | Returns **true** if the callback is added successfully; returns **false** otherwise.|
 
 ### unregisterDeathRecipient<sup>9+</sup>
 
@@ -6812,42 +6847,44 @@ Unregisters the callback used to receive death notifications of the remote objec
 
 **Parameters**
 
-| Name   | Type                             | Mandatory| Description          |
-| --------- | --------------------------------- | ---- | -------------- |
-| recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to unregister.|
-| flags     | number                            | Yes  | Flag of the death notification.|
+  | Name   | Type                             | Mandatory| Description          |
+  | --------- | --------------------------------- | ---- | -------------- |
+  | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to unregister.|
+  | flags     | number                            | Yes  | Flag of the death notification.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The callback used to receive remote object death notifications is empty. |
-| 1900008  | The proxy or remote object is invalid. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The callback used to receive remote object death notifications is empty. |
+  | 1900008  | The proxy or remote object is invalid. |
 
 ### removeDeathRecipient<sup>(deprecated)</sup>
-
->**NOTE**<br>This API is deprecated since API version 9. Use [unregisterDeathRecipient](#unregisterdeathrecipient9) instead.
 
 removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 Removes the callback used to receive death notifications of the remote object.
 
+> **NOTE**<br/>
+>
+> This API is deprecated since API version 9. Use [unregisterDeathRecipient](#unregisterdeathrecipient9) instead.
+
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name   | Type                             | Mandatory| Description          |
-| --------- | --------------------------------- | ---- | -------------- |
-| recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to remove.|
-| flags     | number                            | Yes  | Flag of the death notification.|
+  | Name   | Type                             | Mandatory| Description          |
+  | --------- | --------------------------------- | ---- | -------------- |
+  | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to unregister.|
+  | flags     | number                            | Yes  | Flag of the death notification.|
 
 **Return value**
 
-| Type   | Description                                    |
-| ------- | -----------------------------------------|
-| boolean | Returns **true** if the callback is removed; returns **false** otherwise.|
+  | Type   | Description                                    |
+  | ------- | -----------------------------------------|
+  | boolean | Returns **true** if the callback is removed; returns **false** otherwise.|
 
 ### getDescriptor<sup>9+</sup>
 
@@ -6859,33 +6896,35 @@ Obtains the interface descriptor (which is a string) of this object.
 
 **Return value**
 
-| Type  | Description            |
-| ------ | ---------------- |
-| string | Interface descriptor obtained.|
+  | Type  | Description            |
+  | ------ | ---------------- |
+  | string | Interface descriptor obtained.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 1900008  | The proxy or remote object is invalid. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 1900008  | The proxy or remote object is invalid. |
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
-
->**NOTE**<br>This API is deprecated since API version 9. Use [getDescriptor](#getdescriptor9) instead.
 
 getInterfaceDescriptor(): string
 
 Obtains the interface descriptor (which is a string) of this object.
 
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is deprecated since API version 9. Use [getDescriptor](#getdescriptor9) instead.
+
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
 
-| Type  | Description            |
-| ------ | ---------------- |
-| string | Interface descriptor obtained.|
+  | Type  | Description            |
+  | ------ | ---------------- |
+  | string | Interface descriptor obtained.|
 
 ### isObjectDead
 
@@ -6897,48 +6936,53 @@ Checks whether this object is dead.
 
 **Return value**
 
-| Type   | Description                              |
-| ------- | ---------------------------------- |
-| boolean | Returns **true** if the object is dead; returns **false** otherwise.|
+  | Type   | Description                              |
+  | ------- | ---------------------------------- |
+  | boolean | Returns **true** if the object is dead; returns **false** otherwise.|
 
 ## RemoteProxy
 
 Provides APIs to implement **IRemoteObject**.
 
+### Properties
+
 **System capability**: SystemCapability.Communication.IPC.Core
 
-| Name                 | Value                     | Description                             |
-| --------------------- | ----------------------- | --------------------------------- |
-| PING_TRANSACTION      | 1599098439 (0x5f504e47) | Internal instruction code used to test whether the IPC service is normal.|
-| DUMP_TRANSACTION      | 1598311760 (0x5f444d50) | Internal instruction code used to obtain the internal status of the binder. |
-| INTERFACE_TRANSACTION | 1598968902 (0x5f4e5446) | Internal instruction code used to obtain the remote interface token. |
-| MIN_TRANSACTION_ID    | 1 (0x00000001)          | Minimum valid instruction code.                 |
-| MAX_TRANSACTION_ID    | 16777215 (0x00FFFFFF)   | Maximum valid instruction code.                 |
+  | Name                 | Type  | Readable | Writable| Description                                    |
+  | --------------------- | -------| ------|------|------------------------------------------ |
+  | PING_TRANSACTION      | number | Yes   | No  | Internal instruction code used to test whether the IPC service is normal.    |
+  | DUMP_TRANSACTION      | number | Yes   | No  | Internal instruction code used to obtain IPC service status information.  |
+  | INTERFACE_TRANSACTION | number | Yes   | No  | Internal instruction code used to obtain the remote interface token.         |
+  | MIN_TRANSACTION_ID    | number | Yes   | No  | Minimum valid instruction code.                         |
+  | MAX_TRANSACTION_ID    | number | Yes   | No  | Maximum valid instruction code.                         |
+
 
 ### sendRequest<sup>(deprecated)</sup>
-
->**NOTE**<br>This API is deprecated since API version 8. Use [sendMessageRequest](#sendmessagerequest9-2) instead.
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
 Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is deprecated since API version 8. Use [sendMessageRequest](#sendmessagerequest9-2) instead.
+
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name | Type                                     | Mandatory| Description                                                                                  |
-| ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-| code    | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
-| reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
-| options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | Name | Type                                     | Mandatory| Description                                                                                  |
+  | ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
+  | reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
+  | options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
-| Type   | Description                            |
-| ------- | ---------------------------------|
-| boolean | Returns **true** if the message is sent successfully; returns **false** otherwise.|
+  | Type   | Description                            |
+  | ------- | ---------------------------------|
+  | boolean | Returns **true** if the message is sent successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -6975,7 +7019,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendRequest()** of the proxy object is called to send a message.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendRequest()** of the proxy object is called to send a message.
 
   ```ts
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -7010,27 +7054,27 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 **Parameters**
 
-| Name | Type                                | Mandatory| Description                                                                                  |
-| ------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
-| code    | number                               | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
-| reply   | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
-| options | [MessageOption](#messageoption)      | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | Name | Type                                | Mandatory| Description                                                                                  |
+  | ------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                               | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
+  | reply   | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
+  | options | [MessageOption](#messageoption)      | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
-| Type                        | Description                                     |
-| ---------------------------- | ----------------------------------------- |
-| Promise&lt;[RequestResult](#requestresult9)&gt; | Promise used to return a **requestResult** instance.|
+  | Type                        | Description                                     |
+  | ---------------------------- | ----------------------------------------- |
+  | Promise&lt;[RequestResult](#requestresult9)&gt; | Promise used to return a **requestResult** instance.|
 
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain the passed object instance. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain the passed object instance. |
 
 **Example**
 
@@ -7067,7 +7111,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
 
   ```ts
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -7101,22 +7145,24 @@ The proxy object in the **onConnect** callback can be assigned a value only afte
 
 ### sendRequest<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9-2) instead.
-
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
 Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
+
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9-2) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name | Type                                     | Mandatory| Description                                                                                  |
-| ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-| code    | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
-| reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
-| options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | Name | Type                                     | Mandatory| Description                                                                                  |
+  | ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
+  | reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
+  | options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
@@ -7159,7 +7205,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendRequest()** of the proxy object is called to send a message.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendRequest()** of the proxy object is called to send a message.
 
   ```ts
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -7202,22 +7248,22 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 **Parameters**
 
-| Name  | Type                                | Mandatory| Description                                                                                  |
-| -------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
-| code     | number                               | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data     | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
-| reply    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
-| options  | [MessageOption](#messageoption)      | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
-| callback | AsyncCallback&lt;[RequestResult](#requestresult9)&gt;   | Yes  | Callback for receiving the sending result.                                                                  |
+  | Name  | Type                                | Mandatory| Description                                                                                  |
+  | -------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
+  | code     | number                               | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data     | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
+  | reply    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
+  | options  | [MessageOption](#messageoption)      | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | callback | AsyncCallback&lt;[RequestResult](#requestresult9)&gt;   | Yes  | Callback for receiving the sending result.                                                                  |
 
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain the passed object instance. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain the passed object instance. |
 
 **Example**
 
@@ -7269,7 +7315,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
 
   ```ts
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -7293,11 +7339,13 @@ The proxy object in the **onConnect** callback can be assigned a value only afte
 
 ### sendRequest<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9-3) instead.
-
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
 Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to **sendRequest** is returned, and the reply message contains the returned information.
+
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9-3) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7361,7 +7409,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendRequest()** of the proxy object is called to send a message.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendRequest()** of the proxy object is called to send a message.
 
   ```ts
   let option = new rpc.MessageOption();
@@ -7384,9 +7432,9 @@ Obtains the **LocalInterface** object of an interface token.
 
 **Parameters**
 
-| Name   | Type  | Mandatory| Description                  |
-| --------- | ------ | ---- | ---------------------- |
-| interface | string | Yes  | Interface descriptor.|
+  | Name   | Type  | Mandatory| Description                  |
+  | --------- | ------ | ---- | ---------------------- |
+  | interface | string | Yes  | Interface descriptor.|
 
 **Return value**
 
@@ -7398,10 +7446,10 @@ Obtains the **LocalInterface** object of an interface token.
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | check param failed |
-| 1900006  | Operation allowed only for the remote object. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | check param failed |
+  | 1900006  | Operation allowed only for the remote object. |
 
 **Example**
 
@@ -7438,7 +7486,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getLocalInterface()** of the proxy object is called to obtain the interface descriptor.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getLocalInterface()** of the proxy object is called to obtain the interface descriptor.
 
   ```ts
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -7458,19 +7506,21 @@ The proxy object in the **onConnect** callback can be assigned a value only afte
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is deprecated since API version 9. Use [getLocalInterface](#getlocalinterface9-1) instead.
-
 queryLocalInterface(interface: string): IRemoteBroker
 
 Obtains the **LocalInterface** object of an interface token.
+
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is deprecated since API version 9. Use [getLocalInterface](#getlocalinterface9-1) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name   | Type  | Mandatory| Description                  |
-| --------- | ------ | ---- | ---------------------- |
-| interface | string | Yes  | Interface descriptor.|
+  | Name   | Type  | Mandatory| Description                  |
+  | --------- | ------ | ---- | ---------------------- |
+  | interface | string | Yes  | Interface descriptor.|
 
 **Return value**
 
@@ -7513,7 +7563,7 @@ Obtains the **LocalInterface** object of an interface token.
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **queryLocalInterface()** of the proxy object is called to obtain the interface descriptor.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **queryLocalInterface()** of the proxy object is called to obtain the interface descriptor.
 
   ```ts
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -7528,25 +7578,25 @@ The proxy object in the **onConnect** callback can be assigned a value only afte
 
 registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
-Registers a callback for receiving death notifications of the remote object. This callback will be called if the remote object process matching the **RemoteProxy** object is killed.
+Registers a callback for receiving death notifications of the remote object. This method is called if the remote object process matching the **RemoteProxy** object is killed.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name   | Type                             | Mandatory| Description          |
-| --------- | --------------------------------- | ---- | -------------- |
-| recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to register.|
-| flags     | number                            | Yes  | Flag of the death notification.|
+  | Name   | Type                             | Mandatory| Description          |
+  | --------- | --------------------------------- | ---- | -------------- |
+  | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to register.|
+  | flags     | number                            | Yes  | Flag of the death notification.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The callback used to receive remote object death notifications is empty. |
-| 1900008  | The proxy or remote object is invalid. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The callback used to receive remote object death notifications is empty. |
+  | 1900008  | The proxy or remote object is invalid. |
 
 **Example**
 
@@ -7583,7 +7633,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **registerDeathRecipient()** of the proxy object is called to register a callback for receiving the death notification of the remote object.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **registerDeathRecipient()** of the proxy object is called to register a callback for receiving the death notification of the remote object.
 
   ```ts
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -7608,26 +7658,28 @@ The proxy object in the **onConnect** callback can be assigned a value only afte
 
 ### addDeathRecipient<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is deprecated since API version 9. Use [registerDeathRecipient](#registerdeathrecipient9-1) instead.
-
 addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 Adds a callback for receiving the death notifications of the remote object, including the death notifications of the remote proxy.
+
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is deprecated since API version 9. Use [registerDeathRecipient](#registerdeathrecipient9-1) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name   | Type                             | Mandatory| Description                             |
-| --------- | --------------------------------- | ---- | --------------------------------- |
-| recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to add.         |
-| flags     | number                            | Yes  | Flag of the death notification. This parameter is reserved. It is set to **0**.|
+  | Name   | Type                             | Mandatory| Description                             |
+  | --------- | --------------------------------- | ---- | --------------------------------- |
+  | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to add.         |
+  | flags     | number                            | Yes  | Flag of the death notification. This parameter is reserved. It is set to **0**.|
 
 **Return value**
 
-| Type   | Description                                    |
-| ------- | ---------------------------------------- |
-| boolean | Returns **true** if the callback is added successfully; returns **false** otherwise.|
+  | Type   | Description                                    |
+  | ------- | ---------------------------------------- |
+  | boolean | Returns **true** if the callback is added successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -7664,7 +7716,7 @@ Adds a callback for receiving the death notifications of the remote object, incl
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **addDeathRecipient()** of the proxy object is called to add a callback for receiving the death notification of the remove object.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **addDeathRecipient()** of the proxy object is called to add a callback for receiving the death notification of the remove object.
 
   ```ts
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -7690,19 +7742,19 @@ Unregisters the callback used to receive death notifications of the remote objec
 
 **Parameters**
 
-| Name   | Type                             | Mandatory| Description          |
-| --------- | --------------------------------- | ---- | -------------- |
-| recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to unregister.|
-| flags     | number                            | Yes  | Flag of the death notification.|
+  | Name   | Type                             | Mandatory| Description          |
+  | --------- | --------------------------------- | ---- | -------------- |
+  | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to unregister.|
+  | flags     | number                            | Yes  | Flag of the death notification.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The callback used to receive remote object death notifications is empty. |
-| 1900008  | The proxy or remote object is invalid. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The callback used to receive remote object death notifications is empty. |
+  | 1900008  | The proxy or remote object is invalid. |
 
 **Example**
 
@@ -7739,7 +7791,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **unregisterDeathRecipient()** of the proxy object is called to unregister the callback for receiving the death notification of the remote object.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **unregisterDeathRecipient()** of the proxy object is called to unregister the callback for receiving the death notification of the remote object.
 
   ```ts
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -7765,26 +7817,28 @@ The proxy object in the **onConnect** callback can be assigned a value only afte
 
 ### removeDeathRecipient<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is deprecated since API version 9. Use [unregisterDeathRecipient](#unregisterdeathrecipient9-1) instead.
-
 removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 Removes the callback used to receive death notifications of the remote object.
+
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is deprecated since API version 9. Use [unregisterDeathRecipient](#unregisterdeathrecipient9-1) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name   | Type                             | Mandatory| Description                             |
-| --------- | --------------------------------- | ---- | --------------------------------- |
-| recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to remove.               |
-| flags     | number                            | Yes  | Flag of the death notification. This parameter is reserved. It is set to **0**.|
+  | Name   | Type                             | Mandatory| Description                             |
+  | --------- | --------------------------------- | ---- | --------------------------------- |
+  | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to remove.               |
+  | flags     | number                            | Yes  | Flag of the death notification. This parameter is reserved. It is set to **0**.|
 
 **Return value**
 
-| Type   | Description                                    |
-| ------- | ---------------------------------------- |
-| boolean | Returns **true** if the callback is removed; returns **false** otherwise.|
+  | Type   | Description                                    |
+  | ------- | ---------------------------------------- |
+  | boolean | Returns **true** if the callback is removed; returns **false** otherwise.|
 
 **Example**
 
@@ -7821,7 +7875,7 @@ Removes the callback used to receive death notifications of the remote object.
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **removeDeathRecipient()** of the proxy object is called to remove the callback used to receive the death notification of the remote object.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **removeDeathRecipient()** of the proxy object is called to remove the callback used to receive the death notification of the remote object.
 
   ```ts
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -7848,18 +7902,18 @@ Obtains the interface descriptor (which is a string) of this object.
 
 **Return value**
 
-| Type  | Description            |
-| ------ | ---------------- |
-| string | Interface descriptor obtained.|
+  | Type  | Description            |
+  | ------ | ---------------- |
+  | string | Interface descriptor obtained.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 1900007  | communication failed.              |
-| 1900008  | The proxy or remote object is invalid. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 1900007  | communication failed.              |
+  | 1900008  | The proxy or remote object is invalid. |
 
 **Example**
 
@@ -7895,7 +7949,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   // Save the connection ID, which will be used for the subsequent service disconnection.
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getDescriptor()** of the proxy object is called to obtain the interface descriptor of the object.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getDescriptor()** of the proxy object is called to obtain the interface descriptor of the object.
 
   ```ts
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -7915,19 +7969,21 @@ The proxy object in the **onConnect** callback can be assigned a value only afte
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is deprecated since API version 9. Use [getDescriptor](#getdescriptor9-1) instead.
-
 getInterfaceDescriptor(): string
 
 Obtains the interface descriptor of this proxy object.
+
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is deprecated since API version 9. Use [getDescriptor](#getdescriptor9-1) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
 
-| Type  | Description              |
-| ------ | ------------------ |
-| string | Interface descriptor obtained.|
+  | Type  | Description              |
+  | ------ | ------------------ |
+  | string | Interface descriptor obtained.|
 
 **Example**
 
@@ -7964,7 +8020,7 @@ Obtains the interface descriptor of this proxy object.
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getInterfaceDescriptor()** of the proxy object is called to obtain the interface descriptor of the current proxy object.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getInterfaceDescriptor()** of the proxy object is called to obtain the interface descriptor of the current proxy object.
 
   ```ts
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -7985,9 +8041,9 @@ Checks whether the **RemoteObject** is dead.
 
 **Return value**
 
-| Type   | Description                                             |
-| ------- | ------------------------------------------------- |
-| boolean | Returns **true** if **RemoteObject** is dead; returns **false** otherwise.|
+  | Type   | Description                                             |
+  | ------- | ------------------------------------------------- |
+  | boolean | Returns **true** if **RemoteObject** is dead; returns **false** otherwise.|
 
 **Example**
 
@@ -8024,7 +8080,7 @@ Checks whether the **RemoteObject** is dead.
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **isObjectDead()** of the proxy object is called to check whether this object is dead.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **isObjectDead()** of the proxy object is called to check whether this object is dead.
 
   ```ts
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -8039,14 +8095,16 @@ The proxy object in the **onConnect** callback can be assigned a value only afte
 
 Defines the options used to construct the **MessageOption** object.
 
+### Properties
+
 **System capability**: SystemCapability.Communication.IPC.Core
 
-| Name         | Value       | Description                                                       |
-| ------------- | --------- | ----------------------------------------------------------- |
-| TF_SYNC       | 0 (0x00)  | Synchronous call.                                             |
-| TF_ASYNC      | 1 (0x01)  | Asynchronous call.                                             |
-| TF_ACCEPT_FDS | 16 (0x10) | Indication to **sendMessageRequest<sup>9+</sup>** for returning the file descriptor.|
-| TF_WAIT_TIME  | 8 (0x8)   | RPC wait time, in seconds. This parameter cannot be used in IPC.                                    |
+  | Name         | Type  | Readable | Writable | Description                                                                     |
+  | ------------- | ------ | ----- | ----- | ------------------------------------------------------------------------ |
+  | TF_SYNC       | number | Yes   | No   | Synchronous call.                                                           |
+  | TF_ASYNC      | number | Yes   | No   | Asynchronous call.                                                           |
+  | TF_ACCEPT_FDS | number | Yes   | No   | Indication to **sendMessageRequest<sup>9+</sup>** for passing the file descriptor.              |
+  | TF_WAIT_TIME  | number | Yes   | Yes   | RPC wait time, in seconds. This parameter cannot be used in IPC. The default waiting time is 8 seconds. You are advised not to change the waiting time.|
 
 ### constructor<sup>9+</sup>
 
@@ -8082,10 +8140,10 @@ A constructor used to create a **MessageOption** object.
 
 **Parameters**
 
-| Name   | Type  | Mandatory| Description                                         |
-| --------- | ------ | ---- | --------------------------------------------- |
-| syncFlags | number | No  | Call flag, which can be synchronous or asynchronous. The default value is **synchronous**.       |
-| waitTime  | number | No  | Maximum wait time for an RPC call. The default value is **TF_WAIT_TIME**.|
+  | Name   | Type  | Mandatory| Description                                         |
+  | --------- | ------ | ---- | --------------------------------------------- |
+  | syncFlags | number | No  | Call flag, which can be synchronous or asynchronous. The default value is **synchronous**.       |
+  | waitTime  | number | No  | Maximum wait time for an RPC call. The default value is **TF_WAIT_TIME**.|
 
 **Example**
 
@@ -8106,9 +8164,9 @@ Checks whether **SendMessageRequest** is called synchronously or asynchronously.
 
 **Return value**
 
-| Type   | Description                                    |
-| ------- | ---------------------------------------- |
-| boolean | Returns **true** if **SendMessageRequest** is called asynchronously; returns **false** if it is called synchronously.|
+  | Type   | Description                                    |
+  | ------- | ---------------------------------------- |
+  | boolean | Returns **true** if **SendMessageRequest** is called asynchronously; returns **false** if it is called synchronously.|
 
 **Example**
 
@@ -8121,7 +8179,7 @@ Checks whether **SendMessageRequest** is called synchronously or asynchronously.
 
 setAsync(async: boolean): void
 
-Sets the calling flag in **SendMessageRequest**.
+Sets whether **SendMessageRequest** is called synchronously or asynchronously.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -8151,9 +8209,9 @@ Obtains the call flag, which can be synchronous or asynchronous.
 
 **Return value**
 
-| Type  | Description                                |
-| ------ | ------------------------------------ |
-| number | Call mode obtained.|
+  | Type  | Description                                |
+  | ------ | ------------------------------------ |
+  | number | Call mode obtained.|
 
 **Example**
 
@@ -8184,9 +8242,9 @@ Sets the call flag, which can be synchronous or asynchronous.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                    |
-| ------ | ------ | ---- | ------------------------ |
-| flags  | number | Yes  | Call flag to set.|
+  | Name| Type  | Mandatory| Description                    |
+  | ------ | ------ | ---- | ------------------------ |
+  | flags  | number | Yes  | Call flag to set.|
 
 **Example**
 
@@ -8214,9 +8272,9 @@ Obtains the maximum wait time for this RPC call.
 
 **Return value**
 
-| Type  | Description             |
-| ------ | ----------------- |
-| number | Maximum wait time obtained.|
+  | Type  | Description             |
+  | ------ | ----------------- |
+  | number | Maximum wait time obtained.|
 
 **Example**
 
@@ -8245,9 +8303,9 @@ Sets the maximum wait time for this RPC call.
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description                 |
-| -------- | ------ | ---- | --------------------- |
-| waitTime | number | Yes  | Maximum wait time to set. The upper limit is 3000 seconds.|
+  | Name  | Type  | Mandatory| Description                 |
+  | -------- | ------ | ---- | --------------------- |
+  | waitTime | number | Yes  | Maximum wait time to set. The upper limit is 3000 seconds.|
 
 **Example**
 
@@ -8278,9 +8336,9 @@ Obtains the system capability manager. This API is a static method.
 
 **Return value**
 
-| Type                           | Description                |
-| ------------------------------- | -------------------- |
-| [IRemoteObject](#iremoteobject) | System capability manager obtained.|
+  | Type                           | Description                |
+  | ------------------------------- | -------------------- |
+  | [IRemoteObject](#iremoteobject) | System capability manager obtained.|
 
 **Example**
 
@@ -8301,9 +8359,9 @@ Obtains the PID of the caller. This API is a static method, which is invoked by 
 
 **Return value**
 
-| Type  | Description             |
-| ------ | ----------------- |
-| number | PID of the caller.|
+  | Type  | Description             |
+  | ------ | ----------------- |
+  | number | PID of the caller.|
 
 **Example**
 
@@ -8329,9 +8387,9 @@ Obtains the UID of the caller. This API is a static method, which is invoked by 
 
 **Return value**
 
-| Type  | Description             |
-| ------ | ----------------- |
-| number | UID of the caller.|
+  | Type  | Description             |
+  | ------ | ----------------- |
+  | number | UID of the caller.|
 
 **Example**
 
@@ -8357,9 +8415,9 @@ Obtains the caller's token ID, which is used to verify the caller identity.
 
 **Return value**
 
-| Type  | Description                 |
-| ------ | --------------------- |
-| number | Token ID of the caller obtained.|
+   | Type  | Description                 |
+   | ------ | --------------------- |
+   | number | Token ID of the caller obtained.|
 
 **Example**
 
@@ -8385,9 +8443,9 @@ Obtains the ID of the device hosting the caller's process. This API is a static 
 
 **Return value**
 
-| Type  | Description                        |
-| ------ | ---------------------------- |
-| string | Device ID obtained.|
+  | Type  | Description                        |
+  | ------ | ---------------------------- |
+  | string | Device ID obtained.|
 
 **Example**
 
@@ -8413,9 +8471,9 @@ Obtains the local device ID. This API is a static method.
 
 **Return value**
 
-| Type  | Description              |
-| ------ | ------------------ |
-| string | Local device ID obtained.|
+  | Type  | Description              |
+  | ------ | ------------------ |
+  | string | Local device ID obtained.|
 
 **Example**
 
@@ -8441,9 +8499,9 @@ Checks whether the peer process is a process of the local device. This API is a 
 
 **Return value**
 
-| Type   | Description                                              |
-| ------- | -------------------------------------------------- |
-| boolean | Returns **true** if the local and peer processes are on the same device; returns **false** otherwise.|
+  | Type   | Description                                              |
+  | ------- | -------------------------------------------------- |
+  | boolean | Returns **true** if the local and peer processes are on the same device; returns **false** otherwise.|
 
 **Example**
 
@@ -8469,17 +8527,17 @@ Flushes all suspended commands from the specified **RemoteProxy** to the corresp
 
 **Parameters**
 
-| Name| Type                           | Mandatory| Description               |
-| ------ | ------------------------------- | ---- | ------------------- |
-| object | [IRemoteObject](#iremoteobject) | Yes  | **RemoteProxy** specified. |
+  | Name| Type                           | Mandatory| Description               |
+  | ------ | ------------------------------- | ---- | ------------------- |
+  | object | [IRemoteObject](#iremoteobject) | Yes  | **RemoteProxy** specified. |
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
 
 **Example**
 
@@ -8504,25 +8562,27 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### flushCommands<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is deprecated since API version 9. Use [flushCmdBuffer](#flushcmdbuffer9) instead.
-
 static flushCommands(object: IRemoteObject): number
 
 Flushes all suspended commands from the specified **RemoteProxy** to the corresponding **RemoteObject**. This API is a static method. You are advised to call this API before performing any sensitive operation.
+
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is deprecated since API version 9. Use [flushCmdBuffer](#flushcmdbuffer9) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name| Type                           | Mandatory| Description               |
-| ------ | ------------------------------- | ---- | ------------------- |
-| object | [IRemoteObject](#iremoteobject) | Yes  | **RemoteProxy** specified. |
+  | Name| Type                           | Mandatory| Description               |
+  | ------ | ------------------------------- | ---- | ------------------- |
+  | object | [IRemoteObject](#iremoteobject) | Yes  | **RemoteProxy** specified. |
 
 **Return value**
 
-| Type  | Description                                                                             |
-| ------ | --------------------------------------------------------------------------------- |
-| number | Returns **0** if the operation is successful; returns an error code if the input object is null or a **RemoteObject**, or if the operation fails.|
+  | Type  | Description                                                                             |
+  | ------ | --------------------------------------------------------------------------------- |
+  | number | Returns **0** if the operation is successful; returns an error code if the input object is null or a **RemoteObject**, or if the operation fails.|
 
 **Example**
 
@@ -8563,9 +8623,9 @@ Resets the UID and PID of the remote user to those of the local user. This API i
 
 **Return value**
 
-| Type  | Description                                |
-| ------ | ------------------------------------ |
-| string | String containing the UID and PID of the remote user.|
+  | Type  | Description                                |
+  | ------ | ------------------------------------ |
+  | string | String containing the UID and PID of the remote user.|
 
 **Example**
 
@@ -8591,17 +8651,17 @@ Restores the UID and PID of the remote user. This API is a static method. It is 
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description                                                              |
-| -------- | ------ | ---- | ------------------------------------------------------------------ |
-| identity | string | Yes  | String containing the remote user's UID and PID, which are returned by **resetCallingIdentity**.|
+  | Name  | Type  | Mandatory| Description                                                              |
+  | -------- | ------ | ---- | ------------------------------------------------------------------ |
+  | identity | string | Yes  | String containing the remote user's UID and PID, which are returned by **resetCallingIdentity**.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The string length exceeds 40960 bytes; <br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The string length exceeds 40960 bytes; <br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
 
 **Example**
 
@@ -8620,25 +8680,27 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### setCallingIdentity<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is deprecated since API version 9. Use [restoreCallingIdentity](#restorecallingidentity9) instead.
-
 static setCallingIdentity(identity: string): boolean
 
 Sets the UID and PID of the remote user. This API is a static method. It is usually called after **resetCallingIdentity**, and the UID and PID of the remote user returned by **resetCallingIdentity** are required.
+
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is deprecated since API version 9. Use [restoreCallingIdentity](#restorecallingidentity9) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description                                                              |
-| -------- | ------ | ---- | ------------------------------------------------------------------ |
-| identity | string | Yes  | String containing the remote user's UID and PID, which are returned by **resetCallingIdentity**.|
+  | Name  | Type  | Mandatory| Description                                                              |
+  | -------- | ------ | ---- | ------------------------------------------------------------------ |
+  | identity | string | Yes  | String containing the remote user's UID and PID, which are returned by **resetCallingIdentity**.|
 
 **Return value**
 
-| Type   | Description                            |
-| ------- | ---------------------------------|
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type   | Description                            |
+  | ------- | ---------------------------------|
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -8670,34 +8732,45 @@ A constructor used to create a **RemoteObject** object.
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description        |
-| ---------- | ------ | ---- | ------------ |
-| descriptor | string | Yes  | Interface descriptor.|
+  | Name    | Type  | Mandatory| Description        |
+  | ---------- | ------ | ---- | ------------ |
+  | descriptor | string | Yes  | Interface descriptor.|
 
+**Example**
+
+  ```ts
+  class TestRemoteObject extends rpc.RemoteObject {
+    constructor(descriptor: string) {
+      super(descriptor);
+    }
+  }
+  ```
 ### sendRequest<sup>(deprecated)</sup>
-
->**NOTE**<br>This API is deprecated since API version 8. Use [sendMessageRequest](#sendmessagerequest9-4) instead.
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
 Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is deprecated since API version 8. Use [sendMessageRequest](#sendmessagerequest9-4) instead.
+
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name | Type                                     | Mandatory| Description                                                                                  |
-| ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-| code    | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
-| reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
-| options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | Name | Type                                     | Mandatory| Description                                                                                  |
+  | ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
+  | reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
+  | options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
-| Type   | Description                            |
-| ------- | -------------------------------- |
-| boolean | Returns **true** if the message is sent successfully; returns **false** otherwise.|
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
+  | boolean | Returns **true** if the message is sent successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -8752,12 +8825,12 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 **Parameters**
 
-| Name | Type                                | Mandatory| Description                                                                                  |
-| ------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
-| code    | number                               | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
-| reply   | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
-| options | [MessageOption](#messageoption)      | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | Name | Type                                | Mandatory| Description                                                                                  |
+  | ------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                               | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
+  | reply   | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
+  | options | [MessageOption](#messageoption)      | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
@@ -8770,9 +8843,9 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain the passed object instance. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain the passed object instance. |
 
 **Example**
 
@@ -8812,22 +8885,24 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### sendRequest<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9-4) instead.
-
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
 Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
+
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9-4) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name | Type                                     | Mandatory| Description                                                                                  |
-| ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-| code    | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
-| reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
-| options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | Name | Type                                     | Mandatory| Description                                                                                  |
+  | ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
+  | reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
+  | options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
@@ -8909,9 +8984,9 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain the passed object instance. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain the passed object instance. |
 
 **Example**
 
@@ -8947,13 +9022,15 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   testRemoteObject.sendMessageRequest(1, data, reply, option, sendRequestCallback);
   ```
 
-### sendRequest<sup>(deprecated)</sup>
-
->**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9-5) instead.
+### sendRequest<sup>(deprecated)</sup> 
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
 Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to **sendRequest** is returned, and the reply message contains the returned information.
+
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [sendMessageRequest](#sendmessagerequest9-5) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -9019,7 +9096,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 onRemoteMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): boolean | Promise\<boolean>
 
-> **NOTE**
+> **NOTE**<br/>
 >
 >* You are advised to overload **onRemoteMessageRequest** preferentially, which implements synchronous and asynchronous message processing.
 >* If both **onRemoteRequest()** and **onRemoteMessageRequest()** are overloaded, only the onRemoteMessageRequest() takes effect.
@@ -9030,19 +9107,19 @@ Called to return a response to **sendMessageRequest()**. The server processes th
 
 **Parameters**
 
-| Name| Type                                | Mandatory| Description                                     |
-| ------ | ------------------------------------ | ---- | ----------------------------------------- |
-| code   | number                               | Yes  | Service request code sent by the remote end.                   |
-| data   | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that holds the parameters called by the client.|
-| reply  | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object to which the result is written.          |
-| options | [MessageOption](#messageoption)      | Yes  | Whether the operation is synchronous or asynchronous.                 |
+  | Name| Type                                | Mandatory| Description                                     |
+  | ------ | ------------------------------------ | ---- | ----------------------------------------- |
+  | code   | number                               | Yes  | Service request code sent by the remote end.                   |
+  | data   | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that holds the parameters called by the client.|
+  | reply  | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object to which the result is written.          |
+  | options | [MessageOption](#messageoption)      | Yes  | Whether the operation is synchronous or asynchronous.                 |
 
 **Return value**
 
-| Type             | Description                                                                                           |
-| ----------------- | ----------------------------------------------------------------------------------------------- |
-| boolean           | Returns a Boolean value if the request is processed synchronously in **onRemoteMessageRequest**. The value **true** means the operation is successful; the value **false** means the opposite.|
-| Promise\<boolean> | Returns a promise object if the request is processed asynchronously in **onRemoteMessageRequest**.                                |
+  | Type             | Description                                                                                           |
+  | ----------------- | ----------------------------------------------------------------------------------------------- |
+  | boolean           | Returns a Boolean value if the request is processed synchronously in **onRemoteMessageRequest**. The value **true** means the operation is successful; the value **false** means the opposite.|
+  | Promise\<boolean> | Returns a promise object if the request is processed asynchronously in **onRemoteMessageRequest**.                                |
 
 **Example**: Overload **onRemoteMessageRequest** to process requests synchronously.
 
@@ -9159,28 +9236,30 @@ Called to return a response to **sendMessageRequest()**. The server processes th
 
 ### onRemoteRequest<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is deprecated since API version 9. Use [onRemoteMessageRequest](#onremotemessagerequest9) instead.
-
 onRemoteRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
 Called to return a response to **sendRequest()**. The server processes the request and returns a response in this function.
+
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is deprecated since API version 9. Use [onRemoteMessageRequest](#onremotemessagerequest9) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name| Type                                     | Mandatory| Description                                   |
-| ------ | ----------------------------------------- | ---- | --------------------------------------- |
-| code   | number                                    | Yes  | Service request code sent by the remote end.                 |
-| data   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that holds the parameters called by the client.|
-| reply  | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object carrying the result.          |
-| options | [MessageOption](#messageoption)           | Yes  | Whether the operation is synchronous or asynchronous.               |
+  | Name| Type                                     | Mandatory| Description                                   |
+  | ------ | ----------------------------------------- | ---- | --------------------------------------- |
+  | code   | number                                    | Yes  | Service request code sent by the remote end.                 |
+  | data   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that holds the parameters called by the client.|
+  | reply  | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object carrying the result.          |
+  | options | [MessageOption](#messageoption)           | Yes  | Whether the operation is synchronous or asynchronous.               |
 
 **Return value**
 
-| Type   | Description                            |
-| ------- | -------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -9226,9 +9305,9 @@ Obtains the UID of the remote process.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-| Type  | Description                   |
-| ------ | ----------------------- |
-| number | UID of the remote process obtained.|
+  | Type  | Description                   |
+  | ------ | ----------------------- |
+  | number | UID of the remote process obtained.|
 
 **Example**
 
@@ -9254,9 +9333,9 @@ Obtains the PID of the remote process.
 
 **Return value**
 
-| Type  | Description                   |
-| ------ | ----------------------- |
-| number | PID of the remote process obtained.|
+  | Type  | Description                   |
+  | ------ | ----------------------- |
+  | number | PID of the remote process obtained.|
 
 **Example**
 
@@ -9282,23 +9361,23 @@ Obtains the string of the interface descriptor.
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description                |
-| ---------- | ------ | ---- | -------------------- |
-| descriptor | string | Yes  | Interface descriptor.|
+  | Name    | Type  | Mandatory| Description                |
+  | ---------- | ------ | ---- | -------------------- |
+  | descriptor | string | Yes  | Interface descriptor.|
 
 **Return value**
 
-| Type         | Description                                         |
-| ------------- | --------------------------------------------- |
-| IRemoteBroker | **IRemoteBroker** object bound to the specified interface token.|
+  | Type         | Description                                         |
+  | ------------- | --------------------------------------------- |
+  | [IRemoteBroker](#iremotebroker) | **IRemoteBroker** object bound to the specified interface token.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The string length exceeds 40960 bytes; <br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The string length exceeds 40960 bytes; <br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
 
 **Example**
 
@@ -9341,25 +9420,27 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is deprecated since API version 9. Use [getLocalInterface](#getlocalinterface9-2) instead.
-
 queryLocalInterface(descriptor: string): IRemoteBroker
 
 Checks whether the remote object corresponding to the specified interface token exists.
+
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is deprecated since API version 9. Use [getLocalInterface](#getlocalinterface9-2) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description                  |
-| ---------- | ------ | ---- | ---------------------- |
-| descriptor | string | Yes  | Interface descriptor.|
+  | Name    | Type  | Mandatory| Description                  |
+  | ---------- | ------ | ---- | ---------------------- |
+  | descriptor | string | Yes  | Interface descriptor.|
 
 **Return value**
 
-| Type         | Description                                                              |
-| ------------- | ------------------------------------------------------------------ |
-| IRemoteBroker | Returns the remote object if a match is found; returns **Null** otherwise.|
+  | Type         | Description                                                              |
+  | ------------- | ------------------------------------------------------------------ |
+  | [IRemoteBroker](#iremotebroker) | Returns the remote object if a match is found; returns **Null** otherwise.|
 
 **Example**
 
@@ -9403,17 +9484,17 @@ Obtains the interface descriptor of this object. The interface descriptor is a s
 
 **Return value**
 
-| Type  | Description            |
-| ------ | ---------------- |
-| string | Interface descriptor obtained.|
+  | Type  | Description            |
+  | ------ | ---------------- |
+  | string | Interface descriptor obtained.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 1900008  | The proxy or remote object is invalid. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 1900008  | The proxy or remote object is invalid. |
 
 **Example**
 
@@ -9453,19 +9534,21 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is deprecated since API version 9. Use [getDescriptor](#getdescriptor9-2) instead.
-
 getInterfaceDescriptor(): string
 
 Obtains the interface descriptor.
+
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is deprecated since API version 9. Use [getDescriptor](#getdescriptor9-2) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
 
-| Type  | Description            |
-| ------ | ---------------- |
-| string | Interface descriptor obtained.|
+  | Type  | Description            |
+  | ------ | ---------------- |
+  | string | Interface descriptor obtained.|
 
 **Example**
 
@@ -9515,9 +9598,9 @@ Binds an interface descriptor to an **IRemoteBroker** object.
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The string length exceeds 40960 bytes; <br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The string length exceeds 40960 bytes; <br> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
 
 **Example**
 
@@ -9559,11 +9642,13 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### attachLocalInterface<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is deprecated since API version 9. Use [modifyLocalInterface](#modifylocalinterface9) instead.
-
 attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
 Binds an interface descriptor to an **IRemoteBroker** object.
+
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is deprecated since API version 9. Use [modifyLocalInterface](#modifylocalinterface9) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -9608,17 +9693,18 @@ Binds an interface descriptor to an **IRemoteBroker** object.
 ## Ashmem<sup>8+</sup>
 
 Provides methods related to anonymous shared memory objects, including creating, closing, mapping, and unmapping an **Ashmem** object, reading data from and writing data to an **Ashmem** object, obtaining the **Ashmem** size, and setting **Ashmem** protection.
+The shared memory applies only to cross-process communication within the local device.
+
+### Properties
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-The table below describes the protection types of the mapped memory.
-
-| Name      | Value | Description              |
-| ---------- | --- | ------------------ |
-| PROT_EXEC  | 4   | The mapped memory is executable.  |
-| PROT_NONE  | 0   | The mapped memory is inaccessible.|
-| PROT_READ  | 1   | The mapped memory is readable.    |
-| PROT_WRITE | 2   | The mapped memory is writeable.    |
+  | Name      | Type  | Readable | Writable | Description                                    |
+  | ---------- | ------ | ----- | ----- |----------------------------------------- |
+  | PROT_EXEC  | number | Yes   | No   | Mapped memory protection type, indicating that the mapped memory is executable. |
+  | PROT_NONE  | number | Yes   | No   | Mapped memory protection type, indicating that the mapped memory cannot be accessed.|
+  | PROT_READ  | number | Yes   | No   | Mapped memory protection type, indicating that the mapped memory is readable.   |
+  | PROT_WRITE | number | Yes   | No   | Mapped memory protection type, indicating that the mapped memory is readable.   |
 
 ### create<sup>9+</sup>
 
@@ -9630,10 +9716,10 @@ Creates an **Ashmem** object with the specified name and size. This API is a sta
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                        |
-| ------ | ------ | ---- | ---------------------------- |
-| name   | string | Yes  | Name of the **Ashmem** object to create.  |
-| size   | number | Yes  | Size (in bytes) of the **Ashmem** object to create.|
+  | Name| Type  | Mandatory| Description                        |
+  | ------ | ------ | ---- | ---------------------------- |
+  | name   | string | Yes  | Name of the **Ashmem** object to create.  |
+  | size   | number | Yes  | Size (in bytes) of the **Ashmem** object to create.|
 
 **Return value**
 
@@ -9645,9 +9731,9 @@ Creates an **Ashmem** object with the specified name and size. This API is a sta
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The Ashmem name passed is empty; <br> 4.The Ashmem size passed is less than or equal to 0. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The Ashmem name passed is empty; <br> 4.The Ashmem size passed is less than or equal to 0. |
 
 **Example**
 
@@ -9669,20 +9755,22 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### createAshmem<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [create](#create9) instead.
-
 static createAshmem(name: string, size: number): Ashmem
 
 Creates an **Ashmem** object with the specified name and size. This API is a static method.
+
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [create](#create9) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                        |
-| ------ | ------ | ---- | ---------------------------- |
-| name   | string | Yes  | Name of the **Ashmem** object to create.  |
-| size   | number | Yes  | Size (in bytes) of the **Ashmem** object to create.|
+  | Name| Type  | Mandatory| Description                        |
+  | ------ | ------ | ---- | ---------------------------- |
+  | name   | string | Yes  | Name of the **Ashmem** object to create.  |
+  | size   | number | Yes  | Size (in bytes) of the **Ashmem** object to create.|
 
 **Return value**
 
@@ -9724,9 +9812,9 @@ Creates an **Ashmem** object by copying the file descriptor of an existing **Ash
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The passed parameter is not an Ahmem object; <br> 3.The ashmem instance for obtaining packaging is empty. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The passed parameter is not an Ahmem object; <br> 3.The ashmem instance for obtaining packaging is empty. |
 
 **Example**
 
@@ -9748,11 +9836,13 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### createAshmemFromExisting<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [create](#create9-1) instead.
-
 static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 
 Creates an **Ashmem** object by copying the file descriptor of an existing **Ashmem** object. The two **Ashmem** objects point to the same shared memory region.
+
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [create](#create9-1) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -9784,6 +9874,10 @@ Creates an **Ashmem** object by copying the file descriptor of an existing **Ash
 closeAshmem(): void
 
 Closes this **Ashmem** object.
+
+> **NOTE**<br/>
+>
+> Before closing the **Ashmem** object, you need to remove the address mapping.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -9819,9 +9913,9 @@ Obtains the memory size of this **Ashmem** object.
 
 **Return value**
 
-| Type  | Description                      |
-| ------ | -------------------------- |
-| number | **Ashmem** size obtained.|
+  | Type  | Description                      |
+  | ------ | -------------------------- |
+  | number | **Ashmem** size obtained.|
 
 **Example**
 
@@ -9843,18 +9937,18 @@ Creates the shared file mapping on the virtual address space of this process. Th
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                          |
-| ------- | ------ | ---- | ------------------------------ |
-| mapType | number | Yes  | Protection level of the memory region to which the shared file is mapped.|
+  | Name | Type  | Mandatory| Description                          |
+  | ------- | ------ | ---- | ------------------------------ |
+  | mapType | number | Yes  | Protection level of the memory region to which the shared file is mapped.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect;  <br> 2.The parameter type does not match; <br> 3.The passed mapType exceeds the maximum protection level. |
-| 1900001  | Failed to call mmap. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect;  <br> 2.The parameter type does not match; <br> 3.The passed mapType exceeds the maximum protection level. |
+  | 1900001  | Failed to call mmap. |
 
 **Example**
 
@@ -9874,25 +9968,27 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### mapAshmem<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [mapTypedAshmem](#maptypedashmem9) instead.
-
 mapAshmem(mapType: number): boolean
 
 Creates the shared file mapping on the virtual address space of this process. The size of the mapping region is specified by this **Ashmem** object.
+
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [mapTypedAshmem](#maptypedashmem9) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                          |
-| ------- | ------ | ---- | ------------------------------ |
-| mapType | number | Yes  | Protection level of the memory region to which the shared file is mapped.|
+  | Name | Type  | Mandatory| Description                          |
+  | ------- | ------ | ---- | ------------------------------ |
+  | mapType | number | Yes  | Protection level of the memory region to which the shared file is mapped.|
 
 **Return value**
 
-| Type   | Description                            |
-| ------- | -------------------------------- |
-| boolean | Returns **true** if the mapping is created; returns **false** otherwise.|
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
+  | boolean | Returns **true** if the mapping is created; returns **false** otherwise.|
 
 **Example**
 
@@ -9916,9 +10012,9 @@ Maps the shared file to the readable and writable virtual address space of the p
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 1900001  | Failed to call mmap. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 1900001  | Failed to call mmap. |
 
 **Example**
 
@@ -9938,19 +10034,21 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### mapReadAndWriteAshmem<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [mapReadWriteAshmem](#mapreadwriteashmem9) instead.
-
 mapReadAndWriteAshmem(): boolean
 
 Maps the shared file to the readable and writable virtual address space of the process.
+
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [mapReadWriteAshmem](#mapreadwriteashmem9) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
 
-| Type   | Description                            |
-| ------- | -------------------------------- |
-| boolean | Returns **true** if the mapping is created; returns **false** otherwise.|
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
+  | boolean | Returns **true** if the mapping is created; returns **false** otherwise.|
 
 **Example**
 
@@ -9974,9 +10072,9 @@ Maps the shared file to the read-only virtual address space of the process.
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 1900001  | Failed to call mmap. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 1900001  | Failed to call mmap. |
 
 **Example**
 
@@ -9996,19 +10094,21 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### mapReadOnlyAshmem<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [mapReadonlyAshmem](#mapreadonlyashmem9) instead.
-
 mapReadOnlyAshmem(): boolean
 
 Maps the shared file to the read-only virtual address space of the process.
+
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [mapReadonlyAshmem](#mapreadonlyashmem9) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
 
-| Type   | Description                            |
-| ------- | -------------------------------- |
-| boolean | Returns **true** if the mapping is created; returns **false** otherwise.|
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
+  | boolean | Returns **true** if the mapping is created; returns **false** otherwise.|
 
 **Example**
 
@@ -10030,18 +10130,18 @@ Sets the protection level of the memory region to which the shared file is mappe
 
 **Parameters**
 
-| Name        | Type  | Mandatory| Description              |
-| -------------- | ------ | ---- | ------------------ |
-| protectionType | number | Yes  | Protection type to set.|
+  | Name        | Type  | Mandatory| Description              |
+  | -------------- | ------ | ---- | ------------------ |
+  | protectionType | number | Yes  | Protection type to set.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
-| 1900002  | Failed to call ioctl. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+  | 1900002  | Failed to call ioctl. |
 
 **Example**
 
@@ -10051,7 +10151,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
-    ashmem.setProtection(ashmem.PROT_READ);
+    ashmem.setProtectionType(ashmem.PROT_READ);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'Rpc set protection type fail, errorCode ' + e.code);
@@ -10061,25 +10161,27 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### setProtection<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [setProtectionType](#setprotectiontype9) instead.
-
 setProtection(protectionType: number): boolean
 
 Sets the protection level of the memory region to which the shared file is mapped.
+
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [setProtectionType](#setprotectiontype9) instead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name        | Type  | Mandatory| Description              |
-| -------------- | ------ | ---- | ------------------ |
-| protectionType | number | Yes  | Protection type to set.|
+  | Name        | Type  | Mandatory| Description              |
+  | -------------- | ------ | ---- | ------------------ |
+  | protectionType | number | Yes  | Protection type to set.|
 
 **Return value**
 
-| Type   | Description                            |
-| ------- | -------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -10097,24 +10199,28 @@ writeDataToAshmem(buf: ArrayBuffer, size: number, offset: number): void
 
 Writes data to the shared file associated with this **Ashmem** object.
 
+> **NOTE**<br/>
+>
+> Before writing an **Ashmem** object, you need to call [mapReadWriteAshmem](#mapreadwriteashmem9) for mapping.
+
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description                                              |
-| ------ | -------- | ---- | -------------------------------------------------- |
-| buf    | ArrayBuffer | Yes  | Data to write.                            |
-| size   | number   | Yes  | Size of the data to write.                                |
-| offset | number   | Yes  | Start position of the data to write in the memory region associated with this **Ashmem** object.|
+  | Name| Type    | Mandatory| Description                                              |
+  | ------ | -------- | ---- | -------------------------------------------------- |
+  | buf    | ArrayBuffer | Yes  | Data to write.                            |
+  | size   | number   | Yes  | Size of the data to write.                                |
+  | offset | number   | Yes  | Start position of the data to write in the memory region associated with this **Ashmem** object.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain arrayBuffer information. |
-| 1900003  | Failed to write data to the shared memory. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain arrayBuffer information. |
+  | 1900003  | Failed to write data to the shared memory. |
 
 **Example**
 
@@ -10141,30 +10247,34 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### writeAshmem<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is supported since API version 9 and deprecated since API version 11. Use [writeDataToAshmem](#writedatatoashmem11) instead.
-
 writeAshmem(buf: number[], size: number, offset: number): void
 
 Writes data to the shared file associated with this **Ashmem** object.
+
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is supported since API version 9 and deprecated since API version 11. Use [writeDataToAshmem](#writedatatoashmem11) instead.
+> 
+> Before writing an **Ashmem** object, you need to call [mapReadWriteAshmem](#mapreadwriteashmem9) for mapping.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description                                              |
-| ------ | -------- | ---- | -------------------------------------------------- |
-| buf    | number[] | Yes  | Data to write.                            |
-| size   | number   | Yes  | Size of the data to write.                                |
-| offset | number   | Yes  | Start position of the data to write in the memory region associated with this **Ashmem** object.|
+  | Name| Type    | Mandatory| Description                                              |
+  | ------ | -------- | ---- | -------------------------------------------------- |
+  | buf    | number[] | Yes  | Data to write.                            |
+  | size   | number   | Yes  | Size of the data to write.                                |
+  | offset | number   | Yes  | Start position of the data to write in the memory region associated with this **Ashmem** object.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The element does not exist in the array. |
-| 1900003  | Failed to write data to the shared memory. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The element does not exist in the array. |
+  | 1900003  | Failed to write data to the shared memory. |
 
 **Example**
 
@@ -10186,27 +10296,31 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### writeToAshmem<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [writeDataToAshmem](#writedatatoashmem11) instead.
-
 writeToAshmem(buf: number[], size: number, offset: number): boolean
 
 Writes data to the shared file associated with this **Ashmem** object.
+
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [writeDataToAshmem](#writedatatoashmem11) instead.
+> 
+> Before writing an **Ashmem** object, you need to call [mapReadWriteAshmem](#mapreadwriteashmem9) for mapping.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description                                              |
-| ------ | -------- | ---- | -------------------------------------------------- |
-| buf    | number[] | Yes  | Data to write.                            |
-| size   | number   | Yes  | Size of the data to write.                                |
-| offset | number   | Yes  | Start position of the data to write in the memory region associated with this **Ashmem** object.|
+  | Name| Type    | Mandatory| Description                                              |
+  | ------ | -------- | ---- | -------------------------------------------------- |
+  | buf    | number[] | Yes  | Data to write.                            |
+  | size   | number   | Yes  | Size of the data to write.                                |
+  | offset | number   | Yes  | Start position of the data to write in the memory region associated with this **Ashmem** object.|
 
 **Return value**
 
-| Type   | Description                                                                         |
-| ------- | ----------------------------------------------------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                                                                         |
+  | ------- | ----------------------------------------------------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -10227,29 +10341,33 @@ readDataFromAshmem(size: number, offset: number): ArrayBuffer
 
 Reads data from the shared file associated with this **Ashmem** object.
 
+> **NOTE**<br/>
+>
+> Before writing an **Ashmem** object, you need to call [mapReadWriteAshmem](#mapreadwriteashmem9) for mapping.
+
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                              |
-| ------ | ------ | ---- | -------------------------------------------------- |
-| size   | number | Yes  | Size of the data to read.                              |
-| offset | number | Yes  | Start position of the data to read in the memory region associated with this **Ashmem** object.|
+  | Name| Type  | Mandatory| Description                                              |
+  | ------ | ------ | ---- | -------------------------------------------------- |
+  | size   | number | Yes  | Size of the data to read.                              |
+  | offset | number | Yes  | Start position of the data to read in the memory region associated with this **Ashmem** object.|
 
 **Return value**
 
-| Type    | Description            |
-| -------- | ---------------- |
-| ArrayBuffer | Data read.|
+  | Type    | Description            |
+  | -------- | ---------------- |
+  | ArrayBuffer | Data read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
-| 1900004  | Failed to read data from the shared memory. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+  | 1900004  | Failed to read data from the shared memory. |
 
 **Example**
 
@@ -10285,35 +10403,40 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### readAshmem<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is supported since API version 9 and deprecated since API version 11. Use [readDataFromAshmem](#readdatafromashmem11) instead.
-
 readAshmem(size: number, offset: number): number[]
 
 Reads data from the shared file associated with this **Ashmem** object.
+
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is supported since API version 9 and deprecated since API version 11. Use [readDataFromAshmem](#readdatafromashmem11) instead.
+> 
+> Before writing an **Ashmem** object, you need to call [mapReadWriteAshmem](#mapreadwriteashmem9) for mapping.
+
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                              |
-| ------ | ------ | ---- | -------------------------------------------------- |
-| size   | number | Yes  | Size of the data to read.                              |
-| offset | number | Yes  | Start position of the data to read in the memory region associated with this **Ashmem** object.|
+  | Name| Type  | Mandatory| Description                                              |
+  | ------ | ------ | ---- | -------------------------------------------------- |
+  | size   | number | Yes  | Size of the data to read.                              |
+  | offset | number | Yes  | Start position of the data to read in the memory region associated with this **Ashmem** object.|
 
 **Return value**
 
-| Type    | Description            |
-| -------- | ---------------- |
-| number[] | Data read.|
+  | Type    | Description            |
+  | -------- | ---------------- |
+  | number[] | Data read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
-| 1900004  | Failed to read data from the shared memory. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+  | 1900004  | Failed to read data from the shared memory. |
 
 **Example**
 
@@ -10337,26 +10460,30 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### readFromAshmem<sup>(deprecated)</sup>
 
->**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [readDataFromAshmem](#readdatafromashmem11) instead.
-
 readFromAshmem(size: number, offset: number): number[]
 
 Reads data from the shared file associated with this **Ashmem** object.
+
+> **NOTE**<br/>
+>
+> >**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. Use [readDataFromAshmem](#readdatafromashmem11) instead.
+> 
+> Before writing an **Ashmem** object, you need to call [mapReadWriteAshmem](#mapreadwriteashmem9) for mapping.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                              |
-| ------ | ------ | ---- | -------------------------------------------------- |
-| size   | number | Yes  | Size of the data to read.                              |
-| offset | number | Yes  | Start position of the data to read in the memory region associated with this **Ashmem** object.|
+  | Name| Type  | Mandatory| Description                                              |
+  | ------ | ------ | ---- | -------------------------------------------------- |
+  | size   | number | Yes  | Size of the data to read.                              |
+  | offset | number | Yes  | Start position of the data to read in the memory region associated with this **Ashmem** object.|
 
 **Return value**
 
-| Type    | Description            |
-| -------- | ---------------- |
-| number[] | Data read.|
+  | Type    | Description            |
+  | -------- | ---------------- |
+  | number[] | Data read.|
 
 **Example**
 

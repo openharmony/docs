@@ -6,7 +6,7 @@ Sensor Service Kit enables applications to obtain raw data from sensors and prov
 
 - The sensor module provides APIs for applications to access the underlying sensor hardware. Using these APIs, you can query sensors on your device and subscribe to sensor data. Based on the sensor data obtained, you can customize algorithms and develop various sensor-based applications, such as compass, motion-controlled games, and fitness and health applications.
 
-- The vibrator module is built on the native vibrator service, bolstered by the capabilities of the vibrator hardware. By innovatively integrating vibration and interaction, the module takes user interaction efficiency and usability to the next level.
+- The vibrator module maximally unlocks the capabilities of the vibrator device. By expanding the vibrator services, it achieves an integrated design of vibration and interaction, creating a delicate and sophisticated vibration experience that takes user interaction efficiency and usability to the next level.
 
 ## Constraints
 

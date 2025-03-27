@@ -112,7 +112,7 @@ Enumerates the types of light painting shutter modes.
 
 Implements camera management. Before calling any API in **CameraManager**, you must use [getCameraManager](js-apis-camera.md#cameragetcameramanager) to obtain a **CameraManager** instance.
 
-### createDepthDataOutput<sup>12+</sup>
+### createDepthDataOutput<sup>13+</sup>
 
 createDepthDataOutput(profile: Profile): DepthDataOutput
 
@@ -132,7 +132,7 @@ Creates a **DepthDataOutput** instance. This API returns the result synchronousl
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| [DepthDataOutput](#depthdataoutput12)    | **DepthDataOutput** instance. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+| [DepthDataOutput](#depthdataoutput13)    | **DepthDataOutput** instance. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -536,7 +536,7 @@ Describes the status indicating whether the camera is occluded.
 | ----------------------------- | --------------------------------------------------- | ---- | ---- |-------------------|
 | isCameraOccluded                 | boolean              |  Yes | No|Whether the camera is occluded.       |
 
-## CameraOutputCapability<sup>12+</sup>
+## CameraOutputCapability<sup>13+</sup>
 
 Describes the camera output capability.
 
@@ -546,7 +546,7 @@ Describes the camera output capability.
 
 | Name                          | Type                                               | Read-only| Optional| Description               |
 | ----------------------------- | --------------------------------------------------- | ---- | ---- |-------------------|
-| depthProfiles                 | Array\<[DepthProfile](#depthprofile12)\>              |  Yes | No| Supported depth stream profiles.       |
+| depthProfiles                 | Array\<[DepthProfile](#depthprofile13)\>              |  Yes | No| Supported depth stream profiles.       |
 
 ## CameraFormat
 
@@ -558,8 +558,8 @@ Enumerates the camera output formats.
 
 | Name                    | Value       | Description        |
 | ----------------------- | --------- | ------------ |
-| CAMERA_FORMAT_DEPTH_16<sup>12+</sup> |   3000   | Depth map in DEPTH_16 format.     |
-| CAMERA_FORMAT_DEPTH_32<sup>12+</sup> |   3001   | Depth map in DEPTH_32 format.     |
+| CAMERA_FORMAT_DEPTH_16<sup>13+</sup> |   3000   | Depth map in DEPTH_16 format.     |
+| CAMERA_FORMAT_DEPTH_32<sup>13+</sup> |   3001   | Depth map in DEPTH_32 format.     |
 
 ## CameraInput
 
@@ -633,7 +633,7 @@ function unregisterCameraOcclusionDetection(cameraInput: camera.CameraInput): vo
 }
 ```
 
-## DepthDataAccuracy<sup>12+</sup>
+## DepthDataAccuracy<sup>13+</sup>
 
 Describes the accuracy of depth data.
 
@@ -646,7 +646,7 @@ Describes the accuracy of depth data.
 | DEPTH_DATA_ACCURACY_RELATIVE      | number                        |  Yes | No| Relative accuracy, which is the depth map calculated based on the disparity.     |
 | DEPTH_DATA_ACCURACY_ABSOLUTE      | number                        |  Yes | No| Absolute accuracy, which is the depth map calculated from distance measurement.     |
 
-## DepthProfile<sup>12+</sup>
+## DepthProfile<sup>13+</sup>
 
 Describes the profile of depth data. It inherits from [Profile](js-apis-camera.md#profile).
 
@@ -656,9 +656,9 @@ Describes the profile of depth data. It inherits from [Profile](js-apis-camera.m
 
 | Name                      | Type                                     | Read-only| Optional| Description       |
 | ------------------------- | ----------------------------------------- | --- | ---- |----------- |
-| depthDataAccuracy            | [DepthDataAccuracy](#depthdataaccuracy12)         | Yes |  No | Accuracy of the depth data, which can be either relative accuracy or absolute accuracy.|
+| depthDataAccuracy            | [DepthDataAccuracy](#depthdataaccuracy13)         | Yes |  No | Accuracy of the depth data, which can be either relative accuracy or absolute accuracy.|
 
-## DepthDataQualityLevel<sup>12+</sup>
+## DepthDataQualityLevel<sup>13+</sup>
 
 Enumerates the quality levels of depth data.
 
@@ -672,7 +672,7 @@ Enumerates the quality levels of depth data.
 | DEPTH_DATA_QUALITY_FAIR      | number          |  Yes | No| The depth map is of average quality and cannot be used for high-quality blurring.     |
 | DEPTH_DATA_QUALITY_GOOD      | number          |  Yes | No| The depth map is of high quality and can be used for high-quality blurring.     |
 
-## DepthData<sup>12+</sup>
+## DepthData<sup>13+</sup>
 
 Describes a depth data object.
 
@@ -686,10 +686,10 @@ Describes a depth data object.
 | -------- | ----------------------------- |----- |---| -------------- |
 | format | [CameraFormat](#cameraformat)   | Yes|  No | Camera output format.|
 | depthMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)    | Yes|  No | Depth map.|
-| qualityLevel | [DepthDataQualityLevel](#depthdataqualitylevel12)   | Yes|  No | Quality level of the depth map.|
-| accuracy | [DepthDataAccuracy](#depthdataaccuracy12) | Yes|  No | Accuracy of the depth map.|
+| qualityLevel | [DepthDataQualityLevel](#depthdataqualitylevel13)   | Yes|  No | Quality level of the depth map.|
+| accuracy | [DepthDataAccuracy](#depthdataaccuracy13) | Yes|  No | Accuracy of the depth map.|
 
-### release<sup>12+</sup>
+### release<sup>13+</sup>
 
 release(): void
 
@@ -707,11 +707,11 @@ function releaseDepthData(depthData: camera.DepthData): void {
 }
 ```
 
-## DepthDataOutput<sup>12+</sup>
+## DepthDataOutput<sup>13+</sup>
 
 Implements depth data output. It inherits from [CameraOutput](js-apis-camera.md#cameraoutput).
 
-### start<sup>12+</sup>
+### start<sup>13+</sup>
 
 start(): Promise\<void\>
 
@@ -750,7 +750,7 @@ function startDepthDataOutput(depthDataOutput: camera.DepthDataOutput): void {
 }
 ```
 
-### stop<sup>12+</sup>
+### stop<sup>13+</sup>
 
 stop(): Promise\<void\>
 
@@ -780,7 +780,7 @@ function stopDepthDataOutput(depthDataOutput: camera.DepthDataOutput): void {
 }
 ```
 
-### on('depthDataAvailable')<sup>12+</sup>
+### on('depthDataAvailable')<sup>13+</sup>
 
 on(type: 'depthDataAvailable', callback: AsyncCallback\<DepthData\>): void
 
@@ -799,7 +799,7 @@ Subscribes to depth data availability events. This API uses an asynchronous call
 | Name    | Type     | Mandatory| Description                                 |
 | -------- | ---------- | --- | ------------------------------------ |
 | type     | string     | Yes  | Event type. The value is fixed at **'depthDataAvailable'**. The event can be listened for when a **depthDataOutput** instance is created.|
-| callback | AsyncCallback\<[DepthData](#depthdata12)\> | Yes  | Callback used to listen for depth data.|
+| callback | AsyncCallback\<[DepthData](#depthdata13)\> | Yes  | Callback used to listen for depth data.|
 
 **Example**
 
@@ -818,7 +818,7 @@ function registerDepthDataAvailable(depthDataOutput: camera.DepthDataOutput): vo
 }
 ```
 
-### off('depthDataAvailable')<sup>12+</sup>
+### off('depthDataAvailable')<sup>13+</sup>
 
 off(type: 'depthDataAvailable', callback?: AsyncCallback\<DepthData\>): void
 
@@ -833,7 +833,7 @@ Unsubscribes from depth data availability events.
 | Name     | Type                   | Mandatory| Description                                      |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
 | type     | string                 | Yes  | Event type. The value is fixed at **'depthDataAvailable'**. The event can be listened for when a **depthDataOutput** instance is created.|
-| callback | AsyncCallback\<[DepthData](#depthdata12)\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
+| callback | AsyncCallback\<[DepthData](#depthdata13)\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 
@@ -852,7 +852,7 @@ function unRegisterDepthDataAvailable(depthDataOutput: camera.DepthDataOutput): 
 }
 ```
 
-### on('error')<sup>12+</sup>
+### on('error')<sup>13+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
@@ -887,7 +887,7 @@ function registerDepthDataOutputError(depthDataOutput: camera.DepthDataOutput): 
 }
 ```
 
-### off('error')<sup>12+</sup>
+### off('error')<sup>13+</sup>
 
 off(type: 'error', callback?: ErrorCallback): void
 
@@ -953,9 +953,9 @@ Defines the effect parameters used to preheat an image.
 
 | Name            | Type  |   Read-only   | Optional | Description                                                                                               |
 | --------------- | ------ | --------- |-----|---------------------------------------------------------------------------------------------------|
-| skinSmoothLevel | number |  No      | No  | Skin smoothing level, which is obtained through [Beauty.getSupportedBeautyRange](#getsupportedbeautyrange12). For example, the value **1** indicates level-1 smoothing.       |
-| faceSlender     | number |  No      | No  | Face slimming level, which is obtained through [Beauty.getSupportedBeautyRange](#getsupportedbeautyrange12). For example, the value **1** indicates level-1 slimming.       |
-| skinTone        | number |  No      | No  | Skin tone perfection level, which is obtained through [Beauty.getSupportedBeautyRange](#getsupportedbeautyrange12). For example, the value **0xBF986C** indicates a specific color.|
+| skinSmoothLevel | number |  No      | No  | Skin smoothing level, which is obtained through [Beauty.getSupportedBeautyRange](#getsupportedbeautyrange11). For example, the value **1** indicates level-1 smoothing.       |
+| faceSlender     | number |  No      | No  | Face slimming level, which is obtained through [Beauty.getSupportedBeautyRange](#getsupportedbeautyrange11). For example, the value **1** indicates level-1 slimming.       |
+| skinTone        | number |  No      | No  | Skin tone perfection level, which is obtained through [Beauty.getSupportedBeautyRange](#getsupportedbeautyrange11). For example, the value **0xBF986C** indicates a specific color.|
 
 ## PreviewOutput
 
@@ -1557,7 +1557,7 @@ function deferImageDelivery(photoOutput: camera.PhotoOutput, type: camera.Deferr
 }
 ```
 
-### isAutoHighQualityPhotoSupported<sup>12+</sup>
+### isAutoHighQualityPhotoSupported<sup>13+</sup>
 
 isAutoHighQualityPhotoSupported(): boolean
 
@@ -1593,13 +1593,13 @@ function isAutoHighQualityPhotoSupported(photoOutput: camera.PhotoOutput): boole
 }
 ```
 
-### enableAutoHighQualityPhoto<sup>12+</sup>
+### enableAutoHighQualityPhoto<sup>13+</sup>
 
 enableAutoHighQualityPhoto(enabled: boolean): void
 
 Enables automatic high quality for photos. 
 
-Before using this API, call [isAutoHighQualityPhotoSupported](#isautohighqualityphotosupported12) to check whether automatic high quality is supported.
+Before using this API, call [isAutoHighQualityPhotoSupported](#isautohighqualityphotosupported13) to check whether automatic high quality is supported.
 
 **System API**: This is a system API.
 
@@ -2137,7 +2137,7 @@ Enumerates the portrait effects.
 
 Provides APIs to obtain and set the beauty effect.
 
-### getSupportedBeautyTypes<sup>12+</sup>
+### getSupportedBeautyTypes<sup>11+</sup>
 
 getSupportedBeautyTypes(): Array\<BeautyType\>
 
@@ -2171,7 +2171,7 @@ function getSupportedBeautyTypes(portraitPhotoSession: camera.PortraitPhotoSessi
 }
 ```
 
-### getSupportedBeautyRange<sup>12+</sup>
+### getSupportedBeautyRange<sup>11+</sup>
 
 getSupportedBeautyRange(type: BeautyType): Array\<number\>
 
@@ -2243,7 +2243,7 @@ Enumerates the beauty types.
 
 Provides APIs to obtain the manual exposure range supported.
 
-### getSupportedExposureRange<sup>12+</sup>
+### getSupportedExposureRange<sup>11+</sup>
 
 getSupportedExposureRange(): Array\<number\>
 
@@ -2326,7 +2326,7 @@ function getExposure(nightPhotoSession: camera.NightPhotoSession): number | unde
 
 setExposure(exposure: number): void
 
-Sets the manual exposure duration, in ms.
+Sets the manual exposure duration. Before using this API, call [getSupportedExposureRange](#getsupportedexposurerange11) to obtain the supported manual exposure durations, in ms.
 
 **System API**: This is a system API.
 
@@ -2336,7 +2336,7 @@ Sets the manual exposure duration, in ms.
 
 | Name     | Type                   | Mandatory| Description                                                                     |
 | -------- | --------------------------| ---- |-------------------------------------------------------------------------|
-| value    | number                    | Yes  | Manual exposure duration, which must be one of the supported durations obtained by running [getSupportedExposureRange](#getsupportedexposurerange12).|
+| value    | number                    | Yes  | Manual exposure duration, which must be one of the supported durations obtained by running [getSupportedExposureRange](#getsupportedexposurerange11).|
 
  **Error codes**
 
@@ -2360,7 +2360,7 @@ function setExposure(nightPhotoSession: camera.NightPhotoSession): void {
 
 Provides the API to check the support for macro photography.
 
-### isMacroSupported<sup>12+</sup>
+### isMacroSupported<sup>11+</sup>
 
 isMacroSupported(): boolean
 
@@ -2744,7 +2744,7 @@ Provides APIs to obtain and set the beauty effect.
 
 setBeauty(type: BeautyType, value: number): void
 
-Sets a beauty type and its level. Beauty mode is turned off only when all the [beauty types](#beautytype) obtained through [getSupportedBeautyTypes](#getsupportedbeautytypes12) are disabled.
+Sets a beauty type and its level. Beauty mode is turned off only when all the [beauty types](#beautytype) obtained through [getSupportedBeautyTypes](#getsupportedbeautytypes11) are disabled.
 
 **System API**: This is a system API.
 
@@ -2755,7 +2755,7 @@ Sets a beauty type and its level. Beauty mode is turned off only when all the [b
 | Name     | Type                   | Mandatory| Description                                                               |
 | -------- | --------------------------| ---- |-------------------------------------------------------------------|
 | type     | [BeautyType](#beautytype) | Yes  | Beauty type.                                                            |
-| value    | number                    | Yes  | Beauty level, which is obtained through [getSupportedBeautyRange](#getsupportedbeautyrange12).|
+| value    | number                    | Yes  | Beauty level, which is obtained through [getSupportedBeautyRange](#getsupportedbeautyrange11).|
 
 **Error codes**
 
@@ -2835,7 +2835,7 @@ function getBeauty(portraitPhotoSession: camera.PortraitPhotoSession): number {
 
 Provides the API to obtain the color effects supported.
 
-### getSupportedColorEffects<sup>12+</sup>
+### getSupportedColorEffects<sup>11+</sup>
 
 getSupportedColorEffects(): Array\<ColorEffectType\>
 
@@ -2879,7 +2879,7 @@ Provides the APIs to obtain and set the lens color effect.
 
 setColorEffect(type: ColorEffectType): void
 
-Sets a color effect. Before the setting, call [getSupportedColorEffects](#getsupportedcoloreffects12) to obtain the supported color effects.
+Sets a color effect. Before the setting, call [getSupportedColorEffects](#getsupportedcoloreffects11) to obtain the supported color effects.
 
 **System API**: This is a system API.
 
@@ -2889,7 +2889,7 @@ Sets a color effect. Before the setting, call [getSupportedColorEffects](#getsup
 
 | Name        | Type                                                           | Mandatory| Description                     |
 | ------------ |--------------------------------------------------------------- | -- | -------------------------- |
-| type | [ColorEffectType](#coloreffecttype11)                              | Yes| Color effect, which can be obtained through [getSupportedColorEffects](#getsupportedcoloreffects12).  |
+| type | [ColorEffectType](#coloreffecttype11)                              | Yes| Color effect, which can be obtained through [getSupportedColorEffects](#getsupportedcoloreffects11).  |
 
 **Error codes**
 
@@ -3307,7 +3307,7 @@ Obtains the supported beauty types.
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Beauty.getSupportedBeautyTypes](#getsupportedbeautytypes12) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Beauty.getSupportedBeautyTypes](#getsupportedbeautytypes11) instead.
 
 **System API**: This is a system API.
 
@@ -3351,7 +3351,7 @@ Obtains the levels that can be set a beauty type. The beauty levels vary accordi
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Beauty.getSupportedBeautyRange](#getsupportedbeautyrange12) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Beauty.getSupportedBeautyRange](#getsupportedbeautyrange11) instead.
 
 **System API**: This is a system API.
 
@@ -3702,7 +3702,7 @@ function registerLcdFlashStatus(photoSession: camera.PhotoSession): void {
 }
 ```
 
-### off('lcdFlashStatus')<sup>12+</sup>
+### off('lcdFlashStatus')<sup>13+</sup>
 
 off(type: 'lcdFlashStatus', callback?: AsyncCallback\<LcdFlashStatus\>): void
 
@@ -3892,7 +3892,7 @@ function registerLcdFlashStatus(videoSession: camera.VideoSession): void {
 }
 ```
 
-### off('lcdFlashStatus')<sup>12+</sup>
+### off('lcdFlashStatus')<sup>13+</sup>
 
 off(type: 'lcdFlashStatus', callback?: AsyncCallback\<LcdFlashStatus\>): void
 
@@ -4225,7 +4225,7 @@ function registerLcdFlashStatus(portraitPhotoSession: camera.PortraitPhotoSessio
 }
 ```
 
-### off('lcdFlashStatus')<sup>12+</sup>
+### off('lcdFlashStatus')<sup>13+</sup>
 
 off(type: 'lcdFlashStatus', callback?: AsyncCallback\<LcdFlashStatus\>): void
 
@@ -5121,7 +5121,7 @@ function registerSessionError(panoramaPhotoSession: camera.PanoramaPhotoSession)
 }
 ```
 
-### off('error')<sup>11+</sup>
+### off('error')<sup>12+</sup>
 
 off(type: 'error', callback?: ErrorCallback): void
 
@@ -5146,7 +5146,7 @@ function unregisterSessionError(panoramaPhotoSession: camera.PanoramaPhotoSessio
 }
 ```
 
-### on('focusStateChange')<sup>11+</sup>
+### on('focusStateChange')<sup>12+</sup>
 
 on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
@@ -5181,7 +5181,7 @@ function registerFocusStateChange(panoramaPhotoSession: camera.PanoramaPhotoSess
 }
 ```
 
-### off('focusStateChange')<sup>11+</sup>
+### off('focusStateChange')<sup>12+</sup>
 
 off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 
@@ -5392,7 +5392,7 @@ function getExposureMeteringMode(professionalPhotoSession: camera.ProfessionalPh
 
 setExposureMeteringMode(aeMeteringMode: ExposureMeteringMode): void
 
-Sets an exposure metering mode. 
+Sets an exposure metering mode.
 
 Before the setting, call [isExposureMeteringModeSupported](#isexposuremeteringmodesupported12) to check whether the target exposure metering mode is supported.
 
@@ -5611,7 +5611,7 @@ Provides APIs to obtain and set the camera focus mode and focus position.
 
 setFocusAssist(enabled: boolean): void
 
-Sets the focus assist. 
+Sets the focus assist.
 
 Before the setting, call [isFocusAssistSupported](#isfocusassistsupported12) to check whether the device supports the focus assist.
 
@@ -6266,7 +6266,7 @@ Provides APIs to process white balance, including obtaining and setting the whit
 
 setWhiteBalanceMode(mode: WhiteBalanceMode): void
 
-Sets a white balance mode. 
+Sets a white balance mode.
 
 Before the setting, call [isWhiteBalanceModeSupported](#iswhitebalancemodesupported12) to check whether the target white balance mode is supported.
 

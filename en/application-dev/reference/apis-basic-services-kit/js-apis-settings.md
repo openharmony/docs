@@ -558,7 +558,7 @@ Sets the value for a data item. Unlike **setValue**, this API returns the result
 | context | Context                | Yes  | Application context. Only UIAbilityContext and ExtensionContext are supported.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | name    | string                 | Yes  | Name of the target data item. Data items can be classified as follows:<br>- Existing data items in the database<br>- Custom data items|
 | value   | string                 | Yes  | Value of the data item. The value range varies by service.                  |
-| domainName | string                 | Yes  | Domain name to set.<br>- **domainName.DEVICE_SHARED**:<br>&nbsp;&nbsp;&nbsp;shared device domain<br>- **domainName is domainName.USER_PROPERTY**:<br>&nbsp;&nbsp;&nbsp;user property domain<br>- **domainName.USER_SECURITY**:<br>&nbsp;&nbsp;&nbsp;user security domain (for system applications only)|
+| domainName | string                 | Yes  | Domain name to set.<br>- **domainName.DEVICE_SHARED**:<br>&nbsp;&nbsp;&nbsp;shared device domain<br>- **domainName.USER_PROPERTY**:<br>&nbsp;&nbsp;&nbsp;user property domain<br>- **domainName.USER_SECURITY**:<br>&nbsp;&nbsp;&nbsp;user security domain (for system applications only)|
 
 **Return value**
 
@@ -600,7 +600,7 @@ Registers an observer in the specified context so that the specified data item c
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                | Yes  | Application context. Only UIAbilityContext and ExtensionContext are supported.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | name     | string                 | Yes  | Name of the target data item. Data items can be classified as follows:<br>- Existing data items in the database<br>- Custom data items|
-|domainName| string                 | Yes  | Domain name to set.<br>- **domainName.DEVICE_SHARED**:<br>&nbsp;&nbsp;&nbsp;shared device domain<br>- **domainName is domainName.USER_PROPERTY**:<br>&nbsp;&nbsp;&nbsp;user property domain<br>- **domainName.USER_SECURITY**:<br>&nbsp;&nbsp;&nbsp;user security domain (for system applications only)|
+|domainName| string                 | Yes  | Domain name to set.<br>- **domainName.DEVICE_SHARED**:<br>&nbsp;&nbsp;&nbsp;shared device domain<br>- **domainName.USER_PROPERTY**:<br>&nbsp;&nbsp;&nbsp;user property domain<br>- **domainName.USER_SECURITY**:<br>&nbsp;&nbsp;&nbsp;user security domain (for system applications only)|
 |observer  |  AsyncCallback\<void>  | Yes  | Callback used to return the value of the data item.                  |
 
 **Return value**
@@ -640,7 +640,7 @@ Unregisters the observer under the specified domain name. This API returns the r
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                | Yes  | Application context. Only UIAbilityContext and ExtensionContext are supported.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | name     | string                 | Yes  | Name of the target data item. Data items can be classified as follows:<br>- Existing data items in the database<br>- Custom data items|
-|domainName| string                 | Yes  | Domain name to set.<br>- **domainName.DEVICE_SHARED**:<br>&nbsp;&nbsp;&nbsp;shared device domain<br>- **domainName is domainName.USER_PROPERTY**:<br>&nbsp;&nbsp;&nbsp;user property domain<br>- **domainName.USER_SECURITY**:<br>&nbsp;&nbsp;&nbsp;user security domain (for system applications only)|
+|domainName| string                 | Yes  | Domain name to set.<br>- **domainName.DEVICE_SHARED**:<br>&nbsp;&nbsp;&nbsp;shared device domain<br>- **domainName.USER_PROPERTY**:<br>&nbsp;&nbsp;&nbsp;user property domain<br>- **domainName.USER_SECURITY**:<br>&nbsp;&nbsp;&nbsp;user security domain (for system applications only)|
 
 **Return value**
 
@@ -655,6 +655,49 @@ import settings from '@ohos.settings';
 
 const context: Context =  getContext(this);
 let ret = settings.unregisterKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS,  settings.domainName.DEVICE_SHARED);
+```
+
+## settings.openNetworkManagerSettings<sup>18+</sup>
+
+openNetworkManagerSettings(context: Context): Promise\<boolean>
+
+Opens the network manager settings page. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Applications.Settings.Core
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description                                                                                                                                                                                                                                                                 |
+| -------- | ---------------------- | ---- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| context  | Context                | Yes  | Application context. Only UIAbilityContext and ExtensionContext are supported.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).                                                                                                                                                               |
+
+**Return value**
+
+| Type            | Description                               |
+| ---------------- | ----------------------------------- |
+| Promise\<string> | Promise used to return the result. Returns **true** if the operation is successful; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Settings Error Codes](./errorcode-settings.md).
+
+| ID   | Error Message                   |
+|----------|-------------------------|
+| 14800000 | Parameter error.        |
+| 14800010 | Original service error. |
+
+**Example**
+
+```js
+import settings from '@ohos.settings';
+
+// Redirect to the network manager settings page.
+const context: Context =  getContext(this);
+settings.openNetworkManagerSettings(context).then((status) => {
+  console.log(`callback:return whether settings is open.`)
+});
 ```
 
 ## settings.enableAirplaneMode

@@ -12,7 +12,7 @@ Currently, only the following types of system accounts can be created:
 | ADMIN  | 0      | Administrator account.|
 | NORMAL | 1      | Normal account.  |
 | GUEST  | 2      | Guest account.  |
-| PRIVATE<sup>12+</sup> | 1024  | Privacy account.  |
+| PRIVATE<sup>12+</sup> | 1024  | Private account. |
 
 ### Account Information
 
