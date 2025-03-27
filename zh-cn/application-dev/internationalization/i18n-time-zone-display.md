@@ -15,6 +15,6 @@
 
 2. 本地化时区名称，以美洲/圣保罗为例。
    ```ts
-   let timezone = i18n.getTimeZone("America/Sao_Paulo");
-   let timeZoneName = timezone.getDisplayName("zh-Hans", true); // 巴西利亚标准时间
+   let timezone: i18n.TimeZone = i18n.getTimeZone('America/Sao_Paulo');
+   let timeZoneName: string = timezone.getDisplayName('zh-Hans', true); // timeZoneName = '巴西利亚标准时间'
    ```

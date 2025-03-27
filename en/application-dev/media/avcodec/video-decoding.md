@@ -166,7 +166,7 @@ The sample code provided in this section adheres to the C++17 standard and is fo
     };
     ```
 
-4. Define global variables.
+4. Configure global variables.
 
     These global variables are for reference only. They can be encapsulated into an object based on service requirements.
 

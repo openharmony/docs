@@ -39,7 +39,7 @@ static show(value: ActionSheetOptions)
 | message    | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是     | 弹窗内容。<br/>文本超长时会触发滚动条。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | autoCancel | boolean                           | 否     | 点击遮障层时，是否关闭弹窗。<br>默认值：true<br>值为true时，点击遮障层关闭弹窗，值为false时，点击遮障层不关闭弹窗。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | confirm    | [ActionSheetButtonOptions](#actionsheetbuttonoptions18对象说明) | 否  | 确认Button的使能状态、默认焦点、按钮风格、文本内容和点击回调。在弹窗获焦且未进行tab键走焦时，该按钮默认响应Enter键，且多重弹窗可自动获焦连续响应。默认响应Enter键能力在defaultFocus为true时不生效。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| cancel     | ()&nbsp;=&gt;&nbsp;void           | 否     | 点击遮障层关闭dialog时的回调。  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| cancel     | [VoidCallback](ts-types.md#voidcallback12) | 否     | 点击遮障层关闭dialog时的回调。  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | alignment  | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment枚举说明) | 否     |  弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Bottom  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**说明**：<br/>若在UIExtension中设置showInSubWindow为true, 弹窗将基于UIExtension的宿主窗口对齐。|
 | offset     | [ActionSheetOffset](#actionsheetoffset18对象说明) | 否      | 弹窗相对alignment所在位置的偏移量。<br/>默认值：<br/>1.alignment设置为Top、TopStart、TopEnd时默认值为{dx:&nbsp;0,dy:&nbsp;"40vp"} <br/>2.alignment设置为其他时默认值为{dx:&nbsp;0,dy:&nbsp;"-40vp"} <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | sheets     | Array&lt;[SheetInfo](#sheetinfo对象说明)&gt; | 是       | 设置选项内容，每个选择项支持设置图片、文本和选中的回调。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
@@ -61,10 +61,10 @@ static show(value: ActionSheetOptions)
 | transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10) | 否 | 设置弹窗显示和退出的过渡效果。<br/>**说明：**<br/>1.如果不设置，则使用默认的显示/退出动效。<br/>2.显示动效中按back键，打断显示动效，执行退出动效，动画效果为显示动效与退出动效的曲线叠加后的效果。<br/>3.退出动效中按back键，不会打断退出动效，退出动效继续执行，继续按back键退出应用。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | enableHoverMode<sup>14+</sup>     | boolean | 否   | 是否响应悬停态。<br />默认值：false，默认不响应。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 | hoverModeArea<sup>14+</sup>       | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype14) | 否   | 悬停态下弹窗默认展示区域。<br />默认值：HoverModeAreaType.BOTTOM_SCREEN。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
-| onWillAppear<sup>18+</sup> | [VoidCallback](ts-types.md#voidcallback12) | 否 | 弹窗显示动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br />2.在onWillAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
-| onDidAppear<sup>18+</sup> | [VoidCallback](ts-types.md#voidcallback12) | 否 | 弹窗弹出时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br />2.在onDidAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。<br />3.弹窗入场动效未完成时关闭弹窗，动效打断，onDidAppear不会触发。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| onWillDisappear<sup>18+</sup> | [VoidCallback](ts-types.md#voidcallback12) | 否 | 弹窗退出动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br /> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
-| onDidDisappear<sup>18+</sup> | [VoidCallback](ts-types.md#voidcallback12) | 否 | 弹窗消失时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| onWillAppear<sup>18+</sup> | Callback&lt;void&gt; | 否 | 弹窗显示动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br />2.在onWillAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| onDidAppear<sup>18+</sup> | Callback&lt;void&gt; | 否 | 弹窗弹出时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br />2.在onDidAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。<br />3.弹窗入场动效未完成时关闭弹窗，动效打断，onDidAppear不会触发。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| onWillDisappear<sup>18+</sup> | Callback&lt;void&gt; | 否 | 弹窗退出动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br /> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| onDidDisappear<sup>18+</sup> | Callback&lt;void&gt; | 否 | 弹窗消失时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | levelMode<sup>15+</sup>       | [LevelMode](#levelmode15) | 否   | 设置弹窗显示层级。<br />**说明：**<br />- 默认值：LevelMode.OVERLAY。<br />- 当且仅当showInSubWindow属性设置为false时生效。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 | levelUniqueId<sup>15+</sup>       | number | 否   | 设置页面级弹窗需要显示的层级下的[节点 uniqueId](../js-apis-arkui-frameNode.md#getuniqueid12)。<br />**说明：**<br />- 当且仅当levelMode属性设置为LevelMode.EMBEDDED时生效。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 | immersiveMode<sup>15+</sup>       | [ImmersiveMode](#immersivemode15) | 否   | 设置页面内弹窗蒙层效果。<br />**说明：**<br />- 默认值：ImmersiveMode.DEFAULT <br />- 当且仅当levelMode属性设置为LevelMode.EMBEDDED时生效。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
@@ -82,7 +82,7 @@ static show(value: ActionSheetOptions)
 | icon   | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否   | 选项的图标，默认无图标显示。<br>string格式可用于加载网络图片和本地图片，常用于加载网络图片。当使用相对路径引用本地图片时，例如Image("common/test.jpg")。|
 | action | [VoidCallback](ts-types.md#voidcallback12) | 是   | 选项选中的回调。 |
 
-## levelMode<sup>15+</sup>
+## LevelMode<sup>15+</sup>
 
 type LevelMode = LevelMode
 
@@ -133,11 +133,11 @@ Dialog关闭的信息。
 
 | 名称         | 类型    | 必填 | 说明 |
 | ------------ | ------- | ---- | ---- |
-| enabled      | boolean | 否   | 点击Button是否响应，true表示Button可以响应，false表示Button不可以响应。<br />默认值：true |
-| defaultFocus | boolean | 否   | 设置Button是否是默认焦点，true表示Button是默认焦点，false表示Button不是默认焦点。<br />默认值：false |
-| style        | [DialogButtonStyle](ts-appendix-enums.md#dialogbuttonstyle10) | 否  | 设置Button的风格样式。<br />默认值：DialogButtonStyle.DEFAULT |
-| value        |  string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) |    是  | Button文本内容。<br/>当文本内容过长无法显示时，用省略号代替未显示的部分。 |
-| action       | [VoidCallback](ts-types.md#voidcallback12)      |   是   | Button选中时的回调。 |
+| enabled<sup>10+</sup> | boolean | 否   | 点击Button是否响应，true表示Button可以响应，false表示Button不可以响应。<br/>默认值：true<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| defaultFocus<sup>10+</sup> | boolean | 否   | 设置Button是否是默认焦点，true表示Button是默认焦点，false表示Button不是默认焦点。<br/>默认值：false<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| style<sup>10+</sup> | [DialogButtonStyle](ts-appendix-enums.md#dialogbuttonstyle10) | 否  | 设置Button的风格样式。<br />默认值：DialogButtonStyle.DEFAULT<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| value<sup>8+</sup> |  string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) |    是  | Button文本内容。<br/>当文本内容过长无法显示时，用省略号代替未显示的部分。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| action<sup>8+</sup> | [VoidCallback](ts-types.md#voidcallback12)      |   是   | Button选中时的回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## ActionSheetOffset<sup>18+</sup>对象说明
 

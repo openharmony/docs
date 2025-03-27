@@ -111,41 +111,7 @@ MenuItem组件。
 
 MenuItem设置padding属性时默认布局效果变更，开发者无需适配。
 
-## cl.arkui.3 Gauge设置第一个颜色占比过小时绘制效果更改
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-Gauge设置第一个颜色占比过小时绘制效果不符合UX效果。
-
-**变更影响**
-
-此变更无需应用适配。
-
-| 变更前                                                                                                                     | 变更后                                                                                                                   |
-| -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| 设置第一个颜色占比过小时，第一个圆环未被正确裁切，出现逆时针向0的方向绘制的情况。<br>![gauge_before](figures/gauge_before.png)| 设置第一个颜色占比过小时，第一个圆环绘制正常，能被正常裁切。<br>![gauge_after](figures/gauge_after.png) |
-
-**起始API Level**
-
-11
-
-**变更发生版本**
-
-从OpenHarmony 5.1.0.45 版本开始。
-
-**变更的接口/组件**
-
-Gauge。
-
-**适配指导**
-
-展示效果变更，无需适配，但应注意变更后的效果是否符合开发者预期。
-
-## cl.arkui.5 Repeat VirtualScroll 支持二级缓存冻结
+## cl.arkui.3 Repeat VirtualScroll 支持二级缓存冻结
 
 **访问级别**
 
@@ -270,58 +236,7 @@ struct ChildComponent {
 }
 ```
 
-## cl.arkui.6 Image组件的borderRadius接口支持百分比输入
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-为了增强功能的灵活性，Image组件的borderRadius接口支持百分比输入，功能与通用属性的borderRadius对齐。
-
-**变更影响**
-
-此变更涉及应用适配。
-
-| 变更前                                                                                                                     | 变更后                                                                                                                   |
-| -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| Image组件的borderRadius接口输入百分比不生效。<br>![borderRadiusNotSupportPercentage](figures/borderRadiusNotSupportPercentage.png)| Image组件的borderRadius接口输入百分比，百分比依据组件宽度生效。<br>![borderRadiusSupportPercentage](figures/borderRadiusSupportPercentage.png) |
-
-**起始API Level**
-
-7
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.1.0.45 版本开始。
-
-**变更的接口/组件**
-
-Image组件的borderRadius接口。
-
-**适配指导**
-
-如果代码中依赖borderRadius传入百分比不生效的行为，建议传入0，或者不设置borderRadius，例如：borderRadius(0)。
-
-```ts
-@Entry
-@Component
-struct Index {
-  build() {
-    Column() {
-      Image($r("app.media.startIcon"))
-        .width(100)
-        .height(100)
-        .borderRadius("10%")
-    }
-    .height('100%')
-    .width('100%')
-  }
-}
-```
-
-## cl.arkui.7 ImageSpan组件borderRadius边框圆角属性Modifier设置变更
+## cl.arkui.4 ImageSpan组件borderRadius边框圆角属性Modifier设置变更
 
 **访问级别**
 
@@ -355,7 +270,7 @@ ImageSpanModifier接口的borderRadius属性
 
 无需应用适配，变更后ImageSpan组件的borderRadius边框圆角在Modifier接口设置生效，效果与开发者实际设置的圆角值显示一致。
 
-## cl.arkui.8 Search组件回车键类型为EnterKeyType.NEW_LINE（换行）时onSubmit回调中执行keepEditableState()函数，参数缺省时的行为变更
+## cl.arkui.5 Search组件回车键类型为EnterKeyType.NEW_LINE（换行）时onSubmit回调中执行keepEditableState()函数，参数缺省时的行为变更
 
 **访问级别**
 
@@ -414,7 +329,7 @@ struct EnterKeyTypeIsNewLineDemo {
 }
 ```
 
-## cl.arkui.9 TextInput/TextArea组件border属性dashGap、dashWidth参数Modifier设置变更
+## cl.arkui.6 TextInput/TextArea组件border属性dashGap、dashWidth参数Modifier设置变更
 
 **访问级别**
 

@@ -12,7 +12,7 @@
     - [@ohos.arkui.observer (无感监听)](js-apis-arkui-observer.md)
     - [@ohos.arkui.prefetcher (Prefetching)](js-apis-arkui-Prefetcher.md)
     - [@ohos.arkui.shape(形状)](js-apis-arkui-shape.md)
-    - [@ohos.arkui.Theme(主题换肤)](js-apis-arkui-theme.md)
+    - [@ohos.arkui.theme(主题换肤)](js-apis-arkui-theme.md)
     - [@ohos.arkui.UIContext (UIContext)](js-apis-arkui-UIContext.md)
     - [@ohos.arkui.uiExtension (uiExtension)](js-apis-arkui-uiExtension.md)
     - [@ohos.arkui.StateManagement (状态管理)](js-apis-StateManagement.md)
@@ -255,6 +255,7 @@
     <!--Del-->
     - [TextInput (系统接口)](arkui-ts/ts-basic-components-textinput-sys.md)
     - [属性字符串 (系统接口)](arkui-ts/ts-universal-styled-string-sys.md)
+    - [RichEditor(系统接口)](arkui-ts/ts-basic-components-richeditor-sys.md)
     <!--DelEnd-->
   - 图片与视频<!--images-and-videos-->
     - [Image](arkui-ts/ts-basic-components-image.md)

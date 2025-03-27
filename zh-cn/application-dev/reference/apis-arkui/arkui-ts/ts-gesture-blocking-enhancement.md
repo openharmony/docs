@@ -253,7 +253,7 @@ isEnd(): boolean
 
 | 类型     | 说明        |
 | ------ | --------- |
-| boolean | 当前滚动类容器组件是否在底部。 |
+| boolean | 当前滚动类容器组件是否在底部。true表示组件在底部，false表示组件不在底部。 |
 
 ### getFingerCount<sup>18+</sup>
 
@@ -269,7 +269,7 @@ getFingerCount(): number
 
 | 类型     | 说明        |
 | ------ | --------- |
-| number | 预设手指识别数阈值。 |
+| number | 预设手指识别数阈值。<br/>取值范围：[1, 10], 整数。 |
 
 ### isFingerCountLimit<sup>18+</sup>
 
@@ -325,7 +325,7 @@ getTapCount(): number
 
 | 类型     | 说明        |
 | ------ | --------- |
-| number | 预设点击手势识别器连续点击次数阈值。 |
+| number | 预设点击手势识别器连续点击次数阈值。<br/>取值范围：[0, +∞) |
 
 ## LongPressRecognizer<sup>18+</sup>
 
@@ -361,7 +361,7 @@ getDuration(): number
 
 | 类型     | 说明        |
 | ------ | --------- |
-| number | 预设长按手势识别器触发长按最短时间阈值。 |
+| number | 预设长按手势识别器触发长按最短时间阈值，单位为ms。<br/>取值范围：[0, +∞) |
 
 ## SwipeRecognizer<sup>18+</sup>
 
@@ -381,7 +381,7 @@ getVelocityThreshold(): number
 
 | 类型     | 说明        |
 | ------ | --------- |
-| number | 预设滑动手势识别器识别滑动最小速度阈值 |
+| number | 预设滑动手势识别器识别滑动最小速度阈值，单位为vp/s。<br/>取值范围：[0, +∞) |
 
 ### getDirection<sup>18+</sup>
 
@@ -417,7 +417,7 @@ getDistance(): number
 
 | 类型     | 说明        |
 | ------ | --------- |
-| number | 预设捏合手势识别器最小识别距离阈值。 |
+| number | 预设捏合手势识别器最小识别距离阈值，单位为vp。<br/>取值范围：[0, +∞) |
 
 ## RotationRecognizer<sup>18+</sup>
 
@@ -437,7 +437,7 @@ getAngle(): number
 
 | 类型     | 说明        |
 | ------ | --------- |
-| number | 预设旋转手势识别器触发旋转手势最小改变度数阈值。<br/>**说明：** <br/>当输入的改变度数的值小于等于0或大于360时，会被转化为默认值，默认值为1。 |
+| number | 预设旋转手势识别器触发旋转手势最小改变度数阈值，单位为deg。<br/>取值范围：[0, +∞)<br/>**说明：** <br/>当输入的改变度数的值小于等于0或大于360时，会被转化为默认值，默认值为1。 |
 
 ## onGestureRecognizerJudgeBegin<sup>13+</sup>
 

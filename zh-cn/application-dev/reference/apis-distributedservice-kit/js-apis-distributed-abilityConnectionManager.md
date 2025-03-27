@@ -41,8 +41,8 @@ createAbilityConnectionSession(serviceName:&nbsp;string,&nbsp;context:&nbsp;Cont
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201      | Permission verification failed. The application does not have the permission required to call the API.|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -172,16 +172,7 @@ destroyAbilityConnectionSession(sessionId:&nbsp;number):&nbsp;void
 
 | 参数名       | 类型                                       | 必填   | 说明       |
 | --------- | ---------------------------------------- | ---- | -------- |
-| sessionId | string  | 是    | 待销毁的协同应用会话ID。   |
-
-**错误码：**
-
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 201      | Permission verification failed. The application does not have the permission required to call the API.|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| sessionId | number  | 是    | 待销毁的协同会话ID。   |
 
 **示例：**
 
@@ -205,7 +196,7 @@ getPeerInfoById(sessionId:&nbsp;number):&nbsp;PeerInfo&nbsp;|&nbsp;undefined
 
 | 参数名       | 类型                                       | 必填   | 说明       |
 | --------- | ---------------------------------------- | ---- | -------- |
-| sessionId | string  | 是    | 协同应用会话ID。   |
+| sessionId | string  | 是    | 协同会话ID。   |
 
 **返回值：**
 
@@ -258,8 +249,7 @@ connect(sessionId:&nbsp;number):&nbsp;Promise&lt;ConnectResult&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201      | Permission verification failed. The application does not have the permission required to call the API.|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -306,8 +296,7 @@ acceptConnect(sessionId:&nbsp;number,&nbsp;token:&nbsp;string):&nbsp;Promise&lt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201      | Permission verification failed. The application does not have the permission required to call the API.|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -380,15 +369,6 @@ disconnect(sessionId:&nbsp;number):&nbsp;void
 | 参数名       | 类型                                    | 必填   | 说明        |
 | --------- | ------------------------------------- | ---- | --------- |
 | sessionId | number | 是    | 协同会话ID     |
-
-**错误码：**
-
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 201      | Permission verification failed. The application does not have the permission required to call the API.|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -553,9 +533,7 @@ sendMessage(sessionId:&nbsp;number,&nbsp;msg:&nbsp;string):&nbsp;Promise&lt;void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201      | Permission verification failed. The application does not have the permission required to call the API.|
-| 202      | Permission verification failed. A non-system application calls a system API.|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -724,11 +702,11 @@ sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;v
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
-| 枚举值 | 描述 |
-| -------- | -------- |
-| PEER_APP_CLOSE_COLLABORATION | 表示对端应用主动关闭了协作。 |
-| PEER_APP_EXIT | 表示对端应用退出。 |
-| NETWORK_DISCONNECTED | 表示网络断开原因。 |
+| 名称|  值 | 说明 |
+|-------|-------|-------|
+| PEER_APP_CLOSE_COLLABORATION | 0 |表示对端应用主动关闭了协作。|
+| PEER_APP_EXIT | 1 |表示对端应用退出。|
+| NETWORK_DISCONNECTED | 2 |表示网络断开。|
 
 ## CollaborationKeys
 

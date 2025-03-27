@@ -38,7 +38,7 @@ Slider(options?: SliderOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 否 | 当前进度值。<br/>默认值：与参数min的取值一致。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br/>取值范围： [min, max]<br/>小于min时取min，大于max时取max。 |
+| value | number | 否 | 当前进度值。<br/>默认值：与参数min的取值一致。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br />该参数支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。<br/>取值范围： [min, max]<br/>小于min时取min，大于max时取max。 |
 | min | number | 否 | 设置最小值。<br/>默认值：0 |
 | max | number | 否 | 设置最大值。<br/>默认值：100<br/>**说明：** <br/>min >= max异常情况，min取默认值0，max取默认值100。<br/>value不在[min, max]范围之内，取min或者max，靠近min取min，靠近max取max。 |
 | step | number | 否 | 设置Slider滑动步长。<br/>默认值：1<br/>取值范围：[0.01, max - min]<br/>**说明：** <br/>若设置的step值小于0或大于max值时，则按默认值显示。 |
@@ -106,11 +106,9 @@ trackColor(value: ResourceColor | LinearGradient)
 
 ### selectedColor
 
-selectedColor(value: ResourceColor | LinearGradient)
+selectedColor(value: ResourceColor)
 
 设置滑轨的已滑动部分颜色。
-
-从API version 18开始支持利用LinearGradient设置滑轨的已滑动部分的渐变色。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -120,9 +118,29 @@ selectedColor(value: ResourceColor | LinearGradient)
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>18+</sup>](ts-basic-components-datapanel.md#lineargradient10) | 是   | 滑轨的已滑动部分颜色。 <br/>**说明：** 设置渐变色时，若颜色断点颜色值为非法值或者渐变色断点为空时，渐变色不起效果。 <br/>默认值：`$r('sys.color.ohos_id_color_emphasize')` |
+| 参数名 | 类型                                       | 必填 | 说明                                                         |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 滑轨的已滑动部分颜色。 <br/>**说明：** 设置渐变色时，若颜色断点颜色值为非法值或者渐变色断点为空时，渐变色不起效果。 <br/>默认值：`$r('sys.color.ohos_id_color_emphasize')` |
+
+### selectedColor<sup>18+</sup>
+
+selectedColor(selectedColor: ResourceColor | LinearGradient)
+
+设置滑轨的已滑动部分颜色。与[selectedColor](#selectedcolor)相比，新增了LinearGradient类型的支持。
+
+从API version 18开始支持利用LinearGradient设置滑轨的已滑动部分的渐变色。
+
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名        | 类型                                                         | 必填 | 说明                                                         |
+| ------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>18+</sup>](ts-basic-components-datapanel.md#lineargradient10) | 是   | 滑轨的已滑动部分颜色。 <br/>**说明：** 设置渐变色时，若颜色断点颜色值为非法值或者渐变色断点为空时，渐变色不起效果。 <br/>默认值：`$r('sys.color.ohos_id_color_emphasize')` |
 
 ### showSteps
 

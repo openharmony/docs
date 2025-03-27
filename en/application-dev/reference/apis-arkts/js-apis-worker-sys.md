@@ -69,8 +69,8 @@ import { worker } from '@kit.ArkTS';
 // Scenario 1: URL of the Worker thread file: "entry/src/main/ets/workers/worker.ets"
 const workerStageModel01 = new worker.RestrictedWorker('entry/ets/workers/worker.ets', {name:"first worker in Stage model"});
 
-// Scenario 2: URL of the Worker thread file: "phone/src/main/ets/ThreadFile/workers/worker.ets"
-const workerStageModel02 = new worker.RestrictedWorker('phone/ets/ThreadFile/workers/worker.ets');
+// Scenario 2: URL of the Worker thread file: "testworkers/src/main/ets/ThreadFile/workers/worker.ets"
+const workerStageModel02 = new worker.RestrictedWorker('testworkers/ets/ThreadFile/workers/worker.ets');
 ```
 
 ```ts

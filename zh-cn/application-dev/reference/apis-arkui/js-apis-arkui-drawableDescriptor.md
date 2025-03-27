@@ -162,7 +162,7 @@ drawable.json位于项目工程entry/src/main/resources/base/media目录下。�
 
 ### constructor<sup>12+</sup>
 
-constructor(foreground?: DrawableDescriptor, background?: DrawableDescriptor, mask?: DrawableDescriptor);
+constructor(foreground?: DrawableDescriptor, background?: DrawableDescriptor, mask?: DrawableDescriptor)
 
 LayeredDrawableDescriptor的构造函数。
 
@@ -179,7 +179,7 @@ LayeredDrawableDescriptor的构造函数。
 | mask | [DrawableDescriptor](#drawabledescriptor) | 否 | 分层图标的遮罩选项。 |
 
 ### getForeground
-getForeground(): DrawableDescriptor;
+getForeground(): DrawableDescriptor
 
 获取前景的DrawableDescriptor对象。
 
@@ -204,7 +204,7 @@ let drawableNew: object = drawable.getForeground()
 
 ### getBackground
 
-getBackground(): DrawableDescriptor;
+getBackground(): DrawableDescriptor
 
 获取背景的DrawableDescriptor对象。
 

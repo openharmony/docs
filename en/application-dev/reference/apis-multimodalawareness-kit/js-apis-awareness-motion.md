@@ -51,11 +51,11 @@ For details about the error codes, see [Motion Sensing Error Codes](errorcode-mo
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denied.                                           |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801      | Capability not supported.Function can not work correctly due to limited device capabilities. |
-| 31500001 | Service exception.                                           |
-| 31500002 | Subscribe Failed.                                            |
+| 201      | Permission denied. An attempt was made to subscribe operatingHandChanged event forbidden by permission: ohos.permission.ACTIVITY_MOTION. |
+| 401      | Parameter error. Parameter verification failed. |
+| 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
+| 31500001 | Service exception. |
+| 31500002 | Subscribe Failed. |
 
 **Example**
 
@@ -90,11 +90,11 @@ For details about the error codes, see [Motion Sensing Error Codes](errorcode-mo
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denied.                                           |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801      | Capability not supported.Function can not work correctly due to limited device capabilities. |
-| 31500001 | Service exception.                                           |
-| 31500003 | UnSubscribe Failed.                                          |
+| 201      | Permission denied. An attempt was made to unsubscribe operatingHandChanged event forbidden by permission: ohos.permission.ACTIVITY_MOTION. |
+| 401      | Parameter error. Parameter verification failed. |
+| 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
+| 31500001 | Service exception. |
+| 31500003 | Unsubscribe Failed. |
 
 **Example**
 
@@ -116,15 +116,21 @@ Obtains the latest operating hand status.
 
 **System capability**: SystemCapability.MultimodalAwarness.Motion
 
+**Return value**
+
+| Type                         | Description                                |
+| ----------------------------- | ------------------------------------ |
+| [OperatingHandStatus](#operatinghandstatus) | Status of the operating hand.|
+
 **Error codes**
 
 For details about the error codes, see [Motion Sensing Error Codes](errorcode-motion.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denied.                                           |
-| 801      | Capability not supported.Function can not work correctly due to limited device capabilities. |
-| 31500001 | Service exception.                                           |
+| 201      | Permission denied. An attempt was made to get the recent operating hand status forbidden by permission: ohos.permission.ACTIVITY_MOTION. |
+| 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
+| 31500001 | Service exception. |
 
 **Example**
 

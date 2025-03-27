@@ -11,7 +11,7 @@ The **screenLock** module is a system module in OpenHarmony. It provides APIs fo
 ## Modules to Import
 
 ```ts
-import screenLock from '@ohos.screenLock';
+import { screenLock } from '@kit.BasicServicesKit';
 ```
 
 ## EventType<sup>9+</sup>
@@ -112,7 +112,7 @@ For details about error codes, see [Universal Error Codes](../errorcode-universa
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   screenLock.unlock((err: BusinessError, data: Boolean) => {
     if (err) {
@@ -156,7 +156,7 @@ For details about error codes, see [Universal Error Codes](../errorcode-universa
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   screenLock.unlock().then((data: Boolean) => {
     console.info(`Succeeded in unlocking the screen. result: ${data}`);
@@ -201,7 +201,7 @@ For details about error codes, see [Universal Error Codes](../errorcode-universa
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   screenLock.lock((err: BusinessError, data: Boolean) => {
     if (err) {
@@ -243,7 +243,7 @@ For details about error codes, see [Universal Error Codes](../errorcode-universa
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   screenLock.lock().then((data: Boolean) => {
     console.info(`Succeeded in locking the screen. result: ${data}`);
@@ -290,6 +290,8 @@ For details about error codes, see [Universal Error Codes](../errorcode-universa
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  
   try {
     let isSuccess = screenLock.onSystemEvent((event: screenLock.SystemEvent) => {
       console.log(`Succeeded in Registering the system event which related to screenlock. eventType: ${event.eventType}`)
@@ -304,7 +306,7 @@ For details about error codes, see [Universal Error Codes](../errorcode-universa
 
 sendScreenLockEvent(event: String, parameter: number, callback: AsyncCallback&lt;boolean&gt;): void
 
-Sends an event to the screen lock service. This API can be called only by screen lock applications. It uses an asynchronous callback to return the result.
+Sends an event to the screen lock service. This API can be called only by screen lock applications. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
@@ -314,11 +316,11 @@ Sends an event to the screen lock service. This API can be called only by screen
 
 **Parameters**
 
-| Name   | Type           | Mandatory| Description                            |
-| --------- | ------------------------ | ---- | -------------------- |
-| event     | String                   | Yes  | Event type.<br>- **"unlockScreenResult"**: Screen unlock result.<br>- **"lockScreenResult"**: Screen lock result.<br>- **"screenDrawDone"**: Screen drawing is complete.|
+| Name   | Type           | Mandatory| Description                                                                                                               |
+| --------- | ------------------------ | ---- |-------------------------------------------------------------------------------------------------------------------|
+| event     | String                   | Yes  | Event type. Options are as follows:<br>- **"unlockScreenResult"**: Screen unlock result.<br>- **"lockScreenResult"**: Screen lock result.<br>- **"screenDrawDone"**: Screen drawing is complete.|
 | parameter | number                   | Yes  | Result.<br>- **0**: The operation is successful. For example, the screen is locked or unlocked successfully.<br>- **1**, the operation fails. For example, screen locking or unlocking fails.<br>- **2**: The operation is canceled. For example, screen locking or unlocking is canceled.|
-| callback  | AsyncCallback\<boolean> | Yes  | Callback used to return the result. The **value** true means that the event is sent successfully, and **false** means the opposite.                |
+| callback  | AsyncCallback\<boolean> | Yes  | Callback used to return the result. The **value** true means that the event is sent successfully, and **false** means the opposite.                                                                             |
 
 **Error codes**
 
@@ -334,7 +336,7 @@ For details about error codes, see [Universal Error Codes](../errorcode-universa
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   screenLock.sendScreenLockEvent('unlockScreenResult', 0, (err: BusinessError, result: Boolean) => {
     if (err) {
@@ -349,7 +351,7 @@ For details about error codes, see [Universal Error Codes](../errorcode-universa
 
 sendScreenLockEvent(event: String, parameter: number): Promise&lt;boolean&gt;
 
-Sends an event to the screen lock service. This API can be called only by screen lock applications. It uses a promise to return the result.
+Sends an event to the screen lock service. This API can be called only by screen lock applications. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
@@ -359,9 +361,9 @@ Sends an event to the screen lock service. This API can be called only by screen
 
 **Parameters**
 
-| Name   | Type  | Mandatory| Description                                      |
-| --------- | ------ | ---- | --------------------------------------- |
-| event     | String | Yes  | Event type.<br>- **"unlockScreenResult"**: Screen unlock result.<br>- **"lockScreenResult"**: Screen lock result.<br>- **"screenDrawDone"**: Screen drawing is complete.|
+| Name   | Type  | Mandatory| Description                                                                                                               |
+| --------- | ------ | ---- |-------------------------------------------------------------------------------------------------------------------|
+| event     | String | Yes  | Event type. Options are as follows:<br>- **"unlockScreenResult"**: Screen unlock result.<br>- **"lockScreenResult"**: Screen lock result.<br>- **"screenDrawDone"**: Screen drawing is complete.|
 | parameter | number | Yes  | Result.<br>- **0**: The operation is successful. For example, the screen is locked or unlocked successfully.<br>- **1**, the operation fails. For example, screen locking or unlocking fails.<br>- **2**: The operation is canceled. For example, screen locking or unlocking is canceled.|
 
 **Return value**
@@ -384,7 +386,7 @@ For details about error codes, see [Universal Error Codes](../errorcode-universa
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   screenLock.sendScreenLockEvent('unlockScreenResult', 0).then((result: Boolean) => {
     console.info(`Succeeded in Sending screenlock event. result: ${result}`);

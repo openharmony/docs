@@ -19,10 +19,10 @@ import { FaultLogger } from '@kit.PerformanceAnalysisKit';
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| NO_SPECIFIC | 0 | 不区分故障类型 |
-| CPP_CRASH | 2 | C++程序故障类型 |
-| JS_CRASH | 3 | JS程序故障类型 |
-| APP_FREEZE | 4 | 应用程序卡死故障类型 |
+| NO_SPECIFIC | 0 | 不区分故障类型。 |
+| CPP_CRASH | 2 | C++程序故障类型。 |
+| JS_CRASH | 3 | JS程序故障类型。 |
+| APP_FREEZE | 4 | 应用程序卡死故障类型。 |
 
 ## FaultLogInfo
 
@@ -32,14 +32,14 @@ import { FaultLogger } from '@kit.PerformanceAnalysisKit';
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pid | number | 是 | 故障进程的进程id |
-| uid | number | 是 | 故障进程的用户id |
-| type | [FaultType](#faulttype) | 是 | 故障类型 |
-| timestamp | number | 是 | 日志生成时的毫秒级时间戳 |
-| reason | string | 是 | 发生故障的原因 |
-| module | string | 是 | 发生故障的模块 |
-| summary | string | 是 | 故障的概要 |
-| fullLog | string | 是 | 故障日志全文 |
+| pid | number | 是 | 故障进程的进程id。 |
+| uid | number | 是 | 故障进程的用户id。 |
+| type | [FaultType](#faulttype) | 是 | 故障类型。 |
+| timestamp | number | 是 | 日志生成时的毫秒级时间戳。 |
+| reason | string | 是 | 发生故障的原因。 |
+| module | string | 是 | 发生故障的模块。 |
+| summary | string | 是 | 故障的概要。 |
+| fullLog | string | 是 | 故障日志全文。 |
 
 ## FaultLogger.query<sup>9+</sup>
 
@@ -54,7 +54,7 @@ query(faultType: FaultType, callback: AsyncCallback&lt;Array&lt;FaultLogInfo&gt;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | faultType | [FaultType](#faulttype) | 是 | 输入要查询的故障类型。 |
-| callback | AsyncCallback&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | 是 | 回调函数，在回调函数中获取故障信息数组。<br/>-&nbsp;value拿到故障信息数组；value为undefined表示获取过程中出现异常，error返回错误提示字符串
+| callback | AsyncCallback&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | 是 | 回调函数，在回调函数中获取故障信息数组。<br/>-&nbsp;value拿到故障信息数组；value为undefined表示获取过程中出现异常，error返回错误提示字符串。
 
 **错误码：**
 
@@ -62,9 +62,9 @@ query(faultType: FaultType, callback: AsyncCallback&lt;Array&lt;FaultLogInfo&gt;
 
 | 错误码ID | 错误信息 |
 | --- | --- |
-| 401 | The parameter check failed, Parameter type error |
-| 801 | The specified SystemCapability name was not found |
-| 10600001 | The service is not started or is faulty |
+| 401 | The parameter check failed, Parameter type error. |
+| 801 | The specified SystemCapability name was not found. |
+| 10600001 | The service is not started or is faulty. |
 
 **示例：**
 
@@ -116,7 +116,7 @@ query(faultType: FaultType) : Promise&lt;Array&lt;FaultLogInfo&gt;&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Promise实例，可以在其then()方法中获取故障信息实例，也可以使用await。 <br/>-&nbsp;value拿到故障信息数组；value为undefined表示获取过程中出现异常 |
+| Promise&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Promise实例，可以在其then()方法中获取故障信息实例，也可以使用await。 <br/>-&nbsp;value拿到故障信息数组；value为undefined表示获取过程中出现异常。 |
 
 **错误码：**
 
@@ -124,9 +124,9 @@ query(faultType: FaultType) : Promise&lt;Array&lt;FaultLogInfo&gt;&gt;
 
 | 错误码ID | 错误信息 |
 | --- | --- |
-| 401 | The parameter check failed, Parameter type error |
-| 801 | The specified SystemCapability name was not found |
-| 10600001 | The service is not started or is faulty |
+| 401 | The parameter check failed, Parameter type error. |
+| 801 | The specified SystemCapability name was not found. |
+| 10600001 | The service is not started or is faulty. |
 
 **示例：**
 
@@ -175,7 +175,7 @@ querySelfFaultLog(faultType: FaultType, callback: AsyncCallback&lt;Array&lt;Faul
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | faultType | [FaultType](#faulttype) | 是 | 输入要查询的故障类型。 |
-| callback | AsyncCallback&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | 是 | 回调函数，在回调函数中获取故障信息数组。<br/>-&nbsp;value拿到故障信息数组；value为undefined表示获取过程中出现异常，error返回错误提示字符串
+| callback | AsyncCallback&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | 是 | 回调函数，在回调函数中获取故障信息数组。<br/>-&nbsp;value拿到故障信息数组；value为undefined表示获取过程中出现异常，error返回错误提示字符串。
 
 **示例：**
 
@@ -227,7 +227,7 @@ querySelfFaultLog(faultType: FaultType) : Promise&lt;Array&lt;FaultLogInfo&gt;&g
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Promise实例，可以在其then()方法中获取故障信息实例，也可以使用await。 <br/>-&nbsp;value拿到故障信息数组；value为undefined表示获取过程中出现异常 |
+| Promise&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Promise实例，可以在其then()方法中获取故障信息实例，也可以使用await。 <br/>-&nbsp;value拿到故障信息数组；value为undefined表示获取过程中出现异常。 |
 
 **示例：**
 
