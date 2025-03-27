@@ -507,7 +507,7 @@ AuxiliaryPicture结构体类型，用于执行AuxiliaryPicture相关操作。
 typedef struct OH_DecodingOptions OH_DecodingOptions
 ```
 **描述**
-解码选项参数结构体,被用于选项参数结构体，被用于[OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap)。
+解码选项参数结构体，被用于选项参数结构体，被用于[OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap)。
 
 此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_DecodingOptions结构体介绍](../../media/image/image-structure-c.md#oh_decodingoptions结构体)。
 
@@ -979,10 +979,10 @@ Pixelmap透明度类型。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| PIXELMAP_ALPHA_TYPE_UNKNOWN | 未知格式 | 
-| PIXELMAP_ALPHA_TYPE_OPAQUE | 不透明的格式 | 
-| PIXELMAP_ALPHA_TYPE_PREMULTIPLIED | 预乘透明度格式 | 
-| PIXELMAP_ALPHA_TYPE_UNPREMULTIPLIED | 非预乘透明度格式 |
+| PIXELMAP_ALPHA_TYPE_UNKNOWN | 未知格式。 | 
+| PIXELMAP_ALPHA_TYPE_OPAQUE | 不透明的格式。 | 
+| PIXELMAP_ALPHA_TYPE_PREMULTIPLIED | 预乘透明度格式。 | 
+| PIXELMAP_ALPHA_TYPE_UNPREMULTIPLIED | 非预乘透明度格式。 |
 
 
 ## 函数说明
