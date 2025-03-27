@@ -1605,8 +1605,23 @@
           - [几何形状绘制（C/C++）](graphics/geometric-shape-drawing-c.md)
           - [图片绘制（C/C++）](graphics/pixelmap-drawing-c.md)
           - [字块绘制（C/C++）](graphics/textblock-drawing-c.md)
-      - [使用Text模块实现文本显示](graphics/text-js-guidelines.md)
-      - [使用主题字体（C/C++）](graphics/theme-font-c.md)
+      - 文本<!--text-->
+        - [文本开发概述](graphics/text-overview.md)
+        - 字体管理<!--font-manager-->
+          - [使用主题字体（ArkTS）](graphics/theme-font-arkts.md)
+          - [自定义字体的注册和使用（ArkTS）](graphics/custom-font-arkts.md)
+          - [系统字体的信息获取和使用（ArkTS）](graphics/system-font-arkts.md)
+          - [使用主题字体（C/C++）](graphics/theme-font-c.md)
+          - [自定义字体的注册和使用（C/C++）](graphics/custom-font-c.md)
+          - [系统字体的信息获取和使用（C/C++）](graphics/system-font-c.md)
+        - 文本测量<!--text-measure-->
+          - [文本测量（ArkTS）](graphics/text-measure-arkts.md)
+          - [文本测量（C/C++）](graphics/text-measure-c.md)
+        - 文本绘制与显示<!--draw-text-display-->
+          - [简单文本绘制与显示（ArkTS）](graphics/simple-text-arkts.md)
+          - [复杂文本绘制与显示（ArkTS）](graphics/complex-text-arkts.md)
+          - [简单文本绘制与显示（C/C++）](graphics/simple-text-c.md)
+          - [复杂文本绘制与显示（C/C++）](graphics/complex-text-c.md)
       - [NativeBuffer开发指导 (C/C++)](graphics/native-buffer-guidelines.md)
       - [NativeImage开发指导 (C/C++)](graphics/native-image-guidelines.md)
       - [NativeVSync开发指导 (C/C++)](graphics/native-vsync-guidelines.md)
