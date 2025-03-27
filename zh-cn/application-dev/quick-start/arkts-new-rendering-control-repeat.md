@@ -104,6 +104,8 @@ Repeat通过键值识别数组如何改变：增加了哪些数据、删除了�
 
 ### 键值生成规则
 
+`.key()`方法为每一项数据生成一个键值。请注意键值（key）与索引（index）的区别：键值是数据项的唯一标识符，Repeat根据键值是否发生变化判断数据项是否更新；索引则只标识数据项在数据源中的位置。
+
 `.key()`的逻辑如下图所示。
 
 当`.key()`缺省时，Repeat会生成新的随机键值。当发现有重复key时，Repeat会在已有键值的基础上递归生成新的键值，直到没有重复键值。
@@ -137,6 +139,8 @@ Repeat通过键值识别数组如何改变：增加了哪些数据、删除了�
 ### 键值生成规则
 
 和non-virtualScroll模式的逻辑基本一致，如下图所示。
+
+`.key()`方法为每一项数据生成一个键值。请注意键值（key）与索引（index）的区别：键值是数据项的唯一标识符，Repeat根据键值是否发生变化判断数据项是否更新；索引则只标识数据项在数据源中的位置。
 
 当`.key()`缺省时，Repeat会生成新的随机键值。当存在重复key时，Repeat会重新生成随机key作为当前数据项的键值并且放进该列表。列表中已有的键值不受影响。随机key的构成：`___${index}_+_${key}_+_${Math.random()}`，其中的变量依次为：索引、旧键值、随机数。
 
@@ -281,9 +285,9 @@ struct Parent {
           .fontSize(24)
           .fontColor(Color.Red)
           .onClick(() => {
-            let temp: string = this.simpleList[2]
-            this.simpleList[2] = this.simpleList[1]
-            this.simpleList[1] = temp
+            let temp: string = this.simpleList[2];
+            this.simpleList[2] = this.simpleList[1];
+            this.simpleList[1] = temp;
           })
           .margin({bottom: 20})
 
@@ -871,7 +875,7 @@ struct DemoGrid {
           this.itemList.splice(10, 1);
           this.itemList.unshift(new DemoGridItemInfo('refresh', $r('app.media.gridItem0'))); // 此处app.media.gridItem0仅作示例，请开发者自行替换
           for (let i = 0; i < 10; i++) {
-            // 此处aapp.media.gridItem0、app.media.gridItem1、app.media.gridItem2仅作示例，请开发者自行替换
+            // 此处app.media.gridItem0、app.media.gridItem1、app.media.gridItem2仅作示例，请开发者自行替换
             this.itemList.unshift(new DemoGridItemInfo('新视频' + this.num,
               i % 3 == 0 ? $r("app.media.gridItem0") :
               i % 3 == 1 ? $r("app.media.gridItem1") : $r("app.media.gridItem2")));
@@ -991,6 +995,7 @@ struct DemoSwiper {
 
 ### 屏幕外的列表数据发生变化时，保证滚动条位置不变
 
+以下示例中，屏幕外的数据源变化将影响屏幕中List列表Scroller停留的位置：
 在List组件中声明Repeat组件，实现key值生成逻辑和each逻辑（如下示例代码），点击按钮“insert”，在屏幕显示的第一个元素前面插入一个元素，屏幕出现向下滚动。
 
 ```ts
@@ -1054,6 +1059,7 @@ struct RepeatTemplateSingle {
 
 ![Repeat-case1-Error](./figures/Repeat-Case1-Error.gif)
 
+以下为修正后的示例：
 在一些场景中，我们不希望屏幕外的数据源变化影响屏幕中List列表Scroller停留的位置，可以通过List组件的[onScrollIndex](../ui/arkts-layout-development-create-list.md#响应滚动位置)事件对列表滚动动作进行监听，当列表发生滚动时，获取列表滚动位置。使用Scroller组件的[scrollToIndex](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scrolltoindex)特性，滑动到指定index位置，实现屏幕外的数据源增加/删除数据时，Scroller停留的位置不变的效果。
 
 示例代码仅对增加数据的情况进行展示。
@@ -1081,12 +1087,12 @@ struct RepeatTemplateSingle {
           })
           .template('number', (r) => {
             ListItem() {
-              Text(r.index! + ":" + r.item + "Reuse");
+              Text(r.index! + ":" + r.item + "Reuse")
             }
           })
           .each((r) => {
             ListItem() {
-              Text(r.index! + ":" + r.item + "eachMessage");
+              Text(r.index! + ":" + r.item + "eachMessage")
             }
           })
       }
@@ -1228,8 +1234,8 @@ struct RepeatBuilderPage {
 
   aboutToAppear(): void {
     for (let i = 0; i < 100; i++) {
-      this.simpleList1.push(i)
-      this.simpleList2.push(i)
+      this.simpleList1.push(i);
+      this.simpleList2.push(i);
     }
   }
 
@@ -1250,7 +1256,7 @@ struct RepeatBuilderPage {
                 Column() {
                   Text('Text id = ' + ri.item)
                     .fontSize(20)
-                  this.buildItem1(ri.item) // 修改为：this.buildItem1(ri)
+                  this.buildItem1(ri.item) // 错误示例，为避免渲染异常，应修改为：this.buildItem1(ri)
                 }
               }
               .border({ width: 1 })
@@ -1271,7 +1277,7 @@ struct RepeatBuilderPage {
                 Column() {
                   Text('Text id = ' + ri.item)
                     .fontSize(20)
-                  this.buildItem2(ri)
+                  this.buildItem2(ri) // 正确示例，渲染正常
                 }
               }
               .border({ width: 1 })
