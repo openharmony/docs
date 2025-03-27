@@ -510,7 +510,7 @@ struct TimePickerExample {
 }
 ```
 
-![timePicker](figures/TimePickerDemo2.gif)
+
 
 ### Example 3: Setting the Time Format
 
@@ -541,7 +541,7 @@ struct TimePickerExample {
 }
 ```
 
-![timePicker](figures/TimePickerDemo3.gif)
+
 
 ### Example 4: Setting Loopable Scrolling
 
@@ -582,7 +582,7 @@ struct TimePickerExample {
 }
 ```
 
-![timePicker](figures/TimePickerDemo4.gif)
+
 
 ### Example 5: Setting the Start Time
 
@@ -676,5 +676,4 @@ struct TimePickerExample {
 }
 ```
 
-![timePicker](figures/TimePickerDemo7.gif)
-<!--no_check-->
+

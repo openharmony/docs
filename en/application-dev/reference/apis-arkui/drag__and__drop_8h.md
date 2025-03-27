@@ -43,7 +43,7 @@ Declares the APIs of **NativeDrag**.
 | [ArkUI_DragStatus](_ark_u_i___native_module.md#arkui_dragstatus) { [ArkUI_DRAG_STATUS_UNKNOWN](_ark_u_i___native_module.md), [ArkUI_DRAG_STATUS_STARTED](_ark_u_i___native_module.md), [ArkUI_DRAG_STATUS_ENDED](_ark_u_i___native_module.md) } | Enumerates dragging states. | 
 
 
-### Callback
+### Functions
 
 | Name| Description| 
 | -------- | -------- |
@@ -99,3 +99,4 @@ Declares the APIs of **NativeDrag**.
 | [ArkUI_DragStatus](_ark_u_i___native_module.md#arkui_dragstatus) [OH_ArkUI_DragAndDropInfo_GetDragStatus](_ark_u_i___native_module.md#oh_arkui_draganddropinfo_getdragstatus) ([ArkUI_DragAndDropInfo](_ark_u_i___native_module.md#arkui_draganddropinfo) \*dragAndDropInfo) | Obtains the drag status of a drag action. | 
 | [ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent) \* [OH_ArkUI_DragAndDropInfo_GetDragEvent](_ark_u_i___native_module.md#oh_arkui_draganddropinfo_getdragevent) ([ArkUI_DragAndDropInfo](_ark_u_i___native_module.md#arkui_draganddropinfo) \*dragAndDropInfo) | Obtains a drag event based on the specified drag and drop information. The drag event can then be used to obtain the drag result. | 
 | int32_t [OH_ArkUI_StartDrag](_ark_u_i___native_module.md#oh_arkui_startdrag) ([ArkUI_DragAction](_ark_u_i___native_module.md#arkui_dragaction) \*dragAction) | Initiates a drag action through the specified **DragAction** object. | 
+<!--no_check-->
