@@ -52,6 +52,7 @@ Activates a system account. This API uses an asynchronous callback to return the
 **Example**: Activate system account 100.
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.activateOsAccount(localId, (err: BusinessError)=>{
@@ -454,7 +455,7 @@ Sets or removes constraints for a system account. This API uses an asynchronous 
 | ----------- | ------------------------- | ---- | ----------------------------------------------- |
 | localId     | number                    | Yes  | ID of the target system account.              |
 | constraints | Array&lt;string&gt;       | Yes  | [Constraints](js-apis-osAccount.md#constraints) to set or remove.       |
-| enable      | boolean                   | Yes  | Set or remove constraints. The value **true** means to set constraints, and **false** means to remove constraints.                          |
+| enable      | boolean                   | Yes  | Whether to set or remove constraints. The value **true** means to set constraints, and **false** means to remove constraints.                         |
 | callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -2586,15 +2587,19 @@ Performs authentication of the current user. This API uses an asynchronous callb
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid challenge, authType or authTrustLevel. |
+| 12300013 | Network exception. |
 | 12300101 | The credential is incorrect. |
-| 12300102 | Credential not enrolled. |
+| 12300102 | The credential does not exist. |
 | 12300105 | The trust level is not supported. |
 | 12300106 | The authentication type is not supported. |
 | 12300109 | The authentication, enrollment, or update operation is canceled. |
 | 12300110 | The authentication is locked. |
 | 12300111 | The authentication time out. |
 | 12300112 | The authentication service is busy. |
+| 12300113 | The authentication service does not exist. |
+| 12300114 | The authentication service works abnormally. |
 | 12300117 | PIN is expired. |
+| 12300211 | Server unreachable. |
 
 **Example**
   ```ts
@@ -2652,15 +2657,19 @@ Starts user authentication based on the specified challenge value, authenticatio
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid challenge, authType, authTrustLevel or options. |
 | 12300003 | Account not found. |
+| 12300013 | Network exception. |
 | 12300101 | The credential is incorrect. |
-| 12300102 | Credential not enrolled. |
+| 12300102 | The credential does not exist. |
 | 12300105 | The trust level is not supported. |
 | 12300106 | The authentication type is not supported. |
 | 12300109 | The authentication, enrollment, or update operation is canceled. |
 | 12300110 | The authentication is locked. |
 | 12300111 | The authentication time out. |
 | 12300112 | The authentication service is busy. |
+| 12300113 | The authentication service does not exist. |
+| 12300114 | The authentication service works abnormally. |
 | 12300117 | PIN is expired. |
+| 12300211 | Server unreachable. |
 
 **Example**
   ```ts
@@ -2720,16 +2729,20 @@ Performs authentication of the specified user. This API uses an asynchronous cal
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid challenge, authType or authTrustLevel. |
-| 12300101 | The credential is incorrect. |
-| 12300102 | Credential not enrolled. |
 | 12300003 | Account not found. |
+| 12300013 | Network exception. |
+| 12300101 | The credential is incorrect. |
+| 12300102 | The credential does not exist. |
 | 12300105 | The trust level is not supported. |
 | 12300106 | The authentication type is not supported. |
 | 12300109 | The authentication, enrollment, or update operation is canceled. |
 | 12300110 | The authentication is locked. |
 | 12300111 | The authentication time out. |
 | 12300112 | The authentication service is busy. |
+| 12300113 | The authentication service does not exist. |
+| 12300114 | The authentication service works abnormally. |
 | 12300117 | PIN is expired. |
+| 12300211 | Server unreachable. |
 
 **Example**
   ```ts
@@ -3590,6 +3603,7 @@ Authenticates a domain account.
 | 12300112 | The authentication service is busy. |
 | 12300113 | The account authentication service does not exist. |
 | 12300114 | The account authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **Example**
   ```ts
@@ -3648,6 +3662,7 @@ No permission is required since API version 11. Use the SDK of the latest versio
 | 12300112 | The authentication service is busy. |
 | 12300113 | The account authentication service does not exist. |
 | 12300114 | The account authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **Example**
   ```ts
@@ -3703,6 +3718,7 @@ No permission is required since API version 11. Use the SDK of the latest versio
 | 12300112 | The authentication service is busy. |
 | 12300113 | The account authentication service does not exist. |
 | 12300114 | The account authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **Example**
   ```ts
@@ -3735,7 +3751,7 @@ Checks whether a domain account exists.
 | Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
-| callback   | AsyncCallback&lt;boolean&gt;  | Yes  | Callback used to return the result.|
+| callback   | AsyncCallback&lt;boolean&gt;  | Yes  | Callback used to return the result. |
 
 **Error codes**
 
@@ -3748,7 +3764,10 @@ Checks whether a domain account exists.
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid domainAccountInfo. |
 | 12300013 | Network exception. |
-| 12300111 | The authentication time out. |
+| 12300014 | Not authenticated. |
+| 12300111 | The operation time out. |
+| 12300114 | The authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **Example**
   ```ts
@@ -3805,7 +3824,10 @@ Checks whether a domain account exists.
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid domainAccountInfo. |
 | 12300013 | Network exception. |
-| 12300111 | The authentication time out. |
+| 12300014 | Not authenticated. |
+| 12300111 | The operation time out. |
+| 12300114 | The authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **Example**
   ```ts
@@ -3933,12 +3955,11 @@ Updates the token of a domain account. An empty token means an invalid token. Th
     console.log('updateAccountToken exception = ' + JSON.stringify(err));
   }
   ```
-
 ### updateAccountInfo<sup>12+</sup>
 
 updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccountInfo): Promise&lt;void&gt;
 
-Updates information of a domain account. This API uses a promise to return the result.
+Updates information about the specified domain account. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -3950,8 +3971,8 @@ Updates information of a domain account. This API uses a promise to return the r
 
 | Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| oldAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
-| newAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | New domain account information.|
+| oldAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes   | Domain account information. |
+| newAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes   | New domain account information. |
 
 **Error codes**
 
@@ -4014,7 +4035,10 @@ Obtains information about the specified domain account. This API uses an asynchr
 | 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
-| 12300111 | The authentication time out. |
+| 12300014 | Not authenticated. |
+| 12300111 | The operation time out. |
+| 12300114 | The authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **Example**
   ```ts
@@ -4072,7 +4096,10 @@ Obtains information about the specified domain account. This API uses a promise 
 | 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
-| 12300111 | The authentication time out. |
+| 12300014 | Not authenticated. |
+| 12300111 | The operation time out. |
+| 12300114 | The authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **Example**
   ```ts
@@ -4122,7 +4149,9 @@ Obtains the service access token of this domain account. This API uses an asynch
 | 12300003 | Domain account not found. |
 | 12300013 | Network exception. |
 | 12300014 | The domain account is not authenticated. |
-| 12300111 | The authentication time out. |
+| 12300111 | The operation time out. |
+| 12300114 | The authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **Example**
   ```ts
@@ -4179,7 +4208,9 @@ Obtains the service access token of this domain account. This API uses a promise
 | 12300003 | Domain account not found. |
 | 12300013 | Network exception. |
 | 12300014 | The domain account is not authenticated. |
-| 12300111 | The authentication time out. |
+| 12300111 | The operation time out. |
+| 12300114 | The authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **Example**
   ```ts
@@ -4251,178 +4282,6 @@ Checks whether the authentication of a domain account has expired. This API uses
   }
   ```
 
-## DomainServerConfig<sup>12+</sup>
-
-Represents the configuration of a domain server.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Account.OsAccount
-
-| Name     | Type  | Mandatory| Description      |
-| ----------- | ------ | ---- | ---------- |
-| parameters | Record<string, Object> | Yes  | Server configuration parameters.|
-| id | string | Yes  | Server configuration ID.|
-| domain | string | Yes| Domain to which the server belongs.|
-
-## DomainServerConfigManager<sup>12+</sup>
-
-Provides APIs for domain server configuration and management.
-
-### addServerConfig<sup>12+</sup>
-
-static addServerConfig(parameters: Record&lt;string, Object&gt;): Promise&lt;DomainServerConfig&gt;
-
-Adds domain server configuration. This API uses a promise to return the result.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Account.OsAccount
-
-**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
-
-**Parameters**
-
-| Name   | Type                    | Mandatory| Description                     |
-| ----------| ----------------------- | --- | -------------------------- |
-| parameters   | Record<string, Object>  | Yes | Configuration parameters of the domain server.|
-
-**Return value**
-
-| Type                     | Description                    |
-| :------------------------ | ----------------------- |
-| Promise&lt;[DomainServerConfig](#domainserverconfig12)&gt; | Promise used to return the configuration of the newly added domain server.|
-
-**Error codes**
-
-| ID| Error Message                    |
-| -------- | --------------------------- |
-| 201 | Permission denied.|
-| 202 | Not system application.|
-| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801 | Capability not supported.|
-| 12300001 | The system service works abnormally. |
-| 12300002 | - Invalid server config parameters. |
-| 12300211 | - Server unreachable. |
-
-**Example**
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-  let configParams: Record<string, Object> = {
-    'uri': 'test.example.com',
-    'port': 100
-  };
-  osAccount.DomainServerConfigManager.addServerConfig(configParams).then((
-    serverConfig: osAccount.DomainServerConfig) => {
-    console.log('add server configuration successfully, the return config: ' + JSON.stringify(serverConfig));
-  }).catch((err: BusinessError) => {
-    console.log('add server configuration failed, error: ' + JSON.stringify(err));
-  });
-  ```
-
-### removeServerConfig<sup>12+</sup>
-
-static removeServerConfig(configId: string): Promise&lt;void&gt;
-
-Deletes domain server configuration. This API uses a promise to return the result.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Account.OsAccount
-
-**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
-
-**Parameters**
-
-| Name   | Type                    | Mandatory| Description                     |
-| ----------| ----------------------- | --- | -------------------------- |
-| configId   | string  | Yes | Server configuration ID.|
-
-**Return value**
-
-| Type                     | Description                    |
-| :------------------------ | ----------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
-
-**Error codes**
-
-| ID| Error Message                    |
-| -------- | --------------------------- |
-| 201 | Permission denied.|
-| 202 | Not system application.|
-| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801 | Capability not supported.|
-| 12300001 | The system service works abnormally. |
-| 12300212 | - Server config not found. |
-
-**Example**
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-  let configParams: Record<string, Object> = {
-    'uri': 'test.example.com',
-    'port': 100
-  };
-  osAccount.DomainServerConfigManager.addServerConfig(configParams).then((
-    serverConfig: osAccount.DomainServerConfig) => {
-    console.log('add domain server configuration successfully, the added config: ' + JSON.stringify(serverConfig));
-    osAccount.DomainServerConfigManager.removeServerConfig(serverConfig.id);
-    console.log('remove domain server configuration successfully');
-  }).catch((err: BusinessError) => {
-    console.log('add server configuration failed, error: ' + JSON.stringify(err));
-  });
-  ```
-
-### getAccountServerConfig<sup>12+</sup>
-
-static getAccountServerConfig(domainAccountInfo: DomainAccountInfo): Promise&lt;DomainServerConfig&gt;
-
-Obtains the server configuration of a domain account. This API uses a promise to return the result.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Account.OsAccount
-
-**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
-
-**Parameters**
-
-| Name   | Type                    | Mandatory| Description                     |
-| ----------| ----------------------- | --- | -------------------------- |
-| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes | Information of the domain account.|
-
-**Return value**
-
-| Type                     | Description                    |
-| :------------------------ | ----------------------- |
-| Promise&lt;[DomainServerConfig](#domainserverconfig12)&gt; | Promise used to return the domain server configuration of the account.|
-
-**Error codes**
-
-| ID| Error Message                    |
-| -------- | --------------------------- |
-| 201 | Permission denied.|
-| 202 | Not system application.|
-| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801 | Capability not supported.|
-| 12300001 | The system service works abnormally. |
-| 12300003 | Domain account not found. |
-
-**Example**
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-  let accountInfo: osAccount.DomainAccountInfo = {
-    'accountName': 'demoName',
-    'accountId': 'demoId',
-    'domain': 'demoDomain'
-  };
-  osAccount.DomainServerConfigManager.getAccountServerConfig(accountInfo).then((
-    serverConfig: osAccount.DomainServerConfig) => {
-    console.log('get account server configuration successfully, the return config: ' + JSON.stringify(serverConfig));
-  }).catch((err: BusinessError) => {
-    console.log('add server configuration failed, error: ' + JSON.stringify(err));
-  });
-  ```
-
 ## UserIdentityManager<sup>8+</sup>
 
 Provides APIs for user IDM.
@@ -4431,9 +4290,7 @@ Provides APIs for user IDM.
 
 ### constructor<sup>8+</sup>
 
-constructor()
-
-A constructor used to create an instance for user IDM.
+A **constructor()** used to create an instance for user IDM.
 
 **System API**: This is a system API.
 
@@ -4575,7 +4432,7 @@ Adds credential information, including the credential type, subtype, and token (
 | 12300101 | The token is invalid. |
 | 12300106 | The authentication type is not supported. |
 | 12300109 | The authentication, enrollment, or update operation is canceled. |
-| 12300111 | The authentication time out. |
+| 12300111 | The operation time out. |
 | 12300115 | The number of credentials reaches the upper limit. |
 | 12300116 | Credential complexity verification failed. |
 
@@ -4636,13 +4493,13 @@ Updates credential information. This API uses an asynchronous callback to return
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | The system service works abnormally. |
-| 12300002 | Invalid credentialInfo, i.e. authType or authSubType or token. |
+| 12300002 | Invalid credentialInfo, i.e. authType or authSubType. |
 | 12300003 | Account not found. |
 | 12300101 | The token is invalid. |
-| 12300102 | Credential not enrolled.|
+| 12300102 | The credential does not exist. |
 | 12300106 | The authentication type is not supported. |
 | 12300109 | The authentication, enrollment, or update operation is canceled. |
-| 12300111 | The authentication time out. |
+| 12300111 | The operation time out. |
 | 12300116 | Credential complexity verification failed. |
 
 **Example**
@@ -4836,7 +4693,7 @@ Deletes user credential information.
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid credentialId. |
 | 12300101 | The token is invalid. |
-| 12300102 | Credential not enrolled. |
+| 12300102 | The credential does not exist. |
 
 **Example**
   ```ts
@@ -4881,7 +4738,6 @@ Obtains authentication information. This API uses an asynchronous callback to re
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | The system service works abnormally. |
-| 12300102 | Credential not enrolled. |
 
 **Example**
   ```ts
@@ -4925,7 +4781,6 @@ Obtains authentication information of the specified type. This API uses an async
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid authType. |
-| 12300102 | Credential not enrolled. |
 
 **Example**
   ```ts
@@ -4946,7 +4801,7 @@ Obtains authentication information of the specified type. This API uses an async
 
 getAuthInfo(authType?: AuthType): Promise&lt;Array&lt;EnrolledCredInfo&gt;&gt;;
 
-Obtains authentication information of the specified type. This API uses a promise to return the result.
+Obtains authentication information. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -4975,7 +4830,6 @@ Obtains authentication information of the specified type. This API uses a promis
 | 401 | Parameter error. Possible causes: Incorrect parameter types. |
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid authType. |
-| 12300102 | Credential not enrolled. |
 
 **Example**
   ```ts
@@ -5081,7 +4935,7 @@ Obtains the ID of the enrolled credential based on the credential type and accou
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid authType. |
 | 12300003 | Account not found. |
-| 12300102 | Credential not enrolled. |
+| 12300102 | The credential does not exist. |
 | 12300106 | The authentication type is not supported. |
 
 **Example**
@@ -5618,7 +5472,6 @@ Represents domain account information.
 | ----------- | ------ | ---- | ---------- |
 | accountId<sup>10+</sup> | string | No  | Domain account ID.<br>**System API**: This is a system API and is **undefined** by default.|
 | isAuthenticated<sup>11+</sup>| boolean | No| Whether the domain account has been authenticated.<br>**System API**: This is a system API. The default value is **false**.|
-| serverConfigId<sup>12+</sup>| boolean | No| ID of the server to which the domain account belongs.<br>**System API**: This is a system API and is **undefined** by default.|
 
 ## ConstraintSourceTypeInfo<sup>9+</sup>
 
@@ -5658,7 +5511,7 @@ Presents the authentication status information.
 
 | Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
-| remainTimes  | number | Yes  | Number of remaining authentication times.  |
+| remainTimes  | number | Yes  | Number of remaining times.  |
 | freezingTime | number | Yes  | Freezing time.|
 
 ## GetDomainAccessTokenOptions<sup>10+</sup>
@@ -5688,7 +5541,7 @@ Defines the options for obtaining domain account information.
 | ----------- | ------ | ---- | ---------- |
 | accountName | string | Yes  | Domain account name.|
 | domain      | string | No  | Domain name, which is **undefined** by default.|
-| serverConfigId<sup>12+</sup>| boolean | No| ID of the server to which the domain account belongs, which is **undefined** by default.|
+| serverConfigId<sup>12+</sup>| string | No| ID of the server to which the domain account belongs, which is **undefined** by default.|
 
 ## GetDomainAccountInfoPluginOptions<sup>10+</sup>
 
@@ -5725,7 +5578,7 @@ Represents the optional parameter used to create a system account.
 
 | Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
-| shortName | string | Yes  | Short name of the account (used as the name of the personal folder).<br>**The short name cannot**:<br>Contain any of the following characters: \< \>\| : " * ? / \\<br>Contain any of the following: . or ..<br>Exceed 255 characters.|
+| shortName | string | Yes  | Short name of the account (used as the name of the personal folder).<br>**The short name cannot**:<br>Contain any of the following characters: \< \>\| : " * ? / \\<br>Contain any of the following: . or ..<br>Exceed 255 characters. |
 
 ## CreateOsAccountForDomainOptions<sup>12+</sup>
 
@@ -5737,7 +5590,7 @@ Represents a set of optional parameters for creating a system account bound to t
 
 | Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
-| shortName | string | Yes  | Short name of the account (used as the name of the personal folder).<br>**The short name cannot**:<br>Contain any of the following characters: \< \>\| : " * ? / \\<br>Contain any of the following: . or ..<br>Exceed 255 characters.|
+| shortName | string | Yes  | Short name of the account (used as the name of the personal folder).<br>**The short name cannot**:<br>Contain any of the following characters: \< \>\| : " * ? / \\<br>Contain any of the following: . or ..<br>Exceed 255 characters. |
 
 ## GetAuthInfoOptions<sup>12+</sup>
 

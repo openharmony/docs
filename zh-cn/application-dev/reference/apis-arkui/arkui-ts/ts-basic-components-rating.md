@@ -259,7 +259,7 @@ type OnRatingChangeCallback = (rating: number) => void
 
 | 名称  | 类型    |    只读    |    可选      |  说明              |
 | ------ | ------ | ------ |-------------------------------- |-------------------------------- |
-| rating    | number  | 否 | 否 | 设置并接收评分值。<br/>默认值：0<br/>取值范围： [0, stars]<br/>小于0取0，大于[stars](#stars)取最大值stars。<br />该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| rating    | number  | 否 | 否 | 设置并接收评分值。<br/>默认值：0<br/>取值范围： [0, stars]<br/>小于0取0，大于[stars](#stars)取最大值stars。<br />该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br />该参数支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。 |
 | indicator | boolean | 否 | 否 | 评分条是否作为一个指示器。值为true时，表示作为一个指示器，值为false时，表示不作为一个指示器。<br/>默认值：false |
 | stars | number | 否 | 否 |评分条的星级总数。<br/>默认值：5 |
 | stepSize | number | 否 | 否 |评分条的评分步长。<br/>默认值：0.5 |
