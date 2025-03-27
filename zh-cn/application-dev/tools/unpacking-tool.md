@@ -161,10 +161,10 @@ java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <pa
 
 | 类名               | 接口原型                                                     | 类型     | 接口详细描述                                                            |
 | ------------------ | ------------------------------------------------------------ | -------- |-------------------------------------------------------------------|
-| UncompressEntrance | UncompressResult parseApp(String appPath,String parseMode,String deviceType,String hapName) | Java接口 | 接口功能：根据参数解析app包的pack.info信息 输入参数：app包路径，解析参数 返回值：UncompressResult |
-| UncompressEntrance | UncompressResult parseApp(InputStream input,String parseMode,String deviceType,String hapName,String outPath) | Java接口 | 接口功能：根据参数解析app包的pack.info信息 输入参数：app文件流，解析参数 返回值：UncompressResult |
-| UncompressEntrance | UncompressResult parseHap(String hapPath)                    | Java接口 | 接口功能：根据参数解析app包的json配置文件 输入参数：HAP包路径，解析参数 返回值：UncompressResult    |
-| UncompressEntrance | UncompressResult parseHap(InputStream input)                 | Java接口 | 接口功能：根据参数解析app包的json配置文件 输入参数：HAP包文件流，解析参数 返回值：UncompressResult   |
+| UncompressEntrance | UncompressResult parseApp(String appPath, ParseAppMode parseMode, String hapName) | Java接口 | 接口功能：根据参数解析app包的pack.info信息。<br/>输入参数：appPath app包路径，parseMode 解析模式枚举（ALL/HAP_LIST/HAP_INFO），hapName hap包名（parseMode为HAP_INFO时需要配置）。<br/>返回值：UncompressResult。 |
+| UncompressEntrance | UncompressResult parseApp(InputStream input, ParseAppMode parseMode, String hapName) | Java接口 | 接口功能：根据参数解析app包的pack.info信息。<br/>输入参数：input app文件流，parseMode 解析模式枚举（ALL/HAP_LIST/HAP_INFO），hapName hap包名（parseMode为HAP_INFO时需要配置）。<br/>返回值：UncompressResult。 |
+| UncompressEntrance | UncompressResult parseHap(String hapPath)                    | Java接口 | 接口功能：根据参数解析app包的json配置文件。<br/>输入参数：hapPath HAP包路径。<br/>返回值：UncompressResult。    |
+| UncompressEntrance | UncompressResult parseHap(InputStream input)                 | Java接口 | 接口功能：根据参数解析app包的json配置文件。<br/>输入参数：input HAP包文件流。<br/>返回值：UncompressResult。   |
 
 ## 拆包工具信息字段
 
