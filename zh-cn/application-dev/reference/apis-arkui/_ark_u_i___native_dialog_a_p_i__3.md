@@ -549,7 +549,7 @@ int32_t (*setBackgroundBlurStyleOptions)(ArkUI_NativeDialogHandle handle, const 
 | 名称 | 描述 | 
 | -------- | -------- |
 | handle | 指向自定义弹窗控制器的指针。  | 
-| backgroundBlurStyleOptions | 背景模糊效果。  | 
+| backgroundBlurStyleOptions | 背景模糊效果。<br/>参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示深浅色模式，取[ArkUI_ColorMode](_ark_u_i___native_module.md#arkui_colormode)枚举值。<br/>.value[1]?.i32 表示取色模式，取[ArkUI_AdaptiveColor](_ark_u_i___native_module.md#arkui_adaptivecolor)枚举值。<br/>.value[2]?.f32 表示模糊效果程度，取[0.0,1.0]范围内的值。<br/>.value[3]?.u32 表示灰阶模糊参数，对黑色的提亮程度，有效值范围为[0,127]。<br/>.value[4]?.u32 表示灰阶模糊参数，对白色的压暗程度，有效值范围为[0,127]。<br/>.value[5]?.i32 表示模糊激活策略，取[ArkUI_BlurStyleActivePolicy](_ark_u_i___native_module.md#arkui_blurstyleactivepolicy)枚举值。<br/>.value[6]?.u32 表示窗口失焦后，窗口内控件模糊效果会被移除，此时控件背板的颜色，0xargb类型。  | 
 
 **注解：**
 
@@ -576,7 +576,7 @@ int32_t (*setBackgroundEffect)(ArkUI_NativeDialogHandle handle, const ArkUI_Attr
 | 名称 | 描述 | 
 | -------- | -------- |
 | handle | 指向自定义弹窗控制器的指针。  | 
-| backgroundEffect | 背景效果参数。  | 
+| backgroundEffect | 背景效果参数。<br/>参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32 表示模糊半径，单位为vp。<br/>.value[1]?.f32 表示饱和度。<br/>.value[2]?.f32 表示亮度。<br/>.value[3]?.u32 表示颜色，0xargb类型。<br/>.value[4]?.i32 表示取色模式，取[ArkUI_AdaptiveColor](_ark_u_i___native_module.md#arkui_adaptivecolor)枚举值。<br/>.value[5]?.u32 表示灰阶模糊参数，对黑色的提亮程度，有效值范围为[0,127]。<br/>.value[6]?.u32 表示灰阶模糊参数，对白色的压暗程度，有效值范围为[0,127]。<br/>.value[7]?.i32 表示模糊激活策略，取[ArkUI_BlurStyleActivePolicy](_ark_u_i___native_module.md#arkui_blurstyleactivepolicy)枚举值。<br/>.value[8]?.u32 表示窗口失焦后，窗口内控件模糊效果会被移除，此时控件背板的颜色，0xargb类型。  | 
 
 **注解：**
 
