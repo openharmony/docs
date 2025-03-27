@@ -840,7 +840,7 @@ VVC级别。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 14
+**起始版本：** 15
 
 
 ### OH_VVCProfile
@@ -853,7 +853,7 @@ VVC档次。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 14
+**起始版本：** 15
 
 
 ### OH_TransferCharacteristic
@@ -1456,7 +1456,7 @@ VVC级别。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 14
+**起始版本：** 15
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -1487,7 +1487,7 @@ VVC档次。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 14
+**起始版本：** 15
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
