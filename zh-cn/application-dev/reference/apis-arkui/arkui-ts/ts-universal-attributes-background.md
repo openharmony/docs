@@ -224,7 +224,7 @@ backgroundBlurStyle(style: Optional\<BlurStyle>, options?: BackgroundBlurStyleOp
 
 backdropBlur(value: number, options?: BlurOptions)
 
-为组件添加背景模糊效果，可以自定设置模糊半径和灰阶参数。
+为组件添加背景模糊效果，可以自定义设置模糊半径和灰阶参数。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -243,7 +243,7 @@ backdropBlur(value: number, options?: BlurOptions)
 
 backdropBlur(radius: Optional\<number>, options?: BlurOptions, sysOptions?: SystemAdaptiveOptions)
 
-为组件添加背景模糊效果，可以自定设置模糊半径和灰阶参数。与[backdropBlur](#backdropblur)相比，radius参数新增了对undefined类型的支持。
+为组件添加背景模糊效果，可以自定义设置模糊半径和灰阶参数。与[backdropBlur](#backdropblur)相比，radius参数新增了对undefined类型的支持。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
