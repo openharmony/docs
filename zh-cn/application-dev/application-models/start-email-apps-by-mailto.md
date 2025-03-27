@@ -131,3 +131,7 @@ struct Index {
     }
 
     ```
+
+## 与startAbilityByType对比
++ 如果已经知道发件人、收件人、邮件内容...是什么，直接用startAbilityByType传对应参数就可以。
++ mailto方式需要开发者按mailto格式封装字符串，再使用mailto方式拉起。例如拿到的是一个mailto协议字串，直接用mailto方式拉起，电子邮件会自己解析mailto协议，并填充相关字段。
