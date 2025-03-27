@@ -253,7 +253,7 @@ isEnd(): boolean
 
 | 类型     | 说明        |
 | ------ | --------- |
-| boolean | 当前滚动类容器组件是否在底部。 |
+| boolean | 当前滚动类容器组件是否在底部。true表示组件在底部，false表示组件不在底部。 |
 
 ## PanRecognizer
 
