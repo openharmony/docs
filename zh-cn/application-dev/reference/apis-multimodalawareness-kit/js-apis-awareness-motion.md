@@ -43,7 +43,7 @@ import { motion } from '@kit.MultimodalAwarenessKit';
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                           | 是   | 事件类型。type为“operatingHandChanged”，表示操作手状态变化。 |
-| callback | Callback&lt;[OperatingHandStatus](#operatinghandstatus)&gt; | 是   | 回调函数，返回操作手状态。                                   |
+| callback | Callback&lt;[OperatingHandStatus](#operatinghandstatus)&gt; | 是   | 回调函数，返回操作手结果。                                   |
 
 **错误码**：
 
@@ -60,9 +60,11 @@ import { motion } from '@kit.MultimodalAwarenessKit';
 **示例**：
 
 ```ts
-motion.on('operatingHandChanged', (data:motion.OperatingHandStatus) => {
-    console.info('on success' + data);
+callback(data:motion.OperatingHandStatus) {
+    console.info('callback success' + data);
 })
+
+motion.on('operatingHandChanged', this.callback)
 ```
 
 
@@ -82,7 +84,7 @@ off(type: 'operatingHandChanged', callback?: Callback&lt;OperatingHandStatus&gt;
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                           | 是   | 事件类型。type为“operatingHandChanged”，表示操作手状态变化。 |
-| callback | Callback&lt;[OperatingHandStatus](#operatinghandstatus)&gt; | 否   | 回调函数，返回操作手状态。                                   |
+| callback | Callback&lt;[OperatingHandStatus](#operatinghandstatus)&gt; | 否   | 回调函数，返回操作手结果。                                   |
 
 **错误码**：
 
@@ -99,7 +101,7 @@ off(type: 'operatingHandChanged', callback?: Callback&lt;OperatingHandStatus&gt;
 **示例**：
 
 ```ts
-motion.off('operatingHandChanged', (data:motion.OperatingHandStatus) => {})
+motion.off('operatingHandChanged', this.callback)
 ```
 
 

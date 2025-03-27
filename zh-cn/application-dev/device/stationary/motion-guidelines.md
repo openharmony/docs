@@ -10,7 +10,7 @@
 
 | 接口名                                                       | 描述                                   |
 | ------------------------------------------------------------ | -------------------------------------- |
-| on(type:'operatingHandChanged',callback:Callback&lt;OperatingHandStatus&gt;):void; | 订阅操作手感知，结果通过callback返回。 |
+| on(type:'operatingHandChanged',callback:Callback&lt;OperatingHandStatus&gt;):void; | 订阅操作手感知，操作手结果通过callback返回。 |
 | off(type: 'operatingHandChanged', callback?: Callback&lt;OperatingHandStatus&gt;): void; | 取消订阅操作手感知。                   |
 | getRecentOperatingHandStatus(): OperatingHandStatus;         | 获取最新的操作手状态。                 |
 
@@ -26,23 +26,30 @@
 import { motion } from '@kit.MultimodalAwarenessKit';
 ```
 
-1. 订阅操作手感知事件
+1. 定义一个回调函数用来接收操作手结果
 
    ```
-   motion.on('operatingHandChanged', (data:motion.OperatingHandStatus) => {
-     console.info('on success' + data);
+   callback(data:motion.OperatingHandStatus) {
+     console.info('callback success' + data);
    })
    
    ```
 
-2. 取消订阅操作手感知事件
+2. 订阅操作手感知事件
 
    ```
-   motion.off('operatingHandChanged', (data:motion.OperatingHandStatus) => {})
+   motion.on('operatingHandChanged', this.callback);
    
    ```
 
-3. 获取最新操作手状态
+3. 取消订阅操作手感知事件
+
+   ```
+   motion.off('operatingHandChanged', this.callback)
+   
+   ```
+
+4. 获取最新操作手状态
 
    ```
    let data:motion.OperatingHandStatus = motion.getRecentOperatingHandStatus();
