@@ -280,22 +280,22 @@ release模式构建的应用栈信息仅包含代码行号，不包含列号，�
 
 删除以下场景中对 console.*语句的调用，要求console.*语句返回值未被调用。
 
-1. 文件顶层的调用
-2. 代码块中的调用  
+1. 文件顶层的调用。
+2. 代码块中的调用。  
    例如：
    ```
    function foo() {
     console.log('in block');
    }
    ```
-3. module或namespace中的调用  
+3. module或namespace中的调用。  
    例如：
    ```
    namespace ns {
     console.log('in ns');
    }
    ```
-4. switch语句中的调用
+4. switch语句中的调用。
 
 #### -print-namecache *filepath*
 
