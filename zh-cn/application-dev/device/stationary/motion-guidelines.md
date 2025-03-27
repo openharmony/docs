@@ -38,9 +38,7 @@ import { motion } from '@kit.MultimodalAwarenessKit';
 2. 取消订阅操作手感知事件
 
    ```
-   motion.off('operatingHandChanged', (data:motion.OperatingHandStatus) => {
-     console.info('off success' + data);
-   })
+   motion.off('operatingHandChanged', (data:motion.OperatingHandStatus) => {})
    
    ```
 
