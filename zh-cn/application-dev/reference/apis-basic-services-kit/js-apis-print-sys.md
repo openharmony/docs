@@ -55,7 +55,7 @@ import { print } from '@kit.BasicServicesKit';
 **属性：**
 | **名称** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| previewRange | [PrinterRange](#printprinterrange) | 是 | 表示预览页面范围。 |
+| previewRange | [PrinterRange](#printerrange) | 是 | 表示预览页面范围。 |
 | result | number | 否 | 表示预览文件结果。 |
 
 ## PrintResolution
