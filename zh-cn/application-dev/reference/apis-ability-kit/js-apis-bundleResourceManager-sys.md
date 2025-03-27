@@ -118,7 +118,7 @@ getLauncherAbilityResourceInfo(bundleName: string, resourceFlags?: [number](#res
 | 参数名     | 类型   | 必填 | 说明                |
 | ----------- | ------ | ---- | --------------------- |
 | bundleName | string | 是   | 指定查询应用的包名。 |
-| resourceFlags | [number](#resourceflag) | 否   | 指定返回的LauncherAbilityResourceInfo所包含的信息。 |
+| resourceFlags | [number](#resourceflag) | 否   | 指定返回的LauncherAbilityResourceInfo所包含的信息，默认值为[ResourceFlag](#resourceflag).GET_RESOURCE_INFO_ALL。 |
 
 **返回值：**
 
@@ -378,7 +378,7 @@ getBundleResourceInfo(bundleName: string, resourceFlags?: [number](#resourceflag
 | ----------- | ------ | ---- | --------------------- |
 | bundleName | string | 是   | 指定查询应用的包名。 |
 | resourceFlags | [number](#resourceflag) | 否   | 指定返回的BundleResourceInfo所包含的信息。 |
-| appIndex | number | 否   | 指定查询应用分身的ID。 |
+| appIndex | number | 否   | 指定查询应用分身的ID，默认值为0。 |
 
 **返回值：**
 
@@ -435,8 +435,8 @@ getLauncherAbilityResourceInfo(bundleName: string, resourceFlags?: [number](#res
 | 参数名     | 类型   | 必填 | 说明                |
 | ----------- | ------ | ---- | --------------------- |
 | bundleName | string | 是   | 指定查询应用的包名。 |
-| resourceFlags | [number](#resourceflag) | 否   | 指定返回的LauncherAbilityResourceInfo所包含的信息。 |
-| appIndex | number | 否   | 指定查询应用分身的ID。 |
+| resourceFlags | [number](#resourceflag) | 否   | 指定返回的LauncherAbilityResourceInfo所包含的信息，默认值为[ResourceFlag](#resourceflag).GET_RESOURCE_INFO_ALL。 |
+| appIndex | number | 否   | 指定查询应用分身的ID，默认值为0。 |
 
 **返回值：**
 
