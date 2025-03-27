@@ -23,7 +23,9 @@ The example simplifies the logic for handling exceptions and ensuring thread sec
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "ffrt.h"
+#include <unistd.h>
+#include "ffrt/queue.h"
+#include "ffrt/task.h"
 
 typedef struct {
     FILE *logFile;          // Pointer to a log file.
@@ -75,7 +77,7 @@ void logger_destroy(logger_t *logger)
         // Close the log file.
         if (logger->logFile) {
             fclose(logger->logFile);
-            printf("Log file closed.\n");
+            printf("Log file closed\n");
         }
 
         free(logger);

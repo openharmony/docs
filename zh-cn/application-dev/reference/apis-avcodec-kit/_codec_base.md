@@ -2540,11 +2540,12 @@ const char* OH_MD_KEY_VIDEO_CROP_TOP
 const char* OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY
 ```
 **描述**
-使能低时延视频编解码的键，值类型为int32_t，1表示使能，0表示其它情况。
+使能低时延视频编解码的键，值类型为int32_t，1表示使能，0表示其它情况。该键是可选的，在Configure阶段使用。
 
 如果使能，则视频编码器或视频解码器持有的输入和输出数据不会超过编解码器标准所要求的数量。 
 
-该键是可选的，在Configure阶段使用。
+若平台支持，当使能此接口时，视频解码器将按照解码序输出帧。
+
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 

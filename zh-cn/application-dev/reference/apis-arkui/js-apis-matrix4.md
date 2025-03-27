@@ -28,7 +28,7 @@ Matrix的构造函数，可以通过传入的参数创建一个四阶矩阵，�
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| options | [number,number,number,number,<br/>number,number,number,number,<br/>number,number,number,number,<br/>number,number,number,number] | 是   | 参数为长度为16（4\*4）的number数组,&nbsp;详情见四阶矩阵说明。<br/>默认值：<br/>[1,&nbsp;0,&nbsp;0,&nbsp;0,<br/>0,&nbsp;1,&nbsp;0,&nbsp;0,<br/>0,&nbsp;0,&nbsp;1,&nbsp;0,<br/>0,&nbsp;0,&nbsp;0,&nbsp;1] |
+| options | [number,number,number,number,<br/>number,number,number,number,<br/>number,number,number,number,<br/>number,number,number,number] | 是   | 参数为长度为16（4\*4）的number数组,&nbsp;详情见四阶矩阵说明。<br/>各number取值范围：(-∞, +∞)<br/>默认值：<br/>[1,&nbsp;0,&nbsp;0,&nbsp;0,<br/>0,&nbsp;1,&nbsp;0,&nbsp;0,<br/>0,&nbsp;0,&nbsp;1,&nbsp;0,<br/>0,&nbsp;0,&nbsp;0,&nbsp;1] |
 
 **返回值：**
 
@@ -669,8 +669,8 @@ struct Index {
 
 | 名称 | 类型   | 必填 | 说明                                                        |
 | ---- | ------ | ---- | ----------------------------------------------------------- |
-| x    |  number | 是   | x轴坐标。 |
-| y    | number | 是   | y轴坐标。 |
+| x    |  number | 是   | x轴坐标。<br/>取值范围：(-∞, +∞) |
+| y    | number | 是   | y轴坐标。<br/>取值范围：(-∞, +∞) |
 
 ## matrix4.copy<sup>(deprecated)</sup>
 

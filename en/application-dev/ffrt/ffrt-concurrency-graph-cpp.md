@@ -70,21 +70,26 @@ The following conclusions can be drawn:
 
 ## Example: Streaming Video Processing
 
-A user uploads a video to the platform. The processing steps include: parsing, transcoding, generating a thumbnail, adding a watermark, and releasing the video. Transcoding and thumbnail generation can occur simultaneously. The following figure shows the task process.
+A user uploads a video to the platform. The processing steps include: parsing, transcoding, generating a thumbnail, adding watermark, and releasing the video. Transcoding and thumbnail generation can occur simultaneously. The following figure shows the task process.
 
 ![image](figures/ffrt_figure1.png)
 
 The FFRT provides task graph that can describe the task dependency and parallelize the preceding video processing process. The code is as follows:
 
 ```cpp
+#include <iostream>
+#include "ffrt/cpp/task.h"
+
 int main()
 {
-    auto handle_A = ffrt::submit_h([] () { std::cout << "Video parsing\n"; });
-    auto handle_B = ffrt::submit_h([] () { std::cout << "Video transcoding\n"; }, {handle_A});
-    auto handle_C = ffrt::submit_h([] () { std::cout << "Thumbnails generation\n"; }, {handle_A});
-    auto handle_D = ffrt::submit_h([] () { std::cout << "Watermark adding\n"; }, {handle_B, handle_C});
-    ffrt::submit([] () { std::cout << "Video release\n"; }, {handle_D});
+    // Submit a task.
+    auto handle_A = ffrt::submit_h([] () { std::cout << "Parse" << std::endl; });
+    auto handle_B = ffrt::submit_h([] () { std::cout << "Transcode" << std::endl; }, {handle_A});
+    auto handle_C = ffrt::submit_h([] () { std::cout << "Generate a thumbnail" << std::endl; }, {handle_A});
+    auto handle_D = ffrt::submit_h([] () { std::cout << "Add watermark" << std::endl; }, {handle_B, handle_C});
+    ffrt::submit([] () { std::cout << "Release" << std::endl; }, {handle_D});
 
+    // Wait until all tasks are complete.
     ffrt::wait();
     return 0;
 }
@@ -105,14 +110,21 @@ Video release
 Each number in the Fibonacci sequence is the sum of the first two numbers. The process of calculating the Fibonacci number can well express the task dependency through the data object. The code for calculating the Fibonacci number using the FFRT framework is as follows:
 
 ```cpp
+#include <iostream>
+#include "ffrt/cpp/task.h"
+
 void Fib(int x, int& y)
 {
     if (x <= 1) {
         y = x;
     } else {
         int y1, y2;
+
+        // Submit the task and build data dependencies.
         ffrt::submit([&]() { Fib(x - 1, y1); }, {&x}, {&y1});
         ffrt::submit([&]() { Fib(x - 2, y2); }, {&x}, {&y2});
+
+        // Wait until the task is complete.
         ffrt::wait({&y1, &y2});
         y = y1 + y2;
     }

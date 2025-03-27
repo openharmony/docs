@@ -531,6 +531,10 @@ strip-language-default
 
 `// @KeepAsConsumer`：用来标记需要保留的名称，通常写在代码上一行，表示该名称在编译时不会被混淆。在HAR/HSP模块中，被@KeepAsConsumer标记的名称还会生成在obfuscation.txt中；在HAP模块中，@KeepAsConsumer和@KeepSymbol的效果相同。
 
+> **注意**
+>
+> 以上两种标记均为注释，不可去除"//"。
+
 **当前支持这两种标记的语法如下：**
 
 注：以下均以`// @KeepSymbol`为例，`// @KeepAsConsumer`支持的场景和`// @KeepSymbol`相同。

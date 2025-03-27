@@ -206,7 +206,7 @@ getKeyboardAvoidMode接口实际返回值为字符串，与文档描述返回值
 
 - 变更前：getKeyboardAvoidMode接口返回字符串类型。
   
-- 变更后：getKeyboardAvoidMode接口返回KeyboardAvoidMode枚举值，为整数类型。
+- 变更后：getKeyboardAvoidMode接口返回KeyboardAvoidMode枚举值。
 
 **起始API Level**
 

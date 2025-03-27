@@ -45,6 +45,7 @@ selected(value: number | Resource)
 设置下拉菜单初始选项的索引，第一项的索引为0。当不设置selected属性或设置异常值时，默认选择值为-1，菜单项不选中；当设置为undefined、null时，选中第一项。
 
 从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+从API version 18开始，该参数支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -63,6 +64,7 @@ selected(numCount: Optional<number | Resource>)
 设置下拉菜单初始选项的索引，第一项的索引为0。当不设置selected属性或设置异常值时，默认选择值为-1，菜单项不选中；当设置为undefined、null时，选中第一项。
 
 该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+该属性支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -81,6 +83,7 @@ value(value: ResourceStr)
 设置下拉按钮本身的文本内容。当菜单选中时默认会替换为菜单项文本内容。
 
 从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+从API version 18开始，该参数支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -99,6 +102,7 @@ value(resStr: Optional\<ResourceStr>)
 设置下拉按钮本身的文本内容。当菜单选中时默认会替换为菜单项文本内容。与[value](#value)相比，resStr参数新增了对undefined类型的支持。
 
 该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+该参数支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -733,6 +737,22 @@ avoidance(mode: AvoidanceMode)
 | --------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | mode      | [AvoidanceMode](#avoidancemode18枚举说明)  | 是   | 设置下拉菜单的避让模式。<br/>默认值：AvoidanceMode.COVER_TARGET |
 
+### menuOutline<sup>18+</sup>
+
+menuOutline(value: MenuOutlineOptions)
+
+设置下拉菜单框的外描边样式。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [MenuOutlineOptions](#menuoutlineoptions18对象说明) | 是   | 下拉菜单框的外描边样式。 |
+
 ## ArrowPosition<sup>10+</sup>枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -768,7 +788,7 @@ avoidance(mode: AvoidanceMode)
 
 | 名称                | 说明             |
 | ------------------- | ------------------ |
-| COVER_TARGET        | 当四周都无足够空间显示时，覆盖目标组件。 |
+| COVER_TARGET        | 目标组件下方无足够空间时，覆盖目标组件。 |
 | AVOID_AROUND_TARGET | 目标组件四周无足够空间时，在最大空间处压缩显示（可滚动）。 |
 
 ## MenuItemConfiguration<sup>12+</sup>对象说明
@@ -785,6 +805,19 @@ avoidance(mode: AvoidanceMode)
 | selected  | boolean | 是   | 下拉菜单项是否被选中。<br/>默认值：false |
 | index  | number | 是   | 下拉菜单项的索引，索引值从0开始。 |
 | triggerSelect  | (index: number, value: string) :void | 是   | 下拉菜单选中某一项的回调函数。<br/>index: 选中菜单项的索引。<br/>value: 选中菜单项的文本。<br/>说明: index会赋值给事件[onSelect](#onselect)回调中的索引参数； value会返回给Select组件显示，同时会赋值给事件[onSelect](#onselect)回调中的文本参数。 |
+
+## MenuOutlineOptions<sup>18+</sup>对象说明
+
+下拉菜单框的外描边参数对象。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 类型                   |必填                                      | 说明                                                         |
+| ------ | ----------------------|-------------------------------------- | ------------------------------------------------------------ |
+| width  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](ts-universal-attributes-outline.md#edgeoutlinewidths对象说明)| 否| 设置外描边宽度，不支持百分比。<br/>默认值：0 |
+| color  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](ts-universal-attributes-outline.md#edgecolors对象说明)|否 | 设置外描边颜色。<br/>默认值：#19ffffff|
 
 ## 事件
 

@@ -304,7 +304,7 @@ The following describes how to use the native APIs provided by FFRT to create pa
     }
     ```
 
-4. Set task attributes, including the QoS and task name. For details, see the API document.
+4. Set task attributes, including the QoS level and task name.
 
     ```cpp
     // ******Initialize the attributes of the parallel task******
@@ -315,7 +315,7 @@ The following describes how to use the native APIs provided by FFRT to create pa
 
     // Create the attributes of the serial queue.
     ffrt_queue_attr_t queue_attr;
-    // Create the handle of the serial queue.
+    // Create the handle to the serial queue.
     ffrt_queue_t queue_handle;
 
     // Initialize the queue attribute.
@@ -454,6 +454,11 @@ A deadlock may occur when the mutex of the standard library is used in the FFRT 
 - For `ffrt_submit_h_base`, the total number of input dependencies and output dependencies of each task cannot exceed 7.
 - When a parameter is used as both an input dependency and an output dependency, it is counted as one dependency. For example, if the input dependency is `{&x}` and the output dependency is also `{&x}`, then the number of dependencies is 1.
 
+### Restrictions on Process or Thread Exit
+
+- When a process exits, the shared resources in the process, such as the thread pool in the FFRT, have been released. **submit()** should not be called.
+- When a thread exits, the thread local resources in the FFRT have been released. **submit()** should not be called for the thread that is exiting.
+
 ## Common Anti-Patterns
 
 ### After an FFRT object is initialized in the C code, you are responsible for setting the object to null or destroying the object.
@@ -462,10 +467,14 @@ A deadlock may occur when the mutex of the standard library is used in the FFRT 
 - Noncompliant example 1: Repeated calling of destroy() may cause unpredictable data damage.
 
     ```cpp
-    #include "ffrt.h"
+    #include <stdio.h>
+    #include "ffrt/cpp/task.h"
+
     void abnormal_case_1()
     {
-        ffrt_task_handle_t h = ffrt_submit_h([](){printf("Test task running...\n");}, NULL, NULL, NULL, NULL, NULL);
+        ffrt_task_handle_t h = ffrt_submit_h_base(
+            ffrt::create_function_wrapper(std::function<void()>([](){ printf("Test task running...\n"); })),
+            NULL, NULL, NULL);
         // ...
         ffrt_task_handle_destroy(h);
         ffrt_task_handle_destroy(h); // Repeated release
@@ -475,10 +484,14 @@ A deadlock may occur when the mutex of the standard library is used in the FFRT 
 - Noncompliant example 2: No calling of destroy() may cause memory leak.
 
     ```cpp
-    #include "ffrt.h"
+    #include <stdio.h>
+    #include "ffrt/cpp/task.h"
+
     void abnormal_case_2()
     {
-        ffrt_task_handle_t h = ffrt_submit_h([](){printf("Test task running...\n");}, NULL, NULL, NULL, NULL, NULL);
+        ffrt_task_handle_t h = ffrt_submit_h_base(
+            ffrt::create_function_wrapper(std::function<void()>([](){ printf("Test task running...\n"); })),
+            NULL, NULL, NULL);
         // ...
         // Memory leak
     }
@@ -487,10 +500,14 @@ A deadlock may occur when the mutex of the standard library is used in the FFRT 
 - Recommended example: Call **destroy()** only once. You can leave it empty if necessary.
 
     ```cpp
-    #include "ffrt.h"
+    #include <stdio.h>
+    #include "ffrt/cpp/task.h"
+
     void normal_case()
     {
-        ffrt_task_handle_t h = ffrt_submit_h([](){printf("Test task running...\n");}, NULL, NULL, NULL, NULL, NULL);
+        ffrt_task_handle_t h = ffrt_submit_h_base(
+            ffrt::create_function_wrapper(std::function<void()>([](){ printf("Test task running...\n"); })),
+            NULL, NULL, NULL);
         // ...
         ffrt_task_handle_destroy(h);
         h = nullptr; // Set the task handle variable to null if necessary.
@@ -503,7 +520,9 @@ A deadlock may occur when the mutex of the standard library is used in the FFRT 
 - Noncompliant example 1: Ended variable lifecycle causes a UAF problem.
 
     ```cpp
-    #include "ffrt.h"
+    #include <unistd.h>
+    #include "ffrt/cpp/task.h"
+
     void abnormal_case_3()
     {
         int x = 0;
@@ -517,7 +536,10 @@ A deadlock may occur when the mutex of the standard library is used in the FFRT 
 - Noncompliant example 2: Ended mutex lifecycle causes function exceptions.
 
     ```cpp
-    #include "ffrt.h"
+    #include <unistd.h>
+    #include "ffrt/cpp/mutex.h"
+    #include "ffrt/cpp/task.h"
+
     void abnormal_case_4()
     {
         ffrt::mutex lock;
@@ -538,13 +560,14 @@ Native Development Kit (NDK) is a toolset provided by HarmonyOS SDK. It offers n
 The FFRT C APIs have been integrated into the NDK. You can directly use the corresponding API in DevEco IDE.
 
 ```cpp
-#include "ffrt/task.h"
 #include "ffrt/type_def.h"
-#include "ffrt/condition_variable.h"
-#include "ffrt/loop.h"
-#include "ffrt/mutex.h"
+#include "ffrt/task.h"
 #include "ffrt/queue.h"
+#include "ffrt/condition_variable.h"
+#include "ffrt/mutex.h"
+#include "ffrt/shared_mutex.h"
 #include "ffrt/sleep.h"
+#include "ffrt/loop.h"
 #include "ffrt/timer.h"
 ```
 
@@ -574,8 +597,9 @@ Use the FFRT C++ API in the code.
 
 ```cpp
 #include "ffrt/cpp/task.h"
+#include "ffrt/cpp/queue.h"
 #include "ffrt/cpp/condition_variable.h"
 #include "ffrt/cpp/mutex.h"
-#include "ffrt/cpp/queue.h"
+#include "ffrt/cpp/shared_mutex.h"
 #include "ffrt/cpp/sleep.h"
 ```

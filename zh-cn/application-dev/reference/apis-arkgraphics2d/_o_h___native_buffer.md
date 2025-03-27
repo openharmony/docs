@@ -97,7 +97,7 @@
 typedef struct OH_NativeBuffer OH_NativeBuffer
 ```
 
-**描述**
+**描述：**
 
 提供OH_NativeBuffer结构体声明。
 
@@ -110,7 +110,7 @@ typedef struct OH_NativeBuffer OH_NativeBuffer
 typedef enum OH_NativeBuffer_ColorGamut OH_NativeBuffer_ColorGamut
 ```
 
-**描述**
+**描述：**
 
 OH_NativeBuffer的色域。
 
@@ -125,7 +125,7 @@ OH_NativeBuffer的色域。
 typedef enum OH_NativeBuffer_ColorSpace OH_NativeBuffer_ColorSpace
 ```
 
-**描述**
+**描述：**
 
 OH_NativeBuffer的颜色空间。
 
@@ -140,7 +140,7 @@ OH_NativeBuffer的颜色空间。
 typedef struct OH_NativeBuffer_ColorXY OH_NativeBuffer_ColorXY
 ```
 
-**描述**
+**描述：**
 
 表示基色的X和Y坐标。
 
@@ -155,7 +155,7 @@ typedef struct OH_NativeBuffer_ColorXY OH_NativeBuffer_ColorXY
 typedef struct OH_NativeBuffer_Config OH_NativeBuffer_Config
 ```
 
-**描述**
+**描述：**
 
 OH_NativeBuffer的属性配置，用于申请新的OH_NativeBuffer实例或查询现有实例的相关属性。
 
@@ -170,7 +170,7 @@ OH_NativeBuffer的属性配置，用于申请新的OH_NativeBuffer实例或查�
 typedef struct OH_NativeBuffer_Cta861 OH_NativeBuffer_Cta861
 ```
 
-**描述**
+**描述：**
 
 表示CTA-861.3静态元数据。
 
@@ -185,7 +185,7 @@ typedef struct OH_NativeBuffer_Cta861 OH_NativeBuffer_Cta861
 typedef enum OH_NativeBuffer_Format OH_NativeBuffer_Format
 ```
 
-**描述**
+**描述：**
 
 OH_NativeBuffer的格式。
 
@@ -200,7 +200,7 @@ OH_NativeBuffer的格式。
 typedef enum OH_NativeBuffer_MetadataKey OH_NativeBuffer_MetadataKey
 ```
 
-**描述**
+**描述：**
 
 表示OH_NativeBuffer的HDR元数据种类的键值。
 
@@ -215,7 +215,7 @@ typedef enum OH_NativeBuffer_MetadataKey OH_NativeBuffer_MetadataKey
 typedef enum OH_NativeBuffer_MetadataType OH_NativeBuffer_MetadataType
 ```
 
-**描述**
+**描述：**
 
 OH_NativeBuffer的图像标准。
 
@@ -230,7 +230,7 @@ OH_NativeBuffer的图像标准。
 typedef struct OH_NativeBuffer_Plane OH_NativeBuffer_Plane
 ```
 
-**描述**
+**描述：**
 
 单个图像平面格式信息。
 
@@ -245,7 +245,7 @@ typedef struct OH_NativeBuffer_Plane OH_NativeBuffer_Plane
 typedef struct OH_NativeBuffer_Planes OH_NativeBuffer_Planes
 ```
 
-**描述**
+**描述：**
 
 OH_NativeBuffer的图像平面格式信息。
 
@@ -260,7 +260,7 @@ OH_NativeBuffer的图像平面格式信息。
 typedef struct OH_NativeBuffer_Smpte2086 OH_NativeBuffer_Smpte2086
 ```
 
-**描述**
+**描述：**
 
 表示smpte2086静态元数据。
 
@@ -275,7 +275,7 @@ typedef struct OH_NativeBuffer_Smpte2086 OH_NativeBuffer_Smpte2086
 typedef struct OH_NativeBuffer_StaticMetadata OH_NativeBuffer_StaticMetadata
 ```
 
-**描述**
+**描述：**
 
 表示HDR静态元数据。
 
@@ -290,7 +290,7 @@ typedef struct OH_NativeBuffer_StaticMetadata OH_NativeBuffer_StaticMetadata
 typedef enum OH_NativeBuffer_TransformType OH_NativeBuffer_TransformType
 ```
 
-**描述**
+**描述：**
 
 OH_NativeBuffer的转换类型。
 
@@ -305,7 +305,7 @@ OH_NativeBuffer的转换类型。
 typedef enum OH_NativeBuffer_Usage OH_NativeBuffer_Usage
 ```
 
-**描述**
+**描述：**
 
 OH_NativeBuffer的用途。
 
@@ -320,7 +320,7 @@ OH_NativeBuffer的用途。
 typedef enum OHNativeErrorCodeOHNativeErrorCode
 ```
 
-**描述**
+**描述：**
 
 接口错误码说明（仅用于查询）。
 
@@ -336,7 +336,7 @@ typedef enum OHNativeErrorCodeOHNativeErrorCode
 enum OH_NativeBuffer_ColorGamut
 ```
 
-**描述**
+**描述：**
 
 OH_NativeBuffer的色域。
 
@@ -365,7 +365,7 @@ OH_NativeBuffer的色域。
 enum OH_NativeBuffer_ColorSpace
 ```
 
-**描述**
+**描述：**
 
 OH_NativeBuffer的颜色空间。
 
@@ -415,7 +415,7 @@ OH_NativeBuffer的颜色空间。
 enum OH_NativeBuffer_Format
 ```
 
-**描述**
+**描述：**
 
 OH_NativeBuffer的格式。
 
@@ -475,7 +475,7 @@ OH_NativeBuffer的格式。
 enum OH_NativeBuffer_MetadataKey
 ```
 
-**描述**
+**描述：**
 
 表示OH_NativeBuffer的HDR元数据种类的键值。
 
@@ -496,7 +496,7 @@ enum OH_NativeBuffer_MetadataKey
 enum OH_NativeBuffer_MetadataType
 ```
 
-**描述**
+**描述：**
 
 OH_NativeBuffer的图像标准。
 
@@ -518,7 +518,7 @@ OH_NativeBuffer的图像标准。
 enum OH_NativeBuffer_TransformType
 ```
 
-**描述**
+**描述：**
 
 OH_NativeBuffer的转换类型。
 
@@ -548,7 +548,7 @@ OH_NativeBuffer的转换类型。
 enum OH_NativeBuffer_Usage
 ```
 
-**描述**
+**描述：**
 
 OH_NativeBuffer的用途。
 
@@ -573,7 +573,7 @@ OH_NativeBuffer的用途。
 enum OHNativeErrorCode
 ```
 
-**描述**
+**描述：**
 
 接口错误码说明（仅用于查询）。
 
@@ -612,7 +612,7 @@ enum OHNativeErrorCode
 OH_NativeBuffer* OH_NativeBuffer_Alloc (const OH_NativeBuffer_Config* config)
 ```
 
-**描述**
+**描述：**
 
 通过OH_NativeBuffer_Config创建OH_NativeBuffer实例，每次调用都会产生一个新的OH_NativeBuffer实例。
 本接口需要与OH_NativeBuffer_Unreference接口配合使用，否则会存在内存泄露。
@@ -639,7 +639,7 @@ OH_NativeBuffer* OH_NativeBuffer_Alloc (const OH_NativeBuffer_Config* config)
 int32_t OH_NativeBuffer_FromNativeWindowBuffer (OHNativeWindowBuffer *nativeWindowBuffer, OH_NativeBuffer **buffer )
 ```
 
-**描述**
+**描述：**
 
 将OHNativeWindowBuffer实例转换为OH_NativeBuffer实例。
 本接口为非线程安全类型接口。
@@ -666,7 +666,7 @@ int32_t OH_NativeBuffer_FromNativeWindowBuffer (OHNativeWindowBuffer *nativeWind
 int32_t OH_NativeBuffer_GetColorSpace (OH_NativeBuffer *buffer, OH_NativeBuffer_ColorSpace *colorSpace )
 ```
 
-**描述**
+**描述：**
 
 获取OH_NativeBuffer颜色空间属性。
 本接口为非线程安全类型接口。
@@ -693,7 +693,7 @@ int32_t OH_NativeBuffer_GetColorSpace (OH_NativeBuffer *buffer, OH_NativeBuffer_
 void OH_NativeBuffer_GetConfig (OH_NativeBuffer *buffer, OH_NativeBuffer_Config* config )
 ```
 
-**描述**
+**描述：**
 
 用于获取OH_NativeBuffer的属性。
 本接口为非线程安全类型接口。
@@ -716,7 +716,7 @@ void OH_NativeBuffer_GetConfig (OH_NativeBuffer *buffer, OH_NativeBuffer_Config*
 int32_t OH_NativeBuffer_GetMetadataValue (OH_NativeBuffer *buffer, OH_NativeBuffer_MetadataKey metadataKey, int32_t *size, uint8_t **metaData )
 ```
 
-**描述**
+**描述：**
 
 获取OH_NativeBuffer元数据属性值。
 本接口为非线程安全类型接口。
@@ -745,7 +745,7 @@ int32_t OH_NativeBuffer_GetMetadataValue (OH_NativeBuffer *buffer, OH_NativeBuff
 uint32_t OH_NativeBuffer_GetSeqNum (OH_NativeBuffer *buffer)
 ```
 
-**描述**
+**描述：**
 
 获取OH_NativeBuffer的序列号。
 本接口为非线程安全类型接口。
@@ -771,7 +771,7 @@ uint32_t OH_NativeBuffer_GetSeqNum (OH_NativeBuffer *buffer)
 int32_t OH_NativeBuffer_Map (OH_NativeBuffer *buffer, void **virAddr )
 ```
 
-**描述**
+**描述：**
 
 将OH_NativeBuffer对应的ION内存映射到进程空间。
 本接口需要与OH_NativeBuffer_Unmap接口配合使用。
@@ -799,7 +799,7 @@ int32_t OH_NativeBuffer_Map (OH_NativeBuffer *buffer, void **virAddr )
 int32_t OH_NativeBuffer_MapPlanes (OH_NativeBuffer *buffer, void **virAddr, OH_NativeBuffer_Planes *outPlanes )
 ```
 
-**描述**
+**描述：**
 
 将OH_NativeBuffer对应的多通道ION内存映射到进程空间。
 本接口为非线程安全类型接口。
@@ -827,7 +827,7 @@ int32_t OH_NativeBuffer_MapPlanes (OH_NativeBuffer *buffer, void **virAddr, OH_N
 int32_t OH_NativeBuffer_Reference (OH_NativeBuffer *buffer)
 ```
 
-**描述**
+**描述：**
 
 将OH_NativeBuffer对象的引用计数加1。
 本接口需要与OH_NativeBuffer_Unreference接口配合使用，否则会存在内存泄露。
@@ -854,7 +854,7 @@ int32_t OH_NativeBuffer_Reference (OH_NativeBuffer *buffer)
 int32_t OH_NativeBuffer_SetColorSpace (OH_NativeBuffer *buffer, OH_NativeBuffer_ColorSpace colorSpace )
 ```
 
-**描述**
+**描述：**
 
 为OH_NativeBuffer设置颜色空间属性。
 本接口为非线程安全类型接口。
@@ -881,7 +881,7 @@ int32_t OH_NativeBuffer_SetColorSpace (OH_NativeBuffer *buffer, OH_NativeBuffer_
 int32_t OH_NativeBuffer_SetMetadataValue (OH_NativeBuffer *buffer, OH_NativeBuffer_MetadataKey metadataKey, int32_t size, uint8_t *metaData )
 ```
 
-**描述**
+**描述：**
 
 为OH_NativeBuffer设置元数据属性值。
 本接口为非线程安全类型接口。
@@ -910,7 +910,7 @@ int32_t OH_NativeBuffer_SetMetadataValue (OH_NativeBuffer *buffer, OH_NativeBuff
 int32_t OH_NativeBuffer_Unmap (OH_NativeBuffer *buffer)
 ```
 
-**描述**
+**描述：**
 
 将OH_NativeBuffer对应的ION内存从进程空间移除。
 本接口为非线程安全类型接口。
@@ -936,7 +936,7 @@ int32_t OH_NativeBuffer_Unmap (OH_NativeBuffer *buffer)
 int32_t OH_NativeBuffer_Unreference (OH_NativeBuffer *buffer)
 ```
 
-**描述**
+**描述：**
 
 将OH_NativeBuffer对象的引用计数减1，当引用计数为0的时候，该NativeBuffer对象会被析构掉。
 本接口为非线程安全类型接口。

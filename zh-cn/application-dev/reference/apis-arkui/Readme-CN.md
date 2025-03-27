@@ -12,7 +12,7 @@
     - [@ohos.arkui.observer (无感监听)](js-apis-arkui-observer.md)
     - [@ohos.arkui.prefetcher (Prefetching)](js-apis-arkui-Prefetcher.md)
     - [@ohos.arkui.shape(形状)](js-apis-arkui-shape.md)
-    - [@ohos.arkui.Theme(主题换肤)](js-apis-arkui-theme.md)
+    - [@ohos.arkui.theme(主题换肤)](js-apis-arkui-theme.md)
     - [@ohos.arkui.UIContext (UIContext)](js-apis-arkui-UIContext.md)
     - [@ohos.arkui.uiExtension (uiExtension)](js-apis-arkui-uiExtension.md)
     - [@ohos.arkui.StateManagement (状态管理)](js-apis-StateManagement.md)

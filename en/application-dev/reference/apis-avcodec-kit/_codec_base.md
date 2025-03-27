@@ -30,6 +30,8 @@ The table below lists the media codec formats. The type is a constant string.
 | [OH_AVCODEC_MIMETYPE_VIDEO_HEVC](#oh_avcodec_mimetype_video_hevc) | MIME type of the HEVC (H.265) video codec.                   |
 | [OH_AVCODEC_MIMETYPE_VIDEO_AVC](#oh_avcodec_mimetype_video_avc) | Multipurpose Internet Mail Extension (MIME) type of AVC (H.264) video codec.                    |
 | [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4](#oh_avcodec_mimetype_video_mpeg4) | MIME type of the MPEG4 video encoder, which is used only for muxing MPEG4 video streams. (This function is deprecated in API version 11.)|
+| [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2](#oh_avcodec_mimetype_video_mpeg4_part2) | MIME type of MPEG4 Part 2 video codec.|
+| [OH_AVCODEC_MIMETYPE_VIDEO_MPEG2](#oh_avcodec_mimetype_video_mpeg2) | MIME type of MPEG2 video codec.|
 | [OH_AVCODEC_MIMETYPE_IMAGE_JPG](#oh_avcodec_mimetype_image_jpg) | MIME type of the JPG image encoder, which is used only for muxing JPG covers.      |
 | [OH_AVCODEC_MIMETYPE_IMAGE_PNG](#oh_avcodec_mimetype_image_png) | MIME type of the PNG image encoder, which is used only for muxing PNG covers.      |
 | [OH_AVCODEC_MIMETYPE_IMAGE_BMP](#oh_avcodec_mimetype_image_bmp) | MIME type of the BMP image encoder, which is used only for muxing BMP covers.      |
@@ -194,6 +196,8 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 | typedef enum [OH_AVCProfile](#oh_avcprofile-1) [OH_AVCProfile](#oh_avcprofile) | Defines an enum for the Advanced Video Coding (AVC) profiles.| 
 | typedef enum [OH_HEVCProfile](#oh_hevcprofile-1) [OH_HEVCProfile](#oh_hevcprofile) | Defines an enum for the High Efficiency Video Coding (HEVC) profiles.| 
 | typedef enum [OH_VVCProfile](#oh_vvcprofile-1) [OH_VVCProfile](#oh_vvcprofile) | Defines an enum for the VVC profiles.| 
+| typedef enum [OH_MPEG2Profile](#oh_mpeg2profile-1) [OH_MPEG2Profile](#oh_mpeg2profile) | Defines an enum for the MPEG2 profiles.| 
+| typedef enum [OH_MPEG4Profile](#oh_mpeg4profile-1) [OH_MPEG4Profile](#oh_mpeg4profile) | Defines an enum for the MPEG4 profiles.| 
 | typedef enum [OH_AVOutputFormat](#oh_avoutputformat-1) [OH_AVOutputFormat](#oh_avoutputformat) | Defines an enum for the output file formats supported by a muxer.| 
 | typedef enum [OH_AVSeekMode](#oh_avseekmode-1) [OH_AVSeekMode](#oh_avseekmode) | Defines an enum for the seek modes.| 
 | typedef enum [OH_ScalingMode](#oh_scalingmode-1) [OH_ScalingMode](#oh_scalingmode) | Defines an enum for the scaling modes. This enum is used only in surface mode. (This type is deprecated from API version 14.)| 
@@ -204,6 +208,8 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 | typedef enum [OH_AVCLevel](#oh_avclevel-1) [OH_AVCLevel](#oh_avclevel) | Defines an enum for the AVC levels. | 
 | typedef enum [OH_HEVCLevel](#oh_hevclevel-1) [OH_HEVCLevel](#oh_hevclevel) | Defines an enum for the HEVC levels. | 
 | typedef enum [OH_VVCLevel](#oh_vvclevel-1) [OH_VVCLevel](#oh_vvclevel) | Defines an enum for the VVC levels. | 
+| typedef enum [OH_MPEG2Level](#oh_mpeg2level-1) [OH_MPEG2Level](#oh_mpeg2level) | Defines an enum for the MPEG2 levels.| 
+| typedef enum [OH_MPEG4Level](#oh_mpeg4level-1) [OH_MPEG4Level](#oh_mpeg4level) | Defines an enum for the MPEG4 levels.| 
 | typedef enum [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode-1) [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode) | Defines an enum for the reference modes of temporal image groups. |
 | typedef enum [OH_BitrateMode](#oh_bitratemode-1) [OH_BitrateMode](#oh_bitratemode) | Defines an enum for the bit rate modes of an encoder. |
 
@@ -217,9 +223,11 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 | [OH_MediaType](#oh_mediatype-1) {<br>MEDIA_TYPE_AUD = 0,<br>MEDIA_TYPE_VID = 1,<br>MEDIA_TYPE_SUBTITILE = 2<br>} | Enumerates the media types.|
 | [OH_AACProfile](#oh_aacprofile-1) {<br>AAC_PROFILE_LC = 0,<br>AAC_PROFILE_HE = 3,<br>AAC_PROFILE_HE_V2 = 4<br>} | Enumerates the AAC profiles.<!--Del--><br>(**AAC_PROFILE_HE** and **AAC_PROFILE_HE_V2** are not available yet.)<!--DelEnd--> | 
 | [OH_AVCProfile](#oh_avcprofile-1) {<br>AVC_PROFILE_BASELINE = 0,<br>AVC_PROFILE_HIGH = 4,<br>AVC_PROFILE_MAIN = 8<br>} | Enumerates the AVC profiles.| 
-| [OH_HEVCProfile](#oh_hevcprofile-1) {<br>HEVC_PROFILE_MAIN = 0,<br>HEVC_PROFILE_MAIN_10 = 1,<br>HEVC_PROFILE_MAIN_STILL = 2,<br>HEVC_PROFILE_MAIN_10_HDR10 = 3,<br>HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4<br>} | Enumerates the HEVC profiles.<br>**HEVC_PROFILE_MAIN_10_HDR10** and **HEVC_PROFILE_MAIN_10_HDR10_PLUS** are deprecated since API version 14.| 
+| [OH_HEVCProfile](#oh_hevcprofile-1) {<br>HEVC_PROFILE_MAIN = 0,<br>HEVC_PROFILE_MAIN_10 = 1,<br>HEVC_PROFILE_MAIN_STILL = 2,<br>HEVC_PROFILE_MAIN_10_HDR10 = 3,<br>HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4<br>} | Enumerates the HEVC profiles.<br>(**HEVC_PROFILE_MAIN_10_HDR10** and **HEVC_PROFILE_MAIN_10_HDR10_PLUS** are deprecated since API version 14.)| 
 | [OH_VVCProfile](#oh_vvcprofile-1) {<br>VVC_PROFILE_MAIN_10 = 1, <br>VVC_PROFILE_MAIN_12 = 2, <br>VVC_PROFILE_MAIN_12_INTRA = 10, <br>VVC_PROFILE_MULTI_MAIN_10 = 17, <br>VVC_PROFILE_MAIN_10_444 = 33, <br>VVC_PROFILE_MAIN_12_444 = 34, <br>VVC_PROFILE_MAIN_16_444 = 36, <br>VVC_PROFILE_MAIN_12_444_INTRA = 42, <br>VVC_PROFILE_MAIN_16_444_INTRA = 44, <br>VVC_PROFILE_MULTI_MAIN_10_444 = 49, <br>VVC_PROFILE_MAIN_10_STILL = 65, <br>VVC_PROFILE_MAIN_12_STILL = 66, <br>VVC_PROFILE_MAIN_10_444_STILL = 97, <br>VVC_PROFILE_MAIN_12_444_STILL = 98, <br>VVC_PROFILE_MAIN_16_444_STILL = 100 <br>} | Enumerates the VVC profiles.| 
-| [OH_AVOutputFormat](#oh_avoutputformat-1) {<br>AV_OUTPUT_FORMAT_DEFAULT = 0,<br>AV_OUTPUT_FORMAT_MPEG_4 = 2,<br>AV_OUTPUT_FORMAT_M4A = 6,<br>AV_OUTPUT_FORMAT_AMR = 8,<br>AV_OUTPUT_FORMAT_MP3 = 9,<br>AV_OUTPUT_FORMAT_WAV = 10<br>} | Enumerates the output file formats supported by a muxer.|
+| [OH_MPEG2Profile](#oh_mpeg2profile-1) {<br>MPEG2_PROFILE_SIMPLE = 0,<br>MPEG2_PROFILE_MAIN = 1,<br>MPEG2_PROFILE_SNR = 2,<br>MPEG2_PROFILE_SPATIAL = 3,<br>MPEG2_PROFILE_HIGH = 4,<br>MPEG2_PROFILE_422 = 5} | Enumerates the MPEG2 profiles.| 
+| [OH_MPEG4Profile](#oh_mpeg4profile-1) {<br>MPEG4_PROFILE_SIMPLE = 0,<br>MPEG4_PROFILE_SIMPLE_SCALABLE = 1,<br>MPEG4_PROFILE_CORE = 2,<br>MPEG4_PROFILE_MAIN = 3,<br>MPEG4_PROFILE_NBIT = 4,<br>MPEG4_PROFILE_HYBRID = 5,<br>MPEG4_PROFILE_BASIC_ANIMATED_TEXTURE = 6,<br>MPEG4_PROFILE_SCALABLE_TEXTURE = 7,<br>MPEG4_PROFILE_SIMPLE_FA = 8,<br>MPEG4_PROFILE_ADVANCED_REAL_TIME_SIMPLE = 9,<br>MPEG4_PROFILE_CORE_SCALABLE = 10,<br>MPEG4_PROFILE_ADVANCED_CODING_EFFICIENCY = 11,<br>MPEG4_PROFILE_ADVANCED_CORE = 12,<br>MPEG4_PROFILE_ADVANCED_SCALABLE_TEXTURE = 13,<br>MPEG4_PROFILE_ADVANCED_SIMPLE = 17} | Enumerates the MPEG4 profiles.| 
+| [OH_AVOutputFormat](#oh_avoutputformat-1) {<br>AV_OUTPUT_FORMAT_DEFAULT = 0,<br>AV_OUTPUT_FORMAT_MPEG_4 = 2,<br>AV_OUTPUT_FORMAT_M4A = 6,<br>AV_OUTPUT_FORMAT_AMR = 8,<br>AV_OUTPUT_FORMAT_MP3 = 9,<br>AV_OUTPUT_FORMAT_WAV = 10, <br>AV_OUTPUT_FORMAT_AAC = 11<br>} | Enumerates the output file formats supported by a muxer.|
 | [OH_AVSeekMode](#oh_avseekmode-1) {<br>SEEK_MODE_NEXT_SYNC = 0,<br>SEEK_MODE_PREVIOUS_SYNC,<br>SEEK_MODE_CLOSEST_SYNC<br>} | Enumerates the seek modes.| 
 | [OH_ScalingMode](#oh_scalingmode-1) {<br>SCALING_MODE_SCALE_TO_WINDOW = 1,<br>SCALING_MODE_SCALE_CROP = 2<br>} | Enumerates the scaling modes. (This enum is deprecated from API version 14.)| 
 | [OH_BitsPerSample](#oh_bitspersample-1) {<br>SAMPLE_U8 = 0, SAMPLE_S16LE = 1,<br>SAMPLE_S24LE = 2, SAMPLE_S32LE = 3,<br>SAMPLE_F32LE = 4, SAMPLE_U8P = 5,<br>SAMPLE_S16P = 6, SAMPLE_S24P = 7,<br>SAMPLE_S32P = 8, SAMPLE_F32P = 9,<br>INVALID_WIDTH = -1<br>} | Enumerates the number of audio bits for each coded sample.| 
@@ -229,6 +237,8 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 | [OH_AVCLevel](#oh_avclevel-1) {<br>AVC_LEVEL_1 = 0, <br>AVC_LEVEL_1b = 1, <br>AVC_LEVEL_11 = 2, <br>AVC_LEVEL_12 = 3,<br>AVC_LEVEL_13 = 4, <br>AVC_LEVEL_2 = 5, <br>AVC_LEVEL_21 = 6, <br>AVC_LEVEL_22 = 7,<br>AVC_LEVEL_3 = 8, <br>AVC_LEVEL_31 = 9, <br>AVC_LEVEL_32 = 10, <br>AVC_LEVEL_4 = 11,<br>AVC_LEVEL_41 = 12, <br>AVC_LEVEL_42 = 13, <br>AVC_LEVEL_5 = 14, <br>AVC_LEVEL_51 = 15, <br>AVC_LEVEL_52 = 16, <br>AVC_LEVEL_6 = 17, <br>AVC_LEVEL_61 = 18, <br>AVC_LEVEL_62 = 19<br>} | Enumerates the AVC levels. | 
 | [OH_HEVCLevel](#oh_hevclevel-1) {<br>HEVC_LEVEL_1 = 0, <br>HEVC_LEVEL_2 = 1, <br>HEVC_LEVEL_21 = 2, <br>HEVC_LEVEL_3 = 3,<br>HEVC_LEVEL_31 = 4, <br>HEVC_LEVEL_4 = 5, <br>HEVC_LEVEL_41 = 6, <br>HEVC_LEVEL_5 = 7,<br>HEVC_LEVEL_51 = 8, <br>HEVC_LEVEL_52 = 9, <br>HEVC_LEVEL_6 = 10, <br>HEVC_LEVEL_61 = 11,<br>HEVC_LEVEL_62 = 12<br>} | Enumerates the HEVC levels. | 
 | [OH_VVCLevel](#oh_vvclevel-1) {<br>VVC_LEVEL_1 = 16, <br>VVC_LEVEL_2 = 32, <br>VVC_LEVEL_21 = 35, <br>VVC_LEVEL_3 = 48, <br>VVC_LEVEL_31 = 51, <br>VVC_LEVEL_4 = 64, <br>VVC_LEVEL_41 = 67, <br>VVC_LEVEL_5 = 80, <br>VVC_LEVEL_51 = 83, <br>VVC_LEVEL_52 = 86, <br>VVC_LEVEL_6 = 96, <br>VVC_LEVEL_61 = 99, <br>VVC_LEVEL_62 = 102, <br>VVC_LEVEL_63 = 105, <br>VVC_LEVEL_155 = 255<br>} | Enumerates the VVC levels. | 
+| [OH_MPEG2Level](#oh_mpeg2level-1) {<br>MPEG2_LEVEL_LL = 0,<br>MPEG2_LEVEL_ML = 1,<br>MPEG2_LEVEL_H14 = 2,<br>MPEG2_LEVEL_HL = 3 } | Enumerates the MPEG2 levels.| 
+| [OH_MPEG4Level](#oh_mpeg4level-1) {<br>MPEG4_LEVEL_0 = 0,<br>MPEG4_LEVEL_0B = 1,<br>MPEG4_LEVEL_1 = 2,<br>MPEG4_LEVEL_2 = 3,<br>MPEG4_LEVEL_3 = 4,<br>MPEG4_LEVEL_3B = 5,<br>MPEG4_LEVEL_4 = 6,<br>MPEG4_LEVEL_4A = 7,<br>MPEG4_LEVEL_5 = 8,<br>MPEG4_LEVEL_6 = 9} | Enumerates the MPEG4 levels.| 
 | [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode-1) { <br>ADJACENT_REFERENCE = 0, <br>JUMP_REFERENCE = 1, <br>UNIFORMLY_SCALED_REFERENCE = 2 <br>} | Enumerates the reference modes of temporal image groups. | 
 | [OH_BitrateMode](#oh_bitratemode-1) { <br>BITRATE_MODE_CBR = 0, <br>BITRATE_MODE_VBR = 1, <br>BITRATE_MODE_CQ = 2 } | Enumerates the bit rate modes of an encoder. |
 
@@ -250,6 +260,8 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_HEVC](#oh_avcodec_mimetype_video_hevc) | Pointer to the key that describes the MIME type of the HEVC (H.265) video codec.|
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_AVC](#oh_avcodec_mimetype_video_avc) | Pointer to the key that describes the MIME type of the AVC (H.264) video codec.|
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4](#oh_avcodec_mimetype_video_mpeg4) | Pointer to the key that describes the MIME type of the MPEG4 video encoder, which is used only for muxing MPEG4 video streams. (This function is deprecated in API version 11.)|
+| const char \* [OH_AVCODEC_MIMETYPE_VIDEO_MPEG2](#oh_avcodec_mimetype_video_mpeg2) | Pointer to the key that describes the MIME type of MPEG2 video codec.                       |
+| const char \* [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2](#oh_avcodec_mimetype_video_mpeg4_part2) | Pointer to the key that describes the MIME type of MPEG4 Part 2 video codec.        |
 | const char \* [OH_AVCODEC_MIMETYPE_IMAGE_JPG](#oh_avcodec_mimetype_image_jpg) | Pointer to the key that describes the MIME type of the JPG image encoder, which is used only for muxing JPG covers.|
 | const char \* [OH_AVCODEC_MIMETYPE_IMAGE_PNG](#oh_avcodec_mimetype_image_png) | Pointer to the key that describes the MIME type of the PNG image encoder, which is used only for muxing PNG covers.|
 | const char \* [OH_AVCODEC_MIMETYPE_IMAGE_BMP](#oh_avcodec_mimetype_image_bmp) | Pointer to the key that describes the MIME type of the BMP image encoder, which is used only for muxing BMP covers.|
@@ -279,7 +291,7 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 | const char \* [OH_MD_KEY_VIDEO_CROP_LEFT](#oh_md_key_video_crop_left) | Pointer to the key that describes the left coordinate (x) of the cropped rectangle. The value type is int32_t. | 
 | const char \* [OH_MD_KEY_VIDEO_CROP_RIGHT](#oh_md_key_video_crop_right) | Pointer to the key that describes the right coordinate (x) of the cropped rectangle. The value type is int32_t.| 
 | const char \* [OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR](#oh_md_key_video_decoder_output_enable_vrr) | Pointer to the key that specifies whether the decoder enables the video variable frame rate feature. The value type is int32_t.|
-| const char \* [OH_MD_KEY_VIDEO_STRIDE](#oh_md_key_video_stride) | Pointer to the key that describes the stride of the video frame. The value type is int32_t.   | 
+| const char \* [OH_MD_KEY_VIDEO_STRIDE](#oh_md_key_video_stride) | Pointer to the key that describes the stride of the video frame. The value type is int32_t. | 
 | const char \* [OH_MD_KEY_VIDEO_SLICE_HEIGHT](#oh_md_key_video_slice_height) | Pointer to the key that describes the height of the video frame. The value type is int32_t. | 
 | const char \* [OH_MD_KEY_VIDEO_PIC_WIDTH](#oh_md_key_video_pic_width) | Pointer to the key that describes the width of the video frame. The value type is int32_t. | 
 | const char \* [OH_MD_KEY_VIDEO_PIC_HEIGHT](#oh_md_key_video_pic_height) | Pointer to the key that describes the height of the video frame. The value type is int32_t. | 
@@ -771,6 +783,66 @@ Defines an enum for the media types.
 **Since**: 9
 
 
+### OH_MPEG2Level
+
+```
+typedef enum OH_MPEG2Level OH_MPEG2Level
+```
+
+**Description**
+
+Defines an enum for the MPEG2 levels.
+
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
+
+**Since**: 18
+
+
+### OH_MPEG2Profile
+
+```
+typedef enum OH_MPEG2Profile OH_MPEG2Profile
+```
+
+**Description**
+
+Defines an enum for the MPEG2 profiles.
+
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
+
+**Since**: 18
+
+
+### OH_MPEG4Level
+
+```
+typedef enum OH_MPEG4Level OH_MPEG4Level
+```
+
+**Description**
+
+Defines an enum for the MPEG4 levels.
+
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
+
+**Since**: 18
+
+
+### OH_MPEG4Profile
+
+```
+typedef enum OH_MPEG4Profile OH_MPEG4Profile
+```
+
+**Description**
+
+Defines an enum for the MPEG4 profiles.
+
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
+
+**Since**: 18
+
+
 ### OH_ScalingMode
 
 ```
@@ -1116,6 +1188,7 @@ Enumerates the output file formats supported by a muxer.
 | AV_OUTPUT_FORMAT_AMR  | AMR.<br>**Since**: 12   | 
 | AV_OUTPUT_FORMAT_MP3  | MP3.<br>**Since**: 12  | 
 | AV_OUTPUT_FORMAT_WAV  | WAV.<br>**Since**: 12  | 
+| AV_OUTPUT_FORMAT_AAC  | AAC.<br>**Since**: 18  | 
 
 ### OH_AVSeekMode
 
@@ -1301,6 +1374,113 @@ Enumerates the media types.
 | MEDIA_TYPE_AUD  | Audio track.  | 
 | MEDIA_TYPE_VID  | Video track.  | 
 | MEDIA_TYPE_SUBTITILE  | Subtitle track.<br>**Since**: 12  |
+
+### OH_MPEG2Level
+
+```
+enum OH_MPEG2Level
+```
+
+**Description**
+
+Enumerates the MPEG2 levels.
+
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
+
+**Since**: 18
+
+| Value| Description| 
+| -------- | -------- |
+| MPEG2_LEVEL_LL | Low level.| 
+| MPEG2_LEVEL_ML | Main level.| 
+| MPEG2_LEVEL_H14 | High 1440 level.| 
+| MPEG2_LEVEL_HL | High level.| 
+
+
+### OH_MPEG2Profile
+
+```
+enum OH_MPEG2Profile
+```
+
+**Description**
+
+Enumerates the MPEG2 profiles.
+
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
+
+**Since**: 18
+
+| Value| Description| 
+| -------- | -------- |
+| MPEG2_PROFILE_SIMPLE | Simple profile.| 
+| MPEG2_PROFILE_MAIN | Main profile.| 
+| MPEG2_PROFILE_SNR | Signal-to-Noise Ratio (SNR) scalable profile.| 
+| MPEG2_PROFILE_SPATIAL | Spatial scalable profile.| 
+| MPEG2_PROFILE_HIGH | High profile.| 
+| MPEG2_PROFILE_422 | 4:2:2 profile.| 
+
+
+### OH_MPEG4Level
+
+```
+enum OH_MPEG4Level
+```
+
+**Description**
+
+Enumerates the MPEG4 levels.
+
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
+
+**Since**: 18
+
+| Value| Description| 
+| -------- | -------- |
+| MPEG4_LEVEL_0 | Level 0.| 
+| MPEG4_LEVEL_0B | Level 0B.| 
+| MPEG4_LEVEL_1 | Level 1.| 
+| MPEG4_LEVEL_2 | Level 2.| 
+| MPEG4_LEVEL_3 | Level 3.| 
+| MPEG4_LEVEL_3B | Level 3B.| 
+| MPEG4_LEVEL_4 | Level 4.| 
+| MPEG4_LEVEL_4A | Level 4A.| 
+| MPEG4_LEVEL_5 | Level 5.| 
+| MPEG4_LEVEL_6 | Level 6.| 
+
+
+### OH_MPEG4Profile
+
+```
+enum OH_MPEG4Profile
+```
+
+**Description**
+
+Enumerates the MPEG4 profiles.
+
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
+
+**Since**: 18
+
+| Value| Description| 
+| -------- | -------- |
+| MPEG4_PROFILE_SIMPLE | Simple profile.| 
+| MPEG4_PROFILE_SIMPLE_SCALABLE | Simple scalable profile.| 
+| MPEG4_PROFILE_CORE | Core profile.| 
+| MPEG4_PROFILE_MAIN | Main profile.| 
+| MPEG4_PROFILE_NBIT | N-bit profile.| 
+| MPEG4_PROFILE_HYBRID | Hybrid profile.| 
+| MPEG4_PROFILE_BASIC_ANIMATED_TEXTURE | Basic animated texture profile.| 
+| MPEG4_PROFILE_SCALABLE_TEXTURE | Scalable texture profile.| 
+| MPEG4_PROFILE_SIMPLE_FA | Simple FA profile.| 
+| MPEG4_PROFILE_ADVANCED_REAL_TIME_SIMPLE | Advanced real-time simple profile.| 
+| MPEG4_PROFILE_CORE_SCALABLE | Core scalable profile.| 
+| MPEG4_PROFILE_ADVANCED_CODING_EFFICIENCY | Advanced coding efficiency profile.| 
+| MPEG4_PROFILE_ADVANCED_CORE | Advanced core profile.| 
+| MPEG4_PROFILE_ADVANCED_SCALABLE_TEXTURE | Advanced scalable texture profile.| 
+| MPEG4_PROFILE_ADVANCED_SIMPLE | Advanced simple profile.| 
+
 
 ### OH_ScalingMode
 
@@ -1758,6 +1938,21 @@ Pointer to the key that describes the MIME type of the VVC (H.266) video codec.
 **Since**: 12
 
 
+### OH_AVCODEC_MIMETYPE_VIDEO_MPEG2
+
+```
+const char* OH_AVCODEC_MIMETYPE_VIDEO_MPEG2
+```
+
+**Description**
+
+Pointer to the key that describes the MIME type of MPEG2 video codec.
+
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
+
+**Since**: 18
+
+
 ### OH_AVCODEC_MIMETYPE_VIDEO_MPEG4
 
 ```
@@ -1773,6 +1968,21 @@ Pointer to the key that describes the MIME type of the MPEG4 video encoder, whic
 **Since**: 10
 
 **Deprecated from**: 11
+
+
+### OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2
+
+```
+const char* OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2
+```
+
+**Description**
+
+Pointer to the key that describes the MIME type of MPEG4 Part 2 video codec.
+
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
+
+**Since**: 18
 
 
 ### OH_ED_KEY_EOS
