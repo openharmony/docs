@@ -118,7 +118,7 @@ int32_t OH_ArkUI_SnapshotOptions_SetScale(ArkUI_SnapshotOptions* snapshotOptions
 
 **描述**
 
-配置截图选项中的缩放属性
+配置截图选项中的缩放属性。
 
 **起始版本：** 15
 
