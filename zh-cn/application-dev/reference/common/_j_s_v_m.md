@@ -1235,8 +1235,8 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CompileScriptWithOptions (JSVM_Env env, JSVM_Val
 | -------- | -------- |
 | env | 目标环境，JSVM-API接口将在该环境下调用。 | 
 | script | 包含要编译的脚本的JavaScript代码。 | 
-| optionCount | 传入的 option 数组的长度. | 
-| options | option 数组，存放所有的编译选项. | 
+| optionCount | 传入的 option 数组的长度。 | 
+| options | option 数组，存放所有的编译选项。 | 
 | result | 编译后的脚本。 | 
 
 **返回：**
@@ -4762,7 +4762,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_OpenInspectorWithName (JSVM_Env env, int pid, co
 
 **描述**
 
-此函数打开一个命名为传入 name 的 inspector，为其打开对应 pid 的 unix domain 端口.
+此函数打开一个命名为传入 name 的 inspector，为其打开对应 pid 的 unix domain 端口。
 
 **起始版本：** 12
 
@@ -4770,15 +4770,15 @@ JSVM_EXTERN JSVM_Status OH_JSVM_OpenInspectorWithName (JSVM_Env env, int pid, co
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| env | 调用该API的环境. | 
-| pid | 用于标识 inspector 连接的进程ID. | 
-| name | inspector 的名字. 如果传入nullptr, 则默认名称为jsvm. | 
+| env | 调用该API的环境。 | 
+| pid | 用于标识 inspector 连接的进程ID。 | 
+| name | inspector 的名字. 如果传入nullptr, 则默认名称为jsvm。 | 
 
 **返回：**
 
 返回执行状态码 JSVM_Status JSVM_OK 表示执行成功。
 
-JSVM_PENDING_EXCEPTION 表示发生了异常.
+JSVM_PENDING_EXCEPTION 表示发生了异常。
 
 
 ### OH_JSVM_OpenVMScope()
@@ -5040,7 +5040,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_RetainScript (JSVM_Env env, JSVM_Script script )
 
 **描述**
 
-持久保存一个JSVM_Script并将其生命周期延长到当前作用域之外.
+持久保存一个JSVM_Script并将其生命周期延长到当前作用域之外。
 
 **起始版本：** 12
 
@@ -5048,8 +5048,8 @@ JSVM_EXTERN JSVM_Status OH_JSVM_RetainScript (JSVM_Env env, JSVM_Script script )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| env | 调用该API的环境. | 
-| script | 包含要持久化保存脚本的JavaScript字符串. | 
+| env | 调用该API的环境。 | 
+| script | 包含要持久化保存脚本的JavaScript字符串。 | 
 
 **返回：**
 
