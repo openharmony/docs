@@ -46,7 +46,7 @@ enableTransparentLayer(enabled: boolean)
 
 | 参数名   | 类型     | 必填 | 说明                   |
 | ------- | ------- | ---- | ---------------------- |
-| enabled | boolean | 是   | 是否开启组件背景透明状态下的独立图层。 |
+| enabled | boolean | 是   | 是否开启组件背景透明状态下的独立图层。<br/>true：开启独立图层；false：关闭独立图层。<br/>默认值：false |
 
   > **说明：**
   >
