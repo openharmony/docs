@@ -1801,14 +1801,14 @@ enum ArkUI_BlendApplyType
 ```
 **描述：**
 
-指定的混合模式应用于视图的内容选项.
+指定的混合模式应用于视图的内容选项。
 
 **起始版本：** 12
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| BLEND_APPLY_TYPE_FAST  | 在目标图像上按顺序混合视图的内容.  | 
-| BLEND_APPLY_TYPE_OFFSCREEN  | 将此组件和子组件内容绘制到离屏画布上，然后整体进行混合.  | 
+| BLEND_APPLY_TYPE_FAST  | 在目标图像上按顺序混合视图的内容。  | 
+| BLEND_APPLY_TYPE_OFFSCREEN  | 将此组件和子组件内容绘制到离屏画布上，然后整体进行混合。  | 
 
 
 ### ArkUI_BlendMode
@@ -3520,7 +3520,7 @@ enum ArkUI_NodeAttributeType
 | NODE_IMAGE_ANIMATOR_FIXED_SIZE  | 设置图片大小是否固定为组件大小。支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置图片大小是否固定为组件大小，1表示图片大小与组件大小一致。0表示每一张图片的width、height、top和left都要单独设置，默认值为1。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置图片大小是否固定为组件大小，1表示图片大小与组件大小一致。0表示每一张图片的width、height、top和left都要单独设置。 | 
 | NODE_IMAGE_ANIMATOR_FILL_MODE  | 设置帧动画在当前播放方向下，动画开始前和结束后的状态。支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：当前播放方向下，动画开始前和结束后的状态，参数类型为{ArkUI_AnimationFillMode}，默认值为FORWARDS。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：当前播放方向下，动画开始前和结束后的状态，参数类型为{ArkUI_AnimationFillMode}。 | 
 | NODE_IMAGE_ANIMATOR_ITERATION  | 设置帧动画的播放次数。支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：播放次数。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：播放次数。 | 
-| NODE_BACKDROP_BLUR  | 设置背景模糊效果，支持属性设置，属性重置和属性获取。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：表示背景模糊半径，取值范围[0,+∞)。单位px，默认值0.0。<br/>.value[1]?.f32：表示灰阶模糊参数，对黑色的提亮程度，取值范围为[0,127]。<br/>.value[2]?.f32：表示灰阶模糊参数，对白色的压暗程度，取值范围为[0,127]。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：表示背景模糊半径，取值范围[0,+∞)。单位px。<br/>.value[1].f32：表示灰阶模糊参数，对黑色的提亮程度，取值范围为[0,127]。<br/>.value[2].f32：表示灰阶模糊参数，对白色的压暗程度，取值范围为[0,127]。 |
+| NODE_BACKDROP_BLUR  | 设置背景模糊效果，支持属性设置，属性重置和属性获取。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：表示背景模糊半径，取值范围[0,+∞)。单位px，默认值0.0。<br/>.value[1]?.f32：表示灰阶模糊参数，对黑色的提亮程度，取值范围为[0,127]。<br/>.value[2]?.f32：表示灰阶模糊参数，对白色的压暗程度，取值范围为[0,127]。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：表示背景模糊半径，取值范围[0,+∞)。单位px。<br/>.value[1].f32：表示灰阶模糊参数，对黑色的提亮程度，取值范围为[0,127]。<br/>.value[2].f32：表示灰阶模糊参数，对白色的压暗程度，取值范围为[0,127]。<br/>起始版本：15。 |
 
 
 ### ArkUI_NodeContentEventType
@@ -4721,6 +4721,38 @@ enum ArkUI_KeyboardAppearance
 | ARKUI_KEYBOARD_APPEARANCE_IMMERSIVE   | 沉浸式模式，由系统决定采用的样式。  |
 | ARKUI_KEYBOARD_APPEARANCE_LIGHT_IMMERSIVE   | 浅色沉浸式样式。  |
 | ARKUI_KEYBOARD_APPEARANCE_DARK_IMMERSIVE   | 深色沉浸式样式。  |
+
+### ArkUI_KeyboardAvoidMode
+
+```
+enum ArkUI_KeyboardAvoidMode
+```
+**描述：**
+
+设置弹窗避让键盘模式。
+
+**起始版本：** 15
+
+| 枚举值 | 描述 |
+| -------- | -------- |
+| ARKUI_KEYBOARD_AVOID_MODE_DEFAULT   | 默认避让软键盘并在到达极限高度之后进行高度压缩。  |
+| ARKUI_KEYBOARD_AVOID_MODE_NONE   | 不避让软键盘。  |
+
+### ArkUI_HoverModeAreaType
+
+```
+enum ArkUI_HoverModeAreaType
+```
+**描述：**
+
+设置悬停态下弹窗默认展示区域。
+
+**起始版本：** 15
+
+| 枚举值 | 描述 |
+| -------- | -------- |
+| ARKUI_HOVER_MODE_AREA_TYPE_TOP   | 上半屏。  |
+| ARKUI_HOVER_MODE_AREA_TYPE_BOTTOM   | 下半屏。  |
 
 ## 函数说明
 

@@ -116,7 +116,7 @@ sideBarWidth(value: number)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 侧边栏的宽度。<br/>默认值：240vp<br/>单位：vp<br/>**说明：** <br/>API version 9及以下版本默认值为200vp，API version 10的默认值为240vp。 |
+| value  | number | 是   | 侧边栏的宽度。<br/>默认值：240vp<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**说明：** <br/>API version 9及以下版本默认值为200vp，API version 10的默认值为240vp。 |
 
 ### sideBarWidth<sup>9+</sup>
 
@@ -132,7 +132,7 @@ sideBarWidth(value: Length)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 侧边栏的宽度。<br/>默认值：240vp<br/>单位：vp<br/>**说明：** <br/>API version 9的默认值为200vp，API version 10的默认值为240vp。 |
+| value  | [Length](ts-types.md#length) | 是   | 侧边栏的宽度。<br/>默认值：240vp<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**说明：** <br/>API version 9的默认值为200vp，API version 10的默认值为240vp。 |
 
 ### minSideBarWidth
 
@@ -150,7 +150,7 @@ minSideBarWidth优先于侧边栏子组件minWidth，minSideBarWidth未设置时
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 侧边栏最小宽度。<br/>默认值：API version 9及以下版本默认值为200vp，API version 10的默认值为240vp。 |
+| value  | number | 是   | 侧边栏最小宽度。<br/>默认值：API version 9及以下版本默认值为200vp，API version 10的默认值为240vp。<br/>取值范围：[0, +∞) |
 
 ### minSideBarWidth<sup>9+</sup>
 
@@ -168,7 +168,7 @@ minSideBarWidth优先于侧边栏子组件minWidth，minSideBarWidth未设置时
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 侧边栏最小宽度。<br/>默认值：API version 9及以下版本默认值为200vp，API version 10的默认值为240vp。 |
+| value  | [Length](ts-types.md#length) | 是   | 侧边栏最小宽度。<br/>默认值：API version 9及以下版本默认值为200vp，API version 10的默认值为240vp。<br/>取值范围：[0, +∞) |
 
 ### maxSideBarWidth
 
@@ -186,7 +186,7 @@ maxSideBarWidth优先于侧边栏子组件maxWidth，maxSideBarWidth未设置时
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                |
 | ------ | ------------------------------------------------------------ | ---- | --------------------------------------------------- |
-| value  | number | 是   | 设置侧边栏最大宽度。<br/>默认值：280vp<br/>单位：vp |
+| value  | number | 是   | 设置侧边栏最大宽度。<br/>默认值：280vp<br/>单位：vp<br/>取值范围：[0, +∞) |
 
 ### maxSideBarWidth<sup>9+</sup>
 
@@ -204,7 +204,7 @@ maxSideBarWidth优先于侧边栏子组件maxWidth，maxSideBarWidth未设置时
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                |
 | ------ | ------------------------------------------------------------ | ---- | --------------------------------------------------- |
-| value  | [Length](ts-types.md#length) | 是   | 设置侧边栏最大宽度。<br/>默认值：280vp<br/>单位：vp |
+| value  | [Length](ts-types.md#length) | 是   | 设置侧边栏最大宽度。<br/>默认值：280vp<br/>单位：vp<br/>取值范围：[0, +∞) |
 
 ### autoHide<sup>9+</sup>
 
@@ -295,10 +295,10 @@ minContentWidth优先于侧边栏的maxSideBarWidth与sideBarWidth属性，minCo
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| left | number | 否 | 设置侧边栏控制按钮距离容器左界限的间距。<br/>默认值：16vp<br>单位：vp |
-| top | number | 否 | 设置侧边栏控制按钮距离容器上界限的间距。<br/>默认值：48vp<br/>单位：vp |
-| width | number | 否 | 设置侧边栏控制按钮的宽度。<br/>默认值：<br/>API version 9及之前版本：32vp<br/>从API version 10开始：24vp<br/>单位：vp |
-| height | number | 否 | 设置侧边栏控制按钮的高度。<br/>默认值：<br/>API version 9及之前版本：32vp<br/>从API version 10开始：24vp<br/>单位：vp |
+| left | number | 否 | 设置侧边栏控制按钮距离容器左界限的间距。<br/>默认值：16vp<br>单位：vp<br/>取值范围：[0, +∞) |
+| top | number | 否 | 设置侧边栏控制按钮距离容器上界限的间距。<br/>默认值：48vp<br/>单位：vp<br/>取值范围：[0, +∞) |
+| width | number | 否 | 设置侧边栏控制按钮的宽度。<br/>默认值：<br/>API version 9及之前版本：32vp<br/>从API version 10开始：24vp<br/>单位：vp<br/>取值范围：[0, +∞) |
+| height | number | 否 | 设置侧边栏控制按钮的高度。<br/>默认值：<br/>API version 9及之前版本：32vp<br/>从API version 10开始：24vp<br/>单位：vp<br/>取值范围：[0, +∞) |
 | icons | {<br/>shown:&nbsp;string \| PixelMap \| [Resource](ts-types.md) ;<br/>hidden:&nbsp;string \| PixelMap \| [Resource](ts-types.md) ;<br/>switching?:&nbsp;string \| PixelMap \| [Resource](ts-types.md) <br/>} | 否 | 设置侧边栏控制按钮的图标：<br/> </p> - shown: 设置侧边栏显示时控制按钮的图标。<br>**说明：** <br>资源获取错误时，使用默认图标。<br/>- hidden: 设置侧边栏隐藏时控制按钮的图标。<br>- switching:设置侧边栏显示和隐藏状态切换时控制按钮的图标。 |
 
 ## SideBarPosition<sup>9+</sup>枚举说明

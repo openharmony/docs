@@ -32,7 +32,7 @@ HDR元数据结构体定义。
 OHHDRMetadataKey OHHDRMetaData::key
 ```
 
-**描述**
+**描述：**
 
 HDR元数据关键字。
 
@@ -43,6 +43,6 @@ HDR元数据关键字。
 float OHHDRMetaData::value
 ```
 
-**描述**
+**描述：**
 
 关键字对应的值。

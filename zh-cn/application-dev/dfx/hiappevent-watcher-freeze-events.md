@@ -12,7 +12,7 @@ HiAppEvent提供接口用于订阅系统卡死事件。
 | 名称    | 类型   | 说明                       |
 | ------- | ------ | ------------------------- |
 | time     | number | 事件触发时间，单位为毫秒。 |
-| foreground | boolean | 应用是否处于前台状态。 |
+| foreground | boolean | 应用是否处于前台状态。true表示应用处于前台；false表示应用处于后台。|
 | bundle_version | string | 应用版本。 |
 | bundle_name | string | 应用名称。 |
 | process_name | string | 应用的进程名称。 |

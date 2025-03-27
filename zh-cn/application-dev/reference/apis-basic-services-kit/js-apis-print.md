@@ -45,9 +45,10 @@ on(type: 'block', callback: Callback&lt;void&gt;): void
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.on('block', () => {
         console.log('print state is block');
     })
@@ -87,9 +88,10 @@ on(type: 'succeed', callback: Callback&lt;void&gt;): void
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.on('succeed', () => {
         console.log('print state is succeed');
     })
@@ -129,9 +131,10 @@ on(type: 'fail', callback: Callback&lt;void&gt;): void
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.on('fail', () => {
         console.log('print state is fail');
     })
@@ -171,9 +174,10 @@ on(type: 'cancel', callback: Callback&lt;void&gt;): void
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.on('cancel', () => {
         console.log('print state is cancel');
     })
@@ -213,9 +217,10 @@ off(type: 'block', callback?: Callback&lt;void&gt;): void
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.off('block', () => {
         console.log('unregister state block');
     })
@@ -255,9 +260,10 @@ off(type: 'succeed', callback?: Callback&lt;void&gt;): void
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.off('succeed', () => {
         console.log('unregister state succeed');
     })
@@ -297,9 +303,10 @@ off(type: 'fail', callback?: Callback&lt;void&gt;): void
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.off('fail', () => {
         console.log('unregister state fail');
     })
@@ -339,9 +346,10 @@ off(type: 'cancel', callback?: Callback&lt;void&gt;): void
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.off('cancel', () => {
         console.log('unregister state cancel');
     })
@@ -475,7 +483,7 @@ print(files: Array&lt;string&gt;, callback: AsyncCallback&lt;PrintTask&gt;): voi
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。系统应用传入uri时，需先调用uriPermissionManager.grantUriPermission()接口给打印应用授权，此接口为系统接口。三方应用建议使用[print](#printprint11-2)。 |
+| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。文件需先保存到应用沙箱，通过fileUri.getUriFromPath获取到沙箱uri，再作为参数传入到本接口。 |
 | callback | AsyncCallback&lt;[PrintTask](#printprinttask)&gt; | 是 | 异步获取打印完成之后的回调。 |
 
 **错误码：**
@@ -492,12 +500,11 @@ print(files: Array&lt;string&gt;, callback: AsyncCallback&lt;PrintTask&gt;): voi
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
 //传入文件的uri
-let files = ['file://data/print/a.png', 'file://data/print/b.png'];
-//或者传入fd
-//let files = ['fd://1', 'fd://2'];
-print.print(files, (err: BusinessError, printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)], (err: BusinessError, printTask: print.PrintTask) => {
     if (err) {
         console.log('print err ' + JSON.stringify(err));
     } else {
@@ -522,7 +529,7 @@ print(files: Array&lt;string&gt;): Promise&lt;PrintTask&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。系统应用传入uri时，需先调用uriPermissionManager.grantUriPermission()接口给打印应用授权，此接口为系统接口。三方应用建议使用[print](#printprint11-2)。 |
+| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。文件需先保存到应用沙箱，通过fileUri.getUriFromPath获取到沙箱uri，再作为参数传入到本接口。 |
 
 **返回值：**
 | **类型** | **说明** |
@@ -543,12 +550,11 @@ print(files: Array&lt;string&gt;): Promise&lt;PrintTask&gt;
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
 //传入文件的uri
-let files = ['file://data/print/a.png', 'file://data/print/b.png'];
-//或者传入fd
-//let files = ['fd://1', 'fd://2'];
-print.print(files).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.on('succeed', () => {
         console.log('print state is succeed');
     })
@@ -571,7 +577,7 @@ print(files: Array&lt;string&gt;, context: Context, callback: AsyncCallback&lt;P
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。系统应用传入uri时，需先调用uriPermissionManager.grantUriPermission()接口给打印应用授权，此接口为系统接口。三方应用建议使用[print](#printprint11-2)。 |
+| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。文件需先保存到应用沙箱，通过fileUri.getUriFromPath获取到沙箱uri，再作为参数传入到本接口。 |
 | context | Context | 是 | 用于拉起系统打印界面的UIAbilityContext。 |
 | callback | AsyncCallback&lt;[PrintTask](#printprinttask)&gt; | 是 | 异步获取打印完成之后的回调。 |
 
@@ -589,13 +595,12 @@ print(files: Array&lt;string&gt;, context: Context, callback: AsyncCallback&lt;P
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
 //传入文件的uri
-let files = ['file://data/print/a.png', 'file://data/print/b.png'];
-//或者传入fd
-//let files = ['fd://1', 'fd://2'];
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
 let context = getContext(this);
-print.print(files, context, (err: BusinessError, printTask: print.PrintTask) => {
+print.print([fileUri.getUriFromPath(filePath)], context, (err: BusinessError, printTask: print.PrintTask) => {
     if (err) {
         console.log('print err ' + JSON.stringify(err));
     } else {
@@ -620,7 +625,7 @@ print(files: Array&lt;string&gt;, context: Context): Promise&lt;PrintTask&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。系统应用传入uri时，需先调用uriPermissionManager.grantUriPermission()接口给打印应用授权，此接口为系统接口。三方应用建议使用[print](#printprint11-2)。 |
+| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。文件需先保存到应用沙箱，通过fileUri.getUriFromPath获取到沙箱uri，再作为参数传入到本接口。 |
 | context | Context | 是 | 用于拉起系统打印界面的UIAbilityContext。 |
 
 **返回值：**
@@ -642,13 +647,12 @@ print(files: Array&lt;string&gt;, context: Context): Promise&lt;PrintTask&gt;
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
 //传入文件的uri
-let files = ['file://data/print/a.png', 'file://data/print/b.png'];
-//或者传入fd
-//let files = ['fd://1', 'fd://2'];
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
 let context = getContext(this);
-print.print(files, context).then((printTask: print.PrintTask) => {
+print.print([fileUri.getUriFromPath(filePath)], context).then((printTask: print.PrintTask) => {
     printTask.on('succeed', () => {
         console.log('print state is succeed');
     })

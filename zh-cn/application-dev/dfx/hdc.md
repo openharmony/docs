@@ -21,7 +21,7 @@ hdc分为三部分：
 
 ## 环境准备
 
-hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下。
+下载并安装[DevEco Studio](https://developer.huawei.com/consumer/cn/deveco-studio/)，hdc应用程序可以在DevEco Studio安装位置下：DevEco Studio\sdk\default\openharmony\toolchains目录中查看。
 
 ### （可选）命令行直接执行hdc程序
 
