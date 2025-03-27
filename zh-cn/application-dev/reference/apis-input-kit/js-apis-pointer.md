@@ -521,8 +521,8 @@ window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) =>
 
 | 名称                               | 值    | 说明     |
 | -------------------------------- | ---- | ------ |
-| LEFT                          | 0    | 鼠标左键     |
-| RIGHT                             | 1    | 鼠标右键   |
+| LEFT                          | 0    | 鼠标左键。     |
+| RIGHT                             | 1    | 鼠标右键。   |
 
 ## RightClickType<sup>10+</sup>
 
