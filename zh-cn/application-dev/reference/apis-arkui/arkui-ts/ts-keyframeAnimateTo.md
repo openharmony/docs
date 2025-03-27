@@ -76,12 +76,7 @@ struct KeyframeDemo {
           this.myScale = 1;
           // 设置关键帧动画整体播放3次
           this.uiContext.keyframeAnimateTo({
-              iterations: 3,
-              expectedFrameRateRange: {
-                min: 10,
-                max: 120,
-                expected: 60,
-              }
+              iterations: 3
             }, [
             {
               // 第一段关键帧动画时长为800ms，scale属性做从1到1.5的动画

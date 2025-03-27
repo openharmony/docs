@@ -605,7 +605,7 @@ struct BlurEffectsExample {
         Text('blur text')
           .blur(5).margin(10)
         Text('blur text')
-          .blur(10, undefined, { disableSystemAdaptation: true }).margin(10) // 内容模糊半径为5，禁用系统自适应优化策略。
+          .blur(10, undefined).margin(10) // 内容模糊半径为5，禁用系统自适应优化策略。
         Text('blur text')
           .blur(15).margin(10)
       }.width('90%').height(40)
