@@ -361,22 +361,22 @@ let params = obj['ohos.want.action.home'];
 
 若配置该选项，以下场景中的console.*语句会被删除：
 
-1. 文件顶层的调用
-2. 代码块中的调用  
+1. 文件顶层的调用。
+2. 代码块中的调用。  
    例如：
    ```
    function foo() {
     console.log('in block');
    }
    ```
-3. module或namespace中的调用  
+3. module或namespace中的调用。  
    例如：
    ```
    namespace ns {
     console.log('in ns');
    }
    ```
-4. switch语句中的调用
+4. switch语句中的调用。
 
 ### -print-namecache
 
