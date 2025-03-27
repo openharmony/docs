@@ -856,8 +856,14 @@ setMediaSource(src:MediaSource, strategy?: PlaybackStrategy): Promise\<void>
 let player = await media.createAVPlayer();
 let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
-let playStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3, preferredHdr: false,
-  preferredBufferDurationForPlaying: 1};
+let playStrategy : media.PlaybackStrategy = {
+  preferredWidth: 1,
+  preferredHeight: 2,
+  preferredBufferDuration: 3,
+  preferredHdr: false,
+  preferredBufferDurationForPlaying: 1,
+  thresholdForAutoQuickPlay: 5
+};
 player.setMediaSource(mediaSource, playStrategy);
 ```
 
@@ -902,8 +908,15 @@ let player = await media.createAVPlayer();
 let context = getContext(this) as common.UIAbilityContext
 let fileDescriptor = await context.resourceManager.getRawFd('xxx.mp4')
 player.fdSrc = fileDescriptor
-let playStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3,
-  preferredHdr: false, mutedMediaType: media.MediaType.MEDIA_TYPE_AUD, preferredBufferDurationForPlaying: 1};
+let playStrategy : media.PlaybackStrategy = {
+  preferredWidth: 1,
+  preferredHeight: 2,
+  preferredBufferDuration: 3,
+  preferredHdr: false,
+  mutedMediaType: media.MediaType.MEDIA_TYPE_AUD,
+  preferredBufferDurationForPlaying: 1,
+  thresholdForAutoQuickPlay: 5
+};
 player.setPlaybackStrategy(playStrategy);
 ```
 
@@ -7877,6 +7890,7 @@ setMimeType(mimeType: AVMimeTypes): void
 | preferredAudioLanguage<sup>13+</sup> | string | 否 | 播放策略首选音轨语言。dash场景下应用可按需设置。非dash场景暂不支持，建议缺省。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 | preferredSubtitleLanguage<sup>13+</sup> | string | 否 | 播放策略首选字幕语言。dash场景下应用可按需设置。非dash场景暂不支持，建议缺省。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 | preferredBufferDurationForPlaying<sup>18+</sup> | number | 否 | 播放策略首选起播缓冲水线。当起播缓冲时间超过该值，开始播放。单位s，取值范围0-20。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| thresholdForAutoQuickPlay<sup>18+</sup> | number | 否 | 智能追帧水线，单位为s，取值应不小于2s，且需大于起播缓冲水线，默认设置为5s。<br>播放策略可以通过设置智能追帧水线来保证直播的实时性。flv直播场景下应用可按需设置，非flv直播场景暂不支持。网络状态的变化可能会导致播放器在某段时间内积压大量数据。播放器会定期检查当前播放时间与缓存中最新的帧时间戳之间的差值，当这个差值过大时，播放器将以1.2倍速开始追帧；当差值小于起播缓冲水线时，则停止追帧并恢复到正常播放速度。 |
 
 ## AVScreenCaptureRecordPreset<sup>12+</sup>
 
