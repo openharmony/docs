@@ -1618,7 +1618,7 @@
           - [文本测量（ArkTS）](graphics/text-measure-arkts.md)
           - [文本测量（C/C++）](graphics/text-measure-c.md)
         - 文本绘制与显示<!--draw-text-display-->
-          - [简单文本绘制与显示（ArkTS）](graphics/-text-arkts.md)
+          - [简单文本绘制与显示（ArkTS）](graphics/simple-text-arkts.md)
           - [复杂文本绘制与显示（ArkTS）](graphics/complex-text-arkts.md)
           - [简单文本绘制与显示（C/C++）](graphics/simple-text-c.md)
           - [复杂文本绘制与显示（C/C++）](graphics/complex-text-c.md)
