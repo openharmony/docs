@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import { PrintExtensionAbility } from '@kit.BasicServicesKit';
+import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
 ```
 
 ## PrintExtensionAbility.onStartPrintJob

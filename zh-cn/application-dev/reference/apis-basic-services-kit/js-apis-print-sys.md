@@ -13,7 +13,7 @@ import { print } from '@kit.BasicServicesKit';
 ```
 
 
-## print.PrintMargin
+## PrintMargin
 
 定义打印页边距的接口。
 
@@ -29,7 +29,7 @@ import { print } from '@kit.BasicServicesKit';
 | left | number | 否 | 表示页面左边距。 |
 | right | number | 否 | 表示页面右边距。 |
 
-## print.PrinterRange
+## PrinterRange
 
 定义打印范围的接口。
 
@@ -44,7 +44,7 @@ import { print } from '@kit.BasicServicesKit';
 | endPage | number | 否 | 表示结束页。 |
 | pages | Array&lt;number&gt; | 否 | 表示离散页面。 |
 
-## print.PreviewAttribute
+## PreviewAttribute
 
 定义打印预览属性的接口。
 
@@ -58,7 +58,7 @@ import { print } from '@kit.BasicServicesKit';
 | previewRange | [PrinterRange](#printprinterrange) | 是 | 表示预览页面范围。 |
 | result | number | 否 | 表示预览文件结果。 |
 
-## print.PrintResolution
+## PrintResolution
 
 定义打印分辨率的接口。
 
@@ -75,7 +75,7 @@ import { print } from '@kit.BasicServicesKit';
 
 
 
-## print.PrinterCapability
+## PrinterCapability
 
 定义打印能力的接口。
 
@@ -93,7 +93,7 @@ import { print } from '@kit.BasicServicesKit';
 | minMargin | [PrintMargin](#printprintmargin) | 否 | 表示打印机最小边距。 |
 | options<sup>11+</sup> | Object | 否 | 表示JSON对象字符串。 |
 
-## print.PrinterInfo
+## PrinterInfo
 
 定义打印信息的接口。
 
@@ -112,7 +112,7 @@ import { print } from '@kit.BasicServicesKit';
 | capability | [PrinterCapability](#printprintercapability) | 否 | 表示打印机功能。 |
 | options | Object | 否 | 表示JSON对象字符串。 |
 
-## print.PrintJob
+## PrintJob
 
 定义打印任务的接口。
 
@@ -139,7 +139,7 @@ import { print } from '@kit.BasicServicesKit';
 | preview | [PreviewAttribute](#printpreviewattribute) | 否 | 表示预览设置。 |
 | options | Object | 否 | 表示JSON对象字符串。 |
 
-## print.PrinterExtensionInfo
+## PrinterExtensionInfo
 
 定义打印扩展信息的接口。
 

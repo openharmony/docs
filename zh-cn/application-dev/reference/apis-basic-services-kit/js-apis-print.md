@@ -11,11 +11,11 @@
 import { print } from '@kit.BasicServicesKit';
 ```
 
-## print.PrintTask
+## PrintTask
 
 打印任务完成后的事件监听回调接口类。
 
-### on
+### PrintTask.on
 
 on(type: 'block', callback: Callback&lt;void&gt;): void
 
@@ -58,7 +58,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
 })
 ```
 
-### on
+### PrintTask.on
 
 on(type: 'succeed', callback: Callback&lt;void&gt;): void
 
@@ -101,7 +101,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
 })
 ```
 
-### on
+### PrintTask.on
 
 on(type: 'fail', callback: Callback&lt;void&gt;): void
 
@@ -144,7 +144,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
 })
 ```
 
-### on
+### PrintTask.on
 
 on(type: 'cancel', callback: Callback&lt;void&gt;): void
 
@@ -187,7 +187,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
 })
 ```
 
-### off
+### PrintTask.off
 
 off(type: 'block', callback?: Callback&lt;void&gt;): void
 
@@ -230,7 +230,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
 })
 ```
 
-### off
+### PrintTask.off
 
 off(type: 'succeed', callback?: Callback&lt;void&gt;): void
 
@@ -273,7 +273,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
 })
 ```
 
-### off
+### PrintTask.off
 
 off(type: 'fail', callback?: Callback&lt;void&gt;): void
 
@@ -316,7 +316,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
 })
 ```
 
-### off
+### PrintTask.off
 
 off(type: 'cancel', callback?: Callback&lt;void&gt;): void
 
@@ -359,7 +359,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
 })
 ```
 
-## print.PrintDocumentAdapter<sup>11+</sup>
+## PrintDocumentAdapter<sup>11+</sup>
 
 第三方应用程序实现此接口来渲染要打印的文件。
 
@@ -726,7 +726,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 })
 ```
 
-## print.PrintAttributes<sup>11+</sup>
+## PrintAttributes<sup>11+</sup>
 
 定义打印参数的接口。
 
@@ -742,7 +742,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 | colorMode | [PrintColorMode](#printprintcolormode11) | 否 | 表示待打印文件的色彩模式。 |
 | duplexMode | [PrintDuplexMode](#printprintduplexmode11) | 否 | 表示待打印文件的单双面模式。 |
 
-## print.PrintPageRange<sup>11+</sup>
+## PrintPageRange<sup>11+</sup>
 
 定义打印范围的接口。
 
@@ -756,7 +756,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 | pages | Array&lt;number&gt; | 否 | 表示待打印的页面范围的集合。|
 
 
-## print.PrintPageSize<sup>11+</sup>
+## PrintPageSize<sup>11+</sup>
 
 定义打印页面尺寸的接口。
 
@@ -772,7 +772,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 
 
 
-## print.PrintDirectionMode<sup>11+</sup>
+## PrintDirectionMode<sup>11+</sup>
 
 打印纸张方向的枚举。
 
@@ -784,7 +784,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 | DIRECTION_MODE_PORTRAIT | 1 | 表示纵向打印。 |
 | DIRECTION_MODE_LANDSCAPE | 2 | 表示横向打印。 |
 
-## print.PrintColorMode<sup>11+</sup>
+## PrintColorMode<sup>11+</sup>
 
 打印色彩模式的枚举。
 
@@ -795,7 +795,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 | COLOR_MODE_MONOCHROME | 0 | 表示黑白打印。 |
 | COLOR_MODE_COLOR | 1 | 表示彩色打印。 |
 
-## print.PrintDuplexMode<sup>11+</sup>
+## PrintDuplexMode<sup>11+</sup>
 
 打印单双面模式的枚举。
 
@@ -807,7 +807,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 | DUPLEX_MODE_LONG_EDGE | 1 | 表示双面打印沿长边翻转。 |
 | DUPLEX_MODE_SHORT_EDGE | 2 | 表示双面打印沿短边翻转。 |
 
-## print.PrintPageType<sup>11+</sup>
+## PrintPageType<sup>11+</sup>
 
 打印纸张类型的枚举。
 
@@ -828,7 +828,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 | PAGE_INT_DL_ENVELOPE | 10 | 表示INT DL ENVELOPE。 |
 | PAGE_B_TABLOID | 11 | 表示B Tabloid。 |
 
-## print.PrintDocumentAdapterState<sup>11+</sup>
+## PrintDocumentAdapterState<sup>11+</sup>
 
 打印任务状态的枚举。
 
@@ -842,7 +842,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 | PRINT_TASK_CANCEL | 3 | 表示打印任务取消。 |
 | PRINT_TASK_BLOCK | 4 | 表示打印任务阻塞。 |
 
-## print.PrintFileCreationState<sup>11+</sup>
+## PrintFileCreationState<sup>11+</sup>
 
 打印文件创建状态的枚举。
 
@@ -854,7 +854,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 | PRINT_FILE_CREATION_FAILED | 1 | 表示打印文件创建失败。|
 | PRINT_FILE_CREATED_UNRENDERED | 2 | 表示打印文件创建成功但未渲染。 |
 
-## print.PrinterState<sup>14+</sup>
+## PrinterState<sup>14+</sup>
 
 打印机状态的枚举。
 
@@ -869,7 +869,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 | PRINTER_DISCONNECTED | 4 | 表示打印机已断开连接。 |
 | PRINTER_RUNNING | 5 | 表示打印机正在运行。 |
 
-## print.PrintJobState<sup>14+</sup>
+## PrintJobState<sup>14+</sup>
 
 打印任务状态的枚举。
 
@@ -883,7 +883,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 | PRINT_JOB_BLOCKED | 3 | 表示打印任务已被阻止。 |
 | PRINT_JOB_COMPLETED | 4 | 表示打印任务完成。 |
 
-## print.PrintJobSubState<sup>14+</sup>
+## PrintJobSubState<sup>14+</sup>
 
 打印任务子状态的枚举。
 
@@ -920,7 +920,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 | PRINT_JOB_RUNNING_CONVERTING_FILES | 27 | 表示正在转换文件。 |
 | PRINT_JOB_BLOCK_UNKNOWN | 99 | 表示打印未知问题。 |
 
-## print.PrintErrorCode<sup>14+</sup>
+## PrintErrorCode<sup>14+</sup>
 
 打印错误代码的枚举。
 
@@ -939,7 +939,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 | E_PRINT_INVALID_PRINT_JOB | 13100006 | 表示打印任务无效。 |
 | E_PRINT_FILE_IO | 13100007 | 表示文件输入/输出错误。 |
 
-## print.ApplicationEvent<sup>14+</sup>
+## ApplicationEvent<sup>14+</sup>
 
 打印应用事件的枚举。
 
@@ -1157,7 +1157,7 @@ print.getPrinterInformationById(printerId).then((printerInformation : print.Prin
 })
 ```
 
-## print.PrinterInformation<sup>14+</sup>
+## PrinterInformation<sup>14+</sup>
 
 定义打印机信息的接口。
 
@@ -1175,7 +1175,7 @@ print.getPrinterInformationById(printerId).then((printerInformation : print.Prin
 | printerMake | string | 否 | 表示打印机型号。 |
 | options | string | 否 | 表示打印机详细信息。 |
 
-## print.PrinterCapabilities<sup>14+</sup>
+## PrinterCapabilities<sup>14+</sup>
 
 定义打印机能力的接口。
 
@@ -1192,7 +1192,7 @@ print.getPrinterInformationById(printerId).then((printerInformation : print.Prin
 | supportedOrientations | Array&lt;[PrintOrientationMode](#printprintorientationmode14)&gt; | 否 | 表示打印机支持的打印方向列表。 |
 | options | string | 否 | 表示打印机能力详细信息。 |
 
-## print.PrintQuality<sup>14+</sup>
+## PrintQuality<sup>14+</sup>
 
 打印质量的枚举。
 
@@ -1204,7 +1204,7 @@ print.getPrinterInformationById(printerId).then((printerInformation : print.Prin
 | QUALITY_NORMAL | 4 | 表示标准的打印质量。 |
 | QUALITY_HIGH | 5 | 表示最佳的打印质量。 |
 
-## print.PrintOrientationMode<sup>14+</sup>
+## PrintOrientationMode<sup>14+</sup>
 
 打印方向的枚举。
 
@@ -1218,7 +1218,7 @@ print.getPrinterInformationById(printerId).then((printerInformation : print.Prin
 | ORIENTATION_MODE_REVERSE_PORTRAIT | 3 | 表示纵向翻转打印。 |
 | ORIENTATION_MODE_NONE | 4 | 表示自适应方向打印。 |
 
-## print.PrinterStatus<sup>14+</sup>
+## PrinterStatus<sup>14+</sup>
 
 打印机状态的枚举。
 
