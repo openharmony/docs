@@ -64,7 +64,7 @@ The \'xxx\' property cannot be specified a default value.
 特定装饰器变量定义的时候不能初始化。
 
 **可能原因**<br>
-定义有@Consunme、@Link、@ObjectLink等装饰器装饰的变量时进行初始化导致报错。
+定义有@Consume、@Link、@ObjectLink等装饰器装饰的变量时进行初始化导致报错。
 
 **处理步骤**<br>
 在@Consume、@Link、@ObjectLink等装饰器装饰的变量定义时不要初始化,参照装饰器正确赋值规则。
@@ -812,7 +812,7 @@ The \'xxx\' decorator can only be used with \'struct\'.
 
 ## 10905338 V2装饰器使用校验异常
 **错误信息**<br>
-The \'xxx\' decorator can onlly be used in a \'struct\' decorated with \'@ComponentV2\'.
+The \'xxx\' decorator can only be used in a \'struct\' decorated with \'@ComponentV2\'.
 
 **错误描述**<br>
 V2的成员装饰器只能用在@ComponentV2装饰的struct中。
@@ -1332,7 +1332,7 @@ The \'@Reusable\' and \'@ReusableV2\' decorators cannot be applied simultaneousl
 
 ## 10905242 @ReusableV2使用校验异常
 **错误信息**<br>
-\'@ReusableV2\' is only applicate to custom components decorated by \'@ComponentV2\'.
+\'@ReusableV2\' is only applicable to custom components decorated by \'@ComponentV2\'.
 
 **错误描述**<br>
 @ReusableV2不能装饰非@ComponentV2装饰的自定义组件。
@@ -1413,10 +1413,10 @@ Repeat.template不能包含@ReusableV2装饰的自定义组件。
 The reuse attribute is only applicable to custom components decorated with both \'@ComponentV2\' and \'@ReusableV2\'.
 
 **错误描述**<br>
-reuse不能用于纯V1，V2，不能用于@Reusable的V1，只能用于@ReusableV2装饰的@ComponentV2自定义组件。
+reuse只能用于@ReusableV2装饰的@ComponentV2自定义组件。
 
 **可能原因**<br>
-开发者未明确reuse的使用场景，在纯V1、V2场景下使用或者在@Reusable的V1场景使用导致报错。
+开发者未明确reuse的使用场景，在@ReusableV2装饰的@ComponentV2自定义组件之外使用该属性导致报错。
 
 **处理步骤**<br>
 根据错误描述修改，在正确场景下使用reuse属性功能。
