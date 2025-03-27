@@ -577,3 +577,5 @@ You can set specific system parameters as needed to meet your service demand.
 ### How to Enable Third-Party Applications to Access System Parameters
 
 The default DAC rules grant only the **get** and **watch** permissions for third-party applications. If a third-party application requires the **set** permission, you need to reset DAC rules. In addition, SELinux permissions of third-party applications are left unspecified by default. If needed, set the SELinux permissions by referring to the [MAC Permission Configuration](#mac-permission-configuration).
+
+<!--no_check-->
