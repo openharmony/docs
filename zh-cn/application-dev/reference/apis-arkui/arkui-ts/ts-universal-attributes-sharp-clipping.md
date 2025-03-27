@@ -22,7 +22,7 @@ clip(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 参数为boolean类型，设置是否按照父容器边缘轮廓进行裁剪。<br/>默认值：false <br/>**说明：** 设置为true后，子组件超出当前组件范围外的区域将不响应绑定的手势事件。 |
+| value  | boolean | 是   | 参数为boolean类型，设置是否按照父容器边缘轮廓进行裁剪。<br/>默认值：false <br/>true表示按照父容器边缘轮廓进行裁剪，false表示不对子组件进行裁剪。 <br/>**说明：** 设置为true后，子组件超出当前组件范围外的区域将不响应绑定的手势事件。 |
 
 ## clip<sup>18+</sup>
 
@@ -208,8 +208,8 @@ constructor(value: number, total: number, color: ResourceColor)
 
 | 参数名 | 参数类型                                   | 必填 | 参数描述           |
 | ------ | ------------------------------------------ | ---- | ------------------ |
-| value  | number                                     | 是   | 进度遮罩的当前值。 |
-| total  | number                                     | 是   | 进度遮罩的最大值。 |
+| value  | number                                     | 是   | 进度遮罩的当前值。<br/> 取值范围：[0.0, +∞) |
+| total  | number                                     | 是   | 进度遮罩的最大值。<br/> 取值范围：[0.0, +∞) |
 | color  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 进度遮罩的颜色。   |
 
 ### updateProgress<sup>10+</sup>
