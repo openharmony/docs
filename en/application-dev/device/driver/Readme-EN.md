@@ -1,7 +1,7 @@
 # Driver Development Kit<!--driver-development-kit-->
 
 - [Introduction to Driver Development Kit](driverdevelopment-overview.md)
-- [Environment Preparation](environment-preparation.md)
+- [Environment Preparation](environmental-preparation.md)
 - Basic Peripheral Driver Development<!--development-of-basic-drivers-->
   - [UI-free Driver Development](driverextensionability.md)
   - [UI-based Driver Development](externaldevice-guidelines.md)
