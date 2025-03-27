@@ -2572,7 +2572,7 @@ console.log(`IMEISV is:` + data);
 
 | 名称              |                  类型                   | 必填 |                           说明                               |
 | ----------------- | --------------------------------------- | ---- | ------------------------------------------------------------ |                           
-| isCamped          | boolean                                 |  是  | 获取服务单元的状态。<br>**系统接口：** 此接口为系统接口。          |
+| isCamped          | boolean                                 |  是  | 获取服务单元的状态。<br>**系统接口：** 此接口为系统接口。true 表示驻留小区，false表示非驻留小区。          |
 | timeStamp         | number                                  |  是  | 获取单元格信息时获取时间戳。<br>**系统接口：** 此接口为系统接口。    |                              
 | data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8)\|[WcdmaCellInformation](#wcdmacellinformation8) |  是  | Cdma小区信息 \|Gsm小区信息\|Lte小区信息\|Nr小区信息\|Tdscdma小区信息\|Wcdma小区信息。  <br>**系统接口：** 此接口为系统接口。|
 
