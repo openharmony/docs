@@ -1,4 +1,4 @@
-# @ohos.hiviewdfx.jsLeakWatcher (JSLeakWatcher)
+# @ohos.hiviewdfx.jsLeakWatcher (JS Leak Watcher)
 
 This module provides the capability of monitoring whether JS objects are leaked.
 
@@ -25,7 +25,7 @@ Enables the detection for JS object leak. This function is disabled by default.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| isEnable | boolean | Yes| Indicates whether to enable **jsLeakWatcher**.|
+| isEnable | boolean | Yes| Whether to enable **jsLeakWatcher**.|
 
 **Example**
 
@@ -79,7 +79,7 @@ let leakObjlist:string = jsLeakWatcher.check();
 
 ## jsLeakWatcher.dump
 
-dump(filePath: string): Array<\string>;
+dump(filePath: string): Array&lt;string&gt;;
 
 Exports the list of leaked objects and VM memory snapshot.
 
@@ -95,7 +95,7 @@ Exports the list of leaked objects and VM memory snapshot.
 
 | Type   | Description                                                      |
 | ------- | ---------------------------------------------------------- |
-| Array<\string> | Array of exported results. Index **0** indicates the name of the leak list file, and the file name extension is **.jsleaklist**. Index **1** indicates the name of the VM memory snapshot file, and the file name extension is **.heapsnapshort**. |
+| Array&lt;string&gt; | Array of exported results. Index **0** indicates the name of the leak list file, and the file name extension is **.jsleaklist**. Index **1** indicates the name of the VM memory snapshot file, and the file name extension is **.heapsnapshort**.|
 
 **Error codes**
 

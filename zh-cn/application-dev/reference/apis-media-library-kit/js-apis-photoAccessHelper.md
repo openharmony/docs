@@ -1180,6 +1180,7 @@ async function example(photoTypeNumber: number){
   console.info('getSupportedPhotoFormatsDemo.');
 
   try {
+    let outputText: string;
     if (photoTypeNumber !== 1 && photoTypeNumber !== 2) {
       outputText = 'Does not support querying formats other than images or videos';
       return;
@@ -3213,7 +3214,7 @@ static createImageAssetRequest(context: Context, fileUri: string): MediaAssetCha
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
-| fileUri | string | 是   | 图片资产的数据来源，在应用沙箱下的uri。 |
+| fileUri | string | 是   | 图片资产的数据来源，在应用沙箱下的uri。示例fileUri为：'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg'。 |
 
 **返回值：**
 
@@ -3263,7 +3264,7 @@ static createVideoAssetRequest(context: Context, fileUri: string): MediaAssetCha
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
-| fileUri | string | 是   | 视频资产的数据来源，在应用沙箱下的uri。 |
+| fileUri | string | 是   | 视频资产的数据来源，在应用沙箱下的uri。示例fileUri为：'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.mp4'。 |
 
 **返回值：**
 
@@ -3637,7 +3638,7 @@ addResource(type: ResourceType, fileUri: string): void
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
 | type | [ResourceType](#resourcetype11) | 是   | 待添加资源的类型。 |
-| fileUri | string | 是   | 待添加资源的数据来源，在应用沙箱下的uri。 |
+| fileUri | string | 是   | 待添加资源的数据来源，在应用沙箱下的uri。示例fileUri为：'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg'。 |
 
 **错误码：**
 
@@ -4308,6 +4309,7 @@ static requestMovingPhoto(context: Context, asset: PhotoAsset, requestOptions: R
 | -------- | ---------------------------------------- |
 | 201      |  Permission denied         |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 801   | Capability not supported.       |
 | 14000011       | System inner fail         |
 
 **示例：**
@@ -4369,7 +4371,7 @@ static requestVideoFile(context: Context, asset: PhotoAsset, requestOptions: Req
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                      | 是   | 传入Ability实例的Context。|
 | asset | [PhotoAsset](#photoasset)                                            | 是   | 待请求的的媒体文件对象。 |
 | requestOptions  | [RequestOptions](#requestoptions11)                                  | 是   | 视频请求策略模式配置项。|
-| fileUri| string                                                              | 是 | 目标写入沙箱路径Uri。 |
+| fileUri| string                                                              | 是 | 目标写入沙箱路径Uri。示例fileUri为：'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.mp4'。 |
 | dataHandler  | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;boolean&gt; | 是   | 媒体资源处理器，当所请求的视频资源写入完成时会触发回调。|
 
 **返回值：**
@@ -4435,7 +4437,7 @@ static cancelRequest(context: Context, requestId: string): Promise\<void>
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                      | 是   | 传入Ability实例的Context。 |
-| requestId | string     | 是   | 需要取消的请求id。 |
+| requestId | string     | 是   | 需要取消的请求id，requestImage等接口返回的有效requestId。 |
 
 **返回值：**
 
@@ -4614,7 +4616,7 @@ map支持返回的信息：
 | 参数名  | 类型 | 必填 | 说明                                                                            |
 |------|---| ---- |-------------------------------------------------------------------------------|
 | data | T | 是   | 已就绪的图片资源数据。泛型，支持ArrayBuffer, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource), [MovingPhoto](#movingphoto12)和boolean四种数据类型。 |
-| map<sup>12+</sup> | Map<string, string> | 否   | 用于获取图片资源的额外信息，如图片质量。 |
+| map<sup>12+</sup> | Map<string, string> | 否   | 用于获取图片资源的额外信息，如图片质量。当前仅支持'quality'。 |
 
 **示例**
 ```ts
@@ -4680,7 +4682,7 @@ map支持返回的信息：
 |------|---| ---- |-------------------------------------------------------------------------------|
 | data | T | 是   | 已就绪的图片资源数据。泛型，支持[Picture](../apis-image-kit/js-apis-image.md#picture13)数据类型。 |
 | imageSource | image.ImageSource | 是   | 已就绪的图片资源数据。 |
-| map<sup>13+</sup> | Map<string, string> | 是   | 用于获取图片资源的额外信息，如图片质量。 |
+| map<sup>13+</sup> | Map<string, string> | 是   | 用于获取图片资源的额外信息，如图片质量。当前仅支持'quality'。 |
 
 **示例**
 ```ts
@@ -4783,8 +4785,8 @@ requestContent(imageFileUri: string, videoFileUri: string): Promise\<void>
 
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
-| imageFileUri | string                      | 是   | 待写入动态照片图片内容的uri。 |
-| videoFileUri | string                                            | 是   | 待写入动态照片视频内容的uri。 |
+| imageFileUri | string                      | 是   | 待写入动态照片图片内容的uri。示例imageFileUri为："file://com.example.temptest/data/storage/el2/base/haps/ImageFile.jpg"。 |
+| videoFileUri | string                                            | 是   | 待写入动态照片视频内容的uri。示例videoFileUri为："file://com.example.temptest/data/storage/el2/base/haps/VideoFile.mp4"。 |
 
 **返回值：**
 
@@ -5113,7 +5115,7 @@ PhotoAsset的成员类型。
 | URI           | 'uri'                 | 文件uri。<br>注意：查询照片时，该字段仅支持使用[DataSharePredicates.equalTo](../apis-arkdata/js-apis-data-dataSharePredicates.md#equalto10)谓词。            |
 | PHOTO_TYPE    | 'media_type'           | 媒体文件类型。                                              |
 | DISPLAY_NAME  | 'display_name'        | 显示名字。                                                   |
-| SIZE          | 'size'                | 文件大小（单位：字节）。                                                   |
+| SIZE          | 'size'                | 文件大小（单位：字节）。动态照片的size包括图片和视频的总大小。    |
 | DATE_ADDED    | 'date_added'          | 文件创建时的Unix时间戳（单位：秒）。             |
 | DATE_MODIFIED | 'date_modified'       | 文件修改时的Unix时间戳（单位：秒）。修改文件名不会改变此值，当文件内容发生修改时才会更新。 |
 | DURATION      | 'duration'            | 持续时间（单位：毫秒）。                                    |
@@ -5185,7 +5187,7 @@ title参数规格为：
 | 名称                   | 类型                        | 只读 | 可选 | 说明                                         |
 | ---------------------- |----------------------------| ---- | ---- | ------------------------------------------- |
 | deliveryMode           | [DeliveryMode](#deliverymode11) | 否   | 否   | 请求资源分发模式，可以指定对于该资源的请求策略，可被配置为快速模式，高质量模式，均衡模式三种策略。 |
-| compatibleMode<sup>15+</sup>      | [CompatibleMode](#compatiblemode15) | 否   | 是   | 配置HDR视频转码模式，可指定配置为转码和不转码两种策略。 |
+| compatibleMode<sup>15+</sup>      | [CompatibleMode](#compatiblemode15) | 否   | 是   | 配置HDR视频资源转码模式，可指定配置为转码和不转码两种策略。默认为原视频资源内容模式即不转码。 |
 | mediaAssetProgressHandler<sup>15+</sup> | [MediaAssetProgressHandler](#mediaassetprogresshandler15) | 否   | 是   | 配置HDR视频转码为SDR视频时的进度级回调。 |
 
 ## MediaChangeRequest<sup>11+</sup>
@@ -5330,7 +5332,7 @@ async function example() {
 
 | 名称                    | 类型                | 必填 | 说明                          |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
-| text | string   | 否   | 如果需要根据文本(支持250字以内的简体中文)推荐相应的图片，则配置此参数。 |
+| text | string   | 否   | 如果需要根据文本(支持250字以内的简体中文)推荐相应的图片，则配置此参数。text默认是空字符串。 |
 
 **示例：**
 
@@ -5442,7 +5444,7 @@ async function example() {
 
 | 名称                   | 类型                | 必填 | 说明                                              |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
-| title | string | 否  | 图片或者视频的标题。|
+| title | string | 否  | 图片或者视频的标题，不传入时由系统生成。参数规格为：<br>- 不应包含扩展名。<br>- 文件名字符串长度为1~255（资产文件名为标题+扩展名）。<br>- 不允许出现非法字符，包括：. \ / : * ? " ' ` < > \| { } [ ]|
 | fileNameExtension | string | 是  | 文件扩展名，例如'jpg'。|
 | photoType | [PhotoType](#phototype) | 是  | 创建的文件类型，IMAGE或者VIDEO。|
 | subtype | [PhotoSubtype](#photosubtype12) | 否  | 图片或者视频的文件子类型，当前仅支持DEFAULT。|
@@ -5456,7 +5458,7 @@ async function example() {
 | 名称  |  值 |  说明 |
 | ----- | ---- | ---- |
 | ORIGINAL_FORMAT_MODE |  0 |  原视频资源内容模式。  |
-| COMPATIBLE_FORMAT_MODE    |  1 |  兼容模式，从HDR视频转换为SDR视频。    |
+| COMPATIBLE_FORMAT_MODE    |  1 |  兼容模式，从HDR视频资源转换为SDR视频资源。    |
 
 ## CompleteButtonText<sup>14+</sup>
 

@@ -1,6 +1,6 @@
 # Image
 
-The **Image** component is usually used to display images in applications. It supports images in PNG, JPG, JPEG, BMP, SVG, WEBP, GIF, or HEIF format from the following data sources: [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7), [ResourceStr](ts-types.md#resourcestr), or [DrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#drawabledescriptor).
+The **Image** component is usually used to display images in applications. It supports images in PNG, JPG, JPEG, BMP, SVG, WEBP, GIF, or HEIF format from the following data sources: [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7), [ResourceStr](ts-types.md#resourcestr), or [DrawableDescriptor](#drawabledescriptor10).
 
 > **NOTE**
 >
@@ -11,6 +11,8 @@ The **Image** component is usually used to display images in applications. It su
 > The **Image** component supports SVG image sources. For details about SVG tags, see [SVG Tags](./ts-basic-svg.md).
 >
 > For animated images, animation playback is disabled by default and depends on the visibility of the **Image** component. When the component is visible, the animation is started through the callback. When the component is invisible, the animation is stopped. The visibility status of the **Image** component can be identified through the [onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange) event. If the value of **ratios** is greater than 0, the component is visible.
+>
+> Since API version 18, the **Image** component offloads the tasks of downloading and caching online images to the [download and cache module](../../apis-basic-services-kit/js-apis-request-cacheDownload.md). This module provides a pre-download API that allows you to download images before using the **Image** component. Once the component is created, it requests the image data from the download and cache module. This way, the display performance of the **Image** component is improved. Regarding cache locations:<br>- For versions before API version 18, the cache is stored in the local sandbox directory of the application.<br>- For versions API version 18 and later, the cache is stored in the cache directory under the application's root directory.
 
 ## Required Permissions
 
@@ -46,7 +48,7 @@ If the **Image** component does not have its width and height set, its size adap
 
 | Name | Type                                    | Mandatory  | Description                                    |
 | ---- | ---------------------------------------- | ---- | ---------------------------------------- |
-| src  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) \| [ResourceStr](ts-types.md#resourcestr)\| [DrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | Yes   | Data source of the image. Local and online sources are supported. For details about how to reference an image, see [Loading Image Resources](../../../ui/arkts-graphics-display.md#loading-image-resources).<br>1. **PixelMap**: an array of pixels storing graphical information. This type is usually used in image editing scenarios.<br>2. **ResourceStr**: a string or a **Resource** object.<br>The string format can be used to load local images and, more frequently, online images. When using an image referenced using a relative path, for example, **Image("common/test.jpg")**, the **Image** component cannot be called across bundles or modules. If an image needs to be used globally, you are advised to use the **Resource** format. The following types of strings are supported:<br>- Base64 strings in the format of data:image/[png\|jpeg\|bmp\|webp\|heif];base64,[base64 data], where *[base64 data]* is a Base64 string.<br>- Strings with the **file://** prefix, that is, [application sandbox URIs](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10): **file://\<bundleName>/\<sandboxPath>**, When accessing a path that contains special characters, use [fileUri.getUriFromPath(path)](../../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath) to transform the path into a URI that can handle special symbols. In addition, ensure that the application has the read permission to the files in the specified path.<br>The **Resource** format allows for access across bundles and modules. It is recommended for accessing local images.<br>3. **DrawableDescriptor**: an object created when the passed resource ID or name belongs to a common image. If the [AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12) type is passed in, the PixelMap array animation can be played.<br>**NOTE**<br>- ArkTS widgets support GIF animations, but the animations only play once on display.<br>- ArkTS widgets do not support the strings with the **http:/\/** or **file:/\/** prefix.<br>- ArkTS widgets do not support the [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) type.<br>- When a local image is being loaded, any modification or replacement of it may cause application crash. Therefore, to overwrite an image file, delete the file first and then create one with the same name.<br>- Online images must support the RFC 9113 standard to be successfully loaded.<br>- If images to download are greater than 10 MB or in large number, consider using [HTTP](../../../network/http-request.md) to preload them to improve the image loading performance and facilitate data management on the application side.<br> - Directly passing a URL to the **Image** component can lead to potential performance issues, such as: (1) Large images cannot be preloaded, resulting in longer display times for white blocks; (2) Small images set to load synchronously can block the UI thread in weak network environments, causing screen freezing issues; (3) In fast-scrolling water flow layouts, images that are about to be displayed could not be preloaded, leading to more white blocks during scrolling. Performance issues manifest differently in different scenarios. To address these issues, decouple the network downloading part from the display of the **Image** component, which allows for preloading or asynchronous downloading.<br>- To display an SVG image that does not have the native size, you must set the width and height for the **Image** component.<br>- If an SVG image references another local image through the Image tag, the referenced image cannot be in .svg or .gif format.<br>- When the **src** attribute changes from a valid value to an invalid one, the image remains unchanged.<br>- If this parameter is of the [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) type, the **Image** component can detect data changes only when the reference to the **PixelMap** object is updated to point to a new instance. If modifications are made to the content of the **PixelMap** object, such as pixel values, but the reference to the object remains the same, the **Image** component will not recognize these modifications as a data change.|
+| src  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) \| [ResourceStr](ts-types.md#resourcestr)\| [DrawableDescriptor](#drawabledescriptor10) | Yes   | Data source of the image. Local and online sources are supported. For details about how to reference an image, see [Loading Image Resources](../../../ui/arkts-graphics-display.md#loading-image-resources).<br>1. **PixelMap**: an array of pixels storing graphical information. This type is usually used in image editing scenarios.<br>2. **ResourceStr**: a string or a **Resource** object.<br>The string type can be used to load local images and, more frequently, online images. When using an image referenced using a relative path, for example, **Image("common/test.jpg")**, the **Image** component cannot be called across bundles or modules. If an image needs to be used globally, you are advised to use the **Resource** format. The following types of strings are supported:<br>- Base64 strings in the format of data:image/[png\|jpeg\|bmp\|webp\|heif];base64,[base64 data], where *[base64 data]* is a Base64 string.<br>- Strings with the **file://** prefix, that is, [application sandbox URIs](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10): **file://\<bundleName>/\<sandboxPath>**, When accessing a path that contains special characters, use [fileUri.getUriFromPath(path)](../../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath) to transform the path into a URI that can handle special symbols. In addition, ensure that the application has the read permission to the files in the specified path.<br>The **Resource** format allows for access across bundles and modules. It is recommended for accessing local images.<br>3. **DrawableDescriptor**: an object created when the passed resource ID or name belongs to a common image. If the [AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12) type is passed in, the PixelMap array animation can be played.<br>**NOTE**<br>- ArkTS widgets support GIF animations, but the animations only play once on display.<br>- ArkTS widgets do not support the strings with the **http:/\/** or **file:/\/** prefix.<br>- When a local image is being loaded, any modification or replacement of it may cause application crash. Therefore, to overwrite an image file, delete the file first and then create one with the same name.<br>- Online images must support the RFC 9113 standard to be successfully loaded.<br>- If images to download are greater than 10 MB or in large number, consider using [HTTP](../../../network/http-request.md) to preload them to improve the image loading performance and facilitate data management on the application side.<br> - Directly passing a URL to the **Image** component can lead to potential performance issues, such as: (1) Large images cannot be preloaded, resulting in longer display times for white blocks; (2) Small images set to load synchronously can block the UI thread in weak network environments, causing screen freezing issues; (3) In fast-scrolling water flow layouts, images that are about to be displayed could not be preloaded, leading to more white blocks during scrolling. Performance issues manifest differently in different scenarios. To address these issues, decouple the network downloading part from the display of the **Image** component, which allows for preloading or asynchronous downloading.<br>- To display an SVG image that does not have the native size, you must set the width and height for the **Image** component.<br>- If an SVG image references another local image through the Image tag, the referenced image cannot be in .svg or .gif format.<br>- When the **src** attribute changes from a valid value to an invalid one, the image remains unchanged.<br>- If this parameter is of the [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) type, the **Image** component can detect data changes only when the reference to the **PixelMap** object is updated to point to a new instance. If modifications are made to the content of the **PixelMap** object, such as pixel values, but the reference to the object remains the same, the **Image** component will not recognize these modifications as a data change.|
 
 ### Image<sup>12+</sup>
 
@@ -64,7 +66,7 @@ Obtains an image. The [ImageContent](#imagecontent12) type allows you to specify
 
 | Name | Type                                    | Mandatory  | Description                                    |
 | ---- | ---------------------------------------- | ---- | ---------------------------------------- |
-| src  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) \| [ResourceStr](ts-types.md#resourcestr)\| [DrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#drawabledescriptor)\| [ImageContent](#imagecontent12) | Yes   | Data source of the image. Local and online sources are supported. For details about how to reference an image, see [Loading Image Resources](../../../ui/arkts-graphics-display.md#loading-image-resources).<br>1. **PixelMap**: an array of pixels storing graphical information. This type is usually used in image editing scenarios.<br>2. **ResourceStr**: a string or a **Resource** object.<br>The string format can be used to load local images and, more frequently, online images. When using an image referenced using a relative path, for example, **Image("common/test.jpg")**, the **Image** component cannot be called across bundles or modules. If an image needs to be used globally, you are advised to use the **Resource** format. The following types of strings are supported:<br>- Base64 strings in the format of data:image/[png\|jpeg\|bmp\|webp\|heif];base64,[base64 data], where *[base64 data]* is a Base64 string.<br>- Strings with the **file://** prefix, that is, [application sandbox URIs](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10): **file://\<bundleName>/\<sandboxPath>**, When accessing a path that contains special characters, use [fileUri.getUriFromPath(path)](../../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath) to transform the path into a URI that can handle special symbols. In addition, ensure that the application has the read permission to the files in the specified path.<br>The **Resource** format allows for access across bundles and modules. It is recommended for accessing local images.<br>3. **DrawableDescriptor**: an object created when the passed resource ID or name belongs to a common image. If the [AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12) type is passed in, the PixelMap array animation can be played.<br>4. [ImageContent](#imagecontent12): image content.<br>**NOTE**<br>- ArkTS widgets support GIF animations, but the animations only play once on display.<br>- ArkTS widgets do not support the strings with the **http:/\/** or **file:/\/** prefix.<br>- ArkTS widgets do not support the [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) type.<br>- When a local image is being loaded, any modification or replacement of it may cause application crash. Therefore, to overwrite an image file, delete the file first and then create one with the same name.<br>- Online images must support the RFC 9113 standard to be successfully loaded.<br>- If images to download are greater than 10 MB or in large number, consider using [HTTP](../../../network/http-request.md) to preload them to improve the image loading performance and facilitate data management on the application side.<br> - Directly passing a URL to the **Image** component can lead to potential performance issues, such as: (1) Large images cannot be preloaded, resulting in longer display times for white blocks; (2) Small images set to load synchronously can block the UI thread in weak network environments, causing screen freezing issues; (3) In fast-scrolling water flow layouts, images that are about to be displayed could not be preloaded, leading to more white blocks during scrolling. Performance issues manifest differently in different scenarios. To address these issues, decouple the network downloading part from the display of the **Image** component, which allows for preloading or asynchronous downloading.<br>- To display an SVG image that does not have the native size, you must set the width and height for the **Image** component.<br>- If an SVG image references another local image through the Image tag, the referenced image cannot be in .svg or .gif format.<br>- When the **src** attribute changes from a valid value to an invalid one, the image remains unchanged.<br>- If this parameter is of the [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) type, the **Image** component can detect data changes only when the reference to the **PixelMap** object is updated to point to a new instance. If modifications are made to the content of the **PixelMap** object, such as pixel values, but the reference to the object remains the same, the **Image** component will not recognize these modifications as a data change.|
+| src  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) \| [ResourceStr](ts-types.md#resourcestr)\| [DrawableDescriptor](#drawabledescriptor10)\| [ImageContent](#imagecontent12) | Yes   | Data source of the image. Local and online sources are supported. For details about how to reference an image, see [Loading Image Resources](../../../ui/arkts-graphics-display.md#loading-image-resources).<br>1. **PixelMap**: an array of pixels storing graphical information. This type is usually used in image editing scenarios.<br>2. **ResourceStr**: a string or a **Resource** object.<br>The string type can be used to load local images and, more frequently, online images. When using an image referenced using a relative path, for example, **Image("common/test.jpg")**, the **Image** component cannot be called across bundles or modules. If an image needs to be used globally, you are advised to use the **Resource** format. The following types of strings are supported:<br>- Base64 strings in the format of data:image/[png\|jpeg\|bmp\|webp\|heif];base64,[base64 data], where *[base64 data]* is a Base64 string.<br>- Strings with the **file://** prefix, that is, [application sandbox URIs](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10): **file://\<bundleName>/\<sandboxPath>**, When accessing a path that contains special characters, use [fileUri.getUriFromPath(path)](../../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath) to transform the path into a URI that can handle special symbols. In addition, ensure that the application has the read permission to the files in the specified path.<br>The **Resource** format allows for access across bundles and modules. It is recommended for accessing local images.<br>3. **DrawableDescriptor**: an object created when the passed resource ID or name belongs to a common image. If the [AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12) type is passed in, the PixelMap array animation can be played.<br>4. [ImageContent](#imagecontent12): image content.<br>**NOTE**<br>- ArkTS widgets support GIF animations, but the animations only play once on display.<br>- ArkTS widgets do not support the strings with the **http:/\/** or **file:/\/** prefix.<br>- When a local image is being loaded, any modification or replacement of it may cause application crash. Therefore, to overwrite an image file, delete the file first and then create one with the same name.<br>- Online images must support the RFC 9113 standard to be successfully loaded.<br>- If images to download are greater than 10 MB or in large number, consider using [HTTP](../../../network/http-request.md) to preload them to improve the image loading performance and facilitate data management on the application side.<br> - Directly passing a URL to the **Image** component can lead to potential performance issues, such as: (1) Large images cannot be preloaded, resulting in longer display times for white blocks; (2) Small images set to load synchronously can block the UI thread in weak network environments, causing screen freezing issues; (3) In fast-scrolling water flow layouts, images that are about to be displayed could not be preloaded, leading to more white blocks during scrolling. Performance issues manifest differently in different scenarios. To address these issues, decouple the network downloading part from the display of the **Image** component, which allows for preloading or asynchronous downloading.<br>- To display an SVG image that does not have the native size, you must set the width and height for the **Image** component.<br>- If an SVG image references another local image through the Image tag, the referenced image cannot be in .svg or .gif format.<br>- When the **src** attribute changes from a valid value to an invalid one, the image remains unchanged.<br>- If this parameter is of the [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) type, the **Image** component can detect data changes only when the reference to the **PixelMap** object is updated to point to a new instance. If modifications are made to the content of the **PixelMap** object, such as pixel values, but the reference to the object remains the same, the **Image** component will not recognize these modifications as a data change.|
 
 ### Image<sup>12+</sup>
 
@@ -80,12 +82,12 @@ Obtains an image. The [imageAIOptions](ts-image-common.md#imageaioptions) parame
 
 | Name | Type                                    | Mandatory  | Description                                    |
 | ---- | ---------------------------------------- | ---- | ---------------------------------------- |
-| src  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) \| [ResourceStr](ts-types.md#resourcestr)\| [DrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | Yes   | Data source of the image. Local and online sources are supported. For details about how to reference an image, see [Loading Image Resources](../../../ui/arkts-graphics-display.md#loading-image-resources).<br>1. **PixelMap**: an array of pixels storing graphical information. This type is usually used in image editing scenarios.<br>2. **ResourceStr**: a string or a **Resource** object.<br>The string format can be used to load local images and, more frequently, online images. When using an image referenced using a relative path, for example, **Image("common/test.jpg")**, the **Image** component cannot be called across bundles or modules. If an image needs to be used globally, you are advised to use the **Resource** format. The following types of strings are supported:<br>- Base64 strings in the format of data:image/[png\|jpeg\|bmp\|webp\|heif];base64,[base64 data], where *[base64 data]* is a Base64 string.<br>- Strings with the **file://** prefix, that is, [application sandbox URIs](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10): **file://\<bundleName>/\<sandboxPath>**, When accessing a path that contains special characters, use [fileUri.getUriFromPath(path)](../../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath) to transform the path into a URI that can handle special symbols. In addition, ensure that the application has the read permission to the files in the specified path.<br>The **Resource** format allows for access across bundles and modules. It is recommended for accessing local images.<br>3. **DrawableDescriptor**: an object created when the passed resource ID or name belongs to a common image. If the [AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12) type is passed in, the PixelMap array animation can be played.<br>**NOTE**<br>- ArkTS widgets support GIF animations, but the animations only play once on display.<br>- ArkTS widgets do not support the strings with the **http:/\/** or **file:/\/** prefix.<br>- ArkTS widgets do not support the [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) type.<br>- When a local image is being loaded, any modification or replacement of it may cause application crash. Therefore, to overwrite an image file, delete the file first and then create one with the same name.<br>- Online images must support the RFC 9113 standard to be successfully loaded.<br>- If images to download are greater than 10 MB or in large number, consider using [HTTP](../../../network/http-request.md) to preload them to improve the image loading performance and facilitate data management on the application side.<br> - Directly passing a URL to the **Image** component can lead to potential performance issues, such as: (1) Large images cannot be preloaded, resulting in longer display times for white blocks; (2) Small images set to load synchronously can block the UI thread in weak network environments, causing screen freezing issues; (3) In fast-scrolling water flow layouts, images that are about to be displayed could not be preloaded, leading to more white blocks during scrolling. Performance issues manifest differently in different scenarios. To address these issues, decouple the network downloading part from the display of the **Image** component, which allows for preloading or asynchronous downloading.<br>- To display an SVG image that does not have the native size, you must set the width and height for the **Image** component.<br>- If an SVG image references another local image through the Image tag, the referenced image cannot be in .svg or .gif format.<br>- When the **src** attribute changes from a valid value to an invalid one, the image remains unchanged.<br>- If this parameter is of the [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) type, the **Image** component can detect data changes only when the reference to the **PixelMap** object is updated to point to a new instance. If modifications are made to the content of the **PixelMap** object, such as pixel values, but the reference to the object remains the same, the **Image** component will not recognize these modifications as a data change.|
+| src  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) \| [ResourceStr](ts-types.md#resourcestr)\| [DrawableDescriptor](#drawabledescriptor10) | Yes   | Data source of the image. Local and online sources are supported. For details about how to reference an image, see [Loading Image Resources](../../../ui/arkts-graphics-display.md#loading-image-resources).<br>1. **PixelMap**: an array of pixels storing graphical information. This type is usually used in image editing scenarios.<br>2. **ResourceStr**: a string or a **Resource** object.<br>The string type can be used to load local images and, more frequently, online images. When using an image referenced using a relative path, for example, **Image("common/test.jpg")**, the **Image** component cannot be called across bundles or modules. If an image needs to be used globally, you are advised to use the **Resource** format. The following types of strings are supported:<br>- Base64 strings in the format of data:image/[png\|jpeg\|bmp\|webp\|heif];base64,[base64 data], where *[base64 data]* is a Base64 string.<br>- Strings with the **file://** prefix, that is, [application sandbox URIs](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10): **file://\<bundleName>/\<sandboxPath>**, When accessing a path that contains special characters, use [fileUri.getUriFromPath(path)](../../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath) to transform the path into a URI that can handle special symbols. In addition, ensure that the application has the read permission to the files in the specified path.<br>The **Resource** format allows for access across bundles and modules. It is recommended for accessing local images.<br>3. **DrawableDescriptor**: an object created when the passed resource ID or name belongs to a common image. If the [AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12) type is passed in, the PixelMap array animation can be played.<br>**NOTE**<br>- ArkTS widgets support GIF animations, but the animations only play once on display.<br>- ArkTS widgets do not support the strings with the **http:/\/** or **file:/\/** prefix.<br>- When a local image is being loaded, any modification or replacement of it may cause application crash. Therefore, to overwrite an image file, delete the file first and then create one with the same name.<br>- Online images must support the RFC 9113 standard to be successfully loaded.<br>- If images to download are greater than 10 MB or in large number, consider using [HTTP](../../../network/http-request.md) to preload them to improve the image loading performance and facilitate data management on the application side.<br> - Directly passing a URL to the **Image** component can lead to potential performance issues, such as: (1) Large images cannot be preloaded, resulting in longer display times for white blocks; (2) Small images set to load synchronously can block the UI thread in weak network environments, causing screen freezing issues; (3) In fast-scrolling water flow layouts, images that are about to be displayed could not be preloaded, leading to more white blocks during scrolling. Performance issues manifest differently in different scenarios. To address these issues, decouple the network downloading part from the display of the **Image** component, which allows for preloading or asynchronous downloading.<br>- To display an SVG image that does not have the native size, you must set the width and height for the **Image** component.<br>- If an SVG image references another local image through the Image tag, the referenced image cannot be in .svg or .gif format.<br>- When the **src** attribute changes from a valid value to an invalid one, the image remains unchanged.<br>- If this parameter is of the [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) type, the **Image** component can detect data changes only when the reference to the **PixelMap** object is updated to point to a new instance. If modifications are made to the content of the **PixelMap** object, such as pixel values, but the reference to the object remains the same, the **Image** component will not recognize these modifications as a data change.|
 | imageAIOptions  | [ImageAIOptions](ts-image-common.md#imageaioptions) | Yes  | AI image analysis options. You can configure the analysis type or bind an analyzer controller through this parameter.|
 
 ## Attributes
 
-For details about how to use the attributes, see [Setting Attributes](../../../ui/arkts-graphics-display.md#setting-attributes). In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+For details about how to use the attributes, see [Setting Attributes](../../../ui/arkts-graphics-display.md#setting-attributes). In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 > **NOTE**
 >
@@ -129,15 +131,17 @@ Sets how the image is resized to fit its container.
 | ------ | ----------------------------------------- | ---- | ------------------------------------------- |
 | value  | [ImageFit](ts-appendix-enums.md#imagefit) | Yes  | How the image is resized to fit its container.<br>Default value: **ImageFit.Cover**|
 
-### imageMatrix<sup>16+</sup>
+### imageMatrix<sup>15+</sup>
 
 imageMatrix(matrix: ImageMatrix)
 
-Sets the transformation matrix of the image.
+Sets the transformation matrix of the image. This API allows you to use the APIs provided by the [ImageMatrix](#imagematrix15) object, such as translate, rotate, and scale, to achieve the optimal display of grid thumbnails. This attribute is not applicable to SVG images.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 16.
+This attribute does not take effect when the **resizable** or **objectRepeat** attributes are set. This attribute only processes the image source and does not trigger any callback events of the **Image** component.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+This attribute is strongly related to the [objectFit](#objectfit) setting and only works when [objectFit](#objectfit) is set to **[ImageFit](ts-appendix-enums.md#imagefit).MATRIX**.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -145,7 +149,7 @@ Sets the transformation matrix of the image.
 
 | Name| Type                                                | Mandatory| Description          |
 | ------ | --------------------------------------------------- | ---- | -------------- |
-| matrix  | [ImageMatrix](../js-apis-matrix4.md#matrix4transit) | Yes  | Transformation matrix of the image.|
+| matrix  | [ImageMatrix](#imagematrix15) | Yes  | Transformation matrix of the image.|
 
 ### objectRepeat
 
@@ -247,7 +251,7 @@ This attribute does not take effect when the parameter type of the component is 
 
 | Name| Type   | Mandatory| Description                                        |
 | ------ | ------- | ---- | -------------------------------------------- |
-| value  | boolean | Yes  | Whether to display the image in the system language direction.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether to display the image in the system language direction.<br>Default value: **false**<br>**true**: Display the image in the system language direction.<br>**false**: Do not display the image in the system language direction.|
 
 ### fitOriginalSize
 
@@ -287,7 +291,25 @@ This attribute does not take effect when the parameter type of the component is 
 
 | Name| Type                                      | Mandatory| Description          |
 | ------ | ------------------------------------------ | ---- | -------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Fill color to be superimposed on the image.|
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Fill color to be superimposed on the image.<br>**NOTE**<br> By default, no fill color is applied. If an invalid value is passed, the system uses the default theme color: black in light mode and white in dark mode.|
+
+### fillColor<sup>15+</sup>
+
+fillColor(color: ResourceColor|ColorContent)
+
+Sets the fill color to be superimposed on the image. This attribute applies only to SVG images. Once set, the fill color will replace the fill colors of all drawable elements within the SVG image. To set the fill color for a PNG image, use [colorFilter](#colorfilter9). To reset the fill color, pass a value of the [ColorContent](#colorcontent15) type.
+
+This attribute does not take effect when the parameter type of the component is [AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12).
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                      | Mandatory| Description          |
+| ------ | ------------------------------------------ | ---- | -------------- |
+| color  | [ResourceColor](ts-types.md#resourcecolor)\|[ColorContent](#colorcontent15) | Yes  | Fill color to be superimposed on the image.<br>**NOTE**<br> By default, no fill color is applied. If an invalid value is passed, the system uses the default theme color: black in light mode and white in dark mode.|
 
 ### autoResize
 
@@ -301,7 +323,7 @@ When the image is scaled down: .autoResize(false) + .interpolation(.Medium)
 
 When the image is scaled up: .interpolation(.High)
 
-This attribute does not take effect when the parameter type of the component is [AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12).
+This attribute does not take effect when the parameter type of the component is [AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12) or SVG.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -313,7 +335,7 @@ This attribute does not take effect when the parameter type of the component is 
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether to resize the image source based on the size of the display area during image decoding. This resizing can help reduce the memory usage. For example, if the size of the original image is 1920 x 1080 and the size of the display area is 200 x 200, you can set this attribute to **true** so that the image is downsampled to 200 x 200.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether to resize the image source based on the size of the display area during image decoding. This resizing can help reduce the memory usage. For example, if the size of the original image is 1920 x 1080 and the size of the display area is 200 x 200, you can set this attribute to **true** so that the image is downsampled to 200 x 200.<br>Default value: **false**<br>**true**: Enable resizing.<br>**false**: Disable resizing.|
 
 ### syncLoad<sup>8+</sup>
 
@@ -333,7 +355,7 @@ This attribute does not take effect when the parameter type of the component is 
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether to load the image synchronously. By default, the image is loaded asynchronously. During synchronous loading, the UI thread is blocked and the placeholder image is not displayed.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether to load the image synchronously. By default, the image is loaded asynchronously. During synchronous loading, the UI thread is blocked and the placeholder image is not displayed.<br>Default value: **false**<br>**true**: Load the image synchronously.<br>**false**: Load the image asynchronously.|
 
 ### copyOption<sup>9+</sup>
 
@@ -373,7 +395,7 @@ When this attribute is set, [renderMode](#rendermode) is not effective.
 
 | Name| Type                                   | Mandatory| Description                                                        |
 | ------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ColorFilter](ts-types.md#colorfilter9) \| [DrawingColorFilter](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#colorfilter)<sup>12+</sup> | Yes  | 1. Color filter of the image. The input parameter is a 4 x 5 RGBA transformation matrix.<br>The first row of the matrix represents a vector value of R (red), the second row represents a vector value of G (green), the third row represents a vector value of B (blue), and the fourth row represents a vector value of A (alpha). The four rows represent different RGBA vector values.<br>If the matrix contains entries of 1 on the diagonal and entries of 0 in other places, the original color of the image is retained.<br> **Calculation rule:**<br>If the input filter matrix is as follows:<br>![image-matrix-1](figures/image-matrix-1.jpg)<br>Wherein the color is [R, G, B, A].<br>Then the color after filtering is [R', G', B', A'].<br>![image-matrix-2](figures/image-matrix-2.jpg)<br>2. The ColorFilter type of **@ohos.graphics.drawing** can be used as the input parameter since API Version 12.<br>**NOTE**<br>This parameter is not available for SVG images in API version 11 and earlier versions.<br>The DrawingColorfilter type can be used in atomic services since API version 12. The SVG image to set as the source must have the **stroke** attribute.|
+| value  | [ColorFilter](ts-types.md#colorfilter9) \| [DrawingColorFilter](#drawingcolorfilter12) | Yes  | 1. Color filter of the image. The input parameter is a 4 x 5 RGBA transformation matrix.<br>The first row of the matrix represents a vector value of R (red), the second row represents a vector value of G (green), the third row represents a vector value of B (blue), and the fourth row represents a vector value of A (alpha). The four rows represent different RGBA vector values.<br>If the matrix contains entries of 1 on the diagonal and entries of 0 in other places, the original color of the image is retained.<br> **Calculation rule:**<br>If the input filter matrix is as follows:<br>![image-matrix-1](figures/image-matrix-1.jpg)<br>Wherein the color is [R, G, B, A].<br>Then the color after filtering is [R', G', B', A'].<br>![image-matrix-2](figures/image-matrix-2.jpg)<br>2. The ColorFilter type of **@ohos.graphics.drawing** can be used as the input parameter since API Version 12.<br>**NOTE**<br>This parameter is not available for SVG images in API version 11 and earlier versions.<br>The DrawingColorfilter type can be used in atomic services since API version 12. The SVG image to set as the source must have the **stroke** attribute.|
 
 ### draggable<sup>9+</sup>
 
@@ -419,7 +441,7 @@ This attribute does not take effect when the parameter type of the component is 
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| enable  | boolean | Yes  | Whether to enable the AI analyzer. The value **true** means to enable the AI analyzer.<br>Default value: **false**|
+| enable  | boolean | Yes  | Whether to enable the AI analyzer.<br>Default value: **false**<br>**true**: Enable the AI analyzer.<br>**false**: Disable the AI analyzer.|
 
 ### resizable<sup>11+</sup>
 
@@ -431,7 +453,7 @@ When [ResizableOptions](#resizableoptions11) is set to a valid value, the **obje
 
 When the sum of the values of **top** and **bottom** is greater than the source image height, or the sum of the values of **left** and **right** is greater than the source image width, the [ResizableOptions](#resizableoptions11) attribute does not take effect.
 
-This attribute does not take effect when the parameter type of the component is [AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12).
+This attribute does not take effect when the parameter type of the component is [AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12) or SVG.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -465,7 +487,7 @@ Sets whether to secure sensitive information on widgets.
 
 dynamicRangeMode(value: DynamicRangeMode)
 
-Sets the dynamic range of the image to be displayed.
+Sets the dynamic range of the image to be displayed. This attribute is not applicable to SVG images.
 
 <!--RP1--><!--RP1End-->
 
@@ -477,7 +499,23 @@ Sets the dynamic range of the image to be displayed.
 
 | Name| Type                                   | Mandatory| Description                            |
 | ------ | --------------------------------------- | ---- | -------------------------------- |
-| value  | [DynamicRangeMode](#dynamicrangemode12-1) | Yes  | Dynamic range of the image.<br>Default value: **dynamicRangeMode.Standard**|
+| value  | [DynamicRangeMode](#dynamicrangemode12) | Yes  | Dynamic range of the image.<br>Default value: **dynamicRangeMode.Standard**|
+
+### orientation<sup>14+</sup>
+
+orientation(orientation: ImageRotateOrientation)
+
+Sets the display orientation of the image content.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                   | Mandatory| Description                            |
+| ------ | --------------------------------------- | ---- | -------------------------------- |
+| orientation  | [ImageRotateOrientation](#imagerotateorientation14) | Yes  | Display orientation of the image content.<br>Default value: **ImageRotateOrientation.UP**|
 
 ## ImageContent<sup>12+</sup>
 
@@ -489,9 +527,9 @@ Defines the image content.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name    | Description                   |
-| ------ | -------------------------- |
-| EMPTY   | Empty image.                  |
+| Name    | Value   | Description                   |
+| ------ | ----- | -------------------------- |
+| EMPTY   | 0  | Empty image.                  |
 
 ## ImageInterpolation
 
@@ -531,8 +569,8 @@ Defines the resizable image options.
 
 | Name| Type| Mandatory| Description|
 | --------- |-----------|-----------|-----------|
-| slice | [EdgeWidths](#edgewidths) |  No | Edge widths in different directions of a component.<br>**NOTE**<br>This parameter takes effect only when values of **bottom** and **right** are both greater than 0.|
-| lattice<sup>12+</sup> | [DrawingLattice](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#lattice12) |  No | Lattice object, which is used to divide the image by lattice.<br>**NOTE**<br> A lattice object can be created through the **createImageLattice** API of the **@ohos.graphics.drawing** module. The lattices on both even columns and even rows are fixed.<br>This parameter does not take effect for the [backgroundImageResizable](ts-universal-attributes-background.md#backgroundimageresizable12) API.|
+| slice | [EdgeWidths](#edgewidths) |  No | Edge widths in different directions of a component.<br>**NOTE**<br>This parameter takes effect only when values of **bottom** and **right** are both greater than 0.<br> When a number is passed, the default unit is vp.|
+| lattice<sup>12+</sup> | [DrawingLattice](#drawinglattice12) |  No | Lattice object, which is used to divide the image by lattice.<br>**NOTE**<br> A lattice object can be created through the **createImageLattice** API of the **@ohos.graphics.drawing** module. The lattices on both even columns and even rows are fixed.<br>This parameter does not take effect for the [backgroundImageResizable](ts-universal-attributes-background.md#backgroundimageresizable12) API.<br> When a number is passed, the default unit is px.|
 
 ## EdgeWidths
 
@@ -542,10 +580,10 @@ Defines the resizable image options.
 
 | Name| Type| Mandatory| Description|
 | --------- |-----------|-----------|-----------|
-|  top    |  [Length](ts-types.md#length)  |  No | Width of the top edge.<br>Default value: **0**<br>Unit: vp|
-|  right  |  [Length](ts-types.md#length)  |  No | Width of the right edge.<br>Default value: **0**<br>Unit: vp|
-|  bottom |  [Length](ts-types.md#length)  |  No | Width of the bottom edge.<br>Default value: **0**<br>Unit: vp|
-|  left   |  [Length](ts-types.md#length)  |  No | Width of the left edge.<br>Default value: **0**<br>Unit: vp|
+|  top    |  [Length](ts-types.md#length)  |  No | Pixel value of the image that remains unchanged when the top side of the image is stretched.<br>Default value: **0**<br>Unit: vp|
+|  right  |  [Length](ts-types.md#length)  |  No | Pixel value of the image that remains unchanged when the right side of the image is stretched.<br>Default value: **0**<br>Unit: vp|
+|  bottom |  [Length](ts-types.md#length)  |  No | Pixel value of the image that remains unchanged when the bottom side of the image is stretched.<br>Default value: **0**<br>Unit: vp|
+|  left   |  [Length](ts-types.md#length)  |  No | Pixel value of the image that remains unchanged when the left side of the image is stretched.<br>Default value: **0**<br>Unit: vp|
 
 ![edgewidths](figures/edgewidths.png)
 
@@ -563,6 +601,22 @@ Describes the dynamic range of the image to be displayed.
 | CONSTRAINT | 1 | Restricted dynamic range, which brightens an image within certain constraints.         |
 | STANDARD | 2 | Standard dynamic range, which does not brighten an image.        |
 
+## ImageRotateOrientation<sup>14+</sup>
+
+Describes the desired display orientation for image content.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Value   | Description                   |
+| ------ | -------------------------- | -------------------------- |
+| AUTO   | 0  | Use the EXIF metadata of the image to determine the display orientation.             |
+| UP | 1 | Display the image in its original orientation without any EXIF processing. Default value.         |
+| RIGHT | 2 | Rotate the image 90 degrees clockwise before displaying it.        |
+| DOWN | 3| Rotate the image 180 degrees before displaying it.        |
+| LEFT | 4 | Rotate the image 90 degrees counterclockwise before displaying it.        |
+
 ## ImageSourceSize<sup>14+</sup>
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 14.
@@ -573,12 +627,80 @@ Describes the dynamic range of the image to be displayed.
 
 | Name| Type      | Mandatory| Description          |
 | ------ | --------- | ---- | ------------- |
-| width  | number | Yes  | Decoded width of the image.<br>Unit: vp|
-| height  | number | Yes  | Decoded height of the image.<br>Unit: vp|
+| width<sup>7+</sup>  | number | Yes  | Decoded width of the image.<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| height<sup>7+</sup>  | number | Yes  | Decoded height of the image.<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+
+## DrawableDescriptor<sup>10+<sup>
+
+type DrawableDescriptor = DrawableDescriptor
+
+Represents a parameter object for the **Image** component.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Type    | Description      |
+| ------ | ---------- |
+| [DrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#drawabledescriptor)  | **DrawableDescriptor** object.|
+
+## DrawingColorFilter<sup>12+<sup>
+
+type DrawingColorFilter = ColorFilter
+
+Represents a color filter object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Type    | Description      |
+| ------ | ---------- |
+| [ColorFilter](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#colorfilter)  | Color filter created.|
+
+## DrawingLattice<sup>12+<sup>
+
+type DrawingLattice = Lattice
+
+Represents a matrix grid object that divides an image into a rectangular grid.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Type    | Description      |
+| ------ | ---------- |
+| [Lattice](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#lattice12) | Matrix grid object used to divide the image into a rectangular grid.|
+
+## ImageMatrix<sup>15+<sup>
+
+type ImageMatrix = Matrix4Transit
+
+Represents the current matrix object.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Type    | Description      |
+| ------ | ---------- |
+| [Matrix4Transit](../js-apis-matrix4.md#matrix4transit) | Current matrix object.|
+
+## ColorContent<sup>15+</sup>
+
+Defines the content for color filling.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type      | Mandatory| Description          |
+| ------ | --------- | --- | ------------- |
+| ORIGIN  | ColorContent | Yes| Resets the [fillColor](#fillcolor) API, effectively the same as not setting [fillColor](#fillcolor).|
 
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onComplete
 
@@ -626,7 +748,7 @@ This event is not triggered if the parameter type of the component is [AnimatedD
 
 | Name  | Type                                      | Mandatory| Description                      |
 | -------- | ------------------------------------------ | ---- | -------------------------- |
-| callback | [ImageErrorCallback](#imageerrorcallback9) | Yes  | Callback triggered when an error occurs during image loading.<br>**NOTE**<br> - You are advised to use this callback to quickly identify the specific causes for image loading failures.|
+| callback | [ImageErrorCallback](#imageerrorcallback9) | Yes  | Callback triggered when an error occurs during image loading.<br>**NOTE**<br>You are advised to use this callback to quickly identify the specific causes for image loading failures.|
 
 ### onFinish
 
@@ -878,21 +1000,21 @@ This example shows how to resize an image in different directions.
 @Entry
 @Component
 struct Index {
-  @State top: number = 40
-  @State bottom: number = 5
-  @State left: number = 40
+  @State top: number = 10
+  @State bottom: number = 10
+  @State left: number = 10
   @State right: number = 10
 
   build() {
     Column({ space: 5 }) {
       // Original image effect
-      Image($r("app.media.sky"))
+      Image($r("app.media.landscape"))
         .width(200).height(200)
         .border({ width: 2, color: Color.Pink })
         .objectFit(ImageFit.Contain)
 
       // Set the resizable attribute to resize the image in different directions.
-      Image($r("app.media.sky"))
+      Image($r("app.media.landscape"))
         .resizable({
           slice: {
             left: this.left,
@@ -909,22 +1031,22 @@ struct Index {
       Row() {
         Button("add top to " + this.top).fontSize(10)
           .onClick(() => {
-            this.top += 2
+            this.top += 10
           })
         Button("add bottom to " + this.bottom).fontSize(10)
           .onClick(() => {
-            this.bottom += 2
+            this.bottom += 10
           })
       }
 
       Row() {
         Button("add left to " + this.left).fontSize(10)
           .onClick(() => {
-            this.left += 2
+            this.left += 10
           })
         Button("add right to " + this.right).fontSize(10)
           .onClick(() => {
-            this.right += 2
+            this.right += 10
           })
       }
 
@@ -1254,3 +1376,197 @@ struct ImageExample11 {
 ```
 
 ![imageContent](figures/imageScanEffect.gif)
+
+### Example 12: Adding Transform Effects to Images
+
+This example demonstrates how to apply rotation and translation effects to images using [imageMatrix](#imagematrix15) and [objectFit](#objectfit).
+
+```ts
+import { matrix4 } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct Test {
+  private matrix1 = matrix4.identity()
+    .translate({ x: -400, y: -750 })
+    .scale({ x: 0.5, y: 0.5 })
+    .rotate({
+      x: 2,
+      y: 0.5,
+      z: 3,
+      centerX: 10,
+      centerY: 10,
+      angle: -10
+    })
+
+  build() {
+    Row() {
+      Column({ space: 50 }) {
+        Column({ space: 5 }) {
+          Image($r("app.media.example"))
+            .border({ width:2, color: Color.Black })
+            .objectFit(ImageFit.Contain)
+            .width(150)
+            .height(150)
+          Text("No transformation")
+            .fontSize('25px')
+        }
+        Column({ space: 5 }) {
+          Image($r("app.media.example"))
+            .border({ width:2, color: Color.Black })
+            .objectFit(ImageFit.None)
+            .translate({ x: 10, y: 10 })
+            .scale({ x: 0.5, y: 0.5 })
+            .width(100)
+            .height(100)
+          Text("Direct transformation on the image, with the upper left corner of the image source displayed by default")
+            .fontSize('25px')
+        }
+        Column({ space: 5 }) {
+          Image($r("app.media.example"))
+            .objectFit(ImageFit.MATRIX)
+            .imageMatrix(this.matrix1)
+            .border({ width:2, color: Color.Black })
+            .width(150)
+            .height(150)
+          Text("Transformation using imageMatrix to adjust the source position for optimal display")
+            .fontSize('25px')
+        }
+      }
+      .width('100%')
+    }
+  }
+}
+```
+
+![imageMatrix](figures/imageMatrix.jpeg)
+
+### Example 13: Setting the Image Decoding Size Using sourceSize
+
+This example uses the [sourceSize](ts-basic-components-image.md#sourcesize) API to customize the decoding size of the image.
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State borderRadiusValue: number = 10;
+  build() {
+    Column() {
+      Image($r("app.media.sky"))
+        .sourceSize({width:1393, height:1080})
+        .height(300)
+        .width(300)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+      Image($r("app.media.sky"))
+        .sourceSize({width:13, height:10})
+        .height(300)
+        .width(300)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![sourceSizeExample](figures/sourceSizeExample.png)
+
+### Example 14: Setting the Image Rendering Mode Using renderMode
+
+This example uses the [renderMode](ts-basic-components-image.md#rendermode) API to set the image rendering mode to grayscale.
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State borderRadiusValue: number = 10;
+  build() {
+    Column() {
+      Image($r("app.media.sky"))
+        .renderMode(ImageRenderMode.Template)
+        .height(300)
+        .width(300)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![renderModeExample](figures/renderModeExample.png)
+
+### Example 15: Setting the Image Repeat Pattern Using objectRepeat
+
+This example uses the [objectRepeat](ts-basic-components-image.md#objectrepeat) API to repeat the image along the vertical axis.
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State borderRadiusValue: number = 10;
+  build() {
+    Column() {
+      Image($r("app.media.sky"))
+        .objectRepeat(ImageRepeat.Y)
+        .height(300)
+        .width(300)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![objectRepeatExample](figures/objectRepeatExample.png)
+
+### Example 16: Setting the Fill Color for SVG Images
+
+This example shows how to use [fillColor](#fillcolor15) to set different fill colors for SVG images.
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Text("FillColor not set")
+      Image($r("app.media.svgExample"))
+        .height(100)
+        .width(100)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+      Text("fillColor set to ColorContent.ORIGIN")
+      Image($r("app.media.svgExample"))
+        .height(100)
+        .width(100)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+        .fillColor(ColorContent.ORIGIN)
+      Text("fillColor set to Color.Blue")
+      Image($r("app.media.svgExample"))
+        .height(100)
+        .width(100)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+        .fillColor(Color.Blue)
+      Text("fillColor set to undefined")
+      Image($r("app.media.svgExample"))
+        .height(100)
+        .width(100)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+        .fillColor(undefined)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![fillColorExample](figures/fillColorExample.png)

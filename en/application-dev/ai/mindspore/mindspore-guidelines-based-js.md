@@ -221,8 +221,8 @@ let maxIndexArray: Array<number> = [];
 
 // The buffer data of the input image is stored in float32View after preprocessing. For details, see Image Input and Preprocessing.
 let inputs: ArrayBuffer[] = [float32View.buffer];
-let resMgr: resourceManager.ResourceManager = getContext().getApplicationContext().resourceManager;
-resMgr.getRawFileContent(modelName).then(modelBuffer => {
+let resMgr = this.getUIContext()?.getHostContext()?.getApplicationContext().resourceManager;
+resMgr?.getRawFileContent(modelName).then(modelBuffer => {
   // predict
   modelPredict(modelBuffer.buffer.slice(0), inputs).then(outputs => {
     console.info('=========MS_LITE_LOG: MS_LITE predict success=====');
@@ -299,3 +299,4 @@ Touch the **photo** button on the device screen, select an image, and touch **OK
 <img src="figures/step1.png" width="20%"/>     <img src="figures/step2.png" width="20%"/>     <img src="figures/step3.png" width="20%"/>     <img src="figures/step4.png" width="20%"/>
 
 
+<!--RP1--><!--RP1End-->

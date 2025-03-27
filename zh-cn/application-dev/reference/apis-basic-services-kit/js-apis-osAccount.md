@@ -3052,7 +3052,6 @@ static getAccountServerConfig(domainAccountInfo: DomainAccountInfo): Promise&lt;
   import { BusinessError } from '@kit.BasicServicesKit';
   let accountInfo: osAccount.DomainAccountInfo = {
     'accountName': 'demoName',
-    'accountId': 'demoId',
     'domain': 'demoDomain'
   };
   osAccount.DomainServerConfigManager.getAccountServerConfig(accountInfo).then((

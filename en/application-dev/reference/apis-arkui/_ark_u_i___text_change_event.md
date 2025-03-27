@@ -5,7 +5,7 @@
 
 Defines the return types for the callback events triggered when the content of an input box changes, including the preview content.
 
-**Since**: 16
+**Since**: 15
 
 **Related module**: [ArkUI_NativeModule](_ark_u_i___native_module.md)
 

@@ -47,19 +47,22 @@
       - [AttributeUpdater](js-apis-arkui-AttributeUpdater.md)
       - [Content](js-apis-arkui-Content.md)
       - [NodeContent](js-apis-arkui-NodeContent.md)
-  - 图形图像<!--graphics-api-->
-    - [@ohos.display (屏幕属性)](js-apis-display.md)
+  - 窗口管理<!--window-manager-api-->
     - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
     - [@ohos.window (窗口)](js-apis-window.md)
-    - [@ohos.screenshot (屏幕截图)](js-apis-screenshot.md)
     <!--Del-->
     - [@ohos.animation.windowAnimationManager (窗口动画管理)(系统接口)](js-apis-windowAnimationManager-sys.md)
     - [@ohos.application.WindowExtensionAbility (窗口扩展能力)(系统接口)](js-apis-application-windowExtensionAbility-sys.md)
+    - [@ohos.window (窗口)(系统接口)](js-apis-window-sys.md)
+    - [WindowExtensionContext (系统接口)](js-apis-inner-application-windowExtensionContext-sys.md)
+    <!--DelEnd-->
+  - 屏幕管理<!--display-manager-api-->
+    - [@ohos.display (屏幕属性)](js-apis-display.md)
+    - [@ohos.screenshot (屏幕截图)](js-apis-screenshot.md)
+    <!--Del-->
     - [@ohos.display (屏幕属性)(系统接口)](js-apis-display-sys.md)
     - [@ohos.screen (屏幕)(系统接口)](js-apis-screen-sys.md)
     - [@ohos.screenshot (屏幕截图)(系统接口)](js-apis-screenshot-sys.md)
-    - [@ohos.window (窗口)(系统接口)](js-apis-window-sys.md)
-    - [WindowExtensionContext (系统接口)](js-apis-inner-application-windowExtensionContext-sys.md)
     <!--DelEnd-->
   - 已停止维护的接口<!--arkui-arkts-dep-->
     - [@ohos.prompt (弹窗)](js-apis-prompt.md)
@@ -109,7 +112,6 @@
       - [形状裁剪](arkui-ts/ts-universal-attributes-sharp-clipping.md)
       - [颜色渐变](arkui-ts/ts-universal-attributes-gradient-color.md)
       - [Popup控制](arkui-ts/ts-universal-attributes-popup.md)
-      - [Tips控制](arkui-ts/ts-universal-attributes-tips.md)
       - [菜单控制](arkui-ts/ts-universal-attributes-menu.md)
       - [焦点控制](arkui-ts/ts-universal-attributes-focus.md)
       - [悬浮态效果](arkui-ts/ts-universal-attributes-hover-effect.md)
