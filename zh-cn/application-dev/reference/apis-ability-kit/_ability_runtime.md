@@ -1384,7 +1384,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_SetStartOptionsStartVisibility(Abilit
 
 设置StartOptions结构体的startVisibility。
 
-**参数:**
+**参数：**
 
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
@@ -1431,7 +1431,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_GetStartOptionsStartVisibility(Abilit
 
 获取StartOptions结构体的startVisibility。
 
-**参数:**
+**参数：**
 
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
