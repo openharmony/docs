@@ -136,7 +136,7 @@ try {
 ```
 ## inputEventClient.injectMouseEvent<sup>11+</sup>
 
-injectMouseEvent(mouseEvent: MouseEventData): void;
+injectMouseEvent(mouseEvent: MouseEventData): void
 
 鼠标/触摸板事件注入。
 
