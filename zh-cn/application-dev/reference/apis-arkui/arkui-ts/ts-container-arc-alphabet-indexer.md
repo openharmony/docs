@@ -287,7 +287,7 @@ onSelect(handler: Optional&lt;OnSelectCallback&gt;)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | arrayValue | string[] | 是 | 字母索引字符串数组，不可设置为空。 |
 | selected   | number              | 是 | 初始选中项索引值，若超出索引值范围，则取默认值0。<br />该参数支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。|
