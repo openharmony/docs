@@ -56,7 +56,7 @@
       ```
 
 
-   - 多行文本类型通知继承了普通文本类型的字段，同时新增了多行文本内容、内容概要和通知展开时的标题。当同一应用发布多条通知，形成组通知时，该通知默认显示与普通文本相同，展开组通知后，标题显示为展开后标题内容，多行文本内容多行显示；当应用只发布一条多行文本类型通知，无法形成组通知时，该通知标题显示为展开后标题内容，多行文本内容多行显示。详情请参考[NotificationMultiLineContent](../reference/apis-notification-kit/js-apis-inner-notification-notificationContent.md#notificationmultilinecontent)。
+   - 多行文本类型通知继承了普通文本类型的字段，同时新增了多行文本内容、内容概要和通知展开时的标题。详情请参考[NotificationMultiLineContent](../reference/apis-notification-kit/js-apis-inner-notification-notificationContent.md#notificationmultilinecontent)。
      
       ```ts
       let notificationRequest: notificationManager.NotificationRequest = {

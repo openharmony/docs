@@ -166,7 +166,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     };
     ```
 
-4. 全局变量
+4. 全局变量。
 
     仅做参考，可以根据实际情况将其封装到对象中。
 
@@ -283,7 +283,6 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-    <!--RP6-->
     ```c++
     // 设置 OH_AVCodecOnNewOutputBuffer 回调函数，编码完成帧送入输出队列。
     static void OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
@@ -294,7 +293,6 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         outQueue.Enqueue(std::make_shared<CodecBufferInfo>(index, buffer));
     }
     ```
-    <!--RP6End-->
 
     ```c++
     // 配置异步回调，调用 OH_VideoEncoder_RegisterCallback()接口。
@@ -495,6 +493,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     - index：回调函数OnNewOutputBuffer传入的参数，与buffer唯一对应的标识；
     - buffer：回调函数OnNewOutputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口得到共享内存地址的指针。
 
+    <!--RP6-->
     ```c++
     std::shared_ptr<CodecBufferInfo> bufferInfo = outQueue.Dequeue();
     std::shared_lock<std::shared_mutex> lock(codecMutex);
@@ -515,6 +514,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 异常处理。
     }
     ```
+    <!--RP6End-->
 
 14. （可选）调用OH_VideoEncoder_Flush()刷新编码器。
 

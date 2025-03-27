@@ -32,7 +32,7 @@
 float OH_NativeBuffer_ColorXY::x
 ```
 
-**描述**
+**描述：**
 
 基色X坐标。
 
@@ -43,6 +43,6 @@ float OH_NativeBuffer_ColorXY::x
 float OH_NativeBuffer_ColorXY::y
 ```
 
-**描述**
+**描述：**
 
 基色Y坐标。

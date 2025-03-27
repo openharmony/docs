@@ -23,7 +23,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| struct  [OH_NativeBuffer_Config](_o_h___native_buffer___config.md) | OH_NativeBuffer的属性配置，用于申请新的OH_NativeBuffer实例或查询现有实例的相关属性  |
+| struct  [OH_NativeBuffer_Config](_o_h___native_buffer___config.md) | OH_NativeBuffer的属性配置，用于申请新的OH_NativeBuffer实例或查询现有实例的相关属性。  |
 | struct  [OH_NativeBuffer_Plane](_o_h___native_buffer___plane.md) | 单个图像平面格式信息。  |
 | struct  [OH_NativeBuffer_Planes](_o_h___native_buffer___planes.md) | OH_NativeBuffer的图像平面格式信息。  |
 
@@ -32,13 +32,13 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| typedef struct [OH_NativeBuffer](_o_h___native_buffer.md#oh_nativebuffer)  [OH_NativeBuffer](_o_h___native_buffer.md#oh_nativebuffer) | 提供OH_NativeBuffer结构体声明  |
+| typedef struct [OH_NativeBuffer](_o_h___native_buffer.md#oh_nativebuffer)  [OH_NativeBuffer](_o_h___native_buffer.md#oh_nativebuffer) | 提供OH_NativeBuffer结构体声明。  |
 | typedef enum [OH_NativeBuffer_Usage](_o_h___native_buffer.md#oh_nativebuffer_usage)  [OH_NativeBuffer_Usage](_o_h___native_buffer.md#oh_nativebuffer_usage) | OH_NativeBuffer的用途。  |
 | typedef enum [OH_NativeBuffer_Format](_o_h___native_buffer.md#oh_nativebuffer_format)  [OH_NativeBuffer_Format](_o_h___native_buffer.md#oh_nativebuffer_format) | OH_NativeBuffer的格式。  |
 | typedef enum [OH_NativeBuffer_TransformType](_o_h___native_buffer.md#oh_nativebuffer_transformtype)  [OH_NativeBuffer_TransformType](_o_h___native_buffer.md#oh_nativebuffer_transformtype) | OH_NativeBuffer的转换类型。  |
 | typedef enum [OH_NativeBuffer_ColorGamut](_o_h___native_buffer.md#oh_nativebuffer_colorgamut)  [OH_NativeBuffer_ColorGamut](_o_h___native_buffer.md#oh_nativebuffer_colorgamut) | OH_NativeBuffer的色域。  |
 | typedef enum [OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode)  [OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode) | 接口错误码说明（仅用于查询）。  |
-| typedef struct [OH_NativeBuffer_Config](_o_h___native_buffer___config.md)  [OH_NativeBuffer_Config](_o_h___native_buffer.md#oh_nativebuffer_config) | OH_NativeBuffer的属性配置，用于申请新的OH_NativeBuffer实例或查询现有实例的相关属性  |
+| typedef struct [OH_NativeBuffer_Config](_o_h___native_buffer___config.md)  [OH_NativeBuffer_Config](_o_h___native_buffer.md#oh_nativebuffer_config) | OH_NativeBuffer的属性配置，用于申请新的OH_NativeBuffer实例或查询现有实例的相关属性。  |
 | typedef struct [OH_NativeBuffer_Plane](_o_h___native_buffer___plane.md)  [OH_NativeBuffer_Plane](_o_h___native_buffer.md#oh_nativebuffer_plane) | 单个图像平面格式信息。  |
 | typedef struct [OH_NativeBuffer_Planes](_o_h___native_buffer___planes.md)  [OH_NativeBuffer_Planes](_o_h___native_buffer.md#oh_nativebuffer_planes) | OH_NativeBuffer的图像平面格式信息。  |
 

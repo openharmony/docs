@@ -595,7 +595,7 @@ Sets data synchronization for an application account. This API uses an asynchron
 | Name     | Type                       | Mandatory  | Description                       |
 | -------- | ------------------------- | ---- | ------------------------- |
 | name     | string                    | Yes   | Name of the target application account.                  |
-| isEnabled | boolean                   | Yes   | Whether to enable data synchronization.              |
+| isEnabled | boolean                   | Yes   | Whether to enable data synchronization. The value **true** means that data synchronization is enabled, and **false** means the opposite.      |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -637,7 +637,7 @@ Sets data synchronization for an application account. This API uses a promise to
 | Name     | Type     | Mandatory  | Description         |
 | -------- | ------- | ---- | ----------- |
 | name     | string  | Yes   | Name of the target application account.    |
-| isEnabled | boolean | Yes   | Whether to enable data synchronization.|
+| isEnabled | boolean | Yes   | Whether to enable data synchronization. The value **true** means that data synchronization is enabled, and **false** means the opposite.|
 
 **Return value**
 
@@ -3476,7 +3476,7 @@ Sets data synchronization for an application account. This API uses an asynchron
 | Name     | Type                       | Mandatory  | Description                       |
 | -------- | ------------------------- | ---- | ------------------------- |
 | name     | string                    | Yes   | Name of the target application account.                 |
-| isEnable | boolean                   | Yes   | Whether to enable data synchronization.              |
+| isEnable | boolean                   | Yes   | Whether to enable data synchronization. The value **true** means that data synchronization is enabled, and **false** means the opposite.  |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Example**
@@ -3508,7 +3508,7 @@ Sets data synchronization for an application account. This API uses a promise to
 | Name     | Type     | Mandatory  | Description         |
 | -------- | ------- | ---- | ----------- |
 | name     | string  | Yes   | Name of the target application account.    |
-| isEnable | boolean | Yes   | Whether to enable data synchronization.|
+| isEnable | boolean | Yes   | Whether to enable data synchronization. The value **true** means that data synchronization is enabled, and **false** means the opposite.|
 
 **Return value**
 
@@ -5141,7 +5141,7 @@ Authenticates an application account to obtain the authorization token. This API
 | name             | string                | Yes   | Name of the target application account.       |
 | authType         | string                | Yes   | Authentication type.     |
 | options          | Record<string, Object>  | Yes   | Options for the authentication.     |
-| callback         | [AuthCallback](#authcallback9) | Yes   | Callback used to return the result.|
+| callback         | [AuthCallback](#authcallback9) | Yes   | Authenticator callback used to return the result.|
 
 ### authenticate<sup>(deprecated)</sup>
 

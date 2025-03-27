@@ -51,11 +51,11 @@ import { motion } from '@kit.MultimodalAwarenessKit';
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denied.                                           |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801      | Capability not supported.Function can not work correctly due to limited device capabilities. |
-| 31500001 | Service exception.                                           |
-| 31500002 | Subscribe Failed.                                            |
+| 201      | Permission denied. An attempt was made to subscribe operatingHandChanged event forbidden by permission: ohos.permission.ACTIVITY_MOTION. |
+| 401      | Parameter error. Parameter verification failed. |
+| 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
+| 31500001 | Service exception. |
+| 31500002 | Subscribe Failed. |
 
 **示例**：
 
@@ -90,11 +90,11 @@ off(type: 'operatingHandChanged', callback?: Callback&lt;OperatingHandStatus&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denied.                                           |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801      | Capability not supported.Function can not work correctly due to limited device capabilities. |
-| 31500001 | Service exception.                                           |
-| 31500003 | UnSubscribe Failed.                                          |
+| 201      | Permission denied. An attempt was made to unsubscribe operatingHandChanged event forbidden by permission: ohos.permission.ACTIVITY_MOTION. |
+| 401      | Parameter error. Parameter verification failed. |
+| 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
+| 31500001 | Service exception. |
+| 31500003 | Unsubscribe Failed. |
 
 **示例**：
 
@@ -116,15 +116,21 @@ getRecentOperatingHandStatus(): OperatingHandStatus;
 
 **系统能力**：SystemCapability.MultimodalAwarness.Motion
 
+**返回值**：
+
+| 类型                          | 说明                                 |
+| ----------------------------- | ------------------------------------ |
+| [OperatingHandStatus](#operatinghandstatus) | 返回触控操作手状态信息。 |
+
 **错误码**：
 
 以下错误码的详细介绍请参见[行为动作感知错误码](errorcode-motion.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denied.                                           |
-| 801      | Capability not supported.Function can not work correctly due to limited device capabilities. |
-| 31500001 | Service exception.                                           |
+| 201      | Permission denied. An attempt was made to get the recent operating hand status forbidden by permission: ohos.permission.ACTIVITY_MOTION. |
+| 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
+| 31500001 | Service exception. |
 
 **示例**：
 

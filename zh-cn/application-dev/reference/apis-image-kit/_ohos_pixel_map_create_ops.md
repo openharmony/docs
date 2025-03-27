@@ -19,8 +19,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| uint32_t [width](#width) | 图片的宽, 用pixels表示。  |
-| uint32_t [height](#height) | 图片的高, 用pixels表示。  |
+| uint32_t [width](#width) | 图片的宽，用pixels表示。  |
+| uint32_t [height](#height) | 图片的高，用pixels表示。  |
 | int32_t [pixelFormat](#pixelformat) | 图片的格式。  |
 | uint32_t [editable](#editable) | 图片的编辑类型。  |
 | uint32_t [alphaType](#alphatype) | 图片的alpha类型。  |
@@ -74,7 +74,7 @@ int32_t OhosPixelMapCreateOps::pixelFormat
 
 | 值 | 说明 |
 | ------ | ----------------- |
-| 0 | 未知格式。 |
+| 0 | 未知格式 |
 | 2 | 格式为RGB_565 |
 | 3 | 格式为RGBA_8888 |
 | 4 | 格式为BGRA_8888 |
@@ -103,4 +103,4 @@ uint32_t OhosPixelMapCreateOps::scaleMode
 uint32_t OhosPixelMapCreateOps::width
 ```
 **描述**
-图片的宽, 用pixels表示。
+图片的宽，用pixels表示。

@@ -1059,7 +1059,7 @@ property path:age change from 24 to 25
 property path:name change from John to Johny
 ```
 
-实际上name属性本身并不是可被观测的变量，不应被加入到\@Monitor的入参当中。建议开发者去除对name属性的监听或者将给name加上\@Trace装饰成为状态变量。
+实际上name属性本身并不是可被观测的变量，不应被加入到\@Monitor的入参当中。建议开发者去除对name属性的监听或者给name加上\@Trace装饰成为状态变量。
 
 【正例1】
 

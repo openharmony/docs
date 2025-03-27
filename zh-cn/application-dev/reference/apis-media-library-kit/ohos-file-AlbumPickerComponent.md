@@ -11,8 +11,7 @@
 ## 导入模块
 
 ```ts
-import { AlbumPickerComponent, AlbumPickerOptions, AlbumInfo, photoAccessHelper } from '@kit.MediaLibraryKit';
-import { EmptyAreaClickCallback } from '@ohos.file.AlbumPickerComponent';
+import { AlbumPickerComponent, AlbumPickerOptions, AlbumInfo, photoAccessHelper, EmptyAreaClickCallback } from '@kit.MediaLibraryKit';
 ```
 
 ## 属性
@@ -79,8 +78,7 @@ type EmptyAreaClickCallback = () => void
 
 ```ts
 // xxx.ets
-import { AlbumPickerComponent, AlbumPickerOptions, AlbumInfo, PickerColorMode, photoAccessHelper } from '@kit.MediaLibraryKit';
-import { EmptyAreaClickCallback } from '@ohos.file.AlbumPickerComponent';
+import { AlbumPickerComponent, AlbumPickerOptions, AlbumInfo, PickerColorMode, photoAccessHelper, EmptyAreaClickCallback } from '@kit.MediaLibraryKit';
 
 @Entry
 @Component

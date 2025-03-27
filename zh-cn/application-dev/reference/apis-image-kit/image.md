@@ -131,7 +131,7 @@
 | int32_t [OH_PixelMap_UnAccessPixels](#oh_pixelmap_unaccesspixels) (const [NativePixelMap](#nativepixelmap) \*native) | 释放native **PixelMap**对象数据的内存锁，用于匹配方法[OH_PixelMap_AccessPixels](#oh_pixelmap_accesspixels)。  | 
 | int32_t [OH_GetImageInfo](#oh_getimageinfo) (napi_env env, napi_value value, [OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md) \*info) | 获取 **PixelMap** 的信息，并记录信息到[OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md)结构中。  | 
 | int32_t [OH_AccessPixels](#oh_accesspixels) (napi_env env, napi_value value, void \*\*addrPtr) | 获取**PixelMap**对象数据的内存地址，并锁定该内存。  | 
-| int32_t [OH_UnAccessPixels](#oh_unaccesspixels) (napi_env env, napi_value value) | 释放**PixelMap**对象数据的内存锁, 用于匹配方法**OH_AccessPixels**。  | 
+| int32_t [OH_UnAccessPixels](#oh_unaccesspixels) (napi_env env, napi_value value) | 释放**PixelMap**对象数据的内存锁，用于匹配方法**OH_AccessPixels**。  | 
 | int32_t [OH_Image_Receiver_CreateImageReceiver](#oh_image_receiver_createimagereceiver) (napi_env env, struct [OhosImageReceiverInfo](_ohos_image_receiver_info.md) info, napi_value \*res) | 创建应用层 **ImageReceiver** 对象。  | 
 | [ImageReceiverNative](#imagereceivernative) \* [OH_Image_Receiver_InitImageReceiverNative](#oh_image_receiver_initimagereceivernative) (napi_env env, napi_value source) | 通过应用层**ImageReceiver**对象初始化native层[ImageReceiverNative](#imagereceivernative)对象。  | 
 | int32_t [OH_Image_Receiver_GetReceivingSurfaceId](#oh_image_receiver_getreceivingsurfaceid) (const [ImageReceiverNative](#imagereceivernative) \*native, char \*id, size_t len) | 通过[ImageReceiverNative](#imagereceivernative)获取receiver的id。  | 
@@ -344,10 +344,10 @@ PixelMap透明度类型的枚举。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| OHOS_PIXEL_MAP_ALPHA_TYPE_UNKNOWN  | 未知的格式   | 
-| OHOS_PIXEL_MAP_ALPHA_TYPE_OPAQUE  | 不透明的格式   | 
-| OHOS_PIXEL_MAP_ALPHA_TYPE_PREMUL  | 预乘的格式   | 
-| OHOS_PIXEL_MAP_ALPHA_TYPE_UNPREMUL  | 预除的格式   | 
+| OHOS_PIXEL_MAP_ALPHA_TYPE_UNKNOWN  | 未知的格式。   | 
+| OHOS_PIXEL_MAP_ALPHA_TYPE_OPAQUE  | 不透明的格式。   | 
+| OHOS_PIXEL_MAP_ALPHA_TYPE_PREMUL  | 预乘的格式。   | 
+| OHOS_PIXEL_MAP_ALPHA_TYPE_UNPREMUL  | 预除的格式。   | 
 
 
 ### 方法返回的错误码
@@ -631,7 +631,7 @@ int32_t OH_GetImageInfo (napi_env env, napi_value value, OhosPixelMapInfo * info
 | -------- | -------- |
 | env | napi的环境指针。  | 
 | value | 应用层的 **PixelMap** 对象。  | 
-| info | 用于保存信息的指针对象。 更多细节, 参看 [OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md)。  | 
+| info | 用于保存信息的指针对象。更多细节参看 [OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md)。  | 
 
 **返回：**
 
@@ -1574,7 +1574,7 @@ int32_t OH_ImageSource_CreateFromFd (napi_env env, int32_t fd, struct OhosImageS
 int32_t OH_ImageSource_CreateFromRawFile (napi_env env, RawFileDescriptor rawFile, struct OhosImageSourceOps * ops, napi_value * res )
 ```
 **描述**
-通过给定的资源描述符 **RawFileDescriptor** 和 [OhosImageSourceOps](_ohos_image_source_ops.md)结构体， 获取JavaScript native层**ImageSource**对象。
+通过给定的资源描述符 **RawFileDescriptor** 和 [OhosImageSourceOps](_ohos_image_source_ops.md)结构体，获取JavaScript native层**ImageSource**对象。
 
 **起始版本：** 11
 
@@ -1647,7 +1647,7 @@ int32_t OH_ImageSource_CreateFromUri (napi_env env, char * uri, size_t size, str
 int32_t OH_ImageSource_CreateIncremental (napi_env env, struct OhosImageSource * source, struct OhosImageSourceOps * ops, napi_value * res )
 ```
 **描述**
-通过给定的informations[OhosImageSource](_ohos_image_source.md)和[OhosImageSourceOps](_ohos_image_source_ops.md)结构， 获取增量类型的JavaScript Native API ImageSource对象，图像数据应通过**OH_ImageSource_UpdateData**更新。
+通过给定的informations[OhosImageSource](_ohos_image_source.md)和[OhosImageSourceOps](_ohos_image_source_ops.md)结构，获取增量类型的JavaScript Native API ImageSource对象，图像数据应通过**OH_ImageSource_UpdateData**更新。
 
 **起始版本：** 10
 
@@ -1715,7 +1715,7 @@ int32_t OH_ImageSource_CreateIncremental (napi_env env, struct OhosImageSource *
 int32_t OH_ImageSource_CreateIncrementalFromData (napi_env env, uint8_t * data, size_t dataSize, struct OhosImageSourceOps * ops, napi_value * res )
 ```
 **描述**
-通过给定的图像源缓冲区资源 data 和 [OhosImageSourceOps](_ohos_image_source_ops.md)结构体， 获取增量类型的JavaScript Native API ImageSource对象，图像数据应通过OH_ImageSource_UpdateData更新。
+通过给定的图像源缓冲区资源 data 和 [OhosImageSourceOps](_ohos_image_source_ops.md)结构体，获取增量类型的JavaScript Native API ImageSource对象，图像数据应通过OH_ImageSource_UpdateData更新。
 
 **起始版本：** 11
 
@@ -1936,7 +1936,7 @@ int32_t OH_ImageSource_GetDelayTime (const ImageSourceNative * native, struct Oh
 | 名称 | 描述 | 
 | -------- | -------- |
 | native | 表明native层 [ImageSourceNative](#imagesourcenative) 值的指针。  | 
-| res | 表明延迟时间列表 [OhosImageSourceDelayTimeList](_ohos_image_source_delay_time_list.md) 的指针。 当输入的res中**delayTimeList**是空指针并且**size**是0时，将通过res的**size**中返回延迟时间列表大小 为了获取延迟时间，需要比返回的**delayTimeList**大小值大的足够空间  | 
+| res | 表明延迟时间列表 [OhosImageSourceDelayTimeList](_ohos_image_source_delay_time_list.md) 的指针。当输入的res中**delayTimeList**是空指针并且**size**是0时，将通过res的**size**中返回延迟时间列表大小为了获取延迟时间，需要比返回的**delayTimeList**大小值大的足够空间  | 
 
 **返回：**
 
@@ -2125,7 +2125,7 @@ int32_t OH_ImageSource_GetImageProperty (const ImageSourceNative * native, struc
 | -------- | -------- |
 | native | 表明native层 [ImageSourceNative](#imagesourcenative) 值的指针。  | 
 | key | 表明属性关键字[OhosImageSourceProperty](_ohos_image_source_property.md)的指针。  | 
-| value | 表明作为结果的属性值[OhosImageSourceProperty](_ohos_image_source_property.md)的指针。 当输入的value中**value**是空指针并且**size**是0时，将通过value中的**size**返回属性值的大小。 为了获取属性值，需要比**value**中的结果大小大的足够的空间。  | 
+| value | 表明作为结果的属性值[OhosImageSourceProperty](_ohos_image_source_property.md)的指针。当输入的value中**value**是空指针并且**size**是0时，将通过value中的**size**返回属性值的大小。为了获取属性值，需要比**value**中的结果大小大的足够的空间。  | 
 
 **返回：**
 
@@ -2186,7 +2186,7 @@ int32_t OH_ImageSource_GetSupportedFormats (struct OhosImageSourceSupportedForma
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| res | 表明指向[OhosImageSourceSupportedFormatList](_ohos_image_source_supported_format_list.md)结构的列表指针。 当**supportedFormatList**为nullptr并且**size**以res为0作为输入时，它将以res**size**返回支持的格式大小。<br/>为了获得所有的格式标记，它需要比**supportedFormatList**中的结果大小大的足够空间， 还需要为[OhosImageSourceSupportedFormat](_ohos_image_source_supported_format.md)项目中的每个格式提供足够的空间。 | 
+| res | 表明指向[OhosImageSourceSupportedFormatList](_ohos_image_source_supported_format_list.md)结构的列表指针。当**supportedFormatList**为nullptr并且**size**以res为0作为输入时，它将以res**size**返回支持的格式大小。<br/>为了获得所有的格式标记，它需要比**supportedFormatList**中的结果大小大的足够空间，还需要为[OhosImageSourceSupportedFormat](_ohos_image_source_supported_format.md)项目中的每个格式提供足够的空间。 | 
 
 **返回：**
 
@@ -2665,7 +2665,7 @@ int32_t OH_PixelMap_CreatePixelMapWithStride (napi_env env, OhosPixelMapCreateOp
 | info | PixelMap数据设置项。  | 
 | buf | 图片的buffer数据。  | 
 | len | 图片buffer大小信息。  | 
-| rowStride | 图片跨距信息。 跨距，图像每行占用的真实内存大小，单位为字节。跨距 = width \* 单位像素字节数 + padding，padding为每行为内存对齐做的填充区域。  | 
+| rowStride | 图片跨距信息。跨距，图像每行占用的真实内存大小，单位为字节。跨距 = width \* 单位像素字节数 + padding，padding为每行为内存对齐做的填充区域。  | 
 | res | 应用层的 PixelMap 对象的指针。  | 
 
 **返回：**
@@ -3479,7 +3479,7 @@ int32_t OH_PixelMap_UnAccessPixels (const NativePixelMap * native)
 int32_t OH_UnAccessPixels (napi_env env, napi_value value )
 ```
 **描述**
-释放**PixelMap**对象数据的内存锁, 用于匹配方法**OH_AccessPixels**。
+释放**PixelMap**对象数据的内存锁，用于匹配方法**OH_AccessPixels**。
 
 **废弃版本：** 10
 

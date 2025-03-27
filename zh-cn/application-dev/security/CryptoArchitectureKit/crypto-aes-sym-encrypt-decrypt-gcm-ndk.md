@@ -28,14 +28,14 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
    当前单次update长度没有限制，开发者可以根据数据量判断如何调用update。
 
    - 当数据量较小时，可以在init完成后直接调用final。
-   - 当数据量较大时，可以多次调用update，即分段加解密。
+   - 当数据量较大时，可以多次调用update，即[分段加解密](crypto-aes-sym-encrypt-decrypt-gcm-by-segment-ndk.md)。
 
 5. 调用[OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final)，获取加密后的数据。
    - 由于已使用update传入数据，此处data传入null。
    - final输出结果可能为null，在访问具体数据前，需要先判断结果是否为null，避免产生异常。
+
    > **注意：**
-   > 在GCM模式下，final会返回authTag，作为解密时初始化的认证信息，需要保存。
-   > 在GCM模式下，算法库当前只支持16字节的authTag，作为解密时初始化的认证信息。示例中authTag恰好为16字节。
+   > 在GCM模式下，final会返回authTag，作为解密时初始化的认证信息，需要保存。在GCM模式下，算法库当前只支持16字节的authTag，作为解密时初始化的认证信息。示例中authTag恰好为16字节。
 
 
 **解密**

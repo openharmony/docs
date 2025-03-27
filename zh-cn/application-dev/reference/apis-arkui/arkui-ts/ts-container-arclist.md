@@ -46,7 +46,7 @@ ArcList(options?: ArkListOptions)
 
 **参数：**
 
-| 参数名  | 参数类型                                  | 必填 | 参数描述                |
+| 参数名  | 类型                                  | 必填 | 说明                |
 | ------- | ----------------------------------------- | ---- | ----------------------- |
 | options | [ArkListOptions](#arklistoptions) | 否   | 为ArcList提供可选参数。 |
 
@@ -84,7 +84,7 @@ space(space: Optional\<LengthMetrics>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                               |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------- |
-| space  | [Optional&lt;LengthMetrics&gt;](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 列表子项之间的间距。<br/>默认值：0 |
+| space  | [Optional&lt;LengthMetrics&gt;](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 列表子项之间的间距。<br/>默认值：0 |
 
 ### scrollBar
 
@@ -100,7 +100,7 @@ scrollBar(status: Optional\<BarState>)
 
 | 参数名 | 类型                                                 | 必填 | 说明                                     |
 | ------ | ---------------------------------------------------- | ---- | ---------------------------------------- |
-| status | [Optional\<BarState>](ts-appendix-enums.md#barstate) | 否   | 滚动条状态。<br/>默认值：BarState.Auto |
+| status | [Optional\<BarState>](ts-appendix-enums.md#barstate) | 是   | 滚动条状态。<br/>默认值：BarState.Auto |
 
 ### cachedCount
 
@@ -118,7 +118,7 @@ cachedCount(count: Optional\<number>)
 
 | 参数名 | 类型              | 必填 | 说明                                       |
 | ------ | ----------------- | ---- | ------------------------------------------ |
-| value  | Optional\<number> | 是   | ArcListItem的预加载数量。<br/>默认值：1 |
+| count  | Optional\<number> | 是   | ArcListItem的预加载数量。<br/>默认值：1 |
 
 ### chainAnimation
 
@@ -156,6 +156,22 @@ enableScrollInteraction(enable: Optional\<boolean>)
 | ------ | ------------------ | ---- | ----------------------------------- |
 | enable | Optional\<boolean> | 是   | 是否支持滚动手势。<br/>默认值：true |
 
+### fadingEdge
+
+fadingEdge(enabled: Optional&lt;boolean&gt;)
+
+设置是否开启边缘渐隐效果。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Circle
+
+**参数：** 
+
+| 参数名  | 类型                                              | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| enabled | Optional&lt;boolean&gt;                           | 是   | fadingEdge生效时，会覆盖原组件的.overlay()属性。<br/>fadingEdge生效时，建议不在该组件上设置background相关属性，会影响渐隐的显示效果。<br/>fadingEdge生效时，组件会裁剪到边界，设置组件的clip属性为false不生效。<br/>默认值：false，不开启边缘渐隐效果。 |
+
 ### friction
 
 friction(friction: Optional\<number>)
@@ -170,7 +186,7 @@ friction(friction: Optional\<number>)
 
 | 参数名   | 类型              | 必填 | 说明                         |
 | -------- | ----------------- | ---- | ---------------------------- |
-| friction | Optional\<number> | 否   | 摩擦系数。<br/>默认值：0.8 |
+| friction | Optional\<number> | 是   | 摩擦系数。<br/>默认值：0.8 |
 
 ### scrollBarWidth
 
@@ -208,7 +224,7 @@ scrollBarColor(color: Optional\<ColorMetrics>)
 
 flingSpeedLimit(speed: Optional\<number>)
 
-限制跟手滑动结束后，惯性滚动动效开始时的最大初始速度。单位是vp/s。
+限制跟手滑动结束后，惯性滚动动效开始时的最大初始速度。设置为小于等于0的值时，按默认值处理。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -218,7 +234,7 @@ flingSpeedLimit(speed: Optional\<number>)
 
 | 参数名 | 类型              | 必填 | 说明                            |
 | ------ | ----------------- | ---- | ------------------------------- |
-| speed  | Optional\<number> | 是   | 惯性滚动动效开始时的最大初始速度 |
+| speed  | Optional\<number> | 是   | 惯性滚动动效开始时的最大初始速度。<br/>默认值：9000<br/>单位：vp/s |
 
 ### childrenMainSize
 
@@ -254,7 +270,7 @@ ArcList的边缘效果为弹簧效果时，在ArcList划动到边缘继续划动
 
 | 参数名  | 类型                                                         | 必填 | 说明                                            |
 | ------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
-| handler | [Optional\<ArcScrollIndexHandler>](#arcscrollindexhandler对象说明) | 是   | 有子组件划入或划出ArcList显示区域时触发该回调。 |
+| handler | [Optional\<ArcScrollIndexHandler>](#arcscrollindexhandler) | 是   | 有子组件划入或划出ArcList显示区域时触发该回调。 |
 
 ### onReachStart
 
@@ -270,7 +286,7 @@ onReachStart(handler: Optional\<VoidCallback>)
 
 | 参数名  | 类型                                             | 必填 | 说明                     |
 | ------- | ------------------------------------------------ | ---- | ------------------------ |
-| handler | [Optional\<VoidCallback>](#voidcallback对象说明) | 是   | 列表到达起始位置时触发。 |
+| handler | [Optional\<VoidCallback>](ts-types.md#voidcallback12) | 是   | 列表到达起始位置时触发。 |
 
 ### onReachEnd
 
@@ -286,7 +302,7 @@ ArcList边缘效果为弹簧效果时，划动经过末尾位置时触发一次�
 
 | 参数名  | 类型                                             | 必填 | 说明                     |
 | ------- | ------------------------------------------------ | ---- | ------------------------ |
-| handler | [Optional\<VoidCallback>](#voidcallback对象说明) | 是   | 列表到底末尾位置时触发。 |
+| handler | [Optional\<VoidCallback>](ts-types.md#voidcallback12) | 是   | 列表到底末尾位置时触发。 |
 
 ### onScrollStart
 
@@ -300,7 +316,7 @@ onScrollStart(handler: Optional\<VoidCallback>)
 
 | 参数名  | 类型                                             | 必填 | 说明                 |
 | ------- | ------------------------------------------------ | ---- | -------------------- |
-| handler | [Optional\<VoidCallback>](#voidcallback对象说明) | 是   | 列表滑动开始时触发。 |
+| handler | [Optional\<VoidCallback>](ts-types.md#voidcallback12) | 是   | 列表滑动开始时触发。 |
 
 ### onScrollStop
 
@@ -314,7 +330,7 @@ onScrollStop(handler: Optional\<VoidCallback>)
 
 | 参数名  | 类型                                             | 必填 | 说明                 |
 | ------- | ------------------------------------------------ | ---- | -------------------- |
-| handler | [Optional\<VoidCallback>](#voidcallback对象说明) | 是   | 列表滑动停止时触发。 |
+| handler | [Optional\<VoidCallback>](ts-types.md#voidcallback12) | 是   | 列表滑动停止时触发。 |
 
 ### onWillScroll
 
@@ -330,7 +346,7 @@ onWillScroll(handler: Optional\<OnWillScrollCallback>)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
-| handler | [Optional\<OnWillScrollCallback>](#onwillscrollcallback对象说明) | 是 | 列表滑动时触发的回调。 |
+| handler | [Optional\<OnWillScrollCallback>](ts-container-scrollable-common.md#onwillscrollcallback12) | 是 | 列表滑动时触发的回调。 |
 
 > **说明：** 
 > 
@@ -359,17 +375,15 @@ onDidScroll(handler: Optional\<OnScrollCallback>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
-| 参数名       | 参数类型                                    | 必填 | 参数描述                                                     |
+| 名称       | 类型                                    | 必填 | 说明                                                     |
 | ------------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | initialIndex | number                                      | 否   | 设置当前ArcList初次加载时视口起始位置显示的item的索引值。<br/>默认值：0<br/>**说明：** <br/>设置为负数或超过了当前ArcList最后一个item的索引值时视为无效取值，无效取值按默认值显示。 |
 | scroller     | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器。用于与可滚动组件进行绑定。<br/>**说明：** <br/>不允许和其他滚动类组件绑定同一个滚动控制对象。 |
 | header       | [ComponentContent](../js-apis-arkui-ComponentContent.md)                            | 否   | 支持标题设置。                                               |
 
-## VoidCallback对象说明
+## ArcScrollIndexHandler
 
-该对象参数及返回值均为空。
-
-## ArcScrollIndexHandler对象说明
+type ArcScrollIndexHandler = (start: number, end: number, center: number) => void
 
 有子组件划入或划出ArcList显示区域时触发的回调。
 
@@ -382,20 +396,6 @@ onDidScroll(handler: Optional\<OnScrollCallback>)
 | start  | number | 是   | ArcList显示区域内第一个子组件的索引值。   |
 | end    | number | 是   | ArcList显示区域内最后一个子组件的索引值。 |
 | center | number | 是   | ArcList显示区域内中间位置子组件的索引值。 |
-
-## OnWillScrollCallback对象说明
-
-列表滑动前触发的回调。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Circle
-
-| 参数名       | 类型                                                    | 必填 | 说明                                                         |
-| ------------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| scrollOffset | number                                                  | 是   | 每帧滚动的偏移量，ArcList的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
-| scrollState  | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是   | 当前滑动状态。                                               |
-| scrollSource | ScrollSource                                            | 是   | 当前滑动来源。                                               |
 
 ## 示例
 

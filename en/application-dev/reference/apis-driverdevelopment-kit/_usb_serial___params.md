@@ -5,7 +5,7 @@
 
 Defines the USB serial port parameters for the USB Serial DDK.
 
-**Since**: 16
+**Since**: 18
 
 **Related module**: [USB Serial DDK](_serial_ddk.md)
 

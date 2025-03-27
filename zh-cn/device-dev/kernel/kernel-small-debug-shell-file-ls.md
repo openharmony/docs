@@ -1,10 +1,8 @@
 # ls
 
-
 ## 命令功能
 
 ls命令用来显示当前目录的内容。
-
 
 ## 命令格式
 
@@ -12,7 +10,6 @@ ls [_-ACHLSZacdfhiklmnopqrstux1_] [_--color_[_=auto_]] [_directory..._]
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 >  系统启动过程中已经通过 alias 为 ls=toybox ls --color=auto 、ll = ls -alF 、 la=ls -A 和 l=ls -CF 赋能，使这几个命令的初始行为就和linux相同（详细效果见输出说明）。所以若要查看help列表，请输入'toybox ls --help'。
-
 
 ## 参数说明
 
@@ -34,7 +31,7 @@ ls [_-ACHLSZacdfhiklmnopqrstux1_] [_--color_[_=auto_]] [_directory..._]
 | -H     | 跟随命令行符号链接。                                         | N/A                           |
 | -L     | 跟随符号链接。                                               | N/A                           |
 | -Z     | 安全上下文。                                                 | N/A                           |
-| path   | path为空时，显示当前目录的内容。<br/>path为无效文件名时，显示失败，提示：<br/>ls&nbsp;error:&nbsp;No&nbsp;such&nbsp;directory。<br/>path为有效目录路径时，会显示对应目录下的内容。 | 1.为空。<br/>2.有效的目录路径 |
+| path   | path为空时，显示当前目录的内容。<br/>path为无效文件名时，显示失败，提示：<br/>ls&nbsp;error:&nbsp;No&nbsp;such&nbsp;directory。<br/>path为有效目录路径时，会显示对应目录下的内容。 | 1.为空。<br/>2.有效的目录路径。 |
 
 **表2** 输出格式参数说明
 

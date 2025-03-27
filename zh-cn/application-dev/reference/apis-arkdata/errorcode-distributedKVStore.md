@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Upper limit exceeded.
+Over max  limits.
 
 **错误描述**
 
@@ -17,7 +17,7 @@ Upper limit exceeded.
 **可能原因**
 
 1.  在调用订阅数据库变化接口on时，对数据库的订阅数量已超过最大限制数目8。
-2.  调用获取数据库结果集接口getResultSet时,  数据库当前打开的结果集数目超过最大限制数目8。
+2.  调用获取数据库结果集接口getResultSet时，数据库当前打开的结果集数目超过最大限制数目8。
 
 **处理步骤**
 
@@ -28,7 +28,7 @@ Upper limit exceeded.
 
 **错误信息**
 
-The options configuration changes when the API is called to obtain a KV store.
+Open existed database with changed options.
 
 **错误描述**
 
@@ -68,7 +68,7 @@ Database corrupted.
 
 **错误信息**
 
-Data not found.
+Not found.
 
 **错误描述**
 

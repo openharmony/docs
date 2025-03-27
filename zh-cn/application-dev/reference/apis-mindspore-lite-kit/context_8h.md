@@ -48,7 +48,7 @@
 | [OH_AI_DeviceInfoGetProviderDevice](_mind_spore.md#oh_ai_deviceinfogetproviderdevice) (const [OH_AI_DeviceInfoHandle](_mind_spore.md#oh_ai_deviceinfohandle) device_info) | 获取生产商设备的名称。 |
 | [OH_AI_DeviceInfoGetDeviceType](_mind_spore.md#oh_ai_deviceinfogetdevicetype) (const [OH_AI_DeviceInfoHandle](_mind_spore.md#oh_ai_deviceinfohandle) device_info) | 获取设备的类型。 |
 | [OH_AI_DeviceInfoSetEnableFP16](_mind_spore.md#oh_ai_deviceinfosetenablefp16) ([OH_AI_DeviceInfoHandle](_mind_spore.md#oh_ai_deviceinfohandle) device_info, bool is_fp16) | 设置是否开启float16推理模式，仅CPU/GPU设备可用。 |
-| [OH_AI_DeviceInfoGetEnableFP16](_mind_spore.md#oh_ai_deviceinfogetenablefp16) (const [OH_AI_DeviceInfoHandle](_mind_spore.md#oh_ai_deviceinfohandle) device_info) | 获取是否开启float16推理模式, 仅CPU/GPU设备可用。 |
+| [OH_AI_DeviceInfoGetEnableFP16](_mind_spore.md#oh_ai_deviceinfogetenablefp16) (const [OH_AI_DeviceInfoHandle](_mind_spore.md#oh_ai_deviceinfohandle) device_info) | 获取是否开启float16推理模式，仅CPU/GPU设备可用。 |
 | [OH_AI_DeviceInfoSetFrequency](_mind_spore.md#oh_ai_deviceinfosetfrequency) ([OH_AI_DeviceInfoHandle](_mind_spore.md#oh_ai_deviceinfohandle) device_info, int frequency) | 设置NPU的频率，仅NPU设备可用。 |
 | [OH_AI_DeviceInfoGetFrequency](_mind_spore.md#oh_ai_deviceinfogetfrequency) (const [OH_AI_DeviceInfoHandle](_mind_spore.md#oh_ai_deviceinfohandle) device_info) | 获取NPU的频率类型，仅NPU设备可用。 |
 | [OH_AI_GetAllNNRTDeviceDescs](_mind_spore.md#oh_ai_getallnnrtdevicedescs) (size_t \*num) | 获取系统中所有NNRT硬件设备的描述信息。 |
