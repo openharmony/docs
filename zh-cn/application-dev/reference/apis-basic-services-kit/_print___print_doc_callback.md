@@ -17,8 +17,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Print_OnStartLayoutWrite](_o_h___print.md#print_onstartlayoutwrite)[startLayoutWriteCb](#startlayoutwritecb) | 文件开始回写回调函数。  | 
-| [Print_OnJobStateChanged](_o_h___print.md#print_onjobstatechanged)[jobStateChangedCb](#jobstatechangedcb) | 打印任务状态回调。  | 
+| [Print_OnStartLayoutWrite](_o_h___print.md#print_onstartlayoutwrite) [startLayoutWriteCb](#startlayoutwritecb) | 文件开始回写回调函数。  | 
+| [Print_OnJobStateChanged](_o_h___print.md#print_onjobstatechanged) [jobStateChangedCb](#jobstatechangedcb) | 打印任务状态回调。  | 
 
 
 ## 结构体成员变量说明

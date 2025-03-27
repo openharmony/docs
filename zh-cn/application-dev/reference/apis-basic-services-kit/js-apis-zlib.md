@@ -3350,8 +3350,8 @@ deflateTune(strm: ZStream, goodLength: number, maxLazy: number, niceLength: numb
 | strm       | ZStream | 是   | 参考[ZStream定义](#zstream12)。 |
 | goodLength | number  | 是   | 匹配的长度阈值。                |
 | maxLazy    | number  | 是   | 最大延迟匹配时间。              |
-| niceLength | number  | 是   | 适合的延迟长度阈值              |
-| maxChain   | number  | 是   | 最大链条长度                    |
+| niceLength | number  | 是   | 适合的延迟长度阈值。              |
+| maxChain   | number  | 是   | 最大链条长度。                    |
 
 **返回值：**
 
@@ -3831,14 +3831,14 @@ async function demo() {
 
 | 名称         | 类型        | 可读 | 可写 | 说明                                                         |
 | ------------ | ----------- | ---- | ---- | ------------------------------------------------------------ |
-| nextIn       | ArrayBuffer | 是   | 否   | 需要压缩的输入字节                                           |
-| availableIn  | number      | 是   | 否   | nextIn可用的字节数                                           |
-| totalIn      | number      | 是   | 否   | 到目前为止读取的输入字节总数                                 |
-| nextOut      | ArrayBuffer | 是   | 否   | 压缩后的输出字节                                             |
-| availableOut | number      | 是   | 否   | nextOut的剩余可用字节数                                      |
-| totalOut     | number      | 是   | 否   | 到目前为止输出字节总数                                       |
-| dataType     | number      | 是   | 否   | 关于数据类型的最佳猜测：deflate的二进制或文本，或inflate的解码状态 |
-| adler        | number      | 是   | 否   | 未压缩数据的Adler-32或CRC-32值                               |
+| nextIn       | ArrayBuffer | 是   | 否   | 需要压缩的输入字节。                                           |
+| availableIn  | number      | 是   | 否   | nextIn可用的字节数。                                           |
+| totalIn      | number      | 是   | 否   | 到目前为止读取的输入字节总数。                                 |
+| nextOut      | ArrayBuffer | 是   | 否   | 压缩后的输出字节。                                             |
+| availableOut | number      | 是   | 否   | nextOut的剩余可用字节数。                                      |
+| totalOut     | number      | 是   | 否   | 到目前为止输出字节总数。                                       |
+| dataType     | number      | 是   | 否   | 关于数据类型的最佳猜测：deflate的二进制或文本，或inflate的解码状态。 |
+| adler        | number      | 是   | 否   | 未压缩数据的Adler-32或CRC-32值。                               |
 
 ## ZipOutputInfo<sup>12+</sup>
 

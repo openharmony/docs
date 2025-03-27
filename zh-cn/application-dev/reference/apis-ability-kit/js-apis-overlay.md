@@ -14,7 +14,7 @@ import { overlay } from '@kit.AbilityKit';
 
 ## overlay.setOverlayEnabled
 
-setOverlayEnabled(moduleName:string, isEnabled: boolean): Promise\<void>
+setOverlayEnabled(moduleName: string, isEnabled: boolean): Promise\<void>
 
 设置当前应用中overlay特征module的禁用使能状态。使用Promise异步回调。成功返回null，失败返回对应错误信息。
 
@@ -68,7 +68,7 @@ try {
 
 ## overlay.setOverlayEnabled
 
-setOverlayEnabled(moduleName:string, isEnabled: boolean, callback: AsyncCallback\<void>): void
+setOverlayEnabled(moduleName: string, isEnabled: boolean, callback: AsyncCallback\<void>): void
 
 设置当前应用中overlay module的禁用使能状态。使用callback异步回调。成功返回null，失败返回对应错误信息。
 

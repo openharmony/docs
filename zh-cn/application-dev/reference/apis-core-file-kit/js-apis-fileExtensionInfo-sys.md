@@ -17,7 +17,7 @@ import fileExtensionInfo from '@ohos.file.fileExtensionInfo';
 
 组成RootInfo中的deviceType字段，表明此设备的类型。
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -35,7 +35,7 @@ import fileExtensionInfo from '@ohos.file.fileExtensionInfo';
 
 组成RootInfo中的deviceFlags字段，通过与运算判断是否具备某种能力。
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -43,14 +43,14 @@ import fileExtensionInfo from '@ohos.file.fileExtensionInfo';
 
   | 名称 | 类型   | 只读 | 可写 | 说明     |
   | ------ | ------ | ---- | ---- | -------- |
-  | SUPPORTS_READ   | number | 是   | 否   | 此设备支持读 |
-  | SUPPORTS_WRITE   | number | 是   | 否   | 此设备支持写 |
+  | SUPPORTS_READ   | number | 是   | 否   | 此设备支持读。 |
+  | SUPPORTS_WRITE   | number | 是   | 否   | 此设备支持写。 |
 
 ## fileExtensionInfo.DocumentFlag
 
 组成FileInfo中的mode字段，通过与运算判断是否具备某种能力。
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -58,7 +58,8 @@ import fileExtensionInfo from '@ohos.file.fileExtensionInfo';
 
   | 名称 | 类型   | 只读 | 可写 | 说明     |
   | ------ | ------ | ---- | ---- | -------- |
-  | REPRESENTS_FILE   | number | 是   | 否   | 代表文件 |
-  | REPRESENTS_DIR   | number | 是   | 否   | 代表目录 |
-  | SUPPORTS_READ   | number | 是   | 否   | 此文件支持读 |
-  | SUPPORTS_WRITE   | number | 是   | 否   | 此文件支持写 |
+  | REPRESENTS_FILE   | number | 是   | 否   | 代表文件。 |
+  | REPRESENTS_DIR   | number | 是   | 否   | 代表目录。 |
+  | SUPPORTS_READ   | number | 是   | 否   | 此文件支持读。 |
+  | SUPPORTS_WRITE   | number | 是   | 否   | 此文件支持写。 |
+  

@@ -24,7 +24,7 @@ import { TreeView } from "@kit.ArkUI"
 无
 
 ## 属性
-不支持[通用属性](ts-universal-attributes-size.md)。
+不支持[通用属性](ts-component-general-attributes.md)。
 
 ## TreeView
 
@@ -129,17 +129,17 @@ refreshNode(parentId: number, parentSubTitle: ResourceStr, currentSubtitle: Reso
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| parentNodeId | number | 否 | 父节点。 |
-| currentNodeId | number | 否 | 当前子节点。 |
-| isFolder | boolean | 否 | 是否是目录。默认值：false。true：是目录，false：不是目录。 |
-| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 图标。 |
-| selectedIcon | [ResourceStr](ts-types.md#resourcestr) | 否 | 选中图标。 |
-| editIcon | [ResourceStr](ts-types.md#resourcestr) | 否 | 编辑图标。 |
-| primaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 主标题。 |
-| secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 副标题。 |
-| container | ()&nbsp;=&gt;&nbsp;void | 否 | 绑定在节点上的右键子组件，子组件由@Builder修饰。 |
+| 名称 | 类型 | 必填 | 说明                                                                                          |
+| -------- | -------- | -------- |---------------------------------------------------------------------------------------------|
+| parentNodeId | number | 否 | 父节点。<br />取值范围：大于等于-1。<br />默认值：-1，根节点id值为-1。若设置数值小于-1，做不生效处理。                              |
+| currentNodeId | number | 否 | 当前子节点。<br />取值范围：大于等于-1。<br />不能为根节点id，不能为null，否则会抛出异常。且不能设置两个相同的currentNodeId。<br />默认值：-1 |
+| isFolder | boolean | 否 | 是否是目录。默认值：false。true：是目录，false：不是目录。<br/>默认值：空字符串                                           |
+| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 图标。 <br/>默认值：空字符串                                                                           |
+| selectedIcon | [ResourceStr](ts-types.md#resourcestr) | 否 | 选中图标。 <br/>默认值：空字符串                                                                         |
+| editIcon | [ResourceStr](ts-types.md#resourcestr) | 否 | 编辑图标。 <br/>默认值：空字符串                                                                         |
+| primaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 主标题。 <br/>默认值：空字符串                                                                                       |
+| secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 副标题。 <br/>默认值：空字符串                                                                                       |
+| container | ()&nbsp;=&gt;&nbsp;void | 否 | 绑定在节点上的右键子组件，子组件由@Builder修饰。 <br/>默认值：()&nbsp;=&gt;&nbsp;void                                                               |
 
 
 ## TreeListenerManager
@@ -255,14 +255,14 @@ off(type: TreeListenType, callback?: (callbackParam: CallbackParam) =&gt; void):
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| currentNodeId | number | 是 | 当前子节点。 |
-| parentNodeId | number | 否 | 父节点。 |
-| childIndex | number | 否 | 子索引。 |
+| 名称 | 类型 | 必填 | 说明                                       |
+| -------- | -------- | -------- |------------------------------------------|
+| currentNodeId | number | 是 | 返回当前子节点id。<br />取值范围：大于等于0。              |
+| parentNodeId | number | 否 | 返回当前父节点id。<br />取值范围：大于等于-1。<br />默认值：-1 |
+| childIndex | number | 否 | 返回子索引。<br />取值范围：大于等于-1。<br />默认值：-1   |
 
 ## 事件
-不支持[通用事件](ts-universal-events-click.md)。
+不支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 通过树视图组件的控制器对树的节点进行新增、删除、重命名，展示新增不同参数节点的实现效果。

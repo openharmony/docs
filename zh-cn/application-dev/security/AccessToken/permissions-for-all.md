@@ -381,57 +381,18 @@
 
 **起始版本**：13
 
-## ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY
+## ohos.permission.INPUT_KEYBOARD_CONTROLLER
 
-允许系统JS引擎申请带MAP_FORT标识的匿名可执行内存。
+允许应用设置键盘功能键状态。
 
-应用申请此权限后，系统引擎可申请带MAP_FORT的匿名可执行内存，做即时编译，提高与形式执行效率。
+如设置CapsLock（大写锁定键）的开关状态等。当前仅输入法应用可以申请该权限。
 
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**起始版本**：14
-
-### ohos.permission.PERSONAL_MANAGE_RESTRICTIONS
-
-允许设备管理应用管理个人设备限制策略。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-<!--Del-->
-**ACL使能**：true<!--DelEnd-->
-
-**起始版本**：15
-
-### ohos.permission.START_PROVISIONING_MESSAGE
-
-允许应用启动设备管理业务部署流程，将该应用激活为个人设备管理应用。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-<!--Del-->
-**ACL使能**：true<!--DelEnd-->
-
-**起始版本**：15
-
-<!--Del-->
-### ohos.permission.PRELOAD_FILE
-
-允许应用预加载文件以提升文件打开速度。
-
-仅当应用为文档编辑类应用可申请此权限。
-
-**权限级别**：system_basic
+**权限级别**：normal
 
 **授权方式**：system_grant
 
 **起始版本**：15
-<!--DelEnd-->
+
 ## ohos.permission.SET_ABILITY_INSTANCE_INFO
 
 允许应用单独配置每个Ability的图标和标签信息。
@@ -443,3 +404,16 @@
 **授权方式**：system_grant
 
 **起始版本**：15
+
+## ohos.permission.NDK_START_SELF_UI_ABILITY
+
+允许应用通过C API启动同应用的UIAbility。
+
+当前仅2in1设备应用可申请此权限。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**起始版本**：15
+

@@ -42,7 +42,7 @@ Checkbox(options?: CheckboxOptions)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### select
 
@@ -60,9 +60,9 @@ select(value: boolean)
 
 **参数：** 
 
-| 参数名 | 类型    | 必填 | 说明                               |
-| ------ | ------- | ---- | ---------------------------------- |
-| value  | boolean | 是   | 多选框是否选中。<br/>默认值：false |
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 多选框是否选中。<br/>默认值：false<br/>值为true时，多选框被选中。值为false时，多选框不被选中。 |
 
 ### selectedColor
 
@@ -150,7 +150,7 @@ contentModifier(modifier: ContentModifier\<CheckBoxConfiguration>)
 
 ## 事件
 
-支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onChange
 
@@ -182,7 +182,7 @@ onChange(callback: (value: boolean) => void)
 | ------ | ------ | ------ |-------------------------------- |-------------------------------- |
 | name | string | 否 | 否 |当前多选框名称。 |
 | selected | boolean| 否 | 否 | 指示多选框是否被选中。</br>如果select属性没有设置默认值是false。</br>如果设置select属性，此值与设置select属性的值相同。 |
-| triggerChange |Callback\<boolean>| 否 | 否 |触发多选框选中状态变化。 |
+| triggerChange |Callback\<boolean>| 否 | 否 |触发多选框选中状态变化。<br/>为true时，表示从未选中变为选中。为false时，表示从选中变为未选中。 |
 
 ## 示例
 

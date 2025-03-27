@@ -65,7 +65,7 @@ To fully understand the preceding example, a knowledge of the following concepts
 
 - [Rules for Custom Component Parameters](#rules-for-custom-component-parameters)
 
-- [The build Function](#the-build-function)
+- [The build Function](#build-function)
 
 - [Universal Style of a Custom Component](#universal-style-of-a-custom-component)
 
@@ -109,7 +109,7 @@ The \@Component decorator can decorate only the structs declared by the **struct
   }
   ```
 
-### The build Function
+### build Function
 
 The **build** function is used to define the declarative UI description of a custom component. Every custom component must define a **build** function.
 
@@ -394,7 +394,7 @@ Whatever declared in **build()** are called UI descriptions. UI descriptions mus
   }
   ```
 
-- Directly changing a state variable is not allowed. The following example should be avoided: For details, see [State Variables Modification in build() Is Forbidden](./arkts-state.md#state-variables-modification-in-build()-is-forbidden).
+- Directly changing a state variable is not allowed. The following example should be avoided: For details, see [State Variables Modification in build() Is Forbidden](./arkts-state.md#changing-state-variables-in-build-is-forbidden).
 
   ```ts
   @Component

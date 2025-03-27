@@ -21,4 +21,4 @@ import { appManager } from '@kit.AbilityKit';
 
 | 名称                     | 类型                 | 只读 | 必填 | 说明                                                         |
 | ------------------------ | -------------------- | ---- | ---- | ------------------------------------------------------------ |
-| onAbilityFirstFrameDrawn | AsyncCallback\<void> | 是   | 否   | Ability首帧绘制完成时执行的回调函数。传入参数类型是[AbilityFirstFrameStateData](js-apis-inner-application-abilityFirstFrameStateData-sys)。 |
+| onAbilityFirstFrameDrawn | AsyncCallback\<void> | 是   | 否   | Ability首帧绘制完成时执行的回调函数。传入参数类型是[AbilityFirstFrameStateData](js-apis-inner-application-abilityFirstFrameStateData-sys.md)。 |

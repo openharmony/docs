@@ -19,7 +19,7 @@
 | -------- | -------- |
 | unsigned int [devIndex](#devindex) | 设备索引  | 
 | unsigned int [devType](#devtype) | 设备类型  | 
-| unsigned int [status](#status) | 设备状态。 | 
+| unsigned int [status](#status) | 设备状态 | 
 
 
 ## 类成员变量说明
@@ -30,9 +30,10 @@
 ```
 unsigned int HotPlugEvent::devIndex
 ```
+
 **描述**
 
-设备索引
+设备索引。
 
 
 ### devType
@@ -40,9 +41,10 @@ unsigned int HotPlugEvent::devIndex
 ```
 unsigned int HotPlugEvent::devType
 ```
+
 **描述**
 
-设备类型
+设备类型。
 
 
 ### status
@@ -50,6 +52,7 @@ unsigned int HotPlugEvent::devType
 ```
 unsigned int HotPlugEvent::status
 ```
+
 **描述**
 
 设备状态。

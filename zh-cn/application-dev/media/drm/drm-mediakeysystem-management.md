@@ -61,14 +61,14 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备DRM�
 7. （可选）设置和获取DRM解决方案支持属性值。
 
     ```ts
-    // DRM解决方案支持属性设置时，设置DRM解决方案支持的字符串类型的属性值
+    // DRM解决方案支持属性设置时，设置DRM解决方案支持的字符串类型的属性值。
     mediaKeySystem.setConfigurationString("configName", "configValue");
-    // 获取字符串类型的属性值
+    // 获取字符串类型的属性值。
     let configValueString : string = mediaKeySystem.getConfigurationString("version");
     let configValueUint8ArrayA: Uint8Array = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
-    // DRM解决方案支持属性设置时，设置DRM解决方案支持的字符数组类型的属性值
+    // DRM解决方案支持属性设置时，设置DRM解决方案支持的字符数组类型的属性值。
     mediaKeySystem.setConfigurationByteArray("Uint8ArrayConfigName", configValueUint8ArrayA);
-    // 获取字符数组类型的属性值
+    // 获取字符数组类型的属性值。
     let configValueUint8ArrayB: Uint8Array = mediaKeySystem.getConfigurationByteArray("Uint8ArrayConfigName");
     ```
 
@@ -123,7 +123,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备DRM�
    在将设备DRM证书请求发送到DRM服务获取设备DRM证书请求响应后，处理设备DRM证书响应。
 
   ```ts
-    // 将设备DRM证书请求返回的drmRequest.data通过网络请求发送给DRM证书服务获取设备DRM证书请求响应，设置设备DRM证书请求响应
+    // 将设备DRM证书请求返回的drmRequest.data通过网络请求发送给DRM证书服务获取设备DRM证书请求响应，设置设备DRM证书请求响应。
     let provisionResponseByte = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
     mediaKeySystem.processKeySystemResponse(provisionResponseByte).then(() => {
       console.info("processKeySystemResponse success");
@@ -178,7 +178,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备DRM�
     完成加密媒体解密，MediaKeySession实例不再使用时，销毁MediaKeySession实例。
 
     ```ts
-    // MediaKeySession实例使用完需要进行资源释放
+    // MediaKeySession实例使用完需要进行资源释放。
     mediaKeySession.destroy();
     ```
 
@@ -187,6 +187,6 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备DRM�
     完成DRM功能使用，MediaKeySystem实例不再使用，销毁MediaKeySystem实例。
 
     ```ts
-    // MediaKeySystem实例使用完需要进行资源释放
+    // MediaKeySystem实例使用完需要进行资源释放。
     mediaKeySystem.destroy();
     ```

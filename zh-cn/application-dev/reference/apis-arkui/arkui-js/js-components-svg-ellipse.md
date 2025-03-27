@@ -23,10 +23,10 @@
 | 名称 | 类型 | 默认值 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- | -------- |
 | id | string | - | 否 | 组件的唯一标识。 |
-| cx | &lt;length&gt;\|&lt;percentage&gt; | 0 | 否 | 设置椭圆的x轴坐标。支持属性动画 |
-| cy | &lt;length&gt;\|&lt;percentage&gt; | 0 | 否 | 设置椭圆的y轴坐标。支持属性动画 |
-| rx | &lt;length&gt;\|&lt;percentage&gt; | 0 | 否 | 设置椭圆x轴的半径。支持属性动画 |
-| ry | &lt;length&gt;\|&lt;percentage&gt; | 0 | 否 | 设置椭圆y轴的半径。支持属性动画 |
+| cx | &lt;length&gt;\|&lt;percentage&gt; | 0 | 否 | 设置椭圆的x轴坐标。支持属性动画。 |
+| cy | &lt;length&gt;\|&lt;percentage&gt; | 0 | 否 | 设置椭圆的y轴坐标。支持属性动画。 |
+| rx | &lt;length&gt;\|&lt;percentage&gt; | 0 | 否 | 设置椭圆x轴的半径。支持属性动画。 |
+| ry | &lt;length&gt;\|&lt;percentage&gt; | 0 | 否 | 设置椭圆y轴的半径。支持属性动画。 |
 
 
 ## 示例

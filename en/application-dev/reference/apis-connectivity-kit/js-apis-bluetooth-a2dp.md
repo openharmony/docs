@@ -13,6 +13,19 @@ The **a2dp** module provides APIs for using the Bluetooth Advanced Audio Distrib
 import { a2dp } from '@kit.ConnectivityKit';
 ```
 
+## BaseProfile
+
+type BaseProfile = baseProfile.BaseProfile
+
+Defines **BaseProfile** APIs.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Type                           | Description        |
+| ----------------------------- | ---------- |
+| [baseProfile.BaseProfile](js-apis-bluetooth-baseProfile.md#baseprofile) | **BaseProfile** API definition.|
+
+
 ## a2dp.createA2dpSrcProfile
 
 createA2dpSrcProfile(): A2dpSourceProfile
@@ -69,7 +82,7 @@ Obtains the playing state of a device.
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | Yes   | Address of the target device.|
+| deviceId | string | Yes   | Address of the remote device.|
 
 **Return value**
 

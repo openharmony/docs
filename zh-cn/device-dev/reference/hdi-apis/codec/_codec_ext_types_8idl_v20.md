@@ -29,8 +29,8 @@ Codec模块接口定义中使用的扩展数据类型。
 | struct&nbsp;&nbsp;[WorkingFrequencyParam](_working_frequency_param_v20.md) | 查询/设置vendor层编解码器工作频率。 | 
 | struct&nbsp;&nbsp;[ProcessNameParam](_process_name_param_v20.md) | 设置调用者进程名。 | 
 | struct&nbsp;&nbsp;[CodecVideoParamHevc](_codec_video_param_hevc_v20.md) | 定义HEVC视频编码格式信息。 | 
-| struct&nbsp;&nbsp;[ColorAspects](_color_aspects_v20.md) | 色彩空间相关枚举 | 
-| struct&nbsp;&nbsp;[CodecVideoColorspace](_codec_video_colorspace_v20.md) | 定义色彩空间参数信息 | 
+| struct&nbsp;&nbsp;[ColorAspects](_color_aspects_v20.md) | 色彩空间相关枚举。 | 
+| struct&nbsp;&nbsp;[CodecVideoColorspace](_codec_video_colorspace_v20.md) | 定义色彩空间参数信息。 | 
 
 
 ### 枚举

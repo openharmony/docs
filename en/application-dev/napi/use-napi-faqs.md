@@ -90,6 +90,7 @@ When **env** is about to exit but the reference count of **tsfn** is not **0**, 
 The following code shows how to register **env_cleanup** to ensure that **tsfn** is no longer held by **env** after **env** exits.
 
 ```cpp
+//napi_init.cpp
 #include <hilog/log.h> // To output logs, link libhilog_ndk.z.so.
 #include <thread> // Include the thread module to create and manage threads.
 #include <unistd.h> // Include unistd.h to suspend the execution of the calling thread.
@@ -102,8 +103,8 @@ The following code shows how to register **env_cleanup** to ensure that **tsfn**
 
 /*
   To construct a scenario in which the env lifecycle is shorter than the native lifecycle,
-  the following uses worker, taskpool, and napi_create_ark_runtime to create an ArkTS
-  running environment for a worker thread and manually stop the thread in advance.
+  the following uses worker, taskpool, and napi_create_ark_runtime
+  to create an ArkTS running environment for a worker thread and manually stop the thread in advance.
 */
 
 
@@ -117,7 +118,7 @@ MyTsfnContext(napi_env env, napi_value workName) {
     // Create a thread-safe function.
     if (napi_create_threadsafe_function(env, nullptr, nullptr, workName, 1, 1, this,
             TsfnFinalize, this, TsfnCallJs, &tsfn_) != napi_ok) {
-        OH_LOG_INFO(LOG_APP, "tsfn is created faild");
+        OH_LOG_INFO(LOG_APP, "tsfn is created failed");
         return;
     };
 };
@@ -187,7 +188,7 @@ static void TsfnCallJs(napi_env env, napi_value func, void *context, void *data)
 };
 };
 
-// Register the myTsfnDemo method with the module. The myTsfnDemo method is defined as follows:
+// Register the myTsfnDemo method with the module Index.d.ts. The myTsfnDemo method is defined as follows:
 // export const myTsfnDemo: () => void;
 napi_value MyTsfnDemo(napi_env env, napi_callback_info info) {
     OH_LOG_ERROR(LOG_APP, "MyTsfnDemo is called");
@@ -195,7 +196,7 @@ napi_value MyTsfnDemo(napi_env env, napi_callback_info info) {
     napi_create_string_utf8(env, "MyTsfnWork", NAPI_AUTO_LENGTH, &workName);
     MyTsfnContext *myContext = new MyTsfnContext(env, workName);
     if (myContext->GetTsfn() == nullptr) {
-        OH_LOG_ERROR(LOG_APP, "faild to create tsfn");
+        OH_LOG_ERROR(LOG_APP, "failed to create tsfn");
         delete myContext;
         return nullptr;
     };
@@ -208,7 +209,7 @@ napi_value MyTsfnDemo(napi_env env, napi_callback_info info) {
     std::thread(
         [](MyTsfnContext *myCtx) {
             if (!myCtx->Acquire()) {
-                OH_LOG_ERROR(LOG_APP, "acquire tsfn faild");
+                OH_LOG_ERROR(LOG_APP, "acquire tsfn failed");
                 return;
             };
             char *data1 = new char[]{"Im call in std::thread"};
@@ -234,7 +235,7 @@ napi_value MyTsfnDemo(napi_env env, napi_callback_info info) {
 The following is the main thread logic, which creates worker threads and instruct workers to execute tasks.
 
 ```ts
-// Main thread.
+// Main thread Index.ets
 import worker, { MessageEvents } from '@ohos.worker';
 
 const mWorker = new worker.ThreadWorker('../workers/Worker');

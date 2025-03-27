@@ -10,6 +10,10 @@ MindSpore Lite是OpenHarmony内置的轻量化AI引擎，面向全场景构建�
 - 目标检测：您可以使用预置目标检测模型，检测标识摄像头输入帧中的对象并添加标签，并用边框标识出来。
 - 图像分割：图像分割可用于检测目标在图片中的位置或者图片中某一像素是输入何种对象的。
 
+## 约束与限制
+
+- 本Kit仅适用于手机、平板设备，且不支持使用模拟器运行调试。
+
 ## 亮点/优势
 
 MindSpore Lite提供面向不同硬件设备的AI模型推理能力，使能全场景智能应用，为开发者提供端到端的解决方案，使用MindSpore Lite的优势如下：
@@ -48,7 +52,7 @@ MindSpore Lite已作为系统部件在OpenHarmony标准系统内置，基于Mind
 
 ## 与其他Kit的关系
 
-Neural Network Runtime（NNRt, 神经网络运行时）是面向AI领域的跨芯片推理计算运行时，作为中间桥梁连通上层AI推理框架和底层加速芯片，实现AI模型的跨芯片推理计算。
+Neural Network Runtime（NNRt，神经网络运行时）是面向AI领域的跨芯片推理计算运行时，作为中间桥梁连通上层AI推理框架和底层加速芯片，实现AI模型的跨芯片推理计算。
 
-MindSpore Lite原生支持配置Neural Network Runtime使能AI专用芯片（如NPU）加速推理，开发者可直接配置MindSpore Lite来使用NNRt硬件。因此，这里不再对NNRt具体展开说明，主要针对MindSpore开发AI应用提供指导。关于更多NNRt的Native使用，请参见[NNRt Native模块](../nnrt/neural-network-runtime-guidelines.md)。
+MindSpore Lite支持配置Neural Network Runtime使能AI专用芯片（如NPU）加速推理，开发者可直接配置MindSpore Lite来使用NNRt硬件。因此，这里不再对NNRt具体展开说明，主要针对MindSpore开发AI应用提供指导。关于更多NNRt的Native使用，请参见[NNRt Native模块](../nnrt/neural-network-runtime-guidelines.md)。
 

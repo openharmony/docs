@@ -148,7 +148,7 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
 > 开发者可根据自身的业务场景，选择对应的恢复数据方式。
 >
 > 示例：
-> 假设应用的数据备份路径为：**data/storage/el2/base/files/A/** 。那么在恢复时，如果配置了fullBackupOnly为false，数据会被直接解压到：**/data/storage/el2/base/files/A/**目录下，如果配置了fullBackupOnly为true，数据则会被解压到：**临时路径[backupDir](../reference/apis-core-file-kit/js-apis-file-backupextensioncontext.md) + /restore/data/storage/el2/base/files/A/** 目录下。
+> 假设应用的数据备份路径为：**data/storage/el2/base/files/A/** 。那么在恢复时，如果配置了fullBackupOnly为false，数据会被直接解压到：**/data/storage/el2/base/files/A/** 目录下；如果配置了fullBackupOnly为true，数据则会被解压到：**临时路径[backupDir](../reference/apis-core-file-kit/js-apis-file-backupextensioncontext.md) + /restore/data/storage/el2/base/files/A/** 目录下。
 
 **includes支持的路径清单列表如下：**
 

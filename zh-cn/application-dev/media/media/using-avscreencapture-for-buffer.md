@@ -85,12 +85,13 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     OH_AVScreenCapture_SetMicrophoneEnabled(capture, isMic);
     ```
 
-6. 回调函数的设置，主要监听录屏过程中的错误事件的发生，音频流和视频流数据的产生事件，具体设计可参考[详细说明](#详细说明)。
+6. 回调函数的设置，主要监听录屏过程中的错误事件的发生，音频流和视频流数据的产生事件，录屏屏幕id的获取事件，具体设计可参考[详细说明](#详细说明)。
 
     ```c++
     OH_AVScreenCapture_SetErrorCallback(capture, OnError, userData);
     OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, userData);
     OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, userData);
+    OH_AVScreenCapture_SetDisplayCallback(capture, OnDisplaySelected, userData);
     ```
 
 7. 调用StartScreenCapture()方法开始进行屏幕录制。
@@ -118,71 +119,71 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     OH_AVScreenCapture_Release(capture);
     ```
 
-## 2in1设备录屏窗口选择界面规格说明
-基于录屏取码流接口提供了2in1设备录屏窗口选择界面，为兼容已有的接口设计，目前支持三方应用在指定屏幕模式(OH_CAPTURE_SPECIFIED_SCREEN)、传一个窗口Id的指定窗口模式(OH_CAPTURE_SPECIFIED_WINDOW)下，2in1设备弹出Picker选择弹窗并根据传入的窗口Id选中对应窗口。最终录屏内容以Picker弹出后，用户在弹窗上的选择为准。
+## PC/2in1设备录屏窗口选择界面规格说明
+基于录屏取码流接口提供了PC/2in1设备录屏窗口选择界面，为兼容已有的接口设计，目前支持三方应用在指定屏幕模式(OH_CAPTURE_SPECIFIED_SCREEN)、传一个窗口Id的指定窗口模式(OH_CAPTURE_SPECIFIED_WINDOW)下，PC/2in1设备弹出Picker选择弹窗并根据传入的窗口Id选中对应窗口。最终录屏内容以Picker弹出后，用户在弹窗上的选择为准。
 
-2in1设备录屏窗口选择界面推荐在OH_CAPTURE_SPECIFIED_WINDOW模式下使用，需根据2in1设备分辨率配置录屏的高度和宽度值并传入屏幕Id（若有期望录制的某个窗口，可同时传入单个窗口Id）。
+PC/2in1设备录屏窗口选择界面推荐在OH_CAPTURE_SPECIFIED_WINDOW模式下使用，需根据PC/2in1设备分辨率配置录屏的高度和宽度值并传入屏幕Id（若有期望录制的某个窗口，可同时传入单个窗口Id）。
 
 ```c++
-// 根据2in1设备分辨率在config_中配置录屏的宽度、高度
+// 根据PC/2in1设备分辨率在config_中配置录屏的宽度、高度。
 config_.videoInfo.videoCapInfo.videoFrameWidth = 2880;
 config_.videoInfo.videoCapInfo.videoFrameHeight = 1920;
 
-// 设置录屏模式为OH_CAPTURE_SPECIFIED_WINDOW，传入屏幕Id
+// 设置录屏模式为OH_CAPTURE_SPECIFIED_WINDOW，传入屏幕Id。
 config_.captureMode = OH_CAPTURE_SPECIFIED_WINDOW;
 config_.videoInfo.videoCapInfo.displayId = 0;
 
-// (可选)若有期望录制的窗口，可传入单个窗口Id
-vector<int32_t> missionIds = {61}; // 表示弹出的Picker默认选中61号窗口
+// (可选)若有期望录制的窗口，可传入单个窗口Id。
+vector<int32_t> missionIds = {61}; // 表示弹出的Picker默认选中61号窗口。
 config_.videoInfo.videoCapInfo.missionIDs = &missionIds[0];
 config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.size());
 ```
 
-另外，2in1设备录屏窗口选择界面兼容以下几种模式的录屏：
+另外，PC/2in1设备录屏窗口选择界面兼容以下几种模式的录屏：
 
 1. OH_CAPTURE_SPECIFIED_WINDOW模式，传入多个窗口Id。
 
-    2in1设备不弹Picker选择界面，弹出隐私允许/不允许弹窗，可同时录制多个窗口；
+    PC/2in1设备不弹Picker选择界面，弹出隐私允许/不允许弹窗，可同时录制多个窗口；
 
     ```c++
-    // 根据2in1设备分辨率在config_中配置录屏的宽度、高度
+    // 根据PC/2in1设备分辨率在config_中配置录屏的宽度、高度。
     config_.videoInfo.videoCapInfo.videoFrameWidth = 2880;
     config_.videoInfo.videoCapInfo.videoFrameHeight = 1920;
 
-    // 设置录屏模式为OH_CAPTURE_SPECIFIED_WINDOW，传入屏幕Id
+    // 设置录屏模式为OH_CAPTURE_SPECIFIED_WINDOW，传入屏幕Id。
     config_.captureMode = OH_CAPTURE_SPECIFIED_WINDOW;
     config_.videoInfo.videoCapInfo.displayId = 0;
 
-    // 传入多个窗口Id
-    vector<int32_t> missionIds = {60，61}; // 表示期望同时录制60、61号窗口
+    // 传入多个窗口Id。
+    vector<int32_t> missionIds = {60，61}; // 表示期望同时录制60、61号窗口。
     config_.videoInfo.videoCapInfo.missionIDs = &missionIds[0];
     config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.size());
     ```
 
 2. OH_CAPTURE_SPECIFIED_SCREEN模式。
 
-    2in1设备弹出Picker选择弹窗，传入的有效屏幕Id作为Picker弹窗上被选中的默认屏幕；
+    PC/2in1设备弹出Picker选择弹窗，传入的有效屏幕Id作为Picker弹窗上被选中的默认屏幕；
 
     ```c++
-    // 根据2in1设备分辨率在config_中配置录屏的宽度、高度
+    // 根据PC/2in1设备分辨率在config_中配置录屏的宽度、高度。
     config_.videoInfo.videoCapInfo.videoFrameWidth = 2880;
     config_.videoInfo.videoCapInfo.videoFrameHeight = 1920;
 
-    // 设置录屏模式为OH_CAPTURE_SPECIFIED_SCREEN，传入屏幕Id
+    // 设置录屏模式为OH_CAPTURE_SPECIFIED_SCREEN，传入屏幕Id。
     config_.captureMode = OH_CAPTURE_SPECIFIED_SCREEN;
     config_.videoInfo.videoCapInfo.displayId = 0;
     ```
 
 3. OH_CAPTURE_HOME_SCREEN模式。
 
-    2in1设备不弹Picker选择界面，弹出隐私允许/不允许弹窗；
+    PC/2in1设备不弹Picker选择界面，弹出隐私允许/不允许弹窗；
 
     ```c++
-    // 根据2in1设备分辨率在config_中配置录屏的宽度、高度
+    // 根据PC/2in1设备分辨率在config_中配置录屏的宽度、高度。
     config_.videoInfo.videoCapInfo.videoFrameWidth = 2880;
     config_.videoInfo.videoCapInfo.videoFrameHeight = 1920;
 
-    // 设置录屏模式为OH_CAPTURE_HOME_SCREEN，传入屏幕Id
+    // 设置录屏模式为OH_CAPTURE_HOME_SCREEN，传入屏幕Id。
     config_.captureMode = OH_CAPTURE_HOME_SCREEN;
     config_.videoInfo.videoCapInfo.displayId = 0;
     ```
@@ -192,7 +193,7 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
 
 1. 屏幕录制参数配置。
     ```c++
-    // audioinfo音频信息配置
+    // audioinfo音频信息配置。
     OH_AudioCaptureInfo micCapinfo = {
         .audioSampleRate = 48000,
         .audioChannels = 2,
@@ -208,7 +209,7 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
         .audioCodecformat = OH_AudioCodecFormat::OH_AAC_LC
     };
 
-    // videoinfo视频信息配置
+    // videoinfo视频信息配置。
     OH_VideoCaptureInfo videoCapInfo = {
         .videoFrameWidth = 768,
         .videoFrameHeight = 1280,
@@ -226,112 +227,119 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
     针对录屏过程中可能发生的错误事件、状态变化和数据获取，分别设置了相应的事件监听函数。
 
     ```c++
-    // 错误事件发生回调函数OnError()
+    // 错误事件发生回调函数OnError()。
     void OnError(OH_AVScreenCapture *capture, int32_t errorCode, void *userData) {
         (void)capture;
         (void)errorCode;
         (void)userData;
     }
 
-    // 状态变更事件处理函数OnStageChange()
+    // 状态变更事件处理函数OnStageChange()。
     void OnStageChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
         (void)capture;
         if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
-            // 处理录屏开始状态变更
+            // 处理录屏开始状态变更。
         }
         if (stateCode == OH_SCREEN_CAPTURE_STATE_CANCELED) {
-            // 处理录屏取消状态变更
+            // 处理录屏取消状态变更。
         }
         if (stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL) {
-            // 录屏被电话打断状态处理
+            // 录屏被电话打断状态处理。
         }
         if (stateCode == OH_SCREEN_CAPTURE_STATE_MIC_UNAVAILABLE) {
-            // 录屏中途麦克风无法获取状态处理
+            // 录屏中途麦克风无法获取状态处理。
         }
         if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER) {
-            // 录屏被打断状态处理
+            // 录屏被打断状态处理。
         }
         ...
         if (stateCode == OH_SCREEN_CAPTURE_STATE_EXIT_PRIVATE_SCENE) {
-            // 录屏退出隐私模式状态处理
+            // 录屏退出隐私模式状态处理。
         }
         (void)userData;
     }
 
-    // 获取并处理音视频原始码流数据回调函数OnBufferAvailable()
+    // 获取并处理音视频原始码流数据回调函数OnBufferAvailable()。
     void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVScreenCaptureBufferType bufferType, int64_t timestamp, void *userData) {
-        // 处于录屏取码流状态
+        // 处于录屏取码流状态。
         if (IsCaptureStreamRunning) {
             if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_VIDEO) {
-                // 视频buffer
+                // 视频buffer。
                 OH_NativeBuffer *nativeBuffer = OH_AVBuffer_GetNativeBuffer(buffer);
                 if (nativeBuffer != nullptr && capture != nullptr) {
-                    // 获取buffer容量
+                    // 获取buffer容量。
                     int bufferLen = OH_AVBuffer_GetCapacity(buffer);
 
-                    // 获取buffer属性
+                    // 获取buffer属性。
                     OH_AVCodecBufferAttr info;
                     OH_AVBuffer_GetBufferAttr(buffer, &info);
 
-                    // 获取nativeBuffer配置
+                    // 获取nativeBuffer配置。
                     OH_NativeBuffer_Config config;
                     OH_NativeBuffer_GetConfig(nativeBuffer, &config);
 
-                    // 获取buffer地址
+                    // 获取buffer地址。
                     uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
                     if (buf != nullptr) {
                         return;
                     }
-                    // 使用buffer数据
+                    // 使用buffer数据。
 
-                    // nativeBuffer的引用计数值减一，当引用计数值减为0，释放该资源
+                    // nativeBuffer的引用计数值减一，当引用计数值减为0，释放该资源。
                     OH_NativeBuffer_Unreference(nativeBuffer);
                 }
             } else if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_INNER) {
-                // 内录buffer
-                // 获取buffer属性
+                // 内录buffer。
+                // 获取buffer属性。
                 OH_AVCodecBufferAttr info;
                 OH_AVBuffer_GetBufferAttr(buffer, &info);
 
-                // 获取buffer容量
+                // 获取buffer容量。
                 int bufferLen = OH_AVBuffer_GetCapacity(buffer);
 
-                // 获取buffer地址
+                // 获取buffer地址。
                 uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
                 if (buf != nullptr) {
                     return;
                 }
-                // 使用buffer数据
+                // 使用buffer数据。
             } else if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_MIC) {
-                // 麦克风buffer
-                // 获取buffer容量
+                // 麦克风buffer。
+                // 获取buffer容量。
                 int bufferLen = OH_AVBuffer_GetCapacity(buffer);
 
-                // 获取buffer地址
+                // 获取buffer地址。
                 uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
                 if (buf != nullptr) {
                     return;
                 }
-                // 使用buffer数据
+                // 使用buffer数据。
             }
         }
+    }
+
+    // 获取录屏屏幕id的回调函数OnDisplaySelected()。
+    void OnDisplaySelected(struct OH_AVScreenCapture *capture, uint64_t displayId, void *userData) {
+        (void)capture;
+        (void)displayId;
+        (void)userData;
     }
     ```
 
 3. 停止录屏服务并释放资源。
     ```c++
     void StopScreenCapture() {
-        // 处于录屏取码流状态并且录屏服务实例存在
+        // 处于录屏取码流状态并且录屏服务实例存在。
         if (IsCaptureStreamRunning && capture != nullptr) {
-            // 停止录屏
+            // 停止录屏。
             OH_AVScreenCapture_StopScreenCapture(capture);
 
-            // 释放录屏资源
+            // 释放录屏资源。
             OH_AVScreenCapture_Release(capture);
 
-            // 清理其他资源，如关闭文件等
+            // 清理其他资源，如关闭文件等。
 
-            // 录屏取码流状态置为false，录屏服务实例置空
+            // 录屏取码流状态置为false，录屏服务实例置空。
             IsCaptureStreamRunning = false;
             capture = nullptr;
         }
@@ -362,109 +370,116 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
 #include <fcntl.h>
 #include "string"
 #include "unistd.h"
-// 错误事件发生回调函数OnError()
+// 错误事件发生回调函数OnError()。
 void OnError(OH_AVScreenCapture *capture, int32_t errorCode, void *userData) {
     (void)capture;
     (void)errorCode;
     (void)userData;
 }
 
-// 状态变更事件处理函数OnStageChange()
+// 状态变更事件处理函数OnStageChange()。
 void OnStageChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
     (void)capture;
     if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
-        // 处理录屏开始状态变更
+        // 处理录屏开始状态变更。
     }
     if (stateCode == OH_SCREEN_CAPTURE_STATE_CANCELED) {
-        // 处理录屏取消状态变更
+        // 处理录屏取消状态变更。
     }
     if (stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL) {
-        // 录屏被电话打断状态处理
+        // 录屏被电话打断状态处理。
     }
     if (stateCode == OH_SCREEN_CAPTURE_STATE_MIC_UNAVAILABLE) {
-        // 录屏中途麦克风无法获取状态处理
+        // 录屏中途麦克风无法获取状态处理。
     }
     if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER) {
-        // 录屏被打断状态处理
+        // 录屏被打断状态处理。
     }
     ...
     if (stateCode == OH_SCREEN_CAPTURE_STATE_EXIT_PRIVATE_SCENE) {
-        // 录屏退出隐私模式状态处理
+        // 录屏退出隐私模式状态处理。
     }
     (void)userData;
 }
 
-// 获取并处理音视频原始码流数据回调函数OnBufferAvailable()
+// 获取并处理音视频原始码流数据回调函数OnBufferAvailable()。
 void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVScreenCaptureBufferType bufferType, int64_t timestamp, void *userData) {
-    // 处于录屏取码流状态
+    // 处于录屏取码流状态。
     if (IsCaptureStreamRunning) {
         if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_VIDEO) {
-            // 视频buffer
+            // 视频buffer。
             OH_NativeBuffer *nativeBuffer = OH_AVBuffer_GetNativeBuffer(buffer);
             if (nativeBuffer != nullptr && capture != nullptr) {
-                // 获取buffer容量
+                // 获取buffer容量。
                 int bufferLen = OH_AVBuffer_GetCapacity(buffer);
 
-                // 获取buffer属性
+                // 获取buffer属性。
                 OH_AVCodecBufferAttr info;
                 OH_AVBuffer_GetBufferAttr(buffer, &info);
 
-                // 获取nativeBuffer配置
+                // 获取nativeBuffer配置。
                 OH_NativeBuffer_Config config;
                 OH_NativeBuffer_GetConfig(nativeBuffer, &config);
 
-                // 获取buffer地址
+                // 获取buffer地址。
                 uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
                 if (buf != nullptr) {
                     return;
                 }
-                // 使用buffer数据
+                // 使用buffer数据。
 
-                // nativeBuffer的引用计数值减一，当引用计数值减为0，释放该资源
+                // nativeBuffer的引用计数值减一，当引用计数值减为0，释放该资源。
                 OH_NativeBuffer_Unreference(nativeBuffer);
             }
         } else if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_INNER) {
-            // 内录buffer
-            // 获取buffer属性
+            // 内录buffer。
+            // 获取buffer属性。
             OH_AVCodecBufferAttr info;
             OH_AVBuffer_GetBufferAttr(buffer, &info);
 
-            // 获取buffer容量
+            // 获取buffer容量。
             int bufferLen = OH_AVBuffer_GetCapacity(buffer);
 
-            // 获取buffer地址
+            // 获取buffer地址。
             uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
             if (buf != nullptr) {
                 return;
             }
-            // 使用buffer数据
+            // 使用buffer数据。
         } else if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_MIC) {
-            // 麦克风buffer
-            // 获取buffer容量
+            // 麦克风buffer。
+            // 获取buffer容量。
             int bufferLen = OH_AVBuffer_GetCapacity(buffer);
 
-            // 获取buffer地址
+            // 获取buffer地址。
             uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
             if (buf != nullptr) {
                 return;
             }
-            // 使用buffer数据
+            // 使用buffer数据。
         }
     }
 }
 
+// 获取录屏屏幕id的回调函数OnDisplaySelected()。
+void OnDisplaySelected(struct OH_AVScreenCapture *capture, uint64_t displayId, void *userData) {
+    (void)capture;
+    (void)displayId;
+    (void)userData;
+}
+
 struct OH_AVScreenCapture *capture;
 static napi_value Screencapture(napi_env env, napi_callback_info info) {
-    // 从js端获取窗口id number[]
+    // 从js端获取窗口id number[]。
     std::vector<int> windowIdsExclude = {};
     size_t argc = 1;
     napi_value args[1] = {nullptr};
-    // 获取参数
+    // 获取参数。
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    // 获取数组长度
+    // 获取数组长度。
     uint32_t array_length;
     napi_get_array_length(env, args[0], &array_length);
-    // 读初窗口id
+    // 读初窗口id。
     for (int32_t i = 0; i < array_length; i++) {
         napi_value temp;
         napi_get_element(env, args[0], i, &temp);
@@ -472,29 +487,33 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
         napi_get_value_uint32(env, temp, &tempValue);
         windowIdsExclude.push_back(tempValue);
      }
-    // 实例化ScreenCapture
+    // 实例化ScreenCapture。
     capture = OH_AVScreenCapture_Create();
     
-    // 设置回调 
+    // 设置回调 。
     OH_AVScreenCapture_SetErrorCallback(capture, OnError, nullptr);
     OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, nullptr);
     OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, nullptr);
 
+    // 可选 设置录屏屏幕Id回调，必须在开始录屏前调用。
+    OH_AVScreenCapture_SetDisplayCallback(capture, OnDisplaySelected, nullptr);
+
     // 可选 设置光标显示开关，开始录屏前后均可调用
     OH_AVScreenCapture_ShowCursor(capture, false);
+
     // 可选 配置录屏旋转，此接口在感知到手机屏幕旋转时调用，如果手机的屏幕实际上没有发生旋转，调用接口是无效的。
     OH_AVScreenCapture_SetCanvasRotation(capture, true);
-    // 可选 [过滤音频]
+    // 可选 [过滤音频]。
     OH_AVScreenCapture_ContentFilter *contentFilter= OH_AVScreenCapture_CreateContentFilter();
-    // 添加过滤通知音
+    // 添加过滤通知音。
     OH_AVScreenCapture_ContentFilter_AddAudioContent(contentFilter, OH_SCREEN_CAPTURE_NOTIFICATION_AUDIO);
-    // 排除指定窗口id
+    // 排除指定窗口id。
     OH_AVScreenCapture_ContentFilter_AddWindowContent(contentFilter, &windowIdsExclude[0],
                                                       static_cast<int32_t>(windowIdsExclude.size()));
 
     OH_AVScreenCapture_ExcludeContent(capture, contentFilter);
 
-    // 初始化录屏，传入配置信息OH_AVScreenRecorderConfig
+    // 初始化录屏，传入配置信息OH_AVScreenRecorderConfig。
     OH_AudioCaptureInfo miccapinfo = {.audioSampleRate = 16000, .audioChannels = 2, .audioSource = OH_MIC};
     OH_VideoCaptureInfo videocapinfo = {
         .videoFrameWidth = 768, .videoFrameHeight = 1280, .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA};
@@ -508,39 +527,39 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
                                        .videoInfo = videoinfo};
     OH_AVScreenCapture_Init(capture, config);
 
-    // 可选 [Surface模式]
+    // 可选 [Surface模式]。
     // 通过 MIME TYPE 创建编码器，系统会根据MIME创建最合适的编码器。
     // OH_AVCodec *codec = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);    
-    // 从视频编码器获取输入Surface
+    // 从视频编码器获取输入Surface。
     // OH_AVErrCode OH_VideoEncoder_GetSurface(codec, window);
-    // 启动编码器
+    // 启动编码器。
     // int32_t retEnc = OH_VideoEncoder_Start(codec);
-    // 指定surface开始录屏
+    // 指定surface开始录屏。
     // int32_t retStart = OH_AVScreenCapture_StartScreenCaptureWithSurface(capture, window); 
 
-    // 开始录屏
+    // 开始录屏。
     OH_AVScreenCapture_StartScreenCapture(capture);
 
-    // mic开关设置
+    // mic开关设置。
     OH_AVScreenCapture_SetMicrophoneEnabled(capture, true);
 
-    // 可选 豁免隐私窗口 需传递应用豁免子窗口和主窗口ID，传空数组取消豁免隐私窗口
+    // 可选 豁免隐私窗口 需传递应用豁免子窗口和主窗口ID，传空数组取消豁免隐私窗口。
 	// std::vector<int> windowIdsSkipPrivacy = {};
     // OH_AVScreenCapture_SkipPrivacyMode(capture, &windowIdsSkipPrivacy[0],
     //     static_cast<int32_t>(windowIdsSkipPrivacy.size()));
 
-    // 可选 调整录屏分辨率 需在启动后调用，分辨率有范围限制 可参考avcodec编解码能力
+    // 可选 调整录屏分辨率 需在启动后调用，分辨率有范围限制 可参考avcodec编解码能力。
     // OH_AVScreenCapture_ResizeCanvas(capture, 768, 1280);
 
-    // 可选 设置录屏时的最大帧率 需在启动后调用
+    // 可选 设置录屏时的最大帧率 需在启动后调用。
     // OH_AVScreenCapture_SetMaxVideoFrameRate(capture, 20);
 
-    sleep(10); // 录制10s
-    // 结束录屏
+    sleep(10); // 录制10s。
+    // 结束录屏。
     OH_AVScreenCapture_StopScreenCapture(capture);
-    // 释放ScreenCapture
+    // 释放ScreenCapture。
     OH_AVScreenCapture_Release(capture);
-    // 返回调用结果，示例仅返回随意值
+    // 返回调用结果，示例仅返回随意值。
     napi_value sum;
     napi_create_double(env, 5, &sum);
 

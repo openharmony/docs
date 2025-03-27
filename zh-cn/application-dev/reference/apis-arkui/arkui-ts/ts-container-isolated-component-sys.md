@@ -67,7 +67,7 @@ IsolatedComponent(options: IsolatedOptions)
 
 ## 事件
 
-不支持[通用事件](ts-universal-events-click.md)。
+不支持[通用事件](ts-component-general-events.md)。
 
 将事件经过坐标转换后异步传递给受限worker线程处理。
 

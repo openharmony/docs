@@ -34,6 +34,8 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application. |
@@ -42,8 +44,6 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 | 16501008 | Waiting for the form addition to the desktop timed out. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -100,6 +100,8 @@ requestPublishForm(want: Want): Promise&lt;string&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application. |
@@ -108,8 +110,6 @@ requestPublishForm(want: Want): Promise&lt;string&gt;
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 | 16501008 | Waiting for the form addition to the desktop timed out. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 

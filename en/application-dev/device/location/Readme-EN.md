@@ -5,4 +5,5 @@
 - [Obtaining Device Location Information](location-guidelines.md)
 - [Geocoding and Reverse Geocoding](geocode-guidelines.md)
 - [Geofencing](geofence-guidelines.md)
+- [FenceExtensionAbility](fenceExtensionAbility.md)
 - [Samples](app-samples.md)

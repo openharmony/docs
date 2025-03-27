@@ -51,15 +51,15 @@ Radio(options: RadioOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            | 说明                           |
-| --------------- | -------------------------------- |
-| TICK            | 选中样式为系统默认TICK图标。  |
-| DOT             | 选中样式为系统默认DOT图标。   |
-| CUSTOM          | 选中样式为indicatorBuilder中的内容。|
+| 名称            | 值           | 说明                           |
+| --------------- | -------------------------------- | -------------------------------- |
+| TICK            | 0           | 选中样式为系统默认TICK图标。  |
+| DOT             | 1            | 选中样式为系统默认DOT图标。   |
+| CUSTOM          | 2         | 选中样式为indicatorBuilder中的内容。|
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### checked
 
@@ -77,9 +77,9 @@ checked(value: boolean)
 
 **参数：** 
 
-| 参数名 | 类型    | 必填 | 说明                                 |
-| ------ | ------- | ---- | ------------------------------------ |
-| value  | boolean | 是   | 单选框的选中状态。<br/>默认值：false |
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 单选框的选中状态。<br/>默认值：false<br/>值为true时，单选框被选中。值为false时，单选框不被选中。 |
 
 ### radioStyle<sup>10+</sup>
 
@@ -117,7 +117,7 @@ contentModifier(modifier: ContentModifier\<RadioConfiguration>)
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onChange
 
@@ -135,7 +135,7 @@ onChange(callback: (isChecked: boolean) => void)
 
 | 参数名    | 类型    | 必填 | 说明                                                         |
 | --------- | ------- | ---- | ------------------------------------------------------------ |
-| isChecked | boolean | 是   | 单选框的状态。<br/>为true时，表示从未选中变为选中。为false时，表示从选中变为未选中。 |
+| isChecked | boolean | 是   | 单选框的状态。<br/>值为true时，表示从未选中变为选中。值为false时，表示从选中变为未选中。 |
 
 ## RadioStyle<sup>10+</sup>对象说明
 
@@ -145,9 +145,9 @@ onChange(callback: (isChecked: boolean) => void)
 
 | 名称                   | 类型                                       | 必填 | 说明                                                         |
 | ---------------------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| checkedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 开启状态底板颜色。<br/>默认值：#007DFF                       |
-| uncheckedBorderColor   | [ResourceColor](ts-types.md#resourcecolor) | 否   | 关闭状态描边颜色。<br/>默认值：#182431                       |
-| indicatorColor         | [ResourceColor](ts-types.md#resourcecolor) | 否   | 开启状态内部圆饼颜色。从API version 12开始，indicatorType设置为RadioIndicatorType.TICK和RadioIndicatorType.DOT时，支持修改内部颜色。indicatorType设置为RadioIndicatorType.CUSTOM时，不支持修改内部颜色。<br/>默认值：#FFFFFF |
+| checkedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 开启状态底板颜色。<br/>默认值：`$r('sys.color.ohos_id_color_text_primary_activated')`                      |
+| uncheckedBorderColor   | [ResourceColor](ts-types.md#resourcecolor) | 否   | 关闭状态描边颜色。<br/>默认值：`$r('sys.color.ohos_id_color_switch_outline_off')`                       |
+| indicatorColor         | [ResourceColor](ts-types.md#resourcecolor) | 否   | 开启状态内部圆饼颜色。从API version 12开始，indicatorType设置为RadioIndicatorType.TICK和RadioIndicatorType.DOT时，支持修改内部颜色。indicatorType设置为RadioIndicatorType.CUSTOM时，不支持修改内部颜色。<br/>默认值：`$r('sys.color.ohos_id_color_foreground_contrary')` |
 
 ## RadioConfiguration<sup>12+</sup>对象说明
 
@@ -160,8 +160,8 @@ onChange(callback: (isChecked: boolean) => void)
 | 名称  | 类型    | 只读 | 可选  |  说明              |
 | ------ | ------ |-------------------------------- |-------------------------------- |-------------------------------- |
 | value | string | 否 | 否 |当前单选框的值。 |
-| checked | boolean| 否 | 否 | 设置单选框的选中状态。<br/>默认值：false |
-| triggerChange |Callback\<boolean>|否|否|触发单选框选中状态变化。 |
+| checked | boolean| 否 | 否 | 设置单选框的选中状态。<br/>默认值：false<br/>值为true时，单选框被选中。值为false时，单选框不被选中。 |
+| triggerChange |Callback\<boolean>|否|否|触发单选框选中状态变化。<br/>值为true时，表示从未选中变为选中。值为false时，表示从选中变为未选中。 |
 
 
 ## 示例

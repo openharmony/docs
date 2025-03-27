@@ -41,13 +41,13 @@ Binds a sheet to the component, which is displayed when the component is touched
 >
 ## SheetOptions
 
-Inherits [BindOptions](#bindoptions).
+Inherits from [BindOptions](#bindoptions).
 
 | Name             | Type                                      | Mandatory  | Description             |
 | --------------- | ---------------------------------------- | ---- | --------------- |
 | height          | [SheetSize](#sheetsize) \| [Length](ts-types.md#length) | No   | Height of the sheet.<br>Default value: **LARGE**<br>**NOTE**<br>In versions earlier than API version 12, this attribute is ineffective for a bottom sheet in landscape mode; the height is fixed at 8 vp from the top of the screen.<br>Since API version 12, this attribute takes effect for a bottom sheet in landscape mode; the maximum height is 8 vp from the top of the screen.<br>Since API version 14, for a bottom sheet in landscape mode, the maximum height is 8 vp from the top of the screen if there is no status bar, and 8 vp from the status bar if there is one.<br>When a bottom sheet has **detents** set, this attribute is ineffective.<br>For a bottom sheet in portrait mode, the maximum height is 8 vp from the status bar.<br>For center and popup sheets set to **SheetSize.LARGE** or **SheetSize.MEDIUM**, this attribute is ineffective, with the default height being 560 vp. For center and popup sheets, the minimum height is 320 vp, and the maximum height is 90% of the shorter edge of the window. If the height specified by **Length** and the height adaptively set with **SheetSize.FIT_CONTENT** exceed the maximum height, the maximum height is used instead. If they are less than the minimum height, the minimum height is used instead.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | detents<sup>11+</sup> | [([SheetSize](#sheetsize) \| [Length](ts-types.md#length)), ( [SheetSize](#sheetsize) \| [Length](ts-types.md#length))?, ([SheetSize](#sheetsize) \| [Length](ts-types.md#length))?] | No| Array of heights where the sheet can rest.<br>**NOTE**<br>Since API version 12, this attribute takes effect for a bottom sheet in landscape mode.<br>In earlier versions, this attribute takes effect only for the bottom sheet in portrait mode. The first height in the tuple is the initial height.<br>The sheet can switch between heights by dragging. After the sheet is dragged and released, it switches to the target height or remains at the current height, depending on the velocity and distance.<br> If the velocity exceeds the threshold, the sheet switches to the target height in the same direction as the velocity. If the velocity is less than the threshold, the displacement distance is used for judgement. If the displacement distance is greater than 1/2 of the distance between the current and target positions, the sheet switches to the target height in the same direction as the velocity; otherwise, the sheet remains at the current height.<br> Velocity threshold: 1000; Distance threshold: 50%.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| preferType<sup>11+</sup> | [SheetType](#sheettype11)| No| Type of the sheet.<br>**NOTE**<br>The types supported by the sheet vary by window.<br>1. Width < 600 vp: bottom<br>2. 600 vp <= width < 840 vp: bottom and center (default)<br>3. Width >= 840 vp: bottom, center, and popup (default)<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| preferType<sup>11+</sup> | [SheetType](#sheettype11)| No| Type of the sheet.<br>**NOTE**<br>The types supported by the sheet vary by window.<br>1. Width < 600 vp: bottom<br>2. 600 vp <= Width: bottom, center, and popup (default)<br>3. Width >= 840 vp: bottom, center, and popup (default)<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | showClose<sup>11+</sup> | boolean \| [Resource](ts-types.md#resource) | No| Whether to display the close icon. By default, the icon is displayed.<br> On 2-in-1 devices, the icon does not have a background by default.<br>**NOTE**<br>The value of **Resource** must be of the Boolean type.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | dragBar         | boolean                                  | No   | Whether to display the drag bar.<br>**NOTE**<br>By default, the drag bar is displayed only when the sheet's **detents** attribute is set to multiple heights and the settings take effect.  <br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | blurStyle<sup>11+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | No| Background blur of the sheet. By default, there is no background blur.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -68,12 +68,16 @@ Inherits [BindOptions](#bindoptions).
 | shadow<sup>12+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| [ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10)   | No| Shadow of the sheet.<br>Default value for 2-in-1 devices: **ShadowStyle.OUTER_FLOATING_SM**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | uiContext<sup>12+</sup> | [UIContext](../js-apis-arkui-UIContext.md#uicontext)   | No| **UIContext** instance corresponding to the window where the sheet is displayed.<br>**NOTE**<br>The sheet launched with [openBindSheet](../js-apis-arkui-UIContext.md#openbindsheet12) does not support setting or updating this attribute.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | mode<sup>12+</sup> | [SheetMode](#sheetmode12)   | No| Display mode of the sheet.<br>Default value: **SheetMode.OVERLAY**<br>**NOTE**<br> 1. During the display of the sheet, the **mode** attribute does not support dynamic changes. The display hierarchy of the two modes is entirely different, making it impossible to switch a sheet from one mode to another while it is being displayed. You are advised to clearly define and fix the **mode** value to ensure consistency in the display hierarchy.<br> 2. The **UIContext** attribute cannot be set when **SheetMode.EMBEDDED** is set, as their corresponding sheet display hierarchy effects are mutually conflicting.<br>3. For a sheet launched with [openBindSheet](../js-apis-arkui-UIContext.md#openbindsheet12), if a valid target ID is not provided, **SheetMode.EMBEDDED** cannot be set, and the default value **SheetMode.OVERLAY** is used.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| scrollSizeMode<sup>12+</sup> | [ScrollSizeMode](#scrollsizemode12)   | No| Timing for updating the content display area of the sheet when it is scrolled.<br>Default value: **ScrollSizeMode.FOLLOW_DETENT**|
+| scrollSizeMode<sup>12+</sup> | [ScrollSizeMode](#scrollsizemode12)   | No| Content update mode of the sheet when it is scrolled.<br>Default value: **ScrollSizeMode.FOLLOW_DETENT**|
 | keyboardAvoidMode<sup>13+</sup> | [SheetKeyboardAvoidMode](#sheetkeyboardavoidmode13) | No| How the sheet avoids the soft keyboard when it is brought up.<br> Default value: **TRANSLATE_AND_SCROLL**<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 | enableHoverMode<sup>14+</sup>              | boolean | No  | Whether to enable the hover mode.<br>Default value: **false**, meaning not to enable the hover mode.<br>**NOTE**<br>The bottom and popup sheets do not respond in the hover mode.|
 | hoverModeArea<sup>14+</sup>              | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype14) | No  | Display area of the dialog box in hover mode.<br>Default value: **HoverModeAreaType.BOTTOM_SCREEN**|
+| radius<sup>15+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [BorderRadiuses](ts-types.md#borderradiuses9) \| [LocalizedBorderRadiuses](ts-types.md#LocalizedBorderRadiuses12) | No| Corner radius of the sheet.<br>To deliver the optimal experience, use the same radius for the four corners.<br>Default value: **32vp**<br>**NOTE**<br>1. The corner radius is displayed based on the set value. If it is not set, the default value is used. The bottom sheet does not display the bottom two corners, even if they are set.<br>2. If different corner radii are set for the four corners and one of the values is invalid, the corner pertaining to the invalid value is reset to the default value, while the other corners retain their set values. If a uniform corner radius is set for all four corners and the value is invalid, all four corners are reset to the default value.<br>3. When the corner radius is set as a percentage, the width of the sheet is used as the reference.<br>4. If the corner radius is greater than half the width of the sheet, it is set to half the width of the sheet.<br>5. If the height of the sheet is too small and the corner radius is set too large, it may cause display issues.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+| detentSelection<sup>15+</sup>          | [SheetSize](#sheetsize) \| [Length](ts-types.md#length) | No   | Initial detent (position) for non-gesture switching.<br>Default value: **detents[0]**<br>**NOTE**<br>This API has no effect when **SheetSize.FIT_CONTENT** is used.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 
 ## SheetSize
+
+Enumerates the sheet heights.
 
 | Name                     | Value   | Description                        |
 | ------------------------- | ---- | -------------------------------- |
@@ -82,6 +86,8 @@ Inherits [BindOptions](#bindoptions).
 | FIT_CONTENT<sup>11+</sup> | 2    | The sheet height automatically adapts to the content.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## BindOptions
+
+Defines the common configuration for sheets and modals.
 
 | Name           | Type                                      | Mandatory| Description                    |
 | --------------- | ------------------------------------------ | ---- | ------------------------ |
@@ -93,6 +99,8 @@ Inherits [BindOptions](#bindoptions).
 
 ## SheetType<sup>11+</sup>
 
+Enumerates the sheet styles.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name  | Value  | Description                                              |
@@ -103,6 +111,8 @@ Inherits [BindOptions](#bindoptions).
 
 ## SheetDismiss<sup>11+</sup>
 
+Controls the dismissal of a sheet.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name   | Type      | Mandatory| Description                                                        |
@@ -110,6 +120,8 @@ Inherits [BindOptions](#bindoptions).
 | dismiss | () => void | Yes  | Callback for dismissing the sheet. Call this API only when you need the sheet to exit.|
 
 ## SheetTitleOptions<sup>11+</sup>
+
+Provides the options for configuring the title of a sheet.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -120,6 +132,8 @@ Inherits [BindOptions](#bindoptions).
 
 ## SheetMode<sup>12+</sup>
 
+Enumerates the display layer modes of a sheet.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name                     | Value  | Description                        |
@@ -128,12 +142,17 @@ Inherits [BindOptions](#bindoptions).
 | EMBEDDED                  | 1    | The sheet is displayed at the top of the current page.<br>**NOTE**<br>Currently, the sheet can only be mounted on a **Page** or **NavDestination** node, with priority given to the **NavDestination** node if it is present. This means that, the sheet can only be displayed at the top of these two types of pages.<br> In this mode, new pages can overlay the sheet, and when the user returns to the previous page, the sheet remains present without losing its content.<br> In this mode, you must ensure that the target page node, such as the **Page** node, has been attached to the tree before bringing up the sheet; otherwise, the sheet will not be able to be attached to the corresponding page node.|
 
 ## ScrollSizeMode<sup>12+</sup>
+
+Enumerates the content update modes of a sheet when it is scrolled vertically.
+
 | Name          | Value  | Description                        |
 | ------------------------- | ---- | -------------------------------- |
 | FOLLOW_DETENT | 0    | The sheet updates the content display area after a swipe ends.  |
 | CONTINUOUS    | 1    | The sheet continuously updates the content display area during the scroll process.|
 
 ## DismissSheetAction<sup>12+</sup>
+
+Defines the callback triggered when a sheet is about to be dismissed.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -143,6 +162,8 @@ Inherits [BindOptions](#bindoptions).
 | reason | [DismissReason](../js-apis-promptAction.md#dismissreason12) | Yes   | Type of operation that causes the sheet to be dismissed. |
 
 ## SpringBackAction<sup>12+</sup>
+
+Controls the interactive spring back of a sheet before it is dismissed.
 
 | Name             | Type                                      | Mandatory  | Description           |
 | --------------- | ---------------------------------------- | ---- | ------------- |
@@ -168,7 +189,6 @@ This example demonstrates how to set different heights for sheets using the **he
 @Component
 struct SheetTransitionExample {
   @State isShow: boolean = false
-  @State isShow2: boolean = false
   @State sheetHeight: number = 300;
 
   @Builder
@@ -399,7 +419,7 @@ struct bindSheetExample {
 ```
 ![en-us_sheet](figures/en-us_sheet4.gif)
 
-### Example 5: Setting Content Update Timing
+### Example 5: Setting the Content Update Mode
 
 This example shows how to use **ScrollSizeMode.CONTINUOUS**, which continuously updates the content and is suitable for detents with multiple height settings.
 Whenever possible, minimize UI loading time within the builder, as real-time content refreshing during scrolling has higher performance requirements.
@@ -454,14 +474,14 @@ The sheet's content height is updated in real time as the user drags the sheet.
 
 ![en-us_sheet](figures/en-us_sheet5_rtl.gif)
 
-### Example 6: Listening for Keyboard Height Changes
+### Example 6: Configuring the Sheet to Resize to Avoid the Keyboard
 
-This example shows how to listen for keyboard height changes and adjust the scroll of a scrollable component based on these changes in **resizeOnly** mode.
+This example demonstrates how to adjust the scrollable content within a sheet when the keyboard height changes by setting **SheetKeyboardAvoidMode** to **RESIZE_ONLY**.
 
 ```ts
 //xxx.ets
-import { window } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 @Entry
 @Component
@@ -470,8 +490,6 @@ struct ListenKeyboardHeightChange {
   @State avoidMode: SheetKeyboardAvoidMode = SheetKeyboardAvoidMode.RESIZE_ONLY;
   scroller = new Scroller();
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6];
-  @State scrollHeight: number = 0;
-  @State keyBoardChange: boolean = false;
   windowClass: window.Window | undefined = undefined;
 
   aboutToAppear(): void {
@@ -486,7 +504,6 @@ struct ListenKeyboardHeightChange {
         try {
           if (this.windowClass !== undefined) {
             console.log('success in listen height change');
-            // Register a listener for keyboard height changes.
             this.windowClass.on('keyboardHeightChange', this.callback);
           }
         } catch (exception) {
@@ -499,19 +516,13 @@ struct ListenKeyboardHeightChange {
     }
   }
 
-  // Set the flag when keyboard height changes.
   callback = (height: number) => {
-    this.scrollHeight = height;
-    console.log('height change: ' + this.scrollHeight);
+    console.log('height change: ' + height);
     if (height !== 0) {
-      this.keyBoardChange = true;
-    }
-  }
-  // Trigger scroll when the scrollable component height changes based on the flag.
-  sizeChangeCallback = (oldValue: SizeOptions, newValue: SizeOptions) => {
-    if (this.keyBoardChange) {
-      this.scroller.scrollBy(0, this.scrollHeight);
-      this.keyBoardChange = false;
+      this.scroller.scrollTo({
+        xOffset: 0, yOffset: height + this.scroller.currentOffset().yOffset,
+        animation: { duration: 1000, curve: Curve.Ease, canOverScroll: false }
+      });
     }
   }
 
@@ -546,12 +557,65 @@ struct ListenKeyboardHeightChange {
               .fontSize(20)
               .width('45%')
           }.width('100%')
-        }.height('100%')
-      }.margin({ right: 15 })
+        }.height(100)
+      }.margin({ right: 15, bottom: 50 })
     }
+    .height('100%')
     .scrollBar(BarState.On)
     .scrollable(ScrollDirection.Vertical)
-    .onSizeChange(this.sizeChangeCallback)
+  }
+
+  build() {
+    Column() {
+      Button("transition modal 1")
+        .onClick(() => {
+          this.isShow = true
+        })
+        .fontSize(20)
+        .margin(10)
+        .bindSheet($$this.isShow, this.myBuilder(), {
+          height: 750,
+          backgroundColor: Color.Gray,
+          blurStyle: BlurStyle.Thick,
+          showClose: true,
+          title: { title: "title", subtitle: "subtitle" },
+          keyboardAvoidMode: SheetKeyboardAvoidMode.RESIZE_ONLY,
+        })
+    }
+    .justifyContent(FlexAlign.Start)
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+![en-us_sheet](figures/en-us_sheet6.gif)
+
+### Example 7: Setting the Corner Radius in a Mirrored Layout
+
+This example demonstrates how to set different corner radii for a sheet in a mirrored layout. Typically, to avoid a poor visual experience, do not set different values.
+
+In this example, the **radius** property of the sheet uses the LocalizedBorderRadiuses type.
+
+```ts
+import { LengthMetrics } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct SheetTransitionExample {
+  @State isShow: boolean = false
+
+  @Builder
+  myBuilder() {
+    Column() {
+      Button("content1")
+        .margin(10)
+        .fontSize(20)
+
+      Button("content2")
+        .margin(10)
+        .fontSize(20)
+    }
+    .width('100%')
   }
 
   build() {
@@ -564,11 +628,8 @@ struct ListenKeyboardHeightChange {
         .margin(10)
         .bindSheet($$this.isShow, this.myBuilder(), {
           detents: [SheetSize.MEDIUM, SheetSize.LARGE, 200],
-          backgroundColor: Color.Gray,
-          blurStyle: BlurStyle.Thick,
-          showClose: true,
           title: { title: "title", subtitle: "subtitle" },
-          keyboardAvoidMode: SheetKeyboardAvoidMode.RESIZE_ONLY
+          radius: { topStart: LengthMetrics.vp(50), topEnd: LengthMetrics.vp(10) },
         })
     }
     .justifyContent(FlexAlign.Start)
@@ -577,3 +638,11 @@ struct ListenKeyboardHeightChange {
   }
 }
 ```
+
+The following shows how the example is represented with left-to-right scripts.
+
+![en-us_sheet](figures/en-us_sheet7_ltr.png)
+
+The following shows how the example is represented with right-to-left scripts.
+
+![en-us_sheet](figures/en-us_sheet7_rtl.png)

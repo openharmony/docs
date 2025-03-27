@@ -17,16 +17,27 @@ After obtaining the output stream capabilities supported by the camera, create a
         target_link_libraries(entry PUBLIC libohcamera.so libhilog_ndk.z.so)
     ```
 
-2. Import the NDK APIs on the C++ side, and perform video recording based on the surface ID passed in.
+2. Create the header file **ndk_camera.h**.
+   ```c++
+   #include "ohcamera/camera.h"
+   #include "ohcamera/camera_input.h"
+   #include "ohcamera/capture_session.h"
+   #include "ohcamera/photo_output.h"
+   #include "ohcamera/preview_output.h"
+   #include "ohcamera/video_output.h"
+   #include "ohcamera/camera_manager.h"
+   
+   class NDKCamera {
+   public:
+       ~NDKCamera();
+       NDKCamera(char *previewId, char *videoId);
+   };
+   ```
+
+3. Import the NDK APIs on the C++ side, and perform video recording based on the surface ID passed in.
     ```c++
     #include "hilog/log.h"
-    #include "ohcamera/camera.h"
-    #include "ohcamera/camera_input.h"
-    #include "ohcamera/capture_session.h"
-    #include "ohcamera/photo_output.h"
-    #include "ohcamera/preview_output.h"
-    #include "ohcamera/video_output.h"
-    #include "ohcamera/camera_manager.h"
+    #include "ndk_camera.h"
 
     void OnCameraInputError(const Camera_Input* cameraInput, Camera_ErrorCode errorCode)
     {
@@ -139,7 +150,7 @@ After obtaining the output stream capabilities supported by the camera, create a
             OH_LOG_ERROR(LOG_APP, "connectionType  =  %{public}d ", cameras[index].connectionType);  // Obtain the camera connection type.
         }
 
-        // Obtain the output streams supported by the camera.
+        // Obtain the output stream capability supported by the camera.
         ret = OH_CameraManager_GetSupportedCameraOutputCapability(cameraManager, &cameras[cameraDeviceIndex],
                                                                 &cameraOutputCapability);
         if (cameraOutputCapability == nullptr || ret != CAMERA_OK) {
@@ -215,7 +226,7 @@ After obtaining the output stream capabilities supported by the camera, create a
         }
 
         // Create a preview output stream. For details about the surfaceId parameter, see the XComponent. The preview stream is the surface provided by the XComponent.
-        ret = OH_CameraManager_CreatePreviewOutput(cameraManager, previewProfile, 0, &previewOutput);
+        ret = OH_CameraManager_CreatePreviewOutput(cameraManager, previewProfile, previewSurfaceId, &previewOutput);
         if (previewProfile == nullptr || previewOutput == nullptr || ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreatePreviewOutput failed.");
         }

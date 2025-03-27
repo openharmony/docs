@@ -170,6 +170,7 @@
 | [NativeArkWeb_OnValidCallback](#nativearkweb_onvalidcallback) [OH_NativeArkWeb_GetJavaScriptProxyValidCallback](#oh_nativearkweb_getjavascriptproxyvalidcallback) (const char \*webTag) | 获取已注册的对象可注册时的回调函数。  | 
 | void [OH_NativeArkWeb_SetDestroyCallback](#oh_nativearkweb_setdestroycallback) (const char \*webTag, [NativeArkWeb_OnDestroyCallback](#nativearkweb_ondestroycallback) callback) | 设置组件销毁时的回调函数。  | 
 | [NativeArkWeb_OnDestroyCallback](#nativearkweb_ondestroycallback) [OH_NativeArkWeb_GetDestroyCallback](#oh_nativearkweb_getdestroycallback) (const char \*webTag) | 获取已注册的组件销毁时的回调函数。  | 
+| [ArkWeb_ErrorCode](#arkweb_errorcode) [OH_NativeArkWeb_LoadData](#oh_nativearkweb_loaddata) (const char* webTag,const char* data,const char* mimeType,const char* encoding,const char* baseUrl,const char* historyUrl) | 加载数据或URL，此函数应在主线程中调用。  |
 
 
 ## 宏定义说明
@@ -2590,3 +2591,32 @@ void OH_NativeArkWeb_UnregisterJavaScriptProxy (const char * webTag, const char 
 | -------- | -------- |
 | webTag | Web组件的名称。  | 
 | objName | 注入对象的名称。 | 
+
+### OH_NativeArkWeb_LoadData()
+
+```
+ArkWeb_ErrorCode OH_NativeArkWeb_LoadData (const char* webTag,const char* data,const char* mimeType,const char* encoding,const char* baseUrl,const char* historyUrl)
+```
+**描述：**
+
+加载数据或URL，此函数应在主线程中调用。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| webTag | Web组件的名称。  |
+| data   | "Base64"或"URL"编码的字符串，不能为空。  |
+| mimeType  | 媒体类型，例如"text/html"，不能为空。  |
+| encoding  | 编码类型，例如"UTF-8"，不能为空。  |
+| baseUrl   | 指定的URL路径("http"/"https"/"data"协议),由Web组件分配给window.origin。  |
+| historyUrl  | 历史URL，当它不为空时，可以通过历史记录来管理，实现前进和后退功能。  |
+
+
+**返回：**
+
+return ArkWeb NDK接口异常错误码。

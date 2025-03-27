@@ -37,14 +37,14 @@ Provides constants of the distributed KV store.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
-| Name                 | Value     | Description                                   |
-| --------------------- | ------- | --------------------------------------- |
-| MAX_KEY_LENGTH        | 1024    | Maximum length of a key in a distributed KV store, in bytes.  |
-| MAX_VALUE_LENGTH      | 4194303 | Maximum length of a value in a distributed KV store, in bytes.|
-| MAX_KEY_LENGTH_DEVICE | 896     | Maximum length of a key in a device KV store, in bytes.|
-| MAX_STORE_ID_LENGTH   | 128     | Maximum length of a KV store ID, in bytes. |
-| MAX_QUERY_LENGTH      | 512000  | Maximum query length, in bytes.               |
-| MAX_BATCH_SIZE        | 128     | Maximum number of batch operations.                   |
+| Name                 | Type  | Read Only| Optional| Description                                                      |
+| --------------------- | ------ | ---- | ---- | ---------------------------------------------------------- |
+| MAX_KEY_LENGTH        | number | Yes  | No  | Maximum length of a key in the database, which is 1024 bytes.       |
+| MAX_VALUE_LENGTH      | number | Yes  | No  | Maximum length of a value in the database, which is 4194303 bytes.  |
+| MAX_KEY_LENGTH_DEVICE | number | Yes  | No  | Maximum length of a key in a device KV store, which is 896 bytes.|
+| MAX_STORE_ID_LENGTH   | number | Yes  | No  | Maximum length of a KV store ID, which is 128 bytes.       |
+| MAX_QUERY_LENGTH      | number | Yes  | No  | Maximum query length, which is 512000 bytes.                  |
+| MAX_BATCH_SIZE        | number | Yes  | No  | Maximum number of batch operations allowed, which is 128.                         |
 
 ## ValueType
 
@@ -173,7 +173,7 @@ Defines the schema of a KV store. You can create a **Schema** object and pass it
 | root    | [FieldNode](#fieldnode) | Yes  | Yes  | Definitions of all the fields in **Value**.|
 | indexes | Array\<string>          | Yes  | Yes  | Indexes of the fields in **Value**. Indexes are created only for **FieldNode** with this parameter specified. If no index needs to be created, this parameter can be left empty. <br>Format: `'$.field1'`, `'$.field2'`|
 | mode    | number                  | Yes  | Yes  | Schema mode, which can be **0** (compatible mode) or **1** (strict mode).|
-| skip    | number                  | Yes  | Yes  | Number of bytes that can be skipped during the value check. The value range is [0, 4M-2].|
+| skip    | number                  | Yes  | Yes  | Number of bytes that can be skipped during the value check. The value range is [0, 4 x 1024 x 1024 - 2].|
 
 Strict mode: In this mode, the format of the value to be inserted must strictly match the schema defined, and the number of fields cannot be more or less than that defined in the schema. Otherwise, an error will be returned.
 
@@ -393,7 +393,7 @@ Creates and obtains a distributed KV store based on the specified **options** an
 
 > **NOTE**
 >
-> If the database file is corrupted, the auto rebuild logic will be triggered and the newly created distributed KV store instance will be returned. The database file corruption may be caused by abnormal behaviors, such as the operation for clearing data or a failure in querying data. Back up data in a timely manner to prevent data loss. 
+> If the database file cannot be opened (for example, the file header is damaged) when an existing distributed KV store is obtained, the automatic rebuild logic will be triggered to return a newly created distributed KV store instance. For important data that cannot be regenerated, you are advised to use the backup and restore feature to prevent data loss. For details, see [Database Backup and Restoration](../../database/data-backup-and-restore.md).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -457,7 +457,7 @@ Creates and obtains a distributed KV store based on the specified **options** an
 
 > **NOTE**
 >
-> If the database file is corrupted, the auto rebuild logic will be triggered and the newly created distributed KV store instance will be returned. The database file corruption may be caused by abnormal behaviors, such as the operation for clearing data or a failure in querying data. Back up data in a timely manner to prevent data loss. 
+> If the database file cannot be opened (for example, the file header is damaged) when an existing distributed KV store is obtained, the automatic rebuild logic will be triggered to return a newly created distributed KV store instance. For important data that cannot be regenerated, you are advised to use the backup and restore feature to prevent data loss. For details, see [Database Backup and Restoration](../../database/data-backup-and-restore.md).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2425,7 +2425,7 @@ Creates a **Query** object with an index preferentially used for query.
 
 | Name| Type| Mandatory| Description              |
 | ------ | -------- | ---- | ------------------ |
-| index  | string   | Yes  | Index preferentially used for query. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
+| index  | string   | Yes  | Index to set, which cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 
 **Return value**
 
@@ -3076,7 +3076,7 @@ removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 Deletes data of a device. This API uses an asynchronous callback to return the result.
 > **NOTE**
 >
-> **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
+> **deviceId** is **networkId** in [DeviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo), which can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -3085,7 +3085,7 @@ Deletes data of a device. This API uses an asynchronous callback to return the r
 
 | Name  | Type                 | Mandatory| Description                  |
 | -------- | ------------------------- | ---- | ---------------------- |
-| deviceId | string                    | Yes  | ID of the target device.|
+| deviceId | string                    | Yes  | Network ID of the target device.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.   |
 
 **Error codes**
@@ -3136,7 +3136,7 @@ removeDeviceData(deviceId: string): Promise&lt;void&gt;
 Deletes data of a device. This API uses a promise to return the result.
 > **NOTE**
 >
-> **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
+> **deviceId** is **networkId** in [DeviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo), which can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -3145,7 +3145,7 @@ Deletes data of a device. This API uses a promise to return the result.
 
 | Name  | Type| Mandatory| Description                  |
 | -------- | -------- | ---- | ---------------------- |
-| deviceId | string   | Yes  | ID of the target device.|
+| deviceId | string   | Yes  | Network ID of the target device.|
 
 **Return value**
 

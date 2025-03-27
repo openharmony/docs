@@ -163,7 +163,7 @@ screen.off('connect');
 
 makeExpand(options:Array&lt;ExpandOption&gt;, callback: AsyncCallback&lt;number&gt;): void
 
-Sets the screen to the expanded mode. This API uses an asynchronous callback to return the result.
+Sets the screen to extended mode. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -172,7 +172,7 @@ Sets the screen to the expanded mode. This API uses an asynchronous callback to 
 | Name  | Type                                      | Mandatory| Description                        |
 | -------- | ------------------------------------------ | ---- |----------------------------|
 | options  | Array&lt;[ExpandOption](#expandoption)&gt; | Yes  | Parameters for expanding the screen.              |
-| callback | AsyncCallback&lt;number&gt;                     | Yes  | Callback used to return the group ID of the expanded screens, which is an integer.|
+| callback | AsyncCallback&lt;number&gt;                     | Yes  | Callback used to return the group ID of the extended screens, where the ID is an integer.|
 
 **Error codes**
 
@@ -213,7 +213,7 @@ screen.makeExpand(expandOptionArray, (err: BusinessError, data: number) => {
 
 makeExpand(options:Array&lt;ExpandOption&gt;): Promise&lt;number&gt;
 
-Sets the screen to the expanded mode. This API uses a promise to return the result.
+Sets the screen to extended mode. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -227,7 +227,7 @@ Sets the screen to the expanded mode. This API uses a promise to return the resu
 
 | Type                 | Description                             |
 | --------------------- |---------------------------------|
-| Promise&lt;number&gt; | Promise used to return the group ID of the expanded screens, which is an integer.|
+| Promise&lt;number&gt; | Promise used to return the group ID of the extended screens, where the ID is an integer.|
 
 **Error codes**
 
@@ -264,7 +264,7 @@ screen.makeExpand(expandOptionArray).then((
 
 stopExpand(expandScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-Stops the expanded mode. This API uses an asynchronous callback to return the result.
+Stops extended mode. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -272,8 +272,8 @@ Stops the expanded mode. This API uses an asynchronous callback to return the re
 
 | Name| Type| Mandatory| Description                                     |
 | ------------ | --------------------------- | --- |-----------------------------------------|
-| expandScreen | Array&lt;number&gt;         | Yes  |  IDs of the expanded screens. Each ID must be an integer. The size of the expandScreen array cannot exceed 1000. |
-| callback     | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the expanded mode is stopped, **err** is **undefined**; otherwise, **err** is an error object.|
+| expandScreen | Array&lt;number&gt;         | Yes  | IDs of the extended screens. Each ID must be an integer. The size of the **expandScreen** array cannot exceed 1000. |
+| callback     | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If extended mode is stopped, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -305,7 +305,7 @@ screen.stopExpand(expandScreenIds, (err: BusinessError) => {
 
 stopExpand(expandScreen:Array&lt;number&gt;): Promise&lt;void&gt;
 
-Stops the expanded mode. This API uses a promise to return the result.
+Stops extended mode. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -313,7 +313,7 @@ Stops the expanded mode. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description                |
 | ------------ | ------------------- | --- |--------------------|
-| expandScreen | Array&lt;number&gt; | Yes  |  IDs of the expanded screens. Each ID must be an integer. The size of the expandScreen array cannot exceed 1000.|
+| expandScreen | Array&lt;number&gt; | Yes  | IDs of the extended screens. Each ID must be an integer. The size of the expandScreen array cannot exceed 1000.|
 
 **Return value**
 
@@ -348,7 +348,7 @@ screen.stopExpand(expandScreenIds).then(() => {
 
 makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;number&gt;): void
 
-Sets screen mirroring. This API uses an asynchronous callback to return the result.
+Sets the screen to mirror mode. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -356,9 +356,9 @@ Sets screen mirroring. This API uses an asynchronous callback to return the resu
 
 | Name      | Type                       | Mandatory| Description                |
 | ------------ | --------------------------- | ---- |--------------------|
-| mainScreen   | number                      | Yes  | ID of the primary screen. The value must be an integer. |
-| mirrorScreen | Array&lt;number&gt;         | Yes  |  IDs of secondary screens. Each ID must be an integer.|
-| callback     | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the group ID of the secondary screens, which is an integer. |
+| mainScreen   | number                      | Yes  | ID of the primary screen. The ID must be an integer. |
+| mirrorScreen | Array&lt;number&gt;         | Yes  | Array of IDs of secondary screens. Each ID must be an integer.|
+| callback     | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the group ID of the secondary screens, where the ID is an integer. |
 
 **Error codes**
 
@@ -391,7 +391,7 @@ screen.makeMirror(mainScreenId, mirrorScreenIds, (err: BusinessError, data: numb
 
 makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;): Promise&lt;number&gt;
 
-Sets screen mirroring. This API uses a promise to return the result.
+Sets the screen to mirror mode. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -399,14 +399,14 @@ Sets screen mirroring. This API uses a promise to return the result.
 
 | Name      | Type               | Mandatory| Description                |
 | ------------ | ------------------- | ---- |--------------------|
-| mainScreen   | number              | Yes  | ID of the primary screen. The value must be an integer. |
-| mirrorScreen | Array&lt;number&gt; | Yes  | IDs of secondary screens. Each ID must be an integer.|
+| mainScreen   | number              | Yes  | ID of the primary screen. The ID must be an integer. |
+| mirrorScreen | Array&lt;number&gt; | Yes  | Array of IDs of secondary screens. Each ID must be an integer.|
 
 **Return value**
 
 | Type                 | Description                             |
 | --------------------- |---------------------------------|
-| Promise&lt;number&gt; | Promise used to return the group ID of the secondary screens, which is an integer.|
+| Promise&lt;number&gt; | Promise used to return the group ID of the secondary screens, where the ID is an integer.|
 
 **Error codes**
 
@@ -436,7 +436,7 @@ screen.makeMirror(mainScreenId, mirrorScreenIds).then((data: number) => {
 
 stopMirror(mirrorScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-Stops screen mirroring. This API uses an asynchronous callback to return the result.
+Stops mirror mode. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -444,8 +444,8 @@ Stops screen mirroring. This API uses an asynchronous callback to return the res
 
 | Name| Type| Mandatory| Description                                     |
 | ------------ | --------------------------- | --- |-----------------------------------------|
-| mirrorScreen | Array&lt;number&gt;         | Yes  |  IDs of secondary screens. Each ID must be an integer. The size of the mirrorScreen array cannot exceed 1000.|
-| callback     | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If screen mirroring is stopped, **err** is **undefined**; otherwise, **err** is an error object.|
+| mirrorScreen | Array&lt;number&gt;         | Yes  | Array of IDs of secondary screens. Each ID must be an integer. The size of the mirrorScreen array cannot exceed 1000.|
+| callback     | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If mirror mode is stopped, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -477,7 +477,7 @@ screen.stopMirror(mirrorScreenIds, (err: BusinessError) => {
 
 stopMirror(mirrorScreen:Array&lt;number&gt;): Promise&lt;void&gt;
 
-Stops screen mirroring. This API uses a promise to return the result.
+Stops mirror mode. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -485,7 +485,7 @@ Stops screen mirroring. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description                |
 | ------------ | ------------------- | --- |--------------------|
-| mirrorScreen | Array&lt;number&gt; | Yes  |  IDs of secondary screens. Each ID must be an integer. The size of the mirrorScreen array cannot exceed 1000.|
+| mirrorScreen | Array&lt;number&gt; | Yes  | Array of IDs of secondary screens. Each ID must be an integer. The size of the **mirrorScreen** array cannot exceed 1000.|
 
 **Return value**
 
@@ -1129,16 +1129,16 @@ Before calling any API in **Screen**, you must use **[getAllScreens()](#screenge
 
 ### Attributes
 
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name             | Type                                      | Readable| Writable| Description                                                         |
+| Name             | Type                                      | Read-Only| Optional| Description                                                         |
 | ----------------- | ---------------------------------------------- | ---- | ---- |-------------------------------------------------------------|
-| id                | number                                         | Yes  | No  | Screen ID. The value must be an integer.                                             |
-| parent            | number                                         | Yes  | No  | ID of the group to which a screen belongs. The value must be an integer.                                         |
-| supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | Yes  | No  | Mode set supported by the screen.                                                 |
-| activeModeIndex   | number                                         | Yes  | No  | Index of the active screen mode. The current value and value range of this parameter vary according to the screen resolution, refresh rate, and device hardware. The value must be an integer.|
-| orientation       | [Orientation](#orientation)                     | Yes  | No  | Screen orientation.                                                      |
-| sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | Yes  | No  | Source mode of the screen.                                                    |
+| id                | number                                         | Yes  | No  | Screen ID. The value must be an integer.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core                                             |
+| parent            | number                                         | Yes  | No  | ID of the group to which a screen belongs. The value must be an integer.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core                                         |
+| supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | Yes  | No  | Mode set supported by the screen.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core                                                 |
+| activeModeIndex   | number                                         | Yes  | No  | Index of the active screen mode. The current value and value range of this parameter vary according to the screen resolution, refresh rate, and device hardware. The value must be an integer.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
+| orientation       | [Orientation](#orientation)                     | Yes  | No  | Screen orientation.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core                                                      |
+| sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | Yes  | No  | Source mode of the screen.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core                                                    |
+| serialNumber<sup>15+</sup> | string        | Yes  | Yes  | Serial number of the extended screen. Currently, this property is available only for 2-in-1 devices.  <br>**System capability**: SystemCapability.WindowManager.WindowManager                        |       
 
 ### setOrientation
 

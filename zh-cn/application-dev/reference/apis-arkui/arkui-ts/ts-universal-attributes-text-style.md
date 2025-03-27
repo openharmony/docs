@@ -40,7 +40,7 @@ fontSize(value: number | string | Resource)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Resource](ts-types.md#resource)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string | 是   | 字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp。不支持设置百分比字符串。 |
+| value  | [Resource](ts-types.md#resource)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string | 是   | 字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp。string类型支持number类型取值的字符串形式，可以附带单位，例如"10"、"10fp"，不支持设置百分比字符串。 |
 
 ## fontStyle
 
@@ -142,7 +142,7 @@ decoration(value: DecorationStyleInterface)
 @Component
 struct TextStyleExample {
   build() {
-    Column({ space: 5 }) {
+    Column({ space: 8 }) {
       Text('default text')
       
       Text('text font color red').fontColor(Color.Red)
@@ -167,6 +167,32 @@ struct TextStyleExample {
         .fontColor(Color.Orange)
         .fontSize(18)
         .fontStyle(FontStyle.Normal)
+
+      Text('text lineHeight 30')
+        .lineHeight(30)
+        .backgroundColor(Color.Gray)
+
+      Text('text fontFamily HarmonyOS Sans')
+        .fontFamily("HarmonyOS Sans")
+
+      Text('Underline Black SOLID decoration text')
+        .decoration({
+          type: TextDecorationType.Underline,
+          color: Color.Black,
+          style: TextDecorationStyle.SOLID
+        })
+      Text('Overline Red DOTTED decoration text')
+        .decoration({
+          type: TextDecorationType.Overline,
+          color: Color.Red,
+          style: TextDecorationStyle.DOTTED
+        })
+      Text('LineThrough Orange SOLID decoration text')
+        .decoration({
+          type: TextDecorationType.LineThrough,
+          color: Color.Orange,
+          style: TextDecorationStyle.WAVY
+        })
     }.width('100%')
   }
 }

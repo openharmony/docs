@@ -30,12 +30,12 @@
 | ------------------------------------------------------------ | ---------------------------------------------------- |
 | setRestoreEnabled(enabled: boolean): void | 设置当[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)从后台切换回时是否启用恢复。|
 
-**[setRestoreEnabled](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetrestoreenabled14):** 需要在应用初始化阶段调用（[onForeground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonforeground)前），比如[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的[onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)调用。
+**[setRestoreEnabled](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetrestoreenabled14)：** 需要在应用初始化阶段调用（[onForeground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonforeground)前），比如[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的[onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)调用。
 
 
 ## 开发步骤
 
-开发者需要在应用模块初始化时启用[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)备份恢复功能。示例如下。
+开发者需要在应用模块初始化时启用[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)备份恢复功能。
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
@@ -48,7 +48,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-开发者主动保存数据，在UIAbility启动时恢复。下面为示例。
+开发者主动保存数据，在UIAbility启动时恢复。
 
 ```ts
 import { AbilityConstant，UIAbility，Want } from '@kit.AbilityKit';

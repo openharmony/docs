@@ -2834,14 +2834,14 @@ getOsAccountDomainInfo(localId: number): Promise&lt;DomainAccountInfo&gt;;
 
 | 类型                   | 说明                                                               |
 | ---------------------- | ----------------------------------------------------------------- |
-| Promise&lt;DomainAccountInfo&gt; | Promise对象。返回与指定系统账号关联的域账号信息。 |
+| Promise&lt;[DomainAccountInfo](#domainaccountinfo8)&gt; | Promise对象。返回与指定系统账号关联的域账号信息。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
 | 201 | Permission denied. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | The system service works abnormally. |
 | 12300003 | OS account not found. |
 
@@ -2875,15 +2875,15 @@ getOsAccountDomainInfo(localId: number): Promise&lt;DomainAccountInfo&gt;;
 | localName                      | string                                                       | 是   | 系统账号名称。                    |
 | type                           | [OsAccountType](#osaccounttype)                              | 是   | 系统账号类型。                      |
 | constraints                    | Array&lt;string&gt;                                          | 是   | 系统账号[约束](#系统账号约束列表)，默认为空。|
-| isVerified<sup>(deprecated)</sup> | boolean                                                   | 是   | 账号是否验证。<br>**说明**: 从API version 7开始支持，从API version 11开始废弃。                     |
-| isUnlocked<sup>11+</sup>      | boolean                                                       | 是   | 账号是否已解锁（EL2级别目录是否解密）。                      |
+| isVerified<sup>(deprecated)</sup> | boolean                                                   | 是   | 账号是否验证。true表示指定账号已验证；false表示指定账号未验证。<br>**说明**：从API version 7开始支持，从API version 11开始废弃。           |
+| isUnlocked<sup>11+</sup>      | boolean                                                       | 是   | 账号是否已解锁（EL2级别目录是否解密）。true表示指定账号已解锁；false表示指定账号未解锁。                      |
 | photo<sup>8+</sup>             | string                                                       | 是   | 系统账号头像，默认为空。                      |
 | createTime<sup>8+</sup>        | number                                                       | 是   | 系统账号创建时间。                  |
 | lastLoginTime<sup>8+</sup>     | number                                                       | 是   | 系统账号最后一次登录时间，默认为空。          |
 | serialNumber<sup>8+</sup>      | number                                                       | 是   | 系统账号SN码。                      |
-| isActived<sup>(deprecated)</sup>         | boolean                                            | 是   | 系统账号激活状态。<br>**说明**: 从API version 7开始支持，从API version 11开始废弃。                  |
-| isActivated<sup>11+</sup>         | boolean                                                   | 是   | 系统账号激是否激活。                  |
-| isCreateCompleted<sup>8+</sup> | boolean                                                      | 是   | 系统账号创建是否完整。              |
+| isActived<sup>(deprecated)</sup>         | boolean                                            | 是   | 系统账号激活状态。true表示指定账号处于激活状态；false表示指定账号处于未激活状态。<br>**说明**：从API version 7开始支持，从API version 11开始废弃。                  |
+| isActivated<sup>11+</sup>         | boolean                                                   | 是   | 系统账号激是否激活。true表示指定账号已激活；false表示指定账号未激活。                  |
+| isCreateCompleted<sup>8+</sup> | boolean                                                      | 是   | 系统账号创建是否完整。true表示指定账号已创建完整；false表示指定账号未创建完整。              |
 | distributedInfo                | [distributedAccount.DistributedInfo](js-apis-distributed-account.md#distributedinfo) | 是   | 分布式账号信息，默认为空。                    |
 | domainInfo<sup>8+</sup>        | [DomainAccountInfo](#domainaccountinfo8)                      | 是   | 域账号信息，默认为空。                        |
 

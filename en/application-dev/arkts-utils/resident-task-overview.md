@@ -1,12 +1,12 @@
-# Concurrent Resident Task Scenarios
+# Overview of Concurrency in Resident Tasks
 
-During application service implementation, for some resident task scenarios that take a long time (more than 3 minutes) and have a small number of concurrent tasks, use **Worker** to run the time-consuming logic in the background thread, so as not to block the main thread or cause frame loss and lag that affect user experience.
+During the development of application services, certain tasks that are time-consuming (lasting longer than 3 minutes) and have low concurrency are best handled by running them in background threads using Worker. This approach prevents these tasks from blocking the UI main thread, which could otherwise lead to performance issues such as frame loss and freezing, ultimately degrading user experience.
 
-A resident task refers to a task that takes a longer time than a transient task. The lifecycle of a resident task may be the same as that of the UI main thread. Compared with long-term tasks, resident tasks tend to be bound to threads and run for a longer time (for example, more than 3 minutes).
+Persistent tasks are those that last significantly longer than transient tasks and may share the same lifecycle as the UI main thread. Unlike continuous tasks, persistent tasks are more tightly bound to their threads and typically have longer single-run durations (for example, over 3 minutes).
 
-Common service scenarios of resident tasks are as follows:
+The following describes typical service scenarios for resident tasks.
 
-| Common Service Scenario| Description|
+| Service Scenario| Description|
 | -------- | -------- |
-| Game platform scenario| Enables the child thread as the main logic thread of the game service. The UI thread is only responsible for rendering.|
-| Time-consuming task scenario| Long-time model prediction tasks or hardware tests in the background|
+| Game platform scenario| A child thread is launched to serve as the main logic thread for gaming services, whereas the UI thread is only responsible for rendering.|
+| Long-duration task scenario| Tasks that require extended periods of time in the background, such as model predictions or hardware testing.|

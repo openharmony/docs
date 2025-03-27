@@ -30,11 +30,12 @@ A result set is a set of results returned by **query()**.
 
 | Name| Description|
 | -------- | -------- |
-| typedef struct [OH_Cursor](_o_h___cursor.md) [OH_Cursor](_r_d_b.md#oh_cursor) | Defines a result set.| 
+| [OH_ColumnType](_r_d_b.md#oh_columntype) | Defines the field type in the database.  |
+| [OH_Cursor](_r_d_b.md#oh_cursor) | Defines a result set.  |
 
-### Functions
+
+### Enums
 
 | Name| Description| 
 | -------- | -------- |
-| int [OH_Cursor_GetFloatVectorCount](_r_d_b.md#oh_cursor_getfloatvectorcount) ([OH_Cursor](_o_h___cursor.md) \*cursor, int32_t columnIndex, size_t \*length) | Obtains the length of a floating-point array in the specified column of the current row.| 
-| int [OH_Cursor_GetFloatVector](_r_d_b.md#oh_cursor_getfloatvector) ([OH_Cursor](_o_h___cursor.md) \*cursor, int32_t columnIndex, float \*val, size_t inLen, size_t \*outLen) | Obtains the value in the specified column of the current row in the form of a floating-point array.| 
+| [OH_ColumnType](_r_d_b.md#oh_columntype-1) {<br/>TYPE_NULL = 0, TYPE_INT64, TYPE_REAL, TYPE_TEXT,<br/>TYPE_BLOB, TYPE_ASSET, TYPE_ASSETS<br/>} | Enumerates the types of the fields in the database.  |

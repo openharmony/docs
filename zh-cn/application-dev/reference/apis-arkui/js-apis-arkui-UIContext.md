@@ -32,6 +32,7 @@ getFont(): Font
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getFont();
 ```
@@ -53,6 +54,7 @@ getComponentUtils(): ComponentUtils
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getComponentUtils();
 ```
@@ -75,6 +77,7 @@ getUIInspector(): UIInspector
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getUIInspector();
 ```
@@ -97,6 +100,7 @@ getUIObserver(): UIObserver
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getUIObserver();
 ```
@@ -119,6 +123,7 @@ getMediaQuery(): MediaQuery
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getMediaQuery();
 ```
@@ -141,6 +146,7 @@ getRouter(): Router
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getRouter();
 ```
@@ -163,6 +169,7 @@ getPromptAction(): PromptAction
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getPromptAction();
 ```
@@ -185,13 +192,14 @@ getOverlayManager(): OverlayManager
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getOverlayManager();
 ```
 
 ### setOverlayManagerOptions<sup>15+</sup>
 
-setOverlayManagerOptions(value: OverlayManagerOptions): void
+setOverlayManagerOptions(options: OverlayManagerOptions): boolean
 
 设置[OverlayManager](#overlaymanager12)参数。用于在使用OverlayManager能力之前先初始化overlayManager的参数，包括是否需要渲染overlay根节点等属性。该方法需要在执行getOverlayManager方法之前执行生效，且该方法只生效一次。
 
@@ -203,10 +211,17 @@ setOverlayManagerOptions(value: OverlayManagerOptions): void
 
 | 参数名   | 类型                                       | 必填   | 说明                                    |
 | ----- | ---------------------------------------- | ---- | ------------------------------------- |
-| value | [OverlayManagerOptions](#overlaymanageroptions15) | 否    | OverlayManager参数。|
+| options | [OverlayManagerOptions](#overlaymanageroptions15) | 是  | OverlayManager参数。|
+
+**返回值：** 
+
+| 类型    | 说明           |
+| ------- | -------------- |
+| boolean | 是否设置成功。<br/>返回true时，设置成功。返回false时，设置失败。 |
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.setOverlayManagerOptions({ renderRootOverlay: true });
 ```
@@ -229,6 +244,7 @@ getOverlayManagerOptions(): OverlayManagerOptions
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getOverlayManagerOptions();
 ```
@@ -351,65 +367,42 @@ getSharedLocalStorage(): LocalStorage | undefined
 **示例：**
 
 ```ts
-// index.ets
-import { router } from '@kit.ArkUI';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  storage: LocalStorage = new LocalStorage();
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    windowStage.loadContent('pages/Index', this.storage);
+  }
+}
+```
+
+```ts
+// Index.ets
 
 @Entry
 @Component
 struct SharedLocalStorage {
-  localStorage = this.getUIContext().getSharedLocalStorage()
+  localStorage = this.getUIContext().getSharedLocalStorage();
 
   build() {
     Row() {
       Column() {
         Button("Change Local Storage to 47")
           .onClick(() => {
-            this.localStorage?.setOrCreate("propA",47)
+            this.localStorage?.setOrCreate("propA", 47);
           })
         Button("Get Local Storage")
           .onClick(() => {
-            console.info(`localStorage: ${this.localStorage?.get("propA")}`)
-          })
-        Button("To Page")
-          .onClick(() => {
-            router.pushUrl({
-              url: 'pages/GetSharedLocalStorage'
-            })
+            console.info(`localStorage: ${this.localStorage?.get("propA")}`);
           })
       }
       .width('100%')
     }
     .height('100%')
-  }
-}
-
-// GetSharedLocalStorage.ets
-import {router} from '@kit.ArkUI';
-
-@Entry
-@Component
-struct GetSharedLocalStorage {
-  localStorage = this.getUIContext().getSharedLocalStorage()
-
-  build() {
-    Row() {
-      Column() {
-        Button("Change Local Storage to 100")
-          .onClick(() => {
-            this.localStorage?.setOrCreate("propA",100)
-          })
-        Button("Get Local Storage")
-          .onClick(() => {
-            console.info(`localStorage: ${this.localStorage?.get("propA")}`)
-          })
-
-        Button("Back Index")
-          .onClick(() => {
-            router.back()
-          })
-      }
-      .width('100%')
-    }
   }
 }
 ```
@@ -481,6 +474,7 @@ getFrameNodeById(id: string): FrameNode | null
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getFrameNodeById("TestNode")
 ```
@@ -513,6 +507,7 @@ getAttachedFrameNodeById(id: string): FrameNode | null
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getAttachedFrameNodeById("TestNode")
 ```
@@ -684,6 +679,7 @@ showAlertDialog(options: AlertDialogParamWithConfirm | AlertDialogParamWithButto
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.showAlertDialog(
   {
@@ -724,6 +720,7 @@ showActionSheet(value: ActionSheetOptions): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.showActionSheet({
   title: 'ActionSheet title',
@@ -781,6 +778,7 @@ showDatePickerDialog(options: DatePickerDialogOptions): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 let selectedDate: Date = new Date("2010-1-1")
 uiContext.showDatePickerDialog({
@@ -965,6 +963,7 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 **示例：**
 
 ```ts
+// EntryAbility.ets
 import { AnimatorOptions, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -1012,6 +1011,7 @@ runScopedTask(callback: () => void): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.runScopedTask(
   () => {
@@ -1039,6 +1039,7 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 **示例：**
 
 ```ts
+// EntryAbility.ets
 import { KeyboardAvoidMode, UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -1077,6 +1078,7 @@ getKeyboardAvoidMode(): KeyboardAvoidMode
 **示例：**
 
 ```ts
+// EntryAbility.ets
 import { KeyboardAvoidMode, UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -1117,6 +1119,7 @@ getAtomicServiceBar(): Nullable\<AtomicServiceBar>
 **示例：**
 
 ```ts
+// EntryAbility.ets
 import { UIContext, AtomicServiceBar, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 onWindowStageCreate(windowStage: window.WindowStage) {
@@ -1151,6 +1154,7 @@ getDragController(): DragController
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getDragController();
 ```
@@ -1190,6 +1194,7 @@ getFocusController(): FocusController
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getFocusController();
 ```
@@ -1226,6 +1231,7 @@ getFilteredInspectorTree(filters?: Array\<string\>): string
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getFilteredInspectorTree(['id', 'src', 'content']);
 ```
@@ -1265,6 +1271,7 @@ getFilteredInspectorTreeById(id: string, depth: number, filters?: Array\<string\
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getFilteredInspectorTreeById('testId', 0, ['id', 'src', 'content']);
 ```
@@ -1287,6 +1294,7 @@ getCursorController(): CursorController
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.CursorController();
 ```
@@ -1309,6 +1317,7 @@ getContextMenuController(): ContextMenuController
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getContextMenuController();
 ```
@@ -1331,6 +1340,7 @@ getMeasureUtils(): MeasureUtils
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getMeasureUtils();
 ```
@@ -1353,6 +1363,7 @@ getComponentSnapshot(): ComponentSnapshot
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getComponentSnapshot();
 ```
@@ -1381,7 +1392,8 @@ vp2px(value : number) : number
 
 **示例：**
 
-```tx
+<!--code_no_check-->
+```ts
 uiContext.vp2px(200);
 ```
 
@@ -1409,7 +1421,8 @@ px2vp(value : number) : number
 
 **示例：**
 
-```tx
+<!--code_no_check-->
+```ts
 uiContext.px2vp(200);
 ```
 
@@ -1437,7 +1450,8 @@ fp2px(value : number) : number
 
 **示例：**
 
-```tx
+<!--code_no_check-->
+```ts
 uiContext.fp2px(200);
 ```
 
@@ -1465,7 +1479,8 @@ px2fp(value : number) : number
 
 **示例：**
 
-```tx
+<!--code_no_check-->
+```ts
 uiContext.px2fp(200);
 ```
 
@@ -1493,7 +1508,8 @@ lpx2px(value : number) : number
 
 **示例：**
 
-```tx
+<!--code_no_check-->
+```ts
 uiContext.lpx2px(200);
 ```
 
@@ -1521,7 +1537,8 @@ px2lpx(value : number) : number
 
 **示例：**
 
-```tx
+<!--code_no_check-->
+```ts
 uiContext.px2lpx(200);
 ```
 
@@ -1793,6 +1810,8 @@ requireDynamicSyncScene(id: string): Array&lt;DynamicSyncScene&gt;
 | Array&lt;DynamicSyncScene&gt; | 获取DynamicSyncScene对象数组。 |
 
 **示例：**
+
+<!--code_no_check-->
 ```ts
 uiContext.DynamicSyncScene("dynamicSyncScene")
 ```
@@ -2203,6 +2222,8 @@ isFollowingSystemFontScale(): boolean
 | boolean | 当前UI上下文是否跟随系统字体倍率。 |
 
 **示例：**
+
+<!--code_no_check-->
 ```ts
 uiContext.isFollowingSystemFontScale()
 ```
@@ -2224,6 +2245,8 @@ getMaxFontScale(): number
 | number | 当前UI上下文最大字体倍率。 |
 
 **示例：**
+
+<!--code_no_check-->
 ```ts
 uiContext.getMaxFontScale()
 ```
@@ -2232,7 +2255,7 @@ uiContext.getMaxFontScale()
 
 bindTabsToScrollable(tabsController: TabsController, scroller: Scroller): void;
 
-绑定Tabs组件和可滚动容器组件（支持[List](./arkui-ts/ts-container-list.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[Grid](./arkui-ts/ts-container-grid.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)），当滑动可滚动容器组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效。一个TabsController可与多个Scroller绑定，一个Scroller也可与多个TabsController绑定。
+绑定Tabs组件和可滚动容器组件（支持[List](./arkui-ts/ts-container-list.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[Grid](./arkui-ts/ts-container-grid.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)），当滑动可滚动容器组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效，上滑隐藏，下滑显示。一个TabsController可与多个Scroller绑定，一个Scroller也可与多个TabsController绑定。
 
 >  **说明：**
 >
@@ -2373,7 +2396,7 @@ unbindTabsFromScrollable(tabsController: TabsController, scroller: Scroller): vo
 
 bindTabsToNestedScrollable(tabsController: TabsController, parentScroller: Scroller, childScroller: Scroller): void;
 
-绑定Tabs组件和嵌套的可滚动容器组件（支持[List](./arkui-ts/ts-container-list.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[Grid](./arkui-ts/ts-container-grid.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)），当滑动父组件或子组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效。一个TabsController可与多个嵌套的Scroller绑定，嵌套的Scroller也可与多个TabsController绑定。
+绑定Tabs组件和嵌套的可滚动容器组件（支持[List](./arkui-ts/ts-container-list.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[Grid](./arkui-ts/ts-container-grid.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)），当滑动父组件或子组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效，上滑隐藏，下滑显示。一个TabsController可与多个嵌套的Scroller绑定，嵌套的Scroller也可与多个TabsController绑定。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -2413,6 +2436,83 @@ unbindTabsFromNestedScrollable(tabsController: TabsController, parentScroller: S
 
 参考[bindTabsToScrollable](#bindtabstoscrollable13)接口示例。
 
+### getTextMenuController<sup>16+</sup>
+
+getTextMenuController(): TextMenuController
+
+获取[TextMenuController](#textmenucontroller16)对象，可通过该对象控制文本选择菜单。
+
+**原子化服务API:** 从API Version 16 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+|类型|说明|
+|----|----|
+|[TextMenuController](#textmenucontroller16)| 获取TextMenuController对象。|
+
+**示例：**
+
+参考[TextMenuController](#textmenucontroller16)接口示例。
+
+### dispatchKeyEvent<sup>15+</sup>
+
+dispatchKeyEvent(node: number | string, event: KeyEvent): boolean
+
+按键事件应分发给指定的组件。为了确保行为的可预测性，目标组件必须位于分发组件的子树中。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型                          | 必填 | 说明               |
+| ------ | ----------------------------- | ---- | ------------------ |
+| node  | number \| string | 是   | 组件的id或者节点UniqueID。 |
+| event  |[KeyEvent](./arkui-ts/ts-universal-events-key.md#keyevent对象说明) | 是   | KeyEvent对象。 |
+
+**示例：**
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Row() {
+        Button('Button1').id('Button1').onKeyEvent((event) => {
+          console.log("Button1");
+          return true
+        })
+        Button('Button2').id('Button2').onKeyEvent((event) => {
+          console.log("Button2");
+          return true
+        })
+      }
+      .width('100%')
+      .height('100%')
+      .id('Row1')
+      .onKeyEventDispatch((event) => {
+        let context = this.getUIContext();
+        context.getFocusController().requestFocus('Button1');
+        return context.dispatchKeyEvent('Button1', event);
+      })
+
+    }
+    .height('100%')
+    .width('100%')
+    .onKeyEventDispatch((event) => {
+      if (event.type == KeyType.Down) {
+        let context = this.getUIContext();
+        context.getFocusController().requestFocus('Row1');
+        return context.dispatchKeyEvent('Row1', event);
+      }
+      return true;
+    })
+  }
+}
+```
+
 ## Font
 
 以下API需先使用UIContext中的[getFont()](#getfont)方法获取到Font对象，再通过该对象调用对应方法。
@@ -2435,6 +2535,7 @@ registerFont(options: font.FontOptions): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { Font } from '@kit.ArkUI';
 
@@ -2466,6 +2567,7 @@ getSystemFontList(): Array\<string>
 
 **示例：** 
 
+<!--code_no_check-->
 ```ts
 import { Font } from '@kit.ArkUI';
 
@@ -2499,6 +2601,7 @@ getFontByName(fontName: string): font.FontInfo
 
 **示例：** 
 
+<!--code_no_check-->
 ```ts
 import { Font } from '@kit.ArkUI';
 
@@ -2516,7 +2619,9 @@ type Context = common.Context
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 | 类型 |说明   |
 | ------ | ------------------- |
@@ -2558,6 +2663,7 @@ getRectangleById(id: string): componentUtils.ComponentInfo
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { ComponentUtils } from '@kit.ArkUI';
 
@@ -2575,7 +2681,7 @@ let localOffsetHeight = modePosition.size.height;
 
 createComponentObserver(id: string): inspector.ComponentObserver
 
-注册组件布局和绘制完成回调通知。
+注册组件布局和组件绘制送显完成回调通知。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2585,7 +2691,7 @@ createComponentObserver(id: string): inspector.ComponentObserver
 
 | 参数名  | 类型     | 必填   | 说明      |
 | ---- | ------ | ---- | ------- |
-| id   | string | 是    | 指定组件id。 |
+| id   | string | 是    | 指定组件id，该id通过通用属性[id](./arkui-ts/ts-universal-attributes-component-id.md#id)或者[key](./arkui-ts/ts-universal-attributes-component-id.md#key12)设置。 |
 
 **返回值：** 
 
@@ -2595,6 +2701,7 @@ createComponentObserver(id: string): inspector.ComponentObserver
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { UIInspector } from '@kit.ArkUI';
 
@@ -2637,13 +2744,55 @@ on(type: 'navDestinationUpdate', callback: Callback\<observer.NavDestinationInfo
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
-import { UIObserver } from '@kit.ArkUI';
+// Index.ets
+// 演示 uiObserver.on('navDestinationUpdate', callback)
+// uiObserver.off('navDestinationUpdate', callback)
 
-let observer:UIObserver = uiContext.getUIObserver();
-observer.on('navDestinationUpdate', (info) => {
-    console.info('NavDestination state update', JSON.stringify(info));
-});
+@Component
+struct PageOne {
+  build() {
+    NavDestination() {
+      Text("pageOne")
+    }.title("pageOne")
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  aboutToAppear() {
+    this.getUIContext().getUIObserver().on('navDestinationUpdate', (info) => {
+      console.info('NavDestination state update', JSON.stringify(info));
+    });
+  }
+
+  aboutToDisappear() {
+    this.getUIContext().getUIObserver().off('navDestinationUpdate');
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({ name: "pageOne" });
+        })
+      }
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ### off('navDestinationUpdate')<sup>11+</sup>
@@ -2665,12 +2814,7 @@ off(type: 'navDestinationUpdate', callback?: Callback\<observer.NavDestinationIn
 
 **示例：** 
 
-```ts
-import { UIObserver } from '@kit.ArkUI';
-
-let observer:UIObserver = uiContext.getUIObserver();
-observer.off('navDestinationUpdate');
-```
+参考[uiObserver.on('navDestinationUpdate')](#onnavdestinationupdate11)示例。
 
 ### on('navDestinationUpdate')<sup>11+</sup>
 
@@ -2692,13 +2836,55 @@ on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callbac
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
-import { UIObserver } from '@kit.ArkUI';
+// Index.ets
+// 演示 uiObserver.on('navDestinationUpdate', navigationId, callback)
+// uiObserver.off('navDestinationUpdate', navigationId, callback)
+@Component
+struct PageOne {
+  build() {
+    NavDestination() {
+      Text("pageOne")
+    }.title("pageOne")
+  }
+}
 
-let observer:UIObserver = uiContext.getUIObserver();
-observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
-    console.info('NavDestination state update', JSON.stringify(info));
-});
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  aboutToAppear() {
+    this.getUIContext().getUIObserver().on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
+      console.info('NavDestination state update', JSON.stringify(info));
+    });
+  }
+
+  aboutToDisappear() {
+    this.getUIContext().getUIObserver().off('navDestinationUpdate', { navigationId: "testId" });
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({ name: "pageOne" });
+        })
+      }
+      .id("testId")
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ### off('navDestinationUpdate')<sup>11+</sup>
@@ -2721,12 +2907,7 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 
 **示例：**
 
-```ts
-import { UIObserver } from '@kit.ArkUI';
-
-let observer:UIObserver = uiContext.getUIObserver();
-observer.off('navDestinationUpdate', { navigationId: "testId" });
-```
+参考[uiObserver.on('navDestinationUpdate')](#onnavdestinationupdate11-1)示例。
 
 ### on('scrollEvent')<sup>12+</sup>
 
@@ -3850,6 +4031,7 @@ matchMediaSync(condition: string): mediaQuery.MediaQueryListener
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { MediaQuery } from '@kit.ArkUI';
 
@@ -5236,6 +5418,7 @@ getState(): router.RouterState
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { Router } from '@kit.ArkUI';
 
@@ -5270,6 +5453,7 @@ getStateByIndex(index: number): router.RouterState | undefined
 
 **示例：** 
 
+<!--code_no_check-->
 ```ts
 import { Router } from '@kit.ArkUI';
 
@@ -5306,6 +5490,7 @@ getStateByUrl(url: string): Array<router.[RouterState](js-apis-router.md#outerst
 
 **示例：** 
 
+<!--code_no_check-->
 ```ts
 import { Router } from '@kit.ArkUI';
 let router: Router = uiContext.getRouter();
@@ -5345,6 +5530,7 @@ showAlertBeforeBackPage(options: router.EnableAlertOptions): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5373,6 +5559,7 @@ hideAlertBeforeBackPage(): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { Router } from '@kit.ArkUI';
 
@@ -5394,9 +5581,11 @@ getParams(): Object
 
 | 类型     | 说明                |
 | ------ | ----------------- |
-| object | 发起跳转的页面往当前页传入的参数。 |
+| Object | 发起跳转的页面往当前页传入的参数。 |
 
 **示例：**
+
+<!--code_no_check-->
 
 ```ts
 import { Router } from '@kit.ArkUI';
@@ -5436,6 +5625,7 @@ showToast(options: promptAction.ShowToastOptions): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { PromptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5480,6 +5670,8 @@ showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;p
 | 100001 | Internal error. |
 
 **示例：**
+
+<!--code_no_check-->
 
 ```ts
 import { PromptAction } from '@kit.ArkUI';
@@ -5547,6 +5739,7 @@ showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.Sho
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { PromptAction } from '@kit.ArkUI';
 
@@ -5601,6 +5794,7 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { PromptAction, promptAction  } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5661,6 +5855,7 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: [promptAction.
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { PromptAction,promptAction  } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5720,6 +5915,7 @@ showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { PromptAction } from '@kit.ArkUI';
 
@@ -6028,7 +6224,7 @@ struct Index {
 
 openCustomDialog(options: promptAction.CustomDialogOptions): Promise\<number>
 
-创建并弹出自定义弹窗。使用Promise异步回调，返回供closeCustomDialog使用的对话框id。暂不支持isModal = true与showInSubWindow = true同时使用。
+创建并弹出自定义弹窗。使用Promise异步回调，返回供closeCustomDialog使用的对话框id。暂不支持[isModal](js-apis-promptAction.md#basedialogoptions11) = true与[showInSubWindow](js-apis-promptAction.md#customdialogoptions11) = true同时使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -6541,7 +6737,7 @@ setDragEventStrictReportingEnabled(enable: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| enable | boolean | 是   | 将目标从父组件拖拽到子组件时，是否会触发父组件的onDragLeave的回调。 |
+| enable | boolean | 是   | 将目标从父组件拖拽到子组件时，是否会触发父组件的onDragLeave的回调。true表示触发父组件的onDragLeave的回调，false表示不触发。 |
 
 **示例：**
 
@@ -6567,6 +6763,30 @@ import { window, UIContext } from '@kit.ArkUI';
  }
 }
 ```
+### cancelDataLoading<sup>15+</sup>
+
+cancelDataLoading(key: string): void
+
+当使用[startDataLoading](arkui-ts/ts-universal-events-drag-drop.md#dragevent7)获取拖拽数据时，可调用该接口取消数据传输。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** : SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| key | string | 是   | 拖拽数据的标识，用于区分每次拖拽。key可通过startDataLoading接口获取。 |
+
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[拖拽事件错误码](./errorcode-drag-event.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. |
+| 190004      | Operation failed. |
 
 ## OverlayManager<sup>12+</sup>
 
@@ -6792,7 +7012,7 @@ hideAllComponentContents(): void
 
 | 名称             | 类型                | 必填     | 说明                     |
 | --------------- | ---------------------- | ------------ | --------------------- |
-| renderRootOverlay   | boolean | 否 | 是否渲染overlay根节点，默认值为true。 |
+| renderRootOverlay   | boolean | 否 | 是否渲染overlay根节点，true表示渲染overlay根节点，false表示不渲染overlay根节点，默认值为true。|
 
 ## AtomicServiceBar<sup>11+</sup>
 
@@ -6818,7 +7038,7 @@ setVisible(visible: boolean): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | ------- | ------- | ------- |
-| visible | boolean | 是 | 原子化服务menuBar是否可见。|
+| visible | boolean | 是 | 原子化服务menuBar是否可见。true表示设置menuBar可见，false表示设置menuBar不可见。|
 
 
 **示例：**
@@ -6860,7 +7080,7 @@ setBackgroundColor(color:Nullable<Color | number | string>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------ |
-| color | Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | 是 | 通过该方法设置原子化服务menuBar的背景颜色，undefined代表使用默认颜色。|
+| color | Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | 是 | 通过该方法设置原子化服务menuBar的背景颜色，undefined代表使用默认颜色。number为HEX格式颜色，支持rgb或者argb，示例：0xffffff。string为rgb或者argb格式颜色，示例：'#ffffff'。|
 
 **示例：**
 
@@ -6982,7 +7202,7 @@ setIconColor(color:Nullable<Color | number | string>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | ------- | ------- | ------- |
-| color | Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | 是 | 原子化服务图标的颜色，undefined代表使用默认颜色。 |
+| color | Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | 是 | 原子化服务图标的颜色，undefined代表使用默认颜色。number为HEX格式颜色，支持rgb或者argb，示例：0xffffff。string为rgb或者argb格式颜色，示例：'#ffffff'。 |
 
 
 **示例：**
@@ -7006,6 +7226,51 @@ onWindowStageCreate(windowStage: window.WindowStage) {
   });
 }
 ```
+
+### getBarRect<sup>15+</sup>
+
+getBarRect(): Frame
+
+获取原子化服务menuBar相对窗口的布局信息。
+> **说明：**
+>
+> 布局信息包含了原子化服务menuBar的左右margin。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                | 说明            |
+| ----------------- | ------------- |
+| [Frame](./js-apis-arkui-graphics.md#frame) | 原子化服务menuBar的大小和位置。 |
+
+**示例：**
+
+```ts
+import { AtomicServiceBar } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+@Entry
+@Component
+struct Index {
+  build() {
+    Button("getBarRect")
+      .onClick(() => {
+        let uiContext: UIContext = this.getUIContext();
+        let currentBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
+        if (currentBar != undefined) {
+          let rect = currentBar.getBarRect();
+          hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully. x:' +
+            rect.x + ' y:' + rect.y + ' width:' + rect.width + ' height:' + rect.height);
+        } else {
+          hilog.info(0x0000, 'testTag', 'Get AtomServiceBar failed.');
+        }
+      })
+  }
+}
+```
+
 ## KeyboardAvoidMode<sup>11+</sup>
 
 配置键盘避让时页面的避让模式。
@@ -7229,7 +7494,7 @@ setAutoFocusTransfer(isAutoFocusTransfer: boolean): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | ------- | ------- | ------- |
-| isAutoFocusTransfer | boolean| 是 | 设置页面切换时，新的页面是否需要主动获取焦点，例如[Router](js-apis-router.md#routerpushurl9)、[Navigation](arkui-ts/ts-basic-components-navigation.md#navigation)、[Menu](arkui-ts/ts-basic-components-menu.md#menu)、[Dialog](arkui-ts/ohos-arkui-advanced-Dialog.md)、[Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup)等。默认值为true。 |
+| isAutoFocusTransfer | boolean| 是 | 设置页面切换时，新的页面是否需要主动获取焦点，例如[Router](js-apis-router.md#routerpushurl9)、[Navigation](arkui-ts/ts-basic-components-navigation.md#navigation)、[Menu](arkui-ts/ts-basic-components-menu.md#menu)、[Dialog](arkui-ts/ohos-arkui-advanced-Dialog.md)、[Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup)等。true表示需要主动获取焦点，false表示不需要主动获取焦点。默认值为true。 |
 
 ```ts
 @CustomDialog
@@ -7278,6 +7543,69 @@ struct CustomDialogUser {
   }
 }
 ```
+
+### setKeyProcessingMode<sup>15+</sup>
+
+setKeyProcessingMode(mode: KeyProcessingMode): void
+
+设置按键事件处理的优先级。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------- | ------- | ------- | ------- |
+| mode | [KeyProcessingMode](./arkui-ts/ts-universal-attributes-focus.md#keyprocessingmode15)| 是 | 按键处理模式。 |
+
+```ts
+
+// 该示例演示了在页面加载完成后设置走焦类型的实现方式。
+@Entry
+@Component
+struct Index {
+
+  aboutToAppear() {
+    this.getUIContext().getFocusController().setKeyProcessingMode(KeyProcessingMode.ANCESTOR_EVENT)
+  }
+
+  build() {
+    Row() {
+      Row() {
+        Button('Button1').id('Button1').onKeyEvent((event) => {
+          console.log("Button1");
+          return true
+        })
+        Button('Button2').id('Button2').onKeyEvent((event) => {
+          console.log("Button2");
+          return true
+        })
+      }
+      .width('100%')
+      .height('100%')
+      .id('Row1')
+      .onKeyEventDispatch((event) => {
+        let context = this.getUIContext();
+        context.getFocusController().requestFocus('Button1');
+        return context.dispatchKeyEvent('Button1', event);
+      })
+    }
+    .height('100%')
+    .width('100%')
+    .onKeyEventDispatch((event) => {
+      if (event.type == KeyType.Down) {
+        let context = this.getUIContext();
+        context.getFocusController().requestFocus('Row1');
+        return context.dispatchKeyEvent('Row1', event);
+      }
+      return true;
+    })
+  }
+}
+```
+
 ## PointerStyle<sup>12+</sup>
 
 type PointerStyle = pointer.PointerStyle
@@ -7948,6 +8276,197 @@ struct SnapshotExample {
 }
 ```
 
+### getWithUniqueId<sup>15+</sup>
+
+getWithUniqueId(uniqueId: number, options?: componentSnapshot.SnapshotOptions): Promise<image.PixelMap>
+
+获取已加载的组件的截图，传入组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12)，找到对应组件进行截图。通过Promise返回结果。
+
+> **说明：**
+>
+> 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型     | 必填   | 说明                                       |
+| ---- | ------ | ---- | ---------------------------------------- |
+| uniqueId   | number | 是    | 目标组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12) |
+| options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
+
+**返回值：**
+
+| 类型                                                         | 说明             |
+| ------------------------------------------------------------ | ---------------- |
+| Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
+
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Invalid ID.                                                  |
+
+**示例：**
+
+```ts
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
+import { UIContext } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  public node: FrameNode | null = null;
+
+  public imageNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.node = new FrameNode(uiContext);
+    this.node.commonAttribute.width('100%').height('100%')
+
+    let image = typeNode.createNode(uiContext, 'Image');
+    image.initialize($r('app.media.img')).width('100%').height('100%').autoResize(true)
+    this.imageNode = image;
+
+    this.node.appendChild(image);
+    return this.node;
+  }
+}
+
+@Entry
+@Component
+struct SnapshotExample {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  @State pixmap: image.PixelMap | undefined = undefined
+
+  build() {
+    Column() {
+      Row() {
+        Image(this.pixmap).width(200).height(200).border({ color: Color.Black, width: 2 }).margin(5)
+        NodeContainer(this.myNodeController).width(200).height(200).margin(5)
+      }
+      Button("UniqueId get snapshot")
+        .onClick(() => {
+          try {
+            this.getUIContext()
+              .getComponentSnapshot()
+              .getWithUniqueId(this.myNodeController.imageNode?.getUniqueId(), {scale: 2, waitUntilRenderFinished: true})
+              .then((pixmap: image.PixelMap) => {
+                this.pixmap = pixmap
+              })
+              .catch((err: Error) => {
+                console.log("error: " + err)
+              })
+          } catch (error) {
+            console.error("UniqueId get snapshot Error: " + JSON.stringify(error))
+          }
+        }).margin(10)
+    }
+    .width('100%')
+    .height('100%')
+    .alignItems(HorizontalAlign.Center)
+  }
+}
+```
+
+### getSyncWithUniqueId<sup>15+</sup>
+
+getSyncWithUniqueId(uniqueId: number, options?: componentSnapshot.SnapshotOptions): image.PixelMap
+
+获取已加载的组件的截图，传入组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12)，找到对应组件进行截图。同步等待截图完成返回[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)。
+
+> **说明：**
+>
+> 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型     | 必填   | 说明                                       |
+| ---- | ------ | ---- | ---------------------------------------- |
+| uniqueId   | number | 是    | 目标组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12) |
+| options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
+
+**返回值：**
+
+| 类型                            | 说明       |
+| ----------------------------- | -------- |
+| image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 截图返回的结果。 |
+
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
+| 错误码ID  | 错误信息                |
+| ------ | ------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 100001 | Invalid ID. |
+| 160002 | Timeout. |
+
+**示例：**
+
+```ts
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
+import { UIContext } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  public node: FrameNode | null = null;
+
+  public imageNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.node = new FrameNode(uiContext);
+    this.node.commonAttribute.width('100%').height('100%')
+
+    let image = typeNode.createNode(uiContext, 'Image');
+    image.initialize($r('app.media.img')).width('100%').height('100%').autoResize(true)
+    this.imageNode = image;
+
+    this.node.appendChild(image);
+    return this.node;
+  }
+}
+
+@Entry
+@Component
+struct SnapshotExample {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  @State pixmap: image.PixelMap | undefined = undefined
+
+  build() {
+    Column() {
+      Row() {
+        Image(this.pixmap).width(200).height(200).border({ color: Color.Black, width: 2 }).margin(5)
+        NodeContainer(this.myNodeController).width(200).height(200).margin(5)
+      }
+      Button("UniqueId getSync snapshot")
+        .onClick(() => {
+          try {
+            this.pixmap = this.getUIContext()
+              .getComponentSnapshot()
+              .getSyncWithUniqueId(this.myNodeController.imageNode?.getUniqueId(), {scale: 2, waitUntilRenderFinished: true})
+          } catch (error) {
+            console.error("UniqueId getSync snapshot Error: " + JSON.stringify(error))
+          }
+        }).margin(10)
+    }
+    .width('100%')
+    .height('100%')
+    .alignItems(HorizontalAlign.Center)
+  }
+}
+```
+
 ## FrameCallback<sup>12+</sup>
 
 用于设置下一帧渲染时需要执行的任务。需要配合[UIContext](#uicontext)中的[postFrameCallback](#postframecallback12)和[postDelayedFrameCallback](#postdelayedframecallback12)使用。开发者需要继承该类并重写[onFrame](#onframe12)或[onIdle](#onidle12)方法，实现具体的业务逻辑。
@@ -8322,6 +8841,66 @@ struct MarqueeExample {
         .fontSize(30)
     }
     .width('100%')
+    .height('100%')
+  }
+}
+```
+
+## TextMenuController<sup>16+</sup>
+以下API需先使用UIContext中的[getTextMenuController()](js-apis-arkui-UIContext.md#gettextmenucontroller16)方法获取TextMenuController实例，再通过此实例调用对应方法。
+
+### setMenuOptions<sup>16+</sup>
+
+setMenuOptions(options: TextMenuOptions): void
+
+设置菜单选项。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名      | 类型         | 必填   | 说明   |
+| -------- | ---------- | ---- | ---- |
+| options | [TextMenuOptions](../apis-arkui/arkui-ts/ts-text-common.md#textmenuoptions16对象说明)| 是    | 设置菜单选项。<br />默认值:{showMode: TextMenuShowMode.DEFAULT} |
+
+**示例：**
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  aboutToAppear(): void {
+    // 设置在对应的UIContext下优先使用独立窗口显示文本选择菜单
+    this.getUIContext()
+      .getTextMenuController()
+      .setMenuOptions(
+        {
+          showMode: TextMenuShowMode.PREFER_WINDOW
+        }
+      )
+  }
+
+  build() {
+    Row() {
+      Column() {
+        TextInput({ text: "这是一个TextInput，长按弹出文本选择菜单" })
+          .height(60)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .textAlign(TextAlign.Center)
+          .caretStyle({ width: '4vp' })
+
+        Text("这是一个Text，长按弹出文本选择菜单")
+          .height(60)
+          .copyOption(CopyOptions.InApp)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .textAlign(TextAlign.Center)
+      }.width('100%')
+    }
     .height('100%')
   }
 }

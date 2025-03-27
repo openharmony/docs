@@ -45,16 +45,11 @@ This callback can also be invoked through the **rebuild()** method of **NodeCont
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [FrameNode](./js-apis-arkui-frameNode.md#framenode)\| null | **FrameNode** object, which will be mounted to the placeholder node of the **NodeContainer** component. If a **null** object is returned, the child nodes of the corresponding **NodeContainer** component are removed.|
 
-> **NOTE**
-> Since the **rebuild** API is actively called by the application and is tied to the UI, you need to ensure that the UI context is valid at the time of the call, that is, it must be consistent with the UI context of the bound NodeContainer.
->
-> In cases where the UI context is unclear, for example, during event callbacks, you can use the [runScopedTask](./js-apis-arkui-UIContext.md#runscopedtask) method of [UIContext](./js-apis-arkui-UIContext.md) to explicitly define the UI context at the time of the call.
-
 ### aboutToAppear
 
 aboutToAppear?(): void
 
-Called after the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component bound to this **NodeController** instance is mounted and about to be displayed.
+Called after the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component bound to this **NodeController** instance is attached and about to appear.
 
 > **NOTE**
 >
@@ -68,7 +63,7 @@ Called after the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#n
 
 aboutToDisappear?(): void
 
-Called when the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component bound to this **NodeController** instance is unmounted and about to be hidden.
+Called when the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component bound to this **NodeController** instance is detached and about to be hidden.
 
 > **NOTE**
 >
@@ -120,7 +115,14 @@ Instructs the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#node
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+> **NOTE**
+> Since the **rebuild** API is actively called by the application and is tied to the UI, you need to ensure that the UI context is valid at the time of the call, that is, it must be consistent with the UI context of the bound NodeContainer.
+>
+> In cases where the UI context is unclear, for example, during event callbacks, you can use the [runScopedTask](./js-apis-arkui-UIContext.md#runscopedtask) method of [UIContext](./js-apis-arkui-UIContext.md) to explicitly define the UI context at the time of the call.
+
 ### Example
+
+This example shows how to mount a BuilderNode using **NodeController**.
 
 ```ts
 import {  NodeController, BuilderNode, Size, FrameNode ,UIContext } from '@kit.ArkUI';

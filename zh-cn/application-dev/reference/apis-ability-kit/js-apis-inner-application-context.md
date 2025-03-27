@@ -23,7 +23,7 @@ import { common } from '@kit.AbilityKit';
 | applicationInfo     | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | 否    | 否    | 当前应用程序的信息。 <br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | cacheDir            | string | 否    | 否    | 缓存目录。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | tempDir             | string | 否    | 否    | 临时目录。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| resourceDir<sup>11+<sup>         | string | 否    | 否    | 资源目录。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| resourceDir<sup>11+<sup>         | string | 否    | 否    | 资源目录。<br>**说明**：需要开发者手动在`\<module-name>\resource`路径下创建`resfile`目录。创建的`resfile`目录仅支持以只读方式访问。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | filesDir            | string | 否    | 否    | 文件目录。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | databaseDir         | string | 否    | 否    | 数据库目录。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | preferencesDir      | string | 否    | 否    | preferences目录。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -228,6 +228,55 @@ export default class EntryAbility extends UIAbility {
         console.log(`getGroupDir result is: ${JSON.stringify(data)}`);
       }
     });
+  }
+}
+```
+
+## Context.createDisplayContext<sup>15+</sup>
+
+createDisplayContext(displayId: number): Context
+
+根据指定的物理屏幕ID创建应用上下文，以便于获取和使用其他带有屏幕信息（包括屏幕密度[ScreenDensity](../apis-localization-kit/js-apis-resource-manager.md#screendensity)和屏幕方向[Direction](../apis-localization-kit/js-apis-resource-manager.md#direction)）的应用上下文。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                     |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------ |
+| displayId | number | 是    | 物理屏幕ID。 |
+
+**返回值：**
+
+| 类型    | 说明                   |
+| ------- | ---------------------- |
+| [Context](#context) | 带有指定物理屏幕信息的上下文。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { common, UIAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    let displayContext: common.Context;
+    try {
+      displayContext = this.context.createDisplayContext(0);
+    } catch (error) {
+      hilog.error(0x0000, 'testTag', 'createDisplayContext error is:%{public}s', JSON.stringify(error));
+    }
   }
 }
 ```

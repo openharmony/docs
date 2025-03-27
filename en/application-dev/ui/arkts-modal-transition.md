@@ -394,7 +394,7 @@ struct BindMenuDemo {
 
 ## Creating a Context Menu with bindContextMenu
 
-You can bind a menu to component through the [bindContextMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8) attribute. The menu can then be triggered by long-pressing or right-clicking.  
+You can bind a menu to component through the [bindContextMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8) attribute. The menu can then be triggered by long-pressing or right-clicking.
 
 Below is the complete sample code and effect.
 

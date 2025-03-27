@@ -14,6 +14,7 @@ HiDebug对外提供系统调试相关功能的接口，包括应用进程的静�
 | hidebug.getSharedDirty             | 获取进程的共享脏内存大小。                                   |
 | hidebug.getPrivateDirty            | 获取进程的私有脏内存大小。                                   |
 | hidebug.getCpuUsage                | 获取进程的CPU使用率。                                        |
+| hidebug.getServiceDump             | 获取系统服务信息。                                           |
 | hidebug.dumpJsHeapData             | 虚拟机堆导出。                                               |
 | hidebug.startJsCpuProfiling        | 启动虚拟机Profiling方法跟踪。                                |
 | hidebug.stopJsCpuProfiling         | 停止虚拟机Profiling方法跟踪。                                |
@@ -28,6 +29,7 @@ HiDebug对外提供系统调试相关功能的接口，包括应用进程的静�
 | hidebug.getSystemMemInfo           | 获取系统内存信息。                                           |
 | hidebug.getVMRuntimeStats          | 获取系统gc全部统计信息。                                     |
 | hidebug.getVMRuntimeStat           | 根据参数获取指定的系统gc统计信息。                           |
+| hidebug.isDebugState               | 获取应用进程被调试状态。                                     |
 | hidebug.getGraphicsMemory          | 使用异步方式获取应用显存大小。                    |
 | hidebug.getGraphicsMemorySync      | 使用同步方式获取应用显存大小。                    |
 
@@ -41,7 +43,7 @@ HiDebug的具体用法可查看API参考[API参考文档](../reference/apis-perf
 
 2. 工程配置界面中，**Model**选择“Stage”。
 
-3. 在**Project**窗口单击entry &gt; src &gt; main &gt; ets &gt; pages，打开工程中的Index.ets文件，
+3. 在**Project**窗口单击entry &gt; src &gt; main &gt; ets &gt; pages，打开工程中的Index.ets文件。
 
    新增一个方法调用hidebug接口，本文以hidebug.getSystemCpuUsage()为例，其他接口可参考[API参考文档](../reference/apis-performance-analysis-kit/js-apis-hidebug.md)。
 
@@ -83,6 +85,7 @@ HiDebug的具体用法可查看API参考[API参考文档](../reference/apis-perf
 4. 在真机上运行该工程，单击应用/服务界面上的“Hello World”文本。
 
 5. 在DevEco Studio的底部，切换到“Log”窗口，设置日志的过滤条件为“testTag”。
+
    此时窗口将显示通过hidebug.getSystemCpuUsage()接口获取的CPU使用率的相关日志。
    ```Text
 	08-20 11:06:01.891   1948-1948     A03d00/JSAPP                    com.examp...lication  I     getSystemCpuUsage: 0.4722222222222222

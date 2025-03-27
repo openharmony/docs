@@ -266,7 +266,7 @@ The following describes how to subscribe to the freeze event triggered by a butt
    })
    ```
 
-8. In DevEco Studio, click the **Run** button to run the project. Then, click the **appfreeze** button to trigger a freeze event. 
+8. In DevEco Studio, click the **Run** button to run the project. Then, click the **appfreeze** button to trigger a freeze event.
 
 9. The application crashes. After restarting the application, you can view the following event information in the **Log** window.
 

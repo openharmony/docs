@@ -61,11 +61,14 @@ Matrix constructor, which is used to create a 4 x 4 matrix with the input parame
 
 ```ts
 import { matrix4 } from '@kit.ArkUI';
+
 // Create a 4 x 4 matrix.
-let matrix = matrix4.init([1.0, 0.0, 0.0, 0.0,
-                          0.0, 1.0, 0.0, 0.0,
-                          0.0, 0.0, 1.0, 0.0,
-                          0.0, 0.0, 0.0, 1.0])
+let matrix = matrix4.init(
+  [1.0, 0.0, 0.0, 0.0,
+    0.0, 1.0, 0.0, 0.0,
+    0.0, 0.0, 1.0, 0.0,
+    0.0, 0.0, 0.0, 1.0])
+
 @Entry
 @Component
 struct Tests {
@@ -102,11 +105,14 @@ Constructs an identity matrix.
 ```ts
 // The effect of matrix 1 is the same as that of matrix 2.
 import { matrix4 } from '@kit.ArkUI';
-let matrix1 = matrix4.init([1.0, 0.0, 0.0, 0.0,
-                          0.0, 1.0, 0.0, 0.0,
-                          0.0, 0.0, 1.0, 0.0,
-                          0.0, 0.0, 0.0, 1.0])
+
+let matrix1 = matrix4.init(
+  [1.0, 0.0, 0.0, 0.0,
+    0.0, 1.0, 0.0, 0.0,
+    0.0, 0.0, 1.0, 0.0,
+    0.0, 0.0, 0.0, 1.0])
 let matrix2 = matrix4.identity()
+
 @Entry
 @Component
 struct Tests {
@@ -162,9 +168,10 @@ import { matrix4 } from '@kit.ArkUI';
 struct Test {
   private matrix1 = matrix4.identity().scale({ x: 1.5 })
   private matrix2 = this.matrix1.copy().translate({ x: 200 })
-  imageSize:Length = '300px'
+  imageSize: Length = '300px'
+
   build() {
-    Column({space:"50px"}) {
+    Column({ space: "50px" }) {
       Image($r("app.media.testImage"))
         .width(this.imageSize)
         .height(this.imageSize)
@@ -181,7 +188,6 @@ struct Test {
     .justifyContent(FlexAlign.Center)
   }
 }
-
 ```
 
 ![en-us_image_0000001219744181](figures/en-us_image_0000001219744185.png)
@@ -260,6 +266,7 @@ Inverts this matrix object. The original matrix that calls this API will be chan
 
 ```ts
 import { matrix4 } from '@kit.ArkUI';
+
 // The effect of matrix 1 (width scaled up by 2x) is opposite to that of matrix 2 (width scaled down by 2x).
 let matrix1 = matrix4.identity().scale({ x: 2 })
 let matrix2 = matrix1.copy().invert()
@@ -363,7 +370,13 @@ import { matrix4 } from '@kit.ArkUI';
 @Component
 struct Test {
   private matrix1 = matrix4.identity()
-    .scale({ x: 2, y: 3, z: 4, centerX: 50, centerY: 50 })
+    .scale({
+      x: 2,
+      y: 3,
+      z: 4,
+      centerX: 50,
+      centerY: 50
+    })
 
   build() {
     Column() {
@@ -406,13 +419,14 @@ Skews this matrix object along the x and y axes. The matrix that calls this API 
 ```ts
 // xxx.ets
 import { matrix4 } from '@kit.ArkUI';
+
 @Entry
 @Component
 struct Test {
   private matrix1 = matrix4.identity().skew(2, 3)
 
   build() {
-    Column() { 
+    Column() {
       Image($r("app.media.bg1")).transform(this.matrix1)
         .height(100)
         .margin({
@@ -459,7 +473,13 @@ import { matrix4 } from '@kit.ArkUI';
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().rotate({ x: 1, y: 1, z: 2, angle: 30 })
+  private matrix1 = matrix4.identity()
+    .rotate({
+      x: 1,
+      y: 1,
+      z: 2,
+      angle: 30
+    })
 
   build() {
     Column() {
@@ -567,8 +587,10 @@ import { matrix4 } from '@kit.ArkUI'
 @Entry
 @Component
 struct Index {
-  private matrix1 = matrix4.identity().setPolyToPoly({ src: [{x:0, y:0}, {x:500, y:0}, {x:0, y:500}, {x:500, y:500} ],
-    dst:[{x:0, y:0}, {x:500, y:0}, {x:0, y:500}, {x:750, y:1000} ], pointCount:4})
+  private matrix1 = matrix4.identity().setPolyToPoly({
+    src: [{ x: 0, y: 0 }, { x: 500, y: 0 }, { x: 0, y: 500 }, { x: 500, y: 500 }],
+    dst: [{ x: 0, y: 0 }, { x: 500, y: 0 }, { x: 0, y: 500 }, { x: 750, y: 1000 }], pointCount: 4
+  })
 
   build() {
     Stack() {
@@ -576,7 +598,7 @@ struct Index {
         .width('500px')
         .height('500px')
       Image($r('app.media.transition_image1'))
-        .scale({centerX:0,centerY:0,x:1})
+        .scale({ centerX: 0, centerY: 0, x: 1 })
         .transform(this.matrix1)
         .width('500px')
         .height('500px')
@@ -593,9 +615,9 @@ struct Index {
 
 | Name | Type  | Mandatory | Description                                                       |
 | ---- | ------ | ---- | ----------------------------------------------------------- |
-| x    | number | No  | Translation distance along the x-axis, in px.<br>Default value: **0**<br>Value range: (-∞, +∞) |
-| y    | number | No  | Translation distance along the y-axis, in px.<br>Default value: **0**<br>Value range: (-∞, +∞) |
-| z    | number | No  | Translation distance along the z-axis, in px.<br>Default value: **0**<br>Value range: (-∞, +∞) |
+| x    | number | No  | Translation distance along the x-axis.<br>Unit: px<br>Default value: **0**<br>Value range: (-∞, +∞)|
+| y    | number | No  | Translation distance along the y-axis.<br>Unit: px<br>Default value: **0**<br>Value range: (-∞, +∞)|
+| z    | number | No  | Translation distance along the z-axis.<br>Unit: px<br>Default value: **0**<br>Value range: (-∞, +∞)|
 
 ## ScaleOption
 
@@ -608,8 +630,8 @@ struct Index {
 | x       | number | No  | Scaling multiple along the x-axis. x > 1: The image is scaled up along the x-axis.<br>0 < x < 1: The image is scaled down along the x-axis.<br>x < 0: The image is scaled in the reverse direction of the x-axis.<br>Default value: **1**<br>Value range: (-∞, +∞) |
 | y       | number | No  | Scaling multiple along the y-axis. y > 1: The image is scaled up along the y-axis.<br>0 < y < 1: The image is scaled down along the y-axis.<br>y < 0: The image is scaled in the reverse direction of the y-axis.<br>Default value: **1**<br>Value range: (-∞, +∞) |
 | z       | number | No  | Scaling multiple along the z-axis. z > 1: The image is scaled up along the z-axis.<br>0 < z < 1: The image is scaled down along the z-axis.<br>z < 0: The image is scaled in the reverse direction of the z-axis.<br>Default value: **1**<br>Value range: (-∞, +∞) |
-| centerX | number | No  | X coordinate of the center point.<br>Default value: X-coordinate of the component center<br>Value range: (-∞, +∞)   |
-| centerY | number | No  | Y coordinate of the center point.<br>Default value: Y-coordinate of the component center<br>Value range: (-∞, +∞)   |
+| centerX | number | No  | X coordinate of the center point.<br>Unit: px<br>Default value: X-coordinate of the component center<br>Value range: (-∞, +∞)   |
+| centerY | number | No  | Y coordinate of the center point.<br>Unit: px<br>Default value: Y-coordinate of the component center<br>Value range: (-∞, +∞)   |
 
 ## RotateOption
 
@@ -618,13 +640,13 @@ struct Index {
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name   | Type  | Mandatory | Description                                                   |
-| ------- | ------ | ---- | ------------------------------------------------------- |
+| ------- | ------ | ---- | ------------------------------------------------------------ |
 | x       | number | No  | X coordinate of the rotation axis vector.<br>Default value: **0**<br>Value range: (-∞, +∞) |
 | y       | number | No  | Y coordinate of the rotation axis vector.<br>Default value: **0**<br>Value range: (-∞, +∞) |
 | z       | number | No  | Z coordinate of the rotation axis vector.<br>Default value: **0**<br>Value range: (-∞, +∞)<br>**NOTE**<br>The rotation axis vector is valid only when at least one of **x**, **y**, and **z** is not 0. |
 | angle   | number | No  | Rotation angle.<br>Default value: **0**                               |
-| centerX | number | No  | X coordinate of the center point.<br>Default value: X-coordinate of the component center                   |
-| centerY | number | No  | Y coordinate of the center point.<br>Default value: Y-coordinate of the component center                  |
+| centerX | number | No  | Additional x-axis offset of the transformation center relative to the component's anchor.<br>Unit: px<br>Default value: **0**<br>**NOTE**<br>The value **0** indicates that the transformation center coincides with the component's x-axis anchor. For details about the implementation, see [Example 3: Implementing Rotation Around a Center Point](arkui-ts/ts-universal-attributes-transformation.md#example-3-implementing-rotation-around-a-center-point).|
+| centerY | number | No  | Additional y-axis offset of the transformation center relative to the component's anchor.<br>Unit: px<br>Default value: **0**<br>**NOTE**<br>The value **0** indicates that the transformation center coincides with the component's y-axis anchor. For details about the implementation, see [Example 3: Implementing Rotation Around a Center Point](arkui-ts/ts-universal-attributes-transformation.md#example-3-implementing-rotation-around-a-center-point).|
 
 ## PolyToPolyOptions<sup>12+</sup>
 

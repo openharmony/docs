@@ -83,3 +83,57 @@ export default class UIExtension extends UIExtensionAbility {
   }
 }
 ```
+
+## UIExtensionContext.setHostPageOverlayForbidden<sup>15+</sup>
+
+setHostPageOverlayForbidden(isForbidden: boolean) : void
+
+Sets whether the page started by the [UIExtensionAbility](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md) can be overlaid by the page of the user.
+
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+>
+> This API must be called before a window is created. You are advised to call it within the [onCreate](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityoncreate) lifecycle of the [UIExtensionAbility](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md).
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------ | ------ | ------ | ------ |
+| isForbidden | boolean | Yes| Whether the page started by the [UIExtensionAbility](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md) can be overlaid by the page of the user. The value **true** means that the page can be overlaid, and **false** means the opposite.|
+
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------ | ------ |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { UIExtensionAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  OnCreate() {
+    try {
+      this.context.setHostPageOverlayForbidden(true)
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`setHostPageOverlayForbidden failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```

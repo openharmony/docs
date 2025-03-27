@@ -4,7 +4,7 @@
 
 - MindSpore Lite：OpenHarmony内置AI推理引擎，提供深度学习模型的推理部署能力。
 
-- Neural Network Runtime：神经网络运行时，简称NNRt。作为中间桥梁，连通上层 AI 推理框架和底层加速芯片，实现 AI 模型的跨芯片推理计算。
+- Neural Network Runtime：神经网络运行时，简称NNRt。作为中间桥梁，连通上层AI推理框架和底层加速芯片，实现AI模型的跨芯片推理计算。
 
 - 通用的神经网络模型格式，如MindSpore、ONNX、TensorFlow、CAFFE等。
 
@@ -116,7 +116,7 @@ CONVERT RESULT SUCCESS:0
 
 当部署场景对加载时延要求严格时，开发者希望进一步降低加载时延，可采用另一种部署方案，即基于离线模型的推理。
 
-执行推理时，MindSpore Lite会直接将离线模型传给接入NNRt的 AI 硬件，无需在线构图即可加载，大幅降低模型加载时延，并且可携带额外的硬件特定信息，协助 AI 硬件推理。
+执行推理时，MindSpore Lite会直接将离线模型传给接入NNRt的 AI 硬件，无需在线构图即可加载，大幅降低模型加载时延，并且可携带额外的硬件特定信息，协助AI硬件推理。
 
 ### 约束与限制
 

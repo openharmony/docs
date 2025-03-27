@@ -12,7 +12,7 @@ FormProvider模块提供了卡片提供方相关接口的能力，开发者在�
 import { formProvider } from '@kit.FormKit';
 ```
 
-## setFormNextRefreshTime
+## formProvider.setFormNextRefreshTime
 
 setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -32,6 +32,8 @@ setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&l
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
@@ -42,8 +44,6 @@ setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&l
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501002 | The number of forms exceeds the maximum allowed. |
 | 16501003 | The form cannot be operated by the current application. |
-
-以上错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -65,7 +65,7 @@ try {
 }
 ```
 
-## setFormNextRefreshTime
+## formProvider.setFormNextRefreshTime
 
 setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 
@@ -90,6 +90,8 @@ setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
@@ -100,8 +102,6 @@ setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501002 | The number of forms exceeds the maximum allowed. |
 | 16501003 | The form cannot be operated by the current application. |
-
-以上错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -121,7 +121,7 @@ try {
 }
 ```
 
-## updateForm
+## formProvider.updateForm
 
 updateForm(formId: string, formBindingData: formBindingData.FormBindingData,callback: AsyncCallback&lt;void&gt;): void
 
@@ -141,6 +141,8 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
@@ -150,8 +152,6 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form cannot be operated by the current application. |
-
-以上错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -178,7 +178,7 @@ try {
 }
 ```
 
-## updateForm
+## formProvider.updateForm
 
 updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Promise&lt;void&gt;
 
@@ -203,6 +203,8 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
@@ -212,8 +214,6 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form cannot be operated by the current application. |
-
-以上错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -238,7 +238,7 @@ try {
 }
 ```
 
-## getFormsInfo
+## formProvider.getFormsInfo
 
 getFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
 
@@ -255,15 +255,15 @@ getFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): voi
 | callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是 | 回调函数。返回查询到的卡片信息。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-以上错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
-
 
 **示例：**
 
@@ -283,7 +283,7 @@ try {
   console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
 }
 ```
-## getFormsInfo
+## formProvider.getFormsInfo
 
 getFormsInfo(filter: formInfo.FormInfoFilter, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
 
@@ -302,14 +302,14 @@ getFormsInfo(filter: formInfo.FormInfoFilter, callback: AsyncCallback&lt;Array&l
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-以上错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -334,7 +334,7 @@ try {
 }
 ```
 
-## getFormsInfo
+## formProvider.getFormsInfo
 
 getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;
 
@@ -358,14 +358,14 @@ getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.For
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-以上错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
 
 **示例：**
 

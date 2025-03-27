@@ -17,11 +17,11 @@ The Crypto framework supports the following padding modes for RSA signing and si
 
 - [PKCS1](#pkcs1): RSAES-PKCS1-V1_5 mode in RFC3447, corresponding to RSA_PKCS1_PADDING in OpenSSL.
   
-  When this padding mode is used, the message digest (**md**) must be set, and the length of the MD must be less than that of the RSA modulus **n**, in bytes.
+  If this padding mode is used, you must set the message digest (**md**). The length of the MD output must be less than the RSA key length. For example, the length of the RSA2048 key is 256 bytes.
 
 - [PSS](#pss): RSASSA-PSS mode in RFC 3447, corresponding to RSA_PKCS1_PSS_PADDING in OpenSSL.
   
-  If this padding mode is used, two message digests (**md** and **mgf1_md**) must be set, and the total length of **md** and **mgf1_md** must be less than the length of the RSA key modulus.
+  If this padding mode is used, two message digests (**md** and **mgf1_md**) must be set, and the total length of **md** and **mgf1_md** must be less than the RSA key length. For example, the length of the RSA2048 key is 256 bytes.
 
   You can also set the salt length **saltLen** to obtain PSS-related parameters.  
 
@@ -46,7 +46,7 @@ In the following table, the options included in the square brackets ([]) are mut
 
 > **NOTE**
 >
-> In RSA signing and signature verification, the MD length must be less than the length of the RSA modulus (**n**). For example, if the RSA key is 512 bits, SHA512 cannot be used.
+> In RSA signing and signature verification, the MD length must be less than the RSA key length. For example, if the RSA key is 512 bits, SHA512 cannot be used.
 
 | Asymmetric Key Type| Padding Mode| MD Algorithm| API Version|
 | -------- | -------- | -------- | -------- |
@@ -70,7 +70,7 @@ In the following table, the options included in the square brackets ([]) are mut
 
 > **NOTE**
 >
-> If PSS padding mode is used in RSA signing or signature verification, the total length of **md** and **mgf1_md** must be less than the length of the RSA modulus. For example, if the RSA key is 512 bits, **md** and **mgf1_md** cannot be **SHA256** at the same time.
+> If PSS padding mode is used in RSA signing or signature verification, the total length of **md** and **mgf1_md** must be less than the RSA key length. For example, if the RSA key is 512 bits, **md** and **mgf1_md** cannot be **SHA256** at the same time.
 
 | Asymmetric Key Type| Padding Mode| MD| Mask Digest| API Version|
 | -------- | -------- | -------- | -------- | -------- |
@@ -144,9 +144,9 @@ In the following table, the options included in the square brackets ([]) are mut
 >
 > When the RSA is used for signing only, the length of the data to be signed must meet the following requirements:
 >
-> 1. If the padding mode is **PKCS1** and no MD algorithm is set (**NoHash**), the data must be less than the RSA key length minus 11 (PKCS #1 padding length).
+> 1. If the padding mode is **PKCS1** and no MD algorithm is set (**NoHash**), the data must be less than the RSA key length minus 11 (PKCS #1 padding length) bytes.
 > 2. If the padding mode is **PKCS1** and an MD algorithm is set, the data to be signed must be the MD data.
-> 3. If the padding mode is **NoPadding** and no MD algorithm is set (**NoHash**), the length of the data to be signed must be the same as that of the RSA key and the value must be less than the RSA modulus.
+> 3. If the padding mode is **NoPadding** and no MD algorithm is set (**NoHash**), the length of the data to be signed must be equal to the RSA key length (in bytes) and the value must be less than the RSA modulus.
 
 | Asymmetric Key Type| Padding Mode| MD Algorithm| Signing Mode| API Version|
 | -------- | -------- | -------- | -------- | -------- |

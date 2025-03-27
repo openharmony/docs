@@ -196,11 +196,11 @@ Enumerates the word break types.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
-| Name       | Value  | Description                                                                                                                 |
-| ----------- | ---- | -------------------------------------------------------------------------------------------------------------------- |
-| NORMAL      | 0    | Default mode. Word breaks are allowed between words as appropriate to the relevant language writing systems.                                                                 |
-| BREAK_ALL   | 1    | Word breaks are allowed between any characters for non-CJK text. (CJK means Chinese, Japanese, and Korean.) This value is suitable for Asian text that contains some non-Asian text. For example, it can be used to break consecutive English characters.|
-| BREAK_WORD  | 2    | Works in the same way as **BREAK_ALL**, except that it does not break unbreakable words.                                  |
+| Name                         | Value  | Description                                                                                                                 |
+|-----------------------------| ---- | -------------------------------------------------------------------------------------------------------------------- |
+| NORMAL                      | 0    | Default mode. Word breaks are allowed between words as appropriate to the relevant language writing systems.                                                                 |
+| BREAK_ALL                   | 1    | Word breaks are allowed between any characters for non-CJK text. (CJK means Chinese, Japanese, and Korean.) This value is suitable for Asian text that contains some non-Asian text. For example, it can be used to break consecutive English characters.|
+| BREAK_WORD                  | 2    | Works in the same way as **BREAK_ALL**, except that it does not break unbreakable words.                                  |
 
 ## Decoration
 
@@ -1602,7 +1602,7 @@ struct Index {
 
 Implements a carrier that describes the basic text line structure of a paragraph.
 
-Before calling any of the following APIs, you must use [getTextLines ()](#gettextlines) of the [Paragraph](#paragraph) class to create a **TextLine** object.
+Before calling any of the following APIs, you must use [getTextLines()](#gettextlines) of the [Paragraph](#paragraph) class to create a **TextLine** object.
 ### getGlyphCount
 
 getGlyphCount(): number
@@ -1864,7 +1864,7 @@ Obtains the position of each glyph relative to the respective line in this run.
 import { text } from "@kit.ArkGraphics2D";
 
 function textFunc() {
-  let positions = runs[0].getPositions (); // Obtain the positions of all glyphs in the run.
+  let positions = runs[0].getPositions(); // Obtain the positions of all glyphs in the run.
 }
 
 @Entry
@@ -1980,22 +1980,26 @@ import { text } from "@kit.ArkGraphics2D"
 import { common2D } from "@kit.ArkGraphics2D"
 import { image } from '@kit.ImageKit';
 
-function textFunc() {
-  const color: ArrayBuffer = new ArrayBuffer(160000);
-  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
-  let pixelMap: image.PixelMap = image.createPixelMapSync(color, opts);
-  let canvas = new drawing.Canvas(pixelMap);
+function textFunc(pixelmap: PixelMap) {
+  let canvas = new drawing.Canvas(pixelmap);
   runs[0].paint(canvas, 0, 0);
 }
 
 @Entry
 @Component
 struct Index {
+  @State pixelmap?: PixelMap = undefined;
   fun: Function = textFunc;
   build() {
     Column() {
+      Image(this.pixelmap).width(200).height(200);
       Button().onClick(() => {
-        this.fun();
+        if (this.pixelmap == undefined) {
+          const color: ArrayBuffer = new ArrayBuffer(160000);
+          let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
+          this.pixelmap = image.createPixelMapSync(color, opts);
+        }
+        this.fun(this.pixelmap);
       })
     }
   }

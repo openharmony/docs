@@ -5,7 +5,7 @@
 
 提供回调函数，当WLAN驱动重启、扫描结果返回时调用，接收到Netlink消息。
 
-模块包路径：ohos.hdi.wlan.v1_1;
+模块包路径：ohos.hdi.wlan.v1_1
 
 引用：ohos.hdi.wlan.v1_1.WlanTypes
 

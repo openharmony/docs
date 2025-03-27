@@ -20,15 +20,15 @@ If you are just starting out with Node-API, see [Node-API Development Process](u
 
 #### napi_load_module
 
-Use **napi_load_module** to [load a module in the main thread](use-napi-load-module.md).
+Call **napi_load_module** to [load a module in the main thread](use-napi-load-module.md).
 
 #### napi_load_module_with_info
 
-Use **napi_load_module_with_info** to [load a module](use-napi-load-module-with-info.md).
+Call **napi_load_module_with_info** to [load a module](use-napi-load-module-with-info.md).
 
 #### napi_module_register
 
-Use **napi_module_register** to register a custom module, which is implemented by using Node-API, with the ArkTS environment.
+Call **napi_module_register** to register a custom module, which is implemented by using Node-API, with the ArkTS environment.
 
 CPP code:
 
@@ -45,14 +45,14 @@ static napi_value Add(napi_env env, napi_callback_info info)
     napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
 
     // Convert the parameter of the napi_value type to the double type.
-    double valueLift;
+    double valueLeft;
     double valueRight;
-    napi_get_value_double(env, args[0], &valueLift);
+    napi_get_value_double(env, args[0], &valueLeft);
     napi_get_value_double(env, args[1], &valueRight);
 
     // Add up the converted double values, convert the sum into napi_value, and return the result to ArkTS.
     napi_value sum;
-    napi_create_double(env, valueLift + valueRight, &sum);
+    napi_create_double(env, valueLeft + valueRight, &sum);
 
     return sum;
 }
@@ -117,7 +117,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API 2 + 3 = %{public}d', testNapi.add(2
 
 #### napi_create_object_with_properties
 
-Use **napi_create_object_with_properties** to create an ArkTS object with the given **napi_property_descriptor**. The key of **napi_property_descriptor** must be a string and cannot be converted into a number.
+Call **napi_create_object_with_properties** to create an ArkTS object with the given **napi_property_descriptor**. The key of **napi_property_descriptor** must be a string and cannot be converted into a number.
 
 CPP code:
 
@@ -127,7 +127,7 @@ CPP code:
 static napi_value CreateObjectWithProperties(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
-    napi_value argv[1] = nullptr;
+    napi_value argv[1] = {nullptr};
     // Obtain the parameters of the call.
     napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
     // Declare a desc array in napi_property_descriptor. The desc array contains a property named "name", whose value is the first input parameter argv[0].
@@ -163,7 +163,7 @@ hilog.info(0x0000, 'testTag', 'Node-API napi_create_object_with_properties:%{pub
 
 #### napi_create_object_with_named_properties
 
-Use **napi_create_object_with_named_properties** to create an ArkTS object with the specified **napi_value** and key. The key must be a string and cannot be converted into a number.
+Call **napi_create_object_with_named_properties** to create an ArkTS object with the specified **napi_value** and key. The key must be a string and cannot be converted into a number.
 
 CPP code:
 
@@ -173,7 +173,7 @@ CPP code:
 static napi_value CreateObjectWithNameProperties(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
-    napi_value argv[1] = nullptr;
+    napi_value argv[1] = {nullptr};
     // Obtain the parameters of the call.
     napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
     napi_value obj = nullptr;
@@ -223,7 +223,7 @@ hilog.info(0x0000, 'testTag', 'Node-API napi_create_object_with_named_properties
 
 #### napi_run_script_path
 
-Use **napi_run_script_path** to run an .abc file.
+Call **napi_run_script_path** to run an .abc file.
 
 CPP code:
 
@@ -295,7 +295,7 @@ add(1, 2);
 
 #### napi_queue_async_work_with_qos
 
-Use **napi_queue_async_work_with_qos** to add an async work to the queue. Then, the async work will be scheduled for execution based on the specified QoS priority.
+Call **napi_queue_async_work_with_qos** to add an async work to the queue. Then, the async work will be scheduled for execution based on the specified QoS priority.
 
 <!--Del-->
 See [Prioritizing Asynchronous Tasks](../performance/develop-Native-modules-using-NAPI-safely-and-efficiently.md#prioritizing-asynchronous-tasks).
@@ -313,12 +313,13 @@ See [Prioritizing Asynchronous Tasks](../performance/develop-Native-modules-usin
 
 #### napi_coerce_to_native_binding_object
 
-Use **napi_coerce_to_native_binding_object** to bind an ArkTS object and a native callback with necessary data. This API allows the ArkTS object to carry native information.
+Call **napi_coerce_to_native_binding_object** to bind an ArkTS object and a native callback with necessary data. This API allows the ArkTS object to carry native information.
 
 CPP code:
 
 ```cpp
 #include <bits/alltypes.h>
+#include <hilog/log.h>
 #include <mutex>
 #include <unordered_set>
 #include <uv.h>
@@ -463,7 +464,7 @@ private:
     std::mutex numberSetMutex_{};
 };
 
-void FinializeCallback(napi_env env, void *data, void *hint)
+void FinializerCallback(napi_env env, void *data, void *hint)
 {
     return;
 }
@@ -487,7 +488,10 @@ napi_value AttachCallback(napi_env env, void* value, void* hint)
         {"clear", nullptr, Object::Clear, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, object, sizeof(desc) / sizeof(desc[0]), desc);
     // Bind the ArkTS object named object to the lifecycle of the native object named value.
-    napi_wrap(env, object, value, FinializeCallback, nullptr, nullptr);
+    napi_status status = napi_wrap(env, object, value, FinializerCallback, nullptr, nullptr);
+    if (status != napi_ok) {
+        OH_LOG_INFO(LOG_APP, "Node-API attachCallback is failed.");
+    }
     // Enable the ArkTS object to carry native information.
     napi_coerce_to_native_binding_object(env, object, DetachCallback, AttachCallback, value, hint);
     return object;
@@ -504,7 +508,10 @@ static napi_value Init(napi_env env, napi_value exports)
         {"clear", nullptr, Object::Clear, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     auto object = Object::GetInstance();
-    napi_wrap(env, exports, reinterpret_cast<void*>(object), FinializeCallback, nullptr, nullptr);
+    napi_status status = napi_wrap(env, exports, reinterpret_cast<void*>(object), FinializerCallback, nullptr, nullptr);
+    if (status != napi_ok) {
+        delete object;
+    }
     napi_coerce_to_native_binding_object(env, exports, DetachCallback, AttachCallback, reinterpret_cast<void*>(object),
                                          nullptr);
     return exports;
@@ -580,31 +587,36 @@ function clear() {
   console.info("set size is " + size + " after clear");
 }
 
-let address:number = testNapi.getAddress();
-console.info("host thread address is " + address);
+async function test01(): Promise<void> {
+    let address:number = testNapi.getAddress();
+    console.info("host thread address is " + address);
 
-let task1 = new taskpool.Task(getAddress);
-await taskpool.execute(task1);
+    let task1 = new taskpool.Task(getAddress);
+    await taskpool.execute(task1);
 
-let task2 = new taskpool.Task(store, 1, 2, 3);
-await taskpool.execute(task2);
+    let task2 = new taskpool.Task(store, 1, 2, 3);
+    await taskpool.execute(task2);
 
-let task3 = new taskpool.Task(store, 4, 5, 6);
-await taskpool.execute(task3);
+    let task3 = new taskpool.Task(store, 4, 5, 6);
+    await taskpool.execute(task3);
 
-let task4 = new taskpool.Task(erase, 3);
-await taskpool.execute(task4);
+    let task4 = new taskpool.Task(erase, 3);
+    await taskpool.execute(task4);
 
-let task5 = new taskpool.Task(erase, 5);
-await taskpool.execute(task5);
+    let task5 = new taskpool.Task(erase, 5);
+    await taskpool.execute(task5);
 
-let task6 = new taskpool.Task(clear);
-await taskpool.execute(task6);
+    let task6 = new taskpool.Task(clear);
+    await taskpool.execute(task6);
+}
+
+test01();
 ```
 
 **NOTE**
 
 Call **napi_coerce_to_native_binding_object** to add the **detach()** and **attach()** callbacks and native object information to ArkTs object A, and then pass object A across threads. Object A needs to be serialized and deserialized when passed cross threads. In thread 1, "data" is obtained after object A is serialized, and the **detach()** callback is invoked in the serialization process. Then, "data" is passed to thread 2 and deserialized in thread 2. The **attach()** callback is invoked to obtain the ArkTS object A.
+
 ![napi_coerce_to_native_binding_object](figures/napi_coerce_to_native_binding_object.png)
 
 ## Event Loop
@@ -618,7 +630,7 @@ Call **napi_coerce_to_native_binding_object** to add the **detach()** and **atta
 
 ### Example
 
-#### napi_run_event_loop, napi_stop_event_loop
+#### napi_run_event_loop and napi_stop_event_loop
 
 See [Running or Stopping an Event Loop in an Asynchronous Thread Using Node-API Extensions](use-napi-event-loop.md)
 
@@ -633,7 +645,7 @@ See [Running or Stopping an Event Loop in an Asynchronous Thread Using Node-API 
 
 ### Example
 
-#### napi_create_ark_runtime, napi_destroy_ark_runtime
+#### napi_create_ark_runtime and napi_destroy_ark_runtime
 
 See [Creating an ArkTs Runtime Environment Using Node-API](use-napi-ark-runtime.md).
 
@@ -649,9 +661,9 @@ See [Creating an ArkTs Runtime Environment Using Node-API](use-napi-ark-runtime.
 
 ### Example
 
-#### napi_serialize, napi_deserialize, napi_delete_serialization_data
+#### napi_serialize, napi_deserialize, and napi_delete_serialization_data
 
-Use **napi_serialize** to convert an ArkTS object into native data; use **napi_deserialize** to convert native data into an ArkTS object; use **napi_delete_serialization_data** to delete serialized data.
+Call **napi_serialize** to convert an ArkTS object into native data; call **napi_deserialize** to convert native data into an ArkTS object; call **napi_delete_serialization_data** to delete serialized data.
 
 CPP code:
 
@@ -684,7 +696,7 @@ static napi_value AboutSerialize(napi_env env, napi_callback_info info)
     napi_valuetype valuetype;
     napi_typeof(env, number, &valuetype);
     if (valuetype != napi_number) {
-        napi_throw_error(env, nullptr, "Node-API Wrong type of argment. Expects a number.");
+        napi_throw_error(env, nullptr, "Node-API Wrong type of argument. Expects a number.");
         return nullptr;
     }
     // Call napi_delete_serialization_data to delete the serialized data.
@@ -749,7 +761,7 @@ See [Passing a Task with the Specified Priority to an ArkTS Thread from an Async
 
 #### napi_is_sendable
 
-Use **napi_is_sendable** to check whether an ArkTS value is sendable.
+Call **napi_is_sendable** to check whether an ArkTS value is sendable.
 
 CPP code:
 
@@ -787,7 +799,7 @@ hilog.info(0x0000, 'testTag', 'Node-API napi_is_sendable: %{public}s', JSON.stri
 
 #### napi_define_sendable_class
 
-Use **napi_define_sendable_class** to create a sendable class.
+Call **napi_define_sendable_class** to create a sendable class.
 
 CPP code:
 
@@ -833,6 +845,32 @@ static napi_value DefineSendableClass(napi_env env) {
 
     return sendableClass;
 }
+
+EXTERN_C_START
+static napi_value Init(napi_env env, napi_value exports)
+{
+    napi_property_descriptor desc[] = {};
+    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+    napi_value cons = DefineSendableClass(env);
+    napi_set_named_property(env, exports, "SendableClass", cons);
+    return exports;
+}
+EXTERN_C_END
+
+static napi_module demoModule = {
+    .nm_version = 1,
+    .nm_flags = 0,
+    .nm_filename = nullptr,
+    .nm_register_func = Init,
+    .nm_modname = "entry",
+    .nm_priv = ((void*)0),
+    .reserved = { 0 },
+};
+
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
+{
+    napi_module_register(&demoModule);
+}
 ```
 
 API declaration:
@@ -860,7 +898,7 @@ hilog.info(0x0000, 'testTag', 'Node-API napi_define_sendable_class: %{public}s',
 
 #### napi_create_sendable_object_with_properties
 
-Use **napi_create_sendable_object_with_properties** to create a sendable object with the given **napi_property_descriptor**.
+Call **napi_create_sendable_object_with_properties** to create a sendable object with the given **napi_property_descriptor**.
 
 CPP code:
 
@@ -898,7 +936,7 @@ hilog.info(0x0000, 'testTag', 'Node-API napi_create_sendable_object_with_propert
 
 #### napi_create_sendable_array
 
-Use **napi_create_sendable_array** to create a sendable array.
+Call **napi_create_sendable_array** to create a sendable array.
 
 CPP code:
 
@@ -931,7 +969,7 @@ hilog.info(0x0000, 'testTag', 'Node-API napi_create_sendable_array: %{public}s',
 
 #### napi_create_sendable_array_with_length
 
-Use **napi_create_sendable_array_with_length** to create a sendable array of the specified length.
+Call **napi_create_sendable_array_with_length** to create a sendable array of the specified length.
 
 CPP code:
 
@@ -962,7 +1000,7 @@ hilog.info(0x0000, 'testTag', 'Node-API napi_create_sendable_array_with_length: 
 
 #### napi_create_sendable_arraybuffer
 
-Use **napi_create_sendable_arraybuffer** to create a sendable **ArrayBuffer**.
+Call **napi_create_sendable_arraybuffer** to create a sendable **ArrayBuffer**.
 
 CPP code:
 
@@ -1000,7 +1038,7 @@ testNapi.getSendableArrayBuffer();
 
 #### napi_create_sendable_typedarray
 
-Use **napi_create_sendable_typedarray** to create a sendable **TypedArray**.
+Call **napi_create_sendable_typedarray** to create a sendable **TypedArray**.
 
 CPP code:
 
@@ -1042,7 +1080,7 @@ testNapi.getSendableTypedArray();
 
 #### napi_wrap_sendable
 
-Use **napi_wrap_sendable** to wrap a native instance into an ArkTS object.
+Call **napi_wrap_sendable** to wrap a native instance into an ArkTS object.
 
 CPP code:
 
@@ -1083,7 +1121,7 @@ testNapi.wrapSendable();
 
 #### napi_wrap_sendable_with_size
 
-Use **napi_wrap_sendable_with_size** to wrap a native instance of the specified size into an ArkTS object.
+Call **napi_wrap_sendable_with_size** to wrap a native instance of the specified size into an ArkTS object.
 
 CPP code:
 
@@ -1124,7 +1162,7 @@ testNapi.wrapSendableWithSize();
 
 #### napi_unwrap_sendable
 
-Use **napi_unwrap_sendable** to unwrap the native instance from an ArkTS object.
+Call **napi_unwrap_sendable** to unwrap the native instance from an ArkTS object.
 
 CPP code:
 
@@ -1169,7 +1207,7 @@ testNapi.unwrapSendable();
 
 #### napi_remove_wrap_sendable
 
-Use **napi_remove_wrap_sendable** to remove the native instance from an ArkTS object.
+Call **napi_remove_wrap_sendable** to remove the native instance from an ArkTS object.
 
 CPP code:
 

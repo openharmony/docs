@@ -101,7 +101,7 @@ enum TransientTask_ErrorCode
 | 枚举值 | 描述 | 
 | -------- | -------- |
 | ERR_TRANSIENT_TASK_OK  | \@error 成功。&nbsp;&nbsp; | 
-| ERR_TRANSIENT_TASK_INVALID_PARAM  | \@error 入参错误，比如参数空指针。&nbsp;&nbsp; | 
+| ERR_TRANSIENT_TASK_INVALID_PARAM  | \@error 参数检查失败。可能原因：1.必选参数没有传入。2.参数类型错误。&nbsp;&nbsp; | 
 | ERR_TRANSIENT_TASK_PARCEL_FAILED  | \@error Parcel读写操作失败。&nbsp;&nbsp; | 
 | ERR_TRANSIENT_TASK_TRANSACTION_FAILED  | \@error IPC通信失败。&nbsp;&nbsp; | 
 | ERR_TRANSIENT_TASK_SYS_NOT_READY  | \@error 系统服务失败。&nbsp;&nbsp; | 
@@ -132,7 +132,7 @@ int32_t OH_BackgroundTaskManager_CancelSuspendDelay (int32_t requestId)
 
 **返回：**
 
-返回0，表示取消成功。 返回401，表示入参错误。 返回9800002，表示Parcel读写操作失败。 返回9800003，表示IPC通信失败。 返回9800004，表示系统服务失败。 返回9900001，表示短时任务客户端信息校验失败。 返回9900002，表示短时任务服务端校验失败。 错误码的具体信息请参考[TransientTask_ErrorCode](#transienttask_errorcode)。
+返回0，表示取消成功。 </br>返回401，表示入参错误。 </br>返回9800002，表示Parcel读写操作失败。 </br>返回9800003，表示IPC通信失败。 </br>返回9800004，表示系统服务失败。 </br>返回9900001，表示短时任务客户端信息校验失败。 </br>返回9900002，表示短时任务服务端校验失败。 </br>错误码的具体信息请参考[TransientTask_ErrorCode](#transienttask_errorcode)。
 
 
 ### OH_BackgroundTaskManager_GetRemainingDelayTime()
@@ -156,7 +156,7 @@ int32_t OH_BackgroundTaskManager_GetRemainingDelayTime (int32_t requestId, int32
 
 **返回：**
 
-返回0，表示查询成功。 返回401，表示入参错误。 返回9800002，表示Parcel读写操作失败。 返回9800003，表示IPC通信失败。 返回9800004，表示系统服务失败。 返回9900001，表示短时任务客户端信息校验失败。 返回9900002，表示短时任务服务端校验失败。 错误码的具体信息请参考[TransientTask_ErrorCode](#transienttask_errorcode)。
+返回0，表示查询成功。 </br>返回401，表示入参错误。 </br>返回9800002，表示Parcel读写操作失败。 </br>返回9800003，表示IPC通信失败。 </br>返回9800004，表示系统服务失败。 </br>返回9900001，表示短时任务客户端信息校验失败。 </br>返回9900002，表示短时任务服务端校验失败。 </br>错误码的具体信息请参考[TransientTask_ErrorCode](#transienttask_errorcode)。
 
 
 ### OH_BackgroundTaskManager_RequestSuspendDelay()
@@ -181,4 +181,4 @@ int32_t OH_BackgroundTaskManager_RequestSuspendDelay (const char * reason, Trans
 
 **返回：**
 
-返回0，表示申请成功。 返回401，表示入参错误。 返回9800002，表示Parcel读写操作失败。 返回9800003，表示IPC通信失败。 返回9800004，表示系统服务失败。 返回9900001，表示短时任务客户端信息校验失败。 返回9900002，表示短时任务服务端校验失败。 错误码的具体信息请参考[TransientTask_ErrorCode](#transienttask_errorcode)。
+返回0，表示申请成功。 </br>返回401，表示入参错误。 </br>返回9800002，表示Parcel读写操作失败。 </br>返回9800003，表示IPC通信失败。 </br>返回9800004，表示系统服务失败。 </br>返回9900001，表示短时任务客户端信息校验失败。 </br>返回9900002，表示短时任务服务端校验失败。 </br>错误码的具体信息请参考[TransientTask_ErrorCode](#transienttask_errorcode)。

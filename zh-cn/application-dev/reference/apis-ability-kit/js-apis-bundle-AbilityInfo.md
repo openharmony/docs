@@ -21,11 +21,11 @@ Ability信息，未做特殊说明的属性，均通过[bundle.getAbilityInfo](j
 | descriptionId         | number                                                       | 是   | 否   | Ability的描述的资源id值。                                            |
 | iconId                | number                                                       | 是   | 否   | Ability的图标的资源id值。                                            |
 | moduleName            | string                                                       | 是   | 否   | Ability所属的HAP的名称。                                     |
-| process               | string                                                       | 是   | 否   | Ability的进程，如果不设置，默认为包的名称。                  |
+| process               | string                                                       | 是   | 否   | Ability的进程名称。                  |
 | targetAbility         | string                                                       | 是   | 否   | 当前Ability重用的目标Ability。<br />**模型约束：** 此接口仅可在FA模型下使用。 |
 | backgroundModes       | number                                                       | 是   | 否   | 表示后台服务的类型。<br />**模型约束：** 此接口仅可在FA模型下使用。         |
-| isVisible             | boolean                                                      | 是   | 否   | 判断Ability是否可以被其他应用调用。                          |
-| formEnabled           | boolean                                                      | 是   | 否   | 判断Ability是否提供卡片能力。<br />**模型约束：** 此接口仅可在FA模型下使用。 |
+| isVisible             | boolean                                                      | 是   | 否   | 判断Ability是否可以被其他应用调用，取值为true表示Ability可以被其他应用调用，取值为false表示Ability不可以被其他应用调用。                          |
+| formEnabled           | boolean                                                      | 是   | 否   | 判断Ability是否提供卡片能力，取值为true表示Ability提供卡片能力，取值为false表示Ability不提供卡片能力。<br />**模型约束：** 此接口仅可在FA模型下使用。 |
 | type                  | bundle.AbilityType                                                  | 是   | 否   | Ability类型。<br />**模型约束：** 此接口仅可在FA模型下使用。                |
 | orientation           | [bundle.DisplayOrientation](js-apis-Bundle.md#displayorientationdeprecated) | 是   | 否   | Ability的显示模式。                                          |
 | launchMode            | [bundle.LaunchMode](js-apis-Bundle.md#launchmodedeprecated)         | 是   | 否   | Ability的启动模式。                                          |
@@ -39,4 +39,4 @@ Ability信息，未做特殊说明的属性，均通过[bundle.getAbilityInfo](j
 | labelId               | number                                                       | 是   | 否   | Ability的标签的资源id值。                                            |
 | subType               | bundle.AbilitySubType                                               | 是   | 否   | Ability中枚举使用的模板的子类型。<br />**模型约束：** 此接口仅可在FA模型下使用。 |
 | metaData<sup>8+</sup> | Array\<[CustomizeData](js-apis-bundle-CustomizeData.md)>     | 是   | 否   | ability的元信息。<br />通过调用[bundle.getAbilityInfo](js-apis-Bundle.md#bundlegetabilityinfodeprecated)接口时，传入GET_ABILITY_INFO_WITH_METADATA获取。 |
-| enabled<sup>8+</sup>  | boolean                                                      | 是   | 否   | ability是否可用。                                            |
+| enabled<sup>8+</sup>  | boolean                                                      | 是   | 否   | ability是否可用，取值为true表示Ability可用，取值为false表示Ability不可用。                                            |

@@ -40,11 +40,11 @@ The random number generation algorithm uses the **RAND_priv_bytes** interface of
 
 ## How to Develop
 
-1. Use [cryptoFramework.createRandom](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreaterandom) to create a **Random** instance.
+1. Call [cryptoFramework.createRandom](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreaterandom) to create a **Random** instance.
 
-2. (Optional) Use [Random.setSeed](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#setseed) to set a seed for the random number generation pool.
+2. (Optional) Call [Random.setSeed](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#setseed) to set a seed for the random number generation pool.
 
-3. Use [Random.generateRandom](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generaterandom) or [Random.generateRandomSync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generaterandomsync10) to generate a secure random number.
+3. Call [Random.generateRandom](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generaterandom) or [Random.generateRandomSync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generaterandomsync10) to generate a secure random number.
    
    The length of the random number to generate ranges from **1** to **INT_MAX**, in bytes.
 
@@ -72,7 +72,7 @@ The random number generation algorithm uses the **RAND_priv_bytes** interface of
     let len = 24; // Generate a 24-byte random number.
     try {
       let randData = rand.generateRandomSync(len);
-      if (randData != null) {
+      if (randData !== null) {
         console.info("[Sync]: rand result: " + randData.data);
       } else {
         console.error("[Sync]: get rand result fail!");

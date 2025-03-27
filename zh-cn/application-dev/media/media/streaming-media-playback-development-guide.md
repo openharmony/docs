@@ -77,9 +77,9 @@ avPlayer.on('bufferingUpdate', (infoType : media.BufferingInfoType, value : numb
 1. 通过[on('availableBitrates')](../../reference/apis-media-kit/js-apis-media.md#onavailablebitrates9)监听当前HLS协议流可用的码率，若监听的码率列表长度为0，则不支持设置指定码率。
 
     ```ts
-    // 创建avPlayer实例对象
+    // 创建avPlayer实例对象。
     let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    // 监听当前HLS协议流可用的码率
+    // 监听当前HLS协议流可用的码率。
     avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
       console.info('availableBitrates called, and availableBitrates length is: ' + bitrates.length);
     })
@@ -88,13 +88,13 @@ avPlayer.on('bufferingUpdate', (infoType : media.BufferingInfoType, value : numb
 2. 通过[setBitrate](../../reference/apis-media-kit/js-apis-media.md#setbitrate9)接口设置播放码率，若用户设置的码率不在可用码率中，播放器将从可用码率中选择最小且最接近的码率。该接口只能在prepared/playing/paused/completed状态下调用，可通过监听[bitrateDone](../../reference/apis-media-kit/js-apis-media.md#onbitratedone9)事件确认是否生效。
 
     ```ts
-    // 创建avPlayer实例对象
+    // 创建avPlayer实例对象。
     let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    // 监听码率设置是否生效
+    // 监听码率设置是否生效。
     avPlayer.on('bitrateDone', (bitrate: number) => {
       console.info('bitrateDone called, and bitrate value is: ' + bitrate);
     })
-    // 设置播放码率
+    // 设置播放码率。
     let bitrate: number = 96000;
     avPlayer.setBitrate(bitrate);
     ```
@@ -126,7 +126,7 @@ DASH流媒体资源一般包含多路分辨率、码率、采样率、编码格�
 2. 调用[getTrackDescription](../../reference/apis-media-kit/js-apis-media.md#gettrackdescription9)获取所有音视频轨道列表。开发者可根据实际需求，基于[MediaDescription](../../reference/apis-media-kit/js-apis-media.md#mediadescription8)各字段信息，确定目标轨道索引。
 
     ```ts
-    // 以获取1080p视频轨道索引为例
+    // 以获取1080p视频轨道索引为例。
     public videoTrackIndex: number;
     avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
       if (arrList != null) {
@@ -136,7 +136,7 @@ DASH流媒体资源一般包含多路分辨率、码率、采样率、编码格�
           let propertyWidth: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_WIDTH];
           let propertyHeight: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_HEIGHT];
           if (propertyType == media.MediaType.MEDIA_TYPE_VID && propertyWidth == 1920 && propertyHeight == 1080) {
-            videoTrackIndex = parseInt(propertyIndex.toString()); // 获取1080p视频轨道索引
+            videoTrackIndex = parseInt(propertyIndex.toString()); // 获取1080p视频轨道索引。
           }
         }
       } else {
@@ -148,9 +148,9 @@ DASH流媒体资源一般包含多路分辨率、码率、采样率、编码格�
 3. 在音视频播放过程中调用[selectTrack](../../reference/apis-media-kit/js-apis-media.md#selecttrack12)选择对应的音视频轨道，或者调用[deselectTrack](../../reference/apis-media-kit/js-apis-media.md#deselecttrack12)取消选择的音视频轨道。
 
     ```ts
-    // 切换至目标视频轨道
+    // 切换至目标视频轨道。
     avPlayer.selectTrack(videoTrackIndex);
-    // 取消选择目标视频轨道
+    // 取消选择目标视频轨道。
     // avPlayer.deselectTrack(videoTrackIndex);
     ```
 
@@ -170,8 +170,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 export class AVPlayerDemo {
   private count: number = 0;
-  private surfaceID: string = ''; // surfaceID用于播放画面显示，具体的值需要通过Xcomponent接口获取，相关文档链接见上面Xcomponent创建方法
-  private isSeek: boolean = true; // 用于区分模式是否支持seek操作
+  private surfaceID: string = ''; // surfaceID用于播放画面显示，具体的值需要通过Xcomponent接口获取，相关文档链接见上面Xcomponent创建方法。
+  private isSeek: boolean = true; // 用于区分模式是否支持seek操作。
   public audioTrackList: number[] = [];
   public videoTrackList: number[] = [];
 
@@ -179,53 +179,53 @@ export class AVPlayerDemo {
     this.surfaceID = surfaceID;
   }
 
-  // 注册avplayer回调函数
+  // 注册avplayer回调函数。
   setAVPlayerCallback(avPlayer: media.AVPlayer) {
-    // startRenderFrame首帧渲染回调函数
+    // startRenderFrame首帧渲染回调函数。
     avPlayer.on('startRenderFrame', () => {
       console.info(`AVPlayer start render frame`);
     });
-    // seek操作结果回调函数
+    // seek操作结果回调函数。
     avPlayer.on('seekDone', (seekDoneTime: number) => {
       console.info(`AVPlayer seek succeeded, seek time is ${seekDoneTime}`);
     })
     // avPlayer.on('trackChange', (index: number, isSelect: boolean) => {
     //   console.info(`AVPlayer track changed, track index: ${index}, isSelect: ${isSelect}`);
     // })
-    // error回调监听函数,当avPlayer在操作过程中出现错误时调用 reset接口触发重置流程
+    // error回调监听函数,当avPlayer在操作过程中出现错误时调用 reset接口触发重置流程。
     avPlayer.on('error', (err: BusinessError) => {
       console.error(`Invoke avPlayer failed, code is ${err.code}, message is ${err.message}`);
-      avPlayer.reset(); // 调用reset重置资源，触发idle状态
+      avPlayer.reset(); // 调用reset重置资源，触发idle状态。
     })
-    // 状态机变化回调函数
+    // 状态机变化回调函数。
     avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
       switch (state) {
-        case 'idle': // 成功调用reset接口后触发该状态机上报
+        case 'idle': // 成功调用reset接口后触发该状态机上报。
           console.info('AVPlayer state idle called.');
-          avPlayer.release(); // 调用release接口销毁实例对象
+          avPlayer.release(); // 调用release接口销毁实例对象。
           break;
-        case 'initialized': // avplayer 设置播放源后触发该状态上报
+        case 'initialized': // avplayer 设置播放源后触发该状态上报。
           console.info('AVPlayer state initialized called.');
-          avPlayer.surfaceId = this.surfaceID; // 设置显示画面，当播放的资源为纯音频时无需设置
+          avPlayer.surfaceId = this.surfaceID; // 设置显示画面，当播放的资源为纯音频时无需设置。
           avPlayer.prepare();
           break;
-        case 'prepared': // prepare调用成功后上报该状态机
+        case 'prepared': // prepare调用成功后上报该状态机。
           console.info('AVPlayer state prepared called.');
-          avPlayer.play(); // 调用播放接口开始播放
+          avPlayer.play(); // 调用播放接口开始播放。
           break;
-        case 'playing': // play成功调用后触发该状态机上报
+        case 'playing': // play成功调用后触发该状态机上报。
           console.info('AVPlayer state playing called.');
           break;
-        case 'paused': // pause成功调用后触发该状态机上报
+        case 'paused': // pause成功调用后触发该状态机上报。
           console.info('AVPlayer state paused called.');
           break;
-        case 'completed': // 播放结束后触发该状态机上报
+        case 'completed': // 播放结束后触发该状态机上报。
           console.info('AVPlayer state completed called.');
-          avPlayer.stop(); //调用播放结束接口
+          avPlayer.stop(); //调用播放结束接口。
           break;
-        case 'stopped': // stop接口成功调用后触发该状态机上报
+        case 'stopped': // stop接口成功调用后触发该状态机上报。
           console.info('AVPlayer state stopped called.');
-          avPlayer.reset(); // 调用reset接口初始化avplayer状态
+          avPlayer.reset(); // 调用reset接口初始化avplayer状态。
           break;
         case 'released':
           console.info('AVPlayer state released called.');
@@ -235,79 +235,79 @@ export class AVPlayerDemo {
           break;
       }
     })
-    // 监听流媒体缓冲状态、缓冲百分比、已缓冲数据预估可播放时长
+    // 监听流媒体缓冲状态、缓冲百分比、已缓冲数据预估可播放时长。
     avPlayer.on('bufferingUpdate', (infoType : media.BufferingInfoType, value : number) => {
       console.info(`AVPlayer bufferingUpdate, infoType is ${infoType}, value is ${value}.`);
     })
   }
 
-  // 以下demo为通过url设置网络地址来实现播放流媒体HLS点播视频
+  // 以下demo为通过url设置网络地址来实现播放流媒体HLS点播视频。
   async avPlayerVodDemo() {
-    // 创建avPlayer实例对象
+    // 创建avPlayer实例对象。
     let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    // 创建状态机变化回调函数
+    // 创建状态机变化回调函数。
     this.setAVPlayerCallback(avPlayer);
-    this.isSeek = true; // 点播支持seek操作
+    this.isSeek = true; // 点播支持seek操作。
     avPlayer.url = 'http://xxx.xxx.xxx.xxx:xx/xx/index.m3u8';
   }
 
-  // 以下demo为通过url设置网络地址来实现播放流媒体HLS直播视频
+  // 以下demo为通过url设置网络地址来实现播放流媒体HLS直播视频。
   async avPlayerLiveDemo() {
-    // 创建avPlayer实例对象
+    // 创建avPlayer实例对象。
     let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    // 创建状态机变化回调函数
+    // 创建状态机变化回调函数。
     this.setAVPlayerCallback(avPlayer);
-    this.isSeek = false; // 直播不支持seek操作
+    this.isSeek = false; // 直播不支持seek操作。
     avPlayer.url = 'http://xxx.xxx.xxx.xxx:xx/xx/index.m3u8';
   }
 
-  // 以下demo为通过url设置网络地址来实现播放Dash流媒体视频
+  // 以下demo为通过url设置网络地址来实现播放Dash流媒体视频。
   async avPlayerDashDemo() {
-    // 创建avPlayer实例对象
+    // 创建avPlayer实例对象。
     let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    // 创建状态机变化回调函数
+    // 创建状态机变化回调函数。
     this.setAVPlayerCallback(avPlayer);
-    // 设置播放偏好策略
+    // 设置播放偏好策略。
     // let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://test.cn/dash/aaa.mpd",  {"User-Agent" : "User-Agent-Value"});
     // let playbackStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3, preferredHdr: false};
     // avPlayer.setMediaSource(mediaSource, playbackStrategy);
-    this.isSeek = true; // 表示支持seek操作
-    avPlayer.url = 'http://test.cn/dash/aaa.mpd'; //须替换为DASH资源实际地址
+    this.isSeek = true; // 表示支持seek操作。
+    avPlayer.url = 'http://test.cn/dash/aaa.mpd'; //须替换为DASH资源实际地址。
 
-    // 通过selectTrack设置音频/视频轨道，通过deselectTrack取消上次设置的音频/视频轨道并恢复到默认音频/视频轨道
+    // 通过selectTrack设置音频/视频轨道，通过deselectTrack取消上次设置的音频/视频轨道并恢复到默认音频/视频轨道。
     avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
       if (arrList != null) {
         for (let i = 0; i < arrList.length; i++) {
           let propertyIndex: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
           let propertyType: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_TYPE];
           if (propertyType == 0) {
-            this.audioTrackList.push(parseInt(propertyIndex.toString())); // 获取音频轨道列表
+            this.audioTrackList.push(parseInt(propertyIndex.toString())); // 获取音频轨道列表。
           } else if (propertyType == 1) {
-            this.videoTrackList.push(parseInt(propertyIndex.toString())); // 获取视频轨道列表
+            this.videoTrackList.push(parseInt(propertyIndex.toString())); // 获取视频轨道列表。
           }
         }
       } else {
         console.error(`getTrackDescription fail, error:${error}`);
       }
     });
-    // 选择其中一个视频轨道
+    // 选择其中一个视频轨道。
     // avPlayer.selectTrack(this.videoTrackList[0]);
-    // 取消选择的视频轨道
+    // 取消选择的视频轨道。
     // avPlayer.deselectTrack(this.videoTrackList[0]);
   }
 
-  // 以下demo为通过setMediaSource设置自定义头域及媒体播放优选参数实现初始播放参数设置，以流媒体Https点播为例
+  // 以下demo为通过setMediaSource设置自定义头域及媒体播放优选参数实现初始播放参数设置，以流媒体Https点播为例。
   async preDownloadDemo() {
-    // 创建avPlayer实例对象
+    // 创建avPlayer实例对象。
     let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    // 创建状态机变化回调函数
+    // 创建状态机变化回调函数。
     this.setAVPlayerCallback(avPlayer);
-    this.isSeek = true; // 点播支持seek操作
-    // 创建mediaSource实例对象，设置媒体来源，定制HTTP请求，如需要，可以键值对的形式设置User-Agent、Cookie、Referer等字段
+    this.isSeek = true; // 点播支持seek操作。
+    // 创建mediaSource实例对象，设置媒体来源，定制HTTP请求，如需要，可以键值对的形式设置User-Agent、Cookie、Referer等字段。
     let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("https://xxx.xxx",  {"User-Agent" : "User-Agent-Value", "Cookie" : "Cookie-Value", "Referer" : "Referer-Value"});
-    // 设置播放策略，设置缓冲区数据量为20s
+    // 设置播放策略，设置缓冲区数据量为20s。
     let playbackStrategy : media.PlaybackStrategy = {preferredBufferDuration: 20};
-    // 为avPlayer设置媒体来源和播放策略
+    // 为avPlayer设置媒体来源和播放策略。
     avPlayer.setMediaSource(mediaSource, playbackStrategy);
   }
 }

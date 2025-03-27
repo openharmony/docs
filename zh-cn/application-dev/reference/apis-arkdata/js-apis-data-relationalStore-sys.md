@@ -5,8 +5,8 @@ ArkTS侧支持的基本数据类型：number、string、二进制类型数据、
 
 该模块提供以下关系型数据库相关的常用功能：
 
-- [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates)： 数据库中用来代表数据实体的性质、特征或者数据实体之间关系的词项，主要用来定义数据库的操作条件。
-- [RdbStore](#rdbstore)：提供管理关系数据库(RDB)方法的接口。
+- [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates)：数据库中用来代表数据实体的性质、特征或者数据实体之间关系的词项，主要用来定义数据库的操作条件。
+- [RdbStore](#rdbstore)：提供管理关系数据库（RDB）方法的接口。
 - [ResultSet](js-apis-data-relationalStore.md#resultset)：提供用户调用关系型数据库查询接口之后返回的结果集合。
 
 > **说明：**
@@ -279,9 +279,9 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates, callb
 
 | 参数名     | 类型                                                         | 必填 | 说明                                          |
 | ---------- | ------------------------------------------------------------ | ---- | --------------------------------------------- |
-| table      | string                                                       | 是   | 指定的目标表名。                              |
+| table      | string                                                       | 是   | 指定的目标表名，不能为空字符串。              |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的删除条件。 |
-| callback   | AsyncCallback&lt;number&gt;                                  | 是   | 指定callback回调函数。返回受影响的行数。      |
+| callback   | AsyncCallback&lt;number&gt;                                  | 是   | 指定callback回调函数。返回受影响的行数量。 |
 
 **错误码：**
 
@@ -692,7 +692,7 @@ if(store != undefined) {
 
 querySharingResource(predicates: RdbPredicates, columns?: Array&lt;string&gt;): Promise&lt;ResultSet&gt;
 
-根据谓词条件匹配的数据记录查找对应记录的共享资源标识，返回查找的结果集。 如果指定了列字段，则返回结果集中同时包含对应列的字段值，使用Promise异步回调。
+根据谓词条件匹配的数据记录查找对应记录的共享资源标识，返回查找的结果集。如果指定了列字段，则返回结果集中同时包含对应列的字段值，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -920,7 +920,7 @@ lockCloudContainer(): Promise&lt;number&gt;
 
 | 类型                | 说明                                    |
 | ------------------- | ---------------------------------------|
-| Promise&lt;number&gt; | Promise对象，如果加锁成功，返回锁的有效时长，如果加锁失败，返回0，单位：ms。 |
+| Promise&lt;number&gt; | Promise对象，如果加锁成功，返回锁的有效时长；如果加锁失败，返回0，单位：ms。 |
 
 **错误码：**
 

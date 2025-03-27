@@ -38,7 +38,7 @@ Creates a text picker based on the selection range specified by **range**.
 | -------- | -------- | -------- | -------- |
 | range | string[] \| string[] []<sup>10+</sup> \| [Resource](ts-types.md#resource) \|<br>[TextPickerRangeContent](#textpickerrangecontent10)[]<sup>10+</sup> \| [TextCascadePickerRangeContent](#textcascadepickerrangecontent10)[]<sup>10+</sup> | Yes| Data selection range of the picker. This parameter cannot be set to an empty array. If set to an empty array, it will not be displayed. If it is dynamically changed to an empty array, the current value remains displayed.<br>**NOTE**<br>For a single-column picker, use a value of the string[], Resource, or TextPickerRangeContent[] type.<br>For a multi-column picker, use a value of the string[] type.<br>For a multi-column linked picker, use a value of the TextCascadePickerRangeContent[] type.<br>The Resource type supports only [strarray.json](../../../quick-start/resource-categories-and-access.md#resource-group-directories).<br>The type and number of columns in the range cannot be dynamically modified.|
 | selected | number \| number[]<sup>10+</sup> | No| Index of the default item in the range.<br>Default value: **0**<br>**NOTE**<br>For a single-column picker, use a value of the number type.<br>For a multi-column (linked) picker, use a value of the number[] type.<br>Since API version 10, this attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
-| value | string \| string[]<sup>10+</sup> | No| Value of the default item in the range. The priority of this parameter is lower than that of **selected**.<br>Default value: value of the first item<br>**NOTE**<br>This parameter works only when the picker contains text only.  <br>For a single-column picker, use a value of the string type.<br>For a multi-column (linked) picker, use a value of the string[] type.<br>Since API version 10, this attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
+| value | string \| string[]<sup>10+</sup> | No| Value of the default item in the range. The priority of this parameter is lower than that of **selected**.<br>Default value: value of the first item<br>**NOTE**<br>This parameter works only when the picker contains text only.  <br>For a single-column picker, use a value of the string type.<br>For a multi-column (linked) picker, use a value of the string[] type.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
 
 ## TextPickerRangeContent<sup>10+</sup>
 
@@ -76,7 +76,7 @@ Creates a text picker based on the selection range specified by **range**.
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### defaultPickerItemHeight
 
@@ -195,7 +195,7 @@ If the sum of **startMargin** and **endMargin** exceeds the component width, bot
 
 gradientHeight(value: Dimension)
 
-Sets the height for the fade-out effect. If this attribute is not set, the default fade-out effect will be displayed.
+Sets the height for the fade effect. If this attribute is not set, the default fade effect is displayed.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -207,13 +207,45 @@ Sets the height for the fade-out effect. If this attribute is not set, the defau
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | [Dimension](ts-types.md#dimension10) | Yes  | Height of the gradient effect at the top and bottom edges of the content area. It can be set in percentage, with 100% (the maximum value) being half the height of the picker. Setting it to **0** will result in no gradient effect, while negative numbers or other invalid values will display the default gradient effect. Default value: **36vp**|
 
+### disableTextStyleAnimation<sup>15+</sup>
+
+disableTextStyleAnimation(disabled: boolean)
+
+Sets whether to enable the text style change animation during the scrolling process. When this API is used with **true**, there are no text style changes, including the font size, weight, and color, during scrolling, and all text is displayed in the style set by [defaultTextStyle](#defaulttextstyle15). If **defaultTextStyle** is not set, the text is displayed in the default style of the **Text** component.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| disabled  | boolean | Yes  | Whether to enable the text style change animation during the scrolling process.<br>**true**: Disable the text style change animation.<br>**false**: Enable the text style change animation.<br>Default value: **false**|
+
+### defaultTextStyle<sup>15+</sup>
+
+defaultTextStyle(style: TextPickerTextStyle)
+
+Sets the style of the text items when the text style change animation during the scrolling process is disabled.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| style  | [TextPickerTextStyle](#textpickertextstyle15) | Yes  | Style of the text items when the text style change animation during the scrolling process is disabled. It is effective only when **disableTextStyleAnimation** is **true**.<br>Default value: same as the default value of the [Text](ts-basic-components-text.md) component|
+
 > **NOTE**
 >
 > Avoid changing the attribute data during the animation process of this component.
 
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onAccept<sup>(deprecated) </sup>
 
@@ -261,7 +293,7 @@ Triggered when an item in the picker is selected. When the picker contains text 
 
 ### onScrollStop<sup>14+</sup>
 
-onScrollStop(callback: (value: string \| string[], index: number \| number[]) =&gt; void)
+onScrollStop(callback: TextPickerScrollStopCallback)
 
 Triggered when the scrolling in the text picker stops.
 
@@ -277,8 +309,40 @@ When the picker contains text only or a combination of images and text, **value*
 
 | Name| Type                                      | Mandatory| Description                                             |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
+| callback | [TextPickerScrollStopCallback](#textpickerscrollstopcallback14) | Yes  | Triggered when the scrolling in the text picker stops.|
+
+## TextPickerScrollStopCallback<sup>14+</sup>
+
+type TextPickerScrollStopCallback = (value: string | string[], index: number | number[]) => void
+
+Triggered when the scrolling in the text picker stops.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 14.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                      | Mandatory| Description                                             |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
 | value  | string \| string[] | Yes  | Text of the selected item. For a multi-column picker, **value** is of the array type.  |
 | index  | number \| number[] | Yes  | Index of the selected item. For a multi-column picker, **index** is of the array type.|
+
+## TextPickerTextStyle<sup>15+</sup>
+
+Defines the text style options. Inherits [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10).
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+| Name  | Type                                    | Mandatory  | Description                     |
+| ----- | ---------------------------------------- | ---- | ------------------------- |
+| color | [ResourceColor](ts-types.md#resourcecolor) | No   | Text color.                    |
+| font  | [Font](ts-types.md#font)                 | No   | Text style.|
+| minFontSize  | number \| string \| [Resource](ts-types.md#resource) | No   | Minimum font size, used in conjunction with **maxFontSize**. When **minFontSize** and **maxFontSize** are set, the **size** setting in **font** is ineffective. The default maximum number of lines is 1, and the default height adaptation mode is **MIN_FONT_SIZE_FIRST**.                    |
+| maxFontSize  | number \| string \| [Resource](ts-types.md#resource) | No   | Maximum font size.                    |
+|  overflow   |   [TextOverflow](ts-appendix-enums.md#textoverflow) | No   | Display mode when the text is too long. Ineffective when set to **MARQUEE**.                    |
 
 ## Example
 
@@ -454,7 +518,7 @@ struct TextPickerExample {
 This example demonstrates how to customize the height of the fade effect in a text picker using **gradientHeight**.
 
 ```ts
-// xxx.ets
+// xxx.ets 
 @Entry
 @Component
 struct TextPickerExample {
@@ -480,3 +544,37 @@ struct TextPickerExample {
 ```
 
 ![textpicker](figures/textpicker4.gif)
+### Example 5: Disabling the Text Style Animation and Setting the Corresponding Text Style
+
+This example demonstrates how to disable the text style animation and set the corresponding text style using **disableTextStyleAnimation** and **defaultTextStyle**.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextPickerExample {
+  private select: number = 1
+  private fruits: string[] = ['AAAAA', 'BBBBBBBBBBBBB', 'CCCC', 'DDDDDDDD', 'EEE']
+
+  build() {
+    Column() {
+      TextPicker({
+        range: this.fruits,
+        selected: this.select,
+        value: this.fruits[this.select]
+      })
+        .disableTextStyleAnimation(true)
+        .margin({ bottom: 30 })
+      TextPicker({
+        range: this.fruits,
+        selected: this.select,
+        value: this.fruits[this.select]
+      })
+        .disableTextStyleAnimation(true)
+        .defaultTextStyle({ minFontSize: 18, maxFontSize: 28, overflow: TextOverflow.Ellipsis })
+    }.width('100%').height('100%')
+  }
+}
+```
+
+![textpicker](figures/TextPickerDemo9.jpeg)

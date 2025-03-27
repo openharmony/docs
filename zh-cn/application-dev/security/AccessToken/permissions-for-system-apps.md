@@ -1457,6 +1457,18 @@
 
 **起始版本**：7
 
+### ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
+
+允许应用管理Wi-Fi的连接。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：15
+
 ### ohos.permission.MANAGE_WIFI_CONNECTION
 
 允许应用管理Wi-Fi的连接。
@@ -4131,6 +4143,18 @@
 
 **起始版本**：15
 
+### ohos.permission.ACCESS_ACCOUNT_SERVICE_EXTENSION_ABILITY
+
+允许系统应用调用账号ServiceExtensionAbility所提供的服务。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：15
+
 ### ohos.permission.STORAGE_MANAGER_CRYPT
 
 允许系统应用和系统服务调用接口完成加解密操作。
@@ -4144,6 +4168,100 @@
 **起始版本**：12
 
 **变更信息**：API 12-14仅对系统服务开放；从API 15开始对系统应用开放。
+
+### ohos.permission.EXEMPT_CAPTURE_SCREEN_AUTHORIZE
+
+允许应用发起录屏的时候，不弹出隐私授权弹窗。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：15
+
+### ohos.permission.USE_FRAUD_MESSAGES_PICKER
+
+允许应用使用诈骗短信选择器，获取短信内容。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**起始版本**：15
+
+### ohos.permission.USE_FRAUD_CALL_LOG_PICKER
+
+允许应用使用诈骗通话记录选择器，获取通话记录内容。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**起始版本**：15
+
+### ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY
+
+允许系统JS引擎申请带MAP_FORT标识的匿名可执行内存。
+
+应用申请此权限后，系统引擎可申请带MAP_FORT的匿名可执行内存，做即时编译，提高与形式执行效率。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**起始版本**：14
+
+### ohos.permission.PERSONAL_MANAGE_RESTRICTIONS
+
+允许设备管理应用管理个人设备限制策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：15
+
+### ohos.permission.START_PROVISIONING_MESSAGE
+
+允许应用启动设备管理业务部署流程，将该应用激活为个人设备管理应用。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：15
+
+### ohos.permission.PRELOAD_FILE
+
+允许应用预加载文件以提升文件打开速度。
+
+仅当应用为文档编辑类应用可申请此权限。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**起始版本**：15
+
+### ohos.permission.ACCESS_DISK_PHY_INFO
+
+允许应用获取硬盘的硬件信息。
+
+仅面向金融证券类应用开放，用于证券、股票交易。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：15
 
 ## system_grant，不允许ACL跨级申请
 
@@ -4201,7 +4319,7 @@
 
 ### ohos.permission.MANAGE_DEVICE_AUTH_CRED
 
-允许应用调用设备认证华为账号凭据管理应用接口。
+允许应用调用设备认证账号凭据管理应用接口。
 
 **权限级别**：system_basic
 

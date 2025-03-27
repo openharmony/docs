@@ -15,27 +15,39 @@
 import { AVCastPicker } from '@kit.AVSessionKit';
 ```
 
+## 属性
+
+支持[通用属性](../apis-arkui/arkui-ts/ts-component-general-attributes.md)。
+
 ## AVCastPicker
 
-AVCastPicker()
+```
+AVCastPicker({
+  normalColor?: Color | number | string;
+  activeColor?: Color | number | string;
+  pickerStyle?: AVCastPickerStyle;
+  colorMode?: AVCastPickerColorMode;
+  sessionType?: string;
+  customPicker?: CustomBuilder;
+  onStateChange?: (state: AVCastPickerState) => void;
+})
+```
 
 投播组件，可用于将音视频资源投放到其它设备播放。
 
-该组件为自定义组件，开发者在使用前需要先了解[@Component](../../quick-start/arkts-create-custom-components.md)。
+该组件为自定义组件，开发者在使用前需要先了解[@Component](../../quick-start/arkts-create-custom-components.md#component)。
+
+**装饰器类型：** [@Component](../../quick-start/arkts-create-custom-components.md)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-## 属性
-
-除支持[通用属性](../apis-arkui/arkui-ts/ts-universal-attributes-size.md)外，还支持以下属性：
-
-| 名称 | 参数类型 | 必填 | 装饰器修饰类型 | 说明 |
+| 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | normalColor<sup>11+</sup> | Color &#124; number &#124; string | 否 | @Prop | 指正常状态下投播组件的颜色。<br>未设置将采用colorMode下的颜色设置。 |
 | activeColor<sup>11+</sup> | Color &#124; number &#124; string | 否 | @Prop | 指设备切换成功状态下投播组件的颜色。未设置系统将优先根据normalColor的颜色匹配；如果normalColor也未设置，将采用colorMode下的颜色设置。 |
-| pickerStyle<sup>12+</sup> | [AVCastPickerStyle](js-apis-avCastPickerParam.md#avcastpickerstyle12) | 否 | @Prop | 投播样式。<br>- 当时sessionType是audio或者video时，默认值为STYLE_PANEL；<br>- 当sessionType是voice_call或者video_call时，默认值为STYLE_MENU，且不可修改为STYLE_PANEL。|
+| pickerStyle<sup>12+</sup> | [AVCastPickerStyle](js-apis-avCastPickerParam.md#avcastpickerstyle12) | 否 | @Prop | 投播样式。<br>- 当sessionType是audio或者video时，默认值为STYLE_PANEL；<br>- 当sessionType是voice_call或者video_call时，默认值为STYLE_MENU，且不可修改为STYLE_PANEL。|
 | colorMode<sup>12+</sup> | [AVCastPickerColorMode](js-apis-avCastPickerParam.md#avcastpickercolormode12) | 否 |  @Prop | 显示模式。默认值为AUTO。<br>- 当colorMode设置为AUTO时，跟随系统的深浅色模式的默认色值；<br>- 当colorMode设置为DARK、LIGHT时，使用对应模式的系统预定色值。 |
 | sessionType<sup>12+</sup> | string | 否| @Prop | 会话类型，可参考[AVSessionType](js-apis-avsession.md#avsessiontype10)。默认值为当前应用创建的AVSessionType。 |
 | customPicker<sup>12+</sup> | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8) | 否 | @Prop | 自定义样式。建议应用自定义组件样式，可有效提升组件显示速度。 |
@@ -43,7 +55,7 @@ AVCastPicker()
 
 ## 事件
 
-支持[通用事件](../apis-arkui/arkui-ts/ts-universal-events-click.md)。
+支持[通用事件](../apis-arkui/arkui-ts/ts-component-general-events.md)。
 
 ## 示例
 
@@ -57,7 +69,7 @@ import { AVCastPickerState, AVCastPicker } from '@kit.AVSessionKit';
 @Component
 struct Index {
 
-  @State pickerImage: ResourceStr = $r('app.media.castPicker'); // 自定义资源
+  @State pickerImage: ResourceStr = $r('app.media.castPicker'); // 自定义资源。
 
   private onStateChange(state: AVCastPickerState) {
     if (state == AVCastPickerState.STATE_APPEARING) {

@@ -836,7 +836,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 | -deviceinfo|否| 获取设备信息。              |
 | -server|否|    启停采集用来拉起daemon进程。           |
 | -clear|否|    清除所有SP_daemon进程。           |
-| -ohtestfps|否|    validator用于获取fps，可设置采集次数(1秒采集一次)。          |
+| -ohtestfps|否|    validator用于获取fps，可设置采集次数（1秒采集一次）。          |
 | -editorServer|否|    editor工具用来拉起daemon进程。         |
 | -recordcapacity|否|    获取当前设备电量。         |
 | -profilerfps |否| 采集当前界面fps。          |

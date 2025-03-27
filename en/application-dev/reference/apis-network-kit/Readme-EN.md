@@ -1,14 +1,19 @@
 # Network Kit
 
-- ArkTS API
+- ArkTS API<!--network-api-arkts-->
   - [@ohos.net.connection (Network Connection Management)](js-apis-net-connection.md)
+  - [@ohos.net.ethernet (Ethernet Connection Management)](js-apis-net-ethernet.md)
   - [@ohos.net.http (Data Request)](js-apis-http.md)
   - [@ohos.net.mdns (mDNS Management)](js-apis-net-mdns.md)
+  - [@ohos.net.policy (Network Policy Management)](js-apis-net-policy.md)
   - [@ohos.net.socket (Socket Connection)](js-apis-socket.md)
   - [@ohos.net.statistics (Traffic Management)](js-apis-net-statistics.md)
+  - [@ohos.net.sharing (Network Sharing)](js-apis-net-sharing.md)
   - [@ohos.net.vpnExtension (Enhanced VPN Management)](js-apis-net-vpnExtension.md)
+  - [@ohos.net.vpn (VPN Management)](js-apis-net-vpn.md)
   - [@ohos.net.webSocket (WebSocket Connection)](js-apis-webSocket.md)
   - [@ohos.net.networkSecurity (Network Security)](js-apis-networkSecurity.md)
+  - [@ohos.net.netFirewall (Network Firewall)](js-apis-net-netfirewall.md)
   - [@ohos.app.ability.VpnExtensionAbility (Enhanced VPN Management)](js-apis-VpnExtensionAbility.md)
   - [VpnExtensionContext](js-apis-inner-application-VpnExtensionContext.md)
   <!--Del-->
@@ -17,22 +22,22 @@
   - [@ohos.net.policy (Network Policy Management) (System API)](js-apis-net-policy-sys.md)
   - [@ohos.net.sharing (Network Sharing Management) (System API)](js-apis-net-sharing-sys.md)
   - [@ohos.net.statistics (Traffic Management) (System API)](js-apis-net-statistics-sys.md)
-  - [@ohos.net.vpn (VPN Management) (System API)](js-apis-net-vpn-sys.md)
+  - [@ohos.net.vpn (VPN Management) (System API)] (js-apis-net-vpn-sys.md)
   - [@ohos.net.vpnExtension (Enhanced VPN Management) (System API)](js-apis-net-vpnExtension-sys.md)
-  - [@ohos.net.netFirewall (Network Firewall)](js-apis-net-netfirewall.md)
+  - [@ohos.net.netFirewall (Network Firewall) (System API)](js-apis-net-netfirewall-sys.md)
   <!--DelEnd-->
-- C API
-  - Module
+- C API<!--network-c-->
+  - Modules<!--network-module-->
     - [Netstack](netstack.md)
     - [NetConnection](_net_connection.md)
-  - Header Files
+  - Header Files<!--network-headerfile-->
     - [net_connection.h](net__connection_8h.md)
     - [net_connection_type.h](net__connection__type_8h.md)
     - [net_ssl_c.h](net__ssl__c_8h.md)
     - [net_ssl_c_type.h](net__ssl__c__type_8h.md)
     - [net_websocket.h](net__websocket_8h.md)
     - [net_websocket_type.h](net__websocket__type_8h.md)
-  - Structs
+  - Structs<!--network-struct-->
     - [NetConn_ConnectionProperties](_net_conn___connection_properties.md)
     - [NetConn_HttpProxy](_net_conn___http_proxy.md)
     - [NetConn_NetAddr](_net_conn___net_addr.md)
@@ -52,10 +57,10 @@
     - [WebSocket_Header](_web_socket___header.md)
     - [WebSocket_OpenResult](_web_socket___open_result.md)
     - [WebSocket_RequestOptions](_web_socket___request_options.md)
-- APIs No Longer Maintained
+- APIs No Longer Maintained<!--network-arkts-dep-->
   - [@system.network (Network State)](js-apis-system-network.md)
   - [@system.fetch (Data Request)](js-apis-system-fetch.md)
-- Error Codes
+- Error Codes<!--network-arkts-errcode-->
   - [HTTP Error Codes](errorcode-net-http.md)
   - [Socket Error Codes](errorcode-net-socket.md)
   - [WebSocket Error Codes](errorcode-net-webSocket.md)
@@ -66,3 +71,4 @@
   - [mDNS Error Codes](errorcode-net-mdns.md)
   - [Traffic Management Error Codes](errorcode-net-statistics.md)
   - [VPN Error Codes](errorcode-net-vpn.md)
+  - [Network Security Error Codes](errorcode-net-networkSecurity.md)

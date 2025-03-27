@@ -25,8 +25,8 @@ Describes the state of the **NavDestination** component.
 | --------- | --- | ------------------------ |
 | ON_SHOWN  | 0   | The **NavDestination** component is displayed.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 11.|
 | ON_HIDDEN | 1   | The **NavDestination** component is hidden.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 11.|
-| ON_APPEAR<sup>12+</sup> | 2   | The **NavDestination** component is mounted to the component tree.<br> **Widget capability**: This API can be used in ArkTS widgets since API version 12.|
-| ON_DISAPPEAR<sup>12+</sup> | 3   | The **NavDestination** component is unmounted from the component tree.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
+| ON_APPEAR<sup>12+</sup> | 2   | The **NavDestination** component is attached to the component tree.<br> **Widget capability**: This API can be used in ArkTS widgets since API version 12.|
+| ON_DISAPPEAR<sup>12+</sup> | 3   | The **NavDestination** component is detached from the component tree.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
 | ON_WILL_SHOW<sup>12+</sup> | 4   | The **NavDestination** is about to be displayed.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
 | ON_WILL_HIDE<sup>12+</sup> | 5   | The **NavDestination** component is about to be hidden.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
 | ON_WILL_APPEAR<sup>12+</sup>| 6   | The **NavDestination** component is about to be mounted to the component tree.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
@@ -79,8 +79,6 @@ Enumerates the states of the **NavDestination** component.
 
 Provides information about the **NavDestination** component.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name        | Type                                              | Mandatory| Description                                        |
@@ -91,6 +89,8 @@ Provides information about the **NavDestination** component.
 | index<sup>12+</sup>        | number        | Yes  | Index of the **NavDestination** component in the navigation stack.                  |
 | param<sup>12+</sup>        | Object        | No  | Parameters of the **NavDestination** component.                  |
 | navDestinationId<sup>12+</sup>        | string        | Yes  | Unique ID of the **NavDestination** component.                  |
+| mode<sup>15+</sup>        | [NavDestinationMode](arkui-ts/ts-basic-components-navdestination.md#navdestinationmode11)        | No  | Mode of the **NavDestination** component.                  |
+| uniqueId<sup>15+</sup>        | number        | No  | Unique ID of the **NavDestination** component.                  |
 
 ## NavigationInfo<sup>12+</sup>
 
@@ -202,6 +202,7 @@ Provides the **TabContent** switching information.
 | tabContentId | string                                             | Yes  | ID of the **TabContent** component.                         |
 | tabContentUniqueId | number                                       | Yes  | Unique ID of the **TabContent** component.                   |
 | state        | [TabContentState](#tabcontentstate12)              | Yes  | State of the **TabContent** component.                       |
+| index        | number                                             | Yes  | Index of the **TabContent** component.                            |
 | id           | string                                             | Yes  | ID of the **Tabs** component.                               |
 | uniqueId     | number                                             | Yes  | Unique ID of the **Tabs** component.                         |
 
@@ -225,9 +226,54 @@ Subscribes to status changes of the **NavDestination** component.
 **Example**
 
 ```ts
-observer.on('navDestinationUpdate', (info) => {
-  console.info('NavDestination state update', JSON.stringify(info));
-});
+// Index.ets
+// Example usage of observer.on('navDestinationUpdate', callback)
+// observer.off('navDestinationUpdate', callback)
+import { uiObserver as observer } from '@kit.ArkUI';
+
+@Component
+struct PageOne {
+  build() {
+    NavDestination() {
+      Text("pageOne")
+    }.title("pageOne")
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  aboutToAppear() {
+    observer.on('navDestinationUpdate', (info) => {
+      console.info('NavDestination state update', JSON.stringify(info));
+    });
+  }
+
+  aboutToDisappear() {
+    observer.off('navDestinationUpdate');
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({ name: "pageOne" });
+        })
+      }
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ## observer.off('navDestinationUpdate')
@@ -249,9 +295,7 @@ Unsubscribes from status changes of the **NavDestination** component.
 
 **Example**
 
-```ts
-observer.off('navDestinationUpdate');
-```
+See the example for [observer.on('navDestinationUpdate')](#observeronnavdestinationupdate).
 
 ## observer.on('navDestinationUpdate')
 
@@ -274,9 +318,55 @@ Subscribes to status changes of the **NavDestination** component.
 **Example**
 
 ```ts
-observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
-    console.info('NavDestination state update', JSON.stringify(info));
-});
+// Index.ets
+// Example usage of observer.on('navDestinationUpdate', navigationId, callback)
+// observer.off('navDestinationUpdate', navigationId, callback)
+import { uiObserver as observer } from '@kit.ArkUI';
+
+@Component
+struct PageOne {
+  build() {
+    NavDestination() {
+      Text("pageOne")
+    }.title("pageOne")
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  aboutToAppear() {
+    observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
+      console.info('NavDestination state update', JSON.stringify(info));
+    });
+  }
+
+  aboutToDisappear() {
+    observer.off('navDestinationUpdate', { navigationId: "testId" });
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({ name: "pageOne" });
+        })
+      }
+      .id("testId")
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ## observer.off('navDestinationUpdate')
@@ -299,9 +389,7 @@ Unsubscribes from status changes of the **NavDestination** component.
 
 **Example**
 
-```ts
-observer.off('navDestinationUpdate', { navigationId: "testId" });
-```
+See the example for [observer.on('navDestinationUpdate')](#observeronnavdestinationupdate-1).
 
 ## observer.on('scrollEvent')<sup>12+</sup>
 
@@ -465,7 +553,7 @@ Subscribes to state changes of the page during routing.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value is fixed at **'routerPageUpdate'**, which indicates the state change event of the page during routing.|
-| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for.|
+| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for.|
 | callback | Callback\<[RouterPageInfo](#routerpageinfo)\>        | Yes  | Callback used to return the If **pageInfo** is passed, the current page state is returned.                |
 
 **Example**
@@ -519,7 +607,7 @@ Unsubscribes to state changes of the page during routing.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value is fixed at **'routerPageUpdate'**, which indicates the state change event of the page during routing.|
-| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for.|
+| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for.|
 | callback | Callback\<[RouterPageInfo](#routerpageinfo)\>        | No  | Callback to be unregistered.                |
 
 **Example**
@@ -636,6 +724,7 @@ struct Index {
         .fontSize(24)
         .fontWeight(FontWeight.Bold)
       Button('Subscribe to Screen Pixel Density Changes')
+        .margin({ bottom: 10 })
         .onClick(() => {
           this.message = 'Listener registered'
           observer.on('densityUpdate', this.getUIContext(), this.densityUpdateCallback);
@@ -721,6 +810,7 @@ struct Index {
   build() {
     Column() {
       Button('Subscribe to Drawing Instruction Dispatch')
+        .margin({ bottom: 10 })
         .onClick(() => {
           observer.on('willDraw', this.getUIContext(), this.willDrawCallback);
         })
@@ -804,6 +894,7 @@ struct Index {
   build() {
     Column() {
       Button('Subscribe to Layout Completion')
+        .margin({ bottom: 10 })
         .onClick(() => {
           observer.on('didLayout', this.getUIContext(), this.didLayoutCallback);
         })
@@ -831,7 +922,7 @@ Subscribes to the page switching event of the **Navigation** component.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value **'navDestinationSwitch'** indicates the page switching event of the **Navigation** component.|
-| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page switching event to be listened for.|
+| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page switching event to be listened for.|
 | callback | Callback\<[NavDestinationSwitchInfo](#navdestinationswitchinfo12)\>        | Yes  | Callback used to return the information about the page switching event.                |
 
 **Example**
@@ -930,7 +1021,7 @@ struct Index {
     Column() {
       Navigation(this.stack) {
         Button("push").onClick(() => {
-          this.stack.pushPath({name: "pageOne"});
+          this.stack.pushPath({ name: "pageOne" });
         })
       }
       .title("Navigation")
@@ -957,7 +1048,7 @@ Unsubscribes from the page switching event of the **Navigation** component.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value **'navDestinationSwitch'** indicates the page switching event of the **Navigation** component.|
-| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page switching event to be listened for.|
+| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page switching event to be listened for.|
 | callback | Callback\<[NavDestinationSwitchInfo](#navdestinationswitchinfo12)\>        | No  | Callback to be unregistered.                |
 
 **Example**
@@ -979,7 +1070,7 @@ Subscribes to the page switching event of the **Navigation** component.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value **'navDestinationSwitch'** indicates the page switching event of the **Navigation** component.|
-| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page switching event to be listened for.|
+| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page switching event to be listened for.|
 | observerOptions | [NavDestinationSwitchObserverOptions](#navdestinationswitchobserveroptions12)        | Yes  | Observer options.  |
 | callback | Callback\<[NavDestinationSwitchInfo](#navdestinationswitchinfo12)\>        | Yes  | Callback used to return the information about the page switching event.                |
 
@@ -1000,12 +1091,16 @@ function callBackFunc(info: observer.NavDestinationSwitchInfo) {
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    observer.on('navDestinationSwitch', this.context, { navigationId: "myNavId" }, callBackFunc);
+    observer.on('navDestinationSwitch', this.context, {
+      navigationId: "myNavId"
+    }, callBackFunc);
   }
 
   onDestroy(): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
-    observer.off('navDestinationSwitch', this.context, { navigationId: "myNavId" }, callBackFunc);
+    observer.off('navDestinationSwitch', this.context, {
+      navigationId: "myNavId"
+    }, callBackFunc);
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
@@ -1079,7 +1174,7 @@ struct Index {
     Column() {
       Navigation(this.stack) {
         Button("push").onClick(() => {
-          this.stack.pushPath({name: "pageOne"});
+          this.stack.pushPath({ name: "pageOne" });
         })
       }
       .id("myNavId")
@@ -1107,7 +1202,7 @@ Unsubscribes from the page switching event of the **Navigation** component.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value **'navDestinationSwitch'** indicates the page switching event of the **Navigation** component.|
-| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page switching event to be listened for.|
+| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page switching event to be listened for.|
 | observerOptions | [NavDestinationSwitchObserverOptions](#navdestinationswitchobserveroptions12)        | Yes  | Observer options.  |
 | callback | Callback\<[NavDestinationSwitchInfo](#navdestinationswitchinfo12)\>        | No  | Callback to be unregistered.                |
 

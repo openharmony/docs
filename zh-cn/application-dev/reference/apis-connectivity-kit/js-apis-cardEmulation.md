@@ -57,12 +57,13 @@ HCE(Host Card Emulation)，称为基于主机的卡模拟，表示不依赖安�
 import { cardEmulation } from '@kit.ConnectivityKit';
 ```
 
-## FeatureType<sup>(deprecated)</sup>
+## cardEmulation.FeatureType<sup>(deprecated)</sup>
 
 定义不同的NFC卡模拟类型。
 
 > **说明：**
-> 从 API version 6 开始支持，从 API version 9 开始废弃，建议使用[hasHceCapability](#hashcecapability9)替代。
+> 
+> 从 API version 6 开始支持，从 API version 9 开始废弃，建议使用[hasHceCapability](#cardemulationhashcecapability9)替代。
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
@@ -85,14 +86,15 @@ import { cardEmulation } from '@kit.ConnectivityKit';
 | PAYMENT | "payment" | 卡模拟应用所使用的业务是支付类型。 |
 | OTHER   | "other"   | 卡模拟应用所使用的业务是其他类型。 |
 
-## isSupported<sup>(deprecated)</sup>
+## cardEmulation.isSupported<sup>(deprecated)</sup>
 
 isSupported(feature: number): boolean
 
 是否支持某种类型的卡模拟。
 
 > **说明：**
-> 从 API version 6 开始支持，从 API version 9 开始废弃，建议使用[hasHceCapability](#hashcecapability9)替代。
+> 
+> 从 API version 6 开始支持，从 API version 9 开始废弃，建议使用[hasHceCapability](#cardemulationhashcecapability9)替代。
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
@@ -100,7 +102,7 @@ isSupported(feature: number): boolean
 
 | 参数名     | 类型     | 必填   | 说明                                       |
 | ------- | ------ | ---- | ---------------------------------------- |
-| feature | number | 是    | 卡模拟类型值，详细请见[FeatureType](#featuretypedeprecated)枚举值。 |
+| feature | number | 是    | 卡模拟类型值，详细请见[FeatureType](#cardemulationfeaturetypedeprecated)枚举值。 |
 
 **返回值：**
 
@@ -119,7 +121,7 @@ if (!isHceSupported) {
 }
 ```
 
-## hasHceCapability<sup>9+</sup>
+## cardEmulation.hasHceCapability<sup>9+</sup>
 
 hasHceCapability(): boolean
 
@@ -157,7 +159,7 @@ if (!hasHceCap) {
 }
 ```
 
-## isDefaultService<sup>9+</sup>
+## cardEmulation.isDefaultService<sup>9+</sup>
 
 isDefaultService(elementName: ElementName, type: CardType): boolean
 
@@ -173,7 +175,7 @@ isDefaultService(elementName: ElementName, type: CardType): boolean
 
 | 参数名         | 类型                                       | 必填   | 说明                      |
 | ----------- | ---------------------------------------- | ---- |-------------------------|
-| elementName | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md#elementname) | 是    | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
+| elementName | [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname) | 是    | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
 | type        | [CardType](#cardtype9)                   | 是    | 卡模拟业务类型。目前只支持默认支付应用查询。   |
 
 **错误码**：
@@ -246,7 +248,7 @@ startHCE(aidList: string[]): boolean
 
 ### start<sup>9+</sup>
 
-start(elementName: [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md#elementname), aidList: string[]): void
+start(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname), aidList: string[]): void
 
 启动HCE业务功能。包括设置当前应用为前台优先，动态注册AID列表。
 
@@ -260,7 +262,7 @@ start(elementName: [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.
 
 | 参数名  | 类型     | 必填 | 说明                    |
 | ------- | -------- | ---- | ----------------------- |
-| elementName | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md#elementname) | 是   | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
+| elementName | [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname) | 是   | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
 | aidList | string[] | 是   | 动态注册卡模拟的AID列表，允许为空。 |
 
 **错误码：**
@@ -313,7 +315,7 @@ stop(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elemen
 
 | 参数名  | 类型     | 必填 | 说明                    |
 | ------- | -------- | ---- | ----------------------- |
-| elementName | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md#elementname) | 是   | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
+| elementName | [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname) | 是   | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
 
 **错误码：**
 

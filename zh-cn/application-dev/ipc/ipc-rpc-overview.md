@@ -32,6 +32,6 @@ IPC和RPC通常采用客户端-服务端（Client-Server）模型，在使用时
 
 - 单个设备上跨进程通信时，传输的数据量最大约为1MB，过大的数据量请使用[匿名共享内存](../reference/apis-ipc-kit/js-apis-rpc.md#ashmem8)。
 
-- 不支持在RPC中订阅匿名Stub对象（没有向SAMgr注册Stub对象）的死亡通知。
+- 不支持在RPC中订阅匿名Stub对象（没有向SAMgr注册Stub对象）的[死亡通知](subscribe-remote-state.md)。
 
 - 不支持把跨设备的Proxy对象传递回该Proxy对象所指向的Stub对象所在的设备，即指向远端设备Stub的Proxy对象不能在本设备内进行二次跨进程传递。

@@ -1,11 +1,11 @@
 # \@Reusable Decorator: Reusing Components
 
 
-When the \@reusable decorator decorates any custom component, the custom component is reusable.
+When the \@Reusable decorator decorates any custom component, the custom component is reusable.
 
 > **NOTE**
 >
-> This decorator can be used in ArkTS since API version 10.
+> The \@Reusable decorator is supported since API version 10.
 
 ## Overview
 
@@ -46,7 +46,7 @@ export struct Crash {
 @Component
 struct Index {
   @State message: string = 'Hello World';
-  private uicontext = this.getUIContext()
+  private uicontext = this.getUIContext();
 
   build() {
     RelativeContainer() {
@@ -74,6 +74,7 @@ struct Index {
 
 ```ts
 import { ComponentContent } from "@kit.ArkUI";
+
 @Builder
 function buildCreativeLoadingDialog(closedClick: () => void) {
   Crash()
@@ -102,7 +103,7 @@ export struct Crash {
 @Component
 struct Index {
   @State message: string = 'Hello World';
-  private uicontext = this.getUIContext()
+  private uicontext = this.getUIContext();
 
   build() {
     RelativeContainer() {
@@ -159,7 +160,7 @@ struct Index {
           .fontSize(14)
         PlayButton02({ isPlaying02: $isPlaying02 })
       }
-      Text(`==================`).fontSize(14)
+      Text(`------------------------`)
 
       // Initial state of the button: hidden
       if (this.isPlaying01) {
@@ -167,7 +168,7 @@ struct Index {
           .fontSize(14)
         PlayButton02({ isPlaying02: $isPlaying01 })
       }
-      Text(`==================`).fontSize(14)
+      Text(`------------------------`)
 
       // Parent-child nesting
       if (this.isPlaying) {
@@ -175,7 +176,7 @@ struct Index {
           .fontSize(14)
         PlayButton({ buttonPlaying: $isPlaying })
       }
-      Text(`==================`).fontSize(14);
+      Text(`------------------------`)
 
       // Parent-child nesting control
       Text(`Parent=child==is ${this.isPlaying ? '' : 'not'} playing`).fontSize(14)
@@ -185,16 +186,16 @@ struct Index {
           this.isPlaying = !this.isPlaying;
         })
 
-      Text(`==================`).fontSize(14);
+      Text(`------------------------`)
 
       // Hide the button control by default.
-      Text(`hidedchild==is ${this.isPlaying01 ? '' : 'not'} playing`).fontSize(14)
-      Button('Button===hidedchild==control==' + this.isPlaying01)
+      Text(`Hiddenchild==is ${this.isPlaying01 ? '' : 'not'} playing`).fontSize(14)
+      Button('Button===hiddenchild==control==' + this.isPlaying01)
         .margin(14)
         .onClick(() => {
           this.isPlaying01 = !this.isPlaying01;
         })
-      Text(`==================`).fontSize(14);
+      Text(`------------------------`)
 
       // Display the button control by default.
       Text(`shownchid==is ${this.isPlaying02 ? '' : 'not'} playing`).fontSize(14)
@@ -281,6 +282,7 @@ export class Message {
 @Component
 struct Index {
   @State switch: boolean = true;
+
   build() {
     Column() {
       Button('Hello')
@@ -290,8 +292,8 @@ struct Index {
           this.switch = !this.switch;
         })
       if (this.switch) {
+        // If only one component to be reused, you do not need to set reuseId.
         Child({ message: new Message('Child') })
-          // If only one component to be reused, you do not need to set reuseId.
           .reuseId('Child')
       }
     }
@@ -321,10 +323,9 @@ struct Child {
 }
 ```
 
-### List Scrolling Used with LazyForEach
+### Using List Scrolling with LazyForEach
 
 - In the sample code, the **CardView** custom component is marked as a reusable component, and the list is scrolled up and down to trigger **CardView** reuse.
-- \@Reusable: The custom component to reuse is decorated by @Reusable.
 - \@State: The variable **item** can be updated only when it is decorated by \@State.
 
 ```ts
@@ -364,7 +365,7 @@ struct ReuseDemo {
 
   aboutToAppear() {
     for (let i = 1; i < 1000; i++) {
-      this.data.pushData(i+"");
+      this.data.pushData(i + "");
     }
   }
 
@@ -403,7 +404,7 @@ export struct CardView {
 }
 ```
 
-### The if Statement
+### if Statement
 
 - In the sample code, the **OneMoment** custom component is marked as a reusable component, and the list is scrolled up and down to trigger **OneMoment** reuse.
 - You can use **reuseId** to assign reuse groups to reusable components. Components with the same **reuseId** will be reused in the same reuse group. If there is only one reusable component, you do not need to set **reuseId**.
@@ -418,12 +419,12 @@ struct Index {
   aboutToAppear(): void {
     for (let i = 0; i < 20; i++) {
       let title = i + 1 + "test_if";
-      this.dataSource.pushData(new FriendMoment(i.toString(), title, 'app.media.app_icon'))
+      this.dataSource.pushData(new FriendMoment(i.toString(), title, 'app.media.app_icon'));
     }
 
     for (let i = 0; i < 50; i++) {
       let title = i + 1 + "test_if";
-      this.dataSource.pushData(new FriendMoment(i.toString(), title, ''))
+      this.dataSource.pushData(new FriendMoment(i.toString(), title, ''));
     }
   }
 
@@ -433,7 +434,8 @@ struct Index {
       List({ space: 3 }) {
         LazyForEach(this.dataSource, (moment: FriendMoment) => {
           ListItem() {
-            OneMoment({ moment: moment })// Use reuseId to control component reuse.
+            // Use reuseId to control component reuse.
+            OneMoment({ moment: moment })
               .reuseId((moment.image !== '') ? 'withImage' : 'noImage')
           }
         }, (moment: FriendMoment) => moment.id)
@@ -473,10 +475,10 @@ export struct OneMoment {
       // if branch judgment
       if (this.moment.image !== '') {
         Flex({ wrap: FlexWrap.Wrap }) {
-          Image($r(this.moment.image)).height(50).width(50);
-          Image($r(this.moment.image)).height(50).width(50);
-          Image($r(this.moment.image)).height(50).width(50);
-          Image($r(this.moment.image)).height(50).width(50);
+          Image($r(this.moment.image)).height(50).width(50)
+          Image($r(this.moment.image)).height(50).width(50)
+          Image($r(this.moment.image)).height(50).width(50)
+          Image($r(this.moment.image)).height(50).width(50)
         }
       }
     }
@@ -511,7 +513,7 @@ class BasicDataSource<T> implements IDataSource {
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataAdd(index);
-    })
+    });
   }
 }
 
@@ -535,8 +537,8 @@ export class MyDataSource<T> extends BasicDataSource<T> {
 
 ### Foreach
 
-- In the following sample code, when the **update** button is clicked, the data is successfully refreshed, but component cannot be reused when scolling the list because of the full expansion attribute of **Foreach**.
-- Click **clear** and **update** in order, and the reuse is successful. This operation is feasible because it can repeatedly create multiple destroyed custom components in a frame.
+- When **Foreach** is used to create a reusable custom component, component reuse cannot be triggered due to the full expansion attribute of **Foreach**. In the following example, after **update** is clicked, the data is refreshed successfully, but **ListItemView** cannot be reused.
+- Click **clear** and then click **update** again. **ListItemView** is successfully reused because multiple destroyed custom components are repeatedly created in a frame.
 
 ```ts
 // xxx.ets
@@ -598,7 +600,7 @@ struct Index {
             let obj = new ListItemObject();
             obj.id = i;
             obj.uuid = Math.random().toString();
-            obj.isExpand = false
+            obj.isExpand = false;
             this.dataSource.push(obj);
           }
         }).height(40)
@@ -612,7 +614,7 @@ struct Index {
             })
           }
         }, (item: ListItemObject) => {
-          return item.uuid.toString()
+          return item.uuid.toString();
         })
 
       }.cachedCount(0)
@@ -630,14 +632,14 @@ struct ListItemView {
 
   aboutToAppear(): void {
     // Click update and scroll the list. The components cannot be reused because of the full expansion attribute of Foreach.
-    console.log("=====abouTo===Appear=====ListItemView==created==" + this.item)
+    console.log("=====aboutToAppear=====ListItemView==created==" + this.item);
   }
 
   aboutToReuse(params: ESObject) {
     this.item = params.item;
     // Click clear and update and the reuse is successful,
-    // because this operation can repeatedly create multiple destroyed custom components in a frame.
-    console.log("=====aboutTo===Reuse====ListItemView==reused==" + this.item)
+    // because multiple destroyed custom components are repeatedly created in a frame.
+    console.log("=====aboutToReuse====ListItemView==reused==" + this.item);
   }
 
   build() {
@@ -739,7 +741,6 @@ struct MyComponent {
   }
 }
 
-// The custom component is decorated by the @Reusable decorator.
 @Reusable
 @Component
 struct ReusableChildComponent {
@@ -792,7 +793,7 @@ class WaterFlowDataSource implements IDataSource {
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataAdd(index);
-    })
+    });
   }
 
   // Obtain the total number of data records.
@@ -827,7 +828,7 @@ class WaterFlowDataSource implements IDataSource {
 struct ReusableFlowItem {
   @State item: number = 0;
 
-  // Invoked when a reusable custom component is added to the component tree from the reuse cache. The component state variable can be updated here to display the correct content.
+  // Invoked when a reusable custom component is added to the component tree from the reuse cache. The component's state variable can be updated here to display the correct content.
   aboutToReuse(params: ESObject) {
     this.item = params.item;
     console.log("=====aboutToReuse====FlowItem==reused==" + this.item);
@@ -1043,7 +1044,7 @@ class BasicDataSource<T> implements IDataSource {
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataAdd(index);
-    })
+    });
   }
 }
 
@@ -1101,7 +1102,7 @@ struct ListItemGroupAndReusable {
           ListItemGroup({ header: this.itemHead(index.toString()) }) {
             LazyForEach(item, (ii: string, index: number) => {
               ListItem() {
-                Inner({ str: ii });
+                Inner({ str: ii })
               }
             })
           }
@@ -1118,7 +1119,7 @@ struct ListItemGroupAndReusable {
 @Reusable
 @Component
 struct Inner {
-  @State str: string = ''
+  @State str: string = '';
 
   aboutToReuse(param: ESObject) {
     this.str = param.str;
@@ -1160,35 +1161,35 @@ class DataSrc1 implements IDataSource {
   notifyDataReload(): void {
     this.listeners.forEach(listener => {
       listener.onDataReloaded();
-    })
+    });
   }
 
   // Notify LazyForEach that a child component needs to be added for the data item with the specified index.
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataAdd(index);
-    })
+    });
   }
 
   // Notify LazyForEach that the data item with the specified index has changed and the child component needs to be rebuilt.
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataChange(index);
-    })
+    });
   }
 
   // Notify LazyForEach that the child component needs to be deleted from the data item with the specified index.
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataDelete(index);
-    })
+    });
   }
 
   // Notify LazyForEach that data needs to be swapped between the from and to positions.
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
       listener.onDataMove(from, to);
-    })
+    });
   }
 }
 
@@ -1223,35 +1224,35 @@ class DataSrc2 implements IDataSource {
   notifyDataReload(): void {
     this.listeners.forEach(listener => {
       listener.onDataReloaded();
-    })
+    });
   }
 
   // Notify LazyForEach that a child component needs to be added for the data item with the specified index.
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataAdd(index);
-    })
+    });
   }
 
   // Notify LazyForEach that the data item with the specified index has changed and the child component needs to be rebuilt.
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataChange(index);
-    })
+    });
   }
 
   // Notify LazyForEach that the child component needs to be deleted from the data item with the specified index.
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataDelete(index);
-    })
+    });
   }
 
   // Notify LazyForEach that data needs to be swapped between the from and to positions.
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
       listener.onDataMove(from, to);
-    })
+    });
   }
 }
 ```
@@ -1306,7 +1307,7 @@ struct Index {
 
   aboutToAppear() {
     for (let i = 0; i < 1000; i++) {
-      this.data.pushData(i+"");
+      this.data.pushData(i + "");
     }
   }
 
@@ -1350,13 +1351,12 @@ struct ReusableComponent {
     }.margin({ left: 10, right: 10 })
   }
 }
-
 ```
 
 #### Composite
 
 - Different reusable components have common child components.
-- Based on the composite component reuse, after the three reusable components in the following example are converted into the **Builder** function, the common child components are under the same parent component **MyComponent**.
+- Based on the composite component reuse, after the three reusable components are converted into the **Builder** function, the common child components are under the same parent component **MyComponent**.
 - When you reuse these child components, their cache pools are also shared in the parent component, reducing the consumption during component creation.
 
 ```ts
@@ -1396,10 +1396,11 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i < 1000; i++) {
-      this.data.pushData(i.toString())
+      this.data.pushData(i.toString());
     }
   }
 
+  // Convert itemBuilderOne to Builder.
   @Builder
   itemBuilderOne(item: string) {
     Column() {
@@ -1409,6 +1410,7 @@ struct MyComponent {
     }
   }
 
+  // Convert itemBuilderTwo to Builder.
   @Builder
   itemBuilderTwo(item: string) {
     Column() {
@@ -1418,6 +1420,7 @@ struct MyComponent {
     }
   }
 
+  // Convert itemBuilderThree to Builder.
   @Builder
   itemBuilderThree(item: string) {
     Column() {
@@ -1473,7 +1476,7 @@ struct ChildComponentA {
         .margin({ left: 10 })
         .fontColor(Color.Blue)
       Grid() {
-        ForEach((new Array(20)).fill(''), (item: string,index: number) => {
+        ForEach((new Array(20)).fill(''), (item: string, index: number) => {
           GridItem() {
             // Add the app.media.startIcon image to the src/main/resources/base/media directory. Otherwise, an error will be reported due to missing resources.
             Image($r('app.media.startIcon'))

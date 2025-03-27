@@ -13,7 +13,7 @@ HiAppEvent提供接口用于订阅系统崩溃事件。
 | ------- | ------ | ------------------------- |
 | time     | number | 事件触发时间，单位为毫秒。 |
 | crash_type | string | 崩溃类型。支持JsError和NativeCrash两种崩溃类型。 |
-| foreground | boolean | 应用是否处于前台状态。 |
+| foreground | boolean | 应用是否处于前台状态。true表示处于前台状态；false表示处于后台状态。 |
 | bundle_version | string | 应用版本。 |
 | bundle_name | string | 应用名称。 |
 | pid | number | 应用的进程id。|
@@ -47,9 +47,9 @@ HiAppEvent提供接口用于订阅系统崩溃事件。
 
 | 名称    | 类型   | 说明                       |
 | ------- | ------ | ------------------------- |
-| signo | number | 信号值(siginfo_t中的si_signo属性) |
-| code | number | 信号值二级分类（siginfo_t中的si_code属性） |
-| address | string | 信号错误地址（siginfo_t中的si_address属性） |
+| signo | number | 信号值(siginfo_t中的si_signo属性)。 |
+| code | number | 信号值二级分类（siginfo_t中的si_code属性）。 |
+| address | string | 信号错误地址（siginfo_t中的si_address属性）。 |
 
 [信号值&信号值二级分类详解](cppcrash-guidelines.md)
 

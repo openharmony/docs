@@ -2,12 +2,9 @@
 
 使用[AVPlayer](../../reference/apis-media-kit/_a_v_player.md#avplayer)可以实现端到端播放原始媒体资源，本开发指导将以完整地播放一个视频作为示例，向开发者讲解AVPlayer视频播放相关功能。
 
-
 播放的全流程包含：创建AVPlayer，设置回调监听函数，设置播放资源，设置播放参数（音量/倍速/焦点模式），设置播放窗口，播放控制（播放/暂停/跳转/停止），重置，销毁播放器实例。
 
-
 在进行应用开发的过程中，开发者可以通过AVPlayer的信息监听回调函数[OH_AVPlayerOnInfoCallback](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeroninfocallback)和错误监听回调函数[OH_AVPlayerOnErrorCallback](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeronerrorcallback)主动获取播放过程信息。如果应用在视频播放器处于错误状态时执行操作，系统可能会抛出异常或生成其他未定义的行为。
-
 
 **图1** 播放状态变化示意图  
 ![Playback status change](figures/playback-status-change-ndk.png)
@@ -128,52 +125,52 @@ OHNativeWindow *DemoNdkPlayer::nativeWindow = nullptr;
 void HandleStateChange(OH_AVPlayer *player, AVPlayerState state) {
     OH_AVErrCode ret;
     switch (state) {
-        case AV_IDLE: // 成功调用reset接口后触发该状态机上报
-//            ret = OH_AVPlayer_SetURLSource(player, url); // 设置url
+        case AV_IDLE: // 成功调用reset接口后触发该状态机上报。
+//            ret = OH_AVPlayer_SetURLSource(player, url); // 设置url。
 //            if (ret != AV_ERR_OK) {
-//            // 处理异常
+//            // 处理异常。
 //        }
             break;
         case AV_INITIALIZED:
-            ret = OH_AVPlayer_SetVideoSurface(player, DemoNdkPlayer::nativeWindow); // 设置视频播放 surface
+            ret = OH_AVPlayer_SetVideoSurface(player, DemoNdkPlayer::nativeWindow); // 设置视频播放 surface。
             LOG("OH_AVPlayer_SetVideoSurface ret:%d", ret);
-            ret = OH_AVPlayer_Prepare(player); //设置播放源后触发该状态上报
+            ret = OH_AVPlayer_Prepare(player); //设置播放源后触发该状态上报。
             if (ret != AV_ERR_OK) {
-            // 处理异常
+            // 处理异常。
             }
             break;
         case AV_PREPARED:
-//            ret = OH_AVPlayer_SetAudioEffectMode(player, EFFECT_NONE); // 设置音频音效模式
+//            ret = OH_AVPlayer_SetAudioEffectMode(player, EFFECT_NONE); // 设置音频音效模式。
 //            if (ret != AV_ERR_OK) {
-//            //处理异常    
+//            //处理异常。   
 //            }  
-            ret = OH_AVPlayer_Play(player); // 调用播放接口开始播放
+            ret = OH_AVPlayer_Play(player); // 调用播放接口开始播放。
             if (ret != AV_ERR_OK) {
-            // 处理异常
+            // 处理异常。
             }
             break;
         case AV_PLAYING:
-//            ret = OH_AVPlayer_Pause(player); //调用暂停接口暂停播放
+//            ret = OH_AVPlayer_Pause(player); //调用暂停接口暂停播放。
 //            if (ret != AV_ERR_OK) {
-//            // 处理异常
+//            // 处理异常。
 //            }
             break;
         case AV_PAUSED:
-//            ret = OH_AVPlayer_Play(player); // 再次播放接口开始播放
+//            ret = OH_AVPlayer_Play(player); // 再次播放接口开始播放。
 //            if (ret != AV_ERR_OK) {
-//            // 处理异常
+//            // 处理异常。
 //            }
            break;
         case AV_STOPPED:
-            ret = OH_AVPlayer_Release(player); //调用reset接口初始化avplayer状态
+            ret = OH_AVPlayer_Release(player); //调用reset接口初始化avplayer状态。
             if (ret != AV_ERR_OK) {
-            // 处理异常
+            // 处理异常。
             }
             break;
         case AV_COMPLETED:
-            ret = OH_AVPlayer_Stop(player);// 调用播放结束接口
+            ret = OH_AVPlayer_Stop(player);// 调用播放结束接口。
             if (ret != AV_ERR_OK) {
-            // 处理异常
+            // 处理异常。
             }
             break;
         default:
@@ -210,7 +207,7 @@ void OHAVPlayerOnInfoCallback(OH_AVPlayer *player, AVPlayerOnInfoType type, OH_A
         LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_SPEEDDONE value: %d", value);
         break;
     case AV_INFO_TYPE_BITRATEDONE:
-        // 目前OH_AVFormat仅支持存储不支持存储uint32_t类型、自定义类型枚举数据
+        // 目前OH_AVFormat仅支持存储不支持存储uint32_t类型、自定义类型枚举数据。
         // 需要通过int32_t类型数据获取，然后强转为对应类型数据。
         OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_BITRATE, &value);
         demoNdkPlayer->bitRate = static_cast<uint32_t>(value);
@@ -309,11 +306,11 @@ void OHAVPlayerOnErrorCallback(OH_AVPlayer *player, int32_t errorCode, const cha
         return;
     }
     demoNdkPlayer->errorCode = errorCode;
-    // do something
+    // do something.
 }
 
-// 调用播放方法时，需要在index.d.ts文件内描述映射的play方法，需要传入一个string类型的参数
-// ets文件调用播放方法时，传入文件路径 testNapi.play("/data/test/test.mp4")
+// 调用播放方法时，需要在index.d.ts文件内描述映射的play方法，需要传入一个string类型的参数。
+// ets文件调用播放方法时，传入文件路径 testNapi.play("/data/test/test.mp4")。
 static napi_value Play(napi_env env, napi_callback_info info)
 {
     OH_AVErrCode ret;
@@ -322,38 +319,38 @@ static napi_value Play(napi_env env, napi_callback_info info)
     
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     
-    // 获取参数类型
+    // 获取参数类型。
     napi_valuetype stringType;
     if (napi_ok != napi_typeof(env, args[0], &stringType)) {
-        // 处理异常
+        // 处理异常。
         return nullptr;
     }
     
-    // 参数校验
+    // 参数校验。
     if (napi_null == stringType) {
-        // 处理异常
+        // 处理异常。
         return nullptr;
     }
     
-    // 获取传递的string长度
+    // 获取传递的string长度。
     size_t length = 0;
     if (napi_ok != napi_get_value_string_utf8(env, args[0], nullptr, 0, &length)) {
-        // 处理异常
+        // 处理异常。
         return nullptr;
     }
     
-    // 如果传入的是""，则直接返回
+    // 如果传入的是""，则直接返回。
     if (length == 0) {
-        // 处理异常
+        // 处理异常。
         return nullptr;
     }
     
-    // 读取传入的string放入buffer中
+    // 读取传入的string放入buffer中。
     char *url = new char[length + 1];
     if (napi_ok != napi_get_value_string_utf8(env, args[0], url, length + 1, &length)) {
         delete[] url;
         url = nullptr;
-        // 处理异常
+        // 处理异常。
         return nullptr;
     }
 
@@ -372,33 +369,33 @@ static napi_value Play(napi_env env, napi_callback_info info)
     LOG("OH_AVPlayer_SetPlayerOnErrorCallback ret:%d", ret);
 
     if (ret != AV_ERR_OK) {
-    // 处理异常
+    // 处理异常。
     }
-    ret = OH_AVPlayer_SetURLSource(player, url); // 设置url
+    ret = OH_AVPlayer_SetURLSource(player, url); // 设置url。
     if (ret != AV_ERR_OK) {
-    // 处理异常
+    // 处理异常。
     }
-    // 设置音频流类型
+    // 设置音频流类型。
     OH_AudioStream_Usage streamUsage = OH_AudioStream_Usage::AUDIOSTREAM_USAGE_UNKNOWN;
     ret = OH_AVPlayer_SetAudioRendererInfo(player, streamUsage);
     if (ret != AV_ERR_OK) {
-    //处理异常    
+    //处理异常    。
     }
-    // 设置音频流打断模式
+    // 设置音频流打断模式。
     OH_AudioInterrupt_Mode interruptMode = OH_AudioInterrupt_Mode::AUDIOSTREAM_INTERRUPT_MODE_INDEPENDENT;
     ret = OH_AVPlayer_SetAudioInterruptMode(player, interruptMode);
     if (ret != AV_ERR_OK) {
-    //处理异常    
+    //处理异常。  
     }
     napi_value value;
     napi_create_int32(env, 0, &value);
     return value;
 }
 
-// 定义 Surface 回调函数
+// 定义 Surface 回调函数。
 void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window) {
     LOG("OnSurfaceCreatedCB...");
-    // 可获取 OHNativeWindow 实例
+    // 可获取 OHNativeWindow 实例。
     OHNativeWindow * nativeWindow = static_cast<OHNativeWindow *>(window);
     DemoNdkPlayer::nativeWindow = nativeWindow;
     // ...
@@ -406,7 +403,7 @@ void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window) {
 
 void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window) {
     LOG("OnSurfaceDestroyedCB...");
-    // 可获取 OHNativeWindow 实例
+    // 可获取 OHNativeWindow 实例。
     OHNativeWindow * nativeWindow = static_cast<OHNativeWindow *>(window);
     // ...
 }

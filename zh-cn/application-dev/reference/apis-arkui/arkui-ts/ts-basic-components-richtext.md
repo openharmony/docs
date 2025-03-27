@@ -63,7 +63,7 @@ onComplete(callback: () => void)
 
 ## 属性
 
-只支持[通用属性](ts-universal-attributes-size.md)中width，height，size，layoutWeight四个属性。由于padding，margin，constraintSize属性使用时与通用属性描述不符，暂不支持。
+只支持[通用属性](ts-component-general-attributes.md)中width，height，size，layoutWeight四个属性。由于padding，margin，constraintSize属性使用时与通用属性描述不符，暂不支持。
 
 ## 支持标签
 

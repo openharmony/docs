@@ -2,9 +2,9 @@
 
 Using the **MediaKeySystem** class of the DRM module, you can manage **MediaKeySystem** instances, generate media key system requests to obtain DRM certificates, process responses to these requests, manage media key sessions, manage offline media keys, and obtain DRM statistics and device configuration information.
 
-Before using DRM Kit, check whether the device supports the DRM capabilities of a specific DRM scheme.
+Before using DRM Kit, check whether the device supports the DRM capabilities of a specific DRM solution.
 
-In DRM Kit, the DRM scheme exists as a plug-in.
+In DRM Kit, the DRM solution exists as a plugin.
 
 ## How to Develop
 
@@ -22,21 +22,21 @@ Read [DRM](../../reference/apis-drm-kit/js-apis-drm.md) for the API reference.
     import { BusinessError } from '@kit.BasicServicesKit';
     ```
 
-3. Check whether the device supports the specified DRM scheme.
+3. Check whether the device supports the specified DRM solution.
 
    > **NOTE**
    >
-   > The value **false** means that the device does not support the specified DRM scheme.
+   > The value **false** means that the device does not support the specified DRM solution.
 
    ```ts
    let isSupported: boolean = drm.isMediaKeySystemSupported("com.clearplay.drm", "video/avc", drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
    ```
 
-4. (Optional) Obtain the name and ID list of the DRM schemes on the device.
+4. (Optional) Obtain the name and ID list of the DRM solutions on the device.
 
    > **NOTE**
    >
-   > If the returned array is empty, no DRM scheme is supported by the device.
+   > If the returned array is empty, no DRM solution is supported by the device.
 
    ```ts
    let description: drm.MediaKeySystemDescription[] = drm.getMediaKeySystems();
@@ -52,25 +52,25 @@ Read [DRM](../../reference/apis-drm-kit/js-apis-drm.md) for the API reference.
    let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
    ```
 
-6. (Optional) Obtain the UUID corresponding to the specified DRM scheme name.
+6. (Optional) Obtain the UUID corresponding to the specified DRM solution name.
 
    > **NOTE**
    >
-   > If the length of the returned UUID is 0, no DRM scheme is supported by the device.
+   > If the length of the returned UUID is 0, no DRM solution is supported by the device.
 
    ```ts
    let uuid: string = drm.getMediaKeySystemUuid("com.clearplay.drm");
    ```
 
-7. (Optional) Set and obtain the configuration items supported by the DRM scheme.
+7. (Optional) Set and obtain the configuration items supported by the DRM solution.
 
     ```ts
-    // If the DRM scheme supports configuration item setting, set the value of a configuration item of the string type supported by the DRM scheme.
+    // If the DRM solution supports configuration item setting, set the value of a configuration item of the string type supported by the DRM solution.
     mediaKeySystem.setConfigurationString("configName", "configValue");
     // Obtain the value of a configuration item in the form of a string.
     let configValueString : string = mediaKeySystem.getConfigurationString("version");
     let configValueUint8ArrayA: Uint8Array = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
-    // If the DRM scheme supports configuration item setting, set the value of a configuration item of the array type supported by the DRM scheme.
+    // If the DRM solution supports configuration item setting, set the value of a configuration item of the array type supported by the DRM solution.
     mediaKeySystem.setConfigurationByteArray("Uint8ArrayConfigName", configValueUint8ArrayA);
     // Obtain the value of a configuration item in the form of an array.
     let configValueUint8ArrayB: Uint8Array = mediaKeySystem.getConfigurationByteArray("Uint8ArrayConfigName");
@@ -138,7 +138,7 @@ Read [DRM](../../reference/apis-drm-kit/js-apis-drm.md) for the API reference.
 
 13. Create a **MediaKeySession** instance.
 
-    Create a **MediaKeySession** instance with the specified content protection level or a **MediaKeySession** instance with the default content protection level of the DRM scheme.
+    Create a **MediaKeySession** instance with the specified content protection level or a **MediaKeySession** instance with the default content protection level of the DRM solution.
      ```ts
      let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
      ```

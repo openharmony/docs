@@ -1,11 +1,11 @@
 # @ohos.net.connection (Network Connection Management)
 
-The network connection management module provides basic network management capabilities. You can obtain the default active data network or the list of all active data networks, enable or disable the airplane mode, and obtain network capability information.
+The **connection** module provides basic network management capabilities. With the APIs provided by this module, you can obtain the default active data network or the list of all active data networks, enable or disable the airplane mode, and obtain network capability information.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> Unless otherwise specified, the APIs of this module do no support concurrent calls.
+> Unless otherwise specified, the APIs of this module do not support concurrent calls.
 
 ## Modules to Import
 
@@ -1561,6 +1561,8 @@ Adds custom DNS rules for the specified host of the current application. This AP
 
 **Required permissions**: ohos.permission.INTERNET
 
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
 **System capability**: SystemCapability.Communication.NetManager.Core
 
 **Parameters**
@@ -1605,6 +1607,8 @@ addCustomDnsRule(host: string, ip: Array\<string\>): Promise\<void\>
 Adds custom DNS rules for the specified host of the current application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -1654,6 +1658,8 @@ Removes the custom DNS rules of the specified host from the current application.
 
 **Required permissions**: ohos.permission.INTERNET
 
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
 **System capability**: SystemCapability.Communication.NetManager.Core
 
 **Parameters**
@@ -1697,6 +1703,8 @@ removeCustomDnsRule(host: string): Promise\<void\>
 Removes the custom DNS rules of the specified host from the current application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -1818,6 +1826,73 @@ connection.clearCustomDnsRules().then(() => {
 }).catch((error: BusinessError) => {
     console.log(JSON.stringify(error));
 })
+```
+
+## connection.setPacUrl<sup>15+</sup>
+
+setPacUrl(pacUrl: string): void
+
+Sets the URL of the system-level proxy auto-config (PAC) script.
+
+**Required permissions**: ohos.permission.SET_PAC_URL
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name  | Type                                             | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| pacUrl   | string                                            | Yes  | URL of the PAC script. Note that this URL will not be verified by the API.            |
+
+**Error codes**
+
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
+| ID| Error Message                         |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
+
+**Example**
+
+```ts
+import { connection } from '@kit.NetworkKit';
+
+let pacUrl = "xxx";
+connection.setPacUrl(pacUrl);
+```
+
+## connection.getPacUrl<sup>15+</sup>
+
+getPacUrl(): string
+
+Obtains the URL of the system-level PAC script.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Return value**
+
+| Type                  | Description                   |
+| ---------------------- | ----------------------- |
+| string        | URL of the PAC script. If the URL does not exist, the error code 2100003 is returned. |
+
+**Error codes**
+
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
+| ID| Error Message                         |
+| ------- | --------------------------------- |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
+
+**Example**
+
+```ts
+import { connection } from '@kit.NetworkKit';
+
+let pacUrl = connection.getPacUrl();
 ```
 
 
@@ -2358,6 +2433,8 @@ Resolves the host name by using the corresponding network to obtain all IP addre
 
 **Required permissions**: ohos.permission.INTERNET
 
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
 **System capability**: SystemCapability.Communication.NetManager.Core
 
 **Parameters**
@@ -2408,6 +2485,8 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 Resolves the host name by using the corresponding network to obtain all IP addresses. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 

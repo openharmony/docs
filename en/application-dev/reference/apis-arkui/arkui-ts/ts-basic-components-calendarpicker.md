@@ -29,7 +29,7 @@ Creates a calendar picker.
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### edgeAlign
 
@@ -66,11 +66,11 @@ Sets the font color, font size, and font weight in the entry area.
 
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onChange
 
-onChange(callback: (value: Date) => void)
+onChange(callback: Callback\<Date>)
 
 Triggered when a date is selected.
 
@@ -82,7 +82,7 @@ Triggered when a date is selected.
 
 | Name| Type| Mandatory| Description          |
 | ------ | ---- | ---- | -------------- |
-| value  | Date | Yes  | Selected date value|
+| callback | [Callback](ts-types.md#callback12)\<Date> | Yes  | Selected date value|
 
 ##  CalendarOptions
 
@@ -92,12 +92,14 @@ Triggered when a date is selected.
 
 | Name     | Type      | Mandatory       | Description                           |
 | ----------- | ---------- | ------| --------------------------------- |
-| hintRadius | number \| [Resource](ts-types.md#resource) | No   | Style of the background of the selected state.<br>Default value: The background is a circle.<br>**NOTE**<br>If the value is **0**, the background is a rectangle with square corners. If the value is in the 0–16 range, the background is a rectangle with rounded corners. If the value is equal to or greater than 16, the background is a circle.|
+| hintRadius | number \| [Resource](ts-types.md#resource) | No   | Style of the background of the selected state.<br>Default value: The background is a circle.<br>**NOTE**<br>If the value is **0**, the background is a rectangle with square corners. If the value is in the 0–16 range, the background is a rectangle with rounded corners. If the value is greater than or equal to 16, the background is a circle.|
 | selected | Date | No   | Date of the selected item. If the value is not set or does not comply with the date format specifications, the default value will be used.<br>Default value: current system date|
 
 ## CalendarAlign
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name  | Description                    |
 | ------ | ------------------------ |
@@ -106,6 +108,8 @@ Triggered when a date is selected.
 | END    | The picker is right aligned with the entry component.  |
 
 ## Example
+
+This example shows how to implement a calendar picker component.
 
 ```ts
 // xxx.ets

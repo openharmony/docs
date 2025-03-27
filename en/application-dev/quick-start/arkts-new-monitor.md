@@ -611,12 +611,12 @@ The following table compares the usage and functions of \@Monitor and \@Watch.
 
 |                    | \@Watch                                 | \@Monitor                                                    |
 | ------------------ | --------------------------------------- | ------------------------------------------------------------ |
-| Parameter              | Call back the method name.                             | Listen for the state variable name and property name.                                      |
-| Number of listened targets        | Only a single state variable can be listened.                   | Multiple state variables can be listened at the same time.                                      |
-| Listening capability          | Listen for the top-level state variables.           | Listen for the lower-level state variables.                                |
+| Parameter              | Callback method name.                             | Listened state variable name and property name.                                      |
+| Number of listened targets        | A single state variable.                   | Multiple state variables.                                      |
+| Listening capability          | Listen for the top-level state variables.          | Listen for the lower-level state variables.                                |
 | Obtain the value before change| No.                     | Yes.                                            |
 | Listening Condition          | The listened object is a state variable.                     | The listened object is a state variable or a class member property decorated by \@Trace.               |
-| Constraints          | It can be used only in custom components decorated by \@Component.| It can be used in custom components and classes decorated by \@ComponentV2.|
+| Constraints          | Used only in \@Component decorated custom components.| Used in \@ComponentV2 decorated custom components and \@ObservedV2 decorated classes.|
 
 ## Use Scenarios
 
@@ -757,7 +757,7 @@ The preceding steps indicate that the \@Monitor defined in the **Child** compone
 
 ### Effective and Expiration Time of Variable Listening by the \@Monitor in the Class
 
-When \@Monitor is defined in a class decorated by \@ComponentV2, \@Monitor takes effect after the class is created and becomes invalid when the class is destroyed.
+When \@Monitor is defined in a class decorated by \@ObservedV2, \@Monitor takes effect after the class is created and becomes invalid when the class is destroyed.
 
 ```ts
 @ObservedV2

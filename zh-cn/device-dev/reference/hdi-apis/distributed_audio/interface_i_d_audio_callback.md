@@ -25,8 +25,8 @@
 | [NotifyEvent](#notifyevent) ([in] String adpName, [in] int devId, [in] struct [DAudioEvent](_d_audio_event.md) event) | 向分布式音频SA通知事件。  | 
 | [WriteStreamData](#writestreamdata) ([in] String adpName, [in] int devId, [in] struct [AudioData](_audio_data.md) data) | 向分布式音频设备写入播放流。  | 
 | [ReadStreamData](#readstreamdata) ([in] String adpName, [in] int devId, [out] struct [AudioData](_audio_data.md) data) | 向分布式音频设备读取录制流。  | 
-| [ReadMmapPosition](#readmmapposition) ([in] String adpName, [in] int devId, [out] unsigned long frames, [out] struct [CurrentTime](_current_time.md) time) | 获取当前读写的帧数及时间戳  | 
-| [RefreshAshmemInfo](#refreshashmeminfo) ([in] String adpName, [in] int devId, [in] FileDescriptor fd, [in] int ashmemLength, [in] int lengthPerTrans) | 刷新共享内存信息  | 
+| [ReadMmapPosition](#readmmapposition) ([in] String adpName, [in] int devId, [out] unsigned long frames, [out] struct [CurrentTime](_current_time.md) time) | 获取当前读写的帧数及时间戳。  | 
+| [RefreshAshmemInfo](#refreshashmeminfo) ([in] String adpName, [in] int devId, [in] FileDescriptor fd, [in] int ashmemLength, [in] int lengthPerTrans) | 刷新共享内存信息。  | 
 
 
 ## 成员函数说明
@@ -72,7 +72,7 @@ IDAudioCallback::NotifyEvent ([in] String adpName, [in] int devId, [in] struct D
 | -------- | -------- |
 | adpName | 分布式音频设备NetworkID。  | 
 | devId | 分布式音频设备的端口ID。  | 
-| event | 通知事件类型(如焦点事件，音量事件) | 
+| event | 通知事件类型(如焦点事件，音量事件)。  | 
 
 **返回：**
 
@@ -194,7 +194,7 @@ IDAudioCallback::SetParameters ([in] String adpName, [in] int devId, [in] struct
 | -------- | -------- |
 | adpName | 分布式音频设备NetworkID。  | 
 | devId | 分布式音频设备的端口ID。  | 
-| param | 音频参数(包括采样率、通道数等) | 
+| param | 音频参数(包括采样率、通道数等)。  | 
 
 **返回：**
 

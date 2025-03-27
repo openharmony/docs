@@ -2,163 +2,92 @@
 
 ## Introduction
 
-Data in JavaScript Object Notation (JSON) is used for data transfer, storage, and exchange between the frontend and backend. JSON is language-independent, which means it can be used with multiple programming languages.
+This topic walks you through on how to use JSVM-API to manipulate data in JavaScript Object Notation (JSON).
 
 ## Basic Concepts
 
-JSON: a text-based format for representing structured data. It is widely used for data processing in JS.
+JSON: a common text format that is language-independent and can be easily transmitted and stored between the frontend and backend. It is widely used for data processing in JavaScript (JS).
 
 ## Available APIs
 
 | API                      | Description                      |
 |----------------------------|--------------------------------|
-| OH_JSVM_JsonParse          | Parses a JSON string and returns the parsed value. |
-| OH_JSVM_JsonStringify      | Converts a JS object into a JSON string and returns the converted string. |
+| OH_JSVM_JsonParse          | Parses a JSON string and stores the result in a JSON object.|
+| OH_JSVM_JsonStringify      | Converts a JS object into a JSON string stores the result in a JSVM string object.|
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code related to JSON operations.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in processing JSON data.
 
-### OH_JSVM_JsonParse
+### OH_JSVM_JsonParse and OH_JSVM_JsonStringify
 
-Use **OH_JSVM_JsonParse** to parse a JSON string and return a valid value of the parsing result.
+Parse a JSON object and return a valid value.
 
 CPP code:
 
 ```cpp
 // hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-// Register JsonParse callbacks.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = JsonParseNumber},
-    {.data = nullptr, .callback = JsonParseObject},
-};
-static JSVM_CallbackStruct *method = param;
-// Expose theJsonParse callbacks to JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"jsonParseNumber", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-    {"jsonParseObject", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
-// Define OH_JSVM_JsonParse methods.
+#include <string>
 
-// Parse the number in a JSON string.
+// JS code to be executed.
+static const char *STR_TASK = R"JS(jsonParseNumber();jsonParseObject();)JS";
+
+// Parse a JSON number.
 static JSVM_Value JsonParseNumber(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    // Set the JSON numeric string to be parsed.
+    // Set the JSON number to be parsed.
     std::string strNumber = "10.555";
     JSVM_Value jsonString;
-    OH_JSVM_CreateStringUtf8(env, strNumber.c_str(), strNumber.size(), &jsonString);
-    // Call OH_JSVM_JsonParse to parse the JSON string and store the parsed value in result.
-    JSVM_Value result;
-    JSVM_Status status = OH_JSVM_JsonParse(env, jsonString, &result);
-    if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM JsonParseNumber fail");
-    } else {
-        OH_LOG_INFO(LOG_APP, "JSVM JsonParseNumber success");
-    }
-    return result;
+    JSVM_CALL(OH_JSVM_CreateStringUtf8(env, strNumber.c_str(), strNumber.size(), &jsonString));
+    JSVM_Value jsonObject;
+    // Call OH_JSVM_JsonParse to parse the JSON number and store the result in a JSON object.
+    JSVM_CALL(OH_JSVM_JsonParse(env, jsonString, &jsonObject));
+    double number;
+    JSVM_CALL(OH_JSVM_GetValueDouble(env, jsonObject, &number));
+    OH_LOG_INFO(LOG_APP, "Test JSVM jsonParseNumber: %{public}f", number);
+    return nullptr;
 }
-// Parse the object in a JSON string.
+
+// Parse a JSON object.
 static JSVM_Value JsonParseObject(JSVM_Env env, JSVM_CallbackInfo info)
 {
     // Set the JSON object string to be parsed.
     std::string strObject = "{\"first\": \"one\", \"second\": \"two\", \"third\": \"three\"}";
     JSVM_Value strJson;
-    OH_JSVM_CreateStringUtf8(env, strObject.c_str(), strObject.size(), &strJson);
-    // Call OH_JSVM_JsonParse to parse the JSON string and store the parsed value in ret.
-    JSVM_Value ret;
-    JSVM_Status status = OH_JSVM_JsonParse(env, strJson, &ret);
-    if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM JsonParseObject fail");
-    } else {
-        OH_LOG_INFO(LOG_APP, "JSVM JsonParseObject success");
-    }
-    return ret;
-}
-```
-
-ArkTS code:
-
-```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string = `
-    jsonParseNumber()
-`
-let script1: string = `
-    jsonParseObject()
-`
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM jsonParseNumber: %{public}s', result);
-  let result1 = napitest.runJsVm(script1);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM jsonParseObject: %{public}s', result1);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM JsonParse error: %{public}s', error.message);
-}
-```
-
-### OH_JSVM_JsonStringify
-
-User **OH_JSVM_JsonStringify** to convert an object to a string and return the string value.
-
-CPP code:
-
-```cpp
-// hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-// Register the JsonStringify callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = JsonStringify},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named jsonStringify and associate it with a callback. This allows the JsonStringify callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"jsonStringify", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
-// Define OH_JSVM_JsonStringify.
-static JSVM_Value JsonStringify(JSVM_Env env, JSVM_CallbackInfo info)
-{
-    // Create an object and convert it to a string.
+    JSVM_CALL(OH_JSVM_CreateStringUtf8(env, strObject.c_str(), strObject.size(), &strJson));
     JSVM_Value jsonObject;
-    OH_JSVM_CreateObject(env, &jsonObject);
-    // Set properties.
-    std::string strValue = "JsonStringify";
-    JSVM_Value value = nullptr;
-    JSVM_Value key;
-    OH_JSVM_CreateStringUtf8(env, "property", JSVM_AUTO_LENGTH, &key);
-    OH_JSVM_CreateStringUtf8(env, strValue.c_str(), strValue.size(), &value);
-    OH_JSVM_SetProperty(env, jsonObject, key, value);
-    // Call OH_JSVM_JsonStringify to convert the object into a string and output the string.
-    JSVM_Value result;
-    JSVM_Status status = OH_JSVM_JsonStringify(env, jsonObject, &result);
-    if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_JsonStringify fail");
-    } else {
-        OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_JsonStringify success");
-    }
-    return result;
+    // Call OH_JSVM_JsonParse to parse the JSON string object and store the result in a JSON object.
+    JSVM_CALL(OH_JSVM_JsonParse(env, strJson, &jsonObject));
+    JSVM_Value jsonString;
+    // Call OH_JSVM_JsonStringify to convert the object into a string and store the string in a JSVM string object.
+    JSVM_CALL(OH_JSVM_JsonStringify(env, jsonObject, &jsonString));
+    size_t totalLen = 0;
+    JSVM_CALL(OH_JSVM_GetValueStringUtf8(env, jsonString, nullptr, 0, &totalLen));
+    size_t needLen = totalLen + 1;
+    char* buff = new char[needLen];
+    JSVM_CALL(OH_JSVM_GetValueStringUtf8(env, jsonString, buff, needLen, &totalLen));
+    OH_LOG_INFO(LOG_APP, "Test JSVM jsonParseNumber: %{public}s", buff);
+    delete[] buff;
+    return nullptr;
 }
+
+// Register JsonParse callbacks.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = JsonParseNumber},
+    {.data = nullptr, .callback = JsonParseObject},
+};
+
+static JSVM_CallbackStruct *method = param;
+
+JSVM_PropertyDescriptor descriptor[] = {
+    {"jsonParseNumber", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+    {"jsonParseObject", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
 ```
 
-ArkTS code:
+## Expected Result
 
-```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string = `
-    jsonStringify()
-`
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM jsonStringify: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getVMInfo error: %{public}s', error.message);
-}
-```
+Test JSVM jsonParseNumber: 10.555000
+
+Test JSVM jsonParseNumber: {"first":"one","second":"two","third":"three"}

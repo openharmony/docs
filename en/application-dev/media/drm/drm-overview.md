@@ -5,7 +5,7 @@ You can call the APIs provided by Digital Rights Management Kit (DRM Kit) to dec
 ## Available Capabilities
 - Decryption and playback: provides unified audio and video decryption capabilities, which enable audio and video applications to play DRM-protected content after integrating with DRM.
 
-- DRM scheme support: supports various DRM schemes.
+- DRM solution support: supports various DRM solutions.
 
 - Online certificate download: supports device certificate requests and settings.
 
@@ -24,9 +24,9 @@ You can call the APIs provided by Digital Rights Management Kit (DRM Kit) to dec
 ## Basic Concepts
 Be familiar with the following basic concepts before development:
 
-- DRM scheme (DRM plugin)
+- DRM solution (DRM plugin)
 
-  Below the DRM framework layer, there are drivers that implement the DRM Hardware Device Interface (HDI) layer. Content decryption is implemented in the drivers.
+  Below the DRM framework layer, there are drivers that implement the DRM Hardware Device Interface (HDI) layer. Content decryption is implemented in the drivers.<!--RP1--><!--RP1End-->
 
 - DRM session (MediaKeySession)
 

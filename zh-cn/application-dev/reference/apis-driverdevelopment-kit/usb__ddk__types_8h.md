@@ -38,11 +38,11 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [UsbDdkEndpointDescriptor](_usb_ddk.md#usbddkendpointdescriptor) | 端点描述符。 |
-| [UsbDdkInterfaceDescriptor](_usb_ddk.md#usbddkinterfacedescriptor) | 接口描述符。 |
-| [UsbDdkInterface](_usb_ddk.md#usbddkinterface) | USB接口。 |
-| [UsbDdkConfigDescriptor](_usb_ddk.md#usbddkconfigdescriptor) | 配置描述符。 |
-| [UsbDeviceMemMap](_usb_ddk.md#usbdevicememmap) | 设备内存映射，通过[OH_Usb_CreateDeviceMemMap()](_usb_ddk.md#oh_usb_createdevicememmap)创建设备内存映射，使用内存映射后的缓冲区，获得更好的性能。 |
+| typedef struct [UsbDdkEndpointDescriptor](_usb_ddk_endpoint_descriptor.md) [UsbDdkEndpointDescriptor](_usb_ddk.md#usbddkendpointdescriptor) | 端点描述符。 |
+| typedef struct [UsbDdkInterfaceDescriptor](_usb_ddk_interface_descriptor.md) [UsbDdkInterfaceDescriptor](_usb_ddk.md#usbddkinterfacedescriptor) | 接口描述符。 |
+| typedef struct [UsbDdkInterface](_usb_ddk_interface.md) [UsbDdkInterface](_usb_ddk.md#usbddkinterface) | USB接口。 |
+| typedef struct [UsbDdkConfigDescriptor](_usb_ddk_config_descriptor.md) [UsbDdkConfigDescriptor](_usb_ddk.md#usbddkconfigdescriptor) | 配置描述符。 |
+| typedef struct [UsbDeviceMemMap](_usb_device_mem_map.md) [UsbDeviceMemMap](_usb_ddk.md#usbdevicememmap) | 设备内存映射，通过[OH_Usb_CreateDeviceMemMap()](_usb_ddk.md#oh_usb_createdevicememmap)创建设备内存映射，使用内存映射后的缓冲区，获得更好的性能。 |
 
 
 ### 枚举

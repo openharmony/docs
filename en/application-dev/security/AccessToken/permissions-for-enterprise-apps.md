@@ -49,7 +49,116 @@ Allows an application to interact across local accounts.
 
 **Valid since**: 7
 
-**Changelog**: For API version 7 to 13, the permission is available only to system applications. Starting with API version 14, the permission becomes accessible to normal enterprise applications.
+**Changelog**: This permission is available only to system applications in API versions 7 to 13. From API version 14, it is available to normal enterprise applications.
+
+## ohos.permission.GET_RUNNING_INFO
+
+Allows an application to obtain running status information of another application.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 7
+
+**Changelog**: This permission is available only to system applications in API versions 7 to 13. From API version 14, it is available to normal enterprise applications.
+
+## ohos.permission.RUNNING_STATE_OBSERVER
+
+Allows an application to listen for the state of another application.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 7
+
+**Changelog**: This permission is available only to system applications in API versions 7 to 13. From API version 14, it is available to normal enterprise applications.
+
+## ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+Allows an application to obtain basic information and sensitive information about another application.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 7
+
+**Changelog**: This permission is available only to system applications in API versions 7 to 13. From API version 14, it is available to normal enterprise applications.
+
+## ohos.permission.GET_WIFI_CONFIG
+
+Allows an application to obtain the Wi-Fi configuration.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 8
+
+**Changelog**: This permission is available only to system applications in API versions 8 to 14. From API version 15, it is available to normal enterprise applications.
+
+## ohos.permission.MANAGE_NET_FIREWALL
+
+Allows a system application to configure firewall rules.
+
+Currently, this permission is available only to 2-in-1 device applications.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 12
+
+**Changelog**: This permission is available only to system applications in API versions 12 to 14. From API version 15, it is available to normal enterprise applications.
+
+## ohos.permission.GET_NET_FIREWALL
+
+Allows a system application to obtain firewall rules and firewall interception records.
+
+Currently, this permission is available only to 2-in-1 device applications.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 12
+
+**Changelog**: This permission is available only to system applications in API versions 12 to 14. From API version 15, it is available to normal enterprise applications.
+
+## ohos.permission.SET_WIFI_CONFIG
+
+Allows an application to configure Wi-Fi information.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 8
+
+**Changelog**: This permission is available only to system applications in API versions 8 to 14. From API version 15, it is available to normal enterprise applications.
 
 ## ohos.permission.GET_DOMAIN_ACCOUNTS
 
@@ -64,4 +173,95 @@ Allows an application to obtain domain account information.
 
 **Valid since**: 10
 
-**Changelog**: For API version 10 to 13, the permission is available only to system applications. Starting with API version 14, the permission becomes accessible to normal enterprise applications.
+**Changelog**: This permission is available only to system applications in API versions 10 to 13. From API version 14, it is available to normal enterprise applications.
+
+## ohos.permission.QUERY_AUDIT_EVENT
+
+Allows an application to query security audit events.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 12
+
+**Changelog**: This permission is available only to MDM applications in API versions 12 to 13. From API version 14, it is available to normal enterprise applications.
+
+## ohos.permission.KILL_APP_PROCESSES
+
+Allows a system application to kill other applications.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 12
+
+**Changelog**: This permission is available only to system applications in API versions 7 to 13. From API version 14, it is available to normal enterprise applications.
+
+## ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
+
+Allows a system application or carrier application to set the eSIM nickname and activate the eSIM.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 14
+
+**Changelog**: Since API 14, the permission level is changed to system_basic, and this permission is available only to normal enterprise applications instead of all applications.
+
+## ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
+
+Allows an application to manage Wi-Fi connections.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 15
+
+## ohos.permission.MANAGE_NET_FIREWALL
+
+Allows a system application to configure firewall rules.
+
+Currently, this permission is available only to 2-in-1 device applications.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 12
+
+**Changelog**: This permission is available only to system applications in API versions 12 to 14. From API version 15, it is available to normal enterprise applications.
+
+## ohos.permission.GET_NET_FIREWALL
+
+Allows a system application to obtain firewall rules and firewall interception records.
+
+Currently, this permission is available only to 2-in-1 device applications.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 12
+
+**Changelog**: This permission is available only to system applications in API versions 12 to 14. From API version 15, it is available to normal enterprise applications.

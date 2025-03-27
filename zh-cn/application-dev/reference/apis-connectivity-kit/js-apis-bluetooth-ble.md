@@ -21,7 +21,9 @@ type ProfileConnectionState = constant.ProfileConnectionState
 
 蓝牙设备的profile连接状态。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 类型                  | 说明                  |
 | ------------------- | ------------------- |
@@ -36,7 +38,7 @@ createGattServer(): GattServer
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **返回值：**
 
@@ -60,7 +62,7 @@ createGattClientDevice(deviceId: string): GattClientDevice
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -76,7 +78,7 @@ createGattClientDevice(deviceId: string): GattClientDevice
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -103,17 +105,17 @@ getConnectedBLEDevices(): Array&lt;string&gt;
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **返回值：**
 
 | 类型                  | 说明                  |
 | ------------------- | ------------------- |
-| Array&lt;string&gt; | 返回当前设备作为Server端时连接BLE设备地址集合。基于信息安全考虑，此处获取的设备地址为随机MAC地址。配对成功后，该地址不会变更；已配对设备取消配对后重新扫描或蓝牙服务下电时，该随机地址会变更。 |
+| Array&lt;string&gt; | 返回当前设备作为Server端时连接BLE设备地址集合。<br>基于信息安全考虑，此处获取的设备地址为随机MAC地址。<br>- 配对成功后，该地址不会变更。<br>- 已配对设备取消配对后重新扫描或蓝牙服务下电时，该随机地址会变更。 |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -145,7 +147,7 @@ startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -156,7 +158,7 @@ startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -203,11 +205,11 @@ stopBLEScan(): void
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -239,7 +241,7 @@ startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, advResponse?
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -251,7 +253,7 @@ startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, advResponse?
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -320,11 +322,11 @@ stopAdvertising(): void
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -350,11 +352,11 @@ try {
 
 startAdvertising(advertisingParams: AdvertisingParams, callback: AsyncCallback&lt;number&gt;): void
 
-开始发送BLE广播。使用Callback异步回调。
+开始发送BLE广播。使用Callback异步回调。从API15开始，多次调用，可发起多路广播，每一路广播通过不同的ID管理。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -365,7 +367,7 @@ startAdvertising(advertisingParams: AdvertisingParams, callback: AsyncCallback&l
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------------------------------------- |
@@ -442,11 +444,11 @@ try {
 
 startAdvertising(advertisingParams: AdvertisingParams): Promise&lt;number&gt;
 
-开始发送BLE广播。使用Promise异步回调。
+开始发送BLE广播。使用Promise异步回调。从API15开始，多次调用，可发起多路广播，每一路广播通过不同的ID管理。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -462,7 +464,7 @@ startAdvertising(advertisingParams: AdvertisingParams): Promise&lt;number&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------------------------------------- |
@@ -539,7 +541,7 @@ enableAdvertising(advertisingEnableParams: AdvertisingEnableParams, callback: As
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -550,7 +552,7 @@ enableAdvertising(advertisingEnableParams: AdvertisingEnableParams, callback: As
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------- |
@@ -643,7 +645,7 @@ enableAdvertising(advertisingEnableParams: AdvertisingEnableParams): Promise&lt;
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -659,7 +661,7 @@ enableAdvertising(advertisingEnableParams: AdvertisingEnableParams): Promise&lt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------- |
@@ -751,7 +753,7 @@ disableAdvertising(advertisingDisableParams: AdvertisingDisableParams, callback:
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -762,7 +764,7 @@ disableAdvertising(advertisingDisableParams: AdvertisingDisableParams, callback:
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------- |
@@ -852,7 +854,7 @@ disableAdvertising(advertisingDisableParams: AdvertisingDisableParams): Promise&
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -868,7 +870,7 @@ disableAdvertising(advertisingDisableParams: AdvertisingDisableParams): Promise&
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------- |
@@ -956,7 +958,7 @@ stopAdvertising(advertisingId: number, callback: AsyncCallback&lt;void&gt;): voi
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -967,7 +969,7 @@ stopAdvertising(advertisingId: number, callback: AsyncCallback&lt;void&gt;): voi
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -1054,7 +1056,7 @@ stopAdvertising(advertisingId: number): Promise&lt;void&gt;
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -1070,7 +1072,7 @@ stopAdvertising(advertisingId: number): Promise&lt;void&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -1156,7 +1158,7 @@ on(type: 'advertisingStateChange', callback: Callback&lt;AdvertisingStateChangeI
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -1167,7 +1169,7 @@ on(type: 'advertisingStateChange', callback: Callback&lt;AdvertisingStateChangeI
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -1199,7 +1201,7 @@ off(type: 'advertisingStateChange', callback?: Callback&lt;AdvertisingStateChang
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -1210,7 +1212,7 @@ off(type: 'advertisingStateChange', callback?: Callback&lt;AdvertisingStateChang
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -1245,7 +1247,7 @@ on(type: 'BLEDeviceFind', callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): vo
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -1256,7 +1258,7 @@ on(type: 'BLEDeviceFind', callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): vo
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -1290,7 +1292,7 @@ off(type: 'BLEDeviceFind', callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): 
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -1301,7 +1303,7 @@ off(type: 'BLEDeviceFind', callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): 
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 
 | 错误码ID | 错误信息 |
@@ -1342,7 +1344,7 @@ server端添加服务。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -1352,7 +1354,7 @@ server端添加服务。
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -1367,7 +1369,7 @@ server端添加服务。
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-// 创建descriptors
+// 创建descriptors。
 let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
 let descV = new Uint8Array(arrayBuffer);
@@ -1377,7 +1379,7 @@ let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805
   descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
 descriptors[0] = descriptor;
 
-// 创建characteristics
+// 创建characteristics。
 let characteristics: Array<ble.BLECharacteristic> = [];
 let arrayBufferC = new ArrayBuffer(8);
 let cccV = new Uint8Array(arrayBufferC);
@@ -1386,7 +1388,7 @@ let characteristic: ble.BLECharacteristic = {serviceUuid: '00001810-0000-1000-80
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
 characteristics[0] = characteristic;
 
-// 创建gattService
+// 创建gattService。
 let gattService: ble.GattService = {serviceUuid:'00001810-0000-1000-8000-00805F9B34FB', isPrimary: true, characteristics:characteristics, includeServices:[]};
 
 try {
@@ -1408,17 +1410,17 @@ removeService(serviceUuid: string): void
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
 | 参数名         | 类型     | 必填   | 说明                                       |
 | ----------- | ------ | ---- | ---------------------------------------- |
-| serviceUuid | string | 是    | service的UUID，例如“00001810-0000-1000-8000-00805F9B34FB”。 |
+| serviceUuid | string | 是    | service的UUID。例如“00001810-0000-1000-8000-00805F9B34FB”。 |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -1454,11 +1456,11 @@ close(): void
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -1491,19 +1493,19 @@ server端特征值发生变化时，主动通知已连接的client设备。使�
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
 | 参数名                  | 类型                                       | 必填   | 说明                                      |
 | -------------------- | ---------------------------------------- | ---- | --------------------------------------- |
-| deviceId             | string                                   | 是    | 接收通知的client端设备地址，例如“XX:XX:XX:XX:XX:XX”。 |
+| deviceId             | string                                   | 是    | 接收通知的client端设备地址。例如“XX:XX:XX:XX:XX:XX”。 |
 | notifyCharacteristic | [NotifyCharacteristic](#notifycharacteristic) | 是    | 通知的特征值数据。                               |
 | callback | AsyncCallback&lt;void&gt;  | 是    | 回调函数。当通知成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -1550,13 +1552,13 @@ server端特征值发生变化时，主动通知已连接的client设备。使�
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
 | 参数名                  | 类型                                       | 必填   | 说明                                      |
 | -------------------- | ---------------------------------------- | ---- | --------------------------------------- |
-| deviceId             | string                                   | 是    | 接收通知的client端设备地址，例如“XX:XX:XX:XX:XX:XX”。 |
+| deviceId             | string                                   | 是    | 接收通知的client端设备地址。例如“XX:XX:XX:XX:XX:XX”。 |
 | notifyCharacteristic | [NotifyCharacteristic](#notifycharacteristic) | 是    | 通知的特征值数据。                               |
 
 **返回值：**
@@ -1567,7 +1569,7 @@ server端特征值发生变化时，主动通知已连接的client设备。使�
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -1610,7 +1612,7 @@ server端回复client端的读写请求。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -1620,7 +1622,7 @@ server端回复client端的读写请求。
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -1665,7 +1667,7 @@ server端订阅特征值读请求事件。使用Callback异步回调。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -1676,7 +1678,7 @@ server端订阅特征值读请求事件。使用Callback异步回调。
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -1720,7 +1722,7 @@ server端取消订阅特征值读请求事件。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -1731,7 +1733,7 @@ server端取消订阅特征值读请求事件。
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -1762,7 +1764,7 @@ server端订阅特征值写请求事件。使用Callback异步回调。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -1773,7 +1775,7 @@ server端订阅特征值写请求事件。使用Callback异步回调。
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -1820,7 +1822,7 @@ server端取消订阅特征值写请求事件。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -1831,7 +1833,7 @@ server端取消订阅特征值写请求事件。
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -1862,7 +1864,7 @@ server端订阅描述符读请求事件。使用Callback异步回调。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -1873,7 +1875,7 @@ server端订阅描述符读请求事件。使用Callback异步回调。
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -1917,7 +1919,7 @@ server端取消订阅描述符读请求事件。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -1928,7 +1930,7 @@ server端取消订阅描述符读请求事件。
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -1959,7 +1961,7 @@ server端订阅描述符写请求事件。使用Callback异步回调。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -1970,7 +1972,7 @@ server端订阅描述符写请求事件。使用Callback异步回调。
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -2017,7 +2019,7 @@ server端取消订阅描述符写请求事件。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -2028,7 +2030,7 @@ server端取消订阅描述符写请求事件。
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -2059,7 +2061,7 @@ server端订阅BLE连接状态变化事件。使用Callback异步回调。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -2070,7 +2072,7 @@ server端订阅BLE连接状态变化事件。使用Callback异步回调。
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -2106,7 +2108,7 @@ server端取消订阅BLE连接状态变化事件。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -2117,7 +2119,7 @@ server端取消订阅BLE连接状态变化事件。
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -2146,7 +2148,7 @@ server端订阅MTU状态变化事件。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -2157,7 +2159,7 @@ server端订阅MTU状态变化事件。使用Callback异步回调。
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -2188,7 +2190,7 @@ server端取消订阅MTU状态变化事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -2199,7 +2201,7 @@ server端取消订阅MTU状态变化事件。
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -2235,11 +2237,11 @@ client端发起连接远端蓝牙低功耗设备。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -2272,11 +2274,11 @@ client端断开与远端蓝牙低功耗设备的连接。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -2309,11 +2311,11 @@ close(): void
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -2346,7 +2348,7 @@ client获取远端蓝牙低功耗设备名。使用Callback异步回调。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -2356,7 +2358,7 @@ client获取远端蓝牙低功耗设备名。使用Callback异步回调。
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -2394,7 +2396,7 @@ client获取远端蓝牙低功耗设备名。使用Promise异步回调。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **返回值：**
 
@@ -2404,7 +2406,7 @@ client获取远端蓝牙低功耗设备名。使用Promise异步回调。
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -2441,7 +2443,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。使用Ca
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -2451,7 +2453,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。使用Ca
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -2465,7 +2467,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。使用Ca
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-// callback 模式
+// callback 模式。
 let getServices = (code: BusinessError, gattServices: Array<ble.GattService>) => {
     if (code && code.code != 0) {
         console.info('bluetooth code is ' + code.code);
@@ -2498,7 +2500,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。使用Pr
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **返回值：**
 
@@ -2508,7 +2510,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。使用Pr
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -2522,7 +2524,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。使用Pr
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-// Promise 模式
+// Promise 模式。
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.connect();
@@ -2545,7 +2547,7 @@ client端读取蓝牙低功耗设备特定服务的特征值。使用Callback异
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -2556,7 +2558,7 @@ client端读取蓝牙低功耗设备特定服务的特征值。使用Callback异
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -2615,7 +2617,7 @@ client端读取蓝牙低功耗设备特定服务的特征值。使用Promise异�
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -2631,7 +2633,7 @@ client端读取蓝牙低功耗设备特定服务的特征值。使用Promise异�
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -2681,7 +2683,7 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。使用Ca
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -2692,7 +2694,7 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。使用Ca
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -2744,7 +2746,7 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。使用Pr
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -2760,7 +2762,7 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。使用Pr
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -2803,7 +2805,7 @@ client端向低功耗蓝牙设备写入特定的特征值。使用Callback异步
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -2815,7 +2817,7 @@ client端向低功耗蓝牙设备写入特定的特征值。使用Callback异步
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -2870,7 +2872,7 @@ client端向低功耗蓝牙设备写入特定的特征值。使用Promise异步�
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -2887,7 +2889,7 @@ client端向低功耗蓝牙设备写入特定的特征值。使用Promise异步�
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -2936,7 +2938,7 @@ client端向低功耗蓝牙设备特定的描述符写入二进制数据。使�
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -2947,7 +2949,7 @@ client端向低功耗蓝牙设备特定的描述符写入二进制数据。使�
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -2996,7 +2998,7 @@ client端向低功耗蓝牙设备特定的描述符写入二进制数据。使�
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -3012,7 +3014,7 @@ client端向低功耗蓝牙设备特定的描述符写入二进制数据。使�
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -3057,17 +3059,17 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
 | 参数名      | 类型                          | 必填   | 说明                             |
 | -------- | --------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback&lt;number&gt; | 是    | 返回信号强度，单位&nbsp;dBm，通过注册回调函数获取。 |
+| callback | AsyncCallback&lt;number&gt; | 是    | 返回信号强度。单位&nbsp;dBm，通过注册回调函数获取。 |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -3104,17 +3106,17 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **返回值：**
 
 | 类型                    | 说明                                |
 | --------------------- | --------------------------------- |
-| Promise&lt;number&gt; | 返回信号强度，单位&nbsp;dBm，通过promise形式获取。 |
+| Promise&lt;number&gt; | 返回信号强度。单位&nbsp;dBm，通过promise形式获取。 |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -3143,13 +3145,13 @@ try {
 
 setBLEMtuSize(mtu: number): void
 
-client协商远端蓝牙低功耗设备的最大传输单元（Maximum Transmission Unit, MTU），调用[connect](#connect)接口连接成功后才能使用。
+client协商远端蓝牙低功耗设备的最大传输单元(Maximum Transmission Unit, MTU)，调用[connect](#connect)接口连接成功后才能使用。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -3159,7 +3161,7 @@ client协商远端蓝牙低功耗设备的最大传输单元（Maximum Transmiss
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -3192,7 +3194,7 @@ setCharacteristicChangeNotification(characteristic: BLECharacteristic, enable: b
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -3204,7 +3206,7 @@ setCharacteristicChangeNotification(characteristic: BLECharacteristic, enable: b
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -3218,7 +3220,7 @@ setCharacteristicChangeNotification(characteristic: BLECharacteristic, enable: b
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-// 创建descriptors
+// 创建descriptors。
 let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
 let descV = new Uint8Array(arrayBuffer);
@@ -3256,7 +3258,7 @@ setCharacteristicChangeNotification(characteristic: BLECharacteristic, enable: b
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -3273,7 +3275,7 @@ setCharacteristicChangeNotification(characteristic: BLECharacteristic, enable: b
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -3287,7 +3289,7 @@ setCharacteristicChangeNotification(characteristic: BLECharacteristic, enable: b
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-// 创建descriptors
+// 创建descriptors。
 let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
 let descV = new Uint8Array(arrayBuffer);
@@ -3319,7 +3321,7 @@ setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boo
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -3331,7 +3333,7 @@ setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boo
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -3345,7 +3347,7 @@ setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boo
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-// 创建descriptors
+// 创建descriptors。
 let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
 let descV = new Uint8Array(arrayBuffer);
@@ -3383,7 +3385,7 @@ setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boo
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -3400,7 +3402,7 @@ setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boo
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -3414,7 +3416,7 @@ setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boo
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-// 创建descriptors
+// 创建descriptors。
 let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
 let descV = new Uint8Array(arrayBuffer);
@@ -3446,7 +3448,7 @@ on(type: 'BLECharacteristicChange', callback: Callback&lt;BLECharacteristic&gt;)
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -3457,7 +3459,7 @@ on(type: 'BLECharacteristicChange', callback: Callback&lt;BLECharacteristic&gt;)
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -3493,7 +3495,7 @@ off(type: 'BLECharacteristicChange', callback?: Callback&lt;BLECharacteristic&gt
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -3504,7 +3506,7 @@ off(type: 'BLECharacteristicChange', callback?: Callback&lt;BLECharacteristic&gt
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -3535,7 +3537,7 @@ client端订阅蓝牙低功耗设备的连接状态变化事件。使用Callback
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -3546,7 +3548,7 @@ client端订阅蓝牙低功耗设备的连接状态变化事件。使用Callback
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -3581,7 +3583,7 @@ off(type: 'BLEConnectionStateChange', callback?: Callback&lt;BLEConnectionChange
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -3592,7 +3594,7 @@ off(type: 'BLEConnectionStateChange', callback?: Callback&lt;BLEConnectionChange
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -3623,7 +3625,7 @@ client端订阅MTU状态变化事件。使用Callback异步回调。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -3634,7 +3636,7 @@ client端订阅MTU状态变化事件。使用Callback异步回调。
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -3667,7 +3669,7 @@ client端取消订阅MTU状态变化事件。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -3678,7 +3680,7 @@ client端取消订阅MTU状态变化事件。
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -3698,6 +3700,226 @@ try {
 }
 ```
 
+## ble.createBleScanner<sup>15+</sup>
+
+createBleScanner(): BleScanner
+
+**原子化服务API**: 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------ | ------------- |
+| [BleScanner](#blescanner15) | 返回一个BleScanner的实例。 |
+
+**示例：**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { ble } from '@kit.ConnectivityKit';
+let bleScanner: ble.BleScanner = ble.createBleScanner();
+console.info('create bleScanner success');
+```
+
+## BleScanner<sup>15+</sup>
+
+BLE多路扫描类，使用BleScanner类中的方法之前需要创建该类的实例进行操作，通过createBleScanner()方法构造此实例。
+
+### startScan<sup>15+</sup>
+
+startScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): Promise&lt;void&gt;
+
+发起BLE扫描流程，使用Promise异步回调。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+**参数：**
+
+| 参数名     | 类型                                     | 必填   | 说明                                  |
+| ------- | -------------------------------------- | ---- | ----------------------------------- |
+| filters | Array&lt;[ScanFilter](#scanfilter)&gt; | 是    | 表示扫描结果过滤策略集合，符合过滤条件的设备会被保留。如果不使用过滤的方式，该参数设置为null。 |
+| options | [ScanOptions](#scanoptions)            | 否    | 表示扫描的可选参数配置。                     |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth disabled.                 |
+|2900009 | Fails to start scan as it is out of hardware.                 |
+|2900099 | Operation failed.                        |
+|2902050 | Failed to start scan as Ble scan is already started by the app.|
+
+**示例：**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { ble } from '@kit.ConnectivityKit';
+let bleScanner: ble.BleScanner = ble.createBleScanner();
+function onReceiveEvent(scanReport: ble.ScanReport) {
+    console.info('BLE scan device find result = '+ JSON.stringify(scanReport));
+}
+try {
+    bleScanner.on("BLEDeviceFind", onReceiveEvent);
+    let scanFilter: ble.ScanFilter = {
+            deviceId:"XX:XX:XX:XX:XX:XX",
+            name:"test",
+            serviceUuid:"00001888-0000-1000-8000-00805f9b34fb"
+        };
+    let scanOptions: ble.ScanOptions = {
+        interval: 500,
+        dutyMode: ble.ScanDuty.SCAN_MODE_LOW_POWER,
+        matchMode: ble.MatchMode.MATCH_MODE_AGGRESSIVE,
+        reportMode: ble.ScanReportMode.FENCE_SENSITIVITY_LOW
+    }
+    bleScanner.startScan([scanFilter],scanOptions);
+    console.info('startScan success');
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+### stopScan<sup>15+</sup>
+
+stopScan(): Promise&lt;void&gt;
+
+停止BLE扫描流程。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth disabled.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { ble } from '@kit.ConnectivityKit';
+let bleScanner: ble.BleScanner = ble.createBleScanner();
+try {
+    bleScanner.stopScan();
+    console.info('startScan success');
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+### on('BLEDeviceFind')<sup>15+</sup>
+
+on(type: 'BLEDeviceFind', callback: Callback&lt;ScanReport&gt;): void
+
+订阅BLE设备发现上报事件。使用Callback异步回调。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                                  |
+| -------- | ---------------------------------------- | ---- | ----------------------------------- |
+| type     | string                                   | 是    | 填写"BLEDeviceFind"字符串，表示BLE设备发现事件。   |
+| callback | Callback&lt;[ScanReport](#scanreport15)&gt; | 是    | 表示回调函数的入参，发现的设备集合。回调函数由用户创建通过该接口注册。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { ble } from '@kit.ConnectivityKit';
+function onReceiveEvent(scanReport: ble.ScanReport) {
+    console.info('bluetooth device find = '+ JSON.stringify(scanReport));
+}
+let bleScanner: ble.BleScanner = ble.createBleScanner();
+try {
+    bleScanner.on('BLEDeviceFind', onReceiveEvent);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+### off('BLEDeviceFind')<sup>15+</sup>
+
+off(type: 'BLEDeviceFind', callback?: Callback&lt;ScanReport&gt;): void
+
+取消订阅BLE设备发现上报事件。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                                       |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| type     | string                                   | 是    | 填写"BLEDeviceFind"字符串，表示BLE设备发现事件。        |
+| callback | Callback&lt;[ScanReport](#scanreport15)&gt; | 否    | 表示取消订阅BLE设备发现事件上报。不填该参数则取消订阅该type对应的所有回调。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { ble } from '@kit.ConnectivityKit';
+function onReceiveEvent(scanReport: ble.ScanReport) {
+    console.info('bluetooth device find = '+ JSON.stringify(scanReport));
+}
+let bleScanner: ble.BleScanner = ble.createBleScanner();
+try {
+    bleScanner.on('BLEDeviceFind', onReceiveEvent);
+    bleScanner.off('BLEDeviceFind', onReceiveEvent);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
 
 ## GattService
 
@@ -3705,11 +3927,11 @@ try {
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称              | 类型                                     | 可读   | 可写   | 说明                                       |
 | --------------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| serviceUuid     | string                                   | 是    | 是    | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| serviceUuid     | string                                   | 是    | 是    | 特定服务(service)的UUID。例如：00001888-0000-1000-8000-00805f9b34fb。 |
 | isPrimary       | boolean                                  | 是    | 是    | 如果是主服务设置为true，否则设置为false。                |
 | characteristics | Array&lt;[BLECharacteristic](#blecharacteristic)&gt; | 是    | 是    | 当前服务包含的特征列表。                             |
 | includeServices | Array&lt;[GattService](#gattservice)&gt; | 是    | 是    | 当前服务依赖的其它服务。                             |
@@ -3721,12 +3943,12 @@ try {
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                  | 类型                                     | 可读   | 可写   | 说明                                 |
 | ------------------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| serviceUuid         | string                                   | 是    | 是    | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
-| characteristicUuid  | string                  | 是    | 是    | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
+| serviceUuid         | string                                   | 是    | 是    | 特定服务(service)的UUID。例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| characteristicUuid  | string                  | 是    | 是    | 特定特征(characteristic)的UUID。例如：00002a11-0000-1000-8000-00805f9b34fb。 |
 | characteristicValue | ArrayBuffer                              | 是    | 是    | 特征对应的二进制值。                      |
 | descriptors         | Array&lt;[BLEDescriptor](#bledescriptor)&gt; | 是    | 是    | 特定特征的描述符列表。                |
 | properties  | [GattProperties](#gattproperties) |   是   | 是     | 特定特征的属性描述。     |
@@ -3738,13 +3960,13 @@ try {
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                 | 类型        | 可读   | 可写   | 说明                                       |
 | ------------------ | ----------- | ---- | ---- | ---------------------------------------- |
-| serviceUuid        | string      | 是    | 是    | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
-| characteristicUuid | string      | 是    | 是    | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
-| descriptorUuid     | string      | 是    | 是    | 描述符（descriptor）的UUID，例如：00002902-0000-1000-8000-00805f9b34fb。 |
+| serviceUuid        | string      | 是    | 是    | 特定服务(service)的UUID。例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| characteristicUuid | string      | 是    | 是    | 特定特征(characteristic)的UUID。例如：00002a11-0000-1000-8000-00805f9b34fb。 |
+| descriptorUuid     | string      | 是    | 是    | 描述符(descriptor)的UUID。例如：00002902-0000-1000-8000-00805f9b34fb。 |
 | descriptorValue    | ArrayBuffer | 是    | 是    | 描述符对应的二进制值。                              |
 
 
@@ -3754,14 +3976,14 @@ try {
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                  | 类型        | 可读   | 可写   | 说明                                       |
 | ------------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| serviceUuid         | string      | 是    | 是    | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
-| characteristicUuid  | string      | 是    | 是    | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
+| serviceUuid         | string      | 是    | 是    | 特定服务(service)的UUID。例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| characteristicUuid  | string      | 是    | 是    | 特定特征(characteristic)的UUID。例如：00002a11-0000-1000-8000-00805f9b34fb。 |
 | characteristicValue | ArrayBuffer | 是    | 是    | 特征对应的二进制值。                               |
-| confirm             | boolean     | 是    | 是    | 如果是indication，对端需要回复确认，则设置为true；如果是notification，对端不需要回复确认，则设置为false。 |
+| confirm             | boolean     | 是    | 是    | 如果是indication，对端需要回复确认，则设置为true。<br>如果是notification，对端不需要回复确认，则设置为false。 |
 
 
 ## CharacteristicReadRequest
@@ -3770,15 +3992,15 @@ try {
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                 | 类型   | 可读   | 可写   | 说明                                       |
 | ------------------ | ------ | ---- | ---- | ---------------------------------------- |
-| deviceId           | string | 是    | 否    | 表示发送特征值读请求的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| deviceId           | string | 是    | 否    | 表示发送特征值读请求的远端设备地址。例如："XX:XX:XX:XX:XX:XX"。 |
 | transId            | number | 是    | 否    | 表示读请求的传输ID，server端回复响应时需填写相同的传输ID。       |
 | offset             | number | 是    | 否    | 表示读特征值数据的起始位置。例如：k表示从第k个字节开始读，server端回复响应时需填写相同的offset。 |
-| characteristicUuid | string | 是    | 否    | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
-| serviceUuid        | string | 是    | 否    | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| characteristicUuid | string | 是    | 否    | 特定特征(characteristic)的UUID。例如：00002a11-0000-1000-8000-00805f9b34fb。 |
+| serviceUuid        | string | 是    | 否    | 特定服务(service)的UUID。例如：00001888-0000-1000-8000-00805f9b34fb。 |
 
 
 ## CharacteristicWriteRequest
@@ -3787,18 +4009,18 @@ try {
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                 | 类型   | 可读   | 可写   | 说明                                       |
 | ------------------ | ------ | ---- | ---- | ---------------------------------------- |
-| deviceId           | string | 是    | 否    | 表示发送特征值写请求的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| deviceId           | string | 是    | 否    | 表示发送特征值写请求的远端设备地址。例如："XX:XX:XX:XX:XX:XX"。 |
 | transId            | number | 是    | 否    | 表示写请求的传输ID，server端回复响应时需填写相同的传输ID。       |
 | offset             | number | 是    | 否    | 表示写特征值数据的起始位置。例如：k表示从第k个字节开始写，server端回复响应时需填写相同的offset。 |
 | isPrepared             | boolean | 是    | 否    | 表示写请求是否立即执行。true表示立即执行。 |
 | needRsp             | boolean | 是    | 否    | 表示是否要给client端回复响应。true表示需要回复。 |
 | value             | ArrayBuffer | 是    | 否    | 表示写入的描述符二进制数据。 |
-| characteristicUuid | string | 是    | 否    | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
-| serviceUuid        | string | 是    | 否    | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| characteristicUuid | string | 是    | 否    | 特定特征(characteristic)的UUID。例如：00002a11-0000-1000-8000-00805f9b34fb。 |
+| serviceUuid        | string | 是    | 否    | 特定服务(service)的UUID。例如：00001888-0000-1000-8000-00805f9b34fb。 |
 
 
 ## DescriptorReadRequest
@@ -3807,16 +4029,16 @@ try {
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                 | 类型   | 可读   | 可写   | 说明                                       |
 | ------------------ | ------ | ---- | ---- | ---------------------------------------- |
-| deviceId           | string | 是    | 否    | 表示发送描述符读请求的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| deviceId           | string | 是    | 否    | 表示发送描述符读请求的远端设备地址。例如："XX:XX:XX:XX:XX:XX"。 |
 | transId            | number | 是    | 否    | 表示读请求的传输ID，server端回复响应时需填写相同的传输ID。       |
 | offset             | number | 是    | 否    | 表示读描述符数据的起始位置。例如：k表示从第k个字节开始读，server端回复响应时需填写相同的offset。 |
-| descriptorUuid     | string | 是    | 否    | 表示描述符（descriptor）的UUID，例如：00002902-0000-1000-8000-00805f9b34fb。 |
-| characteristicUuid | string | 是    | 否    | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
-| serviceUuid        | string | 是    | 否    | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| descriptorUuid     | string | 是    | 否    | 表示描述符(descriptor)的UUID。例如：00002902-0000-1000-8000-00805f9b34fb。 |
+| characteristicUuid | string | 是    | 否    | 特定特征(characteristic)的UUID。例如：00002a11-0000-1000-8000-00805f9b34fb。 |
+| serviceUuid        | string | 是    | 否    | 特定服务(service)的UUID。例如：00001888-0000-1000-8000-00805f9b34fb。 |
 
 
 ## DescriptorWriteRequest
@@ -3825,19 +4047,19 @@ try {
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                 | 类型        | 可读   | 可写   | 说明                                       |
 | ------------------ | ----------- | ---- | ---- | ---------------------------------------- |
-| deviceId           | string      | 是    | 否    | 表示发送描述符写请求的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| deviceId           | string      | 是    | 否    | 表示发送描述符写请求的远端设备地址。例如："XX:XX:XX:XX:XX:XX"。 |
 | transId            | number      | 是    | 否    | 表示写请求的传输ID，server端回复响应时需填写相同的传输ID。       |
 | offset             | number      | 是    | 否    | 表示写描述符数据的起始位置。例如：k表示从第k个字节开始写，server端回复响应时需填写相同的offset。 |
 | isPrepared             | boolean     | 是    | 否    | 表示写请求是否立即执行。                             |
 | needRsp            | boolean     | 是    | 否    | 表示是否要给client端回复响应。                       |
 | value              | ArrayBuffer | 是    | 否    | 表示写入的描述符二进制数据。                           |
-| descriptorUuid     | string      | 是    | 否    | 表示描述符（descriptor）的UUID，例如：00002902-0000-1000-8000-00805f9b34fb。 |
-| characteristicUuid | string      | 是    | 否    | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
-| serviceUuid        | string      | 是    | 否    | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| descriptorUuid     | string      | 是    | 否    | 表示描述符(descriptor)的UUID。例如：00002902-0000-1000-8000-00805f9b34fb。 |
+| characteristicUuid | string      | 是    | 否    | 特定特征(characteristic)的UUID。例如：00002a11-0000-1000-8000-00805f9b34fb。 |
+| serviceUuid        | string      | 是    | 否    | 特定服务(service)的UUID。例如：00001888-0000-1000-8000-00805f9b34fb。 |
 
 
 ## ServerResponse
@@ -3846,11 +4068,11 @@ try {
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称       | 类型        | 可读   | 可写   | 说明                                     |
 | -------- | ----------- | ---- | ---- | -------------------------------------- |
-| deviceId | string      | 是    | 否    | 表示远端设备地址，例如："XX:XX:XX:XX:XX:XX"。       |
+| deviceId | string      | 是    | 否    | 表示远端设备地址。例如："XX:XX:XX:XX:XX:XX"。       |
 | transId  | number      | 是    | 否    | 表示请求的传输ID，与订阅的读/写请求事件携带的ID保持一致。        |
 | status   | number      | 是    | 否    | 表示响应的状态，设置为0即可，表示正常。                   |
 | offset   | number      | 是    | 否    | 表示请求的读/写起始位置，与订阅的读/写请求事件携带的offset保持一致。 |
@@ -3863,11 +4085,11 @@ try {
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称     | 类型                                          | 可读 | 可写 | 说明                                          |
 | -------- | ------------------------------------------------- | ---- | ---- | --------------------------------------------- |
-| deviceId | string                                            | 是   | 否   | 表示远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| deviceId | string                                            | 是   | 否   | 表示远端设备地址。例如："XX:XX:XX:XX:XX:XX"。 |
 | state    | [ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate) | 是   | 是   | 表示BLE连接状态的枚举。                       |
 
 
@@ -3877,11 +4099,11 @@ try {
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称       | 类型        | 可读   | 可写   | 说明                                 |
 | -------- | ----------- | ---- | ---- | ---------------------------------- |
-| deviceId | string      | 是    | 否    | 表示扫描到的设备地址，例如："XX:XX:XX:XX:XX:XX"。基于信息安全考虑，此处获取的设备地址为随机MAC地址。配对成功后，该地址不会变更；已配对设备取消配对后重新扫描或蓝牙服务下电时，该随机地址会变更。 |
+| deviceId | string      | 是    | 否    | 表示扫描到的设备地址。例如："XX:XX:XX:XX:XX:XX"。<br>基于信息安全考虑，此处获取的设备地址为随机MAC地址。<br>- 配对成功后，该地址不会变更。<br>- 已配对设备取消配对后重新扫描或蓝牙服务下电时，该随机地址会变更。 |
 | rssi     | number      | 是    | 否    | 表示扫描到的设备的rssi值。                    |
 | data     | ArrayBuffer | 是    | 否    | 表示扫描到的设备发送的广播包。                    |
 | deviceName | string | 是    | 否    | 表示扫描到的设备名称。                    |
@@ -3894,13 +4116,13 @@ try {
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称          | 类型    | 可读   | 可写   | 说明                                       |
 | ----------- | ------- | ---- | ---- | ---------------------------------------- |
-| interval    | number  | 是    | 是    | 表示广播间隔，最小值设置160个slot表示100ms，最大值设置16384个slot，默认值设置为1600个slot表示1s。 |
-| txPower     | number  | 是    | 是    | 表示发送功率，最小值设置-127，最大值设置1，默认值设置-7，单位dbm。推荐值：高档（1），中档（-7），低档（-15）。   |
-| connectable | boolean | 是    | 是    | 表示是否是可连接广播，默认值设置为true，表示可连接，false表示不可连接。                   |
+| interval    | number  | 是    | 是    | 表示广播间隔。<br>最小值设置32个slot表示20ms，最大值设置16777215个slot，默认值设置为1600个slot表示1s。(传统广播模式下最大值为16384个slot表示10.24s) |
+| txPower     | number  | 是    | 是    | 表示发送功率。<br>最小值设置-127，最大值设置1，默认值设置-7，单位dbm。<br>推荐值：高档(1)，中档(-7)，低档(-15)。   |
+| connectable | boolean | 是    | 是    | 表示是否是可连接广播。<br>默认值设置为true，表示可连接。false表示不可连接。                   |
 
 
 ## AdvertiseData
@@ -3909,44 +4131,44 @@ try {
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称              | 类型                                     | 可读   | 可写   | 说明                          |
 | --------------- | ---------------------------------------- | ---- | ---- | --------------------------- |
 | serviceUuids    | Array&lt;string&gt;                      | 是    | 是    | 表示要广播的服务&nbsp;UUID&nbsp;列表。 |
 | manufactureData | Array&lt;[ManufactureData](#manufacturedata)&gt; | 是    | 是    | 表示要广播的广播的制造商信息列表。           |
 | serviceData     | Array&lt;[ServiceData](#servicedata)&gt; | 是    | 是    | 表示要广播的服务数据列表。               |
-| includeDeviceName | boolean     | 是    | 是    | 表示是否携带设备名，可选参数。true表示携带，false或未设置此参数表示不携带。注意带上设备名时广播包长度不能超出31个字节。        |
+| includeDeviceName | boolean     | 是    | 是    | 表示是否携带设备名，可选参数。<br>true表示携带，false或未设置此参数表示不携带。<br>注意：带上设备名时广播包长度不能超出31个字节。        |
 
 ## AdvertisingParams<sup>11+</sup>
 
 描述首次启动广播设置的参数。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                | 类型                             | 可读  | 可写  | 说明                      |
 | ------------------- | ------------------------------- | ----- | ----- | ------------------------ |
 | advertisingSettings<sup>11+</sup> | [AdvertiseSetting](#advertisesetting) | 是    | 是    | 表示发送广播的相关参数。    |
 | advertisingData<sup>11+</sup>    | [AdvertiseData](#advertisedata) | 是    | 是    | 表示广播的数据包内容。      |
 | advertisingResponse<sup>11+</sup> | [AdvertiseData](#advertisedata) | 是    | 是    | 表示回复扫描请求的响应内容。 |
-| duration<sup>11+</sup>    | number   | 是    | 是    | 表示发送广播持续的时间。单位为10ms，有效范围为1(10ms)到65535(655350ms)，如果未指定此参数或者将其设置为0，则会连续发送广播。    |
+| duration<sup>11+</sup>    | number   | 是    | 是    | 表示发送广播持续的时间。<br>单位为10ms，有效范围为1(10ms)~65535(655350ms)。<br>如果未指定此参数或者将其设置为0，则会连续发送广播。    |
 
 ## AdvertisingEnableParams<sup>11+</sup>
 
 描述临时启动广播设置的参数。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                | 类型                   | 可读  | 可写  | 说明                      |
 | ------------------- | --------------------- | ----- | ----- | ------------------------ |
 | advertisingId<sup>11+</sup>       | number                | 是    | 是    | 表示当前广播的ID标识。     |
-| duration<sup>11+</sup>            | number                | 是    | 是    | 表示发送广播持续的时间。单位为10ms，有效范围为1(10ms)到65535(655350ms)，如果未指定此参数或者将其设置为0，则会连续发送广播。   |
+| duration<sup>11+</sup>            | number                | 是    | 是    | 表示发送广播持续的时间。<br>单位为10ms，有效范围为1(10ms)~65535(655350ms)。<br>如果未指定此参数或者将其设置为0，则会连续发送广播。   |
 
 ## AdvertisingDisableParams<sup>11+</sup>
 
 描述临时停止广播设置的参数。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                | 类型                   | 可读  | 可写  | 说明                      |
 | ------------------- | --------------------- | ----- | ----- | ------------------------ |
@@ -3956,7 +4178,7 @@ try {
 
 描述广播启动、停止等状态信息。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                | 类型                                     | 可读  | 可写  | 说明                      |
 | ------------------- | --------------------------------------- | ----- | ----- | ------------------------ |
@@ -3969,7 +4191,7 @@ try {
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称               | 类型                | 可读   | 可写   | 说明                 |
 | ---------------- | ------------------- | ---- | ---- | ------------------ |
@@ -3983,7 +4205,7 @@ try {
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称           | 类型        | 可读   | 可写   | 说明         |
 | ------------ | ----------- | ---- | ---- | ---------- |
@@ -3997,21 +4219,21 @@ try {
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                                     | 类型    | 必填  | 说明                                                         |
 | ------------------------------------------ | -------- | ---- | ------------------------------------------------------------ |
-| deviceId                                 | string      | 否    | 表示过滤的BLE设备地址，例如："XX:XX:XX:XX:XX:XX"。           |
+| deviceId                                 | string      | 否    | 表示过滤的BLE设备地址。例如："XX:XX:XX:XX:XX:XX"。           |
 | name                                     | string      | 否    | 表示过滤的BLE设备名。                                        |
-| serviceUuid                              | string      | 否    | 表示过滤包含该UUID服务的设备，例如：00001888-0000-1000-8000-00805f9b34fb。 |
-| serviceUuidMask             | string      | 否     | 表示过滤包含该UUID服务掩码的设备，例如：FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF。 |
-| serviceSolicitationUuid     | string      | 否     | 表示过滤包含该UUID服务请求的设备，例如：00001888-0000-1000-8000-00805F9B34FB。 |
-| serviceSolicitationUuidMask | string      | 否     | 表示过滤包含该UUID服务请求掩码的设备，例如：FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF。 |
-| serviceData                 | ArrayBuffer | 否     | 表示过滤包含该服务相关数据的设备，例如：[0x90,0x00,0xF1,0xF2]。 |
-| serviceDataMask             | ArrayBuffer | 否     | 表示过滤包含该服务相关数据掩码的设备，例如：[0xFF,0xFF,0xFF,0xFF]。 |
-| manufactureId               | number      | 否     | 表示过滤包含该制造商ID的设备，例如：0x0006。                 |
-| manufactureData             | ArrayBuffer | 否     | 表示过滤包含该制造商相关数据的设备，例如：[0x1F,0x2F,0x3F]。 |
-| manufactureDataMask         | ArrayBuffer | 否     | 表示过滤包含该制造商相关数据掩码的设备，例如：[0xFF,0xFF,0xFF]。 |
+| serviceUuid                              | string      | 否    | 表示过滤包含该UUID服务的设备。例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| serviceUuidMask             | string      | 否     | 表示过滤包含该UUID服务掩码的设备。例如：FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF。 |
+| serviceSolicitationUuid     | string      | 否     | 表示过滤包含该UUID服务请求的设备。例如：00001888-0000-1000-8000-00805F9B34FB。 |
+| serviceSolicitationUuidMask | string      | 否     | 表示过滤包含该UUID服务请求掩码的设备。例如：FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF。 |
+| serviceData                 | ArrayBuffer | 否     | 表示过滤包含该服务相关数据的设备。例如：[0x90,0x00,0xF1,0xF2]。 |
+| serviceDataMask             | ArrayBuffer | 否     | 表示过滤包含该服务相关数据掩码的设备。例如：[0xFF,0xFF,0xFF,0xFF]。 |
+| manufactureId               | number      | 否     | 表示过滤包含该制造商ID的设备。例如：0x0006。                 |
+| manufactureData             | ArrayBuffer | 否     | 表示过滤包含该制造商相关数据的设备。例如：[0x1F,0x2F,0x3F]。 |
+| manufactureDataMask         | ArrayBuffer | 否     | 表示过滤包含该制造商相关数据掩码的设备。例如：[0xFF,0xFF,0xFF]。 |
 
 
 ## ScanOptions
@@ -4020,7 +4242,7 @@ try {
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称        | 类型                    | 可读   | 可写   | 说明                                     |
 | --------- | ----------------------- | ---- | ---- | -------------------------------------- |
@@ -4028,6 +4250,7 @@ try {
 | dutyMode  | [ScanDuty](#scanduty)   | 是    | 是    | 表示扫描模式，默认值为SCAN_MODE_LOW_POWER。        |
 | matchMode | [MatchMode](#matchmode) | 是    | 是    | 表示硬件的过滤匹配模式，默认值为MATCH_MODE_AGGRESSIVE。 |
 | phyType<sup>12+</sup> | [PhyType](#phytype12) | 是    | 是    | 表示扫描中使用的PHY类型。 |
+| reportMode<sup>15+</sup> | [ScanReportMode](#scanreportmode15) | 是    | 是    | 表示扫描结果数据上报模式。 |
 
 
 ## GattProperties<a name="GattProperties"></a>
@@ -4036,7 +4259,7 @@ try {
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称       | 类型  | 必填   | 说明          |
 | -------- | ------ |---- | ----------- |
@@ -4053,7 +4276,7 @@ try {
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                                   | 值    | 说明              |
 | ------------------------------------| ------ | --------------- |
@@ -4067,7 +4290,7 @@ try {
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                    | 值  | 说明           |
 | --------------------- | ---- | ------------ |
@@ -4082,7 +4305,7 @@ try {
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                    | 值  | 说明                                       |
 | --------------------- | ---- | ---------------------------------------- |
@@ -4093,7 +4316,7 @@ try {
 
 枚举，广播状态。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称      | 值    | 说明                           |
 | --------  | ---- | ------------------------------ |
@@ -4108,9 +4331,47 @@ try {
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称      | 值    | 说明                           |
 | --------  | ---- | ------------------------------ |
 | PHY_LE_1M<sup>12+</sup>   | 1    | 表示扫描中使用1M PHY。       |
 | PHY_LE_ALL_SUPPORTED<sup>12+</sup>   | 255    | 表示扫描中使用蓝牙协议支持的PHY模式。    |
+
+## ScanReport<sup>15+</sup>
+
+扫描结果数据上报。
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+| 名称      | 类型                  | 只读   | 可选   | 说明                                     |
+| --------- | ----------------------- | ---- | ---- | ------------------------------ |
+| reportType  | [ScanReportType](#scanreporttype15)        | 否 | 否 | 表示扫描报告类型。    |
+| scanResult  | Array&lt;[ScanResult](#scanresult)&gt;    | 否 | 否 |扫描结果数据。        |
+
+## ScanReportType<sup>15+</sup>
+
+枚举，扫描结果数据上报类型。
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+| 名称      | 值    | 说明                           |
+| --------  | ---- | ------------------------------ |
+| ON_FOUND  | 1    | 表示发现广播包。       |
+| ON_LOST | 2    | 表示丢失广播包。    |
+
+## ScanReportMode<sup>15+</sup>
+
+枚举，扫描结果数据上报模式。
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+| 名称      | 值    | 说明                           |
+| --------  | ---- | ------------------------------ |
+| NORMAL  | 1    | 表示常规扫描上报模式。       |

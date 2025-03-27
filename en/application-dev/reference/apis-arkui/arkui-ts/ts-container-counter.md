@@ -24,7 +24,7 @@ Counter()
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### enableInc<sup>10+</sup>
 
@@ -60,11 +60,11 @@ Sets whether to enable the decrement button.
 
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onInc
 
-onInc(event: VoidCallback)
+onInc(event: () =&gt; void)
 
 Invoked when the value increases.
 
@@ -74,15 +74,9 @@ Invoked when the value increases.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
-
-| Name| Type                                          | Mandatory| Description                                |
-| ------ | --------------------------------------------- | ---- | ----------------------------------- |
-| event  | [VoidCallback](ts-types.md#voidcallback12)    | Yes  | Callback invoked when the value increases.       |
-
 ### onDec
 
-onDec(event: VoidCallback)
+onDec(event: () =&gt; void)
 
 Invoked when the value decreases.
 
@@ -92,11 +86,7 @@ Invoked when the value decreases.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
 
-| Name| Type                                          | Mandatory| Description                                |
-| ------ | --------------------------------------------- | ---- | ----------------------------------- |
-| event  | [VoidCallback](ts-types.md#voidcallback12)    | Yes  | Callback invoked when the value decreases.       |
 
 
 ## Example

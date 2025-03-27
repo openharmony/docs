@@ -514,7 +514,7 @@ mixedMode(mixedMode: MixedMode)
 
 | 参数名       | 类型                        | 必填   | 说明      |
 | --------- | --------------------------- | ---- | --------- |
-| mixedMode | [MixedMode](#mixedmode枚举说明) | 是    | 要设置的混合内容。默认值：MixedMode.None。 |
+| mixedMode | [MixedMode](#mixedmode枚举说明) | 是    | 要设置的混合内容。默认值：MixedMode.None，表示不允许安全来源（secure origin）加载不安全来源（insecure origin）的内容。 |
 
 **示例：**
 
@@ -1066,7 +1066,7 @@ textZoomRatio(textZoomRatio: number)
 
 | 参数名           | 类型   | 必填   | 说明                             |
 | ------------- | ------ | ---- | -------------------------------- |
-| textZoomRatio | number | 是    | 要设置的页面的文本缩放百分比。取值为整数，范围为(0, +∞)。默认值：100。 |
+| textZoomRatio | number | 是    | 要设置的页面的文本缩放百分比。取值为整数，范围为(0, 2147483647]。默认值：100。 |
 
 **示例：**
 
@@ -1101,7 +1101,7 @@ initialScale(percent: number)
 
 | 参数名     | 类型   | 必填   | 说明                          |
 | ------- | ------ | ---- | ----------------------------- |
-| percent | number | 是    | 要设置的整体页面的缩放百分比。默认值：100。 |
+| percent | number | 是    | 要设置的整体页面的缩放百分比。默认值：100。取值范围：(0, 1000]。 |
 
 **示例：**
 
@@ -1815,6 +1815,8 @@ javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 > **说明：**
 >
 > - 该脚本将在页面的任何JavaScript代码之前运行，并且DOM树此时可能尚未加载、渲染完毕。
+> - 该脚本按照字典序执行，非数组本身顺序。
+> - 不建议与[runJavaScriptOnDocumentStart](#runjavascriptondocumentstart15)同时使用。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1889,6 +1891,8 @@ javaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
 > **说明：**
 >
 > - 该脚本将在页面的任何JavaScript代码之后运行，并且DOM树此时已经加载、渲染完毕。
+> - 该脚本按照字典序执行，非数组本身顺序。
+> - 不建议与[runJavaScriptOnDocumentEnd](#runjavascriptondocumentend15)同时使用。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1921,6 +1925,206 @@ struct Index {
         .domStorageAccess(true)
         .backgroundColor(Color.Grey)
         .javaScriptOnDocumentEnd(this.scripts)
+        .width('100%')
+        .height('100%')
+    }
+  }
+}
+  ```
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body style="font-size: 30px;">
+Hello world!
+<div id="result">test msg</div>
+</body>
+</html>
+```
+
+### runJavaScriptOnDocumentStart<sup>15+</sup>
+
+runJavaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
+
+将JavaScript脚本注入到Web组件中，当指定页面或者文档开始加载时，该脚本将在其来源与scriptRules匹配的任何页面中执行。
+
+> **说明：**
+>
+> - 该脚本将在页面的任何JavaScript代码之前运行，并且DOM树此时可能尚未加载、渲染完毕。
+> - 该脚本按照数组本身顺序执行。
+> - 不建议与[javaScriptOnDocumentStart](#javascriptondocumentstart11)同时使用。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名     | 类型                                | 必填   | 说明               |
+| ------- | ----------------------------------- | ---- | ------------------ |
+| scripts | Array\<[ScriptItem](#scriptitem11)> | 是    | 需要注入的ScriptItem数组 |
+
+**ets示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct Index {
+      controller: webview.WebviewController = new webview.WebviewController();
+      private localStorage: string =
+          "if (typeof(Storage) !== 'undefined') {" +
+          "   localStorage.setItem('color', 'Red');" +
+          "}";
+      @State scripts: Array<ScriptItem> = [
+          { script: this.localStorage, scriptRules: ["*"] }
+      ];
+
+      build() {
+          Column({ space: 20 }) {
+              Web({ src: $rawfile('index.html'), controller: this.controller })
+                  .javaScriptAccess(true)
+                  .domStorageAccess(true)
+                  .backgroundColor(Color.Grey)
+                  .runJavaScriptOnDocumentStart(this.scripts)
+                  .width('100%')
+                  .height('100%')
+          }
+      }
+  }
+  ```
+**HTML示例：**
+
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body style="font-size: 30px;" onload='bodyOnLoadLocalStorage()'>
+      Hello world!
+      <div id="result"></div>
+  </body>
+  <script type="text/javascript">
+    function bodyOnLoadLocalStorage() {
+      if (typeof(Storage) !== 'undefined') {
+        document.getElementById('result').innerHTML = localStorage.getItem('color');
+      } else {
+        document.getElementById('result').innerHTML = 'Your browser does not support localStorage.';
+      }
+    }
+  </script>
+</html>
+```
+
+### runJavaScriptOnDocumentEnd<sup>15+</sup>
+
+runJavaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
+
+将JavaScript脚本注入到Web组件中，当指定页面或者文档加载完成时，该脚本将在其来源与scriptRules匹配的任何页面中执行。
+
+> **说明：**
+>
+> - 该脚本将在页面的任何JavaScript代码之后运行，并且DOM树此时已经加载、渲染完毕。
+> - 该脚本按照数组本身顺序执行。
+> - 不建议与[javaScriptOnDocumentEnd](#javascriptondocumentend11)同时使用。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名     | 类型                                | 必填   | 说明               |
+| ------- | ----------------------------------- | ---- | ------------------ |
+| scripts | Array\<[ScriptItem](#scriptitem11)> | 是    | 需要注入的ScriptItem数组 |
+
+**示例：**
+
+  ```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct Index {
+  controller: webview.WebviewController = new webview.WebviewController();
+  private jsStr: string =
+    "window.document.getElementById(\"result\").innerHTML = 'this is msg from runJavaScriptOnDocumentEnd'";
+  @State scripts: Array<ScriptItem> = [
+    { script: this.jsStr, scriptRules: ["*"] }
+  ];
+
+  build() {
+    Column({ space: 20 }) {
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .javaScriptAccess(true)
+        .domStorageAccess(true)
+        .backgroundColor(Color.Grey)
+        .runJavaScriptOnDocumentEnd(this.scripts)
+        .width('100%')
+        .height('100%')
+    }
+  }
+}
+  ```
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body style="font-size: 30px;">
+Hello world!
+<div id="result">test msg</div>
+</body>
+</html>
+```
+
+### runJavaScriptOnHeadEnd<sup>15+</sup>
+
+runJavaScriptOnHeadEnd(scripts: Array\<ScriptItem>)
+
+将JavaScript脚本注入到Web组件中，当页面DOM树head标签解析完成时，该脚本将在其来源与scriptRules匹配的任何页面中执行。
+
+> **说明：**
+>
+> - 该脚本按照数组本身顺序执行。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名     | 类型                                | 必填   | 说明               |
+| ------- | ----------------------------------- | ---- | ------------------ |
+| scripts | Array\<[ScriptItem](#scriptitem11)> | 是    | 需要注入的ScriptItem数组 |
+
+**示例：**
+
+  ```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct Index {
+  controller: webview.WebviewController = new webview.WebviewController();
+  private jsStr: string =
+    "window.document.getElementById(\"result\").innerHTML = 'this is msg from runJavaScriptOnHeadEnd'";
+  @State scripts: Array<ScriptItem> = [
+    { script: this.jsStr, scriptRules: ["*"] }
+  ];
+
+  build() {
+    Column({ space: 20 }) {
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .javaScriptAccess(true)
+        .domStorageAccess(true)
+        .backgroundColor(Color.Grey)
+        .runJavaScriptOnHeadEnd(this.scripts)
         .width('100%')
         .height('100%')
     }
@@ -2311,7 +2515,7 @@ metaViewport(enabled: boolean)
 > - 如果设置为异常值将无效。
 > - 如果设备为2in1，不支持viewport属性。设置为true或者false均不会解析viewport属性，进行默认布局。
 > - 如果设备为Tablet，设置为true或false均会解析meta标签viewport-fit属性。当viewport-fit=cover时，可通过CSS属性获取安全区域大小。
-> - 当前通过UserAgent中是否含有"Mobile"字段来判断是否开启前端HTML页面中meta标签的viewport属性。当UserAgent中不含有"Mobile"字段时，meta标签中viewport属性默认关闭，此时可通过显性设置metaViewport属性为true来覆盖关闭状态。
+> - 当前通过User-Agent中是否含有"Mobile"字段来判断是否开启前端HTML页面中meta标签的viewport属性。当User-Agent中不含有"Mobile"字段时，meta标签中viewport属性默认关闭，此时可通过显性设置metaViewport属性为true来覆盖关闭状态。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2895,6 +3099,97 @@ blurOnKeyboardHideMode(mode: BlurOnKeyboardHideMode)
   </body>
 </html>
 ```
+
+### optimizeParserBudget<sup>15+</sup>
+
+optimizeParserBudget(optimizeParserBudget: boolean)
+
+设置是否开启分段解析HTML优化，默认不开启。
+
+ArkWeb内核在解析HTML文档结构时采取分段解析策略，旨在避免过多占用主线程资源，并使网页具有渐进式加载能力。ArkWeb内核默认使用解析时间作为分段点，当单次解析时间超过阈值时，会中断解析，随后进行布局和渲染操作。
+
+开启优化后，ArkWeb内核将不仅检查解析时间是否超出限制，还会额外判断解析的Token（HTML文档的最小解析单位，例如&lt;div&gt;、attr="xxx"等）数量是否超过内核规定的阈值，并下调此阈值。当页面的FCP(First Contentful Paint 首次内容绘制）触发时会恢复成默认的中断判断逻辑。这将使得网页在FCP到来之前的解析操作更频繁，从而提高首帧内容被提前解析完成并进入渲染阶段的可能性，同时有效缩减首帧渲染的工作量，最终实现FCP时间提前。
+
+由于页面的FCP触发时会恢复成默认分段解析逻辑，因此分段解析HTML优化仅对每个Web组件加载的首个页面生效。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名        | 类型    | 必填   | 说明     |
+| ---------- | ------- | ---- | ---------------------- |
+| optimizeParserBudget | boolean | 是    | 设置为true时将使用解析个数代替解析时间作为HTML分段解析的分段点，并减少每段解析的个数上限。设置为false时则使用解析时间作为HTML分段解析的分段点。默认值：false。 |
+
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .optimizeParserBudget(true)
+      }
+    }
+  }
+  ```
+
+### nativeEmbedOptions<sup>16+</sup>
+
+nativeEmbedOptions(options?: EmbedOptions)
+
+设置同层渲染相关配置，该属性仅在[enableNativeEmbedMode](#enablenativeembedmode11)开启时生效，不支持动态修改。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名       | 类型                             | 必填 | 说明                                |
+| ------------ | ------------------------------- | ---- | ----------------------------------- |
+| options | [EmbedOptions](#embedoptions16) | 否    | 同层渲染相关配置，默认值：{supportDefaultIntrinsicSize: false}。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    options: EmbedOptions = {supportDefaultIntrinsicSize: true};
+
+    build() {
+      Column() {
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+          .enableNativeEmbedMode(true)
+          .nativeEmbedOptions(this.options)
+      }
+    }
+  }
+  ```
+加载的html文件
+  ```
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>同层渲染固定大小测试html</title>
+  </head>
+  <body>
+  <div>
+      <embed id="input" type = "native/view" style = "background-color:red"/>
+  </div>
+  </body>
+  </html>
+  ```
 
 ## 事件
 
@@ -3527,7 +3822,7 @@ onProgressChange(callback: Callback\<OnProgressChangeEvent\>)
 
 | 参数名         | 类型   | 必填   | 说明                  |
 | ----------- | ------ | ---- | --------------------- |
-| callback | Callback\<[OnProgressChangeEvent](#onprogresschangeevent12)\> | 是    | 页面加载进度时触发的功能。 |
+| callback | Callback\<[OnProgressChangeEvent](#onprogresschangeevent12)\> | 是    | 页面加载进度变化时触发的功能。 |
 
 **示例：**
 
@@ -4003,7 +4298,7 @@ onInterceptRequest(callback: Callback<OnInterceptRequestEvent, WebResourceRespon
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnInterceptRequestEvent](#oninterceptrequestevent12)\> | 是 | 当Web组件加载url之前触发。<br>返回值[WebResourceResponse](#webresourceresponse)。返回响应数据则按照响应数据加载，无响应数据则返回null表示按照原来的方式加载。 |
+| callback | Callback\<[OnInterceptRequestEvent](#oninterceptrequestevent12), [WebResourceResponse](#webresourceresponse)\> | 是 | 当Web组件加载url之前触发。<br>返回值[WebResourceResponse](#webresourceresponse)。返回响应数据则按照响应数据加载，无响应数据则返回null表示按照原来的方式加载。 |
 
 **示例：**
 
@@ -4153,7 +4448,49 @@ onSslErrorEventReceive(callback: Callback\<OnSslErrorEventReceiveEvent\>)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
+  import { cert } from '@kit.DeviceCertificateKit';
   
+  function LogCertInfo(certChainData : Array<Uint8Array> | undefined) {
+    if (!(certChainData instanceof Array)) {
+      console.log('failed, cert chain data type is not array');
+      return;
+    }
+
+    for (let i = 0; i < certChainData.length; i++) {
+      let encodeBlobData: cert.EncodingBlob = {
+        data: certChainData[i],
+        encodingFormat: cert.EncodingFormat.FORMAT_DER
+      }
+      cert.createX509Cert(encodeBlobData, (error, x509Cert) => {
+        if (error) {
+          console.error('Index : ' + i + ',createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+        } else {
+          console.log('createX509Cert success');
+          console.log(ParseX509CertInfo(x509Cert));
+        }
+      });
+    }
+    return;
+  }
+  
+  function Uint8ArrayToString(dataArray: Uint8Array) {
+    let dataString = '';
+    for (let i = 0; i < dataArray.length; i++) {
+      dataString += String.fromCharCode(dataArray[i]);
+    }
+    return dataString;
+  }
+
+  function ParseX509CertInfo(x509Cert: cert.X509Cert) {
+    let res: string = 'getCertificate success, '
+      + 'issuer name = '
+      + Uint8ArrayToString(x509Cert.getIssuerName().data) + ', subject name = '
+      + Uint8ArrayToString(x509Cert.getSubjectName().data) + ', valid start = '
+      + x509Cert.getNotBeforeTime()
+      + ', valid end = ' + x509Cert.getNotAfterTime();
+    return res;
+  }
+
   @Entry
   @Component
   struct WebComponent {
@@ -4163,6 +4500,7 @@ onSslErrorEventReceive(callback: Callback\<OnSslErrorEventReceiveEvent\>)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onSslErrorEventReceive((event) => {
+            LogCertInfo(event.certChainData);
             AlertDialog.show({
               title: 'onSslErrorEventReceive',
               message: 'text',
@@ -6771,6 +7109,18 @@ close(): void
 
 Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onconsole)。
 
+### constructor
+
+constructor(message: string, sourceId: string, lineNumber: number, messageLevel: MessageLevel)
+
+ConsoleMessage的构造函数。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[constructor](#constructor9)代替。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
 ### constructor<sup>9+</sup>
 
 constructor()
@@ -6929,7 +7279,7 @@ setWebController(controller: WebviewController): void
 
 Web组件资源管理错误信息对象。示例代码参考[onErrorReceive事件](#onerrorreceive)。
 
-### constructor<sup>9+</sup>
+### constructor
 
 constructor()
 
@@ -7499,8 +7849,8 @@ confirm(priKeyFile : string, certChainFile : string): void
 
 | 参数名           | 类型   | 必填   | 说明               |
 | ------------- | ------ | ---- | ------------------ |
-| priKeyFile    | string | 是    | 存放私钥的文件，包含路径和文件名。  |
-| certChainFile | string | 是    | 存放证书链的文件，包含路径和文件名。 |
+| priKeyFile    | string | 是    | 存放私钥文件的完整路径。  |
+| certChainFile | string | 是    | 存放证书链文件的完整路径。 |
 
 ### confirm<sup>10+</sup>
 
@@ -7602,7 +7952,7 @@ grant(resources: Array\<string\>): void
 
 Web组件返回授权或拒绝屏幕捕获功能的对象。示例代码参考[onScreenCaptureRequest事件](#onscreencapturerequest10)。
 
-### constructor<sup>9+</sup>
+### constructor<sup>10+</sup>
 
 constructor()
 
@@ -7664,9 +8014,9 @@ EventResult的构造函数。
 
 ### setGestureEventResult<sup>12+</sup>
 
-设置手势事件消费结果。
-
 setGestureEventResult(result: boolean): void
+
+设置手势事件消费结果。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -7680,11 +8030,11 @@ setGestureEventResult(result: boolean): void
 
 请参考[onNativeEmbedGestureEvent事件](#onnativeembedgestureevent11)。
 
-### setGestureEventResult<sup>12+</sup>
+### setGestureEventResult<sup>14+</sup>
+
+setGestureEventResult(result: boolean, stopPropagation: boolean): void
 
 设置手势事件消费结果。
-
-setGestureEventResult(result: boolean, stopPropagation?: boolean): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -7693,7 +8043,7 @@ setGestureEventResult(result: boolean, stopPropagation?: boolean): void
 | 参数名          | 类型 | 必填  | 说明             |
 | --------------- | -------- | ----  |------- |
 | result          | boolean  | 是    | 是否消费该手势事件。默认值为true。 |
-| stopPropagation<sup>14+</sup>| boolean  | 否   | 是否阻止冒泡，在result为true时生效。默认值为true。 |
+| stopPropagation | boolean  | 是   | 是否阻止冒泡，在result为true时生效。默认值为true。 |
 
 **示例：**
 
@@ -7740,10 +8090,10 @@ setGestureEventResult(result: boolean, stopPropagation?: boolean): void
 | 名称            | 值 | 说明     |
 | -------------- | -- | -------- |
 | NONE           | 0 | 不可编辑。 |
-| CAN_CUT        | 1 | 支持剪切。 |
-| CAN_COPY       | 2 | 支持拷贝。 |
-| CAN_PASTE      | 4 | 支持粘贴。 |
-| CAN_SELECT_ALL | 8 | 支持全选。 |
+| CAN_CUT        | 1 << 0 | 支持剪切。 |
+| CAN_COPY       | 1 << 1 | 支持拷贝。 |
+| CAN_PASTE      | 1 << 2 | 支持粘贴。 |
+| CAN_SELECT_ALL | 1 << 3 | 支持全选。 |
 
 ## WebContextMenuParam<sup>9+</sup>
 
@@ -7769,7 +8119,7 @@ x(): number
 
 | 类型     | 说明                 |
 | ------ | ------------------ |
-| number | 显示正常返回非负整数，否则返回-1。 |
+| number | 显示正常返回非负整数，否则返回-1。单位：vp。 |
 
 ### y<sup>9+</sup>
 
@@ -7783,7 +8133,7 @@ y(): number
 
 | 类型     | 说明                 |
 | ------ | ------------------ |
-| number | 显示正常返回非负整数，否则返回-1。 |
+| number | 显示正常返回非负整数，否则返回-1。单位：vp。 |
 
 ### getLinkUrl<sup>9+</sup>
 
@@ -7937,7 +8287,7 @@ getPreviewWidth(): number
 
 | 类型     | 说明       |
 | ------ | ----------- |
-| number | 预览图的宽。 |
+| number | 预览图的宽。单位：vp。 |
 
 ### getPreviewHeight<sup>13+</sup>
 
@@ -7951,7 +8301,7 @@ getPreviewHeight(): number
 
 | 类型     | 说明       |
 | ------ | ----------  |
-| number | 预览图的高。 |
+| number | 预览图的高。单位：vp。 |
 
 ## WebContextMenuResult<sup>9+</sup>
 
@@ -8306,6 +8656,18 @@ cancel(): void
 ```ts
 let webController: WebController = new WebController()
 ```
+
+### constructor
+
+constructor()
+
+WebController的构造函数。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 9开始废弃。并且不再提供新的接口作为替代。
+
+**系统能力：** SystemCapability.Web.Webview.Core
 
 ### getCookieManager<sup>(deprecated)</sup>
 
@@ -9063,7 +9425,7 @@ clearHistory(): void
 
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有Web组件共享一个WebCookie。通过controller方法中的getCookieManager方法可以获取WebCookie对象，进行后续的cookie管理操作。
 
-### constructor<sup>9+</sup>
+### constructor
 
 constructor()
 
@@ -9776,8 +10138,8 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| xOffset | number | 是 | 以网页最左端为基准，水平滚动条滚动所在位置。 |
-| yOffset | number | 是 | 以网页最上端为基准，竖直滚动条滚动所在位置。 |
+| xOffset | number | 是 | 以网页最左端为基准，水平滚动条滚动所在位置。单位：vp。 |
+| yOffset | number | 是 | 以网页最上端为基准，竖直滚动条滚动所在位置。单位：vp。 |
 
 ## OnSslErrorEventReceiveEvent<sup>12+</sup>
 
@@ -9789,6 +10151,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | -------------- | ---- | ---- | ---------------------------------------- |
 | handler | [SslErrorHandler](#sslerrorhandler9) | 是 | 通知Web组件用户操作行为。 |
 | error   | [SslError](#sslerror9枚举说明)           | 是 | 错误码。           |
+| certChainData<sup>15+</sup>   | Array<Uint8Array\>           | 否 | 证书链数据。           |
 
 ## OnClientAuthenticationEvent<sup>12+</sup>
 
@@ -9897,8 +10260,8 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| xOffset | number | 是 | 以网页最左端为基准，水平过度滚动的偏移量。 |
-| yOffset | number | 是 | 以网页最上端为基准，竖直过度滚动的偏移量。 |
+| xOffset | number | 是 | 以网页最左端为基准，水平过度滚动的偏移量。单位：vp。 |
+| yOffset | number | 是 | 以网页最上端为基准，竖直过度滚动的偏移量。单位：vp。 |
 
 ## JavaScriptProxy<sup>12+</sup>
 
@@ -10014,3 +10377,13 @@ type OnNativeEmbedVisibilityChangeCallback = (nativeEmbedVisibilityInfo: NativeE
 | ------ | -- | ----------- |
 | SILENT  | 0 | 软键盘收起时web组件失焦功能关闭。 |
 | BLUR | 1 | 软键盘收起时web组件失焦功能开启。 |
+
+## EmbedOptions<sup>16+</sup>
+
+Web同层渲染的配置。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ------- | ---- | ---------------------------------------- |
+| supportDefaultIntrinsicSize | boolean | 否    | 设置同层渲染元素是否支持固定大小 300 * 150。<br>当H5侧CSS设置了大小时，同层渲染元素大小为CSS大小，否则为固定大小。<br>为true时，固定大小为 300 * 150。<br>为false时，若H5侧CSS未设置大小，则同层渲染元素不渲染。<br>默认值：false<br>单位：px |

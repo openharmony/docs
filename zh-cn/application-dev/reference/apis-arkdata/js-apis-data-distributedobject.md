@@ -126,7 +126,7 @@ let sessionId: string = distributedDataObject.genSessionId();
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | sessionId | string | 是 | 多设备协同的唯一标识。 |
-| version | number | 是 | 已保存对象的版本。 |
+| version | number | 是 | 已保存对象的版本，取值为非负整数。 |
 | deviceId | string | 是 | 存储数据的设备号，标识需要保存对象的设备。"local"表示本地设备，否则表示其他设备的设备号。 |
 
 ## RevokeSaveSuccessResponse<sup>9+</sup>
@@ -163,7 +163,7 @@ setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void
 
 设置sessionId，使用callback方式异步回调。当可信组网中有多个设备处于协同状态时，如果多个设备间的分布式对象设置为同一个sessionId，就能自动同步。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC。
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
@@ -203,7 +203,7 @@ setSessionId(callback: AsyncCallback&lt;void&gt;): void
 
 退出所有已加入的session，使用callback方式异步回调。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC。
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
@@ -242,7 +242,7 @@ setSessionId(sessionId?: string): Promise&lt;void&gt;
 
 设置sessionId，使用Promise异步返回。当可信组网中有多个设备处于协同状态时，如果多个设备间的分布式对象设置为同一个sessionId，就能自动同步。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC。
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
@@ -461,16 +461,16 @@ save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void
 
 ```ts
 g_object.setSessionId("123456");
-g_object.save("local", (err: BusinessError, result:distributedDataObject.SaveSuccessResponse) => {
+g_object.save("local", (err: BusinessError, callbackInfo:distributedDataObject.SaveSuccessResponse) => {
     if (err) {
         console.info("save failed, error code = " + err.code);
         console.info("save failed, error message: " + err.message);
         return;
     }
     console.info("save callback");
-    console.info("save sessionId: " + result.sessionId);
-    console.info("save version: " + result.version);
-    console.info("save deviceId:  " + result.deviceId);
+    console.info("save sessionId: " + callbackInfo.sessionId);
+    console.info("save version: " + callbackInfo.version);
+    console.info("save deviceId:  " + callbackInfo.deviceId);
 });
 ```
 
@@ -855,7 +855,7 @@ setSessionId(sessionId?: string): boolean
 >
 > 从 API Version 8 开始支持，从 API Version 9 开始废弃，建议使用[setSessionId](#setsessionid9)替代。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC。
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 

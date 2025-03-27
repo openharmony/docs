@@ -1,8 +1,9 @@
 # @ohos.net.statistics (流量管理)
 
-流量管理模块，支持基于网卡/UID 的实时流量统计和历史流量统计查询能力。
+流量管理模块提供获取指定网卡实时上行、下行流量等能力。
 
 > **说明：**
+>
 > 本模块首批接口从 API version 10 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -327,6 +328,8 @@ getAllRxBytes(callback: AsyncCallback\<number>): void;
 
 获取所有网卡实时下行流量，使用 callback 方式作为异步方法。
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -364,6 +367,8 @@ getAllRxBytes(): Promise\<number>;
 
 获取所有网卡实时下行流量，使用 Promise 方式作为异步方法。
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **返回值：**
@@ -397,6 +402,8 @@ statistics.getAllRxBytes().then((stats: number) => {
 getAllTxBytes(callback: AsyncCallback\<number>): void;
 
 获取所有网卡实时上行流量，使用 callback 方式作为异步方法。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -434,6 +441,8 @@ statistics.getAllTxBytes((error: BusinessError, stats: number) => {
 getAllTxBytes(): Promise\<number>;
 
 获取所有网卡实时上行流量，使用 Promise 方式作为异步方法。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -792,13 +801,13 @@ statistics.getSockfdTxBytes(sockfd).then((stats: number) => {
 });
 ```
 
-## NetBearType
+## NetBearType<sup>12+</sup>
 
 type NetBearType = connection.NetBearType
 
 网络类型。
 
-**系统能力**：SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 |       类型       |            说明             |
 | ---------------- | --------------------------- |

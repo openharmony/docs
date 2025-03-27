@@ -10,7 +10,7 @@
 
 ## NotificationSubscribeInfo
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 **系统接口**：以下为系统接口，三方应用不支持调用。
 

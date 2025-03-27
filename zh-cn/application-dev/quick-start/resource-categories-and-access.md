@@ -75,7 +75,7 @@ base目录是默认存在的目录，二级子目录element用于存放字符串
 
 #### resfile目录
 
-支持创建多层子目录，子目录名称可以自定义，文件夹内可以自由放置各类资源文件。<br/>目录中的资源文件会被直接打包进应用，不经过编译，也不会被赋予资源文件ID。应用安装后，resfile资源会被解压到应用沙箱路径，通过Context属性[resourceDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#属性)获取到resfile资源目录后，可通过文件路径访问。
+支持创建多层子目录，子目录名称可以自定义，文件夹内可以自由放置各类资源文件。<br/>目录中的资源文件会被直接打包进应用，不经过编译，也不会被赋予资源文件ID。应用安装后，resfile资源会被解压到应用沙箱路径，通过Context属性[resourceDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#属性)获取到resfile资源目录后，可通过文件路径访问，且该路径仅能以只读方式访问。
 
 ### 资源组目录
 
@@ -133,14 +133,14 @@ float.json文件的内容如下：
 
 ```json
 {
-    "float":[
+    "float": [
         {
-            "name":"font_hello",
-            "value":"28.0fp"
+            "name": "font_hello",
+            "value": "28.0fp"
         },
-	      {
-            "name":"font_world",
-            "value":"20.0fp"
+	    {
+            "name": "font_world",
+            "value": "20.0fp"
         }
     ]
 }
@@ -150,22 +150,22 @@ string.json文件的内容如下：
 
 ```json
 {
-    "string":[
+    "string": [
         {
-            "name":"string_hello",
-            "value":"Hello"
+            "name": "string_hello",
+            "value": "Hello"
         },
-	      {
-            "name":"string_world",
-            "value":"World"
+	    {
+            "name": "string_world",
+            "value": "World"
         },
-	      {
-            "name":"message_arrive",
-            "value":"We will arrive at %1$s."
+	    {
+            "name": "message_arrive",
+            "value": "We will arrive at %1$s."
         },
         {
-            "name":"message_notification",
-            "value":"Hello, %1$s!,You have %2$d new messages."
+            "name": "message_notification",
+            "value": "Hello, %1$s!,You have %2$d new messages."
         }
     ]
 }
@@ -175,17 +175,17 @@ plural.json文件的内容如下：
 
 ```json
 {
-    "plural":[
+    "plural": [
         {
-            "name":"eat_apple",
-            "value":[
+            "name": "eat_apple",
+            "value": [
                 {
-                    "quantity":"one",
-                    "value":"%d apple"
+                    "quantity": "one",
+                    "value": "%d apple"
                 },
                 {
-                    "quantity":"other",
-                    "value":"%d apples"
+                    "quantity": "other",
+                    "value": "%d apples"
                 }
             ]
         }
@@ -221,15 +221,10 @@ plural.json文件的内容如下：
 
 ### 功能介绍
 
-资源需要翻译时，可使用attr属性标记字符串翻译范围和翻译状态。attr属性不参与资源编译，只标记字符串是否翻译。
+当应用引用的字符串资源需要支持国际化多语言翻译时，可使用attr属性标记字符串翻译范围和翻译状态。attr属性不参与资源编译，只标记字符串是否翻译。
 
 未配置attr属性，默认需要翻译。
-```
-"attr": {
-  "translatable": false|true
-  "priority": "code|translate|LT|customer"
-}
-```
+
 **attr支持属性**
 
 | 名称        | 类型                    |  说明   |
@@ -248,7 +243,7 @@ resources
 |   |   |---plural.json
 ```
 ### 示例
-string资源配置attr属性示例如下：
+string资源配置attr属性示例如下，其中string1字符串被标记为不需要翻译，string2字符串被标记为需要翻译且翻译已验证。
 
 ```json
 {
@@ -426,8 +421,8 @@ Image($r('sys.media.ohos_app_icon'))
 | 接口名                                                       | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [getOverrideResourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md#getoverrideresourcemanager12)(configuration?: [Configuration](../reference/apis-localization-kit/js-apis-resource-manager.md#configuration)) : [ResourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md#resourcemanager) | 获取可以加载指定配置的资源的资源管理对象，使用同步方式返回。 |
-| [getOverrideConfiguration](../reference/apis-localization-kit/js-apis-resource-manager.md#getoverrideconfiguration12)() : [Configuration](../reference/apis-localization-kit/js-apis-resource-manager.md#configuration) | 获取指定的配置，使用同步方式返回                             |
-| [updateOverrideConfiguration](../reference/apis-localization-kit/js-apis-resource-manager.md#updateoverrideconfiguration12)(configuration: [Configuration](../reference/apis-localization-kit/js-apis-resource-manager.md#configuration)) : void | 更新指定的配置                                               |
+| [getOverrideConfiguration](../reference/apis-localization-kit/js-apis-resource-manager.md#getoverrideconfiguration12)() : [Configuration](../reference/apis-localization-kit/js-apis-resource-manager.md#configuration) | 获取指定的配置，使用同步方式返回。                             |
+| [updateOverrideConfiguration](../reference/apis-localization-kit/js-apis-resource-manager.md#updateoverrideconfiguration12)(configuration: [Configuration](../reference/apis-localization-kit/js-apis-resource-manager.md#configuration)) : void | 更新指定的配置。                                               |
 
 #### 示例
 

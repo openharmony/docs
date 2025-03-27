@@ -15,13 +15,26 @@ import { pan } from '@kit.ConnectivityKit';
 ```
 
 
+## BaseProfile
+
+type BaseProfile = baseProfile.BaseProfile
+
+基础Profile接口定义。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+| 类型                            | 说明         |
+| ----------------------------- | ---------- |
+| [baseProfile.BaseProfile](js-apis-bluetooth-baseProfile.md#baseprofile) | 基础Profile接口定义。 |
+
+
 ## pan.createPanProfile
 
 createPanProfile(): PanProfile
 
 创建pan profile实例。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **返回值：**
 

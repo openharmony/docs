@@ -43,6 +43,7 @@
             - [TaskPool任务与宿主线程通信](taskpool-communicates-with-mainthread.md)
             - [Worker和宿主线程的即时消息通信](worker-communicates-with-mainthread.md)
             - [Worker同步调用宿主线程的接口](worker-invoke-mainthread-interface.md)
+            - [多级Worker间高性能消息通信](worker-postMessage-sendable.md)
     - 应用多线程开发<!--multithread-develop-guide-->
         - [应用多线程开发概述](multithread-develop-overview.md)
         - 耗时任务并发场景<!--time-consuming-task-->
@@ -84,6 +85,11 @@
         - [方舟字节码函数命名规则](arkts-bytecode-function-name.md)
         - [编译期自定义修改方舟字节码](customize-bytecode-during-compilation.md)
     - [Disassembler反汇编工具](tool-disassembler.md)
-    - [ArkGuard源码混淆工具](source-obfuscation.md)
+    - ArkGuard源码混淆工具<!--arkts-arkguard-->
+        - [ArkGuard混淆概述](source-obfuscation-overview.md)
+        - [ArkGuard混淆原理及功能](source-obfuscation.md)
+        - [ArkGuard混淆开启指南](source-obfuscation-guide.md)
+        - [不同包类型的源码混淆建议](source-obfuscation-practice.md)
+        - [ArkGuard混淆常见问题](source-obfuscation-questions.md)
     - [在build-profile.json5中配置arkOptions](arkoptions-guide.md)
 

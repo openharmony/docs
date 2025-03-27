@@ -106,13 +106,13 @@ static int32_t TEST_FUNC() {
 
     // Call the function through OH_JSVM_CallFunction.
     JSVM_Value argv[1] = {nullptr};
-    OH_JSVM_CreateStringUtf8(env, "jsvm api call funtion", JSVM_AUTO_LENGTH, &argv[0]);
+    OH_JSVM_CreateStringUtf8(env, "jsvm api call function", JSVM_AUTO_LENGTH, &argv[0]);
     CHECK_RET(OH_JSVM_CallFunction(env, global, func, 1, argv, &result));
 
     // Call the function through the script.
     JSVM_Script script;
     JSVM_Value jsSrc;
-    const char* srcCallNative = R"JS(NativeFunc('js source call funtion');)JS";
+    const char* srcCallNative = R"JS(NativeFunc('js source call function');)JS";
     CHECK_RET(OH_JSVM_CreateStringUtf8(env, srcCallNative, JSVM_AUTO_LENGTH, &jsSrc));
     CHECK_RET(OH_JSVM_CompileScript(env, jsSrc, nullptr, 0, true, nullptr, &script));
     CHECK_RET(OH_JSVM_RunScript(env, script, &result));
@@ -127,6 +127,6 @@ static int32_t TEST_FUNC() {
 ```
 **Expected output**
 ```
-jsvm: jsvm api call funtion; Hello World!
-jsvm: js source call funtion; Hello World!
+jsvm: jsvm api call function; Hello World!
+jsvm: js source call function; Hello World!
 ```

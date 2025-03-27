@@ -80,7 +80,7 @@ export default class EntryAbility extends UIAbility {
     const permissions: Permissions[] = ['ohos.permission.READ_CALENDAR', 'ohos.permission.WRITE_CALENDAR'];
     let atManager = abilityAccessCtrl.createAtManager();
     atManager.requestPermissionsFromUser(mContext, permissions).then((result: PermissionRequestResult) => {
-      console.log(`get Permission success, result: ${JSON.stringify(result)}`);
+      console.info(`get Permission success, result: ${JSON.stringify(result)}`);
       calendarMgr = calendarManager.getCalendarManager(mContext);
     }).catch((error: BusinessError) => {
       console.error(`get Permission error, error. Code: ${error.code}, message: ${error.message}`);
@@ -1820,7 +1820,7 @@ Describes the attendee information of a conference event.
 | ----- | ------ | ---- |----|--------------------------------------------------------------------|
 | name  | string | No  | No | Name of the attendee.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | email | string | No  | No | Email address of the attendee.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| role<sup>12+</sup>  | [AttendeeRole](#attendeerole12) | No  | Yes | Role of the attendee.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
+| role<sup>12+</sup>  | [AttendeeRole](#attendeerole12) | No  | Yes | Role of the attendee.If this parameter is not set, the default value is empty.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
 
 ## EventService
 
@@ -1866,5 +1866,5 @@ Enumerates the attendee role types in the conference event.
 
 | Name          | Value            | Description    |
 |--------------|---------------|--------|
-| ORGANIZER<sup>12+</sup>    | 'organizer'   | Conference organizer.|
-| PARTICIPANT<sup>12+</sup>  | 'participant' | Conference participant.|
+| ORGANIZER    | 'organizer'   | Conference organizer.|
+| PARTICIPANT  | 'participant' | Conference participant.|

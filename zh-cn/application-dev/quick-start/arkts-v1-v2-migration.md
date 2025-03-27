@@ -49,7 +49,7 @@ ArkUI状态管理的主要职责是：负责将可观察数据的变化自动同
 
 **简单类型**
 
-对于简单类型变量，V1的@State可以直接替换为替换为V2的@Local。
+对于简单类型变量，V1的@State可以直接替换为V2的@Local。
 
 V1：
 
@@ -1259,7 +1259,7 @@ V2:
 - 声明被\@Trace的属性作为页面间共享的可观察的数据。
 
 ```
-// Storage.ets
+// storage.ets
 @ObservedV2
 export class MyStorage {
   static singleton_: MyStorage;
@@ -1654,7 +1654,7 @@ V2：
 
 声明\@ObservedV2装饰的class代替LocalStorage。其中LocalStorage的key可以用\@Trace装饰的属性代替。
 ```ts
-// Storage.ets
+// storage.ets
 @ObservedV2
 export class MyStorageA {
   @Trace propA: string = 'Hello';

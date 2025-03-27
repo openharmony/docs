@@ -1007,11 +1007,14 @@ This error code is reported when the **wantAgent** object passed in the API is i
 
 **Possible Causes**
 
-The **wantAgent** object is invalid.
+1. The **wantAgent** object is invalid.
+2. A third-party application attempts to set the ability of another application.
+3. An internal communication error occurs.
 
 **Solution**
 
-Pass a valid **wantAgent** object in the API.
+1. Ensure that the **wantAgent** object passed in the API exists.
+2. Check whether the caller is a third-party application. Third-party applications cannot set the abilities of other applications.
 
 ## 16000152 wantAgent Object Does Not Exist
 
@@ -1564,6 +1567,7 @@ This error code is reported when the size of the image exceeds 50 MB.
 
 1. Limit the size of the edited image to less than 50 MB.
 2. Verify the image size in advance.
+
 ## 16300007 Download and Installation Task Information of the Atomic Service Does Not Exist
 
 **Error Message**

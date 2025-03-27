@@ -10,9 +10,9 @@
 
 ## AppProvisionInfo
 
-**系统能力:** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
-**系统接口：**  此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称                      | 类型   | 只读 | 可选 | 说明                 |
 | ------------------------- | ------ | ---- | ---- | -------------------- |
@@ -20,7 +20,7 @@
 | versionName              | string | 是   | 否   | 配置文件的版本名称。  |
 | uuid                     | string | 是   | 否   | 配置文件中的uuid。 |
 | type                     | string | 是   | 否   | 配置文件的类型，为debug或者release。 |
-| appDistributionType      | string | 是   | 否   | 配置文件中的分发类型，为app_gallery、enterprise、os_integration和crowdtesting其中之一。 |
+| appDistributionType      | string | 是   | 否   | 配置文件中的[分发类型](../../security/app-provision-structure.md)。 |
 | validity                 | [Validity](#validity) | 是   | 否   | 配置文件中的有效期。 |
 | developerId              | string | 是   | 否   | 配置文件中的开发者ID。 |
 | certificate              | string | 是   | 否   | 配置文件中的证书公钥。 |
@@ -31,9 +31,9 @@
 
 ## Validity
 
-**系统能力:** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
-**系统接口：**  此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称                      | 类型   | 只读 | 可选 | 说明                 |
 | ------------------------- | ------ | ---- | ---- | -------------------- |

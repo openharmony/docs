@@ -1,6 +1,6 @@
 # @ohos.file.photoAccessHelper (Album Management) (System API)
 
-The **photoAccessHelper** module provides APIs for album management, including creating an album and accessing and modifying media data in an album.
+The photoAccessHelper module provides APIs for album management, including creating an album and accessing and modifying media data in an album.
 
 > **NOTE**
 >
@@ -516,8 +516,8 @@ Obtains hidden albums based on the specified display mode and retrieval options.
 
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | Yes  | Display mode of hidden files. |
-| options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)         | Yes  |  Options for retrieving the hidden files. |
+| mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | Yes  | Display mode of hidden albums. |
+| options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)         | Yes  |  Options for retrieving the hidden albums. |
 | callback |  AsyncCallback&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -574,7 +574,7 @@ Obtains hidden albums based on the specified display mode. This API uses an asyn
 
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | Yes  | Display mode of hidden files. |
+| mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | Yes  | Display mode of hidden albums. |
 | callback |  AsyncCallback&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -650,7 +650,7 @@ Obtains hidden albums based on the specified display mode and retrieval options.
 
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | Yes  | Display mode of hidden files. |
+| mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | Yes  | Display mode of hidden albums. |
 | options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)         | No  |  Options for retrieving the files. If this parameter is not specified, the files are retrieved based on the display mode of hidden files.     |
 
 **Return value**
@@ -906,7 +906,7 @@ async function example() {
       fetchColumns: [],
       predicates: predicatesForGetAsset
     };
-    // Obtain the uri of the album
+    // Obtain the uri of the album.
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE, fetchOp);
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -917,7 +917,7 @@ async function example() {
     };
     let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
     let expectIndex = 1;
-    // Obtain the uri of the second file
+    // Obtain the uri of the second file.
     let photoAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getObjectByPosition(expectIndex);
 
     phAccessHelper.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions, (err, index) => {
@@ -985,7 +985,7 @@ async function example() {
       fetchColumns: [],
       predicates: predicatesForGetAsset
     };
-    // Obtain the uri of the album
+    // Obtain the uri of the album.
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE, fetchOp);
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -996,7 +996,7 @@ async function example() {
     };
     let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
     let expectIndex = 1;
-    // Obtain the uri of the second file
+    // Obtain the uri of the second file.
     let photoAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getObjectByPosition(expectIndex);
     phAccessHelper.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions).then((index) => {
       console.info(`getPhotoIndex successfully and index is : ${index}`);
@@ -1271,7 +1271,7 @@ Creates media assets for an application. The returned URIs has been granted with
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the URIs of the media asset files in the media library. The target application (identified by **appid**) can write the media assets based on the URIs without requesting the write permission.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the URIs of the media asset files in the media library. The target application (identified by **appid**) can write the media assets based on the URIs without requesting the write permission. If the URIs fail to be generated, a batch creation error code will be returned.<br>The error code **-3006** means that there are invalid characters; **-2004** means that the image type does not match the file name extension; **-203** means that the file operation is abnormal.|
 
 **Error codes**
 
@@ -1509,7 +1509,7 @@ Creates assets with a temporary permission. This API uses a promise to return th
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise\<Array\<string>> | Promise used to return the URIs of the media asset files in the media library. The target application (identified by **appid**) can write the assets based on the URIs without has been authorized to the application specified by appId to allow the application to write data.|
+| Promise\<Array\<string>> | Promise used to return the URIs of the media asset files in the media library. The target application (identified by **appid**) can write the assets based on the URIs without has been authorized to the application specified by appId to allow the application to write data. If the URIs fail to be generated, a batch creation error code will be returned.<br>The error code **-3006** means that there are invalid characters; **-2004** means that the image type does not match the file name extension; **-203** means that the file operation is abnormal.|
 
 **Error codes**
 
@@ -1547,70 +1547,6 @@ async function example() {
     console.info('Photo createAssetsForAppWithMode success.');
   } catch (err) {
     console.error(`createAssetsForAppWithMode failed with error: ${err.code}, ${err.message}`);
-  }
-}
-```
-### getKeyFrameThumbnail<sup>14+</sup>
-
-getKeyFrameThumbnail(beginFrameTimeMs: number, type: ThumbnailType): Promise<image.PixelMap>;
-
-Obtains the thumbnail of the specified type for the key frame. This API uses a promise to return the result.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-**Required permissions**: ohos.permission.READ_IMAGEVIDEO
-
-**Parameters**
-
-| Name | Type            | Mandatory  | Description   |
-| ---- | -------------- | ---- | ----- |
-| beginFrameTimeMs | number | Yes   | Time of the start frame, in ms. <br>The value **0** indicates the cover frame.|
-| type | [ThumbnailType](#thumbnailtype13)| Yes   | Type of the thumbnail to obtain.|
-
-**Return value**
-
-| Type                           | Description                   |
-| ----------------------------- | --------------------- |
-| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise used to return the PixelMap of the thumbnail obtained. The cover frame is returned by default if no thumbnail is obtained.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 201   | Permission denied.       |
-| 202   | Called by non-system application.       |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 14000011   | Internal system error.       
-
-**Example**
-
-```ts
-import { common }  from '@kit.AbilityKit';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import image from '@ohos.multimedia.image';
-
-async function example() {
-  try{
-    console.info('getKeyFrameThumbnail demo');
-    let context = getContext(this) as common.UIAbilityContext;
-    let phAccessHelper:photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-    predicates.equalTo(photoAccessHelper.PhotoKeys.PHOTO_TYPE, photoAccessHelper.PhotoType.VIDEO);
-    let fetchOption: photoAccessHelper.FetchOptions = {
-      fetchColumns: [],
-      predicates: predicates
-    };
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getLastObject();
-    let pixelMap: image.PixelMap = await asset.getKeyFrameThumbnail(0, photoAccessHelper.ThumbnailType.LCD);
-    console.info('getKeyFrameThumbnail success');
-  } catch (error) {
-    console.error('getKeyFrameThumbnail failed, error: ' + JSON.stringify(error));
   }
 }
 ```
@@ -2293,7 +2229,7 @@ async function example() {
         console.error(`setPending(true) failed with error: ${err.code}, ${err.message}`);
         return;
       }
-      // write photo buffer in fd
+      // write photo buffer in fd.
       photoAsset.setPending(false, async (err) => {
         if (err !== undefined) {
           console.error(`setPending(false) failed with error: ${err.code}, ${err.message}`);
@@ -2357,7 +2293,7 @@ async function example() {
     let photoAsset = await phAccessHelper.createAsset(testFileName);
     let fd = await photoAsset.open('rw');
     await photoAsset.setPending(true);
-    // write photo buffer in fd
+    // write photo buffer in fd.
     photoAsset.setPending(false);
     await photoAsset.close(fd);
   } catch (err) {
@@ -3688,9 +3624,9 @@ Represents the edited media asset data.
 
 | Name          | Type   | Readable  | Writable | Description  |
 | ------------ | ------ | ---- | ---- | ------- |
-| compatibleFormat | string | Yes   | Yes   | Format of the edited data. <br>**System API**: This is a system API.   |
-| formatVersion | string | Yes   | Yes  | Version of the data format. <br>**System API**: This is a system API.   |
-| data | string | Yes   | Yes  | Content edited. <br>**System API**: This is a system API.   |
+| compatibleFormat | string | Yes   | Yes   | Format of the edited data.<br>**System API**: This is a system API.   |
+| formatVersion | string | Yes   | Yes  | Version of the data format.<br>**System API**: This is a system API.   |
+| data | string | Yes   | Yes  | Content edited.<br>**System API**: This is a system API.   |
 
 ### constructor<sup>11+</sup>
 
@@ -6167,20 +6103,7 @@ Enumerates the [PhotoAsset](#photoasset) types.
 
 | Name |  Value|  Description|
 | ----- |  ---- |  ---- |
-| SCREENSHOT |  1 |  Screenshot and screen recording file. <br>**System API**: This is a system API.|
-
-## PositionType
-
-Enumerates the file locations.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-| Name |  Value|  Description|
-| ----- |  ---- |  ---- |
-| LOCAL |  1 << 0 |  Stored only on a local device.|
-| CLOUD |  1 << 1 |  Stored only on the cloud.|
+| SCREENSHOT |  1 |  Screenshot and screen recording file.<br>**System API**: This is a system API.|
 
 ## AlbumType
 
@@ -6190,7 +6113,7 @@ Enumerates the album types.
 
 | Name                 | Value   | Description                       |
 | ------------------- | ---- | ------------------------- |
-| SMART<sup>11+</sup> | 4096 | Smart analysis album. <br>**System API**: This is a system API.|
+| SMART<sup>11+</sup> | 4096 | Smart analysis album.<br>**System API**: This is a system API.|
 
 ## AlbumSubtype
 
@@ -6237,7 +6160,6 @@ Defines the key information about an image or video file.
 
 | Name         | Value             | Description                                                      |
 | ------------- | ------------------- | ---------------------------------------------------------- |
-| POSITION  | 'position'            | File location type. <br>**System API**: This is a system API.                              |
 | DATE_TRASHED  | 'date_trashed'  | Date when the file was deleted. The value is the number of seconds elapsed since the Epoch time. <br>**System API**: This is a system API.                |
 | HIDDEN  | 'hidden'            | Whether the file is hidden. <br>**System API**: This is a system API.                              |
 | CAMERA_SHOT_KEY  | 'camera_shot_key'  | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.) <br>**System API**: This is a system API.           |

@@ -4,9 +4,9 @@
 
 >  **说明：**
 >
->  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  该组件从API Version 11开始默认支持安全区避让特性(默认值为：expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM]))，开发者可以重写该属性覆盖默认行为，API Version 11之前的版本需配合[expandSafeArea](ts-universal-attributes-expand-safe-area.md)属性实现安全区避让。
+>  该组件从API version 11开始默认支持安全区避让特性(默认值为：expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM]))，开发者可以重写该属性覆盖默认行为，API version 11之前的版本需配合[expandSafeArea](ts-universal-attributes-expand-safe-area.md)属性实现安全区避让。
 
 
 ## 子组件
@@ -22,7 +22,9 @@
 
 ## 接口
 
-Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: TabsController})
+Tabs(options?: TabsOptions)
+
+创建Tabs容器。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -30,11 +32,22 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: TabsContro
 
 **参数：**
 
-| 参数名         | 类型                              | 必填   | 说明                                     |
+| 参数名 | 类型         | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| options | [TabsOptions](#tabsoptions15) | 否 | Tabs组件参数。 |
+
+## TabsOptions<sup>15+</sup>
+
+Tabs组件参数，设置Tabs的页签位置，当前显示页签的索引，Tabs控制器和TabBar的[通用属性](ts-component-general-attributes.md)。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称         | 类型                              | 必填   | 说明                                     |
 | ----------- | --------------------------------- | ---- | ---------------------------------------- |
-| barPosition | [BarPosition](#barposition枚举说明)| 否    | 设置Tabs的页签位置。<br/>默认值：BarPosition.Start   |
-| index       | number                            | 否    | 设置当前显示页签的索引。<br/>默认值：0<br/>**说明：** <br/>设置为小于0的值时按默认值显示。<br/>可选值为[0, TabContent子节点数量-1]。<br/>直接修改index跳页时，切换动效不生效。 使用TabController的changeIndex时，默认生效切换动效，可以设置animationDuration为0关闭动画。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br/>Tabs重建、系统资源切换（如系统字体切换、系统深浅色切换）或者组件属性变化时，会跳转到index对应的页面。若需要在上述情况下不跳转，建议使用双向绑定。 |
-| controller  | [TabsController](#tabscontroller) | 否    | 设置Tabs控制器。                               |
+| barPosition | [BarPosition](#barposition枚举说明)| 否    | 设置Tabs的页签位置。<br/>默认值：BarPosition.Start。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
+| index       | number                            | 否    | 设置当前显示页签的索引。<br/>默认值：0<br/>**说明：** <br/>设置为小于0的值时按默认值显示。<br/>可选值为[0, TabContent子节点数量-1]。<br/>直接修改index跳页时，切换动效不生效。 使用TabController的changeIndex时，默认生效切换动效，可以设置animationDuration为0关闭动画。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br/>Tabs重建、系统资源切换（如系统字体切换、系统深浅色切换）或者组件属性变化时，会跳转到index对应的页面。若需要在上述情况下不跳转，建议使用双向绑定。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| controller  | [TabsController](#tabscontroller) | 否    | 设置Tabs控制器。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                               |
+| barModifier<sup>15+</sup>  | [CommonModifier](#commonmodifier15) | 否    | 设置TabBar的[通用属性](ts-component-general-attributes.md)。<br/>**说明：** <br/>动态置为undefined时会保持当前状态不变，不会重置各通用属性。 <br/>由一个CommonModifier切换为另一个CommonModifier时，重复属性会进行覆盖，非重复属性会同时生效，不会重置前一个CommonModifier的通用属性。<br/>Tabs的[barWidth](#barwidth)、[barHeight](#barheight)、[barBackgroundColor](#barbackgroundcolor10)、[barBackgroundBlurStyle](#barbackgroundblurstyle11)会覆盖CommonModifier的[width](ts-universal-attributes-size.md#width)、[height](ts-universal-attributes-size.md#height)、[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)、[backgroundBlurStyle](ts-universal-attributes-background.md#backgroundblurstyle9)属性。<br/>[align](ts-universal-attributes-location.md#align)属性仅在[BarMode.Scrollable](#barmode10-1)模式下生效，且Tabs为横向时还需[nonScrollableLayoutStyle](#scrollablebarmodeoptions10对象说明)未设置或设置为异常值时才能生效。<br/>[TabContent](ts-container-tabcontent.md)组件的[tabBar](ts-container-tabcontent.md#tabbar9)属性为底部页签样式时不支持拖拽功能。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 
 ## BarPosition枚举说明
 
@@ -52,7 +65,7 @@ Tabs页签位置枚举。
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### vertical
 
@@ -184,13 +197,13 @@ animationDuration(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 点击TabBar页签和调用TabsController的changeIndex接口切换TabContent的动画时长。<br/>默认值：<br/>API version 10及以前，不设置该属性或设置为null时，默认值为0，即点击TabBar页签和调用TabsController的changeIndex接口切换TabContent无动画。设置为小于0或undefined时，默认值为300。<br/>API version 11及以后，不设置该属性或设置为异常值，且设置TabBar为BottomTabBarStyle样式时，默认值为0。设置TabBar为其他样式时，默认值为300。<br/>单位：ms |
+| value  | number | 是   | 点击TabBar页签和调用TabsController的changeIndex接口切换TabContent的动画时长。<br/>默认值：<br/>API version 10及以前，不设置该属性或设置为null时，默认值为0，即点击TabBar页签和调用TabsController的changeIndex接口切换TabContent无动画。设置为小于0或undefined时，默认值为300。<br/>API version 11及以后，不设置该属性或设置为异常值，且设置TabBar为BottomTabBarStyle样式时，默认值为0。设置TabBar为其他样式时，默认值为300。<br/>单位：ms<br/>取值范围：[0, +∞)。 |
 
 ### animationMode<sup>12+</sup>
 
 animationMode(mode: Optional\<AnimationMode\>)
 
-设置点击TabBar页签时切换TabContent的动画形式。
+设置点击TabBar页签或调用TabsController的changeIndex接口时切换TabContent的动画形式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -200,7 +213,7 @@ animationMode(mode: Optional\<AnimationMode\>)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| mode  | Optional\<[AnimationMode](#animationmode12枚举说明)\> | 是   | 点击TabBar页签时切换TabContent的动画形式。<br/>默认值：<br/>默认值是AnimationMode.CONTENT_FIRST，表示在点击TabBar切换TabContent时，先加载目标页内容，再开始切换动画。|
+| mode  | Optional\<[AnimationMode](#animationmode12枚举说明)\> | 是   | 点击TabBar页签或调用TabsController的changeIndex接口时切换TabContent的动画形式。<br/>默认值：AnimationMode.CONTENT_FIRST，表示在点击TabBar页签或调用TabsController的changeIndex接口切换TabContent时，先加载目标页内容，再开始切换动画。|
 
 ### barPosition<sup>9+</sup>
 
@@ -248,7 +261,7 @@ fadingEdge(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                               |
 | ------ | ------- | ---- | -------------------------------------------------- |
-| value  | boolean | 是   | 页签超过容器宽度时是否渐隐消失。<br />默认值：true |
+| value  | boolean | 是   | 页签超过容器宽度时是否渐隐消失。<br />默认值：true，页签超过容器宽度时会渐隐消失。 |
 
 ### barOverlap<sup>10+</sup>
 
@@ -330,6 +343,22 @@ edgeEffect(edgeEffect: Optional&lt;EdgeEffect&gt;)
 | ------ | --------------------------------------------- | ---- | -------------------------------------------- |
 | edgeEffect  | Optional&lt;[EdgeEffect](ts-appendix-enums.md#edgeeffect)&gt; | 是   | 边缘滑动效果。<br/>默认值：EdgeEffect.Spring |
 
+### pageFlipMode<sup>15+</sup>
+
+pageFlipMode(mode: Optional\<PageFlipMode>)
+
+设置鼠标滚轮翻页模式。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                        | 必填 | 说明                                                         |
+| ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| mode  | Optional\<[PageFlipMode](ts-appendix-enums.md#pageflipmode15)> | 是   | 鼠标滚轮翻页模式。<br/>默认值：PageFlipMode.CONTINUOUS |
+
 ## DividerStyle<sup>10+</sup>对象说明
 
 分割线样式对象。
@@ -340,10 +369,10 @@ edgeEffect(edgeEffect: Optional&lt;EdgeEffect&gt;)
 
 | 名称          | 类型                                     | 必填   | 说明                                       |
 | ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| strokeWidth | [Length](ts-types.md#length)             | 是    | 分割线的线宽（不支持百分比设置）。<br/>默认值：0.0<br/>单位：vp           |
+| strokeWidth | [Length](ts-types.md#length)             | 是    | 分割线的线宽（不支持百分比设置）。<br/>默认值：0.0<br/>单位：vp<br/>取值范围：[0, +∞)。           |
 | color       | [ResourceColor](ts-types.md#resourcecolor) | 否    | 分割线的颜色。<br/>默认值：#33182431                |
-| startMargin | [Length](ts-types.md#length)             | 否    | 分割线与侧边栏顶端的距离（不支持百分比设置）。<br/>默认值：0.0<br/>单位：vp |
-| endMargin   | [Length](ts-types.md#length)             | 否    | 分割线与侧边栏底端的距离（不支持百分比设置）。<br/>默认值：0.0<br/>单位：vp |
+| startMargin | [Length](ts-types.md#length)             | 否    | 分割线与侧边栏顶端的距离（不支持百分比设置）。<br/>默认值：0.0<br/>单位：vp<br/>取值范围：[0, +∞)。 |
+| endMargin   | [Length](ts-types.md#length)             | 否    | 分割线与侧边栏底端的距离（不支持百分比设置）。<br/>默认值：0.0<br/>单位：vp<br/>取值范围：[0, +∞)。 |
 
 ## BarGridColumnOptions<sup>10+</sup>对象说明
 
@@ -355,8 +384,8 @@ TabBar栅格化方式设置的对象，包括栅格模式下的column边距和�
 
 | 名称          | 类型                                     | 必填   | 说明                                       |
 | ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| margin | [Dimension](ts-types.md#dimension10)             | 否    | 栅格模式下的column边距（不支持百分比设置）。<br/>默认值:24.0<br/>单位：vp                        |
-| gutter      | [Dimension](ts-types.md#dimension10) | 否    | 栅格模式下的column间隔（不支持百分比设置）。<br/>默认值:24.0<br/>单位：vp                     |
+| margin | [Dimension](ts-types.md#dimension10)             | 否    | 栅格模式下的column边距（不支持百分比设置）。<br/>默认值：24.0<br/>单位：vp                        |
+| gutter      | [Dimension](ts-types.md#dimension10) | 否    | 栅格模式下的column间隔（不支持百分比设置）。<br/>默认值：24.0<br/>单位：vp                     |
 | sm | number            | 否    | 小屏下，页签占用的columns数量，必须是非负偶数。小屏为大于等于320vp但小于600vp。<br/>默认值为-1，代表页签占用TabBar全部宽度。 |
 | md   | number          | 否    | 中屏下，页签占用的columns数量，必须是非负偶数。中屏为大于等于600vp但小于800vp。<br/>默认值为-1，代表页签占用TabBar全部宽度。 |
 | lg   | number           | 否    | 大屏下，页签占用的columns数量，必须是非负偶数。大屏为大于等于840vp但小于1024vp。<br/>默认值为-1，代表页签占用TabBar全部宽度。 |
@@ -371,7 +400,7 @@ Scrollable模式下的TabBar的布局样式对象。
 
 | 名称          | 类型                                     | 必填   | 说明                                       |
 | ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| margin | [Dimension](ts-types.md#dimension10)          | 否    | Scrollable模式下的TabBar的左右边距（不支持百分比设置）。<br/>默认值：0.0<br/>单位：vp                    |
+| margin | [Dimension](ts-types.md#dimension10)          | 否    | Scrollable模式下的TabBar的左右边距（不支持百分比设置）。<br/>默认值：0.0<br/>单位：vp<br/>取值范围：[0, +∞)。|
 | nonScrollableLayoutStyle      | [LayoutStyle](#layoutstyle10枚举说明) | 否    | Scrollable模式下不滚动时的页签排布方式。<br/>默认值：LayoutStyle.ALWAYS_CENTER           |
 
 ## BarMode枚举说明
@@ -391,15 +420,15 @@ TabBar布局模式枚举。
 
 点击TabBar页签时切换TabContent的动画形式枚举。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称          | 值   | 说明                                                         |
 | ------------- | ---- | ------------------------------------------------------------ |
-| CONTENT_FIRST | 0    | 先加载目标页内容，再开始切换动画                             |
-| ACTION_FIRST  | 1    | 先开始切换动画，再加载目标页内容；生效需要同时需要满足：Tabs的height、width没有设置成auto |
-| NO_ANIMATION  | 2    | 关闭默认动画                                                 |
+| CONTENT_FIRST | 0    | 先加载目标页内容，再开始切换动画。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| ACTION_FIRST  | 1    | 先开始切换动画，再加载目标页内容；生效需要同时需要满足：Tabs的height、width没有设置成auto。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| NO_ANIMATION  | 2    | 关闭默认动画。调用TabsController的changeIndex接口切换TabContent时该枚举值不生效。<br>可以通过设置animationDuration为0实现调用TabsController的changeIndex接口时不带动画。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| CONTENT_FIRST_WITH_JUMP<sup>15+</sup> | 3    | 先加载目标页内容，再无动画跳转到目标页附近，最后有动画跳转到目标页。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| ACTION_FIRST_WITH_JUMP<sup>15+</sup>  | 4    | 先无动画跳转到目标页附近，再有动画跳转到目标页，最后加载目标页内容。此项生效需要同时需要满足：Tabs的height、width没有设置成auto。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 ## LayoutStyle<sup>10+</sup>枚举说明
 
@@ -415,9 +444,23 @@ Scrollable模式下不滚动时的页签排布方式枚举。
 | ALWAYS_AVERAGE_SPLIT | 1 | 当页签内容超过TabBar宽度时，TabBar可滚动。<br/>当页签内容不超过TabBar宽度时，TabBar不可滚动，且所有页签平均分配TabBar宽度。|
 | SPACE_BETWEEN_OR_CENTER      | 2 | 当页签内容超过TabBar宽度时，TabBar可滚动。<br/>当页签内容不超过TabBar宽度但超过TabBar宽度一半时，TabBar不可滚动，页签紧凑居中。<br/>当页签内容不超过TabBar宽度一半时，TabBar不可滚动，保证页签居中排列在TabBar宽度一半，且间距相同。|
 
+## CommonModifier<sup>15+</sup>
+
+type CommonModifier = CommonModifier
+
+作为Tabs组件的参数对象。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型         | 说明                                     |
+| ---------- | ---------------------------------------- |
+| [CommonModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier) | 设置TabBar的通用属性。 |
+
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onChange
 
@@ -479,8 +522,8 @@ onAnimationStart(handler: (index: number, targetIndex: number, event: TabsAnimat
 
 | 参数名      | 类型                                                   | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| index       | number                                                 | 是   | 当前显示元素的索引。                                         |
-| targetIndex | number                                                 | 是   | 切换动画目标元素的索引。                                     |
+| index       | number                                                 | 是   | 当前显示元素的索引，索引从0开始。                            |
+| targetIndex | number                                                 | 是   | 切换动画目标元素的索引，索引从0开始。                        |
 | event       | [TabsAnimationEvent](#tabsanimationevent11对象说明) | 是   | 动画相关信息，包括主轴方向上当前显示元素和目标元素相对Tabs起始位置的位移，以及离手速度。 |
 
 ### onAnimationEnd<sup>11+</sup>
@@ -497,7 +540,7 @@ onAnimationEnd(handler: (index: number, event: TabsAnimationEvent) => void)
 
 | 参数名 | 类型                                                   | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| index  | number                                                 | 是   | 当前显示元素的索引。                                         |
+| index  | number                                                 | 是   | 当前显示元素的索引，索引从0开始。                                |
 | event  | [TabsAnimationEvent](#tabsanimationevent11对象说明) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Tabs起始位置的位移。 |
 
 ### onGestureSwipe<sup>11+</sup>
@@ -514,7 +557,7 @@ onGestureSwipe(handler: (index: number, event: TabsAnimationEvent) => void)
 
 | 参数名 | 类型                                                   | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| index  | number                                                 | 是   | 当前显示元素的索引。                                         |
+| index  | number                                                 | 是   | 当前显示元素的索引，索引从0开始。                                |
 | event  | [TabsAnimationEvent](#tabsanimationevent11对象说明) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Tabs起始位置的位移。 |
 
 ### customContentTransition<sup>11+</sup>
@@ -537,8 +580,8 @@ customContentTransition(delegate: (from: number, to: number) => TabContentAnimat
 
 | 参数名 | 类型   | 必填 | 说明                            |
 | ------ | ------ | ---- | ------------------------------- |
-| from   | number | 是   | 动画开始时，当前页面的index值。 |
-| to     | number | 是   | 动画开始时，目标页面的index值。 |
+| from   | number | 是   | 动画开始时，当前页面的index值，索引从0开始。 |
+| to     | number | 是   | 动画开始时，目标页面的index值，索引从0开始。 |
 
 **返回值：** 
 
@@ -607,8 +650,8 @@ Tabs自定义切换动画相关信息。
 
 | 名称            | 类型         | 必填   | 说明                                       |
 | ------------- | ---------------------- | ---- |---------------------- |
-| timeout | number | 否 | Tabs自定义切换动画超时时间。从自定义动画开始切换计时，如果到达该时间后，开发者仍未调用[TabContentTransitionProxy](#tabcontenttransitionproxy11)的finishTransition接口通知Tabs组件自定义动画结束，那么组件就会认为此次自定义动画已结束，直接执行后续操作。单位ms，默认值为1000.|
-| transition | [Callback](./ts-types.md#callback12)\<[TabContentTransitionProxy](#tabcontenttransitionproxy11)> | 是 | 自定义切换动画具体内容。|
+| timeout | number | 否 | Tabs自定义切换动画超时时间。从自定义动画开始切换计时，如果到达该时间后，开发者仍未调用[TabContentTransitionProxy](#tabcontenttransitionproxy11)的finishTransition接口通知Tabs组件自定义动画结束，那么组件就会认为此次自定义动画已结束，直接执行后续操作。<br/>默认值：1000<br/>单位：ms<br/>取值范围：[0, +∞)。|
+| transition | (proxy: [TabContentTransitionProxy](#tabcontenttransitionproxy11)) => void| 是 | 自定义切换动画具体内容。|
 
 ## TabContentTransitionProxy<sup>11+</sup>
 
@@ -703,7 +746,7 @@ preloadItems(indices: Optional\<Array\<number>>): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息                                      |
 | --------   | -------------------------------------------- |
@@ -1509,9 +1552,9 @@ struct TabsExample {
 
 ```ts
 // EntryAbility.ets
-import { Configuration, UIAbility } from '@kit.AbilityKit'
-import { i18n } from '@kit.LocalizationKit'
-import { CommonUtil } from '../common/CommonUtil'
+import { Configuration, UIAbility } from '@kit.AbilityKit';
+import { i18n } from '@kit.LocalizationKit';
+import { CommonUtil } from '../common/CommonUtil';
 
 export default class EntryAbility extends UIAbility {
   onConfigurationUpdate(newConfig: Configuration): void {
@@ -1527,7 +1570,7 @@ export default class EntryAbility extends UIAbility {
 
 ```ts
 // CommonUtil.ets
-import { i18n, intl } from '@kit.LocalizationKit'
+import { i18n, intl } from '@kit.LocalizationKit';
 
 export class CommonUtil {
   private static isRTL: boolean = i18n.isRTL((new intl.Locale()).language)
@@ -1546,8 +1589,8 @@ export class CommonUtil {
 
 ```ts
 // xxx.ets
-import { LengthMetrics } from '@kit.ArkUI'
-import { CommonUtil } from '../common/CommonUtil'
+import { LengthMetrics } from '@kit.ArkUI';
+import { CommonUtil } from '../common/CommonUtil';
 
 @Entry
 @Component
@@ -1686,7 +1729,7 @@ struct TabsExample {
 
 ```ts
 // xxx.ets
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -1916,3 +1959,287 @@ struct TabsSwiperExample {
 ```
 
 ![tabs12](figures/tabs12.gif)
+
+### 示例13（页签超出TabBar区域显示）
+
+本示例通过使用barModifier设置tabBar的clip属性实现页签超出tabBar区域显示效果。
+
+```ts
+// xxx.ets
+import { CommonModifier } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct TabsBarModifierExample {
+  @State selectedIndex: number = 2
+  @State currentIndex: number = 2
+  @State isClip: boolean = false
+  @State tabBarModifier: CommonModifier = new CommonModifier()
+  private controller: TabsController = new TabsController()
+
+  aboutToAppear(): void {
+    this.tabBarModifier.clip(this.isClip)
+  }
+
+  @Builder
+  tabBuilder(title: string, targetIndex: number) {
+    Column() {
+      Image($r("app.media.startIcon")).width(30).height(30)
+      Text(title).fontColor(this.selectedIndex === targetIndex ? '#1698CE' : '#6B6B6B')
+    }.width('100%')
+    .height(50)
+    .justifyContent(FlexAlign.Center)
+    .offset({ y: this.selectedIndex === targetIndex ? -15 : 0 })
+  }
+
+  build() {
+    Column() {
+      Tabs({
+        barPosition: BarPosition.End,
+        index: this.currentIndex,
+        controller: this.controller,
+        barModifier: this.tabBarModifier
+      }) {
+        TabContent() {
+          Column() {
+            Text('首页的内容')
+          }.width('100%').height('100%').backgroundColor('#00CB87').justifyContent(FlexAlign.Center)
+        }.tabBar(this.tabBuilder('首页', 0))
+
+        TabContent() {
+          Column() {
+            Text('发现的内容')
+          }.width('100%').height('100%').backgroundColor('#007DFF').justifyContent(FlexAlign.Center)
+        }.tabBar(this.tabBuilder('发现', 1))
+
+        TabContent() {
+          Column() {
+            Text('推荐的内容')
+          }.width('100%').height('100%').backgroundColor('#FFBF00').justifyContent(FlexAlign.Center)
+        }.tabBar(this.tabBuilder('推荐', 2))
+
+        TabContent() {
+          Column() {
+            Text('我的内容')
+          }.width('100%').height('100%').backgroundColor('#E67C92').justifyContent(FlexAlign.Center)
+        }.tabBar(this.tabBuilder('我的', 3))
+      }
+      .vertical(false)
+      .barMode(BarMode.Fixed)
+      .barWidth(340)
+      .barHeight(60)
+      .onChange((index: number) => {
+        this.currentIndex = index
+        this.selectedIndex = index
+      })
+      .width(340)
+      .height(400)
+      .backgroundColor('#F1F3F5')
+      .scrollable(true)
+
+      Button("isClip: " + this.isClip)
+        .margin({ top: 30 })
+        .onClick(() => {
+          this.isClip = !this.isClip
+          this.tabBarModifier.clip(this.isClip)
+        })
+    }.width('100%')
+  }
+}
+```
+
+![tabs13](figures/tabs13.gif)
+
+### 示例14（页签对齐布局）
+
+本示例通过使用barModifier设置tabBar的align属性实现页签对齐布局效果。
+
+```ts
+// xxx.ets
+import { CommonModifier } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct TabsBarModifierExample {
+  private controller: TabsController = new TabsController()
+  @State text: string = "文本"
+  @State isVertical: boolean = false
+  @State tabBarModifier: CommonModifier = new CommonModifier()
+
+  build() {
+    Column() {
+      Row() {
+        Button("Alignment.Start ")
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
+            this.tabBarModifier.align(Alignment.Start)
+          })
+          .margin({ right: '6%', bottom: '12vp' })
+        Button("Alignment.End")
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
+            this.tabBarModifier.align(Alignment.End)
+          })
+          .margin({ bottom: '12vp' })
+      }
+
+      Row() {
+        Button("Alignment.Center")
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
+            this.tabBarModifier.align(Alignment.Center)
+          })
+          .margin({ right: '6%', bottom: '12vp' })
+        Button("isVertical: " + this.isVertical)
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
+            this.isVertical = !this.isVertical
+          })
+          .margin({ bottom: '12vp' })
+      }
+
+      Row() {
+        Button("Alignment.Top")
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
+            this.tabBarModifier.align(Alignment.Top)
+          })
+          .margin({ right: '6%', bottom: '12vp' })
+        Button("Alignment.Bottom")
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
+            this.tabBarModifier.align(Alignment.Bottom)
+          })
+          .margin({ bottom: '12vp' })
+      }
+
+      Tabs({ barPosition: BarPosition.End, controller: this.controller, barModifier: this.tabBarModifier }) {
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Pink)
+        }.tabBar(SubTabBarStyle.of(this.text))
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Green)
+        }.tabBar(SubTabBarStyle.of(this.text))
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Blue)
+        }.tabBar(SubTabBarStyle.of(this.text))
+      }
+      .vertical(this.isVertical)
+      .height('60%')
+      .backgroundColor(0xf1f3f5)
+      .barMode(BarMode.Scrollable)
+    }
+    .width('100%')
+    .height(500)
+    .margin({ top: 5 })
+    .padding('24vp')
+  }
+}
+```
+
+![tabs14](figures/tabs14.gif)
+
+### 示例15（设置翻页动效）
+
+本示例通过设置animationMode属性，实现了翻页的动效。
+
+```ts
+// xxx.ets
+class TabsMyDataSource implements IDataSource {
+  private list: number[] = []
+  constructor(list: number[]) {
+    this.list = list
+  }
+  totalCount(): number {
+    return this.list.length
+  }
+  getData(index: number): number {
+    return this.list[index]
+  }
+  registerDataChangeListener(listener: DataChangeListener): void {
+  }
+  unregisterDataChangeListener() {
+  }
+}
+@Entry
+@Component
+struct TabsExample {
+  @State currentIndex: number = 0
+  @State currentAnimationMode: AnimationMode = AnimationMode.CONTENT_FIRST
+  private controller: TabsController = new TabsController()
+  private data: TabsMyDataSource = new TabsMyDataSource([])
+  private sum : number = 10
+  aboutToAppear(): void {
+    let list: number[] = []
+    for (let i = 0; i < this.sum; i++) {
+      list.push(i);
+    }
+    this.data = new TabsMyDataSource(list)
+  }
+  @Builder
+  tabBuilder(title: string,targetIndex: number) {
+    Column(){
+      Text(title).fontColor(this.currentIndex === targetIndex ? '#FF0000' : '#6B6B6B')
+    }.width('100%')
+    .height(50)
+    .justifyContent(FlexAlign.Center)
+  }
+  build() {
+    Column() {
+      Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.currentIndex }) {
+        LazyForEach(this.data, (item: string) => {
+          TabContent() {
+            Column(){
+              Text('' + item)
+            }.width('100%').height('100%').backgroundColor('#00CB87').justifyContent(FlexAlign.Center)
+          }.tabBar(this.tabBuilder('P' + item, parseInt(item)))
+        }, (item: string) => item)
+      }
+      .vertical(false)
+      .barMode(BarMode.Fixed)
+      .barWidth(360)
+      .barHeight(60)
+      .animationMode(this.currentAnimationMode)
+      .animationDuration(4000)
+      .onChange((index: number) => {
+        this.currentIndex = index
+      })
+      .width(360)
+      .height(120)
+      .backgroundColor('#F1F3F5')
+      .scrollable(true)
+      Text('AnimationMode:' + AnimationMode[this.currentAnimationMode])
+      Button('AnimationMode').width('50%').margin({ top: 1 }).height(25)
+        .onClick(()=>{
+          if (this.currentAnimationMode === AnimationMode.CONTENT_FIRST) {
+            this.currentAnimationMode = AnimationMode.ACTION_FIRST
+          } else if (this.currentAnimationMode === AnimationMode.ACTION_FIRST) {
+            this.currentAnimationMode = AnimationMode.NO_ANIMATION
+          } else if (this.currentAnimationMode === AnimationMode.NO_ANIMATION) {
+            this.currentAnimationMode = AnimationMode.CONTENT_FIRST_WITH_JUMP
+          } else if (this.currentAnimationMode === AnimationMode.CONTENT_FIRST_WITH_JUMP) {
+            this.currentAnimationMode = AnimationMode.ACTION_FIRST_WITH_JUMP
+          } else if (this.currentAnimationMode === AnimationMode.ACTION_FIRST_WITH_JUMP) {
+            this.currentAnimationMode = AnimationMode.CONTENT_FIRST
+          }
+        })
+    }.width('100%')
+  }
+}
+```
+
+![tabs15](figures/tabs15.gif)

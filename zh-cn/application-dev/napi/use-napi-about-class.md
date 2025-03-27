@@ -55,7 +55,7 @@ static napi_value NewInstance(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const newInstance: (obj: Object, param: string) => Object
+export const newInstance: (obj: Object, param: string) => Object;
 ```
 
 ArkTS侧示例代码
@@ -122,6 +122,8 @@ cpp部分代码
 #include <string>
 #include "napi/native_api.h"
 
+static constexpr int INT_ARG_18 = 18; // 年龄18岁
+
 struct Object {
     std::string name;
     int32_t age;
@@ -139,7 +141,7 @@ static napi_value Wrap(napi_env env, napi_callback_info info)
     // 初始化Node-API模块的object
     struct Object *obj = new struct Object();
     obj->name = "liLei";
-    obj->age = 18;
+    obj->age = INT_ARG_18;
     size_t argc = 1;
     napi_value toWrap;
     // 调用napi_wrap将Node-API模块的object绑定到ArkTS object上

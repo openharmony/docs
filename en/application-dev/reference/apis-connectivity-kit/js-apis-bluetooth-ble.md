@@ -15,6 +15,21 @@ import { ble } from '@kit.ConnectivityKit';
 ```
 
 
+## ProfileConnectionState
+
+type ProfileConnectionState = constant.ProfileConnectionState
+
+Defines the profile connection status of the Bluetooth device.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Type                 | Description                 |
+| ------------------- | ------------------- |
+| [constant.ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate) | Profile connection status of the Bluetooth device.|
+
+
 ## ble.createGattServer<a name="createGattServer"></a>
 
 createGattServer(): GattServer
@@ -63,7 +78,7 @@ Creates a **GattClientDevice** instance.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -96,11 +111,11 @@ Obtains the Bluetooth Low Energy (BLE) devices connected to this device.
 
 | Type                 | Description                 |
 | ------------------- | ------------------- |
-| Array&lt;string&gt; | Addresses of the BLE devices connected to this device. For security purposes, the device addresses obtained are random MAC addresses. The random MAC address remains unchanged after a device is paired successfully. It changes when the paired device is unpaired and scanned again or the Bluetooth service is turned off.|
+| Array&lt;string&gt; | Addresses of the BLE devices connected to this device.<br>For security purposes, the device addresses obtained are random MAC addresses.<br>- The random MAC address remains unchanged after a device is paired successfully.<br>- The random address changes when the paired device is unpaired and scanned again or the Bluetooth service is turned off.|
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -143,7 +158,7 @@ Starts BLE scanning.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -194,7 +209,7 @@ Stops BLE scanning.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -233,12 +248,12 @@ Starts BLE advertising.
 | Name        | Type                                   | Mandatory  | Description            |
 | ----------- | ------------------------------------- | ---- | -------------- |
 | setting     | [AdvertiseSetting](#advertisesetting) | Yes   | Settings related to BLE advertising.   |
-| advData     | [AdvertiseData](#advertisedata)       | Yes   | Content of the BLE advertisement packet.     |
+| advData     | [AdvertiseData](#advertisedata)       | Yes   | Content of the BLE advertising packet.     |
 | advResponse | [AdvertiseData](#advertisedata)       | No   | Response to the BLE scan request.|
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -311,7 +326,7 @@ Stops BLE advertising.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -337,7 +352,7 @@ try {
 
 startAdvertising(advertisingParams: AdvertisingParams, callback: AsyncCallback&lt;number&gt;): void
 
-Starts BLE advertising. This API uses an asynchronous callback to return the result.
+Starts BLE advertising. This API uses an asynchronous callback to return the result. Since API version 15, you can call this API multiple times to establish multiple advertising channels, each being identified by a unique ID.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -352,7 +367,7 @@ Starts BLE advertising. This API uses an asynchronous callback to return the res
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | -------------------------------------- |
@@ -429,7 +444,7 @@ try {
 
 startAdvertising(advertisingParams: AdvertisingParams): Promise&lt;number&gt;
 
-Starts BLE advertising. This API uses a promise to return the result.
+Starts BLE advertising. This API uses a promise to return the result. Since API version 15, you can call this API multiple times to establish multiple advertising channels, each being identified by a unique ID.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -449,7 +464,7 @@ Starts BLE advertising. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | -------------------------------------- |
@@ -537,7 +552,7 @@ Temporarily enables BLE advertising. This API uses an asynchronous callback to r
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------- |
@@ -646,7 +661,7 @@ Temporarily enables BLE advertising. This API uses a promise to return the resul
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------- |
@@ -749,7 +764,7 @@ Disables BLE advertising temporarily. This API uses an asynchronous callback to 
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------- |
@@ -855,7 +870,7 @@ Disables BLE advertising temporarily. This API uses a promise to return the resu
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------- |
@@ -954,7 +969,7 @@ Stops BLE advertising. This API uses an asynchronous callback to return the resu
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -1057,7 +1072,7 @@ Stops BLE advertising. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -1154,7 +1169,7 @@ Subscribes to BLE advertising status. This API uses an asynchronous callback to 
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -1197,7 +1212,7 @@ Unsubscribes from BLE advertising status.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -1243,7 +1258,7 @@ Subscribes to BLE device discovery events. This API uses an asynchronous callbac
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -1288,7 +1303,7 @@ Unsubscribes from BLE device discovery events.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 
 | ID| Error Message|
@@ -1339,7 +1354,7 @@ Adds a service to this GATT server.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -1401,11 +1416,11 @@ Removes a service from this GATT server.
 
 | Name        | Type    | Mandatory  | Description                                      |
 | ----------- | ------ | ---- | ---------------------------------------- |
-| serviceUuid | string | Yes   | Universally unique identifier (UUID) of the service to remove, for example, **00001810-0000-1000-8000-00805F9B34FB**.|
+| serviceUuid | string | Yes   | Service UUID, for example, 00001810-0000-1000-8000-00805F9B34FB.|
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -1445,7 +1460,7 @@ Closes this GATT server to unregister it from the protocol stack. The closed [Ga
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -1484,13 +1499,13 @@ Notifies a connected client device when a characteristic value changes. This API
 
 | Name                 | Type                                      | Mandatory  | Description                                     |
 | -------------------- | ---------------------------------------- | ---- | --------------------------------------- |
-| deviceId             | string                                   | Yes   | Address of the client that receives the notifications, for example, XX:XX:XX:XX:XX:XX.|
+| deviceId             | string                                   | Yes   | Address of the client device to notify, for example, XX:XX:XX:XX:XX:XX.|
 | notifyCharacteristic | [NotifyCharacteristic](#notifycharacteristic) | Yes   | New characteristic value.                              |
 | callback | AsyncCallback&lt;void&gt;  | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -1543,7 +1558,7 @@ Notifies a connected client device when a characteristic value changes. This API
 
 | Name                 | Type                                      | Mandatory  | Description                                     |
 | -------------------- | ---------------------------------------- | ---- | --------------------------------------- |
-| deviceId             | string                                   | Yes   | Address of the client that receives the notifications, for example, XX:XX:XX:XX:XX:XX.|
+| deviceId             | string                                   | Yes   | Address of the client device to notify, for example, XX:XX:XX:XX:XX:XX.|
 | notifyCharacteristic | [NotifyCharacteristic](#notifycharacteristic) | Yes   | New characteristic value.                              |
 
 **Return value**
@@ -1554,7 +1569,7 @@ Notifies a connected client device when a characteristic value changes. This API
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -1607,7 +1622,7 @@ Sends a response to a read or write request from the GATT client.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -1663,7 +1678,7 @@ Subscribes to characteristic read request events. This API uses an asynchronous 
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -1718,7 +1733,7 @@ Unsubscribes from characteristic read request events.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -1760,7 +1775,7 @@ Subscribes to characteristic write request events. This API uses an asynchronous
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -1818,7 +1833,7 @@ Unsubscribes from characteristic write request events.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -1860,7 +1875,7 @@ Subscribes to descriptor read request events. This API uses an asynchronous call
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -1915,7 +1930,7 @@ Unsubscribes from descriptor read request events.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -1957,7 +1972,7 @@ Subscribes to descriptor write request events. This API uses an asynchronous cal
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -2015,7 +2030,7 @@ Unsubscribes from descriptor write request events.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -2057,7 +2072,7 @@ Subscribes to BLE connection state changes. This API uses an asynchronous callba
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -2104,7 +2119,7 @@ Unsubscribes from BLE connection state changes.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -2139,12 +2154,12 @@ Subscribes to MTU status changes for the server. This API uses an asynchronous c
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates MTU status changes. If this parameter is not set correctly, the callback cannot be registered.|
+| type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates the MTU status changes. If this parameter is not set correctly, the callback cannot be registered.|
 | callback | Callback&lt;number&gt; | Yes   | Callback used to return the number of MTU bytes.|
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -2181,12 +2196,12 @@ Unsubscribes from MTU status changes for the server.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates MTU status changes. If this parameter is not set correctly, the callback cannot be registered.|
+| type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates the MTU status changes. If this parameter is not set correctly, the callback cannot be registered.|
 | callback | Callback&lt;number&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -2226,7 +2241,7 @@ Connects to the remote BLE device.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -2263,7 +2278,7 @@ Disconnects from the remote BLE device.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -2300,7 +2315,7 @@ Closes this GATT client to unregister it from the protocol stack. The closed [Ga
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -2343,7 +2358,7 @@ Obtains the name of the remote BLE device. This API uses an asynchronous callbac
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -2391,7 +2406,7 @@ Obtains the name of the remote BLE device. This API uses a promise to return the
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -2438,7 +2453,7 @@ Obtains all services of the remote BLE device. This API uses an asynchronous cal
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -2495,7 +2510,7 @@ Obtains all services of the remote BLE device. This API uses a promise to return
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -2509,7 +2524,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-// Promise
+// Promise mode.
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.connect();
@@ -2543,7 +2558,7 @@ Reads the characteristic value of the specific service of the remote BLE device.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -2618,7 +2633,7 @@ Reads the characteristic value of the specific service of the remote BLE device.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -2679,7 +2694,7 @@ Reads the descriptor contained in the specific characteristic of the remote BLE 
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -2747,7 +2762,7 @@ Reads the descriptor contained in the specific characteristic of the remote BLE 
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -2802,7 +2817,7 @@ Writes a characteristic value to the remote BLE device. This API uses an asynchr
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -2874,7 +2889,7 @@ Writes a characteristic value to the remote BLE device. This API uses a promise 
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -2934,7 +2949,7 @@ Writes binary data to the specific descriptor of the remote BLE device. This API
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -2999,7 +3014,7 @@ Writes binary data to the specific descriptor of the remote BLE device. This API
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -3050,11 +3065,11 @@ Obtains the RSSI of the remote BLE device. It can be used only after a connectio
 
 | Name     | Type                         | Mandatory  | Description                            |
 | -------- | --------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the RSSI, in dBm.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the signal strength, in dBm.|
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -3097,11 +3112,11 @@ Obtains the RSSI of the remote BLE device. It can be used only after a connectio
 
 | Type                   | Description                               |
 | --------------------- | --------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the RSSI, in dBm.|
+| Promise&lt;number&gt; | Promise used to return the signal strength, in dBm.|
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -3146,7 +3161,7 @@ Sets the maximum transmission unit (MTU) that can be transmitted between the GAT
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -3191,7 +3206,7 @@ Sets a notification for the change of a characteristic. The GATT client that sub
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -3260,7 +3275,7 @@ Sets a notification for the change of a characteristic. The GATT client that sub
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -3313,12 +3328,12 @@ Sets an indication for the change of a characteristic. The GATT client must ackn
 | Name           | Type                                     | Mandatory  | Description                           |
 | -------------- | --------------------------------------- | ---- | ----------------------------- |
 | characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | BLE characteristic to listen for.                     |
-| enable         | boolean                                 | Yes   | Whether to indicate the client of the characteristic change. The value **true** means to indicate the client, and the value **false** means the opposite. |
+| enable         | boolean                                 | Yes   | Whether to notify the client of the characteristic change. The value **true** means to notify the client, and the value **false** means the opposite.|
 | callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -3377,7 +3392,7 @@ Sets an indication for the change of a characteristic. The GATT client must ackn
 | Name           | Type                                     | Mandatory  | Description                           |
 | -------------- | --------------------------------------- | ---- | ----------------------------- |
 | characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | BLE characteristic to listen for.                     |
-| enable         | boolean                                 | Yes   | Whether to indicate the client of the characteristic change. The value **true** means to indicate the client, and the value **false** means the opposite. |
+| enable         | boolean                                 | Yes   | Whether to notify the client of the characteristic change. The value **true** means to notify the client, and the value **false** means the opposite.|
 
 **Return value**
 
@@ -3387,7 +3402,7 @@ Sets an indication for the change of a characteristic. The GATT client must ackn
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -3444,7 +3459,7 @@ Subscribes to BLE characteristic changes. Before calling this API, use [setChara
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -3491,7 +3506,7 @@ Unsubscribes from BLE characteristic changes.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -3533,7 +3548,7 @@ Subscribes to BLE connection state changes. This API uses an asynchronous callba
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -3579,7 +3594,7 @@ Unsubscribes from BLE connection state changes.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -3621,7 +3636,7 @@ Subscribes to MTU status changes for the client. This API uses an asynchronous c
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -3665,7 +3680,7 @@ Unsubscribes from MTU status changes for the client.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -3685,6 +3700,225 @@ try {
 }
 ```
 
+## ble.createBleScanner<sup>15+</sup>
+
+createBleScanner(): BleScanner
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Return value**
+
+| Type| Description|
+| ------------ | ------------- |
+| [BleScanner](#blescanner15) | **BleScanner** instance.|
+
+**Example**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { ble } from '@kit.ConnectivityKit';
+let bleScanner: ble.BleScanner = ble.createBleScanner();
+console.info('create bleScanner success');
+```
+
+## BleScanner<sup>15+</sup>
+
+Represents the **BleScanner** class. Before using APIs in the **BleScanner** class, you need to create a **BleScanner** instance by using **createBleScanner()**.
+
+### startScan<sup>15+</sup>
+
+startScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): Promise&lt;void&gt;
+
+Initiates BLE scanning. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name    | Type                                    | Mandatory  | Description                                 |
+| ------- | -------------------------------------- | ---- | ----------------------------------- |
+| filters | Array&lt;[ScanFilter](#scanfilter)&gt; | Yes   | Rules for filtering the scan result. Devices that meet the filtering rules will be retained. Set this parameter to **null** if you do not want to filter the scan result.|
+| options | [ScanOptions](#scanoptions)            | No   | Scan options.                    |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth disabled.                 |
+|2900099 | Operation failed.                        |
+|2902050 | Failed to start scan as Ble scan is already started by the app.|
+
+**Example**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { ble } from '@kit.ConnectivityKit';
+let bleScanner: ble.BleScanner = ble.createBleScanner();
+function onReceiveEvent(scanReport: ble.ScanReport) {
+    console.info('BLE scan device find result = '+ JSON.stringify(scanReport));
+}
+try {
+    bleScanner.on("BLEDeviceFind", onReceiveEvent);
+    let scanFilter: ble.ScanFilter = {
+            deviceId:"XX:XX:XX:XX:XX:XX",
+            name:"test",
+            serviceUuid:"00001888-0000-1000-8000-00805f9b34fb"
+        };
+    let scanOptions: ble.ScanOptions = {
+        interval: 500,
+        dutyMode: ble.ScanDuty.SCAN_MODE_LOW_POWER,
+        matchMode: ble.MatchMode.MATCH_MODE_AGGRESSIVE,
+        reportMode: ble.ScanReportMode.FENCE_SENSITIVITY_LOW
+    }
+    bleScanner.startScan([scanFilter],scanOptions);
+    console.info('startScan success');
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+### stopScan<sup>15+</sup>
+
+stopScan(): Promise&lt;void&gt;
+
+Stops BLE scanning.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth disabled.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { ble } from '@kit.ConnectivityKit';
+let bleScanner: ble.BleScanner = ble.createBleScanner();
+try {
+    bleScanner.stopScan();
+    console.info('startScan success');
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+### on('BLEDeviceFind')<sup>15+</sup>
+
+on(type: 'BLEDeviceFind', callback: Callback&lt;ScanReport&gt;): void
+
+Subscribes to BLE device discovery events. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name     | Type                                      | Mandatory  | Description                                 |
+| -------- | ---------------------------------------- | ---- | ----------------------------------- |
+| type     | string                                   | Yes   | Event type. The value is **BLEDeviceFind**, which indicates an event of discovering a BLE device.  |
+| callback | Callback&lt;[ScanReport](#scanreport15)&gt; | Yes   | Callback used to return the discovered devices. You need to implement this callback.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { ble } from '@kit.ConnectivityKit';
+function onReceiveEvent(scanReport: ble.ScanReport) {
+    console.info('bluetooth device find = '+ JSON.stringify(scanReport));
+}
+let bleScanner: ble.BleScanner = ble.createBleScanner();
+try {
+    bleScanner.on('BLEDeviceFind', onReceiveEvent);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+### off('BLEDeviceFind')<sup>15+</sup>
+
+off(type: 'BLEDeviceFind', callback?: Callback&lt;ScanReport&gt;): void
+
+Unsubscribes from BLE device discovery events.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name     | Type                                      | Mandatory  | Description                                      |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| type     | string                                   | Yes   | Event type. The value is **BLEDeviceFind**, which indicates an event of discovering a BLE device.       |
+| callback | Callback&lt;[ScanReport](#scanreport15)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { ble } from '@kit.ConnectivityKit';
+function onReceiveEvent(scanReport: ble.ScanReport) {
+    console.info('bluetooth device find = '+ JSON.stringify(scanReport));
+}
+let bleScanner: ble.BleScanner = ble.createBleScanner();
+try {
+    bleScanner.on('BLEDeviceFind', onReceiveEvent);
+    bleScanner.off('BLEDeviceFind', onReceiveEvent);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
 
 ## GattService
 
@@ -3696,7 +3930,7 @@ Defines the GATT service API parameters.
 
 | Name             | Type                                    | Readable  | Writable  | Description                                      |
 | --------------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| serviceUuid     | string                                   | Yes   | Yes   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
+| serviceUuid     | string                                   | Yes   | Yes   | Service UUID, for example, 00001888-0000-1000-8000-00805f9b34fb.|
 | isPrimary       | boolean                                  | Yes   | Yes   | Whether the service is a primary service. The value **true** means a primary service.               |
 | characteristics | Array&lt;[BLECharacteristic](#blecharacteristic)&gt; | Yes   | Yes   | List of characteristics of the service.                            |
 | includeServices | Array&lt;[GattService](#gattservice)&gt; | Yes   | Yes   | Services on which the service depends.                            |
@@ -3712,8 +3946,8 @@ Defines the characteristic API parameters.
 
 | Name                 | Type                                    | Readable  | Writable  | Description                                |
 | ------------------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| serviceUuid         | string                                   | Yes   | Yes   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
-| characteristicUuid  | string                  | Yes   | Yes   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**.|
+| serviceUuid         | string                                   | Yes   | Yes   | Service UUID, for example, 00001888-0000-1000-8000-00805f9b34fb.|
+| characteristicUuid  | string                  | Yes   | Yes   | Characteristic UUID, for example, 00002a11-0000-1000-8000-00805f9b34fb.|
 | characteristicValue | ArrayBuffer                              | Yes   | Yes   | Binary value of the characteristic.                     |
 | descriptors         | Array&lt;[BLEDescriptor](#bledescriptor)&gt; | Yes   | Yes   | List of descriptors of the characteristic.               |
 | properties  | [GattProperties](#gattproperties) |   Yes  | Yes    | Properties of the characteristic.    |
@@ -3729,9 +3963,9 @@ Represents a BLE descriptor.
 
 | Name                | Type       | Readable  | Writable  | Description                                      |
 | ------------------ | ----------- | ---- | ---- | ---------------------------------------- |
-| serviceUuid        | string      | Yes   | Yes   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
-| characteristicUuid | string      | Yes   | Yes   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**.|
-| descriptorUuid     | string      | Yes   | Yes   | UUID of the descriptor, for example, **00002902-0000-1000-8000-00805f9b34fb**.|
+| serviceUuid        | string      | Yes   | Yes   | Service UUID, for example, 00001888-0000-1000-8000-00805f9b34fb.|
+| characteristicUuid | string      | Yes   | Yes   | Characteristic UUID, for example, 00002a11-0000-1000-8000-00805f9b34fb.|
+| descriptorUuid     | string      | Yes   | Yes   | Descriptor UUID, for example, 00002902-0000-1000-8000-00805f9b34fb.|
 | descriptorValue    | ArrayBuffer | Yes   | Yes   | Binary value of the descriptor.                             |
 
 
@@ -3745,10 +3979,10 @@ Defines the parameters in the notifications sent when the server characteristic 
 
 | Name                 | Type       | Readable  | Writable  | Description                                      |
 | ------------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| serviceUuid         | string      | Yes   | Yes   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
-| characteristicUuid  | string      | Yes   | Yes   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**.|
+| serviceUuid         | string      | Yes   | Yes   | Service UUID, for example, 00001888-0000-1000-8000-00805f9b34fb.|
+| characteristicUuid  | string      | Yes   | Yes   | Characteristic UUID, for example, 00002a11-0000-1000-8000-00805f9b34fb.|
 | characteristicValue | ArrayBuffer | Yes   | Yes   | Binary value of the characteristic.                              |
-| confirm             | boolean     | Yes   | Yes   | Whether the indication or notification needs to be acknowledged by the remote end. Set this parameter to **true** for an indication, which needs to be acknowledged by the remote end. Set this parameter to **false** for a notification, which does not need to be acknowledged by the remote end. |
+| confirm             | boolean     | Yes   | Yes   | Whether the indication or notification needs to be acknowledged by the remote end. Set this parameter to **true** for an indication, which needs to be acknowledged by the remote end.<br>Set this parameter to **false** for a notification, which does not need to be acknowledged by the remote end.|
 
 
 ## CharacteristicReadRequest
@@ -3761,11 +3995,11 @@ Defines the parameters of the **CharacteristicReadReq** event received by the se
 
 | Name                | Type  | Readable  | Writable  | Description                                      |
 | ------------------ | ------ | ---- | ---- | ---------------------------------------- |
-| deviceId           | string | Yes   | No   | Address of the remote device that sends the **CharacteristicReadReq** event, for example, XX:XX:XX:XX:XX:XX.|
+| deviceId           | string | Yes   | No   | Address of the remote device that sends the request, for example, XX:XX:XX:XX:XX:XX.|
 | transId            | number | Yes   | No   | Transmission ID of the read request. The response returned by the server must use the same transmission ID.      |
 | offset             | number | Yes   | No   | Position from which the characteristic value is read. For example, **k** means to read from the kth byte. The response returned by the server must use the same offset.|
-| characteristicUuid | string | Yes   | No   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**.|
-| serviceUuid        | string | Yes   | No   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
+| characteristicUuid | string | Yes   | No   | Characteristic UUID. for example, 00002a11-0000-1000-8000-00805f9b34fb.|
+| serviceUuid        | string | Yes   | No   | Service UUID, for example, 00001888-0000-1000-8000-00805f9b34fb.|
 
 
 ## CharacteristicWriteRequest
@@ -3778,14 +4012,14 @@ Defines the parameters of the **CharacteristicWriteReq** event received by the s
 
 | Name                | Type  | Readable  | Writable  | Description                                      |
 | ------------------ | ------ | ---- | ---- | ---------------------------------------- |
-| deviceId           | string | Yes   | No   | Address of the remote device that sends the **CharacteristicWriteReq** event, for example, XX:XX:XX:XX:XX:XX.|
+| deviceId           | string | Yes   | No   | Address of the remote device that sends the request, for example, XX:XX:XX:XX:XX:XX.|
 | transId            | number | Yes   | No   | Transmission ID of the write request. The response returned by the server must use the same transmission ID.      |
 | offset             | number | Yes   | No   | Start position for writing the characteristic value. For example, **k** means to write from the kth byte. The response returned by the server must use the same offset.|
 | isPrepared             | boolean | Yes   | No   | Whether the write request is executed immediately. The value **true** means to execute the write request immediately.|
 | needRsp             | boolean | Yes   | No   | Whether to send a response to the GATT client. The value **true** means to send a response.|
 | value             | ArrayBuffer | Yes   | No   | Binary value of the descriptor to write.|
-| characteristicUuid | string | Yes   | No   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**.|
-| serviceUuid        | string | Yes   | No   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
+| characteristicUuid | string | Yes   | No   | Characteristic UUID. for example, 00002a11-0000-1000-8000-00805f9b34fb.|
+| serviceUuid        | string | Yes   | No   | Service UUID, for example, 00001888-0000-1000-8000-00805f9b34fb.|
 
 
 ## DescriptorReadRequest
@@ -3798,12 +4032,12 @@ Defines the parameters of the **DescriptorReadReq** event received by the server
 
 | Name                | Type  | Readable  | Writable  | Description                                      |
 | ------------------ | ------ | ---- | ---- | ---------------------------------------- |
-| deviceId           | string | Yes   | No   | Address of the remote device that sends a **DescriptorReadReq** event, for example, XX:XX:XX:XX:XX:XX.|
+| deviceId           | string | Yes   | No   | Address of the remote device that sends the request, for example, XX:XX:XX:XX:XX:XX.|
 | transId            | number | Yes   | No   | Transmission ID of the read request. The response returned by the server must use the same transmission ID.      |
 | offset             | number | Yes   | No   | Position from which the descriptor is read. For example, **k** means to read from the kth byte. The response returned by the server must use the same offset.|
-| descriptorUuid     | string | Yes   | No   | UUID of the descriptor, for example, **00002902-0000-1000-8000-00805f9b34fb**.|
-| characteristicUuid | string | Yes   | No   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**.|
-| serviceUuid        | string | Yes   | No   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
+| descriptorUuid     | string | Yes   | No   | Descriptor UUID, for example, 00002902-0000-1000-8000-00805f9b34fb.|
+| characteristicUuid | string | Yes   | No   | Characteristic UUID, for example, 00002a11-0000-1000-8000-00805f9b34fb.|
+| serviceUuid        | string | Yes   | No   | Service UUID, for example, 00001888-0000-1000-8000-00805f9b34fb.|
 
 
 ## DescriptorWriteRequest
@@ -3816,15 +4050,15 @@ Defines the parameters of the **DescriptorWriteReq** event received by the serve
 
 | Name                | Type       | Readable  | Writable  | Description                                      |
 | ------------------ | ----------- | ---- | ---- | ---------------------------------------- |
-| deviceId           | string      | Yes   | No   | Address of the remote device that sends a **DescriptorWriteReq** event, for example, XX:XX:XX:XX:XX:XX.|
+| deviceId           | string      | Yes   | No   | Address of the remote device that sends the request, for example, XX:XX:XX:XX:XX:XX.|
 | transId            | number      | Yes   | No   | Transmission ID of the write request. The response returned by the server must use the same transmission ID.      |
 | offset             | number      | Yes   | No   | Start position for writing the descriptor. For example, **k** means to write from the kth byte. The response returned by the server must use the same offset.|
 | isPrepared             | boolean     | Yes   | No   | Whether the write request is executed immediately.                            |
 | needRsp            | boolean     | Yes   | No   | Whether to send a response to the GATT client.                      |
 | value              | ArrayBuffer | Yes   | No   | Binary value of the descriptor to write.                          |
-| descriptorUuid     | string      | Yes   | No   | UUID of the descriptor, for example, **00002902-0000-1000-8000-00805f9b34fb**.|
-| characteristicUuid | string      | Yes   | No   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**.|
-| serviceUuid        | string      | Yes   | No   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
+| descriptorUuid     | string      | Yes   | No   | Descriptor UUID, for example, 00002902-0000-1000-8000-00805f9b34fb.|
+| characteristicUuid | string      | Yes   | No   | Characteristic UUID. for example, 00002a11-0000-1000-8000-00805f9b34fb.|
+| serviceUuid        | string      | Yes   | No   | Service UUID, for example, 00001888-0000-1000-8000-00805f9b34fb.|
 
 
 ## ServerResponse
@@ -3837,7 +4071,7 @@ Defines the parameters of the server's response to the GATT client's read/write 
 
 | Name      | Type       | Readable  | Writable  | Description                                    |
 | -------- | ----------- | ---- | ---- | -------------------------------------- |
-| deviceId | string      | Yes   | No   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.      |
+| deviceId | string      | Yes   | No   | Address of a remote device, for example, XX:XX:XX:XX:XX:XX.      |
 | transId  | number      | Yes   | No   | Transmission ID of the request. The value must be the same as the ID carried in the read/write request received.       |
 | status   | number      | Yes   | No   | Response state. Set this parameter to **0**, which indicates a normal response.                  |
 | offset   | number      | Yes   | No   | Start read/write position. The value must be the same as the offset carried in the read/write request.|
@@ -3854,7 +4088,7 @@ Represents the GATT profile connection state.
 
 | Name    | Type                                         | Readable| Writable| Description                                         |
 | -------- | ------------------------------------------------- | ---- | ---- | --------------------------------------------- |
-| deviceId | string                                            | Yes  | No  | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
+| deviceId | string                                            | Yes  | No  | Address of a remote device, for example, XX:XX:XX:XX:XX:XX.|
 | state    | [ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate) | Yes  | Yes  | BLE connection state.                      |
 
 
@@ -3868,9 +4102,9 @@ Defines the scan result.
 
 | Name      | Type       | Readable  | Writable  | Description                                |
 | -------- | ----------- | ---- | ---- | ---------------------------------- |
-| deviceId | string      | Yes   | No   | Address of the scanned device, for example, XX:XX:XX:XX:XX:XX. For security purposes, the device address is a random MAC address. The random MAC address remains unchanged after a device is paired successfully. It changes when the paired device is unpaired and scanned again or the Bluetooth service is turned off.|
+| deviceId | string      | Yes   | No   | Address of the device discovered, for example, XX:XX:XX:XX:XX:XX.<br>For security purposes, the device addresses obtained are random MAC addresses.<br>- The random MAC address remains unchanged after a device is paired successfully.<br>- The random address changes when the paired device is unpaired and scanned again or the Bluetooth service is turned off.|
 | rssi     | number      | Yes   | No   | RSSI of the device.                   |
-| data     | ArrayBuffer | Yes   | No   | Advertisement packets sent by the device.                   |
+| data     | ArrayBuffer | Yes   | No   | Advertising packets sent by the device.                   |
 | deviceName | string | Yes   | No   | Name of the device detected.                   |
 | connectable  | boolean | Yes   | No   | Whether the discovered device is connectable. The value **true** means the discovered device is connectable; the value **false** means the opposite.                   |
 
@@ -3885,9 +4119,9 @@ Defines the BLE advertising parameters.
 
 | Name         | Type   | Readable  | Writable  | Description                                      |
 | ----------- | ------- | ---- | ---- | ---------------------------------------- |
-| interval    | number  | Yes   | Yes   | Interval for BLE advertising. The minimum value is **160** slots (100 ms). The maximum value is **16384** slots. The default value is **1600** slots (1s).|
-| txPower     | number  | Yes   | Yes   | Transmit power, in dBm. The value range is -127 to 1. The default value is **-7**. Recommended value: **1** for high transmit power, **-7** for medium transmit power, and **-15** for low transmit power.  |
-| connectable | boolean | Yes   | Yes   | Whether the advertisement is connectable. The value **true** (default) means the advertisement is connectable; the value **false** means the opposite.                  |
+| interval    | number  | Yes   | Yes   | Advertising interval.<br>The minimum value is 32 slots, indicating 20 ms. The maximum value is 16777215 slots. The default value is 1600 slots, indicating 1s. (In traditional advertising mode, the maximum value is 16384 slots, indicating 10.24s.)|
+| txPower     | number  | Yes   | Yes   | Transmit power, in dBm.<br>The minimum value is **-127**, and the maximum value is **1**. The default value is **-7**.<br>Recommended value: **1** for high transmit power, **-7** for medium transmit power, and **-15** for low transmit power.  |
+| connectable | boolean | Yes   | Yes   | Whether the advertisement is connectable.<br>The value **true** (default value) indicates that the advertisement is connectable, and the value **false** indicates the opposite.                  |
 
 
 ## AdvertiseData
@@ -3903,7 +4137,7 @@ Represents the content of a BLE advertising packet, which is 31 bytes in size.
 | serviceUuids    | Array&lt;string&gt;                      | Yes   | Yes   | List of service UUIDs to broadcast.|
 | manufactureData | Array&lt;[ManufactureData](#manufacturedata)&gt; | Yes   | Yes   | List of manufacturers to broadcast.          |
 | serviceData     | Array&lt;[ServiceData](#servicedata)&gt; | Yes   | Yes   | List of service data to broadcast.              |
-| includeDeviceName | boolean     | Yes   | Yes   | Whether the device name is contained. This parameter is optional. To carry the device name, set this parameter to **true**. Otherwise, set this parameter to **false** or leave it unspecified. Note that the advertising packet containing the device name cannot exceed 31 bytes.       |
+| includeDeviceName | boolean     | Yes   | Yes   | Whether the device name is contained. This parameter is optional.<br>To carry the device name, set this parameter to **true**. Otherwise, set this parameter to **false** or leave it unspecified.<br>Note that the advertising packet containing the device name cannot exceed 31 bytes.       |
 
 ## AdvertisingParams<sup>11+</sup>
 
@@ -3916,7 +4150,7 @@ Defines the parameters for starting BLE advertising for the first time.
 | advertisingSettings<sup>11+</sup> | [AdvertiseSetting](#advertisesetting) | Yes   | Yes   | Parameters related advertising settings.   |
 | advertisingData<sup>11+</sup>    | [AdvertiseData](#advertisedata) | Yes   | Yes   | Content of the advertising packet.     |
 | advertisingResponse<sup>11+</sup> | [AdvertiseData](#advertisedata) | Yes   | Yes   | Content of the response to the scan request.|
-| duration<sup>11+</sup>    | number   | Yes   | Yes   | Duration for the advertising, in 10 ms.<br> Value range: **1** (10 ms) to **65535** (655350 ms)<br>If this parameter is not specified or set to 0, advertising packet are sent continuously.   |
+| duration<sup>11+</sup>    | number   | Yes   | Yes   | Duration for the advertising, in 10 ms.<br><br>Value range: 1 (10 ms) to 65535 (655350 ms)<br><br>If this parameter is not specified or set to **0**, advertising packet are sent continuously.   |
 
 ## AdvertisingEnableParams<sup>11+</sup>
 
@@ -3927,7 +4161,7 @@ Defines the parameters for temporarily enabling BLE advertising.
 | Name               | Type                  | Readable | Writable | Description                     |
 | ------------------- | --------------------- | ----- | ----- | ------------------------ |
 | advertisingId<sup>11+</sup>       | number                | Yes   | Yes   | ID of the advertisement.    |
-| duration<sup>11+</sup>            | number                | Yes   | Yes   | Duration for the advertising, in 10 ms.<br> Value range: **1** (10 ms) to **65535** (655350 ms)<br>If this parameter is not specified or set to 0, advertising packet are sent continuously.  |
+| duration<sup>11+</sup>            | number                | Yes   | Yes   | Duration for the advertising, in 10 ms.<br><br>The value ranges from 1 (10 ms) to 65535 (655350 ms).<br>If this parameter is not specified or set to **0**, advertising packet are sent continuously.  |
 
 ## AdvertisingDisableParams<sup>11+</sup>
 
@@ -3952,7 +4186,7 @@ Represents the advertising status information.
 
 ## ManufactureData
 
-Defines the content of a BLE advertisement packet.
+Defines the content of a BLE advertising packet.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3966,7 +4200,7 @@ Defines the content of a BLE advertisement packet.
 
 ## ServiceData
 
-Defines the service data contained in an advertisement packet.
+Defines the service data contained in an advertising packet.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3990,15 +4224,15 @@ Defines the scan filter parameters.
 | ------------------------------------------ | -------- | ---- | ------------------------------------------------------------ |
 | deviceId                                 | string      | No   | Address of the BLE device to filter, for example, XX:XX:XX:XX:XX:XX.          |
 | name                                     | string      | No   | Name of the BLE device to filter.                                       |
-| serviceUuid                              | string      | No   | Service UUID of the device to filter, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
-| serviceUuidMask             | string      | No    | Service UUID mask of the device to filter, for example, **FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF**.|
-| serviceSolicitationUuid     | string      | No    | Service solicitation UUID of the device to filter, for example, **00001888-0000-1000-8000-00805F9B34FB**.|
-| serviceSolicitationUuidMask | string      | No    | Service solicitation UUID mask of the device to filter, for example, **FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF**.|
-| serviceData                 | ArrayBuffer | No    | Service data of the device to filter, for example, **[0x90, 0x00, 0xF1, 0xF2]**.|
-| serviceDataMask             | ArrayBuffer | No    | Service data mask of the device to filter, for example, **[0xFF,0xFF,0xFF,0xFF]**.|
-| manufactureId               | number      | No    | Manufacturer ID of the device to filter, for example, **0x0006**.                |
-| manufactureData             | ArrayBuffer | No    | Manufacturer data of the device to filter, for example, **[0x1F,0x2F,0x3F]**.|
-| manufactureDataMask         | ArrayBuffer | No    | Manufacturer data mask of the device to filter, for example, **[0xFF, 0xFF, 0xFF]**.|
+| serviceUuid                              | string      | No   | Service UUID of the device to filter, for example, 00001888-0000-1000-8000-00805f9b34fb.|
+| serviceUuidMask             | string      | No    | Service UUID mask of the device to filter, for example, FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF.|
+| serviceSolicitationUuid     | string      | No    | Service solicitation UUID of the device to filter, for example, 00001888-0000-1000-8000-00805F9B34FB.|
+| serviceSolicitationUuidMask | string      | No    | ervice solicitation UUID mask of the device to filter, for example, FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF.|
+| serviceData                 | ArrayBuffer | No    | Service data of the device to filter, for example, [0x90,0x00,0xF1,0xF2].|
+| serviceDataMask             | ArrayBuffer | No    | Service data mask of the device to filter, for example, [0xFF,0xFF,0xFF,0xFF].|
+| manufactureId               | number      | No    | Manufacturer ID of the device to filter, for example, 0x0006.                |
+| manufactureData             | ArrayBuffer | No    | Manufacturer data of the device to filter, for example, [0x1F,0x2F,0x3F].|
+| manufactureDataMask         | ArrayBuffer | No    | Manufacturer data mask of the device to filter, for example, [0xFF,0xFF,0xFF].|
 
 
 ## ScanOptions
@@ -4101,3 +4335,41 @@ Enumerates the PHY types used in scanning.
 | --------  | ---- | ------------------------------ |
 | PHY_LE_1M<sup>12+</sup>   | 1    | 1 M PHY.      |
 | PHY_LE_ALL_SUPPORTED<sup>12+</sup>   | 255    | PHY mode supported by the Bluetooth profile used in scanning.   |
+
+## ScanReport<sup>15+</sup>
+
+Reports the scan result.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Name       | Type                 | Description                                    |
+| --------- | ----------------------- | -------------------------------------- |
+| reportType  | [ScanReportType](#scanreporttype15)        | Type of the scan report.   |
+| scanResult  | Array&lt;[ScanResult](#scanresult)&gt;    | Scan result.       |
+
+## ScanReportType<sup>15+</sup>
+
+Enumerates the types of scan results.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Name     | Value   | Description                          |
+| --------  | ---- | ------------------------------ |
+| ON_FOUND  | 1    | Advertising packets found.      |
+| ON_LOST | 2    | Advertising packets lost.   |
+
+## ScanReportMode<sup>15+</sup>
+
+Enumerates the scan result reporting modes.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Name     | Value   | Description                          |
+| --------  | ---- | ------------------------------ |
+| NORMAL  | 1    | Normal mode.      |

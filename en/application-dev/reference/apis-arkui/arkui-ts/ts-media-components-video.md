@@ -10,7 +10,7 @@ The **Video** component is used to play a video and control its playback.
 
 ## Required Permissions
 
-To use online videos, you must apply for the **ohos.permission.INTERNET** permission. For details about how to apply for a permission, see [Declaring Permissions](../../../security/AccessToken/declare-permissions.md).
+To use online videos, you must apply for the ohos.permission.INTERNET permission. For details about how to apply for a permission, see [Declaring Permissions](../../../security/AccessToken/declare-permissions.md).
 
 
 ## Child Components
@@ -42,8 +42,8 @@ Video(value: VideoOptions)
 
 | Name             | Type                                                    | Mandatory| Description                                                    |
 | ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| src                 | string \| [Resource](ts-types.md#resource)                            | No  | Video source, which can be either a local or a network video.<br>The Resource type allows cross-package and cross-module access to resource files and is commonly used for accessing local videos.<br>- Resources in the rawfile folder are supported, which means that you can reference video files with **$rawfile**.<br>The string type is used for loading local videos and, more frequently, network videos.<br>- Network video URLs are supported.<br>- Strings with the **file://** prefix, that is, [application sandbox URIs](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10): **file://\<bundleName>/\<sandboxPath>**, are supported. They are used to access resources in the application sandbox path. Ensure that the application has the read permission to the files in the specified path.<br>**NOTE**<br><br>The supported video formats are MP4, MKV, and TS.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| currentProgressRate | number \| string \| [PlaybackSpeed<sup>8+</sup>](#playbackspeed8) | No  | Video playback speed.<br>**NOTE**<br><br>The value of the number type can only be **0.75**, **1.0**, **1.25**, **1.75**, or **2.0**.<br>Default value: 1.0 \| PlaybackSpeed.Speed_Forward_1_00_X<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| src                 | string \| [Resource](ts-types.md#resource)                            | No  | Video source, which can be either a local or a network video.<br>The Resource type allows cross-package and cross-module access to resource files and is commonly used for accessing local videos.<br>- Resources in the rawfile folder are supported, which means that you can reference video files with **$rawfile**.<br>The string type is used for loading local videos and, more frequently, network videos.<br>- Network video URLs are supported.<br>- Strings with the **file://** prefix, that is, [application sandbox URIs](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10): **file://\<bundleName>/\<sandboxPath>**, are supported. They are used to access resources in the application sandbox path. Ensure that the application has the read permission to the files in the specified path.<br>**NOTE**<br>The supported video formats are MP4, MKV, and TS.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| currentProgressRate | number \| string \| [PlaybackSpeed<sup>8+</sup>](#playbackspeed8) | No  | Video playback speed.<br>**NOTE**<br>The value of the number type can only be **0.75**, **1.0**, **1.25**, **1.75**, or **2.0**.<br>Default value: 1.0 \| PlaybackSpeed.Speed_Forward_1_00_X<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | previewUri          | string \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md)  | No  | Path of the preview image displayed before the video playback starts. By default, no preview image is displayed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                |
 | controller          | [VideoController](#videocontroller)                          | No  | Video controller to control the video playback status.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                    |
 | imageAIOptions<sup>12+</sup>  | [ImageAIOptions](ts-image-common.md#imageaioptions) | No  | AI image analysis options. You can configure the analysis type or bind an analyzer controller through this parameter.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -86,7 +86,7 @@ Specifies whether to mute the video.
 
 autoPlay(value: boolean)
 
-Specifies whether to enable auto play
+Specifies whether to enable autoplay.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -152,7 +152,8 @@ enableAnalyzer(enable: boolean)
 
 Sets whether to enable the AI analyzer, which supports subject recognition, text recognition, and object lookup.
 After this feature is enabled, the video automatically enters an analysis state to process the current frame when playback is paused, and exits the analysis state when playback is resumed.
-This feature cannot be used together with the [overlay](ts-universal-attributes-overlay.md) attribute. If both are set, the **CustomBuilder** attribute in **overlay** has no effect.
+
+Note that if this attribute and the [overlay](ts-universal-attributes-overlay.md) attribute are both set, [CustomBuilder](ts-types.md#custombuilder8) specified in [overlay](ts-universal-attributes-overlay.md) has no effect.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -164,9 +165,10 @@ This feature cannot be used together with the [overlay](ts-universal-attributes-
 | -------- | -------- | -------- | -------- |
 | enable | boolean | Yes| Whether to enable the AI analyzer.|
 
-> **NOTE**<br>
+> **NOTE**
 >
 > This feature is available only when the custom control bar is used (that is, when the [controls](#controls) attribute is set to **false**).
+>
 > This feature depends on device capabilities.
 
 ### analyzerConfig<sup>12+</sup>
@@ -456,7 +458,9 @@ Sets the video playback position with the specified seek mode.
 
 ## Example
 
-### Example 1
+### Example 1: Implementing Basic Video Playback Features
+
+This example covers the basic aspects of video playback, including how to manage the control bar, use preview images, handle autoplay, adjust the playback speed, and operate the controller for playback control. Additionally, it demonstrates how to implement callbacks for various playback states.
 
 ```ts
 // xxx.ets
@@ -468,6 +472,7 @@ struct VideoCreateComponent {
   @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
   @State isAutoPlay: boolean = false
   @State showControls: boolean = true
+  @State isShortcutKeyEnabled: boolean = false
   controller: VideoController = new VideoController()
 
   build() {
@@ -482,6 +487,7 @@ struct VideoCreateComponent {
         .height(600)
         .autoPlay(this.isAutoPlay)
         .controls(this.showControls)
+        .enableShortcutKey(this.isShortcutKeyEnabled)
         .onStart(() => {
           console.info('onStart')
         })
@@ -515,6 +521,11 @@ struct VideoCreateComponent {
         .onUpdate((e?: TimeObject) => {
           if (e != undefined) {
             console.info('onUpdate is ' + e.time)
+          }
+        })
+        .onFullscreenChange((e?: FullscreenObject) => {
+          if (e != undefined) {
+            console.info('onFullscreenChange is ' + e.fullscreen)
           }
         })
 
@@ -570,11 +581,15 @@ interface DurationObject {
 interface TimeObject {
   time: number;
 }
+
+interface FullscreenObject {
+  fullscreen: boolean;
+}
 ```
 
-### Example 2
+### Example 2: Enabling AI Image Analyzer
 
-This example shows how to use the AI analyzer.
+This example shows how to use the **enableAnalyzer** attribute to enable AI image analyzer.
 
 ```ts
 // xxx.ets

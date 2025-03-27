@@ -18,7 +18,7 @@ import { defaultAppManager } from '@kit.AbilityKit';
 
 | Permission                                   | APL   | Description            |
 | --------------------------------------- | ----------- | ---------------- |
-| ohos.permission.GET_DEFAULT_APPLICATION | system_core | Permission related to the default application. |
+| ohos.permission.GET_DEFAULT_APPLICATION | system_core | Permission related to the default application.|
 
 For details about the APL, see [Basic Concepts in the Permission Mechanism](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
 
@@ -45,13 +45,13 @@ Obtains the default application based on a system-defined application type, a fi
 
 | Type                       | Description                |
 | ------------------------- | ------------------ |
-| Promise\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Promise used to return the default application. |
+| Promise\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Promise used to return the default application.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                                 |
+| ID| Error Message                                 |
 | -------- | ----------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -117,7 +117,7 @@ Obtains the default application of a user based on a system-defined application 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                                 |
+| ID| Error Message                                 |
 | -------- | ----------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -183,7 +183,7 @@ Obtains the default application based on a system-defined application type, a fi
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                                 |
+| ID| Error Message                                 |
 | -------- | ----------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -238,7 +238,7 @@ Obtains the default application based on a system-defined application type, a fi
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                   |
+| Name| Type  | Mandatory| Description                                   |
 | -------| ------ | ---- | --------------------------------------- |
 | type   | string | Yes  | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#defaultappmanagerapplicationtype), a file type that complies with the media type format, or a value defined by [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).|
 | userId | number | No  | User ID. The default value is the user ID of the caller.         |
@@ -253,7 +253,7 @@ Obtains the default application based on a system-defined application type, a fi
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                                 |
+| ID| Error Message                                 |
 | -------- | ----------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -315,13 +315,13 @@ Sets the default application based on a system-defined application type, a file 
 
 | Type          | Description                              |
 | -------------- | ---------------------------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                                      |
+| ID| Error Message                                      |
 | -------- | ---------------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -405,7 +405,7 @@ Sets the default application for a user based on a system-defined application ty
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                                      |
+| ID| Error Message                                      |
 | -------- | ---------------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -484,7 +484,7 @@ Sets the default application based on a system-defined application type, a file 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                                      |
+| ID| Error Message                                      |
 | -------- | ---------------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -551,17 +551,17 @@ Sets the default application based on a system-defined application type, a file 
 
 **Parameters**
 
-| Name     | Type  | Mandatory | Description                                     |
+| Name     | Type  | Mandatory| Description                                     |
 | ----------- | ------ | ---- | --------------------------------------- |
 | type        | string | Yes  | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#defaultappmanagerapplicationtype), a file type that complies with the media type format, or a value defined by [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).|
-| elementName | [ElementName](js-apis-bundle-ElementName.md) | Yes | Information about the element to be set as the default application.                          |
+| elementName | [ElementName](js-apis-bundle-ElementName.md) | Yes| Information about the element to be set as the default application.                          |
 | userId      | number | No  | User ID. The default value is the user ID of the caller.                           |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                                      |
+| ID| Error Message                                      |
 | -------- | ---------------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -646,7 +646,7 @@ Resets the default application based on a system-defined application type, a fil
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -712,7 +712,7 @@ Resets the default application for a user based on a system-defined application 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -777,7 +777,7 @@ Resets the default application based on a system-defined application type, a fil
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -831,7 +831,7 @@ Resets the default application based on a system-defined application type, a fil
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                   |
+| Name| Type  | Mandatory| Description                                   |
 | ------ | ------ | ---- | --------------------------------------- |
 | type   | string | Yes  | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#defaultappmanagerapplicationtype), a file type that complies with the media type format, or a value defined by [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).|
 | userId | number | No  | User ID. The default value is the user ID of the caller.                           |
@@ -840,7 +840,7 @@ Resets the default application based on a system-defined application type, a fil
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |

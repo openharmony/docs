@@ -48,7 +48,7 @@
        console.error('no camera.');
        return;
      }
-     // 获取支持的模式类型
+     // 获取支持的模式类型。
      let sceneModes: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(cameraArray[0]);
      let isSupportPhotoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_PHOTO) >= 0;
      if (!isSupportPhotoMode) {
@@ -61,7 +61,7 @@
        console.error('cameraInput is undefined');
        return;
      }
-     // 打开相机
+     // 打开相机。
      await cameraInput.open();
      let session: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
      session.beginConfig();

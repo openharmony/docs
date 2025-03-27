@@ -1,6 +1,6 @@
 # @ohos.ability.screenLockFileManager (Sensitive Data Access Management Under Lock Screen) (System API)
 
-Once the screen is locked, the keys for sensitive data are destroyed, preventing any read or write operations on that data. These keys can be restored only after the screen is unlocked. To facilitate data access on the lock screen, the screenLockFileManager module has been introduced. This module provides APIs to request and revoke the permission to access sensitive data on the lock screen, thereby managing sensitive data access securely.
+Once the screen is locked, the keys for sensitive data are destroyed, preventing any read or write operations on that data. These keys can be restored only after the screen is unlocked. To facilitate data access on the lock screen, the screenLockFileManager module has been introduced. This module provides APIs to request and release the permission to access sensitive data on the lock screen, thereby managing sensitive data access securely.
 
 > **NOTE**
 > - The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -48,7 +48,7 @@ Requests the permission to access a specified type of sensitive data on the lock
 
 | Type                                                       | Description                                 |
 | ----------------------------------------------------------- | ------------------------------------- |
-| [AccessStatus](js-apis-screenLockFileManager.md#accessstatus) | Sensitive data access status.|
+| [AccessStatus](js-apis-screenLockFileManager.md#accessstatus) | State for requesting access to sensitive data on the lock screen.|
 
 **Error codes**
 
@@ -88,7 +88,7 @@ try {
 
 releaseAccess(dataType: DataType): ReleaseStatus
 
-Revokes the permission to access a specified type of sensitive data on the lock screen. This API returns the result synchronously.
+Releases the permission to access a specified type of sensitive data on the lock screen. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -106,7 +106,7 @@ Revokes the permission to access a specified type of sensitive data on the lock 
 
 | Type                                                        | Description                          |
 | ------------------------------------------------------------ | ------------------------------ |
-| [ReleaseStatus](js-apis-screenLockFileManager.md#releasestatus) | Type of the operation used to revoke the permission to access sensitive data on the lock screen.|
+| [ReleaseStatus](js-apis-screenLockFileManager.md#releasestatus) | State for releasing access permissions to sensitive data on the lock screen.|
 
 **Error codes**
 
@@ -126,7 +126,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// Revoke the permission to access media data on the lock screen.
+// Release the permission to access media data on the lock screen.
 import { screenLockFileManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';

@@ -36,19 +36,19 @@ OpenSL ES:
 通过全局接口获取到Engine对象，基于Engine结合不同输入输出配置参数，构造出不同音频播放对象。
 
 ```cpp
-// 生成Engine Inteface对象
+// 生成Engine Inteface对象。
 SLEngineItf engine;
 // ...
 
-// 按需配置音频输入slSource
+// 按需配置音频输入slSource。
 SLDataSource slSource;
 // ...
 
-// 按需配置音频输出slSink
+// 按需配置音频输出slSink。
 SLDataSink slSink;
 // ...
 
-// 生成音频播放对象
+// 生成音频播放对象。
 SLObjectItf playerObject;
 (*engine)->CreateAudioPlayer(engine,
                              &playerObject,
@@ -67,20 +67,20 @@ OHAudio:
 采用建造器模式，通过建造器，配合自定义参数设置，生成音频播放对象。
 
 ```cpp
-// 创建建造器
+// 创建建造器。
 OH_AudioStreamBuilder *builder;
 OH_AudioStreamBuilder_Create(&builder, AUDIOSTREAM_TYPE_RENDERER);
 
-// 设置自定义参数，否则会使用默认参数
+// 设置自定义参数，否则会使用默认参数。
 OH_AudioStreamBuilder_SetSamplingRate(builder, 48000);
 OH_AudioStreamBuilder_SetChannelCount(builder, 2);
 OH_AudioStreamBuilder_SetSampleFormat(builder, AUDIOSTREAM_SAMPLE_S16LE);
 OH_AudioStreamBuilder_SetEncodingType(builder, AUDIOSTREAM_ENCODING_TYPE_RAW);
-// 关键参数，仅OHAudio支持，根据音频用途设置，系统会根据此参数实现音频策略自适应
+// 关键参数，仅OHAudio支持，根据音频用途设置，系统会根据此参数实现音频策略自适应。
 OH_AudioStreamBuilder_SetRendererInfo(builder, AUDIOSTREAM_USAGE_MUSIC);
 // ...
 
-// 生成音频播放对象
+// 生成音频播放对象。
 OH_AudioRenderer *audioRenderer;
 OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
 ```
@@ -92,10 +92,10 @@ OpenSL ES:
 基于Object获取状态切换Interface，使用Interface接口切换状态，只有SL_PLAYSTATE_STOPPED、SL_PLAYSTATE_PAUSED、SL_PLAYSTATE_PLAYING三种状态。
 
 ```cpp
-// 基于播放对象，获取播放操作Interface
+// 基于播放对象，获取播放操作Interface。
 SLPlayItf playItf = nullptr;
 (*playerObject)->GetInterface(playerObject, SL_IID_PLAY, &playItf);
-// 状态切换
+// 状态切换。
 (*playItf)->SetPlayState(playItf, SL_PLAYSTATE_PLAYING);
 (*playItf)->SetPlayState(playItf, SL_PLAYSTATE_PAUSED);
 (*playItf)->SetPlayState(playItf, SL_PLAYSTATE_STOPPED);
@@ -106,7 +106,7 @@ OHAudio:
 有独立的状态切换接口，基于状态机进行状态切换，共6个OH_AudioStream_State状态，主要在AUDIOSTREAM_STATE_PREPARED、AUDIOSTREAM_STATE_RUNNING、AUDIOSTREAM_STATE_STOPPED、AUDIOSTREAM_STATE_PAUSED、AUDIOSTREAM_STATE_RELEASED状态间切换。
 
 ```cpp
-// 状态切换
+// 状态切换。
 OH_AudioRenderer_Start(audioRenderer);
 OH_AudioRenderer_Pause(audioRenderer);
 OH_AudioRenderer_Stop(audioRenderer);
@@ -123,18 +123,18 @@ static void MyBufferQueueCallback(SLOHBufferQueueItf bufferQueueItf, void *pCont
 {
     SLuint8 *buffer = nullptr;
     SLuint32 bufferSize;
-    // 获取系统内提供的buffer
+    // 获取系统内提供的buffer。
     (*bufferQueueItf)->GetBuffer(bufferQueueItf, &buffer, &bufferSize);
-    // 将待播放音频数据写入buffer
+    // 将待播放音频数据写入buffer。
     // ...
-    // 将buffer输入系统
+    // 将buffer输入系统。
     (*bufferQueueItf)->Enqueue(bufferQueueItf, buffer, bufferSize);
 }
 
-// 获取OHBufferQueue接口
+// 获取OHBufferQueue接口。
 SLOHBufferQueueItf bufferQueueItf;
 (*playerObject)->GetInterface(playerObject, SL_IID_OH_BUFFERQUEUE, &bufferQueueItf);
-// 可传入自定义的上下文信息，会在Callback内收到
+// 可传入自定义的上下文信息，会在Callback内收到。
 void *pContext;
 (*bufferQueueItf)->RegisterCallback(bufferQueueItf, MyBufferQueueCallback, pContext);
 ```
@@ -150,14 +150,14 @@ static int32_t MyOnWriteData(
     void *buffer,
     int32_t bufferLen)
 {
-    // 将待播放数据按照请求的bufferLen长度，填入buffer
-    // 函数返回后，系统会自动从buffer取出数据输出
+    // 将待播放数据按照请求的bufferLen长度，填入buffer。
+    // 函数返回后，系统会自动从buffer取出数据输出。
 }
 
 OH_AudioRenderer_Callbacks callbacks;
 callbacks.OH_AudioRenderer_OnWriteData = MyOnWriteData;
 
-// 设置输出音频流的回调，在生成音频播放对象时自动注册
+// 设置输出音频流的回调，在生成音频播放对象时自动注册。
 void *userData = nullptr;
 OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, userData);
 ```
@@ -169,7 +169,7 @@ OpenSL ES:
 使用SLObjectItf接口实现对象资源释放。
 
 ```cpp
-// 释放播放对象资源
+// 释放播放对象资源。
 (*playerObject)->Destroy(playerObject);
 ```
 
@@ -178,9 +178,9 @@ OHAudio:
 使用对应模块的释放接口实现对象资源释放。
 
 ```cpp
-// 释放建造器资源
+// 释放建造器资源。
 OH_AudioStreamBuilder_Destroy(builder);
 
-// 释放播放对象资源
+// 释放播放对象资源。
 OH_AudioRenderer_Release(audioRenderer);
 ```

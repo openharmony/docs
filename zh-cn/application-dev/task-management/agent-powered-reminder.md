@@ -74,10 +74,6 @@
           pkgName: 'com.example.myapplication',
           abilityName: 'EntryAbility'
         },
-        maxScreenWantAgent: { // 全屏显示提醒到达时自动拉起的目标UIAbility信息
-          pkgName: 'com.example.myapplication',
-          abilityName: 'EntryAbility'
-        },
         title: 'this is title', // 指明提醒标题
         content: 'this is content', // 指明提醒内容
         expiredContent: 'this reminder has expired', // 指明提醒过期后需要显示的内容
@@ -115,10 +111,6 @@
           pkgName: 'com.example.myapplication',
           abilityName: 'EntryAbility'
         },
-        maxScreenWantAgent: { // 全屏显示提醒到达时自动拉起的目标UIAbility信息
-          pkgName: 'com.example.myapplication',
-          abilityName: 'EntryAbility'
-        },
         ringDuration: 5, // 指明响铃时长（单位：秒）
         snoozeTimes: 2, // 指明延迟提醒次数
         timeInterval: 5*60, // 执行延迟提醒间隔（单位：秒）
@@ -150,10 +142,6 @@
           },
         ],
         wantAgent: { // 点击提醒通知后跳转的目标UIAbility信息
-          pkgName: 'com.example.myapplication',
-          abilityName: 'EntryAbility'
-        },
-        maxScreenWantAgent: { // 全屏显示提醒到达时自动拉起的目标UIAbility信息
           pkgName: 'com.example.myapplication',
           abilityName: 'EntryAbility'
         },

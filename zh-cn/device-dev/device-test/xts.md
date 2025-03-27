@@ -31,13 +31,13 @@ XTS子系统当前包括acts与tools软件包：
 
 ```
 /test/xts
-├── acts                # 测试代码存放目录
-│   └── subsystem       # 标准系统子系统测试用例源码存放目录
-│   └── subsystem_lite  # 轻量系统、小型系统子系统测试用例源码存放目录
-│   └── BUILD.gn        # 标准系统测试用例编译配置
-│   └── build_lite      # 轻量系统、小型系统测试用例编译配置存放目录
-│       └── BUILD.gn    # 轻量系统、小型系统测试用例编译配置
-└── tools               # 测试工具代码存放目录
+├── acts                # 测试代码存放目录。
+│   └── subsystem       # 标准系统子系统测试用例源码存放目录。
+│   └── subsystem_lite  # 轻量系统、小型系统子系统测试用例源码存放目录。
+│   └── BUILD.gn        # 标准系统测试用例编译配置。
+│   └── build_lite      # 轻量系统、小型系统测试用例编译配置存放目录。
+│       └── BUILD.gn    # 轻量系统、小型系统测试用例编译配置。
+└── tools               # 测试工具代码存放目录。
 ```
 
 
@@ -115,13 +115,13 @@ XTS子系统当前包括acts与tools软件包：
 
 2. src目录下用例编写样例。
    
-    1.引用测试框架
+    1. 引用测试框架
     
-     ```
-     #include "hctest.h"
-     ```
+       ```
+       #include "hctest.h"
+       ```
 
-   2. 使用宏定义LITE_TEST_SUIT定义子系统、模块、测试套件名称
+   2. 使用宏定义LITE_TEST_SUIT定义子系统、模块、测试套件名称。
 
    
       ```
@@ -134,22 +134,22 @@ XTS子系统当前包括acts与tools软件包：
        LITE_TEST_SUIT(test, example, IntTestSuite);
       ```
 
-   3. 定义Setup与TearDown
+   3. 定义Setup与TearDown。
 
       命名方式：测试套件名称+Setup，测试套件名称+TearDown。
 
       Setup与TearDown必须存在，可以为空函数。
 
-   4. 使用宏定义LITE_TEST_CASE写测试用例
+   4. 使用宏定义LITE_TEST_CASE写测试用例。
 
       包括三个参数：测试套件名称，测试用例名称，用例属性（测试类型、用例粒度、用例级别）。
       ```
       LITE_TEST_CASE(IntTestSuite, TestCase001, Function | MediumTest | Level1) 
       {  
-        //do something 
+        //do something. 
          };
       ```
-   5. 使用宏定义 RUN_TEST_SUITE注册测试套件
+   5. 使用宏定义 RUN_TEST_SUITE注册测试套件。
 
    
       ```
@@ -192,7 +192,7 @@ XTS子系统当前包括acts与tools软件包：
    随版本编译，debug版本编译时会同步编译acts测试套件。
 
    > ![icon-note.gif](../public_sys-resources/icon-note.gif) **说明：**
-   > acts测试套件编译中间件为静态库，最终链接到版本镜像中 。
+   > acts测试套件编译中间件为静态库，最终链接到版本镜像中。
 
 ### C语言用例执行指导（适用于轻量系统产品用例开发）
 
@@ -241,7 +241,7 @@ XTS子系统当前包括acts与tools软件包：
       #include "gtest/gtest.h"
       ```
 
-   2. 定义Setup与TearDown
+   2. 定义Setup与TearDown。
 
    
       ```
@@ -249,24 +249,24 @@ XTS子系统当前包括acts与tools软件包：
       using namespace testing::ext;
       class TestSuite: public testing::Test {
       protected:
-      // Preset action of the test suite, which is executed before the first test case
+      // Preset action of the test suite, which is executed before the first test case.
       static void SetUpTestCase(void){
       }
-      // Test suite cleanup action, which is executed after the last test case
+      // Test suite cleanup action, which is executed after the last test case.
       static void TearDownTestCase(void){
       }
-      // Preset action of the test case
+      // Preset action of the test case.
       virtual void SetUp()
       {
       }
-      // Cleanup action of the test case
+      // Cleanup action of the test case.
       virtual void TearDown()
       {
       }
       };
       ```
 
-   3. 使用宏定义HWTEST或HWTEST_F写测试用例
+   3. 使用宏定义HWTEST或HWTEST_F写测试用例。
 
       普通测试用例的定义：HWTEST（测试套名称， 测试用例名称， 用例标注）。
 
@@ -277,11 +277,12 @@ XTS子系统当前包括acts与tools软件包：
    
       ```
       HWTEST_F(TestSuite, TestCase_0001, Function | MediumTest | Level1) {
-      // do something
+      // do something.
       }
       ```
 
-3. 测试模块下用例配置文件（BUILD.gn）样例：
+3. 测试模块下用例配置文件（BUILD.gn）样例。
+
    每个测试模块目录下新建BUILD.gn编译文件，用于指定编译后可执行文件的名称、依赖的头文件、依赖的库等；具体写法如下。每个测试模块将独立编译成.bin可执行文件， 该文件可直接push到单板上进行测试。
 
    举例：
@@ -306,7 +307,8 @@ XTS子系统当前包括acts与tools软件包：
    
    ```
 
-4. acts目录下增加编译选项（BUILD.gn）样例：
+4. acts目录下增加编译选项（BUILD.gn）样例。
+
    将测试模块加入到acts目录下的编译脚本中，编译脚本为：test/xts/acts/build_lite/BUILD.gn。
 
    
@@ -323,7 +325,7 @@ XTS子系统当前包括acts与tools软件包：
    ```
 
 5. 测试套件编译命令。
-     随版本编译，debug版本编译时会同步编译acts测试套件
+     随版本编译，debug版本编译时会同步编译acts测试套件。
    > ![icon-note.gif](../public_sys-resources/icon-note.gif) **说明：**
    > 小型系统acts独立编译成可执行文件（bin格式）， 在编译产物的suites\acts目录下归档。
 
@@ -361,18 +363,18 @@ XTS子系统当前包括acts与tools软件包：
 
 **用例编写基础语法**
 
-测试用例为 js 语言，必须满足 JavaScript 语言编程规范:
+测试用例为 js 语言，必须满足 JavaScript 语言编程规范。
 
   **表7** 用例编写基础语法
 
 | 用例语法 | 描述 | 要求 | 
 | -------- | -------- | -------- |
-| beforeAll | 测试套级别的预置条件，在所有测试用例开始前执行且仅执行一次，支持一个参数：预置动作函数 | 可选 | 
-| afterAll | 测试套级别的清理条件，在所有测试用例结束后执行且仅执行一次，支持一个参数：清理动作函数 | 可选 | 
-| beforeEach | 测试用例级别的预置条件，在每条测试用例开始前执行，执行次数与&nbsp;it&nbsp;定义的测试用例数一致，支持一个参数：预置动作函数 | 可选 | 
-| afterEach | 测试用例级别的清理条件，在每条测试用例结束后执行，执行次数与&nbsp;it&nbsp;定义的测试用例数一致，支持一个参数：清理动作函数 | 可选 | 
-| describe | 定义一个测试套，支持两个参数：测试套名称和测试套函数；&nbsp;describe&nbsp;支持嵌套，每个&nbsp;describe&nbsp;内均可以定义&nbsp;beforeAll&nbsp;、beforeEach&nbsp;、afterEach&nbsp;和&nbsp;afterAll | 必选 | 
-| it | 定义一条测试用例，支持三个参数：用例名称，过滤参数和用例函数<br/>备注：<br/>**过滤参数**：过滤参数为一个&nbsp;32&nbsp;位的&nbsp;Int&nbsp;类型参数，0&nbsp;位&nbsp;置1表示不筛选、默认执行；0-10&nbsp;位&nbsp;置1表示测试用例类型；16-18&nbsp;位&nbsp;置1表示测试用例规模；24-28&nbsp;位&nbsp;置1表示测试层级。<br/>**测试用例类型**：置位0-10分别表示：FUNCTION&nbsp;方法类测试、PERFORMANCE&nbsp;性能类测试、POWER&nbsp;功耗类测试、RELIABILITY&nbsp;可靠性测试、SECURITY&nbsp;安全合规测试、GLOBAL&nbsp;整体性测试、COMPATIBILITY&nbsp;兼容性测试、USER&nbsp;用户测试、STANDARD&nbsp;标准测试、SAFETY&nbsp;安全特性测试，RESILIENCE&nbsp;压力测试。<br/>**测试用例规模**：置位16-18分别表示：SMALL&nbsp;小型测试、MEDIUM&nbsp;中型测试、LARGE&nbsp;大型测试。<br/>**测试层级**：置位24-28分别表示：LEVEL0-0&nbsp;级测试、LEVEL1-1&nbsp;级测试、LEVEL2-2&nbsp;级测试、LEVEL3-3&nbsp;级测试、LEVEL4-4&nbsp;级测试。 | 必选 | 
+| beforeAll | 测试套级别的预置条件，在所有测试用例开始前执行且仅执行一次，支持一个参数：预置动作函数。 | 可选 | 
+| afterAll | 测试套级别的清理条件，在所有测试用例结束后执行且仅执行一次，支持一个参数：清理动作函数。 | 可选 | 
+| beforeEach | 测试用例级别的预置条件，在每条测试用例开始前执行，执行次数与&nbsp;it&nbsp;定义的测试用例数一致，支持一个参数：预置动作函数。 | 可选 | 
+| afterEach | 测试用例级别的清理条件，在每条测试用例结束后执行，执行次数与&nbsp;it&nbsp;定义的测试用例数一致，支持一个参数：清理动作函数。 | 可选 | 
+| describe | 定义一个测试套，支持两个参数：测试套名称和测试套函数；&nbsp;describe&nbsp;支持嵌套，每个&nbsp;describe&nbsp;内均可以定义&nbsp;beforeAll&nbsp;、beforeEach&nbsp;、afterEach&nbsp;和&nbsp;afterAll。 | 必选 | 
+| it | 定义一条测试用例，支持三个参数：用例名称，过滤参数和用例函数<br/>备注：<br/>**过滤参数**：过滤参数为一个&nbsp;32&nbsp;位的&nbsp;Int&nbsp;类型参数，0&nbsp;位&nbsp;置1表示不筛选、默认执行；0-10&nbsp;位&nbsp;置1表示测试用例类型；16-18&nbsp;位&nbsp;置1表示测试用例规模；24-28&nbsp;位&nbsp;置1表示测试层级。<br/>**测试用例类型**：置位0-10分别表示：FUNCTION&nbsp;方法类测试、PERFORMANCE&nbsp;性能类测试、POWER&nbsp;功耗类测试、RELIABILITY&nbsp;可靠性测试、SECURITY&nbsp;安全合规测试、GLOBAL&nbsp;整体性测试、COMPATIBILITY&nbsp;兼容性测试、USER&nbsp;用户测试、STANDARD&nbsp;标准测试、SAFETY&nbsp;安全特性测试、RESILIENCE&nbsp;压力测试。<br/>**测试用例规模**：置位16-18分别表示：SMALL&nbsp;小型测试、MEDIUM&nbsp;中型测试、LARGE&nbsp;大型测试。<br/>**测试层级**：置位24-28分别表示：LEVEL0-0&nbsp;级测试、LEVEL1-1&nbsp;级测试、LEVEL2-2&nbsp;级测试、LEVEL3-3&nbsp;级测试、LEVEL4-4&nbsp;级测试。 | 必选 | 
 
 用例编写语法采用 jasmine 的标准语法，格式支持ES6格式。
 
@@ -387,16 +389,16 @@ XTS子系统当前包括acts与tools软件包：
    │ │ │ │ │ └──default               
    │ │ │ │ │ │ └──pages
    │ │ │ │ │ │ │ └──index             
-   │ │ │ │ │ │ │ │ └──index.js        # 入口文件
-   │ │ │ │ │ └──test                  # 测试代码存放目录  
-   │ │ │ └── resources                # hap资源存放目录
-   │ │ │ └── config.json              # hap配置文件
+   │ │ │ │ │ │ │ │ └──index.js        # 入口文件。
+   │ │ │ │ │ └──test                  # 测试代码存放目录。  
+   │ │ │ └── resources                # hap资源存放目录。
+   │ │ │ └── config.json              # hap配置文件。
    ```
 
-2. index.js示例
+2. index.js示例。
    
    ```
-   // 拉起js测试框架，加载测试用例
+   // 拉起js测试框架，加载测试用例。
    import {Core, ExpectExtend} from 'deccjsunit/index'
    
    export default {
@@ -424,10 +426,10 @@ XTS子系统当前包括acts与tools软件包：
    }
    ```
 
-3. 单元测试用例示例
+3. 单元测试用例示例。
    
    ```
-   // Example1: 使用HJSUnit进行单元测试
+   // Example1: 使用HJSUnit进行单元测试。
    describe('appInfoTest', function () {    
        it('app_info_test_001', 0, function () {
            var info = app.getInfo()
@@ -444,7 +446,7 @@ hap包编译请参考[标准系统js应用开发指导](https://developer.harmon
 
 ## 全量编译指导（适用于标准系统）
 
-1. 全量编译
+1. 全量编译。
    **命令**：
 
    
@@ -466,12 +468,12 @@ Windows工作台下安装python3.7及以上版本，确保工作台和测试设�
   **测试执行目录**（对应编译生成的out/release/suites/acts目录）
 
 ```
-├── testcase                       # 测试套文件存放目录 
-│ └──xxx.hap                       # 测试套可执行hap文件
-│ └──xxx.json                      # 测试套对应执行配置文件
-├── tools                          # 测试框架工具目录
-├── run.bat                        # window平台测试套启动执行文件
-├── report                         # 测试报告生成目录
+├── testcase                       # 测试套文件存放目录。
+│ └──xxx.hap                       # 测试套可执行hap文件。
+│ └──xxx.json                      # 测试套对应执行配置文件。
+├── tools                          # 测试框架工具目录。
+├── run.bat                        # window平台测试套启动执行文件。
+├── report                         # 测试报告生成目录。
 ```
 
 **用例执行**
@@ -479,7 +481,7 @@ Windows工作台下安装python3.7及以上版本，确保工作台和测试设�
 1. 在Windows工作台上，找到从Linux服务器上拷贝下来的测试套件用例目录(对应编译生成的out/release/suites/acts目录)，在Windows命令窗口进入对应目录，直接执行acts\run.bat。
 
 2. 界面启动后，输入用例执行指令。
-   - 全量执行
+   - 全量执行。
      
       ```
       run acts
@@ -489,7 +491,7 @@ Windows工作台下安装python3.7及以上版本，确保工作台和测试设�
 
         ![zh-cn_image_0000001200230833](figures/zh-cn_image_0000001200230833.gif)
 
-   - 模块执行(具体模块可以查看\acts\testcases\)
+   - 模块执行(具体模块可以查看\acts\testcases\)。
      
       ```
       run –l ActsSamgrTest

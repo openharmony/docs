@@ -1,18 +1,18 @@
-# ArkTS Inter-Thread Communication Overview
+# Overview of ArkTS Inter-Thread Communication
 
-Inter-thread communication refers to data exchange between concurrent threads. ArkTS is compatible with TS and JS. Similar to all other JS engines, ArkTS provides concurrency capabilities based on the Actor memory isolation concurrency model.
+Inter-thread communication involves the exchange of data between concurrent threads. Given that ArkTS is compatible with TS/JS, its runtime is implemented using the actor model with memory isolation, similar to other JS engines.
 
-For different data objects, the communication behavior between ArkTS threads is different, such as common JS objects, ArrayBuffer objects, and SharedArrayBuffer objects. The cross-thread behavior is different, including serialization and deserialization copy, data transfer, and data sharing.
+The behavior of inter-thread communication in ArkTS varies depending on the type of data object involved. For instance, regular JS objects, ArrayBuffer objects, and SharedArrayBuffer objects each exhibit different behaviors, including serialization and deserialization, data transfer, and data sharing.
 
-Take a JS object as an example. The standard Structure Clone algorithm (serialization and deserialization) is used for communication between concurrent tasks. The JS object is converted into data (such as character strings or memory blocks) irrelevant to the engine through serialization, and then deserialized in another concurrent instance, to restore a JS object to a new object that is the same as the original JS object, deep copy is required, which is inefficient. In addition to the serialization and deserialization capabilities of the JS standard, the native JS object transmission and [Sendable object](arkts-sendable.md) sharing capabilities are also supported.
+Taking JS objects as an example, inter-thread communication uses the standard Structured Clone algorithm for serialization and deserialization. This process involves converting JS objects into engine-independent data (such as strings or memory blocks) and then restoring them into new objects with the same content in another concurrent instance. This typically requires deep copying, which can be less efficient. In addition to standard JS serialization and deserialization, ArkTS supports the transfer of native JS object and the sharing of [Sendable objects](arkts-sendable.md).
 
-Currently, ArkTS provides two concurrency capabilities to support inter-thread communication: TaskPool and Worker.
+Currently, ArkTS provides two concurrency capabilities for inter-thread communication: TaskPool and Worker.
 
-- Worker is a standard cross-thread communication API of the Actor concurrency model. It is used in the same way as Web Worker or Node.js Worker.
+- Worker is the standard API for cross-thread communication in the actor model. Its usage patterns are similar to those of Web Worker or Node.js Worker.
 
-- TaskPool provides a task pool API with more powerful functions and easier concurrent programming. The object transfer behavior of TaskPool across concurrent instances is the same as that of Worker. TaskPool uses the standard Structured Clone algorithm. The larger the objects in concurrent communication, the longer the time required.
+- TaskPool provides a more powerful and user-friendly API for concurrent programming. The behavior of object passing across concurrent instances in TaskPool is consistent with that of Worker, utilizing the standard Structured Clone algorithm. The time required for concurrent communication increases with the size of the objects involved.
 
-Based on the TaskPool and Worker concurrency APIs provided by ArkTS, multiple inter-thread communication capabilities are supported to meet the requirements of different [inter-thread communication scenarios](independent-time-consuming-task.md). for example, an independent time-consuming task scenario, a scenario of a plurality of time-consuming tasks, a scenario of communication between a TaskPool thread and a host thread, a scenario of asynchronous communication between a worker thread and a host thread, and a scenario in which a worker synchronously calls an interface of a host thread. In addition, based on the mechanism provided by [Node-API](../napi/napi-introduction.md), C++ threads can call ArkTS APIs across threads.
+Leveraging the TaskPool and Worker concurrency APIs, ArkTS supports a variety of inter-thread communication capabilities to satisfy different development needs in [inter-thread communication scenarios](independent-time-consuming-task.md). These include scenarios involving independent time-consuming tasks, multiple time-consuming tasks, communication between TaskPool threads and the host thread, asynchronous communication between Worker threads and the host thread, and synchronous calls from Worker threads to the host thread's interfaces. In addition, ArkTS supports cross-thread calls to ArkTS interfaces from C++ threads, based on the mechanisms provided by [Node-API](../napi/napi-introduction.md).
 
 Figure 1 Serialization and deserialization principles
 

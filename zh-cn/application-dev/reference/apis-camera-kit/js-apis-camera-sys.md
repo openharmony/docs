@@ -13,31 +13,6 @@
 import { camera } from '@kit.CameraKit';
 ```
 
-## CameraDevice
-
-相机设备信息。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-| 名称           | 类型                               | 只读 | 必填 | 说明        |
-| -------------- | --------------------------------- | ---- | ---- |---------- |
-| hostDeviceName | string                            | 是   | 是   | 远端设备名称。**系统接口：** 此接口为系统接口。 |
-| hostDeviceType | [HostDeviceType](#hostdevicetype) | 是   | 是   | 远端相机设备类型。**系统接口：** 此接口为系统接口。 |
-
-## HostDeviceType
-
-枚举，远端相机设备类型。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-| 名称                          | 值       | 说明           |
-| ---------------------------- | ----     | ------------- |
-| UNKNOWN_TYPE                 | 0        | 未知设备类型。      |
-| PHONE                        | 0x0E     | 手机相机。 |
-| TABLET                       | 0x11     | 平板相机。 |
-
 ## SceneMode<sup>11+</sup>
 
 枚举，相机支持模式。
@@ -137,7 +112,7 @@ lcd闪光灯信息项。
 
 相机管理器类，使用前需要通过[getCameraManager](js-apis-camera.md#cameragetcameramanager)获取相机管理实例。
 
-### createDepthDataOutput<sup>12+</sup>
+### createDepthDataOutput<sup>13+</sup>
 
 createDepthDataOutput(profile: Profile): DepthDataOutput
 
@@ -157,7 +132,7 @@ createDepthDataOutput(profile: Profile): DepthDataOutput
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [DepthDataOutput](#depthdataoutput12)    | DepthDataOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+| [DepthDataOutput](#depthdataoutput13)    | DepthDataOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -179,7 +154,7 @@ function createDepthDataOutput(cameraOutputCapability: camera.CameraOutputCapabi
   try {
     depthDataOutput = cameraManager.createDepthDataOutput(profile);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The createDepthDataOutput call failed. error code: ${err.code}`);
   }
@@ -345,9 +320,9 @@ isPrelaunchSupported(camera: CameraDevice): boolean
 
 **参数：**
 
-| 参数名     | 类型             | 必填 | 说明       |
-| -------- | --------------- | ---- | --------- |
-| camera | [CameraDevice](#cameradevice) | 是 | 相机信息。|
+| 参数名     | 类型                                               | 必填 | 说明       |
+| -------- |--------------------------------------------------| ---- | --------- |
+| camera | [CameraDevice](./js-apis-camera.md#cameradevice) | 是 | 相机信息。|
 
 **返回值：**
 
@@ -560,7 +535,7 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
 | ----------------------------- | --------------------------------------------------- | ---- | ---- |-------------------|
 | isCameraOccluded                 | boolean              |  是  | 否 |遮挡状态。        |
 
-## CameraOutputCapability<sup>12+</sup>
+## CameraOutputCapability<sup>13+</sup>
 
 相机输出能力项。
 
@@ -570,7 +545,7 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
 
 | 名称                           | 类型                                                | 只读 | 可选 | 说明                |
 | ----------------------------- | --------------------------------------------------- | ---- | ---- |-------------------|
-| depthProfiles                 | Array\<[DepthProfile](#depthprofile12)\>              |  是  | 否 | 支持的深度流配置信息集合。        |
+| depthProfiles                 | Array\<[DepthProfile](#depthprofile13)\>              |  是  | 否 | 支持的深度流配置信息集合。        |
 
 ## CameraFormat
 
@@ -582,8 +557,8 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
 
 | 名称                     | 值        | 说明         |
 | ----------------------- | --------- | ------------ |
-| CAMERA_FORMAT_DEPTH_16<sup>12+</sup> |   3000   | DEPTH_16格式的深度图。      |
-| CAMERA_FORMAT_DEPTH_32<sup>12+</sup> |   3001   | DEPTH_32格式的深度图。      |
+| CAMERA_FORMAT_DEPTH_16<sup>13+</sup> |   3000   | DEPTH_16格式的深度图。      |
+| CAMERA_FORMAT_DEPTH_32<sup>13+</sup> |   3001   | DEPTH_32格式的深度图。      |
 
 ## CameraInput
 
@@ -657,7 +632,7 @@ function unregisterCameraOcclusionDetection(cameraInput: camera.CameraInput): vo
 }
 ```
 
-## DepthDataAccuracy<sup>12+</sup>
+## DepthDataAccuracy<sup>13+</sup>
 
 深度数据的精度。
 
@@ -670,7 +645,7 @@ function unregisterCameraOcclusionDetection(cameraInput: camera.CameraInput): vo
 | DEPTH_DATA_ACCURACY_RELATIVE      | number                        |  是  | 否 | 相对精度，基于视差计算得到的深度图。      |
 | DEPTH_DATA_ACCURACY_ABSOLUTE      | number                        |  是  | 否 | 绝对精度，基于测距计算得到的深度图。      |
 
-## DepthProfile<sup>12+</sup>
+## DepthProfile<sup>13+</sup>
 
 深度数据配置信息项，继承[Profile](js-apis-camera.md#profile)。
 
@@ -680,9 +655,9 @@ function unregisterCameraOcclusionDetection(cameraInput: camera.CameraInput): vo
 
 | 名称                       | 类型                                      | 只读 | 可选 | 说明        |
 | ------------------------- | ----------------------------------------- | --- | ---- |----------- |
-| depthDataAccuracy            | [DepthDataAccuracy](#depthdataaccuracy12)         | 是  |  否  | 深度数据的精度，分为相对精度和绝对精度。 |
+| depthDataAccuracy            | [DepthDataAccuracy](#depthdataaccuracy13)         | 是  |  否  | 深度数据的精度，分为相对精度和绝对精度。 |
 
-## DepthDataQualityLevel<sup>12+</sup>
+## DepthDataQualityLevel<sup>13+</sup>
 
 深度数据的质量。
 
@@ -696,7 +671,7 @@ function unregisterCameraOcclusionDetection(cameraInput: camera.CameraInput): vo
 | DEPTH_DATA_QUALITY_FAIR      | number          |  是  | 否 | 深度图的质量一般，无法生成高质量的虚化等。      |
 | DEPTH_DATA_QUALITY_GOOD      | number          |  是  | 否 | 深度图的质量较高，可以生成高质量的虚化等。      |
 
-## DepthData<sup>12+</sup>
+## DepthData<sup>13+</sup>
 
 深度数据对象。
 
@@ -710,10 +685,10 @@ function unregisterCameraOcclusionDetection(cameraInput: camera.CameraInput): vo
 | -------- | ----------------------------- |----- |---| -------------- |
 | format | [CameraFormat](#cameraformat)   | 是 |  否  | 深度图的格式。 |
 | depthMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)    | 是 |  否  | 深度图。 |
-| qualityLevel | [DepthDataQualityLevel](#depthdataqualitylevel12)   | 是 |  否  | 深度图的质量。 |
-| accuracy | [DepthDataAccuracy](#depthdataaccuracy12) | 是 |  否  | 深度图的精度。 |
+| qualityLevel | [DepthDataQualityLevel](#depthdataqualitylevel13)   | 是 |  否  | 深度图的质量。 |
+| accuracy | [DepthDataAccuracy](#depthdataaccuracy13) | 是 |  否  | 深度图的精度。 |
 
-### release<sup>12+</sup>
+### release<sup>13+</sup>
 
 release(): void
 
@@ -731,11 +706,11 @@ function releaseDepthData(depthData: camera.DepthData): void {
 }
 ```
 
-## DepthDataOutput<sup>12+</sup>
+## DepthDataOutput<sup>13+</sup>
 
 深度信息输出类。继承[CameraOutput](js-apis-camera.md#cameraoutput)。
 
-### start<sup>12+</sup>
+### start<sup>13+</sup>
 
 start(): Promise\<void\>
 
@@ -774,7 +749,7 @@ function startDepthDataOutput(depthDataOutput: camera.DepthDataOutput): void {
 }
 ```
 
-### stop<sup>12+</sup>
+### stop<sup>13+</sup>
 
 stop(): Promise\<void\>
 
@@ -804,7 +779,7 @@ function stopDepthDataOutput(depthDataOutput: camera.DepthDataOutput): void {
 }
 ```
 
-### on('depthDataAvailable')<sup>12+</sup>
+### on('depthDataAvailable')<sup>13+</sup>
 
 on(type: 'depthDataAvailable', callback: AsyncCallback\<DepthData\>): void
 
@@ -823,7 +798,7 @@ on(type: 'depthDataAvailable', callback: AsyncCallback\<DepthData\>): void
 | 参数名     | 类型      | 必填 | 说明                                  |
 | -------- | ---------- | --- | ------------------------------------ |
 | type     | string     | 是   | 监听事件，固定为'depthDataAvailable'，depthDataOutput创建成功后可监听。 |
-| callback | AsyncCallback\<[DepthData](#depthdata12)\> | 是   | 回调函数，用于监听深度信息上报。 |
+| callback | AsyncCallback\<[DepthData](#depthdata13)\> | 是   | 回调函数，用于监听深度信息上报。 |
 
 **示例：**
 
@@ -842,7 +817,7 @@ function registerDepthDataAvailable(depthDataOutput: camera.DepthDataOutput): vo
 }
 ```
 
-### off('depthDataAvailable')<sup>12+</sup>
+### off('depthDataAvailable')<sup>13+</sup>
 
 off(type: 'depthDataAvailable', callback?: AsyncCallback\<DepthData\>): void
 
@@ -857,7 +832,7 @@ off(type: 'depthDataAvailable', callback?: AsyncCallback\<DepthData\>): void
 | 参数名      | 类型                    | 必填 | 说明                                       |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
 | type     | string                 | 是   | 监听事件，固定为'depthDataAvailable'，depthDataOutput创建成功后可监听。 |
-| callback | AsyncCallback\<[DepthData](#depthdata12)\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
+| callback | AsyncCallback\<[DepthData](#depthdata13)\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **示例：**
 
@@ -876,7 +851,7 @@ function unRegisterDepthDataAvailable(depthDataOutput: camera.DepthDataOutput): 
 }
 ```
 
-### on('error')<sup>12+</sup>
+### on('error')<sup>13+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
@@ -911,7 +886,7 @@ function registerDepthDataOutputError(depthDataOutput: camera.DepthDataOutput): 
 }
 ```
 
-### off('error')<sup>12+</sup>
+### off('error')<sup>13+</sup>
 
 off(type: 'error', callback?: ErrorCallback): void
 
@@ -946,12 +921,12 @@ function unregisterDepthDataOutputError(depthDataOutput: camera.DepthDataOutput)
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-|            名称                 |                     类型                  |     只读    |     必填     | 说明       |
-| ------------------------------- | ---------------------------------------- | ----------- | ------------ | ---------- |
-| cameraDevice                    | [CameraDevice](#cameradevice)            |      否     |       是      | 相机信息。         |
-| restoreParamType<sup>11+</sup>  | [RestoreParamType](#restoreparamtype11)  |      否     |       否      | 预保存参数类型。    |
-| activeTime<sup>11+</sup>        | number                                   |      否     |       否      | 激活时间，单位min。 |
-| settingParam<sup>11+</sup>      |  [SettingParam](#settingparam11)         |      否     |       否      | 设置参数内容。      |
+|            名称                 | 类型                                               |     只读    |     必填     | 说明       |
+| ------------------------------- |--------------------------------------------------| ----------- | ------------ | ---------- |
+| cameraDevice                    | [CameraDevice](./js-apis-camera.md#cameradevice) |      否     |       是      | 相机信息。         |
+| restoreParamType<sup>11+</sup>  | [RestoreParamType](#restoreparamtype11)          |      否     |       否      | 预保存参数类型。    |
+| activeTime<sup>11+</sup>        | number                                           |      否     |       否      | 激活时间，单位min。 |
+| settingParam<sup>11+</sup>      | [SettingParam](#settingparam11)                  |      否     |       否      | 设置参数内容。      |
 
 ## RestoreParamType<sup>11+</sup>
 
@@ -977,9 +952,9 @@ function unregisterDepthDataOutputError(depthDataOutput: camera.DepthDataOutput)
 
 | 名称             | 类型   |   只读    | 可选  | 说明                                                                                                |
 | --------------- | ------ | --------- |-----|---------------------------------------------------------------------------------------------------|
-| skinSmoothLevel | number |  否       | 否   | 美颜类型光滑信息，从[Beauty.getSupportedBeautyRange](#getsupportedbeautyrange12)获取支持的光滑范围，例如1表示1级光滑。        |
-| faceSlender     | number |  否       | 否   | 美颜类型瘦脸信息，从[Beauty.getSupportedBeautyRange](#getsupportedbeautyrange12)获取支持的瘦脸范围，例如1表示1级瘦脸。        |
-| skinTone        | number |  否       | 否   | 美颜类型肤色信息，从[Beauty.getSupportedBeautyRange](#getsupportedbeautyrange12)获取支持的肤色范围，例如0xBF986C表示一个颜色。 |
+| skinSmoothLevel | number |  否       | 否   | 美颜类型光滑信息，从[Beauty.getSupportedBeautyRange](#getsupportedbeautyrange11)获取支持的光滑范围，例如1表示1级光滑。        |
+| faceSlender     | number |  否       | 否   | 美颜类型瘦脸信息，从[Beauty.getSupportedBeautyRange](#getsupportedbeautyrange11)获取支持的瘦脸范围，例如1表示1级瘦脸。        |
+| skinTone        | number |  否       | 否   | 美颜类型肤色信息，从[Beauty.getSupportedBeautyRange](#getsupportedbeautyrange11)获取支持的肤色范围，例如0xBF986C表示一个颜色。 |
 
 ## PreviewOutput
 
@@ -1062,7 +1037,7 @@ function isSketchSupported(previewOutput: camera.PreviewOutput): boolean {
     let isSupported: boolean = previewOutput.isSketchSupported();
     return isSupported;
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The isSketchSupported call failed. error code: ${err.code}`);
   }
@@ -1144,7 +1119,7 @@ function enableSketch(previewOutput: camera.PreviewOutput, session: camera.Sessi
     previewOutput.enableSketch(true);
     session.commitConfig();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The enableSketch call failed. error code: ${err.code}`);
   }
@@ -1192,7 +1167,7 @@ function attachSketchSurface(previewOutput: camera.PreviewOutput, session: camer
     session.commitConfig();
     previewOutput.attachSketchSurface(sketchSurfaceId);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The attachSketchSurface call failed. error code: ${err.code}`);
   }
@@ -1581,7 +1556,7 @@ function deferImageDelivery(photoOutput: camera.PhotoOutput, type: camera.Deferr
 }
 ```
 
-### isAutoHighQualityPhotoSupported<sup>12+</sup>
+### isAutoHighQualityPhotoSupported<sup>13+</sup>
 
 isAutoHighQualityPhotoSupported(): boolean
 
@@ -1617,11 +1592,11 @@ function isAutoHighQualityPhotoSupported(photoOutput: camera.PhotoOutput): boole
 }
 ```
 
-### enableAutoHighQualityPhoto<sup>12+</sup>
+### enableAutoHighQualityPhoto<sup>13+</sup>
 
 enableAutoHighQualityPhoto(enabled: boolean): void
 
-使能拍照自动高画质。设置拍照自动高画质之前，需要调用[isAutoHighQualityPhotoSupported](#isautohighqualityphotosupported12)判断当前是否支持。
+使能拍照自动高画质。设置拍照自动高画质之前，需要调用[isAutoHighQualityPhotoSupported](#isautohighqualityphotosupported13)判断当前是否支持。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1777,15 +1752,15 @@ import { common } from '@kit.AbilityKit';
 async function isQuickThumbnailSupported(context: common.BaseContext, mode: camera.SceneMode, photoProfile: camera.Profile): Promise<boolean> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
-  // 创建CaptureSession实例
+  // 创建CaptureSession实例。
   let session: camera.Session = cameraManager.createSession(mode);
-  // 开始配置会话
+  // 开始配置会话。
   session.beginConfig();
-  // 把CameraInput加入到会话
+  // 把CameraInput加入到会话。
   let cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameras[0]);
   await cameraInput.open();
   session.addInput(cameraInput);
-  // 把photoOutput加入到会话
+  // 把photoOutput加入到会话。
   let photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile);
   session.addOutput(photoOutput);
   let isSupported: boolean = photoOutput.isQuickThumbnailSupported();
@@ -1831,15 +1806,15 @@ import { BusinessError } from '@kit.BasicServicesKit';
 async function enableQuickThumbnail(context: common.BaseContext, mode: camera.SceneMode, photoProfile: camera.Profile): Promise<void> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
-  // 创建CaptureSession实例
+  // 创建CaptureSession实例。
   let session: camera.Session = cameraManager.createSession(mode);
-  // 开始配置会话
+  // 开始配置会话。
   session.beginConfig();
-  // 把CameraInput加入到会话
+  // 把CameraInput加入到会话。
   let cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameras[0]);
   await cameraInput.open();
   session.addInput(cameraInput);
-  // 把PhotoOutPut加入到会话
+  // 把PhotoOutPut加入到会话。
   let photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile);
   session.addOutput(photoOutput);
   let isSupported: boolean = photoOutput.isQuickThumbnailSupported();
@@ -1887,22 +1862,22 @@ function callback(err: BusinessError, pixelMap: image.PixelMap): void {
       console.error('photoOutput on thumbnail failed');
       return;
   }
-  // 显示或保存pixelMap
-  // do something
+  // 显示或保存pixelMap。
+  // do something.
 }
 
 async function registerQuickThumbnail(context: common.BaseContext, mode: camera.SceneMode, photoProfile: camera.Profile): Promise<void> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
-  // 创建CaptureSession实例
+  // 创建CaptureSession实例。
   let session: camera.Session = cameraManager.createSession(mode);
-  // 开始配置会话
+  // 开始配置会话。
   session.beginConfig();
-  // 把CameraInput加入到会话
+  // 把CameraInput加入到会话。
   let cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameras[0]);
   await cameraInput.open();
   session.addInput(cameraInput);
-  // 把PhotoOutPut加入到会话
+  // 把PhotoOutPut加入到会话。
   let photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile);
   session.addOutput(photoOutput);
   let isSupported: boolean = photoOutput.isQuickThumbnailSupported();
@@ -1946,80 +1921,6 @@ function unregisterQuickThumbnail(photoOutput: camera.PhotoOutput): void {
 }
 ```
 
-## VideoOutput
-
-录像会话中使用的输出信息，继承[CameraOutput](js-apis-camera.md#cameraoutput)。
-
-### isMirrorSupported<sup>12+</sup>
-
-isMirrorSupported(): boolean
-
-查询当前设备是否支持视频镜像。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**返回值：**
-
-| 类型            | 说明                     |
-| -------------- | ----------------------- |
-| boolean | 是否支持视频镜像。|
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 202                |  Not System Application.    |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-function isMirrorSupported(videoOutput: camera.VideoOutput): boolean {
-  return videoOutput.isMirrorSupported();
-}
-```
-
-### enableMirror<sup>12+</sup>
-
-enableMirror(enabled: boolean): void
-
-使能视频镜像。使能视频镜像之前，需要调用[isMirrorSupported](#ismirrorsupported12)判断当前是否支持。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 参数名      | 类型               | 必填 | 说明                 |
-| -------- | -------------------- | ---- | ------------------- |
-|   enabled   |  boolean  |   是   |   是否使能视频镜像。    |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 202 | Not System Application. |
-| 7400101                |  Parameter missing or parameter type incorrect.  |
-| 7400103                |  Session not config.                             |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-function enableMirror(videoOutput: camera.VideoOutput): void {
-  return videoOutput.enableMirror(true);
-}
-```
-
 ## MetadataOutput
 
 metadata流。继承[CameraOutput](js-apis-camera.md#cameraoutput)。
@@ -2058,7 +1959,7 @@ function addMetadataObjectTypes(metadataOutput: camera.MetadataOutput, types: Ar
   try {
     metadataOutput.addMetadataObjectTypes(types);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`addMetadataObjectTypes error. error code: ${err.code}`);
   }
@@ -2099,7 +2000,7 @@ function removeMetadataObjectTypes(metadataOutput: camera.MetadataOutput, types:
   try {
     metadataOutput.removeMetadataObjectTypes(types);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`removeMetadataObjectTypes error. error code: ${err.code}`);
   }
@@ -2233,7 +2134,7 @@ function removeMetadataObjectTypes(metadataOutput: camera.MetadataOutput, types:
 
 提供了获取和设置美颜效果的方法。
 
-### getSupportedBeautyTypes<sup>12+</sup>
+### getSupportedBeautyTypes<sup>11+</sup>
 
 getSupportedBeautyTypes(): Array\<BeautyType\>
 
@@ -2267,7 +2168,7 @@ function getSupportedBeautyTypes(portraitPhotoSession: camera.PortraitPhotoSessi
 }
 ```
 
-### getSupportedBeautyRange<sup>12+</sup>
+### getSupportedBeautyRange<sup>11+</sup>
 
 getSupportedBeautyRange(type: BeautyType): Array\<number\>
 
@@ -2337,7 +2238,7 @@ function getSupportedBeautyRange(portraitPhotoSession: camera.PortraitPhotoSessi
 
 此接口提供了查询设备对手动曝光范围支持的功能。
 
-### getSupportedExposureRange<sup>12+</sup>
+### getSupportedExposureRange<sup>11+</sup>
 
 getSupportedExposureRange(): Array\<number\>
 
@@ -2420,7 +2321,7 @@ function getExposure(nightPhotoSession: camera.NightPhotoSession): number | unde
 
 setExposure(exposure: number): void
 
-设置手动曝光时长。[getSupportedExposureRange](#getsupportedexposurerange12)获取得到支持的手动曝光时长列表选取用户所需的时长下发，单位ms。
+设置手动曝光时长。[getSupportedExposureRange](#getsupportedexposurerange11)获取得到支持的手动曝光时长列表选取用户所需的时长下发，单位ms。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2430,7 +2331,7 @@ setExposure(exposure: number): void
 
 | 参数名      | 类型                    | 必填 | 说明                                                                      |
 | -------- | --------------------------| ---- |-------------------------------------------------------------------------|
-| value    | number                    | 是   | 手动曝光时长，通过[getSupportedExposureRange](#getsupportedexposurerange12)接口获取。 |
+| value    | number                    | 是   | 手动曝光时长，通过[getSupportedExposureRange](#getsupportedexposurerange11)接口获取。 |
 
  **错误码：**
 
@@ -2454,7 +2355,7 @@ function setExposure(nightPhotoSession: camera.NightPhotoSession): void {
 
 提供用于查询设备是否支持相机微距拍摄的方法。
 
-### isMacroSupported<sup>12+</sup>
+### isMacroSupported<sup>11+</sup>
 
 isMacroSupported(): boolean
 
@@ -2732,7 +2633,7 @@ function getZoomPointInfos(): Array<ZoomPointInfo> {
     let zoomPointInfos: Array<ZoomPointInfo> = sessionExtendsZoom.getZoomPointInfos();
 	return zoomPointInfos;
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The getZoomPointInfos call failed. error code: ${err.code}`);
   }
@@ -2773,7 +2674,7 @@ function prepareZoom(sessionExtendsZoom: camera.Zoom): void {
   try {
     sessionExtendsZoom.prepareZoom();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The prepareZoom call failed. error code: ${err.code}`);
   }
@@ -2808,7 +2709,7 @@ function unprepareZoom(sessionExtendsZoom: camera.Zoom): void {
   try {
     sessionExtendsZoom.unprepareZoom();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The unprepareZoom call failed. error code: ${err.code}`);
   }
@@ -2838,7 +2739,7 @@ Beauty extends [BeautyQuery](#beautyquery12)
 
 setBeauty(type: BeautyType, value: number): void
 
-设置美颜类型以及对应的美颜强度。将通过[getSupportedBeautyTypes](#getsupportedbeautytypes12)获取得到的[BeautyType](#beautytype)都关闭，表明当前美颜关闭；若有一种美颜类型未关闭，表明当前美颜打开。
+设置美颜类型以及对应的美颜强度。将通过[getSupportedBeautyTypes](#getsupportedbeautytypes11)获取得到的[BeautyType](#beautytype)都关闭，表明当前美颜关闭；若有一种美颜类型未关闭，表明当前美颜打开。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2849,7 +2750,7 @@ setBeauty(type: BeautyType, value: number): void
 | 参数名      | 类型                    | 必填 | 说明                                                                |
 | -------- | --------------------------| ---- |-------------------------------------------------------------------|
 | type     | [BeautyType](#beautytype) | 是   | 美颜类型。                                                             |
-| value    | number                    | 是   | 美颜强度，通过[getSupportedBeautyRange](#getsupportedbeautyrange12)接口获取。 |
+| value    | number                    | 是   | 美颜强度，通过[getSupportedBeautyRange](#getsupportedbeautyrange11)接口获取。 |
 
 **错误码：**
 
@@ -2929,7 +2830,7 @@ function getBeauty(portraitPhotoSession: camera.PortraitPhotoSession): number {
 
 提供了一个查询设备支持的颜色效果类型的方法。
 
-### getSupportedColorEffects<sup>12+</sup>
+### getSupportedColorEffects<sup>11+</sup>
 
 getSupportedColorEffects(): Array\<ColorEffectType\>
 
@@ -2973,7 +2874,7 @@ ColorEffect extends [ColorEffectQuery](#coloreffectquery12)
 
 setColorEffect(type: ColorEffectType): void
 
-设置色彩效果类型。可以先通过[getSupportedColorEffects](#getsupportedcoloreffects12)获取当前设备所支持的ColorEffects。
+设置色彩效果类型。可以先通过[getSupportedColorEffects](#getsupportedcoloreffects11)获取当前设备所支持的ColorEffects。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2983,7 +2884,7 @@ setColorEffect(type: ColorEffectType): void
 
 | 参数名         | 类型                                                            | 必填 | 说明                      |
 | ------------ |--------------------------------------------------------------- | -- | -------------------------- |
-| type | [ColorEffectType](#coloreffecttype11)                              | 是 | 色彩效果类型，通过[getSupportedColorEffects](#getsupportedcoloreffects12)接口获取。   |
+| type | [ColorEffectType](#coloreffecttype11)                              | 是 | 色彩效果类型，通过[getSupportedColorEffects](#getsupportedcoloreffects11)接口获取。   |
 
 **错误码：**
 
@@ -3399,7 +3300,7 @@ getSupportedBeautyTypes(): Array\<BeautyType>
 获取当前支持的美颜效果列表。
 
 > **说明：**
->从 API version 10开始支持，从API version 11开始废弃。建议使用[Beauty.getSupportedBeautyTypes](#getsupportedbeautytypes12)替代。
+>从 API version 10开始支持，从API version 11开始废弃。建议使用[Beauty.getSupportedBeautyTypes](#getsupportedbeautytypes11)替代。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3442,7 +3343,7 @@ getSupportedBeautyRange(type: BeautyType): Array\<number\>
 | SKIN_TONE      | [-1, 16242611]      | 美颜类型为美肤时支持的美颜强度，-1表明关闭美肤，其余非负值为使用RGB表示的美肤美颜强度，<br> 16242611转化为16进制为0xF7D7B3，F7为R通道值，D7为G通道值，B3位B通道值。    |
 
 > **说明：**
->从 API version 10开始支持，从API version 11开始废弃。建议使用[Beauty.getSupportedBeautyRange](#getsupportedbeautyrange12)替代。
+>从 API version 10开始支持，从API version 11开始废弃。建议使用[Beauty.getSupportedBeautyRange](#getsupportedbeautyrange11)替代。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3791,7 +3692,7 @@ function registerLcdFlashStatus(photoSession: camera.PhotoSession): void {
 }
 ```
 
-### off('lcdFlashStatus')<sup>12+</sup>
+### off('lcdFlashStatus')<sup>13+</sup>
 
 off(type: 'lcdFlashStatus', callback?: AsyncCallback\<LcdFlashStatus\>): void
 
@@ -3824,9 +3725,30 @@ function unregisterLcdFlashStatus(photoSession: camera.PhotoSession): void {
 }
 ```
 
+## FocusTrackingMode<sup>15+</sup>
+
+枚举，对焦追踪模式。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+| 名称 | 值   | 说明   |
+| ---- | ---- | ------ |
+| AUTO | 0    | 自动。 |
+
+## FocusTrackingInfo<sup>15+</sup>
+
+相机对焦追踪信息，通过VideoSessionForSys.[on('focusTrackingInfoAvailable')](#onfocustrackinginfoavailable15)接口获取。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+| 名称           | 类型                                      | 只读 | 可选 | 说明       |
+| -------------- | ----------------------------------------- | ---- | ---- | ---------- |
+| trackingMode   | [FocusTrackingMode](#focustrackingmode15) | 否   | 否   | 跟踪模式。 |
+| trackingRegion | [Rect](js-apis-camera.md#rect)            | 否   | 否   | 跟踪区域。 |
+
 ## VideoSessionForSys<sup>11+</sup>
 
-VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, Macro
+VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, Macro, Aperture, ColorReservation
 
 提供给系统应用的VideoSession，普通录像模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置普通录像模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
 
@@ -3960,7 +3882,7 @@ function registerLcdFlashStatus(videoSession: camera.VideoSession): void {
 }
 ```
 
-### off('lcdFlashStatus')<sup>12+</sup>
+### off('lcdFlashStatus')<sup>13+</sup>
 
 off(type: 'lcdFlashStatus', callback?: AsyncCallback\<LcdFlashStatus\>): void
 
@@ -3990,6 +3912,80 @@ off(type: 'lcdFlashStatus', callback?: AsyncCallback\<LcdFlashStatus\>): void
 ```ts
 function unregisterLcdFlashStatus(videoSession: camera.VideoSession): void {
   videoSession.off('lcdFlashStatus');
+}
+```
+
+### on('focusTrackingInfoAvailable')<sup>15+</sup>
+
+on(type: 'focusTrackingInfoAvailable', callback: Callback\<FocusTrackingInfo\>): void
+
+监听相机对焦跟踪信息，通过注册回调函数获取结果。使用callback方式返回结果。
+
+**系统接口**： 此接口为系统接口。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+**参数**：
+
+| 参数名   | 类型                                                       | 必填 | 说明                                                         |
+| -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                     | 是   | 监听事件，固定为'focusTrackingInfoAvailable'，VideoSessionForSys创建成功可监听。 |
+| callback | Callback\<[FocusTrackingInfo](#focustrackinginfo15)\>      | 是   | 回调函数，用于获取当前对焦跟踪信息。                         |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+
+**示例**：
+
+```ts
+function callback(focusTrackingInfo: camera.FocusTrackingInfo): void {
+  console.info(`Focus tracking mode: ${focusTrackingInfo.trackingMode}`);
+  console.info(`Focus tracking Region: topLeftX ${focusTrackingInfo.trackingRegion.topLeftX}
+                                       topLeftY ${focusTrackingInfo.trackingRegion.topLeftY}
+                                       width ${focusTrackingInfo.trackingRegion.width}
+                                       height ${focusTrackingInfo.trackingRegion.height}`);
+}
+
+function registerFocusTrakingInfoChanged(session: camera.VideoSessionForSys): void {
+  session.on('focusTrackingInfoAvailable', callback);
+}
+```
+
+### off('focusTrackingInfoAvailable')<sup>15+</sup>
+
+off(type: 'focusTrackingInfoAvailable', callback?: Callback\<FocusTrackingInfo\>): void
+
+注销监听相机对焦跟踪信息。
+
+**系统接口**： 此接口为系统接口。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+**参数**：
+
+| 参数名   | 类型                                                       | 必填 | 说明                                                         |
+| -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                     | 是   | 监听事件，固定为'focusTrackingInfoAvailable'，videoSessionForSys创建成功可监听。 |
+| callback | Callback\<[FocusTrackingInfo](#focustrackinginfo15)\>      | 否   | 回调函数，可选，有就是匹配on('focusTrackingInfoAvailable') callback（callback对象不可是匿名函数）。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+
+**示例**：
+
+```ts
+function unregisterFocusTrakingInfoChanged(session: camera.VideoSessionForSys): void {
+  session.off('focusTrackingInfoAvailable');
 }
 ```
 
@@ -4219,7 +4215,7 @@ function registerLcdFlashStatus(portraitPhotoSession: camera.PortraitPhotoSessio
 }
 ```
 
-### off('lcdFlashStatus')<sup>12+</sup>
+### off('lcdFlashStatus')<sup>13+</sup>
 
 off(type: 'lcdFlashStatus', callback?: AsyncCallback\<LcdFlashStatus\>): void
 
@@ -5021,7 +5017,7 @@ function isSlowMotionDetectionSupported(slowMotionVideoSession: camera.SlowMotio
   try {
     isSupported = slowMotionVideoSession.isSlowMotionDetectionSupported();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The isFocusModeSupported call failed. error code: ${err.code}`);
   }
@@ -5068,7 +5064,7 @@ function setSlowMotionDetectionArea(slowMotionVideoSession: camera.SlowMotionVid
   try {
     slowMotionVideoSession.setSlowMotionDetectionArea({topLeftX: 0.1, topLeftY: 0.1, width: 0.8, height: 0.8});
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The setSlowMotionDetectionArea call failed. error code: ${err.code}`);
   }
@@ -5112,7 +5108,7 @@ function registerSessionError(panoramaPhotoSession: camera.PanoramaPhotoSession)
 }
 ```
 
-### off('error')<sup>11+</sup>
+### off('error')<sup>12+</sup>
 
 off(type: 'error', callback?: ErrorCallback): void
 
@@ -5137,7 +5133,7 @@ function unregisterSessionError(panoramaPhotoSession: camera.PanoramaPhotoSessio
 }
 ```
 
-### on('focusStateChange')<sup>11+</sup>
+### on('focusStateChange')<sup>12+</sup>
 
 on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
@@ -5172,7 +5168,7 @@ function registerFocusStateChange(panoramaPhotoSession: camera.PanoramaPhotoSess
 }
 ```
 
-### off('focusStateChange')<sup>11+</sup>
+### off('focusStateChange')<sup>12+</sup>
 
 off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 
@@ -5322,7 +5318,7 @@ function isExposureMeteringModeSupported(professionalPhotoSession: camera.Profes
   try {
     isSupported = professionalPhotoSession.isExposureModeSupported(camera.ExposureMeteringMode.CENTER);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The isExposureMeteringModeSupported call failed. error code: ${err.code}`);
   }
@@ -5371,7 +5367,7 @@ function getExposureMeteringMode(professionalPhotoSession: camera.ProfessionalPh
   try {
     exposureMeteringMode = professionalPhotoSession.getExposureMeteringMode();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The getExposureMeteringMode call failed. error code: ${err.code}`);
   }
@@ -5414,12 +5410,34 @@ function setExposureMeteringMode(professionalPhotoSession: camera.ProfessionalPh
   try {
     professionalPhotoSession.setExposureMeteringMode(camera.ExposureMeteringMode.CENTER);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The setExposureMeteringMode call failed. error code: ${err.code}`);
   }
 }
 ```
+
+## FocusRangeType<sup>15+</sup>
+
+枚举，对焦范围类型。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+| 名称 | 值   | 说明       |
+| ---- | ---- | ---------- |
+| AUTO | 0    | 自动对焦。     |
+| NEAR | 1    | 近物对焦。 |
+
+## FocusDrivenType<sup>15+</sup>
+
+枚举，对焦驱动类型。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+| 名称 | 值   | 说明       |
+| ---- | ---- | ---------- |
+| AUTO | 0    | 自动。     |
+| FACE | 1    | 人脸驱动。 |
 
 ## FocusQuery<sup>12+</sup>
 
@@ -5460,9 +5478,109 @@ function isFocusAssistSupported(professionalPhotoSession: camera.ProfessionalPho
   try {
     status = professionalPhotoSession.isFocusAssistSupported();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The isFocusAssistSupported call failed. error code: ${err.code}`);
+  }
+  return status;
+}
+```
+
+### isFocusRangeTypeSupported<sup>15+</sup>
+
+isFocusRangeTypeSupported(type: FocusRangeType): boolean
+
+查询是否支持指定的对焦范围类型。
+
+**系统接口**： 此接口为系统接口。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+**参数**：
+
+| 参数名 | 类型                                | 必填 | 说明                     |
+| ------ | ----------------------------------- | ---- | ------------------------ |
+| type   | [FocusRangeType](#focusrangetype15) | 是   | 指定对应的对焦范围类型。 |
+
+**返回值**：
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 返回true表示支持指定的对焦范围类型，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | Not System Application.                                      |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 7400103  | Session not config.                                          |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function isFocusRangeTypeSupported(session: camera.VideoSessionForSys, type: camera.FocusRangeType): boolean {
+  let status: boolean = false;
+  try {
+    status = session.isFocusRangeTypeSupported(type);
+  } catch (error) {
+    // 失败返回错误码error.code并处理。
+    let err = error as BusinessError;
+    console.error(`The isFocusRangeTypeSupported call failed. error code: ${err.code}`);
+  }
+  return status;
+}
+```
+
+### isFocusDrivenTypeSupported<sup>15+</sup>
+
+isFocusDrivenTypeSupported(type: FocusDrivenType): boolean
+
+查询是否支持指定的对焦驱动类型。
+
+**系统接口**： 此接口为系统接口。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+**参数**：
+
+| 参数名 | 类型                                  | 必填 | 说明                     |
+| ------ | ------------------------------------- | ---- | ------------------------ |
+| type   | [FocusDrivenType](#focusdriventype15) | 是   | 指定对应的对焦驱动类型。 |
+
+**返回值**：
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 返回true表示支持指定的对焦驱动类型，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | Not System Application.                                      |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 7400103  | Session not config.                                          |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function isFocusDrivenTypeSupported(session: camera.VideoSessionForSys, type: camera.FocusDrivenType): boolean {
+  let status: boolean = false;
+  try {
+    status = session.isFocusDrivenTypeSupported(type);
+  } catch (error) {
+    // 失败返回错误码error.code并处理。
+    let err = error as BusinessError;
+    console.error(`The isFocusDrivenTypeSupported call failed. error code: ${err.code}`);
   }
   return status;
 }
@@ -5510,7 +5628,7 @@ function setFocusAssist(professionalPhotoSession: camera.ProfessionalPhotoSessio
   try {
     professionalPhotoSession.setFocusAssist(false);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The setFocusAssist call failed. error code: ${err.code}`);
   }
@@ -5552,11 +5670,185 @@ function getFocusAssist(professionalPhotoSession: camera.ProfessionalPhotoSessio
   try {
     isFocusAssistOpened = professionalPhotoSession.getFocusAssist();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The getFocusAssist call failed. error code: ${err.code}`);
   }
   return isFocusAssistOpened;
+}
+```
+
+### setFocusRange<sup>15+</sup>
+
+setFocusRange(type: FocusRangeType): void
+
+设置对焦范围类型。进行设置之前，需要先检查设备是否支持指定的对焦范围类型，可使用方法[isFocusRangeTypeSupported](#isfocusrangetypesupported15)。
+
+**系统接口**： 此接口为系统接口。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+**参数**：
+
+| 参数名 | 类型                                | 必填 | 说明           |
+| ------ | ----------------------------------- | ---- | -------------- |
+| type   | [FocusRangeType](#focusrangetype15) | 是   | 对焦范围类型。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | Not System Application.                                      |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed. |
+| 7400102  | Operation not allowed.                                       |
+| 7400103  | Session not config.                                          |
+| 7400201  | Camera service fatal error.                                  |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function setFocusRange(session: camera.VideoSessionForSys, type: camera.FocusRangeType): void {
+  try {
+    session.setFocusRange(type);
+  } catch (error) {
+    // 失败返回错误码error.code并处理。
+    let err = error as BusinessError;
+    console.error(`The setFocusRange call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getFocusRange<sup>15+</sup>
+
+getFocusRange(): FocusRangeType
+
+获取当前设置的对焦范围类型。
+
+**系统接口**： 此接口为系统接口。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+**返回值**：
+
+| 类型                                | 说明                     |
+| ----------------------------------- | ------------------------ |
+| [FocusRangeType](#focusrangetype15) | 当前设置的对焦范围类型。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+| 7400103  | Session not config.     |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getFocusRange(session: camera.VideoSessionForSys): camera.FocusRangeType | undefined {
+  let focusRangeType: camera.FocusRangeType | undefined = undefined;
+  try {
+    focusRangeType = session.getFocusRange();
+  } catch (error) {
+    // 失败返回错误码error.code并处理。
+    let err = error as BusinessError;
+    console.error(`The getFocusRange call failed. error code: ${err.code}`);
+  }
+  return focusRangeType;
+}
+```
+
+### setFocusDriven<sup>15+</sup>
+
+setFocusDriven(type: FocusDrivenType): void
+
+设置对焦驱动类型。进行设置之前，需要先检查设备是否支持指定的对焦驱动类型，可使用方法[isFocusDrivenTypeSupported](#isfocusdriventypesupported15)。
+
+**系统接口**： 此接口为系统接口。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+**参数**：
+
+| 参数名 | 类型                                  | 必填 | 说明           |
+| ------ | ------------------------------------- | ---- | -------------- |
+| type   | [FocusDrivenType](#focusdriventype15) | 是   | 对焦驱动类型。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | Not System Application.                                      |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed. |
+| 7400102  | Operation not allowed.                                       |
+| 7400103  | Session not config.                                          |
+| 7400201  | Camera service fatal error.                                  |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function setFocusDriven(session: camera.VideoSessionForSys, type: camera.FocusDrivenType): void {
+  try {
+    session.setFocusDriven(type);
+  } catch (error) {
+    // 失败返回错误码error.code并处理。
+    let err = error as BusinessError;
+    console.error(`The setFocusDriven call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getFocusDriven<sup>15+</sup>
+
+getFocusDriven(): FocusDrivenType
+
+获取当前设置的对焦驱动类型。
+
+**系统接口**： 此接口为系统接口。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+**返回值**：
+
+| 类型                                  | 说明                     |
+| ------------------------------------- | ------------------------ |
+| [FocusDrivenType](#focusdriventype15) | 当前设置的对焦驱动类型。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+| 7400103  | Session not config.     |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getFocusDriven(session: camera.VideoSessionForSys): camera.FocusDrivenType | undefined {
+  let focusDrivenType: camera.FocusDrivenType | undefined = undefined;
+  try {
+    focusDrivenType = session.getFocusDriven();
+  } catch (error) {
+    // 失败返回错误码error.code并处理。
+    let err = error as BusinessError;
+    console.error(`The getFocusDriven call failed. error code: ${err.code}`);
+  }
+  return focusDrivenType;
 }
 ```
 
@@ -5600,7 +5892,7 @@ function setFocusDistance(professionalPhotoSession: camera.ProfessionalPhotoSess
     let distance: number = 0.5;
     professionalPhotoSession.setFocusDistance(distance);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The setFocusDistance call failed. error code: ${err.code}`);
   }
@@ -5642,7 +5934,7 @@ function getFocusDistance(professionalPhotoSession: camera.ProfessionalPhotoSess
   try {
     distance = professionalPhotoSession.getFocusDistance();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The getFocusDistance call failed. error code: ${err.code}`);
   }
@@ -5689,7 +5981,7 @@ function isManualIsoSupported(professionalPhotoSession: camera.ProfessionalPhoto
   try {
     status = professionalPhotoSession.isManualIsoSupported();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The isManualIsoSupported call failed. error code: ${err.code}`);
   }
@@ -5732,7 +6024,7 @@ function getIsoRange(professionalPhotoSession: camera.ProfessionalPhotoSession):
   try {
     isoRange = professionalPhotoSession.getIsoRange();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The getIsoRange call failed. error code: ${err.code}`);
   }
@@ -5781,7 +6073,7 @@ function setIso(professionalPhotoSession: camera.ProfessionalPhotoSession): void
     let iso: number = 200;
     professionalPhotoSession.setIso(iso);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The setIso call failed. error code: ${err.code}`);
   }
@@ -5823,7 +6115,7 @@ function getIso(professionalPhotoSession: camera.ProfessionalPhotoSession): numb
   try {
     iso = professionalPhotoSession.getIso();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The getIso call failed. error code: ${err.code}`);
   }
@@ -5894,7 +6186,7 @@ function isWhiteBalanceModeSupported(professionalPhotoSession: camera.Profession
 	let mode: WhiteBalanceMode = camera.WhiteBalanceMode.DAYLIGHT;
     status = professionalPhotoSession.isWhiteBalanceModeSupported(mode);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The isWhiteBalanceModeSupported call failed. error code: ${err.code}`);
   }
@@ -5937,7 +6229,7 @@ function getWhiteBalanceRange(professionalPhotoSession: camera.ProfessionalPhoto
   try {
     range = professionalPhotoSession.getWhiteBalanceRange();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The getWhiteBalanceRange call failed. error code: ${err.code}`);
   }
@@ -5986,7 +6278,7 @@ function setWhiteBalanceMode(professionalPhotoSession: camera.ProfessionalPhotoS
   try {
     professionalPhotoSession.setWhiteBalanceMode(camera.WhiteBalanceMode.DAYLIGHT);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The setWhiteBalanceMode call failed. error code: ${err.code}`);
   }
@@ -6028,7 +6320,7 @@ function getWhiteBalanceMode(professionalPhotoSession: camera.ProfessionalPhotoS
   try {
     whiteBalanceMode = professionalPhotoSession.getWhiteBalanceMode();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The getWhiteBalanceMode call failed. error code: ${err.code}`);
   }
@@ -6071,7 +6363,7 @@ function setWhiteBalance(professionalPhotoSession: camera.ProfessionalPhotoSessi
     let whiteBalance: number = 1000;
     professionalPhotoSession.setWhiteBalance(whiteBalance);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The setWhiteBalance call failed. error code: ${err.code}`);
   }
@@ -6113,7 +6405,7 @@ function getWhiteBalance(professionalPhotoSession: camera.ProfessionalPhotoSessi
   try {
     whiteBalance = professionalPhotoSession.getWhiteBalance();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The getWhiteBalance call failed. error code: ${err.code}`);
   }
@@ -7693,7 +7985,7 @@ function enableLcdFlash(session: camera.PhotoSessionForSys | camera.VideoSession
   try {
     session.enableLcdFlash(true);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The setFlashMode call failed. error code: ${err.code}`);
   }
@@ -8218,7 +8510,7 @@ function isTryAENeeded(timeLapsePhotoSession: camera.TimeLapsePhotoSession): boo
   try {
     needed = timeLapsePhotoSession.isTryAENeeded();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The isTryAENeeded call failed. error code: ${err.code}`);
   }
@@ -8254,7 +8546,7 @@ function startTryAE(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
   try {
     timeLapsePhotoSession.startTryAE();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The startTryAE call failed. error code: ${err.code}`);
   }
@@ -8289,7 +8581,7 @@ function stopTryAE(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
   try {
     timeLapsePhotoSession.stopTryAE();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The stopTryAE call failed. error code: ${err.code}`);
   }
@@ -8331,7 +8623,7 @@ function getSupportedTimeLapseIntervalRange(timeLapsePhotoSession: camera.TimeLa
   try {
     intervalRange = timeLapsePhotoSession.getSupportedTimeLapseIntervalRange();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The getSupportedTimeLapseIntervalRange call failed. error code: ${err.code}`);
   }
@@ -8374,7 +8666,7 @@ function getTimeLapseInterval(timeLapsePhotoSession: camera.TimeLapsePhotoSessio
   try {
     interval = timeLapsePhotoSession.getTimeLapseInterval();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The getTimeLapseInterval call failed. error code: ${err.code}`);
   }
@@ -8417,7 +8709,7 @@ function setTimeLapseInterval(timeLapsePhotoSession: camera.TimeLapsePhotoSessio
     let interval: number = 10000;
     timeLapsePhotoSession.setTimeLapseInterval(interval);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The setTimeLapseInterval call failed. error code: ${err.code}`);
   }
@@ -8459,7 +8751,7 @@ function getTimeLapseRecordState(timeLapsePhotoSession: camera.TimeLapsePhotoSes
   try {
     state = timeLapsePhotoSession.getTimeLapseRecordState();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The getTimeLapseRecordState call failed. error code: ${err.code}`);
   }
@@ -8502,7 +8794,7 @@ function setTimeLapseRecordState(timeLapsePhotoSession: camera.TimeLapsePhotoSes
   try {
     timeLapsePhotoSession.setTimeLapseRecordState(camera.TimeLapseRecordState.RECORDING);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The setTimeLapseRecordState call failed. error code: ${err.code}`);
   }
@@ -8544,7 +8836,7 @@ function getTimeLapsePreviewType(timeLapsePhotoSession: camera.TimeLapsePhotoSes
   try {
     type = timeLapsePhotoSession.getTimeLapsePreviewType();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The getTimeLapsePreviewType call failed. error code: ${err.code}`);
   }
@@ -8587,7 +8879,7 @@ function setTimeLapsePreviewType(timeLapsePhotoSession: camera.TimeLapsePhotoSes
   try {
     timeLapsePhotoSession.setTimeLapsePreviewType(camera.TimeLapsePreviewType.LIGHT);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The setTimeLapsePreviewType call failed. error code: ${err.code}`);
   }
@@ -8892,7 +9184,7 @@ function setLightPaintingType(lightPaintingPhotoSession: camera.LightPaintingPho
     let type: camera.LightPaintingType = camera.LightPaintingType.TRAFFIC_TRAILS;
     lightPaintingPhotoSession.setLightPaintingType(type);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The setLightPaintingType call failed. error code: ${err.code}`);
   }
@@ -8929,5 +9221,156 @@ getSupportedLightPaintingTypes(): Array\<LightPaintingType\>
 function getSupportedLightPaintingTypes(lightPaintingPhotoSession: camera.LightPaintingPhotoSession): Array<camera.LightPaintingType> {
   let types: Array<camera.LightPaintingType> = lightPaintingPhotoSession.getSupportedLightPaintingTypes();
   return types
+}
+```
+
+## ColorReservationType<sup>15+</sup>
+
+枚举，色彩保留类型。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+| 名称     | 值   | 说明             |
+| -------- | ---- | ---------------- |
+| NONE     | 0    | 无色彩保留效果。 |
+| PORTRAIT | 1    | 人像留色。       |
+
+## ColorReservationQuery<sup>15+</sup>
+
+提供了查询设备支持的色彩保留类型的功能。
+
+### getSupportedColorReservationTypes<sup>15+</sup>
+
+getSupportedColorReservationTypes(): Array\<ColorReservationType\>
+
+获取支持的色彩保留类型列表。
+
+**系统接口**： 此接口为系统接口。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+**返回值**：
+
+| 类型                                                   | 说明                     |
+| ------------------------------------------------------ | ------------------------ |
+| Array<[ColorReservationType](#colorreservationtype15)> | 支持的色彩保留类型列表。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+| 7400103  | Session not config.     |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getSupportedColorReservationTypes(session: camera.VideoSessionForSys): Array<camera.ColorReservationType> {
+  let colorReservationTypes: Array<camera.ColorReservationType> = [];
+  try {
+    colorReservationTypes = session.getSupportedColorReservationTypes();
+  } catch (error) {
+    // 失败返回错误码error.code并处理。
+    let err = error as BusinessError;
+    console.error(`The getSupportedColorReservationTypes call failed. error code: ${err.code}`);
+  }
+  return colorReservationTypes;
+}
+```
+
+## ColorReservation<sup>15+</sup>
+
+ColorReservation extends [ColorReservationQuery](#colorreservationquery15)
+
+提供了获取和设置相机色彩保留类型的方法。
+
+### setColorReservation<sup>15+</sup>
+
+setColorReservation(type: ColorReservationType): void
+
+设置色彩保留类型。可以先通过[getSupportedColorReservationTypes](#getsupportedcolorreservationtypes15)获取当前设备所支持的ColorReservationType。
+
+**系统接口**： 此接口为系统接口。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+**参数**：
+
+| 参数名 | 类型                                            | 必填 | 说明                                                         |
+| ------ | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type   | [ColorReservationType](#colorreservationtype15) | 是   | 色彩保留类型，通过[getSupportedColorReservationTypes](#getsupportedcolorreservationtypes15)接口获取。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | Not System Application.                                      |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed. |
+| 7400102  | Operation not allowed.                                       |
+| 7400103  | Session not config.                                          |
+| 7400201  | Camera service fatal error.                                  |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function setColorReservation(session: camera.VideoSessionForSys, type: camera.ColorReservationType): void {
+  try {
+    session.setColorReservation(type);
+  } catch (error) {
+    // 失败返回错误码error.code并处理。
+    let err = error as BusinessError;
+    console.error(`The setColorReservation call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getColorReservation<sup>15+</sup>
+
+getColorReservation(): ColorReservationType
+
+获取当前设置的色彩保留类型。
+
+**系统接口**： 此接口为系统接口。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+**返回值**：
+
+| 类型                                            | 说明                     |
+| ----------------------------------------------- | ------------------------ |
+| [ColorReservationType](#colorreservationtype15) | 当前设置的色彩保留类型。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+| 7400103  | Session not config.     |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getColorReservation(session: camera.VideoSessionForSys): camera.ColorReservationType | undefined {
+  let colorReservation: camera.ColorReservationType | undefined = undefined;
+  try {
+    colorReservation = session.getColorReservation();
+  } catch (error) {
+    // 失败返回错误码error.code并处理。
+    let err = error as BusinessError;
+    console.error(`The setColorReservation call failed. error code: ${err.code}`);
+  }
+  return colorReservation;
 }
 ```

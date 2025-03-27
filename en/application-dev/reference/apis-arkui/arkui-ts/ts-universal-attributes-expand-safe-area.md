@@ -70,7 +70,7 @@ Sets the avoidance mode for the virtual keyboard.
 
 | Name| Type                                                | Mandatory| Description                                                        |
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [KeyboardAvoidMode](ts-types.md#keyboardavoidmode11) | Yes  | Avoidance mode of the virtual keyboard.<br>Default value: **KeyboardAvoidMode.OFFSET**, which means that the page moves up when the keyboard is displayed.|
+| value  | [KeyboardAvoidMode](../js-apis-arkui-UIContext.md#keyboardavoidmode11) | Yes  | Avoidance mode of the virtual keyboard.<br>Default value: **KeyboardAvoidMode.OFFSET**, which means that the page moves up when the keyboard is displayed.|
 
 >  **NOTE**
 >
@@ -92,7 +92,7 @@ Obtains the avoidance mode of the virtual keyboard.
 
 | Name                                                | Description                              |
 | ---------------------------------------------------- | ---------------------------------- |
-| [KeyboardAvoidMode](ts-types.md#keyboardavoidmode11) | Avoidance mode of the virtual keyboard.|
+| [KeyboardAvoidMode](../js-apis-arkui-UIContext.md#keyboardavoidmode11) | Avoidance mode of the virtual keyboard.|
 
 ## Example
 

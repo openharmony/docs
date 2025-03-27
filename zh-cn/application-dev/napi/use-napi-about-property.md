@@ -97,6 +97,8 @@ cpp部分代码
 ```cpp
 #include "napi/native_api.h"
 
+static constexpr int INT_ARG_2 = 2; // 入参索引
+
 static napi_value SetProperty(napi_env env, napi_callback_info info)
 {
     // 接收ArkTS侧传入的三个参数：第一个参数为想要设置的object，第二个参数为属性，第三个参数为属性对应的值
@@ -107,7 +109,7 @@ static napi_value SetProperty(napi_env env, napi_callback_info info)
         napi_throw_error(env, nullptr, "Node-API napi_get_cb_info fail");
     }
     // 通过调用napi_set_property接口将属性与值设置入object，如果失败，直接抛出错误
-    status = napi_set_property(env, args[0], args[1], args[2]);
+    status = napi_set_property(env, args[0], args[1], args[INT_ARG_2]);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "Node-API napi_set_property fail");
         return nullptr;

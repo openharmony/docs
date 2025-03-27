@@ -1,6 +1,6 @@
-# C/C++ Mechanisms
+# C/C++ Library Mechanisms
 
-OpenHarmony NDK provides industry standard libraries [libc](../reference/native-lib/musl.md) and [libc++](../reference/native-lib/cpp.md). This topic describes the mechanisms of these libraries in OpenHarmony. Understanding these mechanisms helps you avoid pitfalls during NDK development.
+The OpenHarmony NDK provides industry standard libraries [libc](../reference/native-lib/musl.md) and [libc++](../reference/native-lib/cpp.md). This topic describes the mechanisms of these libraries in OpenHarmony. Understanding these mechanisms helps you avoid pitfalls during NDK development.
 
 ## C++ Compatibility
 
@@ -17,7 +17,7 @@ The two libraries use different C++ namespaces. **libc++.so** uses **__h** as th
 
 **Known C++ Compatibility Issues**
 
-If "symbol not found, s=\_\_emutls_get_address" is reported when an application starts or when **dlopen()** is called, update the SDK of the application or HAR. This symbol is not provided by **libc++\_shared.so** in the SDK of API version 9 or earlier, and is available since API version 11.
+If "symbol not found, s=\_\_emutls_get_address" is reported when an application starts or when **dlopen()** is called, update the SDK of the application or HAR. This symbol is not provided by **libc++\_shared.so** in the SDK of API version 9 or earlier, and is available since API version 11. 
 
 ## musl libc Dynamic Linker
 
@@ -65,9 +65,9 @@ If the file descriptor (**fd**) passed in **FD_SET** or **FD_CLR** is not within
 If the **fd** value passed in **FD_ISSET** is not within the value range [0, 1024), **false** will be returned.
 
 ### Globalization
-Since API version 12, **locale** in **newlocale()** and **setlocale()** can be set to any of the following values: **C**, **C.UTF-8**, **en_US**, **en_US.UTF-8**, **zh_CN**, and **zh_CN.UTF-8**. 
+Since API version 12, **locale** in **newlocale()** and **setlocale()** can be set to any of the following values: **C**, **C.UTF-8**, **en_US**, **en_US.UTF-8**, **zh_CN**, and **zh_CN.UTF-8**.
 
-**strtod_l**, **wcstod_l**, and **localeconv** support the **locale** values **zh_CN** and **zh_CN.UTF-8**. 
+**strtod_l**, **wcstod_l**, and **localeconv** support the **locale** values **zh_CN** and **zh_CN.UTF-8**.
 
 Note that **strtod_l()** and **wcstod_l()** do not support conversion of hexadecimal numbers and floating-point numbers.
 

@@ -143,7 +143,7 @@ suspend(isImmediate?: boolean): void
 
 | 参数名 | 类型   | 必填 | 说明       |
 | ------ | ------ | ---- | ---------- |
-| isImmediate<sup>10+</sup> | boolean |  否  | 是否直接休眠设备。不填该参数则默认为false由系统自动检测何时进入休眠。<br>**说明：** 从API version 10开始，支持该参数。|
+| isImmediate<sup>10+</sup> | boolean |  否  | 是否直接休眠设备。true表示灭屏后立即进入休眠，不填该参数则默认为false，表示灭屏后由系统自动检测何时进入休眠。如果只想做灭屏操作，建议不填参数。<br>**说明：** 从API version 10开始，支持该参数。|
 
 
 **错误码：**

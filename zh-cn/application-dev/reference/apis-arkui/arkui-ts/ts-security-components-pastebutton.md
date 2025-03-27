@@ -26,7 +26,7 @@ PasteButton()
 
 ### PasteButton
 
-PasteButton(options:PasteButtonOptions)
+PasteButton(options: PasteButtonOptions)
 
 创建包含指定元素的粘贴按钮。
 
@@ -111,7 +111,7 @@ PasteButton(options:PasteButtonOptions)
 
 onClick(event: (event: ClickEvent, result: PasteButtonOnClickResult) =&gt; void)
 
-点击动作触发该回调
+点击动作触发该回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -121,7 +121,7 @@ onClick(event: (event: ClickEvent, result: PasteButtonOnClickResult) =&gt; void)
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| event  | [ClickEvent](ts-universal-events-click.md#clickevent对象说明) |是 |见ClickEvent对象说明|
+| event  | [ClickEvent](ts-universal-events-click.md#clickevent对象说明) |是 |见ClickEvent对象说明。|
 | result | [PasteButtonOnClickResult](#pastebuttononclickresult枚举说明)| 是 | 剪贴板权限的授权结果，授权后可以读取当前剪贴板内容。|
 
 ## 示例
@@ -133,30 +133,35 @@ onClick(event: (event: ClickEvent, result: PasteButtonOnClickResult) =&gt; void)
 struct Index {
   build() {
     Row() {
-      Column({space:10}) {
-        // 默认参数下，图标、文字、背景都存在
-        PasteButton().onClick((event: ClickEvent, result: PasteButtonOnClickResult)=>{
+      Column({ space: 10 }) {
+        // 默认参数下，图标、文字、背景都存在。
+        PasteButton().onClick((event: ClickEvent, result: PasteButtonOnClickResult) => {
           console.info("result " + result)
         })
         // 传入参数即表示元素存在，不传入的参数表示元素不存在，如果不传入buttonType，会默认添加ButtonType.Capsule配置，显示图标+背景。
-        PasteButton({icon:PasteIconStyle.LINES})
-        // 只显示图标+背景，如果设置背景色高八位的α值低于0x1A，则会被系统强制调整为0xFF
-        PasteButton({icon:PasteIconStyle.LINES, buttonType:ButtonType.Capsule})
+        PasteButton({ icon: PasteIconStyle.LINES })
+        // 只显示图标+背景，如果设置背景色高八位的α值低于0x1A，则会被系统强制调整为0xFF。
+        PasteButton({ icon: PasteIconStyle.LINES, buttonType: ButtonType.Capsule })
           .backgroundColor(0x10007dff)
-        // 图标、文字、背景都存在，如果设置背景色高八位的α值低于0x1A，则会被系统强制调整为0xFF
-        PasteButton({icon:PasteIconStyle.LINES, text:PasteDescription.PASTE, buttonType:ButtonType.Capsule})
+        // 图标、文字、背景都存在，如果设置背景色高八位的α值低于0x1A，则会被系统强制调整为0xFF。
+        PasteButton({ icon: PasteIconStyle.LINES, text: PasteDescription.PASTE, buttonType: ButtonType.Capsule })
         // 图标、文字、背景都存在，如果设置宽度小于当前属性组合下允许的最小宽度时，宽度仍为设置值，此时按钮文本信息会自动换行，以保证安全控件显示的完整性。
-        PasteButton({icon:PasteIconStyle.LINES, text:PasteDescription.PASTE, buttonType:ButtonType.Capsule})
+        PasteButton({ icon: PasteIconStyle.LINES, text: PasteDescription.PASTE, buttonType: ButtonType.Capsule })
           .fontSize(16)
           .width(30)
         // 图标、文字、背景都存在，如果设置宽度小于当前属性组合下允许的最小宽度时，宽度仍为设置值，此时按钮文本信息会自动换行，以保证安全控件显示的完整性。
-        PasteButton({icon:PasteIconStyle.LINES, text:PasteDescription.PASTE, buttonType:ButtonType.Capsule})
+        PasteButton({ icon: PasteIconStyle.LINES, text: PasteDescription.PASTE, buttonType: ButtonType.Capsule })
           .fontSize(16)
-          .size({width: 30, height: 30})
+          .size({ width: 30, height: 30 })
         // 图标、文字、背景都存在，如果设置宽度小于当前属性组合下允许的最小宽度时，宽度仍为设置值，此时按钮文本信息会自动换行，以保证安全控件显示的完整性。
-        PasteButton({icon:PasteIconStyle.LINES, text:PasteDescription.PASTE, buttonType:ButtonType.Capsule})
+        PasteButton({ icon: PasteIconStyle.LINES, text: PasteDescription.PASTE, buttonType: ButtonType.Capsule })
           .fontSize(16)
-          .constraintSize({minWidth: 0, maxWidth: 30, minHeight: 0, maxHeight: 30})
+          .constraintSize({
+            minWidth: 0,
+            maxWidth: 30,
+            minHeight: 0,
+            maxHeight: 30
+          })
       }.width('100%')
     }.height('100%')
   }

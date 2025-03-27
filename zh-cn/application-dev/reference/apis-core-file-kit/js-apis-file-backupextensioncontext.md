@@ -2,7 +2,7 @@
 
 BackupExtensionContext是BackupExtension的上下文环境，继承自ExtensionContext。
 
-BackupExtensionContext模块提供访问特定BackupExtension的资源的能力，对于拓展的BackupExtension，可直接将BackupExtensionContext作为上下文环境，或者定义一个继承自BackupExtensionContext的类型作为上下文环境。
+BackupExtensionContext模块提供访问特定BackupExtension的资源的能力。对于拓展的BackupExtension，可直接将BackupExtensionContext作为上下文环境，或者定义一个继承自BackupExtensionContext的类型作为上下文环境。
 
 > **说明：**
 >

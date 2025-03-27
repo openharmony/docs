@@ -86,12 +86,13 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Image_ErrorCode](#image_errorcode) {<br/>IMAGE_SUCCESS = 0, <br/>IMAGE_BAD_PARAMETER = 401, <br/>IMAGE_UNSUPPORTED_MIME_TYPE = 7600101, <br/>IMAGE_UNKNOWN_MIME_TYPE = 7600102,<br/>IMAGE_TOO_LARGE = 7600103, <br/>IMAGE_DMA_NOT_EXIST = 7600173, <br/>IMAGE_DMA_OPERATION_FAILED = 7600174, <br/>IMAGE_UNSUPPORTED_OPERATION = 7600201,<br/>IMAGE_UNSUPPORTED_METADATA = 7600202, <br/>IMAGE_UNSUPPORTED_CONVERSION = 7600203, <br/>IMAGE_INVALID_REGION = 7600204, <br/>IMAGE_UNSUPPORTED_MEMORY_FORMAT = 7600205, <br/>IMAGE_ALLOC_FAILED = 7600301,<br/>IMAGE_COPY_FAILED = 7600302, <br/>IMAGE_UNKNOWN_ERROR = 7600901, <br/>IMAGE_BAD_SOURCE = 7700101, <br/>IMAGE_DECODE_FAILED = 7700301,<br/>IMAGE_ENCODE_FAILED = 7800301<br/>} | 错误码。  | 
-| [Image_MetadataType](#image_metadatatype-1) { EXIF_METADATA = 1, FRAGMENT_METADATA = 2 } | 定义元数据类型。  | 
+| [Image_ErrorCode](#image_errorcode) {<br/>IMAGE_SUCCESS = 0, <br/>IMAGE_BAD_PARAMETER = 401, <br/>IMAGE_UNSUPPORTED_MIME_TYPE = 7600101, <br/>IMAGE_UNKNOWN_MIME_TYPE = 7600102,<br/>IMAGE_TOO_LARGE = 7600103, <br/>IMAGE_DMA_NOT_EXIST = 7600173, <br/>IMAGE_DMA_OPERATION_FAILED = 7600174, <br/>IMAGE_UNSUPPORTED_OPERATION = 7600201,<br/>IMAGE_UNSUPPORTED_METADATA = 7600202, <br/>IMAGE_UNSUPPORTED_CONVERSION = 7600203, <br/>IMAGE_INVALID_REGION = 7600204, <br/>IMAGE_UNSUPPORTED_MEMORY_FORMAT = 7600205, <br/>IMAGE_ALLOC_FAILED = 7600301,<br/>IMAGE_COPY_FAILED = 7600302, <br/>IMAGE_UNKNOWN_ERROR = 7600901, <br/>IMAGE_BAD_SOURCE = 7700101,<br/>IMAGE_SOURCE_UNSUPPORTED_MIME_TYPE = 7700102,<br/>IMAGE_SOURCE_TOO_LARGE = 7700103,<br/>IMAGE_SOURCE_UNSUPPORTED_ALLOCATOR_TYPE = 7700201,<br/>IMAGE_SOURCE_UNSUPPORTED_OPTIONS = 7700203, <br/>IMAGE_DECODE_FAILED = 7700301,<br/>IMAGE_SOURCE_ALLOC_FAILED = 7700302,<br/>IMAGE_ENCODE_FAILED = 7800301<br/>} | 错误码。 |  
+| [Image_MetadataType](#image_metadatatype) { EXIF_METADATA = 1, FRAGMENT_METADATA = 2 } | 定义元数据类型。  | 
 | [IMAGE_PACKER_DYNAMIC_RANGE](#image_packer_dynamic_range) {<br/>IMAGE_PACKER_DYNAMIC_RANGE_AUTO = 0,<br/>IMAGE_PACKER_DYNAMIC_RANGE_SDR = 1 } | 编码指定动态范围。 | 
 | [IMAGE_DYNAMIC_RANGE](#image_dynamic_range) {<br/>IMAGE_DYNAMIC_RANGE_AUTO = 0,<br/>IMAGE_DYNAMIC_RANGE_SDR = 1,<br/>IMAGE_DYNAMIC_RANGE_HDR = 2 } | 解码指定期望动态范围。 | 
+| [IMAGE_ALLOCATOR_TYPE](#image_allocator_type) {<br/>IMAGE_ALLOCATOR_TYPE_AUTO = 0,<br/>IMAGE_ALLOCATOR_TYPE_DMA = 1,<br/>IMAGE_ALLOCATOR_TYPE_SHARE_MEMORY = 2 } | 用于分配 PixelMap 内存的分配器类型。 | 
 | [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) {<br/>AUXILIARY_PICTURE_TYPE_GAINMAP = 1, AUXILIARY_PICTURE_TYPE_DEPTH_MAP = 2, AUXILIARY_PICTURE_TYPE_UNREFOCUS_MAP = 3, AUXILIARY_PICTURE_TYPE_LINEAR_MAP = 4,<br/>AUXILIARY_PICTURE_TYPE_FRAGMENT_MAP = 5<br/>} | 辅助图类型。  | 
-| [PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type) {<br/>PIXELMAP_ALPHA_TYPE_UNKNOWN = 0,<br/>PIXELMAP_ALPHA_TYPE_OPAQUE = 1,<br/>PIXELMAP_ALPHA_TYPE_PREMULTIPLIED = 2 } | Pixelmap透明度类型。 | 
+| [PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type) {<br/>PIXELMAP_ALPHA_TYPE_UNKNOWN = 0,<br/>PIXELMAP_ALPHA_TYPE_OPAQUE = 1,<br/>PIXELMAP_ALPHA_TYPE_PREMULTIPLIED = 2, <br/>PIXELMAP_ALPHA_TYPE_UNPREMULTIPLIED = 3 } | Pixelmap透明度类型。 | 
 | [PIXEL_FORMAT](#pixel_format) {<br/>PIXEL_FORMAT_UNKNOWN = 0, PIXEL_FORMAT_RGB_565 = 2,<br/>PIXEL_FORMAT_RGBA_8888 = 3, PIXEL_FORMAT_BGRA_8888 = 4,<br/>PIXEL_FORMAT_RGB_888 = 5, PIXEL_FORMAT_ALPHA_8 = 6,<br/>PIXEL_FORMAT_RGBA_F16 = 7, PIXEL_FORMAT_NV21 = 8,<br/>PIXEL_FORMAT_NV12 = 9, <br/>PIXEL_FORMAT_RGBA_1010102 = 10, <br/>PIXEL_FORMAT_YCBCR_P010 = 11, <br/>PIXEL_FORMAT_YCRCB_P010 = 12<br/>} | 图片像素格式。 | 
 | [OH_PixelmapNative_AntiAliasingLevel](#oh_pixelmapnative_antialiasinglevel) { <br/>OH_PixelmapNative_AntiAliasing_NONE = 0, <br/>OH_PixelmapNative_AntiAliasing_LOW = 1, <br/>OH_PixelmapNative_AntiAliasing_MEDIUM = 2, <br/>OH_PixelmapNative_AntiAliasing_HIGH = 3 <br/>} | Pixelmap缩放时采用的缩放算法。  | 
 | [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey) { <br/>HDR_METADATA_TYPE = 0, <br/>HDR_STATIC_METADATA = 1, <br/>HDR_DYNAMIC_METADATA = 2, <br/>HDR_GAINMAP_METADATA = 3 } | Pixelmap使用的HDR相关元数据信息的关键字，用于[OH_PixelmapNative_SetMetadata](#oh_pixelmapnative_setmetadata)及[OH_PixelmapNative_GetMetadata](#oh_pixelmapnative_getmetadata)。  | 
@@ -182,6 +183,7 @@
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromData](#oh_imagesourcenative_createfromdata) (uint8_t \*data, size_t dataSize, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | 通过缓冲区数据创建OH_ImageSourceNative指针。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromRawFile](#oh_imagesourcenative_createfromrawfile) (RawFileDescriptor \*rawFile, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | 通过图像资源文件的RawFileDescriptor创建OH_ImageSourceNative指针。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | 通过图片解码参数创建OH_PixelmapNative指针。  | 
+| [Image_ErrorCode](#image_errorcode)[OH_ImageSourceNative_CreatePixelmapUsingAllocator](#oh_imagesourcenative_createpixelmapusingallocator) (OH_ImageSourceNative \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, [IMAGE_ALLOCATOR_TYPE](#image_allocator_type) allocator, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | 根据解码参数创建一个PixelMap，PixelMap使用的内存类型可以通过allocatorType来指定。<br/>默认情况下，系统会根据图像类型、图像大小、平台能力等选择内存类型。 在处理通过此接口返回的PixelMap时，请始终考虑步幅（stride）的影响。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePixelmapList](#oh_imagesourcenative_createpixelmaplist) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, OH_PixelmapNative \*resVecPixMap[], size_t size) | 通过图片解码参数创建OH_PixelmapNative数组。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePicture](#oh_imagesourcenative_createpicture) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, OH_DecodingOptionsForPicture \*options, [OH_PictureNative](#oh_picturenative) \*\*picture) | 通过图片解码创建OH_PictureNative指针。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_GetDelayTimeList](#oh_imagesourcenative_getdelaytimelist) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, int32_t \*delayTimeList, size_t size) | 获取图像延迟时间数组。  | 
@@ -278,7 +280,7 @@
 | -------- | -------- |
 | static const char \*[MIME_TYPE_BMP](#mime_type_bmp) = "image/bmp" | bmp图片格式。 | 
 | static const char \*[MIME_TYPE_JPEG](#mime_type_jpeg) = "image/jpeg" | jpeg图片格式。 | 
-| static const char \*[MIME_TYPE_HEIC](#mime_type_heic) = "image/heic" | heif图片格式。 | 
+| static const char \*[MIME_TYPE_HEIC](#mime_type_heic) = "image/heic" | heic图片格式。 | 
 | static const char \*[MIME_TYPE_PNG](#mime_type_png) = "image/png" | png图片格式。 | 
 | static const char \*[MIME_TYPE_WEBP](#mime_type_webp) = "image/webp" | webp图片格式。 | 
 | static const char \*[MIME_TYPE_GIF](#mime_type_gif) = "image/gif" | gif图片格式。 | 
@@ -300,7 +302,7 @@
 | static const char \*[OHOS_IMAGE_PROPERTY_COMPRESSION](#ohos_image_property_compression) = "Compression" | 图像压缩方案。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_PHOTOMETRIC_INTERPRETATION](#ohos_image_property_photometric_interpretation) = "PhotometricInterpretation" | 像素构成，例如RGB或YCbCr。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_STRIP_OFFSETS](#ohos_image_property_strip_offsets) = "StripOffsets" | 每个strip的字节偏移量。 | 
-| static const char \*[OHOS_IMAGE_PROPERTY_SAMPLES_PER_PIXEL](#ohos_image_property_samples_per_pixel) = "SamplesPerPixel" | 每个像素的分量数。由于该标准适用于 RGB 和 YCbCr 图像，因此该标签的值设置为 3。 在JPEG压缩数据中，使用JPEG标记代替该标签。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_SAMPLES_PER_PIXEL](#ohos_image_property_samples_per_pixel) = "SamplesPerPixel" | 每个像素的分量数。由于该标准适用于 RGB 和 YCbCr 图像，因此该标签的值设置为 3。在JPEG压缩数据中，使用JPEG标记代替该标签。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_ROWS_PER_STRIP](#ohos_image_property_rows_per_strip) = "RowsPerStrip" | 每个strip的图像数据行数。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_STRIP_BYTE_COUNTS](#ohos_image_property_strip_byte_counts) = "StripByteCounts" | 每个图像数据带的总字节数。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_X_RESOLUTION](#ohos_image_property_x_resolution) = "XResolution" | 图像宽度方向的分辨率。 | 
@@ -395,7 +397,7 @@
 | static const char \*[OHOS_IMAGE_PROPERTY_LENS_MODEL](#ohos_image_property_lens_model) = "LensModel" | 镜头的型号名称。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_LENS_SERIAL_NUMBER](#ohos_image_property_lens_serial_number) = "LensSerialNumber" | 镜头的序列号。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_LENS_SPECIFICATION](#ohos_image_property_lens_specification) = "LensSpecification" | 使用的镜头规格。 | 
-| static const char \*[OHOS_IMAGE_PROPERTY_NEW_SUBFILE_TYPE](#ohos_image_property_new_subfile_type) = "NewSubfileType" | 在Exif中，"NewSubfileType"字段用于标识子文件的数据类型，如全分辨率图像、缩略图或多帧图像的一部分。 其值是位掩码，0代表全分辨率图像，1代表缩略图，2代表多帧图像的一部分。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_NEW_SUBFILE_TYPE](#ohos_image_property_new_subfile_type) = "NewSubfileType" | 在Exif中，"NewSubfileType"字段用于标识子文件的数据类型，如全分辨率图像、缩略图或多帧图像的一部分。其值是位掩码，0代表全分辨率图像，1代表缩略图，2代表多帧图像的一部分。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME](#ohos_image_property_offset_time) = "OffsetTime" | 在Exif中，OffsetTime字段表示与UTC（协调世界时）的时间偏移，格式为±HH:MM，用于确定照片拍摄的本地时间。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME_DIGITIZED](#ohos_image_property_offset_time_digitized) = "OffsetTimeDigitized" | 此标签记录图像数字化时的UTC偏移量，有助于准确调整时间戳。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME_ORIGINAL](#ohos_image_property_offset_time_original) = "OffsetTimeOriginal" | 此标签记录原始图像创建时的UTC偏移量，对于时间敏感的应用至关重要。 | 
@@ -418,7 +420,7 @@
 | static const char \*[OHOS_IMAGE_PROPERTY_SCENE_VERSION](#ohos_image_property_scene_version) = "HwMnoteSceneVersion" | 场景算法版本信息。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_GIF_LOOP_COUNT](#ohos_image_property_gif_loop_count) = "GIFLoopCount" | GIF图片循环次数。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_X_IN_ORIGINAL](#ohos_image_property_x_in_original) = "XInOriginal" | 水印裁剪图左上角在原始图中的X坐标。  | 
-| static const char \*[OHOS_IMAGE_PROPERTY_Y_IN_ORIGINAL](#ohos_image_property_y_in_original) = "XInOriginal" | 水印裁剪图左上角在原始图中的Y坐标。  | 
+| static const char \*[OHOS_IMAGE_PROPERTY_Y_IN_ORIGINAL](#ohos_image_property_y_in_original) = "YInOriginal" | 水印裁剪图左上角在原始图中的Y坐标。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_FRAGMENT_WIDTH](#ohos_image_property_fragment_width) = "FragmentImageWidth"| 水印裁剪图的宽。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_FRAGMENT_HEIGHT](#ohos_image_property_fragment_height) = "FragmentImageHeight" | 水印裁剪图的高。  | 
 
@@ -498,7 +500,7 @@ AuxiliaryPicture结构体类型，用于执行AuxiliaryPicture相关操作。
 typedef struct OH_DecodingOptions OH_DecodingOptions
 ```
 **描述**
-解码选项参数结构体,被用于选项参数结构体,被用于[OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap)。
+解码选项参数结构体,被用于选项参数结构体，被用于[OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap)。
 
 此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_DecodingOptions结构体介绍](../../media/image/image-structure-c.md#oh_decodingoptions结构体)。
 
@@ -751,6 +753,26 @@ NativeBuffer结构体类型，用于执行NativeBuffer相关操作。
 ## 枚举类型说明
 
 
+### IMAGE_ALLOCATOR_TYPE
+
+```
+enum IMAGE_ALLOCATOR_TYPE
+```
+
+**描述**
+
+用于分配 PixelMap 内存的分配器类型。
+
+**起始版本：** 15
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| IMAGE_ALLOCATOR_TYPE_AUTO | 由系统决定使用DMA内存或共享内存来创建 PixelMap。 | 
+| IMAGE_ALLOCATOR_TYPE_DMA | 使用 DMA 内存来创建 PixelMap。 | 
+| IMAGE_ALLOCATOR_TYPE_SHARE_MEMORY | 使用共享内存来创建 PixelMap。 | 
+
+
+
 ### Image_AuxiliaryPictureType
 
 ```
@@ -815,9 +837,14 @@ enum Image_ErrorCode
 | IMAGE_COPY_FAILED  | 内存拷贝失败。 | 
 | IMAGE_LOCK_UNLOCK_FAILED | 内存加锁或解锁失败。<br/>**起始版本：** 15 | 
 | IMAGE_UNKNOWN_ERROR  | 未知错误。 | 
-| IMAGE_BAD_SOURCE  | 解码数据源异常。 | 
-| IMAGE_DECODE_FAILED  | 解码失败。 | 
-| IMAGE_ENCODE_FAILED  | 编码失败。 | 
+| IMAGE_BAD_SOURCE | 解码数据源异常。 | 
+| IMAGE_SOURCE_UNSUPPORTED_MIME_TYPE | 不支持的 MIME 类型。<br/>**起始版本：** 15 | 
+| IMAGE_SOURCE_TOO_LARGE | 图像过大。<br/>**起始版本：** 15 | 
+| IMAGE_SOURCE_UNSUPPORTED_ALLOCATOR_TYPE | 不支持的分配器类型。例如，DMA支持HDR元数据，可以使用共享内存解码HDR图像。<br/>**起始版本：** 15 | 
+| IMAGE_SOURCE_UNSUPPORTED_OPTIONS | 不支持的选项。例如，无法将图像转换为所需的像素格式。<br/>**起始版本：** 15 | 
+| IMAGE_DECODE_FAILED | 解码失败。 | 
+| IMAGE_SOURCE_ALLOC_FAILED | 内存申请失败。<br/>**起始版本：** 15 | 
+| IMAGE_ENCODE_FAILED | 编码失败。 | 
 
 
 ### Image_MetadataType
@@ -949,6 +976,7 @@ Pixelmap透明度类型。
 | PIXELMAP_ALPHA_TYPE_UNKNOWN | 未知格式 | 
 | PIXELMAP_ALPHA_TYPE_OPAQUE | 不透明的格式 | 
 | PIXELMAP_ALPHA_TYPE_PREMULTIPLIED | 预乘透明度格式 | 
+| PIXELMAP_ALPHA_TYPE_UNPREMULTIPLIED | 非预乘透明度格式 |
 
 
 ## 函数说明
@@ -1761,7 +1789,7 @@ Image_ErrorCode OH_DecodingOptionsForPicture_SetDesiredAuxiliaryPictures(OH_Deco
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| options | 被操作的OH_DecodingOptionsForPicture指针  | 
+| options | 被操作的OH_DecodingOptionsForPicture指针。  | 
 | desiredAuxiliaryPictures | 将要设置的期望辅助图。  | 
 | length | 期望辅助图长度。  | 
 
@@ -2790,7 +2818,7 @@ Image_ErrorCode OH_ImageSourceNative_CreatePicture(OH_ImageSourceNative *source,
 Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source, OH_DecodingOptions *options, OH_PixelmapNative **pixelmap)
 ```
 **描述**
-通过图片解码参数创建OH_PixelmapNative指针
+通过图片解码参数创建OH_PixelmapNative指针。
 
 **起始版本：** 12
 
@@ -2813,7 +2841,10 @@ Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source
 Image_ErrorCode OH_ImageSourceNative_CreatePixelmapList(OH_ImageSourceNative *source, OH_DecodingOptions *options, OH_PixelmapNative *resVecPixMap[], size_t size)
 ```
 **描述**
-通过图片解码参数创建OH_PixelmapNative数组
+通过图片解码参数创建OH_PixelmapNative数组。
+
+> **注意：**
+> 此接口会一次性解码全部帧，当帧数过多或单帧图像过大时，会占用较大内存，造成系统内存紧张，此种情况推荐使用Image组件显示动图，Image组件采用逐帧解码，占用内存比此接口少。
 
 **起始版本：** 12
 
@@ -2831,13 +2862,61 @@ Image_ErrorCode OH_ImageSourceNative_CreatePixelmapList(OH_ImageSourceNative *so
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 如果不支持的操作返回 IMAGE_UNSUPPORTED_OPERATION， 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 
+### OH_ImageSourceNative_CreatePixelmapUsingAllocator()
+
+```
+Image_ErrorCode OH_ImageSourceNative_CreatePixelmapUsingAllocator (OH_ImageSourceNative *source, OH_DecodingOptions *options, IMAGE_ALLOCATOR_TYPE allocator, OH_PixelmapNative **pixelmap )
+```
+
+**描述**
+
+根据解码参数创建一个PixelMap，PixelMap使用的内存类型可以通过allocatorType来指定。
+
+默认情况下，系统会根据图像类型、图像大小、平台能力等选择内存类型。 在处理通过此接口返回的PixelMap时，请始终考虑步幅（stride）的影响。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| source | 被操作的OH_ImageSourceNative指针。 | 
+| options | 解码参数。 详情请参见 **OH_DecodingOptions**。 | 
+| allocator | 指示返回的PixelMap将使用哪种内存类型。 | 
+| pixelmap | 指向c++本地层创建的OH_PixelmapNative对象的指针。 | 
+
+**返回：**
+
+错误码。
+
+如果操作成功返回 IMAGE_SUCCESS。
+
+如果参数错误返回 IMAGE_BAD_PARAMETER。
+
+如果数据源异常返回 IMAGE_BAD_SOURCE。
+
+如果是不支持的MIME类型返回 IMAGE_SOURCE_UNSUPPORTED_MIMETYPE。
+
+如果图像过大返回 IMAGE_SOURCE_TOO_LARGE。
+
+如果是不支持的分配器类型返回 IMAGE_SOURCE_UNSUPPORTED_ALLOCATOR_TYPE。 例如，使用共享内存解码HDR图像，因为只有DMA支持HDR元数据。
+
+如果是不支持的选项返回 IMAGE_SOURCE_UNSUPPORTED_OPTIONS。 例如，无法将图像转换为所需的像素格式。
+
+如果解码失败返回 IMAGE_DECODE_FAILED。
+
+如果内存分配失败返回 IMAGE_SOURCE_ALLOC_FAILED。
+
+具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
 ### OH_ImageSourceNative_GetDelayTimeList()
 
 ```
 Image_ErrorCode OH_ImageSourceNative_GetDelayTimeList(OH_ImageSourceNative *source, int32_t *delayTimeList, size_t size)
 ```
 **描述**
-获取图像延迟时间数组
+获取图像延迟时间数组。
 
 **起始版本：** 12
 
@@ -4786,7 +4865,7 @@ static const char* MIME_TYPE_HEIC = "image/heic"
 
 **描述**
 
-heif图片格式。
+heic图片格式。
 
 **起始版本：** 12
 
@@ -6034,7 +6113,7 @@ static const char* OHOS_IMAGE_PROPERTY_NEW_SUBFILE_TYPE = "NewSubfileType"
 
 **描述**
 
-在Exif中，"NewSubfileType"字段用于标识子文件的数据类型，如全分辨率图像、缩略图或多帧图像的一部分。 其值是位掩码，0代表全分辨率图像，1代表缩略图，2代表多帧图像的一部分。
+在Exif中，"NewSubfileType"字段用于标识子文件的数据类型，如全分辨率图像、缩略图或多帧图像的一部分。其值是位掩码，0代表全分辨率图像，1代表缩略图，2代表多帧图像的一部分。
 
 **起始版本：** 12
 
@@ -6216,7 +6295,7 @@ static const char* OHOS_IMAGE_PROPERTY_SAMPLES_PER_PIXEL = "SamplesPerPixel"
 
 **描述**
 
-每个像素的分量数。由于该标准适用于 RGB 和 YCbCr 图像，因此该标签的值设置为 3。 在JPEG压缩数据中，使用JPEG标记代替该标签。
+每个像素的分量数。由于该标准适用于 RGB 和 YCbCr 图像，因此该标签的值设置为 3。在JPEG压缩数据中，使用JPEG标记代替该标签。
 
 **起始版本：** 12
 

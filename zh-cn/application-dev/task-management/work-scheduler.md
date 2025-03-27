@@ -74,16 +74,16 @@
 | bundleName      | string                            | 是    | 延迟任务所在应用的包名。           |
 | abilityName     | string                            | 是    | 包内ability名称。 |
 | networkType     | [NetworkType](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#networktype)       | 否    | 网络类型。             |
-| isCharging      | boolean                           | 否    | 是否充电。<br>- true表示充电触发延迟回调，false表示不充电触发延迟回调。|
+| isCharging      | boolean                           | 否    | 是否充电。<br>- true表示充电触发延迟回调。<br>- false表示不充电触发延迟回调。|
 | chargerType     | [ChargingType](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#chargingtype)     | 否    | 充电类型。             |
 | batteryLevel    | number                            | 否    | 电量。              |
 | batteryStatus   | [BatteryStatus](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#batterystatus)   | 否    | 电池状态。             |
 | storageRequest  | [StorageRequest](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#storagerequest) | 否    | 存储状态。             |
-| isRepeat        | boolean                           | 否    | 是否循环任务。<br>- true表示循环任务，false表示非循环任务。 |
+| isRepeat        | boolean                           | 否    | 是否循环任务。<br>- true表示循环任务。<br>- false表示非循环任务。 |
 | repeatCycleTime | number                            | 否    | 循环间隔，单位为毫秒。             |
 | repeatCount     | number                            | 否    | 循环次数。             |
-| isPersisted     | boolean                           | 否    | 注册的延迟任务是否可保存在系统中。<br>- true表示可保存，即系统重启后，任务可恢复。false表示不可保存。|
-| isDeepIdle      | boolean                           | 否    | 是否要求设备进入空闲状态。<br>- true表示需要，false表示不需要。   |
+| isPersisted     | boolean                           | 否    | 注册的延迟任务是否可保存在系统中。<br>- true表示可保存，即系统重启后，任务可恢复。<br>- false表示不可保存。|
+| isDeepIdle      | boolean                           | 否    | 是否要求设备进入空闲状态。<br>- true表示需要。<br>- false表示不需要。   |
 | idleWaitTime    | number                            | 否    | 空闲等待时间，单位为毫秒。           |
 | parameters      | [key: string]: number \| string \| boolean  | 否    | 携带参数信息。 |
 

@@ -16,7 +16,7 @@ import { ProgressButton } from '@kit.ArkUI'
 ```
 
 ## 属性
-不支持[通用属性](ts-universal-attributes-size.md)
+不支持[通用属性](ts-component-general-attributes.md)。
 
 ## ProgressButton
 
@@ -30,14 +30,14 @@ ProgressButton({progress: number, content: string, progressButtonWidth?: Length,
 
 | 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| progress | number | 是 | \@Prop | 下载按钮的当前进度值。 |
-| content | string | 是 | \@Prop | 下载按钮的文本。 |
-| progressButtonWidth | [Length](ts-types.md#length) | 否 | - | 下载按钮的宽度。<br/>默认值：44。 |
+| progress | number | 是 | \@Prop | 下载按钮的当前进度值。<br/>取值范围：[0,100]。设置小于0的数值时置为0，设置大于100的数值置为100。<br/>默认值：0。 |
+| content | string | 是 | \@Prop | 下载按钮的文本。<br/>默认值：空字符串。<br/>**说明**：最长显示组件宽度，超出部分用省略号代替。 |
+| progressButtonWidth | [Length](ts-types.md#length) | 否 | - | 下载按钮的宽度，单位vp。<br/>取值范围：大于等于44vp。<br/>默认值：44vp，小于默认值和非法值设置为默认值。 |
 | clickCallback | () =&gt; void | 是 | - | 下载按钮的点击回调。 |
 | enable | boolean | 是 | \@Prop | 下载按钮是否可以点击。<br> enable为true时，表示可以点击。<br> enable为false时，表示不可点击。 |
 
 ## 事件
-不支持[通用事件](ts-universal-events-click.md)
+不支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 

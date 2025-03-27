@@ -74,7 +74,7 @@ function createNodePromise() : Promise<Node> {
 ### createCamera
 createCamera(params: SceneNodeParameters): Promise\<Camera>
 
-根据结点参数创建相机, 使用Promise异步回调。
+根据结点参数创建相机，使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -110,7 +110,7 @@ function createCameraPromise() : Promise<Camera> {
 ### createLight
 createLight(params: SceneNodeParameters, lightType: LightType): Promise\<Light>
 
-根据结点参数和灯光类型创建灯光, 使用Promise异步回调。
+根据结点参数和灯光类型创建灯光，使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -147,7 +147,7 @@ function createLightPromise() : Promise<Light> {
 ### createNode
 createNode(params: SceneNodeParameters): Promise\<Node>
 
-创建结点, 使用Promise异步回调。
+创建结点，使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -184,7 +184,7 @@ function createNodePromise() : Promise<Node> {
 ### createMaterial
 createMaterial(params: SceneResourceParameters, materialType: MaterialType): Promise\<Material>
 
-根据场景资源参数和材质类型创建材质, 使用Promise异步回调。
+根据场景资源参数和材质类型创建材质，使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -221,7 +221,7 @@ function createMaterialPromise() : Promise<Material> {
 ### createShader
 createShader(params: SceneResourceParameters): Promise\<Shader>
 
-根据场景资源参数创建着色器, 使用Promise异步回调。
+根据场景资源参数创建着色器，使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -259,7 +259,7 @@ function createShaderPromise() : Promise<Shader> {
 ### createImage
 createImage(params: SceneResourceParameters): Promise\<Image>
 
-创建图片资源, 使用Promise异步回调。
+创建图片资源，使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -295,7 +295,7 @@ function createImagePromise() : Promise<Image> {
 ### createEnvironment
 createEnvironment(params: SceneResourceParameters): Promise\<Environment>
 
-根据场景资源参数创建环境, 使用Promise异步回调。
+根据场景资源参数创建环境，使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -327,6 +327,15 @@ function createEnvironmentPromise() : Promise<Environment> {
   });
 }
 ```
+
+## RenderParameters<sup>15+</sup>
+渲染控制参数对象，用于控制场景是否持续渲染。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ---- | ---- | ---- | ---- | ---- |
+| alwaysRender | boolean | 否 | 是 | 控制信号。true表示场景将持续渲染画面，false表示场景只渲染一帧画面。默认值为undefined表示场景只渲染一帧画面。 |
+
 
 ## Scene
 用于设置场景。
@@ -427,6 +436,40 @@ function getFactory() : void {
     if (result) {
          // 获得SceneResourceFactory对象
         let sceneFactory: SceneResourceFactory = result.getResourceFactory();
+    }
+  });
+}
+```
+
+### renderFrame<sup>15+</sup>
+renderFrame(params?: RenderParameters): boolean
+
+渲染新的一帧，同时可以设置是否持续渲染。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| ---- | ---- | ---- | ---- |
+| params | [RenderParameters](#renderparameters15) | 否 | 渲染控制参数，是否持续渲染。 默认值为undefined。 |
+
+**返回值：**
+| 类型 | 说明 |
+| ---- | ---- |
+| boolean | 渲染及参数设置是否成功。true表示执行成功，false表示执行失败。 |
+
+**示例：**
+```ts
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderParameters } from '@kit.ArkGraphics3D';
+
+function renderFrame() : void {
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: Scene) => {
+    if (result) {
+         // 执行渲染且持续渲染
+        let renderParameters: RenderParameters = { alwaysRender: true };
+        let controlResult: boolean = result.renderFrame(renderParameters);
     }
   });
 }

@@ -2,7 +2,7 @@
 
 ## Overview
 
-The **XComponent** is a rendering component that can be used for EGL/OpenGL ES and media data output. It uses a unique [NativeWindow](../graphics/native-window-guidelines.md) to render graphics and is typically employed to meet complex custom rendering needs, such as displaying camera preview streams and rendering game graphics. You can specify different rendering methods through the **type** field, which are [XComponentType](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#xcomponenttype10).SURFACE and XComponentType.TEXTURE. For the SURFACE type, you display the custom drawing content on the screen separately. For the TEXTURE type, you combine custom drawing content with the content of the **XComponent** and display it on the screen.
+The **XComponent** is a rendering component that can be used for EGL/OpenGL ES and media data output. It uses the held [NativeWindow](../graphics/native-window-guidelines.md) to render graphics and is typically employed to meet complex custom rendering needs, such as displaying camera preview streams and rendering game graphics. You can specify different rendering methods through the **type** field, which are [XComponentType](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#xcomponenttype10).SURFACE and XComponentType.TEXTURE. For the SURFACE type, you display the custom drawing content on the screen separately. For the TEXTURE type, you combine custom drawing content with the content of the **XComponent** and display it on the screen.
 
 The **XComponent** is mainly used in two scenarios. In the native XComponent scenario, the native layer is responsible for obtaining the native **XComponent** instance and registering the lifecycle callbacks of the **XComponent** along with touch, mouse, and key event callbacks. In the ArkTS XComponent scenario, the **SurfaceId** is obtained on the ArkTS side, with lifecycle callbacks, touch, mouse, and key event callbacks all being managed and triggered there.
 
@@ -50,7 +50,7 @@ The following uses the SURFACE type as an example to describe how to use the **X
 1. Define the **XComponent** on the UI.
 
     ```typescript
-    // API declaration
+    // Declare the native APIs in ets/interface/XComponentContext.ts.
     export default interface XComponentContext {
       drawPattern(): void;
     
@@ -64,11 +64,12 @@ The following uses the SURFACE type as an example to describe how to use the **X
     ```
     
     ```typescript
+    import XComponentContext from "../interface/XComponentContext"
+
     @Entry
     @Component
     struct Index {
-        @State message: string = 'Hello World'
-        xComponentContext: object | undefined = undefined;
+        xComponentContext: XComponentContext | undefined = undefined;
         xComponentAttrs: XComponentAttrs = {
             id: 'xcomponentId',
             type: XComponentType.SURFACE,
@@ -82,13 +83,28 @@ The following uses the SURFACE type as an example to describe how to use the **X
             XComponent(this.xComponentAttrs)
                 .focusable(true) // Set the component to be able to respond to key events.
                 .onLoad((xComponentContext) => {
-                this.xComponentContext = xComponentContext;
+                    console.log("onLoad");
+                    this.xComponentContext = xComponentContext as XComponentContext;
+
+                    // Call drawPattern to draw content.
+                    if (this.xComponentContext) {
+                        this.xComponentContext.drawPattern();
+                        if (this.xComponentContext.getStatus()) {
+                            this.xComponentContext.getStatus().hasDraw;
+                        }
+                    }
                 })
                 .onDestroy(() => {
-                console.log("onDestroy");
+                    console.log("onDestroy");
                 })
             // ...
             }
+            .onClick(() => {
+                // Call getStatus to change the drawing content.
+                if (this.xComponentContext && this.xComponentContext.getStatus()) {
+                    this.xComponentContext.getStatus().hasChangeColor;
+                }
+            })
             .height('100%')
         }
     }
@@ -103,10 +119,13 @@ The following uses the SURFACE type as an example to describe how to use the **X
 2. Register the Node-API module. For details, see [Node-API Development Specifications](../napi/napi-guidelines.md).
 
     ```c++
+    #include <hilog/log.h>
+    #include "common/common.h"
+    #include "manager/plugin_manager.h"
+    
     // In the napi_init.cpp file, use the Init method to register the target function to pass in the encapsulated C++ methods for the ArkTS method to call.
     EXTERN_C_START
-    static napi_value Init(napi_env env, napi_value exports)
-    {
+    static napi_value Init(napi_env env, napi_value exports) {
         // ...
         // Expose the getContext() API to the ArkTS code.
         napi_property_descriptor desc[] = {
@@ -130,22 +149,29 @@ The following uses the SURFACE type as an example to describe how to use the **X
         // Entry point function
         .nm_register_func = Init,// Specify the callback for when the corresponding module is loaded.
         // Module name
-        .nm_modname = "nativerender", // Specify the module name. For XComponent-related development, the name must be the same as the value of libraryname in the XComponent on ArkTS.
+        .nm_modname =
+            "nativerender", // Specify the module name. The name must be the same as the value of libraryname in the XComponent on the ArkTS side.
         .nm_priv = ((void *)0),
-        .reserved = { 0 }
-    };
+        .reserved = {0}};
     
     // The method decorated by __attribute__((constructor)) is automatically called by the system. The Node-API napi_module_register() is used to pass in the module description for module registration.
-    extern "C" __attribute__((constructor)) void RegisterModule(void)
-    {
-        napi_module_register(&nativerenderModule);
-    }
+    extern "C" __attribute__((constructor)) void RegisterModule(void) { napi_module_register(&nativerenderModule); }
     ```
+
     ```c++
     // Check whether the environment variable contains an instance of XComponent. If the instance exists, export the drawing-related API.
     void PluginManager::Export(napi_env env, napi_value exports)
     {
-        // ...
+        if ((env == nullptr) || (exports == nullptr)) {
+            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager", "Export: env or exports is null");
+            return;
+        }
+
+        napi_value exportInstance = nullptr;
+        if (napi_get_named_property(env, exports, OH_NATIVE_XCOMPONENT_OBJ, &exportInstance) != napi_ok) {
+            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager", "Export: napi_get_named_property fail");
+        }
+
         // Obtain a native XComponent.
         OH_NativeXComponent* nativeXComponent = nullptr;
         if (napi_unwrap(env, exportInstance, reinterpret_cast<void**>(&nativeXComponent)) != napi_ok) {
@@ -154,11 +180,11 @@ The following uses the SURFACE type as an example to describe how to use the **X
         }
  
         // Obtain the ID of the XComponent, that is, the id parameter in the XComponent struct in the ArkTS code.
-        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
+        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {'\0'};
         uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
         if (OH_NativeXComponent_GetXComponentId(nativeXComponent, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
-            OH_LOG_Print(
-                LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager", "Export: OH_NativeXComponent_GetXComponentId fail");
+            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager",
+                         "Export: OH_NativeXComponent_GetXComponentId fail");
             return;
         }
 
@@ -177,14 +203,16 @@ The following uses the SURFACE type as an example to describe how to use the **X
     }
     ```
     ```c++
-    // Use the napi_define_properties method to expose the drawPattern() method to the ArkTS side, which allows the drawPattern() method to be called in ArkTS code.
+    // Use the napi_define_properties method to expose the drawPattern() and getStatus() methods to the ArkTS side.
+    // Call drawPattern() on the ArkTS side to draw content, and call getStatus() to change the drawing content.
     void PluginRender::Export(napi_env env, napi_value exports)
     {
         // ...
-        // Register the function as the ArkTS API drawPattern.
+        // Register the functions as the drawPattern() and getStatus() APIs on the ArkTS side.
         napi_property_descriptor desc[] = {
-            { "drawPattern", nullptr, PluginRender::NapiDrawPattern, nullptr, nullptr, nullptr, napi_default, nullptr }
-        };
+            {"drawPattern", nullptr, PluginRender::NapiDrawPattern, nullptr, nullptr, nullptr, napi_default, nullptr},
+            {"getStatus", nullptr, PluginRender::TestGetXComponentStatus, nullptr, nullptr, nullptr, napi_default,
+             nullptr}};
         if (napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc) != napi_ok) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginRender", "Export: napi_define_properties failed");
         }
@@ -193,24 +221,24 @@ The following uses the SURFACE type as an example to describe how to use the **X
 
 3. Register the **XComponent** event callback and use the Node-API to implement it.
 
-   (1) Define the callbacks for the touch event of the **XComponent** and for when a surface is successfully created, changed, or destroyed.
+    (1) Define the callbacks for the touch event of the **XComponent** and for when a surface is successfully created, changed, or destroyed.
 
-   ```c++
-   // Define the PluginRender class.
-   class PluginRender {
-   public:
-       explicit PluginRender(std::string& id);
-       ~PluginRender()
-       {
-           if (eglCore_ != nullptr) {
-               eglCore_->Release();
-               delete eglCore_;
-               eglCore_ = nullptr;
+    ```c++
+    // Define the PluginRender class in the header file.
+    class PluginRender {
+    public:
+        explicit PluginRender(std::string& id);
+        ~PluginRender() {
+            if (eglCore_ != nullptr) {
+                eglCore_->Release();
+                delete eglCore_;
+                eglCore_ = nullptr;
            }
        }
        static PluginRender* GetInstance(std::string& id);
        static void Release(std::string& id);
        static napi_value NapiDrawPattern(napi_env env, napi_callback_info info);
+       static napi_value TestGetXComponentStatus(napi_value env, napi_callback_info info);
        void Export(napi_env env, napi_value exports);
        void OnSurfaceChanged(OH_NativeXComponent* component, void* window);
        void OnTouchEvent(OH_NativeXComponent* component, void* window);
@@ -219,329 +247,347 @@ The following uses the SURFACE type as an example to describe how to use the **X
        void OnFocusEvent(OH_NativeXComponent* component, void* window);
        void OnBlurEvent(OH_NativeXComponent* component, void* window);
        void OnKeyEvent(OH_NativeXComponent* component, void* window);
-       void RegisterCallback(OH_NativeXComponent* nativeXComponent);
-   
-   public:
-       static std::unordered_map<std::string, PluginRender*> instance_;
-       EGLCore* eglCore_;
-       static int32_t hasDraw_;
-       static int32_t hasChangeColor_;
-   
-   private:
-       OH_NativeXComponent_Callback renderCallback_;
-       OH_NativeXComponent_MouseEvent_Callback mouseCallback_;
-   };
-   
-   std::unordered_map<std::string, PluginRender*> PluginRender::instance_;
-   int32_t PluginRender::hasDraw_ = 0;
-   int32_t PluginRender::hasChangeColor_ = 0;
-   
-   PluginRender* PluginRender::GetInstance(std::string& id)
-   {
-       if (instance_.find(id) == instance_.end()) {
-           PluginRender* instance = new PluginRender(id);
-           instance_[id] = instance;
-           return instance;
-       } else {
-           return instance_[id];
-       }
+       void RegisterCallback(OH_NativeXComponent* NativeXComponent);
+      
+    public:
+        static std::unordered_map<std::string, PluginRender*> instance_;
+        EGLCore* eglCore_;
+        std::string id_;
+        static int32_t hasDraw_;
+        static int32_t hasChangeColor_;
+      
+    private:
+        OH_NativeXComponent_Callback renderCallback_;
+        OH_NativeXComponent_MouseEvent_Callback mouseCallback_;
+    };
+    ```
+
+    ```c++
+    // Implement methods of the PluginRender class in the source file.
+    std::unordered_map<std::string, PluginRender *> PluginRender::instance_;
+    int32_t PluginRender::hasDraw_ = 0;
+    int32_t PluginRender::hasChangeColor_ = 0;
+
+    PluginRender::PluginRender(std::string& id) {
+        this->id_ = id;
+        this->eglCore_ = new EGLCore();
    }
    
-   // Define the OnSurfaceCreatedCB() function to encapsulate the initialization environment and drawing background.
-   void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window)
-   {
-   	// ...
-   	// Obtain the ID of the XComponent, that is, the id parameter in the XComponent struct in the ArkTS code.
-   	char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
-   	uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-   	if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NativeXComponent_RESULT_SUCCESS) {
-   		OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback",
-   			"OnSurfaceCreatedCB: Unable to get XComponent id");
-   		return;
-   	}
+    PluginRender* PluginRender::GetInstance(std::string& id) {
+        if (instance_.find(id) == instance_.end()) {
+            PluginRender* instance = new PluginRender(id);
+            instance_[id] = instance;
+            return instance;
+        } else {
+            return instance_[id];
+        }
+    }
    
-   	// Initialize the environment and draw the background.
-   	std::string id(idStr);
-   	auto render = PluginRender::GetInstance(id);
-   	uint64_t width;
-   	uint64_t height;
-   	// Obtain the size of the surface held by the XComponent.
-   	int32_t xSize = OH_NativeXComponent_GetXComponentSize(component, window, &width, &height);
-   	if ((xSize == OH_NativeXComponent_RESULT_SUCCESS) && (render != nullptr)) {
-   		if (render->eglCore_->EglContextInit(window, width, height)) {
-   			render->eglCore_->Background();
-   		}
-   	}
-   }
+    // Define the OnSurfaceCreatedCB() function to encapsulate the initialization environment and drawing background.
+    void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window) {
+   	    // ...
+   	    // Obtain the ID of the XComponent, that is, the id parameter in the XComponent struct in the ArkTS code.
+   	    char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {'\0'};
+   	    uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+   	    if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+   		    OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback",
+   			             "OnSurfaceCreatedCB: Unable to get XComponent id");
+   		    return;
+   	    }
    
-   // Define the OnSurfaceChangedCB() function.
-   void OnSurfaceChangedCB(OH_NativeXComponent *component, void *window)
-   {
-   	// ...
-   	// Obtain the ID of the XComponent.
-   	char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
-   	uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-   	if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NativeXComponent_RESULT_SUCCESS) {
-   		OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback",
-   			"OnSurfaceChangedCB: Unable to get XComponent id");
-   		return;
-   	}
+   	    // Initialize the environment and draw the background.
+   	    std::string id(idStr);
+   	    auto render = PluginRender::GetInstance(id);
+   	    uint64_t width;
+   	    uint64_t height;
+   	    // Obtain the size of the surface held by the XComponent.
+   	    int32_t xSize = OH_NativeXComponent_GetXComponentSize(component, window, &width, &height);
+   	    if ((xSize == OH_NATIVEXCOMPONENT_RESULT_SUCCESS) && (render != nullptr)) {
+   		    if (render->eglCore_->EglContextInit(window, width, height)) {
+   			    render->eglCore_->Background();
+   		    }
+   	    }
+    }
    
-   	std::string id(idStr);
-   	auto render = PluginRender::GetInstance(id);
-   	if (render != nullptr) {
-   		// Encapsulate the OnSurfaceChanged method.
-   		render->OnSurfaceChanged(component, window);
-   	}
-   }
+    // Define the OnSurfaceChangedCB() function.
+    void OnSurfaceChangedCB(OH_NativeXComponent *component, void *window) {
+   	    // ...
+   	    // Obtain the ID of the XComponent.
+   	    char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {'\0'};
+   	    uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+   	    if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+   		    OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback",
+   			             "OnSurfaceChangedCB: Unable to get XComponent id");
+   		    return;
+   	    }
    
-   // Define the OnSurfaceDestroyedCB() function and encapsulate in it the Release() method in the PluginRender class for releasing resources.
-   void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window)
-   {
-   	// ...
-   	// Obtain the ID of the XComponent.
-   	char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
-   	uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-   	if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NativeXComponent_RESULT_SUCCESS) {
-   		OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback",
-   			"OnSurfaceDestroyedCB: Unable to get XComponent id");
-   		return;
-   	}
+   	    std::string id(idStr);
+   	    auto render = PluginRender::GetInstance(id);
+   	    if (render != nullptr) {
+   		    // Encapsulate the OnSurfaceChanged method.
+   		    render->OnSurfaceChanged(component, window);
+   	    }
+    }
    
-   	std::string id(idStr);
-   	// Release resources.
-   	PluginRender::Release(id);
-   }
+    // Define the OnSurfaceDestroyedCB() function and encapsulate in it the Release() method in the PluginRender class for releasing resources.
+    void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window) {
+   	    // ...
+   	    // Obtain the ID of the XComponent.
+   	    char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {'\0'};
+   	    uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+   	    if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+   		    OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback",
+   			             "OnSurfaceDestroyedCB: Unable to get XComponent id");
+   		    return;
+   	    }
    
-   // Define the DispatchTouchEventCB() function, which is triggered to respond to a touch event.
-   void DispatchTouchEventCB(OH_NativeXComponent *component, void *window)
-   {
-   	// ...
-   	// Obtain the ID of the XComponent.
-   	char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
-   	uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-   	if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NativeXComponent_RESULT_SUCCESS) {
-   		OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback",
-   			"DispatchTouchEventCB: Unable to get XComponent id");
-   		return;
-   	}
+   	    std::string id(idStr);
+   	    // Release resources.
+   	    PluginRender::Release(id);
+    }
    
-   	std::string id(idStr);
-   	PluginRender *render = PluginRender::GetInstance(id);
-   	if (render != nullptr) {
-   		// Encapsulate the OnTouchEvent method.
-   		render->OnTouchEvent(component, window);
-   	}
-   }
+    // Define the DispatchTouchEventCB() function, which is triggered to respond to a touch event.
+    void DispatchTouchEventCB(OH_NativeXComponent *component, void *window) {
+   	    // ...
+   	    // Obtain the ID of the XComponent.
+   	    char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
+   	    uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+   	    if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+   		    OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback",
+   			             "DispatchTouchEventCB: Unable to get XComponent id");
+   		    return;
+   	    }
    
-   // Define the DispatchMouseEventCB() function, which is triggered when a mouse event is responded to.
-   void DispatchMouseEventCB(OH_NativeXComponent *component, void *window) {
-   	OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "DispatchMouseEventCB");
-   	int32_t ret;
-   	char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
-   	uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-   	ret = OH_NativeXComponent_GetXComponentId(component, idStr, &idSize);
-   	if (ret != OH_NativeXComponent_RESULT_SUCCESS) {
-   		return;
-   	}
+   	    std::string id(idStr);
+   	    PluginRender *render = PluginRender::GetInstance(id);
+   	    if (render != nullptr) {
+   		    // Encapsulate the OnTouchEvent method.
+   		    render->OnTouchEvent(component, window);
+   	    }
+    }
    
-   	std::string id(idStr);
-   	auto render = PluginRender::GetInstance(id);
-   	if (render) {
-   		// Encapsulate the OnMouseEvent method.
-   		render->OnMouseEvent(component, window);
-   	}
-   }
+    // Define the DispatchMouseEventCB() function, which is triggered when a mouse event is responded to.
+    void DispatchMouseEventCB(OH_NativeXComponent *component, void *window) {
+   	    // ...
+   	    int32_t ret;
+   	    char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
+   	    uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+   	    ret = OH_NativeXComponent_GetXComponentId(component, idStr, &idSize);
+   	    if (ret != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+   		    return;
+   	    }
    
-   // Define the DispatchHoverEventCB() function, which is triggered when the mouse pointer hover event is responded to.
-   void DispatchHoverEventCB(OH_NativeXComponent *component, bool isHover) {
-   	OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "DispatchHoverEventCB");
-   	int32_t ret;
-   	char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
-   	uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-   	ret = OH_NativeXComponent_GetXComponentId(component, idStr, &idSize);
-   	if (ret != OH_NativeXComponent_RESULT_SUCCESS) {
-   		return;
-   	}
+   	    std::string id(idStr);
+   	    auto render = PluginRender::GetInstance(id);
+   	    if (render) {
+   		    // Encapsulate the OnMouseEvent method.
+   		    render->OnMouseEvent(component, window);
+   	    }
+    }
    
-   	std::string id(idStr);
-   	auto render = PluginRender::GetInstance(id);
-   	if (render) {
-   		// Encapsulate the OnHoverEvent method.
-   		render->OnHoverEvent(component, isHover);
-   	}
-   }
+    // Define the DispatchHoverEventCB() function, which is triggered when the mouse pointer hover event is responded to.
+    void DispatchHoverEventCB(OH_NativeXComponent *component, bool isHover) {
+   	    // ...
+   	    int32_t ret;
+   	    char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
+   	    uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+   	    ret = OH_NativeXComponent_GetXComponentId(component, idStr, &idSize);
+   	    if (ret != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+   		    return;
+   	    }
    
-   // Define the OnFocusEventCB() function, which is triggered when a focus obtaining event is responded to.
-   void OnFocusEventCB(OH_NativeXComponent *component, void *window) {
-   	OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "OnFocusEventCB");
-   	int32_t ret;
-   	char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
-   	uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-   	ret = OH_NativeXComponent_GetXComponentId(component, idStr, &idSize);
-   	if (ret != OH_NativeXComponent_RESULT_SUCCESS) {
-   		return;
-   	}
+   	    std::string id(idStr);
+   	    auto render = PluginRender::GetInstance(id);
+   	    if (render) {
+   		    // Encapsulate the OnHoverEvent method.
+   		    render->OnHoverEvent(component, isHover);
+   	    }
+    }
    
-   	std::string id(idStr);
-   	auto render = PluginRender::GetInstance(id);
-   	if (render) {
-   		// Encapsulate the OnFocusEvent method.
-   		render->OnFocusEvent(component, window);
-   	}
-   }
+    // Define the OnFocusEventCB() function, which is triggered when a focus obtaining event is responded to.
+    void OnFocusEventCB(OH_NativeXComponent *component, void *window) {
+        // ...
+   	    int32_t ret;
+   	    char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
+   	    uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+   	    ret = OH_NativeXComponent_GetXComponentId(component, idStr, &idSize);
+   	    if (ret != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+   		    return;
+   	    }
    
-   // Define the OnBlurEventCB() function, which is triggered when the focus loss event is responded to.
-   void OnBlurEventCB(OH_NativeXComponent *component, void *window) {
-   	OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "OnBlurEventCB");
-   	int32_t ret;
-   	char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
-   	uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-   	ret = OH_NativeXComponent_GetXComponentId(component, idStr, &idSize);
-   	if (ret != OH_NativeXComponent_RESULT_SUCCESS) {
-   		return;
-   	}
+   	    std::string id(idStr);
+   	    auto render = PluginRender::GetInstance(id);
+   	    if (render) {
+   		    // Encapsulate the OnFocusEvent method.
+   		    render->OnFocusEvent(component, window);
+   	    }
+    }
    
-   	std::string id(idStr);
-   	auto render = PluginRender::GetInstance(id);
-   	if (render) {
-   		// Encapsulate the OnBlurEvent method.
-   		render->OnBlurEvent(component, window);
-   	}
-   }
+    // Define the OnBlurEventCB() function, which is triggered when the focus loss event is responded to.
+    void OnBlurEventCB(OH_NativeXComponent *component, void *window) {
+   	    // ...
+   	    int32_t ret;
+   	    char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
+   	    uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+   	    ret = OH_NativeXComponent_GetXComponentId(component, idStr, &idSize);
+   	    if (ret != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+   	    	return;
+   	    }
    
-   // Define the OnKeyEventCB() function, which is triggered when a key event is responded to.
-   void OnKeyEventCB(OH_NativeXComponent *component, void *window) {
-   	OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "OnKeyEventCB");
-   	int32_t ret;
-   	char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
-   	uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-   	ret = OH_NativeXComponent_GetXComponentId(component, idStr, &idSize);
-   	if (ret != OH_NativeXComponent_RESULT_SUCCESS) {
-   		return;
-   	}
-   	std::string id(idStr);
-   	auto render = PluginRender::GetInstance(id);
-   	if (render) {
-   		// Encapsulate the OnKeyEvent method.
-   		render->OnKeyEvent(component, window);
-   	}
-   }
+   	    std::string id(idStr);
+   	    auto render = PluginRender::GetInstance(id);
+   	    if (render) {
+   		    // Encapsulate the OnBlurEvent method.
+   		    render->OnBlurEvent(component, window);
+   	    }
+    }
    
-   // Define an OnSurfaceChanged() method.
-   void PluginRender::OnSurfaceChanged(OH_NativeXComponent* component, void* window)
-   {
-   	// ...
-       std::string id(idStr);
-       PluginRender* render = PluginRender::GetInstance(id);
-       double offsetX;
-       double offsetY;
-       // Obtain the offset of the surface held by the XComponent relative to the upper left corner of its parent component.
-       OH_NativeXComponent_GetXComponentOffset(component, window, &offsetX, &offsetY);
-       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "OH_NativeXComponent_GetXComponentOffset",
-           "offsetX = %{public}lf, offsetY = %{public}lf", offsetX, offsetY);
-       uint64_t width;
-       uint64_t height;
-       OH_NativeXComponent_GetXComponentSize(component, window, &width, &height);
-       if (render != nullptr) {
-           render->eglCore_->UpdateSize(width, height);
-       }
-   }
+    // Define the OnKeyEventCB() function, which is triggered when a key event is responded to.
+    void OnKeyEventCB(OH_NativeXComponent *component, void *window) {
+   	    // ...
+   	    int32_t ret;
+   	    char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
+   	    uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+   	    ret = OH_NativeXComponent_GetXComponentId(component, idStr, &idSize);
+   	    if (ret != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+   		    return;
+   	    }
+
+   	    std::string id(idStr);
+   	    auto render = PluginRender::GetInstance(id);
+   	    if (render) {
+   		    // Encapsulate the OnKeyEvent method.
+   		    render->OnKeyEvent(component, window);
+   	    }
+    }
    
-   // Define an OnTouchEvent() method.
-   void PluginRender::OnTouchEvent(OH_NativeXComponent* component, void* window)
-   {
-       // ...
-       OH_NativeXComponent_TouchEvent touchEvent;
-       // Obtain the touch event triggered by the XComponent.
-       OH_NativeXComponent_GetTouchEvent(component, window, &touchEvent);
-       // Obtain the x coordinate of the XComponent touch point relative to the left edge of the XComponent and the y coordinate of the XComponent touch point relative to the upper edge of the XComponent.
-       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "OnTouchEvent",
-           "touch info: x = %{public}lf, y = %{public}lf", touchEvent.x, touchEvent.y);
-       // Obtain the x coordinate and y-coordinate of the XComponent touch point relative to the upper left corner of the application window where the XComponent is located.
-       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "OnTouchEvent",
-           "touch info: screenX = %{public}lf, screenY = %{public}lf", touchEvent.screenX, touchEvent.screenY);
-       std::string id(idStr);
-       PluginRender* render = PluginRender::GetInstance(id);
-       if (render != nullptr && touchEvent.type == OH_NativeXComponent_TouchEventType::OH_NativeXComponent_UP) {
-           render->eglCore_->ChangeColor();
-           hasChangeColor_ = 1;
-       }
-       float tiltX = 0.0f;
-       float tiltY = 0.0f;
-       OH_NativeXComponent_TouchPointToolType toolType =
-           OH_NativeXComponent_TouchPointToolType::OH_NativeXComponent_TOOL_TYPE_UNKNOWN;
-       // Obtain the tool type of the XComponent touch point.
-       OH_NativeXComponent_GetTouchPointToolType(component, 0, &toolType);
-       // Obtain the tilt of the XComponent touch point relative to the x-axis.
-       OH_NativeXComponent_GetTouchPointTiltX(component, 0, &tiltX);
-       // Obtain the tilt of the XComponent touch point relative to the y-axis.
-       OH_NativeXComponent_GetTouchPointTiltY(component, 0, &tiltY);
-       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "OnTouchEvent",
-           "touch info: toolType = %{public}d, tiltX = %{public}lf, tiltY = %{public}lf", toolType, tiltX, tiltY);
-   }
+    // Define an OnSurfaceChanged() method.
+    void PluginRender::OnSurfaceChanged(OH_NativeXComponent* component, void* window) {
+        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
+   	    uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+   	    if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+   		    OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback", "OnSurfaceChanged: Unable to get XComponent id");
+   		    return;
+   	    }
+
+        std::string id(idStr);
+        PluginRender* render = PluginRender::GetInstance(id);
+        double offsetX;
+        double offsetY;
+        // Obtain the offset of the surface held by the XComponent relative to the upper left corner of its parent component.
+        OH_NativeXComponent_GetXComponentOffset(component, window, &offsetX, &offsetY);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "OH_NativeXComponent_GetXComponentOffset",
+                     "offsetX = %{public}lf, offsetY = %{public}lf", offsetX, offsetY);
+        uint64_t width;
+        uint64_t height;
+        OH_NativeXComponent_GetXComponentSize(component, window, &width, &height);
+        if (render != nullptr) {
+            render->eglCore_->UpdateSize(width, height);
+        }
+    }
    
-   // Define an OnMouseEvent() method.
-   void PluginRender::OnMouseEvent(OH_NativeXComponent *component, void *window) {
-      OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "OnMouseEvent");
-      OH_NativeXComponent_MouseEvent mouseEvent;
-      // Obtain the mouse event triggered by the XComponent.
-      int32_t ret = OH_NativeXComponent_GetMouseEvent(component, window, &mouseEvent);
-      if (ret == OH_NativeXComponent_RESULT_SUCCESS) {
-   	   OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "MouseEvent Info: x = %{public}f, y = %{public}f, action = %{public}d, button = %{public}d", mouseEvent.x, mouseEvent.y, mouseEvent.action, mouseEvent.button);
-      } else {
-   	   OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginRender", "GetMouseEvent error");
-      }
-   }
+    // Define an OnTouchEvent() method.
+    void PluginRender::OnTouchEvent(OH_NativeXComponent* component, void* window) {
+        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
+   	    uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+   	    if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+   		    OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback",
+   			             "OnTouchEvent: Unable to get XComponent id");
+   		    return;
+   	    }
+
+        OH_NativeXComponent_TouchEvent touchEvent;
+        // Obtain the touch event triggered by the XComponent.
+        OH_NativeXComponent_GetTouchEvent(component, window, &touchEvent);
+        // Obtain the x coordinate of the XComponent touch point relative to the left edge of the XComponent and the y coordinate of the XComponent touch point relative to the upper edge of the XComponent.
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "OnTouchEvent", "touch info: x = %{public}lf, y = %{public}lf",
+                     touchEvent.x, touchEvent.y);
+        // Obtain the x coordinate and y-coordinate of the XComponent touch point relative to the upper left corner of the application window where the XComponent is located.
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "OnTouchEvent",
+                     "touch info: screenX = %{public}lf, screenY = %{public}lf", touchEvent.screenX, touchEvent.screenY);
+        std::string id(idStr);
+        PluginRender* render = PluginRender::GetInstance(id);
+        if (render != nullptr && touchEvent.type == OH_NativeXComponent_TouchEventType::OH_NATIVEXCOMPONENT_UP) {
+            render->eglCore_->ChangeColor();
+            hasChangeColor_ = 1;
+        }
+        float tiltX = 0.0f;
+        float tiltY = 0.0f;
+        OH_NativeXComponent_TouchPointToolType toolType =
+            OH_NativeXComponent_TouchPointToolType::OH_NATIVEXCOMPONENT_TOOL_TYPE_UNKNOWN;
+        // Obtain the tool type of the XComponent touch point.
+        OH_NativeXComponent_GetTouchPointToolType(component, 0, &toolType);
+        // Obtain the tilt of the XComponent touch point relative to the x-axis.
+        OH_NativeXComponent_GetTouchPointTiltX(component, 0, &tiltX);
+        // Obtain the tilt of the XComponent touch point relative to the y-axis.
+        OH_NativeXComponent_GetTouchPointTiltY(component, 0, &tiltY);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "OnTouchEvent",
+                     "touch info: toolType = %{public}d, tiltX = %{public}lf, tiltY = %{public}lf", toolType, tiltX, tiltY);
+    }
    
-   // Define an OnHoverEvent() method.
-   void PluginRender::OnHoverEvent(OH_NativeXComponent* component, bool isHover)
-   {
-       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "OnHoverEvent isHover_ = %{public}d", isHover);
-   }
+    // Define an OnMouseEvent() method.
+    void PluginRender::OnMouseEvent(OH_NativeXComponent *component, void *window) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "OnMouseEvent");
+        OH_NativeXComponent_MouseEvent mouseEvent;
+        // Obtain the mouse event triggered by the XComponent.
+        int32_t ret = OH_NativeXComponent_GetMouseEvent(component, window, &mouseEvent);
+        if (ret == OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+   	        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender",
+                         "MouseEvent Info: x = %{public}f, y = %{public}f, action = %{public}d, button = %{public}d",
+                         mouseEvent.x, mouseEvent.y, mouseEvent.action, mouseEvent.button);
+        } else {
+   	        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginRender", "GetMouseEvent error");
+        }
+    }
    
-   // Define an OnFocusEvent() method.
-   void PluginRender::OnFocusEvent(OH_NativeXComponent* component, void* window)
-   {
-       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "OnFocusEvent");
-   }
+    // Define an OnHoverEvent() method.
+    void PluginRender::OnHoverEvent(OH_NativeXComponent* component, bool isHover) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "OnHoverEvent isHover_ = %{public}d", isHover);
+    }
    
-   // Define an OnBlurEvent() method.
-   void PluginRender::OnBlurEvent(OH_NativeXComponent* component, void* window)
-   {
-       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "OnBlurEvent");
-   }
+    // Define an OnFocusEvent() method.
+    void PluginRender::OnFocusEvent(OH_NativeXComponent* component, void* window) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "OnFocusEvent");
+    }
    
-   // Define an OnKeyEvent() method.
-   void PluginRender::OnKeyEvent(OH_NativeXComponent *component, void *window) {
-      OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "OnKeyEvent");
+    // Define an OnBlurEvent() method.
+    void PluginRender::OnBlurEvent(OH_NativeXComponent* component, void* window) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "OnBlurEvent");
+    }
    
-      OH_NativeXComponent_KeyEvent *keyEvent = nullptr;
-      // Obtain the key event triggered by the XComponent.
-      if (OH_NativeXComponent_GetKeyEvent(component, &keyEvent) >= 0) {
-   	   OH_NativeXComponent_KeyAction action;
-          // Obtain the action of a key event.
-   	   OH_NativeXComponent_GetKeyEventAction(keyEvent, &action);
-   	   OH_NativeXComponent_KeyCode code;
-          // Obtain the key code value of a key event.
-   	   OH_NativeXComponent_GetKeyEventCode(keyEvent, &code);
-   	   OH_NativeXComponent_EventSourceType sourceType;
-          // Obtain the input source type of a key event.
-   	   OH_NativeXComponent_GetKeyEventSourceType(keyEvent, &sourceType);
-   	   int64_t deviceId;
-          // Obtain the device ID of a key event.
-   	   OH_NativeXComponent_GetKeyEventDeviceId(keyEvent, &deviceId);
-   	   int64_t timeStamp;
-          // Obtain the timestamp of a key event.
-   	   OH_NativeXComponent_GetKeyEventTimestamp(keyEvent, &timeStamp);
-   	   OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "KeyEvent Info: action=%{public}d, code=%{public}d, sourceType=%{public}d, deviceId=%{public}ld, timeStamp=%{public}ld", action, code, sourceType, deviceId, timeStamp);
-      } else {
-   	   OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginRender", "GetKeyEvent error");
-      }
-   }
+    // Define an OnKeyEvent() method.
+    void PluginRender::OnKeyEvent(OH_NativeXComponent *component, void *window) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "OnKeyEvent");
+   
+        OH_NativeXComponent_KeyEvent *keyEvent = nullptr;
+        // Obtain the key event triggered by the XComponent.
+        if (OH_NativeXComponent_GetKeyEvent(component, &keyEvent) >= 0) {
+   	        OH_NativeXComponent_KeyAction action;
+            // Obtain the action of a key event.
+   	        OH_NativeXComponent_GetKeyEventAction(keyEvent, &action);
+   	        OH_NativeXComponent_KeyCode code;
+            // Obtain the key code value of a key event.
+   	        OH_NativeXComponent_GetKeyEventCode(keyEvent, &code);
+   	        OH_NativeXComponent_EventSourceType sourceType;
+            // Obtain the input source type of a key event.
+   	        OH_NativeXComponent_GetKeyEventSourceType(keyEvent, &sourceType);
+   	        int64_t deviceId;
+            // Obtain the device ID of a key event.
+   	        OH_NativeXComponent_GetKeyEventDeviceId(keyEvent, &deviceId);
+   	        int64_t timeStamp;
+            // Obtain the timestamp of a key event.
+   	        OH_NativeXComponent_GetKeyEventTimestamp(keyEvent, &timeStamp);
+   	        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender",
+                         "KeyEvent Info: action=%{public}d, code=%{public}d, sourceType=%{public}d, deviceId=%{public}ld, "
+                         "timeStamp=%{public}ld",
+                         action, code, sourceType, deviceId, timeStamp);
+        } else {
+   	        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginRender", "GetKeyEvent error");
+        }
+    }
    ```
 
-   (2) Register the **XComponent** event callback and call the method defined in step 3.1 when the **XComponent** event is triggered.
+    (2) Register the **XComponent** event callback and call the method defined in step 3.1 when the **XComponent** event is triggered.
 
     ```c++
     void PluginRender::RegisterCallback(OH_NativeXComponent *NativeXComponent) {
@@ -572,11 +618,10 @@ The following uses the SURFACE type as an example to describe how to use the **X
     }
     ```
 
-   (3) Define the **NapiDrawPattern** method, which will be called by the **drawPattern()** method exposed to the ArkTS side.
+    (3) Define the **NapiDrawPattern** method, which will be called by the **drawPattern()** method exposed to the ArkTS side.
 
     ```c++
-    napi_value PluginRender::NapiDrawPattern(napi_env env, napi_callback_info info)
-    {
+    napi_value PluginRender::NapiDrawPattern(napi_env env, napi_callback_info info) {
         // ...
         // Obtain environment variables.
         napi_value thisArg;
@@ -589,7 +634,7 @@ The following uses the SURFACE type as an example to describe how to use the **X
         napi_value exportInstance;
         if (napi_get_named_property(env, thisArg, OH_NATIVE_XCOMPONENT_OBJ, &exportInstance) != napi_ok) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginRender",
-                "NapiDrawPattern: napi_get_named_property fail");
+                         "NapiDrawPattern: napi_get_named_property fail");
             return nullptr;
         }
        
@@ -603,9 +648,9 @@ The following uses the SURFACE type as an example to describe how to use the **X
         // Obtain the ID of the XComponent.
         char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
         uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-        if (OH_NativeXComponent_GetXComponentId(NativeXComponent, idStr, &idSize) != OH_NativeXComponent_RESULT_SUCCESS) {
+        if (OH_NativeXComponent_GetXComponentId(NativeXComponent, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginRender",
-                "NapiDrawPattern: Unable to get XComponent id");
+                         "NapiDrawPattern: Unable to get XComponent id");
             return nullptr;
         }
        
@@ -620,17 +665,35 @@ The following uses the SURFACE type as an example to describe how to use the **X
     }
     ```
 
+    (4) Define the **TestGetXComponentStatus** method, which will be called by the **getStatus()** method exposed to the ArkTS side.
+
+    ```c++
+    napi_value PluginRender::TestGetXComponentStatus(napi_env env, napi_callback_info info) {
+        napi_value hasDraw;
+        napi_value hasChangeColor;
+
+        napi_create_int32(env, hasDraw_, &(hasDraw));
+        napi_create_int32(env, hasChangeColor_, &(hasChangeColor));
+
+        napi_value obj;
+        napi_create_object(env, &obj);
+        napi_set_named_property(env, obj, "hasDraw", hasDraw);
+        napi_set_named_property(env, obj, "hasChangeColor", hasChangeColor);
+
+        return obj;
+    }
+    ```
+
 4. Initialize the environment, including initializing the available EGLDisplay, determining the available surface configuration, creating the rendering area surface, and creating and associating the context.
 
     ```c++
-    void EGLCore::UpdateSize(int width, int height) 
-    {
+    void EGLCore::UpdateSize(int width, int height) {
+        // width_ and height_ are defined in the header file.
         width_ = width;
         height_ = height;
     }
     
-    bool EGLCore::EglContextInit(void *window, int width, int height)
-    {
+    bool EGLCore::EglContextInit(void *window, int width, int height) {
         // ...
         UpdateSize(width, height);
         eglWindow_ = static_cast<EGLNativeWindowType>(window);
@@ -665,8 +728,7 @@ The following uses the SURFACE type as an example to describe how to use the **X
     ```
 
     ```c++
-    bool EGLCore::CreateEnvironment()
-    {
+    bool EGLCore::CreateEnvironment() {
         // ...
         // Create a surface.
         eglSurface_ = eglCreateWindowSurface(eglDisplay_, eglConfig_, eglWindow_, NULL);
@@ -688,11 +750,10 @@ The following uses the SURFACE type as an example to describe how to use the **X
         return true;
     }
     
-    GLuint EGLCore::CreateProgram(const char* vertexShader, const char* fragShader)
-    {
+    GLuint EGLCore::CreateProgram(const char* vertexShader, const char* fragShader) {
         if ((vertexShader == nullptr) || (fragShader == nullptr)) {
-            OH_LOG_Print(
-                LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "createProgram: vertexShader or fragShader is null");
+            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore",
+                         "createProgram: vertexShader or fragShader is null");
             return PROGRAM_ERROR;
         }
     
@@ -746,8 +807,7 @@ The following uses the SURFACE type as an example to describe how to use the **X
         return PROGRAM_ERROR;
     }
     
-    GLuint EGLCore::LoadShader(GLenum type, const char* shaderSrc)
-    {
+    GLuint EGLCore::LoadShader(GLenum type, const char* shaderSrc) {
         if ((type <= 0) || (shaderSrc == nullptr)) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "glCreateShader type or shaderSrc error");
             return PROGRAM_ERROR;
@@ -776,7 +836,7 @@ The following uses the SURFACE type as an example to describe how to use the **X
             return PROGRAM_ERROR;
         }
     
-        char* infoLog = (char*)malloc(sizeof(char) * (infoLen + 1));
+        char *infoLog = (char*)malloc(sizeof(char) * (infoLen + 1));
         if (infoLog != nullptr) {
             memset(infoLog, 0, infoLen + 1);
             glGetShaderInfoLog(shader, infoLen, nullptr, infoLog);
@@ -795,22 +855,29 @@ The following uses the SURFACE type as an example to describe how to use the **X
    (1) Draw the background.
 
     ```c++
-    // Draw the background color #f4f4f4.
+    // ...
+    // Background color #f4f4f4
     const GLfloat BACKGROUND_COLOR[] = { 244.0f / 255, 244.0f / 255, 244.0f / 255, 1.0f };
+
+    // Drawing pattern color
+    const GLfloat DRAW_COLOR[] = {126.0f / 255, 143.0f / 255, 251.0f / 255, 1.0f};
+
+    // Changed drawing pattern color
+    const GLfloat CHANGE_COLOR[] = {146.0f / 255, 214.0f / 255, 204.0f / 255, 1.0f};
    
-    // Draw the background vertex.
+    // Vertices for the background rectangle
     const GLfloat BACKGROUND_RECTANGLE_VERTICES[] = {
         -1.0f, 1.0f,
         1.0f, 1.0f,
         1.0f, -1.0f,
         -1.0f, -1.0f
     };
+    // ...
     ```
 
     ```c++
-    // Draw the background color.
-    void EGLCore::Background()
-    {
+    // Background color
+    void EGLCore::Background() {
         GLint position = PrepareDraw();
         if (position == POSITION_ERROR) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "Background get position failed");
@@ -818,7 +885,7 @@ The following uses the SURFACE type as an example to describe how to use the **X
         }
    
         if (!ExecuteDraw(position, BACKGROUND_COLOR, BACKGROUND_RECTANGLE_VERTICES,
-            sizeof(BACKGROUND_RECTANGLE_VERTICES))) {
+                         sizeof(BACKGROUND_RECTANGLE_VERTICES))) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "Background execute draw failed");
             return;
         }
@@ -830,8 +897,7 @@ The following uses the SURFACE type as an example to describe how to use the **X
     }
    
     // Prepare for drawing and obtain the value of position. When the creation is successful, the value of position starts from 0.
-    GLint EGLCore::PrepareDraw()
-    {
+    GLint EGLCore::PrepareDraw() {
         if ((eglDisplay_ == nullptr) || (eglSurface_ == nullptr) || (eglContext_ == nullptr) ||
             (!eglMakeCurrent(eglDisplay_, eglSurface_, eglSurface_, eglContext_))) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "PrepareDraw: param error");
@@ -847,9 +913,7 @@ The following uses the SURFACE type as an example to describe how to use the **X
     }
    
     // Draw a specified color in the specified area based on the input parameters.
-    bool EGLCore::ExecuteDraw(GLint position, const GLfloat *color, const GLfloat shapeVertices[],
-        unsigned long vertSize)
-    {
+    bool EGLCore::ExecuteDraw(GLint position, const GLfloat *color, const GLfloat shapeVertices[], unsigned long vertSize) {
         if ((position > 0) || (color == nullptr) || (vertSize / sizeof(shapeVertices[0]) != SHAPE_VERTICES_SIZE)) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "ExecuteDraw: param error");
             return false;
@@ -865,8 +929,7 @@ The following uses the SURFACE type as an example to describe how to use the **X
     }
    
     // End the drawing operation.
-    bool EGLCore::FinishDraw()
-    {
+    bool EGLCore::FinishDraw() {
         // Forcibly flush the buffer.
         glFlush();
         glFinish();
@@ -877,8 +940,7 @@ The following uses the SURFACE type as an example to describe how to use the **X
    (2) Draw the shape.
 
     ```c++
-    void EGLCore::Draw()
-    {
+    void EGLCore::Draw() {
         flag_ = false;
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EGLCore", "Draw");
         GLint position = PrepareDraw();
@@ -889,7 +951,7 @@ The following uses the SURFACE type as an example to describe how to use the **X
    
         // Draw the background.
         if (!ExecuteDraw(position, BACKGROUND_COLOR, BACKGROUND_RECTANGLE_VERTICES,
-            sizeof(BACKGROUND_RECTANGLE_VERTICES))) {
+                         sizeof(BACKGROUND_RECTANGLE_VERTICES))) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "Draw execute draw background failed");
             return;
         }
@@ -931,7 +993,7 @@ The following uses the SURFACE type as an example to describe how to use the **X
                     leftX / width_, leftY / height_,
                     rotateX / width_, rotateY / height_,
                     rightX / width_, rightY / height_
-                };
+            };
             
             // Draw the shape.
             if (!ExecuteDrawStar(position, DRAW_COLOR, shapeVertices, sizeof(shapeVertices))) {
@@ -953,8 +1015,7 @@ The following uses the SURFACE type as an example to describe how to use the **X
    (3) Change the colors, by drawing a new shape with the same size but different colors and replacing the original shape with the new shape.
 
     ```c++
-    void EGLCore::ChangeColor()
-    {
+    void EGLCore::ChangeColor() {
         if (!flag_) {
             return;
         }
@@ -967,7 +1028,7 @@ The following uses the SURFACE type as an example to describe how to use the **X
     
         // Draw the background.
         if (!ExecuteDraw(position, BACKGROUND_COLOR, BACKGROUND_RECTANGLE_VERTICES,
-            sizeof(BACKGROUND_RECTANGLE_VERTICES))) {
+                         sizeof(BACKGROUND_RECTANGLE_VERTICES))) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "ChangeColor execute draw background failed");
             return;
         }
@@ -997,8 +1058,7 @@ The following uses the SURFACE type as an example to describe how to use the **X
         }
     
         GLfloat rad = M_PI / 180 * 72;
-        for (int i = 0; i < 4; ++i)
-        {
+        for (int i = 0; i < 4; ++i) {
             // Obtain the vertices of the other four quadrilaterals through rotation.
             rotate2d(centerX, centerY, &rotateX, &rotateY,rad);
             rotate2d(centerX, centerY, &leftX, &leftY,rad);
@@ -1010,7 +1070,7 @@ The following uses the SURFACE type as an example to describe how to use the **X
                     leftX / width_, leftY / height_,
                     rotateX / width_, rotateY / height_,
                     rightX / width_, rightY / height_
-                };
+            };
     
             // Use the new colors for drawing.
             if (!ExecuteDrawNewStar(position, CHANGE_COLOR, shapeVertices, sizeof(shapeVertices))) {
@@ -1026,8 +1086,7 @@ The following uses the SURFACE type as an example to describe how to use the **X
     }
    
    bool EGLCore::ExecuteDrawNewStar(
-       GLint position, const GLfloat* color, const GLfloat shapeVertices[], unsigned long vertSize)
-   {
+       GLint position, const GLfloat* color, const GLfloat shapeVertices[], unsigned long vertSize) {
        if ((position > 0) || (color == nullptr) || (vertSize / sizeof(shapeVertices[0])) != SHAPE_VERTICES_SIZE) {
            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "ExecuteDraw: param error");
            return false;
@@ -1046,11 +1105,10 @@ The following uses the SURFACE type as an example to describe how to use the **X
 
 6. Release related resources.
 
-   (1) Create the **Release()** method in the **EGLCore** class to release the resources requested during environment initialization, including the window display, rendering area surface, and environment context.
+    (1) Create the **Release()** method in the **EGLCore** class to release the resources requested during environment initialization, including the window display, rendering area surface, and environment context.
 
     ```c++
-    void EGLCore::Release()
-    {
+    void EGLCore::Release() {
         // Release the surface.
         if ((eglDisplay_ == nullptr) || (eglSurface_ == nullptr) || (!eglDestroySurface(eglDisplay_, eglSurface_))) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "Release eglDestroySurface failed");
@@ -1066,18 +1124,15 @@ The following uses the SURFACE type as an example to describe how to use the **X
     }
     ```
 
-   (2) Add the **Release()** method to the **PluginRender** class to release the **EGLCore** and **PluginRender** instances.
+    (2) Add the **Release()** method to the **PluginRender** class to release the **EGLCore** and **PluginRender** instances.
 
     ```c++
-    void PluginRender::Release(std::string &id)
-    {
+    void PluginRender::Release(std::string &id) {
         PluginRender *render = PluginRender::GetInstance(id);
         if (render != nullptr) {
             render->eglCore_->Release();
             delete render->eglCore_;
             render->eglCore_ = nullptr;
-            delete render;
-            render = nullptr;
             instance_.erase(instance_.find(id));
         }
     }
@@ -1172,10 +1227,10 @@ The following uses the SURFACE type as an example to describe how to use the **X
 1. Define the **XComponent** on the UI.
    
     ```javascript
-    // Function declaration
+    // Function declarations defined in cpp/types/libnativerender/Index.d.ts
     type XComponentContextStatus = {
-      hasDraw: boolean,
-      hasChangeColor: boolean,
+        hasDraw: boolean,
+        hasChangeColor: boolean,
     };
     export const SetSurfaceId: (id: BigInt) => any;
     export const ChangeSurface: (id: BigInt, w: number, h: number) =>any;
@@ -1188,83 +1243,84 @@ The following uses the SURFACE type as an example to describe how to use the **X
     ```typescript
     import nativeRender from 'libnativerender.so'
     
-    // Override XComponentController.
+    // Override XComponentController to set lifecycle callbacks.
     class MyXComponentController extends XComponentController {
-      onSurfaceCreated(surfaceId: string): void {
-        console.log(`onSurfaceCreated surfaceId: ${surfaceId}`)
-        nativeRender.SetSurfaceId(BigInt(surfaceId));
-      }
+        onSurfaceCreated(surfaceId: string): void {
+            console.log(`onSurfaceCreated surfaceId: ${surfaceId}`)
+            nativeRender.SetSurfaceId(BigInt(surfaceId));
+        }
     
-      onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void {
-        console.log(`onSurfaceChanged surfaceId: ${surfaceId}, rect: ${JSON.stringify(rect)}}`)
-        nativeRender.ChangeSurface(BigInt(surfaceId), rect.surfaceWidth, rect.surfaceHeight)
-      }
+        onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void {
+            console.log(`onSurfaceChanged surfaceId: ${surfaceId}, rect: ${JSON.stringify(rect)}}`)
+            // Call ChangeSurface to draw content in onSurfaceChanged.
+            nativeRender.ChangeSurface(BigInt(surfaceId), rect.surfaceWidth, rect.surfaceHeight)
+        }
     
-      onSurfaceDestroyed(surfaceId: string): void {
-        console.log(`onSurfaceDestroyed surfaceId: ${surfaceId}`)
-        nativeRender.DestroySurface(BigInt(surfaceId))
-      }
+        onSurfaceDestroyed(surfaceId: string): void {
+            console.log(`onSurfaceDestroyed surfaceId: ${surfaceId}`)
+            nativeRender.DestroySurface(BigInt(surfaceId))
+        }
     }
     
     @Entry
     @Component
     struct Index {
-      @State currentStatus: string = "index";
-      xComponentController: XComponentController = new MyXComponentController();
+        @State currentStatus: string = "index";
+        xComponentController: XComponentController = new MyXComponentController();
     
-      build() {
-        Column() {
-          //...
-          // Define XComponent in an .ets file.
-          Column({ space: 10 }) {
-            XComponent({
-              type: XComponentType.SURFACE,
-              controller: this.xComponentController
-            })
-            Text(this.currentStatus)
-              .fontSize('24fp')
-              .fontWeight(500)
-          }
-          .onClick(() => {
-            let surfaceId = this.xComponentController.getXComponentSurfaceId()
-            nativeRender.ChangeColor(BigInt(surfaceId))
-            let hasChangeColor: boolean = false;
-            if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
-              hasChangeColor = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasChangeColor;
-            }
-            if (hasChangeColor) {
-              this.currentStatus = "change color";
-            }
-          })
+        build() {
+            Column() {
+                //...
+                // Define XComponent in an .ets file.
+                Column({ space: 10 }) {
+                    XComponent({
+                        type: XComponentType.SURFACE,
+                        controller: this.xComponentController
+                    })
+                Text(this.currentStatus)
+                    .fontSize('24fp')
+                    .fontWeight(500)
+                }
+                .onClick(() => {
+                    let surfaceId = this.xComponentController.getXComponentSurfaceId()
+                    nativeRender.ChangeColor(BigInt(surfaceId))
+                    let hasChangeColor: boolean = false;
+                    if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
+                        hasChangeColor = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasChangeColor;
+                    }
+                    if (hasChangeColor) {
+                        this.currentStatus = "change color";
+                    }
+                })
     
-          //...
-          Row() {
-            Button('Draw Star')
-              .fontSize('16fp')
-              .fontWeight(500)
-              .margin({ bottom: 24 })
-              .onClick(() => {
-                let surfaceId = this.xComponentController.getXComponentSurfaceId()
-                nativeRender.DrawPattern(BigInt(surfaceId))
-                let hasDraw: boolean = false;
-                if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
-                  hasDraw = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasDraw;
+                //...
+                Row() {
+                    Button('Draw Star')
+                        .fontSize('16fp')
+                        .fontWeight(500)
+                        .margin({ bottom: 24 })
+                        .onClick(() => {
+                            let surfaceId = this.xComponentController.getXComponentSurfaceId()
+                            nativeRender.DrawPattern(BigInt(surfaceId))
+                            let hasDraw: boolean = false;
+                            if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
+                                hasDraw = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasDraw;
+                            }
+                            if (hasDraw) {
+                                this.currentStatus = "draw star"
+                            }
+                        })
+                        .width('53.6%')
+                        .height(40)
                 }
-                if (hasDraw) {
-                  this.currentStatus = "draw star"
-                }
-              })
-              .width('53.6%')
-              .height(40)
-          }
-          .width('100%')
-          .justifyContent(FlexAlign.Center)
-          .alignItems(VerticalAlign.Bottom)
-          .layoutWeight(1)
+                .width('100%')
+                .justifyContent(FlexAlign.Center)
+                .alignItems(VerticalAlign.Bottom)
+                .layoutWeight(1)
+            }
+            .width('100%')
+            .height('100%')
         }
-        .width('100%')
-        .height('100%')
-      }
     }
     ```
     
@@ -1370,6 +1426,7 @@ The following uses the SURFACE type as an example to describe how to use the **X
         pluginRender->InitNativeWindow(nativeWindow);
         return nullptr;
     }
+
     void PluginRender::InitNativeWindow(OHNativeWindow *window) {
         eglCore_->EglContextInit(window); // For details about the EglContextInit implementation, see the "Native XComponent Scenario" section.
     }
@@ -1449,12 +1506,14 @@ The following uses the SURFACE type as an example to describe how to use the **X
         pluginRender->DrawPattern();
         return nullptr;
     }
+
     PluginRender *PluginManager::GetPluginRender(int64_t &id) {
         if (pluginRenderMap_.find(id) != pluginRenderMap_.end()) {
             return pluginRenderMap_[id];
         }
         return nullptr;
     }
+
     void PluginRender::DrawPattern() {
         eglCore_->Draw(hasDraw_); // For details about the Draw implementation, see the "Native XComponent Scenario" section.
     }
@@ -1470,6 +1529,7 @@ The following uses the SURFACE type as an example to describe how to use the **X
         pluginRender->ChangeColor (); // For details about the ChangeColor implementation, see the "Native XComponent Scenario" section.
         return nullptr;
     }
+
     void PluginRender::ChangeColor() { eglCore_->ChangeColor(hasChangeColor_); }
     
     // Obtain the XComponent status and return it to the ArkTS side.
@@ -1516,7 +1576,9 @@ The following uses the SURFACE type as an example to describe how to use the **X
         }
         return obj;
     }
+
     int32_t PluginRender::HasDraw() { return hasDraw_; }
+
     int32_t PluginRender::HasChangedColor() { return hasChangeColor_; }
     ```
     
@@ -1595,8 +1657,15 @@ The following uses the SURFACE type as an example to describe how to use the **X
         ${EGL-lib} ${GLES-lib} ${hilog-lib} ${libace-lib} ${libnapi-lib} ${libuv-lib} libnative_window.so)
     ```
 
+## How Custom Drawing Works
 
-## Lifecycle Description
+The **XComponent** provides a surface for custom drawing. To draw custom content on this surface, you can use the **NativeWindow** API to allocate and submit graphics buffers. This process pushes your custom content to the surface, and the **XComponent** then integrates the surface into the UI and displays the result. By default, the surface matches the size and position of the **XComponent**. Yet, you can adjust its position and size using the [setXComponentSurfaceRect](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#setxcomponentsurfacerect12) API if needed.
+
+> **NOTE**
+>
+> If your custom drawn content includes transparent elements, they will blend with the content below the surface. For example, if your content is fully transparent, the background of the **XComponent** is black, and the surface maintains its default size and position, the final display will be a black area.
+
+## Lifecycle Events
 
 You can use the **XComponent** to develop EGL/OpenGL ES rendering by using the following ArkTS code:
 
@@ -1609,9 +1678,9 @@ function myComponent() {
 }
 ```
 
-### **onLoad** event
+### onLoad
 
-This event is triggered when the surface of the **XComponent** is ready.
+The **onLoad** event is triggered when the surface of the **XComponent** is ready.
 
 **context** parameter: where the native API exposed on the module is mounted. Its usage is similar to the usage of a **context** instance obtained after the module is directly loaded using **import context from "libnativerender.so"**.
 
@@ -1631,9 +1700,9 @@ This event is triggered when the surface of the **XComponent** is ready.
 
 
 
-### **onDestroy** event
+### onDestroy
 
-This event is triggered when the **XComponent** component is destroyed, which is the same as the destruction time of common ArkUI components.
+The **onDestroy** event is triggered when the **XComponent** component is destroyed, which is the same as the destruction time of common ArkUI components.
 
 **Sequence**:
 
@@ -1651,3 +1720,4 @@ This event is triggered when the **XComponent** component is destroyed, which is
 
 ![onDestroy](./figures/onDestroy1.png)
 
+<!--RP1--><!--RP1End-->

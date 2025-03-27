@@ -1,6 +1,6 @@
 # @ohos.hiviewdfx.jsLeakWatcher (js泄露检测)
 
-本模块提供了监控js对象是否发生泄露的能力
+本模块提供了监控js对象是否发生泄露的能力。
 
 > **说明：**
 >
@@ -17,7 +17,7 @@ import { jsLeakWatcher } from '@kit.PerformanceAnalysisKit';
 
 enable(isEnable: boolean): void;
 
-使能js对象泄露检测，默认关闭
+使能js对象泄露检测，默认关闭。
 
 **系统能力：** SystemCapability.HiviewDFX.HiChecker
 
@@ -38,7 +38,7 @@ jsLeakWatcher.enable(true);
 
 watch(obj: object, msg: string): void;
 
-注册待检测泄露的对象
+注册待检测泄露的对象。
 
 **系统能力：** SystemCapability.HiviewDFX.HiChecker
 
@@ -61,7 +61,7 @@ jsLeakWatcher.watch(obj, "Trace Object");
 
 check(): string;
 
-获取已通过jsLeakWatcher.watch注册且可能发生泄露的对象列表，触发GC后未被回收的对象会被标记为泄露
+获取已通过jsLeakWatcher.watch注册且可能发生泄露的对象列表，触发GC后未被回收的对象会被标记为泄露。
 
 **系统能力：** SystemCapability.HiviewDFX.HiChecker
 
@@ -81,7 +81,7 @@ let leakObjlist:string = jsLeakWatcher.check();
 
 dump(filePath: string): Array&lt;string&gt;;
 
-导出泄漏列表和虚拟机内存快照
+导出泄漏列表和虚拟机内存快照。
 
 **系统能力：** SystemCapability.HiviewDFX.HiChecker
 

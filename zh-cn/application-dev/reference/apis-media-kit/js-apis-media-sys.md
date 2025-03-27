@@ -134,13 +134,13 @@ class JsonData {
   public displayId: number | null = -1
   public missionId: number | null = -1
 }
-let sessionId: number = 0; // 替换成拉起此进程的sessionId
+let sessionId: number = 0; // 替换成拉起此进程的sessionId。
 
 try {
   const jsonData: JsonData = {
-    choice: 'true',  // 替换成用户的选择内容
-    displayId: -1,   // 替换成用户选择的屏幕Id
-    missionId: -1,   // 替换成用户选择的窗口Id
+    choice: 'true',  // 替换成用户的选择内容。
+    displayId: -1,   // 替换成用户选择的屏幕Id。
+    missionId: -1,   // 替换成用户选择的窗口Id。
   }
   await media.reportAVScreenCaptureUserChoice(sessionId, JSON.stringify(jsonData));
 } catch (error: BusinessError) {
@@ -319,7 +319,7 @@ avMetadataExtractor.getFrameIndexByTime(0).then((index: number) => {
 >
 > 使用相机进行视频录制时，需要与相机模块配合，相机模块接口的使用详情见[相机管理](../apis-camera-kit/js-apis-camera.md)。
 
-### isWatermarkSupported<sup>12+</sup>
+### isWatermarkSupported<sup>13+</sup>
 
 isWatermarkSupported(): Promise\<boolean>
 
@@ -349,7 +349,7 @@ avRecorder.isWatermarkSupported().then((isWatermarkSupported: boolean) => {
 });
 ```
 
-### setWatermark<sup>12+</sup>
+### setWatermark<sup>13+</sup>
 
 setWatermark(watermark: image.PixelMap, config: WatermarkConfig): Promise\<void>
 
@@ -366,7 +366,7 @@ setWatermark(watermark: image.PixelMap, config: WatermarkConfig): Promise\<void>
 | 参数名   | 类型                  | 必填 | 说明                         |
 | -------- | -------------------- | ---- | --------------------------- |
 | watermark | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)      | 是   | 图像PixelMap数据。<br>当前支持规格:<br>-当前仅支持pixelformat为RGBA8888。<br>-原图像为8K时->水印图像限制范围3072x288,原图像为4K时->水印图像限制范围1536x144。 |
-| config    | [WatermarkConfig](#watermarkconfig12)   | 是   | 水印的相关配置参数。 |
+| config    | [WatermarkConfig](#watermarkconfig13)   | 是   | 水印的相关配置参数。 |
 
 **返回值：**
 
@@ -389,7 +389,7 @@ setWatermark(watermark: image.PixelMap, config: WatermarkConfig): Promise\<void>
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-let watermark: image.PixelMap|undefined = undefined; // need data
+let watermark: image.PixelMap|undefined = undefined; // need data.
 let watermarkConfig: media.WatermarkConfig = { top: 100, left: 100 }
 
 avRecorder.setWatermark(watermark, watermarkConfig).then(() => {
@@ -451,7 +451,7 @@ prepare(config: VideoRecorderConfig, callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 配置参数以实际硬件设备支持的范围为准
+// 配置参数以实际硬件设备支持的范围为准。
 let videoProfile: media.VideoRecorderProfile = {
   audioBitrate : 48000,
   audioChannels : 2,
@@ -469,12 +469,12 @@ let videoConfig: media.VideoRecorderConfig = {
   audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
   videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
   profile : videoProfile,
-  url : 'fd://xx', // 文件需先由调用者创建，并给予适当的权限
+  url : 'fd://xx', // 文件需先由调用者创建，并给予适当的权限。
   rotation : 0,
   location : { latitude : 30, longitude : 130 }
 }
 
-// asyncallback
+// asyncallback.
 videoRecorder.prepare(videoConfig, (err: BusinessError) => {
   if (err == null) {
     console.info('prepare success');
@@ -524,7 +524,7 @@ prepare(config: VideoRecorderConfig): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 配置参数以实际硬件设备支持的范围为准
+// 配置参数以实际硬件设备支持的范围为准。
 let videoProfile: media.VideoRecorderProfile = {
   audioBitrate : 48000,
   audioChannels : 2,
@@ -542,12 +542,12 @@ let videoConfig: media.VideoRecorderConfig = {
   audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
   videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
   profile : videoProfile,
-  url : 'fd://xx', // 文件需先由调用者创建，并给予适当的权限
+  url : 'fd://xx', // 文件需先由调用者创建，并给予适当的权限。
   rotation : 0,
   location : { latitude : 30, longitude : 130 }
 }
 
-// promise
+// promise.
 videoRecorder.prepare(videoConfig).then(() => {
   console.info('prepare success');
 }).catch((err: BusinessError) => {
@@ -590,8 +590,8 @@ getInputSurface(callback: AsyncCallback\<string>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// asyncallback
-let surfaceID: string; // 传递给外界的surfaceID
+// asyncallback.
+let surfaceID: string; // 传递给外界的surfaceID。
 videoRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
   if (err == null) {
     console.info('getInputSurface success');
@@ -637,8 +637,8 @@ getInputSurface(): Promise\<string>;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// promise
-let surfaceID: string; // 传递给外界的surfaceID
+// promise.
+let surfaceID: string; // 传递给外界的surfaceID。
 videoRecorder.getInputSurface().then((surfaceId: string) => {
   console.info('getInputSurface success');
   surfaceID = surfaceId;
@@ -680,7 +680,7 @@ start(callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// asyncallback
+// asyncallback.
 videoRecorder.start((err: BusinessError) => {
   if (err == null) {
     console.info('start videorecorder success');
@@ -723,7 +723,7 @@ start(): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// promise
+// promise.
 videoRecorder.start().then(() => {
   console.info('start videorecorder success');
 }).catch((err: BusinessError) => {
@@ -764,7 +764,7 @@ pause(callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// asyncallback
+// asyncallback.
 videoRecorder.pause((err: BusinessError) => {
   if (err == null) {
     console.info('pause videorecorder success');
@@ -807,7 +807,7 @@ pause(): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// promise
+// promise.
 videoRecorder.pause().then(() => {
   console.info('pause videorecorder success');
 }).catch((err: BusinessError) => {
@@ -846,7 +846,7 @@ resume(callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// asyncallback
+// asyncallback.
 videoRecorder.resume((err: BusinessError) => {
   if (err == null) {
     console.info('resume videorecorder success');
@@ -887,7 +887,7 @@ resume(): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// promise
+// promise.
 videoRecorder.resume().then(() => {
   console.info('resume videorecorder success');
 }).catch((err: BusinessError) => {
@@ -928,7 +928,7 @@ stop(callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// asyncallback
+// asyncallback.
 videoRecorder.stop((err: BusinessError) => {
   if (err == null) {
     console.info('stop videorecorder success');
@@ -971,7 +971,7 @@ stop(): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// promise
+// promise.
 videoRecorder.stop().then(() => {
   console.info('stop videorecorder success');
 }).catch((err: BusinessError) => {
@@ -1008,7 +1008,7 @@ release(callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// asyncallback
+// asyncallback.
 videoRecorder.release((err: BusinessError) => {
   if (err == null) {
     console.info('release videorecorder success');
@@ -1047,7 +1047,7 @@ release(): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// promise
+// promise.
 videoRecorder.release().then(() => {
   console.info('release videorecorder success');
 }).catch((err: BusinessError) => {
@@ -1087,7 +1087,7 @@ reset(callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// asyncallback
+// asyncallback.
 videoRecorder.reset((err: BusinessError) => {
   if (err == null) {
     console.info('reset videorecorder success');
@@ -1129,7 +1129,7 @@ reset(): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// promise
+// promise.
 videoRecorder.reset().then(() => {
   console.info('reset videorecorder success');
 }).catch((err: BusinessError) => {
@@ -1168,8 +1168,8 @@ on(type: 'error', callback: ErrorCallback): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 当获取videoRecordState接口出错时通过此订阅事件上报
-videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回调
+// 当获取videoRecordState接口出错时通过此订阅事件上报。
+videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回调。
   console.error(`audio error called, error: ${error}`);
 })
 ```
@@ -1231,7 +1231,7 @@ videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回�
 | videoFrameHeight | number                                       | 是   | 录制视频帧的高。 |
 | videoFrameRate   | number                                       | 是   | 录制视频帧率。   |
 
-## WatermarkConfig<sup>12+</sup>
+## WatermarkConfig<sup>13+</sup>
 
 设置给AVRecorder的水印相关配置，该位置以画面的左上角为开始点。
 

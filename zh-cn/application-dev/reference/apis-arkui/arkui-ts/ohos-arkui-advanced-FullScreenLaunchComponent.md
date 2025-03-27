@@ -23,7 +23,7 @@ import { FullScreenLaunchComponent } from '@kit.ArkUI'
 无
 
 ## 属性
-不支持[通用属性](ts-universal-attributes-size.md)
+不支持[通用属性](ts-component-general-attributes.md)
 
 ## FullScreenLaunchComponent
 
@@ -41,12 +41,12 @@ FullScreenLaunchComponent({ content: Callback\<void>, appId: string, options?: A
 
 | 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| content | Callback\<void> | 是 | \@BuilderParam | 组件显示内容。 |
-| appId | string | 是 | - | 原子化服务appId。 |
+| content | Callback\<void> | 是 | \@BuilderParam | 可以使用组件组合来自定义拉起原子化服务前的占位图标，实现类似大桌面应用图标的效果。点击占位组件后，将拉起原子化服务。|
+| appId | string | 是 | - |  需要拉起的原子化服务appId，appId是原子化服务的唯一标识。<!--RP1--><!--RP1End-->|
 | options | [AtomicServiceOptions](../../apis-ability-kit/js-apis-app-ability-atomicServiceOptions.md) | 否 | - | 拉起原子化服务参数。 |
 
 ## 事件
-不支持[通用事件](ts-universal-events-click.md)
+不支持[通用事件](ts-component-general-events.md)
 
 ## 示例
 
@@ -56,7 +56,7 @@ import { FullScreenLaunchComponent } from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
-  @State appId: string = '6918661953712445909';
+  @State appId: string = '6918661953712445909'; // 原子化服务appId
 
   build() {
     Row() {

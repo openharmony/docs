@@ -271,7 +271,7 @@ interface ParticlePropertyUpdaterConfigs<T> {
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| [ParticleUpdater.NONE]|void | Yes| The color does not change.|
+| [ParticleUpdater.NONE]|void | Yes| The property does not change.|
 | [ParticleUpdater.RANDOM] | [ParticleTuple](#particletuple14)<T, T> | Yes| The property changes randomly, with the per-second change difference being a value randomly generated from the range.<br>The target property value is obtained by applying the change difference to the current property value. For example, if the current property value is **0.2** and **config** is set to **[0.1,1.0]**, then:<br>1. When the random change difference is 0.5, the target property value is 0.2 + 0.5 = 0.7.<br>2. The change difference may also be a negative value. For example, if the current property value is **0.2** and **config** is set to **[-3.0,2.0]**, then when the random change difference is **-2.0**, the target property value is 0.2 - 2.0 = -1.8.<br>**NOTE**<br>**config** sets the value range of the change difference. While the change difference does not have a maximum or minimum value limit, the target property value does. Therefore, if the target property value is greater than the maximum property value, the maximum property value will be used instead; if the target property value is less than the minimum property value, the minimum property value will be used instead. **T** represents a number.<br>For example, if the value range of **opacity** is **[0.0, 1.0]**, then if the target property value is greater than 1.0, **1.0** will be used instead.|
 |[ParticleUpdater.CURVE]|Array<[ParticlePropertyAnimation](#particlepropertyanimation)\<T\>> | Yes| The property changes with the animation curve. The array type indicates that multiple animation segments can be set for the current property, for example, 0-3000 ms, 3000-5000 ms, and 5000-8000 ms. **T** represents a number.|
 
@@ -296,7 +296,7 @@ interface ParticlePropertyAnimation<T> {
 | to | T | Yes| Target value of the property. If the value is invalid, the default value will be used.|
 |startMillis|number | Yes| Start time of the animation.|
 |endMillis|number | Yes| End time of the animation.|
-|curve|[Curve](ts-appendix-enums.md#curve) \| [ICurve](../js-apis-curve.md#icurve)| No| Animation curve.<br>Default value: **Curve.Linear**|
+|curve|[Curve](ts-appendix-enums.md#curve) \| [ICurve](../js-apis-curve.md#icurve9)| No| Animation curve.<br>Default value: **Curve.Linear**|
 
 
 ## ParticleType
@@ -613,103 +613,105 @@ struct ParticleExample {
     Stack() {
       Text()
         .width(300).height(300).backgroundColor(Color.Black)
-      Particle({particles:[
-        {
-          emitter:{
-            particle:{
-              type:ParticleType.POINT,// Particle type.
-              config:{
-                radius:10// Point radius.
+      Particle({
+        particles: [
+          {
+            emitter: {
+              particle: {
+                type: ParticleType.POINT, // Particle type.
+                config: {
+                  radius: 10// Point radius.
+                },
+                count: 500, // Total number of particles.
+                lifetime: 10000, // Particle lifetime, in ms.
+                lifetimeRange: 100// Range of particle lifetime values, in ms.
               },
-              count: 500,// Total number of particles.
-              lifetime:10000,// Particle lifetime, in ms.
-              lifetimeRange:100// Range of particle lifetime values, in ms.
+              emitRate: 10, // Number of particles emitted per second.
+              position: [0, 0],
+              shape: ParticleEmitterShape.RECTANGLE// Emitter shape.
             },
-            emitRate:10,// Number of particles emitted per second.
-            position:[0,0],
-            shape:ParticleEmitterShape.RECTANGLE// Emitter shape.
-          },
-          color:{
-            range:[Color.Red,Color.Yellow],// Initial color range.
-            updater:{
-              type:ParticleUpdater.CURVE,// Change with the animation curve.
-              config:[
-                {
-                  from:Color.White,// Initial value of the change.
-                  to:Color.Pink,// Target value of the change.
-                  startMillis:0,// Start time.
-                  endMillis:3000,// End time.
-                  curve:Curve.EaseIn// Animation curve.
-                },
-                {
-                  from:Color.Pink,
-                  to:Color.Orange,
-                  startMillis:3000,
-                  endMillis:5000,
-                  curve:Curve.EaseIn
-                },
-                {
-                  from:Color.Orange,
-                  to:Color.Pink,
-                  startMillis:5000,
-                  endMillis:8000,
-                  curve:Curve.EaseIn
-                },
-              ]
-            }
-          },
-          opacity:{
-            range:[0.0,1.0],// The initial value of particle opacity is randomly generated from the [0.0, 1.0] range.
-            updater:{
-              type:ParticleUpdater.CURVE,
-              config:[
-                {
-                  from:0.0,
-                  to:1.0,
-                  startMillis:0,
-                  endMillis:3000,
-                  curve:Curve.EaseIn
-                },
-                {
-                  from:1.0,
-                  to:0.0,
-                  startMillis:5000,
-                  endMillis:10000,
-                  curve:Curve.EaseIn
-                }
-              ]
-            }
-          },
-          scale:{
-            range:[0.0,0.0],
-            updater:{
-              type:ParticleUpdater.CURVE,
-              config:[
-                {
-                  from:0.0,
-                  to:0.5,
-                  startMillis:0,
-                  endMillis:3000,
-                  curve: Curve.EaseIn
-                }
-              ]
-            }
-          },
-          acceleration:{// Acceleration. speed indicates the acceleration speed, and angle indicates the acceleration direction.
-            speed:{
-              range:[3,9],
-              updater:{
-                type:ParticleUpdater.RANDOM,// The speed changes randomly.
-                config:[1,20]
+            color: {
+              range: [Color.Red, Color.Yellow], // Initial color range.
+              updater: {
+                type: ParticleUpdater.CURVE, // Change with the animation curve.
+                config: [
+                  {
+                    from: Color.White, // Initial value of the change.
+                    to: Color.Pink, // Target value of the change.
+                    startMillis: 0, // Start time.
+                    endMillis: 3000, // End time.
+                    curve: Curve.EaseIn// Animation curve.
+                  },
+                  {
+                    from: Color.Pink,
+                    to: Color.Orange,
+                    startMillis: 3000,
+                    endMillis: 5000,
+                    curve: Curve.EaseIn
+                  },
+                  {
+                    from: Color.Orange,
+                    to: Color.Pink,
+                    startMillis: 5000,
+                    endMillis: 8000,
+                    curve: Curve.EaseIn
+                  },
+                ]
               }
             },
-            angle:{
-              range:[90,90]
+            opacity: {
+              range: [0.0, 1.0], // The initial value of particle opacity is randomly generated from the [0.0, 1.0] range.
+              updater: {
+                type: ParticleUpdater.CURVE,
+                config: [
+                  {
+                    from: 0.0,
+                    to: 1.0,
+                    startMillis: 0,
+                    endMillis: 3000,
+                    curve: Curve.EaseIn
+                  },
+                  {
+                    from: 1.0,
+                    to: 0.0,
+                    startMillis: 5000,
+                    endMillis: 10000,
+                    curve: Curve.EaseIn
+                  }
+                ]
+              }
+            },
+            scale: {
+              range: [0.0, 0.0],
+              updater: {
+                type: ParticleUpdater.CURVE,
+                config: [
+                  {
+                    from: 0.0,
+                    to: 0.5,
+                    startMillis: 0,
+                    endMillis: 3000,
+                    curve: Curve.EaseIn
+                  }
+                ]
+              }
+            },
+            acceleration: {
+              // Acceleration. speed indicates the acceleration speed, and angle indicates the acceleration direction.
+              speed: {
+                range: [3, 9],
+                updater: {
+                  type: ParticleUpdater.RANDOM, // The speed changes randomly.
+                  config: [1, 20]
+                }
+              },
+              angle: {
+                range: [90, 90]
+              }
             }
-          }
 
-        }
-      ]
+          }
+        ]
       }).width(300).height(300)
     }.width("100%").height("100%").align(Alignment.Center)
   }
@@ -727,378 +729,380 @@ This example demonstrates the basic usage of particle animations by initializing
 @Component
 struct ParticleExample {
   @State
-  myCount : number = 100
-  flag : boolean = false;
+  myCount: number = 100
+  flag: boolean = false;
+
   build() {
-    Column(){
+    Column() {
       Stack() {
-        Particle({particles:[
-          {
-            emitter:{
-              particle:{
-                type:ParticleType.IMAGE,
-                config:{
-                  src:$r("app.media.book"),
-                  size:[10,10]
+        Particle({
+          particles: [
+            {
+              emitter: {
+                particle: {
+                  type: ParticleType.IMAGE,
+                  config: {
+                    src: $r("app.media.book"),
+                    size: [10, 10]
+                  },
+                  count: this.myCount,
+                  lifetime: 10000,
+                  lifetimeRange: 100
+                },
+                emitRate: 3,
+                shape: ParticleEmitterShape.CIRCLE
+              },
+              color: {
+                range: [Color.White, Color.White]
+              },
+              opacity: {
+                range: [1.0, 1.0],
+                updater: {
+                  type: ParticleUpdater.CURVE,
+                  config: [
+                    {
+                      from: 0,
+                      to: 1.0,
+                      startMillis: 0,
+                      endMillis: 6000
+                    },
+                    {
+                      from: 1.0,
+                      to: .0,
+                      startMillis: 6000,
+                      endMillis: 10000
+                    }
+                  ]
+                }
+              },
+              scale: {
+                range: [0.1, 1.0],
+                updater: {
+                  type: ParticleUpdater.CURVE,
+                  config: [
+                    {
+                      from: 0,
+                      to: 1.5,
+                      startMillis: 0,
+                      endMillis: 8000,
+                      curve: Curve.EaseIn
+                    }
+
+                  ]
+                }
+              },
+              acceleration: {
+                speed: {
+                  range: [3, 9],
+                  updater: {
+                    type: ParticleUpdater.CURVE,
+                    config: [
+                      {
+                        from: 10,
+                        to: 20,
+                        startMillis: 0,
+                        endMillis: 3000,
+                        curve: Curve.EaseIn
+                      },
+                      {
+                        from: 10,
+                        to: 2,
+                        startMillis: 3000,
+                        endMillis: 8000,
+                        curve: Curve.EaseIn
+                      }
+                    ]
+                  }
+                },
+                angle: {
+                  range: [0, 180],
+                  updater: {
+                    type: ParticleUpdater.CURVE,
+                    config: [{
+                      from: 1,
+                      to: 2,
+                      startMillis: 0,
+                      endMillis: 1000,
+                      curve: Curve.EaseIn
+                    },
+                      {
+                        from: 50,
+                        to: -50,
+                        startMillis: 1000,
+                        endMillis: 3000,
+                        curve: Curve.EaseIn
+                      },
+                      {
+                        from: 3,
+                        to: 5,
+                        startMillis: 3000,
+                        endMillis: 8000,
+                        curve: Curve.EaseIn
+                      }
+                    ]
+                  }
+                }
+              },
+              spin: {
+                range: [0.1, 1.0],
+                updater: {
+                  type: ParticleUpdater.CURVE,
+                  config: [
+                    {
+                      from: 0,
+                      to: 360,
+                      startMillis: 0,
+                      endMillis: 8000,
+                      curve: Curve.EaseIn
+                    }
+                  ]
+                }
+              },
+            }
+            , {
+            emitter: {
+              particle: {
+                type: ParticleType.IMAGE,
+                config: {
+                  src: $r('app.media.heart'),
+                  size: [10, 10]
                 },
                 count: this.myCount,
-                lifetime:10000,
-                lifetimeRange:100
+                lifetime: 10000,
+                lifetimeRange: 100
               },
-              emitRate:3,
-              shape:ParticleEmitterShape.CIRCLE
+              emitRate: 3,
+              shape: ParticleEmitterShape.CIRCLE
             },
-            color:{
-              range:[Color.White,Color.White]
+            color: {
+              range: [Color.White, Color.White]
             },
-            opacity:{
-              range:[1.0,1.0],
-              updater:{
-                type:ParticleUpdater.CURVE,
-                config:[
+            opacity: {
+              range: [1.0, 1.0],
+              updater: {
+                type: ParticleUpdater.CURVE,
+                config: [
                   {
-                    from:0,
-                    to:1.0,
-                    startMillis:0,
-                    endMillis:6000
+                    from: 0,
+                    to: 1.0,
+                    startMillis: 0,
+                    endMillis: 6000
                   },
                   {
-                    from:1.0,
-                    to:.0,
-                    startMillis:6000,
-                    endMillis:10000
+                    from: 1.0,
+                    to: .0,
+                    startMillis: 6000,
+                    endMillis: 10000
                   }
                 ]
               }
             },
-            scale:{
-              range:[0.1,1.0],
-              updater:{
-                type:ParticleUpdater.CURVE,
-                config:[
+            scale: {
+              range: [0.1, 1.0],
+              updater: {
+                type: ParticleUpdater.CURVE,
+                config: [
                   {
                     from: 0,
-                    to: 1.5,
+                    to: 2.0,
                     startMillis: 0,
-                    endMillis: 8000,
+                    endMillis: 10000,
                     curve: Curve.EaseIn
                   }
 
                 ]
               }
             },
-            acceleration:{
-              speed:{
-                range:[3,9],
-                updater:{
+            acceleration: {
+              speed: {
+                range: [3, 9],
+                updater: {
                   type: ParticleUpdater.CURVE,
-                  config:[
+                  config: [
                     {
-                      from:10,
-                      to:20,
-                      startMillis:0,
-                      endMillis:3000,
-                      curve:Curve.EaseIn
+                      from: 10,
+                      to: 20,
+                      startMillis: 0,
+                      endMillis: 3000,
+                      curve: Curve.EaseIn
                     },
                     {
-                      from:10,
-                      to:2,
-                      startMillis:3000,
-                      endMillis:8000,
-                      curve:Curve.EaseIn
+                      from: 10,
+                      to: 2,
+                      startMillis: 3000,
+                      endMillis: 8000,
+                      curve: Curve.EaseIn
                     }
                   ]
                 }
               },
-              angle:{
-                range:[0,180],
-                updater:{
-                  type:ParticleUpdater.CURVE,
-                  config:[{
-                    from:1,
-                    to:2,
-                    startMillis:0,
-                    endMillis:1000,
-                    curve:Curve.EaseIn
+              angle: {
+                range: [0, 180],
+                updater: {
+                  type: ParticleUpdater.CURVE,
+                  config: [{
+                    from: 1,
+                    to: 2,
+                    startMillis: 0,
+                    endMillis: 1000,
+                    curve: Curve.EaseIn
                   },
                     {
-                      from:50,
-                      to:-50,
-                      startMillis:1000,
-                      endMillis:3000,
-                      curve:Curve.EaseIn
+                      from: 50,
+                      to: -50,
+                      startMillis: 0,
+                      endMillis: 3000,
+                      curve: Curve.EaseIn
                     },
                     {
-                      from:3,
-                      to:5,
-                      startMillis:3000,
-                      endMillis:8000,
-                      curve:Curve.EaseIn
+                      from: 3,
+                      to: 5,
+                      startMillis: 3000,
+                      endMillis: 10000,
+                      curve: Curve.EaseIn
                     }
                   ]
                 }
               }
             },
-            spin:{
-              range:[0.1,1.0],
-              updater:{
-                type:ParticleUpdater.CURVE,
-                config:[
-                {
-                  from: 0,
-                  to: 360,
-                  startMillis: 0,
-                  endMillis: 8000,
-                  curve: Curve.EaseIn
+            spin: {
+              range: [0.1, 1.0],
+              updater: {
+                type: ParticleUpdater.CURVE,
+                config: [
+                  {
+                    from: 0,
+                    to: 360,
+                    startMillis: 0,
+                    endMillis: 10000,
+                    curve: Curve.EaseIn
+                  }
+                ]
+              }
+            },
+          }, {
+            emitter: {
+              particle: {
+                type: ParticleType.IMAGE,
+                config: {
+                  src: $r('app.media.sun'),
+                  size: [10, 10]
+                },
+                count: this.myCount,
+                lifetime: 10000,
+                lifetimeRange: 100
+              },
+              emitRate: 3,
+              shape: ParticleEmitterShape.CIRCLE
+            },
+            color: {
+              range: [Color.White, Color.White]
+            },
+            opacity: {
+              range: [1.0, 1.0],
+              updater: {
+                type: ParticleUpdater.CURVE,
+                config: [
+                  {
+                    from: 0,
+                    to: 1.0,
+                    startMillis: 0,
+                    endMillis: 6000
+                  },
+                  {
+                    from: 1.0,
+                    to: .0,
+                    startMillis: 6000,
+                    endMillis: 10000
+                  }
+                ]
+              }
+            },
+            scale: {
+              range: [0.1, 1.0],
+              updater: {
+                type: ParticleUpdater.CURVE,
+                config: [
+                  {
+                    from: 0,
+                    to: 2.0,
+                    startMillis: 0,
+                    endMillis: 10000,
+                    curve: Curve.EaseIn
+                  }
+
+                ]
+              }
+            },
+            acceleration: {
+              speed: {
+                range: [3, 9],
+                updater: {
+                  type: ParticleUpdater.CURVE,
+                  config: [
+                    {
+                      from: 10,
+                      to: 20,
+                      startMillis: 0,
+                      endMillis: 3000,
+                      curve: Curve.EaseIn
+                    },
+                    {
+                      from: 10,
+                      to: 2,
+                      startMillis: 3000,
+                      endMillis: 8000,
+                      curve: Curve.EaseIn
+                    }
+                  ]
                 }
+              },
+              angle: {
+                range: [0, 180],
+                updater: {
+                  type: ParticleUpdater.CURVE,
+                  config: [{
+                    from: 1,
+                    to: 2,
+                    startMillis: 0,
+                    endMillis: 1000,
+                    curve: Curve.EaseIn
+                  },
+                    {
+                      from: 50,
+                      to: -50,
+                      startMillis: 1000,
+                      endMillis: 3000,
+                      curve: Curve.EaseIn
+                    },
+                    {
+                      from: 3,
+                      to: 5,
+                      startMillis: 3000,
+                      endMillis: 8000,
+                      curve: Curve.EaseIn
+                    }
+                  ]
+                }
+              }
+            },
+            spin: {
+              range: [0.1, 1.0],
+              updater: {
+                type: ParticleUpdater.CURVE,
+                config: [
+                  {
+                    from: 0,
+                    to: 360,
+                    startMillis: 0,
+                    endMillis: 10000,
+                    curve: Curve.EaseIn
+                  }
                 ]
               }
             },
           }
-          ,{
-          emitter:{
-            particle:{
-              type:ParticleType.IMAGE,
-              config:{
-                src:$r('app.media.heart'),
-                size:[10,10]
-              },
-              count: this.myCount,
-              lifetime:10000,
-              lifetimeRange:100
-            },
-            emitRate:3,
-            shape:ParticleEmitterShape.CIRCLE
-          },
-          color:{
-            range:[Color.White,Color.White]
-          },
-          opacity:{
-            range:[1.0,1.0],
-            updater:{
-              type:ParticleUpdater.CURVE,
-              config:[
-                {
-                  from:0,
-                  to:1.0,
-                  startMillis:0,
-                  endMillis:6000
-                },
-                {
-                  from:1.0,
-                  to:.0,
-                  startMillis:6000,
-                  endMillis:10000
-                }
-              ]
-            }
-          },
-          scale:{
-            range:[0.1,1.0],
-            updater:{
-              type:ParticleUpdater.CURVE,
-              config:[
-                {
-                  from: 0,
-                  to: 2.0,
-                  startMillis: 0,
-                  endMillis: 10000,
-                  curve: Curve.EaseIn
-                }
-
-              ]
-            }
-          },
-          acceleration:{
-            speed:{
-              range:[3,9],
-              updater:{
-                type: ParticleUpdater.CURVE,
-                config:[
-                  {
-                    from:10,
-                    to:20,
-                    startMillis:0,
-                    endMillis:3000,
-                    curve:Curve.EaseIn
-                  },
-                  {
-                    from:10,
-                    to:2,
-                    startMillis:3000,
-                    endMillis:8000,
-                    curve:Curve.EaseIn
-                  }
-                ]
-              }
-            },
-            angle:{
-              range:[0,180],
-              updater:{
-                type:ParticleUpdater.CURVE,
-                config:[{
-                  from:1,
-                  to:2,
-                  startMillis:0,
-                  endMillis:1000,
-                  curve:Curve.EaseIn
-                },
-                  {
-                    from:50,
-                    to:-50,
-                    startMillis:0,
-                    endMillis:3000,
-                    curve:Curve.EaseIn
-                  },
-                  {
-                    from:3,
-                    to:5,
-                    startMillis:3000,
-                    endMillis:10000,
-                    curve:Curve.EaseIn
-                  }
-                ]
-              }
-            }
-          },
-          spin:{
-            range:[0.1,1.0],
-            updater:{
-              type:ParticleUpdater.CURVE,
-              config:[
-                {
-                  from: 0,
-                  to: 360,
-                  startMillis: 0,
-                  endMillis: 10000,
-                  curve: Curve.EaseIn
-                }
-              ]
-            }
-          },
-        },{
-          emitter:{
-            particle:{
-              type:ParticleType.IMAGE,
-              config:{
-                src:$r('app.media.sun'),
-                size:[10,10]
-              },
-              count: this.myCount,
-              lifetime:10000,
-              lifetimeRange:100
-            },
-            emitRate:3,
-            shape:ParticleEmitterShape.CIRCLE
-          },
-          color:{
-            range:[Color.White,Color.White]
-          },
-          opacity:{
-            range:[1.0,1.0],
-            updater:{
-              type:ParticleUpdater.CURVE,
-              config:[
-                {
-                  from:0,
-                  to:1.0,
-                  startMillis:0,
-                  endMillis:6000
-                },
-                {
-                  from:1.0,
-                  to:.0,
-                  startMillis:6000,
-                  endMillis:10000
-                }
-              ]
-            }
-          },
-          scale:{
-            range:[0.1,1.0],
-            updater:{
-              type:ParticleUpdater.CURVE,
-              config:[
-                {
-                  from: 0,
-                  to: 2.0,
-                  startMillis: 0,
-                  endMillis: 10000,
-                  curve: Curve.EaseIn
-                }
-
-              ]
-            }
-          },
-          acceleration:{
-            speed:{
-              range:[3,9],
-              updater:{
-                type: ParticleUpdater.CURVE,
-                config:[
-                  {
-                    from:10,
-                    to:20,
-                    startMillis:0,
-                    endMillis:3000,
-                    curve:Curve.EaseIn
-                  },
-                  {
-                    from:10,
-                    to:2,
-                    startMillis:3000,
-                    endMillis:8000,
-                    curve:Curve.EaseIn
-                  }
-                ]
-              }
-            },
-            angle:{
-              range:[0,180],
-              updater:{
-                type:ParticleUpdater.CURVE,
-                config:[{
-                  from:1,
-                  to:2,
-                  startMillis:0,
-                  endMillis:1000,
-                  curve:Curve.EaseIn
-                },
-                  {
-                    from:50,
-                    to:-50,
-                    startMillis:1000,
-                    endMillis:3000,
-                    curve:Curve.EaseIn
-                  },
-                  {
-                    from:3,
-                    to:5,
-                    startMillis:3000,
-                    endMillis:8000,
-                    curve:Curve.EaseIn
-                  }
-                ]
-              }
-            }
-          },
-          spin:{
-            range:[0.1,1.0],
-            updater:{
-              type:ParticleUpdater.CURVE,
-              config:[
-                {
-                  from: 0,
-                  to: 360,
-                  startMillis: 0,
-                  endMillis: 10000,
-                  curve: Curve.EaseIn
-                }
-              ]
-            }
-          },
-        }
-        ]
+          ]
         }).width(300).height(300)
 
       }.width(500).height(500).align(Alignment.Center)
@@ -1121,111 +1125,113 @@ struct ParticleExample {
     Stack() {
       Text()
         .width(300).height(300).backgroundColor(Color.Black)
-      Particle({particles:[
-        {
-          emitter:{
-            particle:{
-              type:ParticleType.POINT,// Particle type.
-              config:{
-                radius:10// Point radius.
+      Particle({
+        particles: [
+          {
+            emitter: {
+              particle: {
+                type: ParticleType.POINT, // Particle type.
+                config: {
+                  radius: 10// Point radius.
+                },
+                count: 500, // Total number of particles.
+                lifetime: 10000// Particle lifetime, in ms.
               },
-              count: 500,// Total number of particles.
-              lifetime:10000// Particle lifetime, in ms.
+              emitRate: 10, // Number of particles emitted per second.
+              position: [0, 0],
+              shape: ParticleEmitterShape.RECTANGLE// Emitter shape.
             },
-            emitRate:10,// Number of particles emitted per second.
-            position:[0,0],
-            shape:ParticleEmitterShape.RECTANGLE// Emitter shape.
-          },
-          color:{
-            range:[Color.Red,Color.Yellow],// Initial color range.
-            updater:{
-              type:ParticleUpdater.CURVE,// Change with the animation curve.
-              config:[
-                {
-                  from:Color.White,// Initial value of the change.
-                  to:Color.Pink,// Target value of the change.
-                  startMillis:0,// Start time.
-                  endMillis:3000,// End time.
-                  curve:Curve.EaseIn// Animation curve.
-                },
-                {
-                  from:Color.Pink,
-                  to:Color.Orange,
-                  startMillis:3000,
-                  endMillis:5000,
-                  curve:Curve.EaseIn
-                },
-                {
-                  from:Color.Orange,
-                  to:Color.Pink,
-                  startMillis:5000,
-                  endMillis:8000,
-                  curve:Curve.EaseIn
-                },
-              ]
-            }
-          },
-          opacity:{
-            range:[0.0,1.0],// The initial value of particle opacity is randomly generated from the [0.0, 1.0] range.
-            updater:{
-              type:ParticleUpdater.CURVE,
-              config:[
-                {
-                  from:0.0,
-                  to:1.0,
-                  startMillis:0,
-                  endMillis:3000,
-                  curve:Curve.EaseIn
-                },
-                {
-                  from:1.0,
-                  to:0.0,
-                  startMillis:5000,
-                  endMillis:10000,
-                  curve:Curve.EaseIn
-                }
-              ]
-            }
-          },
-          scale:{
-            range:[0.0,0.0],
-            updater:{
-              type:ParticleUpdater.CURVE,
-              config:[
-                {
-                  from:0.0,
-                  to:0.5,
-                  startMillis:0,
-                  endMillis:3000,
-                  curve: Curve.EaseIn
-                }
-              ]
-            }
-          },
-          acceleration:{// Acceleration. speed indicates the acceleration speed, and angle indicates the acceleration direction.
-            speed:{
-              range:[3,9],
-              updater:{
-                type:ParticleUpdater.RANDOM,
-                config:[1,20]
+            color: {
+              range: [Color.Red, Color.Yellow], // Initial color range.
+              updater: {
+                type: ParticleUpdater.CURVE, // Change with the animation curve.
+                config: [
+                  {
+                    from: Color.White, // Initial value of the change.
+                    to: Color.Pink, // Target value of the change.
+                    startMillis: 0, // Start time.
+                    endMillis: 3000, // End time.
+                    curve: Curve.EaseIn// Animation curve.
+                  },
+                  {
+                    from: Color.Pink,
+                    to: Color.Orange,
+                    startMillis: 3000,
+                    endMillis: 5000,
+                    curve: Curve.EaseIn
+                  },
+                  {
+                    from: Color.Orange,
+                    to: Color.Pink,
+                    startMillis: 5000,
+                    endMillis: 8000,
+                    curve: Curve.EaseIn
+                  },
+                ]
               }
             },
-            angle:{
-              range:[90,90]
+            opacity: {
+              range: [0.0, 1.0], // The initial value of particle opacity is randomly generated from the [0.0, 1.0] range.
+              updater: {
+                type: ParticleUpdater.CURVE,
+                config: [
+                  {
+                    from: 0.0,
+                    to: 1.0,
+                    startMillis: 0,
+                    endMillis: 3000,
+                    curve: Curve.EaseIn
+                  },
+                  {
+                    from: 1.0,
+                    to: 0.0,
+                    startMillis: 5000,
+                    endMillis: 10000,
+                    curve: Curve.EaseIn
+                  }
+                ]
+              }
+            },
+            scale: {
+              range: [0.0, 0.0],
+              updater: {
+                type: ParticleUpdater.CURVE,
+                config: [
+                  {
+                    from: 0.0,
+                    to: 0.5,
+                    startMillis: 0,
+                    endMillis: 3000,
+                    curve: Curve.EaseIn
+                  }
+                ]
+              }
+            },
+            acceleration: {
+              // Acceleration. speed indicates the acceleration speed, and angle indicates the acceleration direction.
+              speed: {
+                range: [3, 9],
+                updater: {
+                  type: ParticleUpdater.RANDOM,
+                  config: [1, 20]
+                }
+              },
+              angle: {
+                range: [90, 90]
+              }
             }
-          }
 
-        }
-      ]
+          }
+        ]
       }).width(300).height(300).disturbanceFields([{
-        strength:10,
-        shape:DisturbanceFieldShape.RECT,
-        size:{width:100,height:100},
-        position:{x:100,y:100},
-        feather:15,
-        noiseScale:10,
-        noiseFrequency:15,
-        noiseAmplitude:5
+        strength: 10,
+        shape: DisturbanceFieldShape.RECT,
+        size: { width: 100, height: 100 },
+        position: { x: 100, y: 100 },
+        feather: 15,
+        noiseScale: 10,
+        noiseFrequency: 15,
+        noiseAmplitude: 5
       }])
     }.width("100%").height("100%").align(Alignment.Center)
   }
@@ -1253,52 +1259,53 @@ struct ParticleExample {
     Stack() {
       Text()
         .width(300).height(300).backgroundColor(Color.Black)
-      Particle({ particles: [
-        {
-          emitter: {
-            particle: {
-              type: ParticleType.POINT, // Particle type.
-              config: {
-                radius: 5// Point radius.
+      Particle({
+        particles: [
+          {
+            emitter: {
+              particle: {
+                type: ParticleType.POINT, // Particle type.
+                config: {
+                  radius: 5// Point radius.
+                },
+                count: 400, // Total number of particles.
+                lifetime: -1// Particle lifetime. The value -1 indicates that the lifetime of the particle is infinite.
               },
-              count: 400, // Total number of particles.
-              lifetime: -1// Particle lifetime. The value -1 indicates that the lifetime of the particle is infinite.
+              emitRate: 10, // Number of particles emitted per second.
+              position: [0, 0], // Emitter position.
+              shape: ParticleEmitterShape.CIRCLE// Emitter shape.
             },
-            emitRate: 10, // Number of particles emitted per second.
-            position: [0, 0], // Emitter position.
-            shape: ParticleEmitterShape.CIRCLE// Emitter shape.
+            color: {
+              range: [Color.Red, Color.Yellow], // Initial color range.
+              updater: {
+                type: ParticleUpdater.CURVE, // Change with the animation curve.
+                config: [
+                  {
+                    from: Color.White,
+                    to: Color.Pink,
+                    startMillis: 0,
+                    endMillis: 3000,
+                    curve: Curve.EaseIn
+                  },
+                  {
+                    from: Color.Pink,
+                    to: Color.Orange,
+                    startMillis: 3000,
+                    endMillis: 5000,
+                    curve: Curve.EaseIn
+                  },
+                  {
+                    from: Color.Orange,
+                    to: Color.Pink,
+                    startMillis: 5000,
+                    endMillis: 8000,
+                    curve: Curve.EaseIn
+                  },
+                ]
+              }
+            },
           },
-          color: {
-            range: [Color.Red, Color.Yellow], // Initial color range.
-            updater: {
-              type: ParticleUpdater.CURVE, // Change with the animation curve.
-              config: [
-                {
-                  from: Color.White,
-                  to: Color.Pink,
-                  startMillis: 0,
-                  endMillis: 3000,
-                  curve: Curve.EaseIn
-                },
-                {
-                  from: Color.Pink,
-                  to: Color.Orange,
-                  startMillis: 3000,
-                  endMillis: 5000,
-                  curve: Curve.EaseIn
-                },
-                {
-                  from: Color.Orange,
-                  to: Color.Pink,
-                  startMillis: 5000,
-                  endMillis: 8000,
-                  curve: Curve.EaseIn
-                },
-              ]
-            }
-          },
-        },
-      ]
+        ]
       })
         .width(300)
         .height(300)

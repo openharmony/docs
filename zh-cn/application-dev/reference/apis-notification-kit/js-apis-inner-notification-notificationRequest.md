@@ -8,14 +8,14 @@
 
 ## NotificationRequest
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 | 名称                            | 类型                                                    |  只读 | 可选 | 说明                                                                    |
 |-------------------------------| -------------------------------------------------------- | ----- | --- |-----------------------------------------------------------------------|
 | content                       | [NotificationContent](js-apis-inner-notification-notificationContent.md#notificationcontent)   |   否  | 否  | 通知内容。                                                                 |
 | id                            | number                                                   |   否  | 是  | 通知ID，默认为0。                                                                 |
 | slotType<sup>(deprecated)</sup> | [notification.SlotType](./js-apis-notification.md#slottype)    |   否  | 是  | 通知渠道类型。<br>从API version 11开始不再维护，建议使用notificationSlotType代替。                        |
-| notificationSlotType<sup>11+</sup> | [notificationManager.SlotType](js-apis-notificationManager.md#slottype) |   否  | 是  | 通知渠道类型。                        |
+| notificationSlotType<sup>11+</sup> | [notificationManager.SlotType](js-apis-notificationManager.md#slottype) |   否  | 是  | 通知渠道类型，默认为OTHER_TYPES。                        |
 | isOngoing                     | boolean                                                  |   否  | 是  | 预留能力，暂未支持。  |
 | isUnremovable                 | boolean                                                  |   否  | 是  | 预留能力，暂未支持。  |
 | deliveryTime                  | number                                                   |   否  | 是  | 通知发送时间。系统自动生成，无需开发者配置。<br>数据格式：时间戳。<br>单位：ms。                                                               |
@@ -25,7 +25,7 @@
 | extraInfo                     | {[key: string]: any}                                     |   否  | 是  | 扩展参数。                                                                 |
 | color                         | number                                                   |   否  | 是  | 通知背景颜色。预留能力，暂未支持。                                                     |
 | colorEnabled                  | boolean                                                  |   否  | 是  | 通知背景颜色是否使能。预留能力，暂未支持。                                                 |
-| isAlertOnce                   | boolean                                                  |   否  | 是  | 设置是否仅有一次此通知提醒。                                                        |
+| isAlertOnce                   | boolean                                                  |   否  | 是  | 发布或更新该通知时，是否只进行一次通知提醒，默认为false。<br/> - true：仅首次发布通知时进行提醒，后续更新该通知时，提醒方式变更为[LEVEL_MIN](js-apis-notificationManager.md#slotlevel)。<br/> - false：每次均按照配置的通知提醒方式进行提醒。                                                        |
 | isStopwatch                   | boolean                                                  |   否  | 是  | 是否显示已用时间。预留能力，暂未支持。                                                             |
 | isCountDown                   | boolean                                                  |   否  | 是  | 是否显示倒计时时间。预留能力，暂未支持。                                                            |
 | isFloatingIcon                | boolean                                                  |   否  | 是  | 是否显示状态栏图标。预留能力，暂未支持。                                                            |
@@ -40,7 +40,7 @@
 | creatorPid                    | number                                                   |   是  | 是  | 创建通知的PID。                                                             |
 | creatorUserId<sup>8+</sup>     | number                                                   |   是  | 是  | 创建通知的UserId。                                                          |
 | hashCode                      | string                                                   |   是  | 是  | 通知唯一标识。                                                               |
-| groupName<sup>8+</sup>         | string                                                   |   否  | 是  | 组通知名称。                                                                |
+| groupName<sup>8+</sup>         | string                                                   |   否  | 是  | 组通知名称。默认为空。                                                                |
 | template<sup>8+</sup>          | [NotificationTemplate](./js-apis-inner-notification-notificationTemplate.md) |   否  | 是  | 通知模板。                                                                 |
 | distributedOption<sup>8+</sup> | [DistributedOptions](#distributedoptions8)                |   否  | 是  | 分布式通知的选项。预留能力，暂未支持。                                                             |
 | notificationFlags<sup>8+</sup> | [NotificationFlags](js-apis-inner-notification-notificationFlags.md#notificationflags)                   |   是  | 是  | 获取NotificationFlags。                                                  |
@@ -51,9 +51,9 @@
 
 ## DistributedOptions<sup>8+</sup>
 
-描述分布式选项。
+描述分布式选项。预留能力，暂未支持。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 | 名称                   | 类型            | 只读 | 可选 | 说明                               |
 | -----------------------| -------------- | ---- | ---- | --------------------------------- |

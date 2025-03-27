@@ -12,6 +12,14 @@ The bundleManager module provides APIs for obtaining application information, in
 import { bundleManager } from '@kit.AbilityKit';
 ```
 
+## Required Permissions
+
+| Permission                                      | APL    | Description           |
+| ------------------------------------------ | ------------ | ------------------|
+| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to obtain basic information and other sensitive information about a bundle.|
+
+For details about the APL, see [Basic Concepts in the Permission Mechanism](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
+
 ## Enums
 
 ### BundleFlag
@@ -203,7 +211,7 @@ Enumerates the types of the multi-app mode.
 
 getBundleInfoForSelf(bundleFlags: number): Promise\<BundleInfo>
 
-Obtains the bundle information of this bundle based on the given bundle flags. This API uses a promise to return the result.
+Obtains the bundle information based on the given bundle flags. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -255,7 +263,7 @@ try {
 
 getBundleInfoForSelf(bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
-Obtains the bundle information of this bundle based on the given bundle flags. This API uses an asynchronous callback to return the result.
+Obtains the bundle information based on the given bundle flags. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -304,7 +312,7 @@ try {
 
 getProfileByAbility(moduleName: string, abilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string\>\>): void
 
-Obtains the JSON string array of the current application's configuration file in the [metadata](../../quick-start/module-configuration-file.md#metadata) based on a given module name, ability name, and metadata name. This API uses an asynchronous callback to return the result.
+Obtains the JSON string array of the configuration file based on the given module name, ability name, and metadata name (name configured in [metadata](../../quick-start/module-configuration-file.md#metadata)). This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > 
@@ -333,7 +341,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                             |
+| 17700026 | The specified bundle is disabled.                            |
 | 17700029 | The specified ability is disabled.                            |
 
 **Example**
@@ -365,7 +373,7 @@ try {
 
 getProfileByAbility(moduleName: string, abilityName: string, metadataName?: string): Promise\<Array\<string\>\>
 
-Obtains the JSON string array of the current application's configuration file in the [metadata](../../quick-start/module-configuration-file.md#metadata) based on a given module name, ability name, and metadata name. This API uses a promise to return the result.
+Obtains the JSON string array of the configuration file based on the given module name, ability name, and metadata name (name configured in [metadata](../../quick-start/module-configuration-file.md#metadata)). This API uses a promise to return the result.
 
 > **NOTE**
 > 
@@ -399,7 +407,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                             |
+| 17700026 | The specified bundle is disabled.                            |
 | 17700029 | The specified ability is disabled.                            |
 
 **Example**
@@ -413,6 +421,7 @@ let moduleName = 'entry';
 let abilityName = 'EntryAbility';
 
 try {
+  // Obtain the JSON string array of the configuration file based on the module name and ability name.
   bundleManager.getProfileByAbility(moduleName, abilityName).then((data) => {
     hilog.info(0x0000, 'testTag', 'getProfileByAbility successfully. Data: %{public}s', JSON.stringify(data));
   }).catch((err: BusinessError) => {
@@ -434,6 +443,7 @@ let abilityName = 'EntryAbility';
 let metadataName = 'ability_metadata';
 
 try {
+  // Obtain the JSON string array of the configuration file based on the module name, ability name, and metadata name.
   bundleManager.getProfileByAbility(moduleName, abilityName, metadataName).then((data) => {
     hilog.info(0x0000, 'testTag', 'getProfileByAbility successfully. Data: %{public}s', JSON.stringify(data));
   }).catch((err: BusinessError) => {
@@ -483,7 +493,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                             |
+| 17700026 | The specified bundle is disabled.                            |
 | 17700029 | The specified ability is disabled.                            |
 
 **Example**
@@ -497,6 +507,7 @@ let moduleName = 'entry';
 let abilityName = 'EntryAbility';
 
 try {
+  // Obtain the JSON string array of the configuration file based on the module name and ability name.
   let data = bundleManager.getProfileByAbilitySync(moduleName, abilityName);
   hilog.info(0x0000, 'testTag', 'getProfileByAbilitySync successfully. Data: %{public}s', JSON.stringify(data));
 } catch (err) {
@@ -515,6 +526,7 @@ let abilityName: string = 'EntryAbility';
 let metadataName: string = 'ability_metadata';
 
 try {
+  // Obtain the JSON string array of the configuration file based on the module name, ability name, and metadata name.
   let data = bundleManager.getProfileByAbilitySync(moduleName, abilityName, metadataName);
   hilog.info(0x0000, 'testTag', 'getProfileByAbilitySync successfully. Data: %{public}s', JSON.stringify(data));
 } catch (err) {
@@ -527,7 +539,7 @@ try {
 
 getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string\>\>): void
 
-Obtains the JSON string array of the current application's configuration file in the [metadata](../../quick-start/module-configuration-file.md#metadata) based on a given module name, ExtensionAbility name, and metadata name. This API uses an asynchronous callback to return the result.
+Obtains the JSON string array of the configuration file based on the given module name, ExtensionAbility name, and metadata name (name configured in [metadata](../../quick-start/module-configuration-file.md#metadata)). This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > 
@@ -556,7 +568,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                             |
+| 17700026 | The specified bundle is disabled.                            |
 
 **Example**
 
@@ -621,7 +633,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                             |
+| 17700026 | The specified bundle is disabled.                            |
 
 **Example**
 
@@ -695,7 +707,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                             |
+| 17700026 | The specified bundle is disabled.                            |
 
 **Example**
 
@@ -894,7 +906,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700004 | The specified user ID is not found.     |
-| 17700026 | The specified bundle is disabled.      |
+| 17700026 | The specified bundle is disabled.     |
 
 **Example**
 
@@ -973,7 +985,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
-| 17700026 | The specified bundle is disabled.      |
+| 17700026 | The specified bundle is disabled.     |
 
 **Example**
 
@@ -1035,7 +1047,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700004 | The specified user ID is not found.     |
-| 17700026 | The specified bundle is disabled.      |
+| 17700026 | The specified bundle is disabled.     |
 
 **Example**
 
@@ -1116,7 +1128,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700004 | The specified user ID is not found.     |
-| 17700026 | The specified bundle is disabled.      |
+| 17700026 | The specified bundle is disabled.     |
 
 **Example**
 
@@ -1171,7 +1183,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
-| 17700026 | The specified bundle is disabled.      |
+| 17700026 | The specified bundle is disabled.     |
 
 **Example**
 
@@ -1378,7 +1390,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 let uid = 20010005;
 
 try {
-    bundleManager.getAppCloneIdentity(uid).then((res: bundleManager.AppCloneIdentity) => {
+    bundleManager.getAppCloneIdentity(uid).then((res) => {
         hilog.info(0x0000, 'testTag', 'getAppCloneIdentity res = %{public}s', JSON.stringify(res));
     }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'getAppCloneIdentity failed. Cause: %{public}s', err.message);
@@ -1388,3 +1400,257 @@ try {
     hilog.error(0x0000, 'testTag', 'getAppCloneIdentity failed. Cause: %{public}s', message);
 }
 ```
+
+### ApplicationInfo
+
+type ApplicationInfo = _ApplicationInfo
+
+Defines the application information.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [_ApplicationInfo](js-apis-bundleManager-applicationInfo.md#applicationinfo-1) | Application information.|
+
+### ModuleMetadata<sup>10+</sup>
+
+type ModuleMetadata = _ModuleMetadata
+
+Defines the metadata of a module.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [_ModuleMetadata](js-apis-bundleManager-applicationInfo.md#ModuleMetadata10) | Metadata of the module.|
+
+### Metadata
+
+type Metadata = _Metadata
+
+Defines the metadata.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [_Metadata](js-apis-bundleManager-metadata.md#metadata) | Metadata.|
+
+### BundleInfo
+
+type BundleInfo = _BundleInfo.BundleInfo
+
+Defines the bundle information.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [_BundleInfo.BundleInfo](js-apis-bundleManager-bundleInfo.md#bundleinfo) | Bundle information.|
+
+
+### UsedScene
+
+type UsedScene = _BundleInfo.UsedScene
+
+Defines the use scenario and timing for using the permission.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [_BundleInfo.UsedScene](js-apis-bundleManager-bundleInfo.md#usedscene) | Use scenario and timing for using the permission.|
+
+### ReqPermissionDetail
+
+type ReqPermissionDetail = _BundleInfo.ReqPermissionDetail
+
+Defines the detailed information of the permissions to request from the system.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [_BundleInfo.ReqPermissionDetail](js-apis-bundleManager-bundleInfo.md#reqpermissiondetail) | Detailed information of the permissions to request from the system.|
+
+### SignatureInfo
+
+type SignatureInfo = _BundleInfo.SignatureInfo
+
+Defines the signature information of the bundle.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [_BundleInfo.SignatureInfo](js-apis-bundleManager-bundleInfo.md#signatureinfo) | Signature information of the bundle.|
+
+### HapModuleInfo
+
+type HapModuleInfo = _HapModuleInfo.HapModuleInfo
+
+Defines the HAP module information.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [_HapModuleInfo.HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md#hapmoduleinfo-1) | HAP module information.|
+
+### PreloadItem
+
+type PreloadItem = _HapModuleInfo.PreloadItem
+
+Defines the preloaded module information in the atomic service.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [_HapModuleInfo.PreloadItem](js-apis-bundleManager-hapModuleInfo.md#preloaditem) | Preloaded module information in the atomic service.|
+
+### Dependency
+
+type Dependency = _HapModuleInfo.Dependency
+
+Defines the information about the dynamic shared libraries on which the module depends.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [_HapModuleInfo.Dependency](js-apis-bundleManager-hapModuleInfo.md#dependency) | Information about the dynamic shared libraries on which the module depends.|
+
+### RouterItem<sup>12+</sup>
+
+type RouterItem = _HapModuleInfo.RouterItem
+
+Defines the router table configuration of the module.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [_HapModuleInfo.RouterItem](js-apis-bundleManager-hapModuleInfo.md#routeritem12) | Router table configuration of the module.|
+
+### DataItem<sup>12+</sup>
+
+type DataItem = _HapModuleInfo.DataItem
+
+Defines the user-defined data in the routing table configuration of the module.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [_HapModuleInfo.DataItem](js-apis-bundleManager-hapModuleInfo.md#dataitem12) | User-defined data in the routing table configuration of the module.|
+
+### AbilityInfo
+
+type AbilityInfo = _AbilityInfo.AbilityInfo
+
+Defines the ability information.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [_AbilityInfo.AbilityInfo](js-apis-bundleManager-abilityInfo.md#abilityinfo-1) |Ability information.|
+
+### WindowSize
+
+type WindowSize = _AbilityInfo.WindowSize
+
+Defines the window size.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [_AbilityInfo.WindowSize](js-apis-bundleManager-abilityInfo.md#windowsize) |Window size.|
+
+
+### ExtensionAbilityInfo
+
+type ExtensionAbilityInfo = _ExtensionAbilityInfo.ExtensionAbilityInfo
+
+Defines the ExtensionAbility information.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [_ExtensionAbilityInfo.ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md#extensionabilityinfo-1) |ExtensionAbility information.|
+
+### ElementName
+
+type ElementName = _ElementName
+
+Defines the element name.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [_ElementName](js-apis-bundleManager-elementName.md#elementname-1) |Element name.|
+
+### Skill<sup>12+</sup>
+
+type Skill = _Skill.Skill
+
+Defines the skill information.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [_Skill.Skill](js-apis-bundleManager-skill.md#skill-1) |Skill information.|
+
+### SkillUrl<sup>12+</sup>
+
+type SkillUrl = _Skill.SkillUri
+
+Defines the SkillUri information.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [_Skill.SkillUri](js-apis-bundleManager-skill.md#skilluri) |SkillUri information.|

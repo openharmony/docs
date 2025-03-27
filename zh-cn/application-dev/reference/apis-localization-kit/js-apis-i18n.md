@@ -879,7 +879,7 @@ get(field: string): number
 | day_of_year | 一年中的第几天。 |
 | day_of_week | 一周中的第几天(星期)。 |
 | milliseconds_in_day | 一天中的第几毫秒。 |
-| zone_offset | 以毫秒计时的时区固定偏移量(不含夏令时)。 |
+| zone_offset | 以毫秒计时的时区固定偏移量（不含夏令时）。 |
 | dst_offset | 以毫秒计时的夏令时偏移量。 |
 | dow_local | 本地星期。 |
 | extended_year | 扩展的年份数值，支持负数。 |
@@ -1227,7 +1227,7 @@ getLocationName(number: string, locale: string): string
 | measureSystem | string | 是    | 是    | 单位的度量体系，取值包括："SI",&nbsp;"US",&nbsp;"UK"。 |
 
 
-## getInstance<sup>8+</sup>
+## i18n.getInstance<sup>8+</sup>
 
 getInstance(locale?:string): IndexUtil
 

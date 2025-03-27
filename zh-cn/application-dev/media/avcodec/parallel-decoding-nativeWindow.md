@@ -2,8 +2,7 @@
 
 ## 场景介绍
 
-为了解码Surface模式的正常创建，在XComponent尚未创建或OpenGL后处理（NativeImage）尚未初始化的情况下，
-可以创建一个空的surface，以确保视频解码器能够正常创建和运行。
+为了解码Surface模式的正常创建，在XComponent尚未创建或OpenGL后处理（NativeImage）尚未初始化的情况下，可以创建一个空的surface，以确保视频解码器能够正常创建和运行。
 
 
 ## 开发步骤
@@ -21,7 +20,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 > **说明：**
 >
-> 上述'sample'字样仅为示例，此处由调用者根据实际工程目录自定义。
+> 上述'sample'字样仅为示例，此处由开发者根据实际工程目录自定义。
 >
 
 **头文件**
@@ -38,14 +37,14 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 1. 创建OH_NativeImage实例。
    
     ```c++
-    // 创建NativeImage实例，作为surface的消费者
+    // 创建NativeImage实例，作为surface的消费者。
     OH_NativeImage* image = OH_ConsumerSurface_Create();
     ```
    
 2. 获取对应的数据生产者端NativeWindow。
 
     ```c++
-    // 获取生产者NativeWindow
+    // 获取生产者NativeWindow。
     OHNativeWindow* nativeImageWindow = OH_NativeImage_AcquireNativeWindow(image);
     ```
 
@@ -57,7 +56,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     int32_t height = 600;
     int32_t ret = OH_NativeWindow_NativeWindowHandleOpt(nativeImageWindow, code, width, height);
     if (ret != AV_ERR_OK) {
-        // 异常处理
+        // 异常处理。
     }
     ```
 
@@ -69,34 +68,34 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     - onFrameAvailable 有buffer可获取触发时的回调函数。
 
     ```c++
-    // onFrameAvailable实现
+    // onFrameAvailable实现。
     static void onFrameAvailable()
     {
       OHNativeWindowBuffer *buffer = nullptr;
       int fenceFd;
-      // 通过消费端的OH_NativeImage获取一个OHNativeWindowBuffer
+      // 通过消费端的OH_NativeImage获取一个OHNativeWindowBuffer。
       OH_NativeImage_AcquireNativeWindowBuffer(image, &buffer, &fenceFd);
-      // 通过OH_NativeImage实例将OHNativeWindowBuffer归还到buffer队列中
+      // 通过OH_NativeImage实例将OHNativeWindowBuffer归还到buffer队列中。
       OH_NativeImage_ReleaseNativeWindowBuffer(image, &buffer, &fenceFd);
     }
     
     static void context()
     {
-      // 调用者自定义的上下文信息
+      // 开发者自定义的上下文信息。
     }
 
-    // 设置回调监听者
+    // 设置回调监听者。
     OH_OnFrameAvailableListener listener = {&onFrameAvailable, &context};
-    // 设置帧可用回调
+    // 设置帧可用回调。
     ret = OH_NativeImage_SetOnFrameAvailableListener(image, listener);
     if (ret != AV_ERR_OK) {
-        // 异常处理
+        // 异常处理。
     }
     ```
 
     > **说明：**
     >
-    > 在此示例中，回调函数的实现仅仅是将buffer取出来并释放，调用者可以根据业务需求自行拓展。
+    > 在此示例中，回调函数的实现仅仅是将buffer取出来并释放，开发者可以根据业务需求自行拓展。
     >
 
 5. 配置解码器。
@@ -114,7 +113,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     ret = OH_VideoDecoder_SetSurface(videoDec, nativeImageWindow);
     if (ret != AV_ERR_OK) {
-        // 异常处理
+        // 异常处理。
     }
     ```
 
@@ -135,14 +134,14 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     ret = OH_VideoDecoder_SetSurface(videoDec, nativeWindow);
     if (ret != AV_ERR_OK) {
-        // 异常处理
+        // 异常处理。
     }
     ```
 
 9. 销毁OH_NativeImage实例。
    
-   在调用OH_VideoDecoder_Destroy接口后，调用OH_NativeImage_Destroy接口销毁OH_NativeImage实例
+   在调用OH_VideoDecoder_Destroy接口后，调用OH_NativeImage_Destroy接口销毁OH_NativeImage实例。
    ```c++
-   // 销毁OH_NativeImage实例
+   // 销毁OH_NativeImage实例。
    OH_NativeImage_Destroy(&image);
    ```

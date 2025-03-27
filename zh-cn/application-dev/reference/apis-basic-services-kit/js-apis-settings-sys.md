@@ -15,7 +15,7 @@ import settings from '@ohos.settings';
 
 ## domainName
 
-提供查询的域名
+提供查询的域名。
 
 ### 属性
 

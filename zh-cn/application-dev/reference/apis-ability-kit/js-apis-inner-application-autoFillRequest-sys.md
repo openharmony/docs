@@ -73,7 +73,7 @@ onSuccess(response: FillResponse): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | ------------------------------ |
-| response | [FillResponse](../apis/#fillresponse)  | 是 | 自动填充响应信息。 |
+| response | [FillResponse](#fillresponse)  | 是 | 自动填充响应信息。 |
 
 **错误码：**
 

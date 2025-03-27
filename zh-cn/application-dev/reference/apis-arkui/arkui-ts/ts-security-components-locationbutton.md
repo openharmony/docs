@@ -4,7 +4,9 @@
 
 > **说明：**
 >
-> 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 从API Version 15开始，位置控件不再维护，推荐调用[requestPermissionsFromUser](../../apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9-1)拉起权限弹窗，请求用户授权。
 
 ## 子组件
 
@@ -122,7 +124,7 @@ LocationButton(options:LocationButtonOptions)
 
 onClick(event: (event: ClickEvent, result: LocationButtonOnClickResult) =&gt; void)
 
-点击动作触发该回调
+点击动作触发该回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -144,30 +146,51 @@ onClick(event: (event: ClickEvent, result: LocationButtonOnClickResult) =&gt; vo
 struct Index {
   build() {
     Row() {
-      Column({space:10}) {
-        // 默认参数下，图标、文字、背景都存在
-        LocationButton().onClick((event: ClickEvent, result: LocationButtonOnClickResult)=>{
+      Column({ space: 10 }) {
+        // 默认参数下，图标、文字、背景都存在。
+        LocationButton().onClick((event: ClickEvent, result: LocationButtonOnClickResult) => {
           console.info("result " + result)
         })
         // 传入参数即表示元素存在，不传入的参数表示元素不存在，如果不传入buttonType，会默认添加ButtonType.Capsule配置，显示图标+背景。
-        LocationButton({icon:LocationIconStyle.LINES})
-        // 只显示图标+背景，如果设置背景色高八位的α值低于0x1A，则会被系统强制调整为0xFF
-        LocationButton({icon:LocationIconStyle.LINES, buttonType:ButtonType.Capsule})
+        LocationButton({ icon: LocationIconStyle.LINES })
+        // 只显示图标+背景，如果设置背景色高八位的α值低于0x1A，则会被系统强制调整为0xFF。
+        LocationButton({ icon: LocationIconStyle.LINES, buttonType: ButtonType.Capsule })
           .backgroundColor(0x10007dff)
-        // 图标、文字、背景都存在，如果设置背景色高八位的α值低于0x1A，则会被系统强制调整为0xFF
-        LocationButton({icon:LocationIconStyle.LINES, text:LocationDescription.CURRENT_LOCATION, buttonType:ButtonType.Capsule})
+        // 图标、文字、背景都存在，如果设置背景色高八位的α值低于0x1A，则会被系统强制调整为0xFF。
+        LocationButton({
+          icon: LocationIconStyle.LINES,
+          text: LocationDescription.CURRENT_LOCATION,
+          buttonType: ButtonType.Capsule
+        })
         // 图标、文字、背景都存在，如果设置宽度小于当前属性组合下允许的最小宽度时，宽度仍为设置值，此时按钮文本信息会自动换行，以保证安全控件显示的完整性。
-        LocationButton({icon:LocationIconStyle.LINES, text:LocationDescription.CURRENT_LOCATION, buttonType:ButtonType.Capsule})
+        LocationButton({
+          icon: LocationIconStyle.LINES,
+          text: LocationDescription.CURRENT_LOCATION,
+          buttonType: ButtonType.Capsule
+        })
           .fontSize(16)
           .width(30)
         // 图标、文字、背景都存在，如果设置宽度小于当前属性组合下允许的最小宽度时，宽度仍为设置值，此时按钮文本信息会自动换行，以保证安全控件显示的完整性。
-        LocationButton({icon:LocationIconStyle.LINES, text:LocationDescription.CURRENT_LOCATION, buttonType:ButtonType.Capsule})
+        LocationButton({
+          icon: LocationIconStyle.LINES,
+          text: LocationDescription.CURRENT_LOCATION,
+          buttonType: ButtonType.Capsule
+        })
           .fontSize(16)
-          .size({width: 30, height: 30})
+          .size({ width: 30, height: 30 })
         // 图标、文字、背景都存在，如果设置宽度小于当前属性组合下允许的最小宽度时，宽度仍为设置值，此时按钮文本信息会自动换行，以保证安全控件显示的完整性。
-        LocationButton({icon:LocationIconStyle.LINES, text:LocationDescription.CURRENT_LOCATION, buttonType:ButtonType.Capsule})
+        LocationButton({
+          icon: LocationIconStyle.LINES,
+          text: LocationDescription.CURRENT_LOCATION,
+          buttonType: ButtonType.Capsule
+        })
           .fontSize(16)
-          .constraintSize({minWidth: 0, maxWidth: 30, minHeight: 0, maxHeight: 30})
+          .constraintSize({
+            minWidth: 0,
+            maxWidth: 30,
+            minHeight: 0,
+            maxHeight: 30
+          })
       }.width('100%')
     }.height('100%')
   }

@@ -60,7 +60,7 @@ setSurfaceId(surfaceId: string): void;
 | -------------- | ---------------------------------- | ---- | -------------------------- |
 | surfaceId       | string     | 是   | [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid) 持有 Surface 的 ID。 |
 
-以下错误码的详细介绍请参见[用户认证错误码](errorcode-useriam.md)
+以下错误码的详细介绍请参见[用户认证错误码](errorcode-useriam.md)。
 
 **错误码：**
 

@@ -60,8 +60,8 @@ atm toggle [-h] [-s -u <user-id> -p <permission-name> -k <status>] [-o -u <user-
 | Parameter                                                          | Description                               | 
 | ----------------------------------------------------------------- | ----------------------------------- | 
 | -h                                                     | Displays help information.             | 
-| -s&nbsp;-u \<user-id\>&nbsp;-p \<permission-name\>&nbsp;-k \<status\> | Sets the toggle state (specified by status) of a specified permission of a specified user. The **-c**, **-i**, **-p** and **-k** parameters are mandatory. The return value indicates whether the operation is successful.| 
-| -o&nbsp;-u \<user-id\>&nbsp;-p \<permission-name\> | Obtains the toggle state of a specified permission for a specified user. The **-o**, **-u**, and **-p** parameters are mandatory.| 
+| -s&nbsp;-u \<user-id\>&nbsp;-p \<permission-name\>&nbsp;-k \<status\> | Sets the toggle status (specified by status) of a specified permission of a specified user. The **c**, **-i**, **-p** and **-k** parameters are mandatory. The return value indicates whether the operation is successful.| 
+| -o&nbsp;-u \<user-id\>&nbsp;-p \<permission-name\> | Obtains the toggle status of a specified permission for a specified user. The **-o**, **-u**, and **-p** parameters are mandatory.| 
 
 Example:
 

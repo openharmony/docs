@@ -90,9 +90,8 @@ The **icon** tag represents the [application icons](../application-models/applic
 
 Layered icons can be configured as follows:
 
-1. Place the foreground and background resources of the icon in the **AppScope/resources/base/media** directory.
-
-2. Create a JSON file (for example, **layered-image.json**) in the **media** directory and reference the foreground and background resources in the file. For details, see [Icon Resource Specifications](https://developer.huawei.com/consumer/en/doc/design-guides/application-icon-0000001953444009#section634668113212).
+1. Place the foreground and background resources of the icon in the **AppScope/resources/base/media** directory, or use the default foreground and background resources in the directory.
+2. The **media** directory contains the **layered-image.json** file, which references foreground and background resources. For details, see [Icon Resource Specifications](https://developer.huawei.com/consumer/en/doc/design-guides/application-icon-0000001953444009#section634668113212).
 
 Example of the layered icon resource file:
 

@@ -1,14 +1,14 @@
-# Batch Data Writing to the Database
+# Batch Database Operations
 
 ## Using TaskPool for Frequent Database Operations
 
-In scenarios where frequent database operations are required, it is time-consuming to read and write the database. Therefore, you are advised to perform operations in sub-threads to avoid blocking the UI thread.
+When dealing with scenarios that require frequent database operations, the time-consuming nature of reading from and writing to the database can lead to UI thread blockages. To mitigate this, you are advised to offload these operations to background threads.
 
-The TaskPool capability provided by ArkTS can be used to move database operation tasks to subthreads. The implementation is as follows:
+By leveraging the TaskPool capabilities provided by ArkTS, database operations can be efficiently moved to background threads. The implementation involves the following steps:
 
-1. Create multiple subtasks and supports operations such as database creation, insertion, query, and clearing.
+1. Create multiple tasks to support various database operations such as creation, insertion, querying, and clearing.
 
-2. The UI main thread calls subtasks to perform database operations such as adding, deleting, modifying, and querying data.
+2. The UI main thread calls these tasks to perform database operations such as adding, deleting, modifying, and querying data.
 
 ```ts
 // Index.ets
@@ -65,7 +65,7 @@ async function query(context: Context): Promise<Array<relationalStore.ValuesBuck
 
   // Obtain the result set.
   let predicates: relationalStore.RdbPredicates = new relationalStore.RdbPredicates("test");
-  let resultSet = await store.query (predicates); // Query all data.
+  let resultSet = await store.query(predicates); // Query all data.
   console.info(`Query data successfully! row count:${resultSet.rowCount}`);
   let index = 0;
   let result = new Array<relationalStore.ValuesBucket>(resultSet.rowCount)
@@ -139,11 +139,11 @@ struct Index {
 }
 ```
 
-## Using Sendable for Large-Capacity Database Operations
+## Using Sendable for Large-Scale Database Operations
 
-It takes a long time to transfer database data across threads. When the data volume is large, the UI main thread is still occupied. You are advised to use Sendable to encapsulate database data to reduce the cross-thread overhead.
+When handling large volumes of database data, cross-thread data transfer may still block the UI main thread due to its time-consuming nature. To address this, you are advised to use Sendable to encapsulate database data, thereby reducing cross-thread overhead.
 
-1. Define the data format in the database. Sendable can be used to reduce the cross-thread time consumption.
+1. Define the data format in the database. Sendable can be used to minimize cross-thread latency.
 
    ```ts
    // SharedValuesBucket.ets
@@ -170,7 +170,7 @@ It takes a long time to transfer database data across threads. When the data vol
    }
    ```
 
-2. Initiated by the UI main thread to add, delete, modify, and query data in subthreads.
+2. Initiate from the UI main thread and perform Create, Read, Update, Delete (CRUD) operations in the background thread.
 
    ```ts
    // Index.ets
@@ -228,7 +228,7 @@ It takes a long time to transfer database data across threads. When the data vol
    
      // Obtain the result set.
      let predicates: relationalStore.RdbPredicates = new relationalStore.RdbPredicates("test");
-     let resultSet = await store.query (predicates); // Query all data.
+     let resultSet = await store.query(predicates); // Query all data.
      console.info(`Query data successfully! row count:${resultSet.rowCount}`);
      let index = 0;
      let result = collections.Array.create<SharedValuesBucket | undefined>(resultSet.rowCount, undefined)

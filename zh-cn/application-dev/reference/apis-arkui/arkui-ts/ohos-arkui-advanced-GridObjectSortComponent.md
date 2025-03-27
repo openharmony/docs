@@ -21,7 +21,7 @@ import { GridObjectSortComponent, GridObjectSortComponentItem, GridObjectSortCom
 
 ## 属性
 
-支持[通用属性](ts-universal-attributes-size.md)
+不支持[通用属性](ts-component-general-attributes.md)。
 
 ## GridObjectSortComponent
 
@@ -50,11 +50,11 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 | 名称           | 类型                      | 必填 | 说明                                                   |
 | -------------- | ------------------------- | ---- | ------------------------------------------------------ |
 | type           | [GridObjectSortComponentType](#gridobjectsortcomponenttype) | 否   | 组件展示形态：文字\|图片+文字。<br />默认：GridObjectSortComponentType.text。 |
-| imageSize      | number \| [Resource](ts-types.md#resource) | 否   | 图片的尺寸。<br />默认值：56。                          |
-| normalTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 未编辑状态下显示的标题。<br />默认：频道。            |
-| showAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 展示区域标题，第一个子标题。<br />默认：长按拖动排序。 |
-| addAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 添加区域标题，第二个子标题。<br />默认：点击添加。            |
-| editTitle      | [ResourceStr](ts-types.md#resourcestr)     | 否   | 编辑状态下头部标题显示。<br />默认：编辑。             |
+| imageSize      | number \| [Resource](ts-types.md#resource) | 否   | 图片的尺寸，单位vp。<br />取值范围：大于等于0。<br />默认值：56vp。                 |
+| normalTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 未编辑状态下显示的标题。<br />默认值：频道。            |
+| showAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 展示区域标题，第一个子标题。<br />默认值：长按拖动排序。 |
+| addAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 添加区域标题，第二个子标题。<br />默认值：点击添加。            |
+| editTitle      | [ResourceStr](ts-types.md#resourcestr)     | 否   | 编辑状态下头部标题显示。<br />默认值：编辑。             |
 
 ## GridObjectSortComponentType
 
@@ -75,15 +75,15 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 | 名称     | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| id       | number&nbsp;\|&nbsp;string             | 是   | 数据id序号，不可重复。                                       |
+| id       | number&nbsp;\|&nbsp;string             | 是   | 数据id序号，不可重复。<br />默认值：空字符串。        |
 | text     | [ResourceStr](ts-types.md#resourcestr) | 是   | 显示文本信息。                                               |
 | selected | boolean                                | 是   | 是否已经被添加，添加：true，未添加：false。                  |
 | url      | [ResourceStr](ts-types.md#resourcestr) | 否   | GridObjectSortComponentType类型为IMAGE_TEXT时，需要传入图片地址。 |
-| order    | number                                 | 是   | 顺序序号。                                                   |
+| order    | number                                 | 是   | 顺序序号。<br />取值范围：大于等于0。<br />默认值：0。               |
 
 ##  事件
 
-不支持[通用事件](ts-universal-events-click.md)。
+不支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 网格对象的编辑排序组件基础用法，涉及对组件配置信息初始化，数据初始化，保存、取消方法的使用。

@@ -835,6 +835,20 @@ The appIndex is invalid.
 2. 检查应用是否有该索引的分身。
 3. 检查是否调用createAppClone，且该索引的应用分身是否已存在。
 
+## 17700062 应用设置了卸载处置规则，不允许直接卸载
+
+**错误信息**<br/>
+Failed to uninstall the app because the app has uninstall rule.
+
+**错误描述**<br/>
+卸载应用时，应用存在卸载处置规则，不允许直接卸载。
+
+**可能原因**<br/>
+应用存在卸载处置规则，不允许直接卸载。<!--Del-->可使用[getUninstallDisposedRule](./js-apis-appControl-sys.md#appcontrolgetuninstalldisposedrule15)检查应用是否设置了卸载处置规则。<!--DelEnd-->
+
+**处理步骤**<br/>
+若为手机设备，则在设备的"设置"->"隐私和安全"->"应用锁"界面，关闭应用锁。<!--Del-->若为其他设备，可通过[deleteUninstallDisposedRule](./js-apis-appControl-sys.md#appcontroldeleteuninstalldisposedrule15)接口关闭应用锁。<!--DelEnd-->
+
 ## 17700065 ShortcutInfo结构体中指定的want，不支持被拉起
 
 **错误信息**<br/>
@@ -878,10 +892,10 @@ Failed to uninstall the HAP because uninstalling the native package failed.
 The app does not support the creation of an appClone instance.
 
 **错误描述**<br/>
-多开模式非分身的应用，不能创建分身实例
+多开模式非分身的应用，不能创建分身实例。
 
 **可能原因**<br/>
-没有配置分身模式，或者多开模式配置为其他模式
+没有配置分身模式，或者多开模式配置为其他模式。
 
 **处理步骤**<br/>
 1. 检查更新应用是否支持分身。
@@ -941,6 +955,31 @@ Failed to install the HAP because an application with the same bundle name but d
 
 1. 卸载设备上相同包名的应用。
 2. 若设备上存在相同包名但签名信息不一致的应用被保留数据地卸载，导致安装失败，则先安装已卸载的应用之后不保留数据地卸载掉。
+
+## 17700101 包管理服务异常
+**错误信息**<br/>
+Bundle manager service is excepted.
+
+**错误描述**<br/>
+包管理服务异常。
+
+**可能原因**<br/>
+系统出现未知的异常，导致包管理服务已停止或者异常退出。
+
+**处理步骤**<br/>
+1. 重启手机后再次尝试请求接口。
+
+2. 重复上述步骤3到5次后依旧请求失败，请查询设备的/data/log/faultlog/faultlogger/目录下是否存在包含foundation字样的crash文件。
+```
+hdc shell
+cd /data/log/faultlog/faultlogger/
+ls -ls
+```
+3. 导出crash文件和日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
+```
+hdc file recv /data/log/faultlog/faultlogger/
+hdc file recv /data/log/hilog/
+```
 
 ## 17700201 abc文件校验失败
 **错误信息**<br/>
@@ -1045,3 +1084,29 @@ bundleName没有动态图标。
 
 **处理步骤**<br/>
 查询动态图标前确保bundleName存在动态图标。
+
+## 17700074 传入的appIdentifier无效
+**错误信息**<br/>
+The specified appIdentifier is invalid.
+
+**错误描述**<br/>
+调用appControl模块中的相关接口时，传入的appIdentifier为无效。
+
+**可能原因**<br/>
+传入的appIdentifier为空字符串。
+
+**处理步骤**<br/>
+检查appIdentifier是否为空字符串。
+
+## 17700075 want指定的bundleName与调用方不符
+**错误信息**<br/>
+The specified bundleName of want is not the same with caller. 
+
+**错误描述**<br/>
+设置卸载处置规则时，want指定的bundleName与调用方不相同。
+
+**可能原因**<br/>
+设置卸载处置规则时，want指定的bundleName与调用方不相同。
+
+**处理步骤**<br/>
+修改want指定的bundleName与调用方相同。

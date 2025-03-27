@@ -12,7 +12,7 @@ ArkUI uses the ArkTS declarative development paradigm. Developers cannot hold co
 ```
 // Create a component using the if statement.
 if(this.isTrue) {
-  Text ("Create Text Component").fontSize (30)
+  Text("Create Text Component").fontSize(30)
 }
 // Create a component using the ForEach statement.
 ForEach(this.nums,(item) => {
@@ -743,7 +743,7 @@ Text in the **Text** component is centered by default. You do not need to set th
 
 **Reference**
 
-[Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#example-1)
+[Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#example-1-setting-the-text-layout)
 
 
 ## Which API is used for URL encoding? (API version 9)
@@ -780,7 +780,7 @@ The @Styles decorator is used for non-universal attributes.
 Use the @Styles decorator only for non-universal attributes. Alternatively, use Builder to extract common components.
 
 
-## When do I use $$ for the \<Radio> component? (API version 9)
+## When do I use $$ for the Radio component? (API version 9)
 
 **Solution**
 

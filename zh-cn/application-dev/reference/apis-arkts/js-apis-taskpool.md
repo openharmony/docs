@@ -23,7 +23,7 @@ import { taskpool } from '@kit.ArkTS';
 
 execute(func: Function, ...args: Object[]): Promise\<Object>
 
-将待执行的函数放入taskpool内部任务队列, 函数不会立即执行，而是等待分发到工作线程执行。当前执行模式不可取消任务。
+将待执行的函数放入taskpool内部任务队列，函数不会立即执行，而是等待分发到工作线程执行。当前执行模式不可取消任务。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -881,11 +881,10 @@ for (let i: number = 0; i < taskArray.length; i+=4) { // 4: 每次执行4个任�
 | -------------------- | --------- | ---- | ---- | ------------------------------------------------------------ |
 | function             | Function  | 是   | 是   | 创建任务时需要传入的函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。 |
 | arguments            | Object[]  | 是   | 是   | 创建任务传入函数所需的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。 |
-| name<sup>11+</sup>   | string    | 是   | 否   | 创建任务时指定的任务名称。                                    |
-| totalDuration<sup>11+</sup>  | number    | 是   | 否   | 执行任务总耗时。                                    |
-| ioDuration<sup>11+</sup>     | number    | 是   | 否   | 执行任务异步IO耗时。                                    |
-| cpuDuration<sup>11+</sup>    | number    | 是   | 否   | 执行任务CPU耗时。                                    |
-
+| name<sup>11+</sup>   | string    | 是   | 否   | 创建任务时指定的任务名称。 |
+| totalDuration<sup>11+</sup>  | number    | 是   | 否   | 执行任务总耗时。单位为ms。 |
+| ioDuration<sup>11+</sup>     | number    | 是   | 否   | 执行任务异步IO耗时。单位为ms。|
+| cpuDuration<sup>11+</sup>    | number    | 是   | 否   | 执行任务CPU耗时。单位为ms。|
 ### constructor
 
 constructor(func: Function, ...args: Object[])
@@ -1764,6 +1763,7 @@ type CallbackFunctionWithError = (e: Error) => void
 **系统能力：** SystemCapability.Utils.Lang
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明               |

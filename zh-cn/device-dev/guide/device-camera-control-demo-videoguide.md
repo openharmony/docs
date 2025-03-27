@@ -36,8 +36,8 @@
 3.  开启和停止录像。
 
     ```
-    stateCallback->camera_->TriggerLoopingCapture(*fc); // 开始录像
-    stateCallback->camera_->StopLoopingCapture(); // 结束录像
+    stateCallback->camera_->TriggerLoopingCapture(*fc); // 开始录像。
+    stateCallback->camera_->StopLoopingCapture(); // 结束录像。
     ```
 
 

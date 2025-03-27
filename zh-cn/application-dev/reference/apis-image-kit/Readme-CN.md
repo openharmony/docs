@@ -66,4 +66,4 @@
     - [ImageEffect_Size](_image_effect___size.md)
     - [ImageProcessing_ColorSpaceInfo](_image_processing___color_space_info.md)
 - 错误码<!--image-arkts-errcode-->
-  - [图片错误码](errorcode-image.md)
+  - [Image错误码](errorcode-image.md)

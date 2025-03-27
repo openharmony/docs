@@ -100,7 +100,7 @@ isBuiltIn(): boolean
 
 | 类型     | 说明        |
 | ------ | --------- |
-| boolean | 当前手势识别器是否为系统内置手势。 |
+| boolean | 当前手势识别器是否为系统内置手势。true表示手势识别器为系统内置手势，false表示非系统内置手势。 |
 
 ### setEnabled
 
@@ -116,7 +116,7 @@ setEnabled(isEnabled: boolean): void
 
 | 参数名     | 类型                           | 必填   | 说明  |
 | ------- | ---------------------------------- | ---- | ----- |
-| isEnabled   | boolean         | 是    | 手势识别器的使能状态。 |
+| isEnabled   | boolean         | 是    | 手势识别器的使能状态。true表示当前手势识别器能够回调应用事件，false表示当前手势识别器不回调应用事件。 |
 
 ### isEnabled
 
@@ -132,7 +132,7 @@ isEnabled(): boolean
 
 | 类型     | 说明        |
 | ------ | --------- |
-| boolean | 当前手势识别器的使能状态。 |
+| boolean | 当前手势识别器的使能状态。true表示当前手势识别器能够回调应用事件，false表示当前手势识别器不回调应用事件。 |
 
 ### getState
 
@@ -237,7 +237,7 @@ isBegin(): boolean
 
 | 类型     | 说明        |
 | ------ | --------- |
-| boolean | 当前滚动类容器组件是否在顶部。 |
+| boolean | 当前滚动类容器组件是否在顶部。true表示组件在顶部，false表示组件不在顶部。 |
 
 ### isEnd
 
@@ -253,7 +253,7 @@ isEnd(): boolean
 
 | 类型     | 说明        |
 | ------ | --------- |
-| boolean | 当前滚动类容器组件是否在底部。 |
+| boolean | 当前滚动类容器组件是否在底部。true表示组件在底部，false表示组件不在底部。 |
 
 ## PanRecognizer
 

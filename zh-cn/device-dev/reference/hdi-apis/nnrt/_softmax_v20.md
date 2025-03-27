@@ -1,6 +1,5 @@
 # Softmax
 
-
 ## 概述
 
 给定一个tensor，计算其softmax结果。
@@ -9,7 +8,7 @@
 
 输入：
 
-- x，n维tensor
+- x，n维tensor。
 
 输出：
 
@@ -19,9 +18,7 @@
 
 **相关模块：**[NNRt](_n_n_rt_v20.md)
 
-
 ## 汇总
-
 
 ### Public 属性
 
@@ -29,9 +26,7 @@
 | -------- | -------- |
 | long[] [axis](#axis) | 指定计算softmax的维度。整数取值范围为[-n，n)。  | 
 
-
 ## 类成员变量说明
-
 
 ### axis
 

@@ -60,7 +60,7 @@ Represents the time of the last incremental backup.
 | Name               | Type  | Mandatory| Description                                                                                               |
 | ------------------- | ------ | ---- | --------------------------------------------------------------------------------------------------- |
 | bundleName          | string | Yes  | Application name, which can be obtained from [bundleManager.BundleInfo](../apis-ability-kit/js-apis-bundleManager-bundleInfo.md).|
-| lastIncrementalTime | number | Yes  | Time when the last incremental backup was performed.                                                                             |
+| lastIncrementalTime | number | Yes  | Time when the last incremental backup was performed.                                                                          |
 
 ## BackupParams<sup>12+</sup>
 
@@ -95,7 +95,7 @@ Represents an incremental backup object, which inherits from [IncrementalBackupT
 ## File
 
 Defines a file object, which
-inherits from [FileMeta](#filemeta) and [FileData](#filedata).
+inherits [FileMeta](#filemeta) and [FileData](#filedata).
 
 > **NOTE**
 >
@@ -128,7 +128,7 @@ Called when the file is ready for sending to the client. If the callback is invo
 
 > **NOTE**
 >
-> The **File** returned by **AsyncCallback** is the file.backup.[File](#file). The returned file belongs to the backup service. Once the file is closed, the backup service shall clear the resources used by the file at the proper time. However, the client must close the file handle first.
+> The **File** returned by **AsyncCallback** is the file.backup.[File](#file). The returned file belongs to the backup service. Once the file is closed, the backup service shall clear the resources used by the file. However, the client must close the file handle first.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
@@ -338,7 +338,7 @@ Called when the backup or restore is complete. If the callback is invoked succes
 
 | Name    | Type  | Mandatory| Description                           |
 | ---------- | ------ | ---- | ------------------------------- |
-| bundleName | string | Yes  | Bundle name.                       |
+| bundleName | string | Yes  | Bundle name of the application.                       |
 | result     | string | Yes  | Application backup/restore information returned in JSON format.|
 
 **Example**
@@ -364,7 +364,7 @@ Called to report the backup or restore progress information. If the callback is 
 
 | Name    | Type  | Mandatory| Description                           |
 | ---------- | ------ | ---- | ------------------------------- |
-| bundleName | string | Yes  | Bundle name.                       |
+| bundleName | string | Yes  | Bundle name of the application.                       |
 | process     | string | Yes  | Backup/restore progress information in JSON format.|
 
 **Example**
@@ -460,7 +460,7 @@ Obtains a JSON file that describes local capabilities. This API uses a promise t
 
 | Type                                | Description                           |
 | ------------------------------------ | ------------------------------- |
-| Promise&lt;[FileData](#filedata)&gt; | Promise used to return the **FileData** object obtained.|
+| Promise&lt;[FileData](#filedata)&gt; | Promise **FileData** object obtained.|
 
 **Error codes**
 
@@ -530,7 +530,7 @@ Obtains local capabilities. The local capabilities of an application are queried
 
 | Type                                | Description                           |
 | ------------------------------------ | ------------------------------- |
-| Promise&lt;[FileData](#filedata)&gt; | Promise used to return the **FileData** object obtained.|
+| Promise&lt;[FileData](#filedata)&gt; | Promise **FileData** object obtained.|
 
 **Error codes**
 
@@ -647,7 +647,7 @@ Called after **onBundleBegin** and before **onBundleEnd** to set the backup or r
 
 | Type               | Description                   |
 | ------------------- | ----------------------- |
-| boolean | A Boolean value indicating whether the backup or restore timeout is set successfully.|
+| boolean | A Boolean value indicating whether the backup or restore timeout is set successfully. The value **true** indicates that the setting is successful, and the value **false** indicates that the setting fails.|
 
 **Error codes**
 
@@ -661,7 +661,7 @@ Called after **onBundleBegin** and before **onBundleEnd** to set the backup or r
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import backup form '@ohos.file.backup';
+  import backup from '@ohos.file.backup';
 
   function updateTimer() {
     try {
@@ -684,7 +684,7 @@ Called after **onBundleBegin** and before **onBundleEnd** to set the backup or r
 
 updateSendRate(bundleName: string, sendRate: number): boolean;
 
-Called after **onBundleBegin** and before **onBundleEnd** to update the send rate.
+Called after **onBundleBegin** and before **onBundleEnd** to set the backup or restore timer.
 
 **Required permissions**: ohos.permission.BACKUP
 
@@ -695,13 +695,13 @@ Called after **onBundleBegin** and before **onBundleEnd** to update the send rat
 | Name         | Type    | Mandatory| Description                      |
 | --------------- | -------- | ---- | -------------------------- |
 | bundleName|string | Yes  | Name of the target application.
-| sendRate | number | Yes  | Send rate to set, in file descriptors (FDs) per second.<br>Value range: 0 to 800<br>Default value: 60 FDs/second<br>The value **0** means to stop transmission. If the value is greater than **800**, the send rate is 800 FDs/second.|
+| sendRate | number | Yes  | Send rate to set, in file descriptors (FDs) per second.<br>Value range: 0 to 800<br>Default value: 60 FDs/second <br>The value **0** means to stop transmission. If the value is greater than **800**, the send rate is 800 FDs/second.|
 
 **Return value**
 
 | Type               | Description                   |
 | ------------------- | ----------------------- |
-| boolean | A Boolean value indicating whether the send rate is set successfully.|
+| boolean | A Boolean value indicating whether the send rate is set successfully. The value **true** indicates that the setting is successful, and the value **false** indicates that the setting fails.|
 
 **Error codes**
 
@@ -715,7 +715,7 @@ Called after **onBundleBegin** and before **onBundleEnd** to update the send rat
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import backup form '@ohos.file.backup';
+  import backup from '@ohos.file.backup';
 
   function updateSendRate() {
     try {
@@ -1459,6 +1459,7 @@ Obtains the handle of the shared file from the service. This API uses an asynchr
 > - Before using **getFileHandle**, you need to obtain a **SessionRestore** instance and add the applications with data to be restored by using **appendBundles**.
 > - You can use **onFileReady** to obtain the file handle. When file operations are completed at the client, you need to use **publishFile** to publish the file.
 > - **getFileHandle** can be called multiple times based on the number of files to be restored.
+> - File to be restored cannot be a relative path (**../**) or soft link.
 
 **Required permissions**: ohos.permission.BACKUP
 
@@ -1553,6 +1554,7 @@ Obtains the handle of the shared file from the service. This API uses a promise 
 > - Before using **getFileHandle**, you need to obtain a **SessionRestore** instance and add the applications with data to be restored by using **appendBundles**.
 > - You can use **onFileReady** to obtain the file handle. When file operations are completed at the client, you need to use **publishFile** to publish the file.
 > - **getFileHandle** can be called multiple times based on the number of files to be restored.
+> - File to be restored cannot be a relative path (**../**) or soft link.
 
 **Required permissions**: ohos.permission.BACKUP
 
@@ -2149,6 +2151,146 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   }); // Appends the applications that require incremental backup.
   ```
 
+### appendBundles<sup>12+</sup>
+
+appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt, infos: string[]): Promise&lt;void&gt;
+
+Appends applications that require incremental backup. In the current process, **appendBundles** can be called before **Release()** is called. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.BACKUP
+
+**System capability**: SystemCapability.FileManagement.StorageService.Backup
+
+**Parameters**
+
+| Name         | Type                                                          | Mandatory| Description                      |
+| --------------- | -------------------------------------------------------------- | ---- | -------------------------- |
+| bundlesToBackup | Array&lt;[IncrementalBackupData](#incrementalbackupdata12)&gt; | Yes  | Array of applications that require incremental backup.|
+| infos  | string[] | Yes  | Array of the information about each application to be backed up. The mappings between **infos** and **bundlesToBackup** are identified by index. This parameter is supported since API version 12.|
+
+**Return value**
+
+| Type               | Description                   |
+| ------------------- | ----------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+
+| ID| Error Message                                                                                      |
+| -------- | ---------------------------------------------------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
+| 13600001 | IPC error                                                                                      |
+| 13900001 | Operation not permitted                                                                        |
+| 13900005 | I/O error                                                                                      |
+| 13900011 | Out of memory                                                                                  |
+| 13900020 | Invalid argument                                                                               |
+| 13900025 | No space left on device                                                                        |
+| 13900042 | Unknown error                                                                                  |
+
+**Example**
+
+  ```ts
+  import fs from '@ohos.file.fs';
+  import { BusinessError } from '@ohos.base';
+
+  let generalCallbacks: backup.GeneralCallbacks = {
+    onFileReady: (err: BusinessError, file: backup.File) => {
+      if (err) {
+        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onFileReady success');
+      fs.closeSync(file.fd);
+    },
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        return;
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        return;
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err: BusinessError) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    },
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+    }
+  };
+  let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // Create a session for an incremental backup.
+  let incrementalBackupData: backup.IncrementalBackupData = {
+    bundleName: "com.example.hiworld",
+    lastIncrementalTime: 1700107870, // Timestamp of the last backup.
+    manifestFd:1 // FD of the manifest file of the last backed.
+  }
+      let infos: Array<string> = [
+        `
+        {
+        "infos": [
+            {
+                "details": [
+                    {
+                        "detail": [
+                            {
+                                "key1": "value1",
+                                "key2": "value2"
+                            }
+                        ]
+                    }
+                ],
+                "type": "unicast",
+                "bundleName": "com.example.hiworld"
+            }
+        ]
+    },
+    {
+        "infos": [
+            {
+                "details": [
+                    {
+                        "detail": [
+                            {
+                                "key1": "value1",
+                                "key2": "value2"
+                            }
+                        ]
+                    }
+                ],
+                "type": "unicast",
+                "bundleName": "com.example.myApp"
+            }
+        ]
+    }
+      `
+    ]
+  let incrementalBackupDataArray: backup.IncrementalBackupData[] = [incrementalBackupData];
+  // Appends the applications that require incremental backup.
+  incrementalBackupSession.appendBundles(incrementalBackupDataArray, infos).then(() => {
+    console.info('appendBundles success');
+  }).catch((err: BusinessError) => {
+    console.error('appendBundles failed with err: ' + JSON.stringify(err));
+  }); 
+  ```
 ### release<sup>12+</sup>
 
 release(): Promise&lt;void&gt;

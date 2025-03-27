@@ -46,7 +46,7 @@ The following walks you through on how to use the native purgeable memory APIs t
         ParaData *pdata = (ParaData*) param;
         int* oriData = (int*)data;
         int i = pdata->start;
-        while(i<pdata->end){
+        while (i < pdata->end) {
             *oriData *= i;
             i++;
         }

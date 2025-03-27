@@ -12,14 +12,14 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| double-conversion/cmake/ | CMake组织编译使用到的模板 |
-| double-conversion/double-conversion/ | 源文件目录 |
+| double-conversion/cmake/ | CMake组织编译使用到的模板。 |
+| double-conversion/double-conversion/ | 源文件目录。 |
 | double-conversion/msvc/ | - |
-| double-conversion/test/ | 测试用例源文件 |
+| double-conversion/test/ | 测试用例源文件。 |
 | double-conversion/.gitignore | - |
 | double-conversion/AUTHORS | - |
 | double-conversion/BUILD | - |
-| double-conversion/CMakeLists.txt | CMake方式顶层编译组织文件 |
+| double-conversion/CMakeLists.txt | CMake方式顶层编译组织文件。 |
 | double-conversion/COPYING | - |
 | double-conversion/Changelog | - |
 | double-conversion/LICENSE | - |
@@ -46,7 +46,7 @@
 
 CMake方式可通过指定工具链进行交叉编译，修改并编译该库，生成OpenHarmony平台的可执行文件，步骤如下：
 
-1. 设置工具链
+1. 设置工具链。
      将下列clang工具链配置添加到该工程的顶层CMakeLists.txt（即表1中的该文件）中即可。
      
    ```
@@ -73,7 +73,7 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
    set(CMAKE_SYSROOT ${OHOS_SYSROOT_PATH})
    ```
 
-2. 执行编译
+2. 执行编译。
    linux命令行中进入double-conversion的源文件目录（即标1所示目录），执行下列命令：
 
    
@@ -85,16 +85,16 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 
    其中OHOS_SYSROOT_PATH需用绝对路径指定出sysroot目录的位置，以OpenHarmony为例即目录out/hispark_xxx/ipcamera_hispark_xxx/sysroot的绝对路径。上述目录会在全量编译后生成，因此移植前先完成一次全量编译。
 
-3. 查看结果
+3. 查看结果。
    步骤2操作完成后，build目录下会生成静态库文件和测试用例：
 
      **表2** 编译生成文件目录结构
    
    | 名称 | 描述 |
    | -------- | -------- |
-   | double-conversion/build/libdouble-conversion.a | 生成的静态库文件 |
-   | double-conversion/build/test/ | 目录下存放生成的测试用例和相关CMake缓存文件 |
-   | double-conversion/build/CMakeCache.txt | CMake构建过程中的缓存文件 |
+   | double-conversion/build/libdouble-conversion.a | 生成的静态库文件。 |
+   | double-conversion/build/test/ | 目录下存放生成的测试用例和相关CMake缓存文件。 |
+   | double-conversion/build/CMakeCache.txt | CMake构建过程中的缓存文件。 |
    | double-conversion/build/CMakeFiles/ | - |
    | double-conversion/build/cmake_install.cmake | - |
    | double-conversion/build/CTestTestfile.cmake | - |
@@ -106,7 +106,7 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 
 ## 测试
 
-1. 搭建OpenHarmony环境
+1. 搭建OpenHarmony环境。
    以Hi3516DV300为例，编译出OpenHarmony镜像，烧写到开发板，相关操作可参考[快速入门小型系统部分](../quick-start/quickstart-overview.md)。
 
    进入系统如下所示：
@@ -115,9 +115,9 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 
      ![zh-cn_image_0000001218806027](figures/zh-cn_image_0000001218806027.png)
 
-2. 挂载nfs目录，将表2中test目录下cctest可执行文件放入nfs目录
+2. 挂载nfs目录，将表2中test目录下cctest可执行文件放入nfs目录。
 
-3. 执行用例
+3. 执行用例。
    该库采用非交叉编译时用例是通过make test执行，CMake会有相关的执行结果统计；交叉编译时无法使用该方法，因此可直接执行生成的测试文件完成测试。
 
    - 挂载成功后执行下列命令可列出用例所有条目：
@@ -173,19 +173,19 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 
 ## 将该库编译添加到OpenHarmony工程中
 
-1. 复制库到OpenHarmony工程中
+1. 复制库到OpenHarmony工程中。
    拷贝已经能够成功交叉编译的库到OpenHarmony的third_party目录，为了不修改要移植的三方库目录下的BUILD.gn文件，再添加一层目录放置新增的gn转CMake编译适配文件，新增的文件有BUILD.gn、build_thirdparty.py、 config.gni，新增后的目录结构如下所示。
 
      **表3** 添加到工程后的目录结构
    
    | 名称 | 描述 |
    | -------- | -------- |
-   | OpenHarmony/third_party/double-conversion/BUILD.gn | 将三方库加入工程的gn适配文件 |
-   | OpenHarmony/third_party/double-conversion/build_thirdparty.py | GN调用shell命令脚本文件，由上面GN文件将相关命令传入，实现GN转CMake |
-   | OpenHarmony/third_party/double-conversion/config.gni | 三方库编译配置文件，可修改该文件来配置用例是否参与构建等 |
-   | OpenHarmony/third_party/double-conversion/double-conversion/ | 要移植的三方库目录 |
+   | OpenHarmony/third_party/double-conversion/BUILD.gn | 将三方库加入工程的gn适配文件。 |
+   | OpenHarmony/third_party/double-conversion/build_thirdparty.py | GN调用shell命令脚本文件，由上面GN文件将相关命令传入，实现GN转CMake。 |
+   | OpenHarmony/third_party/double-conversion/config.gni | 三方库编译配置文件，可修改该文件来配置用例是否参与构建等。 |
+   | OpenHarmony/third_party/double-conversion/double-conversion/ | 要移植的三方库目录。 |
 
-2. 添加gn到CMake适配文件
+2. 添加gn到CMake适配文件。
    - **新增的BUILD.gn文件实现如下，其他采用CMake方式可独立编译的三方库移植到OpenHarmony平台时只需修改路径即可**。
 
      
@@ -273,7 +273,7 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
          sys.exit(main())
      ```
 
-   - 在配置文件中添加开关控制该库编译，默认设为关闭
+   - 在配置文件中添加开关控制该库编译，默认设为关闭。
 
      在//build/lite/ohos_var.gni文件中添加下列配置：
 
@@ -284,14 +284,14 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
       }
      ```
 
-3. 编译构建
+3. 编译构建。
    手动单独构建：
 
-   执行下列命令
+   执行下列命令：
 
    
    ```
    hb build -T //third_party/double-conversion:double-conversion
    ```
 
-   编译成功则build目录下会生成静态库文件和测试用例
+   编译成功则build目录下会生成静态库文件和测试用例。

@@ -11,13 +11,12 @@
 ## 导入模块
 
 ```ts
-import { AlbumPickerComponent, AlbumPickerOptions, AlbumInfo, photoAccessHelper } from '@kit.MediaLibraryKit';
-import { EmptyAreaClickCallback } from '@ohos.file.AlbumPickerComponent';
+import { AlbumPickerComponent, AlbumPickerOptions, AlbumInfo, photoAccessHelper, EmptyAreaClickCallback } from '@kit.MediaLibraryKit';
 ```
 
 ## 属性
 
-支持[通用属性](../apis-arkui/arkui-ts/ts-universal-attributes-size.md)。
+支持[通用属性](../apis-arkui/arkui-ts/ts-component-general-attributes.md)。
 
 ## AlbumPickerComponent
 
@@ -79,8 +78,7 @@ type EmptyAreaClickCallback = () => void
 
 ```ts
 // xxx.ets
-import { AlbumPickerComponent, AlbumPickerOptions, AlbumInfo, PickerColorMode, photoAccessHelper } from '@kit.MediaLibraryKit';
-import { EmptyAreaClickCallback } from '@ohos.file.AlbumPickerComponent';
+import { AlbumPickerComponent, AlbumPickerOptions, AlbumInfo, PickerColorMode, photoAccessHelper, EmptyAreaClickCallback } from '@kit.MediaLibraryKit';
 
 @Entry
 @Component
@@ -95,16 +93,16 @@ struct PickerDemo {
   
   private onAlbumClick(albumInfo: AlbumInfo): boolean {
     if (albumInfo?.uri) {
-      // 通过pickerController向PhotoPickerComponent发送消息，通知其刷新
+      // 通过pickerController向PhotoPickerComponent发送消息，通知其刷新。
     }
     if (albumInfo?.albumName) {
-      // 基于获取到的albumName后续逻辑处理
+      // 基于获取到的albumName后续逻辑处理。
     }
     return true;
   }
   
   private onEmptyAreaClick(): void {
-    // 点击组件空白区域回调
+    // 点击组件空白区域回调。
   }
 
   build() {

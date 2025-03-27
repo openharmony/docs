@@ -227,7 +227,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 | speed | number | 否 | 否 |表示速度信息，单位米每秒。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | timeStamp | number | 否 | 否 | 表示位置时间戳，UTC格式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | direction | number | 否 | 否 | 表示航向信息。单位是“度”，取值范围为0到360。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| timeSinceBoot | number | 否 | 否 | 表示位置时间戳，开机时间格式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| timeSinceBoot | number | 否 | 否 | 表示获取位置成功的时间戳，值表示从本次开机到获取位置成功所经过的时间，单位为纳秒。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | additions | Array&lt;string&gt;| 否 | 是 | 附加信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | additionSize | number| 否 | 是 | 附加信息数量。取值范围为大于等于0。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | additionsMap<sup>12+</sup> | Map&lt;string, string&gt;| 否 | 是 | 附加信息。具体内容和顺序与additions一致。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -466,6 +466,21 @@ GNSS地理围栏请求参数。
 | NETWORK    | 2 | 表示定位结果来自于网络定位技术。 |
 | INDOOR     | 3 | 表示定位结果来自于室内高精度定位技术。 |
 | RTK     | 4 | 表示定位结果来自于室外高精度定位技术。 |
+
+
+## BluetoothScanResult<sup>16+</sup>
+
+蓝牙扫描结果。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| deviceId | string | 是 | 否 | 表示扫描到的设备地址。例如："XX:XX:XX:XX:XX:XX"。 |
+| rssi | number | 是 | 否 | 表示扫描到的设备的rssi值。 |
+| data | ArrayBuffer | 是 | 是 | 表示扫描到的设备发送的广播包。 |
+| deviceName | string | 是 | 否 | 表示扫描到的设备名称。 |
+| connectable | boolean | 是 | 否 | 表示扫描到的设备是否可连接。true表示可连接，false表示不可连接。 |
 
 
 ## geoLocationManager.on('locationChange')
@@ -899,6 +914,35 @@ on(type: 'satelliteStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;)
 
   let gnssStatusCb = (satelliteStatusInfo:geoLocationManager.SatelliteStatusInfo):void => {
       console.info('satelliteStatusChange: ' + JSON.stringify(satelliteStatusInfo));
+      // 表示卫星个数
+      let totalNumber: number = satelliteStatusInfo.satellitesNumber;
+      let satelliteIds: Array<number> = satelliteStatusInfo.satelliteIds;
+      let carrierToNoiseDensitys: Array<number> = satelliteStatusInfo.carrierToNoiseDensitys;
+      let altitudes: Array<number> = satelliteStatusInfo.altitudes;
+      let azimuths: Array<number> = satelliteStatusInfo.azimuths;
+      let carrierFrequencies: Array<number> = satelliteStatusInfo.carrierFrequencies;
+      let satelliteConstellations: Array<geoLocationManager.SatelliteConstellationCategory> | undefined = satelliteStatusInfo.satelliteConstellation;
+      let satelliteAdditionalInfos: Array<number> | undefined = satelliteStatusInfo.satelliteAdditionalInfo;
+      for (let i = 0;i < totalNumber;i++) {
+        // 卫星的ID
+        let satelliteId: Number = satelliteIds[i];
+        // 表示卫星的ID为 ${satelliteId} 的卫星的载波噪声功率谱密度比
+        let carrierToNoiseDensity: Number = carrierToNoiseDensitys[i];
+        // 表示卫星的ID为 ${satelliteId} 的卫星的高度角信息
+        let altitude: Number = altitudes[i];
+        // 表示卫星的ID为 ${satelliteId} 的卫星的方位角
+        let azimuth: Number = azimuths[i];
+        // 表示卫星的ID为 ${satelliteId} 的卫星的载波频率
+        let carrierFrequencie: Number = carrierFrequencies[i];
+        if (satelliteConstellations != undefined) {
+          // 表示卫星的ID为 ${satelliteId} 的卫星的星座类型
+          let satelliteConstellation: geoLocationManager.SatelliteConstellationCategory = satelliteConstellations[i];
+        }
+        if (satelliteAdditionalInfos != undefined) {
+          // 表示卫星的ID为 ${satelliteId} 的卫星的附加信息；表示是否在最新的位置解算中使用了本卫星，是否具有星历数据，是否具有年历数据，是否具有载波频率信息等。
+          let satelliteAdditionalInfo: Number = satelliteAdditionalInfos[i];
+        }
+      }
   }
 
   try {
@@ -2367,5 +2411,103 @@ getCurrentWifiBssidForLocating(): string
     console.info("get wifi bssid:" + bssid);
   } catch(error) {
     console.error("getCurrentWifiBssidForLocating: errCode" + error.code + ", errMessage" + error.message);
+  }
+  ```
+
+
+## geoLocationManager.on('bluetoothScanResultChange')<sup>16+</sup>
+
+on(type: 'bluetoothScanResultChange', callback: Callback&lt;BluetoothScanResult&gt;): void
+
+订阅蓝牙扫描信息上报事件，使用callback异步回调。
+
+<!--RP1--><!--RP1End-->
+
+本API会启动蓝牙扫描，为了避免产生较多功耗，需要开发者在适当的时机调用 [geoLocationManager.off('bluetoothScanResultChange')](#geolocationmanageroffbluetoothscanresultchange16)接口停止蓝牙扫描。
+
+当前仅支持扫描BLE设备。
+
+**需要权限**：ohos.permission.APPROXIMATELY_LOCATION 和 ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 设置事件类型。type为“bluetoothScanResultChange”，表示订阅蓝牙扫描信息上报事件。 |
+  | callback | Callback&lt;[BluetoothScanResult](#bluetoothscanresult16)&gt; | 是 | 回调函数，返回蓝牙扫描信息。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.on('bluetoothScanResultChange')} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
+|3301100 | The location switch is off.                                                 |
+
+**示例**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+
+
+  let callback = (result: geoLocationManager.BluetoothScanResult):void => {
+      console.info('bluetoothScanResultChange: ' + JSON.stringify(result));
+  };
+  try {
+      geoLocationManager.on('bluetoothScanResultChange', callback);
+  } catch (err) {
+      console.error("errCode:" + err.code + ", message:"  + err.message);
+  }
+
+  ```
+
+
+## geoLocationManager.off('bluetoothScanResultChange')<sup>16+</sup>
+
+off(type: 'bluetoothScanResultChange', callback?: Callback&lt;BluetoothScanResult&gt;): void
+
+取消订阅蓝牙扫描信息上报事件并停止蓝牙扫描。
+
+**需要权限**：ohos.permission.APPROXIMATELY_LOCATION 和 ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 设置事件类型。type为“bluetoothScanResultChange”，表示停止订阅蓝牙扫描信息上报事件。 |
+  | callback | Callback&lt;[BluetoothScanResult](#bluetoothscanresult16)&gt; | 否 | 需要取消订阅的回调函数。该回调函数需要与on接口传入的回调函数保持一致。若无此参数，则取消当前类型的所有订阅。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.off('bluetoothScanResultChange')} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
+
+**示例**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+
+  let callback = (result: geoLocationManager.BluetoothScanResult):void => {
+      console.info('bluetoothScanResultChange: ' + JSON.stringify(result));
+  };
+  try {
+      geoLocationManager.on('bluetoothScanResultChange', callback);
+      geoLocationManager.off('bluetoothScanResultChange', callback);
+  } catch (err) {
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```

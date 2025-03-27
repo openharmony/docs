@@ -1,6 +1,5 @@
 # FullConnection
 
-
 ## 概述
 
 对输入数据做全连接。
@@ -11,7 +10,7 @@
 
 输入：
 
-- x，n维tensor
+- x，n维tensor。
 
 - weight，全连接的权重张量。
 
@@ -25,9 +24,7 @@
 
 **相关模块：**[NNRt](_n_n_rt_v20.md)
 
-
 ## 汇总
-
 
 ### Public 属性
 
@@ -38,9 +35,7 @@
 | long [axis](#axis) | 指定输入张量做全连接的轴，从指定轴axis开始，将axis和axis之后的轴展开成1维张量之后再做全连接。 | 
 | enum [ActivationType](_n_n_rt_v20.md#activationtype)[activationType](#activationtype) | 激活函数类型，详情请参考：[ActivationType](_n_n_rt_v20.md#activationtype)。 | 
 
-
 ## 类成员变量说明
-
 
 ### activationType
 
@@ -50,9 +45,7 @@ enum ActivationType FullConnection::activationType
 
 **描述**
 
-
 激活函数类型，详情请参考：[ActivationType](_n_n_rt_v20.md#activationtype)。
-
 
 ### axis
 
@@ -62,9 +55,7 @@ long FullConnection::axis
 
 **描述**
 
-
 指定输入张量做全连接的轴，从指定轴axis开始，将axis和axis之后的轴展开成1维张量之后再做全连接。
-
 
 ### hasBias
 
@@ -74,9 +65,7 @@ boolean FullConnection::hasBias
 
 **描述**
 
-
 是否使用bias。
-
 
 ### useAxis
 
@@ -85,6 +74,5 @@ boolean FullConnection::useAxis
 ```
 
 **描述**
-
 
 是否使用轴。

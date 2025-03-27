@@ -2,7 +2,7 @@
 
 ## When to Use
 
-The **FileIO** module provides APIs for basic file operations.
+The **FileIO** module provides some APIs for basic file operations. For details about other APIs, see [libc](../reference/native-lib/musl.md) and [libc++](../reference/native-lib/cpp.md).
 
 ## Basic Concepts
 
@@ -10,7 +10,7 @@ URI: uniquely identifies a file.
 
 ## Constraints
 
-- Before performing file operations, ensure that the URI or path passed in is correct and valid.
+Before performing file operations, ensure that the URI or path passed in is correct and valid.
 
 ## Available APIs
 
@@ -56,4 +56,4 @@ Call **OH_FileIO_GetFileLocation** to obtain the location of a file. <br>Example
             printf("GetFileLocation failed, error code is %d", ret);
         }
     }    
-```
+   ```

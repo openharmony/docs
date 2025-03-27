@@ -25,4 +25,3 @@
   - [安全控件概述](security-component-overview.md)
   - [使用粘贴控件](pastebutton.md)
   - [使用保存控件](savebutton.md)
-  - [使用位置控件](locationbutton.md)

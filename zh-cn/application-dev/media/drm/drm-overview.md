@@ -26,7 +26,7 @@
 
 - DRM解决方案（DRM Plugin）
 
-  DRM框架层以下实现DRM HDI层接口的驱动，内容解密在驱动中完成。
+  DRM框架层以下实现DRM HDI层接口的驱动，内容解密在驱动中完成。<!--RP1--><!--RP1End-->
 
 - DRM会话（MediaKeySession）
 

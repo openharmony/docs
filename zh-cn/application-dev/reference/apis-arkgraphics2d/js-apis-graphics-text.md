@@ -198,7 +198,7 @@ struct Index {
 | 名称        | 值   | 说明                                                                                                                  |
 | ----------- | ---- | -------------------------------------------------------------------------------------------------------------------- |
 | NORMAL      | 0    | 默认的换行规则。依据各自语言的规则，允许在字间发生换行。                                                                  |
-| BREAK_ALL   | 1    | 对于 Non-CJK（非中文，日文，韩文）文本允许在任意字符内发生换行。该值适合包含一些非亚洲文本的亚洲文本，比如使连续的英文字符断行。|
+| BREAK_ALL   | 1    | 对于Non-CJK（非中文，日文，韩文）文本允许在任意字符内发生换行。该值适合包含一些非亚洲文本的亚洲文本，比如使连续的英文字符断行。|
 | BREAK_WORD  | 2    | 与`BREAK_ALL`基本相同，不同的地方在于它要求一个没有断行破发点的词必须保持为一个整体单位。                                   |
 
 ## Decoration
@@ -300,7 +300,7 @@ struct Index {
 | ALL                   | 0x0 | 高度修饰符设置为段落中第一行和最后一行都上升。            |
 | DISABLE_FIRST_ASCENT  | 0x1 | 高度修饰符设置为禁止段落中第一行上升。                   |
 | DISABLE_LAST_ASCENT   | 0x2 | 高度修饰符设置为禁止段落中最后一行上升。                 |
-| DISABLE_ALL           | 0x3 | 高度修饰符设置为段落中第一行和最后一行都不上升。          |
+| DISABLE_ALL           | 0x1 \| 0x2 | 高度修饰符设置为段落中第一行和最后一行都不上升。          |
 
 ## TextBaseline
 
@@ -1142,7 +1142,7 @@ getLineMetrics(lineNumber: number): LineMetrics | undefined
 
 | 参数名 | 类型   | 必填 | 说明      |
 | ----- | ------ | ---- | --------- |
-| lineNumber  | number | 是   | 要查询度量信息的行的编号, 行号从0开始。|
+| lineNumber  | number | 是   | 要查询度量信息的行的编号，行号从0开始。|
 
 **返回值：**
 
@@ -1723,7 +1723,7 @@ paint(canvas: drawing.Canvas, x: number, y: number): void
 
 | 参数名 | 类型                                                  | 必填 | 说明                    |
 | ------ | ---------------------------------------------------- | ---- | ---------------------- |
-| canvas | [drawing.Canvas](js-apis-graphics-drawing.md#canvas) | 是   | 绘制的目标 canvas。      |
+| canvas | [drawing.Canvas](js-apis-graphics-drawing.md#canvas) | 是   | 绘制的目标canvas。      |
 |    x   | number                                               | 是   | 绘制的左上角位置的横坐标，浮点数。|
 |    y   | number                                               | 是   | 绘制的左上角位置的纵坐标，浮点数。|
 

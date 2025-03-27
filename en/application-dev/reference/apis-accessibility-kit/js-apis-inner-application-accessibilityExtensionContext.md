@@ -28,7 +28,7 @@ Provides attribute names and value types of a node element.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-### Name
+### Attributes
 
 | Name                  | Type                                                                | Readable | Writable | Description                 |
 |----------------------|--------------------------------------------------------------------|-----|-----| ------------------- |

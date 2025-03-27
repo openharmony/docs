@@ -52,6 +52,7 @@ activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：** 激活ID为100的系统账号
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.activateOsAccount(localId, (err: BusinessError)=>{
@@ -454,7 +455,7 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 | ----------- | ------------------------- | ---- | ----------------------------------------------- |
 | localId     | number                    | 是   | 系统账号ID。               |
 | constraints | Array&lt;string&gt;       | 是   | 待设置/删除的[约束](js-apis-osAccount.md#系统账号约束列表)列表。        |
-| enable      | boolean                   | 是   | 设置(true)/删除(false)                           |
+| enable      | boolean                   | 是   | 设置(true)/删除(false) 。                          |
 | callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。如果设置成功，err为null，否则为错误对象。 |
 
 **错误码：**
@@ -1238,7 +1239,7 @@ queryOsAccountById(localId: number): Promise&lt;OsAccountInfo&gt;
 
 | 参数名  | 类型   | 必填 | 说明                 |
 | ------- | ------ | ---- | -------------------- |
-| localId | number | 是   | 要查询的系统账号的ID |
+| localId | number | 是   | 要查询的系统账号的ID。|
 
 **返回值：**
 
@@ -1968,8 +1969,8 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string, callback:
 
 | 参数名   | 类型                       | 必填 | 说明                                                         |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| localId     | number | 是   |  要查询的系统账号ID |
-| constraint     | string | 是   |  要查询的[约束](js-apis-osAccount.md#系统账号约束列表)名称 |
+| localId     | number | 是   |  要查询的系统账号ID。 |
+| constraint     | string | 是   |  要查询的[约束](js-apis-osAccount.md#系统账号约束列表)名称。 |
 | callback | AsyncCallback&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo9)&gt;&gt;     | 是   | 回调函数。如果成功，err为null，data为指定系统账号的指定[约束](js-apis-osAccount.md#系统账号约束列表)来源信息；否则为错误对象。                      |
 
 **错误码：**
@@ -2015,8 +2016,8 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&
 
 | 参数名  | 类型   | 必填 | 说明         |
 | ------- | ------ | ---- | ------------ |
-| localId     | number | 是   |  要查询的系统账号ID |
-| constraint     | string | 是   |  要查询的[约束](js-apis-osAccount.md#系统账号约束列表)名称 |
+| localId     | number | 是   |  要查询的系统账号ID。 |
+| constraint     | string | 是   |  要查询的[约束](js-apis-osAccount.md#系统账号约束列表)名称。 |
 
 **返回值：**
 
@@ -3377,7 +3378,7 @@ isAccountTokenValid(domainAccountInfo: DomainAccountInfo, token: Uint8Array, cal
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域账号信息。|
 | token | Uint8Array | 是 | 指示域账号令牌。 |
-| callback   | AsyncCallback&lt;boolean&gt; | 是   | 指示检查结果回调。|
+| callback   | AsyncCallback&lt;boolean&gt; | 是   | 指示检查结果回调。true表示指定的域账号令牌是有效的；false表示指定的域账号令牌是无效的。|
 
 **示例：**
   ```ts
@@ -3735,7 +3736,7 @@ hasAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;bool
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域账号信息。|
-| callback   | AsyncCallback&lt;boolean&gt;  | 是   | 指示检查结果回调。|
+| callback   | AsyncCallback&lt;boolean&gt;  | 是   | 指示检查结果回调。true表示指定的域账号已存在；false表示指定的域账号不存在。|
 
 **错误码：**
 
@@ -3792,7 +3793,7 @@ hasAccount(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;
 
 | 类型                      | 说明                     |
 | :------------------------ | ----------------------- |
-| Promise&lt;boolean&gt; | Promise对象，返回指定的域账号是否存在。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示指定的域账号已存在；返回false表示指定的域账号不存在。 |
 
 **错误码：**
 
@@ -4222,7 +4223,7 @@ isAuthenticationExpired(domainAccountInfo: DomainAccountInfo): Promise&lt;boolea
 
 | 类型                      | 说明                     |
 | :------------------------ | ----------------------- |
-| Promise&lt;boolean&gt; | Promise对象，返回指定的域账号是否登录超期。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示指定的域账号已登录超期；返回false表示指定的域账号未登录超期。 |
 
 **错误码：**
 
@@ -5596,7 +5597,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
 | shortName<sup>12+</sup> | string | 否   | 系统账号的短名称。<br>**系统接口：** 此接口为系统接口，默认为空。 |
-| isLoggedIn<sup>12+</sup> | boolean | 否   | 是否登录。<br>**系统接口：** 此接口为系统接口，默认为false。 |
+| isLoggedIn<sup>12+</sup> | boolean | 否   | 是否登录。true表示已登录；false表示未登录。<br>**系统接口：** 此接口为系统接口，默认为false。 |
 
 ## OsAccountType
 
@@ -5617,8 +5618,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
 | accountId<sup>10+</sup> | string | 否   | 域账号标识。<br>**系统接口：** 此接口为系统接口，默认为undefined。 |
-| isAuthenticated<sup>11+</sup>| boolean | 否 | 指示域账号是否已认证。<br>**系统接口：** 此接口为系统接口，默认为false。|
-| serverConfigId<sup>12+</sup>| boolean | 否 | 域账号所属服务器标识。<br>**系统接口：** 此接口为系统接口，默认为undefined。|
+| isAuthenticated<sup>11+</sup>| boolean | 否 | 指示域账号是否已认证。true表示指定的域账号已认证；false表示指定的域账号未认证。<br>**系统接口：** 此接口为系统接口，默认为false。|
 
 ## ConstraintSourceTypeInfo<sup>9+</sup>
 
@@ -5631,7 +5631,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
 | localId      | number | 是   | 系统账号ID     |
-| type | [ConstraintSourceType](#constraintsourcetype9) | 是   | 约束来源类型 |
+| type | [ConstraintSourceType](#constraintsourcetype9) | 是   | 约束来源类型。 |
 
 ## ConstraintSourceType<sup>9+</sup>
 
@@ -5643,10 +5643,10 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称   | 值 | 说明         |
 | ------ | ------ | ------------ |
-| CONSTRAINT_NOT_EXIST  | 0      | 约束不存在 |
-| CONSTRAINT_TYPE_BASE | 1      | 约束源自系统设置   |
-| CONSTRAINT_TYPE_DEVICE_OWNER  | 2   | 约束源自设备所有者设置   |
-| CONSTRAINT_TYPE_PROFILE_OWNER  | 3  | 约束源自资料所有者设置   |
+| CONSTRAINT_NOT_EXIST  | 0      | 约束不存在。 |
+| CONSTRAINT_TYPE_BASE | 1      | 约束源自系统设置。   |
+| CONSTRAINT_TYPE_DEVICE_OWNER  | 2   | 约束源自设备所有者设置。   |
+| CONSTRAINT_TYPE_PROFILE_OWNER  | 3  | 约束源自资料所有者设置。   |
 
 ## AuthStatusInfo<sup>10+</sup>
 
@@ -5658,8 +5658,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| remainTimes  | number | 是   | 剩余次数   |
-| freezingTime | number | 是   | 冻结时间 |
+| remainTimes  | number | 是   | 剩余次数。   |
+| freezingTime | number | 是   | 冻结时间。 |
 
 ## GetDomainAccessTokenOptions<sup>10+</sup>
 
@@ -5671,10 +5671,10 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| domainAccountInfo  | [DomainAccountInfo](#domainaccountinfo8) | 是   | 域账号的信息   |
-| domainAccountToken | Uint8Array | 是   | 域账号的令牌 |
-| businessParams | Record<string, Object> | 是   | 业务参数，由业务方根据请求协议自定义 |
-| callerUid | number | 是   | 调用方唯一标识符 |
+| domainAccountInfo  | [DomainAccountInfo](#domainaccountinfo8) | 是   | 域账号的信息。   |
+| domainAccountToken | Uint8Array | 是   | 域账号的令牌。 |
+| businessParams | Record<string, Object> | 是   | 业务参数，由业务方根据请求协议自定义。 |
+| callerUid | number | 是   | 调用方唯一标识符。 |
 
 ## GetDomainAccountInfoOptions<sup>10+</sup>
 
@@ -5688,7 +5688,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | ----------- | ------ | ---- | ---------- |
 | accountName | string | 是   | 域账号名。 |
 | domain      | string | 否   | 域名。默认为undefined。|
-| serverConfigId<sup>12+</sup>| boolean | 否 | 域账号所属服务器标识。默认为undefined。|
+| serverConfigId<sup>12+</sup>| string | 否 | 域账号所属服务器标识。默认为undefined。|
 
 ## GetDomainAccountInfoPluginOptions<sup>10+</sup>
 
@@ -5700,7 +5700,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| callerUid | number | 是   | 调用方唯一标识符 |
+| callerUid | number | 是   | 调用方唯一标识符。 |
 
 ## OsAccountSwitchEventData<sup>12+</sup>
 
@@ -5712,8 +5712,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| fromAccountId | number | 是   | 切换前系统账号ID |
-| toAccountId | number | 是   | 切换后系统账号ID |
+| fromAccountId | number | 是   | 切换前系统账号ID。 |
+| toAccountId | number | 是   | 切换后系统账号ID。 |
 
 ## CreateOsAccountOptions<sup>12+</sup>
 
@@ -5725,7 +5725,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| shortName | string | 是   | 表示账号短名称（用作个人文件夹目录） <br/>**约束：** <br>1）不允许出现的字符：\< \> \| : " * ? / \\<br>2）不允许独立出现的字符串：.或..<br>3）长度不超过255个字符|
+| shortName | string | 是   | 表示账号短名称（用作个人文件夹目录）。 <br/>**约束：** <br>1）不允许出现的字符：\< \> \| : " * ? / \\<br>2）不允许独立出现的字符串：.或..<br>3）长度不超过255个字符。|
 
 ## CreateOsAccountForDomainOptions<sup>12+</sup>
 
@@ -5737,7 +5737,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| shortName | string | 是   | 表示账号短名称（用作个人文件夹目录） <br/>**约束：** <br>1）不允许出现的字符：\< \> \| : " * ? / \\<br>2）不允许独立出现的字符串：.或..<br>3）长度不超过255个字符|
+| shortName | string | 是   | 表示账号短名称（用作个人文件夹目录）。 <br/>**约束：** <br>1）不允许出现的字符：\< \> \| : " * ? / \\<br>2）不允许独立出现的字符串：.或..<br>3）长度不超过255个字符。|
 
 ## GetAuthInfoOptions<sup>12+</sup>
 

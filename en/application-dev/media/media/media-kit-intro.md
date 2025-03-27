@@ -309,24 +309,33 @@ The AVTranscoder provides the following services:
 
 The encoding parameters (format and bit rate) and container format of the source video file can be modified. The audio and video encoding and container formats of the source video are compatible with the AVCodec for decoding and demuxing purposes, whereas those of the target video are compatible with the AVCodec for encoding and muxing purposes.
 
+<!--RP1--><!--RP1End-->
 - The following source video formats are supported:
-  - [Demuxing formats](../avcodec/audio-video-demuxer.md)
-  - [Audio decoding formats](../avcodec/audio-decoding.md)
-  - [Video decoding formats](../avcodec/video-decoding.md)
+  - [Demuxing formats](../avcodec/avcodec-support-formats.md#media-data-demuxing)
+  - [Audio decoding formats](../avcodec/avcodec-support-formats.md#audio-decoding)
+  - [Video decoding formats](../avcodec/avcodec-support-formats.md#video-decoding)
     <!--Del-->
     > **NOTE**
     > 
     > Currently, H.265 is not supported.
+
     <!--DelEnd-->
 - The following target video formats are supported:
-  - [Container formats](../avcodec/audio-video-muxer.md)
-  - [Audio encoding formats](../avcodec/audio-encoding.md)
-  - [Video encoding formats](../avcodec/video-encoding.md)
+  - [Container formats](../avcodec/avcodec-support-formats.md#media-data-muxing)
+  - [Audio encoding formats](../avcodec/avcodec-support-formats.md#audio-encoding)
+  - [Video encoding formats](../avcodec/avcodec-support-formats.md#video-encoding)
     <!--Del-->
     > **NOTE**
     > 
     > Currently, H.265 is not supported.
    
     <!--DelEnd-->
+- The support for tracks is as follows:
+  - Subtitle tracks are not supported. If subtitle tracks exist, they are discarded.
+  - If there are multiple video tracks, only one video track is output.
+  - If there are multiple audio tracks, only one audio track is output.
 
-<!--RP1--><!--RP1End-->
+> **NOTE**
+>
+> - The decoded output video supports only the MP4 container format.
+> - The formats of both the source and target videos must be met during decoding.

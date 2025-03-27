@@ -28,7 +28,11 @@ LoadingProgress()
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
+
+>  **说明：**
+>
+> 组件应设置合理的宽高，当组件宽高设置过大时加载动效可能不符合预期效果。
 
 ### color
 
@@ -63,7 +67,7 @@ enableLoading(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                           |
 | ------ | ------- | ---- | ---------------------------------------------- |
-| value  | boolean | 是   | LoadingProgress动画是否显示。<br/>默认值：true |
+| value  | boolean | 是   | LoadingProgress动画是否显示。<br/>默认值：true，true表示显示LoadingProgress动画，false表示不显示LoadingProgress动画。 |
 
 ### contentModifier<sup>12+</sup>
 
@@ -83,7 +87,7 @@ contentModifier(modifier: ContentModifier\<LoadingProgressConfiguration>)
 
 ## 事件
 
-支持[通用事件](ts-universal-events-click.md)。
+支持[通用事件](ts-component-general-events.md)。
 
 ## LoadingProgressConfiguration<sup>12+</sup>对象说明
 
@@ -95,7 +99,7 @@ contentModifier(modifier: ContentModifier\<LoadingProgressConfiguration>)
 
 | 名称  | 类型    |    只读    |    可选    |  说明              |
 | ------ | ------ | ------ |-------------------------------- |-------------------------------- |
-| enableLoading | boolean | 否 | 否 |LoadingProgress动画是否显示。<br/>默认值：true |
+| enableLoading | boolean | 否 | 否 |LoadingProgress动画是否显示。<br/>默认值：true，true表示显示LoadingProgress动画，false表示不显示LoadingProgress动画。 |
 
 ## LoadingProgressStyle<sup>(deprecated)</sup>枚举说明
 

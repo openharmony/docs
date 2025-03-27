@@ -84,7 +84,7 @@ Read [DRM](../../reference/apis-drm-kit/_drm.md) for the API reference.
     if (ret != DRM_ERR_OK) {
         printf("OH_MediaKeySession_GenerateMediaKeyRequest failed.");
     }
-    /* The composition of an offline media key ID varies according to the DRM scheme. You can obtain an ID in either of the following ways:
+    /* The composition of an offline media key ID varies according to the DRM solution. You can obtain an ID in either of the following ways:
       1. The application calls OH_MediaKeySystem_GetOfflineMediaKeyIds to obtain the ID.
       2. The application requests the DRM service through the network, obtains a keySessionResponse, and sends the response to OH_MediaKeySession_ProcessMediaKeyResponse for parsing.
          An offline media key ID is obtained. The maximum length of a media key ID is 128. The following code is an example. Set the media key ID based on the actual media key data and length.

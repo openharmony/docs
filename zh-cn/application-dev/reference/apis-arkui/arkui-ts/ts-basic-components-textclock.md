@@ -32,7 +32,7 @@ TextClock(options?: { timeZoneOffset?: number, controller?: TextClockController 
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### format
 
@@ -268,7 +268,7 @@ dateTimeOptions(dateTimeOptions: Optional\<DateTimeOptions>)
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onDateChange
 
@@ -357,7 +357,7 @@ stop()
 | 名称 | 类型    |    必填      |  说明              |
 | ------ | ------ | ------ |-------------------------------- |
 | timeZoneOffset | number | 是 | 当前文本时钟时区偏移量。 |
-| started | boolean | 是 | 指示文本时钟是否启动。<br>默认值：true。 |
+| started | boolean | 是 | 指示文本时钟是否启动。<br>默认值：true，true表示启动文本时钟，false表示关闭文本时钟。 |
 | timeValue | number | 是 | 当前文本时钟时区的UTC秒数。 |
 
 ## 示例

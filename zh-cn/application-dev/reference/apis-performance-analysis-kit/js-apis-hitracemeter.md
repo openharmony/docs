@@ -31,8 +31,8 @@ startTrace(name: string, taskId: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| name | string | 是 | 要跟踪的任务名称 |
-| taskId | number | 是 | 任务id |
+| name | string | 是 | 要跟踪的任务名称。 |
+| taskId | number | 是 | 任务id。 |
 
 **示例：**
 
@@ -55,7 +55,7 @@ finishTrace的name和taskId必须与流程开始的[startTrace](#hitracemetersta
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| name | string | 是 | 要跟踪的任务名称 |
+| name | string | 是 | 要跟踪的任务名称。 |
 | taskId | number | 是 | 任务id。 |
 
 **示例：**
@@ -99,8 +99,8 @@ traceByValue(name: string, count: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| name | string | 是 | 要跟踪的数值变量名称 |
-| count | number | 是 | 变量的值 |
+| name | string | 是 | 要跟踪的数值变量名称。 |
+| count | number | 是 | 变量的值。 |
 
 **示例：**
 ```js

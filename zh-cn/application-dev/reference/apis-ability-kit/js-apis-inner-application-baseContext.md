@@ -20,7 +20,7 @@ import { common } from '@kit.AbilityKit';
 
 | 名称       | 类型   | 可读   | 可写   | 说明      |
 | -------- | ------ | ---- | ---- | ------- |
-| stageMode | boolean | 是    | 是    | 表示是否Stage模型。<br>true：Stage模型<br>false：FA模型。 |
+| stageMode | boolean | 是    | 是    | 表示是否Stage模型。<br>true：Stage模型。<br>false：FA模型。 |
 
 **示例：**
 

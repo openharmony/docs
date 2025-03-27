@@ -64,7 +64,7 @@ DatePicker(options?: DatePickerOptions)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### lunar
 
@@ -141,7 +141,7 @@ selectedTextStyle(value: PickerTextStyle)
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onChange<sup>(deprecated)</sup>
 
@@ -183,9 +183,9 @@ onDateChange(callback: Callback\<Date>)
 
 | 名称  | 类型   | 只读 | 可选 | 说明                                       |
 | ----- | ------ | ---- | ---- | ------------------------------------------ |
-| year  | number | 否   | 否   | 选中日期的年。                             |
-| month | number | 否   | 否   | 选中日期的月(0~11)，0表示1月，11表示12月。 |
-| day   | number | 否   | 否   | 选中日期的日。                             |
+| year  | number | 否   | 否   | 选中日期的年。<br/>取值范围：与start、end有关，如果没有设置start、end，则取start、end默认值[1970， 2100]。                             |
+| month | number | 否   | 否   | 选中日期的月的索引值，索引从0开始，0表示1月，11表示12月。<br/>取值范围：与start、end有关，如果没有设置start、end，取值范围为[0， 11]。 |
+| day   | number | 否   | 否   | 选中日期的日。<br/>取值范围：与start、end有关，如果没有设置start、end，取值范围为[1， 31]。                             |
 
 ## 示例
 

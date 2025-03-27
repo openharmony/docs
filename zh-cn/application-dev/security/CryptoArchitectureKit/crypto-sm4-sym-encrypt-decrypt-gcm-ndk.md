@@ -1,8 +1,6 @@
 # 使用SM4对称密钥（GCM模式）加解密(C/C++)
 
-
 对应的算法规格请查看[对称密钥加解密算法规格：SM4](crypto-sym-encrypt-decrypt-spec.md#sm4)。
-
 
 ## 在CMake脚本中链接相关动态库
 ```txt
@@ -10,7 +8,6 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 ```
 
 **加密**
-
 
 1. 调用[OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_create)、[OH_CryptoSymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_generate)，生成密钥算法为SM4、密钥长度为128位的对称密钥（OH_CryptoSymKey）。
    
@@ -27,7 +24,7 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
    当前单次update长度没有限制，开发者可以根据数据量判断如何调用update。
 
    - 当数据量较小时，可以在init完成后直接调用final。
-   - 当数据量较大时，可以多次调用update，即分段加解密。
+   - 当数据量较大时，可以多次调用update，即[分段加解密](crypto-sm4-sym-encrypt-decrypt-gcm-by-segment-ndk.md)。
 
 6. 调用[OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final)，获取加密后的数据。
    - 由于已使用update传入数据，此处data传入null。
@@ -36,7 +33,6 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 7. 使用[OH_CryptoSymCipherParams_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_create)创建Params，使用[OH_CryptoSymCipherParams_SetParam](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_setparam)设置authTag，作为解密的认证信息。在GCM模式下，需要从加密后的数据中取出末尾16字节，作为解密时初始化的认证信息。示例中authTag恰好为16字节。
 
 8. 调用[OH_CryptoSymKeyGenerator_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_destroy)、[OH_CryptoSymCipher_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_destroy)、[OH_CryptoSymCipherParams_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_destroy)销毁各对象。
-
 
 **解密**
 
@@ -47,7 +43,6 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 3. 调用[OH_CryptoSymCipher_Update](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_update)，更新数据（密文）。
 
 4. 调用[OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final)，获取解密后的数据。
-
 
 - 示例：
 
@@ -69,14 +64,14 @@ static OH_Crypto_ErrCode doTestSm4Gcm()
 
     uint8_t aad[8] = {1, 2, 3, 4, 5, 6, 7, 8};
     uint8_t tag[16] = {0};
-    uint8_t iv[12] = {1, 2, 4, 12, 3, 4, 2, 3, 3, 2, 0, 4}; // iv使用安全随机数生成
+    uint8_t iv[12] = {1, 2, 4, 12, 3, 4, 2, 3, 3, 2, 0, 4}; // iv使用安全随机数生成。
     Crypto_DataBlob ivData = {.data = iv, .len = sizeof(iv)};
     Crypto_DataBlob aadData = {.data = aad, .len = sizeof(aad)};
     Crypto_DataBlob tagData = {.data = tag, .len = sizeof(tag)};
     Crypto_DataBlob tagOutPut = {.data = nullptr, .len = 0};
     char *plainText = const_cast<char *>("this is test!");
     Crypto_DataBlob msgBlob = {.data = (uint8_t *)(plainText), .len = strlen(plainText)};
-    // 生成对称密钥
+    // 生成对称密钥。
     OH_Crypto_ErrCode ret;
     ret = OH_CryptoSymKeyGenerator_Create("SM4_128", &genCtx);
     if (ret != CRYPTO_SUCCESS) {
@@ -87,7 +82,7 @@ static OH_Crypto_ErrCode doTestSm4Gcm()
         goto end;
     }
 
-    // 设置参数
+    // 设置参数。
     ret = OH_CryptoSymCipherParams_Create(&params);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
@@ -105,7 +100,7 @@ static OH_Crypto_ErrCode doTestSm4Gcm()
         goto end;
     }
 
-    // 加密
+    // 加密。
     ret = OH_CryptoSymCipher_Create("SM4_128|GCM|PKCS7", &encCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
@@ -123,7 +118,7 @@ static OH_Crypto_ErrCode doTestSm4Gcm()
         goto end;
     }
 
-    // 解密
+    // 解密。
     ret = OH_CryptoSymCipher_Create("SM4_128|GCM|PKCS7", &decCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
@@ -141,7 +136,7 @@ static OH_Crypto_ErrCode doTestSm4Gcm()
         goto end;
     }
 
-    // 释放资源
+    // 释放资源。
 end:
     OH_CryptoSymCipherParams_Destroy(params);
     OH_CryptoSymCipher_Destroy(encCtx);

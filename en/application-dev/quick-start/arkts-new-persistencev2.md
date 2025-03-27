@@ -13,8 +13,6 @@ Before reading this topic, you are advised to read [\@ComponentV2](./arkts-new-c
 >**PersistenceV2** is supported since API version 12.
 >
 
-
-
 ## Overview
 
 **PersistenceV2** is a singleton to be created when the application UI is started. Its purpose is to provide central storage for application UI state attributes. Each attribute is accessed using a unique key, which is a string. Unlike **AppStorageV2**, **PersistenceV2** also persistently stores the latest data on device disks. In this way, the selected result can still be saved even when the application is closed.
@@ -83,7 +81,7 @@ static keys(): Array<string>;
 
 ### save: Persisting Stored Data Manually
 
-```ts
+```JavaScript
 static save<T>(keyOrType: string | TypeConstructorWithArgs<T>): void;
 ```
 
@@ -99,9 +97,9 @@ static save<T>(keyOrType: string | TypeConstructorWithArgs<T>): void;
 >It is useless to manually persist the keys that are not in the **connect** state in the memory.
 
 
-### **notifyOnError**: Callback for Responding to a Serialization or Deserialization Failure
+### notifyOnError: Callback for Responding to a Serialization or Deserialization Failure
 
-```ts
+```JavaScript
 static notifyOnError(callback: PersistenceErrorCallback | undefined): void;
 ```
 
@@ -134,11 +132,31 @@ static notifyOnError(callback: PersistenceErrorCallback | undefined): void;
 8. Do not store a large amount of persistent data. Otherwise, frame freezing may occur.
 
 ## Use Scenarios
-
 ### Storing Data Between Two Pages
+
+Data page
+```ts
+// Sample.ets
+import { Type } from '@kit.ArkUI';
+
+// Data center
+@ObservedV2
+class SampleChild {
+  @Trace p1: number = 0;
+  p2: number = 10;
+}
+
+@ObservedV2
+export class Sample {
+  // For complex objects, use the @Type decorator to ensure successful serialization.
+  @Type(SampleChild)
+  @Trace f: SampleChild = new SampleChild();
+}
+```
 
 Page 1
 ```ts
+// Page1.ets
 import { PersistenceV2 } from '@kit.ArkUI';
 import { Sample } from '../Sample';
 
@@ -206,6 +224,7 @@ struct Page1 {
 
 Page 2
 ```ts
+// Page2.ets
 import { PersistenceV2 } from '@kit.ArkUI';
 import { Sample } from '../Sample';
 
@@ -268,25 +287,6 @@ When using **Navigation**, you need to add the **route_map.json** file to the **
       }
     }
   ]
-}
-```
-
-Data page
-```ts
-import { Type } from '@kit.ArkUI';
-
-// Data center
-@ObservedV2
-class SampleChild {
-  @Trace p1: number = 0;
-  p2: number = 10;
-}
-
-@ObservedV2
-export class Sample {
-  // Complex objects need to be decorated by @Type to ensure successful serialization.
-  @Type(SampleChild)
-  @Trace f: SampleChild = new SampleChild();
 }
 ```
 

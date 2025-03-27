@@ -50,6 +50,39 @@ isWifiActive(): boolean
 	}
 ```
 
+## wifiManager.enableWifi<sup>15+</sup>
+
+enableWifi(): void
+
+启动WLAN。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 (ohos.permission.MANAGE_WIFI_CONNECTION 仅系统应用可用 或 ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION 仅企业应用可用)
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+| -------- | -------- |
+| 201 | Permission denied.          |
+| 801  | Capability not supported.|
+| 2501000 | Operation failed.          |
+| 2501003  | Failed for wifi is closing.|
+
+**示例：**
+
+```ts
+  import { wifiManager } from '@kit.ConnectivityKit';
+  
+  try {
+    wifiManager.enableWifi();
+  }catch(error){
+    console.error("failed:" + JSON.stringify(error));
+  }
+```
+
 ## wifiManager.scan<sup>9+</sup><sup>(deprecated)</sup>
 
 scan(): void
@@ -743,6 +776,46 @@ removeCandidateConfig(networkId: number, callback: AsyncCallback&lt;void&gt;): v
 	}
 ```
 
+## wifiManager.removeDevice<sup>15+</sup>
+
+removeDevice(id: number): void
+
+移除网络配置。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 (ohos.permission.MANAGE_WIFI_CONNECTION 仅系统应用可用 或 ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION 仅企业应用可用)
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**参数：**
+
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | id | number | 是 | 网络配置ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801 | Capability not supported.          |
+| 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled. |
+
+**示例：**
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+  
+    try {
+      let id = 0;
+      wifiManager.removeDevice(id);	
+    }catch(error){
+      console.error("failed:" + JSON.stringify(error));
+    }
+```
+
 ## wifiManager.getCandidateConfigs<sup>9+</sup>
 
 getCandidateConfigs(): &nbsp;Array&lt;WifiDeviceConfig&gt;
@@ -830,7 +903,7 @@ connectToCandidateConfig(networkId: number): void
 	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
-		let networkId = 0; // 实际的候选网络ID，在添加候选网络时生成，取自WifiDeviceConfig.netId
+		let networkId = 0; // 实际的候选网络ID，在添加候选网络时生成
 		wifiManager.connectToCandidateConfig(networkId);
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
@@ -838,6 +911,188 @@ connectToCandidateConfig(networkId: number): void
 	
 ```
 
+## wifiManager.addDeviceConfig<sup>15+</sup>
+
+addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
+
+添加网络配置，使用Promise异步回调。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.SET_WIFI_CONFIG
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**参数：**
+
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig9) | 是 | WLAN配置信息。如果bssidType无指定值，则bssidType默认为随机设备地址类型。 |
+
+**返回值：**
+
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | Promise&lt;number&gt; | Promise对象。表示网络配置ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed.|
+| 801 | Capability not supported.          |
+| 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled.|
+
+**示例：**
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+	
+	try {
+		let config:wifiManager.WifiDeviceConfig = {
+			ssid : "****",
+			preSharedKey : "****",
+			securityType : 0
+		}
+		wifiManager.addDeviceConfig(config).then(result => {
+			console.info("result:" + JSON.stringify(result));
+		}).catch((err:number) => {
+			console.error("failed:" + JSON.stringify(err));
+		});
+	}catch(error){  
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.addDeviceConfig<sup>15+</sup>
+
+addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;): void
+
+添加网络配置，使用callback异步回调。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.SET_WIFI_CONFIG
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**参数：**
+
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig9) | 是 | WLAN配置信息。如果bssidType无指定值，则bssidType默认为随机设备地址类型。 |
+| callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。当操作成功时，err为0，data为添加的网络配置ID，如果data值为-1，表示添加失败。当操作错误，err为非0值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed.|
+| 801 | Capability not supported.          |
+| 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled.|
+
+**示例：**
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+  
+    try {
+      let config:wifiManager.WifiDeviceConfig = {
+        ssid : "****",
+        preSharedKey : "****",
+        securityType : 0
+      }
+      wifiManager.addDeviceConfig(config,(error,result) => {
+        console.info("result:" + JSON.stringify(result));
+      });
+    }catch(error){
+      console.error("failed:" + JSON.stringify(error));
+    }
+
+```
+
+## wifiManager.getDeviceConfigs<sup>15+</sup>
+
+getDeviceConfigs(): &nbsp;Array&lt;WifiDeviceConfig&gt;
+
+获取网络配置。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.GET_WIFI_CONFIG
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**返回值：**
+
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig9)&gt; | 网络配置数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
+| 2501000  | Operation failed.| 
+
+**示例：**
+
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+  
+    try {
+      let configs = wifiManager.getDeviceConfigs();
+      console.info("configs:" + JSON.stringify(configs));
+    }catch(error){
+      console.error("failed:" + JSON.stringify(error));
+    }
+	
+```
+
+## wifiManager.connectToNetwork<sup>15+</sup>
+
+connectToNetwork(networkId: number): void
+
+应用使用该接口连接到热点。
+
+**需要权限：** ohos.permission.MANAGE_WIFI_CONNECTION 仅系统应用可用 或 ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION 仅企业应用可用
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**参数：**
+
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | networkId | number | 是 | 候选网络配置的ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801 | Capability not supported.          |
+| 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled.|
+
+**示例：**
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+  
+    try {
+      let networkId = 0;
+      wifiManager.connectToNetwork(networkId);
+    }catch(error){
+      console.error("failed:" + JSON.stringify(error));
+    }
+	
+```
 
 ## wifiManager.getSignalLevel<sup>9+</sup>
 
@@ -1050,6 +1305,41 @@ isConnected(): boolean
 	try {
 		let ret = wifiManager.isConnected();
 		console.info("isConnected:" + ret);
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+
+```
+
+
+## wifiManager.disconnect<sup>15+</sup>
+
+disconnect(): void
+
+断开WLAN连接。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 (ohos.permission.MANAGE_WIFI_CONNECTION 仅系统应用可用 或
+   ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION 仅企业应用可用)
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
+| 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled.|
+
+**示例：**
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+
+	try {
+		wifiManager.disconnect();
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
@@ -1482,7 +1772,7 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | connectState | [P2pConnectState](#p2pconnectstate9) | 是 | 否 | P2P连接状态。 |
-| isGroupOwner | boolean | 是 | 否 | 是否为GO。 |
+| isGroupOwner | boolean | 是 | 否 | true:是GO，false:不是GO。|
 | groupOwnerAddr | string | 是 | 否 | 群组IP地址。| 
 
 
@@ -1901,7 +2191,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
   }
   wifiManager.on("p2pConnectionChange", recvP2pConnectionChangeFunc);
   
-  let recvP2pDeviceChangeFunc = (result:wifiManager.WifiP2pDevice[]) => {
+  let recvP2pDeviceChangeFunc = (result:wifiManager.WifiP2pDevice) => {
       console.info("p2p device change receive event: " + JSON.stringify(result));
   }
   wifiManager.on("p2pDeviceChange", recvP2pDeviceChangeFunc);

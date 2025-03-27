@@ -1,6 +1,6 @@
 # @ohos.arkui.inspector (布局回调)
 
-提供注册组件布局和绘制完成回调通知的能力。
+提供注册组件布局和组件绘制送显完成回调通知的能力。
 
 > **说明：**
 >
@@ -28,7 +28,7 @@ createComponentObserver(id: string): ComponentObserver
 
 | 参数名 | 类型   | 必填 | 说明       |
 | ------ | ------ | ---- | ---------- |
-| id     | string | 是   | 指定组件id。 |
+| id     | string | 是   | 指定组件id，该id通过通用属性[id](./arkui-ts/ts-universal-attributes-component-id.md#id)或者[key](./arkui-ts/ts-universal-attributes-component-id.md#key12)设置。 |
 
 **返回值：** 
 
@@ -44,7 +44,7 @@ let listener:inspector.ComponentObserver = inspector.createComponentObserver('CO
 
 ## ComponentObserver
 
-组件布局绘制完成回调的句柄，包含了申请句柄时的首次查询结果。
+组件布局和组件绘制送显完成回调的句柄，包含了申请句柄时的首次查询结果。
 
 ### on
 
@@ -60,8 +60,8 @@ on(type: 'layout', callback: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明|
 | -------- | ------ | ---- | -------------------------------------|
-| type     | string | 是   | 必须填写字符串'layout'或'draw'。<br>layout: 组件布局完成。<br>draw: 组件绘制完成。 |
-| callback | void   | 是   | 监听layout或draw的回调。|
+| type     | string | 是   | 必须填写字符串'layout'或'draw'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。 |
+| callback | () => void   | 是   | 监听layout或draw的回调。|
 
 ### off
 
@@ -77,14 +77,14 @@ off(type: 'layout', callback?: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明 |
 | -------- | ------ | ---- | -------------------------------------------- |
-| type     | string | 是   | 必须填写字符串'layout'或'draw'。<br>layout: 组件布局完成。<br>draw: 组件绘制完成。 |
-| callback | void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。|
+| type     | string | 是   | 必须填写字符串'layout'或'draw'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。 |
+| callback | () => void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。|
 
 ### on
 
 on(type: 'draw', callback: () => void): void
 
-通过句柄向对应的查询条件注册回调，当组件绘制完成时会触发该回调。
+通过句柄向对应的查询条件注册回调，当组件绘制送显完成时会触发该回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -94,14 +94,14 @@ on(type: 'draw', callback: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 必须填写字符串'layout'或'draw'。<br>layout: 组件布局完成。<br>draw: 组件绘制完成。 |
-| callback | void   | 是   | 监听layout或draw的回调。                                     |
+| type     | string | 是   | 必须填写字符串'layout'或'draw'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。 |
+| callback | () => void   | 是   | 监听layout或draw的回调。                                     |
 
 ### off
 
 off(type: 'draw', callback?: () => void): void
 
-通过句柄向对应的查询条件取消注册回调，当组件绘制完成时不再触发指定的回调。
+通过句柄向对应的查询条件取消注册回调，当组件绘制送显完成时不再触发指定的回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -111,8 +111,8 @@ off(type: 'draw', callback?: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 必须填写字符串'layout'或'draw'。<br>layout: 组件布局完成。<br>draw: 组件绘制完成。 |
-| callback | void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。callback需要和on方法中的callback为相同对象时才能取消回调成功。 |
+| type     | string | 是   | 必须填写字符串'layout'或'draw'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。 |
+| callback | () => void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。callback需要和on方法中的callback为相同对象时才能取消回调成功。 |
 
 **示例：**
 

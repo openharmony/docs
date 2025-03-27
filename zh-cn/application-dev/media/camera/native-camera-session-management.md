@@ -72,31 +72,31 @@
      调用captureSession类中的[OH_CaptureSession_CommitConfig()](../../reference/apis-camera-kit/_o_h___camera.md#oh_capturesession_commitconfig)和[OH_CaptureSession_Start()](../../reference/apis-camera-kit/_o_h___camera.md#oh_capturesession_start)方法提交相关配置，并启动会话。
      
    ```c++
-    // 向会话中添加相机输入流
+    // 向会话中添加相机输入流。
     ret = OH_CaptureSession_AddInput(captureSession, cameraInput);
     if (ret != CAMERA_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_AddInput failed.");
     }
 
-    // 向会话中添加预览输出流
+    // 向会话中添加预览输出流。
     ret = OH_CaptureSession_AddPreviewOutput(captureSession, previewOutput);
     if (ret != CAMERA_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_AddPreviewOutput failed.");
     }
 
-    // 向会话中添加拍照输出流
+    // 向会话中添加拍照输出流。
     ret = OH_CaptureSession_AddPhotoOutput(captureSession, photoOutput);
     if (ret != CAMERA_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_AddPhotoOutput failed.");
     }
 
-    // 提交会话配置
+    // 提交会话配置。
     ret = OH_CaptureSession_CommitConfig(captureSession);
     if (ret != CAMERA_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_CommitConfig failed.");
     }
 
-    // 启动会话
+    // 启动会话。
     ret = OH_CaptureSession_Start(captureSession);
     if (ret != CAMERA_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_Start failed.");
@@ -116,14 +116,14 @@
     if (ret != CAMERA_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_BeginConfig failed.");
     }
-    // 从会话中移除拍照输出流
+    // 从会话中移除拍照输出流。
     ret = OH_CaptureSession_RemovePhotoOutput(captureSession, photoOutput);
     if (ret == CAMERA_OK) {
         OH_LOG_INFO(LOG_APP, "OH_CaptureSession_RemovePhotoOutput success ");
     } else {
         OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_RemovePhotoOutput failed. %d ", ret);
     }
-     // 向会话中添加视频输出流
+     // 向会话中添加视频输出流。
     ret = OH_CaptureSession_AddVideoOutput(captureSession, videoOutput);
     if (ret == CAMERA_OK) {
         OH_LOG_INFO(LOG_APP, "OH_CaptureSession_RemovePhotoOutput success ");

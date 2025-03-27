@@ -2,7 +2,7 @@
 
 > **NOTE**
 >
->To use the download function of the **Web** component, the application needs to invoke **WebDownloadItem.start** to specify the path for saving the downloaded file. Note that **WebDownloadItem.start** does not start the download. The download process starts when the user clicks the page link. **WebDownloadItem.start** is used to move the content that has been downloaded to the temporary directory (**/data/storage/el2/base/cache/web/Temp/**) to the specified path, and directly save the remaining content to the specified path. To cancel the current download, you can invoke **WebDownloadItem.cancel**. In this case, the temporary file is deleted.
+>Use [WebDownloadItem.start](../reference/apis-arkweb/js-apis-webview.md#start11) to specify the path for storing downloaded files. Note that **WebDownloadItem.start** does not start the download. The download process starts when the user clicks the page link. **WebDownloadItem.start** is used to move the content that has been downloaded to the temporary directory (**/data/storage/el2/base/cache/web/Temp/**) to the specified path, and directly save the remaining content to the specified path. Use [WebDownloadItem.cancel](../reference/apis-arkweb/js-apis-webview.md#cancel11) to cancel the current download. In this case, the temporary file is deleted.
 >
 >If you do not want to download the file to the temporary directory before **WebDownloadItem.start**, you can also use **WebDownloadItem.cancel** to interrupt the download. In addition, the interrupted download can be resumed by using [WebDownloadManager.resumeDownload](../reference/apis-arkweb/js-apis-webview.md#resumedownload11).
 

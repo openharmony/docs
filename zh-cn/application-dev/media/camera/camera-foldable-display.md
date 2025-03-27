@@ -26,7 +26,7 @@
       }
 
       async loadXComponent() {
-        //初始化XComponent
+        //初始化XComponent。
       }
 
       build() {
@@ -64,7 +64,7 @@
     let cameraManager = camera.getCameraManager(getContext())
 
     function registerFoldStatusChanged(err: BusinessError, foldStatusInfo: camera.FoldStatusInfo) {
-      // foldStatus 变量用来控制显示XComponent组件
+      // foldStatus 变量用来控制显示XComponent组件。
       AppStorage.setOrCreate<number>('foldStatus', foldStatusInfo.foldStatus);
     }
 
@@ -76,7 +76,7 @@
     import { display } from '@kit.ArkUI';
     let preFoldStatus: display.FoldStatus = display.getFoldStatus();
     display.on('foldStatusChange', (foldStatus: display.FoldStatus) => {
-      // 从半折叠态（FOLD_STATUS_HALF_FOLDED）和展开态（FOLD_STATUS_EXPANDED），相机框架返回所支持的摄像头是一致的，所以从半折叠态到展开态不需要重新配流，从展开态到半折叠态也是一样的
+      // 从半折叠态（FOLD_STATUS_HALF_FOLDED）和展开态（FOLD_STATUS_EXPANDED），相机框架返回所支持的摄像头是一致的，所以从半折叠态到展开态不需要重新配流，从展开态到半折叠态也是一样的。
       if ((preFoldStatus === display.FoldStatus.FOLD_STATUS_HALF_FOLDED &&
         foldStatus === display.FoldStatus.FOLD_STATUS_EXPANDED) ||
         (preFoldStatus === display.FoldStatus.FOLD_STATUS_EXPANDED &&
@@ -85,7 +85,7 @@
         return;
       }
       preFoldStatus = foldStatus;
-      // foldStatus 变量用来控制显示XComponent组件
+      // foldStatus 变量用来控制显示XComponent组件。
       AppStorage.setOrCreate<number>('foldStatus', foldStatus);
     })
     ```
@@ -115,7 +115,7 @@ struct Index {
   private mSurfaceId: string = '';
   private mCameraPosition: camera.CameraPosition = camera.CameraPosition.CAMERA_POSITION_BACK;
   private mCameraManager: camera.CameraManager = camera.getCameraManager(context);
-  // surface宽高根据需要自行选择
+  // surface宽高根据需要自行选择。
   private surfaceRect: SurfaceRect = {
     surfaceWidth: 1080,
     surfaceHeight: 1920
@@ -124,7 +124,7 @@ struct Index {
   private mCameraInput: camera.CameraInput | undefined = undefined;
   private mPreviewOutput: camera.PreviewOutput | undefined = undefined;
   private mPhotoSession: camera.PhotoSession | undefined = undefined;
-  // One of the recommended preview resolutions
+  // One of the recommended preview resolutions.
   private previewProfileObj: camera.Profile = {
     format: 1003,
     size: {
@@ -161,11 +161,11 @@ struct Index {
       return;
     }
     this.preFoldStatus = foldStatus;
-    // 获取当前打开的相机摄像头，如果是后置，折叠状态不影响当前摄像头的使用
+    // 获取当前打开的相机摄像头，如果是后置，折叠状态不影响当前摄像头的使用。
     if (!this.curCameraDevice) {
       return;
     }
-    // foldStatus 变量用来控制显示XComponent组件
+    // foldStatus 变量用来控制显示XComponent组件。
     AppStorage.setOrCreate<number>('foldStatus', foldStatus);
   }
 
@@ -188,7 +188,7 @@ struct Index {
 
   async aboutToDisappear(): Promise<void> {
     await this.releaseCamera();
-    // 解注册
+    // 解注册。
     this.offFoldStatusChange();
   }
 
@@ -197,7 +197,7 @@ struct Index {
   }
 
   async releaseCamera(): Promise<void> {
-    // 停止当前会话
+    // 停止当前会话。
     try {
       await this.mPhotoSession?.stop();
     } catch (error) {
@@ -205,7 +205,7 @@ struct Index {
       console.error(TAG + 'Failed to stop session, errorCode = ' + err.code);
     }
 
-    // 释放相机输入流
+    // 释放相机输入流。
     try {
       await this.mCameraInput?.close();
     } catch (error) {
@@ -213,7 +213,7 @@ struct Index {
       console.error(TAG + 'Failed to close device, errorCode = ' + err.code);
     }
 
-    // 释放预览输出流
+    // 释放预览输出流。
     try {
       await this.mPreviewOutput?.release();
     } catch (error) {
@@ -223,7 +223,7 @@ struct Index {
 
     this.mPreviewOutput = undefined;
 
-    // 释放会话
+    // 释放会话。
     try {
       await this.mPhotoSession?.release();
     } catch (error) {
@@ -231,7 +231,7 @@ struct Index {
       console.error(TAG + 'Failed to release photoSession, errorCode = ' + err.code);
     }
 
-    // 会话置空
+    // 会话置空。
     this.mPhotoSession = undefined;
   }
 
@@ -274,13 +274,13 @@ struct Index {
 
   async initCamera(surfaceId: string, cameraPosition: camera.CameraPosition): Promise<void> {
     await this.releaseCamera();
-    // 创建CameraManager对象
+    // 创建CameraManager对象。
     if (!this.mCameraManager) {
       console.error(TAG + 'camera.getCameraManager error');
       return;
     }
 
-    // 获取相机列表
+    // 获取相机列表。
     let cameraArray: Array<camera.CameraDevice> = this.mCameraManager.getSupportedCameras();
     if (cameraArray.length <= 0) {
       console.error(TAG + 'cameraManager.getSupportedCameras error');
@@ -288,10 +288,10 @@ struct Index {
     }
 
     for (let index = 0; index < cameraArray.length; index++) {
-      console.info(TAG + 'cameraId : ' + cameraArray[index].cameraId); // 获取相机ID
-      console.info(TAG + 'cameraPosition : ' + cameraArray[index].cameraPosition); // 获取相机位置
-      console.info(TAG + 'cameraType : ' + cameraArray[index].cameraType); // 获取相机类型
-      console.info(TAG + 'connectionType : ' + cameraArray[index].connectionType); // 获取相机连接类型
+      console.info(TAG + 'cameraId : ' + cameraArray[index].cameraId); // 获取相机ID。
+      console.info(TAG + 'cameraPosition : ' + cameraArray[index].cameraPosition); // 获取相机位置。
+      console.info(TAG + 'cameraType : ' + cameraArray[index].cameraType); // 获取相机类型。
+      console.info(TAG + 'connectionType : ' + cameraArray[index].connectionType); // 获取相机连接类型。
     }
 
     let deviceIndex = cameraArray.findIndex((cameraDevice: camera.CameraDevice) => {
@@ -303,7 +303,7 @@ struct Index {
     }
     this.curCameraDevice = cameraArray[deviceIndex];
 
-    // 创建相机输入流
+    // 创建相机输入流。
     try {
       this.mCameraInput = this.mCameraManager.createCameraInput(this.curCameraDevice);
     } catch (error) {
@@ -314,7 +314,7 @@ struct Index {
       return;
     }
 
-    // 打开相机
+    // 打开相机。
     try {
       await this.mCameraInput.open();
     } catch (error) {
@@ -322,7 +322,7 @@ struct Index {
       console.error(TAG + 'Failed to open device, errorCode = ' + err.code);
     }
 
-    // 获取支持的模式类型
+    // 获取支持的模式类型。
     let sceneModes: Array<camera.SceneMode> = this.mCameraManager.getSupportedSceneModes(this.curCameraDevice);
     let isSupportPhotoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_PHOTO) >= 0;
     if (!isSupportPhotoMode) {
@@ -330,7 +330,7 @@ struct Index {
       return;
     }
 
-    // 获取相机设备支持的输出流能力
+    // 获取相机设备支持的输出流能力。
     let cameraOutputCapability: camera.CameraOutputCapability =
       this.mCameraManager.getSupportedOutputCapability(this.curCameraDevice, camera.SceneMode.NORMAL_PHOTO);
     if (!cameraOutputCapability) {
@@ -345,7 +345,7 @@ struct Index {
     }
     this.previewProfileObj = previewProfile;
 
-    // 创建预览输出流,其中参数 surfaceId 参考上文 XComponent 组件，预览流为XComponent组件提供的surface
+    // 创建预览输出流,其中参数 surfaceId 参考上文 XComponent 组件，预览流为XComponent组件提供的surface。
     try {
       this.mPreviewOutput = this.mCameraManager.createPreviewOutput(this.previewProfileObj, surfaceId);
     } catch (error) {
@@ -356,7 +356,7 @@ struct Index {
       return;
     }
 
-    //创建会话
+    //创建会话。
     try {
       this.mPhotoSession = this.mCameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
     } catch (error) {
@@ -367,7 +367,7 @@ struct Index {
       return;
     }
 
-    // 开始配置会话
+    // 开始配置会话。
     try {
       this.mPhotoSession.beginConfig();
     } catch (error) {
@@ -375,7 +375,7 @@ struct Index {
       console.error(TAG + 'Failed to beginConfig. errorCode = ' + err.code);
     }
 
-    // 向会话中添加相机输入流
+    // 向会话中添加相机输入流。
     try {
       this.mPhotoSession.addInput(this.mCameraInput);
     } catch (error) {
@@ -383,7 +383,7 @@ struct Index {
       console.error(TAG + 'Failed to addInput. errorCode = ' + err.code);
     }
 
-    // 向会话中添加预览输出流
+    // 向会话中添加预览输出流。
     try {
       this.mPhotoSession.addOutput(this.mPreviewOutput);
     } catch (error) {
@@ -391,7 +391,7 @@ struct Index {
       console.error(TAG + 'Failed to addOutput(previewOutput). errorCode = ' + err.code);
     }
 
-    // 提交会话配置
+    // 提交会话配置。
     try {
       await this.mPhotoSession.commitConfig();
     } catch (error) {
@@ -399,7 +399,7 @@ struct Index {
       console.error(TAG + 'Failed to commit session configuration, errorCode = ' + err.code);
     }
 
-    // 启动会话
+    // 启动会话。
     try {
       await this.mPhotoSession.start()
     } catch (error) {

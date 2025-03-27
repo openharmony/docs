@@ -15,6 +15,8 @@ In state management V2, the **!!** syntactic sugar is used to implement two-way 
 - If the parent component uses **!!**, the change of the parent component will be synchronized to the child component, and vice versa.
 - If the parent component does not use **!!**, the change of the parent component is unidirectional.
 
+## Constraints
+- **!!** does not support multi-layer parent-child component transfer.
 
 ## Use Scenarios
 
@@ -62,12 +64,6 @@ struct Star {
 }
 ```
 
-
-## Constraints
-- **!!** does not support multi-layer parent-child component transfer.
-- **!!** cannot be used together with @Event. When it is used, parameters cannot be passed to the corresponding @Event method when parameters are passed to the child component.
-
-
 ### Two-Way Binding Between Built-in Component Parameters
 
 The **!!** operator provides a TypeScript variable by-reference to a built-in component so that the variable value and the internal state of that component are kept in sync. Add this operator after the variable name, for example, **isShow!!**.
@@ -83,9 +79,6 @@ What the internal state is depends on the component. For example, the **isShow**
   | [bindMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu11) | isShow | 13          |
   | [bindContextMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu12) | isShown | 13          |
   | [bindPopup](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#bindpopup) | show | 13   |
-  | [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md) | text | 16   |
-  | [TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md) | text | 16   |
-  | [Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md) | value | 16   |
 
 - When the [\@Local](arkts-new-local.md) decorated variable bound to **!!** changes, the UI is rendered synchronously.
 

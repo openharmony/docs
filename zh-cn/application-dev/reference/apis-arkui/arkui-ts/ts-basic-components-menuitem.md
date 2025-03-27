@@ -41,7 +41,7 @@ MenuItem(value?: MenuItemOptions| CustomBuilder)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### selected
 
@@ -57,9 +57,9 @@ selected(value: boolean)
 
 **参数：** 
 
-| 参数名 | 类型    | 必填 | 说明                                |
-| ------ | ------- | ---- | ----------------------------------- |
-| value  | boolean | 是   | 菜单项是否选中。<br />默认值：false |
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 菜单项是否选中。<br />默认值：false<br/>值为true时，菜单项被选中。值为false时，菜单项不被选中。 |
 
 ### selectIcon
 
@@ -75,7 +75,7 @@ selectIcon(value: boolean | ResourceStr | SymbolGlyphModifier)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | boolean&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)<sup>10+</sup>\|&nbsp;[SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)<sup>12+</sup> | 是   | 菜单项被选中时，是否显示被选中的图标。<br/>默认值：false<br/>true: 菜单项被选中时，显示默认的对勾图标<br/>false: 即使菜单项被选中也不显示图标<br/>ResourceStr: 菜单项被选中时，显示指定的图标<br/>SymbolGlyphModifier: 菜单项被选中时，显示指定的HMSymbol图标。 |
+| value  | boolean&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)<sup>10+</sup>\|&nbsp;[SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)<sup>12+</sup> | 是   | 菜单项被选中时，是否显示被选中的图标。<br/>默认值：false<br/>true: 菜单项被选中时，显示默认的对勾图标。<br/>false: 即使菜单项被选中也不显示图标。<br/>ResourceStr: 菜单项被选中时，显示指定的图标。<br/>SymbolGlyphModifier: 菜单项被选中时，显示指定的HMSymbol图标。 |
 ### contentFont<sup>10+</sup>
 
 contentFont(value: Font)

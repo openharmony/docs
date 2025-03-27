@@ -15,7 +15,7 @@ import notification from '@system.notification';
 
 ## ActionResult
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 | 名称        | 类型                                           | 必填 | 说明                      |
 | ----------- | ---------------------------------------------- | ---- | ------------------------- |
@@ -26,7 +26,7 @@ import notification from '@system.notification';
 
 ## ShowNotificationOptions
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 | 名称          | 类型                                           | 必填 | 说明                        |
 | ------------- | ---------------------------------------------- | ---- | ------------------------- |

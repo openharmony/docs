@@ -18,7 +18,7 @@
 import { webview } from '@kit.ArkWeb';
 ```
 
-## once
+## webview.once
 
 once(type: string, callback: Callback\<void\>): void
 
@@ -779,7 +779,7 @@ static setWebDebuggingAccess(webDebuggingAccess: boolean): void
 
 | 参数名              | 类型    | 必填   |  说明 |
 | ------------------ | ------- | ---- | ------------- |
-| webDebuggingAccess | boolean | 是   | 设置是否启用网页调试功能。|
+| webDebuggingAccess | boolean | 是   | 设置是否启用网页调试功能。设置为true，表示启用网页调试功能。设置为false，表示不启用网页调试功能。 |
 
 **错误码：**
 
@@ -1208,6 +1208,12 @@ accessBackward(): boolean
 
 可以结合使用[getBackForwardEntries](#getbackforwardentries)来获取当前WebView的历史信息列表，以及使用[accessStep](#accessstep)来判断是否可以按照给定的步数前进或后退。
 
+> **说明：**
+>
+> 在Web组件首次加载过程中调用[setCustomUserAgent](#setcustomuseragent10)，可能会导致在当前存在多个历史节点的情况下，获取的accessBackForward实际为false，即没有后退节点。建议先调用setCustomUserAgent方法设置User-Agent，再通过loadUrl加载具体页面。
+>
+> 该现象是由于在Web组件首次加载时，调用[setCustomUserAgent](#setcustomuseragent10)会导致组件重新加载并保持初始历史节点的状态。随后新增的节点将替换初始历史节点，不会生成新的历史节点，导致accessBackward为false。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
@@ -1449,7 +1455,7 @@ accessStep(step: number): boolean
 
 | 类型    | 说明               |
 | ------- | ------------------ |
-| boolean | 页面是否前进或后退 |
+| boolean | 页面是否前进或后退，返回true表示可以前进或者后退，返回false表示不可以前进或后退。 |
 
 **错误码：**
 
@@ -1599,6 +1605,7 @@ registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的
 > - 在注册registerJavaScriptProxy后，应用会将JavaScript对象暴露给所有的页面frames。
 > - 同一方法在同步与异步列表中重复注册，将默认异步调用。
 > - 同步函数列表和异步函数列表不可同时为空，否则此次调用接口注册失败。
+> - 异步的作用在于：H5线程将异步JavaScript任务提交给ETS主线程后，无需等待任务执行完成并返回结果，H5线程即可继续执行后续任务。这在执行耗时较长的JavaScript任务或ETS线程较为拥堵的情况下，可以有效减少H5线程因JavaScript任务而被阻塞的情况。然而，异步JavaScript任务无法返回值，且任务执行的顺序无法保证，因此需要根据具体情境判断是否使用同步或异步方式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2460,7 +2467,7 @@ zoom(factor: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| factor | number   | 是   | 基于当前网页所需调整的相对缩放比例，入参要求大于0，当入参为1时为默认加载网页的缩放比例，入参小于1为缩小，入参大于1为放大。 |
+| factor | number   | 是   | 基于当前网页所需调整的相对缩放比例，入参要求大于0，当入参为1时为默认加载网页的缩放比例，入参小于1为缩小，入参大于1为放大。取值范围：(0，100]。 |
 
 **错误码：**
 
@@ -2629,7 +2636,7 @@ searchNext(forward: boolean): void
 
 | 参数名  | 类型 | 必填 | 说明               |
 | ------- | -------- | ---- | ---------------------- |
-| forward | boolean  | 是   | 从前向后或者逆向查找。 |
+| forward | boolean  | 是   | 从前向后或者逆向查找方式。true表示从前向后查找，false表示从后向前查找。 |
 
 **错误码：**
 
@@ -3027,7 +3034,7 @@ struct WebComponent {
 
 zoomIn(): void
 
-调用此接口将当前网页进行放大，比例为20%。
+调用此接口将当前网页进行放大，比例为25%。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3222,7 +3229,7 @@ getUserAgent(): string
 
 获取当前默认用户代理。
 
-默认UserAgent定义与使用场景请参考[UserAgent详情参考](../../web/web-default-userAgent.md)
+默认User-Agent定义与使用场景请参考[User-Agent开发指导](../../web/web-default-userAgent.md)
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3269,7 +3276,7 @@ struct WebComponent {
 }
 ```
 
-支持开发者基于默认的UserAgent去定制UserAgent。
+支持开发者基于默认的User-Agent去定制User-Agent。
 ```ts
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
@@ -3284,7 +3291,7 @@ struct WebComponent {
   aboutToAppear(): void {
     webview.once('webInited', () => {
       try {
-        // 应用侧用法示例，定制UserAgent。
+        // 应用侧用法示例，定制User-Agent。
         this.ua = this.controller.getUserAgent() + 'xxx';
         this.controller.setCustomUserAgent(this.ua);
       } catch (error) {
@@ -4131,7 +4138,7 @@ setNetworkAvailable(enable: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | --------------------------------- |
-| enable | boolean | 是   | 是否使能window.navigator.onLine。 |
+| enable | boolean | 是   | 是否使能window.navigator.onLine，默认为true，表示开启JavaScript中的window.navigator.onLine属性。 |
 
 **错误码：**
 
@@ -5319,15 +5326,15 @@ setCustomUserAgent(userAgent: string): void
 
 设置自定义用户代理，会覆盖系统的用户代理。
 
-当Web组件src设置了url时，建议在onControllerAttached回调事件中设置UserAgent，设置方式请参考示例。不建议将UserAgent设置在onLoadIntercept回调事件中，会概率性出现设置失败。
+当Web组件src设置了url时，建议在onControllerAttached回调事件中设置User-Agent，设置方式请参考示例。不建议将User-Agent设置在onLoadIntercept回调事件中，会概率性出现设置失败。
 
-当Web组件src设置为空字符串时，建议先调用setCustomUserAgent方法设置UserAgent，再通过loadUrl加载具体页面。
+当Web组件src设置为空字符串时，建议先调用setCustomUserAgent方法设置User-Agent，再通过loadUrl加载具体页面。
 
-默认UserAgent定义与使用场景请参考[UserAgent详情参考](../../web/web-default-userAgent.md)
+默认User-Agent定义与使用场景请参考[User-Agent开发指导](../../web/web-default-userAgent.md)
 
 > **说明：**
 >
->当Web组件src设置了url，且未在onControllerAttached回调事件中设置UserAgent。再调用setCustomUserAgent方法时，可能会出现加载的页面与实际设置UserAgent不符的异常现象。
+>当Web组件src设置了url，且未在onControllerAttached回调事件中设置User-Agent。再调用setCustomUserAgent方法时，可能会出现加载的页面与实际设置User-Agent不符的异常现象。
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
@@ -5493,7 +5500,7 @@ getCustomUserAgent(): string
 
 获取自定义用户代理。
 
-默认UserAgent定义与使用场景请参考[UserAgent详情参考](../../web/web-default-userAgent.md)
+默认User-Agent定义与使用场景请参考[User-Agent开发指导](../../web/web-default-userAgent.md)
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
@@ -5553,7 +5560,7 @@ static setConnectionTimeout(timeout: number): void
 
 | 参数名          | 类型    |  必填  | 说明                                            |
 | ---------------| ------- | ---- | ------------- |
-| timeout        | number  | 是   | socket连接超时时间，以秒为单位，socket必须为大于0的整数。 |
+| timeout        | number  | 是   | socket连接超时时间，以秒为单位，必须为大于0的整数。 |
 
 **错误码：**
 
@@ -5704,7 +5711,7 @@ isSafeBrowsingEnabled(): boolean
 
 | 类型    | 说明                                     |
 | ------- | --------------------------------------- |
-| boolean | 当前网页是否启用了检查网站安全风险的功能，默认为false。|
+| boolean | 当前网页是否启用了检查网站安全风险的功能，默认为false，表示未启用。|
 
 **示例：**
 
@@ -5794,7 +5801,7 @@ isIntelligentTrackingPreventionEnabled(): boolean
 
 | 类型    | 说明                                     |
 | ------- | --------------------------------------- |
-| boolean | 当前Web是否启用了智能防跟踪功能，默认为false。|
+| boolean | 当前Web是否启用了智能防跟踪功能，默认为false，表示未启用。|
 
 **错误码：**
 
@@ -5974,6 +5981,8 @@ static getDefaultUserAgent(): string
 
 此接口只允许在UI线程调用。
 
+默认User-Agent定义与使用场景请参考[User-Agent开发指导](../../web/web-default-userAgent.md)
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **示例：**
@@ -6005,7 +6014,7 @@ enableAdsBlock(enable: boolean): void
 
 | 参数名   | 类型    |  必填  | 说明                       |
 | --------| ------- | ---- | ---------------------------|
-|  enable | boolean | 是   | 是否启用广告过滤功能。 |
+|  enable | boolean | 是   | 是否启用广告过滤功能，默认为false，表示未启用。 |
 
 **错误码：**
 
@@ -6408,7 +6417,7 @@ isIncognitoMode(): boolean
 
 | 类型                 | 说明                      |
 | -------------------- | ------------------------- |
-| boolean              | 返回是否是隐私模式的Webview。 |
+| boolean              | 返回是否是隐私模式的Webview，默认为false，表示未开启隐私模式。 |
 
 **错误码：**
 
@@ -9805,6 +9814,46 @@ struct WebComponent {
 }
 ```
 
+### saveCookieSync<sup>15+</sup>
+
+static saveCookieSync(): void
+
+将当前存在内存中的cookie同步保存到磁盘中。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+> **说明：**
+>
+> saveCookieSync用于强制将需要持久化的cookies写入磁盘。默认情况下，2in1和Tablet设备不会持久化session cookie。
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('saveCookieSync')
+        .onClick(() => {
+          try {
+            webview.WebCookieManager.saveCookieSync();
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ### saveCookieAsync
 
 static saveCookieAsync(callback: AsyncCallback\<void>): void
@@ -9927,7 +9976,7 @@ static putAcceptCookieEnabled(accept: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                                 |
 | ------ | ------- | ---- | :----------------------------------- |
-| accept | boolean | 是   | 设置是否拥有发送和接收cookie的权限，默认为true。 |
+| accept | boolean | 是   | 设置是否拥有发送和接收cookie的权限，默认为true，表示拥有发送和接收cookie的权限。 |
 
 **错误码：**
 
@@ -9977,7 +10026,7 @@ static isCookieAllowed(): boolean
 
 | 类型    | 说明                             |
 | ------- | -------------------------------- |
-| boolean | 是否拥有发送和接收cookie的权限，默认为true。 |
+| boolean | 是否拥有发送和接收cookie的权限，默认为true，表示拥有发送和接收cookie的权限。 |
 
 **示例：**
 
@@ -10065,7 +10114,7 @@ static isThirdPartyCookieAllowed(): boolean
 
 | 类型    | 说明                                   |
 | ------- | -------------------------------------- |
-| boolean | 是否拥有发送和接收第三方cookie的权限，默认为false。 |
+| boolean | 是否拥有发送和接收第三方cookie的权限，默认为false，表示未拥有发送和接收第三方cookie的权限。 |
 
 **示例：**
 
@@ -13348,7 +13397,7 @@ start(downloadPath: string): void
 
 | 参数名 | 类型                   | 必填 | 说明                             |
 | ------ | ---------------------- | ---- | ------------------------------|
-| downloadPath   | string     | 是  | 下载文件的路径(包含文件名)。|
+| downloadPath   | string     | 是  | 下载文件的路径(包含文件名)，路径长度与文件管理中长度一致，最长255字符。|
 
 **错误码：**
 
@@ -14332,6 +14381,397 @@ struct WebComponent {
     }
   }
 }
+```
+
+## ProxySchemeFilter<sup>15+</sup>
+
+使用代理的请求的scheme信息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称          | 值 | 说明                                      |
+| ------------- | -- |----------------------------------------- |
+| MATCH_ALL_SCHEMES | 0 |所有的scheme都会使用代理。|
+| MATCH_HTTP        | 1 |HTTP请求会使用代理。|
+| MATCH_HTTPS       | 2 |HTTPS请求会使用代理。|
+
+## ProxyConfig<sup>15+</sup>
+
+可以通过该类提供的接口对代理进行配置。
+
+### insertProxyRule<sup>15+</sup>
+
+insertProxyRule(proxyRule: string, schemeFilter?: ProxySchemeFilter): void
+
+插入一条代理规则，与schemeFilter匹配的URL都会使用指定代理。如果schemeFilter为空，所有URL都将使用指定代理。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型     |  必填  | 说明           |
+| ---------------| ------- | ---- | ------------- |
+| proxyRule      | string  | 是   | URL要使用的代理。 |
+| schemeFilter   | [ProxySchemeFilter](#proxyschemefilter15)  | 否   | 与schemeFilter匹配的URL会使用代理。默认值：MATCH_ALL_SCHEMES |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)说明文档。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.  |
+
+**示例：**
+
+完整示例代码参考[removeProxyOverride](#removeproxyoverride15)。
+
+### insertDirectRule<sup>15+</sup>
+
+insertDirectRule(schemeFilter?: ProxySchemeFilter): void
+
+插入一条代理规则，指明符合schemeFilter条件的URL将直接连接到服务器。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型     |  必填  | 说明           |
+| ---------------| ------- | ---- | ------------- |
+| schemeFilter   | [ProxySchemeFilter](#proxyschemefilter15)  | 否   | 与schemeFilter匹配的URL会直接与服务器相连。默认值：MATCH_ALL_SCHEMES |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)说明文档。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.  |
+
+**示例：**
+
+完整示例代码参考[removeProxyOverride](#removeproxyoverride15)。
+
+### insertBypassRule<sup>15+</sup>
+
+insertBypassRule(bypassRule: string): void
+
+插入一条bypass规则，指明哪些URL应该绕过代理并直接连接到服务器。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型     |  必填  | 说明           |
+| ---------------| ------- | ---- | ------------- |
+| bypassRule     | string  | 是   | 与bypassRule匹配的URL会绕过代理。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)说明文档。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
+**示例：**
+
+完整示例代码参考[removeProxyOverride](#removeproxyoverride15)。
+
+### bypassHostnamesWithoutPeriod<sup>15+</sup>
+
+bypassHostnamesWithoutPeriod(): void
+
+没有点字符的域名将跳过代理并直接连接到服务器。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[removeProxyOverride](#removeproxyoverride15)。
+
+### clearImplicitRules<sup>15+</sup>
+
+clearImplicitRules(): void
+
+默认情况下，如果某些主机名是本地IP地址或localhost地址，它们会绕过代理。调用此函数以覆盖默认行为，并强制将localhost或本地IP地址通过代理发送。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[removeProxyOverride](#removeproxyoverride15)。
+
+### enableReverseBypass<sup>15+</sup>
+
+enableReverseBypass(reverse: boolean): void
+
+反转bypass规则。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型     |  必填  | 说明           |
+| ---------------| ------- | ---- | ------------- |
+| reverse     | boolean  | 是   | 参数值默认是false，表示与[insertBypassRule](#insertbypassrule15)中的bypassRule匹配的URL会绕过代理，参数值为true时，表示与[insertBypassRule](#insertbypassrule15)中的bypassRule匹配的URL会使用代理。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)说明文档。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.  |
+
+**示例：**
+
+完整示例代码参考[removeProxyOverride](#removeproxyoverride15)。
+
+### getBypassRules<sup>15+</sup>
+
+getBypassRules(): Array\<string\>
+
+获取不使用代理的URL列表。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| Array\<string\> | 不使用代理的URL列表。 |
+
+**示例：**
+
+完整示例代码参考[removeProxyOverride](#removeproxyoverride15)。
+
+### getProxyRules<sup>15+</sup>
+
+getProxyRules(): Array\<ProxyRule\>
+
+获取代理规则。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| Array\<[ProxyRule](#proxyrule15)\> | 代理规则。 |
+
+**示例：**
+
+完整示例代码参考[removeProxyOverride](#removeproxyoverride15)。
+
+### isReverseBypassEnabled<sup>15+</sup>
+
+isReverseBypassEnabled(): boolean
+
+获取[enableReverseBypass](#enablereversebypass15)的参数值，详见[enableReverseBypass](#enablereversebypass15)。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| boolean | [enableReverseBypass](#enablereversebypass15)的参数值。参数值为false，表示与[insertBypassRule](#insertbypassrule15)中的bypassRule匹配的URL会绕过代理，参数值为true时，表示与[insertBypassRule](#insertbypassrule15)中的bypassRule匹配的URL会使用代理。 |
+
+**示例：**
+
+完整示例代码参考[removeProxyOverride](#removeproxyoverride15)。
+
+
+## ProxyRule<sup>15+</sup>
+
+[insertProxyRule](#insertproxyrule15)中使用的代理规则。
+
+### getSchemeFilter<sup>15+</sup>
+
+getSchemeFilter(): ProxySchemeFilter
+
+获取代理规则中的[ProxySchemeFilter](#proxyschemefilter15)信息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| [ProxySchemeFilter](#proxyschemefilter15) | 代理规则中的[ProxySchemeFilter](#proxyschemefilter15)信息。 |
+
+**示例：**
+
+完整示例代码参考[removeProxyOverride](#removeproxyoverride15)。
+
+### getUrl<sup>15+</sup>
+
+getUrl(): string
+
+获取代理规则中的代理的URL信息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| string | 代理规则中的代理的Url信息。 |
+
+**示例：**
+
+完整示例代码参考[removeProxyOverride](#removeproxyoverride15)。
+
+## OnProxyConfigChangeCallback<sup>15+</sup>
+
+type OnProxyConfigChangeCallback = () => void
+
+回调函数，回调成功表示代理设置成功。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[removeProxyOverride](#removeproxyoverride15)。
+
+## ProxyController<sup>15+</sup>
+
+此类用于为应用程序设置代理。
+
+### applyProxyOverride<sup>15+</sup>
+
+static applyProxyOverride(proxyConfig: ProxyConfig, callback: OnProxyConfigChangeCallback): void
+
+设置应用中所有Web使用的代理配置，与[insertBypassRule](#insertbypassrule15)中插入的bypass规则匹配的URL将不会使用代理，而是直接向URL指定的源地址发起请求。代理设置成功后，不保证网络连接后会立即使用新的代理设置，在加载页面之前请等待监听器触发，这个监听器将在UI线程上被调用。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型     |  必填  | 说明           |
+| ---------------| ------- | ---- | ------------- |
+| proxyConfig     | [ProxyConfig](#proxyconfig15)  | 是   | 对代理的配置。 |
+| callback     | [OnProxyConfigChangeCallback](#onproxyconfigchangecallback15)   | 是   | 代理设置成功的回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)说明文档。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
+**示例：**
+
+完整示例代码参考[removeProxyOverride](#removeproxyoverride15)。
+
+### removeProxyOverride<sup>15+</sup>
+
+static removeProxyOverride(callback: OnProxyConfigChangeCallback): void
+
+移除代理配置。移除代理配置后，不保证网络连接后会立即使用新的代理设置，在加载页面之前等待监听器，这个监听器将在UI线程上被调用。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型     |  必填  | 说明           |
+| ---------------| ------- | ---- | ------------- |
+| callback     | [OnProxyConfigChangeCallback](#onproxyconfigchangecallback15)   | 是   | 代理设置成功的回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)说明文档。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.  |
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+  proxyRules: webview.ProxyRule[] = [];
+
+  build() {
+    Row() {
+      Column() {
+        Button("applyProxyOverride").onClick(()=>{
+          let proxyConfig:webview.ProxyConfig = new webview.ProxyConfig();
+          //优先使用第一个代理配置https://proxy.XXX.com
+          //代理失败后会回落到直连服务器insertDirectRule
+          try {
+            proxyConfig.insertProxyRule("https://proxy.XXX.com", webview.ProxySchemeFilter.MATCH_ALL_SCHEMES);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+          try {
+            proxyConfig.insertDirectRule(webview.ProxySchemeFilter.MATCH_HTTP);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+          try {
+            proxyConfig.insertBypassRule("*.example.com");
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+          proxyConfig.clearImplicitRules();
+          proxyConfig.bypassHostnamesWithoutPeriod();
+          try {
+            proxyConfig.enableReverseBypass(true);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+          let bypassRules = proxyConfig.getBypassRules();
+          for (let i = 0; i < bypassRules.length; i++) {
+            console.log("bypassRules: " + bypassRules[i]);
+          }
+          this.proxyRules = proxyConfig.getProxyRules();
+          for (let i = 0; i < this.proxyRules.length; i++) {
+            console.log("SchemeFiletr: " + this.proxyRules[i].getSchemeFilter());
+            console.log("Url: " + this.proxyRules[i].getUrl());
+          }
+          let isReverseBypassRule = proxyConfig.isReverseBypassEnabled();
+          console.log("isReverseBypassRules: " + isReverseBypassRule);
+          try {
+            webview.ProxyController.applyProxyOverride(proxyConfig, () => {
+              console.log("PROXYCONTROLLER proxy changed");
+            });
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+        Button("loadUrl-https").onClick(()=>{
+          this.controller.loadUrl("https://www.example.com")
+        })
+        Button("loadUrl-http").onClick(()=>{
+          this.controller.loadUrl("http://www.example.com")
+        })
+        Button("removeProxyOverride").onClick(()=>{
+          try {
+          webview.ProxyController.removeProxyOverride(() => {
+            console.log("PROXYCONTROLLER proxy changed");
+          });
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+        Web({ src: 'www.example.com', controller: this.controller})
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
 ```
 
 ## WebHttpBodyStream<sup>12+</sup>

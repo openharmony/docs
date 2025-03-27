@@ -63,9 +63,9 @@ PopupTextOptions设置文本样式。
 | 名称       | 类型                                                         | 必填 | 说明         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------ |
 | text       | [ResourceStr](ts-types.md#resourcestr)                       | 是   | 设置文本内容。     |
-| fontSize   | number \| string \| [Resource](ts-types.md#resource)         | 否   | 设置文本字体大小。<br />默认值：`$r('sys.float.ohos_id_text_size_body2')`  |
+| fontSize   | number \| string \| [Resource](ts-types.md#resource)         | 否   | 设置文本字体大小。<br />默认值：`$r('sys.float.ohos_id_text_size_body2')` <br/>string类型可选值：可以转化为数字的字符串（如'10'）或带长度单位的字符串（如'10px'），不支持设置百分比字符串。<br/>number：取值范围(0,+∞)。 |
 | fontColor  | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 设置文本字体颜色。<br />默认值：`$r('sys.color.ohos_id_color_text_secondary')` |
-| fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | 否   | 设置文本字体粗细。<br />默认值：FontWeight.Regular |
+| fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | 否   | 设置文本字体粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br />默认值：FontWeight.Regular |
 
 ## PopupButtonOptions
 
@@ -84,7 +84,7 @@ PopupButtonOptions定义按钮的相关属性和事件。
 
 ##  PopupIconOptions
 
-PopupIconOptions定义icon（右上角图标）的属性。
+PopupIconOptions定义icon（左上角图标）的属性。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

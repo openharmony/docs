@@ -10,7 +10,7 @@
 {
   "subsystem": "distributed_schedule",
   "components": [
-    { "component": "system_ability_manager", "features":[] }  # 此处部件名不同版本可能有变化，请根据实际代码填写
+    { "component": "system_ability_manager", "features":[] }  # 此处部件名不同版本可能有变化，请根据实际代码填写。
   ]
 },
 {

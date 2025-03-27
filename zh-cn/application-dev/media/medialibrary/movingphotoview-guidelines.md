@@ -53,43 +53,43 @@
           MovingPhotoView({
             movingPhoto: this.src,
             controller: this.controller
-            // imageAIOptions: this.options
+            // imageAIOptions: this.options.
           })
             // 是否静音播放，此处由按钮控制，默认值为false非静音播放。
             .muted(this.isMuted)
             // 视频显示模式，默认值为Cover。
             .objectFit(ImageFit.Cover)
-            // 播放时触发
+            // 播放时触发。
             .onStart(() => {
               console.log('onStart');
             })
-            // 播放结束触发
+            // 播放结束触发。
             .onFinish(() => {
               console.log('onFinish');
             })
-            // 播放停止触发
+            // 播放停止触发。
             .onStop(() => {
               console.log('onStop')
             })
-            // 出现错误触发
+            // 出现错误触发。
             .onError(() => {
               console.log('onError');
             })
     
           Row() {
-            // 按钮：开始播放
+            // 按钮：开始播放。
             Button('start')
               .onClick(() => {
                 this.controller.startPlayback()
               })
               .margin(5)
-            // 按钮：停止播放
+            // 按钮：停止播放。
             Button('stop')
               .onClick(() => {
                 this.controller.stopPlayback()
               })
               .margin(5)
-            // 按钮：是否静音播放
+            // 按钮：是否静音播放。
             Button('mute')
               .onClick(() => {
                 this.isMuted = !this.isMuted

@@ -43,7 +43,7 @@ lite_subsystem("iothardware") {
 if (ohos_kernel_type == "liteos_m") {
   ndk_lib("iothardware_ndk") {
     deps = [
-      "$ohos_vendor_adapter_dir/hals/iot_hardware/wifiiot_lite:hal_iothardware", #依赖厂商的适配
+      "$ohos_vendor_adapter_dir/hals/iot_hardware/wifiiot_lite:hal_iothardware", #依赖厂商的适配。
     ]
     head_files = [ "//base/iot_hardware/peripheral/interfaces/kits" ]
   }
@@ -94,8 +94,8 @@ if (ohos_kernel_type == "liteos_m") {
 
      
    ```
-   static_library("hal_iothardware") {   #目标名
-       sources = [                       #厂商适配的源文件
+   static_library("hal_iothardware") {   #目标名。
+       sources = [                       #厂商适配的源文件。
          "iot_watchdog.c",
          "iot_reset.c",
          "iot_flash.c",

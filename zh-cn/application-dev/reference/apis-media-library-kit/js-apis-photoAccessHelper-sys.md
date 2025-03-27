@@ -516,8 +516,8 @@ getHiddenAlbums(mode: HiddenPhotosDisplayMode, options: FetchOptions, callback: 
 
 | 参数名   | 类型                     | 必填 | 说明                      |
 | -------- | ------------------------ | ---- | ------------------------- |
-| mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | 是   | 隐藏文件显示模式  |
-| options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)         | 是   |  检索选项  |
+| mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | 是   | 隐藏文件显示模式。  |
+| options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)         | 是   |  检索选项。  |
 | callback |  AsyncCallback&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](#album)&gt;&gt; | 是   | callback返回获取相册的结果集。 |
 
 **错误码：**
@@ -536,7 +536,7 @@ getHiddenAlbums(mode: HiddenPhotosDisplayMode, options: FetchOptions, callback: 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-// 获取系统中包含隐藏文件且相册名为'newAlbumName'的相册
+// 获取系统中包含隐藏文件且相册名为'newAlbumName'的相册。
 async function getHiddenAlbumsView() {
   console.info('getHiddenAlbumsViewDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -574,7 +574,7 @@ getHiddenAlbums(mode: HiddenPhotosDisplayMode, callback: AsyncCallback&lt;FetchR
 
 | 参数名   | 类型                     | 必填 | 说明                      |
 | -------- | ------------------------ | ---- | ------------------------- |
-| mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | 是   | 隐藏文件显示模式  |
+| mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | 是   | 隐藏文件显示模式。  |
 | callback |  AsyncCallback&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](#album)&gt;&gt; | 是   | callback返回获取相册的结果集。 |
 
 **错误码：**
@@ -593,7 +593,7 @@ getHiddenAlbums(mode: HiddenPhotosDisplayMode, callback: AsyncCallback&lt;FetchR
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-// 获取系统预置的隐藏相册
+// 获取系统预置的隐藏相册。
 async function getSysHiddenAlbum() {
   console.info('getSysHiddenAlbumDemo');
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ASSETS_MODE, async (err, fetchResult) => {
@@ -607,7 +607,7 @@ async function getSysHiddenAlbum() {
   });
 }
 
-// 获取隐藏相册-相册视图，即系统中包含隐藏文件的相册（不包含系统预置的隐藏相册本身和回收站相册）
+// 获取隐藏相册-相册视图，即系统中包含隐藏文件的相册（不包含系统预置的隐藏相册本身和回收站相册）。
 async function getHiddenAlbumsView() {
   console.info('getHiddenAlbumsViewDemo');
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ALBUMS_MODE, async (err, fetchResult) => {
@@ -624,7 +624,7 @@ async function getHiddenAlbumsView() {
       predicates: predicates
     };
     for (let i = 0; i < albums.length; i++) {
-      // 获取相册中的隐藏文件
+      // 获取相册中的隐藏文件。
       albums[i].getAssets(fetchOption, (err, assetFetchResult) => {
         console.info('album get hidden assets successfully, getCount: ' + assetFetchResult.getCount());
       });
@@ -650,7 +650,7 @@ getHiddenAlbums(mode: HiddenPhotosDisplayMode, options?: FetchOptions): Promise&
 
 | 参数名   | 类型                     | 必填 | 说明                      |
 | -------- | ------------------------ | ---- | ------------------------- |
-| mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | 是   | 隐藏文件显示模式  |
+| mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | 是   | 隐藏文件显示模式。  |
 | options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)         | 否   |  检索选项，不填时默认根据隐藏文件显示模式检索。      |
 
 **返回值：**
@@ -676,7 +676,7 @@ getHiddenAlbums(mode: HiddenPhotosDisplayMode, options?: FetchOptions): Promise&
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 获取系统预置的隐藏相册
+// 获取系统预置的隐藏相册。
 async function getSysHiddenAlbum() {
   console.info('getSysHiddenAlbumDemo');
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ASSETS_MODE)
@@ -693,7 +693,7 @@ async function getSysHiddenAlbum() {
     });
 }
 
-// 获取隐藏相册-相册视图，即系统中包含隐藏文件的相册（不包含系统预置的隐藏相册本身和回收站相册）
+// 获取隐藏相册-相册视图，即系统中包含隐藏文件的相册（不包含系统预置的隐藏相册本身和回收站相册）。
 async function getHiddenAlbumsView() {
   console.info('getHiddenAlbumsViewDemo');
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ALBUMS_MODE).then( async (fetchResult) => {
@@ -710,7 +710,7 @@ async function getHiddenAlbumsView() {
       predicates: predicates
     };
     for (let i = 0; i < albums.length; i++) {
-      // 获取相册中的隐藏文件
+      // 获取相册中的隐藏文件。
       albums[i].getAssets(fetchOption).then((assetFetchResult) => {
         console.info('album get hidden assets successfully, getCount: ' + assetFetchResult.getCount());
       }).catch((err: BusinessError) => {
@@ -906,7 +906,7 @@ async function example() {
       fetchColumns: [],
       predicates: predicatesForGetAsset
     };
-    // Obtain the uri of the album
+    // Obtain the uri of the album.
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE, fetchOp);
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -917,7 +917,7 @@ async function example() {
     };
     let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
     let expectIndex = 1;
-    // Obtain the uri of the second file
+    // Obtain the uri of the second file.
     let photoAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getObjectByPosition(expectIndex);
 
     phAccessHelper.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions, (err, index) => {
@@ -985,7 +985,7 @@ async function example() {
       fetchColumns: [],
       predicates: predicatesForGetAsset
     };
-    // Obtain the uri of the album
+    // Obtain the uri of the album.
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE, fetchOp);
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -996,7 +996,7 @@ async function example() {
     };
     let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
     let expectIndex = 1;
-    // Obtain the uri of the second file
+    // Obtain the uri of the second file.
     let photoAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getObjectByPosition(expectIndex);
     phAccessHelper.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions).then((index) => {
       console.info(`getPhotoIndex successfully and index is : ${index}`);
@@ -1057,7 +1057,7 @@ async function example() {
   let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
 
   let info: photoAccessHelper.FormInfo = {
-    //formId是一个由纯数字组成的字符串，uri为图库中存在的图片的uri信息，图库中无图片创建卡片时uri需为空字符串
+    //formId是一个由纯数字组成的字符串，uri为图库中存在的图片的uri信息，图库中无图片创建卡片时uri需为空字符串。
     formId : "20230116123",
     uri: photoAsset.uri,
   }
@@ -1124,7 +1124,7 @@ async function example() {
   let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
 
   let info: photoAccessHelper.FormInfo = {
-    //formId是一个由纯数字组成的字符串，uri为图库中存在的图片的uri信息，图库中无图片创建卡片时uri需为空字符串
+    //formId是一个由纯数字组成的字符串，uri为图库中存在的图片的uri信息，图库中无图片创建卡片时uri需为空字符串。
     formId: "20230116123",
     uri: photoAsset.uri,
   }
@@ -1175,7 +1175,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 async function example() {
   console.info('removeFormInfoDemo');
   let info: photoAccessHelper.FormInfo = {
-    //formId是一个由纯数字组成的字符串，移除卡片的时候uri填空即可
+    //formId是一个由纯数字组成的字符串，移除卡片的时候uri填空即可。
     formId: "20230116123",
     uri: "",
   }
@@ -1233,7 +1233,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 async function example() {
   console.info('removeFormInfoDemo');
   let info: photoAccessHelper.FormInfo = {
-    //formId是一个由纯数字组成的字符串，移除卡片的时候uri填空即可
+    //formId是一个由纯数字组成的字符串，移除卡片的时候uri填空即可。
     formId: "20230116123",
     uri: "",
   }
@@ -1271,7 +1271,7 @@ createAssetsForApp(bundleName: string, appName: string, appId: string, photoCrea
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回给接口调用方的的媒体库文件uri列表。Uri已对appId对应的应用授权，支持应用写入数据。 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回给接口调用方的的媒体库文件uri列表。Uri已对appId对应的应用授权，支持应用写入数据。如果生成uri异常，则返回批量创建错误码。<br>返回-3006表不允许出现非法字符；返回-2004表示图片类型和后缀不符；返回-203表示文件操作异常。 |
 
 **错误码：**
 
@@ -1412,7 +1412,7 @@ async function example() {
   console.info('grantPhotoUrisPermissionDemo');
 
   try {
-    // 媒体资源的uri列表
+    // 媒体资源的uri列表。
     let uris: Array<string> = [
       'file://media/Photo/11/IMG_datetime_0001/displayName1.jpg',
       'file://media/Photo/22/IMG_datetime_0002/displayName2.jpg'];
@@ -1509,7 +1509,7 @@ createAssetsForAppWithMode(boundleName: string, appName: string, appId: string, 
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise\<Array\<string>> | Promise对象，返回给接口调用方的媒体库文件uri列表。Uri已对appId对应的应用授权，支持应用写入数据。|
+| Promise\<Array\<string>> | Promise对象，返回给接口调用方的媒体库文件uri列表。Uri已对appId对应的应用授权，支持应用写入数据。如果生成uri异常，则返回批量创建错误码。<br>返回-3006表不允许出现非法字符；返回-2004表示图片类型和后缀不符；返回-203表示文件操作异常。|
 
 **错误码：**
 
@@ -1547,70 +1547,6 @@ async function example() {
     console.info('Photo createAssetsForAppWithMode success.');
   } catch (err) {
     console.error(`createAssetsForAppWithMode failed with error: ${err.code}, ${err.message}`);
-  }
-}
-```
-### getKeyFrameThumbnail<sup>14+</sup>
-
-getKeyFrameThumbnail(beginFrameTimeMs: number, type: ThumbnailType): Promise<image.PixelMap>;
-
-获取视频中关键视频帧位置的指定类型缩略图，使用promise方式返回异步结果。
-
-**系统接口**：此接口为系统接口。
-
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-**需要权限**：ohos.permission.READ_IMAGEVIDEO
-
-**参数：**
-
-| 参数名  | 类型             | 必填   | 说明    |
-| ---- | -------------- | ---- | ----- |
-| beginFrameTimeMs | number | 是    | 获取视频帧的时间位置，单位ms，0：封面帧 |
-| type | [ThumbnailType](#thumbnailtype13)| 是    | 缩略图类型 |
-
-**返回值：**
-
-| 类型                            | 说明                    |
-| ----------------------------- | --------------------- |
-| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise对象，返回缩略图的PixelMap。若获取不到，默认返回封面帧 |
-
-**错误码：**
-
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 201   | Permission denied.       |
-| 202   | Called by non-system application.       |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 14000011   | Internal system error.       
-
-**示例：**
-
-```ts
-import { common }  from '@kit.AbilityKit';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import image from '@ohos.multimedia.image';
-
-async function example() {
-  try{
-    console.info('getKeyFrameThumbnail demo');
-    let context = getContext(this) as common.UIAbilityContext;
-    let phAccessHelper:photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-    predicates.equalTo(photoAccessHelper.PhotoKeys.PHOTO_TYPE, photoAccessHelper.PhotoType.VIDEO);
-    let fetchOption: photoAccessHelper.FetchOptions = {
-      fetchColumns: [],
-      predicates: predicates
-    };
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getLastObject();
-    let pixelMap: image.PixelMap = await asset.getKeyFrameThumbnail(0, photoAccessHelper.ThumbnailType.LCD);
-    console.info('getKeyFrameThumbnail success');
-  } catch (error) {
-    console.error('getKeyFrameThumbnail failed, error: ' + JSON.stringify(error));
   }
 }
 ```
@@ -1968,7 +1904,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
-  // 示例代码为将文件从隐藏相册中恢复，需要先在隐藏相册预置资源
+  // 示例代码为将文件从隐藏相册中恢复，需要先在隐藏相册预置资源。
   console.info('setHiddenDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -2265,8 +2201,8 @@ setPending(pendingState: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| pendingState | boolean | 是    | 设置的pending状态，true为设置pending状态，false为解除pending状态 |
-| callback | AsyncCallback&lt;void&gt; | 是    | Callback对象，返回void |
+| pendingState | boolean | 是    | 设置的pending状态，true为设置pending状态，false为解除pending状态。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | Callback对象，返回void。 |
 
 **错误码：**
 
@@ -2293,7 +2229,7 @@ async function example() {
         console.error(`setPending(true) failed with error: ${err.code}, ${err.message}`);
         return;
       }
-      // write photo buffer in fd
+      // write photo buffer in fd.
       photoAsset.setPending(false, async (err) => {
         if (err !== undefined) {
           console.error(`setPending(false) failed with error: ${err.code}, ${err.message}`);
@@ -2357,7 +2293,7 @@ async function example() {
     let photoAsset = await phAccessHelper.createAsset(testFileName);
     let fd = await photoAsset.open('rw');
     await photoAsset.setPending(true);
-    // write photo buffer in fd
+    // write photo buffer in fd.
     photoAsset.setPending(false);
     await photoAsset.close(fd);
   } catch (err) {
@@ -2382,7 +2318,7 @@ isEdited(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是    | Callback对象，返回图片或视频资源是否被编辑过 |
+| callback | AsyncCallback&lt;boolean&gt; | 是    | Callback对象，返回图片或视频资源是否被编辑过。 |
 
 **错误码：**
 
@@ -2502,7 +2438,7 @@ requestEditData(callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| callback | AsyncCallback&lt;string&gt; | 是    | Callback对象，返回图片或视频资源的编辑数据 |
+| callback | AsyncCallback&lt;string&gt; | 是    | Callback对象，返回图片或视频资源的编辑数据。 |
 
 **错误码：**
 
@@ -3688,9 +3624,9 @@ async function example() {
 
 | 名称           | 类型    | 可读   | 可写  | 说明   |
 | ------------ | ------ | ---- | ---- | ------- |
-| compatibleFormat | string | 是    | 是    | 编辑数据的格式。**系统接口**：此接口为系统接口。    |
-| formatVersion | string | 是    | 是   | 编辑数据格式的版本。**系统接口**：此接口为系统接口。    |
-| data | string | 是    | 是   | 编辑数据的内容。**系统接口**：此接口为系统接口。    |
+| compatibleFormat | string | 是    | 是    | 编辑数据的格式。<br>**系统接口**：此接口为系统接口。    |
+| formatVersion | string | 是    | 是   | 编辑数据格式的版本。<br>**系统接口**：此接口为系统接口。    |
+| data | string | 是    | 是   | 编辑数据的内容。<br>**系统接口**：此接口为系统接口。    |
 
 ### constructor<sup>11+</sup>
 
@@ -3779,7 +3715,7 @@ async function example() {
   try {
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, testFileName);
-    // 需要确保fileUri对应的资源存在
+    // 需要确保fileUri对应的资源存在。
     let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
     assetChangeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, fileUri);
     await phAccessHelper.applyChanges(assetChangeRequest);
@@ -4034,7 +3970,7 @@ addResource(type: ResourceType, proxy: PhotoProxy): void
 
 ```ts
 class PhotoProxyImpl implements photoAccessHelper.PhotoProxy {
-  // 应用实现PhotoProxy
+  // 应用实现PhotoProxy。
 }
 
 async function example() {
@@ -4183,7 +4119,7 @@ async function example(asset: photoAccessHelper.PhotoAsset) {
   try {
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
     assetChangeRequest.setEffectMode(photoAccessHelper.MovingPhotoEffectMode.LONG_EXPOSURE);
-    // 需要确保fileUri对应的资源存在
+    // 需要确保fileUri对应的资源存在。
     let imageFileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/long_exposure.jpg';
     let videoFileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/long_exposure.mp4';
     assetChangeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, imageFileUri);
@@ -4915,7 +4851,7 @@ dismissAssets(assets: Array&lt;PhotoAsset&gt;): void
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| assets | Array&lt;PhotoAsset&gt; | 是    | 需要移除的文件列表 。 |
+| assets | Array&lt;PhotoAsset&gt; | 是    | 需要移除的文件列表。 |
 
 **错误码：**
 
@@ -5405,6 +5341,8 @@ submitCloudEnhancementTasks(photoAssets: Array&lt;PhotoAsset&gt;, hasCloudWaterm
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
 **参数：**
 
 | 参数名   | 类型                      | 必填 | 说明       |
@@ -5459,6 +5397,8 @@ prioritizeCloudEnhancementTask(photoAsset: PhotoAsset): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
 **参数：**
 
 | 参数名   | 类型                      | 必填 | 说明       |
@@ -5484,7 +5424,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 async function example() {
   console.info('prioritizeCloudEnhancementTaskDemo');
   let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-  // 查询进行中的云增强任务
+  // 查询进行中的云增强任务。
   photoPredicates.equalTo(photoAccessHelper.PhotoKeys.CE_AVAILABLE, 2);
   let photoFetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
@@ -5514,6 +5454,8 @@ cancelCloudEnhancementTasks(photoAssets: Array&lt;PhotoAsset&gt;): Promise&lt;vo
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
 **参数：**
 
 | 参数名   | 类型                      | 必填 | 说明       |
@@ -5539,7 +5481,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 async function example() {
   console.info('cancelCloudEnhancementTasksDemo');
   let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-  // 查询进行中的云增强任务
+  // 查询进行中的云增强任务。
   photoPredicates.equalTo(photoAccessHelper.PhotoKeys.CE_AVAILABLE, 2);
   let photoFetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
@@ -5567,6 +5509,8 @@ cancelAllCloudEnhancementTasks(): Promise&lt;void&gt;
 **系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
 **错误码：**
 
@@ -5605,6 +5549,8 @@ queryCloudEnhancementTaskState(photoAsset: PhotoAsset): Promise&lt;CloudEnhancem
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
 **参数：**
 
 | 参数名   | 类型                      | 必填 | 说明       |
@@ -5630,7 +5576,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 async function example() {
   console.info('queryCloudEnhancementTaskStateDemo');
   let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-  // 查询进行中的云增强任务
+  // 查询进行中的云增强任务。
   photoPredicates.equalTo(photoAccessHelper.PhotoKeys.CE_AVAILABLE, 2);
   let photoFetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
@@ -5686,6 +5632,8 @@ syncCloudEnhancementTaskStatus(): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
 **错误码：**
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
@@ -5723,6 +5671,8 @@ getCloudEnhancementPair(asset: PhotoAsset): Promise&lt;PhotoAsset&gt;
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
 **参数：**
 
 | 参数名   | 类型                      | 必填 | 说明       |
@@ -5748,7 +5698,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 async function example() {
   console.info('getCloudEnhancementPairDemo');
   let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-  // 查询已完成的云增强任务
+  // 查询已完成的云增强任务。
   photoPredicates.equalTo(photoAccessHelper.PhotoKeys.CE_AVAILABLE, 5);
   let photoFetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
@@ -6167,20 +6117,7 @@ async function example() {
 
 | 名称  |  值 |  说明 |
 | ----- |  ---- |  ---- |
-| SCREENSHOT |  1 |  截屏录屏文件类型。**系统接口**：此接口为系统接口。 |
-
-## PositionType
-
-枚举，文件位置，表示文件在本地或云端。
-
-**系统接口**：此接口为系统接口。
-
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-| 名称  |  值 |  说明 |
-| ----- |  ---- |  ---- |
-| LOCAL |  1 << 0 |  文件只存在于本端设备。 |
-| CLOUD |  1 << 1 |  文件只存在于云端。 |
+| SCREENSHOT |  1 |  截屏录屏文件类型。<br>**系统接口**：此接口为系统接口。 |
 
 ## AlbumType
 
@@ -6190,7 +6127,7 @@ async function example() {
 
 | 名称                  | 值    | 说明                        |
 | ------------------- | ---- | ------------------------- |
-| SMART<sup>11+</sup> | 4096 | 智慧分析相册。**系统接口**：此接口为系统接口。 |
+| SMART<sup>11+</sup> | 4096 | 智慧分析相册。<br>**系统接口**：此接口为系统接口。 |
 
 ## AlbumSubtype
 
@@ -6237,7 +6174,6 @@ async function example() {
 
 | 名称          | 值              | 说明                                                       |
 | ------------- | ------------------- | ---------------------------------------------------------- |
-| POSITION  | 'position'            | 文件位置类型。**系统接口**：此接口为系统接口。                               |
 | DATE_TRASHED  | 'date_trashed'  | 删除日期（删除文件时间距1970年1月1日的秒数值）。**系统接口**：此接口为系统接口。                 |
 | HIDDEN  | 'hidden'            | 文件的隐藏状态。**系统接口**：此接口为系统接口。                               |
 | CAMERA_SHOT_KEY  | 'camera_shot_key'  | 锁屏相机拍照或录像的标记字段（仅开放给系统相机,其key值由系统相机定义）。**系统接口**：此接口为系统接口。            |
@@ -6554,8 +6490,8 @@ async function example() {
 
 | 名称                           | 值  | 说明       |
 | :---------------------------- | :- | :------- |
-| LCD         | 1  | 获取LCD缩略图    |
-| THM          | 2 | 获取THM缩略图    |
+| LCD         | 1  | 获取LCD缩略图。    |
+| THM          | 2 | 获取THM缩略图。    |
 
 ## WatermarkType<sup>14+</sup>
 

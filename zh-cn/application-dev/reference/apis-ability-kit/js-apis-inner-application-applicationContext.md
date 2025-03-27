@@ -895,7 +895,7 @@ restartApp(want: Want): void
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000063 | The target to restart does not belong to the current application or is not a UIAbility. |
-| 16000064 | Restart too frequently. Try again at least 10s later. |
+| 16000064 | Restart too frequently. Try again at least 3s later. |
 
 **示例：**
 

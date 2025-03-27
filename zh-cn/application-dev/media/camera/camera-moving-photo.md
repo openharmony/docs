@@ -58,7 +58,7 @@
       try {
         isSupported = photoOutput.isMovingPhotoSupported();
       } catch (error) {
-        // 失败返回错误码error.code并处理
+        // 失败返回错误码error.code并处理。
         let err = error as BusinessError;
         console.error(`The isMovingPhotoSupported call failed. error code: ${err.code}`);
       }
@@ -73,7 +73,7 @@
      try {
        photoOutput.enableMovingPhoto(true);
      } catch (error) {
-       // 失败返回错误码error.code并处理
+       // 失败返回错误码error.code并处理。
        let err = error as BusinessError;
        console.error(`The enableMovingPhoto call failed. error code: ${err.code}`);
      }
@@ -108,7 +108,7 @@
          return;
        }
        console.info('photoOutPutCallBack photoAssetAvailable');
-       // 调用媒体库落盘接口保存一阶段图和动态照片视频
+       // 调用媒体库落盘接口保存一阶段图和动态照片视频。
        mediaLibSavePhoto(photoAsset);
      });
    }

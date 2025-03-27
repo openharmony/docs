@@ -151,9 +151,9 @@ wukong部件架构图以及部件内子模块职责如下所述。
 | -c,--count      | 设置执行次数，与测试总时间-T冲突。二者取其一。   | 否   | 单位次数，默认10次。                       |
 | -i,--interval   | 设置执行间隔。                         | 否   | 单位ms，默认1500ms。                       |
 | -s,--seed       | 设置随机种子。                         | 否   | 配置相同随机种子，会生成相同随机事件序列。 |
-| -b,--bundle[bundlename,……,bundlename]     | 设置本次测试的允许应用名单，与-p冲突。 | 否   | 默认测试当前设备所有应用(应用名称用英文逗号隔开)。                 |
-| -p,--prohibit[bundlename,……,bundlename]   | 设置本次测试的禁止应用名单，与-b冲突。 | 否   | 默认不禁止任何应用(应用名称用英文逗号隔开)。                       |
-| -d,--page[page,……,page]                   | 设置本次测试的禁止页面名单。 | 否  | 系统默认禁止pages/system页面(页面名称用逗号隔开)。 |
+| -b,--bundle[bundlename,……,bundlename]     | 设置本次测试的允许应用名单，与-p冲突。 | 否   | 默认测试当前设备所有应用（应用名称用英文逗号隔开）。                 |
+| -p,--prohibit[bundlename,……,bundlename]   | 设置本次测试的禁止应用名单，与-b冲突。 | 否   | 默认不禁止任何应用（应用名称用英文逗号隔开）。                       |
+| -d,--page[page,……,page]                   | 设置本次测试的禁止页面名单。 | 否  | 系统默认禁止pages/system页面（页面名称用逗号隔开）。 |
 | -a,--appswitch  | 设置应用随机拉起测试比例。             | 否   | 默认10%。                                  |
 | -t,--touch      | 设置屏幕随机触摸测试比例。            | 否   | 默认10%。                                  |
 | -S,--swap       | 设置屏幕随机移动测试比例。             | 否   | 默认3%。                                   |
@@ -164,13 +164,13 @@ wukong部件架构图以及部件内子模块职责如下所述。
 | -C, --component | 设置随机控件测试比例。                 | 否   | 默认70%。                                  |
 | -I, --screenshot | 控件测试截图。                 | 否   | - |
 | -T,--time       | 设置测试总时间，与设置执行次数-c冲突。二者取其一。 | 否   | 单位分钟，默认10分钟。         |
-| -e, --allow ability   |  设置允许测试的ability | 否 | - |
-| -E, --block ability   |  设置禁止测试的ability | 否 | - |
-| -Y, --blockCompId     |  设置不进行注入的CompId | 否 | - |
-| -y, --blockCompType   |  设置不进行注入的CompType | 否 | - |
-| -B, --checkBWScreen   |  设置启用黑白屏检测 | 否 | - |
-| -U, -uri              |  设置应用拉起页面uri | 否 | - |
-| -x, -uriType          |  设置应用拉起页面uriType | 否 | - |
+| -e, --allow ability   |  设置允许测试的ability。 | 否 | - |
+| -E, --block ability   |  设置禁止测试的ability。 | 否 | - |
+| -Y, --blockCompId     |  设置不进行注入的CompId。 | 否 | - |
+| -y, --blockCompType   |  设置不进行注入的CompType。 | 否 | - |
+| -B, --checkBWScreen   |  设置启用黑白屏检测。 | 否 | - |
+| -U, -uri              |  设置应用拉起页面uri。 | 否 | - |
+| -x, -uriType          |  设置应用拉起页面uriType。 | 否 | - |
 
 ### 使用示例
 
@@ -262,11 +262,11 @@ wukong部件架构图以及部件内子模块职责如下所述。
 | -C, --component | 设置随机控件测试比例。                 | 否   | 默认70%。                                  |
 | -I, --screenshot | 控件测试截图。                 | 否   | - |
 | -T,--time       | 设置测试总时间，与设置执行次数-c冲突。二者取其一。 | 否   | 单位分钟，默认10分钟。         |
-| -e, --allow ability   |  设置允许测试的ability | 否 | - |
-| -E, --block ability   |  设置禁止测试的ability | 否 | - |
-| -Y, --blockCompId     |  设置不进行注入的CompId | 否 | - |
-| -y, --blockCompType   |  设置不进行注入的CompType | 否 | - |
-| -B, --checkBWScreen   |  设置启用黑白屏检测 | 否 | - |
+| -e, --allow ability   |  设置允许测试的ability。 | 否 | - |
+| -E, --block ability   |  设置禁止测试的ability。 | 否 | - |
+| -Y, --blockCompId     |  设置不进行注入的CompId。 | 否 | - |
+| -y, --blockCompType   |  设置不进行注入的CompType。 | 否 | - |
+| -B, --checkBWScreen   |  设置启用黑白屏检测。 | 否 | - |
 
 ### 使用示例
 
@@ -321,3 +321,41 @@ C:\Users\xxx>hdc file recv /data/local/tmp/wukong/report/20170805_170053/wukong.
 [I][2024-01-03 20:08:02] HdcFile::TransferSummary success
 FileTransfer finish, Size:76492, File count = 1, time:16ms rate:4780.75kB/s
 ```
+
+## 常见问题
+### failed to connect to AAMS
+ **错误描述** 
+
+failed to connect to AAMS.
+
+ **可能原因** 
+
+AAMS被hypium或者dev testing的UIViewer占用了，AAMS同一时间只能被一个程序连接。
+
+ **解决方案** 
+
+结束占用AAMS的进程，或直接重启设备。
+### Errorcode:(4005)
+ **错误描述** 
+
+Errorcode:(4005).
+
+ **可能原因** 
+
+因屏幕显示区域大小变化，导致无障碍获取页面信息失败。
+
+ **解决方案** 
+
+该错误不影响测试流程，无需处理。
+### Errorcode:(4007)
+ **错误描述** 
+
+Errorcode:(4007).
+
+ **可能原因** 
+
+因屏幕显示区域大小变化，导致无障碍获取页面信息失败。
+
+ **解决方案** 
+
+该错误不影响测试流程，无需处理。

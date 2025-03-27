@@ -39,11 +39,11 @@
    - 方法三：通过资源管理器获取资源文件的ArrayBuffer。具体请参考[ResourceManager API参考文档](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfilecontent9-1)。
 
       ```ts
-      // 导入resourceManager资源管理器
+      // 导入resourceManager资源管理器。
       import { resourceManager } from '@kit.LocalizationKit';
 
       const context : Context = getContext(this);
-      // 获取resourceManager资源管理器
+      // 获取resourceManager资源管理器。
       const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
       ```
 
@@ -52,7 +52,7 @@
       ```ts
       resourceMgr.getRawFileContent('test.jpg').then((fileData : Uint8Array) => {
          console.log("Succeeded in getting RawFileContent")
-         // 获取图片的ArrayBuffer
+         // 获取图片的ArrayBuffer。
          const buffer = fileData.buffer.slice(0);
       }).catch((err : BusinessError) => {
          console.error("Failed to get RawFileContent")
@@ -63,11 +63,11 @@
    - 方法四：通过资源管理器获取资源文件的RawFileDescriptor。具体请参考[ResourceManager API参考文档](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9-1)。
 
       ```ts
-      // 导入resourceManager资源管理器
+      // 导入resourceManager资源管理器。
       import { resourceManager } from '@kit.LocalizationKit';
 
       const context : Context = getContext(this);
-      // 获取resourceManager资源管理器
+      // 获取resourceManager资源管理器。
       const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
       ```
 
@@ -87,14 +87,14 @@
    - 方法一：通过沙箱路径创建ImageSource。沙箱路径可以通过步骤2的方法一获取。
 
       ```ts
-      // path为已获得的沙箱路径
+      // path为已获得的沙箱路径。
       const imageSource : image.ImageSource = image.createImageSource(filePath);
       ```
 
    - 方法二：通过文件描述符fd创建ImageSource。文件描述符可以通过步骤2的方法二获取。
 
       ```ts
-      // fd为已获得的文件描述符
+      // fd为已获得的文件描述符。
       const imageSource : image.ImageSource = image.createImageSource(fd);
       ```
 
@@ -122,7 +122,7 @@
          editable: true,
          desiredPixelFormat: 3,
       }
-      // 创建pixelMap
+      // 创建pixelMap。
       imageSource.createPixelMap(decodingOptions).then((pixelMap : image.PixelMap) => {
          console.log("Succeeded in creating PixelMap")
       }).catch((err : BusinessError) => {
@@ -140,10 +140,10 @@
          //设置为AUTO会根据图片资源格式解码，如果图片资源为HDR资源则会解码为HDR的pixelmap。
          desiredDynamicRange: image.DecodingDynamicRange.AUTO,
       }
-      // 创建pixelMap
+      // 创建pixelMap。
       imageSource.createPixelMap(decodingOptions).then((pixelMap : image.PixelMap) => {
          console.log("Succeeded in creating PixelMap")
-         // 判断pixelmap是否为hdr内容
+         // 判断pixelmap是否为hdr内容。
          let info = pixelMap.getImageInfoSync();
          console.log("pixelmap isHdr:" + info.isHdr);
       }).catch((err : BusinessError) => {
@@ -165,11 +165,11 @@
 1. 获取resourceManager资源管理。
 
    ```ts
-   // 导入resourceManager资源管理器
+   // 导入resourceManager资源管理器。
    import { resourceManager } from '@kit.LocalizationKit';
 
    const context : Context = getContext(this);
-   // 获取resourceManager资源管理
+   // 获取resourceManager资源管理。
    const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
    ```
 
@@ -181,7 +181,7 @@
 
       resourceMgr.getRawFileContent('test.jpg').then((fileData : Uint8Array) => {
          console.log("Succeeded in getting RawFileContent")
-         // 获取图片的ArrayBuffer
+         // 获取图片的ArrayBuffer。
          const buffer = fileData.buffer.slice(0);
          const imageSource : image.ImageSource = image.createImageSource(buffer);
       }).catch((err : BusinessError) => {

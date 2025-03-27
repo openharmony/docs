@@ -96,7 +96,7 @@ import { FenceExtensionAbility } from '@kit.LocationKit';
 class MyFenceExtensionAbility extends FenceExtensionAbility {
   onDestroy(): void {
     // 处理ability销毁事件
-    hilog.info(0x0000, "TAG", `on ability destroy`);
+    console.info(`on ability destroy`);
   }
 }
 

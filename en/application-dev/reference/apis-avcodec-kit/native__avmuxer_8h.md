@@ -19,7 +19,7 @@ The **native_avmuxer.h** file declares the native APIs used for audio and video 
 
 | Name| Description| 
 | -------- | -------- |
-| typedef struct [OH_AVMuxer](_a_v_muxer.md#oh_avmuxer) [OH_AVMuxer](_a_v_muxer.md#oh_avmuxer) | Defines a struct that describes a native object for the muxer interface. | 
+| typedef struct [OH_AVMuxer](_a_v_muxer.md#oh_avmuxer) [OH_AVMuxer](_a_v_muxer.md#oh_avmuxer) | Defines a struct for the native object for the muxer interface. | 
 
 
 ### Functions

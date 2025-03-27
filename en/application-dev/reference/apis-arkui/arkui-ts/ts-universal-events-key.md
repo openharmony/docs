@@ -29,6 +29,27 @@ Triggered when a key event occurs.
 | -------- | -------- |
 | T | Current component.|
 
+## onKeyEvent<sup>16+</sup>
+onKeyEvent(event: Callback\<KeyEvent, boolean>): T
+
+Triggered when a key operation is performed on the bound component after it obtains focus. If the callback returns **true**, the key event is considered handled.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                         | Mandatory| Description              |
+| ------ | ----------------------------- | ---- | ------------------ |
+| event  | [Callback](./ts-types.md#callback12)<[KeyEvent](#keyevent), boolean>| Yes  | Callback for handling the key event.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
+
 ## onKeyPreIme<sup>12+</sup>
 
 onKeyPreIme(event: Callback<KeyEvent, boolean>): T
@@ -52,6 +73,31 @@ If the return value of this callback is **true**, the key event is considered co
 | Type| Description|
 | -------- | -------- |
 | T | Current component.|
+
+## onKeyEventDispatch<sup>16+</sup>
+
+onKeyEventDispatch(event: Callback\<KeyEvent, boolean>): T
+
+Triggered when the bound component receives a key event. The key event will not be dispatched to its child components. Constructing a **KeyEvent** object for dispatch is not supported; only existing key events can be dispatched.
+
+If the callback returns **true**, the key event is considered consumed and will not bubble up to the parent component for further handling.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                         | Mandatory| Description              |
+| ------ | ----------------------------- | ---- | ------------------ |
+| event  | [Callback](./ts-types.md#callback12)<[KeyEvent](#keyevent), boolean>| Yes  | Callback for handling key event dispatch.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
+
 
 ## KeyEvent
 

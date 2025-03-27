@@ -9,7 +9,7 @@ You can use the [getPromptAction](../reference/apis-arkui/js-apis-arkui-UIContex
 
  - Use toasts appropriately. Instead of constantly reminding users, use toasts for specific scenarios.
 
-    ​For example, use toasts to indicate whether an action performed by the user is successful or fails, or to update users when the application's status changes.
+    For example, use toasts to indicate whether an action performed by the user is successful or fails, or to update users when the application's status changes.
 
  - Manage text density. Because toasts are displayed for a limited time, avoid using long text.
 

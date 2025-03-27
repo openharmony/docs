@@ -1,6 +1,6 @@
 #  JavaScript-compatible Web-like Development Paradigm (ArkUI.Full)
 
-- Universal Component Information
+- Universal Component Information<!--js-full-universal-comp-infor-->
   - [Universal Attributes](js-components-common-attributes.md)
   - [Universal Styles](js-components-common-styles.md)
   - [Universal Events](js-components-common-events.md)
@@ -11,7 +11,7 @@
   - [Media Query](js-components-common-mediaquery.md)
   - [Custom Font Styles](js-components-common-customizing-font.md)
   - [Atomic Layout](js-components-common-atomic-layout.md)
-- Container Components
+- Container Components<!--js-full-container-comp-->
   - [badge](js-components-container-badge.md)
   - [dialog](js-components-container-dialog.md)
   - [div](js-components-container-div.md)
@@ -29,7 +29,7 @@
   - [tabs](js-components-container-tabs.md)
   - [tab-bar](js-components-container-tab-bar.md)
   - [tab-content](js-components-container-tab-content.md)
-- Basic Components
+- Basic Components<!--js-full-basic-comp-->
   - [button](js-components-basic-button.md)
   - [chart](js-components-basic-chart.md)
   - [divider](js-components-basic-divider.md)
@@ -59,9 +59,9 @@
   - [toggle](js-components-basic-toggle.md)
   - [web](js-components-basic-web.md)
   - [xcomponent](js-components-basic-xcomponent.md)
-- Media Components
+- Media Components<!--js-full-media-comp-->
   - [video](js-components-media-video.md)
-- Canvas Components
+- Canvas Components<!--js-full-canvas-comp-->
   - [canvas](js-components-canvas-canvas.md)
   - [CanvasRenderingContext2D](js-components-canvas-canvasrenderingcontext2d.md)
   - [Image](js-components-canvas-image.md)
@@ -71,12 +71,12 @@
   - [ImageBitmap](js-components-canvas-imagebitmap.md)
   - [OffscreenCanvas](js-components-canvas-offscreencanvas.md)
   - [OffscreenCanvasRenderingContext2D](js-offscreencanvasrenderingcontext2d.md)
-- Grid Components
+- Grid Components<!--js-full-grid-comp-->
   - [Basic Concepts](js-components-grid-basic-concepts.md)
   - [grid-container](js-components-grid-container.md)
   - [grid-row](js-components-grid-row.md)
   - [grid-col](js-components-grid-col.md)
-- SVG Components
+- SVG Components<!--js-full-svg-comp-->
   - [Universal Attributes](js-components-svg-common-attributes.md)
   - [svg](js-components-svg.md)
   - [rect](js-components-svg-rect.md)
@@ -92,7 +92,7 @@
   - [animate](js-components-svg-animate.md)
   - [animateMotion](js-components-svg-animatemotion.md)
   - [animateTransform](js-components-svg-animatetransform.md)
-- Custom Components
+- Custom Components<!--js-full-custom-comp-->
   - [Basic Usage](js-components-custom-basic-usage.md)
   - [props](js-components-custom-props.md)
   - [Style Inheritance](js-components-custom-style.md)

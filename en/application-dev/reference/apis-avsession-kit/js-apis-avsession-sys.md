@@ -1,6 +1,6 @@
 # @ohos.multimedia.avsession (AVSession Management) (System API)
 
-The **avSession** module provides APIs for media playback control so that applications can access the system's Media Controller.
+The avSession module provides APIs for media playback control so that applications can access the system's Media Controller.
 
 This module provides the following typical features related to media sessions:
 
@@ -368,7 +368,7 @@ Creates a session controller based on the session ID. Multiple session controlle
 
 | Name   | Type                                                       | Mandatory| Description                                                        |
 | --------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| sessionId | string                                                      | Yes  | Session ID. If the value is set to **'default'**, the system creates a default controller to control the default session.                                                    |
+| sessionId | string                                                      | Yes  | Session ID. If the value is set to **'default'**, the system creates a default controller to control the system default session.                                                    |
 | callback  | AsyncCallback<[AVSessionController](js-apis-avsession.md#avsessioncontroller10)\> | Yes  | Callback used to return the session controller created, which can be used to obtain the session ID,<br>send commands and events to sessions, and obtain metadata and playback state information.|
 
 **Error codes**

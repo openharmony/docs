@@ -48,7 +48,7 @@ bm install [-h] [-p filePath] [-r] [-w waitingTime] [-s hspDirPath]
 | Parameter| Description|
 | -------- | -------- |
 | -h | Displays help information.|
-| -p | Installs an HAP with other HAPs in the specified path. This parameter is mandatory.|
+| -p | Installs an HAP with other HAPs in the specified path. This parameter is mandatory. |
 | -r | Installs an HAP in overwrite mode. This parameter is optional. By default, the HAP is installed in overwrite mode.|
 | -s |  Installs an HSP. Each directory can have only one HSP with the same bundle name. This parameter is mandatory only for the HSP installation.|
 | -w | Waits for a specified time before installing a HAP. The minimum waiting time is 5s, and the maximum waiting time is 600s. The default waiting time is 5s. This parameter is optional.|
@@ -262,8 +262,8 @@ Example
 ```bash
 # Display patch package information by the bundle name.
 bm quickfix -q -b com.ohos.app
-# Execution result
-# Information as follows:
+// Execution result
+// Information as follows:
 // ApplicationQuickFixInfo:
 //  bundle name: com.ohos.app
 //  bundle version code: xxx
@@ -321,7 +321,7 @@ bm dump-dependencies [-h] [-n bundleName] [-m moduleName]
 | Parameter| Description|
 | -------- | -------- |
 | -h | Displays help information.|
-| -n | Displays details about a shared library. This parameter is mandatory.|
+| -n | Displays details about the bundle name of a shared library. This parameter is mandatory.|
 | -m | Displays information about the shared library on which a specified module of a bundle depends. This parameter is optional.|
 
 Example
@@ -333,7 +333,7 @@ bm dump-dependencies -n com.ohos.app -m entry
 
 ## compile
 
-Executes the AOT compilation on a bundle.
+Execute the AOT compilation on a bundle.
 ```bash
 bm compile [-h] [-m mode] [-r bundleName]
 ```
@@ -388,7 +388,7 @@ bm dump-overlay [-h] [-b bundleName] [-m moduleName] [-t targetModuleName]
 | -------- | -------- |
 | -h | Displays help information.|
 | -b | Displays all **OverlayModuleInfo** about a specified bundle. This parameter is mandatory.|
-| -m | By default, the name of the main module of the current bundle is used. This parameter is optional. Displays **OverlayModuleInfo** about a specified bundle based on the bundle name and module name.|
+| -m | By default, the name of the main module of the current bundle is used. This parameter is optional. Displays **OverlayModuleInfo** about a specified overlay bundle based on the bundle name and module name.|
 | -t | Displays **OverlayModuleInfo** based on a specified bundle name and target module name. This parameter is optional.|
 
 Example
@@ -417,7 +417,7 @@ bm dump-target-overlay [-h] [-b bundleName] [-m moduleName]
 | -------- | -------- |
 | -h | Displays help information.|
 | -b | Displays all **OverlayBundleInfo** about a specified bundle. This parameter is mandatory.|
-| -m | Displays **OverlayModuleInfo** based on a specified bundle name and module name. By default, **OverlayBundleInfo** of the main module of the current bundle is displayed. This parameter is optional.|
+| -m |  Displays **OverlayModuleInfo** based on a specified bundle name and module name. By default, **OverlayBundleInfo** of the main module of the current bundle is displayed. This parameter is optional.|
 
 Example
 
@@ -465,10 +465,16 @@ When you start debugging or running a C++ app/service, the error message "error:
 
 The Application Binary Interface (ABI) supported by the device does not match that configured in the C++ project.
 
+> **NOTE**
+>
+> - If the project has a dependent HSP or HAR module, make sure that one of the ABI types configured for all modules that contain C++ code is supported by the device.
+> - If the project depends on a third-party library that includes .so files, make sure the appropriate ABI directory for your device, such as **arm64-v8a** or **x86_64**, is present in the **oh_modules/*third-party-library*/libs** directory.
+<!--RP1--><!--RP1End-->
+
 **Solution**
 
 1. Connect the device to DevEco Studio.
-2. Open the command line tool and go to the **toolchains\{*Version*}** directory in the OpenHarmony SDK installation directory.
+2. Open the CLI and go to the **toolchains** directory in the SDK installation directory.
     ```
     To check the OpenHarmony SDK installation directory, choose **File** > **Settings** > **SDK**.
     ```
@@ -503,13 +509,21 @@ When you start debugging or run an application, the error message "error: instal
 
 **Possible Causes**
 
-The application uses the privileges, but the new signature fingerprint is not added to the **install_list_capability.json** file of the device after the signature file of the application is changed.
+1. The **bundleName** in [app.json5 configuration file](../quick-start/app-configuration-file.md#tags-in-the-configuration-file) and the **name** in [module.json5 configuration file](../quick-start/module-configuration-file.md#tags-in-the-configuration-file) are invalid.
+
+<!--Del-->
+2. The **type** field in [extensionAbilities](../quick-start/module-configuration-file.md#extensionabilities) is set to **service** or **dataShare**.
+<!--DelEnd-->
+
 
 **Solution**
+1. Change the **bundleName** field in the **app.json5 configuration** file and the **name** field in the **module.json5 configuration** file based on the naming rules.
+<!--Del-->
+2. If the **type** field in **extensionAbilities** is set to **service** or **dataShare**, configure the [allowAppUsePrivilegeExtension privilege](../../device-dev/subsystems/subsys-app-privilege-config-guide.md) for the application as follows:
 
 1. Obtain the new signature fingerprint.
 
-    a. Obtain the storage path of the signature file, which is the value of **profile** in the **signingConfigs** field in the [project-level build-profile.json5](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-hvigor-compilation-options-customizing-sample-V13#section1448071082016) file.
+    a. Obtain the storage path of the signature file, which is the value of **profile** in the **signingConfigs** field in the **project-level build-profile.json5** file.
 
     b. Open the signature file (with the file name extension .p7b), search for **development-certificate** in the file, copy **-----BEGIN CERTIFICATE-----**, **-----END CERTIFICATE-----**, and the information between them to a new text file, delete the newline characters, and save the file as a new .cer file.
 
@@ -517,13 +531,11 @@ The application uses the privileges, but the new signature fingerprint is not ad
 
     ![Example](figures/en-us_image_0000001585521364.png)
 
-
-
     c. Use the keytool (available in the **jbr/bin** folder of the DevEco Studio installation directory) to obtain the SHA-256 value of the certificate fingerprint from the .cer file:
       ```
       keytool -printcert -file xxx.cer
       ```
-    d. Remove the colon (:) from the SHA-256 content in the certificate fingerprint. What you get is the signature fingerprint.
+    d. Remove the colon (:\) from the SHA-256 content in the certificate fingerprint. What you get is the signature fingerprint.
     
     An example SHA-256 value is shown below.
     ![Example](figures/en-us_image_0000001635921233.png)
@@ -532,19 +544,18 @@ The application uses the privileges, but the new signature fingerprint is not ad
 
 2. Obtain the **install_list_capability.json** file of the device.
 
-    a. Connect the device.
-
+    a. Connect the device and enter the shell.
+    ```
+    hdc shell
+    ```
     b. Run the following command to view the **install_list_capability.json** file of the device:
     ```
+    // Obtain the path of the install list.
     find /system -name install_list_capability.json
-    ```
-    The **install_list_capability.json** file of the device is stored in the following directory. Find the corresponding configuration file based on the bundle name.
-    ```
-    /system/etc/app/install_list_capability.json
     ```
     c. Run the following command to obtain the **install_list_capability.json** file:
     ```
-    hdc shell mount -o rw,remount /
+        hdc target mount
     hdc file recv /system/etc/app/install_list_capability.json
     ```
 
@@ -553,12 +564,12 @@ The application uses the privileges, but the new signature fingerprint is not ad
 4. Push the modified **install_list_capability.json** file to the device and restart the device.
 
     ```
-    hdc shell mount -o rw,remount /
+        hdc target mount
     hdc file send install_list_capability.json /system/etc/app/install_list_capability.json
     hdc shell chmod 644 /system/etc/app/install_list_capability.json
     hdc shell reboot
     ```
-5. Reinstall the application.
+5. Reinstall the application.<!--DelEnd-->
 
 
 ### 9568305 The Dependent Module Does Not Exist
@@ -610,7 +621,7 @@ Mandatory fields are missing in the **app.json5** and **module.json5** files.
     hilog -w start
     ```
 
-    Disk location: /data/log/hilog
+    Disk location: **/data/log/hilog**
 
     Open the log file and find **profile prop %{public}s is mission**. For example, **profile prop icon is mission** indicates that the **icon** field is missing.
 
@@ -659,10 +670,25 @@ When you start debugging or run an application, the error message "error: signat
 * Scenario 1:
 	1. Use [automatic signing](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-signing-V13#section18815157237) to sign the HAP file. after the device is connected.
 	2. If manual signature is used, add the UDID of the device to the **UnsgnedDebugProfileTemplate.json** file. For details, see <!--RP2-->[hapsigner Guide](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/hapsigntool-guidelines.md)<!--RP2End-->.
-		```
-		// Command for obtaining the UDID
-		hdc shell bm get -u
-		```
+
+        1. Obtain the UDID of the device.
+
+        ```
+          // Command for obtaining the UDID
+          hdc shell bm get -u
+        ```
+
+        2. Go to the DevEco Studio installation path and open the **UnsgnedDebugProfileTemplate.json** configuration file in the SDK directory.
+
+        ```
+          DevEco Studio installation path\sdk\version number or default\openharmony\toolchains\lib\
+
+          Example: xxxx\Huawei\DevEco Studio\sdk\HarmonyOS-NEXT-DB1\openharmony\toolchains\lib\
+          Example: xxxx\Huawei\DevEco Studio\sdk\default\openharmony\toolchains\lib\
+        ```
+
+        3. Add the UDID of the device to the **device-ids** field in the **UnsgnedDebugProfileTemplate.json** file.
+
 * Scenario 2: Use the [debug certificate and debug profile](https://developer.huawei.com/consumer/en/doc/app/agc-help-debug-app-0000001914423098) to re-sign the application.
 
 
@@ -683,8 +709,14 @@ The application uses the default Ability Privilege Level (APL), which is normal,
 
 **Solution**
 
-1. Change the APL in the **UnsgnedDebugProfileTemplate.json** file to **system_basic** or **system_core**, and sign and pack the application again.
+1. Go to the DevEco Studio installation path and open the **UnsgnedDebugProfileTemplate.json** configuration file in the SDK directory.
+```
+DevEco Studio installation path\sdk\version number or default\openharmony\toolchains\lib\
 
+Example: xxxx\Huawei\DevEco Studio\sdk\HarmonyOS-NEXT-DB1\openharmony\toolchains\lib\
+Example: xxxx\Huawei\DevEco Studio\sdk\default\openharmony\toolchains\lib\
+```
+2. In the **UnsgnedDebugProfileTemplate.json** file, change the APL level to **system_core** and re-sign the package.
 
 ### 9568297 The Installation Fails Because the SDK Version of the Device Is Too Early
 **Error Message**
@@ -1016,18 +1048,23 @@ The bundle manager service is stopped.
 
 **Possible Causes**
 
-The system service restarts due to an unknown exception.
+An unknown system exception occurs.
 
 **Solution**
 
-1. Check whether the crash file exists in the **/data/log/faultlog/faultlogger/** directory.
+1. Restart the phone and try again.
 
-2. Check whether the crash file contains **foundation**.
-
-3. Reinstall the bundle for multiple times. If the error persists, check whether a crash file containing **foundation** is generated.
-
-4. If the error still persists, export the crash file and log file and submit them to [online tickets](https://developer.huawei.com/consumer/en/support/feedback/#/) for help.
-
+2. If the installation still fails after the preceding steps are performed for three to five times, check whether a crash file containing **foundation** exists in the **/data/log/faultlog/faultlogger/** directory of the device.
+```
+hdc shell
+cd /data/log/faultlog/faultlogger/
+ls -ls
+```
+3. Export the crash file and log file and submit them to [online tickets](https://developer.huawei.com/consumer/en/support/feedback/#/) for help.
+```
+hdc file recv /data/log/faultlog/faultlogger/
+hdc file recv /data/log/hilog/
+```
 
 ### 9568393 The Code Signature Fails to Be Verified
 **Error Message**
@@ -1046,24 +1083,7 @@ The bundle does not contain code signature information.
 
 1. Install the latest version of DevEco Studio and sign the code again.
 
-
-### 9568257 The PKCS7 File Failed to Be Verified
-**Error Message**
-
-Error: fail to verify pkcs7 file.
-
-**Symptom**
-
-The PKCS7 file failed to be verified.
-
-**Possible Causes**
-<!--RP3-->
-The signature used by the application does not meet the signature requirements for the HarmonyOS application. Generally, the signature for OpenHarmony applications is used and should be replaced with the signature for HarmonyOS applications.<!--RP3End-->
-
-**Solution**
-
-1. Select **Support HarmonyOS** during the process of signing your application/service. After the HarmonyOS application is signed, debug or run the application again.
-![Example](figures/en_image_9868257_1.png)
+<!--RP3--><!--RP3End-->
 
 ### 9568401 The Bundle to Debug Can Run Only on Devices in Developer Mode
 **Error Message**
@@ -1206,11 +1226,11 @@ The HSP fails to be installed.
 
 **Possible Causes**
 
-The HSP is installed by running the **hdc app install ***** command.
+The HSP is installed by running the **hdc app install \***\** command.
 
 **Solution**
 
-1. Run the **hdc install -s ***** command to install the HSP.
+1. Run the **hdc install -s \***\** command to install the HSP.
 
 
 ### 9568359 The SELinux Fails to be Installed and Set
@@ -1270,4 +1290,17 @@ The signature of the installed bundle is different from that of the pre-installe
 
 **Solution**
 
-1. Check whether the application is configured with an uninstallation disposed rule. The entity that set the rule is responsible for canceling the rule.
+1. Ensure that the signature of the bundle to be installed is the same as that of the pre-installed bundle.
+
+### 9568278 Version Codes of Bundles Are Inconsistent
+**Error Message**
+
+error: install version code not same.
+
+**Possible Causes**
+1. The version code of the new bundle is different from that of the existing bundle.
+2. The version codes of multiple bundles to be installed are inconsistent.
+
+**Solution**
+1. Change the version code of the new bundle to be the same as that of the existing bundle, or uninstall the existing bundle and install the new bundle.
+2. Ensure that the version codes of all new bundles are the same.
