@@ -3886,7 +3886,7 @@ scrollByWithResult(deltaX: number, deltaY: number): boolean
 
 | 类型    | 说明                                     |
 | ------- | --------------------------------------- |
-| boolean | 当前网页是否可以滑动，默认为false。|
+| boolean | true表示当前网页可以滑动，false表示当前网页不可以滑动。默认为false。|
 
 **错误码：**
 
@@ -6729,7 +6729,7 @@ getPrintBackground(): boolean
 
 | 类型                 | 说明                      |
 | -------------------- | ------------------------- |
-| boolean              | 返回Webview是否打印网页背景。true:打印网页背景；false:不打印网页背景。 |
+| boolean              | 返回Webview是否打印网页背景。<br>true:打印网页背景；false:不打印网页背景。 |
 
 **错误码：**
 
@@ -17220,7 +17220,7 @@ createPdf函数输入参数。
 | marginBottom          | number  | 是   | 下边距。取值范围：[0.0, 页面高度的一半)。如果不在取值范围内，则设置为0.0。单位：英寸。 |
 | marginRight           | number  | 是   | 右边距。取值范围：[0.0, 页面宽度的一半)。如果不在取值范围内，则设置为0.0。单位：英寸。 |
 | marginLeft            | number  | 是   | 左边距。取值范围：[0.0, 页面宽度的一半)。如果不在取值范围内，则设置为0.0。单位：英寸。 |
-| shouldPrintBackground | boolean | 否   | 是否打印背景颜色。默认值：false。                            |
+| shouldPrintBackground | boolean | 否   | true表示打印背景颜色，false表示不打印背景颜色。默认值：false。                            |
 
 ## PdfData<sup>14+</sup>
 
