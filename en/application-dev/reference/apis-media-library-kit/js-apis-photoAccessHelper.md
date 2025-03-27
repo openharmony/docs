@@ -954,6 +954,10 @@ showAssetsCreationDialog(srcFileUris: Array&lt;string&gt;, photoCreationConfigs:
 
 Shows the dialog box for the user to confirm whether to save the photos or videos. If the user agrees to save the images or videos, a list of URIs granted with the save permission is returned. The list takes effect permanently, and the application can write the images or videos based on the URIs. If the user refuses to save the images or videos, an empty list is returned. To display the application name in the dialog box, the API relies on the configuration of **label** and **icon** under **abilities** in the **module.json5** file. If they are not configured, no application name is displayed in the dialog box.
 
+> **NOTE**
+>
+> If the passed URI is a sandbox path, photos or videos can be saved but cannot be previewed.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
@@ -1137,13 +1141,13 @@ async function example() {
 }
 ```
 
-### getSupportedPhotoFormats<sup>16+</sup>
+### getSupportedPhotoFormats<sup>18+</sup> 
 
 getSupportedPhotoFormats(photoType: PhotoType): Promise&lt;Array&lt;string&gt;&gt;
 
 Obtains the list of image or video file name extensions supported by the media library.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -1440,7 +1444,7 @@ Opens this file in read-only mode. This API uses an asynchronous callback to ret
 > **NOTE**
 >
 > - This API is supported since API version 10 and deprecated since API version 11. For security purposes, the API for obtaining the media file handle is no longer provided.
-
+>
 > - The returned FD must be closed when it is not required.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
@@ -1497,7 +1501,7 @@ Opens this file in read-only mode. This API uses a promise to return the result.
 > **NOTE**
 >
 > - This API is supported since API version 10 and deprecated since API version 11. For security purposes, the API for obtaining the media file handle is no longer provided.
-
+>
 > - The returned FD must be closed when it is not required.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
@@ -3210,7 +3214,7 @@ Use **fileUri** to specify the data source of the asset to be created. For detai
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
-| fileUri | string | Yes  | Data source of the image asset, which is specified by a URI in the application sandbox directory.|
+| fileUri | string | Yes  | Data source of the image asset, which is specified by a URI in the application sandbox directory. Example: **'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg'**.|
 
 **Return value**
 
@@ -3260,7 +3264,7 @@ Use **fileUri** to specify the data source of the asset to be created. For detai
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
-| fileUri | string | Yes  | Data source of the video asset, which is specified by a URI in the application sandbox directory.|
+| fileUri | string | Yes  | Data source of the video asset, which is specified by a URI in the application sandbox directory. Example: **'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.mp4'**.|
 
 **Return value**
 
@@ -3367,7 +3371,7 @@ Deletes media assets. This API uses a promise to return the result. The deleted 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
-| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Media assets to delete.|
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Array of assets to delete. The maximum number is 300.|
 
 **Return value**
 
@@ -3423,7 +3427,7 @@ Deletes media assets. This API uses a promise to return the result. The deleted 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
-| uriList | Array&lt;string&gt; | Yes  | URIs of the media files to delete.|
+| uriList | Array&lt;string&gt; | Yes  | URIs of the media files to delete. A maximum of 300 media files can be deleted.|
 
 **Return value**
 
@@ -3634,7 +3638,7 @@ Adds a resource using **fileUri**.
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
 | type | [ResourceType](#resourcetype11) | Yes  | Type of the resource to add.|
-| fileUri | string | Yes  | Data source of the resource to be added, which is specified by a URI in the application sandbox directory.|
+| fileUri | string | Yes  | Data source of the resource to be added, which is specified by a URI in the application sandbox directory. Example: **'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg'**.|
 
 **Error codes**
 
@@ -4023,7 +4027,7 @@ Add assets to the album.
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Assets to add.|
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Array of assets to add. The maximum number is 300.|
 
 **Error codes**
 
@@ -4075,7 +4079,7 @@ Removes assets from the album.
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Assets to remove.|
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Array of assets to remove. The maximum number is 300.|
 
 **Error codes**
 
@@ -4366,7 +4370,7 @@ Requests a video and saves it to the specified sandbox directory.
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                      | Yes  | Context of the ability instance.|
 | asset | [PhotoAsset](#photoasset)                                            | Yes  | Image to request.|
 | requestOptions  | [RequestOptions](#requestoptions11)                                  | Yes  | Options for requesting the video asset.|
-| fileUri| string                                                              | Yes| URI of the sandbox directory, to which the requested video asset is to be saved.|
+| fileUri| string                                                              | Yes| URI of the sandbox directory, to which the requested video asset is to be saved. Example: **'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.mp4'**.|
 | dataHandler  | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;boolean&gt; | Yes  | Media asset handler. When the requested video is written to the specified directory, a callback is triggered.|
 
 **Return value**
@@ -4432,7 +4436,7 @@ Cancels a request for the asset, the callback of which has not been triggered ye
 | Name  | Type                                                                  | Mandatory| Description                     |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                      | Yes  | Context of the ability instance.|
-| requestId | string     | Yes  | ID of the request to cancel.|
+| requestId | string     | Yes  | ID of the request to cancel. It is a valid request ID returned by **requestImage**.|
 
 **Return value**
 
@@ -4677,7 +4681,7 @@ Information returned by **map**:
 |------|---| ---- |-------------------------------------------------------------------------------|
 | data | T | Yes  | Data of the image asset that is ready. It is of the T type, which supports the [Picture](../apis-image-kit/js-apis-image.md#picture13) type.|
 | imageSource | image.ImageSource | Yes  | Data of the image asset that is ready.|
-| map<sup>13+</sup> | Map<string, string> | Yes  | Additional information about the image asset, such as the image quality.|
+| map<sup>13+</sup> | Map<string, string> | Yes  | Additional information about the image asset, such as the image quality. Currently, only **quality** is supported.|
 
 **Example**
 ```ts
@@ -4780,8 +4784,8 @@ Requests the image data and video data of this moving photo and writes them to t
 
 | Name  | Type                                                                  | Mandatory| Description                     |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
-| imageFileUri | string                      | Yes  | URI to which the image data of the moving photo is to be written.|
-| videoFileUri | string                                            | Yes  | URI to which the video data of the moving photo is to be written.|
+| imageFileUri | string                      | Yes  | URI to which the image data of the moving photo is to be written. Example: **"file://com.example.temptest/data/storage/el2/base/haps/ImageFile.jpg"**.|
+| videoFileUri | string                                            | Yes  | URI to which the video data of the moving photo is to be written. Example: **"file://com.example.temptest/data/storage/el2/base/haps/VideoFile.mp4"**.|
 
 **Return value**
 
@@ -5087,6 +5091,18 @@ Enumerate the album subtypes.
 | IMAGE<sup>12+</sup>               | 1031       | Photo album.                          |
 | ANY                               | 2147483647 | Any album.                          |
 
+## PositionType<sup>16+</sup>
+
+Enumerates the file locations.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name |  Value|  Description|
+| ----- |  ---- |  ---- |
+| LOCAL |  1  |  Stored only on a local device.|
+| CLOUD |  2  |  Stored only on the cloud.|
+| LOCAL_AND_CLOUD |  3  |  Stored both on a local device and cloud.|
+
 ## PhotoKeys
 
 Defines the key information about an image or video file.
@@ -5118,6 +5134,7 @@ Defines the key information about an image or video file.
 | THM_SIZE<sup>12+</sup>  | 'thm_size'  | Width and height of a thumbnail image, in the format of a **width:height** string.|
 | DETAIL_TIME<sup>13+</sup>  | 'detail_time'  | Detailed time. The value is a string of time when the image or video was taken in the time zone and does not change with the time zone.|
 | DATE_TAKEN_MS<sup>13+</sup>  | 'date_taken_ms'  | Unix timestamp when the image was captured, in milliseconds.|
+| POSITION<sup>16+</sup>  | 'position'            | File location type.                              |
 
 ## AlbumKeys
 
@@ -5157,7 +5174,7 @@ Defines the options for fetching media files.
 
 | Name                  | Type               | Readable| Writable| Description                                             |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Names of the columns specified for query.<br>If this parameter is left blank for photos, photos are fetched by **'uri'**, **'media_type'**, **'subtype'**, and **'display_name'** by default. An error will be thrown if [get](#get) is used to obtain other attributes of this object. <br>Example: **fetchColumns: ['uri', 'title']**.<br>If this parameter is left blank for albums, albums are fetched by **'uri'** and **'album_name'** by default.|
+| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Names of the columns specified for query.<br>If this parameter is left blank for photos, photos are fetched by **'uri'**, **'media_type'**, **'subtype'**, and **'display_name'** by default. An error will be thrown if [get](#get) is used to obtain other attributes of this object. <br>Example: **fetchColumns: ['uri', 'title']**.<br>If this parameter is left blank for albums, albums are fetched by **'uri'** and **'album_name'** by default. The value contains 1 to 255 characters.|
 | predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Yes  | Predicates that specify the fetch criteria.|
 
 ## RequestOptions<sup>11+</sup>
@@ -5314,7 +5331,7 @@ Represents the text information about the recommended images.
 
 | Name                   | Type               | Mandatory| Description                         |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
-| text | string   | No  | Text based on which images are recommended. The text cannot exceed 250 characters.|
+| text | string   | No  | Text based on which images are recommended. The text cannot exceed 250 characters. The default value is an empty string.|
 
 **Example**
 
@@ -5426,10 +5443,10 @@ Represents the configuration for saving a media asset (image or video) to the me
 
 | Name                  | Type               | Mandatory| Description                                             |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
-| title | string | No | Title of the image or video.|
+| title | string | No | Title of the image or video. The title must meet the following requirements:<br>- It does not contain a file name extension.<br>- The file name, which is in the format of title+file name extension, does not exceed 255 characters.<br>- The title does not contain any of the following characters:\ / : * ? " ' ` < > \| { } [ ]|
 | fileNameExtension | string | Yes | File name extension, for example, **'jpg'**.|
-| photoType | [PhotoType](#phototype) | Yes | Type of the file to create, which can be **IMAGE** or **VIDEO**.|
-| subtype | [PhotoSubtype](#photosubtype12) | No | Image or video file subtype. Currently, only **DEFAULT** is supported.|
+| photoType | [PhotoType](#phototype) | Yes | Type of the file to create, which can be **IMAGE** or **VIDEO**. See [PhotoType](#phototype).|
+| subtype | [PhotoSubtype](#photosubtype12) | No | Image or video file subtype. Currently, only **DEFAULT** is supported. See [PhotoSubtype](#photosubtype12).|
 
 ## CompatibleMode<sup>15+</sup>
 

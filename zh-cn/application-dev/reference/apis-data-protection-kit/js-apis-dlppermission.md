@@ -25,7 +25,7 @@ isDLPFile(fd: number): Promise&lt;boolean&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| fd | number | 是 | 文件的fd(file descriptor, 文件描述符)。 |
+| fd | number | 是 | 待查询文件的fd（文件描述符）。 |
 
 **返回值：**
 | 类型 | 说明 |
@@ -73,7 +73,7 @@ isDLPFile(fd: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| fd | number | 是 | 文件的fd。 |
+| fd | number | 是 | 待查询文件的fd（文件描述符）。 |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。返回true表示是DLP文件，返回false表示非DLP文件。 |
 
 **错误码：**
@@ -214,7 +214,7 @@ getOriginalFileName(fileName: string): string
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| fileName | string | 是 | 指定要查询的文件名。 |
+| fileName | string | 是 | 指定要查询的文件名。不超过255字节。 |
 
 **返回值：**
 
@@ -374,7 +374,7 @@ isInSandbox(): Promise&lt;boolean&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise对象。返回当前应用是否运行在沙箱中。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示当前应用运行在沙箱中，返回false表示当前应用不是运行在沙箱中。 |
 
 **错误码：**
 
@@ -411,7 +411,7 @@ isInSandbox(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。返回true表示当前应用运行在沙箱中，返回false表示当前应用不是运行在沙箱中。 |
 
 **错误码：**
 
@@ -583,7 +583,7 @@ setRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| docUris | Array&lt;string&gt; | 是 | 表示需要设置保留状态的文件uri列表。 |
+| docUris | Array&lt;string&gt; | 是 | 表示需要设置保留状态的文件uri列表。Array不限长度，每个string不超过4095字节。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。err为undefine时表示设置成功；否则为错误对象。 |
 
 **错误码：**
@@ -630,7 +630,7 @@ cancelRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| docUris | Array&lt;string&gt; | 是 | 表示需要设置保留状态的文件uri列表。 |
+| docUris | Array&lt;string&gt; | 是 | 表示需要设置保留状态的文件uri列表。Array不限长度，每个string不超过4095字节。 |
 
 **返回值：**
 
@@ -674,7 +674,7 @@ cancelRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;vo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| docUris | Array&lt;string&gt; | 是 | 表示需要设置保留状态的文件uri列表。 |
+| docUris | Array&lt;string&gt; | 是 | 表示需要设置保留状态的文件uri列表。Array不限长度，每个string不超过4095字节。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。err为undefine时表示设置成功；否则为错误对象。 |
 
 **错误码：**
@@ -719,7 +719,7 @@ getRetentionSandboxList(bundleName?: string): Promise&lt;Array&lt;RetentionSandb
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 否 | 指定应用包名。默认为空，查询当前应用的保留沙箱信息列表。 |
+| bundleName | string | 否 | 指定应用包名。默认为空，查询当前应用的保留沙箱信息列表。最小7字节，最大128字节。 |
 
 **返回值：**
 
@@ -764,7 +764,7 @@ getRetentionSandboxList(bundleName: string, callback: AsyncCallback&lt;Array&lt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 指定应用包名。 |
+| bundleName | string | 是 | 指定应用包名。最小7字节，最大128字节。 |
 | callback | AsyncCallback&lt;Array&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt;&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 |
 
 **错误码：**
@@ -993,7 +993,7 @@ setSandboxAppConfig(configInfo: string): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| configInfo | string | 是 | 沙箱应用配置信息。 |
+| configInfo | string | 是 | 沙箱应用配置信息。长度小于4MB。 |
 
 **返回值：**
 
@@ -1110,7 +1110,7 @@ isDLPFeatureProvided(): Promise&lt;boolean&gt;
 **返回值：**
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise对象。返回当前系统是否提供DLP特性。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示当前系统提供DLP特性，返回false表示不提供DLP特性。 |
 
 **错误码：**
 
@@ -1185,7 +1185,7 @@ DLP文件授权类型的枚举。
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| uri | string | 是 | 否 | 表示DLP文件的uri。 |
+| uri | string | 是 | 否 | 表示DLP文件的uri。不超过4095字节。 |
 | lastOpenTime | number | 是 | 否 | 表示DLP文件最近打开时间。 |
 
 ## DLPManagerResult<sup>11+</sup>
@@ -1210,6 +1210,6 @@ DLP文件授权类型的枚举。
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | appIndex | number | 是 | 否 | 表示DLP沙箱应用索引。 |
-| bundleName | string | 是 | 否 | 表示应用包名。 |
-| docUris | Array&lt;string&gt; | 是 | 否 | 表示DLP文件的URI列表。 |
+| bundleName | string | 是 | 否 | 表示应用包名。最小7字节，最大128字节。 |
+| docUris | Array&lt;string&gt; | 是 | 否 | 表示DLP文件的URI列表。Array不限长度，每个string不超过4095字节。 |
 

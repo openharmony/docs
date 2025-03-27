@@ -91,8 +91,8 @@ static setAndRef&lt;T&gt;(propName: string, defaultValue: T): AbstractProperty&l
 
 ```ts
 AppStorage.setOrCreate('PropA', 47);
-let ref1: AbstractProperty<number> = AppStorage.setAndRef('PropB', 49); // Create PropB 49
-let ref2: AbstractProperty<number> = AppStorage.setAndRef('PropA', 50); // PropA exists, remains 47
+let ref1: AbstractProperty<number> = AppStorage.setAndRef('PropB', 49); // 用默认值49创建PropB
+let ref2: AbstractProperty<number> = AppStorage.setAndRef('PropA', 50); // PropA已存在，值为47
 ```
 
 
@@ -160,8 +160,8 @@ static setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstrac
 **示例：**
 ```ts
 AppStorage.setOrCreate('PropA', 47);
-let link1: SubscribedAbstractProperty<number> = AppStorage.setAndLink('PropB', 49); // Create PropB 49
-let link2: SubscribedAbstractProperty<number> = AppStorage.setAndLink('PropA', 50); // PropA exists, remains 47
+let link1: SubscribedAbstractProperty<number> = AppStorage.setAndLink('PropB', 49); // 用默认值49创建PropB
+let link2: SubscribedAbstractProperty<number> = AppStorage.setAndLink('PropA', 50); // PropA已存在，值为47
 ```
 
 
@@ -193,7 +193,7 @@ static prop&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 AppStorage.setOrCreate('PropA', 47);
 let prop1: SubscribedAbstractProperty<number> = AppStorage.prop('PropA');
 let prop2: SubscribedAbstractProperty<number> = AppStorage.prop('PropA');
-prop1.set(1); // one-way sync: prop1.get()=1; but prop2.get() == 47
+prop1.set(1); // 单向同步：prop1.get()的值为1，prop2.get()的值为47
 ```
 
 
@@ -388,10 +388,10 @@ static delete(propName: string): boolean
 ```ts
 AppStorage.setOrCreate('PropA', 47);
 AppStorage.link<number>('PropA');
-let res: boolean = AppStorage.delete('PropA'); // false, PropA still has a subscriber
+let res: boolean = AppStorage.delete('PropA'); // false，PropA 还存在订阅者
 
 AppStorage.setOrCreate('PropB', 48);
-let res1: boolean = AppStorage.delete('PropB'); // true, PropB is deleted from AppStorage successfully
+let res1: boolean = AppStorage.delete('PropB'); // true，PropB 已从AppStorage成功删除
 ```
 
 
@@ -439,7 +439,7 @@ static clear(): boolean
 **示例：**
 ```ts
 AppStorage.setOrCreate('PropA', 47);
-let res: boolean = AppStorage.clear(); // true, there are no subscribers
+let res: boolean = AppStorage.clear(); // true，已经没有订阅者
 ```
 
 
@@ -528,8 +528,8 @@ static SetAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstrac
 **示例：**
 ```ts
 AppStorage.SetOrCreate('PropA', 47);
-let link1: SubscribedAbstractProperty<number> = AppStorage.SetAndLink('PropB', 49); // Create PropB 49
-let link2: SubscribedAbstractProperty<number> = AppStorage.SetAndLink('PropA', 50); // PropA exists, remains 47
+let link1: SubscribedAbstractProperty<number> = AppStorage.SetAndLink('PropB', 49); // 用默认值49创建PropB
+let link2: SubscribedAbstractProperty<number> = AppStorage.SetAndLink('PropA', 50); // PropA已存在，值为47
 ```
 
 
@@ -562,7 +562,7 @@ static Prop(propName: string): any
 AppStorage.SetOrCreate('PropA', 47);
 let prop1: SubscribedAbstractProperty<number> = AppStorage.Prop('PropA');
 let prop2: SubscribedAbstractProperty<number> = AppStorage.Prop('PropA');
-prop1.set(1); // one-way sync: prop1.get()=1; but prop2.get() == 47
+prop1.set(1); // 单向同步：prop1.get()的值为1，prop2.get()的值为47
 ```
 
 ### SetAndProp<sup>(deprecated)</sup>
@@ -739,10 +739,10 @@ static Delete(propName: string): boolean
 ```ts
 AppStorage.SetOrCreate('PropA', 47);
 AppStorage.Link('PropA');
-let res: boolean = AppStorage.Delete('PropA'); // false, PropA still has a subscriber
+let res: boolean = AppStorage.Delete('PropA'); // false，PropA 还存在订阅者
 
 AppStorage.SetOrCreate('PropB', 48);
-let res1: boolean = AppStorage.Delete('PropB'); // true, PropB is deleted from AppStorage successfully
+let res1: boolean = AppStorage.Delete('PropB'); // true，PropB 已从AppStorage成功删除
 ```
 
 ### Keys<sup>(deprecated)</sup>
@@ -784,7 +784,7 @@ static staticClear(): boolean
 
 | 类型      | 说明                                |
 | ------- | --------------------------------- |
-| boolean | 删除所有的属性，如果当前有状态变量依旧引用此属性，返回false。 |
+| boolean | 删除所有的属性。如果删除成功，返回true；如果当前有状态变量依旧引用此属性，返回false。 |
 
 **示例：**
 ```ts
@@ -814,7 +814,7 @@ static Clear(): boolean
 **示例：**
 ```typescript
 AppStorage.SetOrCreate('PropA', 47);
-let res: boolean = AppStorage.Clear(); // true, there are no subscribers
+let res: boolean = AppStorage.Clear(); // true，已经没有订阅者
 ```
 
 
@@ -839,7 +839,7 @@ static IsMutable(propName: string): boolean
 
 | 类型      | 说明                               |
 | ------- | -------------------------------- |
-| boolean | 返回AppStorage中propNam对应的属性是否是可变的。 |
+| boolean | 返回AppStorage中propNam对应的属性是否是可变的。当前该返回值恒为true。 |
 
 **示例：**
 ```ts
@@ -1142,8 +1142,8 @@ public setAndRef&lt;T&gt;(propName: string, defaultValue: T): AbstractProperty&l
 ```ts
 let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
-let ref1: AbstractProperty<number> = storage.setAndRef('PropB', 49); // Create PropB 49
-let ref2: AbstractProperty<number> = storage.setAndRef('PropA', 50); // PropA exists, remains 47
+let ref1: AbstractProperty<number> = storage.setAndRef('PropB', 49); // 用默认值49创建PropB
+let ref2: AbstractProperty<number> = storage.setAndRef('PropA', 50); // PropA已存在，值为47
 ```
 
 ### link<sup>9+</sup>
@@ -1217,8 +1217,8 @@ setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProper
 ```ts
 let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
-let link1: SubscribedAbstractProperty<number> = storage.setAndLink('PropB', 49); // Create PropB 49
-let link2: SubscribedAbstractProperty<number> = storage.setAndLink('PropA', 50); // PropA exists, remains 47
+let link1: SubscribedAbstractProperty<number> = storage.setAndLink('PropB', 49); // 用默认值49创建PropB
+let link2: SubscribedAbstractProperty<number> = storage.setAndLink('PropA', 50); // PropA已存在，值为47
 ```
 
 
@@ -1252,7 +1252,7 @@ let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 let prop1: SubscribedAbstractProperty<number> = storage.prop('PropA');
 let prop2: SubscribedAbstractProperty<number> = storage.prop('PropA');
-prop1.set(1); // one-way sync: prop1.get()=1; but prop2.get() == 47
+prop1.set(1); // 单向同步：prop1.get()的值为1，prop2.get()的值为47
 ```
 
 
@@ -1335,10 +1335,10 @@ delete(propName: string): boolean
 let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 storage.link<number>('PropA');
-let res: boolean = storage.delete('PropA'); // false, PropA still has a subscriber
-let res1: boolean = storage.delete('PropB'); // false, PropB is not in storage
+let res: boolean = storage.delete('PropA'); // false，PropA 还存在订阅者
+let res1: boolean = storage.delete('PropB'); // false，PropB 不存在于storage中
 storage.setOrCreate('PropB', 48);
-let res2: boolean = storage.delete('PropB'); // true, PropB is deleted from storage successfully
+let res2: boolean = storage.delete('PropB'); // true，PropB 已从storage成功删除
 ```
 
 
@@ -1420,7 +1420,7 @@ clear(): boolean
 ```ts
 let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
-let res: boolean = storage.clear(); // true, there are no subscribers
+let res: boolean = storage.clear(); // true，已经没有订阅者
 ```
 
 
@@ -1997,7 +1997,7 @@ Environment.envProps([{ key: 'accessibilityEnabled', defaultValue: 'default' }, 
   defaultValue: 'en'
 }, { key: 'prop', defaultValue: 'hhhh' }]);
 
-let keys: Array<string> = Environment.keys(); // accessibilityEnabled, languageCode, prop
+let keys: Array<string> = Environment.keys(); // keys 包含 accessibilityEnabled，languageCode，prop
 ```
 
 
@@ -2088,7 +2088,7 @@ Environment.EnvProps([{ key: 'accessibilityEnabled', defaultValue: 'default' }, 
   defaultValue: 'en'
 }, { key: 'prop', defaultValue: 'hhhh' }]);
 
-let keys: Array<string> = Environment.Keys(); // accessibilityEnabled, languageCode, prop
+let keys: Array<string> = Environment.Keys(); // keys 包含 accessibilityEnabled，languageCode，prop
 ```
 
 

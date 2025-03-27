@@ -51,6 +51,7 @@ select(value: boolean)
 设置多选框是否选中。
 
 从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+从API version 18开始，该属性支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -60,9 +61,9 @@ select(value: boolean)
 
 **参数：** 
 
-| 参数名 | 类型    | 必填 | 说明                               |
-| ------ | ------- | ---- | ---------------------------------- |
-| value  | boolean | 是   | 多选框是否选中。<br/>默认值：false |
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 多选框是否选中。<br/>默认值：false<br/>值为true时，多选框被选中。值为false时，多选框不被选中。 |
 
 ### select<sup>18+</sup>
 
@@ -70,7 +71,7 @@ select(isSelected: Optional\<boolean>)
 
 设置多选框是否选中。与[select](#select)相比，isSelected参数新增了对undefined类型的支持。
 
-该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。该属性支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -82,7 +83,7 @@ select(isSelected: Optional\<boolean>)
 
 | 参数名     | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| isSelected | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 多选框是否选中。<br/>当isSelected的值为undefined时，默认值：false |
+| isSelected | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 多选框是否选中。<br/>当isSelected的值为undefined时取默认值false。<br/>值为true时，多选框被选中。值为false时，多选框不被选中。 |
 
 ### selectedColor
 
@@ -258,7 +259,7 @@ contentModifier(modifier: Optional<ContentModifier\<CheckBoxConfiguration>>)
 
 ### onChange
 
-onChange(callback: Optional\<OnCheckboxChangeCallback>)
+onChange(callback: OnCheckboxChangeCallback)
 
 当选中状态发生变化时，触发该回调。
 
@@ -322,7 +323,7 @@ type OnCheckboxChangeCallback  = (value: boolean) => void
 | ------ | ------ | ------ |-------------------------------- |-------------------------------- |
 | name | string | 否 | 否 |当前多选框名称。 |
 | selected | boolean| 否 | 否 | 指示多选框是否被选中。</br>如果select属性没有设置默认值是false。</br>如果设置select属性，此值与设置select属性的值相同。 |
-| triggerChange |Callback\<boolean>| 否 | 否 |触发多选框选中状态变化。 |
+| triggerChange |Callback\<boolean>| 否 | 否 |触发多选框选中状态变化。<br/>为true时，表示从未选中变为选中。为false时，表示从选中变为未选中。 |
 
 ## 示例
 

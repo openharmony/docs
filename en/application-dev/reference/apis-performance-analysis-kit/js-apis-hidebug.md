@@ -429,7 +429,7 @@ Obtains VM memory information.
 
 | Type        | Description                                   |
 | -------------| --------------------------------------- |
-| [VMMemoryInfo](#vmmemoryinfo12) |  VM memory information. |
+| [VMMemoryInfo](#vmmemoryinfo12) | VM memory information.|
 
 **Example**
 
@@ -463,8 +463,8 @@ Obtains the CPU usage of application threads.
 import { hidebug } from '@kit.PerformanceAnalysisKit';
 
 let appThreadCpuUsage: hidebug.ThreadCpuUsage[] = hidebug.getAppThreadCpuUsage();
-for (let ii = 0; ii < appThreadCpuUsage.length; ii++) {
-  console.info(`threadId=${appThreadCpuUsage[ii].threadId}, cpuUsage=${appThreadCpuUsage[ii].cpuUsage}`);
+for (let i = 0; i < appThreadCpuUsage.length; i++) {
+  console.info(`threadId=${appThreadCpuUsage[i].threadId}, cpuUsage=${appThreadCpuUsage[i].cpuUsage}`);
 }
 ```
 
@@ -493,15 +493,15 @@ To obtain the unit trace traffic, you can call **startAppTraceCapture()** with *
 
 | Name  | Type    | Mandatory| Description                                |
 | -------- | ------   | ---- |------------------------------------|
-| tags     | number[] | Yes  | Scope for trace collection. For details, see [tags](#hidebugtags12).|
-| flag     | TraceFlag| Yes  | For details, see [TraceFlag](#traceflag12).     |
+| tags     | number[] | Yes  | Scope for trace collection. For details, see [tags](#hidebugtags12).  |
+| flag     | TraceFlag| Yes  | For details, see [TraceFlag](#traceflag12).       |
 | limitSize| number   | Yes  | Limit on the trace file size, in bytes. The maximum size of a single file is 500 MB.|
 
 **Return value**
 
-| Type            | Description                                          |
-| -----------------| -----------------------------------------------|
-| string           | Path of the trace file.                           |
+| Type            | Description           |
+| -----------------|---------------|
+| string           | Path of the trace file.|
 
 **Error codes**
 
@@ -518,6 +518,7 @@ For details about the error codes, see [HiDebug Error Codes](errorcode-hiviewdfx
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
 let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
@@ -557,6 +558,7 @@ For details about the error codes, see [HiDebug Error Codes](errorcode-hiviewdfx
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
 let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
@@ -584,7 +586,7 @@ Obtains the memory limit of the application process.
 
 | Type | Description                     |
 | ------ | -------------------------- |
-| [MemoryLimit](#memorylimit12) | Memory limit of the application process.|
+| [MemoryLimit](#memorylimit12) | Defines the memory limit of the application process.|
 
 **Example**
 
@@ -621,6 +623,7 @@ For details about the error codes, see [HiDebug CPU Usage Error Codes](errorcode
 **Example**
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   console.info(`getSystemCpuUsage: ${hidebug.getSystemCpuUsage()}`)
@@ -644,9 +647,9 @@ Sets the number of FDs, number of threads, JS memory, or native memory limit of 
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type | string |  Yes | Types of resource leakage: pss_memory (native memory) leak, js_heap (js heap memory) leak, fd (file descriptor) leak, and thread (thread) leak.|
-| value | number |  Yes | The maximum value of a resource leakage type. Value range: pss_memory leak **[1024, 4 * 1024 * 1024] (in KB)**, js_heap memory leak **[85, 95]** (85% to 95% of the upper limit of the JS heap memory), fd leak [10, 10000], thread leak **[1, 1000]**|
-| enableDebugLog | boolean |  Yes | Whether to enable debug log. The default value is **false**. Set this parameter to **true** only in the dark version because collecting debug logs consumes too much CPU or memory.|
+| type | string |  Yes | Types of resource leak: pss_memory (native memory) leak, js_heap (js heap memory) leak, fd (file descriptor) leak, and thread (thread) leak.                                                                        |
+| value | number |  Yes | The maximum value of a resource leakage type. Value range: pss_memory leak **[1024, 4 * 1024 * 1024] (in KB)**, js_heap memory leak **[85, 95]** (85% to 95% of the upper limit of the JS heap memory), fd leak [10, 10000], thread leak **[1, 1000]**.|
+| enableDebugLog | boolean |  Yes | Whether to enable debug log. The default value is **false**. Set this parameter to **true** only in the dark version because collecting debug logs consumes too much CPU or memory.                                                                                    |
 
 **Error codes**
 
@@ -661,6 +664,7 @@ For details about the error codes, see [HiDebug Error Codes](errorcode-hiviewdfx
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let type: string = 'js_heap';
 let value: number = 85;
@@ -781,6 +785,8 @@ Obtains the specified system GC statistics based on parameters.
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   console.info(`gc-count: ${hidebug.getVMRuntimeStat('ark.gc.gc-count')}`);
   console.info(`gc-time: ${hidebug.getVMRuntimeStat('ark.gc.gc-time')}`);
@@ -802,8 +808,8 @@ Defines the memory limit of the application process.
 | --------- | ------ | ---- | ------------ |
 | rssLimit    | bigint |  Yes | Limit on the resident set size, in KB.    |
 | vssLimit  | bigint |  Yes | Limit on the virtual memory size, in KB.      |
-| vmHeapLimit | bigint |  Yes | Limit on the JS VM heap size of the calling thread, in KB.     |
-| vmTotalHeapSize | bigint |  Yes | Size limit of the JS heap memory of the process, in KB.     |
+| vmHeapLimit | bigint |  Yes | Limit on the JS VM heap size of the calling thread, in KB.|
+| vmTotalHeapSize | bigint |  Yes | Size limit of the JS heap memory of the process, in KB. |
 
 ## VMMemoryInfo<sup>12+</sup>
 
@@ -813,8 +819,8 @@ Describes the VM memory information.
 
 | Name              | Type   | Readable| Writable| Description                               |
 | -------------------| ------- | ---- | ---- | ---------------------------------- |
-| totalHeap          | bigint  | Yes  | No  | Total heap size of the current VM, in KB.   |
-| heapUsed           | bigint  | Yes  | No  | Heap size used by the current VM, in KB. |
+| totalHeap          | bigint  | Yes  | No  | Total heap size of the current VM, in KB.    |
+| heapUsed           | bigint  | Yes  | No  | Heap size used by the current VM, in KB.   |
 | allArraySize       | bigint  | Yes  | No  | Size of all array objects of the current VM, in KB.|
 
 ## ThreadCpuUsage<sup>12+</sup>
@@ -825,8 +831,8 @@ Describes the CPU usage of a thread.
 
 | Name              | Type   | Readable| Writable| Description                               |
 | -------------------| ------- | ---- | ---- | ----------------------------------- |
-| threadId           | number  | Yes  | No  | Thread ID.                          |
-| cpuUsage           | number  | Yes  | No  | CPU usage of the thread.                      |
+| threadId           | number  | Yes  | No  | Thread ID.     |
+| cpuUsage           | number  | Yes  | No  | CPU usage of the thread.|
 
 ## hidebug.tags<sup>12+</sup>
 
@@ -838,38 +844,38 @@ Note that the tag values are defined by the system and may change with the versi
 
 | Name                    | Type   | Read Only | Description                                        |
 | -------------------------| ------- |-----|--------------------------------------------|
-| ABILITY_MANAGER          | number  | Yes| Capability management. The corresponding command is **tagName:ability**.                 |
-| ARKUI                    | number  | Yes| ArkUI development framework. The corresponding command is **tagName:ace**.               |
-| ARK                      | number  | Yes| JSVM VM. The corresponding command is **tagName:ark**.                 |
-| BLUETOOTH                | number  | Yes| Bluetooth. The corresponding command is **tagName:bluetooth**.                |
-| COMMON_LIBRARY           | number  | Yes| Common library subsystem. The corresponding command is **tagName:commonlibrary**.        |
-| DISTRIBUTED_HARDWARE_DEVICE_MANAGER | number  | Yes| Distributed hardware device management. The corresponding command is **tagName:devicemanager**.     |
-| DISTRIBUTED_AUDIO        | number  | Yes| Distributed audio. The corresponding command is **tagName:daudio**.                |
-| DISTRIBUTED_CAMERA       | number  | Yes| Distributed camera. The corresponding command is **tagName:dcamera**.               |
-| DISTRIBUTED_DATA         | number  | Yes| Distributed data management. The corresponding command is **tagName:distributeddatamgr**.|
-| DISTRIBUTED_HARDWARE_FRAMEWORK | number  | Yes| Distributed hardware framework. The corresponding command is **tagName:dhfwk**.                |
-| DISTRIBUTED_INPUT        | number  | Yes| Distributed input. The corresponding command is **tagName:dinput**.                |
-| DISTRIBUTED_SCREEN       | number  | Yes| Distributed screen. The corresponding command is **tagName:dscreen**.               |
-| DISTRIBUTED_SCHEDULER    | number  | Yes| Distributed scheduler. The corresponding command is **tagName:dsched**.               |
-| FFRT                     | number  | Yes| FFRT task. The corresponding command is **tagName:ffrt**.                 |
-| FILE_MANAGEMENT          | number  | Yes| File management system. The corresponding command is **tagName:filemanagement**.       |
-| GLOBAL_RESOURCE_MANAGER  | number  | Yes| Global resource management. The corresponding command is **tagName:gresource**.            |
-| GRAPHICS                 | number  | Yes| Graphics module. The corresponding command is **tagName:graphic**.                |
-| HDF                      | number  | Yes| HDF subsystem. The corresponding command is **tagName:hdf**.                  |
-| MISC                     | number  | Yes| MISC module. The corresponding command is **tagName:misc**.                 |
-| MULTIMODAL_INPUT         | number  | Yes| Multi-modal input module. The corresponding command is **tagName:multimodalinput**.     |
-| NET                      | number  | Yes| Network. The corresponding command is **tagName:net**.                      |
-| NOTIFICATION             | number  | Yes| Notification module. The corresponding command is **tagName:notification**.           |
-| NWEB                     | number  | Yes| Nweb. The corresponding command is **tagName:nweb**.                   |
-| OHOS                     | number  | Yes| OHOS. The corresponding command is **tagName:ohos**.                 |
-| POWER_MANAGER            | number  | Yes| Power management. The corresponding command is **tagName:power**.                  |
-| RPC                      | number  | Yes| RPC. The corresponding command is **tagName:rpc**.                     |
-| SAMGR                    | number  | Yes| System capability management. The corresponding command is **tagName:samgr**.                |
-| WINDOW_MANAGER           | number  | Yes| Window management. The corresponding command is **tagName:window**.                 |
-| AUDIO                    | number  | Yes| Audio module. The corresponding command is **tagName:zaudio**.                 |
-| CAMERA                   | number  | Yes| Camera module. The corresponding command is **tagName:zcamera**.                |
-| IMAGE                    | number  | Yes| Image module. The corresponding command is **tagName:zimage**.                 |
-| MEDIA                    | number  | Yes| Media module. The corresponding command is **tagName:zmedia**.                 |
+| ABILITY_MANAGER          | number  | Yes| Capability management. The corresponding HiTrace command is **tagName:ability**.                 |
+| ARKUI                    | number  | Yes| ArkUI development framework. The corresponding HiTrace command is **tagName:ace**.               |
+| ARK                      | number  | Yes| JSVM VM. The corresponding HiTrace command is **tagName:ark**.                 |
+| BLUETOOTH                | number  | Yes| Bluetooth. The corresponding HiTrace command is **tagName:bluetooth**.                |
+| COMMON_LIBRARY           | number  | Yes| Common library subsystem. The corresponding HiTrace command is **tagName:commonlibrary**.        |
+| DISTRIBUTED_HARDWARE_DEVICE_MANAGER | number  | Yes| Distributed hardware device management. The corresponding HiTrace command is **tagName:devicemanager**.     |
+| DISTRIBUTED_AUDIO        | number  | Yes| Distributed audio. The corresponding HiTrace command is **tagName:daudio**.                |
+| DISTRIBUTED_CAMERA       | number  | Yes| Distributed camera. The corresponding HiTrace command is **tagName:dcamera**.               |
+| DISTRIBUTED_DATA         | number  | Yes| Distributed data management. The corresponding HiTrace command is **tagName:distributeddatamgr**.|
+| DISTRIBUTED_HARDWARE_FRAMEWORK | number  | Yes| Distributed hardware framework. The corresponding HiTrace command is **tagName:dhfwk**.                |
+| DISTRIBUTED_INPUT        | number  | Yes| Distributed input. The corresponding HiTrace command is **tagName:dinput**.                |
+| DISTRIBUTED_SCREEN       | number  | Yes| Distributed screen. The corresponding HiTrace command is **tagName:dscreen**.               |
+| DISTRIBUTED_SCHEDULER    | number  | Yes| Distributed scheduler. The corresponding HiTrace command is **tagName:dsched**.               |
+| FFRT                     | number  | Yes| FFRT task. The corresponding HiTrace command is **tagName:ffrt**.                 |
+| FILE_MANAGEMENT          | number  | Yes| File management system. The corresponding HiTrace command is **tagName:filemanagement**.       |
+| GLOBAL_RESOURCE_MANAGER  | number  | Yes| Global resource management. The corresponding HiTrace command is **tagName:gresource**.            |
+| GRAPHICS                 | number  | Yes| Graphics module. The corresponding HiTrace command is **tagName:graphic**.                |
+| HDF                      | number  | Yes| HDF subsystem. The corresponding HiTrace command is **tagName:hdf**.                  |
+| MISC                     | number  | Yes| MISC module. The corresponding HiTrace command is **tagName:misc**.                 |
+| MULTIMODAL_INPUT         | number  | Yes| Multi-modal input module. The corresponding HiTrace command is **tagName:multimodalinput**.     |
+| NET                      | number  | Yes| Network. The corresponding HiTrace command is **tagName:net**.                      |
+| NOTIFICATION             | number  | Yes| Notification module. The corresponding HiTrace command is **tagName:notification**.           |
+| NWEB                     | number  | Yes| Nweb. The corresponding HiTrace command is **tagName:nweb**.                   |
+| OHOS                     | number  | Yes| OHOS. The corresponding HiTrace command is **tagName:ohos**.                 |
+| POWER_MANAGER            | number  | Yes| Power management. The corresponding HiTrace command is **tagName:power**.                  |
+| RPC                      | number  | Yes| RPC. The corresponding HiTrace command is **tagName:rpc**.                     |
+| SAMGR                    | number  | Yes| System capability management. The corresponding HiTrace command is **tagName:samgr**.                |
+| WINDOW_MANAGER           | number  | Yes| Window management. The corresponding HiTrace command is **tagName:window**.                 |
+| AUDIO                    | number  | Yes| Audio module. The corresponding HiTrace command is **tagName:zaudio**.                 |
+| CAMERA                   | number  | Yes| Camera module. The corresponding HiTrace command is **tagName:zcamera**.                |
+| IMAGE                    | number  | Yes| Image module. The corresponding HiTrace command is **tagName:zimage**.                 |
+| MEDIA                    | number  | Yes| Media module. The corresponding HiTrace command is **tagName:zmedia**.                 |
 
 ## NativeMemInfo<sup>12+</sup>
 
@@ -879,13 +885,13 @@ Describes memory information of the application process.
 
 | Name     | Type  | Mandatory| Description        |
 | --------- | ------ | ---- | ------------ |
-| pss  | bigint |  Yes | Size of the occupied physical memory (including the proportionally allocated memory occupied by the shared library), in KB.    |
-| vss  | bigint |  Yes | Size of the occupied virtual memory (including the memory occupied by the shared library), in KB.      |
-| rss  | bigint |  Yes | Size of the occupied physical memory (including the memory occupied by the shared library), in KB.        |
-| sharedDirty  | bigint |  Yes | Size of the shared dirty memory, in KB.     |
-| privateDirty  | bigint |  Yes | Size of the private dirty memory, in KB.     |
-| sharedClean  | bigint |  Yes | Size of the shared clean memory, in KB.     |
-| privateClean  | bigint |  Yes | Size of the private clean memory, in KB.     |
+| pss  | bigint |  Yes | Size of the occupied physical memory (including the proportionally allocated memory occupied by the shared library), in KB.|
+| vss  | bigint |  Yes | Size of the occupied virtual memory (including the memory occupied by the shared library), in KB.     |
+| rss  | bigint |  Yes | Size of the occupied physical memory (including the memory occupied by the shared library), in KB.     |
+| sharedDirty  | bigint |  Yes | Size of the shared dirty memory, in KB.                  |
+| privateDirty  | bigint |  Yes | Size of the private dirty memory, in KB.                  |
+| sharedClean  | bigint |  Yes | Size of the shared clean memory, in KB.                 |
+| privateClean  | bigint |  Yes | Size of the private clean memory, in KB.                 |
 
 ## SystemMemInfo<sup>12+</sup>
 
@@ -895,9 +901,9 @@ Describes the system memory information.
 
 | Name     | Type  | Mandatory| Description        |
 | --------- | ------ | ---- | ------------ |
-| totalMem  | bigint |  Yes | Total memory of the system, in KB.    |
-| freeMem  | bigint |  Yes | Free memory of the system, in KB.      |
-| availableMem  | bigint |  Yes | Available memory of the system, in KB.     |
+| totalMem  | bigint |  Yes | Total memory of the system, in KB. |
+| freeMem  | bigint |  Yes | Free memory of the system, in KB.|
+| availableMem  | bigint |  Yes | Available memory of the system, in KB.|
 
 ## TraceFlag<sup>12+</sup>
 
@@ -1003,8 +1009,8 @@ Obtains the size of the GPU memory. This API uses a synchronous callback to retu
 
 **Return value**
 
-| Type | Description        |
-| ------ |------------|
+| Type | Description            |
+| ------ |----------------|
 | number | Size of the GPU memory, in KB.|
 
 **Error codes**
@@ -1024,4 +1030,57 @@ try {
 } catch (error) {
   console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
+```
+
+## hidebug.dumpJsRawHeapData<sup>18+</sup>
+
+dumpJsRawHeapData(needGC?: boolean): Promise&lt;string&gt;
+
+Dumps the original heap snapshot of the VM for the calling thread. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> When this API is used to dump snapshots, a large number of system resources are consumed. Therefore, the system strictly controls the calling frequency and times of this API. Generally, the file generated by this API is large. You are advised to delete the file immediately after processing it.
+> You are advised to use this API only in the gray test version of your application. If it is used in the release version, the application smoothness may be affected.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| Name                    | Type     | Mandatory| Description                                      |
+|-------------------------|---------|----|------------------------------------------|
+| needGC         | boolean | No | Whether GC is required when heap snapshots are dumped. The default value is **true**. If this parameter is not specified, GC is triggered before dumping.|
+
+**Return value**
+
+| Type | Description                                                                                                  |
+| ------ |------------------------------------------------------------------------------------------------------|
+| Promise&lt;number&gt; | Path of the generated snapshot file. ([Application Sandbox](../../file-management/app-sandbox-directory.md#application-file-directory-and-application-file-path))|
+
+**Error codes**
+
+For details about the error codes, see [HiDebug Error Codes](errorcode-hiviewdfx-hidebug.md).
+
+| ID   | Error Message|
+|----------| ----------------------------------------------------------------- |
+| 401      | Invalid parameter. |
+| 11400106 | Quota exceeded. |
+| 11400107 | Fork operation failed. |
+| 11400108 | Failed to wait for the child process to finish. |
+| 11400109 | Timeout while waiting for the child process to finish. |
+| 11400110 | Disk remaining space too low. |
+| 11400111 | Napi interface call exception. |
+| 11400112 | Repeated data dump. |
+| 11400113 | Failed to create dump file. |
+
+**Example**
+
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+hidebug.dumpJsRawHeapData().then((filePath: string) => {
+  console.info(`dumpJsRawHeapData success and generated file path is ${filePath}`)
+}).catch((error: BusinessError) => {
+  console.error(`error code: ${error.code}, error msg: ${error.message}`);
+})
 ```

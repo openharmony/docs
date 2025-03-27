@@ -5,7 +5,8 @@ The Decimal module provides a high-precision math library that offers the capabi
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
+>
+> This module can be imported only to ArkTS files (with the file name extension .ets).
 
 ## Modules to Import
 
@@ -151,7 +152,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -281,7 +282,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200001 | The value of 'min' is out of range.                          |
 
 **Example**
@@ -295,7 +296,7 @@ console.info("test Decimal clamp:" + data.toString()); // 'test Decimal clamp:10
 
 ### add
 
-add(n: Value): Decimal;
+add(n: Value): Decimal
 
 Returns a new **Decimal** object representing the sum of adding the specified number *n* to this decimal.
 
@@ -323,7 +324,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -362,7 +363,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -401,7 +402,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -440,7 +441,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -479,7 +480,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -568,7 +569,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **Example**
@@ -641,7 +642,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **Example**
@@ -1036,7 +1037,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -1078,7 +1079,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -1116,7 +1117,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -1154,7 +1155,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -1192,7 +1193,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -1230,7 +1231,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -1422,7 +1423,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -2146,7 +2147,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -2644,7 +2645,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -2681,7 +2682,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -2718,7 +2719,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -2755,7 +2756,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -2794,7 +2795,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200001 | The value of 'min' is out of range.                          |
 
 **Example**
@@ -2835,7 +2836,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -2874,7 +2875,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -2914,7 +2915,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -2954,7 +2955,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -2994,7 +2995,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 
 **Example**
@@ -3035,7 +3036,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -3074,7 +3075,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -3113,7 +3114,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -3151,7 +3152,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **Example**
@@ -3191,7 +3192,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **Example**
@@ -3232,7 +3233,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **Example**
@@ -3272,7 +3273,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **Example**
@@ -3312,7 +3313,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **Example**
@@ -3352,7 +3353,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **Example**
@@ -3392,7 +3393,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -3431,7 +3432,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -3470,7 +3471,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -3509,7 +3510,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -3548,7 +3549,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -3587,7 +3588,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -3626,7 +3627,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **Example**
@@ -3666,7 +3667,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **Example**
@@ -3706,7 +3707,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **Example**
@@ -3746,7 +3747,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **Example**
@@ -3786,7 +3787,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **Example**
@@ -3826,7 +3827,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **Example**
@@ -3867,7 +3868,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **Example**
@@ -3907,7 +3908,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -3944,7 +3945,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -3981,7 +3982,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -4048,7 +4049,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200061 | Crypto unavailable.                                          |
 
 **Example**
@@ -4085,7 +4086,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -4122,7 +4123,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -4154,7 +4155,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200001 | The value of 'DecimalConfig.properties' is out of range.     |
 | 10200061 | Crypto unavailable.                                          |
 

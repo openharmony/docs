@@ -46,6 +46,7 @@ API 10在API 9的基础上新增支持多Ability的Stage模型应用开发。支
 API 10开始支持应用卡死时的状态保存。JsError故障时，onSaveState接口在主线程进行回调。对于AppFreeze故障，主线程可能处于卡死的状态，onSaveState会在非主线程进行回调。其主要流程如下图：
 
 ![应用卡死状态保存恢复示意](./figures/20230315112235.png)
+
 由于卡死时的回调不在JS线程上执行，onSaveState回调中的代码建议不要使用import进来的Native动态库，禁止访问主线程创建的thread_local对象。
 
 ### 框架故障管理流程示意
@@ -59,6 +60,7 @@ API 10开始支持应用卡死时的状态保存。JsError故障时，onSaveStat
 - 故障查询指的是[faultLogger](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md)通过其查询接口获取当前的故障信息。
 
 下图中并没有标记[faultLogger](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md)的调用时机，开发者可以根据应用启动时传入的[LastExitReason](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#abilityconstantlastexitreason)来决定是否调用[faultLogger](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md)查询上次的故障信息。
+
 ![故障处理流程示意](./figures/20221106203527.png)
 
 这里建议应用开发者使用[errorManager](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md)对应用的异常进行处理，处理完成后开发者可以选择调用状态保存接口并主动重启应用。

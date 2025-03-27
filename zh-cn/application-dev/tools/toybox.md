@@ -46,7 +46,6 @@ toybox的执行方式有两种：
 | 选项 | 说明 |
 | :- | :- |
 | -a | 显示所有命令的帮助。 |
-| -h | 以html格式显示帮助。 |
 
 ### 数学与计算机基础函数
 
@@ -75,7 +74,7 @@ toybox的执行方式有两种：
 | 命令 | 说明 |
 | :- | :- |
 | false | 返回非零值。<br />usage: false |
-| sh    | shell命令解释器 |
+| sh    | shell命令解释器。 |
 | test  | 通过执行测试返回true或false。没有参数时返回false。<br />usage: test [-bcdefghLPrSsuwx PATH] [-nz STRING] [-t FD] [X ?? Y] |
 | true  | 返回零。<br />usage: true |
 | yes   | 反复输出行直到被杀死。如果没有参数，则输出“y”。<br />usage: yes [args...] |
@@ -188,7 +187,7 @@ toybox的执行方式有两种：
 | makedevs    | 创建一系列特殊的文件，包括块设备文件，字符设备文件等。<br />usage: makedevs [-d device_table] rootdir |
 | mount       | 在目录上挂载新的文件系统。如果没有参数，则显示现有的挂载。<br />usage: mount [-afFrsvw] [-t TYPE] [-o OPTION,] [[DEVICE] DIR] |
 | mountpoint  | 检查目录或者设备是否是挂载点。<br />usage:<br />&emsp;mountpoint [-qd] DIR <br />&emsp;mountpoint [-qx] DEVICE |
-| sync        | 将缓存的数据写到磁盘，。<br />usage: sync |
+| sync        | 将缓存的数据写到磁盘。<br />usage: sync |
 | sysctl      | 读写 /proc/sys 下的系统控制数据。<br />usage: sysctl [-aAeNnqw] [-p [FILE] \| KEY[=VALUE]...] |
 | tunctl      | 创建或删除tun/tap虚拟以太设备。<br />usage: tunctl [-dtT] [-u USER] NAME |
 | vconfig     | 创建或删除虚拟以太设备。<br />usage: vconfig COMMAND [OPTIONS] |
@@ -224,12 +223,12 @@ toybox的执行方式有两种：
 | chmod     | 更改列出的文件的模式（使用-R递归）。<br />usage: chmod [-R] MODE FILE... |
 | cksum     | 对于每个文件，输出crc32的校验和、长度和文件名。如果未列出任何文件，则从标准输入设备复制。“-”代表标准输入设备。<br />usage: cksum [-IPLN] [file...] |
 | cmp       | 比较文件的内容（如果只给出一个，则与标准输入设备进行比较），可选在开始时跳过字节。<br />usage: cmp [-l] [-s] FILE1 [FILE2 [SKIP1 [SKIP2]]] |
-| comm      | 读取FILE1和FILE2（这两个文件应该是有序的），并生成三个文本列作为输出：仅在FILE1中的行；仅在FILE2中的行；在两个文件中都有的行。“-”代表标准输入设备。<br />usage: comm [-123] FILE1 FILE2  |
+| comm      | 读取FILE1和FILE2（这两个文件应该是有序的），并生成三个文本列作为输出：仅在FILE1中的行、仅在FILE2中的行、在两个文件中都有的行。“-”代表标准输入设备。<br />usage: comm [-123] FILE1 FILE2  |
 | count     | 将标准输入设备复制到标准输出设备，将简单的进度指示器显示到标准错误输出stderr。<br />usage: count |
 | cp        | 将文件从SOURCE复制到DEST。如果有多个源，DEST必须是一个目录。<br />usage: cp [-adfHiLlnPpRrsTv] [--preserve=motcxa] [-t TARGET] SOURCE... [DEST] |
 | cpio      | 从“newc”格式的cpio档案中中读写文件。<br />usage: cpio -{o\|t\|i\|p DEST} [-v] [--verbose] [-F FILE] [--no-preserve-owner]<br />&emsp;[ignored: -mdu -H newc] |
 | crc32     | 输出每个文件的crc32校验和。<br />usage: crc32 [file...] |
-| cut       | 将每个FILE中的行的选定部分打印到标准输出。每个选择列表以逗号分隔，可以是数字（从1开始计数）或破折号分隔的范围(其中X-表示X到行尾，-X表示从开始到X)。<br />usage: cut [-Ds] [-bcfF LIST] [-dO DELIM] [FILE...] |
+| cut       | 将每个FILE中的行的选定部分打印到标准输出。每个选择列表以逗号分隔，可以是数字（从1开始计数）或破折号分隔的范围（其中X-表示X到行尾，-X表示从开始到X）。<br />usage: cut [-Ds] [-bcfF LIST] [-dO DELIM] [FILE...] |
 | dd        |  用于转换和复制文件的命令，可以用于创建磁盘镜像、备份数据、转换字符编码等任务。<br />usage:<br />&emsp; dd [if=FILE] [of=FILE] [ibs=N] [obs=N] [iflag=FLAGS] [oflag=FLAGS]<br />&emsp; [bs=N] [count=N] [seek=N] [skip=N]<br />&emsp; [conv=notrunc\|noerror\|sync\|fsync] [status=noxfer\|none] |
 | diff      | 比较文件/文件夹，输出差异。<br />usage: diff [-abBdiNqrTstw] [-L LABEL] [-S FILE] [-U LINES] FILE1 FILE2 |
 | dirname   | 显示路径的目录部分。<br />usage: dirname PATH... |
@@ -241,10 +240,10 @@ toybox的执行方式有两种：
 | fallocate | 让文件系统给文件预留空间。<br />usage: fallocate [-l size] [-o offset] file |
 | file      | 检查给定的文件并描述其内容类型。<br />usage: file [-bhLs] [file...] |
 | find      | 在目录中搜索匹配的文件。<br />usage: find [-HL] [DIR...] [&lt;options&gt;] |
-| flock     | 管理文件锁(advisory lock)。<br />usage: flock [-sxun] fd |
+| flock     | 管理文件锁（advisory lock）。<br />usage: flock [-sxun] fd |
 | fmt       | 将输入重新格式化为给定行长的换行，保留现有的缩进级别，写入标准输出设备。<br />usage: fmt [-w WIDTH] [FILE...] |
 | gunzip    | 解压文件。如果没有文件，则从标准输入设备解压到标准输出设备。成功后，输入文件将被删除并替换为新的没有.gz后缀的文件。<br />usage: gunzip [-cfk] [FILE...] |
-| head      | 将文件中的第一行复制到标准输出设备中。如果未列出任何文件，从标准输入设备拷贝. “-”代表标准输入设备<br />usage: head [-n number] [file...] |
+| head      | 将文件中的第一行复制到标准输出设备中。如果未列出任何文件，从标准输入设备拷贝。“-”代表标准输入设备。<br />usage: head [-n number] [file...] |
 | hexedit   | 十六进制文件编辑器，所有修改立刻写入磁盘。<br />usage: hexedit FILENAME |
 | iconv     | 转换文件编码。<br />usage: iconv [-f FROM] [-t TO] [FILE...] |
 | inotifyd  | 在文件系统事件出现的时候，运行特定的程序。<br />usage: inotifyd PROG FILE[:MASK] ... |
@@ -259,7 +258,7 @@ toybox的执行方式有两种：
 | mkfifo    | 创建FIFO文件（命名管道）。<br />usage: mkfifo [NAME...] |
 | mkswap    | 创建Linux的交换空间。<br />usage: mkswap [-L LABEL] DEVICE |
 | mktemp    | 安全地创建一个新文件“DIR/TEMPLATE”并打印其名称。<br />usage: mktemp [-dqu] [-p DIR] [TEMPLATE] |
-| mknod     | 创建一个特殊的文件(b为块设备，c或u为字符设备，p为命名管道)。<br />usage: mknod [-m MODE] NAME TYPE [MAJOR MINOR] |
+| mknod     | 创建一个特殊的文件（b为块设备，c或u为字符设备，p为命名管道）。<br />usage: mknod [-m MODE] NAME TYPE [MAJOR MINOR] |
 | more      | 查看文件，一次一页。<br />usage: more [FILE...] |
 | mv        | 移动或重命名文件。<br />usage: mv [-finTv] [-t TARGET] SOURCE... [DEST] |
 | nl        | 给输入的文件添加行号。<br />usage: nl [-E] [-l #] [-b MODE] [-n STYLE] [-s SEPARATOR] [-v #] [-w WIDTH] [FILE...] |
@@ -277,7 +276,7 @@ toybox的执行方式有两种：
 | rmdir     | 删除一个或多个目录。<br />usage: rmdir [-p] [dirname...] |
 | sed       | 流编辑器。将编辑脚本应用于输入行。<br />usage: sed [-inrzE] [-e SCRIPT]... \| SCRIPT [-f SCRIPT\_FILE]... [FILE...] |
 | seq       | 从头到尾按递增计数。省略参数默认值为1。使用两个参数作为第一个和最后一个。参数可以是负数或浮点数。<br />usage: seq [-w \| -f fmt\_str] [-s sep\_str] [first] [increment] last |
-| setfattr  | 写入 POSIX 扩展属性。<br />usage: setfattr [-h] [-x \| -n NAME] [-v VALUE] FILE... |
+| setfattr  | 写入POSIX扩展属性。<br />usage: setfattr [-h] [-x \| -n NAME] [-v VALUE] FILE... |
 | sha1sum/sha256sum | 计算sha系列哈希值。<br />usage: sha?sum [-bcs] [FILE]... |
 | shred     | 安全的删除文件（用随机数据覆盖文件内容）。<br />usage: shred [-fuz] [-n COUNT] [-s SIZE] FILE... |
 | sort      | 对从输入文件（或标准输入设备）到标准输出设备的所有文本行进行排序。<br />usage: sort [-Mbcdfginrsuz] [FILE...] [-k#[,#[x]] [-t X]] [-o FILE] |
@@ -303,7 +302,7 @@ toybox的执行方式有两种：
 ## 常见问题
 
 ### 报错："Unknown command xxx"
-在命令行中输入"xxx" 或 "toybox xxx" 或 "help xxx"时，如果遇到报错 "Unknown command xxx"，表示toybox不支持xxx命令。
+在命令行中输入"xxx"或"toybox xxx"或"help xxx"时，如果遇到报错"Unknown command xxx"，表示toybox不支持xxx命令。
 <!--RP2-->
 如果该命令在本文的描述中，则证明产品未编译该命令，建议前往OpenHarmony官方论坛提问反馈。
 <!--RP2End-->
@@ -313,7 +312,7 @@ toybox存在大量操作文件和进程的命令，如果调用者缺少对被�
 1. 权限缺失。请检查被操作的文件，以及所属文件夹的读、写、执行权限，确认自己是否有权限执行。
 2. SELinux拦截。可以在内核日志中搜索"avc: denied"关键字。
 例子：
-如果出现类似 avc: denied { xxx } for comm="ls" xxxxxx 的日志，表示命令ls触发了SELinux拦截。
+如果出现类似avc: denied { xxx } for comm="ls" xxxxxx的日志，表示命令ls触发了SELinux拦截。
 
 <!--RP3-->
 如遇权限缺失问题，又需要执行该命令，建议前往OpenHarmony官方论坛提问反馈。
@@ -325,9 +324,9 @@ toybox大部分命令为对内核的调用，出错时会通过perror打印Linux
 这些为Linux标准错误，可以参考Linux相关资料查询报错原因。请根据具体报错，检查命令的参数或者命令的格式是否出现错误。
 
 例子：
-试图在只读文件系统中进行创建文件的操作，会有报错 "Read-only file system"。
+试图在只读文件系统中进行创建文件的操作，会有报错"Read-only file system"。
 cat可以打印文件内容，如果试图cat一个目录，会有报错 "Is a directory"。
-试图用ls命令查看一个不存在的文件或目录，会有报错 "No such file or directory"。
+试图用ls命令查看一个不存在的文件或目录，会有报错"No such file or directory"。
 
 ### 命令与toybox描述不符合
 如果发现在shell下输入"命令 参数"的表现与"toybox 命令 参数"不一致，可能有两种原因导致。

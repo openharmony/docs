@@ -4,7 +4,7 @@ eSIM卡管理模块提供了eSIM卡管理的基础能力，包括获取指定卡
 
 > **说明：** 
 >
-> 本模块首批接口从API version 16开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 18开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 
 ## 导入模块
@@ -13,7 +13,7 @@ eSIM卡管理模块提供了eSIM卡管理的基础能力，包括获取指定卡
 import { eSIM } from '@kit.TelephonyKit';
 ```
 
-## eSIM.isSupported<sup>16+</sup>
+## eSIM.isSupported<sup>18+</sup>
 
 isSupported\(slotId: number\): boolean
 
@@ -52,13 +52,13 @@ let isSupported: boolean = eSIM.isSupported(0);
 console.log(`the esim is Supported:` + isSupported);
 ```
 
-## eSIM.addProfile<sup>16+</sup>
+## eSIM.addProfile<sup>18+</sup>
 
 addProfile\(profile: DownloadableProfile\): Promise\<boolean\>
 
 通过该接口拉起下载界面，允许用户添加单个配置文件。使用Promise异步回调。
 
-**需要权限**：ohos.permission.SET_TELEPHONE_ESIM_STATE_OPEN
+**需要权限**：ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 

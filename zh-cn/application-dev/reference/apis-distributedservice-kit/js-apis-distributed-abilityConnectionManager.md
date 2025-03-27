@@ -14,7 +14,7 @@ import { abilityConnectionManager } from '@kit.DistributedServiceKit';
 
 ## abilityConnectionManager.createAbilityConnectionSession
 
-createAbilityConnectionSession(serviceName:&nbsp;string,&nbsp;context:&nbsp;Context,&nbsp;peerInfo:&nbsp;PeerInfo ,&nbsp;connectOptions:&nbsp;ConnectOptions):&nbsp;number;
+createAbilityConnectionSession(serviceName:&nbsp;string,&nbsp;context:&nbsp;Context,&nbsp;peerInfo:&nbsp;PeerInfo ,&nbsp;connectOptions:&nbsp;ConnectOptions):&nbsp;number
 
 创建应用间的协同会话。
 
@@ -24,8 +24,8 @@ createAbilityConnectionSession(serviceName:&nbsp;string,&nbsp;context:&nbsp;Cont
 
 | 参数名       | 类型                                      | 必填   | 说明        |
 | --------- | --------------------------------------- | ---- | --------- |
-| serviceName  | string | 是    | 应用设置的服务名称（两端必须一致）。 |
-| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是 | 表示应用上下文。 | 
+| serviceName  | string | 是    | 应用设置的服务名称（两端必须一致），最大长度为256字符。 |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是 | 表示应用上下文。 |
 | peerInfo  | [PeerInfo](#peerinfo)               | 是    | 对端的协同信息。 |
 | connectOptions  | [ConnectOptions](#connectoptions)               | 是    | 应用设置的连接选项。 |
 
@@ -41,8 +41,8 @@ createAbilityConnectionSession(serviceName:&nbsp;string,&nbsp;context:&nbsp;Cont
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201      | Permission verification failed. The application does not have the permission required to call the API.|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -113,7 +113,7 @@ createAbilityConnectionSession(serviceName:&nbsp;string,&nbsp;context:&nbsp;Cont
      hilog.error(0x0000, 'testTag', error);
    }
    ```
-   
+
 2. 在设备B上，对于createAbilityConnectionSession接口的调用，可在应用被拉起后触发协同生命周期函数onCollaborate时，在onCollaborate内进行。
 
    ```ts
@@ -162,7 +162,7 @@ createAbilityConnectionSession(serviceName:&nbsp;string,&nbsp;context:&nbsp;Cont
 
 ## abilityConnectionManager.destroyAbilityConnectionSession
 
-destroyAbilityConnectionSession(sessionId:&nbsp;number):&nbsp;void;
+destroyAbilityConnectionSession(sessionId:&nbsp;number):&nbsp;void
 
 销毁应用间的协同会话。
 
@@ -172,16 +172,7 @@ destroyAbilityConnectionSession(sessionId:&nbsp;number):&nbsp;void;
 
 | 参数名       | 类型                                       | 必填   | 说明       |
 | --------- | ---------------------------------------- | ---- | -------- |
-| sessionId | string  | 是    | 待销毁的协同应用会话ID。   |
-
-**错误码：**
-
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 201      | Permission verification failed. The application does not have the permission required to call the API.|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| sessionId | number  | 是    | 待销毁的协同会话ID。   |
 
 **示例：**
 
@@ -195,7 +186,7 @@ destroyAbilityConnectionSession(sessionId:&nbsp;number):&nbsp;void;
 
 ## abilityConnectionManager.getPeerInfoById
 
-getPeerInfoById(sessionId:&nbsp;number):&nbsp;PeerInfo&nbsp;|&nbsp;undefined;
+getPeerInfoById(sessionId:&nbsp;number):&nbsp;PeerInfo&nbsp;|&nbsp;undefined
 
 获取指定会话中对端应用信息。
 
@@ -205,7 +196,7 @@ getPeerInfoById(sessionId:&nbsp;number):&nbsp;PeerInfo&nbsp;|&nbsp;undefined;
 
 | 参数名       | 类型                                       | 必填   | 说明       |
 | --------- | ---------------------------------------- | ---- | -------- |
-| sessionId | string  | 是    | 协同应用会话ID。   |
+| sessionId | string  | 是    | 协同会话ID。   |
 
 **返回值：**
 
@@ -234,7 +225,7 @@ getPeerInfoById(sessionId:&nbsp;number):&nbsp;PeerInfo&nbsp;|&nbsp;undefined;
 
 ## abilityConnectionManager.connect
 
-connect(sessionId:&nbsp;number):&nbsp;Promise&lt;ConnectResult&gt;;
+connect(sessionId:&nbsp;number):&nbsp;Promise&lt;ConnectResult&gt;
 
 创建协同会话成功并获得会话ID后，设备A上可进行UIAbility的连接。
 
@@ -258,8 +249,7 @@ connect(sessionId:&nbsp;number):&nbsp;Promise&lt;ConnectResult&gt;;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201      | Permission verification failed. The application does not have the permission required to call the API.|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -281,7 +271,7 @@ connect(sessionId:&nbsp;number):&nbsp;Promise&lt;ConnectResult&gt;;
 
 ## abilityConnectionManager.acceptConnect
 
-acceptConnect(sessionId:&nbsp;number,&nbsp;token:&nbsp;string):&nbsp;Promise&lt;void&gt;;
+acceptConnect(sessionId:&nbsp;number,&nbsp;token:&nbsp;string):&nbsp;Promise&lt;void&gt;
 
 设备B上的应用，在创建协同会话成功并获得会话ID后，调用acceptConnect()方法接受连接。
 
@@ -306,8 +296,7 @@ acceptConnect(sessionId:&nbsp;number,&nbsp;token:&nbsp;string):&nbsp;Promise&lt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201      | Permission verification failed. The application does not have the permission required to call the API.|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -369,7 +358,7 @@ acceptConnect(sessionId:&nbsp;number,&nbsp;token:&nbsp;string):&nbsp;Promise&lt;
 
 ## abilityConnectionManager.disconnect
 
-disconnect(sessionId:&nbsp;number):&nbsp;void;
+disconnect(sessionId:&nbsp;number):&nbsp;void
 
 当协同业务执行完毕后，协同双端的任意一台设备，应断开UIAbility的连接，结束协同状态。
 
@@ -380,15 +369,6 @@ disconnect(sessionId:&nbsp;number):&nbsp;void;
 | 参数名       | 类型                                    | 必填   | 说明        |
 | --------- | ------------------------------------- | ---- | --------- |
 | sessionId | number | 是    | 协同会话ID     |
-
-**错误码：**
-
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 201      | Permission verification failed. The application does not have the permission required to call the API.|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -528,7 +508,7 @@ off(type:&nbsp;'connect'&nbsp;|&nbsp;'disconnect'&nbsp;|&nbsp;'receiveMessage'|&
 
 ## abilityConnectionManager.sendMessage
 
-sendMessage(sessionId:&nbsp;number,&nbsp;msg:&nbsp;string):&nbsp;Promise&lt;void&gt;;
+sendMessage(sessionId:&nbsp;number,&nbsp;msg:&nbsp;string):&nbsp;Promise&lt;void&gt;
 
 应用连接成功后，设备A或设备B可向对端设备发送文本信息。
 
@@ -553,9 +533,7 @@ sendMessage(sessionId:&nbsp;number,&nbsp;msg:&nbsp;string):&nbsp;Promise&lt;void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201      | Permission verification failed. The application does not have the permission required to call the API.|
-| 202      | Permission verification failed. A non-system application calls a system API.|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -572,7 +550,7 @@ sendMessage(sessionId:&nbsp;number,&nbsp;msg:&nbsp;string):&nbsp;Promise&lt;void
 
 ## abilityConnectionManager.sendData
 
-sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;void&gt;;
+sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;void&gt;
 
 应用连接成功后，设备A或设备B可向对端设备发送[ArrayBuffer](../../arkts-utils/arraybuffer-object.md)字节流。
 
@@ -724,11 +702,11 @@ sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;v
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
-| 枚举值 | 描述 |
-| -------- | -------- |
-| PEER_APP_CLOSE_COLLABORATION | 表示对端应用主动关闭了协作。 |
-| PEER_APP_EXIT | 表示对端应用退出。 |
-| NETWORK_DISCONNECTED | 表示网络断开原因。 |
+| 名称|  值 | 说明 |
+|-------|-------|-------|
+| PEER_APP_CLOSE_COLLABORATION | 0 |表示对端应用主动关闭了协作。|
+| PEER_APP_EXIT | 1 |表示对端应用退出。|
+| NETWORK_DISCONNECTED | 2 |表示网络断开。|
 
 ## CollaborationKeys
 

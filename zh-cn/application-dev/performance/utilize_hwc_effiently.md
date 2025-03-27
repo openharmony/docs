@@ -387,7 +387,7 @@ struct OpaqueVideo {
   }
 }
 ```
-设置视频不透明后的效果图如下所示。
+设置视频不透明后的效果图如下所示：
 
 ![](./figures/utilize_hwc_effiently_9.png)
 

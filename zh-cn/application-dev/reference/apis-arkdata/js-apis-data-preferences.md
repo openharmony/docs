@@ -1178,7 +1178,7 @@ isStorageTypeSupported(type: StorageType): boolean
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
-| 401      | Parameter error: Incorrect parameter types.  |
+| 401      | Parameter error. Possible causes: Incorrect parameter types. |
 
 
 **示例：**

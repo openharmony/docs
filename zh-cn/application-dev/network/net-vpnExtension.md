@@ -7,6 +7,7 @@ VPN，即虚拟专用网络（Virtual Private Network），是在公用网络上
 OpenHarmony为开发者提供了用于创建VPN的API解决方案。本文将指导您如何开发自己的VPN客户端。
 
 > **说明：**
+>
 > 为了保证应用的运行效率，所有API调用都是异步的，对于异步调用的API均提供了Promise的方式，以下示例均采用Promise方式，更多方式可以查阅[API参考](../reference/apis-network-kit/js-apis-net-vpnExtension.md)。
 
 ## VPN应用的显示体验
@@ -41,10 +42,14 @@ OpenHarmony为开发者提供了用于创建VPN的API解决方案。本文将指
 ]
 ```
 
+> **注意：**
+>
+> 如果DevEco Studio工具提示不能识别"type": "vpn"，需要您手动在SDK的toolchains\modulecheck\module.json文件中，给extensionAbilities对应的type枚举添加"vpn"定义，并清除build缓存。
+
 接下来您需要在创建的VpnExtensionAbility中实现VPN的配置、启动和停止操作：
 
-- 建立一个VPN的网络隧道，以UDP隧道为例；
-- 通过VpnConnection.[protect](../reference/apis-network-kit/js-apis-net-vpnExtension.md#protect)保护前一步建立的UDP隧道；
+- 建立一个VPN的网络隧道，以TCP隧道为例（参考本文下方VPN Demo示例工程文件[vpn_client](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Connectivity/VPN/entry/src/main/cpp/vpn_client.cpp)的TcpConnect()方法）；
+- 通过VpnConnection.[protect](../reference/apis-network-kit/js-apis-net-vpnExtension.md#protect)保护前一步建立的TCP隧道；
 - 构建VPN Config参数，参考[VPN Config参数说明](#vpn-config参数说明)；
 - 通过VpnConnection.[create](../reference/apis-network-kit/js-apis-net-vpnExtension.md#create)建立VPN网络连接；
 - 处理虚拟网卡的数据，如：读写操作。

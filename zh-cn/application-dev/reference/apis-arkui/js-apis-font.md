@@ -197,11 +197,11 @@ getFontByName(fontName: string): FontInfo
 | fullName       | string  | 是 | 系统字体的名称。           |
 | family         | string  | 是 | 系统字体的字体家族。       |
 | subfamily      | string  | 是 | 系统字体的子字体家族。      |
-| weight         | number  | 是 | 系统字体的粗细程度，单位px。        |
-| width          | number  | 是 | 系统字体的宽窄风格属性，单位px。    |
-| italic         | boolean | 是 | 系统字体是否倾斜。          |
-| monoSpace      | boolean | 是 | 系统字体是否紧凑。         |
-| symbolic       | boolean | 是 | 系统字体是否支持符号字体。  |
+| weight         | number  | 是 | 系统字体的字重。<br/>取值范围：[0,8]，取值间隔为1，分别对应[FontWeight](../apis-arkgraphics2d/js-apis-graphics-text.md#fontweight)枚举中的值。<br/>默认值：0        |
+| width          | number  | 是 | 系统字体的宽度。<br/>取值范围：[1,9]，取值间隔为1，分别对应[FontWidth](../apis-arkgraphics2d/js-apis-graphics-text.md#fontwidth)枚举中的值。    |
+| italic         | boolean | 是 | 系统字体是否倾斜。<br/>默认值：false<br/>值为true，表示斜体字体，值为false，表示非斜体字体。          |
+| monoSpace      | boolean | 是 | 系统字体是否紧凑。<br/>默认值：false<br/>值为true，表示等宽字体，值为false，表示非等宽字体。         |
+| symbolic       | boolean | 是 | 系统字体是否支持符号字体。<br/>默认值：false<br/>值为true，表示支持符号字体，值为false，表示不支持符号字体。  |
 
 **示例：**
 
@@ -295,7 +295,7 @@ getUIFontConfig() : UIFontConfig
 | 名称            | 类型    | 必填  | 说明                       |
 | -------------- | ------- | ------------------------- | ------------------------- |
 | name          | string  | 是 | 别名名称。      |
-| weight        | number  | 是 | 当weight>0时表示此字体集只包含所指定weight的字体，当weight=0时，表示此字体集包含所有字体。 |
+| weight        | number  | 是 | 当weight>0时表示此字体集只包含所指定weight的字体，当weight=0时，表示此字体集包含所有字体。<br/>可返回的值有0、100、400、700、900。 |
 
 ## UIFontAdjustInfo<sup>11+</sup>
 
@@ -304,8 +304,8 @@ getUIFontConfig() : UIFontConfig
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 | 名称            | 类型    | 必填  | 说明                       |
 | -------------- | ------- | ------------------------- | ------------------------- |
-| weight        | number  | 是 | 字体原本的weight值。      |
-| to            | number  | 是 | 字体在应用中显示的weight值。 |
+| weight        | number  | 是 | 字体原本的weight值。<br/>可返回的值有50、80、100、200。      |
+| to            | number  | 是 | 字体在应用中显示的weight值。<br/>可返回的值有100、400、700、900。 |
 
 ## UIFontFallbackInfo<sup>11+</sup>
 

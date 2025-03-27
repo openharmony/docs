@@ -77,7 +77,7 @@ closeEffect(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                   |
 | ------ | ------- | ---- | ------------------------------------------------------ |
-| value  | boolean | 是   | 关闭数据占比图表旋转动效和投影效果。<br/>默认值：false |
+| value  | boolean | 是   | 关闭数据占比图表旋转动效和投影效果。<br/>默认值：false，false表示关闭数据占比图表旋转动效和投影效果，true表示开启数据占比图表旋转动效和投影效果。 |
 
 ### valueColors<sup>10+</sup>
 
@@ -188,10 +188,10 @@ constructor(colorStops: ColorStop[])
 
 | 参数名         | 类型 | 必填 | 说明 |
 | ------------- | ------- | ---- | -------- |
-| colorStops | [ColorStop](#colorstop10枚举说明)[] | 是 | 存储渐变颜色和渐变点。|
+| colorStops | [ColorStop](#colorstop10)[] | 是 | 存储渐变颜色和渐变点。|
 
 
-## ColorStop<sup>10+</sup>枚举说明
+## ColorStop<sup>10+</sup>
 
 颜色断点类型，用于描述渐进色颜色断点。
 
