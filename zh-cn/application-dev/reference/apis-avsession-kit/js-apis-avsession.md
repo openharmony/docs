@@ -1101,7 +1101,7 @@ currentAVSession.setAVQueueTitle(queueTitle, (err: BusinessError) => {
 
 setExtras(extras: {[key: string]: Object}): Promise\<void>
 
-媒体提供方设置键值对形式的自定义媒体数据包, 结果通过Promise异步回调方式返回。
+媒体提供方设置键值对形式的自定义媒体数据包，结果通过Promise异步回调方式返回。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1162,7 +1162,7 @@ if (currentAVSession !== undefined) {
 
 setExtras(extras: {[key: string]: Object}, callback: AsyncCallback\<void>): void
 
-媒体提供方设置键值对形式的自定义媒体数据包, 结果通过callback异步回调方式返回。
+媒体提供方设置键值对形式的自定义媒体数据包，结果通过callback异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
