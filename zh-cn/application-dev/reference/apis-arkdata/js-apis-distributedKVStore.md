@@ -414,7 +414,6 @@ getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&l
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100002     | Open existed database with changed options. |
 | 15100003     | Database corrupted.                         |
-| 15100006     | Unable to open the database file.           |
 
 **示例：**
 
@@ -484,7 +483,6 @@ getKVStore&lt;T&gt;(storeId: string, options: Options): Promise&lt;T&gt;
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.|
 | 15100002     | Open existed database with changed options. |
 | 15100003     | Database corrupted.                         |
-| 15100006     | Unable to open the database file.           |
 
 **示例：**
 
@@ -4138,7 +4136,6 @@ backup(file:string, callback: AsyncCallback&lt;void&gt;):void
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
-| 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -4188,7 +4185,6 @@ backup(file:string): Promise&lt;void&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
-| 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -4231,7 +4227,6 @@ restore(file:string, callback: AsyncCallback&lt;void&gt;):void
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
-| 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -4281,7 +4276,6 @@ restore(file:string): Promise&lt;void&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
-| 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
