@@ -1494,7 +1494,7 @@ Usb异步传输回调。
 
 ## UsbTransferStatus<sup>18+</sup>
 
-libusb实际处理完成后通过回调返回的状态码。
+实际处理完成后通过回调返回的状态码。
 
 **系统能力：** SystemCapability.USB.USBManager
 
