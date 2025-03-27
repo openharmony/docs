@@ -5,9 +5,7 @@ The **OAID** module provides APIs for obtaining and resetting Open Anonymous Dev
 
 
 > **NOTE**
->
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
 > To use the APIs for obtaining OAIDs, you must [request the ohos.permission.APP_TRACKING_CONSENT permission](../../security/AccessToken/request-user-authorization.md).
 > This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.identifier.oaid (OAID)](js-apis-oaid.md).
 
