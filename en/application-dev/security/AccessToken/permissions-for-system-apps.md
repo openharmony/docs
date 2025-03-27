@@ -4567,7 +4567,9 @@ This permission prevents authorized access to custom EDM configuration files, su
 
 ## ohos.permission.CHANGE_DEFAULT_APPLICATION
 
-Allows a system application or system service to subscribe the default app change event usual.event.DEFAULT_APP_CHANGED.
+Allows an application to listen for the changes of a default application.
+
+Users can set default applications for the system, for example, specifying an application to open files of a certain type by default. Any change in the default application will trigger an event indicating the change.
 
 **Permission level**：system_basic
 
