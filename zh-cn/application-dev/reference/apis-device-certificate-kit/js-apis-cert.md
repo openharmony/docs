@@ -11384,6 +11384,15 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'a26pkDJhNeB/E3eBIbeydSY0A/dIGb6vbGo6BSq2KvnWAA==\n' +
   '-----END CERTIFICATE-----\n';
 
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
 function testcreateCmsGenerator() {
   let certEncodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
