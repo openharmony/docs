@@ -43,8 +43,8 @@ ICameraHost::NotifyDeviceStateChangeInfo ([in] int notifyType, [in] int deviceSt
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| notifyType | 通知的类型。 | 
-| deviceState | 设备的状态。 | 
+| notifyType | 通知的类型。<br/>1 跌落状态。<br/>2 折叠状态。 | 
+| deviceState | 设备的状态。<br/>0 为止。<br/>1 展开态。<br/>2 折叠态。<br/>3 半折叠态。<br/>1008 滑落态。<br/>2-3 参数组合半折叠不做处理。 | 
 
 **返回：**
 

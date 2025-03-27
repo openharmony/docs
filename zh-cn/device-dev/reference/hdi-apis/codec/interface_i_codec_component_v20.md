@@ -92,7 +92,7 @@ HDF_ERR_INVALID_PARAM 表示参数无效，申请buffer失败。
 
 HDF_FAILURE 表示执行失败。
 
-其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的OMX_ERRORTYPE。
+其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的[OMX_ERRORTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 
 ### ComponentDeInit()
