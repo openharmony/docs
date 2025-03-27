@@ -236,6 +236,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 | directionAccuracy<sup>12+</sup> | number| 否 | 是 | 表示航向信息的精度。单位是“度”，取值范围为0到360。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | uncertaintyOfTimeSinceBoot<sup>12+</sup> | number| 否 | 是 | 表示位置时间戳的不确定度。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | sourceType<sup>12+</sup> | [LocationSourceType](#locationsourcetype12) | 否 | 是 | 表示定位结果的来源。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| sportsType<sup>18+</sup> | [SportsType](#sportstype18) | 否 | 是 | 表示运动类型。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 
 ## GeofenceTransition<sup>12+</sup>
@@ -466,6 +467,21 @@ GNSS地理围栏请求参数。
 | NETWORK    | 2 | 表示定位结果来自于网络定位技术。 |
 | INDOOR     | 3 | 表示定位结果来自于室内高精度定位技术。 |
 | RTK     | 4 | 表示定位结果来自于室外高精度定位技术。 |
+
+
+## SportsType<sup>18+</sup>
+
+运动类型。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| RUNNING   | 1 |  表示跑步。 |
+| WALKING    | 2 | 表示步行。 |
+| CYCLING     | 3 | 表示骑行。 |
 
 
 ## geoLocationManager.on('locationChange')
@@ -780,7 +796,7 @@ on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callb
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“cachedGnssLocationsChange”，表示GNSS缓存定位结果上报。 |
-  | request |  [CachedGnssLocationsRequest](#cachedgnsslocationsrequest) | 是 | GNSS缓存功能配置参数 |
+  | request |  [CachedGnssLocationsRequest](#cachedgnsslocationsrequest) | 是 | GNSS缓存功能配置参数。 |
   | callback | Callback&lt;Array&lt;[Location](#location)&gt;&gt; | 是 | 回调函数，返回GNSS缓存位置。 |
 
 **错误码**：
@@ -1540,7 +1556,7 @@ isLocationEnabled(): boolean
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | true：位置信息开关已开启<br/>false：位置信息开关已关闭 |
+  | boolean | true：位置信息开关已开启。<br/>false：位置信息开关已关闭。 |
 
 **错误码**：
 
@@ -1766,7 +1782,7 @@ isGeocoderAvailable(): boolean
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | true:地理编码与逆地理编码服务可用<br/>false：地理编码与逆地理编码服务不可用。 |
+  | boolean | true:地理编码与逆地理编码服务可用。<br/>false：地理编码与逆地理编码服务不可用。 |
 
 **错误码**：
 
