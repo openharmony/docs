@@ -172,7 +172,7 @@ No such device (it may have been disconnected).
 
 **错误描述**
 
-libusb未识别到正确设备信息。
+未识别到正确设备信息。
 
 **处理步骤**
 
@@ -186,7 +186,7 @@ Insufficient memory.
 
 **错误描述**
 
-libusb在做内存申请时无内存可用，libusb单次传输，数据大小最大为1KB。
+内存申请时无内存可用，单次传输，数据大小最大为1KB。
 
 **处理步骤**
 
@@ -199,8 +199,7 @@ libusb在做内存申请时无内存可用，libusb单次传输，数据大小�
 Other USB error. Possible causes:Unrecognized discard error code.
 
 **错误描述**
-
-libusb库无法识别的错误。
+系统无法识别的错误。
 
 **处理步骤**
 
@@ -228,7 +227,7 @@ Transmission I/O error.
 
 **错误描述**
 
-libusb实际读/写操作失败。
+I/O通道异常，实际读/写操作失败。
 
 **处理步骤**
 
