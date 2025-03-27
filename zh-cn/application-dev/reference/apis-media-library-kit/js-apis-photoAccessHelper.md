@@ -1180,6 +1180,7 @@ async function example(photoTypeNumber: number){
   console.info('getSupportedPhotoFormatsDemo.');
 
   try {
+    let outputText: string;
     if (photoTypeNumber !== 1 && photoTypeNumber !== 2) {
       outputText = 'Does not support querying formats other than images or videos';
       return;
@@ -4615,7 +4616,7 @@ map支持返回的信息：
 | 参数名  | 类型 | 必填 | 说明                                                                            |
 |------|---| ---- |-------------------------------------------------------------------------------|
 | data | T | 是   | 已就绪的图片资源数据。泛型，支持ArrayBuffer, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource), [MovingPhoto](#movingphoto12)和boolean四种数据类型。 |
-| map<sup>12+</sup> | Map<string, string> | 否   | 用于获取图片资源的额外信息，如图片质量。 |
+| map<sup>12+</sup> | Map<string, string> | 否   | 用于获取图片资源的额外信息，如图片质量。当前仅支持'quality'。 |
 
 **示例**
 ```ts
@@ -5114,7 +5115,7 @@ PhotoAsset的成员类型。
 | URI           | 'uri'                 | 文件uri。<br>注意：查询照片时，该字段仅支持使用[DataSharePredicates.equalTo](../apis-arkdata/js-apis-data-dataSharePredicates.md#equalto10)谓词。            |
 | PHOTO_TYPE    | 'media_type'           | 媒体文件类型。                                              |
 | DISPLAY_NAME  | 'display_name'        | 显示名字。                                                   |
-| SIZE          | 'size'                | 文件大小（单位：字节）。                                                   |
+| SIZE          | 'size'                | 文件大小（单位：字节）。动态照片的size包括图片和视频的总大小。    |
 | DATE_ADDED    | 'date_added'          | 文件创建时的Unix时间戳（单位：秒）。             |
 | DATE_MODIFIED | 'date_modified'       | 文件修改时的Unix时间戳（单位：秒）。修改文件名不会改变此值，当文件内容发生修改时才会更新。 |
 | DURATION      | 'duration'            | 持续时间（单位：毫秒）。                                    |
@@ -5443,7 +5444,7 @@ async function example() {
 
 | 名称                   | 类型                | 必填 | 说明                                              |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
-| title | string | 否  | 图片或者视频的标题。|
+| title | string | 否  | 图片或者视频的标题，不传入时由系统生成。|
 | fileNameExtension | string | 是  | 文件扩展名，例如'jpg'。|
 | photoType | [PhotoType](#phototype) | 是  | 创建的文件类型，IMAGE或者VIDEO。|
 | subtype | [PhotoSubtype](#photosubtype12) | 否  | 图片或者视频的文件子类型，当前仅支持DEFAULT。|
