@@ -79,6 +79,8 @@ Read [AVTranscoder](../../reference/apis-media-kit/js-apis-media.md#avtranscoder
    > **NOTE**
    >
    > Only transcoding-related parameters are set in the input parameter **avConfig** of the **prepare()** API.
+   >
+   > Only the supported [transcoding formats](media-kit-intro.md#avtranscoder) can be used due to the limited demuxing, muxing, encoding, and decoding capabilities.
 
    ```ts
    import { media } from '@kit.MediaKit';
