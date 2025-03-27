@@ -105,7 +105,7 @@ setSecurityLabel(path:string, type:DataLevel, callback: AsyncCallback&lt;void&gt
 | --------- | ------------------------- | ---- | -------------------------------------------- |
 | path      | string                    | 是   | 文件路径。                                     |
 | type      | [DataLevel](#datalevel)   | 是   | 文件等级属性，只支持"s0","s1","s2","s3","s4"。 |
-| callback  | AsyncCallback&lt;void&gt; | 是   | 是否设置数据标签之后的回调。                   |
+| callback  | AsyncCallback&lt;void&gt; | 是   | 设置数据标签之后的回调。                   |
 
 **错误码：**
 
