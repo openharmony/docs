@@ -172,7 +172,7 @@ Sets breakpoints for the responsive grid container.
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### alignItems<sup>10+</sup>
 
@@ -214,6 +214,8 @@ Triggered when the breakpoint changes.
 |breakpoints| string |No|Breakpoint change.<br> The value can be **"xs"**, **"sm"**, **"md"**, **"lg"**, **"xl"**, or **"xxl"**.|
 
 ## Example
+
+This example shows the basic usage of the responsive grid layout.
 
 ```ts
 // xxx.ets

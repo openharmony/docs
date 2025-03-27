@@ -60,7 +60,7 @@ AtomicServiceNavigation({
 | navDestinationBuilder | [NavDestinationBuilder](#navdestinationbuilder) | 否 | @BuilderParam | 创建[NavDestination](ts-basic-components-navdestination.md)组件所需要的Builder数据。 |
 | navBarWidthRange | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 否 | @Prop |设置导航栏最小和最大宽度（双栏模式下生效）。|
 | minContentWidth | [Dimension](ts-types.md#dimension10) | 否 | @Prop | 设置导航栏内容区最小宽度（双栏模式下生效）。|
-| sideBarOptions<sup>18+</sup> | [sideBarOptions](#sidebaroptions18) | 否 | @Prop | 侧边栏的功能选项。|
+| sideBarOptions<sup>18+</sup> | [SideBarOptions](#sidebaroptions18) | 否 | @Prop | 侧边栏的功能选项。|
 | sideBarContent<sup>18+</sup> | Callback\<void\> | 否 | @BuilderParam | 侧边栏的内容。|
 | menus<sup>18+</sup> | [CustomBuilder](ts-types.md#custombuilder8) \| Array\<[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem)\> | 否 | @BuilderParam | 宽屏场景下用户自定义插入的布局样式。默认为空，不显示任何样式。 |
 | stateChangeCallback | Callback\<boolean\> | 否 | - | 导航栏显示状态切换时触发该回调。|
@@ -168,7 +168,7 @@ type NavDestinationBuilder = (name: string, param?: Object) => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | --------------- | ------ | ---- | ---------- |
 | sideBarBackground | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置侧边栏的背景颜色。默认为$r('sys.color.ohos_id_color_sub_background')。 |
 | onChange | Callback\<boolean\> | 否 | 侧边栏显示隐藏回调。 |

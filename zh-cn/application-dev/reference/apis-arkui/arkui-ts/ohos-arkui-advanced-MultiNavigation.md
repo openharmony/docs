@@ -22,7 +22,7 @@ import { MultiNavigation, MultiNavPathStack, SplitPolicy } from '@kit.ArkUI';
 
 ## MultiNavigation
 
-MultiNavigation(navDestination: navDestination, multiStack: MultiNavPathStack, onNavigationModeChange?: OnNavigationModeChangeCallback, onHomeShowOnTop?: OnHomeShowOnTopCallback)
+MultiNavigation({navDestination: navDestination, multiStack: MultiNavPathStack, onNavigationModeChange?: OnNavigationModeChangeCallback, onHomeShowOnTop?: OnHomeShowOnTopCallback})
 
 创建并初始化MultiNavigation组件。
 
@@ -33,8 +33,6 @@ MultiNavigation组件遵循默认的左起右清栈规则，这意味着从左�
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
 
 |   名称   |          类型          | 必填  | 装饰器类型 | 说明 |
 |:---------:|:----------------------:|-----| ------ |-----------|
@@ -70,7 +68,7 @@ pushPath(info: NavPathInfo, animated?: boolean, policy?: SplitPolicy): void
 |  参数名   |                             类型                             | 必填 | 说明                                       |
 | :------: | :----------------------------------------------------------: | :--: | ----------------------------------------- |
 |   info   | [NavPathInfo](./ts-basic-components-navigation.md#navpathinfo10) |  是  | NavDestination页面的信息。                |
-| animated |                           boolean                            |  否  | 是否支持转场动画，默认值：true。          |
+| animated |                           boolean                            |  否  | 是否支持转场动画，<br/>默认值：true。<br/>true: 支持转场动画。<br/>false: 不支持转场动画。          |
 |  policy  |               [SplitPolicy](#splitpolicy枚举说明)                |  否  | 当前入栈页面的策略，默认值：DETAIL_PAGE。 |
 
 ### pushPath
@@ -107,7 +105,7 @@ pushPathByName(name: string, param: Object, animated?: boolean, policy?: SplitPo
 |:---------------------:|:------------:|:------:| --------------------- |
 |         name          |    string    |   是    | NavDestination页面名称。   |
 |         param         |   Object    |   是    | NavDestination页面详细参数。 |
-|       animated        |   boolean    |   否    | 是否支持转场动画，默认值：true。 |
+|       animated        |   boolean    |   否    | 是否支持转场动画，<br/>默认值：true。<br/>true: 支持转场动画。<br/>false: 不支持转场动画。 |
 |        policy         | [SplitPolicy](#splitpolicy枚举说明)  |   否    | 当前入栈页面的策略，默认值：DETAIL_PAGE       |
 
 ### pushPathByName
@@ -127,7 +125,7 @@ pushPathByName(name: string, param: Object, onPop?: base.Callback\<PopInfo>, ani
 |   name    |                            string                             |   是    | NavDestination页面名称。   |
 |   param   |                            Object                             |   是    | NavDestination页面详细参数。 |
 |   onPop   | base.[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[PopInfo](ts-basic-components-navigation.md#popinfo11)>  |   否    | Callback回调，用于页面出栈时触发该回调处理返回结果。 |
-| animated  |                            boolean                            |   否    | 是否支持转场动画，默认值：true。 |
+| animated  |                            boolean                            |   否    | 是否支持转场动画，<br/>默认值：true。<br/>true: 支持转场动画。<br/>false: 不支持转场动画。 |
 |  policy   |                          [SplitPolicy](#splitpolicy枚举说明)                          |   否    | 当前入栈页面的策略，默认值：DETAIL_PAGE       |
 
 ### replacePath
@@ -145,7 +143,7 @@ replacePath(info: NavPathInfo, animated?: boolean): void
 |  参数名   |             类型                | 必填 | 说明           |
 | :------: | :----------------------------------------------------------: | :--: | -------------------------------- |
 |   info   | [NavPathInfo](./ts-basic-components-navigation.md#navpathinfo10) |  是  | NavDestination页面的信息。       |
-| animated |                           boolean                            |  否  | 是否支持转场动画，默认值：true。 |
+| animated |                           boolean                            |  否  | 是否支持转场动画，<br/>默认值：true。<br/>true: 支持转场动画。<br/>false: 不支持转场动画。 |
 
 ### replacePath
 
@@ -180,7 +178,7 @@ replacePathByName(name: string, param: Object, animated?: boolean): void
 |:--------:|:---------:|:------:|----------------------|
 |   name   |  string   |   是    | NavDestination页面名称。  |
 |  param   |  Object   |   是    | NavDestination页面详细参数。 |
-| animated |  boolean  |   否    | 是否支持转场动画，默认值：true。   |
+| animated |  boolean  |   否    | 是否支持转场动画，<br/>默认值：true。<br/>true: 支持转场动画。<br/>false: 不支持转场动画。   |
 
 ### removeByIndexes
 
@@ -196,7 +194,7 @@ removeByIndexes(indexes: Array<number\>): number
 
 |  参数名   |             类型                | 必填 | 说明           |
 |:--------:|:---------------:|:------:| --------------------- |
-| indexes  | Array<number\>  |   是    | 待删除NavDestination页面的索引值数组。   |
+| indexes  | Array<number\>  |   是    | 待删除NavDestination页面的索引值数组。<br/>number类型的取值范围：[0, +∞)。 |
 
 **返回值：**
 
@@ -244,7 +242,7 @@ pop(animated?: boolean): NavPathInfo | undefined
 
 |  参数名   |             类型                | 必填 | 说明           |
 |:-----------:|:--------:|:------:| -------------------- |
-|  animated   | boolean  |   否    | 是否支持转场动画，默认值：true。 |
+|  animated   | boolean  |   否    | 是否支持转场动画，<br/>默认值：true。<br/>true: 支持转场动画。<br/>false: 不支持转场动画。 |
 
 **返回值：**
 
@@ -271,7 +269,7 @@ pop(result?: Object, animated?: boolean): NavPathInfo | undefined
 |  参数名   |             类型                | 必填 | 说明           |
 |:---------:|:-------------------------------:|:------:| -------------------- |
 |  result   |             Object              |   否    | 页面自定义处理结果。 |
-| animated  |             boolean             |   否    | 是否支持转场动画，默认值：true。 |
+| animated  |             boolean             |   否    | 是否支持转场动画，<br/>默认值：true。<br/>true: 支持转场动画。<br/>false: 不支持转场动画。 |
 
 **返回值：**
 
@@ -294,13 +292,13 @@ popToName(name: string, animated?: boolean): number
 |  参数名   |             类型                | 必填 | 说明           |
 |:----------:|:--------:|:------:| ------------------- |
 |    name    |  string  |   是    | NavDestination页面名称。 |
-|  animated  | boolean  |   否    | 是否支持转场动画，默认值：true。 |
+|  animated  | boolean  |   否    | 是否支持转场动画，<br/>默认值：true。<br/>true: 支持转场动画。<br/>false: 不支持转场动画。 |
 
 **返回值：**
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 如果栈中存在名为name的NavDestination页面，则返回由栈底开始第一个名为name的NavDestination页面的索引，否则返回-1。 |
+| number | 如果栈中存在名为name的NavDestination页面，则返回由栈底开始第一个名为name的NavDestination页面的索引，否则返回-1。<br/>取值范围：[-1, +∞)。 |
 
 ### popToName
 
@@ -318,7 +316,7 @@ popToName(name: string, result: Object, animated?: boolean): number
 |:---------:|:--------:|:------:| ------------------- |
 |   name    |  string  |   是    | NavDestination页面名称。 |
 |  result   |  Object  |   是    | 页面自定义处理结果。 |
-| animated  | boolean  |   否    | 是否支持转场动画，默认值：true。 |
+| animated  | boolean  |   否    | 是否支持转场动画，<br/>默认值：true。<br/>true: 支持转场动画。<br/>false: 不支持转场动画。 |
 
 **返回值：**
 
@@ -340,8 +338,8 @@ popToIndex(index: number, animated?: boolean): void
 
 |  参数名   |             类型                | 必填 | 说明           |
 |:------------:|:--------:|:------:| ---------------------- |
-|    index     |  number  |   是    | NavDestination页面的位置索引。 |
-|   animated   | boolean  |   否    | 是否支持转场动画，默认值：true。 |
+|    index     |  number  |   是    | NavDestination页面的位置索引。<br/>取值范围：[0, +∞)。 |
+|   animated   | boolean  |   否    | 是否支持转场动画，<br/>默认值：true。<br/>true: 支持转场动画。<br/>false: 不支持转场动画。 |
 
 ### popToIndex
 
@@ -359,7 +357,7 @@ popToIndex(index: number, result: Object, animated?: boolean): void
 | ----- | ------ | ---- | ---------------------- |
 | index | number | 是    | NavDestination页面的位置索引。 |
 | result | Object | 是 | 页面自定义处理结果。 |
-| animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
+| animated | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true: 支持转场动画。<br/>false: 不支持转场动画。 |
 
 ### moveToTop
 
@@ -390,7 +388,7 @@ moveToTop(name: string, animated?: boolean): number
 |  参数名   |             类型                | 必填 | 说明           |
 |:---------:|:--------:|:------:| ------------------- |
 |   name    |  string  |   是    | NavDestination页面名称。 |
-| animated  | boolean  |   否    | 是否支持转场动画，默认值：true。 |
+| animated  | boolean  |   否    | 是否支持转场动画，<br/>默认值：true。<br/>true: 支持转场动画。<br/>false: 不支持转场动画。 |
 
 **返回值：**
 
@@ -426,8 +424,8 @@ moveIndexToTop(index: number, animated?: boolean): void
 
 |  参数名   |             类型                | 必填 | 说明           |
 |:---------:|:-------:|:------:| ------------------- |
-|   index    | number  |   是    | NavDestination页面的位置索引。 |
-| animated  | boolean |   否    | 是否支持转场动画，默认值：true。 |
+|   index    | number  |   是    | NavDestination页面的位置索引。<br/>取值范围：[0, +∞)。 |
+| animated  | boolean |   否    | 是否支持转场动画，<br/>默认值：true。<br/>true: 支持转场动画。<br/>false: 不支持转场动画。 |
 
 ### clear
 
@@ -447,7 +445,7 @@ clear(animated?: boolean): void
 
 |  参数名   |             类型                | 必填 | 说明           |
 |:---------:|:--------:|:------:| ---------------------- |
-| animated  | boolean  |   否    | 是否支持转场动画，默认值：true。 |
+| animated  | boolean  |   否    | 是否支持转场动画，<br/>默认值：true。<br/>true: 支持转场动画。<br/>false: 不支持转场动画。 |
 
 ### getAllPathName
 
@@ -479,7 +477,7 @@ getParamByIndex(index: number): Object | undefined
 
 |  参数名   |             类型                | 必填 | 说明           |
 |:-------:|:--------:|:------:| ---------------------- |
-|  index  |  number  |   是    | NavDestination页面的位置索引。 |
+|  index  |  number  |   是    | NavDestination页面的位置索引。<br/>取值范围：[0, +∞)。 |
 
 **返回值：**
 
@@ -530,7 +528,7 @@ getIndexByName(name: string): Array<number\>
 
 | 类型             | 说明                                |
 | -------------- | --------------------------------- |
-| Array<number\> | 返回全部名为name的NavDestination页面的位置索引。 |
+| Array<number\> | 返回全部名为name的NavDestination页面的位置索引。<br/>number类型的取值范围：[0, +∞)。 |
 
 ### size
 
@@ -546,7 +544,7 @@ size(): number
 
 | 类型     | 说明     |
 | ------ | ------ |
-| number | 返回栈大小。 |
+| number | 返回栈大小。<br/>取值范围：[0, +∞)。 |
 
 ### disableAnimation
 
@@ -562,7 +560,7 @@ disableAnimation(disable: boolean): void
 
 |  参数名   |             类型                | 必填 | 说明           |
 | ----- | ------ | ---- | ---------------------- |
-| disable | boolean | 是    | 是否关闭转场动画，默认值：false。 |
+| disable | boolean | 是    | 是否关闭转场动画，<br/>默认值：false。<br/>true: 关闭转场动画。<br/>false: 不关闭转场动画。|
 
 ### switchFullScreenState
 
@@ -584,7 +582,7 @@ switchFullScreenState(isFullScreen?: boolean): boolean
 
 |    类型    |     说明     |
 |:--------:|:----------:|
-| boolean  |  切换成功或失败。  |
+| boolean  |  切换成功或失败。<br/>true: 切换成功。<br/>false: 切换失败。  |
 
 ### setHomeWidthRange
 
@@ -622,7 +620,7 @@ keepBottomPage(keepBottom: boolean): void
 
 |  参数名   |             类型                | 必填 | 说明           |
 |:-------------:|:--------:|:-----:|--------------------|
-| keepBottom  | boolean  |   是   | 是否保留栈底页面，默认为FALSE。 |
+| keepBottom  | boolean  |   是   | 是否保留栈底页面，<br/>默认值：false。<br/>true: 保留栈底页面。<br/>false: 不保留栈底页面。 |
 
 ### setPlaceholderPage
 

@@ -2640,7 +2640,7 @@ isEdited(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是    | Callback对象，返回图片或视频资源是否被编辑过。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是    | Callback对象，返回图片或视频资源是否被编辑过。true为被编辑过，false为没有被编辑过，默认是false。 |
 
 **错误码：**
 
@@ -2701,7 +2701,7 @@ isEdited(): Promise&lt;boolean&gt;
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-|Promise&lt;boolean&gt; | Promise对象，返回图片或视频资源是否被编辑过。 |
+|Promise&lt;boolean&gt; | Promise对象，返回图片或视频资源是否被编辑过。true为被编辑过，false为没有被编辑过，默认是false。 |
 
 
 **错误码：**
@@ -7257,6 +7257,7 @@ async function example() {
 | ----- |  ---- |  ---- |
 | PHOTO_PROXY |  3 |  表示照片代理资源。**系统接口**：此接口为系统接口。 |
 | PRIVATE_MOVING_PHOTO_RESOURCE<sup>13+</sup> |  4 |  表示私有动态照片资源。**系统接口**：此接口为系统接口。 |
+| PRIVATE_MOVING_PHOTO_METADATA<sup>18+</sup> |  5 |  表示私有动态照片元数据资源。**系统接口**：此接口为系统接口。 |
 
 ## DefaultChangeUri
 

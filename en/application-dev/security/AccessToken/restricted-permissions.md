@@ -502,3 +502,31 @@ With this permission, the application can persist the virtual random address of 
 **Authorization mode**: system_grant
 
 **Valid since**: 16
+
+### ohos.permission.ACCESS_VIRTUAL_SCREEN
+
+Allows an application to manage virtual screens.
+
+With this permission, the application can call APIs to perform virtual screen management, including creating, using, and destroying a virtual screen.
+
+<!--RP37--><!--RP37End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 16
+
+### ohos.permission.MANAGE_APN_SETTING
+
+Allows an application to read and set APN information.
+
+You can request this permission when the application needs to use the APN information.
+
+<!--RP38--><!--RP38End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 16

@@ -67,7 +67,7 @@ enableLoading(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                           |
 | ------ | ------- | ---- | ---------------------------------------------- |
-| value  | boolean | 是   | LoadingProgress动画是否显示。<br/>默认值：true |
+| value  | boolean | 是   | LoadingProgress动画是否显示。<br/>默认值：true，true表示显示LoadingProgress动画，false表示不显示LoadingProgress动画。 |
 
 ### contentModifier<sup>12+</sup>
 
@@ -99,7 +99,7 @@ contentModifier(modifier: ContentModifier\<LoadingProgressConfiguration>)
 
 | 名称  | 类型    |    只读    |    可选    |  说明              |
 | ------ | ------ | ------ |-------------------------------- |-------------------------------- |
-| enableLoading | boolean | 否 | 否 |LoadingProgress动画是否显示。<br/>默认值：true |
+| enableLoading | boolean | 否 | 否 |LoadingProgress动画是否显示。<br/>默认值：true，true表示显示LoadingProgress动画，false表示不显示LoadingProgress动画。 |
 
 ## LoadingProgressStyle<sup>(deprecated)</sup>枚举说明
 

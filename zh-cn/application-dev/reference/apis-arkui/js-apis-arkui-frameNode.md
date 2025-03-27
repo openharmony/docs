@@ -771,7 +771,7 @@ getOpacity(): number
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| number | 节点的不透明度。 |
+| number | 节点的不透明度。范围是[0, 1]，值越大透明度越低。 |
 
 **示例：**
 
@@ -1536,6 +1536,34 @@ getCrossLanguageOptions(): CrossLanguageOptions
 **示例：**
 
 请参考[节点操作示例](#节点操作示例)。
+
+### recycle<sup>18+</sup>
+
+recycle(): void
+
+子组件的回收方法。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+
+请参考[节点复用回收使用示例](#节点复用回收使用示例)。
+
+### reuse<sup>18+</sup>
+
+reuse(): void
+
+子组件的复用方法。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+
+请参考[节点复用回收使用示例](#节点复用回收使用示例)。
 
 ## TypedFrameNode<sup>12+</sup>
 
@@ -5254,6 +5282,104 @@ struct ListNodeTest {
       }
     }.borderWidth(1)
     .width("100%")
+  }
+}
+
+```
+
+## 节点复用回收使用示例
+
+```ts
+import { NodeController, BuilderNode, Size, FrameNode, UIContext } from '@kit.ArkUI';
+
+class Params {
+  text: string = "this is a text"
+}
+
+@Builder
+function buttonBuilder(params: Params) {
+  Column() {
+    Button(params.text)
+      .fontSize(20)
+      .borderRadius(8)
+      .borderWidth(2)
+      .backgroundColor(Color.Grey)
+  }
+}
+
+class MyNodeController extends NodeController {
+  private buttonNode: BuilderNode<[Params]> | null = null;
+  private rootNode: FrameNode | null = null;
+  private wrapBuilder: WrappedBuilder<[Params]> = wrapBuilder(buttonBuilder);
+
+  makeNode(uiContext: UIContext): FrameNode {
+    if (this.buttonNode == null) {
+      this.buttonNode = new BuilderNode(uiContext);
+      this.rootNode = new FrameNode(uiContext);
+      let childNode1: FrameNode = new FrameNode(uiContext);
+      this.rootNode.appendChild(childNode1);
+      this.buttonNode.build(this.wrapBuilder, { text: "This is a Button" });
+    }
+    return this.buttonNode!.getFrameNode()!;
+  }
+
+  onAttach(): void {
+    console.log("Cmw myButton on attach");
+  }
+
+  onDetach(): void {
+    console.log("Cmw myButton on detach");
+  }
+
+  //  onBind时复用
+  onBind(containerId: number): void {
+    this.rootNode?.reuse();
+    console.log("Cmw myButton reuse");
+  }
+
+  //  onUnbind时回收
+  onUnbind(containerId: number): void {
+    this.rootNode?.recycle();
+    console.log("Cmw myButton recycle");
+  }
+
+  getButtonNode(): BuilderNode<[Params]> | null {
+    return this.buttonNode;
+  }
+
+  getFrameNode(): FrameNode | null {
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State buttonShow: boolean = true
+  @State buttonIndex: number = 0
+  public buttonController: MyNodeController = new MyNodeController();
+  private buttonNull: null = null;
+  private buttonControllerArray: Array<MyNodeController | null> = [this.buttonController, this.buttonNull]
+
+  build() {
+    Column() {
+      Row() {
+        Button("Bind/Unbind")
+          .onClick(() => {
+            this.buttonIndex++;
+          }).margin(5)
+        Button("onAttach/onDetach")
+          .onClick(() => {
+            this.buttonShow = !this.buttonShow
+          }).margin(5)
+      }
+      if (this.buttonShow) {
+        NodeContainer(this.buttonControllerArray[this.buttonIndex % this.buttonControllerArray.length])
+      }
+    }
+    .padding({ left: 35, right: 35 })
+    .width("100%")
+    .height("100%")
   }
 }
 

@@ -200,6 +200,8 @@ ToolBarV2ItemImage的构造函数。
 
 ## ToolBarV2ItemIconType
 
+type ToolBarV2ItemIconType = ToolBarV2ItemImage | ToolBarV2SymbolGlyph
+
 工具栏子项图标内容的联合类型。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
@@ -333,7 +335,7 @@ ToolBarV2SymbolGlyph定义Symbol图标的属性。
 
 | 名称        | 类型                                                                   | 必填 | 装饰器类型  | 说明                                                                                   |
 | :-------- | :------------------------------------------------------------------- | :- | :----- | :----------------------------------------------------------------------------------- |
-| normal    | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否  | @Trace | 工具栏symbol图标普通态样式。<br />默认值：fontColor：\$r('sys.color.icon\_primary')，fontSize：24vp。   |
+| normal    | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 是  | @Trace | 工具栏symbol图标普通态样式。   |
 | activated | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否  | @Trace | 工具栏symbol图标激活态样式。<br />默认值：fontColor：\$r('sys.color.icon\_emphasize')，fontSize：24vp。 |
 
 ### constructor
@@ -360,7 +362,7 @@ ToolBarV2SymbolGlyphOptions定义图标的属性。
 
 | 名称        | 类型                                                                   | 必填 | 说明                                                                                   |
 | --------- | -------------------------------------------------------------------- | -- | ------------------------------------------------------------------------------------ |
-| normal    | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否  | 工具栏symbol图标普通态样式。<br />默认值：fontColor：\$r('sys.color.icon\_primary')，fontSize：24vp。   |
+| normal    | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 是  | 工具栏symbol图标普通态样式。   |
 | activated | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否  | 工具栏symbol图标激活态样式。<br />默认值：fontColor：\$r('sys.color.icon\_emphasize')，fontSize：24vp。 |
 
 ## 示例

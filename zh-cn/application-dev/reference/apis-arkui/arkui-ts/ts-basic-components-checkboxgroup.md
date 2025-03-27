@@ -53,6 +53,7 @@ selectAll(value: boolean)
 设置是否全选。若同组的[Checkbox](ts-basic-components-checkbox.md)显式设置了select属性，则Checkbox的优先级高。
 
 从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+从API version 18开始，该属性支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -62,9 +63,9 @@ selectAll(value: boolean)
 
 **参数：** 
 
-| 参数名 | 类型    | 必填 | 说明                         |
-| ------ | ------- | ---- | ---------------------------- |
-| value  | boolean | 是   | 是否全选。<br/>默认值：false |
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 是否全选。<br/>默认值：false<br/>值为true时，多选框群组都被选中。值为false时，多选框群组都不被选中。 |
 
 ### selectAll<sup>18+</sup>
 
@@ -73,6 +74,7 @@ selectAll(isAllSelected: Optional\<boolean>)
 设置是否全选。若同组的[Checkbox](ts-basic-components-checkbox.md)显式设置了select属性，则Checkbox的优先级高。与[selectAll](#selectall)相比，isAllSelected参数新增了对undefined类型的支持。
 
 该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+该属性支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -84,7 +86,7 @@ selectAll(isAllSelected: Optional\<boolean>)
 
 | 参数名        | 类型                                                         | 必填 | 说明                                                         |
 | ------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| isAllSelected | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否全选。<br/>当isAllSelected的值为undefined时，默认值：false |
+| isAllSelected | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否全选。<br/>当isAllSelected的值为undefined时取默认值false。<br/>值为true时，多选框群组都被选中。值为false时，多选框群组都不被选中。 |
 
 ### selectedColor
 

@@ -87,7 +87,7 @@ loop为false时，自动轮播到最后一页时停止轮播。手势切换后�
 
 | 参数名 | 类型    | 必填 | 说明                                   |
 | ------ | ------- | ---- | -------------------------------------- |
-| value  | boolean | 是   | 子组件是否自动播放。<br/>默认值：false |
+| value  | boolean | 是   | 子组件是否自动播放。<br/>默认值：false，不自动轮播。 |
 
 ### autoPlay<sup>18+</sup>
 
@@ -107,7 +107,7 @@ autoPlay(autoPlay: boolean, options: AutoPlayOptions)
 
 | 参数名 | 类型    | 必填 | 说明                                   |
 | ------ | ------- | ---- | -------------------------------------- |
-| autoPlay  | boolean | 是   | 子组件是否自动播放。<br/>默认值：false |
+| autoPlay  | boolean | 是   | 子组件是否自动播放。<br/>默认值：false，不自动轮播。 |
 | options  | [AutoPlayOptions](#autoplayoptions18对象说明)&nbsp; | 是   | 配置手指或者鼠标等按下屏幕时子组件是否停止自动播放。当stopWhenTouched设置为true时，多指按下场景中任意一个手指抬起后，将自动继续播放。<br/>默认值：{ stopWhenTouched: true }，停止自动播放。 |
 
 ### interval
@@ -294,7 +294,7 @@ cachedCount(count: number, isShown: boolean)
 | 参数名 | 类型   | 必填 | 说明                             |
 | ------ | ------ | ---- | -------------------------------- |
 | count  | number | 是   | 预加载子组件个数。<br/>默认值：1<br/>取值范围：[0, +∞)，设置小于0的值时，按照默认值处理。 |
-| isShown  | boolean | 是   | 预加载范围内的节点是否全部进行绘制，不下渲染树。<br/>默认值：false |
+| isShown  | boolean | 是   | 预加载范围内的节点是否进行绘制，不下渲染树。<br/>默认值：false，预加载范围内的节点不进行绘制。 |
 
 ### disableSwipe<sup>8+</sup>
 
@@ -503,6 +503,8 @@ pageFlipMode(mode: Optional\<PageFlipMode>)
 
 设置鼠标滚轮翻页模式。
 
+**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -674,6 +676,8 @@ preloadItems(indices: Optional\<Array\<number>>): Promise\<void>
 
 与[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)和自定义组件结合使用时，由于[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)只会保留缓存范围内的自定义组件，在缓存范围外的会被删除，因此需要开发者保证通过该接口预加载的节点index在缓存范围内。
 
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -702,6 +706,8 @@ preloadItems(indices: Optional\<Array\<number>>): Promise\<void>
 ## SwiperAnimationMode<sup>15+</sup>枚举说明
 
 Swiper组件翻页至指定页面的动效模式。
+
+**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -1274,7 +1280,10 @@ DigitIndicator的构造函数。
 | minSize | [VP](ts-types.md#vp10) | 是     | 设置元素显示最小宽度。<br/>默认值：0 |
 
 ## AutoPlayOptions<sup>18+</sup>对象说明
+
 自动播放属性。
+
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -1282,7 +1291,7 @@ DigitIndicator的构造函数。
 
 | 名称              | 类型                                     | 必填  | 说明                                     |
 | ---------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| stopWhenTouched   | boolean                                  | 是    | 在按下事件中配置子组件是否立即停止播放。<br/>true |
+| stopWhenTouched   | boolean                                  | 是    | 在按下事件中配置子组件是否立即停止播放。<br/>默认值：true |
 
 ## 事件
 
@@ -1522,8 +1531,6 @@ type OnSwiperAnimationEndCallback = (index: number, extraInfo: SwiperAnimationEv
 type OnSwiperGestureSwipeCallback = (index: number, extraInfo: SwiperAnimationEvent) => void
 
 在页面跟手滑动过程中，逐帧触发的回调。
-
-**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 

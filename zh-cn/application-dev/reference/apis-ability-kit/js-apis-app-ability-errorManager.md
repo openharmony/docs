@@ -108,7 +108,7 @@ on(type: 'globalErrorOccurred', observer: GlobalObserver): void
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 16000003 | The specified ID does not exist. |
+| 16200001 | If the caller is invalid. |
 
 **示例：**
     
@@ -148,7 +148,7 @@ off(type: 'globalErrorOccurred', observer?: GlobalObserver): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 填写'globalErrorOccurred'，表示错误观察器。 |
-| observer | [GlobalObserver](js-apis-inner-application-GlobalObserver.md) | 是 | 由on方法注册的callback。 |
+| observer | [GlobalObserver](js-apis-inner-application-GlobalObserver.md) | 否 | 由on方法注册的callback。 |
 
 **返回值：**
 
@@ -163,7 +163,8 @@ off(type: 'globalErrorOccurred', observer?: GlobalObserver): void
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 16000003 | The specified ID does not exist. |
+| 16200001 | If the caller is invalid. |
+| 16300004 | If the observer does not exist |
 
 **示例：**
     
@@ -520,7 +521,7 @@ off(type: 'globalUnhandledRejectionDetected', observer?: GlobalObserver): void
 | 参数名                   | 类型                              | 必填 | 说明                                           |
 |-----------------------|---------------------------------|----|----------------------------------------------|
 | type                  | string                          | 是  | 填写'globalUnhandledRejectionDetected'，表示注册被拒绝promise监听器。 |
-| observer              | [GlobalObserver](js-apis-inner-application-GlobalObserver.md) | 是  | 由on接口注册的被拒绝promise的callback。                        |
+| observer              | [GlobalObserver](js-apis-inner-application-GlobalObserver.md) | 否  | 由on接口注册的被拒绝promise的callback。                        |
 
 **错误码**：
 

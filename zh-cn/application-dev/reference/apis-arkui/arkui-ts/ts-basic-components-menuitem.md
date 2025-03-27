@@ -50,6 +50,7 @@ selected(value: boolean)
 设置菜单项是否选中。
 
 从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+从API version 18开始，该参数支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -57,9 +58,9 @@ selected(value: boolean)
 
 **参数：** 
 
-| 参数名 | 类型    | 必填 | 说明                                |
-| ------ | ------- | ---- | ----------------------------------- |
-| value  | boolean | 是   | 菜单项是否选中。<br />默认值：false |
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 菜单项是否选中。<br />默认值：false<br/>值为true时，菜单项被选中。值为false时，菜单项不被选中。 |
 
 ### selectIcon
 
