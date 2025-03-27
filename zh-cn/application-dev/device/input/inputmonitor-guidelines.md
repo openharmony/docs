@@ -33,7 +33,7 @@ import { inputMonitor } from '@kit.InputKit';
 
 ## 开发步骤
 
-当应用需要根据鼠标按键按下状态变化样式时。调用[on](../../reference/apis-input-kit/js-apis-inputmonitor-sys.md#inputmonitoronmouse9)监听鼠标按键事件，调用[off](../../reference/apis-input-kit/js-apis-inputmonitor-sys.md#inputmonitoroffmouse9)取消监听鼠标按键事件.
+当应用需要根据鼠标按键按下状态变化样式时。调用[on](../../reference/apis-input-kit/js-apis-inputmonitor-sys.md#inputmonitoronmouse9)监听鼠标按键事件，调用[off](../../reference/apis-input-kit/js-apis-inputmonitor-sys.md#inputmonitoroffmouse9)取消监听鼠标按键事件。
 
 ```js
 import { MouseEvent } from '@kit.InputKit';
