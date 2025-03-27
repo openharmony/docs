@@ -69,7 +69,7 @@ Callback invoked to return the collaboration result in multi-device collaboratio
 
 | Name| Description|
 | ---------- | ---- |
-| [AbilityConstant.CollaborateResult](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#collaborateresult) | Collaboration result, that is, whether the target application accepts the collaboration request.|
+| [AbilityConstant.CollaborateResult](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md) | Collaboration result, that is, whether the target application accepts the collaboration request.|
 
 **Example**
 

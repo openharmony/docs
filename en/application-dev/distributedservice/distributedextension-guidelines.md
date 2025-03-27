@@ -184,3 +184,5 @@ During service collaboration, DMS keeps listening for the collaboration lifecycl
 **Solution**
 
 Resend the message to restart the collaboration.
+
+<!--no_check-->
