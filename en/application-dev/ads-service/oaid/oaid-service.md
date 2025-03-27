@@ -1,8 +1,13 @@
 # OAID Service
 
-## When to Use
+##  
 
-An Open Anonymous Device Identifier (OAID) is a non-permanent device identifier. The OAID service is useful for media application developers, ad platforms, and tracking platforms alike. Specifically, it provides personalized ads for users while protecting their personal data privacy, and also interact with third-party tracking platforms to provide conversion attribution analysis for advertisers.
+
+### When to Use
+
+An Open Anonymous Device Identifier (OAID) is a non-permanent device identifier.
+
+The OAID service is useful for media application developers, ad platforms, and tracking platforms alike. Specifically, it provides personalized ads for users while protecting their personal data privacy, and also interact with third-party tracking platforms to provide conversion attribution analysis for advertisers.
 
 An OAID is a 32-bit Universally Unique Identifier (UUID) generated using a Huawei algorithm. The format is xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.
 
@@ -23,18 +28,14 @@ The OAID changes in the following scenarios:
 | <!--Del-->[<!--DelEnd-->getOAID<!--Del-->](../../reference/apis-ads-kit/js-apis-oaid.md#identifiergetoaid-1)<!--DelEnd-->(callback:&nbsp;AsyncCallback&lt;string&gt;):&nbsp; void | Obtains an OAID. This API uses an asynchronous callback to return the result.|
 
 > **NOTE**
-> To call **getOAID()**, the application must request the permission **ohos.permission.APP_TRACKING_CONSENT** and user authorization. Three situations are possible:
->
-> - If the application has configured the permission **ohos.permission.APP_TRACKING_CONSENT** and the permission is allowed, the OAID is returned.
-> - If the application has configured the permission **ohos.permission.APP_TRACKING_CONSENT** and the permission is disallowed, 00000000-0000-0000-0000-000000000000 is returned.
-> - If the application has not configured the permission **ohos.permission.APP_TRACKING_CONSENT**, 00000000-0000-0000-0000-000000000000 is returned.
+> To call **getOAID()**, the application must request the permission **ohos.permission.APP_TRACKING_CONSENT** and user authorization. Three situations are possible:<br>
+> 1. If the application has configured the permission **ohos.permission.APP_TRACKING_CONSENT** and the permission is allowed, the OAID is returned.<br>
+> 2. If the application has configured the permission **ohos.permission.APP_TRACKING_CONSENT** and the permission is disallowed, 00000000-0000-0000-0000-000000000000 is returned.<br>
+> 3. If the application has not configured the permission **ohos.permission.APP_TRACKING_CONSENT**, 00000000-0000-0000-0000-000000000000 is returned.
 
 
-## How to Develop
-1. In the **module.json5** file of the module, configure the permission [ohos.permission.APP_TRACKING_CONSENT](../../security/AccessToken/permissions-for-all-user.md#ohospermissionapp_tracking_consent), which is a user_grant permission. In this case, the **reason** and **abilities** fields are mandatory. For details about the configuration, see [Declaring Permissions in the Configuration File](../../security/AccessToken/declare-permissions.md#declaring-permissions-in-the-configuration-file).
-   
-   The sample code is as follows:
-   
+### How to Develop
+1. In the **module.json5** file of the module, configure the permission [ohos.permission.APP_TRACKING_CONSENT](../../security/AccessToken/permissions-for-all-user.md#ohospermissionapp_tracking_consent), which is a user_grant permission. In this case, the **reason** and **abilities** fields are mandatory. For details about the configuration, see [Declaring Permissions in the Configuration File](../../security/AccessToken/declare-permissions.md#declaring-permissions-in-the-configuration-file). The sample code is as follows:
    ```ts
    {
      "module": {
@@ -54,10 +55,7 @@ The OAID changes in the following scenarios:
    }
    ```
 
-2. To obtain the OAID, the application must call **requestPermissionFromUser** to obtain the corresponding permission. For details about how to obtain the context, see [Context](../../application-models/application-context-stage.md).
-
-   The sample code is as follows:
-
+2. To obtain the OAID, the application must call **requestPermissionFromUser** to obtain the corresponding permission. For details about how to obtain the context, see [Context](../../application-models/application-context-stage.md). The sample code is as follows:
    ```ts
    import { identifier } from '@kit.AdsKit';
    import { abilityAccessCtrl, common } from '@kit.AbilityKit';

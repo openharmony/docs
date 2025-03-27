@@ -5,9 +5,7 @@ The **OAID** module provides APIs for obtaining Open Anonymous Device Identifier
 
 
 > **NOTE**
->
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
 > To use the APIs for obtaining OAIDs, you must [request the ohos.permission.APP_TRACKING_CONSENT permission](../../security/AccessToken/request-user-authorization.md).
 
 
@@ -30,15 +28,15 @@ Obtains an OAID. This API uses a promise to return the result.
 
 **Return value**
 
-| Type| Description| 
+| Type | Description | 
 | -------- | -------- |
-| Promise&lt;string&gt; | Promise used to return the OAID.<br>1. If the application has configured the permission **ohos.permission.APP_TRACKING_CONSENT** and the permission is allowed, the OAID is returned.<br>2. If the application has configured the permission **ohos.permission.APP_TRACKING_CONSENT** and the permission is disallowed, 00000000-0000-0000-0000-000000000000 is returned.<br>3. If the application has not configured the permission **ohos.permission.APP_TRACKING_CONSENT**, 00000000-0000-0000-0000-000000000000 is returned.| 
+| Promise&lt;string&gt; | Promise used to return the OAID.<br/>1. If the application has configured the permission **ohos.permission.APP_TRACKING_CONSENT** and the permission is allowed, the OAID is returned.<br/>2. If the application has configured the permission **ohos.permission.APP_TRACKING_CONSENT** and the permission is disallowed, 00000000-0000-0000-0000-000000000000 is returned.<br/>3. If the application has not configured the permission **ohos.permission.APP_TRACKING_CONSENT**, 00000000-0000-0000-0000-000000000000 is returned.| 
 
 **Error codes**
 
 For details about the following error codes, see [OAID Error Codes](errorcode-oaid.md).
 
-| ID| Error Message| 
+| ID | Error Message | 
 | -------- | -------- |
 | 17300001 | System&nbsp;internal&nbsp;error. | 
 
@@ -75,9 +73,9 @@ Obtains an OAID. This API uses an asynchronous callback to return the result.
 **Parameters**
 
 
-| Name| Type| Mandatory| Description| 
+| **Name** | **Type** | Mandatory | Description | 
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the OAID.<br>1. If the application has configured the permission **ohos.permission.APP_TRACKING_CONSENT** and the permission is allowed, the OAID is returned.<br>2. If the application has configured the permission **ohos.permission.APP_TRACKING_CONSENT** and the permission is disallowed, 00000000-0000-0000-0000-000000000000 is returned.<br>3. If the application has not configured the permission **ohos.permission.APP_TRACKING_CONSENT**, 00000000-0000-0000-0000-000000000000 is returned.| 
+| callback | AsyncCallback&lt;string&gt; | Yes | Callback used to return the OAID.<br/>1. If the application has configured the permission **ohos.permission.APP_TRACKING_CONSENT** and the permission is allowed, the OAID is returned.<br/>2. If the application has configured the permission **ohos.permission.APP_TRACKING_CONSENT** and the permission is disallowed, 00000000-0000-0000-0000-000000000000 is returned.<br/>3. If the application has not configured the permission **ohos.permission.APP_TRACKING_CONSENT**, 00000000-0000-0000-0000-000000000000 is returned.| 
 
 
 **Error codes**
@@ -86,7 +84,7 @@ Obtains an OAID. This API uses an asynchronous callback to return the result.
 For details about the following error codes, see [OAID Error Codes](errorcode-oaid.md).
 
 
-| ID| Error Message| 
+| ID | Error Message | 
 | -------- | -------- |
 | 17300001 | System&nbsp;internal&nbsp;error. | 
 

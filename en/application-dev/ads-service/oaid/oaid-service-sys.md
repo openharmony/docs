@@ -4,9 +4,7 @@
 
 The OAID changes in the following scenarios:
 - A user restores the factory settings of the device.
-
-- A system application configures its bundle name in the **etc/advertising/oaid/oaid_service_config.json** file in the device's system directory and calls the **resetOAID()** API to reset the OAID. Note that the bundle name should be appended to the array in the file and separated with others by commas (,).
-
+- A system application configures its bundle name in the **etc/advertising/oaid/oaid_service_config.json** file in the device's system directory and calls the **resetOAID()** API to reset the OAID. Note that the bundle name should be appended to the array in the file and separated with others by commas (,).  
 The following describes how to configure a system application to reset the OAID.
 
 ## Available APIs
@@ -38,7 +36,7 @@ The following describes how to configure a system application to reset the OAID.
    }
    ```
 
-2. Request authorization from the user in a dialog box when the application is started. For details about how to obtain the context, see [Context](../../application-models/application-context-stage.md). The sample code is as follows:
+   Request authorization from the user in a dialog box when the application is started. For details about how to obtain the context, see [Context](../../application-models/application-context-stage.md). The sample code is as follows:
    ```ts
    import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
    import { BusinessError } from '@ohos.base';
@@ -64,7 +62,7 @@ The following describes how to configure a system application to reset the OAID.
     }
    ```
    
-3. Call **resetOAID()** (a system API) to reset the OAID. The sample code is as follows:
+2. Call **resetOAID()** (a system API) to reset the OAID. The sample code is as follows:
    ```ts
    import identifier from '@ohos.identifier.oaid';
    import hilog from '@ohos.hilog'; 
@@ -76,3 +74,5 @@ The following describes how to configure a system application to reset the OAID.
      hilog.error(0x0000, 'testTag', '%{public}s', `reset oaid catch error: ${err.code} ${err.message}`);
    }
    ```
+
+ <!--no_check--> 
