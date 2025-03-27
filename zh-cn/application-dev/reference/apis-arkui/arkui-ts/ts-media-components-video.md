@@ -371,7 +371,7 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名       | 类型    | 只读 | 可选 | 说明                         |
+| 名称       | 类型    | 只读 | 可选 | 说明                         |
 | ----------- | ------- | ---- | ----  | ---------------------------- |
 | duration<sup>10+</sup> | number  | 否 | 否  | 当前视频的时长。<br/>单位：秒<br/>取值范围：[0,+∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
@@ -383,7 +383,7 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名       | 类型    | 只读 | 可选 | 说明                         |
+| 名称       | 类型    | 只读 | 可选 | 说明                         |
 | ----------- | ------- | ---- | ---- | ---------------------------- |
 | time<sup>10+</sup> | number  | 否 | 否  | 当前视频播放的进度。<br/>单位：秒<br/>取值范围：[0,+∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
@@ -395,7 +395,7 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名       | 类型    | 只读 | 可选 | 说明                         |
+| 名称       | 类型    | 只读 | 可选 | 说明                         |
 | ----------- | ------- | ---- | ---- | ---------------------------- |
 | showFirstFrame   | boolean | 否 | 是 | 当前视频是否配置首帧送显。<br/>true：开启首帧送显；false：关闭首帧送显。<br/>默认值：false      |
 
