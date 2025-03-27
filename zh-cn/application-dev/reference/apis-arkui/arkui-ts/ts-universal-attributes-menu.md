@@ -204,9 +204,9 @@ type BorderRadiusType\<T>= [Length](ts-types.md#length) | [BorderRadiuses](ts-ty
 
 | 类型                   |说明                                               |
 | ----------------------| --------------------------------------------------|
-| [Length](ts-types.md#length)                |    长度类型，用于描述尺寸单位           |
-| [BorderRadiuses](ts-types.md#borderradiuses9)        | 圆角类型，用于描述组件边框圆角半径 |
-| [LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12) | 圆角类型，用于描述组件边框圆角半径 |
+| [Length](ts-types.md#length)                |    长度类型，用于描述尺寸单位。           |
+| [BorderRadiuses](ts-types.md#borderradiuses9)        | 圆角类型，用于描述组件边框圆角半径。 |
+| [LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12) | 圆角类型，用于描述组件边框圆角半径。 |
 
 ## 示例
 
