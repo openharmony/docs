@@ -49,7 +49,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 | 参数名     | 类型                                                 | 必填 | 说明                                                        |
 | ---------- | ---------------------------------------------------- | ---- | ----------------------------------------------------------- |
-| bundleName | string                                               | 是   | 指示应用程序的Bundle名称。最大长度256字符。                                  |
+| bundleName | string                                               | 是   | 指示应用程序的Bundle名称。长度范围1~255字符。                                  |
 | callback   | AsyncCallback&lt;[DeviceManager](#devicemanager)&gt; | 是   | DeviceManager实例创建时调用的回调，返回设备管理器对象实例。 |
 
 **示例：**
@@ -149,7 +149,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 | 名称            | 类型                                | 必填   | 说明                |
 | ------------- | --------------------------------- | ---- | ----------------- |
-| subscribeId   | number                            | 是    | 发现标识，用于标识不同的发现周期。 取值范围1-65535。|
+| subscribeId   | number                            | 是    | 发现标识，用于标识不同的发现周期。 取值范围1~65535。|
 | mode          | [DiscoverMode ](#discovermode)    | 是    | 发现模式。             |
 | medium        | [ExchangeMedium](#exchangemedium) | 是    | 发现类型。             |
 | freq          | [ExchangeFreq](#exchangefreq)     | 是    | 发现频率。             |
@@ -627,7 +627,7 @@ getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
   | 参数名       | 类型                                     | 必填   | 说明        |
   | -------- | ---------------------------------------- | ---- | --------- |
-  | networkId| string                                   | 是   | 设备的网络标识。最大长度256字符。 |
+  | networkId| string                                   | 是   | 设备的网络标识。长度范围1~255字符。 |
   | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | 是    | 获取指定设备信息。 |
 
 **错误码：**
@@ -678,7 +678,7 @@ getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;;
 
   | 参数名   | 类型                                     | 必填 | 说明        |
   | -------- | ---------------------------------------- | ---- | --------- |
-  | networkId| string                                   | 是   | 设备的网络标识。最大长度256字符。 |
+  | networkId| string                                   | 是   | 设备的网络标识。长度范围1~255字符。 |
   
 **返回值：**
 
@@ -793,7 +793,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
   | 参数名            | 类型                       | 必填   | 说明    |
   | ------------- | ------------------------------- | ---- | -----  |
   | subscribeInfo | [SubscribeInfo](#subscribeinfo) | 是   | 发现信息。 |
-  | filterOptions | string                          | 否   | 发现设备过滤信息。可选，默认为undefined，发现未上线设备。最大长度256字符。|
+  | filterOptions | string                          | 否   | 发现设备过滤信息。可选，默认为undefined，发现未上线设备。长度范围1~255字符。|
 
 **错误码：**
 
@@ -1259,7 +1259,7 @@ setUserOperation(operateAction: number, params: string): void;
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
   | operateAction | number          | 是    | 用户操作动作。取值范围为0~5。       |
-  | params        | string          | 是    | 表示用户的输入参数。最大长度256字符。 |
+  | params        | string          | 是    | 表示用户的输入参数。长度范围1~255字符。 |
 
 **错误码：**
 
@@ -1310,7 +1310,7 @@ requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{regi
 
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
-  | requestInfo   | string          | 是    | 请求凭据信息。最大长度256字符。       |
+  | requestInfo   | string          | 是    | 请求凭据信息。最大长度255字符。       |
   | callback      | AsyncCallback<{registerInfo: string}>         | 是    | 凭据的注册信息回调。 |
 
 **错误码：**
@@ -1372,7 +1372,7 @@ importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: st
 
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
-  | credentialInfo| string          | 是    | 导入凭据信息。最大长度64000字符。       |
+  | credentialInfo| string          | 是    | 导入凭据信息。长度范围1~64000字符。       |
   | callback      | AsyncCallback<{resultInfo: string}>           | 是    | 导入凭据结果回调。 |
 
 **错误码：**
@@ -1467,7 +1467,7 @@ deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}
 
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
-  | queryInfo     | string          | 是    | 删除凭据信息。最大长度64000字符。       |
+  | queryInfo     | string          | 是    | 删除凭据信息。长度范围1~64000字符。       |
   | callback      | AsyncCallback<{resultInfo: string}>           | 是    | 删除凭据结果回调。 |
 
 **错误码：**
