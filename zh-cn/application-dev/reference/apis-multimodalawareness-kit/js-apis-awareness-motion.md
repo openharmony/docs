@@ -99,9 +99,7 @@ off(type: 'operatingHandChanged', callback?: Callback&lt;OperatingHandStatus&gt;
 **示例**：
 
 ```ts
-motion.off('operatingHandChanged', (data:motion.OperatingHandStatus) => {
-    console.info('off success' + data);
-})
+motion.off('operatingHandChanged', (data:motion.OperatingHandStatus) => {})
 ```
 
 
