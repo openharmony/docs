@@ -162,7 +162,7 @@ const keys: Array<string> = AppStorageV2.keys();
 
 ### globalConnect<sup>18+</sup>
 
-static globalConnect<T extends object>(type: ConnectOptions\<T\>): T | undefined
+static globalConnect\<T extends object\>(type: ConnectOptions\<T\>): T | undefined
 
 将键值对数据储存在应用磁盘中。如果给定的key已经存在于[PersistenceV2](../../quick-start/arkts-new-persistencev2.md)中，返回对应的值；否则，会通过获取默认值的构造器构造默认值，并返回。如果globalConnect的是\@ObservedV2对象，该对象\@Trace属性的变化，会触发整个关联对象的自动刷新；非\@Trace属性变化则不会，如有必要，可调用PersistenceV2.save接口手动存储。
 
@@ -307,7 +307,7 @@ PersistenceV2.notifyOnError((key: string, reason: string, msg: string) => {
 |type        | TypeConstructorWithArgs\<T\>   |否   |否   |指定的类型。         |
 |key         | string   |否   |是   |传入的key，不传则使用type的名字作为key。             |
 |defaultCreator   | StorageDefaultCreator\<T\>   |否   |是   |默认数据的构造器，建议传递，如果globalConnect是第一次连接key，不传会报错。 |
-|areaMode      | contextConstant.AreaMode   |否   |是    |加密级别：EL1-EL5，详见[加密级别](../../application-models/application-context-stage.md)，对应数值：0-4，不传时默认为EL2，不同加密级别对应不同的加密分区，即不同的存储路径，传入的加密等级数值不在0-4会直接运行crash。 |
+|areaMode      | contextConstant.AreaMode   |否   |是    |加密级别：EL1-EL5，详见[加密级别](../../application-models/application-context-stage.md#获取和修改加密分区)，对应数值：0-4，不传时默认为EL2，不同加密级别对应不同的加密分区，即不同的存储路径，传入的加密等级数值不在0-4会直接运行crash。 |
 
 ## UIUtils
 
@@ -406,139 +406,6 @@ struct Index {
           this.nonObservedClass.name = 'Jane'; // 不刷新
         })
     }
-  }
-}
-```
-
-### enableV2Compatibility<sup>18+</sup>
-
-static enableV2Compatibility\<T extends object\>(source: T): T
-
-使V1的状态变量能够在\@ComponentV2中观察，主要应用于状态管理V1、V2混用场景。详见[状态管理V1V2混用文档](../../quick-start/arkts-v1-v2-mixusage.md)。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明     |
-| ------ | ---- | ---- | ------------ |
-| source | T    | 是   | 数据源，仅支持V1状态数据。 |
-
-**返回值：**
-
-| 类型 | 说明                                             |
-| ---- | ------------------------------------------------ |
-| T    | 如果数据源是V1的状态数据，则返回能够在\@ComponentV2中观察的数据。否则返回数据源本身。 |
-
-
-**示例：**
-
-```ts
-import { UIUtils } from '@kit.ArkUI';
-
-@Observed
-class ObservedClass {
-  name: string = 'Tom';
-}
-
-@Entry
-@Component
-struct CompV1 {
-  @State observedClass: ObservedClass = new ObservedClass();
-
-  build() {
-    Column() {
-      Text(`@State observedClass: ${this.observedClass.name}`)
-        .onClick(() => {
-          this.observedClass.name = 'State'; // 刷新
-        })
-      // 将V1的状态变量使能V2的观察能力
-      CompV2({ observedClass: UIUtils.enableV2Compatibility(this.observedClass) })
-    }
-  }
-}
-
-@ComponentV2
-struct CompV2 {
-  @Param observedClass: ObservedClass = new ObservedClass();
-
-  build() {
-    // V1状态变量在使能V2观察能力后，可以在V2观察第一层的变化
-    Text(`@Param observedClass: ${this.observedClass.name}`)
-      .onClick(() => {
-        this.observedClass.name = 'Param'; // 刷新
-      })
-  }
-}
-```
-
-### makeV1Observed<sup>18+</sup>
-static makeV1Observed\<T extends object\>(source: T): T
-
-将不可观察的对象包装成状态管理V1可观察的对象，其能力等同于@Observed，可初始化@ObjectLink。
-
-该接口可搭配[enableV2Compatibility](#enablev2compatibility18)应用于状态管理V1和V2混用场景，详见[状态管理V1V2混用文档](../../quick-start/arkts-v1-v2-mixusage.md)。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明     |
-| ------ | ---- | ---- | ------------ |
-| source | T    | 是   | 数据源。支持普通class、Array、Map、Set、Date类型。</br>不支持[collections类型](../apis-arkts/js-apis-arkts-collections.md)和[@Sendable](../../arkts-utils/arkts-sendable.md)修饰的class。</br>不支持undefined和null。不支持状态管理V2的数据和[makeObserved](#makeobserved)的返回值。 |
-
-**返回值：**
-
-| 类型 | 说明                                             |
-| ---- | ------------------------------------------------ |
-| T    | 对于支持的入参类型，返回状态管理V1的观察数据。对于不支持的入参类型，返回数据源对象本身。 |
-
-**示例：**
-
-```ts
-import { UIUtils } from '@kit.ArkUI';
-
-class Outer {
-  outerValue: string = 'outer';
-  inner: Inner;
-
-  constructor(inner: Inner) {
-    this.inner = inner;
-  }
-}
-
-class Inner {
-  interValue: string = 'inner';
-}
-
-@Entry
-@Component
-struct Index {
-  @State outer: Outer = new Outer(UIUtils.makeV1Observed(new Inner()));
-
-  build() {
-    Column() {
-      // makeV1Observed的返回值可初始化@ObjectLink
-      Child({ inner: this.outer.inner })
-    }
-    .height('100%')
-    .width('100%')
-  }
-}
-
-@Component
-struct Child {
-  @ObjectLink inner: Inner;
-
-  build() {
-    Text(`${this.inner.interValue}`)
-      .onClick(() => {
-        this.inner.interValue += '!';
-      })
   }
 }
 ```

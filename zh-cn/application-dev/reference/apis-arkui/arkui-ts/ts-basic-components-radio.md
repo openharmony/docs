@@ -68,6 +68,7 @@ checked(value: boolean)
 设置单选框的选中状态。
 
 从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+从API version 18开始，该属性支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -88,6 +89,7 @@ checked(isChecked: Optional\<boolean>)
 设置单选框的选中状态。与[checked](#checked)相比，isChecked参数新增了对undefined类型的支持。
 
 该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+从API version 18开始，该属性支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -135,7 +137,7 @@ contentModifier(modifier: ContentModifier\<RadioConfiguration>)
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
 | modifier  | [ContentModifier\<RadioConfiguration>](#radioconfiguration12对象说明) | 是   | 在Radio组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
-## contentModifier<sup>18+</sup>
+### contentModifier<sup>18+</sup>
 
 contentModifier(modifier: Optional<ContentModifier\<RadioConfiguration>>)
 
@@ -157,7 +159,7 @@ contentModifier(modifier: Optional<ContentModifier\<RadioConfiguration>>)
 
 ### onChange
 
-onChange(callback: OnRadioChangeCallback)
+onChange(callback: (isChecked: boolean) => void)
 
 单选框选中状态改变时触发回调。
 
@@ -169,9 +171,9 @@ onChange(callback: OnRadioChangeCallback)
 
 **参数：** 
 
-| 参数名   | 类型                                              | 必填 | 说明                           |
-| -------- | ------------------------------------------------- | ---- | ------------------------------ |
-| callback | [OnRadioChangeCallback](#onradiochangecallback18) | 是   | 单选框选中状态改变时触发该回调 |
+| 参数名    | 类型    | 必填 | 说明                             |
+| --------- | ------- | ---- | -------------------------------- |
+| isChecked | boolean | 是   | 单选框选中状态改变时触发该回调。 |
 
 ### onChange<sup>18+</sup>
 
@@ -196,8 +198,6 @@ onChange(callback: Optional\<OnRadioChangeCallback>)
 type OnRadioChangeCallback = (isChecked: boolean) => void
 
 单选框选中状态改变时触发回调。
-
-**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 

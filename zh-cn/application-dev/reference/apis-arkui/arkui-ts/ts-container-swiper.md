@@ -87,7 +87,7 @@ loop为false时，自动轮播到最后一页时停止轮播。手势切换后�
 
 | 参数名 | 类型    | 必填 | 说明                                   |
 | ------ | ------- | ---- | -------------------------------------- |
-| value  | boolean | 是   | 子组件是否自动播放。<br/>默认值：false |
+| value  | boolean | 是   | 子组件是否自动播放。<br/>默认值：false，不自动轮播。 |
 
 ### autoPlay<sup>18+</sup>
 
@@ -107,7 +107,7 @@ autoPlay(autoPlay: boolean, options: AutoPlayOptions)
 
 | 参数名 | 类型    | 必填 | 说明                                   |
 | ------ | ------- | ---- | -------------------------------------- |
-| autoPlay  | boolean | 是   | 子组件是否自动播放。<br/>默认值：false |
+| autoPlay  | boolean | 是   | 子组件是否自动播放。<br/>默认值：false，不自动轮播。 |
 | options  | [AutoPlayOptions](#autoplayoptions18对象说明)&nbsp; | 是   | 配置手指或者鼠标等按下屏幕时子组件是否停止自动播放。当stopWhenTouched设置为true时，多指按下场景中任意一个手指抬起后，将自动继续播放。<br/>默认值：{ stopWhenTouched: true }，停止自动播放。 |
 
 ### interval
@@ -294,7 +294,7 @@ cachedCount(count: number, isShown: boolean)
 | 参数名 | 类型   | 必填 | 说明                             |
 | ------ | ------ | ---- | -------------------------------- |
 | count  | number | 是   | 预加载子组件个数。<br/>默认值：1<br/>取值范围：[0, +∞)，设置小于0的值时，按照默认值处理。 |
-| isShown  | boolean | 是   | 预加载范围内的节点是否全部进行绘制，不下渲染树。<br/>默认值：false |
+| isShown  | boolean | 是   | 预加载范围内的节点是否进行绘制，不下渲染树。<br/>默认值：false，预加载范围内的节点不进行绘制。 |
 
 ### disableSwipe<sup>8+</sup>
 
@@ -356,7 +356,7 @@ displayCount(value: number | string | SwiperAutoFill, swipeByGroup?: boolean)
 
 使用字符串类型时，仅支持设置为'auto'，此时，设置[customContentTransition](#customcontenttransition12)和[onContentDidScroll](#oncontentdidscroll12)事件不生效。使用number类型时，子组件按照主轴均分Swiper宽度（减去displayCount-1个itemSpace）的方式进行主轴拉伸（收缩）布局，设置为小于等于0的值时，按默认值1显示。使用SwiperAutoFill类型时，通过设置一个子组件最小宽度值minSize，会根据Swiper当前宽度和minSize值自动计算并更改一页内元素显示个数。当minSize为空或者小于等于0时，Swiper显示1列。
 
-当按组进行翻页时，判定翻页的拖拽距离阈值将调整为Swiper宽度的50%（若按子元素翻页，该阈值为子元素宽度的50%）。若最后一组的子元素数量少于displayCount，将利用占位子元素进行填充，占位子元素仅用于布局定位，不显示任何内容，其位置将直接显示Swiper的背景样式。从API version 16开始，若按组进行翻页，且导航点样式设定为圆形导航点，圆形导航点的数量将与组数相等（组数计算方式为子元素总数除以视窗内显示的子元素数量，若除不尽，则向上取整）。
+当按组进行翻页时，判定翻页的拖拽距离阈值将调整为Swiper宽度的50%（若按子元素翻页，该阈值为子元素宽度的50%）。若最后一组的子元素数量少于displayCount，将利用占位子元素进行填充，占位子元素仅用于布局定位，不显示任何内容，其位置将直接显示Swiper的背景样式。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -502,6 +502,8 @@ indicatorInteractive(value: boolean)
 pageFlipMode(mode: Optional\<PageFlipMode>)
 
 设置鼠标滚轮翻页模式。
+
+**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -674,6 +676,8 @@ preloadItems(indices: Optional\<Array\<number>>): Promise\<void>
 
 与[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)和自定义组件结合使用时，由于[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)只会保留缓存范围内的自定义组件，在缓存范围外的会被删除，因此需要开发者保证通过该接口预加载的节点index在缓存范围内。
 
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -702,6 +706,8 @@ preloadItems(indices: Optional\<Array\<number>>): Promise\<void>
 ## SwiperAnimationMode<sup>15+</sup>枚举说明
 
 Swiper组件翻页至指定页面的动效模式。
+
+**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -795,25 +801,6 @@ bottom(value: Length): T
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [Length](ts-types.md#length) | 是   | 设置导航点底部相对于Swiper的位置。<br/>未设置top和bottom时，进行自适应大小布局，按照指示器本身大小和Swiper的大小，在交叉轴方向上，位于底部，效果与设置bottom=0一致。<br/>设置为0时：按照0位置布局计算。<br/>优先级：低于top属性。<br/>取值范围：[0,Swiper高度-导航点区域高度]，超出该范围时，取最近的边界值。 |
 
-
-### bottom<sup>18+</sup>
-
- bottom(bottom: LengthMetrics, ignoreSize: boolean): T
-
-导航点底部相对于Swiper的位置，并可通过ignoreSize属性忽略导航点大小。
-
-**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                         | 必填 | 说明                                                         |
-| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
-| bottom  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 设置导航点底部相对于Swiper的位置。<br/>未设置top和bottom时，进行自适应大小布局，按照指示器本身大小和Swiper的大小，在交叉轴方向上，位于底部，效果与设置bottom=0一致。<br/>设置为0时：按照0位置布局计算。<br/>优先级：低于top属性。<br/>取值范围：[0,Swiper高度-导航点区域高度]，超出该范围时，取最近的边界值。 |
-| ignoreSize  | boolean | 是   | 设置是否忽略导航点本身大小，默认false。<br/>设为true时可以将导航点更靠近Swiper底部。 |
 ### start<sup>12+</sup>
 
 start(value: LengthMetrics): T
@@ -1066,31 +1053,7 @@ maxDisplayCount(maxDisplayCount: number): DotIndicator
 
 | 参数名          | 类型   | 必填 | 说明                                                         |
 | --------------- | ------ | ---- | ------------------------------------------------------------ |
-| maxDisplayCount | number | 是   | 设置圆点导航点指示器样式下，导航点显示个数最大值，当实际导航点个数大于最大导航点个数时，会生效超长效果样式，样式如示例5所示。<br/>默认值：这个属性没有默认值，如果设置异常值那等同于没有超长显示效果。<br/>取值范围：6-9<br/>**说明：** <br/>1、超长显示场景，目前暂时不支持交互功能（包括：手指点击拖拽、鼠标操作等）。<br/>2、在超长显示场景下，中间页面对应的选中导航点的位置，并不是完全固定的，取决于之前的翻页操作序列。 |
-
-**返回值：** 
-
-| 类型                            | 说明         |
-| ------------------------------- | ------------ |
-| [DotIndicator](#dotindicator10) | 圆点指示器。 |
-
-### space<sup>18+</sup>
-
-space(space: LengthMetrics): DotIndicator
-
-设置Swiper圆点导航点间距，不支持设置百分比。
-
-**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                         | 必填 | 说明                                                         |
-| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
-| space  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)  | 是   | 设置圆点导航点间距，不支持设置百分比。<br/>默认值：8<br/>单位：vp |
+| maxDisplayCount | number | 是   | 设置圆点导航点指示器样式下，导航点显示个数最大值，当实际导航点个数大于最大导航点个数时，会生效超长效果样式，样式如示例5所示。<br/>默认值：这个属性没有默认值，如果设置异常值那等同于没有超长显示效果。<br/>取值范围：6-9<br/>**说明：** <br/>1、超长显示场景，目前暂时不支持交互功能（包括：手指点击拖拽、鼠标操作等）。<br/>2、在超长显示场景下，中间页面对应的选中导航点的位置，并不是完全固定的，取决于之前的翻页操作序列。<br/>3、当前仅支持displayCount为1的场景。 |
 
 **返回值：** 
 
@@ -1272,7 +1235,10 @@ DigitIndicator的构造函数。
 | minSize | [VP](ts-types.md#vp10) | 是     | 设置元素显示最小宽度。<br/>默认值：0 |
 
 ## AutoPlayOptions<sup>18+</sup>对象说明
+
 自动播放属性。
+
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -1280,7 +1246,7 @@ DigitIndicator的构造函数。
 
 | 名称              | 类型                                     | 必填  | 说明                                     |
 | ---------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| stopWhenTouched   | boolean                                  | 是    | 在按下事件中配置子组件是否立即停止播放。<br/>true |
+| stopWhenTouched   | boolean                                  | 是    | 在按下事件中配置子组件是否立即停止播放。<br/>默认值：true |
 
 ## 事件
 
@@ -1520,8 +1486,6 @@ type OnSwiperAnimationEndCallback = (index: number, extraInfo: SwiperAnimationEv
 type OnSwiperGestureSwipeCallback = (index: number, extraInfo: SwiperAnimationEvent) => void
 
 在页面跟手滑动过程中，逐帧触发的回调。
-
-**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -1958,7 +1922,7 @@ struct SwiperExample {
 
 ### 示例4（设置自定义页面切换动画）
 
-该示例通过customContentTransition接口，实现了自定义Swiper页面切换动画效果。
+该示例通过customContentTransition接口，实现了自定义Swiper页面按组翻页动画效果。
 
 ```ts
 // xxx.ets
@@ -2390,106 +2354,3 @@ struct SwiperExample {
   }
 }
 ```
-
-### 示例9（演示导航点space与bottom）
-
-该示例通过bottom和space接口，实现了圆点导航点与底部间距为0和导航点之间的间距控制。
-
-```ts
-import { LengthMetrics } from '@kit.ArkUI'
-
-// MyDataSource.ets
-class MyDataSource implements IDataSource {
-  private list: number[] = []
-
-  constructor(list: number[]) {
-    this.list = list
-  }
-
-  totalCount(): number {
-    return this.list.length
-  }
-
-  getData(index: number): number {
-    return this.list[index]
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-  }
-
-  unregisterDataChangeListener() {
-  }
-}
-
-// SwiperExample.ets
-@Entry
-@Component
-struct SwiperExample {
-
-  @State space: LengthMetrics = LengthMetrics.vp(0)
-  @State spacePool: LengthMetrics[] = [LengthMetrics.vp(0), LengthMetrics.px(3), LengthMetrics.vp(10)]
-  @State spaceIndex: number = 0
-
-  @State ignoreSize: boolean = false
-  @State ignoreSizePool: boolean[] = [false, true]
-  @State ignoreSizeIndex: number = 0
-
-  private swiperController1: SwiperController = new SwiperController()
-  private data1: MyDataSource = new MyDataSource([])
-
-  aboutToAppear(): void {
-    let list1: number[] = []
-    for (let i = 1; i <= 10; i++) {
-      list1.push(i);
-    }
-    this.data1 = new MyDataSource(list1)
-  }
-
-  build() {
-    Scroll() {
-      Column({ space: 20 }) {
-        Swiper(this.swiperController1) {
-          LazyForEach(this.data1, (item: string) => {
-            Text(item.toString())
-              .width('90%')
-              .height(120)
-              .backgroundColor(0xAFEEEE)
-              .textAlign(TextAlign.Center)
-              .fontSize(30)
-          }, (item: string) => item)
-        }
-        .indicator(new DotIndicator()
-          .space(this.space)
-          .bottom(LengthMetrics.vp(0), this.ignoreSize)
-          .itemWidth(15)
-          .itemHeight(15)
-          .selectedItemWidth(15)
-          .selectedItemHeight(15)
-          .color(Color.Gray)
-          .selectedColor(Color.Blue))
-        .displayArrow({
-          showBackground: true,
-          isSidebarMiddle: true,
-          backgroundSize: 24,
-          backgroundColor: Color.White,
-          arrowSize: 18,
-          arrowColor: Color.Blue
-        }, false)
-        
-        Column({ space: 4 }) {
-          Button('spaceIndex:' + this.spaceIndex).onClick(() => {
-            this.spaceIndex = (this.spaceIndex + 1) % this.spacePool.length;
-            this.space = this.spacePool[this.spaceIndex];
-          }).margin(10)
-
-          Button('ignoreSizeIndex:' + this.ignoreSizeIndex).onClick(() => {
-            this.ignoreSizeIndex = (this.ignoreSizeIndex + 1) % this.ignoreSizePool.length;
-            this.ignoreSize = this.ignoreSizePool[this.ignoreSizeIndex];
-          }).margin(10)
-        }.margin(2)
-      }.width('100%')
-    }
-  }
-}
-```
-![swiper](figures/indicator_space.gif)

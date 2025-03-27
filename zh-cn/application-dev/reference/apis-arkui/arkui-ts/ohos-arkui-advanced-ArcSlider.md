@@ -51,7 +51,7 @@ ArcSlider({ options: ArcSliderOptions })
 
 | 名称    | 类型                                  | 必填 | 说明                                                         |
 | ------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [ArcSliderOptions](#arcslideroptions) | 是   | 配置弧形滑动条的参数。<br/>默认值：[ArcSliderOptions](#arcslideroptions)的各项子属性均取其默认值 |
+| options | [ArcSliderOptions](#arcslideroptions) | 是   | 配置弧形滑动条的参数。<br/>默认值：[ArcSliderOptions](#arcslideroptions)的各项子属性均取其默认值。 |
 
 ## ArcSliderOptions
 
@@ -65,12 +65,12 @@ ArcSlider({ options: ArcSliderOptions })
 
 | 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| valueOptions | [ArcSliderValueOptions](#arcslidervalueoptions) | 否 | @Trace | 配置弧形Slider的数值信息。<br/>默认值：[ArcSliderValueOptions](#arcslidervalueoptions)的各项子属性均取其默认值 |
-| layoutOptions | [ArcSliderLayoutOptions](#arcsliderlayoutoptions) | 否 | @Trace | 配置弧形Slider的布局信息。<br/>默认值：[ArcSliderLayoutOptions](#arcsliderlayoutoptions)的各项子属性均取其默认值 |
-| styleOptions | [ArcSliderStyleOptions](#arcsliderstyleoptions) | 否 | @Trace | 配置弧形Slider的样式信息。<br/>默认值：[ArcSliderStyleOptions](#arcsliderstyleoptions)的各项子属性均取其默认值 |
+| valueOptions | [ArcSliderValueOptions](#arcslidervalueoptions) | 否 | @Trace | 配置弧形Slider的数值信息。<br/>默认值：[ArcSliderValueOptions](#arcslidervalueoptions)的各项子属性均取其默认值。 |
+| layoutOptions | [ArcSliderLayoutOptions](#arcsliderlayoutoptions) | 否 | @Trace | 配置弧形Slider的布局信息。<br/>默认值：[ArcSliderLayoutOptions](#arcsliderlayoutoptions)的各项子属性均取其默认值。 |
+| styleOptions | [ArcSliderStyleOptions](#arcsliderstyleoptions) | 否 | @Trace | 配置弧形Slider的样式信息。<br/>默认值：[ArcSliderStyleOptions](#arcsliderstyleoptions)的各项子属性均取其默认值。 |
 | digitalCrownSensitivity | [CrownSensitivity](ts-appendix-enums.md#crownsensitivity18) | 否 | @Trace | 设置旋转表冠的灵敏度。<br/>默认值：CrownSensitivity.MEDIUM |
-| onTouch | [ArcSliderTouchHandler](#arcslidertouchhandler) | 否 | @Trace | 弧形Slider被触摸时，告知应用。<br/>默认值：不传入的情况，无回调 |
-| onChange | [ArcSliderChangeHandler](#arcsliderchangehandler) | 否 | @Trace | 弧形Slider的进度值发生变化时，告知应用。<br/>默认值：不传入的情况，无回调 |
+| onTouch | [ArcSliderTouchHandler](#arcslidertouchhandler) | 否 | @Trace | 弧形Slider被触摸时，告知应用。<br/>默认值：不传入的情况，无回调。 |
+| onChange | [ArcSliderChangeHandler](#arcsliderchangehandler) | 否 | @Trace | 弧形Slider的进度值发生变化时，告知应用。<br/>默认值：不传入的情况，无回调。 |
 
 ### constructor
 
@@ -240,12 +240,12 @@ ArcSliderOptions的构造信息。
 
 | 名称                    | 类型                                                        | 必填 | 说明                                                         |
 | ----------------------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| valueOptions            | [ArcSliderValueOptions](#arcslidervalueoptions)             | 否   | 配置弧形Slider的数值信息。<br/>默认值：[ArcSliderValueOptions](#arcslidervalueoptions)的各项子属性均取其默认值 |
-| layoutOptions           | [ArcSliderLayoutOptions](#arcsliderlayoutoptions)           | 否   | 配置弧形Slider的布局信息。<br/>默认值：[ArcSliderLayoutOptions](#arcsliderlayoutoptions)的各项子属性均取其默认值 |
-| styleOptions            | [ArcSliderStyleOptions](#arcsliderstyleoptions)             | 否   | 配置弧形Slider的样式信息。<br/>默认值：[ArcSliderStyleOptions](#arcsliderstyleoptions)的各项子属性均取其默认值 |
+| valueOptions            | [ArcSliderValueOptions](#arcslidervalueoptions)             | 否   | 配置弧形Slider的数值信息。<br/>默认值：[ArcSliderValueOptions](#arcslidervalueoptions)的各项子属性均取其默认值。 |
+| layoutOptions           | [ArcSliderLayoutOptions](#arcsliderlayoutoptions)           | 否   | 配置弧形Slider的布局信息。<br/>默认值：[ArcSliderLayoutOptions](#arcsliderlayoutoptions)的各项子属性均取其默认值。 |
+| styleOptions            | [ArcSliderStyleOptions](#arcsliderstyleoptions)             | 否   | 配置弧形Slider的样式信息。<br/>默认值：[ArcSliderStyleOptions](#arcsliderstyleoptions)的各项子属性均取其默认值。 |
 | digitalCrownSensitivity | [CrownSensitivity](ts-appendix-enums.md#crownsensitivity18) | 否   | 设置旋转表冠的灵敏度。<br/>默认值：CrownSensitivity.MEDIUM   |
-| onTouch                 | [ArcSliderTouchHandler](#arcslidertouchhandler)             | 否   | 弧形Slider被触摸时，告知应用。<br/>默认值：不传入的情况，无回调 |
-| onChange                | [ArcSliderChangeHandler](#arcsliderchangehandler)           | 否   | 弧形Slider的进度值发生变化时，告知应用。<br/>默认值：不传入的情况，无回调 |
+| onTouch                 | [ArcSliderTouchHandler](#arcslidertouchhandler)             | 否   | 弧形Slider被触摸时，告知应用。<br/>默认值：不传入的情况，无回调。 |
+| onChange                | [ArcSliderChangeHandler](#arcsliderchangehandler)           | 否   | 弧形Slider的进度值发生变化时，告知应用。<br/>默认值：不传入的情况，无回调。 |
 
 ## ArcSliderValueOptionsConstructorOptions
 
@@ -257,7 +257,7 @@ ArcSliderValueOptions的构造信息。
 
 | 名称  | 类型   | 必填 | 说明                                                         |
 | ----- | ------ | ---- | ------------------------------------------------------------ |
-| progress | number | 否   | 设置当前进度值。<br />默认值：与参数min的取值一致            |
+| progress | number | 否   | 设置当前进度值。<br />默认值：与参数min的取值一致。           |
 | min   | number | 否   | 设置最小值。<br />默认值：0                                  |
 | max   | number | 否   | 设置最大值。<br />默认值：100<br />**说明：**<br/>当出现异常情况min >= max时，min取默认值0，max取默认值100。<br/>progress不在[min, max]范围之内，取min或者max，靠近min取min，靠近max取max。 |
 

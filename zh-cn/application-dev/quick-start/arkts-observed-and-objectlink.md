@@ -32,7 +32,7 @@
 | \@ObjectLink变量装饰器 | 说明                                       |
 | ----------------- | ---------------------------------------- |
 | 装饰器参数             | 无。                                       |
-| 允许装饰的变量类型         | API version 18之前，必须为被\@Observed装饰的class实例。<br/>API version 18及以后，\@ObjectLink也可以被[makeV1Observed](../reference/apis-arkui/js-apis-StateManagement.md#makev1observed18)的返回值初始化。<br/>\@ObjectLink不支持简单类型，如果开发者需要使用简单类型，可以使用[\@Prop](arkts-prop.md)。<br/>支持继承Date、[Array](#二维数组)的class实例，API11及以上支持继承[Map](#继承map类)、[Set](#继承set类)的class实例。示例见[观察变化](#观察变化)。<br/>API11及以上支持\@Observed装饰类和undefined或null组成的联合类型，比如ClassA \| ClassB, ClassA \| undefined 或者 ClassA \| null, 示例见[@ObjectLink支持联合类型](#objectlink支持联合类型)。<br/>\@ObjectLink的属性可以被改变的，但不允许整体赋值，即\@ObjectLink装饰的变量是只读的。 |
+| 允许装饰的变量类型         | 必须为被\@Observed装饰的class实例，必须指定类型。<br/>\@ObjectLink不支持简单类型，如果开发者需要使用简单类型，可以使用[\@Prop](arkts-prop.md)。<br/>支持继承Date、[Array](#二维数组)的class实例，API11及以上支持继承[Map](#继承map类)、[Set](#继承set类)的class实例。示例见[观察变化](#观察变化)。<br/>API11及以上支持\@Observed装饰类和undefined或null组成的联合类型，比如ClassA \| ClassB, ClassA \| undefined 或者 ClassA \| null, 示例见[@ObjectLink支持联合类型](#objectlink支持联合类型)。<br/>\@ObjectLink的属性是可以改变的，但是变量的分配是不允许的，也就是说这个装饰器装饰变量是只读的，不能被改变。 |
 | 被装饰变量的初始值         | 不允许。                                     |
 
 \@ObjectLink装饰的数据为可读示例。
@@ -201,10 +201,7 @@ struct Parent {
 
 2. \@ObjectLink装饰器不能在\@Entry装饰的自定义组件中使用。
 
-3. \@ObjectLink装饰的类型必须是复杂类型，否则会有编译期报错。
-
-4. API version 18前，\@ObjectLink装饰的变量类型必须是显式地由@Observed装饰的类。如果未指定类型，或不是\@Observed装饰的class，编译期会报错。
-API version 18及以后，\@ObjectLink也可以被[makeV1Observed](../reference/apis-arkui/js-apis-StateManagement.md#makev1observed18)的返回值初始化，否则会有运行时告警日志。
+3. \@ObjectLink装饰的变量类型需要为显式的被@Observed装饰的类，如果未指定类型，或其不是\@Observed装饰的class，编译期会报错。
 
   ```ts
   @Observed
@@ -233,7 +230,7 @@ API version 18及以后，\@ObjectLink也可以被[makeV1Observed](../reference/
   @ObjectLink count: Info;
   ```
 
-5. \@ObjectLink装饰的变量不能本地初始化，仅能通过构造参数从父组件传入初始值，否则编译期会报错。
+4. \@ObjectLink装饰的变量不能本地初始化，仅能通过构造参数从父组件传入初始值，否则编译期会报错。
 
   ```ts
   @Observed
@@ -252,7 +249,7 @@ API version 18及以后，\@ObjectLink也可以被[makeV1Observed](../reference/
   @ObjectLink count: Info;
   ```
 
-6. \@ObjectLink装饰的变量是只读的，不能被赋值，否则会有运行时报错提示Cannot set property when setter is undefined。如果需要对\@ObjectLink装饰的变量进行整体替换，可以在父组件对其进行整体替换。
+5. \@ObjectLink装饰的变量是只读的，不能被赋值，否则会有运行时报错提示Cannot set property when setter is undefined。如果需要对\@ObjectLink装饰的变量进行整体替换，可以在父组件对其进行整体替换。
 
   【反例】
 
@@ -1982,7 +1979,7 @@ Child({
 
 ### 使用a.b(this.object)形式调用，不会触发UI刷新
 
-在build方法内，当@Observed与@ObjectLink联合装饰的变量是Object类型、且通过a.b(this.object)形式调用时，b方法内传入的是this.object的原生对象，修改其属性，无法触发UI刷新。如下例中，通过静态方法或者使用this调用组件内部方法，修改组件中的this.weather.temperature时，UI不会刷新。
+在build方法内，当@Observed与@ObjectLink联合装饰的变量是Object类型、且通过a.b(this.object)形式调用时，b方法内传入的是this.object的原始对象，修改其属性，无法触发UI刷新。如下例中，通过静态方法或者使用this调用组件内部方法，修改组件中的this.weather.temperature时，UI不会刷新。
 
 【反例】
 

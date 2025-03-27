@@ -109,7 +109,6 @@
         - [MVVM模式（状态管理V2）](quick-start/arkts-mvvm-V2.md)
       - V1V2混用和迁移指导<!--v1v2-migration-->
         - [自定义组件混用场景指导](quick-start/arkts-custom-component-mixed-scenarios.md)
-        - [状态管理V1V2混用文档](quick-start/arkts-v1-v2-mixusage.md)
         - [V1->V2迁移指导](quick-start/arkts-v1-v2-migration.md)
     - 渲染控制<!--arkts-rendering-control-->
       - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
@@ -459,10 +458,15 @@
             - [基础自定义弹出框 (CustomDialog) (不推荐)](ui/arkts-common-components-custom-dialog.md)
             - [固定样式弹出框](ui/arkts-fixes-style-dialog.md)
             - [页面级弹出框](ui/arkts-embedded-dialog.md)
-          - [菜单控制 (Menu)](ui/arkts-popup-and-menu-components-menu.md)
-          - [不依赖UI组件的全局菜单控制 (openMenu)](ui/arkts-popup-and-menu-components-uicontext-menu.md)
-          - [气泡提示 (Popup)](ui/arkts-popup-and-menu-components-popup.md)
-          - [不依赖UI组件的全局气泡提示 (openPopup)](ui/arkts-popup-and-menu-components-uicontext-popup.md)
+            - [弹出框层级管理](ui/arkts-dialog-levelorder.md)
+          - 菜单<!--arkts-use-menu-->
+            - [菜单概述](ui/arkts-menu-overview.md)
+            - [菜单控制 (Menu)](ui/arkts-popup-and-menu-components-menu.md)
+            - [不依赖UI组件的全局菜单 (openMenu)](ui/arkts-popup-and-menu-components-uicontext-menu.md)
+          - 气泡提示<!--arkts-use-popup-->
+            - [气泡提示概述](ui/arkts-popup-overview.md)
+            - [气泡提示 (Popup)](ui/arkts-popup-and-menu-components-popup.md)
+            - [不依赖UI组件的全局气泡提示 (openPopup)](ui/arkts-popup-and-menu-components-uicontext-popup.md)
           - 绑定模态页面<!--arkts-bind-modal-->
             - [绑定模态页面概述](ui/arkts-modal-overview.md)
             - [绑定半模态页面 (bindSheet)](ui/arkts-sheet-page.md)
@@ -643,7 +647,7 @@
       - [ArkWeb进程](web/web_component_process.md)
       - [Web组件的生命周期](web/web-event-sequence.md)
       - 设置基本属性和事件<!--web-set-attributes-events-->
-        - [UserAgent开发指导](web/web-default-userAgent.md)
+        - [User-Agent开发指导](web/web-default-userAgent.md)
         - [管理Cookie及数据存储](web/web-cookie-and-data-storage-mgmt.md)
         - [设置深色模式](web/web-set-dark-mode.md)
         - [在新窗口中打开页面](web/web-open-in-new-window.md)
@@ -1114,9 +1118,6 @@
         - [分布式设备管理](distributedservice/devicemanager-guidelines.md)
         - 应用跨设备连接管理<!--abilityconnect-distributed-->
           - [UIAbility与UIAbility连接开发指南](distributedservice/abilityconnectmanager-guidelines.md)
-          <!--Del-->
-          - [UIAbility与Extension连接开发指南](distributedservice/distributedextension-duidelines.md)
-          <!--DelEnd-->
         - 硬件跨设备连接管理<!--devconnect-distributed-->
           - [分布式相机开发指南](distributedservice/camera-distributed.md)
       - Network Kit（网络服务）<!--network-kit-->
@@ -1143,7 +1144,7 @@
         - [拨打电话](telephony/telephony-call.md)
         - [短信服务](telephony/telephony-sms.md)
     - 基础功能<!--system-basicfun-->
-      - Basics Service Kit（基础服务）<!--basic-services-kit-->
+      - Basic Services Kit（基础服务）<!--basic-services-kit-->
         - [Basic Services Kit简介](basic-services/basic-services-kit-overview.md)
         - 进程线程通信<!--app-events-->
           - 使用公共事件进行进程间通信<!--common-event-communication-->
@@ -1190,10 +1191,6 @@
               - [USB中断传输](basic-services/usb/usbManager/usbHost/interruptTransfer.md)
               - [USB批量传输](basic-services/usb/usbManager/usbHost/bulkTransfer.md)
               - [USB同步传输](basic-services/usb/usbManager/usbHost/isochronousTransfer.md)
-          - 开发USB串口通信服务<!--usb-serial-dev-->
-            - [USB串口通信服务开发概述](basic-services/usb/usbSerial/usbSerial-overview.md)
-            - [USB串口配置管理](basic-services/usb/usbSerial/usbSerial-configuration.md)
-            - [USB串口通信管理](basic-services/usb/usbSerial/usbSerial-communication.md)
           - [常见问题](basic-services/usb/faqs-usb.md)
           - [术语](basic-services/usb/usb-glossary.md)
         <!--Del-->
@@ -1315,7 +1312,7 @@
           - [使用HiTraceChain打点（C/C++）](dfx/hitracechain-guidelines-ndk.md)
         - HiChecker使用指导<!--hichecker-->
           - [使用HiChecker检测问题（ArkTS/JS）](dfx/hichecker-guidelines-arkts.md)
-        - Hidebug使用指导<!--hidebug-->
+        - HiDebug使用指导<!--hidebug-->
           - [使用HiDebug获取调试信息（ArkTS）](dfx/hidebug-guidelines-arkts.md)
           - [使用HiDebug获取调试信息（C/C++）](dfx/hidebug-guidelines-ndk.md)
         - HiCollie使用指导<!--hicollie-->
@@ -1977,7 +1974,6 @@
           <!--DelEnd-->
           - [@ohos.bundle.bundleManager (bundleManager模块)](reference/apis-ability-kit/js-apis-bundleManager.md)
           - [@ohos.bundle.defaultAppManager (默认应用管理)](reference/apis-ability-kit/js-apis-defaultAppManager.md)
-          - [@ohos.bundle.launcherBundleManager (launcherBundleManager模块)](reference/apis-ability-kit/js-apis-launcherBundleManager.md)
           - [@ohos.bundle.overlay (overlay模块)](reference/apis-ability-kit/js-apis-overlay.md)
           <!--Del-->
           - [@ohos.bundle.appControl (appControl模块)(系统接口)](reference/apis-ability-kit/js-apis-appControl-sys.md)
@@ -2024,7 +2020,6 @@
             - [ErrorObserver](reference/apis-ability-kit/js-apis-inner-application-errorObserver.md)
             - [EventHub](reference/apis-ability-kit/js-apis-inner-application-eventHub.md)
             - [ExtensionContext](reference/apis-ability-kit/js-apis-inner-application-extensionContext.md)
-            - [GlobalObserver](reference/apis-ability-kit/js-apis-inner-application-GlobalObserver.md)
             - [LoopObserver](reference/apis-ability-kit/js-apis-inner-application-loopObserver.md)
             - [ProcessInformation](reference/apis-ability-kit/js-apis-inner-application-processInformation.md)
             - [ProcessRunningInfo](reference/apis-ability-kit/js-apis-inner-application-processRunningInfo.md)
@@ -2080,7 +2075,6 @@
             - [elementName](reference/apis-ability-kit/js-apis-bundleManager-elementName.md)
             - [extensionAbilityInfo](reference/apis-ability-kit/js-apis-bundleManager-extensionAbilityInfo.md)
             - [hapModuleInfo](reference/apis-ability-kit/js-apis-bundleManager-hapModuleInfo.md)
-            - [launcherAbilityInfo](reference/apis-ability-kit/js-apis-bundleManager-launcherAbilityInfo.md)
             - [metadata](reference/apis-ability-kit/js-apis-bundleManager-metadata.md)
             - [OverlayModuleInfo](reference/apis-ability-kit/js-apis-bundleManager-overlayModuleInfo.md)
             - [Skill](reference/apis-ability-kit/js-apis-bundleManager-skill.md)
@@ -2091,6 +2085,7 @@
             - [BundleResourceInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-BundleResourceInfo-sys.md)
             - [BusinessAbilityInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-businessAbilityInfo-sys.md)
             - [dispatchInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-dispatchInfo-sys.md)
+            - [launcherAbilityInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-launcherAbilityInfo-sys.md)
             - [LauncherAbilityResourceInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)
             - [permissionDef (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-permissionDef-sys.md)
             - [recoverableApplicationInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-recoverableApplicationInfo-sys.md)
@@ -2098,7 +2093,7 @@
             - [SharedBundleInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-sharedBundleInfo-sys.md)
             - [shortcutInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-shortcutInfo-sys.md)
             <!--DelEnd-->
-          - continuation<!--continuation-->
+          - continuation<!--ability-continuation-->
             - [continuationExtraParams](reference/apis-ability-kit/js-apis-continuation-continuationExtraParams.md)
             - [continuationResult](reference/apis-ability-kit/js-apis-continuation-continuationResult.md)
           - security<!--ability-security-->
@@ -2336,7 +2331,7 @@
           - [@ohos.arkui.observer (无感监听)](reference/apis-arkui/js-apis-arkui-observer.md)
           - [@ohos.arkui.prefetcher (Prefetching)](reference/apis-arkui/js-apis-arkui-Prefetcher.md)
           - [@ohos.arkui.shape(形状)](reference/apis-arkui/js-apis-arkui-shape.md)
-          - [@ohos.arkui.Theme(主题换肤)](reference/apis-arkui/js-apis-arkui-theme.md)
+          - [@ohos.arkui.theme(主题换肤)](reference/apis-arkui/js-apis-arkui-theme.md)
           - [@ohos.arkui.UIContext (UIContext)](reference/apis-arkui/js-apis-arkui-UIContext.md)
           - [@ohos.arkui.uiExtension (uiExtension)](reference/apis-arkui/js-apis-arkui-uiExtension.md)
           - [@ohos.arkui.StateManagement (状态管理)](reference/apis-arkui/js-apis-StateManagement.md)
@@ -2603,7 +2598,6 @@
           - [ExceptionPrompt](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ExceptionPrompt.md)
           - [Gauge](reference/apis-arkui/arkui-ts/ts-basic-components-gauge.md)
           - [LoadingProgress](reference/apis-arkui/arkui-ts/ts-basic-components-loadingprogress.md)
-          - [LinearIndicator](reference/apis-arkui/arkui-ts/ts-basic-components-linearindicator.md)
           - [Marquee](reference/apis-arkui/arkui-ts/ts-basic-components-marquee.md)
           - [PatternLock](reference/apis-arkui/arkui-ts/ts-basic-components-patternlock.md)
           - [Progress](reference/apis-arkui/arkui-ts/ts-basic-components-progress.md)
@@ -3056,6 +3050,7 @@
         - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md)
         - [@ohos.resourceschedule.workScheduler (延迟任务调度)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md)
         - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md)
+        - [@ohos.resourceschedule.backgroundProcessManager (后台子进程管控)](reference/apis-backgroundtasks-kit/js-apis-backgroundProcessManager.md)
         <!--Del-->
         - [@ohos.reminderAgentManager (后台代理提醒)(系统接口)](reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager-sys.md)
         - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)(系统接口)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager-sys.md)
@@ -3078,9 +3073,11 @@
       - C API<!--background-tasks-c-->
         - 模块<!--background-tasks-module-->
           - [TransientTask](reference/apis-backgroundtasks-kit/_transient_task.md)
+          - [BackgroundProcessManager](reference/apis-backgroundtasks-kit/_background_process_manager.md)
         - 头文件<!--background-tasks-headerfile-->
           - [transient_task_api.h](reference/apis-backgroundtasks-kit/transient__task__api_8h.md)
           - [transient_task_type.h](reference/apis-backgroundtasks-kit/transient__task__type_8h.md)
+          - [background_process_manager.h](reference/apis-backgroundtasks-kit/background__process__manager_8h.md)
         - 结构体<!--background-tasks-struct-->
           - [TransientTask_DelaySuspendInfo](reference/apis-backgroundtasks-kit/_transient_task___delay_suspend_info.md)
       - 错误码<!--background-tasks-arkts-errcode-->
@@ -3088,6 +3085,7 @@
         - [DeviceUsageStatistics错误码](reference/apis-backgroundtasks-kit/errorcode-DeviceUsageStatistics.md)
         - [reminderAgentManager错误码](reference/apis-backgroundtasks-kit/errorcode-reminderAgentManager.md)
         - [workScheduler错误码](reference/apis-backgroundtasks-kit/errorcode-workScheduler.md)
+        - [backgroundProcessManager错误码](reference/apis-backgroundtasks-kit/errorcode-backgroundProcessManager.md)
     - Core File Kit（文件基础服务）<!--core-file-api-->
       - ArkTS API<!--core-file-arkts-->
         - [@ohos.application.BackupExtensionAbility (备份恢复扩展能力)](reference/apis-core-file-kit/js-apis-application-backupExtensionAbility.md)
@@ -3433,7 +3431,6 @@
         - ArkTS API<!--distributed-service-arkts-->
           - [@ohos.distributedDeviceManager (设备管理)](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md)
           - [@ohos.abilityConnectionManager (应用多端协同管理)](reference/apis-distributedservice-kit/js-apis-distributed-abilityConnectionManager.md)
-          - [@ohos.application.DistributedExtensionAbility (协同Extension)](reference/apis-distributedservice-kit/js-apis-distributedExtensionAbility.md)
           <!--Del-->
           - [@ohos.distributedHardware.hardwareManager (分布式硬件管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributedHardwareManager-sys.md)
           - [@ohos.distributedDeviceManager (设备管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager-sys.md)
@@ -3570,7 +3567,6 @@
             - [@ohos.runningLock (Runninglock锁)](reference/apis-basic-services-kit/js-apis-runninglock.md)
             - [@ohos.thermal (热管理)](reference/apis-basic-services-kit/js-apis-thermal.md)
             - [@ohos.usbManager (USB管理)](reference/apis-basic-services-kit/js-apis-usbManager.md)
-            - [@ohos.usbManager.serial (串口管理)](reference/apis-basic-services-kit/js-apis-serialManager.md)
             <!--Del-->
             - [@ohos.batteryInfo (电量信息)(系统接口)](reference/apis-basic-services-kit/js-apis-battery-info-sys.md)
             - [@ohos.batteryStatistics (耗电统计)(系统接口)](reference/apis-basic-services-kit/js-apis-batteryStatistics-sys.md)
@@ -3582,7 +3578,6 @@
             - [@ohos.systemParameterEnhance (系统参数)(系统接口)](reference/apis-basic-services-kit/js-apis-system-parameterEnhance-sys.md)
             - [@ohos.screenLock (锁屏管理)(系统接口)](reference/apis-basic-services-kit/js-apis-screen-lock-sys.md)
             - [@ohos.usbManager (USB管理)(系统接口)](reference/apis-basic-services-kit/js-apis-usbManager-sys.md)
-            - [@ohos.usbManager.serial (串口管理)(系统接口)](reference/apis-basic-services-kit/js-apis-serialManager-sys.md)
             - [@ohos.update (升级)(系统接口)](reference/apis-basic-services-kit/js-apis-update-sys.md)
             <!--DelEnd-->
           - 数据文件处理<!--data-file-processing-arkts-->
@@ -3699,6 +3694,7 @@
           - [账号管理错误码](reference/apis-basic-services-kit/errorcode-account.md)
           - [升级错误码](reference/apis-basic-services-kit/errorcode-update.md)
           - [打印服务错误码](reference/apis-basic-services-kit/errorcode-print.md)
+          - [设置数据项错误码](reference/apis-basic-services-kit/errorcode-settings.md)
           <!--Del-->
           - [锁屏服务错误码](reference/apis-basic-services-kit/errorcode-screenlock.md)
           - [设备证明错误码](reference/apis-basic-services-kit/errorcode-deviceAttest.md)

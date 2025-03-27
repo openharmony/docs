@@ -12,8 +12,8 @@
 
 该模块提供以下关系型数据库相关的常用功能：
 
-- [RdbPredicates](#rdbpredicates)： 数据库中用来代表数据实体的性质、特征或者数据实体之间关系的词项，主要用来定义数据库的操作条件。
-- [RdbStore](#rdbstore)：提供管理关系数据库(RDB)方法的接口。
+- [RdbPredicates](#rdbpredicates)：数据库中用来代表数据实体的性质、特征或者数据实体之间关系的词项，主要用来定义数据库的操作条件。
+- [RdbStore](#rdbstore)：提供管理关系数据库（RDB）方法的接口。
 - [ResultSet](#resultset)：提供用户调用关系型数据库查询接口之后返回的结果集合。
 - [Transaction](#transaction14)：提供管理事务对象的接口。
 
@@ -48,7 +48,7 @@ getRdbStore目前不支持多线程并发操作。
 
 | 参数名   | 类型                                           | 必填 | 说明                                                         |
 | -------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                        | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
+| context  | Context                                        | 是   | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
 | config   | [StoreConfig](#storeconfig)               | 是   | 与此RDB存储相关的数据库配置。                                |
 | callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | 是   | 指定callback回调函数，返回RdbStore对象。                   |
 
@@ -150,7 +150,7 @@ getRdbStore目前不支持多线程并发操作。
 
 | 参数名  | 类型                             | 必填 | 说明                                                         |
 | ------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                          | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
+| context | Context                          | 是   | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
 | config  | [StoreConfig](#storeconfig) | 是   | 与此RDB存储相关的数据库配置。                                |
 
 **返回值**：
@@ -246,7 +246,7 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                   | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
+| context  | Context                   | 是   | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
 | name     | string                    | 是   | 数据库名称。                                                 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 指定callback回调函数。                                       |
 
@@ -319,7 +319,7 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
+| context | Context | 是   | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
 | name    | string  | 是   | 数据库名称。                                                 |
 
 **返回值**：
@@ -393,7 +393,7 @@ deleteRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback\<v
 
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                     | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
+| context  | Context                     | 是   | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
 | config   | [StoreConfig](#storeconfig) | 是   | 与此RDB存储相关的数据库配置。                                |
 | callback | AsyncCallback&lt;void&gt;   | 是   | 指定callback回调函数。                                       |
 
@@ -477,7 +477,7 @@ deleteRdbStore(context: Context, config: StoreConfig): Promise\<void>
 
 | 参数名  | 类型                        | 必填 | 说明                                                         |
 | ------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                     | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
+| context | Context                     | 是   | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
 | config  | [StoreConfig](#storeconfig) | 是   | 与此RDB存储相关的数据库配置。                                |
 
 **返回值**：
@@ -617,18 +617,17 @@ console.info("custom tokenizer supported on current platform: " + customTypeSupp
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
 | name          | string        | 是   | 数据库文件名，也是数据库唯一标识符。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core   |
 | securityLevel | [SecurityLevel](#securitylevel) | 是   | 设置数据库安全级别。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core|
-| encrypt       | boolean       | 否   | 指定数据库是否加密，默认不加密。<br/> true:加密。<br/> false:非加密。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| encrypt       | boolean       | 否   | 指定数据库是否加密，默认不加密。<br/> true：加密。<br/> false：非加密。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | dataGroupId<sup>10+</sup> | string | 否 | 应用组ID，<!--RP1-->暂不支持指定dataGroupId在对应的沙箱路径下创建RdbStore实例。<!--RP1End--><br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。dataGroupId共沙箱的方式不支持多进程访问加密数据库，当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | customDir<sup>11+</sup> | string | 否 | 数据库自定义路径。<br/>**使用约束：** 数据库路径大小限制为128字节，如果超过该大小会开库失败，返回错误。<br/>从API version 11开始，支持此可选参数。数据库将在如下的目录结构中被创建：context.databaseDir + "/rdb/" + customDir，其中context.databaseDir是应用沙箱对应的路径，"/rdb/"表示创建的是关系型数据库，customDir表示自定义的路径。当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。从API version 18开始，如果同时配置了rootDir参数，将打开或删除如下路径数据库：rootDir + "/" + customDir + "/" + name。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | rootDir<sup>18+</sup> | string | 否 | 指定数据库根路径。<br/>从API version 18开始，支持此可选参数。将从如下目录打开或删除数据库：rootDir + "/" + customDir。通过设置此参数打开的数据库为只读模式，不允许对数据库进行写操作，否则返回错误码801。配置此参数打开或删除数据库时，应确保对应路径下数据库文件存在，并且有读取权限，否则返回错误码14800010。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | autoCleanDirtyData<sup>11+</sup> | boolean | 否 | 指定是否自动清理云端删除后同步到本地的数据，true表示自动清理，false表示手动清理，默认自动清理。<br/>对于端云协同的数据库，当云端删除的数据同步到设备端时，可通过该参数设置设备端是否自动清理。手动清理可以通过[cleanDirtyData<sup>11+</sup>](#cleandirtydata11)接口清理。<br/>从API version 11开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
-| allowRebuild<sup>12+</sup> | boolean | 否 | 指定数据库是否支持异常时自动删除，并重建一个空库空表，默认不删除。<br/>true:自动删除。<br/>false:不自动删除。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
-| isReadOnly<sup>12+</sup> | boolean | 否 | 指定数据库是否只读，默认为数据库可读写。<br/>true:只允许从数据库读取数据，不允许对数据库进行写操作，否则会返回错误码801。<br/>false:允许对数据库进行读写操作。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| allowRebuild<sup>12+</sup> | boolean | 否 | 指定数据库是否支持异常时自动删除，并重建一个空库空表，默认不删除。<br/>true：自动删除。<br/>false：不自动删除。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| isReadOnly<sup>12+</sup> | boolean | 否 | 指定数据库是否只读，默认为数据库可读写。<br/>true：只允许从数据库读取数据，不允许对数据库进行写操作，否则会返回错误码801。<br/>false：允许对数据库进行读写操作。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | pluginLibs<sup>12+</sup> | Array\<string> | 否 | 表示包含有fts（Full-Text Search，即全文搜索引擎）等能力的动态库名的数组。<br/>**使用约束：** <br/>1. 动态库名的数量限制最多为16个，如果超过该数量会开库失败，返回错误。<br/>2. 动态库名需为本应用沙箱路径下或系统路径下的动态库，如果动态库无法加载会开库失败，返回错误。<br/>3. 动态库名需为完整路径，用于被sqlite加载。<br/>样例：[context.bundleCodeDir+ "/libs/arm64/" + libtokenizer.so]，其中context.bundleCodeDir是应用沙箱对应的路径，"/libs/arm64/"表示子目录，libtokenizer.so表示动态库的文件名。当此参数不填时，默认不加载动态库。<br/>4. 动态库需要包含其全部依赖，避免依赖项丢失导致无法运行。<br/>例如：在ndk工程中，使用默认编译参数构建libtokenizer.so，此动态库依赖c++标准库。在加载此动态库时，由于namespace与编译时不一致，链接到了错误的libc++_shared.so，导致`__emutls_get_address`符号找不到。要解决此问题，需在编译时静态链接c++标准库，具体请参见[NDK工程构建概述](../../napi/build-with-ndk-overview.md)。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | cryptoParam<sup>14+</sup> | [CryptoParam](#cryptoparam14) | 否 | 指定用户自定义的加密参数。<br/>当此参数不填时，使用默认的加密参数，见[CryptoParam](#cryptoparam14)各参数默认值。<br/>此配置只有在encrypt选项设置为真时才有效。<br/>从API version 14开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | vector<sup>18+</sup> | boolean | 否 | 指定数据库是否是向量数据库，true表示向量数据库，false表示关系型数据库，默认为false。<br/>向量数据库适用于存储和处理高维向量数据，关系型数据库适用于存储和处理结构化数据。<br/>向量数据库目前支持[execute](#execute12-1)，[querySql](#querysql-1)，[beginTrans](#begintrans12)，[commit](#commit12)，[rollback](#rollback12)，[backup](#backup)，[restore](#restore)以及[ResultSet](#resultset)类型操作接口。当使用向量数据库时，在调用deleteRdbStore接口前，应当确保向量数据库已经被正确关闭。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | tokenizer<sup>18+</sup> | [Tokenizer](#tokenizer18) | 否 | 指定用户在fts场景下使用哪种分词器。<br/>当此参数不填时，则在fts下不支持中文以及多国语言分词，但仍可支持英文分词。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
-| persist<sup>18+</sup> | boolean | 否 | 指定数据库是否需要持久化。true表示持久化，false表示不持久化，即内存数据库。默认为true。<br/>内存数据库不支持加密、backup、restore、跨进程访问及分布式能力，securityLevel属性会被忽略。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 
 ## SecurityLevel
 
@@ -706,7 +705,7 @@ console.info("custom tokenizer supported on current platform: " + customTypeSupp
 | 名称                              | 值   | 说明             |
 | ------------------------------- | --- | -------------- |
 | NONE_TOKENIZER     | 0  | 不使用分词器。      |
-| ICU_TOKENIZER | 1 | 表示使用icu分词器，支持中文以及多国语言。指定icu分词器时，可指定使用哪种语言，例如zh_CN表示中文，tr_TR表示土耳其语等。详细支持的语言种类，请查阅[ICU分词器](https://gitee.com/openharmony/third_party_icu/blob/master/icu4c/source/data/lang/zh.txt)。详细的语言缩写，请查阅该目录([ICU支持的语言缩写](https://gitee.com/openharmony/third_party_icu/tree/master/icu4c/source/data/locales))下的文件名。|
+| ICU_TOKENIZER | 1 | 表示使用icu分词器，支持中文以及多国语言。指定icu分词器时，可指定使用哪种语言，例如zh_CN表示中文，tr_TR表示土耳其语等。详细支持的语言种类，请查阅[ICU分词器](https://gitee.com/openharmony/third_party_icu/blob/master/icu4c/source/data/lang/zh.txt)。详细的语言缩写，请查阅该目录（[ICU支持的语言缩写](https://gitee.com/openharmony/third_party_icu/tree/master/icu4c/source/data/locales)）下的文件名。|
 | CUSTOM_TOKENIZER | 2 | 表示使用自研分词器，可支持中文（简体、繁体）、英文、阿拉伯数字。CUSTOM_TOKENIZER相比ICU_TOKENIZER在分词准确率、常驻内存占用上更有优势。 |
 
 在使用不同的分词器时，使用的创表语句会有所区别。
@@ -840,7 +839,7 @@ type ValueType = null | number | string | boolean | Uint8Array | Asset | Assets 
 | Asset<sup>10+</sup>  | 表示值类型为附件[Asset](#asset10)。<br/>当字段类型是Asset时，在创建表的sql语句中，类型应当为：ASSET。 |
 | Assets<sup>10+</sup> | 表示值类型为附件数组[Assets](#assets10)。<br/>当字段类型是Assets时，在创建表的sql语句中，类型应当为：ASSETS。 |
 | Float32Array<sup>12+</sup> | 表示值类型为浮点数组。<br/>当字段类型是Float32Array时，在创建表的sql语句中，类型应当为：floatvector(128)。 |
-| bigint<sup>12+</sup> | 表示值类型为任意长度的整数。<br/>当字段类型是bigint时，在创建表的sql语句中，类型应当为：UNLIMITED INT, 详见[通过关系型数据库实现数据持久化](../../database/data-persistence-by-rdb-store.md)。<br/>**说明：** bigint类型当前不支持比较大小，不支持如下谓词：between、notBetween、greaterThanlessThan、greaterThanOrEqualTo、lessThanOrEqualTo、orderByAsc、orderByDesc。<br/>bigint类型字段的数据写入时，需通过BigInt()方法或在数据尾部添加'n'的方式明确为bigint类型，如'let data = BigInt(1234)'或'let data = 1234n'。<br/>bigint字段如果写入number类型的数据，则查询该数据的返回类型为number，而非bigint。 |
+| bigint<sup>12+</sup> | 表示值类型为任意长度的整数。<br/>当字段类型是bigint时，在创建表的sql语句中，类型应当为：UNLIMITED INT，详见[通过关系型数据库实现数据持久化](../../database/data-persistence-by-rdb-store.md)。<br/>**说明：** bigint类型当前不支持比较大小，不支持如下谓词：between、notBetween、greaterThanlessThan、greaterThanOrEqualTo、lessThanOrEqualTo、orderByAsc、orderByDesc。<br/>bigint类型字段的数据写入时，需通过BigInt()方法或在数据尾部添加'n'的方式明确为bigint类型，如'let data = BigInt(1234)'或'let data = 1234n'。<br/>bigint字段如果写入number类型的数据，则查询该数据的返回类型为number，而非bigint。 |
 
 ## ValuesBucket
 
@@ -998,7 +997,6 @@ type ModifyTime = Map<PRIKeyType, UTCTime>
 | -------- | ------- | ---- | ------------------------------------------------------------ |
 | autoSync   | boolean | 是   | 该值为true时，表示该表支持自动同步和手动同步；该值为false时，表示该表只支持手动同步，不支持自动同步。 |
 | asyncDownloadAsset<sup>18+</sup> | boolean | 否 | 表示当前数据库在端云同步时，同步或异步下载资产。true表示优先下载完所有数据后，使用异步任务下载资产；false表示同步下载资产；默认值为false。 |
-| enableCloud<sup>18+</sup> | boolean | 否 | 表示当前数据库是否允许端云同步。true表示允许端云同步；false表示不允许端云同步。默认值为true。 |
 
 ## ConflictResolution<sup>10+</sup>
 
@@ -1118,7 +1116,7 @@ type ModifyTime = Map<PRIKeyType, UTCTime>
 
 ## RdbPredicates
 
-表示关系型数据库（RDB）的谓词。该类确定RDB中条件表达式的值是true还是false。谓词间支持多语句拼接，拼接时默认使用and()连接。不支持Sendable跨线程传递。 
+表示关系型数据库（RDB）的谓词。该类确定RDB中条件表达式的值是true还是false。谓词间支持多语句拼接，拼接时默认使用and()连接。不支持Sendable跨线程传递。
 
 ### constructor
 
@@ -1978,7 +1976,7 @@ predicates.equalTo("NAME", "Rose").distinct();
 
 limitAs(value: number): RdbPredicates
 
-设置最大数据记录数的谓词。
+设置谓词的最大数据记录数量。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1986,7 +1984,7 @@ limitAs(value: number): RdbPredicates
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
-| value  | number | 是   | 最大数据记录数。 |
+| value  | number | 是   | 最大数据记录数，取值应为正整数，传入值小于等于0时，不会限制记录数量。 |
 
 **返回值**：
 
@@ -2013,7 +2011,7 @@ predicates.equalTo("NAME", "Rose").limitAs(3);
 
 offsetAs(rowOffset: number): RdbPredicates
 
-配置谓词以指定返回结果的起始位置。
+设置谓词查询结果返回的起始位置。需要同步调用limitAs接口指定查询数量，否则将无查询结果。如需查询指定偏移位置后的所有行，limitAs接口调用需传参数-1。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2021,7 +2019,7 @@ offsetAs(rowOffset: number): RdbPredicates
 
 | 参数名    | 类型   | 必填 | 说明                               |
 | --------- | ------ | ---- | ---------------------------------- |
-| rowOffset | number | 是   | 返回结果的起始位置，取值为正整数。 |
+| rowOffset | number | 是   | 返回结果的起始位置，取值应为正整数。结果集指针起始位置为0，传入值小于等于0时，查询结果将从0下标位置返回。 |
 
 **返回值**：
 
@@ -2041,7 +2039,7 @@ offsetAs(rowOffset: number): RdbPredicates
 
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "Rose").offsetAs(3);
+predicates.equalTo("NAME", "Rose").limitAs(-1).offsetAs(3);
 ```
 
 ### groupBy
@@ -2230,7 +2228,7 @@ predicates.notContains("NAME", "os");
 
 notLike(field: string, value: string): RdbPredicates
 
-配置谓词以匹配数据表的field列中值不存在类似于value的字段。 
+配置谓词以匹配数据表的field列中值不存在类似于value的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2267,7 +2265,7 @@ predicates.notLike("NAME", "os");
 
 ## RdbStore
 
-提供管理关系数据库(RDB)方法的接口。
+提供管理关系数据库（RDB）方法的接口。
 
 在使用以下相关接口前，请使用[executeSql](#executesql)接口初始化数据库表结构和相关数据。
 
@@ -3121,199 +3119,6 @@ if(store != undefined) {
 }
 ```
 
-### batchInsertWithConflictResolution<sup>18+</sup>
-
-batchInsertWithConflictResolution(table: string, values: Array&lt;ValuesBucket&gt;, conflict: ConflictResolution): Promise&lt;number&gt;
-
-向目标表中插入一组数据，可以通过conflict参数指定冲突解决模式。使用Promise异步回调。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**参数：**
-
-| 参数名 | 类型                                       | 必填 | 说明                         |
-| ------ | ------------------------------------------ | ---- | ---------------------------- |
-| table  | string                                     | 是   | 指定的目标表名。             |
-| values | Array&lt;[ValuesBucket](#valuesbucket)&gt; | 是   | 表示要插入到表中的一组数据。 |
-| conflict   | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决模式。       |
-
-**返回值**：
-
-| 类型   | 说明                                           |
-| ------ | ---------------------------------------------- |
-| Promise&lt;number&gt; | Promise对象。如果操作成功，返回插入的数据个数，否则返回-1。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。其中，14800011错误码处理可参考[数据库备份与恢复](../../database/data-backup-and-restore.md)。
-
-| **错误码ID** | **错误信息**                                                 |
-| ------------ | ------------------------------------------------------------ |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 14800000     | Inner error.                                                 |
-| 14800011     | Database corrupted.                                          |
-| 14800014     | Already closed.                                              |
-| 14800015     | The database does not respond.                                        |
-| 14800021     | SQLite: Generic error.                                       |
-| 14800022     | SQLite: Callback routine requested an abort.                 |
-| 14800023     | SQLite: Access permission denied.                            |
-| 14800024     | SQLite: The database file is locked.                         |
-| 14800025     | SQLite: A table in the database is locked.                   |
-| 14800026     | SQLite: The database is out of memory.                       |
-| 14800027     | SQLite: Attempt to write a readonly database.                |
-| 14800028     | SQLite: Some kind of disk I/O error occurred.                |
-| 14800029     | SQLite: The database is full.                                |
-| 14800030     | SQLite: Unable to open the database file.                    |
-| 14800031     | SQLite: TEXT or BLOB exceeds size limit.                     |
-| 14800032     | SQLite: Abort due to constraint violation.                   |
-| 14800033     | SQLite: Data type mismatch.                                  |
-| 14800034     | SQLite: Library used incorrectly.                            |
-| 14800047     | The WAL file size exceeds the default limit.                 |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let value1 = "Lisa";
-let value2 = 18;
-let value3 = 100.5;
-let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-let value5 = "Jack";
-let value6 = 19;
-let value7 = 101.5;
-let value8 = new Uint8Array([6, 7, 8, 9, 10]);
-let value9 = "Tom";
-let value10 = 20;
-let value11 = 102.5;
-let value12 = new Uint8Array([11, 12, 13, 14, 15]);
-
-const valueBucket1: relationalStore.ValuesBucket = {
-  'NAME': value1,
-  'AGE': value2,
-  'SALARY': value3,
-  'CODES': value4,
-};
-const valueBucket2: relationalStore.ValuesBucket = {
-  'NAME': value5,
-  'AGE': value6,
-  'SALARY': value7,
-  'CODES': value8,
-};
-const valueBucket3: relationalStore.ValuesBucket = {
-  'NAME': value9,
-  'AGE': value10,
-  'SALARY': value11,
-  'CODES': value12,
-};
-
-let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
-if(store != undefined) {
-  (store as relationalStore.RdbStore).batchInsertWithConflictResolution("EMPLOYEE", valueBuckets, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then((insertNum: number) => {
-    console.info(`batchInsert is successful, insertNum = ${insertNum}`);
-  }).catch((err: BusinessError) => {
-    console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
-  })
-}
-```
-
-### batchInsertWithConflictResolutionSync<sup>18+</sup>
-
-batchInsertWithConflictResolutionSync(table: string, values: Array&lt;ValuesBucket&gt;, conflict: ConflictResolution): number
-
-向目标表中插入一组数据。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**参数：**
-
-| 参数名 | 类型                                       | 必填 | 说明                         |
-| ------ | ------------------------------------------ | ---- | ---------------------------- |
-| table  | string                                     | 是   | 指定的目标表名。             |
-| values | Array&lt;[ValuesBucket](#valuesbucket)&gt; | 是   | 表示要插入到表中的一组数据。 |
-| conflict   | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决模式。       |
-
-**返回值**：
-
-| 类型   | 说明                                           |
-| ------ | ---------------------------------------------- |
-| number | 如果操作成功，返回插入的数据个数，否则返回-1。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。其中，14800011错误码处理可参考[数据库备份与恢复](../../database/data-backup-and-restore.md)。
-
-| **错误码ID** | **错误信息**                                                 |
-| ------------ | ------------------------------------------------------------ |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 14800000     | Inner error.                                                 |
-| 14800011     | Database corrupted.                                          |
-| 14800014     | Already closed.                                              |
-| 14800015     | The database does not respond.                                        |
-| 14800021     | SQLite: Generic error.                                       |
-| 14800022     | SQLite: Callback routine requested an abort.                 |
-| 14800023     | SQLite: Access permission denied.                            |
-| 14800024     | SQLite: The database file is locked.                         |
-| 14800025     | SQLite: A table in the database is locked.                   |
-| 14800026     | SQLite: The database is out of memory.                       |
-| 14800027     | SQLite: Attempt to write a readonly database.                |
-| 14800028     | SQLite: Some kind of disk I/O error occurred.                |
-| 14800029     | SQLite: The database is full.                                |
-| 14800030     | SQLite: Unable to open the database file.                    |
-| 14800031     | SQLite: TEXT or BLOB exceeds size limit.                     |
-| 14800032     | SQLite: Abort due to constraint violation.                   |
-| 14800033     | SQLite: Data type mismatch.                                  |
-| 14800034     | SQLite: Library used incorrectly.                            |
-| 14800047     | The WAL file size exceeds the default limit.                 |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let value1 = "Lisa";
-let value2 = 18;
-let value3 = 100.5;
-let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-let value5 = "Jack";
-let value6 = 19;
-let value7 = 101.5;
-let value8 = new Uint8Array([6, 7, 8, 9, 10]);
-let value9 = "Tom";
-let value10 = 20;
-let value11 = 102.5;
-let value12 = new Uint8Array([11, 12, 13, 14, 15]);
-
-const valueBucket1: relationalStore.ValuesBucket = {
-  'NAME': value1,
-  'AGE': value2,
-  'SALARY': value3,
-  'CODES': value4,
-};
-const valueBucket2: relationalStore.ValuesBucket = {
-  'NAME': value5,
-  'AGE': value6,
-  'SALARY': value7,
-  'CODES': value8,
-};
-const valueBucket3: relationalStore.ValuesBucket = {
-  'NAME': value9,
-  'AGE': value10,
-  'SALARY': value11,
-  'CODES': value12,
-};
-
-let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
-if(store != undefined) {
-  try {
-    let insertNum: number = (store as relationalStore.RdbStore).batchInsertWithConflictResolutionSync("EMPLOYEE", valueBuckets, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
-    console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
-  } catch (err) {
-      console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
-  }
-}
-```
-
 ### update
 
 update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
@@ -3768,7 +3573,7 @@ delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 | 参数名     | 类型                                 | 必填 | 说明                                      |
 | ---------- | ------------------------------------ | ---- | ----------------------------------------- |
 | predicates | [RdbPredicates](#rdbpredicates) | 是   | RdbPredicates的实例对象指定的删除条件。 |
-| callback   | AsyncCallback&lt;number&gt;          | 是   | 指定callback回调函数。返回受影响的行数。  |
+| callback   | AsyncCallback&lt;number&gt;          | 是   | 指定callback回调函数。返回受影响的行数量。 |
 
 **错误码：**
 
@@ -3831,7 +3636,7 @@ delete(predicates: RdbPredicates):Promise&lt;number&gt;
 
 | 类型                  | 说明                            |
 | --------------------- | ------------------------------- |
-| Promise&lt;number&gt; | Promise对象。返回受影响的行数。 |
+| Promise&lt;number&gt; | Promise对象。返回受影响的行数量。|
 
 **错误码：**
 
@@ -3894,7 +3699,7 @@ deleteSync(predicates: RdbPredicates):number
 
 | 类型   | 说明               |
 | ------ | ------------------ |
-| number | 返回受影响的行数。 |
+| number | 返回受影响的行数量。|
 
 **错误码：**
 
@@ -4323,7 +4128,7 @@ querySql(sql: string, callback: AsyncCallback&lt;ResultSet&gt;):void
 
 根据指定SQL语句查询数据库中的数据，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用callback异步回调。
 
-[向量数据库](#storeconfig)当前支持的标准语法有where、limit、offset、order by、group by以及having；扩展语法有<->(计算相似度)和<=>(计算余弦距离)，支持在聚合函数(max、min)中使用，不支持在聚合函数(sum、avg、count)和基础函数(random、abs、upper、lower、length)中使用。
+[向量数据库](#storeconfig)当前支持的标准语法有where、limit、offset、order by、group by以及having；扩展语法有<->（计算相似度）和<=>（计算余弦距离），支持在聚合函数（max、min）中使用，不支持在聚合函数（sum、avg、count）和基础函数（random、abs、upper、lower、length）中使用。
 
 聚合函数不支持嵌套使用。
 
@@ -4376,7 +4181,7 @@ if(store != undefined) {
 向量数据库：
 
 ```ts
-// 相似度的计算符号是<->, 余弦距离的计算符号是<=>
+// 相似度的计算符号是<->，余弦距离的计算符号是<=>
 const querySql = "select id, repr <-> '[1.5,5.6]' as distance from test ORDER BY repr <-> '[1.5,5.6]' limit 10 offset 1;";
 let resultSet = await store.querySql(querySql);
 
@@ -4395,7 +4200,7 @@ querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&
 
 根据指定SQL语句查询数据库中的数据，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用callback异步回调。
 
-[向量数据库](#storeconfig)当前支持的标准语法有where、limit、offset、order by、group by以及having；扩展语法有<->(计算相似度)和<=>(计算余弦距离)，支持在聚合函数(max、min)中使用，不支持在聚合函数(sum、avg、count)和基础函数(random、abs、upper、lower、length)中使用。
+[向量数据库](#storeconfig)当前支持的标准语法有where、limit、offset、order by、group by以及having；扩展语法有<->（计算相似度）和<=>（计算余弦距离），支持在聚合函数（max、min）中使用，不支持在聚合函数（sum、avg、count）和基础函数（random、abs、upper、lower、length）中使用。
 
 聚合函数不支持嵌套使用。
 
@@ -4450,7 +4255,7 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 
 根据指定SQL语句查询数据库中的数据，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用Promise异步回调。
 
-[向量数据库](#storeconfig)当前支持的标准语法有where、limit、offset、order by、group by以及having；扩展语法有<->(计算相似度)和<=>(计算余弦距离)，支持在聚合函数(max、min)中使用，不支持在聚合函数(sum、avg、count)和基础函数(random、abs、upper、lower、length)中使用。
+[向量数据库](#storeconfig)当前支持的标准语法有where、limit、offset、order by、group by以及having；扩展语法有<->（计算相似度）和<=>（计算余弦距离），支持在聚合函数（max、min）中使用，不支持在聚合函数（sum、avg、count）和基础函数（random、abs、upper、lower、length）中使用。
 
 聚合函数不支持嵌套使用。
 
@@ -4771,7 +4576,7 @@ execute(sql: string, args?: Array&lt;ValueType&gt;):Promise&lt;ValueType&gt;
 
 执行包含指定参数的SQL语句，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，返回值类型为ValueType，使用Promise异步回调。
 
-该接口支持执行增删改操作，支持执行PRAGMA语法的sql，支持对表的操作（建表、删表、修改表）,返回结果类型由执行具体sql的结果决定。
+该接口支持执行增删改操作，支持执行PRAGMA语法的sql，支持对表的操作（建表、删表、修改表），返回结果类型由执行具体sql的结果决定。
 
 此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
@@ -6587,7 +6392,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
 | type     | [SubscribeType](#subscribetype)    | 是   | 订阅类型。 |
-| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | 是   | 回调函数。<br>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端账号。 <br> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。<br>当type为SUBSCRIBE_TYPE_LOCAL_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为本地数据库中的数据更改的详情。 |
+| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | 是   | 回调函数。<br>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端账号。<br> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。<br>当type为SUBSCRIBE_TYPE_LOCAL_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为本地数据库中的数据更改的详情。 |
 
 **错误码：**
 
@@ -6681,7 +6486,7 @@ on(event: string, interProcess: boolean, observer: Callback\<void>): void
 
 | 参数名       | 类型            | 必填 | 说明                                                         |
 | ------------ | --------------- | ---- | ------------------------------------------------------------ |
-| event        | string          | 是   | 订阅事件名称。                                               |
+| event        | string          | 是   | 订阅事件名称，与emit接口触发事件时的名称一致。               |
 | interProcess | boolean         | 是   | 指定是进程间还是本进程订阅。<br/> true：进程间。<br/> false：本进程。 |
 | observer     | Callback\<void> | 是   | 回调函数。                                                   |
 
@@ -6906,7 +6711,7 @@ off(event:'dataChange', type: SubscribeType, observer?: Callback&lt;Array&lt;str
 | -------- | ---------------------------------- | ---- | ------------------------------------------ |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
 | type     | [SubscribeType](#subscribetype)     | 是   | 订阅类型。                                 |
-| observer | Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | 否 | 回调函数。<br/>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br/> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端账号。 <br/> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。<br>当type为SUBSCRIBE_TYPE_LOCAL_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为本地数据库中的数据更改的详情。<br> 当observer没有传入时，表示取消当前type类型下所有数据变更的事件监听。 |
+| observer | Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | 否 | 回调函数。<br/>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br/> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端账号。<br/> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。<br>当type为SUBSCRIBE_TYPE_LOCAL_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为本地数据库中的数据更改的详情。<br> 当observer没有传入时，表示取消当前type类型下所有数据变更的事件监听。 |
 
 **错误码：**
 
@@ -6966,7 +6771,7 @@ off(event: string, interProcess: boolean, observer?: Callback\<void>): void
 
 | 参数名       | 类型            | 必填 | 说明                                                         |
 | ------------ | --------------- | ---- | ------------------------------------------------------------ |
-| event        | string          | 是   | 取消订阅事件名称。                                           |
+| event        | string          | 是   | 取消订阅事件名称。事件名称与on接口调用时订阅事件的名称一致。 |
 | interProcess | boolean         | 是   | 指定是进程间还是本进程取消订阅。<br/> true：进程间。<br/> false：本进程。 |
 | observer     | Callback\<void> | 否   | 该参数存在，则取消指定Callback监听回调，否则取消该event事件的所有监听回调。 |
 
@@ -7120,7 +6925,7 @@ emit(event: string): void
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| event  | string | 是   | 通知订阅事件的名称。 |
+| event  | string | 是   | 通知订阅事件的名称，可自定义事件名称，不能与系统已有事件[dataChange](#ondatachange)，[autoSyncProgress](#onautosyncprogress11)，[statistics](#onstatistics12)名称重复。 |
 
 **错误码：**
 
@@ -7407,7 +7212,7 @@ attach不能并发调用，可能出现未响应情况，报错14800015，需要
 
 | 参数名        | 类型     | 必填  | 说明           |
 | ----------- | ------ | --- | ------------ |
-| context | Context                          | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
+| context | Context                          | 是   | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
 | config  | [StoreConfig](#storeconfig) | 是   | 与此RDB存储相关的数据库配置。                                |
 | attachName | string | 是   | 表示附加后的数据库的别名。 |
 | waitTime | number | 否   | 表示附加数据库文件的等待时长。默认值2s，最小值1s，最大值300s。 |
@@ -7868,14 +7673,14 @@ class EntryAbility extends UIAbility {
 | 名称         | 类型            | 必填 | 说明                             |
 | ------------ | ------------------- | ---- | -------------------------------- |
 | columnNames  | Array&lt;string&gt; | 是   | 获取结果集中所有列的名称。       |
-| columnCount  | number              | 是   | 获取结果集中的列数。             |
-| rowCount     | number              | 是   | 获取结果集中的行数。             |
-| rowIndex     | number              | 是   | 获取结果集当前行的索引。         |
-| isAtFirstRow | boolean             | 是   | 检查结果集是否位于第一行。       |
-| isAtLastRow  | boolean             | 是   | 检查结果集是否位于最后一行。     |
-| isEnded      | boolean             | 是   | 检查结果集是否位于最后一行之后。 |
-| isStarted    | boolean             | 是   | 检查指针是否移动过。             |
-| isClosed     | boolean             | 是   | 检查当前结果集是否关闭。         |
+| columnCount  | number              | 是   | 获取结果集中列的数量。             |
+| rowCount     | number              | 是   | 获取结果集中行的数量。             |
+| rowIndex     | number              | 是   | 获取结果集当前行的索引位置，默认值为-1。索引位置下标从0开始。 |
+| isAtFirstRow | boolean             | 是   | 检查结果集指针是否位于第一行（行索引为0），true表示位于第一行，false表示不位于第一行。 |
+| isAtLastRow  | boolean             | 是   | 检查结果集指针是否位于最后一行，true表示位于最后一行，false表示不位于最后一行。 |
+| isEnded      | boolean             | 是   | 检查结果集指针是否位于最后一行之后，true表示位于最后一行之后，false表示不位于最后一行之后。 |
+| isStarted    | boolean             | 是   | 检查指针是否移动过，true表示指针已移动过，false表示指针未移动过。             |
+| isClosed     | boolean             | 是   | 检查当前结果集是否关闭，true表示结果集已关闭，false表示结果集未关闭。         |
 
 ### getColumnIndex
 
@@ -7996,7 +7801,7 @@ if(resultSet != undefined) {
 
 goTo(offset:number): boolean
 
-向前或向后转至结果集的指定行，相对于其当前位置偏移。
+指定相对当前结果集指针位置的偏移量，以移动结果集的指针位置。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -8004,7 +7809,7 @@ goTo(offset:number): boolean
 
 | 参数名 | 类型   | 必填 | 说明                         |
 | ------ | ------ | ---- | ---------------------------- |
-| offset | number | 是   | 表示相对于当前位置的偏移量。 |
+| offset | number | 是   | 表示相对当前结果集指针位置的偏移量，正值表示向后移动，负值表示向前移动。 |
 
 **返回值：**
 
@@ -8742,7 +8547,7 @@ getRows(maxCount: number, position?: number): Promise<Array\<ValuesBucket>>
 | 参数名      | 类型   | 必填 | 说明                    |
 | ----------- | ------ | ---- | ----------------------- |
 | maxCount | number | 是   | 正整数，指定要从结果集中获取数据的条数。不为正整数则参数非法，抛出错误码401。 |
-| position | number | 否   | 非负整数，指定从结果集中获取数据的起始位置，不填则从结果集的当前行(默认首次获取数据时为当前结果集的第一行)开始获取数据。不为非负整数则参数非法，抛出错误码401。 |
+| position | number | 否   | 非负整数，指定从结果集中获取数据的起始位置，不填则从结果集的当前行（默认首次获取数据时为当前结果集的第一行）开始获取数据。不为非负整数则参数非法，抛出错误码401。 |
 
 
 **返回值：**
@@ -8784,7 +8589,7 @@ async function proccessRows(resultSet: relationalStore.ResultSet) {
   if (resultSet != undefined) {
     let rows:Array<relationalStore.ValuesBucket>
     let maxCount:number = 50
-    // 从结果集的当前行(默认首次获取数据时为当前结果集的第一行，后续为上次获取数据结束位置的下一行)开始获取数据
+    // 从结果集的当前行（默认首次获取数据时为当前结果集的第一行，后续为上次获取数据结束位置的下一行）开始获取数据
     // getRows会自动移动结果集当前行到上次getRows获取结束位置的下一行，无需使用goToFirstRow、goToNextRow等接口移动
     while ((rows = await (resultSet as relationalStore.ResultSet).getRows(maxCount)).length != 0) {
       console.info(JSON.stringify(rows[0]))
@@ -9480,203 +9285,6 @@ if(store != undefined) {
 }
 ```
 
-### batchInsertWithConflictResolution<sup>18+</sup>
-
-batchInsertWithConflictResolution(table: string, values: Array&lt;ValuesBucket&gt;, conflict: ConflictResolution): Promise&lt;number&gt;
-
-向目标表中插入一组数据，使用Promise异步回调。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**参数：**
-
-| 参数名 | 类型                                       | 必填 | 说明                         |
-| ------ | ------------------------------------------ | ---- | ---------------------------- |
-| table  | string                                     | 是   | 指定的目标表名。             |
-| values | Array&lt;[ValuesBucket](#valuesbucket)&gt; | 是   | 表示要插入到表中的一组数据。|
-| conflict | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决模式。如果是ON_CONFLICT_ROLLBACK模式，当发生冲突时会回滚整个事务。 |
-
-**返回值**：
-
-| 类型                  | 说明                                                        |
-| --------------------- | ----------------------------------------------------------- |
-| Promise&lt;number&gt; | Promise对象。如果操作成功，返回插入的数据个数，否则返回-1。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。其中，14800011错误码处理可参考[数据库备份与恢复](../../database/data-backup-and-restore.md)。
-
-| **错误码ID** | **错误信息**                                                 |
-|-----------| ------------------------------------------------------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
-| 14800021  | SQLite: Generic error. |
-| 14800022  | SQLite: Callback routine requested an abort. |
-| 14800023  | SQLite: Access permission denied. |
-| 14800024  | SQLite: The database file is locked. |
-| 14800025  | SQLite: A table in the database is locked. |
-| 14800026  | SQLite: The database is out of memory. |
-| 14800027  | SQLite: Attempt to write a readonly database. |
-| 14800028  | SQLite: Some kind of disk I/O error occurred. |
-| 14800029  | SQLite: The database is full. |
-| 14800031  | SQLite: TEXT or BLOB exceeds size limit. |
-| 14800032  | SQLite: Abort due to constraint violation. |
-| 14800033  | SQLite: Data type mismatch. |
-| 14800034  | SQLite: Library used incorrectly. |
-| 14800047  | The WAL file size exceeds the default limit. |
-
-**示例：**
-
-```ts
-let value1 = "Lisa";
-let value2 = 18;
-let value3 = 100.5;
-let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-let value5 = "Jack";
-let value6 = 19;
-let value7 = 101.5;
-let value8 = new Uint8Array([6, 7, 8, 9, 10]);
-let value9 = "Tom";
-let value10 = 20;
-let value11 = 102.5;
-let value12 = new Uint8Array([11, 12, 13, 14, 15]);
-
-const valueBucket1: relationalStore.ValuesBucket = {
-  'NAME': value1,
-  'AGE': value2,
-  'SALARY': value3,
-  'CODES': value4,
-};
-const valueBucket2: relationalStore.ValuesBucket = {
-  'NAME': value5,
-  'AGE': value6,
-  'SALARY': value7,
-  'CODES': value8,
-};
-const valueBucket3: relationalStore.ValuesBucket = {
-  'NAME': value9,
-  'AGE': value10,
-  'SALARY': value11,
-  'CODES': value12,
-};
-
-let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
-if(store != undefined) {
-  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
-    transaction.batchInsertWithConflictResolution("EMPLOYEE", valueBuckets, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then((insertNum: number) => {
-      transaction.commit();
-      console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
-    }).catch((e: BusinessError) => {
-      transaction.rollback();
-      console.error(`batchInsert is failed, code is ${e.code},message is ${e.message}`);
-    });
-  }).catch((err: BusinessError) => {
-    console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
-  });
-}
-```
-
-### batchInsertWithConflictResolutionSync<sup>18+</sup>
-
-batchInsertWithConflictResolutionSync(table: string, values: Array&lt;ValuesBucket&gt;, conflict: ConflictResolution): number
-
-向目标表中插入一组数据。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**参数：**
-
-| 参数名 | 类型                                       | 必填 | 说明                         |
-| ------ | ------------------------------------------ | ---- | ---------------------------- |
-| table  | string                                     | 是   | 指定的目标表名。             |
-| values | Array&lt;[ValuesBucket](#valuesbucket)&gt; | 是   | 表示要插入到表中的一组数据。 |
-| conflict | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决模式。如果是ON_CONFLICT_ROLLBACK模式，当发生冲突时会回滚整个事务。 |
-
-**返回值**：
-
-| 类型   | 说明                                           |
-| ------ | ---------------------------------------------- |
-| number | 如果操作成功，返回插入的数据个数，否则返回-1。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。其中，14800011错误码处理可参考[数据库备份与恢复](../../database/data-backup-and-restore.md)。
-
-| **错误码ID** | **错误信息**                                                 |
-| ------------ | ------------------------------------------------------------ |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
-| 14800021  | SQLite: Generic error. |
-| 14800022  | SQLite: Callback routine requested an abort. |
-| 14800023  | SQLite: Access permission denied. |
-| 14800024  | SQLite: The database file is locked. |
-| 14800025  | SQLite: A table in the database is locked. |
-| 14800026  | SQLite: The database is out of memory. |
-| 14800027  | SQLite: Attempt to write a readonly database. |
-| 14800028  | SQLite: Some kind of disk I/O error occurred. |
-| 14800029  | SQLite: The database is full. |
-| 14800031  | SQLite: TEXT or BLOB exceeds size limit. |
-| 14800032  | SQLite: Abort due to constraint violation. |
-| 14800033  | SQLite: Data type mismatch. |
-| 14800034  | SQLite: Library used incorrectly. |
-| 14800047  | The WAL file size exceeds the default limit. |
-
-**示例：**
-
-```ts
-let value1 = "Lisa";
-let value2 = 18;
-let value3 = 100.5;
-let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-let value5 = "Jack";
-let value6 = 19;
-let value7 = 101.5;
-let value8 = new Uint8Array([6, 7, 8, 9, 10]);
-let value9 = "Tom";
-let value10 = 20;
-let value11 = 102.5;
-let value12 = new Uint8Array([11, 12, 13, 14, 15]);
-
-const valueBucket1: relationalStore.ValuesBucket = {
-  'NAME': value1,
-  'AGE': value2,
-  'SALARY': value3,
-  'CODES': value4,
-};
-const valueBucket2: relationalStore.ValuesBucket = {
-  'NAME': value5,
-  'AGE': value6,
-  'SALARY': value7,
-  'CODES': value8,
-};
-const valueBucket3: relationalStore.ValuesBucket = {
-  'NAME': value9,
-  'AGE': value10,
-  'SALARY': value11,
-  'CODES': value12,
-};
-
-let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
-if(store != undefined) {
-  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
-    try {
-      let insertNum: number = (transaction as relationalStore.Transaction).batchInsertWithConflictResolutionSync("EMPLOYEE", valueBuckets, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
-      transaction.commit();
-      console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
-    } catch (e) {
-      transaction.rollback();
-      console.error(`batchInsert is failed, code is ${e.code},message is ${e.message}`);
-    };
-  }).catch((err: BusinessError) => {
-    console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
-  });
-}
-```
-
 ### update<sup>14+</sup>
 
 update(values: ValuesBucket, predicates: RdbPredicates, conflict?: ConflictResolution): Promise&lt;number&gt;
@@ -9691,7 +9299,7 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict?: ConflictResol
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | values     | [ValuesBucket](#valuesbucket)               | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
 | predicates | [RdbPredicates](#rdbpredicates)            | 是   | RdbPredicates的实例对象指定的更新条件。                      |
-| conflict   | [ConflictResolution](#conflictresolution10) | 否   | 指定冲突解决模式。 默认值是relationalStore.ConflictResolution.ON_CONFLICT_NONE。                                          |
+| conflict   | [ConflictResolution](#conflictresolution10) | 否   | 指定冲突解决模式。默认值是relationalStore.ConflictResolution.ON_CONFLICT_NONE。                                          |
 
 **返回值**：
 

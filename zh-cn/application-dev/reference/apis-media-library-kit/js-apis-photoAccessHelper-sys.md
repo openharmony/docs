@@ -2586,7 +2586,7 @@ isEdited(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是    | Callback对象，返回图片或视频资源是否被编辑过。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是    | Callback对象，返回图片或视频资源是否被编辑过。true为被编辑过，false为没有被编辑过，默认是false。 |
 
 **错误码：**
 
@@ -2647,7 +2647,7 @@ isEdited(): Promise&lt;boolean&gt;
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-|Promise&lt;boolean&gt; | Promise对象，返回图片或视频资源是否被编辑过。 |
+|Promise&lt;boolean&gt; | Promise对象，返回图片或视频资源是否被编辑过。true为被编辑过，false为没有被编辑过，默认是false。 |
 
 
 **错误码：**
@@ -6187,6 +6187,8 @@ submitCloudEnhancementTasks(photoAssets: Array&lt;PhotoAsset&gt;, hasCloudWaterm
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
 **参数：**
 
 | 参数名   | 类型                      | 必填 | 说明       |
@@ -6231,6 +6233,64 @@ async function example() {
 }
 ```
 
+### submitCloudEnhancementTasks<sup>18+</sup>
+
+submitCloudEnhancementTasks(photoAssets: Array&lt;PhotoAsset&gt;, hasCloudWatermark: boolean, triggerMode?: number): Promise&lt;void&gt;
+
+提交云增强任务。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| photoAssets | Array<[PhotoAsset](#photoasset)> | 是   | 需要增强照片的[PhotoAsset](#photoasset)集合。 |
+| hasCloudWatermark | boolean | 是   | 若为true，增强后图片添加云增强水印；若为false，增强后图片不添加云增强水印。 |
+| triggerMode | number | 否   | 云增强任务触发类型。<br>- 0：手动触发。<br>- 1：自动触发。<br>- 默认值为0。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error.            |
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  console.info('submitCloudEnhancementTasksDemo');
+  let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let photoFetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: photoPredicates
+  };
+  let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+  try {
+    let fetchResult = await phAccessHelper.getAssets(photoFetchOptions);
+    let asset = await fetchResult.getLastObject();
+    let cloudEnhancementInstance: photoAccessHelper.CloudEnhancement
+      = photoAccessHelper.CloudEnhancement.getCloudEnhancementInstance(context);
+    let hasCloudWatermark = true;
+    let triggerAuto = 1;
+    await cloudEnhancementInstance.submitCloudEnhancementTasks([asset], hasCloudWatermark, triggerAuto);
+  } catch (err) {
+    console.error(`submitCloudEnhancementTasksDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
 ### prioritizeCloudEnhancementTask<sup>13+</sup>
 
 prioritizeCloudEnhancementTask(photoAsset: PhotoAsset): Promise&lt;void&gt;
@@ -6240,6 +6300,8 @@ prioritizeCloudEnhancementTask(photoAsset: PhotoAsset): Promise&lt;void&gt;
 **系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
 **参数：**
 
@@ -6296,6 +6358,8 @@ cancelCloudEnhancementTasks(photoAssets: Array&lt;PhotoAsset&gt;): Promise&lt;vo
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
 **参数：**
 
 | 参数名   | 类型                      | 必填 | 说明       |
@@ -6350,6 +6414,8 @@ cancelAllCloudEnhancementTasks(): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
 **错误码：**
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
@@ -6386,6 +6452,8 @@ queryCloudEnhancementTaskState(photoAsset: PhotoAsset): Promise&lt;CloudEnhancem
 **系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
 
 **参数：**
 
@@ -6468,6 +6536,8 @@ syncCloudEnhancementTaskStatus(): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
 **错误码：**
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
@@ -6504,6 +6574,8 @@ getCloudEnhancementPair(asset: PhotoAsset): Promise&lt;PhotoAsset&gt;
 **系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
 
 **参数：**
 
@@ -7018,6 +7090,7 @@ async function example() {
 | MOVING_PHOTO_EFFECT_MODE<sup>12+</sup>  | 'moving_photo_effect_mode' | 动态照片效果模式。**系统接口**：此接口为系统接口。 |
 | CE_AVAILABLE<sup>13+</sup>  | 'ce_available' | 云增强任务标识。**系统接口**：此接口为系统接口。 |
 | SUPPORTED_WATERMARK_TYPE<sup>14+</sup>  | 'supported_watermark_type' | 水印可编辑标识。**系统接口**：此接口为系统接口。 |
+| IS_CE_AUTO<sup>18+</sup>  | 'is_auto' | 是否支持自动云增强。**系统接口**：此接口为系统接口。 |
 
 ## AlbumKeys
 
@@ -7130,6 +7203,7 @@ async function example() {
 | ----- |  ---- |  ---- |
 | PHOTO_PROXY |  3 |  表示照片代理资源。**系统接口**：此接口为系统接口。 |
 | PRIVATE_MOVING_PHOTO_RESOURCE<sup>13+</sup> |  4 |  表示私有动态照片资源。**系统接口**：此接口为系统接口。 |
+| PRIVATE_MOVING_PHOTO_METADATA<sup>18+</sup> |  5 |  表示私有动态照片元数据资源。**系统接口**：此接口为系统接口。 |
 
 ## DefaultChangeUri
 

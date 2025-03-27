@@ -19,7 +19,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| int32_t [fd](#fd) | 句柄 Fd， -1代表不支持。 | 
+| int32_t [fd](#fd) | 句柄Fd，-1代表不支持。 | 
 | uint32_t [reserveInts](#reserveints) | Reserve数组的个数。 | 
 | int32_t [reserve](#reserve) [0] | Reserve数组。 | 
 
@@ -33,9 +33,9 @@
 int32_t OHExtDataHandle::fd
 ```
 
-**描述**
+**描述：**
 
-句柄 Fd， -1代表不支持。
+句柄 Fd，-1代表不支持。
 
 
 ### reserve
@@ -44,7 +44,7 @@ int32_t OHExtDataHandle::fd
 int32_t OHExtDataHandle::reserve[0]
 ```
 
-**描述**
+**描述：**
 
 Reserve数组。
 
@@ -55,6 +55,6 @@ Reserve数组。
 uint32_t OHExtDataHandle::reserveInts
 ```
 
-**描述**
+**描述：**
 
 Reserve数组的个数。

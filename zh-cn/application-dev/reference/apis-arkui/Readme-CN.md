@@ -12,7 +12,7 @@
     - [@ohos.arkui.observer (无感监听)](js-apis-arkui-observer.md)
     - [@ohos.arkui.prefetcher (Prefetching)](js-apis-arkui-Prefetcher.md)
     - [@ohos.arkui.shape(形状)](js-apis-arkui-shape.md)
-    - [@ohos.arkui.Theme(主题换肤)](js-apis-arkui-theme.md)
+    - [@ohos.arkui.theme(主题换肤)](js-apis-arkui-theme.md)
     - [@ohos.arkui.UIContext (UIContext)](js-apis-arkui-UIContext.md)
     - [@ohos.arkui.uiExtension (uiExtension)](js-apis-arkui-uiExtension.md)
     - [@ohos.arkui.StateManagement (状态管理)](js-apis-StateManagement.md)
@@ -109,7 +109,6 @@
       - [形状裁剪](arkui-ts/ts-universal-attributes-sharp-clipping.md)
       - [颜色渐变](arkui-ts/ts-universal-attributes-gradient-color.md)
       - [Popup控制](arkui-ts/ts-universal-attributes-popup.md)
-      - [Tips控制](arkui-ts/ts-universal-attributes-tips.md)
       - [菜单控制](arkui-ts/ts-universal-attributes-menu.md)
       - [焦点控制](arkui-ts/ts-universal-attributes-focus.md)
       - [悬浮态效果](arkui-ts/ts-universal-attributes-hover-effect.md)
@@ -195,7 +194,6 @@
     - [ArcSwiper](arkui-ts/ts-container-arcswiper.md)
     - [WaterFlow](arkui-ts/ts-container-waterflow.md)
     - [FlowItem](arkui-ts/ts-container-flowitem.md)
-    - [LazyVGridLayout](arkui-ts/ts-container-lazyvgridlayout.md)
     - [ScrollBar](arkui-ts/ts-basic-components-scrollbar.md)
     - [Refresh](arkui-ts/ts-container-refresh.md)
     - [ComposeListItem](arkui-ts/ohos-arkui-advanced-ComposeListItem.md)
@@ -255,6 +253,7 @@
     <!--Del-->
     - [TextInput (系统接口)](arkui-ts/ts-basic-components-textinput-sys.md)
     - [属性字符串 (系统接口)](arkui-ts/ts-universal-styled-string-sys.md)
+    -  [RichEditor(系统接口)](arkui-ts/ts-basic-components-richeditor-sys.md)
     <!--DelEnd-->
   - 图片与视频<!--images-and-videos-->
     - [Image](arkui-ts/ts-basic-components-image.md)
@@ -278,7 +277,6 @@
     - [ExceptionPrompt](arkui-ts/ohos-arkui-advanced-ExceptionPrompt.md)
     - [Gauge](arkui-ts/ts-basic-components-gauge.md)
     - [LoadingProgress](arkui-ts/ts-basic-components-loadingprogress.md)
-    - [LinearIndicator](arkui-ts/ts-basic-components-linearindicator.md)
     - [Marquee](arkui-ts/ts-basic-components-marquee.md)
     - [PatternLock](arkui-ts/ts-basic-components-patternlock.md)
     - [Progress](arkui-ts/ts-basic-components-progress.md)
