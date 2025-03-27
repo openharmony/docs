@@ -335,25 +335,24 @@ Enumerates the audio device roles.
 
 Enumerates the audio device types.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
 | Name                | Value    | Description                                                     |
 | ---------------------| ------ | --------------------------------------------------------- |
-| INVALID              | 0      | Invalid device.                                               |
-| EARPIECE             | 1      | Earpiece.                                                   |
-| SPEAKER              | 2      | Speaker.                                                 |
-| WIRED_HEADSET        | 3      | Wired headset with a microphone.                                     |
-| WIRED_HEADPHONES     | 4      | Wired headset without microphone.                                     |
-| BLUETOOTH_SCO        | 7      | Bluetooth device using Synchronous Connection Oriented (SCO) links.     |
-| BLUETOOTH_A2DP       | 8      | Bluetooth device using Advanced Audio Distribution Profile (A2DP) links.|
-| MIC                  | 15     | Microphone.                                                 |
-| USB_HEADSET          | 22     | USB Type-C headset.                                      |
-| DISPLAY_PORT<sup>12+</sup>        | 23     | Display port (DP), which is used to connect to external devices.          |
-| REMOTE_CAST<sup>12+</sup>        | 24     | Remote cast device.          |
+| INVALID              | 0      | Invalid device.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| EARPIECE             | 1      | Earpiece.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| SPEAKER              | 2      | Speaker.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| WIRED_HEADSET        | 3      | Wired headset with a microphone.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| WIRED_HEADPHONES     | 4      | Wired headset without microphone.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| BLUETOOTH_SCO        | 7      | Bluetooth device using Synchronous Connection Oriented (SCO) links.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| BLUETOOTH_A2DP       | 8      | Bluetooth device using Advanced Audio Distribution Profile (A2DP) links.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| MIC                  | 15     | Microphone.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| USB_HEADSET          | 22     | USB Type-C headset.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| DISPLAY_PORT<sup>12+</sup>        | 23     | Display port (DP), which is used to connect to external devices.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| REMOTE_CAST<sup>12+</sup>        | 24     | Remote cast device.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | USB_DEVICE<sup>18+</sup>        | 25 | USB device (excluding USB headsets).          |
-| DEFAULT<sup>9+</sup> | 1000   | Default device type.                                           |
+| REMOTE_DAUDIO<sup>18+</sup>        | 29 | Distributed device.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| DEFAULT<sup>9+</sup> | 1000   | Default device type.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## CommunicationDeviceType<sup>9+</sup>
 
@@ -553,7 +552,7 @@ Enumerates the audio stream usage.
 | STREAM_USAGE_UNKNOWN                      | 0      | Unknown content.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                    |
 | STREAM_USAGE_MEDIA<sup>(deprecated)</sup>                        | 1      | Media.<br> This enumerated value is supported since API version 7 and deprecated since API version 10. You are advised to use **STREAM_USAGE_MUSIC**, **STREAM_USAGE_MOVIE**, **STREAM_USAGE_GAME**, or **STREAM_USAGE_AUDIOBOOK** instead.|
 | STREAM_USAGE_MUSIC<sup>10+</sup>          | 1      | Music.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                     |
-| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | VoIP voice call.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | VoIP voice call.<br>**Atomic service API**: This API can be used in atomic services since API version 12.| 
 | STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | Voice assistant.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                     |
 | STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | Audio stream for alarming.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                     |
 | STREAM_USAGE_VOICE_MESSAGE<sup>10+</sup>  | 5      | Voice message.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                    |
