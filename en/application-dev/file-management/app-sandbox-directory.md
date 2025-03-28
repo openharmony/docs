@@ -10,7 +10,7 @@ The application sandbox is an isolation mechanism used to prevent malicious data
 
 The following figure illustrates the file access mechanism in the application sandbox.
 
-**Figure 1** File access mechanism in the application sandbox
+**Figure 1** File access mechanism in the application sandbox 
 ![Application sandbox file access relationship](figures/application-sandbox-file-access-relationship.png)
 
 ## Application Sandbox Directory and Application Sandbox Path
@@ -25,7 +25,7 @@ With the application sandbox mechanism, an application is not aware of the exist
 
 - The application sandbox paths and physical paths are not in one-to-one mappings. The application sandbox paths are always shorter than physical paths. Some physical paths do not have the corresponding application sandbox paths.
 
-**Figure 2** Different directory views to processes and applications
+**Figure 2** Different directory views to processes and applications 
 ![Application sandbox path](figures/application-sandbox-path.png)
 
 ## Application File Directory and Application File Path
@@ -36,7 +36,7 @@ The system file directory visible to an application is preset by OpenHarmony.
 
 The following figure shows the application file directory structure. The path of a file or a folder in the application file directory is called the application file path. The application file paths have different attributes.
 
-**Figure 3** Application file directory structure
+**Figure 3** Application file directory structure 
 ![Application file directory structure](figures/application-file-directory-structure.png)
 
 > **NOTE**
