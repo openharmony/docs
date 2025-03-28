@@ -93,3 +93,9 @@
 3. Q：JS执行时无法找到 `OH_JSVM_DefineClass` 定义的类
 
    A：检查是否将定义的类绑定到上下文中，见[上下文绑定对象](jsvm-guidelines.md#上下文绑定对象)
+
+## JSVM-API内存管理类
+
+1. Q：调用OH_JSVM_ReferenceUnRef将引用计数减到0后，再调用OH_JSVM_DeleteReference删除引用，为什么该引用所占用的Native内存没有被立即释放？
+
+   A：当引用计数通过OH_JSVM_ReferenceUnRef减到0后，该引用会被置为虚引用，此时调用OH_JSVM_DeleteReference并不会立即释放内存，而是将内存释放交给JS对象的垃圾回收器（GC）处理，当JS对象被GC回收时，会触发回调函数来释放该对象对应的Native内存资源，由于GC的触发需要满足特定条件，因此内存释放可能会有一定的延迟。如果对内存管理有实时性要求，则须避免将引用计数减到0。
