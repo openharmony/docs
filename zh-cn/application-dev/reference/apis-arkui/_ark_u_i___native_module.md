@@ -99,7 +99,7 @@
 | typedef bool(\* [ArkUI_OnWillDismissEvent](#arkui_onwilldismissevent)) (int32_t reason) | 弹窗关闭的回调函数。  | 
 | typedef struct [ArkUI_DialogDismissEvent](#arkui_dialogdismissevent) [ArkUI_DialogDismissEvent](#arkui_dialogdismissevent) | 定义弹窗关闭事件对象。  | 
 | typedef struct [ArkUI_CustomDialogOptions ](#arkui_customdialogoptions) [ArkUI_CustomDialogOptions ](#arkui_customdialogoptions) | 定义自定义弹窗的内容对象。  | 
-| typedef uint32_t [ArkUI_GestureEventActionTypeMask](#arkui_gestureeventactiontypemask) | 定义手势事件类型集合  | 
+| typedef uint32_t [ArkUI_GestureEventActionTypeMask](#arkui_gestureeventactiontypemask) | 定义手势事件类型集合。  | 
 | typedef uint32_t [ArkUI_GestureDirectionMask](#arkui_gesturedirectionmask) | 定义滑动手势方向集合。  | 
 | typedef ArkUI_GestureRecognizer \* [ArkUI_GestureRecognizerHandle](#arkui_gesturerecognizerhandle) | 提供手势识别器句柄类型对象定义。  | 
 | typedef [ArkUI_GestureRecognizerHandle](#arkui_gesturerecognizerhandle) \* [ArkUI_GestureRecognizerHandleArray](#arkui_gesturerecognizerhandlearray) | 提供手势识别器句柄类型数组对象定义。  | 
@@ -466,6 +466,8 @@
 | int32_t [OH_ArkUI_CustomDialog_RegisterOnDidAppearCallback](#oh_arkui_customdialog_registerondidappearcallback) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, void\* userData, void (\*callback)(void\* userData)) | 注册自定义弹窗弹出时的监听事件。  |
 | int32_t [OH_ArkUI_CustomDialog_RegisterOnWillDisappearCallback](#oh_arkui_customdialog_registeronwilldisappearcallback) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, void\* userData, void (\*callback)(void\* userData)) | 注册自定义弹窗退出动效前的监听事件。  |
 | int32_t [OH_ArkUI_CustomDialog_RegisterOnDidDisappearCallback](#oh_arkui_customdialog_registerondiddisappearcallback) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, void\* userData, void (\*callback)(void\* userData)) | 注册自定义弹窗消失时的监听事件。  |
+| int32_t [OH_ArkUI_CustomDialog_SetBackgroundBlurStyleOptions](#oh_arkui_customdialog_setbackgroundblurstyleoptions) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, const [ArkUI_AttributeItem](_ark_u_i___attribute_item.md#arkui_attributeitem) \*backgroundBlurStyleOptions) | 设置弹窗的背景模糊效果。  |
+| int32_t [OH_ArkUI_CustomDialog_SetBackgroundEffect](#oh_arkui_customdialog_setbackgroundeffect) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, const [ArkUI_AttributeItem](_ark_u_i___attribute_item.md#arkui_attributeitem) \*backgroundEffect) | 设置弹窗的背景效果参数。  |
 | bool [OH_ArkUI_GestureInterruptInfo_GetSystemFlag](#oh_arkui_gestureinterruptinfo_getsystemflag) (const ArkUI_GestureInterruptInfo \*event) | 判断是否组件内置手势。  | 
 | ArkUI_GestureRecognizer \* [OH_ArkUI_GestureInterruptInfo_GetRecognizer](#oh_arkui_gestureinterruptinfo_getrecognizer) (const ArkUI_GestureInterruptInfo \*event) | 返回被打断的手势指针。  | 
 | ArkUI_GestureEvent \* [OH_ArkUI_GestureInterruptInfo_GetGestureEvent](#oh_arkui_gestureinterruptinfo_getgestureevent) (const ArkUI_GestureInterruptInfo \*event) | 返回打断的手势事件数据。  | 
@@ -706,6 +708,10 @@
 | uint32_t [OH_ArkUI_SwiperIndicator_GetSelectedColor](#oh_arkui_swiperindicator_getselectedcolor) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | 获取被选中 Swiper 组件圆点导航指示器的颜色。  | 
 | int32_t [OH_ArkUI_SwiperIndicator_SetMaxDisplayCount](#oh_arkui_swiperindicator_setmaxdisplaycount) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, int32_t maxDisplayCount) | 设置圆点导航点指示器样式下，导航点显示个数的最大值。  | 
 | int32_t [OH_ArkUI_SwiperIndicator_GetMaxDisplayCount](#oh_arkui_swiperindicator_getmaxdisplaycount) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | 获取圆点导航点指示器样式下，导航点显示个数的最大值。  | 
+| void [OH_ArkUI_SwiperIndicator_SetSpace](#oh_arkui_swiperindicator_setspace) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, float space) | 设置导航点间距。 | 
+| float [OH_ArkUI_SwiperIndicator_GetSpace](#oh_arkui_swiperindicator_getspace) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | 获取导航点间距。|
+| void [OH_ArkUI_SwiperIndicator_SetIgnoreSizeOfBottom](#oh_arkui_swiperindicator_setignoresizeofbottom) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator, int32_t ignoreSize) | 设置OH_ArkUI_SwiperIndicator_SetBottomPosition是否忽略导航点大小。 | 
+| int32_t [OH_ArkUI_SwiperIndicator_GetIgnoreSizeOfBottom](#oh_arkui_swiperindicator_getignoresizeofbottom) ([ArkUI_SwiperIndicator](#arkui_swiperindicator) \*indicator) | 获取OH_ArkUI_SwiperDigitIndicator_SetBottomPosition是否忽略导航点大小。|
 | [ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* [OH_ArkUI_SwiperDigitIndicator_Create](#oh_arkui_swiperdigitindicator_create)() | 创建 Swiper 组件的数字导航指示器。  | 
 | void [OH_ArkUI_SwiperDigitIndicator_SetStartPosition](#oh_arkui_swiperdigitindicator_setstartposition)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator, float value) | 设置数字导航指示器距离 Swiper 组件左边的距离，在从右至左显示的语言模式下，设置其距离 Swiper 组件右边的距离。  | 
 | float [OH_ArkUI_SwiperDigitIndicator_GetStartPosition](#oh_arkui_swiperdigitindicator_getstartposition)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator) | 获取数字导航指示器距离 Swiper 组件左边的距离，在从右至左显示的语言模式下，获取其距离 Swiper 组件右边的距离。  | 
@@ -728,6 +734,8 @@
 | void [OH_ArkUI_SwiperDigitIndicator_SetSelectedFontWeight](#oh_arkui_swiperdigitindicator_setselectedfontweight)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator, [ArkUI_FontWeight](#arkui_fontweight) selectedFontWeight) | 设置被选中 Swiper 组件数字导航指示器字体粗细属性。 | 
 | [ArkUI_FontWeight](#arkui_fontweight) [OH_ArkUI_SwiperDigitIndicator_GetSelectedFontWeight](#oh_arkui_swiperdigitindicator_getselectedfontweight)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator) | 获取被选中 Swiper 组件数字导航指示器字体粗细属性。  | 
 |void [OH_ArkUI_SwiperDigitIndicator_Dispose](#oh_arkui_swiperdigitindicator_dispose)() | 销毁Swiper组件的数字导航指示器指针。  | 
+| void [OH_ArkUI_SwiperDigitIndicator_SetIgnoreSizeOfBottom](#oh_arkui_swiperdigitindicator_setignoresizeofbottom)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator, int32_t ignoreSize) | 设置OH_ArkUI_SwiperDigitIndicator_SetBottomPosition是否忽略导航点大小。 | 
+| int32_t [OH_ArkUI_SwiperDigitIndicator_GetIgnoreSizeOfBottom](#oh_arkui_swiperdigitindicator_getignoresizeofbottom)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator) | 获取OH_ArkUI_SwiperDigitIndicator_SetBottomPosition是否忽略导航点大小。| 
 | [ArkUI_SwiperArrowStyle](#arkui_swiperarrowstyle)* [OH_ArkUI_SwiperArrowStyle_Create](#oh_arkui_swiperarrowstyle_create)() | 创建 Swiper 组件的导航箭头。  | 
 | void [OH_ArkUI_SwiperArrowStyle_SetShowBackground](#oh_arkui_swiperarrowstyle_setshowbackground)([ArkUI_SwiperArrowStyle](#arkui_swiperarrowstyle)* indicator, int32_t showBackground) | 设置 Swiper 组件导航箭头底板是否显示。 | 
 | int32_t [OH_ArkUI_SwiperArrowStyle_GetShowBackground](#oh_arkui_swiperarrowstyle_getshowbackground)([ArkUI_SwiperArrowStyle](#arkui_swiperarrowstyle)* indicator) | 获取 Swiper 组件导航箭头底板是否显示。  | 
@@ -829,8 +837,8 @@
 | void [OH_ArkUI_StyledString_AddPlaceholder](#oh_arkui_styledstring_addplaceholder) ([ArkUI_StyledString](#arkui_styledstring) \*handle, OH_Drawing_PlaceholderSpan \*placeholder) | 设置占位符。  | 
 | [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \* [OH_ArkUI_StyledString_Descriptor_Create](#oh_arkui_styledstring_descriptor_create) (void) | 创建属性字符串数据对象。  | 
 | void [OH_ArkUI_StyledString_Descriptor_Destroy](#oh_arkui_styledstring_descriptor_destroy) ([ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor) | 释放被ArkUI_StyledString_Descriptor对象占据的内存。  | 
-| int32_t [OH_ArkUI_UnmarshallStyledStringDescriptor](#oh_arkui_unmarshallstyledstringdescriptor) (uint8_t \*buffer, size_t bufferSize, [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor, size_t \*resultSize) | 将包含属性字符串信息的字节数组反序列化为属性字符串。  | 
-| int32_t [OH_ArkUI_MarshallStyledStringDescriptor](#oh_arkui_marshallstyledstringdescriptor) (uint8_t \*buffer, size_t bufferSize, [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor) | 将属性字符串信息序列化为字节数组。  | 
+| int32_t [OH_ArkUI_UnmarshallStyledStringDescriptor](#oh_arkui_unmarshallstyledstringdescriptor) (uint8_t \*buffer, size_t bufferSize, [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor) | 将包含属性字符串信息的字节数组反序列化为属性字符串。  | 
+| int32_t [OH_ArkUI_MarshallStyledStringDescriptor](#oh_arkui_marshallstyledstringdescriptor) (uint8_t \*buffer, size_t bufferSize, [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor, size_t \*resultSize) | 将属性字符串信息序列化为字节数组。  | 
 | const char \* [OH_ArkUI_ConvertToHtml](#oh_arkui_converttohtml) ([ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor) | 将属性字符串信息转化成html。  | 
 | int32_t [OH_ArkUI_PostFrameCallback](#oh_arkui_postframecallback)([ArkUI_ContextHandle](#arkui_contexthandle-12) uiContext, void\* userData, void (\*callback)(uint64_t nanoTimestamp, uint32_t frameCount, void\* userData))| 注册一个回调函数，以便在下一帧渲染时执行。不允许在非UI线程调用，检查到非UI线程调用程序会主动abort。 |
 | int32_t [OH_ArkUI_RegisterLayoutCallbackOnNodeHandle](#oh_arkui_registerlayoutcallbackonnodehandle)([ArkUI_NodeHandle](#arkui_nodehandle) node, void\* userData, void (\*onLayoutCompleted)(void\* userData))| 注册组件布局完成回调方法。同一组件仅能注册一个布局完成回调方法。  |
@@ -1184,7 +1192,7 @@ typedef uint32_t ArkUI_GestureEventActionTypeMask
 ```
 **描述：**
 
-定义手势事件类型集合
+定义手势事件类型集合。
 
 例：ArkUI_GestureEventActionTypeMask actions = GESTURE_EVENT_ACTION_ACCEPT | GESTURE_EVENT_ACTION_UPDATE;
 
@@ -1965,14 +1973,14 @@ enum ArkUI_BlendApplyType
 ```
 **描述：**
 
-指定的混合模式应用于视图的内容选项.
+指定的混合模式应用于视图的内容选项。
 
 **起始版本：** 12
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| BLEND_APPLY_TYPE_FAST  | 在目标图像上按顺序混合视图的内容.  | 
-| BLEND_APPLY_TYPE_OFFSCREEN  | 将此组件和子组件内容绘制到离屏画布上，然后整体进行混合.  | 
+| BLEND_APPLY_TYPE_FAST  | 在目标图像上按顺序混合视图的内容。  | 
+| BLEND_APPLY_TYPE_OFFSCREEN  | 将此组件和子组件内容绘制到离屏画布上，然后整体进行混合。 | 
 
 
 ### ArkUI_BlendMode
@@ -2048,6 +2056,24 @@ enum ArkUI_BlurStyle
 | ARKUI_BLUR_STYLE_COMPONENT_ULTRA_THICK  | 组件超厚材质模糊。  | 
 
 
+### ArkUI_BlurStyleActivePolicy
+
+```
+enum ArkUI_BlurStyleActivePolicy
+```
+**描述：**
+
+定义背景模糊激活策略。
+
+**起始版本：** 18
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| ARKUI_BLUR_STYLE_ACTIVE_POLICY_FOLLOWS_WINDOW_ACTIVE_STATE  | 模糊效果跟随窗口焦点状态变化，非焦点不模糊，焦点模糊。  | 
+| ARKUI_BLUR_STYLE_ACTIVE_POLICY_ALWAYS_ACTIVE  | 一直有模糊效果。  | 
+| ARKUI_BLUR_STYLE_ACTIVE_POLICY_ALWAYS_INACTIVE  | 一直无模糊效果。  | 
+
+
 ### ArkUI_BorderStyle
 
 ```
@@ -2082,6 +2108,7 @@ enum ArkUI_ButtonType
 | ARKUI_BUTTON_TYPE_NORMAL  | 普通按钮，默认不带圆角。  | 
 | ARKUI_BUTTON_TYPE_CAPSULE  | 胶囊型按钮，圆角默认为高度的一半。  | 
 | ARKUI_BUTTON_TYPE_CIRCLE  | 圆形按钮。  | 
+| ARKUI_BUTTON_ROUNDED_RECTANGLE<sup>18+<sup> | 圆角矩形按钮。  | 
 
 
 ### ArkUI_CalendarAlignment
@@ -3525,7 +3552,7 @@ enum ArkUI_NodeAttributeType
 | NODE_TEXT_AREA_ENABLE_PREVIEW_TEXT  | 设置输入框开启字符预上屏，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 是否开启字符预上屏。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 是否开启字符预上屏。 | 
 | NODE_TEXT_AREA_KEYBOARD_APPEARANCE  | 设置输入框拉起的键盘样式。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 设置对应的键盘样式，类型为[ArkUI_KeyboardAppearance](#arkui_keyboardappearance)。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 对应的键盘样式，类型为[ArkUI_KeyboardAppearance](#arkui_keyboardappearance)。<br/>起始版本：<br/>15 |
 | NODE_BUTTON_LABEL  | button按钮的文本内容属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：默认文本的内容。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：默认文本的内容。 | 
-| NODE_BUTTON_TYPE  | Button按钮的样式属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置Button按钮的样式，参数类型[ArkUI_ButtonType](#arkui_buttontype)，默认值为ARKUI_BUTTON_TYPE_CAPSULE。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：获取Button按钮的样式，参数类型[ArkUI_ButtonType](#arkui_buttontype)，默认值为ARKUI_BUTTON_TYPE_CAPSULE。 | 
+| NODE_BUTTON_TYPE  | Button按钮的样式属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置Button按钮的样式，参数类型[ArkUI_ButtonType](#arkui_buttontype)，默认值为ARKUI_BUTTON_ROUNDED_RECTANGLE。从API version 18及之后，默认值修改为ARKUI_BUTTON_ROUNDED_RECTANGLE。API version 18之前的版本，默认值为ARKUI_BUTTON_TYPE_CAPSULE。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：获取Button按钮的样式，参数类型[ArkUI_ButtonType](#arkui_buttontype)，默认值为ARKUI_BUTTON_TYPE_CAPSULE。 | 
 | NODE_BUTTON_MIN_FONT_SCALE<sup>18+</sup>  | 设置文本最小的字体缩放倍数，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32: 设置Button按钮的最小字体缩放倍数，默认单位fp。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32: 获取Button按钮的最小字体缩放倍数，默认单位fp。 | 
 | NODE_BUTTON_MAX_FONT_SCALE<sup>18+</sup>  | 设置文本最大的字体缩放倍数，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32: 设置Button按钮的最大字体缩放倍数，默认单位fp。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32: 获取Button按钮的最大字体缩放倍数，默认单位fp。 |
 | NODE_PROGRESS_VALUE  | 进度条的当前进度值属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：进度条当前值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：进度条当前值。 | 
@@ -3705,7 +3732,7 @@ enum ArkUI_NodeAttributeType
 | NODE_IMAGE_ANIMATOR_FIXED_SIZE  | 设置图片大小是否固定为组件大小。支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置图片大小是否固定为组件大小，1表示图片大小与组件大小一致。0表示每一张图片的width、height、top和left都要单独设置，默认值为1。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置图片大小是否固定为组件大小，1表示图片大小与组件大小一致。0表示每一张图片的width、height、top和left都要单独设置。 | 
 | NODE_IMAGE_ANIMATOR_FILL_MODE  | 设置帧动画在当前播放方向下，动画开始前和结束后的状态。支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：当前播放方向下，动画开始前和结束后的状态，参数类型为{ArkUI_AnimationFillMode}，默认值为FORWARDS。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：当前播放方向下，动画开始前和结束后的状态，参数类型为{ArkUI_AnimationFillMode}。 | 
 | NODE_IMAGE_ANIMATOR_ITERATION  | 设置帧动画的播放次数。支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：播放次数。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：播放次数。 | 
-| NODE_BACKDROP_BLUR  | 设置背景模糊效果，支持属性设置，属性重置和属性获取。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：表示背景模糊半径，取值范围[0,+∞)。单位px，默认值0.0。<br/>.value[1]?.f32：表示灰阶模糊参数，对黑色的提亮程度，取值范围为[0,127]。<br/>.value[2]?.f32：表示灰阶模糊参数，对白色的压暗程度，取值范围为[0,127]。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：表示背景模糊半径，取值范围[0,+∞)。单位px。<br/>.value[1].f32：表示灰阶模糊参数，对黑色的提亮程度，取值范围为[0,127]。<br/>.value[2].f32：表示灰阶模糊参数，对白色的压暗程度，取值范围为[0,127]。 |
+| NODE_BACKDROP_BLUR  | 设置背景模糊效果，支持属性设置，属性重置和属性获取。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：表示背景模糊半径，取值范围[0,+∞)。单位px，默认值0.0。<br/>.value[1]?.f32：表示灰阶模糊参数，对黑色的提亮程度，取值范围为[0,127]。<br/>.value[2]?.f32：表示灰阶模糊参数，对白色的压暗程度，取值范围为[0,127]。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：表示背景模糊半径，取值范围[0,+∞)。单位px。<br/>.value[1].f32：表示灰阶模糊参数，对黑色的提亮程度，取值范围为[0,127]。<br/>.value[2].f32：表示灰阶模糊参数，对白色的压暗程度，取值范围为[0,127]。<br/>起始版本：15。 |
 
 ### ArkUI_DatePickerMode
 
@@ -4748,18 +4775,18 @@ enum ArkUI_TextInputContentType
 | ARKUI_TEXTINPUT_CONTENT_TYPE_NICKNAME  | 【昵称】在已启用情景化自动填充的情况下，支持昵称的自动保存和自动填充。  | 
 | ARKUI_TEXTINPUT_CONTENT_TYPE_DETAIL_INFO_WITHOUT_STREET  | 【无街道地址】在已启用情景化自动填充的情况下，支持无街道地址的自动保存和自动填充。  | 
 | ARKUI_TEXTINPUT_CONTENT_TYPE_FORMAT_ADDRESS  | 【标准地址】在已启用情景化自动填充的情况下，支持标准地址的自动保存和自动填充。  | 
-| ARKUI_TEXTINPUT_CONTENT_TYPE_PASSPORT_NUMBER  | 【护照号】在已启用情景化自动填充的情况下，支持护照号的自动保存和自动填充。  |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_VALIDITY  | 【护照有效期】在已启用情景化自动填充的情况下，支持护照有效期的自动保存和自动填充。  |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_ISSUE_AT  | 【护照签发地】在已启用情景化自动填充的情况下，支持护照签发地的自动保存和自动填充。  |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_ORGANIZATION  | 【发票抬头名称】在已启用情景化自动填充的情况下，支持发票抬头名称的自动保存和自动填充。  |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_TAX_ID  | 【税号】在已启用情景化自动填充的情况下，支持税号的自动保存和自动填充。  |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_ADDRESS_CITY_AND_STATE  | 【所在地区】在已启用情景化自动填充的情况下，支持所在地区的自动保存和自动填充。  |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_FLIGHT_NUMBER  | 【航班号】暂不支持自动保存和自动填充。  |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_NUMBER  | 【驾驶证号】暂不支持自动保存和自动填充。  |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_FILE_NUMBER  | 【驾驶证档案编号】暂不支持自动保存和自动填充。 |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_PLATE  | 【车牌号】在已启用情景化自动填充的情况下，支持车牌号的自动保存和自动填充。  |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_ENGINE_NUMBER  | 【行驶证发动机号】暂不支持自动保存和自动填充。  |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_CHASSIS_NUMBER  | 【车牌识别号】暂不支持自动保存和自动填充。  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_PASSPORT_NUMBER  | 【护照号】在已启用情景化自动填充的情况下，支持护照号的自动保存和自动填充。<br/>起始版本：18  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_VALIDITY  | 【护照有效期】在已启用情景化自动填充的情况下，支持护照有效期的自动保存和自动填充。<br/>起始版本：18  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_ISSUE_AT  | 【护照签发地】在已启用情景化自动填充的情况下，支持护照签发地的自动保存和自动填充。<br/>起始版本：18  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_ORGANIZATION  | 【发票抬头名称】在已启用情景化自动填充的情况下，支持发票抬头名称的自动保存和自动填充。<br/>起始版本：18  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_TAX_ID  | 【税号】在已启用情景化自动填充的情况下，支持税号的自动保存和自动填充。<br/>起始版本：18  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_ADDRESS_CITY_AND_STATE  | 【所在地区】在已启用情景化自动填充的情况下，支持所在地区的自动保存和自动填充。<br/>起始版本：18  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_FLIGHT_NUMBER  | 【航班号】暂不支持自动保存和自动填充。<br/>起始版本：18  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_NUMBER  | 【驾驶证号】暂不支持自动保存和自动填充。<br/>起始版本：18  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_FILE_NUMBER  | 【驾驶证档案编号】暂不支持自动保存和自动填充。<br/>起始版本：18 |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_PLATE  | 【车牌号】在已启用情景化自动填充的情况下，支持车牌号的自动保存和自动填充。<br/>起始版本：18  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_ENGINE_NUMBER  | 【行驶证发动机号】暂不支持自动保存和自动填充。<br/>起始版本：18  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_CHASSIS_NUMBER  | 【车牌识别号】暂不支持自动保存和自动填充。<br/>起始版本：18  |
 
 
 ### ArkUI_TextInputStyle
@@ -4926,7 +4953,7 @@ enum ArkUI_WordBreak
 | ARKUI_WORD_BREAK_NORMAL  | CJK(中文、日文、韩文)文本可以在任意2个字符间断行，而Non-CJK文本（如英文等）只能在空白符处断行。  | 
 | ARKUI_WORD_BREAK_BREAK_ALL  | 对于Non-CJK的文本，可在任意2个字符间断行。CJK(中文、日文、韩文)文本可以在任意2个字符间断行。  | 
 | ARKUI_WORD_BREAK_BREAK_WORD  | 对于Non-CJK的文本可在任意2个字符间断行，一行文本中有断行破发点（如空白符）时，优先按破发点换行。 CJK(中文、日文、韩文)文本可以在任意2个字符间断行  | 
-| ARKUI_WORD_BREAK_HYPHENATION  | 起始版本：16。对于Non-CJK的文本，可以按照音节断行。对于CJK的文本，换行效果与NORMAL效果保持一致。  | 
+| ARKUI_WORD_BREAK_HYPHENATION  | 对于Non-CJK的文本，可以按照音节断行。对于CJK的文本，换行效果与NORMAL效果保持一致。<br/>起始版本：18  | 
 
 
 ### ArkUI_XComponentType
@@ -4972,7 +4999,7 @@ enum ArkUI_KeyboardAvoidMode
 
 设置弹窗避让键盘模式。
 
-**起始版本：** 18
+**起始版本：** 15
 
 | 枚举值 | 描述 |
 | -------- | -------- |
@@ -4988,7 +5015,7 @@ enum ArkUI_HoverModeAreaType
 
 设置悬停态下弹窗默认展示区域。
 
-**起始版本：** 18
+**起始版本：** 15
 
 | 枚举值 | 描述 |
 | -------- | -------- |
@@ -5804,7 +5831,7 @@ void OH_ArkUI_AlignmentRuleOption_SetBottom (ArkUI_AlignmentRuleOption * option,
 | -------- | -------- |
 | option | 相对容器中子组件的对齐规则信息。  | 
 | id | 锚点的组件的id值。  | 
-| value | 相对于锚点组件的对齐方式  | 
+| value | 相对于锚点组件的对齐方式。  | 
 
 
 ### OH_ArkUI_AlignmentRuleOption_SetCenterHorizontal()
@@ -9023,6 +9050,52 @@ int32_t OH_ArkUI_CustomDialog_RegisterOnDidDisappearCallback(
 
 [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
+### OH_ArkUI_CustomDialog_SetBackgroundBlurStyleOptions()
+
+```
+int32_t OH_ArkUI_CustomDialog_SetBackgroundBlurStyleOptions(ArkUI_CustomDialogOptions* options, const ArkUI_AttributeItem* backgroundBlurStyleOptions)
+```
+**描述：**
+
+设置弹窗的背景模糊效果。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 弹窗参数。 | 
+| backgroundBlurStyleOptions | 弹窗的背景模糊效果。<br/>参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示深浅色模式，取[ArkUI_ColorMode](#arkui_colormode)枚举值。<br/>.value[1]?.i32 表示取色模式，取[ArkUI_AdaptiveColor](#arkui_adaptivecolor)枚举值。<br/>.value[2]?.f32 表示模糊效果程度，取[0.0,1.0]范围内的值。<br/>.value[3]?.u32 表示灰阶模糊参数，对黑色的提亮程度，有效值范围为[0,127]。<br/>.value[4]?.u32 表示灰阶模糊参数，对白色的压暗程度，有效值范围为[0,127]。<br/>.value[5]?.i32 表示模糊激活策略，取[ArkUI_BlurStyleActivePolicy](#arkui_blurstyleactivepolicy)枚举值。<br/>.value[6]?.u32 表示窗口失焦后，窗口内控件模糊效果会被移除，此时控件背板的颜色，0xargb类型。 | 
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_SetBackgroundEffect()
+
+```
+int32_t OH_ArkUI_CustomDialog_SetBackgroundEffect(ArkUI_CustomDialogOptions* options, const ArkUI_AttributeItem* backgroundEffect)
+```
+**描述：**
+
+设置弹窗的背景效果参数。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 弹窗参数。 | 
+| backgroundEffect | 弹窗的背景效果参数。<br/>参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32 表示模糊半径，单位为vp。<br/>.value[1]?.f32 表示饱和度。<br/>.value[2]?.f32 表示亮度。<br/>.value[3]?.u32 表示颜色，0xargb类型。<br/>.value[4]?.i32 表示取色模式，取[ArkUI_AdaptiveColor](#arkui_adaptivecolor)枚举值。<br/>.value[5]?.u32 表示灰阶模糊参数，对黑色的提亮程度，有效值范围为[0,127]。<br/>.value[6]?.u32 表示灰阶模糊参数，对白色的压暗程度，有效值范围为[0,127]。<br/>.value[7]?.i32 表示模糊激活策略，取[ArkUI_BlurStyleActivePolicy](#arkui_blurstyleactivepolicy)枚举值。<br/>.value[8]?.u32 表示窗口失焦后，窗口内控件模糊效果会被移除，此时控件背板的颜色，0xargb类型。 | 
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
 ### OH_ArkUI_DialogDismissEvent_GetUserData()
 
 ```
@@ -12057,7 +12130,7 @@ ArkUI_ExpectedFrameRateRange* OH_ArkUI_KeyframeAnimateOption_GetExpectedFrameRat
 
 获取关键帧动画参数的期望帧率。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -12213,6 +12286,8 @@ int32_t OH_ArkUI_KeyframeAnimateOption_SetExpectedFrameRate(
 **描述：**
 
 设置关键帧动画期望帧率。
+
+**起始版本：** 18
 
 **参数:**
 
@@ -13145,7 +13220,7 @@ int32_t OH_ArkUI_LongPress_GetRepeatCount (const ArkUI_GestureEvent * event)
 ### OH_ArkUI_MarshallStyledStringDescriptor()
 
 ```
-int32_t OH_ArkUI_MarshallStyledStringDescriptor (uint8_t * buffer, size_t bufferSize, ArkUI_StyledString_Descriptor * descriptor )
+int32_t OH_ArkUI_MarshallStyledStringDescriptor (uint8_t * buffer, size_t bufferSize, ArkUI_StyledString_Descriptor * descriptor, size_t * resultSize )
 ```
 **描述：**
 
@@ -13160,6 +13235,7 @@ int32_t OH_ArkUI_MarshallStyledStringDescriptor (uint8_t * buffer, size_t buffer
 | buffer | 字节数组，用于存储属性字符串序列化后的数据。  | 
 | bufferSize | 字节数组长度。  | 
 | descriptor | 指向ArkUI_StyledString_Descriptor对象的指针。  | 
+| resultSize | 属性字符串转换后的字节数组实际长度。  | 
 
 **返回：**
 
@@ -15566,6 +15642,83 @@ int32_t OH_ArkUI_SwiperIndicator_GetMaxDisplayCount (ArkUI_SwiperIndicator * ind
 
 导航点显示个数最大值，有效取值范围6-9。
 
+### OH_ArkUI_SwiperIndicator_SetSpace()
+
+```
+void OH_ArkUI_SwiperIndicator_SetSpace (ArkUI_SwiperIndicator * indicator， float space)
+```
+**描述：**
+
+设置导航点间距。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| indicator | 导航指示器对象指针。  | 
+| space | 导航点间距。  | 
+
+### OH_ArkUI_SwiperIndicator_GetSpace()
+
+```
+float OH_ArkUI_SwiperIndicator_GetSpace (ArkUI_SwiperIndicator * indicator)
+```
+**描述：**
+
+获取导航点间距。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| indicator | 导航指示器对象指针。  | 
+
+**返回：**
+
+导航点间距，默认值为8.0。
+
+### OH_ArkUI_SwiperIndicator_SetIgnoreSizeOfBottom()
+
+```
+void OH_ArkUI_SwiperIndicator_SetIgnoreSizeOfBottom (ArkUI_SwiperIndicator * indicator，int32_t ignoreSize)
+```
+**描述：**
+
+设置OH_ArkUI_SwiperIndicator_SetBottomPosition是否忽略导航点大小。 
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| indicator | 导航指示器对象指针。  | 
+| ignoreSize | 是否忽略导航点大小。1表示忽略导航点大小，0表示不忽略，默认值0。 | 
+
+### OH_ArkUI_SwiperIndicator_GetIgnoreSizeOfBottom()
+
+```
+int32_t OH_ArkUI_SwiperIndicator_GetIgnoreSizeOfBottom (ArkUI_SwiperIndicator * indicator)
+```
+**描述：**
+
+获取OH_ArkUI_SwiperIndicator_SetBottomPosition是否忽略导航点大小。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| indicator | 导航指示器对象指针。  | 
+
+**返回：**
+
+是否忽略导航点大小。
 
 ### OH_ArkUI_SwiperDigitIndicator_Create()
 
@@ -15988,6 +16141,45 @@ void OH_ArkUI_SwiperDigitIndicator_Dispose(ArkUI_SwiperDigitIndicator* indicator
 | 名称 | 描述 | 
 | -------- | -------- |
 | indicator | 数字导航指示器对象指针。  | 
+
+### OH_ArkUI_SwiperDigitIndicator_SetIgnoreSizeOfBottom
+
+```
+void OH_ArkUI_SwiperDigitIndicator_SetIgnoreSizeOfBottom(ArkUI_SwiperDigitIndicator* indicator, int32_t ignoreSize)
+```
+**描述：**
+
+设置OH_ArkUI_SwiperDigitIndicator_SetBottomPosition是否忽略导航点大小。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| indicator | 数字导航指示器对象指针。  | 
+| ignoreSize | 是否忽略导航点大小。1表示忽略导航点大小，0表示不忽略，默认值0。| 
+
+### OH_ArkUI_SwiperDigitIndicator_GetIgnoreSizeOfBottom()
+
+```
+int32_t OH_ArkUI_SwiperDigitIndicator_GetIgnoreSizeOfBottom(ArkUI_SwiperDigitIndicator* indicator)
+```
+**描述：**
+
+获取OH_ArkUI_SwiperDigitIndicator_SetBottomPosition是否忽略导航点大小。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| indicator | 数字导航指示器对象指针。 | 
+
+**返回：**
+
+是否忽略导航点大小。
 
 ### OH_ArkUI_SwiperArrowStyle_Create()
 
@@ -16712,7 +16904,7 @@ ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数�
 ### OH_ArkUI_UnmarshallStyledStringDescriptor()
 
 ```
-int32_t OH_ArkUI_UnmarshallStyledStringDescriptor (uint8_t * buffer, size_t bufferSize, ArkUI_StyledString_Descriptor * descriptor, size_t * resultSize )
+int32_t OH_ArkUI_UnmarshallStyledStringDescriptor (uint8_t * buffer, size_t bufferSize, ArkUI_StyledString_Descriptor * descriptor)
 ```
 **描述：**
 
@@ -16727,7 +16919,6 @@ int32_t OH_ArkUI_UnmarshallStyledStringDescriptor (uint8_t * buffer, size_t buff
 | buffer | 待反序列化的字节数组。  | 
 | bufferSize | 字节数组长度。  | 
 | descriptor | 指向ArkUI_StyledString_Descriptor对象的指针。  | 
-| resultSize | 属性字符串转换后的字节数组实际长度。  | 
 
 **返回：**
 

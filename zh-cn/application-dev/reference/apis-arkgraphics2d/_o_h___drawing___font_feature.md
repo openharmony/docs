@@ -17,8 +17,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| char \* [tag](#tag) | 字体特征的描述  | 
-| int [value](#value) | 字体特征的值  | 
+| char \* [tag](#tag) | 字体特征的描述。  | 
+| int [value](#value) | 字体特征的值。  | 
 
 
 ## 结构体成员变量说明
@@ -31,7 +31,7 @@ char* OH_Drawing_FontFeature::tag
 ```
 **描述**
 
-字体特征的描述
+字体特征的描述。
 
 
 ### value
@@ -41,4 +41,4 @@ int OH_Drawing_FontFeature::value
 ```
 **描述**
 
-字体特征的值
+字体特征的值。

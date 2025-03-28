@@ -27,14 +27,14 @@
   // 自定义webTag，在WebviewController创建时作为入参传入，建立controller与webTag的映射关系
   webTag: string = 'ArkWeb1';
   controller: webview.WebviewController = new webview.WebviewController(this.webTag);
-  ...
+  // ...
   // aboutToAppear中将webTag通过Node-API接口传入C++侧，作为C++侧ArkWeb组件的唯一标识
   aboutToAppear() {
     console.info("aboutToAppear")
     // 初始化web ndk
     testNapi.nativeWebInit(this.webTag);
   }
-  ...
+  // ...
   ```
 
 ### 使用Native接口获取API结构体
@@ -45,7 +45,7 @@ ArkWeb Native侧得先获取API结构体，才能调用结构体里的Native API
   static ArkWeb_ControllerAPI *controller = nullptr;
   static ArkWeb_WebMessagePortAPI *webMessagePort = nullptr;
   static ArkWeb_WebMessageAPI *webMessage = nullptr;
-  ...
+  // ...
   controller = reinterpret_cast<ArkWeb_ControllerAPI *>(OH_ArkWeb_GetNativeAPI(ARKWEB_NATIVE_CONTROLLER));
   webMessagePort =
       reinterpret_cast<ArkWeb_WebMessagePortAPI *>(OH_ArkWeb_GetNativeAPI(ARKWEB_NATIVE_WEB_MESSAGE_PORT));

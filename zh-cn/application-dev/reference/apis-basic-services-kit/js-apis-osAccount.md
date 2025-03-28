@@ -2863,6 +2863,10 @@ getOsAccountDomainInfo(localId: number): Promise&lt;DomainAccountInfo&gt;;
   })
   ```
 
+## DomainAccountManager<sup>18+</sup>
+
+域账号管理类。
+
 ### updateAccountInfo<sup>18+</sup>
 
 updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccountInfo): Promise&lt;void&gt;
@@ -2928,15 +2932,15 @@ updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccou
 | localName                      | string                                                       | 是   | 系统账号名称。                    |
 | type                           | [OsAccountType](#osaccounttype)                              | 是   | 系统账号类型。                      |
 | constraints                    | Array&lt;string&gt;                                          | 是   | 系统账号[约束](#系统账号约束列表)，默认为空。|
-| isVerified<sup>(deprecated)</sup> | boolean                                                   | 是   | 账号是否验证。<br>**说明**: 从API version 7开始支持，从API version 11开始废弃。                     |
-| isUnlocked<sup>11+</sup>      | boolean                                                       | 是   | 账号是否已解锁（EL2级别目录是否解密）。                      |
+| isVerified<sup>(deprecated)</sup> | boolean                                                   | 是   | 账号是否验证。true表示指定账号已验证；false表示指定账号未验证。<br>**说明**：从API version 7开始支持，从API version 11开始废弃。           |
+| isUnlocked<sup>11+</sup>      | boolean                                                       | 是   | 账号是否已解锁（EL2级别目录是否解密）。true表示指定账号已解锁；false表示指定账号未解锁。                      |
 | photo<sup>8+</sup>             | string                                                       | 是   | 系统账号头像，默认为空。                      |
 | createTime<sup>8+</sup>        | number                                                       | 是   | 系统账号创建时间。                  |
 | lastLoginTime<sup>8+</sup>     | number                                                       | 是   | 系统账号最后一次登录时间，默认为空。          |
 | serialNumber<sup>8+</sup>      | number                                                       | 是   | 系统账号SN码。                      |
-| isActived<sup>(deprecated)</sup>         | boolean                                            | 是   | 系统账号激活状态。<br>**说明**: 从API version 7开始支持，从API version 11开始废弃。                  |
-| isActivated<sup>11+</sup>         | boolean                                                   | 是   | 系统账号激是否激活。                  |
-| isCreateCompleted<sup>8+</sup> | boolean                                                      | 是   | 系统账号创建是否完整。              |
+| isActived<sup>(deprecated)</sup>         | boolean                                            | 是   | 系统账号激活状态。true表示指定账号处于激活状态；false表示指定账号处于未激活状态。<br>**说明**：从API version 7开始支持，从API version 11开始废弃。                  |
+| isActivated<sup>11+</sup>         | boolean                                                   | 是   | 系统账号激是否激活。true表示指定账号已激活；false表示指定账号未激活。                  |
+| isCreateCompleted<sup>8+</sup> | boolean                                                      | 是   | 系统账号创建是否完整。true表示指定账号已创建完整；false表示指定账号未创建完整。              |
 | distributedInfo                | [distributedAccount.DistributedInfo](js-apis-distributed-account.md#distributedinfo) | 是   | 分布式账号信息，默认为空。                    |
 | domainInfo<sup>8+</sup>        | [DomainAccountInfo](#domainaccountinfo8)                      | 是   | 域账号信息，默认为空。                        |
 
@@ -2998,10 +3002,10 @@ static addServerConfig(parameters: Record&lt;string, Object&gt;): Promise&lt;Dom
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
 | 12300001 | The system service works abnormally. |
-| 12300002 | - Invalid server config parameters. |
-| 12300211 | - Server unreachable. |
-| 12300213 | - Server config already exists. |
-| 12300215 | - The number of server config reaches the upper limit. |
+| 12300002 | Invalid server config parameters. |
+| 12300211 | Server unreachable. |
+| 12300213 | Server config already exists. |
+| 12300215 | The number of server config reaches the upper limit. |
 
 **示例：**
   ```ts
@@ -3048,8 +3052,8 @@ static removeServerConfig(configId: string): Promise&lt;void&gt;
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
 | 12300001 | The system service works abnormally. |
-| 12300212 | - Server config not found. |
-| 12300214 | - Server config has been associated with an account. |
+| 12300212 | Server config not found. |
+| 12300214 | Server config has been associated with an account. |
 
 **示例：**
   ```ts
@@ -3100,10 +3104,10 @@ static updateServerConfig(configId: string, parameters: Record&lt;string, Object
 | 801 | Capability not supported.|
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid server config parameters. |
-| 12300211 | - Server unreachable. |
-| 12300212 | - Server config not found. |
-| 12300213 | - Server config already exists. |
-| 12300214 | - Server config has been associated with an account. |
+| 12300211 | Server unreachable. |
+| 12300212 | Server config not found. |
+| 12300213 | Server config already exists. |
+| 12300214 | Server config has been associated with an account. |
 
 **示例：**
   ```ts
@@ -3212,9 +3216,9 @@ static getAllServerConfigs(): Promise&lt;Array&lt;DomainServerConfig&gt;&gt;
     serverConfig: osAccount.DomainServerConfig) => {
     console.log('add domain server configuration successfully, the added config: ' + JSON.stringify(serverConfig));
     osAccount.DomainServerConfigManager.getAllServerConfigs().then((data: Array<osaccount.DomainServerConfig>) => {
-      console.log('get all domain server configuration successfully, return config: ' + JSON.stringfy(data));
+      console.log('get all domain server configuration successfully, return config: ' + JSON.stringify(data));
     }).catch((err: BusinessError) => {
-      console.log('get all domain server configuration failed, error: ' + JSON.stringfy(err));
+      console.log('get all domain server configuration failed, error: ' + JSON.stringify(err));
     });
   }).catch((err: BusinessError) => {
     console.log('add server configuration failed, error: ' + JSON.stringify(err));
@@ -3258,7 +3262,6 @@ static getAccountServerConfig(domainAccountInfo: DomainAccountInfo): Promise&lt;
   import { BusinessError } from '@kit.BasicServicesKit';
   let accountInfo: osAccount.DomainAccountInfo = {
     'accountName': 'demoName',
-    'accountId': 'demoId',
     'domain': 'demoDomain'
   };
   osAccount.DomainServerConfigManager.getAccountServerConfig(accountInfo).then((

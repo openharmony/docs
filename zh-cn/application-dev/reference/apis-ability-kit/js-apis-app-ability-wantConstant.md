@@ -31,10 +31,15 @@ want的Params操作的常量。
 | PARAMS_STREAM<sup>12+</sup>  | ability.params.stream  | 指示携带的文件URI要授权给目标方。对应的value必须是string类型的文件URI数组。文件URI的获取参考[fileUri](../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath) <br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
 | APP_CLONE_INDEX_KEY<sup>12+</sup>  | ohos.extra.param.key.appCloneIndex  | 指示分身应用索引。 <br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
 | CALLER_REQUEST_CODE<sup>12+</sup>  | ohos.extra.param.key.callerRequestCode  | 当调用[startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult)或[openLink](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)拉起目标方Ability时, 需要目标方返回结果。为了确保目标方能够将结果准确返回到调用方，系统会自动生成唯一的requestCode，以标识本次调用。 <br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| PAGE_PATH<sup>12+</sup>  | ohos.param.atomicservice.pagePath | 指示页面参数路径。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。  |
+| ROUTER_NAME<sup>12+</sup>  | ohos.param.atomicservice.routerName | 指示页面路由名称。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。  |
+| PAGE_SOURCE_FILE<sup>12+</sup>  | ohos.param.atomicservice.pageSourceFile | 指示页面源文件。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。  |
+| BUILD_FUNCTION<sup>12+</sup>  | ohos.param.atomicservice.buildFunction | 指示生成函数的参数。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。  |
+| SUB_PACKAGE_NAME<sup>12+</sup>  | ohos.param.atomicservice.subpackageName | 指示子包名。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。  |
 | APP_INSTANCE_KEY<sup>14+</sup>  | ohos.extra.param.key.appInstance  | 指示具体的应用实例。 |
 | CREATE_APP_INSTANCE_KEY<sup>14+</sup>  | ohos.extra.param.key.createAppInstance  | 指示创建新应用实例。 |
 | CALLER_APP_CLONE_INDEX<sup>14+</sup>  | ohos.param.callerAppCloneIndex  | 指示拉起方应用的分身索引。|
-| LAUNCH_REASON_MESSAGE<sup>18+</sup>  | ohos.params.launchReasonMessage  | 调用方拉起目标方Ability时，可通过该字段设置拉起原因。调用方必须为系统应用，且需要申请ohos.permission.SET_LAUNCH_REASON_MESSAGE权限。 <br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
+| LAUNCH_REASON_MESSAGE<sup>18+</sup>  | ohos.params.launchReasonMessage  | 调用方拉起目标方Ability时，可通过该字段设置拉起原因。调用方必须为系统应用，且需要申请ohos.permission.SET_LAUNCH_REASON_MESSAGE权限。当前取值仅支持"ReasonMessage_SystemShare"。 <br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## Flags
 

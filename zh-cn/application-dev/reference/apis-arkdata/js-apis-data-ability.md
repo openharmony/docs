@@ -648,7 +648,7 @@ distinct(): DataAbilityPredicates
 
 limitAs(value: number): DataAbilityPredicates
 
-设置最大数据记录数的谓词。
+设置谓词的最大数据记录数量。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -656,7 +656,7 @@ limitAs(value: number): DataAbilityPredicates
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 最大数据记录数。 |
+| value | number | 是 | 最大数据记录数，取值为正整数。传入值小于等于0时，不会限制记录数量。 |
 
 **返回值：**
 
@@ -674,7 +674,7 @@ limitAs(value: number): DataAbilityPredicates
 
 offsetAs(rowOffset: number): DataAbilityPredicates
 
-配置谓词以指定返回结果的起始位置。将此方法必须与limitAs一起使用。
+设置谓词查询结果的起始位置。需要同步调用limitAs接口指定查询数量，否则无查询结果。查询指定偏移位置后的所有行时，limitAs接口需传入参数-1。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -682,7 +682,7 @@ offsetAs(rowOffset: number): DataAbilityPredicates
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| rowOffset | number | 是 | 返回结果的起始位置，取值为正整数。 |
+| rowOffset | number | 是 | 返回结果的起始位置，取值为正整数。传入值小于等于0时，查询结果将从第一个元素位置返回。 |
 
 **返回值：**
 

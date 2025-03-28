@@ -39,9 +39,9 @@ Rect(options?: RectOptions | RoundedRectOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| width | string \| number | 否 | 宽度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
-| height | string \| number | 否 | 高度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
-| radius | string \| number \| Array&lt;string \| number&gt; | 否 | 圆角半径，支持分别设置四个角的圆角度数。<br/>该属性和radiusWidth/radiusHeight属性效果类似，在组合使用时优先于radiusWidth/radiusHeight生效。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| width | string \| number | 否 | 宽度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| height | string \| number | 否 | 高度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| radius | string \| number \| Array&lt;string \| number&gt; | 否 | 圆角半径，支持分别设置四个角的圆角度数，取值范围≥0。<br/>该属性和radiusWidth/radiusHeight属性效果类似，在组合使用时优先于radiusWidth/radiusHeight生效。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
 
 ## RoundedRectOptions<sup>18+</sup>对象说明
 用于描述Rect绘制属性。
@@ -54,10 +54,10 @@ Rect(options?: RectOptions | RoundedRectOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| width | string \| number | 否 | 宽度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
-| height | string \| number | 否 | 高度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
-| radiusWidth | string \| number | 否 | 圆角宽度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |圆角宽度。<br/>默认值：0<br/>异常值按照默认值处理。
-| radiusHeight | string \| number | 否 | 圆角高度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |圆角高度。<br/>默认值：0<br/>异常值按照默认值处理。
+| width | string \| number | 否 | 宽度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| height | string \| number | 否 | 高度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| radiusWidth | string \| number | 否 | 圆角宽度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |圆角宽度。<br/>默认值：0<br/>异常值按照默认值处理。
+| radiusHeight | string \| number | 否 | 圆角高度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |圆角高度。<br/>默认值：0<br/>异常值按照默认值处理。
 
 ## 属性
 
@@ -79,7 +79,7 @@ radiusWidth(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                       |
 | ------ | -------------------------- | ---- | -------------------------- |
-| value  | number&nbsp;\|&nbsp;string | 是   | 圆角的宽度。<br/>默认值：0<br/>默认单位：vp |
+| value  | number&nbsp;\|&nbsp;string | 是   | 圆角的宽度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp |
 
 ### radiusHeight
 
@@ -97,13 +97,13 @@ radiusHeight(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                       |
 | ------ | -------------------------- | ---- | -------------------------- |
-| value  | number&nbsp;\|&nbsp;string | 是   | 圆角的高度。<br/>默认值：0<br/>默认单位：vp |
+| value  | number&nbsp;\|&nbsp;string | 是   | 圆角的高度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp |
 
 ### radius
 
 radius(value: number | string | Array&lt;string&nbsp;|&nbsp;number&gt;)
 
-设置圆角半径大小。  异常值按照默认值处理。
+设置圆角半径大小，取值范围≥0。  异常值按照默认值处理。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -175,7 +175,7 @@ stroke(value: ResourceColor)
 
 strokeDashArray(value: Array&lt;any&gt;)
 
-设置边框间隙。异常值按照默认值处理。
+设置边框间隙。取值范围≥0，异常值按照默认值处理。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -297,7 +297,7 @@ strokeWidth(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                     |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 边框宽度。<br/>默认值：1<br/>默认单位：vp |
+| value  | [Length](ts-types.md#length) | 是   | 边框宽度，取值范围≥0。<br/>默认值：1<br/>默认单位：vp<br/>异常值按照默认值处理。 |
 
 ### antiAlias
 
@@ -315,7 +315,7 @@ antiAlias(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                  |
 | ------ | ------- | ---- | ------------------------------------- |
-| value  | boolean | 是   | 是否开启抗锯齿效果。<br/>默认值：true |
+| value  | boolean | 是   | 是否开启抗锯齿效果。<br/>true：开启抗锯齿；false：关闭抗锯齿。<br/>默认值：true |
 
 ## 示例
 ### 示例1（组件属性绘制）

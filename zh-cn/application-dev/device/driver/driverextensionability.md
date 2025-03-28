@@ -19,33 +19,35 @@
 
 开发者在实现一个驱动时，需要在DevEco Studio工程中手动新建一个DriverExtensionAbility，具体步骤如下：
 
-1. 在工程Module对应的ets目录下，右键选择“New &gt; Directory”，新建一个目录并命名为driverextability。
+1. 创建新工程，请参考[创建一个新的工程](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-create-new-project)，创建一个OpenHarmony工程。（如果在[开发带UI界面基础驱动](externaldevice-guidelines.md)已经创建，则此处不需要创建。）
 
-2. 在driverextability目录，右键选择“New &gt; ArkTS File”，新建一个文件并命名为DriverExtAbility.ets。
+2. 在新创建的工程对应的ets目录下，右键选择“New &gt; Directory”，新建一个目录并命名为driverextability。
 
-3. 在文件中导入相关Kit，并定义请求Code。
+3. 在driverextability目录，右键选择“New &gt; ArkTS File”，新建一个文件并命名为DriverExtAbility.ets。
+
+4. 在文件中导入相关Kit，并定义请求Code。
 
     ```ts
     import { DriverExtensionAbility } from '@kit.DriverDevelopmentKit';
     import { Want } from '@kit.AbilityKit';
     import { rpc } from '@kit.IPCKit';
 
-    const REQUEST_CODE = 99; // 与扩展外设客户端约定请求码
+    const REQUEST_CODE = 99; // 与扩展外设客户端约定请求码。
     ```
 
-4. 打开DriverExtAbility.ets文件，导入[RPC通信模块](../../reference/apis-ipc-kit/js-apis-rpc.md)，重载onRemoteMessageRequest()方法，接收应用传递过来的消息，并将处理的结果返回给应用。REQUEST_VALUE用于校验应用发送的服务请求码。
+5. 打开DriverExtAbility.ets文件，导入[RPC通信模块](../../reference/apis-ipc-kit/js-apis-rpc.md)，重载onRemoteMessageRequest()方法，接收应用传递过来的消息，并将处理的结果返回给应用。REQUEST_VALUE用于校验应用发送的服务请求码。
 
     ```ts
     class StubTest extends rpc.RemoteObject {
-      // 接收应用传递过来的消息处理，以及将处理的结果返回给客户端
+      // 接收应用传递过来的消息处理，以及将处理的结果返回给客户端。
       onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence,
         option: rpc.MessageOption) {
         if (code === REQUEST_CODE) {
-          // 接收应用传递过来的数据
-          // 应用使用多次调用data.writeString()写入多个数据时，驱动可以通过多次调用data.readString()方法接收对应的数据
+          // 接收应用传递过来的数据。
+          // 应用使用多次调用data.writeString()写入多个数据时，驱动可以通过多次调用data.readString()方法接收对应的数据。
           let optFir: string = data.readString();
-          // 驱动将数据的处理结果返回给应用
-          // 示例中为接收了"Hello"，并将"Hello World"返回给应用
+          // 驱动将数据的处理结果返回给应用。
+          // 示例中为接收了"Hello"，并将"Hello World"返回给应用。
           reply.writeString(optFir + ` World`);
         }
         return true;
@@ -53,7 +55,7 @@
     }
     ```
 
-5. 在DriverExtAbility.ets文件中，增加导入[DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)的依赖包，该包提供了onInit()、onRelease()、onConnect()和onDisconnect()生命周期回调，自定义类继承[DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)并根据需要重写需要的生命周期回调。
+6. 在DriverExtAbility.ets文件中，增加导入[DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)的依赖包，该包提供了onInit()、onRelease()、onConnect()和onDisconnect()生命周期回调，自定义类继承[DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)并根据需要重写需要的生命周期回调。
 
     ```ts
     export default class DriverExtAbility extends DriverExtensionAbility {
@@ -81,7 +83,7 @@
     }
     ```
 
-6. 在工程Module对应的[module.json5配置文件](../../quick-start/module-configuration-file.md)中注册DriverExtensionAbility，type标签需要设置为“driver”，srcEntry标签表示当前ExtensionAbility组件所对应的代码路径。
+7. 在工程Module对应的[module.json5配置文件](../../quick-start/module-configuration-file.md)中注册DriverExtensionAbility，type标签需要设置为“driver”，srcEntry标签表示当前ExtensionAbility组件所对应的代码路径。
 
     ```json
     {
@@ -96,10 +98,10 @@
         ],
         "requestPermissions": [
           {
-            "name": "ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER" // 此处为扩展外设相关权限，必须配置
+            "name": "ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER" // 此处为扩展外设相关权限，必须配置。
           },
           {
-            "name": "ohos.permission.ACCESS_DDK_DRIVERS" // 此处为允许该扩展外设应用访问扩展外设驱动的权限，必须配置
+            "name": "ohos.permission.ACCESS_DDK_DRIVERS" // 此处为允许该扩展外设应用访问扩展外设驱动的权限，API verison 18及以上版本，必须配置。
           }
         ],
         "deliveryWithInstall": true,
@@ -137,31 +139,31 @@
             "srcEntry": "./ets/driverextability/DriverExtAbility.ets",
             "metadata": [
               {
-                "name": "bus", // 必填项，所属总线
+                "name": "bus", // 必填项，所属总线。
                 "value": "USB"
               },
               {
-                "name": "desc", // 选填项，必要的驱动描述
+                "name": "desc", // 选填项，必要的驱动描述。
                 "value": "the sample of driverExtensionAbility"
               },
               {
-                "name": "vendor", // 选填项，驱动厂商名称
+                "name": "vendor", // 选填项，驱动厂商名称。
                 "value": "string"
               },
               {
-                "name": "vid", // 支持 USB vendor id 列表，填写16进制，此处为4817的16进制
+                "name": "vid", // 支持 USB vendor id 列表，填写16进制，此处为4817的16进制。
                 "value": "0x12D1"
               },
               {
-                "name": "pid", // 支持的 USB product id 列表，填写16进制，此处为4258的16进制
+                "name": "pid", // 支持的 USB product id 列表，填写16进制，此处为4258的16进制。
                 "value": "0x10A2"
               },
               {
-                "name": "launchOnBind", // 选填项，延迟拉起驱动。此处“true”表示延迟拉起，“false”表示即时拉起，配置错误或不配置，默认为“false”
+                "name": "launchOnBind", // 选填项，延迟拉起驱动。此处“true”表示延迟拉起，“false”表示即时拉起，配置错误或不配置，默认为“false”。
                 "value": "true"
               },
               {
-                "name": "ohos.permission.ACCESS_DDK_ALLOWED", // 选填项，允许应用访问。此处“true”表示允许访问，“false”表示不允许访问，配置错误或不配置，默认为“false”
+                "name": "ohos.permission.ACCESS_DDK_ALLOWED", // 选填项，允许应用访问。此处“true”表示允许访问，“false”表示不允许访问，配置错误或不配置，默认为“false”。
                 "value": "true"
               }
             ]
@@ -171,7 +173,7 @@
     }
     ```
 
-7. 完成客户端和驱动示例代码开发后，请参考[使用本地真机运行应用/元服务](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-run-device-V13)，将Hap导入设备中，并点击hap中的Hello，查看是否会转变为Hello world，即实现ipc通信功能。
+8. 完成客户端和驱动示例代码开发后，请参考[使用本地真机运行应用/元服务](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-run-device-V13)，将Hap导入设备中，并点击hap中的Hello，查看是否会转变为Hello world，即实现ipc通信功能。
 
 ## 扩展设备能力
 
@@ -182,12 +184,30 @@
 * [开发适用串口协议的设备驱动](usb-serial-ddk-guidelines.md)
 * [开发使用SCSI协议的设备驱动](scsi-peripheral-ddk-guidelines.md)
 
+<!--RP1-->
 ## 应用签名
 
-应用需要配置签名文件才能在设备上运行，并且扩展外设管理客户端开发，需要配置扩展外设的权限：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER。
+**注意：** 先配置权限，再自动签名。
 
-如果使用HID/USB DDK请添加对应权限，具体权限请查看上方开发指导。
+应用需要配置签名文件才能在设备上运行，并且扩展外设管理客户端开发，需要配置扩展外设的权限：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER及ohos.permission.ACCESS_DDK_DRIVERS。
+- ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER（API version 10及以上版本，需要申请此权限。）
 
-自动签名方法： 请参考[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-V5#section18815157237)。
+  在module.json5配置文件的requestPermissions标签中[声明权限](../../security/AccessToken/declare-permissions.md)后，即可获得授权。
 
-权限配置方法： 请参考[使用ACL的签名配置指导](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-V5#section157591551175916)。
+- ohos.permission.ACCESS_DDK_DRIVERS（API version 18及以上版本，需要申请此权限。）
+
+  1. 在module.json5配置文件的requestPermissions标签中[声明权限](../../security/AccessToken/declare-permissions.md)。
+  2. HarmonyAppProvision配置文件中，修改acls字段，跨级别申请权限，可参考[申请使用受限权限](../../security/AccessToken/declare-permissions-in-acl.md)。
+  3. 在HarmonyAppProvision配置文件（即SDK目录下的“Sdk/openharmony/_{Version} _/toolchains /lib/UnsgnedReleasedProfileTemplate.json”文件）中，配置当前客户需要连接的驱动服务端的bundleName，如果存在多个服务端，多个服务端的bundleName以逗号分隔。
+
+      具体配置方法如下：
+
+      在文件的根节点加上app-services-capabilities节点，并采用以下格式进行配置。
+      ```json
+      "app-services-capabilities": {
+        "ohos.permission.ACCESS_DDK_DRIVERS": {"bundleNames": "bundleName0,bundleName1,bundleName2"}
+      }
+      ```
+
+自动签名方法： 请参考[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13#section18815157237)。
+<!--RP1End-->

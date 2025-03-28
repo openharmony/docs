@@ -61,7 +61,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CompileScript(JSVM_Env env,
 
 那么在 native 层，要解决冷启动和生成 code cache 之间的矛盾，首先我们可以另起一个线程用于生成 code cache，这样避免了生成 code cache 这个操作本身对冷启动的影响；
 
-然后，有两个方法可以参考(下面的伪代码仅用于展示逻辑流程，不涉及真正的 api 调用):
+然后，有两个方法可以参考(下面的伪代码仅用于展示逻辑流程，不涉及真正的 api 调用)：
 
 - 将生成 code cache 必需的前置编译也放到新增的线程上，这样编译选项可以分开使用：生成 code cache 打开 `eager compile`，冷启动运行则关闭，这样做的缺点是可能进一步提高运行时的峰值资源占用，优点是 code cache 生成和运行可以完全解耦，不再需要考虑生成 code cache 的时间点。这个流程的伪代码如下所示
 

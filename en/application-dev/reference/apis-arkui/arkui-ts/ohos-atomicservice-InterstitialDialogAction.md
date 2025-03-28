@@ -18,7 +18,7 @@ Not supported
 
 ## Attributes
 
-The [universal attributes](ts-universal-attributes-size.md) are not supported.
+The [universal attributes](ts-component-general-attributes.md) are not supported.
 
 ## InterstitialDialogAction
 
@@ -71,7 +71,7 @@ Defines the attributes specific to the dialog box and custom click actions for t
 | Name| Type| Mandatory| Description|
 | - | - | - | - |
 | uiContext | [UIContext](../js-apis-arkui-UIContext.md#uicontext) | Yes| UI context.|
-| bottomOffsetType | [BottomOffset](#bottomoffset) | Yes| Bottom offset type of the dialog box.|
+| bottomOffsetType | [BottomOffset](#bottomoffset) | No| Bottom offset type of the dialog box.|
 | title | [ResourceStr](ts-types.md#resourcestr) | No| Title of the dialog box.|
 | subtitle | [ResourceStr](ts-types.md#resourcestr) | No| Subtitle of the dialog box.|
 | titleColor | [ResourceStr](ts-types.md#resourcestr) \| [Color](ts-appendix-enums.md#color) | No| Font color of the dialog box title.|
@@ -123,7 +123,7 @@ Defines the distance between the popup and the bottom in different scenario mode
 | OFFSET_FOR_NONE | 1 | Distance from the bottom of the window when there is no menu bar.<br>It sets the dialog box 44 vp away from the bottom of the window.|
 
 ## Events
-The [universal events](ts-universal-events-click.md) are not supported.
+The [universal events](ts-component-general-events.md) are not supported.
 
 ## Example
 

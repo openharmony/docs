@@ -179,7 +179,7 @@ try {
 }
 ```
 
-## SizeChangeCallback<sup>16+</sup>
+## SizeChangeCallback<sup>15+</sup>
 
 type SizeChangeCallback = (size: window.Size, keyboardArea?: KeyboardArea) => void
 
@@ -190,7 +190,7 @@ Callback triggered when the size of the input method panel changes.
 | Name      | Type                                                | Mandatory| Description                            |
 | ------------ | ---------------------------------------------------- | ---- | -------------------------------- |
 | size         | [window.Size](../apis-arkui/js-apis-window.md#size7) | Yes  | Panel size.                  |
-| keyboardArea | [KeyboardArea](#keyboardarea16)                      | No  | Size of the keyboard area.|
+| keyboardArea | [KeyboardArea](#keyboardarea15)                      | No  | Size of the keyboard area.|
 
 ## InputMethodEngine
 
@@ -510,7 +510,7 @@ Disables listening for a keyboard visibility event. This API uses an asynchronou
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | Yes  | Event type.<br>- The value **'keyboardShow'** indicates the keyboard display event.<br>- The value **'keyboardHide'** indicates the keyboard hiding event.|
-| callback | () => void   | No  | Callback to unregister.|
+| callback | () => void   | No  | Callback used to return the result.|
 
 **Example**
 
@@ -587,7 +587,7 @@ try {
 
 on(type: 'securityModeChange', callback: Callback< SecurityMode>): void
 
-Enables listening for security mode changes of the input method. This API uses an asynchronous callback to return the result.
+Enables listening for the security mode changes of the input method. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -614,7 +614,7 @@ try {
 
 off(type: 'securityModeChange', callback?: Callback< SecurityMode>): void
 
-Disables listening for security mode changes of the input method. This API uses an asynchronous callback to return the result.
+Disables listening for the security mode changes of the input method. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1316,7 +1316,7 @@ Disables listening for the edit box attribute change event. This API uses an asy
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | Yes  | Event type, which is **'editorAttributeChanged'**.|
-| callback | (attr: EditorAttribute) => void | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
+| callback | (attr: EditorAttribute) => void | No  | Callback used for unsubscription. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 **Example**
 
@@ -1686,6 +1686,76 @@ try {
 }
 ```
 
+### startMoving<sup>15+</sup>
+
+startMoving(): void
+
+Sends a command to start moving the window. The window can be moved only when the mouse is clicked.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                               |
+| -------- | ------------------------------------------------------- |
+| 801 | Capability not supported. |
+| 12800002 | input method engine error. |
+| 12800013 | window manager service error. |
+| 12800017 | invalid panel type or panel flag. |
+
+**Example**
+
+```ts
+
+try {
+  panel.startMoving();
+  console.log('Succeeded in moving the panel.');
+} catch (err) {
+  console.error(`Failed to move panel: ${JSON.stringify(err)}`);
+}
+```
+
+### getDisplayId<sup>15+</sup>
+
+getDisplayId(): Promise\<number>
+
+Obtains the window ID. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Return value**
+
+| Type  | Description                            |
+| ------- | ------------------------------ |
+|Promise\<number>| Promise used to return the result. Returns the **displayId** of the window. |
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+
+| ID| Error Message                                               |
+| -------- | ------------------------------------------------------- |
+| 12800002 | input method engine error. |
+| 12800013 | window manager service error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  panel.getDisplayId().then((result: number) => {
+    console.log('get displayId:' + result);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get displayId: ${JSON.stringify(err)}`);
+  });
+} catch (err) {
+  console.error(`Failed to get displayId: ${JSON.stringify(err)}`);
+}
+```
+
 ### show<sup>10+</sup>
 
 show(callback: AsyncCallback\<void>): void
@@ -1835,11 +1905,11 @@ try {
 }
 ```
 
-### adjustPanelRect<sup>16+</sup>
+### adjustPanelRect<sup>15+</sup>
 
 adjustPanelRect(flag: PanelFlag, rect: EnhancedPanelRect): void
 
-Adjusts the panel rectangle, and customizes the avoid area and hot zone.
+Adjusts the panel rectangle, and customizes the avoid area and touch area.
 
 > **NOTE**
 >
@@ -1853,8 +1923,8 @@ Adjusts the panel rectangle, and customizes the avoid area and hot zone.
 
 | Name| Type                                     | Mandatory| Description                                                      |
 | ------ | ----------------------------------------- | ---- | ---------------------------------------------------------- |
-| flag   | [PanelFlag](#panelflag10)                 | Yes  | Type of the state of the target panel. It can be **FLG_FIXED** or **FLG_FLOATING**.           |
-| rect   | [EnhancedPanelRect](#enhancedpanelrect16) | Yes  | Size of the landscape rectangle and portrait rectangle of the target panel, avoid area, and hot zone.|
+| flag   | [PanelFlag](#panelflag10)                 | Yes  | Type of the state of the target panel. It can be **FLG_FIXED** or **FLG_FLOATING**.         |
+| rect   | [EnhancedPanelRect](#enhancedpanelrect15) | Yes  | The target panel rectangle, avoid area, and touch area.|
 
 **Error codes**
 
@@ -1886,7 +1956,7 @@ try {
 }
 ```
 
-### updatelnputRegion<sup>16+</sup>
+### updatelnputRegion<sup>15+</sup>
 
 updateRegion(inputRegion: Array&lt;window.Rect&gt;): void
 
@@ -1904,7 +1974,7 @@ Updates the hot zone on the input method panel in the current state.
 
 | Name     | Type                                                        | Mandatory| Description                                                        |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| inputRegion | Array&lt;[window.Rect](../apis-arkui/js-apis-window.md#rect7)&gt; | Yes  | Region for receiving input events. The array size is limited to [1, 4].<br>- The input hot zone is relative to the left vertex of the input method panel window.|
+| inputRegion | Array&lt;[window.Rect](../apis-arkui/js-apis-window.md#rect7)&gt; | Yes  | Region for receiving input events.<br>- The array size is limited to [1, 4].<br>- The input hot zone is relative to the left vertex of the input method panel window.|
 
 **Error codes**
 
@@ -1986,25 +2056,25 @@ try {
 
 ### on('sizeChange')<sup>12+</sup>
 
-on(type: 'sizeChange', callback: SizeChangeCallback): void;
+on(type: 'sizeChange', callback: SizeChangeCallback): void
 
 Enables listening for the panel size change. This API uses an asynchronous callback to return the result.
 
->**NOTE**
+> **NOTE**
 >
-> This API applies only to the panels of the **SOFT_KEYBOARD** type in the **FLG_FIXED** or **FLG_FLOATING** state. When **adjustPanelRect** is called to adjust the panel size, the system needs to calculate the final value based on certain rules (for example, whether the panel size exceeds the screen). This callback can be used for the input method application to refresh the panel layout.
+> This API applies only to the panels of the **SOFT_KEYBOARD** type in the **FLG_FIXED** or **FLG_FLOATING** state. When you call **adjustPanelRect** to adjust the panel size, the system calculates the final value based on certain rules (for example, whether the panel size exceeds the screen). This callback can be used to obtain the actual panel size to refresh the panel layout.
 >
-> - From API version 12 to 15, the callback of this API contains only mandatory parameters of the [window.Size](../apis-arkui/js-apis-window.md#size7) type.
-> - Since API version 16, after the [adjustPanelRect](#adjustpanelrect16) API is called, optional parameters of the [KeyboardArea](#keyboardarea16) type are added to the callback of this API.
+>-  This API is supported from API version 12 to 14. The callback function of this API contains only mandatory parameters of the [window.Size](../apis-arkui/js-apis-window.md#size7) type.
+>-  Since API version 15, after the [adjustPanelRect](#adjustpanelrect15) API is called, an optional parameter of the [KeyboardArea](#keyboardarea15) type is added to the callback function of this API.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
-| Name  | Type                  | Mandatory| Description    |
-| -------- | ---------------------- | ---- | -------- |
-| type | string | Yes| Event type, which is **'sizeChange'**.|
-| callback | [SizeChangeCallback](#sizechangecallback16) |  Yes | Callback used to return the size of the soft keyboard panel, including the width and height.|
+| Name  | Type                                       | Mandatory| Description                                                  |
+| -------- | ------------------------------------------- | ---- | ------------------------------------------------------ |
+| type     | string                                      | Yes  | Event type, which is **'sizeChange'**.|
+| callback | [SizeChangeCallback](#sizechangecallback15) | Yes  | Callback used to return the size of the soft keyboard panel, including the width and height.|
 
 **Example**
 
@@ -2094,25 +2164,25 @@ try {
 
 ### off('sizeChange')<sup>12+</sup>
 
-off(type: 'sizeChange', callback?: SizeChangeCallback): void;
+off(type: 'sizeChange', callback?: SizeChangeCallback): void
 
 Disables listening for the panel size change. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API applies only to the panels of the **SOFT_KEYBOARD** type in the **FLG_FIXED** or **FLG_FLOATING** state. When **adjustPanelRect** is called to adjust the panel size, the system needs to calculate the final value based on certain rules (for example, whether the panel size exceeds the screen). This callback can be used for the input method application to refresh the panel layout.
+> This API applies only to the panels of the **SOFT_KEYBOARD** type in the **FLG_FIXED** or **FLG_FLOATING** state. When you call **adjustPanelRect** to adjust the panel size, the system calculates the final value based on certain rules (for example, whether the panel size exceeds the screen). This callback can be used to obtain the actual panel size to refresh the panel layout.
 >
-> - From API version 12 to 15, the callback of this API contains only mandatory parameters of the [window.Size](../apis-arkui/js-apis-window.md#size7) type.
-> - Since API version 16, after the [adjustPanelRect](#adjustpanelrect16) API is called, optional parameters of the [KeyboardArea](#keyboardarea16) type are added to the callback of this API.
+>-  This API is supported from API version 12 to 14. The callback function of this API contains only mandatory parameters of the [window.Size](../apis-arkui/js-apis-window.md#size7) type.
+>-  Since API version 15, after the [adjustPanelRect](#adjustpanelrect15) API is called, an optional parameter of the [KeyboardArea](#keyboardarea15) type is added to the callback function of this API.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
-| Name  | Type                  | Mandatory| Description    |
-| -------- | ---------------------- | ---- | -------- |
-| type | string | Yes| Event type, which is **'sizeChange'**.|
-| callback | [SizeChangeCallback](#sizechangecallback16) | No  | Callback used to return the size of the soft keyboard panel, including the width and height.|
+| Name  | Type                                       | Mandatory| Description                                                    |
+| -------- | ------------------------------------------- | ---- | -------------------------------------------------------- |
+| type     | string                                      | Yes  | Event type, which is **'sizeChange'**.|
+| callback | [SizeChangeCallback](#sizechangecallback15) | No  | Callback used to return the size of the soft keyboard panel, including the width and height.  |
 
 **Example**
 
@@ -2195,6 +2265,65 @@ try {
     console.error(`Failed to set privacy mode: ${JSON.stringify(err)}`);
 }
 ```
+
+### setImmersiveMode<sup>15+</sup>
+
+setImmersiveMode(mode: ImmersiveMode): void
+
+Sets the immersive mode of the input method application. You can only set the immersion mode to **NONE_IMMERSIVE**, **LIGHT_IMMERSIVE**, or **DARK_IMMERSIVE**. **IMMERSIVE** cannot be set.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description    |
+| -------- | ---------------------- | ---- | -------- |
+| mode | [ImmersiveMode](#immersivemode15) | Yes  | Immersive mode.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+
+| ID| Error Message                                               |
+| -------- | ------------------------------------------------------- |
+| 401      | parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.           |
+| 12800002  | input method engine error.                                |
+| 12800013  | window manager service error.                          |
+
+**Example**
+
+```ts
+try {
+  panel.setImmersiveMode(inputMethodEngine.ImmersiveMode.LIGHT_IMMERSIVE);
+} catch (err) {
+  console.error(`Failed to setImmersiveMode: ${JSON.stringify(err)}`);
+}
+```
+
+### getImmersiveMode<sup>15+</sup>
+
+getImmersiveMode(): ImmersiveMode
+
+Obtains the immersive mode of the input method application.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Return value**
+
+| Type                           | Description      |
+| ------------------------------- | ---------- |
+| [ImmersiveMode](#immersivemode15) | Immersive mode.|
+
+**Example**
+
+```ts
+try {
+  let mode = panel.getImmersiveMode();
+} catch (err) {
+  console.error(`Failed to getImmersiveMode: ${JSON.stringify(err)}`);
+}
+```
+
 
 ## KeyboardController
 
@@ -2462,17 +2591,17 @@ Describes the direction in which the cursor moves when the text is selected.
 | -------- | -------- | -------- | -------- | -------- |
 | direction  | [Direction](#direction10) | No| No| Direction in which the cursor moves when the text is selected.|
 
-## MessageHandler<sup>16+</sup>
+## MessageHandler<sup>15+</sup>
 
 Represents a custom communication object.
 
 > **NOTE**
 >
-> You can register this object to receive custom communication data sent by the edit box application attached to the input method application. When the custom communication data is received, the [onMessage](#messagehandleronmessage16) callback in this object is triggered.
+> You can register this object to receive custom communication data sent by the edit box application attached to the input method application. When the custom communication data is received, the [onMessage](#messagehandleronmessage15) callback in this object is triggered.
 >
-> This object is globally unique. After multiple registrations, only the last registered object is valid and retained, and the [onTerminated](#messagehandleronterminated16) callback of the penultimate registered object is triggered.
+> This object is globally unique. After multiple registrations, only the last registered object is valid and retained, and the [onTerminated](#messagehandleronterminated15) callback of the penultimate registered object is triggered.
 >
-> If this object is unregistered, its [onTerminated](#messagehandleronterminated16) callback will be triggered.
+> If this object is unregistered, its [onTerminated](#messagehandleronterminated15) callback will be triggered.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -2481,7 +2610,7 @@ Represents a custom communication object.
 | onTerminated | function | No  | Callback triggered when an object terminates receiving custom communication data.          |
 | onMessage    | function | No  | Callback triggered when an object starts to receive custom communication data.|
 
-## MessageHandler.onMessage<sup>16+</sup>
+## MessageHandler.onMessage<sup>15+</sup>
 
 onMessage(msgId: string, msgParam?: ArrayBuffer): void
 
@@ -2522,7 +2651,7 @@ try {
 }
 ```
 
-## MessageHandler.onTerminated<sup>16+</sup>
+## MessageHandler.onTerminated<sup>15+</sup>
 
 onTerminated(): void
 
@@ -4266,7 +4395,7 @@ try {
 }
 ```
 
-### sendMessage<sup>16+</sup>
+### sendMessage<sup>15+</sup>
 
 sendMessage(msgId: string, msgParam?: ArrayBuffer): Promise<void&gt;
 
@@ -4320,7 +4449,7 @@ inputMethodController.sendMessage(msgId, msgParam).then(() => {
 });
 ```
 
-### recvMessage<sup>16+</sup>
+### recvMessage<sup>15+</sup>
 
 recvMessage(msgHandler?: MessageHandler): void;
 
@@ -4328,9 +4457,9 @@ Registers or unregisters MessageHandler.
 
 > **NOTE**
 >
-> The [MessageHandler](#messagehandler16) object is globally unique. After multiple registrations, only the last registered object is valid and retained, and the [onTerminated](#messagehandleronterminated16) callback of the penultimate registered object is triggered.
+> The [MessageHandler](#messagehandler15) object is globally unique. After multiple registrations, only the last registered object is valid and retained, and the [onTerminated](#messagehandleronterminated15) callback of the penultimate registered object is triggered.
 >
-> If no parameter is set, unregister [MessageHandler](#messagehandler16). Its [onTerminated](#messagehandleronterminated16) callback will be triggered.
+> If no parameter is set, unregister [MessageHandler](#messagehandler15). Its [onTerminated](#messagehandleronterminated15) callback will be triggered.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -4338,7 +4467,7 @@ Registers or unregisters MessageHandler.
 
 | Name    | Type                               | Mandatory| Description                                                        |
 | ---------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| msgHandler | [MessageHandler](#messagehandler16) | No  | This object receives custom communication data from the edit box application attached to the input method application through [onMessage](#messagehandleronmessage16) and receives a message for terminating the subscription to this object through [onTerminated](#messagehandleronterminated16). If no parameter is set, unregister [MessageHandler](#messagehandler16). Its [onTerminated](#messagehandleronterminated16) callback will be triggered.|
+| msgHandler | [MessageHandler](#messagehandler15) | No  | This object receives custom communication data from the edit box application attached to the input method application through [onMessage](#messagehandleronmessage15) and receives a message for terminating the subscription to this object through [onTerminated](#messagehandleronterminated15). If no parameter is set, unregister [MessageHandler](#messagehandler15). Its [onTerminated](#messagehandleronterminated15) callback will be triggered.|
 
 **Return value**
 
@@ -4382,6 +4511,7 @@ Represents the attributes of the edit box.
 | inputPattern | number   | Yes  | No  | Text of the edit box.|
 | isTextPreviewSupported<sup>12+</sup> | boolean | No| No| Whether text preview is supported.|
 | bundleName<sup>14+</sup> | string | Yes| Yes| Name of the application package to which the edit box belongs. The value may be **""** When this attribute is used, the scenario where the value is **""** must be considered.|
+| immersiveMode<sup>15+</sup> | number | Yes  | Yes  | Immersive mode of the input method.|
 
 ## KeyEvent
 
@@ -4439,9 +4569,9 @@ Represents the size of the input method panel.
 | landscapeRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | No  | No  | Size of the input method panel window in landscape mode.|
 | portraitRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | No  | No  | Size of the input method panel window in portrait mode.|
 
-## EnhancedPanelRect<sup>16+</sup>
+## EnhancedPanelRect<sup>15+</sup>
 
-Indicates the size of the enhanced input method panel, including the custom avoid area and hot zone.
+Indicates the size of the enhanced input method panel, including the custom avoid area and touch area.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -4455,7 +4585,7 @@ Indicates the size of the enhanced input method panel, including the custom avoi
 | portraitInputRegion  | Array&lt;[window.Rect](../apis-arkui/js-apis-window.md#rect7)&gt; | No  | Yes  | Region where the panel receives input events in portrait mode.<br>- The array size is limited to [1, 4]. The default value is the panel size in portrait mode.<br>- The input hot zone is relative to the left vertex of the input method panel window.|
 | fullScreenMode       | boolean                                                      | No  | Yes  | Indicates whether to enable the full-screen mode. The default value is **false**.<br>- If the value is **true**, **landscapeRect** and **portraitRect** are optional.<br>- If the value is **false**, **landscapeRect** and **portraitRect** are mandatory.|
 
-## KeyboardArea<sup>16+</sup>
+## KeyboardArea<sup>15+</sup>
 
 Keyboard area on the panel.
 
@@ -4478,6 +4608,19 @@ Represents window information.
 | ------ | ------------------------------------------------------------ | ---- | ---- | -------------- |
 | rect   | [window.Rect](../apis-arkui/js-apis-window.md#rect7)         | No  | No  | Rectangular area of the window.|
 | status | [window.WindowStatusType](../apis-arkui/js-apis-window.md#windowstatustype11) | No  | No  | Window status type.|
+
+## ImmersiveMode<sup>15+</sup>
+
+Enumerates the immersive modes of the input method.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+| Name        | Value| Description              |
+| ------------ | -- | ------------------ |
+| NONE_IMMERSIVE | 0 | The immersive mode is not used.|
+| IMMERSIVE      | 1 | The immersive mode is used. Its style is determined by the input method application.|
+| LIGHT_IMMERSIVE  | 2 | Immersive style in light mode.|
+| DARK_IMMERSIVE   | 3 | Immersive style in dark mode.|
 
 ## TextInputClient<sup>(deprecated)</sup>
 
@@ -5005,4 +5148,4 @@ textInputClient.getEditorAttribute().then((editorAttribute: inputMethodEngine.Ed
   console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
 });
 ```
-
+<!--no_check-->

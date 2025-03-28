@@ -343,7 +343,7 @@ struct ArticleCard {
 
 在本示例中，`ArticleCard`组件作为`ArticleListView`组件的子组件，通过`@Prop`装饰器接收一个`Article`对象，用于渲染文章卡片。
 
-1. 当列表滚动到底部时，如果手势滑动距离超过指定的80，将触发`loadMoreArticle()`函数。此函数会在`articleList`数据源的尾部添加一个新的数据项，从而增加数据源的长度。
+1. 当列表滚动到底部时，如果手势滑动距离超过指定的80，将触发`loadMoreArticles()`函数。此函数会在`articleList`数据源的尾部添加一个新的数据项，从而增加数据源的长度。
 2. 数据源被`@State`装饰器修饰，ArkUI框架能够感知到数据源长度的变化，并触发`ForEach`进行重新渲染。
 
 ### 数据源数组项子属性变化

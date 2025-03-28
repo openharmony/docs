@@ -488,3 +488,57 @@ The application must have the related plugin mechanism to ensure that plugins ca
 **Authorization mode**: system_grant
 
 **Valid since**: 18
+
+### ohos.permission.PERSISTENT_BLUETOOTH_PEERS_MAC
+
+Allows an application to persist the virtual random address corresponding to the MAC address of the peer Bluetooth device.
+
+With this permission, the application can persist the virtual random address of the peer Bluetooth device obtained via BLE scanning, BR scanning, or listening for connections. The persistent virtual random address can still be used even if Bluetooth is enabled or disabled, or the Bluetooth device is restarted.
+
+<!--RP36--><!--RP36End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 16
+
+### ohos.permission.ACCESS_VIRTUAL_SCREEN
+
+Allows an application to manage virtual screens.
+
+With this permission, the application can call APIs to perform virtual screen management, including creating, using, and destroying a virtual screen.
+
+<!--RP37--><!--RP37End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 16
+
+### ohos.permission.MANAGE_APN_SETTING
+
+Allows an application to read and set APN information.
+
+You can request this permission when the application needs to use the APN information.
+
+<!--RP38--><!--RP38End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 16
+
+### ohos.permission.CUSTOM_SANDBOX
+
+Allows an application to set the sandbox type to dynamic sandbox.
+
+<!--RP39--><!--RP39End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 18

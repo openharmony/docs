@@ -20,7 +20,7 @@ Environment提供了读取系统某些环境变量的能力，具体见[Environm
 | fontScale              | number                  | 字体大小比例。开发者需要配置[configuration](./app-configuration-file.md#configuration标签)使fontScale跟随系统变化。                |
 | fontWeightScale              | number                  | 字体粗细程度。                |
 | layoutDirection              | LayoutDirection                  | 布局方向类型：包括LayoutDirection.LTR: 从左到右，LayoutDirection.RTL: 从右到左。                 |
-| languageCode              | string                  | 当前系统语言值，取值必须为小写字母, 例如zh。                 |
+| languageCode              | string                  | 当前系统语言值，取值必须为小写字母，例如zh。                 |
 
 
 ## 使用场景
@@ -38,10 +38,10 @@ Environment提供了读取系统某些环境变量的能力，具体见[Environm
 - 可以使用\@StorageProp链接到Component中。
 
   ```ts
-  @StorageProp('languageCode') lang : string = 'en';
+  @StorageProp('languageCode') lang: string = 'en';
   ```
 
-设备环境到Component的更新链：Environment --&gt; AppStorage --&gt;Component。
+设备环境到Component的更新链：Environment --&gt; AppStorage --&gt; Component。
 
 > **说明：**
 >
@@ -73,7 +73,7 @@ struct Index {
 
 
 ```ts
-// 使用Environment.EnvProp将设备运行languageCode存入AppStorage中；
+// 使用Environment.envProp将设备运行languageCode存入AppStorage中；
 Environment.envProp('languageCode', 'en');
 // 从AppStorage获取单向绑定的languageCode的变量
 const lang: SubscribedAbstractProperty<string> = AppStorage.prop('languageCode');

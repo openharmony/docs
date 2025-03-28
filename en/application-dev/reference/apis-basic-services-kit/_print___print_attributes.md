@@ -17,9 +17,9 @@ Defines the print attributes.
 
 | Name| Description| 
 | -------- | -------- |
-| [Print_Range](_print___range.md)[pageRange](#pagerange) | Defines the page range. | 
-| [Print_PageSize](_print___page_size.md)[pageSize](#pagesize) | Defines the page size. | 
-| [Print_Margin](_print___margin.md)[pageMargin](#pagemargin) | Defines the page margin. | 
+| [Print_Range](_print___range.md) [pageRange](#pagerange) | Defines the page range. | 
+| [Print_PageSize](_print___page_size.md) [pageSize](#pagesize) | Defines the page size. | 
+| [Print_Margin](_print___margin.md) [pageMargin](#pagemargin) | Defines the page margin. | 
 | uint32_t [copyNumber](#copynumber) | Defines the number of copies to print. | 
 | uint32_t [duplexMode](#duplexmode) | Defines the duplex mode. | 
 | uint32_t [colorMode](#colormode) | Defines the color mode. | 

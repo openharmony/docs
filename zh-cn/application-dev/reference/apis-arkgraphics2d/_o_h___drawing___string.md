@@ -17,8 +17,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| uint8_t \* [strData](#strdata) | 指向包含UTF-16编码的字节数组的指针  | 
-| uint32_t [strLen](#strlen) | strData指向的字符串的实际长度，单位为字节  | 
+| uint8_t \* [strData](#strdata) | 指向包含UTF-16编码的字节数组的指针。  | 
+| uint32_t [strLen](#strlen) | strData指向的字符串的实际长度，单位为字节。  | 
 
 
 ## 结构体成员变量说明

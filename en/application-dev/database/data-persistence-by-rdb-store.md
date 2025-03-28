@@ -54,12 +54,12 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
 | delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | Deletes data from the RDB store based on the specified **predicates** instance.| 
 | query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void | Queries data in the RDB store based on specified conditions.| 
 | deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void | Deletes an RDB store.| 
-
+| isTokenizerSupported(tokenizer: Tokenizer): boolean | Checks whether the specified tokenizer is supported.|
 
 ## How to Develop
 Unless otherwise specified, the sample code without "stage model" or "FA model" applies to both models.
 
-If error code 14800011 is reported, the RDB store is corrupted and needs to be rebuilt. For details, see [Rebuilding an RDB Store](data-backup-and-restore.md#rebuilding-an-rdb-store).
+If error 14800011 is thrown, you need to rebuild the database and restore data to ensure normal application development. For details, see [Rebuilding a RDB Store](data-backup-and-restore.md#rebuilding-an-rdb-store).
 
 1. Obtain an **RdbStore** instance, which includes operations of creating an RDB store and tables, and upgrading or downgrading the RDB store. <br>Example:
 
@@ -74,12 +74,19 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
    // In this example, Ability is used to obtain an RdbStore instance. You can use other implementations as required.
    class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
+       // Before using a tokenizer, call isStorageTypeSupported to check whether the tokenizer is supported by the current platform.
+       let tokenType = relationalStore.Tokenizer.ICU_TOKENIZER;
+       let tokenTypeSupported = relationalStore.isTokenizerSupported(tokenType);
+       if (!tokenTypeSupported) {
+         console.error(`ICU_TOKENIZER is not supported on this platform.`);
+       }
        const STORE_CONFIG :relationalStore.StoreConfig= {
          name: 'RdbTest.db', // Database file name.
          securityLevel: relationalStore.SecurityLevel.S3, // Database security level.
          encrypt: false, // Whether to encrypt the database. This parameter is optional. By default, the database is not encrypted.
          customDir: 'customDir/subCustomDir' // (Optional) Customized database path. The database is created in the context.databaseDir + '/rdb/' + customDir directory, where context.databaseDir indicates the application sandbox path, '/rdb/' indicates a relational database, and customDir indicates the customized path. If this parameter is not specified, an RdbStore instance is created in the sandbox directory of the application.
          isReadOnly: false // (Optional) Specify whether the RDB store is opened in read-only mode. The default value is false, which means the RDB store is readable and writable. If this parameter is true, data can only be read from the RDB store. If write operation is performed, error code 801 is returned.
+         tokenizer: tokenType // (Optional) Type of the tokenizer used in full-text search (FTS). If this parameter is left blank, only English word segmentation is supported in FTS.
        };
 
        // Check the RDB store version. If the version is incorrect, upgrade or downgrade the RDB store.

@@ -128,7 +128,7 @@ Allows a system application to write the protection advice database.
 
 **Enable via ACL**: true
 
-**Valid since**: 18
+**Valid since**: 17
 
 ## ohos.permission.READ_PROTECTION_ADVICE_POLICY
 
@@ -140,7 +140,7 @@ Allows a system application to read the protection advice database
 
 **Enable via ACL**: true
 
-**Valid since**: 18
+**Valid since**: 17
 
 ## ohos.permission.PROXY_MESSAGE_AUTH
 
@@ -2644,6 +2644,18 @@ Allows an application to create and manage application installation tasks.
 
 **Valid since**: 11
 
+## ohos.permission.MANAGE_APP_UNINSTALL
+
+Allows a system application to uninstall other applications.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
 ## ohos.permission.ACCESS_ADVANCED_SECURITY_MODE
 
 Allows a system application to access the advanced security mode configuration page.
@@ -2673,18 +2685,6 @@ Allows a system application to start HiViewX, which displays the **User Experien
 Allows a system application to start HiViewCare.
 
 **Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 11
-
-## ohos.permission.CONNECT_UI_EXTENSION_ABILITY
-
-Allows a system service to connect to UIExtensionAbility.
-
-**Permission level**: system_core
 
 **Authorization mode**: system_grant
 
@@ -3596,6 +3596,18 @@ Allows a system application or system ability to receive fusion service messages
 
 **Valid since**: 12
 
+## ohos.permission.RECEIVE_BMS_BROKER_MESSAGES
+
+Allows a system application or system ability to receive bms broker service messages.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
 ## ohos.permission.ACCESS_FUSION_MANAGER
 
 Allows a system ability or system application to access the fusion service.
@@ -4279,18 +4291,6 @@ Allows a system application to obtain fusion awareness data.
 ## ohos.permission.ACCESS_ACCOUNT_RECOMMENDATION_DATA
 
 Allows an application to read the data of Account Suggestions and start the UIExtensionAbility of the account suggestion list.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 18
-
-## ohos.permission.ACCESS_VIRTUAL_SCREEN
-
-Allows an application to manage virtual screens.
 
 **Permission level**: system_basic
 

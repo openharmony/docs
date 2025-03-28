@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 16开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 导入模块
@@ -25,15 +25,15 @@ ArcAlphabetIndexer(info: ArcAlphabetIndexerInitInfo)
 
 创建弧形索引条实例，传入弧形索引条配置项参数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
 **参数：**  参数内容为设置弧形索引条索引项字符串数组、初始选中项索引位置。
 
-| 名称     | 类型     | 必填     | 说明     |
+| 参数名     | 类型     | 必填     | 说明     |
 | -------- | -------- | -------- | -------- |
-| info     | [ArcAlphabetIndexerInitInfo](#arcalphabetindexerinitinfo) | 是 | 定义弧形字母索引条的初始化参数。 |
+| info     | [ArcAlphabetIndexerInitInfo](#arcalphabetindexerinitinfo对象说明) | 是 | 定义弧形字母索引条的初始化参数。 |
 
 
 ## 属性
@@ -46,7 +46,7 @@ color(color: Optional&lt;ColorMetrics&gt;)
 
 设置普通状态下索引项文字颜色。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -62,7 +62,7 @@ selectedColor(color: Optional&lt;ColorMetrics&gt;)
 
 设置选中项文字颜色。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -78,7 +78,7 @@ popupColor(color: Optional&lt;ColorMetrics&gt;)
 
 设置提示弹窗文字颜色。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -94,7 +94,7 @@ selectedBackgroundColor(color: Optional&lt;ColorMetrics&gt;)
 
 设置选中项背景颜色。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -110,7 +110,7 @@ popupBackground(color: Optional&lt;ColorMetrics&gt;)
 
 设置提示弹窗背景色。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -130,7 +130,7 @@ usePopup(enabled: Optional&lt;boolean&gt;)
 
 设置是否使用提示弹窗。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -138,7 +138,7 @@ usePopup(enabled: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型    | 必填 | 说明                                   |
 | ------ | ------- | ---- | -------------------------------------- |
-| enabled | Optional&lt;boolean&gt; | 是   | 是否使用提示弹窗。<br/>默认值：false |
+| enabled | Optional&lt;boolean&gt; | 是   | 是否使用提示弹窗。<br/>默认值：false，不使用提示弹窗。 |
 
 ### selectedFont
 
@@ -146,7 +146,7 @@ selectedFont(font: Optional&lt;Font&gt;)
 
 设置选中项文字尺寸、粗细、字体族、倾斜等样式。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -158,11 +158,11 @@ selectedFont(font: Optional&lt;Font&gt;)
 
 ### popupFont
 
-popupFont(value: Optional&lt;Font&gt;)
+popupFont(font: Optional&lt;Font&gt;)
 
 设置提示弹窗字体样式。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -170,7 +170,7 @@ popupFont(value: Optional&lt;Font&gt;)
 
 | 参数名 | 类型                     | 必填 | 说明                                                         |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Optional&lt;Font&gt;](ts-types.md#font) | 是   | 提示弹窗字体样式。<br/>默认值：<br/>{<br/>size:'19.0fp',<br/> style:FontStyle.Normal,<br/> weight:500,<br/> family:'HarmonyOS Sans'<br/>} |
+| font  | [Optional&lt;Font&gt;](ts-types.md#font) | 是   | 提示弹窗字体样式。<br/>默认值：<br/>{<br/>size:'19.0fp',<br/> style:FontStyle.Normal,<br/> weight:500,<br/> family:'HarmonyOS Sans'<br/>} |
 
 ### font
 
@@ -178,7 +178,7 @@ font(font: Optional&lt;Font&gt;)
 
 设置字母索引条默认字体样式。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -194,7 +194,7 @@ itemSize(size: Optional&lt;LengthMetrics&gt;)
 
 设置字母索引条字母区域大小。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -202,7 +202,7 @@ itemSize(size: Optional&lt;LengthMetrics&gt;)
 
 | 参数名 | 类型                       | 必填 | 说明                                                         |
 | ------ | -------------------------- | ---- | ------------------------------------------------------------ |
-| size  | Optional&lt;LengthMetrics&gt; | 是   | 字母索引条字母区域大小，字母区域为圆形，即圆形直径。不支持设置为百分比。<br/>默认值：24.0 <br/>单位：vp |
+| size  | [Optional&lt;LengthMetrics&gt;](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 字母索引条字母区域大小，字母区域为圆形，即圆形直径。不支持设置为百分比。<br/>默认值：24.0 <br/>单位：vp |
 
 ### selected
 
@@ -210,7 +210,7 @@ selected(index: Optional&lt;number&gt;)
 
 设置选中项索引值。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -226,7 +226,7 @@ autoCollapse(enable: Optional&lt;boolean&gt;)
 
 设置是否使用自适应折叠模式。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -234,7 +234,7 @@ autoCollapse(enable: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | ------------------------------------------ |
-| enable  | Optional&lt;boolean&gt; | 是   | 是否使用自适应折叠模式。<br/>默认值：true |
+| enable  | Optional&lt;boolean&gt; | 是   | 是否使用自适应折叠模式。<br/>默认值：true，使用自适应折叠模式。 |
 
 ### popupBackgroundBlurStyle
 
@@ -242,7 +242,7 @@ popupBackgroundBlurStyle(style: Optional&lt;BlurStyle&gt;)
 
 设置提示弹窗的背景模糊材质。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -266,7 +266,7 @@ onSelect(handler: Optional&lt;OnSelectCallback&gt;)
 
 索引条选中回调，返回值为当前选中索引。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -277,17 +277,17 @@ onSelect(handler: Optional&lt;OnSelectCallback&gt;)
 | handler  | Optional&lt;[OnSelectCallback](#onselectcallback)&gt; | 是   | 回调函数类型。 |
 
 
-## ArcAlphabetIndexerInitInfo
+## ArcAlphabetIndexerInitInfo对象说明
 
 定义弧形字母索引条的初始化参数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | arrayValue | string[] | 是 | 字母索引字符串数组，不可设置为空。 |
 | selected   | number              | 是 | 初始选中项索引值，若超出索引值范围，则取默认值0。<br />该参数支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。|
@@ -298,7 +298,7 @@ type OnSelectCallback =  (index: number) => void
 
 定义[onSelect](#onselect)中使用的回调类型。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 

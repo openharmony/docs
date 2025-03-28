@@ -15,7 +15,7 @@ import { ble } from '@kit.ConnectivityKit';
 ```
 
 
-## ProfileConnectionState<sup>12+</sup>
+## ProfileConnectionState<sup>10+</sup>
 
 type ProfileConnectionState = constant.ProfileConnectionState
 
@@ -3757,6 +3757,7 @@ startScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): Promise&lt;v
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth disabled.                 |
+|2900009 | Fails to start scan as it is out of hardware.                 |
 |2900099 | Operation failed.                        |
 |2902050 | Failed to start scan as Ble scan is already started by the app.|
 
@@ -4249,6 +4250,7 @@ try {
 | dutyMode  | [ScanDuty](#scanduty)   | 是    | 是    | 表示扫描模式，默认值为SCAN_MODE_LOW_POWER。        |
 | matchMode | [MatchMode](#matchmode) | 是    | 是    | 表示硬件的过滤匹配模式，默认值为MATCH_MODE_AGGRESSIVE。 |
 | phyType<sup>12+</sup> | [PhyType](#phytype12) | 是    | 是    | 表示扫描中使用的PHY类型。 |
+| reportMode<sup>15+</sup> | [ScanReportMode](#scanreportmode15) | 是    | 是    | 表示扫描结果数据上报模式。 |
 
 
 ## GattProperties<a name="GattProperties"></a>
@@ -4344,10 +4346,10 @@ try {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称        | 类型                  | 说明                                     |
-| --------- | ----------------------- | -------------------------------------- |
-| reportType  | [ScanReportType](#scanreporttype15)        | 表示扫描报告类型。    |
-| scanResult  | Array&lt;[ScanResult](#scanresult)&gt;    | 扫描结果数据。        |
+| 名称      | 类型                  | 只读   | 可选   | 说明                                     |
+| --------- | ----------------------- | ---- | ---- | ------------------------------ |
+| reportType  | [ScanReportType](#scanreporttype15)        | 否 | 否 | 表示扫描报告类型。    |
+| scanResult  | Array&lt;[ScanResult](#scanresult)&gt;    | 否 | 否 |扫描结果数据。        |
 
 ## ScanReportType<sup>15+</sup>
 
@@ -4373,5 +4375,5 @@ try {
 | 名称      | 值    | 说明                           |
 | --------  | ---- | ------------------------------ |
 | NORMAL  | 1    | 表示常规扫描上报模式。       |
-| FENCE_SENSITIVITY_LOW<sup>16+</sup>  | 10    | 表示低灵敏度围栏上报模式，只在首次收到广播包和丢失广播包时上报，灵敏度低。    |
-| FENCE_SENSITIVITY_HIGH<sup>16+</sup>  | 11    | 表示高灵敏度围栏上报模式，只在首次收到广播包和丢失广播包时上报，灵敏度高。    |
+| FENCE_SENSITIVITY_LOW<sup>18+</sup>  | 10    | 表示低灵敏度围栏上报模式。只在首次收到广播包和丢失广播包时上报，灵敏度低。    |
+| FENCE_SENSITIVITY_HIGH<sup>18+</sup>  | 11    | 表示高灵敏度围栏上报模式。只在首次收到广播包和丢失广播包时上报，灵敏度高。    |

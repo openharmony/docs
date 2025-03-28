@@ -5,7 +5,7 @@
 
 Defines APIs and enums related to a single data value.
 
-**File to include**: &lt;database/rdb/oh_data_value.h&gt;
+**File to include**: &lt;database/data/oh_data_value.h&gt;
 
 **Library**: libnative_rdb_ndk.z.so
 

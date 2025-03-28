@@ -42,9 +42,9 @@ Calculates a hash value for a file. This API uses a promise to return the result
 
 **Parameters**
 
-| Name   | Type  | Mandatory| Description                                                        |
-| --------- | ------ | ---- | ------------------------------------------------------------ |
-| path      | string | Yes  | Path of the file in the application sandbox.                            |
+| Name   | Type  | Mandatory| Description                          |
+| --------- | ------ | ---- | ------------------------------|
+| path      | string | Yes  | Path of the file in the application sandbox.|
 | algorithm | string | Yes  | Algorithm used to calculate the hash value. The value can be **md5**, **sha1**, or **sha256**. **sha256** is recommended for security purposes.|
 
 **Return value**

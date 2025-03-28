@@ -450,7 +450,7 @@ Tid:18257, Name:crasher_cpp                 <- 故障线程号，线程名
 
 **日志格式 - 打印系统框架业务自定义信息**
 
-（目前支持ARM64架构）当进程发生崩溃后，支持打印出系统框架业务自定义的维测信息，帮助开发者定位问题，目前支持字符串类型、内存类型、回调类型、回栈类型信息打印。从API 18开始LastFatalMessage字段仅承载进程崩溃前使用hilog打印的最后一条fatal级别日志或使用libc的set_fatal_memssage接口设置的最后一条消息，回调类型信息和回栈类型信息从LastFatalMessage字段分别调整到ExtraCrashInfo(Callback)字段和ExtraCrashInfo(Unwindstack)字段。以下是DevEco Studio归档在FaultLog包含四种不同类型系统框架业务自定义信息的进程崩溃日志中核心内容。
+（目前支持ARM64架构）当进程发生崩溃后，支持打印出系统框架业务自定义的维测信息，帮助开发者定位问题，目前支持字符串类型、内存类型、回调类型、回栈类型信息打印。从API 18开始LastFatalMessage字段仅承载进程崩溃前使用hilog打印的最后一条fatal级别日志或使用libc的set_fatal_message接口设置的最后一条消息，回调类型信息和回栈类型信息从LastFatalMessage字段分别调整到ExtraCrashInfo(Callback)字段和ExtraCrashInfo(Unwindstack)字段。以下是DevEco Studio归档在FaultLog包含四种不同类型系统框架业务自定义信息的进程崩溃日志中核心内容。
 
 1. 字符串类型信息。
 
@@ -815,7 +815,7 @@ Tid:48552, Name:UpradeTask
     创建一个 RecursiveClass 对象时，它的构造函数被调用。销毁这个对象时，它的析构函数被调用。在析构函数中，创建了一个新的RecursiveClass对象，这会导致递归调用，直到栈溢出。递归调用导致了无限的函数调用，最终导致栈空间耗尽，程序崩溃。  
 - 二进制不匹配：通常由ABI（应用程序二进制接口）不匹配引起，如自己编译二进制与实际运行的二进制接口存在差异，数据结构定义存在差异，这种一般会产生随机的崩溃栈。
 - 踩内存：使用有效的野指针，并修改了其中的内存为非法值，访问越界，覆盖了正常的数据这种一般会产生随机的崩溃栈。
-- SIGBUS (Aligment)考虑对指针进行强转之后地址是否已经处于非对齐状态。
+- SIGBUS (Alignment)考虑对指针进行强转之后地址是否已经处于非对齐状态。
 - 无函数名称：函数名称长度超过256字节时，栈帧打印不包含函数名称
 - 无build-id信息：elf中如果不包含 .note.gnu.build-id时，栈帧打印不包含build-id信息
 

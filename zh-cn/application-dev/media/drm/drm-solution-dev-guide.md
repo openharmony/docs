@@ -118,7 +118,7 @@ static int32_t MediaKeySystemFactoryDriverDispatch(struct HdfDeviceIoClient *cli
 
 ### HDI接口实现
 
-实现可以参考<!--RP2-->`//ohos/out/产品型号/gen/drivers/interface/drm/v1_0/`<!--RP2End-->中自动生成的.cpp文件，可以按照业务需要进行定制化修改或新增文件，如`media_key_system_factory_service.cpp`：
+实现可以参考`//ohos/out/产品型号/gen/drivers/interface/drm/v1_0/`中自动生成的.cpp文件，可以按照业务需要进行定制化修改或新增文件，如`media_key_system_factory_service.cpp`：
 
 ```
 extern "C" IMediaKeySystemFactory *MediaKeySystemFactoryImplGetInstance(void)
