@@ -3000,7 +3000,7 @@ setSuperResolution(enabled: boolean) : Promise<void>
 | -------- | ------------------------------------------ |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5410003  | Super-resolution not supported. Return by promise. |
-| 5410004  | Missing enable super-resolution feature in (#playbackstrategy12). |
+| 5410004  | Missing enable super-resolution feature in [PlaybackStrategy](#playbackstrategy12). |
 
 **示例：**
 
@@ -3042,7 +3042,7 @@ setVideoWindowSize(width: number, height: number) : Promise<void>
 | 401      | The parameter check failed. Return by promise. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5410003  | Super-resolution not supported. Return by promise. |
-| 5410004  | Missing enable super-resolution feature in (#playbackstrategy12). |
+| 5410004  | Missing enable super-resolution feature in [PlaybackStrategy](#playbackstrategy12). |
 
 **示例：**
 
@@ -3064,7 +3064,7 @@ on(type:'superResolutionChanged', callback: OnSuperResolutionChanged): void
 
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string | 是 | 事件回调类型，支持的事件为：'superResolutionChanged'。 |
+| type     | string | 是 | 事件回调类型，支持的事件为：'superResolutionChanged'，当超分算法开启/关闭状态变化时，触发该事件。 |
 | callback | [OnSuperResolutionChanged](#onsuperresolutionchanged18) | 是 | 超分开关事件回调方法。 |
 
 **示例：**
@@ -3077,7 +3077,7 @@ avPlayer.on('superResolutionChanged', (enabled: boolean) => {
 
 ### off('superResolutionChanged')<sup>18+</sup>
 
-off(type:'superResolutionChanged', callback?: OnSuperResolutionChanged): void;  
+off(type:'superResolutionChanged', callback?: OnSuperResolutionChanged): void
 
 取消监听超分算法开启/关闭事件。
 
@@ -3089,7 +3089,7 @@ off(type:'superResolutionChanged', callback?: OnSuperResolutionChanged): void;
 
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string | 是 | 事件回调类型，支持的事件为：'superResolutionChanged'。 |
+| type     | string | 是 | 事件回调类型，支持的事件为：'superResolutionChanged'，当超分算法开启/关闭状态变化时，触发该事件。 |
 | callback | [OnSuperResolutionChanged](#onsuperresolutionchanged18) | 否 | 超分开关事件回调方法。 |
 
 **示例：**
@@ -3184,11 +3184,11 @@ type OnVideoSizeChangeHandler = (width: number, height: number) => void
 
 type OnSuperResolutionChanged = (enabled: boolean) => void
 
-视频超分开关事件回调方法。若通过[PlaybackStrategy](#playbackstrategy12)正确使能超分，超分算法状态变化时会通过此回调上报，视频起播时也会上报超分初始开启/关闭状态。
+视频超分开关事件回调方法。若通过[PlaybackStrategy](#playbackstrategy12)正确使能超分，超分算法状态变化时会通过此回调上报，视频起播时也会上报超分初始开启/关闭状态。若未使能超分，不会触发该回调。
 
-在某些情况下，超分算法会自动关闭：
-* 目前超分算法最高仅支持30帧及以下的视频，若视频帧率过高，或者在倍速播放等场景下导致输入帧率超出超分算法处理能力，超分会自动关闭；
-* 目前超分算法支持输入分辨率范围为 320x320 ~ 1920x1080，若播放过程中输入视频分辨率超出此范围，超分算法会自动关闭；
+出现以下两种情况，超分算法会自动关闭。
+* 目前超分算法最高仅支持30帧及以下的视频。若视频帧率超过30帧，或者在倍速播放等场景下导致输入帧率超出超分算法处理能力，超分会自动关闭。
+* 目前超分算法支持输入分辨率范围为320x320 ~ 1920x1080，单位为像素。若播放过程中输入视频分辨率超出此范围，超分算法会自动关闭。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -3196,7 +3196,7 @@ type OnSuperResolutionChanged = (enabled: boolean) => void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
-| enabled  | boolean | 是 | true表示超分开启，false表示超分关闭。     |
+| enabled  | boolean | 是 | 表示当前超分是否开启。true表示超分开启，false表示超分关闭。     |
 
 ## AVFileDescriptor<sup>9+</sup>
 
@@ -8015,7 +8015,7 @@ setMimeType(mimeType: AVMimeTypes): void
 | preferredHeight | number | 否   | 播放策略首选高度，int类型，如1920。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | preferredBufferDuration | number | 否  | 播放策略首选缓冲持续时间，单位s，取值范围1-20。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | preferredHdr | boolean | 否   | 播放策略true是hdr，false非hdr，默认非hdr。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| enableSuperResolution<sup>18+</sup> | boolean | 否   | 是否使能超分功能，默认为false，即不使能。若不使能超分，则后续不能调用超分相关接口。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| enableSuperResolution<sup>18+</sup> | boolean | 否   | 表示是否使能超分功能。true表示使能超分，false表示不使能超分，默认为false。<br>若不使能超分，则后续不能调用超分相关接口。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | showFirstFrameOnPrepare<sup>18+</sup> | boolean | 否   | 播放策略true是Prepare之后显示视频起播首帧，false是Prepare之后不显示视频起播首帧，默认不显示。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | mutedMediaType | [MediaType](#mediatype8) | 否 | 静音播放的媒体类型，仅支持设置 MediaType.MEDIA_TYPE_AUD。 |
 | preferredAudioLanguage<sup>13+</sup> | string | 否 | 播放策略首选音轨语言。dash场景下应用可按需设置。非dash场景暂不支持，建议缺省。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
