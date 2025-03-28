@@ -1220,7 +1220,7 @@ Defines the callback used to return the data retrieval progress information and 
 
 Represents the parameters for obtaining data from UDMF, including the destination directory, option for resolving file conflicts, and progress indicator type.
 
-For details, see [Dragging-and-Dropping Data Asynchronously](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#example-3-dragging-and-dropping-data-asynchronously).
+For details, see [Dragging-and-Dropping Data Asynchronously](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#example-3-obtaining-data-asynchronously-through-drag-and-drop).
 
 **Atomic service API**: This API can be used in atomic services since API version 15.
 
