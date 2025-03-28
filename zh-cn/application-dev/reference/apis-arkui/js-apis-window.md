@@ -9041,9 +9041,9 @@ try {
 
 isWindowHighlighted(): boolean
 
-获取当前窗口是否是激活态。为准确获取激活态，需要在[WindowEventType](#windoweventtype10)生命周期处于WINDOW_ACTIVE之后调用。
+获取当前窗口是否为激活态。为准确获取激活态，需要在[WindowEventType](#windoweventtype10)生命周期处于WINDOW_ACTIVE之后调用。
 
-如需在窗口激活态变更之后执行对应业务，建议使用[on('windowHighlightChange')](#onwindowhighlightchange15)。
+可使用[on('windowHighlightChange')](#onwindowhighlightchange15)监听对应状态变更，再执行对应具体业务。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -9053,7 +9053,7 @@ isWindowHighlighted(): boolean
 
 | 类型                | 说明                                           |
 | ------------------- | --------------------------------------------- |
-| boolean             | 窗口是否是激活态。true表示窗口是激活态，false表示窗口不是激活态。 |
+| boolean             | 当前窗口是否为激活态。true表示当前窗口为激活态，false表示当前窗口非激活态。 |
 
 **错误码：**
 
