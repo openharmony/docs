@@ -289,8 +289,7 @@ DevEco Studio中模块间的依赖关系通过oh-package.json5中的dependencies
 
 **1. runtimeOnly字段schema配置格式**
 
-在HAP/HSP/HAR的build-profile.json5中的buildOption中增加runtimeOnly配置项，仅在通过变量动态import时配置，静态import和常量动态import无需配置；并且，通过变量动态import加载API时也无需配置runtimeOnly。
-如下实例说明如何配置通过变量动态import其他模块，以及变量动态import本模块自己的单文件：
+在HAP/HSP/HAR的build-profile.json5中的buildOption中增加runtimeOnly配置项，仅在通过变量动态import时配置，静态import和常量动态import无需配置；并且，通过变量动态import加载API时也无需配置runtimeOnly。如下实例说明如何配置通过变量动态import其他模块，以及变量动态import本模块自己的单文件：
 
 ```typescript
 // 变量动态import其他模块myHar
