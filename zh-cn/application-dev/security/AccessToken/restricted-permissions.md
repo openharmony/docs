@@ -505,7 +505,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：16
 
-### ohos.permission.kernel.MANAGE_APN_SETTING
+### ohos.permission.MANAGE_APN_SETTING
 
 允许应用读取或设置APN信息。
 
