@@ -69,8 +69,9 @@ callback(data:motion.OperatingHandStatus) {
 try {
     motion.on('operatingHandChanged', this.callback);  
     console.info("on succeeded");
-} catch (error:BusinessError) {
-    console.error("Failed on and err code is " + err.code);
+} catch (err) {
+    let error = err as BusinessError;
+    console.error("Failed on and err code is " + error.code);
 }
 ```
 
@@ -113,8 +114,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
     motion.off('operatingHandChanged');
     console.info("off succeeded");
-} catch (error:BusinessError) {
-    console.error("Failed off and err code is " + err.code);
+} catch (err) {
+    let error = err as BusinessError;
+    console.error("Failed off and err code is " + error.code);
 }
 ```
 
@@ -154,8 +156,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
     let data:motion.OperatingHandStatus = motion.getRecentOperatingHandStatus();
     console.info('get success' + data);
-} catch (error:BusinessError) {
-    console.error("Failed get and err code is " + err.code);
+} catch (err) {
+    let error = err as BusinessError;
+    console.error("Failed get and err code is " + error.code);
 }
 ```
 
