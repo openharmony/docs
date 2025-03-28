@@ -468,7 +468,7 @@ supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;): Promise&lt;Array&lt;b
 
 | 参数                                | 说明                            |
 | ----------------------------------- | ------------------------------- |
-| Promise&lt;Array&lt;boolean&gt;&gt; | Promise对象，异步返回查询结果。 |
+| Promise&lt;Array&lt;boolean&gt;&gt; | Promise对象，异步返回查询结果。true 表示支持，false表示不支持。 |
 
 **错误码**：
 
