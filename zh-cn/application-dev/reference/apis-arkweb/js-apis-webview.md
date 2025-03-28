@@ -1777,10 +1777,6 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 
 异步执行JavaScript脚本，并通过回调方式返回脚本执行的结果。runJavaScript需要在loadUrl完成后，比如onPageEnd中调用。
 
-> **说明：**
->
-> 离屏组件不会触发runJavaScript接口。
-
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -5722,7 +5718,7 @@ enableSafeBrowsing(enable: boolean): void
 
 | 参数名   | 类型    |  必填  | 说明                       |
 | --------| ------- | ---- | ---------------------------|
-|  enable | boolean | 是   | 是否启用检查网站安全风险的功能。 |
+|  enable | boolean | 是   | 是否启用检查网站安全风险的功能。<br>true表示启用检查网站安全风险的功能，false表示不启用检查网站安全风险的功能。<br>默认值：false。 |
 
 **错误码：**
 
@@ -5811,7 +5807,7 @@ enableIntelligentTrackingPrevention(enable: boolean): void
 
 | 参数名   | 类型    |  必填  | 说明                       |
 | --------| ------- | ---- | ---------------------------|
-|  enable | boolean | 是   | 是否启用智能防跟踪功能。 |
+|  enable | boolean | 是   | 是否启用智能防跟踪功能。<br>true表示启用启用智能防跟踪功能，false表示不启用启用智能防跟踪功能。<br>默认值：false。 |
 
 **错误码：**
 
@@ -10178,7 +10174,7 @@ static putAcceptThirdPartyCookieEnabled(accept: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | :----------------------------------------- |
-| accept | boolean | 是   | 设置是否拥有发送和接收第三方cookie的权限，默认为false。 |
+| accept | boolean | 是   | 设置是否拥有发送和接收第三方cookie的权限。<br>true表示设置拥有发送和接收第三方cookie的权限，false表示设置无发送和接收第三方cookie的权限。<br>默认值：false。 |
 
 **错误码：**
 
@@ -12472,14 +12468,14 @@ struct WebComponent {
 | 名称           | 类型       | 可读 | 可写 | 说明                         |
 | -------------- | --------- | ---- | ---- | ---------------------------- |
 | schemeName     | string    | 是   | 是   | 自定义协议名称。最大长度为32，其字符仅支持小写字母、数字、'.'、'+'、'-', 同时需要以字母开头。        |
-| isSupportCORS  | boolean   | 是   | 是   | 是否支持跨域请求。    |
-| isSupportFetch | boolean   | 是   | 是   | 是否支持fetch请求。           |
-| isStandard<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将作为标准scheme进行处理。标准scheme需要符合RFC 1738第3.1节中定义的URL规范化和解析规则。           |
-| isLocal<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将使用与应用于“FILE”的安全规则相同的安全规则来处理。           |
-| isDisplayIsolated<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的内容是否只能从相同scheme的其他内容中显示或访问。           |
-| isSecure<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将使用与应用于“https”的安全规则相同的安全规则来处理。           |
-| isCspBypassing<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme可以绕过内容安全策略（CSP）检查。在大多数情况下，当设置isStandard为true时，不应设置此值。         |
-| isCodeCacheSupported<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的js资源是否支持生成code cache。默认值：false。         |
+| isSupportCORS  | boolean   | 是   | 是   | 是否支持跨域请求。<br>true表示支持跨域请求，false表示不支持跨域请求。<br>默认值：true。    |
+| isSupportFetch | boolean   | 是   | 是   | 是否支持fetch请求。<br>true表示支持fetch请求，false表示不支持fetch请求。<br>默认值：true。           |
+| isStandard<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将作为标准scheme进行处理。标准scheme需要符合RFC 1738第3.1节中定义的URL规范化和解析规则。<br>true表示设置了该选项的scheme将作为标准scheme进行处理，false表示设置了该选项的scheme不作为标准scheme进行处理。<br>默认值：true。           |
+| isLocal<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将使用与“file”协议相同的安全规则来处理。<br>true表示设置了该选项的scheme将使用与“file”协议相同的安全规则来处理，false表示设置了该选项的scheme不使用与“file”协议相同的安全规则来处理。<br>默认值：true。           |
+| isDisplayIsolated<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的内容是否只能从相同scheme的其他内容中显示或访问。<br>true表示设置了该选项的scheme的内容只能从相同scheme的其他内容中显示或访问，false表示设置了该选项的scheme的内容不是只能从相同scheme的其他内容中显示或访问。<br>默认值：true。           |
+| isSecure<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将使用与应用于“https”的安全规则相同的安全规则来处理。true表示设置了该选项的scheme将使用与应用于“https”的安全规则相同的安全规则来处理，false表示设置了该选项的scheme不使用与应用于“https”的安全规则相同的安全规则来处理。<br>默认值：true。           |
+| isCspBypassing<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme可以绕过内容安全策略（CSP）检查。<br>true表示设置了该选项的scheme可以绕过内容安全策略（CSP）检查，false表示设置了该选项的scheme不可以绕过内容安全策略（CSP）检查。<br>默认值：true。<br>在大多数情况下，当设置isStandard为true时，不应设置此值。         |
+| isCodeCacheSupported<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的js资源是否支持生成code cache。<br>true表示设置了该选项的scheme的js资源支持生成code，false表示设置了该选项的scheme的js资源不支持生成code。<br>默认值：false。         |
 
 ## SecureDnsMode<sup>10+</sup>
 
@@ -16034,7 +16030,7 @@ handleMutedChanged(muted: boolean): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| muted | boolean | 是 | 当前播放器是否静音。 |
+| muted | boolean | 是 | 当前播放器是否静音。<br>true表示当前播放器静音，false表示当前播放器未静音。 |
 
 **示例：**
 
@@ -16172,7 +16168,7 @@ handleFullscreenChanged(fullscreen: boolean): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| fullscreen | boolean | 是 | 是否全屏。 |
+| fullscreen | boolean | 是 | 是否全屏。<br>true表示全屏，false表示未全屏。 |
 
 **示例：**
 
@@ -16352,7 +16348,7 @@ setMuted(muted: boolean): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| muted | boolean | 是 | 是否静音。 |
+| muted | boolean | 是 | 是否静音。<br>true表示静音，false表示未静音。 |
 
 **示例：**
 
@@ -16513,9 +16509,9 @@ suspendPlayer?(type: SuspendType): void
 | mediaType | [MediaType](#mediatype12) | 是 | 媒体的类型。 |
 | mediaSrcList | [MediaSourceInfo](#mediasourceinfo12)[] | 是 | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
 | surfaceInfo | [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12) | 是 | 用于同层渲染的 surface 信息。 |
-| controlsShown | boolean | 是 | `<video>` 或 `<audio>` 中是否有 `controls`属性。 |
+| controlsShown | boolean | 是 | `<video>` 或 `<audio>` 中是否有 `controls`属性。<br>true表示有，false表示没有。 |
 | controlList | string[] | 是 | `<video>` 或 `<audio>` 中的 `controlslist` 属性的值。 |
-| muted | boolean | 是 | 是否要求静音播放。 |
+| muted | boolean | 是 | 是否要求静音播放。<br>true表示静音播放，false表示未静音播放。 |
 | posterUrl | string | 是 | 海报的地址。 |
 | preload | [Preload](#preload12) | 是 | 是否需要预加载。 |
 | headers | Record\<string, string\> | 是 | 播放器请求媒体资源时，需要携带的 HTTP 头。 |
@@ -16624,8 +16620,8 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 
 | 名称 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| nativeEmbed | boolean | 是 | 是否允许使用同层渲染的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为同层渲染元素创建的原生控件的生命周期，避免造成泄漏。 |
-| mediaTakeOver | boolean | 是 | 是否允许使用视频托管的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为视频元素创建的原生控件的生命周期，避免造成泄漏。|
+| nativeEmbed | boolean | 是 | 是否允许使用同层渲染的页面进入前进后退缓存。<br>如果设置为允许，需要维护为同层渲染元素创建的原生控件的生命周期，避免造成泄漏。<br>true：允许，false：不允许。<br>默认值：false。 |
+| mediaTakeOver | boolean | 是 | 是否允许使用视频托管的页面进入前进后退缓存。<br>如果设置为允许，需要维护为视频元素创建的原生控件的生命周期，避免造成泄漏。<br>true：允许，false：不允许。<br>默认值：false。|
 
 ### constructor<sup>12+</sup>
 
