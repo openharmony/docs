@@ -202,7 +202,7 @@ import { Want } from '@kit.AbilityKit';
         });
         ```
 
-    * parameter参数用法：parameter携带开发者自定义参数，由UIAbilityA传递给UIAbilityB，并在UIAbilityB中进行获取。
+    * parameters参数用法：parameters携带开发者自定义参数，由UIAbilityA传递给UIAbilityB，并在UIAbilityB中进行获取。
 
         ```ts
         // (1) UIAbilityA通过startability启动UIAbilityB
@@ -235,7 +235,7 @@ import { Want } from '@kit.AbilityKit';
           }
         }
         ```
-    * parameter参数中[wantConstant](js-apis-app-ability-wantConstant.md)的Key的使用方法。
+    * parameters参数中[wantConstant](js-apis-app-ability-wantConstant.md)的Key的使用方法。
 
         ```ts
         import { common, Want, wantConstant } from '@kit.AbilityKit';
@@ -256,3 +256,6 @@ import { Want } from '@kit.AbilityKit';
           }
         });
         ```
+    * parameters参数中获取拉起方的信息。
+      
+      详见[获取UIAbility拉起方的信息](../../application-models/uiability-usage.md#获取uiability拉起方的信息)。
