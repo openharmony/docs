@@ -4002,7 +4002,7 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 |                名称               |                  类型                 | 必填  |        说明      |
 | --------------------------------- | ------------------------------------- | ---- | ---------------- |
 | field         | [DataField](#datafield15) | 是   | 联系人数据字段。     |
-| options         | [FilterOptions](#filteroptions15)[] | 是   | 过滤参数。     |
+| options         | Array<[FilterOptions](#filteroptions15)> | 是   | 过滤参数。     |
 
 ## DataField<sup>15+</sup>
 
