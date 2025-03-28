@@ -2970,9 +2970,9 @@ avPlayer.off('seiMessageReceived')
 
 ### setSuperResolution<sup>18+</sup>
 
-setSuperResolution(enabled: boolean) : Promise<void>
+setSuperResolution(enabled: boolean) : Promise\<void>
 
-动态开启或关闭超分算法，可以在 'initialized' | 'prepared' | 'playing' | 'paused' | 'completed' | 'stopped' 状态调用。使用Promise方式返回结果。
+动态开启/关闭超分算法，可以在 'initialized' | 'prepared' | 'playing' | 'paused' | 'completed' | 'stopped' 状态调用。使用Promise方式返回结果。
 
 在调用[prepare()](#prepare9)前先通过[PlaybackStrategy](#playbackstrategy12)使能超分。
 
@@ -2990,11 +2990,11 @@ setSuperResolution(enabled: boolean) : Promise<void>
 
 | 类型           | 说明                                       |
 | -------------- | ------------------------------------------ |
-| Promise\<void> | 开关超分setSuperResolution方法的Promise返回值。 |
+| Promise\<void> | 开启/关闭超分setSuperResolution方法的Promise返回值。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Media错误码](../errorcode-media.md)。
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
@@ -3010,7 +3010,7 @@ avPlayer.setSuperResolution(true)
 
 ### setVideoWindowSize<sup>18+</sup>
 
-setVideoWindowSize(width: number, height: number) : Promise<void>
+setVideoWindowSize(width: number, height: number) : Promise\<void>
 
 动态设置超分算法的输出分辨率，可以在 'initialized' | 'prepared' | 'playing' | 'paused' | 'completed' | 'stopped' 状态调用。使用Promise方式返回结果。输入参数须在 320x320 ~ 1920x1080 范围内，单位为像素。
 
@@ -3035,7 +3035,7 @@ setVideoWindowSize(width: number, height: number) : Promise<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Media错误码](../errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
