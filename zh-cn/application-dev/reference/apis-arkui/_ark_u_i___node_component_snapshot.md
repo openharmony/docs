@@ -13,16 +13,16 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct  [ArkUI_SnapshotOptions](native__type_8h.md#ArkUI_SnapshotOptions) | 截图选项。 | 
+| struct  [ArkUI_SnapshotOptions](#arkui_snapshotoptions) | 截图选项。 | 
 
 ### 函数
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| int32_t [OH_ArkUI_GetNodeSnapshot](native__node_8h#OH_ArkUI_GetNodeSnapshot) () | 获取给定组件的截图，若节点不在组件树上或尚未渲染，截图操作将会失败。当pixelmap不再使用时，应通过调用OH_PixelmapNative_Release来释放。 | 
-| ArkUI_SnapshotOptions [OH_ArkUI_CreateSnapshotOptions](native__type_8h#OH_ArkUI_CreateSnapshotOptions) () | 创建一个截图选项，当返回值不再使用时必须通过`OH_ArkUI_SnapshotOptions_Dispose`释放。 | 
-| void [OH_ArkUI_DestroySnapshotOptions](native__type_8h#OH_ArkUI_DestroySnapshotOptions) () | 销毁截图选项指针。 | 
-| int32_t [OH_ArkUI_SnapshotOptions_SetScale](native__type_8h#OH_ArkUI_SnapshotOptions_SetScale) () | 配置截图选项中的缩放属性。 | 
+| int32_t [OH_ArkUI_GetNodeSnapshot](#oh_arkui_getnodesnapshot) () | 获取给定组件的截图，若节点不在组件树上或尚未渲染，截图操作将会失败。当pixelmap不再使用时，应通过调用OH_PixelmapNative_Release来释放。 | 
+| ArkUI_SnapshotOptions [OH_ArkUI_CreateSnapshotOptions](#oh_arkui_createsnapshotoptions) () | 创建一个截图选项，当返回值不再使用时必须通过`OH_ArkUI_SnapshotOptions_Dispose`释放。 | 
+| void [OH_ArkUI_DestroySnapshotOptions](#oh_arkui_destroysnapshotoptions) () | 销毁截图选项指针。 | 
+| int32_t [OH_ArkUI_SnapshotOptions_SetScale](#oh_arkui_snapshotoptions_setscale) () | 配置截图选项中的缩放属性。 | 
 
 ### 创建快照选项
 
