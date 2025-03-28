@@ -470,7 +470,7 @@ options.signal = s;
 
 | 名称    | 类型    | 可读 | 可写 | 说明                                                             |
 | ------- | ------- | ---- | ---- | ---------------------------------------------------------------- |
-| aborted | boolean | 是   | 是   | 设置为true以中止操作。                                           |
+| aborted | boolean | 是   | 是   | 是否终止异步操作。为true时表示中止异步操作，为false时表示异步操作未被中止。     |
 | reason  | \<T>    | 是   | 是   | 中止的原因。此值将用于拒绝[lockAsync](#lockasync)返回的Promise。 |
 
 ### ConditionVariable<sup>18+</sup>
