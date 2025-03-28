@@ -8,11 +8,15 @@
 >
 > 从API version 12开始，可以通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[getContextMenuController](../js-apis-arkui-UIContext.md#contextmenucontroller12)来明确UI的执行上下文。
 
-## ContextMenu.close
+## ContextMenu.close<sup>(deprecated)</sup>
 
 static close()
 
 可以通过该方法在页面范围内关闭通过[bindContextMenu](./ts-universal-attributes-menu.md#bindcontextmenu12)给组件绑定的菜单。
+
+>  **说明：**
+>
+> 从API version 18开始废弃，推荐使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[getContextMenuController](../js-apis-arkui-UIContext.md#getcontextmenucontroller12)获取[ContextMenuController](../js-apis-arkui-UIContext.md#contextmenucontroller12)实例，再通过此实例调用替代方法[close](../js-apis-arkui-UIContext.md#close12)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -21,10 +25,6 @@ static close()
 ## 示例
 
 该示例为ContextMenu.close关闭通过bindContextMenu属性绑定的菜单。
-
->  **说明：**
->
-> 推荐通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[getContextMenuController](../js-apis-arkui-UIContext.md#contextmenucontroller12)来明确UI的执行上下文。
 
 ```ts
 // xxx.ets

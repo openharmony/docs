@@ -15,11 +15,15 @@
 ```ts
 import { componentUtils } from '@kit.ArkUI';
 ```
-## componentUtils.getRectangleById
+## componentUtils.getRectangleById<sup>(deprecated)</sup>
 
 getRectangleById(id: string): ComponentInfo
 
 根据组件ID获取组件实例对象，通过组件实例对象将获取的坐标位置和大小同步返回给开发者。
+
+> **说明：**
+>
+> 从API version 18开始废弃，推荐使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentUtils](js-apis-arkui-UIContext.md#getcomponentutils)获取[ComponentUtils](js-apis-arkui-UIContext.md#componentutils)实例，再通过此实例调用替代方法[getRectangleById](js-apis-arkui-UIContext.md#getrectanglebyid)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

@@ -14,7 +14,8 @@
 >
 >  从API version 11开始，该接口支持在原子化服务中使用。
 
-## 接口
+## animateTo<sup>(deprecated)</sup>
+
 animateTo(value: AnimateParam, event: () => void): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -26,6 +27,7 @@ animateTo(value: AnimateParam, event: () => void): void
 > - 在组件出现和消失时，可以通过[组件内转场](./ts-transition-animation-component.md)添加动画效果。
 > - 组件内转场不支持的属性，可以参考[示例2](#示例2动画执行结束后组件消失)，使用animateTo实现动画执行结束后组件消失的效果。
 > - 某些场景下，在[状态管理V2](../../../quick-start/arkts-state-management-overview.md#状态管理v2)中使用animateTo动画，会产生异常效果，具体可参考：[在状态管理V2中使用animateTo动画效果异常](../../../quick-start/arkts-new-local.md#在状态管理v2中使用animateto动画效果异常)。
+> - 从API version 18开始废弃，推荐使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[animateTo](../js-apis-arkui-UIContext.md#animateto)。
 
 **参数：**
 | 参数    | 类型                                | 是否必填 | 描述                                    |

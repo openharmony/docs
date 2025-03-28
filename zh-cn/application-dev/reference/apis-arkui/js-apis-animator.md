@@ -28,11 +28,15 @@ import { Animator as animator, AnimatorOptions, AnimatorResult, SimpleAnimatorOp
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
-### create<sup>9+</sup>
+### create<sup>(deprecated)</sup>
 
 create(options: AnimatorOptions): AnimatorResult
 
 创建animator动画结果对象（AnimatorResult）。
+
+> **说明：**
+> 
+> 从API version 18开始废弃，推荐使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[createAnimator](js-apis-arkui-UIContext.md#createanimator)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -84,7 +88,7 @@ animator.create(options); // 建议使用 UIContext.creatAnimator()接口
 
 create(options: AnimatorOptions \| [SimpleAnimatorOptions](#simpleanimatoroptions18)): AnimatorResult
 
-创建animator动画结果对象（AnimatorResult）。与[create](#create9)相比，新增对[SimpleAnimatorOptions](#simpleanimatoroptions18)类型入参的支持。
+创建animator动画结果对象（AnimatorResult）。与[create](#createdeprecated)相比，新增对[SimpleAnimatorOptions](#simpleanimatoroptions18)类型入参的支持。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -128,7 +132,7 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 
 创建动画
 
-从API version9开始不再维护，建议使用[create<sup>9+</sup>](#create9)
+从API version9开始不再维护，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[createAnimator](js-apis-arkui-UIContext.md#createanimator)
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
