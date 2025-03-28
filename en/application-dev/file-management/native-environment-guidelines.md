@@ -15,9 +15,9 @@ For details about the APIs, see [Environment](../reference/apis-core-file-kit/_e
 
 | API| Description|
 | -------- | -------- |
-| FileManagement_ErrCode OH_Environment_GetUserDownloadDir (char **result)| Obtains the sandbox path of the **Download** directory. This API is available only for 2-in-1 devices.|
-| FileManagement_ErrCode OH_Environment_GetUserDesktopDir (char **result) | Obtains the sandbox path of the **Desktop** directory. This API is available only for 2-in-1 devices.|
-| FileManagement_ErrCode OH_Environment_GetUserDocumentDir (char **result) | Obtains the sandbox path of the **Documents** directory. This API is available only for 2-in-1 devices.|
+| FileManagement_ErrCode OH_Environment_GetUserDownloadDir (char **result)| Obtains the sandbox path of the **Download** directory. This function supports only 2-in-1 devices.|
+| FileManagement_ErrCode OH_Environment_GetUserDesktopDir (char **result) | Obtains the sandbox path of the **Desktop** directory. This function supports only 2-in-1 devices.|
+| FileManagement_ErrCode OH_Environment_GetUserDocumentDir (char **result) | Obtains the sandbox path of the **Documents** directory. This function supports only 2-in-1 devices.|
 
 ## How to Develop
 
