@@ -11360,17 +11360,11 @@ export default class EntryAbility extends UIAbility {
 
 setWindowRectAutoSave(enabled: boolean): Promise&lt;void&gt;
 
-设置主窗的尺寸记忆是否启用，使用Promise异步回调，仅对2in1设备生效。
+设置是否启用最后关闭的主窗尺寸的记忆功能，使用Promise异步回调，仅对2in1设备生效。
 
-[specified启动模式](../../application-models/uiability-launch-type.md#specified启动模式)下, 调用此接口不会单独对窗口进行单独记忆。
+启用记忆功能后，在同一个UIAbility下，记忆最后关闭的主窗口的尺寸；此主窗口再次启动时，以记忆的尺寸按照规则进行打开。
 
-主窗口调用该接口时，设置主窗口的尺寸记忆是否启用。启用主窗口尺寸记忆功能后，在同一个UIAbility下，记忆最后关闭的窗口的尺寸和模式。
-
-窗口再次启动时，以记忆的尺寸和模式按照规则进行打开。
-
-层叠规则:
-1、当前实例是自由窗口时，打开下一实例窗口层叠时，大小要跟随。
-2、当前实例是最大化或全屏窗口时，打开下一个实例窗口层叠时，保持最大化。
+层叠规则: 1、当前实例是自由窗口时，打开下一实例窗口层叠时，大小要跟随。2、当前实例是最大化或全屏窗口时，打开下一个实例窗口层叠时，保持最大化。
 
 记忆规则：
 |上一次窗口状态|记忆规则|
@@ -11391,7 +11385,7 @@ setWindowRectAutoSave(enabled: boolean): Promise&lt;void&gt;
 
 | 参数名    | 类型    | 必填 | 说明                                          |
 | --------- | ------- | ---- | --------------------------------------------- |
-| enabled | boolean | 是   | 设置主窗口的尺寸记忆是否启用，true为启用，false为不启用。 |
+| enabled | boolean | 是   | 设置是否启用主窗尺寸的记忆功能，true为启用，false为不启用。 |
 
 
 **返回值：**
@@ -11440,11 +11434,11 @@ export default class EntryAbility extends UIAbility {
 
 setWindowRectAutoSave(enabled: boolean, isSaveBySpecifiedFlag: boolean): Promise&lt;void&gt;
 
-设置主窗的尺寸记忆是否启用，使用Promise异步回调，仅对2in1设备生效。
+设置是否启用主窗的尺寸记忆功能，使用Promise异步回调，仅对2in1设备生效。
 
-主窗口调用该接口时，通过enabled来设置主窗口的尺寸记忆是否启用，同时通过isSaveBySpecifiedFlag设置来使能/去使能在specified模式下对窗口进行单独记忆。
+可记忆最后关闭的主窗口尺寸，也可针对每个主窗口尺寸单独进行记忆。只有在窗口启动模式为specified，且isSaveBySpecifiedFlag设置为true时，才能针对每个主窗口尺寸进行单独记忆。
 
-启用主窗口尺寸和specified记忆功能后，记忆窗口关闭时的尺寸和模式；窗口再次启动时，以记忆的尺寸和模式按照规则进行打开。
+启用记忆功能后，记忆主窗口关闭时的尺寸；对应主窗口再次启动时，以记忆的尺寸按照规则进行打开。
 
 记忆规则：
 |上一次窗口状态|记忆规则|
@@ -11465,7 +11459,7 @@ setWindowRectAutoSave(enabled: boolean, isSaveBySpecifiedFlag: boolean): Promise
 
 | 参数名    | 类型    | 必填 | 说明                                          |
 | --------- | ------- | ---- | --------------------------------------------- |
-| enabled | boolean | 是   | 设置主窗口的尺寸记忆是否启用，true为启用，false为不启用。 |
+| enabled | boolean | 是   | 设置是否启用主窗的尺寸记忆功能，true为启用，false为不启用。 |
 | isSaveBySpecifiedFlag | boolean | 是   | 设置specified模式下是否启用对窗口进行单独记忆，true为启用，false为不启用。 |
 
 
