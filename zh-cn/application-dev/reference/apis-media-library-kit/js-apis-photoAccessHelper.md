@@ -5375,6 +5375,20 @@ async function example() {
 | recommendationType | [RecommendationType](#recommendationtype11)   | 否   | 如果需要根据枚举值推荐相应的图片，则配置此参数。 |
 | textContextInfo<sup>12+</sup> | [TextContextInfo](#textcontextinfo12)   | 否   | 如果需要根据文本信息推荐相应的图片，则配置此参数(如果同时配置了recommendationType，则仅textContextInfo生效)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
+## SingleSelectionMode<sup>18+</sup>
+
+枚举，单选模式类型。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                                    |  值 | 说明       |
+|---------------------------------------|  ---- |----------|
+| BROWSER_MODE                          |  0 | 大图预览模式。    |
+| SELECT_MODE                           |  1 | 直接选中模式。    |
+| BROWSER_AND_SELECT_MODE               |  2 | 兼容模式，点击右下角区域为直接选中模式，点击其他区域进入大图预览模式。 |
+
 ## BaseSelectOptions<sup>12+</sup>
 
 图库选择选项基类。
@@ -5389,7 +5403,8 @@ async function example() {
 | isSearchSupported<sup>11+</sup> | boolean  | 否   | 是否支持搜索，true表示支持，false表示不支持，默认为true。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | recommendationOptions<sup>11+</sup>       | [RecommendationOptions](#recommendationoptions11)   | 否   | 图片推荐相关配置参数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | preselectedUris<sup>11+</sup> | Array&lt;string&gt;  | 否   | 预选择图片的uri数据。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| isPreviewForSingleSelectionSupported<sup>12+</sup> | boolean  | 否   | 单选模式下是否需要进大图预览，true表示需要，false表示不需要，默认为true。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| isPreviewForSingleSelectionSupported<sup>(deprecated)</sup> | boolean  | 否   | 单选模式下是否需要进大图预览，true表示需要，false表示不需要，默认为true。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>从API version 12开始支持，从API version 18开始废弃。 |
+| singleSelectionMode<sup>18+</sup> | [SingleSelectionMode](#singleselectionmode18) | 否   | 单选模式类型。默认为大图预览模式（SingleSelectionMode.BROWSER_MODE）。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## PhotoSelectOptions
 
