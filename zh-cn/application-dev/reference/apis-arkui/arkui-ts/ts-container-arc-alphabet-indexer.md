@@ -138,7 +138,7 @@ usePopup(enabled: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型    | 必填 | 说明                                   |
 | ------ | ------- | ---- | -------------------------------------- |
-| enabled | Optional&lt;boolean&gt; | 是   | 是否使用提示弹窗。<br/>默认值：false，不使用提示弹窗。 |
+| enabled | Optional&lt;boolean&gt; | 是   | 是否使用提示弹窗，true表示使用提示弹窗，false表示不使用提示弹窗。<br/>默认值：false，不使用提示弹窗。 |
 
 ### selectedFont
 
