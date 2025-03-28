@@ -1489,7 +1489,7 @@ int32_t OH_Input_GetKeyEventKeyCode (const struct Input_KeyEvent * keyEvent)
 
 **返回：**
 
-Key code.
+Key code。
 
 
 ### OH_Input_GetKeyPressed()
