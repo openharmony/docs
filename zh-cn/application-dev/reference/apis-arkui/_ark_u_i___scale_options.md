@@ -19,7 +19,7 @@
 | -------- | -------- |
 | float [x](#x) | 横向放大倍数（或缩小比例）。  | 
 | float [y](#y) | 纵向放大倍数（或缩小比例）。  | 
-| float [z](#z) | 当前为二维显示，该参数无效 。  | 
+| float [z](#z) | 当前为二维显示，该参数无效。  | 
 | float [centerX](#centerx) | 变换中心点x轴坐标。  | 
 | float [centerY](#centery) | 变换中心点y轴坐标。  | 
 
