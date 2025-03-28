@@ -3063,7 +3063,7 @@ on(type:'superResolutionChanged', callback: OnSuperResolutionChanged): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string | 是 | 事件回调类型，支持的事件为：'superResolutionChanged'。 |
-| callback | [OnSuperResolutionChanged](#onsuperresolutionchanged18) | 是 | 超分开关事件回调方法。 |
+| callback | [OnSuperResolutionChanged](#onsuperresolutionchangedcb) | 是 | 超分开关事件回调方法。 |
 
 **示例：**
 
@@ -3088,7 +3088,7 @@ off(type:'superResolutionChanged', callback?: OnSuperResolutionChanged): void;
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string | 是 | 事件回调类型，支持的事件为：'superResolutionChanged'。 |
-| callback | [OnSuperResolutionChanged](#onsuperresolutionchanged18) | 否 | 超分开关事件回调方法。 |
+| callback | [OnSuperResolutionChanged](#onsuperresolutionchangedcb) | 否 | 超分开关事件回调方法。 |
 
 **示例：**
 
@@ -3178,7 +3178,7 @@ type OnVideoSizeChangeHandler = (width: number, height: number) => void
 | width  | number | 是 | 视频宽度。     |
 | height | number | 是 | 视频高度。 |
 
-## OnSuperResolutionChanged<sup>18+</sup>
+## <span id="OnSuperResolutionChangedCb">OnSuperResolutionChanged<sup>18+</sup></span>
 
 type OnSuperResolutionChanged = (enabled: boolean) => void
 
