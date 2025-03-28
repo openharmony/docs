@@ -68,7 +68,7 @@ addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number
 
 ## contact.addContact<sup>(deprecated)7+</sup>
 
-addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
+addContact(contact: Contact, callback: AsyncCallback&lt;number&gt;): void
 
 添加联系人，使用callback方式作为异步方法。
 
@@ -1358,7 +1358,7 @@ selectContacts(options: ContactSelectionOptions, callback: AsyncCallback&lt;Arra
 
 | 参数名   | 类型                                                  | 必填 | 说明                                 |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
-| options | [ContactSelectionOptions](#contactselectionoptions10) | 是   | 选择联系人时的筛选条件 |
+| options | [ContactSelectionOptions](#contactselectionoptions10) | 是   | 选择联系人时的筛选条件。 |
 | callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。成功返回选择的联系人对象数组；失败返回失败的错误码。 |
 
 **错误码：**
@@ -1398,7 +1398,7 @@ selectContacts(options: ContactSelectionOptions): Promise&lt;Array&lt;Contact&gt
 
 | 参数名   | 类型                                                  | 必填 | 说明                                 |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
-| options | [ContactSelectionOptions](#contactselectionoptions10) | 是   | 选择联系人时的筛选条件 |
+| options | [ContactSelectionOptions](#contactselectionoptions10) | 是   | 选择联系人时的筛选条件。 |
 
 **返回值：**
 
@@ -3956,10 +3956,10 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 
 |                名称               |                  类型                 | 必填  |        说明      |
 | --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| id         | Array[[FilterOptions](#filteroptions15)] | 否   | 联系人id。     |
-| name         | Array[[FilterOptions](#filteroptions15)]  | 否   | 联系人姓名。     |
+| id         | Array<[FilterOptions](#filteroptions15)> | 否   | 联系人id。     |
+| name         | Array<[FilterOptions](#filteroptions15)>  | 否   | 联系人姓名。     |
 | dataItem         | [DataFilter](#datafilter15) | 否   | 联系人数据过滤项。     |
-| focusModeList        | Array[[FilterOptions](#filteroptions15)]  | 否   | 专注模式。     |
+| focusModeList        | Array<[FilterOptions](#filteroptions15)>  | 否   | 专注模式。     |
 
 ## FilterOptions<sup>15+</sup>
 
@@ -3972,7 +3972,7 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 |                名称               |                  类型                 | 必填  |        说明      |
 | --------------------------------- | ------------------------------------- | ---- | ---------------- |
 | filterCondition         | [FilterCondition](#filtercondition15) | 是   | 过滤条件。     |
-| value        | string \| Array[ValueType] | 否   | 过滤值，默认为undefined。     |
+| value        | string \| ValueType[] | 否   | 过滤值，默认为undefined。     |
 
 ## FilterCondition<sup>15+</sup>
 
