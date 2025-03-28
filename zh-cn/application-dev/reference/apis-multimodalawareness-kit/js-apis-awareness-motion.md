@@ -60,11 +60,18 @@ import { motion } from '@kit.MultimodalAwarenessKit';
 **示例**：
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 callback(data:motion.OperatingHandStatus) {
     console.info('callback success' + data);
 })
 
-motion.on('operatingHandChanged', this.callback)
+try {
+    motion.on('operatingHandChanged', this.callback);  
+    console.info("on succeeded");
+} catch (error:BusinessError) {
+    console.error("Failed on and err code is " + err.code);
+}
 ```
 
 
@@ -101,7 +108,14 @@ off(type: 'operatingHandChanged', callback?: Callback&lt;OperatingHandStatus&gt;
 **示例**：
 
 ```ts
-motion.off('operatingHandChanged', this.callback)
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    motion.off('operatingHandChanged');
+    console.info("off succeeded");
+} catch (error:BusinessError) {
+    console.error("Failed off and err code is " + err.code);
+}
 ```
 
 
@@ -135,7 +149,13 @@ getRecentOperatingHandStatus(): OperatingHandStatus;
 **示例**：
 
 ```ts
-let data:motion.OperatingHandStatus = motion.getRecentOperatingHandStatus();
-console.info('get success' + data);
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    let data:motion.OperatingHandStatus = motion.getRecentOperatingHandStatus();
+    console.info('get success' + data);
+} catch (error:BusinessError) {
+    console.error("Failed get and err code is " + err.code);
+}
 ```
 

@@ -22,38 +22,52 @@
 
 ## 开发步骤
 
-```ts
-import { motion } from '@kit.MultimodalAwarenessKit';
-```
+1. 导入模块。
 
-1. 定义一个回调函数用来接收操作手结果
+   ```ts
+   import { motion } from '@kit.MultimodalAwarenessKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   ```
+
+2. 定义一个回调函数用来接收操作手结果
 
    ```
    callback(data:motion.OperatingHandStatus) {
      console.info('callback success' + data);
-   })
-   
+   }
    ```
 
-2. 订阅操作手感知事件
+3. 订阅操作手感知事件
 
    ```
-   motion.on('operatingHandChanged', this.callback);
-   
+   try {
+      motion.on('operatingHandChanged', this.callback);  
+      console.info("on succeeded");
+   } catch (error:BusinessError) {
+      console.error("Failed on and err code is " + err.code);
+   }
    ```
 
-3. 取消订阅操作手感知事件
+4. 取消订阅操作手感知事件
 
    ```
-   motion.off('operatingHandChanged', this.callback)
-   
+   try {
+      motion.off('operatingHandChanged');
+      console.info("off succeeded");
+   } catch (error:BusinessError) {
+      console.error("Failed off and err code is " + err.code);
+   }
    ```
 
-4. 获取最新操作手状态
+5. 获取最新操作手状态
 
    ```
-   let data:motion.OperatingHandStatus = motion.getRecentOperatingHandStatus();
-   console.info('get success' + data);
+   try {
+      let data:motion.OperatingHandStatus = motion.getRecentOperatingHandStatus();
+      console.info('get success' + data);
+   } catch (error:BusinessError) {
+      console.error("Failed get and err code is " + err.code);
+   }
    ```
 
    
