@@ -72,7 +72,7 @@ Initializes this startup task.
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<Object | void\> | Promise used to return the execution result.|
+| Promise\<Object \| void\> | Promise used to return the execution result.|
 
 **Example**
 
