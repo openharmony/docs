@@ -86,7 +86,7 @@ NavDestination组件信息。
 | navigationId | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 是   | 包含NavDestination组件的Navigation组件的id。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | name         | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 是   | NavDestination组件的名称。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | state        | [NavDestinationState](#navdestinationstate)        | 是   | NavDestination组件的状态。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| index<sup>12+</sup>        | number        | 是   | NavDestination在页面栈中的索引。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。       |
+| index<sup>12+</sup>        | number        | 是   | NavDestination在页面栈中的索引。    <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/> 取值范围：[0, +∞)      |
 | param<sup>12+</sup>        | Object        | 否   | NavDestination组件的参数。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                  |
 | navDestinationId<sup>12+</sup>        | string        | 是   | NavDestination组件的唯一标识ID。    <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。               |
 | mode<sup>15+</sup>        | [NavDestinationMode](arkui-ts/ts-basic-components-navdestination.md#navdestinationmode枚举说明-11)        | 否   | NavDestination类型。   <br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。                |
@@ -143,7 +143,7 @@ RouterPageInfo包含的信息。
 | 名称                 | 类型                                                         | 必填 | 说明                                           |
 | -------------------- | ------------------------------------------------------------ | ---- | ---------------------------------------------- |
 | context              | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./js-apis-arkui-UIContext.md) | 是   | 触发生命周期的routerPage页面对应的上下文信息。 |
-| index                | number                                                       | 是   | 触发生命周期的routerPage在栈中的位置。         |
+| index                | number                                                       | 是   | 触发生命周期的routerPage在栈中的位置。<br/> 取值范围：[0, +∞)         |
 | name                 | string                                                       | 是   | 触发生命周期的routerPage页面的名称。           |
 | path                 | string                                                       | 是   | 触发生命周期的routerPage页面的路径。           |
 | state                | [RouterPageState](#routerpagestate)                          | 是   | 触发生命周期的routerPage页面的状态。           |

@@ -571,7 +571,7 @@ scrollPage(value:   ScrollPageOptions)
 
 ### scrollPage<sup>(deprecated)</sup>
 
-scrollPage(value: { next: boolean; direction?: Axis; })
+scrollPage(value: { next: boolean, direction?: Axis })
 
 滚动到下一页或者上一页。从API version 9开始, 该接口不再维护，推荐使用[scrollPage<sup>9+</sup>](#scrollpage9)。
 

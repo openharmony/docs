@@ -15,7 +15,7 @@
 
 | 名称                     | 参数       | 描述                                                         | 是否支持冒泡                                          | 是否支持捕获    |
 | ------------------------ | ---------- | ------------------------------------------------------------ | ----------------------------------------------------- | --------------- |
-| touchstart               | TouchEvent | 手指刚触摸屏幕时触发该事件。TouchEvent具体可参考表2 。       | 是<sup>5+</sup>                                       | 是<sup>5+</sup> |
+| touchstart               | TouchEvent | 手指刚触摸屏幕时触发该事件。TouchEvent具体可参考表2。       | 是<sup>5+</sup>                                       | 是<sup>5+</sup> |
 | touchmove                | TouchEvent | 手指触摸屏幕后移动时触发该事件。                             | 是<sup>5+</sup>                                       | 是<sup>5+</sup> |
 | touchcancel              | TouchEvent | 手指触摸屏幕中动作被打断时触发该事件。                       | 是<sup>5+</sup>                                       | 是<sup>5+</sup> |
 | touchend                 | TouchEvent | 手指触摸结束离开屏幕时触发该事件。                           | 是<sup>5+</sup>                                       | 是<sup>5+</sup> |

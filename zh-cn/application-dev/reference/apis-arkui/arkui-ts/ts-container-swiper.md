@@ -608,7 +608,7 @@ changeIndex(index: number, useAnimation?: boolean)
 
 ### changeIndex<sup>15+</sup>
 
-changeIndex(index: number, animationMode: SwiperAnimationMode | boolean)
+changeIndex(index: number, animationMode?: SwiperAnimationMode | boolean)
 
 翻页至指定页面。
 
@@ -623,7 +623,7 @@ changeIndex(index: number, animationMode: SwiperAnimationMode | boolean)
 | 参数名      | 类型       | 必填  | 说明     |
 | -------- | ---------- | ---- | -------- |
 | index| number | 是    | 指定页面在Swiper中的索引值。<br/>**说明：** <br/>设置的值小于0或大于最大页面索引时，取0。 |
-| animationMode| [SwiperAnimationMode](#swiperanimationmode15枚举说明)&nbsp;\|&nbsp;boolean | 是    | 设置翻页至指定页面时的动效模式。<br/>默认值：SwiperAnimationMode.NO_ANIMATION。<br/> **说明：** <br/>当传入true时有动效，等同于SwiperAnimationMode.DEFAULT_ANIMATION；当传入false时无动效，等同于SwiperAnimationMode.NO_ANIMATION。 |
+| animationMode| [SwiperAnimationMode](#swiperanimationmode15枚举说明)&nbsp;\|&nbsp;boolean | 否    | 设置翻页至指定页面时的动效模式。<br/>默认值：SwiperAnimationMode.NO_ANIMATION<br/> **说明：** <br/>当传入true时有动效，等同于SwiperAnimationMode.DEFAULT_ANIMATION；当传入false时无动效，等同于SwiperAnimationMode.NO_ANIMATION。 |
 
 ### finishAnimation
 
@@ -993,7 +993,7 @@ maxDisplayCount(maxDisplayCount: number): DotIndicator
 
 | 参数名          | 类型   | 必填 | 说明                                                         |
 | --------------- | ------ | ---- | ------------------------------------------------------------ |
-| maxDisplayCount | number | 是   | 设置圆点导航点指示器样式下，导航点显示个数最大值，当实际导航点个数大于最大导航点个数时，会生效超长效果样式，样式如示例5所示。<br/>默认值：这个属性没有默认值，如果设置异常值那等同于没有超长显示效果。<br/>取值范围：6-9<br/>**说明：** <br/>1、超长显示场景，目前暂时不支持交互功能（包括：手指点击拖拽、鼠标操作等）。<br/>2、在超长显示场景下，中间页面对应的选中导航点的位置，并不是完全固定的，取决于之前的翻页操作序列。 |
+| maxDisplayCount | number | 是   | 设置圆点导航点指示器样式下，导航点显示个数最大值，当实际导航点个数大于最大导航点个数时，会生效超长效果样式，样式如示例5所示。<br/>默认值：这个属性没有默认值，如果设置异常值那等同于没有超长显示效果。<br/>取值范围：6-9<br/>**说明：** <br/>1、超长显示场景，目前暂时不支持交互功能（包括：手指点击拖拽、鼠标操作等）。<br/>2、在超长显示场景下，中间页面对应的选中导航点的位置，并不是完全固定的，取决于之前的翻页操作序列。<br/>3、当前仅支持displayCount为1的场景。 |
 
 **返回值：** 
 
@@ -1752,7 +1752,7 @@ struct SwiperExample {
 
 ### 示例4（设置自定义页面切换动画）
 
-该示例通过customContentTransition接口，实现了自定义Swiper页面切换动画效果。
+该示例通过customContentTransition接口，实现了自定义Swiper页面按组翻页动画效果。
 
 ```ts
 // xxx.ets

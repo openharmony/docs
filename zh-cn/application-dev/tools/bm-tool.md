@@ -335,7 +335,7 @@ bm dump-dependencies -n com.ohos.app -m entry
 
 应用执行编译AOT命令。
 ```bash
-bm compile [-h] [-m mode] [-r bundleName]
+bm compile [-h] [-m mode] [-r bundleName] [-a]
 ```
   **compile命令参数列表**
 

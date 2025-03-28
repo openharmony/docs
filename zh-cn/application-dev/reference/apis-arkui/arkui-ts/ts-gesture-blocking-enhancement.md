@@ -253,7 +253,7 @@ isEnd(): boolean
 
 | 类型     | 说明        |
 | ------ | --------- |
-| boolean | 当前滚动类容器组件是否在底部。 |
+| boolean | 当前滚动类容器组件是否在底部。true表示组件在底部，false表示组件不在底部。 |
 
 ## PanRecognizer
 
@@ -559,24 +559,14 @@ struct Index {
               let target = current.getEventTargetInfo();
               if (target && current.isBuiltIn() && current.getType() == GestureControl.GestureType.PAN_GESTURE) {
                 console.info('ets onGestureRecognizerJudgeBegin child PAN_GESTURE')
-                let swiperTaget = target as ScrollableTargetInfo
-                if (swiperTaget instanceof ScrollableTargetInfo) {
-                  console.info('ets onGestureRecognizerJudgeBegin child PAN_GESTURE isEnd: ' + swiperTaget.isEnd() + ' isBegin: ' + swiperTaget.isBegin())
+                let panEvent = event as PanGestureEvent;
+                if (panEvent && panEvent.velocityX < 0 && this.innerSelectedIndex === 1) { // 内层Tabs滑动到尽头
+                  console.info('ets onGestureRecognizerJudgeBegin child reject end')
+                  return GestureJudgeResult.REJECT;
                 }
-                if (swiperTaget instanceof ScrollableTargetInfo && 
-                  ((swiperTaget.isEnd() || this.innerSelectedIndex === 1) || // 此处判断swiperTaget.isEnd()或innerSelectedIndex === 内层Tabs的总数 - 1，表明内层Tabs滑动到尽头
-                    (swiperTaget.isBegin() || this.innerSelectedIndex === 0))) { // 此处判断swiperTaget.isBegin()或innerSelectedIndex === 0，表明内层Tabs滑动到开头
-                  let panEvent = event as PanGestureEvent;
-                  console.log('pan direction:' + panEvent.offsetX + ' begin:' + swiperTaget.isBegin() + ' end:' +
-                  swiperTaget.isEnd() + ' index:' + this.innerSelectedIndex)
-                  if (panEvent && panEvent.offsetX < 0 && (swiperTaget.isEnd() || this.innerSelectedIndex === 1)) {
-                    console.info('ets onGestureRecognizerJudgeBegin child reject end')
-                    return GestureJudgeResult.REJECT;
-                  }
-                  if (panEvent && panEvent.offsetX > 0 && (swiperTaget.isBegin() || this.innerSelectedIndex === 0)) {
-                    console.info('ets onGestureRecognizerJudgeBegin child reject begin')
-                    return GestureJudgeResult.REJECT;
-                  }
+                if (panEvent && panEvent.velocityX > 0 && this.innerSelectedIndex === 0) { // 内层Tabs滑动到开头
+                  console.info('ets onGestureRecognizerJudgeBegin child reject begin')
+                  return GestureJudgeResult.REJECT;
                 }
               }
             }
