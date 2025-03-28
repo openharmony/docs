@@ -14,6 +14,10 @@ HiTrace为开发者提供业务流程调用链跟踪的维测接口。该接口�
 | void OH_HiTrace_FinishAsyncTrace(const char* name, int32_t taskId) | 结束一个异步时间片跟踪事件 |
 | void OH_HiTrace_CountTrace(const char* name, int64_t count) | 整数跟踪事件 |
 
+> **注意：**
+>
+> 用户态tarce格式使用竖线 `|` 作为分隔符，所以通过HiTraceMeter接口传递的字符串类型参数应避免包含该字符，防止trace解析异常。
+
 **参数解析**
 
 | 参数名 | 类型 | 必填 | 说明                                                         |
