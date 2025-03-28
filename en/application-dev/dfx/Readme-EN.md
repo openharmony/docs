@@ -1,62 +1,65 @@
-# Performance Analysis Kit
+# Performance Analysis Kit<!--performance-analysis-kit-->
 
 - [Introduction to Performance Analysis Kit](performance-analysis-kit-overview.md)
-- HiLog
+- HiLog<!--hilog-dev-->
   - [Using HiLog (ArkTS)](hilog-guidelines-arkts.md)
   - [Using HiLog (C/C++)](hilog-guidelines-ndk.md)
-- HiAppEvent
+- HiAppEvent<!--hiappevent-->
   - [Introduction to HiAppEvent](hiappevent-intro.md)
-  - Event Subscription
-    - Application Event
+  - Event Subscription<!--event-subscription-->
+    - Application Events<!--app-event-->
       - [Subscribing to Application Events (ArkTS)](hiappevent-watcher-app-events-arkts.md)
       - [Subscribing to Application Events (C/C++)](hiappevent-watcher-app-events-ndk.md)
-    - System Event
-      - Crash Event
+    - System Events<!--system-events-->
+      - Crash Events<!--crash-events-->
         - [Crash Event Overview](hiappevent-watcher-crash-events.md)
         - [Subscribing to Crash Events (ArkTS)](hiappevent-watcher-crash-events-arkts.md)
         - [Subscribing to Crash Events (C/C++)](hiappevent-watcher-crash-events-ndk.md)
-      - Freeze Event
+      - Freeze Events<!--freeze-events-->
         - [Freeze Event Overview](hiappevent-watcher-freeze-events.md)
         - [Subscribing to Freeze Events (ArkTS)](hiappevent-watcher-freeze-events-arkts.md)
         - [Subscribing to Freeze Events (C/C++)](hiappevent-watcher-freeze-events-ndk.md)
-      - Resource Leak Event
+      - Resource Leak Events<!--resource-leak-events-->
         - [Resource Leak Event Overview](hiappevent-watcher-resourceleak-events.md)
         - [Subscribing to Resource Leak Events (ArkTS)](hiappevent-watcher-resourceleak-events-arkts.md)
         - [Subscribing to Resource Leak Events (C/C++)](hiappevent-watcher-resourceleak-events-ndk.md)
-      - Address Sanitizer Event
+      - Address Sanitizer Events<!--address-sanitizer-events-->
         - [Address Sanitizer Event Overview](hiappevent-watcher-address-sanitizer-events.md)
         - [Subscribing to Address Sanitizer Events (ArkTS)](hiappevent-watcher-address-sanitizer-events-arkts.md)
         - [Subscribing to Address Sanitizer Events (C/C++)](hiappevent-watcher-address-sanitizer-events-ndk.md)
-      - Main Thread Jank Event
+      - Main Thread Jank Events<!--main-thread-jank-events-->
         - [Main Thread Jank Event Overview](hiappevent-watcher-mainthreadjank-events.md)
         - [Subscribing to Main Thread Jank Events (ArkTS)](hiappevent-watcher-mainthreadjank-events-arkts.md)
         - [Subscribing to Main Thread Jank Events (C/C++)](hiappevent-watcher-mainthreadjank-events-ndk.md)
+      - Task Execution Timeout Events
+        - [Task Execution Timeout Event Overview](hiappevent-watcher-apphicollie-events.md)
+        - [Subscribing to Task Execution Timeout Events (C/C++)](hiappevent-watcher-apphicollie-events-ndk.md)
   <!--Del-->
   - [Event Reporting](hiappevent-event-reporting.md)
   <!--DelEnd-->
-- HiTraceMeter
+- HiTraceMeter<!--hitracemeter-->
   - [Using HiTraceMeter (ArkTS/JS)](hitracemeter-guidelines-arkts.md)
   - [Using HiTraceMeter (C/C++)](hitracemeter-guidelines-ndk.md)
   - [Viewing HiTraceMeter Logs](hitracemeter-view.md)
-- HiTraceChain
+- HiTraceChain<!--hitracechain-->
   - [Using HiTraceChain (ArkTS/JS)](hitracechain-guidelines-arkts.md)
   - [Using HiTraceChain (C/C++)](hitracechain-guidelines-ndk.md)
-- HiChecker
+- HiChecker<!--hichecker-->
   - [Using HiChecker (ArkTS/JS)](hichecker-guidelines-arkts.md)
-- HiDebug
+- HiDebug<!--hidebug-->
   - [Using HiDebug (ArkTS)](hidebug-guidelines-arkts.md)
   - [Using HiDebug (C/C++)](hidebug-guidelines-ndk.md)
-- HiCollie
+- HiCollie<!--hicollie-->
   - [Using HiCollie to Detect Service Thread Stuck and Jank Events](hicollie-guidelines-ndk.md)
   - [Using HiCollie to Monitor the Function Execution Time (C/C++)](hicollie-settimer-guidelines-ndk.md)
-- Error Management
+- Error Management<!--error-manager-->
   - [Development of Error Manager](errormanager-guidelines.md)
   - [Development of Application Recovery](apprecovery-guidelines.md)
-- Fault Analysis
+- Fault Analysis<!--fault-analysis-->
   - [Analyzing JS Crash](jscrash-guidelines.md)
-  - [Analyzing CPP Crash](cppcrash-guidelines.md)
-  - [Analyzing AppFreeze](appfreeze-guidelines.md)
-- Command Line Tools
+  - [Analyzing Cpp Crash](cppcrash-guidelines.md)
+  - [Analyzing App Freeze](appfreeze-guidelines.md)
+- Command Line Tools<!--perform-command-line-utilities-->
   - [hdc](hdc.md)
   - [hilog](hilog.md)
   - [hidumper](hidumper.md)
@@ -66,3 +69,4 @@
   - [hisysevent](hisysevent.md)
   - [uinput](uinput.md)
   <!--DelEnd-->
+  

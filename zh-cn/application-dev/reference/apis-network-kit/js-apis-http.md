@@ -457,6 +457,8 @@ requestInStream(url: string, callback: AsyncCallback\<number\>): void
 
 **需要权限**：ohos.permission.INTERNET
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -531,6 +533,8 @@ requestInStream(url: string, options: HttpRequestOptions, callback: AsyncCallbac
 根据URL地址和相关配置项，发起HTTP网络请求并返回流式响应，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -629,6 +633,8 @@ requestInStream(url: string, options? : HttpRequestOptions): Promise\<number\>
 根据URL地址，发起HTTP网络请求并返回流式响应，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -841,6 +847,8 @@ once(type: "headersReceive", callback: Callback\<Object\>): void
 
 订阅HTTP Response Header 事件，只能触发一次。触发之后，订阅器就会被移除。使用callback方式作为异步方法。
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -866,6 +874,8 @@ httpRequest.once("headersReceive", (header: Object) => {
 on(type: "dataReceive", callback: Callback\<ArrayBuffer\>): void
 
 订阅HTTP流式响应数据接收事件。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -897,6 +907,8 @@ off(type: "dataReceive", callback?: Callback\<ArrayBuffer\>): void
 > **说明：**
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -923,6 +935,8 @@ httpRequest.off("dataReceive");
 on(type: "dataEnd", callback: Callback\<void\>): void
 
 订阅HTTP流式响应数据接收完毕事件。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -954,6 +968,8 @@ off(type: "dataEnd", callback?: Callback\<void\>): void
 > **说明：**
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -980,6 +996,8 @@ httpRequest.off("dataEnd");
 on(type: 'dataReceiveProgress', callback: Callback\<DataReceiveProgressInfo\>): void
 
 订阅HTTP流式响应数据接收进度事件。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -1010,6 +1028,8 @@ off(type: 'dataReceiveProgress', callback?: Callback\<DataReceiveProgressInfo\>)
 
 > **说明：**
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -1237,12 +1257,14 @@ request方法回调函数的返回值类型。
 
 数据接收信息
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 | 名称 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-|  receiveSize        | number | 是  | 已接收的数据量(字节)。           |
-| totalSize| number | 是 | 总共要接收的数据量(字节)|
+|  receiveSize        | number | 是  | 已接收的数据量(字节)。 <br>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。           |
+| totalSize| number | 是 | 总共要接收的数据量(字节)。 <br>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 
 ## DataSendProgressInfo<sup>11+</sup>
 
@@ -1531,11 +1553,11 @@ http协议版本。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 名称 | 说明       |
-| --- | ---------- |
-| PEM | 证书类型PEM |
-| DER | 证书类型DER |
-| P12 | 证书类型P12 |
+| 名称 |   值   | 说明       |
+| --- | ------ | ---------- |
+| PEM | PEM | 证书类型PEM。 |
+| DER | DER | 证书类型DER。 |
+| P12 | P12 | 证书类型P12。 |
 
 ## CertificatePinning<sup>12+</sup>
 
@@ -1568,8 +1590,8 @@ type HttpProxy = connection.HttpProxy
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-|       名称       |            说明             |
-| ---------------- | --------------------------- |
-| DEFAULT | 设置此选项后，系统将自行选择目标域名的IPv4地址或IPv6地址。     |
-| ONLY_V4 | 设置此选项后，系统将仅解析目标域名的IPv4地址，忽略IPv6地址。     |
-| ONLY_V6 | 设置此选项后，系统将仅解析目标域名的IPv6地址，忽略IPv4地址。     |
+|       名称       |     值     |            说明             |
+| ---------------- | --------------- | --------------------------- |
+| DEFAULT | CURL_IPRESOLVE_WHATEVER | 设置此选项后，系统将自行选择目标域名的IPv4地址或IPv6地址。     |
+| ONLY_V4 | CURL_IPRESOLVE_V4 | 设置此选项后，系统仅解析目标域名的IPv4地址，忽略IPv6地址。     |
+| ONLY_V6 | CURL_IPRESOLVE_V6 | 设置此选项后，系统仅解析目标域名的IPv6地址，忽略IPv4地址。     |

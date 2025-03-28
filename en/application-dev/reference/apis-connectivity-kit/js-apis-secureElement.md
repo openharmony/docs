@@ -22,7 +22,7 @@ import { omapi } from '@kit.ConnectivityKit';
 
 ## ServiceState
 
-Enumerates the SE service stats.
+Enumerates the SE service states.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
@@ -137,7 +137,7 @@ function secureElementDemo() {
 }
 ```
 
-## omapi.on<sup>16+</sup>
+## omapi.on<sup>18+</sup>
 
 on(type: 'stateChanged', callback: Callback\<ServiceState>): void;
 
@@ -165,9 +165,9 @@ For details about error codes, see [SE Error Codes](errorcode-se.md).
 
 **Example**
 
-See the sample code in [off](#omapioff16).
+See the sample code in [off](#omapioff18).
 
-## omapi.off<sup>16+</sup>
+## omapi.off<sup>18+</sup>
 
 off(type: 'stateChanged', callback?: Callback\<ServiceState>): void;
 
@@ -298,7 +298,7 @@ Checks whether this SE service is connected.
 
 | **Type**| **Description**                                      |
 | :------- | :--------------------------------------------- |
-| boolean  | Returns **true** if the SE service is connected; returns **false** otherwise.|
+| boolean  | **true** if the SE service is connected; **false** otherwise.|
 
 **Error codes**
 
@@ -448,7 +448,7 @@ let seReaders : omapi.Reader[];
 // Initialize seReaders before using it.
 
 try {
-    let reader = seReaders[0]; // change it to the selected reader, ese or sim.
+    let reader = seReaders[0]; // Set the expected reader (ese or sim).
     let name = reader.getName();
     hilog.info(0x0000, 'testTag', 'name %{public}s', JSON.stringify(name));
 } catch (error) {
@@ -468,7 +468,7 @@ Checks whether the SE corresponding to this reader is available.
 
 | **Type**| **Description**                                    |
 | -------- | -------------------------------------------- |
-| boolean  | Returns **true** if the SE is available; returns **false** otherwise.|
+| boolean  | **true** if the SE is available; **false** otherwise.|
 
 **Error codes**
 
@@ -491,7 +491,7 @@ let seReaders : omapi.Reader[];
 // Initialize seReaders before using it.
 
 try {
-    let reader = seReaders[0]; // change it to the selected reader, ese or sim.
+    let reader = seReaders[0]; // Set the expected reader (ese or sim).
     let isPresent = reader.isSecureElementPresent();
     hilog.info(0x0000, 'testTag', 'isPresent %{public}s', JSON.stringify(isPresent));
 } catch (error) {
@@ -536,7 +536,7 @@ let seSession : omapi.Session;
 // Initialize seReaders before using it.
 function secureElementDemo() {
     try {
-        let reader = seReaders[0]; // change it to the selected reader, ese or sim.
+        let reader = seReaders[0]; // Set the expected reader (ese or sim).
         seSession = reader.openSession();
     } catch (error) {
         hilog.error(0x0000, 'testTag', 'openSession error %{public}s', JSON.stringify(error));
@@ -579,7 +579,7 @@ let reader : omapi.Reader;
 // Initialize seReaders before using it.
 function secureElementDemo() {
     try {
-        reader = seReaders[0]; // change it to the selected reader, ese or sim.
+        reader = seReaders[0]; // Set the expected reader (ese or sim).
         seSession = reader.openSession();
     } catch (error) {
         hilog.error(0x0000, 'testTag', 'openSession error %{public}s', JSON.stringify(error));
@@ -636,7 +636,7 @@ let reader : omapi.Reader;
 // Initialize seReaders before using it.
 function secureElementDemo() {
     try {
-        reader = seReaders[0]; // change it to the selected reader, ese or sim.
+        reader = seReaders[0]; // Set the expected reader (ese or sim).
         seSession = reader.openSession();
     } catch (error) {
         hilog.error(0x0000, 'testTag', 'openSession error %{public}s', JSON.stringify(error));
@@ -665,7 +665,7 @@ Obtains the Answer to Reset (ATR) of this SE. If the ATR of this SE is not avail
 
 | **Type**| **Description**                                    |
 | -------- | -------------------------------------------- |
-| number[] | Returns the ATR obtained if the SE has an available ATR; returns an empty array otherwise.|
+| number[] | ATR if the SE has an available ATR; an empty array otherwise.|
 
 **Error codes**
 
@@ -742,7 +742,7 @@ Checks whether this session is closed.
 
 | **Type**| **Description**                            |
 | -------- | ------------------------------------ |
-| boolean  | Returns **true** if the session is closed; returns **false** otherwise.|
+| boolean  | **true** if the session is closed; **false** otherwise.|
 
 **Error codes**
 
@@ -853,7 +853,7 @@ let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 // Initialize seSession before using it.
 function secureElementDemo() {
     try {
-        // Change the AID value for the channel to open.
+        // Set the AID of the application selected on the channel.
         seSession.openBasicChannel(aidArray).then((data) => {
             seChannel = data;
         }).catch((error : BusinessError)=> {
@@ -911,7 +911,7 @@ let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 // Initialize seSession before using it.
 function secureElementDemo() {
     try {
-        // Change the AID value for the channel to open.
+        // Set the AID of the application selected on the channel.
         seSession.openBasicChannel(aidArray, (error, data) => {
             if (error) {
                 hilog.error(0x0000, 'testTag', 'openBasicChannel error %{public}s', JSON.stringify(error));
@@ -978,7 +978,7 @@ let p2 : number = 0x00;
 // Initialize seSession before using it.
 function secureElementDemo() {
     try {
-        // Change the AID value for the channel to open.
+        // Set the AID of the application selected on the channel.
         seSession.openBasicChannel(aidArray, p2).then((data) => {
             seChannel = data;
         }).catch((error : BusinessError)=> {
@@ -1038,7 +1038,7 @@ let p2 : number = 0x00;
 // Initialize seSession before using it.
 function secureElementDemo() {
     try {
-        // Change the AID value for the channel to open.
+        // Set the AID of the application selected on the channel.
         seSession.openBasicChannel(aidArray, p2, (error, data) => {
             if (error) {
                 hilog.error(0x0000, 'testTag', 'openBasicChannel error %{public}s', JSON.stringify(error));
@@ -1103,7 +1103,7 @@ let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 // Initialize seSession before using it.
 function secureElementDemo() {
     try {
-        // Change the AID value for the channel to open.
+        // Set the AID of the application selected on the channel.
         seSession.openLogicalChannel(aidArray).then((data) => {
             seChannel = data;
         }).catch((error : BusinessError)=> {
@@ -1161,7 +1161,7 @@ let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 // Initialize seSession before using it.
 function secureElementDemo() {
     try {
-        // Change the AID value for the channel to open.
+        // Set the AID of the application selected on the channel.
         seSession.openLogicalChannel(aidArray, (error, data) => {
             if (error) {
                 hilog.error(0x0000, 'testTag', 'openLogicalChannel error %{public}s', JSON.stringify(error));
@@ -1228,7 +1228,7 @@ let p2 : number = 0x00;
 // Initialize seSession before using it.
 function secureElementDemo() {
     try {
-        // Change the AID value for the channel to open.
+        // Set the AID of the application selected on the channel.
         seSession.openLogicalChannel(aidArray, p2).then((data) => {
             seChannel = data;
         }).catch((error : BusinessError)=> {
@@ -1288,7 +1288,7 @@ let p2 : number = 0x00;
 // Initialize seSession before using it.
 function secureElementDemo() {
     try {
-    // Change the AID value for the channel to open.
+    // Set the AID of the application selected on the channel.
         seSession.openLogicalChannel(aidArray, p2, (error, data) => {
             if (error) {
                 hilog.error(0x0000, 'testTag', 'openLogicalChannel error %{public}s', JSON.stringify(error));
@@ -1376,7 +1376,6 @@ import { omapi } from '@kit.ConnectivityKit';
 let seChannel : omapi.Channel;
 
 // Initialize seChannel before using it.
-
 try {
     seChannel.close();
 } catch (exception) {
@@ -1396,7 +1395,7 @@ Checks whether this channel is a basic channel.
 
 | **Type**| **Description**                                                    |
 | -------- | ------------------------------------------------------------ |
-| boolean  | Returns **true** if the channel is a basic channel; returns **false** otherwise.|
+| boolean  | **true** if the channel is a basic channel; **false** otherwise.|
 
 **Error codes**
 
@@ -1416,7 +1415,6 @@ import { omapi } from '@kit.ConnectivityKit';
 let seChannel : omapi.Channel;
 
 // Initialize seChannel before using it.
-
 try {
     let isBasic = seChannel.isBasicChannel();
     hilog.info(0x0000, 'testTag', 'isBasic = %{public}s', JSON.stringify(isBasic));
@@ -1437,7 +1435,7 @@ Checks whether this channel is closed.
 
 | **Type**| **Description**                                     |
 | -------- | --------------------------------------------- |
-| boolean  | Returns **true** if the channel is closed; returns **false** otherwise.|
+| boolean  | **true** if the channel is closed; **false** otherwise.|
 
 **Error codes**
 
@@ -1457,7 +1455,6 @@ import { omapi } from '@kit.ConnectivityKit';
 let seChannel : omapi.Channel;
 
 // Initialize seChannel before using it.
-
 try {
     let isClosed = seChannel.isClosed();
     hilog.info(0x0000, 'testTag', 'isClosed = %{public}s', JSON.stringify(isClosed));
@@ -1498,7 +1495,6 @@ import { omapi } from '@kit.ConnectivityKit';
 let seChannel : omapi.Channel;
 
 // Initialize seChannel before using it.
-
 try {
     let response = seChannel.getSelectResponse();
     hilog.info(0x0000, 'testTag', 'response = %{public}s', JSON.stringify(response));
@@ -1549,8 +1545,7 @@ import { omapi } from '@kit.ConnectivityKit';
 let seChannel : omapi.Channel;
 
 // Initialize seChannel before using it.
-
-let cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
+let cmdData = [0x01, 0x02, 0x03, 0x04]; // Set command data correctly.
 try {
     seChannel.transmit(cmdData).then((response) => {
         hilog.info(0x0000, 'testTag', 'transmit response = %{public}s.', JSON.stringify(response));
@@ -1599,8 +1594,7 @@ import { omapi } from '@kit.ConnectivityKit';
 let seChannel : omapi.Channel;
 
 // Initialize seChannel before using it.
-
-let cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
+let cmdData = [0x01, 0x02, 0x03, 0x04]; // Set command data correctly.
 try {
     seChannel.transmit(cmdData, (error, response) => {
     if (error) {

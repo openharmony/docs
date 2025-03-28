@@ -706,6 +706,8 @@ getAppNativeMemInfo(): NativeMemInfo
 > 
 > 由于/proc/{pid}/smaps_rollup的读取比较耗时，该接口不建议在主线程中使用，以免造成应用卡顿。
 
+**注意：** 由于/proc/{pid}/smaps_rollup的读取比较耗时，该接口不建议在主线程中使用，以免造成应用卡顿。
+
 **返回值：**
 
 | 类型  | 说明                      |

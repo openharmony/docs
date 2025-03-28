@@ -79,6 +79,7 @@ Read [AVPlayer](../../reference/apis-media-kit/_a_v_player.md) for the API refer
 ```c
 #include "napi/native_api.h"
 
+#include <ace/xcomponent/native_interface_xcomponent.h>
 #include <multimedia/player_framework/avplayer.h>
 #include <multimedia/player_framework/avplayer_base.h>
 #include <multimedia/player_framework/native_averrors.h>
@@ -119,51 +120,52 @@ typedef struct DemoNdkPlayer {
 } DemoNdkPlayer;
 
 void HandleStateChange(OH_AVPlayer *player, AVPlayerState state) {
+    int32_t ret;
     switch (state) {
         case AV_IDLE: // This state is reported upon a successful callback of OH_AVPlayer_Reset().
 //            ret = OH_AVPlayer_SetURLSource(player, url); // Set the URL.
 //            if (ret != AV_ERR_OK) {
-//            // Handle the exception.
+//            // Handle exceptions.
 //        }
             break;
         case AV_INITIALIZED:
             ret = OH_AVPlayer_Prepare(player); // This state is reported when the AVPlayer sets the playback source.
             if (ret != AV_ERR_OK) {
-            // Exception processing.
+            // Handle exceptions.
             }
             break;
         case AV_PREPARED:
 //            ret = OH_AVPlayer_SetAudioEffectMode(player, EFFECT_NONE); // Set the audio effect mode.
 //            if (ret != AV_ERR_OK) {
-//            // Handle the exception.   
+//            // Handle exceptions.  
 //            }  
             ret = OH_AVPlayer_Play(player); // Call OH_AVPlayer_Play() to start playback.
             if (ret != AV_ERR_OK) {
-            // Exception processing.
+            // Handle exceptions.
             }
             break;
         case AV_PLAYING:
 //            ret = OH_AVPlayer_Pause(player); // Call OH_AVPlayer_Pause() to pause the playback.
 //            if (ret != AV_ERR_OK) {
-//            // Handle the exception.
+//            // Handle exceptions.
 //            }
             break;
         case AV_PAUSED:
 //            ret = OH_AVPlayer_Play(player); // Call OH_AVPlayer_Play() again to start playback.
 //            if (ret != AV_ERR_OK) {
-//            // Handle the exception.
+//            // Handle exceptions.
 //            }
            break;
         case AV_STOPPED:
             ret = OH_AVPlayer_Release(player); // Call OH_AVPlayer_Reset() to reset the AVPlayer state.
             if (ret != AV_ERR_OK) {
-            // Exception processing.
+            // Handle exceptions.
             }
             break;
         case AV_COMPLETED:
             ret = OH_AVPlayer_Stop(player);// Call OH_AVPlayer_Stop() to stop the playback.
             if (ret != AV_ERR_OK) {
-            // Exception processing.
+            // Handle exceptions.
             }
             break;
         default:
@@ -299,13 +301,14 @@ void OHAVPlayerOnErrorCallback(OH_AVPlayer *player, int32_t errorCode, const cha
         return;
     }
     demoNdkPlayer->errorCode = errorCode;
-    // do something
+    // do something.
 }
 
 // Describe the mapped play method in the index.d.ts file and pass in a parameter of the string type.
 // When calling the player method in the .ets file, pass in the file path testNapi.play("/data/test/test.mp3").
 static napi_value Play(napi_env env, napi_callback_info info)
 {
+    int32_t ret = -1;
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     
@@ -314,26 +317,26 @@ static napi_value Play(napi_env env, napi_callback_info info)
     // Obtain the parameter type.
     napi_valuetype stringType;
     if (napi_ok != napi_typeof(env, args[0], &stringType)) {
-        // Exception processing.
+        // Handle exceptions.
         return nullptr;
     }
     
     // Verify the parameter.
     if (napi_null == stringType) {
-        // Exception processing.
+        // Handle exceptions.
         return nullptr;
     }
     
     // Obtain the length of the passed-in string.
     size_t length = 0;
     if (napi_ok != napi_get_value_string_utf8(env, args[0], nullptr, 0, &length)) {
-        // Exception processing.
+        // Handle exceptions.
         return nullptr;
     }
     
     // If "" is passed in, the result is directly returned.
     if (length == 0) {
-        // Exception processing.
+        // Handle exceptions.
         return nullptr;
     }
     
@@ -342,12 +345,13 @@ static napi_value Play(napi_env env, napi_callback_info info)
     if (napi_ok != napi_get_value_string_utf8(env, args[0], url, length + 1, &length)) {
         delete[] url;
         url = nullptr;
-        // Exception processing.
+        // Handle exceptions.
         return nullptr;
     }
 
     // Use the new function to set the information callback and error callback. Do not use OH_AVPlayer_SetPlayerCallback.
     // Release the object when it is no longer needed.
+    OH_AVPlayer *player = OH_AVPlayer_Create();
     DemoNdkPlayer *demoNdkPlayer = new DemoNdkPlayer({
         .player = player,
         .url = url,
@@ -360,23 +364,23 @@ static napi_value Play(napi_env env, napi_callback_info info)
     LOG("OH_AVPlayer_SetPlayerOnErrorCallback ret:%d", ret);
 
     if (ret != AV_ERR_OK) {
-    // Exception processing.
+    // Handle exceptions.
     }
     ret = OH_AVPlayer_SetURLSource(player, url); // Set the URL.
     if (ret != AV_ERR_OK) {
-    // Exception processing.
+    // Handle exceptions.
     }
     // Set the audio stream type.
     OH_AudioStream_Usage streamUsage = OH_AudioStream_Usage::AUDIOSTREAM_USAGE_UNKNOWN;
     ret = OH_AVPlayer_SetAudioRendererInfo(player, streamUsage);
     if (ret != AV_ERR_OK) {
-    // Handle the exception.   
+    // Handle exceptions. 
     }
     // Set the audio interruption mode.
     OH_AudioInterrupt_Mode interruptMode = OH_AudioInterrupt_Mode::AUDIOSTREAM_INTERRUPT_MODE_INDEPENDENT;
     ret = OH_AVPlayer_SetAudioInterruptMode(player, interruptMode);
     if (ret != AV_ERR_OK) {
-    // Handle the exception.   
+    // Handle exceptions.   
     }
     napi_value value;
     napi_create_int32(env, 0, &value);

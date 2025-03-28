@@ -18,5 +18,5 @@
 | 名称 | 描述 |
 | -------- | -------- |
 | [kind](netstack.md#kind) | 证书锁定类型。 |
-| [hashAlgorithm](netstack.md#hashAlgorithm) | 哈希算法。 |
-| [publicKeyHash](netstack.md#publicKeyHash) | 哈希值。 |
+| [hashalgorithm](netstack.md#hashalgorithm) | 哈希算法。 |
+| [publickeyhash](netstack.md#publickeyhash) | 哈希值。 |

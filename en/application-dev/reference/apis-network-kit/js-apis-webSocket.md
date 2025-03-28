@@ -127,7 +127,7 @@ Initiates a WebSocket request to establish a WebSocket connection to a given URL
 
 **System capability**: SystemCapability.Communication.NetStack
 
-**Note**: The URL cannot contain more than 1024 characters. Otherwise, the connection fails.
+**Note**: The URL cannot contain more than 1024 characters. Otherwise, the connection fails. Since API version 15, the maximum length of URLs is changed from 1024 characters to 2048 characters.
 
 **Parameters**
 

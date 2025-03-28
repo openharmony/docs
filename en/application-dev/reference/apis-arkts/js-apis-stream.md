@@ -27,7 +27,7 @@ Stream to which data can be written. A writable stream allows data to be written
 | Name   | Type     | Read-Only| Optional | Description       |
 | ------- | -------- | ------ | ------ | ----------- |
 | writableObjectMode  | boolean   | Yes  | No| Whether the writable stream works in object mode. The value **true** means that the stream is configured in object mode, and **false** means the opposite. Currently, only raw data (string and Uint8Array) is supported, and the return value is **false**.|
-| writableHighWatermark | number | Yes| No | Maximum amount of data that can be stored in the buffer. The default value is 16 x 1024, in bytes.|
+| writableHighWatermark | number | Yes| No | High watermark for the data volume in the buffer. This value is not customizable currently. When you call [write()](#write), if the data volume in the buffer reaches this watermark, [write()](#write) will return **false**. The default value is 16 x 1024, in bytes.|
 | writable | boolean | Yes| No | Whether the writable stream is currently writable. The value **true** means that the stream is currently writable, and **false** means that the stream does not accept write operations.|
 | writableLength | number | Yes| No | Number of bytes to be written in the buffer of the readable stream.|
 | writableCorked | number | Yes | No| Number of times the **uncork()** API needs to be called in order to fully uncork the writable stream.|
@@ -72,7 +72,7 @@ Writes data to the buffer of the stream. This API uses an asynchronous callback 
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| boolean | Whether there is space in the buffer of the writable stream. The value **true** means that there is still space in the buffer, and **false** means that the buffer is full.|
+| boolean | Whether there is space in the buffer of the writable stream. The value **true** means that there is still space in the buffer. The value **false** means that the buffer is full, and you are not advised to continue writing data.|
 
 **Error codes**
 
@@ -1168,11 +1168,11 @@ The **Duplex** class inherits from [Readable](#readable) and supports all the AP
 | Name   | Type     | Read-Only| Optional | Description       |
 | ------- | -------- | ------ | ------ | ----------- |
 | writableObjectMode  | boolean   | Yes  | No| Whether the writable side of the duplex stream works in object mode. The value **true** means that the writable side of the stream is configured in object mode, and **false** means the opposite. Currently, only raw data (string and Uint8Array) is supported, and the return value is **false**.|
-| writableHighWatermark | number | Yes| No | Maximum amount of data that can be stored in the buffer in the writable side of the duplex stream. The default value is 16 x 1024, in bytes.|
+| writableHighWatermark | number | Yes| No | High watermark for the data volume in the buffer of the duplex stream in write mode. This value is not customizable currently. When you call [write()](#write-1), if the data volume in the buffer reaches this watermark, [write()](#write-1) will return **false**. The default value is 16 x 1024, in bytes.|
 | writable | boolean | Yes| No | Whether the duplex stream is currently writable. The value **true** means that the stream is currently writable, and **false** means that the stream does not accept write operations.|
 | writableLength | number | Yes| No | Number of bytes to be written in the buffer of the duplex stream.|
 | writableCorked | number | Yes | No| Number of times the **uncork()** API needs to be called in order to fully uncork the duplex stream.|
-| writableEnded | boolean | Yes | No| Whether [end()](#end) has been called for the duplex stream. This property does not specify whether the data has been flushed. The value **true** means that [end()](#end) has been called, and **false** means the opposite.|
+| writableEnded | boolean | Yes | No| Whether [end()](#end-1) has been called for the duplex stream. This property does not specify whether the data has been flushed. The value **true** means that [end()](#end-1) has been called, and **false** means the opposite.|
 | writableFinished | boolean | Yes | No| Whether data in the duplex stream has been flushed. The value **true** means that data in the stream has been flushed, and **false** means the opposite.|
 
 ### constructor
@@ -1213,7 +1213,7 @@ Writes data to the buffer of the stream. This API uses an asynchronous callback 
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| boolean | Whether there is space in the buffer of the writable stream. The value **true** means that there is still space in the buffer, and **false** means that the buffer is full.|
+| boolean | Whether there is space in the buffer of the writable stream. The value **true** means that there is still space in the buffer. The value **false** means that the buffer is full, and you are not advised to continue writing data.|
 
 **Error codes**
 

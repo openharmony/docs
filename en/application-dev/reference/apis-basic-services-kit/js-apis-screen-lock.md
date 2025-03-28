@@ -20,7 +20,7 @@ Checks whether the screen is locked. This API uses an asynchronous callback to r
 
 > **NOTE**
 > 
-> This API is supported since API version 7 and deprecated since API version 9.
+> This API is supported since API version 7 and deprecated since API version 9. The substitute API is available only for system applications.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 

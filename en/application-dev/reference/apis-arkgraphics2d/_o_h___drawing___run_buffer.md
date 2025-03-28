@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **OH_Drawing_RunBuffer** struct describes a run, which provides storage for glyphs and positions.
+The OH_Drawing_RunBuffer struct describes a run, which provides storage for glyphs and positions.
 
 **Since**: 11
 
