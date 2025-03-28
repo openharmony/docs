@@ -17,7 +17,10 @@
 
    ```ts
    function getDepthDataOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability): camera.DepthDataOutput | undefined {
-     let depthProfilesArray: Array<camera.Profile> = cameraOutputCapability.depthProfiles;
+     let depthProfilesArray: Array<camera.DepthProfile> = cameraOutputCapability.depthProfiles;
+     if (!depthProfilesArray) {
+       console.error("createOutput depthProfilesArray is null");
+     }
      let depthDataOutput: camera.DepthDataOutput | undefined = undefined;
      try {
        depthDataOutput = cameraManager.createDepthDataOutput(depthProfilesArray[0]);
