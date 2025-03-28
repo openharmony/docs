@@ -59,15 +59,15 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Input_KeyStateAction](input.md#input_keystateaction) {<br/>[KEY_DEFAULT](input.md) = -1, [KEY_PRESSED](input.md) = 0, [KEY_RELEASED](input.md) = 1, [KEY_SWITCH_ON](input.md) = 2,<br/>[KEY_SWITCH_OFF](input.md) = 3<br/>} | 按键状态的枚举值。  | 
-| [Input_KeyEventAction](input.md#input_keyeventaction) { [KEY_ACTION_CANCEL](input.md) = 0, [KEY_ACTION_DOWN](input.md) = 1, [KEY_ACTION_UP](input.md) = 2 } | 按键事件类型的枚举值。  | 
-| [Input_MouseEventAction](input.md#input_mouseeventaction) {<br/>[MOUSE_ACTION_CANCEL](input.md) = 0, [MOUSE_ACTION_MOVE](input.md) = 1, [MOUSE_ACTION_BUTTON_DOWN](input.md) = 2, [MOUSE_ACTION_BUTTON_UP](input.md) = 3,<br/>[MOUSE_ACTION_AXIS_BEGIN](input.md) = 4, [MOUSE_ACTION_AXIS_UPDATE](input.md) = 5, [MOUSE_ACTION_AXIS_END](input.md) = 6<br/>} | 鼠标动作的枚举值。  | 
-| [InputEvent_MouseAxis](input.md#inputevent_mouseaxis) { [MOUSE_AXIS_SCROLL_VERTICAL](input.md) = 0, [MOUSE_AXIS_SCROLL_HORIZONTAL](input.md) = 1 } | 鼠标轴事件类型。  | 
-| [Input_MouseEventButton](input.md#input_mouseeventbutton) {<br/>[MOUSE_BUTTON_NONE](input.md) = -1, [MOUSE_BUTTON_LEFT](input.md) = 0, [MOUSE_BUTTON_MIDDLE](input.md) = 1, [MOUSE_BUTTON_RIGHT](input.md) = 2,<br/>[MOUSE_BUTTON_FORWARD](input.md) = 3, [MOUSE_BUTTON_BACK](input.md) = 4<br/>} | 鼠标按键的枚举值。  | 
-| [Input_TouchEventAction](input.md#input_toucheventaction) { [TOUCH_ACTION_CANCEL](input.md) = 0, [TOUCH_ACTION_DOWN](input.md) = 1, [TOUCH_ACTION_MOVE](input.md) = 2, [TOUCH_ACTION_UP](input.md) = 3 } | 触摸动作的枚举值。  | 
-| [InputEvent_SourceType](input.md#inputevent_sourcetype) { [SOURCE_TYPE_MOUSE](input.md) = 1, [SOURCE_TYPE_TOUCHSCREEN](input.md) = 2, [SOURCE_TYPE_TOUCHPAD](input.md) = 3 } | 输入事件源类型。  | 
-| [Input_KeyboardType](input.md#input_keyboardtype) {<br/>[KEYBOARD_TYPE_NONE](input.md) = 0, [KEYBOARD_TYPE_UNKNOWN](input.md) = 1, [KEYBOARD_TYPE_ALPHABETIC](input.md) = 2, [KEYBOARD_TYPE_DIGITAL](input.md) = 3,<br/>[KEYBOARD_TYPE_STYLUS](input.md) = 4, [KEYBOARD_TYPE_REMOTE_CONTROL](input.md) = 5<br/>} | 输入设备的键盘类型。  | 
-| [Input_Result](input.md#input_result) {<br/>[INPUT_SUCCESS](input.md) = 0, [INPUT_PERMISSION_DENIED](input.md) = 201, [INPUT_NOT_SYSTEM_APPLICATION](input.md) = 202, [INPUT_PARAMETER_ERROR](input.md) = 401,<br/>[INPUT_SERVICE_EXCEPTION](input.md) = 3800001, [INPUT_REPEAT_INTERCEPTOR](input.md) = 4200001<br/>} | 错误码枚举值。  | 
+| [Input_KeyStateAction](input.md#input_keystateaction) {<br/>KEY_DEFAULT = -1, KEY_PRESSED = 0, KEY_RELEASED = 1, KEY_SWITCH_ON = 2,<br/>KEY_SWITCH_OFF = 3<br/>} | 按键状态的枚举值。  | 
+| [Input_KeyEventAction](input.md#input_keyeventaction) { KEY_ACTION_CANCEL = 0, KEY_ACTION_DOWN = 1, KEY_ACTION_UP = 2 } | 按键事件类型的枚举值。  | 
+| [Input_MouseEventAction](input.md#input_mouseeventaction) {<br/>MOUSE_ACTION_CANCEL = 0, MOUSE_ACTION_MOVE = 1, MOUSE_ACTION_BUTTON_DOWN = 2, MOUSE_ACTION_BUTTON_UP = 3,<br/>MOUSE_ACTION_AXIS_BEGIN = 4, MOUSE_ACTION_AXIS_UPDATE = 5, MOUSE_ACTION_AXIS_END = 6<br/>} | 鼠标动作的枚举值。  | 
+| [InputEvent_MouseAxis](input.md#inputevent_mouseaxis) { MOUSE_AXIS_SCROLL_VERTICAL = 0, MOUSE_AXIS_SCROLL_HORIZONTAL = 1 } | 鼠标轴事件类型。  | 
+| [Input_MouseEventButton](input.md#input_mouseeventbutton) {<br/>MOUSE_BUTTON_NONE = -1, MOUSE_BUTTON_LEFT = 0, MOUSE_BUTTON_MIDDLE = 1, MOUSE_BUTTON_RIGHT = 2,<br/>MOUSE_BUTTON_FORWARD = 3, MOUSE_BUTTON_BACK = 4<br/>} | 鼠标按键的枚举值。  | 
+| [Input_TouchEventAction](input.md#input_toucheventaction) { TOUCH_ACTION_CANCEL = 0, TOUCH_ACTION_DOWN = 1, TOUCH_ACTION_MOVE = 2, TOUCH_ACTION_UP = 3 } | 触摸动作的枚举值。  | 
+| [InputEvent_SourceType](input.md#inputevent_sourcetype) { SOURCE_TYPE_MOUSE = 1, SOURCE_TYPE_TOUCHSCREEN = 2, SOURCE_TYPE_TOUCHPAD = 3 } | 输入事件源类型。  | 
+| [Input_KeyboardType](input.md#input_keyboardtype) {<br/>KEYBOARD_TYPE_NONE = 0, KEYBOARD_TYPE_UNKNOWN = 1, KEYBOARD_TYPE_ALPHABETIC = 2, KEYBOARD_TYPE_DIGITAL = 3,<br/>KEYBOARD_TYPE_STYLUS = 4, KEYBOARD_TYPE_REMOTE_CONTROL = 5<br/>} | 输入设备的键盘类型。  | 
+| [Input_Result](input.md#input_result) {<br/>INPUT_SUCCESS = 0, INPUT_PERMISSION_DENIED = 201, INPUT_NOT_SYSTEM_APPLICATION = 202, INPUT_PARAMETER_ERROR = 401, INPUT_SERVICE_EXCEPTION = 3800001, INPUT_REPEAT_INTERCEPTOR = 4200001<br/>} | 错误码枚举值。  | 
 
 
 ### 函数
