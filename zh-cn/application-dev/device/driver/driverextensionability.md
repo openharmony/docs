@@ -173,7 +173,7 @@
 具体使用方法，请参考：
 
 * [HID DDK开发指导](../../napi/hid-ddk-guidelines.md)
-* [USB DDK开发指导](v/napi/usb-ddk-guidelines.md)
+* [USB DDK开发指导](../../napi/usb-ddk-guidelines.md)
 
 ## 应用签名
 
