@@ -29,8 +29,8 @@
 
 | 名称                               | 描述 |
 | ---------------------------------- | ---- |
-| `TELEPHONY_MAX_OPERATOR_LEN`     | 64   |
-| `TELEPHONY_MAX_PLMN_NUMERIC_LEN` | 6    |
+| TELEPHONY_MAX_OPERATOR_LEN     | 64   |
+| TELEPHONY_MAX_PLMN_NUMERIC_LEN | 6    |
 
 ### 枚举
 
