@@ -105,10 +105,10 @@ tabBar(content: ComponentContent | SubTabBarStyle | BottomTabBarStyle | string |
 
 **参数：**
 
-| 参数名 | 类型         | 必填 | 说明 |
+| 名称 | 类型         | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| icon | string \| [ResourceStr](ts-types.md#resourcestr) | 否 | 页签内的图片内容。 |
-| text | string \| [ResourceStr](ts-types.md#resourcestr) | 否 | 页签内的文字内容。 |
+| icon<sup>7+</sup> | string \| [ResourceStr](ts-types.md#resourcestr) | 否 | 页签内的图片内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| text<sup>7+</sup> | string \| [ResourceStr](ts-types.md#resourcestr) | 否 | 页签内的文字内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## SubTabBarStyle<sup>9+</sup>
 

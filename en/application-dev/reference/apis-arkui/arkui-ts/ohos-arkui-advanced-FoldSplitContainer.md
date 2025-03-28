@@ -31,6 +31,8 @@ FoldSplitContainer({
   onHoverStatusChange?: OnHoverStatusChangeHandler
 })
 
+Creates a **FoldSplitContainer** component to manage regions for two-panel and three-panel arrangements on a foldable device across various states, including the expanded state, the hover state, and the folded state.
+
 **Decorator**: \@Component
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
@@ -112,7 +114,7 @@ Implements a handler for the **onHoverStatusChange** event.
 
 ## HoverModeStatus
 
-Layout information for the folded state.
+Provides information about the device or application's folding, rotation, and window state.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

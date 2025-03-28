@@ -3688,8 +3688,8 @@ writeArrayBuffer(buf: ArrayBuffer, typeCode: TypeCode): void
     data.writeArrayBuffer(buffer, rpc.TypeCode.INT16_ARRAY);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffer fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffer fail, errorMessage ' + e.message);
   }
   ```
 
@@ -3741,8 +3741,8 @@ readArrayBuffer(typeCode: TypeCode): ArrayBuffer
     data.writeArrayBuffer(buffer, rpc.TypeCode.INT16_ARRAY);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffer fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffer fail, errorMessage ' + e.message);
   }
   try {
     let result = data.readArrayBuffer(rpc.TypeCode.INT16_ARRAY);
@@ -7291,20 +7291,6 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
     bundleName: "com.ohos.server",
     abilityName: "com.ohos.server.EntryAbility",
   };
-  function sendMessageRequestCallback(err: BusinessError, result: rpc.RequestResult) {
-    if (result.errCode === 0) {
-      hilog.info(0x0000, 'testTag', 'sendMessageRequest got result');
-      let num = result.reply.readInt();
-      let msg = result.reply.readString();
-      hilog.info(0x0000, 'testTag', 'RPCTest: reply num: ' + num);
-      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
-    } else {
-      hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest failed, errCode: ' + result.errCode);
-    }
-    hilog.info(0x0000, 'testTag', 'RPCTest: sendMessageRequest ends, reclaim parcel');
-    result.data.reclaim();
-    result.reply.reclaim();
-}
 
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
@@ -7320,6 +7306,21 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   ```ts
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
+
+  function sendMessageRequestCallback(result: rpc.RequestResult) {
+    if (result.errCode === 0) {
+      hilog.info(0x0000, 'testTag', 'sendMessageRequest got result');
+      let num = result.reply.readInt();
+      let msg = result.reply.readString();
+      hilog.info(0x0000, 'testTag', 'RPCTest: reply num: ' + num);
+      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
+    } else {
+      hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest failed, errCode: ' + result.errCode);
+    }
+    hilog.info(0x0000, 'testTag', 'RPCTest: sendMessageRequest ends, reclaim parcel');
+    result.data.reclaim();
+    result.reply.reclaim();
+  }
 
   let option = new rpc.MessageOption();
   let data = rpc.MessageSequence.create();
@@ -7385,20 +7386,6 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
       bundleName: "com.ohos.server",
       abilityName: "com.ohos.server.EntryAbility",
   };
-  function sendRequestCallback(err: BusinessError, result: rpc.SendRequestResult) {
-    if (result.errCode === 0) {
-      hilog.info(0x0000, 'testTag', 'sendRequest got result');
-      let num = result.reply.readInt();
-      let msg = result.reply.readString();
-      hilog.info(0x0000, 'testTag', 'RPCTest: reply num: ' + num);
-      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
-    } else {
-      hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
-    }
-    hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
-    result.data.reclaim();
-    result.reply.reclaim();
-}
 
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
@@ -7412,6 +7399,21 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
 
   ```ts
+  function sendRequestCallback(result: rpc.SendRequestResult) {
+    if (result.errCode === 0) {
+      hilog.info(0x0000, 'testTag', 'sendRequest got result');
+      let num = result.reply.readInt();
+      let msg = result.reply.readString();
+      hilog.info(0x0000, 'testTag', 'RPCTest: reply num: ' + num);
+      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
+    } else {
+      hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
+    }
+    hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
+    result.data.reclaim();
+    result.reply.reclaim();
+  }
+
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
   let reply = rpc.MessageParcel.create();
@@ -8223,7 +8225,7 @@ getFlags(): number
     hilog.info(0x0000, 'testTag', 'create object successfully');
     let flog = option.getFlags();
     hilog.info(0x0000, 'testTag', 'run getFlags success, flog is ' + flog);
-    option.setFlags(1)
+    option.setFlags(rpc.MessageOption.TF_ASYNC);
     hilog.info(0x0000, 'testTag', 'run setFlags success');
     let flog2 = option.getFlags();
     hilog.info(0x0000, 'testTag', 'run getFlags success, flog2 is ' + flog2);
@@ -8253,7 +8255,7 @@ setFlags(flags: number): void
 
   try {
     let option = new rpc.MessageOption();
-    option.setFlags(1)
+    option.setFlags(rpc.MessageOption.TF_ASYNC);
     hilog.info(0x0000, 'testTag', 'run setFlags success');
     let flog = option.getFlags();
     hilog.info(0x0000, 'testTag', 'run getFlags success, flog is ' + flog);
@@ -8999,7 +9001,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
       super(descriptor);
     }
   }
-  function sendRequestCallback(err: BusinessError, result: rpc.RequestResult) {
+  function sendMessageRequestCallback(result: rpc.RequestResult) {
     if (result.errCode === 0) {
       hilog.info(0x0000, 'testTag', 'sendRequest got result');
       let num = result.reply.readInt();
@@ -9019,7 +9021,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   let reply = rpc.MessageSequence.create();
   data.writeInt(1);
   data.writeString("hello");
-  testRemoteObject.sendMessageRequest(1, data, reply, option, sendRequestCallback);
+  testRemoteObject.sendMessageRequest(1, data, reply, option, sendMessageRequestCallback);
   ```
 
 ### sendRequest<sup>(deprecated)</sup> 
@@ -9069,7 +9071,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
       return false;
     }
   }
-  function sendRequestCallback(err: BusinessError, result: rpc.SendRequestResult) {
+  function sendRequestCallback(result: rpc.SendRequestResult) {
     if (result.errCode === 0) {
       hilog.info(0x0000, 'testTag', 'sendRequest got result');
       let num = result.reply.readInt();
@@ -9958,7 +9960,7 @@ mapTypedAshmem(mapType: number): void
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
-    ashmem.mapTypedAshmem(ashmem.PROT_READ | ashmem.PROT_WRITE);
+    ashmem.mapTypedAshmem(rpc.Ashmem.PROT_READ | rpc.Ashmem.PROT_WRITE);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'Rpc map ashmem fail, errorCode ' + e.code);
@@ -9996,7 +9998,7 @@ mapAshmem(mapType: number): boolean
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
-  let mapReadAndWrite = ashmem.mapAshmem(ashmem.PROT_READ | ashmem.PROT_WRITE);
+  let mapReadAndWrite = ashmem.mapAshmem(rpc.Ashmem.PROT_READ | rpc.Ashmem.PROT_WRITE);
   hilog.info(0x0000, 'testTag', 'RpcTest: map ashmem result is ' + mapReadAndWrite);
   ```
 
@@ -10151,7 +10153,7 @@ setProtectionType(protectionType: number): void
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
-    ashmem.setProtectionType(ashmem.PROT_READ);
+    ashmem.setProtectionType(rpc.Ashmem.PROT_READ);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'Rpc set protection type fail, errorCode ' + e.code);
@@ -10189,7 +10191,7 @@ setProtection(protectionType: number): boolean
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
-  let result = ashmem.setProtection(ashmem.PROT_READ);
+  let result = ashmem.setProtection(rpc.Ashmem.PROT_READ);
   hilog.info(0x0000, 'testTag', 'RpcTest: Ashmem setProtection result is ' + result);
   ```
 

@@ -228,7 +228,7 @@ Transmission I/O error.
 
 **Description**
 
-This error code is reported when the read/write operation fails due to the abnormal I/O channel.
+This error code is reported if the read/write operation fails because the I/O channel is abnormal.
 
 **Procedure**
 

@@ -338,7 +338,7 @@ bm dump-dependencies -n com.ohos.app -m entry
 ## 应用执行编译AOT命令（compile）
 
 ```bash
-bm compile [-h] [-m mode] [-r bundleName]
+bm compile [-h] [-m mode] [-r bundleName] [-a]
 ```
 **compile命令参数列表**
 
@@ -1474,11 +1474,11 @@ os_integration bundle is not allowed to install for shell.
 
 **错误描述**
 
-禁止通过bm安装release的预装应用
+禁止通过bm安装release的预装应用。
 
 **可能原因**
 
-通过bm安装release的预装应用
+通过bm安装release的预装应用。
 
 **处理步骤**
 

@@ -653,7 +653,7 @@ on(type: 'sessionCreate', callback: (session: AVSessionDescriptor) => void): voi
 
 | 参数名    | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                 | 是   | 事件回调类型，支持的事件是'sessionCreate'`：会话创建事件，检测到会话创建时触发。|
+| type     | string                 | 是   | 事件回调类型，支持的事件是'sessionCreate'：会话创建事件，检测到会话创建时触发。|
 | callback | (session: [AVSessionDescriptor](#avsessiondescriptor)) => void | 是   | 回调函数。参数为会话相关描述。 |
 
 **错误码：**

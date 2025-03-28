@@ -57,7 +57,7 @@ Style and color of the text decorative line.
 
 letterSpacing(value: number | string)
 
-Letter spacing. A negative value tightens the spacing; a positive value loosens the spacing, and the letters are spread farther apart with the value.
+Letter spacing. A negative value tightens the spacing; a positive value loosens the spacing, and the letters are spread farther apart with the value. For the string type, numeric string values with optional units, for example, **"10"** or **"10fp"**, are supported.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -69,7 +69,7 @@ Letter spacing. A negative value tightens the spacing; a positive value loosens 
 
 | Name| Type    | Mandatory|  Description  |
 | ------ | ------- | ---- | -------------- |
-| value  | number \| string | Yes  | Letter spacing.|
+| value  | number \| string | Yes  | Letter spacing.<br>Unit: fp|
 
 ### textCase
 
@@ -123,7 +123,7 @@ Sets the font size.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | number \|  string\| [Resource](ts-types.md#resource) | Yes  | Font size. If **fontSize** is of the number type, the unit fp is used. The default font size is 16 fp. The value cannot be a percentage.|
+| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Font size. If **fontSize** is of the number type, the unit fp is used. The default font size is 16 fp. For the string type, numeric string values with optional units, for example, **"10"** or **"10fp"**, are supported. Percentage values are not supported.|
 
 ### fontStyle
 
@@ -183,7 +183,7 @@ Sets the font family.
 
 lineHeight(value: Length)
 
-Sets the line height for the text.
+Sets the line height for the text. When using the string type, numeric string values with optional units, for example, **"10"** or **"10fp"**, are supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -301,7 +301,7 @@ Sets the offset of the baseline. This attribute coexists with the **baselineOffs
 ## Example
 ### Example 1: Setting the Text Style
 
-This example showcases various text styles by using the **decoration**, **letterSpacing**, and **textCase** attributes.
+This example demonstrates how to apply different text styles and configure click events for the **Span** component.
 
 ```ts
 // xxx.ets
@@ -309,7 +309,7 @@ This example showcases various text styles by using the **decoration**, **letter
 @Component
 struct SpanExample {
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
       Text('Basic Usage').fontSize(9).fontColor(0xCCCCCC)
       Text() {
         Span('In Line')
@@ -320,12 +320,15 @@ struct SpanExample {
       Text() {
         Span('This is the Span component').fontSize(12).textCase(TextCase.Normal)
           .decoration({ type: TextDecorationType.None, color: Color.Red })
-      }
+          .fontFamily('HarmonyOS Sans')
+      }.margin({ top: 12 })
 
       // Add a line under the text.
-      Text('Text Decoration').fontSize(9).fontColor(0xCCCCCC)
+      Text('Text Decoration').fontSize(9).fontColor(0xCCCCCC).margin({ top: 12 })
       Text() {
-        Span('I am Underline-WAVY-span').decoration({ type: TextDecorationType.Underline, color: Color.Red, style: TextDecorationStyle.WAVY }).fontSize(12)
+        Span('I am Underline-WAVY-span')
+          .decoration({ type: TextDecorationType.Underline, color: Color.Red, style: TextDecorationStyle.WAVY })
+          .fontSize(12)
       }
 
       Text() {
@@ -335,11 +338,13 @@ struct SpanExample {
       }
 
       Text() {
-        Span('I am Overline-DASHED-span').decoration({ type: TextDecorationType.Overline, color: Color.Red, style: TextDecorationStyle.DASHED }).fontSize(12)
+        Span('I am Overline-DASHED-span')
+          .decoration({ type: TextDecorationType.Overline, color: Color.Red, style: TextDecorationStyle.DASHED })
+          .fontSize(12)
       }
 
       // Set the letter spacing.
-      Text('LetterSpacing').fontSize(9).fontColor(0xCCCCCC)
+      Text('LetterSpacing').fontSize(9).fontColor(0xCCCCCC).margin({ top: 12 })
       Text() {
         Span('span letter spacing')
           .letterSpacing(0)
@@ -358,9 +363,8 @@ struct SpanExample {
           .fontSize(12)
       }
 
-
       // Set the text case.
-      Text('Text Case').fontSize(9).fontColor(0xCCCCCC)
+      Text('Text Case').fontSize(9).fontColor(0xCCCCCC).margin({ top: 12 })
       Text() {
         Span('I am Lower-span').fontSize(12)
           .textCase(TextCase.LowerCase)
@@ -372,7 +376,63 @@ struct SpanExample {
           .textCase(TextCase.UpperCase)
           .decoration({ type: TextDecorationType.None })
       }
-    }.width('100%').height(250).padding({ left: 35, right: 35, top: 35 })
+
+      // Set the text font style.
+      Text('FontStyle').fontSize(9).fontColor(0xCCCCCC).margin({ top: 12 })
+      Text() {
+        Span('I am FontStyle-Normal').fontSize(12)
+          .fontStyle(FontStyle.Normal)
+      }
+
+      Text() {
+        Span('I am FontStyle-Italic').fontSize(12)
+          .fontStyle(FontStyle.Italic)
+      }
+
+      // Set the text font weight.
+      Text('FontWeight').fontSize(9).fontColor(0xCCCCCC).margin({ top: 12 })
+      Text() {
+        Span('I am FontWeight-Lighter').fontSize(12)
+          .fontWeight(FontWeight.Lighter)
+      }
+
+      Text() {
+        Span('I am FontWeight-Bold').fontSize(12)
+          .fontWeight(FontWeight.Bold)
+      }
+
+      // Set the text line height.
+      Text('LineHeight').fontSize(9).fontColor(0xCCCCCC).margin({ top: 12 })
+      Text() {
+        Span('I am lineHeight default\n').fontSize(12)
+          .fontWeight(FontWeight.Lighter)
+        Span('I am lineHeight 30').fontSize(12)
+          .lineHeight(30)
+      }
+      .backgroundColor(Color.Gray)
+
+      // Set the text style.
+      Text('Font').fontSize(9).fontColor(0xCCCCCC).margin({ top: 12 })
+      Text() {
+        Span('span font 12 Bolder Italic')
+          .font({
+            size: 12,
+            weight: FontWeight.Bolder,
+            style: FontStyle.Italic,
+            family: "HarmonyOS Sans"
+          })
+      }
+
+      // Set the click event.
+      Text('span click event').fontSize(9).fontColor(0xCCCCCC).margin({ top: 12 })
+      Text() {
+        Span('Span default ').fontSize(12)
+        Span('Span click')
+          .onClick((event) => {
+            console.log("span onClick")
+          })
+      }
+    }.width('100%').padding({ left: 35, right: 35, top: 35 })
   }
 }
 ```
@@ -388,18 +448,44 @@ This example demonstrates the effect of setting a shadow for text using the **te
 @Entry
 @Component
 struct SpanExample {
-  @State textShadows : ShadowOptions | Array<ShadowOptions> = [{ radius: 10, color: Color.Red, offsetX: 10, offsetY: 0 },{ radius: 10, color: Color.Black, offsetX: 20, offsetY: 0 },
-      { radius: 10, color: Color.Brown, offsetX: 30, offsetY: 0 },{ radius: 10, color: Color.Green, offsetX: 40, offsetY: 0 },
-      { radius: 10, color: Color.Yellow, offsetX: 100, offsetY: 0 }]
+  @State textShadows: ShadowOptions | Array<ShadowOptions> = [{
+    radius: 10,
+    color: Color.Red,
+    offsetX: 10,
+    offsetY: 0
+  }, {
+    radius: 10,
+    color: Color.Orange,
+    offsetX: 20,
+    offsetY: 0
+  },
+    {
+      radius: 10,
+      color: Color.Yellow,
+      offsetX: 30,
+      offsetY: 0
+    }, {
+      radius: 10,
+      color: Color.Green,
+      offsetX: 40,
+      offsetY: 0
+    },
+    {
+      radius: 10,
+      color: Color.Blue,
+      offsetX: 100,
+      offsetY: 0
+    }]
 
   build() {
     Column({ space: 8 }) {
       Text() {
-        Span('123456789').fontSize(50).textShadow(this.textShadows)
+        Span('123456789').fontSize(50).textShadow(this.textShadows).fontColor(Color.Pink)
       }
+
       Text() {
         Span('123456789') // span can inherit text shadow & font size from outer text
-      }.fontSize(50).textShadow(this.textShadows)
+      }.fontSize(50).textShadow(this.textShadows).fontColor(Color.Pink)
     }
   }
 }
@@ -420,10 +506,10 @@ struct SpanExample {
       Text() {
         Span('   Hello World !   ')
           .fontSize('20fp')
-          .textBackgroundStyle({color: "#7F007DFF", radius: "5vp"})
+          .textBackgroundStyle({ color: "#7F007DFF", radius: "5vp" })
           .fontColor(Color.White)
       }
-    }.width('100%').margin({bottom: '5vp'}).alignItems(HorizontalAlign.Center)
+    }.width('100%').margin({ bottom: '5vp' }).alignItems(HorizontalAlign.Center)
   }
 }
 ```
@@ -434,6 +520,7 @@ struct SpanExample {
 This example demonstrates the effect of setting different baseline offsets for text using the **baselineOffset** attribute.
 
 ```ts
+// xxx.ets
 import { LengthUnit, LengthMetrics } from '@kit.ArkUI';
 
 @Entry
@@ -442,16 +529,18 @@ struct SpanExample {
   build() {
     Row() {
       Column() {
-        Text(){
-          Span('word1')
-            .baselineOffset(new LengthMetrics(20,LengthUnit.VP))
-          Span('word2')
-            .baselineOffset(new LengthMetrics(0,LengthUnit.VP))
-          ImageSpan($r("app.media.icon"))
-            .width('45px')
-            .baselineOffset(new LengthMetrics(-20,LengthUnit.VP))
+        Text() {
+          Span('SpanOne')
+            .fontSize(10)
+            .baselineOffset(new LengthMetrics(20, LengthUnit.VP))
+          Span('SpanTwo')
+            .fontSize(10)
+            .baselineOffset(new LengthMetrics(0, LengthUnit.VP))
+          ImageSpan($r("app.media.sky"))// You are advised to use a custom local image.
+            .width('80px')
+            .baselineOffset(new LengthMetrics(-20, LengthUnit.VP))
         }
-        .backgroundColor(Color.Gray)
+        .backgroundColor('#7F007DFF')
       }
       .width('100%')
     }

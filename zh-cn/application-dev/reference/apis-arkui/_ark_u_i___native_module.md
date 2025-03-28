@@ -99,7 +99,7 @@
 | typedef bool(\* [ArkUI_OnWillDismissEvent](#arkui_onwilldismissevent)) (int32_t reason) | 弹窗关闭的回调函数。  | 
 | typedef struct [ArkUI_DialogDismissEvent](#arkui_dialogdismissevent) [ArkUI_DialogDismissEvent](#arkui_dialogdismissevent) | 定义弹窗关闭事件对象。  | 
 | typedef struct [ArkUI_CustomDialogOptions ](#arkui_customdialogoptions) [ArkUI_CustomDialogOptions ](#arkui_customdialogoptions) | 定义自定义弹窗的内容对象。  | 
-| typedef uint32_t [ArkUI_GestureEventActionTypeMask](#arkui_gestureeventactiontypemask) | 定义手势事件类型集合  | 
+| typedef uint32_t [ArkUI_GestureEventActionTypeMask](#arkui_gestureeventactiontypemask) | 定义手势事件类型集合。  | 
 | typedef uint32_t [ArkUI_GestureDirectionMask](#arkui_gesturedirectionmask) | 定义滑动手势方向集合。  | 
 | typedef ArkUI_GestureRecognizer \* [ArkUI_GestureRecognizerHandle](#arkui_gesturerecognizerhandle) | 提供手势识别器句柄类型对象定义。  | 
 | typedef [ArkUI_GestureRecognizerHandle](#arkui_gesturerecognizerhandle) \* [ArkUI_GestureRecognizerHandleArray](#arkui_gesturerecognizerhandlearray) | 提供手势识别器句柄类型数组对象定义。  | 
@@ -837,8 +837,8 @@
 | void [OH_ArkUI_StyledString_AddPlaceholder](#oh_arkui_styledstring_addplaceholder) ([ArkUI_StyledString](#arkui_styledstring) \*handle, OH_Drawing_PlaceholderSpan \*placeholder) | 设置占位符。  | 
 | [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \* [OH_ArkUI_StyledString_Descriptor_Create](#oh_arkui_styledstring_descriptor_create) (void) | 创建属性字符串数据对象。  | 
 | void [OH_ArkUI_StyledString_Descriptor_Destroy](#oh_arkui_styledstring_descriptor_destroy) ([ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor) | 释放被ArkUI_StyledString_Descriptor对象占据的内存。  | 
-| int32_t [OH_ArkUI_UnmarshallStyledStringDescriptor](#oh_arkui_unmarshallstyledstringdescriptor) (uint8_t \*buffer, size_t bufferSize, [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor, size_t \*resultSize) | 将包含属性字符串信息的字节数组反序列化为属性字符串。  | 
-| int32_t [OH_ArkUI_MarshallStyledStringDescriptor](#oh_arkui_marshallstyledstringdescriptor) (uint8_t \*buffer, size_t bufferSize, [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor) | 将属性字符串信息序列化为字节数组。  | 
+| int32_t [OH_ArkUI_UnmarshallStyledStringDescriptor](#oh_arkui_unmarshallstyledstringdescriptor) (uint8_t \*buffer, size_t bufferSize, [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor) | 将包含属性字符串信息的字节数组反序列化为属性字符串。  | 
+| int32_t [OH_ArkUI_MarshallStyledStringDescriptor](#oh_arkui_marshallstyledstringdescriptor) (uint8_t \*buffer, size_t bufferSize, [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor, size_t \*resultSize) | 将属性字符串信息序列化为字节数组。  | 
 | const char \* [OH_ArkUI_ConvertToHtml](#oh_arkui_converttohtml) ([ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor) | 将属性字符串信息转化成html。  | 
 | int32_t [OH_ArkUI_PostFrameCallback](#oh_arkui_postframecallback)([ArkUI_ContextHandle](#arkui_contexthandle-12) uiContext, void\* userData, void (\*callback)(uint64_t nanoTimestamp, uint32_t frameCount, void\* userData))| 注册一个回调函数，以便在下一帧渲染时执行。不允许在非UI线程调用，检查到非UI线程调用程序会主动abort。 |
 | int32_t [OH_ArkUI_RegisterLayoutCallbackOnNodeHandle](#oh_arkui_registerlayoutcallbackonnodehandle)([ArkUI_NodeHandle](#arkui_nodehandle) node, void\* userData, void (\*onLayoutCompleted)(void\* userData))| 注册组件布局完成回调方法。同一组件仅能注册一个布局完成回调方法。  |
@@ -1192,7 +1192,7 @@ typedef uint32_t ArkUI_GestureEventActionTypeMask
 ```
 **描述：**
 
-定义手势事件类型集合
+定义手势事件类型集合。
 
 例：ArkUI_GestureEventActionTypeMask actions = GESTURE_EVENT_ACTION_ACCEPT | GESTURE_EVENT_ACTION_UPDATE;
 
@@ -1973,14 +1973,14 @@ enum ArkUI_BlendApplyType
 ```
 **描述：**
 
-指定的混合模式应用于视图的内容选项.
+指定的混合模式应用于视图的内容选项。
 
 **起始版本：** 12
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| BLEND_APPLY_TYPE_FAST  | 在目标图像上按顺序混合视图的内容.  | 
-| BLEND_APPLY_TYPE_OFFSCREEN  | 将此组件和子组件内容绘制到离屏画布上，然后整体进行混合.  | 
+| BLEND_APPLY_TYPE_FAST  | 在目标图像上按顺序混合视图的内容。  | 
+| BLEND_APPLY_TYPE_OFFSCREEN  | 将此组件和子组件内容绘制到离屏画布上，然后整体进行混合。 | 
 
 
 ### ArkUI_BlendMode
@@ -2054,6 +2054,24 @@ enum ArkUI_BlurStyle
 | ARKUI_BLUR_STYLE_COMPONENT_REGULAR  | 组件普通材质模糊。  | 
 | ARKUI_BLUR_STYLE_COMPONENT_THICK  | 组件厚材质模糊。  | 
 | ARKUI_BLUR_STYLE_COMPONENT_ULTRA_THICK  | 组件超厚材质模糊。  | 
+
+
+### ArkUI_BlurStyleActivePolicy
+
+```
+enum ArkUI_BlurStyleActivePolicy
+```
+**描述：**
+
+定义背景模糊激活策略。
+
+**起始版本：** 18
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| ARKUI_BLUR_STYLE_ACTIVE_POLICY_FOLLOWS_WINDOW_ACTIVE_STATE  | 模糊效果跟随窗口焦点状态变化，非焦点不模糊，焦点模糊。  | 
+| ARKUI_BLUR_STYLE_ACTIVE_POLICY_ALWAYS_ACTIVE  | 一直有模糊效果。  | 
+| ARKUI_BLUR_STYLE_ACTIVE_POLICY_ALWAYS_INACTIVE  | 一直无模糊效果。  | 
 
 
 ### ArkUI_BorderStyle
@@ -4757,18 +4775,18 @@ enum ArkUI_TextInputContentType
 | ARKUI_TEXTINPUT_CONTENT_TYPE_NICKNAME  | 【昵称】在已启用情景化自动填充的情况下，支持昵称的自动保存和自动填充。  | 
 | ARKUI_TEXTINPUT_CONTENT_TYPE_DETAIL_INFO_WITHOUT_STREET  | 【无街道地址】在已启用情景化自动填充的情况下，支持无街道地址的自动保存和自动填充。  | 
 | ARKUI_TEXTINPUT_CONTENT_TYPE_FORMAT_ADDRESS  | 【标准地址】在已启用情景化自动填充的情况下，支持标准地址的自动保存和自动填充。  | 
-| ARKUI_TEXTINPUT_CONTENT_TYPE_PASSPORT_NUMBER  | 【护照号】在已启用情景化自动填充的情况下，支持护照号的自动保存和自动填充。  |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_VALIDITY  | 【护照有效期】在已启用情景化自动填充的情况下，支持护照有效期的自动保存和自动填充。  |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_ISSUE_AT  | 【护照签发地】在已启用情景化自动填充的情况下，支持护照签发地的自动保存和自动填充。  |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_ORGANIZATION  | 【发票抬头名称】在已启用情景化自动填充的情况下，支持发票抬头名称的自动保存和自动填充。  |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_TAX_ID  | 【税号】在已启用情景化自动填充的情况下，支持税号的自动保存和自动填充。  |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_ADDRESS_CITY_AND_STATE  | 【所在地区】在已启用情景化自动填充的情况下，支持所在地区的自动保存和自动填充。  |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_FLIGHT_NUMBER  | 【航班号】暂不支持自动保存和自动填充。  |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_NUMBER  | 【驾驶证号】暂不支持自动保存和自动填充。  |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_FILE_NUMBER  | 【驾驶证档案编号】暂不支持自动保存和自动填充。 |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_PLATE  | 【车牌号】在已启用情景化自动填充的情况下，支持车牌号的自动保存和自动填充。  |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_ENGINE_NUMBER  | 【行驶证发动机号】暂不支持自动保存和自动填充。  |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_CHASSIS_NUMBER  | 【车牌识别号】暂不支持自动保存和自动填充。  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_PASSPORT_NUMBER  | 【护照号】在已启用情景化自动填充的情况下，支持护照号的自动保存和自动填充。<br/>起始版本：18  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_VALIDITY  | 【护照有效期】在已启用情景化自动填充的情况下，支持护照有效期的自动保存和自动填充。<br/>起始版本：18  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_ISSUE_AT  | 【护照签发地】在已启用情景化自动填充的情况下，支持护照签发地的自动保存和自动填充。<br/>起始版本：18  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_ORGANIZATION  | 【发票抬头名称】在已启用情景化自动填充的情况下，支持发票抬头名称的自动保存和自动填充。<br/>起始版本：18  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_TAX_ID  | 【税号】在已启用情景化自动填充的情况下，支持税号的自动保存和自动填充。<br/>起始版本：18  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_ADDRESS_CITY_AND_STATE  | 【所在地区】在已启用情景化自动填充的情况下，支持所在地区的自动保存和自动填充。<br/>起始版本：18  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_FLIGHT_NUMBER  | 【航班号】暂不支持自动保存和自动填充。<br/>起始版本：18  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_NUMBER  | 【驾驶证号】暂不支持自动保存和自动填充。<br/>起始版本：18  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_FILE_NUMBER  | 【驾驶证档案编号】暂不支持自动保存和自动填充。<br/>起始版本：18 |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_PLATE  | 【车牌号】在已启用情景化自动填充的情况下，支持车牌号的自动保存和自动填充。<br/>起始版本：18  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_ENGINE_NUMBER  | 【行驶证发动机号】暂不支持自动保存和自动填充。<br/>起始版本：18  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_CHASSIS_NUMBER  | 【车牌识别号】暂不支持自动保存和自动填充。<br/>起始版本：18  |
 
 
 ### ArkUI_TextInputStyle
@@ -4935,7 +4953,7 @@ enum ArkUI_WordBreak
 | ARKUI_WORD_BREAK_NORMAL  | CJK(中文、日文、韩文)文本可以在任意2个字符间断行，而Non-CJK文本（如英文等）只能在空白符处断行。  | 
 | ARKUI_WORD_BREAK_BREAK_ALL  | 对于Non-CJK的文本，可在任意2个字符间断行。CJK(中文、日文、韩文)文本可以在任意2个字符间断行。  | 
 | ARKUI_WORD_BREAK_BREAK_WORD  | 对于Non-CJK的文本可在任意2个字符间断行，一行文本中有断行破发点（如空白符）时，优先按破发点换行。 CJK(中文、日文、韩文)文本可以在任意2个字符间断行  | 
-| ARKUI_WORD_BREAK_HYPHENATION  | 起始版本：16。对于Non-CJK的文本，可以按照音节断行。对于CJK的文本，换行效果与NORMAL效果保持一致。  | 
+| ARKUI_WORD_BREAK_HYPHENATION  | 对于Non-CJK的文本，可以按照音节断行。对于CJK的文本，换行效果与NORMAL效果保持一致。<br/>起始版本：18  | 
 
 
 ### ArkUI_XComponentType
@@ -5813,7 +5831,7 @@ void OH_ArkUI_AlignmentRuleOption_SetBottom (ArkUI_AlignmentRuleOption * option,
 | -------- | -------- |
 | option | 相对容器中子组件的对齐规则信息。  | 
 | id | 锚点的组件的id值。  | 
-| value | 相对于锚点组件的对齐方式  | 
+| value | 相对于锚点组件的对齐方式。  | 
 
 
 ### OH_ArkUI_AlignmentRuleOption_SetCenterHorizontal()
@@ -9048,7 +9066,7 @@ int32_t OH_ArkUI_CustomDialog_SetBackgroundBlurStyleOptions(ArkUI_CustomDialogOp
 | 名称 | 描述 | 
 | -------- | -------- |
 | options | 弹窗参数。 | 
-| backgroundBlurStyleOptions | 弹窗的背景模糊效果。 |
+| backgroundBlurStyleOptions | 弹窗的背景模糊效果。<br/>参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示深浅色模式，取[ArkUI_ColorMode](#arkui_colormode)枚举值。<br/>.value[1]?.i32 表示取色模式，取[ArkUI_AdaptiveColor](#arkui_adaptivecolor)枚举值。<br/>.value[2]?.f32 表示模糊效果程度，取[0.0,1.0]范围内的值。<br/>.value[3]?.u32 表示灰阶模糊参数，对黑色的提亮程度，有效值范围为[0,127]。<br/>.value[4]?.u32 表示灰阶模糊参数，对白色的压暗程度，有效值范围为[0,127]。<br/>.value[5]?.i32 表示模糊激活策略，取[ArkUI_BlurStyleActivePolicy](#arkui_blurstyleactivepolicy)枚举值。<br/>.value[6]?.u32 表示窗口失焦后，窗口内控件模糊效果会被移除，此时控件背板的颜色，0xargb类型。 | 
 
 **返回：**
 
@@ -9071,7 +9089,7 @@ int32_t OH_ArkUI_CustomDialog_SetBackgroundEffect(ArkUI_CustomDialogOptions* opt
 | 名称 | 描述 | 
 | -------- | -------- |
 | options | 弹窗参数。 | 
-| backgroundEffect | 弹窗的背景效果参数。 |
+| backgroundEffect | 弹窗的背景效果参数。<br/>参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32 表示模糊半径，单位为vp。<br/>.value[1]?.f32 表示饱和度。<br/>.value[2]?.f32 表示亮度。<br/>.value[3]?.u32 表示颜色，0xargb类型。<br/>.value[4]?.i32 表示取色模式，取[ArkUI_AdaptiveColor](#arkui_adaptivecolor)枚举值。<br/>.value[5]?.u32 表示灰阶模糊参数，对黑色的提亮程度，有效值范围为[0,127]。<br/>.value[6]?.u32 表示灰阶模糊参数，对白色的压暗程度，有效值范围为[0,127]。<br/>.value[7]?.i32 表示模糊激活策略，取[ArkUI_BlurStyleActivePolicy](#arkui_blurstyleactivepolicy)枚举值。<br/>.value[8]?.u32 表示窗口失焦后，窗口内控件模糊效果会被移除，此时控件背板的颜色，0xargb类型。 | 
 
 **返回：**
 
@@ -13202,7 +13220,7 @@ int32_t OH_ArkUI_LongPress_GetRepeatCount (const ArkUI_GestureEvent * event)
 ### OH_ArkUI_MarshallStyledStringDescriptor()
 
 ```
-int32_t OH_ArkUI_MarshallStyledStringDescriptor (uint8_t * buffer, size_t bufferSize, ArkUI_StyledString_Descriptor * descriptor )
+int32_t OH_ArkUI_MarshallStyledStringDescriptor (uint8_t * buffer, size_t bufferSize, ArkUI_StyledString_Descriptor * descriptor, size_t * resultSize )
 ```
 **描述：**
 
@@ -13217,6 +13235,7 @@ int32_t OH_ArkUI_MarshallStyledStringDescriptor (uint8_t * buffer, size_t buffer
 | buffer | 字节数组，用于存储属性字符串序列化后的数据。  | 
 | bufferSize | 字节数组长度。  | 
 | descriptor | 指向ArkUI_StyledString_Descriptor对象的指针。  | 
+| resultSize | 属性字符串转换后的字节数组实际长度。  | 
 
 **返回：**
 
@@ -16885,7 +16904,7 @@ ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数�
 ### OH_ArkUI_UnmarshallStyledStringDescriptor()
 
 ```
-int32_t OH_ArkUI_UnmarshallStyledStringDescriptor (uint8_t * buffer, size_t bufferSize, ArkUI_StyledString_Descriptor * descriptor, size_t * resultSize )
+int32_t OH_ArkUI_UnmarshallStyledStringDescriptor (uint8_t * buffer, size_t bufferSize, ArkUI_StyledString_Descriptor * descriptor)
 ```
 **描述：**
 
@@ -16900,7 +16919,6 @@ int32_t OH_ArkUI_UnmarshallStyledStringDescriptor (uint8_t * buffer, size_t buff
 | buffer | 待反序列化的字节数组。  | 
 | bufferSize | 字节数组长度。  | 
 | descriptor | 指向ArkUI_StyledString_Descriptor对象的指针。  | 
-| resultSize | 属性字符串转换后的字节数组实际长度。  | 
 
 **返回：**
 

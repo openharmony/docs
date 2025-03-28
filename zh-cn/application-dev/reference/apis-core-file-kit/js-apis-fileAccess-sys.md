@@ -1655,7 +1655,7 @@ copy(sourceUri: string, destUri: string, force?: boolean) : Promise&lt;Array&lt;
 | --------- | ------- | ---- | ------------------------------------------------------------ |
 | sourceUri | string  | 是   | 待拷贝的源文件(夹)的 uri。例如：file://docs/storage/Users/currentUser/Download/1.txt。  |
 | destUri   | string  | 是   | 目标文件夹的 uri。例如：file://docs/storage/Users/currentUser/Download/test。        |
-| force     | boolean | 否   | 含有同名文件时是否强制覆盖文件。force 为 true 时强制覆盖文件；force 为空或 false 时不强制覆盖文件。 |
+| force     | boolean | 否   | 含有同名文件时是否强制覆盖文件。force 为 true 时强制覆盖文件；force 为空或 false 时不强制覆盖文件。该参数不填，默认为false。 |
 
 **返回值：**
 

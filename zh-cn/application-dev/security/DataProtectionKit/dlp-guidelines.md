@@ -20,7 +20,7 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
 | -------- | -------- | -------- | -------- |
 | ohos.permission.USE_BLUETOOTH | 允许应用使用蓝牙。 | 禁止 | 禁止 |
 | ohos.permission.INTERNET |允许应用访问网络。 |  禁止 | 禁止 |
-| ohos.permission.DISTRIBUTED_DATASYNC | 允许应用与远程设备交换用户数据（如图片、音乐、视频、及应用数据等）。 | 禁止 | 禁止 |
+| ohos.permission.DISTRIBUTED_DATASYNC | 允许应用与远程设备交换用户数据（如图片、音乐、视频、应用数据等）。 | 禁止 | 禁止 |
 | ohos.permission.WRITE_MEDIA | 应用读写用户媒体文件，如视频、音频、图片等，需要申请此权限。 | 禁止 | 允许 |
 | ohos.permission.NFC_TAG | 允许应用使用NFC。 | 禁止 | 允许 |
 

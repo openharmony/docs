@@ -3007,8 +3007,8 @@ flip(horizontal: boolean, vertical: boolean, callback: AsyncCallback\<void>): vo
 
 | 参数名     | 类型                 | 必填 | 说明                          |
 | ---------- | -------------------- | ---- | ----------------------------- |
-| horizontal | boolean              | 是   | 水平翻转。                    |
-| vertical   | boolean              | 是   | 垂直翻转。                    |
+| horizontal | boolean              | 是   | true表示进行水平翻转。                    |
+| vertical   | boolean              | 是   | true表示进行垂直翻转。                    |
 | callback   | AsyncCallback\<void> | 是   | 回调函数，当对图片翻转成功，err为undefined，否则为错误对象。|
 
 **示例：**
@@ -3089,8 +3089,8 @@ flipSync(horizontal: boolean, vertical: boolean): void
 
 | 参数名     | 类型                 | 必填 | 说明                          |
 | ---------- | -------------------- | ---- | ----------------------------- |
-| horizontal | boolean              | 是   | 水平翻转。                    |
-| vertical   | boolean              | 是   | 垂直翻转。                    |
+| horizontal | boolean              | 是   | true表示水平翻转。                    |
+| vertical   | boolean              | 是   | true表示垂直翻转。                    |
 
 **错误码：**
 
@@ -4916,7 +4916,7 @@ updateData(buf: ArrayBuffer, isFinished: boolean, offset: number, length: number
 | ---------- | ------------------- | ---- | -------------------- |
 | buf        | ArrayBuffer         | 是   | 增量数据。           |
 | isFinished | boolean             | 是   | 是否更新完。         |
-| offset      | number              | 是   | 偏移量。             |
+| offset      | number              | 是   | 偏移量，非负数。             |
 | length     | number              | 是   | 数组长度。             |
 | callback   | AsyncCallback\<void> | 是   |  回调函数，当更新增量数据成功，err为undefined，否则为错误对象。 |
 

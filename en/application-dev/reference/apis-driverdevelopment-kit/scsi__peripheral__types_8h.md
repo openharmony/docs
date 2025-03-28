@@ -21,7 +21,7 @@ Provides the enum variables, structures, and macros used in the SCSI Peripheral 
 
 | Name| Description| 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[ScsiPeripheral_DeviceMemMap](_scsi_peripheral___device_mem_map.md) | Device memory mapping created by calling **OH_ScsiPeripheral_CreateDeviceMemMap**. The buffer that uses the device memory mapping can provide better performance.| 
+| struct&nbsp;&nbsp;[ScsiPeripheral_DeviceMemMap](_scsi_peripheral___device_mem_map.md) | Device memory mapping created by calling [OH_ScsiPeripheral_CreateDeviceMemMap](_s_c_s_i.md#oh_scsiperipheral_createdevicememmap). The buffer that uses the device memory mapping can provide better performance.| 
 | struct&nbsp;&nbsp;[ScsiPeripheral_IORequest](_scsi_peripheral___i_o_request.md) | Read/write operation request.| 
 | struct&nbsp;&nbsp;[ScsiPeripheral_Request](_scsi_peripheral___request.md) | Request structure.| 
 | struct&nbsp;&nbsp;[ScsiPeripheral_Response](_scsi_peripheral___response.md) | Response structure.| 
@@ -53,7 +53,7 @@ Provides the enum variables, structures, and macros used in the SCSI Peripheral 
 | Name| Description| 
 | -------- | -------- |
 | typedef struct [ScsiPeripheral_Device](_s_c_s_i.md#scsiperipheral_device) [ScsiPeripheral_Device](_s_c_s_i.md#scsiperipheral_device) | Opaque SCSI device structure.| 
-| typedef struct [ScsiPeripheral_DeviceMemMap](_scsi_peripheral___device_mem_map.md) [ScsiPeripheral_DeviceMemMap](_s_c_s_i.md#scsiperipheral_devicememmap) | Device memory mapping created by calling **OH_ScsiPeripheral_CreateDeviceMemMap**. The buffer that uses the device memory mapping can provide better performance.| 
+| typedef struct [ScsiPeripheral_DeviceMemMap](_scsi_peripheral___device_mem_map.md) [ScsiPeripheral_DeviceMemMap](_s_c_s_i.md#scsiperipheral_devicememmap) | Device memory mapping created by calling [OH_ScsiPeripheral_CreateDeviceMemMap](_s_c_s_i.md#oh_scsiperipheral_createdevicememmap). The buffer that uses the device memory mapping can provide better performance.| 
 | typedef struct [ScsiPeripheral_IORequest](_scsi_peripheral___i_o_request.md) [ScsiPeripheral_IORequest](_s_c_s_i.md#scsiperipheral_iorequest) | Read/write operation request.| 
 | typedef struct [ScsiPeripheral_Request](_scsi_peripheral___request.md) [ScsiPeripheral_Request](_s_c_s_i.md#scsiperipheral_request) | Request structure.| 
 | typedef struct [ScsiPeripheral_Response](_scsi_peripheral___response.md) [ScsiPeripheral_Response](_s_c_s_i.md#scsiperipheral_response) | Response structure.| 

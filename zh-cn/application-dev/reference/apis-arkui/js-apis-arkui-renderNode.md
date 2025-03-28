@@ -680,7 +680,7 @@ set clipToFrame(useClip: boolean)
 
 | 参数名  | 类型    | 必填 | 说明               |
 | ------- | ------- | ---- | ------------------ |
-| useClip | boolean | 是   | 设置是否进行剪裁。 |
+| useClip | boolean | 是   | 设置是否进行剪裁。<br/>true表示对当前RenderNode剪裁，false表示不对当前RenderNode剪裁。 |
 
 get clipToFrame(): boolean
 
@@ -694,7 +694,7 @@ get clipToFrame(): boolean
 
 | 类型    | 说明                                                |
 | ------- | --------------------------------------------------- |
-| boolean | 获取当前RenderNode是否需要进行剪裁，默认值为true。 |
+| boolean | 获取当前RenderNode是否需要进行剪裁，默认值为true。<br/>true表示对当前RenderNode剪裁，false表示不对当前RenderNode剪裁。 |
 
 **示例：**
 ```ts
@@ -1378,7 +1378,7 @@ set shadowColor(color: number)
 
 | 参数名 | 类型   | 必填 | 说明                                       |
 | ------ | ------ | ---- | ------------------------------------------ |
-| color  | number | 是   | 将要设置的RenderNode的阴影颜色，ARGB格式。 |
+| color  | number | 是   | 将要设置的RenderNode的阴影颜色，ARGB格式。<br/>取值范围是符合ARGB格式的颜色。 |
 
 get shadowColor(): number
 
@@ -1587,7 +1587,7 @@ set shadowAlpha(alpha: number)
 
 | 参数名 | 类型   | 必填 | 说明                                      |
 | ------ | ------ | ---- | ----------------------------------------- |
-| alpha  | number | 是   | 将要设置的RenderNode的阴影颜色的Alpha值。 |
+| alpha  | number | 是   | 将要设置的RenderNode的阴影颜色的Alpha值。<br/> 取值范围是alpha值。 |
 
 get shadowAlpha(): number
 
@@ -1659,7 +1659,7 @@ set shadowElevation(elevation: number)
 
 | 参数名    | 类型   | 必填 | 说明                             |
 | --------- | ------ | ---- | -------------------------------- |
-| elevation | number | 是   | 将要设置的RenderNode的光照高度。 |
+| elevation | number | 是   | 将要设置的RenderNode的光照高度。<br/> 取值范围：[0, +∞) |
 
 get shadowElevation(): number
 
@@ -1673,7 +1673,7 @@ get shadowElevation(): number
 
 | 类型   | 说明                                  |
 | ------ | ------------------------------------- |
-| number | 当前RenderNode的阴影高度，默认值为0。 |
+| number | 当前RenderNode的阴影高度，默认值为0。 <br/> 取值范围：[0, +∞) |
 
 **示例：**
 
@@ -1732,7 +1732,7 @@ set shadowRadius(radius: number)
 
 | 参数名 | 类型   | 必填 | 说明                                 |
 | ------ | ------ | ---- | ------------------------------------ |
-| radius | number | 是   | 将要设置的RenderNode的阴影模糊半径。 |
+| radius | number | 是   | 将要设置的RenderNode的阴影模糊半径。<br/> 取值范围：[0, +∞) |
 
 get shadowRadius(): number
 
@@ -1746,7 +1746,7 @@ get shadowRadius(): number
 
 | 类型   | 说明                                      |
 | ------ | ----------------------------------------- |
-| number | 当前RenderNode的阴影模糊半径，默认值为0。 |
+| number | 当前RenderNode的阴影模糊半径，默认值为0。<br/> 取值范围：[0, +∞) |
 
 **示例：**
 

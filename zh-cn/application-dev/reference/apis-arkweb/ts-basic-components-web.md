@@ -275,7 +275,7 @@ domStorageAccess(domStorageAccess: boolean)
 
 | 参数名              | 类型    | 必填   | 说明                                 |
 | ---------------- | ------- | ---- | ------------------------------------ |
-| domStorageAccess | boolean | 是    | 设置是否开启文档对象模型存储接口（DOM Storage API）权限。默认值：false。 |
+| domStorageAccess | boolean | 是    | ture表示设置开启文档对象模型存储接口（DOM Storage API）权限，false表示不设置开启文档对象模型存储接口（DOM Storage API）权限。默认值：false。 |
 
 **示例：**
 
@@ -371,6 +371,10 @@ imageAccess(imageAccess: boolean)
 javaScriptProxy(javaScriptProxy: JavaScriptProxy)
 
 注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。注册对象时，同步与异步方法列表请至少选择一项不为空，可同时注册两类方法。同一方法在同步与异步列表中重复注册，将默认异步调用。此接口只支持注册一个对象，若需要注册多个对象请使用[registerJavaScriptProxy<sup>9+</sup>](js-apis-webview.md#registerjavascriptproxy)。
+
+> **说明：**
+>
+> javaScriptProxy需要和deleteJavaScriptRegister接口配合使用，防止内存泄漏。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1034,7 +1038,7 @@ textZoomAtio(textZoomAtio: number)
 
 | 参数名          | 类型   | 必填  | 说明                             |
 | ------------ | ------ | ---- | -------------------------------- |
-| textZoomAtio | number | 是   | 要设置的页面的文本缩放百分比。<br>取值为整数，默认值：100，范围为(0, 2147483647]。 |
+| textZoomAtio | number | 是   | 要设置的页面的文本缩放百分比。取值为正整数。默认值：100。 |
 
 **示例：**
 
@@ -1815,7 +1819,7 @@ javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 > **说明：**
 >
 > - 该脚本将在页面的任何JavaScript代码之前运行，并且DOM树此时可能尚未加载、渲染完毕。
-> - 该脚本按照字典序执行，非数组本身顺序。
+> - 该脚本按照字典序执行，非数组本身顺序，若需数组本身顺序，建议使用[runJavaScriptOnDocumentStart](#runjavascriptondocumentstart15)接口。
 > - 不建议与[runJavaScriptOnDocumentStart](#runjavascriptondocumentstart15)同时使用。
 
 **系统能力：** SystemCapability.Web.Webview.Core

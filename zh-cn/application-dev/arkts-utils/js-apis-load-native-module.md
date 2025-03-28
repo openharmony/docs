@@ -13,7 +13,7 @@ loadNativeModule(moduleName: string): Object;
 | moduleName            | 加载的模块名       |
 
 > **说明**
-> moduleName指的是待加载模块所在的HAP下module.json5中配置的名字。
+> loadNativeModule加载的模块名指的是依赖方oh-package.json5文件的dependencies中的名字。
 >
 > loadNativeModule只局限于在UI主线程中进行模块加载。
 >
