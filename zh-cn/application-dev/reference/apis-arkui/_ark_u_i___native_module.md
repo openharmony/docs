@@ -756,8 +756,8 @@ ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR = 150002,ARKUI_ERROR_CODE_FOCUS_NO
 | void [OH_ArkUI_StyledString_AddPlaceholder](#oh_arkui_styledstring_addplaceholder) ([ArkUI_StyledString](#arkui_styledstring) \*handle, OH_Drawing_PlaceholderSpan \*placeholder) | 设置占位符。  | 
 | [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \* [OH_ArkUI_StyledString_Descriptor_Create](#oh_arkui_styledstring_descriptor_create) (void) | 创建属性字符串数据对象。  | 
 | void [OH_ArkUI_StyledString_Descriptor_Destroy](#oh_arkui_styledstring_descriptor_destroy) ([ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor) | 释放被ArkUI_StyledString_Descriptor对象占据的内存。  | 
-| int32_t [OH_ArkUI_UnmarshallStyledStringDescriptor](#oh_arkui_unmarshallstyledstringdescriptor) (uint8_t \*buffer, size_t bufferSize, [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor, size_t \*resultSize) | 将包含属性字符串信息的字节数组反序列化为属性字符串。  | 
-| int32_t [OH_ArkUI_MarshallStyledStringDescriptor](#oh_arkui_marshallstyledstringdescriptor) (uint8_t \*buffer, size_t bufferSize, [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor) | 将属性字符串信息序列化为字节数组。  | 
+| int32_t [OH_ArkUI_UnmarshallStyledStringDescriptor](#oh_arkui_unmarshallstyledstringdescriptor) (uint8_t \*buffer, size_t bufferSize, [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor) | 将包含属性字符串信息的字节数组反序列化为属性字符串。  | 
+| int32_t [OH_ArkUI_MarshallStyledStringDescriptor](#oh_arkui_marshallstyledstringdescriptor) (uint8_t \*buffer, size_t bufferSize, [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor, size_t \*resultSize) | 将属性字符串信息序列化为字节数组。  | 
 | const char \* [OH_ArkUI_ConvertToHtml](#oh_arkui_converttohtml) ([ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor) | 将属性字符串信息转化成html。  | 
 | int32_t [OH_ArkUI_RegisterLayoutCallbackOnNodeHandle](#oh_arkui_registerlayoutcallbackonnodehandle)([ArkUI_NodeHandle](#arkui_nodehandle) node, void\* userData, void (\*onLayoutCompleted)(void\* userData))| 注册组件布局完成回调方法。同一组件仅能注册一个布局完成回调方法。  |
 | int32_t [OH_ArkUI_RegisterDrawCallbackOnNodeHandle](#oh_arkui_registerdrawcallbackonnodehandle)([ArkUI_NodeHandle](#arkui_nodehandle) node, void\* userData, void (\*onDrawCompleted)(void\* userData))| 注册组件绘制完成回调方法。同一组件仅能注册一个绘制完成回调方法。  |
@@ -12135,7 +12135,7 @@ int32_t OH_ArkUI_LongPress_GetRepeatCount (const ArkUI_GestureEvent * event)
 ### OH_ArkUI_MarshallStyledStringDescriptor()
 
 ```
-int32_t OH_ArkUI_MarshallStyledStringDescriptor (uint8_t * buffer, size_t bufferSize, ArkUI_StyledString_Descriptor * descriptor )
+int32_t OH_ArkUI_MarshallStyledStringDescriptor (uint8_t * buffer, size_t bufferSize, ArkUI_StyledString_Descriptor * descriptor, size_t * resultSize )
 ```
 **描述：**
 
@@ -12150,6 +12150,7 @@ int32_t OH_ArkUI_MarshallStyledStringDescriptor (uint8_t * buffer, size_t buffer
 | buffer | 字节数组，用于存储属性字符串序列化后的数据。  | 
 | bufferSize | 字节数组长度。  | 
 | descriptor | 指向ArkUI_StyledString_Descriptor对象的指针。  | 
+| resultSize | 属性字符串转换后的字节数组实际长度。  | 
 
 **返回：**
 
@@ -14970,7 +14971,7 @@ ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数�
 ### OH_ArkUI_UnmarshallStyledStringDescriptor()
 
 ```
-int32_t OH_ArkUI_UnmarshallStyledStringDescriptor (uint8_t * buffer, size_t bufferSize, ArkUI_StyledString_Descriptor * descriptor, size_t * resultSize )
+int32_t OH_ArkUI_UnmarshallStyledStringDescriptor (uint8_t * buffer, size_t bufferSize, ArkUI_StyledString_Descriptor * descriptor)
 ```
 **描述：**
 
@@ -14985,7 +14986,6 @@ int32_t OH_ArkUI_UnmarshallStyledStringDescriptor (uint8_t * buffer, size_t buff
 | buffer | 待反序列化的字节数组。  | 
 | bufferSize | 字节数组长度。  | 
 | descriptor | 指向ArkUI_StyledString_Descriptor对象的指针。  | 
-| resultSize | 属性字符串转换后的字节数组实际长度。  | 
 
 **返回：**
 
