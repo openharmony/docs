@@ -7836,6 +7836,61 @@ let mimeType : media.AVMimeTypes = media.AVMimeTypes.APPLICATION_M3U8;
 mediaSource.setMimeType(mimeType);
 
 ```
+## media.createMediaSourceWithStreamData<sup>18+</sup>
+
+createMediaSourceWithStreamData(streams: Array<MediaStream>): MediaSource
+
+创建流媒体多码率媒体来源实例方法，当前仅支持HTTP-FLV协议格式多码率
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+**参数：**
+
+| 参数名  | 类型                                 | 必填 | 说明                                                  |
+| ------- | ------------------------------------ | ---- | ----------------------------------------------------- |
+| streams | Array<[MediaStream](#MediaStream18)> | 是   | - 可设置MediaStream数组，支持的流媒体格式：HTTP-FLV。 |
+
+**返回值：**
+
+| 类型                          | 说明                |
+| ----------------------------- | ------------------- |
+| [MediaSource](#mediasource12) | MediaSource返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 5400101  | No memory.                                                   |
+
+**示例1：**
+
+```ts
+let streams : Array<media.MediaStream> = [];
+streams.push({url: "http://xxx/480p.flv", width: 854, height: 480, bitrate: 800000});
+streams.push({url: "http:/xxx/720p.flv", width: 1280, height: 720, bitrate: 2000000});
+streams.push({url: "http:/xxx/1080p.flv", width: 1280, height: 720, bitrate: 2000000});
+let mediaSource : media.MediaSource = media.createMediaSourceWithStreamData(streams);
+```
+
+## MediaStream<sup>18+</sup>
+
+媒体流数据信息。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                                                         |
+| ------- | ------ | ---- | ------------------------------------------------------------ |
+| url     | string | 是   | 媒体资源链接                                                 |
+| width   | number | 是   | 媒体资源视频宽，未知时可以填0，此时无法通过[PlaybackStrategy](#playbackstrategy12)优选到 |
+| height  | number | 是   | 媒体资源视频高，未知时可以填0，此时无法通过[PlaybackStrategy](#playbackstrategy12)优选到 |
+| bitrate | number | 是   | 媒体资源码率，单位bps                                        |
 
 ## MediaSource<sup>12+</sup>
 
