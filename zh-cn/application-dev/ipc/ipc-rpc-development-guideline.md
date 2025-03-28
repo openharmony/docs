@@ -218,7 +218,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 
    IPC通信结束后，FA模型使用featureAbility的[disconnectAbility](../reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilitydisconnectability7)接口断开连接
 
-    ```ts
+  ```ts
     import { featureAbility } from "@kit.AbilityKit";
     import { Want, common } from '@kit.AbilityKit';
     import { rpc } from '@kit.IPCKit';
@@ -256,7 +256,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 
    Stage模型在获取context后用提供的[disconnectServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability-1)接口断开连接。
 
-      ```ts
+  ```ts
     import { featureAbility } from "@kit.AbilityKit";
     import { Want, common } from '@kit.AbilityKit';
     import { rpc } from '@kit.IPCKit';
