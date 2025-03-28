@@ -82,7 +82,7 @@ metadataBinding.decodeImage(encodeImage).then((metadata : string) =>{
 
 ## notifyMetadataBindingEvent(string)
 submitMetadata(metadata: string): void；
-将需要嵌入的信息传递给对应需要调用编码接口的应用或服务。  
+提交需要嵌入的信息给对应调用编码接口的服务。
 **系统能力**：SystemCapability.MultimodalAwarness.metadataBinding
 
 **参数**：  
@@ -112,7 +112,7 @@ metadataBinding.notifyMetadataBindingEvent(bundleName).then((metadata : string) 
 
 ## submitMetadata(string)
 function submitMetadata(metadata: string): void;  
-三方应用把需要编码的内容传递给MSDP，由MSDP决定适时传递给调用编码接口的系统应用或服务。  
+第三方应用将需要编码的内容传递给MSDP，MSDP决定适时将内容传递给调用编码接口的系统应用或服务。  
 **系统能力**：SystemCapability.MultimodalAwarness.metadataBinding
 
 **参数**：
@@ -142,7 +142,7 @@ metadataBinding.submitMetadata(metadata).catch((error:BusinessError)=>{
 ## metadataBinding.on('operationSubmitMetadata', string)
 metadataBinding.on(type: 'operationSubmitMetadata', bundleName: string, callback: Callback\<number\>): void;  
 
-订阅系统要求获取编码内容的事件，应用注册回调，当事件发生时回传编码内容。  
+订阅系统事件以获取编码内容，应用注册回调，事件发生时回传编码内容。  
 **系统能力**：SystemCapability.MultimodalAwarness.metadataBinding  
 **参数**： 
 
