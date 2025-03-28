@@ -2972,9 +2972,9 @@ avPlayer.off('seiMessageReceived')
 
 setSuperResolution(enabled: boolean) : Promise<void>
 
-动态开启或关闭超分算法，可以在initialized/prepared/playing/paused/completed/stopped状态调用。使用Promise方式返回结果。
+动态开启或关闭超分算法，可以在 'initialized' | 'prepared' | 'playing' | 'paused' | 'completed' | 'stopped' 状态调用。使用Promise方式返回结果。
 
-必须在调用[prepare()](#prepare9)之前通过[PlaybackStrategy](#playbackstrategy12)使能超分。
+在调用[prepare()](#prepare9)前先通过[PlaybackStrategy](#playbackstrategy12)使能超分。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -2984,7 +2984,7 @@ setSuperResolution(enabled: boolean) : Promise<void>
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| enabled    | boolean | 是   | true表示开启超分，false表示关闭超分。 |
+| enabled    | boolean | 是   | 表示是否开启超分。true表示开启超分，false表示关闭超分。 |
 
 **返回值：**
 
@@ -2994,6 +2994,8 @@ setSuperResolution(enabled: boolean) : Promise<void>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Media错误码](../errorcode-media.md)。
+
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
 | 5400102  | Operation not allowed. Return by promise. |
@@ -3002,7 +3004,6 @@ setSuperResolution(enabled: boolean) : Promise<void>
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
 avPlayer.setSuperResolution(true)
 ```
@@ -3011,9 +3012,9 @@ avPlayer.setSuperResolution(true)
 
 setVideoWindowSize(width: number, height: number) : Promise<void>
 
-动态设置超分算法的输出分辨率，可以在initialized/prepared/playing/paused/completed/stopped状态调用。使用Promise方式返回结果。输入参数须在 320x320 ~ 1920x1080 范围内。
+动态设置超分算法的输出分辨率，可以在 'initialized' | 'prepared' | 'playing' | 'paused' | 'completed' | 'stopped' 状态调用。使用Promise方式返回结果。输入参数须在 320x320 ~ 1920x1080 范围内，单位为像素。
 
-必须在调用[prepare()](#prepare9)之前通过[PlaybackStrategy](#playbackstrategy12)使能超分。
+在调用[prepare()](#prepare9)前先通过[PlaybackStrategy](#playbackstrategy12)使能超分。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -3023,8 +3024,8 @@ setVideoWindowSize(width: number, height: number) : Promise<void>
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| width    | number | 是   | 超分算法的目标输出视频宽度，取值范围为[320-1920]。 |
-| height    | number | 是   | 超分算法的目标输出视频高度，取值范围为[320-1080]。 |
+| width    | number | 是   | 超分算法的目标输出视频宽度，取值范围为[320-1920]，单位为像素。 |
+| height    | number | 是   | 超分算法的目标输出视频高度，取值范围为[320-1080]，单位为像素。 |
 
 **返回值：**
 
@@ -3033,6 +3034,8 @@ setVideoWindowSize(width: number, height: number) : Promise<void>
 | Promise\<void> | 配置超分目标输出分辨率setVideoWindowSize方法的Promise返回值。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Media错误码](../errorcode-media.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
@@ -3043,7 +3046,6 @@ setVideoWindowSize(width: number, height: number) : Promise<void>
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
 avPlayer.setVideoWindowSize(1920, 1080)
 ```
