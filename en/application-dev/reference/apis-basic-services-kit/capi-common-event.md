@@ -243,7 +243,7 @@ typedef struct CommonEvent_PublishInfo CommonEvent_PublishInfo
 
 Describes an attribute object used for publishing a custom common event.
 
-**Since**: 16
+**Since**: 18
 
 ## Enum Description
 
@@ -1639,7 +1639,7 @@ CommonEvent_Parameters* OH_CommonEvent_CreateParameters()
 
 Creates an additional information object of a common event.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1659,7 +1659,7 @@ void OH_CommonEvent_DestroyParameters(CommonEvent_Parameters* param)
 
 Destroys an additional information object of a common event.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1681,7 +1681,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetIntToParameters(CommonEvent_Parameters* pa
 
 Sets the additional information of a common event. The value is the content of the int type.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1705,7 +1705,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetIntArrayToParameters(CommonEvent_Parameter
 
 Sets the additional information of a common event. The value is the content of the int array type.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1730,7 +1730,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetLongToParameters(CommonEvent_Parameters* p
 
 Sets the additional information of a common event. The value is the content of the long type.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1754,7 +1754,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetLongArrayToParameters(CommonEvent_Paramete
 
 Sets the additional information of a common event. The value is the content of the long array type.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1779,7 +1779,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetDoubleToParameters(CommonEvent_Parameters*
 
 Sets the additional information of a common event. The value is the content of the double type.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1803,7 +1803,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetDoubleArrayToParameters(CommonEvent_Parame
 
 Sets the additional information of a common event. The value is the content of the double array type.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1828,7 +1828,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetBoolToParameters(CommonEvent_Parameters* p
 
 Sets the additional information of a common event. The value is the content of the Boolean type.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1852,7 +1852,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetBoolArrayToParameters(CommonEvent_Paramete
 
 Sets the additional information of a common event. The value is the content of the Boolean array type.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1877,7 +1877,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetCharToParameters(CommonEvent_Parameters* p
 
 Sets the additional information of a common event. The value is the content of the character type.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1901,7 +1901,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetCharArrayToParameters(CommonEvent_Paramete
 
 Sets the additional information of a common event. The value is the content of the character array type.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1926,7 +1926,7 @@ CommonEvent_PublishInfo* OH_CommonEvent_CreatePublishInfo(bool ordered)
 
 Creates an attribute object of a common event.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1948,7 +1948,7 @@ void OH_CommonEvent_DestroyPublishInfo(CommonEvent_PublishInfo* info)
 
 Destroys an attribute object of a common event.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1970,7 +1970,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoBundleName(CommonEvent_PublishI
 
 Sets the bundle name of a common event.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1993,7 +1993,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoPermissions(CommonEvent_Publish
 
 Sets the common event permissions.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -2017,7 +2017,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoCode(CommonEvent_PublishInfo* i
 
 Sets the result code of a common event.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -2040,7 +2040,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoData(CommonEvent_PublishInfo* i
 
 Sets the result data of a common event.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -2064,7 +2064,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoParameters(CommonEvent_PublishI
 
 Sets the additional information of a common event.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -2087,7 +2087,7 @@ CommonEvent_ErrCode OH_CommonEvent_Publish(const char* event)
 
 Publishes a custom common event.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -2109,7 +2109,7 @@ CommonEvent_ErrCode OH_CommonEvent_PublishWithInfo(const char* event, const Comm
 
 Publishes a custom common event with specified attributes.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -2132,7 +2132,7 @@ bool OH_CommonEvent_IsOrderedCommonEvent(const CommonEvent_Subscriber* subscribe
 
 Checks whether a common event is an ordered common event.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -2154,7 +2154,7 @@ bool OH_CommonEvent_FinishCommonEvent(CommonEvent_Subscriber* subscriber)
 
 Finishes an ordered common event.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -2176,7 +2176,7 @@ bool OH_CommonEvent_GetAbortCommonEvent(const CommonEvent_Subscriber* subscriber
 
 Checks whether an ordered common event is aborted.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -2198,7 +2198,7 @@ bool OH_CommonEvent_AbortCommonEvent(CommonEvent_Subscriber* subscriber)
 
 Aborts an ordered common event when used with **OH_CommonEvent_FinishCommonEvent**. After the abort, the common event is not sent to the next subscriber.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -2220,7 +2220,7 @@ bool OH_CommonEvent_ClearAbortCommonEvent(CommonEvent_Subscriber* subscriber)
 
 Clears the aborted state of an ordered common event when used with **OH_CommonEvent_FinishCommonEvent**. After the clearance, the common event is sent to the next subscriber.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -2242,7 +2242,7 @@ int32_t OH_CommonEvent_GetCodeFromSubscriber(const CommonEvent_Subscriber* subsc
 
 Obtains the result code of an ordered common event.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -2264,7 +2264,7 @@ const char* OH_CommonEvent_GetDataFromSubscriber(const CommonEvent_Subscriber* s
 
 Obtains the result data of an ordered common event.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -2286,7 +2286,7 @@ bool OH_CommonEvent_SetCodeToSubscriber(CommonEvent_Subscriber* subscriber, int3
 
 Sets the result code of an ordered common event.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -2309,7 +2309,7 @@ bool OH_CommonEvent_SetDataToSubscriber(CommonEvent_Subscriber* subscriber, cons
 
 Sets the result data of an ordered common event.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
