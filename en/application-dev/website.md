@@ -151,6 +151,7 @@
             - [Common action and entities Values (Not Recommended)](application-models/actions-entities.md)
           - [Component Startup Rules (Stage Model)](application-models/component-startup-rules.md)
           - [AppStartup](application-models/app-startup.md)
+          - [Obtaining Reasons for Abnormal Application Exits](application-models/ability-exit-info-record.md)
           <!--Del-->
           - Inter-Device Application Component Interaction (Hopping)<!--hop-->
             - [Hopping Overview](application-models/inter-device-interaction-hop-overview.md)
@@ -1828,6 +1829,7 @@
           - [@ohos.app.ability.AbilityConstant (AbilityConstant) (System API)](reference/apis-ability-kit/js-apis-app-ability-abilityConstant-sys.md)
           - [@ohos.app.ability.application (Application) (System API)](reference/apis-ability-kit/js-apis-app-ability-application-sys.md)
           - [@ohos.app.ability.AutoFillExtensionAbility (AutoFillExtensionAbility) (System API)](reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)
+          - [@ohos.app.ability.autoFillManager (autoFillManager) (System API)](reference/apis-ability-kit/js-apis-app-ability-autoFillManager-sys.md)
           - [@ohos.app.ability.autoStartupManager (autoStartupManager) (System API)](reference/apis-ability-kit/js-apis-app-ability-autoStartupManager-sys.md)
           - [@ohos.app.ability.common (Context) (System API)](reference/apis-ability-kit/js-apis-app-ability-common-sys.md)
           - [@ohos.app.ability.dialogSession (dialogSession) (System API)](reference/apis-ability-kit/js-apis-app-ability-dialogSession-sys.md)
