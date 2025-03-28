@@ -3956,10 +3956,10 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 
 |                名称               |                  类型                 | 必填  |        说明      |
 | --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| id         | [FilterOptions](#filteroptions15)[] | 否   | 联系人id。     |
-| name         | [FilterOptions](#filteroptions15)[]  | 否   | 联系人姓名。     |
+| id         | Array[[FilterOptions](#filteroptions15)] | 否   | 联系人id。     |
+| name         | Array[[FilterOptions](#filteroptions15)]  | 否   | 联系人姓名。     |
 | dataItem         | [DataFilter](#datafilter15) | 否   | 联系人数据过滤项。     |
-| focusModeList        | [FilterOptions](#filteroptions15)[]  | 否   | 专注模式。     |
+| focusModeList        | Array[[FilterOptions](#filteroptions15)]  | 否   | 专注模式。     |
 
 ## FilterOptions<sup>15+</sup>
 
@@ -3972,7 +3972,7 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 |                名称               |                  类型                 | 必填  |        说明      |
 | --------------------------------- | ------------------------------------- | ---- | ---------------- |
 | filterCondition         | [FilterCondition](#filtercondition15) | 是   | 过滤条件。     |
-| value        | string 或 ValueType[] | 否   | 过滤值，默认为undefined。     |
+| value        | string \| Array[ValueType] | 否   | 过滤值，默认为undefined。     |
 
 ## FilterCondition<sup>15+</sup>
 
