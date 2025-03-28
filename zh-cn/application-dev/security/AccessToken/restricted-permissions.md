@@ -526,3 +526,17 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 **授权方式**：系统授权（system_grant）
 
 **起始版本**：18
+
+### ohos.permission.MANAGE_SCREEN_TIME_GUARD
+
+允许应用调用屏幕时间守护相关接口，进行屏幕使用限制、应用访问控制、管控使用时间等操作。
+
+<!--RP40--><!--RP40End-->
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：20
