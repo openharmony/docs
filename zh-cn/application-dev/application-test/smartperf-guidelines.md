@@ -867,7 +867,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
    #
   ```
 
-- 启动一个进程来监听start和stop命令的socket消息。
+- 启动一个进程来监听start和stop命令的socket消息
 
   ```
    # SP_daemon -server

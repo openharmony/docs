@@ -268,7 +268,7 @@ async function setListener() {
 具体的接口参考[接口注册](../../reference/apis-avsession-kit/js-apis-avsession.md#onplay10)。
 > **说明：**
 >
-> 创建AVSession后，请先注册应用支持的控制命令，再激活 Session 
+> 创建AVSession后，请先注册应用支持的控制命令，再激活 Session。 
 
 媒体资源支持的控制命令列表：
 

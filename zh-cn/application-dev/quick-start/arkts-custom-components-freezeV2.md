@@ -454,6 +454,119 @@ struct ChildComponent {
 
 ![freeze_repeat_L2_unfreeze.gif](figures/freeze_repeat_L2_unfreeze.gif)
 
+### 仅子组件开启组件冻结
+
+如果开发者只想冻结某个子组件，可以选择只在子组件设置freezeWhenInactive为true。
+
+```ts
+// Page1.ets
+@ObservedV2
+class Book {
+  @Trace name: string = 'TS';
+
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+@Entry
+@ComponentV2
+struct Page1 {
+  pageInfo: NavPathStack = new NavPathStack();
+
+  build() {
+    Column() {
+      Navigation(this.pageInfo) {
+        Child()
+
+        Button('Go to next page').fontSize(30)
+          .onClick(() => {
+            this.pageInfo.pushPathByName('Page2', null);
+          })
+      }
+    }
+  }
+}
+
+@ComponentV2({ freezeWhenInactive: true })
+export struct Child {
+  @Local bookTest: Book = new Book(`A Midsummer Night's Dream`);
+
+  @Monitor('bookTest.name')
+  onMessageChange(monitor: IMonitor) {
+    console.log(`The book name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+  }
+
+  textUpdate(): number {
+    console.log('The text is update');
+    return 25;
+  }
+
+  build() {
+    Column() {
+      Text(`The book name is ${this.bookTest.name}`).fontSize(this.textUpdate())
+
+      Button('change BookName')
+        .onClick(() => {
+          setTimeout(() => {
+            this.bookTest = new Book('Jane Austen oPride and Prejudice');
+          }, 3000);
+        })
+    }
+  }
+}
+```
+
+```ts
+// Page2.ets
+@Builder
+function Page2Builder() {
+  Page2()
+}
+
+@ComponentV2
+struct Page2 {
+  pathStack: NavPathStack = new NavPathStack();
+
+  build() {
+    NavDestination() {
+      Column() {
+        Text('This is the Page2')
+
+        Button('Back').fontSize(30)
+          .onClick(() => {
+            this.pathStack.pop();
+          })
+      }
+    }.onReady((context: NavDestinationContext) => {
+      this.pathStack = context.pathStack;
+    })
+  }
+}
+```
+
+使用Navigation时，需要添加配置系统路由表文件src/main/resources/base/profile/route_map.json，并替换pageSourceFile为Page2页面的路径，并且在module.json5中添加："routerMap": "$profile:route_map"。
+
+```json
+{
+  "routerMap": [
+    {
+      "name": "Page2",
+      "pageSourceFile": "src/main/ets/pages/Page2.ets",
+      "buildFunction": "Page2Builder",
+      "data": {
+        "description" : "This is the Page2"
+      }
+    }
+  ]
+}
+```
+
+上述示例：
+- Page1的子组件Child，设置`freezeWhenInactive: true`, 开启了组件冻结功能。
+- 点击`Button('change BookName')`，然后3s内点击`Button('Go to next page')`。在更新bookTest的时候，已经跳转到Page2，Page1的组件处于inactive状态，又因为Child组件开启了组件冻结，状态变量`@Local bookTest`将不响应更新，其@Monitor装饰的回调方法不会被调用，状态变量关联的组件不会刷新。
+- 点击`Button('Back')`回到前一个页面，调用@Monitor装饰的回调方法，状态变量关联的组件刷新。
+
 ### 混用场景
 
 组件冻结混用场景即当支持组件冻结的场景彼此之间组合使用，对于不同的API version版本，冻结行为会有不同。给父组件设置组件冻结标志，在API version 17及以下，当父组件解冻时，会解冻自己子组件所有的节点；从API version 18开始，父组件解冻时，只会解冻子组件的屏上节点，详细说明见[\@Compone的自定义组件冻结的混用场景](./arkts-custom-components-freeze.md#组件混用)。

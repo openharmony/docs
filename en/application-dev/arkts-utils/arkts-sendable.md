@@ -44,7 +44,9 @@ A Sendable class must meet the following requirements:
 >
 > - Since API version 12, the \@Sendable decorator can be used to verify Sendable functions.
 >
-> - To use a Sendable function in API version 12, you must configure "compatibleSdkVersionStage": "beta3" in the project. Otherwise, the function does not take effect. For details, see [build-profile.json5](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-profile-V5).
+> - For projects with API version 12, to use the \@Sendable decorator to verify Sendable functions, you must configure "compatibleSdkVersionStage": "beta3" in the project. Otherwise, the Sendable feature does not take effect. For details, see [build-profile.json5](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-profile-V5).
+>
+> - For projects with API versions later than 12, you can directly use the \@Sendable decorator to verify Sendable functions without any other configuration.
 
 A Sendable function must meet the following requirements:
 
@@ -118,7 +120,7 @@ The \@Sendable decorator declares and verifies Sendable classes and functions.
 | Class inheritance restrictions| Sendable classes can only inherit from other Sendable classes. Regular classes cannot inherit from Sendable classes.|
 | Property type restrictions| 1. The following types are supported: string, number, boolean, bigint, null, undefined, Sendable class, collections.Array, collections.Map, collections.Set, and ArkTSUtils.locks.AsyncLock.<br>2. Closure variables are not allowed.<br>3. Private properties defined with \# are not supported; use **private** instead.<br>4. Computed properties are not supported.|
 | Other property restrictions| Member properties must be initialized explicitly. They cannot be followed by exclamation marks (!).|
-| Parameter restrictions for decorated functions or class methods| Local variables, parameters, and variables imported through **import** are allowed. Closure variables are not allowed, except for top-level Sendable classes and functions. Since API version 16, functions or class objects decorated by @Sendable can also access variables exported from the same file.|
+| Parameter restrictions for decorated functions or class methods| Local variables, parameters, and variables imported through **import** are allowed. Closure variables are not allowed, except for top-level Sendable classes and functions. Since API version 18, functions or class objects decorated by @Sendable can also access variables exported from the same file.|
 | Restrictions for Sendable classes and functions| Adding or deleting properties is not allowed. Modifying properties is allowed, but the type must remain consistent before and after modification. Modifying methods is not supported.|
 | Use scenario| 1. Scenarios where class methods or Sendable functions are used in TaskPool or Worker.<br>2. Scenarios involving large amounts of object data transmission. The time required for serialization increases with the data volume. After transforming data with Sendable, the efficiency of transmitting 100 KB of data is approximately 20 times higher, and for 1 MB of data, it is about 100 times higher.|
 

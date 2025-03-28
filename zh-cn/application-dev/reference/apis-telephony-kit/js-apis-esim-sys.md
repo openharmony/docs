@@ -1053,7 +1053,7 @@ euicc信息。
 | RESULT_EXCEEDED_CONFIRMATION_CODE_TRY_LIMIT              | 213 | 已达到最大确认码尝试次数。      |
 | RESULT_NO_PROFILE_ON_SERVER                              | 214 | 服务器上没有可供下载的配置文件。 |
 | RESULT_TRANSACTION_ID_INVALID                            | 215 | 事务ID无效。    |
-| RESULT_SERVER_ADDRESS_INVALID                            | 218 | 服务器地址无效。 |
+| RESULT_SERVER_ADDRESS_INVALID                            | 216 | 服务器地址无效。 |
 | RESULT_GET_BOUND_PROFILE_PACKAGE_FAILED                  | 217 | 获取BPP失败。    |
 | RESULT_USER_CANCEL_DOWNLOAD                              | 218 | 最终用户取消下载。   |
 | RESULT_SERVER_UNAVAILABLE                                | 220 | 运营商服务器不可用。 |

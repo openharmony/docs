@@ -449,7 +449,7 @@ onReachStart(event: () => void)
 
 onReachEnd(event: () => void)
 
-瀑布流组件到底末尾位置时触发。
+瀑布流组件到达末尾位置时触发。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1211,6 +1211,7 @@ struct WaterFlowDemo {
 
 该示例通过edgeEffect接口，实现了WaterFlow组件设置单边边缘效果。
 
+<!--code_no_check-->
 ```ts
 // Index.ets
 import { WaterFlowDataSource } from './WaterFlowDataSource';
@@ -1275,6 +1276,7 @@ struct WaterFlowDemo {
 
 该示例通过footerContent接口，实现了WaterFlow组件设置尾部组件。通过ComponentContent的update函数更新尾部组件。
 
+<!--code_no_check-->
 ```ts
 // Index.ets
 import { ComponentContent, UIContext } from "@kit.ArkUI";

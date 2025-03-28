@@ -19,7 +19,7 @@
 | -------- | -------- |
 | const intptr_t \* [externalReferences](#externalreferences) | 可选。嵌入器中可选的、以nullptr结尾的原始地址数组， 虚拟机可以在序列化期间与之匹配，并可用于反序列化。 此数组及其内容必须在虚拟机实例的整个生命周期内保持有效。  | 
 | int \* [argc](#argc) | 虚拟机的标志。如果removeFlags为true，则已识别的标志将从 （argc, argv）中移除。请注意，这些标志当前仅限于V8虚拟机。 它们主要用于开发。不要将它们用于生产环境，因为如果虚拟机与 开发环境不同，它们可能不会生效。  | 
-| char \*\* [argv](#argv) | argv .  | 
+| char \*\* [argv](#argv) | 传入的参数列表。  | 
 | bool [removeFlags](#removeflags) | 删除标志。  | 
 
 
@@ -41,7 +41,7 @@ int* JSVM_InitOptions::argc
 char** JSVM_InitOptions::argv
 ```
 **描述**
-argv .
+传入的参数列表。
 
 
 ### externalReferences

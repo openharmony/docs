@@ -1,4 +1,4 @@
-# Location Kit
+# Location Kit<!--location-api-->
 
 - [Introduction to Location Kit](location-kit-intro.md)
 - [Applying for Location Permissions (ArkTS)](location-permission-guidelines.md)

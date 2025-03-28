@@ -545,9 +545,9 @@ FFRT_C_API ffrt_queue_t ffrt_get_current_queue (void )
 **Description**
 Obtains the ArkTS Worker thread queue.
 
-**Deprecated from**: 15
-
 **Since**: 12
+
+**Deprecated version**: 18
 
 **Returns**
 
