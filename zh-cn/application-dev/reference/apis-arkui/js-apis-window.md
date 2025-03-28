@@ -11362,7 +11362,7 @@ setWindowRectAutoSave(enabled: boolean): Promise&lt;void&gt;
 
 设置主窗的尺寸记忆是否启用，使用Promise异步回调，仅对2in1设备生效。
 
-调用此接口默认[specified启动模式](../../../application-dev/application-models/uiability-launch-type.md#specified启动模式)下不会单独对窗口进行单独记忆。
+[specified启动模式](../../application-models/uiability-launch-type.md#specified启动模式)下, 调用此接口不会单独对窗口进行单独记忆。
 
 主窗口调用该接口时，设置主窗口的尺寸记忆是否启用。启用主窗口尺寸记忆功能后，在同一个UIAbility下，记忆最后关闭的窗口的尺寸和模式。
 
