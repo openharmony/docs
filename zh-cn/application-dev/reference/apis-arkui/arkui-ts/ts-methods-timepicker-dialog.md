@@ -18,7 +18,9 @@ static show(options?: TimePickerDialogOptions)
 
 定义时间滑动选择器弹窗并弹出。
 
-从API version 8开始支持，从API version 18开始废弃，建议使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showTimePickerDialog](../js-apis-arkui-UIContext.md#showtimepickerdialog)替代。
+> **说明：**
+> 
+> 从API version 18开始废弃，推荐使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showTimePickerDialog](../js-apis-arkui-UIContext.md#showtimepickerdialog)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

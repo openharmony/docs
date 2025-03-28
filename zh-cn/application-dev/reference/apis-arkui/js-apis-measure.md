@@ -20,11 +20,15 @@
 import { MeasureText } from '@kit.ArkUI'
 ```
 
-## MeasureText.measureText
+## MeasureText.measureText<sup>(deprecated)</sup>
 
 static measureText(options: MeasureOptions): number
 
 计算指定文本的宽度。
+
+> **说明：**
+>
+> 从API version 18开始废弃，推荐使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getMeasureUtils](js-apis-arkui-UIContext.md#getmeasureutils12)获取[MeasureUtils](js-apis-arkui-UIContext.md#measureutils12)实例，再通过此实例调用替代方法[measureText](js-apis-arkui-UIContext.md#measuretext12)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -73,11 +77,15 @@ struct Index {
 }
 ```
 
-## MeasureText.measureTextSize<sup>10+</sup>
+## MeasureText.measureTextSize<sup>(deprecated)</sup>
 
 static measureTextSize(options: MeasureOptions): SizeOptions
 
 计算指定文本的宽度和高度。
+
+> **说明：**
+>
+> 从API version 18开始废弃，推荐使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getMeasureUtils](js-apis-arkui-UIContext.md#getmeasureutils12)获取[MeasureUtils](js-apis-arkui-UIContext.md#measureutils12)实例，再通过此实例调用替代方法[measureTextSize](js-apis-arkui-UIContext.md#measuretextsize12)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

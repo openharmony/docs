@@ -14,11 +14,15 @@
 import { inspector } from '@kit.ArkUI'
 ```
 
-## inspector.createComponentObserver
+## inspector.createComponentObserver<sup>(deprecated)</sup>
 
 createComponentObserver(id: string): ComponentObserver
 
 绑定指定组件，返回对应的监听句柄。
+
+> **说明：**
+> 
+> 从API version 18开始废弃，推荐使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getUIInspector](js-apis-arkui-UIContext.md#getuiinspector)获取[UIInspector](js-apis-arkui-UIContext.md#uiinspector)实例，再通过此实例调用替代方法[createComponentObserver](js-apis-arkui-UIContext.md#createcomponentobserver)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

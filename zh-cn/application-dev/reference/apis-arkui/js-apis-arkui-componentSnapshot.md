@@ -19,7 +19,7 @@
 import { componentSnapshot } from '@kit.ArkUI';
 ```
 
-## componentSnapshot.get
+## componentSnapshot.get<sup>(deprecated)</sup>
 
 get(id: string, callback: AsyncCallback<image.PixelMap>, options?: SnapshotOptions): void
 
@@ -28,6 +28,8 @@ get(id: string, callback: AsyncCallback<image.PixelMap>, options?: SnapshotOptio
 > **说明：** 
 >
 > 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
+> 
+> 从API version 18开始废弃，推荐使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)实例，再通过此实例调用替代方法[get](js-apis-arkui-UIContext.md#get12)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -92,7 +94,7 @@ struct SnapshotExample {
 
 ![componentget](figures/componentget.gif) 
 
-## componentSnapshot.get
+## componentSnapshot.get<sup>(deprecated)</sup>
 
 get(id: string, options?: SnapshotOptions): Promise<image.PixelMap>
 
@@ -101,6 +103,8 @@ get(id: string, options?: SnapshotOptions): Promise<image.PixelMap>
 > **说明：**
 >
 > 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
+> 
+> 从API version 18开始废弃，推荐使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)实例，再通过此实例调用替代方法[get](js-apis-arkui-UIContext.md#get12-1)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -169,7 +173,7 @@ struct SnapshotExample {
 
 ![componentget](figures/componentget.gif) 
 
-## componentSnapshot.createFromBuilder
+## componentSnapshot.createFromBuilder<sup>(deprecated)</sup>
 
 createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap>, delay?: number, checkImageStatus?: boolean, options?: SnapshotOptions): void
 
@@ -182,6 +186,8 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 > builder中的组件不支持设置动画相关的属性，如[transition](arkui-ts/ts-transition-animation-component.md)。
 >
 > 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/ts-basic-components-web.md)组件。
+>
+> 从API version 18开始废弃，推荐使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)实例，再通过此实例调用替代方法[createFromBuilder](js-apis-arkui-UIContext.md#createfrombuilder12)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -272,7 +278,7 @@ struct OffscreenSnapshotExample {
 
 ![componentcreate](figures/componentcreate.gif) 
 
-## componentSnapshot.createFromBuilder
+## componentSnapshot.createFromBuilder<sup>(deprecated)</sup>
 
 createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boolean, options?: SnapshotOptions): Promise<image.PixelMap>
 
@@ -285,6 +291,8 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 > builder中的组件不支持设置动画相关的属性，如[transition](arkui-ts/ts-transition-animation-component.md)。
 >
 > 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/ts-basic-components-web.md)组件。
+>
+> 从API version 18开始废弃，推荐使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)实例，再通过此实例调用替代方法[createFromBuilder](js-apis-arkui-UIContext.md#createfrombuilder12-1)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

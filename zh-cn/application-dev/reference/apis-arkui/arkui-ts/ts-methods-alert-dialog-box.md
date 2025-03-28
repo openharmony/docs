@@ -12,11 +12,15 @@
 
 ## AlertDialog
 
-### show
+### show<sup>(deprecated)</sup>
 
 static show(value: AlertDialogParamWithConfirm | AlertDialogParamWithButtons | AlertDialogParamWithOptions)
 
 定义警告弹窗并弹出。
+
+> **说明：**
+> 
+> 从API version 18开始废弃，推荐使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showAlertDialog](../js-apis-arkui-UIContext.md#showalertdialog)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

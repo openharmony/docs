@@ -6,10 +6,15 @@
 > - 该接口从API version 9开始支持。
 > - 该接口仅限Stage模型使用。
 
-## getContext
+## getContext<sup>(deprecated)</sup>
+
 getContext(component?: Object):Context
 
 获取与页面上下文组件关联的Context对象。
+
+> **说明：**
+> 
+> 从API version 18开始废弃，推荐使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getHostContext](js-apis-arkui-UIContext.md#gethostcontext12)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
