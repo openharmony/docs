@@ -177,7 +177,7 @@ metadataBinding.on('operationSubmitMetadata', bundleName, (evnet:number)=>{
 
 ## metadataBinding.off('operationSubmitMetadata', string)
 off(type: 'operationSubmitMetadata', bundleName: string, callback?: Callback\<number>): void;  
-解除订阅系统获取编码内容的事件。解注册回调接口。  
+取消订阅系统获取编码内容的事件。取消注册回调接口。  
 **系统能力**：SystemCapability.MultimodalAwarness.metadataBinding  
 **参数**：
 
