@@ -23,9 +23,9 @@ setTimeout(handler: Function | string, delay?: number, ...arguments: any[]): num
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| handler | Function \| string | 是 | 定时器到期后执行函数。类型为string则打印Error信息，不进行其他处理。 |
-| delay | number | 否 | 延迟的毫秒数，函数的调用会在该延迟之后发生。建议整数，若传入小数，会被向下取整。<br>如果省略该参数，delay取默认值0，意味着“马上”执行，更准确的说，在下一个事件循环执行。<br>注意：<br>1. 无论是哪种情况，实际延迟可能会比预期长一些。<br>2. 如果值小于1，会被默认取0。 |
-| ...arguments | any[] | 否 | 附加参数，一旦定时器到期，它们会作为参数传递给handler。 |
+| handler | Function \| string | 是 | 类型为Function表示定时器到期后执行函数；<br>类型为string则通过Error方式打印string中内容，不进行其他处理。 |
+| delay | number | 否 | 延迟的毫秒数，函数的调用会在该延迟之后发生。建议传入整数，若传入小数，会被向下取整。<br>如果省略该参数，delay取默认值0。<br>**注意**：<br>1. 无论是哪种情况，实际延迟可能会比预期长一些。<br>2. 如果值小于1，会被默认取0。<br>3. delay值受系统限制，超出2^32 - 1时会溢出，delay值为0。|
+| ...arguments | any[] | 否 | 附加参数，仅当handler类型为Function时生效，作为参数传递给handler。<br/>arguments参数数量少于handler函数参数数量时，未被arguments覆盖的参数会被设为undefined。<br/>arguments参数数量多于handler函数参数数量时，多余的arguments参数会被忽略，但可通过handler函数内部的arguments对象访问。|
 
 **返回值：**
 
@@ -33,7 +33,7 @@ setTimeout(handler: Function | string, delay?: number, ...arguments: any[]): num
 | -------- | -------- |
 | number | 该定时器的ID，定时器ID为进程共享，是从0开始顺序增加的整数，无重复值。 |
 
-**示例1：不带参数**
+**示例1**：不带参数。
 
   ```ts
   setTimeout(() => {
@@ -41,13 +41,40 @@ setTimeout(handler: Function | string, delay?: number, ...arguments: any[]): num
   }, 1000);
   ```
 
-**示例2：带参数传递给函数**
+**示例2**：带参数传递给函数(handle为function时参数与arguments参数个数一致)。
 
   ```ts
   function myFunction(param1: string, param2: string) {
     console.info(param1, param2);
   }
   setTimeout(myFunction, 1000, 'Hello', 'World');
+  ```
+
+**示例3**：带参数传递给函数(handle为function时参数比arguments参数个数少)。
+
+  ```ts
+  function myFunction(a: string, b: string) {
+    console.info(a);
+    // Output: hello
+    console.info(b);
+    // Output: world
+    console.info(JSON.stringify(arguments));
+    // Output: {"0":"hello","1":"world","2":"c++","3":"js"}
+  }
+  setTimeout(myFunction, 1000, 'hello', 'world', 'C++', 'js');
+  ```
+**示例4**：带参数传递给函数(handle为function时参数比arguments参数个数多)。
+
+  ```ts
+  function myFunction(a: string, b: string) {
+    console.info(a);
+    // Output: hello
+    console.info(b);
+    // Output: undefined
+    console.info(JSON.stringify(arguments));
+    // Output: {"0":"hello"}
+  }
+  setTimeout(myFunction, 1000, 'hello');
   ```
 
 ## clearTimeout
@@ -66,7 +93,7 @@ clearTimeout(timeoutID?: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| timeoutID | number | 否 | 要取消定时器的ID，&nbsp;是由setTimeout()返回的。如果省略该参数，则不取消任何定时任务，无任何处理。|
+| timeoutID | number | 否 | 要取消定时器的ID，需要与调用setTimeout设置定时器的返回值一致。如果省略该参数或要取消的定时器ID不存在时，则不取消任何定时任务，无任何处理。|
 
 **示例：**
 
@@ -93,9 +120,9 @@ setInterval(handler: Function | string, delay: number, ...arguments: any[]): num
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| handler | Function \| string | 是 | 要重复调用的函数。类型为string则打印Error信息，不进行其他处理。|
-| delay | number | 是 | 延迟的毫秒数，函数的调用会在该延迟之后发生。 |
-| ...arguments | any[] | 否 | 附加参数，一旦定时器到期，他们会作为参数传递给handler。 |
+| handler | Function \| string | 是 | 类型为Function表示定时器到期后执行函数；<br>类型为string则通过Error方式打印string中内容，不进行其他处理。 |
+| delay | number | 否 | 延迟的毫秒数，函数的调用会在该延迟之后发生。建议传入整数，若传入小数，会被向下取整。<br>如果省略该参数，delay取默认值0。<br>**注意**：<br>1. 无论是哪种情况，实际延迟可能会比预期长一些。<br>2. 如果值小于1，会被默认取0。<br>3. delay值受系统限制，超出2^32 - 1时会溢出，delay值为0。|
+| ...arguments | any[] | 否 | 附加参数，仅当handler类型为Function时生效，作为参数传递给handler。<br/>arguments参数数量少于handler函数参数数量时，未被arguments覆盖的参数会被设为undefined。<br/>arguments参数数量多于handler函数参数数量时，多余的arguments参数会被忽略，但可通过handler函数内部的arguments对象访问。|
 
 **返回值：**
 
@@ -128,7 +155,7 @@ clearInterval(intervalID?: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| intervalID | number | 否 | 要取消的重复定时器的ID，是由&nbsp;setInterval()&nbsp;返回的。如果省略该参数，则不取消任何定时任务，无任何处理。|
+| intervalID | number | 否 | 要取消的重复定时器的ID，需要与调用setInterval设置重复定时器的返回值一致。如果省略该参数或要取消的重复定时器ID不存在时，则不取消任何定时任务，无任何处理。|
 
 **示例：**
 
