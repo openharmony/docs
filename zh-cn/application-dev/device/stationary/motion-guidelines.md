@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-当应用需要获取用户动作时，可以调用motion模块，例如：需要判断用户当前使用左手还是右手在操作设备屏幕。
+当应用需要获取用户动作时，可以调用motion模块，例如判断用户当前是用左手还是右手操作设备屏幕。
 
 详细的接口介绍请参考[Motion接口](../../reference/apis-multimodalawareness-kit/js-apis-awareness-motion.md)。
 
@@ -16,7 +16,7 @@
 
 ## 约束与限制
 
-设备需要支持触控屏，并且支持特定芯片。
+设备需支持触控屏并兼容特定芯片。
 
 
 
@@ -29,7 +29,7 @@
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
-2. 定义一个回调函数用来接收操作手结果
+2. 定义回调函数接收操作手结果
 
    ```
    callback(data:motion.OperatingHandStatus) {
@@ -37,7 +37,7 @@
    }
    ```
 
-3. 订阅操作手感知事件
+3. 订阅操作手感知
 
    ```
    try {
@@ -49,7 +49,7 @@
    }
    ```
 
-4. 取消订阅操作手感知事件
+4. 取消订阅操作手感知
 
    ```
    try {
