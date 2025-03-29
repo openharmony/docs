@@ -1074,7 +1074,7 @@ isTorchSupported(): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 返回true表示设备支持手电筒。 |
+| boolean    | 返回true表示设备支持手电筒，返回false表示设备不支持手电。 |
 
 **示例：**
 
@@ -1103,7 +1103,7 @@ isTorchModeSupported(mode: TorchMode): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 返回true表示设备支持设置的手电筒模式。 |
+| boolean    | 返回true表示设备支持设置的手电筒模式，返回false表示设备不支持的手电筒模式。 |
 
 **示例：**
 
@@ -1238,6 +1238,77 @@ function unregisterTorchStatusChange(cameraManager: camera.CameraManager): void 
 }
 ```
 
+### getCameraDevice<sup>18+</sup>
+
+getCameraDevice(position:CameraPosition, type: CameraType): CameraDevice
+
+基于position和type查询device
+
+**参数：**
+
+| 参数名     | 类型             | 必填 | 说明       |
+| -------- | --------------- | ---- | --------- |
+| position | CameraPosition  | 是   | 需要得到的CameraDevice对象对应的CameraPosition条件。 |
+| type     | CameraType      | 是   | 需要得到的CameraDevice对象对应的CameraType条件。 |
+
+**返回值：**
+
+| 类型             | 说明                     |
+| -----------------| ------------------------ |
+|  CameraDevice    | 查询到的对应的相机。      |
+
+**示例：**
+
+```ts
+import { camera } from '@kit.CameraKit';
+
+function getCameraDevice(cameraManager: camera.CameraManager, CameraPosition: position, CameraType: type): void {
+  try {
+    let curCameraDev: camera.CameraDevice | undefined = undefined;
+    curCameraDev = cameraManager.getCameraDevice(position, type);
+  } catch (error) {
+    // 失败返回错误码error.code并处理。
+    let err = error as BusinessError;
+    console.error(`The getCameraDevice call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getConcurrentinfos<sup>18+</sup>
+
+getConcurrentinfos(cameraDeviceArray: Array/<CameraDevice/>): Array/<CameraConcurrentInfo/>
+
+获取设备并发信息
+
+**参数：**
+
+| 参数名     | 类型             | 必填 | 说明       |
+| -------- | --------------- | ---- | --------- |
+| cameraDeviceArray | Array/<CameraDevice/>  | 是   | 一组CameraDevice对象，需要得到这一组CamraDevice对应的的并发信息 |
+
+**返回值：**
+
+| 类型             | 说明                     |
+| -----------------| ------------------------ |
+|  Array/<CameraConcurrentInfo/>    |  一组CameraDevice对象对应的并发信息，与CameraDevice一一对应。      |
+
+**示例：**
+
+```ts
+import { camera } from '@kit.CameraKit';
+
+function getConcurrentinfos(cameraManager: camera.CameraManager, cameraDeviceArray: camera.CameraDevice): void {
+  try {
+    let cameraconcurrentinfos: Array<CameraConcurrentInfo> = [];
+    cameraconcurrentinfos = cameraManager.getConcurrentinfos(cameraDeviceArray);
+  } catch (error) {
+    // 失败返回错误码error.code并处理。
+    let err = error as BusinessError;
+    console.error(`The getConcurrentinfos call failed. error code: ${err.code}`);
+  }
+}
+```
+
 ## TorchMode<sup>11+</sup>
 
 枚举，手电筒模式。
@@ -1309,6 +1380,27 @@ function unregisterTorchStatusChange(cameraManager: camera.CameraManager): void 
 |------|------|-------------|
 | AVC  | 0    | 视频编码类型AVC。  |
 | HEVC | 1 | 视频编码类型HEVC。 |
+
+## CameraConcurrentType<sup>18</sup>
+
+枚举，并发类型。
+
+| 名称   | 值    | 说明          |
+|------|------|-------------|
+| CAMERA_LIMITED_CAPABILITY  | 0 | 受限能力并发，镜头。  |
+| CAMERA_FULL_CAPABILITY     | 1 | 全量能力并发。 |
+
+## CameraConcurrentInfo<sup>18</sup>
+
+输出并发能力查询。
+
+| 名称   | 类型    | 只读 | 可选  | 说明         |
+| ------ | ------ | ---- |-----| ------------ |
+| device              | CameraDevice                    | 否   | 否   | 并发设备。 |
+| type                | CameraConcurrentType            | 否   | 否   | 并发类型。 |
+| modes               | Array/<SceneMode/>              | 否   | 否   | 支持的模式。 |
+| outputCapabilities  | Array/<CameraOutputCapability/> | 否   | 否   | 与模式对应的输出能力集。 |
+
 
 ## CameraInput
 
@@ -1407,7 +1499,7 @@ open(isSecureEnabled: boolean): Promise\<bigint\>
 
 | 参数名     | 类型                  | 必填 | 说明                                                                      |
 | -------- | -------------------- | ---- |-------------------------------------------------------------------------|
-| isSecureEnabled | boolean | 是   | 是否使能以安全的方式打开相机。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| isSecureEnabled | boolean | 是   | 返回true为使能以安全的方式打开相机，返回false则反之。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **返回值：**
 
@@ -1432,6 +1524,49 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 function openCameraInput(cameraInput: camera.CameraInput): void {
   cameraInput.open(true).then(() => {
+    console.info('Promise returned with camera opened.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to open the camera, error code: ${error.code}.`);
+  });
+}
+```
+
+### open<sup>18</sup>
+
+open(type: CameraConcurrentType): Promise\<void\>
+
+以指定的并发类型打开相机。
+
+**参数：**
+
+| 参数名     | 类型                  | 必填 | 说明                                                                      |
+| -------- | -------------------- | ---- |-------------------------------------------------------------------------|
+| type | CameraConcurrentType | 是   | 以指定的并发类型打开相机。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode]
+
+**返回值：**
+
+| 类型           | 说明                      |
+| -------------- | ----------------------- |
+| Promise\<void\> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                                      |
+|---------|-------------------------------------------|
+| 7400102 | Operation not allowed.                    |
+| 7400107 | Can not use camera cause of conflict.     |
+| 7400108 | Camera disabled cause of security reason. |
+| 7400201 | Camera service fatal error.               |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function openCameraInput(cameraInput: camera.CameraInput): void {
+  cameraInput.open(0).then(() => {
     console.info('Promise returned with camera opened.');
   }).catch((error: BusinessError) => {
     console.error(`Failed to open the camera, error code: ${error.code}.`);
@@ -2029,8 +2164,8 @@ setFrameRate(minFps: number, maxFps: number): void
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| minFps   | number        | 是   | 最小帧率。 |
-| maxFps   | number        | 是   | 最大帧率，当传入的最小值大于最大值时，传参异常，接口不生效。|
+| minFps   | number        | 是   | 最小帧率（单位：fps）。 |
+| maxFps   | number        | 是   | 最大帧率（单位：fps），当传入的最小值大于最大值时，传参异常，接口不生效。|
 
 **错误码：**
 
@@ -2857,7 +2992,7 @@ setMovingPhotoVideoCodecType(codecType: VideoCodecType): void
 
 | 参数名        | 类型                                  | 必填 |  说明                |
 | ------------- |-------------------------------------|-------| ------------        |
-| codecType     | [VideoCodecType](#videocodectype13) |  是    |获取动态照片短视频编码类型  |
+| codecType     | [VideoCodecType](#videocodectype13) |  是    |获取动态照片短视频编码类型。  |
 
 **错误码：**
 
@@ -3955,7 +4090,7 @@ getVideoRotation(deviceDegree: number): ImageRotation
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| deviceDegree | number | 是   | 设备旋转角度 |
+| deviceDegree | number | 是   | 设备旋转角度（单位：度）。 |
 
 **返回值：**
 
@@ -4615,7 +4750,7 @@ canAddOutput(cameraOutput: CameraOutput): boolean
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| boolean | 是否可以添加当前cameraOutput到session中。 |
+| boolean | 是否可以添加当前cameraOutput到session中，true为可添加，false为不可添加。 |
 
 **示例：**
 
@@ -5425,7 +5560,7 @@ isExposureModeSupported(aeMode: ExposureMode): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 获取是否支持曝光模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| boolean    | 获取是否支持曝光模式，true为支持，false为不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -7974,7 +8109,7 @@ isAutoDeviceSwitchSupported(): boolean
 
 | 类型                                             | 说明          |
 | ----------------------------------------------- |-------------|
-| boolean               | 是否支持自动切换镜头。 |
+| boolean               | 是否支持自动切换镜头，true为支持，false为不支持。 |
 
 **错误码：**
 
