@@ -35,7 +35,7 @@ Checks whether Wi-Fi is active through the specified device administrator applic
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| callback | AsyncCallback&lt;boolean&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a Boolean value (**true** indicates that Wi-Fi is active; and **false** indicates that Wi-Fi is inactive). If the operation fails, **err** is an error object.      |
+| callback | AsyncCallback&lt;boolean&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a Boolean value (**true** indicates that Wi-Fi is active; and **false** indicates that Wi-Fi is inactive). If the operation fails, **err** is an error object.      |
 
 **Error codes**
 
@@ -138,7 +138,7 @@ Sets Wi-Fi profile through the specified device administrator application to ena
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | profile    | [WifiProfile](js-apis-enterprise-wifiManager.md#wifiprofile) | Yes   | Wi-Fi profile information.                 |
-| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.     |
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.     |
 
 **Error codes**
 
@@ -303,7 +303,7 @@ Sets the Wi-Fi policy through the specified device administrator application.
 | Name    | Type                               | Mandatory| Description                                     |
 | ---------- | ----------------------------------- | ---- | ----------------------------------------- |
 | admin      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                           |
-| disabled   | boolean                             | Yes  | Whether to disable Wi-Fi. The value **true** means to disable Wi-Fi; the value **false** means the opposite.|
+| disabled   | boolean                             | Yes  | Wi-Fi policy to set. The value **true** means to disable Wi-Fi; the value **false** means the opposite.|
 
 **Error codes**
 
