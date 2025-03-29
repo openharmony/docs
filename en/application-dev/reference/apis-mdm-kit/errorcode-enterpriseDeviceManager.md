@@ -73,6 +73,7 @@ This error code is reported when an application fails to be enabled as a device 
 
 **Possible Causes**
 
+The possible causes are as follows:
 1. Multiple applications are enabled as the super device administrator application.
 2. The application has been enabled as a device administrator application, but the administrator type has changed.
 3. Multiple device administrator ability components are enabled for the same application.
@@ -95,8 +96,9 @@ This error code is reported when the operation for disabling a device administra
 
 **Possible Causes**
 
-1. The device administrator application to be disabled has not been enabled.
-2. The caller cannot disable other device administrator applications.
+The possible causes are as follows:
+1. The application to be disabled has not been enabled.
+2. The caller cannot deactivate other device administrator applications.
 
 **Solution**
 
@@ -116,8 +118,9 @@ This error code is reported when the specified user ID does not exist or the spe
 
 **Possible Causes**
 
+The possible causes are as follows:
 1. The user ID specified for setting a user policy does not exist.
-2. When the application is not a super device administrator application, the specified user ID is different from the caller's user ID.
+2. The specified user ID is different from the caller user ID when the application is not a super device administrator application.
 
 **Solution**
 
@@ -136,6 +139,7 @@ This error code is reported when the enterprise device management ability is not
 
 **Possible Causes**
 
+The possible causes are as follows:
 1. The EnterpriseAdminAbility is not started.
 2. The RPC object for enterprise device management cannot be obtained.
 3. Other abilities, on which the EnterpriseAdminAbility depends, are not started, or the RPC object cannot be obtained.
@@ -229,6 +233,7 @@ This error code is reported when a device administrator application fails to ins
 
 **Possible Causes**
 
+The possible causes are as follows:
 1. The application installation path is empty or invalid, or does not exist.
 2. The operation attempts to install multiple applications with different bundle names.
 3. The application to be installed already exists when the installation parameter flag is 0.
@@ -252,6 +257,8 @@ This error code is reported when an account fails to be added.
 
 **Possible Causes**
 
+The possible causes are as follows:
+
 1. The account already exists.
 2. The account name is invalid.
 3. The network is not connected when the account is added.
@@ -274,6 +281,8 @@ The update packages do not exist or analyzing failed.
 This error code is reported when the enterprise device administrator application fails to notify the system of the package update.
 
 **Possible Causes**
+
+The possible causes are as follows:
 
 1. The system update package does not exist.
 2. The verification of the system update package name fails.

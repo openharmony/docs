@@ -21,7 +21,7 @@ import { applicationManager } from '@kit.MDMKit';
 
 addDisallowedRunningBundlesSync(admin: Want, appIds: Array\<string>, accountId?: number): void
 
-Adds the applications that are not allowed to run by the current or specified user through the specified device administrator application.
+Adds the applications that are not allowed to run by the current or specified user.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -33,9 +33,9 @@ Adds the applications that are not allowed to run by the current or specified us
 
 | Name   | Type                                                   | Mandatory| Description                                                        |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                              |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                              |
 | appIds    | Array&lt;string&gt;                                     | Yes  | IDs of the applications to add.                                  |
-| accountId | number                                                  | No  | User ID, which must be greater than or equal to 0.<br>- If **accountId** is passed in, this API applies to the specified user.<br>- If **accountId** is not passed in, this API applies to the current user.|
+| accountId | number                                                  | No  | User ID, which must be greater than or equal to 0.<br> You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1) of **@ohos.account.osAccount** to obtain the user ID.<br> - If **accountId** is passed in, this API applies to the specified user.<br> - If **accountId** is not passed in, this API applies to the current user.|
 
 **Error codes**
 
@@ -56,7 +56,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 try {
   applicationManager.addDisallowedRunningBundlesSync(wantTemp, appIds);
@@ -82,9 +82,9 @@ Removes the applications that cannot be run by the current or specified user thr
 
 | Name   | Type                                                   | Mandatory| Description                                                        |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                              |
-| appIds    | Array&lt;string&gt;                                     | Yes  | IDs of the applications to remove.                                  |
-| accountId | number                                                  | No  | User ID, which must be greater than or equal to 0.<br>- If **accountId** is passed in, this API applies to the specified user.<br>- If **accountId** is not passed in, this API applies to the current user.|
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                              |
+| appIds    | Array&lt;string&gt;                                     | Yes  | IDs of the applications to add.                                  |
+| accountId | number                                                  | No  | User ID, which must be greater than or equal to 0.<br> You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1) of **@ohos.account.osAccount** to obtain the user ID.<br> - If **accountId** is passed in, this API applies to the specified user.<br> - If **accountId** is not passed in, this API applies to the current user.|
 
 **Error codes**
 
@@ -105,7 +105,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 try {
   applicationManager.removeDisallowedRunningBundlesSync(wantTemp, appIds);
@@ -119,7 +119,7 @@ try {
 
 getDisallowedRunningBundlesSync(admin: Want, accountId?: number): Array&lt;string>
 
-Obtains the applications that are not allowed to run by the current user through the specified device administrator application.
+Obtains the applications that are not allowed to run by the current user.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -131,8 +131,8 @@ Obtains the applications that are not allowed to run by the current user through
 
 | Name   | Type                                                   | Mandatory| Description                                                        |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                              |
-| accountId | number                                                  | No  | User ID, which must be greater than or equal to 0.<br>- If **accountId** is passed in, this API applies to the specified user.<br>- If **accountId** is not passed in, this API applies to the current user.|
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                              |
+| accountId | number                                                  | No  | User ID, which must be greater than or equal to 0.<br> You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1) of **@ohos.account.osAccount** to obtain the user ID.<br> - If **accountId** is passed in, this API applies to the specified user.<br> - If **accountId** is not passed in, this API applies to the current user.|
 
 **Return value**
 
@@ -172,7 +172,7 @@ try {
 
 addAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 
-Adds the auto-start applications (applications that automatically run at system startup) through the specified device administrator application. This API returns the result synchronously. Currently, this capability supports only 2-in-1 devices.
+Adds the auto-start applications. Currently, this capability supports only 2-in-1 devices.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -182,7 +182,7 @@ Adds the auto-start applications (applications that automatically run at system 
 
 | Name       | Type                                                        | Mandatory| Description                                  |
 | ------------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
-| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | Yes  | Device administrator application.                        |
+| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | Yes  | EnterpriseAdminExtensionAbility.                        |
 | autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | Yes  | Auto-start applications to add. A maximum of 10 applications can be added at a time.|
 
 **Error codes**
@@ -224,7 +224,7 @@ try {
 
 removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 
-Removes the auto-start applications through the specified device administrator application. This API returns the result synchronously. Currently, this capability supports only 2-in-1 devices.
+Removes the auto-start applications. Currently, this capability supports only 2-in-1 devices.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -234,7 +234,7 @@ Removes the auto-start applications through the specified device administrator a
 
 | Name       | Type                                                        | Mandatory| Description            |
 | ------------- | ------------------------------------------------------------ | ---- | ---------------- |
-| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | Yes  | Device administrator application.  |
+| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | Yes  | EnterpriseAdminExtensionAbility.  |
 | autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | Yes  | Auto-start applications to remove.|
 
 **Error codes**
@@ -276,7 +276,7 @@ try {
 
 getAutoStartApps(admin: Want): Array\<Want>
 
-Obtains the auto-start applications through the specified device administrator application. This API returns the result synchronously. Currently, this capability supports only 2-in-1 devices.
+Queries the auto-start applications. Currently, this capability supports only 2-in-1 devices.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -286,7 +286,7 @@ Obtains the auto-start applications through the specified device administrator a
 
 | Name| Type                                                   | Mandatory| Description          |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.|
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.|
 
 **Return value**
 
