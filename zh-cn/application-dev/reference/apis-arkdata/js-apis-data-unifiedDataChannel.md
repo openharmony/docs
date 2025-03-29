@@ -1783,3 +1783,52 @@ try {
   console.error(`[UDMF]removeAppShareOptions throws an exception. code is ${error.code},message is ${error.message} `);
 }
 ```
+
+## unifiedDataChannel.convertRecordsToEntries<sup>17+</sup>
+
+convertRecordsToEntries(data: UnifiedData): void
+
+将传入的data转换为多entry形式的数据。
+当满足以下规则时才进行转换：
+1. data中的record数量大于1;
+2. data中的properties中的tag值为records_to_entries_data_format.
+
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名    | 类型                    | 必填 | 说明                                                         |
+| --------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| data    | [UnifiedData](#unifieddata) | 是  | 目标数据。           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { unifiedDataChannel } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let text1 = new unifiedDataChannel.PlainText();
+text1.textContent = 'this is textContent of text1';
+let unifiedData = new unifiedDataChannel.UnifiedData(text1);
+
+let text2 = new unifiedDataChannel.PlainText();
+text2.textContent = 'this is textContent of text2';
+unifiedData.addRecord(text2);
+
+try {
+  unifiedDataChannel.convertRecordsToEntries(unifiedData);
+} catch (e) {
+  let error: BusinessError = e as BusinessError;
+  console.error(`Insert data throws an exception. code is ${error.code},message is ${error.message} `);
+}
+```
