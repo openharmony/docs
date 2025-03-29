@@ -124,7 +124,9 @@ let nodeController: TextNodeController = new TextNodeController('this is custom 
 let navId: string = "page_1"; // 假设当前页面的导航id为page_1，详见PiPConfiguration定义，具体导航名称由开发者自行定义。
 let contentWidth: number = 800; // 假设当前内容宽度800px。
 let contentHeight: number = 600; // 假设当前内容高度600px。
-let localStorage: LocalStorage = new LocalStorage();
+let para: Record<string, number> = { 'PropA': 47 };
+let localStorage: LocalStorage = new LocalStorage(para);
+let res: boolean = storage.setOrCreate('PropB', 121);
 let config: PiPWindow.PiPConfiguration = {
   context: getContext(this),
   componentController: mXComponentController,
