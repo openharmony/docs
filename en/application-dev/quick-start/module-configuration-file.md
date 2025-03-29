@@ -157,7 +157,7 @@ As shown above, the **module.json5** file contains several tags.
 | Smart TV| tv | - |
 | Smart watch| wearable | Watch that provides call features.|
 | Head unit| car | - |
-| 2in1 | 2in1 | Two-in-one device that allows for interactions with a touchscreen, keyboard, and mouse device.|
+| PC/2-in-1 device| 2in1 | PC, mainly used for multi-window and multi-task interactions, and keyboard and mouse operations. It fully showcases the device productivity. In the OpenHarmony topics, "2-in-1" indicates PC/2-in-1 device.|
 | Default device| default | Device that provides full access to system capabilities.|
 <!--RP2End-->
 
