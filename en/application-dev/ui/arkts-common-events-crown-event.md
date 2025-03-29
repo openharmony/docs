@@ -88,4 +88,3 @@ struct CityList {
 ```
 
 ![crown.gif](../reference/apis-arkui/arkui-ts/figures/crown.gif)
-<!--no_check-->

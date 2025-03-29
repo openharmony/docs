@@ -161,7 +161,7 @@ Enumerates the input method function keys.
 
 ## Curve
 
-Enumerates the interpolation curves. For details about the animation, see <!--RP1-->[Bezier Curve](../../../../design/ux-design/animation-attributes.md)<!--RP1End-->.
+Enumerates the interpolation curves. For details about the animation, see <!--RP1-->Bezier Curve<!--RP1End-->.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
