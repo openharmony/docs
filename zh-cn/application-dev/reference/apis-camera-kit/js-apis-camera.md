@@ -1407,7 +1407,7 @@ open(isSecureEnabled: boolean): Promise\<bigint\>
 
 | 参数名     | 类型                  | 必填 | 说明                                                                      |
 | -------- | -------------------- | ---- |-------------------------------------------------------------------------|
-| isSecureEnabled | boolean | 是   | 返回TRUE为可以以安全的方式打开相机，返回False则不能以安全的方式打开。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| isSecureEnabled | boolean | 是   | 返回true为使能以安全的方式打开相机，返回ffalse则反之。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **返回值：**
 
@@ -4613,7 +4613,7 @@ canAddOutput(cameraOutput: CameraOutput): boolean
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| boolean | 是否可以添加当前cameraOutput到session中，true为可以添加，false为不能添加。 |
+| boolean | 是否可以添加当前cameraOutput到session中，true为可添加，false为不可添加。 |
 
 **示例：**
 

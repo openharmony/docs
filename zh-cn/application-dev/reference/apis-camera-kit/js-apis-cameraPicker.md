@@ -86,7 +86,7 @@ async function demo() {
 | -------------- | --------------------------------- | ----- | ------------ |
 | cameraPosition       | [camera.CameraPosition](js-apis-camera.md#cameraposition) | 是    | 相机的位置。   |
 | saveUri        | string                            | 否    | 保存配置信息的uri，默认值请参考[文件uri](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)。|
-| videoDuration  | number                            | 否    | 录制的最大时长（单位：秒），默认会一直录制下去。|
+| videoDuration  | number                            | 否    | 录制的最大时长（单位：秒）。|
 
 
 ## PickerResult
