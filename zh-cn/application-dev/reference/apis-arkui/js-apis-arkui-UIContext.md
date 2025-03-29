@@ -2546,7 +2546,7 @@ getTextMenuController(): TextMenuController
 
 参考[TextMenuController](#textmenucontroller16)接口示例。
 
-### createUIContextWithoutWindow<sup>18+</sup>
+### createUIContextWithoutWindow<sup>17+</sup>
 
 static createUIContextWithoutWindow(context: common.UIAbilityContext | common.ExtensionContext) : UIContext | undefined
 
@@ -2556,7 +2556,7 @@ static createUIContextWithoutWindow(context: common.UIAbilityContext | common.Ex
 >
 > 返回的UI上下文只可用于创建[自定义节点](../../ui/arkts-user-defined-node.md)，不能执行其他UI操作。
 
-**原子化服务API:** 从API version 18 开始，该接口支持在原子化服务中使用。
+**原子化服务API:** 从API version 17 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2596,13 +2596,13 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### destroyUIContextWithoutWindow<sup>18+</sup>
+### destroyUIContextWithoutWindow<sup>17+</sup>
 
 static destroyUIContextWithoutWindow(): void
 
-销毁[createUIContextWithoutWindow](#createuicontextwithoutwindow18)创建的UI实例。
+销毁[createUIContextWithoutWindow](#createuicontextwithoutwindow17)创建的UI实例。
 
-**原子化服务API:** 从API version 18 开始，该接口支持在原子化服务中使用。
+**原子化服务API:** 从API version 17 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
