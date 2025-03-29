@@ -1260,6 +1260,27 @@ import { audio } from '@kit.AudioKit';
 let audioSessionManager: audio.AudioSessionManager = audioManager.getSessionManager();
 ```
 
+### getSpatializationManager<sup>18+</sup>
+
+getSpatializationManager(): AudioSpatializationManager
+
+获取空间音频管理器。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+**返回值：**
+
+| 类型                                       | 说明                          |
+|------------------------------------------| ----------------------------- |
+| [AudioSpatializationManager](#audiospatializationmanager18) | AudioSpatializationManager实例。 |
+
+**示例：**
+
+```ts
+import { audio } from '@kit.AudioKit';
+let audioSpatializationManager: audio.AudioSpatializationManager = audioManager.getSpatializationManager();
+```
+
 ### setVolume<sup>(deprecated)</sup>
 
 setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&lt;void&gt;): void
@@ -5364,6 +5385,99 @@ audioSessionManager.on('audioSessionDeactivated', audioSessionDeactivatedCallbac
 audioSessionManager.off('audioSessionDeactivated', audioSessionDeactivatedCallback);
 ```
 
+## AudioSpatializationManager<sup>18+</sup>
+
+空间音频管理。<br>
+在使用AudioSpatializationManager接口前，需要先用[getSpatializationManager](#getspatializationmanager18)获取AudioSpatializationManager实例。
+
+### isSpatializationEnabledForCurrentDevice<sup>18+</sup>
+
+isSpatializationEnabledForCurrentDevice(): boolean
+
+获取当前设备空间音频渲染是否开启，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+**返回值：**
+
+| 类型                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| boolean | 返回当前设备空间音频渲染是否开启，true为开启，false为未开启。 |
+
+**示例：**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+let isSpatializationEnabledForCurrentDevice: boolean = audioSpatializationManager.isSpatializationEnabledForCurrentDevice();
+console.info(`AudioSpatializationManager isSpatializationEnabledForCurrentDevice: ${isSpatializationEnabledForCurrentDevice}`);
+```
+
+### on('spatializationEnabledChangeForCurrentDevice')<sup>18+</sup>
+
+on(type: 'spatializationEnabledChangeForCurrentDevice', callback: Callback<boolean\>): void
+
+订阅当前设备空间音频渲染开关状态变化事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                                           |
+| :------- | :--------------------------------------------------- | :--- |:---------------------------------------------|
+| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'spatializationEnabledChangeForCurrentDevice'。 |
+| callback | Callback<boolean\> | 是   | 回调函数。返回true表示打开空间音频渲染状态；返回false表示关闭空间音频渲染状态。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+audioSpatializationManager.on('spatializationEnabledChangeForCurrentDevice', (isSpatializationEnabledForCurrentDevice: boolean) => {
+  console.info(`isSpatializationEnabledForCurrentDevice: ${isSpatializationEnabledForCurrentDevice}`);
+});
+```
+
+### off('spatializationEnabledChangeForCurrentDevice')<sup>18+</sup>
+
+off(type: 'spatializationEnabledChangeForCurrentDevice', callback?: Callback<boolean\>): void
+
+取消订阅当前设备空间音频渲染开关状态变化事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                                       |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'spatializationEnabledChangeForCurrentDevice'。 |
+| callback | Callback<boolean\> | 否   | 回调函数。返回true表示打开空间音频渲染状态；返回false表示关闭空间音频渲染状态。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { audio } from '@kit.AudioKit';
+audioSpatializationManager.off('spatializationEnabledChangeForCurrentDevice');
+```
+
 ## AudioRendererChangeInfoArray<sup>9+</sup>
 
 type AudioRendererChangeInfoArray = Array&lt;Readonly&lt;AudioRendererChangeInfo&gt;&gt;
@@ -5517,6 +5631,7 @@ type AudioDeviceDescriptors = Array&lt;Readonly&lt;AudioDeviceDescriptor&gt;&gt;
 | channelMasks<sup>9+</sup>     | Array&lt;number&gt;        | 是   | 否   | 支持的通道掩码。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device|
 | displayName<sup>10+</sup>     | string                     | 是   | 否   | 设备显示名。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device|
 | encodingTypes<sup>11+</sup>    | Array&lt;[AudioEncodingType](#audioencodingtype8)&gt;                     | 是   | 否   | 支持的编码类型。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Core|
+| spatializationSupported<sup>18+</sup>     | boolean                     | 是   | 否   | 空间音频支持能力。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Spatialization|
 
 **示例：**
 
