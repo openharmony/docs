@@ -119,6 +119,143 @@ Enumerates the operation modes available for a path.
 | XOR     | 3    | XOR operation.|
 | REVERSE_DIFFERENCE     | 4    | Reverse difference operation.|
 
+## PathIteratorVerb<sup>18+</sup>
+
+Enumerates the types of path operations contained in the iterator.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+| Name | Value  | Description                          |
+| ----- | ---- | ------------------------------ |
+| MOVE  | 0    | Sets the start point.|
+| LINE  | 1    | Adds a line segment.|
+| QUAD  | 2    | Adds a quadratic Bezier curve for smooth transitions.|
+| CONIC | 3    | Adds a conic curve.|
+| CUBIC | 4    | Adds a cubic Bezier curve for smooth transitions.|
+| CLOSE | 5    | Closes a path.|
+| DONE  | CLOSE + 1   | The path setting is complete.|
+
+## PathIterator<sup>18+</sup>
+
+Implements a path operation iterator.
+
+### constructor<sup>18+</sup>
+
+constructor(path: Path)
+
+Creates an iterator and binds it with a path.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name  | Type                                        | Mandatory| Description                           |
+| -------- | -------------------------------------------- | ---- | ------------------------------- |
+| path | [Path](#path) | Yes  | **Path** object bound to the iterator.                |
+
+**Example**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+let path: drawing.Path = new drawing.Path();
+let iter: drawing.PathIterator = new drawing.PathIterator(path);
+```
+
+### next<sup>18+</sup>
+
+next(points: Array<common2D.Point>, offset?: number): PathIteratorVerb
+
+Retrieves the next operation in this path and moves the iterator to that operation.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name  | Type                                        | Mandatory| Description                           |
+| -------- | -------------------------------------------- | ---- | ------------------------------- |
+| points | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)>   | Yes  | An array of coordinate points. The array must be at least 4 elements long. After the operation, the array will be overwritten. The number of coordinate point pairs written to the array depends on the path operation type. Specifically: **MOVE** inserts 1 pair; **LINE** inserts 2 pairs; **QUAD** inserts 3 pairs; **CONIC** inserts 3.5 pairs (3 pairs plus the weight for the conic curve); **CUBIC** inserts 4 pairs; **CLOSE** and **DONE** do not insert any pairs. The array length should be at least the offset plus 4.|
+| offset | number   | No  | Offset from the start of the array where writing begins. The default value is **0**. The value range is [0, size - 4], where **size** is the length of the coordinate point array.|
+
+**Return value**
+
+| Type                 | Description          |
+| --------------------- | -------------- |
+| [PathIteratorVerb](#pathiteratorverb18) | Path operation type contained in the iterator.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+let path: drawing.Path = new drawing.Path();
+path.moveTo(10, 20);
+let iter: drawing.PathIterator = new drawing.PathIterator(path);
+let verbStr: Array<string> = ["MOVE", "LINE", "QUAD", "CONIC", "CUBIC", "CLOSE", "DONE"];
+let pointCount: Array<number> = [1,2,3,4,4,0,0]; //1,2,3,3.5,4,0,0
+let points: Array<common2D.Point> = [{x: 0, y: 0}, {x: 0, y: 0}, {x: 0, y: 0}, {x: 0, y: 0}];
+let offset = 0;
+let verb = iter.next(points, offset);
+let outputMessage: string = "pathIteratorNext: ";
+outputMessage += "verb =" + verbStr[verb] + "; has " + pointCount[verb] + " pairs: ";
+for (let j = 0; j < pointCount[verb] + offset; j++) {
+  outputMessage += "[" + points[j].x + ", " + points[j].y + "]";
+}
+console.info(outputMessage);
+```
+
+### peek<sup>18+</sup>
+
+peek(): PathIteratorVerb
+
+Retrieves the next operation in this path, without moving the iterator.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Return value**
+
+| Type                 | Description          |
+| --------------------- | -------------- |
+| [PathIteratorVerb](#pathiteratorverb18) | Path operation type contained in the iterator.|
+
+**Example**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+let path: drawing.Path = new drawing.Path();
+let iter: drawing.PathIterator = new drawing.PathIterator(path);
+let res = iter.peek();
+```
+
+### hasNext<sup>18+</sup>
+
+hasNext(): boolean
+
+Checks whether there are other operations in the path operation iterator.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Return value**
+
+| Type   | Description          |
+| ------- | -------------- |
+| boolean | Check result. The value **true** means that there are other operations in the path operation iterator, and **false** means the opposite.|
+
+**Example**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+let path: drawing.Path = new drawing.Path();
+let iter: drawing.PathIterator = new drawing.PathIterator(path);
+let res = iter.hasNext();
+```
+
 ## Path
 
 A compound geometric path consisting of line segments, arcs, quadratic Bezier curves, and cubic Bezier curves.
@@ -1121,6 +1258,50 @@ if (path.getPositionAndTangent(false, 0.1, position, tangent)) {
 }
 ```
 
+### getSegment<sup>18+</sup>
+
+getSegment(forceClosed: boolean, start: number, stop: number, startWithMoveTo: boolean, dst: Path): boolean
+
+Extracts a segment of this path and appends it to a destination path.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name  | Type                                        | Mandatory| Description                           |
+| -------- | -------------------------------------------- | ---- | ------------------------------- |
+| forceClosed | boolean | Yes  | Whether the path is measured as a closed path. The value **true** means that the path is considered closed during measurement, and **false** means that the path is measured based on the actual closed status.                |
+| start | number | Yes  | Distance from the start point of the path to the start point of the segment. If it is less than 0, it defaults to 0. If it is greater than or equal to **stop**, the extraction fails. The value is a floating point number.              |
+| stop | number | Yes  | Distance from the start point of the path to the end point of the segment. If it is less than or equal to **start**, the extraction fails. If it is greater than the path length, it defaults to the path length. The value is a floating point number.                 |
+| startWithMoveTo | boolean | Yes  | Whether to execute [moveTo](#moveto) in the destination path to move to its start point. The value **true** means to move to the start point, and **false** means the opposite.               |
+| dst | [Path](#path) | Yes   | Destination path. If the extraction succeeds, the segment is appended to the path. If the extraction fails, nothing changes.               |
+
+**Return value**
+
+| Type                 | Description          |
+| --------------------- | -------------- |
+| boolean |Extraction result. The value **true** means that the extraction is successful, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+let path: drawing.Path = new drawing.Path();
+path.moveTo(0, 0);
+path.lineTo(0, 700);
+path.lineTo(700, 0);
+let dstPath: drawing.Path = new drawing.Path();
+console.info("getSegment-----result:  "+ path.getSegment(true, 10.0, 20.0, true, dstPath));
+```
+
 ### isClosed<sup>12+</sup>
 
 isClosed(): boolean
@@ -1232,6 +1413,28 @@ if(path.buildFromSvgString(svgStr)) {
 } else {
   console.info("buildFromSvgString return false");
 }
+```
+
+### getPathIterator<sup>18+</sup>
+
+getPathIterator(): PathIterator
+
+Obtains the operation iterator of this path.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Return value**
+
+| Type                 | Description          |
+| --------------------- | -------------- |
+| [PathIterator](#pathiterator18) | **Iterator** object of the path.|
+
+**Example**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+let path: drawing.Path = new drawing.Path();
+let iter = path.getPathIterator();
 ```
 
 ## Canvas
@@ -1537,6 +1740,52 @@ class DrawingRenderNode extends RenderNode {
     let color2 : common2D.Color = {alpha: 0xFF, red:0xFF, green:0, blue:0};
     let shadowFlag : drawing.ShadowFlag = drawing.ShadowFlag.ALL;
     canvas.drawShadow(path, point1, point2, 30, color1, color2, shadowFlag);
+  }
+}
+```
+
+### drawShadow<sup>18+</sup>
+
+drawShadow(path: Path, planeParams: common2D.Point3d, devLightPos: common2D.Point3d, lightRadius: number, ambientColor: common2D.Color | number, spotColor: common2D.Color | number, flag: ShadowFlag) : void
+
+Draws a spot shadow and uses a given path to outline the ambient shadow.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name         | Type                                      | Mandatory  | Description        |
+| ------------ | ---------------------------------------- | ---- | ---------- |
+| path | [Path](#path)                | Yes   | **Path** object, which is used to outline the shadow.|
+| planeParams  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | Yes   | 3D vector, which is used to calculate the offset in the Z axis.|
+| devLightPos  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | Yes   | Position of the light relative to the canvas.|
+| lightRadius   | number           | Yes   | Radius of the light. The value is a floating point number.     |
+| ambientColor  |[common2D.Color](js-apis-graphics-common2D.md#color) \| number | Yes   | Ambient shadow color, represented by a 32-bit unsigned integer in hexadecimal ARGB format.|
+| spotColor  |[common2D.Color](js-apis-graphics-common2D.md#color) \| number | Yes   | Spot shadow color, represented by a 32-bit unsigned integer in hexadecimal ARGB format.|
+| flag         | [ShadowFlag](#shadowflag12)                  | Yes   | Shadow flag.   |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**Example**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const path = new drawing.Path();
+    path.addCircle(300, 600, 100, drawing.PathDirection.CLOCKWISE);
+    let point1 : common2D.Point3d = {x: 100, y: 80, z:80};
+    let point2 : common2D.Point3d = {x: 200, y: 10, z:40};
+    let shadowFlag : drawing.ShadowFlag = drawing.ShadowFlag.ALL;
+    canvas.drawShadow(path, point1, point2, 30, 0xFF0000FF, 0xFFFF0000, shadowFlag);
   }
 }
 ```
@@ -1862,6 +2111,42 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
+### drawColor<sup>18+</sup>
+
+drawColor(color: number, blendMode?: BlendMode): void
+
+Draws the background color.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name   | Type                                                | Mandatory| Description                            |
+| --------- | ---------------------------------------------------- | ---- | -------------------------------- |
+| color     | number | Yes  | Color in hexadecimal ARGB format.                  |
+| blendMode | [BlendMode](#blendmode)                              | No  | Blend mode. The default mode is **SRC_OVER**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**Example**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    canvas.drawColor(0xff000a0a, drawing.BlendMode.CLEAR);
+  }
+}
+```
+
 ### drawPixelMapMesh<sup>12+</sup>
 
 drawPixelMapMesh(pixelmap: image.PixelMap, meshWidth: number, meshHeight: number, vertices: Array\<number>, vertOffset: number, colors: Array\<number>, colorOffset: number): void
@@ -1943,6 +2228,42 @@ class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
     let color: common2D.Color = {alpha: 255, red: 255, green: 0, blue: 0};
+    canvas.clear(color);
+  }
+}
+```
+
+### clear<sup>18+</sup>
+
+clear(color: common2D.Color | number): void
+
+Clears the canvas with a given color.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name   | Type                                                | Mandatory| Description                            |
+| --------- | ---------------------------------------------------- | ---- | -------------------------------- |
+| color     | [common2D.Color](js-apis-graphics-common2D.md#color) \| number| Yes  | Color, represented by a 32-bit unsigned integer in hexadecimal ARGB format. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let color: number = 0xffff0000;
     canvas.clear(color);
   }
 }
@@ -2380,6 +2701,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -3114,7 +3436,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
-import { drawing } from '@kit.ArkGraphics2D';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -3189,6 +3511,249 @@ class DrawingRenderNode extends RenderNode {
   }
 }
 ```
+
+### quickRejectPath<sup>18+</sup>
+
+quickRejectPath(path: Path): boolean
+
+Checks whether the path is not intersecting with the canvas area. The canvas area includes its boundaries.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name| Type         | Mandatory| Description              |
+| ------ | ------------- | ---- | ------------------ |
+| path   | [Path](#path) | Yes  | Path object.|
+
+**Return value**
+
+| Type                 | Description          |
+| --------------------- | -------------- |
+| boolean | Check result. The value **true** means that the path is not intersecting with the canvas area, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let path = new drawing.Path();
+    path.moveTo(10, 10);
+    path.cubicTo(10, 10, 10, 10, 15, 15);
+    path.close();
+    if (canvas.quickRejectPath(path)) {
+      console.info("canvas and path do not intersect.");
+    } else {
+      console.info("canvas and path intersect.");
+    }
+  }
+}
+```
+
+### quickRejectRect<sup>18+</sup>
+
+quickRejectRect(rect: common2D.Rect): boolean
+
+Checks whether the rectangle is not intersecting with the canvas area. The canvas area includes its boundaries.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name| Type                                              | Mandatory| Description          |
+| ------ | -------------------------------------------------- | ---- | -------------- |
+| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | Yes  | Rectangle.|
+
+**Return value**
+
+| Type                 | Description          |
+| --------------------- | -------------- |
+| boolean | Check result. The value **true** means that the rectangle is not intersecting with the canvas area, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let rect: common2D.Rect = { left : 10, top : 20, right : 50, bottom : 30 };
+    if (canvas.quickRejectRect(rect)) {
+      console.info("canvas and rect do not intersect.");
+    } else {
+      console.info("canvas and rect intersect.");
+    }
+  }
+}
+```
+
+### drawArcWithCenter<sup>18+</sup>
+
+drawArcWithCenter(arc: common2D.Rect, startAngle: number, sweepAngle: number, useCenter: boolean): void
+
+Draws an arc on the canvas. It enables you to define the starting angle, sweep angle, and whether the arc's endpoints should connect to its center.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name| Type                                              | Mandatory| Description          |
+| ------ | -------------------------------------------------- | ---- | -------------- |
+| arc   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | Yes  | Rectangular boundary that encapsulates the oval including the arc.|
+| startAngle      | number | Yes  | Start angle, in degrees. The value is a floating point number. When the degree is 0, the start point is located at the right end of the oval. A positive number indicates that the start point is placed clockwise, and a negative number indicates that the start point is placed counterclockwise.|
+| sweepAngle      | number | Yes  | Angle to sweep, in degrees. The value is a floating point number. A positive number indicates a clockwise sweep, and a negative value indicates a counterclockwise swipe. The swipe angle can exceed 360 degrees, and a complete ellipse is drawn.|
+| useCenter       | boolean | Yes  | Whether the start point and end point of the arc are connected to its center. The value **true** means that they are connected to the center; the value **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const pen = new drawing.Pen();
+    pen.setStrokeWidth(5);
+    const color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
+    pen.setColor(color);
+    canvas.attachPen(pen);
+    const rect: common2D.Rect = { left: 100, top: 50, right: 400, bottom: 200 };
+    canvas.drawArcWithCenter(rect, 90, 180, false);
+    canvas.detachPen();
+  }
+}
+```
+
+### drawImageNine<sup>18+</sup>
+
+drawImageNine(pixelmap: image.PixelMap, center: common2D.Rect, dstRect: common2D.Rect, filterMode: FilterMode): void
+
+Splits an image into nine sections using two horizontal and two vertical lines: four edge sections, four corner sections, and a central section.
+
+If the four corner sections are smaller than the target rectangle, they will be drawn in the target rectangle without scaling. Otherwise, they will be scaled to fit the target rectangle. Any remaining space will be filled by stretching or compressing the other five sections to cover the entire target rectangle.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description          |
+| ------ | ------ | ---- | -------------- |
+| pixelmap   | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | PixelMap to split.|
+| center    | [common2D.Rect](js-apis-graphics-common2D.md#rect) | Yes  | Central rectangle that divides the image into nine sections by extending its four edges.|
+| dstRect  | [common2D.Rect](js-apis-graphics-common2D.md#rect) | Yes  | Target rectangle drawn on the canvas.|
+| filterMode | [FilterMode](#filtermode12) | Yes  | Filter mode.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**Example**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+import { image } from '@kit.ImageKit';
+
+class DrawingRenderNode extends RenderNode {
+pixelMap: image.PixelMap | null = null;
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    canvas.drawImage(this.pixelMap, 0, 0); // Original image
+    let center: common2D.Rect = { left: 20, top: 10, right: 50, bottom: 40 };
+    let dst: common2D.Rect = { left: 70, top: 0, right: 100, bottom: 30 };
+    let dst1: common2D.Rect = { left: 110, top: 0, right: 200, bottom: 90 };
+    canvas.drawImageNine(this.pixelMap, center, dst, drawing.FilterMode.FILTER_MODE_NEAREST); // Example 1
+    canvas.drawImageNine(this.pixelMap, center, dst1, drawing.FilterMode.FILTER_MODE_NEAREST); // Example 2
+  }
+}
+```
+![image_Nine.png](figures/image_Nine.png)
+
+### drawImageLattice<sup>18+</sup>
+
+drawImageLattice(pixelmap: image.PixelMap, lattice: Lattice, dstRect: common2D.Rect, filterMode: FilterMode): void
+
+Splits an image into multiple sections based on the lattice object's configuration and draws each section into the specified target rectangle on the canvas.
+
+The intersections of even-numbered rows and columns (starting from 0) are fixed points. If the fixed lattice area fits within the target rectangle, it will be drawn without scaling. Otherwise, it will be scaled proportionally to fit the target rectangle. Any remaining space will be filled by stretching or compressing the remaining sections to cover the entire target rectangle.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description          |
+| ------ | ------ | ---- | -------------- |
+| pixelmap   | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | PixelMap to split.|
+| lattice  | [Lattice](#lattice12) | Yes  | Lattice object.|
+| dstRect    | [common2D.Rect](js-apis-graphics-common2D.md#rect) | Yes  | Target rectangle.|
+| filterMode | [FilterMode](#filtermode12) | Yes  | Filter mode.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**Example**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+import { image } from '@kit.ImageKit';
+
+class DrawingRenderNode extends RenderNode {
+pixelMap: image.PixelMap | null = null;
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    canvas.drawImage(this.pixelMap, 0, 0); // Original image
+    let xDivs: Array<number> = [28, 36, 44, 52];
+    let yDivs: Array<number> = [28, 36, 44, 52];
+    let lattice = drawing.Lattice.createImageLattice(xDivs, yDivs, 4, 4);
+    let dst: common2D.Rect = { left: 100, top: 0, right: 164, bottom: 64 };
+    let dst1: common2D.Rect = { left: 200, top: 0, right: 360, bottom: 160 };
+    canvas.drawImageLattice(this.pixelMap, lattice, dst, drawing.FilterMode.FILTER_MODE_NEAREST); // Example 1
+    canvas.drawImageLattice(this.pixelMap, lattice, dst1, drawing.FilterMode.FILTER_MODE_NEAREST); // Example 2
+  }
+}
+```
+![image_Lattice.png](figures/image_Lattice.png)
 
 ## ImageFilter<sup>12+</sup>
 
@@ -3669,6 +4234,51 @@ class TextRenderNode extends RenderNode {
     let font = new drawing.Font();
     let str = "/system/fonts/HarmonyOS_Sans_Italic.ttf";
     const mytypeface = drawing.Typeface.makeFromFile(str);
+    font.setTypeface(mytypeface);
+    const textBlob = drawing.TextBlob.makeFromString("Hello World", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+    canvas.drawTextBlob(textBlob, 60, 100);
+  }
+}
+```
+
+### makeFromRawFile<sup>18+</sup>
+
+static makeFromRawFile(rawfile: Resource): Typeface
+
+Constructs a typeface from a file, which must be stored in the **resources/rawfile** directory of the application project.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name        | Type                                      | Mandatory  | Description                 |
+| ----------- | ---------------------------------------- | ---- | ------------------- |
+| rawfile | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource)           | Yes  | Resource object corresponding to the file. Currently, only resource objects referenced in **$rawfile** format are supported. The corresponding format is **$rawfile('filePath')**, where **filePath** is the relative path of the file to the **resources/rawfile** directory in the project. If the file is stored in **resources/rawfile**, the reference format is **$rawfile('HarmonyOS_Sans_Bold.ttf')**. If the file is stored in a subdirectory, for example, in **resources/rawfile/ttf**, the reference format is **$rawfile('ttf/HarmonyOS_Sans_Bold.ttf')**.|
+
+**Return value**
+
+| Type  | Description                |
+| ------ | -------------------- |
+| [Typeface](#typeface) | **Typeface** object. In abnormal cases, a null pointer is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+class TextRenderNode extends RenderNode {
+  async draw(context: DrawContext) {
+    const canvas = context.canvas;
+    let font = new drawing.Font();
+    const mytypeface = drawing.Typeface.makeFromRawFile($rawfile('HarmonyOS_Sans_Bold.ttf'));
     font.setTypeface(mytypeface);
     const textBlob = drawing.TextBlob.makeFromString("Hello World", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
     canvas.drawTextBlob(textBlob, 60, 100);
@@ -4582,6 +5192,149 @@ let glyphs : number[] = font.textToGlyphs(text);
 console.info("drawing text toglyphs OnTestFunction num =  " + glyphs.length );
 ```
 
+### getBounds<sup>18+</sup>
+
+getBounds(glyphs: Array\<number>): Array\<common2D.Rect>
+
+Obtains the rectangular bounding box of each glyph in an array.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description  |
+| -------- | --------------------- | ---- | ------ |
+| glyphs | Array\<number> | Yes  | Glyph array, which can be generated by [textToGlyphs](#texttoglyphs12).|
+
+**Return value**
+
+| Type  | Description            |
+| ------ | ---------------- |
+| Array\<[common2D.Rect](js-apis-graphics-common2D.md#rect)> | Array that holds the rectangular bounding boxes.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+let font: drawing.Font = new drawing.Font();
+let text: string = 'hello world';
+let glyphs: number[] = font.textToGlyphs(text);
+let fontBounds: Array<common2D.Rect> = font.getBounds(glyphs);
+for (let index = 0; index < fontBounds.length; index++) {
+  console.info("get fontWidths[", index, "] left:", fontBounds[index].left, " top:", fontBounds[index].top,
+    " right:", fontBounds[index].right, " bottom:", fontBounds[index].bottom);
+}
+```
+
+### getTextPath<sup>18+</sup>
+
+getTextPath(text: string, byteLength: number, x: number, y: number): Path;
+
+Obtains the outline path of a text.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name   | Type                                              | Mandatory| Description                   |
+| ------   | ------------------------------------------------   | ---- | ---------------------- |
+|   text   |    string                                          | Yes  | UTF-8 text-encoded characters.|
+|byteLength|    number                                          | Yes  | Length of the outline path, which is obtained based on the minimum value between the passed value of **byteLength** and the actual text byte size.|
+|    x     |    number                                          | Yes  | X coordinate of the text in the drawing area, with the origin as the start point.|
+|    y     |    number                                          | Yes  | Y coordinate of the text in the drawing area, with the origin as the start point.|
+
+**Return value**
+
+| Type  | Description            |
+| ------ | ---------------- |
+| [Path](#path) | Outline path of the text.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**Example**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+import { buffer } from '@kit.ArkTS';
+import { RenderNode } from '@kit.ArkUI';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let font = new drawing.Font();
+    font.setSize(50)
+    let myString: string = "Hello, HarmonyOS";
+    let length = buffer.from(myString).length;
+    let path = font.getTextPath(myString, length, 0, 100)
+    canvas.drawPath(path)
+  }
+}
+```
+
+### createPathForGlyph<sup>18+</sup>
+
+createPathForGlyph(index: number): Path
+
+Obtains the outline path of a glyph.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description  |
+| -------- | --------------------- | ---- | ------ |
+| index | number | Yes  | Index of the glyph.|
+
+**Return value**
+
+| Type  | Description            |
+| ------ | ---------------- |
+| [Path](#path) | Outline path of the glyph.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { FrameNode, NodeController, RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let font = new drawing.Font();
+    font.setSize(50)
+    let text: string = 'Hello'
+    let glyphs: number[] = font.textToGlyphs(text);
+    for (let index = 0; index < glyphs.length; index++) {
+      let path: drawing.Path = font.createPathForGlyph(glyphs[index])
+      canvas.drawPath(path)
+    }
+  }
+}
+```
+
 ### setThemeFontFollowed<sup>15+</sup>
 
 setThemeFontFollowed(followed: boolean): void
@@ -4716,6 +5469,42 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { common2D, drawing } from '@kit.ArkGraphics2D';
 const color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
 let colorFilter = drawing.ColorFilter.createBlendModeColorFilter(color, drawing.BlendMode.SRC);
+```
+
+### createBlendModeColorFilter<sup>18+</sup>
+
+static createBlendModeColorFilter(color: common2D.Color | number, mode: BlendMode) : ColorFilter
+
+Creates a **ColorFilter** object with a given color and blend mode.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name| Type                                                | Mandatory| Description            |
+| ------ | ---------------------------------------------------- | ---- | ---------------- |
+| color  | [common2D.Color](js-apis-graphics-common2D.md#color) \| number | Yes  | Color, represented by a 32-bit unsigned integer in hexadecimal ARGB format.|
+| mode   | [BlendMode](#blendmode)                              | Yes  | Blend mode.|
+
+**Return value**
+
+| Type                       | Description              |
+| --------------------------- | ------------------ |
+| [ColorFilter](#colorfilter) | **ColorFilter** object created.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**Example**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+let colorFilter = drawing.ColorFilter.createBlendModeColorFilter(0xffff0000, drawing.BlendMode.SRC);
 ```
 
 ### createComposeColorFilter
@@ -5012,6 +5801,55 @@ class DrawingRenderNode extends RenderNode {
 ```
 ![Lattice.png](figures/Lattice.png)
 
+### createImageLattice<sup>18+</sup>
+
+static createImageLattice(xDivs: Array\<number>, yDivs: Array\<number>, fXCount: number, fYCount: number, fBounds?: common2D.Rect | null, fRectTypes?: Array\<RectType> | null, fColors?: Array\<number> | null): Lattice
+
+Divides the image into lattices. The lattices on both even columns and even rows are fixed, and they are drawn at their original size if the target is large enough. If the target is too small to hold the fixed lattices, all the fixed lattices are scaled down to fit the target, and the lattices that are not on even columns and even rows are scaled to accommodate the remaining space.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name      | Type                                                               | Mandatory| Description                                                                              |
+| ------------ | ------------------------------------------------------------------ | ---- | --------------------------------------------------------------------------------- |
+| xDivs        | Array\<number>                                                     | Yes  | Array of X coordinates used to divide the image. The value is an integer.                                            |
+| yDivs        | Array\<number>                                                     | Yes  | Array of Y coordinates used to divide the image. The value is an integer.                                            |
+| fXCount      | number                                                             | Yes  | Size of the array that holds the X coordinates. The value range is [0, 5].                           |
+| fYCount      | number                                                             | Yes  | Size of the array that holds the Y coordinates. The value range is [0, 5].                           |
+| fBounds      | [common2D.Rect](js-apis-graphics-common2D.md#rect)\|null           | No  | Source bounds to draw. The rectangle parameter must be an integer. The default value is the rectangle size of the original image. If the rectangle parameter is a decimal, the decimal part is discarded and converted into an integer.|
+| fRectTypes   | Array\<[RectType](#recttype12)>\|null                              | No  | Array that holds the rectangle types. The default value is null. If this parameter is specified, the array size must be (fXCount + 1) * (fYCount + 1).|
+| fColors      | Array\<number>\|null | No  | Array that holds the colors used to fill the lattices. Each color is represented by a 32-bit unsigned integer in hexadecimal ARGB format. The default value is null. If this parameter is specified, the array size must be (fXCount + 1) * (fYCount + 1).|
+
+**Return value**
+
+| Type                      | Description                               |
+| ------------------------- | ----------------------------------- |
+| [Lattice](#lattice12)     | **Lattice** object obtained.             |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**Example**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    let xDivs : Array<number> = [1, 2, 4];
+    let yDivs : Array<number> = [1, 2, 4];
+    let colorArray :Array<number>=[0xffffffff,0x44444444,0x99999999,0xffffffff,0x44444444,0x99999999,0xffffffff,0x44444444,0x99999999,0x44444444,0x99999999,0xffffffff,0x44444444,0x99999999,0xffffffff,0x44444444];
+    let lattice = drawing.Lattice.createImageLattice(xDivs, yDivs, 3, 3,null,null,colorArray);
+  }
+}
+```
+
 ## RectType<sup>12+</sup>
 
 Enumerates the types of rectangles used to fill the lattices. This enum is used only in [Lattice](#lattice12).
@@ -5070,6 +5908,18 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
+## PathDashStyle<sup>18+</sup>
+
+Enumerates the styles of the dashed path effect.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+| Name  | Value| Description              |
+| ------ | - | ------------------ |
+| TRANSLATE | 0 | Translates only, not rotating with the path.|
+| ROTATE  | 1 | Rotates with the path.|
+| MORPH  | 2 | Rotates with the path and adjusts by stretching or compressing at angles to enhance smoothness.|
+
 ## PathEffect<sup>12+</sup>
 
 Implements a path effect.
@@ -5117,6 +5967,119 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
+### createPathDashEffect<sup>18+</sup>
+
+static createPathDashEffect(path: Path, advance: number, phase: number, style: PathDashStyle): PathEffect
+
+Creates a dashed path effect based on the shape described by a path.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name    | Type          | Mandatory   | Description                                              |
+| ---------- | ------------- | ------- | -------------------------------------------------- |
+| path  | [Path](#path) | Yes| Path that defines the shape to be used for filling each dash in the pattern.|
+| advance | number | Yes| Distance between two consecutive dashes. The value is a floating point number greater than 0. Otherwise, an error code is thrown.|
+| phase | number | Yes| Starting offset of the dash pattern. The value is a floating point number. The actual offset used is the absolute value of this value modulo the value of **advance**.|
+| style | [PathDashStyle](#pathdashstyle18) | Yes| Style of the dashed path effect.|
+
+**Return value**
+
+| Type                     | Description                  |
+| ------------------------- | --------------------- |
+| [PathEffect](#patheffect12) | **PathEffect** object created.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3. Parameter verification failed. |
+
+**Example**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let pen = new drawing.Pen();
+    const penColor: common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 }
+    pen.setColor(penColor);
+    pen.setStrokeWidth(10);
+    canvas.attachPen(pen);
+    pen.setAntiAlias(true);
+
+    const path = new drawing.Path();
+    path.moveTo(100, 100);
+    path.lineTo(150, 50);
+    path.lineTo(200, 100);
+
+    const path1 = new drawing.Path();
+    path1.moveTo(0, 0);
+    path1.lineTo(10, 0);
+    path1.lineTo(20, 10);
+    path1.lineTo(0,10);
+
+    let pathEffect1: drawing.PathEffect = drawing.PathEffect.createPathDashEffect(path1, 50, -30,
+        drawing.PathDashStyle.MORPH);
+    pen.setPathEffect(pathEffect1);
+
+    canvas.attachPen(pen);
+    canvas.drawPath(path);
+    canvas.detachPen();
+  }
+}
+```
+
+### createSumPathEffect<sup>18+</sup>
+
+static createSumPathEffect(firstPathEffect: PathEffect, secondPathEffect: PathEffect): PathEffect
+
+Creates an overlay path effect based on two distinct path effects. Different from **createComposePathEffect**, this API applies each effect separately and then displays them as a simple overlay.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name    | Type          | Mandatory   | Description                                              |
+| ---------- | ------------- | ------- | -------------------------------------------------- |
+| firstPathEffect | [PathEffect](#patheffect12) | Yes| First path effect.|
+| secondPathEffect | [PathEffect](#patheffect12) | Yes| Second path effect.|
+
+**Return value**
+
+| Type                     | Description                  |
+| ------------------------- | --------------------- |
+| [PathEffect](#patheffect12) | **PathEffect** object created.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let intervals = [10, 5];
+    let pathEffectOne = drawing.PathEffect.createDashPathEffect(intervals, 5);
+    let pathEffectTwo = drawing.PathEffect.createDashPathEffect(intervals, 10);
+    let effect = drawing.PathEffect.createSumPathEffect(pathEffectOne, pathEffectTwo);
+  }
+}
+```
+
 ### createCornerPathEffect<sup>12+</sup>
 
 static createCornerPathEffect(radius: number): PathEffect
@@ -5154,6 +6117,93 @@ class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
     let effect = drawing.PathEffect.createCornerPathEffect(30);
+  }
+}
+```
+
+### createDiscretePathEffect<sup>18+</sup>
+
+static createDiscretePathEffect(segLength: number, dev: number, seedAssist?: number): PathEffect
+
+Creates an effect that segments the path and scatters the segments in an irregular pattern along the path.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name    | Type          | Mandatory   | Description                                              |
+| ---------- | ------------- | ------- | -------------------------------------------------- |
+| segLength  | number        | Yes     | Distance along the path at which each segment is fragmented. The value is a floating point number. If a negative number or the value **0** is passed in, no effect is created.|
+| dev        | number        | Yes     | Maximum amount by which the end points of the segments can be randomly displaced during rendering. The value is a floating-point number.|
+| seedAssist | number        | No     | Optional parameter to assist in generating a pseudo-random seed for the effect. The default value is **0**, and the value is a 32-bit unsigned integer.|
+
+**Return value**
+
+| Type                     | Description                  |
+| ------------------------- | --------------------- |
+| [PathEffect](#patheffect12) | **PathEffect** object created.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let effect = drawing.PathEffect.createDiscretePathEffect(100, -50, 0);
+  }
+}
+```
+
+### createComposePathEffect<sup>18+</sup>
+
+static createComposePathEffect(outer: PathEffect, inner: PathEffect): PathEffect
+
+Creates a path effect by sequentially applying the inner effect and then the outer effect.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name| Type                       | Mandatory| Description                            |
+| ------ | --------------------------- | ---- | -------------------------------- |
+| outer  | [PathEffect](#patheffect12) | Yes  | Path effect that is applied second, overlaying the first effect.|
+| inner  | [PathEffect](#patheffect12) | Yes  | Inner path effect that is applied first.|
+
+**Return value**
+
+| Type                     | Description                  |
+| ------------------------- | --------------------- |
+| [PathEffect](#patheffect12) | **PathEffect** object created.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let pathEffect1 = drawing.PathEffect.createCornerPathEffect(100);
+    let pathEffect2 = drawing.PathEffect.createCornerPathEffect(10);
+    let effect = drawing.PathEffect.createComposePathEffect(pathEffect1, pathEffect2);
   }
 }
 ```
@@ -5203,6 +6253,50 @@ class DrawingRenderNode extends RenderNode {
     const canvas = context.canvas;
     let color : common2D.Color = {alpha: 0xFF, red: 0x00, green: 0xFF, blue: 0x00};
     let shadowLayer = drawing.ShadowLayer.create(3, -3, 3, color);
+  }
+}
+```
+
+### create<sup>18+</sup>
+
+static create(blurRadius: number, x: number, y: number, color: common2D.Color | number): ShadowLayer
+
+Creates a **ShadowLayer** object.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name    | Type     | Mandatory| Description                                |
+| ---------- | -------- | ---- | ----------------------------------- |
+| blurRadius  | number   | Yes  | Radius of the shadow layer. The value must be a floating point number greater than 0.    |
+| x           | number   | Yes  | Offset on the X axis. The value is a floating point number.       |
+| y           | number   | Yes  | Offset on the Y axis. The value is a floating point number.       |
+| color       | [common2D.Color](js-apis-graphics-common2D.md#color) \| number   | Yes  | Color, represented by a 32-bit unsigned integer in hexadecimal ARGB format. |
+
+**Return value**
+
+| Type                       | Description                 |
+| --------------------------- | -------------------- |
+| [ShadowLayer](#shadowlayer12) | **ShadowLayer** object created.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**Example**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let shadowLayer = drawing.ShadowLayer.create(3, -3, 3, 0xff00ff00);
   }
 }
 ```
@@ -5436,6 +6530,36 @@ const pen = new drawing.Pen();
 pen.setColor(255, 255, 0, 0);
 ```
 
+### setColor<sup>18+</sup>
+
+setColor(color: number) : void
+
+Sets a color for this pen.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name| Type                                                | Mandatory| Description            |
+| ------ | ---------------------------------------------------- | ---- | ---------------- |
+| color  | number | Yes  | Color in hexadecimal ARGB format.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+const pen = new drawing.Pen();
+pen.setColor(0xffff0000);
+```
+
 ### getColor<sup>12+</sup>
 
 getColor(): common2D.Color
@@ -5459,6 +6583,32 @@ const color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
 const pen = new drawing.Pen();
 pen.setColor(color);
 let colorGet = pen.getColor();
+```
+
+### getHexColor<sup>18+</sup>
+
+getHexColor(): number
+
+Obtains the color of this pen.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Return value**
+
+| Type          | Description           |
+| -------------- | -------------- |
+| number | Color, represented as a 32-bit unsigned integer in hexadecimal ARGB format.|
+
+**Example**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+let color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
+let pen = new drawing.Pen();
+pen.setColor(color);
+let hex_color: number = pen.getHexColor();
+console.info('getHexColor: ', hex_color.toString(16));
 ```
 
 ### setStrokeWidth
@@ -6184,6 +7334,36 @@ const brush = new drawing.Brush();
 brush.setColor(255, 255, 0, 0);
 ```
 
+### setColor<sup>18+</sup>
+
+setColor(color: number) : void
+
+Sets a color for this brush.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name| Type                                                | Mandatory| Description            |
+| ------ | ---------------------------------------------------- | ---- | ---------------- |
+| color  | number | Yes  | Color in hexadecimal ARGB format.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**Example**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+const brush = new drawing.Brush();
+brush.setColor(0xffff0000);
+```
+
 ### getColor<sup>12+</sup>
 
 getColor(): common2D.Color
@@ -6207,6 +7387,32 @@ const color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
 const brush = new drawing.Brush();
 brush.setColor(color);
 let colorGet = brush.getColor();
+```
+
+### getHexColor<sup>18+</sup>
+
+getHexColor(): number
+
+Obtains the color of this brush.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Return value**
+
+| Type          | Description           |
+| -------------- | -------------- |
+| number | Color, represented as a 32-bit unsigned integer in hexadecimal ARGB format.|
+
+**Example**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+let color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
+let brush = new drawing.Brush();
+brush.setColor(color);
+let hex_color: number = brush.getHexColor();
+console.info('getHexColor: ', hex_color.toString(16));
 ```
 
 ### setAntiAlias
@@ -7543,6 +8749,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -7594,6 +8801,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -7648,6 +8856,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -7703,6 +8912,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -7754,6 +8964,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -7809,6 +9020,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
