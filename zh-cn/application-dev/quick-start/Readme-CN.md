@@ -5,6 +5,7 @@
   - [构建第一个ArkTS应用（Stage模型）](start-with-ets-stage.md)
 <!--DelEnd-->
 - 开发基础知识<!--development-fundamentals-->
+  - [应用程序包术语](application-package-glossary.md)
   - 应用程序包基础知识<!--application-package-fundamentals-->
     - [应用程序包概述](application-package-overview.md)
     - 应用程序包结构<!--application-package-structure-->
