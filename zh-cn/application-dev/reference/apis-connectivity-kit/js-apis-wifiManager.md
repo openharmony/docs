@@ -1303,9 +1303,9 @@ Wi-Fi7连接类型枚举。
 | -------- | -------- | -------- |
 | DEFAULT_LINK | 0 | 默认连接类型。 |
 | WIFI7_SINGLE_LINK | 1 | Wi-Fi7单链连接。 |
-| WIFI7_MLSR | 2 | Wi-Fi7 MLSR连接。 |
-| WIFI7_EMLSR | 3 | Wi-Fi7 EMLSR连接。 |
-| WIFI7_STR | 4 | Wi-Fi7 STR连接。 |
+| WIFI7_MLSR | 2 | Wi-Fi7 MLSR(multi-link single-radio，多链路多天线)连接。 |
+| WIFI7_EMLSR | 3 | Wi-Fi7 EMLSR(enhanced multi-link single-radio, 增强型多链路单天线)连接。 |
+| WIFI7_STR | 4 | Wi-Fi7 STR(Simultaneous Tx and Rx， 同时发送和接收)连接。 |
 
 ## ConnState<sup>9+</sup>
 
