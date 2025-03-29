@@ -420,7 +420,7 @@ try {
 
 ## socket.sppReadAsync<sup>18+</sup>
 
-sppReadAsync(clientSocket: number): Promise&lt;void&gt;
+sppReadAsync(clientSocket: number): Promise&lt;void&gt; ////
 
 通过socket读取对端所发送数据的异步接口，该接口支持断开连接时SPP操作异常错误返回。
 
