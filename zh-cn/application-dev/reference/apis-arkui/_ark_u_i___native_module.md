@@ -260,7 +260,6 @@
 | [ArkUI_RenderFit](#arkui_renderfit) {<br/>ARKUI_RENDER_FIT_CENTER = 0, ARKUI_RENDER_FIT_TOP, ARKUI_RENDER_FIT_BOTTOM, ARKUI_RENDER_FIT_LEFT,<br/>ARKUI_RENDER_FIT_RIGHT, ARKUI_RENDER_FIT_TOP_LEFT, ARKUI_RENDER_FIT_TOP_RIGHT, ARKUI_RENDER_FIT_BOTTOM_LEFT,<br/>ARKUI_RENDER_FIT_BOTTOM_RIGHT, ARKUI_RENDER_FIT_RESIZE_FILL, ARKUI_RENDER_FIT_RESIZE_CONTAIN, ARKUI_RENDER_FIT_RESIZE_CONTAIN_TOP_LEFT,<br/>ARKUI_RENDER_FIT_RESIZE_CONTAIN_BOTTOM_RIGHT, ARKUI_RENDER_FIT_RESIZE_COVER, ARKUI_RENDER_FIT_RESIZE_COVER_TOP_LEFT, ARKUI_RENDER_FIT_RESIZE_COVER_BOTTOM_RIGHT<br/>} | 定义动画终态内容的状态。 | 
 | [ArkUI_SwiperIndicatorType](#arkui_swiperindicatortype) { ARKUI_SWIPER_INDICATOR_TYPE_DOT, ARKUI_SWIPER_INDICATOR_TYPE_DIGIT } | 定义 Swiper 组件的导航指示器类型。  | 
 | [ArkUI_AnimationDirection](#arkui_animationdirection) { ARKUI_ANIMATION_DIRECTION_NORMAL = 0, ARKUI_ANIMATION_DIRECTION_REVERSE, ARKUI_ANIMATION_DIRECTION_ALTERNATE, ARKUI_ANIMATION_DIRECTION_ALTERNATE_REVERSE } | 动画播放模式。  | 
-| [ArkUI_AnimationFill](#arkui_animationfill) { ARKUI_ANIMATION_FILL_NONE = 0, ARKUI_ANIMATION_FILL_FORWARDS, ARKUI_ANIMATION_FILL_BACKWARDS, ARKUI_ANIMATION_FILL_BOTH } | 动画执行后是否恢复到初始状态，动画执行后，动画结束时的状态（在最后一个关键帧中定义）将保留。  | 
 | [ArkUI_SwiperDisplayModeType](#arkui_swiperdisplaymodetype) { ARKUI_SWIPER_DISPLAY_MODE_STRETCH, ARKUI_SWIPER_DISPLAY_MODE_AUTO_LINEAR } | 定义 Swiper 组件的主轴方向上元素排列的模式。  | 
 | [ArkUI_ListItemSwipeActionState](#arkui_listitemswipeactionstate) { ARKUI_LIST_ITEM_SWIPE_ACTION_STATE_COLLAPSED = 0, ARKUI_LIST_ITEM_SWIPE_ACTION_STATE_EXPANDED, ARKUI_LIST_ITEM_SWIPE_ACTION_STATE_ACTIONING } | 定义 Listitem 组件SwipeAction方法的显隐模式。  | 
 | [ArkUI_ListItemSwipeEdgeEffect](#arkui_listitemswipeedgeeffect) { ARKUI_LIST_ITEM_SWIPE_EDGE_EFFECT_SPRING = 0, ARKUI_LIST_ITEM_SWIPE_EDGE_EFFECT_NONE } | 定义 Listitem 组件SwipeAction方法的滚动模式。  | 
@@ -272,7 +271,7 @@
 | [ArkUI_ListItemGroupArea](#arkui_listitemgrouparea) { ARKUI_LIST_ITEM_GROUP_AREA_OUTSIDE = 0, ARKUI_LIST_ITEM_SWIPE_AREA_NONE = 1, ARKUI_LIST_ITEM_SWIPE_AREA_ITEM = 2, ARKUI_LIST_ITEM_SWIPE_AREA_HEADER = 3, ARKUI_LIST_ITEM_SWIPE_AREA_FOOTER = 4<br/>} | 定义组件区域的枚举值。 | 
 | [ArkUI_SafeAreaEdge](#arkui_safeareaedge) { ARKUI_SAFE_AREA_EDGE_TOP = 1, ARKUI_SAFE_AREA_EDGE_BOTTOM = 1 &lt;&lt; 1, ARKUI_SAFE_AREA_EDGE_START = 1 &lt;&lt; 2, ARKUI_SAFE_AREA_EDGE_END = 1 &lt;&lt; 3 } | 定义扩展安全区域的方向的枚举值。  | 
 | [ArkUI_NavDestinationState](#arkui_navdestinationstate) {<br/>ARKUI_NAV_DESTINATION_STATE_ON_SHOW = 0, ARKUI_NAV_DESTINATION_STATE_ON_HIDE = 1, ARKUI_NAV_DESTINATION_STATE_ON_APPEAR = 2, ARKUI_NAV_DESTINATION_STATE_ON_DISAPPEAR = 3,<br/>ARKUI_NAV_DESTINATION_STATE_ON_WILL_SHOW = 4, ARKUI_NAV_DESTINATION_STATE_ON_WILL_HIDE = 5, ARKUI_NAV_DESTINATION_STATE_ON_WILL_APPEAR = 6, ARKUI_NAV_DESTINATION_STATE_ON_WILL_DISAPPEAR = 7,<br/>ARKUI_NAV_DESTINATION_STATE_ON_BACK_PRESS = 100<br/>} | 定义NavDestination组件的状态。  | 
-| [ArkUI_RouterPageState](#arkui_routerpagestate) {<br/>ARKUI_ROUTER_PAGE_STATE_ON_WILL_APPEAR = 0, ARKUI_ROUTER_PAGE_STATE_ON_WILL_DISAPPEAR = 1, ARKUI_ROUTER_PAGE_STATE_ON_SHOW = 2, ARKUI_ROUTER_PAGE_STATE_ON_HIDE = 3,<br/>ARKUI_ROUTER_PAGE_STATE_ON_BACK_PRESS = 4<br/>} | 定义Router Page的状态。  | 
+| [ArkUI_RouterPageState](#arkui_routerpagestate) {<br/>ARKUI_ROUTER_PAGE_STATE_ABOUT_TO_APPEAR = 0, ARKUI_ROUTER_PAGE_STATE_ABOUT_TO_DISAPPEAR = 1, ARKUI_ROUTER_PAGE_STATE_ON_SHOW = 2, ARKUI_ROUTER_PAGE_STATE_ON_HIDE = 3,<br/>ARKUI_ROUTER_PAGE_STATE_ON_BACK_PRESS = 4<br/>} | 定义Router Page的状态。  | 
 | [ArkUI_ExpandMode](#arkui_expandmode) { <br/>ARKUI_NOT_EXPAND = 0, ARKUI_EXPAND = 1, ARKUI_LAZY_EXPAND = 2 <br/>} | 定义子节点展开模式枚举值。 | 
 
 
@@ -378,7 +377,7 @@
 | int32_t [OH_ArkUI_AnimatorOption_SetDuration](#oh_arkui_animatoroption_setduration) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, int32_t value) | 设置animator动画播放的时长，单位毫秒。  | 
 | int32_t [OH_ArkUI_AnimatorOption_SetDelay](#oh_arkui_animatoroption_setdelay) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, int32_t value) | 设置animator动画延时播放时长，单位毫秒。  | 
 | int32_t [OH_ArkUI_AnimatorOption_SetIterations](#oh_arkui_animatoroption_setiterations) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, int32_t value) | 设置animator动画播放次数。设置为0时不播放，设置为-1时无限次播放。  | 
-| int32_t [OH_ArkUI_AnimatorOption_SetFill](#oh_arkui_animatoroption_setfill) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, [ArkUI_AnimationFill](#arkui_animationfill) value) | 设置animator动画执行后是否恢复到初始状态。  | 
+| int32_t [OH_ArkUI_AnimatorOption_SetFill](#oh_arkui_animatoroption_setfill) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, [ArkUI_AnimationFillMode](#arkui_animationfillmode) value) | 设置animator动画执行后是否恢复到初始状态。  | 
 | int32_t [OH_ArkUI_AnimatorOption_SetDirection](#oh_arkui_animatoroption_setdirection) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, [ArkUI_AnimationDirection](#arkui_animationdirection) value) | 设置animator动画播放方向。  | 
 | int32_t [OH_ArkUI_AnimatorOption_SetCurve](#oh_arkui_animatoroption_setcurve) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, [ArkUI_CurveHandle](#arkui_curvehandle) value) | 设置animator动画插值曲线。  | 
 | int32_t [OH_ArkUI_AnimatorOption_SetBegin](#oh_arkui_animatoroption_setbegin) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, float value) | 设置animator动画插值起点。  | 
@@ -389,7 +388,6 @@
 | int32_t [OH_ArkUI_AnimatorOption_GetDuration](#oh_arkui_animatoroption_getduration) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画播放的时长。  | 
 | int32_t [OH_ArkUI_AnimatorOption_GetDelay](#oh_arkui_animatoroption_getdelay) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画延时播放时长。  | 
 | int32_t [OH_ArkUI_AnimatorOption_GetIterations](#oh_arkui_animatoroption_getiterations) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画播放次数。  | 
-| [ArkUI_AnimationFill](#arkui_animationfill) [OH_ArkUI_AnimatorOption_GetFill](#oh_arkui_animatoroption_getfill) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画执行后是否恢复到初始状态。  | 
 | [ArkUI_AnimationDirection](#arkui_animationdirection) [OH_ArkUI_AnimatorOption_GetDirection](#oh_arkui_animatoroption_getdirection) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画播放方向。  | 
 | [ArkUI_CurveHandle](#arkui_curvehandle) [OH_ArkUI_AnimatorOption_GetCurve](#oh_arkui_animatoroption_getcurve) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画插值曲线。  | 
 | float [OH_ArkUI_AnimatorOption_GetBegin](#oh_arkui_animatoroption_getbegin) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画插值起点。  | 
@@ -1716,25 +1714,6 @@ enum ArkUI_AnimationDirection
 | ARKUI_ANIMATION_DIRECTION_REVERSE  | 动画反向循环播放。  | 
 | ARKUI_ANIMATION_DIRECTION_ALTERNATE  | 动画交替循环播放，奇数次正向播放，偶数次反向播放。  | 
 | ARKUI_ANIMATION_DIRECTION_ALTERNATE_REVERSE  | 动画反向交替循环播放，奇数次反向播放，偶数次正向播放。  | 
-
-
-### ArkUI_AnimationFill
-
-```
-enum ArkUI_AnimationFill
-```
-**描述：**
-
-动画执行后是否恢复到初始状态，动画执行后，动画结束时的状态（在最后一个关键帧中定义）将保留。
-
-**起始版本：** 12
-
-| 枚举值 | 描述 | 
-| -------- | -------- |
-| ARKUI_ANIMATION_FILL_NONE  | 在动画执行之前和之后都不会应用任何样式到目标上。  | 
-| ARKUI_ANIMATION_FILL_FORWARDS  | 在动画结束后，目标将保留动画结束时的状态（在最后一个关键帧中定义）。  | 
-| ARKUI_ANIMATION_FILL_BACKWARDS  | 动画将在animation-delay期间应用第一个关键帧中定义的值。  | 
-| ARKUI_ANIMATION_FILL_BOTH  | 动画将遵循forwards和backwards的规则，从而在两个方向上扩展动画属性。  | 
 
 
 ### ArkUI_AnimationFillMode
@@ -3929,8 +3908,8 @@ enum ArkUI_RouterPageState
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_ROUTER_PAGE_STATE_ON_WILL_APPEAR  | Router Page即将创建。  | 
-| ARKUI_ROUTER_PAGE_STATE_ON_WILL_DISAPPEAR  | Router Page即将销毁。  | 
+| ARKUI_ROUTER_PAGE_STATE_ABOUT_TO_APPEAR  | Router Page即将创建。  | 
+| ARKUI_ROUTER_PAGE_STATE_ABOUT_TO_DISAPPEAR  | Router Page即将销毁。  | 
 | ARKUI_ROUTER_PAGE_STATE_ON_SHOW  | Router Page显示。  | 
 | ARKUI_ROUTER_PAGE_STATE_ON_HIDE  | Router Page隐藏。  | 
 | ARKUI_ROUTER_PAGE_STATE_ON_BACK_PRESS  | Router Page返回时。  | 
@@ -6457,7 +6436,7 @@ ArkUI_ExpectedFrameRateRange* OH_ArkUI_AnimatorOption_GetExpectedFrameRateRange 
 ### OH_ArkUI_AnimatorOption_GetFill()
 
 ```
-ArkUI_AnimationFill OH_ArkUI_AnimatorOption_GetFill (ArkUI_AnimatorOption * option)
+ArkUI_AnimationFillMode OH_ArkUI_AnimatorOption_GetFill (ArkUI_AnimatorOption * option)
 ```
 **描述：**
 
@@ -6817,7 +6796,7 @@ ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数�
 ### OH_ArkUI_AnimatorOption_SetFill()
 
 ```
-int32_t OH_ArkUI_AnimatorOption_SetFill (ArkUI_AnimatorOption * option, ArkUI_AnimationFill value )
+int32_t OH_ArkUI_AnimatorOption_SetFill (ArkUI_AnimatorOption * option, ArkUI_AnimationFillMode value )
 ```
 **描述：**
 
