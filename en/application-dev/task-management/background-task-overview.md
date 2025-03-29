@@ -45,3 +45,5 @@ For system applications that provide basic capabilities, the system provides an 
 > - The system supports only constrained background tasks. If an application does not use a constrained background task or selects an inappropriate type of background task after switching to the background, its process will be suspended or terminated.
 > 
 > - For an application that requests a constrained background task, only the priority of reclaiming the application process is increased. If system resources are severely insufficient, the application process may still be terminated.
+
+<!--no_check-->
