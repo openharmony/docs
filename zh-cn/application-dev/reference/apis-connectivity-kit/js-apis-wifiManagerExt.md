@@ -256,7 +256,7 @@ getPowerMode(callback: AsyncCallback&lt;PowerMode&gt;): void
 
 ## wifiManagerExt.setPowerMode<sup>9+</sup>
 
-setPowerMode(mode: PowerMode) : void;
+setPowerMode(mode: PowerMode) : void
 
  设置功率模式。
 
