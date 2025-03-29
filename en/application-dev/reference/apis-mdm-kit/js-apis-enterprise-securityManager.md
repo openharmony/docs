@@ -1,5 +1,3 @@
-
-
 # @ohos.enterprise.securityManager (Security Management)
 
 The **securityManager** module provides device security management capabilities, including obtaining the security patch status and file system encryption status.
@@ -22,7 +20,7 @@ import { securityManager } from '@kit.MDMKit';
 
 uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 
-Uninstalls a user certificate through the specified device administrator application. This API uses a promise to return the result.
+Uninstalls a user certificate. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
@@ -32,8 +30,8 @@ Uninstalls a user certificate through the specified device administrator applica
 
 | Name | Type                                                   | Mandatory| Description                             |
 | ------- | ------------------------------------------------------- | ---- | --------------------------------- |
-| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                   |
-| certUri | string                                                  | Yes  | Certificate URI, which is returned by **installUserCertificate()**.|
+| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                   |
+| certUri | string                                                  | Yes  | Certificate URI, which is set and returned by the [installUserCertificate](#securitymanagerinstallusercertificate) API for installing a user certificate.|
 
 **Return value**
 
@@ -74,7 +72,7 @@ securityManager.uninstallUserCertificate(wantTemp, aliasStr).then(() => {
 
 installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt;
 
-Installs a user certificate through the specified device administrator application. This API uses a promise to return the result.
+Installs a user certificate. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
@@ -84,8 +82,8 @@ Installs a user certificate through the specified device administrator applicati
 
 | Name     | Type                                                   | Mandatory| Description          |
 | ----------- | ------------------------------------------------------- | ---- | -------------- |
-| admin       | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.|
-| certificate | [CertBlob](#certblob)                                   | Yes  | Information about the certificate to install.    |
+| admin       | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.|
+| certificate | [CertBlob](#certblob)                                   | Yes  | Certificate information. The certificate file must be stored in a path that can be accessed by the application, such as the application sandbox path.    |
 
 **Return value**
 
@@ -115,10 +113,10 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility',
 };
 let certFileArray: Uint8Array = new Uint8Array();
-// The variable context needs to be initialized in MainAbility's onCreate callback function
-// test.cer needs to be placed in the rawfile directory
+// Initialize the Context variable in the onCreate callback function of the MainAbility.
+// Place the test file test.cer in the rawfile directory.
 getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
-  certFileArray = value
+  certFileArray = value;
   securityManager.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" })
     .then((result) => {
       console.info(`Succeeded in installing user certificate, result : ${JSON.stringify(result)}`);
@@ -145,7 +143,7 @@ Obtains security status.
 
 | Name| Type                                                   | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                              |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                              |
 | item   | string                                                  | Yes  | Type of the security status to obtain.<br>- **patch**: device security patch.<br>- **encryption**: device file system encryption.<!--RP1--><!--RP1End-->|
 
 **Return value**
@@ -182,11 +180,11 @@ try {
 }
 ```
 
-## securityManager.setPasswordPolicy<sup>12+</sup>
+## securityManager.setPasswordPolicy
 
 setPasswordPolicy(admin: Want, policy: PasswordPolicy): void
 
-Sets the device password policy through the specified device administrator application.
+Sets the device password policy.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -196,7 +194,7 @@ Sets the device password policy through the specified device administrator appli
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | EnterpriseAdminExtensionAbility.                 |
 | policy | [PasswordPolicy](#passwordpolicy) | Yes| Device password policy to set.|
 
 **Error codes**
@@ -232,11 +230,11 @@ try {
 }
 ```
 
-## securityManager.getPasswordPolicy<sup>12+</sup>
+## securityManager.getPasswordPolicy
 
 getPasswordPolicy(admin: Want): PasswordPolicy
 
-Obtains the device password policy through the specified device administrator application.
+Obtains the device password policy.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -246,7 +244,7 @@ Obtains the device password policy through the specified device administrator ap
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | EnterpriseAdminExtensionAbility.                 |
 
 **Return value**
 
@@ -282,11 +280,11 @@ try {
 }
 ```
 
-## securityManager.setAppClipboardPolicy<sup>12+</sup>
+## securityManager.setAppClipboardPolicy
 
 setAppClipboardPolicy(admin: Want, tokenId: number, policy: ClipboardPolicy): void
 
-Sets the device clipboard policy through the specified device administrator application.
+Sets the device clipboard policy.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -296,8 +294,8 @@ Sets the device clipboard policy through the specified device administrator appl
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| tokenId | number | Yes| Application token ID, which can be obtained from [ApplicationInfo](../apis-ability-kit/js-apis-bundleManager-applicationInfo.md) of the application. Currently, a maximum of 100 token IDs can be saved.|
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | EnterpriseAdminExtensionAbility.                 |
+| tokenId | number | Yes| Application token ID, which can be obtained using [bundleManager.getApplicationInfo](../apis-ability-kit/js-apis-bundleManager-applicationInfo.md). Currently, a maximum of 100 token IDs can be saved.|
 | policy | [ClipboardPolicy](#clipboardpolicy) | Yes| Clipboard policy to set.|
 
 **Error codes**
@@ -328,11 +326,11 @@ try {
 }
 ```
 
-## securityManager.getAppClipboardPolicy<sup>12+</sup>
+## securityManager.getAppClipboardPolicy
 
 getAppClipboardPolicy(admin: Want, tokenId?: number): string
 
-Obtains the device clipboard policy through the specified device administrator application.
+Obtains the device clipboard policy.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -342,14 +340,14 @@ Obtains the device clipboard policy through the specified device administrator a
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| tokenId | number | No| Application token ID, which can be obtained from [ApplicationInfo](../apis-ability-kit/js-apis-bundleManager-applicationInfo.md) of the application.|
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | EnterpriseAdminExtensionAbility.     |
+| tokenId | number | No| Application token ID, which can be obtained using [bundleManager.getApplicationInfo](../apis-ability-kit/js-apis-bundleManager-applicationInfo.md). Currently, a maximum of 100 token IDs can be saved.|
 
 **Return value**
 
 | Type                  | Description                     |
 | --------------------- | ------------------------- |
-| ClipboardPolicy | Device clipboard policy obtained.|
+| string | Device clipboard policy in JSON format.|
 
 **Error codes**
 
