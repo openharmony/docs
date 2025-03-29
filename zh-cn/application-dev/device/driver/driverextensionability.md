@@ -172,8 +172,8 @@
 
 具体使用方法，请参考：
 
-* [HID DDK开发指导](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/napi/hid-ddk-guidelines.md)
-* [USB DDK开发指导](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/napi/usb-ddk-guidelines.md)
+* [HID DDK开发指导](../../napi/hid-ddk-guidelines.md)
+* [USB DDK开发指导](../../napi/usb-ddk-guidelines.md)
 
 ## 应用签名
 
