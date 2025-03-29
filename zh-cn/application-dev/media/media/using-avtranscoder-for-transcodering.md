@@ -7,6 +7,9 @@
 ## 开发步骤及注意事项
 
 详细的API说明请参考[AVTranscoder API参考](../../reference/apis-media-kit/js-apis-media.md#avtranscoder12)。
+> **说明：**
+>
+> 如需对转码后的文件进行转发、上传、转存等处理，应用须收到complete事件后调用系统接口await avTranscoder.release()，以保证视频文件完整性。
 
 1. 创建AVTranscoder实例。
 
@@ -36,7 +39,10 @@
    // 转码完成回调函数。
    avTranscoder.on('complete', () => {
      console.log(`transcoder is completed`);
-     // 用户可以在此监听转码完成事件。
+     // 用户须在此监听转码完成事件，并调用release
+     // release完成后，再对转码后的文件进行转发、上传、转存等处理
+     await avTranscoder.release();
+     avTranscoder = undefined;
    });
    
    // 错误上报回调函数。
