@@ -22,7 +22,7 @@ import { deviceSettings } from '@kit.MDMKit';
 
 setScreenOffTime(admin: Want, time: number): void
 
-Sets the device screen-off time through the specified device administrator application. This API returns the result synchronously. If the operation is successful, **null** is returned. If the operation fails, an exception is thrown.
+Sets the device screen-off time.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_SCREENOFF_TIME
 
@@ -32,7 +32,7 @@ Sets the device screen-off time through the specified device administrator appli
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | EnterpriseAdminExtensionAbility.    |
 | time | number            | Yes   | Screen-off time to set, in milliseconds. You are advised to set this parameter to the device's optional screen-off time.      |
 
 **Error codes**
@@ -67,7 +67,7 @@ try {
 
 getScreenOffTime(admin: Want, callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the device screen-off time through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Obtains the device screen-off time. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_SETTINGS
 
@@ -77,7 +77,7 @@ Obtains the device screen-off time through the specified device administrator ap
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | EnterpriseAdminExtensionAbility.           |
 | callback | AsyncCallback&lt;number&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the screen-off time in ms. If the operation fails, **err** is an error object.      |
 
 **Error codes**
@@ -114,7 +114,7 @@ deviceSettings.getScreenOffTime(wantTemp, (err, result) => {
 
 getScreenOffTime(admin: Want): Promise&lt;number&gt;
 
-Obtains the device screen-off time through the specified device administrator application. This API uses a promise to return the result.
+Obtains the device screen-off time. This API uses an asynchronous promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_SETTINGS
 
@@ -122,9 +122,9 @@ Obtains the device screen-off time through the specified device administrator ap
 
 **Parameters**
 
-| Name  | Type                                 | Mandatory  | Description     |
-| ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| Name| Type                                                   | Mandatory| Description                  |
+| ------ | ------------------------------------------------------- | ---- | ---------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.|
 
 **Return value**
 
@@ -165,7 +165,7 @@ deviceSettings.getScreenOffTime(wantTemp).then((result) => {
 
 installUserCertificate(admin: Want, certificate: CertBlob, callback: AsyncCallback&lt;string&gt;): void
 
-Installs a user certificate through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Installs a user certificate. This API uses a callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
@@ -175,8 +175,8 @@ Installs a user certificate through the specified device administrator applicati
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| certificate    | [CertBlob](#certblob)     | Yes   | Information about the certificate to install.                 |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | EnterpriseAdminExtensionAbility.           |
+| certificate    | [CertBlob](#certblob)     | Yes   | Information about the certificate to install. The certificate file must be stored in a path that can be accessed by the application, such as the application sandbox path.|
 | callback | AsyncCallback&lt;string&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.     |
 
 **Error codes**
@@ -223,7 +223,7 @@ getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
 
 installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt;
 
-Installs a user certificate through the specified device administrator application. This API uses a promise to return the result.
+Installs a user certificate. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
@@ -233,8 +233,8 @@ Installs a user certificate through the specified device administrator applicati
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| certificate    | [CertBlob](#certblob)     | Yes   | Information about the certificate to install.                 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
+| certificate    | [CertBlob](#certblob)     | Yes   | Information about the certificate to install. The certificate file must be stored in a path that can be accessed by the application, such as the application sandbox path.|
 
 **Return value**
 
@@ -296,7 +296,7 @@ Represents the certificate information.
 
 uninstallUserCertificate(admin: Want, certUri: string, callback: AsyncCallback&lt;void&gt;): void
 
-Uninstalls a user certificate through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Uninstalls a user certificate. This API uses a callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
@@ -306,8 +306,8 @@ Uninstalls a user certificate through the specified device administrator applica
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| certUri    | string    | Yes   | Certificate URI, which is returned by **installUserCertificate()**.                 |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | EnterpriseAdminExtensionAbility.           |
+| certUri    | string    | Yes   | Certificate URI, which is set and returned by the [installUserCertificate](#devicesettingsinstallusercertificate) API for installing a user certificate.|
 | callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.     |
 
 **Error codes**
@@ -345,7 +345,7 @@ deviceSettings.uninstallUserCertificate(wantTemp, aliasStr, (err) => {
 
 uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 
-Uninstalls a user certificate through the specified device administrator application. This API uses a promise to return the result.
+Uninstalls a user certificate. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
@@ -355,14 +355,14 @@ Uninstalls a user certificate through the specified device administrator applica
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| certUri    | string     | Yes   | Certificate URI, which is returned by **installUserCertificate()**.                 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
+| certUri    | string     | Yes   | Certificate URI, which is set and returned by the [installUserCertificate](#devicesettingsinstallusercertificate-1) API for installing a user certificate.|
 
 **Return value**
 
 | Type                  | Description                     |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. An error object will be thrown if the operation fails.|
+| Promise&lt;void&gt; | Promise that returns no value. An error object is thrown when a user certificate fails to be uninstalled.|
 
 **Error codes**
 
@@ -398,7 +398,7 @@ deviceSettings.uninstallUserCertificate(wantTemp, aliasStr).then(() => {
 
 setPowerPolicy(admin: Want, powerScene: PowerScene, powerPolicy: PowerPolicy): void
 
-Sets the device power policy through the specified device administrator application. This API returns the result synchronously. If the operation is successful, **null** is returned. If the operation fails, an exception is thrown.
+Sets the power policy.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SETTINGS
 
@@ -408,7 +408,7 @@ Sets the device power policy through the specified device administrator applicat
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | EnterpriseAdminExtensionAbility.           |
 | powerScene | [PowerScene](#powerscene11) | Yes   | Scenario to which the power policy applies. Currently, only the timeout scenario is supported.      |
 | powerPolicy | [PowerPolicy](#powerpolicy11) | Yes   | Power policy to set.      |
 
@@ -448,7 +448,7 @@ try {
 
 getPowerPolicy(admin: Want, powerScene: PowerScene): PowerPolicy
 
-Obtains the device power policy through the specified device administrator application. This API returns the result synchronously. If the operation is successful, the power policy obtained is returned. If the operation fails, an exception is thrown.
+Obtains the power policy.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SETTINGS
 
@@ -458,14 +458,14 @@ Obtains the device power policy through the specified device administrator appli
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | EnterpriseAdminExtensionAbility.           |
 | powerScene | [PowerScene](#powerscene11) | Yes   | Scenario to which the power policy applies. Currently, only the timeout scenario is supported.      |
 
 **Return value**
 
 | Type  | Description                                 | Description                      |
 | ----- | ----------------------------------- |------------------------------- |
-| PowerPolicy | [PowerPolicy](#powerpolicy11) |   Power policy obtained.      |
+| PowerPolicy | [PowerPolicy](#powerpolicy11) |   Power policy.      |
 
 **Error codes**
 
