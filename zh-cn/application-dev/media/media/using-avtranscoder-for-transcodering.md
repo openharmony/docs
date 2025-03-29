@@ -37,7 +37,7 @@
    import { BusinessError } from '@kit.BasicServicesKit';
    
    // 转码完成回调函数。
-   avTranscoder.on('complete', () => {
+   avTranscoder.on('complete', async () => {
      console.log(`transcoder is completed`);
      // 用户须在此监听转码完成事件，并调用release
      // 须等待avTranscoder.release()完成之后，再对转码后的文件进行转发、上传、转存等处理
