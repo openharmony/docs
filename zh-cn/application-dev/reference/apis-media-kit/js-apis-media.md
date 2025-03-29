@@ -2941,7 +2941,9 @@ on(type: 'seiMessageReceived', payloadTypes: Array\<number>, callback: OnSeiMess
 **示例：**
 
 ```ts
-this.avPlayer.on('seiMessageReceived', [5], (messages: Array<media.SeiMessage>, playbackPosition?: number) =>
+import util from '@ohos.util';
+
+avPlayer.on('seiMessageReceived', [5], (messages: Array<media.SeiMessage>, playbackPosition?: number) =>
 {
   console.info('seiMessageReceived playbackPosition ' + playbackPosition)
 
@@ -2949,7 +2951,7 @@ this.avPlayer.on('seiMessageReceived', [5], (messages: Array<media.SeiMessage>, 
     console.info('seiMessageReceived messages payloadType ' + messages[key].payloadType + ' payload size ' + messages[key].payload.byteLength)
 
     let textDecoder = util.TextDecoder.create("utf-8",{ignoreBOM: true})
-    let ab = messages[key].payload.slice(16, messages[key].payload.byteLength)
+    let ab = messages[key]?.payload?.slice(16, messages[key].payload.byteLength)
     let result: Uint8Array = new Uint8Array(ab)
     let retStr: string = textDecoder.decodeToString(result)
     console.info('seiMessageReceived messages payload ' + retStr)
