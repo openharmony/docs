@@ -326,7 +326,7 @@ struct Child {
 ### Using List Scrolling with LazyForEach
 
 - In the sample code, the **CardView** custom component is marked as a reusable component, and the list is scrolled up and down to trigger **CardView** reuse.
-- \@State: The variable **item** can be updated only when it is decorated by \@State.
+- Only the \@State decorated variable **item** can be updated.
 
 ```ts
 class MyDataSource implements IDataSource {

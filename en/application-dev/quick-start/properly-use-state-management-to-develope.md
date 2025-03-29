@@ -234,7 +234,7 @@ struct SpecialImage {
     return 1;
   }
   build() {
-    Image($r('app.media.icon')) // Use app.media.app_icon since API version 12.
+    Image($r('app.media.icon')) // 'app.media.icon' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
       .width(this.uiStyle.imageWidth)
       .height(this.uiStyle.imageHeight)
       .margin({ top: 20 })
@@ -246,7 +246,7 @@ struct SpecialImage {
   }
 }
 @Component
-struct CompA {
+struct PageChild {
   @ObjectLink uiStyle: UIStyle
   // The following function is used to display whether the component is rendered.
   private isRenderColumn() : number {
@@ -272,7 +272,7 @@ struct CompA {
       })
       Stack() {
         Column() {
-            Image($r('app.media.icon')) // Use app.media.app_icon since API version 12.
+            Image($r('app.media.icon')) // 'app.media.icon' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
               .opacity(this.uiStyle.alpha)
               .scale({
                 x: this.uiStyle.scaleX,
@@ -351,7 +351,7 @@ struct Page {
   @State uiStyle: UIStyle = new UIStyle();
   build() {
     Stack() {
-      CompA({
+      PageChild({
         uiStyle: this.uiStyle
       })
     }
@@ -435,7 +435,7 @@ struct SpecialImage {
     return 1;
   }
   build() {
-    Image($r('app.media.icon')) // Use app.media.app_icon since API version 12.
+    Image($r('app.media.icon')) // 'app.media.icon' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
       .width(this.needRenderImage.imageWidth) // Use this.needRenderImage.xxx.
       .height(this.needRenderImage.imageHeight)
       .margin({top:20})
@@ -447,7 +447,7 @@ struct SpecialImage {
   }
 }
 @Component
-struct CompA {
+struct PageChild {
   @ObjectLink uiStyle: UIStyle;
   @ObjectLink needRenderTranslate: NeedRenderTranslate; // Receive the newly defined instance of the NeedRenderxxx class from its parent component.
   @ObjectLink needRenderFontSize: NeedRenderFontSize;
@@ -481,7 +481,7 @@ struct CompA {
       })
       Stack() {
         Column() {
-          Image($r('app.media.icon')) // Use app.media.app_icon since API version 12.
+          Image($r('app.media.icon')) // 'app.media.icon' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
             .opacity(this.needRenderAlpha.alpha)
             .scale({
               x: this.needRenderScale.scaleX, // Use this.needRenderXxx.xxx.
@@ -570,7 +570,7 @@ struct Page {
   @State uiStyle: UIStyle = new UIStyle();
   build() {
     Stack() {
-      CompA({
+      PageChild({
         uiStyle: this.uiStyle,
         needRenderTranslate: this.uiStyle.needRenderTranslate, // Pass the needRenderxxx class to the child component.
         needRenderFontSize: this.uiStyle.needRenderFontSize,
@@ -629,7 +629,7 @@ struct SpecialImage {
     return 1;
   }
   build() {
-    Image($r('app.media.icon')) // Use app.media.app_icon since API version 12.
+    Image($r('app.media.icon')) // 'app.media.icon' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
       .width(this.uiStyle.imageWidth)
       .height(this.uiStyle.imageHeight)
       .margin({ top: 20 })
@@ -641,7 +641,7 @@ struct SpecialImage {
   }
 }
 @Component
-struct CompA {
+struct PageChild {
   @ObjectLink uiStyle: UIStyle
   // The following function is used to display whether the component is rendered.
   private isRenderColumn() : number {
@@ -667,7 +667,7 @@ struct CompA {
       })
       Stack() {
         Column() {
-            Image($r('app.media.icon')) // Use app.media.app_icon since API version 12.
+            Image($r('app.media.icon')) // 'app.media.icon' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
               .opacity(this.uiStyle.alpha)
               .scale({
                 x: this.uiStyle.scaleX,
@@ -746,7 +746,7 @@ struct Page {
   @State uiStyle: UIStyle = new UIStyle();
   build() {
     Stack() {
-      CompA({
+      PageChild({
         uiStyle: this.uiStyle
       })
     }
@@ -1185,7 +1185,8 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i <= 9; i++) {
-      this.data.pushData(new StringData(`Click to add ${i}`, $r('app.media.icon'))); // Use app.media.app_icon since API version 12.
+      // 'app.media.icon' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+      this.data.pushData(new StringData(`Click to add ${i}`, $r('app.media.icon')));
     }
   }
 
@@ -1322,7 +1323,8 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i <= 9; i++) {
-      this.data.pushData(new StringData(`Click to add ${i}`, $r('app.media.icon'))); // Use app.media.app_icon since API version 12.
+      // 'app.media.icon' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+      this.data.pushData(new StringData(`Click to add ${i}`, $r('app.media.icon')));
     }
   }
 
@@ -1371,10 +1373,10 @@ Frequently seen in applications, the combination of object arrays and [ForEach](
 
 ```typescript
 @Observed
-class StyleList extends Array<TextStyle> {
+class StyleList extends Array<TextStyles> {
 };
 @Observed
-class TextStyle {
+class TextStyles {
   fontSize: number;
 
   constructor(fontSize: number) {
@@ -1387,7 +1389,7 @@ struct Page {
   @State styleList: StyleList = new StyleList();
   aboutToAppear() {
     for (let i = 15; i < 50; i++)
-    this.styleList.push(new TextStyle(i));
+    this.styleList.push(new TextStyles(i));
   }
   build() {
     Column() {
@@ -1400,7 +1402,7 @@ struct Page {
           console.log("change font size");
         })
       List() {
-        ForEach(this.styleList, (item: TextStyle) => {
+        ForEach(this.styleList, (item: TextStyles) => {
           ListItem() {
             Text("Hello World")
               .fontSize(item.fontSize)
@@ -1420,10 +1422,10 @@ The items generated in **ForEach** are constants. This means that their value ch
 
 ```typescript
 @Observed
-class StyleList extends Array<TextStyle> {
+class StyleList extends Array<TextStyles> {
 };
 @Observed
-class TextStyle {
+class TextStyles {
   fontSize: number;
 
   constructor(fontSize: number) {
@@ -1432,7 +1434,7 @@ class TextStyle {
 }
 @Component
 struct TextComponent {
-  @ObjectLink textStyle: TextStyle;
+  @ObjectLink textStyle: TextStyles;
   build() {
     Text("Hello World")
       .fontSize(this.textStyle.fontSize)
@@ -1444,7 +1446,7 @@ struct Page {
   @State styleList: StyleList = new StyleList();
   aboutToAppear() {
     for (let i = 15; i < 50; i++)
-      this.styleList.push(new TextStyle(i));
+      this.styleList.push(new TextStyles(i));
   }
   build() {
     Column() {
@@ -1457,7 +1459,7 @@ struct Page {
           console.log("change font size");
         })
       List() {
-        ForEach(this.styleList, (item: TextStyle) => {
+        ForEach(this.styleList, (item: TextStyles) => {
           ListItem() {
             TextComponent({ textStyle: item})
           }
@@ -1475,7 +1477,3 @@ Below you can see how the preceding code snippet works.
 When @ObjectLink is used to accept the input item, the **textStyle** variable in the **TextComponent** component can be observed. For @ObjectLink, parameters are passed by reference. Therefore, when the value of **fontSize** in **styleList** is changed in the parent component, this update is properly observed and synced to the corresponding list item in **ForEach**, leading to UI re-rendering.
 
 This is a practical mode of using state management for UI re-rendering.
-
-
-
-<!--no_check-->
