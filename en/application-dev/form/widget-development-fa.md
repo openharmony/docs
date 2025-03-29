@@ -20,7 +20,7 @@ Before you get started, it would be helpful if you have a basic understanding of
 
 Figure 1 shows the working principles of the widget framework.
 
-**Figure 1** Widget framework working principles in the FA model
+  **Figure 1** Widget framework working principles in the FA model 
 
 ![form-extension](figures/form-extension.png)
 
@@ -64,7 +64,7 @@ The **FormAbility** has the following APIs.
 | onCreate(want: Want): formBindingData.FormBindingData | Called to notify the widget provider that a widget has been created.|
 | onCastToNormal(formId: string): void | Called to notify the widget provider that a temporary widget has been converted to a normal one.|
 | onUpdate(formId: string): void | Called to notify the widget provider that a widget has been updated.|
-| onVisibilityChange(newStatus: Record&lt;string, number&gt;): void | Called to notify the widget provider of the change in widget visibility.|
+| onVisibilityChange(newStatus:&nbsp;Record&lt;string,&nbsp;number&gt;):&nbsp;void | Called to notify the widget provider of the change in widget visibility.|
 | onEvent(formId: string, message: string): void | Called to instruct the widget provider to receive and process a widget event.|
 | onDestroy(formId: string): void | Called to notify the widget provider that a widget has been destroyed.|
 | onAcquireFormState?(want: Want): formInfo.FormState | Called to instruct the widget provider to receive the status query result of a widget.|
