@@ -8,6 +8,7 @@
   - [@ohos.inputMethod (Input Method Framework) (System API)](js-apis-inputmethod-sys.md)
   - [@ohos.inputMethod (Input Method Framework)](js-apis-inputmethod.md)
   - [@ohos.inputMethodEngine (Input Method Service)](js-apis-inputmethodengine.md)
+  - [@ohos.inputMethodEngine (Input Method Service) (System API)](js-apis-inputmethodengine-sys.md)
   - [@ohos.inputMethodList (Input Method List)](js-apis-inputmethodlist.md)
 - C API<!--ime-c-->
   - Modules<!--ime-module-->
