@@ -22,7 +22,7 @@ setDisallowedPolicy(admin: Want, feature: string, disallow: boolean): void
 
 Disallows a feature.
 
-**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS or ohos.permission.PERSONAL_MANAGE_RESTRICTIONS<sup>15+</sup>
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -30,8 +30,8 @@ Disallows a feature.
 
 | Name  | Type                                                   | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                              |
-| feature  | string                                                  | Yes  | Feature to set.<br>- **bluetooth**: Bluetooth capability of the device.<br>- **modifyDateTime**: capability of modifying the system time. Currently, this feature is available only for 2-in-1 devices.<br>- **printer**: printing capability. Currently, this feature is available only for 2-in-1 devices.<br>- **hdc**: OpenHarmony Device Connector (hdc).<br>- **microphone**: microphone capability of the device.<br>- **fingerprint**: fingerprint authentication capability of the device.<br>- **usb**: USB capability of the device. After this feature is disabled, USB devices cannot be used.<br>- **wifi**: Wi-Fi capability of the device.<!--RP1--><!--RP1End--> |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                      |
+| feature  | string                                                  | Yes  | Feature to set.<br>- **bluetooth**: Bluetooth capability of the device.<br>- **modifyDateTime**: capability of modifying the system time. Currently, this feature is available only for 2-in-1 devices.<br>- **printer**: printing capability. Currently, this feature is available only for 2-in-1 devices.<br>- **hdc**: OpenHarmony Device Connector (hdc).<br>- **microphone**: microphone capability of the device.<br>- **fingerprint**: fingerprint authentication capability of the device.<br>- **usb**: USB capability of the device. The external USB device cannot be used after this capability is disabled. That is, when the current device is in host mode, other external devices cannot be connected.<br> If you use this API to disable the USB capability of a device in the following scenarios, a policy conflict will be reported:<br>  1. Available USB devices are added using the [addAllowedUsbDevices](js-apis-enterprise-usbManager.md#usbmanageraddallowedusbdevices) API.<br>  2. The access policy of the USB storage device is set to read-only or disabled through the [setUsbStorageDeviceAccessPolicy](js-apis-enterprise-usbManager.md#usbmanagersetusbstoragedeviceaccesspolicy) API.<br>- **wifi**: Wi-Fi capability of the device.<!--RP1--><!--RP1End--> |
 | disallow | boolean                                                 | Yes  | Whether to disallow the feature. The value **true** means to disallow the feature; the value **false** means the opposite.                       |
 
 **Error codes**
@@ -50,8 +50,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 try {
@@ -66,9 +66,9 @@ try {
 
 getDisallowedPolicy(admin: Want, feature: string): boolean
 
-Obtains the status of a feature.
+Obtains a disabled feature.
 
-**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS or ohos.permission.PERSONAL_MANAGE_RESTRICTIONS<sup>15+</sup>
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -76,8 +76,8 @@ Obtains the status of a feature.
 
 | Name | Type                                                   | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                              |
-| feature | string                                                  | Yes  | Name of the feature, whose status is to be obtained.<br>- **bluetooth**: Bluetooth capability of the device.<br>- **modifyDateTime**: capability of modifying the system time. Currently, this feature is available only for 2-in-1 devices.<br>- **printer**: printing capability. Currently, this feature is available only for 2-in-1 devices.<br>- **hdc**: OpenHarmony Device Connector (hdc).<br>- **microphone**: microphone capability of the device.<br>- **fingerprint**: fingerprint authentication capability of the device.<br>- **usb**: USB capability of the device. After this feature is disabled, USB devices cannot be used.<br>- **wifi**: Wi-Fi capability of the device.<!--RP2--><!--RP2End--> |
+| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                      |
+| feature | string                                                  | Yes  | Feature to set.<br>- **bluetooth**: Bluetooth capability of the device.<br>- **modifyDateTime**: capability of modifying the system time. Currently, this feature is available only for 2-in-1 devices.<br>- **printer**: printing capability. Currently, this feature is available only for 2-in-1 devices.<br>- **hdc**: OpenHarmony Device Connector (hdc).<br>- **microphone**: microphone capability of the device.<br>- **fingerprint**: fingerprint authentication capability of the device.<br>- **usb**: USB capability of the device. External USB devices cannot be used after this capability is disabled. That is, when the current device is in host mode, other external devices cannot be connected.<br>- **wifi**: Wi-Fi capability of the device.<!--RP2--><!--RP2End--> |
 
 **Return value**
 
@@ -101,8 +101,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 try {

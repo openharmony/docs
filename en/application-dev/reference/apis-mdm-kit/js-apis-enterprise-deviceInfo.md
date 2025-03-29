@@ -1,6 +1,6 @@
 # @ohos.enterprise.deviceInfo (Device Information Management)
 
-The **deviceInfo** module provides APIs for enterprise device information management, including the API for obtaining device serial numbers.
+The deviceInfo module provides APIs for enterprise device information management, including the API for obtaining device serial numbers.
 
 > **NOTE**
 >
@@ -30,14 +30,14 @@ Obtains device information.
 
 | Name| Type                                                   | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                              |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                              |
 | label  | string                                                  | Yes  | Device information to obtain.<br>- **deviceName**: device name.<br>- **deviceSerial**: device serial number.<br>- **simInfo**: SIM card information.<!--RP1--><!--RP1End-->|
 
 **Return value**
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
-| string | Device information obtained.<br>If **label** is **simInfo**, the return value is the SIM card information in a JSON string.<br/>Example:<br/>[{"slotId": 0, "MEID": "", "IMSI": "", "ICCID": "", "IMEI": ""}, {"slotId": 1, "MEID": "", "IMSI": "", "ICCID": "", "IMEI": ""}] <br>In this example, **slotId:0** indicates slot 1, and **slotId:1** indicates slot 2. |
+| string | Device information obtained.<br>If **label** is **simInfo**, the return value is the SIM card information in a JSON string. For example, [{"slotId": 0, "MEID": "", "IMSI": "", "ICCID": "", "IMEI": ""}, {"slotId": 1, "MEID": "", "IMSI": "", "ICCID": "", "IMEI": ""}]. <br>**slotId:0** indicates slot 1, and **slotId:1** indicates slot 2.|
 
 **Error codes**
 

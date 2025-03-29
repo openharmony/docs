@@ -4,9 +4,9 @@ The **adminManager** module provides enterprise device management capabilities s
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - The APIs of this module are available only to [device administrator applications](../../mdm/mdm-kit-guide.md#introduction).
+> The APIs of this module are available only to [device administrator applications](../../mdm/mdm-kit-guide.md#introduction).
 
 ## Modules to Import
 
@@ -18,7 +18,7 @@ import { adminManager } from '@kit.MDMKit';
 
 disableAdmin(admin: Want, userId?: number): Promise\<void>
 
-Disables a common administrator application for the current or specified user. This API uses a promise to return the result.
+Disables an administrator application for the user specified by the device. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -32,8 +32,8 @@ Disables a common administrator application for the current or specified user. T
 
 | Name| Type                                                   | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Common administrator application to disable.                                          |
-| userId | number                                                  | No  | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, this API applies to the specified user.<br>- If **userId** is not passed in, this API applies to the current user.|
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                      |
+| userId | number                                                  | No  | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, this API applies to the specified user.<br> - If **userId** is not passed in, this API applies to the current user.|
 
 **Return value**
 
@@ -57,8 +57,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 adminManager.disableAdmin(wantTemp, 100).catch((err: BusinessError) => {
@@ -70,7 +70,7 @@ adminManager.disableAdmin(wantTemp, 100).catch((err: BusinessError) => {
 
 subscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): void
 
-Subscribes to system management events of a device administrator application.
+Subscribes to system management events.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
@@ -82,10 +82,10 @@ Subscribes to system management events of a device administrator application.
 
 **Parameters**
 
-| Name       | Type                                                   | Mandatory| Description          |
-| ------------- | ------------------------------------------------------- | ---- | -------------- |
-| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.|
-| managedEvents | Array\<[ManagedEvent](#managedevent)>                   | Yes  | Array of events to subscribe to.|
+| Name       | Type                                                   | Mandatory| Description                  |
+| ------------- | ------------------------------------------------------- | ---- | ---------------------- |
+| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.|
+| managedEvents | Array\<[ManagedEvent](#managedevent)>                   | Yes  | Array of events to subscribe to.        |
 
 **Error codes**
 
@@ -103,14 +103,14 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
 try {
   adminManager.subscribeManagedEventSync(wantTemp, events);
-  console.info('Succeeded in subscribe managed event.');
+  console.info('Succeeded in subscribing managed event.');
 } catch (err) {
   console.error(`Failed to subscribe managed event. Code: ${err.code}, message: ${err.message}`);
 }
@@ -120,7 +120,7 @@ try {
 
 unsubscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): void
 
-Unsubscribes from system management events of a device administrator application.
+Unsubscribes from system management events.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
@@ -132,10 +132,10 @@ Unsubscribes from system management events of a device administrator application
 
 **Parameters**
 
-| Name       | Type                                                   | Mandatory| Description              |
-| ------------- | ------------------------------------------------------- | ---- | ------------------ |
-| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.    |
-| managedEvents | Array\<[ManagedEvent](#managedevent)>                   | Yes  | Array of events to unsubscribe from.|
+| Name       | Type                                                   | Mandatory| Description                  |
+| ------------- | ------------------------------------------------------- | ---- | ---------------------- |
+| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.|
+| managedEvents | Array\<[ManagedEvent](#managedevent)>                   | Yes  | Array of events to unsubscribe from.    |
 
 **Error codes**
 
@@ -153,16 +153,16 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
 try {
   adminManager.unsubscribeManagedEventSync(wantTemp, events);
-  console.info('Succeeded in subscribe managed event.');
+  console.info('Succeeded in unsubscribing managed event.');
 } catch (err) {
-  console.error(`Failed to subscribe managed event. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to unsubscribe managed event. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -174,10 +174,10 @@ Enumerates the system management events that can be subscribed to.
 
 
 
-| Name                        | Value  | Description          |
-| ---------------------------- | ---- | -------------- |
-| MANAGED_EVENT_BUNDLE_ADDED   | 0    | An application is installed.|
-| MANAGED_EVENT_BUNDLE_REMOVED | 1    | An application is uninstalled.|
-| MANAGED_EVENT_APP_START      | 2    | An application is started.|
-| MANAGED_EVENT_APP_STOP       | 3    | An application is stopped.|
-| MANAGED_EVENT_SYSTEM_UPDATE  | 4    | The system is updated. |
+| Name                                        | Value  | Description          |
+| -------------------------------------------- | ---- | -------------- |
+| MANAGED_EVENT_BUNDLE_ADDED                   | 0    | An application is installed.|
+| MANAGED_EVENT_BUNDLE_REMOVED                 | 1    | An application is uninstalled.|
+| MANAGED_EVENT_APP_START                      | 2    | An application is started.|
+| MANAGED_EVENT_APP_STOP                       | 3    | An application is stopped.|
+| MANAGED_EVENT_SYSTEM_UPDATE                  | 4    | The system is updated.|
