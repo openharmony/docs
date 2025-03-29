@@ -89,8 +89,8 @@ import { cloudSync } from '@kit.CoreFileKit';
 | 名称     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | state | [State](#state11) | 是   | 枚举值，云文件下载状态。|
-| processed | number | 是   | 已下载数据大小，默认值为[0， 2^63 - 1]。|
-| size | number | 是   | 当前云文件大小，默认值为[0， 2^63 - 1]。|
+| processed | number | 是   | 已下载数据大小，取值范围[0， 2^63 - 1]。|
+| size | number | 是   | 当前云文件大小，取值范围[0， 2^63 - 1]。|
 | uri | string | 是   | 当前云文件uri。|
 | error | [DownloadErrorType](#downloaderrortype11) | 是   | 下载的错误类型。|
 
