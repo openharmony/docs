@@ -20,7 +20,7 @@ import { browser } from '@kit.MDMKit';
 
 setPolicySync(admin: Want, appId: string, policyName: string, policyValue: string): void
 
-Sets a policy for a browser through the specified device administrator application.
+Sets a policy for a specified browser.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BROWSER_POLICY
 
@@ -30,7 +30,7 @@ Sets a policy for a browser through the specified device administrator applicati
 
 | Name     | Type                                                   | Mandatory| Description                                                        |
 | ----------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin       | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                              |
+| admin       | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                              |
 | appId       | string                                                  | Yes  | Application ID, which is used to specify the browser.                                    |
 | policyName  | string                                                  | Yes  | Name of the browser policy to set. If the value is an empty string, the browser policy corresponding to the application ID is set.|
 | policyValue | string                                                  | Yes  | Browser policy to set. If the value is an empty string, the policy corresponding to the policy name is removed.|
@@ -54,7 +54,9 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appId: string = 'com.example.myapplication';
+
+// Replace the value of appId with the specified application ID of the browser.
+let appId: string = 'com.example.******_******/******5t5CoBM=';
 let policyName: string = 'InsecurePrivateNetworkRequestsAllowed';
 let policyValue: string = '{"level":"mandatory","scope":"machine","source":"platform","value":true}';
 
@@ -79,7 +81,7 @@ Obtains the policies of a browser through the specified device administrator app
 
 | Name| Type                                                   | Mandatory| Description                    |
 | ------ | ------------------------------------------------------- | ---- | ------------------------ |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.          |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.          |
 | appId  | string                                                  | Yes  | Application ID, which is used to specify the browser.|
 
 **Return value**
@@ -105,7 +107,9 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appId: string = 'com.example.myapplication';
+
+// Replace the value of appId with the specified application ID of the browser.
+let appId: string = 'com.example.******_******/******5t5CoBM=';
 
 try {
   let result: string = browser.getPoliciesSync(wantTemp, appId);

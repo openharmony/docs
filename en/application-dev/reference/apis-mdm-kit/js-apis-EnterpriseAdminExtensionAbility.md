@@ -59,7 +59,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
 onBundleAdded(bundleName: string): void
 
-Called when a bundle is added.
+Called when applications are installed. The application bundle name is included. You should register the **MANAGED_EVENT_BUNDLE_ADDED** event through [adminManager.subscribeManagedEventSync](js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync).
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -69,7 +69,7 @@ Called when a bundle is added.
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| bundleName | string | Yes   | Name of the bundle added.|
+| bundleName | string | Yes   | Bundle name of the application installed.|
 
 **Example**
 
@@ -85,7 +85,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
 onBundleRemoved(bundleName: string): void
 
-Called when a bundle is removed.
+Called when applications are uninstalled. The application bundle name is included. You should register the **MANAGED_EVENT_BUNDLE_REMOVED** event through [adminManager.subscribeManagedEventSync](js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync).
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -95,7 +95,7 @@ Called when a bundle is removed.
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| bundleName | string | Yes   | Name of the bundle removed.|
+| bundleName | string | Yes   | Bundle name of the application uninstalled.|
 
 **Example**
 
@@ -111,7 +111,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
 onAppStart(bundleName: string): void
 
-Called when an application is started.
+Called when an application is started. You should register the **MANAGED_EVENT_APP_START** event through [adminManager.subscribeManagedEventSync](js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync).
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -137,7 +137,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
 onAppStop(bundleName: string): void
 
-Called when an application is stopped.
+Called when an application is stopped. You should register the **MANAGED_EVENT_APP_STOP** event through [adminManager.subscribeManagedEventSync](js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync).
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -162,7 +162,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
 onSystemUpdate(systemUpdateInfo: systemManager.SystemUpdateInfo): void
 
-Called to report a system update event.
+Called to report a system update event. You should register the **MANAGED_EVENT_SYSTEM_UPDATE** event through [adminManager.subscribeManagedEventSync](js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync).
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
