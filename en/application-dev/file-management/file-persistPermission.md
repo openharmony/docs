@@ -61,18 +61,17 @@ async function persistPermissionExample() {
 ```
 
 **NOTE**
+> 
 > - You are advised to save the URI of the file with persistent permission for the related application locally to facilitate the subsequent activation.
 > - The permission persistence data is also stored in the system database. After the application or device is restarted, the persistent permission can be used only after being activated. For details, see [Activating a Persistent Permission](#activating-a-persistent-permission-for-accessing-a-file-or-folder).
 > - The APIs used for persisting permissions are available only for 2-in-1 devices. You can use **canIUse()** to check whether the device has the required system capability. The caller must also have the required permissions.
 > - When an application is uninstalled, all the permission authorization data will be deleted. After the application is reinstalled, re-authorization is required.
 
-**NOTE**
 For details about how to persist a temporary permission using C/C++ APIs, see [OH_FileShare_PersistPermission](native-fileshare-guidelines.md).
 
 You can use [ohos.fileshare.revokePermission](../reference/apis-core-file-kit/js-apis-fileShare.md#filesharerevokepermission11) to revoke the persistent permission from a file, and update the data stored in the application to delete the file URI from the recently accessed data.
 
 **Required Permissions**
-
 ohos.permission.FILE_ACCESS_PERSIST. For details about how to request the permission, see [Workflow for Requesting Permissions](../security/AccessToken/determine-application-mode.md).
 
 **Example**
@@ -110,19 +109,18 @@ async function revokePermissionExample() {
 ```
 
 **NOTE**
+> 
 > - The URI in the example comes from the permission persistence data stored for the application.
 > - You are advised to activate the persistent permissions based on service requirements. Do not activate all persistent permissions.
 > - The APIs used for persisting permissions are available only for 2-in-1 devices. You can use **canIUse()** to check whether the device has the required system capability. The caller must also have the required permissions.
 
-**NOTE**
-For details about how to revoke temporary permission using C/C++ APIs, see [OH_FileShare_RevokePermission](native-fileshare-guidelines.md).
+For details about how to revoke a persistent permission using C/C++ APIs, see [OH_FileShare_RevokePermission](native-fileshare-guidelines.md).
 
 ## Activating a Persistent Permission for Accessing a File or Folder
 
 Each time an application is started, its persistent permissions have not been loaded to the memory. To make a persistent permission still valid after the application is restarted, use [ohos.fileshare.activatePermission](../reference/apis-core-file-kit/js-apis-fileShare.md#fileshareactivatepermission11) to activate the permission.
 
 **Required Permissions**
-
 ohos.permission.FILE_ACCESS_PERSIST. For details about how to request the permission, see [Workflow for Requesting Permissions](../security/AccessToken/determine-application-mode.md).
 
 **Example**
@@ -161,7 +159,9 @@ async function activatePermissionExample() {
     }
 }
 ```
+
 **NOTE**
+> 
 > - The URI in the example comes from the permission persistence data stored for the application.
 > - You are advised to activate the persistent permissions based on service requirements. Do not activate all persistent permissions.
 > - If the activation fails because the permission has not been persisted, persist the permission first.
