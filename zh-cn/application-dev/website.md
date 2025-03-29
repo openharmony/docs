@@ -1605,8 +1605,23 @@
           - [几何形状绘制（C/C++）](graphics/geometric-shape-drawing-c.md)
           - [图片绘制（C/C++）](graphics/pixelmap-drawing-c.md)
           - [字块绘制（C/C++）](graphics/textblock-drawing-c.md)
-      - [使用Text模块实现文本显示](graphics/text-js-guidelines.md)
-      - [使用主题字体（C/C++）](graphics/theme-font-c.md)
+      - 文本<!--text-->
+        - [文本开发概述](graphics/text-overview.md)
+        - 字体管理<!--font-manager-->
+          - [使用主题字体（ArkTS）](graphics/theme-font-arkts.md)
+          - [自定义字体的注册和使用（ArkTS）](graphics/custom-font-arkts.md)
+          - [系统字体的信息获取和使用（ArkTS）](graphics/system-font-arkts.md)
+          - [使用主题字体（C/C++）](graphics/theme-font-c.md)
+          - [自定义字体的注册和使用（C/C++）](graphics/custom-font-c.md)
+          - [系统字体的信息获取和使用（C/C++）](graphics/system-font-c.md)
+        - 文本测量<!--text-measure-->
+          - [文本测量（ArkTS）](graphics/text-measure-arkts.md)
+          - [文本测量（C/C++）](graphics/text-measure-c.md)
+        - 文本绘制与显示<!--draw-text-display-->
+          - [简单文本绘制与显示（ArkTS）](graphics/simple-text-arkts.md)
+          - [复杂文本绘制与显示（ArkTS）](graphics/complex-text-arkts.md)
+          - [简单文本绘制与显示（C/C++）](graphics/simple-text-c.md)
+          - [复杂文本绘制与显示（C/C++）](graphics/complex-text-c.md)
       - [NativeBuffer开发指导 (C/C++)](graphics/native-buffer-guidelines.md)
       - [NativeImage开发指导 (C/C++)](graphics/native-image-guidelines.md)
       - [NativeVSync开发指导 (C/C++)](graphics/native-vsync-guidelines.md)
@@ -2371,19 +2386,22 @@
             - [AttributeUpdater](reference/apis-arkui/js-apis-arkui-AttributeUpdater.md)
             - [Content](reference/apis-arkui/js-apis-arkui-Content.md)
             - [NodeContent](reference/apis-arkui/js-apis-arkui-NodeContent.md)
-        - 图形图像<!--arkui-graphics-images-->
-          - [@ohos.display (屏幕属性)](reference/apis-arkui/js-apis-display.md)
+        - 窗口管理<!--window-manager-api-->
           - [@ohos.PiPWindow (画中画窗口)](reference/apis-arkui/js-apis-pipWindow.md)
           - [@ohos.window (窗口)](reference/apis-arkui/js-apis-window.md)
-          - [@ohos.screenshot (屏幕截图)](reference/apis-arkui/js-apis-screenshot.md)
           <!--Del-->
           - [@ohos.animation.windowAnimationManager (窗口动画管理)(系统接口)](reference/apis-arkui/js-apis-windowAnimationManager-sys.md)
           - [@ohos.application.WindowExtensionAbility (窗口扩展能力)(系统接口)](reference/apis-arkui/js-apis-application-windowExtensionAbility-sys.md)
+          - [@ohos.window (窗口)(系统接口)](reference/apis-arkui/js-apis-window-sys.md)
+          - [WindowExtensionContext (系统接口)](reference/apis-arkui/js-apis-inner-application-windowExtensionContext-sys.md)
+          <!--DelEnd-->
+        - 屏幕管理<!--display-manager-api-->
+          - [@ohos.display (屏幕属性)](reference/apis-arkui/js-apis-display.md)
+          - [@ohos.screenshot (屏幕截图)](reference/apis-arkui/js-apis-screenshot.md)
+          <!--Del-->
           - [@ohos.display (屏幕属性)(系统接口)](reference/apis-arkui/js-apis-display-sys.md)
           - [@ohos.screen (屏幕)(系统接口)](reference/apis-arkui/js-apis-screen-sys.md)
           - [@ohos.screenshot (屏幕截图)(系统接口)](reference/apis-arkui/js-apis-screenshot-sys.md)
-          - [@ohos.window (窗口)(系统接口)](reference/apis-arkui/js-apis-window-sys.md)
-          - [WindowExtensionContext (系统接口)](reference/apis-arkui/js-apis-inner-application-windowExtensionContext-sys.md)
           <!--DelEnd-->
         - 已停止维护的接口<!--arkui-arkts-dep-->
           - [@ohos.prompt (弹窗)](reference/apis-arkui/js-apis-prompt.md)
@@ -3115,6 +3133,7 @@
         - [@ohos.file.fileAccess (公共文件访问与管理)(系统接口)](reference/apis-core-file-kit/js-apis-fileAccess-sys.md)
         - [@ohos.file.fileExtensionInfo (公共文件访问与管理属性信息)(系统接口)](reference/apis-core-file-kit/js-apis-fileExtensionInfo-sys.md)
         - [@ohos.file.keyManager (用户秘钥管理)(系统接口)](reference/apis-core-file-kit/js-apis-file-keymanager-sys.md)
+        - [@ohos.file.picker (选择器)(系统接口)](reference/apis-core-file-kit/js-apis-file-picker-sys.md)
         - [@ohos.file.recent(最近访问列表)(系统接口)](reference/apis-core-file-kit/js-apis-file-recent-sys.md)
         - [@ohos.file.storageStatistics (应用空间统计)(系统接口)](reference/apis-core-file-kit/js-apis-file-storage-statistics-sys.md)
         - [@ohos.file.trash (回收站)(系统接口)](reference/apis-core-file-kit/js-apis-file-trash-sys.md)

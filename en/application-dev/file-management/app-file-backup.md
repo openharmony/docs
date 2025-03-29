@@ -66,7 +66,7 @@ async function getLocalCapabilities(): Promise<void> {
 | spaceOccupied  | Number    | Yes  | Space occupied by the application data.|
 | versionCode    | Number    | Yes  | Application version number.          |
 | versionName    | String  | Yes  | Application version name.        |
-| deviceType     | String  | Yes  | Type of the device.              |
+| deviceType     | String  | Yes  | Device type.              |
 | systemFullName | String  | Yes  | Device version.              |
 
 ```json

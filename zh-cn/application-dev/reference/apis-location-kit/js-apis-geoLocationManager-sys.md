@@ -53,7 +53,7 @@ import { geoLocationManager } from '@kit.LocationKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| isFromMock | Boolean | 否 | 是 | true：地名信息来自于逆地理编码模拟功能<br/>false：地名信息不是来自于逆地理编码模拟功能<br/>**系统API**：此接口为系统接口。 |
+| isFromMock | Boolean | 否 | 是 | true：地名信息来自于逆地理编码模拟功能。<br/>false：地名信息不是来自于逆地理编码模拟功能。<br/>**系统API**：此接口为系统接口。 |
 
 
 ## Location
@@ -64,7 +64,7 @@ import { geoLocationManager } from '@kit.LocationKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| isFromMock | Boolean | 否 | 是 | true：位置信息来自于位置模拟功能<br/>false：位置信息不是来自于位置模拟功能<br/>**系统API**：此接口为系统接口。 |
+| isFromMock | Boolean | 否 | 是 | true：位置信息来自于位置模拟功能。<br/>false：位置信息不是来自于位置模拟功能。<br/>**系统API**：此接口为系统接口。 |
 
 
 ## ReverseGeocodingMockInfo
@@ -105,7 +105,7 @@ import { geoLocationManager } from '@kit.LocationKit';
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | type | [LocatingRequiredDataType](#locatingrequireddatatype10) | 否 | 否 | 表示请求获取数据的类型。 |
-| needStartScan |  boolean | 否 | 否 | true：需要发起扫描<br/>false：不需要发起扫描 |
+| needStartScan |  boolean | 否 | 否 | true：需要发起扫描。<br/>false：不需要发起扫描。 |
 | scanInterval |  number | 否 | 是 | 表示扫描的时间间隔。单位是毫秒，默认值是10000毫秒，取值范围为大于0。 |
 | scanTimeout |  number | 否 | 是 | 表示单次扫描的超时时间。单位是毫秒，默认值是10000毫秒，取值范围为大于0小于600000。 |
 
@@ -687,7 +687,7 @@ isLocationPrivacyConfirmed(type: LocationPrivacyType): boolean
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | true：用户同意定位服务隐私申明<br/>false：用户不同意定位服务隐私申明 |
+  | boolean | true：用户同意定位服务隐私申明。<br/>false：用户不同意定位服务隐私申明。 |
 
 **错误码**：
 
@@ -729,7 +729,7 @@ setLocationPrivacyConfirmStatus(type: LocationPrivacyType, isConfirmed: boolean)
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | [LocationPrivacyType](#locationprivacytype) | 是 | 指定隐私申明场景，例如开机向导中的隐私申明、开启网络定位功能时弹出的隐私申明等。 |
-  | isConfirmed | boolean | 是 | true：用户同意定位服务隐私申明<br/>false：用户不同意定位服务隐私申明 |
+  | isConfirmed | boolean | 是 | true：用户同意定位服务隐私申明。<br/>false：用户不同意定位服务隐私申明。 |
 
 **错误码**：
 
@@ -1053,7 +1053,7 @@ isLocationEnabledByUserId(userId: number): boolean
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | true：位置信息开关已开启<br/>false：位置信息开关已关闭 |
+  | boolean | true：位置信息开关已开启。<br/>false：位置信息开关已关闭。 |
 
 **错误码**：
 

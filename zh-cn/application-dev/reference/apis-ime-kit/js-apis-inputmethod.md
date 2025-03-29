@@ -894,7 +894,7 @@ try {
 }
 ```
 
-## SetPreviewTextCallback<sup>18+</sup>
+## SetPreviewTextCallback<sup>17+</sup>
 
 type SetPreviewTextCallback = (text: string, range: Range) => void
 
@@ -3003,11 +3003,15 @@ try {
 }
 ```
 
-### on('setPreviewText')<sup>18+</sup>
+### on('setPreviewText')<sup>17+</sup>
 
 on(type: 'setPreviewText', callback: SetPreviewTextCallback): void
 
 订阅输入法应用操作文本预览内容的事件。使用callback异步回调。
+
+> **说明：**
+> 
+> 使用预览文本功能，需在调用[attach](#attach10)前订阅此事件，并和[on('finishTextPreview')](#onfinishtextpreview17)一起订阅。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -3016,7 +3020,7 @@ on(type: 'setPreviewText', callback: SetPreviewTextCallback): void
 | 参数名   | 类型   | 必填 | 说明     |
 | -------- | ----- | ---- | ------ |
 | type     | string  | 是   | 设置监听类型，固定取值为'setPreviewText'。 |
-| callback | [SetPreviewTextCallback](#setpreviewtextcallback18) | 是   | 回调函数。用于接收文本预览的内容并返回。 |
+| callback | [SetPreviewTextCallback](#setpreviewtextcallback17) | 是   | 回调函数。用于接收文本预览的内容并返回。 |
 
 **错误码：**
 
@@ -3053,7 +3057,7 @@ try {
 }
 ```
 
-### off('setPreviewText')<sup>18+</sup>
+### off('setPreviewText')<sup>17+</sup>
 
 off(type: 'setPreviewText', callback?: SetPreviewTextCallback): void
 
@@ -3066,7 +3070,7 @@ off(type: 'setPreviewText', callback?: SetPreviewTextCallback): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 设置监听类型，固定取值为'setPreviewText'。 |
-| callback | [SetPreviewTextCallback](#setpreviewtextcallback18) | 否  | 取消订阅的回调函数，需要与on接口传入的保持一致。<br>参数不填写时，取消订阅type对应的所有回调事件。|
+| callback | [SetPreviewTextCallback](#setpreviewtextcallback17) | 否  | 取消订阅的回调函数，需要与on接口传入的保持一致。<br>参数不填写时，取消订阅type对应的所有回调事件。|
 
 **示例：**
 
@@ -3095,11 +3099,15 @@ try {
 }
 ```
 
-### on('finishTextPreview')<sup>18+</sup>
+### on('finishTextPreview')<sup>17+</sup>
 
 on(type: 'finishTextPreview', callback: Callback&gt;void&gt;): void
 
 订阅结束文本预览事件。使用callback异步回调。
+
+> **说明：**
+> 
+> 使用预览文本功能，需在调用[attach](#attach10)前订阅此事件，并和[on('setPreviewText')](#onsetpreviewtext17)一起订阅。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -3144,7 +3152,7 @@ try {
 }
 ```
 
-### off('finishTextPreview')<sup>18+</sup>
+### off('finishTextPreview')<sup>17+</sup>
 
 off(type: 'finishTextPreview', callback?: Callback&gt;void&gt;): void
 

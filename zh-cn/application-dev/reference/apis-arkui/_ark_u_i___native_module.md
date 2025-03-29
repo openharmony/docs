@@ -99,7 +99,7 @@
 | typedef bool(\* [ArkUI_OnWillDismissEvent](#arkui_onwilldismissevent)) (int32_t reason) | 弹窗关闭的回调函数。  | 
 | typedef struct [ArkUI_DialogDismissEvent](#arkui_dialogdismissevent) [ArkUI_DialogDismissEvent](#arkui_dialogdismissevent) | 定义弹窗关闭事件对象。  | 
 | typedef struct [ArkUI_CustomDialogOptions ](#arkui_customdialogoptions) [ArkUI_CustomDialogOptions ](#arkui_customdialogoptions) | 定义自定义弹窗的内容对象。  | 
-| typedef uint32_t [ArkUI_GestureEventActionTypeMask](#arkui_gestureeventactiontypemask) | 定义手势事件类型集合  | 
+| typedef uint32_t [ArkUI_GestureEventActionTypeMask](#arkui_gestureeventactiontypemask) | 定义手势事件类型集合。  | 
 | typedef uint32_t [ArkUI_GestureDirectionMask](#arkui_gesturedirectionmask) | 定义滑动手势方向集合。  | 
 | typedef ArkUI_GestureRecognizer \* [ArkUI_GestureRecognizerHandle](#arkui_gesturerecognizerhandle) | 提供手势识别器句柄类型对象定义。  | 
 | typedef [ArkUI_GestureRecognizerHandle](#arkui_gesturerecognizerhandle) \* [ArkUI_GestureRecognizerHandleArray](#arkui_gesturerecognizerhandlearray) | 提供手势识别器句柄类型数组对象定义。  | 
@@ -107,7 +107,7 @@
 | typedef [ArkUI_TouchRecognizerHandle](#arkui_touchrecognizerhandle) \* [ArkUI_TouchRecognizerHandleArray](#arkui_touchrecognizerhandlearray) | 提供触摸识别器句柄类型数组对象定义。  | 
 | typedef struct [ArkUI_GestureEventTargetInfo](#arkui_gestureeventtargetinfo) [ArkUI_GestureEventTargetInfo](#arkui_gestureeventtargetinfo) | 提供手势事件目标信息类型对象定义。  | 
 | typedef struct [ArkUI_ParallelInnerGestureEvent](#arkui_parallelinnergestureevent) [ArkUI_ParallelInnerGestureEvent](#arkui_parallelinnergestureevent) | 提供并行内部手势事件类型对象定义。  | 
-| typedef void(\* [ArkUI_GestureRecognizerDestructNotifyCallback](#arkui_gesturerecognizerdestructnotifycallback)) (ArkUI_GestureRecognizer \*recognizer, void \*userData) | 定义手势识别器析构通知事件的回调函数类型。  | 
+| typedef void(\* [ArkUI_GestureRecognizerDisposeNotifyCallback](#arkui_gesturerecognizerdisposenotifycallback)) (ArkUI_GestureRecognizer \*recognizer, void \*userData) | 定义手势识别器析构通知事件的回调函数类型。  | 
 | typedef struct [ArkUI_NodeEvent](#arkui_nodeevent-12) [ArkUI_NodeEvent](#arkui_nodeevent-12) | 定义组件事件的通用结构类型。  | 
 | typedef struct [ArkUI_NodeCustomEvent](#arkui_nodecustomevent) [ArkUI_NodeCustomEvent](#arkui_nodecustomevent) | 定义自定义组件事件的通用结构类型。  | 
 | typedef struct ArkUI_NodeAdapter \* [ArkUI_NodeAdapterHandle](#arkui_nodeadapterhandle) | 定义组件适配器对象，用于滚动类组件的元素懒加载。  | 
@@ -161,7 +161,7 @@
 | [ArkUI_GestureMask](#arkui_gesturemask) { NORMAL_GESTURE_MASK = 0, IGNORE_INTERNAL_GESTURE_MASK } | 定义手势屏蔽模式。  | 
 | [ArkUI_GestureRecognizerType](#arkui_gesturerecognizertype) {<br/>TAP_GESTURE = 0, LONG_PRESS_GESTURE, PAN_GESTURE, PINCH_GESTURE,<br/>ROTATION_GESTURE, SWIPE_GESTURE, GROUP_GESTURE<br/>} | 定义手势类型。  | 
 | [ArkUI_GestureInterruptResult](#arkui_gestureinterruptresult) { GESTURE_INTERRUPT_RESULT_CONTINUE = 0, GESTURE_INTERRUPT_RESULT_REJECT } | 定义手势打断结果。  | 
-| [ArkUI_GestureRecognizerState](#arkui_gesturerecognizerstate) {<br/>ARKUI_GESTURE_RECOGNIZER_STATE_REDAY = 0, ARKUI_GESTURE_RECOGNIZER_STATE_DETECTING = 1, ARKUI_GESTURE_RECOGNIZER_STATE_PENDING = 2, ARKUI_GESTURE_RECOGNIZER_STATE_BLOCKED = 3,<br/>ARKUI_GESTURE_RECOGNIZER_STATE_SUCCESSFUL = 4, ARKUI_GESTURE_RECOGNIZER_STATE_FAILED = 5<br/>} | 定义手势识别器状态。  | 
+| [ArkUI_GestureRecognizerState](#arkui_gesturerecognizerstate) {<br/>ARKUI_GESTURE_RECOGNIZER_STATE_READY = 0, ARKUI_GESTURE_RECOGNIZER_STATE_DETECTING = 1, ARKUI_GESTURE_RECOGNIZER_STATE_PENDING = 2, ARKUI_GESTURE_RECOGNIZER_STATE_BLOCKED = 3,<br/>ARKUI_GESTURE_RECOGNIZER_STATE_SUCCESSFUL = 4, ARKUI_GESTURE_RECOGNIZER_STATE_FAILED = 5<br/>} | 定义手势识别器状态。  | 
 | [ArkUI_NativeAPIVariantKind](#arkui_nativeapivariantkind) { ARKUI_NATIVE_NODE, ARKUI_NATIVE_DIALOG, ARKUI_NATIVE_GESTURE, ARKUI_NATIVE_ANIMATE } | 定义Native接口集合类型。  | 
 | [ArkUI_KeyCode](#arkui_keycode) {<br/>ARKUI_KEYCODE_UNKNOWN = -1, ARKUI_KEYCODE_FN = 0, ARKUI_KEYCODE_VOLUME_UP = 16, ARKUI_KEYCODE_VOLUME_DOWN = 17,<br/>ARKUI_KEYCODE_POWER = 18, ARKUI_KEYCODE_CAMERA = 19, ARKUI_KEYCODE_VOLUME_MUTE = 22, ARKUI_KEYCODE_MUTE = 23,<br/>ARKUI_KEYCODE_BRIGHTNESS_UP = 40, ARKUI_KEYCODE_BRIGHTNESS_DOWN = 41, ARKUI_KEYCODE_0 = 2000, ARKUI_KEYCODE_1 = 2001,<br/>ARKUI_KEYCODE_2 = 2002, ARKUI_KEYCODE_3 = 2003, ARKUI_KEYCODE_4 = 2004, ARKUI_KEYCODE_5 = 2005,<br/>ARKUI_KEYCODE_6 = 2006, ARKUI_KEYCODE_7 = 2007, ARKUI_KEYCODE_8 = 2008, ARKUI_KEYCODE_9 = 2009,<br/>ARKUI_KEYCODE_STAR = 2010, ARKUI_KEYCODE_POUND = 2011, ARKUI_KEYCODE_DPAD_UP = 2012, ARKUI_KEYCODE_DPAD_DOWN = 2013,<br/>ARKUI_KEYCODE_DPAD_LEFT = 2014, ARKUI_KEYCODE_DPAD_RIGHT = 2015, ARKUI_KEYCODE_DPAD_CENTER = 2016, ARKUI_KEYCODE_A = 2017,<br/>ARKUI_KEYCODE_B = 2018, ARKUI_KEYCODE_C = 2019, ARKUI_KEYCODE_D = 2020, ARKUI_KEYCODE_E = 2021,<br/>ARKUI_KEYCODE_F = 2022, ARKUI_KEYCODE_G = 2023, ARKUI_KEYCODE_H = 2024, ARKUI_KEYCODE_I = 2025,<br/>ARKUI_KEYCODE_J = 2026, ARKUI_KEYCODE_K = 2027, ARKUI_KEYCODE_L = 2028, ARKUI_KEYCODE_M = 2029,<br/>ARKUI_KEYCODE_N = 2030, ARKUI_KEYCODE_O = 2031, ARKUI_KEYCODE_P = 2032, ARKUI_KEYCODE_Q = 2033,<br/>ARKUI_KEYCODE_R = 2034, ARKUI_KEYCODE_S = 2035, ARKUI_KEYCODE_T = 2036, ARKUI_KEYCODE_U = 2037,<br/>ARKUI_KEYCODE_V = 2038, ARKUI_KEYCODE_W = 2039, ARKUI_KEYCODE_X = 2040, ARKUI_KEYCODE_Y = 2041,<br/>ARKUI_KEYCODE_Z = 2042, ARKUI_KEYCODE_COMMA = 2043, ARKUI_KEYCODE_PERIOD = 2044, ARKUI_KEYCODE_ALT_LEFT = 2045,<br/>ARKUI_KEYCODE_ALT_RIGHT = 2046, ARKUI_KEYCODE_SHIFT_LEFT = 2047, ARKUI_KEYCODE_SHIFT_RIGHT = 2048, ARKUI_KEYCODE_TAB = 2049,<br/>ARKUI_KEYCODE_SPACE = 2050, ARKUI_KEYCODE_SYM = 2051, ARKUI_KEYCODE_EXPLORER = 2052, ARKUI_KEYCODE_ENVELOPE = 2053,<br/>ARKUI_KEYCODE_ENTER = 2054, ARKUI_KEYCODE_DEL = 2055, ARKUI_KEYCODE_GRAVE = 2056, ARKUI_KEYCODE_MINUS = 2057,<br/>ARKUI_KEYCODE_EQUALS = 2058, ARKUI_KEYCODE_LEFT_BRACKET = 2059, ARKUI_KEYCODE_RIGHT_BRACKET = 2060, ARKUI_KEYCODE_BACKSLASH = 2061,<br/>ARKUI_KEYCODE_SEMICOLON = 2062, ARKUI_KEYCODE_APOSTROPHE = 2063, ARKUI_KEYCODE_SLASH = 2064, ARKUI_KEYCODE_AT = 2065,<br/>ARKUI_KEYCODE_PLUS = 2066, ARKUI_KEYCODE_MENU = 2067, ARKUI_KEYCODE_PAGE_UP = 2068, ARKUI_KEYCODE_PAGE_DOWN = 2069,<br/>ARKUI_KEYCODE_ESCAPE = 2070, ARKUI_KEYCODE_FORWARD_DEL = 2071, ARKUI_KEYCODE_CTRL_LEFT = 2072, ARKUI_KEYCODE_CTRL_RIGHT = 2073,<br/>ARKUI_KEYCODE_CAPS_LOCK = 2074, ARKUI_KEYCODE_SCROLL_LOCK = 2075, ARKUI_KEYCODE_META_LEFT = 2076, ARKUI_KEYCODE_META_RIGHT = 2077,<br/>ARKUI_KEYCODE_FUNCTION = 2078, ARKUI_KEYCODE_SYSRQ = 2079, ARKUI_KEYCODE_BREAK = 2080, ARKUI_KEYCODE_MOVE_HOME = 2081,<br/>ARKUI_KEYCODE_MOVE_END = 2082, ARKUI_KEYCODE_INSERT = 2083, ARKUI_KEYCODE_FORWARD = 2084, ARKUI_KEYCODE_MEDIA_PLAY = 2085,<br/>ARKUI_KEYCODE_MEDIA_PAUSE = 2086, ARKUI_KEYCODE_MEDIA_CLOSE = 2087, ARKUI_KEYCODE_MEDIA_EJECT = 2088, ARKUI_KEYCODE_MEDIA_RECORD = 2089,<br/>ARKUI_KEYCODE_F1 = 2090, ARKUI_KEYCODE_F2 = 2091, ARKUI_KEYCODE_F3 = 2092, ARKUI_KEYCODE_F4 = 2093,<br/>ARKUI_KEYCODE_F5 = 2094, ARKUI_KEYCODE_F6 = 2095, ARKUI_KEYCODE_F7 = 2096, ARKUI_KEYCODE_F8 = 2097,<br/>ARKUI_KEYCODE_F9 = 2098, ARKUI_KEYCODE_F10 = 2099, ARKUI_KEYCODE_F11 = 2100, ARKUI_KEYCODE_F12 = 2101,<br/>ARKUI_KEYCODE_NUM_LOCK = 2102, ARKUI_KEYCODE_NUMPAD_0 = 2103, ARKUI_KEYCODE_NUMPAD_1 = 2104, ARKUI_KEYCODE_NUMPAD_2 = 2105,<br/>ARKUI_KEYCODE_NUMPAD_3 = 2106, ARKUI_KEYCODE_NUMPAD_4 = 2107, ARKUI_KEYCODE_NUMPAD_5 = 2108, ARKUI_KEYCODE_NUMPAD_6 = 2109,<br/>ARKUI_KEYCODE_NUMPAD_7 = 2110, ARKUI_KEYCODE_NUMPAD_8 = 2111, ARKUI_KEYCODE_NUMPAD_9 = 2112, ARKUI_KEYCODE_NUMPAD_DIVIDE = 2113,<br/>ARKUI_KEYCODE_NUMPAD_MULTIPLY = 2114, ARKUI_KEYCODE_NUMPAD_SUBTRACT = 2115, ARKUI_KEYCODE_NUMPAD_ADD = 2116, ARKUI_KEYCODE_NUMPAD_DOT = 2117,<br/>ARKUI_KEYCODE_NUMPAD_COMMA = 2118, ARKUI_KEYCODE_NUMPAD_ENTER = 2119, ARKUI_KEYCODE_NUMPAD_EQUALS = 2120, ARKUI_KEYCODE_NUMPAD_LEFT_PAREN = 2121,<br/>ARKUI_KEYCODE_NUMPAD_RIGHT_PAREN = 2122<br/>} | 按键事件的键码  | 
 | [ArkUI_KeyEventType](#arkui_keyeventtype) {<br/>ARKUI_KEY_EVENT_UNKNOWN = -1, ARKUI_KEY_EVENT_DOWN = 0, ARKUI_KEY_EVENT_UP = 1, ARKUI_KEY_EVENT_LONG_PRESS = 2,<br/>ARKUI_KEY_EVENT_CLICK = 3<br/>} | 按键的类型。  | 
@@ -258,8 +258,7 @@
 | [ArkUI_TextInputStyle](#arkui_textinputstyle) { ARKUI_TEXTINPUT_STYLE_DEFAULT = 0, ARKUI_TEXTINPUT_STYLE_INLINE } | 定义输入框风格。  | 
 | [ArkUI_TextDataDetectorType](#arkui_textdatadetectortype) { ARKUI_TEXT_DATA_DETECTOR_TYPE_PHONE_NUMBER = 0, ARKUI_TEXT_DATA_DETECTOR_TYPE_URL, ARKUI_TEXT_DATA_DETECTOR_TYPE_EMAIL, ARKUI_TEXT_DATA_DETECTOR_TYPE_ADDRESS } | 定义文本识别的实体类型。  | 
 | [ArkUI_ButtonType](#arkui_buttontype) { ARKUI_BUTTON_TYPE_NORMAL = 0, ARKUI_BUTTON_TYPE_CAPSULE, ARKUI_BUTTON_TYPE_CIRCLE } | 定义按钮样式枚举值。  | 
-| [ArkUI_RenderFit](#arkui_renderfit) {<br/>ARKUI_RENDER_FIT_CENTER = 0, ARKUI_RENDER_FIT_TOP, ARKUI_RENDER_FIT_BOTTOM, ARKUI_RENDER_FIT_LEFT,<br/>ARKUI_RENDER_FIT_RIGHT, ARKUI_RENDER_FIT_TOP_LEFT, ARKUI_RENDER_FIT_TOP_RIGHT, ARKUI_RENDER_FIT_BOTTOM_LEFT,<br/>ARKUI_RENDER_FIT_BOTTOM_RIGHT, ARKUI_RENDER_FIT_RESIZE_FILL, ARKUI_RENDER_FIT_RESIZE_CONTAIN, ARKUI_RENDER_FIT_RESIZE_CONTAIN_TOP_LEFT,<br/>ARKUI_RENDER_FIT_RESIZE_CONTAIN_BOTTOM_RIGHT, ARKUI_RENDER_FIT_RESIZE_COVER, ARKUI_RENDER_FIT_RESIZE_COVER_TOP_LEFT, ARKUI_RENDER_FIT_RESIZE_COVER_BOTTOM_RIGHT<br/>} |  | 
-| [ArkUI_ThemeColorMode](#arkui_themecolormode) { ARKUI_THEME_COLOR_MODE_SYSTEM = 0, ARKUI_THEME_COLOR_MODE_LIGHT, ARKUI_THEME_COLOR_MODE_DARK } |  | 
+| [ArkUI_RenderFit](#arkui_renderfit) {<br/>ARKUI_RENDER_FIT_CENTER = 0, ARKUI_RENDER_FIT_TOP, ARKUI_RENDER_FIT_BOTTOM, ARKUI_RENDER_FIT_LEFT,<br/>ARKUI_RENDER_FIT_RIGHT, ARKUI_RENDER_FIT_TOP_LEFT, ARKUI_RENDER_FIT_TOP_RIGHT, ARKUI_RENDER_FIT_BOTTOM_LEFT,<br/>ARKUI_RENDER_FIT_BOTTOM_RIGHT, ARKUI_RENDER_FIT_RESIZE_FILL, ARKUI_RENDER_FIT_RESIZE_CONTAIN, ARKUI_RENDER_FIT_RESIZE_CONTAIN_TOP_LEFT,<br/>ARKUI_RENDER_FIT_RESIZE_CONTAIN_BOTTOM_RIGHT, ARKUI_RENDER_FIT_RESIZE_COVER, ARKUI_RENDER_FIT_RESIZE_COVER_TOP_LEFT, ARKUI_RENDER_FIT_RESIZE_COVER_BOTTOM_RIGHT<br/>} | 定义动画终态内容的状态。 | 
 | [ArkUI_SwiperIndicatorType](#arkui_swiperindicatortype) { ARKUI_SWIPER_INDICATOR_TYPE_DOT, ARKUI_SWIPER_INDICATOR_TYPE_DIGIT } | 定义 Swiper 组件的导航指示器类型。  | 
 | [ArkUI_AnimationDirection](#arkui_animationdirection) { ARKUI_ANIMATION_DIRECTION_NORMAL = 0, ARKUI_ANIMATION_DIRECTION_REVERSE, ARKUI_ANIMATION_DIRECTION_ALTERNATE, ARKUI_ANIMATION_DIRECTION_ALTERNATE_REVERSE } | 动画播放模式。  | 
 | [ArkUI_AnimationFill](#arkui_animationfill) { ARKUI_ANIMATION_FILL_NONE = 0, ARKUI_ANIMATION_FILL_FORWARDS, ARKUI_ANIMATION_FILL_BACKWARDS, ARKUI_ANIMATION_FILL_BOTH } | 动画执行后是否恢复到初始状态，动画执行后，动画结束时的状态（在最后一个关键帧中定义）将保留。  | 
@@ -268,7 +267,7 @@
 | [ArkUI_ListItemSwipeEdgeEffect](#arkui_listitemswipeedgeeffect) { ARKUI_LIST_ITEM_SWIPE_EDGE_EFFECT_SPRING = 0, ARKUI_LIST_ITEM_SWIPE_EDGE_EFFECT_NONE } | 定义 Listitem 组件SwipeAction方法的滚动模式。  | 
 | [ArkUI_AnimationStatus](#arkui_animationstatus) { ARKUI_ANIMATION_STATUS_INITIAL, ARKUI_ANIMATION_STATUS_RUNNING, ARKUI_ANIMATION_STATUS_PAUSED, ARKUI_ANIMATION_STATUS_STOPPED } | 定义帧动画的播放状态。  | 
 | [ArkUI_AnimationFillMode](#arkui_animationfillmode) { ARKUI_ANIMATION_FILL_MODE_NONE, ARKUI_ANIMATION_FILL_MODE_FORWARDS, ARKUI_ANIMATION_FILL_MODE_BACKWARDS, ARKUI_ANIMATION_FILL_MODE_BOTH } | 定义帧动画组件在动画开始前和结束后的状态。  | 
-| [ArkUI_ErrorCode](#arkui_errorcode) {<br/>ARKUI_ERROR_CODE_NO_ERROR = 0, ARKUI_ERROR_CODE_PARAM_INVALID = 401,<br/>ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE = 150001, ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR = 150002, ARKUI_ERROR_CODE_FOCUS_NON_EXISTENT = 150003, <br/>ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED = 106102, ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE = 106103,<br/>ARKUI_ERROR_CODE_NODE_ADAPTER_NONE_HOST = 106104, ARKUI_ERROR_CODE_NODE_ADAPTER_EXIST_IN_HOST = 106105, ARKUI_ERROR_CODE_NODE_ADAPTER_CHILD_NODE_EXIST = 106106, ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INDEX_OUT_OF_RANGE = 106107,<br/>ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID = 106108, ARKUI_ERROR_CODE_NODE_EVENT_NO_RETURN = 106109, ARKUI_ERROR_CODE_NODE_INDEX_INVALID = 106200, ARKUI_ERROR_CODE_GET_INFO_FAILED = 106201,<br/>ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR = 106202, ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE = 106203, ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER = 180001, ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH = 180002, ARKUI_ERROR_CODE_NOT_CLONED_POINTER_EVENT = 180003, ARKUI_ERROR_CODE_POST_CLONED_COMPONENT_STATUS_ABNORMAL = 180004, ARKUI_ERROR_CODE_POST_CLONED_NO_COMPONENT_HIT_TO_RESPOND_TO_THE_EVENT  = 180005, ARKUI_ERROR_CODE_INVALID_STYLED_STRING = 180101<br/>} | 定义错误码枚举值。  | 
+| [ArkUI_ErrorCode](#arkui_errorcode) {<br/>ARKUI_ERROR_CODE_NO_ERROR = 0, ARKUI_ERROR_CODE_PARAM_INVALID = 401,<br/>ARKUI_ERROR_CODE_XCOMPONENT_STATE_INVALID = 103501,<br/>ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE = 150001, ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR = 150002, ARKUI_ERROR_CODE_FOCUS_NON_EXISTENT = 150003, <br/>ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED = 106102, ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE = 106103,<br/>ARKUI_ERROR_CODE_NODE_ADAPTER_NONE_HOST = 106104, ARKUI_ERROR_CODE_NODE_ADAPTER_EXIST_IN_HOST = 106105, ARKUI_ERROR_CODE_NODE_ADAPTER_CHILD_NODE_EXIST = 106106, ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INDEX_OUT_OF_RANGE = 106107,<br/>ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID = 106108, ARKUI_ERROR_CODE_NODE_EVENT_NO_RETURN = 106109, ARKUI_ERROR_CODE_NODE_INDEX_INVALID = 106200, ARKUI_ERROR_CODE_GET_INFO_FAILED = 106201,<br/>ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR = 106202, ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE = 106203, ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER = 180001, ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH = 180002, ARKUI_ERROR_CODE_NOT_CLONED_POINTER_EVENT = 180003, ARKUI_ERROR_CODE_POST_CLONED_COMPONENT_STATUS_ABNORMAL = 180004, ARKUI_ERROR_CODE_POST_CLONED_NO_COMPONENT_HIT_TO_RESPOND_TO_THE_EVENT  = 180005, ARKUI_ERROR_CODE_INVALID_STYLED_STRING = 180101<br/>} | 定义错误码枚举值。  | 
 | [ArkUI_ScrollSource](#arkui_scrollsource) {<br/>ARKUI_SCROLL_SOURCE_DRAG = 0, ARKUI_SCROLL_SOURCE_FLING, ARKUI_SCROLL_SOURCE_EDGE_EFFECT, ARKUI_SCROLL_SOURCE_OTHER_USER_INPUT,<br/>ARKUI_SCROLL_SOURCE_SCROLL_BAR, ARKUI_SCROLL_SOURCE_SCROLL_BAR_FLING, ARKUI_SCROLL_SOURCE_SCROLLER, ARKUI_SCROLL_SOURCE_ANIMATION<br/>} | 定义滚动来源枚举值。  | 
 | [ArkUI_SafeAreaType](#arkui_safeareatype) { ARKUI_SAFE_AREA_TYPE_SYSTEM = 1, ARKUI_SAFE_AREA_TYPE_CUTOUT = 1 &lt;&lt; 1, ARKUI_SAFE_AREA_TYPE_KEYBOARD = 1 &lt;&lt; 2 } | 定义扩展安全区域的枚举值。  | 
 | [ArkUI_ListItemGroupArea](#arkui_listitemgrouparea) { ARKUI_LIST_ITEM_GROUP_AREA_OUTSIDE = 0, ARKUI_LIST_ITEM_SWIPE_AREA_NONE = 1, ARKUI_LIST_ITEM_SWIPE_AREA_ITEM = 2, ARKUI_LIST_ITEM_SWIPE_AREA_HEADER = 3, ARKUI_LIST_ITEM_SWIPE_AREA_FOOTER = 4<br/>} | 定义组件区域的枚举值。 | 
@@ -476,7 +475,6 @@
 | int32_t [OH_ArkUI_TouchRecognizer_GetNodeHandle](#oh_arkui_touchrecognizer_getnodehandle) (const ArkUI_TouchRecognizerHandle recognizer) | 使用该方法可返回与触摸识别器绑定的组件句柄。  |
 | int32_t [OH_ArkUI_TouchRecognizer_CancelTouch](#oh_arkui_touchrecognizer_canceltouch) (ArkUI_TouchRecognizerHandle recognizer, ArkUI_GestureInterruptInfo\* info) | 使用该方法向对应触摸识别器分发Cancel事件拦截后续触摸事件。  |
 | [ArkUI_GestureEventActionType](#arkui_gestureeventactiontype) [OH_ArkUI_GestureEvent_GetActionType](#oh_arkui_gestureevent_getactiontype) (const ArkUI_GestureEvent \*event) | 返回手势事件类型。  | 
-| [ArkUI_NodeHandle](#arkui_nodehandle) [OH_ArkUI_GestureEvent_GetResponseNode](#oh_arkui_gestureevent_getresponsenode) (ArkUI_GestureEvent \*event) | 返回响应手势的节点。  | 
 | const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \* [OH_ArkUI_GestureEvent_GetRawInputEvent](#oh_arkui_gestureevent_getrawinputevent) (const ArkUI_GestureEvent \*event) | 返回手势输入。  | 
 | int32_t [OH_ArkUI_LongPress_GetRepeatCount](#oh_arkui_longpress_getrepeatcount) (const ArkUI_GestureEvent \*event) | 返回长按手势定时触发次数。  | 
 | float [OH_ArkUI_PanGesture_GetVelocity](#oh_arkui_pangesture_getvelocity) (const ArkUI_GestureEvent \*event) | 滑动手势返回手势主方向速度。  | 
@@ -508,7 +506,7 @@
 | void* [OH_ArkUI_GestureInterrupter_GetUserData](#oh_arkui_gestureinterrupter_getuserdata) ([ArkUI_GestureInterruptInfo](#arkui_gestureinterruptinfo)* event) | 获取手势中断事件中的用户自定义数据。 |
 | ArkUI_GestureRecognizer \* [OH_ArkUI_ParallelInnerGestureEvent_GetCurrentRecognizer](#oh_arkui_parallelinnergestureevent_getcurrentrecognizer) ([ArkUI_ParallelInnerGestureEvent](#arkui_parallelinnergestureevent) \*event) | 获取并行内部手势事件中的当前手势识别器。  | 
 | int32_t [OH_ArkUI_ParallelInnerGestureEvent_GetConflictRecognizers](#oh_arkui_parallelinnergestureevent_getconflictrecognizers) ([ArkUI_ParallelInnerGestureEvent](#arkui_parallelinnergestureevent) \*event, [ArkUI_GestureRecognizerHandleArray](#arkui_gesturerecognizerhandlearray) \*array, int32_t \*size) | 获取并行内部手势事件中的冲突的手势识别器。  | 
-| int32_t [OH_ArkUI_SetArkUIGestureRecognizerDisposeNotify](#oh_arkui_setarkuigesturerecognizerdisposenotify) (ArkUI_GestureRecognizer \*recognizer, [ArkUI_GestureRecognizerDestructNotifyCallback](#arkui_gesturerecognizerdestructnotifycallback) callback, void \*userData) | 设置手势识别器对象析构通知回调函数。  | 
+| int32_t [OH_ArkUI_SetArkUIGestureRecognizerDisposeNotify](#oh_arkui_setarkuigesturerecognizerdisposenotify) (ArkUI_GestureRecognizer \*recognizer, [ArkUI_GestureRecognizerDisposeNotifyCallback](#arkui_gesturerecognizerdisposenotifycallback) callback, void \*userData) | 设置手势识别器对象析构通知回调函数。  | 
 | void \* [OH_ArkUI_QueryModuleInterfaceByName](#oh_arkui_querymoduleinterfacebyname) ([ArkUI_NativeAPIVariantKind](#arkui_nativeapivariantkind) type, const char \*structName) | 获取指定类型的Native模块接口集合。  | 
 | [ArkUI_KeyEventType](#arkui_keyeventtype) [OH_ArkUI_KeyEvent_GetType](#oh_arkui_keyevent_gettype) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event) | 获取按键的类型。  | 
 | int32_t [OH_ArkUI_KeyEvent_GetKeyCode](#oh_arkui_keyevent_getkeycode) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event) | 获取按键的键码。  | 
@@ -837,8 +835,8 @@
 | void [OH_ArkUI_StyledString_AddPlaceholder](#oh_arkui_styledstring_addplaceholder) ([ArkUI_StyledString](#arkui_styledstring) \*handle, OH_Drawing_PlaceholderSpan \*placeholder) | 设置占位符。  | 
 | [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \* [OH_ArkUI_StyledString_Descriptor_Create](#oh_arkui_styledstring_descriptor_create) (void) | 创建属性字符串数据对象。  | 
 | void [OH_ArkUI_StyledString_Descriptor_Destroy](#oh_arkui_styledstring_descriptor_destroy) ([ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor) | 释放被ArkUI_StyledString_Descriptor对象占据的内存。  | 
-| int32_t [OH_ArkUI_UnmarshallStyledStringDescriptor](#oh_arkui_unmarshallstyledstringdescriptor) (uint8_t \*buffer, size_t bufferSize, [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor, size_t \*resultSize) | 将包含属性字符串信息的字节数组反序列化为属性字符串。  | 
-| int32_t [OH_ArkUI_MarshallStyledStringDescriptor](#oh_arkui_marshallstyledstringdescriptor) (uint8_t \*buffer, size_t bufferSize, [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor) | 将属性字符串信息序列化为字节数组。  | 
+| int32_t [OH_ArkUI_UnmarshallStyledStringDescriptor](#oh_arkui_unmarshallstyledstringdescriptor) (uint8_t \*buffer, size_t bufferSize, [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor) | 将包含属性字符串信息的字节数组反序列化为属性字符串。  | 
+| int32_t [OH_ArkUI_MarshallStyledStringDescriptor](#oh_arkui_marshallstyledstringdescriptor) (uint8_t \*buffer, size_t bufferSize, [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor, size_t \*resultSize) | 将属性字符串信息序列化为字节数组。  | 
 | const char \* [OH_ArkUI_ConvertToHtml](#oh_arkui_converttohtml) ([ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor) | 将属性字符串信息转化成html。  | 
 | int32_t [OH_ArkUI_PostFrameCallback](#oh_arkui_postframecallback)([ArkUI_ContextHandle](#arkui_contexthandle-12) uiContext, void\* userData, void (\*callback)(uint64_t nanoTimestamp, uint32_t frameCount, void\* userData))| 注册一个回调函数，以便在下一帧渲染时执行。不允许在非UI线程调用，检查到非UI线程调用程序会主动abort。 |
 | int32_t [OH_ArkUI_RegisterLayoutCallbackOnNodeHandle](#oh_arkui_registerlayoutcallbackonnodehandle)([ArkUI_NodeHandle](#arkui_nodehandle) node, void\* userData, void (\*onLayoutCompleted)(void\* userData))| 注册组件布局完成回调方法。同一组件仅能注册一个布局完成回调方法。  |
@@ -1192,7 +1190,7 @@ typedef uint32_t ArkUI_GestureEventActionTypeMask
 ```
 **描述：**
 
-定义手势事件类型集合
+定义手势事件类型集合。
 
 例：ArkUI_GestureEventActionTypeMask actions = GESTURE_EVENT_ACTION_ACCEPT | GESTURE_EVENT_ACTION_UPDATE;
 
@@ -1211,10 +1209,10 @@ typedef struct ArkUI_GestureEventTargetInfo ArkUI_GestureEventTargetInfo
 **起始版本：** 12
 
 
-### ArkUI_GestureRecognizerDestructNotifyCallback
+### ArkUI_GestureRecognizerDisposeNotifyCallback
 
 ```
-typedef void(* ArkUI_GestureRecognizerDestructNotifyCallback) (ArkUI_GestureRecognizer *recognizer, void *userData)
+typedef void(* ArkUI_GestureRecognizerDisposeNotifyCallback) (ArkUI_GestureRecognizer *recognizer, void *userData)
 ```
 **描述：**
 
@@ -1707,6 +1705,18 @@ typedef struct ArkUI_TextCascadePickerRangeContentArray ArkUI_TextCascadePickerR
 
 **起始版本：** 18
 
+### ArkUI_SnapshotOptions
+
+```
+typedef struct ArkUI_SnapshotOptions ArkUI_SnapshotOptions
+```
+
+**描述**
+
+定义截图的可选项。
+
+**起始版本：** 15
+
 ## 枚举类型说明
 
 
@@ -1973,14 +1983,14 @@ enum ArkUI_BlendApplyType
 ```
 **描述：**
 
-指定的混合模式应用于视图的内容选项.
+指定的混合模式应用于视图的内容选项。
 
 **起始版本：** 12
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| BLEND_APPLY_TYPE_FAST  | 在目标图像上按顺序混合视图的内容.  | 
-| BLEND_APPLY_TYPE_OFFSCREEN  | 将此组件和子组件内容绘制到离屏画布上，然后整体进行混合.  | 
+| BLEND_APPLY_TYPE_FAST  | 在目标图像上按顺序混合视图的内容。  | 
+| BLEND_APPLY_TYPE_OFFSCREEN  | 将此组件和子组件内容绘制到离屏画布上，然后整体进行混合。 | 
 
 
 ### ArkUI_BlendMode
@@ -2716,7 +2726,7 @@ enum ArkUI_GestureRecognizerState
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_GESTURE_RECOGNIZER_STATE_REDAY  | 准备状态。  | 
+| ARKUI_GESTURE_RECOGNIZER_STATE_READY  | 准备状态。  | 
 | ARKUI_GESTURE_RECOGNIZER_STATE_DETECTING  | 检测状态。  | 
 | ARKUI_GESTURE_RECOGNIZER_STATE_PENDING  | 等待状态。  | 
 | ARKUI_GESTURE_RECOGNIZER_STATE_BLOCKED  | 阻塞状态。  | 
@@ -4106,6 +4116,10 @@ enum ArkUI_RelativeLayoutChainStyle
 enum ArkUI_RenderFit
 ```
 
+**描述：**
+
+定义动画终态内容的状态。
+
 | 枚举值 | 描述 | 
 | -------- | -------- |
 | ARKUI_RENDER_FIT_CENTER  | 保持动画终态的内容大小，并且内容始终与组件保持中心对齐。  | 
@@ -4775,18 +4789,18 @@ enum ArkUI_TextInputContentType
 | ARKUI_TEXTINPUT_CONTENT_TYPE_NICKNAME  | 【昵称】在已启用情景化自动填充的情况下，支持昵称的自动保存和自动填充。  | 
 | ARKUI_TEXTINPUT_CONTENT_TYPE_DETAIL_INFO_WITHOUT_STREET  | 【无街道地址】在已启用情景化自动填充的情况下，支持无街道地址的自动保存和自动填充。  | 
 | ARKUI_TEXTINPUT_CONTENT_TYPE_FORMAT_ADDRESS  | 【标准地址】在已启用情景化自动填充的情况下，支持标准地址的自动保存和自动填充。  | 
-| ARKUI_TEXTINPUT_CONTENT_TYPE_PASSPORT_NUMBER  | 【护照号】在已启用情景化自动填充的情况下，支持护照号的自动保存和自动填充。  |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_VALIDITY  | 【护照有效期】在已启用情景化自动填充的情况下，支持护照有效期的自动保存和自动填充。  |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_ISSUE_AT  | 【护照签发地】在已启用情景化自动填充的情况下，支持护照签发地的自动保存和自动填充。  |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_ORGANIZATION  | 【发票抬头名称】在已启用情景化自动填充的情况下，支持发票抬头名称的自动保存和自动填充。  |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_TAX_ID  | 【税号】在已启用情景化自动填充的情况下，支持税号的自动保存和自动填充。  |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_ADDRESS_CITY_AND_STATE  | 【所在地区】在已启用情景化自动填充的情况下，支持所在地区的自动保存和自动填充。  |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_FLIGHT_NUMBER  | 【航班号】暂不支持自动保存和自动填充。  |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_NUMBER  | 【驾驶证号】暂不支持自动保存和自动填充。  |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_FILE_NUMBER  | 【驾驶证档案编号】暂不支持自动保存和自动填充。 |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_PLATE  | 【车牌号】在已启用情景化自动填充的情况下，支持车牌号的自动保存和自动填充。  |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_ENGINE_NUMBER  | 【行驶证发动机号】暂不支持自动保存和自动填充。  |
-| ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_CHASSIS_NUMBER  | 【车牌识别号】暂不支持自动保存和自动填充。  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_PASSPORT_NUMBER  | 【护照号】在已启用情景化自动填充的情况下，支持护照号的自动保存和自动填充。<br/>起始版本：18  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_VALIDITY  | 【护照有效期】在已启用情景化自动填充的情况下，支持护照有效期的自动保存和自动填充。<br/>起始版本：18  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_ISSUE_AT  | 【护照签发地】在已启用情景化自动填充的情况下，支持护照签发地的自动保存和自动填充。<br/>起始版本：18  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_ORGANIZATION  | 【发票抬头名称】在已启用情景化自动填充的情况下，支持发票抬头名称的自动保存和自动填充。<br/>起始版本：18  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_TAX_ID  | 【税号】在已启用情景化自动填充的情况下，支持税号的自动保存和自动填充。<br/>起始版本：18  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_ADDRESS_CITY_AND_STATE  | 【所在地区】在已启用情景化自动填充的情况下，支持所在地区的自动保存和自动填充。<br/>起始版本：18  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_FLIGHT_NUMBER  | 【航班号】暂不支持自动保存和自动填充。<br/>起始版本：18  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_NUMBER  | 【驾驶证号】暂不支持自动保存和自动填充。<br/>起始版本：18  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_FILE_NUMBER  | 【驾驶证档案编号】暂不支持自动保存和自动填充。<br/>起始版本：18 |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_PLATE  | 【车牌号】在已启用情景化自动填充的情况下，支持车牌号的自动保存和自动填充。<br/>起始版本：18  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_ENGINE_NUMBER  | 【行驶证发动机号】暂不支持自动保存和自动填充。<br/>起始版本：18  |
+| ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_CHASSIS_NUMBER  | 【车牌识别号】暂不支持自动保存和自动填充。<br/>起始版本：18  |
 
 
 ### ArkUI_TextInputStyle
@@ -4868,20 +4882,6 @@ enum ArkUI_TextPickerRangeType
 | ARKUI_TEXTPICKER_RANGETYPE_RANGE_CONTENT  | 支持图片资源的单列数据选择器。  | 
 | ARKUI_TEXTPICKER_RANGETYPE_CASCADE_RANGE_CONTENT  | 支持联动的多列数据选择器。  | 
 
-
-### ArkUI_ThemeColorMode
-
-```
-enum ArkUI_ThemeColorMode
-```
-
-| 枚举值 | 描述 | 
-| -------- | -------- |
-| ARKUI_THEME_COLOR_MODE_SYSTEM  | 跟随系统深浅色模式。  | 
-| ARKUI_THEME_COLOR_MODE_LIGHT  | 固定使用浅色模式。  | 
-| ARKUI_THEME_COLOR_MODE_DARK  | 固定使用深色模式。  | 
-
-
 ### ArkUI_TransitionEdge
 
 ```
@@ -4953,7 +4953,7 @@ enum ArkUI_WordBreak
 | ARKUI_WORD_BREAK_NORMAL  | CJK(中文、日文、韩文)文本可以在任意2个字符间断行，而Non-CJK文本（如英文等）只能在空白符处断行。  | 
 | ARKUI_WORD_BREAK_BREAK_ALL  | 对于Non-CJK的文本，可在任意2个字符间断行。CJK(中文、日文、韩文)文本可以在任意2个字符间断行。  | 
 | ARKUI_WORD_BREAK_BREAK_WORD  | 对于Non-CJK的文本可在任意2个字符间断行，一行文本中有断行破发点（如空白符）时，优先按破发点换行。 CJK(中文、日文、韩文)文本可以在任意2个字符间断行  | 
-| ARKUI_WORD_BREAK_HYPHENATION  | 起始版本：16。对于Non-CJK的文本，可以按照音节断行。对于CJK的文本，换行效果与NORMAL效果保持一致。  | 
+| ARKUI_WORD_BREAK_HYPHENATION  | 对于Non-CJK的文本，可以按照音节断行。对于CJK的文本，换行效果与NORMAL效果保持一致。<br/>起始版本：18  | 
 
 
 ### ArkUI_XComponentType
@@ -5831,7 +5831,7 @@ void OH_ArkUI_AlignmentRuleOption_SetBottom (ArkUI_AlignmentRuleOption * option,
 | -------- | -------- |
 | option | 相对容器中子组件的对齐规则信息。  | 
 | id | 锚点的组件的id值。  | 
-| value | 相对于锚点组件的对齐方式  | 
+| value | 相对于锚点组件的对齐方式。  | 
 
 
 ### OH_ArkUI_AlignmentRuleOption_SetCenterHorizontal()
@@ -10436,28 +10436,6 @@ const ArkUI_UIInputEvent* OH_ArkUI_GestureEvent_GetRawInputEvent (const ArkUI_Ge
 手势事件的原始输入事件。
 
 
-### OH_ArkUI_GestureEvent_GetResponseNode()
-
-```
-ArkUI_NodeHandle OH_ArkUI_GestureEvent_GetResponseNode (ArkUI_GestureEvent * event)
-```
-**描述：**
-
-返回响应手势的节点。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| event | 手势事件。  | 
-
-**返回：**
-
-返回组件的指针，如果没有返回NULL。
-
-
 ### OH_ArkUI_GestureEventTargetInfo_IsScrollBegin()
 
 ```
@@ -10478,7 +10456,7 @@ int32_t OH_ArkUI_GestureEventTargetInfo_IsScrollBegin (ArkUI_GestureEventTargetI
 
 **返回：**
 
-0 - 成功。 401 - 参数错误。 180001 - 非滚动类容器。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 参数错误。 [ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER](_ark_u_i___native_module.md#arkui_errorcode) - 非滚动类容器。
 
 
 ### OH_ArkUI_GestureEventTargetInfo_IsScrollEnd()
@@ -10501,7 +10479,7 @@ int32_t OH_ArkUI_GestureEventTargetInfo_IsScrollEnd (ArkUI_GestureEventTargetInf
 
 **返回：**
 
-0 - 成功。 401 - 参数错误。 180001 - 非滚动类容器。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 参数错误。 [ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER](_ark_u_i___native_module.md#arkui_errorcode) - 非滚动类容器。
 
 
 ### OH_ArkUI_GestureInterruptInfo_GetGestureEvent()
@@ -10613,7 +10591,7 @@ int32_t OH_ArkUI_GestureInterruptInfo_GetTouchRecognizers(const ArkUI_GestureInt
 
 **返回：**
 
-0 - 成功。 401 - 参数错误。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 参数错误。
 
 
 ### OH_ArkUI_TouchRecognizer_GetNodeHandle()
@@ -10658,7 +10636,7 @@ int32_t OH_ArkUI_TouchRecognizer_CancelTouch(ArkUI_TouchRecognizerHandle recogni
 
 **返回：**
 
-0 - 成功。 401 - 参数错误。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 参数错误。
 
 
 ### OH_ArkUI_GetContextByNode()
@@ -10777,7 +10755,7 @@ int32_t OH_ArkUI_GetGestureBindNodeId (ArkUI_GestureRecognizer * recognizer, cha
 
 **返回：**
 
-0 - 成功。 401 - 参数错误。 180002 - 存储区大小不足。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 参数错误。 [ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH](_ark_u_i___native_module.md#arkui_errorcode) - 存储区大小不足。
 
 
 ### OH_ArkUI_GetGestureEventTargetInfo()
@@ -10800,7 +10778,7 @@ int32_t OH_ArkUI_GetGestureEventTargetInfo (ArkUI_GestureRecognizer * recognizer
 
 **返回：**
 
-0 - 成功。 401 - 参数错误。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 参数错误。
 
 
 ### OH_ArkUI_GetGestureRecognizerEnabled()
@@ -10845,7 +10823,7 @@ int32_t OH_ArkUI_GetGestureRecognizerState (ArkUI_GestureRecognizer * recognizer
 
 **返回：**
 
-0 - 成功。 401 - 参数错误。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 参数错误。
 
 
 ### OH_ArkUI_GetGestureTag()
@@ -10870,7 +10848,7 @@ int32_t OH_ArkUI_GetGestureTag (ArkUI_GestureRecognizer * recognizer, char * buf
 
 **返回：**
 
-0 - 成功。 401 - 参数错误。 180002 - 存储区大小不足。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 参数错误。 [ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH](_ark_u_i___native_module.md#arkui_errorcode) - 存储区大小不足。
 
 
 ### OH_ArkUI_GetNavDestinationId()
@@ -11133,7 +11111,7 @@ int32_t OH_ArkUI_GetPanGestureDirectionMask (ArkUI_GestureRecognizer * recognize
 
 **返回：**
 
-0 - 成功。 401 - 参数错误。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 参数错误。
 
 
 ### OH_ArkUI_GetResponseRecognizersFromInterruptInfo()
@@ -11157,7 +11135,7 @@ int32_t OH_ArkUI_GetResponseRecognizersFromInterruptInfo (const ArkUI_GestureInt
 
 **返回：**
 
-0 - 成功。 401 - 参数错误。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 参数错误。
 
 
 ### OH_ArkUI_GetRouterPageId()
@@ -13220,7 +13198,7 @@ int32_t OH_ArkUI_LongPress_GetRepeatCount (const ArkUI_GestureEvent * event)
 ### OH_ArkUI_MarshallStyledStringDescriptor()
 
 ```
-int32_t OH_ArkUI_MarshallStyledStringDescriptor (uint8_t * buffer, size_t bufferSize, ArkUI_StyledString_Descriptor * descriptor )
+int32_t OH_ArkUI_MarshallStyledStringDescriptor (uint8_t * buffer, size_t bufferSize, ArkUI_StyledString_Descriptor * descriptor, size_t * resultSize )
 ```
 **描述：**
 
@@ -13235,6 +13213,7 @@ int32_t OH_ArkUI_MarshallStyledStringDescriptor (uint8_t * buffer, size_t buffer
 | buffer | 字节数组，用于存储属性字符串序列化后的数据。  | 
 | bufferSize | 字节数组长度。  | 
 | descriptor | 指向ArkUI_StyledString_Descriptor对象的指针。  | 
+| resultSize | 属性字符串转换后的字节数组实际长度。  | 
 
 **返回：**
 
@@ -14777,7 +14756,7 @@ int32_t OH_ArkUI_ParallelInnerGestureEvent_GetConflictRecognizers (ArkUI_Paralle
 
 **返回：**
 
-0 - 成功。 401 - 参数错误。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 参数错误。
 
 
 ### OH_ArkUI_ParallelInnerGestureEvent_GetCurrentRecognizer()
@@ -15007,7 +14986,7 @@ float OH_ArkUI_RotationGesture_GetAngle (const ArkUI_GestureEvent * event)
 ### OH_ArkUI_SetArkUIGestureRecognizerDisposeNotify()
 
 ```
-int32_t OH_ArkUI_SetArkUIGestureRecognizerDisposeNotify (ArkUI_GestureRecognizer * recognizer, ArkUI_GestureRecognizerDestructNotifyCallback callback, void * userData )
+int32_t OH_ArkUI_SetArkUIGestureRecognizerDisposeNotify (ArkUI_GestureRecognizer * recognizer, ArkUI_GestureRecognizerDisposeNotifyCallback callback, void * userData )
 ```
 **描述：**
 
@@ -15023,7 +15002,7 @@ int32_t OH_ArkUI_SetArkUIGestureRecognizerDisposeNotify (ArkUI_GestureRecognizer
 
 **返回：**
 
-0 - 成功。 401 - 参数错误。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 参数错误。
 
 
 ### OH_ArkUI_SetDragEventStrictReportWithContext()
@@ -15092,7 +15071,7 @@ int32_t OH_ArkUI_SetGestureRecognizerEnabled (ArkUI_GestureRecognizer * recogniz
 
 **返回：**
 
-0 - 成功。 401 - 参数错误。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 参数错误。
 
 ### OH_ArkUI_SetGestureRecognizerLimitFingerCount
 
@@ -15112,7 +15091,7 @@ int32_t OH_ArkUI_SetGestureRecognizerLimitFingerCount (ArkUI_GestureRecognizer *
 
 **返回：**
 
-0 - 成功。 401 - 参数错误。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) - 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) - 参数错误。
 
 
 
@@ -16903,7 +16882,7 @@ ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数�
 ### OH_ArkUI_UnmarshallStyledStringDescriptor()
 
 ```
-int32_t OH_ArkUI_UnmarshallStyledStringDescriptor (uint8_t * buffer, size_t bufferSize, ArkUI_StyledString_Descriptor * descriptor, size_t * resultSize )
+int32_t OH_ArkUI_UnmarshallStyledStringDescriptor (uint8_t * buffer, size_t bufferSize, ArkUI_StyledString_Descriptor * descriptor)
 ```
 **描述：**
 
@@ -16918,7 +16897,6 @@ int32_t OH_ArkUI_UnmarshallStyledStringDescriptor (uint8_t * buffer, size_t buff
 | buffer | 待反序列化的字节数组。  | 
 | bufferSize | 字节数组长度。  | 
 | descriptor | 指向ArkUI_StyledString_Descriptor对象的指针。  | 
-| resultSize | 属性字符串转换后的字节数组实际长度。  | 
 
 **返回：**
 
@@ -18356,3 +18334,101 @@ void OH_ArkUI_TextCascadePickerRangeContentArray_Destroy(ArkUI_TextCascadePicker
 | 名称 | 描述 |
 | -------- | -------- |
 | handle | 指向TextCascadePickerRangeContentHandle的指针。|
+
+### OH_ArkUI_GetNodeSnapshot()
+
+```
+int32_t OH_ArkUI_GetNodeSnapshot(ArkUI_NodeHandle node, ArkUI_SnapshotOptions* snapshotOptions,
+    OH_PixelmapNative** pixelMap)
+```
+
+**描述**
+
+获取指定组件节点的截图，执行过程为同步，调用时应确保对应节点已被渲染(避免在把节点挂树时就立即执行截图，因为图形的渲染一般需要一帧时间生效)。
+
+**注意：**
+
+当返回的Pixelmap不再使用时，应通过 [OH_PixelmapNative_Release](../apis-image-kit/_image___native_module.md#oh_pixelmapnative_release) 释放它。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称          |  参数                                                     |
+| --------------- | ------------------------------------------------------------ |
+| node            | 截图的目标节点。                                             |
+| snapshotOptions | 给定的截图配置，为空时表示默认配置。              |
+| pixelmap        | 通过系统创建的pixelmap指针。 |
+
+**返回：**
+
+| 返回值                                        | 描述           |
+| --------------------------------------------- | -------------- |
+| `ARKUI_ERROR_CODE_NO_ERROR`                   | 成功。     |
+| `ARKUI_ERROR_CODE_PARAM_INVALID`              | 函数参数异常。<br>异常原因：传入参数验证失败，参数不能为空。    |
+| `ARKUI_ERROR_CODE_INTERNAL_ERROR`             | 截图失败，将返回空指针。     |
+| `ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT` | 截图超时。 |
+
+
+### OH_ArkUI_CreateSnapshotOptions()
+
+```
+ArkUI_SnapshotOptions* OH_ArkUI_CreateSnapshotOptions()
+```
+
+**描述**
+
+创建一个截图选项，当返回值不再使用时必须通过`OH_ArkUI_SnapshotOptions_Dispose`释放。
+
+**起始版本：** 15
+
+**返回：**
+
+| 返回值                   | 描述                                                         |
+| ------------------------ | ------------------------------------------------------------ |
+| `ArkUI_SnapshotOptions*` | 返回指向创建的截图选项对象的指针。如果对象返回空指针，则表示创建失败，失败的原因可能是地址空间已满。 |
+
+
+### OH_ArkUI_DestroySnapshotOptions()
+
+```
+void OH_ArkUI_DestroySnapshotOptions(ArkUI_SnapshotOptions* snapshotOptions)
+```
+
+**描述**
+
+销毁截图选项指针。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称         | 描述         |
+| --------------- | ---- |
+| snapshotOptions | 截图选项。 |
+
+### OH_ArkUI_SnapshotOptions_SetScale()
+
+```
+int32_t OH_ArkUI_SnapshotOptions_SetScale(ArkUI_SnapshotOptions* snapshotOptions, float scale)
+```
+
+**描述**
+
+配置截图选项中的缩放属性。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| snapshotOptions | 截图选项。 |
+| scale           | 缩放值。<br>取值范围：(0,+∞) |
+
+**返回：**
+
+| 返回值                           | 描述       |
+| -------------------------------- | ---------- |
+| `ARKUI_ERROR_CODE_NO_ERROR`      | 成功。 |
+| `ARKUI_ERROR_CODE_PARAM_INVALID` | 函数参数异常。<br> 异常原因：传入参数验证失败，参数不能为空。 |

@@ -30,8 +30,6 @@ import { ArcList, ArcListAttribute } from '@kit.ArkUI';
 > - [if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)和[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)发生变化以后，会更新子节点索引值。  
 >
 > - ArcList子组件[visibility](ts-universal-attributes-visibility.md#visibility)属性设置为Hidden或None依然会计算索引值。  
->
-> - ArcList子组件的[visibility](ts-universal-attributes-visibility.md#visibility)属性设置为None时不显示，但该子组件上下的space还会生效。  
 
 
 ## 接口
@@ -84,7 +82,7 @@ space(space: Optional\<LengthMetrics>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                               |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------- |
-| space  | [Optional&lt;LengthMetrics&gt;](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 列表子项之间的间距。<br/>默认值：0 |
+| space  | [Optional&lt;LengthMetrics&gt;](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 列表子项之间的间距。<br/>默认值：0<br/>ArcList子组件的[visibility](ts-universal-attributes-visibility.md#visibility)属性设置为None时不显示，但该子组件上下的space还会生效。 |
 
 ### scrollBar
 
@@ -106,9 +104,9 @@ scrollBar(status: Optional\<BarState>)
 
 cachedCount(count: Optional\<number>)
 
-设置列表中ArcListItem的预加载数量，只在[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)中生效。
+设置列表中ArcListItem的预加载数量，懒加载场景只会预加载ArcList显示区域外cachedCount的内容，非懒加载场景会全部加载。懒加载、非懒加载都只布局ArcList显示区域+ArcList显示区域外cachedCount的内容。
 
-在ArcList显示的ArcListItem前后各缓存cachedCount个ArcListItem。
+ArcList设置cachedCount后，显示区域外上下各会预加载并布局cachedCount行ArcListItem。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -118,7 +116,7 @@ cachedCount(count: Optional\<number>)
 
 | 参数名 | 类型              | 必填 | 说明                                       |
 | ------ | ----------------- | ---- | ------------------------------------------ |
-| count  | Optional\<number> | 是   | ArcListItem的预加载数量。<br/>默认值：1 |
+| count  | Optional\<number> | 是   | ArcListItem的预加载数量。<br/>默认值：根据屏幕内显示的节点个数设置，最大值为16。<br/>取值范围：[0, +∞) |
 
 ### chainAnimation
 
@@ -158,7 +156,7 @@ enableScrollInteraction(enable: Optional\<boolean>)
 
 ### fadingEdge
 
-fadingEdge(enabled: Optional&lt;boolean&gt;)
+fadingEdge(enable: Optional&lt;boolean&gt;)
 
 设置是否开启边缘渐隐效果。
 
@@ -170,7 +168,7 @@ fadingEdge(enabled: Optional&lt;boolean&gt;)
 
 | 参数名  | 类型                                              | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| enabled | Optional&lt;boolean&gt;                           | 是   | fadingEdge生效时，会覆盖原组件的.overlay()属性。<br/>fadingEdge生效时，建议不在该组件上设置background相关属性，会影响渐隐的显示效果。<br/>fadingEdge生效时，组件会裁剪到边界，设置组件的clip属性为false不生效。<br/>默认值：false，不开启边缘渐隐效果。 |
+| enable | Optional&lt;boolean&gt;                           | 是   | fadingEdge生效时，会覆盖原组件的.overlay()属性。<br/>fadingEdge生效时，建议不在该组件上设置background相关属性，会影响渐隐的显示效果。<br/>fadingEdge生效时，组件会裁剪到边界，设置组件的clip属性为false不生效。<br/>默认值：false，不开启边缘渐隐效果。 |
 
 ### friction
 
@@ -186,7 +184,7 @@ friction(friction: Optional\<number>)
 
 | 参数名   | 类型              | 必填 | 说明                         |
 | -------- | ----------------- | ---- | ---------------------------- |
-| friction | Optional\<number> | 是   | 摩擦系数。<br/>默认值：0.8 |
+| friction | Optional\<number> | 是   | 摩擦系数。<br/>默认值：0.8<br/>取值范围：(0, +∞) |
 
 ### scrollBarWidth
 
@@ -234,7 +232,7 @@ flingSpeedLimit(speed: Optional\<number>)
 
 | 参数名 | 类型              | 必填 | 说明                            |
 | ------ | ----------------- | ---- | ------------------------------- |
-| speed  | Optional\<number> | 是   | 惯性滚动动效开始时的最大初始速度。<br/>默认值：9000<br/>单位：vp/s |
+| speed  | Optional\<number> | 是   | 惯性滚动动效开始时的最大初始速度。<br/>默认值：9000<br/>单位：vp/s<br />取值范围：(0, +∞) |
 
 ### childrenMainSize
 
@@ -250,7 +248,7 @@ childrenMainSize(size: Optional\<ChildrenMainSize>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| size   | [Optional\<ChildrenMainSize>](ts-container-scrollable-common.md#childrenmainsize12对象说明) | 是   | 通过[ChildrenMainSize](ts-container-scrollable-common.md#childrenmainsize12对象说明)对象向ArcList组件精确提供所有子组件在主轴方向的大小信息，能够确保ArcList组件在子组件主轴尺寸不统一、子组件的增删变动、以及使用[scrollToIndex](ts-container-scroll.md#scrolltoindex)等场景时，仍能保持其滑动位置的准确性。进而保证了[scrollTo](ts-container-scroll.md#scrollto)能够精准跳转至指定位置，[currentOffset](ts-container-scroll.md#currentoffset)准确反映当前的滑动位置，且内置滚动条能够实现平滑移动，避免任何跳跃或突变。<br/> **说明：** <br/>提供的主轴方向大小必须与子组件实际在主轴方向的大小一致，子组件在主轴方向大小发生变化或进行增删操作时，必须通过调用ChildrenMainSize对象对象的方法来及时通知ArcList组件。 |
+| size   | [Optional\<ChildrenMainSize>](ts-container-scrollable-common.md#childrenmainsize12对象说明) | 是   | 通过[ChildrenMainSize](ts-container-scrollable-common.md#childrenmainsize12对象说明)对象向ArcList组件精确提供所有子组件在主轴方向的大小信息，能够确保ArcList组件在子组件主轴尺寸不统一、子组件的增删变动、以及使用[scrollToIndex](ts-container-scroll.md#scrolltoindex)等场景时，仍能保持其滑动位置的准确性。进而保证了[scrollTo](ts-container-scroll.md#scrollto)能够精准跳转至指定位置，[currentOffset](ts-container-scroll.md#currentoffset)准确反映当前的滑动位置，且内置滚动条能够实现平滑移动，避免任何跳跃或突变。<br/> **说明：** <br/>提供的主轴方向大小必须与子组件实际在主轴方向的大小一致，子组件在主轴方向大小发生变化或进行增删操作时，必须通过调用ChildrenMainSize对象的方法来及时通知ArcList组件。 |
 
 ## 事件
 
@@ -292,7 +290,7 @@ onReachStart(handler: Optional\<VoidCallback>)
 
 onReachEnd(handler: Optional\<VoidCallback>)
 
-列表到底末尾位置时触发。
+列表到达末尾位置时触发。
 
 ArcList边缘效果为弹簧效果时，划动经过末尾位置时触发一次该事件，回弹回末尾位置时再触发一次该事件。
 
@@ -302,7 +300,7 @@ ArcList边缘效果为弹簧效果时，划动经过末尾位置时触发一次�
 
 | 参数名  | 类型                                             | 必填 | 说明                     |
 | ------- | ------------------------------------------------ | ---- | ------------------------ |
-| handler | [Optional\<VoidCallback>](ts-types.md#voidcallback12) | 是   | 列表到底末尾位置时触发。 |
+| handler | [Optional\<VoidCallback>](ts-types.md#voidcallback12) | 是   | 列表到达末尾位置时触发。 |
 
 ### onScrollStart
 
@@ -336,7 +334,7 @@ onScrollStop(handler: Optional\<VoidCallback>)
 
 onWillScroll(handler: Optional\<OnWillScrollCallback>)
 
-列表滑动前触发，返回当前帧将要滑动的偏移量和当前滑动状态。返回的偏移量为计算得到的将要滑动的偏移量值，并非最终实际滑动偏移。
+列表划动时每帧开始前触发，返回当前帧将要滑动的偏移量和当前滑动状态。返回的偏移量为计算得到的将要滑动的偏移量值，并非最终实际滑动偏移。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -346,7 +344,7 @@ onWillScroll(handler: Optional\<OnWillScrollCallback>)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
-| handler | [Optional\<OnWillScrollCallback>](ts-container-scrollable-common.md#onwillscrollcallback12) | 是 | 列表滑动时触发的回调。 |
+| handler | [Optional\<OnWillScrollCallback>](ts-container-scrollable-common.md#onwillscrollcallback12) | 是 | 列表划动时每帧开始前触发的回调。 |
 
 > **说明：** 
 > 

@@ -92,7 +92,7 @@ HDF_ERR_INVALID_PARAM 表示参数无效，申请buffer失败。
 
 HDF_FAILURE 表示执行失败。
 
-其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的OMX_ERRORTYPE。
+其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的[OMX_ERRORTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 
 ### ComponentDeInit()
@@ -117,7 +117,7 @@ HDF_ERR_INVALID_PARAM 表示参数无效，去初始化失败。
 
 HDF_FAILURE 表示执行失败。
 
-其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的OMX_ERRORTYPE。
+其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的[OMX_ERRORTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 
 ### ComponentRoleEnum()
@@ -149,7 +149,7 @@ HDF_ERR_INVALID_PARAM 表示参数无效，获取角色失败。
 
 HDF_FAILURE 表示执行失败。
 
-其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的OMX_ERRORTYPE。
+其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的[OMX_ERRORTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 
 ### ComponentTunnelRequest()
@@ -184,7 +184,7 @@ HDF_ERR_INVALID_PARAM 表示参数无效，设置失败。
 
 HDF_FAILURE 表示执行失败。
 
-其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的OMX_ERRORTYPE。
+其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的[OMX_ERRORTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 
 ### EmptyThisBuffer()
@@ -215,7 +215,7 @@ HDF_ERR_INVALID_PARAM 表示参数无效，输入buffer失败。
 
 HDF_FAILURE 表示执行失败。
 
-其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的OMX_ERRORTYPE。
+其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的[OMX_ERRORTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 
 ### FillThisBuffer()
@@ -246,7 +246,7 @@ HDF_ERR_INVALID_PARAM 表示参数无效，填充buffer失败。
 
 HDF_FAILURE 表示执行失败。
 
-其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的OMX_ERRORTYPE。
+其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的[OMX_ERRORTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 
 ### FreeBuffer()
@@ -284,7 +284,7 @@ HDF_ERR_INVALID_PARAM 表示参数无效，释放buffer失败。
 
 HDF_FAILURE 表示执行失败。
 
-其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的OMX_ERRORTYPE。
+其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的[OMX_ERRORTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 
 ### GetComponentVersion()
@@ -315,7 +315,7 @@ HDF_ERR_INVALID_PARAM 表示参数无效，获取版本号失败。
 
 HDF_FAILURE 表示执行失败。
 
-其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的OMX_ERRORTYPE。
+其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的[OMX_ERRORTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 
 ### GetConfig()
@@ -348,7 +348,7 @@ HDF_ERR_INVALID_PARAM 表示参数无效，获取配置失败。
 
 HDF_FAILURE 表示执行失败。
 
-其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的OMX_ERRORTYPE。
+其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的[OMX_ERRORTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 
 ### GetExtensionIndex()
@@ -380,7 +380,7 @@ HDF_ERR_INVALID_PARAM 表示参数无效，获取扩展索引失败。
 
 HDF_FAILURE 表示执行失败。
 
-其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的OMX_ERRORTYPE。
+其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的[OMX_ERRORTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 
 ### GetParameter()
@@ -413,7 +413,7 @@ HDF_ERR_INVALID_PARAM 表示参数无效，获取参数失败。
 
 HDF_FAILURE 表示执行失败。
 
-其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的OMX_ERRORTYPE。
+其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的[OMX_ERRORTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 
 ### GetState()
@@ -444,7 +444,7 @@ HDF_ERR_INVALID_PARAM 表示参数无效，获取状态失败。
 
 HDF_FAILURE 表示执行失败。
 
-其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的OMX_ERRORTYPE。
+其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的[OMX_ERRORTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 
 ### SendCommand()
@@ -477,7 +477,7 @@ HDF_ERR_INVALID_PARAM 表示参数无效，发送命令失败。
 
 HDF_FAILURE 表示执行失败。
 
-其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的OMX_ERRORTYPE。
+其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的[OMX_ERRORTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 
 ### SetCallbacks()
@@ -509,7 +509,7 @@ HDF_ERR_INVALID_PARAM 表示参数无效，设置回调失败。
 
 HDF_FAILURE 表示执行失败。
 
-其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的OMX_ERRORTYPE。
+其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的[OMX_ERRORTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 
 ### SetConfig()
@@ -541,7 +541,7 @@ HDF_ERR_INVALID_PARAM 表示参数无效，设置失败。
 
 HDF_FAILURE 表示执行失败。
 
-其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的OMX_ERRORTYPE。
+其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的[OMX_ERRORTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 
 ### SetParameter()
@@ -581,7 +581,7 @@ HDF_ERR_INVALID_PARAM 表示参数无效，设置参数失败。
 
 HDF_FAILURE 表示执行失败。
 
-其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的OMX_ERRORTYPE。
+其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的[OMX_ERRORTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 
 ### UseBuffer()
@@ -622,7 +622,7 @@ HDF_ERR_INVALID_PARAM 表示参数无效，指定失败。
 
 HDF_FAILURE 表示执行失败。
 
-其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的OMX_ERRORTYPE。
+其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的[OMX_ERRORTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 
 ### UseEglImage()
@@ -664,4 +664,4 @@ HDF_ERR_INVALID_PARAM 表示参数无效，使用失败。
 
 HDF_FAILURE 表示执行失败。
 
-其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的OMX_ERRORTYPE。
+其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的[OMX_ERRORTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
