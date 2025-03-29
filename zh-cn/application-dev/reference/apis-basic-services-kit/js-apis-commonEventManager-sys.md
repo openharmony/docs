@@ -235,7 +235,7 @@ commonEventManager.removeStickyCommonEvent("sticky_event").then(() => {
 
 ## commonEventManager.setStaticSubscriberState<sup>10+</sup>
 
-setStaticSubscriberState(enable: boolean, callback: AsyncCallback\<void>): void;
+setStaticSubscriberState(enable: boolean, callback: AsyncCallback\<void>): void
 
 方法介绍：为当前应用设置静态订阅事件使能或去使能状态。使用callback异步回调。
 
@@ -279,7 +279,7 @@ commonEventManager.setStaticSubscriberState(true, (err: BusinessError) => {
 
 ## commonEventManager.setStaticSubscriberState<sup>10+</sup>
 
-setStaticSubscriberState(enable: boolean): Promise\<void>;
+setStaticSubscriberState(enable: boolean): Promise\<void>
 
 方法介绍：为当前应用设置静态订阅事件使能或去使能状态。使用Promise异步回调。
 
@@ -352,7 +352,7 @@ setStaticSubscriberState(enable: boolean, events?: Array\<string>): Promise\<voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[事件错误码](./errorcode-CommonEventService.md)。。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[事件错误码](./errorcode-CommonEventService.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
