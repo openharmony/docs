@@ -48,15 +48,15 @@
 | --index-path     | 否         | NA            | .index文件路径，文件名必须为resources.index。                | NA              |
 | --pack-info-path | 否         | NA            | pack.info文件路径，文件名必须为pack.info。                   | NA              |
 | --rpcid-path     | 否         | NA            | rpcid.sc文件路径，文件名必须为rpcid.sc。                     | NA              |
-| --js-path        | 否         | NA            | 存放js文件目录路径。                                         | 仅stage模型生效 |
-| --ets-path       | 否         | NA            | 存放ets文件目录路径。                                        | 仅stage模型生效 |
+| --js-path        | 否         | NA            | 存放js文件目录路径。                                         | 仅stage模型生效。 |
+| --ets-path       | 否         | NA            | 存放ets文件目录路径。                                        | 仅stage模型生效。 |
 | --out-path       | 是         | NA            | 目标文件路径，文件名必须以.hap为后缀。                       | NA              |
-| --force          | 否         | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。  | NA              |
-| --an-path        | 否         | NA            | 存放[an文件](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs-V5/faqs-arkts-52-V5)的路径。| 仅stage模型生效 |
-| --ap-path        | 否         | NA            | 存放[ap文件](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs-V5/faqs-arkts-52-V5)的路径。| 仅stage模型生效 |
+| --force          | 否         | true或者false | 默认值为false。如果为true，表示当目标文件存在时，强制删除。  | NA              |
+| --an-path        | 否         | NA            | 存放[an文件](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs-V5/faqs-arkts-52-V5)的路径。| 仅stage模型生效。 |
+| --ap-path        | 否         | NA            | 存放[ap文件](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs-V5/faqs-arkts-52-V5)的路径。| 仅stage模型生效。 |
 | --dir-list       | 否         | NA            | 可指定目标文件夹列表，将其打入HAP包内。                      | NA              |
-| --compress-level | 否         | number        | 压缩等级，默认值1，可选等级1-9。在应用配置compressNativeLibs参数为true的情况下生效，数值越大压缩率越高、压缩速度越慢。 | NA  |
-| --pkg-context-path      | 否         | NA            | 可指定语境信息表文件路径，文件名必须为pkgContextInfo.json。 | 仅stage模型生效              |
+| --compress-level | 否         | number        | 压缩等级，默认值1。可选等级1-9。在应用配置compressNativeLibs参数为true的情况下生效，数值越大压缩率越高、压缩速度越慢。 | NA  |
+| --pkg-context-path      | 否         | NA            | 可指定语境信息表文件路径，文件名必须为pkgContextInfo.json。 | 仅stage模型生效。              |
 | --hnp-path | 否 | NA | 指定native软件包文件路径，将native软件包打入HAP包内。 | NA |
 
 ## HSP打包指令
@@ -75,7 +75,7 @@ java -jar app_packing_tool.jar --mode hsp --json-path <path> [--resources-path <
 | --mode           | 是         | hsp           | 打包类型。                                                   |
 | --json-path      | 是         | NA            | .json文件路径，文件名必须为module.json。                     |
 | --profile-path   | 否         | NA            | CAPABILITY.profile文件路径。                                 |
-| --dex-path       | 否         | NA            | 1.dex文件路径，文件名必须以.dex为后缀。如果是多个dex需要用“，”分隔。<br/>2.dex文件路径也可以为目录。 |
+| --dex-path       | 否         | NA            | 1. dex文件路径，文件名必须以.dex为后缀。如果是多个dex需要用“，”分隔。<br/>2. dex文件路径也可以为目录。 |
 | --lib-path       | 否         | NA            | lib库文件路径。                                              |
 | --resources-path | 否         | NA            | resources资源包路径。                                        |
 | --index-path     | 否         | NA            | .index文件路径，文件名必须为resources.index。                |
@@ -83,7 +83,7 @@ java -jar app_packing_tool.jar --mode hsp --json-path <path> [--resources-path <
 | --js-path        | 否         | NA            | 存放js文件目录路径。                                         |
 | --ets-path       | 否         | NA            | 存放ets文件目录路径。                                        |
 | --out-path       | 是         | NA            | 目标文件路径，文件名必须以.hsp为后缀。                       |
-| --force          | 否         | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。  |
+| --force          | 否         | true或者false | 默认值为false。如果为true，表示当目标文件存在时，强制删除。  |
 | --compress-level | 否         | number        | 压缩等级，默认值1，可选等级1-9。在应用配置compressNativeLibs参数为true的情况下生效，数值越大压缩率越高、压缩速度越慢。 |
 | --pkg-context-path      | 否         | NA            | 可指定语境信息表文件路径，文件名必须为pkgContextInfo.json。 |
 
@@ -102,7 +102,7 @@ java -jar app_packing_tool.jar --mode hsp --json-path <path> [--resources-path <
 示例：
 
 ```
-java -jar app_packing_tool.jar --mode app [--hap-path <path>] [--hsp-path <path>] --out-path <path> [--signature-path <path>] [--certificate-path <path>] --pack-info-path <path> [--force true] [--encrypt-path <path>]
+java -jar app_packing_tool.jar --mode app [--hap-path <path>] [--hsp-path <path>] --out-path <path> [--signature-path <path>] [--certificate-path <path>] --pack-info-path <path> [--pack-res-path <path>] [--force true] [--encrypt-path <path>]
 ```
 
 **表3** App打包指令参数说明
@@ -117,7 +117,7 @@ java -jar app_packing_tool.jar --mode app [--hap-path <path>] [--hsp-path <path>
 | --signature-path   | 否     | NA          | 签名路径。                                                        |
 | --certificate-path | 否     | NA          | 证书路径。                                                        |
 | --pack-res-path    | 否     | NA          | pack.res快照文件路径。                                 |
-| --force            | 否     | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。                           |
+| --force            | 否     | true或者false | 默认值为false。如果为true，表示当目标文件存在时，强制删除。                           |
 | --encrypt-path     | 否     | NA          | 文件名必须为encrypt.json 。                           |
 
 
@@ -140,14 +140,14 @@ java -jar app_packing_tool.jar --mode multiApp [--hap-list <path>] [--hsp-list <
 
 **表4** 多工程打包指令参数说明
 
-| 指令         | 是否必选项 | 选项        | 描述                                                                                                  |
-|------------|-------|-----------|-----------------------------------------------------------------------------------------------------|
+| 指令         | 是否必选项 | 选项        | 描述                                                        |
+|------------|-------|-----------|----------------------------------------------------------------|
 | --mode     | 是     | multiApp  | 打包类型，在将多个HAP打入同一个App时，需保证每个HAP满足合法性校验规则。                                                            |
 | --hap-list | 否     | HAP的路径    | HAP包文件路径，文件名必须以.hap为后缀。如果是多个HAP包需要”，“分隔。<br/>HAP文件路径也可以是目录。                                          |
 | --hsp-list | 否     | HSP的路径    | HSP包文件路径，文件名必须以.hsp为后缀。如果是多个HSP包需要”，“分隔。<br/>HSP文件路径也可以是目录。                                          |
 | --app-list | 否     | App的路径    | App文件路径，文件名必须以.app为后缀。如果是多个App包需要用”，“分隔。<br/>App文件路径也可以是目录。<br/>--hap-list，--hsp-list，--app-list不可以都不传。 |
 | --out-path | 是     | NA | 目标文件路径，文件名必须以.app为后缀。 |
-| --force    | 否     | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。                                                                  |
+| --force    | 否     | true或者false | 默认值为false。如果为true，表示当目标文件存在时，强制删除。                                                                  |
 | --encrypt-path | 否     | encrypt.json的路径 | 文件名必须为encrypt.json。                                                                  |
 
 
@@ -172,7 +172,7 @@ java -jar app_packing_tool.jar --mode hqf --json-path <path> [--lib-path <path>]
 | --ets-path  | 否     | NA          | 存放ets文件目录路径。                       |
 | --resources-path  | 否     | NA          | resources资源包路径。                       |
 | --out-path  | 是     | NA          | 目标文件路径，文件名必须以.hqf为后缀。              |
-| --force     | 否     | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。 |
+| --force     | 否     | true或者false | 默认值为false。如果为true，表示当目标文件存在时，强制删除。 |
 
 ## APPQF打包指令
 
@@ -191,7 +191,7 @@ java -jar app_packing_tool.jar --mode appqf --hqf-list <path> --out-path <path> 
 | --mode     | 是     | appqf       | 打包类型。                              |
 | --hqf-list | 是     | NA          | [HQF文件](packing-tool.md#hqf打包指令)路径，多个HQF以英文逗号隔开。              |
 | --out-path | 是     | NA          | 目标文件路径，文件名必须以.appqf为后缀。            |
-| --force    | 否     | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。 |
+| --force    | 否     | true或者false | 默认值为false。如果为true，表示当目标文件存在时，强制删除。 |
 
 ## 版本归一指令（versionNormalize）
 
@@ -207,7 +207,7 @@ java -jar path\app_packing_tool.jar --mode versionNormalize --input-list 1.hap,2
 | 指令             | 是否必选项 | 选项               | 描述                                                                |
 |----------------|-------|------------------|-------------------------------------------------------------------|
 | --mode         | 是     | versionNormalize | 命令类型。                                                             |
-| --input-list   | 是     | HAP或HSP的路径       | 1.HAP或HSP包文件路径，文件名必须以.HAP或.HSP为后缀。如果是多个HAP或HSP包需要“,”分隔。<br/>2.传入目录时，会读取目录下所有的HAP和HSP文件。 |
+| --input-list   | 是     | HAP或HSP的路径       | 1. HAP或HSP包文件路径，文件名必须以.HAP或.HSP为后缀。如果是多个HAP或HSP包需要“,”分隔。<br/>2. 传入目录时，会读取目录下所有的HAP和HSP文件。 |
 | --version-code | 是     | 版本号              | 指定的版本号，HAP、HSP的版本号会被修改为该版本。需要为整数，且不小于所有传入的HAP、HSP的版本号。            |
 | --version-name | 是     | 版本名称             | 指定的版本名称，HAP、HSP的版本名称会被修改为该版本名称。                                    |
 | --out-path     | 是     | NA               | 目标文件路径，需要为一个目录。                                                   |
@@ -226,7 +226,7 @@ java -jar path\app_packing_tool.jar --mode packageNormalize --hsp-list path\1.hs
 | 指令             | 是否必选项 | 选项            | 描述                                                  |
 |----------------|-------|---------------|-----------------------------------------------------|
 | --mode         | 是     | packageNormalize | 命令类型。                                               |
-| --hsp-list     | 是     | HSP的路径      | 1.HSP包文件路径，文件名必须以.hsp为后缀。如果是多个HSP包需要“,”分隔。<br/>2.HSP包目录。 |
+| --hsp-list     | 是     | HSP的路径      | 1. HSP包文件路径，文件名必须以.hsp为后缀。如果是多个HSP包需要“,”分隔。<br/>2. HSP包目录。 |
 | --bundle-name  | 是     | 包名            | 指定的包名，HSP的包名会被修改为指定的包名。                             |
 | --version-code | 是     | 版本号           | 指定的版本号，HSP的版本号会被修改为该版本号。需要为整数，且大于0。                 |
 | --out-path     | 是     | NA            | 目标文件路径，需要为一个目录。                                     |
@@ -249,7 +249,7 @@ java -jar app_packing_tool.jar --mode res --entrycard-path <path> --pack-info-pa
 | --entrycard-path | 是     | NA            | 快照目录的路径。                           |
 | --pack-info-path | 是     | NA            | pack.info文件路径。              |
 | --out-path       | 是     | NA            | 目标文件路径，文件名必须以.res为后缀。              |
-| --force          | 否     | true或者false   | 默认值为false，如果为true，表示当目标文件存在时，强制删除。 |
+| --force          | 否     | true或者false   | 默认值为false。如果为true，表示当目标文件存在时，强制删除。 |
 
 ## fastApp模式打包指令
 
@@ -267,18 +267,18 @@ java -jar app_packing_tool.jar --mode fastApp [--hap-path <path>] [--hsp-path <p
 
 **表10** 参数含义及规范
 
-| 指令                 | 是否必选项 | 选项         | 描述                                                                                                    |
-|--------------------|-------|------------|-------------------------------------------------------------------------------------------------------|
-| --mode             | 是     | fastApp    | 多个HAP需满足HAP的合法性校验。                                                                                    |
+| 指令                 | 是否必选项 | 选项         | 描述                                                     |
+|--------------------|-------|------------|----------------------------------------------------|
+| --mode             | 是     | fastApp    | 多个HAP需满足HAP的合法性校验。                                      |
 | --hap-path         | 否     | NA         | HAP包文件目录路径，目录内要包含一个完整的HAP包的所有文件。允许传入多个路径，多个路径需要用英文“,”分隔。                                              |
-| --hsp-path         | 否     | NA         | 1.HSP包文件路径，文件名必须以.hsp为后缀。如果是多个HSP包需要用英文“,”分隔。2.HSP包文件目录路径，目录内要包含一个完整的HSP包的所有文件。允许传入多个路径，多个路径需要用英文“,”分隔。 |
-| --pack-info-path   | 是     | NA         | 文件名必须为pack.info。                                                                                      |
-| --out-path         | 是     | NA         | 目标文件路径，文件名必须以.app为后缀。                                                                                 |
-| --signature-path   | 否     | NA         | 签名路径。                                                                                                 |
-| --certificate-path | 否     | NA         | 证书路径。                                                                                                 |
-| --pack-res-path    | 否     | NA         | pack.res快照文件路径。                                                                          |
-| --force            | 否     | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。                                                                    |
-| --encrypt-path     | 否     | NA         | 文件名必须为encrypt.json。                                                                    |
+| --hsp-path         | 否     | NA         | 1. HSP包文件路径，文件名必须以.hsp为后缀。如果是多个HSP包需要用英文“,”分隔。<br/>2. HSP包文件目录路径，目录内要包含一个完整的HSP包的所有文件。允许传入多个路径，多个路径需要用英文“,”分隔。 |
+| --pack-info-path   | 是     | NA         | 文件名必须为pack.info。                                               |
+| --out-path         | 是     | NA         | 目标文件路径，文件名必须以.app为后缀。                                             |
+| --signature-path   | 否     | NA         | 签名路径。                                                            |
+| --certificate-path | 否     | NA         | 证书路径。                                                |
+| --pack-res-path    | 否     | NA         | pack.res快照文件路径。                   |
+| --force            | 否     | true或者false | 默认值为false。如果为true，表示当目标文件存在时，强制删除。           |
+| --encrypt-path     | 否     | NA         | 文件名必须为encrypt.json。           |
 
 ## 打包工具错误码
 
