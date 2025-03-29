@@ -130,7 +130,7 @@ The notification does not exist.
 
 **处理步骤**
 
-无
+无。
 
 ## 1600008 用户不存在
 
