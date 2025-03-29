@@ -1,7 +1,7 @@
 # Navigation Transition
 
 
-Navigation transition is a transition animation that runs during the navigation from one view to another. You can customize the animation settings of the navigation transition. For details, see [Navigation Example 3](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#example-3).
+Navigation transition is a transition animation that runs during the navigation from one view to another. You can customize the animation settings of the navigation transition. For details, see [Navigation Example 3](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#example-3-setting-an-interactive-transition-animation).
 
 
 To implement the navigation transition, you are advised to use the [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md) component, complete with the [NavDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md) component.

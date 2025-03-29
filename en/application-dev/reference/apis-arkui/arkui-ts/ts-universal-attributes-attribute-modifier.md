@@ -337,12 +337,14 @@ Attributes not listed in the table below are supported by default.
 | bindContextMenu          | Not supported  | Method not implemented.   | Attributes that accept a CustomBuilder are not supported.              |
 | bindPopup                | Not supported  | Method not implemented.   | Attributes that accept a CustomBuilder are not supported.              |
 | bindSheet                | Not supported  | Method not implemented.   | Attributes that accept a CustomBuilder are not supported.              |
+| chainWeight              | Not supported  | is not callable           | -                                         |
 | compositingFilter        | Not supported  | is not callable           | -                                         |
 | drawModifier             | Not supported  | is not callable           | Modifier-related attributes are not supported.               |
 | foregroundFilter         | Not supported  | is not callable           | -                                         |
 | freeze                   | Not supported  | is not callable           | -                                         |
 | gesture                  | Not supported  | Method not implemented.   | Gesture-related attributes are not supported.                |
 | gestureModifier          | Not supported  | is not callable           | Modifier-related attributes are not supported.               |
+| onAccessibilityHover     | Not supported  | is not callable           | -                                         |
 | onChildTouchTest         | Not supported  | is not callable           | -                                         |
 | onDragStart              | Not supported  | Method not implemented.   | Attributes that return a CustomBuilder are not supported.            |
 | onPreDrag                | Not supported  | Method not implemented.   | -                                         |

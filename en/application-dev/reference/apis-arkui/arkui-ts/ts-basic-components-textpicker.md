@@ -93,7 +93,7 @@ Sets the height of each item in the picker.
 
 | Name| Type                      | Mandatory| Description                  |
 | ------ | -------------------------- | ---- | ---------------------- |
-| value  | number \| string | Yes  | Height of each item in the picker. For the number type, the value range is [0, +8]. For the string type, only numeric string values, for example, **"56"**, are supported.<br>Default value: 56 vp (selected) and 36 vp (unselected).<br>**NOTE**<br>The set value applies to both selected and unselected items.|
+| value  | number \| string | Yes  | Height of each item in the picker. For the number type, the value range is [0, +∞]. For the string type, only numeric string values, for example, **"56"**, are supported.<br>Default value: 56 vp (selected) and 36 vp (unselected).<br>**NOTE**<br>The set value applies to both selected and unselected items.|
 
 ### defaultPickerItemHeight<sup>18+</sup>
 
@@ -109,7 +109,7 @@ Sets the height of each item in the picker. Compared to [defaultPickerItemHeight
 
 | Name| Type                      | Mandatory| Description                  |
 | ------ | -------------------------- | ---- | ---------------------- |
-| height  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| string> | Yes  | Height of each item in the picker. For the number type, the value range is [0, +8]. For the string type, only numeric string values, for example, **"56"**, are supported.<br>Default value: 56 vp (selected) and 36 vp (unselected).<br>**NOTE**<br>The set value applies to both selected and unselected items.<br>If **height** is set to **undefined**, the previous value is retained.|
+| height  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| string> | Yes  | Height of each item in the picker. For the number type, the value range is [0, +∞]. For the string type, only numeric string values, for example, **"56"**, are supported.<br>Default value: 56 vp (selected) and 36 vp (unselected).<br>**NOTE**<br>The set value applies to both selected and unselected items.<br>If **height** is set to **undefined**, the previous value is retained.|
 
 ### disappearTextStyle<sup>10+</sup>
 
