@@ -21,7 +21,7 @@ The **drawing_font_mgr.h** file declares the functions related to font managemen
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_Drawing_FontMgr](_drawing.md#oh_drawing_fontmgr) \* [OH_Drawing_FontMgrCreate](_drawing.md#oh_drawing_fontmgrcreate) (void) | Creates an **OH_Drawing_FontMgr** object.| 
+| [OH_Drawing_FontMgr](_drawing.md#oh_drawing_fontmgr) \* [OH_Drawing_FontMgrCreate](_drawing.md#oh_drawing_fontmgrcreate) (void) | Creates an **OH_Drawing_FontMgr** object, which can be used only to manage system fonts.| 
 | void [OH_Drawing_FontMgrDestroy](_drawing.md#oh_drawing_fontmgrdestroy) ([OH_Drawing_FontMgr](_drawing.md#oh_drawing_fontmgr) \*) | Destroys an **OH_Drawing_FontMgr** object and reclaims the memory occupied by the object.| 
 | int [OH_Drawing_FontMgrGetFamilyCount](_drawing.md#oh_drawing_fontmgrgetfamilycount) ([OH_Drawing_FontMgr](_drawing.md#oh_drawing_fontmgr) \*) | Obtains the number of font families.| 
 | char \* [OH_Drawing_FontMgrGetFamilyName](_drawing.md#oh_drawing_fontmgrgetfamilyname) ([OH_Drawing_FontMgr](_drawing.md#oh_drawing_fontmgr) \*, int index) | Obtains the font family name based on an index.| 
