@@ -890,7 +890,7 @@ setBadgeNumber(badgeNumber: number): Promise\<void\>
 
 设定角标个数，在应用的桌面图标上呈现。使用Promise异步回调。
 
-当角标设定个数取值0时，表示清除角标。取值大于99时，通知角标将显示99+。
+当角标设定个数取值小于或等于0时，表示清除角标。取值大于99时，通知角标将显示99+。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -937,7 +937,7 @@ setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void
 
 设定角标个数，在应用的桌面图标上呈现。使用callback异步回调。
 
-当角标设定个数取值0时，表示清除角标。取值大于99时，通知角标将显示99+。
+当角标设定个数取值小于或等于0时，表示清除角标。取值大于99时，通知角标将显示99+。
 
 **系统能力**：SystemCapability.Notification.Notification
 
