@@ -2775,7 +2775,9 @@ function isMirrorSupported(photoOutput: camera.PhotoOutput): boolean {
 
 enableMirror(enabled: boolean): void
 
-是否启用镜像拍照。
+是否启用动态照片镜像拍照。
+
+调用该接口前，需要通过[isMovingPhotoSupported](#ismovingphotosupported12)查询是否支持动态照片拍摄功能以及通过[isMirrorSupported](#ismirrorsupported)查询是否支持镜像拍照功能。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2783,7 +2785,7 @@ enableMirror(enabled: boolean): void
 
 | 参数名      | 类型                    | 必填 | 说明                        |
 |----------| ---------------------- | ---- |---------------------------|
-| enabled | boolean                | 是   | true为开启镜像拍照，false为关闭镜像拍照。 |
+| enabled | boolean                | 是   | true为开启动态照片镜像拍照，false为关闭动态照片镜像拍照。 |
 
 **错误码：**
 
