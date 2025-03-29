@@ -188,4 +188,4 @@ The **router** capability of the [postCardAction](../reference/apis-arkui/js-api
        "pages/FunB"
      ]
    }
-   ```
+    ```
