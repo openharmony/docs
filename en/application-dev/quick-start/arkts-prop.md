@@ -19,9 +19,7 @@ For the \@Prop decorated variable of a child component, the change synchronizati
 
 - Whenever the data source changes, the \@Prop decorated variable gets updated, and any locally made changes are overwritten. In other words, the change is synchronized from the parent component to the (owning) child component, but not the other way around.
 
-
-
-## Restrictions
+## Constraints
 
 - When decorating variables, \@Prop makes a deep copy, during which all types, except primitive types, Map, Set, Date, and Array, will be lost. For example, for complex types provided by N-API, such as [PixelMap](../reference/apis-image-kit/js-apis-image.md#pixelmap7), because they are partially implemented in the native code, complete data cannot be obtained through a deep copy in ArkTS.
 
@@ -32,7 +30,7 @@ For the \@Prop decorated variable of a child component, the change synchronizati
 | ----------- | ---------------------------------------- |
 | Decorator parameters      | None.                                       |
 | Synchronization type       | One-way: from the data source provided by the parent component to the \@Prop decorated variable. For details about the scenarios of nested types, see [Observed Changes](#observed-changes).|
-| Allowed variable types  | Object, class, string, number, Boolean, enum, and array of these types.<br>**undefined** or **null** (**any** is not supported).<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types.<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>The type must be specified.<br>The type must be the same as that of the [data source](arkts-state-management-overview.md#basic-concepts). There are three cases:<br>- Synchronizing the \@Prop decorated variable from a variable decorated by \@State or other decorators. Example: [Simple Type @Prop Synced from @State in Parent Component](#simple-type-prop-synced-from-state-in-parent-component).<br>- Synchronizing the \@Prop decorated variable from the item of an array decorated by an \@State or other decorators. Example: [Simple Type @Prop Synced from @State Array Item in Parent Component](#simple-type-prop-synced-from-state-array-item-in-parent-component).<br>- Synchronizing the \@Prop decorated variable from a state property of the Object or class type in the parent component. Example: [Class Object Type @Prop Synced from @State Class Object Property in Parent Component](#class-object-type-prop-synced-from-state-class-object-property-in-parent-component).<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 or later) Union type of the preceding types, for example, **string \| number**, **string \| undefined** or **ClassA \| null**. For details, see [Union Type @Prop](#union-type-prop).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@Prop a: string \| undefined = undefined** is recommended; **@Prop a: string = undefined** is not recommended.|
+| Allowed variable types  | Object, class, string, number, Boolean, enum, and array of these types.<br>**undefined** or **null** (**any** is not supported).<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types.<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>The type must be specified.<br>The type must be the same as that of the [data source](arkts-state-management-overview.md#basic-concepts). There are three cases:<br>- Synchronizing the \@Prop decorated variable from a variable decorated by \@State or other decorators. Example: [Simple Type @Prop Synced from @State in Parent Component](#simple-type-prop-synced-from-state-in-parent-component).<br>- Synchronizing the \@Prop decorated variable from the item of an array decorated by an \@State or other decorators. Example: [Simple Type @Prop Synced from @State Array Item in Parent Component](#simple-type-prop-synced-from-state-array-item-in-parent-component).<br>- Synchronizing the \@Prop decorated variable from a state property of the Object or class type in the parent component. Example: [Class Object Type @Prop Synced from @State Class Object Property in Parent Component](#class-object-type-prop-synced-from-state-class-object-property-in-parent-component).<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 or later) Union type of the preceding types, for example, **string \| number**, **string \| undefined**, or **ClassA \| null**. For details, see [Union Type @Prop](#union-type-prop).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@Prop a: string \| undefined = undefined** is supported, but **@Prop a: string = undefined** is not.|
 | Number of nested layers       | In component reuse scenarios, it is recommended that @Prop be nested with no more than five layers of data. If @Prop is nested with too many layers of data, garbage collection and increased memory usage caused by deep copy will arise, resulting in performance issues. To avoid such issues, use [\@ObjectLink](arkts-observed-and-objectlink.md) instead.|
 | Initial value for the decorated variable  | Local initialization is allowed. If this decorator is used together with [\@Require](arkts-require.md) in API version 11, the parent component must construct input parameters.|
 
@@ -45,8 +43,7 @@ For the \@Prop decorated variable of a child component, the change synchronizati
 | Child component initialization  | \@Prop can be used for initialization of a regular variable or \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
 | Access| Private, accessible only within the component.                |
 
-
-  **Figure 1** Initialization rule 
+**Figure 1** Initialization rule 
 
 
 ![en-us_image_0000001552972029](figures/en-us_image_0000001552972029.png)
@@ -209,8 +206,6 @@ In this example, the \@Prop decorated **count** variable in the **CountDownCompo
 
 Updating **countDownStartValue** in the **ParentComponent** will update the value of the @Prop decorated **count**.
 
-
-
 ```ts
 @Component
 struct CountDownComponent {
@@ -274,8 +269,6 @@ In the preceding example:
 
 
 The \@State decorated array an array item in the parent component can be used as data source to initialize and update a @Prop decorated variable. In the following example, the \@State decorated array **arr** in the parent component **Index** initializes the \@Prop decorated **value** variable in the child component **Child**.
-
-
 
 ```ts
 @Component
@@ -1016,7 +1009,7 @@ struct Parent {
 
 ### Using the a.b(this.object) Format Fails to Trigger UI Re-render
 
-In the **build** method, when the variable decorated by @Prop is of the object type and is called using the **a.b(this.object)** format, the native object of **this.object** is passed in the b method. If the property of **this.object** is changed, the UI cannot be re-rendered. In the following example, when the static method **Score.changeScore1** or **this.changeScore2** is used to change **this.score.value** in the custom component **Child**, the UI is not re-rendered.
+In the **build** method, when the variable decorated by @Prop is of the object type and is called using the **a.b(this.object)** format, the original object of **this.object** is passed in the b method. If the property of **this.object** is changed, the UI cannot be re-rendered. In the following example, when the static method **Score.changeScore1** or **this.changeScore2** is used to change **this.score.value** in the custom component **Child**, the UI is not re-rendered.
 
 [Incorrect Example]
 
@@ -1137,3 +1130,4 @@ struct Child {
   }
 }
 ```
+

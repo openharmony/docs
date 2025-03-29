@@ -20,7 +20,7 @@ Before reading this topic, you are advised to read [AppStorage](./arkts-appstora
 | fontScale              | number                  | Font scale. To enable the font scale to change with the system, set the [configuration](./app-configuration-file.md#configuration) tag.               |
 | fontWeightScale              | number                  | Font weight.               |
 | layoutDirection              | LayoutDirection                  | Layout direction. The options are as follows:<br>- **LayoutDirection.LTR**: from left to right.<br>- **LayoutDirection.RTL**: from right to left.                |
-| languageCode              | string                  | Current system language. The value is in lowercase, for example, **zh**.                |
+| languageCode              | string                  | System language value. The value must be in lowercase, for example, **zh**.                |
 
 
 ## Use Scenarios
@@ -38,7 +38,7 @@ Before reading this topic, you are advised to read [AppStorage](./arkts-appstora
 - Decorate the variables with \@StorageProp to link them with components.
 
   ```ts
-  @StorageProp('languageCode') lang : string = 'en';
+  @StorageProp('languageCode') lang: string = 'en';
   ```
 
 The chain of updates is as follows: Environment > AppStorage > Component.
@@ -73,7 +73,7 @@ struct Index {
 
 
 ```ts
-// Use Environment.EnvProp to save the device language code to AppStorage.
+// Use Environment.envProp to save the device language code to AppStorage.
 Environment.envProp('languageCode', 'en');
 // Obtain the one-way bound languageCode variable from AppStorage.
 const lang: SubscribedAbstractProperty<string> = AppStorage.prop('languageCode');
