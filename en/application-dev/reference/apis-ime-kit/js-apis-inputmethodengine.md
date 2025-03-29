@@ -1700,7 +1700,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                                               |
 | -------- | ------------------------------------------------------- |
-| 801 | Capability not supported. |
+| 801 | capability not supported. |
 | 12800002 | input method engine error. |
 | 12800013 | window manager service error. |
 | 12800017 | invalid panel type or panel flag. |
@@ -2597,20 +2597,13 @@ Represents a custom communication object.
 
 > **NOTE**
 >
-> You can register this object to receive custom communication data sent by the edit box application attached to the input method application. When the custom communication data is received, the [onMessage](#messagehandleronmessage15) callback in this object is triggered.
+> You can register this object to receive custom communication data sent by the edit box application attached to the input method application. When the custom communication data is received, the [onMessage](#onmessage15) callback in this object is triggered.
 >
-> This object is globally unique. After multiple registrations, only the last registered object is valid and retained, and the [onTerminated](#messagehandleronterminated15) callback of the penultimate registered object is triggered.
+> This object is globally unique. After multiple registrations, only the last registered object is valid and retained, and the [onTerminated](#onterminated15) callback of the penultimate registered object is triggered.
 >
-> If this object is unregistered, its [onTerminated](#messagehandleronterminated15) callback will be triggered.
+> If this object is unregistered, its [onTerminated](#onterminated15) callback will be triggered.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
-
-| Name        | Type    | Optional| Description                              |
-| ------------ | -------- | ---- | ---------------------------------- |
-| onTerminated | function | No  | Callback triggered when an object terminates receiving custom communication data.          |
-| onMessage    | function | No  | Callback triggered when an object starts to receive custom communication data.|
-
-## MessageHandler.onMessage<sup>15+</sup>
+### onMessage<sup>15+</sup>
 
 onMessage(msgId: string, msgParam?: ArrayBuffer): void
 
@@ -2618,7 +2611,7 @@ Receives the custom data callback sent by the edit box application attached to t
 
 > **NOTE**
 >
-> This callback is triggered when the registered MeesageHandler receives custom communication data sent by the edit box application attached to the input method application.
+> This callback is triggered when the registered [MessageHandler](#messagehandler15) receives custom communication data sent by the edit box application attached to the input method application.
 >
 > The **msgId** parameter is mandatory, and the **msgParam** parameter is optional. If only the custom **msgId** data is received, confirm it with the data sender.
 
@@ -2637,21 +2630,30 @@ Receives the custom data callback sent by the edit box application attached to t
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    let messageHandler: inputmethod.MessageHandler = {
-        onTerminated(): void {
+  inputMethodEngine.getInputMethodAbility()
+    .on('inputStart', (kbController: inputMethodEngine.KeyboardController, client: inputMethodEngine.InputClient) => {
+      let keyboardController = kbController;
+      let inputClient = client;
+      try {
+        let messageHandler: inputMethodEngine.MessageHandler = {
+          onTerminated(): void {
             console.log('OnTerminated.');
-        },
-        onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+          },
+          onMessage(msgId: string, msgParam?:ArrayBuffer): void {
             console.log('recv message.');
+          }
         }
-    }
-    inputMethodController.recvMessage(messageHandler);
+        inputClient.recvMessage(messageHandler);
+      } catch(err) {
+        console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+      }
+  });
 } catch(err) {
-  console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+    console.error(`Failed to InputMethodAbility: ${JSON.stringify(err)}`);
 }
 ```
 
-## MessageHandler.onTerminated<sup>15+</sup>
+### onTerminated<sup>15+</sup>
 
 onTerminated(): void
 
@@ -2659,9 +2661,9 @@ Listens for MessageHandler termination.
 
 > **NOTE**
 >
-> When an application registers a new MessageHandler object, the **OnTerminated** callback of the previous registered MessageHandler object is triggered.
+> When an application registers a new [MessageHandler](#messagehandler15) object, the [onTerminated](#onterminated15) callback of the penultimate registered [MessageHandler](#messagehandler15) object is triggered.
 >
-> When an application unregisters a MessageHandler object, the **OnTerminated** callback of the current registered MessageHandler object is triggered.
+> When an application unregisters a new [MessageHandler](#messagehandler15) object, the [onTerminated](#onterminated15) callback of the registered [MessageHandler](#messagehandler15) object is triggered.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -2671,17 +2673,26 @@ Listens for MessageHandler termination.
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    let messageHandler: inputmethod.MessageHandler = {
-        onTerminated(): void {
+  inputMethodEngine.getInputMethodAbility()
+    .on('inputStart', (kbController: inputMethodEngine.KeyboardController, client: inputMethodEngine.InputClient) => {
+      let keyboardController = kbController;
+      let inputClient = client;
+      try {
+        let messageHandler: inputMethodEngine.MessageHandler = {
+          onTerminated(): void {
             console.log('OnTerminated.');
-        },
-        onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+          },
+          onMessage(msgId: string, msgParam?:ArrayBuffer): void {
             console.log('recv message.');
+          }
         }
-    }
-    inputMethodController.recvMessage(messageHandler);
+        inputClient.recvMessage(messageHandler);
+      } catch(err) {
+        console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+      }
+  });
 } catch(err) {
-  console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+    console.error(`Failed to InputMethodAbility: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -4457,9 +4468,9 @@ Registers or unregisters MessageHandler.
 
 > **NOTE**
 >
-> The [MessageHandler](#messagehandler15) object is globally unique. After multiple registrations, only the last registered object is valid and retained, and the [onTerminated](#messagehandleronterminated15) callback of the penultimate registered object is triggered.
+> The [MessageHandler](#messagehandler15) object is globally unique. After multiple registrations, only the last registered object is valid and retained, and the [onTerminated](#onterminated15) callback of the penultimate registered object is triggered.
 >
-> If no parameter is set, unregister [MessageHandler](#messagehandler15). Its [onTerminated](#messagehandleronterminated15) callback will be triggered.
+> If no parameter is set, unregister [MessageHandler](#messagehandler15). Its [onTerminated](#onterminated15) callback will be triggered.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -4467,7 +4478,7 @@ Registers or unregisters MessageHandler.
 
 | Name    | Type                               | Mandatory| Description                                                        |
 | ---------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| msgHandler | [MessageHandler](#messagehandler15) | No  | This object receives custom communication data from the edit box application attached to the input method application through [onMessage](#messagehandleronmessage15) and receives a message for terminating the subscription to this object through [onTerminated](#messagehandleronterminated15). If no parameter is set, unregister [MessageHandler](#messagehandler15). Its [onTerminated](#messagehandleronterminated15) callback will be triggered.|
+| msgHandler | [MessageHandler](#messagehandler15) | No  | This object receives custom communication data from the edit box application attached to the input method application through [onMessage](#onmessage15) and receives a message for terminating the subscription to this object through [onTerminated](#onterminated15).<br>If no parameter is set, unregister [MessageHandler](#messagehandler15). Its [onTerminated](#onterminated15) callback will be triggered.|
 
 **Return value**
 
@@ -4487,16 +4498,29 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-let messageHandler: inputmethod.MessageHandler = {
-    onTerminated(): void {
-        console.log('OnTerminated.');
-    },
-    onMessage(msgId: string, msgParam?:ArrayBuffer): void {
-        console.log('recv message.');
-    }
+
+try {
+  inputMethodEngine.getInputMethodAbility()
+    .on('inputStart', (kbController: inputMethodEngine.KeyboardController, client: inputMethodEngine.InputClient) => {
+      let keyboardController = kbController;
+      let inputClient = client;
+      try {
+        let messageHandler: inputMethodEngine.MessageHandler = {
+          onTerminated(): void {
+            console.log('OnTerminated.');
+          },
+          onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+            console.log('recv message.');
+          }
+        }
+        inputClient.recvMessage(messageHandler);
+      } catch(err) {
+        console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+      }
+  });
+} catch(err) {
+    console.error(`Failed to InputMethodAbility: ${JSON.stringify(err)}`);
 }
-inputMethodController.recvMessage(messageHandler);
-inputMethodController.recvMessage();
 ```
 
 ### EditorAttribute
@@ -4512,6 +4536,8 @@ Represents the attributes of the edit box.
 | isTextPreviewSupported<sup>12+</sup> | boolean | No| No| Whether text preview is supported.|
 | bundleName<sup>14+</sup> | string | Yes| Yes| Name of the application package to which the edit box belongs. The value may be **""** When this attribute is used, the scenario where the value is **""** must be considered.|
 | immersiveMode<sup>15+</sup> | number | Yes  | Yes  | Immersive mode of the input method.|
+| windowId<sup>18+</sup> | number | Yes| Yes| ID of the window where the edit box is located.|
+| displayId<sup>18+</sup> | number | Yes  | Yes  | Screen ID of the window corresponding to the edit box. If window ID is not set, the screen ID of the focused window is used.|
 
 ## KeyEvent
 
