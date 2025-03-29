@@ -312,7 +312,7 @@
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_Capture_WithCaptureSetting](#oh_photooutput_capture_withcapturesetting) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, [Camera_PhotoCaptureSetting](_camera___photo_capture_setting.md) setting) | 使用捕获设置捕获拍照。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_Release](#oh_photooutput_release) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput) | 释放拍照输出。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_IsMirrorSupported](#oh_photooutput_ismirrorsupported) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, bool \*isSupported) | 检查是否支持镜像拍照。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_EnableMirror](#oh_photooutput_enablemirror) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, bool enabled) | 是否启用镜像拍照。 | 
+| [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_EnableMirror](#oh_photooutput_enablemirror) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, bool enabled) | 是否启用动态照片镜像拍照。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_GetActiveProfile](#oh_photooutput_getactiveprofile) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, [Camera_Profile](_camera___profile.md) \*\*profile) | 获取当前照片输出配置文件。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_DeleteProfile](#oh_photooutput_deleteprofile) ([Camera_Profile](_camera___profile.md) \*profile) | 删除照片配置文件实例。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_IsMovingPhotoSupported](#oh_photooutput_ismovingphotosupported) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, bool \*isSupported) | 检查是否支持动态照片。 | 
@@ -5294,7 +5294,7 @@ Camera_ErrorCode OH_PhotoOutput_EnableMirror(Camera_PhotoOutput* photoOutput, bo
 
 **描述**
 
-是否启用镜像拍照。
+是否启用动态照片镜像拍照。
 
 **起始版本：** 13
 
@@ -5303,7 +5303,7 @@ Camera_ErrorCode OH_PhotoOutput_EnableMirror(Camera_PhotoOutput* photoOutput, bo
 | 名称          | 描述                                                      | 
 |-------------|---------------------------------------------------------|
 | photoOutput | [Camera_PhotoOutput](#camera_photooutput)实例，用于是否启用镜像拍照。 | 
-| enabled     | 是否启用镜像拍照的结果，true为开启镜像拍照，false为关闭镜像拍照。        | 
+| enabled     | 是否启用动态照片镜像拍照的结果，true为开启动态照片镜像拍照，false为关闭动态照片镜像拍照。        | 
 
 **返回：**
 
