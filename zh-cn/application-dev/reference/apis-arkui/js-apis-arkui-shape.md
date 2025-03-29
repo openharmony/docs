@@ -188,8 +188,8 @@ radius(radius: number | string | Array<number &nbsp;\|&nbsp; string>): RectShape
 
 | 名称         | 类型                                               | 必填                                             | 说明                                         |
 | ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| width | number &nbsp;\|&nbsp; string | 否 | 形状的宽度。<br/> 类型为number时取值范围是[0, +∞)，string时是length。 |
-| height | number &nbsp;\|&nbsp; string | 否 | 形状的高度。<br/> 类型为number时取值范围是[0, +∞)，string时是length。 |
+| width | number &nbsp;\|&nbsp; string | 否 | 形状的宽度。<br/> 类型为number时取值范围是[0, +∞)，string时是length。<br/>单位：vp |
+| height | number &nbsp;\|&nbsp; string | 否 | 形状的高度。<br/> 类型为number时取值范围是[0, +∞)，string时是length。<br/>单位：vp |
 
 ## PathShapeOptions
 

@@ -32,6 +32,7 @@
       - [Common action and entities Values (Not Recommended)](actions-entities.md)
     - [Component Startup Rules (Stage Model)](component-startup-rules.md)
     - [AppStartup](app-startup.md)
+    - [Obtaining Reasons for Abnormal Application Exits](ability-exit-info-record.md)
     <!--Del-->
     - Inter-Device Application Component Interaction (Hopping)<!--hop-->
       - [Hopping Overview](inter-device-interaction-hop-overview.md)

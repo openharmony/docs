@@ -18,4 +18,4 @@
 | stroke-miterlimit | number | 4 | 否 | 设置将锐角绘制成斜角的极限值。支持属性动画。 |
 | stroke-opacity | number | 1 | 否 | 轮廓线条的透明度，取值范围为0到1，1表示为不透明，0表示为完全透明。支持属性动画。 |
 | stroke-width | &lt;length&gt; | 1px | 否 | 设置轮廓线条的宽度。支持属性动画。 |
-| transform | &lt;string&gt; | - | 否 | 设置组件以及子组件的坐标变换参数。<br/>支持以下格式：<br/>translate(&lt;x&gt;&nbsp;[&lt;y&gt;])&nbsp;：沿x[y]轴方向平移<br/>scale(&lt;x&gt;&nbsp;[&lt;y&gt;])&nbsp;：沿x[y]轴缩放<br/>rotate(&lt;a&gt;&nbsp;[&lt;x&gt;&nbsp;&lt;y&gt;])&nbsp;：以(x,y)点进行旋转a度角<br/>skewX(&lt;a&gt;)&nbsp;：沿x轴倾斜a度角的变换<br/>skewY(&lt;a&gt;)&nbsp;：沿y轴倾斜a度角的变换。 |
+| transform | &lt;string&gt; | - | 否 | 设置组件以及子组件的坐标变换参数。<br/>支持以下格式：<br/>translate(&lt;x&gt;&nbsp;[&lt;y&gt;])&nbsp;：沿x[y]轴方向平移。<br/>scale(&lt;x&gt;&nbsp;[&lt;y&gt;])&nbsp;：沿x[y]轴缩放。<br/>rotate(&lt;a&gt;&nbsp;[&lt;x&gt;&nbsp;&lt;y&gt;])&nbsp;：以(x,y)点进行旋转a度角。<br/>skewX(&lt;a&gt;)&nbsp;：沿x轴倾斜a度角的变换。<br/>skewY(&lt;a&gt;)&nbsp;：沿y轴倾斜a度角的变换。 |

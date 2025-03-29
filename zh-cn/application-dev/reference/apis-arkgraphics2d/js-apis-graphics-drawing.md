@@ -1269,7 +1269,7 @@ getSegment(forceClosed: boolean, start: number, stop: number, startWithMoveTo: b
 | start | number | 是   | 表示与路径起始点的距离，距离路径起始点start距离的位置即为截取路径片段的起始点，小于0时会被视作0，大于等于stop时会截取失败。该参数为浮点数。               |
 | stop | number | 是   | 表示与路径起始点的距离，距离路径起始点stop距离的位置即为截取路径片段的终点，小于等于start时会截取失败，大于路径长度时会被视作路径长度。该参数为浮点数。                  |
 | startWithMoveTo | boolean | 是   | 表示是否在目标路径执行[moveTo](#moveto)移动到截取路径片段的起始点位置。true表示执行，false表示不执行。                |
-| dst | number | [Path](#path)   | 目标路径，截取成功时会将得到的路径片段追加到目标路径上，截取失败时不做改变。               |
+| dst | [Path](#path) | 是   | 目标路径，截取成功时会将得到的路径片段追加到目标路径上，截取失败时不做改变。               |
 
 **返回值：**
 
@@ -3684,15 +3684,15 @@ import { common2D, drawing } from '@kit.ArkGraphics2D';
 import { image } from '@kit.ImageKit';
 
 class DrawingRenderNode extends RenderNode {
+pixelMap: image.PixelMap | null = null;
   draw(context : DrawContext) {
     const canvas = context.canvas;
-    let pixelMap: image.PixelMap = globalThis.getInstance().getPixelMap("test_2.jpg");
-    canvas.drawImage(pixelMap, 0, 0); // 原图
+    canvas.drawImage(this.pixelMap, 0, 0); // 原图
     let center: common2D.Rect = { left: 20, top: 10, right: 50, bottom: 40 };
     let dst: common2D.Rect = { left: 70, top: 0, right: 100, bottom: 30 };
     let dst1: common2D.Rect = { left: 110, top: 0, right: 200, bottom: 90 };
-    canvas.drawImageNine(pixelMap, center, dst, drawing.FilterMode.FILTER_MODE_NEAREST); // 示例1
-    canvas.drawImageNine(pixelMap, center, dst1, drawing.FilterMode.FILTER_MODE_NEAREST); // 示例2
+    canvas.drawImageNine(this.pixelMap, center, dst, drawing.FilterMode.FILTER_MODE_NEAREST); // 示例1
+    canvas.drawImageNine(this.pixelMap, center, dst1, drawing.FilterMode.FILTER_MODE_NEAREST); // 示例2
   }
 }
 ```
@@ -3732,17 +3732,17 @@ import { common2D, drawing } from '@kit.ArkGraphics2D';
 import { image } from '@kit.ImageKit';
 
 class DrawingRenderNode extends RenderNode {
+pixelMap: image.PixelMap | null = null;
   draw(context : DrawContext) {
     const canvas = context.canvas;
-    let pixelMap: image.PixelMap = globalThis.getInstance().getPixelMap("test_3.jpg");
-    canvas.drawImage(pixelMap, 0, 0); // 原图
+    canvas.drawImage(this.pixelMap, 0, 0); // 原图
     let xDivs: Array<number> = [28, 36, 44, 52];
     let yDivs: Array<number> = [28, 36, 44, 52];
     let lattice = drawing.Lattice.createImageLattice(xDivs, yDivs, 4, 4);
     let dst: common2D.Rect = { left: 100, top: 0, right: 164, bottom: 64 };
     let dst1: common2D.Rect = { left: 200, top: 0, right: 360, bottom: 160 };
-    canvas.drawImageLattice(pixelMap, lattice, dst, drawing.FilterMode.FILTER_MODE_NEAREST); // 示例1
-    canvas.drawImageLattice(pixelMap, lattice, dst1, drawing.FilterMode.FILTER_MODE_NEAREST); // 示例2
+    canvas.drawImageLattice(this.pixelMap, lattice, dst, drawing.FilterMode.FILTER_MODE_NEAREST); // 示例1
+    canvas.drawImageLattice(this.pixelMap, lattice, dst1, drawing.FilterMode.FILTER_MODE_NEAREST); // 示例2
   }
 }
 ```

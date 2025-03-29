@@ -1,4 +1,4 @@
-# IPC通信开发指导（C/C++）
+# IPC与RPC通信开发指导(C/C++)
 
 
 ## 场景介绍
@@ -310,7 +310,6 @@ int IpcCApiProxyTest::AsyncAdd(int a, int b, int &result) {
     OH_LOG_INFO(LOG_APP, "asyncReply_:%d", asyncReply_);
     result = asyncReply_;
     OH_IPCParcel_Destroy(data);
-    OH_IPCParcel_Destroy(reply);
     return OH_IPC_SUCCESS;
 }
 

@@ -745,7 +745,7 @@ wantAgent.getWantAgent(wantAgentInfo).then((agent) => {
 
 dispatchSessionEvent(event: string, args: {[key: string]: Object}): Promise\<void>
 
-媒体提供方设置一个会话内自定义事件，包括事件名和键值对形式的事件内容, 结果通过Promise异步回调方式返回。
+媒体提供方设置一个会话内自定义事件，包括事件名和键值对形式的事件内容，结果通过Promise异步回调方式返回。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -807,7 +807,7 @@ if (currentAVSession !== undefined) {
 
 dispatchSessionEvent(event: string, args: {[key: string]: Object}, callback: AsyncCallback\<void>): void
 
-媒体提供方设置一个会话内自定义事件，包括事件名和键值对形式的事件内容, 结果通过callback异步回调方式返回。
+媒体提供方设置一个会话内自定义事件，包括事件名和键值对形式的事件内容，结果通过callback异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -1095,7 +1095,7 @@ currentAVSession.setAVQueueTitle(queueTitle, (err: BusinessError) => {
 
 setExtras(extras: {[key: string]: Object}): Promise\<void>
 
-媒体提供方设置键值对形式的自定义媒体数据包, 结果通过Promise异步回调方式返回。
+媒体提供方设置键值对形式的自定义媒体数据包，结果通过Promise异步回调方式返回。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1156,7 +1156,7 @@ if (currentAVSession !== undefined) {
 
 setExtras(extras: {[key: string]: Object}, callback: AsyncCallback\<void>): void
 
-媒体提供方设置键值对形式的自定义媒体数据包, 结果通过callback异步回调方式返回。
+媒体提供方设置键值对形式的自定义媒体数据包，结果通过callback异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -2793,7 +2793,7 @@ currentAVSession.off('commonCommand');
 
 ### on('answer')<sup>11+</sup>
 
-on(type: 'answer', callback: Callback\<void>): void;
+on(type: 'answer', callback: Callback\<void>): void
 
 设置通话接听的监听事件。
 
@@ -2828,7 +2828,7 @@ currentAVSession.on('answer', () => {
 
 ### off('answer')<sup>11+</sup>
 
-off(type: 'answer', callback?: Callback\<void>): void;
+off(type: 'answer', callback?: Callback\<void>): void
 
 取消通话接听事件的监听。
 
@@ -2861,7 +2861,7 @@ currentAVSession.off('answer');
 
 ### on('hangUp')<sup>11+</sup>
 
-on(type: 'hangUp', callback: Callback\<void>): void;
+on(type: 'hangUp', callback: Callback\<void>): void
 
 设置通话挂断的监听事件。
 
@@ -2896,7 +2896,7 @@ currentAVSession.on('hangUp', () => {
 
 ### off('hangUp')<sup>11+</sup>
 
-off(type: 'hangUp', callback?: Callback\<void>): void;
+off(type: 'hangUp', callback?: Callback\<void>): void
 
 取消通话挂断事件的监听。
 
@@ -2929,7 +2929,7 @@ currentAVSession.off('hangUp');
 
 ### on('toggleCallMute')<sup>11+</sup>
 
-on(type: 'toggleCallMute', callback: Callback\<void>): void;
+on(type: 'toggleCallMute', callback: Callback\<void>): void
 
 设置通话静音的监听事件。
 
@@ -2964,7 +2964,7 @@ currentAVSession.on('toggleCallMute', () => {
 
 ### off('toggleCallMute')<sup>11+</sup>
 
-off(type: 'toggleCallMute', callback?: Callback\<void>): void;
+off(type: 'toggleCallMute', callback?: Callback\<void>): void
 
 取消通话静音事件的监听。
 
@@ -5335,7 +5335,7 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 | position     | [PlaybackPosition](#playbackposition10) | 否   | 播放位置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | bufferedTime | number                                | 否   | 缓冲时间。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | loopMode     | [LoopMode](#loopmode10)                 | 否   | 循环模式。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| isFavorite   | boolean                               | 否   | 是否收藏。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| isFavorite   | boolean                               | 否   | 是否收藏，true表示收藏。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | activeItemId<sup>10+</sup> | number                  | 否   | 正在播放的媒体Id。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | volume<sup>10+</sup> | number                  | 否   | 正在播放的媒体音量。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | maxVolume<sup>11+</sup> | number                    | 否   | 最大音量。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -7068,7 +7068,7 @@ avsessionController.off('playbackStateChange');
 
 ### on('callMetadataChange')<sup>11+</sup>
 
-on(type: 'callMetadataChange', filter: Array\<keyof CallMetadata> | 'all', callback: Callback\<CallMetadata>): void;
+on(type: 'callMetadataChange', filter: Array\<keyof CallMetadata> | 'all', callback: Callback\<CallMetadata>): void
 
 设置通话元数据变化的监听事件。
 
@@ -7108,7 +7108,7 @@ avsessionController.on('callMetadataChange', ['name'], (callmetadata: avSession.
 
 ### off('callMetadataChange')<sup>11+</sup>
 
-off(type: 'callMetadataChange', callback?: Callback\<CallMetadata>): void;
+off(type: 'callMetadataChange', callback?: Callback\<CallMetadata>): void
 
 取消设置通话元数据变化的监听事件。
 
@@ -7141,7 +7141,7 @@ avsessionController.off('callMetadataChange');
 
 ### on('callStateChange')<sup>11+</sup>
 
-on(type: 'callStateChange', filter: Array\<keyof AVCallState> | 'all', callback: Callback\<AVCallState>): void;
+on(type: 'callStateChange', filter: Array\<keyof AVCallState> | 'all', callback: Callback\<AVCallState>): void
 
 设置通话状态变化的监听事件。
 
@@ -7181,7 +7181,7 @@ avsessionController.on('callStateChange', ['state'], (callstate: avSession.AVCal
 
 ### off('callStateChange')<sup>11+</sup>
 
-off(type: 'callStateChange', callback?: Callback\<AVCallState>): void;
+off(type: 'callStateChange', callback?: Callback\<AVCallState>): void
 
 取消设置通话状态变化的监听事件。
 

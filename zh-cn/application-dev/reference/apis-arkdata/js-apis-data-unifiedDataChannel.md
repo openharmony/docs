@@ -382,7 +382,7 @@ let unifiedRecord = new unifiedDataChannel.UnifiedRecord();
 
 constructor(type: string, value: ValueType)
 
-用于创建指定类型和值的数据记录。<br/>当参数value为[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_PIXEL_MAP的值;<br/>当参数value为[Want](../apis-ability-kit/js-apis-app-ability-want.md)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_WANT的值。
+用于创建指定类型和值的数据记录。<br/>当参数value为[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_PIXEL_MAP的值；<br/>当参数value为[Want](../apis-ability-kit/js-apis-app-ability-want.md)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_WANT的值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
