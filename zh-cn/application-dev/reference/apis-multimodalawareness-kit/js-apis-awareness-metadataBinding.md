@@ -81,7 +81,7 @@ metadataBinding.decodeImage(encodeImage).then((metadata : string) =>{
 ```
 
 ## notifyMetadataBindingEvent(string)
-submitMetadata(metadata: string): void；
+notifyMetadataBindingEvent(metadata: string): void；
 提交需要嵌入的信息给对应调用编码接口的服务。
 **系统能力**：SystemCapability.MultimodalAwarness.metadataBinding
 
@@ -176,7 +176,7 @@ metadataBinding.on('operationSubmitMetadata', bundleName, (evnet:number)=>{
 
 
 ## metadataBinding.off('operationSubmitMetadata', string)
-off(type: 'operationSubmitMetadata', bundleName: string, callback?: Callback\<number>): void;  
+metadataBinding.off(type: 'operationSubmitMetadata', bundleName: string, callback?: Callback\<number>): void;  
 取消订阅系统获取编码内容的事件。取消注册回调接口。  
 **系统能力**：SystemCapability.MultimodalAwarness.metadataBinding  
 **参数**：
