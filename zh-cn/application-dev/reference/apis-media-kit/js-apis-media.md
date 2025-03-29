@@ -5333,7 +5333,7 @@ on(type: 'complete', callback: Callback\<void>): void
 
 注册转码完成事件，并通过注册的回调方法通知用户。用户只能注册一个进度更新事件的回调方法，当用户重复注册时，以最后一次注册的回调接口为准。
 
-当AVTranscoder上报complete事件时，当前转码操作已完成，用户可通过[release()](#release12)退出转码操作。
+当AVTranscoder上报complete事件时，当前转码操作已完成，用户需要通过[release()](#release12)退出转码操作。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
 
@@ -5347,8 +5347,12 @@ on(type: 'complete', callback: Callback\<void>): void
 **示例：**
 
 ```ts
-avTranscoder.on('complete', () => {
+avTranscoder.on('complete', async () => {
   console.info('avTranscoder complete');
+  // 用户须在此监听转码完成事件
+  // 须等待avTranscoder.release()之后，再对转码后的文件进行转发、上传、转存等处理
+  await avTranscoder.release();
+  avTranscoder = undefined;
 });
 ```
 
