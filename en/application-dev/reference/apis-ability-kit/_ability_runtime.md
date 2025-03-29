@@ -19,13 +19,13 @@ The AbilityRuntime module provides capabilities related to the ability framework
 | -------- | -------- |
 | [ability_runtime_common.h](ability__runtime__common_8h.md) | Declares the error codes of the ability framework.<br>**File to include**: <AbilityKit/ability_runtime/ability_runtime_common.h><br>**Library**: libability_runtime.so|
 | [application_context.h](application__context_8h.md) | Declares the context capability at the application level.<br>**File to include**: <AbilityKit/ability_runtime/application_context.h><br>**Library**: libability_runtime.so|
-| [context_constant.h](context__constant_8h.md) | Declares context-related enums.<br>**File to include**: <AbilityKit/ability_runtime/context_constant.h><br>**Library**: libability_runtime.so|
+| [context_constant.h](context__constant_8h.md) | Declares the context-related enums.<br>**File to include**: <AbilityKit/ability_runtime/context_constant.h><br>**Library**: libability_runtime.so|
 
 ### Enums
 
 | Name                                                        | Description                  |
 | ------------------------------------------------------------ | ---------------------- |
-| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) {<br>    ABILITY_RUNTIME_ERROR_CODE_NO_ERROR = 0,<br>    ABILITY_RUNTIME_ERROR_CODE_PERMISSION_DENIED = 201,<br>    ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID = 401,<br>    ABILITY_RUNTIME_ERROR_CODE_NOT_SUPPORTED = 801,<br>    ABILITY_RUNTIME_ERROR_CODE_NO_SUCH_ABILITY = 16000001,<br>    ABILITY_RUNTIME_ERROR_CODE_INCORRECT_ABILITY_TYPE = 16000002,<br>    ABILITY_RUNTIME_ERROR_CODE_CROWDTEST_EXPIRED = 16000008,<br>    ABILITY_RUNTIME_ERROR_CODE_WUKONG_MODE = 16000009,<br>    ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST = 16000011,<br>    ABILITY_RUNTIME_ERROR_CODE_CONTROLLED = 16000012,<br>    ABILITY_RUNTIME_ERROR_CODE_EDM_CONTROLLED = 16000013,<br>    ABILITY_RUNTIME_ERROR_CODE_CROSS_APP = 16000018,<br>    ABILITY_RUNTIME_ERROR_CODE_INTERNAL = 16000050,<br>    ABILITY_RUNTIME_ERROR_CODE_NOT_TOP_ABILITY = 16000053,<br>} | Enumerates the error codes used by the ability framework.|
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) {<br>    ABILITY_RUNTIME_ERROR_CODE_NO_ERROR = 0,<br>    ABILITY_RUNTIME_ERROR_CODE_PERMISSION_DENIED = 201,<br>    ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID = 401,<br>    ABILITY_RUNTIME_ERROR_CODE_NOT_SUPPORTED = 801,<br>    ABILITY_RUNTIME_ERROR_CODE_NO_SUCH_ABILITY = 16000001,<br>    ABILITY_RUNTIME_ERROR_CODE_INCORRECT_ABILITY_TYPE = 16000002,<br>    ABILITY_RUNTIME_ERROR_CODE_CROWDTEST_EXPIRED = 16000008,<br>    ABILITY_RUNTIME_ERROR_CODE_WUKONG_MODE = 16000009,<br>    ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST = 16000011,<br>    ABILITY_RUNTIME_ERROR_CODE_CONTROLLED = 16000012,<br>    ABILITY_RUNTIME_ERROR_CODE_EDM_CONTROLLED = 16000013,<br>    ABILITY_RUNTIME_ERROR_CODE_CROSS_APP = 16000018,<br>    ABILITY_RUNTIME_ERROR_CODE_INTERNAL = 16000050,<br>    ABILITY_RUNTIME_ERROR_CODE_NOT_TOP_ABILITY = 16000053,<br/>} | Enumerates the error codes used by the ability framework. |
 | [AbilityRuntime_AreaMode](#abilityruntime_areamode) {<br>    ABILITY_RUNTIME_AREA_MODE_EL1 = 0,<br>    ABILITY_RUNTIME_AREA_MODE_EL2 = 1,<br>    ABILITY_RUNTIME_AREA_MODE_EL3 = 2,<br>    ABILITY_RUNTIME_AREA_MODE_EL4 = 3,<br>    ABILITY_RUNTIME_AREA_MODE_EL5 = 4<br>} | Enumerates the data encryption levels.    |
 
 ### Functions
@@ -401,7 +401,7 @@ Starts the UIAbility of the current application.
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the operation is successful.
+Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the API call is successful.
 
 Returns **ABILITY_RUNTIME_ERROR_CODE_PERMISSION_DENIED** if permission verification failed.
 
@@ -428,7 +428,6 @@ Returns **ABILITY_RUNTIME_ERROR_CODE_INTERNAL** if an internal error occurs.
 Returns **ABILITY_RUNTIME_ERROR_CODE_NOT_TOP_ABILITY** if the application is not a top one.
 
 **Example**
-
 ```cpp
 #include <AbilityKit/ability_base/want.h>
 #include <AbilityKit/ability_runtime/application_context.h>
