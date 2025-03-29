@@ -31,8 +31,8 @@ Describes the common live view.
 | extraInfo      | Record<string, Object\>                                               | No | Yes | Extra information of the live view.          |
 | pictureInfo    | Record<string, Array<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)\>\> | No | Yes | Extra image information of the live view.|
 | isLocalUpdateOnly<sup>12+</sup> | boolean                                           | No | Yes | Whether the live view is updated only locally.    |
-| liveViewType<sup>16+</sup>  | [LiveViewTypes](#liveviewtypes16)  | No| Yes | Live view types. |
-| cardButtons<sup>16+</sup> | Array\<[NotificationIconButton](#notificationiconbutton16)\>    |  No |  Yes | Live view buttons (a maximum of three buttons are supported).     |
+| liveViewType<sup>16+</sup>  | [LiveViewTypes](#liveviewtypes18)  | No| Yes | Live view types. |
+| cardButtons<sup>16+</sup> | Array\<[NotificationIconButton](#notificationiconbutton18)\>    |  No |  Yes | Live view buttons (a maximum of three buttons are supported).     |
 
 ## NotificationCapsule<sup>11+</sup>
 
@@ -45,8 +45,8 @@ Describe the notification capsule.
 | Name                 |  Type                        | Read Only| Optional| Description                             |
 | --------------------- | ---------------------------- | ---- | ---- | -------------------------------- |
 | content<sup>12+</sup> | string                       |  No |  Yes | Extended text of the capsule.                  |
-| time<sup>16+</sup> | number                       |  No |  Yes | Display duration of the notification capsule of an instant task, in seconds.  |
-| capsuleButtons<sup>16+</sup> | Array\<[NotificationIconButton](#notificationiconbutton16)\>    |  No |  Yes | Buttons of the notification capsule of an instant task. A maximum of two buttons are supported.     |
+| time<sup>18+</sup> | number                       |  No |  Yes | Display duration of the notification capsule of an instant task, in seconds.  |
+| capsuleButtons<sup>18+</sup> | Array\<[NotificationIconButton](#notificationiconbutton18)\>    |  No |  Yes | Buttons of the notification capsule of an instant task. A maximum of two buttons are supported.     |
 
 ## LiveViewStatus<sup>11+</sup>
 
@@ -63,7 +63,7 @@ Enumerates the statuses of the common live view.
 | LIVE_VIEW_END                | 2  | The live view is ended.    |
 | LIVE_VIEW_FULL_UPDATE        | 3  | The live view is updated in full mode.|
 
-## NotificationIconButton<sup>16+</sup>
+## NotificationIconButton<sup>18+</sup>
 
 Describes the information of a system notification button.
 
@@ -78,7 +78,7 @@ Describes the information of a system notification button.
 | text | string | No |  Yes| Text displayed on the button.  |
 | hidePanel | bool | No |  Yes| Whether to hide the notification panel when the button is tapped.  |
 
-## LiveViewTypes<sup>16+</sup>
+## LiveViewTypes<sup>18+</sup>
 
 Enumerates live view types.
 
