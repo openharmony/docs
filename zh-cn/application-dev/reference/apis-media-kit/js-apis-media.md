@@ -4957,7 +4957,7 @@ on(type: 'complete', callback: Callback\<void>): void
 **示例：**
 
 ```ts
-avTranscoder.on('complete', () => {
+avTranscoder.on('complete', async () => {
   console.info('avTranscoder complete');
   // 用户须在此监听转码完成事件
   // 须等待avTranscoder.release()完成之后，再对转码后的文件进行转发、上传、转存等处理
