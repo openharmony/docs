@@ -17,7 +17,7 @@ Before reading this topic, you are advised to read [Basic Syntax Overview](./ark
 
 The \@Builder decorator can be used for the private custom build function defined in the custom component and global custom build function defined globally.
 
-### Private Custom Build Function
+### Private Custom Builder Function
 
 Syntax:
 
@@ -330,7 +330,8 @@ function overBuilder() {
 struct customBuilderDemo {
   @State arr: number[] = [0, 1, 2, 3, 4];
 
-  @Builder privateBuilder() {
+  @Builder
+  privateBuilder() {
     Row() {
       Text('Local Builder')
         .fontSize(30)
@@ -342,7 +343,7 @@ struct customBuilderDemo {
     Column() {
       List({ space: 10 }) {
         ForEach(this.arr, (item: number) => {
-          ListItem(){
+          ListItem() {
             Text(`${item}`)
               .width('100%')
               .height(100)
@@ -351,15 +352,17 @@ struct customBuilderDemo {
               .borderRadius(10)
               .backgroundColor(0xFFFFFF)
           }
-            .swipeAction({
-              start: {
-                builder: overBuilder()
-              },
-              end: {
-                builder: () => { this.privateBuilder() }
+          .swipeAction({
+            start: {
+              builder: overBuilder()
+            },
+            end: {
+              builder: () => {
+                this.privateBuilder()
               }
-            })
-        }, (item: string) => JSON.stringify(item))
+            }
+          })
+        }, (item: number) => JSON.stringify(item))
       }
     }
   }
