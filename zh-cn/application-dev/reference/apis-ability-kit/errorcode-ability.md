@@ -933,6 +933,24 @@ The UIAbility is being started.
 
 确保该UIAbility启动完成，再执行新的启动任务。
 
+## 16000083 不允许该类型ExtensionAbility启动指定Ability
+
+**错误信息**
+
+The extension can not start the ability due to extension control.
+
+**错误描述**
+
+不同类型ExtensionAbility所需要的能力不同。系统不允许该类型ExtensionAbility启动指定Ability。
+
+**可能原因**
+
+当前类型ExtensionAbility受系统管控，不允许该类型Extension启动指定Ability。
+
+**处理步骤**
+
+查看对应类型ExtensionAbility的使用约束限制，确保接口使用符合约束限制。
+
 ## 16000100 监听Ability生命周期变化的AbilityMonitor方法执行失败
 
 **错误信息**
