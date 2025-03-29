@@ -48,6 +48,8 @@ You can use the APIs of the input method framework service to easily switch betw
        });
      }
    }
+
+
    ```
 
 ## Switching Between Input Methods
