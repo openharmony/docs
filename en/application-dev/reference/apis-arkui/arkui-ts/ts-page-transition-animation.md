@@ -115,8 +115,8 @@ Invoked on a per-frame basis until the exit animation is complete, with the **pr
 | Name    | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [RouteType](#routetype)                              | No  | Route type for the page transition effect to take effect.<br>Default value: **RouteType.None**   |
-| duration | number                                                       | No  | Animation duration.<br>Unit: ms<br>Default value: **1000**                |
-| curve    | [Curve](ts-appendix-enums.md#curve) \| string \| [ICurve](../js-apis-curve.md#icurve9)<sup>10+</sup> | No  | Animation curve. The value of the string type can be any of the following: "ease", "ease-in", "ease-out", "ease-in-out", "extreme-deceleration", "fast-out-linear-in", "fast-out-slow-in", "friction", "linear", "linear-out-slow-in", "rhythm", "sharp", "smooth".<br>Default value: **Curve.Linear**|
+| duration | number                                                       | No  | Animation duration.<br>Unit: ms<br>Default value: **1000**<br>Value range: [0, +∞)                |
+| curve    | [Curve](ts-appendix-enums.md#curve) \| string \| [ICurve](../js-apis-curve.md#icurve9)<sup>10+</sup> | No  | Animation curve.<br>You are advised to specify the curve using the **Curve** or** ICurve** type.<br>For the string type, this parameter indicates an animation interpolation curve. For available values, see the **curve** parameter in [AnimateParam](./ts-explicit-animation.md#animateparam).<br>Default value: **Curve.Linear**|
 | delay    | number                                                       | No  | Animation delay.<br>Unit: ms<br>Default value: **0**<br>**NOTE**<br>If no match is found, the default page transition effect is used (which may vary according to the device). To disable the default page transition effect, set **duration** to **0**.|
 
 ## CommonTransition
@@ -199,7 +199,7 @@ Sets the starting opacity value for entrance or the ending opacity value for exi
 
 | Name | Type                                                        | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | number | Yes  | Starting opacity value for entrance or the ending opacity value for exit.|
+| value   | number | Yes  | Starting opacity value for entrance or the ending opacity value for exit.<br>Value range: [0, 1]|
 
 ## PageTransitionCallback<sup>14+</sup>
 

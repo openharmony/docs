@@ -32,6 +32,7 @@ Obtains a **Font** object.
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 uiContext.getFont();
 ```
@@ -53,6 +54,7 @@ Obtains the **ComponentUtils** object.
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 uiContext.getComponentUtils();
 ```
@@ -75,6 +77,7 @@ Obtains the **UIInspector** object.
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 uiContext.getUIInspector();
 ```
@@ -97,6 +100,7 @@ Obtains the **UIObserver** object.
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 uiContext.getUIObserver();
 ```
@@ -119,6 +123,7 @@ Obtains a **MediaQuery** object.
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 uiContext.getMediaQuery();
 ```
@@ -141,6 +146,7 @@ Obtains a **Router** object.
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 uiContext.getRouter();
 ```
@@ -163,6 +169,7 @@ Obtains a **PromptAction** object.
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 uiContext.getPromptAction();
 ```
@@ -185,6 +192,7 @@ Obtains the **OverlayManager** object.
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 uiContext.getOverlayManager();
 ```
@@ -203,18 +211,19 @@ Sets the parameters for [OverlayManager](#overlaymanager12). This API initialize
 
 | Name  | Type                                      | Mandatory  | Description                                   |
 | ----- | ---------------------------------------- | ---- | ------------------------------------- |
-| options | [OverlayManagerOptions](#overlaymanageroptions15) | No   | Parameters for **OverlayManager**.|
+| options | [OverlayManagerOptions](#overlaymanageroptions15) | Yes| Parameters for **OverlayManager**.|
 
 **Return value**
 
 | Type   | Description          |
 | ------- | -------------- |
-| boolean | Whether the setting is successful.|
+| boolean | Whether the setting is successful.<br>Returns **true** if the setting is successful; returns **false** otherwise.|
 
 **Example**
 
+<!--code_no_check-->
 ```ts
-uiContext.setOverlayManagerOptions({ renderRootOverlay: true });
+uiContext.setOverlayManagerOptions({ renderRootOverlay: true, enableBackPressedEvent: true });
 ```
 
 ### getOverlayManagerOptions<sup>15+</sup>
@@ -235,6 +244,7 @@ Obtains the current parameters of [OverlayManager](#overlaymanager12).
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 uiContext.getOverlayManagerOptions();
 ```
@@ -327,7 +337,7 @@ struct AnimateToExample {
         })
         .onClick(() => {
           this.uiContext?.animateTo({ duration: 0 }, () => {
-            // Modify the property in the animation closure where duration is set to 0. This stops the previous animation and applies the new value.
+            // The value of this.rotateAngle is 90 before the animation. In an animation with a duration of 0, changing the property stops any previous animations for that property and applies the new value immediately.
             this.rotateAngle = 0
           })
         })
@@ -357,65 +367,42 @@ Obtains the **LocalStorage** instance shared by this stage.
 **Example**
 
 ```ts
-// index.ets
-import { router } from '@kit.ArkUI';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  storage: LocalStorage = new LocalStorage();
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    windowStage.loadContent('pages/Index', this.storage);
+  }
+}
+```
+
+```ts
+// Index.ets
 
 @Entry
 @Component
 struct SharedLocalStorage {
-  localStorage = this.getUIContext().getSharedLocalStorage()
+  localStorage = this.getUIContext().getSharedLocalStorage();
 
   build() {
     Row() {
       Column() {
         Button("Change Local Storage to 47")
           .onClick(() => {
-            this.localStorage?.setOrCreate("propA",47)
+            this.localStorage?.setOrCreate("propA", 47);
           })
         Button("Get Local Storage")
           .onClick(() => {
-            console.info(`localStorage: ${this.localStorage?.get("propA")}`)
-          })
-        Button("To Page")
-          .onClick(() => {
-            router.pushUrl({
-              url: 'pages/GetSharedLocalStorage'
-            })
+            console.info(`localStorage: ${this.localStorage?.get("propA")}`);
           })
       }
       .width('100%')
     }
     .height('100%')
-  }
-}
-
-// GetSharedLocalStorage.ets
-import {router} from '@kit.ArkUI';
-
-@Entry
-@Component
-struct GetSharedLocalStorage {
-  localStorage = this.getUIContext().getSharedLocalStorage()
-
-  build() {
-    Row() {
-      Column() {
-        Button("Change Local Storage to 100")
-          .onClick(() => {
-            this.localStorage?.setOrCreate("propA",100)
-          })
-        Button("Get Local Storage")
-          .onClick(() => {
-            console.info(`localStorage: ${this.localStorage?.get("propA")}`)
-          })
-
-        Button("Back Index")
-          .onClick(() => {
-            router.back()
-          })
-      }
-      .width('100%')
-    }
   }
 }
 ```
@@ -487,6 +474,7 @@ Obtains a FrameNode on the component tree based on the component ID.
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 uiContext.getFrameNodeById("TestNode")
 ```
@@ -519,6 +507,7 @@ Obtains the entity node attached to the current window based on its component ID
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 uiContext.getAttachedFrameNodeById("TestNode")
 ```
@@ -690,6 +679,7 @@ Shows an alert dialog box.
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 uiContext.showAlertDialog(
   {
@@ -730,6 +720,7 @@ Shows an action sheet in the given settings.
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 uiContext.showActionSheet({
   title: 'ActionSheet title',
@@ -787,6 +778,7 @@ Shows a date picker dialog box in the given settings.
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 let selectedDate: Date = new Date("2010-1-1")
 uiContext.showDatePickerDialog({
@@ -971,6 +963,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
+// EntryAbility.ets
 import { AnimatorOptions, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -1000,6 +993,59 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 }
 ```
 
+### createAnimator<sup>18+</sup>
+
+createAnimator(options: AnimatorOptions | SimpleAnimatorOptions): AnimatorResult
+
+Creates an **AnimatorResult** object for animations. Compared to the previous [createAnimator](#createanimator) API, this API adds support for the [SimpleAnimatorOptions](js-apis-animator.md#simpleanimatoroptions18) type.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name    | Type                                      | Mandatory  | Description     |
+| ------- | ---------------------------------------- | ---- | ------- |
+| options | [AnimatorOptions](js-apis-animator.md#animatoroptions) \| [SimpleAnimatorOptions](js-apis-animator.md#simpleanimatoroptions18) | Yes   | Animator options.|
+
+**Return value**
+
+| Type                                      | Description           |
+| ---------------------------------------- | ------------- |
+| [AnimatorResult](js-apis-animator.md#animatorresult) | Animator result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+
+**Example**
+
+```ts
+import { SimpleAnimatorOptions, window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+// used in UIAbility
+onWindowStageCreate(windowStage: window.WindowStage) {
+  // Main window is created, set main page for this ability
+  hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+  windowStage.loadContent('pages/Index', (err, data) => {
+    if (err.code) {
+      hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+      return;
+    }
+    hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    let uiContext = windowStage.getMainWindowSync().getUIContext();
+    let options: SimpleAnimatorOptions = new SimpleAnimatorOptions(100, 200).duration(2000);
+    uiContext.createAnimator(options);
+  });
+}
+```
+
 ### runScopedTask
 
 runScopedTask(callback: () => void): void
@@ -1018,6 +1064,7 @@ Executes the specified callback in this UI context.
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 uiContext.runScopedTask(
   () => {
@@ -1045,6 +1092,7 @@ Sets the avoidance mode for the virtual keyboard.
 **Example**
 
 ```ts
+// EntryAbility.ets
 import { KeyboardAvoidMode, UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -1083,6 +1131,7 @@ Obtains the avoidance mode for the virtual keyboard.
 **Example**
 
 ```ts
+// EntryAbility.ets
 import { KeyboardAvoidMode, UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -1123,6 +1172,7 @@ Obtains an **AtomicServiceBar** object, which can be used to set the properties 
 **Example**
 
 ```ts
+// EntryAbility.ets
 import { UIContext, AtomicServiceBar, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 onWindowStageCreate(windowStage: window.WindowStage) {
@@ -1153,10 +1203,11 @@ Obtains the **DragController** object, which can be used to create and initiate 
 
 |Type|Description|
 |----|----|
-|[DragController](js-apis-arkui-dragController.md)| **DragController** object.|
+|[DragController](js-apis-arkui-dragController.md#dragController)| **DragController** object.|
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 uiContext.getDragController();
 ```
@@ -1196,6 +1247,7 @@ Obtains a [FocusController](js-apis-arkui-UIContext.md#focuscontroller12) object
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 uiContext.getFocusController();
 ```
@@ -1232,6 +1284,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 uiContext.getFilteredInspectorTree(['id', 'src', 'content']);
 ```
@@ -1271,6 +1324,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 uiContext.getFilteredInspectorTreeById('testId', 0, ['id', 'src', 'content']);
 ```
@@ -1293,6 +1347,7 @@ Obtains a [CursorController](js-apis-arkui-UIContext.md#cursorcontroller12) obje
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 uiContext.CursorController();
 ```
@@ -1315,6 +1370,7 @@ Obtains a [ContextMenuController](#contextmenucontroller12) object, which can be
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 uiContext.getContextMenuController();
 ```
@@ -1337,6 +1393,7 @@ Obtains a **MeasureUtils** object for text calculation.
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 uiContext.getMeasureUtils();
 ```
@@ -1359,6 +1416,7 @@ Obtains a **ComponentSnapshot** object, which can be used to obtain a component 
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 uiContext.getComponentSnapshot();
 ```
@@ -1377,17 +1435,18 @@ Converts a value in units of vp to a value in units of px.
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| value | number | Yes  | Value to convert.|
+| value | number | Yes  | Value to convert.<br>Value range: (-∞, +∞)|
 
 **Return value**
 
 | Type  | Description          |
 | ------ | -------------- |
-| number | Value after conversion.|
+| number | Value after conversion.<br>Value range: (-∞, +∞)|
 
 **Example**
 
-```tx
+<!--code_no_check-->
+```ts
 uiContext.vp2px(200);
 ```
 
@@ -1405,17 +1464,18 @@ Converts a value in units of px to a value in units of vp.
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| value | number | Yes  | Value to convert.|
+| value | number | Yes  | Value to convert.<br>Value range: (-∞, +∞)|
 
 **Return value**
 
 | Type  | Description          |
 | ------ | -------------- |
-| number | Value after conversion.|
+| number | Value after conversion.<br>Value range: (-∞, +∞)|
 
 **Example**
 
-```tx
+<!--code_no_check-->
+```ts
 uiContext.px2vp(200);
 ```
 
@@ -1433,17 +1493,18 @@ Converts a value in units of fp to a value in units of px.
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| value | number | Yes  | Value to convert.|
+| value | number | Yes  | Value to convert.<br>Value range: (-∞, +∞)|
 
 **Return value**
 
 | Type  | Description          |
 | ------ | -------------- |
-| number | Value after conversion.|
+| number | Value after conversion.<br>Value range: (-∞, +∞)|
 
 **Example**
 
-```tx
+<!--code_no_check-->
+```ts
 uiContext.fp2px(200);
 ```
 
@@ -1461,17 +1522,18 @@ Converts a value in units of px to a value in units of fp.
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| value | number | Yes  | Value to convert.|
+| value | number | Yes  | Value to convert.<br>Value range: (-∞, +∞)|
 
 **Return value**
 
 | Type  | Description          |
 | ------ | -------------- |
-| number | Value after conversion.|
+| number | Value after conversion.<br>Value range: (-∞, +∞)|
 
 **Example**
 
-```tx
+<!--code_no_check-->
+```ts
 uiContext.px2fp(200);
 ```
 
@@ -1489,17 +1551,18 @@ Converts a value in units of lpx to a value in units of px.
 
 | Name| Type  | Mandatory| Description                                   |
 | ------ | ------ | ---- | --------------------------------------- |
-| value | number | Yes  | Value to convert.|
+| value | number | Yes  | Value to convert.<br>Value range: (-∞, +∞)|
 
 **Return value**
 
 | Type  | Description          |
 | ------ | -------------- |
-| number | Value after conversion.|
+| number | Value after conversion.<br>Value range: (-∞, +∞)|
 
 **Example**
 
-```tx
+<!--code_no_check-->
+```ts
 uiContext.lpx2px(200);
 ```
 
@@ -1517,17 +1580,18 @@ Converts a value in units of px to a value in units of lpx.
 
 | Name| Type  | Mandatory| Description                                   |
 | ------ | ------ | ---- | --------------------------------------- |
-| value | number | Yes  | Value to convert.|
+| value | number | Yes  | Value to convert.<br>Value range: (-∞, +∞)|
 
 **Return value**
 
 | Type  | Description          |
 | ------ | -------------- |
-| number | Value after conversion.|
+| number | Value after conversion.<br>Value range: (-∞, +∞)|
 
 **Example**
 
-```tx
+<!--code_no_check-->
+```ts
 uiContext.px2lpx(200);
 ```
 
@@ -1799,6 +1863,8 @@ Requests the dynamic sync scene of a component for customizing related frame rat
 | Array&lt;DynamicSyncScene&gt; | **DynamicSyncScene** object array.|
 
 **Example**
+
+<!--code_no_check-->
 ```ts
 uiContext.DynamicSyncScene("dynamicSyncScene")
 ```
@@ -1957,7 +2023,7 @@ Updates the style of the sheet corresponding to the provided **bindSheetContent*
 
 | Name    | Type                                      | Mandatory  | Description     |
 | ------- | ---------------------------------------- | ---- | ------- |
-| bindSheetContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | Yes| Content displayed on the sheet.|
+| bindSheetContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | Yes| Content to display on the sheet.|
 | sheetOptions | [SheetOptions](arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions) | Yes   |   Style of the sheet.<br>**NOTE**<br>**SheetOptions.UIContext** and **SheetOptions.mode** cannot be updated.|
 | partialUpdate | boolean | No   |   Whether to update the sheet in incremental mode.<br>Default value: **false**<br>**NOTE**<br>1. **true**: incremental update, where the specified properties in **SheetOptions** are updated, and other properties stay at their current value.<br>2. **false**: full update, where all properties except those specified in **SheetOptions** are restored to default values.|
 
@@ -2209,6 +2275,8 @@ Checks whether this UI context follows the system font scale settings.
 | boolean | Whether the current UI context follows the system font scale settings.|
 
 **Example**
+
+<!--code_no_check-->
 ```ts
 uiContext.isFollowingSystemFontScale()
 ```
@@ -2230,6 +2298,8 @@ Obtains the maximum font scale of this UI context.
 | number | Maximum font scale of the current UI context.|
 
 **Example**
+
+<!--code_no_check-->
 ```ts
 uiContext.getMaxFontScale()
 ```
@@ -2238,7 +2308,7 @@ uiContext.getMaxFontScale()
 
 bindTabsToScrollable(tabsController: TabsController, scroller: Scroller): void;
 
-Binds a **Tabs** component with a scrollable container, which can be a [List](./arkui-ts/ts-container-list.md), [Scroll](./arkui-ts/ts-container-scroll.md), [Grid](./arkui-ts/ts-container-grid.md), or [WaterFlow](./arkui-ts/ts-container-waterflow.md) component. This way, scrolling the scrollable container triggers the appearance and disappearance animations of the tab bar for all **Tabs** components that are bound to it. Specifically, the tab bar appears when scrolling up and disappears when scrolling down. A **TabsController** instance can be bound with multiple **Scroller** instances, and conversely, a **Scroller** instance can be bound with multiple **TabsController** instances.
+Binds a **Tabs** component with a scrollable container, which can be a [List](./arkui-ts/ts-container-list.md), [Scroll](./arkui-ts/ts-container-scroll.md), [Grid](./arkui-ts/ts-container-grid.md), or [WaterFlow](./arkui-ts/ts-container-waterflow.md) component. This way, scrolling the scrollable container triggers the display and hide animations of the tab bar for all **Tabs** components that are bound to it – scrolling up triggers the hide animation, and scrolling down triggers the show animation. A **TabsController** instance can be bound with multiple **Scroller** instances, and conversely, a **Scroller** instance can be bound with multiple **TabsController** instances.
 
 >  **NOTE**
 >
@@ -2314,7 +2384,7 @@ struct TabsExample {
         .height('100%')
         .barOverlap (true) // Make the tab bar overlap the TabContent component. This means that when the tab bar is hidden upwards or downwards, the area it occupies will not appear empty.
         .clip (true) // Clip any child components that extend beyond the Tabs component's boundaries, preventing accidental touches on the tab bar when it is hidden.
-      }.tabBar(BottomTabBarStyle.of($r('app.media.startIcon'), 'Scroller'))
+      }.tabBar(BottomTabBarStyle.of($r('app.media.startIcon'), 'Scroller linked with TabsControllers'))
 
       TabContent() {
         Scroll(this.parentScroller) {
@@ -2342,7 +2412,7 @@ struct TabsExample {
         .scrollBar(BarState.Off)
         .scrollable(ScrollDirection.Vertical)
         .edgeEffect(EdgeEffect.Spring)
-      }.tabBar(BottomTabBarStyle.of($r('app.media.startIcon'), 'Nested Scroller'))
+      }.tabBar(BottomTabBarStyle.of($r('app.media.startIcon'), 'Nested Scroller linked with TabsController'))
     }
     .width('100%')
     .height('100%')
@@ -2379,7 +2449,7 @@ See the example for [bindTabsToScrollable](#bindtabstoscrollable13).
 
 bindTabsToNestedScrollable(tabsController: TabsController, parentScroller: Scroller, childScroller: Scroller): void;
 
-Binds a **Tabs** component with a nested scrollable container, which can be a [List](./arkui-ts/ts-container-list.md), [Scroll](./arkui-ts/ts-container-scroll.md), [Grid](./arkui-ts/ts-container-grid.md), or [WaterFlow](./arkui-ts/ts-container-waterflow.md) component. This way, scrolling the parent or child component triggers the appearance and disappearance animations of the tab bar for all **Tabs** components that are bound to it. Specifically, the tab bar appears when scrolling up and disappears when scrolling down. A **TabsController** instance can be bound with multiple nested **Scroller** instances, and conversely, a nested **Scroller** instance can be bound with multiple **TabsController** instances.
+Binds a **Tabs** component with a nested scrollable container, which can be a [List](./arkui-ts/ts-container-list.md), [Scroll](./arkui-ts/ts-container-scroll.md), [Grid](./arkui-ts/ts-container-grid.md), or [WaterFlow](./arkui-ts/ts-container-waterflow.md) component. This way, scrolling the parent or child component triggers the display and hide animations of the tab bar for all **Tabs** components that are bound to it – scrolling up triggers the hide animation, and scrolling down triggers the show animation. A **TabsController** instance can be bound with multiple nested **Scroller** instances, and conversely, a nested **Scroller** instance can be bound with multiple **TabsController** instances.
 
 **Atomic service API**: This API can be used in atomic services since API version 13.
 
@@ -2419,13 +2489,13 @@ Unbinds a **Tabs** component from a nested scrollable container.
 
 See the example for [bindTabsToScrollable](#bindtabstoscrollable13).
 
-### enableSwipeBack<sup>16+</sup>
+### enableSwipeBack<sup>18+</sup>
 
 enableSwipeBack(enabled: Optional\<boolean\>): void
 
 Sets whether to enable the horizontal swipe-to-go-back gesture within the application.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Circle
 
@@ -2474,89 +2544,129 @@ Obtains a [TextMenuController](#textmenucontroller16) object, which can be used 
 
 **Example**
 
-See the example for [TextMenuController](#textmenucontroller16).
+See the example for the [TextMenuController](#textmenucontroller16) API .
 
-### notifyDragStartRequest<sup>16+</sup>
+### createUIContextWithoutWindow<sup>18+</sup>
 
-notifyDragStartRequest(requestStatus: draController.DragStartRequestStatus): void
+static createUIContextWithoutWindow(context: common.UIAbilityContext | common.ExtensionContext) : UIContext | undefined
 
-Controls whether the application can initiate a drag operation.
+Creates a UI instance that does not depend on a window and returns its UI context. The created UI instance is a singleton.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+> **NOTE**
+>
+> The returned UI context can only be used to create [custom nodes](../../ui/arkts-user-defined-node.md). It cannot be used for other UI operations.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                                       |
-| ------ | ------- | ---- | ------------------------------------------------------------ |
-| requestStatus  | [draController.DragStartRequestStatus](js-apis-arkui-dragController.md#dragstartrequeststatus16)    | Yes |Whether the application can initiate a drag operation.|
+| Name | Type                                    | Mandatory| Description       |
+| ------- | ---------------------------------------- | ---- | ----------- |
+| context | common.[UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| common.[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md) | Yes   | Context corresponding to [UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md) or [ExtensionAbility](../apis-ability-kit/js-apis-app-ability-extensionAbility.md).|
+
+**Return value**
+
+|Type|Description|
+|----|----|
+| UIContext \| undefined | Context of the created UI instance, or **undefined** if creation fails.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [UI Context Error Codes](errorcode-uicontext.md).
+
+| ID | Error Message                       |
+| ------ | ---------------------------------- |
+| 401    | Parameter error. Possible causes: <br> 1. The number of parameters is incorrect.<br> 2. Invalid parameter type of context. |
+| 100001 | Internal error. |
+
+
+**Example**
+```ts
+import { UIContext } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    let uiContext : UIContext | undefined = UIContext.createUIContextWithoutWindow(this.context);
+  }
+
+  // ......
+}
+```
+
+### destroyUIContextWithoutWindow<sup>18+</sup>
+
+static destroyUIContextWithoutWindow(): void
+
+Destroys the UI instance created using [createUIContextWithoutWindow](#createuicontextwithoutwindow18).
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Example**
+```ts
+UIContext.destroyUIContextWithoutWindow();
+```
+
+### dispatchKeyEvent<sup>15+</sup>
+
+dispatchKeyEvent(node: number | string, event: KeyEvent): boolean
+
+Dispatches a key event to the specified component. To ensure predictable behavior, the target component must be within the subtree of the dispatching component.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type                         | Mandatory| Description              |
+| ------ | ----------------------------- | ---- | ------------------ |
+| node  | number \| string | Yes  | ID or unique ID of the target component.|
+| event  |[KeyEvent](./arkui-ts/ts-universal-events-key.md#keyevent) | Yes  | **KeyEvent** object.|
 
 **Example**
 
 ```ts
-// xxx.ets
 @Entry
 @Component
-struct NormalEts {
-  @State finished: boolean = false
-  @State timeout1: number = 1
-  @State pixmap: image.PixelMap | undefined = undefined
-  @State unifiedData1: unifiedDataChannel.UnifiedData | undefined = undefined
-  @State previewData: DragItemInfo | undefined = undefined
-
-  loadData() {
-    let timeout = setTimeout(() => {
-      this.getUIContext().getComponentSnapshot().get("image1", (error: Error, pixmap: image.PixelMap) => {
-        this.pixmap = pixmap
-        this.previewData = {
-          pixelMap: this.pixmap
-        }
+struct Index {
+  build() {
+    Row() {
+      Row() {
+        Button('Button1').id('Button1').onKeyEvent((event) => {
+          console.log("Button1");
+          return true
+        })
+        Button('Button2').id('Button2').onKeyEvent((event) => {
+          console.log("Button2");
+          return true
+        })
+      }
+      .width('100%')
+      .height('100%')
+      .id('Row1')
+      .onKeyEventDispatch((event) => {
+        let context = this.getUIContext();
+        context.getFocusController().requestFocus('Button1');
+        return context.dispatchKeyEvent('Button1', event);
       })
 
-      let data: unifiedDataChannel.Image = new unifiedDataChannel.Image();
-      data.imageUri = "app.media.startIcon";
-      let unifiedData = new unifiedDataChannel.UnifiedData(data);
-      this.unifiedData1 = unifiedData
-
-      this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.READY)
-    }, 4000);
-    this.timeout1 = timeout
-  }
-
-
-    build() {
-      Column({space: 20}) {
-        Image($r("app.media.startIcon"))
-          .width(300)
-          .height(200)
-          .id("image1")
-          .draggable(true)
-          .dragPreview(this.previewData)
-          .onPreDrag((status: PreDragStatus) => {
-            if (status == PreDragStatus.PREPARING_FOR_DRAG_DETECTION) {
-              this.loadData()
-            } else {
-              clearTimeout(this.timeout1);
-            }
-          })
-          .onDragStart((event: DragEvent) => {
-            if (this.finished == false) {
-              this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.WAITING)
-            } else {
-              event.setData(this.unifiedData1);
-            }
-          })
-          .onDragEnd(()=>{
-            this.finished = false
-          })
-      }
-      .height(400)
-      .backgroundColor(Color.Pink)
     }
+    .height('100%')
+    .width('100%')
+    .onKeyEventDispatch((event) => {
+      if (event.type == KeyType.Down) {
+        let context = this.getUIContext();
+        context.getFocusController().requestFocus('Row1');
+        return context.dispatchKeyEvent('Row1', event);
+      }
+      return true;
+    })
+  }
 }
 ```
-
 ## Font
 
 In the following API examples, you must first use [getFont()](#getfont) in **UIContext** to obtain a **Font** instance, and then call the APIs using the obtained instance.
@@ -2579,6 +2689,7 @@ Registers a custom font with the font manager.
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { Font } from '@kit.ArkUI';
 
@@ -2610,6 +2721,7 @@ Obtains the list of supported fonts.
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { Font } from '@kit.ArkUI';
 
@@ -2639,10 +2751,11 @@ Obtains information about a system font based on the font name.
 
 | Type                                     | Description          |
 | ----------------------------------------- | -------------- |
-| [font.FontInfo](js-apis-font.md#fontinfo10) | Information about the system font.|
+| [font.FontInfo](js-apis-font.md#fontinfo) | Information about the system font.|
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { Font } from '@kit.ArkUI';
 
@@ -2704,6 +2817,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { ComponentUtils } from '@kit.ArkUI';
 
@@ -2721,7 +2835,7 @@ In the following API examples, you must first use [getUIInspector()](#getuiinspe
 
 createComponentObserver(id: string): inspector.ComponentObserver
 
-Creates an observer for the specified component.
+Registers a callback for layout and rendering completion notifications for a specific component.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2731,7 +2845,7 @@ Creates an observer for the specified component.
 
 | Name | Type    | Mandatory  | Description     |
 | ---- | ------ | ---- | ------- |
-| id   | string | Yes   | Component ID.|
+| id   | string | Yes   | ID of the target component, set using the universal attributes [id](./arkui-ts/ts-universal-attributes-component-id.md#id) or [key](./arkui-ts/ts-universal-attributes-component-id.md#key12).|
 
 **Return value**
 
@@ -2741,6 +2855,7 @@ Creates an observer for the specified component.
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { UIInspector } from '@kit.ArkUI';
 
@@ -2783,13 +2898,55 @@ Subscribes to status changes of this **NavDestination** component.
 
 **Example**
 
+<!--code_no_check-->
 ```ts
-import { UIObserver } from '@kit.ArkUI';
+// Index.ets
+// Example usage of uiObserver.on('navDestinationUpdate', callback)
+// uiObserver.off('navDestinationUpdate', callback)
 
-let observer:UIObserver = uiContext.getUIObserver();
-observer.on('navDestinationUpdate', (info) => {
-    console.info('NavDestination state update', JSON.stringify(info));
-});
+@Component
+struct PageOne {
+  build() {
+    NavDestination() {
+      Text("pageOne")
+    }.title("pageOne")
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  aboutToAppear() {
+    this.getUIContext().getUIObserver().on('navDestinationUpdate', (info) => {
+      console.info('NavDestination state update', JSON.stringify(info));
+    });
+  }
+
+  aboutToDisappear() {
+    this.getUIContext().getUIObserver().off('navDestinationUpdate');
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({ name: "pageOne" });
+        })
+      }
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ### off('navDestinationUpdate')<sup>11+</sup>
@@ -2811,12 +2968,7 @@ Unsubscribes from state changes of this **NavDestination** component.
 
 **Example**
 
-```ts
-import { UIObserver } from '@kit.ArkUI';
-
-let observer:UIObserver = uiContext.getUIObserver();
-observer.off('navDestinationUpdate');
-```
+See the example for [uiObserver.on('navDestinationUpdate')](#onnavdestinationupdate11).
 
 ### on('navDestinationUpdate')<sup>11+</sup>
 
@@ -2838,13 +2990,55 @@ Subscribes to state changes of this **NavDestination** component.
 
 **Example**
 
+<!--code_no_check-->
 ```ts
-import { UIObserver } from '@kit.ArkUI';
+// Index.ets
+// Example usage of uiObserver.on('navDestinationUpdate', navigationId, callback)
+// uiObserver.off('navDestinationUpdate', navigationId, callback)
+@Component
+struct PageOne {
+  build() {
+    NavDestination() {
+      Text("pageOne")
+    }.title("pageOne")
+  }
+}
 
-let observer:UIObserver = uiContext.getUIObserver();
-observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
-    console.info('NavDestination state update', JSON.stringify(info));
-});
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  aboutToAppear() {
+    this.getUIContext().getUIObserver().on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
+      console.info('NavDestination state update', JSON.stringify(info));
+    });
+  }
+
+  aboutToDisappear() {
+    this.getUIContext().getUIObserver().off('navDestinationUpdate', { navigationId: "testId" });
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({ name: "pageOne" });
+        })
+      }
+      .id("testId")
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ### off('navDestinationUpdate')<sup>11+</sup>
@@ -2867,12 +3061,7 @@ Unsubscribes from state changes of the **NavDestination** component.
 
 **Example**
 
-```ts
-import { UIObserver } from '@kit.ArkUI';
-
-let observer:UIObserver = uiContext.getUIObserver();
-observer.off('navDestinationUpdate', { navigationId: "testId" });
-```
+See the example for [uiObserver.on('navDestinationUpdate')](#onnavdestinationupdate11-1).
 
 ### on('scrollEvent')<sup>12+</sup>
 
@@ -3936,10 +4125,300 @@ Unsubscribes from the **TabContent** switching event.
 
 See the example of [on('tabContentUpdate')](#ontabcontentupdate12-1).
 
+### on('beforePanStart')<sup>18+</sup>
+
+on(type: 'beforePanStart', callback: PanListenerCallback): void
+
+Subscribes to the [onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#events) event for the pan gesture, executing the callback before the **onActionStart** event is triggered. It works for finger swiping, mouse dragging, mouse wheel scrolling, and touchpad movements, but not for screen reader touch mode.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                       | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                      | Yes  | Event type. The value is fixed at **'beforePanStart'**, which triggers the callback before the **onActionStart** event of the pan gesture.|
+| callback | [PanListenerCallback](#panlistenercallback18) | Yes  | Callback used to return the **GestureEvent** and **GestureRecognizer** of the pan gesture event and the FrameNode of the component.  |
+
+**Example**
+
+```ts
+// Used in page components.
+import { uiObserver } from '@kit.ArkUI';
+import router from '@ohos.router';
+
+let TEST_TAG: string = 'node'
+
+function callbackFunc() {
+  console.info('on == beforePanStart');
+}
+
+function afterPanCallBack() {
+  console.info('on == afterPanStart')
+}
+
+function beforeEndCallBack() {
+  console.info('on == beforeEnd')
+}
+
+function afterEndCallBack() {
+  console.info('on == afterEnd')
+}
+
+function beforeStartCallBack() {
+  console.info('bxq on == beforeStartCallBack')
+}
+
+function panGestureCallBack(event: GestureEvent, current: GestureRecognizer, node?: FrameNode) {
+  TEST_TAG = 'panGestureEvent';
+  console.info('===' + TEST_TAG + '=== event.repeat is ' + event.repeat);
+  console.info('===' + TEST_TAG + '=== event target is ' + event.target.id);
+  TEST_TAG = 'panGestureCurrent';
+  console.info('===' + TEST_TAG + '=== current.getTag() is ' + current.getTag());
+  TEST_TAG = 'panGestureNode';
+  console.info('===' + TEST_TAG + '=== node?.getId() is ' + node?.getId());
+}
+
+
+@Entry
+@Component
+struct PanExample {
+  @State offsetX: number = 0
+  @State offsetY: number = 0
+  @State positionX: number = 0
+  @State positionY: number = 0
+  private panOption: PanGestureOptions = new PanGestureOptions({direction: PanDirection.All })
+
+  aboutToAppear(): void {
+    let observer = this.getUIContext().getUIObserver();
+    observer.on('beforePanStart', callbackFunc);
+    observer.on('beforePanStart', panGestureCallBack);
+    observer.on('beforePanStart', beforeStartCallBack);
+    observer.on('afterPanStart', afterPanCallBack);
+    observer.on('beforePanEnd', beforeEndCallBack);
+    observer.on('afterPanEnd', afterEndCallBack)
+  }
+
+  aboutToDisappear(): void {
+    let observer = this.getUIContext().getUIObserver();
+    observer.off('beforePanStart', callbackFunc);
+    observer.off('beforePanStart');
+    observer.off('afterPanStart', afterPanCallBack);
+    observer.off('beforePanEnd');
+    observer.off('afterPanEnd');
+  }
+  build() {
+    Column(){
+      Column(){
+        Text('PanGesture :\nX: ' + this.offsetX + '\n' + 'Y: ' + this.offsetY)
+      }
+      .height(200)
+      .width(300)
+      .padding(20)
+      .border({ width: 3 })
+      .margin(50)
+      .translate({ x: this.offsetX, y: this.offsetY, z: 0 })
+      .id('columnOuter')
+      .gesture(
+        PanGesture(this.panOption)
+          .onActionStart((event: GestureEvent) => {
+            console.info('Pan start')
+          })
+          .onActionUpdate((event: GestureEvent) => {
+            if (event) {
+              this.offsetX = this.positionX + event.offsetX
+              this.offsetY = this.positionY + event.offsetY
+            }
+          })
+          .onActionEnd((event: GestureEvent) => {
+            this.positionX = this.offsetX
+            this.positionY = this.offsetY
+            console.info('Pan end')
+            }))
+          }
+  }
+}
+```
+
+### off('beforePanStart')<sup>18+</sup>
+
+off(type: 'beforePanStart', callback?: PanListenerCallback): void
+
+Unsubscribes from the [onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#events) for the pan gesture. This cancels the callback that is set to be executed before the **onActionStart** event of the pan gesture.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                       | Mandatory| Description                                                |
+| -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
+| type     | string                                                      | Yes  | Event type. The value is fixed at **'beforePanStart'**.|
+| callback | [PanListenerCallback](#panlistenercallback18) | No  | Callback to be unregistered.                              |
+
+**Example**
+
+```ts
+// Used in page components.
+import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
+
+// callback is a callback defined by you.
+let callback = (event: GestureEvent, current: GestureRecognizer, node?: FrameNode) => {};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.off('beforePanStart', callback);
+```
+
+### on('afterPanStart')<sup>18+</sup>
+
+on(type: 'afterPanStart', callback: PanListenerCallback): void
+
+Subscribes to the [onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#events) event for the pan gesture, executing the callback after the **afterPanStart** event is triggered. It works for finger swiping, mouse dragging, mouse wheel scrolling, and touchpad movements, but not for screen reader touch mode.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                       | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                      | Yes  | Event type. The value is fixed at **'afterPanStart'**, which triggers the callback after the **onActionStart** event of the pan gesture.|
+| callback | [PanListenerCallback](#panlistenercallback18) | Yes  | Callback used to return the **GestureEvent** and **GestureRecognizer** of the pan gesture event and the FrameNode of the component.  |
+
+**Example**
+
+See the example for [on('beforePanStart')](#onbeforepanstart18).
+
+### off('afterPanStart')<sup>18+</sup>
+
+off(type: 'afterPanStart', callback?: PanListenerCallback): void
+
+Unsubscribes from the [onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#events) for the pan gesture. This cancels the callback that is set to be executed after the **onActionStart** event of the pan gesture.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                       | Mandatory| Description                                                |
+| -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
+| type     | string                                                      | Yes  | Event type. The value is fixed at **'afterPanStart'**.|
+| callback | [PanListenerCallback](#panlistenercallback18) | No  | Callback to be unregistered.                              |
+
+**Example**
+
+See the example for [on('beforePanStart')](#onbeforepanstart18).
+
+### on('beforePanEnd')<sup>18+</sup>
+
+on(type: 'beforePanEnd', callback: PanListenerCallback): void
+
+Subscribes to the [onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#events) event for the pan gesture, executing the callback before the **onActionEnd** event is triggered. It works for finger swiping, mouse dragging, mouse wheel scrolling, and touchpad movements, but not for screen reader touch mode.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                       | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                      | Yes  | Event type. The value is fixed at **'beforePanEnd'**, which triggers the callback before the **onActionEnd** event of the pan gesture.|
+| callback | [PanListenerCallback](#panlistenercallback18) | Yes  | Callback used to return the **GestureEvent** and **GestureRecognizer** of the pan gesture event and the FrameNode of the component.  |
+
+**Example**
+
+See the example for [on('beforePanStart')](#onbeforepanstart18).
+
+### off('beforePanEnd')<sup>18+</sup>
+
+off(type: 'beforePanEnd', callback?: PanListenerCallback): void
+
+Unsubscribes from the [onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#events) for the pan gesture. This cancels the callback that is set to be executed before the **onActionEnd** event of the pan gesture.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                       | Mandatory| Description                                                |
+| -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
+| type     | string                                                      | Yes  | Event type. The value is fixed at **'beforePanEnd'**.|
+| callback | [PanListenerCallback](#panlistenercallback18) | No  | Callback to be unregistered.                              |
+
+**Example**
+
+See the example for [on('beforePanStart')](#onbeforepanstart18).
+
+### on('afterPanEnd')<sup>18+</sup>
+
+on(type: 'afterPanEnd', callback: PanListenerCallback): void
+
+Subscribes to the [onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#events) event for the pan gesture, executing the callback after the **onActionEnd** event is triggered. It works for finger swiping, mouse dragging, mouse wheel scrolling, and touchpad movements, but not for screen reader touch mode.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                       | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                      | Yes  | Event type. The value is fixed at **'beforePanEnd'**, which triggers the callback after the **onActionEnd** event of the pan gesture.|
+| callback | [PanListenerCallback](#panlistenercallback18) | Yes  | Callback used to return the **GestureEvent** and **GestureRecognizer** of the pan gesture event and the FrameNode of the component.  |
+
+**Example**
+
+See the example for [on('beforePanStart')](#onbeforepanstart18).
+
+### off('afterPanEnd')<sup>18+</sup>
+
+off(type: 'afterPanEnd', callback?: PanListenerCallback): void
+
+Unsubscribes from the [onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#events) for the pan gesture. This cancels the callback that is set to be executed after the **onActionEnd** event of the pan gesture.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                       | Mandatory| Description                                                |
+| -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
+| type     | string                                                      | Yes  | Event type. The value is fixed at **'afterPanEnd'**.|
+| callback | [PanListenerCallback](#panlistenercallback18) | No  | Callback to be unregistered.                              |
+
+**Example**
+
+See the example for [on('beforePanStart')](#onbeforepanstart18).
+
+
+## PanListenerCallback<sup>18+</sup>
+type PanListenerCallback = (event: GestureEvent, current: GestureRecognizer, node?: FrameNode) => void
+
+Defines a callback for pan gesture events.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type             | Mandatory| Description                               |
+| ------- | ----------------- | ---- | --------------------------------- |
+| event   | [GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent)     | Yes  | Information about the gesture event that triggers the callback.  |
+| current | [GestureRecognizer](arkui-ts/ts-gesture-blocking-enhancement.md#gesturerecognizer) | Yes  | Information about the gesture recognizer that detects the event. |
+| node    | [FrameNode](js-apis-arkui-frameNode.md#framenode)         | No  | Component bound to the gesture event.|
+
 ## GestureEventListenerCallback<sup>12+</sup>
 type GestureEventListenerCallback = (event: GestureEvent, node?: FrameNode) => void
 
-Implements a callback for the ArkTS gesture event.
+Defines a callback for gesture events in ArkTS.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3949,13 +4428,13 @@ Implements a callback for the ArkTS gesture event.
 
 | Name | Type  | Mandatory| Description                         |
 | ------- | ------ | ---- | --------------------------- |
-| event | [GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent)| Yes| Information about the subscribed-to gesture event.|
-| node | [FrameNode](js-apis-arkui-frameNode.md#framenode) | No| Component bound to the subscribed-to gesture event.|
+| event | [GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent)| Yes| Information about the gesture event that triggers the callback.|
+| node | [FrameNode](js-apis-arkui-frameNode.md#framenode) | No| Component bound to the gesture event.|
 
 ## ClickEventListenerCallback<sup>12+</sup>
 type ClickEventListenerCallback = (event: ClickEvent, node?: FrameNode) => void
 
-Implements a callback for the ArkTS gesture event.
+Defines a callback for click events in ArkTS.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3965,8 +4444,8 @@ Implements a callback for the ArkTS gesture event.
 
 | Name | Type  | Mandatory| Description                         |
 | ------- | ------ | ---- | --------------------------- |
-| event | [ClickEvent](../apis-arkui/arkui-ts/ts-universal-events-click.md#clickevent)| Yes| Information about the subscribed-to click event.|
-| node | [FrameNode](js-apis-arkui-frameNode.md#framenode) | No| Component bound to the subscribed-to click event.|
+| event | [ClickEvent](../apis-arkui/arkui-ts/ts-universal-events-click.md#clickevent)| Yes| Information about the click event that triggers the callback.|
+| node | [FrameNode](js-apis-arkui-frameNode.md#framenode) | No| Component bound to the click event.|
 
 ## MediaQuery
 
@@ -3996,6 +4475,7 @@ Sets the media query criteria and returns the corresponding listening handle.
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { MediaQuery } from '@kit.ArkUI';
 
@@ -5382,6 +5862,7 @@ Obtains state information about the current page.
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { Router } from '@kit.ArkUI';
 
@@ -5412,10 +5893,11 @@ Obtains the status information about a page by its index.
 
 | Type                         | Description     |
 | --------------------------- | ------- |
-| router.[RouterState](js-apis-router.md#routerstate) \| undefined | State information about the target page. **undefined** if the specified index does not exist.|
+| router.[RouterState](js-apis-router.md#outerstate) \| undefined | State information about the target page. **undefined** if the specified index does not exist.|
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { Router } from '@kit.ArkUI';
 
@@ -5430,7 +5912,7 @@ if (options != undefined) {
 ```
 ### getStateByUrl<sup>12+</sup>
 
-getStateByUrl(url: string): Array<router.[RouterState](js-apis-router.md#routerstate)>
+getStateByUrl(url: string): Array<router.[RouterState](js-apis-router.md#outerstate)>
 
 Obtains the status information about a page by its URL.
 
@@ -5448,10 +5930,11 @@ Obtains the status information about a page by its URL.
 
 | Type                         | Description     |
 | --------------------------- | ------- |
-| Array<router.[RouterState](js-apis-router.md#routerstate)> | Page routing state.|
+| Array<router.[RouterState](js-apis-router.md#outerstate)> | Page routing state.|
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { Router } from '@kit.ArkUI';
 let router: Router = uiContext.getRouter();
@@ -5491,6 +5974,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5519,6 +6003,7 @@ Disables the display of a confirm dialog box before returning to the previous pa
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { Router } from '@kit.ArkUI';
 
@@ -5540,9 +6025,11 @@ Obtains the parameters passed from the page that initiates redirection to the cu
 
 | Type    | Description               |
 | ------ | ----------------- |
-| object | Parameters passed from the page that initiates redirection to the current page.|
+| Object | Parameters passed from the page that initiates redirection to the current page.|
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 import { Router } from '@kit.ArkUI';
@@ -5551,13 +6038,13 @@ let router: Router = uiContext.getRouter();
 router.getParams();
 ```
 
-## CustomBuilderWithId<sup>16+</sup>
+## CustomBuilderWithId<sup>18+</sup>
 
 type CustomBuilderWithId = (id: number) =&gt; void
 
 The **CustomBuilderWithId** type is used as a parameter for component attribute methods to customize the UI description and generate custom components by specifying the component ID.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -5567,11 +6054,11 @@ The **CustomBuilderWithId** type is used as a parameter for component attribute 
 | -------- | -------- | -------- | -------- |
 | id | number | Yes| Component ID.|
 
-## TargetInfo<sup>16+</sup>
+## TargetInfo<sup>18+</sup>
 
 Specifies the target node for component binding.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -5613,6 +6100,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { PromptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5630,11 +6118,11 @@ try {
 };
 ```
 
-### openToast<sup>16+</sup>
+### openToast<sup>18+</sup>
 
 openToast(options: ShowToastOptions): Promise&lt;number&gt;
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -5703,11 +6191,11 @@ struct toastExample {
 }
 ```
 
-### closeToast<sup>16+</sup>
+### closeToast<sup>18+</sup>
 
 closeToast(toastId: number): void
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -5728,7 +6216,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-See the example for [openToaset16](#opentoast16).
+See the example for [openToaset18](#opentoast18).
 
 ### showDialog
 
@@ -5757,6 +6245,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 100001 | Internal error. |
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 import { PromptAction } from '@kit.ArkUI';
@@ -5824,6 +6314,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { PromptAction } from '@kit.ArkUI';
 
@@ -5878,6 +6369,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { PromptAction, promptAction  } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5938,6 +6430,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { PromptAction,promptAction  } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5997,6 +6490,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { PromptAction } from '@kit.ArkUI';
 
@@ -6026,7 +6520,7 @@ promptAction.showActionMenu({
 
 openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options?: promptAction.BaseDialogOptions): Promise&lt;void&gt;
 
-Opens a custom dialog box corresponding to **dialogContent**. This API uses a promise to return the result. The dialog box displayed through this API has its content fully following style settings of **dialogContent**. It is displayed in the same way where **customStyle** is set to **true**. **isModal = true** and **showInSubWindow = true** cannot be used at the same time.
+Opens a custom dialog box corresponding to **dialogContent**. This API uses a promise to return the result. The dialog box displayed through this API has its content fully following style settings of **dialogContent**. It is displayed in the same way where **customStyle** is set to **true**. Note that using **[isModal](js-apis-promptAction.md#basedialogoptions11) = true** and **[showInSubWindow](js-apis-promptAction.md#basedialogoptions11) = true** together is not supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -6052,7 +6546,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | the ComponentContent is incorrect. |
+| 103301 | The ComponentContent is incorrect. |
 | 103302 | Dialog content already exists.|
 
 **Example**
@@ -6109,7 +6603,7 @@ struct Index {
 }
 ```
 
-### openCustomDialogWithController<sup>16+</sup>
+### openCustomDialogWithController<sup>18+</sup>
 
 openCustomDialogWithController\<T extends Object>(dialogContent: ComponentContent\<T>, controller: promptAction.DialogController, options?: promptAction.BaseDialogOptions): Promise&lt;void&gt;
 
@@ -6117,9 +6611,9 @@ Opens a custom dialog box corresponding to **dialogContent**. This API uses a pr
 
 The dialog box displayed through this API has its content fully following style settings of **dialogContent**. It is displayed in the same way where **customStyle** is set to **true**.
 
-**isModal = true** and **showInSubWindow = true** cannot be used at the same time.
+Note that using **[isModal](js-apis-promptAction.md#basedialogoptions11) = true** and **[showInSubWindow](js-apis-promptAction.md#basedialogoptions11) = true** together is not supported.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -6128,7 +6622,7 @@ The dialog box displayed through this API has its content fully following style 
 | Name    | Type                                      | Mandatory  | Description     |
 | ------- | ---------------------------------------- | ---- | ------- |
 | dialogContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | Yes| Content of the custom dialog box.|
-| controller | [promptAction.DialogController](js-apis-promptAction.md#dialogcontroller16) | Yes| Controller of the custom dialog box.|
+| controller | [promptAction.DialogController](js-apis-promptAction.md#dialogcontroller18) | Yes| Controller of the custom dialog box.|
 | options | [promptAction.BaseDialogOptions](js-apis-promptAction.md#basedialogoptions11) | No   | Style of the custom dialog box.|
 
 **Return value**
@@ -6144,7 +6638,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | the ComponentContent is incorrect. |
+| 103301 | The ComponentContent is incorrect. |
 | 103302 | Dialog content already exists.|
 
 **Example**
@@ -6240,8 +6734,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | the ComponentContent is incorrect. |
-| 103303 | the ComponentContent cannot be found. |
+| 103301 | The ComponentContent is incorrect. |
+| 103303 | The ComponentContent cannot be found. |
 
 **Example**
 
@@ -6336,8 +6830,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | the ComponentContent is incorrect. |
-| 103303 | the ComponentContent cannot be found. |
+| 103301 | The ComponentContent is incorrect. |
+| 103303 | The ComponentContent cannot be found. |
 
 **Example**
 
@@ -6434,7 +6928,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 | 100001   | Internal error.                                              |
 
-### presentCustomDialog<sup>16+</sup>
+### presentCustomDialog<sup>18+</sup>
 
 presentCustomDialog(builder: CustomBuilder \| CustomBuilderWithId, controller?: promptAction.DialogController, options?: promptAction.DialogOptions): Promise\<number>
 
@@ -6444,7 +6938,7 @@ The dialog box ID can be included in the dialog box content for related operatio
 
 **isModal = true** and **showInSubWindow = true** cannot be used at the same time.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -6452,9 +6946,9 @@ The dialog box ID can be included in the dialog box content for related operatio
 
 | Name | Type                                                        | Mandatory| Description              |
 | ------- | ------------------------------------------------------------ | ---- | ------------------ |
-| builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [CustomBuilderWithId](#custombuilderwithid16) | Yes  | Content of the custom dialog box.|
-| controller | [promptAction.DialogController](js-apis-promptAction.md#dialogcontroller16) | No| Controller of the custom dialog box.|
-| options | [promptAction.DialogOptions](js-apis-promptAction.md#dialogoptions16) | No| Style of the custom dialog box.|
+| builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [CustomBuilderWithId](#custombuilderwithid18) | Yes  | Content of the custom dialog box.|
+| controller | [promptAction.DialogController](js-apis-promptAction.md#dialogcontroller18) | No| Controller of the custom dialog box.|
+| options | [promptAction.DialogOptions](js-apis-promptAction.md#dialogoptions18) | No| Style of the custom dialog box.|
 
 **Return value**
 
@@ -6632,7 +7126,7 @@ struct Index {
 }
 ```
 
-### getTopOrder<sup>16+</sup>
+### getTopOrder<sup>18+</sup>
 
 getTopOrder(): LevelOrder
 
@@ -6640,7 +7134,7 @@ Obtains the order of the topmost dialog box.
 
 This API returns the order of the dialog box currently at the top layer. This information can be used to specify the desired order for subsequent dialog boxes.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -6648,7 +7142,7 @@ This API returns the order of the dialog box currently at the top layer. This in
 
 | Type               | Description                                   |
 | ------------------- | --------------------------------------- |
-| [LevelOrder](js-apis-promptAction.md#levelorder16) | Order of the topmost dialog box.|
+| [LevelOrder](js-apis-promptAction.md#levelorder18) | Order of the topmost dialog box.|
 
 **Example**
 
@@ -6712,7 +7206,7 @@ struct Index {
 }
 ```
 
-### getBottomOrder<sup>16+</sup>
+### getBottomOrder<sup>18+</sup>
 
 getBottomOrder(): LevelOrder
 
@@ -6720,7 +7214,7 @@ Obtains the order of the bottommost dialog box.
 
 This API returns the order of the dialog box currently at the bottom layer. This information can be used to specify the desired order for subsequent dialog boxes.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -6728,7 +7222,7 @@ This API returns the order of the dialog box currently at the bottom layer. This
 
 | Type               | Description                                   |
 | ------------------- | --------------------------------------- |
-| [LevelOrder](js-apis-promptAction.md#levelorder16) | Order of the bottommost dialog box.|
+| [LevelOrder](js-apis-promptAction.md#levelorder18) | Order of the topmost dialog box.|
 
 **Example**
 
@@ -6792,7 +7286,7 @@ struct Index {
 }
 ```
 
-### openPopup<sup>16+</sup>
+### openPopup<sup>18+</sup>
 
 openPopup\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, options?: PopupCommonOptions): Promise&lt;void&gt;
 
@@ -6802,11 +7296,11 @@ Opens a popup with the specified content. This API uses a promise to return the 
 >
 > 1. If an invalid **target** is provided, the popup will not be displayed.
 >
-> 2. You must maintain the provided **content**, on which [updatePopup](#updatepopup16) and [closePopup](#closepopup16) rely to update or close the popup.
+> 2. You must maintain the provided **content**, on which [updatePopup](#updatepopup18) and [closePopup](#closepopup18) rely to identify the target popup.
 >
-> 3. If the **wrapBuilder** contains other components (for example, [Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup) and [Chip](arkui-ts/ohos-arkui-advanced-Chip.md#chip)), the **ComponentContent** must use the [constructor](./js-apis-arkui-ComponentContent.md#constructor-2) with four parameters, with **{ nestingBuilderSupported: true }** passed in as the **options** parameter.
+> 3. If your **wrapBuilder** includes other components (such as [Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup) or [Chip](arkui-ts/ohos-arkui-advanced-Chip.md#chip)), the [ComponentContent](./js-apis-arkui-ComponentContent.md#componentcontent-1) constructor must include four parameters, and the **options** parameter must be **{ nestingBuilderSupported: true }**.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -6815,8 +7309,8 @@ Opens a popup with the specified content. This API uses a promise to return the 
 | Name    | Type                                      | Mandatory  | Description     |
 | ------- | ---------------------------------------- | ---- | ------- |
 | content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | Yes| Content displayed in the popup.|
-| target | [TargetInfo](#targetinfo16) | Yes| Information about the target component to be bound to the popup.|
-| options | [PopupCommonOptions](arkui-ts/ts-universal-attributes-popup.md#popupcommonoptions16) | No| Style of the popup.|
+| target | [TargetInfo](#targetinfo18) | Yes| Information about the target component to be bound to the popup.|
+| options | [PopupCommonOptions](arkui-ts/ts-universal-attributes-popup.md#popupcommonoptions18) | No| Style of the popup.|
 
 **Return value**
 
@@ -6919,7 +7413,7 @@ struct Index {
 }
 ```
 
-### updatePopup<sup>16+</sup>
+### updatePopup<sup>18+</sup>
 
 updatePopup\<T extends Object>(content: ComponentContent\<T>, options: PopupCommonOptions, partialUpdate?: boolean ): Promise&lt;void&gt;
 
@@ -6930,7 +7424,7 @@ Updates the style of the popup corresponding to the provided **content**. This A
 > Updating the following properties is not supported: **showInSubWindow**, **focusable**, **onStateChange**, **onWillDismiss**, and **transition**.
 >
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -6939,7 +7433,7 @@ Updates the style of the popup corresponding to the provided **content**. This A
 | Name    | Type                                      | Mandatory  | Description     |
 | ------- | ---------------------------------------- | ---- | ------- |
 | content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | Yes| Content displayed in the popup.|
-| options | [PopupCommonOptions](arkui-ts/ts-universal-attributes-popup.md#popupcommonoptions16) | Yes| Style of the popup.<br>**NOTE**<br>Updating the following properties is not supported: **showInSubWindow**, **focusable**, **onStateChange**, **onWillDismiss**, and **transition**.|
+| options | [PopupCommonOptions](arkui-ts/ts-universal-attributes-popup.md#popupcommonoptions18) | Yes| Style of the popup.<br>**NOTE**<br>Updating the following properties is not supported: **showInSubWindow**, **focusable**, **onStateChange**, **onWillDismiss**, and **transition**.|
 | partialUpdate | boolean | No| Whether to update the popup in incremental mode.<br>Default value: **false**<br>**NOTE**<br>1. **true**: incremental update, where the specified properties in **options** are updated, and other properties stay at their current value.<br>2. **false**: full update, where all properties except those specified in **options** are restored to default values.|
 
 **Return value**
@@ -6955,20 +7449,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | the ComponentContent is incorrect. |
-| 103303 | the ComponentContent cannot be found. |
+| 103301 | The ComponentContent is incorrect. |
+| 103303 | The ComponentContent cannot be found. |
 
 **Example**
 
-See the example for [openPopup](#openpopup16).
+See the example for [openPopup](#openpopup18).
 
-### closePopup<sup>16+</sup>
+### closePopup<sup>18+</sup>
 
 closePopup\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt;
 
 Closes the popup corresponding to the provided **content**. This API uses a promise to return the result.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -6991,12 +7485,299 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | the ComponentContent is incorrect. |
-| 103303 | the ComponentContent cannot be found. |
+| 103301 | The ComponentContent is incorrect. |
+| 103303 | The ComponentContent cannot be found. |
 
 **Example**
 
-See the example for [openPopup](#openpopup16).
+See the example for [openPopup](#openpopup18).
+
+### openMenu<sup>18+</sup>
+
+openMenu\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, options?: MenuOptions): Promise&lt;void&gt;
+
+Opens a menu with the specified content. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> 1. If an invalid **target** is provided, the menu will not be displayed.
+>
+> 2. You must maintain the provided **content**, on which [updateMenu](#updatemenu18) and [closeMenu](#closemenu18) rely to identify the target menu.
+>
+> 3. If your **wrapBuilder** includes other components (such as [Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup) or [Chip](arkui-ts/ohos-arkui-advanced-Chip.md#chip)), the [ComponentContent](./js-apis-arkui-ComponentContent.md#componentcontent-1) constructor must include four parameters, and the **options** parameter must be **{ nestingBuilderSupported: true }**.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name    | Type                                      | Mandatory  | Description     |
+| ------- | ---------------------------------------- | ---- | ------- |
+| content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | Yes| Content displayed in the menu.|
+| target | [TargetInfo](#targetinfo18) | Yes| Information about the target component to be bound to the popup.|
+| options | [MenuOptions](./arkui-ts/ts-universal-attributes-menu.md#menuoptions10) | No| Style of the menu.<br>**NOTE**<br>The **title** property is not effective.<br>The **preview** parameter supports only the **MenuPreviewMode** type.|
+
+**Return value**
+
+| Type                                      | Description     |
+| ---------------------------------------- | ------- |
+|   Promise&lt;void&gt;           |    Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
+
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 103301 | The ComponentContent is incorrect. |
+| 103302 | The ComponentContent already exists. |
+| 103304 | The targetId does not exist. |
+| 103305 | The node of targetId is not in the component tree. |
+
+**Example**
+
+```ts
+import { ComponentContent, FrameNode } from '@kit.ArkUI';
+
+export function doSomething(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
+  showMenu(context, uniqueId, contentNode);
+}
+
+@Builder
+
+function MyMenu() {
+  Column() {
+    Menu(){
+      MenuItem({ startIcon: $r("app.media.startIcon"), content: "Menu item 1" })
+      MenuItem({ startIcon: $r("app.media.startIcon"), content: "Menu item 2" })
+    }
+  }
+  .width('80%')
+  .padding('20lpx')
+}
+
+export function showMenu(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
+
+  const promptAction = context.getPromptAction();
+  let frameNode: FrameNode | null = context.getFrameNodeByUniqueId(uniqueId);
+  let frameNodeTarget = frameNode?.getFirstChild();
+  frameNodeTarget = frameNodeTarget?.getChild(0);
+  let targetId = frameNodeTarget?.getUniqueId();
+
+  promptAction.openMenu(contentNode, {id: targetId},{
+    enableArrow: true,
+  });
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Column(){
+      Button('OpenMenu', { type: ButtonType.Normal, stateEffect: true })
+        .borderRadius('16lpx')
+        .width('80%')
+        .margin(10)
+        .onClick(() => {
+          let context = this.getUIContext()
+          const contentNode = new ComponentContent(context, wrapBuilder(MyMenu));
+          doSomething(context, this.getUniqueId(), contentNode)
+        })
+    }
+  }
+}
+```
+
+### updateMenu<sup>18+</sup>
+
+updateMenu\<T extends Object>(content: ComponentContent\<T>, options: MenuOptions, partialUpdate?: boolean ): Promise&lt;void&gt;
+
+Updates the style of the menu corresponding to the provided **content**. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> Updating the following properties is not supported: **showInSubWindow**, **preview**, **previewAnimationOptions**, **transition**, **onAppear**, **aboutToAppear**, **onDisappear **and **aboutToDisappear**.
+>
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name    | Type                                      | Mandatory  | Description     |
+| ------- | ---------------------------------------- | ---- | ------- |
+| content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | Yes| Content displayed in the menu.|
+| options | [MenuOptions](./arkui-ts/ts-universal-attributes-menu.md#menuoptions10) | Yes| Style of the menu.<br>**NOTE**<br>Updating the following properties is not supported: **showInSubWindow**, **preview**, **previewAnimationOptions**, **transition**, **onAppear**, **aboutToAppear**, **onDisappear **and **aboutToDisappear**.|
+| partialUpdate | boolean | No| Whether to update the menu in incremental mode.<br>Default value: **false**<br>**NOTE**<br>1. **true**: incremental update, where the specified properties in **options** are updated, and other properties stay at their current value.<br>2. **false**: full update, where all properties except those specified in **options** are restored to default values.|
+
+**Return value**
+
+| Type                                      | Description     |
+| ---------------------------------------- | ------- |
+|   Promise&lt;void&gt;           |    Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
+
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 103301 | The ComponentContent is incorrect. |
+| 103303 | The ComponentContent cannot be found. |
+
+**Example**
+
+```ts
+import { ComponentContent, FrameNode } from '@kit.ArkUI';
+
+export function doSomething(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
+  showMenu(context, uniqueId, contentNode);
+}
+
+@Builder
+
+function MyMenu() {
+  Column() {
+    Menu(){
+      MenuItem({ startIcon: $r("app.media.startIcon"), content: "Menu item 1" })
+      MenuItem({ startIcon: $r("app.media.startIcon"), content: "Menu item 2" })
+    }
+  }
+  .width('80%')
+  .padding('20lpx')
+}
+
+export function showMenu(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
+
+  const promptAction = context.getPromptAction();
+  let frameNode: FrameNode | null = context.getFrameNodeByUniqueId(uniqueId);
+  let frameNodeTarget = frameNode?.getFirstChild();
+  frameNodeTarget = frameNodeTarget?.getChild(0);
+  let targetId = frameNodeTarget?.getUniqueId();
+
+  promptAction.openMenu(contentNode, {id: targetId},{
+    enableArrow: true,
+  });
+
+  setTimeout(() => {
+    promptAction.updateMenu(contentNode, {
+      enableArrow: false,
+    });
+  }, 2000)
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Column(){
+      Button('OpenMenu', { type: ButtonType.Normal, stateEffect: true })
+        .borderRadius('16lpx')
+        .width('80%')
+        .margin(10)
+        .onClick(() => {
+          let context = this.getUIContext()
+          const contentNode = new ComponentContent(context, wrapBuilder(MyMenu));
+          doSomething(context, this.getUniqueId(), contentNode)
+        })
+    }
+  }
+}
+```
+
+### closeMenu<sup>18+</sup>
+
+closeMenu\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt;
+
+Closes the menu corresponding to the provided content. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name    | Type                                      | Mandatory  | Description     |
+| ------- | ---------------------------------------- | ---- | ------- |
+| content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | Yes| Content displayed in the menu.|
+
+**Return value**
+
+| Type                                      | Description     |
+| ---------------------------------------- | ------- |
+|   Promise&lt;void&gt;           |    Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
+
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 103301 | The ComponentContent is incorrect. |
+| 103303 | The ComponentContent cannot be found. |
+
+**Example**
+
+```ts
+import { ComponentContent, FrameNode } from '@kit.ArkUI';
+
+export function doSomething(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
+  showMenu(context, uniqueId, contentNode);
+}
+
+@Builder
+
+function MyMenu() {
+  Column() {
+    Menu(){
+      MenuItem({ startIcon: $r("app.media.startIcon"), content: "Menu item 1" })
+      MenuItem({ startIcon: $r("app.media.startIcon"), content: "Menu item 2" })
+    }
+  }
+  .width('80%')
+  .padding('20lpx')
+}
+
+export function showMenu(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
+
+  const promptAction = context.getPromptAction();
+  let frameNode: FrameNode | null = context.getFrameNodeByUniqueId(uniqueId);
+  let frameNodeTarget = frameNode?.getFirstChild();
+  frameNodeTarget = frameNodeTarget?.getChild(0);
+  let targetId = frameNodeTarget?.getUniqueId();
+
+  promptAction.openMenu(contentNode, {id: targetId},{
+    enableArrow: true,
+  });
+
+  setTimeout(() => {
+    promptAction.closeMenu(contentNode);
+  }, 2000)
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Column(){
+      Button('OpenMenu', { type: ButtonType.Normal, stateEffect: true })
+        .borderRadius('16lpx')
+        .width('80%')
+        .margin(10)
+        .onClick(() => {
+          let context = this.getUIContext()
+          const contentNode = new ComponentContent(context, wrapBuilder(MyMenu));
+          doSomething(context, this.getUniqueId(), contentNode)
+        })
+    }
+  }
+}
+```
 
 ## DragController<sup>11+</sup>
 In the following API examples, you must first use [getDragController()](js-apis-arkui-UIContext.md#getdragcontroller11) in **UIContext** to obtain a **UIContext** instance, and then call the APIs using the obtained instance.
@@ -7075,292 +7856,6 @@ struct DragControllerPage {
               })
             }
           }
-        })
-    }
-  }
-}
-```
-
-### openMenu<sup>16+</sup>
-
-openMenu\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, options?: MenuOptions): Promise&lt;void&gt;
-
-Opens a menu with the specified content. The appearance of the menu is entirely determined by the styles set in **content**. This API uses a promise to return the result.
-
-> **NOTE**
->
-> 1. If an invalid **target** is provided, the menu will not be displayed.
->
-> 2. You must maintain the provided **content**, on which [updateMenu](#updatemenu16) and [closeMenu](#closemenu16) rely to update or close the menu.
->
-
-**Atomic service API**: This API can be used in atomic services since API version 16.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name    | Type                                      | Mandatory  | Description     |
-| ------- | ---------------------------------------- | ---- | ------- |
-| content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | Yes| Content displayed in the menu.|
-| target | [TargetInfo](#targetinfo16) | Yes| Information about the target component to be bound to the menu.|
-| options | [MenuOptions](./arkui-ts/ts-universal-attributes-menu.md#menuoptions10) | No| Style of the menu.<br>**NOTE**<br>The **title** property is not effective.<br>The **preview** parameter supports only the **MenuPreviewMode** type.|
-
-**Return value**
-
-| Type                                      | Description     |
-| ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    Promise that returns no value.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
-
-| ID | Error Message                              |
-| ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | The ComponentContent is incorrect. |
-| 103302 | The ComponentContent already exists. |
-| 103304 | The targetId does not exist. |
-| 103305 | The node of targetId is not in the component tree. |
-
-**Example**
-
-```ts
-import { ComponentContent, FrameNode } from '@kit.ArkUI';
-
-export function doSomething(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
-  showMenu(context, uniqueId, contentNode);
-}
-
-@Builder
-
-function MyMenu() {
-  Column() {
-    Menu(){
-      MenuItem({ startIcon: $r("app.media.startIcon"), content: "Menu item 1" })
-      MenuItem({ startIcon: $r("app.media.startIcon"), content: "Menu item 2" })
-    }
-  }
-  .width('80%')
-  .padding('20lpx')
-}
-
-export function showMenu(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
-
-  const promptAction = context.getPromptAction();
-  let frameNode: FrameNode | null = context.getFrameNodeByUniqueId(uniqueId);
-  let frameNodeTarget = frameNode?.getFirstChild();
-  frameNodeTarget = frameNodeTarget?.getChild(0);
-  let targetId = frameNodeTarget?.getUniqueId();
-
-  promptAction.openMenu(contentNode, {id: targetId},{
-    enableArrow: true,
-  });
-}
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Column(){
-      Button('OpenMenu', { type: ButtonType.Normal, stateEffect: true })
-        .borderRadius('16lpx')
-        .width('80%')
-        .margin(10)
-        .onClick(() => {
-          let context = this.getUIContext()
-          const contentNode = new ComponentContent(context, wrapBuilder(MyMenu));
-          doSomething(context, this.getUniqueId(), contentNode)
-        })
-    }
-  }
-}
-```
-
-### updateMenu<sup>16+</sup>
-
-updateMenu\<T extends Object>(content: ComponentContent\<T>, options: MenuOptions, partialUpdate?: boolean ): Promise&lt;void&gt;
-
-Updates the style of the menu corresponding to the provided **content**. This API uses a promise to return the result.
-
-> **NOTE**
->
-> Updating the following properties is not supported: **preview**, **previewAnimationOptions**, **transition**, **onAppear**, **aboutToAppear**, **onDisappear **and **aboutToDisappear**.
->
-
-**Atomic service API**: This API can be used in atomic services since API version 16.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name    | Type                                      | Mandatory  | Description     |
-| ------- | ---------------------------------------- | ---- | ------- |
-| content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | Yes| Content displayed in the menu.|
-| options | [MenuOptions](./arkui-ts/ts-universal-attributes-menu.md#menuoptions10) | Yes| Style of the menu.<br>**NOTE**<br>Updating the following properties is not supported: **preview**, **previewAnimationOptions**, **transition**, **onAppear**, **aboutToAppear**, **onDisappear **and **aboutToDisappear**.|
-| partialUpdate | boolean | No| Whether to update the menu in incremental mode.<br>Default value: **false**<br>**NOTE**<br>1. **true**: incremental update, where the specified properties in **options** are updated, and other properties stay at their current value.<br>2. **false**: full update, where all properties except those specified in **options** are restored to default values.|
-
-**Return value**
-
-| Type                                      | Description     |
-| ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    Promise that returns no value.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
-
-| ID | Error Message                              |
-| ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | The ComponentContent is incorrect. |
-| 103303 | The ComponentContent cannot be found. |
-
-**Example**
-
-```ts
-import { ComponentContent, FrameNode } from '@kit.ArkUI';
-
-export function doSomething(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
-  showMenu(context, uniqueId, contentNode);
-}
-
-@Builder
-
-function MyMenu() {
-  Column() {
-    Menu(){
-      MenuItem({ startIcon: $r("app.media.startIcon"), content: "Menu item 1" })
-      MenuItem({ startIcon: $r("app.media.startIcon"), content: "Menu item 2" })
-    }
-  }
-  .width('80%')
-  .padding('20lpx')
-}
-
-export function showMenu(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
-
-  const promptAction = context.getPromptAction();
-  let frameNode: FrameNode | null = context.getFrameNodeByUniqueId(uniqueId);
-  let frameNodeTarget = frameNode?.getFirstChild();
-  frameNodeTarget = frameNodeTarget?.getChild(0);
-  let targetId = frameNodeTarget?.getUniqueId();
-
-  promptAction.openMenu(contentNode, {id: targetId},{
-    enableArrow: true,
-  });
-
-  setTimeout(() => {
-    promptAction.updateMenu(contentNode, {
-      enableArrow: false,
-    });
-  }, 2000)
-}
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Column(){
-      Button('OpenMenu', { type: ButtonType.Normal, stateEffect: true })
-        .borderRadius('16lpx')
-        .width('80%')
-        .margin(10)
-        .onClick(() => {
-          let context = this.getUIContext()
-          const contentNode = new ComponentContent(context, wrapBuilder(MyMenu));
-          doSomething(context, this.getUniqueId(), contentNode)
-        })
-    }
-  }
-}
-```
-
-### closeMenu<sup>16+</sup>
-
-closeMenu\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt;
-
-Closes the menu corresponding to the provided content. This API uses a promise to return the result.
-
-**Atomic service API**: This API can be used in atomic services since API version 16.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name    | Type                                      | Mandatory  | Description     |
-| ------- | ---------------------------------------- | ---- | ------- |
-| content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | Yes| Content displayed in the menu.|
-
-**Return value**
-
-| Type                                      | Description     |
-| ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    Promise that returns no value.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
-
-| ID | Error Message                              |
-| ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | The ComponentContent is incorrect. |
-| 103303 | The ComponentContent cannot be found. |
-
-**Example**
-
-```ts
-import { ComponentContent, FrameNode } from '@kit.ArkUI';
-
-export function doSomething(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
-  showMenu(context, uniqueId, contentNode);
-}
-
-@Builder
-
-function MyMenu() {
-  Column() {
-    Menu(){
-      MenuItem({ startIcon: $r("app.media.startIcon"), content: "Menu item 1" })
-      MenuItem({ startIcon: $r("app.media.startIcon"), content: "Menu item 2" })
-    }
-  }
-  .width('80%')
-  .padding('20lpx')
-}
-
-export function showMenu(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
-
-  const promptAction = context.getPromptAction();
-  let frameNode: FrameNode | null = context.getFrameNodeByUniqueId(uniqueId);
-  let frameNodeTarget = frameNode?.getFirstChild();
-  frameNodeTarget = frameNodeTarget?.getChild(0);
-  let targetId = frameNodeTarget?.getUniqueId();
-
-  promptAction.openMenu(contentNode, {id: targetId},{
-    enableArrow: true,
-  });
-
-  setTimeout(() => {
-    promptAction.closeMenu(contentNode);
-  }, 2000)
-}
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Column(){
-      Button('OpenMenu', { type: ButtonType.Normal, stateEffect: true })
-        .borderRadius('16lpx')
-        .width('80%')
-        .margin(10)
-        .onClick(() => {
-          let context = this.getUIContext()
-          const contentNode = new ComponentContent(context, wrapBuilder(MyMenu));
-          doSomething(context, this.getUniqueId(), contentNode)
         })
     }
   }
@@ -7687,7 +8182,7 @@ Sets whether the **onDragLeave** callback of the parent component is triggered w
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| enable | boolean | Yes  | Whether the **onDragLeave** callback of the parent component is triggered when an item is dragged from the parent to the child component.|
+| enable | boolean | Yes  | Whether the **onDragLeave** callback of the parent component is triggered when an item is dragged from the parent to the child component. The value **true** means the **onDragLeave** callback of the parent component is triggered, and **false** means the opposite.|
 
 **Example**
 
@@ -7714,13 +8209,13 @@ import { window, UIContext } from '@kit.ArkUI';
 }
 ```
 
-### cancelDataLoading<sup>16+</sup>
+### cancelDataLoading<sup>15+</sup>
 
 cancelDataLoading(key: string): void
 
 Cancels the data loading initiated by the [startDataLoading](arkui-ts/ts-universal-events-drag-drop.md#dragevent7) API.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -7729,6 +8224,100 @@ Cancels the data loading initiated by the [startDataLoading](arkui-ts/ts-univers
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | key | string | Yes  | Identifier for the drag data. It is used to distinguish between different drag operations. The key can be obtained through the **startDataLoading** API.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Drag Event Error Codes](./errorcode-drag-event.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. |
+| 190004      | Operation failed. |
+
+### notifyDragStartRequest<sup>18+</sup>
+
+notifyDragStartRequest(requestStatus: dragController.DragStartRequestStatus): void
+
+Controls whether the application can initiate a drag operation.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                       |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| requestStatus  | [dragController.DragStartRequestStatus](js-apis-arkui-dragController.md#dragstartrequeststatus18)    | Yes |Whether the application can initiate a drag operation.|
+
+**Example**
+
+```ts
+import { unifiedDataChannel } from '@kit.ArkData';
+import { image } from '@kit.ImageKit';
+import { dragController } from "@kit.ArkUI";
+
+// xxx.ets
+@Entry
+@Component
+struct NormalEts {
+  @State finished: boolean = false
+  @State timeout1: number = 1
+  @State pixmap: image.PixelMap | undefined = undefined
+  @State unifiedData1: unifiedDataChannel.UnifiedData | undefined = undefined
+  @State previewData: DragItemInfo | undefined = undefined
+
+  loadData() {
+    let timeout = setTimeout(() => {
+      this.getUIContext().getComponentSnapshot().get("image1", (error: Error, pixmap: image.PixelMap) => {
+        this.pixmap = pixmap
+        this.previewData = {
+          pixelMap: this.pixmap
+        }
+      })
+
+      let data: unifiedDataChannel.Image = new unifiedDataChannel.Image();
+      data.imageUri = "app.media.startIcon";
+      let unifiedData = new unifiedDataChannel.UnifiedData(data);
+      this.unifiedData1 = unifiedData
+
+      this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.READY)
+    }, 4000);
+    this.timeout1 = timeout
+  }
+
+
+    build() {
+      Column({space: 20}) {
+        Image($r("app.media.startIcon"))
+          .width(300)
+          .height(200)
+          .id("image1")
+          .draggable(true)
+          .dragPreview(this.previewData)
+          .onPreDrag((status: PreDragStatus) => {
+            if (status == PreDragStatus.PREPARING_FOR_DRAG_DETECTION) {
+              this.loadData()
+            } else {
+              clearTimeout(this.timeout1);
+            }
+          })
+          .onDragStart((event: DragEvent) => {
+            if (this.finished == false) {
+              this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.WAITING)
+            } else {
+              event.setData(this.unifiedData1);
+            }
+          })
+          .onDragEnd(()=>{
+            this.finished = false
+          })
+      }
+      .height(400)
+      .backgroundColor(Color.Pink)
+    }
+}
+```
 
 ## OverlayManager<sup>12+</sup>
 
@@ -7856,7 +8445,7 @@ struct OverlayExample {
 }
 ```
 
-### addComponentContentWithOrder<sup>16+</sup>
+### addComponentContentWithOrder<sup>18+</sup>
 
 addComponentContentWithOrder(content: ComponentContent, levelOrder?: LevelOrder): void
 
@@ -7864,7 +8453,7 @@ Creates a floating layer node with the specified display order.
 
 This API allows you to define the stacking order of the nodes when they are created.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -7873,7 +8462,7 @@ This API allows you to define the stacking order of the nodes when they are crea
 | Name    | Type                                      | Mandatory  | Description         |
 | ------- | ---------------------------------------- | ---- | ----------- |
 | content | [ComponentContent](js-apis-arkui-ComponentContent.md) | Yes   | Content to add to the new node on the **OverlayManager**.<br>**NOTE**<br> By default, the new node is centered on the page and stacked according to its stacking level.|
-| levelOrder | [LevelOrder](js-apis-promptAction.md#levelorder16) | No   | Display order of the new floating layer node.<br>**NOTE**<br>- Default value: **LevelOrder.clamp(0)**|
+| levelOrder | [LevelOrder](js-apis-promptAction.md#levelorder18) | No   | Display order of the new floating layer node.<br>**NOTE**<br>- Default value: **LevelOrder.clamp(0)**|
 
 **Example**
 
@@ -8054,7 +8643,8 @@ Defines the options used to initialize the [OverlayManager](#overlaymanager12).
 
 | Name            | Type               | Mandatory    | Description                    |
 | --------------- | ---------------------- | ------------ | --------------------- |
-| renderRootOverlay   | boolean | No| Whether to render the root overlay node.<br>Default value: **true**|
+| renderRootOverlay   | boolean | No| Whether to render the overlay root node. The value **true** means to render the overlay root node, and **false** means the opposite. The default value is **true**.|
+| enableBackPressedEvent<sup>18+</sup>   | boolean | No| Whether to enable the ComponentContent under **OverlayManager** to be closed through a swipe gesture. The default value is **false**.|
 
 ## AtomicServiceBar<sup>11+</sup>
 
@@ -8080,7 +8670,7 @@ Sets whether the atomic service menu bar is visible.
 
 | Name| Type| Mandatory| Description|
 | ------- | ------- | ------- | ------- |
-| visible | boolean | Yes| Whether the atomic service menu bar is visible.|
+| visible | boolean | Yes| Whether the atomic service menu bar is visible. The value **true** means the atomic service menu bar is visible, and **false** means the opposite.|
 
 
 **Example**
@@ -8122,7 +8712,7 @@ Sets the background color of the atomic service menu bar.
 
 | Name| Type| Mandatory| Description|
 | ------ | ------ | ------ | ------ |
-| color | Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | Yes| Background color of the atomic service menu bar. The value **undefined** means to use the default color.|
+| color | Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | Yes| Background color of the atomic service menu bar. The value **undefined** means to use the default color. A number value indicates a HEX color in RGB or ARGB format, for example, **0xffffff**. A string value indicates a color in RGB or ARGB format, for example, **'#ffffff'**.|
 
 **Example**
 
@@ -8244,7 +8834,7 @@ Sets the color of the atomic service icon.
 
 | Name| Type| Mandatory| Description|
 | ------- | ------- | ------- | ------- |
-| color | Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | Yes| Color of the atomic service icon. The value **undefined** means to use the default color.|
+| color | Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | Yes| Color of the atomic service icon. The value **undefined** means to use the default color. A number value indicates a HEX color in RGB or ARGB format, for example, **0xffffff**. A string value indicates a color in RGB or ARGB format, for example, **'#ffffff'**.|
 
 
 **Example**
@@ -8484,8 +9074,8 @@ Sets the [focus activation state](../../ui/arkts-common-events-focus-event.md) o
 
 | Name| Type| Mandatory| Description|
 | ------- | ------- | ------- | ------- |
-| isActive| boolean| Yes| Whether to enter or exit the focus activation state.|
-| autoInactive | boolean | No| Logic for exiting the focus activation state. The value **true** means the focus activation state will be exited automatically when touch or mouse events are triggered, and **false** means the state is controlled solely by API calls.|
+| isActive| boolean| Yes| Whether to enter or exit the focus activation state.<br>The value **true** means to enter the focus activation state, and **false** means to exit the focus activation state.|
+| autoInactive | boolean | No| Logic for exiting the focus activation state.<br>The value **true** means the focus activation state will be exited automatically when touch or mouse events are triggered, and **false** means the state is controlled solely by API calls.<br>Default value: **true**|
 
 ```ts
 // This example demonstrates how to enter the focus activation state when the page loading is completed. In this state, arrow keys can be used for focus navigation.
@@ -8526,7 +9116,7 @@ struct ActivateExample {
 
 setAutoFocusTransfer(isAutoFocusTransfer: boolean): void;
 
-Sets whether the new page should automatically acquire focus during page switching.
+Sets whether the new page automatically obtains focus during page switching.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -8536,7 +9126,7 @@ Sets whether the new page should automatically acquire focus during page switchi
 
 | Name| Type| Mandatory| Description|
 | ------- | ------- | ------- | ------- |
-| isAutoFocusTransfer | boolean| Yes| Whether the new page should automatically acquire focus during page switching using navigation components, such as [Router](js-apis-router.md#routerpushurl9), [Navigation](arkui-ts/ts-basic-components-navigation.md#navigation), [Menu](arkui-ts/ts-basic-components-menu.md#menu), [Dialog](arkui-ts/ohos-arkui-advanced-Dialog.md), and [Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup).<br> Default value: **true**|
+| isAutoFocusTransfer | boolean| Yes| Whether the new page automatically obtains focus during page switching using navigation components or APIs, such as [Router](js-apis-router.md#routerpushurl9), [Navigation](arkui-ts/ts-basic-components-navigation.md#navigation), [Menu](arkui-ts/ts-basic-components-menu.md#menu), [Dialog](arkui-ts/ohos-arkui-advanced-Dialog.md), and [Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup).<br> The value **true** means the new page automatically obtains focus, and **false** means the opposite. Default value: **true**|
 
 ```ts
 @CustomDialog
@@ -9083,7 +9673,7 @@ Renders a custom component from [CustomBuilder](arkui-ts/ts-types.md#custombuild
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | builder  | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8)         | Yes  | Builder for the custom component.<br>**NOTE**<br>The global builder is not supported.     |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Yes  | Callback used to return the result. The coordinates and size of the offscreen component's drawing area can be obtained through the callback.|
-| delay<sup>12+</sup>   | number | No   | Delay time for triggering the screenshot command. When the layout includes an **Image** component, it is necessary to set a delay time to allow the system to decode the image resources. The decoding time is subject to the resource size. In light of this, whenever possible, use pixel map resources that do not require decoding.<br> When pixel map resources are used or when **syncload** to **true** for the **Image** component, you can set **delay** to **0** to forcibly capture snapshots without waiting. This delay time does not refer to the time from the API call to the return: As the system needs to temporarily construct the passed-in **builder** offscreen, the return time is usually longer than this delay.<br>**NOTE**<br>In the **builder** passed in, state variables should not be used to control the construction of child components. If they are used, they should not change when the API is called, so as to avoid unexpected snapshot results.<br> Default value: **300**<br> Unit: ms|
+| delay<sup>12+</sup>   | number | No   | Delay time for triggering the screenshot command. When the layout includes an **Image** component, it is necessary to set a delay time to allow the system to decode the image resources. The decoding time is subject to the resource size. In light of this, whenever possible, use pixel map resources that do not require decoding.<br> When pixel map resources are used or when **syncload** to **true** for the **Image** component, you can set **delay** to **0** to forcibly capture snapshots without waiting. This delay time does not refer to the time from the API call to the return: As the system needs to temporarily construct the passed-in **builder** offscreen, the return time is usually longer than this delay.<br>**NOTE**<br>In the **builder** passed in, state variables should not be used to control the construction of child components. If they are used, they should not change when the API is called, so as to avoid unexpected snapshot results.<br> Default value: **300**<br> Unit: ms<br> Value range: [0, +∞). If the value is less than 0, the default value is used.|
 | checkImageStatus<sup>12+</sup>  | boolean | No   | Whether to check the image decoding status before taking a snapshot. If the value is **true**, the system checks whether all **Image** components have been decoded before taking the snapshot. If the check is not completed, the system aborts the snapshot and returns an exception.<br>Default value: **false**|
 | options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12) | No   | Custom settings of the snapshot.|
 
@@ -9173,15 +9763,15 @@ Renders a custom component from [CustomBuilder](arkui-ts/ts-types.md#custombuild
 | Name | Type                                                | Mandatory| Description                                                   |
 | ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------- |
 | builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | Yes  | Builder for the custom component.<br>**NOTE**<br>The global builder is not supported.|
+| delay<sup>12+</sup>   | number | No   | Delay time for triggering the screenshot command. When the layout includes an **Image** component, it is necessary to set a delay time to allow the system to decode the image resources. The decoding time is subject to the resource size. In light of this, whenever possible, use pixel map resources that do not require decoding.<br> When pixel map resources are used or when **syncload** to **true** for the **Image** component, you can set **delay** to **0** to forcibly capture snapshots without waiting. This delay time does not refer to the time from the API call to the return: As the system needs to temporarily construct the passed-in **builder** offscreen, the return time is usually longer than this delay.<br>**NOTE**<br>In the **builder** passed in, state variables should not be used to control the construction of child components. If they are used, they should not change when the API is called, so as to avoid unexpected snapshot results.<br> Default value: **300**<br> Unit: ms|
+| checkImageStatus<sup>12+</sup>  | boolean | No   | Whether to check the image decoding status before taking a snapshot. If the value is **true**, the system checks whether all **Image** components have been decoded before taking the snapshot. If the check is not completed, the system aborts the snapshot and returns an exception.<br>Default value: **false**|
+| options<sup>12+</sup>       | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)           | No   | Custom settings of the snapshot.|
 
 **Return value**
 
 | Type                                                        | Description            |
 | ------------------------------------------------------------ | ---------------- |
 | Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise used to return the result.|
-| delay<sup>12+</sup>   | number | No   | Delay time for triggering the screenshot command. When the layout includes an **Image** component, it is necessary to set a delay time to allow the system to decode the image resources. The decoding time is subject to the resource size. In light of this, whenever possible, use pixel map resources that do not require decoding.<br> When pixel map resources are used or when **syncload** to **true** for the **Image** component, you can set **delay** to **0** to forcibly capture snapshots without waiting. This delay time does not refer to the time from the API call to the return: As the system needs to temporarily construct the passed-in **builder** offscreen, the return time is usually longer than this delay.<br>**NOTE**<br>In the **builder** passed in, state variables should not be used to control the construction of child components. If they are used, they should not change when the API is called, so as to avoid unexpected snapshot results.<br> Default value: **300**<br> Unit: ms|
-| checkImageStatus<sup>12+</sup>  | boolean | No   | Whether to check the image decoding status before taking a snapshot. If the value is **true**, the system checks whether all **Image** components have been decoded before taking the snapshot. If the check is not completed, the system aborts the snapshot and returns an exception.<br>Default value: **false**|
-| options<sup>12+</sup>       | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)           | No   | Custom settings of the snapshot.|
 
 **Error codes**
 
@@ -9509,13 +10099,13 @@ struct SnapshotExample {
 }
 ```
 
-### createFromComponent<sup>16+</sup>
+### createFromComponent<sup>18+</sup>
 
 createFromComponent\<T extends Object>(content: ComponentContent\<T>, delay?: number, checkImageStatus?: boolean, options?: componentSnapshot.SnapshotOptions): Promise<image.PixelMap>
 
 Takes a snapshot of the provided **content** object. This API uses a promise to return the result.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -9636,7 +10226,7 @@ Called when the next frame is rendered.
 
 | Name | Type                                                | Mandatory| Description                                                   |
 | ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------- |
-| frameTimeInNano | number | Yes  | Time when the rendering of the next frame starts, in nanoseconds.|
+| frameTimeInNano | number | Yes  | Time when the rendering of the next frame starts, in nanoseconds.<br>Value range: [0, +∞)|
 
 **Example**
 
@@ -9692,7 +10282,7 @@ Called after the rendering of the subsequent frame has finished and there is mor
 
 | Name | Type                                                | Mandatory| Description                                                   |
 | ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------- |
-| timeLeftInNano | number | Yes  | Remaining idle time for the current frame.|
+| timeLeftInNano | number | Yes  | Remaining idle time for the current frame, in nanoseconds.<br>Value range: [0, +∞)|
 
 **Example**
 
@@ -9925,7 +10515,7 @@ Enumerates the dynamic sync scene types for the **Marquee** component.
 **Example**
 
 ```ts
-import { MarqueeDynamicSyncSceneType, MarqueeDynamicSyncScene } from '@kit.ArkUI'
+import { MarqueeDynamicSyncSceneType, MarqueeDynamicSyncScene } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -9996,61 +10586,6 @@ struct MarqueeExample {
   }
 }
 ```
-## dispatchKeyEvent<sup>15+</sup>
-
-Dispatches a key event to the specified component. To ensure predictable behavior, the target component must be within the subtree of the dispatching component.
-
-**Atomic service API**: This API can be used in atomic services since API version 15.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-| Name| Type                         | Mandatory| Description              |
-| ------ | ----------------------------- | ---- | ------------------ |
-| node  | number \| string | Yes  | ID or unique ID of the target component.|
-| event  |[KeyEvent](./arkui-ts/ts-universal-events-key.md#keyevent) | Yes  | **KeyEvent** object.|
-
-**Example**
-
-```ts
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Row() {
-        Button('Button1').id('Button1').onKeyEvent((event) => {
-          console.log("Button1");
-          return true
-        })
-        Button('Button2').id('Button2').onKeyEvent((event) => {
-          console.log("Button2");
-          return true
-        })
-      }
-      .width('100%')
-      .height('100%')
-      .id('Row1')
-      .onKeyEventDispatch((event) => {
-        let context = this.getUIContext();
-        context.getFocusController().requestFocus('Button1');
-        return context.dispatchKeyEvent('Button1', event);
-      })
-
-    }
-    .height('100%')
-    .width('100%')
-    .onKeyEventDispatch((event) => {
-      if (event.type == KeyType.Down) {
-        let context = this.getUIContext();
-        context.getFocusController().requestFocus('Row1');
-        return context.dispatchKeyEvent('Row1', event);
-      }
-      return true;
-    })
-  }
-}
-```
-
 ## TextMenuController<sup>16+</sup>
 In the following API examples, you must first use [getTextMenuController()](js-apis-arkui-UIContext.md#gettextmenucontroller16) in **UIContext** to obtain a **TextMenuController** instance, and then call the APIs using the obtained instance.
 
@@ -10110,4 +10645,3 @@ struct Index {
   }
 }
 ```
-<!--no_check-->
