@@ -76,8 +76,6 @@ Use of **async await** is not recommended inside the **aboutToDisappear** callba
 
 The following example shows when the lifecycle callbacks are invoked:
 
-
-
 ```ts
 // Index.ets
 import { router } from '@kit.ArkUI';

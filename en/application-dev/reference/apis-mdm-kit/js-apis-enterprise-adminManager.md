@@ -4,9 +4,9 @@ The **adminManager** module provides enterprise device management capabilities s
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - The APIs of this module are available only to [device administrator applications](../../mdm/mdm-kit-guide.md#introduction).
+> The APIs of this module are available only to [device administrator applications](../../mdm/mdm-kit-guide.md#introduction).
 
 ## Modules to Import
 
@@ -427,7 +427,7 @@ Enumerates the types of device administrator applications.
 |allowed_install_bundles|[bundleManager.addAllowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanageraddallowedinstallbundlessync)<br>[bundleManager.removeAllowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagerremoveallowedinstallbundlessync)<br>[bundleManager.getAllowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagergetallowedinstallbundlessync)|Adds the applications that can be installed by the current or specified user.<br>Removes the applications that can be installed.<br>Obtains the applications that can be installed by the current or specified user.|
 |disallowed_install_bundles|[bundleManager.addDisallowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanageradddisallowedinstallbundlessync)<br>[bundleManager.removeDisallowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagerremoveallowedinstallbundlessync)<br>[bundleManager.getDisallowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagergetdisallowedinstallbundlessync)|Adds the applications that cannot be installed by the current or specified user.<br>Removes the applications that cannot be installed.<br>Obtains the applications that cannot be installed by the current or specified user.|
 |disallowed_uninstall_bundles|[bundleManager.addDisallowedUninstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanageradddisalloweduninstallbundlessync)<br>[bundleManager.removeDisallowedUninstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagerremovedisalloweduninstallbundlessync)<br>[bundleManager.getDisallowedUninstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagergetdisalloweduninstallbundlessync)|Adds the applications that cannot be uninstalled by the current or specified user.<br>Removes the applications that cannot be uninstalled.<br>Obtains the applications that cannot be uninstalled by the current or specified user.|
-|get_device_info|[deviceInfo.getDeviceInfo](js-apis-enterprise-deviceInfo#deviceinfogetdeviceinfo)|Obtains device information.|
+|get_device_info|[deviceInfo.getDeviceInfo](js-apis-enterprise-deviceInfo.md#deviceinfogetdeviceinfo)|Obtains device information.|
 |location_policy|[locationManager.setLocationPolicy](js-apis-enterprise-locationManager.md#locationmanagersetlocationpolicy)<br>[locationManager.getLocationPolicy](js-apis-enterprise-locationManager.md#locationmanagergetlocationpolicy)|Sets the location service policy.<br>Queries the location service policy.|
 |disabled_network_interface|[networkManager.setNetworkInterfaceDisabledSync](js-apis-enterprise-networkManager.md#networkmanagersetnetworkinterfacedisabledsync)<br>[networkManager.isNetworkInterfaceDisabledSync](js-apis-enterprise-networkManager.md#networkmanagerisnetworkinterfacedisabledsync)|Disables a network interface.<br>Queries whether a specified network interface is disabled.|
 |global_proxy|[networkManager.setGlobalProxySync](js-apis-enterprise-networkManager.md#networkmanagersetglobalproxysync)<br>[networkManager.getGlobalProxySync](js-apis-enterprise-networkManager.md#networkmanagergetglobalproxysync)|Sets the global network proxy.<br>Obtains the global network proxy.|

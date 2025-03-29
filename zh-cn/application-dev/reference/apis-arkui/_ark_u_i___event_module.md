@@ -1859,7 +1859,7 @@ int32_t OH_ArkUI_UIInputEvent_GetModifierKeyStates(const ArkUI_UIInputEvent* eve
 
 **返回：**
 
-返回当前处于按下状态的modifier key组合，如果参数异常则返回401。
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
 
 ### OH_ArkUI_HoverEvent_IsHovered()

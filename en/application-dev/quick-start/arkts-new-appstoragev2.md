@@ -35,16 +35,16 @@ static connect<T extends object>(
 
 | connect      | Description                                                 |
 | ------------ | ----------------------------------------------------- |
-| Parameter        | **type**: specified type. If no **key** is specified, the name of the **type** is used as the **key**.<br> **keyOrDefaultCreater**: specified key or default constructor.<br> **defaultCreator**: default constructor.                                         |
+| Parameter        | **type**: specified type. If no **key** is specified, the name of the **type** is used as the **key**.<br> **keyOrDefaultCreator**: specified key or default constructor.<br> **defaultCreator**: default constructor.                                         |
 | Return value      | After creating or obtaining data, value is returned. Otherwise, **undefined** is returned.|
 
 >**NOTE**
 >
->1. The third parameter is used when no **key** is specified or the second parameter is invalid. Otherwise, the second parameter is used.
+>1. The third parameter is used when no **key** is specified or the second parameter is invalid, and the third parameter is used in all other cases.
 >
->2. If the data has been stored in AppStorageV2, you can obtain the stored data without using the default constructor. Otherwise, you must specify the default constructor. If no constructor is specified, the application exception occurs.
+>2. If the data has been stored in AppStorageV2, you can obtain the stored data without using the default constructor. If the data has not been stored, you must specify a default constructor; otherwise, an application exception will be thrown.
 >
->3. Ensure that the data types match the key. If different types of data are connected to the same key, the application exception occurs. 
+>3. Ensure that the data types match the key. Connecting different types of data to the same key will result in an application exception.
 >
 >4. You are advised to use meaningful values for keys. The values can contain letters, digits, and underscores (_) and a maximum of 255 characters. Using invalid characters or null characters will result in undefined behavior.
 >
@@ -89,8 +89,20 @@ static keys(): Array<string>;
 
 ### Storing Data Between Two Pages
 
+Data page
+```ts
+// Data center
+// Sample.ets
+@ObservedV2
+export class Sample {
+  @Trace p1: number = 0;
+  p2: number = 10;
+}
+```
+
 Page 1
 ```ts
+// Page1.ets
 import { AppStorageV2 } from '@kit.ArkUI';
 import { Sample } from '../Sample';
 
@@ -145,6 +157,7 @@ struct Page1 {
 
 Page 2
 ```ts
+// Page2.ets
 import { AppStorageV2 } from '@kit.ArkUI';
 import { Sample } from '../Sample';
 
@@ -198,22 +211,12 @@ When using **Navigation**, you need to add the **route_map.json** file to the **
   "routerMap": [
     {
       "name": "Page2",
-      "pageSourceFile": "src/main/ets/pages/PersistenceV2-2.ets",
+      "pageSourceFile": "src/main/ets/pages/Page2.ets",
       "buildFunction": "Page2Builder",
       "data": {
-        "description" : "PersistenceV2 example"
+        "description" : "AppStorageV2 example"
       }
     }
   ]
-}
-```
-
-Data page
-```ts
-// Data center
-@ObservedV2
-export class Sample {
-  @Trace p1: number = 0;
-  p2: number = 10;
 }
 ```

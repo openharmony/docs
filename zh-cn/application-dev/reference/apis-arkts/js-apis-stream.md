@@ -29,8 +29,8 @@ import { stream  } from '@kit.ArkTS';
 | writableObjectMode  | boolean   | 是   | 否 | 指定可写流是否以对象模式工作。true表示流被配置为对象模式，false表示流处于非对象模式。当前版本只支持原始数据（字符串和Uint8Array），返回值为false。 |
 | writableHighWatermark | number | 是 | 否  | 定义缓冲区数据量水位线大小。当前不支持开发者自定义修改设置水位线大小。调用[write()](#write)写入后，若缓冲区数据量达到该值，[write()](#write)会返回false。默认为16 * 1024，单位为字节。|
 | writable | boolean | 是 | 否  | 表示可写流是否处于可写状态。true表示流当前是可写的，false表示流当前不再接受写入操作。|
-| writableLength | number | 是 | 否  | 表示可读流缓冲区中待写入的字节数。|
-| writableCorked | number | 是  | 否 | 表示需要调用uncork()方法的次数，以完全解除可写流的封住状态。|
+| writableLength | number | 是 | 否  | 表示可写流缓冲区中待写入的字节数。|
+| writableCorked | number | 是  | 否 | 表示可写流cork状态计数。值大于0时，可写流处于强制写入缓冲区状态，值为0时解除。使用[cork()](#cork)计数加一，使用[uncork()](#uncork)计数减一，使用[end()](#end)计数清零。|
 | writableEnded | boolean | 是  | 否 | 表示当前可写流的[end()](#end)是否被调用，该状态不代表数据已经全部写入。true表示[end()](#end)已被调用，false表示[end()](#end)未被调用。 |
 | writableFinished | boolean | 是  | 否 | 表示当前可写流是否处于写入完成状态。true表示当前流处于写入完成状态，false表示当前流写入操作可能还在进行中。 |
 
@@ -107,7 +107,7 @@ writableStream.write('test', 'utf8');
 
 end(chunk?: string | Uint8Array, encoding?: string, callback?: Function): Writable
 
-结束可写流的写入操作。如果传入chunk参数，则根据实际运行情况，通过write或者doWrite将其作为最后一块数据写入。其中通过doWrite写入时，encoding参数的合法性检查依赖doWrite。end单独使用（不使用write）并传入chunk参数的情况下，必然通过doWrite写入。使用callback异步回调。
+结束可写流的写入操作。如果属性writableCorked的值大于0，会置零该值并输出缓冲区剩余数据。如果传入chunk参数，则根据实际运行情况，通过write或者doWrite将其作为最后一块数据写入。其中通过doWrite写入时，encoding参数的合法性检查依赖doWrite。end单独使用（不使用write）并传入chunk参数的情况下，必然通过doWrite写入。使用callback异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -213,7 +213,7 @@ console.info("Writable is result", result); // Writable is result true
 
 cork(): boolean
 
-将写入的数据强制写入缓冲区暂存，用来优化连续写入操作的性能。
+将写入的数据强制写入缓冲区暂存，用来优化连续写入操作的性能。使用后属性writableCorked的值会加一。建议和[uncork()](#uncork)成对使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -247,7 +247,7 @@ console.info("Writable cork result", result); // Writable cork result true
 
 uncork(): boolean
 
-解除cork状态，将缓冲区中的数据全部刷新，并将其写入目标位置。
+解除cork状态，解除后将缓冲区中的数据全部刷新，并将其写入目标位置。使用后属性writableCorked的值会减一，如果该值降为0，则解除cork状态，否则流依然处于cork状态。建议和[cork()](#cork)成对使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1165,7 +1165,7 @@ Duplex类继承[Readable](#readable)，支持Readable中所有的方法。
 | writableHighWatermark | number | 是 | 否  | 定义双工流的写模式下缓冲区数据量水位线大小。当前不支持开发者自定义修改设置水位线大小。调用[write()](#write-1)写入后，若缓冲区数据量达到该值，[write()](#write-1)会返回false。默认值为16 * 1024，单位为字节。|
 | writable | boolean | 是 | 否  | 表示双工流是否处于可写状态。true表示当前流是可写的，false表示流当前不再接受写入操作。|
 | writableLength | number | 是 | 否  | 表示双工流缓冲区中待写入的字节数。|
-| writableCorked | number | 是  | 否 | 表示需要调用uncork()方法的次数，以完全解除双工流的封住状态。|
+| writableCorked | number | 是  | 否 | 表示双工流cork状态计数。值大于0时，双工流处于强制写入缓冲区状态，值为0时解除。使用[cork()](#cork-1)计数加一，使用[uncork()](#uncork-1)计数减一，使用[end()](#end-1)计数清零。|
 | writableEnded | boolean | 是  | 否 | 表示当前双工流的[end()](#end-1)是否被调用，该状态不代表数据已经全部写入。true表示[end()](#end-1)已被调用，false表示[end()](#end-1)未被调用。|
 | writableFinished | boolean | 是  | 否 | 表示当前双工流是否处于写入完成状态。true表示当前流处于写入完成状态，false表示当前流写入操作可能还在进行中。|
 
@@ -1246,7 +1246,7 @@ console.info("duplexStream result", result); // duplexStream result true
 
 end(chunk?: string | Uint8Array, encoding?: string, callback?: Function): Writable
 
-结束双工流的写入操作。如果传入chunk参数，则根据实际运行情况，通过write或者doWrite将其作为最后一块数据写入。其中通过doWrite写入时，encoding参数的合法性检查依赖doWrite。end单独使用（不使用write）并传入chunk参数的情况下，必然通过doWrite写入。使用callback异步回调。
+结束双工流的写入操作。如果属性writableCorked的值大于0，会置零该值并输出缓冲区剩余数据。如果传入chunk参数，则根据实际运行情况，通过write或者doWrite将其作为最后一块数据写入。其中通过doWrite写入时，encoding参数的合法性检查依赖doWrite。end单独使用（不使用write）并传入chunk参数的情况下，必然通过doWrite写入。使用callback异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1353,7 +1353,7 @@ console.info("duplexStream is result", result); // duplexStream is result true
 
 cork(): boolean
 
-将写入的数据强制写入缓冲区暂存，用来优化连续写入操作的性能。
+将写入的数据强制写入缓冲区暂存，用来优化连续写入操作的性能。使用后属性writableCorked的值会加一。建议和[uncork()](#uncork-1)成对使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1377,7 +1377,7 @@ console.info("duplexStream cork result", result); // duplexStream cork result tr
 
 uncork(): boolean
 
-解除cork状态，将缓冲区中的数据全部刷新，并将其写入目标位置。
+解除cork状态，解除后将缓冲区中的数据全部刷新，并将其写入目标位置。使用后属性writableCorked的值会减一，如果该值降为0，则解除cork状态，否则流依然处于cork状态。建议和[cork()](#cork-1)成对使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

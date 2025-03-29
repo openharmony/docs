@@ -157,6 +157,51 @@ TextInput()
   })
 ```
 
+## 选中菜单
+
+输入框中的文字被选中时会弹出包含剪切、复制、翻译、分享的菜单。
+
+TextInput:
+```ts
+TextInput({text : '这是一段文本,用来测试选中菜单'})
+```
+![TexInput_select_menu](figures/TexInput_select_menu.jpg)
+
+TextArea:
+```ts
+TextArea({text : '这是一段文本,用来测试选中菜单'})
+```
+![TextArea_select_menu](figures/TextArea_select_menu.jpg)
+
+## 自动填充
+
+输入框可以通过[contentType](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)设置自动填充类型。
+
+支持的类型请参考属性[ContentType](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md#contenttype12枚举说明)。
+```ts
+TextInput({ placeholder: '输入你的邮箱...' })
+  .width('95%')
+  .height(40)
+  .margin(20)
+  .contentType(ContentType.EMAIL_ADDRESS)
+```
+
+## 设置省略属性
+
+输入框可以通过[ellipsisMode](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md#ellipsismode18)设置省略位置。
+
+ellipsisMode属性需要配合overflow设置为TextOverflow.Ellipsis使用，单独设置ellipsisMode属性不生效。
+
+```ts
+TextInput({ text: '这是一段文本，用来测试省略模式'})
+  .textOverflow(TextOverflow.Ellipsis)
+  .ellipsisMode(EllipsisMode.END)
+  .style(TextInputStyle.Inline)
+  .fontSize(30)
+  .margin(30)
+```
+![TextInput_ellipsismode](figures/TextInput_ellipsismode.jpg)
+
 ## 场景示例
 
 在登录/注册页面，用户进行登录或注册。

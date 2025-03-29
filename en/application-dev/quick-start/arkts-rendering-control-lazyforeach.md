@@ -35,7 +35,7 @@ After the key generation rules are determined, the **itemGenerator** function â€
 When used for initial render, **LazyForEach** generates a unique key for each array item of the data source based on the key generation rules, and creates a component.
 
 ```ts
-/** For details about the BasicDataSource code of the string array, see the attachment at the end of this topic. **/
+/** For details about the BasicDataSource code of the string array, see the sample code at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -94,7 +94,7 @@ The figure below shows the effect.
 When the keys generated for different data items are the same, the behavior of the framework is unpredictable. For example, in the following code, the keys of the data items rendered by **LazyForEach** are the same. During the swipe process, **LazyForEach** preloads child components for the current page. Because the new child component and the destroyed component have the same key, the framework may incorrectly obtain the cache. As a result, the child component rendering is abnormal.
 
 ```ts
-/** For details about the BasicDataSource code of the string array, see the attachment at the end of this topic. **/
+/** For details about the BasicDataSource code of the string array, see the sample code at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -153,7 +153,7 @@ When the **LazyForEach** data source is changed and a re-render is required, cal
 #### Adding Data
 
 ```ts
-/** For details about the BasicDataSource code of the string array, see the attachment at the end of this topic. **/
+/** For details about the BasicDataSource code of the string array, see the sample code at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -214,7 +214,7 @@ The figure below shows the effect.
 #### Deleting Data
 
 ```ts
-/** For details about the BasicDataSource code of the string array, see the attachment at the end of this topic. **/
+/** For details about the BasicDataSource code of the string array, see the sample code at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -283,7 +283,7 @@ The figure below shows the effect.
 #### Swapping Data
 
 ```ts
-/** For details about the BasicDataSource code of the string array, see the attachment at the end of this topic. **/
+/** For details about the BasicDataSource code of the string array, see the sample code at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -359,7 +359,7 @@ The figure below shows the effect.
 #### Changing a Data Item
 
 ```ts
-/** For details about the BasicDataSource code of the string array, see the attachment at the end of this topic. **/
+/** For details about the BasicDataSource code of the string array, see the sample code at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -425,7 +425,7 @@ The figure below shows the effect.
 #### Changing Multiple Data Items
 
 ```ts
-/** For details about the BasicDataSource code of the string array, see the attachment at the end of this topic. **/
+/** For details about the BasicDataSource code of the string array, see the sample code at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -496,7 +496,7 @@ The figure below shows the effect.
 #### Changing Data in Batches Precisely
 
 ```ts
-/** For details about the BasicDataSource code of the string array, see the attachment at the end of this topic. **/
+/** For details about the BasicDataSource code of the string array, see the sample code at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -579,7 +579,7 @@ The **onDatasetChange** API allows you to notify **LazyForEach** at a time to ad
 In the second example, values are directly changed in the array without using **splice()**. Result of **operations** is directly obtained by comparing the original array with the new array.
 
 ```ts
-/** For details about the BasicDataSource code of the string array, see the attachment at the end of this topic. **/
+/** For details about the BasicDataSource code of the string array, see the sample code at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -675,7 +675,7 @@ which is shown in the following example:
 When **LazyForEach** is used for UI re-renders, a child component needs to be destroyed and rebuilt when the data item changes. This may result in low re-render performance when the child component structure is complex. This is where @Observed and @ObjectLink come into picture. By providing in-depth observation, @Observed and @ObjectLink enable precise re-renders of only components that use the changed properties. You can select a re-render mode that better suits your needs.
 
 ```ts
-/** For details about the BasicDataSource code of the StringData array, see the attachment at the end of this topic. **/
+/** For details about the BasicDataSource code of the StringData array, see the sample code at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -754,7 +754,7 @@ State management V2 provides the @ObservedV2 and @Trace decorators to implement 
 #### Observing Nested Class Property Changes
 
 ```ts
-/** For details about the BasicDataSource code of the StringData array, see the attachment at the end of this topic. **/
+/** For details about the BasicDataSource code of the StringData array, see the sample code at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -837,7 +837,7 @@ struct MyComponent {
 #### Observing Component Internal State
 
 ```ts
-/** For details about the BasicDataSource code of the StringData array, see the attachment at the end of this topic. **/
+/** For details about the BasicDataSource code of the StringData array, see the sample code at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -916,7 +916,7 @@ struct ChildComponent {
 #### Receiving External Input
 
 ```ts
-/** For details about the BasicDataSource code of the StringData array, see the attachment at the end of this topic. **/
+/** For details about the BasicDataSource code of the StringData array, see the sample code at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -987,7 +987,7 @@ The @Param decorator enables the child component to receive external input param
 If **LazyForEach** is used in a list, and the **onMove** event is set, you can enable drag and sort for the list items. If an item changes the position after you drag and sort the data, the **onMove** event is triggered to report the original index and target index of the item. The data source needs to be modified in the **onMove** event based on the reported start index and target index. The **DataChangeListener** API does not need to be called to notify the data source change.
 
 ```ts
-/** For details about the BasicDataSource code of the string array, see the attachment at the end of this topic. **/
+/** For details about the BasicDataSource code of the string array, see the sample code at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -1055,7 +1055,7 @@ struct Parent {
 ### Unexpected Rendering Result
 
 ```ts
-/** For details about the BasicDataSource code of the string array, see the attachment at the end of this topic. **/
+/** For details about the BasicDataSource code of the string array, see the sample code at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -1119,7 +1119,7 @@ When child components are clicked to be deleted, there may be cases where the de
 The following shows the code snippet after optimization:
 
 ```ts
-/** For details about the BasicDataSource code of the string array, see the attachment at the end of this topic. **/
+/** For details about the BasicDataSource code of the string array, see the sample code at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -1189,7 +1189,7 @@ After a data item is deleted, the **reloadData** method is called to rebuild the
 ### Image Flickering During Re-renders
 
 ```ts
-/** For details about the BasicDataSource code of the StringData array, see the attachment at the end of this topic. **/
+/** For details about the BasicDataSource code of the StringData array, see the sample code at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -1266,7 +1266,7 @@ In the example, when a list item is clicked, only the **message** property of th
 The following shows the code snippet after optimization:
 
 ```ts
-/** For details about the BasicDataSource code of the StringData array, see the attachment at the end of this topic. **/
+/** For details about the BasicDataSource code of the StringData array, see the sample code at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -1303,6 +1303,7 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
+      // 'app.media.img' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
       this.data.pushData(new StringData(`Hello ${i}`, $r('app.media.img')));
     }
   }
@@ -1345,7 +1346,7 @@ struct ChildComponent {
 ### UI Not Re-rendered When @ObjectLink Property Is Changed
 
 ```ts
-/** For details about the BasicDataSource code of the StringData array, see the attachment at the end of this topic. **/
+/** For details about the BasicDataSource code of the StringData array, see the sample code at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -1428,7 +1429,7 @@ The member variable decorated by @ObjectLink can observe only changes of its sub
 The following shows the code snippet after optimization:
 
 ```ts
-/** For details about the BasicDataSource code of the StringData array, see the attachment at the end of this topic. **/
+/** For details about the BasicDataSource code of the StringData array, see the sample code at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -1511,7 +1512,7 @@ struct ChildComponent {
 List has an **onScrollIndex** callback function. When **onDataReloaded** is called in **onScrollIndex**, there is a risk of screen flickering.
 
 ```ts
-/** For details about the BasicDataSource code of the string array, see the attachment at the end of this topic. **/
+/** For details about the BasicDataSource code of the string array, see the sample code at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -1583,7 +1584,7 @@ When **List** is scrolled to the bottom, screen flicks like the following.
 Replacing **onDataReloaded** by **onDatasetChange** cannot only fix this issue but also improves load performance.
 
 ```ts
-/** For details about the BasicDataSource code of the string array, see the attachment at the end of this topic. **/
+/** For details about the BasicDataSource code of the string array, see the sample code at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -1658,7 +1659,7 @@ Fixed result
 If @Reusable and @ComponentV2 are used together, the component rendering is abnormal.
 
 ```ts
-/** For details about the BasicDataSource code of the StringData array, see the attachment at the end of this topic. **/
+/** For details about the BasicDataSource code of the StringData array, see the sample code at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -1747,7 +1748,7 @@ Change @ComponentV2 to @Component to rectify the rendering exception. After that
 You need to define a proper function for key generation and return a key associated with the target data. When the target data changes, **LazyForEach** re-renders the corresponding component only after identifying the key change.
 
 ```ts
-/** For details about the BasicDataSource code of the string array, see the attachment at the end of this topic. **/
+/** For details about the BasicDataSource code of the string array, see the sample code at the end of this topic. **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -1816,7 +1817,7 @@ LazyForEach(this.data, (item: string) => {
 After the function is defined, click **update all** to re-render the components. 
 ![LazyForEach-Refresh-Not-Expected-Repair](./figures/LazyForEach-Refresh-Not-Expected-Repair.gif)
 
-## Attachments
+## BasicDataSource Sample Code
 
 ### BasicDataSource Code of the String Array
 

@@ -598,8 +598,8 @@ XML解析选项。
 
 | 名称                           | 类型                                                         | 必填 | 说明                                    |
 | ------------------------------ | ------------------------------------------------------------ | ---- | --------------------------------------- |
-| supportDoctype                 | boolean                                                      | 否   | 是否解析文档类型，默认false，表示不解析。 |
-| ignoreNameSpace                | boolean                                                      | 否   | 是否忽略命名空间，默认false，表示不忽略。 |
+| supportDoctype                 | boolean                                                      | 否   | 是否解析文档类型，false表示不解析文档类型，true表示解析文档类型，默认false。 |
+| ignoreNameSpace                | boolean                                                      | 否   | 是否忽略命名空间，忽略命名空间后，将不会对其进行解析。true表示忽略命名空间，false表示不忽略命名空间，默认false。 |
 | tagValueCallbackFunction       | (name: string, value: string) =&gt; boolean | 否   | 解析开始标签、标签值和结束标签，默认undefined，表示不解析。 |
 | attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | 否   | 解析属性和属性值，默认undefined，表示不解析。 |
 | tokenValueCallbackFunction     | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo)) =&gt; boolean | 否   | 解析元素事件类型([EventType](#eventtype))和[ParseInfo](#parseinfo)属性，默认undefined，表示不解析。 |
