@@ -3,7 +3,7 @@
 
 ## Overview
 
-The relational database (RDB) store manages data based on relational models. The system provides mechanisms for local database management based on the underlying SQLite. You can use methods to perform operations, such as adding, deleting, modifying, and querying data, and directly executing SQL statements to satisfy different needs in complicated scenarios.
+The relational database (RDB) store manages data based on relational models. The system provides mechanisms for local database management based on the underlying SQLite. You can use the APIs to perform operations, such as adding, deleting, modifying, and querying data, and directly executing SQL statements to satisfy different needs in complicated scenarios.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1413,7 +1413,11 @@ Sets whether to persist an RDB store.
 
 **Returns**
 
-Returns the status code of the execution. <br>**RDB_OK** indicates that the operation is successful. <br>**RDB_E_INVALID_ARGS** indicates that invalid parameters are specified.| 
+Returns the status code of the execution. 
+
+**RDB_OK** indicates that the operation is successful. 
+
+**RDB_E_INVALID_ARGS** indicates that invalid parameters are specified. 
 
 ### OH_Cursor_GetFloatVector()
 
@@ -1463,7 +1467,9 @@ Returns the execution result.
 
 **RDB_E_SQLITE_IOERR** indicates an SQLite: disk I/O error.
 
-**RDB_E_SQLITE_TOO_BIG** indicates an SQLite error: TEXT or BLOB exceeds the limit. **RDB_E_SQLITE_MISMATCH** indicates an SQLite error: data types mismatch.
+**RDB_E_SQLITE_TOO_BIG** indicates an SQLite error: TEXT or BLOB exceeds the limit. 
+
+**RDB_E_SQLITE_MISMATCH** indicates an SQLite error: data types mismatch.
 
 **See**
 
@@ -1595,7 +1601,9 @@ Queries data in the database using the specified SQL statement. This API support
 
 **Returns**
 
-Returns a pointer to the [OH_Cursor](_o_h___cursor.md) instance if the operation is successful. Release the [OH_Cursor](_o_h___cursor.md) instance that is no longer required in time. Returns **NULL** if the SQL statement is invalid or the memory allocation fails.
+Returns a pointer to the [OH_Cursor](_o_h___cursor.md) instance if the operation is successful. Release the [OH_Cursor](_o_h___cursor.md) instance that is no longer required in time. 
+
+Returns **NULL** if the SQL statement is invalid or the memory allocation fails.
 
 **See**
 
@@ -1679,7 +1687,7 @@ Checks whether the specified tokenizer is supported.
 | Name| Description|
 | -------- | -------- |
 | tokenizer | Tokenizer to check.|
-| isSupported | Pointer to the check.<br>The value **true** means the tokenizer is supported; the value **false** means the opposite.|
+| isSupported | Pointer to the check result.<br>The value **true** means the tokenizer is supported; the value **false** means the opposite.|
 
 **Returns**
 
@@ -1717,7 +1725,7 @@ Returns the operation status code.
 
 **RDB_E_INVALID_ARGS** indicates that invalid parameters are specified.
 
-<br>**RDB_E_NOT_SUPPORTED** indicates that the current operation is not supported.
+**RDB_E_NOT_SUPPORTED** indicates that the current operation is not supported.
 
 ### OH_RdbTrans_Commit()
 
@@ -4022,9 +4030,11 @@ Commits the executed SQL statements based on the specified transaction ID. This 
 
 Returns **RDB_OK** if the operation is successful; returns an error code otherwise.
 
-**RDB_OK** indicates that the operation is successful. <br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.<br>Possible causes: A null pointer is passed in; the transaction ID is not obtained by [OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid); the transaction ID has been used by [OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid); the transaction ID has been used by [OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid).
+**RDB_OK** indicates that the operation is successful. 
 
-<br>**RDB_E_NOT_SUPPORTED** indicates that the current operation is not supported.
+**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.<br>Possible causes: A null pointer is passed in; the transaction ID is not obtained by [OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid); the transaction ID has been used by [OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid); the transaction ID has been used by [OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid).
+
+**RDB_E_NOT_SUPPORTED** indicates that the current operation is not supported.
 
 **See**
 
@@ -4137,9 +4147,9 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 
 **RDB_OK** indicates that the operation is successful.
 
-<br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.<br>Possible causes: A null pointer is passed in; the transaction ID is not obtained by [OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid); the transaction ID has been used by [OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid); the transaction ID has been used by [OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid); **store** or **sql** is **NULL**.
+**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.<br>Possible causes: A null pointer is passed in; the transaction ID is not obtained by [OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid); the transaction ID has been used by [OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid); the transaction ID has been used by [OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid); **store** or **sql** is **NULL**.
 
-<br>**RDB_E_NOT_SUPPORTED** indicates that the current operation is not supported.
+**RDB_E_NOT_SUPPORTED** indicates that the current operation is not supported.
 
 **See**
 
@@ -4198,9 +4208,9 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 
 **RDB_OK** indicates that the operation is successful.
 
-<br>**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.<br>Possible causes: A null pointer is passed in; the transaction ID is not obtained by [OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid); the transaction ID has been used by [OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid); the transaction ID has been used by [OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid).
+**RDB_E_INVALID_ARGS** indicates invalid parameters are specified.<br>Possible causes: A null pointer is passed in; the transaction ID is not obtained by [OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid); the transaction ID has been used by [OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid); the transaction ID has been used by [OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid).
 
-<br>**RDB_E_NOT_SUPPORTED** indicates that the current operation is not supported.
+**RDB_E_NOT_SUPPORTED** indicates that the current operation is not supported.
 
 **See**
 
@@ -4318,7 +4328,7 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 
 **RDB_E_INVALID_ARGS** indicates that invalid parameters are specified.
 
-<br>**RDB_E_NOT_SUPPORTED** indicates that the current operation is not supported.
+**RDB_E_NOT_SUPPORTED** indicates that the current operation is not supported.
 
 
 ### OH_Rdb_SetEncrypted()
