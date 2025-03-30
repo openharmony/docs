@@ -1503,31 +1503,41 @@
     - Image Kit（图片处理服务）<!--image-kit-->
       - [Image Kit简介](media/image/image-overview.md)
       - 图片开发指导(ArkTS)<!--image-arkts-dev-->
-        - [使用ImageSource完成图片解码](media/image/image-decoding.md)
-        - [使用ImageSource完成多图对象解码](media/image/image-picture-decoding.md)
-        - [使用PixelMap完成图像变换](media/image/image-transformation.md)
-        - [使用PixelMap完成位图操作](media/image/image-pixelmap-operation.md)
-        - [使用ImagePacker完成图片编码](media/image/image-encoding.md)
-        - [使用ImagePacker完成多图对象编码](media/image/image-picture-encoding.md)
-        - [编辑图片EXIF信息](media/image/image-tool.md)
-        - [申请图片解码内存](media/image/image-allocator-type.md)
+        - 图片解码<!--image-decoding-arts-->
+          - [使用ImageSource完成图片解码](media/image/image-decoding.md)
+          - [使用ImageSource完成多图对象解码](media/image/image-picture-decoding.md)
+          - [申请图片解码内存](media/image/image-allocator-type.md)
+        - 图片编码<!--image-encoding-arts-->
+          - [使用ImagePacker完成图片编码](media/image/image-encoding.md)
+          - [使用ImagePacker完成多图对象编码](media/image/image-picture-encoding.md)
+        - 图片编辑和处理<!--image-editing-arkts-->
+          - [使用PixelMap完成图像变换](media/image/image-transformation.md)
+          - [使用PixelMap完成位图操作](media/image/image-pixelmap-operation.md)
+          - [编辑图片EXIF信息](media/image/image-tool.md)
+        - 图片接收<!--image-receiving-arkts-->
+          - [使用ImageReceiver接收图片](media/image/image-receiver.md)
       - 图片开发指导(C/C++)<!--image-native-->
-        - [介绍Image_NativeModule结构体信息](media/image/image-structure-c.md)
-        - [使用Image_NativeModule完成图片解码](media/image/image-source-c.md)
-        - [使用Image_NativeModule完成多图对象解码](media/image/image-source-picture-c.md)
-        - [使用Image_NativeModule完成图片接收器](media/image/image-receiver-c.md)
-        - [使用Image_NativeModule完成位图操作](media/image/pixelmap-c.md)
-        - [使用Image_NativeModule处理图像信息](media/image/image-info-c.md)
-        - [使用Image_NativeModule完成图片编码](media/image/image-packer-c.md)
-        - [使用Image_NativeModule完成多图对象编码](media/image/image-packer-picture-c.md)
-        - [使用ImageEffect编辑图片](media/image/image-effect-guidelines.md)
-        - [申请图片解码内存](media/image/image-allocator-type-c.md)
-      - 图片开发指导(依赖JS对象)(C/C++)<!--image-native-js-objects-->
-        - [使用Image完成图片解码](media/image/image-decoding-native.md)
-        - [使用Image完成图片接收器](media/image/image-receiver-native.md)
-        - [使用Image完成图像变换](media/image/image-transformation-native.md)
-        - [使用Image处理PixelMap数据](media/image/image-pixelmap-operation-native.md)
-        - [使用Image完成图片编码](media/image/image-encoding-native.md)
+        - 图片解码<!--image-decoding-c-->
+          - [使用Image_NativeModule完成图片解码](media/image/image-source-c.md)
+          - [使用Image_NativeModule完成多图对象解码](media/image/image-source-picture-c.md)
+          - [申请图片解码内存](media/image/image-allocator-type-c.md)
+        - 图片编码<!--image-encoding-c-->
+          - [使用Image_NativeModule完成图片编码](media/image/image-packer-c.md)
+          - [使用Image_NativeModule完成多图对象编码](media/image/image-packer-picture-c.md)
+        - 图片编辑和处理<!--image-editing-c-->
+          - [使用Image_NativeModule完成位图操作](media/image/pixelmap-c.md)
+          - [使用ImageEffect编辑图片](media/image/image-effect-guidelines.md)
+          - [编辑图片EXIF信息](media/image/image-tool-c.md)
+        - 图片接收<!--image-receiving-c-->
+          - [使用Image_NativeModule完成图片接收](media/image/image-receiver-c.md)
+          - [使用Image_NativeModule处理图像信息](media/image/image-info-c.md)
+      - 不再推荐使用<!--imagekit-not-recommended-->
+        - 图片开发指导(依赖JS对象)(C/C++)<!--image-native-js-objects-->
+          - [图片解码](media/image/image-decoding-native.md)
+          - [图片编码](media/image/image-encoding-native.md)
+          - [图像变换](media/image/image-transformation-native.md)
+          - [位图操作](media/image/image-pixelmap-operation-native.md)
+          - [图片接收](media/image/image-receiver-native.md)
     - Media Kit（媒体服务）<!--media-kit-->
       - [Media Kit简介](media/media/media-kit-intro.md)
       - [Media Kit开发速览](media/media/media-kit-quick-overview.md)
@@ -3004,7 +3014,6 @@
           - [ARKUI_TextPickerCascadeRangeContent](reference/apis-arkui/_a_r_k_u_i___text_picker_cascade_range_content.md)
           - [ARKUI_TextPickerRangeContent](reference/apis-arkui/_a_r_k_u_i___text_picker_range_content.md)
           - [ArkUI_TranslationOptions](reference/apis-arkui/_ark_u_i___translation_options.md)
-          - [OH_ComponentSnapshot](reference/apis-arkui/_ark_u_i___node_component_snapshot.md)
           - [OH_NativeXComponent_Callback](reference/apis-arkui/_o_h___native_x_component___callback.md)
           - [OH_NativeXComponent_ExpectedRateRange](reference/apis-arkui/_o_h___native_x_component___expected_rate_range.md)
           - [OH_NativeXComponent_MouseEvent](reference/apis-arkui/_o_h___native_x_component___mouse_event.md)
