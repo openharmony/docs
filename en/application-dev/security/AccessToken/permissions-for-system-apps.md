@@ -4564,3 +4564,15 @@ This permission prevents authorized access to custom EDM configuration files, su
 **Enable via ACL**：true
 
 **Valid since**：18
+
+## ohos.permission.SEND_NOTIFICATION_CROSS_USER
+
+Allows an application to send notifications to specified users in the system.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
