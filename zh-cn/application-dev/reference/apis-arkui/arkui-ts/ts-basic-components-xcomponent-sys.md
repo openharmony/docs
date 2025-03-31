@@ -29,7 +29,25 @@
 
 enableTransparentLayer(enabled: boolean)
 
-用于开启XComponent组件背景透明状态下的独立图层。
+当背景颜色设置半透明的XComponent需要开启独立图层时，使用本接口。
+
+使用本接口，并不代表一定会被设置为独立图层。出于一些原因：硬件规格（如：硬件不支持独立图层进行硬件合成）、软件规格（如：独立图层与带模糊ui相交），将导致开发者希望半透明XComponent设置为独立图层却失效的结果。
+
+由于绘制独立图层的原理，使用本接口时需要按照以下要求使用，否则会出现显示问题。
+
+1.当设置了独立图层的XComponent下方有相交的XComponent时，下方的XComponent也应该设置为独立图层。
+
+![透明图层示例](figures/Transparent_Layer_Example.png)
+
+2.在设置独立图层接口带透明背景的XComponent下方摆放UI组件会发生显示问题，在合成时会出现UI组件显示内容消失的异常。
+
+![透明图层显示失败](figures/Transparent_Layer_Failure.png)
+
+设置了独立图层接口的XComponent需要在所有与其相交的UI元素下方。
+
+![透明图层正确示例](figures/Transparent_Layer_Correct_Example.png)
+
+3.在布局静态的场景下对带透明背景XComponent设置独立图层，布局静态场景例如：非页面跳转场景、视频弹幕静置播放场景。
 
 **系统API：** 从API version 18开始，该接口支持在系统中使用。
 
