@@ -62,7 +62,7 @@ let c: Global.ObjectType;
 
 ### transformLib配置文件标签说明
 
-arkOptions的transformLib字段配置文件标签说明
+arkOptions的transformLib字段配置文件标签说明：
 
 | 属性名称 | 含义 | 配置范围 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- | -------- |
