@@ -36,7 +36,7 @@ Apply a motion blur effect to the component being scaled or moved.
 
 motionBlur(motionBlur: Optional\<MotionBlurOptions>)
 
-Apply a motion blur effect to the component being scaled or moved. Compared to [motionBlur](#motionblur), the **motionBlur** parameter supports the **undefined** type.
+Apply a motion blur effect to the component being scaled or moved. Compared to [motionBlur](#motionblur), this API supports the **undefined** type for the **motionBlur** parameter.
 
 1. Do not use this API in intra-component transitions, shared element transitions, implicit element transitions, or particle animations. Doing so may cause unexpected results.
 

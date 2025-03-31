@@ -71,10 +71,9 @@ Since API version 18, this attribute supports two-way binding through [!!](../..
 
 selectAll(isAllSelected: Optional\<boolean>)
 
-Sets whether to select all. If the **select** attribute is set for a [Checkbox](ts-basic-components-checkbox.md) component in the same group, the setting of the **Checkbox** has a higher priority. Compared to [selectAll](#selectall), the **isAllSelected** parameter supports the **undefined** type.
+Sets whether to select all. If the **select** attribute is set for a [Checkbox](ts-basic-components-checkbox.md) component in the same group, the setting of the **Checkbox** has a higher priority. Compared to [selectAll](#selectall), this API supports the **undefined** type for the **isAllSelected** parameter.
 
-This attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).
-This attribute supports two-way binding through [!!](../../../quick-start/arkts-new-binding.md).
+This attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md) or [!!](../../../quick-start/arkts-new-binding.md).
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -110,7 +109,7 @@ Sets the color of the selected check box.
 
 selectedColor(resColor: Optional\<ResourceColor>)
 
-Sets the color of the selected check box. Compared to [selectedColor](#selectedcolor), the **resColor** parameter supports the **undefined** type.
+Sets the color of the selected check box. Compared to [selectedColor](#selectedcolor), this API supports the **undefined** type for the **resColor** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -144,7 +143,7 @@ Sets the border color of the check box when it is not selected.
 
 unselectedColor(resColor: Optional\<ResourceColor>)
 
-Sets the border color of the check box when it is not selected. Compared to [unselectedColor](#unselectedcolor10)<sup>10+</sup>, the **resColor** parameter supports the **undefined** type.
+Sets the border color of the check box when it is not selected. Compared to [unselectedColor](#unselectedcolor10)<sup>10+</sup>, this API supports the **undefined** type for the **resColor** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -176,7 +175,7 @@ Sets the check mark style of the check box.
 
 mark(style: Optional\<MarkStyle>)
 
-Sets the check mark style of the check box. Compared to [mark](#mark10)<sup>10+</sup>, the **style** parameter supports the **undefined** type.
+Sets the check mark style of the check box. Compared to [mark](#mark10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -210,7 +209,7 @@ Sets the check box shape of the check box group.
 
 checkboxShape(shape: Optional\<CheckBoxShape>)
 
-Sets the check box shape of the check box group. Compared to [checkboxShape](#checkboxshape12)<sup>12+</sup>, the **shape** parameter supports the **undefined** type.
+Sets the check box shape of the check box group. Compared to [checkboxShape](#checkboxshape12)<sup>12+</sup>, this API supports the **undefined** type for the **shape** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -250,7 +249,7 @@ Triggered when the selected status of the check box group or any check box where
 
 onChange(callback: Optional\<OnCheckboxGroupChangeCallback>)
 
-Triggered when the selected status of the check box group or any check box wherein changes. Compared to [onChange](#onchange), the **callback** parameter supports the **undefined** type.
+Triggered when the selected status of the check box group or any check box wherein changes. Compared to [onChange](#onchange), this API supports the **undefined** type for the **callback** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 

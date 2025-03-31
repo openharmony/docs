@@ -99,10 +99,9 @@ Since API version 18, this attribute supports two-way binding through [!!](../..
 
 value(resStr: Optional\<ResourceStr>)
 
-Sets the text of the drop-down button. By default, it will be replaced by the content of the selected option, if any. Compared to [value](#value), the **resStr** parameter supports the **undefined** type.
+Sets the text of the drop-down button. By default, it will be replaced by the content of the selected option, if any. Compared to [value](#value), this API supports the **undefined** type for the **resStr** parameter.
 
-This parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).
-This parameter supports two-way binding through [!!](../../../quick-start/arkts-new-binding.md).
+This attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md) or [!!](../../../quick-start/arkts-new-binding.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -142,7 +141,7 @@ The priorities of **controlSize**, **width**, and **height** are as follows:
 
 controlSize(size: Optional\<ControlSize>)
 
-Sets the size of the **Select** component. Compared to [controlSize](#controlsize12)<sup>12+</sup>, the **size** parameter supports the **undefined** type.
+Sets the size of the **Select** component. Compared to [controlSize](#controlsize12)<sup>12+</sup>, this API supports the **undefined** type for the **size** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -182,7 +181,7 @@ Creates a content modifier for the drop-down list box.
 
 menuItemContentModifier(modifier: Optional\<ContentModifier\<MenuItemConfiguration>>)
 
-Creates a content modifier for the drop-down list box. Compared to [menuItemContentModifier](#menuitemcontentmodifier12)<sup>12+</sup>, the **modifier** parameter supports the **undefined** type.
+Creates a content modifier for the drop-down list box. Compared to [menuItemContentModifier](#menuitemcontentmodifier12)<sup>12+</sup>, this API supports the **undefined** type for the **modifier** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -243,7 +242,7 @@ Sets the text font of the drop-down button. If **size** is set to **0**, the tex
 
 font(selectFont: Optional\<Font>)
 
-Sets the font style of the drop-down button. If **size** is set to **0**, the text is not displayed. If **size** is set to a negative value, the text is displayed at its default size. Compared to [font](#font), the **selectFont** parameter supports the **undefined** type.
+Sets the font style of the drop-down button. If **size** is set to **0**, the text is not displayed. If **size** is set to a negative value, the text is displayed at its default size. Compared to [font](#font), this API supports the **undefined** type for the **selectFont** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -275,7 +274,7 @@ Sets the font color of the drop-down button.
 
 fontColor(resColor: Optional\<ResourceColor>)
 
-Sets the font color of the drop-down button. Compared to [fontColor](#fontcolor), the **resColor** parameter supports the **undefined** type.
+Sets the font color of the drop-down button. Compared to [fontColor](#fontcolor), this API supports the **undefined** type for the **resColor** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -307,7 +306,7 @@ Sets the background color of the selected option in the drop-down list box.
 
 selectedOptionBgColor(resColor: Optional\<ResourceColor>)
 
-Sets the background color of the selected option in the drop-down list box. Compared to [selectedOptionBgColor](#selectedoptionbgcolor), the **resColor** parameter supports the **undefined** type.
+Sets the background color of the selected option in the drop-down list box. Compared to [selectedOptionBgColor](#selectedoptionbgcolor), this API supports the **undefined** type for the **resColor** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -339,7 +338,7 @@ Sets the text font of the selected option in the drop-down list box. When **size
 
 selectedOptionFont(selectFont: Optional\<Font>)
 
-Sets the text font of the selected option in the drop-down list box. When **size** is set to **0**, the text is not displayed. When **size** is set to a negative value, the text is displayed at its default size. Compared to [selectedOptionFont](#selectedoptionfont), the **selectFont** parameter supports the **undefined** type.
+Sets the text font of the selected option in the drop-down list box. When **size** is set to **0**, the text is not displayed. When **size** is set to a negative value, the text is displayed at its default size. Compared to [selectedOptionFont](#selectedoptionfont), this API supports the **undefined** type for the **selectFont** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -371,7 +370,7 @@ Sets the font color of the selected option in the drop-down list box.
 
 selectedOptionFontColor(resColor: Optional\<ResourceColor>)
 
-Sets the font color of the selected option in the drop-down list box. Compared to [selectedOptionFontColor](#selectedoptionfontcolor), the **resColor** parameter supports the **undefined** type.
+Sets the font color of the selected option in the drop-down list box. Compared to [selectedOptionFontColor](#selectedoptionfontcolor), this API supports the **undefined** type for the **resColor** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -403,7 +402,7 @@ Sets the background color of options in the drop-down list box.
 
 optionBgColor(resColor: Optional\<ResourceColor>)
 
-Sets the background color of options in the drop-down list box. Compared to [optionBgColor](#optionbgcolor), the **resColor** parameter supports the **undefined** type.
+Sets the background color of options in the drop-down list box. Compared to [optionBgColor](#optionbgcolor), this API supports the **undefined** type for the **resColor** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -437,7 +436,7 @@ optionFont(selectFont: Optional\<Font>)
 
 Sets the text font of options in the drop-down list box. When **size** is set to **0**, the text is not displayed. When **size** is set to a negative value, the text is displayed at its default size.
 
-Compared to [optionFont](#optionfont), the **selectFont** parameter supports the **undefined** type.
+Compared to [optionFont](#optionfont), this API supports the **undefined** type for the **selectFont** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -469,7 +468,7 @@ Sets the font color of options in the drop-down list box.
 
 optionFontColor(resColor: Optional\<ResourceColor>)
 
-Sets the font color of options in the drop-down list box. Compared to [optionFontColor](#optionfontcolor), the **resColor** parameter supports the **undefined** type.
+Sets the font color of options in the drop-down list box. Compared to [optionFontColor](#optionfontcolor), this API supports the **undefined** type for the **resColor** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -533,7 +532,7 @@ Sets the alignment between the text and arrow of an option.
 
 arrowPosition(position: Optional\<ArrowPosition>)
 
-Sets the alignment between the text and arrow of an option. Compared to [arrowPosition](#arrowposition10), the **position** parameter supports the **undefined** type.
+Sets the alignment between the text and arrow of an option. Compared to [arrowPosition](#arrowposition10), this API supports the **undefined** type for the **position** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -566,7 +565,7 @@ Sets the alignment between the drop-down button and the drop-down menu.
 
 menuAlign(alignType: Optional\<MenuAlignType>, offset?: Offset)
 
-Sets the alignment between the drop-down button and the drop-down menu. Compared to [menuAlign](#menualign10)<sup>10+</sup>, the **alignType** parameter supports the **undefined** type.
+Sets the alignment between the drop-down button and the drop-down menu. Compared to [menuAlign](#menualign10)<sup>10+</sup>, this API supports the **undefined** type for the **alignType** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -601,7 +600,7 @@ If an invalid value or a value less than the minimum width of 56 vp is set, the 
 
 optionWidth(width: Optional\<Dimension | OptionWidthMode> )
 
-Sets the width for the option in the drop-down list box. This attribute cannot be set in percentage. **OptionWidthMode** specifies whether to inherit the width of the drop-down list button. Compared to [optionWidth](#optionwidth11)<sup>11+</sup>, the **width** parameter supports the **undefined** type.
+Sets the width for the option in the drop-down list box. This attribute cannot be set in percentage. **OptionWidthMode** specifies whether to inherit the width of the drop-down list button. Compared to [optionWidth](#optionwidth11)<sup>11+</sup>, this API supports the **undefined** type for the **width** parameter.
 
 If an invalid value or a value less than the minimum width of 56 vp is set, the attribute does not take effect, and the option width uses the default value, which is two columns.
 
@@ -639,7 +638,7 @@ If the actual height of all options in the drop-down list box is less than the p
 
 optionHeight(height: Optional\<Dimension>)
 
-Sets the maximum height for the option in the drop-down list box. This attribute cannot be set in percentage. The default and maximum value is 80% of the available height of the screen. Compared to [optionHeight](#optionheight11)<sup>11+</sup>, the **height** parameter supports the **undefined** type.
+Sets the maximum height for the option in the drop-down list box. This attribute cannot be set in percentage. The default and maximum value is 80% of the available height of the screen. Compared to [optionHeight](#optionheight11)<sup>11+</sup>, this API supports the **undefined** type for the **height** parameter.
 
 If set to an invalid value or 0, this attribute does not take effect. In this case, the default value is used.
 
@@ -675,7 +674,7 @@ Sets the background color of the drop-down list box.
 
 menuBackgroundColor(resColor: Optional\<ResourceColor>)
 
-Sets the background color of the drop-down list box. Compared to [menuBackgroundColor](#menubackgroundcolor11)<sup>11+</sup>, the **resColor** parameter supports the **undefined** type.
+Sets the background color of the drop-down list box. Compared to [menuBackgroundColor](#menubackgroundcolor11)<sup>11+</sup>, this API supports the **undefined** type for the **resColor** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -707,7 +706,7 @@ Sets the background blur style of the drop-down list box.
 
 menuBackgroundBlurStyle(style: Optional\<BlurStyle>)
 
-Sets the background blur style of the drop-down list box. Compared to [menuBackgroundBlurStyle](#menubackgroundblurstyle11)<sup>11+</sup>, the **style** parameter supports the **undefined** type.
+Sets the background blur style of the drop-down list box. Compared to [menuBackgroundBlurStyle](#menubackgroundblurstyle11)<sup>11+</sup>, this API supports the **undefined** type for the **style** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -842,7 +841,7 @@ Invoked when an option in the drop-down list box is selected.
 
 onSelect(callback: Optional\<OnSelectCallback> )
 
-Invoked when an option in the drop-down list box is selected. Compared to [onSelect](#onselect), the **callback** parameter supports the **undefined** type.
+Invoked when an option in the drop-down list box is selected. Compared to [onSelect](#onselect), this API supports the **undefined** type for the **callback** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 

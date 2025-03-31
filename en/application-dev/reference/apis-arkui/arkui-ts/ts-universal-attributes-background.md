@@ -49,7 +49,7 @@ Sets the background color of the component.
 
 backgroundColor(color: Optional\<ResourceColor>)
 
-Sets the background color of the component. Compared to [backgroundColor](#backgroundcolor), the **color** parameter supports the **undefined** type.
+Sets the background color of the component. Compared to [backgroundColor](#backgroundcolor), this API supports the **undefined** type for the **color** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -200,7 +200,7 @@ Defines the blur style to apply between the background and content of a componen
 
 backgroundBlurStyle(style: Optional\<BlurStyle>, options?: BackgroundBlurStyleOptions, sysOptions?: SystemAdaptiveOptions)
 
-Defines the blur style to apply between the background and content of a component. It encapsulates various blur radius, mask color, mask opacity, saturation, and brightness values through enum values. Compared to [backgroundBlurStyle<sup>9+</sup>](#backgroundblurstyle9), the **style** parameter supports the **undefined** type.
+Defines the blur style to apply between the background and content of a component. It encapsulates various blur radius, mask color, mask opacity, saturation, and brightness values through enum values. Compared to [backgroundBlurStyle<sup>9+</sup>](#backgroundblurstyle9), this API supports the **undefined** type for the **style** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -243,7 +243,7 @@ Applies a background blur effect to the component. You can customize the blur ra
 
 backdropBlur(radius: Optional\<number>, options?: BlurOptions, sysOptions?: SystemAdaptiveOptions)
 
-Applies a background blur effect to the component. You can customize the blur radius and grayscale parameters. Compared to [backdropBlur](#backdropblur), the **radius** parameter supports the **undefined** type.
+Applies a background blur effect to the component. You can customize the blur radius and grayscale parameters. Compared to [backdropBlur](#backdropblur), this API supports the **undefined** type for the **radius** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -283,7 +283,7 @@ Sets the background effect of the component, including the blur radius, brightne
 
 backgroundEffect(options: Optional\<BackgroundEffectOptions>, sysOptions?: SystemAdaptiveOptions)
 
-Sets the background effect of the component, including the blur radius, brightness, saturation, and color. Compared to [backgroundEffect<sup>11+</sup>](#backgroundeffect11), the **options** parameter supports the **undefined** type.
+Sets the background effect of the component, including the blur radius, brightness, saturation, and color. Compared to [backgroundEffect<sup>11+</sup>](#backgroundeffect11), this API supports the **undefined** type for the **options** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -379,7 +379,7 @@ Sets the background brightness of the component.
 
 backgroundBrightness(options: Optional\<BackgroundBrightnessOptions>)
 
-Sets the background brightness of the component. Compared to [backgroundBrightness<sup>12+</sup>](#backgroundbrightness12), the **options** parameter supports the **undefined** type.
+Sets the background brightness of the component. Compared to [backgroundBrightness<sup>12+</sup>](#backgroundbrightness12), this API supports the **undefined** type for the **options** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -605,7 +605,7 @@ struct BlurEffectsExample {
         Text('blur text')
           .blur(5).margin(10)
         Text('blur text')
-          .blur(10, undefined, { disableSystemAdaptation: true }).margin(10) // Set the foreground blur radius to 5 and disable system adaptive adjustment。
+          .blur(10, undefined).margin(10) // Set the foreground blur radius to 5 and disable system adaptive adjustment.
         Text('blur text')
           .blur(15).margin(10)
       }.width('90%').height(40)

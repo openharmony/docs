@@ -1384,7 +1384,7 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>, isEntry?: 
 | onPop<sup>11+</sup> | Callback\<[PopInfo](#popinfo11)> | No| Callback returned when [pop](#pop11) is called on the navigation destination page. It is invoked only after the **result** parameter is set in [pop](#pop11).|
 | isEntry<sup>12+</sup> | boolean | No| Whether the navigation destination page is the entry page.<br>Default value: **false**<br>**true**: The navigation destination page is the entry page.<br>**false**: The navigation destination page is not the entry page.<br>The value of this parameter is reviewed or reset under the following conditions:<br>- When a global back event is triggered on the current navigation destination page.<br> - When the application is switched to the background.<br>**NOTE**<br>The navigation destination page serving as an entry does not respond to the in-app global back events; instead, it directly triggers the global back event between applications.|
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

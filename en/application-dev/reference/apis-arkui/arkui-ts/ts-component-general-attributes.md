@@ -1,5 +1,5 @@
 # Universal Attributes
-
+<!--Del-->
 - [Size](ts-universal-attributes-size.md)
 - [Location](ts-universal-attributes-location.md)
 - [Layout Constraints](ts-universal-attributes-layout-constraints.md)
@@ -44,9 +44,7 @@
 - Transition<!--transition-->
   - [Modal Transition](ts-universal-attributes-modal-transition.md)
   - [Sheet Transition](ts-universal-attributes-sheet-transition.md)
-  <!--Del-->
   - [Sheet Transition (System API)](ts-universal-attributes-sheet-transition-sys.md)
-  <!--DelEnd-->
 - [Obscuring](ts-universal-attributes-obscured.md)
 - [Universal Text Attributes](ts-universal-attributes-text-style.md)
 - [Drag and Drop Control](ts-universal-attributes-drag-drop.md)
@@ -55,7 +53,6 @@
 - [Event Monopolization](ts-universal-attributes-monopolize-events.md)
 - [Cursor Control](ts-universal-attributes-cursor.md)
 - [Special Effect Drawing Combination](ts-universal-attributes-use-effect.md)
-<!--Del-->
 - [Point Light Style (System API)](ts-universal-attributes-point-light-style-sys.md)
 - [Image Effect (System API)](ts-universal-attributes-image-effect-sys.md)
 <!--DelEnd-->
