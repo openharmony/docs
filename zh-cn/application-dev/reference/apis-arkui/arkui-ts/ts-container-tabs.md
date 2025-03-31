@@ -187,7 +187,7 @@ API Version 14之前的版本，若设置barHeight为固定值后，TabBar无法
 
 animationDuration(value: number)
 
-设置点击TabBar页签和调用TabsController的changeIndex接口切换TabContent的动画时长。该参数不支持百分比设置。
+设置点击TabBar页签和调用TabsController的changeIndex接口切换TabContent的动画时长。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
