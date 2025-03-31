@@ -542,3 +542,15 @@ Allows an application to set the sandbox type to dynamic sandbox.
 **Authorization mode**: system_grant
 
 **Valid since**: 18
+
+### ohos.permission.MANAGE_SCREEN_TIME_GUARD
+
+Allows an application to call the screen time guard APIs to restrict screen usage, apply application access control, and control the screen usage time.
+
+<!--RP40--><!--RP40End-->
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Valid since**：20

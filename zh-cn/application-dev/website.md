@@ -6,6 +6,7 @@
     - [构建第一个ArkTS应用（Stage模型）](quick-start/start-with-ets-stage.md)
   <!--DelEnd-->
   - 开发基础知识<!--development-fundamentals-->
+    - [应用程序包术语](quick-start/application-package-glossary.md)
     - 应用程序包基础知识<!--application-package-fundamentals-->
       - [应用程序包概述](quick-start/application-package-overview.md)
       - 应用程序包结构<!--application-package-structure-->
@@ -3133,6 +3134,7 @@
         - [@ohos.file.fileAccess (公共文件访问与管理)(系统接口)](reference/apis-core-file-kit/js-apis-fileAccess-sys.md)
         - [@ohos.file.fileExtensionInfo (公共文件访问与管理属性信息)(系统接口)](reference/apis-core-file-kit/js-apis-fileExtensionInfo-sys.md)
         - [@ohos.file.keyManager (用户秘钥管理)(系统接口)](reference/apis-core-file-kit/js-apis-file-keymanager-sys.md)
+        - [@ohos.file.picker (选择器)(系统接口)](reference/apis-core-file-kit/js-apis-file-picker-sys.md)
         - [@ohos.file.recent(最近访问列表)(系统接口)](reference/apis-core-file-kit/js-apis-file-recent-sys.md)
         - [@ohos.file.storageStatistics (应用空间统计)(系统接口)](reference/apis-core-file-kit/js-apis-file-storage-statistics-sys.md)
         - [@ohos.file.trash (回收站)(系统接口)](reference/apis-core-file-kit/js-apis-file-trash-sys.md)

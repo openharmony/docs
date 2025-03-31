@@ -166,6 +166,28 @@ enableSecure(isSecure: boolean)
   >
   > 不支持[ArkUI NDK接口](../../../ui/ndk-build-ui-overview.md)创建的XComponent组件。
 
+### hdrBrightness<sup>20+</sup>
+
+hdrBrightness(brightness: number)
+
+用于调整组件播放HDR视频的亮度。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                   |
+| -------- | ------- | ---- | ---------------------- |
+| brightness | number | 是   | 用于调整组件播放HDR视频的亮度; brightness的取值范围为0.0~1.0; 小于0的值等价于0，大于1的值等价于1; 0 表示SDR视频的亮度，1 表示HDR视频的亮度。|
+
+  > **说明：**
+  >
+  > 仅type为SURFACE时有效。
+  >
+  > 不支持[ArkUI NDK接口](../../../ui/ndk-build-ui-overview.md)创建的XComponent组件。
+
 ## 事件
 
 从API version 12开始，type为SURFACE或TEXTURE时，支持[通用事件](ts-component-general-events.md)。

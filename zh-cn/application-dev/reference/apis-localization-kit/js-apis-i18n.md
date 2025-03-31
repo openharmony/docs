@@ -35,7 +35,7 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
 | ------------ | ------- | ---- | ---------------- |
 | country      | string  | 是    | 用于指定国家，要求是合法的国家码。            |
 | locale       | string  | 是    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。     |
-| sentenceCase | boolean | 否    | 本地化显示文本时，首字母是否大写。默认值：true。 |
+| sentenceCase | boolean | 否    | true表示按照首字母大写的格式显示文本，false表示按照区域默认的大小写格式显示文本。默认值：true。 |
 
 **返回值：**
 
@@ -84,7 +84,7 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 | ------------ | ------- | ---- | ---------------- |
 | language     | string  | 是    | 指定语言，要求是合法的语言ID。            |
 | locale       | string  | 是    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。     |
-| sentenceCase | boolean | 否    | 本地化显示文本时，首字母是否大写。默认值：true。 |
+| sentenceCase | boolean | 否    | true表示按照首字母大写的格式显示文本，false表示按照区域默认的大小写格式显示文本。默认值：true。 |
 
 **返回值：**
 
@@ -204,7 +204,7 @@ static isSuggested(language: string, region?: string): boolean
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 返回true，表示当前语言和地区匹配；<br>返回false，表示当前语言和地区不匹配。 |
+| boolean | true表示当前语言和地区匹配，false表示当前语言和地区不匹配。 |
 
 **错误码：**
 
@@ -313,7 +313,7 @@ static is24HourClock(): boolean
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 返回true，表示系统24小时开关开启；返回false，表示系统24小时开关关闭。 |
+| boolean | true表示系统24小时开关开启，false表示系统24小时开关关闭。 |
 
 **示例：**
   ```ts
@@ -1241,7 +1241,7 @@ isValidNumber(number: string): boolean
 
 | 类型      | 说明                                    |
 | ------- | ------------------------------------- |
-| boolean | 返回true表示电话号码的格式正确，返回false表示电话号码的格式错误。 |
+| boolean | true表示电话号码的格式正确，false表示电话号码的格式错误。 |
 
 **示例：**
   ```ts
@@ -1718,7 +1718,7 @@ isBoundary(offset: number): boolean
 
 | 类型      | 说明                              |
 | ------- | ------------------------------- |
-| boolean | 若offset指定的文本位置是一个分割点，则返回true，否则返回false。<br>返回true时，会将BreakIterator对象移动到offset指定的位置，否则相当于调用following。 |
+| boolean | true表示offset指定的文本位置是一个分割点，false表示offset指定的文本位置不是一个分割点。<br>返回true时，会将BreakIterator对象移动到offset指定的位置，否则相当于调用following。 |
 
 **示例：**
   ```ts
@@ -1796,7 +1796,7 @@ getDisplayName(locale?: string, isDST?: boolean): string
 | 参数名    | 类型      | 必填   | 说明                   |
 | ------ | ------- | ---- | -------------------- |
 | locale | string  | 否    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。默认值：系统Locale。                |
-| isDST  | boolean | 否    | 时区对象本地化时是否考虑夏令时。默认值：false。 |
+| isDST  | boolean | 否    | true表示时区对象本地化时考虑夏令时，false表示时区对象本地化时不考虑夏令时。默认值：false。 |
 
 **返回值：**
 
@@ -2130,7 +2130,7 @@ static isDigit(char: string): boolean
 
 | 类型      | 说明                                   |
 | ------- | ------------------------------------ |
-| boolean | 返回true表示输入的字符是数字，返回false表示输入的字符不是数字。 |
+| boolean | true表示输入的字符是数字，false表示输入的字符不是数字。 |
 
 **示例：**
   ```ts
@@ -2158,7 +2158,7 @@ static isSpaceChar(char: string): boolean
 
 | 类型      | 说明                                     |
 | ------- | -------------------------------------- |
-| boolean | 返回true表示输入的字符是空格符，返回false表示输入的字符不是空格符。 |
+| boolean | true表示输入的字符是空格符，false表示输入的字符不是空格符。 |
 
 **示例：**
   ```ts
@@ -2186,7 +2186,7 @@ static isWhitespace(char: string): boolean
 
 | 类型      | 说明                                     |
 | ------- | -------------------------------------- |
-| boolean | 返回true表示输入的字符是空白符，返回false表示输入的字符不是空白符。 |
+| boolean | true表示输入的字符是空白符，false表示输入的字符不是空白符。 |
 
 **示例：**
   ```ts
@@ -2214,7 +2214,7 @@ static isRTL(char: string): boolean
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 返回true表示输入的字符是从右到左语言的字符，返回false表示输入的字符不是从右到左语言的字符。 |
+| boolean | true表示输入的字符是从右到左语言的字符，false表示输入的字符不是从右到左语言的字符。 |
 
 **示例：**
   ```ts
@@ -2242,7 +2242,7 @@ static isIdeograph(char: string): boolean
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 返回true表示输入的字符是表意文字，返回false表示输入的字符不是表意文字。 |
+| boolean | true表示输入的字符是表意文字，false表示输入的字符不是表意文字。 |
 
 **示例：**
   ```ts
@@ -2270,7 +2270,7 @@ static isLetter(char: string): boolean
 
 | 类型      | 说明                                   |
 | ------- | ------------------------------------ |
-| boolean | 返回true表示输入的字符是字母，返回false表示输入的字符不是字母。 |
+| boolean | true表示输入的字符是字母，false表示输入的字符不是字母。 |
 
 **示例：**
   ```ts
@@ -2298,7 +2298,7 @@ static isLowerCase(char: string): boolean
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 返回true表示输入的字符是小写字母，返回false表示输入的字符不是小写字母。 |
+| boolean | true表示输入的字符是小写字母，false表示输入的字符不是小写字母。 |
 
 **示例：**
   ```ts
@@ -2326,7 +2326,7 @@ static isUpperCase(char: string): boolean
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 返回true表示输入的字符是大写字母，返回false表示输入的字符不是大写字母。 |
+| boolean | true表示输入的字符是大写字母，false表示输入的字符不是大写字母。 |
 
 **示例：**
   ```ts
@@ -2812,7 +2812,7 @@ isHoliday(date?: Date): boolean
 
 |       类型        |         说明          |
 | ----------------- | ----------------------|
-| boolean           | 返回true是节假日，返回false不是节假日。 |
+| boolean           | true表示指定的日期是节假日，false表示指定的日期不是节假日。 |
 
 **错误码：**
 
@@ -3146,14 +3146,6 @@ constructor(numberFormat: intl.NumberFormat | SimpleNumberFormat, options?: Styl
 | numberFormat | [intl.NumberFormat](js-apis-intl.md#numberformat) \| [SimpleNumberFormat](#simplenumberformat18) | 是   | 用于格式化数字的对象。  |
 | options | [StyledNumberFormatOptions](#stylednumberformatoptions18) | 否 | 指定数字格式化对象的配置项。默认值：默认的文本样式。  |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-
 **示例：**
   ```ts
   import { intl } from '@kit.LocalizationKit';
@@ -3272,7 +3264,7 @@ getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): stri
 | ------------ | ------- | ---- | ---------------- |
 | country      | string  | 是    | 指定国家。            |
 | locale       | string  | 是    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。      |
-| sentenceCase | boolean | 否    | 本地化显示文本是否要首字母大写。默认值：true。 |
+| sentenceCase | boolean | 否    | true表示按照首字母大写的格式显示文本，false表示按照区域默认的大小写格式显示文本。默认值：true。 |
 
 **返回值：**
 
@@ -3302,7 +3294,7 @@ getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): stri
 | ------------ | ------- | ---- | ---------------- |
 | country      | string  | 是    | 指定国家。            |
 | locale       | string  | 是    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。      |
-| sentenceCase | boolean | 否    | 本地化显示文本是否要首字母大写。默认值：true。 |
+| sentenceCase | boolean | 否    | true表示按照首字母大写的格式显示文本，false表示按照区域默认的大小写格式显示文本。默认值：true。 |
 
 **返回值：**
 
@@ -3333,7 +3325,7 @@ getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): st
 | ------------ | ------- | ---- | ---------------- |
 | language     | string  | 是    | 指定语言。            |
 | locale       | string  | 是    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。      |
-| sentenceCase | boolean | 否    | 本地化显示文本是否要首字母大写。默认值：true。 |
+| sentenceCase | boolean | 否    | true表示按照首字母大写的格式显示文本，false表示按照区域默认的大小写格式显示文本。默认值：true。 |
 
 **返回值：**
 
@@ -3428,7 +3420,7 @@ is24HourClock(): boolean
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 返回true，表示系统24小时开关开启；返回false，表示系统24小时开关关闭。 |
+| boolean | true表示系统24小时开关开启，false表示系统24小时开关关闭。 |
 
 **示例：**
   ```ts
@@ -3452,13 +3444,13 @@ set24HourClock(option: boolean): boolean
 
 | 参数名    | 类型      | 必填   | 说明                                       |
 | ------ | ------- | ---- | ---------------------------------------- |
-| option | boolean | 是    | option为true，表示开启系统24小时制开关；返回false，表示关闭系统24小时开关。 |
+| option | boolean | 是    | true表示开启系统24小时制开关，false表示关闭系统24小时制开关。 |
 
 **返回值：**
 
 | 类型      | 说明                            |
 | ------- | ----------------------------- |
-| boolean | 返回true，表示修改成功；返回false，表示修改失败。 |
+| boolean | true表示修改成功，false表示修改失败。 |
 
 **示例：**
   ```ts
@@ -3490,7 +3482,7 @@ addPreferredLanguage(language: string, index?: number): boolean
 
 | 类型      | 说明                            |
 | ------- | ----------------------------- |
-| boolean | 返回true，表示添加成功；返回false，表示添加失败。 |
+| boolean | true表示添加成功，false表示添加失败。 |
 
 **示例：**
   ```ts
@@ -3523,7 +3515,7 @@ removePreferredLanguage(index: number): boolean
 
 | 类型      | 说明                            |
 | ------- | ----------------------------- |
-| boolean | 返回true，表示删除成功；返回false，表示删除失败。 |
+| boolean | true表示删除成功，false表示删除失败。 |
 
 **示例：**
   ```ts
@@ -3630,7 +3622,7 @@ isDigit(char: string): boolean
 
 | 类型      | 说明                                   |
 | ------- | ------------------------------------ |
-| boolean | 返回true表示输入的字符是数字，返回false表示输入的字符不是数字。 |
+| boolean | true表示输入的字符是数字，false表示输入的字符不是数字。 |
 
 
 ### isSpaceChar<sup>(deprecated)</sup>
@@ -3653,7 +3645,7 @@ isSpaceChar(char: string): boolean
 
 | 类型      | 说明                                     |
 | ------- | -------------------------------------- |
-| boolean | 返回true表示输入的字符是空格符，返回false表示输入的字符不是空格符。 |
+| boolean | true表示输入的字符是空格符，false表示输入的字符不是空格符。 |
 
 
 ### isWhitespace<sup>(deprecated)</sup>
@@ -3676,7 +3668,7 @@ isWhitespace(char: string): boolean
 
 | 类型      | 说明                                     |
 | ------- | -------------------------------------- |
-| boolean | 返回true表示输入的字符是空白符，返回false表示输入的字符不是空白符。 |
+| boolean | true表示输入的字符是空白符，false表示输入的字符不是空白符。 |
 
 
 ### isRTL<sup>(deprecated)</sup>
@@ -3699,7 +3691,7 @@ isRTL(char: string): boolean
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 返回true表示输入的字符是从右到左语言的字符，返回false表示输入的字符不是从右到左语言的字符。 |
+| boolean | true表示输入的字符是从右到左语言的字符，false表示输入的字符不是从右到左语言的字符。 |
 
 
 ### isIdeograph<sup>(deprecated)</sup>
@@ -3722,7 +3714,7 @@ isIdeograph(char: string): boolean
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 返回true表示输入的字符是表意文字，返回false表示输入的字符不是表意文字。 |
+| boolean | true表示输入的字符是表意文字，false表示输入的字符不是表意文字。 |
 
 
 ### isLetter<sup>(deprecated)</sup>
@@ -3745,7 +3737,7 @@ isLetter(char: string): boolean
 
 | 类型      | 说明                                   |
 | ------- | ------------------------------------ |
-| boolean | 返回true表示输入的字符是字母，返回false表示输入的字符不是字母。 |
+| boolean | true表示输入的字符是字母，false表示输入的字符不是字母。 |
 
 
 ### isLowerCase<sup>(deprecated)</sup>
@@ -3768,7 +3760,7 @@ isLowerCase(char: string): boolean
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 返回true表示输入的字符是小写字母，返回false表示输入的字符不是小写字母。 |
+| boolean | true表示输入的字符是小写字母，false表示输入的字符不是小写字母。 |
 
 
 ### isUpperCase<sup>(deprecated)</sup>
@@ -3791,7 +3783,7 @@ isUpperCase(char: string): boolean
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 返回true表示输入的字符是大写字母，返回false表示输入的字符不是大写字母。 |
+| boolean | true表示输入的字符是大写字母，false表示输入的字符不是大写字母。 |
 
 
 ### getType<sup>(deprecated)</sup>

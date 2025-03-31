@@ -168,7 +168,7 @@ Defines the style of the arc slider.
 | activeTrackThickness | number | No  | @Trace     | Stroke width of the arc slider when it is zoomed in, in vp.<br>Default value: **24**<br>The value ranges from 24 to 36. If an invalid value is set, the default value is used.|
 | trackColor           | string | No  | @Trace     | Background color of the stroke.<br>Default value: **#33FFFFFF**                     |
 | selectedColor        | string | No  | @Trace     | Highlight color of the stroke.<br>Default value: **#FF5EA1FF**                     |
-| trackBlur            | number | No  | @Trace     | Blur effect applied to the stroke background, in vp.<br>Default value: **20**<br>If a value less than 0 is set, the default is used.|
+| trackBlur            | number | No  | @Trace     | Blur effect applied to the stroke background, in vp.<br>Default value: **20**<br>If a value less than 0 is set, the default value is used.|
 
 ### constructor
 
@@ -306,7 +306,7 @@ Defines the construction information for **ArcSliderStyleOptions**.
 | activeTrackThickness | number | No  | Stroke width of the arc slider when it is zoomed in, in vp.<br>Default value: **24**<br>The value ranges from 24 to 36. If an invalid value is set, the default value is used.|
 | trackColor           | string | No  | Background color of the stroke.<br>Default value: **#33FFFFFF**                     |
 | selectedColor        | string | No  | Highlight color of the stroke.<br>Default value: **#FF5EA1FF**                     |
-| trackBlur            | number | No  | Blur effect applied to the stroke background, in vp.<br>Default value: **20**<br>If a value less than 0 is set, the default is used.|
+| trackBlur            | number | No  | Blur effect applied to the stroke background, in vp.<br>Default value: **20**<br>If a value less than 0 is set, the default value is used.|
 
 ## Example
 

@@ -20,7 +20,7 @@
 | [Camera_QualityLevel](_o_h___camera.md#camera_qualitylevel) [quality](#quality) | 拍照图像质量。  | 
 | [Camera_ImageRotation](_o_h___camera.md#camera_imagerotation) [rotation](#rotation) | 拍照旋转角度。  | 
 | [Camera_Location](_camera___location.md) \* [location](#location) | 拍照位置。  | 
-| bool [mirror](#mirror) | 设置镜像拍照功能开关，默认为false。  | 
+| bool [mirror](#mirror) | 设置镜像拍照功能开关，true为打开，false为关闭，默认为false。  | 
 
 
 ## 结构体成员变量说明

@@ -2941,7 +2941,9 @@ on(type: 'seiMessageReceived', payloadTypes: Array\<number>, callback: OnSeiMess
 **示例：**
 
 ```ts
-this.avPlayer.on('seiMessageReceived', [5], (messages: Array<media.SeiMessage>, playbackPosition?: number) =>
+import util from '@ohos.util';
+
+avPlayer.on('seiMessageReceived', [5], (messages: Array<media.SeiMessage>, playbackPosition?: number) =>
 {
   console.info('seiMessageReceived playbackPosition ' + playbackPosition)
 
@@ -2949,7 +2951,7 @@ this.avPlayer.on('seiMessageReceived', [5], (messages: Array<media.SeiMessage>, 
     console.info('seiMessageReceived messages payloadType ' + messages[key].payloadType + ' payload size ' + messages[key].payload.byteLength)
 
     let textDecoder = util.TextDecoder.create("utf-8",{ignoreBOM: true})
-    let ab = messages[key].payload.slice(16, messages[key].payload.byteLength)
+    let ab = messages[key]?.payload?.slice(16, messages[key].payload.byteLength)
     let result: Uint8Array = new Uint8Array(ab)
     let retStr: string = textDecoder.decodeToString(result)
     console.info('seiMessageReceived messages payload ' + retStr)
@@ -2979,6 +2981,136 @@ off(type: 'seiMessageReceived', payloadTypes?: Array\<number>, callback?: OnSeiM
 
 ```ts
 avPlayer.off('seiMessageReceived')
+```
+
+### setSuperResolution<sup>18+</sup>
+
+setSuperResolution(enabled: boolean) : Promise\<void>
+
+动态开启/关闭超分算法，可以在 'initialized' | 'prepared' | 'playing' | 'paused' | 'completed' | 'stopped' 状态调用。使用Promise方式返回结果。
+
+在调用[prepare()](#prepare9)前先通过[PlaybackStrategy](#playbackstrategy12)使能超分。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| enabled    | boolean | 是   | 表示是否开启超分。true表示开启超分，false表示关闭超分。 |
+
+**返回值：**
+
+| 类型           | 说明                                       |
+| -------------- | ------------------------------------------ |
+| Promise\<void> | 开启/关闭超分setSuperResolution方法的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5410003  | Super-resolution not supported. Return by promise. |
+| 5410004  | Missing enable super-resolution feature in [PlaybackStrategy](#playbackstrategy12). |
+
+**示例：**
+
+```ts
+avPlayer.setSuperResolution(true)
+```
+
+### setVideoWindowSize<sup>18+</sup>
+
+setVideoWindowSize(width: number, height: number) : Promise\<void>
+
+动态设置超分算法的输出分辨率，可以在 'initialized' | 'prepared' | 'playing' | 'paused' | 'completed' | 'stopped' 状态调用。使用Promise方式返回结果。输入参数须在 320x320 ~ 1920x1080 范围内，单位为像素。
+
+在调用[prepare()](#prepare9)前先通过[PlaybackStrategy](#playbackstrategy12)使能超分。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| width    | number | 是   | 超分算法的目标输出视频宽度，取值范围为[320-1920]，单位为像素。 |
+| height    | number | 是   | 超分算法的目标输出视频高度，取值范围为[320-1080]，单位为像素。 |
+
+**返回值：**
+
+| 类型           | 说明                                       |
+| -------------- | ------------------------------------------ |
+| Promise\<void> | 配置超分目标输出分辨率setVideoWindowSize方法的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 401      | The parameter check failed. Return by promise. |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5410003  | Super-resolution not supported. Return by promise. |
+| 5410004  | Missing enable super-resolution feature in [PlaybackStrategy](#playbackstrategy12). |
+
+**示例：**
+
+```ts
+avPlayer.setVideoWindowSize(1920, 1080)
+```
+
+### on('superResolutionChanged')<sup>18+</sup>
+
+on(type:'superResolutionChanged', callback: OnSuperResolutionChanged): void
+
+订阅监听超分算法开启/关闭事件。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string | 是 | 事件回调类型，支持的事件为：'superResolutionChanged'，当超分算法开启/关闭状态变化时，触发该事件。 |
+| callback | [OnSuperResolutionChanged](#onsuperresolutionchanged18) | 是 | 超分开关事件回调方法。 |
+
+**示例：**
+
+```ts
+avPlayer.on('superResolutionChanged', (enabled: boolean) => {
+  console.info('superResolutionChanged called, and enabled is:' + enabled)
+})
+```
+
+### off('superResolutionChanged')<sup>18+</sup>
+
+off(type:'superResolutionChanged', callback?: OnSuperResolutionChanged): void
+
+取消监听超分算法开启/关闭事件。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string | 是 | 事件回调类型，支持的事件为：'superResolutionChanged'，当超分算法开启/关闭状态变化时，触发该事件。 |
+| callback | [OnSuperResolutionChanged](#onsuperresolutionchanged18) | 否 | 超分开关事件回调方法。 |
+
+**示例：**
+
+```ts
+avPlayer.off('superResolutionChanged')
 ```
 
 ## AVPlayerState<sup>9+</sup>
@@ -3062,6 +3194,24 @@ type OnVideoSizeChangeHandler = (width: number, height: number) => void
 | ------ | ------ | ------ | ------------------------------------------------------------ |
 | width  | number | 是 | 视频宽度，单位为像素（px）。|
 | height | number | 是 | 视频高度，单位为像素（px）。|
+
+## OnSuperResolutionChanged<sup>18+</sup>
+
+type OnSuperResolutionChanged = (enabled: boolean) => void
+
+视频超分开关事件回调方法。若通过[PlaybackStrategy](#playbackstrategy12)正确使能超分，超分算法状态变化时会通过此回调上报，视频起播时也会上报超分初始开启/关闭状态。若未使能超分，不会触发该回调。
+
+出现以下两种情况，超分算法会自动关闭。
+* 目前超分算法最高仅支持30帧及以下的视频。若视频帧率超过30帧，或者在倍速播放等场景下导致输入帧率超出超分算法处理能力，超分会自动关闭。
+* 目前超分算法支持输入分辨率范围为320x320 ~ 1920x1080，单位为像素。若播放过程中输入视频分辨率超出此范围，超分算法会自动关闭。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ------ | ------------------------------------------------------------ |
+| enabled  | boolean | 是 | 表示当前超分是否开启。true表示超分开启，false表示超分关闭。     |
 
 ## AVFileDescriptor<sup>9+</sup>
 
@@ -5183,7 +5333,7 @@ on(type: 'complete', callback: Callback\<void>): void
 
 注册转码完成事件，并通过注册的回调方法通知用户。用户只能注册一个进度更新事件的回调方法，当用户重复注册时，以最后一次注册的回调接口为准。
 
-当AVTranscoder上报complete事件时，当前转码操作已完成，用户可通过[release()](#release12)退出转码操作。
+当AVTranscoder上报complete事件时，当前转码操作已完成，用户需要通过[release()](#release12)退出转码操作。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
 
@@ -5197,8 +5347,12 @@ on(type: 'complete', callback: Callback\<void>): void
 **示例：**
 
 ```ts
-avTranscoder.on('complete', () => {
+avTranscoder.on('complete', async () => {
   console.info('avTranscoder complete');
+  // 用户须在此监听转码完成事件
+  // 须等待avTranscoder.release()之后，再对转码后的文件进行转发、上传、转存等处理
+  await avTranscoder.release();
+  avTranscoder = undefined;
 });
 ```
 
@@ -7885,6 +8039,7 @@ setMimeType(mimeType: AVMimeTypes): void
 | preferredHeight | number | 否   | 播放策略首选高度，设置范围为大于0的整数，如1920，单位为像素（px）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | preferredBufferDuration | number | 否  | 播放策略首选缓冲持续时间，单位s，取值范围1-20。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | preferredHdr | boolean | 否   | 播放策略true是hdr，false非hdr，默认非hdr。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| enableSuperResolution<sup>18+</sup> | boolean | 否   | 表示是否使能超分功能。true表示使能超分，false表示不使能超分，默认为false。<br>若不使能超分，则后续不能调用超分相关接口。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | showFirstFrameOnPrepare<sup>18+</sup> | boolean | 否   | 播放策略true是Prepare之后显示视频起播首帧，false是Prepare之后不显示视频起播首帧，默认不显示。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | mutedMediaType | [MediaType](#mediatype8) | 否 | 静音播放的媒体类型，仅支持设置 MediaType.MEDIA_TYPE_AUD。 |
 | preferredAudioLanguage<sup>13+</sup> | string | 否 | 播放策略首选音轨语言。dash场景下应用可按需设置。非dash场景暂不支持，建议缺省。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |

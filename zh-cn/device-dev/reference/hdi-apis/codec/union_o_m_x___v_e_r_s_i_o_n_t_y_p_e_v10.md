@@ -17,7 +17,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct [OmxVerType](_omx_ver_type_v10.md)[s](#s) | 组件的版本信息。  | 
+| struct [OmxVerType](_omx_ver_type_v10.md) [s](#s) | 组件的版本信息。  | 
 | unsigned int [nVersion](#nversion) | 32位值，使访问版本在单个字大小复制/比较操作中轻松完成。  | 
 
 

@@ -286,7 +286,7 @@ generateRandomUUID(entropyCache?: boolean): string
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| entropyCache | boolean | 否 | 是否使用已缓存的UUID， 默认true。 |
+| entropyCache | boolean | 否 | 是否使用已缓存的UUID，true表示使用缓存的UUID，false表示不使用缓存的UUID，默认true。 |
 
 **返回值：**
 
@@ -324,7 +324,7 @@ generateRandomBinaryUUID(entropyCache?: boolean): Uint8Array
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| entropyCache | boolean | 否 | 是否使用已缓存的UUID， 默认true。 |
+| entropyCache | boolean | 否 | 是否使用已缓存的UUID，true表示使用缓存的UUID，false表示不使用缓存的UUID，默认true。 |
 
 **返回值：**
 
@@ -535,8 +535,8 @@ console.info('result2 is ' + result2);
 
 | 名称      | 类型 | 必填 | 说明               |
 | --------- | -------- | ---- | ------------------ |
-| fatal     | boolean  | 否   | 是否显示致命错误，默认值是false。 |
-| ignoreBOM | boolean  | 否   | 是否忽略BOM标记，默认值是false。  |
+| fatal     | boolean  | 否   | 是否显示致命错误，true表示显示致命错误，false表示不显示致命错误，默认值是false。 |
+| ignoreBOM | boolean  | 否   | 是否忽略BOM标记，true表示忽略待解码数据的BOM标记，false表示会对BOM标记解码，默认值是false。  |
 
 ## DecodeToStringOptions<sup>12+</sup>
 
@@ -818,7 +818,7 @@ TextDecoder用于将字节数组解码为字符串，可以处理多种编码格
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | encoding | string | 是 | 否 | 编码格式。<br/>-&nbsp;支持格式：utf-8、ibm866、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、x-mac-cyrillic、gbk、gb18030、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、utf-16be、utf-16le、UTF-8、GBK、GB2312、gb2312、GB18030、iso-8859-1。 |
-| fatal | boolean | 是 | 否 | 是否显示致命错误。 |
+| fatal | boolean | 是 | 否 | 是否显示致命错误，true表示显示致命错误，false表示不显示致命错误。 |
 | ignoreBOM | boolean | 是 | 否 | 是否忽略BOM（byte&nbsp;order&nbsp;marker）标记，默认值为false&nbsp;，表示解码结果包含BOM标记。 |
 
 ### constructor<sup>9+</sup>
@@ -1007,8 +1007,8 @@ TextDecoder的构造函数。
 
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| fatal | boolean | 否 | 是否显示致命错误，默认值是false。 |
-| ignoreBOM | boolean | 否 | 是否忽略BOM标记，默认值是false。 |
+| fatal | boolean | 否 | 是否显示致命错误，true表示显示致命错误，false表示不显示致命错误，默认值是false。 |
+| ignoreBOM | boolean | 否 | 是否忽略BOM标记，true表示忽略待解码数据的BOM标记，false表示会对BOM标记解码，默认值是false。 |
 
 **示例：**
 
@@ -2724,7 +2724,7 @@ console.info("result = " + result);
 
 intersect(range: ScopeHelper): ScopeHelper
 
-获取给定范围和当前范围的交集。
+获取给定范围和当前范围的交集。当交集为空集时，抛出异常。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

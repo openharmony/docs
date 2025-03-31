@@ -430,4 +430,4 @@ With this permission, the application can obtain the icon of the specified type 
 
 **Authorization mode**: system_grant
 
-**Valid since**: 18
+**Valid since**: 17
