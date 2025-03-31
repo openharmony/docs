@@ -7952,7 +7952,7 @@ struct Index {
 
 raiseToAppTop(): Promise&lt;void&gt;
 
-应用子窗口调用，提升应用子窗口到顶层，只在当前应用同一个父窗口下的相同类型子窗范围内生效，对于自定义了zLevel属性的普通子窗口，只在当前应用同一个父窗口下相同zLevel值的普通子窗范围内生效。使用Promise异步回调。
+应用子窗口调用，提升应用子窗口到顶层，只在当前应用同一个父窗口下的相同类型子窗范围内生效，对于自定义了zLevel属性的子窗口，只在当前应用同一个父窗口下相同zLevel值的子窗范围内生效。使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -8908,6 +8908,7 @@ setSubWindowZLevel(zLevel: number): Promise<void>;
 
 ```ts
 // EntryAbility.ets
+import { window } from '@kit.ArkUI';
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -8915,26 +8916,23 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
     // 创建子窗
     try {
-      let subWindow = windowStage.createSubWindow("testSubWindow");
-      subWindow.then((data) => {
+      let subWindowPromise = windowStage.createSubWindow('testSubWindow');
+      subWindowPromise.then((data) => {
         if (data == null) {
-          console.error("Failed to create the subWindow. Cause: The data is empty");
+          console.error('Failed to create the sub window. Cause: The data is empty');
           return;
         }
-        windowClass = data;
-        // 设置子窗层级级别
-        let promise = windowClass.setSubWindowZLevel(1);
-        promise.then(() => {
-          console.info('Succeeded set sub window zLevel');
+        let zLevelPromise = data.setSubWindowZLevel(1);
+        zLevelPromise.then(() => {
+          console.info('Succeeded in setting sub window zLevel.');
         }).catch((err: BusinessError) => {
           console.error(`Failed to set sub window zLevel. Cause code: ${err.code}, message: ${err.message}`);
         });
       });
     } catch (exception) {
-      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
+      console.error(`Failed to create the sub window. Cause code: ${exception.code}, message: ${exception.message}`);
     }
   }
 }
@@ -8970,33 +8968,30 @@ getSubWindowZLevel(): number;
 
 ```ts
 // EntryAbility.ets
+import { window } from '@kit.ArkUI';
 import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
     // 创建子窗
     try {
-      let subWindow = windowStage.createSubWindow("testSubWindow");
-      subWindow.then((data) => {
+      let subWindowPromise = windowStage.createSubWindow('testSubWindow');
+      subWindowPromise.then((data) => {
         if (data == null) {
-          console.error("Failed to create the subWindow. Cause: The data is empty");
+          console.error('Failed to create the sub window. Cause: The data is empty');
           return;
         }
-        windowClass = data;
         try {
-          // 获取子窗层级级别
-          let subWindowZLevel = windowClass.getSubWindowZLevel();
-          console.info(`Succeeded get sub window zLevel: ${subWindowZLevel}`);
+          let subWindowZLevel = data.getSubWindowZLevel();
+          console.info(`Succeeded in getting sub window zLevel: ${subWindowZLevel}`);
         } catch (err) {
           console.error(`Failed to get sub window zLevel. Cause code: ${err.code}, message: ${err.message}`);
         }
       });
     } catch (exception) {
-      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
+      console.error(`Failed to create the sub window. Cause code: ${exception.code}, message: ${exception.message}`);
     }
   }
 }
@@ -11077,7 +11072,7 @@ WindowStage生命周期。
 | isModal<sup>12+</sup>    | boolean | 否 | 是 | 子窗口是否启用模态属性。true表示子窗口启用模态属性，false表示子窗口禁用模态属性。不设置，则默认为false。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
 | modalityType<sup>14+</sup>    | [ModalityType](#modalitytype14) | 否 | 是 | 子窗口模态类型，仅当子窗口启用模态属性时生效。WINDOW_MODALITY表示子窗口模态类型为模窗口子窗，APPLICATION_MODALITY表示子窗口模态类型为模应用子窗。不设置，则默认为WINDOW_MODALITY。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。       |
 | windowRect<sup>18+</sup>    | [Rect](#rect7) | 否 | 是 | 子窗口矩形区域，其中子窗存在大小限制，具体参考[resize()](#resize9)方法。不设置，此窗口在显示时默认为全屏大小。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
-| zLevel<sup>18+</sup>    | number | 否 | 是 | 子窗口层级级别，仅当子窗口未启用模态属性时生效。不设置，则默认为0。       |
+| zLevel<sup>18+</sup>    | number | 否 | 是 | 子窗口层级级别，仅当子窗口未启用模态属性,即未设置isModal时生效。不设置，则默认为0。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 ## WindowStage<sup>9+</sup>
 
