@@ -13,7 +13,6 @@
 
 **所在头文件：** [hiappevent.h](hiappevent_8h.md)
 
-
 ## 汇总
 
 
