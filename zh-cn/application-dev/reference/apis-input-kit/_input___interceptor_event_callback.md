@@ -9,6 +9,7 @@
 
 **相关模块：**[Input](input.md)
 
+**所在头文件：**[oh_input_manager.h](oh__input__manager_8h.md)
 
 ## 汇总
 
