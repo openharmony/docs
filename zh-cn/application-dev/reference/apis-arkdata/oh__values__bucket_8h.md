@@ -33,5 +33,5 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| int [OH_VBucket_PutAsset](_r_d_b.md#oh_vbucket_putasset) ([OH_VBucket](_o_h___v_bucket.md) \*bucket, const char \*field, OH_Asset \*value) | 将**OH_Asset** 类型的对象放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 | 
-| int [OH_VBucket_PutAssets](_r_d_b.md#oh_vbucket_putassets) ([OH_VBucket](_o_h___v_bucket.md) \*bucket, const char \*field, OH_Asset \*\*value, int count) | 将**OH_Asset** 类型的对象数组放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 | 
+| int [OH_VBucket_PutAsset](_r_d_b.md#oh_vbucket_putasset) ([OH_VBucket](_o_h___v_bucket.md) \*bucket, const char \*field, Data_Asset \*value) | 将**Data_Asset**类型的对象放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 | 
+| int [OH_VBucket_PutAssets](_r_d_b.md#oh_vbucket_putassets) ([OH_VBucket](_o_h___v_bucket.md) \*bucket, const char \*field, Data_Asset \*\*value, int count) | 将**Data_Asset**类型的对象数组放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 | 
