@@ -4578,3 +4578,15 @@ Users can set default applications for the system, for example, specifying an ap
 **Enable via ACL**：true
 
 **Valid since**：17
+
+## ohos.permission.SEND_NOTIFICATION_CROSS_USER
+
+Allows an application to send notifications to specified users in the system.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18

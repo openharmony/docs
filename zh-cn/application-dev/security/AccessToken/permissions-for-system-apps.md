@@ -4588,3 +4588,15 @@
 **ACL使能**：true
 
 **起始版本**：17
+
+## ohos.permission.SEND_NOTIFICATION_CROSS_USER
+
+允许应用发送通知给系统中指定用户。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
