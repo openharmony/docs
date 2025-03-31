@@ -9,6 +9,7 @@
 
 **相关模块：**[HiDebug](_hi_debug.md)
 
+**所在头文件：** [hidebug_type.h](hidebug__type_8h.md)
 
 ## 汇总
 
