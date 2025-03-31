@@ -78,7 +78,7 @@
 | 名称 | 描述 |
 | -------- | -------- |
 | [OH_Rdb_SecurityLevel](_r_d_b.md#oh_rdb_securitylevel-1) { S1 = 1, S2, S3, S4} | 数据库的安全级别枚举。 |
-| [Rdb_SecurityArea](_r_d_b.md#rdb_securityarea-1) { RDB_SECURITY_AREA_EL1 = 1, RDB_SECURITY_AREA_EL2, RDB_SECURITY_AREA_EL3, RDB_SECURITY_AREA_EL4 } | 描述数据库的安全区域等级。 |
+| [Rdb_SecurityArea](_r_d_b.md#rdb_securityarea-1) { RDB_SECURITY_AREA_EL1 = 1, RDB_SECURITY_AREA_EL2, RDB_SECURITY_AREA_EL3, RDB_SECURITY_AREA_EL4, RDB_SECURITY_AREA_EL5 } | 描述数据库的安全区域等级。 |
 | [Rdb_DBType](_r_d_b.md#rdb_dbtype-1) { RDB_SQLITE = 1, RDB_CAYLEY = 2, DBTYPE_BUTT = 64 } | 描述数据库的内核类型。 |
 | [Rdb_DistributedType](_r_d_b.md#rdb_distributedtype-1) { RDB_DISTRIBUTED_CLOUD } | 描述表的分布式类型的枚举。 |
 | [Rdb_ChangeType](_r_d_b.md#rdb_changetype-1) { RDB_DATA_CHANGE, RDB_ASSET_CHANGE } | 描述数据变更类型。 |
@@ -115,8 +115,8 @@
 | int [OH_Rdb_BeginTransWithTrxId](_r_d_b.md#oh_rdb_begintranswithtrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t \*trxId) | 在开始执行SQL语句之前，开始事务，并获得该事务的ID，支持向量数据库。 |
 | int [OH_Rdb_RollBackByTrxId](_r_d_b.md#oh_rdb_rollbackbytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId) | 使用指定的事务ID，回滚已经执行的SQL语句，支持向量数据库。 |
 | int [OH_Rdb_CommitByTrxId](_r_d_b.md#oh_rdb_commitbytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId) | 使用指定的事务ID，提交已经执行的SQL语句，支持向量数据库。 |
-| [OH_Rdb_CreateValueObject](_r_d_b.md#oh_rdb_createvalueobject) (void) | 创建[OH_VObject](_o_h___v_object.md)实例。 |
-| [OH_Rdb_CreateValuesBucket](_r_d_b.md#oh_rdb_createvaluesbucket) (void) | 创建[OH_VBucket](_o_h___v_bucket.md)实例。 |
+| [OH_Rdb_CreateValueObject](_r_d_b.md#oh_rdb_createvalueobject) () | 创建[OH_VObject](_o_h___v_object.md)实例。 |
+| [OH_Rdb_CreateValuesBucket](_r_d_b.md#oh_rdb_createvaluesbucket) () | 创建[OH_VBucket](_o_h___v_bucket.md)实例。 |
 | [OH_Rdb_CreatePredicates](_r_d_b.md#oh_rdb_createpredicates) (const char \*table) | 创建[OH_Predicates](_o_h___predicates.md)实例。 |
 | [OH_Rdb_GetOrOpen](_r_d_b.md#oh_rdb_getoropen) (const [OH_Rdb_Config](_o_h___rdb___config.md) \*config, int \*errCode) | 获得一个相关的[OH_Rdb_Store](_o_h___rdb___store.md)实例，操作关系型数据库。 |
 | [OH_Rdb_CloseStore](_r_d_b.md#oh_rdb_closestore) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store) | 销毁[OH_Rdb_Store](_o_h___rdb___store.md)对象，并回收该对象占用的内存。 |
