@@ -72,7 +72,6 @@
 | struct  [PhotoOutput_Callbacks](_photo_output___callbacks.md) | 拍照输出的回调。 | 
 | struct  [PreviewOutput_Callbacks](_preview_output___callbacks.md) | 用于预览输出的回调。 | 
 | struct  [VideoOutput_Callbacks](_video_output___callbacks.md) | 用于录像输出的回调。 | 
-| struct  [Camera_ConcurrentInfo](_camera___concurrent_info.md) | 相机并发能力集。 | 
 
 
 ### 类型定义
@@ -159,7 +158,6 @@
 | typedef void(\* [OH_VideoOutput_OnError](#oh_videooutput_onerror)) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, [Camera_ErrorCode](#camera_errorcode) errorCode) | 在[VideoOutput_Callbacks](_video_output___callbacks.md)中被调用的录像输出错误回调。 | 
 | typedef struct [VideoOutput_Callbacks](_video_output___callbacks.md) [VideoOutput_Callbacks](#videooutput_callbacks) | 用于录像输出的回调。 | 
 | typedef struct [Camera_QualityPrioritization ](#camera_qualityprioritization) [Camera_QualityPrioritization](#camera_qualityprioritization) | 录像质量优先级。 | 
-| typedef enum [Camera_ConcurrentType](#camera_concurrenttype) [Camera_ConcurrentType](#camera_concurrenttype) | 相机并发类型的枚举。 | 
 
 
 ### 枚举
@@ -187,7 +185,6 @@
 | [Camera_SmoothZoomMode](#camera_smoothzoommode) { NORMAL = 0 } | 平滑变焦模式的枚举。 | 
 | [Camera_PreconfigType](#camera_preconfigtype) {<br/>PRECONFIG_720P = 0,<br/>PRECONFIG_1080P = 1,<br/>PRECONFIG_4K = 2,<br/>PRECONFIG_HIGH_QUALITY = 3 } | 预配置照片分辨率的枚举 | 
 | [Camera_PreconfigRatio](#camera_preconfigratio) {<br/>PRECONFIG_RATIO_1_1 = 0,<br/>PRECONFIG_RATIO_4_3 = 1,<br/>PRECONFIG_RATIO_16_9 = 2 } | 预配置照片比例的枚举。 | 
-| [Camera_ConcurrentType](#camera_concurrenttype) {<br/>CONCURRENT_TYPE_LIMITED_CAPABILITY = 0,<br/>CONCURRENT_TYPE_FULL_CAPABILITY = 1 } | 相机并发类型。 | 
 
 
 ### 函数
@@ -229,8 +226,6 @@
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_IsTorchSupported](#oh_cameramanager_istorchsupported) ([Camera_Manager](#camera_manager) \*cameraManager, bool \*isTorchSupported) | 检查设备是否支持手电筒。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_IsTorchSupportedByTorchMode](#oh_cameramanager_istorchsupportedbytorchmode) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_TorchMode](#camera_torchmode) torchMode, bool \*isTorchSupported) | 检查设备是否支持指定的手电筒模式。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_SetTorchMode](#oh_cameramanager_settorchmode) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_TorchMode](#camera_torchmode) torchMode) | 设置相机手电筒模式。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_GetCameraDevice](#oh_cameramanager_getcameradevice) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_Position](#camera_position) position, [Camera_Type](#camera_type) type, [Camera_Device](_camera___device.md) \*camera) | 基于position和type查询device。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_GetCameraConcurrentInfos](#oh_cameramanager_getcameraconcurrentinfos) ([Camera_Manager](#camera_manager) \*cameraManager, const [Camera_Device](_camera___device.md) \*camera, uint32_t deviceSize, [Camera_ConcurrentInfo](_camera___concurrent_info.md) \*\*CameraConcurrentInfo, uint32_t \*infoSize) | 获取设备并发信息，如果为空则代表不支持。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_RegisterCallback](#oh_capturesession_registercallback) ([Camera_CaptureSession](#camera_capturesession) \*session, [CaptureSession_Callbacks](_capture_session___callbacks.md) \*callback) | 注册捕获会话事件回调。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_UnregisterCallback](#oh_capturesession_unregistercallback) ([Camera_CaptureSession](#camera_capturesession) \*session, [CaptureSession_Callbacks](_capture_session___callbacks.md) \*callback) | 注销捕获会话事件回调。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_RegisterSmoothZoomInfoCallback](#oh_capturesession_registersmoothzoominfocallback) ([Camera_CaptureSession](#camera_capturesession) \*session, [OH_CaptureSession_OnSmoothZoomInfo](#oh_capturesession_onsmoothzoominfo) smoothZoomInfoCallback) | 注册平滑变焦信息事件回调。 | 
@@ -2044,24 +2039,6 @@ enum Camera_VideoStabilizationMode
 | STABILIZATION_MODE_AUTO | 自动选择模式，HDF相机可用。 | 
 
 
-### Camera_ConcurrentType
-
-```
-enum Camera_ConcurrentType
-```
-
-**描述**
-
-相机并发类型。
-
-**起始版本：** 18
-
-| 枚举值 | 描述 | 
-| -------- | -------- |
-| CONCURRENT_TYPE_LIMITED_CAPABILITY | 受限能力并发 | 
-| CONCURRENT_TYPE_FULL_CAPABILITY    | 全量能力并发 | 
-
-
 ## 函数说明
 
 
@@ -2233,40 +2210,6 @@ Camera_ErrorCode OH_CameraInput_OpenSecureCamera(Camera_Input* cameraInput, uint
 | -------- | -------- |
 | cameraInput | 要打开的[Camera_Input](#camera_input)实例。 | 
 | secureSeqId | 表示安全摄像头的序列值。 | 
-
-**返回：**
-
-错误码[Camera_ErrorCode](#camera_errorcode-1)：
-
-- CAMERA_OK：方法调用成功。
-
-- CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。
-
-- CAMERA_CONFLICT_CAMERA：因冲突而无法使用相机。
-
-- CAMERA_DEVICE_DISABLED：由于安全原因禁用了摄像头。
-
-- CAMERA_SERVICE_FATAL_ERROR：如果相机服务出现致命错误。
-
-
-### OH_CameraInput_OpenConcurrentCameras()
-
-```
-Camera_ErrorCode OH_CameraInput_OpenConcurrentCameras(Camera_Input* cameraInput, Camera_ConcurrentType* type)
-```
-
-**描述**
-
-打开相机。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| cameraInput | 要打开的[Camera_Input](#camera_input)实例。 | 
-| type | 以指定的并发能力[Camera_ConcurrentType](_camera___concurrent_info.md)打开相机。 | 
 
 **返回：**
 
@@ -3095,57 +3038,6 @@ Camera_ErrorCode OH_CameraManager_SetTorchMode(Camera_Manager* cameraManager, Ca
 - CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。
 
 - CAMERA_SERVICE_FATAL_ERROR：如果相机服务出现致命错误。
-
-
-### OH_CameraManager_GetCameraDevice()
-
-```
-Camera_ErrorCode OH_CameraManager_GetCameraDevice (Camera_Manager *cameraManager, Camera_Position position, Camera_Type type, Camera_Device *camera) 
-```
-**描述**
-
-基于position和type查询device。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| cameraManager | 相机管理器实例[Camera_Manager](#camera_manager)。 | 
-| position | 要查询的Cameradevice对应的[Camera_Position](#camera_position)。 | 
-| type | 要查询的Cameradevice对应的[Camera_Type](#camera_type)。 |
-| camera | 要查询的[Camera_Device](_camera___device.md)。 | 
-
-**返回：**
-
-错误码[Camera_ErrorCode](#camera_errorcode-1)：
-
-- CAMERA_OK：方法调用成功。
-
-- CAMERA_SERVICE_FATAL_ERROR：如果相机服务出现致命错误。
-
-
-### OH_CameraManager_GetCameraConcurrentInfos()
-
-```
-Camera_ErrorCode OH_CameraManager_GetCameraConcurrentInfos (Camera_Manager *cameraManager, const Camera_Device *camera, uint32_t deviceSize, Camera_ConcurrentInfo **CameraConcurrentInfo, uint32_t *infoSize) 
-```
-**描述**
-
-取得设备并发信息。如果为空则代表不支持。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| cameraManager | 相机管理器实例[Camera_Manager](#camera_manager)。 | 
-| camera | 要查询的[Camera_Device](_camera___device.md)。 | 
-| deviceSize | Camera_Device数组长度。 | 
-| CameraConcurrentInfo | 获得的相机并发能力[Camera_ConcurrentInfo](_camera___concurrent_info.md)。 |
-| infoSize | 得到相机并发能力数组长度。 | 
 
 
 ### OH_CameraManager_UnregisterCallback()
