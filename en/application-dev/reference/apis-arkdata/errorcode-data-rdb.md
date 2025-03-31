@@ -196,7 +196,7 @@ The SQL statement used for query is incorrect, or the data does not exist.
 **Solution**
 
 Use the correct query statement or add data.
- 
+
 ## 14800019 SQL Query Statement Required
 
 **Error Message**
@@ -263,7 +263,7 @@ SQLite: Callback routine requested an abort.
 
 **Description**
 
-The asynchronous callback request is aborted.
+The asynchronous callback request is aborted. This error is reported by the underlying SQLite.
 
 **Possible Causes**
 
@@ -305,7 +305,7 @@ SQLite: The database file is locked.
 
 **Description**
 
-The SQLite database file is locked.
+The SQLite database file is locked. This error is reported by the underlying SQLite.
 
 **Possible Causes**
 
@@ -325,7 +325,7 @@ SQLite: A table in the database is locked.
 
 **Description**
 
-An SQLite database table is locked.
+An SQLite database table is locked. This error is reported by the underlying SQLite.
 
 **Possible Causes**
 
@@ -348,10 +348,10 @@ SQLite: The database is out of memory.
 
 **Description**
 
-The database memory is insufficient.
+The database memory is insufficient. This error is reported by the underlying SQLite.
 
 **Possible Causes**
- 
+
 The data volume is too large or the memory allocated is insufficient.
 
 **Solution**
@@ -366,7 +366,7 @@ SQLite: Attempt to write a readonly database.
 
 **Description**
 
-A write operation is invoked on a read-only database.
+A write operation is invoked on a read-only database. This error is reported by the underlying SQLite.
 
 **Possible Causes**
 
@@ -387,7 +387,7 @@ SQLite: Some kind of disk I/O error occurred.
 
 **Description**
 
-A disk I/O error occurs. 
+A disk I/O error occurs. This error is reported by the underlying SQLite. 
 
 **Possible Causes**
 
@@ -413,7 +413,7 @@ SQLite: The database is full.
 
 **Description**
 
-The SQLite database is full.
+The SQLite database is full. This error is reported by the underlying SQLite.
 
 **Possible Causes**
 
@@ -431,7 +431,7 @@ SQLite: Unable to open the database file.
 
 **Description**
 
-The database file fails to be opened.
+The database file fails to be opened. This error is reported by the underlying SQLite.
 
 **Possible Causes**
 
@@ -454,7 +454,7 @@ SQLite: TEXT or BLOB exceeds size limit.
 
 **Description**
 
-The size of the text or BLOB exceeds the limit.
+The size of the text or BLOB exceeds the limit. This error is reported by the underlying SQLite.
 
 **Possible Causes**
 
@@ -473,7 +473,7 @@ SQLite: Abort due to constraint violation.
 
 **Description**
 
-The database operation violates the constraint rule and is aborted.
+The database operation violates the constraint rule and is aborted. This error is reported by the underlying SQLite.
 
 **Possible Causes**
 
@@ -492,7 +492,7 @@ SQLite: Data type mismatch.
 
 **Description**
 
-The data types mismatch.
+The data types mismatch. This error is reported by the underlying SQLite.
 
 **Possible Causes**
 
@@ -511,7 +511,7 @@ SQLite: Library used incorrectly.
 
 **Description**
 
-The SQLite interface is used incorrectly.
+The SQLite interface is used incorrectly. This error is reported by the underlying SQLite.
 
 **Possible Causes**
 
