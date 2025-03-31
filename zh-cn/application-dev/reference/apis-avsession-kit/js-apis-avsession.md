@@ -238,6 +238,9 @@ let metadata: avSession.AVMetadata = {
   // LRC中有两类元素：一种是时间标签+歌词，一种是ID标签。
   // 例如：[00:25.44]xxx\r\n[00:26.44]xxx\r\n
   lyric: "lrc格式歌词内容",
+  // singleLyricText字段存储单条歌词文本，不包含时间戳。
+  // 例如："单条歌词内容"。
+  singleLyricText: "单条歌词内容",
   previousAssetId: "121277",
   nextAssetId: "121279"
 };
@@ -293,6 +296,9 @@ let metadata: avSession.AVMetadata = {
   // LRC中有两类元素：一种是时间标签+歌词，一种是ID标签。
   // 例如：[00:25.44]xxx\r\n[00:26.44]xxx\r\n
   lyric: "lrc格式歌词内容",
+  // singleLyricText字段存储单条歌词文本，不包含时间戳。
+  // 例如："单条歌词内容"。
+  singleLyricText: "单条歌词内容",
   previousAssetId: "121277",
   nextAssetId: "121279"
 };
