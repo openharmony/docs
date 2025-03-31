@@ -326,7 +326,7 @@ struct ListItemExample2 {
             end: {
               builder: () => { this.itemEnd() },
               onAction: () => {
-                animateTo({ duration: 1000 }, () => {
+                this.getUIContext()?.animateTo({ duration: 1000 }, () => {
                   let index = this.arr.indexOf(item)
                   this.arr.splice(index, 1)
                 })
@@ -458,7 +458,7 @@ struct MyListItem {
       end: {
         builderComponent: this.GetEndBuilder(),
         onAction: () => {
-          animateTo({ duration: 1000 }, () => {
+          this.getUIContext()?.animateTo({ duration: 1000 }, () => {
             let index = this.arr.indexOf(this.project)
             this.arr.splice(index, 1)
           })
@@ -468,7 +468,7 @@ struct MyListItem {
       start: {
         builderComponent: this.GetStartBuilder(),
         onAction: () => {
-          animateTo({ duration: 1000 }, () => {
+          this.getUIContext()?.animateTo({ duration: 1000 }, () => {
             let index = this.arr.indexOf(this.project)
             this.arr.splice(index, 1)
           })

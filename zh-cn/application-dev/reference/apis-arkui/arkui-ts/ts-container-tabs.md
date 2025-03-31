@@ -1613,7 +1613,7 @@ struct TabsCustomAnimationExample {
         this.scaleList[to] = 0.5
         this.opacityList[from] = 1.0
         this.opacityList[to] = 0.5
-        animateTo({
+        this.getUIContext()?.animateTo({
           duration: this.durationList[from],
           onFinish: () => {
             proxy.finishTransition()
@@ -1898,7 +1898,7 @@ struct TabsExample {
 
   private startAnimateTo(duration: number, leftMargin: number, width: number) {
     this.isStartAnimateTo = true
-    animateTo({
+    this.getUIContext()?.animateTo({
       duration: duration, // 动画时长
       curve: Curve.Linear, // 动画曲线
       iterations: 1, // 播放次数
