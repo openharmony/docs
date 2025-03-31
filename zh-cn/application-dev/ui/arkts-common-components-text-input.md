@@ -163,13 +163,13 @@ TextInput()
 
 TextInput:
 ```ts
-TextInput({text : '这是一段文本,用来测试选中菜单'})
+TextInput({text : '这是一段文本,用来展示选中菜单'})
 ```
 ![TexInput_select_menu](figures/TexInput_select_menu.jpg)
 
 TextArea:
 ```ts
-TextArea({text : '这是一段文本,用来测试选中菜单'})
+TextArea({text : '这是一段文本,用来展示选中菜单'})
 ```
 ![TextArea_select_menu](figures/TextArea_select_menu.jpg)
 
@@ -193,7 +193,7 @@ TextInput({ placeholder: '输入你的邮箱...' })
 ellipsisMode属性需要配合overflow设置为TextOverflow.Ellipsis使用，单独设置ellipsisMode属性不生效。
 
 ```ts
-TextInput({ text: '这是一段文本，用来测试省略模式'})
+TextInput({ text: '这是一段文本，用来展示省略模式'})
   .textOverflow(TextOverflow.Ellipsis)
   .ellipsisMode(EllipsisMode.END)
   .style(TextInputStyle.Inline)
