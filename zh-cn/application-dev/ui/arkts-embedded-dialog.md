@@ -53,7 +53,7 @@ Text(this.message).id("test_text")
 
 ## 设置页面级弹出框蒙层样式
 
-如果弹出框配置了蒙层，蒙层的遮盖范围会根据页面层级的变化进行调整，默认遮罩弹出框父节点所在的显示区域（Page页面或者Navigation页面）。此时，状态栏和导航条不会被蒙层遮挡。若希望遮挡状态栏和导航条，可将[immersiveMode](../reference/apis-arkui/js-apis-promptAction.md#immersivemode15)参数的值设为ImmersiveMode.EXTEND。
+如果弹出框配置了蒙层，蒙层的遮盖范围会根据页面层级的变化进行调整，默认遮罩范围为弹出框父节点的显示区域（Page页面或者Navigation页面）。此时，状态栏和导航条不会被蒙层遮挡。若希望遮挡状态栏和导航条，可将[immersiveMode](../reference/apis-arkui/js-apis-promptAction.md#immersivemode15)参数的值设为ImmersiveMode.EXTEND。
 
 ```ts
 Text(this.message).id("test_text")
@@ -72,7 +72,7 @@ Text(this.message).id("test_text")
 
 ## 交互说明
 
-页面内弹出框在部分交互逻辑上依然遵循部分弹出框指定的交互策略。
+页面内弹出框在部分交互逻辑上依然遵循部分弹出框指定的交互策略：
 
 1. 侧滑时先关闭弹出框。通过侧滑手势返回上一页时，如果页面上存在弹出框，弹出框会优先关闭并结束本次手势行为。如果期望返回上一页，需要再次出发侧滑手势。
 
