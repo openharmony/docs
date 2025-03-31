@@ -7859,6 +7859,307 @@ setMimeType(mimeType: AVMimeTypes): void
 | -------- | -------- | ---- | -------------------- |
 | mimeType | [AVMimeTypes](#mediasource12) | 是   | 媒体MIME类型。 |
 
+### setMediaResourceLoaderDelegate<sup>18+</sup>
+
+setMediaResourceLoaderDelegate(resourceLoader: MediaSourceLoader): void;
+
+设置 MediaSourceLoader，帮助播放器请求媒体数据。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                 |
+| -------- | -------- | ---- | -------------------- |
+| resourceLoader | [MediaSourceLoader](#MediaSourceLoader18) | 是   | 应用实现的媒体数据获取相关接口，方便播放器获取数据。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
+let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
+let resourceLoader = {
+  open: (request: media.MediaSourceLoading)
+}
+
+mediaSource.setMediaResourceLoaderDelegate(resourceLoader);
+```
+
+## SourceOpenCallback<sup>18+</sup>
+
+type SourceOpenCallback = (request: MediaSourceLoadingRequest) => number;
+
+由应用实现，由服务端调用此回调函数，客户端需处理传入的资源打开请求，并返回所打开资源对应的唯一句柄。
+注意：客户端在处理完请求后应立刻返回。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                 |
+| -------- | -------- | ---- | -------------------- |
+| request | [MediaSourceLoadingRequest](#MediaSourceLoadingRequest18) | 是  | 	打开请求参数，包含请求资源的具体信息和数据推送方式。 |
+
+**返回值：**
+
+| 类型   | 说明                 |
+| -------- | -------------------- |
+| number  | 当前资源打开请求的句柄。大于 0 表示请求成功，返回值为资源的唯一句柄；小于或等于 0 表示请求失败。|
+
+**示例：**
+
+```ts
+import HashMap from '@ohos.util.HashMap';
+
+let uuid: number = 1;
+let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
+
+let sourceOpenCallback: media.SourceOpenCallback = (request: media.MediaSourceLoadingRequest) => {
+  console.log(`Opening resource: ${request.url}`);
+  // 成功打开资源，返回一个唯一的句柄, 保证uuid 和 request对应
+  uuid += 1;
+  requests.set(uuid, request);
+  return uuid;
+}
+```
+
+## SourceReadCallback<sup>18+</sup>
+
+type SourceReadCallback = (uuid: number, requestedOffset: number, requestedLength: number) => void;
+
+由应用实现，由服务端调用此回调函数，客户端需记录读取请求，并在数据充足时通过对应MediaSourceLoadingRequest对象的response方法推送数据。
+注意：客户端在处理完请求后应立刻返回。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                 |
+| -------- | -------- | ---- | -------------------- |
+| uuid | number | 是  | 	资源句柄的标识。 |
+| requestedOffset | number | 是  | 	当前媒体数据相对于资源起始位置的偏移量。 |
+| requestedLength | number | 是  | 	当前请求的长度，值为 - 1 时，表示到达资源末尾，此时推送完成后需通过finishLoading方法通知播放器推送结束。 |
+
+**示例：**
+
+```ts
+let sourceReadCallback: media.SourceReadCallback = (uuid: number, requestedOffset: number, requestedLength: number) => {
+  console.log(`Reading resource with handle ${uuid}, offset: ${requestedOffset}, length: ${requestedLength}`);
+  // 判断uuid是否合法，存储read请求，不要在read请求阻塞去推送数据和头信息
+}
+```
+
+## SourceCloseCallback<sup>18+</sup>
+
+SourceCloseCallback(uuid: number): void
+
+由应用实现，由服务调用此回调函数，客户端应释放相关资源。
+注意：客户端在处理完请求后应立刻返回。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                 |
+| -------- | -------- | ---- | -------------------- |
+| uuid | number | 是  | 	资源句柄的标识。 |
+
+**示例：**
+
+```ts
+import HashMap from '@ohos.util.HashMap';
+
+let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
+
+let sourceCloseCallback: media.SourceCloseCallback = (uuid: number) => {
+  console.log(`Closing resource with handle ${uuid}`);
+  // 清除当前uuid相关资源
+  requests.remove(uuid);
+}
+```
+
+## MediaSourceLoader <sup>18+</sup>
+
+MediaSourceLoader 是一个接口，用于定义媒体数据加载器，需要用户对其进行实现。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                 |
+| -------- | -------- | ---- | -------------------- |
+| open | [SourceOpenCallback](#SourceOpenCallback18) | 是  | 由应用程序实现的回调函数，用于处理资源打开请求。 |
+| read | [SourceReadCallback](#SourceReadCallback18) | 是  | 由应用程序实现的回调函数，用于处理资源读取请求。 |
+| close | [SourceCloseCallback](#SourceCloseCallback18) | 是  | 由应用程序实现的回调函数，用于处理资源关闭请求。 |
+
+**示例：**
+
+```ts
+import HashMap from '@ohos.util.HashMap';
+
+let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
+let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
+let uuid: number = 1;
+let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
+let mediaSourceLoader: media.MediaSourceLoader = {
+  open: (request: media.MediaSourceLoadingRequest) => {
+    console.log(`Opening resource: ${request.url}`);
+    // 成功打开资源，返回一个唯一的句柄, 保证uuid 和 request对应
+    uuid += 1;
+    requests.set(uuid, request);
+    return uuid;
+  },
+  read: (uuid: number, requestedOffset: number, requestedLength: number) => {
+    console.log(`Reading resource with handle ${uuid}, offset: ${requestedOffset}, length: ${requestedLength}`);
+    // 判断uuid是否合法，存储read请求，不要在read请求阻塞去推送数据和头信息
+  },
+  close: (uuid: number) => {
+    console.log(`Closing resource with handle ${uuid}`);
+    // 清除当前uuid相关资源
+    requests.remove(uuid);
+  }
+};
+
+mediaSource.setMediaResourceLoaderDelegate(mediaSourceLoader);
+let playStrategy : media.PlaybackStrategy = {
+  preferredWidth: 1,
+  preferredHeight: 2,
+  preferredBufferDuration: 3,
+  preferredHdr: false,
+  preferredBufferDurationForPlaying: 1,
+};
+let player = await media.createAVPlayer();
+player.setMediaSource(mediaSource, playStrategy);
+```
+
+## MediaSourceLoadingRequest <sup>18+</sup>
+
+MediaSourceLoadingRequest 用于定义加载请求的对象。应用程序通过该对象来获取请求的资源位置，通过该对象和播放器进行数据交互。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+### respondData<sup>18+</sup>
+
+respondData(uuid: number, offset: number, buffer: ArrayBuffer): number;
+
+用于应用程序向播放器发送数据。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                 |
+| -------- | -------- | ---- | -------------------- |
+| uuid | number | 是  | 	资源句柄的标识。 |
+| offset | number | 是  | 	当前媒体数据相对于资源起始位置的偏移量 |
+| buffer | ArrayBuffer | 是  | 	响应播放器的媒体数据缓冲区。 |
+
+**返回值：**
+
+| 类型           | 说明                                |
+| -------------- | ----------------------------------- |
+| number | 当前服务端接受的字节数。<br>-小于 0 表示操作失败；<br>-返回值为 2 时，表示播放器不再需要当前数据，客户端应停止当前读取过程；<br>-返回值为 3 时，表示播放器的缓冲区已满，客户端应等待下一次读取。 |
+
+**示例：**
+
+```ts
+let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
+let uuid = 1;
+
+let request = requests.get(uuid);
+let num = request.respondData(uuid, offset, buf);
+```
+
+### respondHeader<sup>18+</sup>
+
+respondHeader(uuid: number, header?: Record<string, string>, redirectUrl?: string): void
+
+用于应用程序向播放器发送响应头信息，应在第一次调用[respondData](#respondData18)方法之前调用。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                 |
+| -------- | -------- | ---- | -------------------- |
+| uuid | number | 是  | 	资源句柄的标识。 |
+| header | Record<string, string> | 否  | HTTP 响应中的头部信息。 |
+| redirectUrl | string | 否  | 	如果存在，为 HTTP 响应中的重定向 URL |
+
+**示例：**
+
+```ts
+let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
+let uuid = 1;
+
+let request = requests.get(uuid);
+request.respondHeader(uuid, header);
+```
+
+### finishLoading<sup>18+</sup>
+
+finishLoading(uuid: number, state: LoadingRequestError): void
+
+应用程序用于通知播放器当前请求状态的接口。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                 |
+| -------- | -------- | ---- | -------------------- |
+| uuid | number | 是  | 	资源句柄的标识。 |
+| state  | [LoadingRequestError](#loadingrequesterror-18) | 是  | 请求的状态。 |
+
+**示例：**
+
+```ts
+let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
+let uuid = 1;
+
+let request = requests.get(uuid);
+let loadingError = media.LoadingRequestError.LOADING_ERROR_SUCCESS;
+request.finishLoading(uuid, loadingError);
+```
+
+## LoadingRequestError <sup>18+</sup>
+
+LoadingRequestError 是一个枚举类型，用于列举在数据加载过程中状态变化的原因。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+| 名称                 | 值   | 说明                           |
+| -------------------- | ---- | ------------------------------ |
+| LOADING_ERROR_SUCCESS | 0    | 由客户端返回，表示已经推送到资源末尾。 |
+| LOADING_ERROR_NOT_READY | 1    | 由客户端返回，表示资源尚未准备好可供访问。|
+| LOADING_ERROR_NO_RESOURCE | 2    | 由客户端返回，表示请求的资源URL不存在。 |
+| LOADING_ERROR_INVAID_HANDLE | 3    | 由客户端返回，表示请求的资源句柄uuid无效。 |
+| LOADING_ERROR_ACCESS_DENIED | 4    | 由客户端返回，表示客户端没有权限请求该资源。 |
+| LOADING_ERROR_ACCESS_TIMEOUT | 5    | 由客户端返回，表示访问资源时超时。 |
+| LOADING_ERROR_AUTHORIZE_FAILED | 6    | 由客户端返回，表示授权失败。 |
+
 ## AVMimeTypes<sup>12+</sup>
 
 媒体MIME类型，通过[setMimeType](#setmimetype12)设置。
