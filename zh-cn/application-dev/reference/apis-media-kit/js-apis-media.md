@@ -7873,7 +7873,7 @@ setMediaResourceLoaderDelegate(resourceLoader: MediaSourceLoader): void;
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| resourceLoader | [MediaSourceLoader](#MediaSourceLoader18) | 是   | 应用实现的媒体数据获取相关接口，方便播放器获取数据。 |
+| resourceLoader | [MediaSourceLoader](#mediasourceloader-18) | 是   | 应用实现的媒体数据获取相关接口，方便播放器获取数据。 |
 
 **示例：**
 
@@ -7882,9 +7882,13 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
-let resourceLoader = {
-  open: (request: media.MediaSourceLoading)
-}
+
+// 应用按需实现
+let resourceLoader: media.MediaSourceLoader = {
+  open: SourceOpenCallback,
+  read: SourceReadCallback,
+  close: SourceCloseCallback
+};
 
 mediaSource.setMediaResourceLoaderDelegate(resourceLoader);
 ```
@@ -7904,7 +7908,7 @@ type SourceOpenCallback = (request: MediaSourceLoadingRequest) => number;
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| request | [MediaSourceLoadingRequest](#MediaSourceLoadingRequest18) | 是  | 	打开请求参数，包含请求资源的具体信息和数据推送方式。 |
+| request | [MediaSourceLoadingRequest](#mediasourceloadingrequest-18) | 是  | 	打开请求参数，包含请求资源的具体信息和数据推送方式。 |
 
 **返回值：**
 
@@ -7933,7 +7937,7 @@ let sourceOpenCallback: media.SourceOpenCallback = (request: media.MediaSourceLo
 
 type SourceReadCallback = (uuid: number, requestedOffset: number, requestedLength: number) => void;
 
-由应用实现，由服务端调用此回调函数，客户端需记录读取请求，并在数据充足时通过对应MediaSourceLoadingRequest对象的response方法推送数据。
+由应用实现，由服务端调用此回调函数，客户端需记录读取请求，并在数据充足时通过对应的MediaSourceLoadingRequest对象的response方法推送数据。
 注意：客户端在处理完请求后应立刻返回。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
@@ -7946,7 +7950,7 @@ type SourceReadCallback = (uuid: number, requestedOffset: number, requestedLengt
 | -------- | -------- | ---- | -------------------- |
 | uuid | number | 是  | 	资源句柄的标识。 |
 | requestedOffset | number | 是  | 	当前媒体数据相对于资源起始位置的偏移量。 |
-| requestedLength | number | 是  | 	当前请求的长度，值为 - 1 时，表示到达资源末尾，此时推送完成后需通过finishLoading方法通知播放器推送结束。 |
+| requestedLength | number | 是  | 	当前请求的长度，值为 - 1 时，表示到达资源末尾，此时推送完成后需通过[finishLoading](#finishloading18)方法通知播放器推送结束。 |
 
 **示例：**
 
@@ -7990,7 +7994,7 @@ let sourceCloseCallback: media.SourceCloseCallback = (uuid: number) => {
 
 ## MediaSourceLoader <sup>18+</sup>
 
-MediaSourceLoader 是一个接口，用于定义媒体数据加载器，需要用户对其进行实现。
+用于定义媒体数据加载器，需要应用对其进行实现。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -8000,9 +8004,9 @@ MediaSourceLoader 是一个接口，用于定义媒体数据加载器，需要�
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| open | [SourceOpenCallback](#SourceOpenCallback18) | 是  | 由应用程序实现的回调函数，用于处理资源打开请求。 |
-| read | [SourceReadCallback](#SourceReadCallback18) | 是  | 由应用程序实现的回调函数，用于处理资源读取请求。 |
-| close | [SourceCloseCallback](#SourceCloseCallback18) | 是  | 由应用程序实现的回调函数，用于处理资源关闭请求。 |
+| open | [SourceOpenCallback](#sourceopencallback18) | 是  | 由应用程序实现的回调函数，用于处理资源打开请求。 |
+| read | [SourceReadCallback](#sourcereadcallback18) | 是  | 由应用程序实现的回调函数，用于处理资源读取请求。 |
+| close | [SourceCloseCallback](#sourceclosecallback18) | 是  | 由应用程序实现的回调函数，用于处理资源关闭请求。 |
 
 **示例：**
 
@@ -8034,11 +8038,7 @@ let mediaSourceLoader: media.MediaSourceLoader = {
 
 mediaSource.setMediaResourceLoaderDelegate(mediaSourceLoader);
 let playStrategy : media.PlaybackStrategy = {
-  preferredWidth: 1,
-  preferredHeight: 2,
-  preferredBufferDuration: 3,
-  preferredHdr: false,
-  preferredBufferDurationForPlaying: 1,
+  preferredBufferDuration: 20,
 };
 let player = await media.createAVPlayer();
 player.setMediaSource(mediaSource, playStrategy);
@@ -8046,7 +8046,7 @@ player.setMediaSource(mediaSource, playStrategy);
 
 ## MediaSourceLoadingRequest <sup>18+</sup>
 
-MediaSourceLoadingRequest 用于定义加载请求的对象。应用程序通过该对象来获取请求的资源位置，通过该对象和播放器进行数据交互。
+用于定义加载请求的对象。应用程序通过该对象来获取请求的资源位置，通过该对象和播放器进行数据交互。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -8067,14 +8067,14 @@ respondData(uuid: number, offset: number, buffer: ArrayBuffer): number;
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
 | uuid | number | 是  | 	资源句柄的标识。 |
-| offset | number | 是  | 	当前媒体数据相对于资源起始位置的偏移量 |
-| buffer | ArrayBuffer | 是  | 	响应播放器的媒体数据缓冲区。 |
+| offset | number | 是  | 	当前媒体数据相对于资源起始位置的偏移量。 |
+| buffer | ArrayBuffer | 是  | 	响应播放器的媒体数据，注意不要传输无关数据，会影响正常数据解析和播放。 |
 
 **返回值：**
 
 | 类型           | 说明                                |
 | -------------- | ----------------------------------- |
-| number | 当前服务端接受的字节数。<br>-小于 0 表示操作失败；<br>-返回值为 2 时，表示播放器不再需要当前数据，客户端应停止当前读取过程；<br>-返回值为 3 时，表示播放器的缓冲区已满，客户端应等待下一次读取。 |
+| number | 当前服务端接受的字节数。<br>-小于 0 表示操作失败；<br>-返回值为 -2 时，表示播放器不再需要当前数据，客户端应停止当前读取过程；<br>-返回值为 -3 时，表示播放器的缓冲区已满，客户端应等待下一次读取。 |
 
 **示例：**
 
@@ -8090,7 +8090,7 @@ let num = request.respondData(uuid, offset, buf);
 
 respondHeader(uuid: number, header?: Record<string, string>, redirectUrl?: string): void
 
-用于应用程序向播放器发送响应头信息，应在第一次调用[respondData](#respondData18)方法之前调用。
+用于应用程序向播放器发送响应头信息，应在第一次调用[respondData](#responddata18)方法之前调用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -8101,8 +8101,8 @@ respondHeader(uuid: number, header?: Record<string, string>, redirectUrl?: strin
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
 | uuid | number | 是  | 	资源句柄的标识。 |
-| header | Record<string, string> | 否  | HTTP 响应中的头部信息。 |
-| redirectUrl | string | 否  | 	如果存在，为 HTTP 响应中的重定向 URL |
+| header | Record<string, string> | 否  | HTTP 响应中的头部信息，应用可将头信息字段与底层支持解析字段取交集传递或直接传对应的所有头部信息。<br> -底层播放需要解析的字段包括Transfer-Encoding、Location、Content-Type、Content-Range、Content-Encode、Accept-Ranges、content-length。 |
+| redirectUrl | string | 否  | 	如果存在，为 HTTP 响应中的重定向 URL。 |
 
 **示例：**
 
@@ -8110,6 +8110,16 @@ respondHeader(uuid: number, header?: Record<string, string>, redirectUrl?: strin
 let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
 let uuid = 1;
 
+// 应用根据情况填充
+let header:Record<string, string> = {
+  'Transfer-Encoding':'xxx',
+  'Location' : 'xxx',
+  'Content-Type' : 'xxx',
+  'Content-Range' : 'xxx',
+  'Content-Encode' : 'xxx',
+  'Accept-Ranges' : 'xxx',
+  'content-length' : 'xxx'
+};
 let request = requests.get(uuid);
 request.respondHeader(uuid, header);
 ```
@@ -8118,7 +8128,7 @@ request.respondHeader(uuid, header);
 
 finishLoading(uuid: number, state: LoadingRequestError): void
 
-应用程序用于通知播放器当前请求状态的接口。
+应用程序用于通知播放器当前请求状态的接口。针对服务侧请求的单个资源，推送完全部资源后需要发送 LOADING_ERROR_SUCCESS 状态告知该资源推送结束。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
