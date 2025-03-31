@@ -97,7 +97,7 @@ test(a2);
 
 ## 混淆选项
 
-各混淆选项能力加入系统的SDK版本不同，详见[各功能上线SDK版本](#混淆各功能上线sdk版本)
+各混淆选项能力加入系统的SDK版本不同，详见[各功能上线SDK版本](#混淆各功能上线sdk版本)。
 
 ### 已有混淆选项汇总
 
@@ -402,7 +402,7 @@ let params = obj['ohos.want.action.home'];
  
 ## 保留选项
 
-各保留选项能力加入系统的SDK版本不同，详见[各功能上线SDK版本](#混淆各功能上线sdk版本)
+各保留选项能力加入系统的SDK版本不同，详见[各功能上线SDK版本](#混淆各功能上线sdk版本)。
 
 ### 已有保留选项汇总
 
@@ -582,7 +582,7 @@ class MyClass {}
 let d = new MyClass();      // MyClass 可以被正确地混淆
 ```
 
-2.当以命名导入的方式导入 so 库的 API时，若同时开启`-enable-toplevel-obfuscation`和`-enable-export-obfuscation`选项，需要手动保留 API 的名称。
+2.当以命名导入的方式导入 so 库的 API 时，若同时开启`-enable-toplevel-obfuscation`和`-enable-export-obfuscation`选项，需要手动保留 API 的名称。
 
 ```
 import { testNapi, testNapi1 as myNapi } from 'library.so' // testNapi 和 testNapi1 应该被保留
@@ -590,7 +590,7 @@ import { testNapi, testNapi1 as myNapi } from 'library.so' // testNapi 和 testN
 
 ### -keep-file-name
 
-指定要保留的文件/文件夹的名称(不需要写文件后缀)，支持使用[名称类通配符](#名称类通配符)。例如：
+指定要保留的文件/文件夹的名称（不需要写文件后缀），支持使用[名称类通配符](#名称类通配符)。例如：
 
 ```
 -keep-file-name
@@ -710,8 +710,8 @@ export class exportClass {}
 
 | 通配符 | 含义                   | 示例                                       |
 | ------ | ---------------------- | ------------------------------------------ |
-| ?      | 匹配任意单个字符       | "AB?"能匹配"ABC"等，但不能匹配"AB"         |
-| \*     | 匹配任意数量的任意字符 | "\*AB\*"能匹配"AB"、"aABb"、"cAB"、"ABc"等 |
+| ?      | 匹配任意单个字符。       | "AB?"能匹配"ABC"等，但不能匹配"AB"。         |
+| \*     | 匹配任意数量的任意字符。 | "\*AB\*"能匹配"AB"、"aABb"、"cAB"、"ABc"等。 |
 
 **使用示例**：
 
@@ -742,10 +742,10 @@ a*
 
 | 通配符 | 含义                                                                     | 示例                                              |
 | ------ | ------------------------------------------------------------------------ | ------------------------------------------------- |
-| ?     | 匹配任意单个字符，除了路径分隔符`/`                                      | "../a?"能匹配"../ab"等，但不能匹配"../a/"         |
-| \*      | 匹配任意数量的任意字符，除了路径分隔符`/`                                | "../a*/c"能匹配"../ab/c"，但不能匹配"../ab/d/s/c" |
-| \*\*   | 匹配任意数量的任意字符                                                   | "../a**/c"能匹配"../ab/c"，也能匹配"../ab/d/s/c"  |
-| !      | 表示非，只能写在某个路径最前端，用来排除用户配置的白名单中已有的某种情况 | "!../a/b/c.ets"表示除"../a/b/c.ets"以外           |
+| ?     | 匹配任意单个字符，除了路径分隔符`/`。                                      | "../a?"能匹配"../ab"等，但不能匹配"../a/"。         |
+| \*      | 匹配任意数量的任意字符，除了路径分隔符`/`。                                | "../a*/c"能匹配"../ab/c"，但不能匹配"../ab/d/s/c"。 |
+| \*\*   | 匹配任意数量的任意字符。                                                   | "../a**/c"能匹配"../ab/c"，也能匹配"../ab/d/s/c"。  |
+| !      | 表示非，只能写在某个路径最前端，用来排除用户配置的白名单中已有的某种情况。 | "!../a/b/c.ets"表示除"../a/b/c.ets"以外。           |
 
 **使用示例**：
 
@@ -827,14 +827,14 @@ class A {
   指该远程HAR包中`obfuscation.txt`文件内容。  
 
 当构建HAP、HSP和HAR的时候，最终的混淆规则是下列文件的合并：
-* 当前构建模块的ruleOptions.files属性
-* 依赖的本地HAR的consumerFiles属性
-* 依赖的远程HAR中的obfuscation.txt文件
+* 当前构建模块的ruleOptions.files属性。
+* 依赖的本地HAR的consumerFiles属性。
+* 依赖的远程HAR中的obfuscation.txt文件。
 
 如果构建的是HAR，生成的远程HAR中的obfuscation.txt是下列文件的合并：
-* 自身的consumerFiles属性
-* 依赖的本地HAR的consumerFiles属性
-* 依赖的远程HAR中的obfuscation.txt文件
+* 自身的consumerFiles属性。
+* 依赖的本地HAR的consumerFiles属性。
+* 依赖的远程HAR中的obfuscation.txt文件。
 
 如果构建的是HAP或HSP，则不会生成obfuscation.txt。
 
