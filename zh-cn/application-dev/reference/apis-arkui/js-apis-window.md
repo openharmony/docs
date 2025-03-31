@@ -1417,6 +1417,54 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+## window.getVisibleWindowInfo<sup>18+</sup>
+
+getVisibleWindowInfo(): Promise&lt;Array&lt;WindowInfo&gt;&gt;
+
+获取当前屏幕的可见窗口（未退至后台的窗口）信息。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ----------------------- |
+| Promise&lt;[WindowInfo](#windowinfo12)&gt; | Promise对象，返回当前可见窗口的相关信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 801     | Capability not supported. Function getVisibleWindowInfo can not work correctly due to limited device capabilities. |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let promise = window.getVisibleWindowInfo();
+promise.then((data) => {
+  data.forEach(windowInfo=>{
+    console.info(`left:${windowInfo.rect.left}`);
+    console.info(`top:${windowInfo.rect.top}`);
+    console.info(`width:${windowInfo.rect.width}`);
+    console.info(`height:${windowInfo.rect.height}`);
+    console.info(`windowId:${windowInfo.windowId}`);
+    console.info(`windowStatusType:${windowInfo.windowStatusType}`);
+    console.info(`abilityName:${windowInfo.abilityName}`);
+    console.info(`bundleName:${windowInfo.bundleName}`);
+    console.info(`isFocused:${windowInfo.isFocused}`);
+  })
+}).catch((err: BusinessError) => {
+  console.error('Failed to getWindowInfo. Cause: ' + JSON.stringify(err));
+});
+```
+
 ## SpecificSystemBar<sup>11+</sup>
 
 type SpecificSystemBar = 'status' \| 'navigation' \| 'navigationIndicator'
