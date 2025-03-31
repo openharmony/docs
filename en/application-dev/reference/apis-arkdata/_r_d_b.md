@@ -712,7 +712,7 @@ Defines a callback used to return the details about the device-cloud data change
 | Name| Description|
 | -------- | -------- |
 | context | Pointer to the context of the data observer.|
-| changeInfo | Pointer to [Rdb_ChangeInfo](_rdb___change_info.md).|
+| changeInfo | Double pointer to [Rdb_ChangeInfo](_rdb___change_info.md).|
 | count | Number of changed tables.|
 
 **See**
@@ -1538,7 +1538,7 @@ Creates a transaction object.
 | -------- | -------- |
 | store | Pointer to the [OH_Rdb_Store](_o_h___rdb___store.md) instance.|
 | options | Pointer to the [OH_RDB_TransOptions](#oh_rdb_transoptions) instance for the transaction instance to create.|
-| trans | Pointer to the [OH_Rdb_Transaction](#oh_rdb_transaction) instance created if the operation is successful. If the operation fails, **nullptr** is returned. Call [OH_RdbTrans_Destroy](#oh_rdbtrans_destroy) to release the transaction instance that is no longer required.|
+| trans | Double pointer to the [OH_Rdb_Transaction](#oh_rdb_transaction) instance created if the operation is successful. If the operation fails, **nullptr** is returned. Call [OH_RdbTrans_Destroy](#oh_rdbtrans_destroy) to release the transaction instance that is no longer required.|
 
 **Returns**
 
@@ -1621,7 +1621,7 @@ Executes an SQL statement with a return value. This API supports vector stores.
 | store | Pointer to the [OH_Rdb_Store](_o_h___rdb___store.md) instance.|
 | sql | Pointer to the SQL statement to execute.|
 | args | Pointer to the **OH_Data_Values** instance. This parameter is optional.|
-| result | Pointer to the [OH_Data_Value](#oh_data_value) instance returned if the operation is successful.<br>Use [OH_Value_Destroy](#oh_value_destroy) to release the memory in time.|
+| result | Double pointer to the [OH_Data_Value](#oh_data_value) instance returned if the operation is successful.<br>Use [OH_Value_Destroy](#oh_value_destroy) to release the memory in time.|
 
 **Returns**
 
@@ -2281,7 +2281,7 @@ Obtains the assets from an **OH_Data_Value** instance.
 | Name| Description|
 | -------- | -------- |
 | value | Pointer to the target [OH_Data_Value](#oh_data_value) instance.|
-| val | Pointer to the **Data_Asset** object obtained if the operation is successful. You need to apply for memory for it. This function is used to fill in data only. Otherwise, the operation fails.|
+| val | Double pointer to the **Data_Asset** object obtained if the operation is successful. You need to apply for memory for it. This function is used to fill in data only. Otherwise, the operation fails.|
 | inLen | Size of **val**, which can be obtained by [OH_Values_GetAssetsCount](#oh_values_getassetscount).|
 | outLen | Pointer to the size of the obtained data.|
 
@@ -2351,7 +2351,7 @@ Obtains the BLOB data from an **OH_Data_Value** instance.
 | Name| Description|
 | -------- | -------- |
 | value | Pointer to the target [OH_Data_Value](#oh_data_value) instance.|
-| val | Pointer to the BLOB data obtained. You do not need to apply for or release memory for it. The lifecycle of **val** complies with the value of **index** in **value**.|
+| val | Double pointer to the BLOB data obtained. You do not need to apply for or release memory for it. The lifecycle of **val** complies with the value of **index** in **value**.|
 | length | Pointer to the length of the BLOB data obtained.|
 
 **Returns**
@@ -3067,7 +3067,7 @@ Obtains the assets from an **OH_Data_Values** instance.
 | -------- | -------- |
 | values | Pointer to the target [OH_Data_Values](#oh_data_values) instance.|
 | index | Index of the value to obtain, which starts from 0 in **values**.|
-| val | Pointer to the **Data_Asset** object obtained if the operation is successful. You need to apply for memory for it. This function is used to fill in data only. Otherwise, the operation fails.|
+| val | Double pointer to the **Data_Asset** object obtained if the operation is successful. You need to apply for memory for it. This function is used to fill in data only. Otherwise, the operation fails.|
 | inLen | Size of **val**, which can be obtained by [OH_Values_GetAssetsCount](#oh_values_getassetscount).|
 | outLen | Pointer to the length of the obtained data.|
 
@@ -5367,7 +5367,7 @@ Puts an array of **OH_Asset** objects into the [OH_VBucket](_o_h___v_bucket.md) 
 | -------- | -------- |
 | bucket | Pointer to the [OH_VBucket](_o_h___v_bucket.md) instance.|
 | field | Pointer to the column name in the database table.|
-| value | Pointer to the data to put.|
+| value | Double pointer to the data to put.|
 | count | Number of elements in the **OH_Asset** array.|
 
 **Returns**
@@ -7153,7 +7153,7 @@ Pointer to the function used to convert a string array of the char type to a val
 | Name| Description|
 | -------- | -------- |
 | valueObject | Pointer to the [OH_VObject](_o_h___v_object.md) instance.|
-| value | Pointer to the string array to convert.|
+| value | Double pointer to the string array to convert.|
 | count | Length of the string array to convert.|
 
 **Returns**
