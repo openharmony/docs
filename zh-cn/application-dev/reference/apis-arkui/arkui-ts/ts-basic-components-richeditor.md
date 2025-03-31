@@ -3033,7 +3033,6 @@ struct Index {
             }
           })
         })
-
         Divider()
         Button("getParagraphs").onClick(() => {
           this.spanParagraphs = this.controller.getParagraphs({ start: -1, end: -1 })
