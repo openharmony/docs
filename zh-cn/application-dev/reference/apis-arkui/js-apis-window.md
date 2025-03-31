@@ -8873,7 +8873,8 @@ export default class EntryAbility extends UIAbility {
 
 setSubWindowZLevel(zLevel: number): Promise&lt;void&gt;
 
-设置当前子窗口层级级别，设置了模态属性的子窗不支持。通过该接口改变子窗口的显示层级时，不会发生焦点切换。
+设置当前子窗口层级级别，设置了模态属性的子窗不支持。
+通过该接口改变子窗口的显示层级时，不会发生焦点切换。推荐使用[shiftAppWindowFocus()](#windowshiftappwindowfocus11)进行焦点切换。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -8919,20 +8920,20 @@ export default class EntryAbility extends UIAbility {
     // 创建子窗
     try {
       let subWindowPromise = windowStage.createSubWindow('testSubWindow');
-      subWindowPromise.then((data) => {
-        if (data == null) {
-          console.error('Failed to create the sub window. Cause: The data is empty');
+      subWindowPromise.then((subWindow) => {
+        if (subWindow == null) {
+          console.error('Failed to create the sub window. Cause: The sub window is null');
           return;
         }
-        let zLevelPromise = data.setSubWindowZLevel(1);
+        let zLevelPromise = subWindow.setSubWindowZLevel(1);
         zLevelPromise.then(() => {
           console.info('Succeeded in setting sub window zLevel.');
         }).catch((err: BusinessError) => {
           console.error(`Failed to set sub window zLevel. Cause code: ${err.code}, message: ${err.message}`);
         });
       });
-    } catch (exception) {
-      console.error(`Failed to create the sub window. Cause code: ${exception.code}, message: ${exception.message}`);
+    } catch (err) {
+      console.error(`Failed to create the sub window. Cause code: ${err.code}, message: ${err.message}`);
     }
   }
 }
@@ -8942,7 +8943,7 @@ export default class EntryAbility extends UIAbility {
 
 getSubWindowZLevel(): number;
 
-获取当前子窗口层级级别。
+获取当前子窗口层级级别。不支持主窗、系统窗调用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -8978,20 +8979,20 @@ export default class EntryAbility extends UIAbility {
     // 创建子窗
     try {
       let subWindowPromise = windowStage.createSubWindow('testSubWindow');
-      subWindowPromise.then((data) => {
-        if (data == null) {
-          console.error('Failed to create the sub window. Cause: The data is empty');
+      subWindowPromise.then((subWindow) => {
+        if (subWindow == null) {
+          console.error('Failed to create the sub window. Cause: The sub window is null');
           return;
         }
         try {
-          let subWindowZLevel = data.getSubWindowZLevel();
+          let subWindowZLevel = subWindow.getSubWindowZLevel();
           console.info(`Succeeded in getting sub window zLevel: ${subWindowZLevel}`);
         } catch (err) {
           console.error(`Failed to get sub window zLevel. Cause code: ${err.code}, message: ${err.message}`);
         }
       });
-    } catch (exception) {
-      console.error(`Failed to create the sub window. Cause code: ${exception.code}, message: ${exception.message}`);
+    } catch (err) {
+      console.error(`Failed to create the sub window. Cause code: ${err.code}, message: ${err.message}`);
     }
   }
 }
