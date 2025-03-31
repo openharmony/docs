@@ -1,10 +1,10 @@
 # 简单文本绘制与显示（ArkTS）
 
-### 场景介绍
+## 场景介绍
 
 在一个简单的用户界面中，可能只需要展示几行静态文本，例如标签、按钮上的文字、菜单项或状态栏中的提示信息。此时，开发者只需要选择合适的字体、大小和颜色即可完成渲染。
 
-### 相关属性
+## 相关属性
 
 此场景示例，涉及到的文本样式属性如下，具体及更多文本样式可参考[TextStyle](../reference/apis-arkgraphics2d/js-apis-graphics-text.md#textstyle)。
 
@@ -13,7 +13,7 @@
 - fontSize：字体大小，浮点数，默认为14.0，单位为物理像素px。
 
 
-### 开发步骤
+## 开发步骤
 
 1. 通过context获取到Canvas画布对象。
 
@@ -69,7 +69,7 @@
    ```
 
 
-### 完整示例
+## 完整示例
 
 ```ts
 import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI'
@@ -201,6 +201,6 @@ struct Font08 {
 }
 ```
 
-### 效果展示
+## 效果展示
 
 ![zh-cn_image_0000002246603717](figures/zh-cn_image_0000002246603717.png)

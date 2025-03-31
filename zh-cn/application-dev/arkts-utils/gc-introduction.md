@@ -70,7 +70,7 @@ function main() {
 ![image](./figures/mark-shuffle.png)
 
 完成对象图遍历后，将可达对象（蓝色）往本区域（或指定区域）的头部空闲位置复制，然后将已经完成复制的对象回收整理到空闲队列中。
-这种回收方式既解决了“标记-清扫回收”引入的大量内存空间碎片的问题，又不需要像“标记-复制回收”那样浪费一半的内存空间，但是性能上开销比“标记-复制回收”稍大一些。
+这种回收方式既解决了“标记-清扫回收”引入的大量内存空间碎片的问题，又不需要像“标记-复制回收”那样浪费一半的内存空间，但是性能上开销比“标记-复制回收”多。
 
 ### HPP GC
 
@@ -183,7 +183,7 @@ heap中会生成两个Semi Space供copying使用。
 
 | 参数名 | 值 | 作用 |
 | --- | --- | --- |
-| gcThreadNum | 7 | gc线程数量，默认为7，可通过`gc-thread-num`参数自行设定该参数值。 |
+| gcThreadNum | 7 | gc线程数量，默认为7。可通过`gc-thread-num`参数自行设定该参数值。 |
 | MIN_TASKPOOL_THREAD_NUM | 3 | 线程池最小线程数。 |
 | MAX_TASKPOOL_THREAD_NUM | 7 | 线程池最大线程数。 |
 
@@ -210,21 +210,21 @@ heap中会生成两个Semi Space供copying使用。
 - **触发机制**：年轻代GC触发阈值在2MB-16MB变化，根据分配速度和存活率等会变化。
 - **说明**：主要回收semi space新分配的年轻代对象。
 - **场景**：前台场景。
-- **日志关键词**：[ HPP YoungGC ]。
+- **日志关键词**：`[ HPP YoungGC ]`
 
 #### Old GC
 
 - **触发机制**：老年代GC触发阈值在20MB-300多MB变化，大部分情况，第一次Old GC的阈值在20M左右，之后会根据对象存活率，内存占用大小进行阈值调整。
 - **说明**：对年轻代和部分老年代空间做整理压缩，其他空间做sweep清理。触发频率比年轻代GC低很多，由于会做全量mark，因此GC时间会比年轻代GC长，单次耗时约5ms~10ms。
 - **场景**：前台场景。
-- **日志关键词**：[ HPP OldGC ]。
+- **日志关键词**：`[ HPP OldGC ]`
 
 #### Full GC
 
-- **触发机制**：不会由内存阈值触发。应用切换后台之后，如果预测能回收的对象尺寸大于2M会触发一次Full GC。DumpHeapSnapshot和AllocationTracker工具默认会触发Full GC。Native接口和ArkTS也有接口可以触发。
+- **触发机制**：不会由内存阈值触发。应用切换后台之后，如果预测能回收的对象尺寸大于2M会触发一次Full GC。DumpHeapSnapshot 和 AllocationTracker 工具默认会触发Full GC。Native 接口和ArkTS 也有接口可以触发。
 - **说明**：会对年轻代和老年代做全量压缩，主要用于性能不敏感场景，最大限度回收内存空间。
 - **场景**：后台场景。
-- **日志关键词**：[ CompressGC ]。
+- **日志关键词**：`[ CompressGC ]`
 
 此后的Smart GC或者IDLE GC都是在上述三种GC中做选择。
 
@@ -234,7 +234,7 @@ heap中会生成两个Semi Space供copying使用。
 
 - 函数方法：`AllocateYoungOrHugeObject`，`AllocateHugeObject`等分配函数。
 - 限制参数：对应的空间阈值。
-- 说明：对象申请空间到达对应空间阈值时触发GC。。
+- 说明：对象申请空间到达对应空间阈值时触发GC。
 - 典型日志：日志可区分GCReason::ALLOCATION_LIMIT。
 
 #### native绑定大小达到阈值触发GC
@@ -268,21 +268,22 @@ heap中会生成两个Semi Space供copying使用。
 
 - 函数方法：`AdjustOldSpaceLimit`
 - 说明：根据最小增长步长以及平均存活率调整OldSpace阈值限制。
-- 典型日志：`"AdjustOldSpaceLimit oldSpaceAllocLimit_: " << oldSpaceAllocLimit << " globalSpaceAllocLimit_: " << globalSpaceAllocLimit_;`
+- 日志关键词：`AdjustOldSpaceLimit`
 
 #### 第二次及以后的OldGC对old Space/global space阈值调整，以及增长因子的调整
 
 - 函数方法：`RecomputeLimits`
 - 说明：根据当前GC统计的数据变化重新计算调整`newOldSpaceLimit`，`newGlobalSpaceLimit`，`globalSpaceNativeLimit`和增长因子。
-- 典型日志：`"RecomputeLimits oldSpaceAllocLimit_: " << newOldSpaceLimit_ << " globalSpaceAllocLimit_: " << globalSpaceAllocLimit_ << " globalSpaceNativeLimit_:" << globalSpaceNativeLimit_;`。
+- 日志关键词：`RecomputeLimits`
 
 #### PartialGC的Cset 选择策略
 
 - 函数方法：`OldSpace::SelectCSet()`
 - 说明：PartialGC执行时采用该策略选择存活对象数量少，回收代价小的Region优先进行GC。
-- 典型日志：`Select CSet failure: number is too few`,
-  `"Max evacuation size is 6_MB. The CSet region number: " << selectedRegionNumber;`,
-  `"Select CSet success: number is " << collectRegionSet_.size();`
+- 典型日志：
+    - `Select CSet failure: number is too few`
+    - `Max evacuation size is 6_MB. The CSet region number`
+    - `Select CSet success: number is`
 
 ## SharedHeap
 
@@ -314,7 +315,7 @@ heap中会生成两个Semi Space供copying使用。
 
 当前该特性使能由系统侧进行管控，三方应用暂无接口直接调用。
 
-日志关键词: “SmartGC”。
+日志关键词: `SmartGC`。
 
 #### 交互流程
 
@@ -414,7 +415,7 @@ C03F00/ArkCompiler: Heap average alive rate: 0.635325
 
 **使用参考：**
 
-```
+```ts
 // 首先需要声明接口
 declare class ArkTools {
      static hintGC(): void;

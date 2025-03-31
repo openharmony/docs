@@ -24,6 +24,10 @@ HiTraceMeter提供系统性能打点接口。开发者通过在关键代码位�
 | hiTraceMeter.finishTrace(name: string, taskId: number) | 异步时间片跟踪接口，name和taskId必须与流程开始的hiTraceMeter.startTrace对应参数值保持一致。 | 
 | hiTraceMeter.traceByValue(name: string, value: number) | 整数跟踪接口，用来标记一个预跟踪的数值变量，该变量的数值会不断变化。 | 
 
+> **注意：**
+>
+> 用户态tarce格式使用竖线 `|` 作为分隔符，所以通过HiTraceMeter接口传递的字符串类型参数应避免包含该字符，防止trace解析异常。
+
 HiTraceMeter打点接口按功能/行为分类，主要分三类：同步时间片跟踪接口、异步时间片跟踪接口和整数跟踪接口。无论同步时间片跟踪接口还是异步时间片跟踪接口，接口本身都是同步接口，不是异步接口，都用在同一线程中，不支持跨线程打点和分析。
 
 - 同步时间片跟踪接口用于顺序执行的打点场景，目前ArkTS/JS暂未提供相关接口。

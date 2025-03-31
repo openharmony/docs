@@ -381,4 +381,3 @@ In addition to the basic drag-and-drop functionality, ArkUI allows you to initia
       break;
     }
     ```
-<!--no_check-->

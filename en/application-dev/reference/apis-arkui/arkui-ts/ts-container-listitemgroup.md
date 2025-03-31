@@ -370,4 +370,4 @@ struct ListItemGroupExample {
 }
 ```
 
-![en-us_image_listitemgroup_example03](figures/en-us_image_listitemgroup_example03.gif)
+

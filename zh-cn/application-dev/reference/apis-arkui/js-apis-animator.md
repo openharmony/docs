@@ -597,7 +597,7 @@ update(options: AnimatorOptions): void
 
 更新当前动画器。
 
-从API version9开始不再维护，建议使用[reset<sup>9+</sup>](#reset9)
+从API version9开始不再维护，建议使用[reset<sup>9+</sup>](#reset9)。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 

@@ -89,8 +89,8 @@ import { cloudSync } from '@kit.CoreFileKit';
 | 名称     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | state | [State](#state11) | 是   | 枚举值，云文件下载状态。|
-| processed | number | 是   | 已下载数据大小。|
-| size | number | 是   | 当前云文件大小。|
+| processed | number | 是   | 已下载数据大小，取值范围[0，9223372036854775807]。|
+| size | number | 是   | 当前云文件大小，取值范围[0，9223372036854775807]。|
 | uri | string | 是   | 当前云文件uri。|
 | error | [DownloadErrorType](#downloaderrortype11) | 是   | 下载的错误类型。|
 
@@ -173,7 +173,7 @@ off(event: 'progress', callback?: Callback\<SyncProgress>): void
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | event | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）。|
-| callback | Callback\<[SyncProgress](#syncprogress12)> |  否   | 同步过程事件回调。 |
+| callback | Callback\<[SyncProgress](#syncprogress12)> |  否   | 同步过程事件回调，默认值为null。 |
 
 **错误码：**
 

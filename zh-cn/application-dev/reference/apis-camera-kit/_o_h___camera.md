@@ -72,6 +72,7 @@
 | struct  [PhotoOutput_Callbacks](_photo_output___callbacks.md) | 拍照输出的回调。 | 
 | struct  [PreviewOutput_Callbacks](_preview_output___callbacks.md) | 用于预览输出的回调。 | 
 | struct  [VideoOutput_Callbacks](_video_output___callbacks.md) | 用于录像输出的回调。 | 
+| struct  [Camera_ConcurrentInfo](_camera___concurrent_info.md) | 相机并发能力集。 | 
 
 
 ### 类型定义
@@ -124,12 +125,12 @@
 | typedef void(\* [OH_CameraManager_StatusCallback](#oh_cameramanager_statuscallback)) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_StatusInfo](_camera___status_info.md) \*status) | 在[CameraManager_Callbacks](_camera_manager___callbacks.md)中被调用的相机管理器状态回调。 | 
 | typedef void(\* [OH_CameraManager_TorchStatusCallback](#oh_cameramanager_torchstatuscallback)) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_TorchStatusInfo](_camera___torch_status_info.md) \*status) | 手电筒状态变化回调。 | 
 | typedef struct [CameraManager_Callbacks](_camera_manager___callbacks.md) [CameraManager_Callbacks](#cameramanager_callbacks) | 相机设备状态的回调。 | 
-| typedef struct [Camera_CaptureSession](#camera_capturesession) [Camera_CaptureSession](#camera_capturesession) | 捕获会话对象 | 
+| typedef struct [Camera_CaptureSession](#camera_capturesession) [Camera_CaptureSession](#camera_capturesession) | 捕获会话对象。 | 
 | typedef void(\* [OH_CaptureSession_OnFocusStateChange](#oh_capturesession_onfocusstatechange)) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_FocusState](#camera_focusstate) focusState) | 在[CaptureSession_Callbacks](_capture_session___callbacks.md)中被调用的捕获会话焦点状态回调。 | 
 | typedef void(\* [OH_CaptureSession_OnError](#oh_capturesession_onerror)) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_ErrorCode](#camera_errorcode) errorCode) | 在[CaptureSession_Callbacks](_capture_session___callbacks.md)中被调用的捕获会话错误回调。 | 
 | typedef void(\* [OH_CaptureSession_OnSmoothZoomInfo](#oh_capturesession_onsmoothzoominfo)) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_SmoothZoomInfo](_camera___smooth_zoom_info.md) \*smoothZoomInfo) | 拍照会话平滑变焦信息回调，触发平滑变焦后该回调会返回。 | 
 | typedef struct [CaptureSession_Callbacks](_capture_session___callbacks.md) [CaptureSession_Callbacks](#capturesession_callbacks) | 捕获会话的回调。 | 
-| typedef struct [Camera_MetadataOutput](#camera_metadataoutput) [Camera_MetadataOutput](#camera_metadataoutput) | 元数据输出对象 | 
+| typedef struct [Camera_MetadataOutput](#camera_metadataoutput) [Camera_MetadataOutput](#camera_metadataoutput) | 元数据输出对象。 | 
 | typedef void(\* [OH_MetadataOutput_OnMetadataObjectAvailable](#oh_metadataoutput_onmetadataobjectavailable)) ([Camera_MetadataOutput](#camera_metadataoutput) \*metadataOutput, [Camera_MetadataObject](_camera___metadata_object.md) \*metadataObject, uint32_t size) | 在[MetadataOutput_Callbacks](_metadata_output___callbacks.md)中被调用的元数据输出元数据对象可用回调。 | 
 | typedef void(\* [OH_MetadataOutput_OnError](#oh_metadataoutput_onerror)) ([Camera_MetadataOutput](#camera_metadataoutput) \*metadataOutput, [Camera_ErrorCode](#camera_errorcode) errorCode) | 在[MetadataOutput_Callbacks](_metadata_output___callbacks.md)中被调用的元数据输出错误回调。 | 
 | typedef struct [MetadataOutput_Callbacks](_metadata_output___callbacks.md) [MetadataOutput_Callbacks](#metadataoutput_callbacks) | 元数据输出的回调。 | 
@@ -158,6 +159,7 @@
 | typedef void(\* [OH_VideoOutput_OnError](#oh_videooutput_onerror)) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, [Camera_ErrorCode](#camera_errorcode) errorCode) | 在[VideoOutput_Callbacks](_video_output___callbacks.md)中被调用的录像输出错误回调。 | 
 | typedef struct [VideoOutput_Callbacks](_video_output___callbacks.md) [VideoOutput_Callbacks](#videooutput_callbacks) | 用于录像输出的回调。 | 
 | typedef struct [Camera_QualityPrioritization ](#camera_qualityprioritization) [Camera_QualityPrioritization](#camera_qualityprioritization) | 录像质量优先级。 | 
+| typedef enum [Camera_ConcurrentType](#camera_concurrenttype) [Camera_ConcurrentType](#camera_concurrenttype) | 相机并发类型的枚举。 | 
 
 
 ### 枚举
@@ -185,6 +187,7 @@
 | [Camera_SmoothZoomMode](#camera_smoothzoommode) { NORMAL = 0 } | 平滑变焦模式的枚举。 | 
 | [Camera_PreconfigType](#camera_preconfigtype) {<br/>PRECONFIG_720P = 0,<br/>PRECONFIG_1080P = 1,<br/>PRECONFIG_4K = 2,<br/>PRECONFIG_HIGH_QUALITY = 3 } | 预配置照片分辨率的枚举 | 
 | [Camera_PreconfigRatio](#camera_preconfigratio) {<br/>PRECONFIG_RATIO_1_1 = 0,<br/>PRECONFIG_RATIO_4_3 = 1,<br/>PRECONFIG_RATIO_16_9 = 2 } | 预配置照片比例的枚举。 | 
+| [Camera_ConcurrentType](#camera_concurrenttype) {<br/>CONCURRENT_TYPE_LIMITED_CAPABILITY = 0,<br/>CONCURRENT_TYPE_FULL_CAPABILITY = 1 } | 相机并发类型。 | 
 
 
 ### 函数
@@ -212,7 +215,7 @@
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_IsCameraMuted](#oh_cameramanager_iscameramuted) ([Camera_Manager](#camera_manager) \*cameraManager, bool \*isCameraMuted) | 确定相机是否静音。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_CreateCaptureSession](#oh_cameramanager_createcapturesession) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_CaptureSession](#camera_capturesession) \*\*captureSession) | 创建捕获会话实例。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_CreateCameraInput](#oh_cameramanager_createcamerainput) ([Camera_Manager](#camera_manager) \*cameraManager, const [Camera_Device](_camera___device.md) \*camera, [Camera_Input](#camera_input) \*\*cameraInput) | 创建相机输入实例。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_CreateCameraInput_WithPositionAndType](#oh_cameramanager_createcamerainput_withpositionandtype) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_Position](#camera_position) position, [Camera_Type](#camera_type) type, [Camera_Input](#camera_input) \*\*cameraInput) | 创建具有位置和类型的相机输入实例 | 
+| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_CreateCameraInput_WithPositionAndType](#oh_cameramanager_createcamerainput_withpositionandtype) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_Position](#camera_position) position, [Camera_Type](#camera_type) type, [Camera_Input](#camera_input) \*\*cameraInput) | 创建具有位置和类型的相机输入实例。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_CreatePreviewOutput](#oh_cameramanager_createpreviewoutput) ([Camera_Manager](#camera_manager) \*cameraManager, const [Camera_Profile](_camera___profile.md) \*profile, const char \*surfaceId, [Camera_PreviewOutput](#camera_previewoutput) \*\*previewOutput) | 创建预览输出实例。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_CreatePreviewOutputUsedInPreconfig](#oh_cameramanager_createpreviewoutputusedinpreconfig) ([Camera_Manager](#camera_manager) \*cameraManager, const char \*surfaceId, [Camera_PreviewOutput](#camera_previewoutput) \*\*previewOutput) | 创建在预配置流中使用的预览输出实例。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_CreatePhotoOutput](#oh_cameramanager_createphotooutput) ([Camera_Manager](#camera_manager) \*cameraManager, const [Camera_Profile](_camera___profile.md) \*profile, const char \*surfaceId, [Camera_PhotoOutput](#camera_photooutput) \*\*photoOutput) | 创建一个拍照输出实例。 | 
@@ -226,6 +229,8 @@
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_IsTorchSupported](#oh_cameramanager_istorchsupported) ([Camera_Manager](#camera_manager) \*cameraManager, bool \*isTorchSupported) | 检查设备是否支持手电筒。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_IsTorchSupportedByTorchMode](#oh_cameramanager_istorchsupportedbytorchmode) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_TorchMode](#camera_torchmode) torchMode, bool \*isTorchSupported) | 检查设备是否支持指定的手电筒模式。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_SetTorchMode](#oh_cameramanager_settorchmode) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_TorchMode](#camera_torchmode) torchMode) | 设置相机手电筒模式。 | 
+| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_GetCameraDevice](#oh_cameramanager_getcameradevice) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_Position](#camera_position) position, [Camera_Type](#camera_type) type, [Camera_Device](_camera___device.md) \*camera) | 基于position和type查询device。 | 
+| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_GetCameraConcurrentInfos](#oh_cameramanager_getcameraconcurrentinfos) ([Camera_Manager](#camera_manager) \*cameraManager, const [Camera_Device](_camera___device.md) \*camera, uint32_t deviceSize, [Camera_ConcurrentInfo](_camera___concurrent_info.md) \*\*CameraConcurrentInfo, uint32_t \*infoSize) | 获取设备并发信息，如果为空则代表不支持。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_RegisterCallback](#oh_capturesession_registercallback) ([Camera_CaptureSession](#camera_capturesession) \*session, [CaptureSession_Callbacks](_capture_session___callbacks.md) \*callback) | 注册捕获会话事件回调。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_UnregisterCallback](#oh_capturesession_unregistercallback) ([Camera_CaptureSession](#camera_capturesession) \*session, [CaptureSession_Callbacks](_capture_session___callbacks.md) \*callback) | 注销捕获会话事件回调。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_RegisterSmoothZoomInfoCallback](#oh_capturesession_registersmoothzoominfocallback) ([Camera_CaptureSession](#camera_capturesession) \*session, [OH_CaptureSession_OnSmoothZoomInfo](#oh_capturesession_onsmoothzoominfo) smoothZoomInfoCallback) | 注册平滑变焦信息事件回调。 | 
@@ -312,7 +317,7 @@
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_Capture_WithCaptureSetting](#oh_photooutput_capture_withcapturesetting) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, [Camera_PhotoCaptureSetting](_camera___photo_capture_setting.md) setting) | 使用捕获设置捕获拍照。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_Release](#oh_photooutput_release) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput) | 释放拍照输出。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_IsMirrorSupported](#oh_photooutput_ismirrorsupported) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, bool \*isSupported) | 检查是否支持镜像拍照。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_EnableMirror](#oh_photooutput_enablemirror) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, bool enabled) | 是否启用镜像拍照。 | 
+| [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_EnableMirror](#oh_photooutput_enablemirror) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, bool enabled) | 是否启用动态照片镜像拍照。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_GetActiveProfile](#oh_photooutput_getactiveprofile) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, [Camera_Profile](_camera___profile.md) \*\*profile) | 获取当前照片输出配置文件。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_DeleteProfile](#oh_photooutput_deleteprofile) ([Camera_Profile](_camera___profile.md) \*profile) | 删除照片配置文件实例。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_IsMovingPhotoSupported](#oh_photooutput_ismovingphotosupported) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, bool \*isSupported) | 检查是否支持动态照片。 | 
@@ -2039,6 +2044,24 @@ enum Camera_VideoStabilizationMode
 | STABILIZATION_MODE_AUTO | 自动选择模式，HDF相机可用。 | 
 
 
+### Camera_ConcurrentType
+
+```
+enum Camera_ConcurrentType
+```
+
+**描述**
+
+相机并发类型。
+
+**起始版本：** 18
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| CONCURRENT_TYPE_LIMITED_CAPABILITY | 受限能力并发 | 
+| CONCURRENT_TYPE_FULL_CAPABILITY    | 全量能力并发 | 
+
+
 ## 函数说明
 
 
@@ -2210,6 +2233,40 @@ Camera_ErrorCode OH_CameraInput_OpenSecureCamera(Camera_Input* cameraInput, uint
 | -------- | -------- |
 | cameraInput | 要打开的[Camera_Input](#camera_input)实例。 | 
 | secureSeqId | 表示安全摄像头的序列值。 | 
+
+**返回：**
+
+错误码[Camera_ErrorCode](#camera_errorcode-1)：
+
+- CAMERA_OK：方法调用成功。
+
+- CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。
+
+- CAMERA_CONFLICT_CAMERA：因冲突而无法使用相机。
+
+- CAMERA_DEVICE_DISABLED：由于安全原因禁用了摄像头。
+
+- CAMERA_SERVICE_FATAL_ERROR：如果相机服务出现致命错误。
+
+
+### OH_CameraInput_OpenConcurrentCameras()
+
+```
+Camera_ErrorCode OH_CameraInput_OpenConcurrentCameras(Camera_Input* cameraInput, Camera_ConcurrentType* type)
+```
+
+**描述**
+
+打开相机。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| cameraInput | 要打开的[Camera_Input](#camera_input)实例。 | 
+| type | 以指定的并发能力[Camera_ConcurrentType](_camera___concurrent_info.md)打开相机。 | 
 
 **返回：**
 
@@ -3038,6 +3095,57 @@ Camera_ErrorCode OH_CameraManager_SetTorchMode(Camera_Manager* cameraManager, Ca
 - CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。
 
 - CAMERA_SERVICE_FATAL_ERROR：如果相机服务出现致命错误。
+
+
+### OH_CameraManager_GetCameraDevice()
+
+```
+Camera_ErrorCode OH_CameraManager_GetCameraDevice (Camera_Manager *cameraManager, Camera_Position position, Camera_Type type, Camera_Device *camera) 
+```
+**描述**
+
+基于position和type查询device。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| cameraManager | 相机管理器实例[Camera_Manager](#camera_manager)。 | 
+| position | 要查询的Cameradevice对应的[Camera_Position](#camera_position)。 | 
+| type | 要查询的Cameradevice对应的[Camera_Type](#camera_type)。 |
+| camera | 要查询的[Camera_Device](_camera___device.md)。 | 
+
+**返回：**
+
+错误码[Camera_ErrorCode](#camera_errorcode-1)：
+
+- CAMERA_OK：方法调用成功。
+
+- CAMERA_SERVICE_FATAL_ERROR：如果相机服务出现致命错误。
+
+
+### OH_CameraManager_GetCameraConcurrentInfos()
+
+```
+Camera_ErrorCode OH_CameraManager_GetCameraConcurrentInfos (Camera_Manager *cameraManager, const Camera_Device *camera, uint32_t deviceSize, Camera_ConcurrentInfo **CameraConcurrentInfo, uint32_t *infoSize) 
+```
+**描述**
+
+取得设备并发信息。如果为空则代表不支持。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| cameraManager | 相机管理器实例[Camera_Manager](#camera_manager)。 | 
+| camera | 要查询的[Camera_Device](_camera___device.md)。 | 
+| deviceSize | Camera_Device数组长度。 | 
+| CameraConcurrentInfo | 获得的相机并发能力[Camera_ConcurrentInfo](_camera___concurrent_info.md)。 |
+| infoSize | 得到相机并发能力数组长度。 | 
 
 
 ### OH_CameraManager_UnregisterCallback()
@@ -5294,7 +5402,7 @@ Camera_ErrorCode OH_PhotoOutput_EnableMirror(Camera_PhotoOutput* photoOutput, bo
 
 **描述**
 
-是否启用镜像拍照。
+是否启用动态照片镜像拍照。
 
 **起始版本：** 13
 
@@ -5303,7 +5411,7 @@ Camera_ErrorCode OH_PhotoOutput_EnableMirror(Camera_PhotoOutput* photoOutput, bo
 | 名称          | 描述                                                      | 
 |-------------|---------------------------------------------------------|
 | photoOutput | [Camera_PhotoOutput](#camera_photooutput)实例，用于是否启用镜像拍照。 | 
-| enabled     | 是否启用镜像拍照的结果，true为开启镜像拍照，false为关闭镜像拍照。        | 
+| enabled     | 是否启用动态照片镜像拍照的结果，true为开启动态照片镜像拍照，false为关闭动态照片镜像拍照。        | 
 
 **返回：**
 

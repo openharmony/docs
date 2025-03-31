@@ -30,7 +30,7 @@ If the trace tasks with the same name are not performed at the same time, the sa
 **Parameters**
 
 | Name | Type | Mandatory | Description |
-| -------- | -------- | -------- | -------- |
+| ------ | ------ | ---- | ------------------ |
 | name | string | Yes | Name of the trace task to start. |
 | taskId | number | Yes | Task ID. |
 
@@ -54,7 +54,7 @@ To stop a trace task, the values of name and task ID in **finishTrace** must be 
 **Parameters**
 
 | Name | Type | Mandatory | Description |
-| -------- | -------- | -------- | -------- |
+| ------ | ------ | ---- | ------------------ |
 | name | string | Yes | Name of the trace task to start. |
 | taskId | number | Yes | Task ID. |
 
@@ -98,7 +98,7 @@ Marks the value changes of a numeric variable in a trace task.
 **Parameters**
 
 | Name | Type | Mandatory | Description |
-| -------- | -------- | -------- | -------- |
+| ------ | ------ | ---- | ---------------------- |
 | name | string | Yes | Name of the variable. |
 | count | number | Yes | Value of the variable. |
 

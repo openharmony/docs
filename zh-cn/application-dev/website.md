@@ -6,6 +6,7 @@
     - [构建第一个ArkTS应用（Stage模型）](quick-start/start-with-ets-stage.md)
   <!--DelEnd-->
   - 开发基础知识<!--development-fundamentals-->
+    - [应用程序包术语](quick-start/application-package-glossary.md)
     - 应用程序包基础知识<!--application-package-fundamentals-->
       - [应用程序包概述](quick-start/application-package-overview.md)
       - 应用程序包结构<!--application-package-structure-->
@@ -1384,7 +1385,6 @@
         - [使用AudioHaptic开发音振协同播放功能](media/audio/using-audiohaptic-for-playback.md)
         - [播放音量管理](media/audio/volume-management.md)
         - [音效管理](media/audio/audio-effect-management.md)
-        - [空间音频管理](media/audio/public-audio-spatialization-management.md)
         <!--Del-->
         - [空间音频管理(仅对系统应用开放)](media/audio/audio-spatialization-management.md)
         <!--DelEnd-->
@@ -2222,7 +2222,6 @@
         <!--Del-->
         - [@ohos.data.cloudData (端云服务)(系统接口)](reference/apis-arkdata/js-apis-data-cloudData-sys.md)
         - [@ohos.data.cloudExtension (端云共享Extension)(系统接口)](reference/apis-arkdata/js-apis-data-cloudExtension-sys.md)
-        - [@ohos.data.collaborationEditObject (协作数据模型)(系统接口)](reference/apis-arkdata/js-apis-data-collaborationEditObject-sys.md)
         - [@ohos.data.dataShare (数据共享)(系统接口)](reference/apis-arkdata/js-apis-data-dataShare-sys.md)
         - [@ohos.data.dataSharePredicates (数据共享谓词)(系统接口)](reference/apis-arkdata/js-apis-data-dataSharePredicates-sys.md)
         - [@ohos.data.dataShareResultSet (数据共享结果集)(系统接口)](reference/apis-arkdata/js-apis-data-DataShareResultSet-sys.md)
@@ -2293,7 +2292,6 @@
         - [用户首选项错误码](reference/apis-arkdata/errorcode-preferences.md)
         - [统一数据管理框架错误码](reference/apis-arkdata/errorcode-udmf.md)
         - [智慧数据平台错误码](reference/apis-arkdata/errorcode-intelligence.md)
-        - [协作数据模型错误码](reference/apis-arkdata/errorcode-collaboration-edit-object.md)
     - ArkTS（方舟编程语言）<!--arkts-api-->
       - ArkTS API<!--arkts-arkts-->
         - [@arkts.collections (ArkTS容器集)](reference/apis-arkts/js-apis-arkts-collections.md)

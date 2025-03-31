@@ -30,7 +30,7 @@ Triggered when any operation is performed with the game controller's directional
 
 ## FocusAxisEvent
 
-Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent).
+Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent8).
 
 **Atomic service API**: This API can be used in atomic services since API version 15.
 

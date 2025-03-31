@@ -16,10 +16,9 @@ An application is suspended after it runs in the background for a short period o
 
 - **Quota calculation**: Transient tasks are timed only when the application is running in the background. If the application has multiple transient tasks during the same time segment, no repeated timing is performed. As in the figure below, the application has two transient tasks, A and B. Task A is requested when the application is running in the foreground, and the timing starts when the application switches to the background (marked as ①). When the application switches to the foreground, the timing stops (marked as ②). When the application switches to the background again, the timing starts again (marked as ③). When task A is finished, task B still exists, and therefore the timing continues (marked as ④). In this process, the total time consumed by the transient tasks is ①+③+④. 
   
-  **Figure 1** Quota calculation for transient tasks
-  
+  **Figure 1** Quota calculation for transient tasks     
   ![transient-task](figures/transient-task.png)
-
+    
   > **NOTE**
   >
   > The application shall proactively cancel a transient task when it is finished. Otherwise, the time frame allowed for the application to run in the background will be affected.
@@ -28,9 +27,9 @@ An application is suspended after it runs in the background for a short period o
 
 ## Available APIs
 
-The table below lists the main APIs used for transient task development. For details about more APIs and their usage, see [Background Task Management](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md).
-
 **Table 1** Main APIs for transient tasks
+
+The table below lists the main APIs used for transient task development. For details about more APIs and their usage, see [Background Task Management](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md).
 
 | API| Description|
 | -------- | -------- |

@@ -135,7 +135,7 @@ onError(callback: ImageErrorCallback)
 
 type ImageCompleteCallback = (result: ImageLoadResult) => void
 
-图片加载异常时触发的回调。
+图片加载成功和解码成功时触发的回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

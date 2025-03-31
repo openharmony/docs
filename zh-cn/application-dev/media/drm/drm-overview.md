@@ -37,7 +37,9 @@ DRM Kit（Digital Rights Management Kit，数字版权保护服务）提供了DR
 
 - DRM插件（DRM Plugin）
 
-  集成于系统中，实现DRM HDI层接口的DRM解决方案驱动，实现DRM相关功能。<!--RP1--><!--RP1End-->
+  集成于系统中，实现DRM HDI层接口的DRM解决方案驱动，实现DRM相关功能。
+  
+<!--RP1--><!--RP1End-->
 
 - MediaKeySystem
 
