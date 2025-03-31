@@ -102,7 +102,8 @@ struct MyComponent {
   onBackPress() {
     console.info('Index onBackPress');
     this.btnColor = "#FFEE0606";
-    return true; // 返回true表示页面自己处理返回逻辑，不进行页面路由；返回false表示使用默认的路由返回逻辑，不设置返回值按照false处理
+    // 返回true表示页面自己处理返回逻辑，不进行页面路由；返回false表示使用默认的路由返回逻辑，不设置返回值按照false处理
+    return true;
   }
 
   // 组件生命周期
