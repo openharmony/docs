@@ -7838,9 +7838,9 @@ mediaSource.setMimeType(mimeType);
 ```
 ## media.createMediaSourceWithStreamData<sup>18+</sup>
 
-createMediaSourceWithStreamData(streams: Array<MediaStream>): MediaSource
+createMediaSourceWithStreamData(streams: Array\<MediaStream>): MediaSource
 
-创建流媒体多码率媒体来源实例方法，当前仅支持HTTP-FLV协议格式多码率
+创建流媒体多码率媒体来源实例方法，当前仅支持HTTP-FLV协议格式多码率。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -7848,15 +7848,15 @@ createMediaSourceWithStreamData(streams: Array<MediaStream>): MediaSource
 
 **参数：**
 
-| 参数名  | 类型                                 | 必填 | 说明                                                  |
-| ------- | ------------------------------------ | ---- | ----------------------------------------------------- |
-| streams | Array<[MediaStream](#MediaStream18)> | 是   | - 可设置MediaStream数组，支持的流媒体格式：HTTP-FLV。 |
+| 参数名  | 类型                                 | 只读 | 可选 | 说明                                                  |
+| ------- | ------------------------------------ | --- | ---- | ----------------------------------------------------- |
+| streams | Array<[MediaStream](#mediastream18)> | 否 | 否   | 可设置MediaStream数组，支持的流媒体格式：HTTP-FLV。 |
 
 **返回值：**
 
 | 类型                          | 说明                |
 | ----------------------------- | ------------------- |
-| [MediaSource](#mediasource12) | MediaSource返回值。 |
+| [MediaSource](#mediasource12) | 返回MediaSource，用于媒体资源设置。 |
 
 **错误码：**
 
@@ -7883,14 +7883,12 @@ let mediaSource : media.MediaSource = media.createMediaSourceWithStreamData(stre
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
-**参数：**
-
-| 参数名  | 类型   | 必填 | 说明                                                         |
-| ------- | ------ | ---- | ------------------------------------------------------------ |
-| url     | string | 是   | 媒体资源链接                                                 |
-| width   | number | 是   | 媒体资源视频宽，未知时可以填0，此时无法通过[PlaybackStrategy](#playbackstrategy12)优选到 |
-| height  | number | 是   | 媒体资源视频高，未知时可以填0，此时无法通过[PlaybackStrategy](#playbackstrategy12)优选到 |
-| bitrate | number | 是   | 媒体资源码率，单位bps                                        |
+| 参数名  | 类型   | 只读 | 可选 | 说明                                                         |
+| ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| url     | string | 否   | 否   | 媒体资源链接，当前仅支持http或者https。                                                 |
+| width   | number | 否   | 否   | 媒体资源视频宽像素值。未知时可以填0，此时将无法通过[PlaybackStrategy](#playbackstrategy12)优选匹配。 |
+| height  | number | 否   | 否   | 媒体资源视频高像素值。未知时可以填0，此时将无法通过[PlaybackStrategy](#playbackstrategy12)优选匹配。 |
+| bitrate | number | 否   | 否   | 媒体资源码率值，单位bps。                                        |
 
 ## MediaSource<sup>12+</sup>
 
