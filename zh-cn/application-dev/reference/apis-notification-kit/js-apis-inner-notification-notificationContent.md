@@ -137,9 +137,9 @@
 | 名称           | 类型              | 只读 | 可选 | 说明                             |
 | -------------- | ---------------- | --- | --- | -------------------------------- |
 | initialTime    | number           | 否  | 是  | 计时起始时间。单位：ms。                |
-| isCountDown    | boolean          | 否  | 是  | 是否倒计时。                     |
-| isPaused       | boolean          | 否  | 是  | 是否暂停。                       |
-| isInTitle      | boolean          | 否  | 是  | 时间是否展示在title中。           |
+| isCountDown    | boolean          | 否  | 是  | 是否倒计时。默认为false。<br> - true：是。<br> - false：否。 |
+| isPaused       | boolean          | 否  | 是  | 是否暂停。默认为false。<br> - true：是。<br> - false：否。   |
+| isInTitle      | boolean          | 否  | 是  | 时间是否展示在title中。默认为false。<br> - true：是。<br> - false：否。|
 
 **示例：**
 
@@ -164,4 +164,4 @@ time: {
 | -------------- | --------------- | --- | --- | -------------------------------- |
 | maxValue        | number         | 否  | 是  | 进度最大值。                       |
 | currentValue    | number         | 否  | 是  | 进度当前值。                       |
-| isPercentage    | boolean        | 否  | 是  | 是否按百分比展示。                   |
+| isPercentage    | boolean        | 否  | 是  | 是否按百分比展示。默认为false。<br> - true：是。<br> - false：否。|
