@@ -3,11 +3,11 @@
 
 ## 概述
 
-声明ConnectedNfcTag模块提供的API，这些API包含初始化或者去初始化ConnectedNfcTag驱动，往nfc卡中读写Ndef内容。
+声明ConnectedNFCTag模块提供的API，这些API包含初始化或者去初始化ConnectedNFCTag驱动，往NFC卡中读写Ndef内容。
 
 **起始版本：** 3.2
 
-**相关模块：**[HdiConnectedNfcTag](_hdi_connected_nfc_tag.md)
+**相关模块：**[HdiConnectedNFCTag](_hdi_connected_nfc_tag.md)
 
 
 ## 汇总
@@ -17,8 +17,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Init](#init) () | 初始化ConnecteNfcTag驱动。 | 
-| [Uninit](#uninit) () | 去初始化ConnecteNfcTag驱动。 | 
+| [Init](#init) () | 初始化ConnecteNFCTag驱动。 | 
+| [Uninit](#uninit) () | 去初始化ConnecteNFCTag驱动。 | 
 | [ReadNdefTag](#readndeftag) ([out] String ndefData) | 从连接的NFC卡中读取NDEF内容。 | 
 | [WriteNdefTag](#writendeftag) ([in] String ndefData) | 往已连接的NFC卡中写入NDEF数据。 | 
 
@@ -35,7 +35,7 @@ IConnectedNfcTag::Init ()
 **描述**
 
 
-初始化ConnecteNfcTag驱动。
+初始化ConnecteNFCTag驱动。
 
 **起始版本：** 3.2
 
@@ -73,7 +73,7 @@ IConnectedNfcTag::Uninit ()
 **描述**
 
 
-去初始化ConnecteNfcTag驱动。
+去初始化ConnecteNFCTag驱动。
 
 **起始版本：** 3.2
 
@@ -103,4 +103,4 @@ IConnectedNfcTag::WriteNdefTag ([in] String ndefData)
 
 **返回：**
 
-写入成功返回0,否则返回写失败原因。
+写入成功返回0，否则返回写失败原因。

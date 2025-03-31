@@ -3,7 +3,7 @@
 
 ## 概述
 
-声明操作nfc芯片的API，包括关闭、打开nfc，初始化nfc，读写数据、配置RF参数、发送nci指令。
+声明操作NFC芯片的API，包括关闭、打开NFC，初始化NFC，读写数据、配置RF参数、发送nci指令。
 
 **起始版本：** 4.1
 
@@ -17,9 +17,9 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [GetVendorConfig](#getvendorconfig) ([out] struct [NfcVendorConfig](_nfc_vendor_config_v11.md) config, [out] enum NfcStatus status) | 查询厂商自定义的NFC配置。 | 
-| [DoFactoryReset](#dofactoryreset) ([out] enum NfcStatus status) | NFC芯片工厂级复位。 | 
-| [Shutdown](#shutdown) ([out] enum NfcStatus status) | 关闭NFC。如果设备支持关机刷卡功能，需要实现该接口 | 
+| [GetVendorConfig](#getvendorconfig) ([out] struct [NFCVendorConfig](_nfc_vendor_config_v11.md) config, [out] enum NFCStatus status) | 查询厂商自定义的NFC配置。 | 
+| [DoFactoryReset](#dofactoryreset) ([out] enum NFCStatus status) | NFC芯片工厂级复位。 | 
+| [Shutdown](#shutdown) ([out] enum NfcStatus status) | 关闭NFC。如果设备支持关机刷卡功能，需要实现该接口。 | 
 
 
 ## 成员函数说明
@@ -40,7 +40,7 @@ NFC芯片工厂级复位。
 
 **返回：**
 
-操作成功返回0，否则返回失败。 具体类型详见[NfcTypes](_nfc_types_8idl_v10.md)。
+操作成功返回0，否则返回失败。 具体类型详见[NFCTypes](_nfc_types_8idl_v10.md)。
 
 
 ### GetVendorConfig()
@@ -64,7 +64,7 @@ INfcInterface::GetVendorConfig ([out] struct NfcVendorConfig config, [out] enum 
 
 **返回：**
 
-操作成功返回0，否则返回失败。 具体类型详见[NfcTypes](_nfc_types_8idl_v10.md)。
+操作成功返回0，否则返回失败。 具体类型详见[NFCTypes](_nfc_types_8idl_v10.md)。
 
 
 ### Shutdown()
@@ -82,4 +82,4 @@ INfcInterface::Shutdown ([out] enum NfcStatus status)
 
 **返回：**
 
-操作成功返回0，否则返回失败。 具体类型详见[NfcTypes](_nfc_types_8idl_v10.md)。
+操作成功返回0，否则返回失败。 具体类型详见[NFCTypes](_nfc_types_8idl_v10.md)。
