@@ -107,7 +107,7 @@ NFC协议栈通过IO控制指令和数据发送给HDI。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| cmd | NFCCommand中定义在控制指令，详见[NfcTypes](_nfc_types_8idl_v10.md)。 | 
+| cmd | NfcCommand中定义在控制指令，详见[NfcTypes](_nfc_types_8idl_v10.md)。 | 
 | data | 发送给HDI的数据。 | 
 
 **返回：**
