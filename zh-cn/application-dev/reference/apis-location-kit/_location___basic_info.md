@@ -9,6 +9,7 @@
 
 **相关模块：**[Location](_location.md)
 
+**所在头文件：**[oh_location_type.h](oh__location__type_8h.md)
 
 ## 汇总
 
