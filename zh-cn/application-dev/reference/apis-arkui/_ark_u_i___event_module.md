@@ -2068,7 +2068,7 @@ int32_t OH_ArkUI_AxisEvent_SetPropagation (const ArkUI_UIInputEvent * event, boo
 
 设置是否激活轴事件冒泡。
 
-**起始版本：** 18
+**起始版本：** 17
 
 **参数:**
 
@@ -2091,7 +2091,7 @@ int32_t OH_ArkUI_AxisEvent_GetScrollStep (const ArkUI_UIInputEvent * event)
 
 获取鼠标滚轮轴滚动步长配置。
 
-**起始版本：** 18
+**起始版本：** 17
 
 **参数:**
 
