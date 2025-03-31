@@ -1435,7 +1435,7 @@ Obtains the value in a specified column of the current row in the form of a floa
 | columnIndex | Index of the column, which starts from **0**.|
 | val | Ponter to the value obtained, in a float array. The caller needs to apply for the memory.|
 | inLen | Length of the float array requested.|
-| outLen | Pointer to the actual length of the float array.|
+| outLen | Pointer to the length of the value obtained.|
 
 **Returns**
 
@@ -1537,7 +1537,7 @@ Creates a transaction object.
 | Name| Description|
 | -------- | -------- |
 | store | Pointer to the [OH_Rdb_Store](_o_h___rdb___store.md) instance.|
-| options | Pointer to the [OH_RDB_TransOptions](#oh_rdb_transoptions) instance.|
+| options | Pointer to the [OH_RDB_TransOptions](#oh_rdb_transoptions) instance for the transaction instance to create.|
 | trans | Pointer to the [OH_Rdb_Transaction](#oh_rdb_transaction) instance created if the operation is successful. If the operation fails, **nullptr** is returned. Call [OH_RdbTrans_Destroy](#oh_rdbtrans_destroy) to release the transaction instance that is no longer required.|
 
 **Returns**
@@ -2816,7 +2816,7 @@ Adds empty data to an **OH_Data_Value** instance.
 
 | Name| Description|
 | -------- | -------- |
-| value | Pointer to the [OH_Data_Value](#oh_data_value) instance to destroy.|
+| value | Pointer to the target [OH_Data_Value](#oh_data_value) instance.|
 
 **Returns**
 
@@ -2977,7 +2977,7 @@ Destroys an [OH_Data_Values](#oh_data_values) instance.
 
 | Name| Description|
 | -------- | -------- |
-| values | Pointer to the target [OH_Data_Values](#oh_data_values) instance.|
+| values | Pointer to the [OH_Data_Values](#oh_data_values) instance to destroy.|
 
 **Returns**
 
@@ -3918,7 +3918,7 @@ int OH_VBuckets_RowCount (OH_Data_VBuckets *buckets, size_t *count )
 
 **Description**
 
-Obtains the number of rows in **OH_VBucket** in **OH_Data_VBuckets**.
+Obtains the number of **OH_VBuckets** in **OH_Data_VBuckets**.
 
 **Since**: 18
 
@@ -4449,7 +4449,7 @@ Backs up an RDB store using the backup file of the specified path. This API supp
 | Name| Description|
 | -------- | -------- |
 | store | Pointer to the [OH_Rdb_Store](_o_h___rdb___store.md) instance.|
-| databasePath | Pointer to the destination directory in which the RDB store is backed up.|
+| databasePath | Pointer to the destination directory, in which the RDB store is backed up.|
 
 **Returns**
 
@@ -4511,7 +4511,7 @@ Closes an [OH_Rdb_Store](_o_h___rdb___store.md) object to reclaim the memory occ
 
 | Name| Description|
 | -------- | -------- |
-| store | Pointer to the [OH_Rdb_Store](_o_h___rdb___store.md) instance.|
+| store | Pointer to the [OH_Rdb_Store](_o_h___rdb___store.md) instance to close.|
 
 **Returns**
 
@@ -4544,9 +4544,9 @@ Performs device-cloud sync.
 | -------- | -------- |
 | store | Pointer to the [OH_Rdb_Store](_o_h___rdb___store.md) instance.|
 | mode | Sync mode [Rdb_SyncMode](#rdb_syncmode).|
-| tables | Pointer to the names of the tables to be synced.|
+| tables | Pointer to the tables to sync.|
 | count | Number of tables to sync. If the value is **0**, all tables in the RDB store are synced.|
-| observer | Observer [Rdb_ProgressObserver](_rdb___progress_observer.md) of the device-cloud sync progress.|
+| observer | [Rdb_ProgressObserver](_rdb___progress_observer.md) of the device-cloud sync progress.|
 
 **Returns**
 
@@ -5082,7 +5082,7 @@ Sets distributed database tables.
 | -------- | -------- |
 | store | Pointer to the [OH_Rdb_Store](_o_h___rdb___store.md) instance.|
 | tables | Pointer to the names of the distributed tables to set.|
-| count | Number of distributed database tables to be set.|
+| count | Number of distributed database tables to set.|
 | type | [Rdb_DistributedType](#rdb_distributedtype).|
 | config | Configuration of the distributed mode. For details, see [Rdb_DistributedConfig](_rdb___distributed_config.md).|
 
@@ -5240,7 +5240,7 @@ Unregisters the observer of the specified type.
 | -------- | -------- |
 | store | Pointer to the [OH_Rdb_Store](_o_h___rdb___store.md) instance.|
 | type | Subscription type defined in [Rdb_SubscribeType](#rdb_subscribetype).|
-| observer | Pointer to the [Rdb_DataObserver](_rdb___data_observer.md) instance. If this parameter is **nullptr**, all observers of this type will be unregistered.|
+| observer | Pointer to the [Rdb_DataObserver](_rdb___data_observer.md) instance to unregister. If this parameter is **nullptr**, all observers of this type will be unregistered.|
 
 **Returns**
 
@@ -5274,7 +5274,7 @@ Unsubscribes from the auto sync process of an RDB store.
 | Name| Description|
 | -------- | -------- |
 | store | Pointer to the target [OH_Rdb_Store](_o_h___rdb___store.md) instance.|
-| observer | Pointer to [Rdb_ProgressObserver](_rdb___progress_observer.md). If the pointer is null, all callbacks for the auto sync process will be unregistered.|
+| observer | Pointer to [Rdb_ProgressObserver](_rdb___progress_observer.md) to unregister. If the pointer is null, all callbacks for the auto sync process will be unregistered.|
 
 **Returns**
 
@@ -5308,7 +5308,7 @@ Updates data in an RDB store based on specified conditions.
 | Name| Description|
 | -------- | -------- |
 | store | Pointer to the [OH_Rdb_Store](_o_h___rdb___store.md) instance.|
-| valuesBucket | Pointer to the new data [OH_VBucket](_o_h___v_bucket.md) to be updated to the table.|
+| valuesBucket | Pointer to the new [OH_VBucket](_o_h___v_bucket.md) to be inserted to the table.|
 | predicates | Pointer to the [OH_Predicates](_o_h___predicates.md) instance, specifying the update conditions.|
 
 **Returns**
@@ -5338,7 +5338,7 @@ Puts an **OH_Asset** object into the [OH_VBucket](_o_h___v_bucket.md) object in 
 | -------- | -------- |
 | bucket | Pointer to the [OH_VBucket](_o_h___v_bucket.md) instance.|
 | field | Pointer to the column name in the database table.|
-| value | Pointer to the value to put.|
+| value | Pointer to the data to put.|
 
 **Returns**
 
@@ -5367,7 +5367,7 @@ Puts an array of **OH_Asset** objects into the [OH_VBucket](_o_h___v_bucket.md) 
 | -------- | -------- |
 | bucket | Pointer to the [OH_VBucket](_o_h___v_bucket.md) instance.|
 | field | Pointer to the column name in the database table.|
-| value | Pointer to the value to put.|
+| value | Pointer to the data to put.|
 | count | Number of elements in the **OH_Asset** array.|
 
 **Returns**
