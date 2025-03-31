@@ -4,7 +4,7 @@ The relational database (RDB) manages data based on relational models. With the 
 
 This module provides the following RDB-related functions:
 
-- [RdbPredicates](#rdbpredicates): provides predicates indicating the nature, feature, or relationship of a data entity in an RDB store. It is used to define the data operation conditions.
+- [RdbPredicates](#rdbpredicates): provides APIs for creating predicates. The predicates represent the properties, characteristics, or relationships between data entities in an RDB store and are used to define data operation conditions.
 - [RdbStore](#rdbstore): provides APIs for managing data in an RDB store.
 
 > **NOTE**
@@ -338,11 +338,11 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 
 inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
-Sets an **RdbPredicates** to specify the remote devices to connect on the network during distributed database sync.
+Creates an **RdbPredicates** object to specify the remote devices to connect on the network during distributed database sync.
 
-> **NOTE**
+> **NOTE**<br/>
 >
-> The value of **devices** can be obtained by <!--RP2-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP2End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> The value of **devices** can be obtained by using <!--RP2-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP2End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -390,7 +390,7 @@ predicates.inDevices(deviceIds);
 
 inAllDevices(): RdbPredicates
 
-Sets an **RdbPredicates** to specify all remote devices on the network to connect during distributed database sync.
+Creates an **RdbPredicates** object to specify all remote devices on the network to connect during distributed database sync.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -411,7 +411,7 @@ predicates.inAllDevices()
 
 equalTo(field: string, value: ValueType): RdbPredicates
 
-Sets an **RdbPredicates** to match the field with data type **ValueType** and value equal to the specified value.
+Creates an **RdbPredicates** object to search for the records in the specified column that are equal to the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -420,7 +420,7 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the database table.|
-| value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**.|
+| value | [ValueType](#valuetype) | Yes| Value to match.|
 
 **Return value**
 
@@ -440,7 +440,7 @@ predicates.equalTo("NAME", "lisi")
 
 notEqualTo(field: string, value: ValueType): RdbPredicates
 
-Sets an **RdbPredicates** to match the field with data type **ValueType** and value not equal to the specified value.
+Creates an **RdbPredicates** object to search for the records in the specified column that are not equal to the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -449,7 +449,7 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the database table.|
-| value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**.|
+| value | [ValueType](#valuetype) | Yes| Value to match.|
 
 **Return value**
 
@@ -469,7 +469,7 @@ predicates.notEqualTo("NAME", "lisi")
 
 beginWrap(): RdbPredicates
 
-Adds a left parenthesis to the **RdbPredicates**.
+Creates an **RdbPredicates** object to add a left parenthesis.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -477,7 +477,7 @@ Adds a left parenthesis to the **RdbPredicates**.
 
 | Type| Description|
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** with a left parenthesis.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
 
 **Example**
 
@@ -495,7 +495,7 @@ predicates.equalTo("NAME", "lisi")
 
 endWrap(): RdbPredicates
 
-Adds a right parenthesis to the **RdbPredicates**.
+Creates an **RdbPredicates** object to add a right parenthesis.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -503,7 +503,7 @@ Adds a right parenthesis to the **RdbPredicates**.
 
 | Type| Description|
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** with a right parenthesis.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** created.|
 
 **Example**
 
@@ -521,7 +521,7 @@ predicates.equalTo("NAME", "lisi")
 
 or(): RdbPredicates
 
-Adds the OR condition to the **RdbPredicates**.
+Creates an **RdbPredicates** object to add the OR condition.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -529,7 +529,7 @@ Adds the OR condition to the **RdbPredicates**.
 
 | Type| Description|
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** with the OR condition.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** created.|
 
 **Example**
 
@@ -544,7 +544,7 @@ predicates.equalTo("NAME", "Lisa")
 
 and(): RdbPredicates
 
-Adds the AND condition to the **RdbPredicates**.
+Creates an **RdbPredicates** object to add the AND condition.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -552,7 +552,7 @@ Adds the AND condition to the **RdbPredicates**.
 
 | Type| Description|
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** with the AND condition.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
 
 **Example**
 
@@ -567,7 +567,7 @@ predicates.equalTo("NAME", "Lisa")
 
 contains(field: string, value: string): RdbPredicates
 
-Sets an **RdbPredicates** to match a string containing the specified value.
+Creates an **RdbPredicates** object to search for the records in the specified column that contain the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -576,7 +576,7 @@ Sets an **RdbPredicates** to match a string containing the specified value.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the database table.|
-| value | string | Yes| Value to match the **RdbPredicates**.|
+| value | string | Yes| Value to match.|
 
 **Return value**
 
@@ -595,7 +595,7 @@ predicates.contains("NAME", "os")
 
 beginsWith(field: string, value: string): RdbPredicates
 
-Sets an **RdbPredicates** to match a string that starts with the specified value.
+Creates an **RdbPredicates** object to search for the records in the specified column that start with the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -604,7 +604,7 @@ Sets an **RdbPredicates** to match a string that starts with the specified value
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the database table.|
-| value | string | Yes| Value to match the **RdbPredicates**.|
+| value | string | Yes| Value to match.|
 
 **Return value**
 
@@ -623,7 +623,7 @@ predicates.beginsWith("NAME", "os")
 
 endsWith(field: string, value: string): RdbPredicates
 
-Sets an **RdbPredicates** to match a string that ends with the specified value.
+Creates an **RdbPredicates** object to search for the records in the specified column that end with the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -632,7 +632,7 @@ Sets an **RdbPredicates** to match a string that ends with the specified value.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the database table.|
-| value | string | Yes| Value to match the **RdbPredicates**.|
+| value | string | Yes| Value to match.|
 
 **Return value**
 
@@ -651,7 +651,7 @@ predicates.endsWith("NAME", "se")
 
 isNull(field: string): RdbPredicates
 
-Sets an **RdbPredicates** to match the field whose value is null.
+Creates an **RdbPredicates** object to search for the records in the specified column that are **null**.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -677,7 +677,7 @@ predicates.isNull("NAME")
 
 isNotNull(field: string): RdbPredicates
 
-Sets an **RdbPredicates** to match the field whose value is not null.
+Creates an **RdbPredicates** object to search for the records in the specified column that are not **null**.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -712,7 +712,7 @@ predicates.isNotNull("NAME")
 
 like(field: string, value: string): RdbPredicates
 
-Sets an **RdbPredicates** to match a string that is similar to the specified value.
+Creates an **RdbPredicates** object to search for the records in the specified column that are similar to the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -721,7 +721,7 @@ Sets an **RdbPredicates** to match a string that is similar to the specified val
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the database table.|
-| value | string | Yes| Value to match the **RdbPredicates**.|
+| value | string | Yes| Value to match.|
 
 **Return value**
 
@@ -740,7 +740,7 @@ predicates.like("NAME", "%os%")
 
 glob(field: string, value: string): RdbPredicates
 
-Sets an **RdbPredicates** to match the specified string.
+Creates an **RdbPredicates** object to search for the records in the specified column that match the given string.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -749,7 +749,7 @@ Sets an **RdbPredicates** to match the specified string.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the database table.|
-| value | string | Yes| Value to match the **RdbPredicates**.<br><br>Wildcards are supported. * indicates zero, one, or multiple digits or characters. **?** indicates a single digit or character.|
+| value | string | Yes| Value to match.<br><br>Wildcards are supported. * indicates zero, one, or multiple digits or characters. **?** indicates a single digit or character.|
 
 **Return value**
 
@@ -768,7 +768,7 @@ predicates.glob("NAME", "?h*g")
 
 between(field: string, low: ValueType, high: ValueType): RdbPredicates
 
-Sets an **RdbPredicates** to match the field with data type **ValueType** and value within the specified range.
+Creates an **RdbPredicates** object to search for the records in the specified column that are within the specified range.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -777,8 +777,8 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the database table.|
-| low | [ValueType](#valuetype) | Yes| Minimum value to match the **RdbPredicates**.|
-| high | [ValueType](#valuetype) | Yes| Maximum value to match the **RdbPredicates**.|
+| low | [ValueType](#valuetype) | Yes| Minimum value of the range to set.|
+| high | [ValueType](#valuetype) | Yes| Maximum value of the range to set.|
 
 **Return value**
 
@@ -797,7 +797,7 @@ predicates.between("AGE", 10, 50)
 
 notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 
-Sets an **RdbPredicates** to match the field with data type **ValueType** and value out of the specified range.
+Creates an **RdbPredicates** object to search for the records in the specified column that are out of the specified range.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -806,8 +806,8 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the database table.|
-| low | [ValueType](#valuetype) | Yes| Minimum value to match the **RdbPredicates**.|
-| high | [ValueType](#valuetype) | Yes| Maximum value to match the **RdbPredicates**.|
+| low | [ValueType](#valuetype) | Yes| Minimum value of the range to set.|
+| high | [ValueType](#valuetype) | Yes| Maximum value of the range to set.|
 
 **Return value**
 
@@ -826,7 +826,7 @@ predicates.notBetween("AGE", 10, 50)
 
 greaterThan(field: string, value: ValueType): RdbPredicates
 
-Sets an **RdbPredicates** to match the field with data type **ValueType** and value greater than the specified value.
+Creates an **RdbPredicates** object to search for the records in the specified column that are greater than the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -835,7 +835,7 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the database table.|
-| value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**.|
+| value | [ValueType](#valuetype) | Yes| Value to match.|
 
 **Return value**
 
@@ -854,7 +854,7 @@ predicates.greaterThan("AGE", 18)
 
 lessThan(field: string, value: ValueType): RdbPredicates
 
-Sets an **RdbPredicates** to match the field with data type **ValueType** and value less than the specified value.
+Creates an **RdbPredicates** object to search for the records in the specified column that are less than the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -863,7 +863,7 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the database table.|
-| value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**.|
+| value | [ValueType](#valuetype) | Yes| Value to match.|
 
 **Return value**
 
@@ -882,7 +882,7 @@ predicates.lessThan("AGE", 20)
 
 greaterThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
-Sets an **RdbPredicates** to match the field with data type **ValueType** and value greater than or equal to the specified value.
+Creates an **RdbPredicates** object to search for the records in the specified column that are greater than or equal to the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -891,7 +891,7 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the database table.|
-| value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**.|
+| value | [ValueType](#valuetype) | Yes| Value to match.|
 
 **Return value**
 
@@ -910,7 +910,7 @@ predicates.greaterThanOrEqualTo("AGE", 18)
 
 lessThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
-Sets an **RdbPredicates** to match the field with data type **ValueType** and value less than or equal to the specified value.
+Creates an **RdbPredicates** object to search for the records in the specified column that are less than or equal to the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -919,7 +919,7 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the database table.|
-| value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**.|
+| value | [ValueType](#valuetype) | Yes| Value to match.|
 
 **Return value**
 
@@ -938,7 +938,7 @@ predicates.lessThanOrEqualTo("AGE", 20)
 
 orderByAsc(field: string): RdbPredicates
 
-Sets an **RdbPredicates** to match the column with values sorted in ascending order.
+Creates an **RdbPredicates** object to sort the records in the specified column in ascending order.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -965,7 +965,7 @@ predicates.orderByAsc("NAME")
 
 orderByDesc(field: string): RdbPredicates
 
-Sets an **RdbPredicates** to match the column with values sorted in descending order.
+Creates an **RdbPredicates** object to sort the records in the specified column in descending order. 
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -992,7 +992,7 @@ predicates.orderByDesc("AGE")
 
 distinct(): RdbPredicates
 
-Sets an **RdbPredicates** to filter out duplicate records.
+Creates an **RdbPredicates** object to filter out duplicate records.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1000,7 +1000,7 @@ Sets an **RdbPredicates** to filter out duplicate records.
 
 | Type| Description|
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that can filter out duplicate records.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
 
 **Example**
 
@@ -1013,7 +1013,7 @@ predicates.equalTo("NAME", "Rose").distinct()
 
 limitAs(value: number): RdbPredicates
 
-Sets an **RdbPredicates** to specify the maximum number of records.
+Creates an **RdbPredicates** object to limit the number of records.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1027,7 +1027,7 @@ Sets an **RdbPredicates** to specify the maximum number of records.
 
 | Type| Description|
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that specifies the maximum number of records.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
 
 **Example**
 
@@ -1040,7 +1040,7 @@ predicates.equalTo("NAME", "Rose").limitAs(3)
 
 offsetAs(rowOffset: number): RdbPredicates
 
-Creates an **RdbPredicates** to specify the start position of the returned result. This API must be used together with **limitAs**. Otherwise, no result will be returned. To query all rows after the specified offset, pass in **-1** in **limitAs**.
+Creates an **RdbPredicates** object to specify the start position of the returned result. This API must be used together with **limitAs**. Otherwise, no result will be returned. To query all rows after the specified offset, pass in **-1** in **limitAs**.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1048,13 +1048,13 @@ Creates an **RdbPredicates** to specify the start position of the returned resul
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| rowOffset | number | Yes| Number of rows to offset from the beginning. The value is a positive integer.|
+| rowOffset | number | Yes| Start position, which is a positive integer.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that specifies the start position of the returned result.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
 
 **Example**
 
@@ -1067,7 +1067,7 @@ predicates.equalTo("NAME", "Rose").limitAs(-1).offsetAs(3)
 
 groupBy(fields: Array&lt;string&gt;): RdbPredicates
 
-Sets an **RdbPredicates** to group rows that have the same value into summary rows.
+Creates an **RdbPredicates** object to group the query results based on the specified columns.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1081,7 +1081,7 @@ Sets an **RdbPredicates** to group rows that have the same value into summary ro
 
 | Type| Description|
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that groups rows with the same value.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
 
 **Example**
 
@@ -1094,7 +1094,7 @@ predicates.groupBy(["AGE", "NAME"])
 
 indexedBy(field: string): RdbPredicates
 
-Sets an **RdbPredicates** object to specify the index column.
+Creates an **RdbPredicates** object to specify the index column.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1109,7 +1109,7 @@ Sets an **RdbPredicates** object to specify the index column.
 
 | Type| Description|
 | -------- | -------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that specifies the index column.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
 
 **Example**
 
@@ -1122,7 +1122,7 @@ predicates.indexedBy("SALARY_INDEX")
 
 in(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
-Sets an **RdbPredicates** to match the field with data type **Array&#60;ValueType&#62;** and value within the specified range.
+Creates an **RdbPredicates** object to search for the records in the specified column that are within the specified range.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1150,7 +1150,7 @@ predicates.in("AGE", [18, 20])
 
 notIn(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
-Sets an **RdbPredicates** to match the field with data type **Array&#60;ValueType&#62;** and value out of the specified range.
+Creates an **RdbPredicates** object to search for the records in the specified column that are out of the specified range.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1278,7 +1278,7 @@ promise.then((rowId: BusinessError) => {
 
 batchInsert(table: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;):void
 
-Batch inserts data into a table. This API uses an asynchronous callback to return the result.
+Inserts a batch of data into a table. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1344,7 +1344,7 @@ rdbStore.batchInsert("EMPLOYEE", valueBuckets, (status: number, insertNum: numbe
 
 batchInsert(table: string, values: Array&lt;ValuesBucket&gt;):Promise&lt;number&gt;
 
-Batch inserts data into a table. This API uses a promise to return the result.
+Inserts a batch of data into a table. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1424,7 +1424,7 @@ Updates data in the RDB store based on the specified **RdbPredicates** object. T
 | -------- | -------- | -------- | -------- |
 | values | [ValuesBucket](#valuesbucket) | Yes| Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
 | predicates | [RdbPredicates](#rdbpredicates) | Yes| Update conditions specified by the **RdbPredicates** object.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the number of rows updated.|
+| callback | AsyncCallback&lt;number&gt; | Yes | Callback used to return the number of rows updated. |
 
 **Example**
 
@@ -1521,7 +1521,7 @@ Deletes data from the RDB store based on the specified **RdbPredicates** object.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | predicates | [RdbPredicates](#rdbpredicates) | Yes| Conditions specified by the **RdbPredicates** object for deleting data.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the number of rows updated.|
+| callback | AsyncCallback&lt;number&gt; | Yes | Callback used to return the number of rows updated. |
 
 **Example**
 

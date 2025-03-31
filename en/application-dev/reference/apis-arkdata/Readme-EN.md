@@ -22,7 +22,6 @@
   <!--Del-->
   - [@ohos.data.cloudData (Device-Cloud Service) (System API)](js-apis-data-cloudData-sys.md)
   - [@ohos.data.cloudExtension (Device-Cloud Sharing Extension) (System API)](js-apis-data-cloudExtension-sys.md)
-  - [@ohos.data.collaborationEditObject (Collaboration Edit Object) (System API)](js-apis-data-collaborationEditObject-sys.md)
   - [@ohos.data.dataShare (DataShare) (System API)](js-apis-data-dataShare-sys.md)
   - [@ohos.data.dataSharePredicates (DataShare Predicates) (System API)](js-apis-data-dataSharePredicates-sys.md)
   - [@ohos.data.dataShareResultSet (DataShare Result Set) (System API)](js-apis-data-DataShareResultSet-sys.md)
@@ -93,5 +92,4 @@
   - [User Preferences Error Codes](errorcode-preferences.md)
   - [UDMF Error Codes](errorcode-udmf.md)
   - [AIP Error Codes](errorcode-intelligence.md)
-  - [Collaboration Edit Object Error Codes](errorcode-collaboration-edit-object.md)
 
