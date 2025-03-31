@@ -88,7 +88,7 @@ metadataBinding.decodeImage(srcImage).then((metadata : string) =>{
 
 ## notifyMetadataBindingEvent(string)
 notifyMetadataBindingEvent(metadata: string): void；
-提交需要嵌入的信息给对应调用编码接口的服务。
+推送待嵌入的信息给调用编码接口的应用或服务。
 **系统能力**：SystemCapability.MultimodalAwarness.metadataBinding
 **系统API**：此接口为系统接口
 
