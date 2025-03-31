@@ -7994,7 +7994,7 @@ let sourceCloseCallback: media.SourceCloseCallback = (uuid: number) => {
 
 ## MediaSourceLoader <sup>18+</sup>
 
-用于定义媒体数据加载器，需要应用对其进行实现。
+用于定义媒体数据加载器，需要应用程序对其进行实现。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
