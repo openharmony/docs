@@ -95,7 +95,7 @@ double Location_BasicInfo::latitude
 Location_SourceType Location_BasicInfo::locationSourceType
 ```
 **描述**
-表示定位结果的来源。 详细定义请参考[Location_SourceType](_location.md#location_sourcetype).
+表示定位结果的来源。 详细定义请参考[Location_SourceType](_location.md#location_sourcetype)。
 
 
 ### longitude
