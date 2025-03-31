@@ -13,6 +13,7 @@
 
 [HID DDK](_hid_ddk.md)
 
+**所在头文件：** [hid__ddk__types_8h.h](hid__ddk__types_8h.md)
 
 ## 汇总
 
