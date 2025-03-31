@@ -47,7 +47,7 @@ Obtains the UIAbility running information. This API uses a promise to return the
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |

@@ -2,6 +2,8 @@
 
 The autoFillManager module provides APIs for saving accounts and passwords.
 
+Unlike the system's auto-save feature that triggers during page transitions, this feature requires manual activation by the user. For example, the user must input their account and password on a website and click the **Save** button to initiate the saving process.
+
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
