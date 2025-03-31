@@ -11,7 +11,6 @@ websocket客户端增加header头的链表节点。
 
 **所在头文件：** [net_websocket_type.h](net__websocket__type_8h.md#net_websocket_typeh)
 
-
 ## 汇总
 
 
