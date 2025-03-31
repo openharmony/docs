@@ -1633,3 +1633,37 @@ error: the app distribution type is not allowed install.
 **处理步骤**
 
 更换签名证书profile文件中的类型。
+
+### 9568380 卸载系统应用失败
+**错误信息**
+
+error: uninstall system app error.
+
+**错误描述**
+
+卸载系统应用失败。
+
+**可能原因**
+
+部分系统应用设置为不可卸载，不支持卸载此类应用。
+
+**处理步骤**
+
+不能卸载不可卸载的应用。
+
+### 9568387 卸载未安装的模块，导致卸载失败
+**错误信息**
+
+error: uninstall missing installed module.
+
+**错误描述**
+
+卸载未安装的模块。
+
+**可能原因**
+
+卸载未安装的模块。
+
+**处理步骤**
+
+使用[bm dump -n](#查询应用信息命令dump)命令查看应用配置，确认要卸载的模块已经安装。
