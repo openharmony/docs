@@ -11,7 +11,6 @@
 
 **所在头文件：** [telephony_radio_type.h](telephony__radio__type_8h.md)
 
-
 ## 汇总
 
 
