@@ -8873,7 +8873,7 @@ export default class EntryAbility extends UIAbility {
 
 setSubWindowZLevel(zLevel: number): Promise<void>;
 
-设置当前子窗口层级级别，仅支持普通子窗，设置了模态属性的子窗不支持。
+设置当前子窗口层级级别，设置了模态属性的子窗不支持。通过该接口改变子窗口的显示层级时，不会发生焦点切换。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -8942,7 +8942,7 @@ export default class EntryAbility extends UIAbility {
 
 getSubWindowZLevel(): number;
 
-获取当前子窗口层级级别，仅支持普通子窗，设置了模态属性的子窗不支持。
+获取当前子窗口层级级别。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
