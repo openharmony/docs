@@ -39,7 +39,7 @@
 | struct&nbsp;&nbsp;[EnrollResultInfo](_enroll_result_info_v12.md) | 录入结果信息。 | 
 | struct&nbsp;&nbsp;[ScheduleInfoV1_1](_schedule_info_v1__1_v12.md) | 调度信息。 | 
 | struct&nbsp;&nbsp;[UserInfo](_user_info_v12.md) | 用户信息。 | 
-| struct&nbsp;&nbsp;[ExtUserInfo](_ext_user_info_v12.md) | 用户信息。 | 
+| struct&nbsp;&nbsp;[ExtUserInfo](_ext_user_info_v12.md) | 扩展用户信息。 | 
 | struct&nbsp;&nbsp;[AuthSolutionV1_2](_auth_solution_v1__2_v12.md) | 认证方案。 | 
 | struct&nbsp;&nbsp;[EnrollParamV1_2](_enroll_param_v1__2_v12.md) | 注册认证凭据参数。 | 
 
