@@ -11,6 +11,10 @@
 
 **起始版本：** 10
 
+**废弃版本：** 18
+
+**替代接口：** 请分别使用以下回调类型替代： [OH_AudioRenderer_OnWriteDataCallback](_o_h_audio.md#oh_audiorenderer_onwritedatacallback)、 [OH_AudioRenderer_OutputDeviceChangeCallback](_o_h_audio.md#oh_audiorenderer_outputdevicechangecallback)、 [OH_AudioRenderer_OnInterruptCallback](_o_h_audio.md#oh_audiorenderer_oninterruptcallback) 以及 [OH_AudioRenderer_OnErrorCallback](_o_h_audio.md#oh_audiorenderer_onerrorcallback)。
+
 **相关模块：**[OHAudio](_o_h_audio.md)
 
 
@@ -41,6 +45,12 @@ int32_t (*OH_AudioRenderer_Callbacks_Struct::OH_AudioRenderer_OnError)(OH_AudioR
 **描述**
 该函数指针将指向用于处理音频播放错误结果的回调函数。
 
+**起始版本：** 10
+
+**废弃版本：** 18
+
+**替代接口：** [OH_AudioRenderer_OnErrorCallback](_o_h_audio.md#oh_audiorenderer_onerrorcallback)
+
 **参数:**
 
 | 名称 | 描述 | 
@@ -59,6 +69,12 @@ int32_t (*OH_AudioRenderer_Callbacks_Struct::OH_AudioRenderer_OnInterruptEvent)(
 **描述**
 该函数指针将指向用于处理音频播放中断事件的回调函数。
 
+**起始版本：** 10
+
+**废弃版本：** 18
+
+**替代接口：** [OH_AudioRenderer_OnInterruptCallback](_o_h_audio.md#oh_audiorenderer_oninterruptcallback)
+
 **参数:**
 
 | 名称 | 描述 | 
@@ -75,6 +91,12 @@ int32_t (*OH_AudioRenderer_Callbacks_Struct::OH_AudioRenderer_OnStreamEvent)(OH_
 ```
 **描述**
 该函数指针将指向用于处理音频播放流事件的回调函数。
+
+**起始版本：** 10
+
+**废弃版本：** 18
+
+**替代接口：** [OH_AudioRenderer_OutputDeviceChangeCallback](_o_h_audio.md#oh_audiorenderer_outputdevicechangecallback)
 
 **参数:**
 
@@ -96,6 +118,12 @@ int32_t (*OH_AudioRenderer_Callbacks_Struct::OH_AudioRenderer_OnWriteData)(OH_Au
 回调函数仅用来写入音频数据，请勿在回调函数中调用AudioRenderer相关接口。
 
 回调函数结束后，音频服务会把buffer指针数据放入队列里等待播放，因此请勿在回调外再次更改buffer指向的数据，且务必保证往buffer填满length长度的待播放数据，否则会导致音频服务播放杂音。
+
+**起始版本：** 10
+
+**废弃版本：** 18
+
+**替代接口：** [OH_AudioRenderer_OnWriteDataCallback](_o_h_audio.md#oh_audiorenderer_onwritedatacallback)
 
 **参数:**
 
