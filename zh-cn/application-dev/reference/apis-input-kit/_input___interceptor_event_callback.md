@@ -31,6 +31,7 @@
 Input_AxisEventCallback Input_InterceptorEventCallback::axisCallback
 ```
 **描述**
+
 轴事件的回调函数。
 
 **起始版本：** 12
@@ -42,6 +43,7 @@ Input_AxisEventCallback Input_InterceptorEventCallback::axisCallback
 Input_MouseEventCallback Input_InterceptorEventCallback::mouseCallback
 ```
 **描述**
+
 鼠标事件的回调函数。
 
 **起始版本：** 12
@@ -53,6 +55,7 @@ Input_MouseEventCallback Input_InterceptorEventCallback::mouseCallback
 Input_TouchEventCallback Input_InterceptorEventCallback::touchCallback
 ```
 **描述**
+
 触摸事件的回调函数。
 
 **起始版本：** 12
