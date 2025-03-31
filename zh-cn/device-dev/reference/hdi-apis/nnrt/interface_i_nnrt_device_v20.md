@@ -59,9 +59,9 @@ INnrtDevice::AllocateBuffer ([in] unsigned int length, [out] struct SharedBuffer
 
 **返回：**
 
-返回0表示成功
+返回0表示成功。
 
-返回非0表示失败，负数为HDF标准错误码，正数为NNRt定义的专用错误码（请查看[NNRT_ReturnCode](_n_n_rt_v20.md#nnrt_returncode)）
+返回非0表示失败，负数为HDF标准错误码，正数为NNRt定义的专用错误码（请查看[NNRT_ReturnCode](_n_n_rt_v20.md#nnrt_returncode)）。
 
 
 ### GetDeviceName()
@@ -71,7 +71,7 @@ INnrtDevice::GetDeviceName ([out] String name)
 ```
 **描述**
 
-获取设备名称
+获取设备名称。
 
 **起始版本：** 3.2
 
@@ -83,9 +83,9 @@ INnrtDevice::GetDeviceName ([out] String name)
 
 **返回：**
 
-返回0表示成功
+返回0表示成功。
 
-返回非0表示失败，负数为HDF标准错误码，正数为NNRt定义的专用错误码（请查看[NNRT_ReturnCode](_n_n_rt_v20.md#nnrt_returncode)）
+返回非0表示失败，负数为HDF标准错误码，正数为NNRt定义的专用错误码（请查看[NNRT_ReturnCode](_n_n_rt_v20.md#nnrt_returncode)）。
 
 
 ### GetDeviceStatus()
@@ -95,7 +95,7 @@ INnrtDevice::GetDeviceStatus ([out] enum DeviceStatus status)
 ```
 **描述**
 
-获取设备当前状态
+获取设备当前状态。
 
 **起始版本：** 3.2
 
@@ -156,7 +156,7 @@ INnrtDevice::GetSupportedOperation ([in] struct Model model, [out] boolean[] ops
 
 **返回：**
 
-返回0表示成功
+返回0表示成功。
 
 返回非0表示失败，负数为HDF标准错误码，正数为NNRt定义的专用错误码（请查看[NNRT_ReturnCode](_n_n_rt_v20.md#nnrt_returncode)）
 
@@ -280,9 +280,9 @@ INnrtDevice::IsPerformanceModeSupported ([out] boolean isSupported)
 
 **返回：**
 
-返回0表示成功
+返回0表示成功。
 
-返回非0表示失败，负数为HDF标准错误码，正数为NNRt定义的专用错误码（请查看[NNRT_ReturnCode](_n_n_rt_v20.md#nnrt_returncode)）
+返回非0表示失败，负数为HDF标准错误码，正数为NNRt定义的专用错误码（请查看[NNRT_ReturnCode](_n_n_rt_v20.md#nnrt_returncode)）。
 
 
 ### IsPrioritySupported()
@@ -304,9 +304,9 @@ INnrtDevice::IsPrioritySupported ([out] boolean isSupported)
 
 **返回：**
 
-返回0表示成功
+返回0表示成功。
 
-返回非0表示失败，负数为HDF标准错误码，正数为NNRt定义的专用错误码（请查看[NNRT_ReturnCode](_n_n_rt_v20.md#nnrt_returncode)）
+返回非0表示失败，负数为HDF标准错误码，正数为NNRt定义的专用错误码（请查看[NNRT_ReturnCode](_n_n_rt_v20.md#nnrt_returncode)）。
 
 
 ### PrepareModel()
@@ -316,7 +316,7 @@ INnrtDevice::PrepareModel ([in] struct Model model, [in] struct ModelConfig conf
 ```
 **描述**
 
-编译模型
+编译模型。
 
 如果是变尺寸输入模型，则模型输入的维度信息中至少有一个是-1。
 
@@ -332,9 +332,9 @@ INnrtDevice::PrepareModel ([in] struct Model model, [in] struct ModelConfig conf
 
 **返回：**
 
-返回0表示成功
+返回0表示成功。
 
-返回非0表示失败，负数为HDF标准错误码，正数为NNRt定义的专用错误码（请查看[NNRT_ReturnCode](_n_n_rt_v20.md#nnrt_returncode)）
+返回非0表示失败，负数为HDF标准错误码，正数为NNRt定义的专用错误码（请查看[NNRT_ReturnCode](_n_n_rt_v20.md#nnrt_returncode)）。
 
 
 ### PrepareModelFromModelCache()
@@ -358,9 +358,9 @@ INnrtDevice::PrepareModelFromModelCache ([in] struct SharedBuffer[] modelCache, 
 
 **返回：**
 
-返回0表示成功
+返回0表示成功。
 
-返回非0表示失败，负数为HDF标准错误码，正数为NNRt定义的专用错误码（请查看[NNRT_ReturnCode](_n_n_rt_v20.md#nnrt_returncode)）
+返回非0表示失败，负数为HDF标准错误码，正数为NNRt定义的专用错误码（请查看[NNRT_ReturnCode](_n_n_rt_v20.md#nnrt_returncode)）。
 
 
 ### PrepareOfflineModel()
@@ -384,9 +384,9 @@ INnrtDevice::PrepareOfflineModel ([in] struct SharedBuffer[] modelCache, [in] st
 
 **返回：**
 
-返回0表示成功
+返回0表示成功。
 
-返回非0表示失败，负数为HDF标准错误码，正数为NNRt定义的专用错误码（请查看[NNRT_ReturnCode](_n_n_rt_v20.md#nnrt_returncode)）
+返回非0表示失败，负数为HDF标准错误码，正数为NNRt定义的专用错误码（请查看[NNRT_ReturnCode](_n_n_rt_v20.md#nnrt_returncode)）。
 
 
 ### ReleaseBuffer()
@@ -408,6 +408,6 @@ INnrtDevice::ReleaseBuffer ([in] struct SharedBuffer buffer)
 
 **返回：**
 
-返回0表示成功
+返回0表示成功。
 
-返回非0表示失败，负数为HDF标准错误码，正数为NNRt定义的专用错误码（请查看[NNRT_ReturnCode](_n_n_rt_v20.md#nnrt_returncode)）
+返回非0表示失败，负数为HDF标准错误码，正数为NNRt定义的专用错误码（请查看[NNRT_ReturnCode](_n_n_rt_v20.md#nnrt_returncode)）。
