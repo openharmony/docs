@@ -84,7 +84,7 @@
 | --- | --- | --- | --- | --- |
 | obfuscation-rules.txt | 自定义  | 是 | 是 | 否 |
 | consumer-rules.txt    | 自定义  | 是 | 否 | 是 |
-| obfuscation.txt       | 编译产物 | 不涉及，构建HAR或HSP时自动生成 | 不涉及 | 是 |
+| obfuscation.txt       | 编译产物 | 不涉及，构建HAR或HSP时自动生成。 | 不涉及 | 是 |
 
 ### 混淆选项配置指导
 1. 开启`-enable-toplevel-obfuscation`选项，如果代码中有globalThis访问全局变量，会出现访问失败的情况，需要使用`-keep-global-name`来保留此全局变量名称。
