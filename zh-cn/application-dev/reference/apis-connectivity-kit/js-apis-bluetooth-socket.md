@@ -448,7 +448,7 @@ sppReadAsync(clientSocket: number): Promise&lt;ArrayBuffer&gt;
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| Promise&lt;void&gt; | 以Promise的形式返回读取数据结果。如果成功，值在ArrayBuffer中返回，如果失败，返回对应错误码。 |
+| Promise&lt;ArrayBuffer&gt; | 以Promise的形式返回读取数据结果。如果成功，值在ArrayBuffer中返回，如果失败，返回对应错误码。 |
 
 **错误码**：
 
