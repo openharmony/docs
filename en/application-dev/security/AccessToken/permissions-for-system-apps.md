@@ -4565,6 +4565,42 @@ This permission prevents authorized access to custom EDM configuration files, su
 
 **Valid since**：18
 
+## ohos.permission.READ_DHA
+
+Allows an application to read device health attestation information.
+
+**Permission level**：system_core
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：18
+
+## ohos.permission.WRITE_DHA
+
+Allows an application to write device health attestation information.
+
+**Permission level**：system_core
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：18
+
+## ohos.permission.NOTIFY_DHA
+
+Allows an application to notify the device health attestation event.
+
+**Permission level**：system_core
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：18
+
 ## ohos.permission.CHANGE_DEFAULT_APPLICATION
 
 Allows an application to listen for the changes of a default application.
