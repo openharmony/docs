@@ -1077,6 +1077,35 @@ It is not allowed to install enterprise applications through a specific installa
 
 Due to policy control, enterprise applications cannot be installed through the specific API.
 
+
+## 17700101 Bundle Manager Service Abnormal
+**Error Message**
+
+Bundle manager service is excepted.
+
+**Description**
+
+The Bundle Manager service is abnormal.
+
+**Possible Causes**
+
+An unknown system exception occurs.
+
+**Solution**
+1. Restart the phone and try again.
+
+2. If the request still fails after the preceding steps are performed for three to five times, check whether a crash file containing **foundation** exists in the **/data/log/faultlog/faultlogger/** directory of the device.
+```
+hdc shell
+cd /data/log/faultlog/faultlogger/
+ls -ls
+```
+3. Export the crash file and log file and submit them to [online tickets](https://developer.huawei.com/consumer/en/support/feedback/#/) for help.
+```
+hdc file recv /data/log/faultlog/faultlogger/
+hdc file recv /data/log/hilog/
+```
+
 ## 17700201 .abc File Verification Failure
 
 **Error Message**

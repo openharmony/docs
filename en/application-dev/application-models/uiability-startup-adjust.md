@@ -9,7 +9,7 @@ This section describes how to switch from explicit Want mode to linking mode.
 1. Install the application on your device. In the [module.json5 file](../quick-start/module-configuration-file.md) of the UIAbility, configure **entities**, **actions**, and **uri** under **skills**.
     - The **actions** field must contain **ohos.want.action.viewData**.
     - The **entities** field must contain **entity.system.browsable**.
-    - The **uris** field must contain an element whose **scheme** is **https**. **domainVerify** must be set to **true**. For details about the URI matching rules, see [Matching Rules of uri](explicit-implicit-want-mappings.md#matching-rules-of-uri). If **domainVerify** is set to **true**, domain name verification is enabled. In this case, the target application must pass domain name verification during App Linking. For details about how to configure the App Linking domain name, see [Using App Linking for Application Redirection](app-linking-startup.md).
+    - The **uris** field must contain an element whose **scheme** is **https**. **domainVerify** must be set to **true**. For details about the URI matching rules, see [Matching Rules of uri](explicit-implicit-want-mappings.md#matching-rules-of-uri). If **domainVerify** is set to **true**, domain name verification is enabled. In this case, the target application must pass domain name verification during App Linking. For details about how to configure the App Linking domain name, see App Linking.
 
     ```json
     {
@@ -109,7 +109,7 @@ This section describes how to switch from explicit Want mode to linking mode.
 
     - The **actions** field must contain **ohos.want.action.viewData**.
     - The **entities** field must contain **entity.system.browsable**.
-    - The **uris** field must contain an element whose **scheme** is **https**. **domainVerify** must be set to **true**. For details about the URI matching rules, see [Matching Rules of uri](explicit-implicit-want-mappings.md#matching-rules-of-uri). If **domainVerify** is set to **true**, domain name verification is enabled. In this case, the target application must pass domain name verification during App Linking. For details about how to configure the App Linking domain name, see [Using App Linking for Application Redirection](app-linking-startup.md).
+    - The **uris** field must contain an element whose **scheme** is **https**. **domainVerify** must be set to **true**. For details about the URI matching rules, see [Matching Rules of uri](explicit-implicit-want-mappings.md#matching-rules-of-uri). If **domainVerify** is set to **true**, domain name verification is enabled. In this case, the target application must pass domain name verification during App Linking. For details about how to configure the App Linking domain name, see App Linking.
 
     ```json
     {
