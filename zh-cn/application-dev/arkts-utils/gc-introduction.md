@@ -48,6 +48,7 @@ function main() {
 引用计数和对象追踪算法各有优劣，但考虑到引用计数存在循环引用的致命性能问题，ArkTS运行时选择基于对象追踪（即Tracing GC）算法来设计GC算法。
 
 ### 对象追踪的三种类型
+
 对象追踪算法通过遍历对象图标记出垃圾，而根据垃圾回收方式的不同，对象追踪可以分为三种基本类型：标记-清扫回收、标记-复制回收、标记-整理回收。以下图示中蓝色标记为可达对象，黄色标记为不可达对象。
 
 #### 标记-清扫回收
@@ -73,7 +74,7 @@ function main() {
 
 ### HPP GC
 
-HPP GC（High Performance Partial Garbage Collection）,即高性能部分垃圾回收，其中“High Performance”主要体现在三方面，分代模型、混合算法和GC流程优化。在算法方面，HPP GC会根据不同对象区域、采取不同的回收方式。
+HPP GC（High Performance Partial Garbage Collection），即高性能部分垃圾回收，其中“High Performance”主要体现在三方面，分代模型、混合算法和GC流程优化。在算法方面，HPP GC会根据不同对象区域、采取不同的回收方式。
 
 #### 分代模型
 
@@ -81,7 +82,7 @@ ArkTS运行时采用传统的分代模型，将对象进行分类。考虑到大
 
 ![image](./figures/generational-model.png)
 
-ArkTS运行时将新分配的对象直接分配到年轻代（Young Space）的From空间。经过一次GC后依然存活的对象，会进入To空间,然后会交换from和to空间的类型。而经过再次GC后依然存活的对象，会被复制到老年代（Old Space）。
+ArkTS运行时将新分配的对象直接分配到年轻代（Young Space）的From空间。经过一次GC后依然存活的对象，会进入To空间，然后会交换from和to空间的类型。而经过再次GC后依然存活的对象，会被复制到老年代（Old Space）。
 
 #### 混合算法
 
@@ -94,21 +95,17 @@ HPP GC是一种“部分复制+部分整理+部分清扫”的混合算法，支
 
 具体的回收策略如下：
 
-- 根据设定的区域存活对象大小阈值，将满足条件的区域纳入初步的CSet队列，并根据存活率进行从低到高的排序。
-
-（注：存活率=存活对象大小/区域大小）
+- 根据设定的区域存活对象大小阈值，将满足条件的区域纳入初步的CSet队列，并根据存活率进行从低到高的排序（注：存活率=存活对象大小/区域大小）。
 
 - 根据设定的释放区域个数阈值，选出最终的CSet队列，进行整理回收。
 
 - 对未被选入CSet队列的区域进行清扫回收。
 
-启发式CSet选择算法同时兼顾了 “标记-整理回收”和“标记-清扫回收”这两种算法的优点，既避免了内存碎片问题，也兼顾了性能。
+启发式CSet选择算法同时兼顾了“标记-整理回收”和“标记-清扫回收”这两种算法的优点，既避免了内存碎片问题，也兼顾了性能。
 
 #### 流程优化
 
 HPP GC流程中引入了大量的并发和并行优化，以减少对应用性能的影响。采用了并发+并行标记（Marking）、并发+并行清扫（Sweep）、并行复制/整理（Evacuation）、并行回改（Update）和并发清理（Clear）执行GC任务。
-
-
 
 ## Heap结构及其配置参数
 
@@ -137,75 +134,72 @@ HPP GC流程中引入了大量的并发和并行优化，以减少对应用性�
 
 #### 堆大小相关参数
 
-| 参数名称 | 范围 | 作用 |
-| --- | --- | :--- |
-| HeapSize | 448MB | 主线程默认堆空间总大小,小内存设备会依据实际内存池大小修正 |
-| SemiSpaceSize | 2MB-4MB/2MB-8MB/2MB-16MB | semispace空间大小 |
-| NonmovableSpaceSize | 2MB/6MB/64MB | nonmovableSpace空间大小 |
-| SnapshotSpaceSize | 512KB | 快照空间大小 |
-| MachineCodeSpaceSize | 2MB | 机器码空间大小 |
+| 参数名 | 范围 | 作用 |
+| --- | --- | --- |
+| HeapSize | 448MB | 主线程默认堆空间总大小，小内存设备会依据实际内存池大小修正。 |
+| SemiSpaceSize | 2MB-4MB/2MB-8MB/2MB-16MB | semispace空间大小。 |
+| NonmovableSpaceSize | 2MB/6MB/64MB | nonmovableSpace空间大小。 |
+| SnapshotSpaceSize | 512KB | 快照空间大小。 |
+| MachineCodeSpaceSize | 2MB | 机器码空间大小。 |
 
 #### worker线程堆上限
 
-| 参数名称 | 范围 | 作用 |
+| 参数名 | 范围 | 作用 |
 | --- | --- | --- |
-| HeapSize  | 768 MB | work类型线程堆空间大小 |
+| HeapSize  | 768 MB | work类型线程堆空间大小。 |
 
 #### Semi Space
-
 heap中会生成两个Semi Space供copying使用。
 
-| 参数名称 | 范围 | 作用 |
-| --- | --- | :--- |
-| semiSpaceSize | 2MB-4MB/2MB-8MB/2MB-16MB | semispace空间大小，会根据堆总大小有不同的范围限制 |
-| semiSpaceTriggerConcurrentMark | 1M/1.5M/1.5M| 首次单独触发Semi Space的并发mark的界限值，超过该值则触发 |
-| semiSpaceStepOvershootSize| 2MB | 允许过冲最大大小 |
+| 参数名 | 范围 | 作用 |
+| --- | --- | --- |
+| semiSpaceSize | 2MB-4MB/2MB-8MB/2MB-16MB | semispace空间大小，会根据堆总大小有不同的范围限制。 |
+| semiSpaceTriggerConcurrentMark | 1M/1.5M/1.5M| 首次单独触发Semi Space的并发mark的界限值，超过该值则触发。 |
+| semiSpaceStepOvershootSize| 2MB | 允许过冲最大大小。 |
 
 #### Old Space 和 Huge Object Space
-
 初始化时均设定为Heap剩余未分配空间的大小，默认手机设备主线程OldSpaceSize上限接近350MB。
 
-| 参数名称 | 范围 | 作用 |
-| --- | --- | :--- |
-| oldSpaceOvershootSize | 4MB/8MB/8MB | oldSpace允许过冲最大大小 |
+| 参数名 | 范围 | 作用 |
+| --- | --- | --- |
+| oldSpaceOvershootSize | 4MB/8MB/8MB | oldSpace允许过冲最大大小。 |
 
 #### 其他空间
 
-| 参数名称 | 范围 | 作用 |
-| --- | --- | :--- |
-| defaultReadOnlySpaceSize | 256 KB | ReadOnlySpace默认空间大小 |
-| defaultNonMovableSpaceSize | 2 MB/6 MB/64 MB | NonMovableSpace默认空间大小|
-| defaultSnapshotSpaceSize | 512 KB/512 KB/ 4 MB | SnapshotSpace默认空间大小|
-| defaultMachineCodeSpaceSize | 2 MB/2 MB/8 MB | MachineCodeSpace默认空间大小|
+| 参数名 | 范围 | 作用 |
+| --- | --- | --- |
+| defaultReadOnlySpaceSize | 256 KB | ReadOnlySpace默认空间大小。 |
+| defaultNonMovableSpaceSize | 2 MB/6 MB/64 MB | NonMovableSpace默认空间大小。|
+| defaultSnapshotSpaceSize | 512 KB/512 KB/ 4 MB | SnapshotSpace默认空间大小。|
+| defaultMachineCodeSpaceSize | 2 MB/2 MB/8 MB | MachineCodeSpace默认空间大小。|
 
 #### 解释器栈大小
 
-| 参数名称 | 范围 | 作用 |
+| 参数名 | 范围 | 作用 |
 | --- | --- | --- |
-| maxStackSize | 128KB | 控制解释器栈帧大小 |
+| maxStackSize | 128KB | 控制解释器栈帧大小。 |
 
 #### 并发参数
 
-| 参数名称 | 值 | 作用 |
-| --- | ---: | --- |
-| gcThreadNum | 7 | gc线程数量，默认为7，可通过`gc-thread-num`参数自行设定该参数值 |
-| MIN_TASKPOOL_THREAD_NUM | 3 | 线程池最小线程数 |
-| MAX_TASKPOOL_THREAD_NUM | 7 | 线程池最大线程数 |
+| 参数名 | 值 | 作用 |
+| --- | --- | --- |
+| gcThreadNum | 7 | gc线程数量，默认为7。可通过`gc-thread-num`参数自行设定该参数值。 |
+| MIN_TASKPOOL_THREAD_NUM | 3 | 线程池最小线程数。 |
+| MAX_TASKPOOL_THREAD_NUM | 7 | 线程池最大线程数。 |
 
-注：该线程池主要用于执行GC流程中的并发任务，实际线程池初始化综合参考gcThreadNum以及线程上下限，gcThreadNum为负值时初始化线程池线程数 = CPU核心数/2
+注：该线程池主要用于执行GC流程中的并发任务，实际线程池初始化综合参考gcThreadNum以及线程上下限，gcThreadNum为负值时初始化线程池线程数 = CPU核心数/2。
 
 #### 其他参数
 
-| 参数名称 | 值 | 作用 |
+| 参数名 | 值 | 作用 |
 | --- | --- | --- |
-| minAllocLimitGrowingStep | 2M/4M/8M | heap整体重新计算空间大小限制时，控制oldSpace、heapObject和globalNative的最小增长步长 |
-| minGrowingStep | 4M/8M/16M | 调整oldSpace的最小增长步长 |
-| longPauseTime | 40ms | 判断是否为超长GC界限，超长GC会触发完整GC日志信息打印，方便开发者定位分析。可通过`gc-long-paused-time`进行配置 |
+| minAllocLimitGrowingStep | 2M/4M/8M | heap整体重新计算空间大小限制时，控制oldSpace、heapObject和globalNative的最小增长步长。 |
+| minGrowingStep | 4M/8M/16M | 调整oldSpace的最小增长步长。 |
+| longPauseTime | 40ms | 判断是否为超长GC界限，超长GC会触发完整GC日志信息打印，方便开发者定位分析。可通过`gc-long-paused-time`进行配置。 |
 
 ### 其他：新增单VM内ArrayBuffer的native总内存上限为4GB
 
 ## GC流程
-
 
 ![image](./figures/gc-process.png)
 
@@ -213,26 +207,26 @@ heap中会生成两个Semi Space供copying使用。
 
 #### Young GC
 
-- **触发机制：** 年轻代GC触发阈值在2MB-16MB变化,根据分配速度和存活率等会变化。
-- **说明：** 主要回收semi space新分配的年轻代对象。
-- **场景：** 前台场景。
-- **日志关键词：** `[ HPP YoungGC ]`
+- **触发机制**：年轻代GC触发阈值在2MB-16MB变化，根据分配速度和存活率等会变化。
+- **说明**：主要回收semi space新分配的年轻代对象。
+- **场景**：前台场景。
+- **日志关键词**：`[ HPP YoungGC ]`
 
 #### Old GC
 
-- **触发机制：** 老年代GC触发阈值在20MB-300多MB变化，大部分情况，第一次Old GC的阈值在20M左右，之后会根据对象存活率，内存占用大小进行阈值调整。
-- **说明：** 对年轻代和部分老年代空间做整理压缩，其他空间做sweep清理。触发频率比年轻代GC低很多，由于会做全量mark，因此GC时间会比年轻代GC长，单次耗时约5ms~10ms。
-- **场景：** 前台场景。
-- **日志关键词：**`[ HPP OldGC ]`
+- **触发机制**：老年代GC触发阈值在20MB-300多MB变化，大部分情况，第一次Old GC的阈值在20M左右，之后会根据对象存活率，内存占用大小进行阈值调整。
+- **说明**：对年轻代和部分老年代空间做整理压缩，其他空间做sweep清理。触发频率比年轻代GC低很多，由于会做全量mark，因此GC时间会比年轻代GC长，单次耗时约5ms~10ms。
+- **场景**：前台场景。
+- **日志关键词**：`[ HPP OldGC ]`
 
 #### Full GC
 
-- **触发机制：** 不会由内存阈值触发。应用切换后台之后，如果预测能回收的对象尺寸大于2M会触发一次Full GC。DumpHeapSnapshot 和 AllocationTracker 工具默认会触发Full GC。Native 接口和ArkTS 也有接口可以触发。
-- **说明：** 会对年轻代和老年代做全量压缩，主要用于性能不敏感场景，最大限度回收内存空间。
-- **场景：** 后台场景。
-- **日志关键词：**`[ CompressGC ]`
+- **触发机制**：不会由内存阈值触发。应用切换后台之后，如果预测能回收的对象尺寸大于2M会触发一次Full GC。DumpHeapSnapshot 和 AllocationTracker 工具默认会触发Full GC。Native 接口和ArkTS 也有接口可以触发。
+- **说明**：会对年轻代和老年代做全量压缩，主要用于性能不敏感场景，最大限度回收内存空间。
+- **场景**：后台场景。
+- **日志关键词**：`[ CompressGC ]`
 
-此后的Smart GC或者 IDLE GC 都是在上述三种GC中做选择。
+此后的Smart GC或者IDLE GC都是在上述三种GC中做选择。
 
 ### 触发策略
 
@@ -246,14 +240,14 @@ heap中会生成两个Semi Space供copying使用。
 #### native绑定大小达到阈值触发GC
 
 - 函数方法：`GlobalNativeSizeLargerThanLimit`
-- 限制参数：`globalSpaceNativeLimit`
+- 限制参数：`globalSpaceNativeLimit`。
 - 说明：影响是否进行全量mark，以及是否开始并发mark。
 
 #### 切换后台触发GC
 
 - 函数方法：`ChangeGCParams`
 - 说明：切换后台主动触发一次Full GC。
-- 典型日志：`app is inBackground`，`app is not inBackground`
+- 典型日志：`app is inBackground`，`app is not inBackground`。
   GC 日志中可区分GCReason::SWITCH_BACKGROUND。
 
 ### 执行策略
@@ -262,7 +256,7 @@ heap中会生成两个Semi Space供copying使用。
 
 - 函数方法：`TryTriggerConcurrentMarking`
 - 说明：尝试触发并发mark，将遍历对象进行标记的任务交由线程池中并发运行，减少UI主线程挂起时间。
-- 典型日志：`fullMarkRequested`,`trigger full mark`,`Trigger the first full mark`,`Trigger full mark`,`Trigger the first semi mark`,`Trigger semi mark`
+- 典型日志：`fullMarkRequested`，`trigger full mark`，`Trigger the first full mark`，`Trigger full mark`，`Trigger the first semi mark`，`Trigger semi mark`。
 
 #### new space GC前后的阈值调整
 
@@ -310,14 +304,14 @@ heap中会生成两个Semi Space供copying使用。
 
 #### 特性介绍
 
-在应用性能敏感场景，通过将线程(SmartGC对worker线程和taskpool线程不生效)GC触发水线临时调整到线程的堆最大值（主线程线程默认448MB），尽量避免触发GC导致应用掉帧。如果敏感场景持续时间过久，对象分配已经达到了堆最大值，则还是会触发GC，且这次GC由于积累的对象太多，GC时间会相对较久。
+在应用性能敏感场景，通过将线程（SmartGC对worker线程和taskpool线程不生效）GC触发水线临时调整到线程的堆最大值（主线程线程默认448MB），尽量避免触发GC导致应用掉帧。如果敏感场景持续时间过久，对象分配已经达到了堆最大值，则还是会触发GC，且这次GC由于积累的对象太多，GC时间会相对较久。
 
 #### 支持敏感场景
 
-- 应用冷启动（默认支持）
-- 应用滑动
-- 应用点击页面跳转
-- 超长帧
+- 应用冷启动（默认支持）。
+- 应用滑动。
+- 应用点击页面跳转。
+- 超长帧。
 
 当前该特性使能由系统侧进行管控，三方应用暂无接口直接调用。
 
@@ -346,7 +340,7 @@ hdc shell reboot
 
 ### 典型日志
 
-以下日志为一次GC完整执行后的统计信息，具体到GC的类型不同会有一些差异。开发者可以在导出的日志文件中搜索关键词`[gc]`查看GC相关的日志,也可以查看关键词`ArkCompiler`查看更为全面虚拟机相关的日志。
+以下日志为一次GC完整执行后的统计信息，具体到GC的类型不同会有一些差异。开发者可以在导出的日志文件中搜索关键词`[gc]`查看GC相关的日志，也可以查看关键词`ArkCompiler`查看更为全面虚拟机相关的日志。
 
 ```
 // GC前对象实际占用大小（region实际占用大小）->GC后对象实际占用大小（region实际占用大小），总耗时（+concurrentMark耗时），GC触发原因。
@@ -390,7 +384,7 @@ C03F00/ArkCompiler: Heap average alive rate: 0.635325
 ```
 
 - gc类型：[HPP YoungGC]、[HPP OldGC]、[CompressGC]、[SharedGC]。
-- TotalGC: 总耗时。其下相应为各个阶段对应的耗时，基本的包括`Initialize`、`Mark`、`MarkRoots`、`ProcessMarkStack`、`Sweep`、`Finish`，实际根据不同的GC流程不同会有不同的阶段。
+- TotalGC：总耗时。其下相应为各个阶段对应的耗时，基本的包括`Initialize`、`Mark`、`MarkRoots`、`ProcessMarkStack`、`Sweep`、`Finish`，实际根据不同的GC流程不同会有不同的阶段。
 - IsInBackground：是否在后台场景，1：为后台场景，0：非后台场景。
 - SensitiveStatus：是否为敏感场景，1：为敏感场景，0：非敏感场景。
 - OnStartupEvent：是否为冷启动场景，1：为冷启动场景，0：非冷启动场景。
@@ -407,6 +401,7 @@ C03F00/ArkCompiler: Heap average alive rate: 0.635325
 ## GC开发者调试接口
 
 > **注意：**
+> 
 > 以下接口仅供调试使用，非正式对外SDK接口，不应在应用正式版本中使用。
 
 ### ArkTools.hintGC()
@@ -418,7 +413,7 @@ C03F00/ArkCompiler: Heap average alive rate: 0.635325
 - 典型日志：无直接日志，仅可区分外部触发（`GCReason::TRIGGER_BY_JS`）。
 
 
-使用参考
+**使用参考：**
 
 ```ts
 // 首先需要声明接口

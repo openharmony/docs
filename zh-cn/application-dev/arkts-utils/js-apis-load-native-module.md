@@ -10,7 +10,7 @@ loadNativeModule(moduleName: string): Object;
 
 | 参数            | 说明          |
 | :------------- | :----------------------------- |
-| moduleName            | 加载的模块名       |
+| moduleName            | 加载的模块名。       |
 
 > **说明**
 > loadNativeModule加载的模块名指的是依赖方oh-package.json5文件的dependencies中的名字。
@@ -37,14 +37,14 @@ hilog.info(0, "testTag", "loadNativeModule ohos.hilog success");
 
 - **HAP加载Native库**
 
-libentry.so的index.d.ts文件如下
+libentry.so的index.d.ts文件如下：
 
 ```javascript
 //index.d.ts
 export const add: (a: number, b: number) => number;
 ```
 
-1.在加载本地so库时，首先需要在oh-package.json5文件中配置dependencies项
+1.在加载本地so库时，首先需要在oh-package.json5文件中配置dependencies项。
 
 ```json
 {
@@ -54,7 +54,7 @@ export const add: (a: number, b: number) => number;
 }
 ```
 
-2.其次，还需要在build-profile.json5中进行配置
+2.其次，还需要在build-profile.json5中进行配置。
 
 ```json
 {
@@ -70,7 +70,7 @@ export const add: (a: number, b: number) => number;
 }
 ```
 
-3.用loadNativeModule加载libentry.so，调用函数add
+3.用loadNativeModule加载libentry.so，调用函数add。
 
 ```js
 let module: ESObject = loadNativeModule("libentry.so");
