@@ -44,12 +44,12 @@ Provides information about the coordinate system, ID, and size of the component 
 
 | Name         | Type  | Description                                      |
 | ------------- | ------ | ---------------------------------------- |
-| windowX | number | X coordinate of the touch point relative to the upper left corner of the window.|
-| windowY   | number |Y coordinate of the touch point relative to the upper left corner of the window.|
-| parentX   | number |X coordinate of the touch point relative to the upper left corner of the parent component. |
-| parentY   | number |Y coordinate of the touch point relative to the upper left corner of the parent component. |
-| x   | number | X coordinate of the touch point relative to the upper left corner of the child component.|
-| y   | number | Y coordinate of the touch point relative to the upper left corner of the child component.|
+| windowX | number | X coordinate of the touch point relative to the upper left corner of the window.<br>Unit: vp.|
+| windowY   | number |Y coordinate of the touch point relative to the upper left corner of the window.<br>Unit: vp.|
+| parentX   | number |X coordinate of the touch point relative to the upper left corner of the parent component.<br>Unit: vp. |
+| parentY   | number |Y coordinate of the touch point relative to the upper left corner of the parent component.<br>Unit: vp. |
+| x   | number | X coordinate of the touch point relative to the upper left corner of the child component.<br>Unit: vp.|
+| y   | number | Y coordinate of the touch point relative to the upper left corner of the child component.<br>Unit: vp.|
 | rect   | [RectResult](ts-types.md#rectresult10) |Size of the child component. |
 | [id](ts-universal-attributes-component-id.md)   | string | Component ID.|
 
@@ -69,8 +69,6 @@ Defines the custom event dispatch result. You can influence event dispatch by re
 ## TouchTestStrategy
 
 Enumerates the event dispatch strategies.
-
-**Widget capability**: This API can be used in ArkTS widgets since API version 11.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
