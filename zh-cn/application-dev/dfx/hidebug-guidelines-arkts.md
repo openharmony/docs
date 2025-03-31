@@ -32,6 +32,7 @@ HiDebug对外提供系统调试相关功能的接口，包括应用进程的静�
 | hidebug.isDebugState               | 获取应用进程被调试状态。                                     |
 | hidebug.getGraphicsMemory          | 使用异步方式获取应用显存大小。                    |
 | hidebug.getGraphicsMemorySync      | 使用同步方式获取应用显存大小。                    |
+| hidebug.dumpJsRawHeapData          | 为当前线程转储虚拟机的原始堆快照。                  |
 
 HiDebug的具体用法可查看API参考[API参考文档](../reference/apis-performance-analysis-kit/js-apis-hidebug.md)。
 
