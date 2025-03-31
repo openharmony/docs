@@ -7861,9 +7861,9 @@ setMimeType(mimeType: AVMimeTypes): void
 
 ### setMediaResourceLoaderDelegate<sup>18+</sup>
 
-setMediaResourceLoaderDelegate(resourceLoader: MediaSourceLoader): void;
+setMediaResourceLoaderDelegate(resourceLoader: MediaSourceLoader): void
 
-设置 MediaSourceLoader，帮助播放器请求媒体数据。
+设置MediaSourceLoader，帮助播放器请求媒体数据。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -7873,7 +7873,7 @@ setMediaResourceLoaderDelegate(resourceLoader: MediaSourceLoader): void;
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| resourceLoader | [MediaSourceLoader](#mediasourceloader-18) | 是   | 应用实现的媒体数据获取相关接口，方便播放器获取数据。 |
+| resourceLoader | [MediaSourceLoader](#mediasourceloader-18) | 是   | 应用实现的媒体数据获取接口，方便播放器获取数据。 |
 
 **示例：**
 
@@ -7883,7 +7883,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
 
-// 应用按需实现
+// 应用按需实现。
 let resourceLoader: media.MediaSourceLoader = {
   open: SourceOpenCallback,
   read: SourceReadCallback,
@@ -7895,10 +7895,10 @@ mediaSource.setMediaResourceLoaderDelegate(resourceLoader);
 
 ## SourceOpenCallback<sup>18+</sup>
 
-type SourceOpenCallback = (request: MediaSourceLoadingRequest) => number;
+type SourceOpenCallback = (request: MediaSourceLoadingRequest) => number
 
-由应用实现，由服务端调用此回调函数，客户端需处理传入的资源打开请求，并返回所打开资源对应的唯一句柄。
-注意：客户端在处理完请求后应立刻返回。
+由应用实现此回调函数，应用需处理传入的资源打开请求，并返回所打开资源对应的唯一句柄。
+<br> **注意：** 客户端在处理完请求后应立刻返回。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -7914,7 +7914,7 @@ type SourceOpenCallback = (request: MediaSourceLoadingRequest) => number;
 
 | 类型   | 说明                 |
 | -------- | -------------------- |
-| number  | 当前资源打开请求的句柄。大于 0 表示请求成功，返回值为资源的唯一句柄；小于或等于 0 表示请求失败。|
+| number  | 当前资源打开请求的句柄。大于 0 表示请求成功，小于或等于 0 表示请求失败。<br/> -request对象对应句柄唯一。|
 
 **示例：**
 
@@ -7926,7 +7926,7 @@ let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
 
 let sourceOpenCallback: media.SourceOpenCallback = (request: media.MediaSourceLoadingRequest) => {
   console.log(`Opening resource: ${request.url}`);
-  // 成功打开资源，返回一个唯一的句柄, 保证uuid 和 request对应
+  // 成功打开资源，返回唯一的句柄, 保证uuid和request对应。
   uuid += 1;
   requests.set(uuid, request);
   return uuid;
@@ -7937,8 +7937,8 @@ let sourceOpenCallback: media.SourceOpenCallback = (request: media.MediaSourceLo
 
 type SourceReadCallback = (uuid: number, requestedOffset: number, requestedLength: number) => void;
 
-由应用实现，由服务端调用此回调函数，客户端需记录读取请求，并在数据充足时通过对应的MediaSourceLoadingRequest对象的response方法推送数据。
-注意：客户端在处理完请求后应立刻返回。
+由应用实现此回调函数，应用需记录读取请求，并在数据充足时通过对应的MediaSourceLoadingRequest对象的[respondData](#responddata18)方法推送数据。
+<br> **注意：** 客户端在处理完请求后应立刻返回。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -7950,23 +7950,23 @@ type SourceReadCallback = (uuid: number, requestedOffset: number, requestedLengt
 | -------- | -------- | ---- | -------------------- |
 | uuid | number | 是  | 	资源句柄的标识。 |
 | requestedOffset | number | 是  | 	当前媒体数据相对于资源起始位置的偏移量。 |
-| requestedLength | number | 是  | 	当前请求的长度，值为 - 1 时，表示到达资源末尾，此时推送完成后需通过[finishLoading](#finishloading18)方法通知播放器推送结束。 |
+| requestedLength | number | 是  | 	当前请求的长度。值为 - 1 时，表示到达资源末尾，此时推送完成后需通过[finishLoading](#finishloading18)方法通知播放器推送结束。 |
 
 **示例：**
 
 ```ts
 let sourceReadCallback: media.SourceReadCallback = (uuid: number, requestedOffset: number, requestedLength: number) => {
   console.log(`Reading resource with handle ${uuid}, offset: ${requestedOffset}, length: ${requestedLength}`);
-  // 判断uuid是否合法，存储read请求，不要在read请求阻塞去推送数据和头信息
+  // 判断uuid是否合法、存储read请求、不要在read请求阻塞去推送数据和头信息。
 }
 ```
 
 ## SourceCloseCallback<sup>18+</sup>
 
-SourceCloseCallback(uuid: number): void
+type SourceCloseCallback(uuid: number): void
 
-由应用实现，由服务调用此回调函数，客户端应释放相关资源。
-注意：客户端在处理完请求后应立刻返回。
+由应用实现此回调函数，应用应释放相关资源。
+<br> **注意：** 客户端在处理完请求后应立刻返回。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -7976,7 +7976,7 @@ SourceCloseCallback(uuid: number): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| uuid | number | 是  | 	资源句柄的标识。 |
+| uuid      | number | 是  | 	资源句柄的标识。 |
 
 **示例：**
 
@@ -7987,7 +7987,7 @@ let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
 
 let sourceCloseCallback: media.SourceCloseCallback = (uuid: number) => {
   console.log(`Closing resource with handle ${uuid}`);
-  // 清除当前uuid相关资源
+  // 清除当前uuid相关资源。
   requests.remove(uuid);
 }
 ```
@@ -8020,18 +8020,18 @@ let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
 let mediaSourceLoader: media.MediaSourceLoader = {
   open: (request: media.MediaSourceLoadingRequest) => {
     console.log(`Opening resource: ${request.url}`);
-    // 成功打开资源，返回一个唯一的句柄, 保证uuid 和 request对应
+    // 成功打开资源，返回唯一的句柄, 保证uuid和request对应。
     uuid += 1;
     requests.set(uuid, request);
     return uuid;
   },
   read: (uuid: number, requestedOffset: number, requestedLength: number) => {
     console.log(`Reading resource with handle ${uuid}, offset: ${requestedOffset}, length: ${requestedLength}`);
-    // 判断uuid是否合法，存储read请求，不要在read请求阻塞去推送数据和头信息
+    // 判断uuid是否合法、存储read请求、不要在read请求阻塞去推送数据和头信息。
   },
   close: (uuid: number) => {
     console.log(`Closing resource with handle ${uuid}`);
-    // 清除当前uuid相关资源
+    // 清除当前uuid相关资源。
     requests.remove(uuid);
   }
 };
@@ -8110,7 +8110,7 @@ respondHeader(uuid: number, header?: Record<string, string>, redirectUrl?: strin
 let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
 let uuid = 1;
 
-// 应用根据情况填充
+// 应用根据情况填充。
 let header:Record<string, string> = {
   'Transfer-Encoding':'xxx',
   'Location' : 'xxx',
