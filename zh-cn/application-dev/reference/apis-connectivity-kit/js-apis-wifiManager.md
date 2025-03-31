@@ -2392,7 +2392,7 @@ stopDiscoverDevices(): void
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| isP2pGo | boolean | 是 | 否 | 是否是群主，true:是Go，false:不是Go。 |
+| isP2pGo | boolean | 是 | 否 | 是否是群主。true:是群主，false:不是群主。 |
 | ownerInfo | [WifiP2pDevice](#wifip2pdevice9) | 是 | 否 | 群组的设备信息。 |
 | passphrase | string | 是 | 否 | 群组密钥。 |
 | interface | string | 是 | 否 | 接口名称。 |
