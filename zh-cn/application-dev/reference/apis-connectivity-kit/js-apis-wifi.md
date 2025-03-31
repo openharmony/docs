@@ -165,7 +165,7 @@ WLAN热点信息。
 | capabilities | string | 是 | 否 | 热点能力。 |
 | securityType | [WifiSecurityType](#wifisecuritytype) | 是 | 否 | WLAN加密类型。 |
 | rssi | number | 是 | 否 | 热点的信号强度(dBm)。 |
-| band | number | 是 | 否 | WLAN接入点的频段，1表示2.4GHZ；2表示5GHZ。|
+| band | number | 是 | 否 | WLAN接入点的频段。1表示2.4GHZ，2表示5GHZ。|
 | frequency | number | 是 | 否 | WLAN接入点的频率。 |
 | channelWidth | number | 是 | 否 | WLAN接入点的带宽。 |
 | timestamp | number | 是 | 否 | 时间戳。 |
@@ -519,8 +519,8 @@ wifi.getLinkedInfo().then(data => {
 | band | number | 是 | 否 | WLAN接入点的频段。1表示2.4GHZ，2表示5GHZ。|
 | linkSpeed | number | 是 | 否 | WLAN接入点的速度，单位Mbps/s。 |
 | frequency | number | 是 | 否 | WLAN接入点的频率。 |
-| isHidden | boolean | 是 | 否 | WLAN接入点是否是隐藏网络, true:是隐藏网络，false:不是隐藏网络。 |
-| isRestricted | boolean | 是 | 否 | WLAN接入点是否限制数据量，true: 限制，false:不限制。 |
+| isHidden | boolean | 是 | 否 | WLAN接入点是否是隐藏网络。 true:是隐藏网络，false:不是隐藏网络。 |
+| isRestricted | boolean | 是 | 否 | WLAN接入点是否限制数据量。true: 限制，false:不限制。 |
 | macAddress | string | 是 | 否 | 设备的MAC地址。 |
 | ipAddress | number | 是 | 否 | WLAN连接的IP地址。 |
 | connState | [ConnState](#connstate) | 是 | 否 | WLAN连接状态。 |
