@@ -3596,6 +3596,18 @@ Allows a system application or system ability to receive fusion service messages
 
 **Valid since**: 12
 
+## ohos.permission.RECEIVE_BMS_BROKER_MESSAGES
+
+Allows a system application or system ability to receive bms broker service messages.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
 ## ohos.permission.ACCESS_FUSION_MANAGER
 
 Allows a system ability or system application to access the fusion service.

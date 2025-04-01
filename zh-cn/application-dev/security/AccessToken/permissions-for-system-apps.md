@@ -3608,6 +3608,18 @@
 
 **起始版本**：12
 
+## ohos.permission.RECEIVE_BMS_BROKER_MESSAGES
+
+允许系统服务或系统应用接收包管理代理服务消息。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
 ## ohos.permission.ACCESS_FUSION_MANAGER
 
 允许系统服务或系统应用访问融合服务。
