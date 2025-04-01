@@ -2769,7 +2769,7 @@ NR的选择模式。
 | slotId             | number                                        |  是  | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | selectMode         | [NetworkSelectionMode](js-apis-radio.md#networkselectionmode) |  是  | 网络选择模式。                         |
 | networkInformation | [NetworkInformation](#networkinformation)     |  是  | 网络信息。                             |
-| resumeSelection    | boolean                                       |  是  | 是否继续选择。  <br/>true表示继续选择，false表示不继续选择。                           |
+| resumeSelection    | boolean                                       |  是  | 是否继续选择。<br/>true表示继续选择，false表示不继续选择。                           |
 
 ## ImsRegState<sup>9+</sup>
 
