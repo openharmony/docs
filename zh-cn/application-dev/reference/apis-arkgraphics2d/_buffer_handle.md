@@ -9,6 +9,7 @@
 
 **相关模块：**[NativeWindow](_native_window.md)
 
+**所在头文件：**[buffer_handle.h](buffer__handle_8h.md)
 
 ## 汇总
 
