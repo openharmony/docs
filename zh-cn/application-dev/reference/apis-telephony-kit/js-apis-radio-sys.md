@@ -2626,7 +2626,7 @@ LTE小区信息。
 | bandwidth     | number  |  是  | 带宽。                  |
 | mcc           | string  |  是  | 移动国家码。            |
 | mnc           | string  |  是  | 移动网号。              |
-| isSupportEndc | boolean |  是  | 是否支持新无线电_双连接。 |
+| isSupportEndc | boolean |  是  | 是否支持新无线电_双连接。<br/>true表示支持新无线电_双连接，false表示不支持新无线电_双连接。 |
 
 ## NrCellInformation<sup>8+</sup>
 
@@ -2723,7 +2723,7 @@ NR的选择模式。
 
 | 名称                   | 类型                                              | 必填 | 说明           |
 | ---------------------- | ------------------------------------------------- | ---- | -------------- |
-| isNetworkSearchSuccess | boolean                                           |  是  | 网络搜索成功。 |
+| isNetworkSearchSuccess | boolean                                           |  是  | 网络是否搜索成功。<br/>true表示网络搜索成功，false表示网络搜索失败。 |
 | networkSearchResult    | Array<[NetworkInformation](#networkinformation)\> |  是  | 网络搜索结果。 |
 
 ## NetworkInformation
@@ -2769,7 +2769,7 @@ NR的选择模式。
 | slotId             | number                                        |  是  | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | selectMode         | [NetworkSelectionMode](js-apis-radio.md#networkselectionmode) |  是  | 网络选择模式。                         |
 | networkInformation | [NetworkInformation](#networkinformation)     |  是  | 网络信息。                             |
-| resumeSelection    | boolean                                       |  是  | 继续选择。                             |
+| resumeSelection    | boolean                                       |  是  | 是否继续选择。<br/>true表示继续选择，false表示不继续选择。                              |
 
 ## ImsRegState<sup>9+</sup>
 
