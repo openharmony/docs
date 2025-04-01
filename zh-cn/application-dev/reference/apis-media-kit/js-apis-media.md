@@ -7873,7 +7873,7 @@ setMediaResourceLoaderDelegate(resourceLoader: MediaSourceLoader): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| resourceLoader | [MediaSourceLoader](#mediasourceloader-18) | 是   | 应用实现的媒体数据获取接口，方便播放器获取数据。 |
+| resourceLoader | [MediaSourceLoader](#mediasourceloader18) | 是   | 应用实现的媒体数据获取接口，方便播放器获取数据。 |
 
 **示例：**
 
@@ -7910,7 +7910,7 @@ type SourceOpenCallback = (request: MediaSourceLoadingRequest) => number
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| request | [MediaSourceLoadingRequest](#mediasourceloadingrequest-18) | 是  | 	打开请求参数，包含请求资源的具体信息和数据推送方式。 |
+| request | [MediaSourceLoadingRequest](#mediasourceloadingrequest18) | 是  | 	打开请求参数，包含请求资源的具体信息和数据推送方式。 |
 
 **返回值：**
 
@@ -7998,7 +7998,7 @@ let sourceCloseCallback: media.SourceCloseCallback = (uuid: number) => {
 }
 ```
 
-## MediaSourceLoader <sup>18+</sup>
+## MediaSourceLoader<sup>18+</sup>
 
 用于定义媒体数据加载器，需要应用程序对其进行实现。
 
@@ -8050,7 +8050,7 @@ let player = await media.createAVPlayer();
 player.setMediaSource(mediaSource, playStrategy);
 ```
 
-## MediaSourceLoadingRequest <sup>18+</sup>
+## MediaSourceLoadingRequest<sup>18+</sup>
 
 用于定义加载请求的对象。应用程序通过该对象来获取请求的资源位置，通过该对象和播放器进行数据交互。
 
@@ -8145,7 +8145,7 @@ finishLoading(uuid: number, state: LoadingRequestError): void
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
 | uuid | number | 是  | 	资源句柄的标识。 |
-| state  | [LoadingRequestError](#loadingrequesterror-18) | 是  | 请求的状态。 |
+| state  | [LoadingRequestError](#loadingrequesterror18) | 是  | 请求的状态。 |
 
 **示例：**
 
@@ -8158,7 +8158,7 @@ let loadingError = media.LoadingRequestError.LOADING_ERROR_SUCCESS;
 request.finishLoading(uuid, loadingError);
 ```
 
-## LoadingRequestError <sup>18+</sup>
+## LoadingRequestError<sup>18+</sup>
 
 枚举，数据加载过程中状态变化的原因。
 
