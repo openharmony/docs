@@ -57,7 +57,7 @@ Before developing an application related to HCE, you must declare NFC-related at
 import { cardEmulation } from '@kit.ConnectivityKit';
 ```
 
-## cardEmulation.FeatureType<sup>(deprecated)</sup>
+## FeatureType<sup>(deprecated)</sup>
 
 Enumerates the NFC card emulation types.
 
@@ -102,7 +102,7 @@ Checks whether a certain type of card emulation is supported.
 
 | Name    | Type    | Mandatory  | Description                                      |
 | ------- | ------ | ---- | ---------------------------------------- |
-| feature | number | Yes   | Card emulation type to check. For details, see [FeatureType](#cardemulationfeaturetypedeprecated).|
+| feature | number | Yes   | Card emulation type to check. For details, see [FeatureType](#featuretypedeprecated).|
 
 **Return value**
 
@@ -347,7 +347,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ID| Error Message |
 | ------- | -------|
 |201 | Permission denied.                 |
-|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|401 | Invalid parameter.                 |
 |801 | Capability not supported.          |
 
 **Example**
@@ -409,7 +409,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ID| Error Message |
 | ------- | -------|
 |201 | Permission denied.                 |
-|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|401 | Invalid parameter.                 |
 |801 | Capability not supported.          |
 
 **Example**

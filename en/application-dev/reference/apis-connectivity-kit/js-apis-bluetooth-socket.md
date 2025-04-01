@@ -391,6 +391,12 @@ Writes data to the remote device through the socket. This API uses a promise to 
 | clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept** or **sppConnect**.                           |
 | data         | ArrayBuffer                 | Yes   | Data to write.|
 
+**Return value**
+
+| Type                           | Description        |
+| ----------------------------- | ---------- |
+| Promise&lt;void&gt; | Promise used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
@@ -420,7 +426,7 @@ try {
 
 ## socket.sppReadAsync<sup>18+</sup>
 
-sppReadAsync(clientSocket: number): Promise&lt;void&gt;
+sppReadAsync(clientSocket: number): Promise&lt;ArrayBuffer&gt;
 
 Reads data sent from the remote device through the socket. This API uses a promise to return the result. It supports returning of SPP operation errors, if any, when the connection is disconnected.
 
@@ -437,6 +443,12 @@ Reads data sent from the remote device through the socket. This API uses a promi
 | Name         | Type                         | Mandatory  | Description                                      |
 | ------------ | --------------------------- | ---- | ---------------------------------------- |
 | clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept** or **sppConnect**.                           |
+
+**Return value**
+
+| Type                           | Description        |
+| ----------------------------- | ---------- |
+| Promise&lt;ArrayBuffer&gt; | Promise used to return the result. If the operation is successful, the result is returned in **ArrayBuffer**. If the operation fails, the corresponding error code is returned.|
 
 **Error codes**
 

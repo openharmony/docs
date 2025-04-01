@@ -508,11 +508,10 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 ## tag.getBarcodeTag<sup>18+</sup>
 
-getBarcodeTag(taginfo: [TagInfo](#taginfo)): [BartcodeTag](js-apis-nfctech.md#barcodetag18)
+getBarcodeTag(taginfo: [TagInfo](#taginfo)): [BarcodeTag](js-apis-nfctech.md#barcodetag18)
 
 Obtains a **BarcodeTag** object, which allows access to the tags in the BarcodeTag format.
 
-**Required permissions**: ohos.permission.NFC_TAG
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
@@ -535,7 +534,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 | ID| Error Message|
 | ------- | -------|
-| 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
 | 3100201 | The tag running state is abnormal in the service. |
@@ -1247,20 +1245,18 @@ Enumerates the tag technology types.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 | **Name**                    |**Type**| **Value**| **Description**                   |
 | ---------------------------- | ------ | ------ | --------------------------- |
-| NFC_A                        |  number | 1      | NFC-A (ISO 14443-3A). |
-| NFC_B                        |  number | 2      | NFC-B (ISO 14443-3B). |
-| ISO_DEP                      |  number | 3      | ISO-DEP (ISO 14443-4).|
-| NFC_F                        |  number | 4      | NFC-F (JIS 6319-4).   |
-| NFC_V                        |  number | 5      | NFC-V (ISO 15693).    |
-| NDEF                         |  number | 6      | NDEF.                 |
-| NDEF_FORMATABLE<sup>9+</sup> |  number | 7      | NDEF formattable.     |
-| MIFARE_CLASSIC               |  number | 8      | MIFARE Classic.       |
-| MIFARE_ULTRALIGHT            |  number | 9      | MIFARE Ultralight.     |
-| NFC_BARCODE                  |  number | 10     | BARCODE technology.              |
+| NFC_A<sup>12+</sup>                        |  number | 1      | NFC-A (ISO 14443-3A).<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
+| NFC_B<sup>12+</sup>                        |  number | 2      | NFC-B (ISO 14443-3B).<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
+| ISO_DEP<sup>12+</sup>                      |  number | 3      | ISO-DEP (ISO 14443-4).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| NFC_F<sup>12+</sup>                        |  number | 4      | NFC-F (JIS 6319-4).<br>**Atomic service API**: This API can be used in atomic services since API version 12.   |
+| NFC_V<sup>12+</sup>                        |  number | 5      | NFC-V (ISO 15693).<br>**Atomic service API**: This API can be used in atomic services since API version 12.    |
+| NDEF<sup>12+</sup>                         |  number | 6      | NDEF.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                 |
+| NDEF_FORMATABLE<sup>9+</sup> |  number | 7      | NDEF formattable.<br>**Atomic service API**: This API can be used in atomic services since API version 12.      |
+| MIFARE_CLASSIC<sup>12+</sup>               |  number | 8      | MIFARE Classic.<br>**Atomic service API**: This API can be used in atomic services since API version 12.       |
+| MIFARE_ULTRALIGHT<sup>12+</sup>            |  number | 9      | MIFARE Ultralight.<br>**Atomic service API**: This API can be used in atomic services since API version 12.     |
+| NFC_BARCODE<sup>18+</sup>    |  number | 10     | BARCODE technology.<br>**Atomic service API**: This API can be used in atomic services since API version 18.              |
 
 ## TnfType<sup>9+</sup>
 Enumerates the TNF types. For details, see *NFCForum-TS-NDEF_1.0*.

@@ -9,6 +9,8 @@ The **Vibrator_FileDescription** struct describes the vibration file description
 
 **Related module**: [Vibrator](_vibrator.md)
 
+**Header file**: [vibrator_type.h](vibrator_type_8h.md)
+
 
 ## Summary
 

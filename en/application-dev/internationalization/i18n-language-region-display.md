@@ -3,7 +3,7 @@
 
 ## Use Cases
 
-Language and locale name localization means to localize language and locale names on the UI based on local language habits. For example, in an English environment, Simplified Chinese is represented by 简体中文.
+Language and locale name localization means to localize language and locale names on the UI based on local language habits. For example, Simplified Chinese and English are used in an English environment.
 
 
 ## How to Develop
@@ -16,9 +16,9 @@ For details about the APIs, see [getDisplayCountry](../reference/apis-localizati
    ```
 
 2. Localize language names.
-   When providing language names for a user, for example, when a user switches the system language, the system displays the localized language names. The following uses provides an example of displaying German in a way similar to Chinese.
+   When providing language names for a user, for example, when a user switches the system language, the system displays the localized language names. The following provides an example of displaying German in a way similar to Chinese.
    ```ts
-   let displayLanguage = i18n.System.getDisplayLanguage("de", "zh-Hans-CN"); // German
+   let displayLanguage: string = i18n.System.getDisplayLanguage('de', 'zh-Hans-CN'); // displayLanguage = 'German'
    // language: two-letter language code, for example, zh, de, or fr.
    // locale: localization identifier, for example, en-GB, en-US, or zh-Hans-CN.
    // sentenceCase: whether the first letter of the language name needs to be capitalized. The default value is true.
@@ -27,9 +27,8 @@ For details about the APIs, see [getDisplayCountry](../reference/apis-localizati
 3. Localize country/region names.
    When providing country/region names for a user, for example, when a user switches the country/region, the system displays the localized country/region names.
    ```ts
-   let displayCountry = i18n.System.getDisplayCountry("SA", "en-GB"); // Saudi Arabia
+   let displayCountry: string = i18n.System.getDisplayCountry('SA', 'en-GB'); // displayCountry = 'Saudi Arabia'
    // country: two-letter country/region code, for example, CN, DE, or SA.
    // locale: localization identifier, for example, en-GB, en-US, or zh-Hans-CN.
    // sentenceCase: whether the first letter of the country/region name needs to be capitalized. The default value is true.
    ```
-<!--no_check-->
