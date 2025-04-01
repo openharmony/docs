@@ -17,6 +17,8 @@
 
 **相关模块：**[OHAudio](_o_h_audio.md)
 
+**所在头文件：**[native_audiostream_base.h](native__audiostream__base_8h.md)
+
 
 ## 汇总
 
