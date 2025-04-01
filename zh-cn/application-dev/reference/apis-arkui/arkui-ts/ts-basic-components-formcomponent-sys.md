@@ -199,7 +199,7 @@ onAcquired(callback:&nbsp;Callback[\<FormCallbackInfo>](#formcallbackinfo12))&nb
 
 ### onError<sup>18+</sup>
 
-onError(callback: Callback<ErrorInformation>)
+onError(callback: Callback\<ErrorInformation\>)
 
 组件加载错误回调。
 
@@ -215,7 +215,7 @@ onError(callback: Callback<ErrorInformation>)
 
 ### onRouter<sup>18+</sup>
 
-onRouter(callback: Callback<object>)
+onRouter(callback: Callback\<object\>)
 
 组件路由事件回调，返回[routerEvent](../js-service-widget-ui/js-service-widget-syntax-hml.md#事件绑定)中的信息。
 
@@ -227,7 +227,7 @@ onRouter(callback: Callback<object>)
 
 | 参数名  | 类型 | 必填 | 说明                                                         |
 |------| - | ---- | ------------------------------------------------------------ |
-| callback | Callback<object>  | 是   | [routerEvent](../js-service-widget-ui/js-service-widget-syntax-hml.md#事件绑定)中的信息。 |
+| callback | Callback\<object\>  | 是   | [routerEvent](../js-service-widget-ui/js-service-widget-syntax-hml.md#事件绑定)中的信息。 |
 
 ### onUninstall
 
