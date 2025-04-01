@@ -42,6 +42,21 @@ import { FrameNode, LayoutConstraint, ExpandMode, typeNode, NodeAdapter } from "
 | EXPAND | 1 | 表示展开当前FrameNode的子节点。如果FrameNode包含[LazyForEach](./arkui-ts/ts-rendering-control-lazyforeach.md)子节点，获取所有子节点时，展开当前FrameNode的子节点。子节点序列号按所有子节点计算。 |
 | LAZY_EXPAND | 2 | 表示按需展开当前FrameNode的子节点。如果FrameNode包含[LazyForEach](./arkui-ts/ts-rendering-control-lazyforeach.md)子节点，获取在主树上的子节点时，不展开当前FrameNode的子节点；获取不在主树上的子节点时，展开当前FrameNode的子节点。子节点序列号按所有子节点计算。 |
 
+## InteractionEventBindingInfo<sup>18+</sup>
+
+如果当前节点上绑定了所要查询的交互事件，则返回一个InteractionEventBindingInfo对象，指示事件绑定详细信息。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 类型   | 只读 | 可选 | 说明                   |
+| ------ | ------ | ---- | ---- | ---------------------- |
+| baseEventRegistered  | boolean |  否   | 否   | 是否以声明方式绑定事件。 |
+| nodeEventRegistered  | boolean | 否   | 否   | 是否以命令式FrameNode模式绑定事件。 |
+| nativeEventRegistered  | boolean | 否   | 否   | 是否将事件绑定为命令式NativeNode。 |
+| builtInEventRegistered  | boolean | 否   | 否   | 组件是否绑定内置事件。 |
+
 ## FrameNode
 
 ### constructor
@@ -1532,6 +1547,30 @@ getCrossLanguageOptions(): CrossLanguageOptions
 | 类型                    | 说明                  |
 | ----------------------- | --------------------- |
 | [CrossLanguageOptions](#crosslanguageoptions15) | 跨ArkTS语言访问选项。 |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
+### getInteractionEventBindingInfo<sup>18+</sup>
+
+getInteractionEventBindingInfo(eventType: EventQueryType): InteractionEventBindingInfo | undefined
+
+获取目标节点的事件绑定信息，如果该组件节点上没有绑定要查询的交互事件类型时，返回 undefined。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| eventType | [EventQueryType](./arkui-ts/ts-appendix-enums.md#eventquerytype18) | 是  | 要查询的交互事件类型。 |
+
+**返回值：**
+
+| 类型               | 说明               |
+| ------------------ | ------------------ |
+| [InteractionEventBindingInfo](#interactioneventbindinginfo18)&nbsp;\|&nbsp;undefined | 如果当前节点上绑定了所要查询的交互事件，则返回一个InteractionEventBindingInfo对象，指示事件绑定详细信息，如果没有绑定任何交互事件则返回undefined。 |
 
 **示例：**
 
@@ -3793,7 +3832,7 @@ class MyNodeController extends NodeController {
     this.frameNode = new FrameNode(uiContext);
     this.frameNode.commonAttribute.backgroundColor(Color.Pink);
     this.frameNode.commonAttribute.size({ width: 100, height: 100 });
-
+    this.addCommonEvent(this.frameNode)
     this.rootNode.appendChild(this.frameNode);
     this.childrenCount = this.childrenCount + 1;
     for (let i = 0; i < 10; i++) {
@@ -3802,6 +3841,12 @@ class MyNodeController extends NodeController {
       this.frameNode.appendChild(childNode);
     }
     return this.rootNode;
+  }
+
+  addCommonEvent(frameNode: FrameNode) {
+    frameNode.commonEvent.setOnClick((event: ClickEvent) => {
+      console.log(`Click FrameNode: ${JSON.stringify(event)}`)
+    })
   }
 
   createFrameNode() {
@@ -4007,6 +4052,15 @@ class MyNodeController extends NodeController {
       console.log(TEST_TAG + " setCrossLanguageOptions fail.");
     }
     console.log(TEST_TAG + " getCrossLanguageOptions " + JSON.stringify(this.frameNode?.getCrossLanguageOptions()));
+  }
+
+  getInteractionEventBindingInfo() {
+    let bindingInfo = this.frameNode?.getInteractionEventBindingInfo(EventQueryType.ON_CLICK);
+    console.log(TEST_TAG + bindingInfo?.baseEventRegistered);
+    console.log(TEST_TAG + bindingInfo?.nodeEventRegistered);
+    console.log(TEST_TAG + bindingInfo?.nativeEventRegistered);
+    console.log(TEST_TAG + bindingInfo?.builtInEventRegistered);
+    console.log(TEST_TAG + JSON.stringify(bindingInfo));
   }
 
   throwError() {
@@ -4237,6 +4291,11 @@ struct Index {
           .width(300)
           .onClick(() => {
             this.myNodeController.setCrossLanguageOptions();
+          })
+        Button("getInteractionEventBindingInfo")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getInteractionEventBindingInfo();
           })
         Button("throwError")
           .width(300)
