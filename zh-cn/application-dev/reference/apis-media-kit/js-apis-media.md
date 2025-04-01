@@ -7899,7 +7899,7 @@ type SourceOpenCallback = (request: MediaSourceLoadingRequest) => number
 
 由应用实现此回调函数，应用需处理传入的资源打开请求，并返回所打开资源对应的唯一句柄。
 >
->**注意：**客户端在处理完请求后应立刻返回。
+>**注意：** 客户端在处理完请求后应立刻返回。
 >
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
@@ -7916,7 +7916,7 @@ type SourceOpenCallback = (request: MediaSourceLoadingRequest) => number
 
 | 类型   | 说明                 |
 | -------- | -------------------- |
-| number  | 当前资源打开请求的句柄。大于 0 表示请求成功，小于或等于 0 表示请求失败。<br/> -request对象对应句柄唯一。|
+| number  | 当前资源打开请求的句柄。大于0表示请求成功，小于或等于0表示请求失败。<br/> - request对象对应句柄唯一。|
 
 **示例：**
 
@@ -7941,7 +7941,7 @@ type SourceReadCallback = (uuid: number, requestedOffset: number, requestedLengt
 
 由应用实现此回调函数，应用需记录读取请求，并在数据充足时通过对应的MediaSourceLoadingRequest对象的[respondData](#responddata18)方法推送数据。
 >
->**注意：**客户端在处理完请求后应立刻返回。
+>**注意：** 客户端在处理完请求后应立刻返回。
 >
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
@@ -7971,7 +7971,7 @@ type SourceCloseCallback(uuid: number): void
 
 由应用实现此回调函数，应用应释放相关资源。
 >
->**注意：**客户端在处理完请求后应立刻返回。
+>**注意：** 客户端在处理完请求后应立刻返回。
 >
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
@@ -8074,13 +8074,13 @@ respondData(uuid: number, offset: number, buffer: ArrayBuffer): number
 | -------- | -------- | ---- | -------------------- |
 | uuid | number | 是  | 	资源句柄的标识。 |
 | offset | number | 是  | 	当前媒体数据相对于资源起始位置的偏移量。 |
-| buffer | ArrayBuffer | 是  | 	响应播放器的媒体数据。<br/>**注意:** 不要传输无关数据，会影响正常数据解析和播放。 |
+| buffer | ArrayBuffer | 是  | 	响应播放器的媒体数据。<br/>**注意：** 不要传输无关数据，会影响正常数据解析和播放。 |
 
 **返回值：**
 
 | 类型           | 说明                                |
 | -------------- | ----------------------------------- |
-| number | 当前服务端接受的字节数。<br>-返回值小于0表示操作失败。<br>-返回值为-2时，表示播放器不再需要当前数据，客户端应停止当前读取过程。<br>-返回值为-3时，表示播放器的缓冲区已满，客户端应等待下一次读取。 |
+| number | 当前服务端接受的字节数。<br>-返回值小于0表示操作失败。<br>- 返回值为-2时，表示播放器不再需要当前数据，客户端应停止当前读取过程。<br>- 返回值为-3时，表示播放器的缓冲区已满，客户端应等待下一次读取。 |
 
 **示例：**
 
