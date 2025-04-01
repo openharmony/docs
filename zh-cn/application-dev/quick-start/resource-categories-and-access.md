@@ -592,8 +592,9 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
 ```
 <!--DelEnd-->
 > **说明：**
+<!--Del-->>
 > - targetBundleName: 字符串类型，指定要overlay的bundleName。
->
+<!--DelEnd-->>
 > - targetModuleName: 字符串类型，指定要overlay的应用中的目标module。
 >
 > - targetPriority： 整数类型，指定overlay优先级。
