@@ -2,7 +2,7 @@
 
 ## Overview
 
-**arkOptions** is used to configure settings related to ArkTS compilation. This topic describes the configuration of the **types** and **transformLib** options in **arkOptions**. For more settings, see [build-profile.json5](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-profile-V5).
+**arkOptions** is used to configure settings related to ArkTS compilation. This topic describes the configuration of the **types**, **maxFlowDepth**, and **transformLib** options in **arkOptions**. For more settings, see [build-profile.json5](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-profile-V5).
 
 ## types
 
@@ -66,7 +66,7 @@ Field **transformLib** in **arkOptions**
 
 | Name| Description| Configuration Scope| Data Type| Optional|
 | -------- | -------- | -------- | -------- | -------- |
-| transformLib | Specifies the bytecode instrumentation plugin configuration, allowing you to modify bytecode during compilation. This field is supported only in the stage model. The format is a relative path pointing to the dynamic library implementing the instrumentation functionality. The dynamic library must be generated on the corresponding platform and cannot be copied or renamed across platforms.| Module-level| String| Optional, defaults to not using this feature|
+| transformLib | Specifies the bytecode instrumentation plugin configuration, allowing you to modify bytecode during compilation. This field is supported only in the stage model. The format is a relative path to the dynamic library that does the instrumentation. The dynamic library must be generated on the corresponding platform and cannot be copied or renamed across platforms.| Module-level| String| Optional, defaults to not using this feature|
 
 ### Example
 
