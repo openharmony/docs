@@ -172,7 +172,7 @@ java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <pa
 
 | 字段            | 类型               | 描述                                     | 备注 |
 | ----------------| ------------------ |----------------------------------------| ---- |
-| result          | boolean            | 标识此次解析是否成功。                             | NA   |
+| result          | boolean            | 标识此次解析是否成功。true表示解析成功，false表示解析失败。                             | NA   |
 | message         | String             | 解析失败时返回失败原因。                            | NA   |
 | packInfos       | List\<PackInfo>    | bundle中pack.info文件的packages信息。          | NA   |
 | profileInfos    | List\<profileInfo> | 应用的配置信息。                                | NA   |
@@ -189,7 +189,7 @@ java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <pa
 | moduleName          | String        | HAP名称。                                 | NA   |
 | moduleType          | String        | module的类型。                            | NA   |
 | deviceType          | List\<String> | 表示当前HAP包所支持的设备类型。           | NA   |
-| deliveryWithInstall | boolean       | 标识当前HAP是否在用户主动安装的时候安装。 | NA   |
+| deliveryWithInstall | boolean       | 标识当前HAP是否在用户主动安装的时候安装。true表示安装，false表示不安装。 | NA   |
 
 ### ProfileInfo结构体信息
 
@@ -202,27 +202,27 @@ java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <pa
 
 ### AppInfo结构体信息
 
-| 字段                             | 类型      | 描述                                                                            | 备注          |
-|--------------------------------|---------|-------------------------------------------------------------------------------|-------------|
-| bundleName                     | String  | 标识App的包名称。                                                                     | NA          |
-| vendor                         | String  | 标识App的供应商信息。                                                                   | NA          |
-| relatedBundleName              | String  | 标识App相关bundle的包名。                                                              | NA          |
-| versionName                    | String  | 标识App中的versionName信息。                                                          | NA          |
-| versionCode                    | String  | 标识App中的versionCode信息。                                                          | NA          |
-| targetApiVersion               | int     | 标识应用运行需要的API目标版本。                                                              | NA          |
-| compatibleApiVersion           | int     | 标识应用兼容的API版本。                                                                  | NA          |
-| appName                        | String  | 标识显示在桌面上的ability的label。                                                        | NA          |
-| appNameEN                      | String  | 标识显示在桌面上的ability的label。                                                        | NA          |
-| releaseType                    | String  | 标识应用运行需要的API目标版本的类型。                                                           | NA          |
-| shellVersionCode               | String  | 标识应用的API版本号。                                                          | NA          |
-| shellVersionName               | String  | 标识应用的API版本名称 。                                                         | NA          |
-| multiFrameworkBundle           | boolean | 标识应用框架。                                                         | NA          |
-| debug                          | boolean | 标识应用是否可调试。                                                                     | NA          |
-| icon                           | String  | 标识应用的图标路径。                                                                     | NA          |
-| label                          | String  | 标识应用的label                                                                    | NA          |
-| description                    | String  | 标识应用的描述信息。                                                                     | stage模型新增。   |
-| minCompatibleVersionCode       | int     | 标识应用能够兼容的最低版本号。                                                                | NA          |
-| distributedNotificationEnabled | boolean | 标记该应用是否开启分布式通知。                                                              | stage模型新增。   |
+| 字段                           | 类型     | 描述                      | 备注         |
+|--------------------------------|---------|---------------------------|-------------|
+| bundleName                     | String  | 标识App的包名称。          | NA          |
+| vendor                         | String  | 标识App的供应商信息。       | NA          |
+| relatedBundleName              | String  | 标识App相关bundle的包名。   | NA          |
+| versionName                    | String  | 标识App中的versionName信息。       | NA          |
+| versionCode                    | String  | 标识App中的versionCode信息。  | NA          |
+| targetApiVersion               | int     | 标识应用运行需要的API目标版本。    | NA          |
+| compatibleApiVersion           | int     | 标识应用兼容的API版本。    | NA          |
+| appName                        | String  | 标识显示在桌面上的ability的label。      | NA          |
+| appNameEN                      | String  | 标识显示在桌面上的ability的label。    | NA          |
+| releaseType                    | String  | 标识应用运行需要的API目标版本的类型。 | NA          |
+| shellVersionCode               | String  | 标识应用的API版本号。 | NA          |
+| shellVersionName               | String  | 标识应用的API版本名称。  | NA          |
+| multiFrameworkBundle           | boolean | 标识应用框架。true表示混合打包，false表示非混合打包。   | NA          |
+| debug                          | boolean | 标识应用是否可调试。true表示可调试，false表示不可调试。     | NA          |
+| icon                           | String  | 标识应用的图标路径。 | NA          |
+| label                          | String  | 标识应用的label。  | NA          |
+| description                    | String  | 标识应用的描述信息。    | stage模型新增。   |
+| minCompatibleVersionCode       | int     | 标识应用能够兼容的最低版本号。  | NA          |
+| distributedNotificationEnabled | boolean | 标记该应用是否开启分布式通知。true表示开启，false表示不开启。   | stage模型新增。   |
 | bundleType                     | String  | 标识bundle的类型，取值：<br/>- app：应用。<br/>- atomicService：原子化服务。 <br/>- shared：应用间共享库。 | NA   |
 | compileSdkVersion              | String  | 标识编译该应用时使用的sdk版本。                                                              | 仅限API10及以后的应用。   |
 | compileSdkType                 | String  | 标识编译该应用时使用的sdk类别。                                                              | 仅限API10及以后的应用。   |
@@ -231,24 +231,24 @@ java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <pa
 
 ### HapInfo结构体信息
 
-| 字段                 | 类型                                          | 描述                               | 备注                                   |
-| ---------------------|-----------------------------------------------|------------------------------------| ---------------------------------------|
-| appModel             | AppModel枚举值                                | 标识应用的框架模型。<br/>- FA：FA模型。<br/>- STAGE：Stage模型。 | NA |
-| packageStr           | String                                        | 标识应用的包信息。                    | FA模型特有。             |
-| name                 | String                                        | 标识当前module的名字。                | NA                 |
-| description          | String                                        | 标识HAP包的描述信息。                 | FA模型特有                       |
-| supportedModes       | List\<String>                                 | 标识HAP包的支持的模式。               | NA                           |
-| abilities            | List\<AbilityInfo>                            | 标识HAP包ability信息。                | NA                             |
-| defPermissions       | List\<DefPermission>                          | 标识HAP包DefPermission信息。          | NA                             |
-| definePermissions    | List\<DefinePermission>                       | 标识HAP包DefinePermission信息。       | NA                             |
-| defPermissionsGroups | List\<DefPermissionsGroups>                   | 标识HAP包DefPermissionsGroups 信息。  | NA                             |
-| distro               | Distro结构体                                  | 标识HAP包的distro信息。               | NA                             |
-| reqCapabilities      | List\<String>                                 | 标识HAP包reqCapabilities信息。        | NA                           |
-| deviceType           | List\<String>                                 | 标识HAP可以运行在哪类设备上。         | 对应stage模型中的deviceTypes。       |
-| metaData             | MetaData结构体（见下述metaData）              | 标识HAP的自定义元信息。                | NA           |
-| dependencies         | List\<DependencyItem>                         | 标识HAP包DependencyItem信息。         | NA                             |
-| isJs                 | boolean                                       | 标识该应用是否是js应用。              | FA模型特有。            |
-| reqPermissions       | list\<ReqPermission>                          | 标识应用申请的权限的集合。             | 对应stage模型的requestPermissions。 |
+| 字段                 | 类型                        | 描述                               | 备注       |
+| ---------------------|----------------------------|------------------------------------| -----------|
+| appModel             | AppModel枚举值              | 标识应用的框架模型。<br/>- FA：FA模型。<br/>- STAGE：Stage模型。 | NA |
+| packageStr           | String                      | 标识应用的包信息。     | FA模型特有。             |
+| name                 | String                      | 标识当前module的名字。                | NA                 |
+| description          | String                      | 标识HAP包的描述信息。                 | FA模型特有。                  |
+| supportedModes       | List\<String>               | 标识HAP包的支持的模式。               | NA                           |
+| abilities            | List\<AbilityInfo>          | 标识HAP包ability信息。                | NA                             |
+| defPermissions       | List\<DefPermission>        | 标识HAP包DefPermission信息。          | NA                             |
+| definePermissions    | List\<DefinePermission>     | 标识HAP包DefinePermission信息。       | NA                             |
+| defPermissionsGroups | List\<DefPermissionsGroups> | 标识HAP包DefPermissionsGroups 信息。  | NA                             |
+| distro               | Distro结构体                 | 标识HAP包的distro信息。               | NA                      |
+| reqCapabilities      | List\<String>               | 标识HAP包reqCapabilities信息。        | NA                           |
+| deviceType           | List\<String>               | 标识HAP可以运行在哪类设备上。   对应stage模型中的deviceTypes。       |
+| metaData             | MetaData结构体（见下述metaData）| 标识HAP的自定义元信息。                | NA           |
+| dependencies         | List\<DependencyItem>       | 标识HAP包DependencyItem信息。         | NA                   |
+| isJs                 | boolean                     | 标识该应用是否是js应用。true表示是js应用，false表示不是js应用。              | FA模型特有。            |
+| reqPermissions       | list\<ReqPermission>        | 标识应用申请的权限的集合。      | 对应stage模型的requestPermissions。 |
 | commonEvents         | CommonEvent结构体（见下述CommonEvent）       | 标识静态事件。                         | NA     |
 | shortcuts            | list\<Shortcut>                               | 标识应用的shortcuts信息。              | NA                  |
 | distroFilter         | DistroFilter结构体                            | 标识应用市场按设备形态分发的信息。     | NA               |
@@ -266,52 +266,52 @@ java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <pa
 
 ### AbilityInfo结构体信息
 
-| 字段                | 类型                       | 描述                                              | 备注                        |
-|-------------------|--------------------------| ------------------------------------------------- | ------------------------------- |
-| name              | String                   | 标识当前ability的逻辑名。                           | NA                              |
-| description       | String                   | 标识ability的描述。                                 | NA                              |
-| descriptionRes    | String                   | 标识ability资源的描述。                             | NA                              |
-| icon              | String                   | 标识ability图标。                                   | NA                              |
-| iconPath          | String                   | 标识ability图标路径。                               | NA                              |
-| label             | String                   | 标识ability对用户显示的名称。                       | NA                              |
-| labelRes          | String                   | 标识ability对用户显示的名称资源。                   | NA                              |
-| type              | String                   | 标识ability类型。                                   | Stage模型下该值直接赋予page类型。 |
-| formsEnabled      | boolean                  | 标识ability卡片是否使能。                           | NA                              |
-| formInfo          | FormInfo结构体           | 描述卡片的信息。                                    | NA                              |
-| uri               | String                   | 标识ability的uri信息。                              | FA模型支持。                      |
-| launchType        | String                   | 标识ability中的launcherType信息。                   | NA                              |
-| orientation       | String                   | 标识ability中的orientation信息。                    | NA                              |
-| visible           | boolean                  | 标识ability中的visible信息。                        | NA                              |
-| grantPermission   | boolean                  | 标识ability中的grantPermission信息。                | NA                              |
-| readPermission    | String                   | 标识ability中的readPermission信息。                 | NA                              |
-| writePermission   | String                   | 标识ability中的writePermission信息。                | NA                              |
-| uriPermissionMode | String                   | 标识ability中的uriPermissionMode信息。              | NA                              |
-| uriPermissionPath | String                   | 标识ability中的uriPermissionPath信息。              | NA                              |
-| directLaunch      | boolean                  | 标识ability中的directLaunch信息。                   | NA                              |
-| mission           | String                   | 标识ability中的mission信息。                        | NA                              |
-| targetAbility     | String                   | 标识ability中的targetAbility信息。                  | NA                              |
-| multiUserShared   | boolean                  | 标识ability中的multiUserShared信息。                | NA                              |
-| supportPipMode    | boolean                  | 标识ability中的supportPipMode信息。                 | NA                              |
-| srcLanguage       | String                   | 标识ability中的srcLanguage信息。                    | NA                              |
-| srcPath           | String                   | 标识ability中的srcPath信息。                        | NA                              |
-| srcEntrance       | String                   | 标识ability中的srcEntrance信息。                    | NA                              |
-| continuable       | boolean                  | 标识ability中的continuable信息。                    | NA                              |
-| metaData          | MetaData结构体（见下述MetaData） | 标识ability的自定义元信息。                  | NA                             |
-| configChanges     | List\<String>            | 标识ability中的configChanges信息。                  | NA                              |
-| formInfos         | List\<AbilityFormInfo>   | 标识ability中的forms信息。                          | NA                              |
-| permissions       | List\<String>            | 标识ability中的permissions信息。                    | NA                              |
-| skills            | List\<SkillInfo>         | 标识ability中的skills信息。                         | NA                              |
-| backgroundModes   | List\<String>            | 标识ability中的backgroundModes信息。                | NA                              |
-| labels            | HashMap\<String, String> | 标识多语言下ability对用户显示的名称。                | NA                             |
-| descriptions      | HashMap\<String, String> | 标识多语言下ability的描述。                         | NA                              |
+| 字段              | 类型                       | 描述                         | 备注                        |
+|-------------------|---------------------------| ---------------------------- | -------------------------- |
+| name              | String                    | 标识当前ability的逻辑名。        | NA                              |
+| description       | String                    | 标识ability的描述。             | NA                              |
+| descriptionRes    | String                    | 标识ability资源的描述。            | NA                              |
+| icon              | String                    | 标识ability图标。            | NA                              |
+| iconPath          | String                    | 标识ability图标路径。      | NA                              |
+| label             | String                    | 标识ability对用户显示的名称。       | NA                              |
+| labelRes          | String                    | 标识ability对用户显示的名称资源。      | NA                    |
+| type              | String                    | 标识ability类型。      | Stage模型下该值直接赋予page类型。 |
+| formsEnabled      | boolean                   | 标识ability卡片是否使能。true表示使能，false表示不使能。      | NA                              |
+| formInfo          | FormInfo结构体             | 描述卡片的信息。       | NA                              |
+| uri               | String                    | 标识ability的uri信息。      | FA模型支持。                      |
+| launchType        | String                    | 标识ability中的launcherType信息。         | NA                      |
+| orientation       | String                    | 标识ability中的orientation信息。      | NA                              |
+| visible           | boolean                   | 标识ability中的visible信息。true表示可见，false表示不可见。      | NA                              |
+| grantPermission   | boolean                   | 标识ability中的grantPermission信息。   | NA                              |
+| readPermission    | String                    | 标识ability中的readPermission信息。  | NA                              |
+| writePermission   | String                    | 标识ability中的writePermission信息。    | NA                              |
+| uriPermissionMode | String                    | 标识ability中的uriPermissionMode信息。   | NA                              |
+| uriPermissionPath | String                    | 标识ability中的uriPermissionPath信息。 | NA                              |
+| directLaunch      | boolean                   | 标识ability中的directLaunch信息。   | NA                              |
+| mission           | String                    | 标识ability中的mission信息。    | NA                              |
+| targetAbility     | String                    | 标识ability中的targetAbility信息。   | NA                              |
+| multiUserShared   | boolean                   | 标识ability中的multiUserShared信息。true表示支持多用户状态进行共享，false表示不支持多用户状态进行共享。   | NA                              |
+| supportPipMode    | boolean                   | 标识ability中的supportPipMode信息。true表示支持用户进入PIP模式，false表示不支持用户进入PIP模式。  | NA                              |
+| srcLanguage       | String                    | 标识ability中的srcLanguage信息。     | NA                              |
+| srcPath           | String                    | 标识ability中的srcPath信息。  | NA                              |
+| srcEntrance       | String                    | 标识ability中的srcEntrance信息。      | NA                              |
+| continuable       | boolean                   | 标识ability中的continuable信息。true表示ability可迁移，false表示不可迁移。 | NA                              |
+| metaData          | MetaData结构体（见下述MetaData） | 标识ability的自定义元信息。     | NA                             |
+| configChanges     | List\<String>             | 标识ability中的configChanges信息。    | NA                              |
+| formInfos         | List\<AbilityFormInfo>    | 标识ability中的forms信息。              | NA                              |
+| permissions       | List\<String>             | 标识ability中的permissions信息。           | NA                              |
+| skills            | List\<SkillInfo>          | 标识ability中的skills信息。               | NA                              |
+| backgroundModes   | List\<String>             | 标识ability中的backgroundModes信息。       | NA                              |
+| labels            | HashMap\<String, String>  | 标识多语言下ability对用户显示的名称。     | NA                             |
+| descriptions      | HashMap\<String, String>  | 标识多语言下ability的描述。              | NA                              |
 
 ### Distro结构体信息
 
-| 字段                | 类型    | 描述                                    | 备注                                                         |
-| ------------------- |---------| --------------------------------------- | ------------------------------------------------------------ |
-| moduleName          | String  | 标识当前module的名字。                    | 对应Stage模型中module结构体中的moduleName字段。                 |
-| moduleType          | String  | 标识当前HAP的类型。                       | 对应Stage模型中module结构体中的moduleType字段。                 |
-| deliveryWithInstall | boolean | 标识当前HAP是否在用户主动安装的时候安装。 | 对应Stage模型中module结构体中的deliveryWithInstall字段。         |
+| 字段                | 类型    | 描述                       | 备注                                                         |
+| ------------------- |---------| ------------------------- | ------------------------------------------------------------ |
+| moduleName          | String  | 标识当前module的名字。    | 对应Stage模型中module结构体中的moduleName字段。                 |
+| moduleType          | String  | 标识当前HAP的类型。       | 对应Stage模型中module结构体中的moduleType字段。                 |
+| deliveryWithInstall | boolean | 标识当前HAP是否在用户主动安装的时候安装。true表示安装，false表示不安装。 | 对应Stage模型中module结构体中的deliveryWithInstall字段。         |
 | installationFree    | int     | 标识当前HAP是否支持免安装特性。           | 对应Stage模型中module结构体中的installationFree字段，json文件中如果配置了该字段为true，返回1；配置为false，返回0；未配置返回2。 |
 | virtualMachine      | String  | 标识当前HAP运行的目标虚拟机类型，供云端分发使用，如应用市场和分发中心。 | 对应Stage模型中module结构体中的virtualMachine字段。 |
 
@@ -444,7 +444,7 @@ java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <pa
 | -------- | ------------------- |----------------------| ---- |
 | actions  | List\<String>       | 标识能够接收的意图的action值的集合。 | NA   |
 | entities | List\<String>       | 标识能够接收的意图的元能力的类别集合。   | NA   |
-| domainVerify | boolean       | ability是否支持域校验。   | NA   |
+| domainVerify | boolean       | ability是否支持域校验。true表示支持，false表示不支持。   | NA   |
 
 ### UriInfo结构体信息
 
@@ -464,7 +464,7 @@ java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <pa
 | ------------------- | -------------------------| ------------------------------------------------------------ |-----------|
 | name                | String                   | 标识forms的名称。                                              | NA        |
 | type                | String                   | 标签标识卡片的类型。                                           | NA        |
-| updateEnabled       | boolean                  | 标识该卡片是否支持定时刷新。                                   | NA        |
+| updateEnabled       | boolean                  | 标识该卡片是否支持定时刷新。true表示支持，false表示不支持。                                   | NA        |
 | scheduledUpdateTime | String                   | 标签标识卡片顶点刷新的时间，采用24小时计数，精确到分钟。       | NA        |
 | updateDuration      | int                      | 标识卡片定时刷新的更新频率，单位为30分钟，取值为30的倍数值。   | NA        |
 | supportDimensions   | List\<String>            | 标识卡片外观规格，取值为”1 * 2“，”2 * 2“，”2 * 4“，”4 * 4“ 。  | NA        |
@@ -473,7 +473,7 @@ java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <pa
 | description         | String                   | 标识forms的描述。                                              | stage模型新增。 |
 | src                 | String                   | 标签JS卡片对应的UI代码。                                       | NA        |
 | windowInfo          | ModuleWindowInfo结构体   | 标签能力窗体的窗口。                                       | NA        |
-| isDefault           | boolean                  | 标识该卡片是否为默认卡片，每个HAP有且只能有一个默认卡片。      | NA        |
+| isDefault           | boolean                  | 标识该卡片是否为默认卡片，每个HAP有且只能有一个默认卡片。true表示默认卡片，false表示非默认卡片。      | NA        |
 | colorMode           | String                   | 标识卡片的色调，取值为auto、dark、light其中之一。              | NA        |
 | formConfigAbility   | String                   | 标识卡片调整的Ability名称。                                    | NA        |
 | formVisibleNotify   | String                   | 标识卡片是否被允许使用卡片可见性通知。                         | NA        |
@@ -523,7 +523,7 @@ java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <pa
 | targetArkVersion               | String  | 标识应用程序DeviceConfig的targetArkVersion。 | NA   |
 | compatibleArkVersion           | String  | 标识应用程序DeviceConfig的兼容ArkVersion。   | NA   |
 | directLaunch                   | boolean | 标识应用程序DeviceConfig的直接启动。         | NA   |
-| distributedNotificationEnabled | boolean | 标识应用程序AppJson的distributedNotificationEnabled。 | NA   |
+| distributedNotificationEnabled | boolean | 标识应用程序AppJson的distributedNotificationEnabled。true表示开启分布式通知，false表示不开启分布式通知。 | NA   |
 
 ### DefPermission结构体信息
 
@@ -545,8 +545,8 @@ java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <pa
 | name                   | String                   | 标识DefinePermission的名称。                         | NA   |
 | grantMode              | String                   | 标识DefinePermission的grantMode。                        | NA   |
 | availableLevel         | String                   | 标识DefinePermission的组。                               | NA   |
-| provisionEnable        | boolean                  | 标识模块定义权限的提供启用。                           | NA   |
-| distributedSceneEnable | boolean                  | 标识ModuleDefinePermissions的distributedSceneEnable。 | NA   |
+| provisionEnable        | boolean                  | 标识模块定义权限的提供启用。true表示支持证书方式申请权限，false不支持证书方式申请权限。                           | NA   |
+| distributedSceneEnable | boolean                  | 标识ModuleDefinePermissions的distributedSceneEnable。true表示支持分布式场景下使用该权限，false表示不支持分布式场景下使用该权限。 | NA   |
 | label                  | String                   | 标识DefinePermission的标签。                              | NA   |
 | description            | String                   | 标识DefinePermission的描述。                              | NA   |
 | descriptions           | HashMap\<String, String> | 标识多语言应用程序DefinePermission的说明。                | NA   |

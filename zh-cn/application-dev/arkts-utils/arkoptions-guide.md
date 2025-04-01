@@ -8,11 +8,11 @@ arkOptions主要提供ArkTS编译相关配置，当前文档介绍arkOptions中t
 
 ### types配置文件标签说明
 
-  arkOptions的types字段配置文件标签说明
+  arkOptions的types字段配置文件标签说明：
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| types | 通过types字段将指定的类型声明文件作为全局引入，从而避免在每个源码文件中单独引入 | 数组 | 该标签可缺省，缺省值为空 |
+| types | 通过types字段将指定的类型声明文件作为全局引入，从而避免在每个源码文件中单独引入。 | 数组 | 该标签可缺省，缺省值为空。 |
 
 ### arkOptions中的types字段配置说明
 
@@ -35,7 +35,7 @@ types字段支持填写包名、包所在位置的相对路径以及声明文件
 
 ### 注意事项
 
-如果在types字段中填写包名或者包所在位置的相对路径，需要在工程文件/entry/oh-package.json5中dependencies作如下配置，
+如果在types字段中填写包名或者包所在位置的相对路径，需要在工程文件/entry/oh-package.json5中dependencies作如下配置：
 ```json
 "dependencies": {
   "@types/chai": "latest",
@@ -62,16 +62,16 @@ let c: Global.ObjectType;
 
 ### maxFlowDepth配置文件标签说明
 
-  arkOptions下tscConfig中maxFlowDepth字段配置文件标签说明 
+  arkOptions下tscConfig中maxFlowDepth字段配置文件标签说明。 
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| maxFlowDepth | 开发者通过maxFlowDepth字段自定义配置tsc编译过程中的tsc控制流分析最大栈，避免固定最大栈导致编译报栈问题，该配置项可配置的最小值为2000，可配置最大值为65535 | 数字型 | 该标签可缺省，缺省值时使用tsc控制流分析最大栈默认值2000 |
+| maxFlowDepth | 开发者通过maxFlowDepth字段自定义配置tsc编译过程中的tsc控制流分析最大栈，避免固定最大栈导致编译报栈问题。该配置项可配置的最小值为2000，可配置最大值为65535。 | 数字型 | 该标签可缺省，缺省值时使用tsc控制流分析最大栈默认值2000。 |
 
 ### arkOptions下的tscConfig中maxFlowDepth字段配置说明
 
-arkOptions/tscConfig中maxFlowDepth字段展示
-在工程级目录下的build-profile.json5配置文件buildOption标签的arkOptions/tscConfig属性中添加maxFlowDepth字段
+arkOptions/tscConfig中maxFlowDepth字段展示。
+在工程级目录下的build-profile.json5配置文件buildOption标签的arkOptions/tscConfig属性中添加maxFlowDepth字段。
 
 ```typescript
 // 在工程名/build-profile.json5文件中
@@ -109,7 +109,7 @@ arkOptions的transformLib字段配置文件标签说明
 
 | 属性名称 | 含义 | 配置范围 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- | -------- |
-| transformLib | 字节码插桩插件配置，允许开发者在编译时对字节码进行插桩修改，仅支持Stage模型，格式为相对路径，指向实现插桩功能的动态库，不同系统要求的动态库文件类型如下，动态库文件内容需要在对应平台生成，不能拷贝修改后缀名混用。| 模块级 | 字符串型 | 该标签可缺省，缺省值时代表不使用该功能。 |
+| transformLib | 字节码插桩插件配置，允许开发者在编译时对字节码进行插桩修改。仅支持Stage模型，格式为相对路径，指向实现插桩功能的动态库。不同系统要求的动态库文件类型如下，动态库文件内容需要在对应平台生成，不能拷贝修改后缀名混用。| 模块级 | 字符串型 | 该标签可缺省，缺省值时代表不使用该功能。 |
 
 ### arkOptions中的transformLib字段配置说明
 

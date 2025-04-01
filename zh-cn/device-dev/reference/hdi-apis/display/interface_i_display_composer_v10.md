@@ -465,8 +465,6 @@ IDisplayComposer::RegDisplayVBlankCallback ([in] unsigned int devId, [in] IVBlan
 **描述**
 
 
-注册VBlank事件回调。
-
 注册VBlank事件回调，当有VBlank事件发生时接口实现层需要回调注册的接口。
 
 **起始版本：** 3.2
@@ -493,8 +491,6 @@ IDisplayComposer::RegHotPlugCallback ([in] IHotPlugCallback cb)
 
 **描述**
 
-
-注册热插拔事件回调。
 
 注册热插拔事件回调，当有热插拔事件发生时接口实现层需要回调注册的接口，通过该实例通知图形服务。
 
