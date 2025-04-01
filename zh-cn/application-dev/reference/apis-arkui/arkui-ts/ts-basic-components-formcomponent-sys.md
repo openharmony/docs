@@ -259,7 +259,7 @@ onLoad(callback: VoidCallback)
 
 | 参数名      | 类型                                | 必填 | 说明       |
 |----------| ----------------------------------- | ---- | ---------- |
-| callback | [VoidCallback](../ts-types.md#voidcallback12) | 是   | 卡片的id。 |
+| callback | [VoidCallback](ts-types.md#voidcallback12) | 是   | 卡片的id。 |
 
 ## 示例
 
