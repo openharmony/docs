@@ -41,7 +41,7 @@ int32_t OH_NativeBuffer_Config::format
 
 **描述:**
 
-像素格式
+像素格式。
 
 
 ### height
