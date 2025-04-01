@@ -5080,7 +5080,8 @@ let decodingOptions: image.DecodingOptions = {
   desiredSize: { width: 1, height: 2 },
   rotate: 10,
   desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-  desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
+  desiredRegion: { size: { width: 1, height: 2 }, x: 0, y: 0 },
+  cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
   index: 0
 };
 imageSourceApi.createPixelMap(decodingOptions, (err: BusinessError, pixelMap: image.PixelMap) => {
@@ -5127,7 +5128,8 @@ let decodingOptions: image.DecodingOptions = {
   desiredSize: { width: 1, height: 2 },
   rotate: 10,
   desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-  desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
+  desiredRegion: { size: { width: 1, height: 2 }, x: 0, y: 0 },
+  cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
   index: 0
 };
 let pixelmap = imageSource.createPixelMapSync(decodingOptions);
@@ -5374,7 +5376,8 @@ let decodingOptions: image.DecodingOptions = {
   desiredSize: { width: 3072, height: 4096 },
   rotate: 10,
   desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-  desiredRegion: { size: { height: 3072, width: 4096 }, x: 0, y: 0 },
+  desiredRegion: { size: { width: 3072, height: 4096 }, x: 0, y: 0 },
+  cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
   index: 0
 };
 let pixelmap = await imageSource.createPixelMapUsingAllocator(decodingOptions, image.AllocatorType.AUTO);
@@ -5435,7 +5438,8 @@ let decodingOptions: image.DecodingOptions = {
   desiredSize: { width: 3072, height: 4096 },
   rotate: 10,
   desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-  desiredRegion: { size: { height: 3072, width: 4096 }, x: 0, y: 0 },
+  desiredRegion: { size: { width: 3072, height: 4096 }, x: 0, y: 0 },
+  cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
   index: 0
 };
 let pixelmap = imageSource.createPixelMapUsingAllocatorSync(decodingOptions, image.AllocatorType.AUTO);
@@ -8298,6 +8302,7 @@ PixelMap的初始化选项。
 | fitDensity<sup>9+</sup> | number                        | 否   | 是   | 图像像素密度，单位为ppi。默认值为0。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
 | desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | 否   | 是   | 目标色彩空间。默认值为UNKNOWN。 |
 | desiredDynamicRange<sup>12+</sup> | [DecodingDynamicRange](#decodingdynamicrange12) | 否   | 是   | 目标动态范围，默认值为SDR。<br>通过[CreateIncrementalSource](#imagecreateincrementalsource9)创建的imagesource不支持设置此属性，默认解码为SDR内容。<br>如果平台不支持HDR，设置无效，默认解码为SDR内容。 |
+| cropAndScaleStrategy<sup>18+</sup> | [CropAndScaleStrategy](#cropandscalestrategy18) | 否   | 是   | 解码参数如果同时设置desiredRegion与desiredSize，由此决定裁剪与缩放操作的先后策略。<br>仅支持设置：SCALE_FIRST、CROP_FIRST。 |
 
 ## DecodingOptionsForPicture<sup>13+</sup>
 
@@ -8639,6 +8644,19 @@ PixelMap的初始化选项。
 | ------------- | ----------| ------------ |
 | AUTO          | 0    | 自适应，根据[pixelmap](#pixelmap7)内容处理。即如果pixelmap本身为HDR，则会按照HDR内容进行编码；反之按照SDR内容编码。  |
 | SDR           | 1    | 按照标准动态范围处理图片。   |
+
+## CropAndScaleStrategy<sup>18+</sup>
+
+枚举，裁剪与缩放的先后策略。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称          | 值       | 说明         |
+| ------------- | ----------| ------------ |
+| SCALE_FIRST   | 1    | 解码参数如果同时设置desiredRegion与desiredSize，先根据desiredSize进行缩放，再根据desiredRegion进行区域裁剪。     |
+| CROP_FIRST    | 2    | 解码参数如果同时设置desiredRegion与desiredSize，先根据desiredRegion进行区域裁剪，再根据desiredSize进行缩放。     |
+
+
 
 ## HdrMetadataKey<sup>12+</sup>
 
