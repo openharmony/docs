@@ -45,7 +45,7 @@ FormComponent (value: FormInfo)
 | bundle    | string                          | 是   | 目标卡片包名。                                                          |
 | ability   | string                          | 是   | 目标卡片Ability名称。                                                   |
 | module    | string                          | 是   | 卡片模块名称。                                                          |
-| dimension | [FormDimension](#formdimension) | 否   | 卡片尺寸，支持2 * 2，4 * 4，2 * 4等类型卡片。<br/>默认值：Dimension_2_2。 |
+| dimension | [FormDimension](#formdimension) | 否   | 卡片尺寸，支持2 * 2，4 * 4，4 * 2类型卡片。<br/>默认值：Dimension_2_2。 |
 | temporary | boolean                         | 否   | 卡片是否为临时卡片。                                                    |
 | renderingMode | [FormRenderingMode](#formrenderingmode11) | 否   | 卡片渲染模式。取值如下，默认值为 FULL_COLOR。<br>- FULL_COLOR：代表全色模式，卡片框架不会对卡片效果做出修改，保持和卡片开发者设置的效果不变。<br>- SINGLE_COLOR：代表单色模式，卡片框架会把卡片背景设为透明，开发者需按最佳实践设置卡片风格。<br>**说明：**<br/>如果系统不支持统一渲染模式，卡片框架在单色模式下也不会把卡片背景设为透明。 |
 
