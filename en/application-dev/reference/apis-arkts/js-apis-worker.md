@@ -84,8 +84,8 @@ import { worker } from '@kit.ArkTS';
 // Scenario 1: URL of the Worker thread file: "entry/src/main/ets/workers/worker.ets"
 const workerStageModel01 = new worker.ThreadWorker('entry/ets/workers/worker.ets', {name:"first worker in Stage model"});
 
-// Scenario 2: URL of the Worker thread file: "phone/src/main/ets/ThreadFile/workers/worker.ets"
-const workerStageModel02 = new worker.ThreadWorker('phone/ets/ThreadFile/workers/worker.ets');
+// Scenario 2: URL of the Worker thread file: "testworkers/src/main/ets/ThreadFile/workers/worker.ets"
+const workerStageModel02 = new worker.ThreadWorker('testworkers/ets/ThreadFile/workers/worker.ets');
 ```
 
 
@@ -431,6 +431,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 ```ts
+//Index.ets
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 class TestObj {
   private message : string = "this is a message from TestObj"
@@ -445,6 +446,31 @@ let registerObj = new TestObj();
 // Register registerObj with the ThreadWorker instance.
 workerInstance.registerGlobalCallObject("myObj", registerObj);
 workerInstance.postMessage("start worker")
+```
+
+```ts
+// worker.ets
+import { worker, MessageEvents } from '@kit.ArkTS';
+
+const workerPort = worker.workerPort;
+workerPort.onmessage = (e: MessageEvents): void => {
+  try {
+    // The method to call does not carry an input parameter.
+    let res : string = workerPort.callGlobalCallObjectMethod("myObj", "getMessage", 0) as string;
+    console.info("worker:", res) // worker: this is a message from TestObj
+  } catch (error) {
+    // Exception handling.
+    console.error("worker: error code is " + error.code + " error message is " + error.message);
+  }
+  try {
+    // The method to call carries input parameters.
+    let res : string = workerPort.callGlobalCallObjectMethod("myObj", "getMessageWithInput", 0, "hello there!") as string;
+    console.info("worker:", res) //worker: this is a message from TestObj with input: hello there!
+  } catch (error) {
+    // Exception handling.
+    console.error("worker: error code is " + error.code + " error message is " + error.message);
+  }
+}
 ```
 
 ### unregisterGlobalCallObject<sup>11+</sup>
@@ -747,7 +773,7 @@ Dispatches the event defined for the Worker thread.
 
 | Type   | Description                           |
 | ------- | ------------------------------- |
-| boolean | Returns **true** if the event is dispatched; returns **false** otherwise.|
+| boolean | Dispatch result. The value **true** means a successful dispatch, and **false** means the opposite.|
 
 **Error codes**
 
@@ -937,7 +963,7 @@ Dispatches the event defined for the Worker thread.
 
 | Type   | Description                           |
 | ------- | ------------------------------- |
-| boolean | Returns **true** if the event is dispatched successfully; returns **false** otherwise.|
+| boolean | Dispatch result. The value **true** means a successful dispatch, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1248,6 +1274,24 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 ```ts
+//Index.ets
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
+class TestObj {
+  private message : string = "this is a message from TestObj"
+  public getMessage() : string {
+    return this.message;
+  }
+  public getMessageWithInput(str : string) : string {
+    return this.message + " with input: " + str;
+  }
+}
+let registerObj = new TestObj();
+// Register registerObj with the ThreadWorker instance.
+workerInstance.registerGlobalCallObject("myObj", registerObj);
+workerInstance.postMessage("start worker")
+```
+
+```ts
 // worker.ets
 import { worker, MessageEvents } from '@kit.ArkTS';
 
@@ -1546,8 +1590,8 @@ import { worker } from '@kit.ArkTS';
 // Scenario 1: URL of the Worker thread file: "entry/src/main/ets/workers/worker.ets"
 const workerStageModel01 = new worker.ThreadWorker('entry/ets/workers/worker.ets', {name:"first worker in Stage model"});
 
-// Scenario 2: URL of the Worker thread file: "phone/src/main/ets/ThreadFile/workers/worker.ets"
-const workerStageModel02 = new worker.ThreadWorker('phone/ets/ThreadFile/workers/worker.ets');
+// Scenario 2: URL of the Worker thread file: "testworkers/src/main/ets/ThreadFile/workers/worker.ets"
+const workerStageModel02 = new worker.ThreadWorker('testworkers/ets/ThreadFile/workers/worker.ets');
 ```
 
 ### postMessage<sup>(deprecated)</sup>
@@ -1831,9 +1875,13 @@ Adds an event listener for the Worker thread. This API provides the same functio
 **Example**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ets");
-workerInstance.addEventListener("alert", ()=>{
-    console.log("alert listener callback");
+// worker.ets
+import { DedicatedWorkerGlobalScope, ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
+
+const workerPort: DedicatedWorkerGlobalScope = worker.parentPort;
+
+workerPort.addEventListener("alert", () => {
+  console.info("alert listener callback");
 })
 ```
 
@@ -1859,11 +1907,16 @@ Removes an event listener for the Worker thread. This API provides the same func
 **Example**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ets");
-workerInstance.addEventListener("alert", ()=>{
-    console.log("alert listener callback");
+// worker.ets
+import { DedicatedWorkerGlobalScope, ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
+
+const workerPort: DedicatedWorkerGlobalScope = worker.parentPort;
+
+workerPort.addEventListener("alert", () => {
+  console.info("alert listener callback");
 })
-workerInstance.removeEventListener("alert");
+
+workerPort.removeEventListener('alert');
 ```
 
 
@@ -1888,57 +1941,51 @@ Dispatches the event defined for the Worker thread.
 
 | Type   | Description                           |
 | ------- | ------------------------------- |
-| boolean | Returns **true** if the event is dispatched successfully; returns **false** otherwise.|
+| boolean | Dispatch result. The value **true** means a successful dispatch, and **false** means the opposite.|
 
 **Example**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ets");
+// worker.ets
+import { DedicatedWorkerGlobalScope, ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
 
-workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); // timeStamp is not supported yet.
+const workerPort: DedicatedWorkerGlobalScope = worker.parentPort;
+
+workerPort.addEventListener("alert_add", ()=>{
+  console.info("alert listener callback");
+})
+
+workerPort.dispatchEvent({type: 'alert_add', timeStamp: 0}); // timeStamp is not supported yet.
 ```
 
-The **dispatchEvent** API can be used together with the **on**, **once**, and **addEventListener** APIs. The sample code is as follows:
+The **dispatchEvent** API can be used together with the **addEventListener** API. The sample code is as follows:
 
 ```ts
+// Main thread
+import { worker } from '@kit.ArkTS';
+
 const workerInstance = new worker.Worker("workers/worker.ets");
-
-// Usage 1:
-workerInstance.on("alert_on", ()=>{
-    console.log("alert listener callback");
-})
-workerInstance.once("alert_once", ()=>{
-    console.log("alert listener callback");
-})
-workerInstance.addEventListener("alert_add", ()=>{
-    console.log("alert listener callback");
-})
-
-// The event listener created by once is removed after being executed once.
-workerInstance.dispatchEvent({type:"alert_once", timeStamp:0}); // timeStamp is not supported yet.
-// The event listener created by on will not be proactively deleted.
-workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
-workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
-// The event listener created by addEventListener will not be proactively deleted.
-workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
-workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
-
-// Usage 2:
-// The event type can be customized, and the special types "message", "messageerror", and "error" exist.
-// When type = "message", the event handler defined by onmessage will also be executed.
-// When type = "messageerror", the event handler defined by onmessageerror will also be executed.
-// When type = "error", the event handler defined by onerror will also be executed.
-// removeEventListener or off can be used to remove an event listener that is created by addEventListener, on, or once.
-
-workerInstance.addEventListener("message", ()=>{
-    console.log("message listener callback");
-})
-workerInstance.onmessage = function() {
-    console.log("onmessage : message listener callback");
+workerInstance.postMessage("hello world");
+workerInstance.onmessage = (): void => {
+    console.info("receive data from worker.ets");
 }
-// When dispatchEvent is called to distribute the "message" event, the callback passed in addEventListener and onmessage will be invoked.
-workerInstance.dispatchEvent({type:"message", timeStamp:0});
 ```
+
+```ts
+// worker.ets
+import { DedicatedWorkerGlobalScope, ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
+
+const workerPort: DedicatedWorkerGlobalScope = worker.parentPort;
+
+workerPort.addEventListener("alert", ()=>{
+  console.info("alert listener callback");
+})
+
+workerPort.onmessage = (event: MessageEvents) => {
+  workerPort.dispatchEvent({type:"alert", timeStamp:0}); // timeStamp is not supported yet.
+}
+```
+
 ### removeAllListener<sup>(deprecated)</sup>
 
 removeAllListener(): void
@@ -1953,11 +2000,16 @@ Removes all event listeners for the Worker thread.
 **Example**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ets");
-workerInstance.addEventListener("alert", ()=>{
-    console.log("alert listener callback");
+// worker.ets
+import { DedicatedWorkerGlobalScope, ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
+
+const workerPort: DedicatedWorkerGlobalScope = worker.parentPort;
+
+workerPort.addEventListener("alert_add", ()=>{
+  console.info("alert listener callback");
 })
-workerInstance.removeAllListener();
+
+workerPort.removeAllListener();
 ```
 
 
@@ -2310,7 +2362,7 @@ parentPort.onerror = (err: ErrorEvent) => {
 
 ### Sequenceable Data Types
 
-The following object types are supported: basic types except Symbol, Date, String, RegExp, Array, Map, Set, Object (simple objects only, for example, objects created using **{}** or **new Object**), ArrayBuffer, and typedArray. (Note that only attributes can be transferred for common objects. Prototypes and methods cannot be transferred.)
+The following object types are supported: basic types except Symbol, Date, String, RegExp, Array, Map, Set, Object (simple objects only, for example, objects created using **{}** or **new Object**), ArrayBuffer, and TypedArray. (Note that only attributes can be transferred for common objects. Prototypes and methods cannot be transferred.)
 
 Exception: When an object created through a custom class is passed, no serialization error occurs. However, the attributes (such as Function) of the custom class cannot be passed through serialization.
 > **NOTE**<br>

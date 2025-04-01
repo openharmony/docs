@@ -32,6 +32,8 @@ With TaskPool, you can encapsulate tasks in the host thread and submit the tasks
 
 - [AppStorage](../quick-start/arkts-appstorage.md) cannot be used in TaskPool worker threads.
 
+- TaskPool allows you to package tasks in the host thread and submit them to the task queue. While it can theoretically handle an unlimited number of tasks, the actual task execution is influenced by the task priority and the availability of system resources. Once the Worker threads reach their maximum capacity, the efficiency of task execution might be compromised.
+
 ## \@Concurrent Decorator
 
 To pass function verification, concurrent functions executed in a [TaskPool](../reference/apis-arkts/js-apis-taskpool.md) must be decorated using \@Concurrent.
@@ -48,7 +50,7 @@ To pass function verification, concurrent functions executed in a [TaskPool](../
 | Use scenario| Used only in projects of the stage model and only in .ets files.|
 | Decorated function types| Used for async functions or regular functions. It cannot be used for generators, arrow functions, or class methods. It does not support class member functions or anonymous functions.|
 | Variable types in decorated functions| Local variables, parameters, and variables imported via **import** are allowed. Closure variables are prohibited.|
-| Return value types in decorated functions| Supported types are listed in [Inter-Thread Communication](interthread-communication-overview.md). |
+| Return value types in decorated functions| Supported types are listed in [Inter-Thread Communication](interthread-communication-overview.md).|
 
 > **NOTE**
 >

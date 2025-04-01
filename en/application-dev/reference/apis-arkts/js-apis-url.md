@@ -1,6 +1,6 @@
 # @ohos.url (URL String Parsing)
 
-The **url** module provides APIs for parsing URL strings and constructing [URL](#url) instances to process URL strings.
+The url module provides APIs for parsing URL strings and constructing [URL](#url) instances to process URL strings.
 
 > **NOTE**
 >
@@ -29,7 +29,7 @@ A constructor used to create a **URLParams** instance.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| init | string[][] \| Record&lt;string, string&gt; \| string \| URLParams | No| Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array<br>- **Record&lt;string, string&gt;**: list of objects<br>- **string**: string<br>- **URLParams**: object<br>The default value is **null**.|
+| init | string[][] \| Record&lt;string, string&gt; \| string \| URLParams | No| Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array.<br>- **Record&lt;string, string&gt;**: list of objects.<br>- **string**: string.<br>- **URLParams**: object.<br>The default value is **null**.|
 
 **Error codes**
 
@@ -539,7 +539,7 @@ Creates a URL.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | url | string | Yes| A string representing an absolute or a relative URL.<br>In the case of a relative URL, you must specify **base** to parse the final URL.<br>In the case of an absolute URL, the passed **base** will be ignored.|
-| base | string \| URL | No| Either a string or an object. The default value is **undefined**.<br>- **string**: string<br>- **URL**: a URL object<br>- This parameter is used when **url** is a relative URL.|
+| base | string \| URL | No| Either a string or an object. The default value is **undefined**.<br>- **string**: string.<br>- **URL**: URL object.<br>- This parameter is used when **url** is a relative URL.|
 
 **Example**
 
@@ -583,7 +583,7 @@ Parses a URL.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | url | string | Yes| A string representing an absolute or a relative URL.<br>In the case of a relative URL, you must specify **base** to parse the final URL.<br>In the case of an absolute URL, the passed **base** will be ignored.|
-| base | string \| URL | No| Either a string or an object. The default value is **undefined**.<br>- **string**: string<br>- **URL**: a URL object<br>- This parameter is used when **url** is a relative URL.|
+| base | string \| URL | No| Either a string or an object. The default value is **undefined**.<br>- **string**: string.<br>- **URL**: URL object.<br>- This parameter is used when **url** is a relative URL.|
 
 > **NOTE**
 >
@@ -605,7 +605,7 @@ let mm = 'https://username:password@host:8080/test/test1/test3';
 let urlObject = url.URL.parseURL(mm);
 let result = urlObject.toString(); // Output 'https://username:password@host:8080/test/test1/test3'
 // If url is a relative path, the path in the base parameter is test/test1, and the path of the parsed URL is /test/path2/path3.
-let url1 = url.URL.parseURL('path2/path3', 'https://www.huawei.com/test/test1'); // Output 'https://www.huawei.com/test/path2/path3'
+let url1 = url.URL.parseURL('path2/path3', 'https://www.example.com/test/test1'); // Output 'https://www.example.com/test/path2/path3'
 // If url is a root directory, the path in the base parameter is /test/test1/test3, and the path of the parsed URL is /path1/path2.
 let url2 = url.URL.parseURL('/path1/path2', urlObject); // Output 'https://username:password@host:8080/path1/path2'
 url.URL.parseURL('/path/path1', "https://www.exampleUrl/fr-FR/toot"); // Output 'https://www.exampleUrl/path/path1'
@@ -682,7 +682,7 @@ A constructor used to create a **URLSearchParams** instance.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | No| Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array<br>- **Record&lt;string, string&gt;**: list of objects<br>- **string**: string<br>- **URLSearchParams**: object<br>The default value is **null**.|
+| init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | No| Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array.<br>- **Record&lt;string, string&gt;**: list of objects.<br>- **string**: string.<br>- **URLSearchParams**: object.<br>The default value is **null**.|
 
 **Example**
 
@@ -906,7 +906,7 @@ Checks whether a key has a value.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the value exists; returns **false** otherwise.|
+| boolean | Check result. The value **true** means that the key has a value, and **false** means the opposite.|
 
 **Example**
 
