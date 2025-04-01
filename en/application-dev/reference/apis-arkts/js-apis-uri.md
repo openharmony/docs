@@ -267,8 +267,9 @@ Normalizes the path of this URI.
 > If the URI is opaque or its path is already in normalized, the URI is directly returned. Otherwise, a new URI is created. The new URI is similar to the current URI. The only difference relies on its path, which is determined by normalizing the path of the current URI according to the following guidelines:
 >
 > - All . (dot) segments are removed.
+>
 > - For any .. (double-dot) segment that is immediately preceded by a segment that is not .., both segments are removed. This process is iterated until no further removals can be made.
-> 
+>
 > If normalization results in a path starting with a .. (double-dot) segment, it indicates that there were insufficient preceding non-.. segments for removal. As a result, the path will start with a .. segment.
 
 
@@ -608,7 +609,7 @@ Obtains the value of the Boolean type of a query parameter in this URI.
 | Name      | Type   | Mandatory| Description                                 |
 | ------------ | ------- | ---- | ------------------------------------- |
 | key          | string  | Yes  | Name of the query parameter.              |
-| defaultValue | boolean | Yes  | Default value.|
+| defaultValue | boolean | Yes  | Default value returned when the query parameter does not contain the specified key.|
 
 **Return value**
 
@@ -635,6 +636,8 @@ const uriInstance2 = new uri.URI("https://www.test.com/search?active=aa&active=f
 console.info(`${uriInstance2.getBooleanQueryValue("active", false)}`); // true
 const uriInstance3 = new uri.URI("https://www.test.com/search?active=0");
 console.info(`${uriInstance3.getBooleanQueryValue("active", true)}`); // false
+const uriInstance4 = new uri.URI("https://www.test.com/search");
+console.info(`${uriInstance4.getBooleanQueryValue("active", true)}`); // true
 ```
 
 ### clearQuery<sup>12+</sup>
