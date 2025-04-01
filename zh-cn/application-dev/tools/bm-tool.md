@@ -478,7 +478,7 @@ error: cannot open signature file.
 
 **错误描述**
 
-用户安装未签名的HAP包。
+安装应用过程中，出现签名文件打开异常，导致安装失败。
 
 **可能原因**
 
@@ -641,7 +641,7 @@ error: fail to verify pkcs7 file.
 
 **错误描述**
 
-用户安装应用签名Pkcs7校验失败。
+用户安装应用时签名Pkcs7校验失败。
 
 **可能原因**
 
@@ -684,7 +684,7 @@ error: install parse native so failed.
     hdc shell
     param get const.product.cpu.abilist
     ```
-3. 根据查询返回结果，检查[模块级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-hvigor-compilation-options-customizing-sample-V13#section4322212200)文件中的“abiFilters”参数中的配置，规则如下：
+3. 根据查询返回结果，检查[模块级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-hvigor-compilation-options-customizing-sample-V13#section4322212200)文件中的[“abiFilters”参数](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ohos-abi#%E5%9C%A8%E7%BC%96%E8%AF%91%E6%9E%B6%E6%9E%84%E4%B8%AD%E6%8C%87%E5%AE%9Aabi)中的配置，规则如下：
     * 若返回结果为default，请执行如下命令，查询是否存在lib64文件夹。
       ```
       cd /system/
@@ -1396,7 +1396,7 @@ error: remove sign profile failed.
 
 1. 文件路径不存在。
 2. 加载配置文件数据失败。
-3. 文件权限不是可读的。
+3. 文件权限不是可写的。
 
 **处理步骤**
 
