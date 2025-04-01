@@ -5169,8 +5169,6 @@ type ExtraInfo = { [key: string]: Object; }
 
 媒体提供方设置的自定义媒体数据包对象。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 | 类型                                | 说明                          |
