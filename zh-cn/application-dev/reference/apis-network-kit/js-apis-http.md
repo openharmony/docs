@@ -1121,9 +1121,9 @@ httpRequest.off("dataSendProgress");
 | multiFormDataList<sup>11+</sup> | Array<[MultiFormData](#multiformdata11)> | 否 | 当'content-Type'为'multipart/form-data'时，则上传该字段定义的数据字段表单列表。 |
 | certificatePinning<sup>12+</sup> | [CertificatePinning](#certificatepinning12) \| CertificatePinning[] | 否 | 支持动态设置证书锁定配置，可以传入单个或多个证书PIN码。 |
 | addressFamily<sup>15+</sup> | [AddressFamily](#addressfamily15) | 否 | 支持解析目标域名时限定地址类型。 |
-| remoteValidation<sup>18+</sup> | [RemoteValidation](#remotevalidation18)                             | 否 | 证书颁发机构（CA），用于验证远程服务器的身份。如果未设置此字段，系统CA将用于验证远程服务器的标识。<br>**原子化服务API：** 从API version 1开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| tlsOptions<sup>18+</sup> | [TlsOptions](#tlsoptions18)                                         | 否 | TLS配置。<br>**原子化服务API：** 从API version 1开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| serverAuthentication<sup>18+</sup> | [ServerAuthentication](#serverauthentication18)                     | 否 | 安全连接期间的服务器身份验证配置。默认不认证。<br>**原子化服务API：** 从API version 1开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| remoteValidation<sup>18+</sup> | [RemoteValidation](#remotevalidation18)                             | 否 | 证书颁发机构（CA），用于验证远程服务器的身份。如果未设置此字段，系统CA将用于验证远程服务器的标识。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| tlsOptions<sup>18+</sup> | [TlsOptions](#tlsoptions18)                                         | 否 | TLS配置。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| serverAuthentication<sup>18+</sup> | [ServerAuthentication](#serverauthentication18)                     | 否 | 安全连接期间的服务器身份验证配置。默认不认证。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 
 ## RequestMethod
 
@@ -1581,7 +1581,7 @@ type HttpProxy = connection.HttpProxy
 
 type RemoteValidation = 'system' | 'skip'
 
-证书颁发机构（CA），用于验证远程服务器的身份，可以通过RemoteValidation配置使用系统CA还是跳过验证远程服务器CA。
+证书颁发机构（CA），用于验证远程服务器的身份，可以通过RemoteValidation配置使用系统CA或跳过验证远程服务器CA。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -1607,7 +1607,7 @@ type RemoteValidation = 'system' | 'skip'
 
 ## ServerAuthentication<sup>18+</sup>
 
-TLS加密版本及套件配置。
+HTTP服务器身份验证。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -1629,13 +1629,13 @@ TLS加密版本及套件配置。
 
 |  名称  | 类型                              |  必填  | 说明            |
 | ------------------  |---------------------------------|-- |---------------|
-| tlsVersionMin       | [TlsVersion](#tlsVersion18)     | 是 | TLS最低版本号。     |
-| tlsVersionMax        | [TlsVersion](#tlsVersion18)     |  是  | TLS最高版本号。     |
-| cipherSuites        | [CipherSuite](#cipherSuite18)[] |  是  | 声明加密套件类型的数组。 |
+| tlsVersionMin       | [TlsVersion](#tlsversion18)     | 是 | TLS最低版本号。     |
+| tlsVersionMax        | [TlsVersion](#tlsversion18)     |  是  | TLS最高版本号。     |
+| cipherSuites        | [CipherSuite](#ciphersuite18)[] |  是  | 声明加密套件类型的数组。 |
 
 ## TlsVersion<sup>18+</sup>
 
-TLS版本号枚举。
+枚举，TLS版本号。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -1660,13 +1660,14 @@ TLS配置。
 
 | 类型                         | 说明                                                                                 |
 |-------------------------------|------------------------------------------------------------------------------------|
-| 'system' | [TlsConfig](#tlsconfig18) | 表示TlsOptions的值，可取值：'system'或TlsConfig。<br>'system'为默认值，表示使用系统的TLS版本，TlsConfig可以自定义TLS的版本号和加密套件。 |
+| 'system'  | 表示使用系统的TLS版本，是未进行TLS设置的默认值，值固定为'system'字符串。 |
+| TlsOptions | 表示使用自定义的TLS版本号和加密套件。 |
 
 ## RemoteValidation<sup>18+</sup>
 
 type RemoteValidation = 'system' | 'skip'
 
-验证远程服务器的身份的方式。
+验证远程服务器身份的方式。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -1674,13 +1675,14 @@ type RemoteValidation = 'system' | 'skip'
 
 | 类型                         | 说明                                                                                 |
 |-------------------------------|------------------------------------------------------------------------------------|
-| 'system' \| 'skip' | 表示值的类型为字符，可取值：'system'或'skip'。<br>'system'为默认值，表示使用系统CA验证远端服务器身份，'skip'表示跳过验证远端服务器身份流程。 |
+| 'system'  | 表示使用系统CA验证远端服务器身份，值固定为'system'字符串，是未配置时的默认值。 |
+| 'skip'   | 表示跳过验证远端服务器身份流程，值固定为'skip'字符串。 |
 
 ## AuthenticationType<sup>18+</sup>
 
 type AuthenticationType = 'basic' | 'ntlm' | 'digest'
 
-此类型表示可以在会话中的服务器身份验证设置中使用不同的身份验证机制。
+在会话中的服务器身份验证时可以设置中使用不同的身份验证机制。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -1688,8 +1690,9 @@ type AuthenticationType = 'basic' | 'ntlm' | 'digest'
 
 |类型                          | 说明                                                                                                 |
 |-------------------------------|----------------------------------------------------------------------------------------------------|
-| 'basic' \| 'ntlm' \| 'digest' | 表示值的类型为字符，可取值：'basic'、'ntlm'或'digest'。<br>'basic'表示使用基本认证方式，'ntlm'表示使用ntlm认证方式，'digest'表示使用摘要认证方式。 |
-
+| 'basic'  | 表示使用基本认证方式，值固定为'basic'字符串。 |
+| 'ntlm'   | 表示使用ntlm认证方式，值固定为'ntlm'字符串。 |
+| 'digest' | 表示使用认证方式，值固定为'digest'字符串。 |
 
 ## CipherSuite<sup>18+</sup>
 
@@ -1703,7 +1706,7 @@ type CipherSuite = TlsV13CipherSuite
 
 |       类型       | 说明                                                                |
 | ---------------- |-------------------------------------------------------------------|
-| TlsV13CipherSuite | 表示值的类型为[TlsV13CipherSuite](#tlsV13CipherSuite18)。                 |
+| TlsV13CipherSuite | 表示值的类型为[TlsV13CipherSuite](#tlsv13ciphersuite18)。                 |
 
 ## TlsV13CipherSuite<sup>18+</sup>
 
@@ -1717,8 +1720,8 @@ TLS1.3的加密套件声明函数，支持TLS1.3版本，兼容TLS1.2版本。
 
 |       类型       | 说明                                                                |
 | ---------------- |-------------------------------------------------------------------|
-| TlsV12CipherSuite | 表示值的类型为[TlsV11CipherSuite](#tlsV11CipherSuite18)。                 |
-| TlsV13SpecificCipherSuite | 表示值的类型为[TlsV13SpecificCipherSuite](#tlsV13SpecificCipherSuite18)。 |
+| TlsV12CipherSuite | 表示值的类型为[TlsV11CipherSuite](#tlsv11ciphersuite18)。                 |
+| TlsV13SpecificCipherSuite | 表示值的类型为[TlsV13SpecificCipherSuite](#tlsv13specificciphersuite18)。 |
 
 ## TlsV12CipherSuite<sup>18+</sup>
 
@@ -1732,14 +1735,14 @@ TLS1.2的加密套件声明函数，支持TLS1.2版本，兼容TLS1.1版本。
 
 |       类型       | 说明                                                                |
 | ---------------- |-------------------------------------------------------------------|
-| TlsV11CipherSuite | 表示值的类型为[TlsV11CipherSuite](#tlsV11CipherSuite18)。                 |
-| TlsV12SpecificCipherSuite | 表示值的类型为[TlsV12SpecificCipherSuite](#tlsV12SpecificCipherSuite18)。 |
+| TlsV11CipherSuite | 表示值的类型为[TlsV11CipherSuite](#tlsv11ciphersuite18)。                 |
+| TlsV12SpecificCipherSuite | 表示值的类型为[TlsV12SpecificCipherSuite](#tlsv12specificciphersuite18)。 |
 
 ## TlsV11CipherSuite<sup>18+</sup>
 
 type TlsV11CipherSuite = TlsV10CipherSuite
 
-TLS1.1的加密套件声明函数，与TLS1.0相同。
+TLS1.1的加密套件声明函数，与TLS1.0的加密套件相同。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -1747,7 +1750,7 @@ TLS1.1的加密套件声明函数，与TLS1.0相同。
 
 |       类型       | 说明                                                |
 | ---------------- |---------------------------------------------------|
-| TlsV10CipherSuite | 表示值的类型为[TlsV10CipherSuite](#tlsV10CipherSuite18)。 |
+| TlsV10CipherSuite | 表示值的类型为[TlsV10CipherSuite](#tlsv10ciphersuite18)。 |
 
 ## TlsV10CipherSuite<sup>18+</sup>
 
@@ -1761,7 +1764,7 @@ TLS1.0的加密套件声明函数。
 
 |       类型       | 说明                                                                |
 | ---------------- |-------------------------------------------------------------------|
-| TlsV10SpecificCipherSuite | 表示值的类型为[TlsV10SpecificCipherSuite](#tlsV10SpecificCipherSuite18)。 |
+| TlsV10SpecificCipherSuite | 表示值的类型为[TlsV10SpecificCipherSuite](#tlsv10specificciphersuite18)。 |
 
 ## TlsV13SpecificCipherSuite<sup>18+</sup>
 
@@ -1781,7 +1784,10 @@ TLS1.3及以上版本支持的加密套件。
 
 ## TlsV12SpecificCipherSuite<sup>18+</sup>
 
-type TlsV13SpecificCipherSuite = 'TLS_AES_128_GCM_SHA256' | 'TLS_AES_256_GCM_SHA384' | 'TLS_CHACHA20_POLY1305_SHA256'
+type TlsV12SpecificCipherSuite = 'TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256' | 'TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256' |
+'TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384' | 'TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384' |
+'TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256' | 'TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256' |
+'TLS_RSA_WITH_AES_128_GCM_SHA256' | 'TLS_RSA_WITH_AES_256_GCM_SHA384'
 
 TLS1.2及以上版本支持的加密套件。
 
@@ -1817,6 +1823,7 @@ TLS1.0及以上版本支持的加密套件。
 | 'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA' | 表示值的类型为字符串，可取'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA'。 |
 | 'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA' | 表示值的类型为字符串，可取'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA'。 |
 | 'TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA' | 表示值的类型为字符串，可取'TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA'。 |
+| 'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA' | 表示值的类型为字符串，可取'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA'。 |
 | 'TLS_RSA_WITH_AES_128_CBC_SHA' | 表示值的类型为字符串，可取'TLS_RSA_WITH_AES_128_CBC_SHA'。 |
 | 'TLS_RSA_WITH_AES_256_CBC_SHA' | 表示值的类型为字符串，可取'TLS_RSA_WITH_AES_256_CBC_SHA'。 |
 | 'TLS_RSA_WITH_3DES_EDE_CBC_SHA' | 表示值的类型为字符串，可取'TLS_RSA_WITH_3DES_EDE_CBC_SHA'。 |
