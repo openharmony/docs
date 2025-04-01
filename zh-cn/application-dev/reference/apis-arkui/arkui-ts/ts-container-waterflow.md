@@ -429,7 +429,7 @@ cachedCount(count: number, show: boolean)
 
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
-| count | number | 是   | 预加载的FlowItem的数量。 <br/>默认值：根据屏幕内显示的节点个数设置，最大值为16。 |
+| count | number | 是   | 预加载的FlowItem的数量。 <br/>默认值：根据屏幕内显示的节点个数设置，最大值为16。<br/>取值范围：[0, +∞)，设置为小于0的值时，按1处理。 |
 | show  | boolean | 是   | 被预加载的FlowItem是否需要显示。 <br/> 默认值：false，不显示预加载的FlowItem。 |
 
 ## 事件
