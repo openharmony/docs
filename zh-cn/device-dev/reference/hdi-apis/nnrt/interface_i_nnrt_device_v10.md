@@ -315,7 +315,7 @@ INnrtDevice::PrepareModel ([in] struct Model model, [in] struct ModelConfig conf
 ```
 **描述**
 
-编译模型
+编译模型。
 
 如果是变尺寸输入模型，则模型输入的维度信息中至少有一个是-1。
 
@@ -331,9 +331,9 @@ INnrtDevice::PrepareModel ([in] struct Model model, [in] struct ModelConfig conf
 
 **返回：**
 
-返回0表示成功
+返回0表示成功。
 
-返回负数表示失败
+返回负数表示失败。
 
 
 ### PrepareModelFromModelCache()

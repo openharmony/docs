@@ -7990,6 +7990,59 @@ let mimeType : media.AVMimeTypes = media.AVMimeTypes.APPLICATION_M3U8;
 mediaSource.setMimeType(mimeType);
 
 ```
+## media.createMediaSourceWithStreamData<sup>18+</sup>
+
+createMediaSourceWithStreamData(streams: Array\<MediaStream>): MediaSource
+
+创建流媒体多码率媒体来源实例方法，当前仅支持HTTP-FLV协议格式多码率。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+**参数：**
+
+| 参数名  | 类型                                 | 只读 | 可选 | 说明                                                  |
+| ------- | ------------------------------------ | --- | ---- | ----------------------------------------------------- |
+| streams | Array<[MediaStream](#mediastream18)> | 否 | 否   | 可设置MediaStream数组，支持的流媒体格式：HTTP-FLV。 |
+
+**返回值：**
+
+| 类型                          | 说明                |
+| ----------------------------- | ------------------- |
+| [MediaSource](#mediasource12) | 返回MediaSource，用于媒体资源设置。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 5400101  | No memory.                                                   |
+
+**示例1：**
+
+```ts
+let streams : Array<media.MediaStream> = [];
+streams.push({url: "http://xxx/480p.flv", width: 854, height: 480, bitrate: 800000});
+streams.push({url: "http:/xxx/720p.flv", width: 1280, height: 720, bitrate: 2000000});
+streams.push({url: "http:/xxx/1080p.flv", width: 1280, height: 720, bitrate: 2000000});
+let mediaSource : media.MediaSource = media.createMediaSourceWithStreamData(streams);
+```
+
+## MediaStream<sup>18+</sup>
+
+媒体流数据信息。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+| 参数名  | 类型   | 只读 | 可选 | 说明                                                         |
+| ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| url     | string | 否   | 否   | 媒体资源链接，当前仅支持http或者https。                                                 |
+| width   | number | 否   | 否   | 媒体资源视频宽像素值。未知时可以填0，此时将无法通过[PlaybackStrategy](#playbackstrategy12)优选匹配。 |
+| height  | number | 否   | 否   | 媒体资源视频高像素值。未知时可以填0，此时将无法通过[PlaybackStrategy](#playbackstrategy12)优选匹配。 |
+| bitrate | number | 否   | 否   | 媒体资源码率值，单位bps。                                        |
 
 ## MediaSource<sup>12+</sup>
 
@@ -8039,7 +8092,7 @@ setMimeType(mimeType: AVMimeTypes): void
 | preferredHeight | number | 否   | 播放策略首选高度，设置范围为大于0的整数，如1920，单位为像素（px）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | preferredBufferDuration | number | 否  | 播放策略首选缓冲持续时间，单位s，取值范围1-20。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | preferredHdr | boolean | 否   | 播放策略true是hdr，false非hdr，默认非hdr。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| enableSuperResolution<sup>18+</sup> | boolean | 否   | 表示是否使能超分功能。true表示使能超分，false表示不使能超分，默认为false。<br>若不使能超分，则后续不能调用超分相关接口。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| enableSuperResolution<sup>18+</sup> | boolean | 否   | 表示是否使能超分功能。true表示使能超分，false表示不使能超分，默认为false。<br>若不使能超分，则后续不能调用超分相关接口。若使能超分，则超分功能默认开启，默认目标分辨率为1920x1080，单位为像素。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | showFirstFrameOnPrepare<sup>18+</sup> | boolean | 否   | 播放策略true是Prepare之后显示视频起播首帧，false是Prepare之后不显示视频起播首帧，默认不显示。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | mutedMediaType | [MediaType](#mediatype8) | 否 | 静音播放的媒体类型，仅支持设置 MediaType.MEDIA_TYPE_AUD。 |
 | preferredAudioLanguage<sup>13+</sup> | string | 否 | 播放策略首选音轨语言。dash场景下应用可按需设置。非dash场景暂不支持，建议缺省。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |

@@ -187,7 +187,7 @@ API Version 14之前的版本，若设置barHeight为固定值后，TabBar无法
 
 animationDuration(value: number)
 
-设置点击TabBar页签和调用TabsController的changeIndex接口切换TabContent的动画时长。该参数不支持百分比设置。
+设置点击TabBar页签和调用TabsController的changeIndex接口切换TabContent的动画时长。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -406,7 +406,7 @@ cachedMaxCount(count: number, mode: TabsCacheMode)
 
 | 参数名 | 类型                                                        | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| count  | number                                                      | 是   | 子组件的最大缓存个数。默认所有子组件加载后都不再释放。         |
+| count  | number                                                      | 是   | 子组件的最大缓存个数。默认所有子组件加载后都不再释放。<br/>取值范围：[0, +∞)。|
 | mode   | [TabsCacheMode](#tabscachemode18枚举说明)                   | 是   | 子组件的缓存模式。<br/>默认值：TabsCacheMode.CACHE_BOTH_SIDE   |
 
 ## DividerStyle<sup>10+</sup>对象说明
