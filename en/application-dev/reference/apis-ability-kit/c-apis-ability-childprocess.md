@@ -214,7 +214,7 @@ Enumerates the isolation modes of a child process.
 ### OH_Ability_CreateNativeChildProcess
 
 ```
-int OH_Ability_CreateNativeChildProcess (const char *libName, OH_Ability_OnNativeChildProcessStarted onProcessStarted )
+int OH_Ability_CreateNativeChildProcess (const char *libName, OH_Ability_OnNativeChildProcessStarted onProcessStarted)
 ```
 
 **Description**

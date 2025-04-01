@@ -14,7 +14,7 @@ import { overlay } from '@kit.AbilityKit';
 
 ## overlay.setOverlayEnabled
 
-setOverlayEnabled(moduleName:string, isEnabled: boolean): Promise\<void>
+setOverlayEnabled(moduleName: string, isEnabled: boolean): Promise\<void>
 
 Enables or disables a module with the overlay feature in the current application. This API uses a promise to return the result. If the operation is successful, **null** is returned; otherwise, an error message is returned.
 

@@ -7,9 +7,9 @@ UIAbility is a type of application component that provides the UI for user inter
 
 The following design philosophy is behind UIAbility:
 
-1. Native support for cross-device migration and multi-device collaboration at the application component level
+1. Support for cross-device migration and multi-device collaboration at the application component level
 
-2. Support for multiple device types and window modes
+2. Native support for multiple device types and window modes
 
 
  
