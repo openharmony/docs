@@ -3909,7 +3909,7 @@ saveToExistingContactViaUI(context: Context, contact: Contact): Promise&lt;numbe
 
 以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Contacts错误码](../apis-contacts-kit/errorcode-contacts.md)。
 
-| 类型                  | 说明                                       |
+| 错误码ID              | 错误信息                                       |
 | --------------------- | ------------------------------------------ |
 | 401       | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 | 801       | The specified SystemCapability name was not found. |
