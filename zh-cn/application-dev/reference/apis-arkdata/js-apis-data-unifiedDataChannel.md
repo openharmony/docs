@@ -1788,7 +1788,7 @@ try {
 
 convertRecordsToEntries(data: UnifiedData): void
 
-将传入的data转换为多entry形式的数据。
+本接口用于构造多entry数据结构。当入参使用不同的record表示单条数据的不同格式，且properties中tag标识为"records_to_entries_data_format"时，使用该接口能够将数据转换成单个record多entry的结构。
 当满足以下规则时才进行转换：
 1. data中的record数量大于1;
 2. data中的properties中的tag值为records_to_entries_data_format.
@@ -1815,20 +1815,34 @@ convertRecordsToEntries(data: UnifiedData): void
 
 ```ts
 import { unifiedDataChannel } from '@kit.ArkData';
+import { uniformDataStruct } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let text1 = new unifiedDataChannel.PlainText();
-text1.textContent = 'this is textContent of text1';
-let unifiedData = new unifiedDataChannel.UnifiedData(text1);
-
-let text2 = new unifiedDataChannel.PlainText();
-text2.textContent = 'this is textContent of text2';
-unifiedData.addRecord(text2);
+let details : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
+}
+let plainTextObj : uniformDataStruct.PlainText = {
+  uniformDataType: 'general.plain-text',
+  textContent : 'This is plainText textContent example',
+  abstract : 'this is abstract',
+  details : plainTextDetails,
+}
+let htmlObj : uniformDataStruct.HTML = {
+  uniformDataType :'general.html',
+  htmlContent : '<div><p>标题</p></div>',
+  plainContent : 'this is plainContent',
+  details : htmlObjDetails,
+}
+let plainText = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainTextObj);
+let hyperlink = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.HYPERLINK, htmlObj);
+let unifiedData = new unifiedDataChannel.UnifiedData(plainText);
+unifiedData.addRecord(hyperlink);
 
 try {
   unifiedDataChannel.convertRecordsToEntries(unifiedData);
 } catch (e) {
   let error: BusinessError = e as BusinessError;
-  console.error(`Insert data throws an exception. code is ${error.code},message is ${error.message} `);
+  console.error(`Insert data throws an exception. code is ${error.code}, message is ${error.message} `);
 }
 ```
