@@ -1065,7 +1065,7 @@ struct TabsAttr {
         .onClick((event?: ClickEvent) => {
           // 对Button组件的宽高属性进行动画配置
           if (this.colorFlag) {
-            animateTo({
+            this.getUIContext()?.animateTo({
               duration: 1000, // 动画时长
               curve: Curve.Linear, // 动画曲线
               delay: 200, // 动画延迟
@@ -1078,7 +1078,7 @@ struct TabsAttr {
               this.indicatorColor = Color.Red
             })
           } else {
-            animateTo({
+            this.getUIContext()?.animateTo({
               duration: 1000, // 动画时长
               curve: Curve.Linear, // 动画曲线
               delay: 200, // 动画延迟
@@ -1097,7 +1097,7 @@ struct TabsAttr {
         .onClick((event?: ClickEvent) => {
           // 对Button组件的宽高属性进行动画配置
           if (this.heightFlag) {
-            animateTo({
+            this.getUIContext()?.animateTo({
               duration: 1000, // 动画时长
               curve: Curve.Linear, // 动画曲线
               delay: 200, // 动画延迟
@@ -1110,7 +1110,7 @@ struct TabsAttr {
               this.indicatorHeight = 20
             })
           } else {
-            animateTo({
+            this.getUIContext()?.animateTo({
               duration: 1000, // 动画时长
               curve: Curve.Linear, // 动画曲线
               delay: 200, // 动画延迟
@@ -1129,7 +1129,7 @@ struct TabsAttr {
         .onClick((event?: ClickEvent) => {
           // 对Button组件的宽高属性进行动画配置
           if (this.widthFlag) {
-            animateTo({
+            this.getUIContext()?.animateTo({
               duration: 1000, // 动画时长
               curve: Curve.Linear, // 动画曲线
               delay: 200, // 动画延迟
@@ -1142,7 +1142,7 @@ struct TabsAttr {
               this.indicatorWidth = 30
             })
           } else {
-            animateTo({
+            this.getUIContext()?.animateTo({
               duration: 1000, // 动画时长
               curve: Curve.Linear, // 动画曲线
               delay: 200, // 动画延迟
@@ -1161,7 +1161,7 @@ struct TabsAttr {
         .onClick((event?: ClickEvent) => {
           // 对Button组件的宽高属性进行动画配置
           if (this.borderFlag) {
-            animateTo({
+            this.getUIContext()?.animateTo({
               duration: 1000, // 动画时长
               curve: Curve.Linear, // 动画曲线
               delay: 200, // 动画延迟
@@ -1174,7 +1174,7 @@ struct TabsAttr {
               this.indicatorBorderRadius = 0
             })
           } else {
-            animateTo({
+            this.getUIContext()?.animateTo({
               duration: 1000, // 动画时长
               curve: Curve.Linear, // 动画曲线
               delay: 200, // 动画延迟
@@ -1193,7 +1193,7 @@ struct TabsAttr {
         .onClick((event?: ClickEvent) => {
           // 对Button组件的宽高属性进行动画配置
           if (this.spaceFlag) {
-            animateTo({
+            this.getUIContext()?.animateTo({
               duration: 1000, // 动画时长
               curve: Curve.Linear, // 动画曲线
               delay: 200, // 动画延迟
@@ -1206,7 +1206,7 @@ struct TabsAttr {
               this.indicatorSpace = 20
             })
           } else {
-            animateTo({
+            this.getUIContext()?.animateTo({
               duration: 1000, // 动画时长
               curve: Curve.Linear, // 动画曲线
               delay: 200, // 动画延迟
