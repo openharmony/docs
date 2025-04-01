@@ -1307,7 +1307,7 @@ VVC档次。
 | 枚举值 | 描述 | 
 | -------- | -------- |
 | VVC_PROFILE_MAIN_10 | VVC编码档次为10bit主档次。  |
-| VVC_PROFILE_MAIN_12 VVC | 编码档次为12bit主档次。  |
+| VVC_PROFILE_MAIN_12 | VVC编码档次为12bit主档次。  |
 | VVC_PROFILE_MAIN_12_INTRA | VVC编码档次为12bit帧内主档次。  |
 | VVC_PROFILE_MULTI_MAIN_10 | VVC编码档次为多层编码10bit主档次。  |
 | VVC_PROFILE_MAIN_10_444 | VVC编码档次为10bit全采样主档次。  |
