@@ -74,7 +74,7 @@ FormComponent (value: FormInfo)
 
 | 参数名    | 参数类型                        | 必填 | 参数描述                                                                |
 | --------- | ------------------------------- | ---- | ----------------------------------------------------------------------- |
-| errcode        | number                 | 是   | [错误码](../apis-form-kit/errorcode-form.md)。                                        |
+| errcode        | number                 | 是   | [错误码](../../apis-form-kit/errorcode-form.md)。                                        |
 | msg      | string            | 是           | 错误信息。                             |
 
 ## FormDimension
