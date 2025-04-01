@@ -24,7 +24,7 @@ import  { picker } from '@kit.CoreFileKit';
 
 | 名称                    | 类型                                         | 只读  | 可选  | 说明                                     |
 | :---------------------- |---------------------------------------------| ---- | ---- |------------------------------------------|
-| themeColor<sup>18+</sup>     | [CustomColors](../apis-arkui/js-apis-arkui-theme.md#customcolors) |  否  |  是 |主题色参数, 默认为空，跟随FilePicker应用颜色。当themeColor设置为特定的主题色属性（[brand, fontPrimary, fontEmphasize, iconFourth](../apis-arkui/js-apis-arkui-theme.md#colors)）时，被拉起的FilePicker应用将适配传入的主题色参数的效果。<br> **系统能力**：SystemCapability.FileManagement.UserFileService ,仅支持手机设备。 |
+| themeColor<sup>18+</sup>     | [CustomColors](../apis-arkui/js-apis-arkui-theme.md#customcolors) |  否  |  是 |主题色参数, 默认为空，跟随FilePicker应用颜色。当themeColor设置为特定的主题色属性（[brand, fontPrimary, compBackgroundEmphasize, iconFourth](../apis-arkui/js-apis-arkui-theme.md#colors)时，被拉起的FilePicker应用将适配传入的主题色参数的效果。<br> **系统能力**：SystemCapability.FileManagement.UserFileService，仅支持手机设备。 |
 
 ## DocumentSaveOptions
 
@@ -38,4 +38,4 @@ import  { picker } from '@kit.CoreFileKit';
 
 | 名称                    | 类型                                          |  只读  | 可选  |说明                                       |
 | :---------------------- |---------------------------------------------| ----- |--------| ------------------------------------------|
-| themeColor<sup>18+</sup>     | [CustomColors](../apis-arkui/js-apis-arkui-theme.md#customcolors) |  否   | 是 | 主题色参数, 默认为空，跟随FilePicker应用颜色。当themeColor设置为特定的主题色属性（[fontEmphasize, comBackgroundEmphasize](../apis-arkui/js-apis-arkui-theme.md#colors)）时，被拉起的FilePicker应用将适配传入的主题色参数的效果。<br> **系统能力**：SystemCapability.FileManagement.UserFileService ,仅支持手机设备。|
+| themeColor<sup>18+</sup>     | [CustomColors](../apis-arkui/js-apis-arkui-theme.md#customcolors) |  否   | 是 | 主题色参数, 默认为空，跟随FilePicker应用颜色。当themeColor设置为特定的主题色属性（[fontEmphasize, compBackgroundEmphasize](../apis-arkui/js-apis-arkui-theme.md#colors)时，被拉起的FilePicker应用将适配传入的主题色参数的效果。<br> **系统能力**：SystemCapability.FileManagement.UserFileService，仅支持手机设备。|
