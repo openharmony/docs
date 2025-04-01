@@ -2572,7 +2572,7 @@ Defines the cell information.
 
 | Name             |                  Type                  | Mandatory|                           Description                              |
 | ----------------- | --------------------------------------- | ---- | ------------------------------------------------------------ |                           
-| isCamped          | boolean                                 |  Yes | Cell status.<br>**System API**: This is a system API.         |
+| isCamped          | boolean                                 |  Yes | Cell status.<br>**System API**: This is a system API.<br>The value **true** indicates a camped cell, and the value **false** indicates a non-camped cell.         |
 | timeStamp         | number                                  |  Yes | Timestamp when cell information is obtained.<br>**System API**: This is a system API.   |                              
 | data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8)\|[WcdmaCellInformation](#wcdmacellinformation8) |  Yes | CDMA cell information\|GSM cell information\|LTE cell information\|NR cell information\|TD-SCDMA cell information\|WCDMA.<br>**System API**: This is a system API.|
 

@@ -9,6 +9,8 @@ The **Vibrator_Attribute** struct describes the vibrator attribute.
 
 **Related module**: [Vibrator](_vibrator.md)
 
+**Header file**: [vibrator_type.h](vibrator_type_8h.md)
+
 
 ## Summary
 

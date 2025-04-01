@@ -18,25 +18,25 @@ The following uses date and time formatting as an example to illustrate how the 
 
 2. Obtain the preferred language of the application.
    ```ts
-     let appPreferredLanguage: string = i18n.System.getAppPreferredLanguage(); // Obtain the preferred language of the application.
+   let appPreferredLanguage: string = i18n.System.getAppPreferredLanguage(); // Obtain the preferred language of the application.
    ```
    
 3. Set the preferred language of the application. After the preferred language of the application is set to the target language, the application UI is switched to the target language. The setting affects only the application, but not the system language settings.
    ```ts
-    try {  
-      i18n.System.setAppPreferredLanguage("zh-Hans"); // Set the preferred language of the application to zh-Hans.
-    } catch(error) {
-      let err: BusinessError = error as BusinessError;
-      console.error(`call System.setAppPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
-    }
+   try {
+     i18n.System.setAppPreferredLanguage('zh-Hans'); // Set the preferred language of the application to zh-Hans.
+   } catch (error) {
+     let err: BusinessError = error as BusinessError;
+     console.error(`call System.setAppPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
+   }
    ```
 
 4. Clear the preferred language of the application. If the preferred language is set to **default**, the application's language will be the same as the system language, and the setting will take effect upon application restarting.
    ```ts
-    try {  
-      i18n.System.setAppPreferredLanguage ("default"); // Clear the preferred language of the application.
-    } catch(error) {
-      let err: BusinessError = error as BusinessError;
-      console.error(`call System.setAppPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
-    }
+   try {  
+     i18n.System.setAppPreferredLanguage ('default'); // Clear the preferred language of the application.
+   } catch(error) {
+     let err: BusinessError = error as BusinessError;
+     console.error(`call System.setAppPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
+   }
    ```
