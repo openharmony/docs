@@ -8168,7 +8168,6 @@ request.finishLoading(uuid, loadingError);
 | LOADING_ERROR_ACCESS_TIMEOUT | 5    | 由客户端返回，表示访问资源过程超时。 |
 | LOADING_ERROR_AUTHORIZE_FAILED | 6    | 由客户端返回，表示授权失败。 |
 
-
 ## AVMimeTypes<sup>12+</sup>
 
 媒体MIME类型，通过[setMimeType](#setmimetype12)设置。
