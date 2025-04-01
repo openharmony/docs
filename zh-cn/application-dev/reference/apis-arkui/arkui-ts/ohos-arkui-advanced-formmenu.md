@@ -112,7 +112,7 @@ struct Index {
           parameters: {
             'ohos.extra.param.key.form_dimension': 2, // 卡片尺寸，1代表1*2卡片，2代表2*2卡片，3代表2*4卡片，4代表4*4卡片，7代表6*4卡片，6代表1*1卡片
             'ohos.extra.param.key.form_name': 'widget', // 卡片名称
-            'ohos.extra.param.key.module_name': 'entry' // 模块名称
+            'ohos.extra.param.key.module_name': 'entry' // 卡片所属的模块名称
           },
         },
         this.compId,
