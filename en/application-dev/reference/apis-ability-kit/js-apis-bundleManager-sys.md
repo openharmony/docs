@@ -2107,7 +2107,7 @@ Enables or disables an application or an application clone. This API uses a prom
 | ---------- | ------- | ---- | ------------------------------------- |
 | bundleName | string  | Yes  | Bundle name.           |
 | appIndex   | number  | Yes  | Index of the application clone.<br> If this parameter is set to **0**, the API is used to enable or disable an application, rather than an application clone.             |
-| isEnabled  | boolean | Yes  | Whether to enable the application or the application clone. The value **true** means to enable it, and **false** means to disable it.|
+| isEnabled  | boolean | Yes  | Whether to enable the application or application clone. The value **true** means to enable it, and **false** means to disable it.|
 
 **Return value**
 
@@ -4388,7 +4388,7 @@ try {
 }
 ```
 
-## bundleManager.getJsonProfile<sup>12+</sup>
+## bundleManager.getJsonProfile<sup>11+</sup>
 
 getJsonProfile(profileType: ProfileType, bundleName: string, moduleName?: string, userId?: number): string
 
@@ -4409,7 +4409,7 @@ No permission is required for obtaining the caller's own profile.
 | profileType           | [ProfileType](#profiletype11)     | Yes  | Type of the profile.                                  |
 | bundleName            | string                          | Yes  | Bundle name of the application.                                 |
 | moduleName            | string                          | No  | Module name of the application. If this parameter is not passed in, the entry module is used.           |
-| userId                | number                          | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. |
+| userId<sup>12+</sup>  | number                          | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. |
 
 **Return value**
 
@@ -5100,7 +5100,7 @@ try {
 
 getAppCloneIdentity(uid: number): Promise\<AppCloneIdentity>;
 
-Obtains the bundle name and app index of an application clone based on the given UID. This API uses a promise to return the result.
+Obtains the bundle name and application index of an application clone based on the given UID. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 

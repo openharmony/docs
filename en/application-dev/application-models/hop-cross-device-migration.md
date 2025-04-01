@@ -74,23 +74,23 @@ The following figure shows the cross-device migration process when a migration r
     When a migration is triggered for the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md), [onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue) is called on the source device. You can use either synchronous or asynchronous mode to save the data in this callback to implement application compatibility check and migration decision.
 
     1. Saving data to migrate: You can save the data to migrate in key-value pairs in **wantParam**.
-    
+
     2. (Optional) Checking application compatibility: You can obtain the application version on the target device from **wantParam.version** in the **onContinue()** callback and compare it with the application version on the source device. If the version compatibility check fails, the application should notify users of the cause of the migration failure.
-    
+
        > **NOTE**
        >
        > If the compatibility issues have little or no impact on migration experience, you can skip this check.
-    
+
     3. Returning the migration result: You can determine whether migration is supported based on the return value of **onContinue()**. For details about the return values, see [AbilityConstant.OnContinueResult](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#oncontinueresult).
-    
+
 
     Certain fields (listed in the table below) in **wantParam** passed in to **onContinue()** are preconfigured in the system. You can use these fields for service processing. When defining custom `wantParam` data, do not use the same keys as the preconfigured ones to prevent data exceptions due to system overwrites.  
-    
+
     | Field|Description|
     | ---- | ---- |
     | version | Version the application on the target device.|
     | targetDevice | Network ID of the target device.|
-    
+
     ```ts
     import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -127,7 +127,7 @@ The following figure shows the cross-device migration process when a migration r
       }
     }
     ```
-    
+
 3. For the UIAbility on the target device, implement [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) to restore the data and load the UI.
 
     The APIs to call vary according to the launch types, as shown below.
@@ -424,7 +424,9 @@ By default, the target application on the peer device is not started immediately
      }
    }
    ```
-With quick start, the target application starts while waiting for the data to migration, minimizing the duration that users wait for the migration to complete. Note that, for the first migration with quick start enabled, the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) callback is triggered, in which **launchReason** is **PREPARE_CONTINUATION**. The introduction of the **launchReason** parameter solves problems related to redirection and timing. It also provides a loading screen during quick startup, delivering a better experience. The following figure shows the quick start process.
+With quick start, the target application starts while waiting for the data to migration, minimizing the duration that users wait for the migration to complete. Note that, for the first migration with quick start enabled, the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) callback is triggered, in which **launchReason** is **PREPARE_CONTINUATION**. The introduction of the **launchReason** parameter solves problems related to redirection and timing. It also provides a loading screen during quick startup.
+
+The following figure shows the quick start process.
 
 ![hop-cross-device-migration](figures/continue_quick_start.png)
 

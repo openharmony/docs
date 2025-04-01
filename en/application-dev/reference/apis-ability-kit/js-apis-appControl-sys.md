@@ -460,52 +460,6 @@ try {
 
 ## appControl.deleteDisposedStatusSync<sup>10+</sup>
 
-deleteDisposedStatusSync(appId: string) : void
-
-Deletes the disposed status for an application. This API returns the result synchronously. If the operation is successful, **null** is returned. If the operation fails, an error message is returned.
-
-**System API**: This is a system API.
-
-**Required permissions**: ohos.permission.MANAGE_DISPOSED_APP_STATUS
-
-**System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
-
-**Parameters**
-
-| Name      | Type    | Mandatory  | Description                                   |
-| ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
-
-| ID| Error Message                               |
-| ------ | -------------------------------------- |
-| 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 801 | Capability not supported. |
-| 17700005 |  The specified app ID is an empty string.  |
-
-**Example**
-
-```ts
-import appControl from '@ohos.bundle.appControl';
-import { BusinessError } from '@ohos.base';
-
-let appId: string = "com.example.myapplication_xxxxx";
-
-try {
-    appControl.deleteDisposedStatusSync(appId);
-} catch (error) {
-    let message = (error as BusinessError).message;
-    console.error('deleteDisposedStatusSync failed ' + message);
-}
-```
-
-## appControl.deleteDisposedStatusSync<sup>12+</sup>
-
 deleteDisposedStatusSync(appId: string, appIndex:? number) : void
 
 Deletes the disposed status for an application or an application clone. This API returns the result synchronously. If the operation is successful, **null** is returned. If the operation fails, an error message is returned.
@@ -581,60 +535,6 @@ try {
 
 ## appControl.getDisposedRule<sup>11+</sup>
 
-getDisposedRule(appId: string): DisposedRule
-
-Obtains the disposed rule of an application.
-
-**System API**: This is a system API.
-
-**Required permissions**: ohos.permission.MANAGE_DISPOSED_APP_STATUS
-
-**System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
-
-**Parameters**
-
-| Name      | Type    | Mandatory  | Description                                   |
-| ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
-
-**Return value**
-
-| Type                       | Description                |
-| ------------------------- | ------------------ |
-| [DisposedRule](#disposedrule11) | Disposed rule of the application.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
-
-| ID| Error Message                               |
-| ------ | -------------------------------------- |
-| 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 801 | Capability not supported. |
-| 17700005 |  The specified app ID is an empty string.  |
-
-**Example**
-
-```ts
-import appControl from '@ohos.bundle.appControl';
-import { BusinessError } from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
-
-let appId = "com.example.myapplication_xxxxx";
-
-try {
-  let data = appControl.getDisposedRule(appId);
-  console.info('getDisposedRule successfully. Data: ' + JSON.stringify(data));
-} catch (error) {
-  let message = (error as BusinessError).message;
-  console.error('getDisposedRule failed ' + message);
-}
-```
-
-## appControl.getDisposedRule<sup>12+</sup>
-
 getDisposedRule(appId: string, appIndex:? number): DisposedRule
 
 Obtains the disposed rule of an application or an application clone.
@@ -690,75 +590,6 @@ try {
 ```
 
 ## appControl.setDisposedRule<sup>11+</sup>
-
-setDisposedRule(appId: string, rule: DisposedRule): void
-
-Sets a disposed rule for an application.
-
-**System API**: This is a system API.
-
-**Required permissions**: ohos.permission.MANAGE_DISPOSED_APP_STATUS
-
-**System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
-
-**Parameters**
-
-| Name      | Type    | Mandatory  | Description                                   |
-| ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
-| rule | [DisposedRule](#disposedrule11) | Yes| Disposed rule to set.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
-
-| ID| Error Message                               |
-| ------ | -------------------------------------- |
-| 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 801 | Capability not supported. |
-| 17700005 |  The specified app ID is an empty string.  |
-
-**Example**
-
-```ts
-import appControl from '@ohos.bundle.appControl';
-import { BusinessError } from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
-import bundleManager from '@ohos.bundle.bundleManager';
-
-let appId = "com.example.myapplication_xxxxx";
-let want: Want = {
-  bundleName: "com.example.myapplication",
-  moduleName: "entry",
-  abilityName: "EntryAbility"
-};
-let elementName: bundleManager.ElementName = {
-  bundleName: "com.example.myapplication",
-  moduleName: "entry",
-  abilityName: "EntryAbility"
-};
-let rule: appControl.DisposedRule = {
-  want: want,
-  componentType: appControl.ComponentType.UI_ABILITY,
-  disposedType: appControl.DisposedType.BLOCK_APPLICATION,
-  controlType: appControl.ControlType.ALLOWED_LIST,
-  elementList: [
-    elementName
-  ],
-  priority: 100
-};
-
-try {
-  appControl.setDisposedRule(appId, rule);
-} catch (error) {
-  let message = (error as BusinessError).message;
-  console.error('setDisposedRule failed ' + message);
-}
-```
-
-## appControl.setDisposedRule<sup>12+</sup>
 
 setDisposedRule(appId: string, rule: DisposedRule, appIndex:? number): void
 
@@ -885,3 +716,29 @@ Enumerates the control type of application disposal.
 | ------- | ---- | -------------------- |
 | ALLOWED_LIST | 1    | A trustlist is used, which means that the application components in the list are allowed to run.|
 | DISALLOWED_LIST | 2    | A blocklist is used, which means that the application components in the list are forbidden to run.|
+
+## UninstallDisposedRule<sup>15+</sup>
+
+Describes an uninstallation disposed rule.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
+
+ **System API**: This is a system API.
+
+| Name     | Type          | Readable| Writable| Description                       |
+| --------- | -------------- | ---- | ---- | --------------------------- |
+| want | [Want](js-apis-app-ability-want.md)     | Yes  | Yes  | Page displayed when the application is disposed of. The default value is empty. |
+| UninstallComponentType | [UninstallComponentType](#uninstallcomponenttype15)  | Yes  | Yes  | Type of the ability to start during interception. The default value is UninstallComponentType.EXTENSION. |
+| priority | number | Yes| Yes| Priority of the disposed rule. The default value is **0**. A smaller value indicates a higher priority.|
+
+### UninstallComponentType<sup>15+</sup>
+
+Enumerates the types of abilities during uninstallation.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
+
+ **System API**: This is a system API.
+
+| Name   | Value  | Description                |
+| ------- | ---- | -------------------- |
+| EXTENSION | 1    | Extension ability.|
